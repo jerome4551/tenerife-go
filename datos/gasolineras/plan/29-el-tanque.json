@@ -1,0 +1,27 @@
+{
+ "_": [
+  "Tanda 29 de 31: El Tanque.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "El Tanque",
+ "estaciones": 1,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 1,
+ "lista": [
+  {
+   "ideess": "7682",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "CARRETERA TF-82 KM. 8",
+   "cp": "38435",
+   "localidad": "EL TANQUE",
+   "municipio": "El Tanque",
+   "horario": "L-D: 06:00-21:00",
+   "lat": 28.356333,
+   "lng": -16.777139,
+   "ya_en_la_app": null
+  }
+ ]
+}

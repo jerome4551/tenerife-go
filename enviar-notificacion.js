@@ -2,7 +2,12 @@
    TENERIFE GO  ·  Envio de la notificacion diaria
    ---------------------------------------------------------------------
    Corre en GitHub Actions cada manana. Lee las suscripciones de Supabase
-   y envia a cada dispositivo la frase del dia en su idioma.
+   y envia a cada dispositivo la frase del dia en su idioma. Los domingos,
+   en vez de la frase, un consejo del panel SOS (CONSEJOS, mas abajo).
+
+   Y el aviso del semaforo volcanico cuando cambia de color, con
+   --semaforo-decidir y --semaforo-enviar (mas abajo): lo lanza el flujo del
+   semaforo, .github/workflows/semaforo-involcan.yml.
 
    Variables de entorno (se ponen como Secrets del repo en GitHub):
      SUPABASE_URL          https://aupjvdrubjytryzqirdn.supabase.co
@@ -11,7 +16,7 @@
      VAPID_PRIVATE         clave privada VAPID (SECRETA)
    Opcionales:
      VAPID_SUBJECT         mailto:tenerife.go.app@gmail.com  (por defecto)
-     APP_URL               https://jerome4551.github.io/tenerife-go/
+     APP_URL               https://tenerifego.app/
      TARGET_HOURS          "9,10"  (horas de Canarias en que se permite enviar)
      FORCE                 "1" para saltar la comprobacion horaria (pruebas)
    ===================================================================== */
@@ -19,21 +24,38 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const webpush = require('web-push');
 
 const SUPABASE_URL         = (process.env.SUPABASE_URL || '').replace(/\/+$/, '');
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY || '';
 const VAPID_PUBLIC         = process.env.VAPID_PUBLIC || '';
 const VAPID_PRIVATE        = process.env.VAPID_PRIVATE || '';
 const VAPID_SUBJECT        = process.env.VAPID_SUBJECT || 'mailto:tenerife.go.app@gmail.com';
-const APP_URL              = process.env.APP_URL || 'https://jerome4551.github.io/tenerife-go/';
-const TARGET_HOURS         = (process.env.TARGET_HOURS || '9,10').split(',').map(s => parseInt(s, 10));
+const APP_URL              = process.env.APP_URL || 'https://tenerifego.app/';
+/* La ventana era '9,10' y eso la rompio. GitHub no lanza los cron a su hora:
+   medido sobre las ejecuciones reales del 29 de agosto al 8 de septiembre,
+   sale entre 4 y 6 HORAS tarde, siempre. Con los cron a las 08:07-09:37 UTC
+   las ejecuciones caian a las 12:49-15:09 UTC -13:49 a 16:09 en Canarias- y
+   esta comprobacion las rechazaba todas. El workflow terminaba en verde sin
+   enviar nada, once dias seguidos.
+   La ventana NO es lo que impide enviar dos veces: eso lo hace push_sends,
+   que tiene el dia como clave unica y devuelve 409 al segundo intento. La
+   ventana solo esta para no despertar a nadie de madrugada, asi que puede
+   ser ancha sin ningun riesgo. */
+const TARGET_HOURS         = (process.env.TARGET_HOURS || '7,8,9,10,11,12,13,14,15')
+                               .split(',').map(s => parseInt(s, 10));
+/* Dias sin enviar a partir de los cuales la ejecucion se pone en ROJO. Un
+   fallo que deja el job en verde no lo ve nadie: este lleva once dias. */
+const AVISO_DIAS           = parseInt(process.env.AVISO_DIAS || '2', 10);
 const FORCE                = process.env.FORCE === '1';
 
 function fail(msg) { console.error('✗ ' + msg); process.exit(1); }
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) fail('Falta SUPABASE_URL o SUPABASE_SERVICE_KEY.');
-if (!VAPID_PUBLIC || !VAPID_PRIVATE)        fail('Falta VAPID_PUBLIC o VAPID_PRIVATE.');
+/* Las claves hacen falta para enviar. Decidir si hay que avisar del semaforo
+   no envia nada, y corre sin ellas. */
+function comprobarSecretos() {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) fail('Falta SUPABASE_URL o SUPABASE_SERVICE_KEY.');
+  if (!VAPID_PUBLIC || !VAPID_PRIVATE)        fail('Falta VAPID_PUBLIC o VAPID_PRIVATE.');
+}
 
 // --- Fecha y hora en Canarias (maneja el cambio de hora automaticamente) ---
 function canaryParts() {
@@ -58,18 +80,115 @@ function dayOfYear(y, m, d) {
   return Math.floor((cur - start) / 86400000); // 1..366
 }
 
+/* --- Las filas del panel SOS (modulos/emergencias.js) ---
+   El consejo del domingo y el aviso del semaforo no traen textos propios: son
+   filas del panel, las mismas que se leen en la app, verificadas contra su
+   fuente oficial, en los diez idiomas y de usted. Se leen del modulo, sin
+   copiarlas aqui: si el panel cambia una fila, la notificacion dice lo mismo
+   que el panel. Si falta una fila o uno de sus idiomas, no se compone nada a
+   mano. */
+const IDIOMAS_SOS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+function leerPanelSOS() {
+  const src = fs.readFileSync(path.join(__dirname, 'modulos', 'emergencias.js'), 'utf8');
+  const ini = src.indexOf('var EMERG_UI = {'), fin = src.indexOf('\n  };', ini);
+  if (ini < 0 || fin < 0) throw new Error('no encuentro las filas (EMERG_UI) en modulos/emergencias.js');
+  const filas = {};
+  for (const linea of src.slice(ini, fin).split('\n')) {
+    const m = /^\s*"(\w+)"\s*:\s*(\{.*\})\s*,?\s*$/.exec(linea);
+    if (!m) continue;
+    try { filas[m[1]] = JSON.parse(m[2]); } catch (e) { /* una fila que no se entiende no se usa */ }
+  }
+  const loc = /var SOS_LOCALE = (\{[^}]*\});/.exec(src);
+  return { filas, locale: loc ? JSON.parse(loc[1]) : {} };
+}
+function filaSOS(panel, k, lang) {
+  const f = panel.filas[k];
+  if (!f || typeof f[lang] !== 'string' || !f[lang].trim()) throw new Error('falta la fila ' + k + ' en «' + lang + '»');
+  return f[lang];
+}
+
+/* --- El consejo del domingo ---
+   Jerome, 24 de octubre de 2026: «no es malo preparar la gente de veces
+   cuando para que se queda informada», y «que no sea una alarma que asuste a
+   la gente, más un consejo de quedarse informados de que hacer en tal caso.
+   Que las alertas asustaron a algunas gente por no estar informadas».
+   Los domingos, la notificacion de la manana trae, en vez de la frase, una
+   fila del panel SOS debajo del titulo de su guia, con el «Buenos dias» de
+   siempre. Es la misma notificacion (ese dia no sale otra) y al tocarla se
+   abre esa guia. Solo filas que informan sin asustar: que es ES-Alert y que
+   hacer cuando llega (tambien si es un simulacro), el hotel, el plan, la
+   mochila, la montana. Doce, una cada domingo: cada una vuelve a los tres
+   meses. La primera, el 25 de octubre de 2026. */
+const CONSEJOS = [
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa2'],      // SIMULACRO o PRUEBA: es un ensayo
+  ['visita',   'sosGuiaVisita',   'sosVis1'],      // pregunte en su hotel
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa1'],      // que es ES-Alert
+  ['semaforo', 'sosGuiaSemaforo', 'sosSemIntro'],  // que es el semaforo
+  ['plan',     'sosGuiaPlan',     'sosPlan1'],     // un punto de encuentro
+  ['visita',   'sosGuiaVisita',   'sosVis3'],      // los idiomas del 112
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa5'],      // no llame al 112 para preguntar
+  ['mochila',  'sosGuiaMochila',  'sosMocIntro'],  // la mochila
+  ['visita',   'sosGuiaVisita',   'sosVis4'],      // ES-Alert en un movil extranjero
+  ['montana',  'sosGuiaMontana',  'sosMon1'],      // diga a alguien su ruta
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa3'],      // si es real: calma, leerlo y seguirlo
+  ['esalert',  'sosGuiaEsAlert',  'sosEsa8']       // nunca le pedira datos personales
+];
+const CONSEJO_PRIMERO = Date.UTC(2026, 9, 25);     // domingo, 25 de octubre de 2026
+function consejoDelDia(y, m, d) {
+  const hoy = Date.UTC(y, m - 1, d);
+  if (new Date(hoy).getUTCDay() !== 0) return null;
+  const n = Math.round((hoy - CONSEJO_PRIMERO) / (7 * 86400000)) % CONSEJOS.length;
+  return CONSEJOS[(n + CONSEJOS.length) % CONSEJOS.length];
+}
+/* El titulo de la guia y debajo la fila: un salto de linea, que vale igual en
+   los diez idiomas (los dos puntos no se escriben igual en frances ni en
+   chino). */
+function textoConsejo(panel, c, lang) {
+  return filaSOS(panel, c[1], lang) + '\n' + filaSOS(panel, c[2], lang);
+}
+
 const sbHeaders = {
   'apikey': SUPABASE_SERVICE_KEY,
   'Authorization': 'Bearer ' + SUPABASE_SERVICE_KEY,
   'Content-Type': 'application/json'
 };
 
+/* Cuantos dias hace del ultimo envio. Devuelve null si nunca se envio -no es
+   un fallo: puede ser una instalacion nueva- y null tambien si la consulta
+   falla, porque no se va a tumbar el envio del dia por no poder mirar esto. */
+async function diasSinEnviar(hoy) {
+  try {
+    const r = await fetch(SUPABASE_URL +
+      '/rest/v1/push_sends?select=sent_date&order=sent_date.desc&limit=1', { headers: sbHeaders });
+    if (!r.ok) return null;
+    const filas = await r.json();
+    if (!filas.length || !filas[0].sent_date) return null;
+    const ult = Date.parse(filas[0].sent_date + 'T00:00:00Z');
+    const ahora = Date.parse(hoy + 'T00:00:00Z');
+    if (!isFinite(ult) || !isFinite(ahora)) return null;
+    return { dias: Math.round((ahora - ult) / 86400000), ultimo: filas[0].sent_date };
+  } catch (e) { return null; }
+}
+
 async function main() {
+  comprobarSecretos();
   const now = canaryParts();
   console.log(`Hora Canarias: ${now.date} ${String(now.hour).padStart(2, '0')}h`);
 
+  /* Se mira ANTES de la ventana horaria a proposito: si se mirara despues, una
+     ejecucion fuera de hora saldria por el `return` de abajo y nunca llegaria
+     a comprobar nada. Justo lo que dejo pasar once dias en silencio. */
+  const retraso = await diasSinEnviar(now.date);
+  if (retraso) console.log(`Ultimo envio: ${retraso.ultimo} (hace ${retraso.dias} dia(s))`);
+
   if (!FORCE && TARGET_HOURS.indexOf(now.hour) === -1) {
     console.log(`No es hora de enviar (permitidas: ${TARGET_HOURS.join(', ')}). Salgo.`);
+    if (retraso && retraso.dias > AVISO_DIAS) {
+      console.log(`::error::La notificacion lleva ${retraso.dias} dias sin salir ` +
+        `(ultimo: ${retraso.ultimo}). Esta ejecucion cayo a las ${now.hour}h de Canarias, ` +
+        `fuera de la ventana ${TARGET_HOURS[0]}-${TARGET_HOURS[TARGET_HOURS.length - 1]}h.`);
+      process.exitCode = 1;
+    }
     return;
   }
 
@@ -84,6 +203,16 @@ async function main() {
     if (!r.ok) fail(`No pude marcar el envio del dia (HTTP ${r.status}). ${await r.text()}`);
   }
 
+  /* El aviso de racha va AQUI y no en el resumen final. Puesto al final no
+     salia cuando no hay suscripciones, porque ese caso tiene su propio
+     `return` mas abajo: un informe que se salta por un return anticipado es
+     justo la forma de este fallo. Aqui ya se sabe que hoy sale, y no queda
+     ningun camino que se lo salte. */
+  if (retraso && retraso.dias > AVISO_DIAS) {
+    console.log(`::warning::Hoy si sale, pero antes hubo ${retraso.dias} dias sin ` +
+      `enviar (ultimo: ${retraso.ultimo}).`);
+  }
+
   // --- Cargar frases ---
   const frasesPath = path.join(__dirname, 'frases.json');
   if (!fs.existsSync(frasesPath)) fail('No encuentro frases.json junto al script.');
@@ -93,32 +222,66 @@ async function main() {
   const fraseHoy = CONT.frases[idx];
   console.log(`Frase del dia #${idx}: "${fraseHoy.es}"`);
 
+  /* El consejo del domingo, si toca. Antes de enviar nada se compone en los
+     diez idiomas: si falla una fila, ese domingo va la frase de siempre. */
+  let consejo = consejoDelDia(now.year, now.month, now.day), panel = null;
+  if (consejo) {
+    try {
+      panel = leerPanelSOS();
+      for (const l of IDIOMAS_SOS) textoConsejo(panel, consejo, l);
+      console.log(`Domingo: en vez de la frase, el consejo ${consejo[0]}/${consejo[2]}: "${textoConsejo(panel, consejo, 'es').replace('\n', ' · ')}"`);
+    } catch (e) {
+      console.log(`::warning::El consejo del domingo no sale (${e.message}): va la frase del dia.`);
+      consejo = null;
+    }
+  }
+
+  await enviarATodos(sLang => {
+    const lang = (fraseHoy[sLang] ? sLang : 'es');
+    if (consejo) {
+      const l = IDIOMAS_SOS.indexOf(lang) >= 0 ? lang : 'es';
+      return { title: CONT.titulo[l] || CONT.titulo.es, body: textoConsejo(panel, consejo, l),
+               url: APP_URL + '#sos-' + consejo[0], lang: l };
+    }
+    return { title: CONT.titulo[lang] || CONT.titulo.es, body: fraseHoy[lang] || fraseHoy.es,
+             url: APP_URL, lang: lang };
+  }, 6 * 3600);
+}
+
+/* Lee todas las suscripciones y le manda a cada una lo que `componer` diga
+   para su idioma: {title, body, url, lang} y, si hace falta, un tag propio. */
+async function enviarATodos(componer, ttl) {
   // --- Leer suscripciones (service_role ignora RLS) ---
-  const resp = await fetch(
-    SUPABASE_URL + '/rest/v1/push_subs?select=endpoint,p256dh,auth,lang',
-    { headers: sbHeaders }
-  );
-  if (!resp.ok) fail(`No pude leer las suscripciones (HTTP ${resp.status}). ${await resp.text()}`);
-  const subs = await resp.json();
+  /* Supabase devuelve como mucho unas cuantas filas por peticion (Max rows:
+     1.000 en cada proyecto, si nadie lo cambia), y la service_role no se lo
+     salta. Leidas de una vez, a partir de la mil y una nadie recibia la
+     notificacion, sin ningun aviso (23 de octubre de 2026). Se leen por
+     paginas, en orden, hasta una vacia: vale con cualquier tope. */
+  const subs = [];
+  for (;;) {
+    const resp = await fetch(
+      SUPABASE_URL + '/rest/v1/push_subs?select=endpoint,p256dh,auth,lang&order=endpoint&offset=' + subs.length + '&limit=1000',
+      { headers: sbHeaders }
+    );
+    if (!resp.ok) fail(`No pude leer las suscripciones (HTTP ${resp.status}). ${await resp.text()}`);
+    const pagina = await resp.json();
+    if (!Array.isArray(pagina) || !pagina.length) break;
+    subs.push(...pagina);
+  }
   console.log(`Suscripciones: ${subs.length}`);
   if (!subs.length) { console.log('Nadie suscrito todavia. Nada que enviar.'); return; }
 
+  const webpush = require('web-push');
   webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC, VAPID_PRIVATE);
 
   let enviados = 0, fallidos = 0, limpiados = 0;
 
   for (const s of subs) {
-    const lang = (fraseHoy[s.lang] ? s.lang : 'es');
-    const payload = JSON.stringify({
-      title: CONT.titulo[lang] || CONT.titulo.es,
-      body:  fraseHoy[lang]    || fraseHoy.es,
-      url:   APP_URL,
-      lang:  lang
-    });
+    const payload = JSON.stringify(componer(s.lang));
     const subscription = { endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } };
 
     try {
-      await webpush.sendNotification(subscription, payload, { TTL: 6 * 3600 });
+      await webpush.sendNotification(subscription, payload, { TTL: ttl });
       enviados++;
     } catch (err) {
       const code = err && err.statusCode;
@@ -139,6 +302,104 @@ async function main() {
   }
 
   console.log(`\nResumen -> enviados: ${enviados} | fallidos: ${fallidos} | caducados limpiados: ${limpiados}`);
+
 }
 
-main().catch(e => fail(e && e.message ? e.message : String(e)));
+/* --- El aviso del semaforo volcanico ---
+   Jerome, 24 de octubre de 2026: «2 sí perfecto», al aviso «solo cuando cambie
+   de color». No es un aviso de emergencia (esos no: llegarian tarde, y para
+   eso esta ES-Alert): es lo oficial y nada mas, el boletin de INVOLCAN con su
+   fecha y su color, y lo que pide ese color, con las filas del panel. Ni la
+   app ni este guion deciden si hay peligro.
+   Lo lanza el flujo del semaforo despues de leer el boletin, en dos pasos,
+   para que salga una vez y solo una:
+     --semaforo-decidir <fichero>  mira datos/semaforo-involcan.json contra lo
+        ultimo avisado (tools/datos/aviso-semaforo.json). Si hay que avisar,
+        apunta ahi el color nuevo y deja el aviso en <fichero>. El flujo sube
+        ese apunte al repo ANTES de enviar: si no puede subirlo, no envia, y
+        la vuelta siguiente lo intenta otra vez.
+     --semaforo-enviar <fichero>   lo envia a todas las suscripciones.
+   · La primera vez solo apunta el color: encenderlo no avisa de nada.
+   · Avisa en los dos sentidos: tambien cuando vuelve a verde.
+   · Un boletin de hace mas de 8 dias no avisa: el panel ya no lo ensena.
+   · De 8 a 21 h en Canarias: un cambio leido de noche se avisa en la primera
+     vuelta del dia (el flujo corre cuatro veces al dia). */
+const SEMAFORO_JSON = process.env.SEMAFORO_JSON || path.join(__dirname, 'datos', 'semaforo-involcan.json');
+const AVISO_ESTADO  = process.env.AVISO_ESTADO  || path.join(__dirname, 'tools', 'datos', 'aviso-semaforo.json');
+const COLORES = ['verde', 'amarillo', 'naranja', 'rojo'];
+const HORAS_AVISO = [8, 21];
+
+function semaforoValido(s) {
+  return !!s && COLORES.indexOf(s.color) >= 0 && /^\d{4}-\d{2}-\d{2}$/.test(s.boletin || '') &&
+    isFinite(Date.parse(s.boletin + 'T12:00:00Z'));
+}
+function decidirSemaforo(actual, antes, ahoraMs, hora) {
+  if (!semaforoValido(actual)) return { motivo: 'El fichero del semaforo no trae un color y una fecha que se entiendan: no se avisa de nada.' };
+  const nuevo = { boletin: actual.boletin, color: actual.color };
+  if (!semaforoValido(antes)) return { estado: nuevo, motivo: `Primera vez: se apunta el semaforo ${actual.color} del boletin del ${actual.boletin}, sin avisar.` };
+  if (actual.color === antes.color) return { motivo: `Sigue ${actual.color} (boletin del ${actual.boletin}): nada que avisar.` };
+  if (actual.boletin < antes.boletin) return { motivo: `El boletin leido (${actual.boletin}) es anterior al ya avisado (${antes.boletin}): no se avisa.` };
+  if (ahoraMs - Date.parse(actual.boletin + 'T12:00:00Z') > 8 * 86400000)
+    return { estado: nuevo, motivo: `De ${antes.color} a ${actual.color}, pero el boletin (${actual.boletin}) tiene mas de 8 dias: se apunta sin avisar.` };
+  if (hora < HORAS_AVISO[0] || hora > HORAS_AVISO[1])
+    return { motivo: `De ${antes.color} a ${actual.color}, pero son las ${hora} h en Canarias: se avisa en la primera vuelta del dia.` };
+  return { estado: nuevo, aviso: { boletin: actual.boletin, color: actual.color, antes: antes.color },
+           motivo: `De ${antes.color} a ${actual.color} (boletin del ${actual.boletin}): se avisa.` };
+}
+
+/* Titulo: «El semaforo volcanico». Cuerpo: la linea del panel («Boletin de
+   INVOLCAN del 30 de octubre de 2026: semaforo amarillo en Tenerife.») y
+   debajo lo que pide ese color («Atencion a lo que digan las autoridades.»),
+   con la fecha escrita como la escribe el panel. */
+function textoSemaforo(panel, aviso, lang) {
+  const fecha = new Intl.DateTimeFormat(panel.locale[lang] || 'es-ES',
+    { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Atlantic/Canary' })
+    .format(new Date(Date.parse(aviso.boletin + 'T12:00:00Z')));
+  const linea = filaSOS(panel, 'sosSemaforoBoletin', lang)
+    .replace('{f}', fecha).replace('{c}', filaSOS(panel, 'sosColor_' + aviso.color, lang));
+  const pide = filaSOS(panel, 'sosSem' + aviso.color.charAt(0).toUpperCase() + aviso.color.slice(1) + 'Q', lang);
+  return { title: filaSOS(panel, 'sosGuiaSemaforo', lang), body: linea + '\n' + pide };
+}
+
+async function semaforoDecidir(salida) {
+  if (!salida) fail('Falta el fichero del aviso: --semaforo-decidir <fichero>');
+  try { fs.unlinkSync(salida); } catch (e) { /* no habia */ }
+  let actual = null, antes = null;
+  try { actual = JSON.parse(fs.readFileSync(SEMAFORO_JSON, 'utf8')); }
+  catch (e) { fail('No puedo leer ' + SEMAFORO_JSON + ': ' + e.message); }
+  try { antes = JSON.parse(fs.readFileSync(AVISO_ESTADO, 'utf8')); } catch (e) { antes = null; }
+  const d = decidirSemaforo(actual, antes, Date.now(), canaryParts().hour);
+  console.log(d.motivo);
+  /* El aviso, compuesto en los diez idiomas ANTES de apuntarlo como avisado:
+     si falta una fila, no se apunta nada y el flujo sale en rojo. */
+  if (d.aviso) { const panel = leerPanelSOS(); for (const l of IDIOMAS_SOS) textoSemaforo(panel, d.aviso, l); }
+  if (d.estado) {
+    fs.mkdirSync(path.dirname(AVISO_ESTADO), { recursive: true });
+    fs.writeFileSync(AVISO_ESTADO, JSON.stringify(d.estado, null, 1) + '\n');
+  }
+  if (d.aviso) fs.writeFileSync(salida, JSON.stringify(d.aviso) + '\n');
+}
+
+async function semaforoEnviar(fichero) {
+  comprobarSecretos();
+  let aviso = null;
+  try { aviso = JSON.parse(fs.readFileSync(fichero, 'utf8')); }
+  catch (e) { fail('No puedo leer el aviso ' + fichero + ': ' + e.message); }
+  if (!semaforoValido(aviso)) fail('El aviso no se entiende: ' + JSON.stringify(aviso));
+  const panel = leerPanelSOS(), textos = {};
+  for (const l of IDIOMAS_SOS) textos[l] = textoSemaforo(panel, aviso, l);
+  console.log(`Aviso del semaforo: ${textos.es.title} · ${textos.es.body.replace('\n', ' · ')}`);
+  /* 24 horas para llegar a un movil apagado: el boletin vale una semana. */
+  await enviarATodos(sLang => {
+    const l = textos[sLang] ? sLang : 'es';
+    return { title: textos[l].title, body: textos[l].body, url: APP_URL + '#sos-semaforo', lang: l, tag: 'tgo-semaforo' };
+  }, 24 * 3600);
+}
+
+/*   node enviar-notificacion.js                       la notificacion de cada manana
+     node enviar-notificacion.js --semaforo-decidir F  ¿hay que avisar del semaforo? (sin claves)
+     node enviar-notificacion.js --semaforo-enviar F   enviar ese aviso */
+const MODO = process.argv[2];
+(MODO === '--semaforo-decidir' ? semaforoDecidir(process.argv[3])
+  : MODO === '--semaforo-enviar' ? semaforoEnviar(process.argv[3])
+  : main()).catch(e => fail(e && e.message ? e.message : String(e)));

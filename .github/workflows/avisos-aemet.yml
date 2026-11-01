@@ -1,0 +1,93 @@
+# Avisos meteorologicos de AEMET para Tenerife (12 de octubre de 2026).
+#
+# La app no puede pedirselos a AEMET: aemet.es no deja que una web de otro
+# dominio lea sus ficheros (no manda cabeceras CORS), y por eso la pildora de
+# avisos llevaba meses sin salir nunca. Este flujo los baja aqui, del canal
+# oficial y sin clave del Plan Meteoalerta para la isla de Tenerife, y los deja
+# en datos/avisos-aemet.json, que la app lee de su propio dominio. Todo lo que
+# hace y por que esta en tools/avisos_aemet.py.
+#
+# SI NO PUEDE: tools/avisos_aemet.py no escribe nada cuando la descarga o la
+# lectura fallan. El fichero se queda con su ultima comprobacion buena y su
+# hora («consultado»), y la app, al ver esa hora vieja (mas de 6 horas), dice
+# que no ha podido comprobar desde entonces y manda a aemet.es. Los avisos que
+# ya tenia se siguen ensenando hasta su fin oficial, no mas.
+#
+# CADA HORA, CON VEINTICUATRO LINEAS. El programador de GitHub lanza cada linea
+# de cron mas o menos una vez al dia y tarde (medido el 11 de octubre, ver
+# precios-gasolineras.yml): 24 lineas dan unas 24 comprobaciones al dia. Minuto
+# :41, lejos del :07 de la notificacion, del :23 de las gasolineras y del :00,
+# el mas saturado. Sin cambios en los avisos solo se guarda cada 3 horas, para
+# renovar la hora de comprobacion; con cambios, en cuanto se ven.
+#
+# Uso a mano: pestana Actions -> "Avisos AEMET Tenerife" -> Run workflow.
+
+name: Avisos AEMET Tenerife
+
+on:
+  schedule:
+    - cron: '41 0 * * *'
+    - cron: '41 1 * * *'
+    - cron: '41 2 * * *'
+    - cron: '41 3 * * *'
+    - cron: '41 4 * * *'
+    - cron: '41 5 * * *'
+    - cron: '41 6 * * *'
+    - cron: '41 7 * * *'
+    - cron: '41 8 * * *'
+    - cron: '41 9 * * *'
+    - cron: '41 10 * * *'
+    - cron: '41 11 * * *'
+    - cron: '41 12 * * *'
+    - cron: '41 13 * * *'
+    - cron: '41 14 * * *'
+    - cron: '41 15 * * *'
+    - cron: '41 16 * * *'
+    - cron: '41 17 * * *'
+    - cron: '41 18 * * *'
+    - cron: '41 19 * * *'
+    - cron: '41 20 * * *'
+    - cron: '41 21 * * *'
+    - cron: '41 22 * * *'
+    - cron: '41 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: avisos-aemet
+  cancel-in-progress: false
+
+jobs:
+  avisos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Bajar los avisos de AEMET para Tenerife
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python3 tools/avisos_aemet.py
+
+      - name: Guardar en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos/avisos-aemet.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          N=$(python3 -c "import json;print(len(json.load(open('datos/avisos-aemet.json'))['avisos']))")
+          if [ "$N" = "0" ]; then MSG="Avisos AEMET Tenerife: ninguno"; else MSG="Avisos AEMET Tenerife: $N"; fi
+          git commit -m "$MSG"
+          for i in 1 2 3 4; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep $((i * 10))
+          done
+          echo "::error::No se pudo subir el fichero de avisos"
+          exit 1

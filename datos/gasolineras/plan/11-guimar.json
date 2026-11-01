@@ -1,0 +1,92 @@
+{
+ "_": [
+  "Tanda 11 de 31: Güímar.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Güímar",
+ "estaciones": 6,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 6,
+ "lista": [
+  {
+   "ideess": "7881",
+   "rotulo": "DISA GÜIMAR",
+   "marca": "disa",
+   "direccion": "AVENIDA SANTA CRUZ, 53",
+   "cp": "38500",
+   "localidad": "GÜIMAR",
+   "municipio": "Güímar",
+   "horario": "L-M: 06:00-22:00; X: 05:30-19:30; J-S: 06:00-22:00; D: 07:00-21:00",
+   "lat": 28.319056,
+   "lng": -16.407972,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7752",
+   "rotulo": "DISA PUERTITO",
+   "marca": "disa",
+   "direccion": "CARRETERA TF-61 KM. 2,800",
+   "cp": "38500",
+   "localidad": "GÜIMAR",
+   "municipio": "Güímar",
+   "horario": "L-D: 24H",
+   "lat": 28.306389,
+   "lng": -16.386056,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7858",
+   "rotulo": "EL ESCOBONAL",
+   "marca": null,
+   "direccion": "AVENIDA AXAENTEMIR, S/N",
+   "cp": "38591",
+   "localidad": "ESCOBONAL (EL)",
+   "municipio": "Güímar",
+   "horario": "L-S: 07:00-21:00; D: 08:00-14:00",
+   "lat": 28.26425,
+   "lng": -16.426417,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7621",
+   "rotulo": "MOEVE",
+   "marca": "cepsa",
+   "direccion": "AVENIDA OBISPO PEREZ CACERES, 45",
+   "cp": "38500",
+   "localidad": "GÜIMAR",
+   "municipio": "Güímar",
+   "horario": "L-S: 06:00-22:00; D: 06:00-14:00",
+   "lat": 28.313028,
+   "lng": -16.411944,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "12479",
+   "rotulo": "OCÉANO",
+   "marca": "oceano",
+   "direccion": "POLIGONO INDUSTRIAL VALLE DE GÜIMAR MZ. 13, PC. 10, S/N",
+   "cp": "38500",
+   "localidad": "GÜIMAR",
+   "municipio": "Güímar",
+   "horario": "L-V: 06:00-22:00; S: 07:00-22:00; D: 08:00-21:00",
+   "lat": 28.325194,
+   "lng": -16.374833,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "8749",
+   "rotulo": "SHELL GUIMAR",
+   "marca": "shell",
+   "direccion": "CALLE RIGOBERTO DIAZ MELERO, S/N",
+   "cp": "38500",
+   "localidad": "GÜIMAR",
+   "municipio": "Güímar",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.313,
+   "lng": -16.410972,
+   "ya_en_la_app": null
+  }
+ ]
+}

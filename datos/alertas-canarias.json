@@ -1,0 +1,69 @@
+{
+ "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
+ "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
+ "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
+ "consultado": "2026-11-01T10:49:45Z",
+ "alertas": [
+  {
+   "t": "2026-10-31T19:19:26Z",
+   "titulo": "El Gobierno de Canarias actualiza la situación a alerta por lluvias en La Palma y Tenerife",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-a-alerta-por-lluvias-en-la-palma-y-tenerife/"
+  },
+  {
+   "t": "2026-10-31T12:30:50Z",
+   "titulo": "El Gobierno declara la prealerta por tormentas en las islas occidentales y Gran Canaria",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-declara-la-prealerta-por-tormentas-en-las-islas-occidentales-y-gran-canaria/"
+  },
+  {
+   "t": "2026-10-31T12:15:07Z",
+   "titulo": "El Gobierno de Canarias actualiza la situación pasando a Alerta por lluvias en Tenerife",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-pasando-a-alerta-por-lluvias-en-tenerife/"
+  },
+  {
+   "t": "2026-10-30T12:50:56Z",
+   "titulo": "El Gobierno de Canarias declara la situación de prealerta por lluvias en El Hierro, La Palma, La Gomera y Tenerife",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-situacion-de-prealerta-por-lluvias-en-el-hierro-la-palma-la-gomera-y-tenerife/"
+  },
+  {
+   "t": "2026-10-29T10:08:27Z",
+   "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por calima en el archipiélago",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-prealerta-por-calima-en-el-archipielago-4/"
+  },
+  {
+   "t": "2026-10-26T12:44:10Z",
+   "titulo": "El Gobierno de Canarias declara la situación de prealerta por calima en todo el Archipiélago",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-situacion-de-prealerta-por-calima-en-todo-el-archipielago-2/"
+  },
+  {
+   "t": "2026-10-22T18:03:39Z",
+   "titulo": "El Gobierno de Canarias finaliza la situación de alerta por lluvias en El Hierro, La Palma y La Gomera",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-alerta-por-lluvias-en-el-hierro-la-palma-y-la-gomera/"
+  },
+  {
+   "t": "2026-10-22T17:59:34Z",
+   "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por lluvias",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-prealerta-por-lluvias-7/"
+  },
+  {
+   "t": "2026-10-21T13:15:11Z",
+   "titulo": "El Gobierno de Canarias actualiza la situación y declara alerta por lluvias en El Hierro, La Gomera y La Palma",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-y-declara-alerta-por-lluvias-en-el-hierro-la-gomera-y-la-palma/"
+  },
+  {
+   "t": "2026-10-21T06:29:27Z",
+   "titulo": "El Gobierno de Canarias actualiza la situación, pasando a prealerta por lluvias en todo el archipiélago",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-pasando-a-prealerta-por-lluvias-en-todo-el-archipielago-3/"
+  },
+  {
+   "t": "2026-10-20T18:26:48Z",
+   "titulo": "El Gobierno actualiza la situación pasando a prealerta por lluvias en El Hierro, La Palma, Tenerife y Fuerteventura",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-actualiza-la-situacion-pasando-a-prealerta-por-lluvias-en-el-hierro-la-palma-tenerife-y-fuerteventura/"
+  },
+  {
+   "t": "2026-10-20T12:35:47Z",
+   "titulo": "El Gobierno de Canarias actualiza la situación a Alerta por lluvias en El Hierro",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-a-alerta-por-lluvias-en-el-hierro/"
+  }
+ ],
+ "descartados": 0
+}

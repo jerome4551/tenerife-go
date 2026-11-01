@@ -1,0 +1,39 @@
+# Lo que hace falta instalar para que pase la auditoria entera.
+#     pip install -r tools/requisitos.txt
+#
+# POR QUE EXISTE
+#   Un contenedor nuevo no trae nada de esto, y sin ello auditar_ubicacion.py y
+#   auditar_en_el_mar.py revientan con un Traceback. Como los dos salen con
+#   estado != 0, el resumen los contaba igual que un hallazgo: dijo «3 bloque(s)
+#   con fallo» cuando lo que habia era un pip install sin hacer. Ahora
+#   auditar.sh los separa, pero la forma de no tropezar es declararlos.
+#
+# QUE NECESITA CADA UNO
+#   pmtiles, mapbox_vector_tile  tools/costa.py lee mapa/tenerife-osm.pmtiles:
+#                                la linea de costa y la capa earth. De ahi
+#                                dependen auditar_ubicacion.py,
+#                                auditar_en_el_mar.py, fijar_coordenada.py,
+#                                buscar_en_osm.py, orientacion*.py y osm_cerca.py.
+#   pyshp, pyproj                tools/convertir_municipios.py, que convierte el
+#                                shapefile del Cabildo (UTM 28N) a
+#                                tools/datos/municipios-tenerife.json.gz. Solo
+#                                hace falta para REGENERAR ese fichero; el .gz ya
+#                                esta en el repositorio y municipio.py lo lee sin
+#                                nada instalado.
+#   numpy                        tools/relieve_construir.py --comprobar lee el relieve
+#                                de «La isla en 3D» (mapa/tenerife-relieve*.png) y lo
+#                                coteja con su .json. Para REGENERARLO hace falta
+#                                ademas scipy, que solo instala el workflow
+#                                generar-relieve.yml.
+#   Pillow                       tools/app_preparar.js --comprobar abre con PIL el
+#                                icono y el arranque de la app de la tienda
+#                                (app/ios/plantillas/AppIcon-1024.png, 1024x1024
+#                                RGB sin transparencia; Splash-2732.png,
+#                                2732x2732). Sin Pillow esos dos controles no
+#                                miran nada.
+pmtiles
+mapbox_vector_tile
+pyshp
+pyproj
+Pillow
+numpy

@@ -1,0 +1,18 @@
+{
+ "fuente": "IGN. Instituto Geográfico Nacional. Terremotos de los últimos diez días (canal GeoRSS).",
+ "canal": "https://www.ign.es/ign/RssTools/sismologia.xml",
+ "web": "https://www.ign.es/web/ign/portal/vlc-ultimo-terremoto/-/terremotos-canarias/get10dias",
+ "zona": {
+  "lat": [
+   27.85,
+   28.75
+  ],
+  "lon": [
+   -17.05,
+   -15.95
+  ]
+ },
+ "consultado": "2026-11-01T10:37:16Z",
+ "sismos": [],
+ "descartados": 0
+}

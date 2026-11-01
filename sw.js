@@ -1,12 +1,134 @@
-// Tenerife Go SW v4 - endurecido - 2026-07-31
-const CACHE = 'tgo-v4-2026-07-31-secure';
+// Tenerife Go SW v6 - endurecido + notificaciones - 2026-08-07
+/* Subir la version no es cosmetico: el manejador de 'activate' borra todo
+   cache cuyo nombre no sea este. Hace falta para tirar las respuestas del
+   tiempo que la v5 dejo guardadas para siempre. Si se quedara en v5, quien
+   ya tenga la app instalada seguiria viendo la prevision del dia que la
+   abrio por primera vez. */
+const CACHE = 'tgo-v7-2026-09-01-teselas';
+
+/* La huella del relieve de «La isla en 3D» (31 de octubre de 2026): los 16
+   primeros caracteres del sha256 de mapa/tenerife-relieve.json, o «ninguno»
+   mientras no se haya generado. Dos cosas:
+   · con «ninguno», el precache no pide los tres ficheros del relieve (serian
+     tres 404 en cada instalacion);
+   · cambia con el relieve, y un sw.js distinto es lo que hace que los moviles
+     que ya tienen la app instalen otra vez el service worker y bajen el
+     relieve nuevo al precache (CORE), aunque no abran el 3D con conexion.
+   La escriben tools/relieve_construir.py y el workflow generar-relieve.yml,
+   en el mismo commit que el relieve, y la coteja relieve_construir.py
+   --comprobar. La misma va en index.html. */
+const RELIEVE_HUELLA = 'ninguno';
+
+/* La huella del mapa base (31 de octubre de 2026, tarde): los 16 primeros caracteres del
+   sha256 de mapa/tenerife-base.pmtiles. El mapa base se sirve del precache (cache primero), y
+   el precache solo se rehace cuando cambia este fichero: sin la huella, un mapa base nuevo (el
+   workflow generar-mapa.yml lo rehace con cada mapa detallado nuevo) no llegaria nunca a los
+   moviles que ya tienen la app. La escribe tools/mapa_base.py y la coteja su --comprobar. */
+const MAPA_BASE_HUELLA = '2bc177440a93d319';
+
+/* El cache del mapa va aparte y a proposito.
+
+   Aparte del CACHE de la app porque el manejador de 'activate' borra todo
+   cache cuyo nombre no sea el suyo: si las teselas vivieran ahi, cada
+   actualizacion de la app dejaria al usuario otra vez sin mapa offline.
+   Aqui sobreviven a las subidas de version; solo se van con el boton de
+   vaciar del panel de informacion.
+
+   El tope es por numero de teselas, no por bytes: una respuesta opaca no
+   deja leer su tamano. La isla entera de z8 a z13 son 600 teselas contadas
+   sobre la caja de navegacion del mapa, asi que 1.200 deja sitio de sobra
+   para todo eso y para lo que se haya mirado de cerca. */
+const TESELAS = 'tgo-teselas-v1';
+const TESELAS_TOPE = 1200;
+
+/* El mapa detallado de OSM, si el usuario lo ha descargado. Lo gestiona
+   entero la app; aqui solo hace falta saber que este cache NO se borra al
+   actualizar. Son decenas de megas y volver a pedirlos porque ha salido una
+   version nueva de la app seria una tomadura de pelo. */
+const MAPA_OSM = 'tgo-mapa-osm-v1';
 const CORE = [
   './', './index.html', './manifest.webmanifest',
+  /* La red de guaguas y tranvia: salio de index.html el 9 de octubre de 2026
+     y la app la carga al arrancar, antes de su codigo. Sin ella aqui, quien
+     abriera la app sin conexion se quedaria sin guaguas. */
+  './datos/titsa.js',
+  /* El panel «Cielo de Tenerife» (17 de octubre de 2026): su modulo, el motor
+     de calculo y el catalogo no se piden al arrancar, pero tienen que estar
+     sin conexion, porque donde se usan es en el Teide. */
+  './modulos/cielo.js', './vendor/astronomy.browser.min.js', './datos/cielo.json',
+  /* El perfil (22 de octubre de 2026): el catalogo de avatares se pide al
+     arrancar si hay uno elegido, para pintarlo en el boton de la cuenta, y al
+     abrir el perfil; la pantalla, al tocar «Cuenta». Sin conexion tienen que
+     estar. Van tambien «red primero» abajo, como el cielo: sin subir el
+     nombre de la cache, el service worker nuevo los precarga al instalarse
+     con cache: 'reload'. */
+  './modulos/avatares.js', './modulos/perfil.js',
+  /* «Su cuerpo» (31 de octubre de 2026), que se abre desde el perfil: el modulo, aqui y
+     «red primero» abajo, como el perfil. Sus 533 ejercicios (datos/ejercicios*.json: el
+     comun y uno por idioma, unos 200 kB cada uno) no se precargan: se guardan al usarlos,
+     tambien «red primero», y asi sin conexion sale lo ultimo que se abrio. */
+  './modulos/cuerpo.js',
+  /* El panel de EMERGENCIAS (22 de octubre de 2026): tiene que estar sin
+     conexion desde el primer dia, y no esperar a la red: va abajo con su
+     propia estrategia (cache al instante, red por detras). */
+  './modulos/emergencias.js',
+  /* La isla en 3D (31 de octubre de 2026): el modulo y el relieve, tres
+     ficheros de mapa/ que hace tools/relieve_construir.py. Tienen que estar
+     sin conexion desde el primer dia, como el cielo: el 3D se mira en el
+     monte. Van tambien «red primero» abajo, y los tres juntos: el .json lleva
+     las sumas con las que el modulo comprueba los dos PNG, asi que uno nuevo
+     con los PNG de antes no se dibuja (lo dice, en vez de pintar mal). */
+  './modulos/isla3d.js', './mapa/tenerife-relieve.json', './mapa/tenerife-relieve.png', './mapa/tenerife-relieve-ao.png',
+  /* Los satelites (21 de octubre de 2026): el motor SGP4 y los elementos
+     orbitales que renueva el robot cada dia. Los elementos van tambien «red
+     primero» abajo: cambian a diario. */
+  './vendor/satellite.js', './datos/satelites.json',
   // Leaflet y MarkerCluster ya no vienen de un CDN: viven en ./vendor/.
   // Al ser del propio origen se precachean aqui, asi el mapa tambien
   // arranca sin conexion.
   './vendor/leaflet.js', './vendor/leaflet.css',
-  './vendor/leaflet.markercluster.js', './vendor/MarkerCluster.css'
+  './vendor/leaflet.markercluster.js', './vendor/MarkerCluster.css',
+  // El motor del mapa vectorial. Va aqui desde el primer momento para que
+  // cuando haga falta ya este: sin conexion no se puede ir a buscarlo.
+  './vendor/pmtiles.js', './vendor/protomaps-leaflet.js',
+  // La libreria de la cuenta (Supabase), alojada aqui desde el 22 de octubre
+  // de 2026: sin conexion, la cuenta tambien arranca.
+  './vendor/supabase.js',
+  /* El mapa base de la isla: 1,1 MB de OpenStreetMap (la costa, las
+     carreteras, los pueblos, los picos y las playas), recortado del mapa
+     detallado que ya esta en el repositorio (tools/mapa_base.py; su huella,
+     arriba). Va en el precache a proposito, no en una descarga aparte: quien
+     se pierde en el monte no tuvo antes la precaucion de pulsar "descargar
+     mapa". */
+  './mapa/tenerife-base.pmtiles',
+  /* Las fuentes. Antes venian de fonts.googleapis.com, asi que sin
+     cobertura la app se veia con la tipografia del sistema: una app
+     offline-first que perdia su cara al quedarse sin datos.
+     Van solo los rangos que usan los diez idiomas -latin, latin-ext y
+     cirilico para el bulgaro-. El vietnamita y el cyrillic-ext estan en
+     vendor/fuentes/ por si hicieran falta, pero no se precachean: serian
+     kilobytes que nadie pide. */
+  /* Las fuentes. Antes venian de fonts.googleapis.com, asi que sin
+     cobertura la app se veia con la tipografia del sistema: una app
+     offline-first que perdia su cara al quedarse sin datos.
+     Van LATIN y LATIN-EXT, que son las que necesitan los nueve idiomas de
+     alfabeto latino -el polaco usa latin-ext: a, c, e, l, n, s, z con
+     signo-. El CIRILICO del bulgaro y el vietnamita NO se precachean: son
+     63 kB que la mayoria no pide nunca, y el manejador de abajo los guarda
+     solo la primera vez que alguien los usa. */
+  './vendor/fuentes.css',
+  './vendor/fuentes/cormorantgaramond-400-latin-ext.woff2',
+  './vendor/fuentes/cormorantgaramond-400-latin.woff2',
+  './vendor/fuentes/cormorantgaramond-600-latin-ext.woff2',
+  './vendor/fuentes/cormorantgaramond-600-latin.woff2',
+  './vendor/fuentes/cormorantgaramond-700-latin-ext.woff2',
+  './vendor/fuentes/cormorantgaramond-700-latin.woff2',
+  './vendor/fuentes/dmsans-300-latin-ext.woff2',
+  './vendor/fuentes/dmsans-300-latin.woff2',
+  './vendor/fuentes/dmsans-400-latin-ext.woff2',
+  './vendor/fuentes/dmsans-400-latin.woff2',
+  './vendor/fuentes/dmsans-500-latin-ext.woff2',
+  './vendor/fuentes/dmsans-500-latin.woff2'
 ];
 
 self.addEventListener('install', e => {
@@ -14,14 +136,24 @@ self.addEventListener('install', e => {
   // faltara tumbaria toda la instalacion.
   e.waitUntil(
     caches.open(CACHE).then(c => Promise.all(
-      CORE.map(u => c.add(new Request(u, { cache: 'reload' })).catch(() => {}))
+      CORE.filter(u => RELIEVE_HUELLA !== 'ninguno' || !/\/mapa\/tenerife-relieve/.test(u))
+        .map(u => c.add(new Request(u, { cache: 'reload' })).catch(() => {}))
     )).catch(() => {})
   );
   self.skipWaiting();
 });
 
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(()=>self.clients.claim()));
+  e.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE && k !== TESELAS && k !== MAPA_OSM).map(k => caches.delete(k))))
+      // las teselas de OSM que guardaron las versiones de antes se van: ver esTeselaOSM()
+      .then(() => caches.open(TESELAS).then(c => c.keys().then(ks =>
+        Promise.all(ks.filter(k => { try { return esTeselaOSM(new URL(k.url)); } catch (_) { return false; } })
+          .map(k => c.delete(k))))).catch(() => {}))
+      .then(() => recortarTeselas())
+      .then(() => self.clients.claim())
+  );
 });
 
 /* Que se puede guardar en el cache.
@@ -46,6 +178,52 @@ function guardar(req, res) {
   caches.open(CACHE).then(c => c.put(req, copia)).catch(() => {});
 }
 
+/* Una tesela del mapa que se guarda: las de Esri (satelite y topo), y solo
+   esas. Las de OpenStreetMap, no: ver esTeselaOSM(). */
+function esTesela(url) {
+  return url.hostname === 'server.arcgisonline.com';
+}
+
+/* Una tesela de OpenStreetMap (16 de octubre de 2026, LANZAMIENTO-PLAY.md
+   1.6). Su politica de teselas
+   (https://operations.osmfoundation.org/policies/tiles/) dice: «Offline use
+   is not permitted on tile.openstreetmap.org». Volver a ver lo ya visto
+   desde una cache que respete sus cabeceras si vale, y eso ya lo hace la
+   cache HTTP del navegador: estas teselas van solo por red y este service
+   worker no las guarda ni las sirve. Sin conexion la app pasa sola a la capa
+   «Isla offline», que es nuestra (irAIslaSinRed, en index.html).
+
+   El patron tiene que dejar fuera a nominatim.openstreetmap.org, que es un
+   geocodificador: se compara el dominio entero y no con
+   includes('openstreetmap'), que cogia a los dos. */
+function esTeselaOSM(url) {
+  return /(^|\.)tile\.openstreetmap\.org$/.test(url.hostname);
+}
+
+/* El recorte no puede correr en cada tesela: keys() recorre el cache entero
+   y al mover el mapa entran teselas a docenas. Corre cada 50 y ademas en
+   cada 'activate'. El service worker puede morirse entre medias y reiniciar
+   la cuenta, asi que el tope es un techo aproximado, no exacto: lo que
+   importa es que exista y que 'activate' lo aplique siempre. */
+let _desdeRecorte = 0;
+function recortarTeselas() {
+  return caches.open(TESELAS)
+    .then(c => c.keys().then(ks => {
+      if (ks.length <= TESELAS_TOPE) return;
+      // keys() devuelve en orden de insercion: se van las mas viejas.
+      return Promise.all(ks.slice(0, ks.length - TESELAS_TOPE).map(k => c.delete(k)));
+    }))
+    .catch(() => {});
+}
+
+function guardarTesela(req, res) {
+  const copia = res.clone();
+  return caches.open(TESELAS)
+    .then(c => c.put(req, copia))
+    .then(() => { if (++_desdeRecorte >= 50) { _desdeRecorte = 0; return recortarTeselas(); } })
+    .catch(() => {});
+}
+
 self.addEventListener('fetch', e => {
   const req = e.request;
 
@@ -59,14 +237,159 @@ self.addEventListener('fetch', e => {
   // Solo http/https: con chrome-extension:// y similares, cache.put falla.
   if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
 
-  if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') || url.hostname.includes('openstreetmap') || url.hostname.includes('arcgisonline')) {
-    return; // no cachear mapas ni apis - siempre fresco
+  /* El mapa: red primero, cache de respaldo.
+
+     Estaba en la lista de "no cachear nunca" junto a las APIs del tiempo,
+     con el argumento de "siempre fresco". Pero una tesela no es un dato
+     vivo: es contenido, igual que la Wikipedia, que esa lista ya deja pasar.
+     Era el motivo de que la app se abriera sin mapa en un avion —el resto
+     respondia y lo unico que importa, no— y de que "Mapa interactivo
+     offline" fuera mentira.
+
+     Se pide siempre a la red primero, asi que con conexion se comporta
+     exactamente igual que antes. Sin conexion sale lo que el usuario ya haya
+     mirado. Desde el 16 de octubre de 2026, solo las teselas de Esri
+     (satelite y topo): las de OpenStreetMap no se guardan, porque su
+     politica no permite usarlas sin conexion (ver esTeselaOSM). Y una
+     tesela mala que se colara nunca se queda pegada: en linea se vuelve a
+     pedir siempre.
+
+     Se guarda tambien la respuesta opaca (type 'opaque', status 0). Las
+     capas de index.html no piden CORS y no se les toca: cambiar crossOrigin
+     arriesga romper el mapa en linea, que hoy funciona, y no hay forma de
+     comprobar desde aqui que el servidor mande las cabeceras. Una
+     opaca no se puede mirar por dentro, pero para servirsela a un <img>
+     vale igual. */
+  /* El mapa detallado no pasa por aqui. Lo descarga la app y lo guarda en su
+     cache; si ademas lo cachease este manejador, el movil acabaria con dos
+     copias de decenas de megas. */
+  if (url.pathname.endsWith('/mapa/tenerife-osm.pmtiles')) return;
+
+  // Las teselas de OpenStreetMap: solo red, sin pasar por aqui (esTeselaOSM).
+  if (esTeselaOSM(url)) return;
+
+  if (esTesela(url)) {
+    e.respondWith(
+      fetch(req).then(res => {
+        if (res && (res.type === 'opaque' || guardable(res))) e.waitUntil(guardarTesela(req, res));
+        return res;
+      }).catch(() => caches.open(TESELAS)
+        .then(c => c.match(req))
+        .then(r => r || Response.error()))
+    );
+    return;
+  }
+
+  /* Lo que NO se cachea nunca.
+
+     A la lista de siempre -supabase, mapas y geocodificador- se le anaden
+     el tiempo y las rutas, que es de donde venia un fallo que no se veia.
+
+     Las URLs del tiempo no llevan fecha: el panel del sol pide siempre
+     exactamente
+       api.open-meteo.com/v1/forecast?latitude=<las 6 zonas>&current=...
+     byte a byte la misma cadena hoy, manana y dentro de un mes. Como este
+     manejador responde `cached || fetch(req)`, en cuanto esa respuesta
+     entraba una vez en el cache ya no se volvia a preguntar a la red jamas.
+     La app tiene su propio cache de 30 minutos y lo hace bien: cuando
+     caducaba, llamaba a fetch... y el service worker le devolvia la misma
+     prevision del primer dia. De ahi que saliera "la misma prevision
+     durante muchos dias".
+
+     Afecta a lo mismo en el estado del mar, el "donde me bano" y a las
+     rutas de OSRM. (Los avisos de AEMET ya no se piden a aemet.es desde el
+     12 de octubre de 2026: van en datos/avisos-aemet.json, mas abajo.)
+
+     Aqui no se pone caducidad ni se cambia a red-primero: no hace falta.
+     Cada modulo ya guarda su ultima lectura buena en localStorage con 30
+     minutos de vida y tira de ella en el catch si no hay red. El cache del
+     service worker solo estorbaba. Lo que si se queda cacheado es
+     Wikipedia: eso es contenido, no un dato vivo, y ahi ayuda sin mentir. */
+  /* Los precios de las gasolineras, desde el 7 de octubre, se piden en vivo al
+     Ministerio como el tiempo a Open-Meteo: tampoco se cachean aqui. */
+  const EN_VIVO = ['open-meteo.com', 'project-osrm.org', 'serviciosmin.gob.es', 'minetur.gob.es'];
+  if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') ||
+      EN_VIVO.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) {
+    return; // no cachear apis, tiempo ni rutas - siempre fresco
   }
 
   e.respondWith(
     caches.match(req).then(cached => {
+      /* El panel de EMERGENCIAS (22 de octubre de 2026): de la cache al
+         instante y la red por detras. En una emergencia la red puede ir
+         saturada: con «red primero» el panel esperaria a que la peticion
+         fallase, sin plazo, y con `cached || fetch` una version nueva no
+         llegaria nunca. Asi abre ya con lo que tenga y la siguiente vez
+         trae lo nuevo. Sin copia, a la red como cualquier otro. */
+      if (url.pathname.endsWith('/modulos/emergencias.js')) {
+        const red = fetch(req).then(res => {
+          if (guardableShell(res)) guardar(req, res);
+          return res;
+        });
+        if (cached) { e.waitUntil(red.catch(() => {})); return cached; }
+        return red.catch(() => Response.error());
+      }
+      /* Las curiosidades de las 88 constelaciones (idiomas/cielo/<lang>.json,
+         22 de octubre de 2026) van igual: una por idioma, la de quien mira,
+         que el panel del cielo pide al abrirse y que tiene que estar en el
+         Teide. */
+      /* Los idiomas de los lugares van con index.html, no por su cuenta.
+         idiomas/<lang>.json lleva las descripciones de los 804 lugares en ese
+         idioma, y idiomas/etiquetas/<lang>.json los chips del globo, en ese
+         idioma. faq/<lang>.json son las 122 respuestas del asistente en ese
+         idioma, y las tres cosas cambian con la app aunque vayan aparte;
+         index.html solo trae el castellano. Si este manejador los
+         sirviera con `cached || fetch` -lo de por defecto-, una version nueva
+         de la app jamas veria las traducciones nuevas: el primer fichero que
+         entrase en el cache se quedaria ahi para siempre, que es exactamente
+         el fallo que ya tuvo la prevision del tiempo. Red primero y cache de
+         respaldo, igual que el armazon, porque son la misma cosa. */
       // Network first for index.html to get updates fast
-      if (req.url.endsWith('index.html') || req.url.endsWith('/')) {
+      /* Los precios de las gasolineras, tambien red primero: se rehacen a las
+         7:00 y a las 15:00, y con `cached || fetch` el primero que entrase se
+         quedaria para siempre. Sin red sale el ultimo, y la app no lo ensena
+         si tiene mas de 2 dias. El municipio de cada gasolinera (con el que la
+         app calcula en vivo las mas baratas) tambien: cambia si cambia una
+         ficha, y con `cached || fetch` se quedaria el primero. */
+      /* La red de guaguas (datos/titsa.js) tambien: es un trozo de index.html
+         que vive aparte, y con `cached || fetch` una red nueva no llegaria
+         nunca a quien ya tuviera la vieja. */
+      /* Y los avisos de AEMET (12 de octubre de 2026): el fichero se rehace
+         cada hora; con `cached || fetch` el primero que entrase se quedaria
+         para siempre, que es justo lo que no puede pasar con un aviso. Sin
+         red sale el ultimo, con su hora, y la app dice desde cuando no se ha
+         podido comprobar. */
+      /* Y los tres robots del panel de EMERGENCIAS (22 de octubre de 2026):
+         los terremotos del IGN cerca de Tenerife y las alertas del Gobierno
+         de Canarias, que se rehacen cada hora, y el semaforo del boletin
+         semanal de INVOLCAN. Con `cached || fetch` el primero que entrase se
+         quedaria para siempre. Sin red sale el ultimo, con su hora, y el
+         panel lo dice o lo esconde. Mientras esten apagados
+         (window.SOS_DATOS vacio) nadie los pide. */
+      /* Y las dos paginas fijas que pide Google Play (16 de octubre de 2026,
+         LANZAMIENTO-PLAY.md 1.2 y 1.3): borrar-cuenta.html y privacidad.html.
+         Son texto legal; con `cached || fetch` el primer texto que entrase
+         se quedaria para siempre aunque la politica cambiara. */
+      if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
+          url.pathname.endsWith('/borrar-cuenta.html') ||
+          url.pathname.endsWith('/privacidad.html') ||
+          url.pathname.endsWith('/datos/titsa.js') ||
+          url.pathname.endsWith('/modulos/cielo.js') ||
+          url.pathname.endsWith('/modulos/avatares.js') ||
+          url.pathname.endsWith('/modulos/perfil.js') ||
+          url.pathname.endsWith('/modulos/cuerpo.js') ||
+          /\/datos\/ejercicios(-[a-z]{2,3})?\.json$/.test(url.pathname) ||
+          url.pathname.endsWith('/modulos/isla3d.js') ||
+          /\/mapa\/tenerife-relieve(-ao)?\.(png|json)$/.test(url.pathname) ||
+          url.pathname.endsWith('/datos/cielo.json') ||
+          url.pathname.endsWith('/datos/satelites.json') ||
+          url.pathname.endsWith('/datos/precios-gasolineras.json') ||
+          url.pathname.endsWith('/datos/gasolineras-municipio.json') ||
+          url.pathname.endsWith('/datos/avisos-aemet.json') ||
+          url.pathname.endsWith('/datos/sismos-ign.json') ||
+          url.pathname.endsWith('/datos/semaforo-involcan.json') ||
+          url.pathname.endsWith('/datos/alertas-canarias.json') ||
+          /\/(idiomas\/(etiquetas\/|cielo\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {
         return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);
           return res;
@@ -76,6 +399,101 @@ self.addEventListener('fetch', e => {
         if (guardable(res)) guardar(req, res);
         return res;
       });
+    })
+  );
+});
+
+/* ── MENSAJES DESDE LA APP ─────────────────────────────────────────
+   index.html lleva tiempo mandando tres mensajes por postMessage y aqui
+   no habia nadie escuchando, asi que los tres caian al vacio:
+
+     SKIP_WAITING  lo manda el boton "hay una version nueva". Sin esto el
+                   service worker nuevo se quedaba esperando y la app solo
+                   se actualizaba por el recargar de emergencia de 1,5 s.
+     GET_VERSION   por eso la pantalla de informacion enseñaba "?".
+     CLEAR_CACHES  el boton de limpiar cache. Este es el peor de los tres:
+                   la app esperaba 2 segundos, no recibia respuesta, y se
+                   iba a un plan B que borra las caches cuyo nombre empieza
+                   por "tenerife-". La nuestra se llama "tgo-...". No
+                   coincidia ninguna. O sea que el boton decia que habia
+                   limpiado y no borraba absolutamente nada.
+
+   Se responde siempre por e.ports[0], que es el canal que abre la app. */
+self.addEventListener('message', e => {
+  const d = e.data || {};
+  const responder = msg => { try { if (e.ports && e.ports[0]) e.ports[0].postMessage(msg); } catch (_) {} };
+
+  if (d.type === 'SKIP_WAITING') { self.skipWaiting(); responder({ ok: true }); return; }
+  if (d.type === 'GET_VERSION')  { responder({ version: CACHE }); return; }
+  if (d.type === 'CLEAR_CACHES') {
+    e.waitUntil(
+      caches.keys()
+        .then(keys => Promise.all(keys.map(k => caches.delete(k))))
+        .then(() => responder({ ok: true }))
+        .catch(() => responder({ ok: false }))
+    );
+    return;
+  }
+});
+
+/* ── NOTIFICACIONES ────────────────────────────────────────────────
+   Sin estos dos manejadores la cadena de la notificacion diaria se
+   cortaba en el ultimo paso: la app suscribia el dispositivo, el
+   workflow enviaba el aviso con las claves VAPID... y aqui no habia
+   nadie escuchando. El navegador acaba mostrando su propio mensaje
+   generico de "este sitio se actualizo en segundo plano", y Chrome
+   puede llegar a cancelar la suscripcion si eso se repite.
+
+   El servidor manda {title, body, url, lang} desde
+   enviar-notificacion.js. Se leen con tolerancia: si el cuerpo no es
+   JSON valido se usa el texto tal cual, y si no hay nada se cae a un
+   titulo por defecto, porque una notificacion vacia es peor que una
+   escueta. */
+self.addEventListener('push', e => {
+  let d = {};
+  if (e.data) {
+    try { d = e.data.json() || {}; }
+    catch (_) { try { d = { body: e.data.text() }; } catch (__) { d = {}; } }
+  }
+  const titulo = d.title || 'Tenerife Go';
+  const opciones = {
+    body: d.body || '',
+    icon: './icon-192.png',
+    badge: './icon-192.png',
+    lang: d.lang || 'es',
+    /* El tag hace que una notificacion nueva sustituya a la anterior en vez
+       de amontonarse. Por defecto sigue siendo 'tgo-diaria', que es lo que
+       se quiere para la frase de cada dia.
+
+       Pero ahora puede venir en el mensaje: un aviso puntual -el eclipse-
+       no debe borrar la frase del dia ni que la frase del dia siguiente lo
+       borre a el. Cada cosa con su tag. */
+    tag: (typeof d.tag === 'string' && d.tag) ? d.tag.slice(0, 40) : 'tgo-diaria',
+    renotify: true,
+    data: { url: d.url || './index.html' }
+  };
+  e.waitUntil(self.registration.showNotification(titulo, opciones));
+});
+
+/* Al tocar la notificacion: si la app ya esta abierta se trae al frente
+   en vez de abrir una pestana mas.
+   El consejo del domingo y el aviso del semaforo (24 de octubre de 2026)
+   llevan a una guia del panel SOS (#sos-...). Con la app ya abierta, traerla
+   al frente no basta: se le dice a la pagina que la abra (el bloque
+   EMERGENCIAS de index.html lo escucha). Cerrada, se abre con esa direccion
+   y el panel la lee al arrancar. */
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  const destino = (e.notification.data && e.notification.data.url) || './index.html';
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(lista => {
+      for (const c of lista) {
+        if (c.url.indexOf(self.registration.scope) === 0 && 'focus' in c) {
+          try { c.postMessage({ tgo: 'abrir', url: destino }); } catch (_) {}
+          return c.focus();
+        }
+      }
+      return self.clients.openWindow(destino);
     })
   );
 });

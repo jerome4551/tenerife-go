@@ -1,0 +1,171 @@
+{
+ "_": [
+  "Textos que tools/barrido_pantallas.js ve en pantalla y que NO son un hueco de traduccion.",
+  "Cada uno con su motivo, por idioma. Solo texto exacto: si cambia, el control vuelve a mirarlo."
+ ],
+ "AEMET es el nombre del organismo (Agencia Estatal de Meteorologia), como AENA o Cabildo en idiomas/etiquetas-sin-traducir.json: se escribe igual en los diez idiomas, como en las lineas de los avisos y en el asistente. Es la etiqueta de «El mar aqui» en el globo cuando esa costa tiene un aviso costero para hoy (seaChipAemet, 21/10/2026); en chino y bulgaro el barrido la ve igual que en los idiomas latinos": {
+  "zh": [
+   "⚠️ AEMET"
+  ],
+  "zht": [
+   "⚠️ AEMET"
+  ],
+  "bg": [
+   "⚠️ AEMET"
+  ]
+ },
+ "Nombres de estrellas de la UAI (datos/cielo.json, nombresIAU) que Stellarium no traduce a ese idioma (po/stellarium-sky, common_star_names.fab: la entrada trae solo el nombre latino, viene vacia o no existe): sin fuente no se traducen y se quedan como los escribe la UAI, como los de los idiomas latinos. Los demas van en CIELO_UAI (modulos/cielo.js), que escribe y coteja tools/cielo_uai.js con esta misma lista (22/10/2026)": {
+  "zh": [
+   "Castula",
+   "Cih",
+   "82 G. Eri",
+   "Atik",
+   "Prima Hyadum",
+   "Beemim",
+   "Theemin",
+   "Haedus",
+   "Asellus Borealis",
+   "Ras Elased Australis",
+   "Felis",
+   "Minelauva",
+   "Toliman",
+   "Acrab B",
+   "Alya B",
+   "Albireo B"
+  ],
+  "zht": [
+   "Cih",
+   "Torcular",
+   "82 G. Eri",
+   "Haedus",
+   "Nganurganity",
+   "Asellus Borealis",
+   "Intercrus",
+   "Ras Elased Australis",
+   "Felis",
+   "Ginan",
+   "La Superba",
+   "Khambalia",
+   "Toliman",
+   "Acrab B",
+   "Dziban",
+   "Cervantes",
+   "Alya B",
+   "Meridiana",
+   "Albireo B",
+   "Alshat"
+  ],
+  "bg": [
+   "Cih",
+   "82 G. Eri",
+   "Nganurganity",
+   "Asellus Borealis",
+   "Ras Elased Australis",
+   "Khambalia",
+   "Acrab B",
+   "Alya B",
+   "Albireo B"
+  ]
+ },
+ "El avatar «tf-guagua» del set de Tenerife (modulos/perfil.js, perfilAv_tf_guagua): «guagua» es como se dice autobus en Canarias, y el nombre del avatar la da con su traduccion entre parentesis, como el bulgaro («Гуагуа (автобус)»); en chino va solo la traduccion (22/10/2026)": {
+  "en": [
+   "Guagua (bus)"
+  ],
+  "fr": [
+   "Guagua (bus)"
+  ],
+  "de": [
+   "Guagua (Bus)"
+  ],
+  "it": [
+   "Guagua (bus)"
+  ],
+  "nl": [
+   "Guagua (bus)"
+  ],
+  "pl": [
+   "Guagua (autobus)"
+  ]
+ },
+ "Tres nombres propios de los avatares de Europa (modulos/perfil.js: perfilAv_lu_peckvillchen, perfilAv_cz_svickova y perfilAv_sk_krivan) que se escriben igual en todos los idiomas de letra latina, con sus letras: el silbato de ceramica con forma de pajaro del mercado de Pascua de Luxemburgo («Péckvillchen»), el plato checo («Svíčková») y el monte eslovaco («Kriváň»; en polaco, «Krywań»). Los miraron los revisores de cada idioma del encargo, y validar_i18n.py los da por buenos (23/10/2026)": {
+  "en": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "fr": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "de": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "it": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "nl": [
+   "Péckvillchen",
+   "Svíčková",
+   "Kriváň"
+  ],
+  "pl": [
+   "Péckvillchen",
+   "Svíčková"
+  ]
+ },
+ "«En Familia» es el nombre del portal de salud de la Asociación Española de Pediatría (enfamilia.aeped.es), como PreEvid: va tal cual en el título de su fuente del panel SOS, detrás del organismo ya traducido (fte_aepMedusas, 22/10/2026)": {
+  "en": [
+   "· Jellyfish stings (En Familia, 2025)"
+  ],
+  "fr": [
+   "· Piqûres de méduses (En Familia, 2025)"
+  ],
+  "de": [
+   "· Quallenstiche (En Familia, 2025)"
+  ],
+  "it": [
+   "· Punture di medusa (En Familia, 2025)"
+  ],
+  "nl": [
+   "· Kwallensteken (En Familia, 2025)"
+  ],
+  "zh": [
+   "· 水母蜇伤（En Familia，2025 年）"
+  ],
+  "zht": [
+   "· 水母螫傷（En Familia，2025 年）"
+  ],
+  "bg": [
+   "· Ужилвания от медузи (En Familia, 2025 г.)"
+  ],
+  "pl": [
+   "· Oparzenia przez meduzy (En Familia, 2025)"
+  ]
+ },
+ "Dos nombres de los avatares de oro y de los nuevos (modulos/perfil.js): «Hallgrímskirkja» (perfilAv_is_hallgrimskirkja), la iglesia de Reikiavik, que se escribe con su nombre islandés en todos los idiomas de letra latina, como «Péckvillchen»; y «Día de Canarias» (perfilAv_tf_oro_canarias), que el neerlandés deja con su nombre en castellano, como se ve en las islas. Los miraron los revisores de cada idioma de la entrega de los de oro, y validar_i18n.py los da por buenos (23/10/2026)": {
+  "en": [
+   "Hallgrímskirkja"
+  ],
+  "fr": [
+   "Hallgrímskirkja"
+  ],
+  "de": [
+   "Hallgrímskirkja"
+  ],
+  "it": [
+   "Hallgrímskirkja"
+  ],
+  "nl": [
+   "Hallgrímskirkja",
+   "Día de Canarias"
+  ],
+  "pl": [
+   "Hallgrímskirkja"
+  ]
+ }
+}

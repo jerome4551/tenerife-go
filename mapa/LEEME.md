@@ -1,0 +1,179 @@
+# `mapa/` — los mapas que la app lleva encima
+
+## `tenerife-base.pmtiles` — está y se genera aquí
+
+1,1 MB. **Viaja dentro de la app**, en el precache del service worker, así que
+funciona sin conexión desde el primer arranque y sin descargar nada.
+
+Desde el 31 de octubre de 2026 por la tarde es **un recorte del mapa
+detallado** (`tenerife-osm.pmtiles`, abajo): las mismas teselas de
+OpenStreetMap de z6 a z13, con la geometría copiada tal cual, byte a byte. Lleva
+la tierra y la costa con sus acantilados, los embalses y balsas, el borde del
+Parque Nacional, las autopistas y carreteras con su categoría y su matrícula
+(y en z13 las calles, también las peatonales), los barcos, el teleférico, los
+nombres de lugar que pinta el estilo, de las ciudades a los parajes (1.547),
+los picos con su altitud y las playas. **No lleva** senderos, pistas, aceras,
+edificios, el resto de los usos del suelo, los límites municipales ni los
+barrancos: eso es el detallado. Como tiene el mismo esquema, se pinta con
+el mismo estilo (`estiloIslaBase` llama a `estiloIslaDetallada`) y la costa es
+la misma en los dos mapas y en el 3D. El crédito, el de OpenStreetMap.
+
+Lo genera `python3 tools/mapa_base.py`, sin paquetes (lee y escribe con
+`tools/pmtiles_ligero.py`); `--comprobar` lo rehace en memoria y lo coteja con
+el del repositorio, y pasa en `tools/auditar.sh`. **Si se rehace el
+detallado, hay que rehacer este** (y `tools/nombres_chinos_mapa.py`, que saca
+la tabla de los nombres en chino de los dos): el workflow de abajo lo hace al
+hacer commit. Sale byte a byte igual cada vez. Al generarlo escribe su huella
+en `sw.js` (`MAPA_BASE_HUELLA`): el service worker lo sirve de su precache, que
+solo se rehace cuando cambia `sw.js`, y sin la huella un mapa base nuevo no
+llegaría a quien ya tiene la app.
+
+Antes era la costa de GSHHG (1.542 vértices: de cerca, a tramos rectos, con
+calas comidas), el trazado de las 183 líneas del GTFS de TITSA como carreteras
+(todas iguales, y con rectas donde un trazado salta: al norte de Adeje dibujaba
+una cuña que no es ninguna carretera) y 54 núcleos de `places[]`. A z13, su mar
+se separaba del de OpenStreetMap en 252.881 píxeles de toda la isla; el de
+ahora, en 4.431 (rótulos y líneas que caen sobre el agua).
+
+## `tenerife-osm.pmtiles` — está (12 MB, desde el 13 de octubre de 2026) y se genera con el workflow
+
+Es el detalle fino: senderos, edificios, usos del suelo. Como está aquí, el
+panel de la ⓘ ofrece descargarlo y la capa «Isla offline» pasa a dibujarlo.
+Si no estuviera, no se vería nada de eso y la app usaría el mapa base.
+
+### Cómo se dibuja
+
+Con el estilo propio de la app, `estiloIslaDetallada` en `index.html` (desde el
+24 de octubre de 2026; antes, el *flavor* `light` de `protomaps-leaflet`): el
+mar y la tierra de las teselas de OpenStreetMap, el uso del suelo con su color,
+las carreteras por categorías y con borde, los senderos marrones y
+discontinuos, los barcos, el teleférico, los picos con su altitud y las
+matrículas de las carreteras. El mapa base, con `estiloIslaBase`, con el mismo
+mar y la misma tierra. `tools/auditar_mapa.js` (bloque 8) comprueba que todas
+las vías y usos del suelo del fichero tienen su regla y lo pinta de verdad.
+
+Los rótulos van en el idioma de la app. En chino, los del fichero no valen (en
+`name:zh-Hant` trae los mismos caracteres simplificados que en `name:zh-Hans`):
+desde el 31 de octubre de 2026, los pueblos llevan el nombre que les dan las
+fichas de la app (`MAPA_NOMBRES_ZH`, en `index.html`) y lo demás va en
+castellano. Esa tabla la escribe `tools/nombres_chinos_mapa.py` con los nombres
+que salen en los dos `.pmtiles`: si se rehace uno, hay que volver a pasar el
+guion, y la auditoría lo canta si no se hace.
+
+### Requisitos
+
+| | |
+|---|---|
+| esquema | **Protomaps basemap** (`earth`, `water`, `roads`, `places`…). Con otro esquema el fichero es válido y **el mapa sale en blanco**, sin ningún error. |
+| caja | `-16.98,27.90,-16.08,28.65` — la caja de navegación de la app |
+| zoom máximo | 14 como mínimo. z15 si cabe. |
+| tamaño | **25 MB** si se sube arrastrando en la web de GitHub; hasta **100 MB** solo por `git push` desde línea de comandos. Por encima de 100 MB, GitHub rechaza el push: baja un nivel de zoom. |
+
+### Cómo · con el workflow, que es lo que hay que usar
+
+`.github/workflows/generar-mapa.yml`. En el repositorio: pestaña **Actions** →
+**Generar mapa offline (PMTiles)** → **Run workflow**. Desde el móvil, en
+Safari, vale igual.
+
+| campo | |
+|---|---|
+| `maxzoom` | `14` por defecto; `15` da más detalle de sendero |
+| `fecha_build` | vacío = busca el build más reciente que responda, hasta 12 días atrás |
+| `solo_probar` | `true` = genera y verifica pero **no** hace commit |
+
+El runner tiene la salida a red que hace falta para leer por rangos un fichero
+de más de 100 GB, y como el commit lo hace `git`, el tope de 25 MB de subir
+arrastrando tampoco aplica. Tarda unos minutos y al terminar deja un resumen
+con el **tamaño** y la **compatibilidad del paso 7**.
+
+Tres cosas que no deja pasar: si el fichero supera 100 MB falla y no
+commitea; si el verificador falla, tampoco —un mapa en blanco no entra en el
+repositorio—; y si el fichero es idéntico al que ya estaba, no crea un commit
+vacío.
+
+**Cuidado con el nombre del binario.** Los assets de `go-pmtiles` no siguen un
+patrón: en la misma release, `go-pmtiles-1.31.2_Darwin_arm64.zip` va con guion
+y `go-pmtiles_1.31.2_Linux_x86_64.tar.gz` con guion bajo. El workflow no
+adivina: le pregunta a la API qué existe y coge el de Linux x86_64.
+
+### Cómo · a mano, si algún día hace falta
+
+    pmtiles extract <url-del-build-diario> tenerife-osm.pmtiles \
+      --bbox=-16.98,27.90,-16.08,28.65 --maxzoom=14
+
+### Antes de subirlo
+
+    python3 tools/verificar_osm.py ruta/al/tenerife-osm.pmtiles index.html
+
+El segundo argumento es opcional y comprueba lo primero de todo: que la app
+que va a consumir el fichero **tenga lector**. El navegador no lee PMTiles por
+su cuenta; sin `protomaps-leaflet` (o `pmtiles` + MapLibre) cargado, dejar el
+`.pmtiles` en el repositorio no hace absolutamente nada. También imprime el
+md5 del `index.html`, que es lo que hay que mirar antes de dar por buena
+cualquier lista de parches anclados.
+
+Siete pasos. Los seis primeros miran el fichero: formato, **esquema**, caja,
+zoom, tamaño, y que dentro haya senderos de verdad —muestreando La Laguna,
+Anaga, Teide, Adeje y La Orotava, no el centro de la caja, que en Tenerife cae
+en mitad de la caldera—.
+
+El séptimo mira **el par**: monta la capa con el `vendor/protomaps-leaflet.js`
+y el estilo de `index.html`, los que corren en el móvil, y cuenta los píxeles
+que no son fondo.
+
+    node tools/verificar_estilo.js ruta/al/fichero.pmtiles     # suelto
+
+Esto es lo que resuelve el problema de las generaciones. Los *builds* y el
+paquete de estilos avanzan por su cuenta, y si no se entienden el mapa sale en
+blanco **sin dar ningún error**. Comparar números de versión no sirve: no
+siempre están y no dicen lo que importa. Medir sí. Un fichero de OpenMapTiles
+da 9 lienzos y **0,00 % pintado**; uno bueno, 99,99 %.
+
+Si pasa, se copia aquí como `tenerife-osm.pmtiles` y se sube.
+
+### Sobre la generación del esquema
+
+Los *builds* diarios son **basemap v4**. Y el estilo que lleva la app también:
+`estiloIslaDetallada` (`index.html`) filtra por `kind`, `kind_detail` y
+`min_zoom`, y **no tiene ni una** aparición de `pmap:kind` ni `pmap:min_zoom`,
+que eran los nombres de la generación anterior. Medido, no supuesto, y hay un control en
+`tools/auditar_mapa.js` que lo vuelve a medir en cada auditoría.
+
+Cuidado con una confusión que cuesta cara: **5.1.0 es la versión de la
+librería `protomaps-leaflet`, no la del esquema.** No se usa el paquete
+`@protomaps/basemaps` para nada, así que no hay nada que fijar a la serie 4.
+
+### Lo que cuesta el fichero entero
+
+La capa se monta sobre un `Blob`, así que el fichero **se descarga completo
+antes de pintar nada**. Eso no es gratis y conviene tenerlo delante:
+
+- Es **una sola vez**, explícita, con barra de progreso y sobre wifi si el
+  usuario quiere. Después sale del caché y no se vuelve a pedir.
+- El `Blob` que devuelve la Cache Storage está **respaldado en disco**:
+  `blob.slice()` lee solo el trozo pedido, así que la memoria no crece con el
+  tamaño del fichero. No es lo mismo que tenerlo en un `ArrayBuffer`.
+- A cambio, no depende de que el *hosting* haga *byte serving*, que es un
+  fallo silencioso menos.
+
+Si algún día el fichero se va por encima de lo razonable, la salida es
+alojarlo fuera y volver a rangos de verdad — y entonces sí hace falta la
+comprobación de la sección siguiente. Por eso está escrita.
+
+### Sobre las peticiones por rango
+
+PMTiles normalmente lee el archivo a trozos con cabeceras `Range`, y eso
+obliga a que el *hosting* haga *byte serving*. Si no lo hace: mapa en blanco,
+sin error.
+
+**Tenerife Go no depende de eso**, a propósito. La capa se construye con
+`new pmtiles.PMTiles(fuenteBlob(...))` sobre el fichero entero ya descargado,
+nunca con una URL, así que las lecturas por rango las resuelve `blob.slice()`
+dentro del navegador. Hay un control permanente en `tools/auditar_mapa.js` que
+graba **todas** las peticiones mientras se carga la capa y falla si alguna
+lleva `Range` — para que nadie reintroduzca la dependencia pasando una URL
+suelta, que en local funcionaría igual.
+
+Si algún día el fichero se sirviera desde otro sitio:
+
+    python3 tools/verificar_osm.py https://…/x.pmtiles --solo-cabeceras

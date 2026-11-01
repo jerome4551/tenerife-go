@@ -1,0 +1,13 @@
+{
+ "intro": "Heeft u in Tenerife Go een account aangemaakt, dan kunt u het verwijderen wanneer u wilt: in de app of per e-mail.",
+ "appTitulo": "In de app",
+ "appTxt": "Tik op «{cuenta}» (log in als daarom gevraagd wordt) en tik daarna, onder «{cerrar}», op «{eliminar}». De app vraagt u te bevestigen met «{confirmar}», en het account wordt meteen verwijderd.",
+ "correoTitulo": "Zonder de app",
+ "correoTxt": "Schrijf ons op {correo} vanaf het e-mailadres van uw account, met als onderwerp «{asunto}». We verwijderen het uiterlijk een maand nadat we uw e-mail hebben ontvangen (AVG, artikel 12, lid 3).",
+ "asunto": "Mijn account verwijderen",
+ "borraTitulo": "Wat er wordt verwijderd",
+ "borraTxt": "Uw e-mailadres, uw wachtwoord (versleuteld bewaard), de favorieten die u in de cloud heeft opgeslagen en, als u ze in uw account heeft opgeslagen, uw profiel en voortgang.",
+ "noTitulo": "Wat niet met het account wordt verwijderd",
+ "noPush": "Meldingen: die zet u uit in uw browser of in de instellingen van uw telefoon.",
+ "noDispositivo": "Wat op uw toestel staat, zoals de taal of uw favorieten: dat verdwijnt als u de sitegegevens in uw browser wist of de app verwijdert."
+}

@@ -1,0 +1,921 @@
+{
+ "_": [
+  "Registro de lo VERIFICADO, por AREAS y por ficha.",
+  "",
+  "Existe porque se verificaba y no se guardaba: el trabajo quedaba en los",
+  "mensajes y en los commits, y el siguiente control lo volvia a pedir. Asi",
+  "salia una lista nueva cada semana y parecia que todo fallaba siempre.",
+  "",
+  "LAS AREAS EN «cerrado» NO SE VUELVEN A PEDIR. Cerrado no quiere decir",
+  "perfecto: quiere decir que la verificacion se hizo, que se agoto lo que se",
+  "podia comprobar, y que el techo esta escrito. Un area cerrada con un dato",
+  "deducido esta CERRADA: el «deducida» es el resultado honesto, no una tarea.",
+  "",
+  "COMO SE AÑADE una coordenada: una entrada en `coordenada` con la fecha y DE",
+  "DONDE SALE. Sin fuente no se apunta. tools/fijar_coordenada.py lo escribe",
+  "solo con lo que vaya detras de la # del fichero de entrada.",
+  "",
+  "COMO SE EMPAREJO lo de listasplayascharcos.md: ese fichero lista por NOMBRE",
+  "y coordenada, no por id, asi que se emparejo por COORDENADA EXACTA. Una",
+  "ficha que comparte punto con una playa verificada hereda la verificacion DEL",
+  "PUNTO. Que la ficha deba estar ahi es otra cosa y no se afirma."
+ ],
+ "coordenada": {
+  "abama": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-piscina-jover": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-duque": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-fanabe": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-las-vistas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-los-cristianos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-poris": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-teresitas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-torviscas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "acc-playa-troya": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "alcala": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "almaciga": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "ar-la-quebrada": {
+   "fecha": "2026-09-25",
+   "fuente": "Parche municipios-bloque1-B (sha256 cf3094e6...). Tenerife ON (Cabildo de Tenerife), ficha oficial del area recreativa: enlace de acceso 28.532069688519, -16.300710533935. Acceso por el Camino de El Batan (TF-143), km 0,4, Cruce El Moquinal. Se mueve 4.068 m desde el punto viejo, que caia en un barrio de La Laguna."
+  },
+  "ar-las-lajas": {
+   "fecha": "2026-09-28",
+   "fuente": "Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha del area recreativa: tenerifeon.es/equipamientos/area-recreativa/las-lajas. Aportada por Jerome el 28 de septiembre de 2026."
+  },
+  "bano-valleseco-bloque": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "benijo": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "bici-puerto-pico-ingles": {
+   "fecha": "2026-10-11",
+   "fuente": "La subida acaba en el Mirador Pico del Inglés: el mismo punto oficial de Turismo de Tenerife (UTM huso 28 X 376352 Y 3156846 -> 28.5325194, -16.2637869). Aportada por Jerome el 11 de octubre de 2026."
+  },
+  "bollullo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "camping-las-lajas": {
+   "fecha": "2026-09-28",
+   "fuente": "Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha de la zona de acampada: tenerifeon.es/equipamientos/zona-de-acampada/las-lajas. Aportada por Jerome el 28 de septiembre de 2026."
+  },
+  "castillo-san-miguel-garachico": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM area/195580026 «Castillo de San Miguel» (fort), a 0 m. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome]"
+  },
+  "charco-abrigos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-archile": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-chochos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-diablo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-don-gabino": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-faro-buenavista": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-golete": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-gomero": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-laja": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "charco-laja-bajamar": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-roque": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "charco-verde-guancha": {
+   "fecha": "2026-09-21",
+   "commit": "3935808",
+   "fuente": "El Dia + duenno del proyecto: 28°24'00\"N 16°39'32\"W. Municipio contrastado con las paradas de TITSA (4 de las 6 mas cercanas son de La Guancha, la mas proxima «Santa Catalina»)"
+  },
+  "charco-viento": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "cueva-santo-hermano-pedro": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM node/313038499 «Cueva del Santo Hermano Pedro» (cave_entrance); Turismo de Tenerife, ficha de la cueva: «TF-643, 38600 Granadilla», cerca del aeropuerto  [datos/entregas/lanzamiento-lugares.json]"
+  },
+  "cueva-viento": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Cueva del Viento Centro de Visitantes» (attraction), a 2 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto."
+  },
+  "deporte-orotava-parque": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Complejo Deportivo El Mayorazgo» (sports_centre), a 1 m del pin redondo: el punto ya estaba encima, lo que faltaba eran los decimales. Es el complejo deportivo municipal de La Orotava."
+  },
+  "el-duque": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "el-medano": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "el-pris": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "ermita-san-telmo": {
+   "fecha": "2026-09-26",
+   "fuente": "Wikidata Q2220075 (Ermita de San Telmo): 28.417550,-16.545617 = 28°25′03.18″N 16°32′44.22″O. En tierra, a 18,0 m del borde, asi que se usa tal cual sin empujar. Se mueve 155 m al este del pin viejo, que estaba 18,6 m mar adentro. CONTROL DE SENSATEZ: pasa la primera condicion -a 90 m de la «Playa de San Telmo» del extracto, limite 150- y NO se pudo evaluar la segunda como estaba escrita: el «Paseo de San Telmo» no esta en el extracto como via, sino como UN PUNTO de rotulo, y a ese punto hay 218 m. Un paseo maritimo reducido a un punto no dice a que distancia esta su recorrido. Lo que si hay al lado del punto: una zona peatonal a 31 m y la «Avenida Cristobal Colon» a 98 m, que son ese mismo paseo."
+  },
+  "escal-guaria": {
+   "fecha": "2026-09-28",
+   "fuente": "theCrag.com, escuela «Guaria»: ubicacion central de las paredes, dentro del Monumento Natural de la Montana de Tejina. Aportada por Jerome el 28 de septiembre de 2026 junto con el aparcamiento de Acojeja (28.196091,-16.763203) y el inicio del sendero (28.197601,-16.760102)."
+  },
+  "fanabe": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "faro-santa-cruz-puerto": {
+   "fecha": "2026-09-26",
+   "fuente": "Wikidata Q5966669 (La Farola del Mar): 28.469439,-16.245831 = 28°28′09.98″N 16°14′44.99″O. La misma ficha da el elemento de OSM: way 193798986. Esa coordenada cae en el AGUA contra la capa earth a z14 -7,6 m del borde-, asi que se aplico la regla del dueño: empujar hasta 5 m tierra adentro sin moverse mas de 15. Dentro de esos 15 m el mejor margen alcanzable es 4,78 m, y se alcanza justo en el tope: 15,00 m de empuje. El resultado esta en tierra con 4,78 m de margen, a 15 m de la coordenada de Wikidata y a 4,7 m del pin anterior (que salia de la lista de Wikipedia). Las tres referencias -Wikidata, Wikipedia y la foto de Commons- difieren hasta 30 m entre si, asi que el empuje cae dentro de la incertidumbre del propio dato. CUANDO HAYA OVERPASS: leer el way 193798986 y usar su geometria."
+  },
+  "gas-tf82-guia-isora": {
+   "fecha": "2026-10-03",
+   "fuente": "Registro del MITECO, IDEESS 9176 (Shell · Avenida Isora). Regla del LEEME de gasolineras: misma marca a 150-300 m -> coordenada del registro. Antes 28.2137, -16.7829, a 166 m."
+  },
+  "golf-amarilla": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Amarilla Golf» (golf_course), el UNICO con ese nombre en toda la isla, y cae en San Miguel de Abona, que es lo que dice la ficha (tools/municipio_raya.py: 13 de 14 paradas sin raya en medio, todas de San Miguel). El pin redondo estaba a 1.919 m."
+  },
+  "golf-del-sur": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, golf_course «Golf del Sur»"
+  },
+  "hiperdino-los-realejos": {
+   "fecha": "2026-09-29",
+   "fuente": "SuperDino, ficha de la propia empresa en Google: «SuperDino Los Realejos, Pl. Mencey Bencomo, s/n, 38410 Los Realejos», tel. 922 44 16 81. Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM (node/8428054218) esta a 27 m de la Plaza Mencey Bencomo."
+  },
+  "jardines-victoria-orotava": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM area/25092134 «Jardines del marquesado de la Quinta Roja», punto dentro del poligono; Turismo de Tenerife, ficha «Victoria Gardens»: «C/ Tomás Pérez s/n - Plaza de la Constitución, s/n»  [datos/entregas/lanzamiento-lugares.json]"
+  },
+  "las-vistas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "lidl-granadilla": {
+   "fecha": "2026-09-29",
+   "fuente": "Lidl, ficha de la propia empresa en Google: «Av. de la Democracia, S/N, 38611 San Isidro». Captura de Jerome del 29 de septiembre de 2026. La descripcion de la ficha ya nombraba esa avenida, y el elemento de OSM (area/462719671) esta a 70 m de ella."
+  },
+  "lidl-la-laguna": {
+   "fecha": "2026-09-29",
+   "fuente": "Lidl, ficha de la propia empresa en Google: «Calle Ntra. Sra. de la Ternura, 1, 38108 La Laguna». Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM esta a 29 m de esa calle."
+  },
+  "lidl-puerto-cruz": {
+   "fecha": "2026-09-26",
+   "fuente": "OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal."
+  },
+  "lidl-santa-cruz": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, supermarket «Lidl», el mas cercano al centro"
+  },
+  "mercadillo-la-victoria": {
+   "fecha": "2026-09-25",
+   "fuente": "Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia."
+  },
+  "mercadona-granadilla": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Mercadona» (supermarket), el unico de esa marca en 6 km, y cae en Granadilla de Abona como dice la ficha (14 paradas sin raya en medio, todas de Granadilla). El pin redondo estaba a 1.028 m."
+  },
+  "mesa-mar": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "mir-cherfe": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM node/314031941 «Mirador Cherfe» (viewpoint), a 0 m; a 12 m de la raya entre Buenavista del Norte y Santiago del Teide, por eso la ficha no dice municipio. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome]"
+  },
+  "mir-la-garanona": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM area/496120712 «Mirador de La Garañona» (viewpoint), a 0 m. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome]"
+  },
+  "mir-rambla-castro": {
+   "fecha": "2026-10-17",
+   "fuente": "Turismo de Tenerife, ficha «Mirador de San Pedro»: «TF-5 Km pt. 41. Los Realejos», UTM 28N 0343842/3142082; OSM area/129728824 «Mirador de San Pedro» a 6 m  [datos/entregas/lanzamiento-lugares.json]"
+  },
+  "mirador-pico-ingles": {
+   "fecha": "2026-10-11",
+   "fuente": "Turismo de Tenerife, Mirador Pico del Inglés: UTM huso 28 X 376352 Y 3156846. Pasado a WGS84 con pyproj (EPSG:32628 y EPSG:4083 dan lo mismo): 28.5325194, -16.2637869. Aportada por Jerome el 11 de octubre de 2026. Sustituye al pico «Pico del Inglés» de OSM, que esta a 116 m."
+  },
+  "montana-amarilla": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Monumento Natural de Montaña Amarilla» (nature_reserve), a 71 m de la coordenada redonda anterior. Unico con ese nombre en el extracto."
+  },
+  "montana-taco": {
+   "fecha": "2026-09-28",
+   "fuente": "Wikipedia en español, «Montaña de Taco (embalse)», coordenadas del articulo 28 22 26 N 16 50 01 O. Aportada por Jerome el 28 de septiembre de 2026."
+  },
+  "nucleo-costa-adeje": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, neighbourhood «Costa Adeje»"
+  },
+  "nucleo-los-gigantes": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, neighbourhood «Los Gigantes»"
+  },
+  "nucleo-playa-san-juan": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "nucleo-san-andres": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, locality «San Andres»"
+  },
+  "pino-gordo-vilaflor": {
+   "fecha": "2026-10-17",
+   "fuente": "OSM node/313301148 «Pino Gordo» (tree); Turismo de Tenerife, ficha «Árboles leyenda» (Vilaflor)  [datos/entregas/lanzamiento-lugares.json]"
+  },
+  "piscina-gigantes": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "piscina-guimar": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "piscina-hidalgo-norte": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "piscina-jover-tejina": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-alcala-jaquita": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-bajamar": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-garachico": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-muelle": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "piscinas-poris": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "pk-bajamar-piscinas": {
+   "fecha": "2026-09-26",
+   "fuente": "Misma regla. «Avenida del Sol», a 63 m del ancla (piscinas-bajamar, 28.5564,-16.3445; limite 150) y a 33,5 m del borde. La via de servicio que quedaba a 30 m NO cumple el margen de 3 m -esta a 2,9- y la regla entera la descarta."
+  },
+  "pk-poris-abona": {
+   "fecha": "2026-09-26",
+   "fuente": "Regla de aparcamientos sin red: la via rodada CON NOMBRE mas cercana al ancla oficial (28.164247,-16.431573, ficha de Playa El Poris) que cumpla el limite y el margen de 3 m. Es «Calle Martin Rodriguez», a 58 m del ancla (limite 80) y a 46,8 m del borde. La ficha oficial de la playa da su direccion en esa misma calle, Martin Rodriguez 14. La via sin nombre que quedaba a 35 m se descarta: el extracto no trae access ni service, asi que no se puede saber si es privada."
+  },
+  "playa-abriguitos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-agua-dulce": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-americas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-antequera": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-barqueros-buenavista": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-beril": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-bobo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-cabezo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-cabezo-medano": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-caleton-sauzal": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-callao": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-callao-arona": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-camison": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-candelaria": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-castillo-pcruz": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-charcada": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-chimisay": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-confital": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-diego-hernandez": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-enramada": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-fajana-realejos": {
+   "fecha": "2026-09-21",
+   "commit": "3935808",
+   "fuente": "Ficha de la playa con UTM 28N X 344.464,66 Y 3.142.340,56 y DMS 28°23'53.6\"N 16°35'15.6\"W. Coincide al septimo decimal con la que ya traia la ficha"
+  },
+  "playa-galletas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-grande-abades": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-guincho": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-guios": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-igueste-san-andres": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-jaca": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-jaquita": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-jaquita-medano": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-jardin": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-la-caleta-adeje": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-las-aguas": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-las-bajas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-las-gaviotas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-los-patos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-martianez": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-muelle-garachico": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-nea": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-pinta": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-puertito": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-puertito-adeje": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-puertito-guimar": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-puerto-santiago": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "playa-punta-fraile": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-punta-larga": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-radazul": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-rambla": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "playa-rincon": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-rojas": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-roques-rambla": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-san-telmo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+  },
+  "playa-socorro": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "playa-socorro-guimar": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-tabaiba": {
+   "fecha": "2026-09-06",
+   "fuente": "Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas]"
+  },
+  "playa-torviscas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "puerto-colon-adeje": {
+   "fecha": "2026-09-26",
+   "fuente": "OSM del repositorio: el punto de la marina «Puerto Colon». El pin viejo estaba 384 m mas alla, en mar abierto, no en la darsena."
+  },
+  "puerto-guimar": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "punta-hidalgo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "roque-bodegas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "ruta-anaga-taganana": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "san-juan": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "san-marcos": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "sendero-roque-bodegas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "sendero-roque-conde": {
+   "fecha": "2026-09-28",
+   "lat": 28.100997,
+   "lng": -16.687583,
+   "fuente": "Ayuntamiento de Adeje, costa-adeje.es/es/naturaleza/roque-del-conde: «Inicio: Calle Vento (Arona)». Coordenada publicada por el propio ayuntamiento.",
+   "nota": "La ficha es la SUBIDA, no la cumbre, asi que el punto va al inicio oficial y no al pico. Antes estaba en la cima (28.1042, -16.6986), que cae en Adeje a 13 m del pico marcado en OSM; se mueve 1.138 m. Comprobado con el poligono del Cabildo: el punto nuevo cae en Arona, a 354 m de la raya. El municipio de la ficha NO cambia: Arona es correcto. El Cabildo situa el inicio en la Plaza del Cristo de la Salud (Arona), unos 650 m antes, pero de esa plaza no hay coordenada publicada."
+  },
+  "super-mercadona-tacoronte": {
+   "fecha": "2026-09-28",
+   "fuente": "Jerome, 28 de septiembre de 2026: captura de Google Street View (junio de 2026) con el rotulo de MERCADONA y la entrada a la vista, coordenada del propio visor 28 28 43.0 N 16 24 47.7 W. Coincide a 1,2 m con el nodo de OSM node/903016696."
+  },
+  "surf-almaciga": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "surf-benijo": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "surf-bollullo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "surf-callao-salvaje": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "surf-playa-socorro": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "tea-tenerife": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Tenerife Espacio de las Artes» (arts_centre), el nombre exacto de la ficha, a 45 m del pin redondo. Unico con ese nombre en la isla."
+  },
+  "tejita": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "teresitas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "turismo-cv-pedregales": {
+   "fecha": "2026-09-27",
+   "fuente": "OSM del repositorio: «Centro de Visitantes Los Pedregales» (information), a 21 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto."
+  },
+  "wc-benijo": {
+   "fecha": "2026-09-01",
+   "commit": "36660dc",
+   "fuente": "Cuatro playas vuelven a su sitio, y sus satélites con ellas"
+  },
+  "wc-duque": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-garachico": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-gigantes": {
+   "fecha": "2026-09-19",
+   "commit": "2ef7c67",
+   "fuente": "OpenStreetMap, neighbourhood «Los Gigantes» (misma que nucleo-los-gigantes)"
+  },
+  "wc-las-vistas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-medano": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-punta-hidalgo": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-san-juan": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-teresitas": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "wc-troya": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "windsurf-el-poris": {
+   "fecha": "2026-09-20",
+   "commit": "d51d37f",
+   "fuente": "Turismo de Tenerife, ficha Playa Grande (Arico), DMS y UTM 28N; empujada 8 m a tierra sobre el segmento de costa"
+  },
+  "windsurf-la-tejita": {
+   "fecha": "2026-09-06",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  }
+ },
+ "areas": {
+  "orientacion_playa": {
+   "estado": "cerrado",
+   "fecha": "2026-09-08",
+   "que_se_hizo": "Se buscaron fuentes publicadas para la orientacion de las 65 zonas de bano que no la tenian, y se auditaron una por una las que produjo un modelo de lenguaje.",
+   "techo": "La orientacion de playa NO es un campo publicado en ninguna base de datos oficial espanola ni canaria. No es una suposicion: se comprobo abriendo cada fuente.",
+   "fuentes_agotadas": {
+    "surf-forecast.com": "SIRVE pero solo cubre rompientes: 26 spots en Tenerife, ~12 coinciden con puntos de bano. De ahi salen las 11 verificadas. Las playas abrigadas, que son las que la gente usa para banarse, no son spots de surf y no tienen ficha.",
+    "AEMET prediccion de playas": "NO SIRVE. Sus campos son cielo, viento SOLO EN INTENSIDAD (sin rumbo), mar de fondo, temperatura, agua, UV y mareas. Comprobado abriendo la ficha de San Marcos (3802201).",
+    "MITECO Guia de Playas": "NO SIRVE. Base completa del Estado, ~3.000 playas, nueve secciones y la orientacion no es ninguna.",
+    "Catalogo Decreto 116/2018 (Canarias)": "El decreto fue ANULADO por el Tribunal Supremo. Todo lo que se apoyara en el ha perdido su base legal."
+   },
+   "resultado": {
+    "verificadas_abriendo_la_fuente": 11,
+    "heredadas_por_vecindad": 1,
+    "deduccion_auditada": 53,
+    "escritas_a_mano_antes": 12,
+    "total_en_la_tabla": 100
+   },
+   "auditoria": "Las 4 filas que el modelo dijo tener respaldo en surf-forecast se abrieron una por una: las 4 dicen lo que decia. Se cazo un error real de 90 grados (playa-grande-abades, SE -> NE) y una contradiccion en el badWind de Poris, por la que badWind va vacio en las 65.",
+   "precision": "El dato es fiable a +-45 grados, no mas. La verificacion con surf-forecast caza errores de 90 grados pero no distingue N de NW.",
+   "metodo_automatico": "PROBADO Y RECHAZADO. tools/orientacion_playa.py deduce ori del poligono de arena de OSM. Reproduce 7 de las 12 escritas a mano y el umbral, fijado antes de mirar, era 10. Segun ORDENorientaciones.md: «si sale que no, se para y la respuesta queda cerrada para siempre».",
+   "abierto": [
+    "playa-grande-abades: corregida de SE a NE, pero puede ser una playa distinta de la de Poris",
+    "benijo: la fuente da N y NW a la vez",
+    "piscina-gigantes: el modelo dijo W y luego NW; las dos caen dentro del +-45 de la fuente"
+   ]
+  },
+  "calidad_del_agua": {
+   "estado": "cerrado",
+   "fecha": "2026-09-05",
+   "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025, Servicio Canario de la Salud. 49 zonas en Tenerife.",
+   "resultado": "46 fichas con aguaCalidad y su ano. El ano va en el dato para que se vea cuando caduca."
+  },
+  "bandera_azul": {
+   "estado": "cerrado",
+   "fecha": "2026-08-31",
+   "fuente": "Galardones Bandera Azul 2026, Gobierno de Canarias. 11 en Tenerife.",
+   "resultado": "11 fichas con blueFlag:true, cifra exacta comprobada contra la lista."
+  },
+  "red_titsa": {
+   "estado": "cerrado",
+   "fecha": "2026-08-21",
+   "fuente": "GTFS oficial de TITSA (routes.txt, trips.txt, stop_times.txt) y CSV oficial de Metropolitano de Tenerife para el tranvia.",
+   "resultado": "183 lineas, 6.263 referencias de parada sobre 2.514 marquesinas, trazados regenerados del GTFS. La parada mas lejos de su trazado, a menos de 200 m."
+  },
+  "idiomas": {
+   "estado": "cerrado",
+   "fecha": "2026-09-21",
+   "resultado": "Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin traducir ni declarar. 0 textos que se queden en el idioma de arranque."
+  },
+  "asistente": {
+   "estado": "cerrado",
+   "fecha": "2026-10-12",
+   "resultado": "122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La 122, app-23, es «ordena mis favoritos por distancia», que exc-03 prometia y desde el 12/10/2026 el asistente hace de verdad."
+  },
+  "mapa_sin_conexion": {
+   "estado": "cerrado",
+   "fecha": "2026-09-12",
+   "resultado": "76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red."
+  },
+  "coordenadas": {
+   "estado": "abierto",
+   "resultado": "Las verificadas, con su fuente, estan una a una en la seccion `coordenada` de este mismo fichero. Aqui NO se escribe cuantas son: las cuenta el informe al generarse, porque un numero escrito a mano se queda viejo al dia siguiente.",
+   "abierto": "Las que estan escritas con 3 decimales significativos o menos en los dos ejes, o sea puestas a ojo. El informe las cuenta y las lista una a una."
+  },
+  "municipio_de_cada_ficha": {
+   "estado": "cerrado",
+   "fecha": "2026-09-28",
+   "que_se_hizo": "Point-in-polygon de cada ficha contra el poligono municipal del Cabildo (tools/datos/municipios-tenerife-2015.shp.zip), no contra las paradas de alrededor.",
+   "resultado": "Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se queda viejo al dia siguiente.",
+   "abierto": [],
+   "techo": "El poligono municipal del Cabildo YA ESTA en el repositorio (tools/datos/municipios-tenerife-2015.shp.zip, entregado el 27 de septiembre). La comprobacion es point-in-polygon exacto, no una aproximacion. Calibrado contra las 2.514 paradas de TITSA: coincide en 2.514, el 100,00 %. La unica trampa del fichero es que el anillo de La Laguna envuelve a Tegueste sin recortarle el hueco; se resuelve con «si un punto cae en varios, gana el mas pequeño», que es lo que pasa siempre con un enclave. Lo que el poligono NO puede decidir: las fichas que nombran una ZONA de varios municipios («Las Americas», «Teno»). Esas se cuentan y se listan aparte, sin pasar ni fallar.",
+   "por_que_se_reabre": "Estuvo en «cerrado» con 0 hallazgos en firme, pero eso lo dijo la version que comparaba contra el municipio de las paradas de TITSA, que es una aproximacion. Al sustituirla por el poligono aparecieron 16, de las que 3 eran fallo del propio control (los alias «Las Americas» y «Teno», que no son municipios) y 13 son de verdad. Un area no puede estar cerrada mientras su control esta en rojo. CERRADA el 28 de septiembre: las 13 resueltas con Jerome, una a una y con su fuente. El control da 0. Cerrado no quiere decir perfecto: las 14 fichas que nombran una ZONA de varios municipios siguen sin poder comprobarse, y eso esta escrito en el techo.",
+   "cerrado_por_poligono": [
+    "ar-la-quebrada",
+    "buceo-tabaiba",
+    "casa-capitanes-generales",
+    "cavis-violencia-sexual-tenerife",
+    "guachinche-cordero",
+    "kayak-radazul",
+    "mercadillo-la-victoria",
+    "mir-cruz-hilda",
+    "parque-tabaiba-baja",
+    "rcg-tenerife"
+   ]
+  },
+  "lugares_en_el_mar": {
+   "estado": "cerrado",
+   "fecha": "2026-09-26",
+   "resultado": "0 fichas fuera de tierra que no sean puertos, marinas o charcos.",
+   "abierto": [
+    "puertito-poris-abona: 241 m mar adentro. Exento por categoria, pero un embarcadero pequeño no tiene una darsena de 241 m. En 600 m no hay ningun muelle, marina ni puerto en el extracto. Hace falta Overpass o la coordenada publicada.",
+    "faro-santa-cruz-puerto: cuando haya Overpass, leer el way 193798986 de OSM y usar su geometria en vez del empuje de 15 m."
+   ],
+   "techo": "Overpass sigue cerrado desde aqui. El extracto OSM del repositorio es a z14 y NO lo trae todo: dio 0 faros en toda la isla y la Farola SI esta en OSM (way 193798986). Un 0 en el extracto significa «no lo trae», nunca «no existe». Los POIs que en OSM son una via o un poligono llegan aqui como un punto de rotulo, asi que la distancia a ese punto no es la distancia al sitio.",
+   "que_se_hizo": "Las 6 fichas que caian fuera de tierra se cerraron una a una. Cuatro con una coordenada de fuente (Wikidata, Wikipedia, la ficha oficial de la playa, el propio OSM del repositorio), una por la regla de aparcamientos y una -whale-watching- exenta por id con su motivo escrito. De paso, puerto-colon-adeje estaba 150 m en mar abierto, no en la darsena, y la exencion por categoria lo tapaba: movido al punto de la marina en OSM."
+  },
+  "avisos_aemet": {
+   "estado": "cerrado",
+   "fecha": "2026-10-12",
+   "que_se_hizo": "La pildora de avisos llevaba meses sin salir: pedia desde el navegador la prevision de Santa Cruz (localidad_38038.xml), que no son avisos, y aemet.es no deja que otra web lea sus ficheros (sin CORS). Ahora .github/workflows/avisos-aemet.yml baja cada hora el canal oficial de la isla y la app lee datos/avisos-aemet.json de su propio dominio.",
+   "fuente": "AEMET, Plan Meteoalerta. Canal sin clave de la isla de Tenerife: https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml (listado en https://www.aemet.es/es/rss_info/avisos/coo). Formato: anexo 3, METEOALERTA_ANX3_CAP.pdf (31-may-2022). Zonas de Tenerife: 659601 Norte, 659602 Area metropolitana, 659603 Este, sur y oeste; con C al final, su costa.",
+   "techo": "AEMET da el texto de cada aviso solo en castellano y en ingles: en los otros ocho idiomas se traducen nivel, fenomeno, parametro, zona y horas por su codigo, y el texto oficial sale en castellano y lo dice. GitHub no lanza los cron a su hora: la comprobacion es mas o menos cada hora, no exacta; a las 6 horas sin comprobar la app lo dice y manda a aemet.es.",
+   "resultado": "tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un navegador, en los diez idiomas; cinco fallos metidos a proposito, los cinco en rojo."
+  }
+ },
+ "coordenada_de_zona": {
+  "_": "Fichas cuya coordenada es un ROTULO, no una posicion: una zona, un recorrido o un barrio. Un punto no las describe, y pedirle 6 decimales es pedirle algo que el sitio no tiene. No cuentan como «puesta a ojo» en tools/auditar_redondeo.py, pero se listan aparte con su motivo: la exencion queda escrita, no callada. Si alguna resulta ser un punto -un inicio de ruta, una puerta- se saca de aqui.",
+  "anaga": {
+   "motivo": "Parque Rural de Anaga: 14.419 ha."
+  },
+  "corona-forestal": {
+   "motivo": "Parque Natural Corona Forestal, el mayor espacio protegido de Canarias."
+  },
+  "caldeira-canadas": {
+   "motivo": "La Caldera de Las Cañadas entera, unos 16 km de diametro."
+  },
+  "riscos-chio": {
+   "motivo": "Paisaje volcanico: una extension, no un punto."
+  },
+  "lajiales-fasnia": {
+   "motivo": "Malpais: una extension."
+  },
+  "sendero-la-orotava": {
+   "motivo": "Un sendero es un recorrido."
+  },
+  "prtf-6-chamorga-roque-bermejo": {
+   "motivo": "Sendero circular: el punto es la chincheta del recorrido."
+  },
+  "gr131-tramo1-esperanza-caldera": {
+   "motivo": "Tramo de un GR: un recorrido de kilometros."
+  },
+  "bici-bc5-vilaflor": {
+   "motivo": "Ruta MTB: un recorrido."
+  },
+  "acc-paseo-cristianos": {
+   "motivo": "Paseo maritimo: un recorrido de varios kilometros."
+  },
+  "acc-paseo-garachico": {
+   "motivo": "Paseo costero: un recorrido."
+  },
+  "deporte-costa-adeje-paseo": {
+   "motivo": "Paseo maritimo con aparatos repartidos a lo largo."
+  },
+  "kayak-punta-teno": {
+   "motivo": "Tramo de costa, no un embarcadero concreto."
+  },
+  "escal-guaria": {
+   "motivo": "Escuela de escalada: mas de 130 vias repartidas en seis sectores (Entrada, Peter Punk, Comando 25, Utah, Big Wall y Tralla) a lo largo de la pared. El punto es el centro de las paredes que publica theCrag, no una posicion unica.",
+   "otros_puntos": {
+    "aparcamiento_acojeja": [
+     28.196091,
+     -16.763203
+    ],
+    "inicio_del_sendero": [
+     28.197601,
+     -16.760102
+    ]
+   }
+  },
+  "escal-canada-capricho": {
+   "motivo": "Zona de escalada: varias vias en un sector."
+  },
+  "nucleo-torviscas": {
+   "motivo": "Barrio: la coordenada es su centro aproximado, como en los demas nucleos."
+  }
+ },
+ "municipio_oficial": {
+  "_": "Fichas cuyo municipio se comprobo con POINT-IN-POLYGON contra el shapefile municipal del Cabildo (tools/datos/municipios-tenerife-2015.shp.zip, 31 municipios, 182 anillos, 143.737 vertices), con tools/municipio.py. Sustituye al metodo anterior, que era indirecto -mirar si habia una raya municipal del mapa OSM entre el punto y las paradas de alrededor- porque el shapefile no estaba. Las diez coinciden: el poligono confirma las diez decisiones. CALIBRACION: el poligono coincide con el municipio que traen las 2.514 paradas de TITSA en 2.514 de 2.514, el 100,00 %.",
+  "buceo-tabaiba": {
+   "fecha": "2026-09-27",
+   "municipio": "El Rosario",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-A (sha256 594fa5ed...). tools/municipio_raya.py: 8 paradas de apoyo hasta 561 m, todas de El Rosario, la mas cercana «Tabaiba» a 177 m; raya municipal mas cercana a 909 m y hueco del dato a 911 m, los dos fuera del circulo; 0 rayas entre el punto y las 8 paradas."
+  },
+  "parque-tabaiba-baja": {
+   "fecha": "2026-09-27",
+   "municipio": "El Rosario",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 510 m, todas de El Rosario, la mas cercana «Tabaiba» a 11 m; raya a 987 m y hueco a 994 m; 0 rayas en medio."
+  },
+  "kayak-radazul": {
+   "fecha": "2026-09-27",
+   "municipio": "El Rosario",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 433 m, todas de El Rosario, la mas cercana «Colon» a 56 m; las 5 paradas que llevan «Radazul» son de El Rosario; raya a 1.618 m y hueco a 1.618 m; 0 rayas en medio."
+  },
+  "mir-cruz-hilda": {
+   "fecha": "2026-09-27",
+   "municipio": "Buenavista del Norte",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-A. tools/municipio_raya.py: 8 paradas de apoyo hasta 1.780 m, todas de Buenavista del Norte, la mas cercana «Cruz de Hilda» a 67 m; raya a 2.166 m y hueco a 2.224 m; 0 rayas en medio. Texto nuevo del parche, de la ficha de Turismo de Tenerife. De paso se corrigio tools/auditar_municipio.js, que tenia «Masca» como alias de Santiago del Teide: las 3 paradas del catalogo con «Masca» en el nombre son de Buenavista del Norte."
+  },
+  "ar-la-quebrada": {
+   "fecha": "2026-09-27",
+   "municipio": "Tegueste",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. tools/municipio_raya.py sobre la coordenada nueva: de las 14 paradas mas cercanas solo una no tiene raya municipal en medio, «Cruce el Moquinal» (Tegueste) a 380 m -el mismo cruce que nombra la ficha del Cabildo-, y las 13 de La Laguna estan todas al otro lado de una raya."
+  },
+  "mercadillo-la-victoria": {
+   "fecha": "2026-09-27",
+   "municipio": "La Victoria de Acentejo",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. tools/municipio_raya.py sobre el punto derivado: 6 paradas sin raya en medio, todas de La Victoria de Acentejo (la primera a 232 m), y las 8 de La Matanza y Santa Ursula cortadas por una raya."
+  },
+  "cavis-violencia-sexual-tenerife": {
+   "fecha": "2026-09-27",
+   "municipio": "San Cristóbal de La Laguna",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-B: segun el Instituto Canario de Igualdad, calle Franco de Medina 41 esta en La Cuesta, San Cristobal de La Laguna (38320). El pin NO se movio. PORTAL NO VERIFICADO: la regla del parche pedia geocodificar la direccion con CartoCiudad (IGN) o con OSM, y desde aqui los dos estan cerrados por la politica de salida (000). Se aplico la ultima rama de la regla: tools/municipio_raya.py sobre el pin actual da San Cristobal de La Laguna -14 paradas, ninguna con raya en medio, la primera a 72 m-, asi que el pin se queda."
+  },
+  "casa-capitanes-generales": {
+   "fecha": "2026-09-27",
+   "municipio": "San Cristóbal de La Laguna",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-C (sha256 30ff04bd...). Eleccion del dueño: La Laguna. El pin NO se movio. tools/municipio_raya.py: 14 paradas miradas, NINGUNA con raya municipal en medio, la primera «Plaza del Adelantado» a 116 m, raya mas cercana a 2.310 m. El paso de afinado del parche pedia Overpass con name~Capitanes: en el OSM del repositorio no hay ningun elemento asi a 200 m, pero SI esta el edificio con su otro nombre, «Casa de Alvarado-Bracamonte» (manor), a 23 m del pin. Por debajo de los 40 m que pedia la regla, asi que el pin se queda igual, y de paso confirma que esta en el sitio."
+  },
+  "rcg-tenerife": {
+   "fecha": "2026-09-27",
+   "municipio": "Tacoronte",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-C. Eleccion del dueño: Tacoronte, que es lo que dice el propio club (C/ Campo de Golf 1, 38350 Tacoronte). El pin NO se movio porque no hizo falta: tools/municipio_raya.py ya da Tacoronte -5 paradas sin raya en medio, todas de Tacoronte (la primera a 262 m), y 9 cortadas por una raya-, asi que la rama de geocodificar de la regla no llego a aplicarse."
+  },
+  "guachinche-cordero": {
+   "fecha": "2026-09-27",
+   "municipio": "San Miguel de Abona",
+   "fuente": "Point-in-polygon contra el shapefile municipal del Cabildo. Parche municipios-bloque1-C. Eleccion del dueño: San Miguel de Abona. El pin NO se movio. tools/municipio_raya.py: 13 de las 14 paradas mas cercanas sin raya en medio, TODAS de San Miguel de Abona, la primera «Catu» a 116 m, y la raya a 988 m. De la descripcion se quitan los datos que caducan o se contradecian: el horario (decia todos los dias y a la vez solo fines de semana), la nota con el numero de reseñas, la cabra guisada y el vino propio."
+  }
+ }
+}

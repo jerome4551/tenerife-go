@@ -1,0 +1,66 @@
+{
+ "_": [
+  "Tanda 18 de 31: Santiago del Teide.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Santiago del Teide",
+ "estaciones": 4,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 4,
+ "lista": [
+  {
+   "ideess": "10779",
+   "rotulo": "CEPSA",
+   "marca": "cepsa",
+   "direccion": "CARRETERA GENERAL DEL SUR KM. 84,950",
+   "cp": "38690",
+   "localidad": "SANTIAGO DEL TEIDE",
+   "municipio": "Santiago del Teide",
+   "horario": "L-S: 06:00-22:00; D: 7:00-21:30",
+   "lat": 28.280833,
+   "lng": -16.812722,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7948",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "AVENIDA CORONEL GORRIN, 37",
+   "cp": "38684",
+   "localidad": "TAMAIMO",
+   "municipio": "Santiago del Teide",
+   "horario": "L-S: 06:00-22:00; D: 07:00-22:00",
+   "lat": 28.270194,
+   "lng": -16.819028,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "9664",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "CARRETERA AVENIDA GENERAL FRANCO 3 KM. 82,9",
+   "cp": "38436",
+   "localidad": "SANTIAGO DEL TEIDE",
+   "municipio": "Santiago del Teide",
+   "horario": "L-S: 05:30-22:00; D: 05:30-21:00",
+   "lat": 28.293833,
+   "lng": -16.815583,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7735",
+   "rotulo": "DISA BAJADA A LOS GIGANTES",
+   "marca": "disa",
+   "direccion": "CARRETERA PUERTO SANTIAGO - TAMAIMO KM. 1,5",
+   "cp": "38684",
+   "localidad": "SANTIAGO DEL TEIDE",
+   "municipio": "Santiago del Teide",
+   "horario": "L-V: 08:00-16:00",
+   "lat": 28.260806,
+   "lng": -16.824278,
+   "ya_en_la_app": null
+  }
+ ]
+}

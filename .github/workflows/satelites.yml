@@ -1,0 +1,66 @@
+# Elementos orbitales de la Estacion Espacial y los satelites brillantes
+# (21 de octubre de 2026).
+#
+# El panel «Cielo de Tenerife» calcula en el movil los pasos visibles desde el
+# Teide de la Estacion Espacial Internacional, de la estacion china Tiangong y
+# del telescopio Hubble (SGP4, vendor/satellite.js). Para eso hacen falta sus
+# elementos orbitales recientes: cambian cada dia, y la app no ensena pasos con
+# elementos de mas de 7 dias. Este flujo los baja de CelesTrak a
+# datos/satelites.json; todo lo que hace y por que esta en
+# tools/satelites_traer.py (y si algo no cuadra, no escribe nada).
+#
+# DOS LINEAS DE CRON, POR LAS MISMAS RAZONES QUE LOS OTROS ROBOTS: el
+# programador de GitHub lanza cada linea mas o menos una vez al dia y tarde
+# (medido el 11 de octubre, ver precios-gasolineras.yml); con dos lineas, a las
+# 5:53 y a las 17:53 UTC, llegan una o dos renovaciones al dia, que es lo que
+# hace falta (tres peticiones a CelesTrak cada vez: no se abusa). Minuto :53,
+# lejos de los otros flujos y del :00.
+#
+# Uso a mano: pestana Actions -> "Satelites" -> Run workflow.
+
+name: Satelites
+
+on:
+  schedule:
+    - cron: '53 5 * * *'
+    - cron: '53 17 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: satelites
+  cancel-in-progress: false
+
+jobs:
+  satelites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Bajar los elementos orbitales de CelesTrak
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python3 tools/satelites_traer.py
+
+      - name: Guardar en el repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos/satelites.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+            exit 0
+          fi
+          EPOCA=$(python3 -c "import json;print(max(s['epoca'] for s in json.load(open('datos/satelites.json'))['sat'])[:16].replace('T',' '))")
+          git commit -m "Satelites: elementos de CelesTrak, epoca $EPOCA UTC"
+          for i in 1 2 3 4; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep $((i * 10))
+          done
+          echo "::error::No se pudo subir el fichero de satelites"
+          exit 1

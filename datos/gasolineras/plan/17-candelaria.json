@@ -1,0 +1,66 @@
+{
+ "_": [
+  "Tanda 17 de 31: Candelaria.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Candelaria",
+ "estaciones": 4,
+ "ya_en_la_app": 0,
+ "altas_nuevas": 4,
+ "lista": [
+  {
+   "ideess": "7834",
+   "rotulo": "DISA CANDELARIA",
+   "marca": "disa",
+   "direccion": "CALLE LAS BICHAS, S/N",
+   "cp": "38530",
+   "localidad": "CANDELARIA",
+   "municipio": "Candelaria",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.356833,
+   "lng": -16.371944,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "12523",
+   "rotulo": "DISA LAS CALETILLAS",
+   "marca": "disa",
+   "direccion": "AVENIDA AVDA. MARITIMA, 198",
+   "cp": "38530",
+   "localidad": "CALETILLAS (LAS)",
+   "municipio": "Candelaria",
+   "horario": "L-S: 06:00-23:00; D: 08:00-22:00",
+   "lat": 28.382361,
+   "lng": -16.361917,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7719",
+   "rotulo": "PCAN",
+   "marca": "pcan",
+   "direccion": "CARRETERA TF-28 GENERAL DEL SUR KM. 9,9",
+   "cp": "38510",
+   "localidad": "BARRANCO HONDO",
+   "municipio": "Candelaria",
+   "horario": "L-S: 06:00-22:00; D: 07:00-15:00",
+   "lat": 28.399472,
+   "lng": -16.350889,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7786",
+   "rotulo": "TGAS LAS CALETILLAS",
+   "marca": "tgas",
+   "direccion": "CR ACCESO A CALETILLAS, 14.1",
+   "cp": "38530",
+   "localidad": "CALETILLAS (LAS)",
+   "municipio": "Candelaria",
+   "horario": "L-D: 06:00-23:00",
+   "lat": 28.382306,
+   "lng": -16.361667,
+   "ya_en_la_app": null
+  }
+ ]
+}

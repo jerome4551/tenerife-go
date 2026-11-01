@@ -1,0 +1,2505 @@
+/* modulos/perfil.js — la pantalla «Su perfil» (22 de octubre de 2026).
+
+   QUE ES. El avatar (235, de modulos/avatares.js: cinco por cada idioma
+   de la app, cinco de Tenerife y, desde el 23 de octubre, cinco por cada
+   uno de 36 paises de Europa; y 49 de oro, que solo se cogen el dia de su
+   fiesta y se quedan; al tocarlos, se mueven un segundo), el nombre o
+   apodo, los datos (altura, peso
+   y año de nacimiento, con el IMC y su
+   categoria de la OMS solo para adultos), su evolucion (el peso y los
+   kilometros que anota la persona: ninguno sale de las fichas), su isla
+   (favoritos, visitados y logros, los de la app) y la cuenta, con la nube
+   solo con permiso. Viene del encargo PARA-CLAUDE-CODE-PERFIL.md, probado
+   en su prototipo; aqui va montado en la app.
+
+   COMO SE CARGA. Como el cielo: lo pide el cargador de index.html
+   (CARGA-PEREZOSA: modulos/perfil.js) la primera vez que alguien abre el
+   perfil, despues de modulos/avatares.js, que este lee en cuanto corre. El
+   service worker lo precarga. Sus estilos y su cuerpo van aqui dentro, como
+   cadenas (ESTILOS y CUERPO, al final): app_preparar.js solo copia
+   modulos/*.js a la app de la tienda, y unos ficheros sueltos faltarian alli.
+
+   LOS TEXTOS. PERFIL_UI son filas planas como las de UI_TX, en los diez
+   idiomas, y se funden en UI_TX como hace el cielo con CIELO_UI: se piden
+   con el tx() de la app, que ya sabe de plurales («a|b») y de {marcadores}.
+   Las filas de la cuenta que ya existian no se copian: tx('cuentaBorrarBtn')
+   y las demas, y authLoggedAs y authLogoutBtn, que viven en AUTH_STRINGS,
+   con t(). tools/auditar_perfil.js comprueba las filas y que exista cada
+   una que se pide.
+
+   LO QUE VIENE DE LA PERSONA, DEL DISPOSITIVO O DE LA NUBE va siempre por
+   textContent. innerHTML, solo para los dibujos del catalogo
+   (TG_AVATARES.svg), el cuerpo de la pantalla y el degradado de la grafica,
+   que escribe este codigo.
+
+   LO QUE SE GUARDA. En el dispositivo, tenerife.perfil, validado campo a
+   campo al leerlo. En la cuenta, solo con el permiso expreso de esa cuenta
+   («Acepto»), en las tablas de supabase/perfil.sql: apartado «la nube, con
+   permiso». Las visitas comprobadas (tenerife.visitas) no suben nunca, ni
+   la lista de los de oro conseguidos (st.oro): sube el avatar elegido. */
+(function () {
+  'use strict';
+
+  /* Los textos de la pantalla (94), de los sets (47), de los avatares (284:
+     235 y 49 de oro, que se llaman como su fiesta) y, al final, de los 28
+     retirados (modulos/avatares.js: quien ya llevaba uno lo conserva y su nombre
+     tiene que salir), en los diez idiomas. El trato, de usted (Jerome, 21 de octubre). Se
+     quedan como estan, porque son la voz de quien usa la app: «Sorpréndeme»,
+     los titulos chinos con 我的 y «Acepto». */
+  var PERFIL_UI = {
+    "perfilTitulo": {"es": "Su perfil", "en": "Your profile", "fr": "Votre profil", "de": "Ihr Profil", "it": "Profilo", "nl": "Uw profiel", "zh": "我的资料", "zht": "個人檔案", "bg": "Вашият профил", "pl": "Profil"},
+    "perfilLema": {"es": "Su pasaporte de viajero", "en": "Your traveller’s passport", "fr": "Votre passeport de voyageur", "de": "Ihr Reisepass", "it": "Passaporto da viaggiatore", "nl": "Uw reizigerspaspoort", "zh": "我的旅行护照", "zht": "我的旅行護照", "bg": "Вашият пътнически паспорт", "pl": "Paszport podróżnika"},
+    "perfilNombrePlaceholder": {"es": "Su nombre o apodo", "en": "Your name or nickname", "fr": "Votre prénom ou pseudo", "de": "Ihr Name oder Spitzname", "it": "Nome o soprannome", "nl": "Uw naam of bijnaam", "zh": "名字或昵称", "zht": "名字或暱稱", "bg": "Вашето име или прякор", "pl": "Imię lub pseudonim"},
+    "perfilBienvenida": {"es": "¡Hola, {nombre}!", "en": "Hi, {nombre}!", "fr": "Bonjour, {nombre} !", "de": "Hallo, {nombre}!", "it": "Salve, {nombre}!", "nl": "Hallo {nombre}!", "zh": "您好，{nombre}！", "zht": "您好，{nombre}！", "bg": "Здравейте, {nombre}!", "pl": "Witamy, {nombre}!"},
+    "perfilViajeroDesde": {"es": "Viajero desde {fecha}", "en": "Traveller since {fecha}", "fr": "Voyageur depuis {fecha}", "de": "Reisender seit {fecha}", "it": "Viaggiatore da {fecha}", "nl": "Reiziger sinds {fecha}", "zh": "旅行始于{fecha}", "zht": "旅行始於{fecha}", "bg": "Пътешественик от {fecha}", "pl": "Podróżnik od {fecha}"},
+    "perfilEditarNombre": {"es": "Editar nombre", "en": "Edit name", "fr": "Modifier le nom", "de": "Namen bearbeiten", "it": "Modifica il nome", "nl": "Naam bewerken", "zh": "编辑名字", "zht": "編輯名字", "bg": "Промени името", "pl": "Zmień imię"},
+    "perfilElegirAvatar": {"es": "Elija su avatar", "en": "Choose your avatar", "fr": "Choisissez votre avatar", "de": "Wählen Sie Ihren Avatar", "it": "Scelta dell’avatar", "nl": "Kies uw avatar", "zh": "选择头像", "zht": "選擇頭像", "bg": "Изберете аватар", "pl": "Wybór awatara"},
+    "perfilSorprendeme": {"es": "Sorpréndeme", "en": "Surprise me", "fr": "Surprenez-moi", "de": "Überrasch mich", "it": "Sorprendimi", "nl": "Verras me", "zh": "随机一个", "zht": "隨機一個", "bg": "Изненадай ме", "pl": "Zaskocz mnie"},
+    "perfilTodosPaises": {"es": "Todos los países", "en": "All countries", "fr": "Tous les pays", "de": "Alle Länder", "it": "Tutti i paesi", "nl": "Alle landen", "zh": "所有国家", "zht": "所有國家", "bg": "Всички държави", "pl": "Wszystkie kraje"},
+    "perfilBuscarPais": {"es": "Buscar un país", "en": "Search for a country", "fr": "Rechercher un pays", "de": "Land suchen", "it": "Cerca un paese", "nl": "Land zoeken", "zh": "搜索国家", "zht": "搜尋國家", "bg": "Търсене на държава", "pl": "Szukaj kraju"},
+    "perfilPaisNinguno": {"es": "Ningún país con ese nombre.", "en": "No country by that name.", "fr": "Aucun pays de ce nom.", "de": "Kein Land mit diesem Namen.", "it": "Nessun paese con questo nome.", "nl": "Geen land met die naam.", "zh": "没有匹配的国家。", "zht": "沒有符合的國家。", "bg": "Няма държава с това име.", "pl": "Brak kraju o tej nazwie."},
+    "perfilOroSet": {"es": "De oro", "en": "Golden", "fr": "Dorés", "de": "Goldene", "it": "D’oro", "nl": "Gouden", "zh": "金色", "zht": "金色", "bg": "Златни", "pl": "Złote"},
+    "perfilOroHoy": {"es": "Hoy", "en": "Today", "fr": "Aujourd’hui", "de": "Heute", "it": "Oggi", "nl": "Vandaag", "zh": "今天", "zht": "今天", "bg": "Днес", "pl": "Dziś"},
+    "perfilAvatarOro": {"es": "avatar de oro", "en": "gold avatar", "fr": "avatar doré", "de": "goldener Avatar", "it": "avatar d’oro", "nl": "gouden avatar", "zh": "金色头像", "zht": "金色頭像", "bg": "златен аватар", "pl": "złoty awatar"},
+    "perfilOroEl": {"es": "el {fecha}", "en": "on {fecha}", "fr": "le {fecha}", "de": "am {fecha}", "it": "il {fecha}", "nl": "op {fecha}", "zh": "{fecha}当天", "zht": "{fecha}當天", "bg": "на {fecha}", "pl": "{fecha}"},
+    "perfilOroDelAl": {"es": "del {desde} al {hasta}", "en": "from {desde} to {hasta}", "fr": "du {desde} au {hasta}", "de": "vom {desde} bis {hasta}", "it": "dal {desde} al {hasta}", "nl": "van {desde} tot {hasta}", "zh": "{desde}至{hasta}", "zht": "{desde}至{hasta}", "bg": "от {desde} до {hasta}", "pl": "od {desde} do {hasta}"},
+    "perfilOroNota": {"es": "Avatar de oro: {fiesta}, {cuando}.", "en": "Gold avatar: {fiesta}, {cuando}.", "fr": "Avatar doré : {fiesta}, {cuando}.", "de": "Goldener Avatar: {fiesta}, {cuando}.", "it": "Avatar d’oro: {fiesta}, {cuando}.", "nl": "Gouden avatar: {fiesta}, {cuando}.", "zh": "金色头像：{fiesta}，{cuando}。", "zht": "金色頭像：{fiesta}，{cuando}。", "bg": "Златен аватар: {fiesta}, {cuando}.", "pl": "Złoty awatar: {fiesta}, {cuando}."},
+    "perfilOroNotaHoy": {"es": "{fiesta}: ¡es hoy! Toque el avatar de oro y será suyo.", "en": "{fiesta}: it’s today! Tap the gold avatar to keep it.", "fr": "{fiesta} : c’est aujourd’hui ! Touchez l’avatar doré pour le garder.", "de": "{fiesta}: heute ist es so weit! Tippen Sie auf den goldenen Avatar, dann gehört er Ihnen.", "it": "{fiesta}: è oggi! Basta toccare l’avatar d’oro per tenerlo.", "nl": "{fiesta}: het is vandaag! Tik op de gouden avatar om hem te houden.", "zh": "{fiesta}：就是今天！轻触金色头像即可永久保留。", "zht": "{fiesta}：就是今天！輕觸金色頭像即可永久保留。", "bg": "{fiesta}: днес е! Докоснете златния аватар, за да го запазите.", "pl": "{fiesta}: to dziś! Wystarczy dotknąć złotego awatara, aby go zachować."},
+    "perfilOroTuyo": {"es": "{fiesta}: avatar de oro conseguido.", "en": "{fiesta}: gold avatar collected.", "fr": "{fiesta} : avatar doré obtenu.", "de": "{fiesta}: goldener Avatar erhalten.", "it": "{fiesta}: avatar d’oro ottenuto.", "nl": "{fiesta}: gouden avatar behaald.", "zh": "{fiesta}：已获得金色头像。", "zht": "{fiesta}：已獲得金色頭像。", "bg": "{fiesta}: златният аватар е получен.", "pl": "{fiesta}: złoty awatar zdobyty."},
+    "perfilOroConseguido": {"es": "¡Avatar de oro conseguido! Es suyo para siempre.", "en": "Gold avatar collected! It’s yours to keep.", "fr": "Avatar doré obtenu ! Il est à vous pour toujours.", "de": "Goldener Avatar erhalten! Er gehört Ihnen für immer.", "it": "Avatar d’oro ottenuto! Resta per sempre.", "nl": "Gouden avatar behaald! Hij is voor altijd van u.", "zh": "已获得金色头像！永久归您所有。", "zht": "已獲得金色頭像！永久歸您所有。", "bg": "Получихте златен аватар! Остава ваш завинаги.", "pl": "Złoty awatar zdobyty! Zostaje na zawsze."},
+    "perfilOroBloqueado": {"es": "{fiesta}: este avatar de oro solo se consigue {cuando}.", "en": "{fiesta}: this gold avatar can only be collected {cuando}.", "fr": "{fiesta} : cet avatar doré ne s’obtient que {cuando}.", "de": "{fiesta}: Diesen goldenen Avatar gibt es nur {cuando}.", "it": "{fiesta}: questo avatar d’oro si ottiene solo {cuando}.", "nl": "{fiesta}: deze gouden avatar krijgt u alleen {cuando}.", "zh": "{fiesta}：此金色头像仅在{cuando}可获得。", "zht": "{fiesta}：此金色頭像僅在{cuando}可獲得。", "bg": "{fiesta}: този златен аватар се получава само {cuando}.", "pl": "{fiesta}: ten złoty awatar można zdobyć tylko {cuando}."},
+    "perfilOroCuenta": {"es": "Avatares de oro: {n} de {total}.", "en": "Gold avatars: {n} of {total}.", "fr": "Avatars dorés : {n} sur {total}.", "de": "Goldene Avatare: {n} von {total}.", "it": "Avatar d’oro: {n} su {total}.", "nl": "Gouden avatars: {n} van {total}.", "zh": "金色头像：{n}/{total}。", "zht": "金色頭像：{n}/{total}。", "bg": "Златни аватари: {n} от {total}.", "pl": "Złote awatary: {n} z {total}."},
+    "perfilOroRegla": {"es": "Cada uno se consigue solo el día de su fiesta, y es suyo para siempre.", "en": "Each one can only be collected on its festival day, and then it’s yours to keep.", "fr": "Chacun ne s’obtient que le jour de sa fête, et il est à vous pour toujours.", "de": "Jeden gibt es nur am Tag seines Festes, und dann gehört er Ihnen für immer.", "it": "Ognuno si ottiene solo nel giorno della sua festa e resta per sempre.", "nl": "Elke avatar krijgt u alleen op de dag van zijn feest, en dan is hij voor altijd van u.", "zh": "每个头像仅在其节日当天可获得，获得后永久保留。", "zht": "每個頭像僅在其節日當天可獲得，獲得後永久保留。", "bg": "Всеки се получава само в деня на своя празник и остава ваш завинаги.", "pl": "Każdy można zdobyć tylko w dniu jego święta i zostaje na zawsze."},
+    "perfilAvatarGuardado": {"es": "Avatar guardado", "en": "Avatar saved", "fr": "Avatar enregistré", "de": "Avatar gespeichert", "it": "Avatar salvato", "nl": "Avatar opgeslagen", "zh": "头像已保存", "zht": "頭像已儲存", "bg": "Аватарът е запазен", "pl": "Awatar zapisany"},
+    "perfilBloqueado": {"es": "Se desbloquea con {n} visita comprobada ({v} de {n})|Se desbloquea con {n} visitas comprobadas ({v} de {n})", "en": "Unlocks after {n} verified visit ({v} of {n})|Unlocks after {n} verified visits ({v} of {n})", "fr": "Se débloque après {n} visite vérifiée ({v} sur {n})|Se débloque après {n} visites vérifiées ({v} sur {n})", "de": "Wird nach {n} bestätigten Besuch freigeschaltet ({v} von {n})|Wird nach {n} bestätigten Besuchen freigeschaltet ({v} von {n})", "it": "Si sblocca con {n} visita verificata ({v} su {n})|Si sblocca con {n} visite verificate ({v} su {n})", "nl": "Wordt ontgrendeld na {n} bevestigd bezoek ({v} van {n})|Wordt ontgrendeld na {n} bevestigde bezoeken ({v} van {n})", "zh": "确认到访{n}个地点后解锁（{v}/{n}）", "zht": "確認到訪{n}個地點後解鎖（{v}/{n}）", "bg": "Отключва се след {n} потвърдено посещение ({v} от {n})|Отключва се след {n} потвърдени посещения ({v} от {n})", "pl": "Odblokowuje się po {n} potwierdzonej wizycie ({v} z {n})|Odblokowuje się po {n} potwierdzonych wizytach ({v} z {n})|Odblokowuje się po {n} potwierdzonych wizytach ({v} z {n})"},
+    "perfilDatos": {"es": "Sus datos", "en": "Your details", "fr": "Vos données", "de": "Ihre Daten", "it": "Dati personali", "nl": "Uw gegevens", "zh": "我的数据", "zht": "我的資料", "bg": "Вашите данни", "pl": "Dane osobowe"},
+    "perfilDatosNota": {"es": "Se guardan en este dispositivo y, solo si usted activa la opción en «Cuenta», también en su cuenta.", "en": "They’re stored on this device, and in your account only if you turn that on under «Account».", "fr": "Elles sont enregistrées sur cet appareil et, uniquement si vous activez l’option dans «Compte», également dans votre compte.", "de": "Diese Daten werden auf diesem Gerät gespeichert und nur dann auch in Ihrem Konto, wenn Sie das unter «Konto» einschalten.", "it": "Sono salvati su questo dispositivo e, solo se attiva l’opzione in «Account», anche nell’account.", "nl": "Ze worden op dit apparaat opgeslagen en, alleen als u dat onder «Account» aanzet, ook in uw account.", "zh": "保存在本设备上；只有在您于「账户」中开启后，才会同时保存到您的账户。", "zht": "儲存在此裝置上；只有在您於「帳戶」中開啟後，才會同時儲存到您的帳戶。", "bg": "Пазят се на това устройство, а в акаунта ви – само ако включите тази опция в «Акаунт».", "pl": "Są zapisywane na tym urządzeniu, a na koncie – tylko po włączeniu tej opcji w sekcji «Konto»."},
+    "perfilAltura": {"es": "Altura", "en": "Height", "fr": "Taille", "de": "Größe", "it": "Altezza", "nl": "Lengte", "zh": "身高", "zht": "身高", "bg": "Ръст", "pl": "Wzrost"},
+    "perfilPeso": {"es": "Peso", "en": "Weight", "fr": "Poids", "de": "Gewicht", "it": "Peso", "nl": "Gewicht", "zh": "体重", "zht": "體重", "bg": "Тегло", "pl": "Waga"},
+    "perfilNacimiento": {"es": "Año de nacimiento", "en": "Birth year", "fr": "Année de naissance", "de": "Geburtsjahr", "it": "Anno di nascita", "nl": "Geboortejaar", "zh": "出生年份", "zht": "出生年份", "bg": "Година на раждане", "pl": "Rok urodzenia"},
+    "perfilAnios": {"es": "{n} año|{n} años", "en": "{n} year old|{n} years old", "fr": "{n} an|{n} ans", "de": "{n} Jahr|{n} Jahre", "it": "{n} anno|{n} anni", "nl": "{n} jaar|{n} jaar", "zh": "{n}岁", "zht": "{n}歲", "bg": "{n} година|{n} години", "pl": "{n} rok|{n} lata|{n} lat"},
+    "perfilUnidades": {"es": "Unidades", "en": "Units", "fr": "Unités", "de": "Einheiten", "it": "Unità", "nl": "Eenheden", "zh": "单位", "zht": "單位", "bg": "Мерни единици", "pl": "Jednostki"},
+    "perfilGuardar": {"es": "Guardar", "en": "Save", "fr": "Enregistrer", "de": "Speichern", "it": "Salva", "nl": "Opslaan", "zh": "保存", "zht": "儲存", "bg": "Запази", "pl": "Zapisz"},
+    "perfilGuardado": {"es": "Guardado ✓", "en": "Saved ✓", "fr": "Enregistré ✓", "de": "Gespeichert ✓", "it": "Salvato ✓", "nl": "Opgeslagen ✓", "zh": "已保存 ✓", "zht": "已儲存 ✓", "bg": "Запазено ✓", "pl": "Zapisano ✓"},
+    "perfilImc": {"es": "IMC", "en": "BMI", "fr": "IMC", "de": "BMI", "it": "IMC", "nl": "BMI", "zh": "BMI指数", "zht": "BMI指數", "bg": "ИТМ", "pl": "BMI"},
+    "perfilImcNota": {"es": "Orientativo. Categorías de la OMS para adultos", "en": "For guidance only. WHO adult categories", "fr": "À titre indicatif. Catégories de l’OMS pour les adultes", "de": "Nur zur Orientierung. WHO-Kategorien für Erwachsene", "it": "Indicativo. Categorie dell’OMS per adulti", "nl": "Ter indicatie. WHO-categorieën voor volwassenen", "zh": "仅供参考：世卫组织成人分类", "zht": "僅供參考：世衛組織成人分類", "bg": "Ориентировъчно. Категории на СЗО за възрастни", "pl": "Orientacyjnie. Kategorie WHO dla dorosłych"},
+    "perfilImcBajo": {"es": "Bajo peso", "en": "Underweight", "fr": "Insuffisance pondérale", "de": "Untergewicht", "it": "Sottopeso", "nl": "Ondergewicht", "zh": "体重过轻", "zht": "體重過輕", "bg": "Поднормено тегло", "pl": "Niedowaga"},
+    "perfilImcNormal": {"es": "Peso normal", "en": "Normal weight", "fr": "Poids normal", "de": "Normalgewicht", "it": "Normopeso", "nl": "Normaal gewicht", "zh": "正常", "zht": "正常", "bg": "Нормално тегло", "pl": "Waga prawidłowa"},
+    "perfilImcSobre": {"es": "Sobrepeso", "en": "Overweight", "fr": "Surpoids", "de": "Übergewicht", "it": "Sovrappeso", "nl": "Overgewicht", "zh": "超重", "zht": "過重", "bg": "Наднормено тегло", "pl": "Nadwaga"},
+    "perfilImcObes": {"es": "Obesidad", "en": "Obesity", "fr": "Obésité", "de": "Adipositas", "it": "Obesità", "nl": "Obesitas", "zh": "肥胖", "zht": "肥胖", "bg": "Затлъстяване", "pl": "Otyłość"},
+    "perfilEvolucion": {"es": "Su evolución", "en": "Your progress", "fr": "Votre évolution", "de": "Ihr Verlauf", "it": "Progressi", "nl": "Uw voortgang", "zh": "我的进展", "zht": "我的進展", "bg": "Вашият напредък", "pl": "Postępy"},
+    "perfilKm": {"es": "Kilómetros", "en": "Kilometres", "fr": "Kilomètres", "de": "Kilometer", "it": "Chilometri", "nl": "Kilometers", "zh": "公里", "zht": "公里", "bg": "Километри", "pl": "Kilometry"},
+    "perfilActual": {"es": "Actual", "en": "Current", "fr": "Actuel", "de": "Aktuell", "it": "Attuale", "nl": "Nu", "zh": "当前", "zht": "目前", "bg": "Сега", "pl": "Obecnie"},
+    "perfilDesdeInicio": {"es": "Desde el inicio", "en": "Since the start", "fr": "Depuis le début", "de": "Seit Beginn", "it": "Dall’inizio", "nl": "Sinds het begin", "zh": "自开始以来", "zht": "自開始以來", "bg": "От началото", "pl": "Od początku"},
+    "perfilTendencia": {"es": "Tendencia de 7 días", "en": "7-day trend", "fr": "Tendance sur 7 jours", "de": "7-Tage-Trend", "it": "Tendenza a 7 giorni", "nl": "7-daagse trend", "zh": "7天趋势", "zht": "7天趨勢", "bg": "Тенденция за 7 дни", "pl": "Trend 7 dni"},
+    "perfilObjetivo": {"es": "Objetivo", "en": "Goal", "fr": "Objectif", "de": "Ziel", "it": "Obiettivo", "nl": "Doel", "zh": "目标", "zht": "目標", "bg": "Цел", "pl": "Cel"},
+    "perfilObjetivoPlaceholder": {"es": "Peso objetivo (opcional)", "en": "Goal weight (optional)", "fr": "Poids cible (facultatif)", "de": "Zielgewicht (optional)", "it": "Peso obiettivo (facoltativo)", "nl": "Streefgewicht (optioneel)", "zh": "目标体重（选填）", "zht": "目標體重（選填）", "bg": "Целево тегло (по избор)", "pl": "Waga docelowa (opcjonalnie)"},
+    "perfilSinDatos": {"es": "Aún no hay registros. Añada el primero.", "en": "No entries yet. Add the first one.", "fr": "Pas encore d’entrées. Ajoutez la première.", "de": "Noch keine Einträge. Fügen Sie den ersten hinzu.", "it": "Nessun dato per ora. Aggiunga il primo.", "nl": "Nog geen metingen. Voeg de eerste toe.", "zh": "暂无记录，请添加第一条。", "zht": "尚無紀錄，請新增第一筆。", "bg": "Още няма записи. Добавете първия.", "pl": "Brak wpisów. Można dodać pierwszy."},
+    "perfilRango30": {"es": "30 días", "en": "30 days", "fr": "30 jours", "de": "30 Tage", "it": "30 giorni", "nl": "30 dagen", "zh": "30天", "zht": "30天", "bg": "30 дни", "pl": "30 dni"},
+    "perfilRango90": {"es": "90 días", "en": "90 days", "fr": "90 jours", "de": "90 Tage", "it": "90 giorni", "nl": "90 dagen", "zh": "90天", "zht": "90天", "bg": "90 дни", "pl": "90 dni"},
+    "perfilRangoAnio": {"es": "1 año", "en": "1 year", "fr": "1 an", "de": "1 Jahr", "it": "1 anno", "nl": "1 jaar", "zh": "1年", "zht": "1年", "bg": "1 година", "pl": "1 rok"},
+    "perfilTotalCaminado": {"es": "Total caminado", "en": "Total walked", "fr": "Total parcouru", "de": "Insgesamt gelaufen", "it": "Totale a piedi", "nl": "Totaal gelopen", "zh": "累计步行", "zht": "累計步行", "bg": "Общо изминато", "pl": "Łączny dystans"},
+    "perfilHoy": {"es": "Hoy", "en": "Today", "fr": "Aujourd’hui", "de": "Heute", "it": "Oggi", "nl": "Vandaag", "zh": "今天", "zht": "今天", "bg": "Днес", "pl": "Dziś"},
+    "perfilBorrarRegistro": {"es": "Borrar", "en": "Delete", "fr": "Supprimer", "de": "Löschen", "it": "Elimina", "nl": "Verwijderen", "zh": "删除", "zht": "刪除", "bg": "Изтрий", "pl": "Usuń"},
+    "perfilIsla": {"es": "Su isla", "en": "Your island", "fr": "Votre île", "de": "Ihre Insel", "it": "Sull’isola", "nl": "Uw eiland", "zh": "我的岛屿", "zht": "我的島嶼", "bg": "Вашият остров", "pl": "Na wyspie"},
+    "perfilFavoritos": {"es": "Favoritos", "en": "Favourites", "fr": "Favoris", "de": "Favoriten", "it": "Preferiti", "nl": "Favorieten", "zh": "收藏", "zht": "收藏", "bg": "Любими", "pl": "Ulubione"},
+    "perfilVisitados": {"es": "Visitados", "en": "Visited", "fr": "Visités", "de": "Besucht", "it": "Visitati", "nl": "Bezocht", "zh": "已访问", "zht": "已造訪", "bg": "Посетени", "pl": "Odwiedzone"},
+    "perfilLogros": {"es": "Logros", "en": "Achievements", "fr": "Succès", "de": "Erfolge", "it": "Traguardi", "nl": "Prestaties", "zh": "成就", "zht": "成就", "bg": "Постижения", "pl": "Osiągnięcia"},
+    "perfilSellos": {"es": "Sus sellos", "en": "Your stamps", "fr": "Vos tampons", "de": "Ihre Stempel", "it": "Timbri", "nl": "Uw stempels", "zh": "我的印章", "zht": "我的印章", "bg": "Вашите печати", "pl": "Pieczątki"},
+    "perfilSiguienteLogro": {"es": "{n} lugar más para «{logro}»|{n} lugares más para «{logro}»", "en": "{n} more place to unlock “{logro}”|{n} more places to unlock “{logro}”", "fr": "Encore {n} lieu pour « {logro} »|Encore {n} lieux pour « {logro} »", "de": "Noch {n} Ort bis „{logro}“|Noch {n} Orte bis „{logro}“", "it": "Ancora {n} luogo per «{logro}»|Ancora {n} luoghi per «{logro}»", "nl": "Nog {n} plek voor “{logro}”|Nog {n} plekken voor “{logro}”", "zh": "再访问{n}个地点即可获得“{logro}”", "zht": "再造訪{n}個地點即可獲得「{logro}」", "bg": "Още {n} място до „{logro}“|Още {n} места до „{logro}“", "pl": "Jeszcze {n} miejsce do osiągnięcia „{logro}”|Jeszcze {n} miejsca do osiągnięcia „{logro}”|Jeszcze {n} miejsc do osiągnięcia „{logro}”"},
+    "perfilLugares": {"es": "{n} lugar|{n} lugares", "en": "{n} place|{n} places", "fr": "{n} lieu|{n} lieux", "de": "{n} Ort|{n} Orte", "it": "{n} luogo|{n} luoghi", "nl": "{n} plek|{n} plekken", "zh": "{n}个地点", "zht": "{n}個地點", "bg": "{n} място|{n} места", "pl": "{n} miejsce|{n} miejsca|{n} miejsc"},
+    "perfilCuenta": {"es": "Cuenta", "en": "Account", "fr": "Compte", "de": "Konto", "it": "Account", "nl": "Account", "zh": "账户", "zht": "帳戶", "bg": "Акаунт", "pl": "Konto"},
+    "perfilPestanaViaje": {"es": "Viaje", "en": "Travel", "fr": "Voyage", "de": "Reise", "it": "Viaggio", "nl": "Reis", "zh": "旅行", "zht": "旅行", "bg": "Пътуване", "pl": "Podróż"},
+    "perfilPestanaCuerpo": {"es": "Cuerpo", "en": "Body", "fr": "Corps", "de": "Körper", "it": "Corpo", "nl": "Lichaam", "zh": "身体", "zht": "身體", "bg": "Тяло", "pl": "Ciało"},
+    "perfilCuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
+    "perfilCuerpoTexto": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
+    "perfilCuerpoAbrir": {"es": "Abrir", "en": "Open", "fr": "Ouvrir", "de": "Öffnen", "it": "Apri", "nl": "Openen", "zh": "打开", "zht": "打開", "bg": "Отвори", "pl": "Otwórz"},
+    "perfilCuerpoError": {"es": "No se pudo abrir. Compruebe la conexión e inténtelo de nuevo.", "en": "Couldn’t open it. Check your connection and try again.", "fr": "Impossible de l’ouvrir. Vérifiez la connexion et réessayez.", "de": "Öffnen nicht möglich. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "it": "Impossibile aprirlo. Controlli la connessione e riprovi.", "nl": "Openen is niet gelukt. Controleer de verbinding en probeer het opnieuw.", "zh": "无法打开。请检查网络连接后重试。", "zht": "無法開啟。請檢查網路連線後重試。", "bg": "Не можа да се отвори. Проверете връзката и опитайте отново.", "pl": "Nie udało się otworzyć. Proszę sprawdzić połączenie i spróbować ponownie."},
+    "perfilNube": {"es": "Sus favoritos se guardan en su cuenta; su perfil y sus medidas, solo en este dispositivo.", "en": "Your favourites are saved to your account; your profile and measurements stay on this device.", "fr": "Vos favoris sont enregistrés dans votre compte ; votre profil et vos mesures restent sur cet appareil.", "de": "Ihre Favoriten werden in Ihrem Konto gespeichert, Ihr Profil und Ihre Messwerte nur auf diesem Gerät.", "it": "I preferiti vengono salvati nell’account; profilo e misure restano su questo dispositivo.", "nl": "Uw favorieten worden in uw account opgeslagen; uw profiel en metingen blijven op dit apparaat.", "zh": "您的收藏保存在账户中；个人资料和身高体重等数据只保存在本设备上。", "zht": "您的收藏會儲存在帳戶中；個人檔案和身高體重等資料只儲存在此裝置上。", "bg": "Любимите ви се пазят в акаунта ви; профилът и измерванията ви остават само на това устройство.", "pl": "Ulubione zapisują się na koncie; profil i pomiary zostają tylko na tym urządzeniu."},
+    "perfilSoloDispositivo": {"es": "Sin cuenta: todo se guarda solo en este dispositivo", "en": "No account: everything stays on this device only", "fr": "Sans compte : tout est enregistré uniquement sur cet appareil", "de": "Ohne Konto: Alles wird nur auf diesem Gerät gespeichert", "it": "Senza account: tutto resta solo su questo dispositivo", "nl": "Zonder account: alles wordt alleen op dit apparaat opgeslagen", "zh": "未登录：所有内容仅保存在本设备", "zht": "未登入：所有內容僅儲存在此裝置上", "bg": "Без акаунт: всичко се пази само на това устройство", "pl": "Bez konta: wszystko zostaje tylko na tym urządzeniu"},
+    "perfilCrearCuenta": {"es": "Crear cuenta o entrar", "en": "Sign up or log in", "fr": "Créer un compte ou se connecter", "de": "Konto erstellen oder anmelden", "it": "Crea account o accedi", "nl": "Account aanmaken of inloggen", "zh": "注册或登录", "zht": "註冊或登入", "bg": "Регистрирай се или влез", "pl": "Załóż konto lub zaloguj się"},
+    "perfilInvitado": {"es": "Invitado", "en": "Guest", "fr": "Invité", "de": "Gast", "it": "Ospite", "nl": "Gast", "zh": "访客", "zht": "訪客", "bg": "Гост", "pl": "Gość"},
+    "perfilExportar": {"es": "Descargar datos del perfil", "en": "Download profile data", "fr": "Télécharger les données du profil", "de": "Profildaten herunterladen", "it": "Scarica i dati del profilo", "nl": "Profielgegevens downloaden", "zh": "下载个人资料数据", "zht": "下載個人檔案資料", "bg": "Изтегли данните на профила", "pl": "Pobierz dane profilu"},
+    "perfilAnadir": {"es": "Añadir", "en": "Add", "fr": "Ajouter", "de": "Hinzufügen", "it": "Aggiungi", "nl": "Toevoegen", "zh": "添加", "zht": "新增", "bg": "Добави", "pl": "Dodaj"},
+    "perfilDistancia": {"es": "Distancia", "en": "Distance", "fr": "Distance", "de": "Strecke", "it": "Distanza", "nl": "Afstand", "zh": "距离", "zht": "距離", "bg": "Разстояние", "pl": "Dystans"},
+    "perfilUltimos7": {"es": "Últimos 7 días", "en": "Last 7 days", "fr": "7 derniers jours", "de": "Letzte 7 Tage", "it": "Ultimi 7 giorni", "nl": "Laatste 7 dagen", "zh": "最近7天", "zht": "最近7天", "bg": "Последните 7 дни", "pl": "Ostatnie 7 dni"},
+    "perfilFecha": {"es": "Fecha", "en": "Date", "fr": "Date", "de": "Datum", "it": "Data", "nl": "Datum", "zh": "日期", "zht": "日期", "bg": "Дата", "pl": "Data"},
+    "perfilRango": {"es": "Entre {min} y {max}", "en": "Between {min} and {max}", "fr": "Entre {min} et {max}", "de": "Zwischen {min} und {max}", "it": "Tra {min} e {max}", "nl": "Tussen {min} en {max}", "zh": "须在{min}到{max}之间", "zht": "須在{min}到{max}之間", "bg": "Между {min} и {max}", "pl": "Od {min} do {max}"},
+    "perfilFechaFutura": {"es": "La fecha no puede ser posterior a hoy", "en": "The date can’t be later than today", "fr": "La date ne peut pas être postérieure à aujourd’hui", "de": "Das Datum darf nicht nach heute liegen", "it": "La data non può essere successiva a oggi", "nl": "De datum mag niet later zijn dan vandaag", "zh": "日期不能晚于今天", "zht": "日期不能晚於今天", "bg": "Датата не може да е след днес", "pl": "Data nie może być późniejsza niż dzisiaj"},
+    "perfilTope": {"es": "Ya tiene {n} registros, el máximo. Borre uno para añadir otro.", "en": "You already have {n} entries, the maximum. Delete one to add another.", "fr": "Vous avez déjà {n} entrées, le maximum. Supprimez-en une pour en ajouter une autre.", "de": "Sie haben bereits {n} Einträge, das Maximum. Löschen Sie einen, um einen neuen hinzuzufügen.", "it": "Ha già {n} dati, il massimo. Ne elimini uno per aggiungerne un altro.", "nl": "U heeft al {n} metingen, het maximum. Verwijder er een om een nieuwe toe te voegen.", "zh": "已有{n}条记录，达到上限。请删除一条后再添加。", "zht": "已有{n}筆紀錄，達到上限。請刪除一筆後再新增。", "bg": "Вече имате {n} записа – максимумът. Изтрийте един, за да добавите нов.", "pl": "Osiągnięto limit {n} wpisów. Aby dodać nowy, trzeba usunąć jeden z nich."},
+    "perfilImcJoven": {"es": "Por debajo de 20 años, la OMS usa tablas por edad y sexo", "en": "Under 20, the WHO uses age- and sex-specific charts", "fr": "Avant 20 ans, l’OMS utilise des courbes selon l’âge et le sexe", "de": "Unter 20 Jahren nutzt die WHO Kurven nach Alter und Geschlecht", "it": "Sotto i 20 anni l’OMS usa curve per età e sesso", "nl": "Onder de 20 jaar gebruikt de WHO curves naar leeftijd en geslacht", "zh": "20岁以下，世卫组织采用按年龄和性别划分的标准", "zht": "20歲以下，世衛組織採用依年齡和性別區分的標準", "bg": "Под 20 години СЗО използва таблици по възраст и пол", "pl": "Poniżej 20 lat WHO stosuje siatki centylowe według wieku i płci"},
+    "perfilBorrarLocal": {"es": "Borrar los datos del perfil de este dispositivo", "en": "Delete profile data from this device", "fr": "Effacer les données du profil de cet appareil", "de": "Profildaten von diesem Gerät löschen", "it": "Elimina i dati del profilo da questo dispositivo", "nl": "Profielgegevens van dit apparaat wissen", "zh": "删除本设备上的个人资料数据", "zht": "刪除此裝置上的個人檔案資料", "bg": "Изтрий данните на профила от това устройство", "pl": "Usuń dane profilu z tego urządzenia"},
+    "perfilBorrarLocalAviso": {"es": "Se borrarán de este dispositivo su nombre, su avatar, sus medidas y sus kilómetros. Los favoritos no se tocan. No se puede deshacer.", "en": "Your name, avatar, measurements and kilometres will be deleted from this device. Favourites are not affected. This cannot be undone.", "fr": "Votre nom, votre avatar, vos mesures et vos kilomètres seront effacés de cet appareil. Les favoris ne sont pas touchés. C’est définitif.", "de": "Ihr Name, Ihr Avatar, Ihre Messwerte und Kilometer werden von diesem Gerät gelöscht. Favoriten bleiben erhalten. Das lässt sich nicht rückgängig machen.", "it": "Nome, avatar, misure e chilometri verranno cancellati da questo dispositivo. I preferiti restano. Non si può annullare.", "nl": "Uw naam, avatar, metingen en kilometers worden van dit apparaat gewist. Uw favorieten blijven bewaard. Dit kan niet ongedaan worden gemaakt.", "zh": "将从本设备删除您的名字、头像、身高体重等数据和公里数，收藏不受影响。此操作无法撤销。", "zht": "將從此裝置刪除您的名字、頭像、身高體重等資料和公里數，收藏不受影響。此操作無法復原。", "bg": "Името, аватарът, измерванията и километрите ви ще бъдат изтрити от това устройство. Любимите остават. Това не може да бъде отменено.", "pl": "Imię, awatar, pomiary i kilometry zostaną usunięte z tego urządzenia. Ulubione pozostaną bez zmian. Tej operacji nie można cofnąć."},
+    "perfilBorrarLocalSi": {"es": "Sí, borrar", "en": "Yes, delete", "fr": "Oui, effacer", "de": "Ja, löschen", "it": "Sì, elimina", "nl": "Ja, wissen", "zh": "确定删除", "zht": "確定刪除", "bg": "Да, изтрий", "pl": "Tak, usuń"},
+    "perfilBorrado": {"es": "Datos del perfil borrados de este dispositivo", "en": "Profile data deleted from this device", "fr": "Données du profil effacées de cet appareil", "de": "Profildaten von diesem Gerät gelöscht", "it": "Dati del profilo cancellati da questo dispositivo", "nl": "Profielgegevens van dit apparaat gewist", "zh": "已从本设备删除个人资料数据", "zht": "已從此裝置刪除個人檔案資料", "bg": "Данните от профила са изтрити от това устройство", "pl": "Dane profilu usunięte z tego urządzenia"},
+    "perfilVisitaVerdad": {"es": "Una visita queda comprobada si marca el lugar como visitado estando allí. Lo comprueba el móvil con su ubicación, que para ello no se envía a ningún sitio.", "en": "A visit is verified when you mark the place as visited while you are there. Your phone checks this with its location, which isn’t sent anywhere in the process.", "fr": "Une visite est vérifiée si vous marquez le lieu comme visité sur place. Votre téléphone le vérifie grâce à sa position, qui n’est envoyée nulle part pour cela.", "de": "Ein Besuch gilt als bestätigt, wenn Sie den Ort als besucht markieren, während Sie dort sind. Das Gerät prüft das anhand seines Standorts, der dafür nirgendwohin gesendet wird.", "it": "Una visita è verificata se il luogo viene segnato come visitato mentre ci si trova lì. Lo verifica il dispositivo con la posizione, che a tale scopo non viene inviata da nessuna parte.", "nl": "Een bezoek geldt als bevestigd wanneer u de plek als bezocht markeert terwijl u er bent. Het apparaat controleert dat aan de hand van zijn locatie, die hiervoor nergens naartoe wordt gestuurd.", "zh": "在现场将地点标记为已访问，即视为确认到访。由本设备根据定位确认，定位信息不会为此发送到任何地方。", "zht": "在現場將地點標記為已造訪，即視為確認到訪。由此裝置根據定位確認，定位資訊不會為此傳送到任何地方。", "bg": "Посещението е потвърдено, ако отбележите мястото като посетено, докато сте там. Устройството проверява това по местоположението си, което за целта не се изпраща никъде.", "pl": "Wizyta jest potwierdzona, jeśli miejsce zostanie oznaczone jako odwiedzone podczas pobytu w nim. Urządzenie sprawdza to na podstawie lokalizacji, która w tym celu nie jest nigdzie wysyłana."},
+    "perfilNubeInterruptor": {"es": "Guardar el perfil y los progresos en su cuenta", "en": "Save profile and progress to your account", "fr": "Enregistrer le profil et les progrès dans votre compte", "de": "Profil und Fortschritte in Ihrem Konto speichern", "it": "Salvare profilo e progressi nell’account", "nl": "Profiel en voortgang in uw account opslaan", "zh": "将个人资料和进展保存到您的账户", "zht": "將個人檔案和進展儲存到您的帳戶", "bg": "Запазване на профила и напредъка в акаунта ви", "pl": "Zapisywanie profilu i postępów na koncie"},
+    "perfilNubeExplica": {"es": "Para no perderlos al cambiar de móvil. Solo con su permiso, que puede retirar cuando quiera.", "en": "So they aren’t lost if you change phones. Only with your permission, which you can withdraw at any time.", "fr": "Pour ne pas les perdre en changeant de téléphone. Uniquement avec votre accord, que vous pouvez retirer à tout moment.", "de": "Damit sie bei einem Gerätewechsel nicht verloren gehen. Nur mit Ihrer Einwilligung, die Sie jederzeit widerrufen können.", "it": "Per non perderli cambiando telefono. Solo con il consenso, revocabile in qualsiasi momento.", "nl": "Zodat ze niet verloren gaan als u van telefoon wisselt. Alleen met uw toestemming, die u altijd kunt intrekken.", "zh": "换手机时也不会丢失。仅在您同意后保存，您可随时撤回同意。", "zht": "換手機時也不會遺失。僅在您同意後儲存，您可隨時撤回同意。", "bg": "За да не се загубят при смяна на телефона. Само с ваше съгласие, което можете да оттеглите по всяко време.", "pl": "Żeby nie przepadły przy zmianie telefonu. Tylko za zgodą, którą można wycofać w dowolnej chwili."},
+    "perfilNubeConsentimiento": {"es": "Se guardarán en su cuenta su nombre o apodo, su avatar, sus unidades, su altura, su año de nacimiento, la fecha de alta del perfil, su peso objetivo y los pesos y kilómetros que anote, con la fecha de cada uno. El peso y la altura son datos de salud: al tocar «Acepto» da su permiso expreso para guardarlos. Las visitas comprobadas no se suben: se quedan solo en este dispositivo. Puede retirar el permiso cuando quiera con este interruptor: se borra la copia guardada en su cuenta y todo sigue en este dispositivo.", "en": "Your name or nickname, avatar, units, height, year of birth, profile start date, goal weight, and the weights and kilometres you log, each with its date, will be saved to your account. Weight and height are health data: by tapping «I agree» you give your explicit permission to save them. Verified visits are not uploaded: they stay on this device only. You can withdraw your permission at any time with this switch: the copy saved in your account is then deleted, and everything stays on this device.", "fr": "Seront enregistrés dans votre compte : votre prénom ou pseudo, votre avatar, vos unités, votre taille, votre année de naissance, la date de création du profil, votre poids cible, ainsi que les poids et les kilomètres que vous notez, chacun avec sa date. Le poids et la taille sont des données de santé : en appuyant sur «J’accepte», vous donnez votre consentement explicite à leur enregistrement. Les visites vérifiées ne sont pas envoyées : elles restent uniquement sur cet appareil. Vous pouvez retirer votre consentement à tout moment avec cet interrupteur : la copie enregistrée dans votre compte est alors effacée, et tout reste sur cet appareil.", "de": "In Ihrem Konto werden gespeichert: Ihr Name oder Spitzname, Ihr Avatar, Ihre Einheiten, Ihre Größe, Ihr Geburtsjahr, das Erstellungsdatum des Profils, Ihr Zielgewicht sowie Ihre Gewichts- und Kilometereinträge, jeweils mit Datum. Gewicht und Größe sind Gesundheitsdaten: Wenn Sie auf «Ich stimme zu» tippen, willigen Sie ausdrücklich in ihre Speicherung ein. Bestätigte Besuche werden nicht hochgeladen, sie bleiben nur auf diesem Gerät. Sie können Ihre Einwilligung jederzeit mit diesem Schalter widerrufen: Dann wird die in Ihrem Konto gespeicherte Kopie gelöscht, und auf diesem Gerät bleibt alles erhalten.", "it": "Nell’account verranno salvati nome o soprannome, avatar, unità, altezza, anno di nascita, data di creazione del profilo, peso obiettivo, nonché i pesi e i chilometri annotati, ciascuno con la sua data. Peso e altezza sono dati relativi alla salute: toccando «Acconsento» si esprime il consenso esplicito al loro salvataggio. Le visite verificate non vengono caricate: restano solo su questo dispositivo. Il consenso si può revocare in qualsiasi momento con questo interruttore: la copia salvata nell’account viene allora cancellata e su questo dispositivo resta tutto.", "nl": "In uw account worden opgeslagen: uw naam of bijnaam, avatar, eenheden, lengte, geboortejaar, de startdatum van het profiel, uw streefgewicht en de gewichten en kilometers die u noteert, elk met datum. Gewicht en lengte zijn gezondheidsgegevens: door op «Ik ga akkoord» te tikken geeft u uitdrukkelijk toestemming om ze op te slaan. Bevestigde bezoeken worden niet geüpload: ze blijven alleen op dit apparaat. U kunt uw toestemming altijd intrekken met deze schakelaar: dan wordt de kopie in uw account gewist en blijft alles op dit apparaat.", "zh": "您的名字或昵称、头像、单位、身高、出生年份、个人资料的创建日期、目标体重，以及您记录的体重和公里数（各附日期）将保存到您的账户。体重和身高属于健康数据：点按「我同意」即表示您明确同意保存这些数据。已确认的到访不会上传，只保留在本设备上。您可以随时通过此开关撤回同意：届时您账户中的副本会被删除，本设备上的数据仍会保留。", "zht": "您的名字或暱稱、頭像、單位、身高、出生年份、個人檔案的建立日期、目標體重，以及您記錄的體重和公里數（各附日期）將儲存到您的帳戶。體重和身高屬於健康資料：點按「我同意」即表示您明確同意儲存這些資料。已確認的到訪不會上傳，只保留在此裝置上。您可以隨時透過此開關撤回同意：屆時您帳戶中的副本會被刪除，此裝置上的資料仍會保留。", "bg": "В акаунта ви ще се запазят името или прякорът ви, аватарът, мерните единици, ръстът, годината на раждане, датата на създаване на профила, целевото тегло, както и теглата и километрите, които записвате, всеки запис с датата си. Теглото и ръстът са данни за здравословното състояние: като докоснете «Приемам», давате изричното си съгласие да бъдат запазени. Потвърдените посещения не се качват: остават само на това устройство. Можете да оттеглите съгласието си по всяко време с този превключвател: тогава копието в акаунта ви се изтрива и всичко остава на това устройство.", "pl": "Na koncie zostaną zapisane: imię lub pseudonim, awatar, jednostki, wzrost, rok urodzenia, data utworzenia profilu, waga docelowa oraz wpisane wagi i kilometry, każdy wpis z datą. Waga i wzrost to dane dotyczące zdrowia: dotknięcie przycisku «Wyrażam zgodę» jest równoznaczne z wyraźną zgodą na ich zapisanie. Potwierdzone wizyty nie są wysyłane: pozostają tylko na tym urządzeniu. Zgodę można w każdej chwili wycofać tym przełącznikiem: kopia zapisana na koncie zostanie wtedy usunięta, a na tym urządzeniu wszystko pozostanie."},
+    "perfilNubeAcepto": {"es": "Acepto", "en": "I agree", "fr": "J’accepte", "de": "Ich stimme zu", "it": "Acconsento", "nl": "Ik ga akkoord", "zh": "我同意", "zht": "我同意", "bg": "Приемам", "pl": "Wyrażam zgodę"},
+    "perfilNubeQuitarAviso": {"es": "Se borrará la copia guardada en su cuenta. En este dispositivo se queda todo.", "en": "The copy in your account will be deleted. Everything stays on this device.", "fr": "La copie enregistrée dans votre compte sera effacée. Tout reste sur cet appareil.", "de": "Die in Ihrem Konto gespeicherte Kopie wird gelöscht. Auf diesem Gerät bleibt alles erhalten.", "it": "La copia salvata nell’account verrà cancellata. Su questo dispositivo resta tutto.", "nl": "De kopie in uw account wordt gewist. Op dit apparaat blijft alles bewaard.", "zh": "将删除您账户中的副本，本设备上的内容全部保留。", "zht": "將刪除您帳戶中的副本，此裝置上的內容全部保留。", "bg": "Копието в акаунта ви ще бъде изтрито. На това устройство всичко остава.", "pl": "Kopia zapisana na koncie zostanie usunięta. Na tym urządzeniu wszystko pozostanie."},
+    "perfilNubeQuitarSi": {"es": "Borrar de la nube", "en": "Delete from the cloud", "fr": "Effacer du cloud", "de": "Aus der Cloud löschen", "it": "Elimina dal cloud", "nl": "Uit de cloud wissen", "zh": "从云端删除", "zht": "從雲端刪除", "bg": "Изтрий от облака", "pl": "Usuń z chmury"},
+    "perfilNubeSi": {"es": "Sus favoritos, su perfil y sus progresos se guardan en su cuenta.", "en": "Your favourites, profile and progress are saved to your account.", "fr": "Vos favoris, votre profil et vos progrès sont enregistrés dans votre compte.", "de": "Ihre Favoriten, Ihr Profil und Ihre Fortschritte werden in Ihrem Konto gespeichert.", "it": "Preferiti, profilo e progressi vengono salvati nell’account.", "nl": "Uw favorieten, profiel en voortgang worden in uw account opgeslagen.", "zh": "您的收藏、个人资料和进展都保存在账户中。", "zht": "您的收藏、個人檔案和進展都會儲存在帳戶中。", "bg": "Любимите, профилът и напредъкът ви се пазят в акаунта ви.", "pl": "Ulubione, profil i postępy zapisują się na koncie."},
+    "perfilNubeGuardado": {"es": "Guardado en su cuenta ✓", "en": "Saved to your account ✓", "fr": "Enregistré dans votre compte ✓", "de": "In Ihrem Konto gespeichert ✓", "it": "Salvato nell’account ✓", "nl": "In uw account opgeslagen ✓", "zh": "已保存到您的账户 ✓", "zht": "已儲存到您的帳戶 ✓", "bg": "Запазено в акаунта ви ✓", "pl": "Zapisano na koncie ✓"},
+    "perfilNubeQuitado": {"es": "Borrado de la nube. En este dispositivo sigue todo.", "en": "Deleted from the cloud. Everything is still on this device.", "fr": "Effacé du cloud. Tout reste sur cet appareil.", "de": "Aus der Cloud gelöscht. Auf diesem Gerät ist alles noch da.", "it": "Cancellato dal cloud. Su questo dispositivo resta tutto.", "nl": "Uit de cloud gewist. Op dit apparaat staat alles nog.", "zh": "已从云端删除，本设备上的内容全部保留。", "zht": "已從雲端刪除，此裝置上的內容全部保留。", "bg": "Изтрито от облака. На това устройство всичко остава.", "pl": "Usunięto z chmury. Na tym urządzeniu wszystko pozostało."},
+    "perfilNubeError": {"es": "No se ha podido guardar en la nube. Todo sigue en este dispositivo y la app lo volverá a intentar.", "en": "Couldn’t save to the cloud. Everything stays on this device, and the app will try again.", "fr": "Impossible d’enregistrer dans le cloud. Tout reste sur cet appareil et l’app réessaiera.", "de": "Speichern in der Cloud nicht möglich. Alles bleibt auf diesem Gerät, und die App versucht es erneut.", "it": "Impossibile salvare nel cloud. Tutto resta su questo dispositivo e l’app riproverà.", "nl": "Opslaan in de cloud is niet gelukt. Alles blijft op dit apparaat en de app probeert het opnieuw.", "zh": "无法保存到云端。所有数据仍保留在本设备上，应用稍后会重试。", "zht": "無法儲存到雲端。所有資料仍保留在此裝置上，應用程式稍後會重試。", "bg": "Запазването в облака не успя. Всичко остава на това устройство; приложението ще опита отново.", "pl": "Nie udało się zapisać w chmurze. Wszystko pozostaje na tym urządzeniu; aplikacja spróbuje ponownie."},
+    "perfilBorrarLocalAvisoNube": {"es": "Se borrarán su nombre, su avatar, sus medidas y sus kilómetros de este dispositivo y de su cuenta. Los favoritos no se tocan. No se puede deshacer.", "en": "Your name, avatar, measurements and kilometres will be deleted from this device and from your account. Favourites are not affected. This cannot be undone.", "fr": "Votre nom, votre avatar, vos mesures et vos kilomètres seront effacés de cet appareil et de votre compte. Les favoris ne sont pas touchés. C’est définitif.", "de": "Ihr Name, Ihr Avatar, Ihre Messwerte und Kilometer werden von diesem Gerät und aus Ihrem Konto gelöscht. Favoriten bleiben erhalten. Das lässt sich nicht rückgängig machen.", "it": "Nome, avatar, misure e chilometri verranno cancellati da questo dispositivo e dall’account. I preferiti restano. Non si può annullare.", "nl": "Uw naam, avatar, metingen en kilometers worden van dit apparaat en uit uw account gewist. Uw favorieten blijven bewaard. Dit kan niet ongedaan worden gemaakt.", "zh": "将从本设备和您的账户中删除您的名字、头像、身高体重等数据和公里数，收藏不受影响。此操作无法撤销。", "zht": "將從此裝置和您的帳戶中刪除您的名字、頭像、身高體重等資料和公里數，收藏不受影響。此操作無法復原。", "bg": "Името, аватарът, измерванията и километрите ви ще бъдат изтрити от това устройство и от акаунта ви. Любимите остават. Това не може да бъде отменено.", "pl": "Imię, awatar, pomiary i kilometry zostaną usunięte z tego urządzenia i z konta. Ulubione pozostaną bez zmian. Tej operacji nie można cofnąć."},
+    "perfilNubeQuitarPendiente": {"es": "La copia guardada en su cuenta se borrará en cuanto haya conexión.", "en": "The copy in the cloud will be deleted as soon as there is a connection.", "fr": "La copie dans le cloud sera effacée dès que la connexion sera rétablie.", "de": "Die Kopie in der Cloud wird gelöscht, sobald eine Verbindung besteht.", "it": "La copia nel cloud verrà cancellata non appena ci sarà una connessione.", "nl": "De kopie in de cloud wordt gewist zodra er verbinding is.", "zh": "联网后将删除云端的副本。", "zht": "連線後將刪除雲端的副本。", "bg": "Копието в облака ще бъде изтрито, веднага щом има връзка.", "pl": "Kopia w chmurze zostanie usunięta, gdy tylko pojawi się połączenie."},
+    "perfilBorradoNube": {"es": "Datos del perfil borrados de este dispositivo y de su cuenta", "en": "Profile data deleted from this device and from your account", "fr": "Données du profil effacées de cet appareil et de votre compte", "de": "Profildaten von diesem Gerät und aus Ihrem Konto gelöscht", "it": "Dati del profilo cancellati da questo dispositivo e dall’account", "nl": "Profielgegevens van dit apparaat en uit uw account gewist", "zh": "已从本设备和您的账户中删除个人资料数据", "zht": "已從此裝置和您的帳戶中刪除個人檔案資料", "bg": "Данните от профила са изтрити от това устройство и от акаунта ви", "pl": "Dane profilu usunięte z tego urządzenia i z konta"},
+    "perfilNubeEdad": {"es": "Disponible a partir de los {n} años.", "en": "Available from age {n}.", "fr": "Disponible à partir de {n} ans.", "de": "Ab {n} Jahren verfügbar.", "it": "Disponibile a partire dai {n} anni.", "nl": "Beschikbaar vanaf {n} jaar.", "zh": "年满{n}岁方可使用。", "zht": "年滿{n}歲方可使用。", "bg": "Достъпно от {n}-годишна възраст.", "pl": "Dostępne po ukończeniu {n} lat."},
+    "perfilSet_es": {"es": "España", "en": "Spain", "fr": "Espagne", "de": "Spanien", "it": "Spagna", "nl": "Spanje", "zh": "西班牙", "zht": "西班牙", "bg": "Испания", "pl": "Hiszpania"},
+    "perfilSet_en": {"es": "Reino Unido", "en": "United Kingdom", "fr": "Royaume-Uni", "de": "Vereinigtes Königreich", "it": "Regno Unito", "nl": "Verenigd Koninkrijk", "zh": "英国", "zht": "英國", "bg": "Великобритания", "pl": "Wielka Brytania"},
+    "perfilSet_de": {"es": "Alemania", "en": "Germany", "fr": "Allemagne", "de": "Deutschland", "it": "Germania", "nl": "Duitsland", "zh": "德国", "zht": "德國", "bg": "Германия", "pl": "Niemcy"},
+    "perfilSet_fr": {"es": "Francia", "en": "France", "fr": "France", "de": "Frankreich", "it": "Francia", "nl": "Frankrijk", "zh": "法国", "zht": "法國", "bg": "Франция", "pl": "Francja"},
+    "perfilSet_it": {"es": "Italia", "en": "Italy", "fr": "Italie", "de": "Italien", "it": "Italia", "nl": "Italië", "zh": "意大利", "zht": "義大利", "bg": "Италия", "pl": "Włochy"},
+    "perfilSet_nl": {"es": "Países Bajos", "en": "Netherlands", "fr": "Pays-Bas", "de": "Niederlande", "it": "Paesi Bassi", "nl": "Nederland", "zh": "荷兰", "zht": "荷蘭", "bg": "Нидерландия", "pl": "Holandia"},
+    "perfilSet_pl": {"es": "Polonia", "en": "Poland", "fr": "Pologne", "de": "Polen", "it": "Polonia", "nl": "Polen", "zh": "波兰", "zht": "波蘭", "bg": "Полша", "pl": "Polska"},
+    "perfilSet_bg": {"es": "Bulgaria", "en": "Bulgaria", "fr": "Bulgarie", "de": "Bulgarien", "it": "Bulgaria", "nl": "Bulgarije", "zh": "保加利亚", "zht": "保加利亞", "bg": "България", "pl": "Bułgaria"},
+    "perfilSet_zh": {"es": "China", "en": "China", "fr": "Chine", "de": "China", "it": "Cina", "nl": "China", "zh": "中国", "zht": "中國", "bg": "Китай", "pl": "Chiny"},
+    "perfilSet_zht": {"es": "Chino tradicional", "en": "Traditional Chinese", "fr": "Chinois traditionnel", "de": "Traditionelles Chinesisch", "it": "Cinese tradizionale", "nl": "Traditioneel Chinees", "zh": "繁体中文", "zht": "繁體中文", "bg": "Традиционен китайски", "pl": "Chiński tradycyjny"},
+    "perfilSet_tf": {"es": "Tenerife", "en": "Tenerife", "fr": "Tenerife", "de": "Teneriffa", "it": "Tenerife", "nl": "Tenerife", "zh": "特内里费", "zht": "特內里費", "bg": "Тенерифе", "pl": "Teneryfa"},
+    "perfilSet_ie": {"es": "Irlanda", "en": "Ireland", "fr": "Irlande", "de": "Irland", "it": "Irlanda", "nl": "Ierland", "zh": "爱尔兰", "zht": "愛爾蘭", "bg": "Ирландия", "pl": "Irlandia"},
+    "perfilSet_dk": {"es": "Dinamarca", "en": "Denmark", "fr": "Danemark", "de": "Dänemark", "it": "Danimarca", "nl": "Denemarken", "zh": "丹麦", "zht": "丹麥", "bg": "Дания", "pl": "Dania"},
+    "perfilSet_se": {"es": "Suecia", "en": "Sweden", "fr": "Suède", "de": "Schweden", "it": "Svezia", "nl": "Zweden", "zh": "瑞典", "zht": "瑞典", "bg": "Швеция", "pl": "Szwecja"},
+    "perfilSet_no": {"es": "Noruega", "en": "Norway", "fr": "Norvège", "de": "Norwegen", "it": "Norvegia", "nl": "Noorwegen", "zh": "挪威", "zht": "挪威", "bg": "Норвегия", "pl": "Norwegia"},
+    "perfilSet_fi": {"es": "Finlandia", "en": "Finland", "fr": "Finlande", "de": "Finnland", "it": "Finlandia", "nl": "Finland", "zh": "芬兰", "zht": "芬蘭", "bg": "Финландия", "pl": "Finlandia"},
+    "perfilSet_is": {"es": "Islandia", "en": "Iceland", "fr": "Islande", "de": "Island", "it": "Islanda", "nl": "IJsland", "zh": "冰岛", "zht": "冰島", "bg": "Исландия", "pl": "Islandia"},
+    "perfilSet_ee": {"es": "Estonia", "en": "Estonia", "fr": "Estonie", "de": "Estland", "it": "Estonia", "nl": "Estland", "zh": "爱沙尼亚", "zht": "愛沙尼亞", "bg": "Естония", "pl": "Estonia"},
+    "perfilSet_lv": {"es": "Letonia", "en": "Latvia", "fr": "Lettonie", "de": "Lettland", "it": "Lettonia", "nl": "Letland", "zh": "拉脱维亚", "zht": "拉脫維亞", "bg": "Латвия", "pl": "Łotwa"},
+    "perfilSet_lt": {"es": "Lituania", "en": "Lithuania", "fr": "Lituanie", "de": "Litauen", "it": "Lituania", "nl": "Litouwen", "zh": "立陶宛", "zht": "立陶宛", "bg": "Литва", "pl": "Litwa"},
+    "perfilSet_at": {"es": "Austria", "en": "Austria", "fr": "Autriche", "de": "Österreich", "it": "Austria", "nl": "Oostenrijk", "zh": "奥地利", "zht": "奧地利", "bg": "Австрия", "pl": "Austria"},
+    "perfilSet_be": {"es": "Bélgica", "en": "Belgium", "fr": "Belgique", "de": "Belgien", "it": "Belgio", "nl": "België", "zh": "比利时", "zht": "比利時", "bg": "Белгия", "pl": "Belgia"},
+    "perfilSet_ch": {"es": "Suiza", "en": "Switzerland", "fr": "Suisse", "de": "Schweiz", "it": "Svizzera", "nl": "Zwitserland", "zh": "瑞士", "zht": "瑞士", "bg": "Швейцария", "pl": "Szwajcaria"},
+    "perfilSet_lu": {"es": "Luxemburgo", "en": "Luxembourg", "fr": "Luxembourg", "de": "Luxemburg", "it": "Lussemburgo", "nl": "Luxemburg", "zh": "卢森堡", "zht": "盧森堡", "bg": "Люксембург", "pl": "Luksemburg"},
+    "perfilSet_li": {"es": "Liechtenstein", "en": "Liechtenstein", "fr": "Liechtenstein", "de": "Liechtenstein", "it": "Liechtenstein", "nl": "Liechtenstein", "zh": "列支敦士登", "zht": "列支敦斯登", "bg": "Лихтенщайн", "pl": "Liechtenstein"},
+    "perfilSet_mc": {"es": "Mónaco", "en": "Monaco", "fr": "Monaco", "de": "Monaco", "it": "Monaco", "nl": "Monaco", "zh": "摩纳哥", "zht": "摩納哥", "bg": "Монако", "pl": "Monako"},
+    "perfilSet_pt": {"es": "Portugal", "en": "Portugal", "fr": "Portugal", "de": "Portugal", "it": "Portogallo", "nl": "Portugal", "zh": "葡萄牙", "zht": "葡萄牙", "bg": "Португалия", "pl": "Portugalia"},
+    "perfilSet_gr": {"es": "Grecia", "en": "Greece", "fr": "Grèce", "de": "Griechenland", "it": "Grecia", "nl": "Griekenland", "zh": "希腊", "zht": "希臘", "bg": "Гърция", "pl": "Grecja"},
+    "perfilSet_mt": {"es": "Malta", "en": "Malta", "fr": "Malte", "de": "Malta", "it": "Malta", "nl": "Malta", "zh": "马耳他", "zht": "馬爾他", "bg": "Малта", "pl": "Malta"},
+    "perfilSet_hr": {"es": "Croacia", "en": "Croatia", "fr": "Croatie", "de": "Kroatien", "it": "Croazia", "nl": "Kroatië", "zh": "克罗地亚", "zht": "克羅埃西亞", "bg": "Хърватия", "pl": "Chorwacja"},
+    "perfilSet_si": {"es": "Eslovenia", "en": "Slovenia", "fr": "Slovénie", "de": "Slowenien", "it": "Slovenia", "nl": "Slovenië", "zh": "斯洛文尼亚", "zht": "斯洛維尼亞", "bg": "Словения", "pl": "Słowenia"},
+    "perfilSet_ba": {"es": "Bosnia y Herzegovina", "en": "Bosnia and Herzegovina", "fr": "Bosnie-Herzégovine", "de": "Bosnien und Herzegowina", "it": "Bosnia ed Erzegovina", "nl": "Bosnië en Herzegovina", "zh": "波斯尼亚和黑塞哥维那", "zht": "波士尼亞與赫塞哥維納", "bg": "Босна и Херцеговина", "pl": "Bośnia i Hercegowina"},
+    "perfilSet_rs": {"es": "Serbia", "en": "Serbia", "fr": "Serbie", "de": "Serbien", "it": "Serbia", "nl": "Servië", "zh": "塞尔维亚", "zht": "塞爾維亞", "bg": "Сърбия", "pl": "Serbia"},
+    "perfilSet_me": {"es": "Montenegro", "en": "Montenegro", "fr": "Monténégro", "de": "Montenegro", "it": "Montenegro", "nl": "Montenegro", "zh": "黑山", "zht": "蒙特內哥羅", "bg": "Черна гора", "pl": "Czarnogóra"},
+    "perfilSet_mk": {"es": "Macedonia del Norte", "en": "North Macedonia", "fr": "Macédoine du Nord", "de": "Nordmazedonien", "it": "Macedonia del Nord", "nl": "Noord-Macedonië", "zh": "北马其顿", "zht": "北馬其頓", "bg": "Северна Македония", "pl": "Macedonia Północna"},
+    "perfilSet_al": {"es": "Albania", "en": "Albania", "fr": "Albanie", "de": "Albanien", "it": "Albania", "nl": "Albanië", "zh": "阿尔巴尼亚", "zht": "阿爾巴尼亞", "bg": "Албания", "pl": "Albania"},
+    "perfilSet_ad": {"es": "Andorra", "en": "Andorra", "fr": "Andorre", "de": "Andorra", "it": "Andorra", "nl": "Andorra", "zh": "安道尔", "zht": "安道爾", "bg": "Андора", "pl": "Andora"},
+    "perfilSet_sm": {"es": "San Marino", "en": "San Marino", "fr": "Saint-Marin", "de": "San Marino", "it": "San Marino", "nl": "San Marino", "zh": "圣马力诺", "zht": "聖馬利諾", "bg": "Сан Марино", "pl": "San Marino"},
+    "perfilSet_cy": {"es": "Chipre", "en": "Cyprus", "fr": "Chypre", "de": "Zypern", "it": "Cipro", "nl": "Cyprus", "zh": "塞浦路斯", "zht": "賽普勒斯", "bg": "Кипър", "pl": "Cypr"},
+    "perfilSet_cz": {"es": "Chequia", "en": "Czechia", "fr": "Tchéquie", "de": "Tschechien", "it": "Cechia", "nl": "Tsjechië", "zh": "捷克", "zht": "捷克", "bg": "Чехия", "pl": "Czechy"},
+    "perfilSet_sk": {"es": "Eslovaquia", "en": "Slovakia", "fr": "Slovaquie", "de": "Slowakei", "it": "Slovacchia", "nl": "Slowakije", "zh": "斯洛伐克", "zht": "斯洛伐克", "bg": "Словакия", "pl": "Słowacja"},
+    "perfilSet_hu": {"es": "Hungría", "en": "Hungary", "fr": "Hongrie", "de": "Ungarn", "it": "Ungheria", "nl": "Hongarije", "zh": "匈牙利", "zht": "匈牙利", "bg": "Унгария", "pl": "Węgry"},
+    "perfilSet_ro": {"es": "Rumanía", "en": "Romania", "fr": "Roumanie", "de": "Rumänien", "it": "Romania", "nl": "Roemenië", "zh": "罗马尼亚", "zht": "羅馬尼亞", "bg": "Румъния", "pl": "Rumunia"},
+    "perfilSet_md": {"es": "Moldavia", "en": "Moldova", "fr": "Moldavie", "de": "Republik Moldau", "it": "Moldavia", "nl": "Moldavië", "zh": "摩尔多瓦", "zht": "摩爾多瓦", "bg": "Молдова", "pl": "Mołdawia"},
+    "perfilSet_ua": {"es": "Ucrania", "en": "Ukraine", "fr": "Ukraine", "de": "Ukraine", "it": "Ucraina", "nl": "Oekraïne", "zh": "乌克兰", "zht": "烏克蘭", "bg": "Украйна", "pl": "Ukraina"},
+    "perfilSet_by": {"es": "Bielorrusia", "en": "Belarus", "fr": "Biélorussie", "de": "Belarus", "it": "Bielorussia", "nl": "Belarus", "zh": "白俄罗斯", "zht": "白俄羅斯", "bg": "Беларус", "pl": "Białoruś"},
+    "perfilSet_ru": {"es": "Rusia", "en": "Russia", "fr": "Russie", "de": "Russland", "it": "Russia", "nl": "Rusland", "zh": "俄罗斯", "zht": "俄羅斯", "bg": "Русия", "pl": "Rosja"},
+    "perfilAv_es_sol": {"es": "Sol", "en": "Sun", "fr": "Soleil", "de": "Sonne", "it": "Sole", "nl": "Zon", "zh": "太阳", "zht": "太陽", "bg": "Слънце", "pl": "Słońce"},
+    "perfilAv_es_guitarra": {"es": "Guitarra", "en": "Guitar", "fr": "Guitare", "de": "Gitarre", "it": "Chitarra", "nl": "Gitaar", "zh": "吉他", "zht": "吉他", "bg": "Китара", "pl": "Gitara"},
+    "perfilAv_es_molino": {"es": "Molino manchego", "en": "La Mancha windmill", "fr": "Moulin à vent", "de": "Windmühle", "it": "Mulino a vento", "nl": "Spaanse molen", "zh": "风车", "zht": "風車", "bg": "Вятърна мелница", "pl": "Wiatrak"},
+    "perfilAv_es_abanico": {"es": "Abanico", "en": "Spanish fan", "fr": "Éventail", "de": "Fächer", "it": "Ventaglio", "nl": "Waaier", "zh": "折扇", "zht": "摺扇", "bg": "Ветрило", "pl": "Wachlarz"},
+    "perfilAv_es_paella": {"es": "Paella", "en": "Paella", "fr": "Paella", "de": "Paella", "it": "Paella", "nl": "Paella", "zh": "海鲜饭", "zht": "海鮮飯", "bg": "Паеля", "pl": "Paella"},
+    "perfilAv_es_oro_uvas": {"es": "Nochevieja", "en": "New Year’s Eve", "fr": "Saint-Sylvestre", "de": "Silvester", "it": "San Silvestro", "nl": "Oudejaarsavond", "zh": "跨年夜", "zht": "跨年夜", "bg": "Новогодишна нощ", "pl": "Sylwester"},
+    "perfilAv_en_bigben": {"es": "Big Ben", "en": "Big Ben", "fr": "Big Ben", "de": "Big Ben", "it": "Big Ben", "nl": "Big Ben", "zh": "大本钟", "zht": "大笨鐘", "bg": "Биг Бен", "pl": "Big Ben"},
+    "perfilAv_en_bus": {"es": "Autobús de dos pisos", "en": "Double-decker", "fr": "Bus à impériale", "de": "Doppeldecker", "it": "Bus a due piani", "nl": "Dubbeldekker", "zh": "双层巴士", "zht": "雙層巴士", "bg": "Двуетажен автобус", "pl": "Piętrowy autobus"},
+    "perfilAv_en_te": {"es": "Taza de té", "en": "Cup of tea", "fr": "Tasse de thé", "de": "Tasse Tee", "it": "Tazza di tè", "nl": "Kopje thee", "zh": "一杯茶", "zht": "一杯茶", "bg": "Чаша чай", "pl": "Filiżanka herbaty"},
+    "perfilAv_en_corgi": {"es": "Corgi", "en": "Corgi", "fr": "Corgi", "de": "Corgi", "it": "Corgi", "nl": "Corgi", "zh": "柯基", "zht": "柯基", "bg": "Корги", "pl": "Corgi"},
+    "perfilAv_en_fish_chips": {"es": "Fish and chips", "en": "Fish and chips", "fr": "Fish and chips", "de": "Fish and Chips", "it": "Fish and chips", "nl": "Fish and chips", "zh": "炸鱼薯条", "zht": "炸魚薯條", "bg": "Фиш енд чипс", "pl": "Fish and chips"},
+    "perfilAv_en_oro_tortitas": {"es": "Día de las Tortitas", "en": "Pancake Day", "fr": "Pancake Day", "de": "Pancake Day", "it": "Pancake Day", "nl": "Pancake Day", "zh": "忏悔星期二", "zht": "懺悔星期二", "bg": "Ден на палачинките", "pl": "Pancake Day"},
+    "perfilAv_de_brezel": {"es": "Pretzel", "en": "Pretzel", "fr": "Bretzel", "de": "Brezel", "it": "Brezel", "nl": "Pretzel", "zh": "碱水面包", "zht": "德國結", "bg": "Брецел", "pl": "Precel"},
+    "perfilAv_de_oso": {"es": "Oso de Berlín", "en": "Berlin bear", "fr": "Ours de Berlin", "de": "Berliner Bär", "it": "Orso di Berlino", "nl": "Berlijnse beer", "zh": "柏林熊", "zht": "柏林熊", "bg": "Берлинска мечка", "pl": "Berliński niedźwiedź"},
+    "perfilAv_de_cuco": {"es": "Reloj de cuco", "en": "Cuckoo clock", "fr": "Horloge à coucou", "de": "Kuckucksuhr", "it": "Orologio a cucù", "nl": "Koekoeksklok", "zh": "布谷鸟钟", "zht": "咕咕鐘", "bg": "Часовник с кукувица", "pl": "Zegar z kukułką"},
+    "perfilAv_de_castillo": {"es": "Castillo", "en": "Castle", "fr": "Château", "de": "Schloss", "it": "Castello", "nl": "Kasteel", "zh": "城堡", "zht": "城堡", "bg": "Замък", "pl": "Zamek"},
+    "perfilAv_de_gnomo": {"es": "Gnomo de jardín", "en": "Garden gnome", "fr": "Nain de jardin", "de": "Gartenzwerg", "it": "Nano da giardino", "nl": "Tuinkabouter", "zh": "花园小矮人", "zht": "花園小矮人", "bg": "Градинско джудже", "pl": "Krasnal ogrodowy"},
+    "perfilAv_de_oro_unidad": {"es": "Día de la Unidad Alemana", "en": "German Unity Day", "fr": "Jour de l’Unité allemande", "de": "Tag der Einheit", "it": "Giorno dell’unità tedesca", "nl": "Dag van de Duitse Eenheid", "zh": "德国统一日", "zht": "德國統一日", "bg": "Ден на единството", "pl": "Dzień Jedności Niemiec"},
+    "perfilAv_fr_torre": {"es": "Torre Eiffel", "en": "Eiffel Tower", "fr": "Tour Eiffel", "de": "Eiffelturm", "it": "Torre Eiffel", "nl": "Eiffeltoren", "zh": "埃菲尔铁塔", "zht": "艾菲爾鐵塔", "bg": "Айфелова кула", "pl": "Wieża Eiffla"},
+    "perfilAv_fr_croissant": {"es": "Croissant", "en": "Croissant", "fr": "Croissant", "de": "Croissant", "it": "Croissant", "nl": "Croissant", "zh": "牛角包", "zht": "可頌", "bg": "Кроасан", "pl": "Croissant"},
+    "perfilAv_fr_gallo": {"es": "Gallo", "en": "Cockerel", "fr": "Coq", "de": "Hahn", "it": "Gallo", "nl": "Haan", "zh": "公鸡", "zht": "公雞", "bg": "Петел", "pl": "Kogut"},
+    "perfilAv_fr_lavanda": {"es": "Lavanda", "en": "Lavender", "fr": "Lavande", "de": "Lavendel", "it": "Lavanda", "nl": "Lavendel", "zh": "薰衣草", "zht": "薰衣草", "bg": "Лавандула", "pl": "Lawenda"},
+    "perfilAv_fr_macaron": {"es": "Macarons", "en": "Macarons", "fr": "Macarons", "de": "Macarons", "it": "Macaron", "nl": "Macarons", "zh": "马卡龙", "zht": "馬卡龍", "bg": "Френски макарони", "pl": "Makaroniki"},
+    "perfilAv_fr_oro_julio": {"es": "Día de la Bastilla", "en": "Bastille Day", "fr": "Fête nationale", "de": "Nationalfeiertag Frankreichs", "it": "Festa nazionale francese", "nl": "Franse nationale feestdag", "zh": "法国国庆日", "zht": "法國國慶日", "bg": "Ден на Бастилията", "pl": "Dzień Bastylii"},
+    "perfilAv_it_coliseo": {"es": "Coliseo", "en": "Colosseum", "fr": "Colisée", "de": "Kolosseum", "it": "Colosseo", "nl": "Colosseum", "zh": "罗马斗兽场", "zht": "羅馬競技場", "bg": "Колизеум", "pl": "Koloseum"},
+    "perfilAv_it_pizza": {"es": "Pizza", "en": "Pizza", "fr": "Pizza", "de": "Pizza", "it": "Pizza", "nl": "Pizza", "zh": "披萨", "zht": "披薩", "bg": "Пица", "pl": "Pizza"},
+    "perfilAv_it_gondola": {"es": "Góndola", "en": "Gondola", "fr": "Gondole", "de": "Gondel", "it": "Gondola", "nl": "Gondel", "zh": "贡多拉", "zht": "貢多拉", "bg": "Гондола", "pl": "Gondola"},
+    "perfilAv_it_pisa": {"es": "Torre de Pisa", "en": "Leaning Tower of Pisa", "fr": "Tour de Pise", "de": "Schiefer Turm", "it": "Torre di Pisa", "nl": "Toren van Pisa", "zh": "比萨斜塔", "zht": "比薩斜塔", "bg": "Пизанската кула", "pl": "Krzywa Wieża"},
+    "perfilAv_it_helado": {"es": "Helado italiano", "en": "Gelato", "fr": "Gelato", "de": "Gelato", "it": "Gelato", "nl": "Gelato", "zh": "意式冰淇淋", "zht": "義式冰淇淋", "bg": "Джелато", "pl": "Gelato"},
+    "perfilAv_it_oro_republica": {"es": "Fiesta de la República", "en": "Festa della Repubblica", "fr": "Fête de la République", "de": "Festa della Repubblica", "it": "Festa della Repubblica", "nl": "Festa della Repubblica", "zh": "意大利共和国日", "zht": "義大利共和國日", "bg": "Празник на републиката", "pl": "Święto Republiki"},
+    "perfilAv_nl_tulipan": {"es": "Tulipán", "en": "Tulip", "fr": "Tulipe", "de": "Tulpe", "it": "Tulipano", "nl": "Tulp", "zh": "郁金香", "zht": "鬱金香", "bg": "Лале", "pl": "Tulipan"},
+    "perfilAv_nl_molino": {"es": "Molino holandés", "en": "Dutch windmill", "fr": "Moulin hollandais", "de": "Holländische Windmühle", "it": "Mulino olandese", "nl": "Hollandse molen", "zh": "荷兰风车", "zht": "荷蘭風車", "bg": "Холандска мелница", "pl": "Holenderski wiatrak"},
+    "perfilAv_nl_bici": {"es": "Bicicleta", "en": "Bicycle", "fr": "Vélo", "de": "Fahrrad", "it": "Bicicletta", "nl": "Fiets", "zh": "自行车", "zht": "腳踏車", "bg": "Велосипед", "pl": "Rower"},
+    "perfilAv_nl_zuecos": {"es": "Zueco con tulipán", "en": "Clog with a tulip", "fr": "Sabot et tulipe", "de": "Holzschuh mit Tulpe", "it": "Zoccolo con tulipano", "nl": "Klomp met tulp", "zh": "木鞋与郁金香", "zht": "木鞋與鬱金香", "bg": "Дървена обувка с лале", "pl": "Chodak z tulipanem"},
+    "perfilAv_nl_queso": {"es": "Queso", "en": "Cheese", "fr": "Fromage", "de": "Käse", "it": "Formaggio", "nl": "Kaas", "zh": "奶酪", "zht": "起司", "bg": "Кашкавал", "pl": "Ser"},
+    "perfilAv_nl_oro_rey": {"es": "Día del Rey", "en": "King’s Day", "fr": "Fête du Roi", "de": "Koningsdag", "it": "Koningsdag", "nl": "Koningsdag", "zh": "国王节", "zht": "國王節", "bg": "Ден на краля", "pl": "Dzień Króla"},
+    "perfilAv_pl_pierogi": {"es": "Pierogi", "en": "Pierogi", "fr": "Pierogi", "de": "Piroggen", "it": "Pierogi", "nl": "Pierogi", "zh": "波兰饺子", "zht": "波蘭餃子", "bg": "Пьероги", "pl": "Pierogi"},
+    "perfilAv_pl_zubr": {"es": "Bisonte europeo", "en": "European bison", "fr": "Bison", "de": "Wisent", "it": "Bisonte", "nl": "Wisent", "zh": "欧洲野牛", "zht": "歐洲野牛", "bg": "Зубър", "pl": "Żubr"},
+    "perfilAv_pl_ciguena": {"es": "Cigüeña", "en": "Stork", "fr": "Cigogne", "de": "Storch", "it": "Cicogna", "nl": "Ooievaar", "zh": "白鹳", "zht": "白鸛", "bg": "Щъркел", "pl": "Bocian"},
+    "perfilAv_pl_ambar": {"es": "Ámbar", "en": "Amber", "fr": "Ambre", "de": "Bernstein", "it": "Ambra", "nl": "Barnsteen", "zh": "琥珀", "zht": "琥珀", "bg": "Кехлибар", "pl": "Bursztyn"},
+    "perfilAv_pl_wawel": {"es": "Castillo de Wawel", "en": "Wawel Castle", "fr": "Wawel", "de": "Wawel", "it": "Wawel", "nl": "Wawel", "zh": "瓦维尔城堡", "zht": "瓦維爾城堡", "bg": "Вавел", "pl": "Wawel"},
+    "perfilAv_pl_oro_mayo": {"es": "Fiesta del 3 de Mayo", "en": "3 May Constitution Day", "fr": "Fête du 3 Mai", "de": "Verfassungstag 3. Mai", "it": "Festa del 3 maggio", "nl": "Grondwetsdag 3 mei", "zh": "五三宪法日", "zht": "五三憲法日", "bg": "Ден на 3 май", "pl": "Święto 3 Maja"},
+    "perfilAv_bg_rosa": {"es": "Rosa", "en": "Rose", "fr": "Rose", "de": "Rose", "it": "Rosa", "nl": "Roos", "zh": "玫瑰", "zht": "玫瑰", "bg": "Българска роза", "pl": "Róża"},
+    "perfilAv_bg_martenitsa": {"es": "Martenitsa", "en": "Martenitsa", "fr": "Martenitsa", "de": "Marteniza", "it": "Martenitsa", "nl": "Martenitsa", "zh": "玛尔泰尼察", "zht": "瑪爾泰尼察", "bg": "Мартеница", "pl": "Marteniczka"},
+    "perfilAv_bg_shopska": {"es": "Ensalada shopska", "en": "Shopska salad", "fr": "Salade chopska", "de": "Schopska-Salat", "it": "Insalata shopska", "nl": "Shopskasalade", "zh": "肖普斯卡沙拉", "zht": "肖普斯卡沙拉", "bg": "Шопска салата", "pl": "Sałatka szopska"},
+    "perfilAv_bg_rila": {"es": "Monasterio de Rila", "en": "Rila Monastery", "fr": "Monastère de Rila", "de": "Rila-Kloster", "it": "Monastero di Rila", "nl": "Rilaklooster", "zh": "里拉修道院", "zht": "里拉修道院", "bg": "Рилският манастир", "pl": "Monaster Rylski"},
+    "perfilAv_bg_yogur": {"es": "Yogur", "en": "Yogurt", "fr": "Yaourt", "de": "Joghurt", "it": "Yogurt", "nl": "Yoghurt", "zh": "酸奶", "zht": "優格", "bg": "Кисело мляко", "pl": "Jogurt"},
+    "perfilAv_bg_oro_marta": {"es": "Baba Marta", "en": "Baba Marta Day", "fr": "Baba Marta", "de": "Baba Marta", "it": "Baba Marta", "nl": "Baba Marta", "zh": "三月奶奶节", "zht": "三月奶奶節", "bg": "Баба Марта", "pl": "Baba Marta"},
+    "perfilAv_zh_panda": {"es": "Panda", "en": "Panda", "fr": "Panda", "de": "Panda", "it": "Panda", "nl": "Panda", "zh": "熊猫", "zht": "熊貓", "bg": "Панда", "pl": "Panda"},
+    "perfilAv_zh_farol": {"es": "Farolillo", "en": "Lantern", "fr": "Lanterne", "de": "Laterne", "it": "Lanterna", "nl": "Lantaarn", "zh": "红灯笼", "zht": "紅燈籠", "bg": "Фенер", "pl": "Lampion"},
+    "perfilAv_zh_jiaozi": {"es": "Empanadilla china", "en": "Dumpling", "fr": "Ravioli chinois", "de": "Jiaozi", "it": "Ravioli cinesi", "nl": "Dumpling", "zh": "饺子", "zht": "餃子", "bg": "Китайски пелмени", "pl": "Chińskie pierożki"},
+    "perfilAv_zh_muralla": {"es": "Gran Muralla", "en": "Great Wall", "fr": "Grande Muraille", "de": "Chinesische Mauer", "it": "Grande Muraglia", "nl": "Chinese Muur", "zh": "长城", "zht": "長城", "bg": "Великата стена", "pl": "Wielki Mur"},
+    "perfilAv_zh_tetera": {"es": "Tetera", "en": "Teapot", "fr": "Théière", "de": "Teekanne", "it": "Teiera", "nl": "Theepot", "zh": "茶壶", "zht": "茶壺", "bg": "Чайник", "pl": "Czajniczek"},
+    "perfilAv_zh_oro_chunjie": {"es": "Año Nuevo chino", "en": "Chinese New Year", "fr": "Nouvel An chinois", "de": "Chinesisches Neujahr", "it": "Capodanno cinese", "nl": "Chinees Nieuwjaar", "zh": "春节", "zht": "春節", "bg": "Китайска нова година", "pl": "Chiński Nowy Rok"},
+    "perfilAv_zht_bubble": {"es": "Bubble tea", "en": "Bubble tea", "fr": "Bubble tea", "de": "Bubble Tea", "it": "Bubble tea", "nl": "Bubble tea", "zh": "珍珠奶茶", "zht": "珍珠奶茶", "bg": "Чай с тапиока", "pl": "Bubble tea"},
+    "perfilAv_zht_dimsum": {"es": "Dim sum", "en": "Dim sum", "fr": "Dim sum", "de": "Dim Sum", "it": "Dim sum", "nl": "Dimsum", "zh": "点心", "zht": "點心", "bg": "Дим сум", "pl": "Dim sum"},
+    "perfilAv_zht_junco": {"es": "Junco chino", "en": "Junk boat", "fr": "Jonque", "de": "Dschunke", "it": "Giunca", "nl": "Jonk", "zh": "中式帆船", "zht": "中式帆船", "bg": "Джонка", "pl": "Dżonka"},
+    "perfilAv_zht_oso": {"es": "Oso negro asiático", "en": "Asian black bear", "fr": "Ours à collier", "de": "Kragenbär", "it": "Orso dal collare", "nl": "Kraagbeer", "zh": "黑熊", "zht": "黑熊", "bg": "Хималайска мечка", "pl": "Niedźwiedź himalajski"},
+    "perfilAv_zht_farol_cielo": {"es": "Farolillo volador", "en": "Sky lantern", "fr": "Lanterne céleste", "de": "Himmelslaterne", "it": "Lanterna volante", "nl": "Wensballon", "zh": "天灯", "zht": "天燈", "bg": "Небесен фенер", "pl": "Lampion szczęścia"},
+    "perfilAv_zht_oro_zhongqiu": {"es": "Fiesta del Medio Otoño", "en": "Mid-Autumn Festival", "fr": "Fête de la mi-automne", "de": "Mondfest", "it": "Festa di metà autunno", "nl": "Midherfstfestival", "zh": "中秋节", "zht": "中秋節", "bg": "Средата на есента", "pl": "Święto Środka Jesieni"},
+    "perfilAv_tf_teide": {"es": "Teide", "en": "Teide", "fr": "Teide", "de": "Teide", "it": "Teide", "nl": "Teide", "zh": "泰德峰", "zht": "泰德峰", "bg": "Тейде", "pl": "Teide"},
+    "perfilAv_tf_lagarto": {"es": "Lagarto tizón", "en": "Tenerife lizard", "fr": "Lézard de Tenerife", "de": "Westkanaren-Eidechse", "it": "Lucertola di Tenerife", "nl": "Tenerife-hagedis", "zh": "特内里费蜥蜴", "zht": "特內里費蜥蜴", "bg": "Тенерифски гущер", "pl": "Jaszczurka z Teneryfy"},
+    "perfilAv_tf_guagua": {"es": "Guagua", "en": "Guagua (bus)", "fr": "Guagua (bus)", "de": "Guagua (Bus)", "it": "Guagua (bus)", "nl": "Guagua (bus)", "zh": "公交车", "zht": "公車", "bg": "Гуагуа (автобус)", "pl": "Guagua (autobus)"},
+    "perfilAv_tf_drago": {"es": "Drago", "en": "Dragon tree", "fr": "Dragonnier", "de": "Drachenbaum", "it": "Albero del drago", "nl": "Drakenboom", "zh": "龙血树", "zht": "龍血樹", "bg": "Драконово дърво", "pl": "Smocze drzewo"},
+    "perfilAv_tf_calderon": {"es": "Calderón", "en": "Pilot whale", "fr": "Globicéphale", "de": "Grindwal", "it": "Globicefalo", "nl": "Griend", "zh": "领航鲸", "zht": "領航鯨", "bg": "Гринда", "pl": "Grindwal"},
+    "perfilAv_tf_oro_carnaval": {"es": "Carnaval de Santa Cruz", "en": "Santa Cruz Carnival", "fr": "Carnaval de Santa Cruz", "de": "Karneval in Santa Cruz", "it": "Carnevale di Santa Cruz", "nl": "Carnaval in Santa Cruz", "zh": "圣克鲁斯狂欢节", "zht": "聖克魯斯嘉年華", "bg": "Карнавал в Санта Крус", "pl": "Karnawał w Santa Cruz"},
+    "perfilAv_tf_oro_canarias": {"es": "Día de Canarias", "en": "Canary Islands Day", "fr": "Jour des îles Canaries", "de": "Tag der Kanaren", "it": "Giorno delle Canarie", "nl": "Día de Canarias", "zh": "加那利群岛日", "zht": "加那利群島日", "bg": "Ден на Канарите", "pl": "Dzień Wysp Kanaryjskich"},
+    "perfilAv_tf_oro_sanjuan": {"es": "Noche de San Juan", "en": "St John’s Eve", "fr": "Nuit de la Saint-Jean", "de": "Johannisnacht", "it": "Notte di San Giovanni", "nl": "Sint-Jansnacht", "zh": "圣约翰之夜", "zht": "聖約翰之夜", "bg": "Нощ на Сан Хуан", "pl": "Noc San Juan"},
+    "perfilAv_ie_trebol": {"es": "Trébol", "en": "Shamrock", "fr": "Trèfle", "de": "Kleeblatt", "it": "Trifoglio", "nl": "Klaver", "zh": "三叶草", "zht": "三葉草", "bg": "Детелина", "pl": "Koniczyna"},
+    "perfilAv_ie_arpa": {"es": "Arpa irlandesa", "en": "Irish harp", "fr": "Harpe irlandaise", "de": "Irische Harfe", "it": "Arpa irlandese", "nl": "Ierse harp", "zh": "爱尔兰竖琴", "zht": "愛爾蘭豎琴", "bg": "Ирландска арфа", "pl": "Harfa irlandzka"},
+    "perfilAv_ie_moher": {"es": "Acantilados de Moher", "en": "Cliffs of Moher", "fr": "Falaises de Moher", "de": "Cliffs of Moher", "it": "Scogliere di Moher", "nl": "Kliffen van Moher", "zh": "莫赫悬崖", "zht": "莫赫懸崖", "bg": "Скалите Мохер", "pl": "Klify Moher"},
+    "perfilAv_ie_lobero": {"es": "Lebrel irlandés", "en": "Irish wolfhound", "fr": "Lévrier irlandais", "de": "Irischer Wolfshund", "it": "Levriero irlandese", "nl": "Ierse wolfshond", "zh": "爱尔兰猎狼犬", "zht": "愛爾蘭獵狼犬", "bg": "Ирландски вълкодав", "pl": "Wilczarz irlandzki"},
+    "perfilAv_ie_pan_soda": {"es": "Pan de soda", "en": "Soda bread", "fr": "Pain au bicarbonate", "de": "Sodabrot", "it": "Soda bread", "nl": "Sodabrood", "zh": "苏打面包", "zht": "蘇打麵包", "bg": "Содов хляб", "pl": "Chleb sodowy"},
+    "perfilAv_ie_oro_patricio": {"es": "San Patricio", "en": "St Patrick’s Day", "fr": "Saint-Patrick", "de": "St. Patrick’s Day", "it": "San Patrizio", "nl": "Saint Patrick’s Day", "zh": "圣帕特里克节", "zht": "聖派翠克節", "bg": "Ден на свети Патрик", "pl": "Dzień Świętego Patryka"},
+    "perfilAv_dk_nyhavn": {"es": "Nyhavn", "en": "Nyhavn", "fr": "Nyhavn", "de": "Nyhavn", "it": "Nyhavn", "nl": "Nyhavn", "zh": "新港", "zht": "新港", "bg": "Нюхавн", "pl": "Nyhavn"},
+    "perfilAv_dk_wienerbrod": {"es": "Pastel danés", "en": "Danish pastry", "fr": "Viennoiserie danoise", "de": "Plundergebäck", "it": "Pasta danese", "nl": "Deens gebak", "zh": "丹麦酥", "zht": "丹麥酥", "bg": "Датски сладкиш", "pl": "Duńska drożdżówka"},
+    "perfilAv_dk_smorrebrod": {"es": "Smørrebrød", "en": "Smørrebrød", "fr": "Smørrebrød", "de": "Smørrebrød", "it": "Smørrebrød", "nl": "Smørrebrød", "zh": "开放式三明治", "zht": "開放式三明治", "bg": "Датски сандвич", "pl": "Smørrebrød"},
+    "perfilAv_dk_kronborg": {"es": "Castillo de Kronborg", "en": "Kronborg Castle", "fr": "Château de Kronborg", "de": "Schloss Kronborg", "it": "Castello di Kronborg", "nl": "Kasteel Kronborg", "zh": "克伦堡宫", "zht": "克倫堡宮", "bg": "Замъкът Кронборг", "pl": "Zamek Kronborg"},
+    "perfilAv_dk_polse": {"es": "Perrito caliente danés", "en": "Danish hot dog", "fr": "Hot-dog danois", "de": "Dänischer Hotdog", "it": "Hot dog danese", "nl": "Deense hotdog", "zh": "丹麦热狗", "zht": "丹麥熱狗", "bg": "Датски хотдог", "pl": "Duński hot dog"},
+    "perfilAv_dk_oro_fastelavn": {"es": "Carnaval danés", "en": "Fastelavn", "fr": "Carnaval danois", "de": "Fastelavn", "it": "Carnevale danese", "nl": "Fastelavn", "zh": "丹麦狂欢节", "zht": "丹麥嘉年華", "bg": "Фастелавн", "pl": "Fastelavn"},
+    "perfilAv_se_caballito": {"es": "Caballito de Dalarna", "en": "Dala horse", "fr": "Cheval de Dalécarlie", "de": "Dalapferd", "it": "Cavallino di Dalarna", "nl": "Dalapaardje", "zh": "达拉木马", "zht": "達拉木馬", "bg": "Конче от Даларна", "pl": "Konik z Dalarny"},
+    "perfilAv_se_alce": {"es": "Alce", "en": "Elk", "fr": "Élan", "de": "Elch", "it": "Alce", "nl": "Eland", "zh": "驼鹿", "zht": "駝鹿", "bg": "Лос", "pl": "Łoś"},
+    "perfilAv_se_casita": {"es": "Casita roja", "en": "Red cottage", "fr": "Maisonnette rouge", "de": "Rotes Holzhaus", "it": "Casetta rossa", "nl": "Rood huisje", "zh": "红色木屋", "zht": "紅色木屋", "bg": "Червена къщичка", "pl": "Czerwony domek"},
+    "perfilAv_se_albondigas": {"es": "Albóndigas suecas", "en": "Swedish meatballs", "fr": "Boulettes suédoises", "de": "Köttbullar", "it": "Polpette svedesi", "nl": "Zweedse gehaktballetjes", "zh": "瑞典肉丸", "zht": "瑞典肉丸", "bg": "Шведски кюфтета", "pl": "Szwedzkie klopsiki"},
+    "perfilAv_se_canela": {"es": "Bollo de canela", "en": "Cinnamon bun", "fr": "Roulé à la cannelle", "de": "Zimtschnecke", "it": "Girella alla cannella", "nl": "Kaneelbroodje", "zh": "肉桂卷", "zht": "肉桂捲", "bg": "Кифла с канела", "pl": "Bułeczka cynamonowa"},
+    "perfilAv_se_oro_midsommar": {"es": "Midsommar", "en": "Midsommar", "fr": "Midsommar", "de": "Midsommar", "it": "Midsommar", "nl": "Midsommar", "zh": "仲夏节", "zht": "仲夏節", "bg": "Мидсомар", "pl": "Midsommar"},
+    "perfilAv_no_fiordo": {"es": "Fiordo", "en": "Fjord", "fr": "Fjord", "de": "Fjord", "it": "Fiordo", "nl": "Fjord", "zh": "峡湾", "zht": "峽灣", "bg": "Фиорд", "pl": "Fiord"},
+    "perfilAv_no_vikingo": {"es": "Barco vikingo", "en": "Viking ship", "fr": "Navire viking", "de": "Wikingerschiff", "it": "Nave vichinga", "nl": "Vikingschip", "zh": "维京船", "zht": "維京船", "bg": "Викингски кораб", "pl": "Łódź wikingów"},
+    "perfilAv_no_stavkirke": {"es": "Iglesia de madera", "en": "Stave church", "fr": "Église en bois debout", "de": "Stabkirche", "it": "Chiesa di legno", "nl": "Staafkerk", "zh": "木板教堂", "zht": "木板教堂", "bg": "Дървена църква", "pl": "Kościół klepkowy"},
+    "perfilAv_no_brunost": {"es": "Queso marrón", "en": "Brown cheese", "fr": "Fromage brun", "de": "Braunkäse", "it": "Formaggio bruno", "nl": "Bruine kaas", "zh": "挪威棕奶酪", "zht": "挪威棕起司", "bg": "Кафяво сирене", "pl": "Brązowy ser"},
+    "perfilAv_no_esquis": {"es": "Esquís", "en": "Skis", "fr": "Skis", "de": "Skier", "it": "Sci", "nl": "Ski’s", "zh": "滑雪板", "zht": "滑雪板", "bg": "Ски", "pl": "Narty"},
+    "perfilAv_no_oro_syttende": {"es": "Día de Noruega", "en": "Syttende Mai", "fr": "Fête nationale norvégienne", "de": "Nationalfeiertag Norwegens", "it": "Festa nazionale norvegese", "nl": "Dag van Noorwegen", "zh": "挪威宪法日", "zht": "挪威憲法日", "bg": "Ден на Норвегия", "pl": "Dzień Norwegii"},
+    "perfilAv_fi_sauna": {"es": "Sauna", "en": "Sauna", "fr": "Sauna", "de": "Sauna", "it": "Sauna", "nl": "Sauna", "zh": "桑拿", "zht": "三溫暖", "bg": "Сауна", "pl": "Sauna"},
+    "perfilAv_fi_reno": {"es": "Reno", "en": "Reindeer", "fr": "Renne", "de": "Rentier", "it": "Renna", "nl": "Rendier", "zh": "驯鹿", "zht": "馴鹿", "bg": "Северен елен", "pl": "Renifer"},
+    "perfilAv_fi_aurora": {"es": "Aurora boreal", "en": "Northern lights", "fr": "Aurore boréale", "de": "Nordlicht", "it": "Aurora boreale", "nl": "Noorderlicht", "zh": "北极光", "zht": "北極光", "bg": "Северно сияние", "pl": "Zorza polarna"},
+    "perfilAv_fi_catedral": {"es": "Catedral de Helsinki", "en": "Helsinki Cathedral", "fr": "Cathédrale d’Helsinki", "de": "Dom von Helsinki", "it": "Cattedrale di Helsinki", "nl": "Kathedraal van Helsinki", "zh": "赫尔辛基大教堂", "zht": "赫爾辛基大教堂", "bg": "Катедралата в Хелзинки", "pl": "Katedra w Helsinkach"},
+    "perfilAv_fi_carelia": {"es": "Pastel de Carelia", "en": "Karelian pie", "fr": "Tarte carélienne", "de": "Karelische Pirogge", "it": "Tortino careliano", "nl": "Karelisch pasteitje", "zh": "卡累利阿馅饼", "zht": "卡累利阿餡餅", "bg": "Карелска баничка", "pl": "Pieróg karelski"},
+    "perfilAv_fi_oro_independencia": {"es": "Día de Finlandia", "en": "Independence Day", "fr": "Fête nationale finlandaise", "de": "Nationalfeiertag Finnlands", "it": "Giorno dell’indipendenza", "nl": "Finse nationale feestdag", "zh": "芬兰独立日", "zht": "芬蘭獨立日", "bg": "Ден на независимостта", "pl": "Dzień Niepodległości"},
+    "perfilAv_is_frailecillo": {"es": "Frailecillo", "en": "Puffin", "fr": "Macareux", "de": "Papageitaucher", "it": "Pulcinella di mare", "nl": "Papegaaiduiker", "zh": "海鹦", "zht": "海鸚", "bg": "Тупик", "pl": "Maskonur"},
+    "perfilAv_is_geiser": {"es": "Géiser", "en": "Geyser", "fr": "Geyser", "de": "Geysir", "it": "Geyser", "nl": "Geiser", "zh": "间歇泉", "zht": "間歇泉", "bg": "Гейзер", "pl": "Gejzer"},
+    "perfilAv_is_hallgrimskirkja": {"es": "Hallgrímskirkja", "en": "Hallgrímskirkja", "fr": "Hallgrímskirkja", "de": "Hallgrímskirkja", "it": "Hallgrímskirkja", "nl": "Hallgrímskirkja", "zh": "哈尔格林姆教堂", "zht": "哈爾格林姆教堂", "bg": "Халгримскиркя", "pl": "Hallgrímskirkja"},
+    "perfilAv_is_caballo": {"es": "Caballo islandés", "en": "Icelandic horse", "fr": "Cheval islandais", "de": "Islandpferd", "it": "Cavallo islandese", "nl": "IJslands paard", "zh": "冰岛马", "zht": "冰島馬", "bg": "Исландски кон", "pl": "Koń islandzki"},
+    "perfilAv_is_glaciar": {"es": "Glaciar Vatnajökull", "en": "Vatnajökull glacier", "fr": "Glacier Vatnajökull", "de": "Vatnajökull-Gletscher", "it": "Ghiacciaio Vatnajökull", "nl": "Vatnajökull-gletsjer", "zh": "瓦特纳冰川", "zht": "瓦特納冰河", "bg": "Ледникът Вахтнайокутъл", "pl": "Lodowiec Vatnajökull"},
+    "perfilAv_is_oro_thjodhatid": {"es": "Día de Islandia", "en": "Icelandic National Day", "fr": "Fête nationale islandaise", "de": "Nationalfeiertag Islands", "it": "Festa nazionale islandese", "nl": "Dag van IJsland", "zh": "冰岛国庆日", "zht": "冰島國慶日", "bg": "Ден на Исландия", "pl": "Dzień Islandii"},
+    "perfilAv_ee_tallin": {"es": "Murallas de Tallin", "en": "Tallinn city walls", "fr": "Remparts de Tallinn", "de": "Stadtmauer von Tallinn", "it": "Mura di Tallinn", "nl": "Stadsmuur van Tallinn", "zh": "塔林城墙", "zht": "塔林城牆", "bg": "Стените на Талин", "pl": "Mury Tallinna"},
+    "perfilAv_ee_golondrina": {"es": "Golondrina", "en": "Swallow", "fr": "Hirondelle", "de": "Rauchschwalbe", "it": "Rondine", "nl": "Boerenzwaluw", "zh": "家燕", "zht": "家燕", "bg": "Лястовица", "pl": "Jaskółka"},
+    "perfilAv_ee_aciano": {"es": "Aciano", "en": "Cornflower", "fr": "Bleuet", "de": "Kornblume", "it": "Fiordaliso", "nl": "Korenbloem", "zh": "矢车菊", "zht": "矢車菊", "bg": "Метличина", "pl": "Chaber bławatek"},
+    "perfilAv_ee_pan": {"es": "Pan negro", "en": "Black rye bread", "fr": "Pain noir de seigle", "de": "Schwarzbrot", "it": "Pane nero di segale", "nl": "Roggebrood", "zh": "黑麦面包", "zht": "黑麥麵包", "bg": "Черен ръжен хляб", "pl": "Czarny chleb żytni"},
+    "perfilAv_ee_raba": {"es": "Turbera", "en": "Estonian bog", "fr": "Tourbière", "de": "Hochmoor", "it": "Torbiera", "nl": "Hoogveen", "zh": "泥炭沼泽", "zht": "泥炭沼澤", "bg": "Торфено блато", "pl": "Torfowisko"},
+    "perfilAv_ee_oro_jaanipaev": {"es": "San Juan estonio", "en": "Jaanipäev", "fr": "Saint-Jean estonienne", "de": "Jaanipäev", "it": "San Giovanni estone", "nl": "Jaanipäev", "zh": "爱沙尼亚仲夏节", "zht": "愛沙尼亞仲夏節", "bg": "Яанипяев", "pl": "Jaanipäev"},
+    "perfilAv_lv_silueta": {"es": "Torres de Riga", "en": "Riga skyline", "fr": "Clochers de Riga", "de": "Türme von Riga", "it": "Campanili di Riga", "nl": "Torens van Riga", "zh": "里加老城", "zht": "里加老城", "bg": "Кулите на Рига", "pl": "Wieże Rygi"},
+    "perfilAv_lv_modernismo": {"es": "Art nouveau de Riga", "en": "Riga Art Nouveau", "fr": "Art nouveau de Riga", "de": "Jugendstil in Riga", "it": "Liberty di Riga", "nl": "Art nouveau in Riga", "zh": "里加新艺术建筑", "zht": "里加新藝術建築", "bg": "Сецесион в Рига", "pl": "Secesja w Rydze"},
+    "perfilAv_lv_espadines": {"es": "Espadines de Riga", "en": "Riga sprats", "fr": "Sprats de Riga", "de": "Rigaer Sprotten", "it": "Spratti di Riga", "nl": "Sprot uit Riga", "zh": "里加熏鲱鱼", "zht": "里加燻鯡魚", "bg": "Рижки шпроти", "pl": "Szproty ryskie"},
+    "perfilAv_lv_turaida": {"es": "Castillo de Turaida", "en": "Turaida Castle", "fr": "Château de Turaida", "de": "Burg Turaida", "it": "Castello di Turaida", "nl": "Kasteel van Turaida", "zh": "图拉伊达城堡", "zht": "圖拉伊達城堡", "bg": "Замъкът Турайда", "pl": "Zamek w Turaidzie"},
+    "perfilAv_lv_corona": {"es": "Corona de roble", "en": "Oak wreath", "fr": "Couronne de chêne", "de": "Eichenkranz", "it": "Corona di quercia", "nl": "Eikenkrans", "zh": "橡叶花环", "zht": "橡葉花環", "bg": "Дъбов венец", "pl": "Wieniec dębowy"},
+    "perfilAv_lv_oro_jani": {"es": "San Juan letón", "en": "Jāņi", "fr": "Jāņi", "de": "Jāņi", "it": "Jāņi", "nl": "Jāņi", "zh": "亚尼节", "zht": "亞尼節", "bg": "Лиго", "pl": "Jāņi"},
+    "perfilAv_lt_trakai": {"es": "Castillo de Trakai", "en": "Trakai Castle", "fr": "Château de Trakai", "de": "Burg Trakai", "it": "Castello di Trakai", "nl": "Kasteel van Trakai", "zh": "特拉凯城堡", "zht": "特拉凱城堡", "bg": "Замъкът Тракай", "pl": "Zamek w Trokach"},
+    "perfilAv_lt_cepelinai": {"es": "Cepelinai", "en": "Cepelinai", "fr": "Cepelinai", "de": "Cepelinai", "it": "Cepelinai", "nl": "Cepelinai", "zh": "立陶宛土豆饺", "zht": "立陶宛馬鈴薯餃", "bg": "Цепелини", "pl": "Cepeliny"},
+    "perfilAv_lt_baloncesto": {"es": "Baloncesto", "en": "Basketball", "fr": "Basket-ball", "de": "Basketball", "it": "Pallacanestro", "nl": "Basketbal", "zh": "篮球", "zht": "籃球", "bg": "Баскетбол", "pl": "Koszykówka"},
+    "perfilAv_lt_sakotis": {"es": "Šakotis", "en": "Šakotis", "fr": "Šakotis", "de": "Šakotis", "it": "Šakotis", "nl": "Šakotis", "zh": "树蛋糕", "zht": "樹蛋糕", "bg": "Шакотис", "pl": "Sękacz"},
+    "perfilAv_lt_dunas": {"es": "Istmo de Curlandia", "en": "Curonian Spit", "fr": "Isthme de Courlande", "de": "Kurische Nehrung", "it": "Penisola curlandese", "nl": "Koerse Schoorwal", "zh": "库尔斯沙嘴", "zht": "庫爾斯沙嘴", "bg": "Куршската коса", "pl": "Mierzeja Kurońska"},
+    "perfilAv_lt_oro_uzgavenes": {"es": "Carnaval lituano", "en": "Užgavėnės", "fr": "Carnaval lituanien", "de": "Užgavėnės", "it": "Carnevale lituano", "nl": "Užgavėnės", "zh": "立陶宛狂欢节", "zht": "立陶宛嘉年華", "bg": "Ужгавенес", "pl": "Užgavėnės"},
+    "perfilAv_at_escalope": {"es": "Escalope vienés", "en": "Wiener schnitzel", "fr": "Escalope viennoise", "de": "Wiener Schnitzel", "it": "Cotoletta alla viennese", "nl": "Wienerschnitzel", "zh": "维也纳炸肉排", "zht": "維也納炸肉排", "bg": "Виенски шницел", "pl": "Sznycel wiedeński"},
+    "perfilAv_at_noria": {"es": "Noria del Prater", "en": "Prater Ferris wheel", "fr": "Grande roue du Prater", "de": "Wiener Riesenrad", "it": "Ruota panoramica", "nl": "Weens Reuzenrad", "zh": "普拉特摩天轮", "zht": "普拉特摩天輪", "bg": "Колелото в Пратер", "pl": "Diabelski młyn w Praterze"},
+    "perfilAv_at_schonbrunn": {"es": "Palacio de Schönbrunn", "en": "Schönbrunn Palace", "fr": "Château de Schönbrunn", "de": "Schloss Schönbrunn", "it": "Reggia di Schönbrunn", "nl": "Paleis Schönbrunn", "zh": "美泉宫", "zht": "美泉宮", "bg": "Дворецът Шьонбрун", "pl": "Pałac Schönbrunn"},
+    "perfilAv_at_strudel": {"es": "Strudel de manzana", "en": "Apple strudel", "fr": "Strudel aux pommes", "de": "Apfelstrudel", "it": "Strudel di mele", "nl": "Appelstrudel", "zh": "苹果卷", "zht": "蘋果捲", "bg": "Щрудел с ябълки", "pl": "Strudel jabłkowy"},
+    "perfilAv_at_cafe": {"es": "Café vienés", "en": "Viennese coffee", "fr": "Café viennois", "de": "Wiener Kaffee", "it": "Caffè viennese", "nl": "Weense koffie", "zh": "维也纳咖啡", "zht": "維也納咖啡", "bg": "Виенско кафе", "pl": "Kawa po wiedeńsku"},
+    "perfilAv_at_oro_neujahr": {"es": "Concierto de Año Nuevo", "en": "New Year’s Concert", "fr": "Concert du nouvel an", "de": "Neujahrskonzert", "it": "Concerto di Capodanno", "nl": "Neujahrskonzert", "zh": "维也纳新年音乐会", "zht": "維也納新年音樂會", "bg": "Новогодишен концерт", "pl": "Koncert Noworoczny"},
+    "perfilAv_be_gofre": {"es": "Gofre", "en": "Belgian waffle", "fr": "Gaufre", "de": "Belgische Waffel", "it": "Waffle belga", "nl": "Brusselse wafel", "zh": "比利时华夫饼", "zht": "比利時鬆餅", "bg": "Белгийска гофрета", "pl": "Gofr belgijski"},
+    "perfilAv_be_patatas": {"es": "Patatas fritas", "en": "Chips", "fr": "Frites", "de": "Pommes frites", "it": "Patatine fritte", "nl": "Frieten", "zh": "炸薯条", "zht": "炸薯條", "bg": "Пържени картофки", "pl": "Frytki"},
+    "perfilAv_be_bombones": {"es": "Bombones", "en": "Chocolates", "fr": "Pralines", "de": "Pralinen", "it": "Cioccolatini", "nl": "Pralines", "zh": "比利时巧克力", "zht": "比利時巧克力", "bg": "Шоколадови бонбони", "pl": "Praliny"},
+    "perfilAv_be_grand_place": {"es": "Grand-Place", "en": "Grand-Place", "fr": "Grand-Place", "de": "Grand-Place", "it": "Grand-Place", "nl": "Grote Markt", "zh": "布鲁塞尔大广场", "zht": "布魯塞爾大廣場", "bg": "Гран Плас", "pl": "Grand-Place"},
+    "perfilAv_be_belfort": {"es": "Campanario de Brujas", "en": "Belfry of Bruges", "fr": "Beffroi de Bruges", "de": "Belfried von Brügge", "it": "Campanile di Bruges", "nl": "Belfort van Brugge", "zh": "布鲁日钟楼", "zht": "布魯日鐘樓", "bg": "Камбанарията в Брюж", "pl": "Dzwonnica w Brugii"},
+    "perfilAv_be_oro_binche": {"es": "Carnaval de Binche", "en": "Carnival of Binche", "fr": "Carnaval de Binche", "de": "Karneval von Binche", "it": "Carnevale di Binche", "nl": "Carnaval van Binche", "zh": "班什狂欢节", "zht": "班什嘉年華", "bg": "Карнавал в Банш", "pl": "Karnawał w Binche"},
+    "perfilAv_ch_cervino": {"es": "Cervino", "en": "Matterhorn", "fr": "Cervin", "de": "Matterhorn", "it": "Cervino", "nl": "Matterhorn", "zh": "马特洪峰", "zht": "馬特洪峰", "bg": "Матерхорн", "pl": "Matterhorn"},
+    "perfilAv_ch_fondue": {"es": "Fondue", "en": "Fondue", "fr": "Fondue", "de": "Fondue", "it": "Fondue", "nl": "Kaasfondue", "zh": "奶酪火锅", "zht": "起司火鍋", "bg": "Фондю", "pl": "Fondue"},
+    "perfilAv_ch_sanbernardo": {"es": "San bernardo", "en": "St Bernard", "fr": "Saint-bernard", "de": "Bernhardiner", "it": "San Bernardo", "nl": "Sint-bernard", "zh": "圣伯纳犬", "zht": "聖伯納犬", "bg": "Санбернар", "pl": "Bernardyn"},
+    "perfilAv_ch_vaca": {"es": "Vaca con cencerro", "en": "Cow with a bell", "fr": "Vache et sa cloche", "de": "Kuh mit Glocke", "it": "Mucca con campanaccio", "nl": "Koe met bel", "zh": "戴铃铛的奶牛", "zht": "戴鈴鐺的乳牛", "bg": "Крава с хлопка", "pl": "Krowa z dzwonkiem"},
+    "perfilAv_ch_trompa": {"es": "Trompa alpina", "en": "Alphorn", "fr": "Cor des Alpes", "de": "Alphorn", "it": "Corno delle Alpi", "nl": "Alpenhoorn", "zh": "阿尔卑斯长号", "zht": "阿爾卑斯長號", "bg": "Алпийски рог", "pl": "Róg alpejski"},
+    "perfilAv_ch_oro_agosto": {"es": "Día de Suiza", "en": "Swiss National Day", "fr": "Fête nationale suisse", "de": "Schweizer Bundesfeiertag", "it": "Festa nazionale svizzera", "nl": "Dag van Zwitserland", "zh": "瑞士国庆日", "zht": "瑞士國慶日", "bg": "Ден на Швейцария", "pl": "Dzień Szwajcarii"},
+    "perfilAv_lu_puente": {"es": "Puente Adolfo", "en": "Adolphe Bridge", "fr": "Pont Adolphe", "de": "Adolphe-Brücke", "it": "Ponte Adolfo", "nl": "Adolphebrug", "zh": "阿道夫桥", "zht": "阿道夫橋", "bg": "Мостът Адолф", "pl": "Most Adolfa"},
+    "perfilAv_lu_vianden": {"es": "Castillo de Vianden", "en": "Vianden Castle", "fr": "Château de Vianden", "de": "Burg Vianden", "it": "Castello di Vianden", "nl": "Kasteel van Vianden", "zh": "菲安登城堡", "zht": "菲安登城堡", "bg": "Замъкът Вианден", "pl": "Zamek Vianden"},
+    "perfilAv_lu_casamatas": {"es": "Casamatas del Bock", "en": "Bock Casemates", "fr": "Casemates du Bock", "de": "Bockkasematten", "it": "Casematte del Bock", "nl": "Bock-kazematten", "zh": "博克炮台", "zht": "博克砲臺", "bg": "Казематите Бок", "pl": "Kazamaty Bock"},
+    "perfilAv_lu_tarta": {"es": "Tarta de ciruelas", "en": "Plum tart", "fr": "Tarte aux quetsches", "de": "Quetschentaart", "it": "Crostata di prugne", "nl": "Pruimentaart", "zh": "李子挞", "zht": "李子塔", "bg": "Тарт със сливи", "pl": "Tarta ze śliwkami"},
+    "perfilAv_lu_peckvillchen": {"es": "Péckvillchen", "en": "Péckvillchen", "fr": "Péckvillchen", "de": "Péckvillchen", "it": "Péckvillchen", "nl": "Péckvillchen", "zh": "鸟形陶哨", "zht": "鳥形陶哨", "bg": "Пеквилхен", "pl": "Péckvillchen"},
+    "perfilAv_lu_oro_nacional": {"es": "Día de Luxemburgo", "en": "Luxembourg National Day", "fr": "Fête nationale luxembourgeoise", "de": "Nationalfeiertag Luxemburgs", "it": "Festa del Lussemburgo", "nl": "Dag van Luxemburg", "zh": "卢森堡国庆日", "zht": "盧森堡國慶日", "bg": "Ден на Люксембург", "pl": "Dzień Luksemburga"},
+    "perfilAv_li_vaduz": {"es": "Castillo de Vaduz", "en": "Vaduz Castle", "fr": "Château de Vaduz", "de": "Schloss Vaduz", "it": "Castello di Vaduz", "nl": "Kasteel van Vaduz", "zh": "瓦杜兹城堡", "zht": "瓦都茲城堡", "bg": "Замъкът Вадуц", "pl": "Zamek Vaduz"},
+    "perfilAv_li_sello": {"es": "Sello de correos", "en": "Postage stamp", "fr": "Timbre-poste", "de": "Briefmarke", "it": "Francobollo", "nl": "Postzegel", "zh": "邮票", "zht": "郵票", "bg": "Пощенска марка", "pl": "Znaczek pocztowy"},
+    "perfilAv_li_knopfle": {"es": "Käsknöpfle", "en": "Käsknöpfle", "fr": "Käsknöpfle", "de": "Käsknöpfle", "it": "Käsknöpfle", "nl": "Käsknöpfle", "zh": "奶酪面疙瘩", "zht": "起司麵疙瘩", "bg": "Кескньопфле", "pl": "Käsknöpfle"},
+    "perfilAv_li_casa_roja": {"es": "Casa Roja", "en": "Red House", "fr": "Maison rouge", "de": "Rotes Haus", "it": "Casa Rossa", "nl": "Rode Huis", "zh": "红屋", "zht": "紅屋", "bg": "Червената къща", "pl": "Czerwony Dom"},
+    "perfilAv_li_puente_rin": {"es": "Puente viejo del Rin", "en": "Old Rhine Bridge", "fr": "Vieux pont du Rhin", "de": "Alte Rheinbrücke", "it": "Vecchio ponte sul Reno", "nl": "Oude Rijnbrug", "zh": "莱茵河老桥", "zht": "萊茵河老橋", "bg": "Старият мост на Рейн", "pl": "Stary most na Renie"},
+    "perfilAv_li_oro_nacional": {"es": "Día de Liechtenstein", "en": "Liechtenstein National Day", "fr": "Fête nationale du Liechtenstein", "de": "Staatsfeiertag", "it": "Festa nazionale del Liechtenstein", "nl": "Dag van Liechtenstein", "zh": "列支敦士登国庆日", "zht": "列支敦斯登國慶日", "bg": "Ден на Лихтенщайн", "pl": "Dzień Liechtensteinu"},
+    "perfilAv_mc_coche": {"es": "Coche de carreras", "en": "Racing car", "fr": "Voiture de course", "de": "Rennwagen", "it": "Auto da corsa", "nl": "Raceauto", "zh": "赛车", "zht": "賽車", "bg": "Състезателна кола", "pl": "Bolid"},
+    "perfilAv_mc_oceanografico": {"es": "Museo Oceanográfico", "en": "Oceanographic Museum", "fr": "Musée océanographique", "de": "Meeresmuseum", "it": "Museo oceanografico", "nl": "Oceanografisch Museum", "zh": "海洋博物馆", "zht": "海洋博物館", "bg": "Океанографски музей", "pl": "Muzeum Oceanograficzne"},
+    "perfilAv_mc_palacio": {"es": "Palacio del Príncipe", "en": "Prince’s Palace", "fr": "Palais princier", "de": "Fürstenpalast", "it": "Palazzo dei Principi", "nl": "Prinselijk Paleis", "zh": "摩纳哥亲王宫", "zht": "摩納哥親王宮", "bg": "Княжеският дворец", "pl": "Pałac Książęcy"},
+    "perfilAv_mc_barbagiuan": {"es": "Barbagiuan", "en": "Barbagiuan", "fr": "Barbajuan", "de": "Barbagiuan", "it": "Barbagiuan", "nl": "Barbagiuan", "zh": "摩纳哥炸饺", "zht": "摩納哥炸餃", "bg": "Барбажуан", "pl": "Barbagiuan"},
+    "perfilAv_mc_jardin": {"es": "Jardín Exótico", "en": "Exotic Garden", "fr": "Jardin exotique", "de": "Exotischer Garten", "it": "Giardino esotico", "nl": "Exotische tuin", "zh": "异国花园", "zht": "異國花園", "bg": "Екзотична градина", "pl": "Ogród Egzotyczny"},
+    "perfilAv_mc_oro_nacional": {"es": "Día de Mónaco", "en": "Monaco National Day", "fr": "Fête du Prince", "de": "Nationalfeiertag Monacos", "it": "Festa nazionale monegasca", "nl": "Dag van Monaco", "zh": "摩纳哥国庆日", "zht": "摩納哥國慶日", "bg": "Ден на Монако", "pl": "Dzień Monako"},
+    "perfilAv_pt_nata": {"es": "Pastel de nata", "en": "Pastel de nata", "fr": "Pastel de nata", "de": "Pastel de Nata", "it": "Pastel de nata", "nl": "Pastel de nata", "zh": "葡式蛋挞", "zht": "葡式蛋塔", "bg": "Пастел де ната", "pl": "Pastel de nata"},
+    "perfilAv_pt_azulejo": {"es": "Azulejo", "en": "Azulejo tile", "fr": "Azulejo", "de": "Azulejo", "it": "Azulejo", "nl": "Azulejo", "zh": "葡萄牙瓷砖", "zht": "葡萄牙磁磚", "bg": "Азулежу", "pl": "Azulejo"},
+    "perfilAv_pt_tranvia": {"es": "Tranvía de Lisboa", "en": "Lisbon tram", "fr": "Tramway de Lisbonne", "de": "Straßenbahn in Lissabon", "it": "Tram di Lisbona", "nl": "Tram van Lissabon", "zh": "里斯本电车", "zht": "里斯本電車", "bg": "Трамвай в Лисабон", "pl": "Tramwaj lizboński"},
+    "perfilAv_pt_gallo": {"es": "Gallo de Barcelos", "en": "Barcelos cockerel", "fr": "Coq de Barcelos", "de": "Hahn von Barcelos", "it": "Gallo di Barcelos", "nl": "Haan van Barcelos", "zh": "巴塞罗斯公鸡", "zht": "巴塞羅斯公雞", "bg": "Петелът от Барселуш", "pl": "Kogut z Barcelos"},
+    "perfilAv_pt_sardinas": {"es": "Sardinas", "en": "Sardines", "fr": "Sardines", "de": "Sardinen", "it": "Sardine", "nl": "Sardines", "zh": "沙丁鱼", "zht": "沙丁魚", "bg": "Сардини", "pl": "Sardynki"},
+    "perfilAv_pt_oro_antonio": {"es": "Noche de San Antonio", "en": "St Anthony’s Night", "fr": "Nuit de la Saint-Antoine", "de": "Antoniusnacht", "it": "Notte di Sant’Antonio", "nl": "Sint-Antoniusnacht", "zh": "圣安东尼节", "zht": "聖安東尼節", "bg": "Нощ на свети Антоний", "pl": "Noc Świętego Antoniego"},
+    "perfilAv_gr_partenon": {"es": "Partenón", "en": "Parthenon", "fr": "Parthénon", "de": "Parthenon", "it": "Partenone", "nl": "Parthenon", "zh": "帕特农神庙", "zht": "帕德嫩神殿", "bg": "Партенон", "pl": "Partenon"},
+    "perfilAv_gr_cicladas": {"es": "Casas de las Cícladas", "en": "Cycladic houses", "fr": "Maisons des Cyclades", "de": "Kykladenhäuser", "it": "Case delle Cicladi", "nl": "Cycladische huizen", "zh": "基克拉泽斯白屋", "zht": "基克拉澤斯白屋", "bg": "Къщи на Цикладите", "pl": "Domy na Cykladach"},
+    "perfilAv_gr_gyros": {"es": "Gyros", "en": "Gyros", "fr": "Gyros", "de": "Gyros", "it": "Gyros", "nl": "Gyros", "zh": "希腊烤肉卷", "zht": "希臘烤肉捲", "bg": "Гирос", "pl": "Gyros"},
+    "perfilAv_gr_olivo": {"es": "Rama de olivo", "en": "Olive branch", "fr": "Rameau d’olivier", "de": "Olivenzweig", "it": "Ramo d’ulivo", "nl": "Olijftak", "zh": "橄榄枝", "zht": "橄欖枝", "bg": "Маслинова клонка", "pl": "Gałązka oliwna"},
+    "perfilAv_gr_mochuelo": {"es": "Mochuelo", "en": "Little owl", "fr": "Chevêche d’Athéna", "de": "Steinkauz", "it": "Civetta", "nl": "Steenuil", "zh": "小鸮", "zht": "小鴞", "bg": "Кукумявка", "pl": "Pójdźka"},
+    "perfilAv_gr_oro_kathara": {"es": "Lunes Limpio", "en": "Clean Monday", "fr": "Lundi pur", "de": "Kathara Deftera", "it": "Lunedì puro", "nl": "Schone Maandag", "zh": "洁净星期一", "zht": "潔淨星期一", "bg": "Чист понеделник", "pl": "Czysty Poniedziałek"},
+    "perfilAv_mt_luzzu": {"es": "Luzzu", "en": "Luzzu", "fr": "Luzzu", "de": "Luzzu", "it": "Luzzu", "nl": "Luzzu", "zh": "马耳他彩船", "zht": "馬爾他彩船", "bg": "Луцу", "pl": "Luzzu"},
+    "perfilAv_mt_cruz": {"es": "Cruz de Malta", "en": "Maltese cross", "fr": "Croix de Malte", "de": "Malteserkreuz", "it": "Croce di Malta", "nl": "Maltezer kruis", "zh": "马耳他十字", "zht": "馬爾他十字", "bg": "Малтийски кръст", "pl": "Krzyż maltański"},
+    "perfilAv_mt_balcones": {"es": "Balcones de La Valeta", "en": "Valletta balconies", "fr": "Balcons de La Valette", "de": "Balkone von Valletta", "it": "Balconi di La Valletta", "nl": "Balkons van Valletta", "zh": "瓦莱塔阳台", "zht": "瓦勒他陽台", "bg": "Балконите на Валета", "pl": "Balkony Valletty"},
+    "perfilAv_mt_pastizzi": {"es": "Pastizzi", "en": "Pastizzi", "fr": "Pastizzi", "de": "Pastizzi", "it": "Pastizzi", "nl": "Pastizzi", "zh": "马耳他酥饼", "zht": "馬爾他酥餅", "bg": "Пастици", "pl": "Pastizzi"},
+    "perfilAv_mt_templo": {"es": "Templo megalítico", "en": "Megalithic temple", "fr": "Temple mégalithique", "de": "Megalithtempel", "it": "Tempio megalitico", "nl": "Megalithische tempel", "zh": "巨石神庙", "zht": "巨石神殿", "bg": "Мегалитен храм", "pl": "Świątynia megalityczna"},
+    "perfilAv_mt_oro_carnaval": {"es": "Carnaval de Malta", "en": "Maltese Carnival", "fr": "Carnaval de Malte", "de": "Karneval auf Malta", "it": "Carnevale di Malta", "nl": "Carnaval op Malta", "zh": "马耳他狂欢节", "zht": "馬爾他嘉年華", "bg": "Карнавал в Малта", "pl": "Karnawał na Malcie"},
+    "perfilAv_hr_dubrovnik": {"es": "Dubrovnik", "en": "Dubrovnik", "fr": "Dubrovnik", "de": "Dubrovnik", "it": "Dubrovnik", "nl": "Dubrovnik", "zh": "杜布罗夫尼克", "zht": "杜布羅夫尼克", "bg": "Дубровник", "pl": "Dubrownik"},
+    "perfilAv_hr_dalmata": {"es": "Dálmata", "en": "Dalmatian", "fr": "Dalmatien", "de": "Dalmatiner", "it": "Dalmata", "nl": "Dalmatiër", "zh": "大麦町犬", "zht": "大麥町", "bg": "Далматинец", "pl": "Dalmatyńczyk"},
+    "perfilAv_hr_plitvice": {"es": "Lagos de Plitvice", "en": "Plitvice Lakes", "fr": "Lacs de Plitvice", "de": "Plitvicer Seen", "it": "Laghi di Plitvice", "nl": "Plitvicemeren", "zh": "十六湖", "zht": "十六湖", "bg": "Плитвишките езера", "pl": "Jeziora Plitwickie"},
+    "perfilAv_hr_licitar": {"es": "Corazón de licitar", "en": "Licitar heart", "fr": "Cœur de licitar", "de": "Licitarherz", "it": "Cuore di licitar", "nl": "Licitarhart", "zh": "克罗地亚姜饼心", "zht": "克羅埃西亞薑餅心", "bg": "Лицитарско сърце", "pl": "Serce licitar"},
+    "perfilAv_hr_corbata": {"es": "Corbata", "en": "Tie", "fr": "Cravate", "de": "Krawatte", "it": "Cravatta", "nl": "Stropdas", "zh": "领带", "zht": "領帶", "bg": "Вратовръзка", "pl": "Krawat"},
+    "perfilAv_hr_oro_carnaval": {"es": "Carnaval de Rijeka", "en": "Rijeka Carnival", "fr": "Carnaval de Rijeka", "de": "Karneval in Rijeka", "it": "Carnevale di Fiume", "nl": "Carnaval in Rijeka", "zh": "里耶卡狂欢节", "zht": "里耶卡嘉年華", "bg": "Карнавал в Риека", "pl": "Karnawał w Rijece"},
+    "perfilAv_si_bled": {"es": "Lago de Bled", "en": "Lake Bled", "fr": "Lac de Bled", "de": "Bleder See", "it": "Lago di Bled", "nl": "Meer van Bled", "zh": "布莱德湖", "zht": "布萊德湖", "bg": "Езерото Блед", "pl": "Jezioro Bled"},
+    "perfilAv_si_triglav": {"es": "Triglav", "en": "Triglav", "fr": "Triglav", "de": "Triglav", "it": "Tricorno", "nl": "Triglav", "zh": "特里格拉夫峰", "zht": "特里格拉夫峰", "bg": "Триглав", "pl": "Triglav"},
+    "perfilAv_si_potica": {"es": "Potica", "en": "Potica", "fr": "Potica", "de": "Potica", "it": "Potica", "nl": "Potica", "zh": "斯洛文尼亚核桃卷", "zht": "斯洛維尼亞核桃捲", "bg": "Потица", "pl": "Potica"},
+    "perfilAv_si_proteo": {"es": "Proteo", "en": "Olm", "fr": "Protée", "de": "Grottenolm", "it": "Proteo", "nl": "Olm", "zh": "洞螈", "zht": "洞螈", "bg": "Протей", "pl": "Odmieniec jaskiniowy"},
+    "perfilAv_si_colmena": {"es": "Colmena pintada", "en": "Painted beehive", "fr": "Ruche peinte", "de": "Bemalter Bienenstock", "it": "Alveare dipinto", "nl": "Beschilderde bijenkast", "zh": "彩绘蜂箱", "zht": "彩繪蜂箱", "bg": "Рисуван кошер", "pl": "Malowany ul"},
+    "perfilAv_si_oro_estado": {"es": "Día de Eslovenia", "en": "Slovenian Statehood Day", "fr": "Fête nationale slovène", "de": "Nationalfeiertag Sloweniens", "it": "Festa nazionale slovena", "nl": "Dag van Slovenië", "zh": "斯洛文尼亚建国日", "zht": "斯洛維尼亞建國日", "bg": "Ден на Словения", "pl": "Dzień Słowenii"},
+    "perfilAv_ba_mostar": {"es": "Puente de Mostar", "en": "Mostar Bridge", "fr": "Pont de Mostar", "de": "Brücke von Mostar", "it": "Ponte di Mostar", "nl": "Brug van Mostar", "zh": "莫斯塔尔古桥", "zht": "莫斯塔爾古橋", "bg": "Мостът в Мостар", "pl": "Most w Mostarze"},
+    "perfilAv_ba_cevapi": {"es": "Ćevapi", "en": "Ćevapi", "fr": "Ćevapi", "de": "Ćevapčići", "it": "Ćevapi", "nl": "Ćevapčići", "zh": "波斯尼亚烤肉肠", "zht": "波士尼亞烤肉腸", "bg": "Чевапи", "pl": "Ćevapi"},
+    "perfilAv_ba_cafe": {"es": "Café bosnio", "en": "Bosnian coffee", "fr": "Café bosnien", "de": "Bosnischer Kaffee", "it": "Caffè bosniaco", "nl": "Bosnische koffie", "zh": "波斯尼亚咖啡", "zht": "波士尼亞咖啡", "bg": "Босненско кафе", "pl": "Kawa bośniacka"},
+    "perfilAv_ba_sebilj": {"es": "Sebilj", "en": "Sebilj", "fr": "Sebilj", "de": "Sebilj", "it": "Sebilj", "nl": "Sebilj", "zh": "塞比利喷泉", "zht": "塞比利噴泉", "bg": "Себил", "pl": "Sebilj"},
+    "perfilAv_ba_jajce": {"es": "Cascada de Jajce", "en": "Jajce waterfall", "fr": "Cascade de Jajce", "de": "Wasserfall von Jajce", "it": "Cascata di Jajce", "nl": "Waterval van Jajce", "zh": "亚伊采瀑布", "zht": "亞伊采瀑布", "bg": "Водопадът в Яйце", "pl": "Wodospad w Jajcach"},
+    "perfilAv_ba_oro_mayo": {"es": "Primero de Mayo", "en": "May Day", "fr": "Fête du Travail", "de": "Erster Mai", "it": "Primo maggio", "nl": "Dag van de Arbeid", "zh": "五一劳动节", "zht": "五一勞動節", "bg": "Първи май", "pl": "Święto Pracy"},
+    "perfilAv_rs_golubac": {"es": "Fortaleza de Golubac", "en": "Golubac Fortress", "fr": "Forteresse de Golubac", "de": "Festung Golubac", "it": "Fortezza di Golubac", "nl": "Vesting Golubac", "zh": "戈卢巴茨要塞", "zht": "戈盧巴茨要塞", "bg": "Крепостта Голубац", "pl": "Twierdza Golubac"},
+    "perfilAv_rs_pljeskavica": {"es": "Pljeskavica", "en": "Pljeskavica", "fr": "Pljeskavica", "de": "Pljeskavica", "it": "Pljeskavica", "nl": "Pljeskavica", "zh": "塞尔维亚肉饼", "zht": "塞爾維亞肉餅", "bg": "Плескавица", "pl": "Pljeskavica"},
+    "perfilAv_rs_frambuesas": {"es": "Frambuesas", "en": "Raspberries", "fr": "Framboises", "de": "Himbeeren", "it": "Lamponi", "nl": "Frambozen", "zh": "覆盆子", "zht": "覆盆子", "bg": "Малини", "pl": "Maliny"},
+    "perfilAv_rs_petrovaradin": {"es": "Reloj de Petrovaradin", "en": "Petrovaradin clock tower", "fr": "Horloge de Petrovaradin", "de": "Uhrturm von Petrovaradin", "it": "Orologio di Petrovaradin", "nl": "Klokkentoren van Petrovaradin", "zh": "彼得罗瓦拉丁钟楼", "zht": "彼得羅瓦拉丁鐘樓", "bg": "Часовникът в Петроварадин", "pl": "Zegar w Petrowaradynie"},
+    "perfilAv_rs_opanci": {"es": "Opanci", "en": "Opanci", "fr": "Opanci", "de": "Opanken", "it": "Opanci", "nl": "Opanci", "zh": "塞尔维亚翘头鞋", "zht": "塞爾維亞翹頭鞋", "bg": "Цървули", "pl": "Opanki"},
+    "perfilAv_rs_oro_djurdjevdan": {"es": "San Jorge", "en": "Đurđevdan", "fr": "Saint-Georges", "de": "Georgstag", "it": "San Giorgio", "nl": "Sint-Jorisdag", "zh": "圣乔治日", "zht": "聖喬治日", "bg": "Гергьовден", "pl": "Dzień Świętego Jerzego"},
+    "perfilAv_me_kotor": {"es": "Bahía de Kotor", "en": "Bay of Kotor", "fr": "Bouches de Kotor", "de": "Bucht von Kotor", "it": "Bocche di Cattaro", "nl": "Baai van Kotor", "zh": "科托尔湾", "zht": "科托灣", "bg": "Которският залив", "pl": "Zatoka Kotorska"},
+    "perfilAv_me_sveti_stefan": {"es": "Sveti Stefan", "en": "Sveti Stefan", "fr": "Sveti Stefan", "de": "Sveti Stefan", "it": "Sveti Stefan", "nl": "Sveti Stefan", "zh": "圣斯特凡岛", "zht": "聖斯特凡島", "bg": "Свети Стефан", "pl": "Sveti Stefan"},
+    "perfilAv_me_durmitor": {"es": "Durmitor", "en": "Durmitor", "fr": "Durmitor", "de": "Durmitor", "it": "Durmitor", "nl": "Durmitor", "zh": "杜米托尔山", "zht": "杜米托爾山", "bg": "Дурмитор", "pl": "Durmitor"},
+    "perfilAv_me_mimosa": {"es": "Mimosa", "en": "Mimosa", "fr": "Mimosa", "de": "Mimose", "it": "Mimosa", "nl": "Mimosa", "zh": "银荆花", "zht": "銀荊花", "bg": "Мимоза", "pl": "Mimoza"},
+    "perfilAv_me_prsut": {"es": "Jamón de Njeguši", "en": "Njeguši ham", "fr": "Jambon de Njeguši", "de": "Njeguši-Schinken", "it": "Prosciutto di Njeguši", "nl": "Ham uit Njeguši", "zh": "涅古什火腿", "zht": "涅古什火腿", "bg": "Негушки пършут", "pl": "Szynka z Njeguši"},
+    "perfilAv_me_oro_estado": {"es": "Día de Montenegro", "en": "Montenegrin Statehood Day", "fr": "Fête nationale du Monténégro", "de": "Nationalfeiertag Montenegros", "it": "Festa nazionale del Montenegro", "nl": "Dag van Montenegro", "zh": "黑山建国日", "zht": "蒙特內哥羅建國日", "bg": "Ден на Черна гора", "pl": "Dzień Czarnogóry"},
+    "perfilAv_mk_ohrid": {"es": "Lago de Ohrid", "en": "Lake Ohrid", "fr": "Lac d’Ohrid", "de": "Ohridsee", "it": "Lago di Ocrida", "nl": "Meer van Ohrid", "zh": "奥赫里德湖", "zht": "奧赫里德湖", "bg": "Охридското езеро", "pl": "Jezioro Ochrydzkie"},
+    "perfilAv_mk_perlas": {"es": "Perlas de Ohrid", "en": "Ohrid pearls", "fr": "Perles d’Ohrid", "de": "Ohrider Perlen", "it": "Perle di Ocrida", "nl": "Parels van Ohrid", "zh": "奥赫里德珍珠", "zht": "奧赫里德珍珠", "bg": "Охридски бисери", "pl": "Perły ochrydzkie"},
+    "perfilAv_mk_tavce": {"es": "Tavče gravče", "en": "Tavče gravče", "fr": "Tavče gravče", "de": "Tavče Gravče", "it": "Tavče gravče", "nl": "Tavče gravče", "zh": "陶锅焗豆", "zht": "陶鍋焗豆", "bg": "Тавче гравче", "pl": "Tavče gravče"},
+    "perfilAv_mk_puente": {"es": "Puente de Skopje", "en": "Skopje Stone Bridge", "fr": "Pont de Skopje", "de": "Brücke von Skopje", "it": "Ponte di Skopje", "nl": "Stenen Brug van Skopje", "zh": "斯科普里石桥", "zht": "斯科普里石橋", "bg": "Каменният мост в Скопие", "pl": "Kamienny Most w Skopju"},
+    "perfilAv_mk_lince": {"es": "Lince balcánico", "en": "Balkan lynx", "fr": "Lynx des Balkans", "de": "Balkanluchs", "it": "Lince balcanica", "nl": "Balkanlynx", "zh": "巴尔干猞猁", "zht": "巴爾幹猞猁", "bg": "Балкански рис", "pl": "Ryś bałkański"},
+    "perfilAv_mk_oro_independencia": {"es": "Día de la Independencia", "en": "North Macedonia Day", "fr": "Jour de l’Indépendance", "de": "Tag der Unabhängigkeit", "it": "Festa nazionale nordmacedone", "nl": "Dag van Noord-Macedonië", "zh": "北马其顿独立日", "zht": "北馬其頓獨立日", "bg": "Ден на Северна Македония", "pl": "Dzień Macedonii Północnej"},
+    "perfilAv_al_aguila_bicefala": {"es": "Águila bicéfala", "en": "Double-headed eagle", "fr": "Aigle à deux têtes", "de": "Doppeladler", "it": "Aquila bicipite", "nl": "Dubbelkoppige adelaar", "zh": "双头鹰", "zht": "雙頭鷹", "bg": "Двуглав орел", "pl": "Orzeł dwugłowy"},
+    "perfilAv_al_berat": {"es": "Berat", "en": "Berat", "fr": "Berat", "de": "Berat", "it": "Berat", "nl": "Berat", "zh": "培拉特", "zht": "培拉特", "bg": "Берат", "pl": "Berat"},
+    "perfilAv_al_byrek": {"es": "Byrek", "en": "Byrek", "fr": "Byrek", "de": "Byrek", "it": "Byrek", "nl": "Byrek", "zh": "阿尔巴尼亚馅饼", "zht": "阿爾巴尼亞餡餅", "bg": "Бюрек", "pl": "Byrek"},
+    "perfilAv_al_ksamil": {"es": "Islas de Ksamil", "en": "Ksamil islands", "fr": "Îles de Ksamil", "de": "Inseln von Ksamil", "it": "Isole di Ksamil", "nl": "Eilanden van Ksamil", "zh": "克萨米尔群岛", "zht": "克薩米爾群島", "bg": "Островите на Ксамил", "pl": "Wyspy Ksamil"},
+    "perfilAv_al_cifteli": {"es": "Çifteli", "en": "Çifteli", "fr": "Çifteli", "de": "Çifteli", "it": "Çifteli", "nl": "Çifteli", "zh": "阿尔巴尼亚双弦琴", "zht": "阿爾巴尼亞雙弦琴", "bg": "Чифтели", "pl": "Çifteli"},
+    "perfilAv_al_oro_verano": {"es": "Día del Verano", "en": "Summer Day", "fr": "Jour de l’été", "de": "Dita e Verës", "it": "Giorno dell’estate", "nl": "Dita e Verës", "zh": "夏日节", "zht": "夏日節", "bg": "Ден на лятото", "pl": "Dzień Lata"},
+    "perfilAv_ad_santa_coloma": {"es": "Iglesia de Santa Coloma", "en": "Church of Santa Coloma", "fr": "Santa Coloma", "de": "Kirche Santa Coloma", "it": "Santa Coloma", "nl": "Kerk van Santa Coloma", "zh": "圣科洛马教堂", "zht": "聖科洛馬教堂", "bg": "Санта Колома", "pl": "Santa Coloma"},
+    "perfilAv_ad_casa_vall": {"es": "Casa de la Vall", "en": "Casa de la Vall", "fr": "Casa de la Vall", "de": "Casa de la Vall", "it": "Casa de la Vall", "nl": "Casa de la Vall", "zh": "谷地之家", "zht": "谷地之家", "bg": "Каса де ла Вал", "pl": "Casa de la Vall"},
+    "perfilAv_ad_sarrio": {"es": "Sarrio", "en": "Pyrenean chamois", "fr": "Isard", "de": "Pyrenäen-Gämse", "it": "Camoscio dei Pirenei", "nl": "Pyrenese gems", "zh": "比利牛斯岩羚羊", "zht": "庇里牛斯岩羚羊", "bg": "Пиренейска дива коза", "pl": "Kozica pirenejska"},
+    "perfilAv_ad_trinxat": {"es": "Trinxat", "en": "Trinxat", "fr": "Trinxat", "de": "Trinxat", "it": "Trinxat", "nl": "Trinxat", "zh": "土豆卷心菜饼", "zht": "馬鈴薯高麗菜餅", "bg": "Тринчат", "pl": "Trinxat"},
+    "perfilAv_ad_madriu": {"es": "Valle del Madriu", "en": "Madriu Valley", "fr": "Vallée du Madriu", "de": "Madriu-Tal", "it": "Valle del Madriu", "nl": "Madriudal", "zh": "马德留谷", "zht": "馬德留谷", "bg": "Долината Мадриу", "pl": "Dolina Madriu"},
+    "perfilAv_ad_oro_falles": {"es": "Falles de Sant Joan", "en": "Falles de Sant Joan", "fr": "Falles de Sant Joan", "de": "Falles de Sant Joan", "it": "Falles de Sant Joan", "nl": "Falles de Sant Joan", "zh": "夏至火节", "zht": "夏至火節", "bg": "Фалес де Сант Жоан", "pl": "Falles de Sant Joan"},
+    "perfilAv_sm_torres": {"es": "Tres Torres", "en": "Three Towers", "fr": "Trois tours", "de": "Drei Türme", "it": "Tre Torri", "nl": "Drie Torens", "zh": "三塔", "zht": "三塔", "bg": "Трите кули", "pl": "Trzy Wieże"},
+    "perfilAv_sm_palacio": {"es": "Palacio Público", "en": "Palazzo Pubblico", "fr": "Palazzo Pubblico", "de": "Palazzo Pubblico", "it": "Palazzo Pubblico", "nl": "Palazzo Pubblico", "zh": "政府宫", "zht": "政府宮", "bg": "Палацо Публико", "pl": "Palazzo Pubblico"},
+    "perfilAv_sm_piadina": {"es": "Piadina", "en": "Piadina", "fr": "Piadina", "de": "Piadina", "it": "Piadina", "nl": "Piadina", "zh": "皮亚迪纳饼", "zht": "皮亞迪納餅", "bg": "Пиадина", "pl": "Piadina"},
+    "perfilAv_sm_teleferico": {"es": "Teleférico", "en": "Cable car", "fr": "Téléphérique", "de": "Seilbahn", "it": "Funivia", "nl": "Kabelbaan", "zh": "缆车", "zht": "纜車", "bg": "Въжена линия", "pl": "Kolejka linowa"},
+    "perfilAv_sm_bustrengo": {"es": "Bustrengo", "en": "Bustrengo", "fr": "Bustrengo", "de": "Bustrengo", "it": "Bustrengo", "nl": "Bustrengo", "zh": "圣马力诺蛋糕", "zht": "聖馬利諾蛋糕", "bg": "Бустренго", "pl": "Bustrengo"},
+    "perfilAv_sm_oro_fundacion": {"es": "Fiesta de San Marino", "en": "Feast of St Marinus", "fr": "Fête de Saint-Marin", "de": "Festa di San Marino", "it": "Festa di San Marino", "nl": "Festa di San Marino", "zh": "圣马力诺建国日", "zht": "聖馬利諾建國日", "bg": "Празник на Сан Марино", "pl": "Święto San Marino"},
+    "perfilAv_cy_halloumi": {"es": "Halloumi", "en": "Halloumi", "fr": "Halloumi", "de": "Halloumi", "it": "Halloumi", "nl": "Halloumi", "zh": "哈罗米奶酪", "zht": "哈羅米起司", "bg": "Халуми", "pl": "Halloumi"},
+    "perfilAv_cy_afrodita": {"es": "Roca de Afrodita", "en": "Aphrodite’s Rock", "fr": "Rocher d’Aphrodite", "de": "Aphrodite-Felsen", "it": "Scoglio di Afrodite", "nl": "Rots van Aphrodite", "zh": "阿佛洛狄忒岩", "zht": "阿芙蘿黛蒂岩", "bg": "Скалата на Афродита", "pl": "Skała Afrodyty"},
+    "perfilAv_cy_muflon": {"es": "Muflón", "en": "Cyprus mouflon", "fr": "Mouflon de Chypre", "de": "Zypern-Mufflon", "it": "Muflone di Cipro", "nl": "Cyprische moeflon", "zh": "塞浦路斯盘羊", "zht": "賽普勒斯盤羊", "bg": "Кипърски муфлон", "pl": "Muflon cypryjski"},
+    "perfilAv_cy_loukoumi_geroskipou": {"es": "Loukoumi", "en": "Loukoumi", "fr": "Loukoum", "de": "Loukoumi", "it": "Loukoumi", "nl": "Loukoumi", "zh": "塞浦路斯软糖", "zht": "賽普勒斯軟糖", "bg": "Локум", "pl": "Loukoumi"},
+    "perfilAv_cy_encaje": {"es": "Encaje de Lefkara", "en": "Lefkara lace", "fr": "Dentelle de Lefkara", "de": "Lefkara-Spitze", "it": "Merletto di Lefkara", "nl": "Kant uit Lefkara", "zh": "莱夫卡拉蕾丝", "zht": "雷夫卡拉蕾絲", "bg": "Дантела от Лефкара", "pl": "Koronka z Lefkary"},
+    "perfilAv_cy_oro_kataklysmos": {"es": "Fiesta del Diluvio", "en": "Kataklysmos", "fr": "Fête du Déluge", "de": "Kataklysmos", "it": "Festa del Diluvio", "nl": "Kataklysmos", "zh": "洪水节", "zht": "洪水節", "bg": "Празник на потопа", "pl": "Święto Potopu"},
+    "perfilAv_cz_reloj": {"es": "Reloj astronómico", "en": "Astronomical clock", "fr": "Horloge astronomique", "de": "Astronomische Uhr", "it": "Orologio astronomico", "nl": "Astronomisch uurwerk", "zh": "布拉格天文钟", "zht": "布拉格天文鐘", "bg": "Астрономически часовник", "pl": "Zegar astronomiczny"},
+    "perfilAv_cz_puente_carlos": {"es": "Puente de Carlos", "en": "Charles Bridge", "fr": "Pont Charles", "de": "Karlsbrücke", "it": "Ponte Carlo", "nl": "Karelsbrug", "zh": "查理大桥", "zht": "查理大橋", "bg": "Карлов мост", "pl": "Most Karola"},
+    "perfilAv_cz_krumlov": {"es": "Český Krumlov", "en": "Český Krumlov", "fr": "Český Krumlov", "de": "Český Krumlov", "it": "Český Krumlov", "nl": "Český Krumlov", "zh": "捷克克鲁姆洛夫", "zht": "捷克克倫洛夫", "bg": "Чески Крумлов", "pl": "Czeski Krumlow"},
+    "perfilAv_cz_svickova": {"es": "Svíčková", "en": "Svíčková", "fr": "Svíčková", "de": "Svíčková", "it": "Svíčková", "nl": "Svíčková", "zh": "捷克奶油牛肉", "zht": "捷克奶油牛肉", "bg": "Свичкова", "pl": "Svíčková"},
+    "perfilAv_cz_cristal": {"es": "Cristal de Bohemia", "en": "Bohemian glass", "fr": "Cristal de Bohême", "de": "Böhmisches Glas", "it": "Cristallo di Boemia", "nl": "Boheems kristal", "zh": "波西米亚玻璃", "zht": "波希米亞玻璃", "bg": "Бохемско стъкло", "pl": "Szkło czeskie"},
+    "perfilAv_cz_oro_walpurgis": {"es": "Noche de Walpurgis", "en": "Walpurgis Night", "fr": "Nuit de Walpurgis", "de": "Walpurgisnacht", "it": "Notte di Valpurga", "nl": "Walpurgisnacht", "zh": "瓦尔普吉斯之夜", "zht": "瓦爾普吉斯之夜", "bg": "Валпургиева нощ", "pl": "Noc Walpurgii"},
+    "perfilAv_sk_bratislava": {"es": "Castillo de Bratislava", "en": "Bratislava Castle", "fr": "Château de Bratislava", "de": "Burg Bratislava", "it": "Castello di Bratislava", "nl": "Burcht van Bratislava", "zh": "布拉迪斯拉发城堡", "zht": "布拉提斯拉瓦城堡", "bg": "Братиславският замък", "pl": "Zamek w Bratysławie"},
+    "perfilAv_sk_krivan": {"es": "Kriváň", "en": "Kriváň", "fr": "Kriváň", "de": "Kriváň", "it": "Kriváň", "nl": "Kriváň", "zh": "克里万峰", "zht": "克里萬峰", "bg": "Криван", "pl": "Krywań"},
+    "perfilAv_sk_halusky": {"es": "Halušky", "en": "Halušky", "fr": "Halušky", "de": "Halušky", "it": "Halušky", "nl": "Halušky", "zh": "羊奶酪面疙瘩", "zht": "羊起司麵疙瘩", "bg": "Халушки", "pl": "Haluszki"},
+    "perfilAv_sk_cicmany": {"es": "Casas de Čičmany", "en": "Čičmany houses", "fr": "Maisons de Čičmany", "de": "Häuser von Čičmany", "it": "Case di Čičmany", "nl": "Huizen van Čičmany", "zh": "契奇曼尼木屋", "zht": "契奇曼尼木屋", "bg": "Къщите в Чичмани", "pl": "Domy w Čičmanach"},
+    "perfilAv_sk_fujara": {"es": "Fujara", "en": "Fujara", "fr": "Fujara", "de": "Fujara", "it": "Fujara", "nl": "Fujara", "zh": "富吉拉笛", "zht": "富吉拉笛", "bg": "Фуяра", "pl": "Fujara"},
+    "perfilAv_sk_oro_fasiangy": {"es": "Carnaval eslovaco", "en": "Fašiangy", "fr": "Carnaval slovaque", "de": "Fašiangy", "it": "Carnevale slovacco", "nl": "Fašiangy", "zh": "斯洛伐克狂欢节", "zht": "斯洛伐克嘉年華", "bg": "Фашианги", "pl": "Fašiangy"},
+    "perfilAv_hu_parlamento": {"es": "Parlamento", "en": "Parliament", "fr": "Parlement", "de": "Parlament", "it": "Parlamento", "nl": "Parlement", "zh": "匈牙利国会大厦", "zht": "匈牙利國會大廈", "bg": "Парламентът", "pl": "Parlament"},
+    "perfilAv_hu_paprika": {"es": "Pimentón", "en": "Paprika", "fr": "Paprika", "de": "Paprika", "it": "Paprika", "nl": "Paprika", "zh": "匈牙利红椒", "zht": "匈牙利紅椒", "bg": "Червен пипер", "pl": "Papryka"},
+    "perfilAv_hu_gulash": {"es": "Goulash", "en": "Goulash", "fr": "Goulasch", "de": "Gulasch", "it": "Gulasch", "nl": "Goulash", "zh": "匈牙利牛肉汤", "zht": "匈牙利牛肉湯", "bg": "Гулаш", "pl": "Gulasz"},
+    "perfilAv_hu_puli": {"es": "Puli", "en": "Puli", "fr": "Puli", "de": "Puli", "it": "Puli", "nl": "Puli", "zh": "波利犬", "zht": "波利犬", "bg": "Пули", "pl": "Puli"},
+    "perfilAv_hu_termas": {"es": "Baños termales", "en": "Thermal baths", "fr": "Bains thermaux", "de": "Thermalbad", "it": "Terme", "nl": "Thermale baden", "zh": "温泉浴场", "zht": "溫泉浴場", "bg": "Термални бани", "pl": "Łaźnie termalne"},
+    "perfilAv_hu_oro_esteban": {"es": "San Esteban", "en": "St Stephen’s Day", "fr": "Fête de saint Étienne", "de": "Tag der Staatsgründung", "it": "Santo Stefano d’Ungheria", "nl": "Sint-Stefansdag", "zh": "圣伊什特万日", "zht": "聖伊什特萬日", "bg": "Ден на свети Ищван", "pl": "Dzień Świętego Stefana"},
+    "perfilAv_ro_peles": {"es": "Castillo de Peleș", "en": "Peleș Castle", "fr": "Château de Peleș", "de": "Schloss Peleș", "it": "Castello di Peleș", "nl": "Kasteel Peleș", "zh": "佩莱什城堡", "zht": "佩萊什城堡", "bg": "Замъкът Пелеш", "pl": "Zamek Peleș"},
+    "perfilAv_ro_sarmale": {"es": "Sarmale", "en": "Sarmale", "fr": "Sarmale", "de": "Sarmale", "it": "Sarmale", "nl": "Sarmale", "zh": "罗马尼亚菜卷", "zht": "羅馬尼亞菜捲", "bg": "Сарми", "pl": "Sarmale"},
+    "perfilAv_ro_maramures": {"es": "Iglesia de Maramureș", "en": "Maramureș church", "fr": "Église du Maramureș", "de": "Holzkirche der Maramureș", "it": "Chiesa del Maramureș", "nl": "Houten kerk van Maramureș", "zh": "马拉穆列什木教堂", "zht": "馬拉穆列什木教堂", "bg": "Църква в Марамуреш", "pl": "Cerkiew w Marmaroszu"},
+    "perfilAv_ro_horezu": {"es": "Cerámica de Horezu", "en": "Horezu pottery", "fr": "Céramique de Horezu", "de": "Horezu-Keramik", "it": "Ceramica di Horezu", "nl": "Aardewerk uit Horezu", "zh": "霍雷祖陶器", "zht": "霍雷祖陶器", "bg": "Керамика от Хорезу", "pl": "Ceramika z Horezu"},
+    "perfilAv_ro_papanasi": {"es": "Papanași", "en": "Papanași", "fr": "Papanași", "de": "Papanași", "it": "Papanași", "nl": "Papanași", "zh": "罗马尼亚甜甜圈", "zht": "羅馬尼亞甜甜圈", "bg": "Папанаш", "pl": "Papanași"},
+    "perfilAv_ro_oro_martisor": {"es": "Mărțișor", "en": "Mărțișor", "fr": "Mărțișor", "de": "Mărțișor", "it": "Mărțișor", "nl": "Mărțișor", "zh": "三月花节", "zht": "三月花節", "bg": "Мърцишор", "pl": "Mărțișor"},
+    "perfilAv_md_orheiul_vechi": {"es": "Orheiul Vechi", "en": "Orheiul Vechi", "fr": "Orheiul Vechi", "de": "Orheiul Vechi", "it": "Orheiul Vechi", "nl": "Orheiul Vechi", "zh": "老奥尔海伊", "zht": "老奧爾海伊", "bg": "Старият Орхей", "pl": "Stary Orgiejów"},
+    "perfilAv_md_mamaliga": {"es": "Mămăligă", "en": "Mămăligă", "fr": "Mămăligă", "de": "Mămăligă", "it": "Mămăligă", "nl": "Mămăligă", "zh": "玉米糊", "zht": "玉米糊", "bg": "Мамалига", "pl": "Mamałyga"},
+    "perfilAv_md_placinta": {"es": "Plăcintă", "en": "Plăcintă", "fr": "Plăcintă", "de": "Plăcintă", "it": "Plăcintă", "nl": "Plăcintă", "zh": "摩尔多瓦馅饼", "zht": "摩爾多瓦餡餅", "bg": "Плачинта", "pl": "Plăcintă"},
+    "perfilAv_md_soroca": {"es": "Fortaleza de Soroca", "en": "Soroca Fortress", "fr": "Forteresse de Soroca", "de": "Festung Soroca", "it": "Fortezza di Soroca", "nl": "Vesting Soroca", "zh": "索罗卡要塞", "zht": "索羅卡要塞", "bg": "Крепостта Сорока", "pl": "Twierdza w Sorokach"},
+    "perfilAv_md_alfombra": {"es": "Alfombra moldava", "en": "Moldovan carpet", "fr": "Tapis moldave", "de": "Moldauischer Teppich", "it": "Tappeto moldavo", "nl": "Moldavisch tapijt", "zh": "摩尔多瓦挂毯", "zht": "摩爾多瓦掛毯", "bg": "Молдовски килим", "pl": "Kilim mołdawski"},
+    "perfilAv_md_oro_martisor": {"es": "Mărțișor", "en": "Mărțișor", "fr": "Mărțișor", "de": "Mărțișor", "it": "Mărțișor", "nl": "Mărțișor", "zh": "三月花节", "zht": "三月花節", "bg": "Мърцишор", "pl": "Mărțișor"},
+    "perfilAv_ua_girasol": {"es": "Girasol", "en": "Sunflower", "fr": "Tournesol", "de": "Sonnenblume", "it": "Girasole", "nl": "Zonnebloem", "zh": "向日葵", "zht": "向日葵", "bg": "Слънчоглед", "pl": "Słonecznik"},
+    "perfilAv_ua_borshch": {"es": "Borsch", "en": "Borscht", "fr": "Bortsch", "de": "Borschtsch", "it": "Boršč", "nl": "Borsjtsj", "zh": "罗宋汤", "zht": "羅宋湯", "bg": "Украински борш", "pl": "Barszcz ukraiński"},
+    "perfilAv_ua_kamianets": {"es": "Castillo de Kamianets", "en": "Kamianets Castle", "fr": "Château de Kamianets", "de": "Festung Kamjanez", "it": "Castello di Kamianets", "nl": "Kasteel van Kamjanets", "zh": "卡缅涅茨城堡", "zht": "卡緬涅茨城堡", "bg": "Крепостта Каменец", "pl": "Zamek w Kamieńcu"},
+    "perfilAv_ua_petrykivka": {"es": "Pintura de Petrykivka", "en": "Petrykivka painting", "fr": "Peinture de Petrykivka", "de": "Petrykiwka-Malerei", "it": "Pittura di Petrykivka", "nl": "Petrykivka-schilderkunst", "zh": "彼得里基夫卡彩绘", "zht": "彼得里基夫卡彩繪", "bg": "Петриковска живопис", "pl": "Malarstwo petrykiwskie"},
+    "perfilAv_ua_bandura": {"es": "Bandura", "en": "Bandura", "fr": "Bandoura", "de": "Bandura", "it": "Bandura", "nl": "Bandoera", "zh": "班杜拉琴", "zht": "班杜拉琴", "bg": "Бандура", "pl": "Bandura"},
+    "perfilAv_ua_oro_vyshyvanka": {"es": "Día de la Vyshyvanka", "en": "Vyshyvanka Day", "fr": "Journée de la vychyvanka", "de": "Tag der Wyschywanka", "it": "Giornata della Vyšyvanka", "nl": "Vysjyvankadag", "zh": "刺绣衬衫日", "zht": "刺繡襯衫日", "bg": "Ден на вишиванката", "pl": "Dzień Wyszywanki"},
+    "perfilAv_by_mir": {"es": "Castillo de Mir", "en": "Mir Castle", "fr": "Château de Mir", "de": "Schloss Mir", "it": "Castello di Mir", "nl": "Kasteel van Mir", "zh": "米尔城堡", "zht": "米爾城堡", "bg": "Мирският замък", "pl": "Zamek w Mirze"},
+    "perfilAv_by_draniki": {"es": "Draniki", "en": "Draniki", "fr": "Draniki", "de": "Draniki", "it": "Draniki", "nl": "Draniki", "zh": "白俄罗斯土豆饼", "zht": "白俄羅斯馬鈴薯餅", "bg": "Драники", "pl": "Draniki"},
+    "perfilAv_by_lino": {"es": "Flor de lino", "en": "Flax flower", "fr": "Fleur de lin", "de": "Leinblüte", "it": "Fiore di lino", "nl": "Vlasbloem", "zh": "亚麻花", "zht": "亞麻花", "bg": "Ленен цвят", "pl": "Kwiat lnu"},
+    "perfilAv_by_paja": {"es": "Muñeca de paja", "en": "Straw doll", "fr": "Poupée de paille", "de": "Strohpuppe", "it": "Bambola di paglia", "nl": "Strooien pop", "zh": "草编娃娃", "zht": "草編娃娃", "bg": "Сламена кукла", "pl": "Słomiana lalka"},
+    "perfilAv_by_machanka": {"es": "Machanka", "en": "Machanka", "fr": "Machanka", "de": "Matschanka", "it": "Machanka", "nl": "Machanka", "zh": "白俄罗斯炖肉", "zht": "白俄羅斯燉肉", "bg": "Мачанка", "pl": "Maczanka"},
+    "perfilAv_by_oro_kupalle": {"es": "Noche de Kupala", "en": "Kupala Night", "fr": "Nuit de Kupala", "de": "Iwan-Kupala-Tag", "it": "Notte di Kupala", "nl": "Koepalanacht", "zh": "库帕拉节", "zht": "庫帕拉節", "bg": "Нощ на Купала", "pl": "Noc Kupały"},
+    "perfilAv_ru_matrioska": {"es": "Matrioska", "en": "Matryoshka", "fr": "Matriochka", "de": "Matrjoschka", "it": "Matrioska", "nl": "Matroesjka", "zh": "俄罗斯套娃", "zht": "俄羅斯娃娃", "bg": "Матрьошка", "pl": "Matrioszka"},
+    "perfilAv_ru_san_basilio": {"es": "San Basilio", "en": "St Basil’s Cathedral", "fr": "Saint-Basile", "de": "Basilius-Kathedrale", "it": "San Basilio", "nl": "Sint-Basilius", "zh": "圣瓦西里大教堂", "zht": "聖瓦西里大教堂", "bg": "Василий Блажени", "pl": "Wasyl Błogosławiony"},
+    "perfilAv_ru_samovar": {"es": "Samovar", "en": "Samovar", "fr": "Samovar", "de": "Samowar", "it": "Samovar", "nl": "Samovar", "zh": "茶炊", "zht": "茶炊", "bg": "Самовар", "pl": "Samowar"},
+    "perfilAv_ru_balalaika": {"es": "Balalaica", "en": "Balalaika", "fr": "Balalaïka", "de": "Balalaika", "it": "Balalaica", "nl": "Balalaika", "zh": "巴拉莱卡琴", "zht": "巴拉萊卡琴", "bg": "Балалайка", "pl": "Bałałajka"},
+    "perfilAv_ru_blinis": {"es": "Blinis", "en": "Blini", "fr": "Blinis", "de": "Blini", "it": "Blini", "nl": "Blini", "zh": "俄式薄饼", "zht": "俄式薄餅", "bg": "Блини", "pl": "Bliny"},
+    "perfilAv_ru_oro_maslenitsa": {"es": "Máslenitsa", "en": "Maslenitsa", "fr": "Maslenitsa", "de": "Masleniza", "it": "Maslenica", "nl": "Maslenitsa", "zh": "谢肉节", "zht": "謝肉節", "bg": "Масленица", "pl": "Maslenica"},
+    "perfilAv_en_paraguas": {"es": "Paraguas", "en": "Umbrella", "fr": "Parapluie", "de": "Regenschirm", "it": "Ombrello", "nl": "Paraplu", "zh": "雨伞", "zht": "雨傘", "bg": "Чадър", "pl": "Parasol"},
+    "perfilAv_pl_flor": {"es": "Flor recortada", "en": "Paper-cut flower", "fr": "Fleur en papier", "de": "Papierblume", "it": "Fiore di carta", "nl": "Papieren bloem", "zh": "剪纸花", "zht": "剪紙花", "bg": "Хартиено цвете", "pl": "Wycinanka"},
+    "perfilAv_bg_shevitsa": {"es": "Bordado", "en": "Embroidery", "fr": "Broderie", "de": "Stickerei", "it": "Ricamo", "nl": "Borduurwerk", "zh": "刺绣", "zht": "刺繡", "bg": "Шевица", "pl": "Haft"},
+    "perfilAv_ie_hurling": {"es": "Hurling", "en": "Hurling", "fr": "Hurling", "de": "Hurling", "it": "Hurling", "nl": "Hurling", "zh": "爱尔兰式曲棍球", "zht": "愛爾蘭式曲棍球", "bg": "Хърлинг", "pl": "Hurling"},
+    "perfilAv_dk_cisne": {"es": "Cisne", "en": "Swan", "fr": "Cygne", "de": "Schwan", "it": "Cigno", "nl": "Zwaan", "zh": "天鹅", "zht": "天鵝", "bg": "Лебед", "pl": "Łabędź"},
+    "perfilAv_no_salmon": {"es": "Salmón", "en": "Salmon", "fr": "Saumon", "de": "Lachs", "it": "Salmone", "nl": "Zalm", "zh": "三文鱼", "zht": "鮭魚", "bg": "Сьомга", "pl": "Łosoś"},
+    "perfilAv_fi_kantele": {"es": "Kantele", "en": "Kantele", "fr": "Kantele", "de": "Kantele", "it": "Kantele", "nl": "Kantele", "zh": "康特勒琴", "zht": "康特勒琴", "bg": "Кантеле", "pl": "Kantele"},
+    "perfilAv_is_basalto": {"es": "Columnas de basalto", "en": "Basalt columns", "fr": "Orgues basaltiques", "de": "Basaltsäulen", "it": "Colonne di basalto", "nl": "Basaltzuilen", "zh": "玄武岩柱", "zht": "玄武岩柱", "bg": "Базалтови колони", "pl": "Kolumny bazaltowe"},
+    "perfilAv_ee_lobo": {"es": "Lobo", "en": "Wolf", "fr": "Loup", "de": "Wolf", "it": "Lupo", "nl": "Wolf", "zh": "狼", "zht": "狼", "bg": "Вълк", "pl": "Wilk"},
+    "perfilAv_lv_lavandera": {"es": "Lavandera blanca", "en": "White wagtail", "fr": "Bergeronnette grise", "de": "Bachstelze", "it": "Ballerina bianca", "nl": "Witte kwikstaart", "zh": "白鹡鸰", "zht": "白鶺鴒", "bg": "Бяла стърчиопашка", "pl": "Pliszka siwa"},
+    "perfilAv_lv_sklandrausis": {"es": "Sklandrausis", "en": "Sklandrausis", "fr": "Sklandrausis", "de": "Sklandrausis", "it": "Sklandrausis", "nl": "Sklandrausis", "zh": "拉脱维亚胡萝卜挞", "zht": "拉脫維亞胡蘿蔔塔", "bg": "Скландраусис", "pl": "Sklandrausis"},
+    "perfilAv_be_saxofon": {"es": "Saxofón", "en": "Saxophone", "fr": "Saxophone", "de": "Saxofon", "it": "Sassofono", "nl": "Saxofoon", "zh": "萨克斯管", "zht": "薩克斯風", "bg": "Саксофон", "pl": "Saksofon"},
+    "perfilAv_lu_mullerthal": {"es": "Cascada del Mullerthal", "en": "Mullerthal waterfall", "fr": "Cascade du Mullerthal", "de": "Wasserfall im Müllerthal", "it": "Cascata del Mullerthal", "nl": "Waterval in het Mullerthal", "zh": "米勒塔尔瀑布", "zht": "米勒塔爾瀑布", "bg": "Водопадът в Мюлертал", "pl": "Wodospad w Mullerthalu"},
+    "perfilAv_mc_fougasse": {"es": "Fougasse monegasca", "en": "Monégasque fougasse", "fr": "Fougasse monégasque", "de": "Monegassische Fougasse", "it": "Fougasse monegasca", "nl": "Monegaskische fougasse", "zh": "摩纳哥茴香甜饼", "zht": "摩納哥茴香甜餅", "bg": "Монакска питка", "pl": "Fougasse monakijska"},
+    "perfilAv_mt_kelb_tal_fenek": {"es": "Kelb tal-Fenek", "en": "Kelb tal-Fenek", "fr": "Kelb tal-Fenek", "de": "Kelb tal-Fenek", "it": "Kelb tal-Fenek", "nl": "Kelb tal-Fenek", "zh": "法老王猎犬", "zht": "法老王獵犬", "bg": "Келб тал-фенек", "pl": "Kelb tal-Fenek"},
+    "perfilAv_ba_lonac": {"es": "Bosanski lonac", "en": "Bosnian pot", "fr": "Marmite bosnienne", "de": "Bosnischer Topf", "it": "Pentola bosniaca", "nl": "Bosnische stoofpot", "zh": "波斯尼亚炖锅", "zht": "波士尼亞燉鍋", "bg": "Босненски лонец", "pl": "Bosanski lonac"},
+    "perfilAv_ba_molinos": {"es": "Molinos del Pliva", "en": "Pliva watermills", "fr": "Moulins de la Pliva", "de": "Wassermühlen an der Pliva", "it": "Mulini sul Pliva", "nl": "Watermolens aan de Pliva", "zh": "普利瓦河水磨坊", "zht": "普利瓦河水磨坊", "bg": "Воденичките на Плива", "pl": "Młyny nad Plivą"},
+    "perfilAv_rs_uvac": {"es": "Meandros del Uvac", "en": "Uvac meanders", "fr": "Méandres de l’Uvac", "de": "Mäander des Uvac", "it": "Meandri dell’Uvac", "nl": "Meanders van de Uvac", "zh": "乌瓦茨河曲流", "zht": "烏瓦茨河曲流", "bg": "Меандрите на Увац", "pl": "Meandry Uvacu"},
+    "perfilAv_rs_sargan": {"es": "Tren de Šargan", "en": "Šargan Eight railway", "fr": "Train de Šargan", "de": "Šargan-Bahn", "it": "Treno di Šargan", "nl": "Šargantrein", "zh": "沙尔甘八字铁路", "zht": "沙爾甘八字鐵路", "bg": "Шарганската осмица", "pl": "Kolej Šargan"},
+    "perfilAv_me_tara": {"es": "Cañón del Tara", "en": "Tara Canyon", "fr": "Canyon de la Tara", "de": "Tara-Schlucht", "it": "Canyon del Tara", "nl": "Tarakloof", "zh": "塔拉河峡谷", "zht": "塔拉河峽谷", "bg": "Каньонът на Тара", "pl": "Kanion Tary"},
+    "perfilAv_al_aguila": {"es": "Águila real", "en": "Golden eagle", "fr": "Aigle royal", "de": "Steinadler", "it": "Aquila reale", "nl": "Steenarend", "zh": "金雕", "zht": "金鵰", "bg": "Скален орел", "pl": "Orzeł przedni"},
+    "perfilAv_ad_telesilla": {"es": "Telesilla", "en": "Chairlift", "fr": "Télésiège", "de": "Sessellift", "it": "Seggiovia", "nl": "Stoeltjeslift", "zh": "吊椅索道", "zht": "纜椅", "bg": "Седалков лифт", "pl": "Wyciąg krzesełkowy"},
+    "perfilAv_cy_ciclamen": {"es": "Ciclamen de Chipre", "en": "Cyprus cyclamen", "fr": "Cyclamen de Chypre", "de": "Zypern-Alpenveilchen", "it": "Ciclamino di Cipro", "nl": "Cyprische cyclaam", "zh": "塞浦路斯仙客来", "zht": "賽普勒斯仙客來", "bg": "Кипърска циклама", "pl": "Cyklamen cypryjski"},
+    "perfilAv_cz_pravcice": {"es": "Puerta de Pravčice", "en": "Pravčice Gate", "fr": "Porte de Pravčice", "de": "Prebischtor", "it": "Porta di Pravčice", "nl": "Poort van Pravčice", "zh": "普拉夫奇采门", "zht": "普拉夫奇采門", "bg": "Правчицката порта", "pl": "Brama Pravčicka"},
+    "perfilAv_ro_pelicano": {"es": "Pelícano", "en": "Pelican", "fr": "Pélican", "de": "Pelikan", "it": "Pellicano", "nl": "Pelikaan", "zh": "鹈鹕", "zht": "鵜鶘", "bg": "Пеликан", "pl": "Pelikan"},
+    "perfilAv_md_uvas": {"es": "Uvas", "en": "Grapes", "fr": "Raisin", "de": "Trauben", "it": "Uva", "nl": "Druiven", "zh": "葡萄", "zht": "葡萄", "bg": "Грозде", "pl": "Winogrona"},
+    "perfilAv_ua_kalyna": {"es": "Viburno", "en": "Guelder rose", "fr": "Viorne obier", "de": "Gewöhnlicher Schneeball", "it": "Viburno", "nl": "Gelderse roos", "zh": "欧洲荚蒾", "zht": "歐洲莢蒾", "bg": "Калина", "pl": "Kalina"},
+    "perfilAv_ru_pajaro_fuego": {"es": "Pájaro de fuego", "en": "Firebird", "fr": "Oiseau de feu", "de": "Feuervogel", "it": "Uccello di fuoco", "nl": "Vuurvogel", "zh": "火鸟", "zht": "火鳥", "bg": "Жар-птица", "pl": "Żar-ptak"}
+  };
+  Object.assign(UI_TX, PERFIL_UI);
+
+  /* Sin el catalogo no hay pantalla. El cargador pide antes avatares.js; si
+     aun asi no esta, no se define TG_PERFIL y el cargador abre la ficha de la
+     cuenta, como antes del perfil. */
+  var AV = window.TG_AVATARES;
+  if (!AV) return;
+
+  var KEY = 'tenerife.perfil';
+  /* las pestañas de la pantalla (31 de octubre de 2026): la abierta se guarda en st.pestana */
+  var PESTANAS = ['viaje', 'cuerpo', 'cuenta'];
+  var KG_LB = 2.20462, CM_IN = 2.54;
+  /* Rangos admitidos: los mismos al escribir, al leer del dispositivo, al leer
+     de la nube y en los check de perfil.sql. */
+  var RANGO = { cm: [80, 250], pulgadas: [32, 98], kg: [20, 400], lb: [45, 880], km: [0.1, 200] };
+  /* Como mucho 2.000 pesos y 2.000 caminatas: el tope de perfil.sql por cuenta (un peso al
+     dia son mas de cinco años). Cambiar el peso de un dia que ya lo tiene, siempre. */
+  var TOPE_REGISTROS = 2000;
+  var EDAD_ADULTO = 20;   /* OMS: de 5 a 19 años se usa el IMC para la edad, no estas categorias */
+  var reducido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Nombres en bulgaro que se parecen a otros de la app y estan bien (tools/auditar_cirilico.py):
+     CIRILICO-OK: Баба      «Баба Марта», la fiesta bulgara del 1 de marzo (avatar de oro bg-oro-marta); no es «Баха» */
+
+  /* ── utilidades ── */
+  function $(id) { return document.getElementById(id); }
+  function ymd(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function fecha(s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function dias(a, b) { return Math.round((fecha(b) - fecha(a)) / 86400000); }
+  function hoy() { return ymd(new Date()); }
+  function esFecha(s) { return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !isNaN(fecha(s)); }
+  /* Postgres devuelve las horas con microsegundos («…34.261123+00:00»); Safari no siempre
+     los lee: se dejan en milisegundos antes de Date.parse. */
+  function instante(s) { return typeof s === 'string' && s.length <= 40 ? Date.parse(s.replace(/(\.\d{3})\d+/, '$1')) : NaN; }
+  function esInstante(s) { return !isNaN(instante(s)); }
+  function esUid(s) { return typeof s === 'string' && /^[0-9a-f-]{8,64}$/i.test(s); }
+  function esIdCaminata(s) { return typeof s === 'string' && s.length >= 8 && s.length <= 64; }
+  function vacio(v) { return v === null || v === undefined || v === ''; }
+  /* El idioma es el de la app, y los numeros y las fechas, con su formato
+     (PRECIOS_GAS_LOCALE, el mismo mapa de codigos que usa la app). */
+  function lengua() { return (typeof currentLang === 'string' && currentLang) || 'es'; }
+  function locale() { return PRECIOS_GAS_LOCALE[lengua()] || 'es-ES'; }
+  /* authLoggedAs y authLogoutBtn no estan en UI_TX: estan en AUTH_STRINGS, fundido en LANGS */
+  function txCuenta(k) { var L = typeof t === 'function' ? t() : null; return (L && L[k]) || ''; }
+  function nombreSet(id) { return tx('perfilSet_' + id) || id; }
+  function nombreAvatar(id) { return tx('perfilAv_' + id.replace(/-/g, '_')) || id; }
+  function nombreLogro(b) { var l = lengua(); return (b && b.name && (b.name[l] || b.name.en || b.name.es)) || ''; }
+  function fmt(n, dec) { return new Intl.NumberFormat(locale(), { minimumFractionDigits: dec, maximumFractionDigits: dec }).format(n); }
+  function fmtFecha(s, op) { return fecha(s).toLocaleDateString(locale(), op || { day: 'numeric', month: 'short' }); }
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  /* Cada cambio se guarda entero. Y el boton de la cuenta lleva el avatar
+     elegido (lo pinta el cargador de index.html): si cambio, aqui, al borrar
+     o desde la nube, se repinta. */
+  function guardar() {
+    try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {}
+    if (st.avatar !== avatarCuenta) {
+      avatarCuenta = st.avatar;
+      try { if (typeof window.TG_AVATAR_CUENTA === 'function') window.TG_AVATAR_CUENTA(); } catch (e) {}
+    }
+  }
+  /* Id de cada caminata, unico tambien entre moviles (es su clave en la
+     nube): crypto.randomUUID si existe (iOS 15.4, Chrome 92), y si no, hora
+     + azar. */
+  function nuevoId() {
+    try { if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID(); } catch (e) {}
+    return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 10);
+  }
+  var toastT;
+  /* Que de tiempo a leerlo: unos 55 ms por letra (150 por caracter chino), entre 2,2 y 7 s
+     (los avisos de la nube llegan a 120 letras). */
+  function toast(txt) {
+    var e = $('tgp-toast'); if (!e) return;
+    e.textContent = txt; e.classList.add('show'); clearTimeout(toastT);
+    var cjk = (String(txt).match(/[\u3000-\u9fff\uff00-\uffef]/g) || []).length;
+    toastT = setTimeout(function () { e.classList.remove('show'); }, Math.min(7000, Math.max(2200, (String(txt).length - cjk) * 55 + cjk * 150)));
+  }
+  /* «81,5» y «81.5» valen lo mismo. Vacio -> null; lo que no es un numero -> NaN. */
+  function leerNumero(id) {
+    var s = String($(id).value || '').replace(/\s/g, '').replace(',', '.');
+    if (!s) return null;
+    return /^\d+(\.\d+)?$/.test(s) ? parseFloat(s) : NaN;
+  }
+  /* Comprueba un campo contra su rango; si esta mal lo dice debajo y devuelve undefined. */
+  function campo(id, rango, ayudaId) {
+    var v = leerNumero(id), mal = v !== null && (isNaN(v) || v < rango[0] || v > rango[1]);
+    $(id).setAttribute('aria-invalid', mal ? 'true' : 'false');
+    var a = $(ayudaId); if (a) { a.classList.toggle('error', mal); if (mal) a.textContent = tx('perfilRango', { min: fmt(rango[0], rango[0] % 1 ? 1 : 0), max: fmt(rango[1], 0) }); }
+    return mal ? undefined : v;
+  }
+
+  /* ── estado ── */
+  function porDefecto() {
+    /* editado: cuando se toco el perfil por ultima vez (para juntarlo con la nube).
+       nube: null o { uid, desde, ok }: el permiso de ESA cuenta (desde = cuando se dio;
+       ok = este movil ya se junto con la nube). colas: lo que falta por subir, por cuenta. */
+    return { v: 1, nombre: '', avatar: '', unidades: 'metric', altura_cm: null, nacimiento: null, objetivo_kg: null,
+      medidas: [], km: [], creado: hoy(), rango: 30, tab: 'peso', pestana: 'viaje', editado: null, nube: null, colas: {}, oro: {} };
+  }
+  function leerNube(n) { return (n && typeof n === 'object' && esUid(n.uid) && esInstante(n.desde)) ? { uid: n.uid, desde: n.desde, ok: n.ok === true } : null; }
+  function leerColas(cs) {
+    var out = {}; if (!cs || typeof cs !== 'object') return out;
+    Object.keys(cs).slice(0, 8).forEach(function (u) {
+      var c = cs[u]; if (!esUid(u) || !c || typeof c !== 'object') return;
+      var q = { uid: u, n: Number.isInteger(c.n) && c.n >= 0 ? c.n : 0, alta: c.alta === true, baja: c.baja === true,
+        perfil: Number.isInteger(c.perfil) && c.perfil > 0 ? c.perfil : 0, pesos: {}, km: {} };
+      ['pesos', 'km'].forEach(function (tipo) {
+        var m = c[tipo]; if (!m || typeof m !== 'object') return;
+        Object.keys(m).forEach(function (k) {
+          var e = m[k];
+          if ((tipo === 'pesos' ? esFecha(k) : esIdCaminata(k)) && Array.isArray(e) && (e[0] === 0 || e[0] === 1) && Number.isInteger(e[1])) q[tipo][k] = [e[0], e[1]];
+        });
+      });
+      out[u] = q;
+    });
+    return out;
+  }
+  /* Lo que viene de localStorage se valida campo a campo: lo que no vale se
+     descarta, no todo. Otra version (v) se lee en lo que se reconozca y se
+     reescribe en la 1. */
+  function cargar() {
+    var s = null; try { s = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+    if (!s || typeof s !== 'object') return porDefecto();
+    var d = porDefecto(), anio = new Date().getFullYear();
+    d.nombre = typeof s.nombre === 'string' ? s.nombre.trim().slice(0, 24) : '';
+    d.avatar = (typeof s.avatar === 'string' && AV.porId(s.avatar)) ? s.avatar : '';
+    d.unidades = s.unidades === 'imperial' ? 'imperial' : 'metric';
+    d.altura_cm = (s.altura_cm >= RANGO.cm[0] && s.altura_cm <= RANGO.cm[1]) ? s.altura_cm : null;
+    d.nacimiento = (s.nacimiento >= 1900 && s.nacimiento <= anio) ? s.nacimiento : null;
+    d.objetivo_kg = (s.objetivo_kg >= RANGO.kg[0] && s.objetivo_kg <= RANGO.kg[1]) ? s.objetivo_kg : null;
+    d.creado = esFecha(s.creado) ? s.creado : d.creado;
+    var vistos = {};
+    d.medidas = (Array.isArray(s.medidas) ? s.medidas : []).filter(function (m) { return m && esFecha(m.d) && m.d <= hoy() && m.kg >= RANGO.kg[0] && m.kg <= RANGO.kg[1] && !vistos[m.d] && (vistos[m.d] = 1); });
+    d.km = (Array.isArray(s.km) ? s.km : []).filter(function (k) { return k && esFecha(k.d) && k.d <= hoy() && k.km >= RANGO.km[0] && k.km <= RANGO.km[1]; }).map(function (k) { return { id: esIdCaminata(k.id) ? k.id : nuevoId(), d: k.d, km: k.km }; });
+    /* la nube: el permiso solo cuenta con cuenta y fecha validas; la cola, entrada a entrada */
+    d.editado = esInstante(s.editado) ? s.editado : null;
+    d.nube = leerNube(s.nube);
+    d.colas = leerColas(s.colas);
+    d.rango = [30, 90, 365].indexOf(s.rango) >= 0 ? s.rango : 30;
+    d.tab = s.tab === 'km' ? 'km' : 'peso';
+    d.pestana = PESTANAS.indexOf(s.pestana) >= 0 ? s.pestana : 'viaje';
+    /* los de oro: solo ids de oro del catalogo; el avatar elegido, si es de oro, es suyo */
+    d.oro = leerOro(s.oro);
+    if (d.avatar && AV.esOro(d.avatar) && !Object.prototype.hasOwnProperty.call(d.oro, d.avatar)) d.oro[d.avatar] = '';
+    return d;
+  }
+  function leerOro(o) {
+    var out = {}; if (!o || typeof o !== 'object' || Array.isArray(o)) return out;
+    Object.keys(o).slice(0, 200).forEach(function (id) { if (AV.esOro(id)) out[id] = esFecha(o[id]) ? o[id] : ''; });
+    return out;
+  }
+  var st = cargar(), avatarCuenta = st.avatar;
+
+  /* ── lo que da la app: AppFavorites y el bloque VISITADO + LOGROS (AppLogros) ── */
+  /* visitados: los marcados con «Marcar visitado» (tenerife.visited), que dan los logros;
+     comprobadas: los marcados estando alli, comprobado con la ubicacion (tenerife.visitas).
+     El set Tenerife solo se abre con visitas comprobadas (Jerome, 22 de octubre). */
+  function deLaApp(fn, porDefectoV) { try { return fn(); } catch (e) { return porDefectoV; } }
+  function visitados() { return deLaApp(function () { return window.AppLogros.visitados().length; }, 0); }
+  function comprobadas() { return deLaApp(function () { return window.AppLogros.comprobadas().length; }, 0); }
+  function favoritos() { return deLaApp(function () { return window.AppFavorites.list().length; }, 0); }
+  /* los seis logros de la app (VIS_BADGES y la cumbre), sin copiarlos */
+  function listaLogros() { return deLaApp(function () { return window.AppLogros.lista(); }, []); }
+  /* los que tiene la persona: los que la app ya le dio (tenerife.badges), igual que su panel de logros */
+  function logrosConseguidos() {
+    var tiene = deLaApp(function () { return window.AppLogros.conseguidos(); }, []);
+    return listaLogros().filter(function (b) { return tiene.indexOf(b.key) >= 0; }).map(function (b) { return b.key; });
+  }
+  function setDesbloqueado(set) { return !set.desbloqueo || comprobadas() >= set.desbloqueo; }
+
+  /* ── los de oro (Jerome, 23-10-2026: «Algunos que pueden salir en momento particular o
+     eventos del pais como de oro»). Cada uno se coge solo el dia de su fiesta (la regla
+     esta en avatares.js) y quien lo coge se lo queda: st.oro = { id: 'AAAA-MM-DD' }, la
+     fecha en que lo cogio ('' si llego de la nube como avatar elegido). Fuera de fecha se
+     ve con candado y con la fecha. No dependen del desbloqueo de su set: los tres de
+     Tenerife se cogen en su fiesta aunque falten visitas. ── */
+  function esOro(a) { return !!(a && a.oro); }
+  function tieneOro(id) { return Object.prototype.hasOwnProperty.call(st.oro, id); }
+  function oroHoy(a) { return AV.disponible(a.id, hoy()); }
+  function avatarLibre(a) { return esOro(a) ? (tieneOro(a.id) || oroHoy(a)) : setDesbloqueado(AV.set(a.set)); }
+  /* «el 17 de marzo» o «del 14 al 17 de febrero» (en chino, las dos fechas enteras) */
+  function cuandoOro(v) {
+    if (!v) return '';
+    var op = { day: 'numeric', month: 'long' };
+    if (v.desde === v.hasta) return tx('perfilOroEl', { fecha: fmtFecha(v.desde, op) });
+    var mismoMes = v.desde.slice(0, 7) === v.hasta.slice(0, 7) && lengua() !== 'zh' && lengua() !== 'zht';
+    return tx('perfilOroDelAl', { desde: fmtFecha(v.desde, mismoMes ? { day: 'numeric' } : op), hasta: fmtFecha(v.hasta, op) });
+  }
+  /* debajo del avatar: «17 mar» o «14–17 feb»; en chino, las de varios dias en numeros
+     («12/31–1/1»), porque «12月31日–1月1日» no cabe en el boton */
+  function fechaCortaOro(v) {
+    if (!v) return '';
+    if (v.desde === v.hasta) return fmtFecha(v.desde);
+    if (lengua() === 'zh' || lengua() === 'zht') return fmtFecha(v.desde, { month: 'numeric', day: 'numeric' }) + '–' + fmtFecha(v.hasta, { month: 'numeric', day: 'numeric' });
+    var mismoMes = v.desde.slice(0, 7) === v.hasta.slice(0, 7);
+    return fmtFecha(v.desde, mismoMes ? { day: 'numeric' } : undefined) + '–' + fmtFecha(v.hasta);
+  }
+  /* «De oro»: primero los de hoy que aun no tiene, luego los demas por fecha, y al final los suyos. */
+  function orosOrdenados() {
+    var h = hoy();
+    function clave(a) { var v = AV.proxima(a.id, h); return [tieneOro(a.id) ? 2 : (oroHoy(a) ? 0 : 1), v ? v.desde : '9999-99-99']; }
+    return AV.oros.slice().sort(function (a, b) { var x = clave(a), y = clave(b); return x[0] - y[0] || (x[1] < y[1] ? -1 : (x[1] > y[1] ? 1 : 0)); });
+  }
+  /* La linea del pie en un set: su avatar de oro (en Tenerife, el mas proximo de los tres). */
+  function notaOro(s) {
+    var h = hoy(), oros = s.avatares.filter(esOro), hoyNo, pend, mio;
+    if (!oros.length) return '';
+    hoyNo = oros.filter(function (a) { return oroHoy(a) && !tieneOro(a.id); })[0];
+    if (hoyNo) return tx('perfilOroNotaHoy', { fiesta: nombreAvatar(hoyNo.id) });
+    pend = oros.filter(function (a) { return !tieneOro(a.id) && AV.proxima(a.id, h); })
+      .sort(function (a, b) { return AV.proxima(a.id, h).desde < AV.proxima(b.id, h).desde ? -1 : 1; })[0];
+    if (pend) return tx('perfilOroNota', { fiesta: nombreAvatar(pend.id), cuando: cuandoOro(AV.proxima(pend.id, h)) });
+    mio = oros.filter(function (a) { return tieneOro(a.id); })[0];
+    return mio ? tx('perfilOroTuyo', { fiesta: nombreAvatar(mio.id) }) : '';
+  }
+  /* Tocar un avatar lo mueve un segundo (Jerome, 23-10-2026: «Interactivo?»): la clase
+     tga-play en lo que lo contiene; perfil.css hace el resto. Nada con «reducir movimiento». */
+  function jugar(n) {
+    if (!n || reducido) return;
+    n.classList.remove('tga-play'); void n.offsetWidth; n.classList.add('tga-play');
+    clearTimeout(n.tgaT); n.tgaT = setTimeout(function () { n.classList.remove('tga-play'); }, 1400);
+  }
+  /* Un avatar de oro fuera de su dia: dice cuando y hace «no» con la cabeza. */
+  function avisoOro(a, b) {
+    var v = AV.proxima(a.id, hoy());
+    toast(v ? tx('perfilOroBloqueado', { fiesta: nombreAvatar(a.id), cuando: cuandoOro(v) }) : nombreAvatar(a.id));
+    if (b && !reducido) { b.classList.remove('tga-no'); void b.offsetWidth; b.classList.add('tga-no'); clearTimeout(b.tgaN); b.tgaN = setTimeout(function () { b.classList.remove('tga-no'); }, 600); }
+  }
+
+  /* ── la cuenta (window.AppAuth, el puente de index.html) ── */
+  function sesion() {
+    var A = window.AppAuth;
+    try { if (A && A.isConfigured() && A.isLoggedIn()) { var u = A.getUser(); if (u && esUid(u.id)) return u; } } catch (e) {}
+    return null;
+  }
+  /* El boton de administrador, como pintarBotonAdmin() de index.html: escondido hasta que la
+     funcion esAdmin() (rpc es_admin) dice que si. */
+  function conAdmin(fn) {
+    var p;
+    try { p = (typeof window.esAdmin === 'function') ? window.esAdmin() : Promise.resolve(false); } catch (e) { return; }
+    Promise.resolve(p).then(function (ok) { if (ok && sesion()) fn(); }, function () {});
+  }
+  function montado() { return !!$('tgp-cuenta-status'); }   /* el cuerpo se pone la primera vez que se abre */
+  function abrirLogin() { var A = window.AppAuth; try { if (A && A.openLogin) A.openLogin(); } catch (e) {} }
+
+  /* ── la nube, con permiso (Jerome, 22 de octubre: «lo hacemos con permiso del usuario») ──
+     · Solo con sesion y solo con el permiso de ESA cuenta (st.nube.uid): si en el
+       movil entra otra cuenta, a esa no se le sube nada sin su propio permiso.
+     · La fila de perfiles ES el permiso: solo «Acepto» la crea (insert); lo demas
+       la actualiza (update). Si ya no esta -el permiso se retiro en otro movil-, el
+       interruptor se apaga aqui y la fila no se vuelve a crear sola.
+     · Retirar el permiso, o borrar el perfil con la nube encendida, borra esa fila:
+       pesos y caminatas caen detras (on delete cascade). Sin red, se queda en la
+       cola y se hace en cuanto vuelva.
+     · Las visitas comprobadas no suben nunca.
+     · st.colas[uid]: lo que falta por subir (1) o borrar (0), clave a clave; cada
+       marca lleva un numero que crece, para no perder lo que se toca mientras sube.
+     · Por debajo de EDAD_NUBE (segun el año de nacimiento) no se ofrece encenderla;
+       apagarla, siempre. */
+  var EDAD_NUBE = 14;          /* LOPDGDD, art. 7: desde los 14 años se consiente solo */
+  var NUBE_ESPERA = 1500;      /* ms entre el ultimo cambio y la subida */
+  var NUBE_PLAZO = 15000;      /* una peticion que tarda mas cuenta como fallida (y se reintenta) */
+  var NUBE_PAGINA = 1000;      /* Supabase da como mucho 1.000 filas por consulta («Max rows»): se lee por paginas */
+  var nubeT = null, nubeCadena = Promise.resolve(), reintentoT = null, reintentoMs = 0;
+  function clienteNube() { var A = window.AppAuth; try { return A && A.getClient ? A.getClient() : null; } catch (e) { return null; } }
+  function nubeEncendida() { var u = sesion(); return !!(u && st.nube && st.nube.uid === u.id); }
+  function menorParaNube() { var e = edad(); return e !== null && e < EDAD_NUBE; }
+  function colaDe(uid) {
+    if (!st.colas[uid]) st.colas[uid] = { uid: uid, n: 0, alta: false, baja: false, perfil: 0, pesos: {}, km: {} };
+    return st.colas[uid];
+  }
+  function colaVacia(c) { return !c.alta && !c.baja && !c.perfil && !Object.keys(c.pesos).length && !Object.keys(c.km).length; }
+  /* Cada cambio del perfil pasa por aqui (despues, guardar()). tipo: 'perfil' | 'pesos' | 'km'; op: 1 subir, 0 borrar. */
+  function marcar(tipo, clave, op) {
+    if (tipo === 'perfil') st.editado = new Date().toISOString();
+    if (!st.nube) return;
+    /* sin la sesion de esa cuenta no se sube nada; cuando vuelva, se juntan los dos lados */
+    if (!nubeEncendida()) { st.nube.ok = false; return; }
+    var c = colaDe(st.nube.uid); c.n++;
+    if (tipo === 'perfil') c.perfil = c.n; else c[tipo][clave] = [op, c.n];
+    programarNube();
+  }
+  function programarNube() { clearTimeout(nubeT); nubeT = setTimeout(sincronizar, NUBE_ESPERA); }
+  function huella() { return JSON.stringify([st.nombre, st.avatar, st.unidades, st.altura_cm, st.nacimiento, st.objetivo_kg, st.creado, st.medidas, st.km]); }
+  /* Las vueltas van en fila, de una en una. Devuelve lo que paso: 'ok', 'baja',
+     'retirado', 'apagada', 'error', 'sin-red' o 'sin-sesion'. */
+  function sincronizar() {
+    clearTimeout(nubeT); clearTimeout(reintentoT);
+    var p = nubeCadena.then(function () {
+      var h0 = huella();
+      return vueltaNube().then(function (r) { if (huella() !== h0) repintarTrasNube(); estadoNube(); return r; });
+    }).catch(function () { estadoNube(); return 'error'; }).then(function (r) { reintentar(r); return r; });
+    nubeCadena = p;
+    return p;
+  }
+  /* Si fallo y queda algo en la cola, se reintenta sola: 30 s, 1 min, 2 min… hasta 15 min.
+     Sin red del todo (navigator.onLine), espera al evento «online». */
+  function reintentar(r) {
+    var u = sesion();
+    if (r !== 'error' || !u || !st.colas[u.id]) { reintentoMs = 0; return; }
+    reintentoMs = Math.min(reintentoMs ? reintentoMs * 2 : 30000, 900000);
+    clearTimeout(reintentoT); reintentoT = setTimeout(sincronizar, reintentoMs);
+  }
+  /* Una peticion a Supabase: siempre { data, error }. Sin red, supabase-js ya devuelve
+     el error; si algo lanza o tarda mas de NUBE_PLAZO, tambien. */
+  function pedir(q) {
+    return new Promise(function (res) {
+      var tope = setTimeout(function () { res({ data: null, error: { message: 'plazo' } }); }, NUBE_PLAZO);
+      Promise.resolve(q).then(function (r) { clearTimeout(tope); res(r || { data: null, error: { message: 'vacia' } }); },
+        function (e) { clearTimeout(tope); res({ data: null, error: { message: String((e && e.message) || e) } }); });
+    });
+  }
+  /* Todas las filas de esta cuenta en una tabla, por paginas y en orden de su clave: con
+     una sola consulta llegarian 1.000 como mucho, y lo que faltase se tomaria por borrado
+     en otro movil. count: 'exact' dice cuantas hay; si no lo dijera, se sigue hasta una
+     pagina vacia. */
+  async function leerTodas(sb, tabla, campos, orden, uid) {
+    var filas = [], total = null, r, d;
+    for (var vuelta = 0; vuelta < 50; vuelta++) {
+      r = await pedir(sb.from(tabla).select(campos, { count: 'exact' }).eq('user_id', uid).order(orden).range(filas.length, filas.length + NUBE_PAGINA - 1));
+      if (r.error) return r;
+      d = r.data || [];
+      if (total === null && typeof r.count === 'number') total = r.count;
+      filas = filas.concat(d);
+      if (!d.length || (total !== null && filas.length >= total)) return { data: filas, error: null };
+    }
+    return { data: null, error: { message: 'demasiadas páginas' } };
+  }
+  function esFK(e) { return !!(e && e.code === '23503'); }   /* pesos o caminatas sin su fila de perfiles */
+  function camposPerfil() {
+    return { nombre: st.nombre || null, avatar: st.avatar || null, unidades: st.unidades, altura_cm: st.altura_cm,
+      nacimiento: st.nacimiento, objetivo_kg: st.objetivo_kg, creado: st.creado, updated_at: new Date().toISOString() };
+  }
+  function retirado(uid) {
+    if (st.nube && st.nube.uid === uid) st.nube = null;
+    delete st.colas[uid]; guardar(); return 'retirado';
+  }
+  async function vueltaNube() {
+    var u = sesion(), sb = clienteNube();
+    if (!u || !sb) return 'sin-sesion';
+    if (navigator.onLine === false) return 'sin-red';
+    var uid = u.id, c = st.colas[uid], r;
+    /* 1. Retirar el permiso: se borra su fila de perfiles; pesos y caminatas caen detras. */
+    if (c && c.baja) {
+      r = await pedir(sb.from('perfiles').delete().eq('user_id', uid));
+      if (r.error) return 'error';
+      if (st.colas[uid] === c && c.baja) { delete st.colas[uid]; guardar(); }
+      return 'baja';
+    }
+    /* 2. Lo que hay en la nube de esta cuenta. */
+    r = await pedir(sb.from('perfiles').select('consentido_en, nombre, avatar, unidades, altura_cm, nacimiento, objetivo_kg, creado, updated_at').eq('user_id', uid).maybeSingle());
+    if (r.error) return 'error';
+    var fila = r.data || null;
+    c = st.colas[uid];
+    if (c && c.baja) return 'error';   /* lo retiraron mientras tanto: la vuelta siguiente lo borra */
+    if (!fila) {
+      if (!(c && c.alta)) {
+        /* Sin fila no hay permiso. Si este movil lo creia encendido, se retiro en otro sitio. */
+        if (st.nube && st.nube.uid === uid) return retirado(uid);
+        return 'apagada';
+      }
+      /* El permiso se dio aqui: la fila se crea (es el consentimiento) y se sube todo. */
+      var alta = camposPerfil(), nAlta = c.n;
+      alta.user_id = uid;
+      alta.consentido_en = (st.nube && st.nube.uid === uid) ? st.nube.desde : new Date().toISOString();
+      r = await pedir(sb.from('perfiles').insert(alta));
+      if (r.error) return 'error';
+      c = colaDe(uid); c.alta = false; if (c.perfil <= nAlta) c.perfil = 0;
+      st.medidas.forEach(function (m) { c.n++; c.pesos[m.d] = [1, c.n]; });
+      st.km.forEach(function (k) { c.n++; c.km[k.id] = [1, c.n]; });
+      if (st.nube && st.nube.uid === uid) st.nube.ok = true;
+      guardar();
+    } else {
+      /* Hay permiso para esta cuenta (dado aqui o en otro movil): se juntan los dos lados. */
+      var rp = await leerTodas(sb, 'pesos', 'fecha, kg', 'fecha', uid);
+      var rk = await leerTodas(sb, 'caminatas', 'id, fecha, km', 'id', uid);
+      if (rp.error || rk.error) return 'error';
+      if (st.colas[uid] && st.colas[uid].baja) return 'error';
+      fusionar(uid, fila, rp.data || [], rk.data || []);
+    }
+    /* 3. Subir lo que esta en la cola. */
+    c = st.colas[uid];
+    if (!c) return 'ok';
+    if (colaVacia(c)) { delete st.colas[uid]; guardar(); return 'ok'; }
+    var hasta = c.n;
+    if (c.perfil) {
+      r = await pedir(sb.from('perfiles').update(camposPerfil()).eq('user_id', uid).select('user_id'));
+      if (r.error) return 'error';
+      if (!r.data || !r.data.length) return retirado(uid);   /* la fila ya no esta: no se vuelve a crear */
+    }
+    var subeP = [], borraP = [], subeK = [], borraK = [];
+    Object.keys(c.pesos).forEach(function (d) {
+      var m = c.pesos[d][0] === 1 ? st.medidas.find(function (x) { return x.d === d; }) : null;
+      if (m) subeP.push({ user_id: uid, fecha: d, kg: m.kg }); else borraP.push(d);
+    });
+    Object.keys(c.km).forEach(function (id) {
+      var k = c.km[id][0] === 1 ? st.km.find(function (x) { return x.id === id; }) : null;
+      if (k) subeK.push({ user_id: uid, id: id, fecha: k.d, km: k.km }); else borraK.push(id);
+    });
+    if (subeP.length) { r = await pedir(sb.from('pesos').upsert(subeP, { onConflict: 'user_id,fecha' })); if (r.error) return esFK(r.error) ? retirado(uid) : 'error'; }
+    if (borraP.length) { r = await pedir(sb.from('pesos').delete().eq('user_id', uid).in('fecha', borraP)); if (r.error) return 'error'; }
+    if (subeK.length) { r = await pedir(sb.from('caminatas').upsert(subeK, { onConflict: 'user_id,id' })); if (r.error) return esFK(r.error) ? retirado(uid) : 'error'; }
+    if (borraK.length) { r = await pedir(sb.from('caminatas').delete().eq('user_id', uid).in('id', borraK)); if (r.error) return 'error'; }
+    /* 4. Fuera de la cola lo subido; lo que se toco mientras subia espera a la vuelta siguiente. */
+    c = st.colas[uid];
+    if (c && !c.baja) {
+      if (c.perfil && c.perfil <= hasta) c.perfil = 0;
+      ['pesos', 'km'].forEach(function (tipo) { Object.keys(c[tipo]).forEach(function (k) { if (c[tipo][k][1] <= hasta) delete c[tipo][k]; }); });
+      if (colaVacia(c)) delete st.colas[uid]; else programarNube();
+    }
+    guardar();
+    return 'ok';
+  }
+  /* Lo que llega de la nube se valida igual que lo de localStorage. */
+  function perfilDeNube(f) {
+    var anio = new Date().getFullYear(), al = Number(f.altura_cm), na = Number(f.nacimiento), ob = Number(f.objetivo_kg);
+    return {
+      nombre: typeof f.nombre === 'string' ? f.nombre.trim().slice(0, 24) : '',
+      avatar: (typeof f.avatar === 'string' && AV.porId(f.avatar)) ? f.avatar : '',
+      unidades: f.unidades === 'imperial' ? 'imperial' : 'metric',
+      altura_cm: (f.altura_cm != null && al >= RANGO.cm[0] && al <= RANGO.cm[1]) ? al : null,
+      nacimiento: (f.nacimiento != null && na >= 1900 && na <= anio) ? na : null,
+      objetivo_kg: (f.objetivo_kg != null && ob >= RANGO.kg[0] && ob <= RANGO.kg[1]) ? ob : null,
+      creado: esFecha(f.creado) ? f.creado : null
+    };
+  }
+  /* Junta la nube con el movil, sin awaits por medio (no se cuela ningun cambio).
+     La primera vez en este movil (st.nube.ok falso): la union; lo del movil gana el
+     mismo dia y se sube. Despues manda la nube (asi llega lo que se borro en otro
+     movil), salvo lo que esta en la cola, que es mas nuevo. Lo que el movil no puede
+     enseñar (una fecha que aqui aun es futura) se queda en la nube sin tocarlo. */
+  function fusionar(uid, fila, pesosSrv, kmSrv) {
+    if (!st.nube || st.nube.uid !== uid) st.nube = { uid: uid, desde: esInstante(fila.consentido_en) ? fila.consentido_en : new Date().toISOString(), ok: false };
+    var c = colaDe(uid), primera = !st.nube.ok, h = hoy();
+    if (c.alta) c.alta = false;   /* la fila ya existia (otro movil): no hace falta crearla */
+    function aSubir(tipo, k) { c.n++; c[tipo][k] = [1, c.n]; }
+    /* pesos: uno por dia */
+    var srv = {}, loc = {}, res = {};
+    pesosSrv.forEach(function (r) { var kg = Number(r && r.kg); if (r && esFecha(r.fecha) && r.fecha <= h && kg >= RANGO.kg[0] && kg <= RANGO.kg[1]) srv[r.fecha] = kg; });
+    st.medidas.forEach(function (m) { loc[m.d] = m.kg; });
+    Object.keys(srv).forEach(function (d) { res[d] = srv[d]; });
+    if (primera) Object.keys(loc).forEach(function (d) { if (srv[d] !== loc[d]) { res[d] = loc[d]; aSubir('pesos', d); } });
+    else Object.keys(c.pesos).forEach(function (d) { if (c.pesos[d][0] === 1 && loc[d] != null) res[d] = loc[d]; else delete res[d]; });
+    st.medidas = Object.keys(res).map(function (d) { return { d: d, kg: res[d] }; });
+    /* caminatas: por id */
+    var srvK = {}, locK = {}, resK = {};
+    kmSrv.forEach(function (r) { var km = Number(r && r.km); if (r && esIdCaminata(r.id) && esFecha(r.fecha) && r.fecha <= h && km >= RANGO.km[0] && km <= RANGO.km[1]) srvK[r.id] = { id: r.id, d: r.fecha, km: km }; });
+    st.km.forEach(function (k) { locK[k.id] = k; });
+    Object.keys(srvK).forEach(function (id) { resK[id] = srvK[id]; });
+    if (primera) Object.keys(locK).forEach(function (id) { var a = locK[id], b = srvK[id]; if (!b || b.d !== a.d || b.km !== a.km) { resK[id] = a; aSubir('km', id); } });
+    else Object.keys(c.km).forEach(function (id) { if (c.km[id][0] === 1 && locK[id]) resK[id] = locK[id]; else delete resK[id]; });
+    st.km = Object.keys(resK).map(function (id) { return resK[id]; });
+    /* el perfil: la primera vez gana el ultimo que se edito y lo vacio se rellena con
+       lo del otro lado; despues, la nube, salvo un cambio de aqui que espera en la cola.
+       «Viajero desde»: la fecha mas antigua de las dos. */
+    var nb = perfilDeNube(fila), CAMPOS = ['nombre', 'avatar', 'unidades', 'altura_cm', 'nacimiento', 'objetivo_kg'];
+    var ganaMovil = primera ? !!(st.editado && (!esInstante(fila.updated_at) || instante(st.editado) > instante(fila.updated_at))) : !!c.perfil;
+    var subir = false;
+    CAMPOS.forEach(function (k) {
+      if (ganaMovil) {
+        if (!primera) return;                                  /* un cambio de aqui espera en la cola: manda el movil, tambien si vacio un campo */
+        if (vacio(st[k]) && !vacio(nb[k])) st[k] = nb[k];      /* lo que aqui falta, de la nube */
+        else if (st[k] !== nb[k]) subir = true;                /* lo de aqui, a la nube */
+      } else if (!vacio(nb[k])) st[k] = nb[k];
+      else if (primera) { if (!vacio(st[k])) subir = true; }   /* la nube no lo tiene: sube lo de aqui */
+      else st[k] = (k === 'nombre' || k === 'avatar') ? '' : null;   /* lo vaciaron en otro movil */
+    });
+    if (st.avatar && AV.esOro(st.avatar) && !tieneOro(st.avatar)) st.oro[st.avatar] = '';   /* lo cogio en otro movil */
+    if (nb.creado && nb.creado < st.creado) st.creado = nb.creado; else if (primera && nb.creado !== st.creado) subir = true;
+    if (subir && !c.perfil) { c.n++; c.perfil = c.n; }
+    st.nube.ok = true;
+    if (colaVacia(c)) delete st.colas[uid];
+    guardar();
+  }
+
+  function ordenadas() { return st.medidas.slice().sort(function (a, b) { return a.d < b.d ? -1 : 1; }); }
+  function pesoActual() { var m = ordenadas(); return m.length ? m[m.length - 1].kg : null; }
+  function edad() { return st.nacimiento ? new Date().getFullYear() - st.nacimiento : null; }
+  /* El pais de quien mira, por los idiomas del navegador (navigator.languages,
+     que se lee en el movil y no se envia): «sv-SE» -> Suecia, «de-AT» -> Austria,
+     «nl-BE» -> Belgica. Solo decide que set sale primero; no se guarda.
+     Primero la region de la etiqueta (la que haya en el catalogo); si ninguna
+     la trae, la lengua, solo cuando es de un pais (sv, da, cs…): «ru», «pt»,
+     «sr» o «el» se hablan en varios, y adivinar mal molestaria. */
+  var REGION_SET = { gb: 'en', uk: 'en', cn: 'zh', tw: 'zht', hk: 'zht', mo: 'zht' };   /* «UK» no es ISO, pero hay sistemas que lo ponen */
+  var LENGUA_SET = { sv: 'se', da: 'dk', nb: 'no', nn: 'no', no: 'no', fi: 'fi', is: 'is', et: 'ee', lv: 'lv', lt: 'lt', cs: 'cz', sk: 'sk', hu: 'hu', sl: 'si', hr: 'hr', mt: 'mt', mk: 'mk', uk: 'ua', be: 'by', ga: 'ie', lb: 'lu', bs: 'ba' };
+  function setDelNavegador() {
+    var tags = [];
+    try { tags = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language]; } catch (e) {}
+    var partes = [], i, j;
+    for (i = 0; i < tags.length; i++) partes.push(String(tags[i] || '').toLowerCase().split(/[-_]/));
+    for (i = 0; i < partes.length; i++) for (j = 1; j < partes[i].length; j++) {
+      if (!/^[a-z]{2}$/.test(partes[i][j])) continue;           /* «hant», «419»… no son regiones de dos letras */
+      var r = REGION_SET[partes[i][j]] || partes[i][j];
+      if (r !== 'tf' && AV.set(r)) return r;                    /* TF es una region ISO, no Tenerife */
+      break;
+    }
+    for (i = 0; i < partes.length; i++) if (LENGUA_SET[partes[i][0]]) return LENGUA_SET[partes[i][0]];
+    return null;
+  }
+  /* Sin avatar elegido, el primero del set del pais del navegador o, si no lo hay,
+     del idioma de la app (el set Tenerife empieza cerrado) */
+  function setInicial() { var n = setDelNavegador(); return n || (AV.set(lengua()) ? lengua() : AV.sets[0].id); }
+  function avatarActual() {
+    if (st.avatar && AV.porId(st.avatar)) return AV.porId(st.avatar);
+    return AV.set(setInicial()).avatares[0];
+  }
+  var setAbierto = null, paisesAbierto = false;
+  /* Lo que la persona ha tocado en el formulario desde que se pinto: solo eso se guarda.
+     Asi «Guardar» sin tocar el peso no inventa un registro de hoy, y cambiar de
+     unidades no reescribe la altura redondeada (176 cm pasaba a 175). */
+  var tocado = { altura: false, peso: false, nac: false };
+
+  /* ── textos: los del cuerpo (data-tx, data-tx-ph, data-tx-aria), en el idioma de la app ── */
+  function aplicarTextos() {
+    panel.querySelectorAll('[data-tx]').forEach(function (n) { var v = tx(n.getAttribute('data-tx')); if (v) n.textContent = v; });
+    panel.querySelectorAll('[data-tx-ph]').forEach(function (n) { n.placeholder = tx(n.getAttribute('data-tx-ph')); });
+    panel.querySelectorAll('[data-tx-aria]').forEach(function (n) { n.setAttribute('aria-label', tx(n.getAttribute('data-tx-aria'))); });
+    /* el lang del contenedor, para partir las palabras largas por silabas (hyphens: auto) */
+    var l = lengua();
+    $('tgp').setAttribute('lang', l === 'zht' ? 'zh-Hant' : (l === 'zh' ? 'zh-Hans' : l));
+  }
+
+  /* ── heroe ── */
+  function renderHero(pop) {
+    var a = avatarActual(), s = AV.set(a.set);
+    $('tgp').style.setProperty('--set', s.color);   /* en .tgp, donde los estilos declaran --set */
+    var big = $('tgp-ava-big');
+    big.innerHTML = AV.svg(a.id, { etiqueta: nombreAvatar(a.id) });
+    if (pop && !reducido) { big.classList.remove('pop'); void big.offsetWidth; big.classList.add('pop'); }
+    var n = $('tgp-name');
+    n.textContent = st.nombre || tx('perfilNombrePlaceholder');
+    n.classList.toggle('is-empty', !st.nombre);
+    /* el nombre lo escribe la persona: no se traduce, y los controles de idioma lo saltan */
+    if (st.nombre) n.setAttribute('data-sin-traducir', 'lo escribe la persona'); else n.removeAttribute('data-sin-traducir');
+    var meta = $('tgp-meta'); meta.textContent = '';
+    var c1 = el('span', 'tgp-chip set'); c1.appendChild(el('span', 'flag', s.bandera));
+    if (esOro(a)) c1.appendChild(el('span', 'flag', '🏅'));
+    c1.appendChild(el('span', '', nombreAvatar(a.id))); meta.appendChild(c1);
+    var c2 = el('span', 'tgp-chip'); c2.appendChild(el('span', 'muted', tx('perfilViajeroDesde', { fecha: fmtFecha(st.creado, { month: 'short', year: 'numeric' }) }))); meta.appendChild(c2);
+    var v = visitados(), tiene = logrosConseguidos(), ultimo = null;
+    listaLogros().forEach(function (b) { if (b.min && tiene.indexOf(b.key) >= 0) ultimo = b; });
+    var c3 = el('span', 'tgp-chip'); c3.appendChild(el('span', '', (ultimo ? ultimo.icon + ' ' + nombreLogro(ultimo) : '🌱') + ' · ' + tx('perfilLugares', { n: v }))); meta.appendChild(c3);
+  }
+
+  /* ── sets y carrusel ── */
+  /* Los sets que se enseñan como pestañas: el del navegador, el del idioma, el
+     del avatar elegido, el que se acaba de abrir en la lista y Tenerife. Los
+     demas, en «Todos los paises». */
+  function setsAMano() {
+    var ids = [];
+    function poner(id) { if (id && AV.set(id) && ids.indexOf(id) < 0) ids.push(id); }
+    poner(setDelNavegador()); poner(lengua()); poner(avatarActual().set); poner(setAbierto); poner('tf');
+    return ids;
+  }
+  /* Las pestañas y, al final, la tira, una sola vez: con animar, entrando una a una (al
+     tocar una pestaña o un pais). Antes la pintaban dos veces renderSets y quien la llamaba:
+     con los 49 de «De oro», en el movil lento, el clic tardaba el doble (454 ms; ahora, 211). */
+  function renderSets(animar) {
+    var box = $('tgp-sets'), mas = $('tgp-paises-btn');
+    box.querySelectorAll('.tgp-set').forEach(function (n) { n.remove(); });
+    if (!setAbierto) setAbierto = avatarActual().set;
+    setsAMano().map(AV.set).forEach(function (s) {
+      var b = el('button', 'tgp-set'); b.type = 'button'; b.dataset.set = s.id;
+      b.style.setProperty('--set-color', s.color);
+      b.appendChild(el('span', 'flag', s.bandera)); b.appendChild(el('span', '', nombreSet(s.id)));
+      if (!setDesbloqueado(s)) { b.classList.add('is-locked'); b.appendChild(el('span', '', '🔒')); }
+      var on = s.id === setAbierto; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      box.insertBefore(b, mas);
+    });
+    /* «De oro»: todos los de oro, con su fecha; un punto si hoy hay uno por coger */
+    var bo = el('button', 'tgp-set tgp-set-oro'); bo.type = 'button'; bo.dataset.set = 'oro';
+    bo.appendChild(el('span', 'flag', '🏅')); bo.appendChild(el('span', '', tx('perfilOroSet')));
+    if (AV.oros.some(function (a) { return oroHoy(a) && !tieneOro(a.id); })) {
+      bo.classList.add('is-hoy'); bo.appendChild(el('span', 'tgp-oro-punto'));
+      bo.setAttribute('aria-label', tx('perfilOroSet') + ', ' + tx('perfilOroHoy'));
+    }
+    var onO = setAbierto === 'oro'; bo.classList.toggle('is-on', onO); bo.setAttribute('aria-pressed', onO ? 'true' : 'false');
+    box.insertBefore(bo, mas);
+    /* Las pestañas van en filas y se ven todas: no hay nada que desplazar. Y sin
+       scrollIntoView, que bajaba la pantalla entera al abrirla en un movil bajo o
+       en horizontal (48 px a 320x568, 156 px a 740x360). */
+    if (paisesAbierto) renderPaises();
+    renderStrip(!!animar);
+  }
+  /* «Todos los paises»: los 47 sets por orden alfabetico del idioma de la app
+     (Tenerife, el primero), con un buscador que vale en ese idioma y en ingles
+     y no distingue tildes («belgica» encuentra «Bélgica»). */
+  function sinTildes(s) { return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
+  function nombreSetIngles(id) { var f = PERFIL_UI['perfilSet_' + id]; return f ? f.en : ''; }
+  function renderPaises() {
+    var grid = $('tgp-paises-grid'), q = sinTildes($('tgp-buscar').value.trim()), n = 0;
+    var orden = new Intl.Collator(locale());
+    grid.textContent = '';
+    function antes(a, b) {
+      if (a.id === 'tf' || b.id === 'tf') return a.id === b.id ? 0 : (a.id === 'tf' ? -1 : 1);
+      return orden.compare(nombreSet(a.id), nombreSet(b.id));
+    }
+    AV.sets.slice().sort(antes).forEach(function (s) {
+      if (q && sinTildes(nombreSet(s.id)).indexOf(q) < 0 && sinTildes(nombreSetIngles(s.id)).indexOf(q) < 0) return;
+      var b = el('button', 'tgp-pais'); b.type = 'button'; b.dataset.set = s.id;
+      b.style.setProperty('--set-color', s.color);
+      b.appendChild(el('span', 'flag', s.bandera)); b.appendChild(el('span', 'name', nombreSet(s.id)));
+      if (!setDesbloqueado(s)) { b.classList.add('is-locked'); b.appendChild(el('span', '', '🔒')); }
+      if (s.id === setAbierto) { b.classList.add('is-on'); b.setAttribute('aria-current', 'true'); }
+      grid.appendChild(b); n++;
+    });
+    $('tgp-paises-nada').hidden = n > 0;
+  }
+  function abrirPaises(si) {
+    paisesAbierto = si;
+    $('tgp-paises').hidden = !si;
+    $('tgp-paises-btn').setAttribute('aria-expanded', si ? 'true' : 'false');
+    if (!si) return;
+    $('tgp-buscar').value = ''; renderPaises();
+    /* Con el dedo, no: el teclado taparia la lista. */
+    if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) $('tgp-buscar').focus();
+  }
+  /* La tira: los cinco del set y su avatar de oro (en Tenerife, tres), o en «De oro»
+     todos los de oro con la bandera de su set. */
+  function renderStrip(animar) {
+    var box = $('tgp-strip'); box.textContent = '';
+    var enOro = setAbierto === 'oro', s = enOro ? null : AV.set(setAbierto), h = hoy();
+    var lista = enOro ? orosOrdenados() : s.avatares, actual = avatarActual().id;
+    lista.forEach(function (a, i) {
+      var b = el('button', 'tgp-av'); b.type = 'button'; b.dataset.id = a.id; b.style.setProperty('--i', animar ? i : 0);
+      if (!animar) b.style.animation = 'none';
+      b.innerHTML = AV.svg(a.id);
+      var aria = nombreAvatar(a.id);
+      b.appendChild(el('span', 'name', aria));
+      if (esOro(a)) {
+        var v = AV.proxima(a.id, h), mio = tieneOro(a.id), hoyEs = oroHoy(a);
+        b.classList.add('is-oro'); aria += ', ' + tx('perfilAvatarOro');
+        if (hoyEs && !mio) { b.appendChild(el('span', 'tgp-oro-hoy', tx('perfilOroHoy'))); aria += ', ' + tx('perfilOroHoy'); }
+        if (enOro) b.appendChild(el('span', 'tgp-oro-bandera', AV.set(a.set).bandera));   /* en «De oro», de que set es */
+        var pie = mio ? '✓' : (hoyEs ? '' : fechaCortaOro(v));
+        if (pie) b.appendChild(el('span', 'tgp-oro-fecha', pie));
+        if (!mio && !hoyEs) {
+          b.classList.add('is-cerrado');   /* sin aria-disabled: tocarlo dice cuando se consigue */
+          b.appendChild(el('span', 'tgp-oro-candado', '🔒'));
+          if (v) aria += ', ' + cuandoOro(v);
+        }
+      } else if (!avatarLibre(a)) { b.classList.add('is-locked'); b.disabled = true; }
+      b.setAttribute('aria-label', aria);
+      b.setAttribute('aria-pressed', a.id === actual ? 'true' : 'false');
+      if (a.id === actual) b.classList.add('is-on');
+      box.appendChild(b);
+    });
+    $('tgp-pick').textContent = nombreAvatar(actual);
+    var nota = '', porque = false;
+    if (enOro) nota = tx('perfilOroCuenta', { n: AV.oros.filter(function (a) { return tieneOro(a.id); }).length, total: AV.oros.length }) + ' ' + tx('perfilOroRegla');
+    /* en Tenerife sin las 10 visitas, la nota de las visitas; salvo que hoy haya uno de oro por coger, que corre mas prisa */
+    else if (!setDesbloqueado(s) && !s.avatares.some(function (a) { return esOro(a) && oroHoy(a) && !tieneOro(a.id); })) { nota = tx('perfilBloqueado', { n: s.desbloqueo, v: Math.min(comprobadas(), s.desbloqueo) }); porque = true; }
+    else nota = notaOro(s);
+    $('tgp-lock-note').textContent = nota;
+    $('tgp-lock-why').hidden = !porque;
+    var on = box.querySelector('.is-on'); if (on && animar) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reducido ? 'auto' : 'smooth' });
+  }
+  var ORO_CONFETI = ['#F4CD52', '#FFF6C9', '#D4A020', '#FFFFFF'];
+  function elegirAvatar(id) {
+    var a = AV.porId(id); if (!a || !avatarLibre(a)) return;
+    var nuevoOro = esOro(a) && !tieneOro(a.id);
+    if (nuevoOro) st.oro[a.id] = hoy();
+    if (st.avatar !== id) { st.avatar = id; marcar('perfil'); }
+    guardar();
+    renderHero(true); renderSets();
+    jugar($('tgp-ava-big'));
+    var b = $('tgp-strip').querySelector('.tgp-av[data-id="' + id + '"]'); if (b) jugar(b);
+    confeti(nuevoOro ? ORO_CONFETI : [AV.set(a.set).color, '#D4AF37', '#F5C76B', '#FFFFFF']);
+    toast(tx(nuevoOro ? 'perfilOroConseguido' : 'perfilAvatarGuardado'));
+  }
+
+  /* ── confeti (canvas del heroe) ── */
+  function confeti(cols) {
+    if (reducido) return;
+    var cv = $('tgp-confeti'), hero = $('tgp-hero'); var r = hero.getBoundingClientRect();
+    cv.width = r.width * 2; cv.height = r.height * 2;
+    var ctx = cv.getContext('2d'); ctx.scale(2, 2);
+    var ring = panel.querySelector('.tgp-ring').getBoundingClientRect();
+    var cx = ring.left - r.left + ring.width / 2, cy = ring.top - r.top + ring.height / 2;
+    var ps = [];
+    for (var i = 0; i < 70; i++) { var ang = Math.random() * Math.PI * 2, sp = 4 + Math.random() * 6;
+      ps.push({ x: cx, y: cy, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 3, w: 4 + Math.random() * 5, h: 3 + Math.random() * 4, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, c: cols[i % cols.length], vida: 1 }); }
+    var t0 = performance.now();
+    (function paso(ahora) {
+      var dt = (ahora - t0) / 1000; ctx.clearRect(0, 0, r.width, r.height);
+      ps.forEach(function (p) { p.x += p.vx; p.y += p.vy; p.vy += .22; p.vx *= .985; p.rot += p.vr; p.vida = Math.max(0, 1 - dt / 1.5);
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.globalAlpha = p.vida; ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore(); });
+      if (dt < 1.5) requestAnimationFrame(paso); else ctx.clearRect(0, 0, r.width, r.height);
+    })(t0);
+  }
+
+  /* ── datos ── */
+  function imperial() { return st.unidades === 'imperial'; }
+  function rAltura() { return imperial() ? RANGO.pulgadas : RANGO.cm; }
+  function rPeso() { return imperial() ? RANGO.lb : RANGO.kg; }
+  function aKg(v) { return Math.round((imperial() ? v / KG_LB : v) * 10) / 10; }
+  function aCm(v) { return imperial() ? Math.round(v * CM_IN) : Math.round(v * 10) / 10; }
+  function deKg(kg) { return imperial() ? Math.round(kg * KG_LB * 10) / 10 : kg; }
+  function mostrarNum(v, dec) { return v == null ? '' : fmt(v, dec); }
+  function renderDatos() {
+    var imp = imperial();
+    $('tgp-altura-u').textContent = imp ? 'in' : 'cm';
+    $('tgp-peso-u').textContent = imp ? 'lb' : 'kg'; $('tgp-peso-nuevo-u').textContent = imp ? 'lb' : 'kg'; $('tgp-objetivo-u').textContent = imp ? 'lb' : 'kg';
+    $('tgp-altura').value = st.altura_cm ? (imp ? String(Math.round(st.altura_cm / CM_IN)) : mostrarNum(st.altura_cm, st.altura_cm % 1 ? 1 : 0)) : '';
+    var p = pesoActual();
+    $('tgp-peso').value = p ? mostrarNum(deKg(p), 1) : '';
+    $('tgp-nac').value = st.nacimiento || '';
+    $('tgp-objetivo').value = st.objetivo_kg ? mostrarNum(deKg(st.objetivo_kg), 1) : '';
+    ['tgp-objetivo'].forEach(function (id) { $(id).setAttribute('aria-invalid', 'false'); $(id + '-h').textContent = ''; $(id + '-h').classList.remove('error'); });
+    panel.querySelectorAll('#tgp-unidades button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.u === st.unidades); });
+    tocado = { altura: false, peso: false, nac: false };
+    ayudas();
+  }
+  function leerAnio() {
+    var s = String($('tgp-nac').value || '').trim(); if (!s) return null;
+    var n = /^\d{4}$/.test(s) ? parseInt(s, 10) : NaN, anio = new Date().getFullYear();
+    return (n >= 1900 && n <= anio) ? n : undefined;
+  }
+  function pies(cm) { var inch = Math.round(cm / CM_IN); return Math.floor(inch / 12) + '′' + (inch % 12) + '″'; }
+  function stones(kg) { var lb = Math.round(kg * KG_LB); return Math.floor(lb / 14) + ' st ' + (lb % 14) + ' lb'; }
+  function ayudas() {
+    var hv = campo('tgp-altura', rAltura(), 'tgp-altura-h'), pv = campo('tgp-peso', rPeso(), 'tgp-peso-h');
+    var h = hv ? aCm(hv) : null, p = pv ? aKg(pv) : null;
+    if (hv !== undefined) $('tgp-altura-h').textContent = h ? (imperial() ? fmt(h, 0) + ' cm' : pies(h)) : '';
+    if (pv !== undefined) $('tgp-peso-h').textContent = p ? (imperial() ? fmt(p, 1) + ' kg' : stones(p)) : '';
+    var n = leerAnio(), anio = new Date().getFullYear(), ayN = $('tgp-nac-h');
+    $('tgp-nac').setAttribute('aria-invalid', n === undefined ? 'true' : 'false');
+    ayN.classList.toggle('error', n === undefined);
+    ayN.textContent = n === undefined ? tx('perfilRango', { min: '1900', max: String(anio) }) : (n ? tx('perfilAnios', { n: anio - n }) : '');
+    var box = $('tgp-imc');
+    if (h && p) {
+      /* Se clasifica el mismo numero que se enseña (redondeado a un decimal):
+         sin esto, 24,96 salia «25,0» con la etiqueta «Normal». */
+      var imc = Math.round(p / Math.pow(h / 100, 2) * 10) / 10, cat, cls;
+      if (imc < 18.5) { cat = 'perfilImcBajo'; cls = 'warn'; } else if (imc < 25) { cat = 'perfilImcNormal'; cls = 'ok'; } else if (imc < 30) { cat = 'perfilImcSobre'; cls = 'warn'; } else { cat = 'perfilImcObes'; cls = 'bad'; }
+      var e = n ? anio - n : edad(), adulto = e === null || e >= EDAD_ADULTO;
+      $('tgp-imc-val').textContent = fmt(imc, 1);
+      $('tgp-imc-cat').textContent = tx(cat); $('tgp-imc-cat').className = 'cat ' + cls; $('tgp-imc-cat').hidden = !adulto;
+      $('tgp-imc-joven').hidden = adulto;
+      box.hidden = false;
+    } else box.hidden = true;
+  }
+  function guardarDatos(ev) {
+    ev.preventDefault();
+    var hv = campo('tgp-altura', rAltura(), 'tgp-altura-h'), pv = campo('tgp-peso', rPeso(), 'tgp-peso-h'), n = leerAnio();
+    if (hv === undefined) { $('tgp-altura').focus(); return; }
+    if (pv === undefined) { $('tgp-peso').focus(); return; }
+    if (n === undefined) { ayudas(); $('tgp-nac').focus(); return; }
+    if (tocado.peso && pv !== null && pesoNoCabe(hoy())) { avisoTope('tgp-peso-h'); $('tgp-peso').focus(); return; }
+    if (tocado.altura) st.altura_cm = hv === null ? null : aCm(hv);
+    if (tocado.nac) st.nacimiento = n;
+    if (tocado.altura || tocado.nac) marcar('perfil');
+    /* El peso solo se anota si se ha cambiado: entonces es «el peso de hoy». */
+    if (tocado.peso && pv !== null) anotarPeso(hoy(), aKg(pv));
+    guardar(); renderDatos(); renderEvo(); estadoNube(); toast(tx('perfilGuardado'));
+  }
+  function anotarPeso(d, kg) {
+    st.medidas = st.medidas.filter(function (m) { return m.d !== d; }); st.medidas.push({ d: d, kg: kg }); marcar('pesos', d, 1);
+  }
+  /* El tope: un peso de un dia nuevo o una caminata mas ya no caben; lo dice debajo del campo. */
+  function pesoNoCabe(d) { return st.medidas.length >= TOPE_REGISTROS && !st.medidas.some(function (m) { return m.d === d; }); }
+  function avisoTope(ayudaId) { var a = $(ayudaId); a.classList.add('error'); a.textContent = tx('perfilTope', { n: fmt(TOPE_REGISTROS, 0) }); }
+
+  /* ── evolucion: peso ── */
+  function tendencia(ms) { /* por cada registro, la media de los suyos de los 7 dias que acaban en el */
+    /* ms va por fecha (sale de ordenadas()), asi que esos 7 dias son registros seguidos: la
+       ventana se corre de uno al siguiente, y cada fecha se lee una vez. Mirando todos los
+       registros por cada uno, tres años de pesos diarios eran 2,4 millones de fechas leidas,
+       y abrir el perfil tardaba segundos en un movil lento. Se suma en el mismo orden que
+       antes: da lo mismo, hasta el ultimo decimal (tools/auditar_perfil.js lo comprueba). */
+    var t = ms.map(function (m) { return fecha(m.d).getTime(); }), ini = 0, fin = 0;
+    return ms.map(function (m, i) {
+      while (fin < ms.length && Math.round((t[i] - t[fin]) / 86400000) >= 0) fin++;
+      while (Math.round((t[i] - t[ini]) / 86400000) > 6) ini++;
+      for (var s = 0, j = ini; j < fin; j++) s += ms[j].kg;
+      return s / (fin - ini);
+    });
+  }
+  function enRango(ms) { var h = hoy(); return ms.filter(function (m) { return dias(m.d, h) <= st.rango; }); }
+  function pesoMostrar(kg) { return imperial() ? fmt(kg * KG_LB, 1) + ' lb' : fmt(kg, 1) + ' kg'; }
+  function conSigno(kg) { return (kg > 0 ? '+' : (kg < 0 ? '−' : '')) + pesoMostrar(Math.abs(kg)); }
+  function renderEvo() {
+    $('tgp-evo-peso').hidden = st.tab !== 'peso'; $('tgp-evo-km').hidden = st.tab !== 'km';
+    panel.querySelectorAll('#tgp-evo-tabs button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.tab === st.tab); });
+    panel.querySelectorAll('#tgp-ranges button').forEach(function (b) { b.classList.toggle('is-on', +b.dataset.r === st.rango); });
+    ['tgp-peso-fecha', 'tgp-km-fecha'].forEach(function (id) { $(id).value = hoy(); $(id).max = hoy(); });
+    renderPeso(); renderKm();
+  }
+  function tile(k, v, s, cls) { var e = el('div', 'tgp-tile'); e.appendChild(el('div', 'k', k)); e.appendChild(el('div', 'v' + (cls ? ' ' + cls : ''), v)); if (s) e.appendChild(el('div', 's', s)); return e; }
+  function renderPeso() {
+    var todas = ordenadas(), tiles = $('tgp-peso-tiles'), chart = $('tgp-peso-chart'), leg = $('tgp-peso-legend'), log = $('tgp-peso-log');
+    tiles.textContent = ''; leg.textContent = ''; log.textContent = '';
+    chart.querySelectorAll('svg, .tgp-empty').forEach(function (n) { n.remove(); });
+    if (!todas.length) { chart.appendChild(el('div', 'tgp-empty', tx('perfilSinDatos'))); return; }
+    var ult = todas[todas.length - 1], ini = todas[0], cambio = ult.kg - ini.kg;
+    var tr = tendencia(todas), tcambio = tr.length > 1 ? tr[tr.length - 1] - tr[tr.length - 2] : 0;
+    tiles.appendChild(tile(tx('perfilActual'), pesoMostrar(ult.kg), fmtFecha(ult.d)));
+    tiles.appendChild(tile(tx('perfilDesdeInicio'), conSigno(cambio), fmtFecha(ini.d), cambio > 0 ? 'up' : (cambio < 0 ? 'down' : '')));
+    var objetivoTxt = st.objetivo_kg ? pesoMostrar(st.objetivo_kg) : (tcambio > 0.05 ? '↗' : tcambio < -0.05 ? '↘' : '→');
+    tiles.appendChild(tile(st.objetivo_kg ? tx('perfilObjetivo') : tx('perfilTendencia'), objetivoTxt, st.objetivo_kg ? conSigno(ult.kg - st.objetivo_kg) : ''));
+    var ms = enRango(todas); if (ms.length < 2) ms = todas.slice(-Math.max(2, ms.length));
+    dibujarPeso(chart, ms, tendencia(ms));
+    [['', 'perfilPeso'], ['trend', 'perfilTendencia']].concat(st.objetivo_kg ? [['goal', 'perfilObjetivo']] : []).forEach(function (l) { var s = el('span'); s.appendChild(el('i', l[0])); s.appendChild(document.createTextNode(tx(l[1]))); leg.appendChild(s); });
+    todas.slice().reverse().slice(0, 8).forEach(function (m) {
+      var li = el('li'); li.appendChild(el('span', 'd', fmtFecha(m.d, { day: 'numeric', month: 'short', year: '2-digit' }))); li.appendChild(el('span', '', pesoMostrar(m.kg)));
+      var x = el('button', 'x', tx('perfilBorrarRegistro')); x.type = 'button'; x.dataset.d = m.d; x.dataset.tipo = 'peso'; li.appendChild(x); log.appendChild(li);
+    });
+  }
+  function dibujarPeso(box, ms, tr) {
+    var W = 320, H = 150, L = 36, R = 14, T = 14, B = 24, NS = 'http://www.w3.org/2000/svg';
+    var vals = ms.map(function (m) { return m.kg; }).concat(tr); if (st.objetivo_kg) vals.push(st.objetivo_kg);
+    var min = Math.floor(Math.min.apply(null, vals) * 2) / 2 - 0.5, max = Math.ceil(Math.max.apply(null, vals) * 2) / 2 + 0.5;
+    if (max - min < 2) { max = min + 2; }
+    var d0 = ms[0].d, span = Math.max(1, dias(d0, ms[ms.length - 1].d));
+    var X = function (d) { return L + (dias(d0, d) / span) * (W - L - R); }, Y = function (v) { return T + (1 - (v - min) / (max - min)) * (H - T - B); };
+    var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', tx('perfilEvolucion'));
+    var defs = document.createElementNS(NS, 'defs'); defs.innerHTML = '<linearGradient id="tgp-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4AF37" stop-opacity=".35"/><stop offset="1" stop-color="#D4AF37" stop-opacity="0"/></linearGradient>'; svg.appendChild(defs);
+    function nodo(tag, at, cls) { var n = document.createElementNS(NS, tag); Object.keys(at).forEach(function (k) { n.setAttribute(k, at[k]); }); if (cls) n.setAttribute('class', cls); return n; }
+    for (var g = 0; g < 4; g++) { var v = min + (max - min) * g / 3, y = Y(v); svg.appendChild(nodo('line', { x1: L, x2: W - R, y1: y, y2: y }, 'grid')); var tl = nodo('text', { x: L - 6, y: y + 3.5, 'text-anchor': 'end' }, 'axis'); tl.textContent = imperial() ? fmt(v * KG_LB, 0) : fmt(v, 1); svg.appendChild(tl); }
+    [ms[0], ms[Math.floor((ms.length - 1) / 2)], ms[ms.length - 1]].forEach(function (m, i) { if (i === 1 && ms.length < 3) return; var e = nodo('text', { x: X(m.d), y: H - 7, 'text-anchor': i === 0 ? 'start' : (i === 2 ? 'end' : 'middle') }, 'axis'); e.textContent = fmtFecha(m.d); svg.appendChild(e); });
+    var linea = ms.map(function (m, i) { return (i ? 'L' : 'M') + X(m.d).toFixed(1) + ' ' + Y(m.kg).toFixed(1); }).join(' ');
+    svg.appendChild(nodo('path', { d: linea + ' L' + X(ms[ms.length - 1].d).toFixed(1) + ' ' + (H - B) + ' L' + X(ms[0].d).toFixed(1) + ' ' + (H - B) + ' Z' }, 'area fade'));
+    if (st.objetivo_kg && st.objetivo_kg >= min && st.objetivo_kg <= max) { var gy = Y(st.objetivo_kg); svg.appendChild(nodo('line', { x1: L, x2: W - R, y1: gy, y2: gy }, 'goal')); var gl = nodo('text', { x: W - R, y: gy - 4, 'text-anchor': 'end' }, 'goal-label'); gl.textContent = tx('perfilObjetivo') + ' ' + (imperial() ? fmt(st.objetivo_kg * KG_LB, 0) : fmt(st.objetivo_kg, 1)); svg.appendChild(gl); }
+    svg.appendChild(nodo('path', { d: tr.map(function (v, i) { return (i ? 'L' : 'M') + X(ms[i].d).toFixed(1) + ' ' + Y(v).toFixed(1); }).join(' ') }, 'trend fade'));
+    var lp = nodo('path', { d: linea }, 'line' + (reducido ? '' : ' draw')); svg.appendChild(lp);
+    ms.forEach(function (m, i) {
+      svg.appendChild(nodo('circle', { cx: X(m.d), cy: Y(m.kg), r: i === ms.length - 1 ? 5 : 4 }, 'pt' + (i === ms.length - 1 ? ' last' : '')));
+      svg.appendChild(nodo('circle', { cx: X(m.d), cy: Y(m.kg), r: 12, 'data-d': m.d, 'data-kg': m.kg }, 'hit'));
+    });
+    box.appendChild(svg);
+    if (!reducido) { var len = lp.getTotalLength(); lp.style.setProperty('--len', len); }
+    var tip = $('tgp-tip');
+    function mostrar(ev) { var h = ev.target.closest('.hit'); if (!h) { tip.classList.remove('show'); return; } var r = box.getBoundingClientRect(), hr = h.getBoundingClientRect(); tip.textContent = ''; tip.appendChild(document.createTextNode(fmtFecha(h.dataset.d, { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ')); tip.appendChild(el('b', '', pesoMostrar(+h.dataset.kg))); tip.style.left = (hr.left - r.left + hr.width / 2) + 'px'; tip.style.top = (hr.top - r.top) + 'px'; tip.classList.add('show'); }
+    svg.addEventListener('pointermove', mostrar); svg.addEventListener('pointerdown', mostrar); svg.addEventListener('pointerleave', function () { tip.classList.remove('show'); });
+  }
+
+  /* ── evolucion: kilometros ── */
+  function renderKm() {
+    var tiles = $('tgp-km-tiles'), chart = $('tgp-km-chart'), log = $('tgp-km-log'); tiles.textContent = ''; chart.textContent = ''; log.textContent = '';
+    var h = hoy(), siete = 0, total = 0, hoyKm = 0, porDia = {};
+    st.km.forEach(function (k) { total += k.km; var d = dias(k.d, h); if (d >= 0 && d <= 6) { siete += k.km; porDia[k.d] = (porDia[k.d] || 0) + k.km; } if (k.d === h) hoyKm += k.km; });
+    /* Los 7 dias que acaban hoy, que son las barras que se ven (no la semana del calendario). */
+    tiles.appendChild(tile(tx('perfilUltimos7'), fmt(siete, 1) + ' km'));
+    tiles.appendChild(tile(tx('perfilHoy'), fmt(hoyKm, 1) + ' km'));
+    tiles.appendChild(tile(tx('perfilTotalCaminado'), fmt(total, 1) + ' km'));
+    if (!st.km.length) { chart.appendChild(el('div', 'tgp-empty', tx('perfilSinDatos'))); return; }
+    var NS = 'http://www.w3.org/2000/svg', W = 320, H = 140, T = 18, B = 22, L = 10, R = 10;
+    var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', tx('perfilKm'));
+    var diasArr = []; for (var i = 6; i >= 0; i--) { var d = new Date(); d.setDate(d.getDate() - i); diasArr.push(ymd(d)); }
+    var maxKm = Math.max(1, Math.max.apply(null, diasArr.map(function (d) { return porDia[d] || 0; })));
+    var bw = (W - L - R) / 7, ancho = bw * 0.56;
+    diasArr.forEach(function (d, i) {
+      var v = porDia[d] || 0, x = L + i * bw + (bw - ancho) / 2, hh = v ? Math.max(4, (v / maxKm) * (H - T - B)) : 0, y = H - B - hh;
+      var r = document.createElementNS(NS, 'rect'); r.setAttribute('x', x); r.setAttribute('y', y); r.setAttribute('width', ancho); r.setAttribute('height', hh); r.setAttribute('rx', 4); r.setAttribute('class', 'bar' + (d === h ? ' today' : '')); svg.appendChild(r);
+      if (hh > 8) { var base = document.createElementNS(NS, 'rect'); base.setAttribute('x', x); base.setAttribute('y', H - B - 4); base.setAttribute('width', ancho); base.setAttribute('height', 4); base.setAttribute('class', 'bar' + (d === h ? ' today' : '')); svg.appendChild(base); }
+      if (v) { var vl = document.createElementNS(NS, 'text'); vl.setAttribute('x', x + ancho / 2); vl.setAttribute('y', y - 5); vl.setAttribute('class', 'bar-label'); vl.textContent = fmt(v, 1); svg.appendChild(vl); }
+      var dl = document.createElementNS(NS, 'text'); dl.setAttribute('x', x + ancho / 2); dl.setAttribute('y', H - 6); dl.setAttribute('class', 'axis'); dl.setAttribute('text-anchor', 'middle'); dl.textContent = fecha(d).toLocaleDateString(locale(), { weekday: 'short' }); svg.appendChild(dl);
+    });
+    var ejeX = document.createElementNS(NS, 'line'); ejeX.setAttribute('x1', L); ejeX.setAttribute('x2', W - R); ejeX.setAttribute('y1', H - B); ejeX.setAttribute('y2', H - B); ejeX.setAttribute('class', 'grid'); svg.appendChild(ejeX);
+    chart.appendChild(svg);
+    st.km.slice().sort(function (a, b) { return a.d < b.d ? 1 : -1; }).slice(0, 8).forEach(function (k) {
+      var li = el('li'); li.appendChild(el('span', 'd', fmtFecha(k.d, { day: 'numeric', month: 'short', year: '2-digit' }))); li.appendChild(el('span', '', fmt(k.km, 1) + ' km'));
+      var x = el('button', 'x', tx('perfilBorrarRegistro')); x.type = 'button'; x.dataset.id = k.id; x.dataset.tipo = 'km'; li.appendChild(x); log.appendChild(li);
+    });
+  }
+
+  /* ── su isla ── */
+  function cuentaAnimada(nodo, hasta) {
+    if (reducido || hasta < 2) { nodo.textContent = hasta; return; }
+    var t0 = performance.now(); (function paso(ahora) { var p = Math.min(1, (ahora - t0) / 900); nodo.textContent = Math.round(hasta * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(paso); })(t0);
+  }
+  function renderIsla() {
+    var box = $('tgp-isla-tiles'); box.textContent = '';
+    var v = visitados(), lista = listaLogros(), logros = logrosConseguidos();
+    [['⭐', favoritos(), 'perfilFavoritos'], ['✓', v, 'perfilVisitados'], ['🏆', logros.length, 'perfilLogros']].forEach(function (d) {
+      var e = el('div', 'tgp-tile'); e.appendChild(el('div', 'ico', d[0])); var n = el('div', 'v'); e.appendChild(n); e.appendChild(el('div', 'k', tx(d[2]))); box.appendChild(e); cuentaAnimada(n, d[1]);
+    });
+    var conMin = lista.filter(function (b) { return b.min; }), sig = null;
+    for (var i = 0; i < conMin.length; i++) if (v < conMin[i].min) { sig = conMin[i]; break; }
+    var fill = $('tgp-progress-fill'), txt = $('tgp-progress-txt');
+    if (sig) { txt.textContent = tx('perfilSiguienteLogro', { n: sig.min - v, logro: nombreLogro(sig) }); requestAnimationFrame(function () { fill.style.width = Math.round(100 * v / sig.min) + '%'; }); }
+    else if (conMin.length) { var ult = conMin[conMin.length - 1]; txt.textContent = ult.icon + ' ' + nombreLogro(ult); fill.style.width = '100%'; }
+    var caja = $('tgp-stamps'); caja.textContent = '';
+    lista.forEach(function (b, i) {
+      var s = el('div', 'tgp-stamp'); s.style.setProperty('--rot', ((i % 3) - 1) * 5 + 'deg');
+      var tiene = logros.indexOf(b.key) >= 0; if (!tiene) s.classList.add('is-locked');
+      s.appendChild(el('div', 'ico', tiene ? b.icon : '🔒')); s.appendChild(el('div', 'nm', nombreLogro(b)));
+      /* El de la cumbre no va por numero: se gana en el Teide (con su nombre en cada idioma). */
+      s.appendChild(el('div', 'th', b.min ? tx('perfilLugares', { n: b.min }) : nombreAvatar('tf-teide')));
+      caja.appendChild(s);
+    });
+  }
+
+  /* ── cuenta ── */
+  /* «Activar notificaciones»: el mismo boton que el de la ficha de la cuenta.
+     El codigo de las notificaciones (index.html) lo engancha como un par mas
+     de los suyos (TG_PUSH.anadirBoton): oculto en la app de la tienda
+     (TGO_NATIVO), apagado y con el motivo debajo si el navegador no puede, y
+     lo que pase al pulsarlo, escrito en su linea. El boton y su linea se
+     crean una vez y se vuelven a poner, para no perder lo que dice la linea. */
+  var pushBtn = null, pushMsg = null;
+  function botonPush(caja) {
+    var P = window.TG_PUSH;
+    if (!P || typeof P.anadirBoton !== 'function') return;
+    if (!pushBtn) {
+      pushBtn = el('button', 'tgp-btn wide gold', tx('pushBtnActivar')); pushBtn.type = 'button'; pushBtn.id = 'tgp-push';
+      pushBtn.setAttribute('data-tx', 'pushBtnActivar');
+      pushMsg = el('div', 'tgp-help tgp-push-msg'); pushMsg.id = 'tgp-push-msg'; pushMsg.setAttribute('aria-live', 'polite');
+    }
+    caja.appendChild(pushBtn); caja.appendChild(pushMsg);
+    try { P.anadirBoton('tgp-push', 'tgp-push-msg'); } catch (e) {}
+  }
+  function renderCuenta() {
+    if (!montado()) return;
+    var who = $('tgp-cuenta-who'), btns = $('tgp-cuenta-btns'); who.textContent = ''; btns.textContent = '';
+    var u = sesion();
+    if (u) { who.appendChild(el('div', 'tgp-eyebrow', txCuenta('authLoggedAs'))); var correo = el('div', 'email', u.email || ''); correo.setAttribute('data-sin-traducir', 'el correo de la cuenta'); who.appendChild(correo); }
+    else { who.appendChild(el('div', 'tgp-eyebrow', tx('perfilCuenta'))); who.appendChild(el('div', 'email', tx('perfilInvitado'))); }
+    /* El interruptor de la nube: solo con sesion, apagado de entrada. */
+    var caja = $('tgp-nube-box'); caja.textContent = ''; caja.hidden = !u;
+    if (u) {
+      var txt = el('div', 'txt'); txt.appendChild(el('div', 'lbl', tx('perfilNubeInterruptor'))); txt.appendChild(el('div', 'sub'));
+      var sw = el('button', 'tgp-switch'); sw.type = 'button'; sw.id = 'tgp-nube';
+      sw.setAttribute('role', 'switch'); sw.setAttribute('aria-label', tx('perfilNubeInterruptor'));
+      sw.appendChild(el('span', 'knob'));
+      sw.addEventListener('click', function () {
+        var on = nubeEncendida();
+        if (!on && menorParaNube()) return;
+        $(on ? 'tgp-nube-quitar' : 'tgp-nube-confirm').hidden = false; $(on ? 'tgp-nube-confirm' : 'tgp-nube-quitar').hidden = true;
+      });
+      caja.appendChild(txt); caja.appendChild(sw);
+    }
+    $('tgp-nube-confirm').hidden = true; $('tgp-nube-quitar').hidden = true;
+    function btn(cls, texto, fn, id) { var b = el('button', 'tgp-btn wide ' + cls, texto); b.type = 'button'; b.addEventListener('click', fn); if (id) b.id = id; btns.appendChild(b); return b; }
+    if (!u) btn('gold', tx('perfilCrearCuenta'), abrirLogin, 'tgp-entrar');
+    botonPush(btns);
+    btn('ghost', tx('perfilExportar'), exportar, 'tgp-export');
+    btn('ghost', tx('perfilBorrarLocal'), function () { $('tgp-borrar-confirm').hidden = false; this.hidden = true; }, 'tgp-borrar-local');
+    if (u) {
+      btn('danger', txCuenta('authLogoutBtn'), cerrarSesion, 'tgp-logout');
+      /* «Eliminar cuenta», justo debajo (como lo describe borrar-cuenta.html): el
+         flujo de la ficha de la cuenta, con su confirmacion y el rpc borrar_mi_cuenta */
+      var d = el('button', 'tgp-link', tx('cuentaBorrarBtn')); d.type = 'button'; d.id = 'tgp-eliminar-cuenta';
+      d.addEventListener('click', function () {
+        if (typeof window.openAuthModal !== 'function') return;
+        window.openAuthModal(); var b = document.getElementById('auth-borrar-btn'); if (b) b.click();
+      });
+      btns.appendChild(d);
+      conAdmin(function () { if (!$('tgp-admin')) btn('ghost', tx('admBtnAdmin'), function () { if (typeof window.openAdminOverlay === 'function') window.openAdminOverlay(); }, 'tgp-admin'); });
+    }
+    $('tgp-borrar-confirm').hidden = true;
+    estadoNube();
+  }
+  /* Lo que cambia con la nube, sin rehacer la tarjeta: una sincronizacion de fondo no
+     cierra la confirmacion que alguien esta leyendo. */
+  function estadoNube() {
+    if (!montado()) return;
+    var u = sesion(), on = nubeEncendida(), menor = !on && menorParaNube();
+    var status = $('tgp-cuenta-status');
+    status.className = 'tgp-status ' + (u ? 'cloud' : 'local');
+    status.textContent = (u ? '☁️ ' : '📱 ') + tx(u ? (on ? 'perfilNubeSi' : 'perfilNube') : 'perfilSoloDispositivo');
+    var sw = $('tgp-nube');
+    if (sw) {
+      sw.setAttribute('aria-checked', on ? 'true' : 'false');
+      sw.disabled = menor;
+      var sub = sw.parentNode.querySelector('.sub');
+      if (sub) sub.textContent = menor ? tx('perfilNubeEdad', { n: EDAD_NUBE }) : tx('perfilNubeExplica');
+    }
+    if (menor || !u) $('tgp-nube-confirm').hidden = true;
+    if (!u) $('tgp-nube-quitar').hidden = true;
+    /* Con la nube encendida, borrar el perfil lo borra tambien de la cuenta (si no, volveria al sincronizar). */
+    $('tgp-borrar-texto').textContent = tx(on ? 'perfilBorrarLocalAvisoNube' : 'perfilBorrarLocalAviso');
+  }
+  /* Tras una vuelta que trajo algo de la nube: se repinta lo que enseña esos datos,
+     sin pisar un formulario que se esta escribiendo y sin mover la pagina. */
+  function repintarTrasNube() {
+    if (!montado()) return;
+    renderHero(false); renderStrip(false); renderPeso(); renderKm();
+    var f = $('tgp-form');
+    if (!(tocado.altura || tocado.peso || tocado.nac) && !(f && f.contains(document.activeElement))) renderDatos();
+  }
+  /* «Cerrar sesion»: si queda algo de esta cuenta en la cola y hay red, antes se envia
+     (sobre todo un permiso retirado). Lo del dispositivo se queda, como los favoritos. */
+  function cerrarSesion() {
+    var u = sesion(), A = window.AppAuth;
+    var antes = (u && st.colas[u.id] && navigator.onLine !== false) ? sincronizar() : Promise.resolve();
+    /* como mucho 3 s: si la red va mal, se cierra igual y lo pendiente espera a que vuelva a entrar esa cuenta */
+    var tope = new Promise(function (res) { setTimeout(res, 3000); });
+    Promise.race([antes, tope]).then(function () { try { if (A && A.logout) A.logout(); } catch (e) {} });
+  }
+  /* Borra del dispositivo lo del perfil y nada mas: favoritos, visitados, logros y
+     visitas comprobadas son de otras partes de la app y no se tocan. Con la nube
+     encendida, tambien la copia de la cuenta (la fila de perfiles; lo demas cae
+     detras), y la nube queda apagada. */
+  function borrarLocal() {
+    var u = sesion(), conNube = nubeEncendida();
+    var d = porDefecto(); d.colas = st.colas;
+    st = d;
+    if (conNube) { var c = colaDe(u.id); c.alta = false; c.baja = true; c.perfil = 0; c.pesos = {}; c.km = {}; }
+    guardar(); setAbierto = null; renderTodo();
+    if (!conNube) { toast(tx('perfilBorrado')); return; }
+    /* sin red, lo de aqui ya esta borrado y lo de la cuenta espera: las dos frases */
+    sincronizar().then(function (r) { toast(r === 'baja' ? tx('perfilBorradoNube') : dosFrases(tx('perfilBorrado'), tx('perfilNubeQuitarPendiente'))); });
+  }
+  function dosFrases(a, b) {
+    var zh = lengua() === 'zh' || lengua() === 'zht';
+    if (!/[.!?。！？✓]$/.test(a)) a += zh ? '。' : '.';
+    return a + (zh ? '' : ' ') + b;
+  }
+  /* «Acepto»: el permiso queda dado en este movil aunque no haya red; la fila de
+     perfiles (el consentimiento, con su fecha) se crea en cuanto se pueda. */
+  function nubeEncender() {
+    var u = sesion(); $('tgp-nube-confirm').hidden = true;
+    if (!u || menorParaNube()) return;
+    st.nube = { uid: u.id, desde: new Date().toISOString(), ok: false };
+    var c = colaDe(u.id); c.baja = false; c.alta = true;
+    guardar(); estadoNube();
+    sincronizar().then(function (r) { toast(tx(r === 'ok' ? 'perfilNubeGuardado' : 'perfilNubeError')); });
+  }
+  /* Retirar el permiso: deja de subirse nada desde ya, y la copia de la cuenta se borra
+     (sin red, en cuanto vuelva). En el dispositivo se queda todo. */
+  function nubeApagar() {
+    var u = sesion(); $('tgp-nube-quitar').hidden = true;
+    if (!u) return;
+    if (st.nube && st.nube.uid === u.id) st.nube = null;
+    var c = colaDe(u.id); c.alta = false; c.baja = true; c.perfil = 0; c.pesos = {}; c.km = {};
+    guardar(); estadoNube();
+    sincronizar().then(function (r) { toast(tx(r === 'baja' ? 'perfilNubeQuitado' : 'perfilNubeQuitarPendiente')); });
+  }
+  /* «Descargar datos del perfil»: un fichero de verdad, tenerife-go-perfil.json.
+     v: la version del formato, la misma que lleva tenerife.perfil; con el id de
+     cada caminata, que es su clave en la nube. */
+  function exportar() {
+    var datos = { v: 1, perfil: { nombre: st.nombre, avatar: avatarActual().id, altura_cm: st.altura_cm, nacimiento: st.nacimiento, objetivo_kg: st.objetivo_kg, unidades: st.unidades, creado: st.creado }, pesos: ordenadas(), caminatas: st.km.map(function (k) { return { id: k.id, d: k.d, km: k.km }; }), avatares_oro: st.oro };
+    var blob = new Blob([JSON.stringify(datos, null, 2) + '\n'], { type: 'application/json' });
+    return compartirFichero(blob, 'tenerife-go-perfil.json', tx('perfilExportar'));
+  }
+  /* El mismo camino que modulos/cielo.js para sus capturas (alli es privado,
+     asi que se copia): la hoja de compartir del sistema si acepta ficheros
+     (Android, iOS); si no, se descarga. Nada pasa por ningun servidor.
+     Devuelve que paso. */
+  function compartirFichero(blob, nombre, titulo) {
+    var f = null;
+    try { f = new File([blob], nombre, { type: blob.type }); } catch (e) { f = null; }
+    if (f && navigator.share && navigator.canShare) {
+      var puede = false; try { puede = navigator.canShare({ files: [f] }); } catch (e) { puede = false; }
+      if (puede) return navigator.share({ files: [f], title: titulo }).then(function () { return 'compartido'; },
+        function (e) { return e && e.name === 'AbortError' ? 'cancelado' : descargar(blob, nombre); });
+    }
+    return Promise.resolve(descargar(blob, nombre));
+  }
+  function descargar(blob, nombre) {
+    try {
+      var u = URL.createObjectURL(blob), a = document.createElement('a');
+      a.href = u; a.download = nombre; a.rel = 'noopener'; a.style.display = 'none';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { try { URL.revokeObjectURL(u); } catch (e) {} }, 60000);
+      return 'descargado';
+    } catch (e) { return 'fallo'; }
+  }
+
+  /* ── las pestañas (31 de octubre de 2026). Jerome: «como está en perfil está feo, busca
+     cómo organizarlo mejor». Era una sola columna de casi 3.000 px con el pasaporte de
+     viajero, el peso y la cuenta, uno detras de otro. Ahora, tres pestañas: Viaje (el avatar
+     y su isla), Cuerpo (sus datos y su evolucion) y Cuenta. Se recuerda la ultima, solo en
+     este dispositivo (st.pestana; no sube a la nube). El teclado, como pide WAI-ARIA: las
+     flechas, Inicio y Fin; solo la pestaña abierta entra con el tabulador. ── */
+  function renderPestanas() {
+    PESTANAS.forEach(function (p) {
+      var b = $('tgp-tab-' + p), on = p === st.pestana;
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+      b.tabIndex = on ? 0 : -1;
+      $('tgp-p-' + p).hidden = !on;
+    });
+    medirCabecera();
+  }
+  /* La barra se pega justo debajo de la cabecera, mida lo que mida: en una linea son 56 px,
+     pero con la letra grande del movil crece (74 px al doble), y en bulgaro el titulo pasa
+     a dos lineas (131). Con 56 fijos, la cabecera la tapaba. Se mide al pintar las
+     pestañas (al abrir y al cambiar de idioma), y cada vez que la cabecera cambia de
+     tamaño (ResizeObserver; y, sin el, al cambiar el tamaño de la ventana). */
+  function medirCabecera() {
+    var cab = panel && panel.querySelector('.tgp-top'), h = cab ? cab.getBoundingClientRect().height : 0;
+    if (h > 0) $('tgp-tabs').style.setProperty('--tgp-cab', h + 'px');
+    marcarBarra();
+  }
+  /* Con la barra pegada bajo la cabecera, la cabecera va entera (#perfil-panel.tgp-con-barra):
+     se mira al desplazar (una vez por fotograma) y al pintar las pestañas. */
+  var marcaPendiente = false;
+  function marcarBarra() {
+    if (!panel || panel.hidden) return;
+    var cab = panel.querySelector('.tgp-top'), barra = $('tgp-tabs');
+    var pegada = barra.getBoundingClientRect().top - cab.getBoundingClientRect().bottom < 1;
+    if (pegada !== panel.classList.contains('tgp-con-barra')) panel.classList.toggle('tgp-con-barra', pegada);
+  }
+  function alDesplazar() {
+    if (marcaPendiente) return;
+    marcaPendiente = true;
+    requestAnimationFrame(function () { marcaPendiente = false; marcarBarra(); });
+  }
+  function irAPestana(p, foco) {
+    if (PESTANAS.indexOf(p) < 0) return;
+    var cambia = p !== st.pestana;
+    st.pestana = p; guardar(); renderPestanas();
+    if (foco) { try { $('tgp-tab-' + p).focus({ preventScroll: true }); } catch (e) {} }
+    /* si iba por debajo de la cabecera, la pestaña nueva empieza justo debajo de la barra */
+    if (cambia && panel) {
+      var cab = panel.querySelector('.tgp-top'), h = $('tgp-hero');
+      var y = h.getBoundingClientRect().bottom - panel.getBoundingClientRect().top + panel.scrollTop + 14 - (cab ? cab.offsetHeight : 0);
+      if (panel.scrollTop > y) panel.scrollTop = Math.max(0, y);
+    }
+  }
+  function renderTodo() { aplicarTextos(); renderPestanas(); renderHero(false); renderSets(); renderDatos(); renderEvo(); renderIsla(); renderCuenta(); }
+
+  /* ── eventos del cuerpo (una vez, al montarlo) ── */
+  function enganchar() {
+    $('tgp-back').addEventListener('click', function () { cerrar(); });
+    if (typeof window.ResizeObserver === 'function') { try { new ResizeObserver(medirCabecera).observe(panel.querySelector('.tgp-top')); } catch (e) {} }
+    window.addEventListener('resize', medirCabecera);
+    panel.addEventListener('scroll', alDesplazar, { passive: true });
+    /* «Su cuerpo» (31 de octubre de 2026): su pantalla va encima del perfil; la pide
+       index.html (abrirCuerpo) la primera vez. Si no llega (sin red y sin haberla guardado
+       nunca), se dice debajo del boton */
+    $('tgp-cuerpo-abrir').addEventListener('click', function () {
+      var aviso = $('tgp-cuerpo-error'); aviso.hidden = true;
+      if (typeof window.abrirCuerpo !== 'function') { aviso.hidden = false; return; }
+      window.abrirCuerpo().catch(function () { aviso.hidden = false; });
+    });
+    $('tgp-tabs').addEventListener('click', function (e) { var b = e.target.closest('.tgp-tab'); if (b) irAPestana(b.dataset.pestana, false); });
+    $('tgp-tabs').addEventListener('keydown', function (e) {
+      var i = PESTANAS.indexOf(st.pestana), n = PESTANAS.length, j = null;
+      if (e.key === 'ArrowRight') j = (i + 1) % n; else if (e.key === 'ArrowLeft') j = (i + n - 1) % n;
+      else if (e.key === 'Home') j = 0; else if (e.key === 'End') j = n - 1;
+      if (j === null) return;
+      e.preventDefault(); irAPestana(PESTANAS[j], true);
+    });
+    $('tgp-sets').addEventListener('click', function (e) { var b = e.target.closest('.tgp-set'); if (!b) return; setAbierto = b.dataset.set; renderSets(true); });
+    /* «Todos los paises»: la lista se abre y se cierra con su boton; elegir un pais lo
+       pone en las pestañas, abre su tira y cierra la lista */
+    $('tgp-paises-btn').addEventListener('click', function () { abrirPaises(!paisesAbierto); });
+    $('tgp-buscar').addEventListener('input', renderPaises);
+    $('tgp-paises-grid').addEventListener('click', function (e) {
+      var b = e.target.closest('.tgp-pais'); if (!b) return;
+      setAbierto = b.dataset.set; abrirPaises(false); renderSets(true);
+      var chip = $('tgp-sets').querySelector('.tgp-set.is-on'); if (chip) chip.focus({ preventScroll: true });
+      $('tgp-avatares').scrollIntoView({ block: 'nearest', behavior: reducido ? 'auto' : 'smooth' });
+    });
+    /* Escape cierra la lista y no la pantalla entera (el Escape del perfil, abajo, la deja pasar) */
+    $('tgp-paises').addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); abrirPaises(false); $('tgp-paises-btn').focus(); } });
+    /* Tocar: el que ya lleva solo se mueve; uno de oro fuera de su dia dice cuando; los demas se eligen. */
+    $('tgp-strip').addEventListener('click', function (e) {
+      var b = e.target.closest('.tgp-av'); if (!b || b.disabled) return;
+      var a = AV.porId(b.dataset.id); if (!a) return;
+      if (!avatarLibre(a)) { avisoOro(a, b); return; }
+      if (st.avatar === a.id) { jugar(b); jugar($('tgp-ava-big')); return; }
+      elegirAvatar(a.id);
+    });
+    $('tgp-ava-big').addEventListener('click', function () { jugar(this); });
+    /* Sorprendeme: solo entre los de los sets abiertos; los de oro, nunca (son de su fiesta). */
+    $('tgp-random').addEventListener('click', function () {
+      var pool = []; AV.sets.forEach(function (s) { if (setDesbloqueado(s)) pool = pool.concat(s.avatares.filter(function (a) { return !esOro(a); })); });
+      var a = pool[Math.floor(Math.random() * pool.length)]; setAbierto = a.set; elegirAvatar(a.id); renderStrip(true);
+    });
+    $('tgp-name-edit').addEventListener('click', function () {
+      var row = $('tgp-name-row'); if (row.querySelector('input')) return;
+      var inp = el('input', 'tgp-name-input'); inp.type = 'text'; inp.maxLength = 24; inp.value = st.nombre; inp.placeholder = tx('perfilNombrePlaceholder'); inp.autocomplete = 'nickname';
+      inp.setAttribute('aria-label', tx('perfilEditarNombre'));
+      var h = $('tgp-name'); h.hidden = true; row.insertBefore(inp, h); inp.focus(); inp.select();
+      function fin() { var antes = st.nombre; st.nombre = inp.value.trim().slice(0, 24); if (st.nombre !== antes) marcar('perfil'); guardar(); inp.remove(); h.hidden = false; renderHero(false); if (st.nombre) toast(tx('perfilBienvenida', { nombre: st.nombre })); }
+      inp.addEventListener('blur', fin); inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); inp.blur(); } if (e.key === 'Escape') { inp.value = st.nombre; inp.blur(); } });
+    });
+    $('tgp-form').addEventListener('submit', guardarDatos);
+    [['tgp-altura', 'altura'], ['tgp-peso', 'peso'], ['tgp-nac', 'nac']].forEach(function (c) { $(c[0]).addEventListener('input', function () { tocado[c[1]] = true; ayudas(); }); });
+    $('tgp-unidades').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b || b.dataset.u === st.unidades) return;
+      /* Solo si la persona ha escrito una altura nueva se convierte; si no, la guardada no se toca. */
+      if (tocado.altura) { var hv = campo('tgp-altura', rAltura(), 'tgp-altura-h'); if (hv) st.altura_cm = aCm(hv); }
+      st.unidades = b.dataset.u; marcar('perfil'); guardar(); renderDatos(); renderEvo();
+    });
+    $('tgp-evo-tabs').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; st.tab = b.dataset.tab; guardar(); renderEvo(); });
+    $('tgp-ranges').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; st.rango = +b.dataset.r; guardar(); renderEvo(); });
+    function fechaValida(id, ayudaId) {
+      var d = $(id).value || hoy(), mal = !esFecha(d) || d > hoy();
+      if (mal) { $(ayudaId).classList.add('error'); $(ayudaId).textContent = tx('perfilFechaFutura'); }
+      return mal ? null : d;
+    }
+    $('tgp-add-peso').addEventListener('submit', function (e) {
+      e.preventDefault(); var a = $('tgp-peso-nuevo-h'); a.textContent = ''; a.classList.remove('error');
+      var v = campo('tgp-peso-nuevo', rPeso(), 'tgp-peso-nuevo-h'); if (v === undefined || v === null) return;
+      var d = fechaValida('tgp-peso-fecha', 'tgp-peso-nuevo-h'); if (!d) return;
+      if (pesoNoCabe(d)) { avisoTope('tgp-peso-nuevo-h'); return; }
+      anotarPeso(d, aKg(v)); guardar(); $('tgp-peso-nuevo').value = ''; renderDatos(); renderEvo(); toast(tx('perfilGuardado'));
+    });
+    $('tgp-add-km').addEventListener('submit', function (e) {
+      e.preventDefault(); var a = $('tgp-km-nuevo-h'); a.textContent = ''; a.classList.remove('error');
+      var v = campo('tgp-km-nuevo', RANGO.km, 'tgp-km-nuevo-h'); if (v === undefined || v === null) return;
+      var d = fechaValida('tgp-km-fecha', 'tgp-km-nuevo-h'); if (!d) return;
+      if (st.km.length >= TOPE_REGISTROS) { avisoTope('tgp-km-nuevo-h'); return; }
+      var id = nuevoId(); st.km.push({ id: id, d: d, km: Math.round(v * 10) / 10 }); marcar('km', id, 1);
+      guardar(); $('tgp-km-nuevo').value = ''; renderEvo(); toast(tx('perfilGuardado'));
+    });
+    /* Se borra el registro pulsado: los de peso por su fecha (uno por dia), los de km por su id (puede haber varios el mismo dia). */
+    $('tgp-evo').addEventListener('click', function (e) {
+      var x = e.target.closest('.x'); if (!x) return;
+      if (x.dataset.tipo === 'peso') { st.medidas = st.medidas.filter(function (m) { return m.d !== x.dataset.d; }); marcar('pesos', x.dataset.d, 0); }
+      else { st.km = st.km.filter(function (k) { return k.id !== x.dataset.id; }); marcar('km', x.dataset.id, 0); }
+      guardar(); renderDatos(); renderEvo();
+    });
+    $('tgp-objetivo').addEventListener('change', function () {
+      var v = campo('tgp-objetivo', rPeso(), 'tgp-objetivo-h'); if (v === undefined) return;
+      $('tgp-objetivo-h').textContent = ''; st.objetivo_kg = v === null ? null : aKg(v); marcar('perfil'); guardar(); renderEvo();
+    });
+    $('tgp-borrar-si').addEventListener('click', borrarLocal);
+    $('tgp-nube-si').addEventListener('click', nubeEncender);
+    $('tgp-nube-no').addEventListener('click', function () { $('tgp-nube-confirm').hidden = true; });
+    $('tgp-nube-quitar-si').addEventListener('click', nubeApagar);
+    $('tgp-nube-quitar-no').addEventListener('click', function () { $('tgp-nube-quitar').hidden = true; });
+    $('tgp-borrar-no').addEventListener('click', function () { $('tgp-borrar-confirm').hidden = true; var b = $('tgp-borrar-local'); if (b) b.hidden = false; });
+  }
+
+  /* ── abrir y cerrar ── */
+  var panel = null, abierto = false, historia = false, atrasPendiente = false, antesDeAbrir = null;
+  /* La primera vez: sus estilos (la CSP de index.html deja 'unsafe-inline' en
+     style-src) y el cuerpo, dentro de #perfil-panel. */
+  function montar() {
+    if (panel) return;
+    var estilo = document.createElement('style');
+    estilo.id = 'perfil-estilos';
+    estilo.textContent = ESTILOS;
+    document.head.appendChild(estilo);
+    panel = document.createElement('div');
+    panel.id = 'perfil-panel';
+    panel.hidden = true;
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'true');
+    panel.setAttribute('aria-labelledby', 'tgp-titulo');
+    panel.innerHTML = CUERPO;
+    TEXTOS.forEach(function (t) {
+      var n = panel.querySelector(t[0]);
+      if (n) n.setAttribute(t[1] === 'tx' ? 'data-tx' : 'data-tx-' + t[1], t[2]);
+    });
+    document.body.appendChild(panel);
+    enganchar();
+  }
+  function abrir() {
+    montar();
+    if (!abierto) {
+      antesDeAbrir = document.activeElement;
+      abierto = true;
+      panel.hidden = false;
+      panel.scrollTop = 0;
+      /* el boton «atras» del movil cierra el perfil, no la app (como la vista del cielo) */
+      if (!historia) { try { history.pushState({ tgPerfil: 1 }, ''); historia = true; } catch (e) {} }
+    }
+    renderTodo();
+    try { $('tgp-back').focus({ preventScroll: true }); } catch (e) {}
+    if (sesion()) sincronizar();
+  }
+  function cerrar(sinHistoria) {
+    if (!abierto) return;
+    abierto = false;
+    panel.hidden = true;
+    var e = $('tgp-toast'); if (e) e.classList.remove('show');
+    if (historia && !sinHistoria) { try { atrasPendiente = true; history.back(); } catch (x) { atrasPendiente = false; } }
+    historia = false;
+    if (antesDeAbrir && typeof antesDeAbrir.focus === 'function' && document.contains(antesDeAbrir)) { try { antesDeAbrir.focus({ preventScroll: true }); } catch (x) {} }
+    antesDeAbrir = null;
+  }
+  /* La ficha de la cuenta, el panel de administrador y «Su cuerpo» se abren desde aqui y
+     van encima: «atras» y Escape los dejan a ellos, y el perfil se queda debajo. */
+  function fichaEncima() {
+    var m = document.getElementById('auth-modal-backdrop'), a = document.getElementById('admin-overlay');
+    return !!((m && m.classList.contains('show')) || (a && a.classList.contains('open')) ||
+      (window.TG_CUERPO && typeof window.TG_CUERPO.abierto === 'function' && window.TG_CUERPO.abierto()));
+  }
+  /* el «atras» del movil: el back() que hace cerrar() llega aqui tambien, y se distingue del dedo */
+  window.addEventListener('popstate', function (e) {
+    if (atrasPendiente) { atrasPendiente = false; return; }
+    if (!abierto) return;
+    /* las entradas de «Su cuerpo» llevan tgPerfil: volver a una entrada del perfil o de lo que
+       tiene encima no lo cierra (cierra lo de encima, que mira el mismo popstate) */
+    if (e && e.state && e.state.tgPerfil) return;
+    historia = false;
+    var m = document.getElementById('auth-modal-backdrop');
+    if (m && m.classList.contains('show') && typeof window.closeAuthModal === 'function') {
+      window.closeAuthModal();
+      try { history.pushState({ tgPerfil: 1 }, ''); historia = true; } catch (e) {}
+      return;
+    }
+    cerrar(true);
+  });
+  /* Escape cierra el perfil si es lo de arriba. Va en la fase de captura para
+     mirar antes que la ficha de la cuenta, que se cierra con su propio Escape;
+     no sale de un campo que se esta escribiendo; y dentro de la lista de
+     paises la cierra ella (enganchar()), no la pantalla entera. */
+  window.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape' || !abierto || fichaEncima()) return;
+    var c = e.target;
+    if (c && c.closest && c.closest('input, textarea, select') && panel.contains(c)) return;
+    if (paisesAbierto && c && c.closest && c.closest('#tgp-paises')) return;
+    e.stopPropagation();
+    cerrar();
+  }, true);
+
+  /* La sesion cambia (entrar, salir, otra cuenta): index.html lanza «tg-sesion»
+     al final de handleSignedIn y de handleSignedOut. */
+  window.addEventListener('tg-sesion', function () { renderCuenta(); if (sesion()) sincronizar(); });
+  window.addEventListener('online', function () { var u = sesion(); if (u && (st.colas[u.id] || nubeEncendida())) sincronizar(); });
+  /* Al cambiar de idioma se rehace lo que esta abierto (la lista de paises, en el
+     orden del idioma nuevo). Sin avatar elegido, el que se enseña es el primero
+     del set del pais del navegador o del idioma: el set abierto vuelve a ese. */
+  try {
+    TG_IDIOMA.registrar('perfil', function () { if (!st.avatar) setAbierto = null; if (abierto) renderTodo(); });
+  } catch (e) {}
+
+  /* ── la pantalla: sus estilos y su cuerpo ──
+     ESTILOS es perfil.css del encargo sin lo del prototipo (el selector de
+     idioma, la etiqueta «Ejemplo», la ventana de descarga y el pie «Demo»),
+     y detras, lo que solo pide la app (al final, «solo en la app»). Solo
+     reglas de la pantalla: los tokens de la paleta son los del :root de
+     index.html. */
+  var ESTILOS = `
+/* perfil.css — la pantalla «Su perfil» de Tenerife Go. Va dentro de modulos/perfil.js
+   (como cadena: app_preparar.js solo copia modulos/*.js a la app de la tienda).
+   Solo reglas de la pantalla, ninguna de página: los tokens de la paleta v18 (--gold,
+   --gold-light, --dark, --panel, --panel2, --border, --text, --muted, --t-*, --ease-*,
+   --shadow-*) son los del :root de index.html, y el reinicio global (L1441) también. Aquí,
+   solo lo que la app no tiene.
+   Tema único oscuro: es la identidad de la marca (luna, Teide, mar nocturno). */
+.tgp, .tgp-toast {
+  --ok: #6FCF97; --warn: #F2C94C; --bad: #F28C8C;
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --set: #F4A300; /* el acento del set de avatares elegido: lo pone el JS en .tgp */
+  --r: 18px;
+  color-scheme: dark;
+}
+/* El panel en la app (lo crea el cargador al abrir el perfil, con el cuerpo dentro): por
+   encima del cielo (#cielo-vista, 8798) y por debajo de la bienvenida (9000), la
+   privacidad (9999) y la ficha de la cuenta (10000), que se abre desde aquí. */
+#perfil-panel {
+  position: fixed; inset: 0; z-index: 8900; overflow: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px));
+  background:
+    radial-gradient(60% 40% at 50% 0%, rgba(212,175,55,0.10), transparent 70%),
+    radial-gradient(40% 30% at 100% 80%, rgba(63,111,181,0.14), transparent 70%),
+    var(--dark);
+}
+/* con :where(), especificidad cero: lo que dice cada componente (.tgp-av { font-size }…) sigue mandando */
+:where(.tgp) *, :where(.tgp) *::before, :where(.tgp) *::after { box-sizing: border-box; }
+/* La app no tiene una regla global para [hidden] (cada panel pone la suya, como #cielo-vista [hidden] en index.html):
+   sin esta, .tgp-imc (flex), .tgp-confirm (grid) y los .tgp-btn (inline-flex) se verían aunque lleven hidden. */
+.tgp [hidden] { display: none !important; }
+.tgp, .tgp-toast { font: 400 15px/1.45 var(--font-body); color: var(--text); -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; }
+:where(.tgp) :where(button, input, select) { font-family: inherit; font-size: inherit; color: inherit; }
+:where(.tgp) :where(button) { cursor: pointer; }
+:where(.tgp) :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+svg.tg-avatar { display: block; width: 100%; height: auto; }
+
+.tgp { max-width: 520px; margin: 0 auto; display: grid; gap: 14px; }
+
+/* ── cabecera fija (la misma barra que la app, en pequeño) ── */
+.tgp-top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  display: flex; align-items: center; gap: 10px; padding-block: 10px 8px;
+  background: linear-gradient(var(--dark) 70%, transparent);
+}
+.tgp-top h1 { margin: 0; font: 600 1.6rem/1.1 var(--font-display); color: var(--gold-light); letter-spacing: .01em; flex: 1; text-wrap: balance; }
+.tgp-icon-btn {
+  width: 38px; height: 38px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--panel); color: var(--text); display: grid; place-items: center;
+  transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+}
+.tgp-icon-btn:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
+
+/* ── héroe ── */
+.tgp-hero { position: relative; overflow: hidden; border-radius: 24px; border: 1px solid var(--border); background: var(--panel); padding: 22px 16px 20px; text-align: center; isolation: isolate; }
+.tgp-blob { position: absolute; width: 240px; height: 240px; border-radius: 50%; filter: blur(46px); opacity: .55; pointer-events: none; z-index: -1; background: var(--set); transition: background var(--t-slower) var(--ease-out); }
+.tgp-blob.b1 { left: -70px; top: -60px; animation: tgp-drift 16s ease-in-out infinite alternate; }
+.tgp-blob.b2 { right: -90px; top: 20px; background: var(--gold); opacity: .28; animation: tgp-drift 19s ease-in-out infinite alternate-reverse; }
+.tgp-blob.b3 { left: 30%; bottom: -150px; opacity: .35; animation: tgp-drift 22s ease-in-out infinite alternate; }
+@keyframes tgp-drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(40px, 26px) scale(1.15); } }
+.tgp-stars { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .6;
+  background-image: radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 55%), radial-gradient(1px 1px at 84% 26%, #fff 50%, transparent 55%), radial-gradient(1.4px 1.4px at 70% 12%, #fff 50%, transparent 55%), radial-gradient(1px 1px at 24% 68%, #fff 50%, transparent 55%), radial-gradient(1.2px 1.2px at 90% 72%, #fff 50%, transparent 55%), radial-gradient(1px 1px at 48% 8%, #fff 50%, transparent 55%); }
+.tgp-confeti { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+
+.tgp-ring-wrap { display: inline-block; animation: tgp-float 4.8s ease-in-out infinite; }
+.tgp-ring { position: relative; width: 162px; height: 162px; border-radius: 50%; padding: 5px; margin: 0 auto;
+  background: conic-gradient(from 0deg, var(--gold), transparent 28%, var(--set) 50%, transparent 72%, var(--gold));
+  animation: tgp-spin 9s linear infinite; }
+.tgp-ring::after { content: ""; position: absolute; inset: -14px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.35), transparent 70%); background: radial-gradient(circle, color-mix(in srgb, var(--set) 45%, transparent), transparent 70%); z-index: -1; filter: blur(8px); }
+.tgp-ava-big { width: 100%; height: 100%; border-radius: 50%; background: var(--dark); padding: 4px; animation: tgp-counter-spin 9s linear infinite; }
+.tgp-ava-big.pop { animation: tgp-counter-spin 9s linear infinite, tgp-pop var(--t-slower) var(--ease-bounce); }
+@keyframes tgp-spin { to { transform: rotate(360deg); } }
+@keyframes tgp-counter-spin { to { transform: rotate(-360deg); } }
+@keyframes tgp-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes tgp-pop { 0% { scale: .55; } 100% { scale: 1; } }
+
+.tgp-name-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; min-height: 44px; }
+.tgp-name { margin: 0; font: 600 2rem/1.1 var(--font-display); color: var(--text); text-wrap: balance; max-width: 100%; overflow-wrap: anywhere; }
+.tgp-name.is-empty { color: var(--muted); font-weight: 500; font-style: italic; }
+.tgp-name-input { width: min(100%, 260px); text-align: center; font: 600 1.6rem/1.2 var(--font-display); background: rgba(255,255,255,0.05); border: 1px solid var(--gold); border-radius: 12px; padding: 6px 10px; color: var(--text); }
+.tgp-pencil { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--gold-light); display: grid; place-items: center; flex: 0 0 auto; }
+.tgp-pencil:hover { background: rgba(212,175,55,0.12); }
+.tgp-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 8px; margin-top: 10px; }
+.tgp-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--border); background: rgba(15,17,23,0.55); font-size: .82rem; color: var(--text); white-space: nowrap; }
+.tgp-chip .muted { color: var(--muted); }
+.tgp-chip.set { border-color: var(--border); border-color: color-mix(in srgb, var(--set) 55%, transparent); }
+.tgp-lema { margin: 10px 0 0; color: var(--muted); font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; }
+
+/* ── tarjetas ── */
+.tgp-card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; min-width: 0; }
+.tgp-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.tgp-card h2 { margin: 0; font: 600 1.45rem/1.15 var(--font-display); color: var(--gold-light); text-wrap: balance; }
+.tgp-eyebrow { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.tgp-note { margin: 0 0 12px; color: var(--muted); font-size: .85rem; }
+
+/* sets y carrusel */
+/* Pocos sets a mano (su país, su idioma, el de su avatar, Tenerife) y «Todos los países»
+   detrás: 47 sets no caben en una fila; la lista completa se abre debajo, con buscador. */
+.tgp-sets { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px 2px 6px; }
+.tgp-set { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--panel2); color: var(--text); font-size: .86rem; white-space: nowrap; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), transform var(--t-normal) var(--ease-bounce); }
+.tgp-set .flag { font-size: 1.05rem; line-height: 1; }
+.tgp-set.is-on { border-color: var(--set-color, var(--gold)); background: rgba(212,175,55,0.16); background: color-mix(in srgb, var(--set-color, var(--gold)) 22%, var(--panel2)); transform: scale(1.04); }
+.tgp-set.is-locked { opacity: .6; }
+.tgp-mas { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; border: 1px dashed var(--gold); background: transparent; color: var(--gold-light); font-size: .86rem; white-space: nowrap; transition: background var(--t-fast) var(--ease-out); }
+.tgp-mas .flag { font-size: 1.05rem; line-height: 1; }
+.tgp-mas[aria-expanded="true"] { border-style: solid; background: rgba(212,175,55,0.16); }
+.tgp-paises { margin: 4px 0 8px; padding: 10px; border: 1px solid var(--border); border-radius: 14px; background: rgba(255,255,255,0.03); animation: tgp-in var(--t-normal) var(--ease-out) both; }
+.tgp-buscar { padding-right: 12px; font-size: 1rem; }
+.tgp-paises-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 6px; margin-top: 10px; max-height: min(58vh, 520px); overflow-y: auto; overscroll-behavior: contain; padding: 2px; }
+.tgp-pais { display: flex; align-items: center; gap: 8px; min-height: 42px; padding: 7px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--panel2); color: var(--text); font-size: .86rem; line-height: 1.2; text-align: start; transition: border-color var(--t-fast) var(--ease-out); }
+.tgp-pais:hover { border-color: var(--set-color, var(--gold)); }
+.tgp-pais .flag { flex: 0 0 auto; font-size: 1.15rem; line-height: 1; }
+.tgp-pais .name { flex: 1 1 auto; min-width: 0; overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; }
+.tgp-pais.is-on { border-color: var(--set-color, var(--gold)); background: rgba(212,175,55,0.16); background: color-mix(in srgb, var(--set-color, var(--gold)) 22%, var(--panel2)); }
+.tgp-pais.is-locked { opacity: .7; }
+.tgp-paises-nada { margin: 10px 0 2px; }
+.tgp-strip { display: flex; gap: 8px; overflow-x: auto; padding: 12px 2px 6px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.tgp-strip::-webkit-scrollbar { display: none; }
+.tgp-av { flex: 0 0 auto; width: 88px; scroll-snap-align: center; display: grid; justify-items: center; gap: 6px; padding: 6px 2px; border: 0; background: none; color: var(--muted); font-size: .72rem; line-height: 1.15; text-align: center;
+  animation: tgp-in var(--t-slower) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 45ms); }
+.tgp-av .tg-avatar { width: 72px; height: 72px; border-radius: 50%; transition: transform var(--t-normal) var(--ease-bounce), box-shadow var(--t-normal) var(--ease-out); }
+.tgp-av:hover .tg-avatar { transform: translateY(-3px) scale(1.04); }
+.tgp-av.is-on { color: var(--gold-light); }
+.tgp-av.is-on .tg-avatar { transform: scale(1.1); box-shadow: 0 0 0 3px var(--panel), 0 0 0 6px var(--gold), 0 10px 24px rgba(0,0,0,.45); }
+.tgp-av.is-locked .tg-avatar { filter: grayscale(.9) brightness(.6); }
+/* Partir por sílabas (con el lang de #tgp), nunca a mitad de letra: con «anywhere» salía «Kanareneidech/se». */
+.tgp-av .name { max-width: 84px; overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; margin-top: 6px; }
+.tgp-av .lock { position: absolute; }
+@keyframes tgp-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.tgp-strip-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; min-height: 36px; }
+.tgp-strip-foot .pick { font: 600 1.2rem/1.2 var(--font-display); color: var(--text); }
+.tgp-lock-note { color: var(--muted); font-size: .82rem; }
+
+/* botones */
+.tgp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel2); color: var(--text); font-weight: 500; min-height: 42px; transition: transform var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out); white-space: nowrap; }
+.tgp-btn:hover { border-color: var(--gold); box-shadow: var(--shadow-glow); }
+.tgp-btn:active { transform: scale(.97); }
+.tgp-btn.gold { background: var(--gold); color: #1a1407; border-color: var(--gold); font-weight: 600; }
+.tgp-btn.gold:hover { background: var(--gold-light); border-color: var(--gold-light); }
+.tgp-btn.ghost { background: transparent; }
+.tgp-btn.danger { background: rgba(242,140,140,0.12); border-color: rgba(242,140,140,0.45); color: var(--bad); }
+.tgp-btn.wide { width: 100%; }
+.tgp-btn.sm { padding: 6px 11px; min-height: 32px; font-size: .82rem; }
+.tgp-link { background: none; border: 0; color: var(--bad); text-decoration: underline; text-underline-offset: 3px; padding: 6px; font-size: .9rem; }
+
+/* datos */
+.tgp-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 380px) { .tgp-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tgp-field { display: grid; gap: 5px; min-width: 0; }
+.tgp-field label { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tgp-input-wrap { position: relative; }
+.tgp-input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 12px; color: var(--text); padding: 10px 40px 10px 12px; font-size: 1.05rem; font-variant-numeric: tabular-nums; transition: border-color var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out); -moz-appearance: textfield; }
+.tgp-input::-webkit-outer-spin-button, .tgp-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.tgp-input:focus { border-color: var(--gold); box-shadow: var(--shadow-glow); outline: none; }
+.tgp-unit { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: .8rem; pointer-events: none; }
+.tgp-help { color: var(--muted); font-size: .78rem; min-height: 1.2em; }
+.tgp-help.error { color: var(--bad); }
+.tgp-input[aria-invalid="true"] { border-color: var(--bad); }
+.tgp-add-help { grid-column: 1 / -1; min-height: 0; }
+.tgp-add-help:empty { display: none; }
+.tgp-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+/* ── las pestañas: Viaje, Cuerpo y Cuenta, fijas debajo de la cabecera ── */
+/* top: justo debajo de la cabecera; --tgp-cab es su altura de verdad (medirCabecera).
+   Opaca: lo que pasa por debajo no se transparenta */
+.tgp-tabs { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--tgp-cab, 56px)); z-index: 4; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border: 1px solid var(--border); border-radius: 16px; background: var(--dark); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+/* el icono encima del nombre: el nombre tiene todo el ancho de la pestaña. Con el icono al
+   lado, a 320 px «Пътуване» se partia, y con la letra del movil a 1,15 se partian seis
+   nombres; asi, ninguno en los diez idiomas de 320 a 430 px hasta la letra a 1,3. La letra,
+   a la medida de la pantalla */
+.tgp-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 0; min-height: 44px; padding: 6px 2px; border: 0; border-radius: 12px; background: transparent; color: var(--muted); font-size: clamp(.84rem, 3.9vw, .95rem); font-weight: 600; line-height: 1.1; text-align: center; transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
+.tgp-tab .ico { font-size: 1.05rem; line-height: 1; }
+.tgp-tab .txt { max-width: 100%; overflow-wrap: anywhere; }
+/* con la barra pegada arriba, la cabecera va entera, sin su degradado de abajo: por esa
+   franja se veia pasar lo de debajo, entre el titulo y la barra (marcarBarra) */
+#perfil-panel.tgp-con-barra .tgp-top { background: var(--dark); }
+.tgp-tab[aria-selected="true"] { background: var(--gold); color: #1a1407; }
+.tgp-tab:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+.tgp-pestana { display: grid; gap: 14px; min-width: 0; }
+.tgp-cuerpo-error { margin: 10px 0 0; color: var(--bad); font-size: .85rem; }
+.tgp-pestana[hidden] { display: none; }
+.tgp-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 12px; padding: 3px; background: rgba(15,17,23,0.5); gap: 2px; }
+.tgp-seg button { border: 0; background: transparent; color: var(--muted); padding: 6px 12px; border-radius: 9px; font-size: .85rem; font-weight: 500; transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
+.tgp-seg button.is-on { background: var(--gold); color: #1a1407; }
+.tgp-imc { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: rgba(15,17,23,0.5); border: 1px dashed var(--border); }
+.tgp-imc .val { font: 600 1.5rem/1 var(--font-display); color: var(--gold-light); font-variant-numeric: tabular-nums; }
+.tgp-imc .cat { padding: 4px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; background: rgba(255,255,255,0.08); }
+.tgp-imc .cat.ok { background: rgba(111,207,151,0.18); color: var(--ok); }
+.tgp-imc .cat.warn { background: rgba(242,201,76,0.16); color: var(--warn); }
+.tgp-imc .cat.bad { background: rgba(242,140,140,0.16); color: var(--bad); }
+.tgp-imc .note { color: var(--muted); font-size: .75rem; flex-basis: 100%; }
+
+/* evolución */
+.tgp-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 10px 0 12px; }
+.tgp-tile { background: rgba(15,17,23,0.5); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 10px 10px 8px; min-width: 0; }
+.tgp-tile .k { font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); line-height: 1.2; overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; }
+.tgp-tile .v { font: 600 1.35rem/1.2 var(--font-display); font-variant-numeric: tabular-nums; margin-top: 2px; color: var(--text); white-space: nowrap; }
+.tgp-tile .v.up { color: var(--gold-light); } .tgp-tile .v.down { color: var(--ok); }
+.tgp-tile .s { font-size: .72rem; color: var(--muted); }
+.tgp-chart { position: relative; }
+.tgp-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tgp-chart .grid { stroke: rgba(240,236,228,0.08); stroke-width: 1; }
+.tgp-chart .axis { fill: var(--muted); font-size: 9.5px; font-family: var(--font-body); font-variant-numeric: tabular-nums; }
+.tgp-chart .line { fill: none; stroke: var(--gold); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tgp-chart .area { fill: url(#tgp-area); opacity: .9; }
+.tgp-chart .trend { fill: none; stroke: var(--gold-light); stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .75; }
+.tgp-chart .goal { stroke: var(--ok); stroke-width: 1; stroke-dasharray: 3 4; opacity: .9; }
+.tgp-chart .goal-label { fill: var(--ok); font-size: 9px; font-family: var(--font-body); }
+.tgp-chart .pt { fill: var(--panel); stroke: var(--gold); stroke-width: 2; }
+.tgp-chart .pt.last { fill: var(--gold-light); stroke: var(--panel); r: 5; }
+.tgp-chart .hit { fill: transparent; cursor: pointer; }
+.tgp-chart .bar { fill: var(--gold); opacity: .9; }
+.tgp-chart .bar.today { fill: var(--gold-light); opacity: 1; }
+.tgp-chart .bar-label { fill: var(--text); font-size: 9.5px; font-family: var(--font-body); font-variant-numeric: tabular-nums; text-anchor: middle; }
+.tgp-chart .draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: tgp-draw 1.1s var(--ease-emph) forwards; }
+@keyframes tgp-draw { to { stroke-dashoffset: 0; } }
+.tgp-chart .fade { animation: tgp-fade .9s var(--ease-out) both; animation-delay: .4s; }
+@keyframes tgp-fade { from { opacity: 0; } to { opacity: .9; } }
+.tgp-tip { position: absolute; transform: translate(-50%, calc(-100% - 10px)); background: var(--panel2); border: 1px solid var(--border); border-radius: 10px; padding: 6px 9px; font-size: .78rem; white-space: nowrap; pointer-events: none; box-shadow: var(--shadow-md); opacity: 0; transition: opacity var(--t-fast) var(--ease-out); }
+.tgp-tip.show { opacity: 1; }
+.tgp-tip b { color: var(--gold-light); font-variant-numeric: tabular-nums; }
+.tgp-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: .75rem; color: var(--muted); margin-top: 4px; }
+.tgp-legend i { display: inline-block; width: 14px; height: 0; border-top: 2px solid var(--gold); vertical-align: middle; margin-right: 5px; }
+.tgp-legend i.trend { border-top: 2px dashed var(--gold-light); } .tgp-legend i.goal { border-top: 2px dashed var(--ok); }
+.tgp-empty { padding: 26px 10px; text-align: center; color: var(--muted); font-size: .9rem; border: 1px dashed var(--border); border-radius: 12px; }
+.tgp-ranges { display: flex; gap: 6px; flex-wrap: wrap; }
+.tgp-ranges button { border: 1px solid var(--border); background: transparent; color: var(--muted); border-radius: 999px; padding: 4px 10px; font-size: .78rem; }
+.tgp-ranges button.is-on { border-color: var(--gold); color: var(--gold-light); background: rgba(212,175,55,0.1); }
+.tgp-add { display: grid; grid-template-columns: 1.1fr 1fr auto; gap: 8px; margin-top: 12px; }
+@media (max-width: 480px) { .tgp-add { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .tgp-add .tgp-btn { grid-column: 1 / -1; } }
+.tgp-add > * { min-width: 0; }
+.tgp-add input[type="date"] { padding-right: 10px; font-size: .92rem; }
+.tgp-log { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 4px; max-height: 150px; overflow: auto; }
+.tgp-log li { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: .84rem; padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,0.03); font-variant-numeric: tabular-nums; }
+.tgp-log .d { color: var(--muted); } .tgp-log .x { background: none; border: 0; color: var(--muted); padding: 2px 6px; font-size: .78rem; }
+.tgp-log .x:hover { color: var(--bad); }
+
+/* isla */
+.tgp-isla-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tgp-isla-tiles .tgp-tile { text-align: center; }
+.tgp-isla-tiles .ico { font-size: 1.3rem; line-height: 1; }
+/* En minúscula y sin espaciado: en mayúsculas «ПОСТИЖЕНИЯ» no cabía y se partía en «ПОСТИЖЕНИ/Я». */
+.tgp-isla-tiles .tgp-tile .k { text-transform: none; letter-spacing: 0; font-size: .74rem; }
+.tgp-progress { margin-top: 12px; }
+.tgp-progress .bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.07); overflow: hidden; }
+.tgp-progress .fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold), var(--gold-accent)); width: 0; transition: width 1.1s var(--ease-emph); }
+.tgp-progress .txt { font-size: .8rem; color: var(--muted); margin-top: 6px; }
+.tgp-stamps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.tgp-stamp { aspect-ratio: 1; max-width: 100%; border-radius: 50%; border: 2px dashed var(--gold); display: grid; place-content: center; text-align: center; gap: 2px; padding: 8px; transform: rotate(var(--rot, 0deg)); background: rgba(212,175,55,0.07); position: relative; }
+.tgp-stamp .ico { font-size: 1.5rem; line-height: 1; }
+.tgp-stamp .nm { font: 600 .8rem/1.1 var(--font-display); color: var(--gold-light); overflow-wrap: anywhere; }
+.tgp-stamp .th { font-size: .62rem; color: var(--muted); }
+.tgp-stamp.is-locked { border-color: rgba(240,236,228,0.18); background: transparent; opacity: .55; filter: grayscale(1); }
+.tgp-stamp::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.35); }
+.tgp-stamp.is-locked::after { border-color: rgba(240,236,228,0.12); }
+
+/* cuenta */
+.tgp-account { display: grid; gap: 10px; }
+.tgp-account .email { font-size: 1.05rem; color: var(--text); overflow-wrap: anywhere; }
+.tgp-status { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 12px; font-size: .85rem; }
+.tgp-status.cloud { background: rgba(111,207,151,0.12); color: var(--ok); border: 1px solid rgba(111,207,151,0.35); }
+.tgp-status.local { background: rgba(240,236,228,0.05); color: var(--muted); border: 1px solid var(--border); }
+.tgp-account-btns { display: grid; gap: 8px; }
+
+/* toast */
+.tgp-toast { position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--panel2); color: var(--text); border: 1px solid var(--gold); border-radius: 999px; padding: 9px 16px; font-size: .9rem; box-shadow: var(--shadow-lg); opacity: 0; pointer-events: none; transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-bounce); z-index: 30; max-width: calc(100vw - 32px); }
+.tgp-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tgp *, .tgp *::before, .tgp *::after, .tgp-toast { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .tgp-chart .draw { stroke-dashoffset: 0; }
+}
+
+/* color-mix() necesita iOS 16.2: cada uso lleva antes un color fijo para iOS 15 */
+/* clases que sustituyen a los style="" del cuerpo */
+.tgp-objetivo-row { margin-top: 14px; }
+.tgp-objetivo-field { flex: 1 1 180px; }
+.tgp-sellos-titulo { margin-top: 14px; }
+/* borrar los datos del perfil de este dispositivo: confirmación en la propia pantalla (sin confirm()) */
+.tgp-confirm { border: 1px solid rgba(242,140,140,0.45); background: rgba(242,140,140,0.08); border-radius: 12px; padding: 12px; display: grid; gap: 10px; }
+.tgp-confirm p { margin: 0; font-size: .88rem; }
+.tgp-confirm-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.tgp-confirm-btns .tgp-btn { flex: 1 1 140px; }
+
+/* Medido en los diez idiomas a 360 px (verificación del 22 de octubre): con
+   estos tamaños caben «AUJOURD’HUI», «ПОСЛЕДНИТЕ», «Achievements»,
+   «Постижения» y los nombres de logro que ya tiene la app («Conquistatore»,
+   «Изследовател»…) sin partirse a mitad de palabra. */
+.tgp-tile { padding-left: 8px; padding-right: 8px; }
+.tgp-tile .k { font-size: .6rem; letter-spacing: .02em; }
+.tgp-isla-tiles .tgp-tile .k { font-size: .68rem; }
+.tgp-stamp { padding: 6px; }
+.tgp-stamp .nm { font-size: .72rem; overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; }
+/* Y los 235 nombres de avatar (23 de octubre, con los de Europa): la palabra más
+   larga que no se puede partir es «océanographique» o «Астрономически», 96 px. */
+.tgp-av { width: 98px; }
+.tgp-av .name { max-width: 96px; }
+/* Los botones a todo lo ancho parten línea: «Borrar los datos del perfil de este dispositivo» no cabe en una a 360 px. */
+.tgp-btn.wide { white-space: normal; text-align: center; line-height: 1.25; padding-top: 10px; padding-bottom: 10px; }
+
+/* ── las visitas comprobadas (set Tenerife) ── */
+.tgp-lock-why { margin: 8px 0 0; color: var(--muted); font-size: .8rem; line-height: 1.4; }
+
+/* ── la nube, con permiso: el interruptor ── */
+.tgp-nube { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px; background: rgba(240,236,228,0.04); }
+.tgp-nube .txt { min-width: 0; }
+.tgp-nube .lbl { font-size: .92rem; color: var(--text); }
+.tgp-nube .sub { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+.tgp-switch { flex: 0 0 auto; position: relative; width: 50px; height: 30px; border-radius: 999px; border: 1px solid var(--border); background: var(--panel2); padding: 0; transition: background var(--t-normal) var(--ease-out), border-color var(--t-normal) var(--ease-out); }
+.tgp-switch .knob { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,.45); transition: transform var(--t-normal) var(--ease-out); }
+.tgp-switch[aria-checked="true"] { background: var(--gold); border-color: var(--gold); }
+.tgp-switch[aria-checked="true"] .knob { transform: translateX(20px); background: #1a1407; }
+.tgp-switch:disabled { opacity: .45; cursor: not-allowed; }
+.tgp-confirm.ok { border-color: rgba(212,175,55,0.45); background: rgba(212,175,55,0.08); }
+@media (prefers-reduced-motion: reduce) { .tgp-switch, .tgp-switch .knob { transition: none; } }
+
+/* ── los avatares se mueven al tocarlos (Jerome, 23-10-2026: «Interactivo?») ──
+   avatares.js pone cada motivo en <g class="tga-m tga-<animación>"> y marca las
+   piezas que se mueven solas (tga-girar, tga-humo…). Al tocar, perfil.js pone
+   «tga-play» en el botón o en el héroe durante 1,4 s. transform-box: fill-box hace
+   que cada pieza gire o se estire desde su propio centro o su base, sin
+   coordenadas. Con «reducir movimiento», perfil.js no lo pone y el bloque de
+   arriba deja cualquier animación en nada. */
+.tg-avatar .tga-m, .tg-avatar [class*="tga-"] { transform-box: fill-box; }
+.tga-play .tga-m.tga-bote { transform-origin: 50% 100%; animation: tga-bote .9s cubic-bezier(.3,.7,.4,1); }
+.tga-play .tga-m.tga-salto { transform-origin: 50% 100%; animation: tga-salto 1s ease-out; }
+.tga-play .tga-m.tga-balanceo { transform-origin: 50% 100%; animation: tga-balanceo 1.1s ease-in-out; }
+.tga-play .tga-m.tga-colgado { transform-origin: 50% 0; animation: tga-balanceo 1.1s ease-in-out; }
+.tga-play .tga-m.tga-latido { transform-origin: 50% 50%; animation: tga-latido .9s ease-in-out; }
+.tga-play .tga-m.tga-vaiven { transform-origin: 50% 80%; animation: tga-vaiven 1.2s ease-in-out; }
+.tga-play .tga-m.tga-avance { animation: tga-avance 1.1s cubic-bezier(.5,0,.3,1); }
+.tga-play .tga-m.tga-giro { transform-origin: 50% 50%; animation: tga-giro 1s cubic-bezier(.5,0,.3,1); }
+.tga-play .tga-m.tga-brillo { transform-origin: 50% 50%; animation: tga-brillo 1s ease-in-out; }
+.tga-play .tga-luz { animation: tga-luz 1s ease-in-out; }
+.tga-play .tga-girar { transform-origin: 50% 50%; animation: tga-girar 1.3s cubic-bezier(.45,.05,.3,1); }
+.tga-play .tga-humo { animation: tga-humo 1.3s ease-out; }
+.tga-play .tga-chorro { transform-origin: 50% 100%; animation: tga-chorro 1.2s ease-out; }
+.tga-play .tga-ala { transform-origin: 50% 100%; animation: tga-ala .32s ease-in-out 3; }
+.tga-play .tga-cola { transform-origin: 0 50%; animation: tga-cola .5s ease-in-out 2; }
+.tga-play .tga-cola-d { transform-origin: 100% 50%; animation: tga-cola .5s ease-in-out 2; }
+.tga-play .tga-brilla { animation: tga-brilla 1s ease-in-out; }
+.tga-play .tga-ola { animation: tga-ola 1.2s ease-in-out; }
+.tga-play .tga-onda { transform-origin: 50% 100%; animation: tga-onda 1.2s ease-in-out; }
+.tga-play .tga-sube { animation: tga-sube 1.2s ease-out; }
+.tga-play .tga-chispas { transform-origin: 50% 50%; animation: tga-chispas 1.1s ease-in-out; }
+.tga-no .tga-m { animation: tga-no .45s ease-in-out; }
+@keyframes tga-bote { 0%, 100% { transform: none; } 18% { transform: scale(1.06, .9); } 45% { transform: translateY(-10px) scale(.96, 1.05); } 70% { transform: scale(1.03, .97); } 85% { transform: translateY(-2px); } }
+@keyframes tga-salto { 0%, 40%, 80%, 100% { transform: none; } 20% { transform: translateY(-9px) rotate(-4deg); } 60% { transform: translateY(-6px) rotate(3deg); } }
+@keyframes tga-balanceo { 0%, 100% { transform: none; } 20% { transform: rotate(-9deg); } 45% { transform: rotate(7deg); } 70% { transform: rotate(-4deg); } 88% { transform: rotate(2deg); } }
+@keyframes tga-latido { 0%, 100% { transform: none; } 25% { transform: scale(1.13); } 45% { transform: scale(.96); } 65% { transform: scale(1.07); } }
+@keyframes tga-vaiven { 0%, 100% { transform: none; } 25% { transform: translateY(-3px) rotate(-6deg); } 55% { transform: translateY(1px) rotate(5deg); } 80% { transform: translateY(-1px) rotate(-2deg); } }
+@keyframes tga-avance { 0%, 100% { transform: none; } 15% { transform: translateX(-3px); } 50% { transform: translateX(9px); } 75% { transform: translateX(-2px); } }
+@keyframes tga-giro { from { transform: none; } to { transform: rotate(360deg); } }
+@keyframes tga-brillo { 0%, 100% { transform: none; } 40% { transform: scale(1.04); } }
+@keyframes tga-luz { from { transform: none; } to { transform: translateX(160px); } }
+@keyframes tga-girar { from { transform: none; } to { transform: rotate(360deg); } }
+@keyframes tga-humo { 0%, 100% { transform: none; opacity: 1; } 60% { transform: translateY(-8px); opacity: 0; } 61% { transform: translateY(4px); opacity: 0; } }
+@keyframes tga-chorro { 0%, 100% { transform: none; } 15% { transform: scaleY(.3); } 50% { transform: scaleY(1.25); } 75% { transform: scaleY(.9); } }
+@keyframes tga-ala { 0%, 100% { transform: none; } 50% { transform: scaleY(.45); } }
+@keyframes tga-cola { 0%, 100% { transform: none; } 25% { transform: rotate(-14deg); } 75% { transform: rotate(14deg); } }
+@keyframes tga-brilla { 0%, 50%, 100% { opacity: 1; } 25% { opacity: .15; } 75% { opacity: .3; } }
+@keyframes tga-ola { 0%, 100% { transform: none; } 30% { transform: translateX(-4px); } 65% { transform: translateX(4px); } }
+@keyframes tga-onda { 0%, 100% { transform: none; } 30% { transform: skewX(-10deg) scaleY(1.08); } 65% { transform: skewX(8deg) scaleY(.95); } }
+@keyframes tga-sube { 0%, 100% { transform: none; } 45% { transform: translateY(-7px); } }
+@keyframes tga-chispas { 0%, 100% { transform: none; opacity: 1; } 30% { transform: scale(1.12) rotate(8deg); opacity: .4; } 60% { transform: scale(.96); } }
+@keyframes tga-no { 0%, 100% { transform: none; } 20% { transform: translateX(-4px); } 40% { transform: translateX(4px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(2px); } }
+.tgp-ava-big { cursor: pointer; }
+
+/* ── los de oro ── */
+.tgp-av.is-oro { position: relative; }
+.tgp-av.is-oro .tg-avatar { box-shadow: 0 0 0 1px rgba(255,236,160,.35), 0 6px 18px rgba(212,160,32,.32); }
+.tgp-av.is-oro.is-on .tg-avatar { box-shadow: 0 0 0 3px var(--panel), 0 0 0 6px var(--gold), 0 10px 24px rgba(212,160,32,.45); }
+.tgp-av.is-cerrado .tg-avatar { filter: saturate(.3) brightness(.78); }
+.tgp-av.is-cerrado .name { color: var(--muted); }
+.tgp-oro-fecha { font-size: .7rem; line-height: 1.1; color: var(--gold-light); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tgp-oro-candado { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); font-size: .95rem; line-height: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); pointer-events: none; }
+.tgp-oro-bandera { position: absolute; top: 2px; left: 6px; font-size: .95rem; line-height: 1; filter: drop-shadow(0 1px 2px rgba(0,0,0,.55)); pointer-events: none; }
+.tgp-oro-hoy { position: absolute; top: 0; right: 4px; padding: 2px 7px; border-radius: 999px; background: var(--gold); color: #1a1407; font-size: .66rem; font-weight: 700; line-height: 1.3; box-shadow: 0 2px 8px rgba(0,0,0,.35); animation: tgp-oro-late 1.6s ease-in-out infinite; pointer-events: none; }
+@keyframes tgp-oro-late { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.tgp-set-oro { position: relative; border-color: rgba(212,175,55,0.55); }
+.tgp-set-oro.is-on { border-color: var(--gold); background: rgba(212,175,55,0.2); }
+.tgp-oro-punto { position: absolute; top: 3px; right: 3px; width: 9px; height: 9px; border-radius: 50%; background: var(--gold-light); box-shadow: 0 0 0 2px var(--panel); }
+
+/* ── solo en la app ── */
+/* cerrado, no se ve (la app no tiene una regla global para [hidden]) */
+#perfil-panel[hidden] { display: none !important; }
+/* abajo, el borde del iPhone (la barra de inicio) */
+#perfil-panel { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+/* la linea de «Activar notificaciones», que escribe el codigo de las notificaciones: vacia, no ocupa */
+.tgp-push-msg { text-align: center; min-height: 0; }
+.tgp-push-msg:empty { display: none; }
+/* Medido en la app, con sus letras (23 de octubre): la palabra mas larga que no se puede
+   partir es, en la lista de paises, «Великобритания» (121 px; con la bandera y los margenes,
+   174) y «Nordmazedonien» (109), y en la tira, «Астрономически» (101). Con columnas de
+   132 px, a 390 y 430 px la lista iba en dos y partia esos nombres a mitad de palabra: con
+   176 va en una en el movil y en dos en una tableta. Y las etiquetas de la tira, de 96 a 102. */
+.tgp-paises-grid { grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); }
+.tgp-av { width: 104px; }
+.tgp-av .name { max-width: 102px; }
+`;
+  /* CUERPO es perfil.html del encargo sin el selector de idioma, la etiqueta
+     «Ejemplo» ni el pie «Demo», y sin sus marcas de idioma: las claves van en
+     TEXTOS, debajo. Los textos los pone aplicarTextos(), de PERFIL_UI, antes
+     de enseñarse; sin traducir, solo las unidades. Los numeros van en campos
+     de texto con teclado decimal (inputmode), no en type="number": con el
+     movil en castellano, Chromium convertia «81,5» en 815. */
+  var CUERPO = `
+<div class="tgp" id="tgp" lang="es">
+
+  <header class="tgp-top">
+    <button type="button" class="tgp-icon-btn" id="tgp-back">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <h1 id="tgp-titulo">Su perfil</h1>
+  </header>
+
+  <section class="tgp-hero" id="tgp-hero">
+    <div class="tgp-stars" aria-hidden="true"></div>
+    <div class="tgp-blob b1" aria-hidden="true"></div>
+    <div class="tgp-blob b2" aria-hidden="true"></div>
+    <div class="tgp-blob b3" aria-hidden="true"></div>
+    <canvas class="tgp-confeti" id="tgp-confeti" aria-hidden="true"></canvas>
+    <div class="tgp-ring-wrap">
+      <div class="tgp-ring"><div class="tgp-ava-big" id="tgp-ava-big"></div></div>
+    </div>
+    <div class="tgp-name-row" id="tgp-name-row">
+      <h2 class="tgp-name" id="tgp-name"></h2>
+      <button type="button" class="tgp-pencil" id="tgp-name-edit">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      </button>
+    </div>
+    <div class="tgp-meta" id="tgp-meta"></div>
+    <p class="tgp-lema">Su pasaporte de viajero</p>
+  </section>
+
+  <div class="tgp-tabs" id="tgp-tabs" role="tablist" aria-labelledby="tgp-titulo">
+    <button type="button" class="tgp-tab" role="tab" id="tgp-tab-viaje" data-pestana="viaje" aria-controls="tgp-p-viaje" aria-selected="true"><span class="ico" aria-hidden="true">🧭</span><span class="txt">Viaje</span></button>
+    <button type="button" class="tgp-tab" role="tab" id="tgp-tab-cuerpo" data-pestana="cuerpo" aria-controls="tgp-p-cuerpo" aria-selected="false" tabindex="-1"><span class="ico" aria-hidden="true">💪</span><span class="txt">Cuerpo</span></button>
+    <button type="button" class="tgp-tab" role="tab" id="tgp-tab-cuenta" data-pestana="cuenta" aria-controls="tgp-p-cuenta" aria-selected="false" tabindex="-1"><span class="ico" aria-hidden="true">👤</span><span class="txt">Cuenta</span></button>
+  </div>
+
+  <div class="tgp-pestana" role="tabpanel" id="tgp-p-viaje" aria-labelledby="tgp-tab-viaje">
+  <section class="tgp-card" id="tgp-avatares">
+    <div class="tgp-card-head"><h2 id="tgp-avatares-h">Elija su avatar</h2></div>
+    <div class="tgp-sets" id="tgp-sets" role="group" aria-labelledby="tgp-avatares-h">
+      <button type="button" class="tgp-mas" id="tgp-paises-btn" aria-expanded="false" aria-controls="tgp-paises"><span class="flag" aria-hidden="true">🌍</span><span>Todos los países</span></button>
+    </div>
+    <div class="tgp-paises" id="tgp-paises" hidden>
+      <input class="tgp-input tgp-buscar" id="tgp-buscar" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+      <div class="tgp-paises-grid" id="tgp-paises-grid"></div>
+      <p class="tgp-note tgp-paises-nada" id="tgp-paises-nada" hidden>Ningún país con ese nombre.</p>
+    </div>
+    <div class="tgp-strip" id="tgp-strip"></div>
+    <div class="tgp-strip-foot">
+      <div><div class="pick" id="tgp-pick"></div><div class="tgp-lock-note" id="tgp-lock-note"></div></div>
+      <button type="button" class="tgp-btn sm" id="tgp-random">🎲 <span>Sorpréndeme</span></button>
+    </div>
+    <p class="tgp-lock-why" id="tgp-lock-why" hidden>Una visita queda comprobada si marca el lugar como visitado estando allí. Lo comprueba el móvil con su ubicación, que no se envía a ningún sitio.</p>
+  </section>
+
+  <section class="tgp-card" id="tgp-isla">
+    <div class="tgp-card-head"><h2>Su isla</h2><span class="tgp-eyebrow" data-sin-traducir="marca">Tenerife Go</span></div>
+    <div class="tgp-isla-tiles" id="tgp-isla-tiles"></div>
+    <div class="tgp-progress" id="tgp-progress"><div class="bar"><div class="fill" id="tgp-progress-fill"></div></div><div class="txt" id="tgp-progress-txt"></div></div>
+    <div class="tgp-eyebrow tgp-sellos-titulo">Sus sellos</div>
+    <div class="tgp-stamps" id="tgp-stamps"></div>
+  </section>
+  </div>
+
+  <div class="tgp-pestana" role="tabpanel" id="tgp-p-cuerpo" aria-labelledby="tgp-tab-cuerpo" hidden>
+  <section class="tgp-card tgp-cuerpo" id="tgp-cuerpo">
+    <div class="tgp-card-head"><h2 id="tgp-cuerpo-h">Su cuerpo</h2></div>
+    <p class="tgp-note">Sus músculos, su semana y su personaje</p>
+    <button type="button" class="tgp-btn gold wide" id="tgp-cuerpo-abrir" aria-labelledby="tgp-cuerpo-abrir-txt tgp-cuerpo-h"><span id="tgp-cuerpo-abrir-txt">Abrir</span></button>
+    <p class="tgp-cuerpo-error" id="tgp-cuerpo-error" role="alert" hidden>No se pudo abrir. Compruebe la conexión e inténtelo de nuevo.</p>
+  </section>
+
+  <section class="tgp-card" id="tgp-datos">
+    <div class="tgp-card-head"><h2>Sus datos</h2></div>
+    <p class="tgp-note">Se guardan en este dispositivo y, solo si usted activa la opción en «Cuenta», también en su cuenta.</p>
+    <form id="tgp-form" novalidate>
+      <div class="tgp-fields">
+        <div class="tgp-field">
+          <label for="tgp-altura">Altura</label>
+          <div class="tgp-input-wrap"><input class="tgp-input" id="tgp-altura" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-describedby="tgp-altura-h"><span class="tgp-unit" id="tgp-altura-u">cm</span></div>
+          <div class="tgp-help" id="tgp-altura-h" aria-live="polite"></div>
+        </div>
+        <div class="tgp-field">
+          <label for="tgp-peso">Peso</label>
+          <div class="tgp-input-wrap"><input class="tgp-input" id="tgp-peso" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-describedby="tgp-peso-h"><span class="tgp-unit" id="tgp-peso-u">kg</span></div>
+          <div class="tgp-help" id="tgp-peso-h" aria-live="polite"></div>
+        </div>
+        <div class="tgp-field">
+          <label for="tgp-nac">Año de nacimiento</label>
+          <div class="tgp-input-wrap"><input class="tgp-input" id="tgp-nac" type="text" inputmode="numeric" maxlength="4" autocomplete="off" enterkeyhint="done" aria-describedby="tgp-nac-h"></div>
+          <div class="tgp-help" id="tgp-nac-h" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="tgp-imc" id="tgp-imc" hidden>
+        <span class="tgp-eyebrow">IMC</span>
+        <span class="val" id="tgp-imc-val"></span>
+        <span class="cat" id="tgp-imc-cat"></span>
+        <span class="note" id="tgp-imc-nota">Orientativo. Categorías de la OMS para adultos</span>
+        <span class="note" id="tgp-imc-joven" hidden>Por debajo de 20 años, la OMS usa tablas por edad y sexo</span>
+      </div>
+      <div class="tgp-row">
+        <div class="tgp-seg" id="tgp-unidades" role="group">
+          <button type="button" data-u="metric" class="is-on">kg · cm</button>
+          <button type="button" data-u="imperial">lb · in</button>
+        </div>
+        <button type="submit" class="tgp-btn gold" id="tgp-save"><span>Guardar</span></button>
+      </div>
+    </form>
+  </section>
+
+  <section class="tgp-card" id="tgp-evo">
+    <div class="tgp-card-head">
+      <h2>Su evolución</h2>
+      <div class="tgp-seg" id="tgp-evo-tabs" role="tablist">
+        <button type="button" data-tab="peso" class="is-on">Peso</button>
+        <button type="button" data-tab="km">Kilómetros</button>
+      </div>
+    </div>
+    <div id="tgp-evo-peso">
+      <div class="tgp-tiles" id="tgp-peso-tiles"></div>
+      <div class="tgp-chart" id="tgp-peso-chart"><div class="tgp-tip" id="tgp-tip"></div></div>
+      <div class="tgp-legend" id="tgp-peso-legend"></div>
+      <div class="tgp-row">
+        <div class="tgp-ranges" id="tgp-ranges">
+          <button type="button" data-r="30" class="is-on">30 días</button>
+          <button type="button" data-r="90">90 días</button>
+          <button type="button" data-r="365">1 año</button>
+        </div>
+      </div>
+      <form class="tgp-add" id="tgp-add-peso" novalidate>
+        <input class="tgp-input" type="date" id="tgp-peso-fecha">
+        <div class="tgp-input-wrap"><input class="tgp-input" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" id="tgp-peso-nuevo" aria-describedby="tgp-peso-nuevo-h"><span class="tgp-unit" id="tgp-peso-nuevo-u">kg</span></div>
+        <button type="submit" class="tgp-btn gold"><span>Añadir</span></button>
+        <div class="tgp-help tgp-add-help" id="tgp-peso-nuevo-h" aria-live="polite"></div>
+      </form>
+      <ul class="tgp-log" id="tgp-peso-log"></ul>
+      <div class="tgp-row tgp-objetivo-row">
+        <div class="tgp-field tgp-objetivo-field">
+          <label for="tgp-objetivo">Objetivo</label>
+          <div class="tgp-input-wrap"><input class="tgp-input" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" id="tgp-objetivo" aria-describedby="tgp-objetivo-h"><span class="tgp-unit" id="tgp-objetivo-u">kg</span></div>
+          <div class="tgp-help" id="tgp-objetivo-h" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+    <div id="tgp-evo-km" hidden>
+      <div class="tgp-tiles" id="tgp-km-tiles"></div>
+      <div class="tgp-chart" id="tgp-km-chart"></div>
+      <form class="tgp-add" id="tgp-add-km" novalidate>
+        <input class="tgp-input" type="date" id="tgp-km-fecha">
+        <div class="tgp-input-wrap"><input class="tgp-input" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" id="tgp-km-nuevo" aria-describedby="tgp-km-nuevo-h"><span class="tgp-unit">km</span></div>
+        <button type="submit" class="tgp-btn gold"><span>Añadir</span></button>
+        <div class="tgp-help tgp-add-help" id="tgp-km-nuevo-h" aria-live="polite"></div>
+      </form>
+      <ul class="tgp-log" id="tgp-km-log"></ul>
+    </div>
+  </section>
+  </div>
+
+  <div class="tgp-pestana" role="tabpanel" id="tgp-p-cuenta" aria-labelledby="tgp-tab-cuenta" hidden>
+  <section class="tgp-card tgp-account" id="tgp-cuenta">
+    <div class="tgp-card-head"><h2>Cuenta</h2></div>
+    <div id="tgp-cuenta-who"></div>
+    <div class="tgp-status" id="tgp-cuenta-status"></div>
+    <div class="tgp-nube" id="tgp-nube-box"></div>
+    <div class="tgp-confirm ok" id="tgp-nube-confirm" hidden>
+      <p>Se guardarán en su cuenta su nombre o apodo, su avatar, sus unidades, su altura, su año de nacimiento, la fecha de alta del perfil, su peso objetivo y los pesos y kilómetros que anote, con la fecha de cada uno.</p>
+      <div class="tgp-confirm-btns">
+        <button type="button" class="tgp-btn gold" id="tgp-nube-si"><span>Acepto</span></button>
+        <button type="button" class="tgp-btn" id="tgp-nube-no"><span>Cancelar</span></button>
+      </div>
+    </div>
+    <div class="tgp-confirm" id="tgp-nube-quitar" hidden>
+      <p>Se borrará la copia guardada en su cuenta. En este dispositivo se queda todo.</p>
+      <div class="tgp-confirm-btns">
+        <button type="button" class="tgp-btn danger" id="tgp-nube-quitar-si"><span>Borrar de la nube</span></button>
+        <button type="button" class="tgp-btn" id="tgp-nube-quitar-no"><span>Cancelar</span></button>
+      </div>
+    </div>
+    <div class="tgp-account-btns" id="tgp-cuenta-btns"></div>
+    <div class="tgp-confirm" id="tgp-borrar-confirm" hidden>
+      <p id="tgp-borrar-texto"></p>
+      <div class="tgp-confirm-btns">
+        <button type="button" class="tgp-btn danger" id="tgp-borrar-si"><span>Sí, borrar</span></button>
+        <button type="button" class="tgp-btn" id="tgp-borrar-no"><span>Cancelar</span></button>
+      </div>
+    </div>
+  </section>
+  </div>
+
+</div>
+
+<div class="tgp-toast" id="tgp-toast" role="status" aria-live="polite"></div>
+`;
+
+  /* Las claves de los textos fijos del cuerpo: [selector, como, clave]; como es tx (el
+     texto), aria (aria-label) o ph (placeholder). No van en la cadena como marcas: fuente.py
+     pega el modulo dentro de un <script>, y auditar_seguridad.py no deja ninguna ahi (una
+     marca dentro de una cadena acaba en el dato). montar() las pone con setAttribute en
+     cuanto el cuerpo esta en la pagina, y desde ahi las traducen aplicarTextos() y, al
+     cambiar de idioma, applyUiTx() de la app, como las de index.html. Cada selector da
+     un solo elemento (lo mira tools/probar_perfil.js). */
+  var TEXTOS = [
+    ['#tgp-back', 'aria', 'ariaCerrar'],
+    ['#tgp-titulo', 'tx', 'perfilTitulo'],
+    ['#tgp-tab-viaje .txt', 'tx', 'perfilPestanaViaje'],
+    ['#tgp-tab-cuerpo .txt', 'tx', 'perfilPestanaCuerpo'],
+    ['#tgp-tab-cuenta .txt', 'tx', 'perfilCuenta'],
+    ['#tgp-cuerpo h2', 'tx', 'perfilCuerpoTitulo'],
+    ['#tgp-cuerpo .tgp-note', 'tx', 'perfilCuerpoTexto'],
+    ['#tgp-cuerpo-abrir-txt', 'tx', 'perfilCuerpoAbrir'],
+    ['#tgp-cuerpo-error', 'tx', 'perfilCuerpoError'],
+    ['#tgp-name-edit', 'aria', 'perfilEditarNombre'],
+    ['#tgp-hero .tgp-lema', 'tx', 'perfilLema'],
+    ['#tgp-avatares h2', 'tx', 'perfilElegirAvatar'],
+    ['#tgp-paises-btn span + span', 'tx', 'perfilTodosPaises'],
+    ['#tgp-buscar', 'ph', 'perfilBuscarPais'],
+    ['#tgp-buscar', 'aria', 'perfilBuscarPais'],
+    ['#tgp-paises-nada', 'tx', 'perfilPaisNinguno'],
+    ['#tgp-random span', 'tx', 'perfilSorprendeme'],
+    ['#tgp-lock-why', 'tx', 'perfilVisitaVerdad'],
+    ['#tgp-datos h2', 'tx', 'perfilDatos'],
+    ['#tgp-datos .tgp-note', 'tx', 'perfilDatosNota'],
+    ['label[for="tgp-altura"]', 'tx', 'perfilAltura'],
+    ['label[for="tgp-peso"]', 'tx', 'perfilPeso'],
+    ['label[for="tgp-nac"]', 'tx', 'perfilNacimiento'],
+    ['#tgp-imc .tgp-eyebrow', 'tx', 'perfilImc'],
+    ['#tgp-imc-nota', 'tx', 'perfilImcNota'],
+    ['#tgp-imc-joven', 'tx', 'perfilImcJoven'],
+    ['#tgp-unidades', 'aria', 'perfilUnidades'],
+    ['#tgp-save span', 'tx', 'perfilGuardar'],
+    ['#tgp-evo h2', 'tx', 'perfilEvolucion'],
+    ['#tgp-evo-tabs [data-tab="peso"]', 'tx', 'perfilPeso'],
+    ['#tgp-evo-tabs [data-tab="km"]', 'tx', 'perfilKm'],
+    ['#tgp-ranges [data-r="30"]', 'tx', 'perfilRango30'],
+    ['#tgp-ranges [data-r="90"]', 'tx', 'perfilRango90'],
+    ['#tgp-ranges [data-r="365"]', 'tx', 'perfilRangoAnio'],
+    ['#tgp-peso-fecha', 'aria', 'perfilFecha'],
+    ['#tgp-peso-nuevo', 'ph', 'perfilPeso'],
+    ['#tgp-add-peso button span', 'tx', 'perfilAnadir'],
+    ['label[for="tgp-objetivo"]', 'tx', 'perfilObjetivo'],
+    ['#tgp-objetivo', 'ph', 'perfilObjetivoPlaceholder'],
+    ['#tgp-km-fecha', 'aria', 'perfilFecha'],
+    ['#tgp-km-nuevo', 'ph', 'perfilDistancia'],
+    ['#tgp-add-km button span', 'tx', 'perfilAnadir'],
+    ['#tgp-isla h2', 'tx', 'perfilIsla'],
+    ['#tgp-isla .tgp-sellos-titulo', 'tx', 'perfilSellos'],
+    ['#tgp-cuenta h2', 'tx', 'perfilCuenta'],
+    ['#tgp-nube-confirm p', 'tx', 'perfilNubeConsentimiento'],
+    ['#tgp-nube-si span', 'tx', 'perfilNubeAcepto'],
+    ['#tgp-nube-no span', 'tx', 'cuentaBorrarNo'],
+    ['#tgp-nube-quitar p', 'tx', 'perfilNubeQuitarAviso'],
+    ['#tgp-nube-quitar-si span', 'tx', 'perfilNubeQuitarSi'],
+    ['#tgp-nube-quitar-no span', 'tx', 'cuentaBorrarNo'],
+    ['#tgp-borrar-si span', 'tx', 'perfilBorrarLocalSi'],
+    ['#tgp-borrar-no span', 'tx', 'cuentaBorrarNo']
+  ];
+
+  /* estado() y esperar() son para las pruebas (tools/probar_perfil.js):
+     esperar() da la vuelta de la nube en curso. */
+  window.TG_PERFIL = {
+    abrir: abrir,
+    cerrar: function () { cerrar(); },
+    repintar: function () { if (!st.avatar) setAbierto = null; if (abierto) renderTodo(); },
+    sincronizar: sincronizar,
+    estado: function () { return st; },
+    esperar: function () { return nubeCadena; },
+    /* abre una de las pestañas ('viaje', 'cuerpo' o 'cuenta'), con el perfil abierto */
+    pestana: function (p) { if (abierto) irAPestana(p, false); }
+  };
+})();

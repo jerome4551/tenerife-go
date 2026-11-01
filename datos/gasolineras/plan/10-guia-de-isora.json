@@ -1,0 +1,109 @@
+{
+ "_": [
+  "Tanda 10 de 31: Guía de Isora.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Guía de Isora",
+ "estaciones": 7,
+ "ya_en_la_app": 1,
+ "altas_nuevas": 6,
+ "lista": [
+  {
+   "ideess": "13972",
+   "rotulo": "CEPSA",
+   "marca": "cepsa",
+   "direccion": "AVENIDA LA GAVIOTA, 1",
+   "cp": "38680",
+   "localidad": "GUIA DE ISORA",
+   "municipio": "Guía de Isora",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.226778,
+   "lng": -16.839111,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "8977",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "CARRETERA GENERAL TF-82 KM. 96",
+   "cp": "38680",
+   "localidad": "GUIA DE ISORA",
+   "municipio": "Guía de Isora",
+   "horario": "L-S: 06:00-22:00; D: 08:00-17:00",
+   "lat": 28.225139,
+   "lng": -16.788028,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7849",
+   "rotulo": "DISA PLAYA SAN JUAN",
+   "marca": "disa",
+   "direccion": "CARRETERA CARRETERA GENERAL TF-623 KM. 13",
+   "cp": "38687",
+   "localidad": "PLAYA DE SAN JUAN",
+   "municipio": "Guía de Isora",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.193861,
+   "lng": -16.82225,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "10206",
+   "rotulo": "E.S. CEPSA CHIO",
+   "marca": "cepsa",
+   "direccion": "PASEO LA LIBERTAD, 49",
+   "cp": "38689",
+   "localidad": "CHIO",
+   "municipio": "Guía de Isora",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.244583,
+   "lng": -16.799389,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7722",
+   "rotulo": "PCAN",
+   "marca": "pcan",
+   "direccion": "CARRETERA TF47 ARMEÑIME-PUERTO SANTIAGO KM. 15",
+   "cp": "38686",
+   "localidad": "ALCALA",
+   "municipio": "Guía de Isora",
+   "horario": "L-D: 24H",
+   "lat": 28.205056,
+   "lng": -16.829889,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "9176",
+   "rotulo": "SHELL",
+   "marca": "shell",
+   "direccion": "AVENIDA AV ISORA, 86",
+   "cp": "38680",
+   "localidad": "GUIA DE ISORA",
+   "municipio": "Guía de Isora",
+   "horario": "L-S: 06:00-22:00; D: 07:00-17:00",
+   "lat": 28.212417,
+   "lng": -16.782028,
+   "ya_en_la_app": {
+    "id": "gas-tf82-guia-isora",
+    "name": "Shell Guía de Isora (TF-82)",
+    "a_metros": 166
+   }
+  },
+  {
+   "ideess": "10345",
+   "rotulo": "SHELL",
+   "marca": "shell",
+   "direccion": "TEJINA DE GUIA. GUIA DE ISORA (CTRA. GRAL KM 120-300)",
+   "cp": "38685",
+   "localidad": "GUIA DE ISORA",
+   "municipio": "Guía de Isora",
+   "horario": "L-D: 24H",
+   "lat": 28.174778,
+   "lng": -16.766611,
+   "ya_en_la_app": null
+  }
+ ]
+}

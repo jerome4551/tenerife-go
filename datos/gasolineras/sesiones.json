@@ -1,0 +1,622 @@
+{
+ "_": [
+  "Cuaderno de las gasolineras. Una sesion por municipio, mas tres aparte.",
+  "estado: pendiente | en_curso | hecha",
+  "Lo vigila tools/auditar_gasolineras.js: si una estacion del registro no",
+  "esta en la app Y su sesion ya figura como hecha, el control se pone ROJO.",
+  "Asi no depende de que alguien se acuerde."
+ ],
+ "sesiones": {
+  "00-plantilla": {
+   "que": "Asentar la plantilla de ficha de gasolinera y el formateador de horarios en los 10 idiomas.",
+   "estado": "hecha",
+   "municipio": null,
+   "estaciones": 0,
+   "hecho_el": "2026-10-02",
+   "deja": [
+    "tools/gasolinera_ficha.py  el molde: 12 palabras y 7 dias x 10 idiomas, y el",
+    "  vocabulario se saca solo con --vocabulario para poder revisarlo.",
+    "tools/gasolinera_alta.py   mete un municipio entero en index.html, en los 9",
+    "  ficheros de idioma y en las etiquetas. Si algo falla lo deja como estaba.",
+    "Probado sobre Garachico, 1 estacion, y la auditoria en verde."
+   ]
+  },
+  "01-santa-cruz-de-tenerife": {
+   "que": "Las 33 estaciones de Santa Cruz de Tenerife (33 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Santa Cruz de Tenerife",
+   "estaciones": 33,
+   "altas": 33,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/01-santa-cruz-de-tenerife.json",
+   "hecho_el": "2026-10-02",
+   "altas_hechas": 33,
+   "nota": "Dos pares no se pueden distinguir con los datos del registro y llevan el IDEESS en el nombre: los dos DISA de la Autovia Santa Cruz-San Andres (misma direccion, sin km) y, en Granadilla, los dos REPSOL de la CARRETERA TF-1 KM. 54, a 83 m uno de otro.",
+   "revisada_el": "2026-10-02",
+   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban",
+   "confirmada_tras_espera": {
+    "7840": "Jerome, 3 de octubre, con la web de DISA: abierta, L-D 07:00-22:00."
+   }
+  },
+  "02-san-cristobal-de-la-laguna": {
+   "que": "Las 28 estaciones de San Cristóbal de La Laguna (26 altas, 2 ya en la app).",
+   "estado": "hecha",
+   "municipio": "San Cristóbal de La Laguna",
+   "estaciones": 28,
+   "altas": 26,
+   "ya": 2,
+   "plan": "datos/gasolineras/plan/02-san-cristobal-de-la-laguna.json",
+   "hecho_el": "2026-10-02",
+   "altas_hechas": 26,
+   "enlazadas": {
+    "gas-tf2-lalaguna": "7634 (a 7 m)",
+    "gas-tf5-lalaguna": "7688 (a 4 m)"
+   },
+   "nota": "Las 2 fichas antiguas solo reciben el ideess; el nombre al estilo nuevo, en la sesion 91.",
+   "revisada_el": "2026-10-02",
+   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban"
+  },
+  "03-arona": {
+   "que": "Las 15 estaciones de Arona (14 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Arona",
+   "estaciones": 15,
+   "altas": 14,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/03-arona.json",
+   "hecho_el": "2026-10-02",
+   "altas_hechas": 13,
+   "enlazadas": {
+    "gas-tf1-guaza": "8743 (a 10 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 14 fichas, 0 hallazgos, 15/15 estaciones con su ficha",
+   "para_la_91": "gas-tf1-guaza se llama «BP Guaza (TF-1 km 21)» y el registro la pone en la CARRETERA GENERAL GUAZA TF-66 KM. 79: no esta en el TF-1. Justo lo que Jerome no quiere ver.",
+   "en_espera": "10057 BP Ten Bel, desde el 6 de octubre: Jerome dice que no existe (la unica cerca de Ten Bel es la Cepsa de Costa del Silencio). Ficha retirada; si aparece, vuelve (ver en_espera en correcciones-registro.json)."
+  },
+  "04-adeje": {
+   "que": "Las 14 estaciones de Adeje (14 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Adeje",
+   "estaciones": 14,
+   "altas": 14,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/04-adeje.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 14,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 14 fichas, 0 hallazgos, 14/14 estaciones con su ficha"
+  },
+  "05-los-realejos": {
+   "que": "Las 13 estaciones de Los Realejos (12 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Los Realejos",
+   "estaciones": 13,
+   "altas": 12,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/05-los-realejos.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 12,
+   "enlazadas": {
+    "gas-tf5-los-realejos": "7723 (a 36 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 12 fichas, 0 hallazgos, 13/13 estaciones con su ficha",
+   "para_la_91": "gas-tf5-los-realejos se llama «DISA TF-5 km 46» pero el registro la pone en la Calle Los Barros, 33: mirar si de verdad tiene acceso directo de la TF-5 antes de dejarle el TF-5 en el nombre."
+  },
+  "06-granadilla-de-abona": {
+   "que": "Las 11 estaciones de Granadilla de Abona (10 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Granadilla de Abona",
+   "estaciones": 11,
+   "altas": 10,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/06-granadilla-de-abona.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 10,
+   "enlazadas": {
+    "gas-tf1-granadilla": "7692 (a 22 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 9 fichas, 0 hallazgos, 10/11 con ficha y 1 en espera",
+   "confirmada_tras_espera": {
+    "16132": "Repsol «Via Lado Aire»: a 134 m del TF-1, fuera del aeropuerto. Jerome, con la web de Repsol."
+   }
+  },
+  "07-la-orotava": {
+   "que": "Las 10 estaciones de La Orotava (9 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "La Orotava",
+   "estaciones": 10,
+   "altas": 9,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/07-la-orotava.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 9,
+   "enlazadas": {
+    "gas-tf21-aguamansa": "7790 (a 12 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 9 fichas, 0 hallazgos, 10/10 estaciones con su ficha",
+   "aviso_del_teide": "Movido el 3 de octubre, con OK de Jerome: de la Cepsa La Cañada (gas-tf21-aguamansa) a la Repsol Barroso (7677), que esta 1,3 km mas arriba por la TF-21. Textos trasladados tal cual en los diez idiomas; el aviso vive en datos/gasolineras/avisos.json."
+  },
+  "08-san-miguel-de-abona": {
+   "que": "Las 10 estaciones de San Miguel de Abona (10 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "San Miguel de Abona",
+   "estaciones": 10,
+   "altas": 10,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/08-san-miguel-de-abona.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 10,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 10 fichas, 0 hallazgos, 10/10 estaciones con su ficha"
+  },
+  "09-arafo": {
+   "que": "Las 7 estaciones de Arafo (6 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Arafo",
+   "estaciones": 7,
+   "altas": 6,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/09-arafo.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 6,
+   "enlazadas": {
+    "gas-tf1-guimar": "13012 (a 14 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 6 fichas, 0 hallazgos, 7/7 estaciones con su ficha",
+   "para_la_91": "gas-tf1-guimar se llama «BP Güímar (TF-1)» y lleva la etiqueta «Güímar», pero esta en Arafo (Poligono Plan Parcial El Carreton) y el registro no dice TF-1. Su horario decia 07:00-22:00 y el registro da 24 h: ya corregido."
+  },
+  "10-guia-de-isora": {
+   "que": "Las 7 estaciones de Guía de Isora (6 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Guía de Isora",
+   "estaciones": 7,
+   "altas": 6,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/10-guia-de-isora.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 6,
+   "enlazadas": {
+    "gas-tf82-guia-isora": "9176 (a 166 m: coordenada corregida a la del registro, LEEME 150-300 m)"
+   },
+   "correccion_coordenada": {
+    "gas-tf82-guia-isora": {
+     "antes": [
+      28.2137,
+      -16.7829
+     ],
+     "despues": [
+      28.212417,
+      -16.782028
+     ],
+     "metros": 166,
+     "fuente": "Registro MITECO IDEESS 9176; apuntada en datos/verificado.json"
+    }
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 6 fichas, 0 hallazgos, 7/7 estaciones con su ficha",
+   "para_la_91": "gas-tf82-guia-isora dice en la descripcion «Shell en la TF-82, Guia de Isora km 120», pero el km 120 es la OTRA Shell, la de Tejina de Guia (10345). La suya es la de la Avenida de Isora, 86."
+  },
+  "11-guimar": {
+   "que": "Las 6 estaciones de Güímar (6 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Güímar",
+   "estaciones": 6,
+   "altas": 6,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/11-guimar.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 6,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 6 fichas, 0 hallazgos, 6/6 estaciones con su ficha"
+  },
+  "12-tacoronte": {
+   "que": "Las 6 estaciones de Tacoronte (5 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Tacoronte",
+   "estaciones": 6,
+   "altas": 5,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/12-tacoronte.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 5,
+   "enlazadas": {
+    "gas-tf5-tacoronte": "7890 (a 1 m)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 6/6 estaciones con su ficha",
+   "km_contradichos": "Jerome, 4 de octubre, «Si»: fuera el km 11 de la BP 7770 (ahora «BP · Autopista El Torreon») y el km 79 de la Tgas 7733 (solo estaba en la direccion). km_contradicho en correcciones-registro.json, con la prueba."
+  },
+  "13-arico": {
+   "que": "Las 5 estaciones de Arico (4 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Arico",
+   "estaciones": 5,
+   "altas": 4,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/13-arico.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 4,
+   "enlazadas": {
+    "gas-tf1-abades": "7726 (a 1 m; sin marca en ninguno de los dos, mismo nombre propio «Abades»)"
+   },
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha"
+  },
+  "14-icod-de-los-vinos": {
+   "que": "Las 5 estaciones de Icod de los Vinos (5 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Icod de los Vinos",
+   "estaciones": 5,
+   "altas": 5,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/14-icod-de-los-vinos.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 5,
+   "revisada_el": "2026-10-03",
+   "revision": "tools/revisar_gasolineras.py: 5 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
+   "errata_tf82": "Jerome, 4 de octubre, con la web de Moeve («ICOD DE LOS VINOS», «C-820 PK 53,5», misma posicion y horario): «CARRETERA TF-82 KM. 53,6» -> «CARRETERA GENERAL C-820 KM. 53,6». Ahora «Moeve · Carretera General C-820 km 53,6» y su vecina «... km 52,7»."
+  },
+  "15-puerto-de-la-cruz": {
+   "que": "Las 5 estaciones de Puerto de la Cruz (4 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Puerto de la Cruz",
+   "estaciones": 5,
+   "altas": 4,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/15-puerto-de-la-cruz.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 4,
+   "enlazadas": {
+    "gas-tf5-ptocz": "7771 (a 6 m)"
+   },
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
+   "para_la_91": "gas-tf5-ptocz se llama «BP Puerto de la Cruz (TF-5 km 30)» y el registro la pone en la Carretera del Botanico km 6."
+  },
+  "16-el-sauzal": {
+   "que": "Las 5 estaciones de El Sauzal (4 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "El Sauzal",
+   "estaciones": 5,
+   "altas": 4,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/16-el-sauzal.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 4,
+   "enlazadas": {
+    "gas-tf5-el-sauzal": "7700 (a 18 m)"
+   },
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 5/5 estaciones con su ficha",
+   "carrera": "«CARRERA GENERAL» corregido a «Carretera General» con OK de Jerome (3 de octubre); tambien en Arona."
+  },
+  "17-candelaria": {
+   "que": "Las 4 estaciones de Candelaria (4 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Candelaria",
+   "estaciones": 4,
+   "altas": 4,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/17-candelaria.json",
+   "hecho_el": "2026-10-03",
+   "altas_hechas": 4,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 4/4 estaciones con su ficha"
+  },
+  "18-santiago-del-teide": {
+   "que": "Las 4 estaciones de Santiago del Teide (4 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Santiago del Teide",
+   "estaciones": 4,
+   "altas": 4,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/18-santiago-del-teide.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 4,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 4 fichas, 0 hallazgos, 4/4 estaciones con su ficha",
+   "9664_comprobada": "4 de octubre: Jerome manda Street View (julio de 2026) en 28.293833, -16.815583, que es exactamente la coordenada del registro: se ve una DISA. Se usa el IDEESS 9664, la coordenada del registro y su direccion tal cual («Avenida General Franco 3 km 82,9»): es el texto oficial, aunque el nombre de la calle sea antiguo."
+  },
+  "19-fasnia": {
+   "que": "Las 3 estaciones de Fasnia (3 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Fasnia",
+   "estaciones": 3,
+   "altas": 3,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/19-fasnia.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 3,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
+   "km_de_la_bp": "7718: Street View de Jerome (agosto 2026) confirma la BP en la coordenada del registro, al norte de la Moeve del km 34; el «km 36,5» queda contradicho y se quita (km_contradicho en correcciones-registro.json). Ahora «BP · Autovia TF-1»."
+  },
+  "20-la-guancha": {
+   "que": "Las 3 estaciones de La Guancha (3 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "La Guancha",
+   "estaciones": 3,
+   "altas": 3,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/20-la-guancha.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 3,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha"
+  },
+  "21-la-matanza-de-acentejo": {
+   "que": "Las 3 estaciones de La Matanza de Acentejo (2 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "La Matanza de Acentejo",
+   "estaciones": 3,
+   "altas": 2,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/21-la-matanza-de-acentejo.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 2,
+   "enlazadas": {
+    "gas-tf5-el-bohio": "9635 (a 54 m)"
+   },
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 2 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
+   "para_la_91": "gas-tf5-el-bohio: en chino tradicional la categoria dice 拉馬坦薩 y la etiqueta «La Matanza» sale en castellano; las fichas nuevas dejan los municipios en castellano en todos los idiomas."
+  },
+  "22-el-rosario": {
+   "que": "Las 3 estaciones de El Rosario (3 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "El Rosario",
+   "estaciones": 3,
+   "altas": 3,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/22-el-rosario.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 3,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
+   "km_del_parentesis": "8802 «C/ LA CAMPANA, S/N (CTRA. GRAL. DEL SUR km 4)»: el km 4 es de la Carretera General del Sur, no de la calle. La direccion pasa a «Calle La Campana (Carretera General del Sur km 4)». Misma regla para 10345 (Guia de Isora, rehecha) y 7827 (Los Silos, sin aplicar).",
+   "pregunta_a_jerome": "CP: la Moeve 8802 ya va con 38109 (tu captura IMG_3459 y la Tgas de su poligono). Siguen con el CP del registro, sin fuente para el bueno: la Pcan 7720 de El Rosario (38420, el de San Juan de la Rambla) y las dos de Abades, 7726 y 7703 (38260, el de Tejina)."
+  },
+  "23-tegueste": {
+   "que": "Las 3 estaciones de Tegueste (3 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Tegueste",
+   "estaciones": 3,
+   "altas": 3,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/23-tegueste.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 3,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 3 fichas, 0 hallazgos, 3/3 estaciones con su ficha",
+   "horarios_de_un_dia": "Jerome, 4 de octubre, los comprobo: 7728, 7696, 8754, 7624, 7675 y 11562 abren todos los dias («horarios» en correcciones-registro.json; 11562 cierra a las 21:30). La 7685 (Repsol, Calle Pinera, Cruz Santa) NO: la captura «Repsol Palo Blanco», Carr. la Ferruja 52, es la otra Repsol de Los Realejos, la 7684 (el paraje de La Ferruja esta a 110 m de ella y a 1,6 km de la 7685), que ya da L-D 06:30-00:00 en el registro.",
+   "horario_7685": "Jerome, 4 de octubre, 13:51: captura de Google Maps (C. El Mocan, 1A, Cruz Santa): L-V 06:00-22:00, S-D 07:00-22:00. Aplicado («horarios»)."
+  },
+  "24-santa-ursula": {
+   "que": "Las 2 estaciones de Santa Úrsula (2 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Santa Úrsula",
+   "estaciones": 2,
+   "altas": 2,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/24-santa-ursula.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 2,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 2 fichas, 0 hallazgos, 2/2 estaciones con su ficha"
+  },
+  "25-buenavista-del-norte": {
+   "que": "Las 1 estaciones de Buenavista del Norte (1 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Buenavista del Norte",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/25-buenavista-del-norte.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha"
+  },
+  "26-garachico": {
+   "que": "Las 1 estaciones de Garachico (1 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Garachico",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/26-garachico.json",
+   "hecho_el": "2026-10-02",
+   "altas_hechas": [
+    "gas-7749-garachico"
+   ],
+   "revisada_el": "2026-10-02",
+   "revision": "tools/revisar_gasolineras.py, campo a campo contra el registro: 0 hallazgos tras anadir los 3 combustibles que faltaban",
+   "revision_4_oct": "Revisor 0 hallazgos; la ficha, igual a lo que genera la plantilla hoy. Pin a 19 m de la TF-42. OSM tiene a 15 m una «Estacion de Servicio Moeve Garachico»; el registro dice «E.S. LA CALETA». Manda el registro; contraste para Jerome."
+  },
+  "27-san-juan-de-la-rambla": {
+   "que": "Las 1 estaciones de San Juan de la Rambla (1 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "San Juan de la Rambla",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/27-san-juan-de-la-rambla.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha"
+  },
+  "28-los-silos": {
+   "que": "Las 1 estaciones de Los Silos (1 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Los Silos",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/28-los-silos.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha",
+   "errata": "Jerome, 4 de octubre, «Ok»: «GENERAL TF-142» -> «GENERAL TF-42» (erratas en correcciones-registro.json)."
+  },
+  "29-el-tanque": {
+   "que": "Las 1 estaciones de El Tanque (1 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "El Tanque",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/29-el-tanque.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha",
+   "tf82": "Su km 8 es el de una TF-82 que empieza en Icod; las otras TF-82 del registro llevan los km antiguos de la C-820 (Santiago del Teide 82,9 y 84,95; Guia de Isora 96). Dos escalas en la misma carretera, las dos del registro: no se toca."
+  },
+  "30-la-victoria-de-acentejo": {
+   "que": "Las 1 estaciones de La Victoria de Acentejo (1 altas, 0 ya en la app).",
+   "estado": "hecha",
+   "municipio": "La Victoria de Acentejo",
+   "estaciones": 1,
+   "altas": 1,
+   "ya": 0,
+   "plan": "datos/gasolineras/plan/30-la-victoria-de-acentejo.json",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 1,
+   "revisada_el": "2026-10-04",
+   "revision": "tools/revisar_gasolineras.py: 1 ficha, 0 hallazgos, 1/1 estaciones con su ficha"
+  },
+  "31-vilaflor": {
+   "que": "Las 1 estaciones de Vilaflor (0 altas, 1 ya en la app).",
+   "estado": "hecha",
+   "municipio": "Vilaflor",
+   "estaciones": 1,
+   "altas": 0,
+   "ya": 1,
+   "plan": "datos/gasolineras/plan/31-vilaflor.json",
+   "verificada": "2026-10-04: la antigua «DISA Vilaflor (TF-51)» enlazada a 7951 (a 43 m, misma marca), horario y direccion del registro, la TF-51 pasa junto al pin. Sin altas. Se cierra cuando Jerome diga.",
+   "hecho_el": "2026-10-04",
+   "altas_hechas": 0,
+   "enlazadas": {
+    "gas-tf51-vilaflor": "7951 (a 43 m)"
+   },
+   "revisada_el": "2026-10-04",
+   "revision": "verificacion de los bloques 00 a 31; rehecha en la sesion 91, con el aviso de ultima gasolinera antes del Teide por el sur"
+  },
+  "90-las-seis-que-no-estan-en-el-registro": {
+   "que": "gas-tf1-adeje · gas-tf1-candelaria · gas-tf1-guaza2 · gas-tf2-aeropuerto · gas-tf5-icod · gas-tf82-los-gigantes. Ninguna tiene estacion del registro a 300 m.",
+   "estado": "hecha",
+   "municipio": null,
+   "estaciones": 6,
+   "resultado": "Borradas las 6 el 2 de octubre, por orden de Jerome: «las 6 que no estan en el fichero borralas que no quiero equivocaciones». 785 -> 779 lugares."
+  },
+  "91-las-ocho-a-ajustar": {
+   "que": "Las 14 que si casan: 12 confirmadas (solo anadir IDEESS), 1 a corregir coordenada (gas-tf82-guia-isora, 166 m) y 1 de marca distinta (gas-tf1-abades).",
+   "estado": "hecha",
+   "municipio": null,
+   "estaciones": 14,
+   "hecho_el": "2026-10-04",
+   "resultado": "Jerome, 4 de octubre: «Arregla lo que puedes». Las 14 antiguas, rehechas desde el registro con tools/gasolinera_alta.py --antiguas-91: conservan su id y su pin; nombre, categoria, descripcion, horario, direccion, etiquetas y color salen de la plantilla, en los diez idiomas. Fuera los «Cepsa» (3, ahora Moeve), los TF que no eran el suyo (4), los 7 telefonos sin captura ni OK y las frases sin fuente. Vilaflor conserva lo que si valia, como aviso con su porque (avisos.json, 7951). La pareja de Repsol del TF-1 km 54 se distingue por el margen del registro."
+  },
+  "92-el-fichero-de-precios": {
+   "que": "Flujo diario que extrae los precios del registro a datos/precios-gasolineras.json con su fecha, y el modo de las 10 mas baratas. NINGUN PRECIO dentro de index.html.",
+   "estado": "hecha",
+   "municipio": null,
+   "estaciones": 0,
+   "pedido_de_jerome": "6 de octubre: no las 10 mas baratas de la isla, sino las mas baratas de CADA MUNICIPIO. Los municipios con menos de 3 gasolineras no cuentan; de 3 a 8, la mejor; de 8 a 15, las dos mejores; de 15 en adelante, las tres mejores.",
+   "propuesta": "Lectura de los tramos: 3-7 -> 1, 8-14 -> 2, 15 o mas -> 3 (con las de hoy ningun municipio cae justo en 8 ni en 15). Por combustible: gasolina 95 y diesel, por separado; si hay empate en el corte, salen las empatadas. Precios del registro del Ministerio, que el flujo «Registro gasolineras» baja ya desde GitHub (desde este contenedor la API no responde); hoy solo a mano: se le pone horario diario y escribe un fichero aparte, con la fecha dentro. Si el fichero tiene mas de 2 dias, la app no ensena precios y lo dice. Pendiente del OK de Jerome.",
+   "hecho_el": "2026-10-07",
+   "decisiones_de_jerome": "6 de octubre: gasolina 95 y diesel cada uno por separado; los empates salen todos; dos veces al dia (7:00 y 15:00).",
+   "como": ".github/workflows/precios-gasolineras.yml pasa cada hora (GitHub llega 4-8 h tarde a los cron) y tools/precios_gasolineras.py --toca decide por la hora real de Canarias: baja el registro del Ministerio en la primera pasada tras las 7:00 y tras las 15:00 y escribe datos/precios-gasolineras.json (solo las mas baratas de cada municipio, con la fecha del Ministerio). La app lo lee al abrir y cada 30 min; categoria «Gasolineras mas baratas» (Servicios) y lineas de precio en el globo y en la ficha, en los diez idiomas. Con mas de 2 dias no ensena precios y lo dice. El service worker lo pide red primero. Control: tools/auditar_precios_gasolineras.py, en auditar.sh."
+  },
+  "93-la-mas-barata-cerca-de-mi": {
+   "que": "Boton «la gasolinera mas barata cerca de mi»: con la posicion del movil, las mas baratas a menos de 5, 10 o 20 km, gasolina 95 y diesel. NINGUN PRECIO dentro de index.html.",
+   "estado": "hecha",
+   "municipio": null,
+   "estaciones": 0,
+   "pedido_de_jerome": "7 de octubre: «Quiero un boton encuentra la gasolinera mas baratas cerca de mi».",
+   "hecho_el": "2026-10-07",
+   "decisiones_mias": "Lo que Jerome no dijo y elegi yo, para que lo cambie si no le vale: radio de 10 km de entrada, con 5 y 20 a un toque; por combustible, las 3 mas baratas y las que empatan con la tercera (su regla de los empates); a igual precio, la mas cerca primero; distancia en linea recta, y el panel lo dice. Como el panel ensena el precio de cualquier gasolinera, su ficha tambien lo ensena ahora (antes solo las mas baratas de su municipio), para que digan lo mismo.",
+   "decisiones_de_jerome": "7 de octubre: «Puedes poner los precios si estan actualizados a cada gasolinera sin problema». OK a que la ficha y el globo de cada gasolinera ensenen su precio, solo si tiene menos de 2 dias (con mas, ninguno). Tambien el 7 de octubre: «Esta muy escondido el boton... Mira si entra el lado del dado»: va en la barra de arriba, al lado del dado (⛽ con un € dorado), ademas de en Servicios y sobre el mapa.",
+   "como": "tools/precios_gasolineras.py escribe ademas «estaciones» (el precio de cada gasolinera de la app, por id de ficha) en datos/precios-gasolineras.json. En la app: fila en la pestaña Servicios de la hoja de categorias y boton sobre el mapa (solo con las gasolineras filtradas, encima de la barra del filtro); panel con la fecha del Ministerio, radios 5/10/20 km y dos listas; cada fila abre la ficha. Sin precios de menos de 2 dias, fuera de Tenerife o sin permiso de ubicacion no abre y dice por que. Controles: auditar_precios_gasolineras.py (estaciones: ids de la app, precios, que cuadran con las de cada municipio; probado con seis fallos metidos) y tools/auditar_gas_cerca.js (los diez idiomas, la lista contra un calculo aparte, el boton del mapa, los cuatro casos que no abren y el cambio de idioma), los dos en auditar.sh. Desde el OK de Jerome, auditar_gas_cerca.js mira tambien las 211 fichas (globo y ficha, cuatro idiomas): su precio exacto, nada donde no hay, y ninguno con precios viejos (probado con dos fallos metidos)."
+  },
+  "94-precios-en-vivo": {
+   "que": "Los precios, en vivo desde el movil al Ministerio, como el tiempo y el mar a Open-Meteo. NINGUN PRECIO dentro de index.html.",
+   "estado": "hecha",
+   "municipio": null,
+   "estaciones": 0,
+   "pedido_de_jerome": "7 de octubre: «Verifica porque github no la ejecuta y busca la solucion» y despues «¿como no lo hacen si nosotros ya lo hacemos con la actualizacion del tiempo y el estado del mar? ¿No se actualiza solo?».",
+   "hecho_el": "2026-10-07",
+   "por_que": "El programador de GitHub esta roto desde el 26 de agosto de 2026 para todo el mundo (discusiones 207346 y 209514): el cron horario de los precios corrio 2 veces en 16 horas. El Ministerio responde Access-Control-Allow-Origin: * (comprobado desde GitHub el 7 de octubre): el movil puede pedirle los precios directamente.",
+   "como": "La app pide FiltroProvincia/38 (energia.serviciosmin.gob.es, y si falla sedeaplicaciones.minetur.gob.es) al filtrar gasolineras, al abrir una gasolinera y con el boton «cerca de mi», como mucho cada media hora; calcula las mas baratas de cada municipio con la regla de Jerome y datos/gasolineras-municipio.json (tools/gasolineras_municipio.py); nunca cambia unos precios por otros mas viejos; rellena el globo abierto sin cerrarlo; guarda los ultimos en el movil. El fichero del flujo de GitHub queda de respaldo. CSP, service worker (sin cache) y politica de privacidad (10 idiomas) al dia. Controles: auditar_gas_cerca.js (la cuenta del movil identica a la de Python con el mismo registro; la regla, los precios y la hora contra Python, con los dos cambios de hora; dominio caido, Ministerio caido, fichero caducado, globo abierto; probado metiendo dos fallos) y auditar_precios_gasolineras.py (el fichero de municipios al dia)."
+  }
+ },
+ "horarios_google_contra_registro": {
+  "_": "Las capturas de Jerome contra el registro, 3 de octubre. El registro manda (LEEME) y no se cambia nada; es una lista para comprobar.",
+  "8759": "Shell El Ramonal (SC): Google cierra 22:00 · registro 24 h",
+  "7628": "Cepsa C/ Filipinas (SC): RESUELTA el 3 de octubre. Google ahora da L-V 07:00-15:00, sabado y domingo cerrado: lo mismo que el registro. La captura antigua era la equivocada.",
+  "16466": "Oceano C/ Panama (SC): Google 24 h · registro 06:00-22:00",
+  "12412": "DISA Hogar Taxista (SC): Google cierra 16:00 · registro L-S 07-21, D 08-13",
+  "10214": "Cepsa Palo Blanco (Los Realejos): Google 24 h · registro 07:00-22:00",
+  "9966": "DISA Vistabella (La Laguna): Google 21:45 · registro 22:00 (despreciable)"
+ },
+ "antiguas_enlazadas_todas": "3 de octubre, a peticion de Jerome («Arregla el horario»): las 14 fichas antiguas, enlazadas con su estacion y con horario y direccion del registro. 11 de las 14 tenian el horario mal.",
+ "horario_no_se_ve": "Arreglado el 4 de octubre con el «Si» de Jerome: el horario se pinta en la ficha (movil) y en el globo del mapa (ordenador) de las fichas con IDEESS, las del registro oficial. Los de las 18 oficinas de turismo y los 18 campings NO: no tienen fuente (REVISION-LUGARES.md, «Horarios, precios y telefonos: no hay contra que contrastarlos»), y tres oficinas tienen el mismo horario, de plantilla. auditar_desborde.js lo controla.",
+ "marca_contra_osm": "Revision de los bloques 24-26, 4 de octubre: 17 de 212 estaciones tienen en OSM, a menos de 60 m, otra marca que el registro: 7853 Adeje (DISA/Moeve), 10635 Arafo (Tgas/BP), 7726 Arico (Estacion Abades/PCAN), 7786 Candelaria (Tgas/Disa a 30 m), 7846 El Sauzal (DISA/Moeve), 7718 Fasnia (BP/Repsol: Street View, BP), 7835 Fasnia (DISA/Moeve), 7749 Garachico (La Caleta/Moeve), 7626 Granadilla (Repsol/DISA Aeropuerto), 11566 La Guancha (DISA/Moeve), 7723 Los Realejos (DISA/PCAN a 25 m), 7855 Los Realejos (Oceano/Moeve), 9966 La Laguna (DISA/Moeve), 10633 San Miguel (Repsol/BP), 7887 y 9951 Santa Cruz (DISA/Moeve), 7840 Santa Cruz (DISA/Moeve: web de DISA, DISA). Las dos comprobadas daban la razon al registro. Manda el registro (LEEME); no se cambia nada.",
+ "mayusculas": "Jerome, 4 de octubre, «Ok»: aplicadas las cuatro («mayusculas» en correcciones-registro.json). Cambian 4 fichas de Arafo, Buenavista y San Miguel de Abona.",
+ "verificacion_00_31": {
+  "hecha_el": "2026-10-04",
+  "como": "tools/verificar_bloques.py (informe en datos/gasolineras/verificacion-bloques.md) y tools/verificar_fichas_app.js (las 212 fichas y sus globos, abiertos en los diez idiomas; ya en auditar.sh).",
+  "resultado": "212 estaciones, 212 fichas (198 nuevas, 14 antiguas); revisor 0 hallazgos; 0 diferencias con la plantilla; 62 de 62 capturas con su ficha; 2.120 fichas y 2.120 globos bien en pantalla; sesiones.json cuadra; LEEME bien en las nuevas.",
+  "fallos": [
+   "7637 «Moeve · Autopista TF-21 km 3,5»: TF-21 no pasa por Santa Cruz; tu captura IMG_3429 dice «Autop. del Sur, PK 3,5» y OSM tiene la TF-1 a 30 m.",
+   "8753 «Shell · Carretera Martianez TF-131»: no hay TF-131 en la isla; TF-31 a 12 m.",
+   "7828 «DISA · Carretera TF-822» (Arico): no hay TF-822; TF-28 a 12 m (la mezcla de C-822 y TF-28, como Icod).",
+   "7849 «DISA · Carretera General TF-623» (Playa San Juan): no hay TF-623; TF-47 a 46 m, y su km 13 cuadra con el 2,7 de la TF-47 en Armenime.",
+   "7784 «BP · Carretera TF-411» (Taco): no hay TF-411 en OSM; TF-194 (Carretera General La Cuesta-Taco) a 20 m. Pero tu captura tambien dice TF-411."
+  ],
+  "coordenadas_a_mirar": [
+   "9483 Moeve Llano Azul (Arona): el pin del registro cae junto al Monkey Park, a 118 m de cualquier via; OSM tiene una Moeve a 496 m, en la TF-662 de su direccion.",
+   "9961 DISA Ofra (La Laguna): el pin del registro esta en la Carretera La Cuesta-Taco de su direccion; tu captura la pone en la Calle Zerolo, 6, donde OSM tiene una Disa, a 1,2 km.",
+   "Menos claras (el pin del registro esta en la carretera de su direccion): 10057 BP Ten Bel, 11690 BP Aeropuerto, 8326 Repsol Arafo, 7677 Repsol Barroso, 11731 Repsol Poris."
+  ],
+  "nombres_con_ideess": [
+   "10995 y 7879, las dos DISA de la Autovia de San Andres: el registro las llama «BALNEARIO II» y «BALNEARIO I»; mejor eso que el numero.",
+   "7705 «Repsol · Carretera TF-1 km 54 (7705)»: la otra es la antigua 7692; mismo rotulo y misma direccion. Para la 91."
+  ],
+  "para_la_91": [
+   "Nombres con «Cepsa» (es Moeve): gas-tf2-lalaguna, gas-tf21-aguamansa, gas-tf5-tacoronte.",
+   "Codigo de carretera que no es el suyo: gas-tf5-lalaguna (TF-5; junto a la TF-2), gas-tf1-guaza (TF-1 km 21; junto a la TF-66), gas-tf5-los-realejos (TF-5 km 46; junto a la TF-334), gas-tf5-ptocz (TF-5 km 30; junto a la TF-312).",
+   "Telefonos sin captura ni OK (no se ensenan): gas-tf1-granadilla, gas-tf1-guaza, gas-tf1-guimar, gas-tf5-lalaguna, gas-tf5-tacoronte, gas-tf5-ptocz, gas-tf2-lalaguna.",
+   "Lo ya apuntado en cada sesion («para_la_91»)."
+  ],
+  "resuelto_el_4_de_octubre_por_la_noche": [
+   "Erratas con dos pruebas: TF-21 -> TF-1 (7637), TF-822 -> TF-28 (7828), TF-623 -> TF-47 (7849).",
+   "TF-411 se queda: la web de DISA, Google y el registro la usan (codigos_carretera en correcciones-registro.json).",
+   "Nombres con IDEESS: Balneario I y II (rotulo del registro) y margen derecho / izquierdo (Margen del registro).",
+   "Sesion 91 hecha; la 31, cerrada.",
+   "Etiquetas: «Última» en chino era «末班» (ultimo servicio de autobus) -> 最后一个 / 最後一個; «Importante» en ingles era «Major» -> Important; en polaco Wazny -> Wazne."
+  ],
+  "pendiente": [
+   "Sesion 92 (el fichero diario de precios y las 10 mas baratas): Jerome pregunta que es; falta su decision.",
+   "10057 BP Ten Bel: si existe, OSM la pone en 28.033096, -16.650317 (Avenida Fernando Salazar Gonzalez, TF-652), a 490 m del pin del registro."
+  ],
+  "resuelto_el_5_de_octubre": [
+   "7951 DISA Vilaflor: «Carretera General 821» -> «TF-21» (errata) y fuera el km 68,80, que es de la numeracion antigua (km_contradicho). Fuentes de Jerome: IGN (C-821 = La Orotava-Granadilla) y Turismo de Tenerife (TF-21 km 59,544 entre Vilaflor y Granadilla).",
+   "9961 DISA Ofra: pin a 28.459505, -16.293179 (coordenadas de Jerome; Calle Zerolo; Disa de OSM a 8 m; 1,18 km a Vistabella, la web de DISA da 1,23). Estaba a 1.159 m.",
+   "9483 Moeve Llano Azul: pin a 28.0589205, -16.6965134 (marcador y Street View de abril de 2026 de Jerome; junto al Llano Azul Bar Restaurante, TF-662). Estaba a 506 m, junto al Monkey Park.",
+   "8753 Shell El Aguila: pin a 28.4121631, -16.5297129 (marcador de Jerome en decimales, dentro de la estacion; el de la captura en grados quedaba a 3 m) y «TF-131» -> «TF-31» (el mapa de Google rotula TF-31 la carretera; OSM tambien).",
+   "Las tres van en «coordenadas» / «erratas» de correcciones-registro.json; la plantilla, el revisor y el verificador las leen cada uno por su cuenta. Verificador: 0 fallos."
+  ],
+  "resuelto_el_6_de_octubre": [
+   "Pins con el marcador de Jerome: 11690 BP Aeropuerto Sur (estaba a 552 m), 8326 Repsol Arafo (524 m), 11731 Repsol Poris (292 m), 7677 Repsol Barroso (276 m; sigue siendo la ultima subiendo al Teide, 1,1 km por encima de La Canada).",
+   "10057 BP Ten Bel, en espera: Jerome dice que no existe. Ficha retirada (976 -> 975 lugares)."
+  ]
+ }
+}

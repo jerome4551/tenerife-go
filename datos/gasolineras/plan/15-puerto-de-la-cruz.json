@@ -1,0 +1,83 @@
+{
+ "_": [
+  "Tanda 15 de 31: Puerto de la Cruz.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Puerto de la Cruz",
+ "estaciones": 5,
+ "ya_en_la_app": 1,
+ "altas_nuevas": 4,
+ "lista": [
+  {
+   "ideess": "7771",
+   "rotulo": "BP PUERTO DE LA CRUZ",
+   "marca": "bp",
+   "direccion": "CR DEL BOTANICO km 6",
+   "cp": "38400",
+   "localidad": "PUERTO DE LA CRUZ",
+   "municipio": "Puerto de la Cruz",
+   "horario": "L-D: 06:30-22:30",
+   "lat": 28.41375,
+   "lng": -16.546167,
+   "ya_en_la_app": {
+    "id": "gas-tf5-ptocz",
+    "name": "BP Puerto de la Cruz (TF-5 km 30)",
+    "a_metros": 6
+   }
+  },
+  {
+   "ideess": "7624",
+   "rotulo": "CEPSA PUERTO DE LA CRUZ",
+   "marca": "cepsa",
+   "direccion": "CALLE CARRETERA DEL BOTANICO, 24",
+   "cp": "38400",
+   "localidad": "PUERTO DE LA CRUZ",
+   "municipio": "Puerto de la Cruz",
+   "horario": "L: 06:00-00:00",
+   "lat": 28.412528,
+   "lng": -16.543778,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7829",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "CARRETERA LAVERA LA MONTAÑA KM. 1",
+   "cp": "38400",
+   "localidad": "PUERTO DE LA CRUZ",
+   "municipio": "Puerto de la Cruz",
+   "horario": "L-S: 06:00-22:00; D: 08:00-22:00",
+   "lat": 28.394833,
+   "lng": -16.558333,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "8754",
+   "rotulo": "SHELL",
+   "marca": "shell",
+   "direccion": "CARRETERA GRAL. PUERTO CUZ-LAS ARENAS KM. 132",
+   "cp": "38400",
+   "localidad": "PUERTO DE LA CRUZ",
+   "municipio": "Puerto de la Cruz",
+   "horario": "L: 24H",
+   "lat": 28.398,
+   "lng": -16.547417,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "8753",
+   "rotulo": "SHELL EL AGUILA",
+   "marca": "shell",
+   "direccion": "CARRETERA MARTIANEZ TF-131 KM. 2,4",
+   "cp": "38400",
+   "localidad": "PUERTO DE LA CRUZ",
+   "municipio": "Puerto de la Cruz",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.411722,
+   "lng": -16.529556,
+   "ya_en_la_app": null
+  }
+ ]
+}

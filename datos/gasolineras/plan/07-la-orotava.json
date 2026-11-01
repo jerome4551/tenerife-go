@@ -1,0 +1,148 @@
+{
+ "_": [
+  "Tanda 7 de 31: La Orotava.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "La Orotava",
+ "estaciones": 10,
+ "ya_en_la_app": 1,
+ "altas_nuevas": 9,
+ "lista": [
+  {
+   "ideess": "7768",
+   "rotulo": "BP EL RAMAL",
+   "marca": "bp",
+   "direccion": "URBANITZACION CARMENATY, 14",
+   "cp": "38300",
+   "localidad": "OROTAVA (LA)",
+   "municipio": "La Orotava",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.397833,
+   "lng": -16.523083,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "12381",
+   "rotulo": "BP EL TROMPO",
+   "marca": "bp",
+   "direccion": "CARRETERA INSULAR TF 333 KM. 0,300",
+   "cp": "38312",
+   "localidad": "SAN JERONIMO",
+   "municipio": "La Orotava",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.394056,
+   "lng": -16.550917,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7790",
+   "rotulo": "CEPSA LA CAÑADA",
+   "marca": "cepsa",
+   "direccion": "CARRETERA LAS CAÑADAS KM. 5",
+   "cp": "38300",
+   "localidad": "OROTAVA (LA)",
+   "municipio": "La Orotava",
+   "horario": "L-D: 06:00-00:00",
+   "lat": 28.38825,
+   "lng": -16.515194,
+   "ya_en_la_app": {
+    "id": "gas-tf21-aguamansa",
+    "name": "Cepsa La Cañada (TF-21 · última antes del Teide)",
+    "a_metros": 12
+   }
+  },
+  {
+   "ideess": "7856",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "PLAZA LA PAZ, S/N",
+   "cp": "38300",
+   "localidad": "OROTAVA (LA)",
+   "municipio": "La Orotava",
+   "horario": "L-D: 24H",
+   "lat": 28.394361,
+   "lng": -16.519861,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "9741",
+   "rotulo": "DISA",
+   "marca": "disa",
+   "direccion": "CARRETERA C 820 KM 35.5 MARGUEN I KM. 35,5",
+   "cp": "38300",
+   "localidad": "OROTAVA (LA)",
+   "municipio": "La Orotava",
+   "horario": "L-V: 06:00-22:00; S: 07:00-22:00; D: 08:00-14:00",
+   "lat": 28.398333,
+   "lng": -16.522333,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "16315",
+   "rotulo": "PLENERGY",
+   "marca": null,
+   "direccion": "CALLE MOLINOS DE GOLFO, S/N",
+   "cp": "38312",
+   "localidad": "LUZ (LA)",
+   "municipio": "La Orotava",
+   "horario": "L-D: 24H",
+   "lat": 28.394806,
+   "lng": -16.543389,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "15901",
+   "rotulo": "PLENERGY",
+   "marca": null,
+   "direccion": "CALLE ALBAÑILERIA, S/N",
+   "cp": "38312",
+   "localidad": "ARENAS (LAS)",
+   "municipio": "La Orotava",
+   "horario": "L-D: 24H",
+   "lat": 28.3945,
+   "lng": -16.54125,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7699",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "CARRETERA TF-324 KM. 2",
+   "cp": "38315",
+   "localidad": "PERDOMA (LA)",
+   "municipio": "La Orotava",
+   "horario": "L-V: 06:00-22:00; S-D: 07:00-23:00",
+   "lat": 28.379611,
+   "lng": -16.537389,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7677",
+   "rotulo": "REPSOL BARROSO",
+   "marca": "repsol",
+   "direccion": "CARRETERA TF-21 AGUAMANSA KM. ",
+   "cp": "38300",
+   "localidad": "OROTAVA (LA)",
+   "municipio": "La Orotava",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.377028,
+   "lng": -16.509972,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "8776",
+   "rotulo": "SHELL LA PERDOMA",
+   "marca": "shell",
+   "direccion": "CARRETERA GENERAL DEL NORTE, 173 KM. 173",
+   "cp": "38315",
+   "localidad": "OROTAVA (LA)",
+   "municipio": "La Orotava",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.376444,
+   "lng": -16.558389,
+   "ya_en_la_app": null
+  }
+ ]
+}

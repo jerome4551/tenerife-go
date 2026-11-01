@@ -1,0 +1,132 @@
+{
+ "_": [
+  "Entrega de la ficha 8 del bloque 4, indexada por id.",
+  "Respuesta de Jerome del 28 de septiembre: sendero-roque-conde es la SUBIDA,",
+  "no la cumbre. El municipio NO cambia (Arona es correcto); lo que se mueve es",
+  "el pin, al inicio oficial.",
+  "",
+  "Fuente unica de todo lo de aqui: Ayuntamiento de Adeje,",
+  "costa-adeje.es/es/naturaleza/roque-del-conde."
+ ],
+ "correcciones_coordenada": {
+  "sendero-roque-conde": {
+   "antes": {
+    "lat": 28.1042,
+    "lng": -16.6986,
+    "municipio_del_poligono": "Adeje"
+   },
+   "despues": {
+    "lat": 28.100997,
+    "lng": -16.687583,
+    "municipio_del_poligono": "Arona"
+   },
+   "se_mueve_m": 1138,
+   "a_la_raya_de_arona_m": 354,
+   "por_que": "La ficha describe la ruta desde Vento, no la cumbre. El punto va al inicio publicado por el Ayuntamiento de Adeje: «Inicio: Calle Vento (Arona)».",
+   "comprobado": "point-in-polygon contra el shapefile del Cabildo: cae en Arona."
+  }
+ },
+ "modificaciones": {
+  "sendero-roque-conde": {
+   "municipio": "SIN CAMBIO. Arona es correcto; el name «Ascenso al Roque del Conde (Arona)» se queda.",
+   "quitado": [
+    "circular",
+    "7,5 km",
+    "3 horas",
+    "+410 m",
+    "Dificil",
+    "1.001 m",
+    "menceyato de Abona",
+    "cuerdas"
+   ],
+   "anadido": [
+    "lineal, 3,7 km hasta la cima",
+    "unas 2 horas",
+    "dificultad media",
+    "vuelta por el mismo camino",
+    "cotas entre 596 y 999 m",
+    "desnivel de subida +484 m",
+    "empieza en la Calle Vento (Arona)",
+    "la cima esta en Adeje, pasado el Barranco del Rey (limite municipal)"
+   ],
+   "tags": {
+    "antes": [
+     "Senderismo",
+     "Arona",
+     "Cumbre",
+     "Roque del Conde",
+     "Guanches",
+     "Difícil",
+     "Sur",
+     "1001m"
+    ],
+    "despues": [
+     "Senderismo",
+     "Arona",
+     "Cumbre",
+     "Roque del Conde",
+     "Guanches",
+     "Medio",
+     "Sur"
+    ],
+    "nota": "«Difícil» -> «Medio», que es como escriben la dificultad media las otras 21 rutas y ya tiene fila en el glosario. «1001m» se va con la cota."
+   },
+   "cat": {
+    "antes": {
+     "es": "Cumbre · Arona (Difícil · 7,5 km · 3h)"
+    },
+    "despues": {
+     "es": "Cumbre · Arona (Medio · 3,7 km · 2h)"
+    }
+   },
+   "desc_es": {
+    "antes": "Mesa volcánica icónica del sur, símbolo de Arona (1.001 m). 7,5 km circular desde Vento de Arona, 3 horas, desnivel +410 m. Vistas espectaculares al océano y a los pueblos turísticos. Cima plana donde habitaban los guanches del menceyato de Abona (yacimientos arqueológicos). Última subida muy empinada con cuerdas. Sendero seco — llevar mucha agua. Mejor en invierno por el sol.",
+    "despues": "Mesa volcánica icónica del sur, símbolo de Arona. Sendero lineal de 3,7 km hasta la cima, unas 2 horas, dificultad media; se vuelve por el mismo camino. Entre los 596 y los 999 m de altitud, con +484 m de desnivel de subida. Empieza en la Calle Vento (Arona). La cima está en Adeje: el sendero cruza el Barranco del Rey, que es el límite entre los dos municipios. Cima plana donde habitaban los guanches (yacimientos arqueológicos). Vistas espectaculares al océano y a los pueblos turísticos. Sendero seco — llevar mucha agua. Mejor en invierno por el sol."
+   },
+   "idiomas": {
+    "en": {
+     "desc": "Iconic volcanic mesa in the south, symbol of Arona. Linear trail of 3.7 km to the summit, about 2 hours, moderate difficulty; you return along the same path. Between 596 and 999 m of altitude, with +484 m of ascent. It starts on Calle Vento (Arona). The summit is in Adeje: the trail crosses the Barranco del Rey, the boundary between the two municipalities. Flat summit where the Guanches lived (archaeological sites). Spectacular views over the ocean and tourist resorts. Dry trail — bring lots of water. Best in winter due to sun.",
+     "cat": "Summit · Arona (Medium · 3.7 km · 2h)"
+    },
+    "fr": {
+     "desc": "Mesa volcanique emblématique du sud, symbole d'Arona. Sentier linéaire de 3,7 km jusqu'au sommet, environ 2 heures, difficulté moyenne ; le retour se fait par le même chemin. Entre 596 et 999 m d'altitude, avec +484 m de dénivelé positif. Départ Calle Vento (Arona). Le sommet est à Adeje : le sentier traverse le Barranco del Rey, la limite entre les deux communes. Sommet plat habité par les Guanches (vestiges archéologiques). Vues spectaculaires sur l'océan et les stations balnéaires. Sentier sec — beaucoup d'eau. Mieux en hiver.",
+     "cat": "Sommet · Arona (Moyen · 3,7 km · 2h)"
+    },
+    "de": {
+     "desc": "Ikonische vulkanische Mesa des Südens, Wahrzeichen von Arona. Linearer Weg von 3,7 km bis zum Gipfel, etwa 2 Stunden, mittlere Schwierigkeit; der Rückweg führt über denselben Pfad. Zwischen 596 und 999 m Höhe, mit +484 m Aufstieg. Start in der Calle Vento (Arona). Der Gipfel liegt in Adeje: der Weg quert den Barranco del Rey, die Grenze zwischen beiden Gemeinden. Flacher Gipfel, bewohnt von Guanchen (archäologische Fundstätten). Spektakulärer Blick auf den Ozean und die Touristenorte. Trockener Weg — viel Wasser. Am besten im Winter.",
+     "cat": "Gipfel · Arona (Mittel · 3,7 km · 2h)"
+    },
+    "it": {
+     "desc": "Mesa vulcanica iconica del sud, simbolo di Arona. Sentiero lineare di 3,7 km fino alla cima, circa 2 ore, difficoltà media; si torna per la stessa strada. Tra i 596 e i 999 m di quota, con +484 m di dislivello in salita. Parte da Calle Vento (Arona). La cima è ad Adeje: il sentiero attraversa il Barranco del Rey, il confine tra i due comuni. Cima piatta dove abitavano i guanci (siti archeologici). Viste spettacolari sull'oceano e sui paesi turistici. Sentiero arido: portare molta acqua. Meglio in inverno per via del sole.",
+     "cat": "Cima · Arona (Medio · 3,7 km · 2h)"
+    },
+    "nl": {
+     "desc": "Iconische vulkanische tafelberg van het zuiden, symbool van Arona. Recht pad van 3,7 km naar de top, ongeveer 2 uur, gemiddelde moeilijkheid; je keert terug langs dezelfde weg. Tussen 596 en 999 m hoogte, met +484 m stijging. Begint aan de Calle Vento (Arona). De top ligt in Adeje: het pad kruist de Barranco del Rey, de grens tussen beide gemeenten. Vlakke top waar de Guanchen woonden (archeologische vindplaatsen). Spectaculair uitzicht op de oceaan en de toeristische dorpen. Droog pad: neem veel water mee. Het best in de winter.",
+     "cat": "Top · Arona (Gemiddeld · 3,7 km · 2u)"
+    },
+    "zh": {
+     "desc": "南部标志性的火山方山，阿罗纳的象征。单程3.7公里抵达山顶，约2小时，难度中等，原路返回。海拔596至999米，爬升+484米。起点在阿罗纳的文托街。山顶属于阿德赫：步道跨越雷伊沟谷，即两个市镇的界线。平顶上曾居住着关切人（考古遗址）。可饶览海洋与旅游村镇的壮丽景色。步道干燥——请多带水。因日晒强烈，冬季最佳。",
+     "cat": "峰顶 · 阿罗纳（中等 · 3.7公里 · 2小时）"
+    },
+    "zht": {
+     "desc": "南部標誌性的火山方山，阿羅納的象徵。單程3.7公里抵達山頂，約2小時，難度中等，原路返回。海拔596至999公尺，爬升+484公尺。起點在阿羅納的文托街。山頂屬於阿德赫：步道跨越雷伊溝谷，即兩個市鎮的界線。平頂上曾居住著關切人（考古遺址）。可飽覽海洋與旅遊村鎮的壯麗景色。步道乾燥——請多帶水。因日曬強烈，冬季最佳。",
+     "cat": "峰頂 · 阿羅納（中等 · 3.7公里 · 2小時）"
+    },
+    "bg": {
+     "desc": "Емблематична вулканична тепа на юг, символ на Арона. Линеен маршрут от 3,7 км до върха, около 2 часа, средна трудност; връщане по същия път. Между 596 и 999 м надморска височина, с +484 м изкачване. Започва на улица Венто (Арона). Върхът е в Адехе: пътеката пресича Баранко дел Рей, границата между двете общини. Плоско било, обитавано от гуанчите (археологически находки). Зрелищни гледки към океана и туристическите селища. Сух маршрут — носете много вода. Най-добре през зимата заради слънцето.",
+     "cat": "Връх · Арона (Средно · 3,7 км · 2 ч)"
+    },
+    "pl": {
+     "desc": "Ikoniczna wulkaniczna góra stołowa południa, symbol Arony. Szlak liniowy 3,7 km na szczyt, około 2 godzin, średnia trudność; powrót tą samą drogą. Między 596 a 999 m n.p.m., z przewyższeniem +484 m. Początek przy Calle Vento (Arona). Szczyt leży w Adeje: szlak przecina Barranco del Rey, granicę między obiema gminami. Płaski wierzchołek, na którym mieszkali guanczowie (stanowiska archeologiczne). Spektakularne widoki na ocean i turystyczne miejscowości. Suchy szlak — zabierz dużo wody. Najlepiej zimą, z powodu słońca.",
+     "cat": "Szczyt · Arona (Średni · 3,7 km · 2h)"
+    }
+   },
+   "de_paso": "El cat italiano decia «Cumbre», en castellano, desde siempre: ningun control lo miraba porque la vigilancia de etiquetas es de los chips del globo, no del primer tramo del cat. Queda «Cima»."
+  }
+ },
+ "no_aplicado": [
+  "El inicio del CABILDO (Plaza del Cristo de la Salud, Arona, unos 650 m antes) no se usa: no hay coordenada publicada de la plaza. Si aparece, se cambia.",
+  "sendero-guajara tiene el pin en la cumbre, a 59 m del pico de OSM, y su propio texto dice «Inicio en el Parador de Las Cañadas». Mismo caso. NO SE HA TOCADO: hace falta la decision y una coordenada de inicio con fuente.",
+  "Alcance de la regla «senderismo = pin en el inicio», medido: de las 37 fichas de senderismo, solo 2 tienen un pico de OSM a menos de 300 m del pin — sendero-guajara (59 m) y ruta-pico-viejo (137 m, Pico Viejo Occidental). Las otras 35 ya apuntan a otra cosa. Es decir: fijar la regla afecta a dos fichas, no a treinta."
+ ]
+}

@@ -1,0 +1,2117 @@
+{
+ "_": [
+  "Verificacion de las gasolineras contra el registro oficial del MITECO.",
+  "NADA DE ESTO ESTA APLICADO: index.html no se toca.",
+  "Los precios no entran en la app, son datos perecederos."
+ ],
+ "fichas_de_la_app": {
+  "gas-tf1-granadilla": {
+   "estado": "confirmada",
+   "app": {
+    "name": "Repsol TF-1 Granadilla",
+    "lat": 28.0735,
+    "lng": -16.5346,
+    "marca_segun_el_nombre": "repsol",
+    "address": "TF-1 km 31, Granadilla de Abona"
+   },
+   "registro_mas_cercano": {
+    "ideess": "7692",
+    "rotulo": "REPSOL",
+    "marca": "repsol",
+    "direccion": "CARRETERA TF-1 KM. 54",
+    "municipio_registro": "Granadilla de Abona",
+    "municipio_poligono": "Granadilla de Abona",
+    "horario": "L-D: 06:00-00:00",
+    "lat": 28.073333,
+    "lng": -16.534722,
+    "a_metros": 22
+   },
+   "estaciones_a_300_m": 2
+  },
+  "gas-tf1-guaza": {
+   "estado": "confirmada",
+   "app": {
+    "name": "BP Guaza (TF-1 km 21)",
+    "lat": 28.0456,
+    "lng": -16.6789,
+    "marca_segun_el_nombre": "bp",
+    "address": "TF-1 km 21, Guaza, Arona"
+   },
+   "registro_mas_cercano": {
+    "ideess": "8743",
+    "rotulo": "BP GUAZA",
+    "marca": "bp",
+    "direccion": "CARRETERA CTRA GRAL GUAZA TF-66 KM. 79",
+    "municipio_registro": "Arona",
+    "municipio_poligono": "Arona",
+    "horario": "L-D: 24H",
+    "lat": 28.045667,
+    "lng": -16.678833,
+    "a_metros": 10
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf1-guaza2": {
+   "estado": "no_existe_en_registro",
+   "app": {
+    "name": "Cepsa Los Cristianos (TF-1 km 19)",
+    "lat": 28.0395,
+    "lng": -16.68,
+    "marca_segun_el_nombre": "cepsa",
+    "address": "TF-1 km 19, Los Cristianos, Arona"
+   },
+   "registro_mas_cercano": {
+    "ideess": "8743",
+    "rotulo": "BP GUAZA",
+    "marca": "bp",
+    "direccion": "CARRETERA CTRA GRAL GUAZA TF-66 KM. 79",
+    "municipio_registro": "Arona",
+    "municipio_poligono": "Arona",
+    "horario": "L-D: 24H",
+    "lat": 28.045667,
+    "lng": -16.678833,
+    "a_metros": 695
+   },
+   "estaciones_a_300_m": 0
+  },
+  "gas-tf1-adeje": {
+   "estado": "no_existe_en_registro",
+   "app": {
+    "name": "Repsol Costa Adeje (TF-1 km 15)",
+    "lat": 28.083,
+    "lng": -16.732,
+    "marca_segun_el_nombre": "repsol",
+    "address": "TF-1 km 15, Costa Adeje"
+   },
+   "registro_mas_cercano": {
+    "ideess": "7853",
+    "rotulo": "DISA",
+    "marca": "disa",
+    "direccion": "URBANIZACIÓN SAN EUGENIO, PLAYA DE LAS AMERICAS",
+    "municipio_registro": "Adeje",
+    "municipio_poligono": "Adeje",
+    "horario": "L-D: 08:00-17:30",
+    "lat": 28.079333,
+    "lng": -16.737889,
+    "a_metros": 707
+   },
+   "estaciones_a_300_m": 0
+  },
+  "gas-tf1-candelaria": {
+   "estado": "no_existe_en_registro",
+   "app": {
+    "name": "Cepsa Candelaria (TF-1)",
+    "lat": 28.353,
+    "lng": -16.38,
+    "marca_segun_el_nombre": "cepsa",
+    "address": "TF-1 km 55, Candelaria"
+   },
+   "registro_mas_cercano": {
+    "ideess": "7834",
+    "rotulo": "DISA CANDELARIA",
+    "marca": "disa",
+    "direccion": "CALLE LAS BICHAS, S/N",
+    "municipio_registro": "Candelaria",
+    "municipio_poligono": "Candelaria",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 28.356833,
+    "lng": -16.371944,
+    "a_metros": 896
+   },
+   "estaciones_a_300_m": 0
+  },
+  "gas-tf1-guimar": {
+   "estado": "confirmada",
+   "app": {
+    "name": "BP Güímar (TF-1)",
+    "lat": 28.3315,
+    "lng": -16.3763,
+    "marca_segun_el_nombre": "bp",
+    "address": "TF-1 km 49, Güímar"
+   },
+   "registro_mas_cercano": {
+    "ideess": "13012",
+    "rotulo": "BP POLIGONO GUIMAR",
+    "marca": "bp",
+    "direccion": "POLIGONO PLAN PARCIAL EL CARRETON  EN  HIDALGA LA, S/N",
+    "municipio_registro": "Arafo",
+    "municipio_poligono": "Arafo",
+    "horario": "L-D: 24H",
+    "lat": 28.331611,
+    "lng": -16.376361,
+    "a_metros": 14
+   },
+   "estaciones_a_300_m": 3
+  },
+  "gas-tf5-lalaguna": {
+   "estado": "confirmada",
+   "app": {
+    "name": "Repsol La Laguna Norte (TF-5)",
+    "lat": 28.4647,
+    "lng": -16.3049,
+    "marca_segun_el_nombre": "repsol",
+    "address": "TF-5 km 8, La Laguna"
+   },
+   "registro_mas_cercano": {
+    "ideess": "7688",
+    "rotulo": "REPSOL",
+    "marca": "repsol",
+    "direccion": "CALLE LIBERTAD, S/N",
+    "municipio_registro": "San Cristóbal de La Laguna",
+    "municipio_poligono": "San Cristóbal de La Laguna",
+    "horario": "L-D: 24H",
+    "lat": 28.464694,
+    "lng": -16.304861,
+    "a_metros": 4
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf5-tacoronte": {
+   "estado": "confirmada",
+   "app": {
+    "name": "Cepsa Tacoronte (TF-5)",
+    "lat": 28.4874,
+    "lng": -16.383,
+    "marca_segun_el_nombre": "cepsa",
+    "address": "TF-5 km 18, Tacoronte"
+   },
+   "registro_mas_cercano": {
+    "ideess": "7890",
+    "rotulo": "MOEVE",
+    "marca": "cepsa",
+    "direccion": "AUTOPISTA NORTE TF-5 KM. 16",
+    "municipio_registro": "Tacoronte",
+    "municipio_poligono": "Tacoronte",
+    "horario": "L-D: 24H",
+    "lat": 28.487389,
+    "lng": -16.383,
+    "a_metros": 1
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf5-ptocz": {
+   "estado": "confirmada",
+   "app": {
+    "name": "BP Puerto de la Cruz (TF-5 km 30)",
+    "lat": 28.4137,
+    "lng": -16.5462,
+    "marca_segun_el_nombre": "bp",
+    "address": "TF-5 km 30, Puerto de la Cruz"
+   },
+   "registro_mas_cercano": {
+    "ideess": "7771",
+    "rotulo": "BP PUERTO DE LA CRUZ",
+    "marca": "bp",
+    "direccion": "CR DEL BOTANICO km 6",
+    "municipio_registro": "Puerto de la Cruz",
+    "municipio_poligono": "Puerto de la Cruz",
+    "horario": "L-D: 06:30-22:30",
+    "lat": 28.41375,
+    "lng": -16.546167,
+    "a_metros": 6
+   },
+   "estaciones_a_300_m": 2
+  },
+  "gas-tf5-icod": {
+   "estado": "no_existe_en_registro",
+   "app": {
+    "name": "Repsol Icod de los Vinos (TF-5)",
+    "lat": 28.368,
+    "lng": -16.705,
+    "marca_segun_el_nombre": "repsol",
+    "address": "TF-5 km 55, Icod de los Vinos"
+   },
+   "registro_mas_cercano": {
+    "ideess": "7866",
+    "rotulo": "DISA ICOD DE LOS VINOS",
+    "marca": "disa",
+    "direccion": "AVENIDA PRINCIPES DE ESPAÑA, 40",
+    "municipio_registro": "Icod de los Vinos",
+    "municipio_poligono": "Icod de los Vinos",
+    "horario": "L-D: 24H",
+    "lat": 28.37225,
+    "lng": -16.710194,
+    "a_metros": 694
+   },
+   "estaciones_a_300_m": 0
+  },
+  "gas-tf2-lalaguna": {
+   "estado": "confirmada",
+   "app": {
+    "name": "Cepsa La Laguna Sur (TF-2)",
+    "lat": 28.4474,
+    "lng": -16.3073,
+    "marca_segun_el_nombre": "cepsa",
+    "address": "TF-2 km 2, La Laguna"
+   },
+   "registro_mas_cercano": {
+    "ideess": "7634",
+    "rotulo": "CEPSA LOS ANDENES",
+    "marca": "cepsa",
+    "direccion": "AVENIDA PASO EL (LOS MAJUELOS), 108",
+    "municipio_registro": "San Cristóbal de La Laguna",
+    "municipio_poligono": "San Cristóbal de La Laguna",
+    "horario": "L-D: 24H",
+    "lat": 28.447444,
+    "lng": -16.30725,
+    "a_metros": 7
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf2-aeropuerto": {
+   "estado": "no_existe_en_registro",
+   "app": {
+    "name": "BP Aeropuerto Sur (TF-2)",
+    "lat": 28.0611,
+    "lng": -16.5818,
+    "marca_segun_el_nombre": "bp",
+    "address": "TF-2 / TF-1 Aeropuerto Sur, Granadilla"
+   },
+   "registro_mas_cercano": {
+    "ideess": "11690",
+    "rotulo": "BP AEROPUERTO REINA SOFIA",
+    "marca": "bp",
+    "direccion": "CARRETERA ATOGO KM. 0,5",
+    "municipio_registro": "Granadilla de Abona",
+    "municipio_poligono": "Granadilla de Abona",
+    "horario": "L-D: 24H",
+    "lat": 28.061056,
+    "lng": -16.576167,
+    "a_metros": 553
+   },
+   "estaciones_a_300_m": 0
+  },
+  "gas-tf1-abades": {
+   "estado": "marca_distinta",
+   "app": {
+    "name": "Estación Abades (TF-1 km 44)",
+    "lat": 28.1308,
+    "lng": -16.4648,
+    "marca_segun_el_nombre": null,
+    "address": ""
+   },
+   "registro_mas_cercano": {
+    "ideess": "7726",
+    "rotulo": "ESTACIÓN ABADES KM 44",
+    "marca": null,
+    "direccion": "AUTOPISTA AUTOPISTA TENERIFE SUR KM. 44,2",
+    "municipio_registro": "Arico",
+    "municipio_poligono": "Arico",
+    "horario": "L-D: 24H",
+    "lat": 28.130806,
+    "lng": -16.464806,
+    "a_metros": 1
+   },
+   "estaciones_a_300_m": 2
+  },
+  "gas-tf82-los-gigantes": {
+   "estado": "no_existe_en_registro",
+   "app": {
+    "name": "DISA Los Gigantes (TF-82)",
+    "lat": 28.2434,
+    "lng": -16.8412,
+    "marca_segun_el_nombre": "disa",
+    "address": ""
+   },
+   "registro_mas_cercano": {
+    "ideess": "13972",
+    "rotulo": "CEPSA",
+    "marca": "cepsa",
+    "direccion": "AVENIDA LA GAVIOTA, 1",
+    "municipio_registro": "Guía de Isora",
+    "municipio_poligono": "Guía de Isora",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 28.226778,
+    "lng": -16.839111,
+    "a_metros": 1860
+   },
+   "estaciones_a_300_m": 0
+  },
+  "gas-tf21-aguamansa": {
+   "estado": "confirmada",
+   "app": {
+    "name": "Cepsa La Cañada (TF-21 · última antes del Teide)",
+    "lat": 28.3882,
+    "lng": -16.5153,
+    "marca_segun_el_nombre": "cepsa",
+    "address": ""
+   },
+   "registro_mas_cercano": {
+    "ideess": "7790",
+    "rotulo": "CEPSA LA CAÑADA",
+    "marca": "cepsa",
+    "direccion": "CARRETERA LAS CAÑADAS KM. 5",
+    "municipio_registro": "Orotava (La)",
+    "municipio_poligono": "La Orotava",
+    "horario": "L-D: 06:00-00:00",
+    "lat": 28.38825,
+    "lng": -16.515194,
+    "a_metros": 12
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf5-el-bohio": {
+   "estado": "confirmada",
+   "app": {
+    "name": "DISA El Bohío (TF-5 km 25)",
+    "lat": 28.45,
+    "lng": -16.4606,
+    "marca_segun_el_nombre": "disa",
+    "address": ""
+   },
+   "registro_mas_cercano": {
+    "ideess": "9635",
+    "rotulo": "DISA EL BOHIO",
+    "marca": "disa",
+    "direccion": "AUTOPISTA TF-5 KM. 25",
+    "municipio_registro": "Matanza de Acentejo (La)",
+    "municipio_poligono": "La Matanza de Acentejo",
+    "horario": "L-D: 24H",
+    "lat": 28.449528,
+    "lng": -16.460472,
+    "a_metros": 54
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf5-el-sauzal": {
+   "estado": "confirmada",
+   "app": {
+    "name": "Repsol El Sauzal (TF-5 km 22.5)",
+    "lat": 28.4646,
+    "lng": -16.4387,
+    "marca_segun_el_nombre": "repsol",
+    "address": ""
+   },
+   "registro_mas_cercano": {
+    "ideess": "7700",
+    "rotulo": "REPSOL",
+    "marca": "repsol",
+    "direccion": "AUTOPISTA TF-5 KM. 22,5",
+    "municipio_registro": "Sauzal (El)",
+    "municipio_poligono": "El Sauzal",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 28.464444,
+    "lng": -16.438639,
+    "a_metros": 18
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf51-vilaflor": {
+   "estado": "confirmada",
+   "app": {
+    "name": "DISA Vilaflor (TF-51)",
+    "lat": 28.1534,
+    "lng": -16.6403,
+    "marca_segun_el_nombre": "disa",
+    "address": ""
+   },
+   "registro_mas_cercano": {
+    "ideess": "7951",
+    "rotulo": "DISA",
+    "marca": "disa",
+    "direccion": "CARRETERA CARRETERA GENERAL 821 KM. 68,80",
+    "municipio_registro": "Vilaflor",
+    "municipio_poligono": "Vilaflor",
+    "horario": "L-S: 07:00-21:00; D: 08:00-14:00",
+    "lat": 28.153028,
+    "lng": -16.640167,
+    "a_metros": 43
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf82-guia-isora": {
+   "estado": "corregir_coordenada",
+   "app": {
+    "name": "Shell Guía de Isora (TF-82)",
+    "lat": 28.2137,
+    "lng": -16.7829,
+    "marca_segun_el_nombre": "shell",
+    "address": ""
+   },
+   "registro_mas_cercano": {
+    "ideess": "9176",
+    "rotulo": "SHELL",
+    "marca": "shell",
+    "direccion": "AVENIDA AV ISORA, 86",
+    "municipio_registro": "Guía de Isora",
+    "municipio_poligono": "Guía de Isora",
+    "horario": "L-S: 06:00-22:00; D: 07:00-17:00",
+    "lat": 28.212417,
+    "lng": -16.782028,
+    "a_metros": 166
+   },
+   "estaciones_a_300_m": 1
+  },
+  "gas-tf5-los-realejos": {
+   "estado": "confirmada",
+   "app": {
+    "name": "DISA TF-5 km 46 (Los Realejos)",
+    "lat": 28.3904,
+    "lng": -16.5821,
+    "marca_segun_el_nombre": "disa",
+    "address": ""
+   },
+   "registro_mas_cercano": {
+    "ideess": "7723",
+    "rotulo": "DISA LOS BARROS",
+    "marca": "disa",
+    "direccion": "CALLE LOS BARROS, 33",
+    "municipio_registro": "Realejos (Los)",
+    "municipio_poligono": "Los Realejos",
+    "horario": "L-D: 06:00-22:00",
+    "lat": 28.390083,
+    "lng": -16.582167,
+    "a_metros": 36
+   },
+   "estaciones_a_300_m": 2
+  }
+ },
+ "capturas_localizadas": {
+  "IMG_3487": {
+   "captura": {
+    "nombre_google": "Petroprix",
+    "marca": "Petroprix",
+    "direccion_google": "C. Anaga, 38419 Los Realejos, Santa Cruz de Tenerife",
+    "cp": "38419",
+    "telefono_google": "953 90 00 09"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "15044",
+     "rotulo": "PETROPRIX",
+     "direccion": "CALLE ANAGA, 1",
+     "cp": "38419",
+     "municipio_poligono": "Los Realejos",
+     "horario": "L-D: 24H",
+     "lat": 28.383806,
+     "lng": -16.576639
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3486": {
+   "captura": {
+    "nombre_google": "Shell Las Dehesas",
+    "marca": "Shell",
+    "direccion_google": "C. el Toscal, 8, 38417 Los Realejos, Santa Cruz de Tenerife",
+    "cp": "38417",
+    "telefono_google": "608 43 19 68"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "8757",
+     "rotulo": "SHELL LAS DEHESAS",
+     "direccion": "CARRETERA EL TOSCAL KM. S/N",
+     "cp": "38410",
+     "municipio_poligono": "Los Realejos",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.400194,
+     "lng": -16.574306
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3485": {
+   "captura": {
+    "nombre_google": "Estación de servicio Cepsa",
+    "marca": "Moeve",
+    "direccion_google": "PARAJE EL TERRERO, S/N, 38410 Los Realejos, Santa Cruz de Tenerife",
+    "cp": "38410",
+    "telefono_google": "922 35 57 30"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "10214",
+     "rotulo": "CEPSA",
+     "direccion": "CARRETERA GENERAL DE PALO BLANCO Nº 77 KM. 1",
+     "cp": "38410",
+     "municipio_poligono": "Los Realejos",
+     "horario": "L-D: 07:00-22:00",
+     "lat": 28.372556,
+     "lng": -16.575
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3484": {
+   "captura": {
+    "nombre_google": "Gasolinera Tgas La Gorvorana",
+    "marca": "Tgas",
+    "direccion_google": "TF-320, 10, 38418 Los Realejos, Santa Cruz de Tenerife",
+    "cp": "38418",
+    "telefono_google": "922 34 50 06"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7791",
+     "rotulo": "TGAS LA GORVORANA",
+     "direccion": "CARRETERA CRT GRAL ICOD-S/C.PK 38.8 KM. 38,8",
+     "cp": "38410",
+     "municipio_poligono": "Los Realejos",
+     "horario": "L-D: 06:00-23:00",
+     "lat": 28.394389,
+     "lng": -16.572472
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3483": {
+   "captura": {
+    "nombre_google": "Gasolinera Tgas Tu Trébol",
+    "marca": "Tgas",
+    "direccion_google": "Las Nieves (T), 38670, Santa Cruz de Tenerife",
+    "cp": "38670",
+    "telefono_google": "922 95 95 00"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7730",
+     "rotulo": "TGAS-TU TRÉBOL",
+     "direccion": "AUTOPISTA TF1 AUTOPISTA SUR A ARMEÑIME, CRUCE LA CALETA KM. S/N",
+     "cp": "38670",
+     "municipio_poligono": "Adeje",
+     "horario": "L-D: 08:00-21:00",
+     "lat": 28.120111,
+     "lng": -16.739889
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3482": {
+   "captura": {
+    "nombre_google": "Estación De Servicio Cepsa La Palmesa",
+    "marca": "Moeve",
+    "direccion_google": "Carr. Local, 75, 38360 El Sauzal, Santa Cruz de Tenerife",
+    "cp": "38360",
+    "telefono_google": "922 56 07 44"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7674",
+     "rotulo": "CEPSA",
+     "direccion": "CR TF-172, 0,9",
+     "cp": "38360",
+     "municipio_poligono": "El Sauzal",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.475944,
+     "lng": -16.434917
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3481": {
+   "captura": {
+    "nombre_google": "Estación de Servicio - Océano Güimar",
+    "marca": "Océano",
+    "direccion_google": "Manzana 13, Parcela 10, 38508, Santa Cruz de Tenerife",
+    "cp": "38508",
+    "telefono_google": "699 48 02 08"
+   },
+   "candidatos_en_el_registro": [],
+   "como": null,
+   "estado": "sin_registro"
+  },
+  "IMG_3480": {
+   "captura": {
+    "nombre_google": "E.S. DISA",
+    "marca": "DISA",
+    "direccion_google": "Av. Trinidad, 78, 38203 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38203",
+    "telefono_google": "682 25 67 09"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7861",
+     "rotulo": "DISA PADRE ANCHIETA",
+     "direccion": "GLORIETA DEL BRASIL, S/N",
+     "cp": "38203",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.481556,
+     "lng": -16.318556
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3479": {
+   "captura": {
+    "nombre_google": "Gasolinera Tgas El Rosario",
+    "marca": "Tgas",
+    "direccion_google": "C. Isaac Peral, 38109 El Rosario, Santa Cruz de Tenerife",
+    "cp": "38109",
+    "telefono_google": "922 26 84 43"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "15713",
+     "rotulo": "TGAS EL ROSARIO",
+     "direccion": "CALLE ISAAC PERAL, 10",
+     "cp": "38109",
+     "municipio_poligono": "El Rosario",
+     "horario": "L-V: 06:00-20:00; S: 07:00-17:00",
+     "lat": 28.414583,
+     "lng": -16.318083
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3478": {
+   "captura": {
+    "nombre_google": "E.S. BP",
+    "marca": "BP",
+    "direccion_google": "Carr. Gral. del Nte., 73, 38360 El Sauzal, Santa Cruz de Tenerife",
+    "cp": "38360",
+    "telefono_google": "822 17 85 44"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7778",
+     "rotulo": "BP EL SAUZAL",
+     "direccion": "CARRETERA GENERAL DEL NORTE KM. 20,65",
+     "cp": "38360",
+     "municipio_poligono": "El Sauzal",
+     "horario": "L-S: 06:00-23:00; D: 07:00-22:00",
+     "lat": 28.472861,
+     "lng": -16.423583
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3477": {
+   "captura": {
+    "nombre_google": "Estación de Servicio Repsol",
+    "marca": "Repsol",
+    "direccion_google": "TF-1, 54, 38611 San Isidro, Santa Cruz de Tenerife",
+    "cp": "38611",
+    "telefono_google": "922 39 09 09"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7692",
+     "rotulo": "REPSOL",
+     "direccion": "CARRETERA TF-1 KM. 54",
+     "cp": "38611",
+     "municipio_poligono": "Granadilla de Abona",
+     "horario": "L-D: 06:00-00:00",
+     "lat": 28.073333,
+     "lng": -16.534722
+    },
+    {
+     "ideess": "7705",
+     "rotulo": "REPSOL",
+     "direccion": "CARRETERA TF-1 KM. 54",
+     "cp": "38611",
+     "municipio_poligono": "Granadilla de Abona",
+     "horario": "L-D: 24H",
+     "lat": 28.072583,
+     "lng": -16.535
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3476": {
+   "captura": {
+    "nombre_google": "E.S. BP Las Canteras",
+    "marca": "BP",
+    "direccion_google": "Av. de la República Argentina, 86, 38201 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38201",
+    "telefono_google": "922 25 58 15"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "10905",
+     "rotulo": "BP E.S. LAS CANTERAS S.L.",
+     "direccion": "AVENIDA REPUBLICA ARGENTINA, 86",
+     "cp": "38208",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-S: 7:00-22:00",
+     "lat": 28.509639,
+     "lng": -16.308083
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3475": {
+   "captura": {
+    "nombre_google": "DISA",
+    "marca": "DISA",
+    "direccion_google": "C/ Panamá, 1. Barrio Buenos Aires, C. Panamá, 3, Nave 8H, 38009 Santa Cruz de Tenerife",
+    "cp": "38009",
+    "telefono_google": "609 50 84 60"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "12412",
+     "rotulo": "DISA HOGAR TAXISTA",
+     "direccion": "CALLE PANAMA, S/N",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-S: 07:00-21:00; D: 08:00-13:00",
+     "lat": 28.455917,
+     "lng": -16.265194
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3474": {
+   "captura": {
+    "nombre_google": "DISA",
+    "marca": "DISA",
+    "direccion_google": "Av. Francisco la Roche, S/N, 38001 Santa Cruz de Tenerife",
+    "cp": "38001",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7880",
+     "rotulo": "DISA NAUTICO",
+     "direccion": "AVENIDA FRANCISCO LA ROCHE, 1",
+     "cp": "38150",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.479167,
+     "lng": -16.242889
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3473": {
+   "captura": {
+    "nombre_google": "Estación de Servicio DISA",
+    "marca": "DISA",
+    "direccion_google": "Urb. Cuevas Blancas, C. Punta de la Vista, S/N, 38109 Santa María del Mar, Santa Cruz de Tenerife",
+    "cp": "38109",
+    "telefono_google": "689 75 29 53"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7871",
+     "rotulo": "DISA CUEVAS BLANCAS",
+     "direccion": "CALLE GUAIRE - URB.CUEVAS BLANCAS, S/N",
+     "cp": "38109",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.427306,
+     "lng": -16.3045
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3472": {
+   "captura": {
+    "nombre_google": "E.S. Pcan \"Consteide\"",
+    "marca": "Pcan",
+    "direccion_google": "Carr. de la Esperanza, 22, 38291 Santa Cruz de Tenerife",
+    "cp": "38291",
+    "telefono_google": "922 31 20 11"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "9290",
+     "rotulo": "PCAN",
+     "direccion": "AVENIDA LOS MENCEYES, 223",
+     "cp": "38320",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-21:30",
+     "lat": 28.470222,
+     "lng": -16.296
+    },
+    {
+     "ideess": "11562",
+     "rotulo": "PCAN",
+     "direccion": "CALLE LÁZARO LÓPEZ, 6",
+     "cp": "38330",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L: 06:00-23:00",
+     "lat": 28.495889,
+     "lng": -16.378222
+    },
+    {
+     "ideess": "15575",
+     "rotulo": "PCAN",
+     "direccion": "CARRETERA TF-152 KM. 2,08",
+     "cp": "38206",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.490056,
+     "lng": -16.349528
+    },
+    {
+     "ideess": "7725",
+     "rotulo": "PCAN",
+     "direccion": "CARRETERA TF-24 LA LAGUNA-EL PORTILLO KM. 2,2",
+     "cp": "38206",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-23:00",
+     "lat": 28.473972,
+     "lng": -16.336667
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3471": {
+   "captura": {
+    "nombre_google": "DISA",
+    "marca": "DISA",
+    "direccion_google": "C. Virgen de Begoña, 25, 38320 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38320",
+    "telefono_google": "922 64 86 05"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "9966",
+     "rotulo": "DISA VISTABELLA",
+     "direccion": "CALLE MILAGROSA (LA) LA CUESTA, 2",
+     "cp": "38206",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-S: 06:00-22:00; D: 08:00-22:00",
+     "lat": 28.466111,
+     "lng": -16.283778
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3470": {
+   "captura": {
+    "nombre_google": "Estación de servicio Cepsa",
+    "marca": "Moeve",
+    "direccion_google": "JUNTO A CASAL DEL MAR, Carr. Autovìa San Andrès, S/N, 38001 Santa Cruz de Tenerife",
+    "cp": "38001",
+    "telefono_google": "922 69 37 29"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "9900",
+     "rotulo": "MOEVE",
+     "direccion": "AVENIDA ANAGA (DE), S/N",
+     "cp": "38001",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 06:00-22:00; S-D: 07:30-22:00",
+     "lat": 28.482833,
+     "lng": -16.239611
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3469": {
+   "captura": {
+    "nombre_google": "Oceano",
+    "marca": "Océano",
+    "direccion_google": "Cam. la Villa, 183, 38203 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38203",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "15534",
+     "rotulo": "OCÉANO TACO",
+     "direccion": "CALLE SANTA AMELIA, 20",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-J: 06:00-00:00; V: 24H; S-D: 06:00-02:00",
+     "lat": 28.451278,
+     "lng": -16.296028
+    },
+    {
+     "ideess": "13837",
+     "rotulo": "OCÉANO",
+     "direccion": "CARRETERA TF-111 KM. 8,346",
+     "cp": "38200",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-S: 06:00-22:00; D: 07:00-22:00",
+     "lat": 28.483917,
+     "lng": -16.290639
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3467": {
+   "captura": {
+    "nombre_google": "E.S. BP San Benito",
+    "marca": "BP",
+    "direccion_google": "Autopista del Nte., KM 10, 38203 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38203",
+    "telefono_google": "922 25 91 35"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7817",
+     "rotulo": "BP SAN BENITO",
+     "direccion": "CR AUTOPISTA DEL NORTE, KM. 10,2",
+     "cp": "38203",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.486083,
+     "lng": -16.324056
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3466": {
+   "captura": {
+    "nombre_google": "Gasolinera Tgas Tegueste",
+    "marca": "Tgas",
+    "direccion_google": "Carretera General La Laguna Punta Hidalgo, Km 7, Calle Belletero, 2, 38280 Tegueste, Santa Cruz de Tenerife",
+    "cp": "38280",
+    "telefono_google": "922 54 13 15"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7728",
+     "rotulo": "TGAS TEGUESTE",
+     "direccion": "CARRETERA TF-13 LA LAGUNA - BAJAMAR KM. 6",
+     "cp": "38280",
+     "municipio_poligono": "Tegueste",
+     "horario": "L: 06:00-23:00",
+     "lat": 28.519972,
+     "lng": -16.335028
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3465": {
+   "captura": {
+    "nombre_google": "DISA",
+    "marca": "DISA",
+    "direccion_google": "C. Fomento, 3, 38003 Santa Cruz de Tenerife",
+    "cp": "38003",
+    "telefono_google": "608 28 66 62"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "9951",
+     "rotulo": "DISA FOMENTO",
+     "direccion": "CALLE FOMENTO, S/N, ",
+     "cp": "38007",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.458361,
+     "lng": -16.2535
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3464": {
+   "captura": {
+    "nombre_google": "E.S. Pcan Rodeos",
+    "marca": "Pcan",
+    "direccion_google": "Carretera General Norte Rodeos, 174E, 38206 San Cristóbal de La Laguna, Santa Cruz de Tenerife",
+    "cp": "38206",
+    "telefono_google": "922 63 09 03"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "15575",
+     "rotulo": "PCAN",
+     "direccion": "CARRETERA TF-152 KM. 2,08",
+     "cp": "38206",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.490056,
+     "lng": -16.349528
+    },
+    {
+     "ideess": "7725",
+     "rotulo": "PCAN",
+     "direccion": "CARRETERA TF-24 LA LAGUNA-EL PORTILLO KM. 2,2",
+     "cp": "38206",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-23:00",
+     "lat": 28.473972,
+     "lng": -16.336667
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3463": {
+   "captura": {
+    "nombre_google": "Estación de servicio Tgas Los Baldíos",
+    "marca": "Tgas",
+    "direccion_google": "TF-265, C. San Francisco de Paula, km 3, 38291 Los Baldios, Santa Cruz de Tenerife",
+    "cp": "38291",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "8751",
+     "rotulo": "TGAS LOS BALDÍOS",
+     "direccion": "CARRETERA TF-265 KM. 2",
+     "cp": "38291",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.456861,
+     "lng": -16.329806
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3461": {
+   "captura": {
+    "nombre_google": "DISA",
+    "marca": "DISA",
+    "direccion_google": "Av. de los Majuelos, 25, 38107 Santa Cruz de Tenerife",
+    "cp": "38107",
+    "telefono_google": "689 75 18 72"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "10282",
+     "rotulo": "DISA EL SOBRADILLO",
+     "direccion": "CARRETERA LOS MAJUELOS - SOBRADILLO KM. S/N",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.441806,
+     "lng": -16.313667
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3460": {
+   "captura": {
+    "nombre_google": "Estación de Servicio - Océano Tabares",
+    "marca": "Océano",
+    "direccion_google": "Carretera Valle Tabares - Ctra. 111 km 8,3-, 38329 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38329",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "15534",
+     "rotulo": "OCÉANO TACO",
+     "direccion": "CALLE SANTA AMELIA, 20",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-J: 06:00-00:00; V: 24H; S-D: 06:00-02:00",
+     "lat": 28.451278,
+     "lng": -16.296028
+    },
+    {
+     "ideess": "13837",
+     "rotulo": "OCÉANO",
+     "direccion": "CARRETERA TF-111 KM. 8,346",
+     "cp": "38200",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-S: 06:00-22:00; D: 07:00-22:00",
+     "lat": 28.483917,
+     "lng": -16.290639
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3459": {
+   "captura": {
+    "nombre_google": "Estación de servicio Moeve",
+    "marca": "Moeve",
+    "direccion_google": "POLIGONO INDUSTRIAL LA CAMPANA, C. la Campana, 2, 38109 El Rosario, Santa Cruz de Tenerife",
+    "cp": "38109",
+    "telefono_google": "822 90 92 42"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "8802",
+     "rotulo": "MOEVE",
+     "direccion": "C/ LA CAMPANA, S/N (CTRA. GRAL. DEL SUR km 4)",
+     "cp": "38420",
+     "municipio_poligono": "El Rosario",
+     "horario": "L-D: 24H",
+     "lat": 28.419333,
+     "lng": -16.320222
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3458": {
+   "captura": {
+    "nombre_google": "Estación de servicio Tgas La Laguna",
+    "marca": "Tgas",
+    "direccion_google": "Pl. San Cristóbal, 9, 38204 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38204",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7734",
+     "rotulo": "TGAS MONTESDEOCA",
+     "direccion": "PLAZA SAN CRISTOBAL, 9",
+     "cp": "38204",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.484639,
+     "lng": -16.313778
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3457": {
+   "captura": {
+    "nombre_google": "Estación de Servicio \"Los Rodeos\"",
+    "marca": "Repsol",
+    "direccion_google": "C. Molino Viejo, 1A, 38292 Tegueste, Santa Cruz de Tenerife",
+    "cp": "38292",
+    "telefono_google": "922 63 83 65"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7686",
+     "rotulo": "REPSOL",
+     "direccion": "CARRETERA GENERAL DEL NORTE KM. 13200",
+     "cp": "38295",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.490667,
+     "lng": -16.3545
+    },
+    {
+     "ideess": "7688",
+     "rotulo": "REPSOL",
+     "direccion": "CALLE LIBERTAD, S/N",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.464694,
+     "lng": -16.304861
+    },
+    {
+     "ideess": "7675",
+     "rotulo": "REPSOL",
+     "direccion": "CAMINO SAN MIGUEL DE GENETO, 148",
+     "cp": "38296",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L: 24H",
+     "lat": 28.456083,
+     "lng": -16.316889
+    },
+    {
+     "ideess": "7690",
+     "rotulo": "REPSOL",
+     "direccion": "CARRETERA TF-16 KM. 4,4",
+     "cp": "38270",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.510556,
+     "lng": -16.398583
+    },
+    {
+     "ideess": "7701",
+     "rotulo": "REPSOL",
+     "direccion": "CARRETERA GENERAL KM. 194",
+     "cp": "38270",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-23:00",
+     "lat": 28.518167,
+     "lng": -16.389
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3456": {
+   "captura": {
+    "nombre_google": "Estación de Servicio Repsol",
+    "marca": "Repsol",
+    "direccion_google": "Calle Via Servicio Darsena P, 2, 38120 Santa Cruz de Tenerife",
+    "cp": "38120",
+    "telefono_google": "922 54 90 80"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "11394",
+     "rotulo": "REPSOL",
+     "direccion": "VÍA INTERIOR DEL PUERTO, S/N",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 07:00-21:00",
+     "lat": 28.496444,
+     "lng": -16.208639
+    },
+    {
+     "ideess": "7713",
+     "rotulo": "REPSOL",
+     "direccion": "PG IND. AÑAZA PARC-39, S.N.",
+     "cp": "38111",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.427472,
+     "lng": -16.301
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3455": {
+   "captura": {
+    "nombre_google": "DISA",
+    "marca": "DISA",
+    "direccion_google": "Polígono Industrial El Mayorazgo, C. Jesús Hernández Guzmán, 12, 38110 Santa Cruz de Tenerife",
+    "cp": "38110",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "14868",
+     "rotulo": "DISA EL MAYORAZGO",
+     "direccion": "CALLE JESUS HERNANDEZ GUZMAN, 12",
+     "cp": "38010",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.441806,
+     "lng": -16.281194
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3454": {
+   "captura": {
+    "nombre_google": "Estación de Servicio Repsol",
+    "marca": "Repsol",
+    "direccion_google": "TF-263, 3,5 IZ, 38296 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38296",
+    "telefono_google": "922 63 33 82"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7675",
+     "rotulo": "REPSOL",
+     "direccion": "CAMINO SAN MIGUEL DE GENETO, 148",
+     "cp": "38296",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L: 24H",
+     "lat": 28.456083,
+     "lng": -16.316889
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3453": {
+   "captura": {
+    "nombre_google": "Gasolinera Tgas Las Mercedes",
+    "marca": "Tgas",
+    "direccion_google": "Carr. al Monte las Mercedes, Km 0,5, 38293 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38293",
+    "telefono_google": "671 62 32 72"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7736",
+     "rotulo": "TGAS LAS MERCEDES",
+     "direccion": "CARRETERA TF-12 LAS CANTERAS KM. 0,5",
+     "cp": "38234",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-S: 07:00-22:00; D: 08:00-21:00",
+     "lat": 28.515222,
+     "lng": -16.301889
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3452": {
+   "captura": {
+    "nombre_google": "E.S. Shell La Laguna",
+    "marca": "Shell",
+    "direccion_google": "Av. Leonardo Torriani, 28, 38205 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38205",
+    "telefono_google": "689 75 20 51"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "8768",
+     "rotulo": "SHELL LA LAGUNA",
+     "direccion": "AVENIDA CALVO SOTELO, S/N",
+     "cp": "38205",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.4815,
+     "lng": -16.313611
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3451": {
+   "captura": {
+    "nombre_google": "Estación de servicio Moeve",
+    "marca": "Moeve",
+    "direccion_google": "FILIPINAS, 9, 38009 Santa Cruz de Tenerife",
+    "cp": "38009",
+    "telefono_google": "922 39 64 79"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7628",
+     "rotulo": "CEPSA",
+     "direccion": "CALLE FILIPINAS, 9",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 07:00-15:00",
+     "lat": 28.455028,
+     "lng": -16.268139
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3450": {
+   "captura": {
+    "nombre_google": "Estación de Servicio - Océano Santa Cruz",
+    "marca": "Océano",
+    "direccion_google": "C. Panamá, 9, 38009 Santa Cruz de Tenerife",
+    "cp": "38009",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "16466",
+     "rotulo": "E.S. OCÉANO SANTA CRUZ",
+     "direccion": "CALLE PANAMÁ, 9",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.453944,
+     "lng": -16.266972
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3449": {
+   "captura": {
+    "nombre_google": "Estación de servicio Cepsa",
+    "marca": "Moeve",
+    "direccion_google": "POLIGONO EL MAYORAZGO, Mercatenerife, S/N, 38010 Santa Cruz de Tenerife",
+    "cp": "38010",
+    "telefono_google": "922 69 25 78"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "9900",
+     "rotulo": "MOEVE",
+     "direccion": "AVENIDA ANAGA (DE), S/N",
+     "cp": "38001",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 06:00-22:00; S-D: 07:30-22:00",
+     "lat": 28.482833,
+     "lng": -16.239611
+    },
+    {
+     "ideess": "7628",
+     "rotulo": "CEPSA",
+     "direccion": "CALLE FILIPINAS, 9",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 07:00-15:00",
+     "lat": 28.455028,
+     "lng": -16.268139
+    },
+    {
+     "ideess": "10219",
+     "rotulo": "CEPSA",
+     "direccion": "AVENIDA ANGEL ROMERO, 17",
+     "cp": "38008",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.463083,
+     "lng": -16.277056
+    },
+    {
+     "ideess": "10842",
+     "rotulo": "MOEVE",
+     "direccion": "POLIGONO EL MAYORAZGO, S/N",
+     "cp": "38160",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 05:00-14:00",
+     "lat": 28.4435,
+     "lng": -16.278806
+    },
+    {
+     "ideess": "14262",
+     "rotulo": "MOEVE",
+     "direccion": "CARRETERA ROSARIO (DEL) KM. 186",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.447056,
+     "lng": -16.291444
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3448": {
+   "captura": {
+    "nombre_google": "E.S. Disa Aracayu",
+    "marca": "DISA",
+    "direccion_google": "Av. de Venezuela, 27, 38007 Santa Cruz de Tenerife",
+    "cp": "38007",
+    "telefono_google": "630 15 71 96"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7887",
+     "rotulo": "DISA ARACAYU",
+     "direccion": "AVENIDA VENEZUELA, S/N",
+     "cp": "38007",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.467389,
+     "lng": -16.271028
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3446": {
+   "captura": {
+    "nombre_google": "E.S. Disa El Chorrillo",
+    "marca": "DISA",
+    "direccion_google": "Ctra. General del Sur, KM 9, 2, 38107 Santa Cruz de Tenerife",
+    "cp": "38107",
+    "telefono_google": "650 15 96 94"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "10924",
+     "rotulo": "DISA EL CHORRILLO",
+     "direccion": "CARRETERA CARRETERA GENERAL DEL SUR KM. 9,2",
+     "cp": "38190",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.425417,
+     "lng": -16.317
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3445": {
+   "captura": {
+    "nombre_google": "Estación de servicio DISA",
+    "marca": "DISA",
+    "direccion_google": "Ctra. Gral. del Rosario, 6, 38009 Santa Cruz de Tenerife",
+    "cp": "38009",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7869",
+     "rotulo": "DISA TIO PINO",
+     "direccion": "CARRETERA DEL ROSARIO C-822 KM. 2",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.458417,
+     "lng": -16.272306
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3444": {
+   "captura": {
+    "nombre_google": "Gasolinera Tgas Tu Trébol - Santa Cruz",
+    "marca": "Tgas",
+    "direccion_google": "Pol. Ind. El Mayorazgo, Ctra. de Hoya Fria, 11, 38110 Santa Cruz de Tenerife",
+    "cp": "38110",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7727",
+     "rotulo": "TGAS-TU TRÉBOL",
+     "direccion": "POLIGONO EL MAYORAZGO, S/N",
+     "cp": "38010",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-S: 07:30-21:00; D: 08:00-14:00",
+     "lat": 28.442083,
+     "lng": -16.284056
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3443": {
+   "captura": {
+    "nombre_google": "Disa Las Chumberas",
+    "marca": "DISA",
+    "direccion_google": "Av. la Libertad, 63, 38108 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38108",
+    "telefono_google": "608 29 04 25"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7769",
+     "rotulo": "DISA LAS CHUMBERAS",
+     "direccion": "POL. IND. LOS MAJUELOS km CENTRO COMERCIAL M",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-S: 06:00-22:00; D: 08:00-21:00",
+     "lat": 28.458111,
+     "lng": -16.304306
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3442": {
+   "captura": {
+    "nombre_google": "E.S. Disa Taco",
+    "marca": "DISA",
+    "direccion_google": "Ctra. General del Sur, 6, 38108 Santa Cruz de Tenerife",
+    "cp": "38108",
+    "telefono_google": "682 26 29 47"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "8761",
+     "rotulo": "DISA TACO",
+     "direccion": "CARRETERA CARRETERA GENERAL DEL SUR KM. 6,200",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.445028,
+     "lng": -16.3005
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3441": {
+   "captura": {
+    "nombre_google": "BP Tres de Mayo",
+    "marca": "BP",
+    "direccion_google": "Avenida Tres de Mayo, C. Álvaro Rodríguez López, 85, 38005 Santa Cruz de Tenerife",
+    "cp": "38005",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7815",
+     "rotulo": " BP AVENIDA 3 DE MAYO",
+     "direccion": "AVENIDA TRES DE MAYO, 85",
+     "cp": "38005",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.457722,
+     "lng": -16.261417
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3440": {
+   "captura": {
+    "nombre_google": "BP Taco",
+    "marca": "BP",
+    "direccion_google": "TF-28, Km. 6, 9, Cr C-822, 38107 Santa Cruz de Tenerife",
+    "cp": "38107",
+    "telefono_google": "922 62 17 13"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7818",
+     "rotulo": " BP TACO",
+     "direccion": "CARRETERA GENERAL DEL SUR KM. 6,9",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.440222,
+     "lng": -16.303528
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3439": {
+   "captura": {
+    "nombre_google": "E.S. Disa Barranco Grande",
+    "marca": "DISA",
+    "direccion_google": "Ctra. General del Sur, KM 7,5, 38108 Santa Cruz de Tenerife",
+    "cp": "38108",
+    "telefono_google": "922 62 00 49"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7863",
+     "rotulo": "DISA BARRANCO GRANDE",
+     "direccion": "CARRETERA GENERAL DEL SUR KM. 7,5",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-S: 06:00-22:00; D: 08:00-22:00",
+     "lat": 28.438528,
+     "lng": -16.305167
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3438": {
+   "captura": {
+    "nombre_google": "DISA",
+    "marca": "DISA",
+    "direccion_google": "C. Ortega y Gasset, 1, 38007 Santa Cruz de Tenerife",
+    "cp": "38007",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7857",
+     "rotulo": "DISA TRES DE MAYO",
+     "direccion": "CALLE ORTEGA Y GASSET, 1",
+     "cp": "38007",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.45725,
+     "lng": -16.265167
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3437": {
+   "captura": {
+    "nombre_google": "Estación de servicio Pcan La Higuerita",
+    "marca": "Pcan",
+    "direccion_google": "Av. de los Menceyes, 223, 38320 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38320",
+    "telefono_google": "922 65 67 72"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "9290",
+     "rotulo": "PCAN",
+     "direccion": "AVENIDA LOS MENCEYES, 223",
+     "cp": "38320",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-21:30",
+     "lat": 28.470222,
+     "lng": -16.296
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3436": {
+   "captura": {
+    "nombre_google": "E.S. Disa Ofra",
+    "marca": "DISA",
+    "direccion_google": "CR.GENERAL TF-411,00001, Calle Zerolo, 6, 38320 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38320",
+    "telefono_google": "689 75 17 57"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "9961",
+     "rotulo": "DISA OFRA",
+     "direccion": "CARRETERA SUR (CUESTA-TACO) KM. 2",
+     "cp": "38206",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.467667,
+     "lng": -16.285806
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3435": {
+   "captura": {
+    "nombre_google": "BP Cruz del Se…",
+    "marca": "BP",
+    "direccion_google": "Av. Islas Canarias, 97, 38007 Santa Cruz de Tenerife",
+    "cp": "38007",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7816",
+     "rotulo": "BP CRUZ DEL SEÑOR",
+     "direccion": "AVENIDA DE CANARIAS, 97",
+     "cp": "38007",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.464806,
+     "lng": -16.270167
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3434": {
+   "captura": {
+    "nombre_google": "Estación de servicio Moeve",
+    "marca": "Moeve",
+    "direccion_google": "VUELTA LOS PAJAROS, Av Ángel Romero, 17, 38009 Santa Cruz de Tenerife",
+    "cp": "38009",
+    "telefono_google": "922 64 40 58"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7628",
+     "rotulo": "CEPSA",
+     "direccion": "CALLE FILIPINAS, 9",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 07:00-15:00",
+     "lat": 28.455028,
+     "lng": -16.268139
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3433": {
+   "captura": {
+    "nombre_google": "E.S. BP Taco Norte",
+    "marca": "BP",
+    "direccion_google": "Calle Las Industrias, CR TF-411, KM. 2, 45, 38108 San Cristóbal de La Laguna, Santa Cruz de Tenerife",
+    "cp": "38108",
+    "telefono_google": "822 69 67 13"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7784",
+     "rotulo": "BP TACO NORTE",
+     "direccion": "CR TF-411, KM. 2,45",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.4495,
+     "lng": -16.294583
+    },
+    {
+     "ideess": "7818",
+     "rotulo": " BP TACO",
+     "direccion": "CARRETERA GENERAL DEL SUR KM. 6,9",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.440222,
+     "lng": -16.303528
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3432": {
+   "captura": {
+    "nombre_google": "E.S. DISA",
+    "marca": "DISA",
+    "direccion_google": "Av. de los Majuelos, 26, 38108 Taco, Santa Cruz de Tenerife",
+    "cp": "38108",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7860",
+     "rotulo": "DISA LOS MAJUELOS",
+     "direccion": "AVENIDA LOS MAJUELOS, 26",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.454667,
+     "lng": -16.296722
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3431": {
+   "captura": {
+    "nombre_google": "Estación de servicio Cepsa",
+    "marca": "Moeve",
+    "direccion_google": "AVDA. LOS MAJUELOS, MANZANA LL-92, 38293 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38293",
+    "telefono_google": "922 62 25 73"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7634",
+     "rotulo": "CEPSA LOS ANDENES",
+     "direccion": "AVENIDA PASO EL (LOS MAJUELOS), 108",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.447444,
+     "lng": -16.30725
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "una"
+  },
+  "IMG_3430": {
+   "captura": {
+    "nombre_google": "Estación de servicio Moeve",
+    "marca": "Moeve",
+    "direccion_google": "SALIDA A-4 DE LA, CTRA. DEL ROSARIO (TF-194, TF-5, P.I. DE, 38108 Taco, Santa Cruz de Tenerife",
+    "cp": "38108",
+    "telefono_google": "922 61 57 17"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7634",
+     "rotulo": "CEPSA LOS ANDENES",
+     "direccion": "AVENIDA PASO EL (LOS MAJUELOS), 108",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-D: 24H",
+     "lat": 28.447444,
+     "lng": -16.30725
+    },
+    {
+     "ideess": "14262",
+     "rotulo": "MOEVE",
+     "direccion": "CARRETERA ROSARIO (DEL) KM. 186",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.447056,
+     "lng": -16.291444
+    },
+    {
+     "ideess": "7637",
+     "rotulo": "MOEVE",
+     "direccion": "AUTOPISTA TF-21 KM. 3,5",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.436528,
+     "lng": -16.282167
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3428": {
+   "captura": {
+    "nombre_google": "Estación de Servicio DISA",
+    "marca": "DISA",
+    "direccion_google": "C. de Pedro de Valdivia, 9, 38010 Santa Cruz de Tenerife",
+    "cp": "38010",
+    "telefono_google": "689 75 29 72"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "7840",
+     "rotulo": "DISA LAS DELICIAS",
+     "direccion": "CALLE PEDRO DE VALDIVIA, 9",
+     "cp": "38010",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 07:00-22:00",
+     "lat": 28.452444,
+     "lng": -16.283444
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3429": {
+   "captura": {
+    "nombre_google": "Estación de servicio Moeve",
+    "marca": "Moeve",
+    "direccion_google": "Autop. del Sur, PK 3, 5, 38110 Santa Cruz de Tenerife",
+    "cp": "38110",
+    "telefono_google": "922 21 86 13"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "9900",
+     "rotulo": "MOEVE",
+     "direccion": "AVENIDA ANAGA (DE), S/N",
+     "cp": "38001",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 06:00-22:00; S-D: 07:30-22:00",
+     "lat": 28.482833,
+     "lng": -16.239611
+    },
+    {
+     "ideess": "7628",
+     "rotulo": "CEPSA",
+     "direccion": "CALLE FILIPINAS, 9",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 07:00-15:00",
+     "lat": 28.455028,
+     "lng": -16.268139
+    },
+    {
+     "ideess": "10219",
+     "rotulo": "CEPSA",
+     "direccion": "AVENIDA ANGEL ROMERO, 17",
+     "cp": "38008",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.463083,
+     "lng": -16.277056
+    },
+    {
+     "ideess": "10842",
+     "rotulo": "MOEVE",
+     "direccion": "POLIGONO EL MAYORAZGO, S/N",
+     "cp": "38160",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 05:00-14:00",
+     "lat": 28.4435,
+     "lng": -16.278806
+    },
+    {
+     "ideess": "14262",
+     "rotulo": "MOEVE",
+     "direccion": "CARRETERA ROSARIO (DEL) KM. 186",
+     "cp": "38108",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.447056,
+     "lng": -16.291444
+    }
+   ],
+   "como": "municipio+marca",
+   "estado": "varias: hay que elegir"
+  },
+  "IMG_3426": {
+   "captura": {
+    "nombre_google": "SHELL",
+    "marca": "Shell",
+    "direccion_google": "Ctra. Santa Cruz Laguna, 32, 38009 Santa Cruz de Tenerife",
+    "cp": "38009",
+    "telefono_google": "922 65 53 96"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "8759",
+     "rotulo": "SHELL EL RAMONAL",
+     "direccion": "CARRETERA SANTA CRUZ- LA LAGUNA KM. 3,7",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.464056,
+     "lng": -16.279417
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3425": {
+   "captura": {
+    "nombre_google": "Estación de Servicio - Océano Taco",
+    "marca": "Océano",
+    "direccion_google": "Calle Sta. Amelia, 24, 38108 La Laguna, Santa Cruz de Tenerife",
+    "cp": "38108",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "15534",
+     "rotulo": "OCÉANO TACO",
+     "direccion": "CALLE SANTA AMELIA, 20",
+     "cp": "38108",
+     "municipio_poligono": "San Cristóbal de La Laguna",
+     "horario": "L-J: 06:00-00:00; V: 24H; S-D: 06:00-02:00",
+     "lat": 28.451278,
+     "lng": -16.296028
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3422": {
+   "captura": {
+    "nombre_google": "Canary Oil",
+    "marca": "Canary Oil",
+    "direccion_google": "C. Subida al Mayorazgo, 7, 38010 Santa Cruz de Tenerife",
+    "cp": "38010",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "14353",
+     "rotulo": "CANARY OIL, S.L.",
+     "direccion": "CALLE SUBIDA AL MAYORAZGO, 7",
+     "cp": "38010",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 24H",
+     "lat": 28.445306,
+     "lng": -16.282361
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3423": {
+   "captura": {
+    "nombre_google": "SHELL",
+    "marca": "Shell",
+    "direccion_google": "CR.DEL ROSARIO KM 3, S/N, 38009 Santa Cruz de Tenerife",
+    "cp": "38009",
+    "telefono_google": null
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "8758",
+     "rotulo": "E.S.SHELL OFRA",
+     "direccion": "CARRETERA DEL ROSARIO KM. 3",
+     "cp": "38009",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-D: 06:00-22:00",
+     "lat": 28.454278,
+     "lng": -16.278306
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  },
+  "IMG_3424": {
+   "captura": {
+    "nombre_google": "GMOil",
+    "marca": "GMOil",
+    "direccion_google": "Poligono Industrial Mayorazgo, C. Laura Grote de la Prta, 2, 38110 Santa Cruz de Tenerife",
+    "cp": "38110",
+    "telefono_google": "922 22 66 06"
+   },
+   "candidatos_en_el_registro": [
+    {
+     "ideess": "13966",
+     "rotulo": "GMOIL",
+     "direccion": "CALLE LAURA GROTE DE LA PUERTA, 2",
+     "cp": "38110",
+     "municipio_poligono": "Santa Cruz de Tenerife",
+     "horario": "L-V: 24H; S: 06:00-20:00; D: 08:00-15:00",
+     "lat": 28.445778,
+     "lng": -16.281361
+    }
+   ],
+   "como": "cp+marca",
+   "estado": "una"
+  }
+ },
+ "municipio_registro_vs_poligono": []
+}

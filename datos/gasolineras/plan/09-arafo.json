@@ -1,0 +1,109 @@
+{
+ "_": [
+  "Tanda 9 de 31: Arafo.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Arafo",
+ "estaciones": 7,
+ "ya_en_la_app": 1,
+ "altas_nuevas": 6,
+ "lista": [
+  {
+   "ideess": "13012",
+   "rotulo": "BP POLIGONO GUIMAR",
+   "marca": "bp",
+   "direccion": "POLIGONO PLAN PARCIAL EL CARRETON  EN  HIDALGA LA, S/N",
+   "cp": "38550",
+   "localidad": "ARAFO",
+   "municipio": "Arafo",
+   "horario": "L-D: 24H",
+   "lat": 28.331611,
+   "lng": -16.376361,
+   "ya_en_la_app": {
+    "id": "gas-tf1-guimar",
+    "name": "BP Güímar (TF-1)",
+    "a_metros": 14
+   }
+  },
+  {
+   "ideess": "7639",
+   "rotulo": "CEPSA",
+   "marca": "cepsa",
+   "direccion": "ACCESO CARRETERA A LA HIDALGA, 0",
+   "cp": "38550",
+   "localidad": "ARAFO",
+   "municipio": "Arafo",
+   "horario": "L-D: 24H",
+   "lat": 28.328917,
+   "lng": -16.38625,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "16267",
+   "rotulo": "H2EXAGON ARAFO",
+   "marca": null,
+   "direccion": "POLIGONO POLIGONO INDUSTRIAL EL CARRETON, PARCELA 1.6, S/N",
+   "cp": "38550",
+   "localidad": "ARAFO",
+   "municipio": "Arafo",
+   "horario": "L-D: 24H",
+   "lat": 28.331972,
+   "lng": -16.378528,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "16177",
+   "rotulo": "PLENERGY",
+   "marca": null,
+   "direccion": "CALLE CAMINO LA MOLINETA POLÍGONO EL CARRETÓN, S/N",
+   "cp": "38550",
+   "localidad": "ARAFO",
+   "municipio": "Arafo",
+   "horario": "L-D: 24H",
+   "lat": 28.332694,
+   "lng": -16.37775,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "12630",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "PLAZA IND VALLE GUIMAR MANZ-, S/N",
+   "cp": "38550",
+   "localidad": "ARAFO",
+   "municipio": "Arafo",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.331222,
+   "lng": -16.372333,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "8326",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "CARRETERA ARAFO LA HIDALGA TF-281 KM. 1",
+   "cp": "38550",
+   "localidad": "HIDALGA (LA)",
+   "municipio": "Arafo",
+   "horario": "L-D: 24H",
+   "lat": 28.328306,
+   "lng": -16.382583,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "10635",
+   "rotulo": "TGAS LA HIDALGA",
+   "marca": "tgas",
+   "direccion": "CARRETERA GENERAL DEL SUR, 17 KM. 22",
+   "cp": "38550",
+   "localidad": "HIDALGA (LA)",
+   "municipio": "Arafo",
+   "horario": "L-S: 06:00-21:00; D: 07:00-15:00",
+   "lat": 28.334944,
+   "lng": -16.394083,
+   "ya_en_la_app": null
+  }
+ ]
+}

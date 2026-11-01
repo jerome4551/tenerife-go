@@ -1,0 +1,57 @@
+{
+ "_": [
+  "Tanda 21 de 31: La Matanza de Acentejo.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "La Matanza de Acentejo",
+ "estaciones": 3,
+ "ya_en_la_app": 1,
+ "altas_nuevas": 2,
+ "lista": [
+  {
+   "ideess": "9635",
+   "rotulo": "DISA EL BOHIO",
+   "marca": "disa",
+   "direccion": "AUTOPISTA TF-5 KM. 25",
+   "cp": "38370",
+   "localidad": "MATANZA DE ACENTEJO (LA)",
+   "municipio": "La Matanza de Acentejo",
+   "horario": "L-D: 24H",
+   "lat": 28.449528,
+   "lng": -16.460472,
+   "ya_en_la_app": {
+    "id": "gas-tf5-el-bohio",
+    "name": "DISA El Bohío (TF-5 km 25)",
+    "a_metros": 54
+   }
+  },
+  {
+   "ideess": "7854",
+   "rotulo": "DISA LA MATANZA",
+   "marca": "disa",
+   "direccion": "CARRETERA GENERAL DEL NORTE C-820 KM. 24,000",
+   "cp": "38370",
+   "localidad": "MATANZA DE ACENTEJO (LA)",
+   "municipio": "La Matanza de Acentejo",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.456639,
+   "lng": -16.450556,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7767",
+   "rotulo": "SHELL ACENTEJO",
+   "marca": "shell",
+   "direccion": "CR  GENERAL DEL NORTE, 272",
+   "cp": "38370",
+   "localidad": "GUIA",
+   "municipio": "La Matanza de Acentejo",
+   "horario": "L-S: 06:00-22:00; D: 07:00-21:00",
+   "lat": 28.439472,
+   "lng": -16.462361,
+   "ya_en_la_app": null
+  }
+ ]
+}

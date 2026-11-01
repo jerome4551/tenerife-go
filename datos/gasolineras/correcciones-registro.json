@@ -1,0 +1,307 @@
+{
+ "_": [
+  "Correcciones al texto del registro del MITECO antes de volcarlo en una ficha.",
+  "Las aplica tools/gasolinera_ficha.py cada vez que lee el registro, asi que",
+  "siguen valiendo cuando el registro se vuelve a descargar.",
+  "",
+  "ACENTOS: el registro va en mayusculas y sin tildes. Estas son palabras y",
+  "nombres castellanos con la tilde segura. Jerome dio el OK el 2 de octubre de",
+  "2026 («Si y sigue»). Los toponimos guanches (Adjona, Atogo, Axaentemir,",
+  "Chajofe, Tamaimo, Guaza...) NO estan: no llevan tilde y no me toca ponersela.",
+  "Los municipios no hacen falta aqui: salen del poligono del Cabildo.",
+  "El 3 de octubre se anaden 7 que solo salen en las DIRECCIONES (Alcala, Americas,",
+  "Baldios, Chio, Jeronimo, Poris, Sofia), con el mismo OK.",
+  "",
+  "ILEGIBLE: texto del registro que no se puede leer sin adivinar. No se",
+  "corrige: se corta, y la ficha se queda con lo que el registro SI dice claro.",
+  "",
+  "EN_ESPERA: estaciones que el registro trae pero que NO se dan de alta hasta",
+  "que Jerome confirme que estan abiertas. Estar en el registro no lo prueba:",
+  "una estacion en obras sigue saliendo con sus ultimos precios. Las leen",
+  "gasolinera_ficha.py (no las genera), revisar_gasolineras.py y",
+  "auditar_gasolineras.js, que FALLA si una de estas tiene ficha en la app.",
+  "CONFIRMADAS_TRAS_ESPERA: las que estuvieron en espera y Jerome confirmo",
+  "despues. Ya no las lee ninguna herramienta: se guardan por el rastro.",
+  "",
+  "ERRATAS: texto del registro que esta mal y se sabe como es, con fuente y OK de",
+  "Jerome. Se corrige en el texto crudo, antes de todo lo demas.",
+  "",
+  "KM_CONTRADICHO: estaciones cuya posicion esta comprobada y contradice el km del",
+  "registro. El km se quita (del nombre y de la direccion) y no se pone otro: el",
+  "bueno se podria deducir, pero ninguna fuente lo dice.",
+  "",
+  "HORARIOS: el registro da a algunas estaciones un horario de UN solo dia («L: 24H»:",
+  "solo el lunes). Jerome los comprobo el 4 de octubre y abren todos los dias. Se",
+  "corrige solo si el registro sigue diciendo exactamente lo mismo («registro»): si",
+  "cambia, manda el registro nuevo.",
+  "",
+  "CP: codigos postales del registro que no cuadran y tienen fuente para el bueno.",
+  "Como HORARIOS: solo vale mientras el registro siga diciendo exactamente lo mismo.",
+  "",
+  "MAYUSCULAS: el registro va en mayusculas y no dice cuales lo son. Estas son las que la",
+  "regla general (articulo en minuscula solo detras de preposicion) deja mal, con el OK de Jerome",
+  "del 4 de octubre («Ok»). Se aplican al texto ya escrito, palabra entera.",
+  "",
+  "CODIGOS_CARRETERA: codigos de carretera del registro que OSM no tiene pero que estan",
+  "en uso y comprobados con otra fuente. tools/verificar_bloques.py no los da por malos.",
+  "",
+  "COORDENADAS: estaciones cuyo pin del registro no esta en la estacion, con la posicion",
+  "comprobada por Jerome. Solo vale mientras el registro siga dando la misma coordenada",
+  "(«registro»); si la cambia, manda la nueva. El municipio del punto nuevo tiene que ser el",
+  "del registro (LEEME)."
+ ],
+ "acentos": {
+  "albanileria": "Albañilería",
+  "alcala": "Alcalá",
+  "americas": "Américas",
+  "andres": "Andrés",
+  "angel": "Ángel",
+  "baldios": "Baldíos",
+  "benitez": "Benítez",
+  "botanico": "Botánico",
+  "caceres": "Cáceres",
+  "carreton": "Carretón",
+  "chio": "Chío",
+  "cristobal": "Cristóbal",
+  "diaz": "Díaz",
+  "dominguez": "Domínguez",
+  "dublin": "Dublín",
+  "felix": "Félix",
+  "gonzalez": "González",
+  "gorrin": "Gorrín",
+  "guia": "Guía",
+  "guzman": "Guzmán",
+  "hernandez": "Hernández",
+  "hipolito": "Hipólito",
+  "jeronimo": "Jerónimo",
+  "jesus": "Jesús",
+  "maritima": "Marítima",
+  "martianez": "Martiánez",
+  "medano": "Médano",
+  "mendez": "Méndez",
+  "penetracion": "Penetración",
+  "perez": "Pérez",
+  "poris": "Porís",
+  "principes": "Príncipes",
+  "republica": "República",
+  "sofia": "Sofía",
+  "torreon": "Torreón"
+ },
+ "ilegible": {
+  "DELPORTEZUELO ALS TODCAS": "Seguramente «del Portezuelo a Las Toscas», pero «Todcas» por «Toscas» seria adivinar. Queda «Carretera TF-154»."
+ },
+ "en_espera": {
+  "10057": {
+   "estacion": "BP TEN BEL · Carretera de las Galletas km 91 · Arona",
+   "por_que": "Jerome, 6 de octubre: «Bp tenbel no existe. La unica cerca de Ten Bel es la Cepsa» (la de Costa del Silencio, 10543, que si esta en la app). El LEEME avisa de que estar en el registro no prueba que este abierta.",
+   "para_volver": "El registro del 2 de octubre aun le da precio a 4 combustibles, y OSM tiene una BP a 490 m de su pin, en la Avenida Fernando Salazar Gonzalez (TF-652), en 28.033096, -16.650317. Si Jerome la ve ahi, vuelve con esa comprobacion.",
+   "desde": "2026-10-06"
+  }
+ },
+ "confirmadas_tras_espera": {
+  "7840": {
+   "estacion": "DISA LAS DELICIAS · Calle Pedro de Valdivia, 9 · Santa Cruz de Tenerife",
+   "por_que": "Captura IMG_3428: Google dice «Combustible (FUERA DE SERVICIO POR OBRAS)». El LEEME de las capturas manda no darla de alta sin confirmar que esta operativa. Se dio de alta en la sesion 01 por error y se retiro el 3 de octubre al revisar.",
+   "desde": "2026-10-03",
+   "confirmada_el": "2026-10-03",
+   "como": "Jerome: «online dice que esta abierto». Captura de disagrupo.es, la web de la propia DISA: E.S. DISA LAS DELICIAS, lunes a domingo 07:00-22:00, el mismo horario que da el registro."
+  },
+  "16132": {
+   "estacion": "REPSOL · Vía Lado Aire Aeropuerto Tenerife Sur, 1 · Granadilla de Abona",
+   "por_que": "En un aeropuerto el «lado aire» es la zona restringida, al otro lado del control. Si es una estacion para los vehiculos del aeropuerto, un turista no puede repostar alli. El registro la marca como venta al publico y cerca hay un restaurante y un alquiler de coches, pero el nombre dice lo contrario. Hasta que Jerome confirme que se puede entrar, no se da de alta.",
+   "desde": "2026-10-03",
+   "confirmada_el": "2026-10-03",
+   "como": "Jerome manda la ficha de la web de Repsol («CRED AEROPUERTO TENERIFE SUR AIRE»: abierta 24 horas, margen DERECHO como el registro, con «Como llegar») y una respuesta de Google. Ninguna de las dos dice si se puede entrar; lo dice el mapa: esta a 106 m de un enlace de la autopista y a 134 m del TF-1, junto a la TF-644 y a una calle publica, lejos de la terminal (a 2,4 km). «Lado aire» es el lado de la via que da al aeropuerto, igual que la Repsol «LADO AIRE» de Gran Canaria, que esta en la autovia GC-1 km 16. OSM no se usa como fuente de ningun dato de la ficha: todo sale del registro."
+  }
+ },
+ "erratas": {
+  "MOLINOS DE GOLFO": {
+   "se_escribe": "MOLINOS DE GOFIO",
+   "fuente": "Jerome, 3 de octubre: captura de Google Maps de «Plenergy La Orotava II», «C. Molinos de Gofio, s/n, 38312 La Orotava»; OSM tambien dice «Calle Molinos de Gofio». En Canarias, los molinos de gofio."
+  },
+  "PUERTO CUZ": {
+   "se_escribe": "PUERTO CRUZ",
+   "fuente": "Jerome, 3 de octubre: «Si es Cruz». El registro escribe «CARRETERA GRAL. PUERTO CUZ-LAS ARENAS» (Puerto de la Cruz)."
+  },
+  "CARRERA GENERAL": {
+   "se_escribe": "CARRETERA GENERAL",
+   "fuente": "Jerome, 3 de octubre: «Si». El registro escribe «CARRERA GENERAL DEL NORTE» (DISA, El Sauzal) mientras la BP de al lado, en la misma carretera, dice «CARRETERA GENERAL DEL NORTE»; y «CARRERA GENERAL LAS GALLETAS» (Moeve, Arona)."
+  },
+  "GENERAL TF-142": {
+   "se_escribe": "GENERAL TF-42",
+   "fuente": "Jerome, 4 de octubre: «Ok». El registro escribe «CALLE FELIX BENITEZ DE LUGO S/N LOS MORALITOS (GENERAL TF-142 KM 11), 28» (DISA, Los Silos). En OSM no hay ninguna TF-142 en la isla; la calle de la gasolinera es la TF-42a, el ramal de la TF-42 por Los Silos, y la estacion de Garachico, 2,7 km antes por la TF-42, esta en el km 8,9: el km 11 cuadra con la TF-42."
+  },
+  "CARRETERA TF-82 KM. 53,6": {
+   "se_escribe": "CARRETERA GENERAL C-820 KM. 53,6",
+   "fuente": "Jerome, 4 de octubre: la web de Moeve (la operadora) llama a esta estacion «ICOD DE LOS VINOS», direccion «C-820 PK 53,5», coordenadas 28.37896, -16.700733 (a menos de 2 m de las del registro) y horario 06:00-22:00 todos los dias, el del registro. Su vecina, a 0,65 km, es en el registro «CARRETERA GENERAL C-820 KM. 52,7», con la misma numeracion antigua. En OSM esta a 19 m de la TF-42 y a 2,3 km de la TF-82: el registro cambio «C-820» por «TF-82» y dejo el km viejo, pero este tramo de Icod no es la TF-82. El km se queda el del registro (53,6)."
+  },
+  "AUTOPISTA TF-21 KM. 3,5": {
+   "se_escribe": "AUTOPISTA TF-1 KM. 3,5",
+   "fuente": "Jerome, 4 de octubre: «Si estas seguro de las direcciones cambialas». Moeve de Santa Cruz (7637). La TF-21 es la carretera del Teide y no pasa por Santa Cruz; la captura de Jerome (IMG_3429) dice «Autop. del Sur, PK 3, 5» y en OSM la Autopista del Sur TF-1 esta a 30 m. Con la errata, el tramo de autopista del TF-1 segun el registro empieza en el km 3,5; no cambia ningun otro nombre."
+  },
+  "CARRETERA TF-822 KM. 50": {
+   "se_escribe": "CARRETERA TF-28 KM. 50",
+   "fuente": "Jerome, 4 de octubre: «Si estas seguro de las direcciones cambialas». DISA de Arico Nuevo (7828). No hay TF-822 en la isla: es la antigua C-822 mezclada con su nombre de hoy, TF-28, como paso en Icod. Su km 50 cae en la serie de la Carretera General del Sur del propio registro (km 22 en La Hidalga, a 20,1 km de Santa Cruz; km 50 a 38,7; km 62 en La Cisnera, a 42,7) y en OSM la Carretera General del Sur TF-28 esta a 12 m."
+  },
+  "GENERAL TF-623 KM. 13": {
+   "se_escribe": "GENERAL TF-47 KM. 13",
+   "fuente": "Jerome, 4 de octubre: «Si estas seguro de las direcciones cambialas». DISA de Playa San Juan (7849). No hay TF-623 en la isla; en OSM la TF-47 esta a 46 m, y su km 13 cuadra con el km 2,7 que el registro da a la Repsol de la TF-47 en Armenime (8,5 km en linea recta para 10,3 km de carretera). Es la «Carretera General Adeje a Playa San Juan» que el registro da a la H2GO de al lado."
+  },
+  "GENERAL 821": {
+   "se_escribe": "GENERAL TF-21",
+   "fuente": "Jerome, 5 de octubre: «si, cambiala a TF-21». La C-821 es la antigua carretera de La Orotava a Granadilla (documento oficial del Instituto Geografico Nacional) y la TF-21 es hoy esa misma carretera, que pasa por Vilaflor (Turismo de Tenerife cita su km 59,544 en el tramo Vilaflor-Granadilla). En OSM la DISA de Vilaflor (7951) esta a 14 m de la TF-21. No es como Icod: alli la antigua C-820 es hoy carreteras distintas segun el tramo."
+  },
+  "MARTIANEZ TF-131": {
+   "se_escribe": "MARTIANEZ TF-31",
+   "fuente": "Jerome, 5 de octubre: el mapa de Google Maps rotula «TF-31» la carretera junto a la E.S. Shell El Aguila («Carretera Del Este»), aunque el resumen de Google repetia «TF-131»; OSM tiene esa via como «Carretera Este», TF-31, a 12 m. No hay ninguna TF-131 en la isla. La pagina de dieselogasolina.com copia el registro letra por letra y no cuenta."
+  }
+ },
+ "km_contradicho": {
+  "7718": {
+   "estacion": "BP FASNIA · «AUTOVIA TF-1 KM. 36,5» · Fasnia",
+   "por_que": "Esta AL NORTE de la Moeve del km 34 (31,1 km en linea recta de Santa Cruz, frente a 32,5), las dos a unos 60 m de la autopista: va antes por el TF-1 y su km tiene que ser menor que 34. Las otras nueve estaciones del TF-1 van en orden y por su relacion le corresponderia hacia el km 33.",
+   "posicion_comprobada": "Jerome, 4 de octubre: Street View de agosto de 2026 en 28.222694, -16.414139 (la coordenada del registro): se ve la BP. La «Repsol» que OSM tiene ahi estaba desfasada."
+  },
+  "7770": {
+   "estacion": "BP · «AUTOPISTA AUTOPISTA EL TORREON KM. 11,00» · Tacoronte",
+   "por_que": "Su coordenada, su municipio (Tacoronte) y su CP (38350) la ponen 1,5 km al OESTE de la Moeve del km 16 (14,1 km en linea recta de Santa Cruz frente a 12,7): va despues del 16. Y el km 11 de la TF-5 cae en La Laguna: segun el poligono del Cabildo, Tacoronte empieza hacia el km 15.",
+   "posicion_comprobada": "Los campos del propio registro (coordenada, municipio, CP) y OSM, que tiene en el pin una «BP Los Naranjeros» a 0 m, junto a la Autopista del Norte. Jerome, 4 de octubre: «Si» a quitarlos como en Fasnia."
+  },
+  "7733": {
+   "estacion": "TGAS TACORONTE · «CARRETERA GENERAL DEL NORTE KM. 79» · Tacoronte",
+   "por_que": "Las de la Carretera General del Norte van en orden del km 20,4 (El Sauzal) al 52,7 (Icod), nueve de nueve; la Tgas esta ANTES que las de El Sauzal (15,4 km en linea recta de Santa Cruz frente a 16,3), asi que su km tendria que ser menor que 20,4.",
+   "posicion_comprobada": "Los campos del propio registro (coordenada, municipio, CP) y OSM, que tiene una «Tgas» a 8 m, junto a la Carretera General del Norte. Jerome, 4 de octubre: «Si» a quitarlos como en Fasnia."
+  },
+  "7951": {
+   "estacion": "DISA · «CARRETERA CARRETERA GENERAL 821 KM. 68,80» · Vilaflor",
+   "por_que": "El km 68,80 es de la numeracion antigua de la C-821; la TF-21 de hoy lleva otra (Turismo de Tenerife: km 59,544 en el tramo Vilaflor-Granadilla). Con el nombre de hoy, ese km seria falso.",
+   "posicion_comprobada": "Jerome, 5 de octubre: «El km: si el nombre lo lleva, quitalo. Es de la numeracion antigua». El pin, a 14 m de la TF-21 en OSM."
+  }
+ },
+ "horarios": {
+  "7728": {
+   "estacion": "TGAS TEGUESTE · Tegueste",
+   "registro": "L: 06:00-23:00",
+   "se_escribe": "L-D: 06:00-23:00",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 06:00-23:00. Correcto»."
+  },
+  "7696": {
+   "estacion": "CEPSA · CISNERA, Arico",
+   "registro": "L: 06:00-22:00",
+   "se_escribe": "L-D: 06:00-22:00",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «captura»: resumen de Google que cita la web de Moeve, «Gasolinera Moeve La Cisnera (TF-28) · Carretera TF-28, kilometro 62 (La Cisnera, Arico) · Horario: Lunes a Domingo de 06:00 a 22:00»."
+  },
+  "8754": {
+   "estacion": "SHELL · Puerto de la Cruz",
+   "registro": "L: 24H",
+   "se_escribe": "L-D: 24H",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 24 h correcto»."
+  },
+  "7624": {
+   "estacion": "CEPSA PUERTO DE LA CRUZ · Carretera del Botanico",
+   "registro": "L: 06:00-00:00",
+   "se_escribe": "L-D: 06:00-00:00",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 06:00-00:00 correcto»."
+  },
+  "7675": {
+   "estacion": "REPSOL · Camino San Miguel de Geneto, La Laguna",
+   "registro": "L: 24H",
+   "se_escribe": "L-D: 24H",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 24 h correcto». Su captura de Google anterior (IMG_3454): «Abierto 24 horas»."
+  },
+  "11562": {
+   "estacion": "PCAN · Calle Lazaro Lopez, Guamasa (La Laguna)",
+   "registro": "L: 06:00-23:00",
+   "se_escribe": "L-D: 06:00-21:30",
+   "fuente": "Jerome, 4 de octubre, en su nota sobre los horarios de «solo lunes»: «L 06:00-21h30»: cierra a las 21:30, no a las 23:00."
+  },
+  "7685": {
+   "estacion": "REPSOL · CALLE PINERA, SN · Cruz Santa, Los Realejos",
+   "registro": "L: 06:00-00:00",
+   "se_escribe": "L-V: 06:00-22:00; S-D: 07:00-22:00",
+   "fuente": "Jerome, 4 de octubre, 13:51: captura de Google Maps de «Estacion de Servicio Repsol», «C. El Mocan, 1A, 38413 Cruz Santa»: lunes a viernes 6:00-22:00, sabado y domingo 7:00-22:00. La Calle el Mocan esta a 32 m del pin de la 7685 y a 1,6 km de la otra Repsol de Los Realejos (7684)."
+  }
+ },
+ "cp": {
+  "8802": {
+   "estacion": "MOEVE · C/ LA CAMPANA, S/N · El Rosario",
+   "registro": "38420",
+   "se_escribe": "38109",
+   "fuente": "Jerome, 4 de octubre: «Si» a cambiarlo con fuente. Su captura de Google Maps (IMG_3459): «POLIGONO INDUSTRIAL LA CAMPANA, C. la Campana, 2, 38109 El Rosario». El registro da 38109 a la Tgas del mismo poligono (15713, Calle Isaac Peral, a 550 m), y el 38420 lo da a la Repsol de San Juan de la Rambla, a 30 km."
+  }
+ },
+ "mayusculas": {
+  "Juan Méndez El Viejo": {
+   "se_escribe": "Juan Méndez el Viejo",
+   "por_que": "sobrenombre: el articulo va en minuscula (asi lo escribe tambien OSM). DISA de Buenavista del Norte. Jerome, 4 de octubre: «Ok»."
+  },
+  "a la Hidalga": {
+   "se_escribe": "a La Hidalga",
+   "por_que": "el articulo es parte del nombre del pueblo; el propio registro da la localidad «HIDALGA (LA)». Moeve de Arafo. Jerome, 4 de octubre: «Ok»."
+  },
+  "a las Galletas": {
+   "se_escribe": "a Las Galletas",
+   "por_que": "el articulo es parte del nombre del pueblo (Las Galletas). DISA de San Miguel de Abona. Jerome, 4 de octubre: «Ok»."
+  },
+  "a los Abrigos": {
+   "se_escribe": "a Los Abrigos",
+   "por_que": "el articulo es parte del nombre del pueblo (Los Abrigos). Moeve de San Miguel de Abona. Jerome, 4 de octubre: «Ok»."
+  }
+ },
+ "codigos_carretera": {
+  "TF-411": {
+   "por_que": "Jerome, 4 de octubre: la web de DISA llama «CARRETERA TF-411» a la DISA Ofra (Carretera Sur Cuesta-Taco), Google tambien («Carretera Sur (Cuesta-Taco), km 2 (Carretera TF-411)»), y el registro la usa para la BP Taco Norte (km 2,45). OSM tiene esa carretera como TF-194 «Carretera General La Cuesta - Taco». Se deja TF-411: es el nombre que usan el registro y la operadora."
+  }
+ },
+ "coordenadas": {
+  "9961": {
+   "estacion": "DISA OFRA · CARRETERA SUR (CUESTA-TACO) KM. 2 · San Cristobal de La Laguna",
+   "registro": "28,467667 -16,285806",
+   "lat": 28.459505,
+   "lng": -16.293179,
+   "fuente": "Jerome, 5 de octubre: «Las coordenadas decimales exactas para posicionarte justo dentro de la estacion DISA Ofra». Cuadran con todo lo demas: Google Maps la pone en la Calle Zerolo, 6; OSM tiene una Disa a 8 m del punto; y la web de DISA da 1,23 km entre Ofra y Vistabella (desde el punto nuevo, 1,18 km; desde el pin del registro, 0,26). El pin del registro estaba a 1.159 m. Municipio: La Laguna, el del registro."
+  },
+  "9483": {
+   "estacion": "MOEVE LLANO AZUL · CARRETERA GENERAL GUAZA LOS CRISTIANOS KM. 1 · Arona",
+   "registro": "28,061333 -16,692139",
+   "lat": 28.0589205,
+   "lng": -16.6965134,
+   "fuente": "Jerome, 5 de octubre: marcador de Google Maps en la «Estacion de servicio Cepsa», junto al «Llano Azul Bar Restaurante», en el cruce de la TF-662 con la TF-655, y Street View de abril de 2026 con la estacion. La web de Moeve: «CTRA. GENERAL GUAZA-LOS CRISTIANOS, PK 1.0», 24 h. OSM tiene una Moeve a 15 m del punto. El pin del registro estaba a 506 m, junto al Monkey Park y a 118 m de cualquier via. Municipio: Arona, el del registro."
+  },
+  "8753": {
+   "estacion": "SHELL EL AGUILA · CARRETERA MARTIANEZ TF-131 KM. 2,4 · Puerto de la Cruz",
+   "registro": "28,411722 -16,529556",
+   "lat": 28.4121631,
+   "lng": -16.5297129,
+   "fuente": "Jerome, 5 de octubre: marcador de Google Maps en la E.S. Shell El Aguila, (28.4121631, -16.5297129), dentro de la estacion, junto a la TF-31 «Carretera Del Este, Calz. Martianez, 6». Sustituye al de la captura anterior en grados, minutos y segundos (28°24'43.7\"N 16°31'46.9\"W), redondeado a la decima de segundo, a unos 3 m. OSM tiene una Shell a pocos metros. El pin del registro estaba a unos 50 m, en la misma estacion. Municipio: Puerto de la Cruz, el del registro."
+  },
+  "11690": {
+   "estacion": "BP AEROPUERTO REINA SOFIA · Carretera Atogo km 0,5 · Granadilla de Abona",
+   "registro": "28,061056 -16,576167",
+   "lat": 28.0610357,
+   "lng": -16.5817963,
+   "fuente": "Jerome, 6 de octubre: marcador de Google Maps en la estacion. «BP Aeropuerto Reina Sofia». OSM tiene una BP a 3 m. El pin del registro estaba a 552 m, junto a la TF-1. Municipio: Granadilla de Abona, el del registro."
+  },
+  "8326": {
+   "estacion": "REPSOL · Carretera Arafo La Hidalga TF-281 km 1 · Arafo",
+   "registro": "28,328306 -16,382583",
+   "lat": 28.3286305,
+   "lng": -16.377243,
+   "fuente": "Jerome, 6 de octubre: marcador de Google Maps en la estacion. «Estacion de Servicio Repsol», junto a la TF-281. OSM tiene la «Estacion de Servicio Repsol Volcan de Arafo» a 7 m. El pin del registro estaba a 524 m. Municipio: Arafo, el del registro."
+  },
+  "11731": {
+   "estacion": "REPSOL · Autovia TF-1 km 39 · Poris de Abona, Arico",
+   "registro": "28,169083 -16,433278",
+   "lat": 28.1664941,
+   "lng": -16.4337702,
+   "fuente": "Jerome, 6 de octubre: marcador de Google Maps en la estacion. «Estacion de Servicio Repsol», junto a la TF-1 (el mapa marca el km 39 al lado). OSM tiene una Repsol a 9 m. El pin del registro estaba a 292 m. Municipio: Arico, el del registro."
+  },
+  "7677": {
+   "estacion": "REPSOL BARROSO · Carretera TF-21 Aguamansa · La Orotava",
+   "registro": "28,377028 -16,509972",
+   "lat": 28.3782962,
+   "lng": -16.5123992,
+   "fuente": "Jerome, 6 de octubre: marcador de Google Maps en la estacion. «Estacion de Servicio Repsol», en la Carretera de las Canadas del Teide (TF-21, a 28 m). OSM tiene una Repsol a 12 m. El pin del registro estaba a 276 m. Sigue siendo la ultima subiendo al Teide: queda 1,1 km mas arriba que la Moeve de La Canada (7790). Municipio: La Orotava, el del registro."
+  }
+ }
+}

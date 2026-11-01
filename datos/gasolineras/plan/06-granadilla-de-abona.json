@@ -1,0 +1,161 @@
+{
+ "_": [
+  "Tanda 6 de 31: Granadilla de Abona.",
+  "Del registro oficial del MITECO; el municipio lo pone el poligono del Cabildo.",
+  "SIN PRECIOS a proposito: caducan en 24 h y no viven dentro de la app.",
+  "Nada de esto esta aplicado."
+ ],
+ "municipio": "Granadilla de Abona",
+ "estaciones": 11,
+ "ya_en_la_app": 1,
+ "altas_nuevas": 10,
+ "lista": [
+  {
+   "ideess": "11690",
+   "rotulo": "BP AEROPUERTO REINA SOFIA",
+   "marca": "bp",
+   "direccion": "CARRETERA ATOGO KM. 0,5",
+   "cp": "38610",
+   "localidad": "AEROPUERTO REINA SOFIA (SANTA CRUZ DE TENERIFE)",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 24H",
+   "lat": 28.061056,
+   "lng": -16.576167,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7889",
+   "rotulo": "CEPSA LOS LLANOS (MOEVE) - GRANADILLA",
+   "marca": "cepsa",
+   "direccion": "CARRETERA GRANADILLA MEDANO KM. 2,25",
+   "cp": "38600",
+   "localidad": "GRANADILLA DE ABONA",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 24H",
+   "lat": 28.104694,
+   "lng": -16.578472,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "10307",
+   "rotulo": "DISA GRANADILLA",
+   "marca": "disa",
+   "direccion": "AVENIDA FUNDADOR GONZALO GONZALEZ, S/N",
+   "cp": "38600",
+   "localidad": "GRANADILLA DE ABONA",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 06:00-23:00",
+   "lat": 28.11625,
+   "lng": -16.576778,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "9490",
+   "rotulo": "DISA SAN ISIDRO",
+   "marca": "disa",
+   "direccion": "AVENIDA SANTA CRUZ, SN",
+   "cp": "38611",
+   "localidad": "SAN ISIDRO",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 24H",
+   "lat": 28.078278,
+   "lng": -16.558056,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7616",
+   "rotulo": "MOEVE",
+   "marca": "cepsa",
+   "direccion": "SAN ISIDRO-EL MÉDANO km 9.6",
+   "cp": "38600",
+   "localidad": "GRANADILLA DE ABONA",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 06:00-22:00",
+   "lat": 28.056222,
+   "lng": -16.546417,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7731",
+   "rotulo": "PCAN",
+   "marca": "pcan",
+   "direccion": "CARRETERA TF 636 SAN ISIDRO - CHIMICHE KM. 4",
+   "cp": "38616",
+   "localidad": "GRANADILLA DE ABONA",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 08:00-23:00",
+   "lat": 28.103528,
+   "lng": -16.551361,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "16132",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "VÍA LADO AIRE AEROPUERTO TENERIFE SUR, 1",
+   "cp": "38610",
+   "localidad": "AEROPUERTO REINA SOFIA (SANTA CRUZ DE TENERIFE)",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 24H",
+   "lat": 28.067333,
+   "lng": -16.56075,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7626",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "ACCESO ACCESO AEROPUERTO TENERIFE SUR, 1",
+   "cp": "38610",
+   "localidad": "AEROPUERTO REINA SOFIA (SANTA CRUZ DE TENERIFE)",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 24H",
+   "lat": 28.05,
+   "lng": -16.574639,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7692",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "CARRETERA TF-1 KM. 54",
+   "cp": "38611",
+   "localidad": "SAN ISIDRO",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 06:00-00:00",
+   "lat": 28.073333,
+   "lng": -16.534722,
+   "ya_en_la_app": {
+    "id": "gas-tf1-granadilla",
+    "name": "Repsol TF-1 Granadilla",
+    "a_metros": 22
+   }
+  },
+  {
+   "ideess": "7705",
+   "rotulo": "REPSOL",
+   "marca": "repsol",
+   "direccion": "CARRETERA TF-1 KM. 54",
+   "cp": "38611",
+   "localidad": "SAN ISIDRO",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 24H",
+   "lat": 28.072583,
+   "lng": -16.535,
+   "ya_en_la_app": null
+  },
+  {
+   "ideess": "7721",
+   "rotulo": "TGAS EL MÉDANO",
+   "marca": "tgas",
+   "direccion": "CARRETERA TF64 GRANADILLA - EL MEDANO KM. 7,7",
+   "cp": "38612",
+   "localidad": "MEDANO (EL)",
+   "municipio": "Granadilla de Abona",
+   "horario": "L-D: 24H",
+   "lat": 28.068889,
+   "lng": -16.55325,
+   "ya_en_la_app": null
+  }
+ ]
+}
