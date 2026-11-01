@@ -4309,6 +4309,65 @@ rojo ni sin ejecutar. Lo que pedía la nota 17: aquí `pmtiles` y
 - Decidir si el relieve tiene que salir del IGN (lo explica arriba «El
   relieve del 3D, del MDT05 del IGN»).
 
+## El 3D y la cabecera de «Su cuerpo», en el iPhone (1 de noviembre)
+
+Jerome, el 1 de noviembre, con tres capturas de su iPhone: «La 3D no funciona .
+El cuerpo los botones de arriba se tapan . Y no veo porque no ponerlo directo en
+la sección cuerpo . Y si puedes poner el personaje». Aquí van las dos primeras
+cosas. Las otras dos, «Su cuerpo» dentro de la pestaña Cuerpo y con el
+personaje, van aparte.
+
+**El 3D** (`6a54a3d`; en `main`, `ff0c75f`). En el iPhone decía «El relieve no
+se ha leído bien en este navegador y no se dibuja». Se probó en una máquina Mac
+de GitHub, con WebKit 26, el motor de Safari y de todos los navegadores del
+iPhone. La prueba fue un workflow de la rama de trabajo de la sesión, solo de
+lectura:
+
+- el PNG del relieve, el de color, se leía exacto;
+- el PNG gris del cielo visible, leído con `createImageBitmap`
+  (`colorSpaceConversion: 'none'`), cambiaba 272.733 de sus 1.642.445
+  valores, en ±2 (255 pasaba a 254). Las sumas del `.json` no cuadraban, y el
+  módulo, como debe, no dibujaba alturas falsas;
+- el mismo PNG, leído con `<img>`, salía exacto, como en Chromium.
+
+`modulos/isla3d.js` lee ahora los dos PNG con `<img>`, y en WebKit el 3D se
+abre: listo, sin aviso y sin errores de página. El relieve no cambia. Esta
+auditoría corre en Chromium, que no lo ve, así que `auditar_isla3d.js` mira el
+código: el relieve se lee sin `createImageBitmap`. Con el módulo de antes, ese
+control sale en rojo.
+
+**La cabecera** (`a663515`; en `main`, `cd8c87a`). En «Su cuerpo», la cabecera
+tapaba «Músculos | Aspecto», con una franja vacía encima. En el iPhone, la isla
+dinámica deja 59 px arriba. `#cuerpo-panel` y `#perfil-panel` ya los dejan con
+su `padding-top`, y lo pegado (`position: sticky`) se mide desde ahí. Pero la
+cabecera tenía además `top: env(safe-area-inset-top)`, y bajaba 59 px de más.
+Con la isla simulada en Chromium (`Emulation.setSafeAreaInsetsOverride`):
+
+- En «Su cuerpo», la cabecera iba de 118 a 190, y «Músculos | Aspecto»
+  (149–199) quedaba debajo. Ahora va de 59 a 131, y los botones se ven.
+- En el perfil, la cabecera estaba en 118, y no en 59. Al cambiar de pestaña
+  desde abajo, lo primero de la pestaña nueva quedaba en 127, detrás de la
+  barra (174–232). Ahora la barra va en 115–173, y la pestaña en 186.
+
+Lo que cambia:
+
+- `modulos/cuerpo.js`, desde sus fuentes, con `construir.py`: la cabecera con
+  `top: 0`, y la escena de «Aspecto» con `top: 64px`. Nada más. Su huella pasa
+  de `bb774cf7…7f49` a `c706ef9a…0ed6`, y sigue en 254 kB (77 kB comprimido).
+- `modulos/perfil.js`: la cabecera con `top: 0` y la barra con
+  `top: var(--tgp-cab)`. Al bajar, `irAPestana` resta el margen.
+- `probar_cuerpo.js` (17) y `probar_perfil.js` (p6e) prueban lo mismo con la
+  isla simulada. Con el CSS de antes, salen en rojo.
+
+**La auditoría entera**, sobre `a663515` (en `main`, `cd8c87a`, encima de dos
+commits más de los robots: los avisos de AEMET y los precios de las
+gasolineras): «AUDITORIA EN VERDE», ningún control en rojo ni sin ejecutar.
+`auditar_isla3d.js` da 58 de 58, `probar_cuerpo.js` 192 de 192 y
+`probar_perfil.js` 142 de 142.
+
+**Lo que queda:** mirarlo en el iPhone. Por un lado, el 3D. Por otro, la parte
+de arriba de «Su cuerpo» y del perfil, con la isla dinámica.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -12282,7 +12341,8 @@ La segunda pasada, sobre `96f68e5`, con el bloque 9: «AUDITORIA EN VERDE»,
 ningún control en rojo ni sin ejecutar.
 
 **Lo que pesa.** `modulos/cuerpo.js`, 254 kB (77 kB comprimido; huella
-`bb774cf7…7f49`); los
+`bb774cf7…7f49`, y desde el arreglo del iPhone del 1 de noviembre,
+`c706ef9a…0ed6`); los
 ejercicios, de 148 a 312 kB cada uno (de 24 a 48 kB comprimidos). Nada de eso
 cuenta en la primera descarga: el módulo se pide al abrirlo y los ejercicios
 al abrir la biblioteca, el común y el del idioma. `index.html` crece con el
