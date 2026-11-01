@@ -63,8 +63,8 @@ const CORE = [
      nombre de la cache, el service worker nuevo los precarga al instalarse
      con cache: 'reload'. */
   './modulos/avatares.js', './modulos/perfil.js',
-  /* «Su cuerpo» (31 de octubre de 2026), que se abre desde el perfil: el modulo, aqui y
-     «red primero» abajo, como el perfil. Sus 533 ejercicios (datos/ejercicios*.json: el
+  /* «Su cuerpo» (31 de octubre de 2026), que va dentro de la pestaña Cuerpo del perfil desde el
+     1 de noviembre: el modulo, aqui y «red primero» abajo, como el perfil. Sus 533 ejercicios (datos/ejercicios*.json: el
      comun y uno por idioma, unos 200 kB cada uno) no se precargan: se guardan al usarlos,
      tambien «red primero», y asi sin conexion sale lo ultimo que se abrio. */
   './modulos/cuerpo.js',

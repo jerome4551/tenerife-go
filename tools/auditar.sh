@@ -271,11 +271,12 @@ echo; echo "════════ el perfil y los avatares ══════
 control auditar_perfil.js node tools/auditar_perfil.js
 control probar_fechas_oro.js node tools/probar_fechas_oro.js modulos/avatares.js
 control probar_perfil.js node tools/probar_perfil.js "$PUERTO"
-echo; echo "════════ «Su cuerpo»: el dibujo y la pantalla, encima del perfil y en los diez idiomas ════════"
-# Desde el 31 de octubre de 2026 (modulos/cuerpo.js, que se abre desde la pestaña Cuerpo del
-# perfil). El dibujo, sin navegador: cada opcion del aspecto da un SVG sano y lo guardado se
-# valida. La pantalla, de verdad: los diez idiomas, anotar, el aspecto, lo guardado roto, los 533
-# ejercicios, el «atras» con el perfil debajo, sin el modulo, y un fichero de ejercicios
+echo; echo "════════ «Su cuerpo»: el dibujo y la pestaña Cuerpo del perfil, en los diez idiomas ════════"
+# Desde el 31 de octubre de 2026 (modulos/cuerpo.js), y desde el 1 de noviembre dentro de la
+# pestaña Cuerpo del perfil. El dibujo, sin navegador: cada opcion del aspecto da un SVG sano y lo
+# guardado se valida. La pestaña, de verdad: los diez idiomas, anotar, el aspecto y el personaje
+# en pequeño, lo guardado roto, los 533 ejercicios, las hojas con el perfil inerte, el «atras» y
+# el Escape del perfil, sin el modulo, con versiones de antes, y un fichero de ejercicios
 # manipulado que no ejecuta nada.
 control probar_figura.js node tools/probar_figura.js
 control probar_cuerpo.js node tools/probar_cuerpo.js "$PUERTO"

@@ -226,7 +226,8 @@ window.__estados = [
       __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('viaje'); await espera(300);
       const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(150);
       const p = document.querySelector('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); if (p) p.click(); await espera(300); }]),
-  /* «Su cuerpo» (31 de octubre de 2026), encima del perfil: los musculos con las series de
+  /* «Su cuerpo» (31 de octubre de 2026), dentro de la pestaña Cuerpo del perfil desde el 1 de
+     noviembre (abrirCuerpo lo pone ahi, y con op.modo en ese modo): los musculos con las series de
      __cuerpoDatos, el aspecto, la hoja del pecho con sus ejercicios y la ficha del primero. Sin
      historial (TG_CUERPO_SIN_HISTORIA, abajo): aqui se miran los textos; el historial lo prueba
      probar_cuerpo.js */

@@ -6,13 +6,19 @@
  *
  * Son las pruebas de la entrega del cuerpo (probar_prototipo.js: las del 24 de octubre de 2026 y,
  * desde el 31, las 166 del diseño nuevo), pasadas del prototipo a la app el 31 de octubre: el
- * idioma se cambia con setLang(); el ejemplo se escribe en tenerife.cuerpo como lo escribia el
- * prototipo (series inventadas, solo para la prueba), y su «Empezar vacío» lo quita; y la tarjeta
- * es la del perfil. Lo que solo tenia sentido en el prototipo, la pagina sin historial, se cambia
- * por lo de la app:
- *   - «Su cuerpo» va encima del perfil: el perfil queda inerte debajo, y Escape y «atras» cierran
- *     «Su cuerpo» y dejan el perfil abierto, en su pestaña Cuerpo (10);
- *   - si el modulo no llega, la tarjeta lo dice, y con red otra vez se abre (10b);
+ * idioma se cambia con setLang(); y el ejemplo se escribe en tenerife.cuerpo como lo escribia el
+ * prototipo (series inventadas, solo para la prueba), y su «Empezar vacío» lo quita. Lo que solo
+ * tenia sentido en el prototipo, la pagina sin historial, se cambia por lo de la app:
+ *   - desde el 1 de noviembre de 2026, «Su cuerpo» va dentro de la pestaña Cuerpo del perfil, sin
+ *     tocar nada y con el personaje en pequeño al lado del titulo (1, 3 y 7); con una hoja abierta,
+ *     lo demas del perfil queda inerte y no se desplaza, y la hoja sale abajo aunque el perfil este
+ *     desplazado (5); sin hoja, Escape y «atras» son los del perfil, y cambiar de pestaña no lo
+ *     duplica (10); con «Su cuerpo» cargado antes que el perfil, el Escape de una hoja la cierra
+ *     solo a ella (10d); y un «atras» de varios pasos de golpe cierra todo lo que quedaba encima
+ *     (12);
+ *   - si el modulo no llega, la tarjeta de la pestaña lo dice, y con red otra vez su «Abrir» lo
+ *     pone (10b); con un modulo o un perfil de antes (guardados sin conexion), se abre encima,
+ *     como entonces (10c);
  *   - la seguridad (13): un fichero de ejercicios con HTML en un nombre y en un paso, y con
  *     enlaces javascript: y http: en las fuentes, no ejecuta nada: el nombre y el paso salen como
  *     texto y esos dos enlaces no salen; lo guardado con HTML, tampoco;
@@ -21,9 +27,9 @@
  *     los nueve idiomas, sin navegador (con la tabla y la funcion del propio modulo) y en una
  *     ficha de verdad en tres idiomas;
  *   - los menores (15): el prototipo escribe el año de nacimiento a mano en tenerife.perfil (4c);
- *     aqui se escribe en el formulario del perfil, el de verdad, y se guarda con su boton: con 15
- *     años, ni la marca del 10 ni su texto, y la recomendacion de su edad; con 30, o sin año, la
- *     marca vuelve.
+ *     aqui se escribe en el formulario del perfil, el de verdad, y se guarda con su boton, y «Su
+ *     cuerpo», en la misma pestaña, se repinta en el acto: con 15 años, ni la marca del 10 ni su
+ *     texto, y la recomendacion de su edad; con 30, o sin año, la marca vuelve.
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -61,10 +67,10 @@ async function abrirPerfilCuerpo(pg) {
   await pg.waitForFunction(() => window.TG_PERFIL && document.getElementById('perfil-panel') && !document.getElementById('perfil-panel').hidden, null, { timeout: 15000 });
   await pg.evaluate(() => TG_PERFIL.pestana('cuerpo')); await pg.waitForTimeout(200);
 }
-/* la tarjeta «Su cuerpo» del perfil: «Abrir» */
-async function tarjeta(pg) {
-  await pg.click('#tgp-cuerpo-abrir');
-  await pg.waitForFunction(() => window.TG_CUERPO && TG_CUERPO.abierto(), null, { timeout: 15000 });
+/* «Su cuerpo», ya dentro de la pestaña Cuerpo: desde el 1 de noviembre de 2026 se pone solo al
+   enseñar la pestaña, y la tarjeta se va */
+async function suCuerpo(pg) {
+  await pg.waitForFunction(() => window.TG_CUERPO && TG_CUERPO.abierto() && TG_CUERPO.dentro() && document.getElementById('tgp-cuerpo').hidden, null, { timeout: 15000 });
   await pg.waitForTimeout(300);
 }
 /* sin nada anotado (el «Empezar vacío» del prototipo) */
@@ -100,11 +106,24 @@ async function ejemplo(pg) {
   const pg = await ctx.newPage();
   const errores = [];
   vigilar(pg, errores);
-  await abrirApp(pg); await abrirPerfilCuerpo(pg); await tarjeta(pg);
+  await abrirApp(pg); await abrirPerfilCuerpo(pg); await suCuerpo(pg);
 
-  // 1. arranca sin errores y con la pantalla abierta
+  // 1. arranca sin errores, dentro de la pestaña Cuerpo y sin tocar nada, con el personaje en
+  //    pequeño al lado del título
   prueba('sin errores al abrir', errores.length === 0, errores.join(' | '));
-  prueba('pantalla abierta', await pg.evaluate(() => TG_CUERPO.abierto() && !document.getElementById('cuerpo-panel').hidden));
+  const r1 = await pg.evaluate(() => {
+    const p = document.getElementById('cuerpo-panel'), m = document.getElementById('tgc-mini'), t = document.getElementById('tgc-titulo');
+    const rm = m.getBoundingClientRect(), rt = t.getBoundingClientRect();
+    return { sitio: p.parentNode && p.parentNode.id, visible: !p.hidden && p.offsetParent !== null, tarjeta: document.getElementById('tgp-cuerpo').hidden,
+      n: document.querySelectorAll('#cuerpo-panel').length, rol: p.getAttribute('role'), modal: p.hasAttribute('aria-modal'), nivel: t.getAttribute('aria-level'),
+      atras: document.getElementById('tgc-back').offsetParent === null, inerte: document.getElementById('perfil-panel').inert, estado: JSON.stringify(history.state),
+      mini: !!m.querySelector('svg') && m.getAttribute('aria-hidden') === 'true' && m.offsetParent !== null,
+      alLado: rm.width > 40 && rm.right <= rt.left + 1 && rm.top < rt.bottom && rm.bottom > rt.top };
+  });
+  prueba('dentro de la pestaña Cuerpo sin tocar nada: en su sitio, una sola vez y sin la tarjeta', r1.sitio === 'tgp-cuerpo-sitio' && r1.visible && r1.tarjeta && r1.n === 1, JSON.stringify(r1));
+  prueba('dentro: un apartado del perfil (región, sin aria-modal, título de nivel 2) y sin su «atrás»', r1.rol === 'region' && !r1.modal && r1.nivel === '2' && r1.atras, JSON.stringify(r1));
+  prueba('dentro: el perfil no queda inerte, y ninguna entrada propia en el historial', r1.inerte === false && r1.estado === '{"tgPerfil":1}', JSON.stringify(r1));
+  prueba('el personaje en pequeño, al lado del título, sin nada que leer (aria-hidden)', r1.mini && r1.alLado, JSON.stringify(r1));
 
   // 2. cada selector de TEXTOS da un solo elemento y cada clave existe en los 10 idiomas
   const r2 = await pg.evaluate(() => {
@@ -128,13 +147,17 @@ async function ejemplo(pg) {
       await pg.evaluate(mm => document.getElementById(mm === 'musculos' ? 'tgc-modo-m' : 'tgc-modo-a').click(), m);
       await pg.waitForTimeout(60);
       const r = await pg.evaluate(() => {
-        const p = document.getElementById('cuerpo-panel');
+        /* dentro de la pestaña, lo que manda es la pantalla: la lámina sale hasta el borde, por el
+           margen del perfil, como en la pantalla de antes por el suyo. Nada pasa de ese borde (ni a la
+           derecha ni a la izquierda) y el perfil no se desplaza de lado */
+        const p = document.getElementById('cuerpo-panel'), pp = document.getElementById('perfil-panel'), b = pp.getBoundingClientRect();
         const vacios = [...p.querySelectorAll('#tgc [data-tx]')].filter(n => n.offsetParent !== null && !n.textContent.trim()).map(n => n.id || n.className);
-        const anchos = [...p.querySelectorAll('#tgc *')].filter(n => n.offsetParent !== null && n.getBoundingClientRect().right > p.getBoundingClientRect().right + 0.5).map(n => n.id || n.className || n.tagName).slice(0, 5);
-        return { vacios, anchos, sw: p.scrollWidth, cw: p.clientWidth, lang: p.getAttribute('lang') };
+        const anchos = [...p.querySelectorAll('#tgc *')].filter(n => { if (n.offsetParent === null) return false; const x = n.getBoundingClientRect(); return x.right > b.right + 0.5 || x.left < b.left - 0.5; })
+          .map(n => n.id || (typeof n.className === 'string' ? n.className : '') || n.tagName).slice(0, 5);
+        return { vacios, anchos, psw: pp.scrollWidth, pcw: pp.clientWidth, lang: p.getAttribute('lang') };
       });
       prueba(`${l}/${m}: sin textos vacíos`, r.vacios.length === 0, r.vacios.join(','));
-      prueba(`${l}/${m}: sin desborde`, r.sw <= r.cw && r.anchos.length === 0, `${r.sw}>${r.cw} ${r.anchos.join(',')}`);
+      prueba(`${l}/${m}: sin desborde: nada pasa del borde de la pantalla y el perfil no se desplaza de lado`, r.psw <= r.pcw && r.anchos.length === 0, `${r.psw}>${r.pcw} ${r.anchos.join(',')}`);
       prueba(`${l}: lang del panel`, r.lang === (l === 'zht' ? 'zh-Hant' : l === 'zh' ? 'zh-Hans' : l), r.lang);
     }
   }
@@ -202,12 +225,23 @@ async function ejemplo(pg) {
   prueba('menores: sin la marca del 10 ni su texto, con la recomendación de su edad', r4e.marcas === 0 && r4e.ref && /5 a 17|3 días/.test(r4e.reco), JSON.stringify(r4e));
   await pg.evaluate(() => { localStorage.removeItem('tenerife.perfil'); TG_CUERPO.repintar(); });
 
-  // 5. la hoja: tocar el pecho en el dibujo, anotar, borrar y deshacer
+  // 5. la hoja: tocar el pecho en el dibujo, anotar, borrar y deshacer. Con el perfil desplazado:
+  //    la hoja sale abajo de la pantalla y el velo la cubre entera; lo demás del perfil queda inerte
+  //    y no se desplaza, y al cerrarla todo vuelve como estaba
+  await pg.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 500; }); await pg.waitForTimeout(100);
   await pg.evaluate(() => { const z = document.querySelector('#tgc-cara-frente .tgf-z[data-g="pecho"]'); z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
   await pg.waitForTimeout(300);
   prueba('la hoja se abre desde el dibujo', await pg.evaluate(() => !document.getElementById('tgc-hoja').hidden && document.getElementById('tgc-hoja-tit').textContent === 'Pecho'));
   prueba('el foco va a la hoja', await pg.evaluate(() => document.activeElement && document.activeElement.id === 'tgc-hoja-tit'));
   prueba('lo de debajo, inerte', await pg.evaluate(() => document.getElementById('tgc').inert === true));
+  const r5a = await pg.evaluate(() => {
+    const pp = document.getElementById('perfil-panel'), h = document.getElementById('tgc-hoja').getBoundingClientRect(), v = document.getElementById('tgc-velo').getBoundingClientRect();
+    const inerte = s => !!document.querySelector(s).closest('[inert]');
+    return { abajo: Math.abs(h.bottom - innerHeight) <= 1, velo: v.top <= 0 && v.bottom >= innerHeight && v.left <= 0 && v.right >= innerWidth, desplazado: pp.scrollTop,
+      cab: inerte('#perfil-panel .tgp-top'), pestanas: inerte('#tgp-tabs'), datos: inerte('#tgp-datos'), hoja: inerte('#tgc-hoja'), quieto: getComputedStyle(pp).overflowY };
+  });
+  prueba('dentro: con el perfil desplazado, la hoja sale abajo de la pantalla y el velo la cubre entera', r5a.abajo && r5a.velo && r5a.desplazado === 500, JSON.stringify(r5a));
+  prueba('dentro: lo demás del perfil (la cabecera, las pestañas, «Sus datos») inerte, la hoja no; y el perfil no se desplaza', r5a.cab && r5a.pestanas && r5a.datos && !r5a.hoja && r5a.quieto === 'hidden', JSON.stringify(r5a));
   prueba('selección marcada en el dibujo', await pg.evaluate(() => document.querySelectorAll('#tgc-cara-frente .tgf-marca path').length > 0));
   prueba('la hoja lleva el maniquí con su grupo en oro', await pg.evaluate(() => {
     const z = [...document.querySelectorAll('#tgc-hoja-mini .tgf-z')];
@@ -232,8 +266,9 @@ async function ejemplo(pg) {
   for (let i = 0; i < 25; i++) await pg.keyboard.press('Tab');
   prueba('el foco se queda en la hoja', await pg.evaluate(() => document.getElementById('tgc-hoja').contains(document.activeElement)));
   await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
-  prueba('Escape cierra la hoja', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto()));
-  prueba('lo de debajo vuelve a funcionar', await pg.evaluate(() => document.getElementById('tgc').inert === false));
+  prueba('Escape cierra la hoja, y el perfil sigue abierto', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden));
+  prueba('lo de debajo vuelve a funcionar: nada inerte en el perfil, que se desplaza otra vez desde donde estaba', await pg.evaluate(() => { const pp = document.getElementById('perfil-panel');
+    return document.getElementById('tgc').inert === false && document.querySelectorAll('#perfil-panel [inert]').length === 0 && getComputedStyle(pp).overflowY === 'auto' && Math.abs(pp.scrollTop - 500) <= 1; }));
 
   // 6. «Músculos»: las dos vistas a la vez, con su pie; «Girar» solo en «Aspecto»
   const r6 = await pg.evaluate(() => {
@@ -261,6 +296,11 @@ async function ejemplo(pg) {
   const r7 = await pg.evaluate(() => ({ a: TG_CUERPO.estado().aspecto, g: JSON.parse(localStorage.getItem('tenerife.cuerpo')).aspecto }));
   prueba('aspecto cambiado', r7.a.pelo === 'afro' && r7.a.arriba === 'tirantes' && r7.a.piel === 8 && r7.a.protesis === 'pierna_izq', JSON.stringify(r7.a));
   prueba('aspecto guardado', JSON.stringify(r7.a) === JSON.stringify(r7.g));
+  prueba('el personaje en pequeño, con el aspecto nuevo', await pg.evaluate(() => {
+    const t = document.createElement('span');
+    t.innerHTML = TG_FIGURA.svg({ vista: 'frente', modo: 'aspecto', aspecto: TG_CUERPO.estado().aspecto, id: 'tgc-mini', viewBox: '110 20 180 300' });
+    return !!document.querySelector('#tgc-mini svg') && document.getElementById('tgc-mini').innerHTML === t.innerHTML;
+  }));
   await pg.click('label:has(#tgc-arriba-sin)');
   prueba('sin camiseta: se esconde su color', await pg.evaluate(() => document.getElementById('tgc-op-arribaColor').hidden));
   await pg.click('label:has(#tgc-calzado-descalzo)');
@@ -310,36 +350,101 @@ async function ejemplo(pg) {
   await pg.evaluate(() => document.getElementById('tgc-borrar-si').click());
   prueba('borrado: nada guardado', await pg.evaluate(() => localStorage.getItem('tenerife.cuerpo') === null && TG_CUERPO.estado().series.length === 0));
 
-  // 10. Escape y «atrás» cierran la pantalla; se vuelve al perfil, que sigue abierto en su pestaña Cuerpo
-  await pg.keyboard.press('Escape'); await pg.waitForTimeout(200);
-  prueba('Escape cierra la pantalla, y el perfil sigue abierto, en su pestaña Cuerpo y ya no inerte', await pg.evaluate(() => !TG_CUERPO.abierto() && document.getElementById('cuerpo-panel').hidden &&
-    !document.getElementById('perfil-panel').hidden && TG_PERFIL.estado().pestana === 'cuerpo' && !document.getElementById('perfil-panel').inert));
-  await tarjeta(pg);
-  prueba('se vuelve a abrir desde la tarjeta del perfil, con el perfil inerte debajo', await pg.evaluate(() => TG_CUERPO.abierto() && document.getElementById('perfil-panel').inert === true));
+  // 10. dentro de la pestaña y sin hoja abierta, Escape y «atrás» son los del perfil: lo cierran
+  //     entero, y al volver a abrirlo «Su cuerpo» sigue en su pestaña. Ir a otra pestaña y volver
+  //     no lo duplica
+  await pg.evaluate(() => TG_PERFIL.pestana('viaje')); await pg.waitForTimeout(150);
+  const r10a = await pg.evaluate(() => ({ cuerpo: document.getElementById('cuerpo-panel').offsetParent === null, viaje: !document.getElementById('tgp-p-viaje').hidden }));
+  await pg.evaluate(() => TG_PERFIL.pestana('cuerpo')); await pg.waitForTimeout(250);
+  const r10v = await pg.evaluate(() => ({ n: document.querySelectorAll('#cuerpo-panel').length, sitio: document.getElementById('cuerpo-panel').parentNode.id,
+    visible: document.getElementById('cuerpo-panel').offsetParent !== null, tarjeta: document.getElementById('tgp-cuerpo').hidden, estado: JSON.stringify(history.state) }));
+  prueba('en Viaje no se ve; de vuelta en Cuerpo, en su sitio, una sola vez, sin la tarjeta y sin entradas en el historial', r10a.cuerpo && r10a.viaje && r10v.n === 1 &&
+    r10v.sitio === 'tgp-cuerpo-sitio' && r10v.visible && r10v.tarjeta && r10v.estado === '{"tgPerfil":1}', JSON.stringify([r10a, r10v]));
+  await pg.evaluate(() => { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); });
+  await pg.keyboard.press('Escape'); await pg.waitForTimeout(250);
+  prueba('Escape, sin hoja abierta, es del perfil: lo cierra entero', await pg.evaluate(() => document.getElementById('perfil-panel').hidden && !document.getElementById('perfil-panel').inert));
+  await pg.evaluate(() => abrirPerfil()); await suCuerpo(pg);
+  prueba('el perfil se vuelve a abrir en su pestaña Cuerpo, con «Su cuerpo» dentro y nada inerte', await pg.evaluate(() => TG_PERFIL.estado().pestana === 'cuerpo' && TG_CUERPO.dentro() &&
+    document.getElementById('cuerpo-panel').offsetParent !== null && document.querySelectorAll('#perfil-panel [inert]').length === 0));
   await pg.goBack(); await pg.waitForTimeout(250);
-  prueba('«atrás» cierra la pantalla, y el perfil sigue abierto', await pg.evaluate(() => !TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden));
-  await pg.goBack(); await pg.waitForTimeout(250);
-  prueba('otro «atrás» cierra el perfil, sin salir de la app', await pg.evaluate(() => document.getElementById('perfil-panel').hidden && typeof abrirPerfil === 'function') && pg.url().endsWith('/index.html'), pg.url());
+  prueba('«atrás» cierra el perfil, sin salir de la app', await pg.evaluate(() => document.getElementById('perfil-panel').hidden && typeof abrirPerfil === 'function') && pg.url().endsWith('/index.html'), pg.url());
 
-  // 10b. (la app) si el módulo no llega, la tarjeta lo dice; con red otra vez, se abre
+  // 10b. (la app) si el módulo no llega, la tarjeta de la pestaña lo dice; con red otra vez, su
+  //      «Abrir» lo pone en su sitio
   {
     const c2 = await contexto(b), p2 = await c2.newPage(), e2 = []; vigilar(p2, e2);
     await p2.route('**/modulos/cuerpo.js', r => r.abort());
-    await abrirApp(p2); await abrirPerfilCuerpo(p2);
-    await p2.click('#tgp-cuerpo-abrir'); await p2.waitForTimeout(800);
-    const r10b = await p2.evaluate(() => ({ aviso: !document.getElementById('tgp-cuerpo-error').hidden, txt: document.getElementById('tgp-cuerpo-error').textContent,
-      cuerpo: !!window.TG_CUERPO, perfil: !document.getElementById('perfil-panel').hidden }));
-    prueba('sin el módulo: la tarjeta lo dice y el perfil sigue abierto', r10b.aviso && /conexión/.test(r10b.txt) && !r10b.cuerpo && r10b.perfil, JSON.stringify(r10b));
+    await abrirApp(p2); await abrirPerfilCuerpo(p2); await p2.waitForTimeout(800);
+    const r10b = await p2.evaluate(() => ({ tarjeta: !document.getElementById('tgp-cuerpo').hidden, aviso: !document.getElementById('tgp-cuerpo-error').hidden,
+      txt: document.getElementById('tgp-cuerpo-error').textContent, cuerpo: !!window.TG_CUERPO, perfil: !document.getElementById('perfil-panel').hidden }));
+    prueba('sin el módulo: la tarjeta de la pestaña lo dice, y el perfil sigue abierto', r10b.tarjeta && r10b.aviso && /conexión/.test(r10b.txt) && !r10b.cuerpo && r10b.perfil, JSON.stringify(r10b));
     await p2.unroute('**/modulos/cuerpo.js');
     await p2.click('#tgp-cuerpo-abrir');
-    await p2.waitForFunction(() => window.TG_CUERPO && TG_CUERPO.abierto(), null, { timeout: 15000 }).catch(() => {});
-    prueba('…y con red otra vez, se abre y el aviso se va', await p2.evaluate(() => !!window.TG_CUERPO && TG_CUERPO.abierto() && document.getElementById('tgp-cuerpo-error').hidden));
+    await suCuerpo(p2).catch(() => {});
+    prueba('…y con red otra vez, su «Abrir» lo pone en su sitio, y la tarjeta y el aviso se van', await p2.evaluate(() => !!window.TG_CUERPO && TG_CUERPO.dentro() &&
+      document.getElementById('cuerpo-panel').parentNode.id === 'tgp-cuerpo-sitio' && document.getElementById('tgp-cuerpo').hidden && document.getElementById('tgp-cuerpo-error').hidden));
     prueba('…sin errores de página', e2.filter(x => !/cuerpo\.js/.test(x)).length === 0, e2.join(' | '));
     await c2.close();
   }
 
+  // 10c. (la app) con versiones mezcladas, guardadas sin conexión: un módulo de antes del 1 de
+  //      noviembre, que no sabe ir dentro (sin incrustar), deja la tarjeta, y su «Abrir» abre su
+  //      pantalla encima, como entonces; y con un perfil sin sitio para él, abrirCuerpo también
+  {
+    const c4 = await contexto(b), p4 = await c4.newPage(), e4 = []; vigilar(p4, e4);
+    await p4.route('**/modulos/cuerpo.js', async r => {
+      const res = await r.fetch(), s = await res.text();
+      await r.fulfill({ status: 200, contentType: 'text/javascript; charset=utf-8', body: s.replace('    incrustar: incrustar,\n', '') });
+    });
+    await abrirApp(p4); await abrirPerfilCuerpo(p4); await p4.waitForTimeout(800);
+    const v1 = await p4.evaluate(() => ({ antes: !!window.TG_CUERPO && typeof TG_CUERPO.incrustar !== 'function', tarjeta: !document.getElementById('tgp-cuerpo').hidden,
+      aviso: !document.getElementById('tgp-cuerpo-error').hidden }));
+    prueba('un módulo de antes: la tarjeta, sin aviso', v1.antes && v1.tarjeta && !v1.aviso, JSON.stringify(v1));
+    await p4.click('#tgp-cuerpo-abrir'); await p4.waitForTimeout(400);
+    const v2 = await p4.evaluate(() => ({ abierto: TG_CUERPO.abierto(), dentro: TG_CUERPO.dentro(), encima: document.getElementById('cuerpo-panel').parentNode === document.body,
+      inerte: document.getElementById('perfil-panel').inert }));
+    prueba('…y su «Abrir» abre la pantalla encima, con el perfil inerte debajo', v2.abierto && !v2.dentro && v2.encima && v2.inerte === true, JSON.stringify(v2));
+    await p4.keyboard.press('Escape'); await p4.waitForTimeout(250);
+    prueba('…y Escape la cierra y deja el perfil abierto', await p4.evaluate(() => !TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden && !document.getElementById('perfil-panel').inert));
+    prueba('…sin errores de página', e4.length === 0, e4.join(' | '));
+    await c4.close();
+    const c6 = await contexto(b), p6 = await c6.newPage(), e6 = []; vigilar(p6, e6);
+    await p6.route('**/modulos/perfil.js', async r => {
+      const res = await r.fetch(), s = await res.text();
+      await r.fulfill({ status: 200, contentType: 'text/javascript; charset=utf-8', body: s.replace('<div class="tgp-cuerpo-sitio" id="tgp-cuerpo-sitio"></div>', '') });
+    });
+    await abrirApp(p6);
+    await p6.evaluate(() => window.abrirCuerpo({ modo: 'aspecto' })); await p6.waitForTimeout(400);
+    const v3 = await p6.evaluate(() => ({ sinSitio: !document.getElementById('tgp-cuerpo-sitio'), abierto: TG_CUERPO.abierto(), dentro: TG_CUERPO.dentro(),
+      encima: document.getElementById('cuerpo-panel').parentNode === document.body, aspecto: document.getElementById('tgc').classList.contains('is-aspecto'),
+      perfil: !document.getElementById('perfil-panel').hidden }));
+    prueba('un perfil sin sitio para «Su cuerpo»: abrirCuerpo lo abre encima, en el modo pedido', v3.sinSitio && v3.abierto && !v3.dentro && v3.encima && v3.aspecto && v3.perfil, JSON.stringify(v3));
+    prueba('…sin errores de página', e6.length === 0, e6.join(' | '));
+    await c6.close();
+  }
+
+  // 10d. (la app) «Su cuerpo» cargado antes que el perfil: su Escape se engancha primero en window.
+  //      Con una hoja abierta, el Escape cierra solo la hoja (no lo oye nadie más: el del perfil ya
+  //      no vería la hoja y cerraría también el perfil)
+  {
+    const c8 = await contexto(b), p8 = await c8.newPage(), e8 = []; vigilar(p8, e8);
+    await abrirApp(p8);
+    await p8.evaluate(() => window.TG_CUERPO_CARGAR());
+    const antes = await p8.evaluate(() => !!window.TG_CUERPO && !window.TG_PERFIL);
+    await abrirPerfilCuerpo(p8); await suCuerpo(p8);
+    await p8.click('#tgc-lista .tgc-fila[data-g="pecho"]'); await p8.waitForTimeout(300);
+    const v4 = await p8.evaluate(() => !document.getElementById('tgc-hoja').hidden);
+    await p8.keyboard.press('Escape'); await p8.waitForTimeout(250);
+    const v5 = await p8.evaluate(() => ({ hoja: document.getElementById('tgc-hoja').hidden, perfil: !document.getElementById('perfil-panel').hidden,
+      inertes: document.querySelectorAll('#perfil-panel [inert]').length }));
+    prueba('«Su cuerpo» cargado antes que el perfil: Escape con una hoja abierta cierra solo la hoja, y el perfil sigue abierto', antes && v4 && v5.hoja && v5.perfil && v5.inertes === 0,
+      JSON.stringify({ antes, v4, v5 }));
+    prueba('…sin errores de página', e8.length === 0, e8.join(' | '));
+    await c8.close();
+  }
+
   // 12. los ejercicios: lista del grupo, filtros, ficha, anotar desde la ficha, atrás por niveles
-  await abrirApp(pg); await abrirPerfilCuerpo(pg); await tarjeta(pg);
+  await abrirApp(pg); await abrirPerfilCuerpo(pg); await suCuerpo(pg);
   await ejemplo(pg); await pg.waitForTimeout(150);
   const datos = await pg.evaluate(async () => { const r = await fetch('datos/ejercicios.json'); return r.json(); });
   const datosEs = await pg.evaluate(async () => { const r = await fetch('datos/ejercicios-es.json'); return r.json(); });
@@ -383,21 +488,38 @@ async function ejemplo(pg) {
   prueba('Escape en la ficha vuelve al grupo', await pg.evaluate(() => !document.getElementById('tgc-hoja').hidden && !document.getElementById('tgc-pag-grupo').hidden && document.getElementById('tgc-pag-ej').hidden));
   prueba('el historial del grupo nombra el ejercicio', await pg.evaluate(n => [...document.querySelectorAll('.tgc-hist-ej')].some(e => e.textContent === n), datosEs[ej.id][0]));
   prueba('el foco vuelve a la fila del ejercicio', await pg.evaluate(id => document.activeElement && document.activeElement.dataset && document.activeElement.dataset.id === id, ej.id));
-  // «atrás» por niveles: ficha → grupo → pantalla
+  // «atrás» por niveles: ficha → grupo → «Su cuerpo», en el perfil
   await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
   await pg.goBack(); await pg.waitForTimeout(200);
   prueba('«atrás» desde la ficha: el grupo', await pg.evaluate(() => !document.getElementById('tgc-hoja').hidden && document.getElementById('tgc-pag-ej').hidden));
   await pg.goBack(); await pg.waitForTimeout(200);
-  prueba('«atrás» desde el grupo: la pantalla', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto()));
+  prueba('«atrás» desde el grupo: «Su cuerpo», con el perfil abierto', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden));
   // cerrar con la ficha abierta quita las dos entradas del historial de una vez
   const h1 = await pg.evaluate(() => history.length);
   await pg.click('.tgc-fila[data-g="' + grupoEj + '"]'); await pg.waitForSelector('.tgc-ej-fila');
   await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
   await pg.click('#tgc-ej-cerrar'); await pg.waitForTimeout(250);
-  prueba('cerrar desde la ficha: hoja cerrada y pantalla abierta', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto()));
+  prueba('cerrar desde la ficha: la hoja cerrada y «Su cuerpo» en su sitio', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden));
   await pg.click('.tgc-fila[data-g="' + grupoEj + '"]'); await pg.waitForTimeout(150);
   await pg.goBack(); await pg.waitForTimeout(200);
-  prueba('…y el historial sigue bien (atrás cierra la hoja, no la pantalla)', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto()));
+  prueba('…y el historial sigue bien («atrás» cierra la hoja, no el perfil)', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden));
+  // un «atrás» de varios pasos de golpe (en el navegador, manteniéndolo pulsado): desde la ficha,
+  // dos pasos cierran la ficha y la hoja; tres, también el perfil, y al volver a abrirlo no queda
+  // nada abierto ni inerte
+  await pg.click('.tgc-fila[data-g="' + grupoEj + '"]'); await pg.waitForSelector('.tgc-ej-fila');
+  await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
+  await pg.evaluate(() => history.go(-2)); await pg.waitForTimeout(350);
+  prueba('«atrás» de dos pasos desde la ficha: se cierran la ficha y la hoja; el perfil, abierto y sin nada inerte', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden &&
+    !document.getElementById('perfil-panel').hidden && document.querySelectorAll('#perfil-panel [inert]').length === 0 && JSON.stringify(history.state) === '{"tgPerfil":1}'));
+  await pg.click('.tgc-fila[data-g="' + grupoEj + '"]'); await pg.waitForSelector('.tgc-ej-fila');
+  await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
+  await pg.evaluate(() => history.go(-3)); await pg.waitForTimeout(350);
+  const r12m = await pg.evaluate(() => ({ perfil: document.getElementById('perfil-panel').hidden, hoja: document.getElementById('tgc-hoja').hidden }));
+  await pg.evaluate(() => abrirPerfil()); await suCuerpo(pg);
+  const r12n = await pg.evaluate(() => ({ hoja: document.getElementById('tgc-hoja').hidden, inertes: document.querySelectorAll('#perfil-panel [inert]').length,
+    desplaza: getComputedStyle(document.getElementById('perfil-panel')).overflowY }));
+  prueba('«atrás» de tres pasos desde la ficha: también el perfil; al volver a abrirlo, sin hoja, sin nada inerte y se desplaza', r12m.perfil && r12m.hoja && r12n.hoja &&
+    r12n.inertes === 0 && r12n.desplaza === 'auto', JSON.stringify([r12m, r12n]));
   // los datos reales: cada grupo abre su lista entera
   const porGrupo = {};
   datos.ejercicios.forEach(x => x.g.forEach(g => { porGrupo[g] = (porGrupo[g] || 0) + 1; }));
@@ -490,7 +612,7 @@ async function ejemplo(pg) {
     await abrirApp(p3);
     await p3.evaluate(() => localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, aspecto: { pelo: '<img src=x onerror="window.__xss=4">' },
       series: [{ d: '2026-10-20', g: 'pecho', n: 3, e: '<img src=x onerror="window.__xss=5">' }, { d: '2026-10-21', g: '<svg onload="window.__xss=6">', n: 2 }] })));
-    await abrirPerfilCuerpo(p3); await tarjeta(p3);
+    await abrirPerfilCuerpo(p3); await suCuerpo(p3);
     await p3.click('.tgc-fila[data-g="pecho"]'); await p3.waitForSelector('.tgc-ej-fila');
     const fila = await p3.evaluate(id => { const f = document.querySelector('.tgc-ej-fila[data-id="' + id + '"]'); return f ? f.querySelector('.tgc-ej-nombre').textContent : null; }, ID);
     await p3.click('.tgc-ej-fila[data-id="' + ID + '"]'); await p3.waitForTimeout(250);
@@ -546,17 +668,16 @@ async function ejemplo(pg) {
   }
 
   // 15. (la app) los menores, con el año de nacimiento escrito en el formulario del perfil, el de
-  //     verdad: sin la marca del 10 ni su texto, y con la recomendación de su edad; con un año de
-  //     adulto, o sin año, la marca vuelve
+  //     verdad, que va en la misma pestaña: «Su cuerpo» se repinta en el acto, sin salir de ella.
+  //     Sin la marca del 10 ni su texto, y con la recomendación de su edad; con un año de adulto,
+  //     o sin año, la marca vuelve
   {
     const c5 = await contexto(b), p5 = await c5.newPage(), e5 = []; vigilar(p5, e5);
-    await abrirApp(p5); await abrirPerfilCuerpo(p5);
+    await abrirApp(p5); await abrirPerfilCuerpo(p5); await suCuerpo(p5);
     const anio = await p5.evaluate(() => new Date().getFullYear());
     const conAnio = async (v) => {
-      if (await p5.evaluate(() => !!(window.TG_CUERPO && TG_CUERPO.abierto()))) { await p5.keyboard.press('Escape'); await p5.waitForTimeout(250); }
       await p5.fill('#tgp-nac', v); await p5.click('#tgp-save'); await p5.waitForTimeout(200);
       const guardado = await p5.evaluate(() => (JSON.parse(localStorage.getItem('tenerife.perfil')) || {}).nacimiento);
-      await tarjeta(p5);
       return Object.assign({ guardado }, await p5.evaluate(() => ({ marcas: document.querySelectorAll('#tgc-lista .tgc-barra-ref').length,
         ref: !document.getElementById('tgc-ref').hidden, reco: document.getElementById('tgc-reco').textContent })));
     };
@@ -585,10 +706,12 @@ async function ejemplo(pg) {
     await idioma(pg, 'es');
   }
 
-  // 17. (la app) el iPhone con isla dinámica (1 de noviembre de 2026): 59 px arriba. El panel ya
-  //     los deja con su padding-top, y la cabecera, pegada, se queda en ellos sin sumarlos otra vez
-  //     (antes bajaba a 118 y tapaba «Músculos | Aspecto», con una franja vacía encima). Chromium
-  //     simula el margen (Emulation.setSafeAreaInsetsOverride).
+  // 17. (la app) el iPhone con isla dinámica (1 de noviembre de 2026): 59 px arriba. El perfil ya
+  //     los deja con su padding-top, y su cabecera, pegada, se queda en ellos sin sumarlos otra vez
+  //     (antes bajaba a 118, y en la pantalla de «Su cuerpo» tapaba «Músculos | Aspecto»). En la
+  //     pestaña, «Músculos | Aspecto» a la vista bajo la barra de las pestañas, y en «Aspecto», al
+  //     bajar, el personaje pegado justo debajo de esa barra. Chromium simula el margen
+  //     (Emulation.setSafeAreaInsetsOverride).
   {
     const c7 = await b.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, serviceWorkers: 'block', locale: 'es-ES' });
     await c7.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') ? r.continue() : r.abort());
@@ -599,19 +722,24 @@ async function ejemplo(pg) {
     try { await cdp7.send('Emulation.setSafeAreaInsetsOverride', { insets: { top: 59, topMax: 59, bottom: 34, bottomMax: 34, left: 0, leftMax: 0, right: 0, rightMax: 0 } }); } catch (e) { simula = false; }
     prueba('isla dinámica: Chromium simula el margen del iPhone (59 px arriba)', simula);
     if (simula) {
-      await abrirApp(p7); await abrirPerfilCuerpo(p7); await tarjeta(p7); await p7.waitForTimeout(600);
+      await abrirApp(p7); await abrirPerfilCuerpo(p7); await suCuerpo(p7); await p7.waitForTimeout(600);
       const medir = () => p7.evaluate(() => { const r = s => { const x = document.querySelector(s).getBoundingClientRect(); return [Math.round(x.top), Math.round(x.bottom)]; };
-        return { margen: parseFloat(getComputedStyle(document.getElementById('cuerpo-panel')).paddingTop), cab: r('#cuerpo-panel .tgc-top'), modos: r('#cuerpo-panel .tgc-modos') }; });
+        const pp = document.getElementById('perfil-panel');
+        return { margen: parseFloat(getComputedStyle(pp).paddingTop), cab: r('#perfil-panel .tgp-top'), barra: r('#tgp-tabs'), modos: r('#cuerpo-panel .tgc-modos') }; });
+      const hasta = (dy) => p7.evaluate(dy => { const pp = document.getElementById('perfil-panel'), s = document.getElementById('tgp-cuerpo-sitio');
+        pp.scrollTop = s.getBoundingClientRect().top - pp.getBoundingClientRect().top + pp.scrollTop + dy; }, dy);
+      await hasta(-200); await p7.waitForTimeout(250);
       const a7 = await medir();
-      prueba('isla dinámica: la cabecera, justo debajo del margen, y «Músculos | Aspecto» a la vista, debajo de ella', a7.margen === 59 && Math.abs(a7.cab[0] - 59) <= 1 && a7.modos[0] >= a7.cab[1], JSON.stringify(a7));
-      await p7.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop = 600; }); await p7.waitForTimeout(200);
+      prueba('isla dinámica: la cabecera del perfil justo debajo del margen, y «Músculos | Aspecto» a la vista, debajo de la barra de las pestañas', a7.margen === 59 &&
+        Math.abs(a7.cab[0] - 59) <= 1 && a7.barra[0] >= a7.cab[1] && a7.modos[0] >= a7.barra[1] && a7.modos[1] <= 852, JSON.stringify(a7));
+      await p7.evaluate(() => { document.getElementById('perfil-panel').scrollTop += 600; }); await p7.waitForTimeout(250);
       const b7 = await medir();
-      prueba('isla dinámica: al bajar, la cabecera se queda pegada justo debajo del margen', Math.abs(b7.cab[0] - 59) <= 1, JSON.stringify(b7));
-      await p7.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop = 0; document.getElementById('tgc-modo-a').click(); }); await p7.waitForTimeout(500);
-      await p7.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop = 400; }); await p7.waitForTimeout(200);
-      const c7m = await p7.evaluate(() => { const t = document.querySelector('#cuerpo-panel .tgc-top').getBoundingClientRect(), e = document.querySelector('#cuerpo-panel .tgc-escena').getBoundingClientRect();
-        return { cab: [Math.round(t.top), Math.round(t.bottom)], escena: Math.round(e.top) }; });
-      prueba('isla dinámica: en «Aspecto», al bajar, el personaje se queda pegado bajo la cabecera, como sin isla (64 px por debajo del margen)', Math.abs(c7m.cab[0] - 59) <= 1 && Math.abs(c7m.escena - (59 + 64)) <= 1, JSON.stringify(c7m));
+      prueba('isla dinámica: al bajar, la cabecera y la barra se quedan pegadas justo debajo del margen', Math.abs(b7.cab[0] - 59) <= 1 && Math.abs(b7.barra[0] - b7.cab[1]) <= 1, JSON.stringify(b7));
+      await p7.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 0; document.getElementById('tgc-modo-a').click(); }); await p7.waitForTimeout(500);
+      await hasta(400); await p7.waitForTimeout(250);
+      const c7m = await p7.evaluate(() => { const t = document.getElementById('tgp-tabs').getBoundingClientRect(), e = document.querySelector('#cuerpo-panel .tgc-escena').getBoundingClientRect();
+        return { barra: [Math.round(t.top), Math.round(t.bottom)], escena: Math.round(e.top) }; });
+      prueba('isla dinámica: en «Aspecto», al bajar, el personaje se queda pegado justo debajo de la barra de las pestañas', Math.abs(c7m.escena - c7m.barra[1]) <= 1 && c7m.barra[0] > 59, JSON.stringify(c7m));
     }
     prueba('isla dinámica: sin errores de página', e7.length === 0, e7.join(' | '));
     await c7.close();

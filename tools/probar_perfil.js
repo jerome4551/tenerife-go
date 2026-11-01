@@ -627,9 +627,9 @@ async function pestanas(b) {
   await pg.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 99999; }); await pg.waitForTimeout(150);
   await pg.click('#tgp-tab-cuerpo'); await pg.waitForTimeout(200);
   const pos = await pg.evaluate(() => {
-    /* lo primero de la pestaña nueva: desde «Su cuerpo» (31 de octubre de 2026) es su tarjeta,
-       encima de «Sus datos» */
-    const primera = document.getElementById('tgp-p-cuerpo').firstElementChild;
+    /* lo primero que se ve de la pestaña nueva: desde el 1 de noviembre de 2026, «Su cuerpo»
+       (o su tarjeta, mientras llega el modulo), encima de «Sus datos» */
+    const primera = [...document.getElementById('tgp-p-cuerpo').children].find(e => e.getClientRects().length > 0);
     const cab = document.querySelector('.tgp-top').getBoundingClientRect(), barra = document.getElementById('tgp-tabs').getBoundingClientRect(), datos = primera.getBoundingClientRect();
     return { cab: Math.round(cab.bottom), barra: [Math.round(barra.top), Math.round(barra.bottom)], primera: primera.id, datos: Math.round(datos.top) };
   });

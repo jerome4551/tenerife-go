@@ -1342,6 +1342,8 @@
 
   /* ── estado de la pantalla ── */
   var panel = null, abierto = false, historia = false, atrasPendiente = false, antesDeAbrir = null;
+  /* dentro: «Su cuerpo» va dentro de la pestaña Cuerpo del perfil, y no encima (incrustar) */
+  var dentro = false;
   var modo = 'musculos', vista = 'frente', grupoAbierto = null, hojaHistoria = false, antesDeHoja = null;
   var anotarN = 3, anotarDia = 'hoy', deshacer = null, toastReloj = null, entraReloj = null;
   var ejEntorno = 'todos', ejNivel = 0, ejBuscar = '', ejAbierto = null, ejHistoria = false, antesDeEj = null;
@@ -1424,6 +1426,15 @@
     var b = $('tgc-girar');
     b.setAttribute('aria-label', tx(vista === 'frente' ? 'cuerpoVerEspalda' : 'cuerpoVerFrente'));
     $('tgc-vista').textContent = tx(vista === 'frente' ? 'cuerpoVistaFrente' : 'cuerpoVistaEspalda');
+    if (dentro) renderMini();
+  }
+  /* El personaje en pequeño, al lado del título, dentro de la pestaña Cuerpo del perfil (1 de
+     noviembre de 2026; Jerome: «Y si puedes poner el personaje»): el de «Aspecto», de frente y de
+     medio cuerpo, como el maniquí de la tarjeta del prototipo. Lo dibuja el propio código, con el
+     aspecto ya validado (normaliza); sin texto: aria-hidden */
+  function renderMini() {
+    var m = $('tgc-mini'); if (!m) return;
+    m.innerHTML = F.svg({ vista: 'frente', modo: 'aspecto', aspecto: st.aspecto, id: 'tgc-mini', viewBox: '110 20 180 300' });
   }
 
   /* ── modo «Músculos»: el resumen, la semana día a día y los 12 grupos ── */
@@ -1761,7 +1772,7 @@
       ejBuscar = ''; $('tgc-ej-buscar').value = '';
       $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false; $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-hoja-tit');
       $('tgc-velo').hidden = false; $('tgc-hoja').hidden = false; $('tgc-hoja').scrollTop = 0;
-      $('tgc').inert = true; panel.classList.add('con-hoja');
+      $('tgc').inert = true; panel.classList.add('con-hoja'); alrededor(true);
       if (conHistoria && !hojaHistoria) { try { history.pushState({ tgPerfil: 1, tgCuerpo: 1, tgCuerpoHoja: 1 }, ''); hojaHistoria = true; } catch (e) {} }
     }
     renderHoja(); renderFigura();
@@ -1774,7 +1785,7 @@
     grupoAbierto = null; ejAbierto = null;
     $('tgc-velo').hidden = true; $('tgc-hoja').hidden = true;
     $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false;
-    $('tgc').inert = false; panel.classList.remove('con-hoja');
+    $('tgc').inert = false; panel.classList.remove('con-hoja'); alrededor(false);
     if (pasos && !sinHistoria) { try { atrasPendiente = true; history.go(-pasos); } catch (e) { atrasPendiente = false; } }
     hojaHistoria = false; ejHistoria = false; antesDeEj = null;
     renderFigura();
@@ -1915,6 +1926,18 @@
   }
 
   /* ── abrir y cerrar ── */
+  /* Dentro de la pestaña, con una hoja abierta, lo demás del perfil queda inerte (lo que va al lado
+     de «Su cuerpo», de él hacia arriba hasta el panel del perfil) y el perfil no se desplaza por
+     debajo; encima, de eso ya se encargan #tgc inerte y el perfil inerte (perfilDebajo) */
+  function alrededor(si) {
+    if (!dentro || !panel) return;
+    var tope = document.getElementById('perfil-panel'), n = panel;
+    while (n && n !== tope && n.parentNode && n.parentNode !== document.body) {
+      Array.prototype.forEach.call(n.parentNode.children, function (h) { if (h !== n) h.inert = !!si; });
+      n = n.parentNode;
+    }
+    if (tope) tope.classList.toggle('tgc-con-hoja', !!si);
+  }
   function montar() {
     if (panel) return;
     var estilo = document.createElement('style');
@@ -1937,7 +1960,34 @@
   }
   /* el perfil queda debajo: inerte mientras «Su cuerpo» está encima */
   function perfilDebajo(si) { var p = document.getElementById('perfil-panel'); if (p) p.inert = !!si && !p.hidden; }
+  /* «Su cuerpo» dentro de la pestaña Cuerpo del perfil (1 de noviembre de 2026; Jerome: «Y no veo
+     porque no ponerlo directo en la sección cuerpo»): sin cabecera fija ni «atrás», sin entrada
+     propia en el historial y sin Escape propio (los del perfil); las hojas de un grupo y de un
+     ejercicio, encima, como siempre, con su «atrás» y su Escape. Se llama cada vez que se enseña la
+     pestaña: lee otra vez lo guardado (y el año de nacimiento del perfil) y lo pinta */
+  function incrustar(sitio, op) {
+    if (!sitio || !sitio.appendChild) return;
+    if (panel && !dentro && abierto) cerrar();
+    dentro = true;
+    montar();
+    if (panel.parentNode !== sitio) sitio.appendChild(panel);
+    panel.classList.add('tgc-dentro');
+    panel.setAttribute('role', 'region'); panel.removeAttribute('aria-modal');
+    /* el título del perfil es el h1: aquí, uno de sus apartados */
+    $('tgc-titulo').setAttribute('aria-level', '2');
+    st = leer();
+    if (op && (op.modo === 'aspecto' || op.modo === 'musculos')) modo = op.modo;
+    if (!abierto) {
+      diaSel = null;
+      var t = $('tgc'); t.classList.add('tgc-entra'); clearTimeout(entraReloj);
+      entraReloj = setTimeout(function () { t.classList.remove('tgc-entra'); }, 1800);
+    }
+    abierto = true;
+    panel.hidden = false;
+    renderTodo();
+  }
   function abrir(op) {
+    if (dentro) { incrustar(panel.parentNode, op); return; }
     montar();
     st = leer();
     if (op && (op.modo === 'aspecto' || op.modo === 'musculos')) modo = op.modo;
@@ -1961,6 +2011,8 @@
   }
   function cerrar(sinHistoria) {
     if (!abierto) return;
+    /* dentro de la pestaña no hay pantalla que cerrar: solo lo que tenga encima */
+    if (dentro) { if (grupoAbierto) cerrarHoja(sinHistoria); return; }
     if (grupoAbierto) cerrarHoja(true);
     abierto = false;
     panel.hidden = true;
@@ -1971,12 +2023,17 @@
     if (antesDeAbrir && typeof antesDeAbrir.focus === 'function' && document.contains(antesDeAbrir)) { try { antesDeAbrir.focus({ preventScroll: true }); } catch (x) {} }
     antesDeAbrir = null;
   }
-  /* «atrás»: primero cierra la hoja, luego la pantalla. El back() de cerrar() también llega aquí */
-  window.addEventListener('popstate', function () {
+  /* «atrás»: primero la ficha, luego la hoja, luego la pantalla. El back() de cerrar() también llega
+     aquí. Se mira adónde se vuelve (e.state, con las marcas que se ponen al abrir): con un «atrás» de
+     varios pasos de golpe (en el navegador, manteniéndolo pulsado) se cierra de una vez todo lo que
+     quedaba encima. Dentro de la pestaña Cuerpo, una hoja que se quedara abierta con el perfil ya
+     cerrado lo dejaría inerte al volver a abrirlo (alrededor) */
+  window.addEventListener('popstate', function (e) {
     if (atrasPendiente) { atrasPendiente = false; return; }
-    if (ejAbierto) { ejHistoria = false; volverGrupo(true); return; }
-    if (grupoAbierto) { hojaHistoria = false; cerrarHoja(true); return; }
-    if (!abierto) return;
+    var s = (e && e.state) || {};
+    if (ejAbierto && !s.tgCuerpoEj) { ejHistoria = false; volverGrupo(true); }
+    if (grupoAbierto && !s.tgCuerpoHoja) { hojaHistoria = false; cerrarHoja(true); }
+    if (s.tgCuerpo || !abierto || dentro) return;
     historia = false;
     cerrar(true);
   });
@@ -1985,7 +2042,11 @@
     if (e.key !== 'Escape' || !abierto) return;
     var m = document.getElementById('auth-modal-backdrop');
     if (m && m.classList.contains('show')) return;
-    e.stopPropagation();
+    /* dentro de la pestaña, sin hoja abierta, el Escape es del perfil */
+    if (dentro && !grupoAbierto) return;
+    /* y no lo oye nadie más, tampoco en window: el Escape del perfil, si se enganchó después que
+       este, ya no vería la hoja abierta y cerraría también el perfil */
+    e.stopImmediatePropagation();
     if (ejAbierto) volverGrupo(); else if (grupoAbierto) cerrarHoja(); else cerrar();
   }, true);
   try { TG_IDIOMA.registrar('cuerpo', function () { if (abierto) renderTodo(); }); } catch (e) {}
@@ -2367,6 +2428,27 @@
   #cuerpo-panel *, #cuerpo-panel *::before, #cuerpo-panel *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .tgc-escena::after { display: none; }
 }
+
+/* ── dentro de la pestaña Cuerpo del perfil (1 de noviembre de 2026; Jerome: «Y no veo porque no
+   ponerlo directo en la sección cuerpo») ── el mismo contenido, sin panel fijo ni cabecera pegada
+   ni «atrás»: lo desplaza el perfil, que pone su cabecera y su barra de pestañas. Las hojas de un
+   grupo y de un ejercicio siguen encima (fijas), como siempre */
+.tgc-mini { display: none; }
+#cuerpo-panel.tgc-dentro { position: static; inset: auto; z-index: auto; overflow: visible; padding: 0; background: transparent; }
+.tgc-dentro .tgc-top { position: static; padding-block: 2px 0; background: none; }
+.tgc-dentro .tgc-top::after { display: none; }
+.tgc-dentro #tgc-back { display: none; }
+/* el personaje en pequeño, al lado del título, como en la tarjeta del prototipo */
+.tgc-dentro .tgc-mini {
+  display: block; flex: none; width: 64px; height: 96px; border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border); background: radial-gradient(120% 90% at 50% 20%, #232b39, #11151c);
+}
+.tgc-dentro .tgc-mini svg { display: block; width: 100%; height: 100%; }
+/* en «Aspecto», el personaje se queda pegado debajo de la cabecera y de la barra de pestañas del
+   perfil (--tgp-pegado lo mide modulos/perfil.js) */
+.tgc-dentro .tgc.is-aspecto .tgc-escena { top: var(--tgp-pegado, 114px); }
+/* con una hoja abierta, el perfil no se desplaza por debajo */
+#perfil-panel.tgc-con-hoja { overflow: hidden; }
 `;
   var CUERPO = `
 <div class="tgc" id="tgc">
@@ -2374,6 +2456,7 @@
     <button type="button" class="tgc-icon-btn" id="tgc-back">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
+    <span class="tgc-mini" id="tgc-mini" aria-hidden="true"></span>
     <div class="tgc-tit">
       <h1 id="tgc-titulo">Su cuerpo</h1>
       <p class="tgc-lema" id="tgc-lema">Sus músculos, su semana y su personaje</p>
@@ -2683,8 +2766,13 @@
   /* estado() es para las pruebas (tools/probar_cuerpo.js) */
   window.TG_CUERPO = {
     abrir: abrir,
+    incrustar: incrustar,
     cerrar: function () { cerrar(); },
     abierto: function () { return abierto; },
+    /* lo que el perfil tiene que respetar con «atrás» y Escape (modulos/perfil.js, fichaEncima):
+       la pantalla, si va encima; dentro de la pestaña, solo una hoja abierta */
+    encima: function () { return abierto && (!dentro || !!grupoAbierto); },
+    dentro: function () { return dentro; },
     repintar: function () { if (abierto) renderTodo(); },
     estado: function () { return st; }
   };
