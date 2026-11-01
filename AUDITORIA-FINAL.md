@@ -4092,10 +4092,24 @@ su texto, y si «ⓘ» tiene caja. Con el módulo de antes del arreglo, la misma
 medida da «ⓘ» a la vista (43 px); con el de ahora, dos líneas y sin «ⓘ»
 (32 px): sabe ponerse en rojo.
 
-**Lo que falta.** Lanzar el workflow con el bloque en `main`: la primera vez
-dirá si la API de la IDEE contesta como dice su documentación (el formato de
-`subset`, el tamaño máximo, el GeoTIFF que devuelve). Si no, el relieve sale de
-Copernicus y el resumen dice por qué.
+**El 1 de noviembre, de verdad.** Con el bloque en `main`, el workflow se lanzó
+primero de prueba (`solo_probar`, `fuente` = `ign`). La API de la IDEE
+contesta, con el `subset` y el GeoTIFF que dice su documentación, pero no
+acepta los trozos que pide la herramienta:
+
+- a los de 0,04° responde «HTTP 500 … Requested bbox width 4473.32»;
+- a los de 0,02°, «… Requested bbox height 2546.9»;
+- los de 0,01° sí salen: unos 1,1 × 1,0 km, 49.284 píxeles con dato y unos
+  210 kB cada uno.
+
+Partiendo cada trozo dos veces, a los 40 minutos del tope del paso llevaba
+1.867 trozos bajados y no había cubierto la isla. El paso se cortó y el
+relieve salió del Copernicus DEM, como está previsto, con el aviso en el
+resumen.
+
+Para que salga del IGN haría falta pedir desde el principio trozos de
+0,01° y darle al paso más tiempo. Es un cambio en `relieve_ign.py` y en el
+workflow, y lo decide Jerome.
 
 ## La isla en 3D, encima de «Su cuerpo» (1 de noviembre)
 
@@ -4178,10 +4192,16 @@ Y «Idiomas»: 49 tablas, 3183 filas y 5.330 (`auditar_web.js` y
   por variables de entorno. El YAML se lee y sus pasos pasan `bash -n`. Las
   expresiones que quedan en el workflow solo pueden valer lo que escriben el
   propio guion o GitHub.
-- Visto de paso y sin tocar: `generar-mapa.yml` pega igual «fecha_build» y
-  «maxzoom» en el shell desde antes de esta entrega. También lo lanza solo
-  quien tiene permiso de escritura. Se puede cerrar del mismo modo, en otro
-  commit, si Jerome quiere.
+- `generar-mapa.yml` pegaba igual «fecha_build» y «maxzoom» en el shell,
+  desde antes de esta entrega. Jerome, el 1 de noviembre: «si ciérralo».
+  Se cerró del mismo modo (`5056310`):
+  - «maxzoom» es una lista cerrada, 14 o 15 (lo que dice `mapa/LEEME.md`);
+  - «fecha_build» solo vale vacía o una fecha AAAAMMDD;
+  - la fecha, el zoom, el tamaño y la compatibilidad entran a los guiones
+    por variables de entorno, también en el mensaje del commit.
+
+  La validación deja pasar «», «20261031», «14» y «15». Para con «2026103»,
+  «$(touch x)», «20261031; touch x», «16» o «14 --x», sin ejecutar nada.
 
 **Antes de la auditoría entera**, sobre `ab623bd`, en verde:
 
@@ -4205,13 +4225,89 @@ rojo ni sin ejecutar. Lo que pedía la nota 17: aquí `pmtiles` y
 `auditar_en_el_mar.py` e `informe_lugares.js` corren y salen en verde. El
 `tsc` de aquí es el 6.0.2, y `auditar_cielo.js` da 307 de 307.
 
-**Lo que falta, como dicen las notas, y todo cuando Jerome lo diga:**
+**El 1 de noviembre.** Jerome: «Súbelo todo. Con cuidado».
 
-1. Subirlo.
-2. Lanzar «Generar relieve 3D» (`fuente` = `ign`).
-3. Traer su commit y pasar otra vez la auditoría entera, ya con la vista de
-   verdad: la cumbre a su altura y la sombra del atardecer.
-4. Mirarlo en el móvil.
+1. **Subido.** La pila entera fue encima del `main` de ese momento
+   (`7e40233`), en avance rápido: 21 commits, hasta `d967aae`.
+   - Lleva el perfil, «Su cuerpo» y la isla en 3D.
+   - Lleva también el párrafo de la auditoría del perfil (el de `88749e9`),
+     que se había quedado fuera porque «Su cuerpo» empezó encima de
+     `3fac3da`.
+
+   Antes de subir se comprobó todo esto:
+   - lo único distinto de lo auditado eran los seis ficheros de los
+     robots, iguales que en `main`;
+   - el cambio de la pila era byte a byte el mismo;
+   - no había secretos, ni `CNAME`, ni `app/www/`.
+
+   Al ponerla encima de `main`, cada commit cambió de nombre. Este
+   documento los cita con el de la rama donde se auditaron, y en `main` son
+   estos:
+
+   | Auditado | En `main` | Qué |
+   |---|---|---|
+   | `8d0af93` | `34977c7` | Perfil: los 29 retirados, para quien ya llevaba uno |
+   | `b16d8a6` | `c64db95` | Perfil: tres pestañas, Viaje, Cuerpo y Cuenta |
+   | `3fac3da` | `b8598e7` | Perfil: fuera la cabina roja británica, que no es libre de derechos |
+   | `38b7eca` | `c4f652a` | «Su cuerpo», bloque 1: el módulo y los 533 ejercicios, tal cual |
+   | `6712ba5` | `3065ba0` | «Su cuerpo», bloque 2: se abre desde la pestaña Cuerpo del perfil |
+   | `7bce404` | `1dbf8a3` | «Su cuerpo», bloque 3: los botones como el resto de la app, y la IA dicha |
+   | `83b0d56` | `ca314f3` | «Su cuerpo», bloque 4: la política de privacidad lo dice |
+   | `25f88bc` | `361b2be` | «Su cuerpo», bloque 5: las fuentes de los ejercicios, en cada idioma |
+   | `98d2121` | `379103d` | «Su cuerpo», bloque 6: las pruebas, dentro de la app |
+   | `6e3b86d` | `100e033` | «Su cuerpo»: la auditoría y el README |
+   | `a4e7d92` | `62fbf77` | «Su cuerpo», bloque 7: el diseño nuevo |
+   | `a5d543f` | `71cd0ac` | «Su cuerpo», bloque 8: la línea del día, con los dos puntos de cada idioma |
+   | `96f68e5` | `8a54657` | «Su cuerpo», bloque 9: dos controles de la auditoría entera |
+   | `f47de06` | `18b0afb` | «Su cuerpo»: la auditoría, con el diseño nuevo y la auditoría entera |
+   | `b04be7c` | `1c3807e` | La isla en 3D, sin conexion: el relieve oficial con el mapa encima |
+   | `18ab6ad` | `0ea1d57` | El mapa de la isla, rincon por rincon: el mapa base, recortado del detallado |
+   | `ba6e98a` | `2c63d65` | La cumbre del Teide en el mapa plano, con su triangulo y sus 3.715 m |
+   | `6dc1034` | `a1d5578` | El relieve del 3D, del MDT05 del IGN (y si no sale, del Copernicus DEM) |
+   | `ab623bd` | `4543527` | El relieve del 3D: lo que se elige al lanzar el workflow no entra en el shell |
+   | `f46306c` | `c286a4a` | La isla en 3D, encima de «Su cuerpo»: la auditoría |
+   | `0a0e64a` | `d967aae` | Perfil: la auditoría entera de los retirados, las pestañas y la cabina |
+
+   GitHub Pages lo publicó, y «Comprobar el dominio» salió en verde:
+   `tenerifego.app` y la dirección vieja, la web de ese commit y el aviso de
+   instalar en Safari y en el navegador de Instagram.
+2. **El relieve, primero de prueba** (`solo_probar`, `fuente` = `ign`):
+   - El del IGN no salió: lo explica arriba «El relieve del 3D, del MDT05 del
+     IGN».
+   - El de Copernicus pasó `--comprobar` en verde. Su cota máxima, 3.695,5 m,
+     cae a 38 m de la cumbre de la ficha.
+3. **El relieve de verdad, sin tocar `main`.** El fichero de la prueba no se
+   puede bajar a esta sesión: el proxy no llega al almacén de GitHub donde
+   se guardan los artefactos. Para no publicar un 3D sin auditar, el
+   workflow se lanzó en la rama de trabajo de la sesión
+   (`claude/tenerife-go-security-review-7r5ayk`):
+   - Esa rama solo tenía las pruebas del 12 de octubre, ya quitadas, con el
+     contenido de `a7d4b53`. Se le puso `main` encima con un merge, sin
+     forzar.
+   - Se lanzó con `fuente` = `copernicus`, que da lo mismo sin los 40
+     minutos del IGN.
+   - Su commit, de github-actions (`4a7d7a4` en la rama de trabajo; en
+     `main`, `f2dce4d`), lleva los tres ficheros y la huella
+     `9631a6319dc1b1cd` en `sw.js` y en `index.html`, y nada más.
+   - Es el mismo relieve que la prueba, byte a byte: la misma huella y los
+     mismos tamaños.
+   - Ninguno de los 638 textos de su `.json` lleva `<`, `>` ni
+     `javascript:`.
+4. **La auditoría con el 3D de verdad**, con el relieve encima de `main`:
+   - `relieve_construir.py --comprobar`: «RELIEVE EN VERDE».
+   - `auditar_isla3d.js` abre la vista de verdad en un móvil emulado: 57
+     controles, ninguno en rojo. En el arrastre con la CPU ×4 y WebGL por
+     software, el fotograma va a 17 ms de mediana, y el peor llegó a 2,6 s.
+   - La auditoría entera, sobre `37fa759` (en `main`, `5056310`, encima de un
+     commit más del robot de los satélites): «AUDITORIA EN VERDE», ningún
+     control en rojo ni sin ejecutar.
+
+**Lo que queda:**
+
+- Mirarlo en el móvil: el botón «3D», los gestos, la luz y las sombras, en
+  modo avión y en un móvil viejo, por ese fotograma de 2,6 s.
+- Decidir si el relieve tiene que salir del IGN (lo explica arriba «El
+  relieve del 3D, del MDT05 del IGN»).
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
