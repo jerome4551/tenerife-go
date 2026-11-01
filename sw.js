@@ -17,7 +17,7 @@ const CACHE = 'tgo-v7-2026-09-01-teselas';
    La escriben tools/relieve_construir.py y el workflow generar-relieve.yml,
    en el mismo commit que el relieve, y la coteja relieve_construir.py
    --comprobar. La misma va en index.html. */
-const RELIEVE_HUELLA = 'ninguno';
+const RELIEVE_HUELLA = '9631a6319dc1b1cd';
 
 /* La huella del mapa base (31 de octubre de 2026, tarde): los 16 primeros caracteres del
    sha256 de mapa/tenerife-base.pmtiles. El mapa base se sirve del precache (cache primero), y
