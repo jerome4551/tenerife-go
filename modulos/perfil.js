@@ -2048,6 +2048,12 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 /* con la barra pegada arriba, la cabecera va entera, sin su degradado de abajo: por esa
    franja se veia pasar lo de debajo, entre el titulo y la barra (marcarBarra) */
 #perfil-panel.tgp-con-barra .tgp-top { background: var(--dark); }
+/* la franja de la hora y la bateria en el iPhone (1 de noviembre de 2026): con la barra de estado
+   translucida (black-translucent, en index.html), lo que sube al desplazar se veia pasar por debajo
+   de la hora. Una franja del color de la cabecera, del alto de ese margen: 0 sin isla ni muesca,
+   y entonces no se ve. Fija y sin recibir toques; las hojas de «Su cuerpo» (z-index 10 y 11) van
+   por encima */
+#perfil-panel::before { content: ""; position: fixed; top: 0; left: 0; right: 0; height: env(safe-area-inset-top, 0px); z-index: 6; background: var(--dark); pointer-events: none; }
 .tgp-tab[aria-selected="true"] { background: var(--gold); color: #1a1407; }
 .tgp-tab:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
 .tgp-pestana { display: grid; gap: 14px; min-width: 0; }

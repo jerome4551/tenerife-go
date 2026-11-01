@@ -708,9 +708,10 @@ async function ejemplo(pg) {
 
   // 17. (la app) el iPhone con isla dinámica (1 de noviembre de 2026): 59 px arriba. El perfil ya
   //     los deja con su padding-top, y su cabecera, pegada, se queda en ellos sin sumarlos otra vez
-  //     (antes bajaba a 118, y en la pantalla de «Su cuerpo» tapaba «Músculos | Aspecto»). En la
-  //     pestaña, «Músculos | Aspecto» a la vista bajo la barra de las pestañas, y en «Aspecto», al
-  //     bajar, el personaje pegado justo debajo de esa barra. Chromium simula el margen
+  //     (antes bajaba a 118, y en la pantalla de «Su cuerpo» tapaba «Músculos | Aspecto»). Encima, en
+  //     la franja de la hora, una del color de la cabecera: lo que sube ya no pasa por debajo de la
+  //     hora. En la pestaña, «Músculos | Aspecto» a la vista bajo la barra de las pestañas, y en
+  //     «Aspecto», al bajar, el personaje pegado justo debajo de esa barra. Chromium simula el margen
   //     (Emulation.setSafeAreaInsetsOverride).
   {
     const c7 = await b.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, serviceWorkers: 'block', locale: 'es-ES' });
@@ -724,8 +725,9 @@ async function ejemplo(pg) {
     if (simula) {
       await abrirApp(p7); await abrirPerfilCuerpo(p7); await suCuerpo(p7); await p7.waitForTimeout(600);
       const medir = () => p7.evaluate(() => { const r = s => { const x = document.querySelector(s).getBoundingClientRect(); return [Math.round(x.top), Math.round(x.bottom)]; };
-        const pp = document.getElementById('perfil-panel');
-        return { margen: parseFloat(getComputedStyle(pp).paddingTop), cab: r('#perfil-panel .tgp-top'), barra: r('#tgp-tabs'), modos: r('#cuerpo-panel .tgc-modos') }; });
+        const pp = document.getElementById('perfil-panel'), f = getComputedStyle(pp, '::before');
+        return { margen: parseFloat(getComputedStyle(pp).paddingTop), cab: r('#perfil-panel .tgp-top'), barra: r('#tgp-tabs'), modos: r('#cuerpo-panel .tgc-modos'),
+          franja: [f.position, f.top, f.height, f.zIndex, f.pointerEvents].join(' '), color: f.backgroundColor, cabColor: getComputedStyle(pp.querySelector('.tgp-top')).backgroundColor }; });
       const hasta = (dy) => p7.evaluate(dy => { const pp = document.getElementById('perfil-panel'), s = document.getElementById('tgp-cuerpo-sitio');
         pp.scrollTop = s.getBoundingClientRect().top - pp.getBoundingClientRect().top + pp.scrollTop + dy; }, dy);
       await hasta(-200); await p7.waitForTimeout(250);
@@ -735,6 +737,8 @@ async function ejemplo(pg) {
       await p7.evaluate(() => { document.getElementById('perfil-panel').scrollTop += 600; }); await p7.waitForTimeout(250);
       const b7 = await medir();
       prueba('isla dinámica: al bajar, la cabecera y la barra se quedan pegadas justo debajo del margen', Math.abs(b7.cab[0] - 59) <= 1 && Math.abs(b7.barra[0] - b7.cab[1]) <= 1, JSON.stringify(b7));
+      prueba('isla dinámica: en la franja de la hora, una fija de 59 px, del color de la cabecera, por encima de lo que se desplaza y sin recibir toques', b7.franja === 'fixed 0px 59px 6 none' &&
+        b7.color === b7.cabColor && !/rgba\(0, 0, 0, 0\)|transparent/.test(b7.color), JSON.stringify(b7));
       await p7.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 0; document.getElementById('tgc-modo-a').click(); }); await p7.waitForTimeout(500);
       await hasta(400); await p7.waitForTimeout(250);
       const c7m = await p7.evaluate(() => { const t = document.getElementById('tgp-tabs').getBoundingClientRect(), e = document.querySelector('#cuerpo-panel .tgc-escena').getBoundingClientRect();
