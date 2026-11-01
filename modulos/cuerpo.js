@@ -2026,8 +2026,11 @@
 .tgc { max-width: 520px; margin: 0 auto; display: grid; gap: 18px; }
 
 /* ── cabecera fija ── */
+/* top: 0, y no el margen de la isla dinamica (1 de noviembre de 2026): #cuerpo-panel ya lo
+   deja con su padding-top, y lo pegado se mide desde ahi. Con los dos, en el iPhone la cabecera
+   bajaba 59 px de mas y tapaba «Musculos | Aspecto», con una franja vacia encima */
 .tgc-top {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6;
+  position: sticky; top: 0; z-index: 6;
   display: flex; align-items: center; gap: 12px; padding-block: 12px 6px;
   background: var(--dark);
 }
@@ -2102,7 +2105,7 @@
 .tgc-girar svg { transition: transform var(--t-slower) var(--ease-in-out); }
 .tgc-giro.is-espalda ~ .tgc-girar svg { transform: rotate(180deg); }
 /* «Aspecto»: una sola vista, más pequeña y fija arriba mientras se elige debajo; «Girar» le da la vuelta */
-.tgc.is-aspecto .tgc-escena { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 64px); z-index: 4; padding-block: 16px 14px; }
+.tgc.is-aspecto .tgc-escena { position: sticky; top: 64px; z-index: 4; padding-block: 16px 14px; }
 .tgc.is-aspecto .tgc-giro { display: block; width: auto; height: min(32vh, 272px); aspect-ratio: 320 / 784; transform-style: preserve-3d; transition: transform var(--t-slower) var(--ease-in-out); }
 .tgc.is-aspecto .tgc-giro.is-espalda { transform: rotateY(180deg); }
 .tgc.is-aspecto .tgc-fig { position: absolute; inset: 0; display: block; -webkit-backface-visibility: hidden; backface-visibility: hidden; }

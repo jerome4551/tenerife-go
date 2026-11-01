@@ -677,6 +677,29 @@ async function pestanas(b) {
   await pg.evaluate(() => { document.documentElement.style.fontSize = ''; setLang('es'); });
   await pg.setViewportSize({ width: 390, height: 844 }); await pg.waitForTimeout(200);
   ok(!Object.keys(partidos).length, 'p6d los nombres de las pestañas, enteros y dentro de su pestaña, a 320 y a 360 px con la letra del móvil a 1,3: en los diez idiomas', partidos);
+  /* el iPhone con isla dinamica (1 de noviembre de 2026): 59 px arriba, que el panel ya deja con su
+     padding-top. La cabecera se queda en ellos, sin sumarlos otra vez (antes bajaba a 118, y al
+     cambiar de pestaña desde abajo lo primero de la pestaña nueva quedaba escondido detras de la
+     barra). Chromium simula el margen (Emulation.setSafeAreaInsetsOverride). */
+  {
+    const c2 = await contexto(b, { viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }), p2 = await c2.newPage(), e2 = errores(p2);
+    const cdp = await c2.newCDPSession(p2);
+    let simula = true;
+    try { await cdp.send('Emulation.setSafeAreaInsetsOverride', { insets: { top: 59, topMax: 59, bottom: 34, bottomMax: 34, left: 0, leftMax: 0, right: 0, rightMax: 0 } }); } catch (e) { simula = false; }
+    if (simula) {
+      await abrirApp(p2, 'es'); await abrirPerfilYa(p2);
+      await p2.evaluate(() => TG_PERFIL.pestana('cuerpo')); await p2.waitForTimeout(200);
+      const r = s => p2.evaluate(s => { const x = document.querySelector(s).getBoundingClientRect(); return [Math.round(x.top), Math.round(x.bottom)]; }, s);
+      const arribaCab = await r('.tgp-top');
+      await p2.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 99999; }); await p2.waitForTimeout(200);
+      await p2.click('#tgp-tab-viaje'); await p2.waitForTimeout(250);
+      const cab = await r('.tgp-top'), barra = await r('#tgp-tabs');
+      const primera = await p2.evaluate(() => Math.round(document.getElementById('tgp-p-viaje').firstElementChild.getBoundingClientRect().top));
+      ok(Math.abs(arribaCab[0] - 59) <= 1 && Math.abs(cab[0] - 59) <= 1 && Math.abs(barra[0] - cab[1]) <= 2 && primera >= barra[1] && primera <= barra[1] + 30 && !e2.length,
+        'p6e en un iPhone con isla dinamica (59 px arriba): la cabecera justo debajo del margen; y al cambiar de pestaña desde abajo, la barra bajo la cabecera y la pestaña nueva justo debajo', { arribaCab, cab, barra, primera, errores: e2.slice(0, 2) });
+    } else ok(false, 'p6e Chromium simula el margen del iPhone (Emulation.setSafeAreaInsetsOverride)');
+    await c2.close();
+  }
   ok(!errs.length, 'p7 las pestañas, sin errores de pagina', errs.slice(0, 3));
   await ctx.close();
 }

@@ -1614,8 +1614,10 @@
     if (foco) { try { $('tgp-tab-' + p).focus({ preventScroll: true }); } catch (e) {} }
     /* si iba por debajo de la cabecera, la pestaña nueva empieza justo debajo de la barra */
     if (cambia && panel) {
-      var cab = panel.querySelector('.tgp-top'), h = $('tgp-hero');
-      var y = h.getBoundingClientRect().bottom - panel.getBoundingClientRect().top + panel.scrollTop + 14 - (cab ? cab.offsetHeight : 0);
+      /* arriba: el margen de la isla dinamica del iPhone (el padding-top del panel), donde se
+         pegan la cabecera y la barra */
+      var cab = panel.querySelector('.tgp-top'), h = $('tgp-hero'), arriba = parseFloat(getComputedStyle(panel).paddingTop) || 0;
+      var y = h.getBoundingClientRect().bottom - panel.getBoundingClientRect().top + panel.scrollTop + 14 - (cab ? cab.offsetHeight : 0) - arriba;
       if (panel.scrollTop > y) panel.scrollTop = Math.max(0, y);
     }
   }
@@ -1869,8 +1871,11 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp { max-width: 520px; margin: 0 auto; display: grid; gap: 14px; }
 
 /* ── cabecera fija (la misma barra que la app, en pequeño) ── */
+/* top: 0, y no el margen de la isla dinamica (1 de noviembre de 2026): #perfil-panel ya lo deja
+   con su padding-top, y lo pegado se mide desde ahi. Con los dos, en el iPhone la cabecera y la
+   barra de las pestañas bajaban 59 px de mas, con una franja vacia encima */
 .tgp-top {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  position: sticky; top: 0; z-index: 5;
   display: flex; align-items: center; gap: 10px; padding-block: 10px 8px;
   background: linear-gradient(var(--dark) 70%, transparent);
 }
@@ -1993,7 +1998,7 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 /* ── las pestañas: Viaje, Cuerpo y Cuenta, fijas debajo de la cabecera ── */
 /* top: justo debajo de la cabecera; --tgp-cab es su altura de verdad (medirCabecera).
    Opaca: lo que pasa por debajo no se transparenta */
-.tgp-tabs { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--tgp-cab, 56px)); z-index: 4; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border: 1px solid var(--border); border-radius: 16px; background: var(--dark); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+.tgp-tabs { position: sticky; top: var(--tgp-cab, 56px); z-index: 4; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border: 1px solid var(--border); border-radius: 16px; background: var(--dark); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
 /* el icono encima del nombre: el nombre tiene todo el ancho de la pestaña. Con el icono al
    lado, a 320 px «Пътуване» se partia, y con la letra del movil a 1,15 se partian seis
    nombres; asi, ninguno en los diez idiomas de 320 a 430 px hasta la letra a 1,3. La letra,

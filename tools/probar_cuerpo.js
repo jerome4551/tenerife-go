@@ -585,6 +585,38 @@ async function ejemplo(pg) {
     await idioma(pg, 'es');
   }
 
+  // 17. (la app) el iPhone con isla dinámica (1 de noviembre de 2026): 59 px arriba. El panel ya
+  //     los deja con su padding-top, y la cabecera, pegada, se queda en ellos sin sumarlos otra vez
+  //     (antes bajaba a 118 y tapaba «Músculos | Aspecto», con una franja vacía encima). Chromium
+  //     simula el margen (Emulation.setSafeAreaInsetsOverride).
+  {
+    const c7 = await b.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, serviceWorkers: 'block', locale: 'es-ES' });
+    await c7.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') ? r.continue() : r.abort());
+    await c7.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+    const p7 = await c7.newPage(); const e7 = []; vigilar(p7, e7);
+    const cdp7 = await c7.newCDPSession(p7);
+    let simula = true;
+    try { await cdp7.send('Emulation.setSafeAreaInsetsOverride', { insets: { top: 59, topMax: 59, bottom: 34, bottomMax: 34, left: 0, leftMax: 0, right: 0, rightMax: 0 } }); } catch (e) { simula = false; }
+    prueba('isla dinámica: Chromium simula el margen del iPhone (59 px arriba)', simula);
+    if (simula) {
+      await abrirApp(p7); await abrirPerfilCuerpo(p7); await tarjeta(p7); await p7.waitForTimeout(600);
+      const medir = () => p7.evaluate(() => { const r = s => { const x = document.querySelector(s).getBoundingClientRect(); return [Math.round(x.top), Math.round(x.bottom)]; };
+        return { margen: parseFloat(getComputedStyle(document.getElementById('cuerpo-panel')).paddingTop), cab: r('#cuerpo-panel .tgc-top'), modos: r('#cuerpo-panel .tgc-modos') }; });
+      const a7 = await medir();
+      prueba('isla dinámica: la cabecera, justo debajo del margen, y «Músculos | Aspecto» a la vista, debajo de ella', a7.margen === 59 && Math.abs(a7.cab[0] - 59) <= 1 && a7.modos[0] >= a7.cab[1], JSON.stringify(a7));
+      await p7.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop = 600; }); await p7.waitForTimeout(200);
+      const b7 = await medir();
+      prueba('isla dinámica: al bajar, la cabecera se queda pegada justo debajo del margen', Math.abs(b7.cab[0] - 59) <= 1, JSON.stringify(b7));
+      await p7.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop = 0; document.getElementById('tgc-modo-a').click(); }); await p7.waitForTimeout(500);
+      await p7.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop = 400; }); await p7.waitForTimeout(200);
+      const c7m = await p7.evaluate(() => { const t = document.querySelector('#cuerpo-panel .tgc-top').getBoundingClientRect(), e = document.querySelector('#cuerpo-panel .tgc-escena').getBoundingClientRect();
+        return { cab: [Math.round(t.top), Math.round(t.bottom)], escena: Math.round(e.top) }; });
+      prueba('isla dinámica: en «Aspecto», al bajar, el personaje se queda pegado bajo la cabecera, como sin isla (64 px por debajo del margen)', Math.abs(c7m.cab[0] - 59) <= 1 && Math.abs(c7m.escena - (59 + 64)) <= 1, JSON.stringify(c7m));
+    }
+    prueba('isla dinámica: sin errores de página', e7.length === 0, e7.join(' | '));
+    await c7.close();
+  }
+
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
   console.log('\n  ' + (ok + mal) + ' controles, ' + (mal ? mal + ' en rojo' : 'todos en verde'));
   await b.close();
