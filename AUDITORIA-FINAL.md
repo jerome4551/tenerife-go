@@ -4699,6 +4699,106 @@ de los avisos de AEMET, `baddc78`, que solo cambia `datos/avisos-aemet.json`):
 bicolor roja y amarilla. No tienen más fuente que la Orden. Vuelven solo si
 aparece una fuente vigente, y se busca si Jerome quiere.
 
+## El panel SOS, con la verificación de la sesión de «Su cuerpo»: calima, calor, DEA y atragantamiento (2 de noviembre)
+
+La sesión de «Su cuerpo» mandó el 1 de noviembre su entrega
+(`su-cuerpo-01-11.zip`). Trae un parche sobre `a1e83e9`, el `main` del 31 a las
+17:54. Ese parche no se aplica tal cual: desharía lo que entró después, como «Su
+cuerpo» dentro de la pestaña Cuerpo, el 3D, los arreglos del iPhone, las ocho
+decisiones y las banderas.
+
+Esa sesión pudo abrir las fuentes oficiales y sacó su cita literal. Sus notas
+`G5-sos-teide.md` y `G2-salud-urgencias.md` las traen, y un revisor
+independiente volvió a abrir las de los cambios de seguridad. Jerome había
+decidido allí algunos puntos de forma distinta que aquí. El 2 de noviembre
+eligió:
+
+- **Calor:** «30 minutos y 112».
+- **Calima:** «Su redacción».
+- **Banderas:** «Las seis, como el mapa».
+- **«Su cuerpo»:** «Lo uno yo aquí». Eso es la fase siguiente.
+
+Aquí va el panel SOS, con las traducciones de esa sesión, en los diez idiomas:
+
+| Qué | Antes | Ahora | Fuente | Commit |
+|---|---|---|---|---|
+| Calima (`sosCal7`) | «no haga ejercicio al aire libre y evite el ejercicio intenso» (a todos) | «no haga ejercicio físico intenso. Niños, mayores y personas con enfermedades respiratorias o del corazón: nada de ejercicio al aire libre» | Gobierno de Canarias («No realice ejercicio físico severo», a todos) y Sanidad de Canarias, 21-11-2025 («No realizar ejercicios físicos en el exterior», a las personas sensibles) | `49f8382` (en `main`, `3220f14`) |
+| Agotamiento por calor (`sosCalAgot`) | «si empeora o dura más de una hora, busque atención médica enseguida» | «si empeora, busque atención médica enseguida; si sigue mal tras 30 minutos así, llame al 112» | NHS, «Heat exhaustion and heatstroke» (revisado en 2026), fuente nueva `nhsCalor` | `a78b9a5` (en `main`, `3849497`) |
+| Reanimación | el DEA, el último paso | el DEA, justo detrás de la llamada | RCUK y ERC 2025 | `2326bc8` (en `main`, `ffd9b1b`) |
+| Atragantamiento de bebés y niños | solo «llame enseguida al 112» | más tres líneas: bebé, niño y reanimación con 5 insuflaciones | RCUK 2025, dos fuentes nuevas (`rcukAtragNinos`, `rcukPediatrico`) | `85c8cf5` (en `main`, `af1115b`) |
+| «Revisado el…» (`SOS_REVISADO`) | 22 de octubre | 1 de noviembre | lo pide el vigía cuando cambia una fila con su fuente | `6d954f5` (en `main`, `e6a5ab3`) |
+
+**Cómo se comprobó:**
+
+- Desde aquí solo se pudo cotejar palabra por palabra la página de la calima
+  del Gobierno de Canarias, porque la guarda el vigía. Dice «No realice
+  ejercicio físico severo mientras dure esta situación», para todos.
+- Lo demás va con las citas literales de esa sesión. Su revisión
+  independiente confirma la frase de Sanidad sobre las personas sensibles,
+  «como niños, ancianos y personas con enfermedades respiratorias o
+  cardiovasculares crónicas».
+- La red de esta sesión no deja abrir esas webs.
+
+**Lo que no cambia:**
+
+- Las banderas, que siguen siendo las seis de la leyenda del mapa. Esa
+  sesión dejaba tres y «Amarilla: precaución», porque no conocía la
+  leyenda.
+- El alemán, con «Krampfanfälle», como se publicó el 1 de noviembre.
+- La FAQ del Teide, publicada el 1 de noviembre con otras palabras pero lo
+  mismo. Esa sesión ponía «ya a unos 3.000 m, casi un tercio menos» (CDC) y
+  «se rinde menos que abajo».
+- La corriente de resaca (`sosPla2`), como decidió Jerome en las dos
+  sesiones.
+
+**Una corrección a lo de ayer.** En el apartado de las ocho decisiones se dejó
+`SOS_REVISADO` en el 22 de octubre, «por ser correcciones sueltas». No era lo
+que pide el vigía. Ahora lleva el 1 de noviembre, y la cabecera del módulo lo
+cuenta en un párrafo «REVISADO».
+
+**Las cifras:**
+
+- `auditar_emergencias.js`, 39 de 39.
+- `probar_emergencias.js`, 261 de 261.
+- `vigia_sos.py --probar`, en verde.
+- Los controles rápidos, en verde: `castellano_suelto.js`,
+  `auditar_letras.js`, `auditar_frases.js`, `auditar_claves_tx.js` y
+  `auditar_cirilico.py` (2.309 nombres propios, ninguna variante
+  sospechosa).
+- Las filas de idiomas, seis más: 3186 y 5.333, en el título de «Idiomas».
+  Cada commit lleva la suya, comprobada con `barrido_idiomas.js`.
+- Mirado en el navegador, a 390 px, en castellano y alemán: «Primeros
+  auxilios» y «Calor y calima».
+
+**La auditoría entera**, sobre `6d954f5` (en `main`, `e6a5ab3`, encima de diez
+commits de los robots, que solo cambian sus ficheros de datos: los avisos de
+AEMET, las alertas, los terremotos, las gasolineras y el vigía, que en su pasada
+de las 16:37 ya quitó de su fichero el decreto y la Orden), sale en verde salvo
+un bloque: `auditar_cielo.js`, con 1 control en rojo de 307. Ese rojo ya estaba
+en `main` y no es de estos commits.
+
+- **Qué falla.** El control recalcula aparte los pases de satélites y los
+  compara con los de la app. En el del Hubble del 6 de noviembre, el final
+  sale a las 19:33:11 en el recálculo y a las 19:33:27 en la app: 16 segundos,
+  y el margen es de 10.
+- **De dónde viene.** El control pone el reloj de la página a las 18:00 UTC
+  del día siguiente a la época más nueva de `datos/satelites.json`, así que
+  solo depende de esos datos. Los bajó el robot el 2 de noviembre
+  (`4ef5cc4`, época 03:46 UTC).
+- **Comprobado.** `auditar_cielo.js` sobre `4ef5cc4`, sin estos commits, da el
+  mismo rojo, con el mismo paso y los mismos segundos. Estos commits solo
+  tocan `modulos/emergencias.js` y este documento.
+- **Ningún otro control en rojo ni sin ejecutar.**
+- **Jerome, el 2 de noviembre:** «Publicar ya».
+
+**Lo que queda:**
+
+- El paso del Hubble del 6 de noviembre: averiguar quién tiene razón en esos 16
+  segundos, la app o el recálculo del control.
+- «Su cuerpo», la segunda fase: su módulo nuevo con lo publicado.
+- Las copias de estas frases en las respuestas del asistente de «Su cuerpo»
+  van con su módulo.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
