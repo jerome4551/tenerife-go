@@ -2,8 +2,13 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-02T06:55:32Z",
+ "consultado": "2026-11-02T08:24:16Z",
  "alertas": [
+  {
+   "t": "2026-11-02T07:49:18Z",
+   "titulo": "El Gobierno de Canarias activa el PLATECA en situación de alerta por cero energético en La Palma",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-activa-el-plateca-en-situacion-de-alerta-por-cero-energetico-en-la-palma-2/"
+  },
   {
    "t": "2026-11-02T02:59:58Z",
    "titulo": "El Gobierno de Canarias declara la Alerta Máxima por lluvias en La Palma",
@@ -58,11 +63,6 @@
    "t": "2026-10-21T13:15:11Z",
    "titulo": "El Gobierno de Canarias actualiza la situación y declara alerta por lluvias en El Hierro, La Gomera y La Palma",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-y-declara-alerta-por-lluvias-en-el-hierro-la-gomera-y-la-palma/"
-  },
-  {
-   "t": "2026-10-21T06:29:27Z",
-   "titulo": "El Gobierno de Canarias actualiza la situación, pasando a prealerta por lluvias en todo el archipiélago",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-pasando-a-prealerta-por-lluvias-en-todo-el-archipielago-3/"
   }
  ],
  "descartados": 0
