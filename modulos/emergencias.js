@@ -843,7 +843,7 @@
        encuentra mal (Consejo Europeo de Resucitacion, 2025) */
     { id: 'auxilios', t: 'sosGuiaAuxilios', ico: 'auxilios', grupo: 'hacer', sub: 'salud',
       b: [{ p: 'sosAuxIntro' },
-          { h: 'sosAuxRcpT' }, { pasos: ['sosAux1', 'sosAux2', 'sosAux3', 'sosAux4'] },
+          { h: 'sosAuxRcpT' }, { pasos: ['sosAux1', 'sosAux4', 'sosAux2', 'sosAux3'] },
           { nota: 'sosAuxCinco' },
           { h: 'sosAuxLadoT' }, { lista: ['sosAux5', 'sosAux14', 'sosAux6'] },
           { h: 'sosAuxAtragT' }, { lista: ['sosAux7', 'sosAux8', 'sosAux15', 'sosAux9', 'sosAux16'] },
