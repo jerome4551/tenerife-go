@@ -26,6 +26,15 @@
    extranjero, la guia de Proteccion Civil de 2025). Si una fuente cambia, el
    vigia (tools/vigia_sos.py) avisa.
 
+   REVISADO (1 de noviembre de 2026). Con la verificacion en linea de la
+   sesion de «Su cuerpo» (cita literal de cada fuente) y lo que decidio
+   Jerome: la calima (ejercicio intenso, para todos; al aire libre, nada para
+   los sensibles), el agotamiento por calor (a los 30 minutos, el 112, como el
+   NHS), el DEA justo detras de la llamada y el atragantamiento de bebes y
+   ninos (RCUK 2025); las banderas, las seis de la leyenda del mapa; y nada
+   del Decreto 116/2018 ni de su Orden de 2022. SOS_REVISADO lleva esa fecha,
+   como pide el vigia cuando cambia una fila con su fuente.
+
    «LA APP ATENTA» (Jerome, 22 de octubre de 2026: «no la enviamos pero
    guardamos la app atenta»). Sin notificaciones: lo que dicen las fuentes
    oficiales se ve aqui, con su fecha.
@@ -61,7 +70,7 @@
 (function () {
   'use strict';
 
-  var SOS_REVISADO = '2026-10-22';
+  var SOS_REVISADO = '2026-11-01';
   var ZONA = 'Atlantic/Canary';
   /* SIN-TRADUCIR: SOS_LOCALE codigos de idioma para Intl (fechas, horas y numeros), no textos */
   var SOS_LOCALE = {"es": "es-ES", "en": "en-GB", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "nl": "nl-NL", "zh": "zh-CN", "zht": "zh-TW", "bg": "bg-BG", "pl": "pl-PL"};
