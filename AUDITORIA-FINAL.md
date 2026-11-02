@@ -6540,7 +6540,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3180 filas (y 5.327 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3181 filas (y 5.328 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -6643,7 +6643,8 @@ filas en `EMERG_UI` (la negra, la naranja, la morada y su fuente) y salen cinco
 (la púrpura, la de cuadros, las dos rojas, la bicolor y la nota de la púrpura
 de las picaduras): 3182 filas y 5.329. Y salen los títulos de las dos fuentes
 de la norma anulada, el Decreto 116/2018 y la Orden de 2022: 3180 filas y
-5.327. El
+5.327. El 2 de noviembre, el título de la fuente nueva del agotamiento por
+calor (el NHS), una más en `EMERG_UI`: 3181 filas y 5.328. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
