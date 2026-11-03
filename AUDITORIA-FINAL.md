@@ -5111,6 +5111,72 @@ límite es 8.
 - Para la sesión de «Su cuerpo», lo del apartado anterior: la calima,
   «Ice cream maker» y los tres nombres de deporte.
 
+## La prueba del 3D, que fallaba a ratos: el pellizco y la bienvenida (3 de noviembre, noche)
+
+Jerome, el 3 de noviembre: «Publicar y mirar el 3D aparte». Era
+`auditar_isla3d.js`, que a veces salía en rojo, de dos maneras. La del pellizco
+era de la prueba. La de la bienvenida no se ha podido repetir. Las dos se
+arreglan en la prueba, y la app no cambia.
+
+**El pellizco** (`b69e999`; en `main`, `03cc5ff`). «Al soltar el pellizco, la
+vista no se mueve» dio 10,6 m, y el límite es 8.
+
+- La prueba medía desde fuera el suelo bajo el punto entre los dedos, 16 ms
+  después del último toque.
+- Pero CDP, el protocolo con el que la prueba mueve los dedos, manda un evento
+  por cada dedo que cambia, y Chromium los entrega con los cuadros. A veces la
+  página iba un paso atrás, o había visto un dedo y no el otro.
+- Con un dedo en su sitio y el otro un paso atrás, el punto entre los dos está
+  2 px corrido. Con la cámara a unos 6.300 m, son 10,6 m: el número de la
+  auditoría.
+- Ahora se mide dentro de la página, en el evento en que el último dedo llega a
+  su sitio, después del módulo. Antes de seguir, la prueba espera a que el
+  gesto haya llegado entero: medido y soltado. Si no llega, lo dice.
+- **Al revés.** El último paso del pellizco, dedo a dedo. Medido entre los dos,
+  como antes, da 10,6 m las cuatro veces; medido como ahora, 0,0 m. Sin
+  forzarlo, en 2 de 11 pellizcos la medida de antes se tomó con los dos dedos
+  un paso atrás.
+- Es la prueba y no la app: medido dentro de la página, el punto no se mueve
+  al soltar (0,0 m).
+
+**La bienvenida** (`9d16f7e`; en `main`, `0298161`). En una de las tres pasadas
+de después, la bienvenida tapó el botón «3D» durante 30 s, y la prueba se cayó.
+
+- `bienvenida()` miraba una sola vez si se veía la bienvenida y, si no,
+  seguía.
+- No se ha vuelto a ver en 110 aperturas: 80 con el procesador ocupado y 30
+  justo después de cerrar un 3D de noche, como en la pasada que falló. No se
+  sabe por qué pasó.
+- Ahora se espera a que salga y, después de «Empezar», a que se vaya de
+  verdad. Si «Empezar» no hizo nada, se toca otra vez, como haría cualquiera,
+  y queda apuntado cómo estaba la página y cuántas veces se había cargado. Si
+  tampoco se va, la prueba se para ahí y lo dice.
+- La pregunta del tour se espera, y se comprueba que «Ahora no» la quita.
+- **Al revés**, con la de antes y la de ahora:
+  - normal: las dos, bien;
+  - la página se recarga al abrir: la de antes se cae; la de ahora sigue;
+  - el primer «Empezar» no hace nada: la de antes deja la bienvenida tapando
+    el botón «3D», como el 3 de noviembre; la de ahora lo apunta y sigue;
+  - «Empezar» no hace nada nunca: la de antes, lo mismo; la de ahora se para
+    y dice cómo estaba la página.
+
+**Las pasadas.** `auditar_isla3d.js`, con los dos cambios, cuatro veces
+seguidas: 58 de 58 cada vez, con el pellizco a 0,0 m y sin ningún aviso de la
+bienvenida.
+
+**La auditoría entera**, sobre `9d16f7e` (árbol `13bf4455`): «AUDITORIA EN
+VERDE», sin ningún control en rojo ni sin ejecutar.
+
+- El 3D, 58 de 58, con el pellizco a 0,0 m.
+- Los demás, como antes: el cielo, 307; el perfil, 74 y 142; «Su cuerpo», 235;
+  el SOS, 39 y 261.
+- En `main` van `03cc5ff` y `0298161`, con los mismos parches, encima de dos
+  commits más de los robots (el boletín del INVOLCAN y las alertas del Gobierno
+  de Canarias), que solo cambian sus dos ficheros de datos.
+
+**Lo que queda:** del 3D, nada. Si la prueba vuelve a apuntar que la
+bienvenida no se fue con el primer toque, mirar cómo estaba la página.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
