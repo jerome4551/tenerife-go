@@ -40,7 +40,8 @@
  *     «Reintentar» (18b). Y sin navegador (19): las respuestas y las guias que citan un texto de
  *     la pantalla, y la politica de privacidad que cita el boton de borrar, lo citan tal cual, en
  *     los diez idiomas. Y al bajar por la pestaña, la cabecera y las pestañas del perfil quedan
- *     encima de «Su cuerpo», en sus cuatro modos (20).
+ *     encima de «Su cuerpo», en sus cuatro modos, y por las esquinas de arriba de la barra pegada
+ *     no asoma lo de debajo (20).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -984,6 +985,27 @@ async function ejemplo(pg) {
       }
     }
     prueba('al bajar, la cabecera y las pestañas del perfil quedan encima de «Su cuerpo», en los cuatro modos', malos.length === 0, malos.slice(0, 4).join(' · '));
+    /* y las dos esquinas de arriba de la barra, pegada: por fuera de su curva se ve el fondo de la
+       cabecera, no lo que pasa por debajo (3 de noviembre de 2026: asomaba el borde del personaje
+       en pequeño). Se mira en los pixeles de una captura: esos recortes no reciben toques */
+    await p10.click('#tgc-modo-m'); await p10.waitForTimeout(250);
+    await p10.evaluate(() => { const pp = document.getElementById('perfil-panel'), cab = pp.querySelector('.tgp-top'), top = document.querySelector('#cuerpo-panel .tgc-top');
+      pp.scrollTop += top.getBoundingClientRect().top - (cab.getBoundingClientRect().top + 40); });
+    await p10.waitForTimeout(300);
+    const geo = await p10.evaluate(() => { const t = document.getElementById('tgp-tabs').getBoundingClientRect();
+      return { x: t.left, y: t.top, r: t.right, pegada: document.getElementById('perfil-panel').classList.contains('tgp-con-barra'),
+        fondo: getComputedStyle(document.documentElement).getPropertyValue('--dark').trim() }; });
+    const y0 = Math.floor(geo.y), png = await p10.screenshot({ clip: { x: 0, y: y0, width: 390, height: 4 } });
+    const px = await p10.evaluate(async ([b64, puntos]) => {
+      const img = new Image(); img.src = 'data:image/png;base64,' + b64; await img.decode();
+      const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+      const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+      return puntos.map(([x, y]) => Array.from(g.getImageData(x, y, 1, 1).data.slice(0, 3)));
+    }, [png.toString('base64'), [[Math.round(geo.x + 1), Math.round(geo.y - y0 + 1)], [Math.round(geo.r - 2), Math.round(geo.y - y0 + 1)]]]);
+    const hex = (geo.fondo.match(/^#([0-9a-f]{6})$/i) || [])[1], fondo = hex ? [0, 2, 4].map(i => parseInt(hex.slice(i, i + 2), 16)) : null;
+    const igual = p => fondo && p.every((v, i) => Math.abs(v - fondo[i]) <= 6);
+    prueba('con la barra pegada, por fuera de la curva de sus dos esquinas de arriba se ve el fondo de la cabecera (' + geo.fondo + '), no lo que pasa por debajo',
+      geo.pegada && px.length === 2 && px.every(igual), JSON.stringify({ geo, px }));
     prueba('…sin errores de página', e10.length === 0, e10.join(' | '));
     await c10.close();
   }

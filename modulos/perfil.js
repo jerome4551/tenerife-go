@@ -2056,6 +2056,16 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 /* con la barra pegada arriba, la cabecera va entera, sin su degradado de abajo: por esa
    franja se veia pasar lo de debajo, entre el titulo y la barra (marcarBarra) */
 #perfil-panel.tgp-con-barra .tgp-top { background: var(--dark); }
+/* y las dos esquinas de arriba de la barra (3 de noviembre de 2026; Jerome: «Arregla la esquina de
+   la barra»): la barra es redondeada (16 px), y con ella pegada, por fuera de la curva de cada
+   esquina se veia pasar lo de debajo (en la pestaña Cuerpo, una punta dorada del personaje). La
+   cabecera, que va encima, las tapa con dos cuadrados de su fondo recortados por la misma curva:
+   la barra no cambia, y abajo, donde sigue lo de debajo, se queda como esta */
+#perfil-panel.tgp-con-barra .tgp-top::before, #perfil-panel.tgp-con-barra .tgp-top::after {
+  content: ""; position: absolute; top: 100%; width: 16px; height: 16px; pointer-events: none;
+}
+#perfil-panel.tgp-con-barra .tgp-top::before { left: 0; background: radial-gradient(circle at 100% 100%, transparent 15.5px, var(--dark) 16px); }
+#perfil-panel.tgp-con-barra .tgp-top::after { right: 0; background: radial-gradient(circle at 0 100%, transparent 15.5px, var(--dark) 16px); }
 /* la franja de la hora y la bateria en el iPhone (1 de noviembre de 2026): con la barra de estado
    translucida (black-translucent, en index.html), lo que sube al desplazar se veia pasar por debajo
    de la hora. Una franja del color de la cabecera, del alto de ese margen: 0 sin isla ni muesca,
