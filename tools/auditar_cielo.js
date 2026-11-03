@@ -2214,12 +2214,17 @@ async function satelites(b) {
     if (x.crepFin && !(x.altFin >= 10 && Math.abs(x.solObsFin + 6) < 0.1)) malPaso.push(q + ': «se pierde en el amanecer» sin el Sol a −6° (' + x.solObsFin.toFixed(2) + ')');
     if (x.desdeSombra && !(x.altIni >= 10 && x.solIni)) malPaso.push(q + ': sale de la sombra pero no esta al Sol y arriba');
     if (x.aSombra && !(x.altFin >= 10 && x.solFin)) malPaso.push(q + ': entra en la sombra pero no esta al Sol y arriba');
+    /* y al Sol en la aparicion y en la desaparicion de todos, tambien de los que
+       aparecen o se pierden a 10 grados: entre la ultima muestra y los 10 grados
+       puede entrar en la sombra (Hubble, 6-11-2026: en la umbra desde las
+       19:33:17, y se daba hasta las 19:33:27, a 10 grados) */
+    if (!(x.solIni && x.solFin)) malPaso.push(q + ': en la aparicion o en la desaparicion no esta al Sol');
     if (!(x.solMax && x.sombraMax < 1)) malPaso.push(q + ': en el maximo no esta al Sol');
     if (!(x.solObsIni < -5.95 && x.solObsFin < -5.95 && x.solObsMax < -6)) malPaso.push(q + ': el Sol del observador no esta bajo −6°');
     if (i && x.max < r.pasos[i - 1].max) malPaso.push(q + ': desordenado');
     if (x.fin < r.ahora - 3600000) malPaso.push(q + ': ya pasado');
   });
-  ok(!malPaso.length, 'cada paso cumple la regla: aparece y se pierde a 10° (o en la sombra de la Tierra), el maximo es el mas alto, el satelite al Sol y el Sol del Teide bajo −6°, en orden y por venir', malPaso.slice(0, 4).join(' · '));
+  ok(!malPaso.length, 'cada paso cumple la regla: aparece y se pierde a 10° (o en la sombra de la Tierra), el maximo es el mas alto, el satelite al Sol en la aparicion, el maximo y la desaparicion, y el Sol del Teide bajo −6°, en orden y por venir', malPaso.slice(0, 4).join(' · '));
   /* la lista entera, recalculada aparte */
   const cruce = pasosAparte(T0, r.pasos);
   ok(!cruce.mal.length, 'recalculados aqui aparte (GMST y Sol de Astronomy Engine, ECEF y acimut/altura a mano, umbra cilindrica): los mismos ' + r.pasos.length + ' pasos a ±10 s y ±1,5° en el maximo (' + cruce.n + ' de los de aqui con mas de un minuto, todos en la app); acimut y altura en cada maximo a ' + cruce.peor.toFixed(3) + '°', cruce.mal.slice(0, 4).join(' · '));

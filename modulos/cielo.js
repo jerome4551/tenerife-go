@@ -5224,16 +5224,27 @@
   }
   function pasosSat(s, ini, fin) {
     var out = [], tramo = [], t, x;
-    var arriba = function (ms) { var y = dondeSat(s, new Date(ms), true); return !!y && y.alt >= SAT_MIN_ALT; };
     var visible = function (ms) { var y = dondeSat(s, new Date(ms), true); return !!y && y.alt >= SAT_MIN_ALT && y.sol; };
+    var enSombra = function (ms) { var y = dondeSat(s, new Date(ms), true); return !!y && y.alt >= SAT_MIN_ALT && !y.sol; };
     function cerrar() {
       var m = tramo; tramo = [];
       var i0 = -1, i1 = -1;
       for (var i = 0; i < m.length; i++) if (m[i].x.sol) { if (i0 < 0) i0 = i; i1 = i; }
       if (i0 < 0) return;
       var desdeSombra = i0 > 0, aSombra = i1 < m.length - 1;
-      var tIni = Math.max(ini, desdeSombra ? afinar(m[i0].t, m[i0 - 1].t, visible) : afinar(m[0].t, m[0].t - SAT_PASO_MS, arriba));
-      var tFin = Math.min(fin, aSombra ? afinar(m[i1].t, m[i1 + 1].t, visible) : afinar(m[m.length - 1].t, m[m.length - 1].t + SAT_PASO_MS, arriba));
+      /* los dos bordes se afinan siempre con lo que se ve (arriba y al Sol): entre
+         los 10 grados y la primera muestra puede salir de la sombra, y entre la
+         ultima muestra y los 10 grados puede entrar en ella. Si junto al borde
+         sigue arriba pero en la sombra, el paso empieza o acaba ahi. Antes ese
+         tramo se afinaba solo con la altura: el Hubble, el 6 de noviembre de
+         2026, entra en la umbra a las 19:33:17 y no baja de 10 grados hasta las
+         19:33:27, y se daba esa, con el satelite ya en la sombra (lo vio
+         tools/auditar_cielo.js, parte 11) */
+      var a0 = afinar(m[i0].t, desdeSombra ? m[i0 - 1].t : m[0].t - SAT_PASO_MS, visible);
+      var a1 = afinar(m[i1].t, aSombra ? m[i1 + 1].t : m[m.length - 1].t + SAT_PASO_MS, visible);
+      if (!desdeSombra && enSombra(a0 - 1000)) desdeSombra = true;
+      if (!aSombra && enSombra(a1 + 1000)) aSombra = true;
+      var tIni = Math.max(ini, a0), tFin = Math.min(fin, a1);
       /* el punto mas alto, a un segundo, alrededor de la muestra mas alta */
       var mej = m[i0]; for (var j = i0; j <= i1; j++) if (m[j].x.alt > mej.x.alt) mej = m[j];
       var tMax = mej.t, altMax = mej.x.alt;
