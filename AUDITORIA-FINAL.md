@@ -4799,6 +4799,75 @@ en `main` y no es de estos commits.
 - Las copias de estas frases en las respuestas del asistente de «Su cuerpo»
   van con su módulo.
 
+## Los pases de satélites: el final, al entrar en la sombra, aunque sea cerca de los 10° (3 de noviembre)
+
+Es el rojo que dejó apuntado el apartado anterior (`378ac7c`, en `main`
+`ccccb49`). Ya no está: tenía razón el control, y lo que fallaba era la app.
+
+**Qué pasaba.**
+
+- La app busca los pases con una muestra cada 20 segundos y afina los
+  bordes.
+- Los dos extremos, de los 10 grados a la primera muestra y de la última
+  muestra a los 10 grados, los afinaba solo con la altura.
+- Si el satélite salía de la sombra o entraba en ella dentro de esos 20
+  segundos, no se veía. El paso empezaba o acababa a 10 grados con el
+  satélite en la sombra.
+
+**El caso.** El Hubble, el 6 de noviembre de 2026, con los elementos del robot
+del 2 de noviembre (`4ef5cc4`). Fuera de la app, con Astronomy Engine y SGP4, se
+calculó cuándo entra en cada sombra:
+
+| Sombra | Entra | Altura |
+|---|---|---|
+| Penumbra (el Sol empieza a taparse) | 19:33:06,8 | 11,8° |
+| Cilindro del radio de la Tierra (el recálculo del control) | 19:33:11,9 | 11,4° |
+| Umbra en cono (la de la app, `satellite.shadowFraction`) | 19:33:17,0 | 10,9° |
+| Baja de 10 grados | 19:33:27 | 10,0° |
+
+La app daba las 19:33:27, «se pierde a 10°», con 10 segundos en la sombra. El
+control, que recalcula aparte con el cilindro, sacaba las 19:33:11: 16 segundos,
+con un margen de 10. Con el arreglo, la app da las 19:33:16 y «Entra en la
+sombra de la Tierra», a 10,9°, a 5 segundos del cilindro.
+
+**El arreglo**, en `modulos/cielo.js`:
+
+- Los dos bordes se afinan siempre con «se ve», es decir, arriba y al Sol.
+- Si junto al borde el satélite sigue arriba pero en la sombra, el paso sale
+  o entra en la sombra ahí.
+
+**El control**, en `tools/auditar_cielo.js` (parte 11), tiene una regla nueva.
+El satélite tiene que estar al Sol en la aparición y en la desaparición de todos
+los pases, y no solo de los que salen o entran en la sombra. La regla no depende
+del margen del cruce, así que lo pilla siempre.
+
+**Probado:**
+
+- Al revés: con la app de antes, la regla nueva y el cruce salen en rojo en
+  ese paso.
+- Con el arreglo, `auditar_cielo.js` da 307 de 307.
+
+**La auditoría entera**, sobre `378ac7c` (en `main`, `ccccb49`, encima de cinco
+commits de los robots, que solo cambian sus ficheros de datos; uno trae
+elementos nuevos de los satélites (`d7b16b6`), y con ellos `auditar_cielo.js`
+sobre `ccccb49` vuelve a dar 307 de 307): «AUDITORIA EN VERDE», ningún control
+en rojo ni sin ejecutar. Se pasó en dos trozos, sobre el mismo árbol
+(`ee618552`).
+
+- **Por qué en dos trozos.** El contenedor de la sesión se reinició tres
+  veces a mitad de la auditoría, el 3 de noviembre hacia las 01:05, las 02:14
+  y las 04:15 UTC, y se llevó la vuelta en curso.
+- **No era la auditoría.** Un registro de la memoria cada 20 segundos daba
+  15 GB libres hasta el último momento, y el contenedor no tiene límite de
+  memoria. Además, el barrido de pantallas, pasado solo, terminó bien.
+- **El primer trozo** es la tercera vuelta, hasta `probar_fechas_oro.js`. Lleva
+  el barrido de pantallas (0 fallos y 0 errores de página), el tour, el cielo
+  (307 de 307) y `auditar_perfil.js` (74).
+- **El segundo** va de `probar_perfil.js` al final. Se pasó con una copia de
+  `tools/auditar.sh` que solo quita lo ya pasado (`diff` igual al original
+  desde esa línea). Da `probar_perfil.js` 142, `probar_cuerpo.js` 209, la isla
+  en 3D, el SOS (39 y 261) y los robots, todo en verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
