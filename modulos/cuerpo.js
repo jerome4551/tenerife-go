@@ -3454,10 +3454,15 @@
   font-size: .88rem; text-align: start; line-height: 1.3; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
 }
 .tgc-chip-preg:hover { border-color: var(--gold); background: rgba(212,175,55,0.12); }
+/* La pregunta, al final de la charla y quieta (3 de noviembre de 2026; Jerome, con una captura
+   del iPhone: «cuando sube la página por arriba sigue subiendo con la persona»). Iba pegada abajo
+   (sticky), y lo pegado se mide desde dentro del margen de abajo del panel que se desplaza: en el
+   perfil, 24 px más la barra de inicio. Con sus 8 px y la barra de inicio otra vez, flotaba unos
+   100 px por encima del borde, encima de las respuestas, y las seguía al subir. */
 .tgc-preg {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center;
-  position: sticky; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); z-index: 3; padding: 8px; margin: 0 -8px; border-radius: 16px;
-  background: var(--panel); box-shadow: 0 -8px 20px -12px rgba(0,0,0,0.6);
+  padding: 8px; margin: 0 -8px; border-radius: 16px;
+  background: var(--panel);
 }
 .tgc-preg input {
   width: 100%; min-height: 46px; padding: 0 14px; border-radius: 12px; border: 1px solid rgba(240,236,228,0.18); background: var(--dark);

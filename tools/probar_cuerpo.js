@@ -810,6 +810,23 @@ async function ejemplo(pg) {
       return { urg: !!(t && t.querySelector('.tgc-resp.es-urgente')), tel: !!(t && t.querySelector('a[href="tel:112"]')) }; });
     prueba('una urgencia («' + URG.q + '»): la respuesta de urgencia, con el 112 para llamar', u18.urg && u18.tel, JSON.stringify(u18));
 
+    // la barra de la pregunta, quieta al final de la charla (3 de noviembre de 2026; Jerome, con una
+    // captura del iPhone: «cuando sube la página por arriba sigue subiendo con la persona»). Iba pegada
+    // abajo y, con el margen del perfil sumado, flotaba encima de las respuestas. Se mira con el final de
+    // la charla a media pantalla (la barra, a la vista) y con la charla vista desde arriba: la barra no se
+    // separa de la charla, y desde arriba no tapa nada
+    const barra = desde => p8.evaluate(d => {
+      const pn = document.getElementById('perfil-panel'), ch = document.getElementById('tgc-charla'), f = document.getElementById('tgc-preg-form');
+      if (d === 'abajo') pn.scrollTop += ch.getBoundingClientRect().bottom - innerHeight / 2;
+      else pn.scrollTop += ch.getBoundingClientRect().top - 150;
+      const c = ch.getBoundingClientRect(), q = f.getBoundingClientRect();
+      return { pos: getComputedStyle(f).position, hueco: Math.round(q.top - c.bottom), barra: Math.round(q.top), charlaAbajo: Math.round(c.bottom), alto: innerHeight };
+    }, desde);
+    const v1 = await barra('abajo'); await p8.waitForTimeout(150);
+    const v2 = await barra('arriba'); await p8.waitForTimeout(150);
+    prueba('la barra de la pregunta no sigue al desplazarse: quieta al final de la charla, a la vista y con la charla vista desde arriba, y desde arriba no tapa las respuestas',
+      v1.pos === 'static' && v2.pos === 'static' && v1.barra > 0 && v1.barra < v1.alto && v2.charlaAbajo > v2.alto + 40 && v1.hueco === v2.hueco && v2.barra > v2.alto, JSON.stringify({ v1, v2 }));
+
     // el panel SOS encima, desde el enlace de una respuesta: su «atrás» y su Escape lo cierran a él solo
     await preguntar(CON_SOS.q);
     const guia = CON_SOS.links.find(l => l.sos).sos;
