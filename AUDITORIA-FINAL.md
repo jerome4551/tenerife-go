@@ -5177,6 +5177,98 @@ VERDE», sin ningún control en rojo ni sin ejecutar.
 **Lo que queda:** del 3D, nada. Si la prueba vuelve a apuntar que la
 bienvenida no se fue con el primer toque, mirar cómo estaba la página.
 
+## En el iPhone: la fecha y las casillas del perfil, y la barra de la pregunta de «Su cuerpo» (3 de noviembre, noche)
+
+Jerome mandó dos capturas del iPhone: «En la parte donde poner su peso y su
+edad se superponen mira la foto» y «El otro enviar pregunta cuando sube la
+página por arriba sigue subiendo con la persona».
+
+**La fecha y las casillas del perfil** (`358618b`; en `main`, `2fb7be4`).
+
+- En «Su evolución», la fecha se montaba en la casilla de al lado, en peso y
+  en kilómetros. Con su aspecto de serie, Safari en el iPhone le pone un ancho
+  mínimo suyo, mayor que su columna. Está en el código de WebKit:
+  `RenderThemeIOS::adjustMinimumIntrinsicSizeForAppearance`.
+- Con `appearance: none` ese ancho no se aplica, porque
+  `RenderTheme::adjustStyle` sale antes. La fecha sigue abriendo el calendario
+  del sistema, y va a la izquierda, como el texto de las otras casillas.
+- En «Sus datos», «Año de nacimiento» ocupa dos líneas, y su casilla quedaba
+  11 px más baja que las otras dos. Ahora las casillas toman las mismas filas
+  de la rejilla (subgrid), y el rótulo corto baja junto a su casilla. En
+  Safari antes del 16, como antes.
+- **Aquí no hay un iPhone.** Chromium no le pone ese ancho mínimo a la fecha,
+  así que aquí no se ve montarse. Lo que respalda el arreglo es el código de
+  WebKit, y la prueba mira que la fecha va sin el aspecto de serie. Falta
+  verlo en el iPhone.
+- **`probar_perfil.js`**, p10 y p11, a 360, 390 y 430 px y en los diez
+  idiomas: las casillas de una misma fila, a la misma altura; y la fecha, sin
+  el aspecto de serie y sin montarse en la de al lado. Pasa de 142 a 148
+  controles.
+- **Al revés**, con el perfil de antes, 5 en rojo:
+  - p10, a 390 px (castellano, francés, italiano y búlgaro) y a 430
+    (castellano, francés y búlgaro): la casilla del año, 11 px más baja. A
+    360 px sale en verde también al revés, porque ahí el año va solo en su
+    fila.
+  - p11, a los tres anchos: la fecha, con el aspecto `auto`.
+
+**La barra de la pregunta** (`e996332`; en `main`, `8b29226`).
+
+- Iba pegada abajo (`position: sticky`), y lo pegado se mide desde dentro del
+  margen de abajo del panel que se desplaza. En el perfil son 24 px más la
+  barra de inicio del iPhone. Con sus 8 px y la barra de inicio otra vez,
+  flotaba 100 px por encima del borde, encima de las respuestas, y las seguía
+  al subir.
+- Simulado aquí con los márgenes del iPhone (59 px arriba y 34 abajo), la
+  barra sale a 100 px justos del borde, como en la captura.
+- Ahora se queda al final de la charla. Para preguntar otra cosa, se baja
+  hasta ella o se toca una de las preguntas de debajo de cada respuesta. Si se
+  prefiere fija abajo del todo, como en una app de mensajes, es otra regla.
+- **En el fuente de «Su cuerpo»** (`src/estilos.css`), rehecho con su
+  `construir.py`. El módulo cambia solo en esa regla, y los 31 ficheros de
+  `datos/cuerpo/` salen iguales. Sin el cambio, `construir.py` da byte a byte
+  el módulo publicado.
+- **`probar_cuerpo.js`**, un control nuevo (pasa de 235 a 236). Con el final
+  de la charla a media pantalla y con la charla vista desde arriba, la barra
+  no se separa de la charla y, desde arriba, no tapa nada. Al revés, con el
+  módulo publicado, en rojo: vista desde arriba, la barra se queda pegada a
+  750 px, encima de las respuestas.
+- **El paquete para la sesión de «Su cuerpo»**, rehecho:
+  `su-cuerpo-unido-03-11-noche.zip`. Sustituye al de la tarde.
+  - Sus 7 ficheros, con su parche y sus 32 huellas.
+  - En una copia limpia de su entrega del 1 de noviembre, con los ficheros y
+    también con el parche, da el módulo y los 31 de datos publicados, byte a
+    byte.
+
+**La hoja de un grupo, en la prueba** (`967e31c`; en `main`, `9e3c863`).
+
+- `probar_cuerpo.js` miraba la hoja a los 300 ms de tocar el grupo. Su
+  animación dura 320 ms y la trae desde 28 px más abajo.
+- A los 300 ms le faltaban hasta 0,8 px, y el límite es 1. Con el procesador
+  ocupado, hasta 17,6 px. «La hoja sale abajo de la pantalla» salió en rojo
+  una vez, con dos pruebas a la vez.
+- Ahora se espera a que acabe la animación. La app no cambia.
+- **Al revés**, con el procesador seis veces más lento: a los 300 ms, de 0 a
+  17,6 px (cuatro de cinco veces, en rojo); al acabar la animación, 0 las
+  cinco veces.
+
+**La auditoría entera**, sobre `967e31c` (árbol `4bf1addc`): «AUDITORIA EN
+VERDE», sin ningún control en rojo ni sin ejecutar.
+
+- El perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58, con el pellizco a 0,0 m;
+  el cielo, 307; el SOS, 39 y 261.
+- En `main` van `2fb7be4`, `8b29226` y `9e3c863`, con los mismos parches,
+  encima de cuatro commits más de los robots: los satélites, las alertas del
+  Gobierno de Canarias, los avisos de AEMET y los terremotos del IGN. Solo
+  cambian sus ficheros de datos.
+- Con los datos nuevos de los robots, sobre ese árbol, otra vez:
+  el cielo, 307; el SOS, 39; los avisos, 156 y 32. En verde.
+
+**Lo que queda:**
+
+- Mirar en el iPhone la fecha de «Su evolución» y la barra de la pregunta.
+- Para la sesión de «Su cuerpo», el paquete nuevo. Su próxima entrega tiene
+  que salir de él.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
