@@ -249,18 +249,48 @@ async function navegador() {
   let b;
   try { b = await chromium.launch({ args }); }
   catch (e) { b = await chromium.launch({ args, executablePath: process.env.CHROME || '/usr/bin/google-chrome' }); }
-  const errores = [];
+  const errores = [], CARGAS = new WeakMap();
   const nueva = async (opc) => {
     const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'es-ES', serviceWorkers: 'block' }, opc || {}));
     const p = await ctx.newPage();
     p.on('pageerror', e => errores.push(e.message));
+    CARGAS.set(p, 0);
+    p.on('load', () => CARGAS.set(p, CARGAS.get(p) + 1));
     return { ctx, p };
   };
-  /* la bienvenida (idioma y «Empezar») y la pregunta del tour, si salen */
+  /* La bienvenida (idioma y «Empezar») y la pregunta del tour. La bienvenida
+     sale siempre que se abre la app: se espera a verla, y despues de
+     «Empezar», a que se haya ido de verdad. Antes se miraba una sola vez, y
+     si no se veia se seguia: el 3 de noviembre de 2026 una pasada siguio con
+     ella puesta, y tapo el boton «3D» treinta segundos. No se ha vuelto a ver
+     en 110 aperturas seguidas (80 con el procesador ocupado, 30 justo
+     despues de cerrar un 3D de noche), asi que si pasa, la prueba lo dice:
+     como estaba la pagina y cuantas veces se habia cargado. Si «Empezar» no
+     hizo nada, se toca otra vez, como haria cualquiera, y queda apuntado. */
   const bienvenida = async (p, L) => {
-    const w = await p.$('.v19-w-lang[data-lang="' + (L || 'es') + '"]'); if (w && await w.isVisible()) { await w.click(); await p.waitForTimeout(250); }
-    const s = await p.$('#v19-welcome-start'); if (s && await s.isVisible()) { await s.click(); await p.waitForTimeout(1800); }
-    const no = await p.$('.v19t-prompt button'); if (no && await no.isVisible()) { await no.click(); await p.waitForTimeout(300); }
+    const como = () => p.evaluate(() => { const v = document.getElementById('v19-welcome');
+      return { clase: v && v.className, display: v && v.style.display, idioma: document.documentElement.lang, estado: document.readyState, ms: Math.round(performance.now()) }; })
+      .then(pagina => JSON.stringify({ pagina, cargas: CARGAS.get(p) }), e => e.message);
+    const fallo = async que => { throw new Error(que + ': ' + await como()); };
+    const ida = ms => p.waitForFunction(() => document.getElementById('v19-welcome').classList.contains('hidden'), null, { timeout: ms }).then(() => true, () => false);
+    await p.waitForSelector('#v19-welcome-start', { state: 'visible', timeout: 15000 }).catch(() => fallo('la bienvenida no sale al abrir la app'));
+    await p.click('.v19-w-lang[data-lang="' + (L || 'es') + '"]');
+    await p.waitForTimeout(250);
+    await p.click('#v19-welcome-start');
+    if (!await ida(5000)) {
+      info('la bienvenida no se fue con el primer toque de «Empezar»: ' + await como());
+      await p.click('#v19-welcome-start');
+      if (!await ida(5000)) await fallo('la bienvenida no se va con «Empezar»');
+    }
+    await p.waitForFunction(() => document.getElementById('v19-welcome').style.display === 'none', null, { timeout: 10000 })
+      .catch(() => fallo('la bienvenida se va, pero no se quita'));
+    await p.waitForTimeout(1200);   // con los 600 ms de la bienvenida al irse, los 1800 de siempre
+    const no = await p.waitForSelector('.v19t-prompt .v19t-ghost', { state: 'visible', timeout: 5000 }).catch(() => null);
+    if (no) {
+      await no.click();
+      await p.waitForSelector('.v19t-prompt', { state: 'detached', timeout: 5000 }).catch(() => fallo('la pregunta del tour no se va con «Ahora no»'));
+      await p.waitForTimeout(300);
+    }
   };
   const arrancar = async (p, L) => {
     await p.goto(BASE, { waitUntil: 'networkidle' });
