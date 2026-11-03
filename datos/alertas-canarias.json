@@ -2,8 +2,18 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-03T07:18:33Z",
+ "consultado": "2026-11-03T08:38:47Z",
  "alertas": [
+  {
+   "t": "2026-11-03T08:22:29Z",
+   "titulo": "El Gobierno actualiza la situación pasando a prealerta por lluvias en toda Canarias",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-actualiza-la-situacion-pasando-a-prealerta-por-lluvias-en-toda-canarias/"
+  },
+  {
+   "t": "2026-11-03T08:08:19Z",
+   "titulo": "El Gobierno de Canarias actualiza la situación a prealerta por tormentas en todo el Archipiélago",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-a-prealerta-por-tormentas-en-todo-el-archipielago/"
+  },
   {
    "t": "2026-11-02T20:03:47Z",
    "titulo": "El Gobierno de Canarias finaliza la situación de alerta del PLATECA por cero energético en La Palma",
@@ -53,16 +63,6 @@
    "t": "2026-10-29T10:08:27Z",
    "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por calima en el archipiélago",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-prealerta-por-calima-en-el-archipielago-4/"
-  },
-  {
-   "t": "2026-10-26T12:44:10Z",
-   "titulo": "El Gobierno de Canarias declara la situación de prealerta por calima en todo el Archipiélago",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-situacion-de-prealerta-por-calima-en-todo-el-archipielago-2/"
-  },
-  {
-   "t": "2026-10-22T18:03:39Z",
-   "titulo": "El Gobierno de Canarias finaliza la situación de alerta por lluvias en El Hierro, La Palma y La Gomera",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-alerta-por-lluvias-en-el-hierro-la-palma-y-la-gomera/"
   }
  ],
  "descartados": 0
