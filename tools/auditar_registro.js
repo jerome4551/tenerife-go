@@ -429,7 +429,9 @@ const EXENTOS = [
   ['fr', /il peut faire mal au repos et va mieux tout seul/, '«le muscle… va mieux»: tercera persona (agujetas-o-lesion)'],
   ['fr', /le service de santé britannique, dans ses exercices du genou pour les coureurs, demande que/, '«le service… demande que»: tercera persona, no el imperativo (sentadilla-rodillas)'],
   ['pl', /którą osiągnęli ci, którzy je jedli/, '«ci, którzy»: «ci» es el demostrativo, «los que», no «a ti» (hidratos)'],
-  ['pl', /przycisk «Usuń dane z sekcji „Ciało”»/, 'cita el boton «Usuń dane z sekcji «Ciało»» con las comillas de dentro como „…”, que el quitar de los rotulos citados no ve (borrar-datos)'],
+  ['pl', /przycisk «Usuń dane z sekcji „Ciało”»/, 'cita el boton «Usuń dane z sekcji «Ciało»» con las comillas de dentro como „…”, que el quitar de los rotulos citados no ve (borrar-datos; ppDatosCuerpoTxt)'],
+  /* la politica de privacidad (ppDatosCuerpoTxt, 3 de noviembre de 2026) */
+  ['bg', /с «Изтрий данните от «Вашето тяло»»/, 'cita el boton «Изтрий данните от «Вашето тяло»» (ROTULOS_BG) con comillas dentro de comillas, que el quitar de los rotulos citados no ve'],
 ];
 
 function exento(l, t) {

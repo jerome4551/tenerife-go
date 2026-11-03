@@ -38,7 +38,8 @@
  *     y su borrar; «Su deporte», con su guia y sus grupos en el personaje; abrirCuerpo() con un modo
  *     o una pregunta; el idioma con «Preguntar» abierto; y sin las respuestas, su aviso y
  *     «Reintentar» (18b). Y sin navegador (19): las respuestas y las guias que citan un texto de
- *     la pantalla lo citan tal cual, en los diez idiomas.
+ *     la pantalla, y la politica de privacidad que cita el boton de borrar, lo citan tal cual, en
+ *     los diez idiomas.
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -942,6 +943,14 @@ async function ejemplo(pg) {
         malas.push(l + ' ' + donde + ': «' + ks.map(k => UI[k][l]).join('» o «') + '»');
     }
     prueba('las respuestas y las guías que citan un texto de la pantalla (' + usos.length + ' citas) lo citan tal cual en los diez idiomas', usos.length >= 20 && !malas.length, malas.slice(0, 4).join(' · '));
+    /* y la política de privacidad (ppDatosCuerpoTxt), que dice con qué botón se borra todo: ese botón, tal cual
+       (3 de noviembre de 2026: en búlgaro citaba «Изтриване…», el de un módulo de antes, y la pantalla dice «Изтрий…») */
+    const malPol = [];
+    for (const l of L) {
+      const t = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'idiomas', 'privacidad', l + '.json'), 'utf8')).ppDatosCuerpoTxt, bo = UI.cuerpoBorrar[l];
+      if (!(t.includes(bo) || (l === 'pl' && t.includes(bo.replace(/«([^«»]*)»/g, '„$1”'))))) malPol.push(l + ': «' + bo + '»');
+    }
+    prueba('la política de privacidad cita el botón de borrar «Su cuerpo» tal cual, en los diez idiomas', !malPol.length, malPol.join(' · '));
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
