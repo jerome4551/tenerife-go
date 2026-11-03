@@ -810,7 +810,12 @@ function mirar(es, tr, donde, campo) {
   if (etiquetas(es) !== etiquetas(tr)) apunta('ETIQUETAS', donde, etiquetas(es) + ' vs ' + etiquetas(tr));
   if (LANG !== 'es') {
     const esc = ESCRITURA[LANG];
-    if (esc.debe && !esc.debe.test(tr)) apunta('SIN-SU-ALFABETO', donde, tr.slice(0, 50));
+    /* Un texto que solo lleva marcadores y signos («{g}：{n}», lo que dice el lector de
+       pantalla al anotar una racion en «Comida» de «Su cuerpo», 3 de noviembre de 2026) no
+       tiene letras que mirar: las ponen los marcadores, que ya van en su idioma. Con una sola
+       letra, se mira. Lo trajo la sesion de «Su cuerpo» (1 de noviembre) */
+    const soloMarcas = !tr.replace(/\{[a-z]+\}/gi, '').replace(/[\s\p{P}\p{S}\p{N}]/gu, '');
+    if (esc.debe && !soloMarcas && !esc.debe.test(tr)) apunta('SIN-SU-ALFABETO', donde, tr.slice(0, 50));
     if (esc.prohibe && esc.prohibe.test(tr)) apunta('ALFABETO-AJENO', donde, tr.slice(0, 50));
     if (igual(es, tr) && es.replace(/[^A-Za-zÀ-ÿ]/g, '').length >= 12
         && !trozos(es).every(t => trozoLegitimo(t, LANG))) {

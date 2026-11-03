@@ -1817,10 +1817,15 @@
   }
   /* La ficha de la cuenta, el panel de administrador y las hojas de «Su cuerpo» (la de un grupo y
      la de un ejercicio) van encima: «atras» y Escape los dejan a ellos, y el perfil se queda
-     debajo. «Su cuerpo» mismo va dentro de la pestaña: TG_CUERPO.encima() solo cuenta sus hojas. */
+     debajo. «Su cuerpo» mismo va dentro de la pestaña: TG_CUERPO.encima() solo cuenta sus hojas.
+     Y desde el 3 de noviembre de 2026, el panel SOS: las respuestas del asistente de «Su cuerpo» y
+     las guias de los deportes lo abren encima. Su Escape es suyo (vuelve atras dentro del panel y
+     lo cierra); sin esto, el mismo Escape cerraba tambien el perfil de debajo, con la
+     conversacion. Su «atras», en el popstate de abajo (tgSos) */
   function fichaEncima() {
-    var m = document.getElementById('auth-modal-backdrop'), a = document.getElementById('admin-overlay'), c = window.TG_CUERPO;
-    return !!((m && m.classList.contains('show')) || (a && a.classList.contains('open')) ||
+    var m = document.getElementById('auth-modal-backdrop'), a = document.getElementById('admin-overlay'), c = window.TG_CUERPO,
+      s = document.getElementById('sos-panel');
+    return !!((m && m.classList.contains('show')) || (a && a.classList.contains('open')) || (s && !s.hidden) ||
       (c && (typeof c.encima === 'function' ? c.encima() : typeof c.abierto === 'function' && c.abierto())));
   }
   /* el «atras» del movil: el back() que hace cerrar() llega aqui tambien, y se distingue del dedo */
@@ -1828,8 +1833,11 @@
     if (atrasPendiente) { atrasPendiente = false; return; }
     if (!abierto) return;
     /* las entradas de «Su cuerpo» llevan tgPerfil: volver a una entrada del perfil o de lo que
-       tiene encima no lo cierra (cierra lo de encima, que mira el mismo popstate) */
-    if (e && e.state && e.state.tgPerfil) return;
+       tiene encima no lo cierra (cierra lo de encima, que mira el mismo popstate). Y las del panel
+       SOS (tgSos), que desde el 3 de noviembre de 2026 se abre encima desde una respuesta o una
+       guia de «Su cuerpo»: con una guia abierta pone dos, y el primer «atras» vuelve a la suya del
+       inicio del panel, que no lleva tgPerfil. Sin esto, ese «atras» cerraba tambien el perfil */
+    if (e && e.state && (e.state.tgPerfil || e.state.tgSos)) return;
     historia = false;
     var m = document.getElementById('auth-modal-backdrop');
     if (m && m.classList.contains('show') && typeof window.closeAuthModal === 'function') {

@@ -19,7 +19,9 @@
  *     (modulos/perfil.js), el panel de emergencias (modulos/emergencias.js,
  *     22 de octubre de 2026), «Su cuerpo» (modulos/cuerpo.js, y el nombre y
  *     los pasos de sus 533 ejercicios, un fichero por idioma:
- *     datos/ejercicios-<l>.json; 31 de octubre de 2026) y las etiquetas de
+ *     datos/cuerpo/ejercicios-<l>.json; 31 de octubre de 2026; y desde el 3
+ *     de noviembre sus respuestas del asistente y sus guias de los deportes:
+ *     datos/cuerpo/asistente-<l>.json y deportes-<l>.json) y las etiquetas de
  *     las fichas (tags[] de index.html e idiomas/etiquetas/<l>.json).
  *
  * Los idiomas de HECHOS ya estan pasados a usted: cualquier marca es un
@@ -309,6 +311,9 @@ const ROTULOS_IT = new Set([
   'Aggiungi a Home', 'Installa app',
   /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Apri» (31 de octubre de 2026) */
   'Apri', 'Gira', 'Vedi da dietro', 'Vedi di fronte', 'Elimina i dati di «Corpo»', 'Sì, elimina', 'Elimina: {series}, {fecha}', 'Torna a {grupo}', 'Cerca tra gli esercizi di questo gruppo', 'Cerca un esercizio…', 'Annulla',
+  /* y los de «Preguntar» y «Comida» (3 de noviembre de 2026; los trajo la sesion de «Su cuerpo») */
+  'Apri la guida SOS', 'Vedi {grupo}', 'Vedi l’esercizio', 'Vedi i muscoli', 'Vedi la guida', 'Cancella la conversazione', 'Cancella le annotazioni',
+  'Aggiungi una porzione: {g}', 'Togli una porzione: {g}', 'Metti in pausa il diario',
 ]);
 
 /* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
@@ -331,6 +336,8 @@ const ROTULOS_BG = new Set([
   'Добави към начален екран',
   /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Отвори» (31 de octubre de 2026) */
   'Отвори', 'Завърти', 'Покажи отзад', 'Покажи отпред', 'Изтрий: {series}, {fecha}', 'Изтрий данните от «Вашето тяло»', 'Да, изтрий', 'Отмени',
+  /* y los de «Preguntar» (3 de noviembre de 2026; los trajo la sesion de «Su cuerpo») */
+  'Отвори SOS ръководството', 'Виж {grupo}', 'Виж упражнението', 'Промени външния вид', 'Виж мускулите',
 ]);
 
 /* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
@@ -368,6 +375,9 @@ const ROTULOS_PL = new Set([
   'Zapisz', 'Zmień imię',
   /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Otwórz» (31 de octubre de 2026) */
   'Otwórz', 'Obróć', 'Pokaż od tyłu', 'Pokaż od przodu', 'Usuń: {series}, {fecha}', 'Usuń dane z sekcji «Ciało»', 'Cofnij', 'Wróć do: {grupo}', 'Szukaj w ćwiczeniach tej grupy', 'Szukaj ćwiczenia…',
+  /* y los de «Preguntar» y «Comida» (3 de noviembre de 2026; los trajo la sesion de «Su cuerpo») */
+  'Zadzwoń pod {n}', 'Otwórz przewodnik SOS', 'Zobacz: {grupo}', 'Zobacz ćwiczenie', 'Zmień wygląd', 'Zobacz mięśnie', 'Wyczyść rozmowę',
+  'Zacznij zapisywać', 'Dodaj porcję: {g}', 'Usuń porcję: {g}', 'Zobacz wytyczne', 'Zadzwoń do ALABENTE', 'Usuń zapisy',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»
@@ -408,9 +418,18 @@ const EXENTOS = [
   /* las curiosidades de las constelaciones (idiomas/cielo/, 22 de octubre de 2026) */
   ['it', /perché sia così carico di bestiame: porta una capra/, 'el auriga «porta una capra», «lleva una cabra»: tercera persona, no el imperativo (cieloCurConAur)'],
   ['pl', /błagała bogów o pomoc, a ci zmienili ją w klacz/, '«a ci zmienili»: «ci» es el demostrativo, «y estos la convirtieron», no «a ti» (cieloCurConEqu)'],
-  /* los pasos de los ejercicios de «Su cuerpo» (datos/ejercicios-<l>.json, 31 de octubre de 2026) */
+  /* los pasos de los ejercicios de «Su cuerpo» (datos/cuerpo/ejercicios-<l>.json, 31 de octubre de 2026) */
   ['fr', /pour que le tronc tienne entre les genoux et le banc/, '«que le tronc tienne»: el subjuntivo de tenir, en tercera persona (el tronco), no el «la tienne» de tu (estiramiento-dorsal-codos-banco, paso 1)'],
-  ['it', /^Non scendere oltre i 90 gradi di flessione del gomito/, 'los pasos van en infinitivo, como las instrucciones en italiano («Staccare», «Abbassarlo», «e spingere» en el mismo paso): «Non scendere» es el infinitivo negativo, no el imperativo de tu (fondos-entre-bancos, paso 3)'],
+  /* (el de «Non scendere», del paso 3 de fondos-entre-bancos, ya no hace falta: desde el 3 de
+     noviembre dice «Evitare di scendere», como lo dejo la sesion de «Su cuerpo») */
+  /* las respuestas del asistente de «Su cuerpo» (datos/cuerpo/asistente-<l>.json, 3 de noviembre
+     de 2026; los trajo la sesion de «Su cuerpo», con su motivo) */
+  ['fr', /(?:le|au premier) ton doré|Le ton le plus élevé/, '«ton» es el tono dorado del mapa de los musculos, no el posesivo (cuantas-series, que-cuenta-como-serie, que-entreno-hoy)'],
+  ['fr', /NICE encourage toutes les femmes à les entraîner, .*, et demande un programme/, '«la recommandation… encourage… et demande»: tercera persona (suelo-pelvico)'],
+  ['fr', /il peut faire mal au repos et va mieux tout seul/, '«le muscle… va mieux»: tercera persona (agujetas-o-lesion)'],
+  ['fr', /le service de santé britannique, dans ses exercices du genou pour les coureurs, demande que/, '«le service… demande que»: tercera persona, no el imperativo (sentadilla-rodillas)'],
+  ['pl', /którą osiągnęli ci, którzy je jedli/, '«ci, którzy»: «ci» es el demostrativo, «los que», no «a ti» (hidratos)'],
+  ['pl', /przycisk «Usuń dane z sekcji „Ciało”»/, 'cita el boton «Usuń dane z sekcji «Ciało»» con las comillas de dentro como „…”, que el quitar de los rotulos citados no ve (borrar-datos)'],
 ];
 
 function exento(l, t) {
@@ -517,15 +536,36 @@ async function textos() {
   }
   /* los 533 ejercicios de «Su cuerpo» (31 de octubre de 2026): su nombre y sus pasos,
      un fichero por idioma ({ id: [nombre, [paso, …]] }). Los pasos hablan a quien
-     hace el ejercicio: de usted, como lo demas */
+     hace el ejercicio: de usted, como lo demas. Desde el 3 de noviembre van en
+     datos/cuerpo/, y si falta uno no se salta: para (antes, al no encontrarlo, este
+     control lo daba por bueno sin mirarlo) */
   for (const l of IDI) {
-    const f = 'datos/ejercicios-' + l + '.json';
-    if (!fs.existsSync(path.join(RAIZ, f))) continue;
+    const f = 'datos/cuerpo/ejercicios-' + l + '.json';
+    if (!fs.existsSync(path.join(RAIZ, f))) throw new Error('falta ' + f);
     for (const [id, e] of Object.entries(json(f))) {
       if (!Array.isArray(e)) continue;
       mete(f, id, l, e[0]);
       (Array.isArray(e[1]) ? e[1] : []).forEach((p, i) => mete(f, id + ' paso ' + (i + 1), l, p));
     }
+  }
+  /* y, desde el 3 de noviembre, las 178 respuestas del asistente de «Su cuerpo» y las
+     guias de los deportes (datos/cuerpo/asistente-<l>.json y deportes-<l>.json): de una
+     respuesta, la pregunta, el texto, sus puntos, su nota y sus casos; de un deporte,
+     cada texto de la guia y sus preguntas. No entran las variantes («v», como lo escribe
+     la gente), las palabras de busqueda («k»), los patrones de urgencia («u») ni las
+     fuentes («f»), ni las claves internas: no hablan a quien usa la app. Lo trajo la
+     sesion de «Su cuerpo» (1 de noviembre): sin esto, este control daba por bueno lo
+     que no miraba */
+  const SALTA_CUERPO = new Set(['v', 'k', 'u', 'f', 'id', 'cat', 'tipo', 'edad', 'rel', 'links', 'cert', 'gg', 'ej', 'sos']);
+  const recorreCuerpo = (o, ruta, l, f) => {
+    if (typeof o === 'string') return mete(f, ruta, l, o);
+    if (Array.isArray(o)) return o.forEach((x, i) => recorreCuerpo(x, ruta + '[' + i + ']', l, f));
+    if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!SALTA_CUERPO.has(k)) recorreCuerpo(v, ruta + '.' + k, l, f);
+  };
+  for (const l of IDI) {
+    const a = 'datos/cuerpo/asistente-' + l + '.json', d = 'datos/cuerpo/deportes-' + l + '.json';
+    for (const r of json(a).respuestas) recorreCuerpo(r, r.id, l, a);
+    for (const x of json(d).deportes) recorreCuerpo(Object.assign({}, x, { qs: (x.qs || []).map(q => q[1]) }), x.id, l, d);
   }
   /* las 88 curiosidades de las constelaciones, un fichero por idioma desde el 22 */
   for (const l of IDI) {

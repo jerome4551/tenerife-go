@@ -53,6 +53,28 @@
    "zht": ["bodyweightfitness@es:r/bodyweightfitness"],
    "bg": ["bodyweightfitness@es:r/bodyweightfitness"]
   },
+  "«Su cuerpo», sus datos (3 de noviembre de 2026): palabras de ese idioma que se escriben igual que el castellano, en las respuestas del asistente y las guias de los deportes («diabetes», «kilos»; en frances, «importantes», «graves», «sensibles»…; en italiano, el «casco» de la bici)": {
+   "en": ["diabetes", "kilos"],
+   "fr": ["importantes", "notables", "graves", "centrales", "pertinentes", "variantes", "sensibles", "probables", "kilos"],
+   "de": ["diabetes", "kilos"],
+   "it": ["casco@es:abrigo y casco"],
+   "nl": ["diabetes"]
+  },
+  "«Su cuerpo», sus datos (3 de noviembre de 2026): dos palabras canarias que el texto traduce y deja al lado, entre parentesis, para reconocerlas: «millo», el maiz, y «calima», el polvo del Sahara": {
+   "zh": ["millo@es:trigo, millo", "calima@es:Con calima"],
+   "zht": ["millo@es:trigo, millo", "calima@es:Con calima"],
+   "bg": ["millo@es:trigo, millo"]
+  },
+  "«Su cuerpo», sus datos (3 de noviembre de 2026): lo que se escribe igual en todas las lenguas: VO2max, el simbolo del consumo maximo de oxigeno, y la Academy of Nutrition and Dietetics, la asociacion de dietistas de Estados Unidos, por su nombre": {
+   "zh": ["max@es:VO2m"],
+   "zht": ["max@es:VO2m"],
+   "bg": ["max@es:VO2m", "and@es:Academy of Nutrition and Dietetics", "and@cuerpo asistente vegano-b12.r.p[0]"]
+  },
+  "«Su cuerpo», sus datos (3 de noviembre de 2026): el nombre con que se conoce el ejercicio en los gimnasios, en ingles y entre parentesis, como en castellano («Suspensión en barra (dead hang)»); y el «Ice cream maker», que el castellano deja en ingles": {
+   "bg": ["dead@es:(dead hang)", "hang@es:(dead hang)", "toes@es:(toes to bar)", "bar@es:(toes to bar)", "hollow@es:(hollow hold)", "hold@es:(hollow hold)",
+          "dead@es:(dead bug)", "bug@es:(dead bug)", "bird@es:(bird dog)", "dog@es:(bird dog)"],
+   "zht": ["cream@es:Ice cream maker", "maker@es:Ice cream maker"]
+  },
   "en chino, la palabra castellana entre parentesis DESPUES de traducirla, para reconocerla en los carteles": {
    "zh": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"],
    "zht": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"]
@@ -71,7 +93,7 @@
           "magnitudes", "variables", "atlas", "latitudes"],
    "fr": ["guanches", "pesetas", "tigres", "rapaces", "tropicales", "subtropicales", "verticales", "locales",
           "variables", "permanentes", "barracudas", "ocres", "coloniales", "patronales", "tomates", "originales", "navales",
-          "libres", "principales", "parapentes", "rurales", "patios", "potables", "primates", "hubbas", "cookies",
+          "principales", "parapentes", "rurales", "patios", "potables", "primates", "hubbas", "cookies",
           "brillantes", "magnitudes", "latitudes", "frontales"],
    "de": ["cookies", "orcas", "hubbas", "atlas"],
    "it": ["pesetas", "conquistadores"],

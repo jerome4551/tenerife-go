@@ -27,13 +27,17 @@
    LO QUE VIENE DE LA PERSONA va por textContent. innerHTML, solo para el cuerpo de la
    pantalla y los dibujos de TG_FIGURA, que escribe este código.
 
+   EL ASISTENTE (parte 6) responde sin conexión con respuestas escritas de antemano, con sus
+   fuentes, en datos/asistente-<idioma>.json; el motor (TG_BUSCADOR, aquí dentro) busca la que
+   corresponde a lo escrito y no genera texto. Lo escrito no se guarda ni se envía.
+
    LO QUE SE GUARDA. Solo en el dispositivo: tenerife.cuerpo, validado campo a campo al
    leerlo. No sube a ninguna parte (las series de entrenamiento son datos de salud: subirlas
    pediría el permiso expreso de la persona y una evaluación de impacto antes). Del perfil
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (256 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (378 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -206,9 +210,8 @@
     "cuerpoListo": {"es": "Listo", "en": "Done", "fr": "Terminé", "de": "Fertig", "it": "Fatto", "nl": "Klaar", "zh": "完成", "zht": "完成", "bg": "Готово", "pl": "Gotowe"},
     "cuerpoPrivacidad": {"es": "Todo se guarda solo en este dispositivo. No se sube a ninguna parte.", "en": "Everything is saved on this device only. Nothing is uploaded.", "fr": "Tout est enregistré uniquement sur cet appareil. Rien n’est envoyé.", "de": "Alles wird nur auf diesem Gerät gespeichert. Nichts wird hochgeladen.", "it": "Tutto viene salvato solo su questo dispositivo. Non viene caricato nulla.", "nl": "Alles wordt alleen op dit apparaat opgeslagen. Er wordt niets geüpload.", "zh": "所有内容只保存在本设备上，不会上传。", "zht": "所有內容只儲存在此裝置上，不會上傳。", "bg": "Всичко се пази само на това устройство. Нищо не се качва.", "pl": "Wszystko jest zapisywane tylko na tym urządzeniu. Nic nie jest wysyłane."},
     "cuerpoAviso": {"es": "Información general para personas sanas. No sustituye el consejo de un profesional sanitario.", "en": "General information for healthy people. It does not replace advice from a health professional.", "fr": "Informations générales destinées aux personnes en bonne santé. Elles ne remplacent pas l’avis d’un professionnel de santé.", "de": "Allgemeine Informationen für gesunde Menschen. Sie ersetzen nicht den Rat medizinischer Fachleute.", "it": "Informazioni generali per persone in buona salute. Non sostituiscono il parere di un professionista sanitario.", "nl": "Algemene informatie voor gezonde mensen. Dit vervangt niet het advies van een zorgprofessional.", "zh": "面向健康人群的一般信息，不能替代医疗专业人员的建议。", "zht": "提供給健康人士的一般資訊，不能取代醫療專業人員的建議。", "bg": "Обща информация за здрави хора. Не замества съвета на медицински специалист.", "pl": "Ogólne informacje dla osób zdrowych. Nie zastępują porady pracownika ochrony zdrowia."},
-    "cuerpoIA": {"es": "Preparado con ayuda de IA a partir de las fuentes citadas.", "en": "Prepared with the help of AI from the sources cited.", "fr": "Préparé avec l’aide de l’IA à partir des sources citées.", "de": "Mit Hilfe von KI auf Grundlage der angegebenen Quellen erstellt.", "it": "Preparato con l’aiuto dell’IA a partire dalle fonti citate.", "nl": "Opgesteld met behulp van AI op basis van de vermelde bronnen.", "zh": "借助人工智能，根据所引来源编写。", "zht": "借助人工智慧，根據所引來源編寫。", "bg": "Подготвено с помощта на изкуствен интелект въз основа на цитираните източници.", "pl": "Przygotowano z pomocą sztucznej inteligencji na podstawie podanych źródeł."},
     "cuerpoBorrar": {"es": "Borrar los datos de «Su cuerpo»", "en": "Delete «Your body» data", "fr": "Effacer les données de «Votre corps»", "de": "Daten von «Ihr Körper» löschen", "it": "Elimina i dati di «Corpo»", "nl": "Gegevens van «Uw lichaam» wissen", "zh": "删除「我的身体」数据", "zht": "刪除「我的身體」資料", "bg": "Изтрий данните от «Вашето тяло»", "pl": "Usuń dane z sekcji «Ciało»"},
-    "cuerpoBorrarSeguro": {"es": "¿Borrar su aspecto y todas las series anotadas? No se puede deshacer.", "en": "Delete your look and all the sets you logged? This cannot be undone.", "fr": "Effacer votre apparence et toutes les séries notées ? Cette action est irréversible.", "de": "Ihr Aussehen und alle eingetragenen Sätze löschen? Das lässt sich nicht rückgängig machen.", "it": "Eliminare l’aspetto e tutte le serie annotate? L’operazione non si può annullare.", "nl": "Uw uiterlijk en alle genoteerde sets wissen? Dit kan niet ongedaan worden gemaakt.", "zh": "要删除您的外观和所有已记录的组数吗？此操作无法撤销。", "zht": "要刪除您的外觀和所有已記錄的組數嗎？此操作無法復原。", "bg": "Да се изтрият ли външният ви вид и всички записани серии? Това не може да се отмени.", "pl": "Usunąć wygląd i wszystkie zapisane serie? Tej operacji nie można cofnąć."},
+    "cuerpoBorrarSeguro": {"es": "¿Borrar su aspecto, todas las series anotadas, el deporte elegido y el diario de comidas? No se puede deshacer.", "en": "Delete your look, all the sets you logged, the sport you chose and your food diary? This cannot be undone.", "fr": "Effacer votre apparence, toutes les séries notées, le sport choisi et le journal alimentaire ? Cette action est irréversible.", "de": "Ihr Aussehen, alle eingetragenen Sätze, die gewählte Sportart und das Ernährungstagebuch löschen? Das lässt sich nicht rückgängig machen.", "it": "Eliminare l’aspetto, tutte le serie annotate, lo sport scelto e il diario alimentare? L’operazione non si può annullare.", "nl": "Uw uiterlijk, alle genoteerde sets, de gekozen sport en het voedingsdagboek wissen? Dit kan niet ongedaan worden gemaakt.", "zh": "要删除您的外观、所有已记录的组数、所选的运动和饮食记录吗？此操作无法撤销。", "zht": "要刪除您的外觀、所有已記錄的組數、所選的運動和飲食記錄嗎？此操作無法復原。", "bg": "Да се изтрият ли външният ви вид, всички записани серии, избраният спорт и хранителният дневник? Това не може да се отмени.", "pl": "Usunąć wygląd, wszystkie zapisane serie, wybrany sport i dziennik posiłków? Tej operacji nie można cofnąć."},
     "cuerpoBorrarSi": {"es": "Sí, borrar", "en": "Yes, delete", "fr": "Oui, effacer", "de": "Ja, löschen", "it": "Sì, elimina", "nl": "Ja, wissen", "zh": "确定删除", "zht": "確定刪除", "bg": "Да, изтрий", "pl": "Tak, usuń"},
     "cuerpoBorrado": {"es": "Datos borrados", "en": "Data deleted", "fr": "Données effacées", "de": "Daten gelöscht", "it": "Dati eliminati", "nl": "Gegevens gewist", "zh": "数据已删除", "zht": "資料已刪除", "bg": "Данните са изтрити", "pl": "Dane usunięte"},
     "cuerpoNoGuardado": {"es": "No se ha podido guardar en este dispositivo.", "en": "Could not save on this device.", "fr": "Impossible d’enregistrer sur cet appareil.", "de": "Auf diesem Gerät konnte nicht gespeichert werden.", "it": "Impossibile salvare su questo dispositivo.", "nl": "Opslaan op dit apparaat is niet gelukt.", "zh": "无法保存到本设备。", "zht": "無法儲存到此裝置。", "bg": "Не можа да се запази на това устройство.", "pl": "Nie udało się zapisać na tym urządzeniu."},
@@ -290,7 +293,130 @@
     "cuerpoSinEjFiltro": {"es": "Ningún ejercicio con estos filtros.", "en": "No exercises match these filters.", "fr": "Aucun exercice ne correspond à ces filtres.", "de": "Keine Übung passt zu diesen Filtern.", "it": "Nessun esercizio con questi filtri.", "nl": "Geen oefeningen met deze filters.", "zh": "没有符合筛选条件的动作。", "zht": "沒有符合篩選條件的動作。", "bg": "Няма упражнения с тези филтри.", "pl": "Brak ćwiczeń dla tych filtrów."},
     "cuerpoVarianteDe": {"es": "Variante de {nombre}", "en": "Variation of {nombre}", "fr": "Variante de {nombre}", "de": "Variante von {nombre}", "it": "Variante di {nombre}", "nl": "Variant van {nombre}", "zh": "{nombre}的变体", "zht": "{nombre}的變化式", "bg": "Вариант на {nombre}", "pl": "Wariant: {nombre}"},
     "cuerpoVariantes": {"es": "Variantes", "en": "Variations", "fr": "Variantes", "de": "Varianten", "it": "Varianti", "nl": "Varianten", "zh": "变体", "zht": "變化式", "bg": "Варианти", "pl": "Warianty"},
-    "cuerpoFichasPropias": {"es": "Fichas propias de Tenerife Go, comprobadas en las fuentes de cada ejercicio.", "en": "Written by Tenerife Go and checked against each exercise’s sources.", "fr": "Fiches rédigées par Tenerife Go et vérifiées dans les sources de chaque exercice.", "de": "Von Tenerife Go verfasst und anhand der Quellen jeder Übung geprüft.", "it": "Schede scritte da Tenerife Go e verificate sulle fonti di ogni esercizio.", "nl": "Geschreven door Tenerife Go en gecontroleerd aan de hand van de bronnen van elke oefening.", "zh": "由 Tenerife Go 编写，并已对照每个动作的来源核实。", "zht": "由 Tenerife Go 撰寫，並已對照每個動作的來源查核。", "bg": "Написани от Tenerife Go и проверени по източниците на всяко упражнение.", "pl": "Opracowane przez Tenerife Go i sprawdzone w źródłach każdego ćwiczenia."}
+    "cuerpoFichasPropias": {"es": "Fichas propias de Tenerife Go, comprobadas en las fuentes de cada ejercicio.", "en": "Written by Tenerife Go and checked against each exercise’s sources.", "fr": "Fiches rédigées par Tenerife Go et vérifiées dans les sources de chaque exercice.", "de": "Von Tenerife Go verfasst und anhand der Quellen jeder Übung geprüft.", "it": "Schede scritte da Tenerife Go e verificate sulle fonti di ogni esercizio.", "nl": "Geschreven door Tenerife Go en gecontroleerd aan de hand van de bronnen van elke oefening.", "zh": "由 Tenerife Go 编写，并已对照每个动作的来源核实。", "zht": "由 Tenerife Go 撰寫，並已對照每個動作的來源查核。", "bg": "Написани от Tenerife Go и проверени по източниците на всяко упражнение.", "pl": "Opracowane przez Tenerife Go i sprawdzone w źródłach każdego ćwiczenia."},
+    "cuerpoModoPreguntar": {"es": "Preguntar", "en": "Ask", "fr": "Demander", "de": "Fragen", "it": "Domande", "nl": "Vragen", "zh": "提问", "zht": "提問", "bg": "Въпроси", "pl": "Pytania"},
+    "cuerpoAsisTitulo": {"es": "Pregunte lo que quiera", "en": "Ask anything", "fr": "Posez votre question", "de": "Fragen Sie, was Sie möchten", "it": "Chieda pure", "nl": "Stel uw vraag", "zh": "随时提问", "zht": "隨時提問", "bg": "Попитайте каквото желаете", "pl": "Proszę pytać"},
+    "cuerpoAsisLema": {"es": "Sobre entrenar, comer, descansar y hacer deporte en Tenerife. Respuestas escritas de antemano, con sus fuentes; no sustituyen a un profesional.", "en": "About training, eating, resting and doing sport in Tenerife. Pre-written answers with their sources; they do not replace a professional.", "fr": "Sur l’entraînement, l’alimentation, le repos et le sport à Tenerife. Des réponses rédigées à l’avance, avec leurs sources ; elles ne remplacent pas un professionnel.", "de": "Zu Training, Ernährung, Erholung und Sport auf Teneriffa. Vorab verfasste Antworten mit Quellen; sie ersetzen keine Fachperson.", "it": "Su allenamento, alimentazione, riposo e sport a Tenerife. Risposte scritte in anticipo, con le fonti; non sostituiscono un professionista.", "nl": "Over trainen, eten, rusten en sporten op Tenerife. Vooraf geschreven antwoorden met bronnen; ze vervangen geen professional.", "zh": "关于训练、饮食、休息和在特内里费运动。回答均提前写好并附来源，不能替代专业人士。", "zht": "關於訓練、飲食、休息和在特內里費運動。回答均事先寫好並附來源，不能取代專業人士。", "bg": "За тренировки, хранене, почивка и спорт в Тенерифе. Предварително написани отговори с източници; не заместват специалист.", "pl": "O treningu, jedzeniu, odpoczynku i sporcie na Teneryfie. Odpowiedzi napisane wcześniej, ze źródłami; nie zastępują specjalisty."},
+    "cuerpoAsisSugeridas": {"es": "Preguntas sugeridas", "en": "Suggested questions", "fr": "Questions suggérées", "de": "Vorgeschlagene Fragen", "it": "Domande suggerite", "nl": "Voorgestelde vragen", "zh": "推荐问题", "zht": "推薦問題", "bg": "Предложени въпроси", "pl": "Proponowane pytania"},
+    "cuerpoAsisPregunta": {"es": "Su pregunta", "en": "Your question", "fr": "Votre question", "de": "Ihre Frage", "it": "La sua domanda", "nl": "Uw vraag", "zh": "您的问题", "zht": "您的問題", "bg": "Вашият въпрос", "pl": "Pytanie"},
+    "cuerpoAsisEscriba": {"es": "Escriba su pregunta…", "en": "Type your question…", "fr": "Écrivez votre question…", "de": "Schreiben Sie Ihre Frage…", "it": "Scriva la sua domanda…", "nl": "Typ uw vraag…", "zh": "请输入问题…", "zht": "請輸入問題…", "bg": "Напишете въпроса си…", "pl": "Proszę wpisać pytanie…"},
+    "cuerpoAsisEnviar": {"es": "Enviar", "en": "Send", "fr": "Envoyer", "de": "Senden", "it": "Invia", "nl": "Verstuur", "zh": "发送", "zht": "傳送", "bg": "Изпрати", "pl": "Wyślij"},
+    "cuerpoAsisPie": {"es": "Lo que escribe no se guarda ni se envía a ningún sitio: la respuesta se busca en este dispositivo.", "en": "What you type is not saved or sent anywhere: the answer is looked up on this device.", "fr": "Ce que vous écrivez n’est ni enregistré ni envoyé : la réponse est cherchée sur cet appareil.", "de": "Was Sie schreiben, wird weder gespeichert noch gesendet: Die Antwort wird auf diesem Gerät gesucht.", "it": "Quello che scrive non viene salvato né inviato: la risposta si cerca su questo dispositivo.", "nl": "Wat u typt wordt niet opgeslagen of verzonden: het antwoord wordt op dit apparaat opgezocht.", "zh": "您输入的内容不会被保存，也不会发送到任何地方：答案在本设备上查找。", "zht": "您輸入的內容不會被儲存，也不會傳送到任何地方：答案在此裝置上查找。", "bg": "Написаното не се запазва и не се изпраща никъде: отговорът се търси на това устройство.", "pl": "Wpisany tekst nie jest nigdzie zapisywany ani wysyłany: odpowiedź jest wyszukiwana na tym urządzeniu."},
+    "cuerpoAsisCargando": {"es": "Preparando las respuestas…", "en": "Loading the answers…", "fr": "Chargement des réponses…", "de": "Antworten werden geladen…", "it": "Caricamento delle risposte…", "nl": "Antwoorden laden…", "zh": "正在加载回答…", "zht": "正在載入回答…", "bg": "Зареждане на отговорите…", "pl": "Wczytywanie odpowiedzi…"},
+    "cuerpoAsisError": {"es": "No se han podido cargar las respuestas. Hace falta conexión la primera vez.", "en": "The answers could not be loaded. A connection is needed the first time.", "fr": "Impossible de charger les réponses. Une connexion est nécessaire la première fois.", "de": "Die Antworten konnten nicht geladen werden. Beim ersten Mal ist eine Verbindung nötig.", "it": "Non è stato possibile caricare le risposte. La prima volta serve una connessione.", "nl": "De antwoorden konden niet worden geladen. De eerste keer is een verbinding nodig.", "zh": "无法加载回答。首次使用需要联网。", "zht": "無法載入回答。首次使用需要連線。", "bg": "Отговорите не можаха да се заредят. Първия път е нужна връзка.", "pl": "Nie udało się wczytać odpowiedzi. Za pierwszym razem potrzebne jest połączenie."},
+    "cuerpoAsisNoSe": {"es": "No tengo una respuesta para eso. Puedo responder sobre entrenar, comer, descansar, el deporte en Tenerife y cuándo consultar.", "en": "I don’t have an answer for that. I can answer about training, eating, resting, sport in Tenerife and when to see a professional.", "fr": "Je n’ai pas de réponse à cela. Je peux répondre sur l’entraînement, l’alimentation, le repos, le sport à Tenerife et quand consulter.", "de": "Dazu habe ich keine Antwort. Ich kann zu Training, Ernährung, Erholung, Sport auf Teneriffa und dazu antworten, wann Sie eine Fachperson aufsuchen sollten.", "it": "Non ho una risposta per questo. Posso rispondere su allenamento, alimentazione, riposo, sport a Tenerife e quando rivolgersi a un professionista.", "nl": "Daar heb ik geen antwoord op. Ik kan antwoorden over trainen, eten, rusten, sport op Tenerife en wanneer u een professional moet raadplegen.", "zh": "我没有这个问题的答案。我可以回答关于训练、饮食、休息、在特内里费运动，以及何时就医的问题。", "zht": "我沒有這個問題的答案。我可以回答關於訓練、飲食、休息、在特內里費運動，以及何時就醫的問題。", "bg": "Нямам отговор на това. Мога да отговарям за тренировки, хранене, почивка, спорт в Тенерифе и кога да потърсите специалист.", "pl": "Nie mam na to odpowiedzi. Mogę odpowiadać o treningu, jedzeniu, odpoczynku, sporcie na Teneryfie i o tym, kiedy zgłosić się do specjalisty."},
+    "cuerpoAsisQuiza": {"es": "¿Quería preguntar esto?", "en": "Did you mean one of these?", "fr": "Vouliez-vous demander ceci ?", "de": "Meinten Sie eine dieser Fragen?", "it": "Intendeva una di queste?", "nl": "Bedoelde u een van deze?", "zh": "您是想问这个吗？", "zht": "您是想問這個嗎？", "bg": "Това ли искахте да попитате?", "pl": "Czy chodziło o jedno z tych pytań?"},
+    "cuerpoAsisTambien": {"es": "También le puede interesar", "en": "You may also want to know", "fr": "Cela peut aussi vous intéresser", "de": "Das könnte Sie auch interessieren", "it": "Potrebbe interessarle anche", "nl": "Misschien ook interessant", "zh": "您可能还想了解", "zht": "您可能還想了解", "bg": "Може да ви интересува и", "pl": "Warto też przeczytać"},
+    "cuerpoAsisFuentes": {"es": "{n} fuente|{n} fuentes", "en": "{n} source|{n} sources", "fr": "{n} source|{n} sources", "de": "{n} Quelle|{n} Quellen", "it": "{n} fonte|{n} fonti", "nl": "{n} bron|{n} bronnen", "zh": "{n} 个来源", "zht": "{n} 個來源", "bg": "{n} източник|{n} източника", "pl": "{n} źródło|{n} źródła|{n} źródeł"},
+    "cuerpoAsisLeido": {"es": "Lo que dice la fuente", "en": "What the source says", "fr": "Ce que dit la source", "de": "Was die Quelle sagt", "it": "Cosa dice la fonte", "nl": "Wat de bron zegt", "zh": "来源原文", "zht": "來源原文", "bg": "Какво казва източникът", "pl": "Co mówi źródło"},
+    "cuerpoAsisCert_alta": {"es": "Certeza alta", "en": "High certainty", "fr": "Certitude élevée", "de": "Hohe Sicherheit", "it": "Certezza alta", "nl": "Hoge zekerheid", "zh": "确定性高", "zht": "確定性高", "bg": "Висока сигурност", "pl": "Wysoka pewność"},
+    "cuerpoAsisCert_moderada": {"es": "Certeza moderada", "en": "Moderate certainty", "fr": "Certitude modérée", "de": "Mittlere Sicherheit", "it": "Certezza moderata", "nl": "Matige zekerheid", "zh": "确定性中等", "zht": "確定性中等", "bg": "Умерена сигурност", "pl": "Umiarkowana pewność"},
+    "cuerpoAsisCert_baja": {"es": "Certeza baja", "en": "Low certainty", "fr": "Certitude faible", "de": "Geringe Sicherheit", "it": "Certezza bassa", "nl": "Lage zekerheid", "zh": "确定性低", "zht": "確定性低", "bg": "Ниска сигурност", "pl": "Niska pewność"},
+    "cuerpoAsisCertAyuda": {"es": "Alta: guía oficial o metaanálisis. Moderada: consenso de expertos o pocos estudios. Baja: un estudio o evidencia indirecta.", "en": "High: official guideline or meta-analysis. Moderate: expert consensus or few studies. Low: a single study or indirect evidence.", "fr": "Élevée : recommandation officielle ou méta-analyse. Modérée : consensus d’experts ou peu d’études. Faible : une seule étude ou preuves indirectes.", "de": "Hoch: offizielle Leitlinie oder Metaanalyse. Mittel: Expertenkonsens oder wenige Studien. Gering: eine einzelne Studie oder indirekte Belege.", "it": "Alta: linea guida ufficiale o metanalisi. Moderata: consenso di esperti o pochi studi. Bassa: un solo studio o prove indirette.", "nl": "Hoog: officiële richtlijn of meta-analyse. Matig: consensus van experts of weinig studies. Laag: één studie of indirect bewijs.", "zh": "高：官方指南或荟萃分析。中等：专家共识或少量研究。低：单项研究或间接证据。", "zht": "高：官方指引或統合分析。中等：專家共識或少量研究。低：單一研究或間接證據。", "bg": "Висока: официално ръководство или метаанализ. Умерена: експертен консенсус или малко проучвания. Ниска: едно проучване или косвени данни.", "pl": "Wysoka: oficjalne wytyczne lub metaanaliza. Umiarkowana: konsensus ekspertów lub nieliczne badania. Niska: pojedyncze badanie lub dowody pośrednie."},
+    "cuerpoAsisConsultar": {"es": "Cuándo consultar", "en": "When to seek help", "fr": "Quand consulter", "de": "Wann Sie Hilfe suchen sollten", "it": "Quando rivolgersi a un professionista", "nl": "Wanneer hulp zoeken", "zh": "何时就医", "zht": "何時就醫", "bg": "Кога да потърсите помощ", "pl": "Kiedy szukać pomocy"},
+    "cuerpoAsisUrgencia": {"es": "Esto puede ser una urgencia", "en": "This may be an emergency", "fr": "Cela peut être une urgence", "de": "Das kann ein Notfall sein", "it": "Potrebbe essere un’emergenza", "nl": "Dit kan een noodgeval zijn", "zh": "这可能是紧急情况", "zht": "這可能是緊急情況", "bg": "Това може да е спешен случай", "pl": "To może być nagły wypadek"},
+    "cuerpoAsisLlamar": {"es": "Llamar al {n}", "en": "Call {n}", "fr": "Appeler le {n}", "de": "{n} anrufen", "it": "Chiama il {n}", "nl": "Bel {n}", "zh": "拨打 {n}", "zht": "撥打 {n}", "bg": "Обадете се на {n}", "pl": "Zadzwoń pod {n}"},
+    "cuerpoAsisSos": {"es": "Abrir la guía SOS", "en": "Open the SOS guide", "fr": "Ouvrir le guide SOS", "de": "SOS-Anleitung öffnen", "it": "Apri la guida SOS", "nl": "SOS-gids openen", "zh": "打开 SOS 指南", "zht": "開啟 SOS 指南", "bg": "Отвори SOS ръководството", "pl": "Otwórz przewodnik SOS"},
+    "cuerpoAsisVerGrupo": {"es": "Ver {grupo}", "en": "See {grupo}", "fr": "Voir {grupo}", "de": "{grupo} ansehen", "it": "Vedi {grupo}", "nl": "Bekijk {grupo}", "zh": "查看{grupo}", "zht": "查看{grupo}", "bg": "Виж {grupo}", "pl": "Zobacz: {grupo}"},
+    "cuerpoAsisVerEj": {"es": "Ver el ejercicio", "en": "See the exercise", "fr": "Voir l’exercice", "de": "Übung ansehen", "it": "Vedi l’esercizio", "nl": "Bekijk de oefening", "zh": "查看动作", "zht": "查看動作", "bg": "Виж упражнението", "pl": "Zobacz ćwiczenie"},
+    "cuerpoAsisVerAspecto": {"es": "Cambiar el aspecto", "en": "Change the look", "fr": "Changer l’apparence", "de": "Aussehen ändern", "it": "Cambia l’aspetto", "nl": "Uiterlijk aanpassen", "zh": "更改外观", "zht": "更改外觀", "bg": "Промени външния вид", "pl": "Zmień wygląd"},
+    "cuerpoAsisVerMusculos": {"es": "Ver los músculos", "en": "See the muscles", "fr": "Voir les muscles", "de": "Muskeln ansehen", "it": "Vedi i muscoli", "nl": "Bekijk de spieren", "zh": "查看肌肉", "zht": "查看肌肉", "bg": "Виж мускулите", "pl": "Zobacz mięśnie"},
+    "cuerpoAsisRevisado": {"es": "Redactado con ayuda de IA y comprobado con las fuentes citadas. Sin revisión profesional.", "en": "Written with AI assistance and checked against the cited sources. No professional review.", "fr": "Rédigé avec l’aide de l’IA et vérifié avec les sources citées. Sans relecture professionnelle.", "de": "Mit KI-Unterstützung verfasst und anhand der genannten Quellen überprüft. Ohne fachliche Prüfung.", "it": "Redatto con l’aiuto dell’IA e verificato con le fonti citate. Senza revisione professionale.", "nl": "Geschreven met hulp van AI en gecontroleerd aan de hand van de genoemde bronnen. Zonder professionele controle.", "zh": "在人工智能辅助下撰写，并已根据所引来源核对。未经专业审核。", "zht": "在人工智慧輔助下撰寫，並已根據所引來源查核。未經專業審核。", "bg": "Написано с помощта на ИИ и сверено с цитираните източници. Без професионална проверка.", "pl": "Napisane z pomocą AI i sprawdzone z cytowanymi źródłami. Bez weryfikacji specjalisty."},
+    "cuerpoAsisVaciar": {"es": "Borrar la conversación", "en": "Clear the conversation", "fr": "Effacer la conversation", "de": "Unterhaltung löschen", "it": "Cancella la conversazione", "nl": "Gesprek wissen", "zh": "清空对话", "zht": "清空對話", "bg": "Изчисти разговора", "pl": "Wyczyść rozmowę"},
+    "cuerpoAsisHola": {"es": "Hola. ¿En qué puedo ayudarle? Pruebe con una de estas preguntas o escriba la suya.", "en": "Hello. How can I help? Try one of these questions or type your own.", "fr": "Bonjour. Que puis-je faire pour vous ? Essayez l’une de ces questions ou écrivez la vôtre.", "de": "Hallo. Wie kann ich helfen? Probieren Sie eine dieser Fragen oder schreiben Sie Ihre eigene.", "it": "Salve. Come posso aiutarla? Provi una di queste domande o scriva la sua.", "nl": "Hallo. Waarmee kan ik helpen? Probeer een van deze vragen of typ uw eigen vraag.", "zh": "您好。有什么可以帮您？试试下面的问题，或输入您自己的问题。", "zht": "您好。有什麼可以幫您？試試下面的問題，或輸入您自己的問題。", "bg": "Здравейте. С какво мога да помогна? Опитайте някой от тези въпроси или напишете свой.", "pl": "Dzień dobry. W czym mogę pomóc? Proszę wybrać jedno z tych pytań albo wpisać własne."},
+    "cuerpoAsisPregChip": {"es": "Preguntar: {q}", "en": "Ask: {q}", "fr": "Demander : {q}", "de": "Fragen: {q}", "it": "Domanda: {q}", "nl": "Vraag: {q}", "zh": "提问：{q}", "zht": "提問：{q}", "bg": "Въпрос: {q}", "pl": "Pytanie: {q}"},
+    "cuerpoAsisResumen": {"es": "Fuente leída en la investigación del 24 de octubre de 2026; no se guardó una cita literal.", "en": "Source read during the research of 24 October 2026; no verbatim quote was kept.", "fr": "Source lue lors de la recherche du 24 octobre 2026 ; aucune citation littérale n’a été conservée.", "de": "Quelle bei der Recherche vom 24. Oktober 2026 gelesen; ein wörtliches Zitat wurde nicht festgehalten.", "it": "Fonte letta durante la ricerca del 24 ottobre 2026; non è stata conservata una citazione letterale.", "nl": "Bron gelezen tijdens het onderzoek van 24 oktober 2026; er is geen letterlijk citaat bewaard.", "zh": "来源已在 2026 年 10 月 24 日的研究中阅读；未保存原文引用。", "zht": "來源已在 2026 年 10 月 24 日的研究中閱讀；未保存原文引用。", "bg": "Източникът е прочетен при проучването от 24 октомври 2026 г.; не е запазен буквален цитат.", "pl": "Źródło przeczytane podczas badań z 24 października 2026 r.; dosłowny cytat nie został zachowany."},
+    "cuerpoDepTitulo": {"es": "Su deporte", "en": "Your sport", "fr": "Votre sport", "de": "Ihr Sport", "it": "Sport", "nl": "Uw sport", "zh": "我的运动", "zht": "我的運動", "bg": "Вашият спорт", "pl": "Sport"},
+    "cuerpoDepLema": {"es": "Elija el que practica: el personaje marcará los grupos que más le sirven y verá qué dicen los estudios.", "en": "Choose the one you do: the figure will mark the muscle groups that help most, and you will see what the studies say.", "fr": "Choisissez celui que vous pratiquez : le personnage indiquera les groupes les plus utiles et vous verrez ce que disent les études.", "de": "Wählen Sie Ihren Sport: Die Figur markiert die Muskelgruppen, die am meisten helfen, und Sie sehen, was die Studien sagen.", "it": "Scelga quello che pratica: il personaggio indicherà i gruppi più utili e vedrà che cosa dicono gli studi.", "nl": "Kies de sport die u beoefent: het figuur markeert de spiergroepen die het meest helpen en u ziet wat de studies zeggen.", "zh": "请选择您从事的运动：人物会标出最有帮助的肌群，并显示研究结论。", "zht": "請選擇您從事的運動：人物會標出最有幫助的肌群，並顯示研究結論。", "bg": "Изберете спорта, който практикувате: героят ще отбележи най-полезните мускулни групи и ще видите какво казват проучванията.", "pl": "Proszę wybrać uprawiany sport: postać zaznaczy najbardziej przydatne grupy mięśni, a poniżej pojawi się, co mówią badania."},
+    "cuerpoDepNinguno": {"es": "Ninguno", "en": "None", "fr": "Aucun", "de": "Keiner", "it": "Nessuno", "nl": "Geen", "zh": "无", "zht": "無", "bg": "Никой", "pl": "Żaden"},
+    "cuerpoDep_senderismo": {"es": "Senderismo y caminar", "en": "Hiking and walking", "fr": "Randonnée et marche", "de": "Wandern und Gehen", "it": "Escursionismo e camminata", "nl": "Wandelen en bergwandelen", "zh": "徒步和步行", "zht": "健行和步行", "bg": "Планински преходи и ходене", "pl": "Wędrówki i spacery"},
+    "cuerpoDep_mar": {"es": "Natación y mar", "en": "Swimming and the sea", "fr": "Natation et mer", "de": "Schwimmen und Meer", "it": "Nuoto e mare", "nl": "Zwemmen en zee", "zh": "游泳和大海", "zht": "游泳和大海", "bg": "Плуване и море", "pl": "Pływanie i morze"},
+    "cuerpoDep_carrera": {"es": "Carrera y trail", "en": "Running and trail running", "fr": "Course à pied et trail", "de": "Laufen und Trailrunning", "it": "Corsa e trail", "nl": "Hardlopen en trailrunning", "zh": "跑步和越野跑", "zht": "跑步和越野跑", "bg": "Бягане и трейл", "pl": "Bieganie i biegi górskie"},
+    "cuerpoDep_ciclismo": {"es": "Ciclismo de carretera", "en": "Road cycling", "fr": "Cyclisme sur route", "de": "Rennradfahren", "it": "Ciclismo su strada", "nl": "Wielrennen", "zh": "公路自行车", "zht": "公路自行車", "bg": "Шосейно колоездене", "pl": "Kolarstwo szosowe"},
+    "cuerpoDep_surf": {"es": "Surf y pádel surf", "en": "Surfing and SUP", "fr": "Surf et stand-up paddle", "de": "Surfen und Stand-up-Paddling", "it": "Surf e SUP", "nl": "Surfen en suppen", "zh": "冲浪和桨板", "zht": "衝浪和立槳", "bg": "Сърф и SUP", "pl": "Surfing i SUP"},
+    "cuerpoDep_buceo": {"es": "Buceo", "en": "Scuba diving", "fr": "Plongée", "de": "Tauchen", "it": "Immersioni", "nl": "Duiken", "zh": "潜水", "zht": "潛水", "bg": "Гмуркане", "pl": "Nurkowanie"},
+    "cuerpoDep_golf": {"es": "Golf", "en": "Golf", "fr": "Golf", "de": "Golf", "it": "Golf", "nl": "Golf", "zh": "高尔夫", "zht": "高爾夫", "bg": "Голф", "pl": "Golf"},
+    "cuerpoDep_windsurf": {"es": "Windsurf y kitesurf", "en": "Windsurfing and kitesurfing", "fr": "Planche à voile et kitesurf", "de": "Windsurfen und Kitesurfen", "it": "Windsurf e kitesurf", "nl": "Windsurfen en kitesurfen", "zh": "帆板和风筝冲浪", "zht": "風帆衝浪和風箏衝浪", "bg": "Уиндсърф и кайтсърф", "pl": "Windsurfing i kitesurfing"},
+    "cuerpoDep_padel": {"es": "Pádel", "en": "Padel", "fr": "Padel", "de": "Padel", "it": "Padel", "nl": "Padel", "zh": "板式网球", "zht": "板式網球", "bg": "Падел", "pl": "Padel"},
+    "cuerpoDep_escalada": {"es": "Escalada", "en": "Climbing", "fr": "Escalade", "de": "Klettern", "it": "Arrampicata", "nl": "Klimmen", "zh": "攀岩", "zht": "攀岩", "bg": "Катерене", "pl": "Wspinaczka"},
+    "cuerpoDep_lucha": {"es": "Lucha canaria", "en": "Canarian wrestling", "fr": "Lutte canarienne", "de": "Kanarisches Ringen", "it": "Lotta canaria", "nl": "Canarisch worstelen", "zh": "加那利摔跤", "zht": "加那利摔跤", "bg": "Канарска борба", "pl": "Zapasy kanaryjskie"},
+    "cuerpoDep_otro": {"es": "Otro deporte", "en": "Another sport", "fr": "Autre sport", "de": "Andere Sportart", "it": "Altro sport", "nl": "Andere sport", "zh": "其他运动", "zht": "其他運動", "bg": "Друг спорт", "pl": "Inny sport"},
+    "cuerpoDepCargando": {"es": "Cargando la ficha del deporte…", "en": "Loading the sport guide…", "fr": "Chargement de la fiche du sport…", "de": "Sportinformationen werden geladen …", "it": "Caricamento della scheda dello sport…", "nl": "Sportinformatie laden…", "zh": "正在加载运动说明…", "zht": "正在載入運動說明…", "bg": "Зареждане на информацията за спорта…", "pl": "Wczytywanie informacji o sporcie…"},
+    "cuerpoDepError": {"es": "No se ha podido cargar la ficha. Compruebe la conexión e inténtelo de nuevo.", "en": "The guide could not be loaded. Check your connection and try again.", "fr": "Impossible de charger la fiche. Vérifiez la connexion et réessayez.", "de": "Die Informationen konnten nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "it": "Impossibile caricare la scheda. Controlli la connessione e riprovi.", "nl": "De informatie kon niet worden geladen. Controleer de verbinding en probeer het opnieuw.", "zh": "无法加载说明。请检查网络连接后重试。", "zht": "無法載入說明。請檢查網路連線後重試。", "bg": "Информацията не можа да се зареди. Проверете връзката и опитайте отново.", "pl": "Nie udało się wczytać informacji. Proszę sprawdzić połączenie i spróbować ponownie."},
+    "cuerpoDepPrio": {"es": "Grupos prioritarios", "en": "Priority groups", "fr": "Groupes prioritaires", "de": "Vorrangige Gruppen", "it": "Gruppi prioritari", "nl": "Prioritaire groepen", "zh": "优先肌群", "zht": "優先肌群", "bg": "Приоритетни групи", "pl": "Grupy priorytetowe"},
+    "cuerpoDepSec": {"es": "Grupos secundarios", "en": "Secondary groups", "fr": "Groupes secondaires", "de": "Weitere Gruppen", "it": "Gruppi secondari", "nl": "Secundaire groepen", "zh": "次要肌群", "zht": "次要肌群", "bg": "Второстепенни групи", "pl": "Grupy uzupełniające"},
+    "cuerpoDepGrado_D": {"es": "Los grupos salen de los ejercicios que usaron los estudios.", "en": "These groups come from the exercises used in the studies.", "fr": "Ces groupes viennent des exercices utilisés dans les études.", "de": "Diese Gruppen stammen aus den Übungen der Studien.", "it": "Questi gruppi derivano dagli esercizi usati negli studi.", "nl": "Deze groepen komen uit de oefeningen die in de studies zijn gebruikt.", "zh": "这些肌群来自研究中使用的动作。", "zht": "這些肌群來自研究中使用的動作。", "bg": "Тези групи са от упражненията, използвани в проучванията.", "pl": "Te grupy pochodzą z ćwiczeń użytych w badaniach."},
+    "cuerpoDepGrado_I": {"es": "Los grupos se deducen de cómo se mueve el cuerpo en este deporte, no de estudios hechos en él.", "en": "These groups are inferred from how the body moves in this sport, not from studies of it.", "fr": "Ces groupes sont déduits des mouvements de ce sport, pas d’études qui lui sont consacrées.", "de": "Die Gruppen sind aus den Bewegungen dieses Sports abgeleitet, nicht aus Studien dazu.", "it": "I gruppi sono dedotti dai movimenti di questo sport, non da studi su di esso.", "nl": "De groepen zijn afgeleid van hoe het lichaam beweegt bij deze sport, niet van studies erover.", "zh": "这些肌群是根据该运动的动作推断的，而非来自针对该运动的研究。", "zht": "這些肌群是根據該運動的動作推斷的，而非來自針對該運動的研究。", "bg": "Групите са изведени от движенията в този спорт, а не от проучвания върху него.", "pl": "Grupy wynikają z ruchów w tym sporcie, a nie z badań na jego temat."},
+    "cuerpoDepEstudios": {"es": "Lo que dicen los estudios", "en": "What the studies say", "fr": "Ce que disent les études", "de": "Was die Studien sagen", "it": "Che cosa dicono gli studi", "nl": "Wat de studies zeggen", "zh": "研究结论", "zht": "研究結論", "bg": "Какво казват проучванията", "pl": "Co mówią badania"},
+    "cuerpoDepDosis": {"es": "En los estudios:", "en": "In the studies:", "fr": "Dans les études :", "de": "In den Studien:", "it": "Negli studi:", "nl": "In de studies:", "zh": "研究中：", "zht": "研究中：", "bg": "В проучванията:", "pl": "W badaniach:"},
+    "cuerpoDepMenores": {"es": "Estos estudios se hicieron con adultos. Por debajo de 18 años, siga la recomendación de la OMS para su edad.", "en": "These studies were done with adults. Under 18, follow the WHO recommendation for your age.", "fr": "Ces études portent sur des adultes. Avant 18 ans, suivez la recommandation de l’OMS pour votre âge.", "de": "Diese Studien wurden mit Erwachsenen durchgeführt. Unter 18 Jahren gilt die WHO-Empfehlung für Ihr Alter.", "it": "Questi studi sono stati condotti su adulti. Sotto i 18 anni, segua la raccomandazione dell’OMS per la sua età.", "nl": "Deze studies zijn bij volwassenen gedaan. Onder de 18 jaar volgt u het WHO-advies voor uw leeftijd.", "zh": "这些研究的对象是成年人。未满 18 岁者，请遵循世卫组织针对您年龄段的建议。", "zht": "這些研究的對象是成年人。未滿 18 歲者，請遵循世衛組織針對您年齡層的建議。", "bg": "Тези проучвания са проведени с възрастни. Под 18 години следвайте препоръката на СЗО за вашата възраст.", "pl": "Te badania przeprowadzono z udziałem dorosłych. Poniżej 18 lat obowiązuje zalecenie WHO dla danego wieku."},
+    "cuerpoDepEjercicios": {"es": "Ejercicios de la biblioteca", "en": "Exercises from the library", "fr": "Exercices de la bibliothèque", "de": "Übungen aus der Bibliothek", "it": "Esercizi della libreria", "nl": "Oefeningen uit de bibliotheek", "zh": "动作库中的动作", "zht": "動作庫中的動作", "bg": "Упражнения от библиотеката", "pl": "Ćwiczenia z biblioteki"},
+    "cuerpoDepEj_D": {"es": "De los estudios", "en": "From the studies", "fr": "Issu des études", "de": "Aus den Studien", "it": "Dagli studi", "nl": "Uit de studies", "zh": "来自研究", "zht": "來自研究", "bg": "От проучванията", "pl": "Z badań"},
+    "cuerpoDepEj_I": {"es": "Indirecto", "en": "Indirect", "fr": "Indirect", "de": "Indirekt", "it": "Indiretto", "nl": "Indirect", "zh": "间接", "zht": "間接", "bg": "Косвено", "pl": "Pośrednio"},
+    "cuerpoDepEncajar": {"es": "Cómo encajarlo en su semana", "en": "How to fit it into your week", "fr": "Comment l’intégrer à votre semaine", "de": "So passt es in Ihre Woche", "it": "Come inserirlo nella sua settimana", "nl": "Zo past het in uw week", "zh": "如何安排到一周中", "zht": "如何安排到一週中", "bg": "Как да го включите в седмицата си", "pl": "Jak wpleść to w tydzień"},
+    "cuerpoDepLesiones": {"es": "Lo que más se lesiona", "en": "What gets injured most", "fr": "Ce qui se blesse le plus", "de": "Was sich am häufigsten verletzt", "it": "Che cosa si infortuna di più", "nl": "Wat het vaakst geblesseerd raakt", "zh": "最常受伤的部位", "zht": "最常受傷的部位", "bg": "Какво се контузва най-често", "pl": "Co najczęściej ulega kontuzjom"},
+    "cuerpoDepLesionesNota": {"es": "Indican qué zonas conviene proteger, no su riesgo personal.", "en": "They show which areas are worth protecting, not your personal risk.", "fr": "Ces données indiquent les zones à protéger, pas votre risque personnel.", "de": "Sie zeigen, welche Bereiche Schutz brauchen, nicht Ihr persönliches Risiko.", "it": "Indicano quali zone conviene proteggere, non il suo rischio personale.", "nl": "Ze laten zien welke zones bescherming verdienen, niet uw persoonlijke risico.", "zh": "这些数据说明需要保护的部位，而不是您个人的风险。", "zht": "這些數據說明需要保護的部位，而不是您個人的風險。", "bg": "Показват кои зони си струва да пазите, а не личния ви риск.", "pl": "Pokazują, które okolice warto chronić, a nie indywidualne ryzyko."},
+    "cuerpoDepIsla": {"es": "En Tenerife", "en": "In Tenerife", "fr": "À Tenerife", "de": "Auf Teneriffa", "it": "A Tenerife", "nl": "Op Tenerife", "zh": "在特内里费岛", "zht": "在特內里費島", "bg": "В Тенерифе", "pl": "Na Teneryfie"},
+    "cuerpoDepNo": {"es": "Lo que no le prometemos", "en": "What we do not promise", "fr": "Ce que nous ne promettons pas", "de": "Was wir nicht versprechen", "it": "Che cosa non le promettiamo", "nl": "Wat we niet beloven", "zh": "我们不承诺的事", "zht": "我們不承諾的事", "bg": "Какво не обещаваме", "pl": "Czego nie obiecujemy"},
+    "cuerpoDepPreguntas": {"es": "Preguntas sobre este deporte", "en": "Questions about this sport", "fr": "Questions sur ce sport", "de": "Fragen zu diesem Sport", "it": "Domande su questo sport", "nl": "Vragen over deze sport", "zh": "关于这项运动的问题", "zht": "關於這項運動的問題", "bg": "Въпроси за този спорт", "pl": "Pytania o ten sport"},
+    "cuerpoDepCert_indirecta": {"es": "Evidencia indirecta", "en": "Indirect evidence", "fr": "Preuves indirectes", "de": "Indirekte Evidenz", "it": "Evidenza indiretta", "nl": "Indirect bewijs", "zh": "间接证据", "zht": "間接證據", "bg": "Косвени данни", "pl": "Dowody pośrednie"},
+    "cuerpoDepCert_ninguna": {"es": "Sin estudios de fuerza", "en": "No strength studies", "fr": "Pas d’études sur la force", "de": "Keine Krafttrainingsstudien", "it": "Nessuno studio sulla forza", "nl": "Geen krachtstudies", "zh": "无力量训练研究", "zht": "無肌力訓練研究", "bg": "Няма проучвания за силата", "pl": "Brak badań nad siłą"},
+    "cuerpoDepPrioLeyenda": {"es": "Prioridad de su deporte", "en": "Priority for your sport", "fr": "Priorité pour votre sport", "de": "Vorrang für Ihren Sport", "it": "Priorità per il suo sport", "nl": "Prioriteit voor uw sport", "zh": "您运动的优先肌群", "zht": "您運動的優先肌群", "bg": "Приоритет за вашия спорт", "pl": "Priorytet w wybranym sporcie"},
+    "cuerpoDepPrioTag": {"es": "Prioridad", "en": "Priority", "fr": "Priorité", "de": "Vorrang", "it": "Priorità", "nl": "Prioriteit", "zh": "优先", "zht": "優先", "bg": "Приоритет", "pl": "Priorytet"},
+    "cuerpoDepFiguraPrio": {"es": "Grupos prioritarios para {deporte}: {lista}.", "en": "Priority groups for {deporte}: {lista}.", "fr": "Groupes prioritaires pour {deporte} : {lista}.", "de": "Vorrangige Gruppen für {deporte}: {lista}.", "it": "Gruppi prioritari per {deporte}: {lista}.", "nl": "Prioritaire groepen voor {deporte}: {lista}.", "zh": "{deporte}的优先肌群：{lista}。", "zht": "{deporte}的優先肌群：{lista}。", "bg": "Приоритетни групи за {deporte}: {lista}.", "pl": "Grupy priorytetowe ({deporte}): {lista}."},
+    "cuerpoModoComida": {"es": "Comida", "en": "Food", "fr": "Repas", "de": "Essen", "it": "Cibo", "nl": "Eten", "zh": "饮食", "zht": "飲食", "bg": "Храна", "pl": "Jedzenie"},
+    "cuerpoComTitulo": {"es": "Su comida", "en": "Your food", "fr": "Votre alimentation", "de": "Ihre Ernährung", "it": "Alimentazione", "nl": "Uw eten", "zh": "我的饮食", "zht": "我的飲食", "bg": "Вашето хранене", "pl": "Jedzenie"},
+    "cuerpoComLema": {"es": "Anote lo que come por raciones, como las cuenta la Agencia Española de Seguridad Alimentaria y Nutrición (AESAN). No cuenta calorías ni le pone objetivos: le enseña su semana al lado de la guía.", "en": "Log what you eat in servings, the way the Spanish Agency for Food Safety and Nutrition (AESAN) counts them. It does not count calories or set targets: it shows your week next to the guide.", "fr": "Notez ce que vous mangez en portions, comme les compte l’Agence espagnole de sécurité alimentaire et de nutrition (AESAN). Pas de calories ni d’objectifs : votre semaine, à côté du guide.", "de": "Notieren Sie, was Sie essen, in Portionen, so wie die spanische Agentur für Lebensmittelsicherheit und Ernährung (AESAN) sie zählt. Keine Kalorien, keine Ziele: nur Ihre Woche neben dem Leitfaden.", "it": "Annoti ciò che mangia in porzioni, come le conta l’Agenzia spagnola per la sicurezza alimentare e la nutrizione (AESAN). Niente calorie né obiettivi: la sua settimana accanto alla guida.", "nl": "Noteer wat u eet in porties, zoals het Spaanse agentschap voor voedselveiligheid en voeding (AESAN) ze telt. Geen calorieën en geen doelen: alleen uw week naast de richtlijn.", "zh": "按份记录您吃的食物，计份方式与西班牙食品安全与营养局（AESAN）相同。这里不计算热量，也不设目标：只把您的一周和指南放在一起看。", "zht": "按份記錄您吃的食物，計份方式與西班牙食品安全與營養局（AESAN）相同。這裡不計算熱量，也不設目標：只把您的一週和指南放在一起看。", "bg": "Записвайте какво ядете в порции, както ги брои Испанската агенция по безопасност на храните и хранене (AESAN). Без калории и без цели: само вашата седмица до насоките.", "pl": "Proszę zapisywać posiłki w porcjach, tak jak liczy je Hiszpańska Agencja Bezpieczeństwa Żywności i Żywienia (AESAN). Bez kalorii i bez celów: tylko tydzień obok wytycznych."},
+    "cuerpoComEmpezar": {"es": "Empezar a anotar", "en": "Start logging", "fr": "Commencer", "de": "Mit dem Notieren beginnen", "it": "Inizia ad annotare", "nl": "Beginnen met noteren", "zh": "开始记录", "zht": "開始記錄", "bg": "Започнете да записвате", "pl": "Zacznij zapisywać"},
+    "cuerpoComPrivado": {"es": "Lo que anote se guarda solo en este dispositivo.", "en": "What you log is stored only on this device.", "fr": "Vos notes restent uniquement sur cet appareil.", "de": "Ihre Einträge bleiben nur auf diesem Gerät.", "it": "Ciò che annota resta solo su questo dispositivo.", "nl": "Wat u noteert, blijft alleen op dit apparaat.", "zh": "您记录的内容只保存在这台设备上。", "zht": "您記錄的內容只保存在這台裝置上。", "bg": "Записаното остава само на това устройство.", "pl": "Zapisy zostają tylko na tym urządzeniu."},
+    "cuerpoComDia": {"es": "Cada día", "en": "Every day", "fr": "Chaque jour", "de": "Jeden Tag", "it": "Ogni giorno", "nl": "Elke dag", "zh": "每天", "zht": "每天", "bg": "Всеки ден", "pl": "Codziennie"},
+    "cuerpoComSemana": {"es": "Cada semana", "en": "Every week", "fr": "Chaque semaine", "de": "Jede Woche", "it": "Ogni settimana", "nl": "Elke week", "zh": "每周", "zht": "每週", "bg": "Всяка седмица", "pl": "Co tydzień"},
+    "cuerpoComCuando": {"es": "Anotar en", "en": "Log for", "fr": "Noter pour", "de": "Notieren für", "it": "Annota per", "nl": "Noteren voor", "zh": "记录日期", "zht": "記錄日期", "bg": "Запис за", "pl": "Zapis na"},
+    "cuerpoComHoyN": {"es": "Hoy: {n}", "en": "Today: {n}", "fr": "Aujourd’hui : {n}", "de": "Heute: {n}", "it": "Oggi: {n}", "nl": "Vandaag: {n}", "zh": "今天：{n}", "zht": "今天：{n}", "bg": "Днес: {n}", "pl": "Dziś: {n}"},
+    "cuerpoComAyerN": {"es": "Ayer: {n}", "en": "Yesterday: {n}", "fr": "Hier : {n}", "de": "Gestern: {n}", "it": "Ieri: {n}", "nl": "Gisteren: {n}", "zh": "昨天：{n}", "zht": "昨天：{n}", "bg": "Вчера: {n}", "pl": "Wczoraj: {n}"},
+    "cuerpoComSemanaN": {"es": "Últimos 7 días: {n}", "en": "Last 7 days: {n}", "fr": "7 derniers jours : {n}", "de": "Letzte 7 Tage: {n}", "it": "Ultimi 7 giorni: {n}", "nl": "Laatste 7 dagen: {n}", "zh": "近 7 天：{n}", "zht": "近 7 天：{n}", "bg": "Последните 7 дни: {n}", "pl": "Ostatnie 7 dni: {n}"},
+    "cuerpoComMas": {"es": "Añadir una ración de {g}", "en": "Add one serving of {g}", "fr": "Ajouter une portion : {g}", "de": "Eine Portion hinzufügen: {g}", "it": "Aggiungi una porzione: {g}", "nl": "Eén portie toevoegen: {g}", "zh": "增加一份{g}", "zht": "增加一份{g}", "bg": "Добавете порция: {g}", "pl": "Dodaj porcję: {g}"},
+    "cuerpoComMenos": {"es": "Quitar una ración de {g}", "en": "Remove one serving of {g}", "fr": "Retirer une portion : {g}", "de": "Eine Portion entfernen: {g}", "it": "Togli una porzione: {g}", "nl": "Eén portie verwijderen: {g}", "zh": "减少一份{g}", "zht": "減少一份{g}", "bg": "Махнете порция: {g}", "pl": "Usuń porcję: {g}"},
+    "cuerpoComVivo": {"es": "{g}: {n}", "en": "{g}: {n}", "fr": "{g} : {n}", "de": "{g}: {n}", "it": "{g}: {n}", "nl": "{g}: {n}", "zh": "{g}：{n}", "zht": "{g}：{n}", "bg": "{g}: {n}", "pl": "{g}: {n}"},
+    "cuerpoComG_hortalizas": {"es": "Hortalizas", "en": "Vegetables", "fr": "Légumes", "de": "Gemüse", "it": "Ortaggi", "nl": "Groenten", "zh": "蔬菜", "zht": "蔬菜", "bg": "Зеленчуци", "pl": "Warzywa"},
+    "cuerpoComG_frutas": {"es": "Frutas", "en": "Fruit", "fr": "Fruits", "de": "Obst", "it": "Frutta", "nl": "Fruit", "zh": "水果", "zht": "水果", "bg": "Плодове", "pl": "Owoce"},
+    "cuerpoComG_cereales": {"es": "Cereales", "en": "Grains", "fr": "Céréales", "de": "Getreide", "it": "Cereali", "nl": "Granen", "zh": "谷物", "zht": "穀物", "bg": "Зърнени храни", "pl": "Produkty zbożowe"},
+    "cuerpoComG_lacteos": {"es": "Lácteos", "en": "Dairy", "fr": "Produits laitiers", "de": "Milchprodukte", "it": "Latticini", "nl": "Zuivel", "zh": "奶类", "zht": "奶類", "bg": "Млечни продукти", "pl": "Nabiał"},
+    "cuerpoComG_legumbres": {"es": "Legumbres", "en": "Legumes", "fr": "Légumineuses", "de": "Hülsenfrüchte", "it": "Legumi", "nl": "Peulvruchten", "zh": "豆类", "zht": "豆類", "bg": "Бобови храни", "pl": "Rośliny strączkowe"},
+    "cuerpoComG_pescado": {"es": "Pescado", "en": "Fish", "fr": "Poisson", "de": "Fisch", "it": "Pesce", "nl": "Vis", "zh": "鱼", "zht": "魚", "bg": "Риба", "pl": "Ryby"},
+    "cuerpoComG_frutos_secos": {"es": "Frutos secos", "en": "Nuts", "fr": "Fruits à coque", "de": "Nüsse", "it": "Frutta secca", "nl": "Noten", "zh": "坚果", "zht": "堅果", "bg": "Ядки", "pl": "Orzechy"},
+    "cuerpoComG_huevos": {"es": "Huevos", "en": "Eggs", "fr": "Œufs", "de": "Eier", "it": "Uova", "nl": "Eieren", "zh": "蛋", "zht": "蛋", "bg": "Яйца", "pl": "Jaja"},
+    "cuerpoComG_carne": {"es": "Carne", "en": "Meat", "fr": "Viande", "de": "Fleisch", "it": "Carne", "nl": "Vlees", "zh": "肉类", "zht": "肉類", "bg": "Месо", "pl": "Mięso"},
+    "cuerpoComRac_hortalizas": {"es": "Una ración: 150–200 g", "en": "One serving: 150–200 g", "fr": "Une portion : 150–200 g", "de": "Eine Portion: 150–200 g", "it": "Una porzione: 150–200 g", "nl": "Eén portie: 150–200 g", "zh": "一份：150–200 克", "zht": "一份：150–200 克", "bg": "Една порция: 150–200 г", "pl": "Porcja: 150–200 g"},
+    "cuerpoComRac_frutas": {"es": "Una ración: 120–200 g de fruta fresca", "en": "One serving: 120–200 g of fresh fruit", "fr": "Une portion : 120–200 g de fruits frais", "de": "Eine Portion: 120–200 g frisches Obst", "it": "Una porzione: 120–200 g di frutta fresca", "nl": "Eén portie: 120–200 g vers fruit", "zh": "一份：120–200 克新鲜水果", "zht": "一份：120–200 克新鮮水果", "bg": "Една порция: 120–200 г пресни плодове", "pl": "Porcja: 120–200 g świeżych owoców"},
+    "cuerpoComRac_cereales": {"es": "Una ración: 40–60 g de pan, o 60–80 g en seco de pasta o arroz", "en": "One serving: 40–60 g of bread, or 60–80 g of dry pasta or rice", "fr": "Une portion : 40–60 g de pain, ou 60–80 g de pâtes ou de riz crus", "de": "Eine Portion: 40–60 g Brot oder 60–80 g Nudeln oder Reis (roh)", "it": "Una porzione: 40–60 g di pane, o 60–80 g di pasta o riso crudi", "nl": "Eén portie: 40–60 g brood, of 60–80 g droge pasta of rijst", "zh": "一份：40–60 克面包，或 60–80 克干意面或大米", "zht": "一份：40–60 克麵包，或 60–80 克乾義大利麵或米", "bg": "Една порция: 40–60 г хляб или 60–80 г сухи макарони или ориз", "pl": "Porcja: 40–60 g pieczywa albo 60–80 g suchego makaronu lub ryżu"},
+    "cuerpoComRac_lacteos": {"es": "Una ración: un vaso de leche (200–250 ml), un yogur (125 g), 85–125 g de queso fresco o 40–60 g de queso curado", "en": "One serving: a glass of milk (200–250 ml), a yoghurt (125 g), 85–125 g of fresh cheese or 40–60 g of aged cheese", "fr": "Une portion : un verre de lait (200–250 ml), un yaourt (125 g), 85–125 g de fromage frais ou 40–60 g de fromage affiné", "de": "Eine Portion: ein Glas Milch (200–250 ml), ein Joghurt (125 g), 85–125 g Frischkäse oder 40–60 g gereifter Käse", "it": "Una porzione: un bicchiere di latte (200–250 ml), uno yogurt (125 g), 85–125 g di formaggio fresco o 40–60 g di formaggio stagionato", "nl": "Eén portie: een glas melk (200–250 ml), een yoghurt (125 g), 85–125 g verse kaas of 40–60 g belegen kaas", "zh": "一份：一杯牛奶（200–250 毫升）、一个酸奶（125 克）、85–125 克鲜奶酪或 40–60 克陈年奶酪", "zht": "一份：一杯牛奶（200–250 毫升）、一個優格（125 克）、85–125 克新鮮乳酪或 40–60 克熟成乳酪", "bg": "Една порция: чаша мляко (200–250 мл), кофичка кисело мляко (125 г), 85–125 г прясно сирене или 40–60 г зряло сирене", "pl": "Porcja: szklanka mleka (200–250 ml), jogurt (125 g), 85–125 g świeżego sera lub 40–60 g sera dojrzewającego"},
+    "cuerpoComRac_legumbres": {"es": "Una ración: 50–60 g en seco o unos 170 g ya cocinadas", "en": "One serving: 50–60 g dry or about 170 g cooked", "fr": "Une portion : 50–60 g crues ou environ 170 g cuites", "de": "Eine Portion: 50–60 g trocken oder etwa 170 g gekocht", "it": "Una porzione: 50–60 g secchi o circa 170 g cotti", "nl": "Eén portie: 50–60 g droog of ongeveer 170 g gekookt", "zh": "一份：干重 50–60 克，或煮熟约 170 克", "zht": "一份：乾重 50–60 克，或煮熟約 170 克", "bg": "Една порция: 50–60 г сухи или около 170 г сготвени", "pl": "Porcja: 50–60 g suchych lub około 170 g ugotowanych"},
+    "cuerpoComRac_pescado": {"es": "Una ración: 125–150 g (un filete)", "en": "One serving: 125–150 g (one fillet)", "fr": "Une portion : 125–150 g (un filet)", "de": "Eine Portion: 125–150 g (ein Filet)", "it": "Una porzione: 125–150 g (un filetto)", "nl": "Eén portie: 125–150 g (één filet)", "zh": "一份：125–150 克（一块鱼排）", "zht": "一份：125–150 克（一塊魚排）", "bg": "Една порция: 125–150 г (едно филе)", "pl": "Porcja: 125–150 g (jeden filet)"},
+    "cuerpoComRac_frutos_secos": {"es": "Una ración: 20–30 g, un puñado que le quepa en la mano cerrada", "en": "One serving: 20–30 g, a handful you can close your hand around", "fr": "Une portion : 20–30 g, une poignée qui tient dans la main fermée", "de": "Eine Portion: 20–30 g, eine Handvoll, die in die geschlossene Hand passt", "it": "Una porzione: 20–30 g, una manciata che stia nella mano chiusa", "nl": "Eén portie: 20–30 g, een handvol die in uw gesloten hand past", "zh": "一份：20–30 克，一只手能握住的一小把", "zht": "一份：20–30 克，一隻手能握住的一小把", "bg": "Една порция: 20–30 г, шепа, която се побира в затворената ръка", "pl": "Porcja: 20–30 g, garść mieszcząca się w zamkniętej dłoni"},
+    "cuerpoComRac_huevos": {"es": "Un huevo mediano pesa entre 53 y 63 g", "en": "A medium egg weighs 53–63 g", "fr": "Un œuf moyen pèse entre 53 et 63 g", "de": "Ein mittelgroßes Ei wiegt 53–63 g", "it": "Un uovo medio pesa tra 53 e 63 g", "nl": "Een middelgroot ei weegt 53–63 g", "zh": "一个中等大小的鸡蛋重 53–63 克", "zht": "一顆中等大小的雞蛋重 53–63 克", "bg": "Едно средно яйце тежи между 53 и 63 г", "pl": "Średnie jajko waży 53–63 g"},
+    "cuerpoComRac_carne": {"es": "Una ración: 100–125 g (un filete mediano o ¼ de pollo)", "en": "One serving: 100–125 g (a medium steak or ¼ chicken)", "fr": "Une portion : 100–125 g (un steak moyen ou ¼ de poulet)", "de": "Eine Portion: 100–125 g (ein mittleres Steak oder ¼ Hähnchen)", "it": "Una porzione: 100–125 g (una bistecca media o ¼ di pollo)", "nl": "Eén portie: 100–125 g (een middelgrote biefstuk of ¼ kip)", "zh": "一份：100–125 克（一块中等肉排或 ¼ 只鸡）", "zht": "一份：100–125 克（一塊中等肉排或 ¼ 隻雞）", "bg": "Една порция: 100–125 г (средна пържола или ¼ пиле)", "pl": "Porcja: 100–125 g (średni stek lub ¼ kurczaka)"},
+    "cuerpoComFrec_hortalizas": {"es": "La guía: al menos 3 al día", "en": "The guide: at least 3 a day", "fr": "Le guide : au moins 3 par jour", "de": "Leitfaden: mindestens 3 pro Tag", "it": "La guida: almeno 3 al giorno", "nl": "Richtlijn: minstens 3 per dag", "zh": "指南：每天至少 3 份", "zht": "指南：每天至少 3 份", "bg": "Насоките: поне 3 на ден", "pl": "Wytyczne: co najmniej 3 dziennie"},
+    "cuerpoComFrec_frutas": {"es": "La guía: de 2 a 3 al día", "en": "The guide: 2 to 3 a day", "fr": "Le guide : 2 à 3 par jour", "de": "Leitfaden: 2 bis 3 pro Tag", "it": "La guida: da 2 a 3 al giorno", "nl": "Richtlijn: 2 tot 3 per dag", "zh": "指南：每天 2 至 3 份", "zht": "指南：每天 2 至 3 份", "bg": "Насоките: от 2 до 3 на ден", "pl": "Wytyczne: 2–3 dziennie"},
+    "cuerpoComFrec_cereales": {"es": "La guía: de 3 a 6 al día", "en": "The guide: 3 to 6 a day", "fr": "Le guide : 3 à 6 par jour", "de": "Leitfaden: 3 bis 6 pro Tag", "it": "La guida: da 3 a 6 al giorno", "nl": "Richtlijn: 3 tot 6 per dag", "zh": "指南：每天 3 至 6 份", "zht": "指南：每天 3 至 6 份", "bg": "Насоките: от 3 до 6 на ден", "pl": "Wytyczne: 3–6 dziennie"},
+    "cuerpoComFrec_lacteos": {"es": "La guía: hasta 3 al día", "en": "The guide: up to 3 a day", "fr": "Le guide : jusqu’à 3 par jour", "de": "Leitfaden: bis zu 3 pro Tag", "it": "La guida: fino a 3 al giorno", "nl": "Richtlijn: tot 3 per dag", "zh": "指南：每天最多 3 份", "zht": "指南：每天最多 3 份", "bg": "Насоките: до 3 на ден", "pl": "Wytyczne: do 3 dziennie"},
+    "cuerpoComFrec_legumbres": {"es": "La guía: al menos 4 a la semana", "en": "The guide: at least 4 a week", "fr": "Le guide : au moins 4 par semaine", "de": "Leitfaden: mindestens 4 pro Woche", "it": "La guida: almeno 4 a settimana", "nl": "Richtlijn: minstens 4 per week", "zh": "指南：每周至少 4 份", "zht": "指南：每週至少 4 份", "bg": "Насоките: поне 4 седмично", "pl": "Wytyczne: co najmniej 4 tygodniowo"},
+    "cuerpoComFrec_pescado": {"es": "La guía: al menos 3 a la semana", "en": "The guide: at least 3 a week", "fr": "Le guide : au moins 3 par semaine", "de": "Leitfaden: mindestens 3 pro Woche", "it": "La guida: almeno 3 a settimana", "nl": "Richtlijn: minstens 3 per week", "zh": "指南：每周至少 3 份", "zht": "指南：每週至少 3 份", "bg": "Насоките: поне 3 седмично", "pl": "Wytyczne: co najmniej 3 tygodniowo"},
+    "cuerpoComFrec_frutos_secos": {"es": "La guía: 3 o más a la semana", "en": "The guide: 3 or more a week", "fr": "Le guide : 3 ou plus par semaine", "de": "Leitfaden: 3 oder mehr pro Woche", "it": "La guida: 3 o più a settimana", "nl": "Richtlijn: 3 of meer per week", "zh": "指南：每周 3 份或以上", "zht": "指南：每週 3 份或以上", "bg": "Насоките: 3 или повече седмично", "pl": "Wytyczne: 3 lub więcej tygodniowo"},
+    "cuerpoComFrec_huevos": {"es": "La guía: hasta 4 a la semana", "en": "The guide: up to 4 a week", "fr": "Le guide : jusqu’à 4 par semaine", "de": "Leitfaden: bis zu 4 pro Woche", "it": "La guida: fino a 4 a settimana", "nl": "Richtlijn: tot 4 per week", "zh": "指南：每周最多 4 个", "zht": "指南：每週最多 4 顆", "bg": "Насоките: до 4 седмично", "pl": "Wytyczne: do 4 tygodniowo"},
+    "cuerpoComFrec_carne": {"es": "La guía: de 0 a 3 a la semana", "en": "The guide: 0 to 3 a week", "fr": "Le guide : 0 à 3 par semaine", "de": "Leitfaden: 0 bis 3 pro Woche", "it": "La guida: da 0 a 3 a settimana", "nl": "Richtlijn: 0 tot 3 per week", "zh": "指南：每周 0 至 3 份", "zht": "指南：每週 0 至 3 份", "bg": "Насоките: от 0 до 3 седмично", "pl": "Wytyczne: 0–3 tygodniowo"},
+    "cuerpoComAceite": {"es": "Aceite de oliva: en todas las comidas; una ración son 10 ml, una cucharada sopera.", "en": "Olive oil: at every meal; one serving is 10 ml, one tablespoon.", "fr": "Huile d’olive : à tous les repas ; une portion fait 10 ml, une cuillère à soupe.", "de": "Olivenöl: zu jeder Mahlzeit; eine Portion sind 10 ml, ein Esslöffel.", "it": "Olio d’oliva: a tutti i pasti; una porzione è 10 ml, un cucchiaio.", "nl": "Olijfolie: bij elke maaltijd; één portie is 10 ml, een eetlepel.", "zh": "橄榄油：每餐都可使用；一份为 10 毫升，即一汤匙。", "zht": "橄欖油：每餐都可使用；一份為 10 毫升，即一湯匙。", "bg": "Зехтин: на всяко хранене; една порция е 10 мл, една супена лъжица.", "pl": "Oliwa z oliwek: do każdego posiłku; porcja to 10 ml, łyżka stołowa."},
+    "cuerpoComAgua": {"es": "Agua: siempre que tenga sed. Sal: no más de 5 g al día.", "en": "Water: whenever you are thirsty. Salt: no more than 5 g a day.", "fr": "Eau : chaque fois que vous avez soif. Sel : pas plus de 5 g par jour.", "de": "Wasser: immer, wenn Sie Durst haben. Salz: nicht mehr als 5 g am Tag.", "it": "Acqua: ogni volta che ha sete. Sale: non più di 5 g al giorno.", "nl": "Water: telkens als u dorst hebt. Zout: niet meer dan 5 g per dag.", "zh": "水：口渴时随时喝。盐：每天不超过 5 克。", "zht": "水：口渴時隨時喝。鹽：每天不超過 5 克。", "bg": "Вода: винаги когато сте жадни. Сол: не повече от 5 г на ден.", "pl": "Woda: zawsze przy pragnieniu. Sól: nie więcej niż 5 g dziennie."},
+    "cuerpoComFuente": {"es": "Raciones y frecuencias: AESAN, «Recomendaciones dietéticas saludables y sostenibles complementadas con recomendaciones de actividad física para la población española», diciembre de 2022.", "en": "Servings and frequencies: AESAN, «Healthy and sustainable dietary recommendations complemented with physical activity recommendations for the Spanish population», December 2022.", "fr": "Portions et fréquences : AESAN, «Recommandations diététiques saines et durables complétées par des recommandations d’activité physique pour la population espagnole», décembre 2022.", "de": "Portionen und Häufigkeiten: AESAN, «Gesunde und nachhaltige Ernährungsempfehlungen mit Empfehlungen zur körperlichen Aktivität für die spanische Bevölkerung», Dezember 2022.", "it": "Porzioni e frequenze: AESAN, «Raccomandazioni dietetiche sane e sostenibili integrate da raccomandazioni di attività fisica per la popolazione spagnola», dicembre 2022.", "nl": "Porties en frequenties: AESAN, «Gezonde en duurzame voedingsaanbevelingen aangevuld met aanbevelingen voor lichaamsbeweging voor de Spaanse bevolking», december 2022.", "zh": "份量与频率：AESAN《面向西班牙人口的健康可持续膳食建议（附身体活动建议）》，2022 年 12 月。", "zht": "份量與頻率：AESAN《面向西班牙人口的健康永續膳食建議（附身體活動建議）》，2022 年 12 月。", "bg": "Порции и честота: AESAN, «Здравословни и устойчиви хранителни препоръки, допълнени с препоръки за физическа активност за населението на Испания», декември 2022 г.", "pl": "Porcje i częstotliwość: AESAN, «Zdrowe i zrównoważone zalecenia żywieniowe uzupełnione zaleceniami aktywności fizycznej dla ludności Hiszpanii», grudzień 2022."},
+    "cuerpoComFuenteVer": {"es": "Ver la guía", "en": "See the guide", "fr": "Voir le guide", "de": "Leitfaden ansehen", "it": "Vedi la guida", "nl": "Bekijk de richtlijn", "zh": "查看指南", "zht": "查看指南", "bg": "Вижте насоките", "pl": "Zobacz wytyczne"},
+    "cuerpoComAyuda": {"es": "Si la comida o el peso le preocupan, hable con su médico o con un dietista-nutricionista. En Tenerife, ALABENTE (asociación contra la anorexia y la bulimia) atiende en el 922 64 12 06.", "en": "If food or weight worries you, talk to your doctor or a dietitian. In Tenerife, ALABENTE (an association against anorexia and bulimia) answers on 922 64 12 06.", "fr": "Si l’alimentation ou le poids vous inquiètent, parlez-en à votre médecin ou à un diététicien. À Tenerife, ALABENTE (association contre l’anorexie et la boulimie) répond au 922 64 12 06.", "de": "Wenn Essen oder Gewicht Ihnen Sorgen machen, sprechen Sie mit Ihrem Arzt oder einer Ernährungsfachkraft. Auf Teneriffa ist ALABENTE (Verein gegen Magersucht und Bulimie) unter 922 64 12 06 erreichbar.", "it": "Se il cibo o il peso la preoccupano, ne parli con il suo medico o con un dietista. A Tenerife, ALABENTE (associazione contro anoressia e bulimia) risponde al 922 64 12 06.", "nl": "Maakt u zich zorgen over eten of gewicht, praat dan met uw arts of een diëtist. Op Tenerife is ALABENTE (vereniging tegen anorexia en boulimia) bereikbaar op 922 64 12 06.", "zh": "如果您为饮食或体重而担心，请与医生或营养师交谈。在特内里费岛，ALABENTE（厌食症与暴食症互助协会）的电话是 922 64 12 06。", "zht": "如果您為飲食或體重而擔心，請與醫師或營養師談談。在特內里費島，ALABENTE（厭食症與暴食症互助協會）的電話是 922 64 12 06。", "bg": "Ако храната или теглото ви тревожат, говорете с вашия лекар или с диетолог. В Тенерифе ALABENTE (сдружение срещу анорексията и булимията) отговаря на 922 64 12 06.", "pl": "Jeśli jedzenie lub waga budzą niepokój, warto porozmawiać z lekarzem lub dietetykiem. Na Teneryfie ALABENTE (stowarzyszenie przeciw anoreksji i bulimii) odbiera pod numerem 922 64 12 06."},
+    "cuerpoComLlamar": {"es": "Llamar a ALABENTE", "en": "Call ALABENTE", "fr": "Appeler ALABENTE", "de": "ALABENTE anrufen", "it": "Chiama ALABENTE", "nl": "ALABENTE bellen", "zh": "致电 ALABENTE", "zht": "致電 ALABENTE", "bg": "Обадете се на ALABENTE", "pl": "Zadzwoń do ALABENTE"},
+    "cuerpoComPausar": {"es": "Pausar el diario", "en": "Pause the diary", "fr": "Mettre le journal en pause", "de": "Tagebuch pausieren", "it": "Metti in pausa il diario", "nl": "Dagboek pauzeren", "zh": "暂停记录", "zht": "暫停記錄", "bg": "Спрете дневника", "pl": "Wstrzymaj dziennik"},
+    "cuerpoComSeguir": {"es": "Seguir anotando", "en": "Resume logging", "fr": "Reprendre", "de": "Weiter notieren", "it": "Riprendi", "nl": "Verder noteren", "zh": "继续记录", "zht": "繼續記錄", "bg": "Продължете да записвате", "pl": "Wznów zapisywanie"},
+    "cuerpoComPausado": {"es": "El diario está en pausa: lo anotado se guarda en este dispositivo, pero no se enseña.", "en": "The diary is paused: what you logged stays on this device, but it is not shown.", "fr": "Le journal est en pause : vos notes restent sur cet appareil, mais ne s’affichent pas.", "de": "Das Tagebuch ist pausiert: Ihre Einträge bleiben auf diesem Gerät, werden aber nicht angezeigt.", "it": "Il diario è in pausa: ciò che ha annotato resta su questo dispositivo, ma non viene mostrato.", "nl": "Het dagboek is gepauzeerd: uw notities blijven op dit apparaat, maar worden niet getoond.", "zh": "记录已暂停：已记录的内容仍保存在这台设备上，但不会显示。", "zht": "記錄已暫停：已記錄的內容仍保存在這台裝置上，但不會顯示。", "bg": "Дневникът е спрян: записаното остава на устройството, но не се показва.", "pl": "Dziennik jest wstrzymany: zapisy zostają na urządzeniu, ale nie są wyświetlane."},
+    "cuerpoComBorrar": {"es": "Borrar lo anotado", "en": "Delete what I logged", "fr": "Effacer mes notes", "de": "Einträge löschen", "it": "Cancella le annotazioni", "nl": "Notities wissen", "zh": "删除记录", "zht": "刪除記錄", "bg": "Изтрийте записаното", "pl": "Usuń zapisy"},
+    "cuerpoComBorrarSeguro": {"es": "¿Borrar todas las raciones anotadas? No se puede deshacer.", "en": "Delete all the servings you logged? This cannot be undone.", "fr": "Effacer toutes les portions notées ? C’est irréversible.", "de": "Alle notierten Portionen löschen? Das lässt sich nicht rückgängig machen.", "it": "Cancellare tutte le porzioni annotate? Non si può annullare.", "nl": "Alle genoteerde porties wissen? Dit kan niet ongedaan worden gemaakt.", "zh": "删除所有已记录的份数？此操作无法撤销。", "zht": "刪除所有已記錄的份數？此操作無法復原。", "bg": "Да изтрием ли всички записани порции? Това не може да се отмени.", "pl": "Usunąć wszystkie zapisane porcje? Tego nie da się cofnąć."},
+    "cuerpoComBorrado": {"es": "Raciones borradas", "en": "Servings deleted", "fr": "Portions effacées", "de": "Portionen gelöscht", "it": "Porzioni cancellate", "nl": "Porties gewist", "zh": "已删除记录", "zht": "已刪除記錄", "bg": "Порциите са изтрити", "pl": "Porcje usunięte"}
   };
   Object.assign(UI_TX, CUERPO_UI);
 })();
@@ -872,7 +998,9 @@
   var MUSC = {
     trazo: '#05070B', base: '#202937', baseClaro: '#2C3747', junta: '#0E131A',
     hueso: '#3B4759', tendon: '#344052',
-    nivel: ['#333E4D', '#B58531', '#E0B44C', '#FFE79E'], sel: '#FFF6DC'
+    nivel: ['#333E4D', '#B58531', '#E0B44C', '#FFE79E'], sel: '#FFF6DC',
+    /* el contorno discontinuo de los grupos prioritarios de un deporte (el patrón, no otro color, lo distingue del oro) */
+    prio: '#F0ECE4'
   };
   /* la luz y la sombra de cada nivel: el grafito con un brillo frío, el oro con sombra cálida (pan de oro) */
   var LUZ = [['#A9BEDB', 0.2, '#020306', 0.42], ['#FFF1C9', 0.3, '#3D2504', 0.5], ['#FFF6DD', 0.34, '#4A2F06', 0.42], ['#FFFFFF', 0.55, '#7A5A16', 0.3]];
@@ -1105,6 +1233,8 @@
     if (o.modo !== 'musculos') return raizSvg(o, vista, svgAspecto(o, vista, id, a));
     var def = G.deformador(a.fig, a.comp);
     var niveles = o.niveles || {}, sel = o.sel || null;
+    /* los grupos prioritarios del deporte elegido (parte 4): un contorno discontinuo, encima del color */
+    var prio = Array.isArray(o.prio) ? o.prio : [];
     /* con prótesis, ese lado lleva el muñón y la prótesis, y no los músculos que pasan del corte */
     var proP = ladoProtesis(a, vista, 'pierna'), proB = ladoProtesis(a, vista, 'brazo');
     function forma(pieza, ps, lado) { return curva(def(pieza, lado < 0 ? espejo(ps) : ps)); }
@@ -1155,7 +1285,7 @@
     });
 
     /* los músculos */
-    var zonas = '', fibras = '', marca = '', oro = '';
+    var zonas = '', fibras = '', marca = '', oro = '', pr = '';
     G.MUSCULOS.forEach(function (mu) {
       if (mu.vista !== vista) return;
       var nv = Math.max(0, Math.min(3, niveles[mu.g] | 0));
@@ -1165,6 +1295,7 @@
         zonas += path(p, { 'class': 'tgf-z', 'data-g': mu.g, 'data-m': mu.id, fill: 'url(#' + id + '-n' + nv + ')', stroke: MUSC.junta, 'stroke-width': 1, 'stroke-linejoin': 'round' });
         if (nv === 3) oro += path(p);
         if (sel && sel === mu.g) marca += path(p, { fill: 'none', stroke: MUSC.sel, 'stroke-width': 1.8, 'stroke-linejoin': 'round' });
+        if (prio.indexOf(mu.g) >= 0) pr += path(p);
       });
       mu.fibras.forEach(function (f) {
         [1, -1].forEach(function (lado) {
@@ -1185,6 +1316,11 @@
     s += '<g fill="none" stroke="' + MUSC.junta + '" stroke-width="1.5" stroke-linecap="round" pointer-events="none">' + lin + '</g>';
     s += '<g fill="none" stroke="' + MUSC.trazo + '" stroke-opacity="0.55" stroke-width="1" stroke-linecap="round" pointer-events="none">' + dedos + '</g>';
     if (vista === 'frente') s += '<ellipse cx="200.5" cy="306" rx="2.2" ry="3" fill="' + MUSC.junta + '"/>';
+    /* el contorno de los prioritarios: una línea oscura debajo y el trazo discontinuo claro encima, para que
+       se lea igual sobre el gris de un grupo sin series que sobre el oro de 10 o más */
+    if (pr) s += '<g class="tgf-prio" fill="none" stroke-linejoin="round" pointer-events="none">' +
+      '<g stroke="' + MUSC.trazo + '" stroke-opacity="0.75" stroke-width="3.6">' + pr + '</g>' +
+      '<g stroke="' + MUSC.prio + '" stroke-width="1.7" stroke-dasharray="5 3.5" stroke-linecap="round">' + pr + '</g></g>';
     s += marca ? '<g class="tgf-marca" pointer-events="none">' + marca + '</g>' : '';
     s += '</g>';
     s += piezasProtesis(forma, proP, proB, true);
@@ -1201,6 +1337,168 @@
   });
 
   raiz.TG_FIGURA = { svg: svg, GRUPOS: G.GRUPOS, MUSCULOS: MUSCULOS, MUSC: MUSC, normaliza: normaliza, OPC: OPC, DEF: DEF, PIEL: PIEL, PELO_COLOR: PELO_COLOR, ROPA_COLOR: ROPA_COLOR, lum: lum };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/* buscador.js — el motor del asistente de «Su cuerpo»: encuentra, sin conexión, la respuesta escrita
+   que corresponde a lo que la persona escribe. No genera texto: busca.
+   Cómo: cada respuesta es un documento con su pregunta, sus variantes y sus palabras clave; la
+   consulta se normaliza (minúsculas, sin tildes ni signos; el chino, en bigramas de caracteres),
+   se puntúa con BM25 (campos con peso: pregunta 2, claves 1,5, variantes 1), se premian las parejas
+   de palabras seguidas y se toleran erratas (prefijos de 5 letras y una letra de distancia).
+   Antes de buscar, el filtro de urgencias mira si el texto describe una urgencia (patrones por idioma
+   que lleva cada respuesta de urgencia en su campo u) y, si es así, esa respuesta va primero.
+   TG_BUSCADOR.crear({ idioma, respuestas }) → { buscar(texto, { edad }) → { urgente, mejor, otras, pista } } */
+(function (raiz) {
+  'use strict';
+
+  /* SIN-TRADUCIR: STOP las palabras vacias que el buscador no cuenta, por idioma (el chino no lleva:
+     se parte en pares de caracteres). No son textos que se ensenen: tools/auditar_idioma.js no las mira */
+  var STOP = {
+    es: 'de la el que y a en un una por para con se al lo los las del es me mi si o su sus le te ya mas más como cual cuál',
+    en: 'the a an of to in on for and or is are it my i do does can be with at as this that',
+    fr: 'le la les de des du un une et à a en pour par sur est je mon ma mes ce cette que qui dans au aux ou',
+    de: 'der die das ein eine und zu in im für mit von ist ich mein meine es auf an oder bei dem den des',
+    it: 'il lo la i gli le di da a in con su per e è che un una del della dei delle mi il mio mia o',
+    nl: 'de het een van en in op voor met is ik mijn te of aan bij dat die',
+    bg: 'и в на с за да е се от по ли не ми ме си са или а',
+    pl: 'i w na z do się jest czy to o a dla od po że nie moje mój jak'
+  };
+  var MAPA = { 'ł': 'l', 'ß': 'ss', 'ø': 'o', 'đ': 'd', 'æ': 'ae', 'œ': 'oe' };
+
+  /* las palabras vacías pasan por normaliza(), como el texto: «für», «à», «się» o «è» llegan sin tilde */
+  var STOP_N = {};
+  function palabrasVacias(idioma) {
+    if (!STOP_N[idioma]) STOP_N[idioma] = STOP[idioma] ? normaliza(STOP[idioma]).split(' ') : [];
+    return STOP_N[idioma];
+  }
+  /* solo las letras de normaliza(), sin tocar los signos: vale para los patrones de las urgencias */
+  function letras(s) {
+    s = String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return s.replace(/[łßøđæœ]/g, function (c) { return MAPA[c] || c; });
+  }
+  function normaliza(s) {
+    s = String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    s = s.replace(/[łßøđæœ]/g, function (c) { return MAPA[c] || c; });
+    return s.replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+  }
+  /* las palabras (latín y cirílico) y, del chino, los bigramas de caracteres y las cifras */
+  function piezas(s, idioma) {
+    var r = [], han = s.match(/[\u3400-\u9fff]+/g) || [];
+    han.forEach(function (h) {
+      if (h.length === 1) r.push(h);
+      for (var i = 0; i + 1 < h.length; i++) r.push(h.slice(i, i + 2));
+    });
+    var resto = s.replace(/[\u3400-\u9fff]+/g, ' ');
+    var stop = palabrasVacias(idioma);
+    resto.split(' ').forEach(function (w) {
+      if (!w || w.length < 2 && !/\d/.test(w)) return;
+      if (stop.indexOf(w) >= 0) return;
+      r.push(w);
+    });
+    return r;
+  }
+  function prefijo(w) { return /[\u3400-\u9fff]/.test(w) || w.length < 6 ? null : w.slice(0, 5) + '*'; }
+  /* distancia de edición limitada a 1 (sustitución, inserción, borrado o transposición) */
+  function cerca(a, b) {
+    if (a === b) return true;
+    var la = a.length, lb = b.length;
+    if (Math.abs(la - lb) > 1) return false;
+    var i = 0, j = 0, d = 0;
+    while (i < la && j < lb) {
+      if (a[i] === b[j]) { i++; j++; continue; }
+      if (d) return false;
+      d = 1;
+      if (la === lb) { if (a[i + 1] === b[j] && a[i] === b[j + 1]) { i += 2; j += 2; } else { i++; j++; } }
+      else if (la > lb) i++; else j++;
+    }
+    return d + (la - i) + (lb - j) <= 1;
+  }
+
+  function crear(op) {
+    var idioma = op.idioma || 'es', docs = [], vocab = {}, N = 0, media = 0;
+    var urgencias = [];
+    (op.respuestas || []).forEach(function (r) {
+      var tf = {}, pares = {}, len = 0;
+      function mete(texto, peso) {
+        var ps = piezas(normaliza(texto), idioma), ant = null;
+        ps.forEach(function (w) {
+          tf[w] = (tf[w] || 0) + peso; len += peso;
+          var pf = prefijo(w); if (pf) tf[pf] = (tf[pf] || 0) + peso * 0.5;
+          if (ant) pares[ant + ' ' + w] = 1;
+          ant = w;
+        });
+      }
+      mete(r.q, 2);
+      (r.v || []).forEach(function (v) { mete(v, 1); });
+      (r.k || []).forEach(function (k) { mete(k, 1.5); });
+      for (var w in tf) vocab[w] = (vocab[w] || 0) + 1;
+      docs.push({ id: r.id, tipo: r.tipo, edad: r.edad || 'todos', tf: tf, pares: pares, len: len });
+      media += len; N++;
+      if (r.tipo === 'urgencia' && Array.isArray(r.u)) {
+        /* el patrón pasa por las mismas letras que el texto (minúsculas, sin tildes, ł → l, ß → ss…), así que una
+           exclusión escrita con tilde o con «й» sigue valiendo, y el texto solo se mira normalizado */
+        r.u.forEach(function (p) { try { urgencias.push({ id: r.id, re: new RegExp(letras(p), 'iu') }); } catch (e) {} });
+      }
+    });
+    media = N ? media / N : 1;
+    var palabras = Object.keys(vocab).filter(function (w) { return w.slice(-1) !== '*' && !/[\u3400-\u9fff]/.test(w); });
+    function idf(w) { var n = vocab[w] || 0; return Math.log(1 + (N - n + 0.5) / (n + 0.5)); }
+
+    function urgente(texto) {
+      var t = normaliza(texto);
+      for (var i = 0; i < urgencias.length; i++) if (urgencias[i].re.test(t)) return urgencias[i].id;
+      return null;
+    }
+
+    function buscar(texto, o) {
+      o = o || {};
+      var edad = o.edad == null ? null : o.edad;
+      var q = piezas(normaliza(texto), idioma);
+      var res = { urgente: urgente(texto), mejor: null, otras: [], pista: q.length ? 'nada' : 'vacio' };
+      if (!q.length) return res;
+      /* los términos de la consulta: la palabra, su prefijo y, si no existe, la más parecida */
+      var terminos = [], ideal = 0;
+      q.forEach(function (w) {
+        if (vocab[w]) { terminos.push([w, 1]); ideal += idf(w); }
+        else {
+          var pf = prefijo(w), hallado = false;
+          if (pf && vocab[pf]) { terminos.push([pf, 0.7]); ideal += idf(pf) * 0.7; hallado = true; }
+          if (!hallado && w.length >= 5 && !/[\u3400-\u9fff]/.test(w)) {
+            for (var i = 0; i < palabras.length; i++) if (cerca(w, palabras[i])) { terminos.push([palabras[i], 0.8]); ideal += idf(palabras[i]) * 0.8; hallado = true; break; }
+          }
+          /* una palabra que nadie tiene cuenta como no encontrada; una cifra que nadie tiene («78 años», «6000 pasos»), no;
+             un par de caracteres chinos que nadie tiene, a 0,7 (cada frase china trae muchos pares sueltos) */
+          if (!hallado && !/^\d+$/.test(w)) ideal += (/[\u3400-\u9fff]/.test(w) ? 0.7 : 1) * Math.log(1 + N);
+        }
+      });
+      var k1 = 1.2, b = 0.75, puntos = [];
+      docs.forEach(function (d) {
+        if (edad != null && ((d.edad === 'adultos' && edad < 18) || (d.edad === 'menores' && edad >= 18))) return;
+        var s = 0;
+        terminos.forEach(function (t) {
+          var f = d.tf[t[0]]; if (!f) return;
+          s += idf(t[0]) * t[1] * (f * (k1 + 1)) / (f + k1 * (1 - b + b * d.len / media));
+        });
+        if (!s) return;
+        for (var i = 0; i + 1 < q.length; i++) if (d.pares[q[i] + ' ' + q[i + 1]]) s *= 1.15;
+        puntos.push([s, d]);
+      });
+      puntos.sort(function (a, b) { return b[0] - a[0]; });
+      if (!puntos.length) return res;
+      var tope = puntos[0][0], rel = ideal ? tope / (ideal * 2.2) : 0;   /* 2,2: lo que vale un término con tf saturado */
+      var lista = puntos.slice(0, 6).map(function (p) { return { id: p[1].id, tipo: p[1].tipo, puntos: p[0], rel: p[0] / tope }; });
+      /* umbrales afinados el 31-10-2026 con las preguntas de prueba ciegas de los diez idiomas (2.300 preguntas): 0,36 y 0,95
+         dan una respuesta directa a 9 de cada 10 sin contestar las preguntas de otros temas (antes, 0,42 y 0,8: 8 de cada 10) */
+      if (rel >= 0.36 && (lista.length === 1 || lista[1].rel <= 0.95)) { res.mejor = lista[0]; res.otras = lista.slice(1, 4); res.pista = 'clara'; }
+      else if (rel >= 0.22) { res.otras = lista.slice(0, 4); res.pista = 'dudosa'; }
+      else { res.otras = lista.slice(0, 3); res.pista = 'nada'; }
+      res.rel = rel;
+      return res;
+    }
+    return { buscar: buscar, urgente: urgente, normaliza: normaliza, n: N };
+  }
+
+  raiz.TG_BUSCADOR = { crear: crear, normaliza: normaliza, piezas: piezas, cerca: cerca };
 })(typeof window !== 'undefined' ? window : globalThis);
 
 /* ── la pantalla «Su cuerpo» ── */
@@ -1266,18 +1564,34 @@
     if (n === 1) return tx('cuerpoAyer');
     return tx('cuerpoHaceDias', { n: n });
   }
-  /* La edad, del año de nacimiento del perfil (si lo hay): decide qué recomendación de la OMS se enseña */
-  function edad() {
+  /* Las guías del panel SOS. En la app, abrirSOS() de index.html carga el panel si aún no se ha abierto
+     (sin él, el enlace no saldría hasta abrir el SOS una vez); en el prototipo, TG_SOS. */
+  function haySOS() { return typeof window.abrirSOS === 'function' || !!(window.TG_SOS && typeof window.TG_SOS.abrir === 'function'); }
+  function abrirGuiaSOS(v) {
+    var vista = v === 'inicio' ? undefined : v;
+    try {
+      if (typeof window.abrirSOS === 'function') window.abrirSOS(vista);
+      else if (window.TG_SOS && typeof window.TG_SOS.abrir === 'function') window.TG_SOS.abrir(vista);
+    } catch (x) {}
+  }
+  /* La edad, del año de nacimiento del perfil (si lo hay): decide qué recomendación de la OMS se enseña.
+     Solo se sabe el año: quien nació en 2008 tiene 17 o 18 años según el día. Para proteger a los menores
+     vale la menor posible (edad()); para lo que se da desde los 65 años, la mayor (edadMax()). */
+  function anioNacimiento() {
     try {
       var p = JSON.parse(localStorage.getItem('tenerife.perfil')), a = p && p.nacimiento, y = new Date().getFullYear();
-      return (typeof a === 'number' && Math.floor(a) === a && a >= 1900 && a <= y) ? y - a : null;
+      return (typeof a === 'number' && Math.floor(a) === a && a >= 1900 && a <= y) ? a : null;
     } catch (e) { return null; }
   }
+  function edad() { var a = anioNacimiento(); return a === null ? null : Math.max(0, new Date().getFullYear() - a - 1); }
+  function edadMax() { var a = anioNacimiento(); return a === null ? null : new Date().getFullYear() - a; }
 
   /* ── lo guardado: tenerife.cuerpo, solo en el dispositivo, validado campo a campo al leerlo ──
-     { v: 1, aspecto: {…}, series: [{ d: 'AAAA-MM-DD', g: grupo, n: 1-30, t: instante, e: ejercicio }] }
-     (e, el id del ejercicio, solo si se anotó desde su ficha) */
-  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [] }; }
+     { v: 1, aspecto: {…}, series: [{ d: 'AAAA-MM-DD', g: grupo, n: 1-30, t: instante, e: ejercicio }], deporte: id,
+       comida: { on, pausa, d: { 'AAAA-MM-DD': { grupo: raciones } } } }
+     (e, el id del ejercicio, solo si se anotó desde su ficha; deporte, el elegido en «Su deporte» o ''; comida, el
+     diario por raciones, apagado hasta que la persona lo enciende) */
+  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], deporte: '', comida: comVacio() }; }
   function valida(s) {
     var r = vacio();
     if (!s || typeof s !== 'object') return r;
@@ -1293,6 +1607,10 @@
         return y;
       }).slice(-MAX_ENTRADAS);
     }
+    /* el deporte: solo la forma de un id (si no es uno de la lista, deporteActual() no lo encuentra) */
+    if (typeof s.deporte === 'string' && s.deporte.length <= 30 && esId(s.deporte)) r.deporte = s.deporte;
+    /* el diario de comidas (parte 5): comValida() lo comprueba campo a campo */
+    r.comida = comValida(s.comida);
     return r;
   }
   function leer() { try { return valida(JSON.parse(localStorage.getItem(KEY))); } catch (e) { return vacio(); } }
@@ -1410,7 +1728,8 @@
     if (modo !== 'musculos') return tx('cuerpoFiguraAlt', { vista: nv });
     var hechos = GRUPOS.filter(function (g) { return R.series[g] > 0; }).map(nombre);
     var trab = hechos.length ? tx('cuerpoTrabajados', { lista: lista(hechos) }) : tx('cuerpoNingunTrabajado');
-    return tx('cuerpoFiguraAltMusculos', { vista: nv, trabajados: trab });
+    var pr = prioActual(), dep = pr.length ? ' ' + tx('cuerpoDepFiguraPrio', { deporte: tx('cuerpoDep_' + st.deporte), lista: lista(pr.map(nombre)) }) : '';
+    return tx('cuerpoFiguraAltMusculos', { vista: nv, trabajados: trab }) + dep;
   }
   function renderFigura(R) {
     R = R || resumen();
@@ -1418,11 +1737,13 @@
     var ambas = modo === 'musculos';
     ['frente', 'espalda'].forEach(function (v) {
       var caja = $('tgc-cara-' + v);
-      caja.innerHTML = F.svg({ vista: v, modo: modo, aspecto: st.aspecto, niveles: R.niveles, sel: ambas ? grupoAbierto : null,
+      caja.innerHTML = F.svg({ vista: v, modo: modo, aspecto: st.aspecto, niveles: R.niveles, sel: ambas ? grupoAbierto : null, prio: prioActual(),
                                id: 'tgc-' + v, etiqueta: etiquetaFigura(v, R), viewBox: '40 8 320 784' });
       caja.setAttribute('aria-hidden', ambas || v === vista ? 'false' : 'true');
     });
     $('tgc-giro').classList.toggle('is-espalda', !ambas && vista === 'espalda');
+    /* en la leyenda, el contorno discontinuo: solo con un deporte que tenga grupos prioritarios */
+    $('tgc-ley-prio-li').hidden = !prioActual().length;
     var b = $('tgc-girar');
     b.setAttribute('aria-label', tx(vista === 'frente' ? 'cuerpoVerEspalda' : 'cuerpoVerFrente'));
     $('tgc-vista').textContent = tx(vista === 'frente' ? 'cuerpoVistaFrente' : 'cuerpoVistaEspalda');
@@ -1493,12 +1814,15 @@
   /* cada grupo, una barra: las series de 7 días; en adultos, una marca en 10 (la referencia del ACSM) */
   function renderLista(R) {
     var ul = $('tgc-lista'); ul.textContent = '';
-    var escala = Math.max(20, Math.max.apply(null, GRUPOS.map(function (g) { return R.series[g]; }))), ref = adulto();
+    var escala = Math.max(20, Math.max.apply(null, GRUPOS.map(function (g) { return R.series[g]; }))), ref = adulto(), pr = prioActual();
     GRUPOS.forEach(function (g, i) {
       var li = el('li'), b = el('button', 'tgc-fila');
       b.type = 'button'; b.dataset.g = g;
       /* los espacios entre las piezas no se ven (la fila es una rejilla), pero el nombre accesible queda «Pecho 8 series hoy» */
-      b.appendChild(el('span', 'tgc-fila-nom', nombre(g)));
+      var nom = el('span', 'tgc-fila-nom', nombre(g));
+      /* los prioritarios del deporte elegido llevan su marca (la misma línea discontinua que el personaje) */
+      if (pr.indexOf(g) >= 0) { nom.appendChild(document.createTextNode(' ')); nom.appendChild(el('span', 'tgc-fila-prio', tx('cuerpoDepPrioTag'))); }
+      b.appendChild(nom);
       b.appendChild(document.createTextNode(' '));
       b.appendChild(el('span', 'tgc-fila-n', tx('cuerpoNSeries', { n: R.series[g] })));
       b.appendChild(document.createTextNode(' '));
@@ -1838,19 +2162,29 @@
   }
   function renderMusculos() { var R = resumen(); renderResumen(R); renderLista(R); renderFigura(R); }
   function renderModo() {
-    var m = modo === 'musculos';
-    $('tgc').classList.toggle('is-aspecto', !m);
+    var m = modo === 'musculos', a = modo === 'aspecto', c = modo === 'comida', q = modo === 'preguntar';
+    $('tgc').classList.toggle('is-aspecto', a);
+    $('tgc').classList.toggle('is-comida', c);
+    $('tgc').classList.toggle('is-preguntar', q);
     $('tgc-modo-m').setAttribute('aria-pressed', m ? 'true' : 'false');
-    $('tgc-modo-a').setAttribute('aria-pressed', m ? 'false' : 'true');
+    $('tgc-modo-a').setAttribute('aria-pressed', a ? 'true' : 'false');
+    $('tgc-modo-c').setAttribute('aria-pressed', c ? 'true' : 'false');
+    $('tgc-modo-p').setAttribute('aria-pressed', q ? 'true' : 'false');
     $('tgc-vista-musculos').hidden = !m;
-    $('tgc-vista-aspecto').hidden = m;
+    $('tgc-vista-aspecto').hidden = !a;
+    $('tgc-vista-comida').hidden = !c;
+    $('tgc-vista-preguntar').hidden = !q;
+    /* el personaje no pinta nada en «Comida» ni en «Preguntar» */
+    $('tgc-escena').hidden = q || c;
     $('tgc-leyenda').hidden = !m;
   }
-  function renderTodo() { aplicarTextos(); renderModo(); renderMusculos(); renderEditor(); if (grupoAbierto) renderHoja(); }
+  function renderTodo() { aplicarTextos(); renderModo(); renderMusculos(); renderDeporte(); renderEditor(); renderComida(); if (grupoAbierto) renderHoja(); if (modo === 'preguntar') renderAsistente(); }
   function setModo(m) {
     if (m === modo) return;
     modo = m; renderModo(); renderFigura();
     if (m === 'musculos') try { $('tgc-escena').scrollIntoView({ block: 'nearest', behavior: reducido ? 'auto' : 'smooth' }); } catch (e) {}
+    if (m === 'preguntar') renderAsistente();
+    if (m === 'comida') renderComida();
   }
 
   /* ── eventos (una vez, al montar) ── */
@@ -1863,6 +2197,11 @@
     $('tgc-back').addEventListener('click', function () { cerrar(); });
     $('tgc-modo-m').addEventListener('click', function () { setModo('musculos'); });
     $('tgc-modo-a').addEventListener('click', function () { setModo('aspecto'); });
+    $('tgc-modo-c').addEventListener('click', function () { setModo('comida'); });
+    $('tgc-modo-p').addEventListener('click', function () { setModo('preguntar'); });
+    engancharAsistente();
+    engancharComida();
+    engancharDeporte();
     $('tgc-listo').addEventListener('click', function () { setModo('musculos'); try { $('tgc-modo-m').focus({ preventScroll: true }); } catch (e) {} });
     $('tgc-girar').addEventListener('click', function () { vista = vista === 'frente' ? 'espalda' : 'frente'; renderFigura(); });
     var giro = $('tgc-giro');
@@ -1976,7 +2315,9 @@
     /* el título del perfil es el h1: aquí, uno de sus apartados */
     $('tgc-titulo').setAttribute('aria-level', '2');
     st = leer();
-    if (op && (op.modo === 'aspecto' || op.modo === 'musculos')) modo = op.modo;
+    /* lo mismo que abrir(): los cuatro modos y una pregunta para «Preguntar» */
+    if (op && (op.modo === 'aspecto' || op.modo === 'musculos' || op.modo === 'comida' || op.modo === 'preguntar')) modo = op.modo;
+    if (op && typeof op.pregunta === 'string') { modo = 'preguntar'; preguntaPendiente = op.pregunta; }
     if (!abierto) {
       diaSel = null;
       var t = $('tgc'); t.classList.add('tgc-entra'); clearTimeout(entraReloj);
@@ -1990,7 +2331,8 @@
     if (dentro) { incrustar(panel.parentNode, op); return; }
     montar();
     st = leer();
-    if (op && (op.modo === 'aspecto' || op.modo === 'musculos')) modo = op.modo;
+    if (op && (op.modo === 'aspecto' || op.modo === 'musculos' || op.modo === 'comida' || op.modo === 'preguntar')) modo = op.modo;
+    if (op && typeof op.pregunta === 'string') { modo = 'preguntar'; preguntaPendiente = op.pregunta; }
     if (!abierto) {
       diaSel = null;
       /* la entrada (el barrido de la lámina y las barras que crecen): una vez, al abrir */
@@ -2017,6 +2359,7 @@
     abierto = false;
     panel.hidden = true;
     $('tgc-toast').classList.remove('show');
+    vaciarCharla();
     perfilDebajo(false);
     if (historia && !sinHistoria) { try { atrasPendiente = true; history.back(); } catch (x) { atrasPendiente = false; } }
     historia = false;
@@ -2026,13 +2369,19 @@
   /* «atrás»: primero la ficha, luego la hoja, luego la pantalla. El back() de cerrar() también llega
      aquí. Se mira adónde se vuelve (e.state, con las marcas que se ponen al abrir): con un «atrás» de
      varios pasos de golpe (en el navegador, manteniéndolo pulsado) se cierra de una vez todo lo que
-     quedaba encima. Dentro de la pestaña Cuerpo, una hoja que se quedara abierta con el perfil ya
-     cerrado lo dejaría inerte al volver a abrirlo (alrededor) */
+     quedaba encima, y nada más: cerrar lo que va encima de «Su cuerpo» (el panel SOS, que pone sus
+     propias entradas; las respuestas enlazan a sus guías) vuelve a una entrada con tgCuerpo y no la
+     cierra. Dentro de la pestaña Cuerpo, una hoja que se quedara abierta con el perfil ya cerrado lo
+     dejaría inerte al volver a abrirlo (alrededor) */
   window.addEventListener('popstate', function (e) {
     if (atrasPendiente) { atrasPendiente = false; return; }
     var s = (e && e.state) || {};
+    /* una entrada del panel SOS (tgSos), que va encima: es suya. Con una guia abierta pone dos, y el
+       primer «atras» vuelve a la de su inicio, que no lleva las marcas de «Su cuerpo» (3 de
+       noviembre de 2026: sin esto, ese «atras» cerraba la hoja o la pantalla de debajo) */
+    if (s.tgSos) return;
     if (ejAbierto && !s.tgCuerpoEj) { ejHistoria = false; volverGrupo(true); }
-    if (grupoAbierto && !s.tgCuerpoHoja) { hojaHistoria = false; cerrarHoja(true); }
+    if (grupoAbierto && !s.tgCuerpoHoja) { hojaHistoria = false; ejHistoria = false; cerrarHoja(true); }
     if (s.tgCuerpo || !abierto || dentro) return;
     historia = false;
     cerrar(true);
@@ -2042,6 +2391,9 @@
     if (e.key !== 'Escape' || !abierto) return;
     var m = document.getElementById('auth-modal-backdrop');
     if (m && m.classList.contains('show')) return;
+    /* el panel SOS va encima (las respuestas enlazan a sus guías): ese Escape es suyo */
+    var sos = document.getElementById('sos-panel');
+    if (sos && !sos.hidden) return;
     /* dentro de la pestaña, sin hoja abierta, el Escape es del perfil */
     if (dentro && !grupoAbierto) return;
     /* y no lo oye nadie más, tampoco en window: el Escape del perfil, si se enganchó después que
@@ -2050,6 +2402,644 @@
     if (ejAbierto) volverGrupo(); else if (grupoAbierto) cerrarHoja(); else cerrar();
   }, true);
   try { TG_IDIOMA.registrar('cuerpo', function () { if (abierto) renderTodo(); }); } catch (e) {}
+
+  /* ── el asistente (parte 6): el modo «Preguntar» ──
+     Respuestas escritas de antemano, con sus fuentes, en datos/asistente-<idioma>.json (se piden al
+     abrir el modo; si falta el idioma, el castellano). El motor (TG_BUSCADOR) encuentra la respuesta
+     que corresponde a lo escrito; no genera texto. Lo escrito no se guarda ni se envía: la charla
+     vive en memoria mientras la pantalla está abierta. Antes que nada, el filtro de urgencias. */
+  var ASIS = null, ASIS_IDIOMA = null, asisCarga = null, asisError = false, buscador = null, preguntaPendiente = null;
+  var charla = [];   /* [{ q, id, caso }] solo en memoria */
+  var SUGERIDAS = ['mi-semana', 'que-entreno-hoy', 'cuanto-ejercicio', 'cuanta-proteina', 'agujetas', 'calor-entrenar', 'principiante', 'senderismo-preparar',
+                   'cuantas-series', 'cuanto-dormir', 'nadar-en-el-mar', 'musculos-pequenos', 'vacaciones-mantener', 'cuanta-agua'];
+
+  function cargarAsistente() {
+    var l = lengua();
+    if (ASIS && ASIS_IDIOMA === l) return Promise.resolve();
+    if (asisCarga) return asisCarga;
+    asisError = false;
+    asisCarga = pedirJSON('asistente-' + l + '.json').catch(function () { return l === 'es' ? Promise.reject(new Error('es')) : pedirJSON('asistente-es.json'); })
+      .then(function (d) {
+        if (!d || !Array.isArray(d.respuestas)) throw new Error('datos');
+        ASIS = indexarAsistente(d); ASIS_IDIOMA = l;
+        buscador = window.TG_BUSCADOR ? window.TG_BUSCADOR.crear({ idioma: l, respuestas: ASIS.lista }) : null;
+      }, function (e) { asisError = true; throw e; });
+    var fin = function () { asisCarga = null; };
+    asisCarga.then(fin, fin);
+    return asisCarga;
+  }
+  /* cada fila se comprueba al leerla: solo texto, enlaces conocidos y https */
+  function indexarAsistente(d) {
+    var porId = {}, lista = [];
+    function txt(v, n) { return typeof v === 'string' ? v.slice(0, n || 600) : ''; }
+    function txts(v, n) { return Array.isArray(v) ? v.filter(function (x) { return typeof x === 'string'; }).map(function (x) { return x.slice(0, n || 300); }) : []; }
+    function cuerpo(r) { return r && typeof r === 'object' ? { t: txt(r.t), p: txts(r.p, 400), c: txt(r.c), n: txt(r.n) } : null; }
+    d.respuestas.forEach(function (x) {
+      if (!x || !esId(x.id) || porId[x.id]) return;
+      var tipo = ['info', 'calculo', 'derivar', 'urgencia', 'app'].indexOf(x.tipo) >= 0 ? x.tipo : 'info';
+      var r = { id: x.id, tipo: tipo, cat: txt(x.cat, 40), edad: ['todos', 'adultos', 'menores'].indexOf(x.edad) >= 0 ? x.edad : 'todos',
+                q: txt(x.q, 200), v: txts(x.v, 200), k: txts(x.k, 60), u: txts(x.u, 1200), cert: ['alta', 'moderada', 'baja'].indexOf(x.cert) >= 0 ? x.cert : null,
+                rel: txts(x.rel, 80).filter(esId), links: [], f: [] };
+      if (tipo === 'calculo') {
+        r.casos = {};
+        var c = x.r && x.r.casos; if (c && typeof c === 'object') Object.keys(c).forEach(function (k) { if (/^[a-z_]+$/.test(k)) r.casos[k] = cuerpo(c[k]); });
+      } else r.r = cuerpo(x.r);
+      (Array.isArray(x.links) ? x.links : []).forEach(function (l) {
+        if (!l || typeof l !== 'object') return;
+        var k = Object.keys(l)[0], v = l[k];
+        if (k === 'g' && GRUPOS.indexOf(v) >= 0) r.links.push({ g: v });
+        else if (k === 'ej' && esId(v)) r.links.push({ ej: v });
+        else if (k === 'sos' && /^[a-z]+$/.test(String(v))) r.links.push({ sos: v });
+        else if (k === 'tel' && ['112', '024', '016'].indexOf(String(v)) >= 0) r.links.push({ tel: String(v) });
+        else if (k === 'modo' && (v === 'aspecto' || v === 'musculos')) r.links.push({ modo: v });
+        else if (k === 'q' && esId(v)) r.links.push({ q: v });
+      });
+      /* hasta 3 fuentes por respuesta (4 en las calculadas, que juntan varios casos) */
+      (Array.isArray(x.f) ? x.f : []).slice(0, tipo === 'calculo' ? 4 : 3).forEach(function (q) {
+        if (q && typeof q.titulo === 'string' && typeof q.url === 'string' && /^https:\/\//.test(q.url)) r.f.push({ titulo: q.titulo.slice(0, 200), url: q.url, fecha: txt(q.fecha, 10), tipo: txt(q.tipo, 12), leido: q.resumen === true ? '' : txt(q.leido, 320), resumen: q.resumen === true });
+      });
+      if (!r.q || (tipo !== 'calculo' && !(r.r && r.r.t))) return;
+      porId[r.id] = r; lista.push(r);
+    });
+    return { porId: porId, lista: lista, revisado: typeof d.revisado === 'string' ? d.revisado.slice(0, 120) : '' };
+  }
+
+  /* ── las respuestas calculadas con lo anotado en este dispositivo ── */
+  function calcular(id) {
+    var R = resumen(), e = edad();
+    function nombres(gs) { return lista(gs.map(nombre)); }
+    if (id === 'mi-semana') {
+      var hechos = GRUPOS.filter(function (g) { return R.series[g] > 0; });
+      return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos) } };
+    }
+    if (id === 'que-entreno-hoy') {
+      var faltan = GRUPOS.filter(function (g) { return !R.series[g]; });
+      if (!R.total && !st.series.length) return { caso: 'nada', vars: {} };
+      return faltan.length ? { caso: 'faltan', vars: { lista: nombres(faltan), n: faltan.length } } : { caso: 'todos', vars: {} };
+    }
+    if (id === 'cumplo-recomendacion') {
+      if (e === null) return { caso: 'sin_edad', vars: { dias: R.diasFuerza, meta: 2 } };
+      var meta = e < 18 ? 3 : 2;
+      return { caso: R.diasFuerza >= meta ? 'cumple' : 'falta', vars: { dias: R.diasFuerza, meta: meta } };
+    }
+    if (id === 'musculo-olvidado') {
+      var nunca = GRUPOS.filter(function (g) { return !R.ultima[g]; });
+      if (nunca.length) return { caso: 'nunca', vars: { lista: nombres(nunca), n: nunca.length } };
+      var peor = GRUPOS.slice().sort(function (a, b) { return R.ultima[a] < R.ultima[b] ? -1 : 1; })[0];
+      return { caso: 'uno', vars: { grupo: nombre(peor), cuando: cuando(R.ultima[peor]) } };
+    }
+    if (id === 'mi-proteina') {
+      var kg = null;
+      try {
+        var p = JSON.parse(localStorage.getItem('tenerife.perfil')), m = p && Array.isArray(p.medidas) ? p.medidas.slice().sort(function (a, b) { return a.d < b.d ? 1 : -1; })[0] : null;
+        if (m && typeof m.kg === 'number' && m.kg >= 20 && m.kg <= 300) kg = m.kg;
+      } catch (x) {}
+      /* a un menor no se le dan cifras (la respuesta es de adultos; aquí solo se llega por un enlace) */
+      if (e !== null && e < 18) return { caso: 'menor', vars: {} };
+      if (kg === null) return { caso: 'sin_peso', vars: {} };
+      /* de 65 años en adelante, la referencia de la ESPEN y PROT-AGE para mayores sanos: al menos 1,0-1,2 g por kilo */
+      var em = edadMax();
+      if (em !== null && em >= 65) return { caso: 'mayor', vars: { peso: Math.round(kg), min: Math.round(1.0 * kg), max: Math.round(1.2 * kg) } };
+      return { caso: 'con_peso', vars: { peso: Math.round(kg), general: Math.round(0.83 * kg), min: Math.round(1.2 * kg), max: Math.round(2.0 * kg) } };
+    }
+    return { caso: 'nada', vars: {} };
+  }
+  function rellena(s, vars) { return String(s || '').replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? String(vars[k]) : ''; }); }
+
+  /* ── responder: urgencia, respuesta clara, sugerencias o nada ── */
+  /* un saludo o un «gracias» no es una pregunta: se contesta con las sugerencias */
+  var SALUDO = /^(hola|buenas|buenos dias|buenas tardes|buenas noches|hello|hi|hey|bonjour|salut|hallo|guten tag|ciao|salve|hoi|goedendag|\u4f60\u597d|\u60a8\u597d|\u55e8|\u0437\u0434\u0440\u0430\u0432\u0435\u0439|\u0437\u0434\u0440\u0430\u0432\u0435\u0439\u0442\u0435|czesc|dzien dobry|gracias|thanks|thank you|merci|danke|grazie|bedankt|dank u|\u8c22\u8c22|\u8b1d\u8b1d|\u0431\u043b\u0430\u0433\u043e\u0434\u0430\u0440\u044f|dziekuje|ok|vale)[!. ]*$/i;
+  function responder(texto) {
+    texto = String(texto || '').replace(/\s+/g, ' ').trim().slice(0, 200);
+    if (!texto || !ASIS || !buscador) return null;
+    /* las dos formas: sin tildes (dzien dobry) y tal cual (здравейте: al quitar los acentos, la й pierde su breve) */
+    if (SALUDO.test(window.TG_BUSCADOR.normaliza(texto)) || SALUDO.test(texto.toLowerCase())) {
+      charla.push({ q: texto, id: null, urgente: false, otras: sugeridasIds(4), nada: false, saludo: true });
+      if (charla.length > 30) charla.shift();
+      renderCharla(true); return null;
+    }
+    var e = edad(), b = buscador.buscar(texto, { edad: e });
+    var turno = { q: texto, id: null, urgente: false, otras: [], nada: false };
+    if (b.urgente && ASIS.porId[b.urgente]) { turno.id = b.urgente; turno.urgente = true; }
+    else if (b.mejor && ASIS.porId[b.mejor.id]) { turno.id = b.mejor.id; turno.otras = b.otras.map(function (o) { return o.id; }); }
+    else if (b.pista === 'dudosa') turno.otras = b.otras.map(function (o) { return o.id; });
+    else { turno.nada = true; turno.otras = b.otras.filter(function (o) { return o.rel > 0.6; }).map(function (o) { return o.id; }); }
+    charla.push(turno);
+    if (charla.length > 30) charla.shift();
+    renderCharla(true);
+    return turno;
+  }
+  function preguntarId(id) {
+    var r = ASIS && ASIS.porId[id]; if (!r) return;
+    charla.push({ q: r.q, id: id, urgente: r.tipo === 'urgencia', otras: [], nada: false, directa: true });
+    if (charla.length > 30) charla.shift();
+    renderCharla(true);
+  }
+  function vaciarCharla() { charla = []; if (panel && $('tgc-charla')) renderCharla(false); }
+
+  /* ── pintar ── */
+  function chipPregunta(id) {
+    var r = ASIS.porId[id]; if (!r) return null;
+    var b = el('button', 'tgc-chip-preg', r.q); b.type = 'button'; b.dataset.id = id;
+    b.setAttribute('aria-label', tx('cuerpoAsisPregChip', { q: r.q }));
+    return b;
+  }
+  function enlace(l) {
+    var b;
+    if (l.tel) { b = el('a', 'tgc-btn gold tgc-enlace', tx('cuerpoAsisLlamar', { n: l.tel })); b.href = 'tel:' + l.tel; return b; }
+    b = el('button', 'tgc-btn sm tgc-enlace'); b.type = 'button';
+    if (l.g) { b.textContent = tx('cuerpoAsisVerGrupo', { grupo: nombre(l.g) }); b.dataset.g = l.g; }
+    else if (l.ej) { b.textContent = tx('cuerpoAsisVerEj'); b.dataset.ej = l.ej; }
+    else if (l.sos) { if (!haySOS()) return null; b.textContent = tx('cuerpoAsisSos'); b.dataset.sos = l.sos; }
+    else if (l.modo) { b.textContent = tx(l.modo === 'aspecto' ? 'cuerpoAsisVerAspecto' : 'cuerpoAsisVerMusculos'); b.dataset.modo = l.modo; }
+    /* una pregunta enlazada pasa el mismo filtro de edad que las relacionadas (una de adultos no se ofrece a un menor) */
+    else if (l.q) { if (!ASIS.porId[l.q] || !pasaEdad(ASIS.porId[l.q])) return null; b.textContent = ASIS.porId[l.q].q; b.dataset.id = l.q; b.className = 'tgc-chip-preg'; }
+    else return null;
+    return b;
+  }
+  function tarjetaRespuesta(turno) {
+    var r = ASIS.porId[turno.id], caja = el('div', 'tgc-resp' + (turno.urgente ? ' es-urgente' : ''));
+    var cuerpo = r.r, vars = {};
+    if (r.tipo === 'calculo') { var c = calcular(r.id); cuerpo = r.casos[c.caso] || r.casos.nada || null; vars = c.vars; }
+    if (turno.urgente) {
+      var cab = el('p', 'tgc-resp-urg', tx('cuerpoAsisUrgencia'));
+      caja.appendChild(cab);
+      caja.appendChild(enlace({ tel: '112' }));
+    }
+    if (!cuerpo) return caja;
+    caja.appendChild(el('p', 'tgc-resp-t', rellena(cuerpo.t, vars)));
+    if (cuerpo.p.length) { var ul = el('ul', 'tgc-resp-p'); cuerpo.p.forEach(function (p) { ul.appendChild(el('li', '', rellena(p, vars))); }); caja.appendChild(ul); }
+    if (cuerpo.c) {
+      var cc = el('div', 'tgc-resp-c'); cc.appendChild(el('b', '', tx('cuerpoAsisConsultar'))); cc.appendChild(el('p', '', rellena(cuerpo.c, vars))); caja.appendChild(cc);
+    }
+    if (cuerpo.n) caja.appendChild(el('p', 'tgc-resp-n', rellena(cuerpo.n, vars)));
+    var ls = el('div', 'tgc-resp-links');
+    r.links.forEach(function (l) { if (turno.urgente && l.tel === '112') return; var b = enlace(l); if (b) ls.appendChild(b); });
+    if (ls.childNodes.length) caja.appendChild(ls);
+    if (r.f.length) {
+      var det = el('details', 'tgc-resp-f'), sum = el('summary');
+      sum.appendChild(el('span', '', tx('cuerpoAsisFuentes', { n: r.f.length })));
+      if (r.cert) { var cert = el('span', 'tgc-cert c-' + r.cert, tx('cuerpoAsisCert_' + r.cert)); cert.title = tx('cuerpoAsisCertAyuda'); sum.appendChild(cert); }
+      det.appendChild(sum);
+      var fl = el('ul');
+      r.f.forEach(function (q) {
+        var li = el('li'), a = el('a', '', q.titulo); a.href = q.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.appendChild(a);
+        if (q.fecha) li.appendChild(el('span', 'tgc-resp-fecha', ' · ' + q.fecha));
+        if (q.leido) { var ql = el('p', 'tgc-resp-leido'); ql.appendChild(el('b', '', tx('cuerpoAsisLeido') + ': ')); ql.appendChild(document.createTextNode('«' + q.leido + '»')); li.appendChild(ql); }
+        /* sin cita literal guardada (la fuente se leyó en la ronda del 24-10 y queda su resumen): se dice, no se inventa una cita */
+        else if (q.resumen) li.appendChild(el('p', 'tgc-resp-leido tgc-resp-resumen', tx('cuerpoAsisResumen')));
+        fl.appendChild(li);
+      });
+      det.appendChild(fl);
+      if (r.cert) det.appendChild(el('p', 'tgc-resp-certayuda', tx('cuerpoAsisCertAyuda')));
+      caja.appendChild(det);
+    }
+    var rel = r.rel.filter(function (x) { return ASIS.porId[x] && pasaEdad(ASIS.porId[x]); }).slice(0, 3);
+    if (rel.length) {
+      var rc = el('div', 'tgc-resp-rel'); rc.appendChild(el('p', 'tgc-ayuda', tx('cuerpoAsisTambien')));
+      var rl = el('div', 'tgc-sugeridas'); rel.forEach(function (x) { var b = chipPregunta(x); if (b) rl.appendChild(b); }); rc.appendChild(rl);
+      caja.appendChild(rc);
+    }
+    return caja;
+  }
+  function pasaEdad(r) { var e = edad(); if (e === null) return r.edad !== 'menores'; return !((r.edad === 'adultos' && e < 18) || (r.edad === 'menores' && e >= 18)); }
+  function renderCharla(bajar) {
+    var ol = $('tgc-charla'); ol.textContent = '';
+    charla.forEach(function (t, i) {
+      var li = el('li', 'tgc-turno');
+      var yo = el('p', 'tgc-yo', t.q); yo.setAttribute('lang', document.documentElement.lang || lengua()); li.appendChild(yo);
+      if (t.id) li.appendChild(tarjetaRespuesta(t));
+      else {
+        var caja = el('div', 'tgc-resp es-vacia');
+        caja.appendChild(el('p', 'tgc-resp-t', tx(t.saludo ? 'cuerpoAsisHola' : t.nada ? 'cuerpoAsisNoSe' : 'cuerpoAsisQuiza')));
+        li.appendChild(caja);
+      }
+      if (t.otras.length && !t.directa) {
+        var sg = el('div', 'tgc-sugeridas');
+        if (t.id) sg.appendChild(el('p', 'tgc-ayuda', tx('cuerpoAsisQuiza')));
+        t.otras.forEach(function (x) { var b = chipPregunta(x); if (b) sg.appendChild(b); });
+        if (sg.childNodes.length > (t.id ? 1 : 0)) li.appendChild(sg);
+      }
+      if (i === charla.length - 1) li.setAttribute('tabindex', '-1');
+      ol.appendChild(li);
+    });
+    $('tgc-sugeridas').hidden = charla.length > 0;
+    $('tgc-asis-lema').hidden = charla.length > 0;
+    var v = $('tgc-asis-vaciar'); if (v) v.hidden = !charla.length;
+    if (bajar && ol.lastChild) {
+      try { ol.lastChild.scrollIntoView({ block: 'start', behavior: reducido ? 'auto' : 'smooth' }); } catch (e) {}
+      try { ol.lastChild.focus({ preventScroll: true }); } catch (e) {}
+    }
+  }
+  /* dos de las calculadas, si las hay, y las demás al azar: cada vez una mezcla distinta */
+  function sugeridasIds(n) {
+    var ids = SUGERIDAS.filter(function (id) { return ASIS.porId[id] && pasaEdad(ASIS.porId[id]); });
+    var calc = ids.filter(function (id) { return ASIS.porId[id].tipo === 'calculo'; }).slice(0, 2);
+    var resto = ids.filter(function (id) { return calc.indexOf(id) < 0; });
+    for (var i = resto.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = resto[i]; resto[i] = resto[j]; resto[j] = t; }
+    return calc.concat(resto).slice(0, n);
+  }
+  function renderSugeridas() {
+    var caja = $('tgc-sugeridas'); caja.textContent = '';
+    sugeridasIds(6).forEach(function (id) { caja.appendChild(chipPregunta(id)); });
+  }
+  function renderAsistente() {
+    var estado = $('tgc-asis-estado'), form = $('tgc-preg-form');
+    if (!$('tgc-asis-vaciar')) {
+      var v = el('button', 'tgc-link', tx('cuerpoAsisVaciar')); v.type = 'button'; v.id = 'tgc-asis-vaciar'; v.hidden = true;
+      v.addEventListener('click', function () { vaciarCharla(); try { $('tgc-preg').focus(); } catch (e) {} });
+      $('tgc-asis-pie').parentNode.insertBefore(v, $('tgc-asis-pie'));
+    }
+    $('tgc-asis-vaciar').textContent = tx('cuerpoAsisVaciar');
+    if (ASIS && ASIS_IDIOMA === lengua()) {
+      estado.textContent = ASIS.revisado || tx('cuerpoAsisRevisado'); $('tgc-asis-reintentar').hidden = true; form.hidden = false;
+      renderSugeridas(); renderCharla(false);
+      if (preguntaPendiente) { var q = preguntaPendiente; preguntaPendiente = null; responder(q); }
+      return;
+    }
+    form.hidden = true; $('tgc-asis-reintentar').hidden = true;
+    estado.textContent = tx('cuerpoAsisCargando');
+    var l = lengua();
+    cargarAsistente().then(function () { if (modo === 'preguntar' && lengua() === l) renderAsistente(); },
+      function () { if (modo !== 'preguntar') return; estado.textContent = tx('cuerpoAsisError'); $('tgc-asis-reintentar').hidden = false; });
+  }
+  function engancharAsistente() {
+    $('tgc-preg-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var i = $('tgc-preg'), q = i.value;
+      if (!q.trim() || !ASIS) return;
+      i.value = '';
+      responder(q);
+    });
+    $('tgc-asis-reintentar').addEventListener('click', function () { asisError = false; renderAsistente(); });
+    $('tgc-vista-preguntar').addEventListener('click', function (e) {
+      var b = e.target.closest('button, a'); if (!b) return;
+      if (b.classList.contains('tgc-chip-preg')) { preguntarId(b.dataset.id); return; }
+      if (b.dataset.g) { setModo('musculos'); abrirHoja(b.dataset.g); return; }
+      if (b.dataset.ej) {
+        var id = b.dataset.ej;
+        setModo('musculos');
+        cargarEjercicios().then(function () {
+          var x = EJ && EJ.porId[id]; if (!x) return;
+          abrirHoja(x.g[0]); abrirEj(id);
+        }, function () {});
+        return;
+      }
+      if (b.dataset.sos) { abrirGuiaSOS(b.dataset.sos); return; }
+      if (b.dataset.modo) { setModo(b.dataset.modo); return; }
+    });
+  }
+
+  /* ── «Su deporte» (parte 4) ──
+     El deporte elegido se guarda en tenerife.cuerpo (st.deporte, solo en el dispositivo). Sus grupos
+     prioritarios (DEPORTES, que construir.py saca de deportes/deportes.json) se marcan en el personaje y
+     en la lista de los 12 aunque no haya red. La ficha -lo que dicen los estudios y con qué certeza, cómo
+     encajarlo, lo que más se lesiona, Tenerife, lo que no se promete y las fuentes- viene de
+     datos/deportes-<idioma>.json, que se pide la primera vez que hace falta (si falta el idioma, el
+     castellano). Cada campo se comprueba al leerlo y va por textContent. */
+  var DEPORTES = [{"id":"senderismo","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core","espalda_alta"]},{"id":"mar","prio":["dorsal","hombros","triceps"],"sec":["pecho","espalda_alta","core"]},{"id":"carrera","prio":["cuadriceps","gluteos"],"sec":["isquios","pantorrilla","core"]},{"id":"ciclismo","prio":["cuadriceps","gluteos"],"sec":["isquios"]},{"id":"surf","prio":["dorsal","triceps","pecho","hombros"],"sec":["biceps","espalda_alta"]},{"id":"buceo","prio":[],"sec":[]},{"id":"golf","prio":["gluteos","cuadriceps","core"],"sec":["hombros","espalda_alta"]},{"id":"padel","prio":["antebrazo","cuadriceps","hombros"],"sec":["core","pecho","triceps"]},{"id":"otro","prio":[],"sec":[]}];
+  var DEP = null, DEP_IDIOMA = null, depCarga = null, depError = false, depOpcIdioma = null;
+  var CERTS_DEP = ['alta', 'moderada', 'baja', 'indirecta', 'ninguna'];
+  var SOS_DEP = ['inicio', 'auxilios', 'rescate', 'picaduras', 'playa', 'calor', 'montana'];
+  function deporteDe(id) { for (var i = 0; i < DEPORTES.length; i++) { if (DEPORTES[i].id === id) return DEPORTES[i]; } return null; }
+  function deporteActual() { return st.deporte ? deporteDe(st.deporte) : null; }
+  /* los grupos que se marcan: solo en «Músculos» y con un deporte elegido */
+  function prioActual() { var d = deporteActual(); return d && modo === 'musculos' ? d.prio : []; }
+
+  function cargarDeportes() {
+    var l = lengua();
+    if (DEP && DEP_IDIOMA === l) return Promise.resolve();
+    if (depCarga) return depCarga;
+    depError = false;
+    depCarga = pedirJSON('deportes-' + l + '.json').catch(function () { return l === 'es' ? Promise.reject(new Error('es')) : pedirJSON('deportes-es.json'); })
+      .then(function (d) {
+        if (!d || !Array.isArray(d.deportes)) throw new Error('datos');
+        DEP = indexarDeportes(d); DEP_IDIOMA = l;
+      }, function (e) { depError = true; throw e; });
+    var fin = function () { depCarga = null; };
+    depCarga.then(fin, fin);
+    return depCarga;
+  }
+  function indexarDeportes(d) {
+    var porId = {};
+    function txt(v, n) { return typeof v === 'string' ? v.trim().slice(0, n || 500) : ''; }
+    function txts(v, n, max) { return Array.isArray(v) ? v.map(function (x) { return txt(x, n); }).filter(Boolean).slice(0, max || 6) : []; }
+    d.deportes.forEach(function (x) {
+      if (!x || !esId(x.id) || porId[x.id] || !deporteDe(x.id)) return;
+      var les = x.lesiones && typeof x.lesiones === 'object' ? x.lesiones : {};
+      var r = {
+        id: x.id, cert: CERTS_DEP.indexOf(x.cert) >= 0 ? x.cert : null, gg: x.gg === 'D' ? 'D' : 'I',
+        t: txt(x.t), p: txts(x.p), dosis: txt(x.dosis), encajar: txts(x.encajar),
+        lesiones: { t: txt(les.t), zonas: txts(les.zonas, 120, 8) },
+        isla: (Array.isArray(x.isla) ? x.isla : []).map(function (i) {
+          return i && typeof i === 'object' ? { t: txt(i.t), sos: SOS_DEP.indexOf(i.sos) >= 0 ? i.sos : '' } : null;
+        }).filter(function (i) { return i && i.t; }).slice(0, 6),
+        no: txts(x.no),
+        ej: (Array.isArray(x.ej) ? x.ej : []).filter(function (e) { return e && esId(e.id); }).map(function (e) { return { id: e.id, grado: e.grado === 'D' ? 'D' : 'I' }; }).slice(0, 10),
+        qs: (Array.isArray(x.qs) ? x.qs : []).filter(function (q) { return Array.isArray(q) && esId(q[0]) && typeof q[1] === 'string' && q[1].trim(); })
+          .map(function (q) { return [q[0], txt(q[1], 200), ['todos', 'adultos', 'menores'].indexOf(q[2]) >= 0 ? q[2] : 'todos']; }).slice(0, 6),
+        f: []
+      };
+      (Array.isArray(x.f) ? x.f : []).slice(0, 7).forEach(function (q) {
+        if (q && typeof q.titulo === 'string' && typeof q.url === 'string' && /^https:\/\//.test(q.url)) r.f.push({ titulo: txt(q.titulo, 200), url: q.url, fecha: txt(q.fecha, 10) });
+      });
+      if (!r.cert || !r.t || !r.f.length) return;
+      porId[r.id] = r;
+    });
+    return { porId: porId };
+  }
+
+  /* ── pintar ── */
+  function opcionesDeporte() {
+    var sel = $('tgc-dep-sel'), l = lengua();
+    if (depOpcIdioma !== l) {
+      sel.textContent = '';
+      var o0 = el('option', '', tx('cuerpoDepNinguno')); o0.value = ''; sel.appendChild(o0);
+      DEPORTES.forEach(function (d) { var o = el('option', '', tx('cuerpoDep_' + d.id)); o.value = d.id; sel.appendChild(o); });
+      depOpcIdioma = l;
+    }
+    sel.value = deporteActual() ? st.deporte : '';
+  }
+  function renderDeporte() {
+    if (!$('tgc-dep-sel')) return;
+    /* sin ningún deporte terminado, la sección no sale */
+    $('tgc-deporte').hidden = !DEPORTES.length;
+    if (!DEPORTES.length) return;
+    opcionesDeporte();
+    var d = deporteActual(), ficha = $('tgc-dep-ficha'), estado = $('tgc-dep-estado');
+    $('tgc-dep-lema').hidden = !!d;
+    $('tgc-dep-reintentar').hidden = true;
+    if (!d) { ficha.hidden = true; ficha.textContent = ''; estado.textContent = ''; return; }
+    if (!DEP || DEP_IDIOMA !== lengua()) {
+      ficha.hidden = true; ficha.textContent = '';
+      if (depError) { estado.textContent = tx('cuerpoDepError'); $('tgc-dep-reintentar').hidden = false; return; }
+      estado.textContent = tx('cuerpoDepCargando');
+      var l = lengua(), id = d.id;
+      cargarDeportes().then(function () { if (abierto && st.deporte === id && lengua() === l) renderDeporte(); },
+        function () { if (abierto && st.deporte === id) renderDeporte(); });
+      return;
+    }
+    var x = DEP.porId[d.id];
+    estado.textContent = '';
+    if (!x) { ficha.hidden = true; ficha.textContent = ''; return; }
+    pintarFicha(ficha, d, x);
+    ficha.hidden = false;
+  }
+  function pintarFicha(caja, d, x) {
+    caja.textContent = '';
+    function ul(xs, cls) { var u = el('ul', cls || ''); xs.forEach(function (s) { u.appendChild(el('li', '', s)); }); return u; }
+    function seccion(titulo, llenar) {
+      var det = el('details', 'tgc-dep-sec');
+      det.appendChild(el('summary', '', titulo));
+      llenar(det); caja.appendChild(det);
+      return det;
+    }
+    var cab = el('div', 'tgc-dep-cab');
+    cab.appendChild(el('span', 'tgc-cert c-' + x.cert, tx(x.cert === 'indirecta' || x.cert === 'ninguna' ? 'cuerpoDepCert_' + x.cert : 'cuerpoAsisCert_' + x.cert)));
+    caja.appendChild(cab);
+    caja.appendChild(el('p', 'tgc-dep-t', x.t));
+    /* los grupos: los prioritarios (los del contorno discontinuo) y los secundarios; cada uno abre su hoja */
+    if (d.prio.length || d.sec.length) {
+      var gs = el('div', 'tgc-dep-gs');
+      [['cuerpoDepPrio', d.prio, ''], ['cuerpoDepSec', d.sec, ' sec']].forEach(function (p) {
+        if (!p[1].length) return;
+        gs.appendChild(el('h3', '', tx(p[0])));
+        var ch = el('div', 'tgc-dep-chips');
+        p[1].forEach(function (g) { var b = el('button', 'tgc-dep-g' + p[2], nombre(g)); b.type = 'button'; b.dataset.g = g; ch.appendChild(b); });
+        gs.appendChild(ch);
+      });
+      gs.appendChild(el('p', 'tgc-dep-grado', tx('cuerpoDepGrado_' + x.gg)));
+      caja.appendChild(gs);
+    }
+    if (x.p.length || x.dosis) seccion(tx('cuerpoDepEstudios'), function (det) {
+      if (x.p.length) det.appendChild(ul(x.p));
+      /* las dosis son de estudios con adultos: a un menor no se le enseñan */
+      if (x.dosis && adulto()) { var p = el('p', 'tgc-dep-dosis'); p.appendChild(el('b', '', tx('cuerpoDepDosis'))); p.appendChild(document.createTextNode(' ' + x.dosis)); det.appendChild(p); }
+      if (!adulto()) det.appendChild(el('p', 'tgc-ayuda', tx('cuerpoDepMenores')));
+    });
+    /* los ejercicios: la biblioteca se pide al abrir la sección */
+    if (x.ej.length) seccion(tx('cuerpoDepEjercicios'), function (det) {
+      det.appendChild(el('ul', 'tgc-dep-ej'));
+      det.addEventListener('toggle', function () { if (det.open) pintarEjDeporte(det, x); });
+    });
+    if (x.encajar.length) seccion(tx('cuerpoDepEncajar'), function (det) { det.appendChild(ul(x.encajar)); });
+    if (x.lesiones.t || x.lesiones.zonas.length) seccion(tx('cuerpoDepLesiones'), function (det) {
+      if (x.lesiones.t) det.appendChild(el('p', '', x.lesiones.t));
+      if (x.lesiones.zonas.length) det.appendChild(ul(x.lesiones.zonas));
+      det.appendChild(el('p', 'tgc-ayuda', tx('cuerpoDepLesionesNota')));
+    });
+    if (x.isla.length) seccion(tx('cuerpoDepIsla'), function (det) {
+      var u = el('ul', 'tgc-dep-isla');
+      x.isla.forEach(function (i) {
+        var li = el('li', '', i.t);
+        if (i.sos && haySOS()) {
+          li.appendChild(document.createTextNode(' '));
+          var b = el('button', 'tgc-link tgc-dep-sos', tx('cuerpoAsisSos')); b.type = 'button'; b.dataset.sos = i.sos; li.appendChild(b);
+        }
+        u.appendChild(li);
+      });
+      det.appendChild(u);
+    });
+    if (x.no.length) seccion(tx('cuerpoDepNo'), function (det) { det.appendChild(ul(x.no)); });
+    /* las preguntas del asistente, con el mismo filtro de edad que las respuestas */
+    var qs = x.qs.filter(function (q) { return adulto() ? q[2] !== 'menores' : q[2] !== 'adultos'; });
+    if (qs.length) seccion(tx('cuerpoDepPreguntas'), function (det) {
+      var c = el('div', 'tgc-dep-qs');
+      qs.forEach(function (q) { var b = el('button', 'tgc-chip-preg', q[1]); b.type = 'button'; b.dataset.preg = q[1]; c.appendChild(b); });
+      det.appendChild(c);
+    });
+    seccion(tx('cuerpoAsisFuentes', { n: x.f.length }), function (det) {
+      var u = el('ul', 'tgc-dep-f');
+      x.f.forEach(function (q) {
+        var li = el('li'), a = el('a', '', q.titulo);
+        a.href = q.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        li.appendChild(a);
+        if (q.fecha) { li.appendChild(document.createTextNode(' ')); li.appendChild(el('span', 'tgc-resp-fecha', '(' + q.fecha.slice(0, 4) + ')')); }
+        u.appendChild(li);
+      });
+      det.appendChild(u);
+    });
+    caja.appendChild(el('p', 'tgc-fuentes', tx('cuerpoAsisRevisado')));
+  }
+  function pintarEjDeporte(det, x) {
+    var u = det.querySelector('.tgc-dep-ej'); if (!u) return;
+    if (!EJ || !EJ_TX[lengua()]) {
+      u.textContent = ''; u.appendChild(el('li', 'tgc-ayuda', tx('cuerpoCargandoEj')));
+      cargarEjercicios().then(function () { if (det.open && document.contains(det)) pintarEjDeporte(det, x); },
+        function () { if (document.contains(det)) { u.textContent = ''; u.appendChild(el('li', 'tgc-ayuda', tx('cuerpoErrorEj'))); } });
+      return;
+    }
+    u.textContent = '';
+    x.ej.forEach(function (e) {
+      var y = EJ.porId[e.id]; if (!y) return;
+      var li = el('li'), b = el('button'); b.type = 'button'; b.dataset.ej = e.id;
+      var t = el('span', 'tgc-ej-txt');
+      t.appendChild(el('span', 'tgc-ej-nombre', nombreEj(e.id)));
+      t.appendChild(document.createTextNode(' '));
+      var meta = el('span', 'tgc-ej-meta');
+      meta.appendChild(el('span', '', nombre(y.g[0]))); meta.appendChild(document.createTextNode(' '));
+      meta.appendChild(el('span', 'tgc-ej-niv', tx('cuerpoNivel_' + y.n)));
+      t.appendChild(meta);
+      b.appendChild(t);
+      b.appendChild(document.createTextNode(' '));
+      b.appendChild(el('span', 'tgc-dep-tag' + (e.grado === 'D' ? '' : ' i'), tx('cuerpoDepEj_' + e.grado)));
+      li.appendChild(b); u.appendChild(li);
+    });
+  }
+
+  /* ── eventos ── */
+  function engancharDeporte() {
+    $('tgc-dep-sel').addEventListener('change', function () {
+      st.deporte = deporteDe(this.value) ? this.value : '';
+      guardar(); renderMusculos(); renderDeporte();
+    });
+    $('tgc-dep-reintentar').addEventListener('click', function () { depError = false; renderDeporte(); });
+    $('tgc-dep-ficha').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.g) { abrirHoja(b.dataset.g); return; }
+      if (b.dataset.ej) {
+        var id = b.dataset.ej;
+        cargarEjercicios().then(function () { var y = EJ && EJ.porId[id]; if (!y) return; abrirHoja(y.g[0]); abrirEj(id); }, function () {});
+        return;
+      }
+      if (b.dataset.sos) { abrirGuiaSOS(b.dataset.sos); return; }
+      /* una pregunta del asistente: al modo «Preguntar», con la pregunta ya hecha */
+      if (b.dataset.preg) {
+        preguntaPendiente = b.dataset.preg; setModo('preguntar');
+        try { $('tgc-modos').scrollIntoView({ block: 'start', behavior: reducido ? 'auto' : 'smooth' }); } catch (x) {}
+      }
+    });
+  }
+
+  /* ── «Su comida» (parte 5): el diario por raciones de AESAN ──
+     La persona anota raciones por grupo de alimentos, como las cuenta la guía de AESAN de diciembre de
+     2022 (NIPO 069-22-008-2), y ve su día y sus últimos 7 días al lado de las frecuencias de la guía. Por
+     decisión de diseño (las fuentes sobre los diarios y los trastornos de la conducta alimentaria, en
+     asistente/notas/): no cuenta calorías, no pone objetivos, no dice «bien» ni «mal» (ni con colores), no
+     tiene rachas ni premios, viene apagado hasta que la persona lo enciende y se puede pausar o borrar. Va
+     en tenerife.cuerpo (st.comida), solo en el dispositivo. */
+  /* [grupo, mínimo, máximo] de la guía: al día y a la semana (null: sin límite en ese lado) */
+  function comDiarios() { return [['hortalizas', 3, null], ['frutas', 2, 3], ['cereales', 3, 6], ['lacteos', 0, 3]]; }
+  function comSemanales() { return [['legumbres', 4, null], ['pescado', 3, null], ['frutos_secos', 3, null], ['huevos', 0, 4], ['carne', 0, 3]]; }
+  function comGrupos() { return comDiarios().concat(comSemanales()).map(function (x) { return x[0]; }); }
+  var COM_MAX = 20, COM_DIAS = 400;
+  var comDia = 'hoy', comBorrando = false;
+  function comVacio() { return { on: false, pausa: false, d: {} }; }
+  /* lo guardado, campo a campo: fechas de los últimos 400 días, grupos conocidos, de 1 a 20 raciones */
+  function comValida(c) {
+    var r = comVacio(), gs = comGrupos();
+    if (!c || typeof c !== 'object') return r;
+    r.on = c.on === true; r.pausa = c.pausa === true;
+    var min = sumar(hoy(), -COM_DIAS), max = sumar(hoy(), 1);
+    if (c.d && typeof c.d === 'object' && !Array.isArray(c.d)) Object.keys(c.d).forEach(function (f) {
+      var x = c.d[f], y = {};
+      if (!esFecha(f) || f < min || f > max || !x || typeof x !== 'object') return;
+      gs.forEach(function (g) { var n = x[g]; if (typeof n === 'number' && Math.floor(n) === n && n >= 1 && n <= COM_MAX) y[g] = n; });
+      if (Object.keys(y).length) r.d[f] = y;
+    });
+    return r;
+  }
+  function comFecha() { return comDia === 'ayer' ? sumar(hoy(), -1) : hoy(); }
+  function comN(f, g) { var x = st.comida.d[f]; return (x && x[g]) || 0; }
+  function comSemana(g) { var h = hoy(), n = 0; for (var i = 0; i < 7; i++) n += comN(sumar(h, -i), g); return n; }
+
+  /* la barra: lo anotado (en oro) sobre la franja de la guía (más clara); sin colores de «bien» o «mal» */
+  function barraCom(valor, min, max) {
+    var tope = Math.max(valor, (max || min) * 1.5, 4), b = el('span', 'tgc-com-barra');
+    b.setAttribute('aria-hidden', 'true');
+    var banda = el('i', 'tgc-com-banda' + (min ? '' : ' hasta'));
+    banda.style.left = (100 * min / tope).toFixed(1) + '%';
+    banda.style.width = (100 * ((max != null ? max : tope) - min) / tope).toFixed(1) + '%';
+    b.appendChild(banda);
+    if (valor) { var lleno = el('i', 'tgc-com-lleno'); lleno.style.width = (100 * valor / tope).toFixed(1) + '%'; b.appendChild(lleno); }
+    return b;
+  }
+  function pintarComLista(ul, grupos, diario) {
+    var f = comFecha(), ayer = comDia === 'ayer';
+    ul.textContent = '';
+    grupos.forEach(function (x) {
+      var g = x[0], n = comN(f, g), sem = comSemana(g), nom = tx('cuerpoComG_' + g);
+      var li = el('li', 'tgc-com-fila'); li.dataset.g = g;
+      var t = el('div', 'tgc-com-txt');
+      t.appendChild(el('span', 'tgc-com-nom', nom));
+      t.appendChild(el('span', 'tgc-com-frec', tx('cuerpoComFrec_' + g)));
+      t.appendChild(el('span', 'tgc-com-rac', tx('cuerpoComRac_' + g)));
+      li.appendChild(t);
+      /* al día: el día elegido; a la semana: los últimos 7 días (hoy y los 6 anteriores) */
+      li.appendChild(barraCom(diario ? n : sem, x[1], x[2]));
+      var dia = tx(ayer ? 'cuerpoComAyerN' : 'cuerpoComHoyN', { n: n });
+      li.appendChild(el('span', 'tgc-com-cuenta', diario ? dia : dia + ' · ' + tx('cuerpoComSemanaN', { n: sem })));
+      var paso = el('div', 'tgc-paso tgc-com-paso');
+      var menos = el('button', '', '−'); menos.type = 'button'; menos.dataset.g = g; menos.dataset.d = '-1'; menos.disabled = n <= 0;
+      menos.setAttribute('aria-label', tx('cuerpoComMenos', { g: nom }));
+      var num = el('span', 'tgc-com-n', String(n)); num.setAttribute('aria-hidden', 'true');
+      var mas = el('button', '', '+'); mas.type = 'button'; mas.dataset.g = g; mas.dataset.d = '1'; mas.disabled = n >= COM_MAX;
+      mas.setAttribute('aria-label', tx('cuerpoComMas', { g: nom }));
+      paso.appendChild(menos); paso.appendChild(num); paso.appendChild(mas);
+      li.appendChild(paso);
+      ul.appendChild(li);
+    });
+  }
+  function renderComida() {
+    if (!$('tgc-com')) return;
+    var c = st.comida, activo = c.on && !c.pausa;
+    $('tgc-com-intro').hidden = c.on;
+    $('tgc-com-pausado').hidden = !(c.on && c.pausa);
+    $('tgc-com-diario').hidden = !activo;
+    $('tgc-com-pie').hidden = !c.on || comBorrando;
+    $('tgc-com-borrar-confirm').hidden = !comBorrando;
+    $('tgc-com-pausar').textContent = tx(c.pausa ? 'cuerpoComSeguir' : 'cuerpoComPausar');
+    $('tgc-com-borrar').textContent = tx('cuerpoComBorrar');
+    $('tgc-com-hoy').setAttribute('aria-pressed', comDia === 'hoy' ? 'true' : 'false');
+    $('tgc-com-ayer').setAttribute('aria-pressed', comDia === 'ayer' ? 'true' : 'false');
+    if (!activo) { $('tgc-com-dia').textContent = ''; $('tgc-com-sem').textContent = ''; return; }
+    pintarComLista($('tgc-com-dia'), comDiarios(), true);
+    pintarComLista($('tgc-com-sem'), comSemanales(), false);
+  }
+  function cambiarRacion(g, d) {
+    if (comGrupos().indexOf(g) < 0) return;
+    var f = comFecha(), n = Math.max(0, Math.min(COM_MAX, comN(f, g) + d)), antes = st.comida.d[f] ? Object.assign({}, st.comida.d[f]) : null;
+    var x = st.comida.d[f] || {};
+    if (n) x[g] = n; else delete x[g];
+    if (Object.keys(x).length) st.comida.d[f] = x; else delete st.comida.d[f];
+    if (!guardar()) { if (antes) st.comida.d[f] = antes; else delete st.comida.d[f]; return; }
+    renderComida();
+    /* el foco se queda en el mismo botón (la fila se ha vuelto a pintar); si se ha desactivado, en el otro */
+    var fila = $('tgc-com').querySelector('.tgc-com-fila[data-g="' + g + '"]');
+    if (fila) {
+      var b = fila.querySelector('button[data-d="' + d + '"]');
+      if (!b || b.disabled) b = fila.querySelector('button:not([disabled])');
+      try { if (b) b.focus({ preventScroll: true }); } catch (e) {}
+    }
+    $('tgc-com-vivo').textContent = tx('cuerpoComVivo', { g: tx('cuerpoComG_' + g), n: n });
+  }
+  function engancharComida() {
+    $('tgc-com-empezar').addEventListener('click', function () {
+      st.comida.on = true; st.comida.pausa = false;
+      if (!guardar()) { st.comida.on = false; return; }
+      renderComida();
+      try { $('tgc-com-dia-tit').setAttribute('tabindex', '-1'); $('tgc-com-dia-tit').focus({ preventScroll: true }); } catch (e) {}
+    });
+    $('tgc-com-hoy').addEventListener('click', function () { comDia = 'hoy'; renderComida(); });
+    $('tgc-com-ayer').addEventListener('click', function () { comDia = 'ayer'; renderComida(); });
+    ['tgc-com-dia', 'tgc-com-sem'].forEach(function (id) {
+      $(id).addEventListener('click', function (e) { var b = e.target.closest('button[data-g]'); if (b && !b.disabled) cambiarRacion(b.dataset.g, Number(b.dataset.d)); });
+    });
+    $('tgc-com-pausar').addEventListener('click', function () {
+      st.comida.pausa = !st.comida.pausa;
+      if (!guardar()) { st.comida.pausa = !st.comida.pausa; return; }
+      renderComida();
+      try { $('tgc-com-pausar').focus({ preventScroll: true }); } catch (e) {}
+    });
+    $('tgc-com-borrar').addEventListener('click', function () { comBorrando = true; renderComida(); try { $('tgc-com-borrar-no').focus(); } catch (e) {} });
+    $('tgc-com-borrar-no').addEventListener('click', function () { comBorrando = false; renderComida(); try { $('tgc-com-borrar').focus(); } catch (e) {} });
+    $('tgc-com-borrar-si').addEventListener('click', function () {
+      var antes = st.comida.d; st.comida.d = {};
+      if (!guardar()) { st.comida.d = antes; return; }
+      comBorrando = false; renderComida(); toast(tx('cuerpoComBorrado'));
+      try { $('tgc-com-borrar').focus(); } catch (e) {}
+    });
+  }
 
   var ESTILOS = `
 /* cuerpo.css — la pantalla «Su cuerpo» de Tenerife Go. Va dentro de modulos/cuerpo.js, como
@@ -2409,6 +3399,169 @@
 .tgc-ej-fuentes a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .tgc-ej-nota { margin: 10px 0 0; font-size: .8rem; line-height: 1.45; color: var(--tinta2); }
 
+/* ── el asistente: el modo «Preguntar» ── */
+/* cuatro modos (con «Comida», parte 5): el oro se desliza de uno a otro */
+.tgc-modos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.tgc-modos::before { width: calc((100% - 20px) / 4); }
+.tgc.is-comida .tgc-modos::before { transform: translateX(calc(200% + 8px)); }
+.tgc.is-preguntar .tgc-modos::before { transform: translateX(calc(300% + 12px)); }
+.tgc-modos button { padding: 4px 2px; font-size: .9rem; line-height: 1.15; overflow-wrap: anywhere; hyphens: auto; }
+.tgc-asis { gap: 12px; }
+.tgc-charla { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.tgc-charla:empty { display: none; }
+.tgc-turno { display: grid; gap: 8px; outline: none; scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 78px); }
+.tgc-yo {
+  justify-self: end; max-width: 88%; margin: 0; padding: 9px 14px; border-radius: 16px 16px 4px 16px;
+  background: rgba(212,175,55,0.16); border: 1px solid rgba(212,175,55,0.35); color: var(--text); overflow-wrap: anywhere;
+}
+.tgc-resp {
+  display: grid; gap: 10px; padding: 14px; border-radius: 16px 16px 16px 4px; border: 1px solid var(--border); background: var(--dark);
+  animation: tgc-entra 420ms var(--ease-emph);
+}
+.tgc-resp.es-urgente { border-color: #E06A5A; box-shadow: inset 0 0 0 1px rgba(224,106,90,0.5); }
+.tgc-resp.es-vacia { border-style: dashed; }
+.tgc-resp-urg { margin: 0; display: flex; align-items: center; gap: 8px; font-weight: 700; color: #FFB4A8; font-size: .98rem; }
+.tgc-resp-urg::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: #E06A5A; box-shadow: 0 0 0 4px rgba(224,106,90,0.25); }
+.tgc-resp-t { margin: 0; font-size: 1.06rem; line-height: 1.5; font-weight: 500; }
+.tgc-resp-p { margin: 0; padding-left: 18px; display: grid; gap: 6px; line-height: 1.45; }
+.tgc-resp-p li::marker { color: var(--gold); }
+.tgc-resp-c { display: grid; gap: 4px; padding: 10px 12px; border-radius: 12px; background: rgba(212,175,55,0.08); border-left: 3px solid var(--gold); }
+.tgc-resp-c b { font-size: .9rem; font-weight: 700; color: var(--gold-light); }
+.tgc-resp-c p { margin: 0; line-height: 1.45; }
+.tgc-resp-n { margin: 0; font-size: .88rem; line-height: 1.45; color: var(--tinta2); }
+.tgc-resp-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.tgc-enlace { text-decoration: none; }
+.tgc-resp-f { font-size: .86rem; border-top: 1px solid var(--linea); padding-top: 8px; }
+.tgc-resp-f summary { cursor: pointer; color: var(--tinta2); min-height: 32px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; list-style: none; }
+.tgc-resp-f summary::-webkit-details-marker { display: none; }
+.tgc-resp-f summary::before { content: "›"; display: inline-block; transition: transform var(--t-fast) var(--ease-out); color: var(--gold); font-weight: 700; }
+.tgc-resp-f[open] summary::before { transform: rotate(90deg); }
+.tgc-resp-f ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+.tgc-resp-f a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.tgc-resp-fecha { color: var(--tinta2); }
+.tgc-resp-leido { margin: 4px 0 0; color: var(--tinta2); font: italic 500 .95rem/1.4 var(--font-display); }
+.tgc-resp-leido b { font: 600 .78rem/1.4 var(--font-body); font-style: normal; }
+.tgc-resp-certayuda { margin: 10px 0 0; color: var(--tinta2); font-size: .78rem; line-height: 1.4; }
+.tgc-cert { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: .74rem; font-weight: 600; letter-spacing: .02em; border: 1px solid transparent; }
+.tgc-cert.c-alta { background: rgba(212,175,55,0.16); color: var(--gold-light); border-color: rgba(212,175,55,0.5); }
+.tgc-cert.c-moderada { background: rgba(240,236,228,0.08); color: var(--text); border-color: rgba(240,236,228,0.25); }
+.tgc-cert.c-baja { background: rgba(224,106,90,0.12); color: #FFB4A8; border-color: rgba(224,106,90,0.45); }
+.tgc-resp-rel { display: grid; gap: 6px; }
+.tgc-sugeridas { display: flex; flex-wrap: wrap; gap: 8px; }
+.tgc-sugeridas .tgc-ayuda { width: 100%; }
+.tgc-chip-preg {
+  min-height: 38px; padding: 7px 13px; border-radius: 999px; border: 1px solid rgba(212,175,55,0.4); background: var(--dark); color: var(--text);
+  font-size: .88rem; text-align: start; line-height: 1.3; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+}
+.tgc-chip-preg:hover { border-color: var(--gold); background: rgba(212,175,55,0.12); }
+.tgc-preg {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center;
+  position: sticky; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); z-index: 3; padding: 8px; margin: 0 -8px; border-radius: 16px;
+  background: var(--panel); box-shadow: 0 -8px 20px -12px rgba(0,0,0,0.6);
+}
+.tgc-preg input {
+  width: 100%; min-height: 46px; padding: 0 14px; border-radius: 12px; border: 1px solid rgba(240,236,228,0.18); background: var(--dark);
+  font-size: 16px; /* 16px: Safari en iPhone no hace zoom al escribir */
+}
+.tgc-preg input::placeholder { color: var(--tinta2); opacity: .85; }
+.tgc-preg input:focus { border-color: var(--gold); outline: none; }
+.tgc-preg input:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+.tgc-preg .tgc-btn { min-height: 46px; padding-inline: 14px; }
+.tgc-preg .tgc-btn span { display: none; }
+#tgc-asis-vaciar { justify-self: start; }
+@media (min-width: 420px) { .tgc-preg .tgc-btn span { display: inline; } }
+
+/* ── su deporte (parte 4): el selector, la ficha y la marca de los prioritarios ── */
+.tgc-dep-top { display: flex; align-items: center; justify-content: space-between; gap: 10px 14px; flex-wrap: wrap; }
+.tgc-dep-sel { position: relative; display: inline-flex; align-items: center; min-width: 0; max-width: 100%; }
+.tgc-dep-sel select {
+  -webkit-appearance: none; appearance: none; min-height: 44px; max-width: 100%; padding: 0 38px 0 14px; border-radius: 12px;
+  border: 1px solid rgba(212,175,55,0.5); background: var(--dark); color: var(--gold-light); font: 600 .95rem/1.2 var(--font-body);
+  cursor: pointer; text-overflow: ellipsis; transition: border-color var(--t-fast) var(--ease-out);
+}
+.tgc-dep-sel select:hover { border-color: var(--gold); }
+.tgc-dep-sel select:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+.tgc-dep-sel select option { background: var(--panel); color: var(--text); }
+.tgc-dep-sel svg { position: absolute; right: 13px; pointer-events: none; color: var(--gold); }
+.tgc-dep-ficha { display: grid; gap: 12px; min-width: 0; }
+.tgc-dep-cab { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tgc-dep-t { font-size: 1.02rem; line-height: 1.5; font-weight: 500; }
+.tgc-cert.c-indirecta { background: transparent; color: var(--text); border: 1px dashed rgba(240,236,228,0.45); }
+.tgc-cert.c-ninguna { background: transparent; color: var(--tinta2); border-color: rgba(240,236,228,0.2); }
+.tgc-dep-gs { display: grid; gap: 6px; }
+.tgc-dep-gs h3 { margin: 4px 0 0; font-size: .8rem; font-weight: 600; color: var(--tinta2); letter-spacing: .01em; }
+.tgc-dep-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+/* los prioritarios, con la misma línea discontinua que el personaje; los secundarios, con línea continua */
+.tgc-dep-g {
+  min-height: 38px; padding: 6px 13px; border-radius: 999px; border: 1.5px dashed rgba(240,236,228,0.75); background: var(--dark); color: var(--text);
+  font-size: .88rem; line-height: 1.25; text-align: start; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+}
+.tgc-dep-g.sec { border: 1px solid rgba(240,236,228,0.2); color: var(--tinta2); }
+.tgc-dep-g:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
+.tgc-dep-grado { margin-top: 2px; font-size: .8rem; line-height: 1.4; color: var(--tinta2); }
+.tgc-dep-sec { border-top: 1px solid var(--linea); }
+.tgc-dep-sec summary {
+  cursor: pointer; min-height: 46px; display: flex; align-items: center; gap: 10px; list-style: none; font-weight: 600; font-size: .95rem;
+}
+.tgc-dep-sec summary::-webkit-details-marker { display: none; }
+.tgc-dep-sec summary::before { content: "›"; flex: none; width: 10px; color: var(--gold); font-weight: 700; transition: transform var(--t-fast) var(--ease-out); }
+.tgc-dep-sec[open] summary::before { transform: rotate(90deg); }
+.tgc-dep-sec summary:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; border-radius: 6px; }
+.tgc-dep-sec > ul, .tgc-dep-sec > p, .tgc-dep-sec > div { margin: 0 0 12px 20px; }
+.tgc-dep-sec > ul { padding-left: 16px; display: grid; gap: 7px; line-height: 1.45; }
+.tgc-dep-sec > ul li::marker { color: var(--gold); }
+.tgc-dep-sec > p { line-height: 1.45; }
+.tgc-dep-dosis b { color: var(--gold-light); font-weight: 600; }
+.tgc-dep-sec > ul.tgc-dep-ej { list-style: none; padding: 0; gap: 6px; }
+.tgc-dep-ej button {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 8px 12px;
+  border-radius: 12px; border: 1px solid var(--linea); background: var(--dark); text-align: start; transition: border-color var(--t-fast) var(--ease-out);
+}
+.tgc-dep-ej button:hover { border-color: rgba(212,175,55,0.5); }
+.tgc-dep-tag { flex: none; padding: 2px 9px; border-radius: 999px; border: 1px solid rgba(212,175,55,0.5); color: var(--gold-light); font-size: .72rem; font-weight: 600; white-space: nowrap; }
+.tgc-dep-tag.i { border: 1px dashed rgba(240,236,228,0.4); color: var(--tinta2); }
+.tgc-dep-isla li .tgc-link { padding: 4px 2px; font-size: .84rem; color: var(--gold-light); }
+.tgc-dep-qs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tgc-dep-sec > ul.tgc-dep-f { list-style: none; padding: 0; gap: 9px; font-size: .86rem; }
+.tgc-dep-f a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+/* la muestra de la leyenda y la marca de la fila */
+.tgc-prio-mues { flex: none; display: inline-block; width: 15px; height: 12px; border-radius: 3px; border: 1.6px dashed #F0ECE4; box-shadow: 0 0 0 1px rgba(5,7,11,0.85); }
+.tgc-fila-prio {
+  display: inline-block; margin-left: 2px; padding: 0 7px; border-radius: 999px; border: 1.5px dashed rgba(240,236,228,0.7);
+  font-size: .68rem; font-weight: 600; line-height: 1.5; letter-spacing: .01em; color: var(--text); white-space: nowrap; vertical-align: 1px;
+}
+
+/* ── su comida (parte 5): el diario por raciones de AESAN, sin calorías ni objetivos ── */
+.tgc-sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.tgc-com { gap: 14px; }
+.tgc-com h3 { margin: 8px 0 0; font: 600 1.15rem/1.2 var(--font-display); color: var(--gold-light); }
+.tgc-com-intro { display: grid; gap: 8px; }
+.tgc-com-diario { display: grid; gap: 10px; }
+.tgc-com-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.tgc-com-fila {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "txt paso" "barra paso" "cuenta paso";
+  column-gap: 12px; row-gap: 6px; align-items: center; padding: 10px 0; border-top: 1px solid var(--linea);
+}
+.tgc-com-txt { grid-area: txt; display: grid; gap: 2px; min-width: 0; }
+.tgc-com-nom { font-weight: 600; }
+.tgc-com-frec { font-size: .84rem; color: var(--text); }
+.tgc-com-rac { font-size: .78rem; color: var(--tinta2); line-height: 1.35; }
+.tgc-com-barra { grid-area: barra; position: relative; display: block; height: 8px; border-radius: 4px; background: rgba(240,236,228,0.06); overflow: hidden; }
+/* la franja de la guía: más clara, sin color de «bien» ni de «mal» */
+.tgc-com-banda { position: absolute; top: 0; bottom: 0; background: rgba(240,236,228,0.14); border-left: 2px solid rgba(240,236,228,0.55); }
+.tgc-com-banda.hasta { border-left: 0; border-right: 2px solid rgba(240,236,228,0.55); }
+.tgc-com-lleno { position: absolute; left: 0; top: 2px; bottom: 2px; border-radius: 3px; background: var(--n2); }
+.tgc-com-cuenta { grid-area: cuenta; font-size: .8rem; color: var(--tinta2); font-variant-numeric: tabular-nums; }
+.tgc-com-paso { grid-area: paso; }
+.tgc-com-n { min-width: 2ch; text-align: center; font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+.tgc-com-notas { margin: 2px 0 0; padding-left: 18px; display: grid; gap: 6px; font-size: .86rem; line-height: 1.45; }
+.tgc-com-notas li::marker { color: var(--gold); }
+.tgc-com-fuentes a, .tgc-com a#tgc-com-fuente-a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; }
+.tgc-com-ayuda { display: grid; gap: 10px; justify-items: start; padding: 12px 14px; border-radius: 14px; background: rgba(240,236,228,0.04); border: 1px solid var(--linea); font-size: .86rem; line-height: 1.45; }
+.tgc-com-ayuda .tgc-btn { text-decoration: none; }
+.tgc-com-pie { display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; }
+.tgc-com-pausado { padding: 10px 12px; border-radius: 12px; border: 1px dashed rgba(240,236,228,0.3); }
+
 /* ── el aviso de abajo ── */
 .tgc-toast {
   position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); z-index: 12;
@@ -2466,6 +3619,8 @@
   <div class="tgc-modos" id="tgc-modos" role="group">
     <button type="button" id="tgc-modo-m" aria-pressed="true">Músculos</button>
     <button type="button" id="tgc-modo-a" aria-pressed="false">Aspecto</button>
+    <button type="button" id="tgc-modo-c" aria-pressed="false">Comida</button>
+    <button type="button" id="tgc-modo-p" aria-pressed="false">Preguntar</button>
   </div>
 
   <section class="tgc-escena" id="tgc-escena">
@@ -2495,6 +3650,7 @@
         <li><i class="tgc-nivel n1" aria-hidden="true"></i><span id="tgc-ley-1">De 1 a 4</span></li>
         <li><i class="tgc-nivel n2" aria-hidden="true"></i><span id="tgc-ley-2">De 5 a 9</span></li>
         <li><i class="tgc-nivel n3" aria-hidden="true"></i><span id="tgc-ley-3">10 o más</span></li>
+        <li id="tgc-ley-prio-li" hidden><i class="tgc-prio-mues" aria-hidden="true"></i><span id="tgc-ley-prio">Prioridad de su deporte</span></li>
       </ul>
     </div>
   </section>
@@ -2518,6 +3674,19 @@
       </div>
       <p class="tgc-fuentes" id="tgc-fuentes"></p>
     </section>
+    <section class="tgc-card tgc-deporte" id="tgc-deporte" aria-labelledby="tgc-dep-tit">
+      <div class="tgc-dep-top">
+        <h2 id="tgc-dep-tit">Su deporte</h2>
+        <span class="tgc-dep-sel">
+          <select id="tgc-dep-sel" aria-labelledby="tgc-dep-tit"></select>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </span>
+      </div>
+      <p class="tgc-ayuda" id="tgc-dep-lema"></p>
+      <p class="tgc-ayuda" id="tgc-dep-estado" role="status"></p>
+      <button type="button" class="tgc-btn sm ghost" id="tgc-dep-reintentar" hidden><span>Reintentar</span></button>
+      <div class="tgc-dep-ficha" id="tgc-dep-ficha" hidden></div>
+    </section>
     <section class="tgc-card tgc-grupos" id="tgc-grupos">
       <h2 id="tgc-grupos-tit">Los 12 grupos musculares</h2>
       <p class="tgc-ayuda" id="tgc-grupos-ayuda"></p>
@@ -2538,6 +3707,71 @@
       <p class="tgc-ayuda" id="tgc-aspecto-lema"></p>
       <div id="tgc-opciones"></div>
       <button type="button" class="tgc-btn gold wide" id="tgc-listo"><span>Listo</span></button>
+    </section>
+  </div>
+
+  <div class="tgc-vista-c" id="tgc-vista-comida" hidden>
+    <section class="tgc-card tgc-com" id="tgc-com" aria-labelledby="tgc-com-tit">
+      <h2 id="tgc-com-tit">Su comida</h2>
+      <p class="tgc-ayuda" id="tgc-com-lema"></p>
+      <div class="tgc-com-intro" id="tgc-com-intro">
+        <button type="button" class="tgc-btn gold wide" id="tgc-com-empezar"><span>Empezar a anotar</span></button>
+        <p class="tgc-ayuda" id="tgc-com-privado"></p>
+      </div>
+      <p class="tgc-ayuda tgc-com-pausado" id="tgc-com-pausado" hidden></p>
+      <div class="tgc-com-diario" id="tgc-com-diario" hidden>
+        <div class="tgc-fila-ctl">
+          <span id="tgc-com-cuando">Anotar en</span>
+          <div class="tgc-dias" role="group" aria-labelledby="tgc-com-cuando">
+            <button type="button" id="tgc-com-hoy" aria-pressed="true">Hoy</button>
+            <button type="button" id="tgc-com-ayer" aria-pressed="false">Ayer</button>
+          </div>
+        </div>
+        <h3 id="tgc-com-dia-tit">Cada día</h3>
+        <ul class="tgc-com-lista" id="tgc-com-dia" aria-labelledby="tgc-com-dia-tit"></ul>
+        <h3 id="tgc-com-sem-tit">Cada semana</h3>
+        <ul class="tgc-com-lista" id="tgc-com-sem" aria-labelledby="tgc-com-sem-tit"></ul>
+        <ul class="tgc-com-notas">
+          <li id="tgc-com-aceite"></li>
+          <li id="tgc-com-agua"></li>
+        </ul>
+        <p class="tgc-fuentes"><span id="tgc-com-fuente"></span> <a id="tgc-com-fuente-a" href="https://www.aesan.gob.es/dam/jcr:303bc425-0df3-4124-abe9-75499ce573fa/RECOMENDACIONES_DIETETICAS.pdf" target="_blank" rel="noopener noreferrer">Ver la guía</a></p>
+      </div>
+      <div class="tgc-com-ayuda">
+        <p id="tgc-com-ayuda"></p>
+        <a class="tgc-btn sm ghost" id="tgc-com-llamar" href="tel:+34922641206"><span>Llamar a ALABENTE</span></a>
+      </div>
+      <div class="tgc-com-pie" id="tgc-com-pie" hidden>
+        <button type="button" class="tgc-link" id="tgc-com-pausar">Pausar el diario</button>
+        <button type="button" class="tgc-link" id="tgc-com-borrar">Borrar lo anotado</button>
+      </div>
+      <div class="tgc-confirm" id="tgc-com-borrar-confirm" hidden>
+        <p id="tgc-com-borrar-seguro"></p>
+        <div>
+          <button type="button" class="tgc-btn sm" id="tgc-com-borrar-si"><span>Sí, borrar</span></button>
+          <button type="button" class="tgc-btn sm ghost" id="tgc-com-borrar-no"><span>Cancelar</span></button>
+        </div>
+      </div>
+      <p class="tgc-sr" id="tgc-com-vivo" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <div class="tgc-vista-p" id="tgc-vista-preguntar" hidden>
+    <section class="tgc-card tgc-asis" id="tgc-asis" aria-labelledby="tgc-asis-tit">
+      <h2 id="tgc-asis-tit">Pregunte lo que quiera</h2>
+      <p class="tgc-ayuda" id="tgc-asis-lema"></p>
+      <ol class="tgc-charla" id="tgc-charla"></ol>
+      <div class="tgc-sugeridas" id="tgc-sugeridas" role="group"></div>
+      <form class="tgc-preg" id="tgc-preg-form" autocomplete="off">
+        <input type="text" id="tgc-preg" maxlength="200" autocomplete="off" autocapitalize="sentences" spellcheck="true" enterkeyhint="send">
+        <button type="submit" class="tgc-btn gold" id="tgc-preg-enviar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+          <span id="tgc-preg-enviar-txt">Enviar</span>
+        </button>
+      </form>
+      <p class="tgc-ayuda" id="tgc-asis-estado" role="status"></p>
+      <button type="button" class="tgc-btn sm ghost" id="tgc-asis-reintentar" hidden><span>Reintentar</span></button>
+      <p class="tgc-fuentes" id="tgc-asis-pie"></p>
     </section>
   </div>
 
@@ -2689,6 +3923,35 @@
     ['#tgc-modos', 'aria', 'cuerpoModos'],
     ['#tgc-modo-m', 'tx', 'cuerpoModoMusculos'],
     ['#tgc-modo-a', 'tx', 'cuerpoModoAspecto'],
+    ['#tgc-modo-p', 'tx', 'cuerpoModoPreguntar'],
+    ['#tgc-modo-c', 'tx', 'cuerpoModoComida'],
+    ['#tgc-com-tit', 'tx', 'cuerpoComTitulo'],
+    ['#tgc-com-lema', 'tx', 'cuerpoComLema'],
+    ['#tgc-com-empezar span', 'tx', 'cuerpoComEmpezar'],
+    ['#tgc-com-privado', 'tx', 'cuerpoComPrivado'],
+    ['#tgc-com-pausado', 'tx', 'cuerpoComPausado'],
+    ['#tgc-com-cuando', 'tx', 'cuerpoComCuando'],
+    ['#tgc-com-hoy', 'tx', 'cuerpoHoyB'],
+    ['#tgc-com-ayer', 'tx', 'cuerpoAyerB'],
+    ['#tgc-com-dia-tit', 'tx', 'cuerpoComDia'],
+    ['#tgc-com-sem-tit', 'tx', 'cuerpoComSemana'],
+    ['#tgc-com-aceite', 'tx', 'cuerpoComAceite'],
+    ['#tgc-com-agua', 'tx', 'cuerpoComAgua'],
+    ['#tgc-com-fuente', 'tx', 'cuerpoComFuente'],
+    ['#tgc-com-fuente-a', 'tx', 'cuerpoComFuenteVer'],
+    ['#tgc-com-ayuda', 'tx', 'cuerpoComAyuda'],
+    ['#tgc-com-llamar span', 'tx', 'cuerpoComLlamar'],
+    ['#tgc-com-borrar-seguro', 'tx', 'cuerpoComBorrarSeguro'],
+    ['#tgc-com-borrar-si span', 'tx', 'cuerpoBorrarSi'],
+    ['#tgc-com-borrar-no span', 'tx', 'cuentaBorrarNo'],
+    ['#tgc-asis-tit', 'tx', 'cuerpoAsisTitulo'],
+    ['#tgc-asis-lema', 'tx', 'cuerpoAsisLema'],
+    ['#tgc-sugeridas', 'aria', 'cuerpoAsisSugeridas'],
+    ['#tgc-preg', 'aria', 'cuerpoAsisPregunta'],
+    ['#tgc-preg', 'ph', 'cuerpoAsisEscriba'],
+    ['#tgc-preg-enviar-txt', 'tx', 'cuerpoAsisEnviar'],
+    ['#tgc-asis-reintentar span', 'tx', 'cuerpoReintentar'],
+    ['#tgc-asis-pie', 'tx', 'cuerpoAsisPie'],
     ['#tgc-girar-txt', 'tx', 'cuerpoGirar'],
     ['#tgc-cap-frente', 'tx', 'cuerpoVistaFrente'],
     ['#tgc-cap-espalda', 'tx', 'cuerpoVistaEspalda'],
@@ -2697,6 +3960,10 @@
     ['#tgc-ley-1', 'tx', 'cuerpoNivel1'],
     ['#tgc-ley-2', 'tx', 'cuerpoNivel2'],
     ['#tgc-ley-3', 'tx', 'cuerpoNivel3'],
+    ['#tgc-ley-prio', 'tx', 'cuerpoDepPrioLeyenda'],
+    ['#tgc-dep-tit', 'tx', 'cuerpoDepTitulo'],
+    ['#tgc-dep-lema', 'tx', 'cuerpoDepLema'],
+    ['#tgc-dep-reintentar span', 'tx', 'cuerpoReintentar'],
     ['#tgc-resumen-tit', 'tx', 'cuerpoResumenTitulo'],
     ['#tgc-st-series-l', 'tx', 'cuerpoStatSeries'],
     ['#tgc-st-grupos-l', 'tx', 'cuerpoStatGrupos'],
@@ -2711,7 +3978,9 @@
     ['#tgc-listo span', 'tx', 'cuerpoListo'],
     ['#tgc-privacidad', 'tx', 'cuerpoPrivacidad'],
     ['#tgc-aviso', 'tx', 'cuerpoAviso'],
-    ['#tgc-ia', 'tx', 'cuerpoIA'],
+    /* el pie dice la IA (articulo 50 del Reglamento de IA de la UE, desde el 2 de agosto de 2026):
+       la frase que decidio Jerome el 1 de noviembre, la misma de cada respuesta y de cada ficha */
+    ['#tgc-ia', 'tx', 'cuerpoAsisRevisado'],
     ['#tgc-borrar', 'tx', 'cuerpoBorrar'],
     ['#tgc-borrar-seguro', 'tx', 'cuerpoBorrarSeguro'],
     ['#tgc-borrar-si span', 'tx', 'cuerpoBorrarSi'],
@@ -2774,6 +4043,8 @@
     encima: function () { return abierto && (!dentro || !!grupoAbierto); },
     dentro: function () { return dentro; },
     repintar: function () { if (abierto) renderTodo(); },
-    estado: function () { return st; }
+    estado: function () { return st; },
+    preguntar: function (q) { abrir({ pregunta: q }); },
+    asistente: function () { return { buscador: buscador, datos: ASIS, preguntar: responder }; }
   };
 })();

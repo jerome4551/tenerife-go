@@ -29,7 +29,16 @@
  *   - los menores (15): el prototipo escribe el año de nacimiento a mano en tenerife.perfil (4c);
  *     aqui se escribe en el formulario del perfil, el de verdad, y se guarda con su boton, y «Su
  *     cuerpo», en la misma pestaña, se repinta en el acto: con 15 años, ni la marca del 10 ni su
- *     texto, y la recomendacion de su edad; con 30, o sin año, la marca vuelve.
+ *     texto, y la recomendacion de su edad; con 30, o sin año, la marca vuelve;
+ *   - desde el 3 de noviembre de 2026, lo nuevo de la entrega del 1 (18), dentro de la pestaña:
+ *     «Preguntar», con sus respuestas de datos/cuerpo/ y la frase de la IA; lo que se escribe, como
+ *     texto (un <img onerror> ni se pinta ni se ejecuta); una urgencia, con el 112; el panel SOS
+ *     encima desde una respuesta, y su «atras» y su Escape lo cierran solo a el (el perfil, «Su
+ *     cuerpo» y la conversacion siguen); «Comida», apagado hasta que se enciende, con sus raciones
+ *     y su borrar; «Su deporte», con su guia y sus grupos en el personaje; abrirCuerpo() con un modo
+ *     o una pregunta; el idioma con «Preguntar» abierto; y sin las respuestas, su aviso y
+ *     «Reintentar» (18b). Y sin navegador (19): las respuestas y las guias que citan un texto de
+ *     la pantalla lo citan tal cual, en los diez idiomas.
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -131,7 +140,9 @@ async function ejemplo(pg) {
     p.querySelectorAll('[data-tx],[data-tx-aria],[data-tx-ph]').forEach(n => ['data-tx', 'data-tx-aria', 'data-tx-ph'].forEach(at => { const k = n.getAttribute(at); if (k && !UI_TX[k]) malos.push('sin fila ' + k); }));
     return { n: p.querySelectorAll('[data-tx],[data-tx-aria]').length, ph: p.querySelectorAll('[data-tx-ph]').length, malos };
   });
-  prueba('textos fijos puestos (77 elementos, con la línea de la IA, y 1 placeholder)', r2.n === 77 && r2.ph === 1, r2.n + '/' + r2.ph);
+  /* desde el 3 de noviembre, con «Comida», «Preguntar» y «Su deporte»: 109 y 2 (el del buscador de
+     ejercicios y el de la pregunta) */
+  prueba('textos fijos puestos (109 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 109 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -446,8 +457,8 @@ async function ejemplo(pg) {
   // 12. los ejercicios: lista del grupo, filtros, ficha, anotar desde la ficha, atrás por niveles
   await abrirApp(pg); await abrirPerfilCuerpo(pg); await suCuerpo(pg);
   await ejemplo(pg); await pg.waitForTimeout(150);
-  const datos = await pg.evaluate(async () => { const r = await fetch('datos/ejercicios.json'); return r.json(); });
-  const datosEs = await pg.evaluate(async () => { const r = await fetch('datos/ejercicios-es.json'); return r.json(); });
+  const datos = await pg.evaluate(async () => { const r = await fetch('datos/cuerpo/ejercicios.json'); return r.json(); });
+  const datosEs = await pg.evaluate(async () => { const r = await fetch('datos/cuerpo/ejercicios-es.json'); return r.json(); });
   const grupoEj = datos.ejercicios[0].g[0];
   await pg.click('.tgc-fila[data-g="' + grupoEj + '"]');
   await pg.waitForSelector('.tgc-ej-fila', { timeout: 5000 });
@@ -573,7 +584,7 @@ async function ejemplo(pg) {
   await pg.keyboard.press('Escape'); await pg.waitForTimeout(60);
   // cada idioma enseña los nombres de su propio fichero: la biblioteca está traducida entera
   for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
-    const dl = await pg.evaluate(async (l) => { const r = await fetch('datos/ejercicios-' + l + '.json'); return r.json(); }, l);
+    const dl = await pg.evaluate(async (l) => { const r = await fetch('datos/cuerpo/ejercicios-' + l + '.json'); return r.json(); }, l);
     await idioma(pg, l); await pg.waitForTimeout(60);
     await pg.click('.tgc-fila[data-g="' + grupoEj + '"]'); await pg.waitForSelector('.tgc-ej-fila');
     await pg.waitForFunction((n) => [...document.querySelectorAll('.tgc-ej-nombre')].some(e => e.textContent === n), dl[delGrupo[0].id][0], { timeout: 5000 }).catch(() => {});
@@ -598,12 +609,12 @@ async function ejemplo(pg) {
   {
     const c3 = await contexto(b), p3 = await c3.newPage(), e3 = []; vigilar(p3, e3);
     const ID = 'press-banca-barra';
-    await p3.route('**/datos/ejercicios.json', async r => {
+    await p3.route('**/datos/cuerpo/ejercicios.json', async r => {
       const res = await r.fetch(), d = JSON.parse(await res.text()), x = d.ejercicios.find(e => e.id === ID);
       x.f = [['malo', 'javascript:window.__xss=1'], ['inseguro', 'http://ejemplo.invalid/'], x.f[0]];
       await r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(d) });
     });
-    await p3.route('**/datos/ejercicios-es.json', async r => {
+    await p3.route('**/datos/cuerpo/ejercicios-es.json', async r => {
       const res = await r.fetch(), d = JSON.parse(await res.text());
       d[ID][0] = '<img src=x onerror="window.__xss=2">Press malo';
       d[ID][1][0] = '<b onclick="window.__xss=3">paso</b> con marcas';
@@ -637,7 +648,7 @@ async function ejemplo(pg) {
     const a = s.indexOf('var NOTAS_FUENTE = {'), b = s.indexOf('function fuenteTxt', a), c = s.indexOf('\n  }\n', b);
     const UI = {}; { const i = s.indexOf('var CUERPO_UI = {'), j = s.indexOf('\n  };', i);
       for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
-    const d = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'ejercicios.json'), 'utf8'));
+    const d = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'ejercicios.json'), 'utf8'));
     const MARCAS = /\b(conjunto|datos|artículo|profesionales|folleto|hoja|pacientes|vídeo|texto|máquina|ejercicios|fuente|comunitaria|barra|mancuernas|bandas?|poleas?|banco|fitball|fondos|biblioteca|salud|extracto|septiembre|universidad|programa|casa|copia|patrocinado|estudio)\b/i;
     /* lo que se queda: el titulo de wger tal como lo trae su conjunto de datos, y cuatro palabras que
        en italiano se escriben igual que en castellano */
@@ -747,6 +758,190 @@ async function ejemplo(pg) {
     }
     prueba('isla dinámica: sin errores de página', e7.length === 0, e7.join(' | '));
     await c7.close();
+  }
+
+  // 18. (la app) lo nuevo de la entrega del 1 de noviembre, dentro de la pestaña (3 de noviembre de
+  //     2026): «Preguntar», el panel SOS encima desde una respuesta, «Comida», «Su deporte»,
+  //     abrirCuerpo() con un modo o una pregunta, y el idioma con «Preguntar» abierto
+  {
+    const fs = require('fs'), path = require('path');
+    const lee = f => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', f), 'utf8'));
+    const A = lee('asistente-es.json'), A_DE = lee('asistente-de.json');
+    const PRIV = A.respuestas.find(r => r.id === 'datos-privacidad');
+    const URG = A.respuestas.find(r => r.id === 'urg-alergia') || A.respuestas.find(r => r.tipo === 'urgencia');
+    const CON_SOS = A.respuestas.find(r => r.tipo !== 'urgencia' && r.tipo !== 'calculo' && r.edad === 'todos' && r.links.some(l => l.sos));
+    const c8 = await contexto(b), p8 = await c8.newPage(), e8 = [], pide = [];
+    let dialogos = 0;
+    vigilar(p8, e8);
+    p8.on('dialog', d => { dialogos++; d.dismiss().catch(() => {}); });
+    p8.on('request', r => { if (r.url().startsWith(BASE)) pide.push(new URL(r.url()).pathname); });
+    await abrirApp(p8); await abrirPerfilCuerpo(p8); await suCuerpo(p8);
+    const preguntar = async q => {
+      const n = await p8.evaluate(() => document.querySelectorAll('#tgc-charla .tgc-turno').length);
+      await p8.fill('#tgc-preg', q); await p8.click('#tgc-preg-enviar');
+      await p8.waitForFunction(n => document.querySelectorAll('#tgc-charla .tgc-turno').length > n, n, { timeout: 15000 }).catch(() => {});
+      await p8.waitForTimeout(150);
+    };
+    const ultima = () => p8.evaluate(() => { const r = document.querySelector('#tgc-charla .tgc-turno:last-child .tgc-resp-t'); return r ? r.textContent : null; });
+
+    await p8.click('#tgc-modo-p');
+    await p8.waitForFunction(() => { const f = document.getElementById('tgc-preg-form'); return f && !f.hidden; }, null, { timeout: 15000 }).catch(() => {});
+    const r18 = await p8.evaluate(() => ({ pulsado: document.getElementById('tgc-modo-p').getAttribute('aria-pressed'), vista: !document.getElementById('tgc-vista-preguntar').hidden,
+      escena: document.getElementById('tgc-escena').hidden, sitio: document.getElementById('cuerpo-panel').parentNode.id,
+      estado: document.getElementById('tgc-asis-estado').textContent, pie: document.getElementById('tgc-ia').textContent, ia: UI_TX.cuerpoAsisRevisado.es,
+      sugeridas: document.querySelectorAll('#tgc-sugeridas .tgc-chip-preg').length, estadoHist: JSON.stringify(history.state) }));
+    prueba('«Preguntar», dentro de la pestaña: su vista, sin el personaje, con preguntas sugeridas y sin entrada propia en el historial', r18.pulsado === 'true' && r18.vista && r18.escena
+      && r18.sitio === 'tgp-cuerpo-sitio' && r18.sugeridas > 0 && r18.estadoHist === '{"tgPerfil":1}', JSON.stringify(r18));
+    prueba('…sus respuestas llegan de datos/cuerpo/asistente-es.json', pide.includes('/datos/cuerpo/asistente-es.json'), pide.filter(x => /asistente/.test(x)).join(' '));
+    prueba('…y dice la IA con la frase que decidió Jerome, encima de las respuestas y al pie («' + r18.ia + '»)', /\bIA\b/.test(r18.ia) && r18.estado === r18.ia && r18.pie === r18.ia, JSON.stringify(r18));
+    await preguntar(PRIV.q);
+    const t18 = await ultima();
+    prueba('«' + PRIV.q + '»: su respuesta, la de datos-privacidad', t18 === PRIV.r.t, t18);
+    const HOSTIL = '<img src=x onerror="window.__pwned=1"> calor';
+    await preguntar(HOSTIL);
+    const x18 = await p8.evaluate(H => ({ texto: [...document.querySelectorAll('#tgc-charla .tgc-yo')].some(p => p.textContent === H),
+      imgs: document.querySelectorAll('#tgc-charla img').length, pwned: !!window.__pwned }), HOSTIL);
+    prueba('lo que se escribe sale como texto: el <img onerror> ni se pinta ni se ejecuta', x18.texto && !x18.imgs && !x18.pwned, JSON.stringify(x18));
+    await preguntar(URG.q);
+    const u18 = await p8.evaluate(() => { const t = document.querySelector('#tgc-charla .tgc-turno:last-child');
+      return { urg: !!(t && t.querySelector('.tgc-resp.es-urgente')), tel: !!(t && t.querySelector('a[href="tel:112"]')) }; });
+    prueba('una urgencia («' + URG.q + '»): la respuesta de urgencia, con el 112 para llamar', u18.urg && u18.tel, JSON.stringify(u18));
+
+    // el panel SOS encima, desde el enlace de una respuesta: su «atrás» y su Escape lo cierran a él solo
+    await preguntar(CON_SOS.q);
+    const guia = CON_SOS.links.find(l => l.sos).sos;
+    const turnos = await p8.evaluate(() => document.querySelectorAll('#tgc-charla .tgc-turno').length);
+    const abrirLaGuia = async () => {
+      await p8.click('#tgc-charla .tgc-turno:last-child .tgc-enlace[data-sos]');
+      await p8.waitForFunction(() => window.TG_SOS && !document.getElementById('sos-panel').hidden, null, { timeout: 15000 }).catch(() => {});
+      await p8.waitForTimeout(300);
+    };
+    const como = () => p8.evaluate(() => { const e = document.elementFromPoint(195, 420), cp = document.getElementById('cuerpo-panel');
+      return { sos: !document.getElementById('sos-panel').hidden, encima: !!(e && e.closest('#sos-panel')), vista: window.TG_SOS ? TG_SOS.estado.vista : null,
+        perfil: !document.getElementById('perfil-panel').hidden, cuerpo: TG_CUERPO.abierto() && TG_CUERPO.dentro() && cp.offsetParent !== null,
+        turnos: document.querySelectorAll('#tgc-charla .tgc-turno').length, preguntar: document.getElementById('tgc-modo-p').getAttribute('aria-pressed') }; });
+    await abrirLaGuia();
+    const s1 = await como();
+    prueba('el enlace de una respuesta («' + CON_SOS.q + '») abre su guía del panel SOS («' + guia + '»), encima de todo', s1.sos && s1.encima && s1.vista === guia && s1.perfil, JSON.stringify(s1));
+    for (let i = 0; i < 3 && (await como()).sos; i++) { await p8.evaluate(() => history.back()); await p8.waitForTimeout(450); }
+    const s2 = await como();
+    prueba('«atrás» cierra el panel SOS y deja el perfil, «Su cuerpo» y la conversación como estaban', !s2.sos && s2.perfil && s2.cuerpo && s2.turnos === turnos && s2.preguntar === 'true', JSON.stringify(s2));
+    await abrirLaGuia();
+    for (let i = 0; i < 3 && (await como()).sos; i++) { await p8.keyboard.press('Escape'); await p8.waitForTimeout(300); }
+    const s3 = await como();
+    prueba('y Escape también: cierra el panel SOS y nada más (el perfil, «Su cuerpo» y la conversación siguen)', !s3.sos && s3.perfil && s3.cuerpo && s3.turnos === turnos && s3.preguntar === 'true', JSON.stringify(s3));
+
+    // «Comida»: apagado hasta que la persona lo enciende
+    await p8.click('#tgc-modo-c'); await p8.waitForTimeout(200);
+    const k1 = await p8.evaluate(() => { const e = TG_CUERPO.estado();
+      return { intro: !document.getElementById('tgc-com-intro').hidden, diario: !document.getElementById('tgc-com-diario').hidden, escena: document.getElementById('tgc-escena').hidden,
+        on: e.comida.on, dias: Object.keys(e.comida.d).length }; });
+    prueba('«Comida»: apagado hasta que la persona lo enciende, sin nada anotado y sin el personaje', k1.intro && !k1.diario && k1.escena && !k1.on && k1.dias === 0, JSON.stringify(k1));
+    await p8.click('#tgc-com-empezar'); await p8.waitForTimeout(150);
+    for (let i = 0; i < 2; i++) { await p8.click('#tgc-com-dia .tgc-com-fila[data-g="frutas"] button[data-d="1"]'); await p8.waitForTimeout(120); }
+    const k2 = await p8.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')).comida, f = Object.keys(g.d);
+      return { on: g.on, dias: f.length, n: f.length ? g.d[f[0]].frutas : 0, cuenta: document.querySelector('#tgc-com-dia .tgc-com-fila[data-g="frutas"] .tgc-com-n').textContent,
+        vivo: document.getElementById('tgc-com-vivo').textContent, debe: UI_TX.cuerpoComVivo.es.replace('{g}', UI_TX.cuerpoComG_frutas.es).replace('{n}', '2') }; });
+    prueba('«Comida», encendido: dos raciones de fruta, guardadas en el dispositivo, y el lector de pantalla lo dice («' + k2.debe + '»)', k2.on && k2.dias === 1 && k2.n === 2 && k2.cuenta === '2' && k2.vivo === k2.debe, JSON.stringify(k2));
+    await p8.click('#tgc-com-borrar'); await p8.waitForTimeout(100); await p8.click('#tgc-com-borrar-si'); await p8.waitForTimeout(150);
+    const k3 = await p8.evaluate(() => ({ d: Object.keys(TG_CUERPO.estado().comida.d).length, g: Object.keys(JSON.parse(localStorage.getItem('tenerife.cuerpo')).comida.d).length }));
+    prueba('«' + await p8.evaluate(() => UI_TX.cuerpoComBorrar.es) + '», con su confirmación en la página: fuera la comida anotada', k3.d === 0 && k3.g === 0, JSON.stringify(k3));
+
+    // «Su deporte»: su guía y sus grupos en el personaje
+    await p8.click('#tgc-modo-m'); await p8.waitForTimeout(200);
+    await p8.selectOption('#tgc-dep-sel', 'surf');
+    await p8.waitForFunction(() => !document.getElementById('tgc-dep-ficha').hidden, null, { timeout: 15000 }).catch(() => {});
+    const d18 = await p8.evaluate(() => ({ ficha: !document.getElementById('tgc-dep-ficha').hidden, secciones: document.querySelectorAll('#tgc-dep-ficha .tgc-dep-sec').length,
+      guardado: JSON.parse(localStorage.getItem('tenerife.cuerpo')).deporte, prio: document.querySelectorAll('#cuerpo-panel .tgf-prio').length }));
+    prueba('«Su deporte»: al elegir uno, su guía (de datos/cuerpo/deportes-es.json) y sus grupos prioritarios en el personaje', d18.ficha && d18.secciones > 0 && d18.guardado === 'surf'
+      && d18.prio > 0 && pide.includes('/datos/cuerpo/deportes-es.json'), JSON.stringify(d18));
+
+    // abrirCuerpo() con un modo o una pregunta: dentro de la pestaña, como abrir()
+    await p8.evaluate(() => abrirCuerpo({ modo: 'comida' })); await p8.waitForTimeout(300);
+    const m1 = await p8.evaluate(() => ({ c: document.getElementById('tgc-modo-c').getAttribute('aria-pressed'), sitio: document.getElementById('cuerpo-panel').parentNode.id,
+      perfil: !document.getElementById('perfil-panel').hidden, n: document.querySelectorAll('#cuerpo-panel').length }));
+    prueba('abrirCuerpo({ modo: «comida» }) la pone en «Comida», dentro de la pestaña', m1.c === 'true' && m1.sitio === 'tgp-cuerpo-sitio' && m1.perfil && m1.n === 1, JSON.stringify(m1));
+    await p8.evaluate(q => abrirCuerpo({ pregunta: q }), PRIV.q);
+    await p8.waitForFunction(t => { const r = document.querySelector('#tgc-charla .tgc-turno:last-child .tgc-resp-t');
+      return r && r.textContent === t && document.getElementById('tgc-modo-p').getAttribute('aria-pressed') === 'true'; }, PRIV.r.t, { timeout: 15000 }).catch(() => {});
+    const m2 = await p8.evaluate(() => ({ p: document.getElementById('tgc-modo-p').getAttribute('aria-pressed'), r: (document.querySelector('#tgc-charla .tgc-turno:last-child .tgc-resp-t') || {}).textContent,
+      sitio: document.getElementById('cuerpo-panel').parentNode.id }));
+    prueba('abrirCuerpo({ pregunta }) la pone en «Preguntar», dentro de la pestaña, y ya responde', m2.p === 'true' && m2.r === PRIV.r.t && m2.sitio === 'tgp-cuerpo-sitio', JSON.stringify(m2));
+
+    // el idioma con «Preguntar» abierto
+    await idioma(p8, 'de');
+    await p8.waitForFunction(() => { const f = document.getElementById('tgc-preg-form'); return f && !f.hidden && document.getElementById('tgc-asis-estado').textContent === UI_TX.cuerpoAsisRevisado.de; }, null, { timeout: 15000 }).catch(() => {});
+    const qDe = new Set(A_DE.respuestas.map(r => r.q));
+    const i18 = await p8.evaluate(() => ({ estado: document.getElementById('tgc-asis-estado').textContent, debe: UI_TX.cuerpoAsisRevisado.de,
+      chips: [...document.querySelectorAll('#tgc-sugeridas .tgc-chip-preg')].map(b => b.textContent) }));
+    prueba('el idioma con «Preguntar» abierto: en alemán, las respuestas de asistente-de.json, sus preguntas sugeridas y su frase de la IA', pide.includes('/datos/cuerpo/asistente-de.json')
+      && i18.estado === i18.debe && i18.chips.length > 0 && i18.chips.every(q => qDe.has(q)), JSON.stringify(i18));
+    await idioma(p8, 'es');
+    prueba('«Preguntar», «Comida» y «Su deporte»: ninguna ventana (alert, confirm)', dialogos === 0, String(dialogos));
+    prueba('…y ningún error de página', e8.length === 0, e8.join(' | '));
+    await c8.close();
+  }
+
+  // 18b. (la app) sin las respuestas (sin red y sin haberlas guardado nunca): su aviso y «Reintentar»,
+  //      que con red otra vez las trae
+  {
+    const c9 = await contexto(b), p9 = await c9.newPage(), e9 = [];
+    vigilar(p9, e9);
+    let cortar = true;
+    await p9.route('**/datos/cuerpo/asistente-*.json', r => cortar ? r.abort() : r.continue());
+    await abrirApp(p9); await abrirPerfilCuerpo(p9); await suCuerpo(p9);
+    await p9.click('#tgc-modo-p');
+    await p9.waitForFunction(() => !document.getElementById('tgc-asis-reintentar').hidden, null, { timeout: 15000 }).catch(() => {});
+    const o1 = await p9.evaluate(() => ({ estado: document.getElementById('tgc-asis-estado').textContent, debe: UI_TX.cuerpoAsisError.es,
+      sinForm: document.getElementById('tgc-preg-form').hidden, re: !document.getElementById('tgc-asis-reintentar').hidden }));
+    prueba('sin las respuestas: «' + o1.debe + '», con «Reintentar» y sin el formulario', o1.estado === o1.debe && o1.sinForm && o1.re, JSON.stringify(o1));
+    cortar = false;
+    await p9.click('#tgc-asis-reintentar');
+    await p9.waitForFunction(() => !document.getElementById('tgc-preg-form').hidden, null, { timeout: 15000 }).catch(() => {});
+    const o2 = await p9.evaluate(() => ({ form: !document.getElementById('tgc-preg-form').hidden, re: document.getElementById('tgc-asis-reintentar').hidden }));
+    prueba('…y con red otra vez, «Reintentar» las trae', o2.form && o2.re, JSON.stringify(o2));
+    prueba('…sin errores de página', e9.length === 0, e9.join(' | '));
+    await c9.close();
+  }
+
+  // 19. (sin navegador) las respuestas y las guías que citan un texto de la pantalla («Últimas
+  //     anotaciones», «Borrar lo anotado»…) lo citan tal cual, en los diez idiomas (3 de noviembre de
+  //     2026: en chino tradicional, dos respuestas citaban «最近記錄» y la pantalla dice «最近紀錄»). El
+  //     polaco escribe con „…” las comillas de dentro, como su norma
+  {
+    const fs = require('fs'), path = require('path');
+    const s = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s.indexOf('var CUERPO_UI = {'), j = s.indexOf('\n  };', i);
+      for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+    const SALTA = new Set(['v', 'k', 'u', 'f', 'id', 'cat', 'tipo', 'edad', 'rel', 'links', 'cert', 'gg', 'ej', 'sos']);
+    const plano = (o, r, d) => {
+      if (typeof o === 'string') d[r] = o;
+      else if (Array.isArray(o)) o.forEach((x, i) => plano(x, r + '[' + i + ']', d));
+      else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!SALTA.has(k)) plano(v, r + '.' + k, d);
+      return d;
+    };
+    const lee = f => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', f), 'utf8'));
+    const T = {};
+    for (const l of L) {
+      const d = {};
+      for (const x of lee('asistente-' + l + '.json').respuestas) plano(x, 'asistente ' + x.id, d);
+      for (const x of lee('deportes-' + l + '.json').deportes) plano(Object.assign({}, x, { qs: (x.qs || []).map(q => q[1]) }), 'deporte ' + x.id, d);
+      T[l] = d;
+    }
+    /* las citas «…», con las de dentro: «Borrar los datos de «Su cuerpo»» */
+    const citas = t => { const out = [];
+      for (let i = t.indexOf('«'); i >= 0; i = t.indexOf('«', i + 1)) { let n = 0, j = i; for (; j < t.length; j++) { if (t[j] === '«') n++; else if (t[j] === '»' && --n === 0) break; } out.push(t.slice(i + 1, j)); }
+      return out; };
+    const porEs = {}; for (const [k, v] of Object.entries(UI)) (porEs[v.es] = porEs[v.es] || []).push(k);
+    const usos = []; for (const [donde, t] of Object.entries(T.es)) for (const c of citas(t)) if (porEs[c]) usos.push([donde, porEs[c]]);
+    const malas = [];
+    for (const [donde, ks] of usos) for (const l of L.slice(1)) {
+      const t = T[l][donde] || '';
+      if (!ks.some(k => t.includes(UI[k][l]) || (l === 'pl' && t.includes(UI[k][l].replace(/«([^«»]*)»/g, '„$1”')))))
+        malas.push(l + ' ' + donde + ': «' + ks.map(k => UI[k][l]).join('» o «') + '»');
+    }
+    prueba('las respuestas y las guías que citan un texto de la pantalla (' + usos.length + ' citas) lo citan tal cual en los diez idiomas', usos.length >= 20 && !malas.length, malas.slice(0, 4).join(' · '));
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

@@ -36595,11 +36595,15 @@ html.cielo-rojo body::before {
      La pantalla «Su cuerpo» (31 de octubre de 2026): el personaje, los musculos y los
      ejercicios, con sus estilos y sus textos en los diez idiomas. Desde el 1 de
      noviembre de 2026 va dentro de la pestaña Cuerpo del perfil (Jerome: «Y no veo
-     porque no ponerlo directo en la sección cuerpo»): se pide al abrir esa pestaña, y los
-     533 ejercicios (datos/ejercicios*.json, el comun y el del idioma), al abrir la
-     biblioteca. El service worker precarga el modulo, y los ejercicios los guarda al
-     usarlos. Si no llega, la tarjeta de la pestaña lo dice. */
+     porque no ponerlo directo en la sección cuerpo»): se pide al abrir esa pestaña. Desde
+     el 3 de noviembre trae tambien «Comida», el asistente («Preguntar») y «Su deporte».
+     Sus datos van aparte, en datos/cuerpo/ (TG_CUERPO_DATOS): los 533 ejercicios (el
+     comun y el del idioma), al abrir la biblioteca o la hoja de un grupo, y las
+     respuestas del asistente y las guias de los deportes (las del idioma), al abrir
+     «Preguntar» o un deporte. El service worker precarga el modulo, y los datos los
+     guarda al usarlos. Si no llega, la tarjeta de la pestaña lo dice. */
   var MODULO_CUERPO = './modulos/cuerpo.js', cargaCuerpo = null;
+  window.TG_CUERPO_DATOS = './datos/cuerpo/';
   function cargarCuerpo() {
     if (window.TG_CUERPO) return Promise.resolve();
     if (cargaCuerpo) return cargaCuerpo;
@@ -36612,7 +36616,8 @@ html.cielo-rojo body::before {
     }).catch(function (e) { cargaCuerpo = null; throw e; });
     return cargaCuerpo;
   }
-  /* abrir «Su cuerpo» es abrir el perfil en su pestaña Cuerpo (y, con op.modo, en ese modo). El
+  /* abrir «Su cuerpo» es abrir el perfil en su pestaña Cuerpo (y, con op.modo, en ese modo; desde el
+     3 de noviembre de 2026, con op.pregunta, en «Preguntar» con esa pregunta ya hecha). El
      perfil, primero: asi su Escape y su «atras» se enganchan antes que los de «Su cuerpo» */
   function abrirCuerpo(op) {
     return cargarPerfil().then(cargarCuerpo).then(function () {
@@ -36620,7 +36625,7 @@ html.cielo-rojo body::before {
       var sitio = document.getElementById('tgp-cuerpo-sitio');
       /* un perfil de antes del 1 de noviembre (guardado sin conexion) no tiene sitio para el: encima, como entonces */
       if (!sitio) window.TG_CUERPO.abrir(op);
-      else if (op && op.modo) window.TG_CUERPO.incrustar(sitio, op);
+      else if (op && (op.modo || typeof op.pregunta === 'string')) window.TG_CUERPO.incrustar(sitio, op);
     });
   }
   window.TG_CUERPO_CARGAR = cargarCuerpo;

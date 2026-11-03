@@ -94,9 +94,13 @@ const CARPETAS = [
   ['idiomas/etiquetas', f => /\.json$/.test(f)],
   ['idiomas/cielo', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
   ['faq', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
-  /* y los 533 ejercicios de «Su cuerpo» (31 de octubre de 2026): dentro de la app no hay
-     service worker que los guarde */
-  ['datos', f => DATOS.includes(f) || /^ejercicios(-[a-z]{2,3})?\.json$/.test(f)],
+  ['datos', f => DATOS.includes(f)],
+  /* y los datos de «Su cuerpo» (31 de octubre de 2026), todos: los ejercicios (uno comun y
+     uno por idioma) y, desde el 3 de noviembre, las respuestas del asistente y las guias de
+     los deportes (uno por idioma). Dentro de la app no hay service worker que los guarde, y
+     cambian con modulos/cuerpo.js, no a diario: van todos y salen sin conexion desde el
+     primer dia */
+  ['datos/cuerpo', f => /^[a-z0-9-]+\.json$/.test(f)],
   ['modulos', f => /\.js$/.test(f)],
   ['vendor', f => /\.(js|css|txt)$/.test(f)],
   ['vendor/fuentes', f => /\.woff2$/.test(f)],
@@ -289,6 +293,12 @@ function comprobar(montado) {
     if (l !== 'es' && !enWww('idiomas/etiquetas/' + l + '.json')) faltan.add('idiomas/etiquetas/' + l + '.json');
     if (!enWww('faq/' + l + '.json')) faltan.add('faq/' + l + '.json');
     if (!enWww('idiomas/cielo/' + l + '.json')) faltan.add('idiomas/cielo/' + l + '.json');
+  }
+  /* y los de «Su cuerpo» (31 de octubre de 2026): modulos/cuerpo.js los pide con una ruta
+     armada (TG_CUERPO_DATOS mas el fichero), que lo de arriba no ve */
+  if (!enWww('datos/cuerpo/ejercicios.json')) faltan.add('datos/cuerpo/ejercicios.json');
+  for (const l of IDIOMAS) {
+    for (const f of ['ejercicios-' + l + '.json', 'asistente-' + l + '.json', 'deportes-' + l + '.json']) if (!enWww('datos/cuerpo/' + f)) faltan.add('datos/cuerpo/' + f);
   }
   ok(faltan.size === 0, 'todo lo que la app pide en el movil esta en app/www/ (' + montado.copiados.length + ' ficheros, '
      + (montado.bytes / 1e6).toFixed(1) + ' MB)', [...faltan].join(', '));

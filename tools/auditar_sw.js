@@ -360,6 +360,63 @@ function opaca() {
     ok(con.relieve === 3 && con.modulo, 'con relieve, la instalacion guarda los tres con el modulo (sin conexion desde el primer dia)', JSON.stringify(con));
   }
 
+  /* ── 9f. «Su cuerpo», sin cobertura (3 de noviembre de 2026; lo trajo la sesion de «Su cuerpo») ──
+
+     La pantalla (modulos/cuerpo.js) se pide al abrir la pestaña Cuerpo del
+     perfil, y sus datos (datos/cuerpo/: los ejercicios, uno comun y uno por
+     idioma, las respuestas del asistente y las guias de los deportes, una por
+     idioma), al abrir la biblioteca o la hoja de un grupo, «Preguntar» o un
+     deporte. Asi que:
+       · el modulo entra en el precache al INSTALAR, como el perfil, y sin red
+         sale del cache; red primero (cambia con la app);
+       · los datos NO entran al instalar (son los diez idiomas y cada persona
+         lee uno): se guardan la primera vez que se piden con red, y desde
+         ahi salen tambien sin ella; red primero, para que unas respuestas
+         nuevas lleguen a quien ya tiene las viejas;
+       · un fichero de datos que nunca se pidio, sin red, falla limpio: la
+         pantalla lo dice y deja volver a intentarlo. */
+  {
+    const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
+    const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1].replace(/\/\*[\s\S]*?\*\//g, '');
+    ok(core.includes("'./modulos/cuerpo.js'"), '«Su cuerpo»: modulos/cuerpo.js esta en el precache (CORE)');
+    ok(!/datos\/cuerpo/.test(core), '«Su cuerpo»: y sus datos no, se guardan al usarlos');
+    const SITIO = 'https://tenerifego.app/';
+    class Peticion extends Request {
+      constructor(u, o) { super(typeof u === 'string' ? new URL(u, SITIO).href : u, o); }
+    }
+    const basica = txt => { const r = new Response(txt, { status: 200 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
+    const espera = () => new Promise(r => setTimeout(r, 20));
+    let version = 'red-1', hayRed = true;
+    const sw = cargarSW(async () => { if (!hayRed) throw new Error('sin red'); return basica(version); }, Peticion);
+    const esperas = [];
+    for (const f of sw.manejadores.install) f({ waitUntil: p => esperas.push(p) });
+    await Promise.all(esperas);
+    const app = await sw.cachesFalso.open((src.match(/const CACHE = '([^']+)'/) || [])[1]);
+    ok(!!(await app.match(new Request(SITIO + 'modulos/cuerpo.js'))), '«Su cuerpo»: al instalar la app, modulos/cuerpo.js entra en el cache sin abrir la pestaña');
+    ok(!(await app.match(new Request(SITIO + 'datos/cuerpo/asistente-es.json'))) && !(await app.match(new Request(SITIO + 'datos/cuerpo/ejercicios.json')))
+      && !(await app.match(new Request(SITIO + 'datos/cuerpo/deportes-es.json'))), '«Su cuerpo»: y ningun fichero de datos/cuerpo/');
+    hayRed = false;
+    const r0 = await pedir(sw, SITIO + 'modulos/cuerpo.js');
+    ok(r0 && r0.status === 200, '«Su cuerpo»: sin red, modulos/cuerpo.js sale del cache', r0 && r0.status);
+    const nunca = await pedir(sw, SITIO + 'datos/cuerpo/asistente-de.json');
+    ok(!nunca, '«Su cuerpo»: sin red, un fichero de datos que nunca se pidio falla limpio (no cuelga) y la pantalla lo dice', nunca && nunca.status);
+    hayRed = true;
+    for (const f of ['modulos/cuerpo.js', 'datos/cuerpo/ejercicios.json', 'datos/cuerpo/ejercicios-bg.json', 'datos/cuerpo/asistente-zht.json', 'datos/cuerpo/deportes-pl.json']) {
+      version = 'red-1';
+      const r1 = await pedir(sw, SITIO + f); await espera();
+      const t1 = r1 && await r1.text();
+      version = 'red-2';
+      const r2 = await pedir(sw, SITIO + f); await espera();
+      const t2 = r2 && await r2.text();
+      ok(t1 === 'red-1' && t2 === 'red-2', f + ': red primero, una version nueva llega aunque ya haya otra guardada', t1 + ' / ' + t2);
+      hayRed = false;
+      const r3 = await pedir(sw, SITIO + f);
+      const t3 = r3 && await r3.text();
+      ok(t3 === 'red-2', f + ': sin red, sale la ultima guardada', t3);
+      hayRed = true;
+    }
+  }
+
   /* ── 10. la unica suposicion que el ambito falso no puede comprobar ──
 
      Todo lo de arriba prueba el flujo, no el navegador. Lo que el arreglo da

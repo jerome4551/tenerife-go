@@ -64,9 +64,11 @@ const CORE = [
      con cache: 'reload'. */
   './modulos/avatares.js', './modulos/perfil.js',
   /* «Su cuerpo» (31 de octubre de 2026), que va dentro de la pestaña Cuerpo del perfil desde el
-     1 de noviembre: el modulo, aqui y «red primero» abajo, como el perfil. Sus 533 ejercicios (datos/ejercicios*.json: el
-     comun y uno por idioma, unos 200 kB cada uno) no se precargan: se guardan al usarlos,
-     tambien «red primero», y asi sin conexion sale lo ultimo que se abrio. */
+     1 de noviembre: el modulo, aqui y «red primero» abajo, como el perfil. Sus datos
+     (datos/cuerpo/*.json: los 533 ejercicios, uno comun y uno por idioma, y desde el 3 de
+     noviembre las respuestas del asistente y las guias de los deportes, uno por idioma) no se
+     precargan: son los diez idiomas y cada persona lee uno. Se guardan al usarlos, tambien
+     «red primero», y asi sin conexion sale lo ultimo que se abrio. */
   './modulos/cuerpo.js',
   /* El panel de EMERGENCIAS (22 de octubre de 2026): tiene que estar sin
      conexion desde el primer dia, y no esperar a la red: va abajo con su
@@ -370,6 +372,10 @@ self.addEventListener('fetch', e => {
          LANZAMIENTO-PLAY.md 1.2 y 1.3): borrar-cuenta.html y privacidad.html.
          Son texto legal; con `cached || fetch` el primer texto que entrase
          se quedaria para siempre aunque la politica cambiara. */
+      /* Y «Su cuerpo» (31 de octubre de 2026): el modulo, como el perfil, y
+         sus datos (datos/cuerpo/*.json). Cambian con el modulo, y con
+         `cached || fetch` unas respuestas nuevas del asistente no llegarian
+         nunca a quien ya tuviera las viejas. */
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
           url.pathname.endsWith('/borrar-cuenta.html') ||
           url.pathname.endsWith('/privacidad.html') ||
@@ -378,7 +384,7 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/avatares.js') ||
           url.pathname.endsWith('/modulos/perfil.js') ||
           url.pathname.endsWith('/modulos/cuerpo.js') ||
-          /\/datos\/ejercicios(-[a-z]{2,3})?\.json$/.test(url.pathname) ||
+          /\/datos\/cuerpo\/[a-z0-9-]+\.json$/.test(url.pathname) ||
           url.pathname.endsWith('/modulos/isla3d.js') ||
           /\/mapa\/tenerife-relieve(-ao)?\.(png|json)$/.test(url.pathname) ||
           url.pathname.endsWith('/datos/cielo.json') ||
