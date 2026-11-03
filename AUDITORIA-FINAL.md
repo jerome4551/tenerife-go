@@ -32,7 +32,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.082 kB** en castellano · **1.196 kB** en el peor caso (búlgaro) · 1.182 kB en polaco, el 1 de noviembre, con «Su cuerpo» dentro de la pestaña Cuerpo del perfil, que suma 220 bytes de `index.html` comprimido (su cargador, que ahora abre el perfil en esa pestaña, y su comentario) y por redondeo solo se nota en castellano, inglés, alemán y chino tradicional; con la cumbre del Teide en el mapa plano, que suma 1.105 bytes de `index.html` comprimido (`ponerCimas`, su regla y sus comentarios), con el mapa base recortado del detallado, que suma 114 bytes de `index.html` comprimido (los comentarios del estilo y del fondo de la isla, menos el estilo propio del base y dos filas de la tabla china) y por redondeo no se nota (el mapa base no cuenta: no se pide al arrancar), con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.084 kB** en castellano · **1.198 kB** en el peor caso (búlgaro) · 1.184 kB en polaco, el 3 de noviembre, con «Su cuerpo» de la segunda fase («Comida», el asistente y «Su deporte»), que suma 2,1 kB de `index.html` comprimido: su punto de la política de privacidad, más largo, en los diez idiomas (2,0 kB), y el cargador con la ruta de sus datos (164 bytes); el módulo y sus datos se piden al abrir la pestaña. Sin ella, 1.082, 1.196 y 1.182, con «Su cuerpo» dentro de la pestaña Cuerpo del perfil, que suma 220 bytes de `index.html` comprimido (su cargador, que ahora abre el perfil en esa pestaña, y su comentario) y por redondeo solo se nota en castellano, inglés, alemán y chino tradicional; con la cumbre del Teide en el mapa plano, que suma 1.105 bytes de `index.html` comprimido (`ponerCimas`, su regla y sus comentarios), con el mapa base recortado del detallado, que suma 114 bytes de `index.html` comprimido (los comentarios del estilo y del fondo de la isla, menos el estilo propio del base y dos filas de la tabla china) y por redondeo no se nota (el mapa base no cuenta: no se pide al arrancar), con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -4867,6 +4867,183 @@ en rojo ni sin ejecutar. Se pasó en dos trozos, sobre el mismo árbol
   `tools/auditar.sh` que solo quita lo ya pasado (`diff` igual al original
   desde esa línea). Da `probar_perfil.js` 142, `probar_cuerpo.js` 209, la isla
   en 3D, el SOS (39 y 261) y los robots, todo en verde.
+
+## «Su cuerpo», la segunda fase: «Comida», el asistente y «Su deporte», dentro de la pestaña Cuerpo (3 de noviembre)
+
+La entrega del 1 de noviembre de la sesión de «Su cuerpo»
+(`su-cuerpo-01-11.zip`) trae su módulo nuevo. Tiene «Comida», un diario por
+raciones como las cuenta la AESAN, apagado hasta que la persona lo enciende.
+Tiene «Preguntar», un asistente sin conexión con 178 respuestas escritas de
+antemano y sus fuentes. Y tiene «Su deporte», con las guías de ocho deportes y
+la de «Otro deporte». Su parche iba sobre `a1e83e9` y abría «Su cuerpo» como
+pantalla aparte, desde una tarjeta del perfil. Aplicado tal cual, habría
+deshecho «Su cuerpo» dentro de la pestaña Cuerpo y los arreglos de después.
+Jerome, el 2 de noviembre: «Lo uno yo aquí».
+
+**Cómo se unió:**
+
+- **El fuente, a tres bandas.** La base es el fuente del diseño del 31 de
+  octubre; un lado, el que está publicado; el otro, el del 1 de noviembre. Los
+  choques de `src/ui.js` estaban en el «atrás» y el Escape, y se resolvieron
+  con «Su cuerpo» dentro de la pestaña.
+- **Las correcciones publicadas se quedan.** En `src/correcciones.json`: los
+  botones en imperativo en italiano y en búlgaro, y «紀錄» como sustantivo en
+  chino tradicional.
+- **El pie**, con la frase que decidió Jerome el 1 de noviembre
+  (`cuerpoAsisRevisado`): «Redactado con ayuda de IA y comprobado con las
+  fuentes citadas. Sin revisión profesional.». Sale la fila `cuerpoIA`.
+- **Construido con su `construir.py`:** `modulos/cuerpo.js` pasa de 259.593 a
+  394.930 bytes (de 79 a 120 kB comprimidos), y `CUERPO_UI`, de 256 a 378
+  filas.
+
+**Los datos**, en `datos/cuerpo/` (`TG_CUERPO_DATOS`):
+
+- **31 ficheros.** Los 11 de los ejercicios se mueven ahí. Son nuevos los 10
+  de las respuestas (`asistente-<idioma>.json`) y los 10 de las guías
+  (`deportes-<idioma>.json`).
+- **El service worker** los pide «red primero» y los guarda al usarlos, sin
+  precargarlos.
+- **La app de las tiendas** los lleva todos, y `app_preparar.js --comprobar`
+  mira los 31.
+- **En los ejercicios cambian dos cosas**, de la verificación de esa sesión:
+  - El enlace del NHS de «Knee exercises for runners», en 5 ejercicios. Su
+    revisión independiente abrió la página nueva («Page last reviewed: 20
+    September 2024»).
+  - En italiano, «Evitare di scendere» por «Non scendere» (paso 3 de
+    `fondos-entre-bancos`). Su excepción en `auditar_registro.js` ya no hace
+    falta y sale.
+
+**Tres fallos de la unión.** Los vieron las pruebas nuevas, y cada arreglo
+se probó también al revés:
+
+1. **Dentro de la pestaña, `incrustar()` solo aceptaba «Músculos» y
+   «Aspecto».** Ahora acepta los cuatro modos y una pregunta, como `abrir()`.
+   El cargador de `index.html` pasa también la pregunta: `abrirCuerpo({
+   pregunta })` no hacía nada.
+2. **Escape, con el panel SOS abierto desde una respuesta, cerraba también el
+   perfil de debajo.** Se perdía la conversación. `fichaEncima()`, en
+   `modulos/perfil.js`, cuenta ahora el panel SOS. Probado al revés: sin esa
+   línea, el perfil se cierra.
+3. **«Atrás», con una guía SOS abierta, cerraba el perfil y «Su cuerpo».** El
+   panel pone dos entradas en el historial. El primer «atrás» volvía a la de
+   su inicio, que no lleva `tgPerfil`, y el perfil se cerraba. Ahora el perfil
+   y «Su cuerpo» dejan las entradas `tgSos` al panel. El panel SOS no se ha
+   tocado.
+
+**Un fallo que ya estaba publicado** (`da60edb`). Al bajar por la pestaña
+Cuerpo, la cabecera de «Su cuerpo» (el personaje en pequeño, el título y el
+lema) se pintaba encima de la cabecera fija del perfil y de sus pestañas. Se vio
+en las capturas de esta fase, y pasaba igual en `main`. `.tgc-top` guardaba el
+`z-index: 6` de la pantalla aparte. Como elemento de una rejilla, ese z-index
+vale aunque no esté posicionado, y quedaba por encima de la cabecera (5) y de la
+barra (4). Dentro de la pestaña lleva ahora `z-index: auto`. La prueba nueva
+(20) baja por la pestaña en los cuatro modos: con el módulo de antes sale en
+rojo.
+
+**La política de privacidad** (`8d09738`):
+
+- El punto «Su cuerpo (opcional)» lleva el texto de esa sesión, que Jerome
+  aprobó tal cual el 1 de noviembre, en los diez idiomas. Dice lo que se
+  guarda: las series, el aspecto, el deporte elegido y, si se enciende el
+  diario, las raciones de cada día. Dice también qué lee del perfil, que lo
+  que se escribe al asistente no se guarda ni se envía, y con qué botón se
+  borra todo.
+- **Un cambio sobre su texto.** En búlgaro citaba el botón de su módulo de
+  antes, «Изтриване на данните…». La pantalla dice «Изтрий данните…», y ahora
+  la política lo cita igual. `probar_cuerpo.js` (19) lo mira en los diez
+  idiomas; con el búlgaro de la entrega sale en rojo.
+
+**Los controles, ampliados:**
+
+- **`probar_cuerpo.js`**, de 209 a 234 controles:
+  - «Preguntar» con sus respuestas: lo que se escribe sale como texto (un
+    `<img onerror>` ni se pinta ni se ejecuta), y una urgencia lleva el 112.
+  - El panel SOS encima, con su «atrás» y su Escape.
+  - «Comida», «Su deporte», `abrirCuerpo()` con un modo o una pregunta, y el
+    idioma con «Preguntar» abierto.
+  - Sin las respuestas, su aviso y «Reintentar».
+  - Las 31 citas de la pantalla en las respuestas, tal cual en los diez
+    idiomas, y la cabecera al bajar.
+- **`auditar_sw.js`**, bloque 9f: «Su cuerpo» sin cobertura, 16 controles. Con
+  el `sw.js` de antes para en rojo.
+- **`auditar_registro.js`** lee también `datos/cuerpo/`: las respuestas y las
+  guías, y los ejercicios en su carpeta nueva. Si falta un fichero, para; antes
+  lo saltaba sin decir nada. Suma los botones de «Preguntar» y «Comida» en
+  italiano, búlgaro y polaco, y siete excepciones con su motivo. Mira 116.546
+  textos. Probado al revés: un «tu» puesto en francés sale en rojo.
+- **`castellano_suelto.js`** lee también `datos/cuerpo/`: 3.592 textos más por
+  idioma. Dio 103 avisos, mirados uno a uno, y ninguno era castellano sin
+  traducir:
+  - «diabetes», «kilos» o «graves», que en ese idioma se escriben igual;
+  - «millo» y «calima», que el texto explica entre paréntesis;
+  - VO2max, y el nombre de la Academy of Nutrition and Dietetics;
+  - el nombre inglés de cinco ejercicios, que el castellano también lleva.
+  - Van en `castellano-aceptado.json`, cada uno con su motivo. Sale «libres»
+    del francés, que ya no hacía falta, y «kcal» cuenta como unidad.
+  - Probado al revés: «sesiones» en francés y «romería» en búlgaro salen en
+    rojo.
+- **`auditar_idioma.js`**: un texto hecho solo de marcadores («{g}：{n}», lo
+  que dice el lector de pantalla en «Comida») no pide letras de su alfabeto.
+  Lo trajo esa sesión.
+
+**Lo que se corrigió en sus datos**, en su fuente y reconstruido: en chino
+tradicional, dos respuestas citaban el apartado «最近記錄», y la pantalla dice
+«最近紀錄». En `asistente-zht.json` solo cambian esas dos frases.
+
+**Comprobado aparte:** lo que el asistente dice como el panel SOS.
+
+- Cuadran el agotamiento por calor (30 minutos y el 112), el DEA justo detrás
+  de la llamada, las 5 insuflaciones a un niño, el atragantamiento de bebés y
+  niños y «Krampfanfall» en alemán.
+- No cuadra la calima. El panel dice, como decidió Jerome el 2 de noviembre,
+  «no haga ejercicio físico intenso» a todos, y «nada de ejercicio al aire
+  libre» a los sensibles.
+- Cuatro textos de «Su cuerpo» dicen a todos que Sanidad de Canarias pide no
+  hacer ejercicio en el exterior. Sanidad lo dice para los sensibles. Son
+  `calima-y-deporte`, `correr-en-tenerife`, `asma` y la línea de la calima de
+  cinco guías de deporte.
+- Es más prudente, no menos. Jerome, el 3 de noviembre: «Publicar; lo alinea
+  la otra sesión».
+
+**Las cifras:**
+
+- Las filas de idiomas, en el título de «Idiomas»: 3308 y 5.456.
+- La descarga, 2 kB más: 1.084, 1.198 y 1.184.
+- El README, con «Su cuerpo», sus datos en `datos/cuerpo/` y sus pesos.
+
+**La auditoría entera**, sobre `420d490` (árbol `1d453a0a`), sale «AUDITORIA EN
+VERDE», ningún control en rojo ni sin ejecutar. En `main` van `4b6bbea`,
+`8d09738` y `da60edb`, encima de 12 commits de los robots.
+
+- **Las cifras de esa vuelta:**
+  - `probar_cuerpo.js`, 234; `auditar_sw.js`, 67; `probar_perfil.js`, 142;
+    `auditar_perfil.js`, 74.
+  - El barrido de pantallas, 0 fallos y 0 errores de página.
+  - El cielo, 307; la isla en 3D, 58.
+  - El SOS, 39 y 261; y los robots, en verde.
+- **Los robots solo tocan datos.** Entre el árbol auditado y lo que va a `main`
+  cambian sus cinco ficheros, y los parches son los mismos (`git patch-id`).
+  Uno es `datos/satelites.json`, del que dependen los pases. Por eso, sobre
+  lo que va a `main` se pasaron otra vez `auditar_cielo.js` (307 de 307),
+  `auditar_precios_gasolineras.py` y `auditar_datos.js`, en verde.
+
+**Lo que queda:**
+
+- **Para la sesión de «Su cuerpo»**, con el fuente unido para que su próxima
+  entrega salga de él:
+  - los cuatro textos de la calima;
+  - «Ice cream maker», traducido en chino simplificado («冰淇淋机») y en inglés
+    en el tradicional;
+  - tres nombres de deporte sin guía todavía (escalada, lucha canaria y
+    windsurf), que el montaje avisa.
+- **Para Jerome:**
+  - La política dice «el día» de cada serie. El módulo guarda también el
+    instante en que se anota, para ordenarlas y deshacer. ¿Se dice?
+  - La revisión nativa y la profesional siguen sin hacer: las hojas están
+    en blanco y el campo `revisado` de las respuestas, vacío.
+  - Mirarlo en el iPhone, también con VoiceOver.
+  - Una esquina de las pestañas del perfil deja ver lo que pasa por debajo
+    al bajar, en las tres pestañas. Viene de antes y está en la cola.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
