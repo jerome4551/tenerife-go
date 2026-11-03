@@ -3588,7 +3588,10 @@
    grupo y de un ejercicio siguen encima (fijas), como siempre */
 .tgc-mini { display: none; }
 #cuerpo-panel.tgc-dentro { position: static; inset: auto; z-index: auto; overflow: visible; padding: 0; background: transparent; }
-.tgc-dentro .tgc-top { position: static; padding-block: 2px 0; background: none; }
+/* y sin su z-index (3 de noviembre de 2026): .tgc-top es un elemento de la rejilla de .tgc, y en
+   una rejilla el z-index vale aunque no este posicionado. Con el 6 de la pantalla aparte, al bajar
+   se pintaba encima de la cabecera del perfil (5) y de su barra de pestañas (4) */
+.tgc-dentro .tgc-top { position: static; z-index: auto; padding-block: 2px 0; background: none; }
 .tgc-dentro .tgc-top::after { display: none; }
 .tgc-dentro #tgc-back { display: none; }
 /* el personaje en pequeño, al lado del título, como en la tarjeta del prototipo */

@@ -39,7 +39,8 @@
  *     o una pregunta; el idioma con «Preguntar» abierto; y sin las respuestas, su aviso y
  *     «Reintentar» (18b). Y sin navegador (19): las respuestas y las guias que citan un texto de
  *     la pantalla, y la politica de privacidad que cita el boton de borrar, lo citan tal cual, en
- *     los diez idiomas.
+ *     los diez idiomas. Y al bajar por la pestaña, la cabecera y las pestañas del perfil quedan
+ *     encima de «Su cuerpo», en sus cuatro modos (20).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -951,6 +952,40 @@ async function ejemplo(pg) {
       if (!(t.includes(bo) || (l === 'pl' && t.includes(bo.replace(/«([^«»]*)»/g, '„$1”'))))) malPol.push(l + ': «' + bo + '»');
     }
     prueba('la política de privacidad cita el botón de borrar «Su cuerpo» tal cual, en los diez idiomas', !malPol.length, malPol.join(' · '));
+  }
+
+  // 20. (la app) al bajar por la pestaña, la cabecera y la barra de pestañas del perfil quedan
+  //     encima de lo que pasa por debajo, también de la cabecera de «Su cuerpo», en los cuatro
+  //     modos (3 de noviembre de 2026: su .tgc-top guardaba el z-index 6 de la pantalla aparte y,
+  //     como elemento de una rejilla, se pintaba encima del título del perfil y de sus pestañas)
+  {
+    const c10 = await contexto(b), p10 = await c10.newPage(), e10 = []; vigilar(p10, e10);
+    await abrirApp(p10); await abrirPerfilCuerpo(p10); await suCuerpo(p10);
+    const malos = [];
+    for (const m of ['m', 'a', 'c', 'p']) {
+      await p10.click('#tgc-modo-' + m); await p10.waitForTimeout(250);
+      for (const dy of [10, 50, 90]) {
+        await p10.evaluate(dy => {
+          const pp = document.getElementById('perfil-panel'), cab = pp.querySelector('.tgp-top'), top = document.querySelector('#cuerpo-panel .tgc-top');
+          pp.scrollTop += top.getBoundingClientRect().top - (cab.getBoundingClientRect().top + dy);
+        }, dy);
+        await p10.waitForTimeout(120);
+        const r = await p10.evaluate(() => {
+          const cab = document.querySelector('#perfil-panel .tgp-top'), tabs = document.getElementById('tgp-tabs'), mal = [];
+          const rc = cab.getBoundingClientRect(), rt = tabs.getBoundingClientRect();
+          for (const [x, y] of [[90, rc.top + rc.height / 2], [250, rc.top + rc.height / 2], [80, rt.top + rt.height / 2], [195, rt.top + rt.height / 2], [310, rt.top + rt.height / 2]]) {
+            const e = document.elementFromPoint(x, y);
+            if (!(e && (e.closest('.tgp-top') || e.closest('#tgp-tabs')))) mal.push(Math.round(x) + ',' + Math.round(y) + ' ' + (e ? (e.id || String(e.className) || e.tagName) : 'nada'));
+          }
+          return { mal, cuerpoDebajo: document.querySelector('#cuerpo-panel .tgc-top').getBoundingClientRect().top < rt.bottom };
+        });
+        if (!r.cuerpoDebajo) malos.push(m + ' ' + dy + ': la cabecera de «Su cuerpo» no llegó a pasar por debajo');
+        r.mal.forEach(x => malos.push(m + ' ' + dy + ': ' + x));
+      }
+    }
+    prueba('al bajar, la cabecera y las pestañas del perfil quedan encima de «Su cuerpo», en los cuatro modos', malos.length === 0, malos.slice(0, 4).join(' · '));
+    prueba('…sin errores de página', e10.length === 0, e10.join(' | '));
+    await c10.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
