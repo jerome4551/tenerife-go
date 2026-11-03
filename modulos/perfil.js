@@ -2031,6 +2031,14 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 @media (max-width: 380px) { .tgp-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .tgp-field { display: grid; gap: 5px; min-width: 0; }
 .tgp-field label { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+/* Las casillas de «Sus datos», a la misma altura aunque un rótulo ocupe dos líneas («Año de
+   nacimiento» en un iPhone, 3 de noviembre de 2026): cada una toma tres filas de la rejilla
+   (rótulo, casilla y ayuda), las mismas para todas, y el rótulo corto baja junto a su casilla.
+   Sin subgrid (Safari antes del 16), como antes. */
+@supports (grid-template-rows: subgrid) {
+  .tgp-fields > .tgp-field { grid-row: span 3; grid-template-rows: subgrid; }
+  .tgp-fields > .tgp-field > label { align-self: end; }
+}
 .tgp-input-wrap { position: relative; }
 .tgp-input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 12px; color: var(--text); padding: 10px 40px 10px 12px; font-size: 1.05rem; font-variant-numeric: tabular-nums; transition: border-color var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out); -moz-appearance: textfield; }
 .tgp-input::-webkit-outer-spin-button, .tgp-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
@@ -2128,7 +2136,14 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-add { display: grid; grid-template-columns: 1.1fr 1fr auto; gap: 8px; margin-top: 12px; }
 @media (max-width: 480px) { .tgp-add { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .tgp-add .tgp-btn { grid-column: 1 / -1; } }
 .tgp-add > * { min-width: 0; }
-.tgp-add input[type="date"] { padding-right: 10px; font-size: .92rem; }
+/* El campo de la fecha, sin el aspecto de serie (3 de noviembre de 2026, con una captura del
+   iPhone). Con él, Safari le pone un ancho mínimo suyo, mayor que su columna, y se montaba
+   encima del peso: WebKit, RenderThemeIOS::adjustMinimumIntrinsicSizeForAppearance, que con
+   appearance: none no se aplica (RenderTheme::adjustStyle sale antes). Sigue abriendo el
+   calendario del sistema. Y la fecha, a la izquierda, como el texto de las otras casillas (el
+   iPhone la centra). */
+.tgp-add input[type="date"] { padding-right: 10px; font-size: .92rem; -webkit-appearance: none; appearance: none; align-self: stretch; }
+.tgp-add input[type="date"]::-webkit-date-and-time-value { text-align: start; }
 .tgp-log { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 4px; max-height: 150px; overflow: auto; }
 .tgp-log li { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: .84rem; padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,0.03); font-variant-numeric: tabular-nums; }
 .tgp-log .d { color: var(--muted); } .tgp-log .x { background: none; border: 0; color: var(--muted); padding: 2px 6px; font-size: .78rem; }

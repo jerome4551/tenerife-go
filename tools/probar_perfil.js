@@ -1056,7 +1056,7 @@ async function pantalla(b) {
     await abrirPerfilYa(p2);
     /* con «Todos los paises» abierto: sus 47 nombres, en cada idioma, tambien se miran */
     await p2.click('#tgp-paises-btn'); await p2.waitForTimeout(200);
-    let es = null; const partidas = [], fuera = [], vacios = [], castellano = [];
+    let es = null; const partidas = [], fuera = [], vacios = [], castellano = [], casillas = [], fecha = [];
     for (const L of LENG) {
       await p2.evaluate(l => setLang(l), L); await p2.waitForTimeout(450);
       /* las tres pestañas (31 de octubre de 2026): lo que no se ve no se mide, asi que se
@@ -1095,6 +1095,32 @@ async function pantalla(b) {
       r.partidas.forEach(x => partidas.push(L + ':' + x)); r.fuera.forEach(x => fuera.push(L + ':' + x)); r.vacios.forEach(x => vacios.push(L + ':' + x));
       if (L === 'es') { es = es || new Set(); r.textos.forEach(x => es.add(x)); }
       else r.textos.forEach(x => { if (es.has(x) && /[áéíóúñ¿¡]/i.test(x)) castellano.push(L + ':' + x); });
+      /* «Sus datos» y la fecha de «Su evolución» (3 de noviembre de 2026, con dos capturas del
+         iPhone de Jerome): las casillas de una misma fila, a la misma altura aunque un rotulo ocupe
+         dos lineas; y la fecha, sin montarse en la casilla de al lado y sin el aspecto de serie, que
+         en el iPhone le da un ancho minimo mayor que su columna (Chromium no lo hace: por eso se
+         mira tambien el aspecto) */
+      if (P === 'cuerpo') {
+        const g = await p2.evaluate(() => {
+          const filas = {}, mal = [], q = e => e.getBoundingClientRect();
+          document.querySelectorAll('#perfil-panel .tgp-fields > .tgp-field').forEach(fl => {
+            const i = fl.querySelector('input'); if (!i) return;
+            (filas[Math.round(q(fl).top)] = filas[Math.round(q(fl).top)] || []).push({ id: i.id, top: q(i).top });
+          });
+          Object.values(filas).forEach(fs => { const t = fs.map(x => x.top); if (Math.max(...t) - Math.min(...t) > 1) mal.push('casillas ' + fs.map(x => x.id + '@' + x.top.toFixed(1)).join(' ')); });
+          const fx = [];
+          ['tgp-add-peso', 'tgp-add-km'].forEach(id => {
+            const fo = document.getElementById(id), d = fo && fo.querySelector('input[type="date"]'), sig = d && d.nextElementSibling;
+            if (!d) { fx.push(id + ': sin campo de fecha'); return; }
+            const cs = getComputedStyle(d);
+            if ((cs.appearance || cs.webkitAppearance) !== 'none') fx.push(id + ': aspecto ' + (cs.appearance || cs.webkitAppearance));
+            if (d.getClientRects().length && sig && q(d).right > q(sig).left + 0.5) fx.push(id + ': la fecha llega a ' + q(d).right.toFixed(1) + ' y lo de al lado empieza en ' + q(sig).left.toFixed(1));
+          });
+          return { mal, fx, n: Object.keys(filas).length };
+        });
+        if (!g.n) casillas.push(L + ': no hay casillas');
+        g.mal.forEach(x => casillas.push(L + ': ' + x)); g.fx.forEach(x => fecha.push(L + ': ' + x));
+      }
       }
       await p2.evaluate(() => TG_PERFIL.pestana('viaje'));
     }
@@ -1103,6 +1129,8 @@ async function pantalla(b) {
     ok(!vacios.length, 'p7 a ' + ancho + ' px: ningun texto vacio', vacios.slice(0, 12));
     ok(!castellano.length, 'p8 a ' + ancho + ' px: nada en castellano fuera del castellano', [...new Set(castellano)].slice(0, 12));
     ok(!e2.length, 'p9 a ' + ancho + ' px: sin errores', e2);
+    ok(!casillas.length, 'p10 a ' + ancho + ' px, en los diez idiomas: las casillas de «Sus datos» de una misma fila, a la misma altura, aunque un rotulo ocupe dos lineas', casillas.slice(0, 12));
+    ok(!fecha.length, 'p11 a ' + ancho + ' px, en los diez idiomas: la fecha de «Su evolucion» (peso y kilometros), sin el aspecto de serie y sin montarse en la casilla de al lado', fecha.slice(0, 12));
     await c2.close();
   }
 }
