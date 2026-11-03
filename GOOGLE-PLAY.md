@@ -105,6 +105,13 @@ vista, el crédito de OpenStreetMap y el de Open-Meteo (`AUDITORIA-FINAL.md`).
   avisos oficiales): si la descripción de **Emergencias y primeros auxilios**
   lo cubre, marcarla también. Esa descripción no se ha podido leer desde
   aquí.
+- **«Su cuerpo»**, desde el 3 de noviembre de 2026, cae en las mismas dos
+  categorías. Son las series de ejercicio, el diario de comidas por raciones
+  y un asistente con respuestas escritas de antemano y sus fuentes.
+  - Si el formulario tiene una categoría de información o educación sobre
+    salud, marcarla también: el asistente la da.
+  - No es IA generativa, porque busca entre respuestas ya escritas. Si
+    alguna pantalla pregunta por IA generativa, «No».
 
 ## 4. Seguridad de los datos
 
@@ -147,6 +154,11 @@ errores), ni la ubicación aproximada o las interacciones con la app: eran de
 Google Analytics, que no está desde el 30-10-2026 (§3). Si ya se rellenó el
 formulario con ellas, se quitan. Las visitas comprobadas se quedan en el móvil
 (§2 Perfil).
+
+Lo de «Su cuerpo» tampoco se declara. Son las series con su día y su hora, el
+aspecto, el deporte, el diario de comidas y lo que se escribe al asistente.
+Se queda en el móvil y no sale de él (§2, «Su cuerpo»), así que para Google
+no es un dato recogido.
 
 ## 5. Prueba cerrada y producción
 
