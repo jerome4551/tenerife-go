@@ -248,6 +248,10 @@ async function ejemplo(pg) {
   prueba('la hoja se abre desde el dibujo', await pg.evaluate(() => !document.getElementById('tgc-hoja').hidden && document.getElementById('tgc-hoja-tit').textContent === 'Pecho'));
   prueba('el foco va a la hoja', await pg.evaluate(() => document.activeElement && document.activeElement.id === 'tgc-hoja-tit'));
   prueba('lo de debajo, inerte', await pg.evaluate(() => document.getElementById('tgc').inert === true));
+  /* con la hoja ya subida (3 de noviembre de 2026): su animacion (tgc-sube, 320 ms) la trae desde
+     28 px mas abajo, y a los 300 ms todavia le faltaban hasta 0,8 px; con el procesador ocupado,
+     hasta 17,6, y «sale abajo de la pantalla» salia en rojo a ratos */
+  await pg.evaluate(() => Promise.all(document.getElementById('tgc-hoja').getAnimations().map(a => a.finished)));
   const r5a = await pg.evaluate(() => {
     const pp = document.getElementById('perfil-panel'), h = document.getElementById('tgc-hoja').getBoundingClientRect(), v = document.getElementById('tgc-velo').getBoundingClientRect();
     const inerte = s => !!document.querySelector(s).closest('[inert]');
