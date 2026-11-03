@@ -353,24 +353,50 @@ async function navegador() {
   /* con su hora: el navegador de prueba pinta por software y procesa tarde,
      pero el modulo mira la hora de cada toque */
   const toques = async (tipo, pts, ts) => cdp.send('Input.dispatchTouchEvent', Object.assign({ type: tipo, touchPoints: pts.map((q, i) => ({ x: q[0], y: q[1], id: i })) }, ts ? { timestamp: ts } : {}));
-  /* medir() corre con los dedos todavia puestos: despues de soltar, la
-     inercia sigue moviendo la vista (a proposito) */
-  const arrastre = async (pts0, pts1, pasos, medir) => {
+  /* Se mide dentro de la pagina, en el evento en que el ultimo dedo llega a
+     su sitio, despues del modulo (que escucha en el lienzo): con los dedos
+     todavia puestos, porque despues de soltar la inercia sigue moviendo la
+     vista (a proposito). Desde fuera no se puede: CDP manda un evento por
+     cada dedo que cambia y el navegador los entrega con los cuadros, asi que
+     al volver de toques() la pagina puede ir un paso atras, o haber visto un
+     dedo y no el otro. El 3 de noviembre de 2026 se midio asi, con un dedo en
+     su sitio y el otro un paso atras: el punto entre los dos, 2 px corrido,
+     eran 10,6 m, y «al soltar el pellizco» salio en rojo con la vista
+     quieta. */
+  await p.evaluate(() => {
+    const d = window.__tgDedos = {};
+    addEventListener('pointerdown', e => { d[e.pointerId] = [e.clientX, e.clientY]; }, true);
+    addEventListener('pointermove', e => { if (d[e.pointerId]) d[e.pointerId] = [e.clientX, e.clientY]; }, true);
+    const fuera = e => { delete d[e.pointerId]; };
+    addEventListener('pointerup', fuera, true);
+    addEventListener('pointercancel', fuera, true);
+    addEventListener('pointermove', () => {
+      const g = window.__tgGesto, v = Object.values(d);
+      if (!g || g.medida || v.length !== g.fin.length) return;
+      if (!g.fin.every(q => v.some(w => Math.abs(w[0] - q[0]) < 0.75 && Math.abs(w[1] - q[1]) < 0.75))) return;
+      g.medida = { suelo: g.punto ? TG_ISLA3D._prueba.suelo(g.punto[0], g.punto[1]) : null };
+    });
+  });
+  /* punto: donde se mide el suelo al final del gesto, con los dedos puestos */
+  const arrastre = async (pts0, pts1, pasos, punto) => {
+    await p.evaluate(([fin, punto]) => { window.__tgGesto = { fin, punto, medida: null }; }, [pts1, punto || null]);
     await toques('touchStart', pts0);
     for (let k = 1; k <= pasos; k++) {
       const f = k / pasos;
       await toques('touchMove', pts0.map((q, i) => [q[0] + (pts1[i][0] - q[0]) * f, q[1] + (pts1[i][1] - q[1]) * f]));
       await p.waitForTimeout(16);
     }
-    const r = medir ? await medir() : null;
     await toques('touchEnd', []);
+    /* y lo de despues, con el gesto ya entero en la pagina: medido y soltado */
+    const m = await p.waitForFunction(() => window.__tgGesto.medida && !Object.keys(window.__tgDedos).length && window.__tgGesto.medida, null, { timeout: 15000 })
+      .then(h => h.jsonValue(), () => { throw new Error('el gesto no llego entero a la pagina (' + JSON.stringify(pts0) + ' -> ' + JSON.stringify(pts1) + ')'); });
     await p.waitForTimeout(120);
-    return r;
+    return m.suelo;
   };
   const sinMover = async () => { for (let k = 0; k < 60; k++) { const e2 = await estado(p); if (!e2.animando) return; await p.waitForTimeout(200); } };
   /* arrastrar: el punto del suelo bajo el dedo se queda bajo el dedo */
   const g0 = await p.evaluate(() => TG_ISLA3D._prueba.suelo(200, 500));
-  const g1 = await arrastre([[200, 500]], [[150, 380]], 12, () => p.evaluate(() => TG_ISLA3D._prueba.suelo(150, 380)));
+  const g1 = await arrastre([[200, 500]], [[150, 380]], 12, [150, 380]);
   await sinMover();
   /* y al soltar, el punto de giro pasa al suelo del centro sin mover la vista */
   const g2 = await p.evaluate(() => TG_ISLA3D._prueba.suelo(150, 380));
@@ -398,7 +424,7 @@ async function navegador() {
   /* pellizcar: acerca y el punto entre los dedos no se mueve */
   const c0 = (await estado(p)).cam;
   const m0 = await p.evaluate(() => TG_ISLA3D._prueba.suelo(195, 450));
-  const m1 = await arrastre([[150, 450], [240, 450]], [[95, 450], [295, 450]], 14, () => p.evaluate(() => TG_ISLA3D._prueba.suelo(195, 450)));
+  const m1 = await arrastre([[150, 450], [240, 450]], [[95, 450], [295, 450]], 14, [195, 450]);
   await sinMover();
   await quieto(p);
   const c1 = (await estado(p)).cam;
