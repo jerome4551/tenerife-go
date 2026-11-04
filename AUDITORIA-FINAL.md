@@ -5358,6 +5358,11 @@ va» como tuteo: se dice «dessert aussi».
   se ve en pantalla, otra vez 191 pantallas y fichas por idioma, sin nada sin
   traducir. En verde.
 
+**Una errata en el mensaje del commit** `6ceec80` (esta documentación): da
+los hashes de `main` de antes del segundo rebase, `9dba405`, `f429eaf`,
+`20f2cd7` y `9020b9d`, que no llegaron a subir. Los de `main` son los de
+aquí arriba: `8787e44`, `3a51f6a`, `52caf5e` y `50def03`.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
