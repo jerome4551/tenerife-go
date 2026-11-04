@@ -2,8 +2,18 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-04T18:15:45Z",
+ "consultado": "2026-11-04T20:06:08Z",
  "alertas": [
+  {
+   "t": "2026-11-04T18:42:40Z",
+   "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por lluvias en todo el archipiélago",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-prealerta-por-lluvias-en-todo-el-archipielago/"
+  },
+  {
+   "t": "2026-11-04T18:37:17Z",
+   "titulo": "El Gobierno de Canarias da por finalizada la situación de prealerta por tormentas en todas las islas",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-da-por-finalizada-la-situacion-de-prealerta-por-tormentas-en-todas-las-islas/"
+  },
   {
    "t": "2026-11-03T08:22:29Z",
    "titulo": "El Gobierno actualiza la situación pasando a prealerta por lluvias en toda Canarias",
@@ -53,16 +63,6 @@
    "t": "2026-10-31T12:15:07Z",
    "titulo": "El Gobierno de Canarias actualiza la situación pasando a Alerta por lluvias en Tenerife",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-pasando-a-alerta-por-lluvias-en-tenerife/"
-  },
-  {
-   "t": "2026-10-30T12:50:56Z",
-   "titulo": "El Gobierno de Canarias declara la situación de prealerta por lluvias en El Hierro, La Palma, La Gomera y Tenerife",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-situacion-de-prealerta-por-lluvias-en-el-hierro-la-palma-la-gomera-y-tenerife/"
-  },
-  {
-   "t": "2026-10-29T10:08:27Z",
-   "titulo": "El Gobierno de Canarias finaliza la situación de prealerta por calima en el archipiélago",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-prealerta-por-calima-en-el-archipielago-4/"
   }
  ],
  "descartados": 0
