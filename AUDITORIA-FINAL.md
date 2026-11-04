@@ -5269,6 +5269,95 @@ VERDE», sin ningún control en rojo ni sin ejecutar.
 - Para la sesión de «Su cuerpo», el paquete nuevo. Su próxima entrega tiene
   que salir de él.
 
+## El análisis del 4 de noviembre: cada hallazgo, contra el código y las fuentes
+
+Jerome pasó un análisis de la app hecho en otra sesión de Claude (PDF de 15
+páginas, «Tenerife Go — Análisis completo de tenerifego.app»). Pidió
+«Aporta los cambios a lo que puedes y hazme una lista con el ayuda que
+necesitas». Cada hallazgo se ha mirado en el código y, si es un dato, en su
+fuente. La red de esta sesión no abre las webs oficiales: se han leído con el
+buscador, limitado a sus dominios.
+
+**Lo que se ha cambiado**, en cuatro commits:
+
+- **El Corpus de La Orotava** (`9d5dd9c`; en `main`, `8787e44`): las
+  alfombras, el jueves de la Infraoctava (Pascua + 67), y no el del Corpus
+  (+ 60). El programa oficial del Ayuntamiento de 2026 la pone el jueves 11
+  de junio; la app decía el 4.
+- **Hospiten Rambla** (`8c5aea7`; en `main`, `3a51f6a`): «Rambla de Santa
+  Cruz, 115», como su web. Decía «C/ Rambla General Franco, 115».
+- **Las guaguas del aeropuerto** (`750a5f8`; en `main`, `52caf5e`):
+  - la línea 20 se llama «Aeroexpress · Santa Cruz — La Laguna — Aeropuerto
+    Norte (TFN)». Decía «Aerobús · La Laguna — Aeropuerto Norte», sin Santa
+    Cruz, aunque sus paradas ya llegaban al Intercambiador;
+  - en el asistente, la 30 va a Puerto de la Cruz (decía Santa Cruz y La
+    Laguna);
+  - y del aeropuerto Sur salen también la 111 y, de noche, la 711, que paran
+    en él según el GTFS de TITSA (parada 7571).
+- **El Teide en el asistente** (`0131399`; en `main`, `50def03`): el PNT 23
+  y el PNT 28 también piden reserva (resolución del Cabildo de octubre de
+  2026), y solo el PNT 10 y el PNT 07 se pagan en algunas franjas.
+
+Todo en los diez idiomas. En francés, el control del trato de usted leyó «et
+va» como tuteo: se dice «dessert aussi».
+
+**Lo que no se ha cambiado, porque el análisis no tenía razón:**
+
+- **Vithas**, «urgencias 24 h»: el análisis leyó una página de Vithas de
+  2022. El hospital tiene urgencias 24 horas desde el 1 de noviembre de 2025
+  (anuncio del hospital, Canarias7). La ficha estaba bien.
+- **La 102 y la 108 en el aeropuerto Norte**: en el GTFS de TITSA, en esa
+  parada (4537) solo paran la 012, 020, 030, 104 y 343.
+- **El precio del teleférico**: no está demostrado que haya cambiado. La
+  página de 43 € y 10,75 € es antigua según el propio buscador, y la de la
+  app (42 € y 10,50 €, «desde») lleva su fecha, octubre de 2026, como pidió
+  Jerome («Con el precio y su fecha»).
+- **Las respuestas del Teide tei-02, tei-03, tei-06 y tei-12**: ya decían lo
+  vigente. Los importes de la ecotasa, del refugio y de los bonos no se
+  ponen: el asistente no da importes, a propósito.
+
+**Lo que espera a Jerome:**
+
+- Abrir dominios en la red de la sesión para leer las fuentes oficiales.
+- El teléfono de Vithas: su web da el 922 534 730 y la app el 922 534 733.
+- El precio del teleférico, y los precios de otras once fichas: quitarlos
+  (su regla) o dejarlos con fecha.
+- El aviso del PR-TF 51: con la TF-445 cortada no se puede volver por
+  carretera, ni a pie ni en guagua (Tenerife ON). El sendero se queda como
+  está hasta que Jerome diga (31 de octubre).
+- Los socorristas: caducan del 17 al 19 de noviembre, a propósito, y la
+  ficha vuelve sola al enlace del visor. Se renuevan si se confirman.
+- Supabase (protección contra contraseñas filtradas, `push-idioma.sql`, las
+  políticas) y las mejoras técnicas (zoom, robots.txt, sitemap, 404, una
+  descripción, el mapa «Calles», Cloudflare) y de producto.
+
+**La auditoría entera**, sobre `0131399` (árbol `8ff48653`), en dos partes:
+«AUDITORIA EN VERDE», sin ningún control en rojo ni sin ejecutar.
+
+- La primera pasada se cortó en el límite de tiempo que se le pone, 7.000
+  segundos, justo después de `auditar_emergencias.js` (39, en verde). Todo lo
+  de antes, en verde: el asistente, 1.290 respuestas, todas alcanzables, y
+  122 preguntas de prueba sin un fallo; el trato de usted, en los diez
+  idiomas; las rutas en guagua; el cielo, 307; el perfil, 74 y 148; «Su
+  cuerpo», 236; el 3D, 58, con el pellizco a 0,0 m.
+- La segunda, sobre el mismo árbol, con los cinco controles que faltaban: el
+  panel del SOS, 261, y sus cuatro robots. En verde.
+- En `main` van `8787e44`, `3a51f6a`, `52caf5e` y `50def03`, con los mismos
+  parches, encima de seis commits más de los robots: el boletín del
+  INVOLCAN, los satélites, los terremotos del IGN, los avisos de AEMET, las
+  alertas del Gobierno de Canarias y los precios de las gasolineras. Solo
+  cambian sus ficheros de datos.
+- Con los datos nuevos de los cinco primeros, otra vez los doce controles que
+  los leen (árbol `76aef3b6`): los avisos, 32 y 156; la app de las tiendas,
+  montada y abierta, en verde; lo que se ve en pantalla, 191 pantallas y
+  fichas por idioma, sin nada sin traducir; el cielo, 307; el SOS, 39 y 261;
+  y sus cuatro robots. En verde.
+- Y con los precios nuevos, los cinco que leen ese fichero (árbol
+  `d0e85b28`): los precios, sin un fallo; la gasolinera más barata cerca,
+  en los diez idiomas, sin un fallo; la app de las tiendas, en verde; y lo que
+  se ve en pantalla, otra vez 191 pantallas y fichas por idioma, sin nada sin
+  traducir. En verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
