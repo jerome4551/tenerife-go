@@ -5589,6 +5589,90 @@ pellizco a 0,0 m; el SOS, 39 y 261, y sus cuatro robots.
   precios desde el registro del repositorio, no desde ese fichero: no hacía
   falta repetirlo.)
 
+## Lo que valoraba el precio, y lo que no (5 de noviembre)
+
+Jerome, a la pregunta de las etiquetas, primero: «Quítalos todo pero
+verifica que la leyenda sigue con sentido que quitar palabras quita
+contexto». Después, viendo el cambio: «Playa de lujo es playa de alta gama
+no es que pagas . Si no es un precio déjalo». La primera versión, con
+«Lujo» y «Premium» fuera de 19 fichas, no se publicó: se rehízo desde
+`main` con solo lo que habla de lo que se paga.
+
+**Diez fichas** (`3505292`):
+
+- Fuera las etiquetas «Barato» (7) y «Económico» (3). El código no las usa
+  para filtrar ni para buscar. También salen de `idiomas/etiquetas/<l>.json`:
+  si alguien vuelve a ponerlas, `auditar_etiquetas.js` las cantará como sin
+  traducir.
+- En esas fichas, la misma valoración salía en la leyenda o en la
+  descripción. Fuera, en los diez idiomas, con la frase rehecha para que
+  siga diciendo algo: fuera «· Económico» (Oasis); «tranquila y económica»
+  → «tranquila», y fuera «Precios asequibles» (Wakanda); en los
+  supermercados, «por su precio y amplitud» → «por su amplitud»,
+  «precios competitivos y gran variedad» → «con gran variedad», «Precios de
+  referencia para residentes de…» → «Para residentes de…», y fuera «Uno de
+  los supermercados más baratos de la isla», «Buenos precios», «Precios de
+  referencia» y «Precios muy competitivos».
+- Cada ficha se leyó entera, antes y después, en los diez idiomas.
+- De paso, la leyenda del Oasis en neerlandés decía «Betaalbaar ·
+  Voordelig» donde el castellano dice «Sur · Económico». Ahora «Zuid», como
+  en 39 de las 41 leyendas neerlandesas que traducen «Sur».
+
+**Se quedan como estaban:** «Lujo» (7 fichas) y «Premium» (2), con sus
+leyendas y descripciones («Playa de Lujo», «Zona de Lujo», «la zona de
+turismo de lujo», «· Lujo» en Abama Golf, «zona sur premium»), y las otras
+valoraciones que no son de precio: «Exclusiva», «restaurantes selectos»,
+«elegante», «la mejor gastronomía», «Top Mundial».
+
+**El contexto que se fue con los precios** (`b95c916`):
+
+- Parque Santiago: «Efectivo.», suelto, ya no se entendía → «Pago en
+  efectivo.» (en inglés, alemán y chino ya se entendía).
+- La Pinta: vuelve «Incluye palos, bolas y tarjeta».
+- Pesca en Los Cristianos: «Barcos privados también disponibles» → «Hay
+  salidas compartidas y barcos privados».
+
+Las palabras salen de los textos de antes en cada idioma. En total, 100
+cambios en 90 textos y 10 listas de etiquetas, más 26 textos de contexto,
+cada uno dentro de su ficha. El polaco, en su fuente y montado con
+`lugares_idioma.js`.
+
+**Queda para Jerome:** frases que valoran el precio en otras 16 fichas, que
+no llevaban esas etiquetas. Guachinches y restaurantes: El Talegazo
+(«precios bajos»), Bodega Sursula («precios muy buenos»), El Patio
+(«Excelente relación calidad-precio»), El Jable («Precios justos»); Las
+Galletas («pescado fresco a buen precio»), Playa San Juan («a precios
+locales»), la zona de mariscos de Los Abrigos («más asequibles que en zonas
+turísticas»), el bar del minigolf Kapital («a precio razonable») y la Casa
+del Vino («a precio reducido»). Tiendas: la Farmacia Blesa («precios
+competitivos»), los Mercadona de Puerto de la Cruz y de La Orotava
+(«Precios asequibles») y tres Lidl («precio(s) competitivo(s)»). Y el Museo
+Etnográfico de Granadilla («Entrada gratuita o de bajo coste»).
+
+Se proponen dejar, porque no valoran el precio sino que dan una condición:
+el aviso del parking P1 del aeropuerto Norte («Reservando antes en la web
+de AENA sale bastante más barato»), que AENA dice en su web («RESERVAR ES
+AHORRAR»; con reserva, «direct discounts on your stay»); el precio especial
+por jugar los dos campos del Kapital; la compra de la bici de Bike Point
+con el alquiler descontado; y los tramos gratis del parking de Martiánez
+validando en el Mercadona.
+
+**En cola, aparte:** la ficha de accesibilidad de Siam Park dice «50% de
+descuento con discapacidad del 60% o más, y entrada gratuita con
+discapacidad total». Lo que el buscador cita de sus condiciones
+(siampark.net, que no se deja leer directamente: Cloudflare) es una «tarifa
+especial» con discapacidad reconocida de más del 60 %, sin cifra y sin
+entrada gratis. No se toca hasta tener la fuente oficial leída.
+
+**La auditoría entera**, sobre `b95c916` (árbol `aaf86075`): «AUDITORIA EN
+VERDE» en una sola pasada, sin ningún control en rojo ni sin ejecutar. Las
+etiquetas, ninguna sin traducir ni sin declarar, y las 135 filas sin usar de
+siempre; ninguna palabra en castellano dentro de las traducciones. El cielo,
+308; el perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58, con el pellizco a
+0,0 m; el SOS, 39 y 261, y sus cuatro robots. `main` no se movió mientras
+tanto: los dos commits van tal cual, encima de `4637f3f`, en el árbol
+auditado.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
