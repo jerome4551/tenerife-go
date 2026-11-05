@@ -5363,6 +5363,129 @@ los hashes de `main` de antes del segundo rebase, `9dba405`, `f429eaf`,
 `20f2cd7` y `9020b9d`, que no llegaron a subir. Los de `main` son los de
 aquí arriba: `8787e44`, `3a51f6a`, `52caf5e` y `50def03`.
 
+## El teléfono de Vithas y los precios de las fichas (5 de noviembre)
+
+Dos puntos de la lista del análisis del 4 de noviembre, ya con la red de la
+sesión abierta para leer las webs oficiales.
+
+### El teléfono de Vithas Tenerife
+
+La app decía 922 534 733. La página del hospital en la web de Vithas
+(vithas.es/centro/vithas-hospital-tenerife/), leída la noche del 4 y otra vez
+la mañana del 5 de noviembre de 2026, da el 922 534 730, el mismo para el
+hospital y para Urgencias, abiertas 24 horas de lunes a domingo. El 733 no
+sale en ella. Jerome: «Si cámbialo».
+
+- **El cambio** (`ebbf3e4`; en `main`, `7947422`): `phone:"922 534 730"` en la
+  ficha `hosp-vithas-sct`, con la fuente y la fecha en un comentario. El
+  número es el mismo en los diez idiomas.
+- **Dónde se ve:** en el globo de la ficha, con su enlace `tel:922534730`, y
+  desde el panel SOS: su botón de hospitales abre el mapa en la categoría de
+  hospitales. El módulo del SOS no cambia.
+- El número no sale en ningún otro fichero del repositorio. Las otras
+  coincidencias de «53473» son coordenadas del contorno de los municipios.
+
+### Los precios
+
+Jerome pidió buscarlos con la red abierta («verifica con tu acceso si
+encuentras los precios»). De los doce precios de las descripciones, solo
+uno sale en una fuente oficial.
+
+**El teleférico, en La Rambleta** (`74b77f9`; en `main`, `1eded4b`). La página
+de precios de volcanoteide.com (teleferico_del_teide/tarifas_y_horarios,
+leída el 5 de noviembre de 2026) da, subida y bajada, «Precio DESDE»: adulto
+no residente 43,00 €, adulto residente 10,75 € (menor no residente 21,50 €,
+menor residente 5,38 €; menor, de 3 a 13 años). La ficha decía 42 € y
+10,50 €, octubre de 2026. Ahora dice 43,00 € y 10,75 €, noviembre de 2026, en
+los diez idiomas.
+
+- **Una corrección:** el 4 de noviembre, más arriba, se escribió que no
+  estaba demostrado que el precio hubiera cambiado. La página oficial de
+  precios da hoy 43,00 € y 10,75 €: el análisis tenía razón en este punto.
+- `auditar_cielo.js` pedía el texto de octubre. Ahora pide el de noviembre
+  en castellano, y un control nuevo pide 43,00 y 10,75 en los otros nueve
+  idiomas, sin los 42 ni los 10,50. Al revés, con los textos de antes: los
+  dos en rojo.
+
+**Once fichas, sin su precio** (`fa5f9f5`; en `main`, `41671dd`). Ninguno de
+esos precios sale en una fuente oficial, y la regla de Jerome es no poner
+precios en la app:
+
+- Abama Golf (~145 €) y Buenavista Golf (90-140 €): sus webs no publican el
+  green fee; se reserva en su motor de reservas, con precio por fecha.
+- Jardín Botánico (3 €): el ICIA da el horario (9:00 a 18:00, última entrada
+  17:30), no el precio. La web del jardín, mundojardin.icia.es, está caída:
+  su certificado caducó el 10 de octubre de 2026 y la cuenta del alojamiento
+  está suspendida.
+- Bodegas Linaje del Pago (15 €): sin web oficial.
+- Guachinches El Guayero (~40 € la pareja) y Casa Yayi (~10 €): sin web.
+- Minigolfs Oasis, Parque Santiago y La Pinta: Parque Santiago describe el
+  suyo en su web, sin precio; los otros dos no tienen web oficial.
+- Pesca deportiva en Los Cristianos (50-80 €) y parapente en Taucho
+  (90-130 €): actividades de muchas empresas, sin un precio oficial.
+
+Jerome: «Si hazlo así». Se quita solo la frase o el paréntesis del precio,
+en los diez idiomas; el resto de cada ficha no cambia. En el Jardín
+Botánico, también el «· 3 €» de su categoría. Son 120 textos, y cada uno se
+cambió solo dentro de su ficha: tenía que salir una vez justa en ella. El
+polaco, en su fuente (idiomas/pl-lugares/) y montado con
+`lugares_idioma.js`.
+
+**Lo que se ha visto de paso:**
+
+- «El Guayero», en Tegueste, no sale en ninguna parte; un agregador de
+  restaurantes tiene allí un «El Buayero». Puede ser una errata del nombre.
+  Sin fuente oficial, se queda.
+- En dos fichas, sin la cifra, queda una frase sobre el precio: «a precios
+  mínimos» (Casa Yayi) y «el más económico del sur de Tenerife» (Oasis). Las
+  decide Jerome.
+- Quedaban otros precios fuera de las descripciones: la etiqueta «11€» del
+  Barranco del Infierno, la frase «bonos de día completo por unos 15 €» del
+  aparcamiento de La Pinta y la de «1,50-2,50 €/h» del de Playa de la Arena.
+  Jerome: «Si quítalo o verifica online y no olvida Tenerife On». Van en un
+  commit aparte, con su propia auditoría. Los precios por hora o por día de
+  17 aparcamientos, que llevan su fecha, se quedan, como dijo Jerome.
+
+### La red de la sesión
+
+El 5 de noviembre, el entorno está «sin restricciones». Se leen bien
+vithas.es, volcanoteide.com, tenerife.es, laorotava.es, icia.es,
+gobiernodecanarias.org, hospiten.com, rtvc.es y las webs de Arona, Adeje,
+Buenavista, Garachico y La Victoria. Tres siguen sin dejar leer, por su
+propia protección:
+
+- tenerifeon.es: Cloudflare pide una verificación de seguridad, también a un
+  navegador de verdad;
+- titsa.com: su servidor manda el certificado sin el intermedio. Con el de
+  Sectigo, bajado de la dirección que da el propio certificado y comprobado
+  contra las raíces del sistema, la conexión se verifica, y entonces su
+  cortafuegos responde con un 403;
+- aytolalaguna.es: corta la conexión.
+
+No se intenta saltar esas protecciones. Para esas tres, el buscador limitado
+a su dominio, como hasta ahora.
+
+### La auditoría entera
+
+Sobre `fa5f9f5` (árbol `4906708f`), con los tres commits: «AUDITORIA EN
+VERDE» en una sola pasada, sin ningún control en rojo ni sin ejecutar. La de
+solo Vithas, sobre `ebbf3e4`, se paró a la cuarta parte, sin nada en rojo,
+para pasar una sola por los tres.
+
+- El cielo, 308: uno más que antes, el del teleférico en los otros nueve
+  idiomas. El perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58; el SOS, 39 y
+  261, y sus cuatro robots.
+- En `main` van `7947422`, `1eded4b` y `41671dd`, con los mismos parches,
+  encima de tres commits más de los robots: los avisos de AEMET, los
+  terremotos del IGN y las alertas del Gobierno de Canarias. Solo cambian
+  sus ficheros de datos.
+- Con esos datos nuevos, sobre ese árbol (`d8fd2b52`), otra vez los siete
+  controles que los leen: los avisos, 32 y 156; la app de las tiendas,
+  montada y abierta, en verde; el SOS, 39 y 261; y el robot de los
+  terremotos. En verde.
+- Y con las alertas, que llegaron después, los cuatro que las leen: la app
+  de las tiendas, el SOS, 39 y 261, y el robot de las alertas. En verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
