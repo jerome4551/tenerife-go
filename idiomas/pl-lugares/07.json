@@ -20,15 +20,15 @@
   "cat": "Owoce morza · Los Abrigos · Południe · Autentyczne"
  },
  "super-mercadona-sct": {
-  "desc": "Mercadona w Santa Cruz de Tenerife. Jeden z najtańszych supermarketów na wyspie. Szeroki wybór produktów kanaryjskich. Dostępny parking.",
+  "desc": "Mercadona w Santa Cruz de Tenerife. Szeroki wybór produktów kanaryjskich. Dostępny parking.",
   "cat": "Supermarket · Mercadona · Santa Cruz"
  },
  "super-hiperdino-sct": {
-  "desc": "HiperDino w Santa Cruz. Wiodąca sieć kanaryjska, konkurencyjne ceny i duży wybór lokalnych produktów z wysp. Świeże kanaryjskie owoce i warzywa.",
+  "desc": "HiperDino w Santa Cruz. Wiodąca sieć kanaryjska z dużym wyborem lokalnych produktów z wysp. Świeże kanaryjskie owoce i warzywa.",
   "cat": "Supermarket · HiperDino · Santa Cruz"
  },
  "super-mercadona-laguna": {
-  "desc": "Mercadona w La Laguna, mieście wpisanym na listę UNESCO. Dobre ceny, szeroki wybór. Idealne dla mieszkańców i turystów nocujących na północy.",
+  "desc": "Mercadona w La Laguna, mieście wpisanym na listę UNESCO. Szeroki wybór. Idealne dla mieszkańców i turystów nocujących na północy.",
   "cat": "Supermarket · Mercadona · La Laguna"
  },
  "super-hiperdino-laguna": {
@@ -44,7 +44,7 @@
   "cat": "Supermarket · HiperDino · Puerto Cruz"
  },
  "super-mercadona-adeje": {
-  "desc": "Mercadona w Adeje, jeden z najczęściej odwiedzanych supermarketów na południu ze względu na cenę i rozmiar. Bardzo dobrze zaopatrzony dla turystów na dłuższym pobycie.",
+  "desc": "Mercadona w Adeje, jeden z najczęściej odwiedzanych supermarketów na południu ze względu na rozmiar. Bardzo dobrze zaopatrzony dla turystów na dłuższym pobycie.",
   "cat": "Supermarket · Mercadona · Adeje"
  },
  "super-hiperdino-adeje": {
@@ -52,11 +52,11 @@
   "cat": "Supermarket · HiperDino · Costa Adeje"
  },
  "super-mercadona-arona": {
-  "desc": "Mercadona w Los Cristianos. Jeden z najbardziej obleganych supermarketów turystycznego południa. Ceny odniesienia. Parking.",
+  "desc": "Mercadona w Los Cristianos. Jeden z najbardziej obleganych supermarketów turystycznego południa. Parking.",
   "cat": "Supermarket · Mercadona · Los Cristianos"
  },
  "super-hiperdino-arona": {
-  "desc": "HiperDino w Los Cristianos. Sezonowe produkty kanaryjskie, lokalne sery, wina z wyspy i świeże owoce. Bardzo konkurencyjne ceny.",
+  "desc": "HiperDino w Los Cristianos. Sezonowe produkty kanaryjskie, lokalne sery, wina z wyspy i świeże owoce.",
   "cat": "Supermarket · HiperDino · Los Cristianos"
  },
  "super-mercadona-orotava": {
@@ -300,7 +300,7 @@
   "cat": "Kościół · Garachico · Zabytkowy"
  },
  "super-mercadona-tacoronte": {
-  "desc": "Mercadona w Tacoronte, w regionie winiarskim. Ceny odniesienia dla mieszkańców Tacoronte, El Sauzal i La Matanza. Dobrze zaopatrzony.",
+  "desc": "Mercadona w Tacoronte, w regionie winiarskim. Dla mieszkańców Tacoronte, El Sauzal i La Matanza. Dobrze zaopatrzony.",
   "cat": "Supermarket · Mercadona · Tacoronte"
  },
  "super-hiperdino-tacoronte": {
