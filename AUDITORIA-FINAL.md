@@ -5539,6 +5539,56 @@ pellizco a 0,0 m; el SOS, 39 y 261, y sus cuatro robots.
   leen: la app de las tiendas, el SOS, 39 y 261, y el robot de los
   terremotos. En verde.
 
+## El Barranco del Infierno, de su web, y dos frases sobre el precio (5 de noviembre)
+
+Jerome, a las tres preguntas: «1 si 2 si 3 si».
+
+- **El precio de la entrada** (`a404e75`; en `main`, `c6c2da8`): «La entrada
+  cuesta 16 € por adulto no residente y 6 € para residentes en Canarias
+  (barrancodelinfierno.es, noviembre de 2026)», detrás de la frase de la
+  reserva. Es la frase de la web oficial, leída el 5 de noviembre con un
+  navegador; en inglés, alemán y francés, la de sus versiones en esos
+  idiomas.
+- **La duración y la dificultad** (`f466667`; en `main`, `8c57535`): la web dice
+  «unas 3 horas ida y vuelta, sobre un trazado de 6,5 km y unos 250 metros
+  de desnivel, con una dificultad media-baja». La ficha decía 3,5 horas y
+  «Medio». Ahora, en la descripción, «unas 3 horas»; en la categoría,
+  «Media-baja · 6,5 km · 3h». En inglés, alemán y francés, con las palabras
+  de la web («low to medium», «mittleren bis geringen», «moyen à faible»);
+  en los otros, con el vocabulario que la app ya usa para «Fácil» y «Medio».
+- **Dos frases sobre el precio, fuera** (`c26e50d`; en `main`, `8b5e475`): «a
+  precios mínimos» (Casa Yayi) y «el más económico del sur de Tenerife»
+  (minigolf Oasis).
+
+En los diez idiomas: 40 textos, cada uno una vez justa dentro de su ficha.
+El polaco, en su fuente y montado con `lugares_idioma.js`.
+
+**Un rojo, arreglado en el texto y no en el control.** La primera auditoría
+se paró en `castellano_suelto.js`: en el italiano, «16 € per adulto non
+residente», la palabra «residente» se escribe igual en castellano. Es
+italiano correcto, pero el control no puede saberlo. Se escribió en plural,
+como en el teleférico: «per gli adulti non residenti». El control no se
+tocó, y los tres commits se rehicieron con ese texto.
+
+**Queda para Jerome:** las etiquetas que también valoran el precio:
+«Económico» (3 fichas: Casa Yayi, Oasis y el minigolf Wakanda), «Barato» (7
+supermercados), «Lujo» (7) y «Premium» (2).
+
+**La auditoría entera**, sobre `c26e50d` (árbol `4875108f`): «AUDITORIA EN
+VERDE» en una sola pasada, sin ningún control en rojo ni sin ejecutar. El
+cielo, 308; el perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58, con el
+pellizco a 0,0 m; el SOS, 39 y 261, y sus cuatro robots.
+
+- En `main` van `c6c2da8`, `8c57535` y `8b5e475`, con los mismos parches,
+  encima de dos commits más de los robots: los precios de las gasolineras y
+  las alertas del Gobierno de Canarias. Solo cambian sus ficheros de datos.
+- Con esos datos, sobre ese árbol (`10b8b271`), otra vez los siete
+  controles que los leen: los precios y la gasolinera más barata cerca, sin
+  un fallo; la app de las tiendas, montada y abierta; el SOS, 39 y 261, y
+  el robot de las alertas. En verde. (El barrido de pantallas fabrica sus
+  precios desde el registro del repositorio, no desde ese fichero: no hacía
+  falta repetirlo.)
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
