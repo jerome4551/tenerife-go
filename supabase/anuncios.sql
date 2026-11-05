@@ -90,22 +90,49 @@ alter table public.anuncios enable row level security;
 -- Los `drop policy if exists` estan para que todo el fichero se pueda
 -- volver a ejecutar sin errores: create policy no admite "if not exists".
 --
--- Lectura: cualquiera ve los anuncios marcados como visibles.
+-- Una policy por rol y por accion (5 de noviembre de 2026,
+-- tienda_una_politica_por_rol_y_accion.sql). Antes, quien tenia sesion
+-- pasaba por dos al leer: la publica y la del admin, que era "for all". El
+-- linter de Supabase lo marcaba (lint 0006, multiple_permissive_policies).
+-- Lo que cada uno puede ver y tocar es lo mismo que antes:
+--   · sin sesion (anon): los visibles;
+--   · con sesion: los visibles y, si es admin, tambien los ocultos;
+--   · crear, cambiar y borrar: solo el admin.
+-- es_admin() va dentro de (select ...): se calcula una vez por consulta, no
+-- en cada fila. La de anon no la llama: anon no puede ejecutarla.
 drop policy if exists "anuncios visibles son publicos" on public.anuncios;
 create policy "anuncios visibles son publicos"
   on public.anuncios for select
-  to anon, authenticated
+  to anon
   using (visible = true);
 
--- Escritura (y lectura de los ocultos): solo administradores.
--- Las policies se suman, asi que un admin ve tanto los visibles por la
--- de arriba como los ocultos por esta.
-drop policy if exists "solo admin gestiona anuncios" on public.anuncios;
-create policy "solo admin gestiona anuncios"
-  on public.anuncios for all
+drop policy if exists "anuncios visibles, y todos para admin" on public.anuncios;
+create policy "anuncios visibles, y todos para admin"
+  on public.anuncios for select
   to authenticated
-  using (public.es_admin())
-  with check (public.es_admin());
+  using (visible = true or (select public.es_admin()));
+
+-- La de antes, que lo hacia todo junto (for all): fuera.
+drop policy if exists "solo admin gestiona anuncios" on public.anuncios;
+
+drop policy if exists "solo admin crea anuncios" on public.anuncios;
+create policy "solo admin crea anuncios"
+  on public.anuncios for insert
+  to authenticated
+  with check ((select public.es_admin()));
+
+drop policy if exists "solo admin cambia anuncios" on public.anuncios;
+create policy "solo admin cambia anuncios"
+  on public.anuncios for update
+  to authenticated
+  using ((select public.es_admin()))
+  with check ((select public.es_admin()));
+
+drop policy if exists "solo admin borra anuncios" on public.anuncios;
+create policy "solo admin borra anuncios"
+  on public.anuncios for delete
+  to authenticated
+  using ((select public.es_admin()));
 
 
 -- ── 4. Facturacion (datos privados) ────────────────────────────────
