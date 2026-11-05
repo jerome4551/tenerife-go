@@ -5486,6 +5486,59 @@ para pasar una sola por los tres.
 - Y con las alertas, que llegaron después, los cuatro que las leen: la app
   de las tiendas, el SOS, 39 y 261, y el robot de las alertas. En verde.
 
+## Tres precios más: el Barranco del Infierno y dos aparcamientos (5 de noviembre)
+
+Al repasar toda la app quedaban tres precios fuera de las descripciones.
+Jerome: «Si quítalo o verifica online y no olvida Tenerife On».
+
+- **El Barranco del Infierno** (`29f2996`; en `main`, `738342d`): la etiqueta
+  «11€» estaba vieja. La web oficial (barrancodelinfierno.es, leída el 5 de
+  noviembre de 2026 con un navegador, porque ese texto lo pinta la página)
+  dice: «La entrada al Barranco del Infierno cuesta 16 € por adulto no
+  residente y 6 € para residentes en Canarias». Tenerife ON manda reservar
+  allí y no da la cifra. Una etiqueta no lleva fecha: se quita, y también su
+  declaración en `idiomas/etiquetas-sin-traducir.json`.
+- **El parking CLÜBO de La Pinta:** «bonos de día completo por unos 15 €».
+  Sin precio oficial: solo una web de reservas, que lo da al reservar. Se
+  queda la frase sin la cifra. Su precio por hora, con su fecha (julio de
+  2026), se queda.
+- **Playa de la Arena:** «parkings de pago en Balcón de Los Gigantes o El
+  Mirador, 1,50-2,50 €/h». Sin fuente. Se queda la frase sin la cifra.
+
+En los diez idiomas: 22 cambios, cada uno una vez justa dentro de su ficha.
+El polaco, en su fuente y montado con `lugares_idioma.js`. Con esto, en el
+texto de las fichas solo queda un precio, el del teleférico, con su fecha.
+
+**Visto de paso:** la misma web del Barranco dice «unas 3 horas ida y
+vuelta», 6,5 km, unos 250 metros de desnivel y «dificultad media-baja». La
+ficha dice 3,5 horas y «Medio». Lo decide Jerome, como el precio del
+Barranco en la descripción y las dos frases de Casa Yayi y de Oasis.
+
+**La auditoría entera**, sobre `29f2996` (árbol `2c6e91b8`): «AUDITORIA EN
+VERDE» en una sola pasada, sin ningún control en rojo ni sin ejecutar. El
+cielo, 308; el perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58, con el
+pellizco a 0,0 m; el SOS, 39 y 261, y sus cuatro robots.
+
+- En `main` va `738342d`, con el mismo parche, encima de tres commits más de
+  los robots: los satélites, las alertas del Gobierno de Canarias y los
+  terremotos del IGN. Solo cambian sus ficheros de datos.
+- Con esos datos, sobre ese árbol (`831ed846`), otra vez los siete
+  controles que los leen: la app de las tiendas; lo que se ve en pantalla,
+  191 pantallas y fichas por idioma, sin nada sin traducir; el cielo, 308;
+  el SOS, 39 y 261, y el robot de las alertas. En verde.
+- **Un rojo que no era de la app.** `probar_app.js` salió en rojo la primera
+  vez. Sirve la copia de la app en el puerto siguiente al de la prueba
+  (8797), y allí seguía abierto un servidor de una comprobación anterior,
+  que servía la web normal: la prueba abrió la web y no la copia de la app.
+  Pasó por lanzarlo con `cd … && python3 -m http.server … &`: el `&` manda
+  a segundo plano toda la orden, con el `cd`, y matar ese proceso no mata
+  al servidor. Cerrado el servidor, otra vez sobre el mismo árbol: 48
+  comprobaciones bien, ninguna mal. En la auditoría entera, las pruebas
+  usaron otros puertos (8796 y 8802): ese servidor no pudo tocarla.
+- Y con los terremotos, que llegaron después, los cuatro controles que los
+  leen: la app de las tiendas, el SOS, 39 y 261, y el robot de los
+  terremotos. En verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
