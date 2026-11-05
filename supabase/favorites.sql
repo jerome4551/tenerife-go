@@ -22,6 +22,11 @@
 -- La condicion va en `using` para leer/borrar y en `with check` para
 -- insertar/actualizar: `using` filtra las filas que ya existen y
 -- `with check` valida las que entran.
+--
+-- auth.uid() va dentro de (select ...) desde el 4 de noviembre de 2026
+-- (linter_es_admin_sin_public_y_politicas_select_auth_uid.sql): a secas, la
+-- policy lo vuelve a calcular en cada fila; asi, una vez por consulta. Lo
+-- que deja ver y tocar es lo mismo (aviso auth_rls_initplan del linter).
 
 create table if not exists public.favorites (
   user_id    uuid not null references auth.users(id) on delete cascade,
@@ -35,12 +40,12 @@ alter table public.favorites enable row level security;
 drop policy if exists favorites_own_select on public.favorites;
 create policy favorites_own_select on public.favorites
   for select to authenticated
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 drop policy if exists favorites_own_insert on public.favorites;
 create policy favorites_own_insert on public.favorites
   for insert to authenticated
-  with check (auth.uid() = user_id);
+  with check ((select auth.uid()) = user_id);
 
 -- Hace falta porque el cliente usa upsert(): sin policy de UPDATE, al
 -- marcar como favorito algo que ya estaba (dos dispositivos a la vez)
@@ -48,13 +53,13 @@ create policy favorites_own_insert on public.favorites
 drop policy if exists favorites_own_update on public.favorites;
 create policy favorites_own_update on public.favorites
   for update to authenticated
-  using (auth.uid() = user_id)
-  with check (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
 
 drop policy if exists favorites_own_delete on public.favorites;
 create policy favorites_own_delete on public.favorites
   for delete to authenticated
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 grant select, insert, update, delete on public.favorites to authenticated;
 

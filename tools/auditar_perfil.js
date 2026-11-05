@@ -84,7 +84,7 @@
  * QUE MIRA (parte 3, la nube: supabase/perfil.sql)
  *  10. sin «$» (al pegarlo desde el movil llega con una barra delante y
  *      rompe el SQL); RLS en las tres tablas, cada policy solo para
- *      authenticated y con auth.uid() = user_id, ninguna para anon; y los
+ *      authenticated y con (select auth.uid()) = user_id, ninguna para anon; y los
  *      permisos justos: revoke all y grant de las cuatro operaciones (sin
  *      TRUNCATE, que no pasa por la RLS).
  *  11. las cascadas: perfiles cuelga de auth.users, pesos y caminatas de
@@ -514,8 +514,8 @@ ok(!SQL.includes('$'), 'sin «$» en el SQL (al pegarlo desde el movil llega con
 const TABLAS = ['perfiles', 'pesos', 'caminatas'];
 ok(TABLAS.every(tb => new RegExp('alter table public\\.' + tb + '\\s+enable row level security;').test(SQL)), 'RLS en perfiles, pesos y caminatas');
 const policies = [...SQL.matchAll(/create policy (\w+) on public\.(\w+)\s+for (\w+) to (\w+)\s+((?:using|with check)[\s\S]*?);/g)];
-const polMal = policies.filter(m => m[4] !== 'authenticated' || !/auth\.uid\(\) = user_id/.test(m[5]) || ((m[3] === 'insert' || m[3] === 'update') && !/with check \(auth\.uid\(\) = user_id\)/.test(m[5])));
-ok(policies.length === 12 && !polMal.length && !/to anon|to public\b/i.test(SQL), '12 policies (4 por tabla), todas para authenticated con auth.uid() = user_id; ninguna para anon', policies.length + ' ' + polMal.map(m => m[1]).join(','));
+const polMal = policies.filter(m => m[4] !== 'authenticated' || !/\(select auth\.uid\(\)\) = user_id/.test(m[5]) || /(?<!\(select )auth\.uid\(\)/.test(m[5]) || ((m[3] === 'insert' || m[3] === 'update') && !/with check \(\(select auth\.uid\(\)\) = user_id\)/.test(m[5])));
+ok(policies.length === 12 && !polMal.length && !/to anon|to public\b/i.test(SQL), '12 policies (4 por tabla), todas para authenticated con (select auth.uid()) = user_id; ninguna para anon', policies.length + ' ' + polMal.map(m => m[1]).join(','));
 ok(/revoke all on public\.perfiles, public\.pesos, public\.caminatas from anon, authenticated;/.test(SQL)
    && /grant select, insert, update, delete on public\.perfiles, public\.pesos, public\.caminatas to authenticated;/.test(SQL)
    && !/grant[^;]*(truncate|all)[^;]*;/i.test(SQL), 'los permisos, justos: revoke all y solo select, insert, update y delete para authenticated (sin TRUNCATE)');

@@ -22,9 +22,13 @@
 --  y se quedan en el móvil.
 --
 --  Igual que en favorites.sql: la condición va en «using» para leer y
---  borrar y en «with check» para insertar y actualizar; ninguna policy para
---  anon. Sin el signo del dólar en este fichero: al copiar y pegar desde el
---  móvil llega con una barra delante y rompe el SQL (borrar-cuenta.sql).
+--  borrar y en «with check» para insertar y actualizar, con auth.uid()
+--  dentro de (select …) para que se calcule una vez por consulta y no en
+--  cada fila (4 de noviembre de 2026,
+--  linter_es_admin_sin_public_y_politicas_select_auth_uid.sql); ninguna
+--  policy para anon. Sin el signo del dólar en este fichero: al copiar y
+--  pegar desde el móvil llega con una barra delante y rompe el SQL
+--  (borrar-cuenta.sql).
 -- ═══════════════════════════════════════════════════════════════════
 
 create table if not exists public.perfiles (
@@ -72,67 +76,67 @@ alter table public.caminatas enable row level security;
 drop policy if exists perfiles_own_select on public.perfiles;
 create policy perfiles_own_select on public.perfiles
   for select to authenticated
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 drop policy if exists perfiles_own_insert on public.perfiles;
 create policy perfiles_own_insert on public.perfiles
   for insert to authenticated
-  with check (auth.uid() = user_id);
+  with check ((select auth.uid()) = user_id);
 
 drop policy if exists perfiles_own_update on public.perfiles;
 create policy perfiles_own_update on public.perfiles
   for update to authenticated
-  using (auth.uid() = user_id)
-  with check (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
 
 drop policy if exists perfiles_own_delete on public.perfiles;
 create policy perfiles_own_delete on public.perfiles
   for delete to authenticated
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 -- ── pesos ──
 drop policy if exists pesos_own_select on public.pesos;
 create policy pesos_own_select on public.pesos
   for select to authenticated
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 drop policy if exists pesos_own_insert on public.pesos;
 create policy pesos_own_insert on public.pesos
   for insert to authenticated
-  with check (auth.uid() = user_id);
+  with check ((select auth.uid()) = user_id);
 
 drop policy if exists pesos_own_update on public.pesos;
 create policy pesos_own_update on public.pesos
   for update to authenticated
-  using (auth.uid() = user_id)
-  with check (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
 
 drop policy if exists pesos_own_delete on public.pesos;
 create policy pesos_own_delete on public.pesos
   for delete to authenticated
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 -- ── caminatas ──
 drop policy if exists caminatas_own_select on public.caminatas;
 create policy caminatas_own_select on public.caminatas
   for select to authenticated
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 drop policy if exists caminatas_own_insert on public.caminatas;
 create policy caminatas_own_insert on public.caminatas
   for insert to authenticated
-  with check (auth.uid() = user_id);
+  with check ((select auth.uid()) = user_id);
 
 drop policy if exists caminatas_own_update on public.caminatas;
 create policy caminatas_own_update on public.caminatas
   for update to authenticated
-  using (auth.uid() = user_id)
-  with check (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
 
 drop policy if exists caminatas_own_delete on public.caminatas;
 create policy caminatas_own_delete on public.caminatas
   for delete to authenticated
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 -- Los permisos, justos. Supabase da por defecto todos los permisos de las tablas nuevas de
 -- public a anon y a authenticated, también TRUNCATE, que no pasa por la RLS. Así que primero

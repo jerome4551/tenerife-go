@@ -47,8 +47,13 @@ security definer
 set search_path = public
 as 'select exists (select 1 from public.admins where user_id = auth.uid())';
 
-revoke execute on function public.es_admin() from anon;
-grant  execute on function public.es_admin() to authenticated;
+-- Quitarsela solo a anon no bastaba: Postgres da EXECUTE a PUBLIC al
+-- crear cualquier funcion, y anon la seguia teniendo por ahi. El linter de
+-- Supabase la daba por ejecutable sin sesion. Desde el 4 de noviembre de
+-- 2026 (linter_es_admin_sin_public_y_politicas_select_auth_uid.sql), fuera
+-- de PUBLIC y de anon, y solo para authenticated y service_role.
+revoke execute on function public.es_admin() from public, anon;
+grant  execute on function public.es_admin() to authenticated, service_role;
 
 
 -- ── 3. Los anuncios (datos publicos) ───────────────────────────────

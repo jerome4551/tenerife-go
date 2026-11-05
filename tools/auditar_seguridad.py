@@ -290,5 +290,42 @@ else:
         print('    %-16s %s' % (falta, 'presente' if falta in m.group(1) else 'AUSENTE'))
 
 
+print('\n=== supabase/ ===')
+# Dos avisos del linter de Supabase que se arreglaron el 4 de noviembre de 2026
+# (supabase/linter_es_admin_sin_public_y_politicas_select_auth_uid.sql), para que
+# no vuelvan por un fichero que se ejecute otra vez:
+#  · una funcion SECURITY DEFINER sin quitarle EXECUTE a PUBLIC se puede llamar
+#    sin sesion, aunque se le quite a anon: Postgres se lo da a PUBLIC al crearla
+#    (lint 0028). Cada una que se crea en supabase/ lleva su revoke ... from public.
+#  · auth.uid() a secas en una policy se calcula fila a fila; dentro de
+#    (select ...), una vez por consulta (lint 0003, auth_rls_initplan).
+# Solo se mira el SQL, quitados los comentarios.
+_sql = {}
+for _f in sorted(glob.glob(os.path.join(RAIZ, 'supabase', '*.sql'))):
+    _sql[os.path.basename(_f)] = re.sub(r'--[^\n]*', '', io.open(_f, encoding='utf8').read())
+_definer_sin_revoke = []
+for _n, _t in _sql.items():
+    for _m in re.finditer(r'create\s+(?:or\s+replace\s+)?function\s+(public\.\w+)\s*\(([^)]*)\)[\s\S]*?;', _t, re.I):
+        if not re.search(r'\bsecurity\s+definer\b', _m.group(0), re.I):
+            continue
+        _rev = re.compile(r'revoke\s+(?:all|execute)\s+on\s+function\s+' + re.escape(_m.group(1)) + r'\s*\([^)]*\)\s+from\s+public\b', re.I)
+        if not _rev.search(_t):
+            _definer_sin_revoke.append('%s: %s' % (_n, _m.group(1)))
+print('  security definer sin revoke de PUBLIC    : %d%s' % (len(_definer_sin_revoke), '   <-- en rojo' if _definer_sin_revoke else ''))
+for _x in _definer_sin_revoke:
+    print('    <--  ' + _x)
+_uid_a_secas = []
+for _n, _t in _sql.items():
+    for _m in re.finditer(r'(?:create|alter)\s+policy\b[\s\S]*?;', _t, re.I):
+        for _u in re.finditer(r'auth\.uid\(\)', _m.group(0)):
+            if not re.search(r'\(\s*select\s+$', _m.group(0)[:_u.start()], re.I):
+                _uid_a_secas.append('%s: %s' % (_n, ' '.join(_m.group(0).split())[:90]))
+                break
+print('  policies con auth.uid() a secas          : %d%s' % (len(_uid_a_secas), '   <-- en rojo' if _uid_a_secas else ''))
+for _x in _uid_a_secas:
+    print('    <--  ' + _x)
+if _definer_sin_revoke or _uid_a_secas:
+    CON_FALLO = True
+
 import sys
 sys.exit(1 if CON_FALLO else 0)
