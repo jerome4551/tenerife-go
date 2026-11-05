@@ -518,7 +518,7 @@ recomendación inventada manda a alguien al agua.
 
 ## Supabase
 
-Diez tablas. El esquema y las políticas están en `supabase/`.
+Once tablas. El esquema y las políticas están en `supabase/`.
 
 | Tabla | Quién puede leer | Quién puede escribir |
 |---|---|---|
@@ -528,11 +528,13 @@ Diez tablas. El esquema y las políticas están en `supabase/`.
 | `favorites` | cada usuario los suyos | cada usuario los suyos |
 | `perfiles` | cada usuario el suyo | cada usuario el suyo; la fila es su permiso: la crea «Acepto» y retirarlo la borra (`perfil.sql`) |
 | `pesos`, `caminatas` | cada usuario los suyos | cada usuario los suyos, y solo con su fila de `perfiles`: caen con ella |
-| `push_subs` | **nadie desde el cliente** | alta mediante función |
+| `push_subs` | **nadie desde el cliente** | alta mediante función (`guardar_push_sub`) |
+| `push_sends` | **nadie desde el cliente** | solo el servidor (`enviar-notificacion.js`): un día, una fila, para no enviar dos veces |
 | `admins` | RLS activa sin políticas: nadie | nadie |
 
 «Admin» es la función `es_admin()`, que comprueba si el `auth.uid()`
-está en `admins`. Es `SECURITY DEFINER` con `search_path` fijo.
+está en `admins`. Es `SECURITY DEFINER` con `search_path` fijo, y solo la
+pueden ejecutar `authenticated` y `service_role`: sin sesión, no.
 
 **El panel de administración no es un control de seguridad.** Es una
 comodidad de interfaz; quien manda es la RLS del servidor. Si se añade

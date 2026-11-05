@@ -324,7 +324,26 @@ for _n, _t in _sql.items():
 print('  policies con auth.uid() a secas          : %d%s' % (len(_uid_a_secas), '   <-- en rojo' if _uid_a_secas else ''))
 for _x in _uid_a_secas:
     print('    <--  ' + _x)
-if _definer_sin_revoke or _uid_a_secas:
+#  · una policy que deja escribir a anon sin condicion: «with check (true)», o
+#    «using (true)» al cambiar o borrar. Asi era "push_subs alta anon": con la
+#    clave publica se metian filas en push_subs sin pasar por guardar_push_sub(),
+#    sin sus comprobaciones ni su tope (5 de noviembre de 2026,
+#    push_subs_solo_por_guardar_push_sub.sql).
+_anon_sin_condicion = []
+for _n, _t in _sql.items():
+    for _m in re.finditer(r'create\s+policy\b[\s\S]*?;', _t, re.I):
+        _p = ' '.join(_m.group(0).split())
+        _roles = re.search(r'\bto\s+(.*?)(?:\s+using\b|\s+with\s+check\b|;)', _p, re.I)
+        if not _roles or not re.search(r'\b(anon|public)\b', _roles.group(1), re.I):
+            continue
+        _cmd = (re.search(r'\bfor\s+(all|insert|update|delete|select)\b', _p, re.I) or [None, 'all'])[1].lower()
+        if re.search(r'with\s+check\s*\(\s*true\s*\)', _p, re.I) or (
+                _cmd in ('all', 'update', 'delete') and re.search(r'\busing\s*\(\s*true\s*\)', _p, re.I)):
+            _anon_sin_condicion.append('%s: %s' % (_n, _p[:90]))
+print('  policies que dejan escribir a anon sin condicion: %d%s' % (len(_anon_sin_condicion), '   <-- en rojo' if _anon_sin_condicion else ''))
+for _x in _anon_sin_condicion:
+    print('    <--  ' + _x)
+if _definer_sin_revoke or _uid_a_secas or _anon_sin_condicion:
     CON_FALLO = True
 
 import sys

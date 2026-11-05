@@ -1,14 +1,16 @@
 -- ═══════════════════════════════════════════════════════════════════
---  TENERIFE GO · Favoritos y suscripciones push
+--  TENERIFE GO · Favoritos y avisos push
 --  ───────────────────────────────────────────────────────────────────
---  Estas dos tablas ya existian en el proyecto antes de la revision de
---  seguridad. Se documentan aqui para que la configuracion sea
---  reproducible: si algun dia se recrea el proyecto, sin esto habria
---  que reinventar las policies de memoria.
+--  favorites y push_subs ya existian en el proyecto antes de la revision
+--  de seguridad; push_sends, desde la notificacion diaria. Se documentan
+--  aqui para que la configuracion sea reproducible: si algun dia se
+--  recrea el proyecto, sin esto habria que reinventar las policies de
+--  memoria.
 --
---  Lo de `favorites` esta verificado contra la base de datos real
---  (pg_policies, julio 2026). Lo de `push_subs` esta al final, con lo
---  que se comprobo y lo que falta por volcar.
+--  Las tres, volcadas de la base de datos el 5 de noviembre de 2026
+--  (columnas, claves, RLS, policies y permisos). Lo de `favorites` ya
+--  estaba verificado (pg_policies, julio 2026); push_subs y push_sends,
+--  al final.
 -- ═══════════════════════════════════════════════════════════════════
 
 
@@ -62,6 +64,8 @@ create policy favorites_own_delete on public.favorites
   using ((select auth.uid()) = user_id);
 
 grant select, insert, update, delete on public.favorites to authenticated;
+-- anon, nada sobre la tabla: asi esta en la base de datos (5 de noviembre de 2026).
+revoke all on public.favorites from anon;
 
 -- Los topes (23 de octubre de 2026). La RLS no deja tocar los favoritos de otra cuenta, pero
 -- con una cuenta cualquiera se podían meter en los propios tantos como se quisiera, a mano,
@@ -100,28 +104,44 @@ create trigger favorites_tope after insert on public.favorites
 
 
 -- ═══════════════════════════════════════════════════════════════════
---  push_subs — PENDIENTE DE VOLCAR
+--  push_subs y push_sends — los avisos push
 --  ───────────────────────────────────────────────────────────────────
---  Comprobado en la base de datos real:
---    · RLS activada (rowsecurity = true)
---    · una sola policy, de INSERT, llamada "push_subs alta anon"
---    · NINGUNA policy de SELECT
+--  push_subs: una fila por movil suscrito. Las altas entran SOLO por
+--  guardar_push_sub() (push-idioma.sql), que comprueba lo que llega
+--  (endpoint https, largos) y pone el tope de 50.000. Es security
+--  definer: no necesita ninguna policy ni permiso de tabla. Por eso anon y
+--  authenticated no tienen nada sobre push_subs, desde el 5 de noviembre
+--  de 2026 (push_subs_solo_por_guardar_push_sub.sql): antes, la policy
+--  "push_subs alta anon" (insert, with check true) dejaba meter filas
+--  directas sin pasar por la funcion. Las claves de cada suscripcion
+--  (p256dh, auth) no se pueden leer desde el cliente; solo el servidor,
+--  con la service_role (enviar-notificacion.js), las lee y borra las que
+--  ya no valen.
 --
---  Esa ausencia de SELECT es justo lo que el codigo da por hecho: la
---  lista de endpoints push no se puede descargar desde el cliente, solo
---  la lee el servidor con la service_role (enviar-notificacion.js).
---  Las altas entran por la funcion guardar_push_sub().
---
---  No se reproduce aqui el cuerpo exacto de la policy ni el de la
---  funcion porque no se llegaron a volcar, y escribirlos de memoria
---  seria peor que no tenerlos. Para completarlo, ejecutar y pegar el
---  resultado en este fichero:
---
---    select policyname, cmd, roles, qual, with_check
---    from pg_policies
---    where schemaname = 'public' and tablename = 'push_subs';
---
---    select pg_get_functiondef(oid)
---    from pg_proc
---    where proname = 'guardar_push_sub';
+--  push_sends: un dia, una fila. enviar-notificacion.js marca el dia
+--  ANTES de enviar; si ya esta, la clave primaria da 409 y no se envia
+--  dos veces. RLS sin ninguna policy: solo el servidor la lee y la
+--  escribe. El linter de Supabase lo cuenta como «RLS Enabled No Policy»,
+--  igual que admins, y esta bien asi.
 -- ═══════════════════════════════════════════════════════════════════
+
+create table if not exists public.push_subs (
+  id         bigint generated always as identity primary key,
+  endpoint   text not null unique,
+  p256dh     text not null,
+  auth       text not null,
+  lang       text not null default 'es',
+  created_at timestamptz not null default now()
+);
+
+alter table public.push_subs enable row level security;
+
+drop policy if exists "push_subs alta anon" on public.push_subs;
+revoke all on public.push_subs from anon, authenticated;
+
+create table if not exists public.push_sends (
+  sent_date  date primary key,
+  created_at timestamptz not null default now()
+);
+
+alter table public.push_sends enable row level security;
