@@ -996,8 +996,11 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
   const descEs = id => (index.match(new RegExp('\\{ id:"' + id + '",[^\\n]*\\n(?:\\s*(?:reserva|estado|fuente|verificado):[^\\n]*\\n)*\\s*desc:\\{ es:"((?:[^"\\\\]|\\\\.)*)" \\}')) || [, ''])[1];
   const MAL_ES = /Permiso gratuito|~\s?14\s?€|No requiere permiso|astroturismo nocturno|Mejor observatorio solar|Sendero 10 \(TF-6\)|mucho agua/;
   const malT = FT.filter(id => !descEs(id) || MAL_ES.test(descEs(id)) || (id !== 'observatorio' && !/Tenerife ON/.test(descEs(id))));
-  ok(!malT.length && /de noche no se visita/.test(descEs('observatorio')) && /desde 42 € no residente y desde 10,50 € residente/.test(descEs('mir-rambleta-teide')),
-     'las seis fichas del Teide, en castellano: la autorizacion en Tenerife ON (no «permiso gratuito»), el teleferico desde 42 € y desde 10,50 € (no «~14 €»; volcanoteide.com: «Price FROM»), Pico Viejo con reserva y el Observatorio de dia', malT.join(', '));
+  /* El teleferico, con los precios de volcanoteide.com (teleferico_del_teide/tarifas_y_horarios,
+     leida el 5 de noviembre de 2026: subida y bajada, «Precio DESDE», adulto no residente 43,00 €,
+     adulto residente 10,75 €). Hasta ese dia la ficha decia 42 € y 10,50 €, octubre de 2026. */
+  ok(!malT.length && /de noche no se visita/.test(descEs('observatorio')) && /desde 43,00 € no residente y desde 10,75 € residente; precios de volcanoteide\.com, noviembre de 2026/.test(descEs('mir-rambleta-teide')),
+     'las seis fichas del Teide, en castellano: la autorizacion en Tenerife ON (no «permiso gratuito»), el teleferico desde 43,00 € y desde 10,75 € (noviembre de 2026; no «~14 €»; volcanoteide.com: «Precio DESDE»), Pico Viejo con reserva y el Observatorio de dia', malT.join(', '));
   const MAL_OTRO = /~\s?14\s?€|€\s?14\b|14\s?€\s|14 ?欧元|14 ?歐元|TF-6/;
   const malTi = [];
   for (const l of IDI.filter(l => l !== 'es')) {
@@ -1005,6 +1008,11 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
     for (const id of FT) { const t = (J[id] || {}).desc || ''; if (!t || MAL_OTRO.test(t) || (id !== 'observatorio' && !/Tenerife ON/.test(t)) || (id === 'observatorio' && !/volcanoteide\.com/.test(t))) malTi.push(l + '.' + id); }
   }
   ok(!malTi.length, 'y en los otros nueve idiomas (idiomas/<l>.json): Tenerife ON, sin el teleferico a 14 € ni el «TF-6»', malTi.join(', '));
+  const malTel = IDI.filter(l => l !== 'es').filter(l => {
+    const t = (JSON.parse(lee('idiomas/' + l + '.json'))['mir-rambleta-teide'] || {}).desc || '';
+    return !/43[.,]00/.test(t) || !/10[.,]75/.test(t) || /(^|[^\d.,])42([^\d]|$)|10[.,]50/.test(t) || !/volcanoteide\.com/.test(t);
+  });
+  ok(!malTel.length, 'el teleferico en los otros nueve idiomas: desde 43,00 € y desde 10,75 €, sin los 42 € ni los 10,50 € de octubre', malTel.join(', '));
   /* 24 de octubre de 2026 (AUDITORIA-FINAL.md, noveno bloque): lo que las fuentes cambiaron en
      estas fichas y en la de Las Narices. Las siete islas no se ven a la vez (Volcano Teide nombra
      cuatro, y las del oeste, desde el mirador de Pico Viejo, PNT 12); el crater de Pico Viejo esta
