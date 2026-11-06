@@ -54,7 +54,8 @@
  *     ni en lo que enseñan ni en lo que usan para buscar (ni, en chino, llaman «el color mas
  *     oscuro» al nivel mas alto), dicen rosa, naranja y amarillo por ese
  *     orden, y el buscador del propio modulo lleva a su respuesta las preguntas por cada color y
- *     la de por que el amarillo empieza en 10 (19b).
+ *     la de por que el amarillo empieza en 10 (19b). Y la bandera de la playa: las preguntas por
+ *     la bandera amarilla o la roja llevan a la respuesta del mar en los diez idiomas (19c).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -1113,6 +1114,43 @@ async function ejemplo(pg) {
     prueba('el asistente no habla ya de oro para los niveles: ni lo que enseña ni lo que usa para buscar, en las seis respuestas del mapa y los diez idiomas (' + textos + ' textos)', textos > 900 && !oro.length, oro.slice(0, 4).join(' · '));
     prueba('la respuesta de los colores y la frase del mapa dicen rosa, naranja y amarillo, por ese orden, en los diez idiomas', !orden.length, orden.slice(0, 4).join(' · '));
     prueba('el buscador lleva a su respuesta las preguntas por el rosa, el naranja y el amarillo, y la de las 10 series, en los diez idiomas (' + preguntas + ' consultas)', preguntas === 120 && !busca.length, busca.slice(0, 5).join(' · '));
+  }
+
+  // 19c. (sin navegador; 6 de noviembre de 2026) la bandera de la playa. «¿Qué significa la bandera amarilla?»
+  //      llevaba, en inglés, francés, polaco y chino, a la respuesta de los colores del personaje o a la del
+  //      nivel de un ejercicio: «amarillo» es palabra clave de «colores-del-mapa», y solo el castellano tenía en
+  //      «nadar-en-el-mar» las variantes «¿qué significan la bandera roja y la amarilla?» y «¿qué significan las
+  //      banderas en las playas de Tenerife?» y la clave «colores de la bandera». Ahora las tienen los diez
+  //      idiomas, y el buscador del propio módulo lleva a la respuesta del mar, sin urgencia, las preguntas por la
+  //      bandera amarilla, por la amarilla en la playa, si se puede nadar con ella y por la roja, con 30 años,
+  //      con 15 y sin edad
+  {
+    const fs = require('fs'), path = require('path'), vm = require('vm');
+    const lee = l => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'), 'utf8')).respuestas;
+    const M = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8'), ctx = {};
+    vm.createContext(ctx); vm.runInContext(M.slice(M.indexOf('/* buscador.js —'), M.indexOf('/* ── la pantalla «Su cuerpo» ── */')), ctx);
+    const BANDERA = {
+      es: ['¿qué significa la bandera amarilla?', 'bandera amarilla', '¿qué quiere decir la bandera amarilla en la playa?', '¿puedo bañarme con bandera amarilla?', '¿qué significa la bandera roja?'],
+      en: ['what does the yellow flag mean?', 'yellow flag', 'what does a yellow flag on the beach mean?', 'can I swim with a yellow flag?', 'what does the red flag mean?'],
+      fr: ['que veut dire le drapeau jaune ?', 'drapeau jaune', 'que signifie le drapeau jaune sur la plage ?', 'peut-on se baigner avec le drapeau jaune ?', 'que veut dire le drapeau rouge ?'],
+      de: ['Was bedeutet die gelbe Flagge?', 'gelbe Flagge', 'Was bedeutet die gelbe Flagge am Strand?', 'Darf ich bei gelber Flagge baden?', 'Was bedeutet die rote Flagge?'],
+      it: ['cosa significa la bandiera gialla?', 'bandiera gialla', 'cosa vuol dire la bandiera gialla in spiaggia?', 'posso fare il bagno con la bandiera gialla?', 'cosa significa la bandiera rossa?'],
+      nl: ['wat betekent de gele vlag?', 'gele vlag', 'wat betekent een gele vlag op het strand?', 'mag ik zwemmen bij een gele vlag?', 'wat betekent de rode vlag?'],
+      zh: ['黄旗是什么意思？', '黄旗', '海滩上的黄旗是什么意思？', '挂黄旗能游泳吗？', '红旗是什么意思？'],
+      zht: ['黃旗是什麼意思？', '黃旗', '海灘上的黃旗是什麼意思？', '掛黃旗可以游泳嗎？', '紅旗是什麼意思？'],
+      bg: ['какво означава жълтият флаг?', 'жълт флаг', 'какво означава жълт флаг на плажа?', 'мога ли да плувам при жълт флаг?', 'какво означава червеният флаг?'],
+      pl: ['co oznacza żółta flaga', 'żółta flaga', 'co oznacza żółta flaga na plaży?', 'czy mogę pływać przy żółtej fladze?', 'co oznacza czerwona flaga?']
+    };
+    const malas = []; let consultas = 0;
+    for (const [l, qs] of Object.entries(BANDERA)) {
+      const b = ctx.TG_BUSCADOR.crear({ idioma: l, respuestas: lee(l) });
+      for (const q of qs) for (const edad of [30, 15, null]) {
+        consultas++;
+        const x = b.buscar(q, { edad });
+        if (x.urgente || !(x.mejor && x.mejor.id === 'nadar-en-el-mar')) malas.push(l + ' «' + q + '» (' + edad + '): ' + (x.urgente ? 'urgencia ' + x.urgente : x.mejor ? x.mejor.id : x.pista));
+      }
+    }
+    prueba('la bandera de la playa: la amarilla, la amarilla en la playa, si se puede nadar con ella y la roja llevan a la respuesta del mar, en los diez idiomas (' + consultas + ' consultas)', consultas === 150 && !malas.length, malas.slice(0, 5).join(' · '));
   }
 
   // 20. (la app) al bajar por la pestaña, la cabecera y la barra de pestañas del perfil quedan
