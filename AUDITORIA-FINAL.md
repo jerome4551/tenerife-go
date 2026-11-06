@@ -5673,6 +5673,129 @@ siempre; ninguna palabra en castellano dentro de las traducciones. El cielo,
 tanto: los dos commits van tal cual, encima de `4637f3f`, en el árbol
 auditado.
 
+## Supabase: el registro del linter, la tienda, borrar la cuenta y push_subs (5 de noviembre)
+
+Jerome, el 5 de noviembre, con la migración del 4 ya aplicada
+(`linter_es_admin_sin_public_y_politicas_select_auth_uid`): «el SQL que hay
+que guardar en supabase/ como registro». Después: «Sí ponlas al día», «Nada
+para más adelante hazlo ya», «Sí, léelas» (la base de datos, con el
+conector), «Prepáralo y aplícalo tú» (la tienda), «si créalo y haz las
+pruebas. Verifica de no hacer errores de seguridad» (`borrar_mi_cuenta`) y
+«protege las claves. Y quítalo si no hace falta» (`push_subs`).
+
+**El registro del 4 de noviembre** (`b700194`):
+`supabase/linter_es_admin_sin_public_y_politicas_select_auth_uid.sql`.
+`es_admin()` sin EXECUTE para PUBLIC (solo `authenticated` y
+`service_role`), y las 16 políticas de `favorites`, `perfiles`, `pesos` y
+`caminatas` con `(select auth.uid()) = user_id`. Las doce que Jerome
+resumía con «y las mismas cuatro», escritas enteras con los nombres de
+`perfil.sql`. Cotejado después con lo que guarda Supabase (versión
+`20261104223753`): las mismas 18 sentencias.
+
+**Los ficheros de base, como la base de datos** (`256d986`):
+`anuncios.sql`, `favorites.sql` y `perfil.sql`, que rehacen el proyecto
+desde cero y, si se volvían a ejecutar, deshacían la migración. Para que
+no vuelva atrás sin que salte: `auditar_perfil.js` exige la forma nueva, y
+`auditar_seguridad.py` tiene una sección «supabase/» (cada función
+SECURITY DEFINER con su revoke de PUBLIC; ninguna política con `auth.uid()`
+a secas). Con los ficheros de antes, en rojo justo en lo que decía el
+linter.
+
+**Leyendo la base de datos.** Con el conector de Supabase y solo consultas
+al catálogo: definiciones, ningún dato de nadie, salvo contar las filas de
+`push_subs`. Salieron dos cosas que no se sabían:
+
+- `borrar_mi_cuenta()` no existía: `borrar-cuenta.sql` no se había
+  ejecutado nunca (estaba «en manos de Jerome»), y el botón «Eliminar
+  cuenta» acababa siempre en el mensaje de error.
+- `push_subs` tenía una política del principio, «push_subs alta anon»
+  (insert para `anon` y `authenticated`, `with check (true)`): con la clave
+  pública de la app se podían meter filas directas, sin las comprobaciones
+  ni el tope de 50.000 de `guardar_push_sub()`. La app no la usa. Nadie la
+  había usado: 5 suscripciones, todas válidas.
+
+Y lo que faltaba por volcar: `push_subs` (`id` identity, `endpoint`
+único, `p256dh`, `auth`, `lang` con `'es'` por defecto, `created_at`) y
+`push_sends` (`sent_date date` como clave, de ahí el 409 que impide enviar
+dos veces, y `created_at`), las dos con RLS.
+
+**Tres cambios en la base de datos**, probados antes en un Postgres 16
+local con lo que trae Supabase (`anon`, `authenticated`, `service_role`,
+`auth.uid()` y sus permisos por defecto). El conector pidió tres veces una
+confirmación que a Jerome no le llegaba; los pegó él en el SQL Editor:
+
+1. **La tienda** (`1f1e72c`): una política por rol y por acción en
+   `anuncios`, `souvenirs` y `excursiones` (el lint 0006, «Multiple
+   Permissive Policies»). Lo que cada uno ve y toca no cambia: 18
+   comprobaciones, iguales antes y después; el orden nunca deja menos
+   permisos.
+2. **`borrar_mi_cuenta()`** (`7a210fa`), la de `borrar-cuenta.sql`
+   tal cual. En la base, `postgres` (su dueño) puede borrar en
+   `auth.users`, y todo lo que apunta a `auth.users` borra en cascada (una
+   tabla interna de Supabase pone null): nada da 23503. En local, 13
+   pruebas: sin sesión no se puede llamar; una cuenta de admin no se borra;
+   quien llama se va con sus favoritos, su perfil, sus pesos y sus
+   caminatas, y otra cuenta queda intacta.
+3. **`push_subs`** (`bae8dce`): fuera la política y fuera los
+   permisos de `anon` y `authenticated`. Las altas, solo por
+   `guardar_push_sub()`; las claves de cada suscripción ya no se pueden
+   leer desde el cliente. En local, la fila directa entraba antes y no
+   después (14 comprobaciones). `favorites.sql` tiene ya las dos tablas
+   volcadas de la base; el README, `push_sends` (once tablas); y
+   `auditar_seguridad.py`, una tercera comprobación: ninguna política que
+   deje escribir a `anon` sin condición.
+
+**Comprobado después:**
+
+- El linter: ningún aviso de rendimiento. De seguridad, solo lo esperado:
+  `admins`, `push_sends` y `push_subs` con RLS y sin políticas (nadie entra
+  directo); `guardar_push_sub()` se puede llamar sin sesión (así se dan de
+  alta los avisos); `es_admin()` y `borrar_mi_cuenta()`, con sesión (es su
+  uso); y la protección de contraseñas filtradas, que es del plan Pro.
+- La base de datos y una hecha solo con los ficheros de `supabase/` dan las
+  mismas 49 líneas de políticas, permisos de tabla y de funciones (la misma
+  huella md5, `4c9ae737…`).
+- Desde fuera, con la clave pública de la app, como un visitante: la tienda
+  se ve igual que antes (0 anuncios, 1 souvenir y 1 excursión);
+  `borrar_mi_cuenta()` sin sesión, «permission denied» (401); leer
+  `push_subs` y meter una fila directa, «permission denied» (401);
+  `guardar_push_sub()` sigue respondiendo (un endpoint que no vale: 22023,
+  sin guardar nada); y siguen las 5 suscripciones.
+- Las claves: en el repositorio solo está la `anon`, que es pública a
+  propósito; la `service_role` y la VAPID privada, solo en los secretos del
+  servidor.
+
+**Un rojo que no era de estos commits.** La primera auditoría dio un rojo en
+`auditar_sin_traducir.js`: la madrugada del 6, con el mar en calma, la
+lista «dónde bañarse» enseñaba tres playas y, tres veces, «🌊 0,3 m · 💨 W
+3 km/h», igual en castellano que en búlgaro. Estos commits no tocan la app,
+y en `main` salía lo mismo, según los datos del mar del momento. Dos causas:
+el control buscaba los nombres de las fichas en `pl.nombre`, y se llaman
+`name`; y el código escribe las unidades y los rumbos del viento igual en
+todos los idiomas. Se paró la publicación y se le contó a Jerome. Su
+respuesta: «arréglalo ya» (el control) y la opción B, las unidades y los
+rumbos en cada idioma («así cada uno entiende que pensamos en todos»). Va
+aparte.
+
+**Lo que queda:** la prueba entera de «Eliminar cuenta» con una cuenta de
+prueba (Jerome: «Haz tu una cuenta de prueba y bórrala»). Va aparte.
+
+**La auditoría entera**, otra vez, sobre `76b9675` (árbol `5b2e83e0`):
+«AUDITORIA EN VERDE», sin ningún control en rojo ni sin ejecutar. La
+sección «supabase/» de `auditar_seguridad.py`, 0, 0 y 0; el perfil, 74 y
+148; el cielo, 308; «Su cuerpo», 236; el 3D, 58, con el pellizco a 0,0 m;
+el SOS, 39 y 261, y sus cuatro robots. Esa vez la lista de playas no tenía
+chips, y el texto sin traducir salió a cero.
+
+- En `main` van `b700194`, `256d986`, `1f1e72c`, `7a210fa` y `bae8dce`, con
+  los mismos parches, encima de siete commits más de los robots (los
+  precios de las gasolineras, las alertas, los avisos de AEMET y los
+  terremotos): solo cambian sus ficheros de datos.
+- Con esos datos, otra vez los diez controles que los leen: los precios y
+  la gasolinera más barata cerca; los avisos de AEMET, en el robot y en la
+  app; la app de las tiendas, montada y abierta; el SOS, 39 y 261; y los
+  robots de los terremotos y de las alertas. En verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
