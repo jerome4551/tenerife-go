@@ -2,8 +2,28 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-06T15:24:35Z",
+ "consultado": "2026-11-06T16:58:51Z",
  "alertas": [
+  {
+   "t": "2026-11-06T16:38:30Z",
+   "titulo": "El Gobierno declara la situación de prealerta por tormentas en Canarias",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-declara-la-situacion-de-prealerta-por-tormentas-en-canarias/"
+  },
+  {
+   "t": "2026-11-06T16:30:50Z",
+   "titulo": "El Gobierno declara la situación de alerta por lluvias en El Hierro, La Palma, La Gomera, Tenerife y Gran Canaria",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-declara-la-situacion-de-alerta-por-lluvias-en-el-hierro-la-palma-la-gomera-tenerife-y-gran-canaria/"
+  },
+  {
+   "t": "2026-11-06T16:26:32Z",
+   "titulo": "El Gobierno de Canarias declara la alerta por fenómenos costeros en el archipiélago",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-alerta-por-fenomenos-costeros-en-el-archipielago-3/"
+  },
+  {
+   "t": "2026-11-06T16:21:53Z",
+   "titulo": "El Gobierno de Canarias declara la situación de alerta por viento en las islas occidentales y Gran Canaria",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-situacion-de-alerta-por-viento-en-las-islas-occidentales-y-gran-canaria-3/"
+  },
   {
    "t": "2026-11-06T14:46:11Z",
    "titulo": "El Gobierno de Canarias finaliza la prealerta por lluvias en La Palma",
@@ -43,26 +63,6 @@
    "t": "2026-11-02T09:07:25Z",
    "titulo": "El Gobierno actualiza la situación a alerta por lluvias en La Palma, La Gomera y El Hierro",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-actualiza-la-situacion-a-alerta-por-lluvias-en-la-palma-la-gomera-y-el-hierro/"
-  },
-  {
-   "t": "2026-11-02T07:49:18Z",
-   "titulo": "El Gobierno de Canarias activa el PLATECA en situación de alerta por cero energético en La Palma",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-activa-el-plateca-en-situacion-de-alerta-por-cero-energetico-en-la-palma-2/"
-  },
-  {
-   "t": "2026-11-02T02:59:58Z",
-   "titulo": "El Gobierno de Canarias declara la Alerta Máxima por lluvias en La Palma",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-alerta-maxima-por-lluvias-en-la-palma/"
-  },
-  {
-   "t": "2026-11-01T17:24:35Z",
-   "titulo": "El Gobierno actualiza la situación a Alerta por lluvias en La Palma, El Hierro y La Gomera",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-actualiza-la-situacion-a-alerta-por-lluvias-en-la-palma-el-hierro-y-la-gomera/"
-  },
-  {
-   "t": "2026-10-31T19:19:26Z",
-   "titulo": "El Gobierno de Canarias actualiza la situación a alerta por lluvias en La Palma y Tenerife",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-a-alerta-por-lluvias-en-la-palma-y-tenerife/"
   }
  ],
  "descartados": 0
