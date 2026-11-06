@@ -1080,7 +1080,7 @@ async function ejemplo(pg) {
     const DEL_MAPA = ['como-anotar', 'cuantas-series', 'que-cuenta-como-serie', 'colores-del-mapa', 'por-que-diez-series', 'que-entreno-hoy'];
     const sinLetra = '(?<![\\p{L}])', niLetra = '(?![\\p{L}])';
     const ORO = { es: new RegExp(sinLetra + '(oro|dorad\\p{L}*)' + niLetra, 'iu'), en: /gold/i, fr: new RegExp(sinLetra + '(or|dor[ée]e?s?)' + niLetra, 'iu'), de: /gold/i,
-      it: new RegExp(sinLetra + '(oro|dorat\\p{L}*)' + niLetra, 'iu'), nl: /goud/i, zh: /金色|最深的颜色/, zht: /金色|最深的顏色/, bg: /злат/i, pl: /złot/i };   // en chino, tampoco «el color más oscuro»: el nivel más alto es ahora el más claro
+      it: new RegExp(sinLetra + '(oro|dorat\\p{L}*)' + niLetra, 'iu'), nl: /goud/i, zh: /金色|最深/, zht: /金色|最深/, bg: /злат/i, pl: /złot/i };   // en chino, tampoco «el más oscuro» (最深), ni en lo que enseña ni en lo que usa para buscar: el nivel más alto es ahora el más claro
     const COLOR = { es: ['rosa', 'naranja', 'amarillo'], en: ['pink', 'orange', 'yellow'], fr: ['rose', 'orange', 'jaune'], de: ['rosa', 'orange', 'gelb'], it: ['rosa', 'arancione', 'giallo'],
       nl: ['roze', 'oranje', 'geel'], zh: ['粉色', '橙色', '黄色'], zht: ['粉紅色', '橘色', '黃色'], bg: ['розово', 'оранжево', 'жълто'], pl: ['różowy', 'pomarańczowy', 'żółty'] };
     /* por idioma: una pregunta por el rosa, otra por el naranja, otra por el amarillo y la de las 10 series */
