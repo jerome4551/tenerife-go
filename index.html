@@ -9752,6 +9752,53 @@ Object.assign(UI_TX, {
   "unidadKm": {"es":"km","en":"km","fr":"km","de":"km","it":"km","nl":"km","zh":"公里","zht":"公里","bg":"км", pl: "km"}
 });
 
+/* LAS UNIDADES Y LOS RUMBOS, EN LA LENGUA DE CADA UNO (6 de noviembre de 2026).
+   Jerome: «B, asi cada uno entiende que pensamos en todos». Hasta hoy la altura
+   de las olas, el viento, la precision del GPS o la distancia a una parada se
+   escribian «m», «km», «km/h» y «NE» en los diez idiomas: un aleman leia «E»
+   donde el escribe «O» (Ost), y un chino «km/h» en una app que en todo lo demas
+   le escribe 公里.
+   · Alfabeto latino: el simbolo internacional. En neerlandes «km/u», como lo da
+     el estandar de Unicode (CLDR) y como ya lo escribia la carta del cielo.
+   · Bulgaro: en cirilico, como el resto de la app (las fichas escriben «км» 87
+     veces y «м» 138) y como el Instituto de la Lengua Bulgara de la Academia
+     (БАН) en su columna «Пиши правилно» de Аз-буки: «100 км/ч». La norma de
+     metrologia (Наредба за единиците за измерване, art. 26) pide los simbolos
+     internacionales para expresar medidas; esto es texto para leer.
+   · Chino: 米 y 公尺, 公里, 公里/小时 y 公里/小時 (este, el de CLDR para zh-TW),
+     pegados a la cifra como en las fichas (91 de 91 «公里» sin espacio).
+   · Los ocho rumbos son los de la carta del cielo (cieloRumbo* en
+     modulos/cielo.js): O de Ost y de ouest, Z de zuid, С de север, 北.
+   Los rumbos internos (N, NE ... NW) no cambian: scorePlaya y
+   PLAYAS_ORIENTACION los comparan. Solo cambia lo que se ve. */
+Object.assign(UI_TX, {
+  "medidaM":   {"es":"{n} m","en":"{n} m","fr":"{n} m","de":"{n} m","it":"{n} m","nl":"{n} m","zh":"{n}米","zht":"{n}公尺","bg":"{n} м","pl":"{n} m"},
+  "medidaKm":  {"es":"{n} km","en":"{n} km","fr":"{n} km","de":"{n} km","it":"{n} km","nl":"{n} km","zh":"{n}公里","zht":"{n}公里","bg":"{n} км","pl":"{n} km"},
+  "medidaKmh": {"es":"{n} km/h","en":"{n} km/h","fr":"{n} km/h","de":"{n} km/h","it":"{n} km/h","nl":"{n} km/u","zh":"{n}公里/小时","zht":"{n}公里/小時","bg":"{n} км/ч","pl":"{n} km/h"},
+  "medidaSeg": {"es":"{n} s","en":"{n} s","fr":"{n} s","de":"{n} s","it":"{n} s","nl":"{n} s","zh":"{n}秒","zht":"{n}秒","bg":"{n} с","pl":"{n} s"},
+  "rumboN":  {"es":"N","en":"N","fr":"N","de":"N","it":"N","nl":"N","zh":"北","zht":"北","bg":"С","pl":"N"},
+  "rumboNE": {"es":"NE","en":"NE","fr":"NE","de":"NO","it":"NE","nl":"NO","zh":"东北","zht":"東北","bg":"СИ","pl":"NE"},
+  "rumboE":  {"es":"E","en":"E","fr":"E","de":"O","it":"E","nl":"O","zh":"东","zht":"東","bg":"И","pl":"E"},
+  "rumboSE": {"es":"SE","en":"SE","fr":"SE","de":"SO","it":"SE","nl":"ZO","zh":"东南","zht":"東南","bg":"ЮИ","pl":"SE"},
+  "rumboS":  {"es":"S","en":"S","fr":"S","de":"S","it":"S","nl":"Z","zh":"南","zht":"南","bg":"Ю","pl":"S"},
+  "rumboSO": {"es":"SO","en":"SW","fr":"SO","de":"SW","it":"SO","nl":"ZW","zh":"西南","zht":"西南","bg":"ЮЗ","pl":"SW"},
+  "rumboO":  {"es":"O","en":"W","fr":"O","de":"W","it":"O","nl":"W","zh":"西","zht":"西","bg":"З","pl":"W"},
+  "rumboNO": {"es":"NO","en":"NW","fr":"NO","de":"NW","it":"NO","nl":"NW","zh":"西北","zht":"西北","bg":"СЗ","pl":"NW"}
+});
+/* Una cifra con su unidad: la coma o el punto de cada idioma (punto en ingles
+   y en chino, la misma regla que chatKmTxt) y la unidad de medidaM, medidaKm,
+   medidaKmh o medidaSeg. */
+function conUnidad(n, dec, clave) {
+  var s = Number(n).toFixed(dec || 0);
+  if (['en', 'zh', 'zht'].indexOf(currentLang) === -1) s = s.replace('.', ',');
+  return tx(clave, { n: s }) || s;
+}
+/* El rumbo como se escribe en cada idioma, a partir del interno (N ... NW). */
+function rumboVisible(cod) {
+  var k = { N: 'N', NE: 'NE', E: 'E', SE: 'SE', S: 'S', SW: 'SO', W: 'O', NW: 'NO' }[cod];
+  return (k && tx('rumbo' + k)) || cod;
+}
+
 /* La politica de privacidad, en los nueve idiomas. Estaba entera en
    castellano: un aleman o un chino leian el aviso legal en un idioma que no
    entienden, que es justo lo que un aviso legal no puede permitirse. */
@@ -18026,15 +18073,16 @@ const GAS_CERCA_RADIOS = [5, 10, 20];
 const GAS_CERCA_CUANTAS = 3;
 
 function kmGas(km) {
+  /* La cifra, con Intl como antes; la unidad, de medidaM y medidaKm, como en el
+     resto de la app: Intl escribe «km» latino en bulgaro y «1.5 公里», con
+     espacio, en chino tradicional (6 de noviembre de 2026). */
   const loc = PRECIOS_GAS_LOCALE[currentLang] || 'es-ES';
-  try {
-    if (km < 1) return new Intl.NumberFormat(loc, { style: 'unit', unit: 'meter', unitDisplay: 'short' })
-      .format(Math.max(10, Math.round(km * 100) * 10));
-    return new Intl.NumberFormat(loc, { style: 'unit', unit: 'kilometer', unitDisplay: 'short',
-      maximumFractionDigits: km < 10 ? 1 : 0 }).format(km);
-  } catch (e) {
-    return km < 1 ? Math.round(km * 1000) + ' m' : (Math.round(km * 10) / 10) + ' km';
-  }
+  const cifra = (x, d) => {
+    try { return new Intl.NumberFormat(loc, { maximumFractionDigits: d }).format(x); }
+    catch (e) { return String(x); }
+  };
+  if (km < 1) return tx('medidaM', { n: cifra(Math.max(10, Math.round(km * 100) * 10), 0) });
+  return tx('medidaKm', { n: cifra(km, km < 10 ? 1 : 0) });
 }
 
 /* Las de un combustible a menos del radio, de mas barata a mas cara (a igual
@@ -18958,9 +19006,9 @@ function seaBuildHtml(marine, weather, place) {
          + '<span class="popup-sea-v"' + (color ? ' style="color:' + color + '"' : '') + '>' + value + '</span></div>';
   }
   var html = '';
-  html += item('🌊', t.waves, (waveH != null ? waveH.toFixed(1) + ' m · ' : '') + escapeHtml(st.txt), st.col);
+  html += item('🌊', t.waves, (waveH != null ? escapeHtml(conUnidad(waveH, 1, 'medidaM')) + ' · ' : '') + escapeHtml(st.txt), st.col);
   html += item('🌡️', t.water, (temp  != null ? Math.round(temp) + '°C' : escapeHtml(t.nd)), null);
-  html += item('💨', t.wind,  (wind  != null ? Math.round(wind) + ' km/h ' + arrow : escapeHtml(t.nd)), null);
+  html += item('💨', t.wind,  (wind  != null ? escapeHtml(conUnidad(wind, 0, 'medidaKmh')) + ' ' + arrow : escapeHtml(t.nd)), null);
   html += item('☀️', t.uv,    (uv    != null ? Math.round(uv) + ' · ' : '') + escapeHtml(uvl.txt), uvl.col);
   /* Marea: horas y sentido. La altura en metros no se enseña a
      proposito -va sobre el nivel medio global, no sobre el cero de las
@@ -18972,7 +19020,7 @@ function seaBuildHtml(marine, weather, place) {
     if (mar.baja) trozos.push(escapeHtml(t.t_low)  + ' ' + escapeHtml(seaHora(mar.baja.t)));
     var pie = escapeHtml(mar.subiendo ? t.t_rising : t.t_falling);
     if (mar.rango != null && isFinite(mar.rango)) {
-      pie += ' \u00b7 ' + escapeHtml(t.t_range) + ' ' + escapeHtml(mar.rango.toFixed(1)) + ' m';
+      pie += ' \u00b7 ' + escapeHtml(t.t_range) + ' ' + escapeHtml(conUnidad(mar.rango, 1, 'medidaM'));
     }
     html += item('\u{1F311}', t.tide, trozos.join(' \u00b7 ') + ' \u00b7 ' + pie, null);
   }
@@ -19545,7 +19593,7 @@ function updateFilterStatus() {
         // Sin líneas activas: aviso claro en el pill
         busNote = ` <span class="bus-access-pill">🚏 Activa una línea de bus</span>`;
       } else {
-        busNote = ` <span class="bus-access-pill">🚏 &lt;${BUS_ACCESS_RADIUS_M} m</span>`;
+        busNote = ` <span class="bus-access-pill">🚏 &lt;${escapeHtml(conUnidad(BUS_ACCESS_RADIUS_M, 0, 'medidaM'))}</span>`;
       }
     }
 
@@ -20958,8 +21006,8 @@ function setGpsMarker(lat, lng, accuracy) {
 function openGpsPopup(lat, lng, accuracy) {
   const L_ = t();
   const accText = accuracy < 1000
-    ? Math.round(accuracy) + ' m'
-    : (accuracy / 1000).toFixed(1) + ' km';
+    ? conUnidad(accuracy, 0, 'medidaM')
+    : conUnidad(accuracy / 1000, 1, 'medidaKm');
 
   // ── SEGURIDAD: nunca interpolamos lat/lng en HTML (evita XSS si la fuente
   //    cambiara algún día). Usamos un contenedor vacío y enlazamos los handlers
@@ -22450,8 +22498,9 @@ function haversineMeters(lat1, lng1, lat2, lng2) {
 }
 
 function formatDistance(m) {
-  if (m < 1000) return Math.round(m) + ' m';
-  return (m / 1000).toFixed(1).replace('.', ',') + ' km';
+  /* Antes, coma decimal tambien en ingles y en chino («1,2 km»). */
+  if (m < 1000) return conUnidad(m, 0, 'medidaM');
+  return conUnidad(m / 1000, 1, 'medidaKm');
 }
 function walkMinutes(m) {
   // Velocidad media a pie ~ 4.5 km/h = 75 m/min
@@ -28934,13 +28983,12 @@ function chatFmt(tpl,vars){
 }
 function chatTrim(s,n){s=String(s||'');return s.length>n?s.slice(0,n-1)+'…':s;}
 function chatKmTxt(km){
-  var v=km<10?km.toFixed(1):String(Math.round(km));
   /* Coma decimal en todos menos ingles y chino. El bulgaro usa coma, asi que
      entra por la regla general y esta bien; se deja escrito para que no
      parezca casualidad. Si algun dia entra japones o coreano, que usan punto,
-     hay que sumarlos a esta lista o daran la coma en silencio. */
-  if(currentLang!=='en'&&currentLang!=='zh'&&currentLang!=='zht')v=v.replace('.',',');
-  return v+' km';
+     hay que sumarlos a la lista de conUnidad o daran la coma en silencio.
+     La unidad, desde el 6 de noviembre de 2026, la de cada idioma (км, 公里). */
+  return conUnidad(km, km<10?1:0, 'medidaKm');
 }
 function chatZoneTxt(zk){var z=chatT('zone');return (z&&z[zk])?z[zk]:zk;}
 
@@ -30376,8 +30424,8 @@ function marRow(d) {
 
   var val = document.createElement('div');
   val.className = 'mar-vals';
-  var h = (typeof d.waveH === 'number') ? d.waveH.toFixed(1) + ' m' : '\u2014';
-  var p = (typeof d.waveP === 'number') ? Math.round(d.waveP) + ' s' : '\u2014';
+  var h = (typeof d.waveH === 'number') ? conUnidad(d.waveH, 1, 'medidaM') : '\u2014';
+  var p = (typeof d.waveP === 'number') ? conUnidad(d.waveP, 0, 'medidaSeg') : '\u2014';
   val.textContent = marTx('wave') + ' ' + h + '  \u00b7  ' + marTx('period') + ' ' + p;
 
   row.appendChild(top); row.appendChild(val);
@@ -30444,8 +30492,8 @@ function marDayStrip(d) {
     lb.className = 'mar-bar-h' + (i === nowH ? ' now' : '');
     lb.textContent = String(i).padStart(2, '0');
     col.appendChild(bar); col.appendChild(lb);
-    col.title = (typeof h.waveH === 'number' ? h.waveH.toFixed(1) + ' m' : '') +
-                (typeof h.waveP === 'number' ? ' \u00b7 ' + Math.round(h.waveP) + ' s' : '');
+    col.title = (typeof h.waveH === 'number' ? conUnidad(h.waveH, 1, 'medidaM') : '') +
+                (typeof h.waveP === 'number' ? ' \u00b7 ' + conUnidad(h.waveP, 0, 'medidaSeg') : '');
     wrap.appendChild(col);
   });
   return wrap;
@@ -30997,7 +31045,7 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
       n.textContent = z.name;
       var sub = document.createElement('div');
       sub.className = 'mc-zone-sub';
-      sub.textContent = z.sub + ' · ' + Math.round(z.wind) + ' km/h ' + t.wind;
+      sub.textContent = z.sub + ' · ' + conUnidad(z.wind, 0, 'medidaKmh') + ' ' + t.wind;
       zone.appendChild(n); zone.appendChild(sub);
 
       row.appendChild(em);
@@ -31330,7 +31378,7 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
     txt.textContent = label;
     var hv = document.createElement('span');
     hv.className = 'sea-h';
-    hv.textContent = h.toFixed(1) + ' m';
+    hv.textContent = conUnidad(h, 1, 'medidaM');
     el.appendChild(icon); el.appendChild(txt); el.appendChild(hv);
     /* el credito de Open-Meteo, debajo y una sola vez (30 de octubre de 2026) */
     var sig = el.nextElementSibling;
@@ -35836,12 +35884,7 @@ async function fetchPlayasHoyCached(ids){
   return data;
 }
 
-// 0,6 m en es/fr/de/it/nl · 0.6 m en en/zh/zht
-function banoNum(n, dec){
-  var s = Number(n).toFixed(dec);
-  return ['en','zh','zht'].indexOf(currentLang) === -1 ? s.replace('.', ',') : s;
-}
-
+// La cifra y su unidad, con conUnidad: «0,6 m» en es/fr/de/it/nl/pl, «0.6 m» en en, «0,6 м» en bg, «0.6米» en zh
 async function renderBanoHoy(){
   const holder=document.getElementById('bano-hoy-holder');
   if(!holder) return;
@@ -35920,8 +35963,8 @@ async function renderBanoHoy(){
              '<span class="bano-name">'+escapeHtml(d.name)+'</span>'+
              '<span class="bano-datos">'+
                '<span class="mar-chip mar-'+escapeAttr(d.nivel)+'">'+escapeHtml(nm[lang]||nm.es||d.nivel)+'</span>'+
-               '<span class="bano-med">\u{1F30A} '+escapeHtml(banoNum(d.waveH,1))+' m \u00B7 '+
-               '\u{1F4A8} '+escapeHtml(windDirToCardinal(d.windDeg))+' '+escapeHtml(banoNum(d.windKmh,0))+' km/h</span>'+
+               '<span class="bano-med">\u{1F30A} '+escapeHtml(conUnidad(d.waveH,1,'medidaM'))+' \u00B7 '+
+               '\u{1F4A8} '+escapeHtml(rumboVisible(windDirToCardinal(d.windDeg)))+' '+escapeHtml(conUnidad(d.windKmh,0,'medidaKmh'))+'</span>'+
                (d.lifeguard === false
                  ? '<span class="bano-aviso">\u26A0\uFE0F '+escapeHtml(sinSocTxt)+'</span>'
                  : '')+

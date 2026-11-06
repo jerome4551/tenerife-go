@@ -79,6 +79,25 @@
     "perfilNacimiento": {"es": "Año de nacimiento", "en": "Birth year", "fr": "Année de naissance", "de": "Geburtsjahr", "it": "Anno di nascita", "nl": "Geboortejaar", "zh": "出生年份", "zht": "出生年份", "bg": "Година на раждане", "pl": "Rok urodzenia"},
     "perfilAnios": {"es": "{n} año|{n} años", "en": "{n} year old|{n} years old", "fr": "{n} an|{n} ans", "de": "{n} Jahr|{n} Jahre", "it": "{n} anno|{n} anni", "nl": "{n} jaar|{n} jaar", "zh": "{n}岁", "zht": "{n}歲", "bg": "{n} година|{n} години", "pl": "{n} rok|{n} lata|{n} lat"},
     "perfilUnidades": {"es": "Unidades", "en": "Units", "fr": "Unités", "de": "Einheiten", "it": "Unità", "nl": "Eenheden", "zh": "单位", "zht": "單位", "bg": "Мерни единици", "pl": "Jednostki"},
+    /* Las unidades, en la lengua de cada uno (6 de noviembre de 2026, Jerome: «B, asi
+       cada uno entiende que pensamos en todos»). Las metricas, en el alfabeto de cada
+       idioma como el resto de la app: кг y см como el asistente de «Su cuerpo» («70 кг»),
+       公斤 como el asistente en chino, 厘米 y 公分 como los ejercicios. Las imperiales,
+       las del estandar de Unicode (CLDR 47): 磅, 英寸 y 英石 en chino, 吋 en chino
+       tradicional; en bulgaro, las palabras de CLDR, que en la forma corta da lb, in y st
+       en latin: фунт (1 фунт, 2 фунта), инча y стоуна. Las libras van con sus plurales
+       («1 фунт», «3 фунта»; con decimales, siempre «фунта», como CLDR); los stone, no:
+       el peso va de 20 a 400 kg, de 3 a 63 stone, y nunca hay uno solo. Los kilometros,
+       con medidaKm de index.html. */
+    "perfilUKg": {"es": "kg", "en": "kg", "fr": "kg", "de": "kg", "it": "kg", "nl": "kg", "zh": "公斤", "zht": "公斤", "bg": "кг", "pl": "kg"},
+    "perfilUCm": {"es": "cm", "en": "cm", "fr": "cm", "de": "cm", "it": "cm", "nl": "cm", "zh": "厘米", "zht": "公分", "bg": "см", "pl": "cm"},
+    "perfilULb": {"es": "lb", "en": "lb", "fr": "lb", "de": "lb", "it": "lb", "nl": "lb", "zh": "磅", "zht": "磅", "bg": "фунта", "pl": "lb"},
+    "perfilUIn": {"es": "in", "en": "in", "fr": "in", "de": "in", "it": "in", "nl": "in", "zh": "英寸", "zht": "吋", "bg": "инча", "pl": "in"},
+    "perfilUKm": {"es": "km", "en": "km", "fr": "km", "de": "km", "it": "km", "nl": "km", "zh": "公里", "zht": "公里", "bg": "км", "pl": "km"},
+    "perfilMedKg": {"es": "{n} kg", "en": "{n} kg", "fr": "{n} kg", "de": "{n} kg", "it": "{n} kg", "nl": "{n} kg", "zh": "{n}公斤", "zht": "{n}公斤", "bg": "{n} кг", "pl": "{n} kg"},
+    "perfilMedCm": {"es": "{n} cm", "en": "{n} cm", "fr": "{n} cm", "de": "{n} cm", "it": "{n} cm", "nl": "{n} cm", "zh": "{n}厘米", "zht": "{n}公分", "bg": "{n} см", "pl": "{n} cm"},
+    "perfilMedLb": {"es": "{n} lb|{n} lb", "en": "{n} lb|{n} lb", "fr": "{n} lb|{n} lb", "de": "{n} lb|{n} lb", "it": "{n} lb|{n} lb", "nl": "{n} lb|{n} lb", "zh": "{n}磅", "zht": "{n}磅", "bg": "{n} фунт|{n} фунта", "pl": "{n} lb|{n} lb|{n} lb"},
+    "perfilMedStLb": {"es": "{st} st {lb}", "en": "{st} st {lb}", "fr": "{st} st {lb}", "de": "{st} st {lb}", "it": "{st} st {lb}", "nl": "{st} st {lb}", "zh": "{st}英石{lb}", "zht": "{st}英石{lb}", "bg": "{st} стоуна {lb}", "pl": "{st} st {lb}"},
     "perfilGuardar": {"es": "Guardar", "en": "Save", "fr": "Enregistrer", "de": "Speichern", "it": "Salva", "nl": "Opslaan", "zh": "保存", "zht": "儲存", "bg": "Запази", "pl": "Zapisz"},
     "perfilGuardado": {"es": "Guardado ✓", "en": "Saved ✓", "fr": "Enregistré ✓", "de": "Gespeichert ✓", "it": "Salvato ✓", "nl": "Opgeslagen ✓", "zh": "已保存 ✓", "zht": "已儲存 ✓", "bg": "Запазено ✓", "pl": "Zapisano ✓"},
     "perfilImc": {"es": "IMC", "en": "BMI", "fr": "IMC", "de": "BMI", "it": "IMC", "nl": "BMI", "zh": "BMI指数", "zht": "BMI指數", "bg": "ИТМ", "pl": "BMI"},
@@ -1216,8 +1235,10 @@
   function mostrarNum(v, dec) { return v == null ? '' : fmt(v, dec); }
   function renderDatos() {
     var imp = imperial();
-    $('tgp-altura-u').textContent = imp ? 'in' : 'cm';
-    $('tgp-peso-u').textContent = imp ? 'lb' : 'kg'; $('tgp-peso-nuevo-u').textContent = imp ? 'lb' : 'kg'; $('tgp-objetivo-u').textContent = imp ? 'lb' : 'kg';
+    var uPeso = tx(imp ? 'perfilULb' : 'perfilUKg');
+    $('tgp-altura-u').textContent = tx(imp ? 'perfilUIn' : 'perfilUCm');
+    $('tgp-peso-u').textContent = uPeso; $('tgp-peso-nuevo-u').textContent = uPeso; $('tgp-objetivo-u').textContent = uPeso;
+    $('tgp-km-nuevo-u').textContent = tx('perfilUKm');
     $('tgp-altura').value = st.altura_cm ? (imp ? String(Math.round(st.altura_cm / CM_IN)) : mostrarNum(st.altura_cm, st.altura_cm % 1 ? 1 : 0)) : '';
     var p = pesoActual();
     $('tgp-peso').value = p ? mostrarNum(deKg(p), 1) : '';
@@ -1234,12 +1255,12 @@
     return (n >= 1900 && n <= anio) ? n : undefined;
   }
   function pies(cm) { var inch = Math.round(cm / CM_IN); return Math.floor(inch / 12) + '′' + (inch % 12) + '″'; }
-  function stones(kg) { var lb = Math.round(kg * KG_LB); return Math.floor(lb / 14) + ' st ' + (lb % 14) + ' lb'; }
+  function stones(kg) { var lb = Math.round(kg * KG_LB); return tx('perfilMedStLb', { st: Math.floor(lb / 14), lb: tx('perfilMedLb', { n: lb % 14 }) }); }
   function ayudas() {
     var hv = campo('tgp-altura', rAltura(), 'tgp-altura-h'), pv = campo('tgp-peso', rPeso(), 'tgp-peso-h');
     var h = hv ? aCm(hv) : null, p = pv ? aKg(pv) : null;
-    if (hv !== undefined) $('tgp-altura-h').textContent = h ? (imperial() ? fmt(h, 0) + ' cm' : pies(h)) : '';
-    if (pv !== undefined) $('tgp-peso-h').textContent = p ? (imperial() ? fmt(p, 1) + ' kg' : stones(p)) : '';
+    if (hv !== undefined) $('tgp-altura-h').textContent = h ? (imperial() ? tx('perfilMedCm', { n: fmt(h, 0) }) : pies(h)) : '';
+    if (pv !== undefined) $('tgp-peso-h').textContent = p ? (imperial() ? tx('perfilMedKg', { n: fmt(p, 1) }) : stones(p)) : '';
     var n = leerAnio(), anio = new Date().getFullYear(), ayN = $('tgp-nac-h');
     $('tgp-nac').setAttribute('aria-invalid', n === undefined ? 'true' : 'false');
     ayN.classList.toggle('error', n === undefined);
@@ -1294,7 +1315,7 @@
     });
   }
   function enRango(ms) { var h = hoy(); return ms.filter(function (m) { return dias(m.d, h) <= st.rango; }); }
-  function pesoMostrar(kg) { return imperial() ? fmt(kg * KG_LB, 1) + ' lb' : fmt(kg, 1) + ' kg'; }
+  function pesoMostrar(kg) { return imperial() ? tx('perfilMedLb', { n: fmt(kg * KG_LB, 1) }) : tx('perfilMedKg', { n: fmt(kg, 1) }); }
   function conSigno(kg) { return (kg > 0 ? '+' : (kg < 0 ? '−' : '')) + pesoMostrar(Math.abs(kg)); }
   function renderEvo() {
     $('tgp-evo-peso').hidden = st.tab !== 'peso'; $('tgp-evo-km').hidden = st.tab !== 'km';
@@ -1357,9 +1378,9 @@
     var h = hoy(), siete = 0, total = 0, hoyKm = 0, porDia = {};
     st.km.forEach(function (k) { total += k.km; var d = dias(k.d, h); if (d >= 0 && d <= 6) { siete += k.km; porDia[k.d] = (porDia[k.d] || 0) + k.km; } if (k.d === h) hoyKm += k.km; });
     /* Los 7 dias que acaban hoy, que son las barras que se ven (no la semana del calendario). */
-    tiles.appendChild(tile(tx('perfilUltimos7'), fmt(siete, 1) + ' km'));
-    tiles.appendChild(tile(tx('perfilHoy'), fmt(hoyKm, 1) + ' km'));
-    tiles.appendChild(tile(tx('perfilTotalCaminado'), fmt(total, 1) + ' km'));
+    tiles.appendChild(tile(tx('perfilUltimos7'), tx('medidaKm', { n: fmt(siete, 1) })));
+    tiles.appendChild(tile(tx('perfilHoy'), tx('medidaKm', { n: fmt(hoyKm, 1) })));
+    tiles.appendChild(tile(tx('perfilTotalCaminado'), tx('medidaKm', { n: fmt(total, 1) })));
     if (!st.km.length) { chart.appendChild(el('div', 'tgp-empty', tx('perfilSinDatos'))); return; }
     var NS = 'http://www.w3.org/2000/svg', W = 320, H = 140, T = 18, B = 22, L = 10, R = 10;
     var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', tx('perfilKm'));
@@ -1376,7 +1397,7 @@
     var ejeX = document.createElementNS(NS, 'line'); ejeX.setAttribute('x1', L); ejeX.setAttribute('x2', W - R); ejeX.setAttribute('y1', H - B); ejeX.setAttribute('y2', H - B); ejeX.setAttribute('class', 'grid'); svg.appendChild(ejeX);
     chart.appendChild(svg);
     st.km.slice().sort(function (a, b) { return a.d < b.d ? 1 : -1; }).slice(0, 8).forEach(function (k) {
-      var li = el('li'); li.appendChild(el('span', 'd', fmtFecha(k.d, { day: 'numeric', month: 'short', year: '2-digit' }))); li.appendChild(el('span', '', fmt(k.km, 1) + ' km'));
+      var li = el('li'); li.appendChild(el('span', 'd', fmtFecha(k.d, { day: 'numeric', month: 'short', year: '2-digit' }))); li.appendChild(el('span', '', tx('medidaKm', { n: fmt(k.km, 1) })));
       var x = el('button', 'x', tx('perfilBorrarRegistro')); x.type = 'button'; x.dataset.id = k.id; x.dataset.tipo = 'km'; li.appendChild(x); log.appendChild(li);
     });
   }
@@ -2467,7 +2488,7 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
       <div class="tgp-chart" id="tgp-km-chart"></div>
       <form class="tgp-add" id="tgp-add-km" novalidate>
         <input class="tgp-input" type="date" id="tgp-km-fecha">
-        <div class="tgp-input-wrap"><input class="tgp-input" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" id="tgp-km-nuevo" aria-describedby="tgp-km-nuevo-h"><span class="tgp-unit">km</span></div>
+        <div class="tgp-input-wrap"><input class="tgp-input" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" id="tgp-km-nuevo" aria-describedby="tgp-km-nuevo-h"><span class="tgp-unit" id="tgp-km-nuevo-u">km</span></div>
         <button type="submit" class="tgp-btn gold"><span>Añadir</span></button>
         <div class="tgp-help tgp-add-help" id="tgp-km-nuevo-h" aria-live="polite"></div>
       </form>
