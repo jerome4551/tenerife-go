@@ -55,7 +55,10 @@
  *     oscuro» al nivel mas alto), dicen rosa, naranja y amarillo por ese
  *     orden, y el buscador del propio modulo lleva a su respuesta las preguntas por cada color y
  *     la de por que el amarillo empieza en 10 (19b). Y la bandera de la playa: las preguntas por
- *     la bandera amarilla o la roja llevan a la respuesta del mar en los diez idiomas (19c).
+ *     la bandera amarilla o la roja llevan a la respuesta del mar en los diez idiomas (19c). Y el
+ *     color del dibujo no es una urgencia: «¿por qué mi pecho está en naranja?» lleva a los colores,
+ *     ninguna pregunta por el color de un grupo lleva a una urgencia, y el dolor de pecho sigue
+ *     dando la suya (19d).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -1151,6 +1154,62 @@ async function ejemplo(pg) {
       }
     }
     prueba('la bandera de la playa: la amarilla, la amarilla en la playa, si se puede nadar con ella y la roja llevan a la respuesta del mar, en los diez idiomas (' + consultas + ' consultas)', consultas === 150 && !malas.length, malas.slice(0, 5).join(' · '));
+  }
+
+  // 19d. (sin navegador; 6 de noviembre de 2026) el color del pecho no es una urgencia. «¿Por qué mi pecho está en
+  //      naranja?», preguntado por el color del dibujo, llevaba en castellano a la urgencia del dolor en el pecho
+  //      («pecho» pesa mucho en «urg-pecho»), con los cuatro colores. «colores-del-mapa» lleva ahora la variante
+  //      «¿por qué mi pecho sale en naranja?». En los diez idiomas, la pregunta de por qué un grupo del dibujo está
+  //      en un color, de tres maneras, con los 12 grupos, los 4 colores y 30 años, 15 y sin edad, no lleva nunca a
+  //      una urgencia; las del pecho, en castellano, llevan a los colores. Y lo que se escribe cuando duele el
+  //      pecho sigue dando la urgencia: el filtro de urgencias (sus patrones) no se ha tocado
+  {
+    const fs = require('fs'), path = require('path'), vm = require('vm');
+    const lee = l => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'), 'utf8')).respuestas;
+    const M = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8'), ctx = {};
+    vm.createContext(ctx); vm.runInContext(M.slice(M.indexOf('/* buscador.js —'), M.indexOf('/* ── la pantalla «Su cuerpo» ── */')), ctx);
+    // los nombres de los 12 grupos, los de la pantalla (CUERPO_UI, «cuerpoG_<grupo>»)
+    const G = {};
+    for (const m of M.matchAll(/"cuerpoG_([a-z_]+)": (\{[^}]*\})/g)) G[m[1]] = JSON.parse(m[2]);
+    const T = {
+      es: ['¿por qué mi {g} está en {c}?', '{g} en {c}, ¿por qué?', '¿qué significa que mi {g} salga {c}?'],
+      en: ['why is my {g} {c}?', '{g} in {c}, why?', 'what does it mean that my {g} is {c}?'],
+      fr: ['pourquoi mon {g} est en {c} ?', '{g} en {c}, pourquoi ?', 'que veut dire mon {g} en {c} ?'],
+      de: ['Warum ist mein {g} {c}?', '{g} in {c}, warum?', 'Was bedeutet es, wenn mein {g} {c} ist?'],
+      it: ['perché il mio {g} è {c}?', '{g} in {c}, perché?', 'cosa significa se il mio {g} è {c}?'],
+      nl: ['waarom is mijn {g} {c}?', '{g} in het {c}, waarom?', 'wat betekent het als mijn {g} {c} is?'],
+      zh: ['为什么我的{g}是{c}？', '{g}变成{c}是什么意思', '我的{g}显示{c}代表什么'],
+      zht: ['為什麼我的{g}是{c}？', '{g}變成{c}是什麼意思', '我的{g}顯示{c}代表什麼'],
+      bg: ['защо {g} ми е {c}?', '{g} в {c}, защо?', 'какво означава, че {g} ми е {c}?'],
+      pl: ['dlaczego {g} jest {c}?', '{g} na {c}, dlaczego?', 'co znaczy, że {g} jest {c}?']
+    };
+    const C = { es: ['gris', 'rosa', 'naranja', 'amarillo'], en: ['grey', 'pink', 'orange', 'yellow'], fr: ['gris', 'rose', 'orange', 'jaune'],
+      de: ['grau', 'rosa', 'orange', 'gelb'], it: ['grigio', 'rosa', 'arancione', 'giallo'], nl: ['grijs', 'roze', 'oranje', 'geel'],
+      zh: ['灰色', '粉色', '橙色', '黄色'], zht: ['灰色', '粉紅色', '橘色', '黃色'], bg: ['сиво', 'розово', 'оранжево', 'жълто'], pl: ['szary', 'różowy', 'pomarańczowy', 'żółty'] };
+    const DUELE = ['me duele el pecho', '¿por qué me duele el pecho?', 'dolor en el pecho al correr', 'tengo presión en el pecho', 'me aprieta el pecho',
+      'siento un peso en el pecho', 'pinchazo en el pecho', 'dolor de pecho y brazo izquierdo', 'creo que me está dando un infarto',
+      'molestias en el pecho haciendo deporte', 'tengo el pecho apretado', 'noto opresión en el pecho', 'dolor torácico', 'me duele el pecho al respirar'];
+    const aUrgencia = [], pechoMal = [], dueleMal = []; let consultas = 0;
+    for (const l of Object.keys(T)) {
+      const R = lee(l), tipo = Object.fromEntries(R.map(r => [r.id, r.tipo])), b = ctx.TG_BUSCADOR.crear({ idioma: l, respuestas: R });
+      for (const t of T[l]) for (const gk of Object.keys(G)) for (const c of C[l]) for (const edad of [30, 15, null]) {
+        const q = t.replace('{g}', l === 'de' ? G[gk][l] : G[gk][l].toLowerCase()).replace('{c}', c), x = b.buscar(q, { edad });
+        consultas++;
+        if (x.urgente || (x.mejor && tipo[x.mejor.id] === 'urgencia')) aUrgencia.push(l + ' «' + q + '» (' + edad + '): ' + (x.urgente || x.mejor.id));
+      }
+      if (l === 'es') {
+        for (const c of C.es) for (const edad of [30, 15, null]) {
+          const q = '¿por qué mi pecho está en ' + c + '?', x = b.buscar(q, { edad });
+          if (x.urgente || !(x.mejor && x.mejor.id === 'colores-del-mapa')) pechoMal.push('«' + q + '» (' + edad + '): ' + (x.urgente || (x.mejor ? x.mejor.id : x.pista)));
+        }
+        for (const q of DUELE) for (const edad of [30, 15, null]) {
+          const x = b.buscar(q, { edad });
+          if (x.urgente !== 'urg-pecho') dueleMal.push('«' + q + '» (' + edad + '): ' + (x.urgente || '-'));
+        }
+      }
+    }
+    prueba('el color del dibujo no es una urgencia: por qué un grupo está en un color, en los diez idiomas, nunca lleva a una urgencia (' + consultas + ' consultas), y el pecho en castellano lleva a los colores', consultas === 4320 && !aUrgencia.length && !pechoMal.length, aUrgencia.concat(pechoMal).slice(0, 5).join(' · '));
+    prueba('lo que se escribe cuando duele el pecho sigue dando la urgencia del pecho (' + DUELE.length + ' frases, con tres edades)', !dueleMal.length, dueleMal.slice(0, 5).join(' · '));
   }
 
   // 20. (la app) al bajar por la pestaña, la cabecera y la barra de pestañas del perfil quedan
