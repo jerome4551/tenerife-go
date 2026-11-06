@@ -9799,6 +9799,13 @@ function rumboVisible(cod) {
   return (k && tx('rumbo' + k)) || cod;
 }
 
+/* El filtro «Accesible en bus» sin ninguna linea encendida: el aviso, en los diez
+   idiomas. Es la frase de busShareNothing («Active al menos una linea para
+   compartir»), ya traducida, sin el «para compartir». */
+Object.assign(UI_TX, {
+  "busAccesoSinLineas": {"es":"Active al menos una línea","en":"Activate at least one line","fr":"Activez au moins une ligne","de":"Aktivieren Sie mindestens eine Linie","it":"Attivi almeno una linea","nl":"Activeer minstens één lijn","zh":"请至少启用一条线路","zht":"請至少啟用一條路線","bg":"Включете поне една линия","pl":"Trzeba włączyć co najmniej jedną linię"}
+});
+
 /* La politica de privacidad, en los nueve idiomas. Estaba entera en
    castellano: un aleman o un chino leian el aviso legal en un idioma que no
    entienden, que es justo lo que un aviso legal no puede permitirse. */
@@ -19590,8 +19597,9 @@ function updateFilterStatus() {
     let busNote = '';
     if (showOnlyBusAccessible) {
       if (!busActiveLines || busActiveLines.size === 0) {
-        // Sin líneas activas: aviso claro en el pill
-        busNote = ` <span class="bus-access-pill">🚏 Activa una línea de bus</span>`;
+        // Sin líneas activas: aviso claro en el pill. Hasta el 6 de noviembre de 2026
+        // decia «Activa una línea de bus» en los diez idiomas, y de tu.
+        busNote = ` <span class="bus-access-pill">🚏 ${escapeHtml(tx('busAccesoSinLineas'))}</span>`;
       } else {
         busNote = ` <span class="bus-access-pill">🚏 &lt;${escapeHtml(conUnidad(BUS_ACCESS_RADIUS_M, 0, 'medidaM'))}</span>`;
       }

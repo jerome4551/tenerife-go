@@ -7637,7 +7637,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3329 filas (y 5.477 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3330 filas (y 5.478 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -7749,7 +7749,8 @@ con «Comida», el asistente y «Su deporte»: 122 filas más en `CUERPO_UI` (de
 del buscador del asistente (`STOP`), que se declara sin traducir y cuenta en
 su total sin mirarse: 5.456. El 6 de noviembre, las unidades y los rumbos en la
 lengua de cada uno: 12 filas de `UI_TX` (cuatro unidades y los ocho rumbos) y 9
-de `PERFIL_UI` (468): 3329 y 5.477. El
+de `PERFIL_UI` (468): 3329 y 5.477. Y una más, el aviso del filtro «Accesible en
+bus» sin líneas: 3330 y 5.478. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
