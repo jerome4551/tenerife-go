@@ -2,8 +2,13 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-06T14:39:34Z",
+ "consultado": "2026-11-06T15:24:35Z",
  "alertas": [
+  {
+   "t": "2026-11-06T14:46:11Z",
+   "titulo": "El Gobierno de Canarias finaliza la prealerta por lluvias en La Palma",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-prealerta-por-lluvias-en-la-palma-2/"
+  },
   {
    "t": "2026-11-05T13:01:43Z",
    "titulo": "El Gobierno de Canarias declara la prealerta por lluvias en La Palma",
@@ -58,11 +63,6 @@
    "t": "2026-10-31T19:19:26Z",
    "titulo": "El Gobierno de Canarias actualiza la situación a alerta por lluvias en La Palma y Tenerife",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-a-alerta-por-lluvias-en-la-palma-y-tenerife/"
-  },
-  {
-   "t": "2026-10-31T12:30:50Z",
-   "titulo": "El Gobierno declara la prealerta por tormentas en las islas occidentales y Gran Canaria",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-declara-la-prealerta-por-tormentas-en-las-islas-occidentales-y-gran-canaria/"
   }
  ],
  "descartados": 0
