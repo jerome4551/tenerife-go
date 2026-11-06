@@ -5796,6 +5796,121 @@ chips, y el texto sin traducir salió a cero.
   app; la app de las tiendas, montada y abierta; el SOS, 39 y 261; y los
   robots de los terremotos y de las alertas. En verde.
 
+## Las unidades y los rumbos en la lengua de cada uno, el control sin traducir, Siam Park y la cuenta de prueba (6 de noviembre)
+
+Jerome, el 6 de noviembre: «1 arréglalo ya», «2 B, así cada uno entiende
+que pensamos en todos. Y si por publicar», «Siam park si ponlo que tienen
+diferente precio por diferente entradas, como residente, válidos» y «Haz tu
+una cuenta de prueba y bórrala».
+
+**El control que salió en rojo de madrugada** (`dbab8b7`).
+`auditar_sin_traducir.js` saca de `places[]` los nombres propios para no
+contarlos como texto sin traducir, pero leía `pl.nombre`, que no existe:
+las fichas lo llaman `name`. Con el mar en calma, «dónde bañarse» enseñó
+tres playas y el control las dio por castellano suelto. Leyendo `name`,
+3.331 nombres propios en vez de 2.398. Lo otro que salió, «🌊 0,3 m · 💨 W 3
+km/h» en búlgaro, no era del control: era la opción B.
+
+**Siam Park** (`8613233`). La ficha de accesibilidad decía cosas que
+siampark.net no dice («50% de descuento», «entrada gratuita con
+discapacidad total», «pulseras Fast Pass para personas con autismo»). Ahora,
+en los diez idiomas y sin cifras: hay entradas para residentes en Canarias,
+y las personas con una discapacidad reconocida del 60% o más tienen una
+tarifa especial, que se compra en la oficina de información del parque con
+el certificado y un documento con foto (siampark.net, noviembre de 2026).
+Fuera la etiqueta «Autismo».
+
+**Las unidades y los rumbos** (`1498434`). La altura de las olas, el viento, la
+marea, el periodo de las olas, la precisión del GPS, la distancia a una
+parada, a una gasolinera y la del asistente, y el radio del filtro
+«Accesible en bus» se escribían «m», «km», «km/h», «s» y «NE» en los diez
+idiomas. Ahora salen de `UI_TX` (`medidaM`, `medidaKm`, `medidaKmh`,
+`medidaSeg` y los ocho rumbos) con `conUnidad()` y `rumboVisible()`:
+
+| | es | en | fr | de | it | nl | zh | zht | bg | pl |
+|---|---|---|---|---|---|---|---|---|---|---|
+| olas | 0,6 m | 0.6 m | 0,6 m | 0,6 m | 0,6 m | 0,6 m | 0.6米 | 0.6公尺 | 0,6 м | 0,6 m |
+| viento | 12 km/h | 12 km/h | 12 km/h | 12 km/h | 12 km/h | 12 km/u | 12公里/小时 | 12公里/小時 | 12 км/ч | 12 km/h |
+| rumbos | N NE E SE S SO O NO | N NE E SE S SW W NW | N NE E SE S SO O NO | N NO O SO S SW W NW | N NE E SE S SO O NO | N NO O ZO Z ZW W NW | 北 东北 东 东南 南 西南 西 西北 | 北 東北 東 東南 南 西南 西 西北 | С СИ И ЮИ Ю ЮЗ З СЗ | N NE E SE S SW W NW |
+
+De dónde sale cada cosa, sin inventar ninguna:
+
+- Los rumbos son los que ya tenía la carta del cielo (`cieloRumbo*`), y los
+  mismos de las etiquetas (NNE: NNO en alemán y neerlandés, ССИ, 东北偏北).
+  Los internos (N, NE … NW) no cambian: `scorePlaya` y
+  `PLAYAS_ORIENTACION` los comparan.
+- Búlgaro en cirílico, como el resto de la app (las fichas escriben «км» 87
+  veces y «м» 138; el asistente de «Su cuerpo», «70 кг») y como el Instituto
+  de la Lengua Búlgara de la Academia (БАН), en su columna «Пиши правилно»
+  de Аз-буки: «мерни единици: 5 т, 2 лв., 100 км/ч». Las dos formas son
+  búlgaro correcto: la norma de metrología (Наредба за единиците за
+  измерване, ПМС 275/2002, art. 26) pide los símbolos internacionales, en
+  latín, para expresar medidas, y así escribe el instituto meteorológico
+  (НИМХ) sus boletines («15-20 m/s», «25 cm»). La app ya había elegido:
+  `auditar_idioma.js` pide cirílico en cada texto búlgaro.
+- Chino: 米 y 公尺, 公里, 公里/小时 y 公里/小時 (este, el de Unicode CLDR para
+  zh-TW), 秒; pegados a la cifra, como las fichas (91 de 91 «公里» sin
+  espacio).
+- Neerlandés «km/u»: CLDR y la carta del cielo.
+- Los decimales, como en cada idioma: punto en inglés y en chino, coma en
+  los demás. Antes el mar y el GPS escribían punto en todos («1.2 m» en
+  castellano) y las paradas, coma en todos («1,2 km» en inglés).
+
+En el perfil, las unidades de los campos y de su evolución: кг y см en
+búlgaro; 公斤, 厘米 y 公分 en chino, como el asistente y los ejercicios; las
+imperiales, las de CLDR (磅, 英寸, 吋, 英石). En búlgaro, la primera vez
+dejé lb, in y st, la forma corta de CLDR, que es latina; la auditoría
+entera lo paró (`auditar_idioma.js` pide cirílico en búlgaro). Van sus
+palabras de CLDR, con su plural: «11 стоуна 1 фунт», «3 фунта», инча (el
+peso va de 3 a 63 stone, nunca uno solo). `auditar_perfil.js` cuenta ahora
+468 filas.
+
+En la carta del cielo, el búlgaro mezclaba 27 unidades en latín y 6 en
+cirílico. Ahora todas en cirílico (км, км/с, км/ч, м, см, м/с², кг/м³), y el
+m/s² del chino, 米/秒² y 公尺/秒². El panel SOS (`emergencias.js`) no se ha
+tocado: ya escribía «м», «米» y «公尺».
+
+**El aviso del filtro de guaguas** (`abdffaf`). Con «Accesible en bus»
+encendido y ninguna línea, decía «Activa una línea de bus» en los diez
+idiomas, y de tú. Ahora «Active al menos una línea», la frase de
+`busShareNothing`, ya traducida, sin el «para compartir».
+
+**Los avisos de AEMET** (`8c90ccc`). AEMET da el valor con su unidad («20 mm»,
+«70 km/h»), y la tarjeta lo enseñaba así en los diez idiomas. Ahora, con
+`conUnidad()`: 20毫米, 20公釐, 20 мм; los grados, como los escribe AEMET.
+Dos filas nuevas, `medidaMm` y `medidaCm` (毫米 y 厘米, 公釐 y 公分, como
+CLDR). `probar_avisos.js` pide ya la unidad de cada idioma: 156 de 156.
+
+Con todo, 24 filas nuevas: 3332 en el título de «Idiomas» y 5.480 en total.
+
+**La cuenta de prueba.** Una cuenta de usar y tirar, con un correo de
+`example.com`, que no es de nadie, y con un favorito, su perfil, un peso y
+una caminata. Con su sesión llamó a `borrar_mi_cuenta()`, que devolvió
+`true`. Después, su sesión ya no valía (`refresh_token_not_found`), su
+contraseña tampoco (`invalid_credentials`), y en la base de datos no quedó
+nada suyo: de una fila en cada una a 0 en `auth.users`, sus identidades,
+sesiones y tokens, `favorites`, `perfiles`, `pesos` y `caminatas`. Quedan
+las 6 cuentas de antes. La copia local de la clave y de la contraseña de
+prueba, borrada.
+
+**La auditoría entera**, sobre `4bfc758` (árbol `f2c5265f`): «AUDITORIA EN
+VERDE», sin ningún control en rojo ni sin ejecutar. El texto sin traducir,
+0 en la interfaz; las pantallas en los diez idiomas, 0; los avisos de
+AEMET, 156; el perfil, 74 y 148; el cielo, 308; «Su cuerpo», 236; el 3D,
+58, con el pellizco a 0,0 m; el SOS, 39 y 261.
+
+- La vuelta anterior, sobre `459620a`, se paró en rojo en
+  `auditar_idioma.js bg`: las lb, in y st del búlgaro (arriba). Arreglado
+  dentro del commit de las unidades, y otra vuelta entera.
+- En `main` van `dbab8b7`, `8613233`, `1498434`, `abdffaf` y `8c90ccc`, con
+  los mismos parches, encima de cuatro commits más de los robots (las
+  alertas del Gobierno de Canarias, los satélites, el semáforo del INVOLCAN
+  y los terremotos): solo cambian sus ficheros de datos.
+- Con esos datos, otra vez los controles que los leen: la app de las
+  tiendas, montada y abierta; las pantallas en los diez idiomas, 0; el
+  cielo, 308; el SOS, 39 y 261; y los robots del semáforo del INVOLCAN, de
+  las alertas y de los terremotos. En verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
