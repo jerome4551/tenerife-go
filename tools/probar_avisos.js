@@ -152,7 +152,7 @@ async function openMeteo(pg) {
     await pg.evaluate(() => toggleWxPanel());
     const esperado = {};
     for (const k of ['wxFen_CO', 'wxFen_PR', 'wxNivel_naranja', 'wxNivel_amarillo', 'wxZona_659601', 'wxZona_659603',
-                     'wxCosta', 'wxPar_P1', 'wxProb', 'wxHoraCanarias', 'wxTextoAemet', 'wxHayAvisos', 'wxDeA', 'banoHoyAemet'])
+                     'wxCosta', 'wxPar_P1', 'wxProb', 'wxHoraCanarias', 'wxTextoAemet', 'wxHayAvisos', 'wxDeA', 'banoHoyAemet', 'medidaMm'])
       esperado[k] = await T(pg, k, L);
     const [co, pr] = tarjetas;
     const linea = await txt(pg, '#mc-avisos');
@@ -162,7 +162,8 @@ async function openMeteo(pg) {
       && co.titulo === esperado.wxFen_CO && co.nivel === esperado.wxNivel_naranja
       && co.zonas === esperado.wxCosta.replace('{z}', esperado.wxZona_659603)
       && pr.titulo === esperado.wxFen_PR && pr.nivel === esperado.wxNivel_amarillo && pr.zonas === esperado.wxZona_659601
-      && pr.param.includes(esperado.wxPar_P1 + ': 20 mm') && pr.param.includes(esperado.wxProb.replace('{p}', '10%-40%'))
+      /* «20 mm» lo da AEMET; la unidad, en la de cada idioma (20毫米, 20 мм...) desde el 6 de noviembre de 2026 */
+      && pr.param.includes(esperado.wxPar_P1 + ': ' + esperado.medidaMm.replace('{n}', '20')) && pr.param.includes(esperado.wxProb.replace('{p}', '10%-40%'))
       && pr.hora.includes(esperado.wxHoraCanarias) && pr.etiqueta === esperado.wxTextoAemet
       && pr.desc === (L === 'en' ? amarillo.en.descripcion : amarillo.es.descripcion)
       && pr.marcado === (L !== 'es' && L !== 'en');

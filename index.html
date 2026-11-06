@@ -9776,6 +9776,10 @@ Object.assign(UI_TX, {
   "medidaKm":  {"es":"{n} km","en":"{n} km","fr":"{n} km","de":"{n} km","it":"{n} km","nl":"{n} km","zh":"{n}公里","zht":"{n}公里","bg":"{n} км","pl":"{n} km"},
   "medidaKmh": {"es":"{n} km/h","en":"{n} km/h","fr":"{n} km/h","de":"{n} km/h","it":"{n} km/h","nl":"{n} km/u","zh":"{n}公里/小时","zht":"{n}公里/小時","bg":"{n} км/ч","pl":"{n} km/h"},
   "medidaSeg": {"es":"{n} s","en":"{n} s","fr":"{n} s","de":"{n} s","it":"{n} s","nl":"{n} s","zh":"{n}秒","zht":"{n}秒","bg":"{n} с","pl":"{n} s"},
+  /* Las dos de los avisos de AEMET (la lluvia en mm, la nieve en cm): en chino, las de
+     CLDR (毫米 y 厘米; 公釐 y 公分 en chino tradicional) */
+  "medidaMm":  {"es":"{n} mm","en":"{n} mm","fr":"{n} mm","de":"{n} mm","it":"{n} mm","nl":"{n} mm","zh":"{n}毫米","zht":"{n}公釐","bg":"{n} мм","pl":"{n} mm"},
+  "medidaCm":  {"es":"{n} cm","en":"{n} cm","fr":"{n} cm","de":"{n} cm","it":"{n} cm","nl":"{n} cm","zh":"{n}厘米","zht":"{n}公分","bg":"{n} см","pl":"{n} cm"},
   "rumboN":  {"es":"N","en":"N","fr":"N","de":"N","it":"N","nl":"N","zh":"北","zht":"北","bg":"С","pl":"N"},
   "rumboNE": {"es":"NE","en":"NE","fr":"NE","de":"NO","it":"NE","nl":"NO","zh":"东北","zht":"東北","bg":"СИ","pl":"NE"},
   "rumboE":  {"es":"E","en":"E","fr":"E","de":"O","it":"E","nl":"O","zh":"东","zht":"東","bg":"И","pl":"E"},
@@ -29711,6 +29715,16 @@ const WX_LEVELS = { amarillo:'wx-amarillo', naranja:'wx-naranja', rojo:'wx-rojo'
 const WX_PRIORITY = { rojo:3, naranja:2, amarillo:1 };
 // parametro del anexo 3 -> fila de UI_TX (VI y NI son los dos «visibilidad»)
 const WX_PARAM = { P1:'wxPar_P1', P2:'wxPar_P2', NV:'wxPar_NV', RM:'wxPar_RM', TA:'wxPar_TA', TI:'wxPar_TI', VI:'wxPar_VIS', NI:'wxPar_VIS' };
+/* El valor lo da AEMET con su unidad («20 mm», «70 km/h»). Hasta el 6 de noviembre
+   de 2026 salia asi en los diez idiomas; ahora la cifra lleva la coma o el punto de
+   cada idioma y la unidad, la suya (conUnidad). Lo que no sea cifra y una de estas
+   unidades -los grados, por ejemplo- se queda como lo escribe AEMET. */
+const WX_UNIDAD = { 'mm': 'medidaMm', 'cm': 'medidaCm', 'm': 'medidaM', 'km/h': 'medidaKmh' };
+function wxValorLocal(v) {
+  var m = /^(-?\d+(?:[.,]\d+)?)\s*(mm|cm|m|km\/h)$/.exec(String(v || '').trim());
+  if (!m) return v;
+  return conUnidad(Number(m[1].replace(',', '.')), (m[1].split(/[.,]/)[1] || '').length, WX_UNIDAD[m[2]]);
+}
 
 let wxDatos = null;            // el ultimo fichero bueno que llego
 let wxEstado = 'cargando';     // cargando · ok · viejo · error
@@ -29809,7 +29823,8 @@ function wxTarjeta(a) {
   var dato = [];
   if (a.valor) {
     var np = (WX_PARAM[a.parametro] && tx(WX_PARAM[a.parametro])) || a.parametro_es || '';
-    dato.push(np ? np + ': ' + a.valor : a.valor);
+    var val = wxValorLocal(a.valor);
+    dato.push(np ? np + ': ' + val : val);
   }
   if (a.probabilidad) dato.push(tx('wxProb', { p: a.probabilidad }));
   if (dato.length) c.appendChild(wxEl('div', 'wx-alert-param', dato.join(' · ')));
