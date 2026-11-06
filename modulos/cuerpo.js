@@ -6,7 +6,9 @@
    espaldas, con el aspecto que elige cada persona (silueta, complexión, piel, pelo, cara,
    ropa, gafas, audífono, prótesis) y, en «Músculos», unos treinta y cinco músculos con
    volumen, también los pequeños (manguito, serrato, romboides, tibial…), que se iluminan del
-   gris al oro con las series anotadas en los últimos 7 días en su grupo (se anota en 12 grupos). Cada grupo abre su hoja: qué
+   gris al rosa, al naranja y al amarillo con las series anotadas en los últimos 7 días en su grupo
+   (se anota en 12 grupos). Desde el 6 de noviembre de 2026, ese maniquí lleva la cabeza de la
+   persona. Cada grupo abre su hoja: qué
    músculos son, sus cuentas y «Anotar series». No cambia de forma con el peso (Jerome:
    «Su aspecto y sus músculos»).
 
@@ -955,8 +957,9 @@
 
 /* figura-svg.js — monta el SVG del personaje con la geometría de figura.js y el aspecto de figura-aspecto.js.
    Modo «musculos»: un maniquí pizarra con unos treinta músculos con volumen (degradado radial por
-   nivel, fibras finas y juntas), del gris al oro según las series de la semana.
-   TG_FIGURA.svg({ vista, modo, aspecto, niveles, sel, id, etiqueta, viewBox }) → texto '<svg …>'. */
+   nivel, fibras finas y juntas), del gris al rosa, al naranja y al amarillo según las series de la
+   semana; con «cara», la cabeza es la de la persona.
+   TG_FIGURA.svg({ vista, modo, aspecto, niveles, sel, cara, id, etiqueta, viewBox }) → texto '<svg …>'. */
 (function (raiz) {
   'use strict';
   var G = raiz.TG_FIGURA_GEO, curva = G.curva, linea = G.linea, espejo = G.espejo;
@@ -991,19 +994,23 @@
     return r;
   }
 
-  /* Los niveles (31-10-2026): grafito para «sin trabajar» y una rampa de oro con saltos grandes de
-     claridad (OKLCH L 0,36 · 0,65 · 0,79 · 0,93; antes 0,45 · 0,73 · 0,82 · 0,92, y los dos primeros
-     oros se confundían). Contraste WCAG con «sin trabajar»: 3,29, 5,58 y 8,87 (1.4.11 pide 3:1). Los
-     huesos y tendones, casi del color del cuerpo: antes, claros, parecían piezas de un robot. */
+  /* Los niveles (6-11-2026): grafito para «sin trabajar» y tres tonos que no se confunden, rosa,
+     naranja y amarillo, con los saltos de claridad de la rampa de oro del 31-10 (OKLCH L 0,36 · 0,68 ·
+     0,79 · 0,92; el oro, 0,36 · 0,65 · 0,79 · 0,93, y sus tres tonos se parecían). Contraste WCAG con
+     «sin trabajar»: 3,39, 5,36 y 8,63 (1.4.11 pide 3:1). Los huesos y tendones, casi del color del
+     cuerpo: antes, claros, parecían piezas de un robot. */
   var MUSC = {
     trazo: '#05070B', base: '#202937', baseClaro: '#2C3747', junta: '#0E131A',
     hueso: '#3B4759', tendon: '#344052',
-    nivel: ['#333E4D', '#B58531', '#E0B44C', '#FFE79E'], sel: '#FFF6DC',
-    /* el contorno discontinuo de los grupos prioritarios de un deporte (el patrón, no otro color, lo distingue del oro) */
+    nivel: ['#333E4D', '#EE5F7E', '#FFA04A', '#FFE48A'], sel: '#FFFFFF',
+    /* el contorno discontinuo de los grupos prioritarios de un deporte (el patrón, no otro color, lo distingue de los niveles) */
     prio: '#F0ECE4'
   };
-  /* la luz y la sombra de cada nivel: el grafito con un brillo frío, el oro con sombra cálida (pan de oro) */
-  var LUZ = [['#A9BEDB', 0.2, '#020306', 0.42], ['#FFF1C9', 0.3, '#3D2504', 0.5], ['#FFF6DD', 0.34, '#4A2F06', 0.42], ['#FFFFFF', 0.55, '#7A5A16', 0.3]];
+  /* la luz y la sombra de cada nivel: el grafito con un brillo frío; el rosa, el naranja y el amarillo, con sombra cálida */
+  var LUZ = [['#A9BEDB', 0.2, '#020306', 0.42], ['#FFE3EA', 0.3, '#4A0A1E', 0.46], ['#FFF0D9', 0.34, '#5A2204', 0.4], ['#FFFFFF', 0.55, '#8A5A12', 0.28]];
+  /* (6-11-2026) El ambiente: la luz de detrás, el brillo del nivel más alto y la sombra del suelo. Va aparte
+     para que pueda cambiar con el tema (TG_FIGURA.AMB); estos son los del tema oscuro, el único de hoy */
+  var AMB = { halo: '#7193C4', haloOp: 0.3, brillo: '#FFD467', brilloOp: 0.38, suelo: '#000000', sueloOp: 0.42 };
 
   function rgb(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
   function hex(c) { return '#' + c.map(function (v) { var s = Math.round(Math.max(0, Math.min(255, v))).toString(16); return s.length < 2 ? '0' + s : s; }).join(''); }
@@ -1084,7 +1091,7 @@
       tela('arriba', cArriba) + tela('abajo', cAbajo) + tela('calzado', cCalzado) + tela('cabeza', cCabeza) +
       (o.brillo !== false ? '<filter id="' + id + '-halo" x="-25%" y="-12%" width="150%" height="124%"><feGaussianBlur stdDeviation="10"/></filter>' : '') +
       '</defs>';
-    var s = '<ellipse cx="200" cy="777" rx="72" ry="6.5" fill="#000" opacity="0.4"/>', HALO = '[[halo]]';
+    var s = '<ellipse cx="200" cy="777" rx="72" ry="6.5" fill="' + AMB.suelo + '" opacity="' + AMB.sueloOp + '"/>', HALO = '[[halo]]';
     s += HALO;   /* la luz de detrás va aquí, debajo del pelo de atrás (se pone cuando se sabe la silueta) */
 
     var P = A.pelo(a.pelo, vista);
@@ -1103,7 +1110,7 @@
       if (proB !== lado) pielP.push(forma('brazo', G.MANO, lado));
     });
     /* la luz de detrás, como en «Músculos»: separa la figura del fondo */
-    s = s.replace(HALO, o.brillo !== false ? '<g filter="url(#' + id + '-halo)" fill="#7193C4" opacity="0.26" pointer-events="none">' + pielP.map(function (x) { return path(x); }).join('') + '</g>' : '');
+    s = s.replace(HALO, o.brillo !== false ? '<g filter="url(#' + id + '-halo)" fill="' + AMB.halo + '" opacity="' + AMB.haloOp + '" pointer-events="none">' + pielP.map(function (x) { return path(x); }).join('') + '</g>' : '');
     s += capa(pielP, 'url(#' + id + '-piel)', oscuro(piel, 0.6), 2.4);
     /* el volumen bajo la piel: los mismos músculos, solo como sombra suave en sus bordes */
     var vol = '';
@@ -1138,7 +1145,9 @@
       var dAb = curva(def('mixta', ab));
       s += capa([dAb], 'url(#' + id + '-abajo)', oscuro(cAbajo, 0.55), 2.2);
       var cy = A.CINTURA[a.abajo];
-      s += path(curva(def('mixta', [[200 - 61, cy], [261, cy - 2], [262.5, cy + 6], [200 - 62.5, cy + 8]].map(function (p) { return p; }))), { fill: oscuro(cAbajo, 0.2), opacity: 0.8 });
+      /* (6-11-2026) la cinturilla, recta: con «curva» se abombaba y asomaba por los lados de la camiseta (sobre el fondo oscuro no se veía) */
+      var qc = def('mixta', [[200 - 60, cy], [260, cy], [261, cy + 7], [200 - 61, cy + 7]]);
+      s += path('M' + qc.map(function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join('L') + 'Z', { fill: oscuro(cAbajo, 0.2), opacity: 0.8 });
       if (a.abajo === 'corto' || a.abajo === 'largo') s += path(G.linea(def('mixta', [[200, cy + 8], [200, 412]])), { fill: 'none', stroke: oscuro(cAbajo, 0.45), 'stroke-width': 1.1 });
     }
     /* el calzado */
@@ -1190,12 +1199,12 @@
     return d + s;
   }
 
-  function cara(a, piel, colorPelo) {
+  function cara(a, piel, colorPelo, sinCuello) {
     var sombra = mezcla(piel, '#2a140a', 0.3), oscura = lum(piel) < 0.12;
     var labio = oscura ? mezcla(piel, '#E3A592', 0.42) : mezcla(piel, '#8A3B2E', 0.45);
     var ceja = a.pelo === 'calvo' || a.pelo === 'rapado' ? mezcla(piel, '#1a0f0a', 0.6) : mezcla(colorPelo, '#000000', 0.25);
     var s = '';
-    s += path('M186 111Q200 124 214 111L213 121Q200 128 187 121Z', { fill: sombra, opacity: 0.35 });
+    if (!sinCuello) s += path('M186 111Q200 124 214 111L213 121Q200 128 187 121Z', { fill: sombra, opacity: 0.35 });
     [187, 213].forEach(function (x) {
       s += path('M' + (x - 5.6) + ' 70Q' + x + ' 65.4 ' + (x + 5.6) + ' 70Q' + x + ' 74.2 ' + (x - 5.6) + ' 70Z', { fill: '#FBF8F3' });
       s += '<circle cx="' + x + '" cy="70" r="2.6" fill="#3A2A20"/><circle cx="' + x + '" cy="70" r="1.25" fill="#120c09"/>';
@@ -1222,6 +1231,53 @@
     s += path('M195.5 69.5Q200 67.2 204.5 69.5', { fill: 'none', stroke: '#1C2230', 'stroke-width': 1.6 });
     s += path('M178.5 68.5L170 66.5M221.5 68.5L230 66.5', { fill: 'none', stroke: '#1C2230', 'stroke-width': 1.6, 'stroke-linecap': 'round' });
     return s;
+  }
+
+  /* (6-11-2026) La cabeza de la persona sobre el maniquí de «Músculos»: el cuerpo enseña los músculos
+     y la cabeza sigue siendo la suya (la piel, la cara, el pelo, la barba, la gorra o el pañuelo, las
+     gafas y el audífono). El pelo que cae por debajo del mentón va al 30 %, para no tapar el cuello,
+     los hombros ni la espalda alta. Devuelve los degradados, el pelo de detrás y lo de encima. */
+  function cabezaPersona(vista, id, a) {
+    var A = raiz.TG_FIGURA_ASP, F = vista === 'frente';
+    var def = G.deformador(a.fig, a.comp);
+    var piel = PIEL[a.piel], pelo = PELO_COLOR[a.peloColor], cArriba = ROPA_COLOR[a.arribaColor];
+    function oscuro(c, t) { return mezcla(c, '#000000', t == null ? 0.55 : t); }
+    var cCabeza = a.cabeza === 'gorra' ? cArriba : mezcla(cArriba, '#FFFFFF', 0.15);
+    var defs = '<linearGradient id="' + id + '-pielc" x1="0" y1="0" x2="1" y2="0.2"><stop offset="0" stop-color="' + mezcla(piel, '#FFFFFF', 0.14) + '"/>' +
+      '<stop offset="0.55" stop-color="' + piel + '"/><stop offset="1" stop-color="' + mezcla(piel, '#3A1E10', 0.2) + '"/></linearGradient>' +
+      '<linearGradient id="' + id + '-cabezac" x1="0" y1="0" x2="1" y2="0.18"><stop offset="0" stop-color="' + mezcla(cCabeza, '#FFFFFF', 0.16) + '"/>' +
+      '<stop offset="0.5" stop-color="' + cCabeza + '"/><stop offset="1" stop-color="' + mezcla(cCabeza, '#000000', 0.3) + '"/></linearGradient>';
+    var P = A.pelo(a.pelo, vista);
+    if (a.cabeza !== 'no') { P.atras = []; P.delante = []; P.encima = []; P.trenzas = null; }
+    var atras = P.atras.length ? capa(P.atras.map(function (ps) { return curva(ps); }), pelo, oscuro(pelo, 0.5), 2.2) : '';
+    var pielP = [curva(def('cabeza', G.CABEZA)), curva(def('cabeza', G.OREJA)), curva(def('cabeza', espejo(G.OREJA)))];
+    var s = capa(pielP, 'url(#' + id + '-pielc)', oscuro(piel, 0.6), 2.4);
+    if (F) s += cara(a, piel, pelo, true);
+    var hp = '';
+    if (P.delante.length) hp += '<g opacity="' + P.opacidad + '">' + capa(P.delante.map(function (ps) { return curva(ps); }), pelo, oscuro(pelo, 0.5), 2.2) + '</g>';
+    if (P.trenzas) [1, -1].forEach(function (lado) { hp += capa(P.trenzas.map(function (ps) { return curva(lado < 0 ? espejo(ps) : ps); }), pelo, oscuro(pelo, 0.5), 1.8); });
+    if (P.encima && P.encima.length) hp += capa(P.encima.map(function (ps) { return curva(ps); }), pelo, oscuro(pelo, 0.5), 2.2);
+    if (hp) {
+      defs += '<clipPath id="' + id + '-pelo-a"><rect x="-200" y="-200" width="800" height="324"/></clipPath><clipPath id="' + id + '-pelo-b"><rect x="-200" y="124" width="800" height="900"/></clipPath>';
+      s += '<g clip-path="url(#' + id + '-pelo-a)">' + hp + '</g><g clip-path="url(#' + id + '-pelo-b)" opacity="0.3">' + hp + '</g>';
+    }
+    if (a.cabeza !== 'no') {
+      var cb = A.CABEZA[a.cabeza][F ? 'frente' : 'espalda'], cc = cCabeza;
+      var dsCb = [curva(cb.copa)];
+      if (cb.nudo) dsCb.unshift(curva(cb.nudo));
+      s += capa(dsCb, 'url(#' + id + '-cabezac)', oscuro(cc, 0.55), 2.2);
+      if (cb.visera) s += capa([curva(cb.visera)], oscuro(cc, 0.18), oscuro(cc, 0.6), 2);
+      if (cb.cierre) s += path(curva(cb.cierre), { fill: oscuro(cc, 0.45) });
+    }
+    if (F && a.gafas !== 'no') s += gafas(a.gafas);
+    if (a.audifono !== 'no') {
+      ['izq', 'der'].forEach(function (l) {
+        if (a.audifono !== 'ambos' && a.audifono !== l) return;
+        var lado = ladoDe(l, vista), ps = [[233, 60], [238.5, 61], [240.5, 70], [238.5, 80], [235, 81], [236.5, 70]];
+        s += capa([curva(lado < 0 ? espejo(ps) : ps)], '#C9CED6', '#4A5160', 1.6);
+      });
+    }
+    return { defs: defs, atras: atras, encima: '<g class="tgf-cabeza" pointer-events="none">' + s + '</g>' };
   }
 
   function svg(o) {
@@ -1264,16 +1320,20 @@
     for (var n = 0; n < 4; n++) d += degradado(id + '-n' + n, MUSC.nivel[n], LUZ[n][1], LUZ[n][3], LUZ[n][0], LUZ[n][2]);
     d += degradado(id + '-hueso', MUSC.hueso, 0.16, 0.34, '#A9BEDB', '#020306') + degradado(id + '-tendon', MUSC.tendon, 0.14, 0.34, '#A9BEDB', '#020306');
     d += '<clipPath id="' + id + '-silueta">' + piezas.map(function (p) { return path(p); }).join('') + '</clipPath>';
-    /* la luz de detrás (separa la figura del fondo) y el brillo del oro de 10 series o más */
+    /* la luz de detrás (separa la figura del fondo) y el brillo del nivel de 10 series o más */
     var brillo = o.brillo !== false;
     if (brillo) d += '<filter id="' + id + '-halo" x="-25%" y="-12%" width="150%" height="124%"><feGaussianBlur stdDeviation="10"/></filter>' +
       '<filter id="' + id + '-brillo" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6"/></filter>';
+    /* con «cara», la cabeza de la persona encima de la del maniquí */
+    var cab = o.cara ? cabezaPersona(vista, id, a) : null;
+    if (cab) d += cab.defs;
     d += '</defs>';
 
     var s = '';
     /* sombra en el suelo */
-    s += '<ellipse cx="200" cy="776" rx="74" ry="7" fill="#000" opacity="0.45"/>';
-    if (brillo) s += '<g filter="url(#' + id + '-halo)" fill="#7193C4" opacity="0.3" pointer-events="none">' + piezas.map(function (p) { return path(p); }).join('') + '</g>';
+    s += '<ellipse cx="200" cy="776" rx="74" ry="7" fill="' + AMB.suelo + '" opacity="' + AMB.sueloOp + '"/>';
+    if (brillo) s += '<g filter="url(#' + id + '-halo)" fill="' + AMB.halo + '" opacity="' + AMB.haloOp + '" pointer-events="none">' + piezas.map(function (p) { return path(p); }).join('') + '</g>';
+    if (cab) s += cab.atras;
     /* un solo contorno para todo el cuerpo: primero los trazos de todas las piezas, luego los rellenos */
     s += '<g fill="' + MUSC.trazo + '" stroke="' + MUSC.trazo + '" stroke-width="2.6" stroke-linejoin="round">' + piezas.map(function (p) { return path(p); }).join('') + '</g>';
     s += '<g fill="url(#' + id + '-cuerpo)">' + piezas.map(function (p) { return path(p); }).join('') + '</g>';
@@ -1305,8 +1365,8 @@
     });
     s += '<g>' + zonas + '</g>';
     s += '<g fill="none" stroke="#000" stroke-opacity="0.15" stroke-width="0.6" stroke-linecap="round" pointer-events="none">' + fibras + '</g>';
-    /* el oro de 10 series o más da luz a su alrededor (encima, en modo «screen»: aclara, no tapa) */
-    if (brillo && oro) s += '<g class="tgf-brillo" filter="url(#' + id + '-brillo)" fill="#FFD467" opacity="0.38" style="mix-blend-mode:screen" pointer-events="none">' + oro + '</g>';
+    /* el amarillo de 10 series o más da luz a su alrededor (encima, en modo «screen»: aclara, no tapa) */
+    if (brillo && oro) s += '<g class="tgf-brillo" filter="url(#' + id + '-brillo)" fill="' + AMB.brillo + '" opacity="' + AMB.brilloOp + '" style="mix-blend-mode:screen" pointer-events="none">' + oro + '</g>';
     var lin = '';
     (G.LINEAS[vista] || []).forEach(function (l) { lin += path(linea(def(l.pieza, l.ps)), {}) + path(linea(def(l.pieza, espejo(l.ps))), {}); });
     if (vista === 'frente') lin += path('M201 242L201 401', {});
@@ -1317,13 +1377,14 @@
     s += '<g fill="none" stroke="' + MUSC.trazo + '" stroke-opacity="0.55" stroke-width="1" stroke-linecap="round" pointer-events="none">' + dedos + '</g>';
     if (vista === 'frente') s += '<ellipse cx="200.5" cy="306" rx="2.2" ry="3" fill="' + MUSC.junta + '"/>';
     /* el contorno de los prioritarios: una línea oscura debajo y el trazo discontinuo claro encima, para que
-       se lea igual sobre el gris de un grupo sin series que sobre el oro de 10 o más */
+       se lea igual sobre el gris de un grupo sin series que sobre el amarillo de 10 o más */
     if (pr) s += '<g class="tgf-prio" fill="none" stroke-linejoin="round" pointer-events="none">' +
       '<g stroke="' + MUSC.trazo + '" stroke-opacity="0.75" stroke-width="3.6">' + pr + '</g>' +
       '<g stroke="' + MUSC.prio + '" stroke-width="1.7" stroke-dasharray="5 3.5" stroke-linecap="round">' + pr + '</g></g>';
     s += marca ? '<g class="tgf-marca" pointer-events="none">' + marca + '</g>' : '';
     s += '</g>';
     s += piezasProtesis(forma, proP, proB, true);
+    if (cab) s += cab.encima;
 
     return raizSvg(o, vista, d + s);
   }
@@ -1336,7 +1397,7 @@
     });
   });
 
-  raiz.TG_FIGURA = { svg: svg, GRUPOS: G.GRUPOS, MUSCULOS: MUSCULOS, MUSC: MUSC, normaliza: normaliza, OPC: OPC, DEF: DEF, PIEL: PIEL, PELO_COLOR: PELO_COLOR, ROPA_COLOR: ROPA_COLOR, lum: lum };
+  raiz.TG_FIGURA = { svg: svg, GRUPOS: G.GRUPOS, MUSCULOS: MUSCULOS, MUSC: MUSC, normaliza: normaliza, OPC: OPC, DEF: DEF, PIEL: PIEL, PELO_COLOR: PELO_COLOR, ROPA_COLOR: ROPA_COLOR, lum: lum, LUZ: LUZ, AMB: AMB };
 })(typeof window !== 'undefined' ? window : globalThis);
 
 /* buscador.js — el motor del asistente de «Su cuerpo»: encuentra, sin conexión, la respuesta escrita
@@ -1737,8 +1798,9 @@
     var ambas = modo === 'musculos';
     ['frente', 'espalda'].forEach(function (v) {
       var caja = $('tgc-cara-' + v);
+      /* (6-11-2026) en «Músculos», el maniquí lleva la cabeza de la persona («cara») */
       caja.innerHTML = F.svg({ vista: v, modo: modo, aspecto: st.aspecto, niveles: R.niveles, sel: ambas ? grupoAbierto : null, prio: prioActual(),
-                               id: 'tgc-' + v, etiqueta: etiquetaFigura(v, R), viewBox: '40 8 320 784' });
+                               cara: true, id: 'tgc-' + v, etiqueta: etiquetaFigura(v, R), viewBox: '40 8 320 784' });
       caja.setAttribute('aria-hidden', ambas || v === vista ? 'false' : 'true');
     });
     $('tgc-giro').classList.toggle('is-espalda', !ambas && vista === 'espalda');
@@ -2050,7 +2112,7 @@
     chips.appendChild(chipNiv);
     if (x.t !== 'fuerza') chips.appendChild(el('li', 'tipo', tx('cuerpoTipo_' + x.t)));
     x.m.forEach(function (m) { chips.appendChild(el('li', 'mat', tx('cuerpoMat_' + m))); });
-    /* el maniquí de frente y de espaldas: los principales en oro claro, los secundarios en oro oscuro */
+    /* el maniquí de frente y de espaldas: los principales en el tono del nivel 3 (amarillo), los secundarios en el del 1 (rosa) */
     var niv = {}; x.s.forEach(function (q) { niv[q] = 1; }); x.g.forEach(function (q) { niv[q] = 3; });
     ['frente', 'espalda'].forEach(function (v) {
       $('tgc-ej-fig-' + v).innerHTML = F.svg({ vista: v, modo: 'musculos', aspecto: st.aspecto, niveles: niv, id: 'tgc-ej-' + v, viewBox: '40 8 320 784' });
@@ -3048,8 +3110,9 @@
    --border, --text, --muted, --t-*, --ease-*, --shadow-*) son los del :root de index.html.
    Tema único oscuro, como el perfil.
    Diseño del 31-10-2026: la escena es una lámina de atlas (las dos vistas a la vez, con su pie
-   en cursiva y el oro de lo trabajado como pan de oro); lo demás, quieto: cifras sin cajas, la
-   semana día a día y los 12 grupos como barras con la referencia del ACSM. */
+   en cursiva); lo demás, quieto: cifras sin cajas, la semana día a día y los 12 grupos como
+   barras con la referencia del ACSM. Desde el 6-11-2026, lo trabajado va en rosa, naranja y
+   amarillo (antes, en tres oros) y el maniquí de «Músculos» lleva la cabeza de la persona. */
 #cuerpo-panel {
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -3057,7 +3120,7 @@
   /* los márgenes de la pantalla (la escena los anula para ir de borde a borde en el móvil) */
   --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px));
   /* los niveles del mapa de músculos (los mismos que dibuja TG_FIGURA: MUSC.nivel) */
-  --n0: #333E4D; --n1: #B58531; --n2: #E0B44C; --n3: #FFE79E;
+  --n0: #333E4D; --n1: #EE5F7E; --n2: #FFA04A; --n3: #FFE48A;
   --tinta2: rgba(240,236,228,0.72); --linea: rgba(240,236,228,0.09);
   color-scheme: dark;
   /* por encima del perfil (#perfil-panel, 8900) y por debajo de la bienvenida (9000), la
@@ -3555,7 +3618,8 @@
 /* la franja de la guía: más clara, sin color de «bien» ni de «mal» */
 .tgc-com-banda { position: absolute; top: 0; bottom: 0; background: rgba(240,236,228,0.14); border-left: 2px solid rgba(240,236,228,0.55); }
 .tgc-com-banda.hasta { border-left: 0; border-right: 2px solid rgba(240,236,228,0.55); }
-.tgc-com-lleno { position: absolute; left: 0; top: 2px; bottom: 2px; border-radius: 3px; background: var(--n2); }
+/* (6-11-2026) el oro de siempre, escrito aquí: «Comida» no usa los niveles del mapa de músculos */
+.tgc-com-lleno { position: absolute; left: 0; top: 2px; bottom: 2px; border-radius: 3px; background: #E0B44C; }
 .tgc-com-cuenta { grid-area: cuenta; font-size: .8rem; color: var(--tinta2); font-variant-numeric: tabular-nums; }
 .tgc-com-paso { grid-area: paso; }
 .tgc-com-n { min-width: 2ch; text-align: center; font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; }

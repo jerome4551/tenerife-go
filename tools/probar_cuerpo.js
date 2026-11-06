@@ -42,6 +42,19 @@
  *     los diez idiomas. Y al bajar por la pestaña, la cabecera y las pestañas del perfil quedan
  *     encima de «Su cuerpo», en sus cuatro modos, y por las esquinas de arriba de la barra pegada
  *     no asoma lo de debajo (20).
+ *   - desde el 6 de noviembre de 2026, el bloque 1 del rediseño: en «Músculos», el maniqui lleva
+ *     la cabeza de la persona en las dos vistas, arriba, encima de todo y sin recibir toques, y
+ *     los colores de la leyenda y de las barras son los niveles del dibujo (4a); el maniqui
+ *     pequeño de la hoja y los de la ficha de un ejercicio siguen sin cabeza (5 y 12b); en
+ *     «Aspecto» no hay cabeza aparte (6); la cabeza lleva el aspecto que se elige (7); con el
+ *     pelo largo, el toque llega al musculo de debajo y abre su hoja (7b); y la barra de
+ *     «Comida» conserva su oro (18). Y el asistente, que decia «tres tonos de oro»: una pregunta
+ *     por un color nuevo trae la respuesta de los colores, con los tres por su nombre (18); y, sin
+ *     navegador, en los diez idiomas, las seis respuestas que hablan del mapa no nombran el oro
+ *     ni en lo que enseñan ni en lo que usan para buscar (ni, en chino, llaman «el color mas
+ *     oscuro» al nivel mas alto), dicen rosa, naranja y amarillo por ese
+ *     orden, y el buscador del propio modulo lleva a su respuesta las preguntas por cada color y
+ *     la de por que el amarillo empieza en 10 (19b).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -197,6 +210,37 @@ async function ejemplo(pg) {
   const todos = [...new Set((grFrente + ',' + grEsp).split(','))].sort().join(',');
   prueba('los 12 grupos están en el dibujo', todos.split(',').length === 12, todos);
 
+  // 4a. (6-11-2026, el bloque 1 del rediseño) en «Músculos», el maniquí lleva la cabeza de la persona en
+  //     las dos vistas: arriba, encima de todo y sin recibir toques (lo de debajo es el dibujo, no ella).
+  //     Y los colores de la leyenda y de las barras son los niveles del dibujo
+  const r4x = await pg.evaluate(() => {
+    const pp = document.getElementById('perfil-panel'), antes = pp.scrollTop;
+    const cab = v => [...document.querySelectorAll('#tgc-cara-' + v + ' .tgf-cabeza')];
+    const f = cab('frente'), e = cab('espalda'), todas = f.concat(e);
+    const hex = c => '#' + c.match(/\d+/g).slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join('').toUpperCase();
+    const N = TG_FIGURA.MUSC.nivel.map(c => c.toUpperCase());
+    let arriba = false, debajo = false;
+    if (f[0]) {
+      f[0].scrollIntoView({ block: 'center' });
+      const c = f[0].getBoundingClientRect(), svg = f[0].ownerSVGElement.getBoundingClientRect();
+      arriba = c.top >= svg.top - 1 && c.bottom < svg.top + svg.height * 0.25 && c.width > 20;
+      const bajo = document.elementFromPoint(c.left + c.width / 2, c.top + c.height / 2);
+      debajo = !!bajo && !bajo.closest('.tgf-cabeza') && !!bajo.closest('#tgc-cara-frente');
+    }
+    pp.scrollTop = antes;
+    return { n: f.length + '/' + e.length, toques: todas.every(x => getComputedStyle(x).pointerEvents === 'none'),
+      ultima: todas.every(x => x.ownerSVGElement.lastElementChild === x), arriba, debajo,
+      ojos: (f[0] ? f[0].querySelectorAll('[fill="#FBF8F3"]').length : -1) + '/' + (e[0] ? e[0].querySelectorAll('[fill="#FBF8F3"]').length : -1),
+      css: [0, 1, 2, 3].map(i => getComputedStyle(document.getElementById('cuerpo-panel')).getPropertyValue('--n' + i).trim().toUpperCase()).join(' '), dibujo: N.join(' '),
+      leyenda: [0, 1, 2, 3].map(i => hex(getComputedStyle(document.getElementById('tgc-ley-' + i).previousElementSibling).backgroundColor)).join(' '),
+      barras: [...document.querySelectorAll('#tgc-lista .tgc-fila .tgc-nivel')].map(i => hex(getComputedStyle(i).backgroundColor) === N[+i.className.slice(-1)]) };
+  });
+  prueba('músculos: el maniquí lleva la cabeza de la persona, una en cada vista', r4x.n === '1/1', r4x.n);
+  prueba('músculos: la cabeza, arriba, encima de todo y sin recibir toques (debajo, el dibujo)', r4x.arriba && r4x.ultima && r4x.toques && r4x.debajo, JSON.stringify(r4x));
+  prueba('músculos: de frente, con sus ojos; de espaldas, sin ellos', r4x.ojos === '2/0', r4x.ojos);
+  prueba('los colores de la pantalla (--n0 a --n3) son los niveles del dibujo', r4x.css === r4x.dibujo, r4x.css + ' / ' + r4x.dibujo);
+  prueba('la leyenda y las 12 barras, con el color de su nivel', r4x.leyenda === r4x.dibujo && r4x.barras.length === 12 && r4x.barras.every(Boolean), r4x.leyenda + ' / ' + r4x.barras.join(','));
+
   // 4b. la semana día a día: 7 días, hoy marcado y elegido, sus cuentas cuadran con el resumen
   const r4b = await pg.evaluate(() => {
     const dias = [...document.querySelectorAll('#tgc-dias7 .tgc-dia')];
@@ -261,9 +305,10 @@ async function ejemplo(pg) {
   prueba('dentro: con el perfil desplazado, la hoja sale abajo de la pantalla y el velo la cubre entera', r5a.abajo && r5a.velo && r5a.desplazado === 500, JSON.stringify(r5a));
   prueba('dentro: lo demás del perfil (la cabecera, las pestañas, «Sus datos») inerte, la hoja no; y el perfil no se desplaza', r5a.cab && r5a.pestanas && r5a.datos && !r5a.hoja && r5a.quieto === 'hidden', JSON.stringify(r5a));
   prueba('selección marcada en el dibujo', await pg.evaluate(() => document.querySelectorAll('#tgc-cara-frente .tgf-marca path').length > 0));
-  prueba('la hoja lleva el maniquí con su grupo en oro', await pg.evaluate(() => {
+  prueba('la hoja lleva el maniquí con su grupo encendido (el tono del nivel 3) y sin cabeza de persona', await pg.evaluate(() => {
     const z = [...document.querySelectorAll('#tgc-hoja-mini .tgf-z')];
-    return z.length > 10 && z.filter(x => x.dataset.g === 'pecho').every(x => /-n3\)$/.test(x.getAttribute('fill'))) && z.filter(x => x.dataset.g !== 'pecho').every(x => /-n0\)$/.test(x.getAttribute('fill')));
+    return z.length > 10 && z.filter(x => x.dataset.g === 'pecho').every(x => /-n3\)$/.test(x.getAttribute('fill'))) && z.filter(x => x.dataset.g !== 'pecho').every(x => /-n0\)$/.test(x.getAttribute('fill'))) &&
+      document.querySelectorAll('#tgc-hoja-mini .tgf-cabeza').length === 0;
   }));
   await pg.click('#tgc-mas'); await pg.click('#tgc-mas');
   prueba('paso: 5', await pg.evaluate(() => document.getElementById('tgc-n').value) === '5');
@@ -300,6 +345,7 @@ async function ejemplo(pg) {
   prueba('músculos: sin «Girar»', r6.girar);
   await pg.click('#tgc-modo-a'); await pg.waitForTimeout(100);
   prueba('aspecto: una sola vista legible', await pg.evaluate(() => document.getElementById('tgc-cara-frente').getAttribute('aria-hidden') === 'false' && document.getElementById('tgc-cara-espalda').getAttribute('aria-hidden') === 'true'));
+  prueba('aspecto: el personaje de siempre, sin cabeza aparte', await pg.evaluate(() => document.querySelectorAll('#tgc-giro svg').length === 2 && document.querySelectorAll('#tgc-giro .tgf-cabeza').length === 0));
   await pg.click('#tgc-girar'); await pg.waitForTimeout(100);
   prueba('girar: de espaldas', await pg.evaluate(() => document.getElementById('tgc-giro').classList.contains('is-espalda') &&
     document.getElementById('tgc-cara-espalda').getAttribute('aria-hidden') === 'false' && document.getElementById('tgc-cara-frente').getAttribute('aria-hidden') === 'true' &&
@@ -336,6 +382,42 @@ async function ejemplo(pg) {
     const todas = (TG_FIGURA.svg({ vista: 'frente', modo: 'musculos', aspecto: Object.assign({}, TG_CUERPO.estado().aspecto, { protesis: 'no' }), id: 'q' }).match(/data-g="pantorrilla"/g) || []).length;
     return n > 0 && n * 2 === todas;
   }));
+  // (6-11-2026) la cabeza del maniquí es la del aspecto elegido: la misma que da el dibujo con «cara»
+  prueba('músculos: la cabeza del maniquí, con el aspecto elegido', await pg.evaluate(() => {
+    const a = TG_CUERPO.estado().aspecto, t = document.createElement('span');
+    return ['frente', 'espalda'].every(v => {
+      t.innerHTML = TG_FIGURA.svg({ vista: v, modo: 'musculos', cara: true, aspecto: a, id: 'tgc-' + v });
+      const mia = document.querySelector('#tgc-cara-' + v + ' .tgf-cabeza'), suya = t.querySelector('.tgf-cabeza');
+      return !!mia && !!suya && mia.outerHTML === suya.outerHTML && document.querySelector('#tgc-' + v + '-pielc stop[offset="0.55"]').getAttribute('stop-color') === TG_FIGURA.PIEL[a.piel];
+    });
+  }));
+
+  // 7b. (6-11-2026) el pelo largo cae sobre la espalda alta al 30 %: no se queda con el toque, que llega
+  //     al músculo de debajo y abre la hoja de su grupo. Con un toque de verdad, en su punto de la pantalla
+  const pp7 = await pg.evaluate(() => document.getElementById('perfil-panel').scrollTop);
+  await pg.evaluate(() => { const e = JSON.parse(localStorage.getItem('tenerife.cuerpo')); e.aspecto = Object.assign(TG_FIGURA.normaliza(null), { pelo: 'largo' }); localStorage.setItem('tenerife.cuerpo', JSON.stringify(e)); TG_CUERPO.abrir(); });
+  await pg.waitForTimeout(200);
+  const r7c = await pg.evaluate(() => {
+    const cab = document.querySelector('#tgc-cara-espalda .tgf-cabeza');
+    if (!cab) return null;
+    cab.scrollIntoView({ block: 'center' });
+    const c = cab.getBoundingClientRect();
+    for (const z of document.querySelectorAll('#tgc-cara-espalda .tgf-z')) {
+      const r = z.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
+      if (x > c.left && x < c.right && y > c.top && y < c.bottom && document.elementFromPoint(x, y) === z) return { x, y, g: z.dataset.g };
+    }
+    return null;
+  });
+  prueba('pelo largo: debajo del pelo hay músculo, y es él quien recibe el toque', !!r7c, JSON.stringify(r7c));
+  if (r7c) {
+    await pg.mouse.click(r7c.x, r7c.y); await pg.waitForTimeout(300);
+    prueba('pelo largo: tocar ahí abre la hoja de ese grupo', await pg.evaluate(g => {
+      const z = [...document.querySelectorAll('#tgc-hoja-mini .tgf-z')].filter(x => /-n3\)$/.test(x.getAttribute('fill')));
+      return !document.getElementById('tgc-hoja').hidden && z.length > 0 && z.every(x => x.dataset.g === g);
+    }, r7c.g), r7c.g);
+    await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
+  }
+  await pg.evaluate(y => { document.getElementById('perfil-panel').scrollTop = y; }, pp7);
 
   // 8. lo guardado, aunque venga roto, no rompe la pantalla
   await pg.evaluate(() => {
@@ -490,11 +572,11 @@ async function ejemplo(pg) {
     nombre: document.getElementById('tgc-ej-nom').textContent, pasos: document.querySelectorAll('#tgc-ej-pasos li').length,
     foco: document.activeElement && document.activeElement.id, etiqueta: document.getElementById('tgc-hoja').getAttribute('aria-labelledby'),
     enlaces: [...document.querySelectorAll('#tgc-ej-fuentes a')].map(a => [a.href, a.target, a.rel]),
-    zonasPrim: document.querySelectorAll('#tgc-ej-figuras .tgf-z').length }));
+    zonasPrim: document.querySelectorAll('#tgc-ej-figuras .tgf-z').length, cabezas: document.querySelectorAll('#tgc-ej-figuras .tgf-cabeza').length }));
   prueba('ficha: se abre', r12b.visible && r12b.foco === 'tgc-ej-nom' && r12b.etiqueta === 'tgc-ej-nom');
   prueba('ficha: nombre y pasos de los datos', r12b.nombre === datosEs[ej.id][0] && r12b.pasos === datosEs[ej.id][1].length, r12b.nombre);
   prueba('ficha: fuentes enlazadas, en otra pestaña y sin opener', r12b.enlaces.length === ej.f.length && r12b.enlaces.every(e => /^https:\/\//.test(e[0]) && e[1] === '_blank' && /noopener/.test(e[2])));
-  prueba('ficha: el maniquí de frente y de espaldas', r12b.zonasPrim > 40);
+  prueba('ficha: el maniquí de frente y de espaldas, sin cabeza de persona', r12b.zonasPrim > 40 && r12b.cabezas === 0, r12b.zonasPrim + '/' + r12b.cabezas);
   const antes12 = await pg.evaluate(() => TG_CUERPO.estado().series.length);
   await pg.click('#tgc-ej-mas'); await pg.click('#tgc-ej-guardar'); await pg.waitForTimeout(150);
   const r12c = await pg.evaluate(() => TG_CUERPO.estado().series.slice(-3));
@@ -804,6 +886,11 @@ async function ejemplo(pg) {
     await preguntar(PRIV.q);
     const t18 = await ultima();
     prueba('«' + PRIV.q + '»: su respuesta, la de datos-privacidad', t18 === PRIV.r.t, t18);
+    // (6-11-2026) una pregunta por un color nuevo del mapa: la respuesta de los colores, con los tres por su nombre
+    const COLORES = A.respuestas.find(r => r.id === 'colores-del-mapa');
+    await preguntar('¿qué es el color naranja?');
+    const t18c = await ultima();
+    prueba('«¿qué es el color naranja?»: la respuesta de los colores del mapa, que dice rosa, naranja y amarillo', !!COLORES && t18c === COLORES.r.t && /rosa.*naranja.*amarillo/.test(t18c || ''), t18c);
     const HOSTIL = '<img src=x onerror="window.__pwned=1"> calor';
     await preguntar(HOSTIL);
     const x18 = await p8.evaluate(H => ({ texto: [...document.querySelectorAll('#tgc-charla .tgc-yo')].some(p => p.textContent === H),
@@ -865,8 +952,11 @@ async function ejemplo(pg) {
     for (let i = 0; i < 2; i++) { await p8.click('#tgc-com-dia .tgc-com-fila[data-g="frutas"] button[data-d="1"]'); await p8.waitForTimeout(120); }
     const k2 = await p8.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')).comida, f = Object.keys(g.d);
       return { on: g.on, dias: f.length, n: f.length ? g.d[f[0]].frutas : 0, cuenta: document.querySelector('#tgc-com-dia .tgc-com-fila[data-g="frutas"] .tgc-com-n').textContent,
-        vivo: document.getElementById('tgc-com-vivo').textContent, debe: UI_TX.cuerpoComVivo.es.replace('{g}', UI_TX.cuerpoComG_frutas.es).replace('{n}', '2') }; });
+        vivo: document.getElementById('tgc-com-vivo').textContent, debe: UI_TX.cuerpoComVivo.es.replace('{g}', UI_TX.cuerpoComG_frutas.es).replace('{n}', '2'),
+        barra: (b => b ? getComputedStyle(b).backgroundColor : 'sin barra')(document.querySelector('#tgc-com-dia .tgc-com-fila[data-g="frutas"] .tgc-com-lleno')) }; });
     prueba('«Comida», encendido: dos raciones de fruta, guardadas en el dispositivo, y el lector de pantalla lo dice («' + k2.debe + '»)', k2.on && k2.dias === 1 && k2.n === 2 && k2.cuenta === '2' && k2.vivo === k2.debe, JSON.stringify(k2));
+    // (6-11-2026) la barra de «Comida» no usa los niveles del mapa de músculos: sigue en su oro (#E0B44C)
+    prueba('«Comida»: su barra, en el oro de siempre', k2.barra === 'rgb(224, 180, 76)', k2.barra);
     await p8.click('#tgc-com-borrar'); await p8.waitForTimeout(100); await p8.click('#tgc-com-borrar-si'); await p8.waitForTimeout(150);
     const k3 = await p8.evaluate(() => ({ d: Object.keys(TG_CUERPO.estado().comida.d).length, g: Object.keys(JSON.parse(localStorage.getItem('tenerife.cuerpo')).comida.d).length }));
     prueba('«' + await p8.evaluate(() => UI_TX.cuerpoComBorrar.es) + '», con su confirmación en la página: fuera la comida anotada', k3.d === 0 && k3.g === 0, JSON.stringify(k3));
@@ -974,6 +1064,55 @@ async function ejemplo(pg) {
       if (!(t.includes(bo) || (l === 'pl' && t.includes(bo.replace(/«([^«»]*)»/g, '„$1”'))))) malPol.push(l + ': «' + bo + '»');
     }
     prueba('la política de privacidad cita el botón de borrar «Su cuerpo» tal cual, en los diez idiomas', !malPol.length, malPol.join(' · '));
+  }
+
+  // 19b. (sin navegador; 6 de noviembre de 2026, el bloque 1 del rediseño) los niveles del mapa ya no son de
+  //      oro, y el asistente lo decía en cuatro frases («tres tonos de oro», «el tono de oro más alto»…) y en
+  //      lo que usa para buscar. En los diez idiomas: las seis respuestas que hablan del mapa no nombran el
+  //      oro; la de los colores y la frase del mapa dicen rosa, naranja y amarillo, por ese orden; y el
+  //      buscador del propio módulo lleva a «colores-del-mapa» las preguntas por cada color y a
+  //      «por-que-diez-series» la de por qué el amarillo empieza en 10
+  {
+    const fs = require('fs'), path = require('path'), vm = require('vm');
+    const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+    const lee = l => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'), 'utf8')).respuestas;
+    const DEL_MAPA = ['como-anotar', 'cuantas-series', 'que-cuenta-como-serie', 'colores-del-mapa', 'por-que-diez-series', 'que-entreno-hoy'];
+    const sinLetra = '(?<![\\p{L}])', niLetra = '(?![\\p{L}])';
+    const ORO = { es: new RegExp(sinLetra + '(oro|dorad\\p{L}*)' + niLetra, 'iu'), en: /gold/i, fr: new RegExp(sinLetra + '(or|dor[ée]e?s?)' + niLetra, 'iu'), de: /gold/i,
+      it: new RegExp(sinLetra + '(oro|dorat\\p{L}*)' + niLetra, 'iu'), nl: /goud/i, zh: /金色|最深的颜色/, zht: /金色|最深的顏色/, bg: /злат/i, pl: /złot/i };   // en chino, tampoco «el color más oscuro»: el nivel más alto es ahora el más claro
+    const COLOR = { es: ['rosa', 'naranja', 'amarillo'], en: ['pink', 'orange', 'yellow'], fr: ['rose', 'orange', 'jaune'], de: ['rosa', 'orange', 'gelb'], it: ['rosa', 'arancione', 'giallo'],
+      nl: ['roze', 'oranje', 'geel'], zh: ['粉色', '橙色', '黄色'], zht: ['粉紅色', '橘色', '黃色'], bg: ['розово', 'оранжево', 'жълто'], pl: ['różowy', 'pomarańczowy', 'żółty'] };
+    /* por idioma: una pregunta por el rosa, otra por el naranja, otra por el amarillo y la de las 10 series */
+    const PREG = {
+      es: ['mi brazo sale rosa', '¿qué es el color naranja?', 'qué quiere decir el amarillo', '¿por qué el amarillo empieza en 10?'],
+      en: ['what does pink mean?', 'why is a muscle orange?', 'what does yellow mean?', 'why does yellow start at 10?'],
+      fr: ['que veut dire le rose ?', 'pourquoi un muscle est orange ?', 'ça veut dire quoi le jaune', 'pourquoi le jaune commence à 10 ?'],
+      de: ['Was bedeutet Rosa?', 'Was ist die orange Farbe?', 'Was heißt Gelb', 'Warum fängt Gelb bei 10 an?'],
+      it: ['cosa significa il rosa?', 'perché un muscolo è arancione?', 'cosa vuol dire il giallo', 'perché il giallo parte da 10?'],
+      nl: ['wat betekent roze?', 'waarom is een spier oranje?', 'wat betekent geel', 'waarom begint geel bij 10?'],
+      zh: ['粉色是什么意思？', '为什么肌肉是橙色的？', '黄色代表什么', '为什么黄色从10开始？'],
+      zht: ['粉紅色是什麼意思？', '為什麼肌肉是橘色的？', '黃色代表什麼', '為什麼黃色從10開始？'],
+      bg: ['какво значи розовото', 'защо един мускул е оранжев', 'какво значи жълто', 'защо жълтото започва от 10'],
+      pl: ['co oznacza różowy', 'dlaczego mięsień jest pomarańczowy', 'co znaczy żółty', 'dlaczego żółty zaczyna się od 10']
+    };
+    const SALTA = new Set(['u', 'f', 'id', 'cat', 'tipo', 'edad', 'rel', 'links', 'cert']);
+    const todo = (o, d) => { if (typeof o === 'string') d.push(o); else if (Array.isArray(o)) o.forEach(x => todo(x, d)); else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!SALTA.has(k)) todo(v, d); return d; };
+    const M = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8'), ctx = {};
+    vm.createContext(ctx); vm.runInContext(M.slice(M.indexOf('/* buscador.js —'), M.indexOf('/* ── la pantalla «Su cuerpo» ── */')), ctx);
+    const oro = [], orden = [], busca = []; let textos = 0, preguntas = 0;
+    for (const l of L) {
+      const R = lee(l), por = Object.fromEntries(R.map(r => [r.id, r]));
+      for (const id of DEL_MAPA) for (const t of todo(por[id] || {}, [])) { textos++; if (ORO[l].test(t)) oro.push(l + ' ' + id + ': ' + t.slice(0, 70)); }
+      const enOrden = t => { const x = String(t || '').toLowerCase(), i = COLOR[l].map(c => x.indexOf(c.toLowerCase())); return i[0] >= 0 && i[0] < i[1] && i[1] < i[2]; };
+      const frases = [((por['colores-del-mapa'] || {}).r || {}).t, (((por['como-anotar'] || {}).r || {}).p || [])[1], (((por['que-cuenta-como-serie'] || {}).r || {}).p || [])[1]];
+      frases.forEach(t => { if (!enOrden(t)) orden.push(l + ': ' + String(t).slice(0, 70)); });
+      const b = ctx.TG_BUSCADOR.crear({ idioma: l, respuestas: R });
+      PREG[l].forEach((q, i) => { for (const edad of [30, 15, null]) { preguntas++; const x = b.buscar(q, { edad }), quiere = i === 3 ? 'por-que-diez-series' : 'colores-del-mapa';
+        if (!(x.mejor && x.mejor.id === quiere)) busca.push(l + ' «' + q + '» (' + edad + '): ' + (x.mejor ? x.mejor.id : x.pista)); } });
+    }
+    prueba('el asistente no habla ya de oro para los niveles: ni lo que enseña ni lo que usa para buscar, en las seis respuestas del mapa y los diez idiomas (' + textos + ' textos)', textos > 900 && !oro.length, oro.slice(0, 4).join(' · '));
+    prueba('la respuesta de los colores y la frase del mapa dicen rosa, naranja y amarillo, por ese orden, en los diez idiomas', !orden.length, orden.slice(0, 4).join(' · '));
+    prueba('el buscador lleva a su respuesta las preguntas por el rosa, el naranja y el amarillo, y la de las 10 series, en los diez idiomas (' + preguntas + ' consultas)', preguntas === 120 && !busca.length, busca.slice(0, 5).join(' · '));
   }
 
   // 20. (la app) al bajar por la pestaña, la cabecera y la barra de pestañas del perfil quedan
