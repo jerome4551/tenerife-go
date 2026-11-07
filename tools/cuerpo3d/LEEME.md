@@ -8,7 +8,10 @@ esta carpeta a partir de los datos de MakeHuman, que no van en el repositorio.
 
 Es el motor y la tubería de la maqueta «Su cuerpo Amanecer» (6-11-2026), pasados a la app el
 7-11-2026 (bloque 3 del rediseño). Los datos que hay en `datos/cuerpo3d/` son, byte a byte, los que
-se vieron en la maqueta: `construir3d.py` los vuelve a dar iguales (comprobado el 7-11-2026).
+se vieron en la maqueta: `construir3d.py` los vuelve a dar iguales (comprobado el 7-11-2026). Y en
+otro entorno (numpy 2.4.6, scipy 1.17.1, OpenCV 5.0.0, Pillow 13.0.0 y matplotlib 3.11.2), el mismo
+día, 70 de los 72 salen iguales byte a byte. `tex-mus_id.png` sale con los mismos píxeles y otra
+compresión, y por eso cambia su línea de `indice.json`.
 
 ## Qué hace cada guion
 
@@ -25,9 +28,9 @@ se vieron en la maqueta: `construir3d.py` los vuelve a dar iguales (comprobado e
 
 ## Cómo se hacen los datos
 
-Hace falta Python 3 con numpy, scipy, opencv (`cv2`) y Pillow, y los datos de MakeHuman en dos
-carpetas, que se le dicen al guion con dos variables (o se dejan en `tools/cuerpo3d/fuentes/`, que
-`.gitignore` no deja entrar en git):
+Hace falta Python 3 con numpy, scipy, opencv (`cv2`), Pillow y matplotlib (`musculos.py` usa su
+`Path`), y los datos de MakeHuman en dos carpetas, que se le dicen al guion con dos variables (o se
+dejan en `tools/cuerpo3d/fuentes/`, que `.gitignore` no deja entrar en git):
 
 ```
 TG_MH=<…/makehuman/makehuman/data> TG_MJS=<…/makehuman-data/public/data> python3 tools/cuerpo3d/construir3d.py --empaquetar
