@@ -6257,6 +6257,89 @@ control en rojo.
 **Lo que queda para Jerome:** la revisión nativa de las frases de prueba y
 de los patrones en nueve idiomas, que ha escrito la IA.
 
+## El botón de idioma de la barra de arriba, en el iPhone (7 de noviembre)
+
+Jerome, el 7 de noviembre: «Si eligen a la página de inicio el idioma para
+que guarda el botón de cambiar idioma cerca de la mapa? De momento no
+funciona! O lo quitas o lo resuelve!» (`e3dffd3`).
+
+**Lo que pasaba.** En el iPhone, al tocar la bandera de la barra de arriba
+no salía la lista de idiomas.
+- La lista (`#lang-dropdown`) vivía dentro de `.topbar-right`. En el móvil
+  esa barra lleva `overflow-x: auto`, para poder deslizarla si no cabe.
+- Safari recorta un elemento `position: fixed` que esté dentro de una caja
+  con scroll. Es el fallo [160953 de WebKit](https://bugs.webkit.org/show_bug.cgi?id=160953),
+  abierto desde 2016; en 2026 todavía se reproduce con `overflow: auto`.
+- En Chrome sí salía. Por eso ninguna prueba lo veía: todas corren en
+  Chromium.
+
+Y dos fallos más, que se ven también en Chromium:
+- En un iPhone pequeño (320 × 568), el aviso de instalar tapaba 繁體中文,
+  Български y Polski, y tocar «Polski» no hacía nada. La barra es su propio
+  contexto de apilamiento (`z-index` 1000), así que la lista, dentro de
+  ella, no podía ponerse encima del aviso (9999).
+- En un móvil tumbado (740 × 330), la lista se salía por abajo y los
+  últimos idiomas no se podían tocar.
+
+**Por qué se arregla y no se quita.** La pantalla de bienvenida sale la
+primera vez y al tocar «Inicio». El botón de la barra deja cambiar de idioma
+desde el mapa en cualquier momento, que es donde se busca. Si Jerome prefiere
+quitarlo, es un cambio pequeño.
+
+**El arreglo**, en `index.html`; el botón sigue en la barra:
+- la lista, con sus diez opciones tal cual, pasa a ser hija directa de
+  `<body>`, como los demás paneles fijos de la app;
+- va encima del aviso de instalar (`z-index` 10000);
+- si no cabe, se desliza dentro, con su alto máximo calculado al abrirla, y
+  deslizarla no la cierra;
+- se alinea con el borde derecho del botón con su ancho medido. Antes se
+  suponía de 180 px y, con 140, quedaba 40 px a la izquierda.
+
+No hay textos nuevos: nada que traducir.
+
+**La prueba.** `auditar_desborde.js` lleva un bloque 4:
+- ningún elemento fijo dentro de una caja con scroll, ni dentro de una caja
+  posicionada que recorte y lleve `z-index` (es lo que rompe Safari);
+- la lista cuelga de `<body>`;
+- la lista, usada con el dedo en un iPhone pequeño con el aviso de instalar
+  a la vista y en un móvil tumbado: cada idioma, sin nada encima; el
+  último, tocado, cambia la app al polaco y cierra la lista.
+
+Con la app de `main` sale en rojo, con 14 fallos; con el arreglo, en verde.
+
+**Lo que no se ha podido comprobar aquí:** Safari mismo. En este contenedor
+no hay WebKit. El arreglo quita lo que necesita el fallo de WebKit, y la
+prueba de la estructura lo vigila. Queda que Jerome lo mire en su iPhone.
+
+**De paso, la subida de las urgencias del pecho.** `331e8a9` estuvo en
+`main` desde las 12:48, pero GitHub Pages canceló por tiempo sus cinco
+despliegues. La compilación salía bien; el paso que activa la web se quedaba
+parado, y GitHub daba Pages por operativo. Lo publicó el siguiente commit de
+un robot (`564bcca`, a las 14:09, en 43 s). En la web, los 11 ficheros que
+cambiaban, iguales a los de `main`; la comprobación del dominio, en verde.
+
+**La auditoría entera**, sobre `65b37f8` (árbol `ce6515bc`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar.
+- `auditar_desborde.js`, con el bloque nuevo: «nada se sale y el popup
+  habla en su idioma».
+- El barrido de pantallas, 0 fallos y 0 errores de página.
+- `probar_cuerpo.js` 255, `probar_figura.js` 64 y `probar_perfil.js` 148.
+- La isla en 3D, 58 de 58; el cielo, 308.
+- El SOS, 39 y 261; `auditar_sw.js`, 67.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian tres ficheros suyos (las alertas, los avisos de AEMET y
+  los sismos), y el parche es el mismo (`git patch-id`). Sobre lo que va a
+  `main` se volvieron a pasar los controles que leen esos ficheros, todos
+  en verde:
+  - los avisos de AEMET, 32 y 156;
+  - la app de las tiendas;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos y de las alertas.
+
+**Lo que queda para Jerome:** mirarlo en su iPhone. Tocar la bandera de
+arriba, ver los diez idiomas y elegir uno; también con el móvil tumbado.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
