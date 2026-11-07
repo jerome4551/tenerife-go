@@ -417,6 +417,75 @@ function opaca() {
     }
   }
 
+  /* ── 9g. El personaje en 3D, sin cobertura (7 de noviembre de 2026, bloque 3 del rediseño) ──
+
+     El motor (modulos/cuerpo3d.js) y los datos (datos/cuerpo3d/) se piden al
+     abrir «Su cuerpo», si hay WebGL 2 (decision 9 de Jerome: el 3D se baja al
+     abrir «Su cuerpo» por primera vez, no con la app). Asi que:
+       · ni el motor ni los datos entran en el precache;
+       · el motor y el indice (datos/cuerpo3d/indice.json), red primero: cambian
+         con la app, y con `cached || fetch` un indice nuevo no llegaria nunca;
+       · los demas ficheros de datos/cuerpo3d/ llevan la huella de su contenido en
+         el nombre (un dato nuevo es un fichero nuevo, que nombra un indice nuevo):
+         con lo de por defecto, cache primero, se piden una sola vez y sin red salen;
+       · sin red y sin haber abierto nunca «Su cuerpo», el motor falla limpio y la
+         pantalla deja el dibujo. */
+  {
+    const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
+    const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1].replace(/\/\*[\s\S]*?\*\//g, '');
+    ok(!/cuerpo3d/.test(core), 'el 3D: ni modulos/cuerpo3d.js ni datos/cuerpo3d/ estan en el precache (se piden al abrir «Su cuerpo»)');
+    const I3 = JSON.parse(fs.readFileSync(path.join(RAIZ, 'datos', 'cuerpo3d', 'indice.json'), 'utf8'));
+    const nombres = Object.keys(I3.ficheros).map(k => I3.ficheros[k].f);
+    ok(nombres.length === 71 && nombres.every(n => /^[a-z0-9_-]+\.[0-9a-f]{8}\.(bin|webp|png)$/.test(n)) && nombres.every(n => fs.existsSync(path.join(RAIZ, 'datos', 'cuerpo3d', n))),
+      'el 3D: el indice nombra 71 ficheros, todos con su huella en el nombre y todos en datos/cuerpo3d/', nombres.length);
+    const SITIO = 'https://tenerifego.app/';
+    class Peticion extends Request {
+      constructor(u, o) { super(typeof u === 'string' ? new URL(u, SITIO).href : u, o); }
+    }
+    const basica = txt => { const r = new Response(txt, { status: 200 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
+    const espera = () => new Promise(r => setTimeout(r, 20));
+    let version = 'red-1', hayRed = true, pedidas = 0;
+    const sw = cargarSW(async () => { pedidas++; if (!hayRed) throw new Error('sin red'); return basica(version); }, Peticion);
+    const esperas = [];
+    for (const f of sw.manejadores.install) f({ waitUntil: p => esperas.push(p) });
+    await Promise.all(esperas);
+    const app = await sw.cachesFalso.open((src.match(/const CACHE = '([^']+)'/) || [])[1]);
+    ok(!(await app.match(new Request(SITIO + 'modulos/cuerpo3d.js'))) && !(await app.match(new Request(SITIO + 'datos/cuerpo3d/indice.json'))), 'el 3D: al instalar la app no entra nada suyo en el cache');
+    hayRed = false;
+    const r0 = await pedir(sw, SITIO + 'modulos/cuerpo3d.js');
+    ok(!r0, 'el 3D: sin red y sin haberlo abierto nunca, el motor falla limpio (la pantalla deja el dibujo)', r0 && r0.status);
+    hayRed = true;
+    for (const f of ['modulos/cuerpo3d.js', 'datos/cuerpo3d/indice.json']) {
+      version = 'red-1';
+      const r1 = await pedir(sw, SITIO + f); await espera();
+      const t1 = r1 && await r1.text();
+      version = 'red-2';
+      const r2 = await pedir(sw, SITIO + f); await espera();
+      const t2 = r2 && await r2.text();
+      ok(t1 === 'red-1' && t2 === 'red-2', f + ': red primero, una version nueva llega aunque ya haya otra guardada', t1 + ' / ' + t2);
+      hayRed = false;
+      const r3 = await pedir(sw, SITIO + f);
+      const t3 = r3 && await r3.text();
+      ok(t3 === 'red-2', f + ': sin red, sale la ultima guardada', t3);
+      hayRed = true;
+    }
+    /* un fichero con huella: la primera vez va a la red y se guarda; la segunda, del cache, sin pedirla */
+    const fh = 'datos/cuerpo3d/' + I3.ficheros.cuerpo.f;
+    version = 'huella-1'; pedidas = 0;
+    /* (del cache sale el mismo objeto cada vez: se lee una copia) */
+    const texto = async r => r && await r.clone().text();
+    const h1 = await pedir(sw, SITIO + fh); await espera();
+    const th1 = await texto(h1), p1 = pedidas;
+    version = 'huella-2';
+    const h2 = await pedir(sw, SITIO + fh); await espera();
+    const th2 = await texto(h2), p2 = pedidas;
+    ok(th1 === 'huella-1' && th2 === 'huella-1' && p1 === 1 && p2 === 1, fh + ': cache primero, se pide a la red una sola vez', th1 + ' / ' + th2 + ' / ' + p1 + ',' + p2);
+    hayRed = false;
+    const h3 = await pedir(sw, SITIO + fh);
+    ok(await texto(h3) === 'huella-1', fh + ': sin red, sale del cache');
+    hayRed = true;
+  }
+
   /* ── 10. la unica suposicion que el ambito falso no puede comprobar ──
 
      Todo lo de arriba prueba el flujo, no el navegador. Lo que el arreglo da

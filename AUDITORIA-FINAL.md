@@ -8281,7 +8281,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3342 filas (y 5.490 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3343 filas (y 5.491 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -8398,7 +8398,9 @@ bus» sin líneas: 3330 y 5.478. Y dos más, los milímetros y los centímetros 
 avisos de AEMET: 3332 y 5.480. Y esa noche, el bloque 2 del rediseño de «Su cuerpo»
 (la pantalla): 10 filas más en `CUERPO_UI` (de 378 a 388): la flecha de vuelta al
 perfil, los dos temas, «Las cifras» y su título, la pista de la escena, «+ 1 serie»,
-«+3», «una serie menos» y la referencia corta del ACSM: 3342 y 5.490. El
+«+3», «una serie menos» y la referencia corta del ACSM: 3342 y 5.490. Y el 7 de
+noviembre, el bloque 3 (el personaje en 3D): una fila más en `CUERPO_UI` (389), el
+aviso de la hoja «Aspecto» con lo que el 3D aún no tiene: 3343 y 5.491. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

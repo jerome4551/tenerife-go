@@ -14,3 +14,10 @@ app/node_modules/
 app/build/
 capturas-app-store/
 capturas-google-play/
+
+# el personaje en 3D (7 de noviembre de 2026, bloque 3): lo que lee y lo que deja por el camino
+# tools/cuerpo3d/construir3d.py (los datos de MakeHuman, su cache y datos3d.js); a git van solo los
+# ficheros sueltos de datos/cuerpo3d/ que hace empaqueta3d.py
+tools/cuerpo3d/fuentes/
+tools/cuerpo3d/cache/
+tools/cuerpo3d/datos3d.js

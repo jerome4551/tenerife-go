@@ -1,0 +1,42 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Banco del cuerpo 3D</title>
+<!-- El motor solo, con los datos de datos/cuerpo3d/, para mirarlo sin la app. Se sirve desde la raíz
+     del repositorio (python3 -m http.server) y se abre en tools/cuerpo3d/banco.html?... con los
+     parámetros del aspecto (fig, comp, piel, pelo, peloColor, arriba, arribaColor, abajo, abajoColor,
+     calzado, calzadoColor, gafas, audifono, protesis; los colores sin «#»), giro, zoom, cy, modo
+     (persona|musculos), niv (12 cifras, una por grupo), sel, prio y fondo. Al acabar, el título dice
+     «listo»; con «fallo», lo que fue mal. tools/cuerpo3d/foto.js hace una captura. -->
+<style>html,body{margin:0;height:100%;background:#dfe7ef}#c{display:block;width:100vw;height:100vh;touch-action:none}</style>
+<canvas id="c"></canvas>
+<script src="../../modulos/cuerpo3d.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), lienzo = document.getElementById('c');
+  if (q.get('fondo')) document.body.style.background = '#' + q.get('fondo');
+  var asp = {};
+  ['fig', 'piel', 'pelo', 'peloColor', 'calzado', 'calzadoColor', 'arriba', 'abajo', 'arribaColor', 'abajoColor', 'gafas', 'audifono', 'protesis'].forEach(function (k) {
+    if (q.get(k)) asp[k] = (k === 'piel' || /Color/.test(k)) ? '#' + q.get(k) : q.get(k);
+  });
+  if (q.get('comp')) asp.comp = +q.get('comp');
+  if (!TG_CUERPO3D.soportado()) { document.title = 'fallo: sin WebGL 2'; return; }
+  var C = TG_CUERPO3D.cargador('../../datos/cuerpo3d/'), M = null;
+  window.C3 = C;
+  C.indice().then(function (D) {
+    M = TG_CUERPO3D.crea(lienzo, D, { conserva: true, barridoSeg: q.get('barr') ? 1e9 : 0.85 });
+    window.M3 = M;
+    M.aspecto(asp);
+    var e = {};
+    if (q.get('giro')) e.giro = +q.get('giro'); if (q.get('zoom')) e.zoom = +q.get('zoom'); if (q.get('cy')) e.cy = +q.get('cy');
+    if (q.get('niv')) { var nn = {}; D.grupos.forEach(function (g, i) { nn[g] = +(q.get('niv')[i] || 0); }); e.niveles = nn; }
+    if (q.get('sel')) e.sel = q.get('sel'); if (q.get('prio')) e.prio = q.get('prio').split(',');
+    M.pon(e);
+    if (q.get('modo')) M.modo(q.get('modo'), false);
+    if (q.get('barr')) { M.estado.barr = +q.get('barr'); M.estado.barrLin = +q.get('barr'); M.estado.modo = 'musculos'; }
+    return C.piezas(M.estado.asp);
+  }).then(function () {
+    M.precarga(); M.cambia();
+    M.listo(function () { M.dibuja(); document.title = M.preparado() ? 'listo' : 'fallo: sin preparar ' + JSON.stringify(M.tiene()); });
+  }).catch(function (e) { document.title = 'fallo: ' + (e && e.message || e); });
+})();
+</script>

@@ -65,6 +65,9 @@
  *     dando la suya (19d). Y el pecho apretado dicho de otra manera («mi pecho está apretado y me mareo»,
  *     «el pecho me duele mucho») da la urgencia en los diez idiomas, y las frases normales con las mismas
  *     palabras no dan ninguna (19e).
+ *   - desde el 7 de noviembre de 2026, el bloque 3 del rediseño: el personaje en 3D (22), con el 3D
+ *     encendido y eventos tactiles; todo lo demas corre con el 3D apagado (tenerife.cuerpo.3d = «no»),
+ *     porque prueba el dibujo, que es la reserva del 3D y lo que sale donde no hay WebGL 2.
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -75,12 +78,15 @@ function prueba(nombre, cond, extra) {
   if (cond) { ok++; console.log('  OK  ' + nombre); }
   else { mal++; console.log('  MAL ' + nombre + (extra ? '   -> ' + String(extra).slice(0, 400) : '')); }
 }
-async function contexto(b) {
-  const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', locale: 'es-ES' });
-  await ctx.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') ? r.continue() : r.abort());
-  await ctx.addInitScript(() => {
-    try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {}
-  });
+/* con el personaje en 3D apagado (tenerife.cuerpo.3d = «no»): estas pruebas son las del dibujo, que es la
+   reserva del 3D y lo que sale donde no hay WebGL 2; el 3D tiene las suyas (22), con el 3D encendido */
+async function contexto(b, opc) {
+  opc = opc || {};
+  const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', locale: 'es-ES' }, opc.contexto || {}));
+  await ctx.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') && !(opc.corta && opc.corta.test(r.request().url())) ? r.continue() : r.abort());
+  await ctx.addInitScript(tresD => {
+    try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); if (!tresD) localStorage.setItem('tenerife.cuerpo.3d', 'no'); } catch (e) {}
+  }, !!opc.tresD);
   return ctx;
 }
 /* los errores de la pagina; los fallos de carga se miran por la respuesta (asi se sabe que fichero era) */
@@ -899,9 +905,7 @@ async function ejemplo(pg) {
   //     (pegada y opaca) y sin escena («Comida»); la barra de modos deja el margen de abajo; y un toque con
   //     el dedo en el pecho abre su hoja, pegada abajo
   {
-    const c7 = await b.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, serviceWorkers: 'block', locale: 'es-ES' });
-    await c7.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') ? r.continue() : r.abort());
-    await c7.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+    const c7 = await contexto(b, { contexto: { viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true } });
     const p7 = await c7.newPage(); const e7 = []; vigilar(p7, e7);
     const cdp7 = await c7.newCDPSession(p7);
     let simula = true;
@@ -1363,6 +1367,176 @@ async function ejemplo(pg) {
     prueba('la cabecera, en cristal sobre la escena y opaca al bajar o sin escena; la barra de modos, fija abajo y sin tapar el final, en los cuatro modos', malos.length === 0, malos.slice(0, 4).join(' · '));
     prueba('…sin errores de página', e10.length === 0, e10.join(' | '));
     await c10.close();
+  }
+
+  // 22. (7-11-2026, bloque 3) el personaje en 3D, con el 3D encendido: al abrir «Su cuerpo» se piden el motor,
+  //     el índice y solo las piezas del aspecto elegido (16 peticiones, unos 0,8 MB), y el lienzo sustituye al
+  //     dibujo (sin la vista pequeña de «Girar»); un toque con el dedo en un músculo abre su hoja y «+ 1 serie»
+  //     le saca una sonrisa; arrastrar en horizontal gira sin abrir nada y, pasados 90°, la vista es «de
+  //     espaldas»; «Girar» da la vuelta; el tema cambia la luz y el modo, el barrido; en «Aspecto», el audífono
+  //     y la prótesis llegan al motor, un peinado nuevo pide sus dos ficheros antes de ponerse, lo que no está en
+  //     3D sale con lo más parecido y la hoja lo dice en los diez idiomas sin desbordar, y al entrar se pide el
+  //     resto (los 56 .bin); con «reducir movimiento», ni respira ni parpadea; sin WebGL 2, con el 3D apagado,
+  //     sin el motor o sin un fichero de datos queda el dibujo, sin errores; y a 360 y 430 el lienzo cabe en la
+  //     escena. Con eventos táctiles (el click de un dedo llega después de soltar: lección 7 de la maqueta)
+  {
+    const c22 = await contexto(b, { tresD: true, contexto: { hasTouch: true, isMobile: true } }), p22 = await c22.newPage(), e22 = [], pedidas = [];
+    vigilar(p22, e22);
+    p22.on('request', r => { if (/cuerpo3d/.test(r.url())) pedidas.push(r.url().replace(/^.*\/(modulos|datos)\//, '$1/')); });
+    await abrirApp(p22); await abrirPerfilCuerpo(p22); await suCuerpo(p22);
+    const t3 = () => p22.evaluate(() => { const t = TG_CUERPO.tresD(); return { estado: t.estado, vista: t.vista, lienzo: !!t.lienzo, lista: !!(t.lienzo && t.lienzo.classList.contains('lista')),
+      es3d: document.getElementById('tgc-fig').classList.contains('es-3d'), pedidos: t.cargador ? t.cargador.pedidos().length : -1, asp: t.motor ? JSON.parse(JSON.stringify(t.motor.estado.asp)) : null,
+      modo: t.motor && t.motor.estado.modo, angulo: t.motor && Math.round(t.motor.angulo()), cielo: t.motor && t.motor.estado.luz.cielo.map(x => +x.toFixed(2)), resp: t.motor && t.motor.estado.resp, sonr: t.motor && t.motor.estado.sonr }; });
+    const activo = await p22.waitForFunction(() => ['activo', 'reserva'].includes(TG_CUERPO.tresD().estado), null, { timeout: 60000 }).then(() => true).catch(() => false);
+    await p22.waitForTimeout(700);
+    const a0 = await t3();
+    prueba('con WebGL 2, el 3D se activa al abrir (el lienzo listo, la caja «es-3d»)', activo && a0.estado === 'activo' && a0.lienzo && a0.lista && a0.es3d, JSON.stringify(a0));
+    const r22 = await p22.evaluate(() => { const f = document.getElementById('tgc-fig'), l = document.getElementById('tgc-lienzo'), rf = f.getBoundingClientRect(), rl = l.getBoundingClientRect(), re = document.getElementById('tgc-escena').getBoundingClientRect();
+      return { dentro: l.parentNode === f && Math.abs(rl.width - rf.width) < 2 && Math.abs(rl.height - rf.height) < 2 && rl.bottom <= re.bottom + 1, dibujo: document.querySelectorAll('#tgc-cara svg').length, mini: document.querySelectorAll('#tgc-girar-mini svg').length,
+        girar: Math.round(document.getElementById('tgc-girar').getBoundingClientRect().height), rol: l.getAttribute('role'), etiqueta: l.getAttribute('aria-label'), px: l.width + 'x' + l.height, css: Math.round(rl.width) + 'x' + Math.round(rl.height) }; });
+    prueba('el lienzo ocupa la caja del personaje dentro de la escena; el dibujo y la vista pequeña de «Girar» se van, y «Girar» queda bajo (44 px)', r22.dentro && r22.dibujo === 0 && r22.mini === 0 && r22.girar === 44, JSON.stringify(r22));
+    prueba('el lienzo es una imagen con la etiqueta del personaje («Su personaje, de frente» en «Músculos» sin nada anotado: «Sus músculos…»)', r22.rol === 'img' && /Sus músculos, de frente/.test(r22.etiqueta), r22.etiqueta);
+    const bins = pedidas.filter(u => /\.bin$/.test(u)), tex = pedidas.filter(u => /\.(webp|png)$/.test(u));
+    prueba('se piden el motor, el índice, las 6 piezas del aspecto por defecto (a1, pelo corto, zapatillas) y sus 8 texturas: 16 peticiones, nada de otras variantes ni peinados',
+      pedidas.length === 16 && pedidas.includes('modulos/cuerpo3d.js') && pedidas.includes('datos/cuerpo3d/indice.json') && bins.length === 6 && tex.length === 8 && !pedidas.some(u => /-(a0|a2|b0|b1|b2)\.|pelo-(medio|largo|afro|coleta|trenzas)/.test(u)), pedidas.join(' '));
+    const I22 = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'datos', 'cuerpo3d', 'indice.json'), 'utf8'));
+    const bytes = pedidas.filter(u => /datos\/cuerpo3d\/[^/]+\.[0-9a-f]{8}\./.test(u)).reduce((n, u) => { const f = Object.values(I22.ficheros).find(x => u.endsWith(x.f)); return n + (f ? f.bytes : 0); }, 0);
+    prueba('lo que baja un aspecto: entre 0,7 y 0,9 MB (el índice aparte)', bytes > 700000 && bytes < 900000, bytes + ' bytes');
+    /* el toque: un punto del lienzo que el motor diga que es el pecho (de frente); con el dedo */
+    const punto = await p22.evaluate(() => { const t = TG_CUERPO.tresD(), l = t.lienzo, rc = l.getBoundingClientRect(), xs = [], ys = [];
+      /* se mira el tercio de arriba del lienzo (la cabeza y el tronco), cada 6 px: cada toque son 17 rayos contra la malla */
+      for (let y = Math.round(l.clientHeight * 0.12); y < l.clientHeight * 0.5; y += 6) for (let x = 10; x < l.clientWidth; x += 6) { const r = t.motor.toca(x, y); if (r && r.g === 'pecho') { xs.push(x); ys.push(y); } }
+      /* el centro del pecho (la media de los puntos que el motor da por pecho), no su borde */
+      return xs.length ? { x: rc.left + xs.reduce((a, b) => a + b) / xs.length, y: rc.top + ys.reduce((a, b) => a + b) / ys.length, n: xs.length } : null; });
+    prueba('el motor encuentra el pecho de frente', !!punto, JSON.stringify(punto));
+    if (punto) {
+      await p22.touchscreen.tap(punto.x, punto.y); await p22.waitForTimeout(500);
+      const h = await p22.evaluate(() => ({ abierta: !document.getElementById('tgc-hoja').hidden, tit: document.getElementById('tgc-hoja-tit').textContent, sel: TG_CUERPO.tresD().motor.estado.sel }));
+      prueba('un toque con el dedo en el pecho abre su hoja y el motor lo marca (la hoja no recibe ese mismo toque)', h.abierta && h.tit === 'Pecho' && h.sel === 'pecho', JSON.stringify(h));
+      await p22.click('#tgc-guardar'); await p22.waitForTimeout(350);
+      const son = await t3();
+      prueba('«+ 1 serie»: el personaje sonríe (la sonrisa sube de la de reposo)', son.sonr > 0.3, 'sonrisa ' + son.sonr);
+      await p22.evaluate(() => document.getElementById('tgc-velo').click()); await p22.waitForTimeout(300);
+      prueba('…y el velo cierra la hoja', await p22.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.tresD().motor.estado.sel === null));
+    }
+    /* arrastrar: 120 px en horizontal con el dedo → unos 66° (0,55° por px), sin abrir la hoja; otros 120 → de espaldas */
+    const centro = await p22.evaluate(() => { const r = TG_CUERPO.tresD().lienzo.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height * 0.45 }; });
+    async function arrastra(dx) {
+      const cdp = await c22.newCDPSession(p22);
+      const pasos = 12, puntos = i => [{ x: centro.x + dx * i / pasos, y: centro.y }];
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: puntos(0) });
+      for (let i = 1; i <= pasos; i++) { await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: puntos(i) }); await p22.waitForTimeout(16); }
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await cdp.detach();
+    }
+    await arrastra(120); await p22.waitForTimeout(600);
+    const g1 = await t3(), hoja1 = await p22.evaluate(() => !document.getElementById('tgc-hoja').hidden);
+    prueba('arrastrar 120 px con el dedo gira unos 66° (de frente aún) sin abrir ninguna hoja', g1.angulo > 50 && g1.angulo < 90 && g1.vista === 'frente' && !hoja1, g1.angulo + '° ' + g1.vista + ' hoja ' + hoja1);
+    await arrastra(120); await p22.waitForTimeout(600);
+    const g2 = await t3();
+    prueba('otros 120: pasados los 90°, la vista es «de espaldas» y la etiqueta lo dice', Math.abs(g2.angulo) > 90 && g2.vista === 'espalda' && /de espaldas/.test(await p22.evaluate(() => TG_CUERPO.tresD().lienzo.getAttribute('aria-label'))), g2.angulo + '° ' + g2.vista);
+    await p22.click('#tgc-girar'); await p22.waitForTimeout(1200);
+    const g3 = await t3();
+    prueba('«Girar» da la vuelta: de frente (0°) otra vez', g3.angulo === 0 && g3.vista === 'frente', g3.angulo + '° ' + g3.vista);
+    await p22.click('#tgc-girar'); await p22.waitForTimeout(1200);
+    const g4 = await t3();
+    prueba('…y de espaldas (180°)', Math.abs(g4.angulo) === 180 && g4.vista === 'espalda', g4.angulo + '° ' + g4.vista);
+    await p22.click('#tgc-girar'); await p22.waitForTimeout(1200);
+    /* el tema cambia la luz; el modo, el barrido */
+    const luzDia = a0.cielo;
+    await p22.click('#tgc-tema'); await p22.waitForTimeout(400);
+    const n1 = await t3();
+    prueba('el tema Noche cambia la luz del personaje (el cielo, más oscuro)', n1.cielo[0] < luzDia[0] && n1.cielo[2] < luzDia[2], JSON.stringify([luzDia, n1.cielo]));
+    await p22.click('#tgc-tema'); await p22.waitForTimeout(300);
+    await p22.click('#tgc-modo-a'); await p22.waitForTimeout(300);
+    const m1 = await t3();
+    prueba('en «Aspecto», el motor pasa a «persona» (el personaje vestido)', m1.modo === 'persona' && m1.estado === 'activo', JSON.stringify(m1));
+    /* en «Aspecto»: el audífono y la prótesis llegan al motor; un peinado nuevo pide sus dos ficheros antes de ponerse */
+    await p22.evaluate(() => { document.getElementById('tgc-audifono-ambos').click(); document.getElementById('tgc-protesis-pierna_izq').click(); }); await p22.waitForTimeout(400);
+    const as1 = await t3();
+    prueba('el audífono en los dos oídos y la prótesis de pierna izquierda llegan al motor', as1.asp.audifono === 'ambos' && as1.asp.protesis === 'pierna_izq', JSON.stringify(as1.asp));
+    const antes = pedidas.length;
+    await p22.evaluate(() => document.getElementById('tgc-pelo-trenzas').click());
+    await p22.waitForFunction(() => TG_CUERPO.tresD().motor.estado.asp.pelo === 'trenzas', null, { timeout: 20000 }).catch(() => {});
+    await p22.waitForTimeout(300);
+    const as2 = await t3(), nuevos = pedidas.slice(antes).filter(u => /pelo-trenzas/.test(u));
+    prueba('las trenzas: se piden sus dos ficheros (el común y el de la variante a1) y después se ponen', as2.asp.pelo === 'trenzas' && nuevos.length === 2 && nuevos.some(u => /pelo-trenzas\.[0-9a-f]{8}\.bin$/.test(u)) && nuevos.some(u => /pelo-trenzas-a1\./.test(u)), JSON.stringify(nuevos));
+    await p22.evaluate(() => { document.getElementById('tgc-pelo-rizado').click(); document.getElementById('tgc-calzado-botas').click(); });
+    await p22.waitForFunction(() => TG_CUERPO.tresD().motor.estado.asp.pelo === 'afro', null, { timeout: 20000 }).catch(() => {});
+    await p22.waitForTimeout(200);
+    const as3 = await t3(), aviso = await p22.evaluate(() => { const a = document.getElementById('tgc-aviso-3d'); return { visible: !!a && !a.hidden && a.getClientRects().length > 0, txt: a && a.textContent }; });
+    prueba('lo que no está en 3D sale con lo más parecido (rizado → afro; botas → zapatillas) y la hoja «Aspecto» lo dice', as3.asp.pelo === 'afro' && as3.asp.calzado === 'zapatillas' && aviso.visible && /rizado/.test(aviso.txt), JSON.stringify(as3.asp) + ' ' + JSON.stringify(aviso));
+    const desb = [];
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      await idioma(p22, l); await p22.waitForTimeout(80);
+      const r = await p22.evaluate(() => { const a = document.getElementById('tgc-aviso-3d'), p = document.getElementById('cuerpo-panel'), b = p.getBoundingClientRect(), x = a.getBoundingClientRect(); return { vacio: !a.textContent.trim(), fuera: x.right > b.right + 0.5 || x.left < b.left - 0.5, lado: p.scrollWidth > p.clientWidth, lang: p.getAttribute('lang') }; });
+      if (r.vacio || r.fuera || r.lado) desb.push(l + ': ' + JSON.stringify(r));
+    }
+    await idioma(p22, 'es');
+    prueba('el aviso del 3D, en los diez idiomas, sin quedar vacío ni desbordar', desb.length === 0, desb.join(' · '));
+    /* al entrar en «Aspecto» se pide el resto: los 56 .bin (las texturas las pide el navegador aparte) */
+    const todos = await p22.waitForFunction(() => TG_CUERPO.tresD().cargador.pedidos().length >= 56, null, { timeout: 60000 }).then(() => true).catch(() => false);
+    const as4 = await t3();
+    prueba('al entrar en «Aspecto» se pide el resto de los datos: los 56 ficheros de mallas', todos && as4.pedidos === 56, as4.pedidos + ' pedidos');
+    await p22.evaluate(() => document.getElementById('tgc-comp-2').click()); await p22.waitForTimeout(400);
+    const as5 = await t3();
+    prueba('con todo ya pedido, cambiar de complexión se pone en el acto (variante a2)', as5.asp.comp === 2 && as5.asp.fig === 'a' && JSON.stringify(await p22.evaluate(() => TG_CUERPO.tresD().motor.tiene().variante)) === '"a2"', JSON.stringify(as5.asp));
+    await p22.click('#tgc-modo-m'); await p22.waitForTimeout(300);
+    prueba('vuelta a «Músculos»: el motor en «musculos»', (await t3()).modo === 'musculos');
+    prueba('…sin errores de página en todo el recorrido en 3D', e22.length === 0, e22.join(' | '));
+    await c22.close();
+
+    /* con «reducir movimiento»: ni respira ni parpadea (vivo apagado) */
+    const c22b = await contexto(b, { tresD: true, contexto: { reducedMotion: 'reduce' } }), p22b = await c22b.newPage(), e22b = []; vigilar(p22b, e22b);
+    await abrirApp(p22b); await abrirPerfilCuerpo(p22b); await suCuerpo(p22b);
+    await p22b.waitForFunction(() => ['activo', 'reserva'].includes(TG_CUERPO.tresD().estado), null, { timeout: 60000 }).catch(() => {});
+    await p22b.waitForTimeout(1500);
+    const q = await p22b.evaluate(() => { const t = TG_CUERPO.tresD(); return { estado: t.estado, resp: t.motor && t.motor.estado.resp, parp: t.motor && t.motor.estado.parp }; });
+    prueba('con «reducir movimiento», el 3D está pero quieto: sin respiración ni parpadeo', q.estado === 'activo' && q.resp === 0 && q.parp === 0 && e22b.length === 0, JSON.stringify(q) + ' ' + e22b.join(' | '));
+    await c22b.close();
+
+    /* sin WebGL 2 (el contexto no se da), con el 3D apagado, sin el motor y sin un fichero de datos: el dibujo, sin errores */
+    const casos = [
+      ['sin WebGL 2', { tresD: true }, () => { const g = HTMLCanvasElement.prototype.getContext; HTMLCanvasElement.prototype.getContext = function (t) { return t === 'webgl2' ? null : g.apply(this, arguments); }; }, 'no', 0],
+      ['con el 3D apagado (tenerife.cuerpo.3d = «no»)', {}, null, 'no', 0],
+      ['sin el motor (modulos/cuerpo3d.js no llega)', { tresD: true, corta: /modulos\/cuerpo3d\.js/ }, null, 'no', 1],
+      ['sin un fichero de datos (cuerpo-a1 no llega)', { tresD: true, corta: /cuerpo-a1\./ }, null, 'no', -1]
+    ];
+    for (const [nombre, opc, prep, estadoQueToca, nPed] of casos) {
+      const cx = await contexto(b, opc), px = await cx.newPage(), ex = [], ped = []; vigilar(px, ex);
+      px.on('request', r => { if (/cuerpo3d/.test(r.url())) ped.push(r.url()); });
+      if (prep) await px.addInitScript(prep);
+      await abrirApp(px); await abrirPerfilCuerpo(px); await suCuerpo(px);
+      /* (cuando el motor o los datos no llegan, el estado vuelve a «no»: se volverá a intentar al abrir otra vez) */
+      await px.waitForFunction(() => TG_CUERPO.tresD().estado !== 'cargando', null, { timeout: 30000 }).catch(() => {});
+      await px.waitForTimeout(nPed ? 1500 : 800);
+      const r = await px.evaluate(() => { const t = TG_CUERPO.tresD(); return { estado: t.estado, lienzo: !!document.getElementById('tgc-lienzo'), dibujo: document.querySelectorAll('#tgc-cara svg').length, cabeza: document.querySelectorAll('#tgc-cara .tgf-cabeza').length, mini: document.querySelectorAll('#tgc-girar-mini svg').length, es3d: document.getElementById('tgc-fig').classList.contains('es-3d') }; });
+      const bien = r.estado === estadoQueToca && !r.lienzo && r.dibujo === 1 && r.cabeza === 1 && r.mini === 1 && !r.es3d && (nPed < 0 ? ped.length > 1 : ped.length === nPed) && ex.filter(e => !/cuerpo3d/.test(e)).length === 0;
+      prueba(nombre + ': queda el dibujo (con su cabeza y la vista pequeña), sin lienzo y sin errores', bien, JSON.stringify(r) + ' peticiones ' + ped.length + ' ' + ex.join(' | '));
+      if (nPed) {
+        /* cerrar y volver a abrir lo intenta otra vez (y vuelve a fallar igual, sin ruido) */
+        const antes = ped.length;
+        await px.evaluate(() => TG_CUERPO.cerrar()); await px.waitForTimeout(200);
+        await px.evaluate(() => TG_CUERPO.abrir());
+        await px.waitForFunction(() => TG_CUERPO.tresD().estado !== 'cargando', null, { timeout: 30000 }).catch(() => {});
+        await px.waitForTimeout(800);
+        const r2 = await px.evaluate(() => ({ estado: TG_CUERPO.tresD().estado, dibujo: document.querySelectorAll('#tgc-cara svg').length }));
+        prueba(nombre + ': al abrir otra vez se vuelve a intentar, y queda el dibujo igual', ped.length > antes && r2.estado === 'no' && r2.dibujo === 1 && ex.filter(e => !/cuerpo3d/.test(e)).length === 0, JSON.stringify(r2) + ' peticiones ' + antes + '→' + ped.length);
+      }
+      await cx.close();
+    }
+
+    /* a 360 y 430: el lienzo cabe en la escena, sin desborde */
+    for (const w of [360, 430]) {
+      const cw = await contexto(b, { tresD: true, contexto: { viewport: { width: w, height: 800 } } }), pw = await cw.newPage(), ew = []; vigilar(pw, ew);
+      await abrirApp(pw); await abrirPerfilCuerpo(pw); await suCuerpo(pw);
+      await pw.waitForFunction(() => ['activo', 'reserva'].includes(TG_CUERPO.tresD().estado), null, { timeout: 60000 }).catch(() => {});
+      await pw.waitForTimeout(800);
+      const r = await pw.evaluate(() => { const t = TG_CUERPO.tresD(), l = t.lienzo, p = document.getElementById('cuerpo-panel'), re = document.getElementById('tgc-escena').getBoundingClientRect(), rl = l ? l.getBoundingClientRect() : null;
+        return { estado: t.estado, dentro: !!rl && rl.left >= re.left && rl.right <= re.right && rl.top >= re.top && rl.bottom <= re.bottom + 1, alto: rl && Math.round(rl.height), lado: p.scrollWidth > p.clientWidth }; });
+      prueba('a ' + w + ' px: el 3D activo, el lienzo dentro de la escena (' + r.alto + ' px de alto) y sin desplazamiento de lado', r.estado === 'activo' && r.dentro && r.alto > 300 && !r.lado && ew.length === 0, JSON.stringify(r) + ' ' + ew.join(' | '));
+      await cw.close();
+    }
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

@@ -128,6 +128,7 @@
     "cuerpoRefCorta": {"es": "Referencia: 10 series (ACSM)", "en": "Reference: 10 sets (ACSM)", "fr": "Référence : 10 séries (ACSM)", "de": "Referenz: 10 Sätze (ACSM)", "it": "Riferimento: 10 serie (ACSM)", "nl": "Referentie: 10 sets (ACSM)", "zh": "参考值：10 组（ACSM）", "zht": "參考值：10 組（ACSM）", "bg": "Референция: 10 серии (ACSM)", "pl": "Punkt odniesienia: 10 serii (ACSM)"},
     "cuerpoAspectoTitulo": {"es": "Su aspecto", "en": "Your look", "fr": "Votre apparence", "de": "Ihr Aussehen", "it": "Aspetto", "nl": "Uw uiterlijk", "zh": "我的外观", "zht": "我的外觀", "bg": "Вашият външен вид", "pl": "Wygląd"},
     "cuerpoAspectoLema": {"es": "Elija lo que más se le parezca. Solo cambia el dibujo.", "en": "Choose what looks most like you. Only the drawing changes.", "fr": "Choisissez ce qui vous ressemble le plus. Seul le dessin change.", "de": "Wählen Sie, was Ihnen am ähnlichsten ist. Nur die Zeichnung ändert sich.", "it": "Scegliere le opzioni più simili al proprio aspetto. Cambiano solo il disegno.", "nl": "Kies wat het meest op u lijkt. Alleen de tekening verandert.", "zh": "选择最像您的样子。只会改变图像。", "zht": "選擇最像您的樣子。只會改變圖像。", "bg": "Изберете това, което най-много прилича на вас. Променя се само рисунката.", "pl": "Można wybrać to, co najbardziej przypomina własny wygląd. Zmienia się tylko rysunek."},
+    "cuerpoAviso3D": {"es": "En 3D todavía no están el pelo rizado ni el moño (salen como afro y coleta), la barba, la gorra y el pañuelo, ni las botas de montaña (salen como zapatillas). En el dibujo pequeño, sí.", "en": "Not yet in 3D: curly hair and the bun (shown as afro and ponytail), the beard, the cap and the headscarf, and hiking boots (shown as trainers). The small drawing does show them.", "fr": "Pas encore en 3D : les cheveux bouclés et le chignon (affichés comme afro et queue-de-cheval), la barbe, la casquette et le foulard, et les chaussures de randonnée (affichées comme des baskets). Le petit dessin les montre.", "de": "Noch nicht in 3D: lockiges Haar und der Dutt (gezeigt als Afro und Pferdeschwanz), der Bart, die Kappe und das Kopftuch sowie die Wanderschuhe (gezeigt als Turnschuhe). Die kleine Zeichnung zeigt sie.", "it": "Non ancora in 3D: i capelli ricci e lo chignon (mostrati come afro e coda), la barba, il cappellino e il foulard, e gli scarponi da trekking (mostrati come scarpe da ginnastica). Il disegno piccolo li mostra.", "nl": "Nog niet in 3D: krullen en de knot (getoond als afro en paardenstaart), de baard, de pet en de hoofddoek, en wandelschoenen (getoond als sportschoenen). De kleine tekening toont ze wel.", "zh": "3D 暂不支持：卷发和发髻（显示为爆炸头和马尾）、胡子、鸭舌帽和头巾，以及登山靴（显示为运动鞋）。小图中仍会显示。", "zht": "3D 暫不支援：捲髮和髮髻（顯示為爆炸頭和馬尾）、鬍子、棒球帽和頭巾，以及登山靴（顯示為運動鞋）。小圖中仍會顯示。", "bg": "Все още не в 3D: къдравата коса и кокът (показват се като афро и опашка), брадата, шапката с козирка и забрадката, както и туристическите обувки (показват се като маратонки). Малката рисунка ги показва.", "pl": "Jeszcze nie w 3D: kręcone włosy i kok (pokazywane jako afro i kucyk), zarost, czapka z daszkiem i chusta oraz buty trekkingowe (pokazywane jako buty sportowe). Mały rysunek je pokazuje."},
     "cuerpoSecCuerpo": {"es": "Cuerpo", "en": "Body", "fr": "Corps", "de": "Körper", "it": "Corpo", "nl": "Lichaam", "zh": "身体", "zht": "身體", "bg": "Тяло", "pl": "Ciało"},
     "cuerpoSecCara": {"es": "Pelo y cara", "en": "Hair and face", "fr": "Cheveux et visage", "de": "Haare und Gesicht", "it": "Capelli e viso", "nl": "Haar en gezicht", "zh": "头发和面部", "zht": "頭髮和臉部", "bg": "Коса и лице", "pl": "Włosy i twarz"},
     "cuerpoSecRopa": {"es": "Ropa", "en": "Clothes", "fr": "Vêtements", "de": "Kleidung", "it": "Abbigliamento", "nl": "Kleding", "zh": "衣着", "zht": "衣著", "bg": "Облекло", "pl": "Ubranie"},
@@ -1740,6 +1741,15 @@
   var KEY_TEMA = 'tenerife.cuerpo.tema';
   function leerTema() { try { return localStorage.getItem(KEY_TEMA) === 'noche' ? 'noche' : 'dia'; } catch (e) { return 'dia'; } }
   var tema = leerTema();
+  /* El personaje en 3D (7-11-2026, bloque 3; decisiones 8 a 10 de Jerome). El motor (modulos/cuerpo3d.js)
+     y los datos (datos/cuerpo3d/, solo los del aspecto elegido) se piden al abrir «Su cuerpo», si el
+     navegador tiene WebGL 2; mientras llegan, y si no llegan, queda el dibujo de siempre. Con
+     tenerife.cuerpo.3d = «no» en el dispositivo no se pide (los controles lo usan para probar el dibujo). */
+  var KEY_3D = 'tenerife.cuerpo.3d';
+  var RUTA_3D = (window.TG_CUERPO_3D && typeof window.TG_CUERPO_3D === 'object') ? window.TG_CUERPO_3D : {};
+  var MODULO_3D = typeof RUTA_3D.modulo === 'string' ? RUTA_3D.modulo : './modulos/cuerpo3d.js';
+  var DATOS_3D = typeof RUTA_3D.datos === 'string' ? RUTA_3D.datos : './datos/cuerpo3d/';
+  var M3 = null, C3 = null, lienzo3d = null, estado3d = 'no', carga3d = null, reintentos3d = 0, pedido3d = '', movido3d = false, reloj3d = null;
   var ejEntorno = 'todos', ejNivel = 0, ejBuscar = '', ejAbierto = null, ejHistoria = false, antesDeEj = null;
   /* para buscar: minúsculas y sin tildes («sentadilla bulgara» encuentra «Sentadilla búlgara») */
   function plano(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
@@ -1822,11 +1832,18 @@
     R = R || resumen();
     var mus = modo === 'musculos', otra = vista === 'frente' ? 'espalda' : 'frente';
     ambiente();
-    $('tgc-cara').innerHTML = F.svg({ vista: vista, modo: mus ? 'musculos' : 'aspecto', aspecto: st.aspecto, niveles: R.niveles, sel: mus ? grupoAbierto : null, prio: prioActual(),
-                                      cara: true, id: 'tgc-figura', etiqueta: etiquetaFigura(vista, R), viewBox: '40 8 320 784' });
-    $('tgc-girar-mini').innerHTML = F.svg({ vista: otra, modo: mus ? 'musculos' : 'aspecto', aspecto: st.aspecto, niveles: R.niveles, prio: prioActual(),
-                                            cara: true, id: 'tgc-otra', brillo: false, viewBox: '40 8 320 784' });
+    /* en 3D, el personaje es el lienzo (pintar3d); el dibujo no se pinta, ni el pequeño de «Girar» */
+    if (en3d()) {
+      pintar3d();
+      $('tgc-girar-mini').textContent = '';
+    } else {
+      $('tgc-cara').innerHTML = F.svg({ vista: vista, modo: mus ? 'musculos' : 'aspecto', aspecto: st.aspecto, niveles: R.niveles, sel: mus ? grupoAbierto : null, prio: prioActual(),
+                                        cara: true, id: 'tgc-figura', etiqueta: etiquetaFigura(vista, R), viewBox: '40 8 320 784' });
+      $('tgc-girar-mini').innerHTML = F.svg({ vista: otra, modo: mus ? 'musculos' : 'aspecto', aspecto: st.aspecto, niveles: R.niveles, prio: prioActual(),
+                                              cara: true, id: 'tgc-otra', brillo: false, viewBox: '40 8 320 784' });
+    }
     $('tgc-giro').classList.toggle('is-espalda', vista === 'espalda');
+    var av3 = $('tgc-aviso-3d'); if (av3) av3.hidden = !en3d();
     /* en la leyenda, el contorno discontinuo: solo con un deporte que tenga grupos prioritarios */
     $('tgc-ley-prio-li').hidden = !prioActual().length;
     $('tgc-girar').setAttribute('aria-label', tx(vista === 'frente' ? 'cuerpoVerEspalda' : 'cuerpoVerFrente'));
@@ -1842,14 +1859,175 @@
     sitio.innerHTML = F.svg({ vista: 'frente', modo: 'aspecto', aspecto: leer().aspecto, id: 'tgc-mini', viewBox: '110 20 180 300' });
     ambiente();
   }
-  /* al girar, el dibujo se pliega por el medio y vuelve con la otra vista */
+  /* al girar, el dibujo se pliega por el medio y vuelve con la otra vista; en 3D, el personaje da la vuelta */
   function girar() {
     vista = vista === 'frente' ? 'espalda' : 'frente';
+    if (en3d()) { M3.vista(vista === 'frente' ? 0 : 180, !reducido); renderFigura(); return; }
     var g = $('tgc-giro');
     if (reducido) { renderFigura(); return; }
     g.classList.add('medio');
     setTimeout(function () { renderFigura(); g.classList.remove('medio'); }, 190);
   }
+
+  /* ── el personaje en 3D (7-11-2026, bloque 3) ──
+     El motor es modulos/cuerpo3d.js (TG_CUERPO3D, el de la maqueta «Su cuerpo Amanecer»): un cuerpo de
+     MakeHuman (CC0) con su pelo, su ropa, su calzado, sus gafas, su audífono y su prótesis, y el mapa de
+     músculos; respira, parpadea y sonríe al anotar. Sus datos, en datos/cuerpo3d/, se piden pieza a
+     pieza: al abrir, las del aspecto elegido (unos 0,8 MB); al entrar en «Aspecto», el resto, uno tras
+     otro. El dibujo (TG_FIGURA) se queda de reserva: sin WebGL 2, mientras llega el 3D, si no llega, si
+     el navegador retira el contexto tres veces, y siempre en las miniaturas (la tarjeta del perfil, la
+     hoja y las fichas). Lo que el 3D aún no tiene (los peinados rizado y moño, la barba, la gorra y el
+     pañuelo, las botas) sale con lo más parecido y la hoja «Aspecto» lo dice. */
+  var PELO_3D = { rizado: 'afro', mono: 'coleta' };      /* lo que no está en 3D, con lo más parecido */
+  var SOLO_DETRAS = ['dorsal', 'espalda_alta', 'triceps', 'gluteos', 'isquios'], SOLO_DELANTE = ['pecho', 'biceps', 'core', 'cuadriceps'];
+  function en3d() { return !!(M3 && estado3d === 'activo'); }
+  function quiere3d() {
+    try { if (localStorage.getItem(KEY_3D) === 'no') return false; } catch (e) {}
+    if (!window.WebGL2RenderingContext) return false;
+    try { var c = document.createElement('canvas'); return !!c.getContext('webgl2'); } catch (e2) { return false; }
+  }
+  /* el aspecto guardado (índices de las paletas), como lo entiende el motor (colores y nombres) */
+  function aspecto3d(a) {
+    a = a || st.aspecto;
+    return { fig: a.fig, comp: a.comp, piel: F.PIEL[a.piel], pelo: PELO_3D[a.pelo] || a.pelo, peloColor: F.PELO_COLOR[a.peloColor],
+      gafas: a.gafas, audifono: a.audifono, protesis: a.protesis, arriba: a.arriba, arribaColor: F.ROPA_COLOR[a.arribaColor],
+      abajo: a.abajo, abajoColor: F.ROPA_COLOR[a.abajoColor], calzado: a.calzado === 'descalzo' ? 'descalzo' : 'zapatillas', calzadoColor: F.ROPA_COLOR[a.calzadoColor] };
+  }
+  /* la luz del cuerpo sigue a la escena: más cálida y baja al alba, más limpia con el sol arriba; fría de noche (de la maqueta) */
+  function luz3d(e) {
+    function mz(a, b) { return a.map(function (x, i) { return x + (b[i] - x) * e; }); }
+    return tema === 'noche'
+      ? { solCol: mz([1.20, 1.30, 1.62], [1.55, 1.58, 1.75]), cielo: mz([0.20, 0.25, 0.42], [0.30, 0.34, 0.50]), suelo: [0.12, 0.12, 0.17], contraCol: mz([0.55, 0.62, 1.0], [1.0, 0.80, 0.52]), maniqui: 0.94 }
+      : { solCol: mz([2.22, 2.00, 1.76], [2.35, 2.18, 1.95]), cielo: mz([0.60, 0.62, 0.78], [0.60, 0.70, 0.88]), suelo: [0.40, 0.31, 0.25], contraCol: mz([1.45, 0.78, 0.42], [1.0, 0.72, 0.45]), maniqui: 1 };
+  }
+  /* el módulo del motor y el índice de los datos, una vez */
+  function cargar3d() {
+    if (carga3d) return carga3d;
+    carga3d = new Promise(function (ok, mal) {
+      if (window.TG_CUERPO3D) { ok(); return; }
+      var s = document.createElement('script');
+      s.src = MODULO_3D;
+      s.onload = function () { if (window.TG_CUERPO3D) ok(); else mal(new Error('cuerpo3d')); };
+      s.onerror = function () { s.remove(); mal(new Error('cuerpo3d')); };
+      document.head.appendChild(s);
+    }).then(function () {
+      if (!C3) C3 = TG_CUERPO3D.cargador(DATOS_3D);
+      return C3.indice();
+    }).catch(function (e) { carga3d = null; throw e; });
+    return carga3d;
+  }
+  /* el lienzo, dentro de la caja del personaje, delante del dibujo */
+  function lienzoNuevo() {
+    var c = document.createElement('canvas');
+    c.className = 'tgc-lienzo'; c.id = 'tgc-lienzo'; c.setAttribute('role', 'img'); c.setAttribute('aria-label', '');
+    return c;
+  }
+  /* se intenta al abrir la pantalla; si el motor o los datos no llegan queda el dibujo y se vuelve a intentar
+     la próxima vez que se abra (sin red, falla en el acto); si es el navegador el que no puede (el contexto
+     no se da, o lo retira tres veces), queda el dibujo y no se insiste en esta sesión */
+  function montar3d() {
+    if (M3 || estado3d === 'reserva' || estado3d === 'cargando' || !quiere3d()) return;
+    estado3d = 'cargando';
+    cargar3d().then(function (D) {
+      if (M3) return;
+      lienzo3d = lienzoNuevo();
+      $('tgc-fig').insertBefore(lienzo3d, $('tgc-giro'));
+      if (!crear3d(D)) { fallo3d(true); return; }
+      return pintar3d(true);
+    }).then(function () {
+      if (!M3 || estado3d !== 'cargando') return;
+      /* el cuerpo aparece cuando ya tiene su piel y su pelo: nada de figura gris a medio cargar */
+      M3.listo(function () {
+        if (!M3 || estado3d !== 'cargando') return;
+        M3.dibuja();
+        if (!M3.preparado()) { fallo3d(); return; }
+        estado3d = 'activo';
+        $('tgc-fig').classList.add('es-3d'); $('tgc').classList.add('es-3d');
+        lienzo3d.classList.add('lista');
+        /* el dibujo se queda debajo hasta que el lienzo ha aparecido del todo */
+        clearTimeout(reloj3d); reloj3d = setTimeout(function () { if (en3d()) $('tgc-cara').textContent = ''; }, 500);
+        renderFigura();
+        vivo3d();
+      });
+    }).catch(function () { if (estado3d === 'cargando') fallo3d(); });
+  }
+  function crear3d(D) {
+    try {
+      M3 = TG_CUERPO3D.crea(lienzo3d, D, { dprMax: 3, alPerder: function () {
+        /* el navegador ha retirado el contexto (pasa al volver de segundo plano): se monta otro lienzo, tres veces como mucho */
+        M3 = null; if (estado3d === 'activo') estado3d = 'cargando';
+        if (reintentos3d++ < 3) setTimeout(function () {
+          if (!lienzo3d || !lienzo3d.parentNode) { fallo3d(); return; }
+          var nuevo = lienzoNuevo(); lienzo3d.parentNode.replaceChild(nuevo, lienzo3d); lienzo3d = nuevo;
+          if (crear3d(C3.datos())) { estado3d = 'activo'; lienzo3d.classList.add('lista'); $('tgc-cara').textContent = ''; renderFigura(); vivo3d(); }
+          else fallo3d(true);
+        }, 400);
+        else fallo3d(true);
+      } });
+    } catch (e) { M3 = null; }
+    if (!M3) return false;
+    /* la caja del personaje es la del dibujo (320 × 784): el cuerpo, un 6 % más cerca que en la maqueta, la llena como él */
+    M3.pon({ zoom: 1.06 });
+    M3.luz(luz3d(escE));
+    M3.modo(modo === 'musculos' ? 'musculos' : 'persona', false);
+    M3.vista(vista === 'frente' ? 0 : 180, false);
+    gestos3d();
+    return true;
+  }
+  /* queda el dibujo: se repinta y el lienzo, si lo hay, se va. Sin «definitivo», se volverá a intentar al abrir */
+  function fallo3d(definitivo) {
+    estado3d = definitivo ? 'reserva' : 'no';
+    if (M3) { try { M3.destruye(); } catch (e) {} M3 = null; }
+    if (lienzo3d && lienzo3d.parentNode) lienzo3d.parentNode.removeChild(lienzo3d);
+    lienzo3d = null;
+    var f = $('tgc-fig'); if (f) { f.classList.remove('es-3d'); $('tgc').classList.remove('es-3d'); }
+    if (abierto) renderFigura();
+  }
+  /* el personaje con el aspecto, los niveles y el modo de ahora; si al aspecto le faltan piezas, se piden
+     y, mientras, sigue el de antes (el personaje no se queda a medias) */
+  function pintar3d(primera) {
+    if (!M3) return Promise.resolve();
+    var R = resumen(), a3 = aspecto3d(), clave = JSON.stringify(a3);
+    M3.pon({ niveles: R.niveles, sel: modo === 'musculos' ? grupoAbierto : null, prio: prioActual() });
+    M3.modo(modo === 'musculos' ? 'musculos' : 'persona', !reducido && !primera);
+    if (lienzo3d) lienzo3d.setAttribute('aria-label', etiquetaFigura(vista, R));
+    if (C3.tiene(a3)) { pedido3d = clave; M3.aspecto(a3); M3.cambia(); return Promise.resolve(); }
+    pedido3d = clave;
+    return C3.piezas(a3).then(function () {
+      if (!M3 || pedido3d !== clave) return;
+      M3.aspecto(a3); M3.cambia();
+    }).catch(function (e) { if (primera) throw e; });
+  }
+  /* respira, parpadea y sonríe solo cuando se le ve (la pantalla abierta, con la escena, y la pestaña a la vista) y sin «reducir movimiento» */
+  function vivo3d() {
+    if (!M3) return;
+    M3.vivo(!reducido && abierto && !$('tgc-escena').hidden && document.visibilityState !== 'hidden');
+  }
+  /* arrastrar gira el cuerpo; un toque sin arrastrar elige la zona (el click de #tgc-fig, con zonaEn) */
+  function gestos3d() {
+    var g = null, el = lienzo3d;
+    el.addEventListener('pointerdown', function (ev) { if (ev.button) return; movido3d = false; g = { id: ev.pointerId, x0: ev.clientX, y0: ev.clientY, x: ev.clientX, t: ev.timeStamp, v: 0, mov: false }; });
+    el.addEventListener('pointermove', function (ev) {
+      if (!g || ev.pointerId !== g.id || !M3) return;
+      var dx = ev.clientX - g.x, dt = Math.max(1, ev.timeStamp - g.t);
+      if (!g.mov && Math.abs(ev.clientX - g.x0) > 7 && Math.abs(ev.clientX - g.x0) > Math.abs(ev.clientY - g.y0)) { g.mov = true; try { el.setPointerCapture(g.id); } catch (e) {} }
+      if (g.mov) { M3.arrastra(dx * 0.55); g.v = g.v * 0.5 + (dx * 0.55 / dt * 1000) * 0.5; ev.preventDefault(); }
+      g.x = ev.clientX; g.t = ev.timeStamp;
+    });
+    function fin(ev) {
+      if (!g || ev.pointerId !== g.id) return;
+      var era = g; g = null;
+      if (!M3 || !era.mov) return;
+      movido3d = true;
+      M3.suelta(ev.timeStamp - era.t < 80 ? era.v : 0);
+      var v = M3.deFrente() ? 'frente' : 'espalda';
+      if (v !== vista) { vista = v; renderFigura(); }
+    }
+    el.addEventListener('pointerup', fin); el.addEventListener('pointercancel', fin);
+  }
+  /* al entrar en «Aspecto», el resto de los datos (los otros cuerpos, peinados y zapatillas), uno tras otro */
+  function traerTodo3d() { if (C3 && en3d()) C3.todo().then(function (tex) { if (M3) tex.forEach(function (u) { var im = new Image(); im.src = u; }); }).catch(function () {}); }
+  document.addEventListener('visibilitychange', vivo3d);
 
   /* ── la escena (6-11-2026, bloque 2, rediseño «Amanecer»): el cielo, el sol de siete rayos (uno por
      día con series en los últimos 7), el Teide, el mar de nubes y Las Cañadas con sus tajinastes. Un
@@ -1986,6 +2164,7 @@
     cf.asoma = asoma || 0;
     svgEl.setAttribute('style', ESC.vars(cf, escH));
     $('tgc-escena').style.background = cf.c1;
+    if (M3) M3.luz(luz3d(e));
   }
   /* al abrir, el sol asoma en 1,7 s; después, del alba al día en 1,3 s cuando cambia lo cumplido
      (en el acto si la persona prefiere menos movimiento); si nada cambió, no se mueve */
@@ -2015,6 +2194,7 @@
     tema = t === 'noche' ? 'noche' : 'dia';
     if (guardar_) { try { localStorage.setItem(KEY_TEMA, tema); } catch (e) {} }
     panel.setAttribute('data-tema', tema);
+    if (M3) M3.luz(luz3d(escE));
     var b = $('tgc-tema');
     b.setAttribute('aria-label', tx(tema === 'dia' ? 'cuerpoTemaNoche' : 'cuerpoTemaDia'));
     b.setAttribute('aria-pressed', tema === 'noche' ? 'true' : 'false');
@@ -2022,6 +2202,7 @@
   /* el toque en el dibujo busca el músculo más cercano: el punto vale más, y un anillo de 12 y otro
      de 22 px recogen los dedos gordos (zonaEn, de la maqueta) */
   function zonaEn(x, y) {
+    if (en3d()) { var rc = lienzo3d.getBoundingClientRect(), k3 = lienzo3d.clientWidth / (rc.width || 1), r3 = M3.toca((x - rc.left) * k3, (y - rc.top) * k3); return r3 ? r3.g : null; }
     var votos = {}, mejor = null, max = 0, cara = $('tgc-cara'), fig = $('tgc-fig');
     function mira(px, py, peso) {
       var els = document.elementsFromPoint(px, py);
@@ -2136,6 +2317,9 @@
   }
   function renderEditor() {
     var caja = $('tgc-opciones'); caja.textContent = '';
+    /* con el personaje en 3D, lo que el 3D aún no tiene (y con qué sale); se enseña cuando el 3D está */
+    var av = el('p', 'tgc-ayuda tgc-aviso-3d', tx('cuerpoAviso3D')); av.id = 'tgc-aviso-3d'; av.hidden = !en3d();
+    caja.appendChild(av);
     SECCIONES.forEach(function (sec) {
       var s = el('section', 'tgc-sec');
       s.appendChild(el('h3', '', tx(sec[0])));
@@ -2394,7 +2578,13 @@
       debajoInerte(true); panel.classList.add('con-hoja');
       if (conHistoria && !hojaHistoria) { try { history.pushState({ tgPerfil: 1, tgCuerpo: 1, tgCuerpoHoja: 1 }, ''); hojaHistoria = true; } catch (e) {} }
     }
-    if (desdeLista && modo === 'musculos' && !$('tgc-cara').querySelector('.tgf-z[data-g="' + g + '"]')) vista = VISTA_GRUPO[g] || vista;
+    if (desdeLista && modo === 'musculos') {
+      /* si el grupo solo se ve por el otro lado, el personaje se pone de ese lado */
+      if (en3d()) {
+        var fr = M3.deFrente();
+        if ((fr && SOLO_DETRAS.indexOf(g) >= 0) || (!fr && SOLO_DELANTE.indexOf(g) >= 0)) { vista = fr ? 'espalda' : 'frente'; M3.vista(fr ? 180 : 0, !reducido); }
+      } else if (!$('tgc-cara').querySelector('.tgf-z[data-g="' + g + '"]')) vista = VISTA_GRUPO[g] || vista;
+    }
     if (modo !== 'musculos') { modo = 'musculos'; renderModo(); }
     renderHoja(); renderFigura();
     try { $('tgc-hoja-tit').focus({ preventScroll: true }); } catch (e) {}
@@ -2459,6 +2649,7 @@
     renderMusculos(); renderHoja();
     var b = $('tgc-h-series'); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
     var z = $('tgc-cara').querySelector('.tgf-z[data-g="' + g + '"]'); if (z) { z.classList.remove('pulso'); void z.getBBox; z.classList.add('pulso'); }
+    if (en3d()) M3.sonrie(2.2);          /* una serie anotada: el personaje sonríe */
     toast(tx('cuerpoAnotado', { n: n, grupo: nombre(g) }));
   }
   /* «−»: una serie menos del grupo en el día elegido, de la última anotación de ese día (si tenía una,
@@ -2536,7 +2727,8 @@
   function renderTodo() { aplicarTextos(); ponerTema(tema); renderModo(); renderMusculos(); renderDeporte(); renderEditor(); renderComida(); if (grupoAbierto) renderHoja(); if (modo === 'preguntar') renderAsistente(); }
   function setModo(m) {
     if (m === modo) return;
-    modo = m; renderModo(); renderFigura();
+    modo = m; renderModo(); renderFigura(); vivo3d();
+    if (m === 'aspecto') traerTodo3d();
     if (m === 'musculos' || m === 'aspecto') { panel.scrollTop = 0; }
     if (m === 'preguntar') renderAsistente();
     if (m === 'comida') renderComida();
@@ -2568,11 +2760,14 @@
     /* el toque en el dibujo: el músculo más cercano al dedo (zonaEn); en «Aspecto» no abre nada */
     var fig = $('tgc-fig');
     fig.addEventListener('click', function (e) {
+      /* en 3D, el toque se atiende aquí, en «click» (llega una sola vez, después de soltar el dedo, así la hoja que
+         abre no recibe ese mismo toque); tras arrastrar para girar, nada */
+      if (movido3d) { movido3d = false; return; }
       if (modo !== 'musculos' || grupoAbierto || cifrasAbiertas) return;
       var g = zonaDe(e) || zonaEn(e.clientX, e.clientY);
       if (g) abrirHoja(g);
     });
-    fig.addEventListener('pointerover', function (e) { if (modo === 'musculos' && e.pointerType === 'mouse') marcarHover(zonaDe(e)); });
+    fig.addEventListener('pointerover', function (e) { if (modo === 'musculos' && e.pointerType === 'mouse' && !en3d()) marcarHover(zonaDe(e)); });
     fig.addEventListener('pointerleave', function () { marcarHover(null); });
     /* si la escena cambia de tamaño (al girar el móvil), el dibujo del cielo se rehace a su medida */
     if (typeof window.ResizeObserver === 'function') { try { new ResizeObserver(function () { if (abierto && !$('tgc-escena').hidden) pintarEscena(); }).observe($('tgc-cielo')); } catch (e) {} }
@@ -2682,6 +2877,8 @@
       if (conHistoria && !historia) { try { history.pushState({ tgPerfil: 1, tgCuerpo: 1 }, ''); historia = true; } catch (e) {} }
     }
     renderTodo();
+    montar3d(); vivo3d();
+    if (modo === 'aspecto') traerTodo3d();
     try { $('tgc-back').focus({ preventScroll: true }); } catch (e) {}
   }
   /* la cabecera va en cristal sobre la escena y se vuelve opaca al bajar (o sin escena) */
@@ -2698,6 +2895,7 @@
     if (grupoAbierto) cerrarHoja(true);
     abierto = false;
     panel.hidden = true;
+    vivo3d();
     $('tgc-toast').classList.remove('show');
     vaciarCharla();
     perfilDebajo(false);
@@ -3409,6 +3607,8 @@
   --sombra: 0 1px 2px rgba(18,35,58,0.06), 0 10px 28px rgba(18,35,58,0.1);
   --hoja: #FFFFFF; --velo: rgba(10,20,36,0.48); --boton-tinta: #12233A; --aviso-btn: #FFE48A;
   --cielo: #8FA8E6;
+  /* detrás del personaje en 3D, la luz de la escena; en el suelo, su sombra (7-11-2026, bloque 3) */
+  --halo3d: rgba(255,255,255,0.55); --sombra3d: rgba(60,36,14,0.42);
   /* por encima del perfil (#perfil-panel, 8900) y por debajo de la bienvenida (9000), la
      privacidad (9999) y la ficha de la cuenta (10000) */
   position: fixed; inset: 0; z-index: 8950; overflow: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
@@ -3427,6 +3627,7 @@
   --sombra: 0 1px 2px rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.4);
   --hoja: #1B2330; --velo: rgba(0,0,0,0.62); --aviso-btn: #5B4FCF;
   --cielo: #080B1F;
+  --halo3d: rgba(143,166,232,0.26); --sombra3d: rgba(0,0,0,0.6);
 }
 #cuerpo-panel.con-hoja { overflow: hidden; }
 :where(#cuerpo-panel) *, :where(#cuerpo-panel) *::before, :where(#cuerpo-panel) *::after { box-sizing: border-box; }
@@ -3491,6 +3692,16 @@
 /* el grupo de la hoja abierta: su contorno late una vez */
 .tgc-cara .tgf-marca { animation: tgc-late 900ms var(--ease-out) 1; }
 @keyframes tgc-late { 0% { opacity: 0; } 30% { opacity: 1; } 60% { opacity: .45; } 100% { opacity: 1; } }
+/* el personaje en 3D (7-11-2026, bloque 3): el lienzo delante del dibujo, que se desvanece cuando el 3D está;
+   detrás, la luz de la escena y, en el suelo, su sombra (como en la maqueta) */
+.tgc-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: none; z-index: 2; touch-action: pan-y; cursor: grab; -webkit-tap-highlight-color: transparent; outline: none; }
+.tgc-lienzo:active { cursor: grabbing; }
+.tgc-fig.es-3d .tgc-lienzo { display: block; opacity: 0; transition: opacity 450ms ease; }
+.tgc-fig.es-3d .tgc-lienzo.lista { opacity: 1; }
+.tgc-fig.es-3d .tgc-giro { opacity: 0; pointer-events: none; transition: opacity 450ms ease; }
+.tgc-fig.es-3d::before { content: ""; position: absolute; left: -28%; right: -28%; top: 4%; bottom: 10%; border-radius: 50%; background: radial-gradient(closest-side, var(--halo3d), transparent 72%); z-index: 0; pointer-events: none; }
+.tgc-fig.es-3d::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: 1.2%; height: 5.6%; border-radius: 50%; background: radial-gradient(closest-side, var(--sombra3d), transparent); z-index: 1; pointer-events: none; }
+.tgc.is-aspecto .tgc-lienzo { cursor: default; }
 /* «Girar»: la otra vista en pequeño, abajo a la derecha */
 .tgc-girar {
   position: absolute; z-index: 5; right: max(14px, env(safe-area-inset-right, 0px)); bottom: 14px; min-width: 66px; height: 104px; border-radius: 20px;
@@ -3501,6 +3712,11 @@
 .tgc-girar-mini { position: absolute; top: 6px; left: 50%; width: 34px; height: 80px; transform: translateX(-50%); }
 .tgc-girar-mini svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .tgc-girar-lbl { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+/* en 3D, «Girar» va sin la vista pequeña: un botón bajo, con la flecha y la palabra */
+.tgc.es-3d .tgc-girar { height: 44px; min-width: 0; flex-direction: row; padding: 0 15px 0 13px; border-radius: 22px; }
+.tgc.es-3d .tgc-girar-mini { display: none; }
+.tgc.es-3d .tgc-girar-lbl { font-size: 14px; gap: 6px; }
+.tgc.es-3d .tgc-girar-lbl svg { width: 16px; height: 16px; }
 /* «Aspecto»: la escena más baja y pegada arriba mientras se elige debajo */
 .tgc.is-aspecto .tgc-escena { position: sticky; top: 0; z-index: 4; height: calc(clamp(300px, 46vh, 440px) + var(--arriba)); height: calc(clamp(300px, 46svh, 440px) + var(--arriba)); }
 .tgc.is-aspecto .tgc-pista { display: none; }
@@ -4365,6 +4581,9 @@
     repintar: function () { if (abierto) renderTodo(); },
     estado: function () { return st; },
     preguntar: function (q) { abrir({ pregunta: q }); },
-    asistente: function () { return { buscador: buscador, datos: ASIS, preguntar: responder }; }
+    asistente: function () { return { buscador: buscador, datos: ASIS, preguntar: responder }; },
+    /* el personaje en 3D (7-11-2026, bloque 3): cómo está (no | cargando | activo | reserva), el motor, el
+       cargador y el lienzo, para los controles (tools/probar_cuerpo.js) */
+    tresD: function () { return { estado: estado3d, motor: M3, cargador: C3, lienzo: lienzo3d, vista: vista }; }
   };
 })();

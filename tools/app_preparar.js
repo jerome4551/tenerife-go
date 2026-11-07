@@ -101,6 +101,11 @@ const CARPETAS = [
      cambian con modulos/cuerpo.js, no a diario: van todos y salen sin conexion desde el
      primer dia */
   ['datos/cuerpo', f => /^[a-z0-9-]+\.json$/.test(f)],
+  /* y los del personaje en 3D (7 de noviembre de 2026, bloque 3): el indice y los 71 ficheros que
+     nombra (las mallas en .bin y las texturas), que tools/cuerpo3d/empaqueta3d.py escribe con la
+     huella de su contenido en el nombre. Dentro de la app no hay service worker: van todos (2,6 MB)
+     y el 3D sale sin conexion desde el primer dia; el motor va con modulos/ */
+  ['datos/cuerpo3d', f => f === 'indice.json' || /^[a-z0-9_-]+\.[0-9a-f]{8}\.(bin|webp|png)$/.test(f)],
   ['modulos', f => /\.js$/.test(f)],
   ['vendor', f => /\.(js|css|txt)$/.test(f)],
   ['vendor/fuentes', f => /\.woff2$/.test(f)],
@@ -299,6 +304,13 @@ function comprobar(montado) {
   if (!enWww('datos/cuerpo/ejercicios.json')) faltan.add('datos/cuerpo/ejercicios.json');
   for (const l of IDIOMAS) {
     for (const f of ['ejercicios-' + l + '.json', 'asistente-' + l + '.json', 'deportes-' + l + '.json']) if (!enWww('datos/cuerpo/' + f)) faltan.add('datos/cuerpo/' + f);
+  }
+  /* y los del personaje en 3D: el motor, el indice y cada fichero que el indice nombra */
+  if (!enWww('modulos/cuerpo3d.js')) faltan.add('modulos/cuerpo3d.js');
+  if (!enWww('datos/cuerpo3d/indice.json')) faltan.add('datos/cuerpo3d/indice.json');
+  else {
+    const I3 = JSON.parse(lee('datos/cuerpo3d/indice.json'));
+    for (const k of Object.keys(I3.ficheros || {})) if (!enWww('datos/cuerpo3d/' + I3.ficheros[k].f)) faltan.add('datos/cuerpo3d/' + I3.ficheros[k].f);
   }
   ok(faltan.size === 0, 'todo lo que la app pide en el movil esta en app/www/ (' + montado.copiados.length + ' ficheros, '
      + (montado.bytes / 1e6).toFixed(1) + ' MB)', [...faltan].join(', '));

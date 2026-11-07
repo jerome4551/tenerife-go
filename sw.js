@@ -376,6 +376,13 @@ self.addEventListener('fetch', e => {
          sus datos (datos/cuerpo/*.json). Cambian con el modulo, y con
          `cached || fetch` unas respuestas nuevas del asistente no llegarian
          nunca a quien ya tuviera las viejas. */
+      /* Y el personaje en 3D (7 de noviembre de 2026, bloque 3): su motor
+         (modulos/cuerpo3d.js) y el indice de sus datos (datos/cuerpo3d/indice.json),
+         red primero por lo mismo. Los demas ficheros de datos/cuerpo3d/ (las mallas en
+         .bin y las texturas) llevan en el nombre la huella de su contenido: un dato
+         nuevo es un fichero nuevo, que nombra un indice nuevo, asi que esos se guardan
+         con lo de por defecto (cache primero) y no se piden dos veces. Ni el motor ni
+         los datos se precargan: se piden al abrir «Su cuerpo», si hay WebGL 2. */
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
           url.pathname.endsWith('/borrar-cuenta.html') ||
           url.pathname.endsWith('/privacidad.html') ||
@@ -385,6 +392,8 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/perfil.js') ||
           url.pathname.endsWith('/modulos/cuerpo.js') ||
           /\/datos\/cuerpo\/[a-z0-9-]+\.json$/.test(url.pathname) ||
+          url.pathname.endsWith('/modulos/cuerpo3d.js') ||
+          url.pathname.endsWith('/datos/cuerpo3d/indice.json') ||
           url.pathname.endsWith('/modulos/isla3d.js') ||
           /\/mapa\/tenerife-relieve(-ao)?\.(png|json)$/.test(url.pathname) ||
           url.pathname.endsWith('/datos/cielo.json') ||

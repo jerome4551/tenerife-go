@@ -36683,9 +36683,14 @@ html.cielo-rojo body::before {
      comun y el del idioma), al abrir la biblioteca o la hoja de un grupo, y las
      respuestas del asistente y las guias de los deportes (las del idioma), al abrir
      «Preguntar» o un deporte. El service worker precarga el modulo, y los datos los
-     guarda al usarlos. Si no llega, la tarjeta de la pestaña lo dice. */
+     guarda al usarlos. Si no llega, la tarjeta de la pestaña lo dice.
+     Desde el 7 de noviembre de 2026 (bloque 3 del rediseño), el personaje en 3D: su motor
+     (modulos/cuerpo3d.js) y sus datos (datos/cuerpo3d/, solo los del aspecto elegido) los pide
+     el propio modulo al abrir «Su cuerpo», si el navegador tiene WebGL 2; ni uno ni otros se
+     precargan, y el service worker los guarda al usarlos. Sin ellos queda el dibujo. */
   var MODULO_CUERPO = './modulos/cuerpo.js', cargaCuerpo = null;
   window.TG_CUERPO_DATOS = './datos/cuerpo/';
+  window.TG_CUERPO_3D = { modulo: './modulos/cuerpo3d.js', datos: './datos/cuerpo3d/' };
   function cargarCuerpo() {
     if (window.TG_CUERPO) return Promise.resolve();
     if (cargaCuerpo) return cargaCuerpo;
