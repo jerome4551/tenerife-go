@@ -1537,6 +1537,55 @@ async function ejemplo(pg) {
       prueba('a ' + w + ' px: el 3D activo, el lienzo dentro de la escena (' + r.alto + ' px de alto) y sin desplazamiento de lado', r.estado === 'activo' && r.dentro && r.alto > 300 && !r.lado && ew.length === 0, JSON.stringify(r) + ' ' + ew.join(' | '));
       await cw.close();
     }
+
+    /* el cargador, con un fichero cambiado (7-11-2026): un índice y dos .bin hechos aquí, con su suma bien puesta, en
+       los que van, junto a secciones buenas, otras con nombres que empaqueta3d.py no escribe («__proto__.tri»,
+       «constructor.tri», «cuerpo.__proto__», «gestos.__proto__.parp.i», «partes.__proto__»…). Las buenas llegan;
+       las otras se dejan, y nada se escribe en Object.prototype ni en Object */
+    {
+      const ck = await contexto(b, { tresD: true }), pk = await ck.newPage(), ek = []; vigilar(pk, ek);
+      const tg3d = (f, secs) => {
+        let pos = 0; const cab = [], trozos = [];
+        for (const [n, lon] of secs) { const t = Buffer.alloc(lon + (-lon & 3)); for (let i = 0; i < lon; i++) t[i] = i + 1; cab.push([n, pos, lon]); trozos.push(t); pos += t.length; }
+        let h = Buffer.from(JSON.stringify({ v: 1, f, sec: cab }), 'utf8'); h = Buffer.concat([h, Buffer.alloc(-h.length & 3, 0x20)]);
+        const l = Buffer.alloc(4); l.writeUInt32LE(h.length, 0);
+        return Buffer.concat([Buffer.from('TG3D'), l, h, ...trozos]);
+      };
+      const binK = {
+        cuerpo: tg3d('cuerpo', [['__proto__.tri', 4], ['constructor.tri', 4], ['hasOwnProperty.tri', 4], ['cuerpo.__proto__', 4], ['cuerpo.constructor', 4], ['cuerpo.tri', 8],
+          ['gestos.__proto__.parp.i', 4], ['gestos.cuerpo.__proto__.i', 4], ['gestos.cuerpo.parp.__proto__', 4], ['gestos.cuerpo.parp.i', 4], ['gestos.cuerpo.parp.d', 12],
+          ['partes.__proto__', 4], ['partes.constructor', 4], ['partes.cuero', 4]]),
+        'cuerpo-a1': tg3d('cuerpo-a1', [['__proto__.pos', 4], ['cuerpo.pos', 12]])
+      };
+      const sumaK = x => require('crypto').createHash('sha256').update(x).digest('hex');
+      const fichK = {}; for (const [k, x] of Object.entries(binK)) fichK[k] = { f: k + '.' + sumaK(x).slice(0, 8) + '.bin', bytes: x.length, sha256: sumaK(x) };
+      const indK = { v: 1, variantes: ['a1'], alto: {}, media: {}, hitos: {}, musculos: [], grupos: [], partes: ['cuero'], gestos: { cuerpo: { parp: { s: 1, n: 2 } } },
+        mallas: { cuerpo: { nv: 1, nt: 1, ns: 1, q: [1, 0, 0, 0], mat: 'piel', fich: 'cuerpo', fichVar: 'cuerpo-{v}' } }, tex: {}, ficheros: fichK };
+      await pk.route(/\/prueba-cargador\//, r => {
+        const u = r.request().url();
+        if (/indice\.json$/.test(u)) return r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(indK) });
+        const k = Object.keys(fichK).find(k => u.endsWith('/' + fichK[k].f));
+        return k ? r.fulfill({ status: 200, contentType: 'application/octet-stream', body: binK[k] }) : r.fulfill({ status: 404, body: '' });
+      });
+      await abrirApp(pk); await abrirPerfilCuerpo(pk); await suCuerpo(pk);
+      await pk.waitForFunction(() => !!window.TG_CUERPO3D, null, { timeout: 60000 }).catch(() => {});
+      const rk = await pk.evaluate(async () => {
+        const c = TG_CUERPO3D.cargador('prueba-cargador/'); let error = null;
+        try { await c.indice(); await c.piezas({ fig: 'a', comp: 1, pelo: 'calvo', calzado: 'descalzo' }); } catch (e) { error = String(e && e.message || e); }
+        const D = c.datos(), o = {}, propio = (x, k) => Object.prototype.hasOwnProperty.call(x, k);
+        return { error, seguro: window.isSecureContext,
+          fuera: ['tri', 'pos', 'parp', 'i', 'd', 'cuero', 'nv'].filter(k => k in o).concat(['tri', 'pos'].filter(k => propio(Object, k) || propio(Object.prototype.hasOwnProperty, k))),
+          protos: [D.mallas, D.mallas.cuerpo, D.gestos, D.partes, D.mallas.cuerpo.pos].every(x => Object.getPrototypeOf(x) === Object.prototype),
+          raras: ['constructor', '__proto__'].filter(k => propio(D.mallas.cuerpo, k) || propio(D.partes, k) || propio(D.gestos, k) || (D.gestos.cuerpo && propio(D.gestos.cuerpo, k)) || (D.gestos.cuerpo && D.gestos.cuerpo.parp && propio(D.gestos.cuerpo.parp, k))),
+          buenas: [D.mallas.cuerpo.tri && D.mallas.cuerpo.tri.length, D.mallas.cuerpo.pos.a1 && D.mallas.cuerpo.pos.a1.length, D.gestos.cuerpo && D.gestos.cuerpo.parp && D.gestos.cuerpo.parp.i.length,
+            D.gestos.cuerpo && D.gestos.cuerpo.parp && D.gestos.cuerpo.parp.d.length, D.gestos.cuerpo && D.gestos.cuerpo.parp && D.gestos.cuerpo.parp.s, D.partes.cuero && D.partes.cuero.length].join(','),
+          partes: Object.keys(D.partes).join(','), pedidos: c.pedidos().join(',') };
+      });
+      prueba('el cargador, con secciones de nombre raro («__proto__.tri», «constructor.tri», «gestos.__proto__.parp.i», «partes.__proto__»…): las buenas llegan y las otras se dejan, sin escribir en Object.prototype ni en Object',
+        rk.error === null && rk.seguro && rk.fuera.length === 0 && rk.protos && rk.raras.length === 0 && rk.buenas === '8,12,4,12,1,4' && rk.partes === 'cuero' && rk.pedidos === 'cuerpo,cuerpo-a1' && ek.length === 0,
+        JSON.stringify(rk) + ' ' + ek.join(' | '));
+      await ck.close();
+    }
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

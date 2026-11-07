@@ -1386,12 +1386,24 @@
       }).catch(function (e) { delete ficheros[clave]; throw e; });
       return ficheros[clave];
     }
-    /* una sección («cuerpo.tri», «cuerpo.pos» del fichero de una variante, «gestos.cejas.parp.i», «partes.cuero») a su sitio */
+    /* una sección («cuerpo.tri», «cuerpo.pos» del fichero de una variante, «gestos.cejas.parp.i», «partes.cuero») a su sitio.
+       Solo con los nombres que escribe empaqueta3d.py y de lo que el índice conoce: una sección con otro nombre (de un
+       fichero roto o cambiado) se deja, y ningún nombre («__proto__», «constructor»…) escribe fuera de los datos, en
+       Object.prototype (7-11-2026) */
+    var CAMPOS = { tri: 1, uv: 1, sold: 1, pos: 1 };
+    function bueno(k) { return typeof k === 'string' && /^[A-Za-z0-9_]+$/.test(k) && k !== '__proto__' && k !== 'constructor' && k !== 'prototype'; }
+    function propia(o, k) { return bueno(k) && !!o && typeof o === 'object' && Object.prototype.hasOwnProperty.call(o, k); }
     function coloca(nombre, u, v) {
-      var p = nombre.split('.');
-      if (p[0] === 'gestos') { D.gestos[p[1]] = D.gestos[p[1]] || {}; D.gestos[p[1]][p[2]] = D.gestos[p[1]][p[2]] || { s: indice.gestos[p[1]][p[2]].s, n: indice.gestos[p[1]][p[2]].n }; D.gestos[p[1]][p[2]][p[3]] = u; return; }
-      if (p[0] === 'partes') { D.partes[p[1]] = u; return; }
-      var m = D.mallas[p[0]]; if (!m) return;
+      var p = String(nombre).split('.'), g;
+      if (p[0] === 'gestos') {
+        if (p.length !== 4 || (p[3] !== 'i' && p[3] !== 'd') || !propia(indice.gestos, p[1]) || !propia(indice.gestos[p[1]], p[2])) return;
+        g = propia(D.gestos, p[1]) ? D.gestos[p[1]] : (D.gestos[p[1]] = {});
+        if (!propia(g, p[2])) g[p[2]] = { s: indice.gestos[p[1]][p[2]].s, n: indice.gestos[p[1]][p[2]].n };
+        g[p[2]][p[3]] = u; return;
+      }
+      if (p[0] === 'partes') { if (p.length === 2 && bueno(p[1]) && Array.isArray(indice.partes) && indice.partes.indexOf(p[1]) >= 0) D.partes[p[1]] = u; return; }
+      if (p.length !== 2 || !propia(D.mallas, p[0]) || !propia(CAMPOS, p[1])) return;
+      var m = D.mallas[p[0]];
       if (p[1] === 'pos') { if (v) m.pos[v] = u; } else m[p[1]] = u;
     }
     function piezasDe(a) {
@@ -1409,8 +1421,8 @@
           if (!I || I.v !== 1 || !I.mallas || !I.ficheros) throw new Error('indice.json');
           indice = I;
           D = { v: 1, variantes: I.variantes, alto: I.alto, media: I.media, hitos: I.hitos, musculos: I.musculos, grupos: I.grupos, mallas: {}, tex: {}, gestos: {}, partes: {} };
-          Object.keys(I.mallas).forEach(function (m) { var c = I.mallas[m]; D.mallas[m] = { nv: c.nv, nt: c.nt, ns: c.ns, q: c.q, mat: c.mat, tex: c.tex, pos: {} }; });
-          Object.keys(I.tex).forEach(function (k) { D.tex[k] = base + I.tex[k]; });
+          Object.keys(I.mallas).forEach(function (m) { if (!bueno(m)) return; var c = I.mallas[m]; D.mallas[m] = { nv: c.nv, nt: c.nt, ns: c.ns, q: c.q, mat: c.mat, tex: c.tex, pos: {} }; });
+          Object.keys(I.tex).forEach(function (k) { if (bueno(k) && typeof I.tex[k] === 'string') D.tex[k] = base + I.tex[k]; });
           return D;
         });
       },
