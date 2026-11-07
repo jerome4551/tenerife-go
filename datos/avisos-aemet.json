@@ -3,8 +3,8 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261106225001_AFAP6596.tar.gz",
-  "publicado": "2026-11-06T22:50:01+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261107074752_AFAP6596.tar.gz",
+  "publicado": "2026-11-07T07:47:52+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
   "alcance": "2026-11-09T23:59:59+00:00",
   "zonas_isla": [
@@ -16,10 +16,10 @@
    "659603C"
   ]
  },
- "consultado": "2026-11-07T06:35:41Z",
+ "consultado": "2026-11-07T09:15:05Z",
  "avisos": [
   {
-   "id": "2.49.0.0.724.0.ES.20261106104007.659601VIRM08001793961607",
+   "id": "2.49.0.0.724.0.ES.20261107074752.659601VIRM07211794037672",
    "nivel": "amarillo",
    "fenomeno": "VI",
    "fenomeno_es": "Vientos",
@@ -37,8 +37,8 @@
     }
    ],
    "inicio": "2026-11-07T12:00:00+00:00",
-   "fin": "2026-11-07T23:59:59+00:00",
-   "emitido": "2026-11-06T10:40:07Z",
+   "fin": "2026-11-07T20:59:59+00:00",
+   "emitido": "2026-11-07T07:47:52Z",
    "es": {
     "descripcion": "Rachas máximas: 70 km/h. Viento del suroeste afectando principalmente a cumbres y en La Palma también al noroeste y litoral este.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
@@ -46,6 +46,36 @@
    "en": {
     "descripcion": "Maximum gust of wind: 70 km/h. Viento del suroeste afectando principalmente a cumbres y en La Palma también al noroeste y litoral este.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261107074752.659601VIRM08001794037672",
+   "nivel": "naranja",
+   "fenomeno": "VI",
+   "fenomeno_es": "Vientos",
+   "parametro": "RM",
+   "parametro_es": "Rachas máximas",
+   "valor": "90 km/h",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659601",
+     "nombre_es": "Norte de Tenerife",
+     "poligonos": [
+      "28.49,-16.43 28.43,-16.39 28.39,-16.44 28.35,-16.48 28.31,-16.5 28.28,-16.54 28.25,-16.55 28.2,-16.64 28.21,-16.68 28.27,-16.7 28.31,-16.79 28.27,-16.85 28.31,-16.88 28.34,-16.92 28.36,-16.92 28.37,-16.86 28.39,-16.83 28.38,-16.81 28.37,-16.75 28.38,-16.7 28.4,-16.67 28.39,-16.6 28.42,-16.55 28.42,-16.52 28.44,-16.47 28.49,-16.43"
+     ]
+    }
+   ],
+   "inicio": "2026-11-07T21:00:00+00:00",
+   "fin": "2026-11-07T23:59:59+00:00",
+   "emitido": "2026-11-07T07:47:52Z",
+   "es": {
+    "descripcion": "Rachas máximas: 90 km/h.",
+    "instruccion": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "Maximum gust of wind: 90 km/h.",
+    "instruccion": "Be prepared. Take precautions and keep up to date with the latest weather forecast. Severe damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   },
   {
