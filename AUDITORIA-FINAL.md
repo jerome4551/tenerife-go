@@ -6340,6 +6340,106 @@ VERDE»: ningún control en rojo ni sin ejecutar.
 **Lo que queda para Jerome:** mirarlo en su iPhone. Tocar la bandera de
 arriba, ver los diez idiomas y elegir uno; también con el móvil tumbado.
 
+## «Su cuerpo»: el bloque 2 del rediseño, la pantalla (7 de noviembre)
+
+Jerome, el 6 de noviembre: «A las 3 voy a seguir las recomendaciones. Prepara
+el bloque 2». Y el 7, con el parche: «Revisa bien todo»; con la auditoría en
+marcha: «Si sigue en rojo cuando termine publica ✌️». Se entendió así:
+publicarlo si terminaba sin ningún rojo nuevo, y terminó sin ninguno. La nota
+de la sesión de «Su cuerpo» es `PARA-CLAUDE-CODE-21.md`; el parche es su
+commit tal cual (`d73b8f4`), y encima va un retoque (`2c2de7f`).
+
+**Lo que cambia**, en la nota con su detalle:
+- «Su cuerpo» va encima del perfil, a pantalla completa, con su flecha de
+  vuelta al pasaporte. La pestaña Cuerpo lleva una tarjeta con el personaje
+  en pequeño, el título, el lema y «Abrir».
+- Arriba, la escena: el cielo pasa del alba al día según se cumple la
+  semana, y el sol lleva un rayo por cada día de los últimos 7 con series.
+  Detrás, el Teide, el mar de nubes y Las Cañadas con sus tajinastes. Dentro,
+  el personaje grande, en una sola vista; «Girar» enseña la otra.
+- Un toque en un músculo abre su hoja: las series de 7 días con diez puntos,
+  «+ 1 serie», «+3» y «−» con «Deshacer», Hoy y Ayer.
+- Los 12 grupos, en una rejilla. «Las cifras», una hoja con la recomendación
+  de su edad, la referencia del ACSM (solo adultos) y las fuentes.
+- La barra de los cuatro modos, abajo. Dos temas, Día (por defecto) y Noche;
+  el tema se recuerda en el dispositivo, en su propia clave
+  (`tenerife.cuerpo.tema`), y «Borrar los datos» no lo toca.
+- 10 filas nuevas de `CUERPO_UI` (de 378 a 388), en los diez idiomas.
+  `datos/cuerpo/` no cambia.
+
+**Lo comprobado al recibirlo:**
+- El parche, el guion, la hoja de estilos y la plantilla llegaron primero en
+  PDF, que corta las líneas largas y pierde los emojis; después, en un .zip.
+  Los cuatro ficheros del .zip dan las huellas de la nota.
+- Sobre el bloque 1 (`c1f548f`), el parche entra limpio y los ocho ficheros
+  dan las huellas de la nota. Las ocho huellas de partida del parche son las
+  de `c1f548f`.
+- Sobre `main`, con `git am -3`, un conflicto en `tools/probar_cuerpo.js`,
+  el que preveía la nota: nuestras secciones 19c, 19d y 19e y, detrás, el
+  comentario nuevo de la 20. Comprobado con los tres algoritmos de git: lo
+  mezclado es el parche más nuestros cambios, y nada más (660 y 147 líneas).
+  `index.html` (con el botón de idioma del 7) y `AUDITORIA-FINAL.md` se
+  juntan solos.
+- Los cinco ficheros que no tocan los nuestros, byte a byte los de la nota.
+
+**La revisión:**
+- Seguridad: lo que viene de la persona va por `textContent`. Los cuatro
+  `innerHTML` nuevos pintan SVG del propio código: la escena, con números y
+  colores fijos; el personaje, con el aspecto pasado por `normaliza()`, que
+  solo deja opciones de su lista e índices de colores; la etiqueta, con sus
+  caracteres escapados. El tema guardado solo vale «dia» o «noche». El
+  historial lleva objetos fijos. La hoja de estilos no carga nada de fuera.
+- Codificación: los cuatro ficheros, UTF-8 sin caracteres de control, sin
+  `\r`, sin BOM y sin U+FFFD.
+- Los textos: las 10 filas en los diez idiomas, con las palabras de las
+  filas que ya había (set, Satz, serie, série, 组, серия, seria) y su trato:
+  de usted; el infinitivo en las instrucciones en italiano; el impersonal en
+  polaco.
+- La lógica de «−» y «Deshacer», también cuando no se puede guardar.
+
+**Las fuentes de «Su cuerpo».** El guion de la nota encaja 46 de los 48
+trozos. Los dos que no: las 10 filas, que en las fuentes se escriben en
+`src/textos.py`, y uno de la plantilla, que sale también en `prototipo.py`,
+que no forma parte del módulo. Se pusieron los 48 con un guion propio, todo
+o nada, solo en los ficheros del módulo (`src/` y la figura), y las filas
+tal cual las lleva el módulo del parche. `construir.py` da entonces el
+módulo con una sola diferencia: el comentario de la tabla, que en el parche
+seguía diciendo «378 filas» (el parche se hizo sobre el fichero construido, y
+la cifra la escribe `construir.py` contando). Se corrigió en el módulo
+(`2c2de7f`) y, con eso, el módulo es byte a byte el de las fuentes; los 31
+ficheros de `datos/cuerpo/`, los mismos.
+
+**Las pruebas.** `probar_cuerpo.js` pasa de 255 a 272 (las 267 del bloque y
+nuestras cinco) y `probar_figura.js` sigue en 64.
+
+**La auditoría entera**, sobre `5548810` (árbol `d9108d7d`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar.
+- Lo que se ve en pantalla en los diez idiomas (191 pantallas y fichas por
+  idioma): ningún texto sin traducir y ningún error de página.
+- `probar_cuerpo.js` 272, `probar_figura.js` 64 y `probar_perfil.js` 148.
+- La isla en 3D, 58 de 58; el cielo, 309.
+- El SOS, 39 y 261; `auditar_sw.js`, 67.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian tres ficheros suyos (las alertas, los avisos de AEMET y
+  los sismos), y el parche es el mismo (`git patch-id`). Sobre lo que va a
+  `main` se volvieron a pasar los controles que leen esos ficheros, todos
+  en verde:
+  - los avisos de AEMET, 32 y 156;
+  - la app de las tiendas;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos y de las alertas.
+
+**Lo que queda para Jerome:**
+- mirarlo en su iPhone, ya publicado: la lista de la nota («En el móvil,
+  antes de subir»). Y además, que al bajar por la pantalla la barra de
+  abajo se quede quieta abajo, y que la hoja de un grupo se abra entera;
+- la revisión nativa de las 10 filas en nueve idiomas;
+- las decisiones 1 a 8 de la nota, si quiere otra cosa.
+
+El bloque 3, el personaje en 3D, no va con este: espera a sus pruebas y a
+que Jerome lo mire en su iPhone.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
