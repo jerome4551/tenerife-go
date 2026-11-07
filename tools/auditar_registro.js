@@ -378,6 +378,8 @@ const ROTULOS_PL = new Set([
   /* y los de «Preguntar» y «Comida» (3 de noviembre de 2026; los trajo la sesion de «Su cuerpo») */
   'Zadzwoń pod {n}', 'Otwórz przewodnik SOS', 'Zobacz: {grupo}', 'Zobacz ćwiczenie', 'Zmień wygląd', 'Zobacz mięśnie', 'Wyczyść rozmowę',
   'Zacznij zapisywać', 'Dodaj porcję: {g}', 'Usuń porcję: {g}', 'Zobacz wytyczne', 'Zadzwoń do ALABENTE', 'Usuń zapisy',
+  /* y el boton de la hoja «Anotar movimiento» (7 de noviembre de 2026, bloque 4): «Zapisz 30 min i 2,5 km» */
+  'Zapisz {que}',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»

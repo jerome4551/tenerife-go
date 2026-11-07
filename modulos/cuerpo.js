@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (389 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (417 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -129,6 +129,35 @@
     "cuerpoAspectoTitulo": {"es": "Su aspecto", "en": "Your look", "fr": "Votre apparence", "de": "Ihr Aussehen", "it": "Aspetto", "nl": "Uw uiterlijk", "zh": "我的外观", "zht": "我的外觀", "bg": "Вашият външен вид", "pl": "Wygląd"},
     "cuerpoAspectoLema": {"es": "Elija lo que más se le parezca. Solo cambia el dibujo.", "en": "Choose what looks most like you. Only the drawing changes.", "fr": "Choisissez ce qui vous ressemble le plus. Seul le dessin change.", "de": "Wählen Sie, was Ihnen am ähnlichsten ist. Nur die Zeichnung ändert sich.", "it": "Scegliere le opzioni più simili al proprio aspetto. Cambiano solo il disegno.", "nl": "Kies wat het meest op u lijkt. Alleen de tekening verandert.", "zh": "选择最像您的样子。只会改变图像。", "zht": "選擇最像您的樣子。只會改變圖像。", "bg": "Изберете това, което най-много прилича на вас. Променя се само рисунката.", "pl": "Można wybrać to, co najbardziej przypomina własny wygląd. Zmienia się tylko rysunek."},
     "cuerpoAviso3D": {"es": "En 3D todavía no están el pelo rizado ni el moño (salen como afro y coleta), la barba, la gorra y el pañuelo, ni las botas de montaña (salen como zapatillas). En el dibujo pequeño, sí.", "en": "Not yet in 3D: curly hair and the bun (shown as afro and ponytail), the beard, the cap and the headscarf, and hiking boots (shown as trainers). The small drawing does show them.", "fr": "Pas encore en 3D : les cheveux bouclés et le chignon (affichés comme afro et queue-de-cheval), la barbe, la casquette et le foulard, et les chaussures de randonnée (affichées comme des baskets). Le petit dessin les montre.", "de": "Noch nicht in 3D: lockiges Haar und der Dutt (gezeigt als Afro und Pferdeschwanz), der Bart, die Kappe und das Kopftuch sowie die Wanderschuhe (gezeigt als Turnschuhe). Die kleine Zeichnung zeigt sie.", "it": "Non ancora in 3D: i capelli ricci e lo chignon (mostrati come afro e coda), la barba, il cappellino e il foulard, e gli scarponi da trekking (mostrati come scarpe da ginnastica). Il disegno piccolo li mostra.", "nl": "Nog niet in 3D: krullen en de knot (getoond als afro en paardenstaart), de baard, de pet en de hoofddoek, en wandelschoenen (getoond als sportschoenen). De kleine tekening toont ze wel.", "zh": "3D 暂不支持：卷发和发髻（显示为爆炸头和马尾）、胡子、鸭舌帽和头巾，以及登山靴（显示为运动鞋）。小图中仍会显示。", "zht": "3D 暫不支援：捲髮和髮髻（顯示為爆炸頭和馬尾）、鬍子、棒球帽和頭巾，以及登山靴（顯示為運動鞋）。小圖中仍會顯示。", "bg": "Все още не в 3D: къдравата коса и кокът (показват се като афро и опашка), брадата, шапката с козирка и забрадката, както и туристическите обувки (показват се като маратонки). Малката рисунка ги показва.", "pl": "Jeszcze nie w 3D: kręcone włosy i kok (pokazywane jako afro i kucyk), zarost, czapka z daszkiem i chusta oraz buty trekkingowe (pokazywane jako buty sportowe). Mały rysunek je pokazuje."},
+    /* (7-11-2026, bloque 4) la semana: las tres metas, «Anotar movimiento» y la recomendación del movimiento (OMS 2020) */
+    "cuerpoStatMin": {"es": "Minutos de movimiento", "en": "Minutes of movement", "fr": "Minutes de mouvement", "de": "Minuten Bewegung", "it": "Minuti di movimento", "nl": "Minuten beweging", "zh": "运动分钟数", "zht": "運動分鐘數", "bg": "Минути движение", "pl": "Minuty ruchu"},
+    "cuerpoMetaHecha": {"es": "Meta cumplida", "en": "Goal met", "fr": "Objectif atteint", "de": "Ziel erreicht", "it": "Obiettivo raggiunto", "nl": "Doel gehaald", "zh": "已达成目标", "zht": "已達成目標", "bg": "Целта е постигната", "pl": "Cel osiągnięty"},
+    "cuerpoMetaFuerzaDe": {"es": "de {n} días con fuerza", "en": "of {n} strength days", "fr": "sur {n} jours de renforcement", "de": "von {n} Krafttagen", "it": "di {n} giorni di forza", "nl": "van {n} krachtdagen", "zh": "目标：{n} 天力量训练", "zht": "目標：{n} 天肌力訓練", "bg": "от {n} дни със силови упражнения", "pl": "z {n} dni treningu siłowego"},
+    "cuerpoMetaMovDe": {"es": "de {n} min de movimiento", "en": "of {n} min of movement", "fr": "sur {n} min de mouvement", "de": "von {n} Min. Bewegung", "it": "di {n} min di movimento", "nl": "van {n} min beweging", "zh": "目标：{n} 分钟运动", "zht": "目標：{n} 分鐘運動", "bg": "от {n} мин движение", "pl": "z {n} min ruchu"},
+    "cuerpoMetaGruposDe": {"es": "de {n} grupos trabajados", "en": "of {n} groups worked", "fr": "sur {n} groupes travaillés", "de": "von {n} trainierten Gruppen", "it": "di {n} gruppi allenati", "nl": "van {n} getrainde groepen", "zh": "目标：{n} 个肌群", "zht": "目標：{n} 個肌群", "bg": "от {n} тренирани групи", "pl": "z {n} ćwiczonych grup"},
+    "cuerpoMin": {"es": "{n} min", "en": "{n} min", "fr": "{n} min", "de": "{n} Min.", "it": "{n} min", "nl": "{n} min", "zh": "{n}分钟", "zht": "{n}分鐘", "bg": "{n} мин", "pl": "{n} min"},
+    "cuerpoMinKm": {"es": "{min} min y {km} km", "en": "{min} min and {km} km", "fr": "{min} min et {km} km", "de": "{min} Min. und {km} km", "it": "{min} min e {km} km", "nl": "{min} min en {km} km", "zh": "{min}分钟和{km}公里", "zht": "{min}分鐘和{km}公里", "bg": "{min} мин и {km} км", "pl": "{min} min i {km} km"},
+    "cuerpoSemanaLeyenda": {"es": "Sus últimos 7 días: las series y el movimiento de cada día", "en": "Your last 7 days: each day’s sets and movement", "fr": "Vos 7 derniers jours : les séries et le mouvement de chaque jour", "de": "Ihre letzten 7 Tage: die Sätze und die Bewegung jedes Tages", "it": "Gli ultimi 7 giorni: le serie e il movimento di ogni giorno", "nl": "Uw afgelopen 7 dagen: de sets en de beweging van elke dag", "zh": "过去 7 天：每天的组数和运动", "zht": "過去 7 天：每天的組數和運動", "bg": "Вашите последни 7 дни: сериите и движението за всеки ден", "pl": "Ostatnie 7 dni: serie i ruch każdego dnia"},
+    "cuerpoMovAnotar": {"es": "Anotar movimiento", "en": "Log movement", "fr": "Noter du mouvement", "de": "Bewegung eintragen", "it": "Annotare il movimento", "nl": "Beweging noteren", "zh": "记录运动", "zht": "記錄運動", "bg": "Записване на движение", "pl": "Zapisywanie ruchu"},
+    "cuerpoMovLema": {"es": "Caminar, subir, nadar: lo que haga en la isla cuenta.", "en": "Walking, climbing, swimming: whatever you do on the island counts.", "fr": "Marcher, grimper, nager : tout ce que vous faites sur l’île compte.", "de": "Gehen, Steigen, Schwimmen: Alles, was Sie auf der Insel tun, zählt.", "it": "Camminare, salire, nuotare: tutto ciò che si fa sull’isola conta.", "nl": "Wandelen, klimmen, zwemmen: alles wat u op het eiland doet, telt.", "zh": "步行、登高、游泳：您在岛上做的一切都算数。", "zht": "步行、登高、游泳：您在島上做的一切都算數。", "bg": "Ходене, изкачване, плуване: всичко, което правите на острова, се брои.", "pl": "Spacer, wspinaczka, pływanie: liczy się wszystko, co robi się na wyspie."},
+    "cuerpoMovQue": {"es": "Qué ha hecho", "en": "What you did", "fr": "Ce que vous avez fait", "de": "Was Sie gemacht haben", "it": "Che cosa ha fatto", "nl": "Wat u hebt gedaan", "zh": "做了什么", "zht": "做了什麼", "bg": "Какво направихте", "pl": "Rodzaj ruchu"},
+    "cuerpoMovMinutos": {"es": "Minutos", "en": "Minutes", "fr": "Minutes", "de": "Minuten", "it": "Minuti", "nl": "Minuten", "zh": "分钟", "zht": "分鐘", "bg": "Минути", "pl": "Minuty"},
+    "cuerpoMovMenos5": {"es": "5 minutos menos", "en": "5 minutes less", "fr": "5 minutes de moins", "de": "5 Minuten weniger", "it": "5 minuti in meno", "nl": "5 minuten minder", "zh": "减少 5 分钟", "zht": "減少 5 分鐘", "bg": "5 минути по-малко", "pl": "5 minut mniej"},
+    "cuerpoMovMas5": {"es": "5 minutos más", "en": "5 minutes more", "fr": "5 minutes de plus", "de": "5 Minuten mehr", "it": "5 minuti in più", "nl": "5 minuten meer", "zh": "增加 5 分钟", "zht": "增加 5 分鐘", "bg": "5 минути повече", "pl": "5 minut więcej"},
+    "cuerpoMovKm": {"es": "Kilómetros a pie", "en": "Kilometres on foot", "fr": "Kilomètres à pied", "de": "Kilometer zu Fuß", "it": "Chilometri a piedi", "nl": "Kilometers te voet", "zh": "步行公里数", "zht": "步行公里數", "bg": "Километри пеша", "pl": "Kilometry pieszo"},
+    "cuerpoMovMenosKm": {"es": "Medio kilómetro menos", "en": "Half a kilometre less", "fr": "Un demi-kilomètre de moins", "de": "Einen halben Kilometer weniger", "it": "Mezzo chilometro in meno", "nl": "Een halve kilometer minder", "zh": "减少半公里", "zht": "減少半公里", "bg": "Половин километър по-малко", "pl": "Pół kilometra mniej"},
+    "cuerpoMovMasKm": {"es": "Medio kilómetro más", "en": "Half a kilometre more", "fr": "Un demi-kilomètre de plus", "de": "Einen halben Kilometer mehr", "it": "Mezzo chilometro in più", "nl": "Een halve kilometer meer", "zh": "增加半公里", "zht": "增加半公里", "bg": "Половин километър повече", "pl": "Pół kilometra więcej"},
+    "cuerpoMovBoton": {"es": "Anotar {que}", "en": "Log {que}", "fr": "Noter {que}", "de": "{que} eintragen", "it": "Annota {que}", "nl": "{que} noteren", "zh": "记录 {que}", "zht": "記錄 {que}", "bg": "Запиши {que}", "pl": "Zapisz {que}"},
+    "cuerpoMovNota": {"es": "Todo suma minutos a su semana. Los kilómetros, solo a pie.", "en": "Everything adds minutes to your week. Kilometres, only on foot.", "fr": "Tout ajoute des minutes à votre semaine. Les kilomètres, seulement à pied.", "de": "Alles zählt als Minuten für Ihre Woche. Kilometer nur zu Fuß.", "it": "Tutto aggiunge minuti alla settimana. I chilometri, solo a piedi.", "nl": "Alles telt als minuten voor uw week. Kilometers alleen te voet.", "zh": "一切都计入本周的分钟数；公里数只计步行。", "zht": "一切都計入本週的分鐘數；公里數只計步行。", "bg": "Всичко добавя минути към седмицата ви. Километрите — само пеша.", "pl": "Wszystko dodaje minuty do tygodnia. Kilometry — tylko pieszo."},
+    "cuerpoMovAnotado": {"es": "{tipo}: {que} anotados", "en": "{tipo}: {que} logged", "fr": "{tipo} : {que} notés", "de": "{tipo}: {que} eingetragen", "it": "{tipo}: {que} annotati", "nl": "{tipo}: {que} genoteerd", "zh": "{tipo}：已记录 {que}", "zht": "{tipo}：已記錄 {que}", "bg": "{tipo}: записани {que}", "pl": "{tipo}: zapisano {que}"},
+    "cuerpoMovSinHistorial": {"es": "Aún no hay movimiento anotado.", "en": "No movement logged yet.", "fr": "Aucun mouvement noté pour l’instant.", "de": "Noch keine Bewegung eingetragen.", "it": "Ancora nessun movimento annotato.", "nl": "Nog geen beweging genoteerd.", "zh": "尚未记录运动。", "zht": "尚未記錄運動。", "bg": "Все още няма записано движение.", "pl": "Nie zapisano jeszcze żadnego ruchu."},
+    "cuerpoMov_caminar": {"es": "Caminar", "en": "Walking", "fr": "Marche", "de": "Gehen", "it": "Camminata", "nl": "Wandelen", "zh": "步行", "zht": "步行", "bg": "Ходене", "pl": "Spacer"},
+    "cuerpoMov_senderismo": {"es": "Senderismo", "en": "Hiking", "fr": "Randonnée", "de": "Wandern", "it": "Escursionismo", "nl": "Bergwandelen", "zh": "徒步", "zht": "健行", "bg": "Планински преход", "pl": "Wędrówka"},
+    "cuerpoMov_correr": {"es": "Correr", "en": "Running", "fr": "Course à pied", "de": "Laufen", "it": "Corsa", "nl": "Hardlopen", "zh": "跑步", "zht": "跑步", "bg": "Бягане", "pl": "Bieganie"},
+    "cuerpoMov_nadar": {"es": "Nadar", "en": "Swimming", "fr": "Natation", "de": "Schwimmen", "it": "Nuoto", "nl": "Zwemmen", "zh": "游泳", "zht": "游泳", "bg": "Плуване", "pl": "Pływanie"},
+    "cuerpoMov_bici": {"es": "Bici", "en": "Cycling", "fr": "Vélo", "de": "Radfahren", "it": "Bici", "nl": "Fietsen", "zh": "骑车", "zht": "騎車", "bg": "Колело", "pl": "Rower"},
+    "cuerpoRecoMovAdulto": {"es": "La OMS (2020) recomienda a los adultos de 150 a 300 minutos de actividad moderada a la semana: caminar a buen paso, nadar, pedalear.", "en": "The WHO (2020) recommends that adults do 150 to 300 minutes of moderate activity a week: brisk walking, swimming, cycling.", "fr": "L’OMS (2020) recommande aux adultes 150 à 300 minutes d’activité modérée par semaine : marche rapide, natation, vélo.", "de": "Die WHO (2020) empfiehlt Erwachsenen 150 bis 300 Minuten moderate Aktivität pro Woche: zügiges Gehen, Schwimmen, Radfahren.", "it": "L’OMS (2020) raccomanda agli adulti da 150 a 300 minuti di attività moderata a settimana: camminata a passo svelto, nuoto, bicicletta.", "nl": "De WHO (2020) raadt volwassenen 150 tot 300 minuten matige activiteit per week aan: stevig wandelen, zwemmen, fietsen.", "zh": "世卫组织（2020）建议成年人每周进行 150 至 300 分钟的中等强度活动：快走、游泳、骑车。", "zht": "世界衛生組織（2020）建議成年人每週進行 150 至 300 分鐘的中等強度活動：快走、游泳、騎車。", "bg": "СЗО (2020) препоръчва на възрастните от 150 до 300 минути умерена активност седмично: бързо ходене, плуване, колоездене.", "pl": "WHO (2020) zaleca dorosłym od 150 do 300 minut umiarkowanej aktywności tygodniowo: szybki marsz, pływanie, jazdę na rowerze."},
+    "cuerpoRecoMovJoven": {"es": "De 5 a 17 años, la OMS (2020) recomienda una media de 60 minutos al día de actividad moderada o intensa: 420 a la semana.", "en": "For ages 5 to 17, the WHO (2020) recommends an average of 60 minutes a day of moderate or vigorous activity: 420 a week.", "fr": "De 5 à 17 ans, l’OMS (2020) recommande en moyenne 60 minutes par jour d’activité modérée ou intense : 420 par semaine.", "de": "Für 5- bis 17-Jährige empfiehlt die WHO (2020) im Durchschnitt 60 Minuten moderate oder intensive Aktivität pro Tag: 420 pro Woche.", "it": "Dai 5 ai 17 anni l’OMS (2020) raccomanda in media 60 minuti al giorno di attività moderata o intensa: 420 a settimana.", "nl": "Voor 5- tot 17-jarigen raadt de WHO (2020) gemiddeld 60 minuten per dag matige of intensieve activiteit aan: 420 per week.", "zh": "世卫组织（2020）建议 5–17 岁的儿童青少年平均每天进行 60 分钟中等或高强度活动：每周 420 分钟。", "zht": "世界衛生組織（2020）建議 5–17 歲的兒童及青少年平均每天進行 60 分鐘中等或高強度活動：每週 420 分鐘。", "bg": "За възрастта от 5 до 17 години СЗО (2020) препоръчва средно 60 минути на ден умерена или интензивна активност: 420 седмично.", "pl": "Dzieciom i młodzieży w wieku 5–17 lat WHO (2020) zaleca średnio 60 minut dziennie umiarkowanej lub intensywnej aktywności: 420 tygodniowo."},
     "cuerpoSecCuerpo": {"es": "Cuerpo", "en": "Body", "fr": "Corps", "de": "Körper", "it": "Corpo", "nl": "Lichaam", "zh": "身体", "zht": "身體", "bg": "Тяло", "pl": "Ciało"},
     "cuerpoSecCara": {"es": "Pelo y cara", "en": "Hair and face", "fr": "Cheveux et visage", "de": "Haare und Gesicht", "it": "Capelli e viso", "nl": "Haar en gezicht", "zh": "头发和面部", "zht": "頭髮和臉部", "bg": "Коса и лице", "pl": "Włosy i twarz"},
     "cuerpoSecRopa": {"es": "Ropa", "en": "Clothes", "fr": "Vêtements", "de": "Kleidung", "it": "Abbigliamento", "nl": "Kleding", "zh": "衣着", "zht": "衣著", "bg": "Облекло", "pl": "Ubranie"},
@@ -224,7 +253,7 @@
     "cuerpoPrivacidad": {"es": "Todo se guarda solo en este dispositivo. No se sube a ninguna parte.", "en": "Everything is saved on this device only. Nothing is uploaded.", "fr": "Tout est enregistré uniquement sur cet appareil. Rien n’est envoyé.", "de": "Alles wird nur auf diesem Gerät gespeichert. Nichts wird hochgeladen.", "it": "Tutto viene salvato solo su questo dispositivo. Non viene caricato nulla.", "nl": "Alles wordt alleen op dit apparaat opgeslagen. Er wordt niets geüpload.", "zh": "所有内容只保存在本设备上，不会上传。", "zht": "所有內容只儲存在此裝置上，不會上傳。", "bg": "Всичко се пази само на това устройство. Нищо не се качва.", "pl": "Wszystko jest zapisywane tylko na tym urządzeniu. Nic nie jest wysyłane."},
     "cuerpoAviso": {"es": "Información general para personas sanas. No sustituye el consejo de un profesional sanitario.", "en": "General information for healthy people. It does not replace advice from a health professional.", "fr": "Informations générales destinées aux personnes en bonne santé. Elles ne remplacent pas l’avis d’un professionnel de santé.", "de": "Allgemeine Informationen für gesunde Menschen. Sie ersetzen nicht den Rat medizinischer Fachleute.", "it": "Informazioni generali per persone in buona salute. Non sostituiscono il parere di un professionista sanitario.", "nl": "Algemene informatie voor gezonde mensen. Dit vervangt niet het advies van een zorgprofessional.", "zh": "面向健康人群的一般信息，不能替代医疗专业人员的建议。", "zht": "提供給健康人士的一般資訊，不能取代醫療專業人員的建議。", "bg": "Обща информация за здрави хора. Не замества съвета на медицински специалист.", "pl": "Ogólne informacje dla osób zdrowych. Nie zastępują porady pracownika ochrony zdrowia."},
     "cuerpoBorrar": {"es": "Borrar los datos de «Su cuerpo»", "en": "Delete «Your body» data", "fr": "Effacer les données de «Votre corps»", "de": "Daten von «Ihr Körper» löschen", "it": "Elimina i dati di «Corpo»", "nl": "Gegevens van «Uw lichaam» wissen", "zh": "删除「我的身体」数据", "zht": "刪除「我的身體」資料", "bg": "Изтрий данните от «Вашето тяло»", "pl": "Usuń dane z sekcji «Ciało»"},
-    "cuerpoBorrarSeguro": {"es": "¿Borrar su aspecto, todas las series anotadas, el deporte elegido y el diario de comidas? No se puede deshacer.", "en": "Delete your look, all the sets you logged, the sport you chose and your food diary? This cannot be undone.", "fr": "Effacer votre apparence, toutes les séries notées, le sport choisi et le journal alimentaire ? Cette action est irréversible.", "de": "Ihr Aussehen, alle eingetragenen Sätze, die gewählte Sportart und das Ernährungstagebuch löschen? Das lässt sich nicht rückgängig machen.", "it": "Eliminare l’aspetto, tutte le serie annotate, lo sport scelto e il diario alimentare? L’operazione non si può annullare.", "nl": "Uw uiterlijk, alle genoteerde sets, de gekozen sport en het voedingsdagboek wissen? Dit kan niet ongedaan worden gemaakt.", "zh": "要删除您的外观、所有已记录的组数、所选的运动和饮食记录吗？此操作无法撤销。", "zht": "要刪除您的外觀、所有已記錄的組數、所選的運動和飲食記錄嗎？此操作無法復原。", "bg": "Да се изтрият ли външният ви вид, всички записани серии, избраният спорт и хранителният дневник? Това не може да се отмени.", "pl": "Usunąć wygląd, wszystkie zapisane serie, wybrany sport i dziennik posiłków? Tej operacji nie można cofnąć."},
+    "cuerpoBorrarSeguro": {"es": "¿Borrar su aspecto, todas las series y el movimiento anotados, el deporte elegido y el diario de comidas? No se puede deshacer.", "en": "Delete your look, all the sets and movement you logged, the sport you chose and your food diary? This cannot be undone.", "fr": "Effacer votre apparence, toutes les séries et le mouvement notés, le sport choisi et le journal alimentaire ? Cette action est irréversible.", "de": "Ihr Aussehen, alle eingetragenen Sätze und Bewegungen, die gewählte Sportart und das Ernährungstagebuch löschen? Das lässt sich nicht rückgängig machen.", "it": "Eliminare l’aspetto, tutte le serie e il movimento annotati, lo sport scelto e il diario alimentare? L’operazione non si può annullare.", "nl": "Uw uiterlijk, alle genoteerde sets en beweging, de gekozen sport en het voedingsdagboek wissen? Dit kan niet ongedaan worden gemaakt.", "zh": "要删除您的外观、所有已记录的组数和运动、所选的运动项目和饮食记录吗？此操作无法撤销。", "zht": "要刪除您的外觀、所有已記錄的組數和運動、所選的運動項目和飲食記錄嗎？此操作無法復原。", "bg": "Да се изтрият ли външният ви вид, всички записани серии и движение, избраният спорт и хранителният дневник? Това не може да се отмени.", "pl": "Usunąć wygląd, wszystkie zapisane serie i ruch, wybrany sport i dziennik posiłków? Tej operacji nie można cofnąć."},
     "cuerpoBorrarSi": {"es": "Sí, borrar", "en": "Yes, delete", "fr": "Oui, effacer", "de": "Ja, löschen", "it": "Sì, elimina", "nl": "Ja, wissen", "zh": "确定删除", "zht": "確定刪除", "bg": "Да, изтрий", "pl": "Tak, usuń"},
     "cuerpoBorrado": {"es": "Datos borrados", "en": "Data deleted", "fr": "Données effacées", "de": "Daten gelöscht", "it": "Dati eliminati", "nl": "Gegevens gewist", "zh": "数据已删除", "zht": "資料已刪除", "bg": "Данните са изтрити", "pl": "Dane usunięte"},
     "cuerpoNoGuardado": {"es": "No se ha podido guardar en este dispositivo.", "en": "Could not save on this device.", "fr": "Impossible d’enregistrer sur cet appareil.", "de": "Auf diesem Gerät konnte nicht gespeichert werden.", "it": "Impossibile salvare su questo dispositivo.", "nl": "Opslaan op dit apparaat is niet gelukt.", "zh": "无法保存到本设备。", "zht": "無法儲存到此裝置。", "bg": "Не можа да се запази на това устройство.", "pl": "Nie udało się zapisać na tym urządzeniu."},
@@ -1660,10 +1689,34 @@
 
   /* ── lo guardado: tenerife.cuerpo, solo en el dispositivo, validado campo a campo al leerlo ──
      { v: 1, aspecto: {…}, series: [{ d: 'AAAA-MM-DD', g: grupo, n: 1-30, t: instante, e: ejercicio }], deporte: id,
+       mov: [{ d: 'AAAA-MM-DD', tipo: caminar | senderismo | correr | nadar | bici, min: 1-600, km: 0-60, t: instante }],
        comida: { on, pausa, d: { 'AAAA-MM-DD': { grupo: raciones } } } }
-     (e, el id del ejercicio, solo si se anotó desde su ficha; deporte, el elegido en «Su deporte» o ''; comida, el
-     diario por raciones, apagado hasta que la persona lo enciende) */
-  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], deporte: '', comida: comVacio() }; }
+     (e, el id del ejercicio, solo si se anotó desde su ficha; deporte, el elegido en «Su deporte» o ''; mov, el
+     movimiento de «Anotar movimiento» (7-11-2026, bloque 4: los km solo a pie, decisión 4); comida, el diario por
+     raciones, apagado hasta que la persona lo enciende) */
+  /* los cinco tipos de movimiento, con los minutos y los km que propone la hoja al elegirlos (los de la maqueta);
+     pie: los kilómetros se piden (y, en el bloque 5, avanzarán por el GR 131: solo a pie, decisión 4) */
+  var MOV = [
+    { id: 'caminar', min: 30, km: 2.5, pie: true },
+    { id: 'senderismo', min: 120, km: 8, pie: true },
+    { id: 'correr', min: 30, km: 5, pie: true },
+    { id: 'nadar', min: 30, km: 0, pie: false },
+    { id: 'bici', min: 60, km: 0, pie: false }
+  ];
+  var MOV_IDS = MOV.map(function (m) { return m.id; });
+  var MIN_MAX = 600, KM_MAX = 60, MAX_MOV = 2000;
+  /* los iconos de los cinco tipos (los de la maqueta), constantes: van con innerHTML en los botones de la hoja */
+  function icoMov(d) { return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; }
+  var ICONOS_MOV = {
+    caminar: icoMov('<circle cx="13" cy="4.2" r="1.8"/><path d="M13 8l-3 3 1 4-2.5 6M13 8l1.5 4 3 2M11 15l3 2.5 1 4.5M10 11l-3 1.5"/>'),
+    senderismo: icoMov('<path d="M3 20l5.5-10 3.5 6 2.5-4L21 20z"/><path d="M8.5 10l1.6 2.8"/><circle cx="17.5" cy="5.5" r="1.8"/>'),
+    correr: icoMov('<circle cx="15" cy="4.2" r="1.8"/><path d="M8 9.5l4-1.5 3 3 3.5.5M12 8l-1.5 5 3.5 3-1 5M10.5 13l-2 3H5"/>'),
+    nadar: icoMov('<path d="M2.5 17.5c1.6 0 1.6 1.2 3.2 1.2s1.6-1.2 3.2-1.2 1.6 1.2 3.1 1.2 1.6-1.2 3.2-1.2 1.6 1.2 3.2 1.2 1.6-1.2 3.1-1.2"/><circle cx="17.2" cy="8.2" r="1.9"/><path d="M4.5 14.5l5.5-5 3.5 3.5 2.5 1.5"/>'),
+    bici: icoMov('<circle cx="6" cy="16.5" r="3.5"/><circle cx="18" cy="16.5" r="3.5"/><path d="M6 16.5l4-7h5l3 7M10 9.5l2.5 7M9 7h3M15 9.5l-1-3h2"/>')
+  };
+  function movDe(id) { for (var i = 0; i < MOV.length; i++) { if (MOV[i].id === id) return MOV[i]; } return MOV[0]; }
+  function km1(v) { return Math.round(v * 10) / 10; }
+  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], deporte: '', comida: comVacio() }; }
   function valida(s) {
     var r = vacio();
     if (!s || typeof s !== 'object') return r;
@@ -1678,6 +1731,17 @@
         if (typeof x.e === 'string' && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x.e) && x.e.length <= 80) y.e = x.e;
         return y;
       }).slice(-MAX_ENTRADAS);
+    }
+    /* el movimiento (bloque 4): el tipo, de la lista; los minutos, enteros de 1 a 600; los km, de 0 a 60 con un
+       decimal y solo a pie (a nado o en bici, 0) */
+    if (Array.isArray(s.mov)) {
+      r.mov = s.mov.filter(function (x) {
+        return x && typeof x === 'object' && esFecha(x.d) && x.d <= max && x.d >= min && MOV_IDS.indexOf(x.tipo) >= 0 &&
+          typeof x.min === 'number' && Math.floor(x.min) === x.min && x.min >= 1 && x.min <= MIN_MAX;
+      }).map(function (x) {
+        var k = (movDe(x.tipo).pie && typeof x.km === 'number' && isFinite(x.km) && x.km > 0) ? Math.min(KM_MAX, km1(x.km)) : 0;
+        return { d: x.d, tipo: x.tipo, min: x.min, km: k, t: (typeof x.t === 'number' && isFinite(x.t) && x.t > 0) ? x.t : 0 };
+      }).slice(-MAX_MOV);
     }
     /* el deporte: solo la forma de un id (si no es uno de la lista, deporteActual() no lo encuentra) */
     if (typeof s.deporte === 'string' && s.deporte.length <= 30 && esId(s.deporte)) r.deporte = s.deporte;
@@ -1717,16 +1781,23 @@
 
   /* ── las cuentas de los últimos 7 días (hoy y los 6 anteriores) ── */
   function nivel(n) { return n >= 10 ? 3 : n >= 5 ? 2 : n >= 1 ? 1 : 0; }
+  /* series y grupos por grupo, los días con fuerza, y (bloque 4) los minutos y los km del movimiento y los días
+     activos (con series o con movimiento) */
   function resumen() {
-    var h = hoy(), desde = sumar(h, -6), r = { series: {}, dias: {}, ultima: {}, total: 0, diasFuerza: 0, grupos: 0, niveles: {} }, todos = {};
+    var h = hoy(), desde = sumar(h, -6), r = { series: {}, dias: {}, ultima: {}, total: 0, diasFuerza: 0, grupos: 0, niveles: {}, min: 0, km: 0, diasMov: 0, diasActivos: 0 }, todos = {}, conMov = {}, activos = {};
     GRUPOS.forEach(function (g) { r.series[g] = 0; r.dias[g] = {}; r.ultima[g] = null; });
     st.series.forEach(function (x) {
       if (x.d > h) return;
       if (!r.ultima[x.g] || x.d > r.ultima[x.g]) r.ultima[x.g] = x.d;
-      if (x.d >= desde) { r.series[x.g] += x.n; r.dias[x.g][x.d] = 1; todos[x.d] = 1; r.total += x.n; }
+      if (x.d >= desde) { r.series[x.g] += x.n; r.dias[x.g][x.d] = 1; todos[x.d] = 1; activos[x.d] = 1; r.total += x.n; }
     });
+    st.mov.forEach(function (x) {
+      if (x.d > h || x.d < desde) return;
+      r.min += x.min; r.km += x.km; conMov[x.d] = 1; activos[x.d] = 1;
+    });
+    r.km = km1(r.km);
     GRUPOS.forEach(function (g) { r.dias[g] = Object.keys(r.dias[g]).length; if (r.series[g]) r.grupos++; r.niveles[g] = nivel(r.series[g]); });
-    r.diasFuerza = Object.keys(todos).length;
+    r.diasFuerza = Object.keys(todos).length; r.diasMov = Object.keys(conMov).length; r.diasActivos = Object.keys(activos).length;
     return r;
   }
 
@@ -2144,12 +2215,15 @@
     return { cfg: cfg, vars: vars, svg: svg };
   })();
   var escW = 0, escH = 0, escE = 0, escAnim = null, escRayos = '', escEntrada = false, escTema = '';
-  /* cuánto se ha cumplido la semana, de 0 a 1: la mitad son los días con fuerza (la meta de la OMS:
-     2 días los adultos, 3 de 5 a 17 años) y la otra mitad, los grupos trabajados de 12 */
+  /* cuánto se ha cumplido la semana, de 0 a 1: las tres metas a partes iguales (7-11-2026, bloque 4; antes, la
+     mitad los días con fuerza y la otra mitad los grupos): los días con fuerza (la OMS: 2 los adultos, 3 de 5 a
+     17 años), los minutos de movimiento (la OMS: de 150 a 300 a la semana los adultos; de 5 a 17 años, 60 al
+     día de media, 420 en 7 días) y los grupos trabajados de 12 */
   function metaDias() { return adulto() ? 2 : 3; }
-  function progreso(R) { return (Math.min(R.diasFuerza / metaDias(), 1) + Math.min(R.grupos / 12, 1)) / 2; }
-  /* un rayo por cada día con series en los últimos 7: del más antiguo a hoy */
-  function rayosDe() { return semana().map(function (o) { return o.n > 0; }); }
+  function metaMin() { return adulto() ? 150 : 420; }
+  function progreso(R) { return (Math.min(R.diasFuerza / metaDias(), 1) + Math.min(R.min / metaMin(), 1) + Math.min(R.grupos / 12, 1)) / 3; }
+  /* un rayo por cada día activo (con series o con movimiento) en los últimos 7: del más antiguo a hoy */
+  function rayosDe() { return semana().map(function (o) { return o.n > 0 || o.min > 0; }); }
   /* el dibujo se monta a la medida de su caja (y se vuelve a montar si la caja, los rayos o el tema cambian) */
   function montarEscena() {
     var caja = $('tgc-cielo'), W = Math.round(caja.clientWidth), H = Math.round(caja.clientHeight);
@@ -2220,49 +2294,82 @@
 
   /* ── modo «Músculos»: el resumen, la semana día a día y los 12 grupos ── */
   function adulto() { var e = edad(); return !(e !== null && e < 18); }
-  /* «11/12»: la parte de después de la barra, más pequeña (el texto sigue siendo «11/12») */
-  function cifra(b, a, de) { b.textContent = String(a); if (de != null) b.appendChild(el('small', '', '/' + de)); }
+  /* los números con el formato del idioma («2,5» en castellano, «2.5» en inglés) */
+  function fmtN(n, dec) { try { return new Intl.NumberFormat(locale(), { minimumFractionDigits: 0, maximumFractionDigits: dec }).format(n); } catch (e) { return String(n); } }
+  /* «30 min y 2,5 km» (o solo los minutos): lo que se lee en el día, en el botón de la hoja y en el aviso */
+  function minKm(min, km) { return km > 0 ? tx('cuerpoMinKm', { min: fmtN(min, 0), km: fmtN(km, 1) }) : tx('cuerpoMin', { n: min }); }
+  /* (7-11-2026, bloque 4) las tres metas de la semana: los días con fuerza, los minutos de movimiento y los grupos
+     trabajados, cada una con su cifra, «de cuántos», su raya y la marca de cumplida (como en la maqueta) */
+  var metasAntes = null;
+  function meta(id, valor, meta_, claveDe) {
+    var m = $('tgc-meta-' + id), b = m.querySelector('.tgc-meta-n b'), hecha = valor >= meta_;
+    var txt = fmtN(valor, 0);
+    if (b.textContent !== txt) {
+      b.textContent = txt;
+      /* la cifra salta al cambiar (no al abrir ni al cambiar de idioma) */
+      if (metasAntes && metasAntes[id] !== txt && !reducido) { var n = b.parentNode; n.classList.remove('salta'); void n.offsetWidth; n.classList.add('salta'); }
+    }
+    /* «de 2 días con fuerza»: el texto de su idioma, con la cifra de la meta en negrita (sin innerHTML) */
+    var de = m.querySelector('.tgc-meta-de'), partes = tx(claveDe).split('{n}');
+    de.textContent = '';
+    partes.forEach(function (p, i) { if (i) de.appendChild(el('b', '', fmtN(meta_, 0))); if (p) de.appendChild(document.createTextNode(p)); });
+    m.classList.toggle('hecha', hecha);
+    m.querySelector('.tgc-meta-ok').hidden = !hecha;
+    m.querySelector('.tgc-meta-raya i').style.width = Math.min(100, Math.round(valor / meta_ * 100)) + '%';
+    return txt;
+  }
   function renderResumen(R) {
-    $('tgc-st-series').textContent = String(R.total);
-    cifra($('tgc-st-grupos'), R.grupos, 12);
-    cifra($('tgc-st-dias'), R.diasFuerza, 7);
+    var ahora = {
+      fuerza: meta('fuerza', R.diasFuerza, metaDias(), 'cuerpoMetaFuerzaDe'),
+      mov: meta('mov', R.min, metaMin(), 'cuerpoMetaMovDe'),
+      grupos: meta('grupos', R.grupos, 12, 'cuerpoMetaGruposDe')
+    };
+    metasAntes = ahora;
     $('tgc-reco').textContent = tx(adulto() ? 'cuerpoRecoAdulto' : 'cuerpoRecoJoven');
+    $('tgc-reco-mov').textContent = tx(adulto() ? 'cuerpoRecoMovAdulto' : 'cuerpoRecoMovJoven');
     /* sin nada anotado en 7 días, la escena dice qué hacer */
     $('tgc-pista-txt').textContent = tx('cuerpoPistaToque');
-    $('tgc-pista').hidden = R.total > 0;
-    /* «Las cifras»: la recomendación de su edad, la referencia del ACSM (solo adultos) y las fuentes */
+    $('tgc-pista').hidden = R.total > 0 || R.min > 0;
+    /* «Las cifras»: la recomendación de su edad (fuerza y movimiento), la referencia del ACSM (solo adultos) y las fuentes */
     $('tgc-cifras-reco').textContent = tx(adulto() ? 'cuerpoRecoAdulto' : 'cuerpoRecoJoven');
+    $('tgc-cifras-mov').textContent = tx(adulto() ? 'cuerpoRecoMovAdulto' : 'cuerpoRecoMovJoven');
     $('tgc-cifras-ref').textContent = tx('cuerpoRefSeries'); $('tgc-cifras-ref').hidden = !adulto();
     $('tgc-h-ref').hidden = !adulto();
     renderSemana();
   }
-  /* la semana: hoy y los 6 días anteriores, con las series anotadas cada día y sus grupos */
+  /* la semana: hoy y los 6 días anteriores, con las series anotadas cada día y sus grupos, y (bloque 4) los
+     minutos y los km de movimiento y sus tipos */
   var diaSel = null;
   function semana() {
     var h = hoy(), ds = [];
-    for (var i = 6; i >= 0; i--) ds.push({ d: sumar(h, -i), n: 0, g: {} });
+    for (var i = 6; i >= 0; i--) ds.push({ d: sumar(h, -i), n: 0, g: {}, min: 0, km: 0, tipos: {} });
     st.series.forEach(function (x) { ds.forEach(function (o) { if (o.d === x.d) { o.n += x.n; o.g[x.g] = 1; } }); });
+    st.mov.forEach(function (x) { ds.forEach(function (o) { if (o.d === x.d) { o.min += x.min; o.km = km1(o.km + x.km); o.tipos[x.tipo] = 1; } }); });
     return ds;
   }
   function fmtDia(s, largo) {
     try { return fecha(s).toLocaleDateString(locale(), largo ? { weekday: 'long', day: 'numeric', month: 'long' } : { weekday: 'short' }).replace(/\.$/, ''); }
     catch (e) { return s; }
   }
+  /* lo del día en una línea: «10 series · 30 min y 2,5 km» (solo movimiento, si no hubo series; «0 series» si no hubo nada) */
+  function textoDia(o) { var t = []; if (o.n > 0 || !o.min) t.push(tx('cuerpoNSeries', { n: o.n })); if (o.min > 0) t.push(minKm(o.min, o.km)); return t.join(' · '); }
   function renderSemana() {
     var ds = semana(), h = hoy(), ol = $('tgc-dias7');
     if (!diaSel || diaSel > h || diaSel < ds[0].d) diaSel = h;
     var max = Math.max(10, Math.max.apply(null, ds.map(function (o) { return o.n; })));
-    ol.setAttribute('aria-label', tx('cuerpoLeyenda'));
+    ol.setAttribute('aria-label', tx('cuerpoSemanaLeyenda'));
     ol.textContent = '';
     ds.forEach(function (o, i) {
-      var li = el('li'), b = el('button', 'tgc-dia' + (o.d === h ? ' es-hoy' : ''));
+      var li = el('li'), b = el('button', 'tgc-dia' + (o.d === h ? ' es-hoy' : '') + (o.min > 0 ? ' con-mov' : ''));
       b.type = 'button'; b.dataset.d = o.d;
       b.setAttribute('aria-pressed', o.d === diaSel ? 'true' : 'false');
-      b.setAttribute('aria-label', dosPuntos(fmtDia(o.d, true), tx('cuerpoNSeries', { n: o.n })));
+      b.setAttribute('aria-label', dosPuntos(fmtDia(o.d, true), textoDia(o)));
       if (o.d === h) b.setAttribute('aria-current', 'date');
       var col = el('span', 'tgc-dia-col'), barra = el('i', 'tgc-dia-barra' + (o.n ? '' : ' cero'));
       if (o.n) { barra.style.height = Math.max(4, Math.round(64 * o.n / max)) + 'px'; barra.style.animationDelay = (i * 45) + 'ms'; }
       col.setAttribute('aria-hidden', 'true'); col.appendChild(barra); b.appendChild(col);
+      /* el punto del movimiento: debajo de la barra, del color del movimiento cuando el día lo tiene */
+      var pm = el('i', 'tgc-dia-mov'); pm.setAttribute('aria-hidden', 'true'); b.appendChild(pm);
       var l = el('span', 'tgc-dia-l', fmtDia(o.d, false)); l.setAttribute('aria-hidden', 'true'); b.appendChild(l);
       li.appendChild(b); ol.appendChild(li);
     });
@@ -2271,10 +2378,12 @@
   function renderDia(ds) {
     var o = (ds || semana()).filter(function (x) { return x.d === diaSel; })[0];
     if (!o) return;
-    $('tgc-dia-txt').textContent = dosPuntos(fmtDia(o.d, true), tx('cuerpoNSeries', { n: o.n }));
-    var gs = GRUPOS.filter(function (g) { return o.g[g]; }).map(nombre);
-    $('tgc-dia-grupos').textContent = gs.length ? lista(gs) : tx('cuerpoSinAnotar');
+    $('tgc-dia-txt').textContent = dosPuntos(fmtDia(o.d, true), textoDia(o));
+    var gs = GRUPOS.filter(function (g) { return o.g[g]; }).map(nombre), ts = MOV_IDS.filter(function (t) { return o.tipos[t]; }).map(nombreMov);
+    var trozos = []; if (gs.length) trozos.push(lista(gs)); if (ts.length) trozos.push(lista(ts));
+    $('tgc-dia-grupos').textContent = trozos.length ? trozos.join(' · ') : tx('cuerpoSinAnotar');
   }
+  function nombreMov(id) { return tx('cuerpoMov_' + id) || id; }
   /* (6-11-2026, bloque 2) cada grupo, un botón grande de la rejilla: el nombre, el color de su nivel con
      las series de 7 días y la última vez. Lo mismo que el dibujo, para quien prefiera tocar aquí */
   function renderLista(R) {
@@ -2567,6 +2676,7 @@
   function abrirHoja(g, desdeLista) {
     if (GRUPOS.indexOf(g) < 0) return;
     if (cifrasAbiertas) cerrarCifras(true);
+    if (movAbierto) cerrarMov(true);
     var nueva = !grupoAbierto;
     grupoAbierto = g;
     if (nueva) {
@@ -2611,6 +2721,7 @@
        cifras» hereda su entrada (un «atrás» cierra «Las cifras» y deja la pantalla, no vuelve a la hoja) */
     var heredada = false;
     if (grupoAbierto) { heredada = hojaHistoria && !ejHistoria; if (heredada) hojaHistoria = false; cerrarHoja(true); }
+    if (movAbierto) cerrarMov(true);
     cifrasAbiertas = true;
     antesDeCifras = document.activeElement;
     $('tgc-pag-grupo').hidden = true; $('tgc-pag-ej').hidden = true; $('tgc-pag-cifras').hidden = false;
@@ -2638,6 +2749,114 @@
     if (antesDeCifras && document.contains(antesDeCifras) && typeof antesDeCifras.focus === 'function') { try { antesDeCifras.focus({ preventScroll: true }); } catch (e) {} }
     antesDeCifras = null;
   }
+  /* ── «Anotar movimiento» (7-11-2026, bloque 4): la misma hoja, con su página. Qué ha hecho (cinco tipos),
+     los minutos (±5, o escritos), los kilómetros a pie (±0,5, o escritos; solo caminar, senderismo y correr:
+     decisión 4), hoy o ayer; «Anotar» guarda, cierra y avisa con «Deshacer». Debajo, lo último anotado, con ×.
+     Todo queda en tenerife.cuerpo, en el dispositivo; los kilómetros del perfil (su pestaña «Evolución», que se
+     suben a la cuenta con permiso) no se tocan ── */
+  var movAbierto = false, movHistoria = false, antesDeMov = null, movSel = null;
+  function movReset() { var m = MOV[0]; movSel = { tipo: m.id, min: m.min, km: m.km, dia: 'hoy' }; }
+  function abrirMov() {
+    if (movAbierto) return;
+    if (grupoAbierto) cerrarHoja(true);
+    if (cifrasAbiertas) cerrarCifras(true);
+    movAbierto = true;
+    if (!movSel) movReset();           /* lo elegido la última vez se recuerda mientras la pantalla siga abierta */
+    antesDeMov = document.activeElement;
+    $('tgc-pag-grupo').hidden = true; $('tgc-pag-ej').hidden = true; $('tgc-pag-cifras').hidden = true; $('tgc-pag-mov').hidden = false;
+    $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-mov-tit');
+    $('tgc-velo').hidden = false; $('tgc-hoja').hidden = false; $('tgc-hoja').scrollTop = 0;
+    debajoInerte(true); panel.classList.add('con-hoja');
+    if (conHistoria && !movHistoria) { try { history.pushState({ tgPerfil: 1, tgCuerpo: 1, tgCuerpoHoja: 1, tgCuerpoMov: 1 }, ''); movHistoria = true; } catch (e) {} }
+    renderMov();
+    try { $('tgc-mov-tit').focus({ preventScroll: true }); } catch (e) {}
+  }
+  function cerrarMov(sinHistoria) {
+    if (!movAbierto) return;
+    movAbierto = false;
+    $('tgc-velo').hidden = true; $('tgc-hoja').hidden = true;
+    $('tgc-pag-mov').hidden = true; $('tgc-pag-grupo').hidden = false;
+    $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-hoja-tit');
+    debajoInerte(false); panel.classList.remove('con-hoja');
+    if (movHistoria && !sinHistoria) { try { atrasPendiente = true; history.back(); } catch (e) { atrasPendiente = false; } }
+    movHistoria = false;
+    if (antesDeMov && document.contains(antesDeMov) && typeof antesDeMov.focus === 'function') { try { antesDeMov.focus({ preventScroll: true }); } catch (e) {} }
+    antesDeMov = null;
+  }
+  /* lo que hay escrito en el campo de los km: con coma o con punto; nada o algo que no es un número, null */
+  function leerKm() {
+    var s = String($('tgc-mov-km').value || '').replace(/\s/g, '').replace(',', '.');
+    if (!/^\d+(\.\d+)?$/.test(s)) return null;
+    return Math.max(0, Math.min(KM_MAX, km1(parseFloat(s))));
+  }
+  function renderMov() {
+    if (!movAbierto || !movSel) return;
+    var m = movDe(movSel.tipo);
+    /* los cinco tipos, con su icono y su nombre */
+    var caja = $('tgc-mov-tipos'); caja.textContent = '';
+    MOV.forEach(function (x) {
+      var b = el('button', 'tgc-tipo'); b.type = 'button'; b.dataset.tipo = x.id;
+      b.setAttribute('aria-pressed', x.id === movSel.tipo ? 'true' : 'false');
+      b.innerHTML = ICONOS_MOV[x.id];
+      b.appendChild(el('span', '', nombreMov(x.id)));
+      caja.appendChild(b);
+    });
+    $('tgc-mov-min').value = String(movSel.min);
+    $('tgc-mov-min-menos').disabled = movSel.min <= 1;
+    $('tgc-mov-min-mas').disabled = movSel.min >= MIN_MAX;
+    $('tgc-mov-km-fila').hidden = !m.pie;
+    $('tgc-mov-km').value = fmtN(movSel.km, 1);
+    $('tgc-mov-km-menos').disabled = movSel.km <= 0;
+    $('tgc-mov-km-mas').disabled = movSel.km >= KM_MAX;
+    $('tgc-mov-hoy').setAttribute('aria-pressed', movSel.dia === 'hoy' ? 'true' : 'false');
+    $('tgc-mov-ayer').setAttribute('aria-pressed', movSel.dia === 'ayer' ? 'true' : 'false');
+    $('tgc-mov-guardar-txt').textContent = tx('cuerpoMovBoton', { que: minKm(movSel.min, m.pie ? movSel.km : 0) });
+    /* lo último anotado: las ocho últimas, de la más reciente a la más antigua */
+    var ul = $('tgc-mov-hist'); ul.textContent = '';
+    var mias = st.mov.map(function (x, i) { return { x: x, i: i }; })
+      .sort(function (a, b) { return a.x.d === b.x.d ? b.x.t - a.x.t || b.i - a.i : (a.x.d < b.x.d ? 1 : -1); }).slice(0, 8);
+    mias.forEach(function (o) {
+      var li = el('li', 'tgc-hist-fila'), que = nombreMov(o.x.tipo) + ' · ' + minKm(o.x.min, o.x.km), f = fmtFecha(o.x.d);
+      li.appendChild(el('span', 'tgc-hist-n', que));
+      li.appendChild(el('span', 'tgc-hist-f', f));
+      var b = el('button', 'tgc-hist-x', '×'); b.type = 'button'; b.dataset.i = String(o.i);
+      b.setAttribute('aria-label', tx('cuerpoBorrarEntrada', { series: que, fecha: f }));
+      li.appendChild(b); ul.appendChild(li);
+    });
+    $('tgc-mov-hist-nada').hidden = mias.length > 0;
+  }
+  function elegirMov(id) { var m = movDe(id); movSel.tipo = m.id; movSel.min = m.min; movSel.km = m.km; renderMov(); }
+  function anotarMov() {
+    if (!movSel) return;
+    var m = movDe(movSel.tipo), d = movSel.dia === 'ayer' ? sumar(hoy(), -1) : hoy();
+    var x = { d: d, tipo: m.id, min: Math.max(1, Math.min(MIN_MAX, Math.round(movSel.min))), km: m.pie ? Math.max(0, Math.min(KM_MAX, km1(movSel.km))) : 0, t: Date.now() };
+    st.mov.push(x);
+    if (st.mov.length > MAX_MOV) st.mov = st.mov.slice(-MAX_MOV);
+    if (!guardar()) { st.mov.pop(); return; }
+    cerrarMov();
+    renderMusculos();
+    if (en3d()) M3.sonrie(2.2);          /* movimiento anotado: el personaje sonríe, como con una serie */
+    deshacer = { mov: x };
+    toast(tx('cuerpoMovAnotado', { tipo: nombreMov(x.tipo), que: minKm(x.min, x.km) }), tx('cuerpoDeshacer'), function () {
+      if (!deshacer || !deshacer.mov) return;
+      var i = st.mov.indexOf(deshacer.mov); if (i >= 0) st.mov.splice(i, 1);
+      deshacer = null;
+      guardar(); renderMusculos(); renderMov();
+    });
+  }
+  function borrarMov(i) {
+    var x = st.mov[i]; if (!x) return;
+    st.mov.splice(i, 1);
+    if (!guardar()) { st.mov.splice(i, 0, x); return; }
+    renderMusculos(); renderMov();
+    deshacer = { mov: x, i: i };
+    toast(tx('cuerpoEntradaBorrada'), tx('cuerpoDeshacer'), function () {
+      if (!deshacer || !deshacer.mov) return;
+      st.mov.splice(Math.min(deshacer.i, st.mov.length), 0, deshacer.mov); deshacer = null;
+      guardar(); renderMusculos(); renderMov();
+    });
+  }
+
   /* (6-11-2026, bloque 2) un toque, una serie: «+ 1 serie» anota una; «+3», tres; en el día elegido */
   function anotar(n) {
     var g = grupoAbierto; if (!g) return;
@@ -2763,7 +2982,7 @@
       /* en 3D, el toque se atiende aquí, en «click» (llega una sola vez, después de soltar el dedo, así la hoja que
          abre no recibe ese mismo toque); tras arrastrar para girar, nada */
       if (movido3d) { movido3d = false; return; }
-      if (modo !== 'musculos' || grupoAbierto || cifrasAbiertas) return;
+      if (modo !== 'musculos' || grupoAbierto || cifrasAbiertas || movAbierto) return;
       var g = zonaDe(e) || zonaEn(e.clientX, e.clientY);
       if (g) abrirHoja(g);
     });
@@ -2789,8 +3008,22 @@
       renderTodo(); toast(tx('cuerpoBorrado'));
     });
     /* la hoja */
-    $('tgc-velo').addEventListener('click', function () { if (cifrasAbiertas) cerrarCifras(); else cerrarHoja(); });
+    $('tgc-velo').addEventListener('click', function () { if (movAbierto) cerrarMov(); else if (cifrasAbiertas) cerrarCifras(); else cerrarHoja(); });
     $('tgc-hoja-cerrar').addEventListener('click', function () { cerrarHoja(); });
+    /* «Anotar movimiento» (bloque 4) */
+    $('tgc-mov-btn').addEventListener('click', abrirMov);
+    $('tgc-mov-cerrar').addEventListener('click', function () { cerrarMov(); });
+    $('tgc-mov-tipos').addEventListener('click', function (e) { var b = e.target.closest('.tgc-tipo'); if (b) elegirMov(b.dataset.tipo); });
+    $('tgc-mov-min-menos').addEventListener('click', function () { movSel.min = Math.max(1, movSel.min - 5); renderMov(); });
+    $('tgc-mov-min-mas').addEventListener('click', function () { movSel.min = Math.min(MIN_MAX, movSel.min + 5); renderMov(); });
+    $('tgc-mov-min').addEventListener('change', function () { var v = Math.round(Number($('tgc-mov-min').value)); if (isFinite(v) && v >= 1) movSel.min = Math.min(MIN_MAX, v); renderMov(); });
+    $('tgc-mov-km-menos').addEventListener('click', function () { movSel.km = Math.max(0, km1(movSel.km - 0.5)); renderMov(); });
+    $('tgc-mov-km-mas').addEventListener('click', function () { movSel.km = Math.min(KM_MAX, km1(movSel.km + 0.5)); renderMov(); });
+    $('tgc-mov-km').addEventListener('change', function () { var v = leerKm(); if (v !== null) movSel.km = v; renderMov(); });
+    $('tgc-mov-hoy').addEventListener('click', function () { movSel.dia = 'hoy'; renderMov(); });
+    $('tgc-mov-ayer').addEventListener('click', function () { movSel.dia = 'ayer'; renderMov(); });
+    $('tgc-mov-guardar').addEventListener('click', anotarMov);
+    $('tgc-mov-hist').addEventListener('click', function (e) { var b = e.target.closest('.tgc-hist-x'); if (b) borrarMov(Number(b.dataset.i)); });
     $('tgc-menos').addEventListener('click', quitarUna);
     $('tgc-guardar').addEventListener('click', function () { anotar(1); });
     $('tgc-mas3').addEventListener('click', function () { anotar(3); });
@@ -2861,7 +3094,7 @@
     if (op && (op.modo === 'aspecto' || op.modo === 'musculos' || op.modo === 'comida' || op.modo === 'preguntar')) modo = op.modo;
     if (op && typeof op.pregunta === 'string') { modo = 'preguntar'; preguntaPendiente = op.pregunta; }
     if (!abierto) {
-      diaSel = null; vista = 'frente';
+      diaSel = null; vista = 'frente'; movSel = null;
       /* la entrada (el sol que asoma, las barras que crecen y la rejilla que aparece): una vez, al abrir */
       var t = $('tgc'); t.classList.add('tgc-entra'); clearTimeout(entraReloj);
       entraReloj = setTimeout(function () { t.classList.remove('tgc-entra'); }, 1800);
@@ -2891,6 +3124,7 @@
   function debajoInerte(si) { $('tgc').inert = !!si; $('tgc-modos').inert = !!si; }
   function cerrar(sinHistoria) {
     if (!abierto) return;
+    if (movAbierto) cerrarMov(true);
     if (cifrasAbiertas) cerrarCifras(true);
     if (grupoAbierto) cerrarHoja(true);
     abierto = false;
@@ -2920,6 +3154,7 @@
     if (ejAbierto && !s.tgCuerpoEj) { ejHistoria = false; volverGrupo(true); }
     if (grupoAbierto && !s.tgCuerpoHoja) { hojaHistoria = false; ejHistoria = false; cerrarHoja(true); }
     if (cifrasAbiertas && !s.tgCuerpoCifras) { cifrasHistoria = false; cerrarCifras(true); }
+    if (movAbierto && !s.tgCuerpoMov) { movHistoria = false; cerrarMov(true); }
     if (s.tgCuerpo || !abierto) return;
     historia = false;
     cerrar(true);
@@ -2935,7 +3170,7 @@
     /* y no lo oye nadie más, tampoco en window: el Escape del perfil, si se enganchó después que
        este, ya no vería la hoja abierta y cerraría también el perfil */
     e.stopImmediatePropagation();
-    if (ejAbierto) volverGrupo(); else if (grupoAbierto) cerrarHoja(); else if (cifrasAbiertas) cerrarCifras(); else cerrar();
+    if (ejAbierto) volverGrupo(); else if (grupoAbierto) cerrarHoja(); else if (cifrasAbiertas) cerrarCifras(); else if (movAbierto) cerrarMov(); else cerrar();
   }, true);
   try { TG_IDIOMA.registrar('cuerpo', function () { if (abierto) renderTodo(); }); } catch (e) {}
 
@@ -3006,7 +3241,9 @@
     function nombres(gs) { return lista(gs.map(nombre)); }
     if (id === 'mi-semana') {
       var hechos = GRUPOS.filter(function (g) { return R.series[g] > 0; });
-      return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos) } };
+      /* (bloque 4) los minutos y los km a pie de la semana; sin movimiento, min vale null y el párrafo que lo
+         nombra no sale (tarjetaRespuesta) */
+      return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos), min: R.min || null, km: fmtN(R.km, 1) } };
     }
     if (id === 'que-entreno-hoy') {
       var faltan = GRUPOS.filter(function (g) { return !R.series[g]; });
@@ -3104,7 +3341,9 @@
     }
     if (!cuerpo) return caja;
     caja.appendChild(el('p', 'tgc-resp-t', rellena(cuerpo.t, vars)));
-    if (cuerpo.p.length) { var ul = el('ul', 'tgc-resp-p'); cuerpo.p.forEach(function (p) { ul.appendChild(el('li', '', rellena(p, vars))); }); caja.appendChild(ul); }
+    /* un párrafo que nombra un dato que no hay (la variable vale null) no sale */
+    var ps = cuerpo.p.filter(function (p) { return !(String(p || '').match(/\{(\w+)\}/g) || []).some(function (k) { return vars[k.slice(1, -1)] === null; }); });
+    if (ps.length) { var ul = el('ul', 'tgc-resp-p'); ps.forEach(function (p) { ul.appendChild(el('li', '', rellena(p, vars))); }); caja.appendChild(ul); }
     if (cuerpo.c) {
       var cc = el('div', 'tgc-resp-c'); cc.appendChild(el('b', '', tx('cuerpoAsisConsultar'))); cc.appendChild(el('p', '', rellena(cuerpo.c, vars))); caja.appendChild(cc);
     }
@@ -3601,6 +3840,8 @@
   color-scheme: light;
   --tinta: #12233A; --tinta-2: #51627A; --fondo: #EEF3F8; --tarjeta: #FFFFFF; --linea: #D5DFEA;
   --oro: #8A6A12; --oro-vivo: #D4AF37; --oro-f: #FBF2D4; --zonas: #5B4FCF; --zonas-f: #E7E4FB;
+  /* las tres metas de la semana (7-11-2026, bloque 4): fuerza, movimiento y grupos (--zonas); contraste con el fondo 4,85 · 4,43 · 5,43 */
+  --fuerza: #C2334F; --fuerza-f: #FBE3E8; --mov: #0B7C86; --mov-f: #D9F1F2;
   --rojo: #B3261E; --rojo-f: #FBE3E8;
   --cristal: rgba(255,255,255,0.72); --cristal-borde: rgba(255,255,255,0.9); --sobre-cielo: #12233A;
   --suave: rgba(18,35,58,0.06); --suave-2: rgba(18,35,58,0.14); --suave-3: rgba(18,35,58,0.55);
@@ -3621,6 +3862,7 @@
   color-scheme: dark;
   --tinta: #F0ECE4; --tinta-2: #A8B3C4; --fondo: #0F1117; --tarjeta: #1B2330; --linea: #2D3A4A;
   --oro: #F5C76B; --oro-vivo: #D4AF37; --oro-f: #33290F; --zonas: #9B8CFF; --zonas-f: #262447;
+  --fuerza: #FF6B81; --fuerza-f: #3A1F2B; --mov: #3CC8D6; --mov-f: #12333A;
   --rojo: #FFB4A8; --rojo-f: #3A1F2B;
   --cristal: rgba(15,17,23,0.55); --cristal-borde: rgba(255,255,255,0.16); --sobre-cielo: #F6F1E7;
   --suave: rgba(240,236,228,0.06); --suave-2: rgba(240,236,228,0.14); --suave-3: rgba(240,236,228,0.5);
@@ -3740,19 +3982,32 @@
 .tgc-cab { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
 .tgc-ver { flex: none; background: none; border: 0; padding: 0 2px; min-height: 32px; font-size: 14px; font-weight: 600; color: var(--zonas); text-decoration: underline; text-underline-offset: 3px; text-align: start; }
 
-/* las cifras de la semana, sin cajas */
-.tgc-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.tgc-stat { display: grid; gap: 4px; align-content: start; min-width: 0; }
-.tgc-stat b { display: flex; align-items: baseline; font: 600 44px/.95 var(--font-display); letter-spacing: -1px; color: var(--tinta); overflow-wrap: anywhere; }
-.tgc-stat b small { margin-left: 2px; font: 700 13px/1 var(--font-body); letter-spacing: 0; color: var(--tinta-2); }
-.tgc-stat > span { font-size: 13px; line-height: 1.3; color: var(--tinta-2); hyphens: auto; overflow-wrap: anywhere; }
-.tgc-stat .pop, .tgc-marc-n .pop { display: inline-block; animation: tgc-pop var(--t-slower) var(--ease-bounce); }
+/* (7-11-2026, bloque 4) las tres metas de la semana, sin cajas: la cifra grande del color de su meta, «de 2 días
+   con fuerza», la raya de lo cumplido y la marca ✓ al llegar (como en la maqueta) */
+.tgc-metas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tgc-meta { min-width: 0; display: grid; gap: 6px; align-content: start; }
+.tgc-meta-n { display: flex; align-items: flex-start; gap: 4px; font: 600 54px/.9 var(--font-display); letter-spacing: -1px; color: var(--tinta); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.tgc-meta-n.salta { animation: tgc-salta 450ms var(--ease-bounce); }
+@keyframes tgc-salta { 0% { transform: translateY(8px) scale(.9); } 100% { transform: none; } }
+.tgc-meta-ok { margin-top: 6px; font: 700 13px/1 var(--font-body); letter-spacing: 0; animation: tgc-aparece 400ms var(--ease-bounce); }
+@keyframes tgc-aparece { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
+.tgc-meta-de { font-size: 13px; line-height: 1.3; color: var(--tinta-2); hyphens: auto; overflow-wrap: anywhere; }
+.tgc-meta-de b { color: var(--tinta); font-weight: 600; }
+.tgc-meta-raya { height: 6px; border-radius: 6px; background: var(--linea); overflow: hidden; }
+.tgc-meta-raya i { display: block; height: 100%; width: 0; border-radius: 6px; transition: width 700ms var(--ease-emph); }
+.tgc-meta.fuerza .tgc-meta-n { color: var(--fuerza); } .tgc-meta.fuerza .tgc-meta-raya i { background: var(--fuerza); }
+.tgc-meta.mov .tgc-meta-n { color: var(--mov); } .tgc-meta.mov .tgc-meta-raya i { background: var(--mov); }
+.tgc-meta.grupos .tgc-meta-n { color: var(--zonas); } .tgc-meta.grupos .tgc-meta-raya i { background: var(--zonas); }
+.tgc-marc-n .pop { display: inline-block; animation: tgc-pop var(--t-slower) var(--ease-bounce); }
 @keyframes tgc-pop { 0% { transform: scale(1); } 40% { transform: scale(1.18); color: var(--oro); } 100% { transform: scale(1); } }
+/* «Anotar movimiento», bajo la semana */
+.tgc-mov-btn { justify-self: stretch; }
+.tgc-mov-btn svg { color: var(--mov); }
 
 /* la semana, día a día: las series anotadas cada día, en oro */
 .tgc-dias7 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; position: relative; }
 .tgc-dia {
-  width: 100%; display: grid; grid-template-rows: 64px auto; justify-items: center; gap: 6px; padding: 6px 0; border: 0; border-radius: 12px;
+  width: 100%; display: grid; grid-template-rows: 64px 8px auto; justify-items: center; gap: 5px; padding: 6px 0; border: 0; border-radius: 12px;
   background: transparent; color: var(--tinta-2); transition: background var(--t-fast) var(--ease-out);
 }
 .tgc-dia:hover { background: var(--suave); }
@@ -3763,6 +4018,9 @@
 .tgc.tgc-entra .tgc-dia-barra { animation: tgc-crece 600ms var(--ease-emph) both; }
 .tgc-dia-barra.cero { height: 2px !important; width: 8px; border-radius: 1px; background: var(--suave-2); animation: none; }
 @keyframes tgc-crece { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+ /* (bloque 4) el punto del movimiento, bajo la barra: del color del movimiento cuando el día lo tiene */
+.tgc-dia-mov { display: block; width: 8px; height: 8px; border-radius: 50%; background: transparent; transition: background var(--t-normal) var(--ease-out), transform var(--t-slow) var(--ease-bounce); transform: scale(.5); }
+.tgc-dia.con-mov .tgc-dia-mov { background: var(--mov); transform: none; }
 .tgc-dia-l { font-size: 12px; font-weight: 600; line-height: 1; text-transform: capitalize; }
 .tgc-dia.es-hoy .tgc-dia-l { color: var(--tinta); font-weight: 700; }
 .tgc-dia-info { min-height: 2.9em; }
@@ -3771,6 +4029,7 @@
 .tgc-dia-grupos { font-size: 13px; color: var(--tinta-2); }
 .tgc-reco { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 12px 14px; border-radius: 16px; background: var(--oro-f); color: var(--tinta); font-size: 14px; line-height: 1.45; }
 .tgc-reco svg { color: var(--oro); margin-top: 1px; }
+.tgc-reco-txt { display: grid; gap: 6px; min-width: 0; }
 .tgc-fuentes, .tgc-ayuda { font-size: 13px; color: var(--tinta-2); line-height: 1.45; }
 .tgc-cifras-p { font-size: 15px; line-height: 1.5; }
 
@@ -3911,6 +4170,13 @@
   font: 600 20px/1 var(--font-body); font-variant-numeric: tabular-nums; -moz-appearance: textfield; appearance: textfield;
 }
 .tgc-paso input::-webkit-outer-spin-button, .tgc-paso input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* «Anotar movimiento» (bloque 4): «Qué ha hecho» encima de sus cinco tipos, con su icono */
+.tgc-campo { display: grid; gap: 8px; }
+.tgc-campo > span { font-weight: 600; font-size: 14px; }
+.tgc-tipos .tgc-tipo { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 13px 0 10px; }
+.tgc-tipos .tgc-tipo svg { flex: none; }
+.tgc-paso input.tgc-km { width: 72px; }
 
 /* ── los ejercicios: la lista del grupo y la ficha de cada uno ── */
 .tgc-pag { display: grid; gap: 14px; min-width: 0; }
@@ -4126,7 +4392,7 @@
 /* en un móvil estrecho, la rejilla de los 12 va a dos columnas */
 @media (max-width: 359px) {
   .tgc-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .tgc-stat b { font-size: 36px; }
+  .tgc-meta-n { font-size: 44px; }
   .tgc-top h1 { font-size: 26px; }
 }
 /* en una pantalla ancha la escena deja de ir de borde a borde */
@@ -4200,19 +4466,38 @@
         <h2 id="tgc-resumen-tit">Sus últimos 7 días</h2>
         <button type="button" class="tgc-ver" id="tgc-cifras-link">Las cifras</button>
       </div>
-      <div class="tgc-stats tgc-kpis">
-        <div class="tgc-stat"><b id="tgc-st-series">0</b><span id="tgc-st-series-l">Series</span></div>
-        <div class="tgc-stat"><b id="tgc-st-grupos">0/12</b><span id="tgc-st-grupos-l">Grupos trabajados</span></div>
-        <div class="tgc-stat"><b id="tgc-st-dias">0/7</b><span id="tgc-st-dias-l">Días con fuerza</span></div>
+      <div class="tgc-metas">
+        <div class="tgc-meta fuerza" id="tgc-meta-fuerza" role="group">
+          <div class="tgc-meta-n"><b id="tgc-st-dias">0</b><small class="tgc-meta-ok" hidden><span aria-hidden="true">✓</span><span class="tgc-sr">Meta cumplida</span></small></div>
+          <p class="tgc-meta-de">de <b>2</b> días con fuerza</p>
+          <div class="tgc-meta-raya" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="tgc-meta mov" id="tgc-meta-mov" role="group">
+          <div class="tgc-meta-n"><b id="tgc-st-min">0</b><small class="tgc-meta-ok" hidden><span aria-hidden="true">✓</span><span class="tgc-sr">Meta cumplida</span></small></div>
+          <p class="tgc-meta-de">de <b>150</b> min de movimiento</p>
+          <div class="tgc-meta-raya" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="tgc-meta grupos" id="tgc-meta-grupos" role="group">
+          <div class="tgc-meta-n"><b id="tgc-st-grupos">0</b><small class="tgc-meta-ok" hidden><span aria-hidden="true">✓</span><span class="tgc-sr">Meta cumplida</span></small></div>
+          <p class="tgc-meta-de">de <b>12</b> grupos trabajados</p>
+          <div class="tgc-meta-raya" aria-hidden="true"><i></i></div>
+        </div>
       </div>
       <ol class="tgc-dias7" id="tgc-dias7"></ol>
       <div class="tgc-dia-info" id="tgc-dia-info" aria-live="polite">
         <p class="tgc-dia-txt" id="tgc-dia-txt"></p>
         <p class="tgc-dia-grupos" id="tgc-dia-grupos"></p>
       </div>
+      <button type="button" class="tgc-btn wide tgc-mov-btn" id="tgc-mov-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4.2" r="1.8"/><path d="M13 8l-3 3 1 4-2.5 6M13 8l1.5 4 3 2M11 15l3 2.5 1 4.5M10 11l-3 1.5"/></svg>
+        <span>Anotar movimiento</span>
+      </button>
       <div class="tgc-reco">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
-        <p id="tgc-reco"></p>
+        <div class="tgc-reco-txt">
+          <p id="tgc-reco"></p>
+          <p id="tgc-reco-mov"></p>
+        </div>
       </div>
     </section>
     <section class="tgc-grupos" id="tgc-grupos">
@@ -4441,8 +4726,53 @@
       </button>
     </div>
     <p class="tgc-cifras-p" id="tgc-cifras-reco"></p>
+    <p class="tgc-cifras-p" id="tgc-cifras-mov"></p>
     <p class="tgc-cifras-p" id="tgc-cifras-ref"></p>
     <p class="tgc-fuentes" id="tgc-fuentes"></p>
+  </div>
+
+  <div class="tgc-pag" id="tgc-pag-mov" hidden>
+    <div class="tgc-hoja-cab">
+      <h2 id="tgc-mov-tit" tabindex="-1">Anotar movimiento</h2>
+      <button type="button" class="tgc-icon-btn" id="tgc-mov-cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <p class="tgc-hoja-desc" id="tgc-mov-lema"></p>
+    <div class="tgc-anotar">
+      <div class="tgc-campo">
+        <span id="tgc-mov-que">Qué ha hecho</span>
+        <div class="tgc-seg tgc-tipos" role="group" id="tgc-mov-tipos" aria-labelledby="tgc-mov-que"></div>
+      </div>
+      <div class="tgc-fila-ctl">
+        <span id="tgc-mov-min-l">Minutos</span>
+        <div class="tgc-paso">
+          <button type="button" id="tgc-mov-min-menos">−</button>
+          <input type="number" id="tgc-mov-min" inputmode="numeric" min="1" max="600" step="1" value="30" aria-labelledby="tgc-mov-min-l">
+          <button type="button" id="tgc-mov-min-mas">+</button>
+        </div>
+      </div>
+      <div class="tgc-fila-ctl" id="tgc-mov-km-fila">
+        <span id="tgc-mov-km-l">Kilómetros a pie</span>
+        <div class="tgc-paso">
+          <button type="button" id="tgc-mov-km-menos">−</button>
+          <input type="text" class="tgc-km" id="tgc-mov-km" inputmode="decimal" autocomplete="off" value="2,5" aria-labelledby="tgc-mov-km-l">
+          <button type="button" id="tgc-mov-km-mas">+</button>
+        </div>
+      </div>
+      <div class="tgc-fila-ctl">
+        <span id="tgc-mov-cuando">Cuándo</span>
+        <div class="tgc-dias" role="group" aria-labelledby="tgc-mov-cuando">
+          <button type="button" id="tgc-mov-hoy" aria-pressed="true">Hoy</button>
+          <button type="button" id="tgc-mov-ayer" aria-pressed="false">Ayer</button>
+        </div>
+      </div>
+      <button type="button" class="tgc-btn gold wide" id="tgc-mov-guardar"><span id="tgc-mov-guardar-txt">Anotar 30 min</span></button>
+      <p class="tgc-ayuda" id="tgc-mov-nota"></p>
+    </div>
+    <h3 id="tgc-mov-hist-tit">Lo último anotado</h3>
+    <ul class="tgc-hist" id="tgc-mov-hist"></ul>
+    <p class="tgc-ayuda" id="tgc-mov-hist-nada"></p>
   </div>
 </div>
 <div class="tgc-toast" id="tgc-toast" role="status" aria-live="polite"><span id="tgc-toast-txt"></span><button type="button" id="tgc-toast-btn" hidden></button></div>
@@ -4499,9 +4829,30 @@
     ['#tgc-dep-lema', 'tx', 'cuerpoDepLema'],
     ['#tgc-dep-reintentar span', 'tx', 'cuerpoReintentar'],
     ['#tgc-resumen-tit', 'tx', 'cuerpoResumenTitulo'],
-    ['#tgc-st-series-l', 'tx', 'cuerpoStatSeries'],
-    ['#tgc-st-grupos-l', 'tx', 'cuerpoStatGrupos'],
-    ['#tgc-st-dias-l', 'tx', 'cuerpoStatDias'],
+    /* (7-11-2026, bloque 4) las tres metas: el nombre de cada una va en el grupo; «de {n} …» lo pone renderResumen */
+    ['#tgc-meta-fuerza', 'aria', 'cuerpoStatDias'],
+    ['#tgc-meta-mov', 'aria', 'cuerpoStatMin'],
+    ['#tgc-meta-grupos', 'aria', 'cuerpoStatGrupos'],
+    ['#tgc-meta-fuerza .tgc-sr', 'tx', 'cuerpoMetaHecha'],
+    ['#tgc-meta-mov .tgc-sr', 'tx', 'cuerpoMetaHecha'],
+    ['#tgc-meta-grupos .tgc-sr', 'tx', 'cuerpoMetaHecha'],
+    ['#tgc-mov-btn span', 'tx', 'cuerpoMovAnotar'],
+    ['#tgc-mov-tit', 'tx', 'cuerpoMovAnotar'],
+    ['#tgc-mov-cerrar', 'aria', 'ariaCerrar'],
+    ['#tgc-mov-lema', 'tx', 'cuerpoMovLema'],
+    ['#tgc-mov-que', 'tx', 'cuerpoMovQue'],
+    ['#tgc-mov-min-l', 'tx', 'cuerpoMovMinutos'],
+    ['#tgc-mov-min-menos', 'aria', 'cuerpoMovMenos5'],
+    ['#tgc-mov-min-mas', 'aria', 'cuerpoMovMas5'],
+    ['#tgc-mov-km-l', 'tx', 'cuerpoMovKm'],
+    ['#tgc-mov-km-menos', 'aria', 'cuerpoMovMenosKm'],
+    ['#tgc-mov-km-mas', 'aria', 'cuerpoMovMasKm'],
+    ['#tgc-mov-cuando', 'tx', 'cuerpoCuando'],
+    ['#tgc-mov-hoy', 'tx', 'cuerpoHoyB'],
+    ['#tgc-mov-ayer', 'tx', 'cuerpoAyerB'],
+    ['#tgc-mov-nota', 'tx', 'cuerpoMovNota'],
+    ['#tgc-mov-hist-tit', 'tx', 'cuerpoHistorial'],
+    ['#tgc-mov-hist-nada', 'tx', 'cuerpoMovSinHistorial'],
     ['#tgc-cifras-link', 'tx', 'cuerpoCifras'],
     ['#tgc-grupos-tit', 'tx', 'cuerpoGruposTitulo'],
     ['#tgc-grupos-ayuda', 'tx', 'cuerpoGruposAyuda'],

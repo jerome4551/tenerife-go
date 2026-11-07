@@ -68,6 +68,9 @@
  *   - desde el 7 de noviembre de 2026, el bloque 3 del rediseño: el personaje en 3D (22), con el 3D
  *     encendido y eventos tactiles; todo lo demas corre con el 3D apagado (tenerife.cuerpo.3d = «no»),
  *     porque prueba el dibujo, que es la reserva del 3D y lo que sale donde no hay WebGL 2.
+ *   - y el bloque 4 (la semana): las tres metas en vez de las tres cifras (4) y «Anotar movimiento»
+ *     con su hoja, sus datos (mov), los puntos y los rayos de los dias con movimiento, los menores,
+ *     lo roto, borrar, el asistente y los diez idiomas (23).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -182,8 +185,10 @@ async function ejemplo(pg) {
   });
   /* desde el 3 de noviembre, con «Comida», «Preguntar» y «Su deporte», 109; desde el 6 (bloque 2), con
      el tema, «Las cifras», «+ 1 serie», «+3» y la referencia corta, y sin el lema, los pies de las vistas
-     ni el paso de la hoja, 108; y 2 placeholders (el del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (108 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 108 && r2.ph === 2, r2.n + '/' + r2.ph);
+     ni el paso de la hoja, 108; desde el 7 (bloque 4), con las tres metas (su nombre y «Meta cumplida»,
+     6), «Anotar movimiento» y su hoja (17) y sin las tres cifras de antes (3), 128; y 2 placeholders (el del
+     buscador de ejercicios y el de la pregunta) */
+  prueba('textos fijos puestos (128 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 128 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -217,17 +222,21 @@ async function ejemplo(pg) {
   prueba('polaco: seria/serie/serii', pl.join('|') === '1 seria|2 serie|5 serii|12 serii|22 serie|25 serii', pl.join('|'));
   await idioma(pg, 'es'); await pg.evaluate(() => document.getElementById('tgc-modo-m').click());
 
-  // 4. el ejemplo: niveles del mapa y cuentas del resumen
+  // 4. el ejemplo: niveles del mapa y las tres metas de la semana (7-11-2026, bloque 4: días con fuerza de 2,
+  //    minutos de movimiento de 150 y grupos trabajados de 12, con su raya y su marca de cumplida; antes, tres cifras)
   await ejemplo(pg); await pg.waitForTimeout(200);
-  const r4 = await pg.evaluate(() => ({
-    series: document.getElementById('tgc-st-series').textContent, grupos: document.getElementById('tgc-st-grupos').textContent,
-    dias: document.getElementById('tgc-st-dias').textContent,
-    niveles: Object.fromEntries([...document.querySelectorAll('#tgc-lista .tgc-fila')].map(b => [b.dataset.g, b.querySelector('.tgc-nivel').className.slice(-1)])),
-    zonas: document.querySelectorAll('#tgc-cara .tgf-z').length, rayos: [...document.querySelectorAll('#tgc-cielo .tgc-rayo')].map(r => r.getAttribute('opacity') === '1' ? 1 : 0).join('')
-  }));
-  prueba('resumen: 76 series', r4.series === '76', r4.series);
-  prueba('resumen: 11/12 grupos', r4.grupos === '11/12', r4.grupos);
-  prueba('resumen: 5/7 días', r4.dias === '5/7', r4.dias);
+  const r4 = await pg.evaluate(() => {
+    const meta = id => { const m = document.getElementById('tgc-meta-' + id); return { n: m.querySelector('.tgc-meta-n b').textContent, de: m.querySelector('.tgc-meta-de').textContent, hecha: m.classList.contains('hecha'), ok: !m.querySelector('.tgc-meta-ok').hidden, raya: m.querySelector('.tgc-meta-raya i').style.width, nombre: m.getAttribute('aria-label') }; };
+    return {
+      fuerza: meta('fuerza'), mov: meta('mov'), grupos: meta('grupos'), sinSeries: !document.getElementById('tgc-st-series'),
+      niveles: Object.fromEntries([...document.querySelectorAll('#tgc-lista .tgc-fila')].map(b => [b.dataset.g, b.querySelector('.tgc-nivel').className.slice(-1)])),
+      zonas: document.querySelectorAll('#tgc-cara .tgf-z').length, rayos: [...document.querySelectorAll('#tgc-cielo .tgc-rayo')].map(r => r.getAttribute('opacity') === '1' ? 1 : 0).join('')
+    };
+  });
+  prueba('metas: 5 de 2 días con fuerza, cumplida, con la raya llena y su nombre', r4.fuerza.n === '5' && r4.fuerza.de === 'de 2 días con fuerza' && r4.fuerza.hecha && r4.fuerza.ok && r4.fuerza.raya === '100%' && r4.fuerza.nombre === 'Días con fuerza', JSON.stringify(r4.fuerza));
+  prueba('metas: 0 de 150 min de movimiento (el ejemplo no tiene), sin cumplir, con la raya vacía', r4.mov.n === '0' && r4.mov.de === 'de 150 min de movimiento' && !r4.mov.hecha && !r4.mov.ok && r4.mov.raya === '0%' && r4.mov.nombre === 'Minutos de movimiento', JSON.stringify(r4.mov));
+  prueba('metas: 11 de 12 grupos trabajados, sin cumplir, con la raya al 92 %', r4.grupos.n === '11' && r4.grupos.de === 'de 12 grupos trabajados' && !r4.grupos.hecha && r4.grupos.raya === '92%' && r4.grupos.nombre === 'Grupos trabajados', JSON.stringify(r4.grupos));
+  prueba('metas: la cifra «Series» del resumen ya no está (las series siguen en cada grupo y en la hoja)', r4.sinSeries);
   prueba('niveles del ejemplo', JSON.stringify(r4.niveles) === JSON.stringify({ pecho: '2', dorsal: '2', espalda_alta: '1', hombros: '2', biceps: '1', triceps: '2', antebrazo: '0', core: '1', gluteos: '3', cuadriceps: '2', isquios: '1', pantorrilla: '2' }), JSON.stringify(r4.niveles));
   /* el sol: un rayo encendido por cada día con series en los últimos 7, del más antiguo (hace 6) a hoy */
   prueba('el sol: cinco rayos encendidos, los de los días con series (hace 6, 4, 2, 1 y hoy)', r4.rayos === '1010111', r4.rayos);
@@ -1638,6 +1647,178 @@ async function ejemplo(pg) {
         rg.estado === 'activo' && rg.llamadas > 20 && rg.mal.length === 0 && eg.length === 0, JSON.stringify(rg) + ' ' + eg.join(' | '));
       await cg.close();
     }
+  }
+
+  // 23. (7-11-2026, bloque 4) la semana: las tres metas (días con fuerza de 2, minutos de movimiento de 150 y
+  //     grupos de 12; de 5 a 17 años, 3 y 420) y «Anotar movimiento»: su hoja (qué ha hecho, los minutos ±5 o
+  //     escritos, los km a pie ±0,5 o escritos con coma, solo a pie; hoy o ayer), «Anotar» guarda en
+  //     tenerife.cuerpo (mov), cierra y avisa con «Deshacer»; lo último anotado con ×; los días con movimiento
+  //     llevan su punto y encienden su rayo; el detalle del día dice minutos y km; Escape, «atrás» y el velo
+  //     cierran la hoja; lo guardado roto se descarta campo a campo; «Borrar los datos» lo borra; el asistente
+  //     cuenta el movimiento en «¿Cómo voy esta semana?»; y los textos nuevos, en los diez idiomas
+  {
+    const c23 = await contexto(b), p23 = await c23.newPage(), e23 = []; vigilar(p23, e23);
+    await abrirApp(p23); await abrirPerfilCuerpo(p23); await suCuerpo(p23);
+    await ejemplo(p23);
+    /* el ejemplo, con movimiento: hoy 35 min y 3 km a pie; hace 3, una caminata larga sin series; hace 5, a nado */
+    const conMov = async () => {
+      await p23.evaluate(() => {
+        const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+        const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+        const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')), t = Date.now() - 5e5;
+        g.mov = [{ d: hace(0), tipo: 'caminar', min: 35, km: 3, t: t }, { d: hace(3), tipo: 'senderismo', min: 150, km: 9.5, t: t + 1 }, { d: hace(5), tipo: 'nadar', min: 30, km: 0, t: t + 2 }];
+        localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir();
+      });
+      await p23.waitForTimeout(250);
+    };
+    await conMov();
+    const metaDe = (pg, id) => pg.evaluate(id => { const m = document.getElementById('tgc-meta-' + id); return { n: m.querySelector('.tgc-meta-n b').textContent, de: m.querySelector('.tgc-meta-de').textContent, hecha: m.classList.contains('hecha'), raya: m.querySelector('.tgc-meta-raya i').style.width }; }, id);
+    const r23 = await p23.evaluate(() => ({
+      rayos: [...document.querySelectorAll('#tgc-cielo .tgc-rayo')].map(r => r.getAttribute('opacity') === '1' ? 1 : 0).join(''),
+      conMov: [...document.querySelectorAll('#tgc-dias7 .tgc-dia')].map(b => b.classList.contains('con-mov') ? 1 : 0).join(''),
+      hoy: document.getElementById('tgc-dia-txt').textContent, hoyG: document.getElementById('tgc-dia-grupos').textContent,
+      ariaHoy: document.querySelector('#tgc-dias7 li:nth-child(7) .tgc-dia').getAttribute('aria-label'),
+      ariaHace3: document.querySelector('#tgc-dias7 li:nth-child(4) .tgc-dia').getAttribute('aria-label'),
+      leyenda: document.getElementById('tgc-dias7').getAttribute('aria-label'), pista: document.getElementById('tgc-pista').hidden,
+      reco: document.getElementById('tgc-reco-mov').textContent, cifras: document.getElementById('tgc-cifras-mov').textContent
+    }));
+    const m23 = await metaDe(p23, 'mov');
+    prueba('movimiento: 215 de 150 min, cumplida, con la raya llena', m23.n === '215' && m23.de === 'de 150 min de movimiento' && m23.hecha && m23.raya === '100%', JSON.stringify(m23));
+    prueba('el sol: los siete rayos, también los de los días que solo tienen movimiento (hace 3 y hace 5)', r23.rayos === '1111111', r23.rayos);
+    prueba('la semana: el punto del movimiento en hoy, hace 3 y hace 5', r23.conMov === '0101001', r23.conMov);
+    prueba('hoy: «10 series · 35 min y 3 km», con sus grupos y «Caminar»', /: 10 series · 35 min y 3 km$/.test(r23.hoy) && r23.hoyG === 'Pecho, Hombros, Tríceps · Caminar' && r23.ariaHoy === r23.hoy, r23.hoy + ' | ' + r23.hoyG);
+    prueba('hace 3 días, solo movimiento: «150 min y 9,5 km» (sin «0 series»)', /: 150 min y 9,5 km$/.test(r23.ariaHace3), r23.ariaHace3);
+    await p23.click('#tgc-dias7 li:nth-child(4) .tgc-dia'); await p23.waitForTimeout(80);
+    prueba('…y al tocarlo, debajo dice «Senderismo»', await p23.evaluate(() => document.getElementById('tgc-dia-grupos').textContent === 'Senderismo' && /150 min y 9,5 km$/.test(document.getElementById('tgc-dia-txt').textContent)));
+    prueba('la leyenda de la semana nombra las series y el movimiento; la recomendación del movimiento (OMS, 150 a 300) en la caja y en «Las cifras»', /series y el movimiento/.test(r23.leyenda) && /150 a 300/.test(r23.reco) && r23.cifras === r23.reco && r23.pista, JSON.stringify(r23));
+
+    /* la hoja */
+    await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(350);
+    const h23 = await p23.evaluate(() => ({
+      abierta: !document.getElementById('tgc-hoja').hidden && !document.getElementById('tgc-pag-mov').hidden && document.getElementById('tgc-pag-grupo').hidden,
+      etiqueta: document.getElementById('tgc-hoja').getAttribute('aria-labelledby'), foco: document.activeElement && document.activeElement.id,
+      tit: document.getElementById('tgc-mov-tit').textContent, lema: document.getElementById('tgc-mov-lema').textContent,
+      tipos: [...document.querySelectorAll('#tgc-mov-tipos .tgc-tipo')].map(b => b.dataset.tipo + ':' + b.getAttribute('aria-pressed') + ':' + b.textContent.trim() + ':' + (b.querySelector('svg') ? 1 : 0)).join(','),
+      min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, kmFila: document.getElementById('tgc-mov-km-fila').hidden,
+      hoy: document.getElementById('tgc-mov-hoy').getAttribute('aria-pressed'), boton: document.getElementById('tgc-mov-guardar-txt').textContent, nota: document.getElementById('tgc-mov-nota').textContent,
+      hist: [...document.querySelectorAll('#tgc-mov-hist .tgc-hist-fila')].map(li => li.querySelector('.tgc-hist-n').textContent).join(' | '), inerte: document.getElementById('tgc').inert,
+      estado: JSON.stringify(history.state)
+    }));
+    prueba('«Anotar movimiento» abre su página de la hoja, con el foco en el título y su entrada en el historial', h23.abierta && h23.etiqueta === 'tgc-mov-tit' && h23.foco === 'tgc-mov-tit' && h23.inerte && h23.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1,"tgCuerpoMov":1}', JSON.stringify(h23));
+    prueba('la hoja: el título, la frase, los cinco tipos con su icono (Caminar elegido), 30 min, 2,5 km a pie, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
+      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,nadar:false:Nadar:1,bici:false:Bici:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.hoy === 'true'
+      && h23.boton === 'Anotar 30 min y 2,5 km' && /solo a pie/.test(h23.nota), JSON.stringify(h23));
+    prueba('lo último anotado: las tres, de hoy hacia atrás, con el tipo, los minutos y los km', h23.hist === 'Caminar · 35 min y 3 km | Senderismo · 150 min y 9,5 km | Nadar · 30 min', h23.hist);
+    await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p23.waitForTimeout(60);
+    const n23 = await p23.evaluate(() => ({ kmFila: document.getElementById('tgc-mov-km-fila').hidden, min: document.getElementById('tgc-mov-min').value, boton: document.getElementById('tgc-mov-guardar-txt').textContent, pulsado: document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]').dataset.tipo }));
+    prueba('Nadar: sin el campo de los kilómetros (decisión 4: solo a pie), 30 min, y el botón solo dice los minutos', n23.kmFila && n23.min === '30' && n23.boton === 'Anotar 30 min' && n23.pulsado === 'nadar', JSON.stringify(n23));
+    await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="senderismo"]'); await p23.waitForTimeout(60);
+    const s23 = await p23.evaluate(() => ({ min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, kmFila: document.getElementById('tgc-mov-km-fila').hidden }));
+    prueba('Senderismo propone 120 min y 8 km', s23.min === '120' && s23.km === '8' && !s23.kmFila, JSON.stringify(s23));
+    await p23.click('#tgc-mov-min-mas'); await p23.click('#tgc-mov-km-menos'); await p23.waitForTimeout(60);
+    const pm23 = await p23.evaluate(() => ({ min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, boton: document.getElementById('tgc-mov-guardar-txt').textContent }));
+    prueba('«+» suma 5 minutos y «−» quita medio kilómetro: 125 min y 7,5 km', pm23.min === '125' && pm23.km === '7,5' && pm23.boton === 'Anotar 125 min y 7,5 km', JSON.stringify(pm23));
+    await p23.fill('#tgc-mov-min', '7'); await p23.dispatchEvent('#tgc-mov-min', 'change');
+    await p23.fill('#tgc-mov-km', '4,25'); await p23.dispatchEvent('#tgc-mov-km', 'change'); await p23.waitForTimeout(60);
+    const esc23 = await p23.evaluate(() => ({ min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value }));
+    prueba('escritos a mano: 7 minutos, y «4,25» km (con coma) queda en 4,3', esc23.min === '7' && esc23.km === '4,3', JSON.stringify(esc23));
+    await p23.fill('#tgc-mov-min', '0'); await p23.dispatchEvent('#tgc-mov-min', 'change'); await p23.fill('#tgc-mov-km', 'abc'); await p23.dispatchEvent('#tgc-mov-km', 'change'); await p23.waitForTimeout(60);
+    const mal23 = await p23.evaluate(() => ({ min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value }));
+    prueba('un 0 en los minutos o letras en los km no valen: se queda lo de antes', mal23.min === '7' && mal23.km === '4,3', JSON.stringify(mal23));
+    await p23.click('#tgc-mov-ayer'); await p23.waitForTimeout(60);
+    prueba('«Ayer» se marca', await p23.evaluate(() => document.getElementById('tgc-mov-ayer').getAttribute('aria-pressed') === 'true' && document.getElementById('tgc-mov-hoy').getAttribute('aria-pressed') === 'false'));
+    await p23.click('#tgc-mov-guardar'); await p23.waitForTimeout(450);
+    const g23 = await p23.evaluate(() => {
+      const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const ayer = new Date(); ayer.setDate(ayer.getDate() - 1);
+      const m = TG_CUERPO.estado().mov, u = m[m.length - 1], g = JSON.parse(localStorage.getItem('tenerife.cuerpo'));
+      return { n: m.length, u: u && [u.tipo, u.min, u.km, u.d === ymd(ayer), u.t > 0].join(','), guardado: g.mov.length, cerrada: document.getElementById('tgc-hoja').hidden && !document.getElementById('tgc').inert,
+        toast: document.getElementById('tgc-toast-txt').textContent, deshacer: document.getElementById('tgc-toast-btn').textContent, min: document.getElementById('tgc-st-min').textContent, estado: JSON.stringify(history.state) };
+    });
+    prueba('«Anotar» guarda ayer (senderismo, 7 min, 4,3 km) en tenerife.cuerpo, cierra la hoja y avisa con «Deshacer»', g23.n === 4 && g23.u === 'senderismo,7,4.3,true,true' && g23.guardado === 4 && g23.cerrada && g23.toast === 'Senderismo: 7 min y 4,3 km anotados' && g23.deshacer === 'Deshacer' && g23.min === '222' && g23.estado === '{"tgPerfil":1,"tgCuerpo":1}', JSON.stringify(g23));
+    await p23.click('#tgc-toast-btn'); await p23.waitForTimeout(150);
+    prueba('«Deshacer» quita lo anotado y las metas vuelven (215)', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 3 && JSON.parse(localStorage.getItem('tenerife.cuerpo')).mov.length === 3 && document.getElementById('tgc-st-min').textContent === '215'));
+
+    /* lo último anotado: × borra, con deshacer */
+    await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(300);
+    await p23.click('#tgc-mov-hist .tgc-hist-fila:first-child .tgc-hist-x'); await p23.waitForTimeout(150);
+    const x23 = await p23.evaluate(() => ({ n: TG_CUERPO.estado().mov.length, hist: document.querySelectorAll('#tgc-mov-hist .tgc-hist-fila').length, toast: document.getElementById('tgc-toast-txt').textContent, min: document.getElementById('tgc-st-min').textContent, abierta: !document.getElementById('tgc-hoja').hidden }));
+    prueba('× borra la caminata de hoy (quedan 2; 180 min), con la hoja abierta y «Deshacer»', x23.n === 2 && x23.hist === 2 && x23.toast === 'Anotación borrada' && x23.min === '180' && x23.abierta, JSON.stringify(x23));
+    await p23.click('#tgc-toast-btn'); await p23.waitForTimeout(150);
+    prueba('…y «Deshacer» la devuelve', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 3 && document.querySelectorAll('#tgc-mov-hist .tgc-hist-fila').length === 3 && document.getElementById('tgc-st-min').textContent === '215'));
+    /* Escape, «atrás» y el velo cierran la hoja, no la pantalla */
+    await p23.keyboard.press('Escape'); await p23.waitForTimeout(200);
+    prueba('Escape cierra la hoja del movimiento y deja «Su cuerpo»', await p23.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && JSON.stringify(history.state) === '{"tgPerfil":1,"tgCuerpo":1}' && document.activeElement && document.activeElement.id === 'tgc-mov-btn'));
+    await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(300);
+    await p23.goBack(); await p23.waitForTimeout(300);
+    prueba('«atrás» cierra la hoja del movimiento y deja «Su cuerpo»', await p23.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden));
+    await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(300);
+    await p23.mouse.click(195, 60); await p23.waitForTimeout(300);
+    prueba('tocar fuera (el velo) cierra la hoja del movimiento', await p23.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto()));
+
+    /* de 5 a 17 años: 3 días y 420 min */
+    await p23.evaluate(() => { localStorage.setItem('tenerife.perfil', JSON.stringify({ nacimiento: new Date().getFullYear() - 15 })); TG_CUERPO.repintar(); });
+    const j23 = await p23.evaluate(() => ({ f: document.querySelector('#tgc-meta-fuerza .tgc-meta-de').textContent, m: document.querySelector('#tgc-meta-mov .tgc-meta-de').textContent, hecha: document.getElementById('tgc-meta-mov').classList.contains('hecha'),
+      reco: document.getElementById('tgc-reco-mov').textContent, cifras: document.getElementById('tgc-cifras-mov').textContent }));
+    prueba('menores: de 3 días con fuerza y de 420 min de movimiento (215 no la cumple), con la recomendación de la OMS para su edad (60 al día)', j23.f === 'de 3 días con fuerza' && j23.m === 'de 420 min de movimiento' && !j23.hecha && /60 minutos al día/.test(j23.reco) && /420/.test(j23.reco) && j23.cifras === j23.reco, JSON.stringify(j23));
+    await p23.evaluate(() => { localStorage.removeItem('tenerife.perfil'); TG_CUERPO.repintar(); });
+
+    /* lo guardado roto: cada campo, por su cuenta */
+    await p23.evaluate(() => {
+      const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+      const g = JSON.parse(localStorage.getItem('tenerife.cuerpo'));
+      g.mov = [{ d: hace(0), tipo: 'patinete', min: 30, km: 1 }, { d: hace(0), tipo: 'caminar', min: 0, km: 1 }, { d: hace(0), tipo: 'caminar', min: 601, km: 1 }, { d: hace(0), tipo: 'caminar', min: 30, km: 99 },
+        { d: hace(0), tipo: 'nadar', min: 30, km: 5 }, { d: hace(-3), tipo: 'caminar', min: 30, km: 1 }, { d: 'ayer', tipo: 'caminar', min: 30, km: 1 }, 'nada', { d: hace(1), tipo: 'correr', min: 25.5, km: 4 }, { d: hace(1), tipo: 'correr', min: 25, km: -4, t: 'x' }];
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir();
+    });
+    await p23.waitForTimeout(250);
+    const v23 = await p23.evaluate(() => TG_CUERPO.estado().mov.map(x => [x.tipo, x.min, x.km, x.t].join(':')).join(' | ') + ' // ' + document.getElementById('tgc-st-min').textContent);
+    prueba('roto: quedan 3 (99 km → 60; a nado, sin km; km negativos → 0; t raro → 0); fuera un tipo desconocido, 0 y 601 min, fechas de mañana o mal escritas, medio minuto y un texto', v23 === 'caminar:30:60:0 | nadar:30:0:0 | correr:25:0:0 // 85', v23);
+
+    /* «Borrar los datos» se lleva el movimiento */
+    await conMov();
+    await p23.evaluate(() => document.getElementById('tgc-borrar').click()); await p23.evaluate(() => document.getElementById('tgc-borrar-si').click()); await p23.waitForTimeout(200);
+    prueba('«Borrar los datos» borra también el movimiento: 0 min, ningún punto, ningún rayo', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 0 && document.getElementById('tgc-st-min').textContent === '0' && !document.querySelector('#tgc-dias7 .con-mov') && [...document.querySelectorAll('#tgc-cielo .tgc-rayo')].every(r => r.getAttribute('opacity') !== '1')));
+
+    /* el asistente: «¿Cómo voy esta semana?» cuenta el movimiento (215 min y 12,5 km a pie); sin movimiento, no lo nombra */
+    await ejemplo(p23); await conMov();
+    const pregunta = async q => { await p23.fill('#tgc-preg', q); await p23.click('#tgc-preg-enviar'); await p23.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-turno .tgc-resp-t').length > 0, null, { timeout: 15000 }).catch(() => {}); await p23.waitForTimeout(150); };
+    await p23.click('#tgc-modo-p'); await p23.waitForFunction(() => { const f = document.getElementById('tgc-preg-form'); return f && !f.hidden; }, null, { timeout: 15000 }).catch(() => {});
+    await pregunta('¿Cómo voy esta semana?');
+    const a23 = await p23.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));
+    prueba('el asistente dice el movimiento de la semana: «215 minutos y 12,5 km a pie»', a23.some(t => t === 'Movimiento anotado en 7 días: 215 minutos y 12,5 km a pie.'), a23.join(' | '));
+    await p23.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); g.mov = []; localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir({ modo: 'preguntar' }); }); await p23.waitForTimeout(200);
+    await pregunta('¿Cómo voy esta semana?');
+    const a23b = await p23.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));
+    prueba('…y sin movimiento anotado, ese párrafo no sale (los demás, sí)', a23b.length === 2 && !a23b.some(t => /Movimiento anotado/.test(t)), a23b.join(' | '));
+    await p23.click('#tgc-modo-m'); await p23.waitForTimeout(150);
+
+    /* los textos nuevos, en los diez idiomas: nada vacío, nada en castellano fuera del castellano, y la hoja sin desborde */
+    await conMov();
+    const esTx = {};
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      await idioma(p23, l);
+      await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(250);
+      const t = await p23.evaluate(() => {
+        const g = id => document.getElementById(id).textContent.trim();
+        const vis = [...document.querySelectorAll('#tgc-pag-mov button, #tgc-pag-mov span, #tgc-pag-mov p, #tgc-pag-mov h2, #tgc-pag-mov h3')].filter(n => n.offsetParent !== null && !n.children.length && !/^[0-9,.+−×✓ ]*$/.test(n.textContent));
+        const h = document.getElementById('tgc-hoja');
+        return { tit: g('tgc-mov-tit'), lema: g('tgc-mov-lema'), que: g('tgc-mov-que'), min: g('tgc-mov-min-l'), km: g('tgc-mov-km-l'), nota: g('tgc-mov-nota'), boton: g('tgc-mov-guardar-txt'),
+          tipos: [...document.querySelectorAll('#tgc-mov-tipos .tgc-tipo span')].map(x => x.textContent).join(','), btn: g('tgc-mov-btn'),
+          metas: [...document.querySelectorAll('.tgc-meta-de')].map(x => x.textContent).join(' / '), nombres: [...document.querySelectorAll('.tgc-meta')].map(x => x.getAttribute('aria-label')).join(' / '),
+          hoy: g('tgc-dia-txt'), reco: g('tgc-reco-mov'), ariaMas: document.getElementById('tgc-mov-min-mas').getAttribute('aria-label'), ariaKm: document.getElementById('tgc-mov-km-mas').getAttribute('aria-label'),
+          vacios: vis.filter(n => !n.textContent.trim()).length, desborde: h.scrollWidth > h.clientWidth + 1, lang: document.getElementById('cuerpo-panel').getAttribute('lang') };
+      });
+      if (l === 'es') Object.assign(esTx, t);
+      const claves = ['tit', 'lema', 'que', 'min', 'km', 'nota', 'boton', 'tipos', 'btn', 'metas', 'nombres', 'hoy', 'reco', 'ariaMas', 'ariaKm'];
+      const vacias = claves.filter(k => !t[k]), iguales = l === 'es' ? [] : claves.filter(k => k !== 'boton' && k !== 'min' && t[k] === esTx[k]);
+      prueba(l + ': la semana y la hoja del movimiento, con todos sus textos' + (l === 'es' ? '' : ', en su idioma') + ' y sin desborde', !vacias.length && !iguales.length && !t.vacios && !t.desborde && /150|420/.test(t.metas) && /12/.test(t.metas), JSON.stringify({ vacias, iguales, vacios: t.vacios, desborde: t.desborde, metas: t.metas }));
+      await p23.keyboard.press('Escape'); await p23.waitForTimeout(120);
+    }
+    await idioma(p23, 'es');
+    prueba('bloque 4: sin errores de página', e23.length === 0, e23.join(' | '));
+    await c23.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
