@@ -79,6 +79,24 @@ function ok(cond, que, detalle) {
   else { fallos++; console.log('  MAL ' + que + (detalle !== undefined ? '   -> ' + JSON.stringify(detalle).slice(0, 500) : '')); }
 }
 const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+/* (7-11-2026) Toda la prueba, en un mismo día. «Hoy» se fija aquí, al empezar (HOY; dia() y los datos de
+   ejemplo cuentan desde el mismo día), y la app lo lee del reloj del navegador cada vez que anota. Si la
+   medianoche llega a mitad de la prueba, la app anota ya con el día siguiente y salen en rojo pruebas que
+   están bien: n5 (busca en la nube el peso nuevo con la fecha de ayer) y n35 (escribe en el campo la fecha
+   de ayer, que ya no es un día nuevo). Le pasó a la auditoría del 6 de noviembre de 2026, que llegó aquí a
+   las 23:48. La prueba dura unos 20 minutos: si quedan menos de MARGEN para la medianoche, espera a que pase
+   y empieza en el día nuevo. Es la hora local, la misma de dia() y la del navegador (los contextos de
+   Atlantic/Canary son los de los de oro, con la fecha fija, y los de la pantalla, que no anotan) */
+const MARGEN_MIN = 45;
+(function esperarMedianoche() {
+  const ahora = new Date(), luego = new Date(ahora);
+  luego.setHours(24, 0, 5, 0);                       // las 00:00:05 del día siguiente
+  const falta = luego - ahora;
+  if (falta < MARGEN_MIN * 60000) {
+    console.log('  (faltan ' + Math.ceil(falta / 60000) + ' min para la medianoche: la prueba espera a que pase, para no cambiar de día a mitad)');
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, falta);
+  }
+})();
 const dia = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
 const HOY = dia(0);
 const mismoInstante = (a, b) => Math.abs(Date.parse(String(a).replace(/(\.\d{3})\d+/, '$1')) - Date.parse(String(b).replace(/(\.\d{3})\d+/, '$1'))) < 2;
