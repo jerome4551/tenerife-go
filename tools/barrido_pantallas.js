@@ -226,11 +226,12 @@ window.__estados = [
       __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('viaje'); await espera(300);
       const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(150);
       const p = document.querySelector('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); if (p) p.click(); await espera(300); }]),
-  /* «Su cuerpo» (31 de octubre de 2026), dentro de la pestaña Cuerpo del perfil desde el 1 de
-     noviembre (abrirCuerpo lo pone ahi, y con op.modo en ese modo): los musculos con las series de
-     __cuerpoDatos, el aspecto, la hoja del pecho con sus ejercicios y la ficha del primero. Sin
-     historial (TG_CUERPO_SIN_HISTORIA, abajo): aqui se miran los textos; el historial lo prueba
-     probar_cuerpo.js */
+  /* «Su cuerpo» (31 de octubre de 2026): del 1 al 6 de noviembre iba dentro de la pestaña Cuerpo
+     del perfil, y desde el 6 (el bloque 2 del rediseño) va encima del perfil, a pantalla completa
+     (abrirCuerpo abre el perfil en su pestaña y la pantalla encima, con op.modo en ese modo): los
+     musculos con las series de __cuerpoDatos, el aspecto, la hoja del pecho con sus ejercicios y
+     la ficha del primero. Sin historial (TG_CUERPO_SIN_HISTORIA, abajo): aqui se miran los textos;
+     el historial lo prueba probar_cuerpo.js */
   ['cuerpo', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo(); await espera(700); }],
   ['cuerpo:aspecto', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo({ modo: 'aspecto' }); await espera(700); }],
   ['cuerpo:hoja', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo({ modo: 'musculos' }); await espera(300);

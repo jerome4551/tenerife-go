@@ -116,6 +116,16 @@
     "cuerpoBorrarEntrada": {"es": "Borrar: {series}, {fecha}", "en": "Delete: {series}, {fecha}", "fr": "Supprimer : {series}, {fecha}", "de": "Löschen: {series}, {fecha}", "it": "Elimina: {series}, {fecha}", "nl": "Verwijderen: {series}, {fecha}", "zh": "删除：{series}，{fecha}", "zht": "刪除：{series}，{fecha}", "bg": "Изтрий: {series}, {fecha}", "pl": "Usuń: {series}, {fecha}"},
     "cuerpoEntradaBorrada": {"es": "Anotación borrada", "en": "Entry deleted", "fr": "Note supprimée", "de": "Eintrag gelöscht", "it": "Annotazione eliminata", "nl": "Notitie verwijderd", "zh": "记录已删除", "zht": "紀錄已刪除", "bg": "Записът е изтрит", "pl": "Wpis usunięty"},
     "cuerpoDeshacer": {"es": "Deshacer", "en": "Undo", "fr": "Annuler", "de": "Rückgängig", "it": "Annulla", "nl": "Ongedaan maken", "zh": "撤销", "zht": "復原", "bg": "Отмени", "pl": "Cofnij"},
+    "cuerpoVolverPerfil": {"es": "Volver a su perfil", "en": "Back to your profile", "fr": "Revenir à votre profil", "de": "Zurück zu Ihrem Profil", "it": "Torna al profilo", "nl": "Terug naar uw profiel", "zh": "返回我的资料", "zht": "返回個人檔案", "bg": "Назад към Вашия профил", "pl": "Powrót do profilu"},
+    "cuerpoTemaNoche": {"es": "Cambiar al tema Noche", "en": "Switch to the Night theme", "fr": "Passer au thème Nuit", "de": "Zum Nachtthema wechseln", "it": "Passa al tema Notte", "nl": "Naar het nachtthema", "zh": "切换到夜间模式", "zht": "切換到夜間模式", "bg": "Превключи към тема „Нощ“", "pl": "Przełącz na motyw Noc"},
+    "cuerpoTemaDia": {"es": "Cambiar al tema Día", "en": "Switch to the Day theme", "fr": "Passer au thème Jour", "de": "Zum Tagthema wechseln", "it": "Passa al tema Giorno", "nl": "Naar het dagthema", "zh": "切换到日间模式", "zht": "切換到日間模式", "bg": "Превключи към тема „Ден“", "pl": "Przełącz na motyw Dzień"},
+    "cuerpoCifras": {"es": "Las cifras", "en": "The figures", "fr": "Les chiffres", "de": "Die Zahlen", "it": "Le cifre", "nl": "De cijfers", "zh": "数字来源", "zht": "數字來源", "bg": "Цифрите", "pl": "Liczby"},
+    "cuerpoCifrasDe": {"es": "De dónde salen las cifras", "en": "Where the figures come from", "fr": "D’où viennent les chiffres", "de": "Woher die Zahlen kommen", "it": "Da dove vengono le cifre", "nl": "Waar de cijfers vandaan komen", "zh": "数字的来源", "zht": "數字的來源", "bg": "Откъде идват цифрите", "pl": "Skąd pochodzą liczby"},
+    "cuerpoPistaToque": {"es": "Toque su cuerpo para anotar una serie", "en": "Tap your body to log a set", "fr": "Touchez votre corps pour noter une série", "de": "Tippen Sie auf Ihren Körper, um einen Satz einzutragen", "it": "Toccare il corpo per annotare una serie", "nl": "Tik op uw lichaam om een set te noteren", "zh": "点按身体即可记录一组", "zht": "點按身體即可記錄一組", "bg": "Докоснете тялото си, за да запишете серия", "pl": "Aby zapisać serię, wystarczy dotknąć ciała"},
+    "cuerpoMasUna": {"es": "+ 1 serie", "en": "+ 1 set", "fr": "+ 1 série", "de": "+ 1 Satz", "it": "+ 1 serie", "nl": "+ 1 set", "zh": "+ 1 组", "zht": "+ 1 組", "bg": "+ 1 серия", "pl": "+ 1 seria"},
+    "cuerpoMasTres": {"es": "Tres series más", "en": "Three more sets", "fr": "Trois séries de plus", "de": "Drei Sätze mehr", "it": "Tre serie in più", "nl": "Drie sets meer", "zh": "增加三组", "zht": "增加三組", "bg": "Още три серии", "pl": "Trzy serie więcej"},
+    "cuerpoSerieQuitada": {"es": "{grupo}: una serie menos", "en": "{grupo}: one set removed", "fr": "{grupo} : une série en moins", "de": "{grupo}: ein Satz weniger", "it": "{grupo}: una serie in meno", "nl": "{grupo}: één set minder", "zh": "{grupo}：减少一组", "zht": "{grupo}：減少一組", "bg": "{grupo}: една серия по-малко", "pl": "{grupo}: jedna seria mniej"},
+    "cuerpoRefCorta": {"es": "Referencia: 10 series (ACSM)", "en": "Reference: 10 sets (ACSM)", "fr": "Référence : 10 séries (ACSM)", "de": "Referenz: 10 Sätze (ACSM)", "it": "Riferimento: 10 serie (ACSM)", "nl": "Referentie: 10 sets (ACSM)", "zh": "参考值：10 组（ACSM）", "zht": "參考值：10 組（ACSM）", "bg": "Референция: 10 серии (ACSM)", "pl": "Punkt odniesienia: 10 serii (ACSM)"},
     "cuerpoAspectoTitulo": {"es": "Su aspecto", "en": "Your look", "fr": "Votre apparence", "de": "Ihr Aussehen", "it": "Aspetto", "nl": "Uw uiterlijk", "zh": "我的外观", "zht": "我的外觀", "bg": "Вашият външен вид", "pl": "Wygląd"},
     "cuerpoAspectoLema": {"es": "Elija lo que más se le parezca. Solo cambia el dibujo.", "en": "Choose what looks most like you. Only the drawing changes.", "fr": "Choisissez ce qui vous ressemble le plus. Seul le dessin change.", "de": "Wählen Sie, was Ihnen am ähnlichsten ist. Nur die Zeichnung ändert sich.", "it": "Scegliere le opzioni più simili al proprio aspetto. Cambiano solo il disegno.", "nl": "Kies wat het meest op u lijkt. Alleen de tekening verandert.", "zh": "选择最像您的样子。只会改变图像。", "zht": "選擇最像您的樣子。只會改變圖像。", "bg": "Изберете това, което най-много прилича на вас. Променя се само рисунката.", "pl": "Można wybrać to, co najbardziej przypomina własny wygląd. Zmienia się tylko rysunek."},
     "cuerpoSecCuerpo": {"es": "Cuerpo", "en": "Body", "fr": "Corps", "de": "Körper", "it": "Corpo", "nl": "Lichaam", "zh": "身体", "zht": "身體", "bg": "Тяло", "pl": "Ciało"},
@@ -1721,10 +1731,15 @@
 
   /* ── estado de la pantalla ── */
   var panel = null, abierto = false, historia = false, atrasPendiente = false, antesDeAbrir = null;
-  /* dentro: «Su cuerpo» va dentro de la pestaña Cuerpo del perfil, y no encima (incrustar) */
-  var dentro = false;
   var modo = 'musculos', vista = 'frente', grupoAbierto = null, hojaHistoria = false, antesDeHoja = null;
   var anotarN = 3, anotarDia = 'hoy', deshacer = null, toastReloj = null, entraReloj = null;
+  /* «Las cifras» (6-11-2026, bloque 2): la hoja con las recomendaciones y las fuentes */
+  var cifrasAbiertas = false, cifrasHistoria = false, antesDeCifras = null;
+  /* El tema (6-11-2026, bloque 2; Jerome: Día por defecto). Se recuerda solo en este dispositivo, en
+     su propia clave: no es un dato de la persona y «Borrar los datos de «Su cuerpo»» no lo toca. */
+  var KEY_TEMA = 'tenerife.cuerpo.tema';
+  function leerTema() { try { return localStorage.getItem(KEY_TEMA) === 'noche' ? 'noche' : 'dia'; } catch (e) { return 'dia'; } }
+  var tema = leerTema();
   var ejEntorno = 'todos', ejNivel = 0, ejBuscar = '', ejAbierto = null, ejHistoria = false, antesDeEj = null;
   /* para buscar: minúsculas y sin tildes («sentadilla bulgara» encuentra «Sentadilla búlgara») */
   function plano(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
@@ -1792,32 +1807,234 @@
     var pr = prioActual(), dep = pr.length ? ' ' + tx('cuerpoDepFiguraPrio', { deporte: tx('cuerpoDep_' + st.deporte), lista: lista(pr.map(nombre)) }) : '';
     return tx('cuerpoFiguraAltMusculos', { vista: nv, trabajados: trab }) + dep;
   }
+  /* El ambiente del dibujo (TG_FIGURA.AMB) según el tema (6-11-2026, bloque 2): de día, la luz de
+     detrás blanca y la sombra del suelo parda; de noche, los valores de siempre */
+  function ambienteDe(t) {
+    var A = F.AMB; if (!A) return;
+    if (t === 'noche') { A.halo = '#7193C4'; A.haloOp = 0.3; A.suelo = '#000000'; A.sueloOp = 0.42; }
+    else { A.halo = '#FFFFFF'; A.haloOp = 0.6; A.suelo = '#4A2C12'; A.sueloOp = 0.3; }
+  }
+  function ambiente() { ambienteDe(tema); }
+  /* (6-11-2026, bloque 2) una sola vista, grande, dentro de la escena: en «Músculos», el maniquí con
+     la cabeza de la persona («cara»); en «Aspecto», el personaje vestido. «Girar» enseña la otra
+     vista en pequeño y le da la vuelta */
   function renderFigura(R) {
     R = R || resumen();
-    /* en «Músculos» se ven las dos vistas a la vez; en «Aspecto», una, y «Girar» le da la vuelta */
-    var ambas = modo === 'musculos';
-    ['frente', 'espalda'].forEach(function (v) {
-      var caja = $('tgc-cara-' + v);
-      /* (6-11-2026) en «Músculos», el maniquí lleva la cabeza de la persona («cara») */
-      caja.innerHTML = F.svg({ vista: v, modo: modo, aspecto: st.aspecto, niveles: R.niveles, sel: ambas ? grupoAbierto : null, prio: prioActual(),
-                               cara: true, id: 'tgc-' + v, etiqueta: etiquetaFigura(v, R), viewBox: '40 8 320 784' });
-      caja.setAttribute('aria-hidden', ambas || v === vista ? 'false' : 'true');
-    });
-    $('tgc-giro').classList.toggle('is-espalda', !ambas && vista === 'espalda');
+    var mus = modo === 'musculos', otra = vista === 'frente' ? 'espalda' : 'frente';
+    ambiente();
+    $('tgc-cara').innerHTML = F.svg({ vista: vista, modo: mus ? 'musculos' : 'aspecto', aspecto: st.aspecto, niveles: R.niveles, sel: mus ? grupoAbierto : null, prio: prioActual(),
+                                      cara: true, id: 'tgc-figura', etiqueta: etiquetaFigura(vista, R), viewBox: '40 8 320 784' });
+    $('tgc-girar-mini').innerHTML = F.svg({ vista: otra, modo: mus ? 'musculos' : 'aspecto', aspecto: st.aspecto, niveles: R.niveles, prio: prioActual(),
+                                            cara: true, id: 'tgc-otra', brillo: false, viewBox: '40 8 320 784' });
+    $('tgc-giro').classList.toggle('is-espalda', vista === 'espalda');
     /* en la leyenda, el contorno discontinuo: solo con un deporte que tenga grupos prioritarios */
     $('tgc-ley-prio-li').hidden = !prioActual().length;
-    var b = $('tgc-girar');
-    b.setAttribute('aria-label', tx(vista === 'frente' ? 'cuerpoVerEspalda' : 'cuerpoVerFrente'));
-    $('tgc-vista').textContent = tx(vista === 'frente' ? 'cuerpoVistaFrente' : 'cuerpoVistaEspalda');
-    if (dentro) renderMini();
+    $('tgc-girar').setAttribute('aria-label', tx(vista === 'frente' ? 'cuerpoVerEspalda' : 'cuerpoVerFrente'));
+    pintarEscena(R);
   }
-  /* El personaje en pequeño, al lado del título, dentro de la pestaña Cuerpo del perfil (1 de
-     noviembre de 2026; Jerome: «Y si puedes poner el personaje»): el de «Aspecto», de frente y de
-     medio cuerpo, como el maniquí de la tarjeta del prototipo. Lo dibuja el propio código, con el
-     aspecto ya validado (normaliza); sin texto: aria-hidden */
-  function renderMini() {
-    var m = $('tgc-mini'); if (!m) return;
-    m.innerHTML = F.svg({ vista: 'frente', modo: 'aspecto', aspecto: st.aspecto, id: 'tgc-mini', viewBox: '110 20 180 300' });
+  /* El personaje en pequeño para la tarjeta «Su cuerpo» del perfil (modulos/perfil.js): el de
+     «Aspecto», de frente y de medio cuerpo. Lo dibuja el propio código, con el aspecto ya validado
+     (normaliza); sin texto: la tarjeta lo lleva aria-hidden */
+  function mini(sitio) {
+    if (!sitio || typeof sitio.innerHTML !== 'string') return;
+    /* la tarjeta del perfil es oscura: el ambiente de la noche, sea cual sea el tema de la pantalla */
+    ambienteDe('noche');
+    sitio.innerHTML = F.svg({ vista: 'frente', modo: 'aspecto', aspecto: leer().aspecto, id: 'tgc-mini', viewBox: '110 20 180 300' });
+    ambiente();
+  }
+  /* al girar, el dibujo se pliega por el medio y vuelve con la otra vista */
+  function girar() {
+    vista = vista === 'frente' ? 'espalda' : 'frente';
+    var g = $('tgc-giro');
+    if (reducido) { renderFigura(); return; }
+    g.classList.add('medio');
+    setTimeout(function () { renderFigura(); g.classList.remove('medio'); }, 190);
+  }
+
+  /* ── la escena (6-11-2026, bloque 2, rediseño «Amanecer»): el cielo, el sol de siete rayos (uno por
+     día con series en los últimos 7), el Teide, el mar de nubes y Las Cañadas con sus tajinastes. Un
+     dibujo en SVG, del propio código, con los colores en variables: pasan del alba al día (de noche,
+     de la noche cerrada al amanecer) según se cumple la semana ── */
+  var ESC = (function () {
+    function rgb(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
+    function hex(c) { return '#' + c.map(function (v) { var s = Math.round(Math.max(0, Math.min(255, v))).toString(16); return s.length < 2 ? '0' + s : s; }).join(''); }
+    function mix(a, b, x) { var p = rgb(a), q = rgb(b); return hex([0, 1, 2].map(function (i) { return p[i] + (q[i] - p[i]) * x; })); }
+    function tri(k, e) { return e <= 0.5 ? mix(k[0], k[1], e / 0.5) : mix(k[1], k[2], (e - 0.5) / 0.5); }
+    /* tres momentos por tema: sin nada anotado, a media semana y con la semana cumplida */
+    var P = {
+      dia: {
+        c1: ['#8FA8E6', '#6FA9EC', '#3A94E8'], c2: ['#F3B9C6', '#BFD9F5', '#8CCBF5'], c3: ['#FFD49B', '#FFE6B5', '#DDF1FF'],
+        sol: ['#FFB23E', '#FFC42E', '#FFD23F'], rayo: ['#FF9D2E', '#FFB000', '#FFB800'], halo: ['#FFD9A0', '#FFE9A8', '#FFF4C2'],
+        teide: ['#6A5FA8', '#6268B0', '#5C6FB5'], luz: ['#B291D8', '#9C9BE0', '#93A8E6'], colada: ['#4B437F', '#474C86', '#44528B'],
+        nubeA: ['#FFF4EC', '#FFFAF4', '#FFFFFF'], nubeB: ['#F4CFD6', '#E9DDEE', '#DCE9F8'],
+        suelo1: ['#DDAA78', '#E4B57E', '#E9BE84'], suelo2: ['#B67F52', '#C08B55', '#C99657'], piedra: ['#9C6B45', '#A67549', '#AD7D4C'],
+        taji: ['#D8344F', '#DB3852', '#DE3C55'], tajiLuz: ['#F27A8C', '#F47E90', '#F68294'], hoja: ['#7C9A8B', '#7F9E8C', '#82A28E']
+      },
+      noche: {
+        c1: ['#080B1F', '#12143B', '#27357F'], c2: ['#161A42', '#4A2A6E', '#B4568C'], c3: ['#2C2459', '#B8517A', '#FFAE66'],
+        sol: ['#FF9F5A', '#FFAC5C', '#FFBE5E'], rayo: ['#FF8A4D', '#FF9A4D', '#FFA64D'], halo: ['#C4567A', '#FF8E6B', '#FFB07A'],
+        teide: ['#0E1030', '#1B1846', '#31295F'], luz: ['#232654', '#5A3A7A', '#9A5E96'], colada: ['#080A22', '#110F33', '#211B47'],
+        nubeA: ['#232A5C', '#5B4587', '#B98AA8'], nubeB: ['#161A44', '#3A2D66', '#77588F'],
+        suelo1: ['#1B1830', '#2A2038', '#3A2A40'], suelo2: ['#0D0C18', '#15111F', '#1F1728'], piedra: ['#0A0914', '#110E1A', '#191320'],
+        taji: ['#7A2443', '#8E2A48', '#A8324F'], tajiLuz: ['#A34561', '#B94D68', '#D0566F'], hoja: ['#27363C', '#2F3F45', '#3A4B4F']
+      }
+    };
+    var CLAVES = ['c1', 'c2', 'c3', 'sol', 'rayo', 'halo', 'teide', 'luz', 'colada', 'nubeA', 'nubeB', 'suelo1', 'suelo2', 'piedra', 'taji', 'tajiLuz', 'hoja'];
+    function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+    function cfg(e, t) {
+      e = Math.max(0, Math.min(1, e));
+      var p = P[t] || P.dia, c = { e: e, asoma: 0 };
+      CLAVES.forEach(function (k) { c[k] = tri(p[k], e); });
+      c.estrellas = t === 'noche' ? Math.max(0, 1 - e * 1.4) : 0;
+      c.sube = ease(e);
+      return c;
+    }
+    /* los colores y la altura del sol, como variables de CSS del propio SVG */
+    function vars(c, H) {
+      var s = '';
+      CLAVES.forEach(function (k) { s += '--e-' + k + ':' + c[k] + ';'; });
+      s += '--e-estrellas:' + c.estrellas.toFixed(3) + ';--e-ysol:' + ((0.58 - 0.32 * c.sube + 0.16 * (c.asoma || 0)) * H).toFixed(1) + 'px;';
+      return s;
+    }
+    /* un azar fijo (la misma semilla da el mismo dibujo) */
+    function azar(sem) { var x = sem; return function () { x = (x * 1664525 + 1013904223) % 4294967296; return x / 4294967296; }; }
+    function nubes(y, amp, sem, W) {
+      var r = azar(sem), x = -40, d = 'M-40 ' + y.toFixed(1);
+      while (x < W + 40) { var w = 30 + r() * 52, h = amp * (0.5 + r() * 0.7); d += 'q' + (w / 2).toFixed(1) + ' ' + (-h * 1.7).toFixed(1) + ' ' + w.toFixed(1) + ' 0'; x += w; }
+      return d + 'V' + (y + 500) + 'H-40Z';
+    }
+    function tajinaste(x, y, h, incl, sem) {
+      var r = azar(sem * 97 + 3), w = h * 0.14, tx0 = x + incl * h * 0.09, ty = y - h, s = '<g>';
+      for (var i = 0; i < 13; i++) {
+        var a = (-84 + i * 14) * Math.PI / 180, L = h * (0.2 + r() * 0.1), ex = x + Math.sin(a) * L, ey = y - h * 0.03 - Math.cos(a) * L * 0.42;
+        s += '<path d="M' + x.toFixed(1) + ' ' + (y - h * 0.02).toFixed(1) + 'Q' + (x + Math.sin(a) * L * 0.55).toFixed(1) + ' ' + (y - h * 0.07 - Math.cos(a) * L * 0.5).toFixed(1) + ' ' + ex.toFixed(1) + ' ' + ey.toFixed(1) +
+          '" fill="none" stroke-width="' + (h * 0.022 + 0.8).toFixed(1) + '" stroke-linecap="round" style="stroke:var(--e-hoja)"/>';
+      }
+      var d = 'M' + (x - w / 2).toFixed(1) + ' ' + (y - h * 0.06).toFixed(1) + 'C' + (x - w * 0.78).toFixed(1) + ' ' + (y - h * 0.4).toFixed(1) + ' ' + (tx0 - w * 0.3).toFixed(1) + ' ' + (ty + h * 0.2).toFixed(1) + ' ' + tx0.toFixed(1) + ' ' + ty.toFixed(1) +
+        'C' + (tx0 + w * 0.34).toFixed(1) + ' ' + (ty + h * 0.2).toFixed(1) + ' ' + (x + w * 0.78).toFixed(1) + ' ' + (y - h * 0.4).toFixed(1) + ' ' + (x + w / 2).toFixed(1) + ' ' + (y - h * 0.06).toFixed(1) + 'Q' + x.toFixed(1) + ' ' + (y + h * 0.01).toFixed(1) + ' ' + (x - w / 2).toFixed(1) + ' ' + (y - h * 0.06).toFixed(1) + 'Z';
+      s += '<path d="' + d + '" style="fill:var(--e-taji)"/>';
+      var pts = '';
+      for (var j = 0; j < 26; j++) {
+        var f = 0.1 + r() * 0.78, ancho = w * (1 - f) * 0.78, px = x + (tx0 - x) * f + (r() - 0.5) * ancho, py = y - h * 0.06 - (h * 0.94) * f;
+        pts += '<circle cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" r="' + (h * 0.011 + 0.5).toFixed(1) + '"/>';
+      }
+      return s + '<g style="fill:var(--e-tajiLuz)" opacity=".9">' + pts + '</g></g>';
+    }
+    /* el dibujo entero, en píxeles de su caja; los colores entran como variables */
+    function svg(W, H, c, rayos) {
+      var R = Math.max(28, W * 0.085), xs = W * 0.2, id = 'tgc-esc';
+      function X(u) { return (W * u).toFixed(1); }
+      function Y(v) { return (H * v).toFixed(1); }
+      var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" preserveAspectRatio="xMidYMax slice" style="' + vars(c, H) + '">';
+      s += '<defs><linearGradient id="' + id + '-cielo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--e-c1)"/><stop offset=".5" style="stop-color:var(--e-c2)"/><stop offset=".74" style="stop-color:var(--e-c3)"/></linearGradient>' +
+        '<radialGradient id="' + id + '-halo"><stop offset="0" style="stop-color:var(--e-halo)" stop-opacity=".95"/><stop offset=".45" style="stop-color:var(--e-halo)" stop-opacity=".4"/><stop offset="1" style="stop-color:var(--e-halo)" stop-opacity="0"/></radialGradient>' +
+        '<linearGradient id="' + id + '-suelo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--e-suelo1)"/><stop offset="1" style="stop-color:var(--e-suelo2)"/></linearGradient></defs>';
+      s += '<rect width="' + W + '" height="' + H + '" fill="url(#' + id + '-cielo)"/>';
+      /* las estrellas (solo se ven de noche, y menos según avanza la semana) */
+      var r = azar(7), st0 = '';
+      for (var i = 0; i < 46; i++) st0 += '<circle cx="' + (r() * W).toFixed(1) + '" cy="' + (r() * H * 0.5).toFixed(1) + '" r="' + (0.5 + r() * 1.1).toFixed(2) + '" opacity="' + (0.4 + r() * 0.6).toFixed(2) + '"/>';
+      s += '<g fill="#fff" style="opacity:var(--e-estrellas)">' + st0 + '</g>';
+      /* el sol: un rayo por día, del más antiguo (arriba) a hoy, en el sentido de las agujas */
+      var ry = '';
+      for (var j = 0; j < 7; j++) {
+        var a = -90 + j * (360 / 7);
+        ry += '<line class="tgc-rayo" data-r="' + j + '" x1="0" y1="' + (-(R + 9)).toFixed(1) + '" x2="0" y2="' + (-(R + 9 + R * 0.55)).toFixed(1) + '" transform="rotate(' + a.toFixed(2) + ')" stroke-width="' + (R * 0.17).toFixed(1) +
+          '" stroke-linecap="round" style="stroke:var(--e-rayo)" opacity="' + (rayos[j] ? 1 : 0.22) + '"/>';
+      }
+      s += '<g class="tgc-sol" style="transform:translate(' + xs.toFixed(1) + 'px, var(--e-ysol))"><circle r="' + (R * 3.4).toFixed(1) + '" fill="url(#' + id + '-halo)"/>' + ry + '<circle r="' + R.toFixed(1) + '" style="fill:var(--e-sol)"/></g>';
+      /* el Teide: un cono ancho de pendiente suave, con el Pilón arriba; la luz le da por la izquierda */
+      var by = H * 0.66, hT = Math.min(H * 0.235, W * 0.37), cx = W * 0.715, cy = by - hT, mw = hT * 1.78, pil = hT * 0.11;
+      function N(n) { return n.toFixed(1); }
+      var teide = 'M' + N(cx - mw) + ' ' + N(by) + 'Q' + N(cx - mw * 0.42) + ' ' + N(by - hT * 0.3) + ' ' + N(cx - pil * 1.5) + ' ' + N(cy + pil) + 'L' + N(cx - pil * 0.55) + ' ' + N(cy + pil * 0.1) + 'Q' + N(cx) + ' ' + N(cy - pil * 0.25) + ' ' + N(cx + pil * 0.6) + ' ' + N(cy + pil * 0.1) +
+        'L' + N(cx + pil * 1.6) + ' ' + N(cy + pil) + 'Q' + N(cx + mw * 0.36) + ' ' + N(by - hT * 0.36) + ' ' + N(cx + mw * 0.55) + ' ' + N(by - hT * 0.3) + 'Q' + N(cx + mw * 0.66) + ' ' + N(by - hT * 0.3) + ' ' + N(cx + mw * 0.78) + ' ' + N(by - hT * 0.15) + 'L' + N(cx + mw) + ' ' + N(by) + 'V' + N(by + H * 0.1) + 'H' + N(cx - mw) + 'Z';
+      var luz = 'M' + N(cx - mw) + ' ' + N(by) + 'Q' + N(cx - mw * 0.42) + ' ' + N(by - hT * 0.3) + ' ' + N(cx - pil * 1.5) + ' ' + N(cy + pil) + 'L' + N(cx - pil * 0.55) + ' ' + N(cy + pil * 0.1) + 'Q' + N(cx - pil * 0.2) + ' ' + N(cy - pil * 0.12) + ' ' + N(cx + pil * 0.1) + ' ' + N(cy - pil * 0.05) +
+        'Q' + N(cx - hT * 0.02) + ' ' + N(cy + hT * 0.45) + ' ' + N(cx - hT * 0.3) + ' ' + N(by) + 'Z';
+      var coladas = 'M' + N(cx + pil * 0.9) + ' ' + N(cy + pil * 0.8) + 'Q' + N(cx + hT * 0.3) + ' ' + N(cy + hT * 0.45) + ' ' + N(cx + hT * 0.42) + ' ' + N(by - hT * 0.08) + 'Q' + N(cx + hT * 0.46) + ' ' + N(cy + hT * 0.5) + ' ' + N(cx + pil * 1.5) + ' ' + N(cy + pil * 1.05) + 'Z' +
+        'M' + N(cx + pil * 1.9) + ' ' + N(cy + pil * 1.5) + 'Q' + N(cx + hT * 0.66) + ' ' + N(cy + hT * 0.5) + ' ' + N(cx + hT * 0.86) + ' ' + N(by - hT * 0.16) + 'Q' + N(cx + hT * 0.82) + ' ' + N(cy + hT * 0.52) + ' ' + N(cx + pil * 2.6) + ' ' + N(cy + pil * 1.9) + 'Z' +
+        'M' + N(cx - pil * 1.3) + ' ' + N(cy + pil * 1.2) + 'Q' + N(cx - hT * 0.4) + ' ' + N(cy + hT * 0.5) + ' ' + N(cx - hT * 0.7) + ' ' + N(by - hT * 0.1) + 'Q' + N(cx - hT * 0.5) + ' ' + N(cy + hT * 0.52) + ' ' + N(cx - pil * 0.9) + ' ' + N(cy + pil * 1.5) + 'Z';
+      s += '<path d="' + teide + '" style="fill:var(--e-teide)"/><path d="' + luz + '" style="fill:var(--e-luz)" opacity=".62"/><path d="' + coladas + '" style="fill:var(--e-colada)" opacity=".5"/>';
+      /* el mar de nubes, en tres capas */
+      s += '<path d="' + nubes(H * 0.605, H * 0.016, 11, W) + '" style="fill:var(--e-nubeB)" opacity=".7"/><path d="' + nubes(H * 0.645, H * 0.021, 23, W) + '" style="fill:var(--e-nubeB)"/><path d="' + nubes(H * 0.69, H * 0.026, 37, W) + '" style="fill:var(--e-nubeA)"/>';
+      /* el suelo de Las Cañadas, con sus piedras y sus tajinastes */
+      s += '<path d="M-20 ' + Y(0.815) + 'Q' + X(0.28) + ' ' + Y(0.768) + ' ' + X(0.56) + ' ' + Y(0.79) + 'T' + (W + 20) + ' ' + Y(0.795) + 'V' + (H + 20) + 'H-20Z" fill="url(#' + id + '-suelo)"/>';
+      var pr = azar(5), pd = '';
+      for (var q = 0; q < 26; q++) pd += '<ellipse cx="' + (pr() * W).toFixed(1) + '" cy="' + (H * (0.83 + pr() * 0.17)).toFixed(1) + '" rx="' + (2 + pr() * 7).toFixed(1) + '" ry="' + (1 + pr() * 2.4).toFixed(1) + '"/>';
+      s += '<g style="fill:var(--e-piedra)" opacity=".3">' + pd + '</g>';
+      s += tajinaste(W * 0.12, H * 0.905, H * 0.2, 0.5, 1) + tajinaste(W * 0.245, H * 0.955, H * 0.115, -0.4, 2) + tajinaste(W * 0.735, H * 0.93, H * 0.165, 0.3, 3);
+      return s + '</svg>';
+    }
+    return { cfg: cfg, vars: vars, svg: svg };
+  })();
+  var escW = 0, escH = 0, escE = 0, escAnim = null, escRayos = '', escEntrada = false, escTema = '';
+  /* cuánto se ha cumplido la semana, de 0 a 1: la mitad son los días con fuerza (la meta de la OMS:
+     2 días los adultos, 3 de 5 a 17 años) y la otra mitad, los grupos trabajados de 12 */
+  function metaDias() { return adulto() ? 2 : 3; }
+  function progreso(R) { return (Math.min(R.diasFuerza / metaDias(), 1) + Math.min(R.grupos / 12, 1)) / 2; }
+  /* un rayo por cada día con series en los últimos 7: del más antiguo a hoy */
+  function rayosDe() { return semana().map(function (o) { return o.n > 0; }); }
+  /* el dibujo se monta a la medida de su caja (y se vuelve a montar si la caja, los rayos o el tema cambian) */
+  function montarEscena() {
+    var caja = $('tgc-cielo'), W = Math.round(caja.clientWidth), H = Math.round(caja.clientHeight);
+    if (!W || !H) return;
+    escW = W; escH = H; escTema = tema; escRayos = rayosDe().join();
+    caja.innerHTML = ESC.svg(W, H, ESC.cfg(escE, tema), rayosDe());
+  }
+  /* los colores de un momento de la semana (e, de 0 a 1), puestos en el dibujo */
+  function colorearEscena(e, asoma) {
+    var svgEl = $('tgc-cielo').firstChild; if (!svgEl) return;
+    var cf = ESC.cfg(e, tema);
+    cf.asoma = asoma || 0;
+    svgEl.setAttribute('style', ESC.vars(cf, escH));
+    $('tgc-escena').style.background = cf.c1;
+  }
+  /* al abrir, el sol asoma en 1,7 s; después, del alba al día en 1,3 s cuando cambia lo cumplido
+     (en el acto si la persona prefiere menos movimiento); si nada cambió, no se mueve */
+  function pintarEscena(R) {
+    var caja = $('tgc-cielo'); if (!caja || $('tgc-escena').hidden) return;
+    if (!caja.firstChild || caja.clientWidth !== escW || caja.clientHeight !== escH || rayosDe().join() !== escRayos || tema !== escTema) montarEscena();
+    var e = progreso(R || resumen());
+    if (escEntrada) { escEntrada = false; escE = 0; moverEscena(e, true); return; }
+    if (Math.abs(e - escE) < 0.001 && !escAnim) { colorearEscena(escE); return; }
+    moverEscena(e, false);
+  }
+  function moverEscena(eNuevo, entrada) {
+    if (!$('tgc-cielo').firstChild) return;
+    var desde = escE, t0 = null, dur = reducido ? 1 : (entrada ? 1700 : 1300);
+    if (escAnim) cancelAnimationFrame(escAnim);
+    function paso(ts) {
+      if (t0 === null) t0 = ts;
+      var x = Math.min(1, (ts - t0) / dur), y = 1 - Math.pow(1 - x, 3);
+      escE = desde + (eNuevo - desde) * y;
+      colorearEscena(escE, entrada ? 1 - y : 0);
+      escAnim = x < 1 ? requestAnimationFrame(paso) : null;
+    }
+    escAnim = requestAnimationFrame(paso);
+  }
+  /* el tema: Día o Noche (6-11-2026, bloque 2) */
+  function ponerTema(t, guardar_) {
+    tema = t === 'noche' ? 'noche' : 'dia';
+    if (guardar_) { try { localStorage.setItem(KEY_TEMA, tema); } catch (e) {} }
+    panel.setAttribute('data-tema', tema);
+    var b = $('tgc-tema');
+    b.setAttribute('aria-label', tx(tema === 'dia' ? 'cuerpoTemaNoche' : 'cuerpoTemaDia'));
+    b.setAttribute('aria-pressed', tema === 'noche' ? 'true' : 'false');
+  }
+  /* el toque en el dibujo busca el músculo más cercano: el punto vale más, y un anillo de 12 y otro
+     de 22 px recogen los dedos gordos (zonaEn, de la maqueta) */
+  function zonaEn(x, y) {
+    var votos = {}, mejor = null, max = 0, cara = $('tgc-cara'), fig = $('tgc-fig');
+    function mira(px, py, peso) {
+      var els = document.elementsFromPoint(px, py);
+      for (var i = 0; i < els.length; i++) {
+        var e = els[i];
+        if (e.classList && e.classList.contains('tgf-z') && cara.contains(e)) { var g = e.getAttribute('data-g'); votos[g] = (votos[g] || 0) + peso; return; }
+        if (e === fig) return;
+      }
+    }
+    mira(x, y, 6);
+    [12, 22].forEach(function (rad, n) { for (var a = 0; a < 8; a++) mira(x + Math.cos(a * Math.PI / 4) * rad, y + Math.sin(a * Math.PI / 4) * rad, n ? 1 : 2); });
+    for (var g in votos) if (votos[g] > max) { max = votos[g]; mejor = g; }
+    return mejor;
   }
 
   /* ── modo «Músculos»: el resumen, la semana día a día y los 12 grupos ── */
@@ -1829,9 +2046,13 @@
     cifra($('tgc-st-grupos'), R.grupos, 12);
     cifra($('tgc-st-dias'), R.diasFuerza, 7);
     $('tgc-reco').textContent = tx(adulto() ? 'cuerpoRecoAdulto' : 'cuerpoRecoJoven');
-    $('tgc-ref').hidden = !adulto();
-    $('tgc-pista-txt').textContent = tx('cuerpoGruposAyuda');
+    /* sin nada anotado en 7 días, la escena dice qué hacer */
+    $('tgc-pista-txt').textContent = tx('cuerpoPistaToque');
     $('tgc-pista').hidden = R.total > 0;
+    /* «Las cifras»: la recomendación de su edad, la referencia del ACSM (solo adultos) y las fuentes */
+    $('tgc-cifras-reco').textContent = tx(adulto() ? 'cuerpoRecoAdulto' : 'cuerpoRecoJoven');
+    $('tgc-cifras-ref').textContent = tx('cuerpoRefSeries'); $('tgc-cifras-ref').hidden = !adulto();
+    $('tgc-h-ref').hidden = !adulto();
     renderSemana();
   }
   /* la semana: hoy y los 6 días anteriores, con las series anotadas cada día y sus grupos */
@@ -1873,28 +2094,27 @@
     var gs = GRUPOS.filter(function (g) { return o.g[g]; }).map(nombre);
     $('tgc-dia-grupos').textContent = gs.length ? lista(gs) : tx('cuerpoSinAnotar');
   }
-  /* cada grupo, una barra: las series de 7 días; en adultos, una marca en 10 (la referencia del ACSM) */
+  /* (6-11-2026, bloque 2) cada grupo, un botón grande de la rejilla: el nombre, el color de su nivel con
+     las series de 7 días y la última vez. Lo mismo que el dibujo, para quien prefiera tocar aquí */
   function renderLista(R) {
     var ul = $('tgc-lista'); ul.textContent = '';
-    var escala = Math.max(20, Math.max.apply(null, GRUPOS.map(function (g) { return R.series[g]; }))), ref = adulto(), pr = prioActual();
+    var pr = prioActual();
     GRUPOS.forEach(function (g, i) {
-      var li = el('li'), b = el('button', 'tgc-fila');
+      var li = el('li'), b = el('button', 'tgc-fila' + (R.series[g] ? ' con' : '') + (pr.indexOf(g) >= 0 ? ' prio' : ''));
       b.type = 'button'; b.dataset.g = g;
-      /* los espacios entre las piezas no se ven (la fila es una rejilla), pero el nombre accesible queda «Pecho 8 series hoy» */
+      b.style.animationDelay = (i * 30) + 'ms';
+      /* los espacios entre las piezas no se ven (la celda es una rejilla), pero el nombre accesible queda «Pecho, 8 series, hoy» */
       var nom = el('span', 'tgc-fila-nom', nombre(g));
       /* los prioritarios del deporte elegido llevan su marca (la misma línea discontinua que el personaje) */
       if (pr.indexOf(g) >= 0) { nom.appendChild(document.createTextNode(' ')); nom.appendChild(el('span', 'tgc-fila-prio', tx('cuerpoDepPrioTag'))); }
       b.appendChild(nom);
       b.appendChild(document.createTextNode(' '));
-      b.appendChild(el('span', 'tgc-fila-n', tx('cuerpoNSeries', { n: R.series[g] })));
+      var dato = el('span', 'tgc-fila-dato'), punto = el('i', 'tgc-nivel n' + R.niveles[g]);
+      punto.setAttribute('aria-hidden', 'true');
+      dato.appendChild(punto);
+      dato.appendChild(el('span', 'tgc-fila-n', tx('cuerpoNSeries', { n: R.series[g] })));
+      b.appendChild(dato);
       b.appendChild(document.createTextNode(' '));
-      var barra = el('span', 'tgc-barra'), fill = el('i', 'tgc-nivel n' + R.niveles[g]);
-      barra.setAttribute('aria-hidden', 'true');
-      fill.style.width = (100 * R.series[g] / escala).toFixed(1) + '%';
-      fill.style.animationDelay = (i * 35) + 'ms';
-      barra.appendChild(fill);
-      if (ref) { var m = el('span', 'tgc-barra-ref'); m.style.left = (100 * 10 / escala).toFixed(1) + '%'; barra.appendChild(m); }
-      b.appendChild(barra);
       b.appendChild(el('span', 'tgc-fila-cuando', cuando(R.ultima[g])));
       li.appendChild(b); ul.appendChild(li);
     });
@@ -1970,23 +2190,33 @@
   }
 
   /* ── la hoja de un grupo ── */
-  /* la vista en que mejor se ve cada grupo, para el maniquí pequeño de la hoja */
+  /* la vista en que mejor se ve cada grupo: al abrirla desde la rejilla, el dibujo se pone de ese lado */
   var VISTA_GRUPO = { pecho: 'frente', dorsal: 'espalda', espalda_alta: 'espalda', hombros: 'frente', biceps: 'frente', triceps: 'espalda',
                       antebrazo: 'frente', core: 'frente', gluteos: 'espalda', cuadriceps: 'frente', isquios: 'espalda', pantorrilla: 'espalda' };
+  /* las series del grupo en el día elegido (hoy o ayer): lo que «−» puede quitar */
+  function seriesDelDia(g) {
+    var d = anotarDia === 'ayer' ? sumar(hoy(), -1) : hoy(), n = 0;
+    st.series.forEach(function (x) { if (x.g === g && x.d === d) n += x.n; });
+    return n;
+  }
   function renderHoja() {
     var g = grupoAbierto; if (!g) return;
-    var R = resumen();
+    var R = resumen(), n = R.series[g];
     $('tgc-hoja-nivel').className = 'tgc-nivel n' + R.niveles[g];
-    var nivMini = {}; nivMini[g] = 3;
-    $('tgc-hoja-mini').innerHTML = F.svg({ vista: VISTA_GRUPO[g] || 'frente', modo: 'musculos', aspecto: st.aspecto, niveles: nivMini, id: 'tgc-hoja-mini', viewBox: '40 8 320 784', brillo: false });
     $('tgc-hoja-tit').textContent = nombre(g);
     $('tgc-hoja-desc').textContent = tx('cuerpoD_' + g);
     $('tgc-hoja-latin').textContent = LATIN[g];
-    $('tgc-h-series').textContent = String(R.series[g]);
+    /* el marcador: las series de 7 días, el nombre de su nivel y diez puntos (la referencia del ACSM) */
+    $('tgc-h-series').textContent = String(n);
+    $('tgc-h-nivel').textContent = tx('cuerpoNivel' + R.niveles[g]);
+    var diez = $('tgc-diez'); diez.textContent = '';
+    for (var i = 0; i < 10; i++) diez.appendChild(el('i', i < n ? 'si n' + R.niveles[g] : ''));
+    if (n > 10) diez.appendChild(el('span', 'mas', '+' + (n - 10)));
     $('tgc-h-dias').textContent = R.dias[g] + '/7';
     $('tgc-h-ultima').textContent = cuando(R.ultima[g]);
-    $('tgc-h-ultima').classList.add('txt');
-    pintarPaso('tgc');
+    $('tgc-menos').disabled = seriesDelDia(g) < 1;
+    $('tgc-hoy').setAttribute('aria-pressed', anotarDia === 'hoy' ? 'true' : 'false');
+    $('tgc-ayer').setAttribute('aria-pressed', anotarDia === 'ayer' ? 'true' : 'false');
     var ul = $('tgc-hist'); ul.textContent = '';
     var mias = st.series.map(function (x, i) { return { x: x, i: i }; }).filter(function (o) { return o.x.g === g; })
       .sort(function (a, b) { return a.x.d === b.x.d ? b.x.t - a.x.t || b.i - a.i : (a.x.d < b.x.d ? 1 : -1); }).slice(0, 6);
@@ -2005,7 +2235,7 @@
     renderEjLista();
     if (ejAbierto) renderEj();
   }
-  /* el paso de «Anotar series» (en la hoja del grupo, prefijo tgc; en la del ejercicio, tgc-ej) */
+  /* el paso de «Anotar series» de la ficha de un ejercicio (prefijo tgc-ej) */
   function pintarPaso(pre) {
     $(pre + '-n').value = String(anotarN);
     $(pre + '-menos').disabled = anotarN <= 1;
@@ -2148,19 +2378,24 @@
     toast(tx('cuerpoAnotadoEj', { n: n, ejercicio: nombreEj(x.id) }));
   }
 
-  function abrirHoja(g) {
+  /* la hoja va encima de la escena y deja ver el dibujo con el grupo marcado: si el grupo solo se ve
+     por el otro lado (desde la rejilla), el dibujo se da la vuelta solo */
+  function abrirHoja(g, desdeLista) {
     if (GRUPOS.indexOf(g) < 0) return;
+    if (cifrasAbiertas) cerrarCifras(true);
     var nueva = !grupoAbierto;
     grupoAbierto = g;
     if (nueva) {
       antesDeHoja = document.activeElement;
       anotarN = 3; anotarDia = 'hoy';
       ejBuscar = ''; $('tgc-ej-buscar').value = '';
-      $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false; $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-hoja-tit');
+      $('tgc-pag-ej').hidden = true; $('tgc-pag-cifras').hidden = true; $('tgc-pag-grupo').hidden = false; $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-hoja-tit');
       $('tgc-velo').hidden = false; $('tgc-hoja').hidden = false; $('tgc-hoja').scrollTop = 0;
-      $('tgc').inert = true; panel.classList.add('con-hoja'); alrededor(true);
+      debajoInerte(true); panel.classList.add('con-hoja');
       if (conHistoria && !hojaHistoria) { try { history.pushState({ tgPerfil: 1, tgCuerpo: 1, tgCuerpoHoja: 1 }, ''); hojaHistoria = true; } catch (e) {} }
     }
+    if (desdeLista && modo === 'musculos' && !$('tgc-cara').querySelector('.tgf-z[data-g="' + g + '"]')) vista = VISTA_GRUPO[g] || vista;
+    if (modo !== 'musculos') { modo = 'musculos'; renderModo(); }
     renderHoja(); renderFigura();
     try { $('tgc-hoja-tit').focus({ preventScroll: true }); } catch (e) {}
   }
@@ -2171,24 +2406,81 @@
     grupoAbierto = null; ejAbierto = null;
     $('tgc-velo').hidden = true; $('tgc-hoja').hidden = true;
     $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false;
-    $('tgc').inert = false; panel.classList.remove('con-hoja'); alrededor(false);
+    debajoInerte(false); panel.classList.remove('con-hoja');
     if (pasos && !sinHistoria) { try { atrasPendiente = true; history.go(-pasos); } catch (e) { atrasPendiente = false; } }
     hojaHistoria = false; ejHistoria = false; antesDeEj = null;
     renderFigura();
     if (antesDeHoja && document.contains(antesDeHoja) && typeof antesDeHoja.focus === 'function') { try { antesDeHoja.focus({ preventScroll: true }); } catch (e) {} }
     antesDeHoja = null;
   }
-  function anotar() {
+  /* «Las cifras»: la misma hoja, con su página; se abre desde la cabecera, desde «Sus últimos 7
+     días» y desde la referencia de la hoja de un grupo (que se cierra antes) */
+  function abrirCifras() {
+    if (cifrasAbiertas) return;
+    /* desde la referencia de la hoja de un grupo: la hoja se cierra sin tocar el historial y «Las
+       cifras» hereda su entrada (un «atrás» cierra «Las cifras» y deja la pantalla, no vuelve a la hoja) */
+    var heredada = false;
+    if (grupoAbierto) { heredada = hojaHistoria && !ejHistoria; if (heredada) hojaHistoria = false; cerrarHoja(true); }
+    cifrasAbiertas = true;
+    antesDeCifras = document.activeElement;
+    $('tgc-pag-grupo').hidden = true; $('tgc-pag-ej').hidden = true; $('tgc-pag-cifras').hidden = false;
+    $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-cifras-tit');
+    $('tgc-velo').hidden = false; $('tgc-hoja').hidden = false; $('tgc-hoja').scrollTop = 0;
+    debajoInerte(true); panel.classList.add('con-hoja');
+    if (conHistoria && !cifrasHistoria) {
+      try {
+        if (heredada) history.replaceState({ tgPerfil: 1, tgCuerpo: 1, tgCuerpoHoja: 1, tgCuerpoCifras: 1 }, '');
+        else history.pushState({ tgPerfil: 1, tgCuerpo: 1, tgCuerpoHoja: 1, tgCuerpoCifras: 1 }, '');
+        cifrasHistoria = true;
+      } catch (e) {}
+    }
+    try { $('tgc-cifras-tit').focus({ preventScroll: true }); } catch (e) {}
+  }
+  function cerrarCifras(sinHistoria) {
+    if (!cifrasAbiertas) return;
+    cifrasAbiertas = false;
+    $('tgc-velo').hidden = true; $('tgc-hoja').hidden = true;
+    $('tgc-pag-cifras').hidden = true; $('tgc-pag-grupo').hidden = false;
+    $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-hoja-tit');
+    debajoInerte(false); panel.classList.remove('con-hoja');
+    if (cifrasHistoria && !sinHistoria) { try { atrasPendiente = true; history.back(); } catch (e) { atrasPendiente = false; } }
+    cifrasHistoria = false;
+    if (antesDeCifras && document.contains(antesDeCifras) && typeof antesDeCifras.focus === 'function') { try { antesDeCifras.focus({ preventScroll: true }); } catch (e) {} }
+    antesDeCifras = null;
+  }
+  /* (6-11-2026, bloque 2) un toque, una serie: «+ 1 serie» anota una; «+3», tres; en el día elegido */
+  function anotar(n) {
     var g = grupoAbierto; if (!g) return;
-    var n = Math.max(1, Math.min(MAX_N, Math.round(Number($('tgc-n').value) || anotarN)));
+    n = Math.max(1, Math.min(MAX_N, Math.round(Number(n) || 1)));
     var d = anotarDia === 'ayer' ? sumar(hoy(), -1) : hoy();
     st.series.push({ d: d, g: g, n: n, t: Date.now() });
     if (st.series.length > MAX_ENTRADAS) st.series = st.series.slice(-MAX_ENTRADAS);
     if (!guardar()) { st.series.pop(); return; }
-    anotarN = n;
     renderMusculos(); renderHoja();
     var b = $('tgc-h-series'); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
+    var z = $('tgc-cara').querySelector('.tgf-z[data-g="' + g + '"]'); if (z) { z.classList.remove('pulso'); void z.getBBox; z.classList.add('pulso'); }
     toast(tx('cuerpoAnotado', { n: n, grupo: nombre(g) }));
+  }
+  /* «−»: una serie menos del grupo en el día elegido, de la última anotación de ese día (si tenía una,
+     se borra entera); con «Deshacer» en el aviso */
+  function quitarUna() {
+    var g = grupoAbierto; if (!g) return;
+    var d = anotarDia === 'ayer' ? sumar(hoy(), -1) : hoy(), i = -1;
+    st.series.forEach(function (x, k) { if (x.g === g && x.d === d && (i < 0 || x.t >= st.series[i].t)) i = k; });
+    if (i < 0) return;
+    var x = st.series[i], copia = { d: x.d, g: x.g, n: x.n, t: x.t }; if (x.e) copia.e = x.e;
+    if (x.n > 1) x.n -= 1; else st.series.splice(i, 1);
+    if (!guardar()) { if (x.n > 1 || st.series[i] === x) x.n = copia.n; else st.series.splice(i, 0, x); return; }
+    renderMusculos(); renderHoja();
+    deshacer = { x: copia, i: i };
+    toast(tx('cuerpoSerieQuitada', { grupo: nombre(g) }), tx('cuerpoDeshacer'), function () {
+      if (!deshacer) return;
+      var y = st.series[deshacer.i];
+      if (y && y.g === deshacer.x.g && y.d === deshacer.x.d && y.t === deshacer.x.t) y.n = deshacer.x.n;
+      else st.series.splice(Math.min(deshacer.i, st.series.length), 0, deshacer.x);
+      deshacer = null;
+      guardar(); renderMusculos(); renderHoja();
+    });
   }
   function borrarEntrada(i) {
     var x = st.series[i]; if (!x) return;
@@ -2236,15 +2528,16 @@
     $('tgc-vista-aspecto').hidden = !a;
     $('tgc-vista-comida').hidden = !c;
     $('tgc-vista-preguntar').hidden = !q;
-    /* el personaje no pinta nada en «Comida» ni en «Preguntar» */
+    /* la escena con el personaje no pinta nada en «Comida» ni en «Preguntar» */
     $('tgc-escena').hidden = q || c;
-    $('tgc-leyenda').hidden = !m;
+    panel.classList.toggle('sin-escena', q || c);
+    pegada();
   }
-  function renderTodo() { aplicarTextos(); renderModo(); renderMusculos(); renderDeporte(); renderEditor(); renderComida(); if (grupoAbierto) renderHoja(); if (modo === 'preguntar') renderAsistente(); }
+  function renderTodo() { aplicarTextos(); ponerTema(tema); renderModo(); renderMusculos(); renderDeporte(); renderEditor(); renderComida(); if (grupoAbierto) renderHoja(); if (modo === 'preguntar') renderAsistente(); }
   function setModo(m) {
     if (m === modo) return;
     modo = m; renderModo(); renderFigura();
-    if (m === 'musculos') try { $('tgc-escena').scrollIntoView({ block: 'nearest', behavior: reducido ? 'auto' : 'smooth' }); } catch (e) {}
+    if (m === 'musculos' || m === 'aspecto') { panel.scrollTop = 0; }
     if (m === 'preguntar') renderAsistente();
     if (m === 'comida') renderComida();
   }
@@ -2253,10 +2546,16 @@
   function zonaDe(e) { var z = e.target && e.target.closest ? e.target.closest('.tgf-z') : null; return z && z.getAttribute('data-g'); }
   function marcarHover(g) {
     panel.querySelectorAll('.tgf-z.is-hover').forEach(function (z) { z.classList.remove('is-hover'); });
-    if (g) panel.querySelectorAll('.tgc-cara[aria-hidden="false"] .tgf-z[data-g="' + g + '"]').forEach(function (z) { z.classList.add('is-hover'); });
+    if (g) panel.querySelectorAll('#tgc-cara .tgf-z[data-g="' + g + '"]').forEach(function (z) { z.classList.add('is-hover'); });
   }
   function enganchar() {
     $('tgc-back').addEventListener('click', function () { cerrar(); });
+    panel.addEventListener('scroll', pegada, { passive: true });
+    $('tgc-tema').addEventListener('click', function () { ponerTema(tema === 'dia' ? 'noche' : 'dia', true); renderFigura(); });
+    $('tgc-cifras-btn').addEventListener('click', abrirCifras);
+    $('tgc-cifras-link').addEventListener('click', abrirCifras);
+    $('tgc-cifras-cerrar').addEventListener('click', function () { cerrarCifras(); });
+    $('tgc-h-ref').addEventListener('click', abrirCifras);
     $('tgc-modo-m').addEventListener('click', function () { setModo('musculos'); });
     $('tgc-modo-a').addEventListener('click', function () { setModo('aspecto'); });
     $('tgc-modo-c').addEventListener('click', function () { setModo('comida'); });
@@ -2265,12 +2564,19 @@
     engancharComida();
     engancharDeporte();
     $('tgc-listo').addEventListener('click', function () { setModo('musculos'); try { $('tgc-modo-m').focus({ preventScroll: true }); } catch (e) {} });
-    $('tgc-girar').addEventListener('click', function () { vista = vista === 'frente' ? 'espalda' : 'frente'; renderFigura(); });
-    var giro = $('tgc-giro');
-    giro.addEventListener('click', function (e) { if (modo !== 'musculos') return; var g = zonaDe(e); if (g) abrirHoja(g); });
-    giro.addEventListener('pointerover', function (e) { if (modo === 'musculos' && e.pointerType === 'mouse') marcarHover(zonaDe(e)); });
-    giro.addEventListener('pointerleave', function () { marcarHover(null); });
-    $('tgc-lista').addEventListener('click', function (e) { var b = e.target.closest('.tgc-fila'); if (b) abrirHoja(b.dataset.g); });
+    $('tgc-girar').addEventListener('click', girar);
+    /* el toque en el dibujo: el músculo más cercano al dedo (zonaEn); en «Aspecto» no abre nada */
+    var fig = $('tgc-fig');
+    fig.addEventListener('click', function (e) {
+      if (modo !== 'musculos' || grupoAbierto || cifrasAbiertas) return;
+      var g = zonaDe(e) || zonaEn(e.clientX, e.clientY);
+      if (g) abrirHoja(g);
+    });
+    fig.addEventListener('pointerover', function (e) { if (modo === 'musculos' && e.pointerType === 'mouse') marcarHover(zonaDe(e)); });
+    fig.addEventListener('pointerleave', function () { marcarHover(null); });
+    /* si la escena cambia de tamaño (al girar el móvil), el dibujo del cielo se rehace a su medida */
+    if (typeof window.ResizeObserver === 'function') { try { new ResizeObserver(function () { if (abierto && !$('tgc-escena').hidden) pintarEscena(); }).observe($('tgc-cielo')); } catch (e) {} }
+    $('tgc-lista').addEventListener('click', function (e) { var b = e.target.closest('.tgc-fila'); if (b) { abrirHoja(b.dataset.g, true); panel.scrollTop = 0; } });
     /* la semana: tocar un día enseña sus series y sus grupos debajo */
     $('tgc-dias7').addEventListener('click', function (e) {
       var b = e.target.closest('.tgc-dia'); if (!b) return;
@@ -2288,14 +2594,13 @@
       renderTodo(); toast(tx('cuerpoBorrado'));
     });
     /* la hoja */
-    $('tgc-velo').addEventListener('click', function () { cerrarHoja(); });
+    $('tgc-velo').addEventListener('click', function () { if (cifrasAbiertas) cerrarCifras(); else cerrarHoja(); });
     $('tgc-hoja-cerrar').addEventListener('click', function () { cerrarHoja(); });
-    $('tgc-menos').addEventListener('click', function () { anotarN = Math.max(1, anotarN - 1); pintarPaso('tgc'); });
-    $('tgc-mas').addEventListener('click', function () { anotarN = Math.min(MAX_N, anotarN + 1); pintarPaso('tgc'); });
-    $('tgc-n').addEventListener('change', function () { var v = Math.round(Number($('tgc-n').value)); anotarN = isFinite(v) ? Math.max(1, Math.min(MAX_N, v)) : anotarN; pintarPaso('tgc'); });
-    $('tgc-hoy').addEventListener('click', function () { anotarDia = 'hoy'; pintarPaso('tgc'); });
-    $('tgc-ayer').addEventListener('click', function () { anotarDia = 'ayer'; pintarPaso('tgc'); });
-    $('tgc-guardar').addEventListener('click', anotar);
+    $('tgc-menos').addEventListener('click', quitarUna);
+    $('tgc-guardar').addEventListener('click', function () { anotar(1); });
+    $('tgc-mas3').addEventListener('click', function () { anotar(3); });
+    $('tgc-hoy').addEventListener('click', function () { anotarDia = 'hoy'; renderHoja(); });
+    $('tgc-ayer').addEventListener('click', function () { anotarDia = 'ayer'; renderHoja(); });
     $('tgc-hist').addEventListener('click', function (e) { var b = e.target.closest('.tgc-hist-x'); if (b) borrarEntrada(Number(b.dataset.i)); });
     /* los ejercicios */
     $('tgc-ej-ent').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; ejEntorno = b.dataset.v; renderEjLista(); });
@@ -2327,18 +2632,10 @@
   }
 
   /* ── abrir y cerrar ── */
-  /* Dentro de la pestaña, con una hoja abierta, lo demás del perfil queda inerte (lo que va al lado
-     de «Su cuerpo», de él hacia arriba hasta el panel del perfil) y el perfil no se desplaza por
-     debajo; encima, de eso ya se encargan #tgc inerte y el perfil inerte (perfilDebajo) */
-  function alrededor(si) {
-    if (!dentro || !panel) return;
-    var tope = document.getElementById('perfil-panel'), n = panel;
-    while (n && n !== tope && n.parentNode && n.parentNode !== document.body) {
-      Array.prototype.forEach.call(n.parentNode.children, function (h) { if (h !== n) h.inert = !!si; });
-      n = n.parentNode;
-    }
-    if (tope) tope.classList.toggle('tgc-con-hoja', !!si);
-  }
+  /* «Su cuerpo» va encima del perfil, a pantalla completa, con su flecha de vuelta al pasaporte
+     (6-11-2026, bloque 2; decisión 2 de Jerome: «hoy el pasaporte ocupa media primera pantalla»). Del
+     1 al 6 de noviembre iba dentro de la pestaña Cuerpo del perfil (incrustar); ya no: la tarjeta de
+     la pestaña abre esta pantalla (modulos/perfil.js) */
   function montar() {
     if (panel) return;
     var estilo = document.createElement('style');
@@ -2351,6 +2648,7 @@
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-modal', 'true');
     panel.setAttribute('aria-labelledby', 'tgc-titulo');
+    panel.setAttribute('data-tema', tema);
     panel.innerHTML = CUERPO;
     TEXTOS.forEach(function (t) {
       var n = panel.querySelector(t[0]);
@@ -2361,49 +2659,22 @@
   }
   /* el perfil queda debajo: inerte mientras «Su cuerpo» está encima */
   function perfilDebajo(si) { var p = document.getElementById('perfil-panel'); if (p) p.inert = !!si && !p.hidden; }
-  /* «Su cuerpo» dentro de la pestaña Cuerpo del perfil (1 de noviembre de 2026; Jerome: «Y no veo
-     porque no ponerlo directo en la sección cuerpo»): sin cabecera fija ni «atrás», sin entrada
-     propia en el historial y sin Escape propio (los del perfil); las hojas de un grupo y de un
-     ejercicio, encima, como siempre, con su «atrás» y su Escape. Se llama cada vez que se enseña la
-     pestaña: lee otra vez lo guardado (y el año de nacimiento del perfil) y lo pinta */
-  function incrustar(sitio, op) {
-    if (!sitio || !sitio.appendChild) return;
-    if (panel && !dentro && abierto) cerrar();
-    dentro = true;
-    montar();
-    if (panel.parentNode !== sitio) sitio.appendChild(panel);
-    panel.classList.add('tgc-dentro');
-    panel.setAttribute('role', 'region'); panel.removeAttribute('aria-modal');
-    /* el título del perfil es el h1: aquí, uno de sus apartados */
-    $('tgc-titulo').setAttribute('aria-level', '2');
-    st = leer();
-    /* lo mismo que abrir(): los cuatro modos y una pregunta para «Preguntar» */
-    if (op && (op.modo === 'aspecto' || op.modo === 'musculos' || op.modo === 'comida' || op.modo === 'preguntar')) modo = op.modo;
-    if (op && typeof op.pregunta === 'string') { modo = 'preguntar'; preguntaPendiente = op.pregunta; }
-    if (!abierto) {
-      diaSel = null;
-      var t = $('tgc'); t.classList.add('tgc-entra'); clearTimeout(entraReloj);
-      entraReloj = setTimeout(function () { t.classList.remove('tgc-entra'); }, 1800);
-    }
-    abierto = true;
-    panel.hidden = false;
-    renderTodo();
-  }
   function abrir(op) {
-    if (dentro) { incrustar(panel.parentNode, op); return; }
     montar();
     st = leer();
+    tema = leerTema();
     if (op && (op.modo === 'aspecto' || op.modo === 'musculos' || op.modo === 'comida' || op.modo === 'preguntar')) modo = op.modo;
     if (op && typeof op.pregunta === 'string') { modo = 'preguntar'; preguntaPendiente = op.pregunta; }
     if (!abierto) {
-      diaSel = null;
-      /* la entrada (el barrido de la lámina y las barras que crecen): una vez, al abrir */
+      diaSel = null; vista = 'frente';
+      /* la entrada (el sol que asoma, las barras que crecen y la rejilla que aparece): una vez, al abrir */
       var t = $('tgc'); t.classList.add('tgc-entra'); clearTimeout(entraReloj);
       entraReloj = setTimeout(function () { t.classList.remove('tgc-entra'); }, 1800);
+      escEntrada = true;
       antesDeAbrir = document.activeElement;
       abierto = true;
       panel.hidden = false;
-      panel.scrollTop = 0;
+      panel.scrollTop = 0; pegada();
       perfilDebajo(true);
       /* el botón «atrás» del móvil cierra esta pantalla, no la app ni el perfil. La entrada lleva
          también tgPerfil: el perfil, que está debajo, no se cierra al volver a una entrada suya o de
@@ -2413,10 +2684,17 @@
     renderTodo();
     try { $('tgc-back').focus({ preventScroll: true }); } catch (e) {}
   }
+  /* la cabecera va en cristal sobre la escena y se vuelve opaca al bajar (o sin escena) */
+  function pegada() {
+    var esc = $('tgc-escena'), tope = esc.hidden ? 0 : Math.max(0, esc.offsetHeight - $('tgc-top').offsetHeight);
+    /* en «Aspecto» la escena se queda pegada arriba, a la vista: la cabecera sigue en cristal */
+    $('tgc').classList.toggle('pegada', modo !== 'aspecto' && panel.scrollTop > tope);
+  }
+  /* con una hoja abierta, lo de debajo (la pantalla y la barra de modos) queda inerte */
+  function debajoInerte(si) { $('tgc').inert = !!si; $('tgc-modos').inert = !!si; }
   function cerrar(sinHistoria) {
     if (!abierto) return;
-    /* dentro de la pestaña no hay pantalla que cerrar: solo lo que tenga encima */
-    if (dentro) { if (grupoAbierto) cerrarHoja(sinHistoria); return; }
+    if (cifrasAbiertas) cerrarCifras(true);
     if (grupoAbierto) cerrarHoja(true);
     abierto = false;
     panel.hidden = true;
@@ -2433,8 +2711,7 @@
      varios pasos de golpe (en el navegador, manteniéndolo pulsado) se cierra de una vez todo lo que
      quedaba encima, y nada más: cerrar lo que va encima de «Su cuerpo» (el panel SOS, que pone sus
      propias entradas; las respuestas enlazan a sus guías) vuelve a una entrada con tgCuerpo y no la
-     cierra. Dentro de la pestaña Cuerpo, una hoja que se quedara abierta con el perfil ya cerrado lo
-     dejaría inerte al volver a abrirlo (alrededor) */
+     cierra. «Las cifras» (bloque 2) pone su propia marca, tgCuerpoCifras */
   window.addEventListener('popstate', function (e) {
     if (atrasPendiente) { atrasPendiente = false; return; }
     var s = (e && e.state) || {};
@@ -2444,7 +2721,8 @@
     if (s.tgSos) return;
     if (ejAbierto && !s.tgCuerpoEj) { ejHistoria = false; volverGrupo(true); }
     if (grupoAbierto && !s.tgCuerpoHoja) { hojaHistoria = false; ejHistoria = false; cerrarHoja(true); }
-    if (s.tgCuerpo || !abierto || dentro) return;
+    if (cifrasAbiertas && !s.tgCuerpoCifras) { cifrasHistoria = false; cerrarCifras(true); }
+    if (s.tgCuerpo || !abierto) return;
     historia = false;
     cerrar(true);
   });
@@ -2456,12 +2734,10 @@
     /* el panel SOS va encima (las respuestas enlazan a sus guías): ese Escape es suyo */
     var sos = document.getElementById('sos-panel');
     if (sos && !sos.hidden) return;
-    /* dentro de la pestaña, sin hoja abierta, el Escape es del perfil */
-    if (dentro && !grupoAbierto) return;
     /* y no lo oye nadie más, tampoco en window: el Escape del perfil, si se enganchó después que
        este, ya no vería la hoja abierta y cerraría también el perfil */
     e.stopImmediatePropagation();
-    if (ejAbierto) volverGrupo(); else if (grupoAbierto) cerrarHoja(); else cerrar();
+    if (ejAbierto) volverGrupo(); else if (grupoAbierto) cerrarHoja(); else if (cifrasAbiertas) cerrarCifras(); else cerrar();
   }, true);
   try { TG_IDIOMA.registrar('cuerpo', function () { if (abierto) renderTodo(); }); } catch (e) {}
 
@@ -3106,434 +3382,433 @@
   var ESTILOS = `
 /* cuerpo.css — la pantalla «Su cuerpo» de Tenerife Go. Va dentro de modulos/cuerpo.js, como
    cadena (app_preparar.js solo copia modulos/*.js a la app de la tienda). Solo reglas de la
-   pantalla: los tokens de la paleta v18 (--gold, --gold-light, --dark, --panel, --panel2,
-   --border, --text, --muted, --t-*, --ease-*, --shadow-*) son los del :root de index.html.
-   Tema único oscuro, como el perfil.
-   Diseño del 31-10-2026: la escena es una lámina de atlas (las dos vistas a la vez, con su pie
-   en cursiva); lo demás, quieto: cifras sin cajas, la semana día a día y los 12 grupos como
-   barras con la referencia del ACSM. Desde el 6-11-2026, lo trabajado va en rosa, naranja y
-   amarillo (antes, en tres oros) y el maniquí de «Músculos» lleva la cabeza de la persona. */
+   pantalla; de index.html toma los tiempos y las curvas (--t-*, --ease-*), que no cambian con el tema.
+   Rediseño «Amanecer» del 6-11-2026 (bloque 2): la escena arriba (el cielo, el sol de siete rayos, el
+   Teide, el mar de nubes y Las Cañadas), el personaje grande dentro de ella (un toque, una serie), los
+   12 grupos en una rejilla, la hoja con su marcador y «+ 1 serie», la barra de modos abajo y dos
+   temas, Día (por defecto) y Noche, con todos los colores en variables de #cuerpo-panel. Desde el
+   6-11-2026 (bloque 1), lo trabajado va en rosa, naranja y amarillo y el maniquí lleva la cabeza de la
+   persona. Va encima del perfil, a pantalla completa, con su flecha de vuelta. */
 #cuerpo-panel {
-  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --r: 18px;
-  /* los márgenes de la pantalla (la escena los anula para ir de borde a borde en el móvil) */
+  --font-display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* los márgenes de la pantalla (la escena, la rejilla de modos y la hoja los llevan por su cuenta) */
   --gl: max(16px, env(safe-area-inset-left, 0px)); --gr: max(16px, env(safe-area-inset-right, 0px));
+  /* el alto de la cabecera, que va sobre la escena, y el margen de arriba del móvil (la isla
+     dinámica del iPhone): la escena pasa por debajo de la hora; la cabecera, no */
+  --cab: 60px; --arriba: env(safe-area-inset-top, 0px);
   /* los niveles del mapa de músculos (los mismos que dibuja TG_FIGURA: MUSC.nivel) */
   --n0: #333E4D; --n1: #EE5F7E; --n2: #FFA04A; --n3: #FFE48A;
-  --tinta2: rgba(240,236,228,0.72); --linea: rgba(240,236,228,0.09);
-  color-scheme: dark;
+  /* ── el tema Día ── */
+  color-scheme: light;
+  --tinta: #12233A; --tinta-2: #51627A; --fondo: #EEF3F8; --tarjeta: #FFFFFF; --linea: #D5DFEA;
+  --oro: #8A6A12; --oro-vivo: #D4AF37; --oro-f: #FBF2D4; --zonas: #5B4FCF; --zonas-f: #E7E4FB;
+  --rojo: #B3261E; --rojo-f: #FBE3E8;
+  --cristal: rgba(255,255,255,0.72); --cristal-borde: rgba(255,255,255,0.9); --sobre-cielo: #12233A;
+  --suave: rgba(18,35,58,0.06); --suave-2: rgba(18,35,58,0.14); --suave-3: rgba(18,35,58,0.55);
+  --sombra: 0 1px 2px rgba(18,35,58,0.06), 0 10px 28px rgba(18,35,58,0.1);
+  --hoja: #FFFFFF; --velo: rgba(10,20,36,0.48); --boton-tinta: #12233A; --aviso-btn: #FFE48A;
+  --cielo: #8FA8E6;
   /* por encima del perfil (#perfil-panel, 8900) y por debajo de la bienvenida (9000), la
      privacidad (9999) y la ficha de la cuenta (10000) */
   position: fixed; inset: 0; z-index: 8950; overflow: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
-  padding: env(safe-area-inset-top, 0px) var(--gr) 32px var(--gl);
-  background: var(--dark);
-  font: 400 15px/1.5 var(--font-body); color: var(--text); -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
+  padding: 0 0 calc(92px + env(safe-area-inset-bottom, 0px));
+  background: var(--fondo);
+  font: 400 15px/1.5 var(--font-body); color: var(--tinta); -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
+}
+/* ── el tema Noche ── */
+#cuerpo-panel[data-tema="noche"] {
+  color-scheme: dark;
+  --tinta: #F0ECE4; --tinta-2: #A8B3C4; --fondo: #0F1117; --tarjeta: #1B2330; --linea: #2D3A4A;
+  --oro: #F5C76B; --oro-vivo: #D4AF37; --oro-f: #33290F; --zonas: #9B8CFF; --zonas-f: #262447;
+  --rojo: #FFB4A8; --rojo-f: #3A1F2B;
+  --cristal: rgba(15,17,23,0.55); --cristal-borde: rgba(255,255,255,0.16); --sobre-cielo: #F6F1E7;
+  --suave: rgba(240,236,228,0.06); --suave-2: rgba(240,236,228,0.14); --suave-3: rgba(240,236,228,0.5);
+  --sombra: 0 1px 2px rgba(0,0,0,0.3), 0 12px 30px rgba(0,0,0,0.4);
+  --hoja: #1B2330; --velo: rgba(0,0,0,0.62); --aviso-btn: #5B4FCF;
+  --cielo: #080B1F;
 }
 #cuerpo-panel.con-hoja { overflow: hidden; }
 :where(#cuerpo-panel) *, :where(#cuerpo-panel) *::before, :where(#cuerpo-panel) *::after { box-sizing: border-box; }
 #cuerpo-panel [hidden], #cuerpo-panel[hidden] { display: none !important; }
-:where(#cuerpo-panel) :where(button, input) { font-family: inherit; font-size: inherit; color: inherit; }
-:where(#cuerpo-panel) :where(button) { cursor: pointer; -webkit-tap-highlight-color: transparent; }
-:where(#cuerpo-panel) :focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+:where(#cuerpo-panel) :where(button, input, select) { font-family: inherit; font-size: inherit; color: inherit; }
+:where(#cuerpo-panel) :where(button) { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+:where(#cuerpo-panel) :focus-visible { outline: 3px solid var(--zonas); outline-offset: 2px; }
 
-.tgc { max-width: 520px; margin: 0 auto; display: grid; gap: 18px; }
+.tgc { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; min-width: 0; }
+.tgc-sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
-/* ── cabecera fija ── */
-/* top: 0, y no el margen de la isla dinamica (1 de noviembre de 2026): #cuerpo-panel ya lo
-   deja con su padding-top, y lo pegado se mide desde ahi. Con los dos, en el iPhone la cabecera
-   bajaba 59 px de mas y tapaba «Musculos | Aspecto», con una franja vacia encima */
+/* ── la cabecera: sobre la escena, en cristal; pegada y opaca al bajar (o sin escena) ── */
 .tgc-top {
-  position: sticky; top: 0; z-index: 6;
-  display: flex; align-items: center; gap: 12px; padding-block: 12px 6px;
-  background: var(--dark);
+  position: sticky; top: 0; z-index: 6; height: calc(var(--cab) + var(--arriba));
+  display: flex; align-items: center; gap: 8px; padding: var(--arriba) max(12px, env(safe-area-inset-right, 0px)) 0 max(12px, env(safe-area-inset-left, 0px));
+  color: var(--sobre-cielo); transition: background var(--t-normal) var(--ease-out), color var(--t-normal) var(--ease-out);
 }
-/* el fundido de debajo: lo que pasa por detrás de la cabecera no se lee a través del texto */
-.tgc-top::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 14px; background: linear-gradient(var(--dark), transparent); pointer-events: none; }
-.tgc-tit { flex: 1; min-width: 0; }
-.tgc-top h1 { margin: 0; font: 600 2rem/1 var(--font-display); color: var(--gold-light); letter-spacing: .005em; text-wrap: balance; }
-.tgc-lema { margin: 4px 0 0; color: var(--tinta2); font-size: .86rem; line-height: 1.3; }
+.tgc-top h1 { margin: 0; font: 600 30px/1 var(--font-display); color: inherit; letter-spacing: .2px; text-wrap: balance; }
+.tgc-hueco { flex: 1; }
+.tgc.pegada .tgc-top, .sin-escena .tgc-top { background: var(--fondo); color: var(--tinta); box-shadow: 0 1px 0 var(--linea); }
 .tgc-icon-btn {
-  flex: none; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border);
-  background: var(--panel); color: var(--text); display: grid; place-items: center;
+  flex: none; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--cristal-borde);
+  background: var(--cristal); color: inherit; display: grid; place-items: center;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
 }
-.tgc-icon-btn:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
+.tgc-icon-btn:hover { border-color: var(--oro-vivo); }
+.tgc.pegada .tgc-icon-btn, .sin-escena .tgc-icon-btn { background: var(--tarjeta); border-color: var(--linea); }
+/* el botón del tema enseña el que no está puesto: la luna de día, el sol de noche */
+#cuerpo-panel[data-tema="noche"] .tgc-ico-luna { display: none; }
+#cuerpo-panel:not([data-tema="noche"]) .tgc-ico-sol { display: none; }
 
-/* ── los dos modos: el oro se desliza al que está puesto ── */
-.tgc-modos { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 14px; background: var(--panel); border: 1px solid var(--border); isolation: isolate; }
-.tgc-modos::before {
-  content: ""; position: absolute; z-index: -1; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 6px); border-radius: 10px;
-  background: rgba(212,175,55,0.16); box-shadow: inset 0 0 0 1px rgba(212,175,55,0.55);
-  transition: transform var(--t-slow) var(--ease-emph);
-}
-.tgc.is-aspecto .tgc-modos::before { transform: translateX(calc(100% + 4px)); }
-.tgc-modos button {
-  min-height: 40px; border: 0; border-radius: 10px; background: transparent; color: var(--tinta2); font-weight: 600; letter-spacing: .01em;
-  transition: color var(--t-normal) var(--ease-out);
-}
-.tgc-modos button[aria-pressed="true"] { color: var(--gold-light); }
-
-/* ── la escena: una lámina de atlas, de borde a borde en el móvil ── */
+/* ── la escena: el cielo con el personaje dentro, de borde a borde ── */
 .tgc-escena {
-  --alto: min(54vh, 460px);
-  position: relative; isolation: isolate; overflow: hidden;
-  margin-left: calc(-1 * var(--gl)); margin-right: calc(-1 * var(--gr));
-  padding: 22px 14px 16px; display: grid; justify-items: center; gap: 10px;
-  background:
-    radial-gradient(56% 44% at 50% 40%, rgba(113,147,196,0.17), transparent 72%),
-    radial-gradient(60% 18% at 50% 100%, rgba(212,175,55,0.09), transparent 75%),
-    linear-gradient(180deg, #121926, #0E131B);
-  border-block: 1px solid rgba(212,175,55,0.12);
+  position: relative; z-index: 1; isolation: isolate; overflow: hidden; margin-top: calc(-1 * (var(--cab) + var(--arriba)));
+  height: calc(clamp(400px, 62vh, 600px) + var(--arriba)); height: calc(clamp(400px, 62svh, 600px) + var(--arriba));
+  border-radius: 0 0 28px 28px; background: var(--cielo);
 }
-/* el marco grabado de la lámina */
-.tgc-escena::before { content: ""; position: absolute; inset: 8px; z-index: -1; border: 1px solid rgba(212,175,55,0.15); border-radius: 16px; pointer-events: none; }
-/* al abrir, una sola vez: un barrido de luz, como sobre el pan de oro */
-.tgc-escena::after {
-  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; mix-blend-mode: screen;
-  background: linear-gradient(100deg, transparent 38%, rgba(255,231,158,0.14) 50%, transparent 62%);
-  transform: translateX(-130%); animation: tgc-barrido 1500ms var(--ease-out) 200ms 1 both;
+.tgc-cielo { position: absolute; inset: 0; }
+.tgc-cielo svg { display: block; width: 100%; height: 100%; }
+.tgc-cielo .tgc-rayo { transition: opacity var(--t-slower) var(--ease-out); }
+/* sin nada anotado en 7 días, la escena dice qué hacer */
+.tgc-pista {
+  position: absolute; z-index: 4; top: calc(var(--cab) + var(--arriba) + 6px); left: 50%; transform: translateX(-50%); margin: 0; max-width: calc(100% - 24px);
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 600; line-height: 1.3;
+  background: var(--cristal); border: 1px solid var(--cristal-borde); color: var(--sobre-cielo); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
 }
-@keyframes tgc-barrido { to { transform: translateX(130%); } }
-/* «Músculos»: las dos vistas a la vez, una al lado de la otra */
-.tgc-giro { position: relative; width: min(100%, calc(var(--alto) * 640 / 784 + 10px)); display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.tgc-fig { display: grid; justify-items: center; gap: 4px; min-width: 0; }
-.tgc-cara { position: relative; width: 100%; aspect-ratio: 320 / 784; animation: tgc-entra 620ms var(--ease-emph); }
-@keyframes tgc-entra { from { opacity: .3; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.tgc-pista svg { flex: none; }
+/* el personaje, grande, de pie sobre Las Cañadas */
+/* de pie sobre Las Cañadas, y con la cabeza por debajo de la cabecera y de la pista */
+.tgc-fig { position: absolute; z-index: 3; left: 50%; bottom: 4px; height: calc(100% - var(--cab) - var(--arriba) - 64px); max-height: 80%; aspect-ratio: 320 / 784; transform: translateX(-50%); }
+.tgc-giro { position: absolute; inset: 0; transition: transform 190ms ease-in; }
+.tgc-giro.medio { transform: scaleX(0); }
+.tgc-cara { position: absolute; inset: 0; }
 .tgc-cara svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .tgc-cara .tgf-z { cursor: pointer; transition: filter var(--t-fast) var(--ease-out); }
 .tgc-cara .tgf-z.is-hover { filter: brightness(1.2) saturate(1.1); }
 .tgc.is-aspecto .tgc-cara .tgf-z { cursor: default; }
+/* al anotar, el grupo late una vez */
+.tgc-cara .tgf-z.pulso { animation: tgc-pulso 700ms ease-out; transform-box: fill-box; transform-origin: center; }
+@keyframes tgc-pulso { 0% { filter: brightness(2.1) saturate(1.3); transform: scale(1.07); } 100% { filter: none; transform: scale(1); } }
 /* el grupo de la hoja abierta: su contorno late una vez */
 .tgc-cara .tgf-marca { animation: tgc-late 900ms var(--ease-out) 1; }
 @keyframes tgc-late { 0% { opacity: 0; } 30% { opacity: 1; } 60% { opacity: .45; } 100% { opacity: 1; } }
-.tgc-cap, .tgc-vista { margin: 0; font: italic 500 1.08rem/1.2 var(--font-display); color: var(--tinta2); text-align: center; }
-.tgc-cap::first-letter, .tgc-vista::first-letter { text-transform: uppercase; }
-.tgc-vista { display: none; }
+/* «Girar»: la otra vista en pequeño, abajo a la derecha */
 .tgc-girar {
-  position: absolute; top: 16px; right: 16px; z-index: 2; display: none; align-items: center; gap: 6px; min-height: 36px; padding: 0 12px;
-  border-radius: 999px; border: 1px solid var(--border); background: rgba(15,17,23,0.6); color: var(--gold-light); font-weight: 600; font-size: .86rem;
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  position: absolute; z-index: 5; right: max(14px, env(safe-area-inset-right, 0px)); bottom: 14px; min-width: 66px; height: 104px; border-radius: 20px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 7px 7px;
+  background: var(--cristal); border: 1px solid var(--cristal-borde); color: var(--sobre-cielo); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
 }
-.tgc-girar:hover { border-color: var(--gold); }
-.tgc-girar svg { transition: transform var(--t-slower) var(--ease-in-out); }
-.tgc-giro.is-espalda ~ .tgc-girar svg { transform: rotate(180deg); }
-/* «Aspecto»: una sola vista, más pequeña y fija arriba mientras se elige debajo; «Girar» le da la vuelta */
-.tgc.is-aspecto .tgc-escena { position: sticky; top: 64px; z-index: 4; padding-block: 16px 14px; }
-.tgc.is-aspecto .tgc-giro { display: block; width: auto; height: min(32vh, 272px); aspect-ratio: 320 / 784; transform-style: preserve-3d; transition: transform var(--t-slower) var(--ease-in-out); }
-.tgc.is-aspecto .tgc-giro.is-espalda { transform: rotateY(180deg); }
-.tgc.is-aspecto .tgc-fig { position: absolute; inset: 0; display: block; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
-.tgc.is-aspecto .tgc-fig-espalda { transform: rotateY(180deg); }
-.tgc.is-aspecto .tgc-cara { height: 100%; }
-.tgc.is-aspecto .tgc-cap { display: none; }
-.tgc.is-aspecto .tgc-vista { display: block; position: absolute; top: 18px; left: 22px; z-index: 2; }
-.tgc.is-aspecto .tgc-girar { display: inline-flex; }
-/* sin nada anotado en 7 días, la lámina dice qué hacer (el mismo texto que la lista de los 12) */
-.tgc-pista { margin: 2px 0 0; display: inline-flex; align-items: center; gap: 8px; max-width: 100%; padding: 7px 14px; border-radius: 999px;
-  background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.38); color: var(--gold-light); font-size: .84rem; line-height: 1.35; }
-.tgc-pista svg { flex: none; }
+.tgc-girar:hover { border-color: var(--oro-vivo); }
+.tgc-girar-mini { position: absolute; top: 6px; left: 50%; width: 34px; height: 80px; transform: translateX(-50%); }
+.tgc-girar-mini svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.tgc-girar-lbl { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+/* «Aspecto»: la escena más baja y pegada arriba mientras se elige debajo */
+.tgc.is-aspecto .tgc-escena { position: sticky; top: 0; z-index: 4; height: calc(clamp(300px, 46vh, 440px) + var(--arriba)); height: calc(clamp(300px, 46svh, 440px) + var(--arriba)); }
 .tgc.is-aspecto .tgc-pista { display: none; }
-/* la leyenda, al pie de la lámina */
-.tgc-leyenda { display: grid; gap: 6px; justify-items: center; padding-top: 2px; }
-.tgc-leyenda p { margin: 0; font-size: .78rem; color: var(--tinta2); }
-.tgc-leyenda ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; }
-.tgc-leyenda li { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; }
-.tgc-nivel { flex: none; display: inline-block; width: 12px; height: 12px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35); }
-.tgc-nivel.n0 { background: var(--n0); box-shadow: inset 0 0 0 1px rgba(240,236,228,0.22); }
-.tgc-nivel.n1 { background: var(--n1); } .tgc-nivel.n2 { background: var(--n2); }
-.tgc-nivel.n3 { background: var(--n3); box-shadow: 0 0 8px rgba(255,212,103,0.55); }
+
+/* ── bajo la escena ── */
+.tgc-vista-m, .tgc-vista-a, .tgc-vista-c, .tgc-vista-p { display: grid; gap: 26px; min-width: 0; padding: 16px var(--gr) 8px var(--gl); }
+.tgc-leyenda { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 13px; color: var(--tinta-2); }
+.tgc-leyenda p { margin: 0; font-weight: 600; color: var(--tinta); }
+.tgc-leyenda ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 12px; }
+.tgc-leyenda li { display: inline-flex; align-items: center; gap: 6px; }
+.tgc-nivel { flex: none; display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--suave-3); }
+.tgc-nivel.n0 { background: var(--n0); }
+.tgc-nivel.n1 { background: var(--n1); } .tgc-nivel.n2 { background: var(--n2); } .tgc-nivel.n3 { background: var(--n3); }
+.tgc-prio-mues { flex: none; display: inline-block; width: 14px; height: 14px; border-radius: 4px; border: 2px dashed var(--tinta); }
 
 /* ── secciones ── */
-.tgc-semana, .tgc-card { display: grid; gap: 12px; min-width: 0; }
-.tgc-card { border-radius: var(--r); border: 1px solid var(--border); background: var(--panel); padding: 18px 16px; }
-.tgc-semana h2, .tgc-card h2 { margin: 0; font: 600 1.5rem/1.1 var(--font-display); color: var(--text); text-wrap: balance; }
-.tgc-semana p, .tgc-card p { margin: 0; }
-.tgc-semana { padding-inline: 2px; }
+.tgc-semana, .tgc-card, .tgc-grupos { display: grid; gap: 14px; min-width: 0; }
+.tgc-card { border-radius: 22px; border: 1px solid var(--linea); background: var(--tarjeta); padding: 18px 16px; }
+.tgc-semana h2, .tgc-card h2, .tgc-grupos h2 { margin: 0; font: 600 28px/1.1 var(--font-display); color: var(--tinta); letter-spacing: .1px; text-wrap: balance; }
+.tgc-semana p, .tgc-card p, .tgc-grupos p { margin: 0; }
+.tgc-cab { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.tgc-ver { flex: none; background: none; border: 0; padding: 0 2px; min-height: 32px; font-size: 14px; font-weight: 600; color: var(--zonas); text-decoration: underline; text-underline-offset: 3px; text-align: start; }
 
-/* las cifras: sin cajas, separadas por una línea fina */
-.tgc-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.tgc-stat { display: grid; gap: 2px; align-content: start; min-width: 0; padding: 2px 10px 2px 12px; border-left: 1px solid var(--linea); }
-.tgc-stat:first-child { padding-left: 0; border-left: 0; }
-.tgc-stat b { display: flex; align-items: baseline; font: 600 1.7rem/1.1 var(--font-body); color: var(--text); overflow-wrap: anywhere; }
-.tgc-stat b small { margin-left: 1px; font-size: .62em; font-weight: 500; color: var(--tinta2); }
-.tgc-stat > span { font-size: .78rem; line-height: 1.3; color: var(--tinta2); hyphens: auto; overflow-wrap: anywhere; }
-.tgc-stat .tgc-nivel { align-self: center; margin-right: 8px; }
-/* «Última vez» es un texto («hace 3 días»), no un número: más pequeño */
-.tgc-stat b.txt { font-size: 1.05rem; line-height: 1.25; padding-top: .35em; }
-.tgc-stat .pop { display: inline-block; animation: tgc-pop var(--t-slower) var(--ease-bounce); }
-@keyframes tgc-pop { 0% { transform: scale(1); } 40% { transform: scale(1.25); color: var(--gold-light); } 100% { transform: scale(1); } }
+/* las cifras de la semana, sin cajas */
+.tgc-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tgc-stat { display: grid; gap: 4px; align-content: start; min-width: 0; }
+.tgc-stat b { display: flex; align-items: baseline; font: 600 44px/.95 var(--font-display); letter-spacing: -1px; color: var(--tinta); overflow-wrap: anywhere; }
+.tgc-stat b small { margin-left: 2px; font: 700 13px/1 var(--font-body); letter-spacing: 0; color: var(--tinta-2); }
+.tgc-stat > span { font-size: 13px; line-height: 1.3; color: var(--tinta-2); hyphens: auto; overflow-wrap: anywhere; }
+.tgc-stat .pop, .tgc-marc-n .pop { display: inline-block; animation: tgc-pop var(--t-slower) var(--ease-bounce); }
+@keyframes tgc-pop { 0% { transform: scale(1); } 40% { transform: scale(1.18); color: var(--oro); } 100% { transform: scale(1); } }
 
-/* la semana, día a día: series anotadas cada día (una sola serie de datos, en oro) */
-.tgc-dias7 { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px;
-  border-bottom: 0; position: relative; }
+/* la semana, día a día: las series anotadas cada día, en oro */
+.tgc-dias7 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; position: relative; }
 .tgc-dia {
-  width: 100%; display: grid; grid-template-rows: 72px auto; justify-items: center; gap: 6px; padding: 6px 0 6px; border: 0; border-radius: 10px;
-  background: transparent; color: var(--tinta2); transition: background var(--t-fast) var(--ease-out);
+  width: 100%; display: grid; grid-template-rows: 64px auto; justify-items: center; gap: 6px; padding: 6px 0; border: 0; border-radius: 12px;
+  background: transparent; color: var(--tinta-2); transition: background var(--t-fast) var(--ease-out);
 }
-.tgc-dia:hover { background: rgba(240,236,228,0.04); }
-.tgc-dia[aria-pressed="true"] { background: rgba(212,175,55,0.09); }
+.tgc-dia:hover { background: var(--suave); }
+.tgc-dia[aria-pressed="true"] { background: var(--oro-f); }
 .tgc-dia-col { position: relative; align-self: stretch; width: 100%; display: flex; align-items: flex-end; justify-content: center; border-bottom: 1px solid var(--linea); }
-.tgc-dia-barra { display: block; width: min(18px, 60%); border-radius: 4px 4px 0 0; background: var(--gold); transform-origin: bottom; }
+.tgc-dia-barra { display: block; width: min(18px, 60%); border-radius: 4px 4px 0 0; background: var(--oro-vivo); transform-origin: bottom; }
 /* las barras crecen solo al abrir la pantalla (no cada vez que se anota o se cambia de idioma) */
 .tgc.tgc-entra .tgc-dia-barra { animation: tgc-crece 600ms var(--ease-emph) both; }
-.tgc-dia-barra.cero { height: 2px !important; width: 8px; border-radius: 1px; background: rgba(240,236,228,0.22); animation: none; }
+.tgc-dia-barra.cero { height: 2px !important; width: 8px; border-radius: 1px; background: var(--suave-2); animation: none; }
 @keyframes tgc-crece { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-.tgc-dia-l { font-size: .8rem; font-weight: 500; line-height: 1; text-transform: capitalize; }
-.tgc-dia.es-hoy .tgc-dia-l { color: var(--gold-light); font-weight: 700; }
+.tgc-dia-l { font-size: 12px; font-weight: 600; line-height: 1; text-transform: capitalize; }
+.tgc-dia.es-hoy .tgc-dia-l { color: var(--tinta); font-weight: 700; }
 .tgc-dia-info { min-height: 2.9em; }
-.tgc-dia-txt { font-weight: 600; font-size: .92rem; }
+.tgc-dia-txt { font-weight: 600; font-size: 14px; }
 .tgc-dia-txt::first-letter { text-transform: uppercase; }
-.tgc-dia-grupos { font-size: .84rem; color: var(--tinta2); }
-.tgc-reco { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 12px 14px; border-radius: 14px; background: rgba(212,175,55,0.07); border: 1px solid rgba(212,175,55,0.16); font-size: .9rem; line-height: 1.45; }
-.tgc-reco svg { color: var(--gold); margin-top: 1px; }
-.tgc-ref, .tgc-fuentes, .tgc-ayuda { font-size: .82rem; color: var(--tinta2); }
-.tgc-fuentes { font-size: .76rem; color: var(--tinta2); opacity: .9; }
-/* la referencia del ACSM (solo adultos): la misma marca que cruza cada barra */
-.tgc-ref { position: relative; padding-left: 16px; }
-.tgc-ref::before { content: ""; position: absolute; left: 4px; top: .15em; bottom: .15em; width: 2px; border-radius: 1px; background: rgba(240,236,228,0.6); }
+.tgc-dia-grupos { font-size: 13px; color: var(--tinta-2); }
+.tgc-reco { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 12px 14px; border-radius: 16px; background: var(--oro-f); color: var(--tinta); font-size: 14px; line-height: 1.45; }
+.tgc-reco svg { color: var(--oro); margin-top: 1px; }
+.tgc-fuentes, .tgc-ayuda { font-size: 13px; color: var(--tinta-2); line-height: 1.45; }
+.tgc-cifras-p { font-size: 15px; line-height: 1.5; }
 
-/* ── los 12 grupos: una barra por grupo con las series de 7 días ── */
-/* las barras de todas las filas, del mismo largo (la marca del 10 cae en el mismo sitio): la columna de la
-   derecha es la misma para todas (subgrid) y, donde no hay subgrid, tiene un ancho mínimo */
-.tgc-lista { list-style: none; margin: 2px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 0; }
-.tgc-lista > li { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; }
-@supports (grid-template-columns: subgrid) { .tgc-lista > li, .tgc-fila { grid-template-columns: subgrid !important; } }
+/* ── los 12 grupos: una rejilla de botones (el nombre, el color del nivel, las series y la última vez) ── */
+.tgc-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .tgc-fila {
-  grid-column: 1 / -1;
-  width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(5.6em, auto); grid-template-areas: "nom n" "barra cuando"; align-items: center; column-gap: 14px; row-gap: 7px;
-  min-height: 58px; padding: 9px 10px; margin-inline: -10px; width: calc(100% + 20px); border: 0; border-radius: 12px; background: transparent; text-align: start;
-  transition: background var(--t-fast) var(--ease-out);
+  width: 100%; min-width: 0; min-height: 76px; padding: 10px 10px 9px; border-radius: 16px; border: 1px solid var(--linea); background: var(--tarjeta); text-align: start;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 6px; position: relative;
+  transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out);
 }
-.tgc-fila:hover { background: rgba(212,175,55,0.07); }
-.tgc-fila-nom { grid-area: nom; font-weight: 600; overflow-wrap: anywhere; line-height: 1.25; }
-.tgc-fila-n { grid-area: n; font-size: .88rem; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: end; }
-.tgc-fila-cuando { grid-area: cuando; font-size: .78rem; color: var(--tinta2); white-space: nowrap; text-align: end; }
-.tgc-barra { grid-area: barra; position: relative; display: block; height: 8px; border-radius: 0 4px 4px 0; background: rgba(240,236,228,0.07); }
-.tgc-barra .tgc-nivel { position: absolute; left: 0; top: 0; bottom: 0; width: auto; height: auto; border-radius: 0 4px 4px 0; box-shadow: none; transform-origin: left; }
-.tgc.tgc-entra .tgc-barra .tgc-nivel { animation: tgc-alarga 700ms var(--ease-emph) both; }
-@keyframes tgc-alarga { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-.tgc-barra .tgc-nivel.n3 { box-shadow: 0 0 10px rgba(255,212,103,0.45); }
-.tgc-barra-ref { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; border-radius: 1px; background: rgba(240,236,228,0.6); }
-.tgc-fila-flecha { display: none; }
+.tgc-fila:hover { border-color: var(--tinta-2); }
+.tgc-fila:active { transform: scale(.97); }
+.tgc-fila.con { border-color: transparent; box-shadow: inset 0 0 0 1.5px var(--tinta); }
+.tgc-fila.prio { border: 1.5px dashed var(--tinta); }
+.tgc-fila.prio.con { box-shadow: none; background: var(--fondo); }
+.tgc.tgc-entra .tgc-fila { animation: tgc-entra 500ms var(--ease-emph) both; }
+@keyframes tgc-entra { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.tgc-fila-nom { font-size: 13px; font-weight: 600; line-height: 1.2; overflow-wrap: anywhere; }
+.tgc-fila-prio { display: inline-block; margin-left: 2px; padding: 0 6px; border-radius: 999px; border: 1.5px dashed var(--tinta-2); font-size: 10px; font-weight: 600; line-height: 1.5; letter-spacing: .01em; color: var(--tinta-2); white-space: nowrap; vertical-align: 1px; }
+.tgc-fila-dato { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--tinta-2); font-variant-numeric: tabular-nums; }
+.tgc-fila-dato .tgc-nivel { width: 12px; height: 12px; }
+.tgc-fila-cuando { font-size: 11px; color: var(--tinta-2); }
 
 /* ── el editor del aspecto ── */
 .tgc-editor-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .tgc-sec { display: grid; gap: 16px; padding-top: 16px; border-top: 1px solid var(--linea); }
-.tgc-sec h3 { margin: 0; font: 600 1.2rem/1.2 var(--font-display); color: var(--gold-light); }
+.tgc-sec h3 { margin: 0; font: 600 20px/1.2 var(--font-display); color: var(--tinta); }
 .tgc-op { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 8px; }
-.tgc-op legend { padding: 0; margin-bottom: 8px; font-weight: 600; font-size: .92rem; }
+.tgc-op legend { padding: 0; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
 .tgc-chips, .tgc-colores { display: flex; flex-wrap: wrap; gap: 8px; }
 .tgc-chip, .tgc-color { position: relative; display: inline-block; }
 .tgc-chip input, .tgc-color input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
 .tgc-chip span {
-  display: inline-flex; align-items: center; min-height: 40px; padding: 0 15px; border-radius: 999px; border: 1px solid rgba(240,236,228,0.16);
-  background: var(--dark); font-size: .88rem; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+  display: inline-flex; align-items: center; min-height: 40px; padding: 0 15px; border-radius: 999px; border: 1.5px solid var(--linea);
+  background: var(--fondo); font-size: 14px; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
 }
-.tgc-chip input:checked + span { border-color: var(--gold); background: rgba(212,175,55,0.16); color: var(--gold-light); font-weight: 600; }
-.tgc-chip:hover span { border-color: rgba(212,175,55,0.6); }
-.tgc-color span { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35), 0 0 0 1px rgba(240,236,228,0.12);
-  transition: transform var(--t-fast) var(--ease-out); }
-.tgc-color input:checked + span { border-color: var(--gold-light); box-shadow: inset 0 0 0 2px var(--panel), 0 0 0 3px rgba(245,199,107,0.3); transform: scale(1.06); }
-.tgc-chip input:focus-visible + span, .tgc-color input:focus-visible + span { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+.tgc-chip input:checked + span { border-color: var(--tinta); background: var(--tinta); color: var(--fondo); font-weight: 600; }
+.tgc-chip:hover span { border-color: var(--tinta-2); }
+.tgc-color span { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--linea); transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out); }
+.tgc-color input:checked + span { border-color: var(--tarjeta); box-shadow: 0 0 0 2px var(--tarjeta), 0 0 0 4px var(--tinta); transform: scale(1.06); }
+.tgc-chip input:focus-visible + span, .tgc-color input:focus-visible + span { outline: 3px solid var(--zonas); outline-offset: 2px; }
 
 /* ── botones ── */
 .tgc-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border-radius: 12px; border: 1px solid var(--border);
-  background: var(--panel2); color: var(--text); font-weight: 500; min-height: 44px; white-space: nowrap;
-  transition: transform var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 18px; border-radius: 14px; border: 1.5px solid var(--linea);
+  background: var(--tarjeta); color: var(--tinta); font-weight: 700; font-size: 15px; min-height: 48px; white-space: nowrap;
+  transition: transform var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out);
 }
-.tgc-btn:hover { border-color: var(--gold); box-shadow: var(--shadow-glow); }
+.tgc-btn:hover { border-color: var(--tinta-2); }
 .tgc-btn:active { transform: scale(.97); }
-.tgc-btn:disabled { opacity: .45; cursor: default; transform: none; box-shadow: none; }
-.tgc-btn.gold { background: linear-gradient(180deg, #E2BE52, var(--gold)); color: #1a1407; border-color: var(--gold); font-weight: 700; }
-.tgc-btn.gold:hover { background: var(--gold-light); border-color: var(--gold-light); }
+.tgc-btn:disabled { opacity: .45; cursor: default; transform: none; }
+.tgc-btn.gold { background: var(--oro-vivo); color: var(--boton-tinta); border-color: var(--oro-vivo); }
+.tgc-btn.gold:hover { filter: brightness(1.05); }
 .tgc-btn.ghost { background: transparent; }
-.tgc-btn.sm { padding: 6px 12px; min-height: 38px; font-size: .86rem; }
+.tgc-btn.sm { padding: 0 14px; min-height: 40px; font-size: 14px; font-weight: 600; }
 .tgc-btn.wide { width: 100%; }
-.tgc-link { background: none; border: 0; color: var(--tinta2); text-decoration: underline; text-underline-offset: 3px; padding: 8px 4px; font-size: .86rem; justify-self: center; }
+.tgc-link { background: none; border: 0; color: var(--tinta-2); text-decoration: underline; text-underline-offset: 3px; padding: 8px 4px; font-size: 14px; justify-self: center; }
 
 /* ── el pie ── */
-.tgc-pie { display: grid; gap: 8px; padding: 8px 8px 0; font-size: .8rem; color: var(--tinta2); text-align: center; }
+.tgc-pie { display: grid; gap: 8px; padding: 8px var(--gr) 0 var(--gl); font-size: 13px; color: var(--tinta-2); text-align: center; }
 .tgc-pie p { margin: 0; }
-.tgc-confirm { display: grid; gap: 10px; padding: 12px; border-radius: 14px; border: 1px solid rgba(242,140,140,0.45); background: rgba(242,140,140,0.08); color: var(--text); }
+.tgc-confirm { display: grid; gap: 10px; padding: 12px; border-radius: 16px; border: 1px solid var(--rojo); background: var(--rojo-f); color: var(--tinta); }
 .tgc-confirm div { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
 
-/* ── la hoja de cada grupo ── */
-.tgc-velo { position: fixed; inset: 0; z-index: 10; background: rgba(5,7,10,0.62); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+/* ── la barra de modos, abajo ── */
+.tgc-modos {
+  position: fixed; z-index: 8; left: 0; right: 0; bottom: 0; margin: 0 auto; width: 100%; max-width: 560px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px;
+  background: var(--tarjeta); border-top: 1px solid var(--linea);
+  padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px));
+}
+.tgc-modos button {
+  min-width: 0; min-height: 56px; padding: 4px 2px; border: 0; border-radius: 14px; background: transparent; color: var(--tinta-2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 600; line-height: 1.15;
+  transition: color var(--t-normal) var(--ease-out), background var(--t-normal) var(--ease-out);
+}
+.tgc-modos button .txt { max-width: 100%; overflow-wrap: anywhere; hyphens: auto; text-align: center; }
+.tgc-modos button svg { flex: none; }
+.tgc-modos button[aria-pressed="true"] { color: var(--tinta); background: var(--oro-f); }
+.tgc-modos button[aria-pressed="true"] svg { color: var(--oro); }
+
+/* ── las hojas: la de un grupo, la ficha de un ejercicio y «Las cifras» ── */
+.tgc-velo { position: fixed; inset: 0; z-index: 10; background: var(--velo); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
 .tgc-hoja {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 11; margin: 0 auto; max-width: 560px; max-height: 92vh; overflow: auto; overscroll-behavior: contain;
-  border-radius: 26px 26px 0 0; border: 1px solid var(--border); border-bottom: 0; background: linear-gradient(180deg, #1D2533, var(--panel) 220px);
-  padding: 8px max(18px, env(safe-area-inset-right, 0px)) calc(22px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px));
-  display: grid; gap: 14px; box-shadow: var(--shadow-xl); animation: tgc-sube var(--t-slow) var(--ease-emph);
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 11; margin: 0 auto; width: 100%; max-width: 560px; max-height: 80vh; max-height: 80svh; overflow: auto; overscroll-behavior: contain;
+  border-radius: 26px 26px 0 0; background: var(--hoja); color: var(--tinta);
+  padding: 10px max(18px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px));
+  display: grid; gap: 14px; box-shadow: 0 -10px 40px rgba(0,0,0,0.25); animation: tgc-sube var(--t-slow) var(--ease-emph);
 }
 @keyframes tgc-sube { from { transform: translateY(28px); opacity: .4; } to { transform: none; opacity: 1; } }
-.tgc-asa { justify-self: center; width: 40px; height: 4px; border-radius: 2px; background: rgba(240,236,228,0.25); }
-.tgc-hoja-cab { display: flex; align-items: center; gap: 10px; }
-.tgc-hoja-cab h2 { flex: 1; min-width: 0; margin: 0; font: 600 1.75rem/1.05 var(--font-display); color: var(--gold-light); outline: none; text-wrap: balance; }
-.tgc-hoja-cab h2:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; border-radius: 6px; }
+.tgc-asa { justify-self: center; width: 44px; height: 5px; border-radius: 5px; background: var(--linea); }
+.tgc-hoja-cab { display: flex; align-items: flex-start; gap: 12px; }
+.tgc-hoja-cab h2 { flex: 1; min-width: 0; margin: 0; padding-top: 6px; font: 600 30px/1.05 var(--font-display); color: var(--tinta); outline: none; text-wrap: balance; }
+.tgc-hoja-cab h2:focus-visible { outline: 3px solid var(--zonas); outline-offset: 2px; border-radius: 6px; }
+.tgc-hoja .tgc-icon-btn { width: 44px; height: 44px; background: var(--fondo); border-color: transparent; color: var(--tinta); -webkit-backdrop-filter: none; backdrop-filter: none; }
 .tgc-hoja p { margin: 0; }
-.tgc-hoja-intro { display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 14px; align-items: start; }
-.tgc-hoja-mini { width: 62px; aspect-ratio: 320 / 784; border-radius: 12px; background: radial-gradient(70% 50% at 50% 42%, rgba(113,147,196,0.18), transparent 75%), #121926; padding: 6px 4px; }
-.tgc-hoja-mini svg { display: block; width: 100%; height: 100%; }
-.tgc-hoja-txt { display: grid; gap: 8px; min-width: 0; }
-.tgc-hoja-desc { color: var(--text); font-size: .92rem; line-height: 1.5; }
-.tgc-hoja-latin { color: var(--tinta2); font: italic 500 .98rem/1.35 var(--font-display); }
-.tgc-hoja h3 { margin: 6px 0 0; font-size: .95rem; font-weight: 600; color: var(--text); }
-.tgc-anotar { display: grid; gap: 12px; padding: 14px; border-radius: 18px; background: var(--dark); border: 1px solid rgba(212,175,55,0.16); }
+.tgc-hoja-desc { color: var(--tinta); font-size: 15px; line-height: 1.5; }
+.tgc-hoja-latin { color: var(--tinta-2); font: italic 500 16px/1.35 var(--font-display); }
+.tgc-hoja h3 { margin: 6px 0 0; font-size: 15px; font-weight: 700; color: var(--tinta); }
+/* el marcador: las series de 7 días en grande, el nivel y diez puntos (la referencia del ACSM) */
+.tgc-marcador { padding: 14px 16px; border-radius: 20px; background: var(--fondo); display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; align-items: center; }
+.tgc-marc-n { grid-row: span 2; display: flex; align-items: center; gap: 10px; min-width: 1.1ch; font: 600 64px/.85 var(--font-display); letter-spacing: -2px; color: var(--tinta); font-variant-numeric: tabular-nums; }
+.tgc-marc-n .tgc-nivel { width: 16px; height: 16px; }
+.tgc-marc-t { font-size: 14px; color: var(--tinta-2); }
+.tgc-marc-t b { color: var(--tinta); font-weight: 600; }
+.tgc-diez { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+.tgc-diez i { width: 17px; height: 17px; border-radius: 50%; border: 1.5px solid var(--tinta-2); transition: background var(--t-normal) var(--ease-out), transform var(--t-slow) var(--ease-bounce), border-color var(--t-normal) var(--ease-out); }
+.tgc-diez i.si { border-color: var(--suave-3); transform: scale(1.06); }
+.tgc-diez i.n1 { background: var(--n1); } .tgc-diez i.n2 { background: var(--n2); } .tgc-diez i.n3 { background: var(--n3); }
+.tgc-diez .mas { font-size: 13px; font-weight: 700; margin-left: 2px; }
+.tgc-h-linea { font-size: 14px; color: var(--tinta-2); }
+.tgc-h-linea b { color: var(--tinta); font-weight: 600; }
+/* «−», «+ 1 serie» y «+3» */
+.tgc-sumar { display: grid; grid-template-columns: 56px 1fr 72px; gap: 10px; }
+.tgc-sumar button { min-height: 60px; border-radius: 16px; font-weight: 700; font-size: 17px; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; }
+.tgc-sumar .tgc-menos { border: 1.5px solid var(--linea); font-size: 24px; }
+.tgc-sumar .tgc-tres { border: 1.5px solid var(--tinta); }
+.tgc-sumar button:disabled { opacity: .35; cursor: default; }
+.tgc-sumar .tgc-btn.gold { padding: 0 12px; }
+.tgc-h-fila { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; }
+.tgc-dias { display: inline-flex; gap: 8px; }
+.tgc-dias button { min-height: 44px; padding: 0 14px; border-radius: 12px; border: 1.5px solid var(--linea); background: transparent; font-weight: 600; font-size: 14px; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
+.tgc-dias button[aria-pressed="true"] { border-color: var(--tinta); background: var(--tinta); color: var(--fondo); }
+.tgc-hist { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.tgc-hist-fila { display: grid; grid-template-columns: minmax(0, 1fr) auto 40px; align-items: center; gap: 10px; padding: 4px 4px 4px 12px; border-radius: 12px; background: var(--fondo); }
+.tgc-hist-n { font-weight: 600; font-variant-numeric: tabular-nums; }
+.tgc-hist-f { color: var(--tinta-2); font-size: 13px; }
+.tgc-hist-x { width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; color: var(--tinta-2); font-size: 20px; line-height: 1; }
+.tgc-hist-x:hover { color: var(--rojo); background: var(--rojo-f); }
+/* la ficha de un ejercicio: el paso de «Anotar series» */
+.tgc-anotar { display: grid; gap: 12px; padding: 14px; border-radius: 18px; background: var(--fondo); }
 .tgc-fila-ctl { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-.tgc-fila-ctl > span { font-weight: 600; font-size: .92rem; }
+.tgc-fila-ctl > span { font-weight: 600; font-size: 14px; }
 .tgc-paso { display: inline-flex; align-items: center; gap: 6px; }
-.tgc-paso button { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel2); font-size: 1.3rem; line-height: 1; display: grid; place-items: center; }
+.tgc-paso button { width: 44px; height: 44px; border-radius: 12px; border: 1.5px solid var(--linea); background: var(--tarjeta); font-size: 20px; line-height: 1; display: grid; place-items: center; }
 .tgc-paso button:disabled { opacity: .4; cursor: default; }
 .tgc-paso input {
-  width: 64px; height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--panel); text-align: center;
-  font: 600 1.3rem/1 var(--font-body); font-variant-numeric: tabular-nums; -moz-appearance: textfield; appearance: textfield;
+  width: 64px; height: 44px; border-radius: 12px; border: 1.5px solid var(--linea); background: var(--tarjeta); text-align: center;
+  font: 600 20px/1 var(--font-body); font-variant-numeric: tabular-nums; -moz-appearance: textfield; appearance: textfield;
 }
 .tgc-paso input::-webkit-outer-spin-button, .tgc-paso input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.tgc-dias { display: inline-flex; gap: 6px; }
-.tgc-dias button { min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(240,236,228,0.18); background: var(--panel); font-weight: 500; }
-.tgc-dias button[aria-pressed="true"] { border-color: var(--gold); background: rgba(212,175,55,0.16); color: var(--gold-light); font-weight: 600; }
-.tgc-hist { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.tgc-hist-fila { display: grid; grid-template-columns: minmax(0, 1fr) auto 40px; align-items: center; gap: 10px; padding: 4px 4px 4px 12px; border-radius: 12px; background: rgba(15,17,23,0.55); }
-.tgc-hist-n { font-weight: 600; font-variant-numeric: tabular-nums; }
-.tgc-hist-f { color: var(--tinta2); font-size: .86rem; }
-.tgc-hist-x { width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; color: var(--tinta2); font-size: 1.3rem; line-height: 1; }
-.tgc-hist-x:hover { color: var(--text); background: rgba(242,140,140,0.12); }
 
 /* ── los ejercicios: la lista del grupo y la ficha de cada uno ── */
 .tgc-pag { display: grid; gap: 14px; min-width: 0; }
 .tgc-filtros { display: grid; gap: 8px; min-width: 0; }
 .tgc-seg { display: flex; flex-wrap: wrap; gap: 6px; }
 .tgc-seg button {
-  flex: none; min-height: 38px; padding: 0 13px; border-radius: 999px; border: 1px solid rgba(240,236,228,0.16); background: var(--dark);
-  font-size: .85rem; white-space: nowrap; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+  flex: none; min-height: 38px; padding: 0 13px; border-radius: 999px; border: 1.5px solid var(--linea); background: transparent;
+  font-size: 13px; white-space: nowrap; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
 }
-.tgc-seg button[aria-pressed="true"] { border-color: var(--gold); background: rgba(212,175,55,0.16); color: var(--gold-light); font-weight: 600; }
+.tgc-seg button[aria-pressed="true"] { border-color: var(--tinta); background: var(--tinta); color: var(--fondo); font-weight: 600; }
 .tgc-buscar {
-  width: 100%; min-height: 46px; padding: 0 14px 0 40px; border-radius: 14px; border: 1px solid rgba(240,236,228,0.16);
-  background: var(--dark) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23b9b4aa' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E") no-repeat 13px 50%;
+  width: 100%; min-height: 46px; padding: 0 14px 0 40px; border-radius: 14px; border: 1.5px solid var(--linea);
+  background: var(--fondo) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2351627A' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E") no-repeat 13px 50%;
   font-size: 16px; /* 16px: Safari en iPhone no hace zoom al escribir */
 }
-.tgc-buscar::placeholder { color: var(--muted); opacity: 1; }
-.tgc-buscar:focus { border-color: var(--gold); outline: none; }
-.tgc-buscar:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+.tgc-buscar::placeholder { color: var(--tinta-2); opacity: 1; }
+.tgc-buscar:focus { border-color: var(--tinta); outline: none; }
+.tgc-buscar:focus-visible { outline: 3px solid var(--zonas); outline-offset: 2px; }
 .tgc-ej-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .tgc-ej-fila {
   width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 58px; padding: 9px 14px;
-  border-radius: 14px; border: 1px solid rgba(240,236,228,0.07); background: rgba(15,17,23,0.55); text-align: start;
+  border-radius: 14px; border: 1px solid var(--linea); background: var(--fondo); text-align: start;
   transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
 }
-.tgc-ej-fila:hover { border-color: rgba(212,175,55,0.5); background: rgba(212,175,55,0.06); }
+.tgc-ej-fila:hover { border-color: var(--tinta-2); }
 .tgc-ej-txt { display: grid; gap: 2px; min-width: 0; }
 .tgc-ej-nombre { font-weight: 600; overflow-wrap: anywhere; line-height: 1.3; }
-.tgc-ej-meta { display: flex; flex-wrap: wrap; gap: 0 10px; font-size: .8rem; color: var(--tinta2); }
-.tgc-ej-niv { color: var(--gold-light); opacity: .85; }
+.tgc-ej-meta { display: flex; flex-wrap: wrap; gap: 0 10px; font-size: 13px; color: var(--tinta-2); }
+.tgc-ej-niv { color: var(--oro); }
 .tgc-ej-lado { display: grid; justify-items: end; gap: 3px; }
 .tgc-ej-puntos { display: inline-flex; gap: 3px; }
-.tgc-ej-puntos i { width: 7px; height: 7px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--gold); }
-.tgc-ej-puntos i.si { background: var(--gold); }
-.tgc-ej-ult { font-size: .74rem; color: var(--tinta2); white-space: nowrap; }
-.tgc-hist-ej { display: block; font-weight: 400; font-size: .8rem; color: var(--tinta2); overflow-wrap: anywhere; }
+.tgc-ej-puntos i { width: 7px; height: 7px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--oro); }
+.tgc-ej-puntos i.si { background: var(--oro); }
+.tgc-ej-ult { font-size: 12px; color: var(--tinta-2); white-space: nowrap; }
+.tgc-hist-ej { display: block; font-weight: 400; font-size: 13px; color: var(--tinta-2); overflow-wrap: anywhere; }
 .tgc-ej-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.tgc-ej-chips li { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font-size: .8rem; background: rgba(240,236,228,0.05); border: 1px solid rgba(240,236,228,0.13); }
-.tgc-ej-chips li.ent { border-color: rgba(212,175,55,0.5); color: var(--gold-light); }
+.tgc-ej-chips li { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font-size: 13px; background: var(--fondo); border: 1px solid var(--linea); }
+.tgc-ej-chips li.ent { border-color: var(--oro-vivo); color: var(--oro); }
 .tgc-ej-chips li.niv .tgc-ej-puntos i { width: 6px; height: 6px; }
-.tgc-ej-cuerpo { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; padding: 12px; border-radius: 18px;
-  background: radial-gradient(60% 70% at 25% 45%, rgba(113,147,196,0.16), transparent 75%), #111824; border: 1px solid rgba(212,175,55,0.14); }
+.tgc-ej-cuerpo { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; padding: 12px; border-radius: 18px; background: var(--fondo); border: 1px solid var(--linea); }
 .tgc-ej-figuras { display: flex; gap: 4px; }
 .tgc-ej-fig { width: 68px; aspect-ratio: 320 / 784; }
 .tgc-ej-fig svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .tgc-ej-musc { display: grid; gap: 10px; min-width: 0; }
 .tgc-ej-musc h3 { margin: 0 !important; }
-.tgc-ej-mlin { display: grid !important; grid-template-columns: 12px minmax(0, 1fr); gap: 8px; align-items: start; margin: 0; font-size: .9rem; }
-.tgc-ej-mlin .tgc-nivel { margin-top: 4px; }
+.tgc-ej-mlin { display: grid !important; grid-template-columns: 14px minmax(0, 1fr); gap: 8px; align-items: start; margin: 0; font-size: 14px; }
+.tgc-ej-mlin .tgc-nivel { margin-top: 3px; }
 .tgc-ej-g { display: block; }
-.tgc-ej-mlin b { display: block; font-size: .78rem; color: var(--tinta2); font-weight: 500; }
+.tgc-ej-mlin b { display: block; font-size: 12px; color: var(--tinta-2); font-weight: 600; }
 /* «Cómo se hace» es una secuencia: sus pasos van numerados */
 .tgc-ej-pasos { list-style: none; counter-reset: paso; margin: 0; padding: 0; display: grid; gap: 12px; line-height: 1.5; }
 .tgc-ej-pasos li { counter-increment: paso; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; }
-.tgc-ej-pasos li::before { content: counter(paso); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
-  border: 1px solid rgba(212,175,55,0.6); color: var(--gold-light); font: 600 .95rem/1 var(--font-display); }
-.tgc-ej-base { justify-self: start; padding: 0; color: var(--gold-light); text-align: start; }
+.tgc-ej-pasos li::before { content: counter(paso); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--tinta); color: var(--tinta); font: 600 15px/1 var(--font-display); }
+.tgc-ej-base { justify-self: start; padding: 0; color: var(--zonas); text-align: start; }
 .tgc-ej-variantes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.tgc-ej-var { min-height: 38px; padding: 4px 13px; border-radius: 999px; border: 1px solid rgba(212,175,55,0.35); background: var(--dark); font-size: .85rem; text-align: start; }
-.tgc-ej-var:hover { border-color: var(--gold); color: var(--gold-light); }
-.tgc-ej-fuentes { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .86rem; }
-.tgc-ej-fuentes a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-.tgc-ej-nota { margin: 10px 0 0; font-size: .8rem; line-height: 1.45; color: var(--tinta2); }
+.tgc-ej-var { min-height: 38px; padding: 4px 13px; border-radius: 999px; border: 1.5px solid var(--linea); background: transparent; font-size: 13px; text-align: start; }
+.tgc-ej-var:hover { border-color: var(--tinta); }
+.tgc-ej-fuentes { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 13px; }
+.tgc-ej-fuentes a { color: var(--zonas); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.tgc-ej-nota { margin: 10px 0 0; font-size: 13px; line-height: 1.45; color: var(--tinta-2); }
 
 /* ── el asistente: el modo «Preguntar» ── */
-/* cuatro modos (con «Comida», parte 5): el oro se desliza de uno a otro */
-.tgc-modos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.tgc-modos::before { width: calc((100% - 20px) / 4); }
-.tgc.is-comida .tgc-modos::before { transform: translateX(calc(200% + 8px)); }
-.tgc.is-preguntar .tgc-modos::before { transform: translateX(calc(300% + 12px)); }
-.tgc-modos button { padding: 4px 2px; font-size: .9rem; line-height: 1.15; overflow-wrap: anywhere; hyphens: auto; }
 .tgc-asis { gap: 12px; }
 .tgc-charla { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .tgc-charla:empty { display: none; }
-.tgc-turno { display: grid; gap: 8px; outline: none; scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 78px); }
-.tgc-yo {
-  justify-self: end; max-width: 88%; margin: 0; padding: 9px 14px; border-radius: 16px 16px 4px 16px;
-  background: rgba(212,175,55,0.16); border: 1px solid rgba(212,175,55,0.35); color: var(--text); overflow-wrap: anywhere;
-}
-.tgc-resp {
-  display: grid; gap: 10px; padding: 14px; border-radius: 16px 16px 16px 4px; border: 1px solid var(--border); background: var(--dark);
-  animation: tgc-entra 420ms var(--ease-emph);
-}
-.tgc-resp.es-urgente { border-color: #E06A5A; box-shadow: inset 0 0 0 1px rgba(224,106,90,0.5); }
+.tgc-turno { display: grid; gap: 8px; outline: none; scroll-margin-top: calc(var(--cab) + 12px); }
+.tgc-yo { justify-self: end; max-width: 88%; margin: 0; padding: 9px 14px; border-radius: 16px 16px 4px 16px; background: var(--oro-f); color: var(--tinta); overflow-wrap: anywhere; }
+.tgc-resp { display: grid; gap: 10px; padding: 14px; border-radius: 16px 16px 16px 4px; border: 1px solid var(--linea); background: var(--fondo); animation: tgc-entra 420ms var(--ease-emph); }
+.tgc-resp.es-urgente { border-color: var(--rojo); box-shadow: inset 0 0 0 1px var(--rojo); }
 .tgc-resp.es-vacia { border-style: dashed; }
-.tgc-resp-urg { margin: 0; display: flex; align-items: center; gap: 8px; font-weight: 700; color: #FFB4A8; font-size: .98rem; }
-.tgc-resp-urg::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: #E06A5A; box-shadow: 0 0 0 4px rgba(224,106,90,0.25); }
-.tgc-resp-t { margin: 0; font-size: 1.06rem; line-height: 1.5; font-weight: 500; }
+.tgc-resp-urg { margin: 0; display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--rojo); font-size: 15px; }
+.tgc-resp-urg::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--rojo); box-shadow: 0 0 0 4px var(--rojo-f); }
+.tgc-resp-t { margin: 0; font-size: 16px; line-height: 1.5; font-weight: 500; }
 .tgc-resp-p { margin: 0; padding-left: 18px; display: grid; gap: 6px; line-height: 1.45; }
-.tgc-resp-p li::marker { color: var(--gold); }
-.tgc-resp-c { display: grid; gap: 4px; padding: 10px 12px; border-radius: 12px; background: rgba(212,175,55,0.08); border-left: 3px solid var(--gold); }
-.tgc-resp-c b { font-size: .9rem; font-weight: 700; color: var(--gold-light); }
+.tgc-resp-p li::marker { color: var(--oro); }
+.tgc-resp-c { display: grid; gap: 4px; padding: 10px 12px; border-radius: 12px; background: var(--oro-f); border-left: 3px solid var(--oro-vivo); }
+.tgc-resp-c b { font-size: 14px; font-weight: 700; color: var(--oro); }
 .tgc-resp-c p { margin: 0; line-height: 1.45; }
-.tgc-resp-n { margin: 0; font-size: .88rem; line-height: 1.45; color: var(--tinta2); }
+.tgc-resp-n { margin: 0; font-size: 13px; line-height: 1.45; color: var(--tinta-2); }
 .tgc-resp-links { display: flex; flex-wrap: wrap; gap: 8px; }
 .tgc-enlace { text-decoration: none; }
-.tgc-resp-f { font-size: .86rem; border-top: 1px solid var(--linea); padding-top: 8px; }
-.tgc-resp-f summary { cursor: pointer; color: var(--tinta2); min-height: 32px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; list-style: none; }
+.tgc-resp-f { font-size: 13px; border-top: 1px solid var(--linea); padding-top: 8px; }
+.tgc-resp-f summary { cursor: pointer; color: var(--tinta-2); min-height: 32px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; list-style: none; }
 .tgc-resp-f summary::-webkit-details-marker { display: none; }
-.tgc-resp-f summary::before { content: "›"; display: inline-block; transition: transform var(--t-fast) var(--ease-out); color: var(--gold); font-weight: 700; }
+.tgc-resp-f summary::before { content: "›"; display: inline-block; transition: transform var(--t-fast) var(--ease-out); color: var(--oro); font-weight: 700; }
 .tgc-resp-f[open] summary::before { transform: rotate(90deg); }
 .tgc-resp-f ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
-.tgc-resp-f a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-.tgc-resp-fecha { color: var(--tinta2); }
-.tgc-resp-leido { margin: 4px 0 0; color: var(--tinta2); font: italic 500 .95rem/1.4 var(--font-display); }
-.tgc-resp-leido b { font: 600 .78rem/1.4 var(--font-body); font-style: normal; }
-.tgc-resp-certayuda { margin: 10px 0 0; color: var(--tinta2); font-size: .78rem; line-height: 1.4; }
-.tgc-cert { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: .74rem; font-weight: 600; letter-spacing: .02em; border: 1px solid transparent; }
-.tgc-cert.c-alta { background: rgba(212,175,55,0.16); color: var(--gold-light); border-color: rgba(212,175,55,0.5); }
-.tgc-cert.c-moderada { background: rgba(240,236,228,0.08); color: var(--text); border-color: rgba(240,236,228,0.25); }
-.tgc-cert.c-baja { background: rgba(224,106,90,0.12); color: #FFB4A8; border-color: rgba(224,106,90,0.45); }
+.tgc-resp-f a { color: var(--zonas); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.tgc-resp-fecha { color: var(--tinta-2); }
+.tgc-resp-leido { margin: 4px 0 0; color: var(--tinta-2); font: italic 500 15px/1.4 var(--font-display); }
+.tgc-resp-leido b { font: 600 12px/1.4 var(--font-body); font-style: normal; }
+.tgc-resp-certayuda { margin: 10px 0 0; color: var(--tinta-2); font-size: 12px; line-height: 1.4; }
+.tgc-cert { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .02em; border: 1px solid transparent; }
+.tgc-cert.c-alta { background: var(--oro-f); color: var(--oro); border-color: var(--oro-vivo); }
+.tgc-cert.c-moderada { background: var(--suave); color: var(--tinta); border-color: var(--linea); }
+.tgc-cert.c-baja { background: var(--rojo-f); color: var(--rojo); border-color: var(--rojo); }
 .tgc-resp-rel { display: grid; gap: 6px; }
 .tgc-sugeridas { display: flex; flex-wrap: wrap; gap: 8px; }
 .tgc-sugeridas .tgc-ayuda { width: 100%; }
 .tgc-chip-preg {
-  min-height: 38px; padding: 7px 13px; border-radius: 999px; border: 1px solid rgba(212,175,55,0.4); background: var(--dark); color: var(--text);
-  font-size: .88rem; text-align: start; line-height: 1.3; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+  min-height: 38px; padding: 7px 13px; border-radius: 999px; border: 1.5px solid var(--linea); background: var(--fondo); color: var(--tinta);
+  font-size: 14px; text-align: start; line-height: 1.3; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
 }
-.tgc-chip-preg:hover { border-color: var(--gold); background: rgba(212,175,55,0.12); }
+.tgc-chip-preg:hover { border-color: var(--tinta); }
 /* La pregunta, al final de la charla y quieta (3 de noviembre de 2026; Jerome, con una captura
-   del iPhone: «cuando sube la página por arriba sigue subiendo con la persona»). Iba pegada abajo
-   (sticky), y lo pegado se mide desde dentro del margen de abajo del panel que se desplaza: en el
-   perfil, 24 px más la barra de inicio. Con sus 8 px y la barra de inicio otra vez, flotaba unos
-   100 px por encima del borde, encima de las respuestas, y las seguía al subir. */
-.tgc-preg {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center;
-  padding: 8px; margin: 0 -8px; border-radius: 16px;
-  background: var(--panel);
-}
+   del iPhone: «cuando sube la página por arriba sigue subiendo con la persona») */
+.tgc-preg { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 8px; margin: 0 -8px; border-radius: 16px; background: var(--fondo); }
 .tgc-preg input {
-  width: 100%; min-height: 46px; padding: 0 14px; border-radius: 12px; border: 1px solid rgba(240,236,228,0.18); background: var(--dark);
+  width: 100%; min-height: 46px; padding: 0 14px; border-radius: 12px; border: 1.5px solid var(--linea); background: var(--tarjeta);
   font-size: 16px; /* 16px: Safari en iPhone no hace zoom al escribir */
 }
-.tgc-preg input::placeholder { color: var(--tinta2); opacity: .85; }
-.tgc-preg input:focus { border-color: var(--gold); outline: none; }
-.tgc-preg input:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+.tgc-preg input::placeholder { color: var(--tinta-2); opacity: .85; }
+.tgc-preg input:focus { border-color: var(--tinta); outline: none; }
+.tgc-preg input:focus-visible { outline: 3px solid var(--zonas); outline-offset: 2px; }
 .tgc-preg .tgc-btn { min-height: 46px; padding-inline: 14px; }
 .tgc-preg .tgc-btn span { display: none; }
 #tgc-asis-vaciar { justify-self: start; }
@@ -3544,65 +3819,56 @@
 .tgc-dep-sel { position: relative; display: inline-flex; align-items: center; min-width: 0; max-width: 100%; }
 .tgc-dep-sel select {
   -webkit-appearance: none; appearance: none; min-height: 44px; max-width: 100%; padding: 0 38px 0 14px; border-radius: 12px;
-  border: 1px solid rgba(212,175,55,0.5); background: var(--dark); color: var(--gold-light); font: 600 .95rem/1.2 var(--font-body);
+  border: 1.5px solid var(--linea); background: var(--fondo); color: var(--tinta); font: 600 14px/1.2 var(--font-body);
   cursor: pointer; text-overflow: ellipsis; transition: border-color var(--t-fast) var(--ease-out);
 }
-.tgc-dep-sel select:hover { border-color: var(--gold); }
-.tgc-dep-sel select:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
-.tgc-dep-sel select option { background: var(--panel); color: var(--text); }
-.tgc-dep-sel svg { position: absolute; right: 13px; pointer-events: none; color: var(--gold); }
+.tgc-dep-sel select:hover { border-color: var(--tinta); }
+.tgc-dep-sel select:focus-visible { outline: 3px solid var(--zonas); outline-offset: 2px; }
+.tgc-dep-sel select option { background: var(--tarjeta); color: var(--tinta); }
+.tgc-dep-sel svg { position: absolute; right: 13px; pointer-events: none; color: var(--tinta-2); }
 .tgc-dep-ficha { display: grid; gap: 12px; min-width: 0; }
 .tgc-dep-cab { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.tgc-dep-t { font-size: 1.02rem; line-height: 1.5; font-weight: 500; }
-.tgc-cert.c-indirecta { background: transparent; color: var(--text); border: 1px dashed rgba(240,236,228,0.45); }
-.tgc-cert.c-ninguna { background: transparent; color: var(--tinta2); border-color: rgba(240,236,228,0.2); }
+.tgc-dep-t { font-size: 15px; line-height: 1.5; font-weight: 500; }
+.tgc-cert.c-indirecta { background: transparent; color: var(--tinta); border: 1px dashed var(--tinta-2); }
+.tgc-cert.c-ninguna { background: transparent; color: var(--tinta-2); border-color: var(--linea); }
 .tgc-dep-gs { display: grid; gap: 6px; }
-.tgc-dep-gs h3 { margin: 4px 0 0; font-size: .8rem; font-weight: 600; color: var(--tinta2); letter-spacing: .01em; }
+.tgc-dep-gs h3 { margin: 4px 0 0; font-size: 12px; font-weight: 600; color: var(--tinta-2); letter-spacing: .01em; }
 .tgc-dep-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 /* los prioritarios, con la misma línea discontinua que el personaje; los secundarios, con línea continua */
 .tgc-dep-g {
-  min-height: 38px; padding: 6px 13px; border-radius: 999px; border: 1.5px dashed rgba(240,236,228,0.75); background: var(--dark); color: var(--text);
-  font-size: .88rem; line-height: 1.25; text-align: start; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+  min-height: 38px; padding: 6px 13px; border-radius: 999px; border: 1.5px dashed var(--tinta); background: transparent; color: var(--tinta);
+  font-size: 13px; line-height: 1.25; text-align: start; transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
 }
-.tgc-dep-g.sec { border: 1px solid rgba(240,236,228,0.2); color: var(--tinta2); }
-.tgc-dep-g:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
-.tgc-dep-grado { margin-top: 2px; font-size: .8rem; line-height: 1.4; color: var(--tinta2); }
+.tgc-dep-g.sec { border: 1px solid var(--linea); color: var(--tinta-2); }
+.tgc-dep-g:hover { background: var(--oro-f); }
+.tgc-dep-grado { margin-top: 2px; font-size: 13px; line-height: 1.4; color: var(--tinta-2); }
 .tgc-dep-sec { border-top: 1px solid var(--linea); }
-.tgc-dep-sec summary {
-  cursor: pointer; min-height: 46px; display: flex; align-items: center; gap: 10px; list-style: none; font-weight: 600; font-size: .95rem;
-}
+.tgc-dep-sec summary { cursor: pointer; min-height: 46px; display: flex; align-items: center; gap: 10px; list-style: none; font-weight: 600; font-size: 14px; }
 .tgc-dep-sec summary::-webkit-details-marker { display: none; }
-.tgc-dep-sec summary::before { content: "›"; flex: none; width: 10px; color: var(--gold); font-weight: 700; transition: transform var(--t-fast) var(--ease-out); }
+.tgc-dep-sec summary::before { content: "›"; flex: none; width: 10px; color: var(--oro); font-weight: 700; transition: transform var(--t-fast) var(--ease-out); }
 .tgc-dep-sec[open] summary::before { transform: rotate(90deg); }
-.tgc-dep-sec summary:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; border-radius: 6px; }
+.tgc-dep-sec summary:focus-visible { outline: 3px solid var(--zonas); outline-offset: 2px; border-radius: 6px; }
 .tgc-dep-sec > ul, .tgc-dep-sec > p, .tgc-dep-sec > div { margin: 0 0 12px 20px; }
 .tgc-dep-sec > ul { padding-left: 16px; display: grid; gap: 7px; line-height: 1.45; }
-.tgc-dep-sec > ul li::marker { color: var(--gold); }
+.tgc-dep-sec > ul li::marker { color: var(--oro); }
 .tgc-dep-sec > p { line-height: 1.45; }
-.tgc-dep-dosis b { color: var(--gold-light); font-weight: 600; }
+.tgc-dep-dosis b { color: var(--oro); font-weight: 600; }
 .tgc-dep-sec > ul.tgc-dep-ej { list-style: none; padding: 0; gap: 6px; }
 .tgc-dep-ej button {
   width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 8px 12px;
-  border-radius: 12px; border: 1px solid var(--linea); background: var(--dark); text-align: start; transition: border-color var(--t-fast) var(--ease-out);
+  border-radius: 12px; border: 1px solid var(--linea); background: var(--fondo); text-align: start; transition: border-color var(--t-fast) var(--ease-out);
 }
-.tgc-dep-ej button:hover { border-color: rgba(212,175,55,0.5); }
-.tgc-dep-tag { flex: none; padding: 2px 9px; border-radius: 999px; border: 1px solid rgba(212,175,55,0.5); color: var(--gold-light); font-size: .72rem; font-weight: 600; white-space: nowrap; }
-.tgc-dep-tag.i { border: 1px dashed rgba(240,236,228,0.4); color: var(--tinta2); }
-.tgc-dep-isla li .tgc-link { padding: 4px 2px; font-size: .84rem; color: var(--gold-light); }
+.tgc-dep-ej button:hover { border-color: var(--tinta-2); }
+.tgc-dep-tag { flex: none; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--oro-vivo); color: var(--oro); font-size: 11px; font-weight: 600; white-space: nowrap; }
+.tgc-dep-tag.i { border: 1px dashed var(--tinta-2); color: var(--tinta-2); }
+.tgc-dep-isla li .tgc-link { padding: 4px 2px; font-size: 13px; color: var(--zonas); }
 .tgc-dep-qs { display: flex; flex-wrap: wrap; gap: 8px; }
-.tgc-dep-sec > ul.tgc-dep-f { list-style: none; padding: 0; gap: 9px; font-size: .86rem; }
-.tgc-dep-f a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-/* la muestra de la leyenda y la marca de la fila */
-.tgc-prio-mues { flex: none; display: inline-block; width: 15px; height: 12px; border-radius: 3px; border: 1.6px dashed #F0ECE4; box-shadow: 0 0 0 1px rgba(5,7,11,0.85); }
-.tgc-fila-prio {
-  display: inline-block; margin-left: 2px; padding: 0 7px; border-radius: 999px; border: 1.5px dashed rgba(240,236,228,0.7);
-  font-size: .68rem; font-weight: 600; line-height: 1.5; letter-spacing: .01em; color: var(--text); white-space: nowrap; vertical-align: 1px;
-}
+.tgc-dep-sec > ul.tgc-dep-f { list-style: none; padding: 0; gap: 9px; font-size: 13px; }
+.tgc-dep-f a { color: var(--zonas); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 
 /* ── su comida (parte 5): el diario por raciones de AESAN, sin calorías ni objetivos ── */
-.tgc-sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .tgc-com { gap: 14px; }
-.tgc-com h3 { margin: 8px 0 0; font: 600 1.15rem/1.2 var(--font-display); color: var(--gold-light); }
+.tgc-com h3 { margin: 8px 0 0; font: 600 20px/1.2 var(--font-display); color: var(--tinta); }
 .tgc-com-intro { display: grid; gap: 8px; }
 .tgc-com-diario { display: grid; gap: 10px; }
 .tgc-com-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
@@ -3612,109 +3878,84 @@
 }
 .tgc-com-txt { grid-area: txt; display: grid; gap: 2px; min-width: 0; }
 .tgc-com-nom { font-weight: 600; }
-.tgc-com-frec { font-size: .84rem; color: var(--text); }
-.tgc-com-rac { font-size: .78rem; color: var(--tinta2); line-height: 1.35; }
-.tgc-com-barra { grid-area: barra; position: relative; display: block; height: 8px; border-radius: 4px; background: rgba(240,236,228,0.06); overflow: hidden; }
+.tgc-com-frec { font-size: 13px; color: var(--tinta); }
+.tgc-com-rac { font-size: 12px; color: var(--tinta-2); line-height: 1.35; }
+.tgc-com-barra { grid-area: barra; position: relative; display: block; height: 8px; border-radius: 4px; background: var(--suave); overflow: hidden; }
 /* la franja de la guía: más clara, sin color de «bien» ni de «mal» */
-.tgc-com-banda { position: absolute; top: 0; bottom: 0; background: rgba(240,236,228,0.14); border-left: 2px solid rgba(240,236,228,0.55); }
-.tgc-com-banda.hasta { border-left: 0; border-right: 2px solid rgba(240,236,228,0.55); }
+.tgc-com-banda { position: absolute; top: 0; bottom: 0; background: var(--suave-2); border-left: 2px solid var(--suave-3); }
+.tgc-com-banda.hasta { border-left: 0; border-right: 2px solid var(--suave-3); }
 /* (6-11-2026) el oro de siempre, escrito aquí: «Comida» no usa los niveles del mapa de músculos */
 .tgc-com-lleno { position: absolute; left: 0; top: 2px; bottom: 2px; border-radius: 3px; background: #E0B44C; }
-.tgc-com-cuenta { grid-area: cuenta; font-size: .8rem; color: var(--tinta2); font-variant-numeric: tabular-nums; }
+.tgc-com-cuenta { grid-area: cuenta; font-size: 12px; color: var(--tinta-2); font-variant-numeric: tabular-nums; }
 .tgc-com-paso { grid-area: paso; }
-.tgc-com-n { min-width: 2ch; text-align: center; font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
-.tgc-com-notas { margin: 2px 0 0; padding-left: 18px; display: grid; gap: 6px; font-size: .86rem; line-height: 1.45; }
-.tgc-com-notas li::marker { color: var(--gold); }
-.tgc-com-fuentes a, .tgc-com a#tgc-com-fuente-a { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; }
-.tgc-com-ayuda { display: grid; gap: 10px; justify-items: start; padding: 12px 14px; border-radius: 14px; background: rgba(240,236,228,0.04); border: 1px solid var(--linea); font-size: .86rem; line-height: 1.45; }
+.tgc-com-n { min-width: 2ch; text-align: center; font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums; }
+.tgc-com-notas { margin: 2px 0 0; padding-left: 18px; display: grid; gap: 6px; font-size: 13px; line-height: 1.45; }
+.tgc-com-notas li::marker { color: var(--oro); }
+.tgc-com-fuentes a, .tgc-com a#tgc-com-fuente-a { color: var(--zonas); text-decoration: underline; text-underline-offset: 3px; }
+.tgc-com-ayuda { display: grid; gap: 10px; justify-items: start; padding: 12px 14px; border-radius: 14px; background: var(--fondo); border: 1px solid var(--linea); font-size: 13px; line-height: 1.45; }
 .tgc-com-ayuda .tgc-btn { text-decoration: none; }
 .tgc-com-pie { display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; }
-.tgc-com-pausado { padding: 10px 12px; border-radius: 12px; border: 1px dashed rgba(240,236,228,0.3); }
+.tgc-com-pausado { padding: 10px 12px; border-radius: 12px; border: 1px dashed var(--tinta-2); }
 
-/* ── el aviso de abajo ── */
+/* ── el aviso de abajo, por encima de la barra de modos ── */
 .tgc-toast {
-  position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); z-index: 12;
-  display: flex; align-items: center; gap: 12px; width: max-content; max-width: calc(100% - 32px); padding: 8px 10px 8px 16px; border-radius: 999px;
-  background: var(--panel2); color: var(--text); border: 1px solid var(--gold); box-shadow: var(--shadow-lg); font-size: .9rem;
+  position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); z-index: 12;
+  display: flex; align-items: center; gap: 12px; width: max-content; max-width: min(calc(100% - 32px), 440px); padding: 10px 12px 10px 16px; border-radius: 14px;
+  background: var(--tinta); color: var(--fondo); font-size: 14px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   opacity: 0; pointer-events: none; transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-bounce);
 }
 .tgc-toast.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
-.tgc-toast button { border: 0; background: transparent; color: var(--gold-light); font-weight: 700; padding: 6px 8px; border-radius: 999px; white-space: nowrap; }
-.tgc-toast button:hover { background: rgba(212,175,55,0.14); }
+.tgc-toast button { border: 0; background: transparent; color: var(--aviso-btn); font-weight: 700; padding: 6px 8px; border-radius: 10px; white-space: nowrap; text-decoration: underline; text-underline-offset: 3px; }
 
-/* en una pantalla ancha la lámina deja de ir de borde a borde */
-@media (min-width: 560px) {
-  .tgc-escena { margin-inline: 0; border-radius: 26px; border: 1px solid rgba(212,175,55,0.16); --alto: min(60vh, 520px); }
+/* en un móvil estrecho, la rejilla de los 12 va a dos columnas */
+@media (max-width: 359px) {
+  .tgc-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tgc-stat b { font-size: 36px; }
+  .tgc-top h1 { font-size: 26px; }
+}
+/* en una pantalla ancha la escena deja de ir de borde a borde */
+@media (min-width: 600px) {
+  .tgc-escena { border-radius: 28px; margin-inline: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
   #cuerpo-panel *, #cuerpo-panel *::before, #cuerpo-panel *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .tgc-escena::after { display: none; }
 }
-
-/* ── dentro de la pestaña Cuerpo del perfil (1 de noviembre de 2026; Jerome: «Y no veo porque no
-   ponerlo directo en la sección cuerpo») ── el mismo contenido, sin panel fijo ni cabecera pegada
-   ni «atrás»: lo desplaza el perfil, que pone su cabecera y su barra de pestañas. Las hojas de un
-   grupo y de un ejercicio siguen encima (fijas), como siempre */
-.tgc-mini { display: none; }
-#cuerpo-panel.tgc-dentro { position: static; inset: auto; z-index: auto; overflow: visible; padding: 0; background: transparent; }
-/* y sin su z-index (3 de noviembre de 2026): .tgc-top es un elemento de la rejilla de .tgc, y en
-   una rejilla el z-index vale aunque no este posicionado. Con el 6 de la pantalla aparte, al bajar
-   se pintaba encima de la cabecera del perfil (5) y de su barra de pestañas (4) */
-.tgc-dentro .tgc-top { position: static; z-index: auto; padding-block: 2px 0; background: none; }
-.tgc-dentro .tgc-top::after { display: none; }
-.tgc-dentro #tgc-back { display: none; }
-/* el personaje en pequeño, al lado del título, como en la tarjeta del prototipo */
-.tgc-dentro .tgc-mini {
-  display: block; flex: none; width: 64px; height: 96px; border-radius: 14px; overflow: hidden;
-  border: 1px solid var(--border); background: radial-gradient(120% 90% at 50% 20%, #232b39, #11151c);
-}
-.tgc-dentro .tgc-mini svg { display: block; width: 100%; height: 100%; }
-/* en «Aspecto», el personaje se queda pegado debajo de la cabecera y de la barra de pestañas del
-   perfil (--tgp-pegado lo mide modulos/perfil.js) */
-.tgc-dentro .tgc.is-aspecto .tgc-escena { top: var(--tgp-pegado, 114px); }
-/* con una hoja abierta, el perfil no se desplaza por debajo */
-#perfil-panel.tgc-con-hoja { overflow: hidden; }
 `;
   var CUERPO = `
 <div class="tgc" id="tgc">
-  <header class="tgc-top">
+  <header class="tgc-top" id="tgc-top">
     <button type="button" class="tgc-icon-btn" id="tgc-back">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
-    <span class="tgc-mini" id="tgc-mini" aria-hidden="true"></span>
-    <div class="tgc-tit">
-      <h1 id="tgc-titulo">Su cuerpo</h1>
-      <p class="tgc-lema" id="tgc-lema">Sus músculos, su semana y su personaje</p>
-    </div>
+    <h1 id="tgc-titulo">Su cuerpo</h1>
+    <span class="tgc-hueco"></span>
+    <button type="button" class="tgc-icon-btn" id="tgc-tema">
+      <svg class="tgc-ico-luna" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5z"/></svg>
+      <svg class="tgc-ico-sol" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>
+    </button>
+    <button type="button" class="tgc-icon-btn" id="tgc-cifras-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.2"/></svg>
+    </button>
   </header>
 
-  <div class="tgc-modos" id="tgc-modos" role="group">
-    <button type="button" id="tgc-modo-m" aria-pressed="true">Músculos</button>
-    <button type="button" id="tgc-modo-a" aria-pressed="false">Aspecto</button>
-    <button type="button" id="tgc-modo-c" aria-pressed="false">Comida</button>
-    <button type="button" id="tgc-modo-p" aria-pressed="false">Preguntar</button>
-  </div>
-
   <section class="tgc-escena" id="tgc-escena">
-    <div class="tgc-giro" id="tgc-giro">
-      <div class="tgc-fig">
-        <div class="tgc-cara" id="tgc-cara-frente"></div>
-        <p class="tgc-cap" id="tgc-cap-frente" aria-hidden="true">de frente</p>
-      </div>
-      <div class="tgc-fig tgc-fig-espalda">
-        <div class="tgc-cara tgc-cara-espalda" id="tgc-cara-espalda" aria-hidden="true"></div>
-        <p class="tgc-cap" id="tgc-cap-espalda" aria-hidden="true">de espaldas</p>
-      </div>
-    </div>
-    <p class="tgc-vista" id="tgc-vista" aria-hidden="true">de frente</p>
-    <button type="button" class="tgc-girar" id="tgc-girar">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg>
-      <span id="tgc-girar-txt">Girar</span>
-    </button>
+    <div class="tgc-cielo" id="tgc-cielo" aria-hidden="true"></div>
     <p class="tgc-pista" id="tgc-pista" hidden>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M12 10.5V9a1.5 1.5 0 0 1 3 0v2"/><path d="M15 10.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-.6a6 6 0 0 1-4.6-2.2L4.4 15.9a1.6 1.6 0 0 1 2.3-2.2L9 15.5"/></svg>
       <span id="tgc-pista-txt"></span>
     </p>
+    <div class="tgc-fig" id="tgc-fig">
+      <div class="tgc-giro" id="tgc-giro">
+        <div class="tgc-cara" id="tgc-cara"></div>
+      </div>
+    </div>
+    <button type="button" class="tgc-girar" id="tgc-girar">
+      <span class="tgc-girar-mini" id="tgc-girar-mini" aria-hidden="true"></span>
+      <span class="tgc-girar-lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 8.6M20 4v4.6h-4.6M20 12a8 8 0 0 1-13.7 5.6L4 15.4M4 20v-4.6h4.6"/></svg><span id="tgc-girar-txt">Girar</span></span>
+    </button>
+  </section>
+
+  <div class="tgc-vista-m" id="tgc-vista-musculos">
     <div class="tgc-leyenda" id="tgc-leyenda">
       <p id="tgc-leyenda-tit">Series en los últimos 7 días</p>
       <ul>
@@ -3725,11 +3966,24 @@
         <li id="tgc-ley-prio-li" hidden><i class="tgc-prio-mues" aria-hidden="true"></i><span id="tgc-ley-prio">Prioridad de su deporte</span></li>
       </ul>
     </div>
-  </section>
-
-  <div class="tgc-vista-m" id="tgc-vista-musculos">
+    <section class="tgc-card tgc-deporte" id="tgc-deporte" aria-labelledby="tgc-dep-tit">
+      <div class="tgc-dep-top">
+        <h2 id="tgc-dep-tit">Su deporte</h2>
+        <span class="tgc-dep-sel">
+          <select id="tgc-dep-sel" aria-labelledby="tgc-dep-tit"></select>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </span>
+      </div>
+      <p class="tgc-ayuda" id="tgc-dep-lema"></p>
+      <p class="tgc-ayuda" id="tgc-dep-estado" role="status"></p>
+      <button type="button" class="tgc-btn sm ghost" id="tgc-dep-reintentar" hidden><span>Reintentar</span></button>
+      <div class="tgc-dep-ficha" id="tgc-dep-ficha" hidden></div>
+    </section>
     <section class="tgc-semana" id="tgc-resumen">
-      <h2 id="tgc-resumen-tit">Sus últimos 7 días</h2>
+      <div class="tgc-cab">
+        <h2 id="tgc-resumen-tit">Sus últimos 7 días</h2>
+        <button type="button" class="tgc-ver" id="tgc-cifras-link">Las cifras</button>
+      </div>
       <div class="tgc-stats tgc-kpis">
         <div class="tgc-stat"><b id="tgc-st-series">0</b><span id="tgc-st-series-l">Series</span></div>
         <div class="tgc-stat"><b id="tgc-st-grupos">0/12</b><span id="tgc-st-grupos-l">Grupos trabajados</span></div>
@@ -3744,30 +3998,15 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>
         <p id="tgc-reco"></p>
       </div>
-      <p class="tgc-fuentes" id="tgc-fuentes"></p>
     </section>
-    <section class="tgc-card tgc-deporte" id="tgc-deporte" aria-labelledby="tgc-dep-tit">
-      <div class="tgc-dep-top">
-        <h2 id="tgc-dep-tit">Su deporte</h2>
-        <span class="tgc-dep-sel">
-          <select id="tgc-dep-sel" aria-labelledby="tgc-dep-tit"></select>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </span>
-      </div>
-      <p class="tgc-ayuda" id="tgc-dep-lema"></p>
-      <p class="tgc-ayuda" id="tgc-dep-estado" role="status"></p>
-      <button type="button" class="tgc-btn sm ghost" id="tgc-dep-reintentar" hidden><span>Reintentar</span></button>
-      <div class="tgc-dep-ficha" id="tgc-dep-ficha" hidden></div>
-    </section>
-    <section class="tgc-card tgc-grupos" id="tgc-grupos">
+    <section class="tgc-grupos" id="tgc-grupos">
       <h2 id="tgc-grupos-tit">Los 12 grupos musculares</h2>
       <p class="tgc-ayuda" id="tgc-grupos-ayuda"></p>
-      <p class="tgc-ref" id="tgc-ref"></p>
       <ul class="tgc-lista" id="tgc-lista"></ul>
     </section>
   </div>
 
-  <div class="tgc-vista-a" id="tgc-vista-aspecto" hidden>
+<div class="tgc-vista-a" id="tgc-vista-aspecto" hidden>
     <section class="tgc-card tgc-editor" id="tgc-editor">
       <div class="tgc-editor-top">
         <h2 id="tgc-aspecto-tit">Su aspecto</h2>
@@ -3862,6 +4101,13 @@
   </footer>
 </div>
 
+<nav class="tgc-modos" id="tgc-modos">
+  <button type="button" id="tgc-modo-m" aria-pressed="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 9.5v5M6.5 6.5v11M17.5 6.5v11M20.5 9.5v5M6.5 12h11"/></svg><span class="txt">Músculos</span></button>
+  <button type="button" id="tgc-modo-a" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20c.5-4 3.2-6 7-6s6.5 2 7 6"/></svg><span class="txt">Aspecto</span></button>
+  <button type="button" id="tgc-modo-c" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v7a2 2 0 0 0 4 0V3M9 12v9M16 3c-1.8 1.5-2.5 3.8-2.5 6.5 0 1.5 1 2.5 2.5 2.5v9"/></svg><span class="txt">Comida</span></button>
+  <button type="button" id="tgc-modo-p" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H12l-4.5 4v-4h-1A2.5 2.5 0 0 1 4 13.5z"/><path d="M9.8 8.6a2.3 2.3 0 0 1 4.4.7c0 1.5-2.2 1.8-2.2 3.2M12 14.3v.1"/></svg><span class="txt">Preguntar</span></button>
+</nav>
+
 <div class="tgc-velo" id="tgc-velo" hidden></div>
 <div class="tgc-hoja" id="tgc-hoja" role="dialog" aria-modal="true" aria-labelledby="tgc-hoja-tit" hidden>
   <div class="tgc-asa" aria-hidden="true"></div>
@@ -3872,36 +4118,26 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
-  <div class="tgc-hoja-intro">
-    <div class="tgc-hoja-mini" id="tgc-hoja-mini" aria-hidden="true"></div>
-    <div class="tgc-hoja-txt">
-      <p class="tgc-hoja-desc" id="tgc-hoja-desc"></p>
-      <p class="tgc-hoja-latin" id="tgc-hoja-latin" lang="la" data-sin-traducir="nombres latinos de la Terminologia Anatomica"></p>
-    </div>
+  <p class="tgc-hoja-desc" id="tgc-hoja-desc"></p>
+  <p class="tgc-hoja-latin" id="tgc-hoja-latin" lang="la" data-sin-traducir="nombres latinos de la Terminologia Anatomica"></p>
+  <div class="tgc-marcador">
+    <div class="tgc-marc-n"><i class="tgc-nivel n0" id="tgc-hoja-nivel" aria-hidden="true"></i><span id="tgc-h-series">0</span></div>
+    <p class="tgc-marc-t"><b id="tgc-h-series-l">Series, 7 días</b><span class="tgc-marc-sep" aria-hidden="true"> · </span><span id="tgc-h-nivel"></span></p>
+    <div class="tgc-diez" id="tgc-diez" aria-hidden="true"></div>
   </div>
-  <div class="tgc-stats">
-    <div class="tgc-stat"><b><i class="tgc-nivel n0" id="tgc-hoja-nivel" aria-hidden="true"></i><span id="tgc-h-series">0</span></b><span id="tgc-h-series-l">Series, 7 días</span></div>
-    <div class="tgc-stat"><b id="tgc-h-dias">0/7</b><span id="tgc-h-dias-l">Días, 7 días</span></div>
-    <div class="tgc-stat"><b id="tgc-h-ultima">—</b><span id="tgc-h-ultima-l">Última vez</span></div>
+  <p class="tgc-h-linea"><span id="tgc-h-dias-l">Días, 7 días</span> <b id="tgc-h-dias">0/7</b><span class="tgc-marc-sep" aria-hidden="true"> · </span><span id="tgc-h-ultima-l">Última vez</span> <b id="tgc-h-ultima">—</b></p>
+  <div class="tgc-sumar">
+    <button type="button" class="tgc-menos" id="tgc-menos">−</button>
+    <button type="button" class="tgc-btn gold" id="tgc-guardar"><span id="tgc-guardar-txt">+ 1 serie</span></button>
+    <button type="button" class="tgc-tres" id="tgc-mas3" data-sin-traducir="cifra">+3</button>
   </div>
-  <h3 id="tgc-anotar-tit">Anotar series</h3>
-  <div class="tgc-anotar">
-    <div class="tgc-fila-ctl">
-      <span id="tgc-cuantas">Series</span>
-      <div class="tgc-paso">
-        <button type="button" id="tgc-menos">−</button>
-        <input type="number" id="tgc-n" inputmode="numeric" min="1" max="30" step="1" value="3" aria-labelledby="tgc-cuantas">
-        <button type="button" id="tgc-mas">+</button>
-      </div>
+  <div class="tgc-h-fila">
+    <div class="tgc-dias" role="group" id="tgc-dias" aria-labelledby="tgc-cuando">
+      <span class="tgc-sr" id="tgc-cuando">Cuándo</span>
+      <button type="button" id="tgc-hoy" aria-pressed="true">Hoy</button>
+      <button type="button" id="tgc-ayer" aria-pressed="false">Ayer</button>
     </div>
-    <div class="tgc-fila-ctl">
-      <span id="tgc-cuando">Cuándo</span>
-      <div class="tgc-dias" role="group" id="tgc-dias" aria-labelledby="tgc-cuando">
-        <button type="button" id="tgc-hoy" aria-pressed="true">Hoy</button>
-        <button type="button" id="tgc-ayer" aria-pressed="false">Ayer</button>
-      </div>
-    </div>
-    <button type="button" class="tgc-btn gold wide" id="tgc-guardar"><span>Guardar</span></button>
+    <button type="button" class="tgc-ver" id="tgc-h-ref">Referencia: 10 series (ACSM)</button>
   </div>
   <h3 id="tgc-hist-tit">Lo último anotado</h3>
   <ul class="tgc-hist" id="tgc-hist"></ul>
@@ -3980,6 +4216,18 @@
     <ul class="tgc-ej-fuentes" id="tgc-ej-fuentes"></ul>
     <p class="tgc-ej-nota" id="tgc-ej-nota"></p>
   </div>
+
+  <div class="tgc-pag" id="tgc-pag-cifras" hidden>
+    <div class="tgc-hoja-cab">
+      <h2 id="tgc-cifras-tit" tabindex="-1">De dónde salen las cifras</h2>
+      <button type="button" class="tgc-icon-btn" id="tgc-cifras-cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <p class="tgc-cifras-p" id="tgc-cifras-reco"></p>
+    <p class="tgc-cifras-p" id="tgc-cifras-ref"></p>
+    <p class="tgc-fuentes" id="tgc-fuentes"></p>
+  </div>
 </div>
 <div class="tgc-toast" id="tgc-toast" role="status" aria-live="polite"><span id="tgc-toast-txt"></span><button type="button" id="tgc-toast-btn" hidden></button></div>
 `;
@@ -3989,14 +4237,14 @@
      setAttribute, y desde ahi las traducen aplicarTextos() y, al cambiar de idioma, applyUiTx()
      de la app. Cada selector da un solo elemento (lo mira tools/probar_cuerpo.js). */
   var TEXTOS = [
-    ['#tgc-back', 'aria', 'ariaCerrar'],
+    ['#tgc-back', 'aria', 'cuerpoVolverPerfil'],
     ['#tgc-titulo', 'tx', 'cuerpoTitulo'],
-    ['#tgc-lema', 'tx', 'cuerpoLema'],
+    ['#tgc-cifras-btn', 'aria', 'cuerpoCifrasDe'],
     ['#tgc-modos', 'aria', 'cuerpoModos'],
-    ['#tgc-modo-m', 'tx', 'cuerpoModoMusculos'],
-    ['#tgc-modo-a', 'tx', 'cuerpoModoAspecto'],
-    ['#tgc-modo-p', 'tx', 'cuerpoModoPreguntar'],
-    ['#tgc-modo-c', 'tx', 'cuerpoModoComida'],
+    ['#tgc-modo-m .txt', 'tx', 'cuerpoModoMusculos'],
+    ['#tgc-modo-a .txt', 'tx', 'cuerpoModoAspecto'],
+    ['#tgc-modo-p .txt', 'tx', 'cuerpoModoPreguntar'],
+    ['#tgc-modo-c .txt', 'tx', 'cuerpoModoComida'],
     ['#tgc-com-tit', 'tx', 'cuerpoComTitulo'],
     ['#tgc-com-lema', 'tx', 'cuerpoComLema'],
     ['#tgc-com-empezar span', 'tx', 'cuerpoComEmpezar'],
@@ -4025,8 +4273,6 @@
     ['#tgc-asis-reintentar span', 'tx', 'cuerpoReintentar'],
     ['#tgc-asis-pie', 'tx', 'cuerpoAsisPie'],
     ['#tgc-girar-txt', 'tx', 'cuerpoGirar'],
-    ['#tgc-cap-frente', 'tx', 'cuerpoVistaFrente'],
-    ['#tgc-cap-espalda', 'tx', 'cuerpoVistaEspalda'],
     ['#tgc-leyenda-tit', 'tx', 'cuerpoLeyenda'],
     ['#tgc-ley-0', 'tx', 'cuerpoNivel0'],
     ['#tgc-ley-1', 'tx', 'cuerpoNivel1'],
@@ -4040,8 +4286,7 @@
     ['#tgc-st-series-l', 'tx', 'cuerpoStatSeries'],
     ['#tgc-st-grupos-l', 'tx', 'cuerpoStatGrupos'],
     ['#tgc-st-dias-l', 'tx', 'cuerpoStatDias'],
-    ['#tgc-ref', 'tx', 'cuerpoRefSeries'],
-    ['#tgc-fuentes', 'tx', 'cuerpoFuentes'],
+    ['#tgc-cifras-link', 'tx', 'cuerpoCifras'],
     ['#tgc-grupos-tit', 'tx', 'cuerpoGruposTitulo'],
     ['#tgc-grupos-ayuda', 'tx', 'cuerpoGruposAyuda'],
     ['#tgc-aspecto-tit', 'tx', 'cuerpoAspectoTitulo'],
@@ -4061,14 +4306,13 @@
     ['#tgc-h-series-l', 'tx', 'cuerpoStatSeries7'],
     ['#tgc-h-dias-l', 'tx', 'cuerpoStatDias7'],
     ['#tgc-h-ultima-l', 'tx', 'cuerpoStatUltima'],
-    ['#tgc-anotar-tit', 'tx', 'cuerpoAnotar'],
-    ['#tgc-cuantas', 'tx', 'cuerpoCuantas'],
     ['#tgc-menos', 'aria', 'cuerpoMenos'],
-    ['#tgc-mas', 'aria', 'cuerpoMas'],
+    ['#tgc-guardar-txt', 'tx', 'cuerpoMasUna'],
+    ['#tgc-mas3', 'aria', 'cuerpoMasTres'],
     ['#tgc-cuando', 'tx', 'cuerpoCuando'],
     ['#tgc-hoy', 'tx', 'cuerpoHoyB'],
     ['#tgc-ayer', 'tx', 'cuerpoAyerB'],
-    ['#tgc-guardar span', 'tx', 'cuerpoGuardar'],
+    ['#tgc-h-ref', 'tx', 'cuerpoRefCorta'],
     ['#tgc-hist-tit', 'tx', 'cuerpoHistorial'],
     ['#tgc-hist-nada', 'tx', 'cuerpoSinHistorial'],
     ['#tgc-ej-tit', 'tx', 'cuerpoEjercicios'],
@@ -4101,19 +4345,23 @@
     ['#tgc-ej-guardar span', 'tx', 'cuerpoGuardar'],
     ['#tgc-ej-fuentes-tit', 'tx', 'cuerpoFuentesEj'],
     ['#tgc-ej-nota', 'tx', 'cuerpoNotaFuentesEj'],
-    ['#tgc-ej-var-tit', 'tx', 'cuerpoVariantes']
+    ['#tgc-ej-var-tit', 'tx', 'cuerpoVariantes'],
+    ['#tgc-cifras-tit', 'tx', 'cuerpoCifrasDe'],
+    ['#tgc-cifras-cerrar', 'aria', 'ariaCerrar'],
+    ['#tgc-fuentes', 'tx', 'cuerpoFuentes']
   ];
 
   /* estado() es para las pruebas (tools/probar_cuerpo.js) */
   window.TG_CUERPO = {
     abrir: abrir,
-    incrustar: incrustar,
     cerrar: function () { cerrar(); },
     abierto: function () { return abierto; },
-    /* lo que el perfil tiene que respetar con «atrás» y Escape (modulos/perfil.js, fichaEncima):
-       la pantalla, si va encima; dentro de la pestaña, solo una hoja abierta */
-    encima: function () { return abierto && (!dentro || !!grupoAbierto); },
-    dentro: function () { return dentro; },
+    /* lo que el perfil tiene que respetar con «atrás» y Escape (modulos/perfil.js, fichaEncima): la
+       pantalla, que va encima (sin incrustar desde el 6 de noviembre de 2026, bloque 2) */
+    encima: function () { return abierto; },
+    /* el personaje en pequeño para la tarjeta de la pestaña Cuerpo del perfil */
+    mini: mini,
+    tema: function () { return tema; },
     repintar: function () { if (abierto) renderTodo(); },
     estado: function () { return st; },
     preguntar: function (q) { abrir({ pregunta: q }); },

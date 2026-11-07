@@ -585,9 +585,8 @@
       avatarCuenta = st.avatar;
       try { if (typeof window.TG_AVATAR_CUENTA === 'function') window.TG_AVATAR_CUENTA(); } catch (e) {}
     }
-    /* «Su cuerpo» lee de aqui el año de nacimiento (la recomendacion de su edad y la marca de las
-       10 series), y desde el 1 de noviembre de 2026 va en la misma pestaña que el formulario: si
-       cambia (el formulario, la nube, borrar), se repinta en el acto */
+    /* «Su cuerpo» lee de aqui el año de nacimiento (la recomendacion de su edad y la referencia de
+       las 10 series): si cambia (el formulario, la nube, borrar) y esta abierta, se repinta en el acto */
     if (st.nacimiento !== nacCuerpo) {
       nacCuerpo = st.nacimiento;
       try { if (window.TG_CUERPO && typeof window.TG_CUERPO.repintar === 'function') window.TG_CUERPO.repintar(); } catch (e) {}
@@ -1620,9 +1619,6 @@
   function medirCabecera() {
     var cab = panel && panel.querySelector('.tgp-top'), h = cab ? cab.getBoundingClientRect().height : 0;
     if (h > 0) $('tgp-tabs').style.setProperty('--tgp-cab', h + 'px');
-    /* lo que ocupan arriba la cabecera y la barra pegadas: ahi se pega el personaje de «Su cuerpo» en «Aspecto» */
-    var bt = $('tgp-tabs').getBoundingClientRect().height;
-    if (h > 0 && bt > 0) panel.style.setProperty('--tgp-pegado', Math.round(h + bt) + 'px');
     marcarBarra();
   }
   /* Con la barra pegada bajo la cabecera, la cabecera va entera (#perfil-panel.tgp-con-barra):
@@ -1639,34 +1635,38 @@
     marcaPendiente = true;
     requestAnimationFrame(function () { marcaPendiente = false; marcarBarra(); });
   }
-  /* «Su cuerpo» dentro de la pestaña Cuerpo (1 de noviembre de 2026; Jerome: «Y no veo porque no
-     ponerlo directo en la sección cuerpo. Y si puedes poner el personaje»). Al enseñar la pestaña se
-     pide el modulo (index.html, TG_CUERPO_CARGAR) y va aqui, en #tgp-cuerpo-sitio, encima de «Sus
-     datos». Mientras llega, la tarjeta, con su titulo y su lema; si no llega (sin red y sin
-     haberlo guardado nunca), la tarjeta lo dice y su «Abrir» lo vuelve a intentar */
-  function cuerpoDentro() {
-    var tarjeta = $('tgp-cuerpo'), sitio = $('tgp-cuerpo-sitio'), aviso = $('tgp-cuerpo-error');
-    if (!sitio) return;
+  /* La tarjeta «Su cuerpo» de la pestaña Cuerpo (6 de noviembre de 2026, bloque 2; decision de
+     Jerome: «Su cuerpo» a pantalla completa, con su flecha de vuelta al pasaporte. Del 1 al 6 de
+     noviembre iba entera dentro de la pestaña). La tarjeta lleva el personaje en pequeño (lo dibuja
+     el modulo: TG_CUERPO.mini), el titulo, el lema y «Abrir». Al enseñar la pestaña se pide el
+     modulo (index.html, TG_CUERPO_CARGAR) sin decir nada, solo para el personaje; si no llega (sin
+     red y sin haberlo guardado nunca), la tarjeta queda sin el, y es «Abrir» quien lo dice */
+  function cuerpoTarjeta() {
+    var mini = $('tgp-cuerpo-mini');
     var poner = function () {
       var c = window.TG_CUERPO;
-      if (!abierto || st.pestana !== 'cuerpo' || !c) return;
-      /* un modulo de antes del 1 de noviembre (guardado sin conexion) no sabe ir dentro: la tarjeta,
-         y su «Abrir» abre su pantalla encima, como entonces */
-      if (typeof c.incrustar !== 'function') { tarjeta.hidden = false; return; }
-      c.incrustar(sitio);
-      tarjeta.hidden = true; aviso.hidden = true;
-      medirCabecera();
+      if (!abierto || !c || typeof c.mini !== 'function' || !mini) return;
+      c.mini(mini);
     };
     if (window.TG_CUERPO) { poner(); return; }
+    if (typeof window.TG_CUERPO_CARGAR !== 'function') return;
+    window.TG_CUERPO_CARGAR().then(poner, function () {});
+  }
+  /* «Abrir»: la pantalla «Su cuerpo», encima del perfil; si el modulo no llega, la tarjeta lo dice */
+  function cuerpoAbrir() {
+    var aviso = $('tgp-cuerpo-error');
     aviso.hidden = true;
+    var abre = function () { var c = window.TG_CUERPO; if (c && typeof c.abrir === 'function') { c.abrir(); poner(); } else aviso.hidden = false; };
+    var poner = function () { var c = window.TG_CUERPO, mini = $('tgp-cuerpo-mini'); if (c && typeof c.mini === 'function' && mini) c.mini(mini); };
+    if (window.TG_CUERPO) { abre(); return; }
     if (typeof window.TG_CUERPO_CARGAR !== 'function') { aviso.hidden = false; return; }
-    window.TG_CUERPO_CARGAR().then(poner, function () { tarjeta.hidden = false; aviso.hidden = false; });
+    window.TG_CUERPO_CARGAR().then(abre, function () { aviso.hidden = false; });
   }
   function irAPestana(p, foco) {
     if (PESTANAS.indexOf(p) < 0) return;
     var cambia = p !== st.pestana;
     st.pestana = p; guardar(); renderPestanas();
-    if (p === 'cuerpo') cuerpoDentro();
+    if (p === 'cuerpo') cuerpoTarjeta();
     if (foco) { try { $('tgp-tab-' + p).focus({ preventScroll: true }); } catch (e) {} }
     /* si iba por debajo de la cabecera, la pestaña nueva empieza justo debajo de la barra */
     if (cambia && panel) {
@@ -1682,19 +1682,12 @@
   /* ── eventos del cuerpo (una vez, al montarlo) ── */
   function enganchar() {
     $('tgp-back').addEventListener('click', function () { cerrar(); });
-    /* la cabecera y, desde «Su cuerpo» dentro de la pestaña (1 de noviembre de 2026), la barra: su
-       alto, junto al de la cabecera, es donde se pega el personaje en «Aspecto» (--tgp-pegado) */
-    if (typeof window.ResizeObserver === 'function') { try { var ro = new ResizeObserver(medirCabecera); ro.observe(panel.querySelector('.tgp-top')); ro.observe($('tgp-tabs')); } catch (e) {} }
+    /* la cabecera: su alto es donde se pega la barra de pestañas (--tgp-cab) */
+    if (typeof window.ResizeObserver === 'function') { try { var ro = new ResizeObserver(medirCabecera); ro.observe(panel.querySelector('.tgp-top')); } catch (e) {} }
     window.addEventListener('resize', medirCabecera);
     panel.addEventListener('scroll', alDesplazar, { passive: true });
-    /* «Su cuerpo» va dentro de la pestaña Cuerpo (cuerpoDentro). La tarjeta solo se ve mientras
-       llega el modulo y si no llega: su «Abrir» lo vuelve a intentar. Con un modulo de antes del 1
-       de noviembre, que no sabe ir dentro, abre su pantalla encima, como entonces */
-    $('tgp-cuerpo-abrir').addEventListener('click', function () {
-      var c = window.TG_CUERPO;
-      if (c && typeof c.incrustar !== 'function' && typeof c.abrir === 'function') { c.abrir(); return; }
-      cuerpoDentro();
-    });
+    /* «Abrir» de la tarjeta «Su cuerpo»: la pantalla, encima del perfil (cuerpoAbrir) */
+    $('tgp-cuerpo-abrir').addEventListener('click', cuerpoAbrir);
     $('tgp-tabs').addEventListener('click', function (e) { var b = e.target.closest('.tgp-tab'); if (b) irAPestana(b.dataset.pestana, false); });
     $('tgp-tabs').addEventListener('keydown', function (e) {
       var i = PESTANAS.indexOf(st.pestana), n = PESTANAS.length, j = null;
@@ -1822,7 +1815,7 @@
       if (!historia) { try { history.pushState({ tgPerfil: 1 }, ''); historia = true; } catch (e) {} }
     }
     renderTodo();
-    if (st.pestana === 'cuerpo') cuerpoDentro();
+    if (st.pestana === 'cuerpo') cuerpoTarjeta();
     try { $('tgp-back').focus({ preventScroll: true }); } catch (e) {}
     if (sesion()) sincronizar();
   }
@@ -1836,10 +1829,10 @@
     if (antesDeAbrir && typeof antesDeAbrir.focus === 'function' && document.contains(antesDeAbrir)) { try { antesDeAbrir.focus({ preventScroll: true }); } catch (x) {} }
     antesDeAbrir = null;
   }
-  /* La ficha de la cuenta, el panel de administrador y las hojas de «Su cuerpo» (la de un grupo y
-     la de un ejercicio) van encima: «atras» y Escape los dejan a ellos, y el perfil se queda
-     debajo. «Su cuerpo» mismo va dentro de la pestaña: TG_CUERPO.encima() solo cuenta sus hojas.
-     Y desde el 3 de noviembre de 2026, el panel SOS: las respuestas del asistente de «Su cuerpo» y
+  /* La ficha de la cuenta, el panel de administrador y «Su cuerpo» (la pantalla entera, encima del
+     perfil desde el 6 de noviembre de 2026, bloque 2; del 1 al 6 iba dentro de la pestaña y solo
+     contaban sus hojas) van encima: «atras» y Escape los dejan a ellos, y el perfil se queda
+     debajo. Y desde el 3 de noviembre de 2026, el panel SOS: las respuestas del asistente de «Su cuerpo» y
      las guias de los deportes lo abren encima. Su Escape es suyo (vuelve atras dentro del panel y
      lo cierra); sin esto, el mismo Escape cerraba tambien el perfil de debajo, con la
      conversacion. Su «atras», en el popstate de abajo (tgSos) */
@@ -2105,7 +2098,13 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-tab:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
 .tgp-pestana { display: grid; gap: 14px; min-width: 0; }
 .tgp-cuerpo-error { margin: 10px 0 0; color: var(--bad); font-size: .85rem; }
-.tgp-cuerpo-sitio:empty { display: none; }
+/* la tarjeta «Su cuerpo» (6 de noviembre de 2026, bloque 2): el personaje en pequeño, de frente y de
+   medio cuerpo (lo dibuja el modulo, TG_CUERPO.mini), al lado del titulo, el lema y «Abrir» */
+.tgp-cuerpo-fila { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 14px; align-items: center; }
+.tgp-cuerpo-txt { min-width: 0; }
+.tgp-cuerpo-txt .tgp-note { margin-bottom: 10px; }
+.tgp-cuerpo-mini { width: 72px; height: 108px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: radial-gradient(120% 90% at 50% 20%, #232b39, #11151c); }
+.tgp-cuerpo-mini svg { display: block; width: 100%; height: 100%; }
 .tgp-pestana[hidden] { display: none; }
 .tgp-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 12px; padding: 3px; background: rgba(15,17,23,0.5); gap: 2px; }
 .tgp-seg button { border: 0; background: transparent; color: var(--muted); padding: 6px 12px; border-radius: 9px; font-size: .85rem; font-weight: 500; transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
@@ -2404,12 +2403,16 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 
   <div class="tgp-pestana" role="tabpanel" id="tgp-p-cuerpo" aria-labelledby="tgp-tab-cuerpo" hidden>
   <section class="tgp-card tgp-cuerpo" id="tgp-cuerpo">
-    <div class="tgp-card-head"><h2 id="tgp-cuerpo-h">Su cuerpo</h2></div>
-    <p class="tgp-note">Sus músculos, su semana y su personaje</p>
-    <button type="button" class="tgp-btn gold wide" id="tgp-cuerpo-abrir" aria-labelledby="tgp-cuerpo-abrir-txt tgp-cuerpo-h"><span id="tgp-cuerpo-abrir-txt">Abrir</span></button>
+    <div class="tgp-cuerpo-fila">
+      <div class="tgp-cuerpo-mini" id="tgp-cuerpo-mini" aria-hidden="true"></div>
+      <div class="tgp-cuerpo-txt">
+        <div class="tgp-card-head"><h2 id="tgp-cuerpo-h">Su cuerpo</h2></div>
+        <p class="tgp-note">Sus músculos, su semana y su personaje</p>
+        <button type="button" class="tgp-btn gold wide" id="tgp-cuerpo-abrir" aria-labelledby="tgp-cuerpo-abrir-txt tgp-cuerpo-h"><span id="tgp-cuerpo-abrir-txt">Abrir</span></button>
+      </div>
+    </div>
     <p class="tgp-cuerpo-error" id="tgp-cuerpo-error" role="alert" hidden>No se pudo abrir. Compruebe la conexión e inténtelo de nuevo.</p>
   </section>
-  <div class="tgp-cuerpo-sitio" id="tgp-cuerpo-sitio"></div>
 
   <section class="tgp-card" id="tgp-datos">
     <div class="tgp-card-head"><h2>Sus datos</h2></div>

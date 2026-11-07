@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-/* probar_cuerpo.js — «Su cuerpo» dentro de la app: se abre desde la pestaña Cuerpo del perfil y
- * se usa de verdad, en los diez idiomas.
+/* probar_cuerpo.js — «Su cuerpo» dentro de la app: se abre desde la tarjeta de la pestaña Cuerpo
+ * del perfil, a pantalla completa, y se usa de verdad, en los diez idiomas.
  *
  *     node tools/probar_cuerpo.js PUERTO
  *
@@ -9,16 +9,20 @@
  * idioma se cambia con setLang(); y el ejemplo se escribe en tenerife.cuerpo como lo escribia el
  * prototipo (series inventadas, solo para la prueba), y su «Empezar vacío» lo quita. Lo que solo
  * tenia sentido en el prototipo, la pagina sin historial, se cambia por lo de la app:
- *   - desde el 1 de noviembre de 2026, «Su cuerpo» va dentro de la pestaña Cuerpo del perfil, sin
- *     tocar nada y con el personaje en pequeño al lado del titulo (1, 3 y 7); con una hoja abierta,
- *     lo demas del perfil queda inerte y no se desplaza, y la hoja sale abajo aunque el perfil este
- *     desplazado (5); sin hoja, Escape y «atras» son los del perfil, y cambiar de pestaña no lo
- *     duplica (10); con «Su cuerpo» cargado antes que el perfil, el Escape de una hoja la cierra
- *     solo a ella (10d); y un «atras» de varios pasos de golpe cierra todo lo que quedaba encima
- *     (12);
- *   - si el modulo no llega, la tarjeta de la pestaña lo dice, y con red otra vez su «Abrir» lo
- *     pone (10b); con un modulo o un perfil de antes (guardados sin conexion), se abre encima,
- *     como entonces (10c);
+ *   - desde el 6 de noviembre de 2026 (el bloque 2 del rediseño; del 1 al 6, «Su cuerpo» iba dentro
+ *     de la pestaña Cuerpo del perfil), la tarjeta de la pestaña lleva el personaje en pequeño y su
+ *     «Abrir» pone «Su cuerpo» encima del perfil, a pantalla completa, con su flecha de vuelta (1);
+ *     arriba, la escena (el cielo, el sol de siete rayos, el Teide, las nubes y Las Cañadas) con el
+ *     personaje grande dentro, en una sola vista, y «Girar» con la otra en pequeño (1, 4 y 6); el
+ *     tema Día por defecto, y Noche con su boton, recordado en el dispositivo (10e); los 12 grupos
+ *     en una rejilla (4c); la hoja de un grupo con su marcador, «+ 1 serie», «+3» y «−» con deshacer
+ *     (5); «Las cifras», con la recomendacion, la referencia del ACSM y las fuentes (10f); Escape, la
+ *     flecha y «atras» cierran la pantalla y dejan el perfil (10); la cabecera en cristal sobre la
+ *     escena y opaca al bajar, y la barra de modos fija abajo (20); y a 359, 360, 430 y 820 px (21);
+ *   - con «Su cuerpo» cargado antes que el perfil, el Escape de una hoja la cierra solo a ella
+ *     (10d); y un «atras» de varios pasos de golpe cierra todo lo que quedaba encima (12);
+ *   - si el modulo no llega, la tarjeta queda sin el personaje y «Abrir» lo dice, y con red otra
+ *     vez lo pone (10b);
  *   - la seguridad (13): un fichero de ejercicios con HTML en un nombre y en un paso, y con
  *     enlaces javascript: y http: en las fuentes, no ejecuta nada: el nombre y el paso salen como
  *     texto y esos dos enlaces no salen; lo guardado con HTML, tampoco;
@@ -98,10 +102,13 @@ async function abrirPerfilCuerpo(pg) {
   await pg.waitForFunction(() => window.TG_PERFIL && document.getElementById('perfil-panel') && !document.getElementById('perfil-panel').hidden, null, { timeout: 15000 });
   await pg.evaluate(() => TG_PERFIL.pestana('cuerpo')); await pg.waitForTimeout(200);
 }
-/* «Su cuerpo», ya dentro de la pestaña Cuerpo: desde el 1 de noviembre de 2026 se pone solo al
-   enseñar la pestaña, y la tarjeta se va */
+/* «Su cuerpo», a pantalla completa encima del perfil (6 de noviembre de 2026, bloque 2): lo abre
+   «Abrir» de la tarjeta de la pestaña Cuerpo, que ya lleva el personaje en pequeño (el modulo se
+   pide al enseñar la pestaña). Del 1 al 6 se ponia solo dentro de la pestaña */
 async function suCuerpo(pg) {
-  await pg.waitForFunction(() => window.TG_CUERPO && TG_CUERPO.abierto() && TG_CUERPO.dentro() && document.getElementById('tgp-cuerpo').hidden, null, { timeout: 15000 });
+  await pg.waitForFunction(() => window.TG_CUERPO && document.querySelector('#tgp-cuerpo-mini svg'), null, { timeout: 15000 });
+  if (!(await pg.evaluate(() => TG_CUERPO.abierto()))) await pg.click('#tgp-cuerpo-abrir');
+  await pg.waitForFunction(() => TG_CUERPO.abierto() && !document.getElementById('cuerpo-panel').hidden, null, { timeout: 15000 });
   await pg.waitForTimeout(300);
 }
 /* sin nada anotado (el «Empezar vacío» del prototipo) */
@@ -139,22 +146,27 @@ async function ejemplo(pg) {
   vigilar(pg, errores);
   await abrirApp(pg); await abrirPerfilCuerpo(pg); await suCuerpo(pg);
 
-  // 1. arranca sin errores, dentro de la pestaña Cuerpo y sin tocar nada, con el personaje en
-  //    pequeño al lado del título
+  // 1. arranca sin errores: la tarjeta de la pestaña Cuerpo lleva el personaje en pequeño, y su «Abrir»
+  //    pone «Su cuerpo» encima del perfil, a pantalla completa, con su flecha de vuelta (6-11-2026,
+  //    bloque 2; decisión 2 de Jerome), en el tema Día, con la escena y el personaje grande dentro de ella
   prueba('sin errores al abrir', errores.length === 0, errores.join(' | '));
   const r1 = await pg.evaluate(() => {
-    const p = document.getElementById('cuerpo-panel'), m = document.getElementById('tgc-mini'), t = document.getElementById('tgc-titulo');
-    const rm = m.getBoundingClientRect(), rt = t.getBoundingClientRect();
-    return { sitio: p.parentNode && p.parentNode.id, visible: !p.hidden && p.offsetParent !== null, tarjeta: document.getElementById('tgp-cuerpo').hidden,
-      n: document.querySelectorAll('#cuerpo-panel').length, rol: p.getAttribute('role'), modal: p.hasAttribute('aria-modal'), nivel: t.getAttribute('aria-level'),
-      atras: document.getElementById('tgc-back').offsetParent === null, inerte: document.getElementById('perfil-panel').inert, estado: JSON.stringify(history.state),
-      mini: !!m.querySelector('svg') && m.getAttribute('aria-hidden') === 'true' && m.offsetParent !== null,
-      alLado: rm.width > 40 && rm.right <= rt.left + 1 && rm.top < rt.bottom && rm.bottom > rt.top };
+    const p = document.getElementById('cuerpo-panel'), m = document.getElementById('tgp-cuerpo-mini'), t = document.getElementById('tgc-titulo'), e = document.getElementById('tgc-escena');
+    const ve = n => !!n && n.getClientRects().length > 0, re = e.getBoundingClientRect(), rf = document.getElementById('tgc-fig').getBoundingClientRect(), rm = document.getElementById('tgc-modos').getBoundingClientRect();
+    return { sitio: p.parentNode === document.body, visible: !p.hidden && ve(p), n: document.querySelectorAll('#cuerpo-panel').length, rol: p.getAttribute('role'), modal: p.getAttribute('aria-modal'),
+      nivel: t.getAttribute('aria-level'), atras: ve(document.getElementById('tgc-back')) && document.getElementById('tgc-back').getAttribute('aria-label'),
+      inerte: document.getElementById('perfil-panel').inert, estado: JSON.stringify(history.state),
+      mini: !!m.querySelector('svg') && m.getAttribute('aria-hidden') === 'true', tema: p.getAttribute('data-tema'), guardado: localStorage.getItem('tenerife.cuerpo.tema'),
+      cielo: !!document.querySelector('#tgc-cielo svg'), rayos: document.querySelectorAll('#tgc-cielo .tgc-rayo').length, escenaArriba: Math.round(re.top) === 0 && re.height >= 400 && re.height <= 600,
+      figuraDentro: rf.top >= re.top && rf.bottom <= re.bottom + 1 && rf.height > re.height * 0.6, cabeza: document.querySelectorAll('#tgc-cara .tgf-cabeza').length,
+      girar: ve(document.getElementById('tgc-girar')) && !!document.querySelector('#tgc-girar-mini svg'), modosAbajo: Math.round(rm.bottom) === innerHeight && getComputedStyle(document.getElementById('tgc-modos')).position === 'fixed' };
   });
-  prueba('dentro de la pestaña Cuerpo sin tocar nada: en su sitio, una sola vez y sin la tarjeta', r1.sitio === 'tgp-cuerpo-sitio' && r1.visible && r1.tarjeta && r1.n === 1, JSON.stringify(r1));
-  prueba('dentro: un apartado del perfil (región, sin aria-modal, título de nivel 2) y sin su «atrás»', r1.rol === 'region' && !r1.modal && r1.nivel === '2' && r1.atras, JSON.stringify(r1));
-  prueba('dentro: el perfil no queda inerte, y ninguna entrada propia en el historial', r1.inerte === false && r1.estado === '{"tgPerfil":1}', JSON.stringify(r1));
-  prueba('el personaje en pequeño, al lado del título, sin nada que leer (aria-hidden)', r1.mini && r1.alLado, JSON.stringify(r1));
+  prueba('«Abrir» de la tarjeta: «Su cuerpo» encima del perfil, a pantalla completa, una sola vez (diálogo modal, título de nivel 1)', r1.sitio && r1.visible && r1.n === 1 && r1.rol === 'dialog' && r1.modal === 'true' && !r1.nivel, JSON.stringify(r1));
+  prueba('su flecha de vuelta al perfil, el perfil inerte debajo y su entrada en el historial', r1.atras === 'Volver a su perfil' && r1.inerte === true && r1.estado === '{"tgPerfil":1,"tgCuerpo":1}', JSON.stringify(r1));
+  prueba('la tarjeta de la pestaña lleva el personaje en pequeño, sin nada que leer (aria-hidden)', r1.mini, JSON.stringify(r1));
+  prueba('el tema Día por defecto, sin nada guardado', r1.tema === 'dia' && r1.guardado === null, r1.tema + ' ' + r1.guardado);
+  prueba('la escena arriba, de 400 a 600 px, con el cielo dibujado y sus siete rayos, y el personaje grande dentro, con su cabeza', r1.cielo && r1.rayos === 7 && r1.escenaArriba && r1.figuraDentro && r1.cabeza === 1, JSON.stringify(r1));
+  prueba('«Girar» con la otra vista en pequeño, y la barra de modos fija abajo', r1.girar && r1.modosAbajo, JSON.stringify(r1));
 
   // 2. cada selector de TEXTOS da un solo elemento y cada clave existe en los 10 idiomas
   const r2 = await pg.evaluate(() => {
@@ -162,9 +174,10 @@ async function ejemplo(pg) {
     p.querySelectorAll('[data-tx],[data-tx-aria],[data-tx-ph]').forEach(n => ['data-tx', 'data-tx-aria', 'data-tx-ph'].forEach(at => { const k = n.getAttribute(at); if (k && !UI_TX[k]) malos.push('sin fila ' + k); }));
     return { n: p.querySelectorAll('[data-tx],[data-tx-aria]').length, ph: p.querySelectorAll('[data-tx-ph]').length, malos };
   });
-  /* desde el 3 de noviembre, con «Comida», «Preguntar» y «Su deporte»: 109 y 2 (el del buscador de
-     ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (109 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 109 && r2.ph === 2, r2.n + '/' + r2.ph);
+  /* desde el 3 de noviembre, con «Comida», «Preguntar» y «Su deporte», 109; desde el 6 (bloque 2), con
+     el tema, «Las cifras», «+ 1 serie», «+3» y la referencia corta, y sin el lema, los pies de las vistas
+     ni el paso de la hoja, 108; y 2 placeholders (el del buscador de ejercicios y el de la pregunta) */
+  prueba('textos fijos puestos (108 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 108 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -180,17 +193,17 @@ async function ejemplo(pg) {
       await pg.evaluate(mm => document.getElementById(mm === 'musculos' ? 'tgc-modo-m' : 'tgc-modo-a').click(), m);
       await pg.waitForTimeout(60);
       const r = await pg.evaluate(() => {
-        /* dentro de la pestaña, lo que manda es la pantalla: la lámina sale hasta el borde, por el
-           margen del perfil, como en la pantalla de antes por el suyo. Nada pasa de ese borde (ni a la
-           derecha ni a la izquierda) y el perfil no se desplaza de lado */
-        const p = document.getElementById('cuerpo-panel'), pp = document.getElementById('perfil-panel'), b = pp.getBoundingClientRect();
-        const vacios = [...p.querySelectorAll('#tgc [data-tx]')].filter(n => n.offsetParent !== null && !n.textContent.trim()).map(n => n.id || n.className);
-        const anchos = [...p.querySelectorAll('#tgc *')].filter(n => { if (n.offsetParent === null) return false; const x = n.getBoundingClientRect(); return x.right > b.right + 0.5 || x.left < b.left - 0.5; })
+        /* nada pasa del borde de la pantalla (ni a la derecha ni a la izquierda) y la pantalla no se
+           desplaza de lado. Lo de dentro de un svg no se mira: el sol y las nubes del cielo salen por
+           los lados a propósito, recortados por la escena */
+        const p = document.getElementById('cuerpo-panel'), b = p.getBoundingClientRect();
+        const vacios = [...p.querySelectorAll('#tgc [data-tx], #tgc-modos [data-tx]')].filter(n => n.getClientRects().length && !n.textContent.trim()).map(n => n.id || n.className);
+        const anchos = [...p.querySelectorAll('#tgc *, #tgc-modos *')].filter(n => { if (!n.getClientRects().length || n.closest('svg')) return false; const x = n.getBoundingClientRect(); return x.right > b.right + 0.5 || x.left < b.left - 0.5; })
           .map(n => n.id || (typeof n.className === 'string' ? n.className : '') || n.tagName).slice(0, 5);
-        return { vacios, anchos, psw: pp.scrollWidth, pcw: pp.clientWidth, lang: p.getAttribute('lang') };
+        return { vacios, anchos, psw: p.scrollWidth, pcw: p.clientWidth, lang: p.getAttribute('lang') };
       });
       prueba(`${l}/${m}: sin textos vacíos`, r.vacios.length === 0, r.vacios.join(','));
-      prueba(`${l}/${m}: sin desborde: nada pasa del borde de la pantalla y el perfil no se desplaza de lado`, r.psw <= r.pcw && r.anchos.length === 0, `${r.psw}>${r.pcw} ${r.anchos.join(',')}`);
+      prueba(`${l}/${m}: sin desborde: nada pasa del borde de la pantalla y la pantalla no se desplaza de lado`, r.psw <= r.pcw && r.anchos.length === 0, `${r.psw}>${r.pcw} ${r.anchos.join(',')}`);
       prueba(`${l}: lang del panel`, r.lang === (l === 'zht' ? 'zh-Hant' : l === 'zh' ? 'zh-Hans' : l), r.lang);
     }
   }
@@ -204,48 +217,49 @@ async function ejemplo(pg) {
     series: document.getElementById('tgc-st-series').textContent, grupos: document.getElementById('tgc-st-grupos').textContent,
     dias: document.getElementById('tgc-st-dias').textContent,
     niveles: Object.fromEntries([...document.querySelectorAll('#tgc-lista .tgc-fila')].map(b => [b.dataset.g, b.querySelector('.tgc-nivel').className.slice(-1)])),
-    zonas: document.querySelectorAll('#tgc-cara-frente .tgf-z').length, zonasE: document.querySelectorAll('#tgc-cara-espalda .tgf-z').length
+    zonas: document.querySelectorAll('#tgc-cara .tgf-z').length, rayos: [...document.querySelectorAll('#tgc-cielo .tgc-rayo')].map(r => r.getAttribute('opacity') === '1' ? 1 : 0).join('')
   }));
   prueba('resumen: 76 series', r4.series === '76', r4.series);
   prueba('resumen: 11/12 grupos', r4.grupos === '11/12', r4.grupos);
   prueba('resumen: 5/7 días', r4.dias === '5/7', r4.dias);
   prueba('niveles del ejemplo', JSON.stringify(r4.niveles) === JSON.stringify({ pecho: '2', dorsal: '2', espalda_alta: '1', hombros: '2', biceps: '1', triceps: '2', antebrazo: '0', core: '1', gluteos: '3', cuadriceps: '2', isquios: '1', pantorrilla: '2' }), JSON.stringify(r4.niveles));
-  prueba('zonas de frente y de espaldas', r4.zonas > 20 && r4.zonasE > 20, r4.zonas + '/' + r4.zonasE);
-  const grFrente = await pg.evaluate(() => [...new Set([...document.querySelectorAll('#tgc-cara-frente .tgf-z')].map(z => z.dataset.g))].sort().join(','));
-  const grEsp = await pg.evaluate(() => [...new Set([...document.querySelectorAll('#tgc-cara-espalda .tgf-z')].map(z => z.dataset.g))].sort().join(','));
-  const todos = [...new Set((grFrente + ',' + grEsp).split(','))].sort().join(',');
+  /* el sol: un rayo encendido por cada día con series en los últimos 7, del más antiguo (hace 6) a hoy */
+  prueba('el sol: cinco rayos encendidos, los de los días con series (hace 6, 4, 2, 1 y hoy)', r4.rayos === '1010111', r4.rayos);
+  /* una sola vista a la vez: la de espaldas, con «Girar» */
+  const grFrente = await pg.evaluate(() => [...new Set([...document.querySelectorAll('#tgc-cara .tgf-z')].map(z => z.dataset.g))].sort().join(','));
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
+  const r4z = await pg.evaluate(() => ({ zonasE: document.querySelectorAll('#tgc-cara .tgf-z').length, grEsp: [...new Set([...document.querySelectorAll('#tgc-cara .tgf-z')].map(z => z.dataset.g))].sort().join(',') }));
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
+  prueba('zonas de frente y de espaldas', r4.zonas > 20 && r4z.zonasE > 20, r4.zonas + '/' + r4z.zonasE);
+  const todos = [...new Set((grFrente + ',' + r4z.grEsp).split(','))].sort().join(',');
   prueba('los 12 grupos están en el dibujo', todos.split(',').length === 12, todos);
 
-  // 4a. (6-11-2026, el bloque 1 del rediseño) en «Músculos», el maniquí lleva la cabeza de la persona en
-  //     las dos vistas: arriba, encima de todo y sin recibir toques (lo de debajo es el dibujo, no ella).
-  //     Y los colores de la leyenda y de las barras son los niveles del dibujo
+  // 4a. (6-11-2026, el bloque 1 del rediseño) en «Músculos», el maniquí lleva la cabeza de la persona, en
+  //     la vista grande y en la pequeña de «Girar»: arriba, encima de todo y sin recibir toques (lo de
+  //     debajo es el dibujo, no ella). Y los colores de la leyenda y de la rejilla son los niveles del dibujo
   const r4x = await pg.evaluate(() => {
-    const pp = document.getElementById('perfil-panel'), antes = pp.scrollTop;
-    const cab = v => [...document.querySelectorAll('#tgc-cara-' + v + ' .tgf-cabeza')];
-    const f = cab('frente'), e = cab('espalda'), todas = f.concat(e);
+    const f = [...document.querySelectorAll('#tgc-cara .tgf-cabeza')], e = [...document.querySelectorAll('#tgc-girar-mini .tgf-cabeza')], todas = f.concat(e);
     const hex = c => '#' + c.match(/\d+/g).slice(0, 3).map(x => (+x).toString(16).padStart(2, '0')).join('').toUpperCase();
     const N = TG_FIGURA.MUSC.nivel.map(c => c.toUpperCase());
     let arriba = false, debajo = false;
     if (f[0]) {
-      f[0].scrollIntoView({ block: 'center' });
       const c = f[0].getBoundingClientRect(), svg = f[0].ownerSVGElement.getBoundingClientRect();
       arriba = c.top >= svg.top - 1 && c.bottom < svg.top + svg.height * 0.25 && c.width > 20;
       const bajo = document.elementFromPoint(c.left + c.width / 2, c.top + c.height / 2);
-      debajo = !!bajo && !bajo.closest('.tgf-cabeza') && !!bajo.closest('#tgc-cara-frente');
+      debajo = !!bajo && !bajo.closest('.tgf-cabeza') && !!bajo.closest('#tgc-cara');
     }
-    pp.scrollTop = antes;
     return { n: f.length + '/' + e.length, toques: todas.every(x => getComputedStyle(x).pointerEvents === 'none'),
       ultima: todas.every(x => x.ownerSVGElement.lastElementChild === x), arriba, debajo,
       ojos: (f[0] ? f[0].querySelectorAll('[fill="#FBF8F3"]').length : -1) + '/' + (e[0] ? e[0].querySelectorAll('[fill="#FBF8F3"]').length : -1),
       css: [0, 1, 2, 3].map(i => getComputedStyle(document.getElementById('cuerpo-panel')).getPropertyValue('--n' + i).trim().toUpperCase()).join(' '), dibujo: N.join(' '),
       leyenda: [0, 1, 2, 3].map(i => hex(getComputedStyle(document.getElementById('tgc-ley-' + i).previousElementSibling).backgroundColor)).join(' '),
-      barras: [...document.querySelectorAll('#tgc-lista .tgc-fila .tgc-nivel')].map(i => hex(getComputedStyle(i).backgroundColor) === N[+i.className.slice(-1)]) };
+      puntos: [...document.querySelectorAll('#tgc-lista .tgc-fila .tgc-nivel')].map(i => hex(getComputedStyle(i).backgroundColor) === N[+i.className.slice(-1)]) };
   });
-  prueba('músculos: el maniquí lleva la cabeza de la persona, una en cada vista', r4x.n === '1/1', r4x.n);
+  prueba('músculos: el maniquí lleva la cabeza de la persona, en la vista grande y en la pequeña de «Girar»', r4x.n === '1/1', r4x.n);
   prueba('músculos: la cabeza, arriba, encima de todo y sin recibir toques (debajo, el dibujo)', r4x.arriba && r4x.ultima && r4x.toques && r4x.debajo, JSON.stringify(r4x));
-  prueba('músculos: de frente, con sus ojos; de espaldas, sin ellos', r4x.ojos === '2/0', r4x.ojos);
+  prueba('músculos: de frente, con sus ojos; de espaldas (en «Girar»), sin ellos', r4x.ojos === '2/0', r4x.ojos);
   prueba('los colores de la pantalla (--n0 a --n3) son los niveles del dibujo', r4x.css === r4x.dibujo, r4x.css + ' / ' + r4x.dibujo);
-  prueba('la leyenda y las 12 barras, con el color de su nivel', r4x.leyenda === r4x.dibujo && r4x.barras.length === 12 && r4x.barras.every(Boolean), r4x.leyenda + ' / ' + r4x.barras.join(','));
+  prueba('la leyenda y los 12 puntos de la rejilla, con el color de su nivel', r4x.leyenda === r4x.dibujo && r4x.puntos.length === 12 && r4x.puntos.every(Boolean), r4x.leyenda + ' / ' + r4x.puntos.join(','));
 
   // 4b. la semana día a día: 7 días, hoy marcado y elegido, sus cuentas cuadran con el resumen
   const r4b = await pg.evaluate(() => {
@@ -267,67 +281,78 @@ async function ejemplo(pg) {
   await pg.click('#tgc-dias7 li:nth-child(4) .tgc-dia'); await pg.waitForTimeout(60);   // hace 3 días: el ejemplo no tiene nada
   prueba('semana: un día sin nada lo dice', await pg.evaluate(() => document.getElementById('tgc-dia-grupos').textContent === 'sin anotar' && /: 0 series$/.test(document.getElementById('tgc-dia-txt').textContent)));
 
-  // 4c. los 12 grupos como barras: el largo es el de las series, todas igual de largas, la marca del 10 en el mismo sitio
+  // 4c. (6-11-2026, bloque 2) los 12 grupos en una rejilla de tres columnas: cada botón, el nombre, el punto
+  //     de su nivel con sus series y la última vez; los que tienen series, marcados. La referencia del ACSM
+  //     (adultos) va en «Las cifras» y en la hoja de cada grupo
   const r4d = await pg.evaluate(() => {
-    const filas = [...document.querySelectorAll('#tgc-lista .tgc-fila')];
-    const caja = filas.map(b => b.querySelector('.tgc-barra').getBoundingClientRect());
-    const marcas = filas.map(b => b.querySelector('.tgc-barra-ref')).filter(Boolean).map(m => m.getBoundingClientRect().left);
+    const filas = [...document.querySelectorAll('#tgc-lista .tgc-fila')], tops = filas.map(b => Math.round(b.getBoundingClientRect().top));
     const s = n => Number(n.querySelector('.tgc-fila-n').textContent.match(/\d+/)[0]);
-    const prop = filas.every(b => { const w = parseFloat(b.querySelector('.tgc-barra .tgc-nivel').style.width); return Math.abs(w - 100 * s(b) / 20) < 0.11; });
-    return { n: filas.length, iguales: caja.every(r => Math.abs(r.width - caja[0].width) < 0.5 && Math.abs(r.left - caja[0].left) < 0.5),
-             marcas: marcas.length, enSuSitio: marcas.every(x => Math.abs(x - marcas[0]) < 0.5), prop, ref: !document.getElementById('tgc-ref').hidden,
-             nombre: filas[0].textContent.replace(/\s+/g, ' ').trim() };
+    return { n: filas.length, columnas: new Set(tops.slice(0, 3)).size === 1 && tops[3] > tops[0], con: filas.filter(b => b.classList.contains('con')).length,
+      bien: filas.every(b => b.classList.contains('con') === (s(b) > 0) && !!b.querySelector('.tgc-fila-dato .tgc-nivel') && !!b.querySelector('.tgc-fila-cuando')),
+      nombre: filas[0].textContent.replace(/\s+/g, ' ').trim(), ref: document.getElementById('tgc-cifras-ref').hidden, hRef: document.getElementById('tgc-h-ref').hidden };
   });
-  prueba('grupos: 12 barras del mismo largo', r4d.n === 12 && r4d.iguales, JSON.stringify(r4d));
-  prueba('grupos: el largo de cada barra son sus series (escala de 20)', r4d.prop);
-  prueba('grupos: la marca del 10 en el mismo sitio en las 12 (adultos)', r4d.marcas === 12 && r4d.enSuSitio && r4d.ref);
+  prueba('grupos: 12 botones en tres columnas, con el nombre, el punto de su nivel, las series y cuándo', r4d.n === 12 && r4d.columnas && r4d.bien, JSON.stringify(r4d));
+  prueba('grupos: los 11 con series van marcados', r4d.con === 11, String(r4d.con));
   prueba('grupos: el botón dice el grupo, las series y cuándo', r4d.nombre === 'Pecho 8 series hoy', r4d.nombre);
-  // de 14 a 17 años (perfil con el año de nacimiento): la recomendación de la OMS para su edad y sin la marca del 10
+  prueba('adultos: la referencia del ACSM, en «Las cifras» y en la hoja', !r4d.ref && !r4d.hRef, JSON.stringify(r4d));
+  // de 14 a 17 años (perfil con el año de nacimiento): la recomendación de la OMS para su edad y sin la referencia del 10
   await pg.evaluate(() => { localStorage.setItem('tenerife.perfil', JSON.stringify({ nacimiento: new Date().getFullYear() - 15 })); TG_CUERPO.repintar(); });
-  const r4e = await pg.evaluate(() => ({ marcas: document.querySelectorAll('#tgc-lista .tgc-barra-ref').length, ref: document.getElementById('tgc-ref').hidden,
-    reco: document.getElementById('tgc-reco').textContent }));
-  prueba('menores: sin la marca del 10 ni su texto, con la recomendación de su edad', r4e.marcas === 0 && r4e.ref && /5 a 17|3 días/.test(r4e.reco), JSON.stringify(r4e));
+  const r4e = await pg.evaluate(() => ({ ref: document.getElementById('tgc-cifras-ref').hidden, hRef: document.getElementById('tgc-h-ref').hidden,
+    reco: document.getElementById('tgc-reco').textContent, cifras: document.getElementById('tgc-cifras-reco').textContent }));
+  prueba('menores: sin la referencia del 10 (ni en «Las cifras» ni en la hoja), con la recomendación de su edad', r4e.ref && r4e.hRef && /5 a 17|3 días/.test(r4e.reco) && r4e.cifras === r4e.reco, JSON.stringify(r4e));
   await pg.evaluate(() => { localStorage.removeItem('tenerife.perfil'); TG_CUERPO.repintar(); });
 
-  // 5. la hoja: tocar el pecho en el dibujo, anotar, borrar y deshacer. Con el perfil desplazado:
-  //    la hoja sale abajo de la pantalla y el velo la cubre entera; lo demás del perfil queda inerte
-  //    y no se desplaza, y al cerrarla todo vuelve como estaba
-  await pg.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 500; }); await pg.waitForTimeout(100);
-  await pg.evaluate(() => { const z = document.querySelector('#tgc-cara-frente .tgf-z[data-g="pecho"]'); z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+  // 5. la hoja (6-11-2026, bloque 2): tocar el pecho en el dibujo; el marcador; «+ 1 serie», «+3», «−» y
+  //    deshacer; borrar del historial y deshacer. La hoja sale abajo de la pantalla, el velo la cubre
+  //    entera y lo de debajo (la pantalla y la barra de modos) queda inerte; al cerrarla, todo vuelve
+  await pg.evaluate(() => { const z = document.querySelector('#tgc-cara .tgf-z[data-g="pecho"]'); z.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
   await pg.waitForTimeout(300);
   prueba('la hoja se abre desde el dibujo', await pg.evaluate(() => !document.getElementById('tgc-hoja').hidden && document.getElementById('tgc-hoja-tit').textContent === 'Pecho'));
   prueba('el foco va a la hoja', await pg.evaluate(() => document.activeElement && document.activeElement.id === 'tgc-hoja-tit'));
-  prueba('lo de debajo, inerte', await pg.evaluate(() => document.getElementById('tgc').inert === true));
+  prueba('lo de debajo, inerte: la pantalla y la barra de modos', await pg.evaluate(() => document.getElementById('tgc').inert === true && document.getElementById('tgc-modos').inert === true));
   /* con la hoja ya subida (3 de noviembre de 2026): su animacion (tgc-sube, 320 ms) la trae desde
      28 px mas abajo, y a los 300 ms todavia le faltaban hasta 0,8 px; con el procesador ocupado,
      hasta 17,6, y «sale abajo de la pantalla» salia en rojo a ratos */
   await pg.evaluate(() => Promise.all(document.getElementById('tgc-hoja').getAnimations().map(a => a.finished)));
   const r5a = await pg.evaluate(() => {
-    const pp = document.getElementById('perfil-panel'), h = document.getElementById('tgc-hoja').getBoundingClientRect(), v = document.getElementById('tgc-velo').getBoundingClientRect();
-    const inerte = s => !!document.querySelector(s).closest('[inert]');
-    return { abajo: Math.abs(h.bottom - innerHeight) <= 1, velo: v.top <= 0 && v.bottom >= innerHeight && v.left <= 0 && v.right >= innerWidth, desplazado: pp.scrollTop,
-      cab: inerte('#perfil-panel .tgp-top'), pestanas: inerte('#tgp-tabs'), datos: inerte('#tgp-datos'), hoja: inerte('#tgc-hoja'), quieto: getComputedStyle(pp).overflowY };
+    const h = document.getElementById('tgc-hoja').getBoundingClientRect(), v = document.getElementById('tgc-velo').getBoundingClientRect();
+    return { abajo: Math.abs(h.bottom - innerHeight) <= 1, alto: h.height <= innerHeight * 0.8 + 1, velo: v.top <= 0 && v.bottom >= innerHeight && v.left <= 0 && v.right >= innerWidth,
+      estado: JSON.stringify(history.state) };
   });
-  prueba('dentro: con el perfil desplazado, la hoja sale abajo de la pantalla y el velo la cubre entera', r5a.abajo && r5a.velo && r5a.desplazado === 500, JSON.stringify(r5a));
-  prueba('dentro: lo demás del perfil (la cabecera, las pestañas, «Sus datos») inerte, la hoja no; y el perfil no se desplaza', r5a.cab && r5a.pestanas && r5a.datos && !r5a.hoja && r5a.quieto === 'hidden', JSON.stringify(r5a));
-  prueba('selección marcada en el dibujo', await pg.evaluate(() => document.querySelectorAll('#tgc-cara-frente .tgf-marca path').length > 0));
-  prueba('la hoja lleva el maniquí con su grupo encendido (el tono del nivel 3) y sin cabeza de persona', await pg.evaluate(() => {
-    const z = [...document.querySelectorAll('#tgc-hoja-mini .tgf-z')];
-    return z.length > 10 && z.filter(x => x.dataset.g === 'pecho').every(x => /-n3\)$/.test(x.getAttribute('fill'))) && z.filter(x => x.dataset.g !== 'pecho').every(x => /-n0\)$/.test(x.getAttribute('fill'))) &&
-      document.querySelectorAll('#tgc-hoja-mini .tgf-cabeza').length === 0;
-  }));
-  await pg.click('#tgc-mas'); await pg.click('#tgc-mas');
-  prueba('paso: 5', await pg.evaluate(() => document.getElementById('tgc-n').value) === '5');
+  prueba('la hoja sale abajo de la pantalla, de un 80 % como mucho (el dibujo asoma), y el velo la cubre entera', r5a.abajo && r5a.alto && r5a.velo, JSON.stringify(r5a));
+  prueba('su entrada en el historial', r5a.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1}', r5a.estado);
+  prueba('selección marcada en el dibujo', await pg.evaluate(() => document.querySelectorAll('#tgc-cara .tgf-marca path').length > 0));
+  const r5m = await pg.evaluate(() => ({ n: document.getElementById('tgc-h-series').textContent, nivel: document.getElementById('tgc-h-nivel').textContent, clase: document.getElementById('tgc-hoja-nivel').className,
+    puntos: document.querySelectorAll('#tgc-diez i').length, llenos: document.querySelectorAll('#tgc-diez i.si.n2').length, mas: !!document.querySelector('#tgc-diez .mas'),
+    menos: document.getElementById('tgc-menos').disabled, menosAria: document.getElementById('tgc-menos').getAttribute('aria-label'), hoy: document.getElementById('tgc-hoy').getAttribute('aria-pressed'),
+    btn: document.getElementById('tgc-guardar-txt').textContent, tres: document.getElementById('tgc-mas3').textContent + '|' + document.getElementById('tgc-mas3').getAttribute('aria-label'),
+    dias: document.getElementById('tgc-h-dias').textContent, ultima: document.getElementById('tgc-h-ultima').textContent }));
+  prueba('el marcador: 8 series, «De 5 a 9» con el punto de su color, 8 de los 10 puntos llenos; 2/7 días y «hoy»', r5m.n === '8' && r5m.nivel === 'De 5 a 9' && /n2$/.test(r5m.clase) && r5m.puntos === 10 && r5m.llenos === 8 && !r5m.mas && r5m.dias === '2/7' && r5m.ultima === 'hoy', JSON.stringify(r5m));
+  prueba('«+ 1 serie» y «+3» (tres series más); «−» (una serie menos) activo, porque hoy hay series; Hoy elegido', r5m.btn === '+ 1 serie' && r5m.tres === '+3|Tres series más' && !r5m.menos && r5m.menosAria === 'Una serie menos' && r5m.hoy === 'true', JSON.stringify(r5m));
   await pg.click('#tgc-ayer'); await pg.click('#tgc-guardar'); await pg.waitForTimeout(150);
   const r5 = await pg.evaluate(() => { const s = TG_CUERPO.estado().series, x = s[s.length - 1]; return { x, guardado: JSON.parse(localStorage.getItem('tenerife.cuerpo')).series.length, n: s.length, toast: document.getElementById('tgc-toast-txt').textContent }; });
   const ayer = await pg.evaluate(() => { const d = new Date(); d.setDate(d.getDate() - 1); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); });
-  prueba('anotado: 5 series de pecho ayer', r5.x.g === 'pecho' && r5.x.n === 5 && r5.x.d === ayer, JSON.stringify(r5.x));
+  prueba('«+ 1 serie» con Ayer: 1 serie de pecho ayer', r5.x.g === 'pecho' && r5.x.n === 1 && r5.x.d === ayer, JSON.stringify(r5.x));
   prueba('guardado en el dispositivo', r5.guardado === r5.n);
-  prueba('aviso de anotado', r5.toast === 'Pecho: 5 series anotadas', r5.toast);
-  prueba('el pecho sube a 13 series (nivel 3)', await pg.evaluate(() => document.getElementById('tgc-h-series').textContent === '13' && document.getElementById('tgc-hoja-nivel').classList.contains('n3')));
-  const nAntes = r5.n;
+  prueba('aviso de anotado', r5.toast === 'Pecho: 1 serie anotada', r5.toast);
+  await pg.click('#tgc-mas3'); await pg.waitForTimeout(150);
+  const r5b = await pg.evaluate(() => { const s = TG_CUERPO.estado().series, x = s[s.length - 1]; return { x, n: document.getElementById('tgc-h-series').textContent, clase: document.getElementById('tgc-hoja-nivel').className,
+    llenos: document.querySelectorAll('#tgc-diez i.si.n3').length, mas: (document.querySelector('#tgc-diez .mas') || {}).textContent, toast: document.getElementById('tgc-toast-txt').textContent }; });
+  prueba('«+3»: 3 series más de pecho ayer; el pecho sube a 12 (nivel 3): los 10 puntos llenos, en amarillo, y «+2»', r5b.x.g === 'pecho' && r5b.x.n === 3 && r5b.x.d === ayer && r5b.n === '12' && /n3$/.test(r5b.clase) && r5b.llenos === 10 && r5b.mas === '+2' && r5b.toast === 'Pecho: 3 series anotadas', JSON.stringify(r5b));
+  await pg.click('#tgc-menos'); await pg.waitForTimeout(150);
+  const r5c = await pg.evaluate(() => { const s = TG_CUERPO.estado().series, x = s[s.length - 1]; return { x, n: document.getElementById('tgc-h-series').textContent, toast: document.getElementById('tgc-toast-txt').textContent,
+    btn: !document.getElementById('tgc-toast-btn').hidden && document.getElementById('tgc-toast-btn').textContent, series: s.length }; });
+  prueba('«−»: una serie menos, de la última anotación de ayer (de 3 a 2): 11 series, y «Deshacer» en el aviso', r5c.x.n === 2 && r5c.x.d === ayer && r5c.n === '11' && r5c.toast === 'Pecho: una serie menos' && r5c.btn === 'Deshacer', JSON.stringify(r5c));
+  await pg.click('#tgc-toast-btn'); await pg.waitForTimeout(150);
+  prueba('deshacer la quitada: 12 otra vez, con la anotación de 3', await pg.evaluate(() => { const s = TG_CUERPO.estado().series; return document.getElementById('tgc-h-series').textContent === '12' && s[s.length - 1].n === 3; }));
+  // «−» tres veces: la anotación de 3 baja a 2, a 1 y desaparece
+  for (let i = 0; i < 3; i++) { await pg.click('#tgc-menos'); await pg.waitForTimeout(120); }
+  const r5d = await pg.evaluate(() => { const s = TG_CUERPO.estado().series, x = s[s.length - 1]; return { ultima: x.n + ' ' + (x.d === new Date().toISOString().slice(0, 10) ? 'hoy' : 'otro'), n: document.getElementById('tgc-h-series').textContent, series: s.length, menos: document.getElementById('tgc-menos').disabled }; });
+  prueba('«−» hasta el final: la anotación se va entera (9 series), queda la de 1 de ayer, y «−» sigue activo', r5d.series === r5c.series - 1 && r5d.n === '9' && r5d.ultima === '1 otro' && !r5d.menos, JSON.stringify(r5d));
+  prueba('el pecho vuelve al nivel 2', await pg.evaluate(() => document.getElementById('tgc-hoja-nivel').classList.contains('n2')));
+  const nAntes = r5d.series;
   await pg.click('.tgc-hist-x'); await pg.waitForTimeout(100);
-  prueba('borrar una anotación', await pg.evaluate(() => TG_CUERPO.estado().series.length) === nAntes - 1);
+  prueba('borrar una anotación del historial', await pg.evaluate(() => TG_CUERPO.estado().series.length) === nAntes - 1);
   await pg.click('#tgc-toast-btn'); await pg.waitForTimeout(100);
   prueba('deshacer la borrada', await pg.evaluate(() => TG_CUERPO.estado().series.length) === nAntes);
   // el foco no sale de la hoja
@@ -335,28 +360,46 @@ async function ejemplo(pg) {
   for (let i = 0; i < 25; i++) await pg.keyboard.press('Tab');
   prueba('el foco se queda en la hoja', await pg.evaluate(() => document.getElementById('tgc-hoja').contains(document.activeElement)));
   await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
-  prueba('Escape cierra la hoja, y el perfil sigue abierto', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden));
-  prueba('lo de debajo vuelve a funcionar: nada inerte en el perfil, que se desplaza otra vez desde donde estaba', await pg.evaluate(() => { const pp = document.getElementById('perfil-panel');
-    return document.getElementById('tgc').inert === false && document.querySelectorAll('#perfil-panel [inert]').length === 0 && getComputedStyle(pp).overflowY === 'auto' && Math.abs(pp.scrollTop - 500) <= 1; }));
+  prueba('Escape cierra la hoja; «Su cuerpo» y el perfil siguen abiertos', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden && JSON.stringify(history.state) === '{"tgPerfil":1,"tgCuerpo":1}'));
+  prueba('lo de debajo vuelve a funcionar: ni la pantalla ni la barra de modos inertes, y sin selección en el dibujo', await pg.evaluate(() => document.getElementById('tgc').inert === false && document.getElementById('tgc-modos').inert === false && document.querySelectorAll('#tgc-cara .tgf-marca').length === 0));
+  // desde la rejilla: un grupo sin series hoy («−» apagado), y uno que solo se ve de espaldas (el dibujo se da la vuelta)
+  await pg.click('#tgc-lista .tgc-fila[data-g="antebrazo"]'); await pg.waitForTimeout(300);
+  const r5e = await pg.evaluate(() => ({ tit: document.getElementById('tgc-hoja-tit').textContent, n: document.getElementById('tgc-h-series').textContent, nivel: document.getElementById('tgc-h-nivel').textContent,
+    llenos: document.querySelectorAll('#tgc-diez i.si').length, menos: document.getElementById('tgc-menos').disabled }));
+  await pg.click('#tgc-ayer'); await pg.waitForTimeout(100);
+  const r5f = await pg.evaluate(() => document.getElementById('tgc-menos').disabled);
+  prueba('desde la rejilla, los antebrazos: 0 series, «Ninguna», ningún punto lleno, y «−» apagado (hoy y ayer, sin nada que quitar)', r5e.tit === 'Antebrazos' && r5e.n === '0' && r5e.nivel === 'Ninguna' && r5e.llenos === 0 && r5e.menos && r5f, JSON.stringify(r5e));
+  await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
+  /* un grupo que solo se ve de espaldas (el primero que no esté en la vista de frente: con el personaje de hoy, los glúteos) */
+  const soloEspalda = r4z.grEsp.split(',').find(g => !grFrente.split(',').includes(g));
+  await pg.click('#tgc-lista .tgc-fila[data-g="' + soloEspalda + '"]'); await pg.waitForTimeout(500);
+  const r5g = await pg.evaluate(g => ({ tit: document.getElementById('tgc-hoja-tit').textContent, nombre: tx('cuerpoG_' + g), espalda: document.getElementById('tgc-giro').classList.contains('is-espalda') && document.querySelector('#tgc-cara svg').classList.contains('tgf-espalda'),
+    marca: [...document.querySelectorAll('#tgc-cara .tgf-marca')].length > 0, desplazado: document.getElementById('cuerpo-panel').scrollTop }), soloEspalda);
+  prueba('desde la rejilla, un grupo que solo se ve de espaldas (' + soloEspalda + '): el dibujo se da la vuelta, con el grupo marcado, y la pantalla sube arriba', !!soloEspalda && r5g.tit === r5g.nombre && r5g.espalda && r5g.marca && r5g.desplazado === 0, JSON.stringify(r5g));
+  await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
 
-  // 6. «Músculos»: las dos vistas a la vez, con su pie; «Girar» solo en «Aspecto»
-  const r6 = await pg.evaluate(() => {
-    const f = document.getElementById('tgc-cara-frente'), e = document.getElementById('tgc-cara-espalda'), rf = f.getBoundingClientRect(), re = e.getBoundingClientRect();
-    return { ocultas: [f, e].map(x => x.getAttribute('aria-hidden')).join(','), lado: rf.right <= re.left + 1 && Math.abs(rf.top - re.top) < 1 && rf.width > 100,
-             pies: ['tgc-cap-frente', 'tgc-cap-espalda'].map(i => document.getElementById(i).offsetParent !== null && document.getElementById(i).textContent).join('|'),
-             girar: document.getElementById('tgc-girar').offsetParent === null };
-  });
-  prueba('músculos: las dos vistas, una al lado de la otra y las dos legibles', r6.ocultas === 'false,false' && r6.lado, JSON.stringify(r6));
-  prueba('músculos: cada vista con su pie', r6.pies === 'de frente|de espaldas', r6.pies);
-  prueba('músculos: sin «Girar»', r6.girar);
-  await pg.click('#tgc-modo-a'); await pg.waitForTimeout(100);
-  prueba('aspecto: una sola vista legible', await pg.evaluate(() => document.getElementById('tgc-cara-frente').getAttribute('aria-hidden') === 'false' && document.getElementById('tgc-cara-espalda').getAttribute('aria-hidden') === 'true'));
-  prueba('aspecto: el personaje de siempre, sin cabeza aparte', await pg.evaluate(() => document.querySelectorAll('#tgc-giro svg').length === 2 && document.querySelectorAll('#tgc-giro .tgf-cabeza').length === 0));
-  await pg.click('#tgc-girar'); await pg.waitForTimeout(100);
-  prueba('girar: de espaldas', await pg.evaluate(() => document.getElementById('tgc-giro').classList.contains('is-espalda') &&
-    document.getElementById('tgc-cara-espalda').getAttribute('aria-hidden') === 'false' && document.getElementById('tgc-cara-frente').getAttribute('aria-hidden') === 'true' &&
-    document.getElementById('tgc-girar').getAttribute('aria-label') === 'Ver de frente' && document.getElementById('tgc-vista').textContent === 'de espaldas'));
-  await pg.click('#tgc-girar');
+  // 6. (6-11-2026, bloque 2) una sola vista, grande; «Girar» le da la vuelta y enseña la otra en pequeño,
+  //    en «Músculos» y en «Aspecto»
+  const vistaDe = () => pg.evaluate(() => ({ grande: document.querySelector('#tgc-cara svg').classList.contains('tgf-espalda') ? 'espalda' : 'frente',
+    mini: document.querySelector('#tgc-girar-mini svg').classList.contains('tgf-espalda') ? 'espalda' : 'frente', giro: document.getElementById('tgc-giro').classList.contains('is-espalda'),
+    aria: document.getElementById('tgc-girar').getAttribute('aria-label'), zonas: document.querySelectorAll('#tgc-cara .tgf-z').length, svgs: document.querySelectorAll('#tgc-giro svg').length,
+    legible: document.querySelector('#tgc-cara svg').getAttribute('role') === 'img' && !!document.querySelector('#tgc-cara svg').getAttribute('aria-label') && document.querySelector('#tgc-girar-mini svg').getAttribute('aria-hidden') === 'true' }));
+  if ((await vistaDe()).grande === 'espalda') { await pg.click('#tgc-girar'); await pg.waitForTimeout(400); }
+  const r6 = await vistaDe();
+  prueba('músculos: una sola vista, de frente, legible (con su nombre), y la de espaldas en pequeño en «Girar», sin nada que leer', r6.grande === 'frente' && r6.mini === 'espalda' && !r6.giro && r6.aria === 'Ver de espaldas' && r6.zonas > 20 && r6.svgs === 1 && r6.legible, JSON.stringify(r6));
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
+  const r6b = await vistaDe();
+  prueba('girar: de espaldas, con la de frente en pequeño', r6b.grande === 'espalda' && r6b.mini === 'frente' && r6b.giro && r6b.aria === 'Ver de frente' && r6b.zonas > 20, JSON.stringify(r6b));
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
+  await pg.click('#tgc-modo-a'); await pg.waitForTimeout(300);
+  const r6c = await pg.evaluate(() => ({ zonas: document.querySelectorAll('#tgc-cara .tgf-z').length, cabezas: document.querySelectorAll('#tgc-giro .tgf-cabeza').length, svgs: document.querySelectorAll('#tgc-giro svg').length,
+    escena: !document.getElementById('tgc-escena').hidden, pegada: getComputedStyle(document.getElementById('tgc-escena')).position }));
+  prueba('aspecto: el personaje de siempre (sin zonas ni cabeza aparte), en la escena, que se queda pegada arriba', r6c.zonas === 0 && r6c.cabezas === 0 && r6c.svgs === 1 && r6c.escena && r6c.pegada === 'sticky', JSON.stringify(r6c));
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
+  const r6d = await vistaDe();
+  prueba('aspecto: «Girar» le da la vuelta', r6d.grande === 'espalda' && r6d.giro && r6d.aria === 'Ver de frente', JSON.stringify(r6d));
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
   await pg.click('#tgc-modo-m'); await pg.waitForTimeout(100);
 
   // 7. el aspecto: cambiar y que se guarde
@@ -366,10 +409,15 @@ async function ejemplo(pg) {
   const r7 = await pg.evaluate(() => ({ a: TG_CUERPO.estado().aspecto, g: JSON.parse(localStorage.getItem('tenerife.cuerpo')).aspecto }));
   prueba('aspecto cambiado', r7.a.pelo === 'afro' && r7.a.arriba === 'tirantes' && r7.a.piel === 8 && r7.a.protesis === 'pierna_izq', JSON.stringify(r7.a));
   prueba('aspecto guardado', JSON.stringify(r7.a) === JSON.stringify(r7.g));
-  prueba('el personaje en pequeño, con el aspecto nuevo', await pg.evaluate(() => {
-    const t = document.createElement('span');
+  /* la tarjeta del perfil es oscura: el personaje en pequeño va con el ambiente de la noche aunque la
+     pantalla esté en Día, y el ambiente de la pantalla vuelve después */
+  prueba('el personaje en pequeño para la tarjeta del perfil (TG_CUERPO.mini), con el aspecto nuevo y el ambiente de la noche', await pg.evaluate(() => {
+    const t = document.createElement('span'), m = document.createElement('span'), A = TG_FIGURA.AMB, dia = Object.assign({}, A);
+    Object.assign(A, { halo: '#7193C4', haloOp: 0.3, suelo: '#000000', sueloOp: 0.42 });
     t.innerHTML = TG_FIGURA.svg({ vista: 'frente', modo: 'aspecto', aspecto: TG_CUERPO.estado().aspecto, id: 'tgc-mini', viewBox: '110 20 180 300' });
-    return !!document.querySelector('#tgc-mini svg') && document.getElementById('tgc-mini').innerHTML === t.innerHTML;
+    Object.assign(A, dia);
+    TG_CUERPO.mini(m);
+    return !!m.querySelector('svg') && m.innerHTML === t.innerHTML && A.halo === '#FFFFFF' && A.halo === dia.halo;
   }));
   await pg.click('label:has(#tgc-arriba-sin)');
   prueba('sin camiseta: se esconde su color', await pg.evaluate(() => document.getElementById('tgc-op-arribaColor').hidden));
@@ -384,31 +432,32 @@ async function ejemplo(pg) {
   await pg.click('#tgc-modo-m'); await pg.waitForTimeout(100);
   prueba('prótesis: sin zona de pantorrilla en ese lado', await pg.evaluate(() => {
     // la mitad de las de frente (con el personaje de 35 músculos, 4 de las 8: tibial, peroneos, gemelo y sóleo)
-    const n = document.querySelectorAll('#tgc-cara-frente .tgf-z[data-g="pantorrilla"]').length;
+    const n = document.querySelectorAll('#tgc-cara .tgf-z[data-g="pantorrilla"]').length;
     const todas = (TG_FIGURA.svg({ vista: 'frente', modo: 'musculos', aspecto: Object.assign({}, TG_CUERPO.estado().aspecto, { protesis: 'no' }), id: 'q' }).match(/data-g="pantorrilla"/g) || []).length;
     return n > 0 && n * 2 === todas;
   }));
-  // (6-11-2026) la cabeza del maniquí es la del aspecto elegido: la misma que da el dibujo con «cara»
-  prueba('músculos: la cabeza del maniquí, con el aspecto elegido', await pg.evaluate(() => {
-    const a = TG_CUERPO.estado().aspecto, t = document.createElement('span');
-    return ['frente', 'espalda'].every(v => {
-      t.innerHTML = TG_FIGURA.svg({ vista: v, modo: 'musculos', cara: true, aspecto: a, id: 'tgc-' + v });
-      const mia = document.querySelector('#tgc-cara-' + v + ' .tgf-cabeza'), suya = t.querySelector('.tgf-cabeza');
-      return !!mia && !!suya && mia.outerHTML === suya.outerHTML && document.querySelector('#tgc-' + v + '-pielc stop[offset="0.55"]').getAttribute('stop-color') === TG_FIGURA.PIEL[a.piel];
-    });
+  // (6-11-2026) la cabeza del maniquí es la del aspecto elegido: la misma que da el dibujo con «cara», en la
+  // vista grande (de frente) y en la pequeña de «Girar» (de espaldas, sin brillo)
+  prueba('músculos: la cabeza del maniquí, con el aspecto elegido, en la vista grande y en la pequeña', await pg.evaluate(() => {
+    const a = TG_CUERPO.estado().aspecto, t = document.createElement('span'), t2 = document.createElement('span');
+    t.innerHTML = TG_FIGURA.svg({ vista: 'frente', modo: 'musculos', cara: true, aspecto: a, id: 'tgc-figura' });
+    t2.innerHTML = TG_FIGURA.svg({ vista: 'espalda', modo: 'musculos', cara: true, aspecto: a, id: 'tgc-otra', brillo: false });
+    const mia = document.querySelector('#tgc-cara .tgf-cabeza'), suya = t.querySelector('.tgf-cabeza'), mini = document.querySelector('#tgc-girar-mini .tgf-cabeza'), suya2 = t2.querySelector('.tgf-cabeza');
+    return !!mia && !!suya && mia.outerHTML === suya.outerHTML && !!mini && !!suya2 && mini.outerHTML === suya2.outerHTML &&
+      document.querySelector('#tgc-figura-pielc stop[offset="0.55"]').getAttribute('stop-color') === TG_FIGURA.PIEL[a.piel];
   }));
 
   // 7b. (6-11-2026) el pelo largo cae sobre la espalda alta al 30 %: no se queda con el toque, que llega
-  //     al músculo de debajo y abre la hoja de su grupo. Con un toque de verdad, en su punto de la pantalla
-  const pp7 = await pg.evaluate(() => document.getElementById('perfil-panel').scrollTop);
+  //     al músculo de debajo y abre la hoja de su grupo. Con un toque de verdad, en su punto de la pantalla,
+  //     con el dibujo de espaldas («Girar»)
   await pg.evaluate(() => { const e = JSON.parse(localStorage.getItem('tenerife.cuerpo')); e.aspecto = Object.assign(TG_FIGURA.normaliza(null), { pelo: 'largo' }); localStorage.setItem('tenerife.cuerpo', JSON.stringify(e)); TG_CUERPO.abrir(); });
   await pg.waitForTimeout(200);
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
   const r7c = await pg.evaluate(() => {
-    const cab = document.querySelector('#tgc-cara-espalda .tgf-cabeza');
+    const cab = document.querySelector('#tgc-cara svg.tgf-espalda .tgf-cabeza');
     if (!cab) return null;
-    cab.scrollIntoView({ block: 'center' });
     const c = cab.getBoundingClientRect();
-    for (const z of document.querySelectorAll('#tgc-cara-espalda .tgf-z')) {
+    for (const z of document.querySelectorAll('#tgc-cara .tgf-z')) {
       const r = z.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2;
       if (x > c.left && x < c.right && y > c.top && y < c.bottom && document.elementFromPoint(x, y) === z) return { x, y, g: z.dataset.g };
     }
@@ -417,13 +466,11 @@ async function ejemplo(pg) {
   prueba('pelo largo: debajo del pelo hay músculo, y es él quien recibe el toque', !!r7c, JSON.stringify(r7c));
   if (r7c) {
     await pg.mouse.click(r7c.x, r7c.y); await pg.waitForTimeout(300);
-    prueba('pelo largo: tocar ahí abre la hoja de ese grupo', await pg.evaluate(g => {
-      const z = [...document.querySelectorAll('#tgc-hoja-mini .tgf-z')].filter(x => /-n3\)$/.test(x.getAttribute('fill')));
-      return !document.getElementById('tgc-hoja').hidden && z.length > 0 && z.every(x => x.dataset.g === g);
-    }, r7c.g), r7c.g);
+    prueba('pelo largo: tocar ahí abre la hoja de ese grupo', await pg.evaluate(g => !document.getElementById('tgc-hoja').hidden && document.getElementById('tgc-hoja-tit').textContent === tx('cuerpoG_' + g) &&
+      document.querySelectorAll('#tgc-cara .tgf-marca').length > 0, r7c.g), r7c.g);
     await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
   }
-  await pg.evaluate(y => { document.getElementById('perfil-panel').scrollTop = y; }, pp7);
+  await pg.click('#tgc-girar'); await pg.waitForTimeout(400);
 
   // 8. lo guardado, aunque venga roto, no rompe la pantalla
   await pg.evaluate(() => {
@@ -439,11 +486,12 @@ async function ejemplo(pg) {
   await pg.evaluate(() => { localStorage.setItem('tenerife.cuerpo', '{no es json'); TG_CUERPO.abrir(); });
   prueba('JSON roto: pantalla vacía y sin errores', await pg.evaluate(() => TG_CUERPO.estado().series.length === 0) && errores.length === 0, errores.join(' | '));
 
-  // 8b. la lámina vacía dice qué hacer; con series, no; la entrada (barrido y barras que crecen) solo al abrir
+  // 8b. la escena vacía dice qué hacer; con series, no; la entrada (el sol que asoma, las barras que crecen y
+  //     la rejilla que aparece) solo al abrir
   await vacio(pg); await pg.waitForTimeout(150);
-  const r8b = await pg.evaluate(() => ({ visible: document.getElementById('tgc-pista').offsetParent !== null, txt: document.getElementById('tgc-pista-txt').textContent,
-    entra: document.getElementById('tgc').classList.contains('tgc-entra') }));
-  prueba('vacío: la lámina invita a anotar', r8b.visible && r8b.txt === 'Toque un músculo del dibujo o de la lista para anotar series.', JSON.stringify(r8b));
+  const r8b = await pg.evaluate(() => ({ visible: document.getElementById('tgc-pista').getClientRects().length > 0, txt: document.getElementById('tgc-pista-txt').textContent,
+    entra: document.getElementById('tgc').classList.contains('tgc-entra'), rayos: [...document.querySelectorAll('#tgc-cielo .tgc-rayo')].every(r => r.getAttribute('opacity') !== '1') }));
+  prueba('vacío: la escena invita a tocar el cuerpo, y ningún rayo del sol encendido', r8b.visible && r8b.txt === 'Toque su cuerpo para anotar una serie' && r8b.rayos, JSON.stringify(r8b));
   await ejemplo(pg); await pg.waitForTimeout(150);
   prueba('con series: sin la invitación', await pg.evaluate(() => document.getElementById('tgc-pista').hidden));
   await pg.waitForTimeout(1900);
@@ -456,78 +504,109 @@ async function ejemplo(pg) {
   await pg.evaluate(() => document.getElementById('tgc-borrar-si').click());
   prueba('borrado: nada guardado', await pg.evaluate(() => localStorage.getItem('tenerife.cuerpo') === null && TG_CUERPO.estado().series.length === 0));
 
-  // 10. dentro de la pestaña y sin hoja abierta, Escape y «atrás» son los del perfil: lo cierran
-  //     entero, y al volver a abrirlo «Su cuerpo» sigue en su pestaña. Ir a otra pestaña y volver
-  //     no lo duplica
-  await pg.evaluate(() => TG_PERFIL.pestana('viaje')); await pg.waitForTimeout(150);
-  const r10a = await pg.evaluate(() => ({ cuerpo: document.getElementById('cuerpo-panel').offsetParent === null, viaje: !document.getElementById('tgp-p-viaje').hidden }));
-  await pg.evaluate(() => TG_PERFIL.pestana('cuerpo')); await pg.waitForTimeout(250);
-  const r10v = await pg.evaluate(() => ({ n: document.querySelectorAll('#cuerpo-panel').length, sitio: document.getElementById('cuerpo-panel').parentNode.id,
-    visible: document.getElementById('cuerpo-panel').offsetParent !== null, tarjeta: document.getElementById('tgp-cuerpo').hidden, estado: JSON.stringify(history.state) }));
-  prueba('en Viaje no se ve; de vuelta en Cuerpo, en su sitio, una sola vez, sin la tarjeta y sin entradas en el historial', r10a.cuerpo && r10a.viaje && r10v.n === 1 &&
-    r10v.sitio === 'tgp-cuerpo-sitio' && r10v.visible && r10v.tarjeta && r10v.estado === '{"tgPerfil":1}', JSON.stringify([r10a, r10v]));
+  // 21. (6-11-2026, bloque 2) en un móvil estrecho (359 y 360), uno ancho (430) y una tableta (820): nada
+  //     pasa del borde, la escena de 400 a 700 px y a la medida de su caja (el cielo se vuelve a dibujar),
+  //     el personaje dentro, y la rejilla a tres columnas (a dos por debajo de 360)
+  for (const [W, H] of [[359, 740], [360, 780], [430, 932], [820, 1180]]) {
+    await pg.setViewportSize({ width: W, height: H }); await pg.waitForTimeout(500);
+    const r21 = await pg.evaluate(() => { const p = document.getElementById('cuerpo-panel'), e = document.getElementById('tgc-escena').getBoundingClientRect(), f = document.getElementById('tgc-fig').getBoundingClientRect();
+      const tops = [...document.querySelectorAll('#tgc-lista .tgc-fila')].map(b => Math.round(b.getBoundingClientRect().top)), cols = tops.filter(t => t === tops[0]).length, c = document.querySelector('#tgc-cielo svg');
+      return { ancho: p.scrollWidth <= p.clientWidth, escena: e.height >= 400 && e.height <= 700 && e.width <= innerWidth, figura: f.top >= e.top && f.bottom <= e.bottom + 1 && f.left >= e.left && f.right <= e.right, cols,
+        cielo: !!c && c.getAttribute('width') === String(Math.round(document.getElementById('tgc-cielo').clientWidth)), modos: Math.round(document.getElementById('tgc-modos').getBoundingClientRect().bottom) === innerHeight }; });
+    prueba(W + ' × ' + H + ': sin desborde, la escena a su medida con el personaje dentro, la barra de modos abajo, y la rejilla a ' + (W < 360 ? 'dos' : 'tres') + ' columnas', r21.ancho && r21.escena && r21.figura && r21.cols === (W < 360 ? 2 : 3) && r21.cielo && r21.modos, JSON.stringify(r21));
+  }
+  await pg.setViewportSize({ width: 390, height: 844 }); await pg.waitForTimeout(400);
+
+  // 10. (6-11-2026, bloque 2) encima del perfil: Escape, la flecha y «atrás» cierran «Su cuerpo», y el
+  //     perfil se queda abierto en su pestaña Cuerpo, sin nada inerte; «Abrir» lo vuelve a poner, una sola vez
   await pg.evaluate(() => { if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); });
   await pg.keyboard.press('Escape'); await pg.waitForTimeout(250);
-  prueba('Escape, sin hoja abierta, es del perfil: lo cierra entero', await pg.evaluate(() => document.getElementById('perfil-panel').hidden && !document.getElementById('perfil-panel').inert));
-  await pg.evaluate(() => abrirPerfil()); await suCuerpo(pg);
-  prueba('el perfil se vuelve a abrir en su pestaña Cuerpo, con «Su cuerpo» dentro y nada inerte', await pg.evaluate(() => TG_PERFIL.estado().pestana === 'cuerpo' && TG_CUERPO.dentro() &&
-    document.getElementById('cuerpo-panel').offsetParent !== null && document.querySelectorAll('#perfil-panel [inert]').length === 0));
+  const r10a = await pg.evaluate(() => ({ cerrado: !TG_CUERPO.abierto() && document.getElementById('cuerpo-panel').hidden, perfil: !document.getElementById('perfil-panel').hidden && !document.getElementById('perfil-panel').inert,
+    pestana: TG_PERFIL.estado().pestana, estado: JSON.stringify(history.state), foco: document.activeElement && document.activeElement.id }));
+  prueba('Escape, sin hoja abierta, cierra «Su cuerpo»; el perfil, abierto en Cuerpo y sin nada inerte, con el foco en «Abrir»', r10a.cerrado && r10a.perfil && r10a.pestana === 'cuerpo' && r10a.estado === '{"tgPerfil":1}' && r10a.foco === 'tgp-cuerpo-abrir', JSON.stringify(r10a));
+  await suCuerpo(pg);
+  await pg.click('#tgc-back'); await pg.waitForTimeout(250);
+  prueba('la flecha de vuelta también', await pg.evaluate(() => !TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden && !document.getElementById('perfil-panel').inert));
+  await suCuerpo(pg);
   await pg.goBack(); await pg.waitForTimeout(250);
-  prueba('«atrás» cierra el perfil, sin salir de la app', await pg.evaluate(() => document.getElementById('perfil-panel').hidden && typeof abrirPerfil === 'function') && pg.url().endsWith('/index.html'), pg.url());
+  prueba('y «atrás»: cierra «Su cuerpo», no el perfil', await pg.evaluate(() => !TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden && JSON.stringify(history.state) === '{"tgPerfil":1}'));
+  await pg.goBack(); await pg.waitForTimeout(250);
+  prueba('otro «atrás» cierra el perfil, sin salir de la app', await pg.evaluate(() => document.getElementById('perfil-panel').hidden && typeof abrirPerfil === 'function') && pg.url().endsWith('/index.html'), pg.url());
+  await pg.evaluate(() => abrirPerfil()); await pg.waitForTimeout(300);
+  await pg.evaluate(() => TG_PERFIL.pestana('viaje')); await pg.waitForTimeout(150);
+  await pg.evaluate(() => TG_PERFIL.pestana('cuerpo')); await pg.waitForTimeout(250);
+  await suCuerpo(pg);
+  prueba('de vuelta, por la tarjeta: una sola pantalla, encima, con su entrada en el historial', await pg.evaluate(() => document.querySelectorAll('#cuerpo-panel').length === 1 && TG_CUERPO.abierto() && document.getElementById('perfil-panel').inert && JSON.stringify(history.state) === '{"tgPerfil":1,"tgCuerpo":1}'));
 
-  // 10b. (la app) si el módulo no llega, la tarjeta de la pestaña lo dice; con red otra vez, su
-  //      «Abrir» lo pone en su sitio
+  // 10e. (6-11-2026, bloque 2) el tema: Día por defecto; el botón pasa a Noche, se recuerda en este dispositivo
+  //      (tenerife.cuerpo.tema, aparte de lo anotado), sigue al cerrar y abrir, y «Borrar los datos» no lo toca
+  const temaDe = () => pg.evaluate(() => { const p = document.getElementById('cuerpo-panel'), b = document.getElementById('tgc-tema'), c = document.querySelector('#tgc-cielo svg');
+    return { tema: p.getAttribute('data-tema'), api: TG_CUERPO.tema(), guardado: localStorage.getItem('tenerife.cuerpo.tema'), aria: b.getAttribute('aria-label'), pulsado: b.getAttribute('aria-pressed'),
+      esquema: getComputedStyle(p).colorScheme, fondo: getComputedStyle(p).backgroundColor, cielo: c && c.style.getPropertyValue('--e-c1'),
+      luna: getComputedStyle(b.querySelector('.tgc-ico-luna')).display, sol: getComputedStyle(b.querySelector('.tgc-ico-sol')).display }; });
+  const t1 = await temaDe();
+  prueba('tema Día: fondo claro, el botón ofrece la Noche (con la luna) y nada guardado', t1.tema === 'dia' && t1.api === 'dia' && t1.guardado === null && t1.aria === 'Cambiar al tema Noche' && t1.pulsado === 'false' && t1.esquema === 'light' && t1.fondo === 'rgb(238, 243, 248)' && t1.luna !== 'none' && t1.sol === 'none', JSON.stringify(t1));
+  await pg.click('#tgc-tema'); await pg.waitForTimeout(1500);
+  const t2 = await temaDe();
+  prueba('un toque: tema Noche, guardado en este dispositivo, fondo oscuro, el cielo con otros colores, y el botón ofrece el Día (con el sol)', t2.tema === 'noche' && t2.api === 'noche' && t2.guardado === 'noche' && t2.aria === 'Cambiar al tema Día' && t2.pulsado === 'true' && t2.esquema === 'dark' && t2.fondo === 'rgb(15, 17, 23)' && !!t2.cielo && t2.cielo !== t1.cielo && t2.sol !== 'none' && t2.luna === 'none', JSON.stringify(t2));
+  await pg.keyboard.press('Escape'); await pg.waitForTimeout(250); await suCuerpo(pg);
+  prueba('al cerrar y abrir, sigue en Noche', (await temaDe()).tema === 'noche');
+  await pg.evaluate(() => document.getElementById('tgc-borrar').click()); await pg.evaluate(() => document.getElementById('tgc-borrar-si').click()); await pg.waitForTimeout(150);
+  prueba('«Borrar los datos de «Su cuerpo»» borra lo anotado y no toca el tema', (await temaDe()).guardado === 'noche' && await pg.evaluate(() => localStorage.getItem('tenerife.cuerpo') === null));
+  await pg.click('#tgc-tema'); await pg.waitForTimeout(300);
+  prueba('y de vuelta al Día, guardado', (await temaDe()).guardado === 'dia' && (await temaDe()).tema === 'dia');
+
+  // 10f. (6-11-2026, bloque 2) «Las cifras»: desde el botón de la cabecera, desde el enlace de «Sus últimos 7
+  //      días» y desde la referencia de la hoja de un grupo (que se cierra y le deja su entrada del
+  //      historial); Escape, «atrás» y su «cerrar» la cierran y dejan la pantalla
+  await ejemplo(pg); await pg.waitForTimeout(150);
+  await pg.click('#tgc-cifras-btn'); await pg.waitForTimeout(300);
+  const f1 = await pg.evaluate(() => ({ hoja: !document.getElementById('tgc-hoja').hidden, pag: !document.getElementById('tgc-pag-cifras').hidden && document.getElementById('tgc-pag-grupo').hidden, foco: document.activeElement && document.activeElement.id,
+    etiqueta: document.getElementById('tgc-hoja').getAttribute('aria-labelledby'), tit: document.getElementById('tgc-cifras-tit').textContent, reco: document.getElementById('tgc-cifras-reco').textContent === document.getElementById('tgc-reco').textContent,
+    ref: !document.getElementById('tgc-cifras-ref').hidden && /ACSM/.test(document.getElementById('tgc-cifras-ref').textContent), fuentes: /^Fuentes: OMS/.test(document.getElementById('tgc-fuentes').textContent),
+    estado: JSON.stringify(history.state), aria: document.getElementById('tgc-cifras-btn').getAttribute('aria-label'), inerte: document.getElementById('tgc').inert && document.getElementById('tgc-modos').inert }));
+  prueba('«Las cifras» desde la cabecera: su página en la hoja, con el foco en el título, la recomendación de su edad, la referencia del ACSM (adultos) y las fuentes; su entrada en el historial; lo de debajo, inerte',
+    f1.hoja && f1.pag && f1.foco === 'tgc-cifras-tit' && f1.etiqueta === 'tgc-cifras-tit' && f1.tit === 'De dónde salen las cifras' && f1.reco && f1.ref && f1.fuentes && f1.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1,"tgCuerpoCifras":1}' && f1.aria === 'De dónde salen las cifras' && f1.inerte, JSON.stringify(f1));
+  await pg.keyboard.press('Escape'); await pg.waitForTimeout(250);
+  prueba('Escape la cierra, y «Su cuerpo» sigue', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('tgc').inert && JSON.stringify(history.state) === '{"tgPerfil":1,"tgCuerpo":1}'));
+  await pg.click('#tgc-cifras-link'); await pg.waitForTimeout(300);
+  prueba('desde el enlace de «Sus últimos 7 días»', await pg.evaluate(() => !document.getElementById('tgc-pag-cifras').hidden && !document.getElementById('tgc-hoja').hidden && document.getElementById('tgc-cifras-link').textContent === 'Las cifras'));
+  await pg.goBack(); await pg.waitForTimeout(300);
+  prueba('«atrás» la cierra, y «Su cuerpo» sigue', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden));
+  await pg.click('#tgc-lista .tgc-fila[data-g="pecho"]'); await pg.waitForTimeout(300);
+  await pg.click('#tgc-h-ref'); await pg.waitForTimeout(400);
+  const f2 = await pg.evaluate(() => ({ cifras: !document.getElementById('tgc-pag-cifras').hidden, grupo: document.getElementById('tgc-pag-grupo').hidden, estado: JSON.stringify(history.state), marca: document.querySelectorAll('#tgc-cara .tgf-marca').length, ref: document.getElementById('tgc-h-ref').textContent }));
+  prueba('desde la referencia de la hoja de un grupo («' + f2.ref + '»): la hoja del grupo se cierra y «Las cifras» hereda su entrada del historial', f2.cifras && f2.grupo && f2.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1,"tgCuerpoCifras":1}' && f2.marca === 0 && f2.ref === 'Referencia: 10 series (ACSM)', JSON.stringify(f2));
+  await pg.click('#tgc-cifras-cerrar'); await pg.waitForTimeout(250);
+  prueba('su «cerrar» la cierra, y el historial queda en la pantalla', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden && TG_CUERPO.abierto() && JSON.stringify(history.state) === '{"tgPerfil":1,"tgCuerpo":1}'));
+
+  // 10b. (la app) si el módulo no llega, la tarjeta queda sin el personaje y sin aviso, y es «Abrir» quien
+  //      lo dice; con red otra vez, «Abrir» pone la pantalla y la tarjeta dibuja el personaje
   {
     const c2 = await contexto(b), p2 = await c2.newPage(), e2 = []; vigilar(p2, e2);
     await p2.route('**/modulos/cuerpo.js', r => r.abort());
     await abrirApp(p2); await abrirPerfilCuerpo(p2); await p2.waitForTimeout(800);
-    const r10b = await p2.evaluate(() => ({ tarjeta: !document.getElementById('tgp-cuerpo').hidden, aviso: !document.getElementById('tgp-cuerpo-error').hidden,
-      txt: document.getElementById('tgp-cuerpo-error').textContent, cuerpo: !!window.TG_CUERPO, perfil: !document.getElementById('perfil-panel').hidden }));
-    prueba('sin el módulo: la tarjeta de la pestaña lo dice, y el perfil sigue abierto', r10b.tarjeta && r10b.aviso && /conexión/.test(r10b.txt) && !r10b.cuerpo && r10b.perfil, JSON.stringify(r10b));
+    const r10b = await p2.evaluate(() => ({ tarjeta: document.getElementById('tgp-cuerpo').getClientRects().length > 0, mini: !!document.querySelector('#tgp-cuerpo-mini svg'), aviso: !document.getElementById('tgp-cuerpo-error').hidden,
+      cuerpo: !!window.TG_CUERPO, perfil: !document.getElementById('perfil-panel').hidden }));
+    prueba('sin el módulo: la tarjeta, sin el personaje y sin aviso; el perfil sigue abierto', r10b.tarjeta && !r10b.mini && !r10b.aviso && !r10b.cuerpo && r10b.perfil, JSON.stringify(r10b));
+    await p2.click('#tgp-cuerpo-abrir'); await p2.waitForTimeout(800);
+    const r10c = await p2.evaluate(() => ({ aviso: !document.getElementById('tgp-cuerpo-error').hidden, txt: document.getElementById('tgp-cuerpo-error').textContent, cuerpo: !!window.TG_CUERPO }));
+    prueba('…y «Abrir» lo dice', r10c.aviso && /conexión/.test(r10c.txt) && !r10c.cuerpo, JSON.stringify(r10c));
     await p2.unroute('**/modulos/cuerpo.js');
     await p2.click('#tgp-cuerpo-abrir');
-    await suCuerpo(p2).catch(() => {});
-    prueba('…y con red otra vez, su «Abrir» lo pone en su sitio, y la tarjeta y el aviso se van', await p2.evaluate(() => !!window.TG_CUERPO && TG_CUERPO.dentro() &&
-      document.getElementById('cuerpo-panel').parentNode.id === 'tgp-cuerpo-sitio' && document.getElementById('tgp-cuerpo').hidden && document.getElementById('tgp-cuerpo-error').hidden));
+    await p2.waitForFunction(() => window.TG_CUERPO && TG_CUERPO.abierto(), null, { timeout: 15000 }).catch(() => {});
+    await p2.waitForTimeout(300);
+    prueba('…y con red otra vez, su «Abrir» pone la pantalla encima, el aviso se va y la tarjeta dibuja el personaje', await p2.evaluate(() => !!window.TG_CUERPO && TG_CUERPO.abierto() && document.getElementById('cuerpo-panel').parentNode === document.body &&
+      document.getElementById('tgp-cuerpo-error').hidden && !!document.querySelector('#tgp-cuerpo-mini svg')));
     prueba('…sin errores de página', e2.filter(x => !/cuerpo\.js/.test(x)).length === 0, e2.join(' | '));
     await c2.close();
   }
 
-  // 10c. (la app) con versiones mezcladas, guardadas sin conexión: un módulo de antes del 1 de
-  //      noviembre, que no sabe ir dentro (sin incrustar), deja la tarjeta, y su «Abrir» abre su
-  //      pantalla encima, como entonces; y con un perfil sin sitio para él, abrirCuerpo también
-  {
-    const c4 = await contexto(b), p4 = await c4.newPage(), e4 = []; vigilar(p4, e4);
-    await p4.route('**/modulos/cuerpo.js', async r => {
-      const res = await r.fetch(), s = await res.text();
-      await r.fulfill({ status: 200, contentType: 'text/javascript; charset=utf-8', body: s.replace('    incrustar: incrustar,\n', '') });
-    });
-    await abrirApp(p4); await abrirPerfilCuerpo(p4); await p4.waitForTimeout(800);
-    const v1 = await p4.evaluate(() => ({ antes: !!window.TG_CUERPO && typeof TG_CUERPO.incrustar !== 'function', tarjeta: !document.getElementById('tgp-cuerpo').hidden,
-      aviso: !document.getElementById('tgp-cuerpo-error').hidden }));
-    prueba('un módulo de antes: la tarjeta, sin aviso', v1.antes && v1.tarjeta && !v1.aviso, JSON.stringify(v1));
-    await p4.click('#tgp-cuerpo-abrir'); await p4.waitForTimeout(400);
-    const v2 = await p4.evaluate(() => ({ abierto: TG_CUERPO.abierto(), dentro: TG_CUERPO.dentro(), encima: document.getElementById('cuerpo-panel').parentNode === document.body,
-      inerte: document.getElementById('perfil-panel').inert }));
-    prueba('…y su «Abrir» abre la pantalla encima, con el perfil inerte debajo', v2.abierto && !v2.dentro && v2.encima && v2.inerte === true, JSON.stringify(v2));
-    await p4.keyboard.press('Escape'); await p4.waitForTimeout(250);
-    prueba('…y Escape la cierra y deja el perfil abierto', await p4.evaluate(() => !TG_CUERPO.abierto() && !document.getElementById('perfil-panel').hidden && !document.getElementById('perfil-panel').inert));
-    prueba('…sin errores de página', e4.length === 0, e4.join(' | '));
-    await c4.close();
-    const c6 = await contexto(b), p6 = await c6.newPage(), e6 = []; vigilar(p6, e6);
-    await p6.route('**/modulos/perfil.js', async r => {
-      const res = await r.fetch(), s = await res.text();
-      await r.fulfill({ status: 200, contentType: 'text/javascript; charset=utf-8', body: s.replace('<div class="tgp-cuerpo-sitio" id="tgp-cuerpo-sitio"></div>', '') });
-    });
-    await abrirApp(p6);
-    await p6.evaluate(() => window.abrirCuerpo({ modo: 'aspecto' })); await p6.waitForTimeout(400);
-    const v3 = await p6.evaluate(() => ({ sinSitio: !document.getElementById('tgp-cuerpo-sitio'), abierto: TG_CUERPO.abierto(), dentro: TG_CUERPO.dentro(),
-      encima: document.getElementById('cuerpo-panel').parentNode === document.body, aspecto: document.getElementById('tgc').classList.contains('is-aspecto'),
-      perfil: !document.getElementById('perfil-panel').hidden }));
-    prueba('un perfil sin sitio para «Su cuerpo»: abrirCuerpo lo abre encima, en el modo pedido', v3.sinSitio && v3.abierto && !v3.dentro && v3.encima && v3.aspecto && v3.perfil, JSON.stringify(v3));
-    prueba('…sin errores de página', e6.length === 0, e6.join(' | '));
-    await c6.close();
-  }
+  // 10c. (la app) con versiones mezcladas, guardadas sin conexión: un perfil de antes del 6 de noviembre
+  //      (con sitio para «Su cuerpo» dentro de la pestaña) y el módulo de hoy (sin incrustar) ya lo
+  //      contemplaba el propio perfil de entonces: dejaba la tarjeta y su «Abrir» llamaba a abrir(), que es
+  //      lo que hace el módulo de hoy. Y el perfil de hoy con un módulo de antes (con incrustar y sin mini)
+  //      pide abrir(), que entonces abría encima. Nada que probar aquí: abrirCuerpo() con un modo, abajo (18)
 
   // 10d. (la app) «Su cuerpo» cargado antes que el perfil: su Escape se engancha primero en window.
   //      Con una hoja abierta, el Escape cierra solo la hoja (no lo oye nadie más: el del perfil ya
@@ -541,9 +620,9 @@ async function ejemplo(pg) {
     await p8.click('#tgc-lista .tgc-fila[data-g="pecho"]'); await p8.waitForTimeout(300);
     const v4 = await p8.evaluate(() => !document.getElementById('tgc-hoja').hidden);
     await p8.keyboard.press('Escape'); await p8.waitForTimeout(250);
-    const v5 = await p8.evaluate(() => ({ hoja: document.getElementById('tgc-hoja').hidden, perfil: !document.getElementById('perfil-panel').hidden,
-      inertes: document.querySelectorAll('#perfil-panel [inert]').length }));
-    prueba('«Su cuerpo» cargado antes que el perfil: Escape con una hoja abierta cierra solo la hoja, y el perfil sigue abierto', antes && v4 && v5.hoja && v5.perfil && v5.inertes === 0,
+    const v5 = await p8.evaluate(() => ({ hoja: document.getElementById('tgc-hoja').hidden, cuerpo: TG_CUERPO.abierto(), perfil: !document.getElementById('perfil-panel').hidden,
+      tgc: document.getElementById('tgc').inert === false }));
+    prueba('«Su cuerpo» cargado antes que el perfil: Escape con una hoja abierta cierra solo la hoja, y «Su cuerpo» y el perfil siguen abiertos', antes && v4 && v5.hoja && v5.cuerpo && v5.perfil && v5.tgc,
       JSON.stringify({ antes, v4, v5 }));
     prueba('…sin errores de página', e8.length === 0, e8.join(' | '));
     await c8.close();
@@ -615,17 +694,17 @@ async function ejemplo(pg) {
   await pg.click('.tgc-fila[data-g="' + grupoEj + '"]'); await pg.waitForSelector('.tgc-ej-fila');
   await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
   await pg.evaluate(() => history.go(-2)); await pg.waitForTimeout(350);
-  prueba('«atrás» de dos pasos desde la ficha: se cierran la ficha y la hoja; el perfil, abierto y sin nada inerte', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden &&
-    !document.getElementById('perfil-panel').hidden && document.querySelectorAll('#perfil-panel [inert]').length === 0 && JSON.stringify(history.state) === '{"tgPerfil":1}'));
+  prueba('«atrás» de dos pasos desde la ficha: se cierran la ficha y la hoja; «Su cuerpo», abierto y sin nada inerte', await pg.evaluate(() => document.getElementById('tgc-hoja').hidden &&
+    TG_CUERPO.abierto() && !document.getElementById('tgc').inert && JSON.stringify(history.state) === '{"tgPerfil":1,"tgCuerpo":1}'));
   await pg.click('.tgc-fila[data-g="' + grupoEj + '"]'); await pg.waitForSelector('.tgc-ej-fila');
   await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
   await pg.evaluate(() => history.go(-3)); await pg.waitForTimeout(350);
-  const r12m = await pg.evaluate(() => ({ perfil: document.getElementById('perfil-panel').hidden, hoja: document.getElementById('tgc-hoja').hidden }));
-  await pg.evaluate(() => abrirPerfil()); await suCuerpo(pg);
-  const r12n = await pg.evaluate(() => ({ hoja: document.getElementById('tgc-hoja').hidden, inertes: document.querySelectorAll('#perfil-panel [inert]').length,
-    desplaza: getComputedStyle(document.getElementById('perfil-panel')).overflowY }));
-  prueba('«atrás» de tres pasos desde la ficha: también el perfil; al volver a abrirlo, sin hoja, sin nada inerte y se desplaza', r12m.perfil && r12m.hoja && r12n.hoja &&
-    r12n.inertes === 0 && r12n.desplaza === 'auto', JSON.stringify([r12m, r12n]));
+  const r12m = await pg.evaluate(() => ({ cuerpo: TG_CUERPO.abierto(), perfil: !document.getElementById('perfil-panel').hidden && !document.getElementById('perfil-panel').inert, hoja: document.getElementById('tgc-hoja').hidden }));
+  await suCuerpo(pg);
+  const r12n = await pg.evaluate(() => ({ hoja: document.getElementById('tgc-hoja').hidden, inertes: document.getElementById('tgc').inert || document.getElementById('tgc-modos').inert,
+    desplaza: getComputedStyle(document.getElementById('cuerpo-panel')).overflowY }));
+  prueba('«atrás» de tres pasos desde la ficha: también «Su cuerpo», y el perfil queda abierto y libre; al volver a abrirla, sin hoja, sin nada inerte y se desplaza', !r12m.cuerpo && r12m.perfil && r12m.hoja && r12n.hoja &&
+    !r12n.inertes && r12n.desplaza === 'auto', JSON.stringify([r12m, r12n]));
   // los datos reales: cada grupo abre su lista entera
   const porGrupo = {};
   datos.ejercicios.forEach(x => x.g.forEach(g => { porGrupo[g] = (porGrupo[g] || 0) + 1; }));
@@ -774,25 +853,27 @@ async function ejemplo(pg) {
   }
 
   // 15. (la app) los menores, con el año de nacimiento escrito en el formulario del perfil, el de
-  //     verdad, que va en la misma pestaña: «Su cuerpo» se repinta en el acto, sin salir de ella.
-  //     Sin la marca del 10 ni su texto, y con la recomendación de su edad; con un año de adulto,
-  //     o sin año, la marca vuelve
+  //     verdad (la pestaña Cuerpo, debajo de «Su cuerpo»: se cierra la pantalla, se escribe y se guarda,
+  //     y se vuelve a abrir). Sin la referencia del 10 (ni en «Las cifras» ni en la hoja), y con la
+  //     recomendación de su edad; con un año de adulto, o sin año, la referencia vuelve
   {
     const c5 = await contexto(b), p5 = await c5.newPage(), e5 = []; vigilar(p5, e5);
     await abrirApp(p5); await abrirPerfilCuerpo(p5); await suCuerpo(p5);
     const anio = await p5.evaluate(() => new Date().getFullYear());
     const conAnio = async (v) => {
+      if (await p5.evaluate(() => window.TG_CUERPO && TG_CUERPO.abierto())) { await p5.keyboard.press('Escape'); await p5.waitForTimeout(250); }
       await p5.fill('#tgp-nac', v); await p5.click('#tgp-save'); await p5.waitForTimeout(200);
       const guardado = await p5.evaluate(() => (JSON.parse(localStorage.getItem('tenerife.perfil')) || {}).nacimiento);
-      return Object.assign({ guardado }, await p5.evaluate(() => ({ marcas: document.querySelectorAll('#tgc-lista .tgc-barra-ref').length,
-        ref: !document.getElementById('tgc-ref').hidden, reco: document.getElementById('tgc-reco').textContent })));
+      await suCuerpo(p5);
+      return Object.assign({ guardado }, await p5.evaluate(() => ({ ref: !document.getElementById('tgc-cifras-ref').hidden, hRef: !document.getElementById('tgc-h-ref').hidden,
+        reco: document.getElementById('tgc-reco').textContent, cifras: document.getElementById('tgc-cifras-reco').textContent })));
     };
     const m15 = await conAnio(String(anio - 15));
-    prueba('perfil con 15 años: sin la marca del 10 ni su texto, y la recomendación de 5 a 17 años', m15.guardado === anio - 15 && m15.marcas === 0 && !m15.ref && /^La OMS \(2020\) recomienda de 5 a 17 años/.test(m15.reco), JSON.stringify(m15));
+    prueba('perfil con 15 años: sin la referencia del 10, y la recomendación de 5 a 17 años (en la pantalla y en «Las cifras»)', m15.guardado === anio - 15 && !m15.ref && !m15.hRef && /^La OMS \(2020\) recomienda de 5 a 17 años/.test(m15.reco) && m15.cifras === m15.reco, JSON.stringify(m15));
     const a15 = await conAnio(String(anio - 30));
-    prueba('perfil con 30 años: la marca en los 12 grupos, su texto y la recomendación de adultos', a15.guardado === anio - 30 && a15.marcas === 12 && a15.ref && /recomiendan a los adultos/.test(a15.reco), JSON.stringify(a15));
+    prueba('perfil con 30 años: la referencia del ACSM y la recomendación de adultos', a15.guardado === anio - 30 && a15.ref && a15.hRef && /recomiendan a los adultos/.test(a15.reco), JSON.stringify(a15));
     const s15 = await conAnio('');
-    prueba('perfil sin año: como un adulto', s15.guardado === null && s15.marcas === 12 && s15.ref && /recomiendan a los adultos/.test(s15.reco), JSON.stringify(s15));
+    prueba('perfil sin año: como un adulto', s15.guardado === null && s15.ref && s15.hRef && /recomiendan a los adultos/.test(s15.reco), JSON.stringify(s15));
     prueba('…sin errores de página', e5.length === 0, e5.join(' | '));
     await c5.close();
   }
@@ -812,13 +893,11 @@ async function ejemplo(pg) {
     await idioma(pg, 'es');
   }
 
-  // 17. (la app) el iPhone con isla dinámica (1 de noviembre de 2026): 59 px arriba. El perfil ya
-  //     los deja con su padding-top, y su cabecera, pegada, se queda en ellos sin sumarlos otra vez
-  //     (antes bajaba a 118, y en la pantalla de «Su cuerpo» tapaba «Músculos | Aspecto»). Encima, en
-  //     la franja de la hora, una del color de la cabecera: lo que sube ya no pasa por debajo de la
-  //     hora. En la pestaña, «Músculos | Aspecto» a la vista bajo la barra de las pestañas, y en
-  //     «Aspecto», al bajar, el personaje pegado justo debajo de esa barra. Chromium simula el margen
-  //     (Emulation.setSafeAreaInsetsOverride).
+  // 17. (la app) el iPhone con isla dinámica: 59 px arriba y 34 abajo (Chromium simula el margen,
+  //     Emulation.setSafeAreaInsetsOverride). La escena pasa por debajo de la hora, de borde a borde; la
+  //     cabecera de «Su cuerpo», no: su flecha y su título empiezan debajo del margen, también al bajar
+  //     (pegada y opaca) y sin escena («Comida»); la barra de modos deja el margen de abajo; y un toque con
+  //     el dedo en el pecho abre su hoja, pegada abajo
   {
     const c7 = await b.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, serviceWorkers: 'block', locale: 'es-ES' });
     await c7.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') ? r.continue() : r.abort());
@@ -831,33 +910,33 @@ async function ejemplo(pg) {
     if (simula) {
       await abrirApp(p7); await abrirPerfilCuerpo(p7); await suCuerpo(p7); await p7.waitForTimeout(600);
       const medir = () => p7.evaluate(() => { const r = s => { const x = document.querySelector(s).getBoundingClientRect(); return [Math.round(x.top), Math.round(x.bottom)]; };
-        const pp = document.getElementById('perfil-panel'), f = getComputedStyle(pp, '::before');
-        return { margen: parseFloat(getComputedStyle(pp).paddingTop), cab: r('#perfil-panel .tgp-top'), barra: r('#tgp-tabs'), modos: r('#cuerpo-panel .tgc-modos'),
-          franja: [f.position, f.top, f.height, f.zIndex, f.pointerEvents].join(' '), color: f.backgroundColor, cabColor: getComputedStyle(pp.querySelector('.tgp-top')).backgroundColor }; });
-      const hasta = (dy) => p7.evaluate(dy => { const pp = document.getElementById('perfil-panel'), s = document.getElementById('tgp-cuerpo-sitio');
-        pp.scrollTop = s.getBoundingClientRect().top - pp.getBoundingClientRect().top + pp.scrollTop + dy; }, dy);
-      await hasta(-200); await p7.waitForTimeout(250);
+        const t = document.getElementById('tgc-top');
+        return { margen: getComputedStyle(t).paddingTop, top: r('#tgc-top'), h1: r('#tgc-titulo'), back: r('#tgc-back'), escena: r('#tgc-escena'), modos: r('#tgc-modos'), boton: r('#tgc-modo-m'),
+          pegada: document.getElementById('tgc').classList.contains('pegada'), fondo: getComputedStyle(t).backgroundColor, sinEscena: document.getElementById('cuerpo-panel').classList.contains('sin-escena') }; });
+      const opaca = x => !/rgba\(0, 0, 0, 0\)|transparent/.test(x);
       const a7 = await medir();
-      prueba('isla dinámica: la cabecera del perfil justo debajo del margen, y «Músculos | Aspecto» a la vista, debajo de la barra de las pestañas', a7.margen === 59 &&
-        Math.abs(a7.cab[0] - 59) <= 1 && a7.barra[0] >= a7.cab[1] && a7.modos[0] >= a7.barra[1] && a7.modos[1] <= 852, JSON.stringify(a7));
-      await p7.evaluate(() => { document.getElementById('perfil-panel').scrollTop += 600; }); await p7.waitForTimeout(250);
+      prueba('isla dinámica: la escena desde el borde de arriba (pasa por debajo de la hora); la cabecera, en cristal, con su flecha y su título debajo del margen; la barra de modos abajo, con su margen',
+        a7.margen === '59px' && a7.escena[0] === 0 && a7.top[0] === 0 && a7.back[0] >= 59 && a7.h1[0] >= 59 && a7.modos[1] === 852 && a7.boton[1] <= 852 - 34 && !a7.pegada && !opaca(a7.fondo), JSON.stringify(a7));
+      await p7.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop += 700; }); await p7.waitForTimeout(300);
       const b7 = await medir();
-      prueba('isla dinámica: al bajar, la cabecera y la barra se quedan pegadas justo debajo del margen', Math.abs(b7.cab[0] - 59) <= 1 && Math.abs(b7.barra[0] - b7.cab[1]) <= 1, JSON.stringify(b7));
-      prueba('isla dinámica: en la franja de la hora, una fija de 59 px, del color de la cabecera, por encima de lo que se desplaza y sin recibir toques', b7.franja === 'fixed 0px 59px 6 none' &&
-        b7.color === b7.cabColor && !/rgba\(0, 0, 0, 0\)|transparent/.test(b7.color), JSON.stringify(b7));
-      await p7.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 0; document.getElementById('tgc-modo-a').click(); }); await p7.waitForTimeout(500);
-      await hasta(400); await p7.waitForTimeout(250);
-      const c7m = await p7.evaluate(() => { const t = document.getElementById('tgp-tabs').getBoundingClientRect(), e = document.querySelector('#cuerpo-panel .tgc-escena').getBoundingClientRect();
-        return { barra: [Math.round(t.top), Math.round(t.bottom)], escena: Math.round(e.top) }; });
-      prueba('isla dinámica: en «Aspecto», al bajar, el personaje se queda pegado justo debajo de la barra de las pestañas', Math.abs(c7m.escena - c7m.barra[1]) <= 1 && c7m.barra[0] > 59, JSON.stringify(c7m));
+      prueba('isla dinámica: al bajar, la cabecera se queda pegada arriba, opaca, con su título debajo del margen', b7.top[0] === 0 && b7.h1[0] >= 59 && b7.pegada && opaca(b7.fondo), JSON.stringify(b7));
+      await p7.click('#tgc-modo-c'); await p7.waitForTimeout(400);
+      const c7m = await medir();
+      prueba('isla dinámica: sin escena («Comida»), la cabecera opaca desde el borde, con su título debajo del margen', c7m.top[0] === 0 && c7m.h1[0] >= 59 && c7m.sinEscena && opaca(c7m.fondo), JSON.stringify(c7m));
+      await p7.click('#tgc-modo-m'); await p7.waitForTimeout(300);
+      await p7.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop = 0; }); await p7.waitForTimeout(200);
+      const z7 = await p7.evaluate(() => { const z = document.querySelector('#tgc-cara .tgf-z[data-g="pecho"]').getBoundingClientRect(); return [z.left + z.width / 2, z.top + z.height / 2]; });
+      await p7.touchscreen.tap(z7[0], z7[1]); await p7.waitForTimeout(700);
+      const d7 = await p7.evaluate(() => ({ hoja: !document.getElementById('tgc-hoja').hidden, tit: document.getElementById('tgc-hoja-tit').textContent, abajo: Math.round(document.getElementById('tgc-hoja').getBoundingClientRect().bottom) }));
+      prueba('isla dinámica: un toque con el dedo en el pecho abre su hoja, pegada abajo', d7.hoja && d7.tit === 'Pecho' && d7.abajo === 852, JSON.stringify(d7));
     }
     prueba('isla dinámica: sin errores de página', e7.length === 0, e7.join(' | '));
     await c7.close();
   }
 
-  // 18. (la app) lo nuevo de la entrega del 1 de noviembre, dentro de la pestaña (3 de noviembre de
-  //     2026): «Preguntar», el panel SOS encima desde una respuesta, «Comida», «Su deporte»,
-  //     abrirCuerpo() con un modo o una pregunta, y el idioma con «Preguntar» abierto
+  // 18. (la app) lo nuevo de la entrega del 1 de noviembre (3 de noviembre de 2026; desde el 6, con «Su
+  //     cuerpo» encima del perfil): «Preguntar», el panel SOS encima desde una respuesta, «Comida», «Su
+  //     deporte», abrirCuerpo() con un modo o una pregunta, y el idioma con «Preguntar» abierto
   {
     const fs = require('fs'), path = require('path');
     const lee = f => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', f), 'utf8'));
@@ -882,11 +961,11 @@ async function ejemplo(pg) {
     await p8.click('#tgc-modo-p');
     await p8.waitForFunction(() => { const f = document.getElementById('tgc-preg-form'); return f && !f.hidden; }, null, { timeout: 15000 }).catch(() => {});
     const r18 = await p8.evaluate(() => ({ pulsado: document.getElementById('tgc-modo-p').getAttribute('aria-pressed'), vista: !document.getElementById('tgc-vista-preguntar').hidden,
-      escena: document.getElementById('tgc-escena').hidden, sitio: document.getElementById('cuerpo-panel').parentNode.id,
+      escena: document.getElementById('tgc-escena').hidden, sinEscena: document.getElementById('cuerpo-panel').classList.contains('sin-escena'), encima: document.getElementById('cuerpo-panel').parentNode === document.body,
       estado: document.getElementById('tgc-asis-estado').textContent, pie: document.getElementById('tgc-ia').textContent, ia: UI_TX.cuerpoAsisRevisado.es,
       sugeridas: document.querySelectorAll('#tgc-sugeridas .tgc-chip-preg').length, estadoHist: JSON.stringify(history.state) }));
-    prueba('«Preguntar», dentro de la pestaña: su vista, sin el personaje, con preguntas sugeridas y sin entrada propia en el historial', r18.pulsado === 'true' && r18.vista && r18.escena
-      && r18.sitio === 'tgp-cuerpo-sitio' && r18.sugeridas > 0 && r18.estadoHist === '{"tgPerfil":1}', JSON.stringify(r18));
+    prueba('«Preguntar»: su vista, sin la escena (la cabecera, opaca), con preguntas sugeridas, encima del perfil y sin entrada propia en el historial', r18.pulsado === 'true' && r18.vista && r18.escena && r18.sinEscena
+      && r18.encima && r18.sugeridas > 0 && r18.estadoHist === '{"tgPerfil":1,"tgCuerpo":1}', JSON.stringify(r18));
     prueba('…sus respuestas llegan de datos/cuerpo/asistente-es.json', pide.includes('/datos/cuerpo/asistente-es.json'), pide.filter(x => /asistente/.test(x)).join(' '));
     prueba('…y dice la IA con la frase que decidió Jerome, encima de las respuestas y al pie («' + r18.ia + '»)', /\bIA\b/.test(r18.ia) && r18.estado === r18.ia && r18.pie === r18.ia, JSON.stringify(r18));
     await preguntar(PRIV.q);
@@ -913,7 +992,7 @@ async function ejemplo(pg) {
     // la charla a media pantalla (la barra, a la vista) y con la charla vista desde arriba: la barra no se
     // separa de la charla, y desde arriba no tapa nada
     const barra = desde => p8.evaluate(d => {
-      const pn = document.getElementById('perfil-panel'), ch = document.getElementById('tgc-charla'), f = document.getElementById('tgc-preg-form');
+      const pn = document.getElementById('cuerpo-panel'), ch = document.getElementById('tgc-charla'), f = document.getElementById('tgc-preg-form');
       if (d === 'abajo') pn.scrollTop += ch.getBoundingClientRect().bottom - innerHeight / 2;
       else pn.scrollTop += ch.getBoundingClientRect().top - 150;
       const c = ch.getBoundingClientRect(), q = f.getBoundingClientRect();
@@ -935,7 +1014,7 @@ async function ejemplo(pg) {
     };
     const como = () => p8.evaluate(() => { const e = document.elementFromPoint(195, 420), cp = document.getElementById('cuerpo-panel');
       return { sos: !document.getElementById('sos-panel').hidden, encima: !!(e && e.closest('#sos-panel')), vista: window.TG_SOS ? TG_SOS.estado.vista : null,
-        perfil: !document.getElementById('perfil-panel').hidden, cuerpo: TG_CUERPO.abierto() && TG_CUERPO.dentro() && cp.offsetParent !== null,
+        perfil: !document.getElementById('perfil-panel').hidden, cuerpo: TG_CUERPO.abierto() && !cp.hidden,
         turnos: document.querySelectorAll('#tgc-charla .tgc-turno').length, preguntar: document.getElementById('tgc-modo-p').getAttribute('aria-pressed') }; });
     await abrirLaGuia();
     const s1 = await como();
@@ -976,17 +1055,17 @@ async function ejemplo(pg) {
     prueba('«Su deporte»: al elegir uno, su guía (de datos/cuerpo/deportes-es.json) y sus grupos prioritarios en el personaje', d18.ficha && d18.secciones > 0 && d18.guardado === 'surf'
       && d18.prio > 0 && pide.includes('/datos/cuerpo/deportes-es.json'), JSON.stringify(d18));
 
-    // abrirCuerpo() con un modo o una pregunta: dentro de la pestaña, como abrir()
+    // abrirCuerpo() con un modo o una pregunta: el perfil en su pestaña Cuerpo y «Su cuerpo» encima, en ese modo
     await p8.evaluate(() => abrirCuerpo({ modo: 'comida' })); await p8.waitForTimeout(300);
-    const m1 = await p8.evaluate(() => ({ c: document.getElementById('tgc-modo-c').getAttribute('aria-pressed'), sitio: document.getElementById('cuerpo-panel').parentNode.id,
-      perfil: !document.getElementById('perfil-panel').hidden, n: document.querySelectorAll('#cuerpo-panel').length }));
-    prueba('abrirCuerpo({ modo: «comida» }) la pone en «Comida», dentro de la pestaña', m1.c === 'true' && m1.sitio === 'tgp-cuerpo-sitio' && m1.perfil && m1.n === 1, JSON.stringify(m1));
+    const m1 = await p8.evaluate(() => ({ c: document.getElementById('tgc-modo-c').getAttribute('aria-pressed'), encima: document.getElementById('cuerpo-panel').parentNode === document.body && TG_CUERPO.abierto(),
+      perfil: !document.getElementById('perfil-panel').hidden && TG_PERFIL.estado().pestana === 'cuerpo', n: document.querySelectorAll('#cuerpo-panel').length }));
+    prueba('abrirCuerpo({ modo: «comida» }) la pone en «Comida», encima del perfil, una sola vez', m1.c === 'true' && m1.encima && m1.perfil && m1.n === 1, JSON.stringify(m1));
     await p8.evaluate(q => abrirCuerpo({ pregunta: q }), PRIV.q);
     await p8.waitForFunction(t => { const r = document.querySelector('#tgc-charla .tgc-turno:last-child .tgc-resp-t');
       return r && r.textContent === t && document.getElementById('tgc-modo-p').getAttribute('aria-pressed') === 'true'; }, PRIV.r.t, { timeout: 15000 }).catch(() => {});
     const m2 = await p8.evaluate(() => ({ p: document.getElementById('tgc-modo-p').getAttribute('aria-pressed'), r: (document.querySelector('#tgc-charla .tgc-turno:last-child .tgc-resp-t') || {}).textContent,
-      sitio: document.getElementById('cuerpo-panel').parentNode.id }));
-    prueba('abrirCuerpo({ pregunta }) la pone en «Preguntar», dentro de la pestaña, y ya responde', m2.p === 'true' && m2.r === PRIV.r.t && m2.sitio === 'tgp-cuerpo-sitio', JSON.stringify(m2));
+      encima: document.getElementById('cuerpo-panel').parentNode === document.body && TG_CUERPO.abierto() }));
+    prueba('abrirCuerpo({ pregunta }) la pone en «Preguntar», encima del perfil, y ya responde', m2.p === 'true' && m2.r === PRIV.r.t && m2.encima, JSON.stringify(m2));
 
     // el idioma con «Preguntar» abierto
     await idioma(p8, 'de');
@@ -1258,57 +1337,30 @@ async function ejemplo(pg) {
     prueba('las frases normales con las mismas palabras (gimnasio, estética, ropa, colores del dibujo) no dan ninguna urgencia (' + nNo + ' frases)', nNo === 46 && !falsas.length, falsas.slice(0, 5).join(' · '));
   }
 
-  // 20. (la app) al bajar por la pestaña, la cabecera y la barra de pestañas del perfil quedan
-  //     encima de lo que pasa por debajo, también de la cabecera de «Su cuerpo», en los cuatro
-  //     modos (3 de noviembre de 2026: su .tgc-top guardaba el z-index 6 de la pantalla aparte y,
-  //     como elemento de una rejilla, se pintaba encima del título del perfil y de sus pestañas)
+  // 20. (6-11-2026, bloque 2) la cabecera de «Su cuerpo» va en cristal sobre la escena y se vuelve opaca
+  //     al bajar («Músculos»; en «Aspecto», con la escena pegada arriba a la vista, sigue en cristal); sin
+  //     escena («Comida» y «Preguntar»), opaca desde el principio; y la barra de modos, fija abajo en los
+  //     cuatro modos, nunca tapa el final de la página
   {
     const c10 = await contexto(b), p10 = await c10.newPage(), e10 = []; vigilar(p10, e10);
     await abrirApp(p10); await abrirPerfilCuerpo(p10); await suCuerpo(p10);
+    const mira = () => p10.evaluate(() => { const t = document.getElementById('tgc-top'), p = document.getElementById('cuerpo-panel'), m = document.getElementById('tgc-modos').getBoundingClientRect();
+      const ultimo = [...document.querySelectorAll('#tgc .tgc-pie p, #tgc .tgc-pie button')].filter(e => e.getClientRects().length).pop();
+      return { pegada: document.getElementById('tgc').classList.contains('pegada'), transparente: /rgba\(0, 0, 0, 0\)|transparent/.test(getComputedStyle(t).backgroundColor),
+        sinEscena: p.classList.contains('sin-escena'), modosAbajo: Math.round(m.bottom) === innerHeight, finLibre: !!ultimo && ultimo.getBoundingClientRect().bottom <= m.top + 0.5, scroll: p.scrollTop }; });
     const malos = [];
     for (const m of ['m', 'a', 'c', 'p']) {
-      await p10.click('#tgc-modo-' + m); await p10.waitForTimeout(250);
-      for (const dy of [10, 50, 90]) {
-        await p10.evaluate(dy => {
-          const pp = document.getElementById('perfil-panel'), cab = pp.querySelector('.tgp-top'), top = document.querySelector('#cuerpo-panel .tgc-top');
-          pp.scrollTop += top.getBoundingClientRect().top - (cab.getBoundingClientRect().top + dy);
-        }, dy);
-        await p10.waitForTimeout(120);
-        const r = await p10.evaluate(() => {
-          const cab = document.querySelector('#perfil-panel .tgp-top'), tabs = document.getElementById('tgp-tabs'), mal = [];
-          const rc = cab.getBoundingClientRect(), rt = tabs.getBoundingClientRect();
-          for (const [x, y] of [[90, rc.top + rc.height / 2], [250, rc.top + rc.height / 2], [80, rt.top + rt.height / 2], [195, rt.top + rt.height / 2], [310, rt.top + rt.height / 2]]) {
-            const e = document.elementFromPoint(x, y);
-            if (!(e && (e.closest('.tgp-top') || e.closest('#tgp-tabs')))) mal.push(Math.round(x) + ',' + Math.round(y) + ' ' + (e ? (e.id || String(e.className) || e.tagName) : 'nada'));
-          }
-          return { mal, cuerpoDebajo: document.querySelector('#cuerpo-panel .tgc-top').getBoundingClientRect().top < rt.bottom };
-        });
-        if (!r.cuerpoDebajo) malos.push(m + ' ' + dy + ': la cabecera de «Su cuerpo» no llegó a pasar por debajo');
-        r.mal.forEach(x => malos.push(m + ' ' + dy + ': ' + x));
-      }
+      await p10.click('#tgc-modo-' + m); await p10.waitForTimeout(300);
+      await p10.evaluate(() => { document.getElementById('cuerpo-panel').scrollTop = 0; }); await p10.waitForTimeout(150);
+      const arriba = await mira(), conEscena = m === 'm' || m === 'a';
+      if (conEscena ? (arriba.pegada || !arriba.transparente || arriba.sinEscena) : (arriba.transparente || !arriba.sinEscena)) malos.push(m + ' arriba: ' + JSON.stringify(arriba));
+      if (!arriba.modosAbajo) malos.push(m + ' arriba, la barra de modos: ' + JSON.stringify(arriba));
+      await p10.evaluate(() => { const p = document.getElementById('cuerpo-panel'); p.scrollTop = p.scrollHeight; }); await p10.waitForTimeout(200);
+      const abajo = await mira();
+      const bien = m === 'm' ? abajo.pegada && !abajo.transparente : m === 'a' ? !abajo.pegada && abajo.transparente : !abajo.transparente;
+      if (!bien || !abajo.modosAbajo || !abajo.finLibre) malos.push(m + ' abajo: ' + JSON.stringify(abajo));
     }
-    prueba('al bajar, la cabecera y las pestañas del perfil quedan encima de «Su cuerpo», en los cuatro modos', malos.length === 0, malos.slice(0, 4).join(' · '));
-    /* y las dos esquinas de arriba de la barra, pegada: por fuera de su curva se ve el fondo de la
-       cabecera, no lo que pasa por debajo (3 de noviembre de 2026: asomaba el borde del personaje
-       en pequeño). Se mira en los pixeles de una captura: esos recortes no reciben toques */
-    await p10.click('#tgc-modo-m'); await p10.waitForTimeout(250);
-    await p10.evaluate(() => { const pp = document.getElementById('perfil-panel'), cab = pp.querySelector('.tgp-top'), top = document.querySelector('#cuerpo-panel .tgc-top');
-      pp.scrollTop += top.getBoundingClientRect().top - (cab.getBoundingClientRect().top + 40); });
-    await p10.waitForTimeout(300);
-    const geo = await p10.evaluate(() => { const t = document.getElementById('tgp-tabs').getBoundingClientRect();
-      return { x: t.left, y: t.top, r: t.right, pegada: document.getElementById('perfil-panel').classList.contains('tgp-con-barra'),
-        fondo: getComputedStyle(document.documentElement).getPropertyValue('--dark').trim() }; });
-    const y0 = Math.floor(geo.y), png = await p10.screenshot({ clip: { x: 0, y: y0, width: 390, height: 4 } });
-    const px = await p10.evaluate(async ([b64, puntos]) => {
-      const img = new Image(); img.src = 'data:image/png;base64,' + b64; await img.decode();
-      const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
-      const g = c.getContext('2d'); g.drawImage(img, 0, 0);
-      return puntos.map(([x, y]) => Array.from(g.getImageData(x, y, 1, 1).data.slice(0, 3)));
-    }, [png.toString('base64'), [[Math.round(geo.x + 1), Math.round(geo.y - y0 + 1)], [Math.round(geo.r - 2), Math.round(geo.y - y0 + 1)]]]);
-    const hex = (geo.fondo.match(/^#([0-9a-f]{6})$/i) || [])[1], fondo = hex ? [0, 2, 4].map(i => parseInt(hex.slice(i, i + 2), 16)) : null;
-    const igual = p => fondo && p.every((v, i) => Math.abs(v - fondo[i]) <= 6);
-    prueba('con la barra pegada, por fuera de la curva de sus dos esquinas de arriba se ve el fondo de la cabecera (' + geo.fondo + '), no lo que pasa por debajo',
-      geo.pegada && px.length === 2 && px.every(igual), JSON.stringify({ geo, px }));
+    prueba('la cabecera, en cristal sobre la escena y opaca al bajar o sin escena; la barra de modos, fija abajo y sin tapar el final, en los cuatro modos', malos.length === 0, malos.slice(0, 4).join(' · '));
     prueba('…sin errores de página', e10.length === 0, e10.join(' | '));
     await c10.close();
   }

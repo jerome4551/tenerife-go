@@ -36698,16 +36698,15 @@ html.cielo-rojo body::before {
     }).catch(function (e) { cargaCuerpo = null; throw e; });
     return cargaCuerpo;
   }
-  /* abrir «Su cuerpo» es abrir el perfil en su pestaña Cuerpo (y, con op.modo, en ese modo; desde el
-     3 de noviembre de 2026, con op.pregunta, en «Preguntar» con esa pregunta ya hecha). El
-     perfil, primero: asi su Escape y su «atras» se enganchan antes que los de «Su cuerpo» */
+  /* abrir «Su cuerpo» es abrir el perfil en su pestaña Cuerpo y, encima, la pantalla «Su cuerpo» (con
+     op.modo, en ese modo; desde el 3 de noviembre de 2026, con op.pregunta, en «Preguntar» con esa
+     pregunta ya hecha). El perfil, primero: asi su Escape y su «atras» se enganchan antes que los
+     de «Su cuerpo». Desde el 6 de noviembre de 2026 (bloque 2) la pantalla va encima del perfil, a
+     pantalla completa, con su flecha de vuelta; del 1 al 6 iba dentro de la pestaña (incrustar) */
   function abrirCuerpo(op) {
     return cargarPerfil().then(cargarCuerpo).then(function () {
       window.TG_PERFIL.abrir(); window.TG_PERFIL.pestana('cuerpo');
-      var sitio = document.getElementById('tgp-cuerpo-sitio');
-      /* un perfil de antes del 1 de noviembre (guardado sin conexion) no tiene sitio para el: encima, como entonces */
-      if (!sitio) window.TG_CUERPO.abrir(op);
-      else if (op && (op.modo || typeof op.pregunta === 'string')) window.TG_CUERPO.incrustar(sitio, op);
+      window.TG_CUERPO.abrir(op);
     });
   }
   window.TG_CUERPO_CARGAR = cargarCuerpo;

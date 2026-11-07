@@ -472,6 +472,9 @@ IGUAL_UI.pl.push('Bosanski lonac');
 /* «SU CUERPO» (modulos/cuerpo.js; 31 de octubre de 2026): en frances, «Variante de
    {nombre}» se escribe igual que en castellano */
 IGUAL_UI.fr.push('Variante de {nombre}');
+/* y en italiano, «+ 1 serie» (el boton de la hoja de un grupo, 6 de noviembre de 2026, bloque 2):
+   «serie» es la misma palabra en las dos lenguas */
+IGUAL_UI.it.push('+ 1 serie');
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
    El ultimo trozo de cada `cat` en castellano es siempre el municipio o el
