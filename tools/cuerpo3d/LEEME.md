@@ -54,15 +54,32 @@ Lo que escribe: `tools/cuerpo3d/datos3d.js` (no va a git) y, con `--empaquetar`,
 
 - Del repositorio oficial de MakeHuman (su `LICENSE.md`: código AGPL, «assets» CC0 1.0; cabecera de los
   ficheros: «explicitly released as CC0 in september 2020»): la malla base, las formas, el esqueleto y
-  sus pesos, los ojos y las unidades de expresión.
+  sus pesos, los ojos y las unidades de expresión. Comprobado el 7-11-2026 en a8bc2d54: el apartado C
+  de `LICENSE.md` pone en CC0 «the base mesh and proxies», «targets and modifiers», «textures»,
+  «clothes (any MHCLO-based asset)» y «poses and expressions»; llevan esa cabecera `base.obj`, los ojos
+  (`high-poly.obj` y `high-poly.mhclo`) y los 678 `.target` de las tres carpetas que se leen
+  (`macrodetails`, `breast` y `expression/units`); el esqueleto y sus pesos, en JSON, dicen
+  `"license": "CC0"`.
 - De la copia de 2017 (`makehuman-js/makehuman-data`, que aún etiquetaba lo oficial como AGPL3, la
-  licencia de entonces): el pelo, las cejas, las pestañas, las pieles y la malla de las zapatillas.
-  Son las mismas piezas oficiales que el paquete «MakeHuman system assets» (CC0, 267 MB,
-  `makehuman_system_assets_cc0.zip`) lista hoy: desde el entorno donde se hizo la maqueta y este
-  bloque no se pudo descargar ese paquete (la red solo deja clonar repositorios públicos de GitHub).
-  Lo que falta por hacer, cuando se pueda: bajar el paquete oficial, comprobar que esas nueve piezas
-  son las mismas (la geometría y las texturas) y, si alguna difiere, escribir en `piezas.py` el lector
-  de su formato (`.obj` + `.mhclo` + `.mhmat`, en vez del JSON de la copia) y volver a construir.
+  licencia de entonces): el pelo, las cejas, las pestañas, las pieles y la malla de las zapatillas, y
+  `short04`, un peinado que no se dibuja: de él sale la máscara del cuero cabelludo (`partes.cuero`).
+  **Son las piezas del paquete oficial CC0**, comprobado el 7-11-2026 con
+  `makehuman_system_assets_cc0.zip` (de `files.makehumancommunity.org`, 280.737.770 bytes, sha256
+  `b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107`). En el paquete, cada una de esas
+  piezas y pieles lleva en su cabecera «explicitly released as CC0 in september 2020». Frente a lo que
+  lee `piezas.py` de la copia:
+  - las diez piezas (short02, short04, bob02, long01, afro01, ponytail01, braid01, eyebrow010,
+    eyelashes02 y shoes05) tienen los mismos vértices, las mismas caras, las mismas UV y el mismo
+    ajuste a la malla base (referencias, pesos y desplazamientos). Solo cambia la manera de
+    escribirlo, en eyelashes02: el paquete da sus UV con un decimal más (5·10⁻⁶ como mucho), y la
+    copia escribe de otra manera los vértices que siguen a uno solo de la malla base (los otros dos,
+    con peso 0);
+  - las texturas de las cejas y de las pestañas son, píxel a píxel, las del paquete; las demás y las
+    cuatro pieles son las del paquete reducidas a 512 px (de 2048, y de 1024 las zapatillas): reducidas
+    con el Lanczos de Pillow, coinciden salvo entre el 0,002 % y el 0,03 % de los valores.
+
+  Los datos de hoy ya son, por tanto, los del paquete oficial: no hace falta otro lector ni volver a
+  construir.
 - Propio: el motor, la postura, la ropa (cortada en el móvil de la malla del cuerpo), el dibujo de las
   zapatillas, el mapa de músculos, los gestos montados con las unidades de expresión, el audífono y
   la prótesis (mallas que el motor genera con los hitos de cada variante).
