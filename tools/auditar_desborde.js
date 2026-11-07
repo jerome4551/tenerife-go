@@ -14,10 +14,15 @@
  *    pantalla. El texto estaba bien traducido: lo que fallaba era que no
  *    cabia, y eso solo se ve midiendo, y midiendo EN CADA IDIOMA.
  *
+ * Y UN TERCERO, QUE SALIO DEL IPHONE DE JEROME: el desplegable del idioma de
+ * la barra no se veia en Safari (estaba dentro de una caja con scroll), y
+ * aqui, en Chromium, si. Se mira la estructura que rompe Safari y se usa la
+ * lista con el dedo (bloque 4).
+ *
  *     node tools/auditar_desborde.js [puerto]
  */
 'use strict';
-const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+const { chromium, devices } = require('/opt/node22/lib/node_modules/playwright');
 const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 const ANCHO = 360, ALTO = 740;           // un movil estrecho de los de verdad
 const MARGEN = 2;                        // px de tolerancia por redondeo
@@ -177,6 +182,106 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
       console.log('  ok   ' + L.padEnd(4) + 'nada se sale por los lados');
     }
     if (r.popup !== null) { popups[L] = r.popup; console.log('       popup: «' + r.popup + '»'); }
+  }
+
+  /* 4 · EL DESPLEGABLE DEL IDIOMA DE LA BARRA, con el dedo.
+     Jerome, el 7 de noviembre de 2026: el boton de cambiar de idioma de
+     arriba, junto al mapa, «de momento no funciona». En el iPhone la lista
+     no se veia: vivia dentro de .topbar-right, que en el movil lleva
+     overflow-x:auto, y Safari recorta un position:fixed que este dentro de
+     una caja con scroll (fallo 160953 de WebKit, abierto en 2026). Chromium
+     si lo dejaba ver, y por eso aqui todo salia en verde. Asi que se mira la
+     estructura, que es lo que rompe Safari (ningun elemento fijo dentro de
+     una caja con scroll, ni dentro de una caja posicionada que recorte y
+     lleve z-index), y despues se usa la lista como una persona: en un
+     iPhone pequeno con el aviso de instalar a la vista (antes tapaba los
+     tres ultimos idiomas) y en un movil tumbado, donde los diez no caben y
+     la lista tiene que deslizarse sin cerrarse. */
+  const malIdioma = [];
+  const pasoIdioma = [];
+  for (const caso of [
+    { nombre: 'iPhone pequeno, 320 x 568', opc: { ...devices['iPhone SE'] }, aviso: true },
+    { nombre: 'movil tumbado, 740 x 330', opc: { viewport: { width: 740, height: 330 }, isMobile: true, hasTouch: true }, aviso: false },
+  ]) {
+    const ctx = await b.newContext({ ...caso.opc, locale: 'es-ES', serviceWorkers: 'block' });
+    const q = await ctx.newPage();
+    const errQ = [];
+    q.on('pageerror', e => errQ.push(e.message));
+    try {
+      await q.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'load', timeout: 60000 });
+      await q.waitForTimeout(1500);
+      /* la bienvenida y, la primera vez, la oferta del recorrido: como una persona */
+      if (await q.isVisible('#v19-welcome-start')) { await q.tap('#v19-welcome-start'); await q.waitForTimeout(1200); }
+      if (await q.$('.v19t-prompt .v19t-ghost')) { await q.tap('.v19t-prompt .v19t-ghost'); await q.waitForTimeout(600); }
+      const est = await q.evaluate(() => {
+        const nombre = e => e.id ? '#' + e.id : e.tagName.toLowerCase() + (e.classList.length ? '.' + [...e.classList].join('.') : '');
+        const mal = [];
+        for (const e of document.querySelectorAll('body *')) {
+          if (getComputedStyle(e).position !== 'fixed') continue;
+          for (let a = e.parentElement; a && a !== document.body; a = a.parentElement) {
+            const ca = getComputedStyle(a);
+            const scroll = /auto|scroll/.test(ca.overflowX + ca.overflowY);
+            const recortaConZ = /hidden|clip/.test(ca.overflowX + ca.overflowY) && ca.position !== 'static' && ca.zIndex !== 'auto';
+            if (scroll || recortaConZ) { mal.push(nombre(e) + ' dentro de ' + nombre(a) + ' (overflow ' + ca.overflowX + '/' + ca.overflowY + ')'); break; }
+          }
+        }
+        const dd = document.getElementById('lang-dropdown');
+        return { mal, padre: dd && dd.parentElement ? nombre(dd.parentElement) : null };
+      });
+      est.mal.forEach(x => malIdioma.push(caso.nombre + ': elemento fijo que Safari recorta: ' + x));
+      if (est.padre !== 'body') malIdioma.push(caso.nombre + ': el desplegable cuelga de ' + est.padre + ', no de <body>');
+      let aviso = '';
+      if (caso.aviso) {
+        try { await q.waitForSelector('.pwa-install-banner.show', { timeout: 8000 }); aviso = ', con el aviso de instalar a la vista'; }
+        catch (e) { aviso = ' (el aviso de instalar no salio)'; }
+      }
+      const bt = await q.evaluate(() => { const r = document.getElementById('lang-btn').getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; });
+      await q.touchscreen.tap(bt.x, bt.y);
+      await q.waitForTimeout(500);
+      const ab = await q.evaluate(() => {
+        const dd = document.getElementById('lang-dropdown'), r = dd.getBoundingClientRect();
+        return { abierto: dd.classList.contains('open') && getComputedStyle(dd).display !== 'none',
+                 dentro: r.left >= 0 && r.top >= 0 && r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1,
+                 desliza: dd.scrollHeight > dd.clientHeight + 1, r: [r.left, r.top, r.right, r.bottom].map(Math.round), vw: innerWidth, vh: innerHeight };
+      });
+      if (!ab.abierto) { malIdioma.push(caso.nombre + ': al tocar el boton la lista no se abre'); continue; }
+      if (!ab.dentro) malIdioma.push(caso.nombre + ': la lista se sale de la pantalla ' + JSON.stringify(ab.r) + ' en ' + ab.vw + ' x ' + ab.vh);
+      if (!caso.aviso && !ab.desliza) malIdioma.push(caso.nombre + ': los diez no caben y la lista no se desliza');
+      /* cada idioma, traido a la vista dentro de la lista: lo que hay bajo su centro tiene que ser el */
+      const tapados = await q.evaluate(async () => {
+        const dd = document.getElementById('lang-dropdown'), mal = [];
+        for (const o of dd.querySelectorAll('.lang-option')) {
+          o.scrollIntoView({ block: 'nearest' });
+          await new Promise(r => setTimeout(r, 60));
+          const r = o.getBoundingClientRect(), e = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+          if (!e || !dd.contains(e)) mal.push(o.textContent.replace(/\s+/g, ' ').trim() + ' tapado por ' + (e ? (e.id ? '#' + e.id : e.tagName.toLowerCase() + '.' + [...e.classList].join('.')) : 'nada'));
+        }
+        return { mal, sigue: dd.classList.contains('open') };
+      });
+      tapados.mal.forEach(x => malIdioma.push(caso.nombre + aviso + ': ' + x));
+      if (!tapados.sigue) malIdioma.push(caso.nombre + ': deslizar la lista la cierra');
+      /* y el ultimo, con el dedo: la app pasa al polaco y la lista se cierra */
+      const ult = await q.evaluate(() => { const o = [...document.querySelectorAll('#lang-dropdown .lang-option')].pop(); o.scrollIntoView({ block: 'nearest' }); const r = o.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+      await q.waitForTimeout(150);
+      await q.touchscreen.tap(ult.x, ult.y);
+      await q.waitForTimeout(600);
+      const tras = await q.evaluate(() => ({ lang: currentLang, html: document.documentElement.lang, abierto: document.getElementById('lang-dropdown').classList.contains('open') }));
+      if (tras.lang !== 'pl' || tras.html !== 'pl') malIdioma.push(caso.nombre + ': tocar «Polski» deja la app en ' + tras.lang + ' / ' + tras.html);
+      if (tras.abierto) malIdioma.push(caso.nombre + ': tras elegir, la lista sigue abierta');
+      errQ.forEach(x => malIdioma.push(caso.nombre + ': error de pagina: ' + x));
+      pasoIdioma.push(caso.nombre + aviso + (ab.desliza ? ', la lista se desliza' : ''));
+    } catch (e) {
+      malIdioma.push(caso.nombre + ': la prueba se cayo: ' + e.message.split('\n')[0]);
+    } finally {
+      await ctx.close();
+    }
+  }
+  if (malIdioma.length) {
+    fallos++;
+    console.log('  MAL  el desplegable del idioma de la barra: ' + malIdioma.length + ' fallo(s)');
+    malIdioma.slice(0, 8).forEach(x => console.log('           ' + x));
+  } else {
+    console.log('  ok   el desplegable del idioma, con el dedo, fuera de toda caja con scroll y sin nada encima: ' + pasoIdioma.join(' · '));
   }
 
   /* El popup en castellano y el de los otros nueve no pueden decir lo MISMO:

@@ -1644,17 +1644,18 @@ window.onunhandledrejection = function(e) {
   .lang-btn.open .lang-arrow { transform: rotate(180deg); }
 
   .lang-dropdown {
-    /* ⚠️ BUGFIX CRÍTICO: position: fixed (no absolute)
-       Razón: el padre .topbar-right tiene overflow-x: auto
-       en móvil (para fallback de scroll horizontal). En CSS,
-       overflow-x: auto crea un contexto de clipping en AMBOS
-       ejes, ignorando overflow-y: visible (limitación spec).
-       Esto hacía que el dropdown quedara recortado o invisible.
+    /* position: fixed, y FUERA de la barra de arriba: el desplegable
+       es hijo directo de <body> (ver el comentario del marcado).
+       Dentro de .topbar-right, que en el móvil lleva overflow-x: auto,
+       Chrome lo dejaba salir, pero Safari lo recorta (fallo 160953 de
+       WebKit) y en el iPhone no se veía: el botón «no hacía nada».
+       Y la barra es su propio contexto de apilamiento (z-index 1000),
+       así que dentro de ella el aviso de instalar (9999) tapaba los
+       últimos idiomas en un iPhone pequeño.
 
-       Solución: position: fixed saca el dropdown del flujo,
-       escapando del contexto de clipping del padre. JS lo
-       posiciona justo bajo el botón de idioma en cada toggle.
-       Top y left se establecen al hacer toggle (ver JS). */
+       JS lo coloca bajo el botón de idioma en cada apertura (top,
+       left y el alto máximo); si no cabe entero, en un móvil bajo o
+       tumbado, se desliza dentro. */
     position: fixed;
     background: rgba(27,35,48,0.97);
     backdrop-filter: blur(20px);
@@ -1665,8 +1666,10 @@ window.onunhandledrejection = function(e) {
     display: none;
     flex-direction: column;
     gap: var(--space-1);
-    z-index: 9999;       /* muy alto: encima de leaflet (que usa 400-700) */
+    z-index: 10000;      /* encima de leaflet (400-700) y del aviso de instalar (9999) */
     min-width: 140px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     animation: dropIn var(--t-fast) var(--ease-out);
   }
   .lang-dropdown.open { display: flex; }
@@ -4325,7 +4328,7 @@ window.onunhandledrejection = function(e) {
          siempre puede deslizar el dedo para alcanzar el
          botón de idioma. Sin máscara visual que lo oculte. */
       overflow-x: auto;
-      overflow-y: visible;       /* visible para que el dropdown del idioma se vea */
+      overflow-y: visible;       /* el desplegable del idioma ya no vive aquí: va en <body> */
       flex-wrap: nowrap;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;     /* Firefox */
@@ -6403,66 +6406,73 @@ window.onunhandledrejection = function(e) {
         <span class="lang-code" id="lang-code">ES</span>
         <span class="lang-arrow">▼</span>
       </button>
-      <div class="lang-dropdown" id="lang-dropdown" onclick="event.stopPropagation()">
-        <div class="lang-option active" onclick="setLang('es')">
-          <span class="lang-option-flag">🇪🇸</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Español</span>
-          <span class="lang-option-check" id="check-es">✓</span>
-        </div>
-        <div class="lang-option" onclick="setLang('en')">
-          <span class="lang-option-flag">🇬🇧</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">English</span>
-          <span class="lang-option-check" id="check-en" style="display:none">✓</span>
-        </div>
-        <div class="lang-option" onclick="setLang('fr')">
-          <span class="lang-option-flag">🇫🇷</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Français</span>
-          <span class="lang-option-check" id="check-fr" style="display:none">✓</span>
-        </div>
-        <div class="lang-option" onclick="setLang('de')">
-          <span class="lang-option-flag">🇩🇪</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Deutsch</span>
-          <span class="lang-option-check" id="check-de" style="display:none">✓</span>
-        </div>
-        <div class="lang-option" onclick="setLang('it')">
-          <span class="lang-option-flag">🇮🇹</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Italiano</span>
-          <span class="lang-option-check" id="check-it" style="display:none">✓</span>
-        </div>
-        <div class="lang-option" onclick="setLang('nl')">
-          <span class="lang-option-flag">🇳🇱</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Nederlands</span>
-          <span class="lang-option-check" id="check-nl" style="display:none">✓</span>
-        </div>
-        <div class="lang-option" onclick="setLang('zh')">
-          <span class="lang-option-flag">🇨🇳</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">简体中文</span>
-          <span class="lang-option-check" id="check-zh" style="display:none">✓</span>
-        </div>
-        <div class="lang-option" onclick="setLang('zht')">
-          <span class="lang-option-flag">🌏</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">繁體中文</span>
-          <span class="lang-option-check" id="check-zht" style="display:none">✓</span>
-        </div>
-        <!-- Cada opcion va AQUI DENTRO, no detras del cierre del
-             desplegable: puesta fuera se quedaba flotando en la cabecera y
-             se salia de la pantalla. -->
-        <div class="lang-option" onclick="setLang('bg')">
-          <span class="lang-option-flag">🇧🇬</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Български</span>
-          <span class="lang-option-check" id="check-bg" style="display:none">✓</span>
-        </div>
-        <!-- El orden de estas opciones DEBE seguir el de SUPPORTED_LANGS: los
-             checks se emparejan por posicion. Un idioma a medias se marca
-             con data-incompleto="<lang>" y se anota en IDIOMAS_INCOMPLETOS;
-             ninguno lo esta ahora, asi que aqui no hay ninguna marca. -->
-        <div class="lang-option" onclick="setLang('pl')">
-          <span class="lang-option-flag">🇵🇱</span>
-          <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Polski</span>
-          <span class="lang-option-check" id="check-pl" style="display:none">✓</span>
-        </div>
-      </div>
     </div>
+  </div>
+</div>
+
+<!-- DESPLEGABLE DEL IDIOMA, fuera de la barra de arriba. Lo abre el boton
+     #lang-btn de .topbar-right, pero no puede vivir dentro de ella: en el
+     movil esa barra lleva overflow-x:auto, y Safari (iPhone y Mac) recorta
+     un position:fixed que este dentro de una caja con scroll (fallo 160953
+     de WebKit, abierto en 2026). En Chrome se veia y en el iPhone no. Aqui
+     va como hijo directo de <body>, igual que los demas paneles fijos. -->
+<div class="lang-dropdown" id="lang-dropdown" onclick="event.stopPropagation()">
+  <div class="lang-option active" onclick="setLang('es')">
+    <span class="lang-option-flag">🇪🇸</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Español</span>
+    <span class="lang-option-check" id="check-es">✓</span>
+  </div>
+  <div class="lang-option" onclick="setLang('en')">
+    <span class="lang-option-flag">🇬🇧</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">English</span>
+    <span class="lang-option-check" id="check-en" style="display:none">✓</span>
+  </div>
+  <div class="lang-option" onclick="setLang('fr')">
+    <span class="lang-option-flag">🇫🇷</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Français</span>
+    <span class="lang-option-check" id="check-fr" style="display:none">✓</span>
+  </div>
+  <div class="lang-option" onclick="setLang('de')">
+    <span class="lang-option-flag">🇩🇪</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Deutsch</span>
+    <span class="lang-option-check" id="check-de" style="display:none">✓</span>
+  </div>
+  <div class="lang-option" onclick="setLang('it')">
+    <span class="lang-option-flag">🇮🇹</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Italiano</span>
+    <span class="lang-option-check" id="check-it" style="display:none">✓</span>
+  </div>
+  <div class="lang-option" onclick="setLang('nl')">
+    <span class="lang-option-flag">🇳🇱</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Nederlands</span>
+    <span class="lang-option-check" id="check-nl" style="display:none">✓</span>
+  </div>
+  <div class="lang-option" onclick="setLang('zh')">
+    <span class="lang-option-flag">🇨🇳</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">简体中文</span>
+    <span class="lang-option-check" id="check-zh" style="display:none">✓</span>
+  </div>
+  <div class="lang-option" onclick="setLang('zht')">
+    <span class="lang-option-flag">🌏</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">繁體中文</span>
+    <span class="lang-option-check" id="check-zht" style="display:none">✓</span>
+  </div>
+  <!-- Cada opcion va AQUI DENTRO, no detras del cierre del
+       desplegable: puesta fuera se quedaba flotando en la cabecera y
+       se salia de la pantalla. -->
+  <div class="lang-option" onclick="setLang('bg')">
+    <span class="lang-option-flag">🇧🇬</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Български</span>
+    <span class="lang-option-check" id="check-bg" style="display:none">✓</span>
+  </div>
+  <!-- El orden de estas opciones DEBE seguir el de SUPPORTED_LANGS: los
+       checks se emparejan por posicion. Un idioma a medias se marca
+       con data-incompleto="<lang>" y se anota en IDIOMAS_INCOMPLETOS;
+       ninguno lo esta ahora, asi que aqui no hay ninguna marca. -->
+  <div class="lang-option" onclick="setLang('pl')">
+    <span class="lang-option-flag">🇵🇱</span>
+    <span class="lang-option-name" data-sin-traducir="cada idioma se escribe en su propia lengua">Polski</span>
+    <span class="lang-option-check" id="check-pl" style="display:none">✓</span>
   </div>
 </div>
 
@@ -10301,28 +10311,23 @@ function toggleLangDropdown(e) {
     return;
   }
 
-  // Posicionar el dropdown justo bajo el botón usando coordenadas
-  // de viewport (position: fixed). Esto evita el bug del clipping
-  // que ocurre cuando el padre tiene overflow-x: auto.
-  // Cálculo defensivo: si el dropdown se saldría por la derecha
-  // del viewport, lo alineamos al borde derecho de la pantalla
-  // con un pequeño margen (8px).
-  const rect = btn.getBoundingClientRect();
-  const dropdownWidth = 180;                // estimación segura para 7 idiomas
-  const viewportWidth = window.innerWidth;
-  const margin = 8;
-
-  let leftPos = rect.right - dropdownWidth; // alineado al borde derecho del botón
-  if (leftPos + dropdownWidth > viewportWidth - margin) {
-    leftPos = viewportWidth - dropdownWidth - margin;
-  }
-  if (leftPos < margin) leftPos = margin;   // no se sale por la izquierda
-
-  dropdown.style.top = (rect.bottom + 6) + 'px';
-  dropdown.style.left = leftPos + 'px';
-
+  // Colocarlo justo bajo el botón, en coordenadas de la pantalla
+  // (position: fixed; el desplegable es hijo de <body>, ver su CSS).
+  // Se abre primero para medir su ancho de verdad: antes se suponía
+  // de 180 px y, con 140, quedaba 40 px a la izquierda del botón.
   dropdown.classList.add('open');
   btn.classList.add('open');
+  const rect = btn.getBoundingClientRect();
+  const margin = 8;
+  const top = rect.bottom + 6;
+  dropdown.style.top = top + 'px';
+  // En un móvil bajo o tumbado no caben los diez: se desliza dentro.
+  dropdown.style.maxHeight = Math.max(120, window.innerHeight - top - margin) + 'px';
+  const ancho = dropdown.offsetWidth || 180;
+  let leftPos = rect.right - ancho;         // alineado al borde derecho del botón
+  if (leftPos + ancho > window.innerWidth - margin) leftPos = window.innerWidth - ancho - margin;
+  if (leftPos < margin) leftPos = margin;   // no se sale por la izquierda
+  dropdown.style.left = leftPos + 'px';
 }
 
 // ══════════════════════════════════════════════════════════
@@ -21187,9 +21192,11 @@ document.addEventListener('click', () => {
 // position: fixed quedaría descolgado del botón si el usuario
 // hace scroll en la página o gira el móvil. Helper defensivo
 // que no falla si el elemento aún no existe.
-function closeLangDropdownOnLayoutChange() {
+function closeLangDropdownOnLayoutChange(e) {
   const dd = document.getElementById('lang-dropdown');
   const bt = document.getElementById('lang-btn');
+  // Si no cabe entero, la lista se desliza: su propio scroll no la cierra.
+  if (e && e.type === 'scroll' && dd && e.target instanceof Node && dd.contains(e.target)) return;
   if (dd) dd.classList.remove('open');
   if (bt) bt.classList.remove('open');
 }
