@@ -58,7 +58,9 @@
  *     la bandera amarilla o la roja llevan a la respuesta del mar en los diez idiomas (19c). Y el
  *     color del dibujo no es una urgencia: «¿por qué mi pecho está en naranja?» lleva a los colores,
  *     ninguna pregunta por el color de un grupo lleva a una urgencia, y el dolor de pecho sigue
- *     dando la suya (19d).
+ *     dando la suya (19d). Y el pecho apretado dicho de otra manera («mi pecho está apretado y me mareo»,
+ *     «el pecho me duele mucho») da la urgencia en los diez idiomas, y las frases normales con las mismas
+ *     palabras no dan ninguna (19e).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -1210,6 +1212,50 @@ async function ejemplo(pg) {
     }
     prueba('el color del dibujo no es una urgencia: por qué un grupo está en un color, en los diez idiomas, nunca lleva a una urgencia (' + consultas + ' consultas), y el pecho en castellano lleva a los colores', consultas === 4320 && !aUrgencia.length && !pechoMal.length, aUrgencia.concat(pechoMal).slice(0, 5).join(' · '));
     prueba('lo que se escribe cuando duele el pecho sigue dando la urgencia del pecho (' + DUELE.length + ' frases, con tres edades)', !dueleMal.length, dueleMal.slice(0, 5).join(' · '));
+  }
+
+  // 19e. (sin navegador; 7 de noviembre de 2026) el pecho apretado, dicho de otra manera, también es una urgencia.
+  //      El filtro cogía «tengo el pecho apretado», pero no «mi pecho está apretado y me mareo» ni «el pecho me duele
+  //      mucho»: sus patrones piden las palabras juntas, y pasaba en nueve de los diez idiomas. «urg-pecho» lleva
+  //      patrones nuevos para la misma molestia con el verbo o un «muy» en medio, o con el orden al revés. Aquí: las
+  //      molestias, en los diez idiomas, dan la urgencia del pecho; y las frases normales con las mismas palabras (el
+  //      gimnasio, la estética, la ropa, los colores del dibujo) no dan ninguna urgencia
+  {
+    const fs = require('fs'), path = require('path'), vm = require('vm');
+    const lee = l => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'), 'utf8')).respuestas;
+    const M = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8'), ctx = {};
+    vm.createContext(ctx); vm.runInContext(M.slice(M.indexOf('/* buscador.js —'), M.indexOf('/* ── la pantalla «Su cuerpo» ── */')), ctx);
+    const SI = {
+      es: ["mi pecho está apretado y me mareo", "tengo el pecho apretado", "noto el pecho muy apretado", "el pecho me aprieta", "el pecho me duele mucho", "siento el pecho oprimido", "el pecho lo tengo apretado", "mi pecho está oprimido", "me oprime el pecho", "pecho dolorido después de correr", "tengo el pecho muy oprimido y me falta el aire", "mi pecho se siente apretado", "el pecho me arde al correr", "noto el pecho apretado al subir cuestas", "el pecho le duele a mi padre"],
+      en: ["my chest is tight and I feel dizzy", "my chest feels tight", "tightness in my chest", "my chest hurts a lot", "my chest feels heavy"],
+      fr: ["ma poitrine est serrée et j'ai la tête qui tourne", "j'ai la poitrine serrée", "la poitrine me fait mal", "j'ai mal à la poitrine", "la poitrine est oppressée depuis ce matin", "ma poitrine est très serrée quand je cours", "le thorax semble comprimé"],
+      de: ["meine Brust ist eng und mir ist schwindelig", "Engegefühl in der Brust", "die Brust tut mir weh", "meine Brust fühlt sich eng an", "meine Brust fühlt sich so eng an", "die Brust ist ganz eng", "mein Brustkorb fühlt sich beklemmt an"],
+      it: ["ho il petto stretto e mi gira la testa", "il petto mi fa male", "senso di oppressione al petto", "mi sento il petto stretto", "il torace mi fa molto male", "sento il petto oppresso", "mi sento il torace pesante", "il petto mi brucia quando corro"],
+      nl: ["mijn borst voelt beklemd en ik ben duizelig", "beklemmend gevoel op de borst", "mijn borst doet pijn", "mijn borst voelt strak", "mijn borst voelt erg beklemd", "mijn borstkas is benauwd", "zijn borst voelt zwaar"],
+      zh: ["胸口很紧而且头晕", "胸口发紧", "胸口闷得慌", "我胸口很闷还头晕", "胸口有点紧", "胸口突然发紧", "胸部很闷", "胸口一直紧紧的"],
+      zht: ["胸口很緊而且頭暈", "胸口發緊", "胸口悶", "我胸口很悶還頭暈", "胸口有點緊", "胸部很悶", "胸口突然發緊"],
+      bg: ["гърдите ми са стегнати и ми се вие свят", "стяга ме в гърдите", "болят ме гърдите", "имам стягане в гърдите", "усещам гърдите си стегнати", "гърдите ми са стегнати и се задъхвам", "чувствам гръдния кош си притиснат"],
+      pl: ["mam ściśniętą klatkę piersiową i kręci mi się w głowie", "ściska mnie w klatce piersiowej", "klatka piersiowa mnie boli", "czuję ucisk w klatce piersiowej", "czuję ściśniętą klatkę", "klatka piersiowa jest ściśnięta", "mam zaciśniętą klatkę piersiową"]
+    };
+    const NO = {
+      es: ["aprieta el pecho al final del press", "ejercicios para tener el pecho más firme", "cómo sacar pecho al correr", "press de pecho con mancuernas", "¿por qué mi pecho está en rosa?", "mi pecho está en naranja", "quiero un pecho más grande", "el pecho es el músculo que más me gusta entrenar"],
+      fr: ["mon soutien-gorge de sport est trop serré", "comment muscler la poitrine", "développé couché pour la poitrine", "ma poitrine est serrée dans ma brassière", "pourquoi ma poitrine est en orange ?"],
+      de: ["Wie bekomme ich eine straffe Brust?", "Brustübungen mit Kurzhanteln", "das Shirt ist an der Brust zu eng", "warum ist meine Brust orange?", "meine Brust ist größer geworden"],
+      it: ["ho il petto stretto, come allargarlo?", "esercizi per il petto", "panca piana per il petto", "il mio petto è stretto e voglio allenarlo", "perché il mio petto è arancione?"],
+      nl: ["mijn borst is strak getraind", "oefeningen voor de borst", "hoe krijg ik een strakke borst", "waarom is mijn borst oranje?"],
+      zh: ["怎么让胸部紧致", "胸部紧实的训练", "练胸的动作有哪些", "胸肌怎么练", "为什么我的胸部是橙色的？", "胸口的颜色是什么意思"],
+      zht: ["怎麼讓胸部緊緻", "胸部緊實的訓練", "練胸的動作有哪些", "為什麼我的胸部是橘色的？"],
+      bg: ["как да имам стегнати гърди", "упражнения за гърди", "гърдите ми са стегнати след тренировките", "искам стегнати гърди", "защо гърдите ми са оранжеви"],
+      pl: ["ćwiczenia na klatkę piersiową", "jak rozbudować klatkę piersiową", "wyciskanie na klatkę", "dlaczego moja klatka jest pomarańczowa"]
+    };
+    const sinUrgencia = [], falsas = []; let nSi = 0, nNo = 0;
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      const b = ctx.TG_BUSCADOR.crear({ idioma: l, respuestas: lee(l) });
+      for (const q of SI[l] || []) { nSi++; const u = b.urgente(q); if (u !== 'urg-pecho') sinUrgencia.push(l + ' «' + q + '»: ' + (u || '-')); }
+      for (const q of NO[l] || []) { nNo++; const u = b.urgente(q); if (u) falsas.push(l + ' «' + q + '»: ' + u); }
+    }
+    prueba('el pecho apretado, dicho de otra manera, da la urgencia del pecho en los diez idiomas (' + nSi + ' frases)', nSi === 78 && !sinUrgencia.length, sinUrgencia.slice(0, 5).join(' · '));
+    prueba('las frases normales con las mismas palabras (gimnasio, estética, ropa, colores del dibujo) no dan ninguna urgencia (' + nNo + ' frases)', nNo === 46 && !falsas.length, falsas.slice(0, 5).join(' · '));
   }
 
   // 20. (la app) al bajar por la pestaña, la cabecera y la barra de pestañas del perfil quedan
