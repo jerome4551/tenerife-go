@@ -5911,6 +5911,254 @@ AEMET, 156; el perfil, 74 y 148; el cielo, 308; «Su cuerpo», 236; el 3D,
   cielo, 308; el SOS, 39 y 261; y los robots del semáforo del INVOLCAN, de
   las alertas y de los terremotos. En verde.
 
+## «Su cuerpo»: el bloque 1 del rediseño, la bandera de la playa, «最深» y el pecho en naranja (6 y 7 de noviembre)
+
+La sesión de «Su cuerpo» manda la nota 20 con un parche
+(`0001-su-cuerpo-bloque-1`): el primero de los siete bloques del rediseño
+«Amanecer», «Color y figura». Jerome había aprobado el plan ese día («Leído el
+plan y me gusta, vamos a preparar el bloque 1 para Claude Code») y, al
+pasarlo: «Como siempre verifica todo». El commit va tal como llegó (`c1f548f`).
+
+**Lo que cambia en la pantalla:**
+
+- **Los niveles del mapa de músculos.** De tres oros (`#B58531`, `#E0B44C`,
+  `#FFE79E`) a rosa, naranja y amarillo (`#EE5F7E`, `#FFA04A`, `#FFE48A`),
+  sobre el mismo grafito (`#333E4D`). Los mismos colores van en la leyenda y en
+  las barras de los 12 grupos, y el contorno del grupo abierto pasa a blanco.
+  - Contraste con «sin trabajar»: 3,39, 5,36 y 8,63. Con los oros era 3,29,
+    5,58 y 8,87; WCAG 1.4.11 pide 3:1.
+  - Los niveles vecinos se distinguen mejor: la distancia OKLab pasa de 0,144
+    y 0,146 a 0,179 y 0,159. La claridad sigue subiendo en cada nivel (0,36 ·
+    0,68 · 0,79 · 0,92).
+- **La cabeza de la persona** sobre el maniquí de «Músculos», de frente y de
+  espaldas. Lleva la piel, la cara, el pelo, la barba, la gorra o el pañuelo,
+  las gafas y el audífono elegidos en «Aspecto».
+  - No recibe toques: tocar el pelo largo abre la hoja del músculo de debajo.
+  - El pelo que cae por debajo del mentón va al 30 %.
+  - La hoja de un grupo, la ficha de un ejercicio y «Aspecto» siguen sin ella.
+- **La cinturilla del pantalón**, recta: ya no asoma por los lados de la
+  camiseta.
+- **La barra de «Comida»** sigue en oro.
+- **`TG_FIGURA.AMB`**: la luz de detrás, el brillo y la sombra del suelo,
+  apartados para el tema claro del bloque 2.
+
+**El asistente, en el parche.** Cuatro frases decían que los niveles son «tres
+tonos de oro» (una de ellas va en dos respuestas). En chino, una quinta
+llamaba al nivel más alto «el color más oscuro», y el amarillo es el más
+claro. Van corregidas en los diez idiomas, junto con las variantes y las
+palabras clave del buscador que nombraban el oro: 123 cambios, y 178
+respuestas antes y después. Las frases de los nueve idiomas que no son el
+castellano las escribió la IA sobre la frase que ya había. No las ha revisado
+ningún nativo, como el resto de «Su cuerpo».
+
+**Lo comprobado del parche:**
+
+- **El parche** tiene el sha256 de la nota. Con `git am` deja los dos árboles
+  que dice la nota: `5c5a4fa2` sobre `b59d5bb` y `1324d728` sobre `6f3e332`.
+  Sobre el `main` de hoy, los 14 ficheros tienen sus sha256.
+- **`aplicar_bloque1.py`** llegó en PDF, con las líneas largas cortadas. No
+  hizo falta: el parche entró limpio.
+- **El código.** La cabeza se dibuja con el aspecto ya pasado por
+  `normaliza()`, que solo deja opciones de su lista y colores de su paleta, y
+  con el id limpio. Nada de lo guardado entra tal cual en el dibujo.
+  `probar_cuerpo.js` mete un `<img onerror>` en el aspecto guardado, y no se
+  ejecuta.
+- **Las cifras de la nota**:
+  - el contraste y las distancias OKLab;
+  - el módulo: de 395.280 a 400.577 bytes, y de 119.941 a 121.002 con
+    `gzip -9`;
+  - la primera descarga, sin cambios: 1.086 / 1.201 kB.
+- **Las frases nuevas**, una a una, en los diez idiomas.
+- **El buscador**, con el del propio módulo, `main` contra el parche:
+  - la pregunta y las variantes de las 178 respuestas que no cambian, en los
+    diez idiomas, con 30 años, con 15 y sin edad: 68.106 consultas, y
+    ninguna cambia de respuesta ni de grado;
+  - las 53 variantes nuevas encuentran su respuesta con las tres edades;
+  - son las mismas cifras de la nota.
+- **El banco de preguntas de prueba.** La nota decía no tener el banco con
+  que se afinó el buscador el 31 de octubre. Está en las fuentes de «Su
+  cuerpo» (`asistente/pruebas/`, 4.286 preguntas, con su
+  `probar_asistente.js`). Con él, del fuente del 3 de noviembre al del bloque
+  1, cambian tres preguntas, y las tres nombran el oro de antes:
+  - «wat betekenen de gouden kleuren» y «身體圖上的金色和灰色代表什麼» siguen
+    dando su respuesta;
+  - «защо мускулите светят в златно» pasa a dudar, con la respuesta de los
+    colores la primera.
+- **En Chromium, a 390 px, antes y después:**
+  - los tres colores en el dibujo, la leyenda y las barras;
+  - la cabeza, con pelo largo y gafas;
+  - la hoja y la ficha, sin cabeza;
+  - la cinturilla, y «Comida» en oro;
+  - «¿qué significa el rosa?» y «what does pink mean?» dan la respuesta de
+    los colores; antes daban «¿Quería preguntar esto?»;
+  - 0 errores de página.
+
+**La bandera de la playa** (`a68f618`). Es el primero de los cuatro puntos que la
+nota vio de paso. Jerome: «hazlo».
+
+- **Lo que pasaba.** «¿Qué significa la bandera amarilla?» llevaba, en
+  inglés, francés, polaco y chino, a la respuesta de los colores del personaje
+  o a la del nivel de un ejercicio. En alemán, neerlandés y búlgaro el
+  asistente dudaba.
+- **Por qué.** «Amarillo» es palabra clave de «colores-del-mapa». Solo el
+  castellano tenía en «nadar-en-el-mar» las variantes «¿qué significan la
+  bandera roja y la amarilla?» y «¿qué significan las banderas en las playas
+  de Tenerife?», y la clave «colores de la bandera».
+- **El arreglo.** Ahora las tienen los otros nueve idiomas, con la palabra de
+  la bandera que ya usa esa respuesta en cada uno.
+- **Lo medido**, frente al bloque 1:
+  - 50 preguntas de la bandera, con las tres edades: de 201 a 270 de 270
+    llevan al mar;
+  - otra tanda de 40, que no se usó para elegir las variantes: 84 de 120
+    consultas van directas al mar; antes, 39;
+  - de 68.265 consultas de la regresión cambian 6, de cuatro frases, todas
+    justo en un umbral del buscador:
+    - «is fietsen of de sportschool beter?» da ahora su propia respuesta;
+    - con 15 años, «我很重，可以做什麼運動» deja de contestar con la de la
+      discapacidad;
+    - con 15 años, «are carbohydrates necessary?» pasa de nada a
+      sugerencias;
+    - con 15 años, «mangiare dopo un'escursione lunga» pasa de sugerencias a
+      la respuesta de preparar una excursión;
+  - en las preguntas por el color de un grupo, en chino, una por idioma
+    («腹部和下背部变成橙色是什么意思», el abdomen en naranja) pasa de
+    respuesta directa a duda, con los colores como primera sugerencia;
+  - en el banco cambian dos. Hay un acierto más en chino simplificado, y una
+    pregunta polaca que ya fallaba pasa de sugerencias a nada. Ninguna cambia
+    de urgencia.
+- **La prueba.** `probar_cuerpo.js`, 19c: las 50 preguntas en los diez
+  idiomas. Con los datos del bloque 1 sale en rojo.
+
+**Fuera «最深»** (`1b20158`). Es el tercero de los puntos que la nota vio de paso.
+Jerome: «quítalas».
+
+- **Lo que había.** En chino, la respuesta de las 10 series guardaba para
+  buscar «最深» («el más oscuro»), de cuando el nivel más alto era el oro más
+  oscuro.
+- **Lo que sale.** Dos claves en simplificado, y una variante y una clave en
+  tradicional.
+- **Lo medido:**
+  - en la regresión no cambia ninguna de 68.316 consultas;
+  - en el banco cambia «为什么10组就是最深的颜色», que va ahora a la respuesta
+    de los colores. Es la que dice que 10 o más es el amarillo. Con la
+    bandera daba la suya; el chino simplificado vuelve a 410 aciertos, los
+    del bloque 1.
+- **La prueba.** `probar_cuerpo.js` 19b busca ya «最深» en las seis
+  respuestas del mapa; antes miraba solo «最深的颜色».
+
+**El pecho en naranja** (`aa6ebfb`). Es el segundo de los puntos que la nota vio
+de paso. Jerome: «Si arréglalo es importante».
+
+- **Lo que pasaba.** Solo en castellano. «¿Por qué mi pecho está en
+  naranja?», preguntado por el color del dibujo, contestaba con la urgencia
+  del dolor en el pecho: «Llame enseguida al 112 y deje el ejercicio». Pasaba
+  con los cuatro colores, porque «pecho» pesa mucho en `urg-pecho` y nada en
+  `colores-del-mapa`.
+- **El arreglo.** Una variante más en `colores-del-mapa`, la propia frase:
+  «¿por qué mi pecho está en naranja?».
+  - Con «sale» en vez de «está», el amarillo quedaba casi empatado con la
+    urgencia (1,000 contra 0,985).
+  - El filtro de urgencias, sus patrones, no se toca.
+- **Lo medido:**
+  - Por qué un grupo del dibujo está en un color, en los diez idiomas: tres
+    maneras de preguntarlo, los 12 grupos, los 4 colores y tres edades, en
+    total 4.320 consultas. Las que llevaban a una urgencia pasan de 15 a 0.
+  - En castellano, las que van directas a los colores pasan de 30 a 132 de
+    432. Otras 210 dudan, con los colores como primera sugerencia.
+  - Las 150 frases de dolor de pecho, en los diez idiomas, dan la misma
+    urgencia y la misma respuesta que antes.
+  - En la regresión no cambia ninguna de 68.316 consultas.
+  - El banco da los mismos aciertos, con todas las urgencias.
+  - En la app de verdad (Chromium), antes «Llame enseguida al 112…» y ahora
+    «Cada músculo toma el color de su grupo…».
+- **La prueba.** `probar_cuerpo.js` 19d tiene dos pruebas: las 4.320
+  consultas sin urgencia, con los cuatro colores del pecho a los colores, y
+  14 frases de dolor de pecho con su urgencia. Con el castellano de antes,
+  la primera sale en rojo.
+
+**Cómo se hicieron los tres.** Los tres cambios se hicieron en las fuentes de
+«Su cuerpo», con un script de todo o nada que cambia el texto y comprueba lo
+que queda. Los datos salen de `construir.py`, y no hay ninguno tocado a mano.
+
+**Las fuentes de «Su cuerpo».** Las fuentes llevan ya los cambios del parche:
+- 24 trozos del módulo, en `construir.py`, `figura-svg.js`, `src/ui.js` y
+  `src/estilos.css`;
+- las piezas del asistente;
+- y los tres cambios de arriba.
+
+Con ellas, `construir.py` da, byte a byte, el módulo y los 31 ficheros de
+`datos/cuerpo/` de la rama. El paquete (`su-cuerpo-fuentes-06-11-final.zip`)
+va a Jerome para la sesión de «Su cuerpo», y su próxima entrega tiene que
+salir de él.
+
+**Las pruebas:** `probar_figura.js`, de 45 a 64; `probar_cuerpo.js`, de 236 a
+253.
+
+**`probar_perfil.js`, en un mismo día** (`a70e0cc`). La auditoría del parche
+llegó a esta prueba a las 23:48 UTC del día 6, y la medianoche pasó a mitad.
+La prueba fija «hoy» al empezar, y la app lo lee del reloj al anotar, así
+que salieron en rojo dos pruebas que están bien:
+- n5 buscaba el peso nuevo con la fecha del día 6;
+- n35 escribía en el campo la fecha del día 6.
+
+Las otras 146, en verde. Ahora, si quedan menos de 45 minutos para la
+medianoche, la prueba espera a que pase y lo dice. Jerome: «Si». Se probó
+con el reloj del proceso puesto a mano: a las 23:59:30 espera 35 s y empieza
+el día siguiente; a las 22:00, no espera.
+
+**La auditoría del parche solo**, sobre `7cd2d1d`, acabó con «FIN 1». El
+único bloque con fallo fue `probar_perfil.js`, el de la medianoche de arriba,
+con 146 de 148. Todo lo demás, en verde:
+- también lo que la otra sesión no pudo pasar: la ubicación (0 errores
+  groseros) y los lugares en el mar (0 fuera de tierra);
+- y la isla en 3D, 58 de 58.
+
+Las cifras de esa vuelta:
+- `probar_figura.js` 64 y `probar_cuerpo.js` 250;
+- `auditar_sw.js` 67 y el mapa 137;
+- el cielo 308, y el SOS 39 y 261;
+- el barrido de pantallas, 191 por idioma, con 0 fallos y 0 errores de
+  página.
+
+**La auditoría entera**, sobre `4730af1` (árbol `e73770bc`), con los cinco
+commits, sale «AUDITORIA EN VERDE»: ningún control en rojo ni sin ejecutar.
+- `probar_perfil.js`, 148 de 148. Ya lleva la guarda, pero empezó a la 01:32
+  y no tuvo que esperar.
+- `probar_cuerpo.js` 253 y `probar_figura.js` 64.
+- La isla en 3D, 58 de 58; el cielo, 308.
+- El SOS, 39 y 261; `auditar_sw.js`, 67.
+- El barrido de pantallas, 0 fallos y 0 errores de página.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian sus cinco ficheros (las alertas, los avisos de AEMET, los
+  precios de las gasolineras, el semáforo del INVOLCAN y los sismos), y los
+  parches son los mismos (`git patch-id`). Sobre lo que va a `main` se
+  volvieron a pasar los controles que leen esos ficheros, todos en verde:
+  - los precios y «la más barata cerca de mí», 0 fallos;
+  - los avisos de AEMET, 32 y 156;
+  - la app de las tiendas;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos, el INVOLCAN y las alertas.
+
+**Lo que se vio de paso, lo último:**
+
+- **`auditar_isla3d.js`**, el doble toque, falló en el contenedor de esa
+  sesión. Aquí, en las dos auditorías, 58 de 58: el doble toque acerca, de
+  9000 a 4500 m.
+- **«mi pecho está apretado y me mareo»**, en castellano, no dispara la
+  urgencia por sí solo. Los patrones piden «pecho apretado» junto. El
+  asistente duda y pone la urgencia del pecho como primera sugerencia. Ya
+  estaba en `main`. Jerome, el 7 de noviembre: «sí amplía los patrones
+  de urgencia». Va en un cambio aparte, después de esta subida.
+- **La respuesta del mar**, que ahora sale para la bandera amarilla, dice que
+  se mire la bandera y se le haga caso, pero no explica cada color. Para eso
+  haría falta una fuente oficial.
+
+**Lo que queda para Jerome:**
+
+- la revisión nativa de las frases en nueve idiomas;
+- mirarlo en su iPhone, también con VoiceOver.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
