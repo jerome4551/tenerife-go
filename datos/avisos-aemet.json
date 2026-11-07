@@ -3,10 +3,10 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261107170516_AFAP6596.tar.gz",
-  "publicado": "2026-11-07T17:05:16+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261107225001_AFAP6596.tar.gz",
+  "publicado": "2026-11-07T22:50:01+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
-  "alcance": "2026-11-09T23:59:59+00:00",
+  "alcance": "2026-11-10T23:59:59+00:00",
   "zonas_isla": [
    "659601",
    "659601C",
@@ -16,7 +16,7 @@
    "659603C"
   ]
  },
- "consultado": "2026-11-07T21:05:01Z",
+ "consultado": "2026-11-07T23:01:10Z",
  "avisos": [
   {
    "id": "2.49.0.0.724.0.ES.20261107170516.659601VIRM09001794071116",
