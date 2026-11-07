@@ -6159,6 +6159,104 @@ commits, sale «AUDITORIA EN VERDE»: ningún control en rojo ni sin ejecutar.
 - la revisión nativa de las frases en nueve idiomas;
 - mirarlo en su iPhone, también con VoiceOver.
 
+## Las urgencias del pecho, dichas de otra manera (7 de noviembre)
+
+Jerome, el 7 de noviembre: «Súbelo y sí amplía los patrones de urgencia» (`3b97a8e`).
+
+**Lo que pasaba.** El asistente de «Su cuerpo» tiene un filtro de urgencias:
+patrones por idioma que, si el texto describe una urgencia, ponen su respuesta
+primero, con el 112.
+- El del pecho cogía «tengo el pecho apretado», pero no «mi pecho está
+  apretado y me mareo». El asistente dudaba y ponía la urgencia del pecho
+  como primera sugerencia, sin darla como urgencia.
+- La causa: sus patrones piden las palabras juntas. Con el verbo o un «muy»
+  en medio, o con el orden al revés, no saltaban.
+- Pasaba en nueve de los diez idiomas; el inglés ya lo cogía:
+  - «el pecho me duele mucho»;
+  - «ma poitrine est serrée et j'ai la tête qui tourne»;
+  - «meine Brust fühlt sich eng an»;
+  - «il petto mi fa male»;
+  - «mijn borst voelt beklemd»;
+  - «胸口很紧而且头晕»;
+  - «гърдите ми са стегнати и ми се вие свят»;
+  - «mam ściśniętą klatkę piersiową».
+
+**El arreglo.** `urg-pecho` lleva 21 patrones nuevos en esos nueve idiomas,
+al final de los suyos. Los de siempre no se tocan.
+
+Lo que se escribe igual y no es una urgencia queda fuera:
+- en francés, la ropa: «poitrine serrée» con sujetador, brassière o maillot;
+- en italiano, el tórax estrecho: «petto stretto», solo con «sento» o con
+  mareo;
+- en chino, el pecho firme: 胸部紧致, 紧实;
+- en búlgaro, «стегнати гърди», solo con mareo o falta de aire, o con
+  «усещам/чувствам … си», y con las exclusiones que ya llevaban sus patrones
+  (masaje, RCP, regla, lactancia, sujetador).
+
+Se hizo en las fuentes de «Su cuerpo», con un script de todo o nada que
+comprueba que cada patrón compila, y los datos salen de `construir.py`.
+
+**Lo medido**, con el buscador del propio módulo:
+- **47 frases** de pecho apretado o dolor de pecho dichas así, en los diez
+  idiomas, y **otras 31** que no se usaron para escribir los patrones. Dan
+  la urgencia 47 de 47 y 31 de 31; antes, 27 y 2.
+- **46 frases normales** con las mismas palabras no dan ninguna urgencia,
+  ni antes ni ahora:
+  - el gimnasio: «aprieta el pecho al final del press»;
+  - la estética: «怎么让胸部紧致», «как да имам стегнати гърди»;
+  - la ropa: «ma poitrine est serrée dans ma brassière»;
+  - los colores del dibujo.
+- **Los textos del asistente**: la pregunta, las variantes y las claves de
+  las 178 respuestas en los diez idiomas, 35.379 textos. Solo uno dispara
+  ahora una urgencia, y es una variante de la propia urgencia del pecho
+  («胸口很緊很痛»). Ninguna se pierde.
+- **El banco** de 4.286 preguntas de las fuentes: ninguna cambia, con todas
+  las urgencias y ninguna falsa.
+- **Las preguntas por el color de un grupo**: ninguna de las 4.320 lleva a
+  una urgencia.
+- **150 frases de dolor de pecho**: con la urgencia, de 144 a 147. Las tres
+  que faltan son «siento el pecho raro», con tres edades: el asistente
+  duda, con la urgencia entre sus sugerencias.
+- **Las respuestas** no cambian (68.319 consultas): los patrones no cuentan
+  para buscar.
+
+**La prueba.** `probar_cuerpo.js` 19e tiene dos pruebas:
+- las 78 frases dan la urgencia del pecho; con los datos de antes sale en
+  rojo;
+- las 46 frases normales no dan ninguna urgencia.
+
+`probar_cuerpo.js` pasa de 253 a 255.
+
+**Las fuentes**: `su-cuerpo-fuentes-07-11.zip`, para la sesión de «Su
+cuerpo». Sustituye a los paquetes anteriores, y `construir.py` da byte a
+byte lo de `main`.
+
+**La auditoría entera**, sobre `3a1faa6` (árbol `24d09ec4`): sin ningún
+control en rojo.
+- Uno no llegó al final: `auditar_isla3d.js`. Iba por su control 50, el
+  de los diez idiomas, cuando la página tardó más de 30 segundos en cargar
+  (`page.goto: Timeout 30000ms exceeded`) y la prueba se cayó. Los 49 de
+  antes, en verde, con el doble toque (de 9000 a 4500 m). Pasada otra vez
+  sola, sobre el mismo árbol: 58 de 58.
+- `probar_cuerpo.js` 255 y `probar_figura.js` 64.
+- `probar_perfil.js`, 148 de 148.
+- El cielo, 308; el SOS, 39 y 261; `auditar_sw.js`, 67.
+- El barrido de pantallas, 0 fallos y 0 errores de página.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian cuatro ficheros suyos (las alertas, los avisos de AEMET,
+  los satélites y los sismos), y el parche es el mismo (`git patch-id`).
+  Sobre lo que va a `main` se volvieron a pasar los controles que leen esos
+  ficheros, todos en verde:
+  - los avisos de AEMET, 32 y 156;
+  - la app de las tiendas;
+  - el cielo, 308, y el barrido de pantallas, 0 fallos y 0 errores de página;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos y de las alertas.
+
+**Lo que queda para Jerome:** la revisión nativa de las frases de prueba y
+de los patrones en nueve idiomas, que ha escrito la IA.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
