@@ -6440,6 +6440,185 @@ VERDE»: ningún control en rojo ni sin ejecutar.
 El bloque 3, el personaje en 3D, no va con este: espera a sus pruebas y a
 que Jerome lo mire en su iPhone.
 
+## «Su cuerpo»: el bloque 3 del rediseño, el personaje en 3D (7 de noviembre)
+
+Jerome, el 7 de noviembre: «Empieza el bloque 3»; con el parche: «Te pongo
+lo que falta del 2 y el 3 el mismo tiempo. Revisa bien todo»; y con la
+auditoría en marcha: «Si sale en verde puedes publicar». La nota de la
+sesión de «Su cuerpo» es `PARA-CLAUDE-CODE-22.md`. El parche es su commit tal
+cual (`03b3f43`), encima del bloque 2, y sobre él van cinco commits más:
+- la cifra de filas del comentario de `CUERPO_UI` (`ca0cb8a`);
+- en el LEEME, lo comprobado de las licencias (`eb38032`);
+- el cargador del 3D (`15c21d9`);
+- el mapa de músculos, por el camino que WebKit lee exacto (`8cbac5e`);
+- en el LEEME, `matplotlib`, que faltaba, y los datos vueltos a construir (`a24b732`).
+
+**Lo que cambia**, en la nota con su detalle:
+- El personaje grande de la escena pasa a 3D. Es el motor de la maqueta «Su
+  cuerpo Amanecer» (`modulos/cuerpo3d.js`), propio, sobre WebGL 2, sin
+  bibliotecas ni servicios de fuera. Dibuja un cuerpo de MakeHuman con su pelo,
+  su ropa, su calzado, sus gafas, el audífono y la prótesis, y el mapa de los 35
+  músculos en sus 12 grupos. Respira, parpadea y sonríe al anotar una serie; se
+  gira con el dedo y con «Girar».
+- Se pide al abrir «Su cuerpo», si el navegador tiene WebGL 2: el motor, el
+  índice y solo las piezas del aspecto elegido (16 peticiones, unos 0,8 MB de
+  2,6); el resto, al entrar en «Aspecto». Mientras llega, si no llega o sin
+  WebGL 2, queda el dibujo de siempre, que sigue en las miniaturas.
+- Los datos, en `datos/cuerpo3d/`: 71 ficheros con la huella de su contenido en
+  el nombre, y `indice.json`. El service worker pide el motor y el índice «red
+  primero», guarda lo demás al usarlo y no precarga nada.
+- Una fila nueva de `CUERPO_UI` (de 388 a 389), `cuerpoAviso3D`, en los diez
+  idiomas: lo que el 3D aún no tiene (rizado y moño, barba, gorra y pañuelo,
+  botas) sale con lo más parecido, y la hoja «Aspecto» lo dice.
+
+**Lo comprobado al recibirlo:**
+- Los cuatro ficheros del .zip dan las huellas de la nota.
+- Sobre el bloque 2 tal cual (encima de `c1f548f`), el parche entra limpio, y
+  los once ficheros de la nota dan sus huellas.
+- Sobre nuestra rama del bloque 2, con `git am -3`, un conflicto en el
+  comentario de cabecera de `tools/probar_cuerpo.js`, el que preveía la nota:
+  nuestra frase y, detrás, su punto sobre el 3D. El fichero resuelto es, byte a
+  byte, el `probar_cuerpo-sobre-main.js` que mandaba la nota. Publicado el
+  bloque 2 (`3321c4f`), los commits del 3 pasan encima sin conflictos y con el
+  mismo parche (`git patch-id`).
+- De los once ficheros de la nota, siete dan su huella. Los otros cuatro
+  difieren solo en lo nuestro de `main`:
+  - `modulos/cuerpo.js`: solo el comentario de la tabla, que corrigió el
+    bloque 2 (`2c2de7f`);
+  - `tools/probar_cuerpo.js`: nuestras secciones 19c a 19e;
+  - `index.html`: el botón de idioma;
+  - `AUDITORIA-FINAL.md`: nuestras secciones.
+- Los 71 ficheros de `datos/cuerpo3d/`: los bytes, el sha256 y la huella del
+  nombre son los del índice.
+
+**La revisión:**
+- Seguridad:
+  - el motor no usa `innerHTML` ni `eval`, no guarda nada en el dispositivo y
+    solo pide al propio origen, por rutas fijas de `index.html`;
+  - cada `.bin` se comprueba por sus bytes y por su sha256 antes de leerlo;
+  - lo que el cargador leía de los nombres de las secciones, ahora con las
+    reglas de `15c21d9` (abajo).
+- Codificación: los ficheros de texto, UTF-8, sin caracteres de control, sin
+  `\r`, sin BOM y sin U+FFFD.
+- La fila nueva, en los diez idiomas, usa las mismas palabras que las opciones
+  de «Aspecto» que nombra (rizado, moño, afro, coleta, barba, gorra, pañuelo,
+  botas, zapatillas), y no se dirige a la persona.
+
+**Las fuentes de «Su cuerpo».** Con los 21 trozos del módulo puestos en las
+fuentes (todo o nada), `construir.py` da el módulo del parche con una sola
+diferencia: otra vez el comentario de la tabla, «388 filas» por «389».
+Corregido en el módulo (`ca0cb8a`), el módulo es byte a byte el de las fuentes
+(443.185 bytes); los 31 ficheros de `datos/cuerpo/`, los mismos.
+
+**Las licencias de MakeHuman** (`eb38032`). La nota pedía bajar el paquete oficial y
+comparar con él las piezas que se leen de una copia de 2017 (`makehuman-js/
+makehuman-data`, que aún las etiquetaba AGPL3).
+- `makehuman_system_assets_cc0.zip`, de `files.makehumancommunity.org`:
+  - 280.737.770 bytes, sha256 `b542127a…0107`;
+  - cada pieza y piel lleva en su cabecera «explicitly released as CC0 in
+    september 2020».
+- Las diez piezas: las nueve de la nota y `short04`, de la que sale la máscara
+  del cuero cabelludo.
+  - Tienen los mismos vértices, las mismas caras, las mismas UV y el mismo
+    ajuste a la malla base.
+  - En `eyelashes02` cambia solo la manera de escribirlo.
+- Las texturas:
+  - las de las cejas y las pestañas son las mismas, píxel a píxel;
+  - las demás y las cuatro pieles son las del paquete reducidas a 512 px:
+    reducidas aquí con Lanczos, coinciden salvo entre el 0,002 % y el 0,03 % de
+    los valores.
+- El repositorio oficial (`a8bc2d54`), de donde salen la malla base, las
+  formas, el esqueleto, los ojos y los gestos:
+  - el apartado C de su `LICENSE.md` pone esos «assets» en CC0;
+  - llevan la cabecera `base.obj`, los ojos y los 678 `.target` que se leen;
+  - el esqueleto y sus pesos dicen `"license": "CC0"`.
+- Las citas de las páginas de MakeHuman que da el LEEME, comprobadas en ellas,
+  palabra por palabra.
+- Los datos de hoy ya son los del paquete oficial: no hace falta otro lector ni
+  volver a construir. No es una opinión jurídica.
+
+**Los datos, vueltos a construir aquí** (`a24b732`). Con el repositorio oficial
+(`a8bc2d54`), la copia de 2017 (`e5d1a42c`) y los guiones del parche, en un
+entorno con otras versiones (numpy 2.4.6, scipy 1.17.1, OpenCV 5.0.0,
+Pillow 13.0.0 y matplotlib 3.11.2), en 31 s:
+- 70 de los 72 ficheros, iguales byte a byte: las 56 mallas y las 14
+  texturas WebP;
+- `tex-mus_id.png`, con los mismos píxeles y otra compresión, y por eso su
+  línea de `indice.json` (ningún número del índice cambia).
+
+Los datos del parche salen, pues, de esas fuentes y de esos guiones, y de
+nada más. El LEEME no nombraba `matplotlib`, que `musculos.py` usa: sin él,
+`construir3d.py` se para en el mapa de músculos. Ya lo nombra.
+
+**El cargador** (`15c21d9`). Cada `.bin` lleva una cabecera con el nombre de sus
+secciones («cuerpo.tri», «gestos.cejas.parp.i»…), y el cargador las ponía en el
+objeto de datos siguiendo ese nombre. Un nombre como «__proto__.tri» habría
+escrito en `Object.prototype` de toda la página. No pasa con estos datos: la
+suma sha256 los ata al índice. Pero un fichero cambiado o roto no debe llegar
+tan lejos. Ahora solo entran los nombres que escribe `empaqueta3d.py`, de las
+mallas, gestos y partes que el índice conoce, y lo demás se deja.
+`probar_cuerpo.js` lo prueba con un índice y dos `.bin` hechos a propósito, con
+su suma bien puesta: con el cargador de antes sale en rojo, y con el de ahora,
+en verde. Con el cargador de
+antes salen 304 en verde y la nueva en rojo: `Object.prototype` y `Object`
+tocados, y el fichero a medias por un error. Con el de ahora, las 305 en
+verde.
+
+**El mapa de músculos en el iPhone** (`8cbac5e`). Es un PNG gris con el número de
+cada músculo (del 0 al 35). El toque lo lee con `<img>` y un lienzo, el camino
+que el 1 de noviembre se comprobó exacto en WebKit (la lección del relieve).
+Pero a la tarjeta gráfica iba por otro camino, la imagen misma, que nadie ha
+probado en WebKit. Con `createImageBitmap`, un PNG gris cambiaba allí en ±2, y
+un 20 que llegue como 22 pinta otro músculo. Ahora van los mismos bytes que lee
+el toque. En Chromium no cambia nada:
+- con el 3D quieto, un nivel distinto en cada grupo y a escala 3, las
+  capturas de frente y de espaldas (492 × 1200) salen iguales píxel a píxel;
+- el toque da lo mismo en 462 puntos;
+- con los números movidos +2 a propósito, cambian 80.291 y 131.790 píxeles:
+  la comparación lo ve.
+
+`probar_cuerpo.js` lleva un control del código, como el del relieve en
+`auditar_isla3d.js`: la textura sale de los bytes del toque, su lienzo es de
+lectura y el motor no llama a `createImageBitmap`. Con el motor de antes,
+en rojo.
+
+**Las pruebas**, sobre la rama al día:
+- `probar_cuerpo.js`: 306 de 306. Son los 299 de la nota, nuestros cinco
+  (19c a 19e) y los dos nuevos.
+- `probar_figura.js` 64, `probar_perfil.js` 148 y la app de las tiendas
+  (221 ficheros cotejados), en verde.
+- `auditar_sw.js`: 77, los 67 de antes y diez del 3D. La nota decía 74; el
+  fichero es el suyo, byte a byte.
+
+**La auditoría entera**, sobre `4bbb2b8` (árbol `64f67ff7`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar.
+- Lo que se ve en pantalla en los diez idiomas (191 pantallas y fichas por
+  idioma): ningún texto sin traducir y ningún error de página.
+- `probar_cuerpo.js` 306, `probar_figura.js` 64 y `probar_perfil.js` 148.
+- La isla en 3D, 58 de 58; el cielo, 308.
+- El SOS, 39 y 261; `auditar_sw.js`, 77.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian cuatro ficheros suyos (las alertas, los avisos de AEMET,
+  los satélites y los sismos), y el parche es el mismo (`git patch-id`).
+  Sobre lo que va a `main` se volvieron a pasar los controles que leen esos
+  ficheros, todos en verde:
+  - los avisos de AEMET, 32 y 156;
+  - el cielo, 308, y lo que se ve en pantalla, sin un fallo ni un error de
+    página;
+  - la app de las tiendas;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos y de las alertas.
+
+**Lo que queda para Jerome:**
+- el 3D en su iPhone, ya publicado (la decisión 8): la lista de la nota, «En
+  el móvil, antes de subir». Y además, en «Músculos», con series anotadas:
+  que cada grupo se pinte en su sitio, sin manchas de otro color en los
+  bordes. Si va a tirones o calienta el móvil, la nota dice qué se puede
+  bajar (la resolución, la sombra, la respiración) o cómo apagarlo;
+- la revisión nativa de la fila nueva en nueve idiomas;
+- las decisiones 1 a 10 de la nota, si quiere otra cosa.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
