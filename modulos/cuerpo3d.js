@@ -913,7 +913,7 @@
     var IDS = null;
     function guardaIds(im) {
       var c = document.createElement('canvas'); c.width = im.width; c.height = im.height;
-      var x = c.getContext('2d'); x.drawImage(im, 0, 0);
+      var x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(im, 0, 0);
       var px = x.getImageData(0, 0, im.width, im.height).data, d = new Uint8Array(im.width * im.height);
       for (var i = 0; i < d.length; i++) d[i] = px[i * 4];
       IDS = { w: im.width, h: im.height, d: d };
@@ -952,9 +952,18 @@
         gl.bindTexture(gl.TEXTURE_2D, t);
         gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
         gl.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL, gl.NONE);
-        if (clave === 'mus_dist') gl.texImage2D(gl.TEXTURE_2D, 0, gl.R8, gl.RED, gl.UNSIGNED_BYTE, im);
+        /* los identificadores de los músculos van a la tarjeta con los mismos bytes que lee el toque (guardaIds: <img> y
+           un lienzo 2D de lectura), no con la imagen: en WebKit, un PNG gris leído por otro camino puede cambiar en ±2
+           (createImageBitmap lo hacía con el relieve; 1-11-2026), y un 20 que llegue como 22 pinta otro músculo */
+        if (clave === 'mus_id') {
+          guardaIds(im);
+          gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.R8, IDS.w, IDS.h, 0, gl.RED, gl.UNSIGNED_BYTE, IDS.d);
+          gl.pixelStorei(gl.UNPACK_ALIGNMENT, 4);
+        }
+        else if (clave === 'mus_dist') gl.texImage2D(gl.TEXTURE_2D, 0, gl.R8, gl.RED, gl.UNSIGNED_BYTE, im);
         else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, im);
-        if (clave === 'mus_id') { gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST); guardaIds(im); }
+        if (clave === 'mus_id') { gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST); }
         else if (clave === 'mus_dist') { mipsMin(im); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); }
         else { gl.generateMipmap(gl.TEXTURE_2D); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); }
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);

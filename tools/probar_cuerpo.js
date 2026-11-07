@@ -1586,6 +1586,21 @@ async function ejemplo(pg) {
         JSON.stringify(rk) + ' ' + ek.join(' | '));
       await ck.close();
     }
+
+    /* el mapa de músculos en WebKit (7-11-2026): va a la tarjeta con los bytes que lee el toque (guardaIds: <img> y un
+       lienzo 2D de lectura, el camino que WebKit lee exacto), nunca con la imagen misma ni con createImageBitmap, que
+       en WebKit cambiaba un PNG gris en ±2 (el relieve, 1-11-2026). Esta prueba corre en Chromium, que no lo ve: se
+       mira el código */
+    {
+      const motor = require('fs').readFileSync(require('path').join(__dirname, '..', 'modulos', 'cuerpo3d.js'), 'utf8');
+      const r = {
+        bytes: /if \(clave === 'mus_id'\) \{\s*guardaIds\(im\);[^}]*gl\.texImage2D\(gl\.TEXTURE_2D, 0, gl\.R8, IDS\.w, IDS\.h, 0, gl\.RED, gl\.UNSIGNED_BYTE, IDS\.d\)/.test(motor),
+        lectura: /function guardaIds\(im\) \{[^}]*getContext\('2d', \{ willReadFrequently: true \}\)/.test(motor),
+        imagenBitmap: /\bcreateImageBitmap\s*\(/.test(motor)
+      };
+      prueba('el mapa de músculos va a la tarjeta con los bytes que lee el toque, de un lienzo de lectura, y no con la imagen ni con createImageBitmap (WebKit)',
+        r.bytes && r.lectura && !r.imagenBitmap, JSON.stringify(r));
+    }
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
