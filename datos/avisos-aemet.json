@@ -3,8 +3,8 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261107102622_AFAP6596.tar.gz",
-  "publicado": "2026-11-07T10:26:22+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261107170516_AFAP6596.tar.gz",
+  "publicado": "2026-11-07T17:05:16+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
   "alcance": "2026-11-09T23:59:59+00:00",
   "zonas_isla": [
@@ -16,7 +16,7 @@
    "659603C"
   ]
  },
- "consultado": "2026-11-07T14:20:35Z",
+ "consultado": "2026-11-07T17:50:20Z",
  "avisos": [
   {
    "id": "2.49.0.0.724.0.ES.20261107074752.659601VIRM07211794037672",
@@ -49,7 +49,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261107101027.659601VIRM09001794046227",
+   "id": "2.49.0.0.724.0.ES.20261107170516.659601VIRM09001794071116",
    "nivel": "naranja",
    "fenomeno": "VI",
    "fenomeno_es": "Vientos",
@@ -68,13 +68,13 @@
    ],
    "inicio": "2026-11-07T21:00:00+00:00",
    "fin": "2026-11-08T23:59:59+00:00",
-   "emitido": "2026-11-07T10:10:27Z",
+   "emitido": "2026-11-07T17:05:16Z",
    "es": {
-    "descripcion": "Rachas máximas: 90 km/h. Viento del suroeste afectando principalmente a cumbres y en La Palma también al noroeste y litoral este.",
+    "descripcion": "Rachas máximas: 90 km/h. Viento del suroeste afectando principalmente a cumbres y en La Palma también al noroeste y litoral este. En cumbres se superarán los 100 km/h.",
     "instruccion": "Esté preparado. Tome precauciones y manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños graves a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "Maximum gust of wind: 90 km/h. Viento del suroeste afectando principalmente a cumbres y en La Palma también al noroeste y litoral este.",
+    "descripcion": "Maximum gust of wind: 90 km/h. Viento del suroeste afectando principalmente a cumbres y en La Palma también al noroeste y litoral este. En cumbres se superarán los 100 km/h.",
     "instruccion": "Be prepared. Take precautions and keep up to date with the latest weather forecast. Severe damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   },
@@ -259,7 +259,7 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261107101027.659601TOTO08181794046227",
+   "id": "2.49.0.0.724.0.ES.20261107170516.659601TOTO08181794071116",
    "nivel": "amarillo",
    "fenomeno": "TO",
    "fenomeno_es": "Tormentas",
@@ -278,18 +278,18 @@
    ],
    "inicio": "2026-11-08T00:00:00+00:00",
    "fin": "2026-11-08T17:59:59+00:00",
-   "emitido": "2026-11-07T10:10:27Z",
+   "emitido": "2026-11-07T17:05:16Z",
    "es": {
-    "descripcion": "",
+    "descripcion": "Podrán ir acompañadas de granizo.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "",
+    "descripcion": "Podrán ir acompañadas de granizo.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261107101027.659602TOTO08181794046227",
+   "id": "2.49.0.0.724.0.ES.20261107170516.659602TOTO08181794071116",
    "nivel": "amarillo",
    "fenomeno": "TO",
    "fenomeno_es": "Tormentas",
@@ -308,18 +308,18 @@
    ],
    "inicio": "2026-11-08T00:00:00+00:00",
    "fin": "2026-11-08T17:59:59+00:00",
-   "emitido": "2026-11-07T10:10:27Z",
+   "emitido": "2026-11-07T17:05:16Z",
    "es": {
-    "descripcion": "",
+    "descripcion": "Podrán ir acompañadas de granizo.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "",
+    "descripcion": "Podrán ir acompañadas de granizo.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261107101027.659603TOTO08181794046227",
+   "id": "2.49.0.0.724.0.ES.20261107170516.659603TOTO08181794071116",
    "nivel": "amarillo",
    "fenomeno": "TO",
    "fenomeno_es": "Tormentas",
@@ -338,13 +338,13 @@
    ],
    "inicio": "2026-11-08T00:00:00+00:00",
    "fin": "2026-11-08T17:59:59+00:00",
-   "emitido": "2026-11-07T10:10:27Z",
+   "emitido": "2026-11-07T17:05:16Z",
    "es": {
-    "descripcion": "",
+    "descripcion": "Podrán ir acompañadas de granizo.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "",
+    "descripcion": "Podrán ir acompañadas de granizo.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   },
