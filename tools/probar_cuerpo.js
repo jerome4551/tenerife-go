@@ -1787,7 +1787,7 @@ async function ejemplo(pg) {
     await p23.click('#tgc-modo-p'); await p23.waitForFunction(() => { const f = document.getElementById('tgc-preg-form'); return f && !f.hidden; }, null, { timeout: 15000 }).catch(() => {});
     await pregunta('¿Cómo voy esta semana?');
     const a23 = await p23.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));
-    prueba('el asistente dice el movimiento de la semana: «215 minutos y 12,5 km a pie»', a23.some(t => t === 'Movimiento anotado en 7 días: 215 minutos y 12,5 km a pie.'), a23.join(' | '));
+    prueba('el asistente dice el movimiento de la semana: «215 min y 12,5 km a pie» (con «min», como la pantalla: «1 minutos» no)', a23.some(t => t === 'Movimiento anotado en 7 días: 215 min y 12,5 km a pie.'), a23.join(' | '));
     await p23.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); g.mov = []; localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir({ modo: 'preguntar' }); }); await p23.waitForTimeout(200);
     await pregunta('¿Cómo voy esta semana?');
     const a23b = await p23.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));
