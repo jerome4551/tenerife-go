@@ -6693,6 +6693,116 @@ sección siguiente).
 **Para la sesión de «Su cuerpo»:** el motor (`modulos/cuerpo3d.js`) cambia.
 La próxima entrega tiene que salir de este, o vuelven los dos fallos.
 
+## «Su cuerpo»: el bloque 4 del rediseño, la semana (8 de noviembre)
+
+Jerome, el 8 de noviembre, ya con el 3D en su iPhone: «Empieza con el 4 y
+publícalo si todo está en verde». La nota de la sesión de «Su cuerpo» es
+`PARA-CLAUDE-CODE-23.md`. El parche es su commit tal cual (`c3d02c4`), encima de los
+dos arreglos del 3D de la sección anterior, y sobre él van tres commits más:
+- el módulo, el que dan las fuentes (`80c6d0c`);
+- «{min} min» en el movimiento del asistente (`0f93693`);
+- la prueba del banner de instalar, que lo medía a medio subir (`e0f8ad2`).
+
+**Lo que cambia**, en la nota con su detalle:
+- Las tres metas de la semana, cada una con su raya y su ✓ al cumplirse:
+  - días con fuerza: 2, o 3 de 5 a 17 años;
+  - minutos de movimiento: 150, o 420 de 5 a 17 años;
+  - grupos trabajados: 12.
+- «Anotar movimiento»:
+  - caminar, senderismo, correr, nadar o bici, hoy o ayer;
+  - los minutos, y los kilómetros solo a pie (al caminar, en senderismo y al
+    correr);
+  - «Lo último anotado», con × y «Deshacer».
+- La fila de los 7 días lleva un punto en los días con movimiento. Cada día
+  activo enciende un rayo del sol, y el cielo avanza a tercios con las tres
+  metas.
+- La recomendación del movimiento de la OMS (2020), en la caja de la semana y
+  en «Las cifras».
+- El asistente cuenta el movimiento en «¿Cómo voy esta semana?».
+- El movimiento se guarda solo en el dispositivo, en `tenerife.cuerpo`, y se
+  comprueba campo a campo al leerlo. La política de privacidad lo dice en los
+  diez idiomas.
+- `CUERPO_UI` gana 28 filas (de 389 a 417), y `cuerpoBorrarSeguro` cambia.
+
+**Lo comprobado al recibirlo:**
+- Los ficheros del .zip dan las huellas de la nota.
+- `aplicar_bloque4.py`, leído entero antes de usarlo: solo lee y escribe
+  dentro de la carpeta que se le pasa.
+- `git am -3` choca donde decía la nota y en un sitio más:
+  - los diez `datos/cuerpo/asistente-*.json`. Se toman los de `main` y el
+    guion pone el párrafo del movimiento: en cada uno, dos párrafos nuevos y
+    nada más;
+  - la cifra del comentario de `CUERPO_UI` (389 en `main`, 417 en el parche).
+    Resuelto, el módulo da la huella de la nota (`b78c0401…`).
+- En cada fichero, el commit cambia las mismas líneas que el parche.
+- Las cifras de la OMS, en el artículo de sus directrices (Bull et al., 2020):
+  - adultos, «at least 150–300 min of moderate-intensity aerobic physical
+    activity» a la semana;
+  - de 5 a 17 años, «an average of 60 min/day» de actividad moderada o
+    intensa, a lo largo de la semana.
+- Las 28 filas nuevas en los diez idiomas:
+  - los mismos marcadores en todos, sin espacios de más y sin letras latinas
+    en chino ni en búlgaro;
+  - de usted (`auditar_registro.js` en verde);
+  - los botones, como los de antes: «Annota», «Zapisz» y «Запиши», igual que
+    «Salva», «Zapisz» y «Запази».
+
+**Las fuentes de «Su cuerpo»** (`80c6d0c`). De los 37 trozos del módulo, 34 entran
+en las fuentes tal cual. Los otros tres no son de ellas:
+- la cifra de filas, que cuenta `construir.py`;
+- las filas de textos, que en las fuentes son llamadas `t(…)` de
+  `src/textos.py`. Allí van las 28 nuevas, en su orden, y la cambiada.
+
+El párrafo del movimiento va también en las respuestas fuente del asistente.
+Con eso, `construir.py` da el módulo del parche menos una línea. Esa línea es
+un comentario dentro de `CUERPO_UI`, que `construir.py` no escribe; la nota lo
+había comprobado con unas fuentes de pega. El módulo del repositorio es ya el
+de las fuentes (478.002 bytes), y los 31 ficheros de `datos/cuerpo/` salen
+iguales.
+
+**Los plurales del asistente** (`0f93693`). El párrafo nuevo decía «{min} minutos»:
+con un minuto, «1 minutos», y en polaco «32 minut» (es «32 minuty»). Ahora
+dice «{min} min», como la pantalla, y el chino, que no tiene plural, se queda
+igual.
+
+**La prueba del banner de instalar** (`e0f8ad2`). La primera auditoría entera
+sobre este árbol salió con un rojo: `probar_instalar.js`, en neerlandés,
+«el banner sale … por encima de la barra de abajo». El banner estaba a 797 px
+y la barra, a 772, pero el banner estaba bien:
+- la app lo crea y, en el cuadro siguiente, le pone `.show`;
+- si nadie lee la maqueta entre medias, la subida (480 ms) ni se ve, y sale
+  ya en su sitio, a 724 px. Por eso la prueba pasaba;
+- si algo la lee, la subida corre. La prueba medía en cuanto aparecía `.show`
+  y lo cogía a medio camino.
+
+Ahora la prueba espera a que el banner acabe de subir. Con la subida forzada
+en todos los idiomas, la prueba de antes da 19 de 65 en rojo, en los diez; la
+nueva, 65 de 65. Se paró aquella auditoría y se volvió a pasar entera.
+
+**Las pruebas**, sobre la rama al día:
+- `probar_cuerpo.js`: 349 de 349: los 339 de la nota y los diez nuestros (19c
+  a 19e, el cargador, el mapa de músculos y los tres del 3D de la sección
+  anterior);
+- `auditar_sw.js`: 82 de 82;
+- `probar_figura.js`: 64 bien;
+- `probar_instalar.js`: 65 de 65, tres veces seguidas;
+- en verde: `generar_privacidad.py --comprobar`, `auditar_registro.js`,
+  `auditar_datos.js`, `auditar_readme.js`, `app_preparar.js --comprobar`,
+  `castellano_suelto.js` y `auditar_claves_tx.js`.
+
+**La auditoría entera**, sobre `46abe6a` (árbol `fbd301a6…`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar (4.703 líneas, 1 h 51 min).
+Puesta la rama al día con `main` (tres commits de los robots: las alertas del
+Gobierno de Canarias, los avisos de AEMET y los terremotos del IGN), solo
+cambian esos tres ficheros, y los controles que los leen salen en verde («TRAS
+EL REBASE, EN VERDE»).
+
+**Lo que queda para Jerome:**
+- las decisiones 1 a 14 de la nota, si quiere otra cosa;
+- la revisión nativa de las 28 filas y de las dos frases nuevas (la de la
+  privacidad y la del asistente) en nueve idiomas;
+- en el iPhone, la lista de la nota («En el móvil»).
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
