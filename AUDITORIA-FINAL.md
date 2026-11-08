@@ -6803,6 +6803,138 @@ EL REBASE, EN VERDE»).
   privacidad y la del asistente) en nueve idiomas;
 - en el iPhone, la lista de la nota («En el móvil»).
 
+## «Su cuerpo»: nadar y bici también suman kilómetros, al metro (8 de noviembre)
+
+Jerome, el 8 de noviembre, a las decisiones del bloque 4:
+- a la 4 («Kilómetros solo a pie: al caminar, en senderismo y al correr.
+  Nadar y bici suman minutos, pero no kilómetros»): «Cuentan también»;
+- a la 9 (los límites): «necesitamos mucha precisión. Si no calcula bien la
+  gente no lo usará», y después «quiero lo más preciso posible»; al tope de
+  60 km por anotación: «200 mejor».
+
+Son cinco commits:
+- el primer toque tras escribir una cifra, que se perdía (`3e73437`);
+- los kilómetros de nadar y bici (`07d3706`);
+- los km al metro y un tope por tipo (`91fc855`);
+- la política de privacidad, que lo dice (`cd64ee7`);
+- la fecha de la política, «noviembre de 2026» (`ec6f49a`).
+
+**Los kilómetros** (`07d3706`), en las fuentes de «Su cuerpo» y en lo que dan con
+`construir.py`:
+- `MOV`: `pie: true` también en nadar y bici. La hoja pide los km en los
+  cinco tipos; a nado y en bici empieza en 0 km. Los km de nadar y bici ya
+  no se descartan al leer lo guardado;
+- dos filas de `CUERPO_UI`, en los diez idiomas:
+  - `cuerpoMovKm`, el rótulo del campo: «Kilómetros», «Kilometres»,
+    «Kilomètres», «Kilometer», «Chilometri», «Kilometers», «公里数»,
+    «公里數», «Километри» y «Kilometry» (antes, «Kilómetros a pie» y los
+    suyos);
+  - `cuerpoMovNota`, la nota de la hoja: «Todo suma minutos y kilómetros a
+    su semana.» (antes, «… Los kilómetros, solo a pie.»), y lo mismo en los
+    otros nueve;
+- el asistente, en «¿Cómo voy esta semana?»: «Movimiento anotado en 7 días:
+  {min} min y {km} km.», sin «a pie», en las diez respuestas fuente y en los
+  diez `datos/cuerpo/asistente-*.json`;
+- los comentarios siguen diciendo que, en el bloque 5, los km avanzarán por
+  el GR 131;
+- el README: «los minutos y los kilómetros».
+
+**La precisión** (`91fc855`), en las fuentes (`src/ui.js`, `src/asistente.js`) y
+en el módulo:
+- los km, al metro: tres decimales (antes, uno: 4,25 se guardaba 4,3).
+  `km1()` pasa a `km3()`, que redondea con el número escrito en decimal y no
+  por × 1000: 0,5005 × 1000 da 500,49999…, que daba 0,5; así da 0,501.
+  Comprobado con los 2.000.000 valores de 4 decimales de 0 a 200;
+- el tope de una anotación, por tipo: 200 km en bici, como dijo Jerome, y
+  100 en los otros cuatro, lo que se le propuso (antes, 60 en todos). Solo
+  frena un error al escribir, como 425 por 4,25. Vale al escribir, con «+»,
+  al anotar y al leer lo guardado;
+- donde salen los km (la hoja, el día, lo último anotado, el aviso y el
+  asistente), con tres decimales como mucho.
+
+`CUERPO_UI` sigue con 417 filas, y el módulo es el que dan las fuentes
+(479.836 bytes).
+
+**El toque que se perdía** (`3e73437`). Lo sacó la prueba nueva de la bici: tras
+escribir los km, el toque en «Senderismo» no hacía nada. Ya pasaba en lo
+publicado, con los minutos y con los km, en Chromium con ratón y con el dedo
+(cinco casos, los cinco perdidos). Las dos causas:
+- al salir del campo, el «change» volvía a dibujar la hoja entera, y el botón
+  que se estaba tocando desaparecía entre el «mousedown» y el «click»;
+- lo escrito solo se tomaba con ese «change». Si el navegador no saca del
+  campo al tocar «Anotar», se guardaba la cifra de antes.
+
+Ahora, en las fuentes (`src/ui.js`) y en el módulo:
+- `renderValores()` pinta solo las cifras: los dos campos (menos el que se
+  escribe), sus −/+ y el botón;
+- «input» toma lo escrito en cuanto vale;
+- «change» pinta solo las cifras, no la hoja entera.
+
+Con el módulo final, los cinco casos entran.
+
+**La política de privacidad** (`cd64ee7` y `ec6f49a`). Jerome, a la frase nueva y a la
+fecha: «1 si», «2 si».
+- `ppDatosCuerpoTxt`: «el movimiento que anote (qué hizo, los minutos, los
+  kilómetros y el día)», sin «a pie», en los diez idiomas;
+- «Última actualización: noviembre de 2026». Decía «octubre de 2026», y la
+  política ha cambiado el 3, el 7 y el 8 de noviembre.
+
+`index.html` y `privacidad.html` salen de `tools/generar_privacidad.py`.
+
+**Las pruebas:**
+- `probar_cuerpo.js`: 357 de 357 (eran 349):
+  - cuatro del toque:
+    - tras escribir los minutos, el toque en «Correr» entra;
+    - tras escribir los km, el de «Caminar»;
+    - escritos 50 min y 3,5 km sin «change», «Anotar» los guarda;
+    - y su «Deshacer».
+
+    Con el módulo publicado, los tres primeros salen en rojo: se queda en
+    Senderismo y guarda 45 min y 6,5 km;
+  - tres de los km:
+    - Nadar y Bici, con su campo;
+    - en bici se guardan 60 min y 42,5 km, y el día suma «95 min y 45,5 km»;
+    - y su «Deshacer».
+
+    El ejemplo lleva además 1 km a nado: lo último anotado lo dice, y el
+    asistente cuenta «215 min y 13,5 km». Con el módulo sin los km, 7 en
+    rojo;
+  - uno del tope: en bici, «250» se queda en 200, con «+» apagado; caminando,
+    «150», en 100. Además, «4,25» se queda en 4,25, «4,2567» da 4,257, y lo
+    guardado roto respeta los topes y el metro. Con el módulo sin la
+    precisión, 5 en rojo;
+- en verde: `generar_privacidad.py --comprobar`, `auditar_registro.js`,
+  `castellano_suelto.js`, `auditar_datos.js`, `auditar_readme.js`,
+  `app_preparar.js --comprobar` y `auditar_claves_tx.js`.
+
+**La auditoría entera**, sobre `ea5044d` (árbol `e8167c9f…`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar (4.711 líneas, 1 h 49 min).
+Puesta la rama al día con `main`, solo entran commits de los robots (los
+avisos de AEMET, las alertas del Gobierno de Canarias, los satélites de
+CelesTrak, el boletín de INVOLCAN, los terremotos del IGN y los precios de las
+gasolineras): solo cambian sus ficheros de datos, y los controles que los leen
+salen en verde cada vez que `main` se movió antes de subir. La primera vez fue
+en dos tandas: la primera se cortó por el límite de tiempo de la tarea, ya
+pasado el barrido de pantallas (0 en los diez idiomas), y el resto (el cielo,
+308 controles; las emergencias, 39 y 261; los terremotos, INVOLCAN y las
+alertas) se pasó después, también en verde.
+
+**Lo que queda:**
+- que la app calcule sola. La web no puede leer los pasos que ya cuenta el
+  teléfono; la app del App Store sí, de Salud (HealthKit). Jerome, a
+  prepararlo: «Y el resto sí». Hace falta:
+  - activar HealthKit en su cuenta de Apple Developer;
+  - el permiso de cada persona;
+  - una frase nueva en la política, con su sí;
+  - la revisión de Apple;
+- las decisiones 1, 4 y 6 del bloque 4 (compartir, el gimnasio, los pasos y la
+  cinta): para la sesión de «Su cuerpo», con la nota del paquete de fuentes;
+- en el bloque 5, la nota de la maqueta («Los kilómetros a pie avanzan su
+  travesía del GR 131») pierde «a pie»;
+- WebKit: aquí no hay, y el toque se vio en Chromium. La prueba mira las dos
+  maneras de tocar «Anotar», con «change» y sin él;
+- la revisión nativa de los textos nuevos en nueve idiomas.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
