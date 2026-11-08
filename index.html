@@ -23507,6 +23507,19 @@ window.addEventListener('hashchange', () => {
 
           // Comprobar actualizaciones cada vez que la app se abre
           if (reg.update) reg.update().catch(function(){});
+          /* ...y al volver a ella (8 de noviembre de 2026). El iPhone deja la app
+             instalada dormida y, al volver, sigue la misma pagina: sin esto no
+             buscaba version nueva hasta cerrarla del todo, y Jerome vio «Su
+             cuerpo» sin el 3D una hora despues de publicarlo. Al volver a la
+             vista, si hace 5 minutos o mas de la ultima vez, se pregunta; si la
+             hay, sale el aviso de siempre con «Recargar» (no se recarga solo). */
+          var buscadaVersion = Date.now();
+          document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState !== 'visible' || !reg.update) return;
+            if (Date.now() - buscadaVersion < 5 * 60000) return;
+            buscadaVersion = Date.now();
+            reg.update().catch(function(){});
+          });
 
           // Si hay un SW nuevo esperando, notificarlo a la consola
           // (sin recargar automáticamente para no interrumpir al usuario)
