@@ -8901,7 +8901,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3406 filas (y 5.556 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3448 filas (y 5.598 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9029,7 +9029,12 @@ bloque 5 (la isla): 35 filas más en `CUERPO_UI` (452): «Hoy en la isla» (la z
 tiempo, los chips, las cinco categorías del índice UV de la OMS, el estado, la fuente con su hora, el
 consejo del día y las dos frases del sol), «Cruce la isla» (el título, el subtítulo, la cuenta, la
 siguiente parada, la travesía hecha, «Esquema», la etiqueta del mapa y sus fuentes) y las dos notas de
-la hoja del movimiento (a pie y a nado o en bici) en vez de una: 3406 y 5.556. El
+la hoja del movimiento (a pie y a nado o en bici) en vez de una: 3406 y 5.556. Y esa tarde, el
+bloque 6 (los sellos y la postal): 42 filas más en `CUERPO_UI` (494): «Sus sellos» (el título, el
+subtítulo, la cuenta, lo conseguido y lo pendiente, los once nombres y sus condiciones, el aviso de
+la hoja, la tarjeta de la celebración con sus frases y «Seguir») y «Su postal» (el título, el texto,
+«Crear mi postal», «Preparando…», el lema y los tres pies de la imagen, su texto alternativo, cómo
+guardarla, «Compartir», «Guardar la imagen», «Cerrar» y el fallo): 3448 y 5.598. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

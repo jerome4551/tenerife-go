@@ -314,6 +314,8 @@ const ROTULOS_IT = new Set([
   /* y los de «Preguntar» y «Comida» (3 de noviembre de 2026; los trajo la sesion de «Su cuerpo») */
   'Apri la guida SOS', 'Vedi {grupo}', 'Vedi l’esercizio', 'Vedi i muscoli', 'Vedi la guida', 'Cancella la conversazione', 'Cancella le annotazioni',
   'Aggiungi una porzione: {g}', 'Togli una porzione: {g}', 'Metti in pausa il diario',
+  /* y los de la postal (8 de noviembre de 2026, bloque 6) */
+  'Crea la mia cartolina', 'Salva l’immagine',
 ]);
 
 /* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
@@ -338,6 +340,8 @@ const ROTULOS_BG = new Set([
   'Отвори', 'Завърти', 'Покажи отзад', 'Покажи отпред', 'Изтрий: {series}, {fecha}', 'Изтрий данните от «Вашето тяло»', 'Да, изтрий', 'Отмени',
   /* y los de «Preguntar» (3 de noviembre de 2026; los trajo la sesion de «Su cuerpo») */
   'Отвори SOS ръководството', 'Виж {grupo}', 'Виж упражнението', 'Промени външния вид', 'Виж мускулите',
+  /* y los de la postal (8 de noviembre de 2026, bloque 6) */
+  'Създай картичката ми', 'Запази снимката',
 ]);
 
 /* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
@@ -380,6 +384,8 @@ const ROTULOS_PL = new Set([
   'Zacznij zapisywać', 'Dodaj porcję: {g}', 'Usuń porcję: {g}', 'Zobacz wytyczne', 'Zadzwoń do ALABENTE', 'Usuń zapisy',
   /* y el boton de la hoja «Anotar movimiento» (7 de noviembre de 2026, bloque 4): «Zapisz 30 min i 2,5 km» */
   'Zapisz {que}',
+  /* y los de la postal (8 de noviembre de 2026, bloque 6) */
+  'Utwórz pocztówkę', 'Zapisz obraz',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»

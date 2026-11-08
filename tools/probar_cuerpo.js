@@ -83,13 +83,17 @@ function prueba(nombre, cond, extra) {
 }
 /* con el personaje en 3D apagado (tenerife.cuerpo.3d = «no»): estas pruebas son las del dibujo, que es la
    reserva del 3D y lo que sale donde no hay WebGL 2; el 3D tiene las suyas (22), con el 3D encendido */
+/* opc: tresD (el 3D encendido), fiesta (las celebraciones de los sellos; sin ella, TG_CUERPO_SIN_FIESTA, para que la
+   tarjeta no se plante encima de lo que cada control toca), blob (deja pasar blob: y data:, la imagen de la postal),
+   corta (una RegExp de lo que se corta), contexto (opciones del contexto) */
 async function contexto(b, opc) {
   opc = opc || {};
   const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', locale: 'es-ES' }, opc.contexto || {}));
-  await ctx.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') && !(opc.corta && opc.corta.test(r.request().url())) ? r.continue() : r.abort());
-  await ctx.addInitScript(tresD => {
-    try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); if (!tresD) localStorage.setItem('tenerife.cuerpo.3d', 'no'); } catch (e) {}
-  }, !!opc.tresD);
+  await ctx.route('**/*', r => { const u = r.request().url(); return (u.startsWith('http://127.0.0.1') || (opc.blob && /^(blob|data):/.test(u))) && !(opc.corta && opc.corta.test(u)) ? r.continue() : r.abort(); });
+  await ctx.addInitScript(o => {
+    try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); if (!o.tresD) localStorage.setItem('tenerife.cuerpo.3d', 'no'); } catch (e) {}
+    if (!o.fiesta) window.TG_CUERPO_SIN_FIESTA = true;
+  }, { tresD: !!opc.tresD, fiesta: !!opc.fiesta });
   return ctx;
 }
 /* los errores de la pagina; los fallos de carga se miran por la respuesta (asi se sabe que fichero era) */
@@ -128,9 +132,11 @@ async function vacio(pg) {
 async function idioma(pg, l) { await pg.evaluate(l => setLang(l), l); await pg.waitForTimeout(150); }
 /* el ejemplo del prototipo, tal cual: inventado, para ver el mapa con niveles. Cada fila: hace
    cuantos dias, el ejercicio (o null si se anoto solo el grupo), sus grupos principales y las
-   series; una anotacion por grupo principal. Con la pantalla abierta, abrir() vuelve a leerlo */
-async function ejemplo(pg) {
-  await pg.evaluate(() => {
+   series; una anotacion por grupo principal. Con la pantalla abierta, abrir() vuelve a leerlo.
+   mas (8-11-2026, bloque 6): lo demas que se guarda con el ejemplo; mas.mov va como filas
+   [hace cuantos dias, tipo, minutos, km] y lo demas (sellos, deporte…) tal cual */
+async function ejemplo(pg, mas) {
+  await pg.evaluate(mas => {
     const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
     const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
     const S = [[0, 'press-banca-barra', ['pecho'], 4], [0, 'press-hombros-mancuernas', ['hombros'], 3], [0, 'fondos-paralelas-triceps', ['triceps'], 3],
@@ -141,9 +147,11 @@ async function ejemplo(pg) {
       [6, 'prensa-piernas', ['cuadriceps', 'gluteos'], 4], [9, 'paseo-granjero', ['antebrazo'], 2]];
     const t = Date.now() - 1e6, series = [];
     S.forEach(x => x[2].forEach(g => { const s = { d: hace(x[0]), g, n: x[3], t: t + series.length }; if (x[1]) s.e = x[1]; series.push(s); }));
-    localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, aspecto: TG_FIGURA.normaliza(null), series }));
+    const g = { v: 1, aspecto: TG_FIGURA.normaliza(null), series };
+    if (mas) Object.keys(mas).forEach(k => { g[k] = k === 'mov' ? mas.mov.map((x, i) => ({ d: hace(x[0]), tipo: x[1], min: x[2], km: x[3], t: t + 500 + i })) : mas[k]; });
+    localStorage.setItem('tenerife.cuerpo', JSON.stringify(g));
     TG_CUERPO.abrir();
-  });
+  }, mas || null);
   await pg.waitForTimeout(200);
 }
 
@@ -188,9 +196,10 @@ async function ejemplo(pg) {
      ni el paso de la hoja, 108; desde el 7 (bloque 4), con las tres metas (su nombre y «Meta cumplida»,
      6), «Anotar movimiento» y su hoja (17) y sin las tres cifras de antes (3), 128; desde el 8 (bloque 5), con
      «Hoy en la isla» (el título y la etiqueta de la zona), «Cruce la isla» (el título y «Esquema») y con la nota de
-     la hoja del movimiento puesta por código (dos notas), 131; y 2 placeholders (el del buscador de ejercicios y el
-     de la pregunta) */
-  prueba('textos fijos puestos (131 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 131 && r2.ph === 2, r2.n + '/' + r2.ph);
+     la hoja del movimiento puesta por código (dos notas), 131; desde el 8 (bloque 6), con «Sus sellos» (el título y el
+     subtítulo) y «Su postal» (el título, el texto y «Crear mi postal»), 136; y 2 placeholders (el del buscador de
+     ejercicios y el de la pregunta) */
+  prueba('textos fijos puestos (136 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 136 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -208,10 +217,12 @@ async function ejemplo(pg) {
       const r = await pg.evaluate(() => {
         /* nada pasa del borde de la pantalla (ni a la derecha ni a la izquierda) y la pantalla no se
            desplaza de lado. Lo de dentro de un svg no se mira: el sol y las nubes del cielo salen por
-           los lados a propósito, recortados por la escena */
+           los lados a propósito, recortados por la escena. Ni lo de dentro de una tira que se desliza
+           de lado (overflow-x auto o scroll: la de los sellos, 8-11-2026, bloque 6) */
         const p = document.getElementById('cuerpo-panel'), b = p.getBoundingClientRect();
         const vacios = [...p.querySelectorAll('#tgc [data-tx], #tgc-modos [data-tx]')].filter(n => n.getClientRects().length && !n.textContent.trim()).map(n => n.id || n.className);
-        const anchos = [...p.querySelectorAll('#tgc *, #tgc-modos *')].filter(n => { if (!n.getClientRects().length || n.closest('svg')) return false; const x = n.getBoundingClientRect(); return x.right > b.right + 0.5 || x.left < b.left - 0.5; })
+        const enTira = n => { for (let a = n.parentElement; a && a !== p; a = a.parentElement) { const o = getComputedStyle(a).overflowX; if (o === 'auto' || o === 'scroll') return true; } return false; };
+        const anchos = [...p.querySelectorAll('#tgc *, #tgc-modos *')].filter(n => { if (!n.getClientRects().length || n.closest('svg')) return false; const x = n.getBoundingClientRect(); return (x.right > b.right + 0.5 || x.left < b.left - 0.5) && !enTira(n); })
           .map(n => n.id || (typeof n.className === 'string' ? n.className : '') || n.tagName).slice(0, 5);
         return { vacios, anchos, psw: p.scrollWidth, pcw: p.clientWidth, lang: p.getAttribute('lang') };
       });
@@ -2111,6 +2122,237 @@ async function ejemplo(pg) {
     await idioma(p24, 'es');
     prueba('bloque 5: sin errores de página', e24.length === 0, e24.join(' | '));
     await c24.close();
+  }
+
+  // 25. (8-11-2026, bloque 6) los sellos y la postal. Once sellos que se consiguen una vez y se quedan en el dispositivo
+  //     con su fecha (tenerife.cuerpo, sellos): el primer paso, los días de fuerza y los minutos de la semana (por la meta
+  //     de la edad: 2 y 150; de 5 a 17 años, 3 y 420), el sol entero, los 12 grupos, 10 km a pie y las cinco paradas del
+  //     GR 131. El que se cumple por primera vez se celebra con una tarjeta (diálogo modal, con la pantalla inerte debajo;
+  //     varios de golpe, una sola tarjeta con los tres últimos dibujados); con una hoja abierta, la celebración espera a
+  //     que se cierre y la hoja del grupo lo dice en una línea; «Seguir», Escape y TG_CUERPO.cerrarFiesta la cierran y el
+  //     foco vuelve. «Su postal»: la vista previa (la escena y el personaje), «Crear mi postal» hace una imagen PNG de
+  //     1080 × 1350 en un lienzo y la enseña en la tarjeta para guardarla con el dedo, compartirla (Web Share con ficheros,
+  //     donde lo haya) o descargarla (tenerife-go-mi-semana.png); de noche, con la banda oscura. «Borrar los datos» se los
+  //     lleva. En los diez idiomas, con la política de privacidad nombrando los sellos; a 320 px; con el 3D (la foto del
+  //     motor en la vista previa y en la postal, y la sonrisa); y con «reducir movimiento», sin rayos
+  {
+    const fs25 = require('fs'), path25 = require('path'), os25 = require('os');
+    const L25 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+    const MOV25 = [[0, 'caminar', 35, 3], [3, 'senderismo', 150, 9.5], [12, 'senderismo', 240, 21]];   /* 33,5 km a pie: La Caldera pasada, El Portillo a 9,4 */
+    const leer25 = (p) => p.evaluate(() => {
+      const g = id => document.getElementById(id), f = g('tgc-fiesta'), q = (s, r) => (r || f).querySelector(s), a = document.activeElement;
+      const mini = g('tgc-postal-mini');
+      return { orden: [...g('tgc-vista-musculos').querySelectorAll(':scope > section')].map(s => s.className.split(' ')[0]).join(' '),
+        sellos: [...document.querySelectorAll('#tgc-sellos-lista .tgc-sello')].map(li => ({ id: li.dataset.id, falta: li.classList.contains('falta'), nuevo: li.classList.contains('nuevo'), svg: !!li.querySelector('svg'),
+          nom: li.querySelector('.tgc-sello-nom').textContent, cond: li.querySelector('.tgc-sello-cond').textContent, sr: li.querySelector('.tgc-sr').textContent, anillo: [...li.querySelectorAll('textPath')].map(t => t.textContent).join('/') })),
+        n: g('tgc-sellos-n').textContent, fiesta: !f.hidden, dentro: f.classList.contains('dentro'), tit: (q('#tgc-fiesta-tit') || {}).textContent, txt: (q('#tgc-fiesta-txt') || {}).textContent,
+        botones: [...f.querySelectorAll('#tgc-fiesta-botones button')].map(b => b.textContent + (b.classList.contains('gold') ? '*' : '')), rayos: f.querySelectorAll('.tgc-fiesta-rayos i').length,
+        varios: f.querySelectorAll('.tgc-fiesta-varios svg').length, grande: f.querySelectorAll('.tgc-fiesta-tarj > svg').length, dialogo: !!q('.tgc-fiesta-tarj[role="dialog"][aria-modal="true"][aria-labelledby="tgc-fiesta-tit"]'),
+        foco: a ? (a.id ? '#' + a.id : a.className.split(' ')[0] + (a.dataset && a.dataset.g ? '[' + a.dataset.g + ']' : '') + (a.closest('#tgc-fiesta') ? ' (fiesta: ' + a.textContent + ')' : '')) : '', inerte: g('tgc').inert && g('tgc-modos').inert,
+        hojaSello: g('tgc-hoja-sello').textContent, hojaSelloOculto: g('tgc-hoja-sello').hidden, abierto: TG_CUERPO.abierto(),
+        guardado: (JSON.parse(localStorage.getItem('tenerife.cuerpo') || '{}').sellos) || null, hoyTxt: new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date()),
+        hoyYmd: (d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'))(new Date()),
+        postal: { tit: g('tgc-postal-tit').textContent, p: g('tgc-postal-p').textContent, btn: g('tgc-postal-btn-txt').textContent, desactivado: g('tgc-postal-btn').disabled, miniSvg: mini.querySelectorAll('svg').length, miniImg: mini.querySelectorAll('img').length,
+          miniFig: !!mini.querySelector('.tgc-postal-mini-fig'), miniHtml: mini.innerHTML.length, idsRepetidos: [...mini.querySelectorAll('[id]')].filter(e => document.querySelectorAll('#' + CSS.escape(e.id)).length > 1).map(e => e.id) },
+        desborde: g('cuerpo-panel').scrollWidth > g('cuerpo-panel').clientWidth };
+    });
+    /* la tarjeta de la postal: su imagen, sus botones, y unos píxeles de la imagen (la banda de las cifras, abajo) */
+    const postal25 = (p) => p.evaluate(() => {
+      const im = document.querySelector('#tgc-fiesta img.tgc-postal-img'); if (!im) return null;
+      const c = document.createElement('canvas'); c.width = im.naturalWidth; c.height = im.naturalHeight; const x = c.getContext('2d'); x.drawImage(im, 0, 0);
+      const px = (X, Y) => [...x.getImageData(X, Y, 1, 1).data].slice(0, 3);
+      const colores = new Set(); for (let i = 0; i < 20; i++) colores.add(px(60 + i * 48, 200 + i * 40).join(','));
+      return { src: im.src.slice(0, 5), nat: im.naturalWidth + 'x' + im.naturalHeight, alt: im.alt, completa: im.complete, banda: px(540, 1350 - 252 + 20), banda2: px(200, 1350 - 60), cielo: px(540, 40), colores: colores.size,
+        tit: document.getElementById('tgc-fiesta-tit').textContent, txt: document.getElementById('tgc-fiesta-txt').textContent, botones: [...document.querySelectorAll('#tgc-fiesta-botones button')].map(b => b.textContent),
+        share: !!(navigator.share && navigator.canShare), rayos: document.querySelectorAll('#tgc-fiesta .tgc-fiesta-rayos i').length, rect: (r => ({ l: Math.round(r.left), r: Math.round(r.right), t: Math.round(r.top), b: Math.round(r.bottom) }))(document.querySelector('#tgc-fiesta .tgc-fiesta-tarj').getBoundingClientRect()) };
+    });
+    const esperarPostal = (p) => p.waitForFunction(() => { const im = document.querySelector('#tgc-fiesta img.tgc-postal-img'); return !document.getElementById('tgc-fiesta').hidden && im && im.complete && im.naturalWidth > 0; }, null, { timeout: 20000 });
+    const claro = c => c.every(v => v > 200), oscuro = c => c.every(v => v < 80);
+
+    const c25 = await contexto(b, { fiesta: true, blob: true, contexto: { acceptDownloads: true } }), p25 = await c25.newPage(), e25 = []; vigilar(p25, e25);
+    await abrirApp(p25); await abrirPerfilCuerpo(p25); await suCuerpo(p25);
+    await vacio(p25); await p25.waitForTimeout(200);
+    const v25 = await leer25(p25);
+    prueba('en «Músculos», tras los 12 grupos, «Sus sellos» y «Su postal»', /tgc-grupos tgc-sellos tgc-postal$/.test(v25.orden), v25.orden);
+    prueba('sin nada anotado: los 11 sellos pendientes («0 de 11»), cada uno con su dibujo, su nombre, su condición y «Pendiente.» para el lector de pantalla; nada guardado, ninguna celebración',
+      v25.sellos.length === 11 && v25.sellos.every(s => s.falta && !s.nuevo && s.svg && s.nom && s.cond && s.sr === 'Pendiente.' && s.anillo === '') && v25.n === '0 de 11' && !v25.fiesta && v25.guardado === null, JSON.stringify([v25.n, v25.fiesta, v25.guardado, v25.sellos.map(s => s.sr)]));
+    prueba('los nombres y las condiciones: Primer paso (Su primera anotación), 2 días de fuerza (En 7 días), 150 minutos (De movimiento en 7 días), Sol entero (Fuerza y movimiento), Doce de doce (Los 12 grupos en 7 días), 10 km a pie (Camino del GR 131) y las cinco paradas del GR 131 con su km (29,8 · 42,9 · 56,0 · 67,3 · 85,55)',
+      v25.sellos.map(s => s.id + ':' + s.nom + '/' + s.cond).join('|') === 'primer:Primer paso/Su primera anotación|fuerza:2 días de fuerza/En 7 días|mov:150 minutos/De movimiento en 7 días|sol:Sol entero/Fuerza y movimiento|doce:Doce de doce/Los 12 grupos en 7 días|km10:10 km a pie/Camino del GR 131|e1:La Caldera/GR 131 · km 29,8|e2:El Portillo/GR 131 · km 42,9|e3:Guajara/GR 131 · km 56,0|e4:Vilaflor/GR 131 · km 67,3|e5:Arona/GR 131 · km 85,55',
+      v25.sellos.map(s => s.id + ':' + s.nom + '/' + s.cond).join('|'));
+    prueba('«Su postal»: el título, el texto, «Crear mi postal» y la vista previa (la escena y el personaje dibujados, sin ids repetidos en la página)', v25.postal.tit === 'Su postal' && v25.postal.p === 'Su semana en una imagen, para guardarla o enviarla.' && v25.postal.btn === 'Crear mi postal' && !v25.postal.desactivado
+      && v25.postal.miniSvg >= 2 && v25.postal.miniFig && v25.postal.miniImg === 0 && v25.postal.idsRepetidos.length === 0, JSON.stringify(v25.postal));
+    prueba('nada pasa del borde', !v25.desborde);
+
+    /* el ejemplo con 33,5 km a pie: seis sellos de golpe, con el foco puesto antes en el botón del tema (ahí tiene que volver) */
+    await p25.focus('#tgc-tema');
+    await ejemplo(p25, { mov: MOV25 }); await p25.waitForTimeout(500);
+    const s1 = await leer25(p25);
+    prueba('el ejemplo con 33,5 km a pie: seis sellos de golpe (Primer paso, 2 días de fuerza, 150 minutos, Sol entero, 10 km a pie y La Caldera), guardados con la fecha de hoy, marcados «nuevo», «6 de 11»; «Doce de doce» (11 grupos en 7 días) y las otras paradas, pendientes',
+      s1.sellos.filter(s => !s.falta).map(s => s.id).join() === 'primer,fuerza,mov,sol,km10,e1' && s1.sellos.filter(s => !s.falta).every(s => s.nuevo && s.sr === 'Conseguido el ' + s1.hoyTxt + '.' && s.anillo === 'TENERIFE GO/' + s1.hoyTxt.toUpperCase()) && s1.sellos.filter(s => s.falta).every(s => !s.nuevo)
+      && s1.n === '6 de 11' && s1.guardado && Object.keys(s1.guardado).sort().join() === 'e1,fuerza,km10,mov,primer,sol' && Object.values(s1.guardado).every(f => f === s1.hoyYmd), JSON.stringify([s1.n, s1.guardado, s1.sellos.filter(s => !s.falta).map(s => s.sr + ' ' + s.anillo)]));
+    prueba('la celebración: una tarjeta (diálogo modal con su título) con los tres últimos sellos dibujados, «6 sellos nuevos», la lista y la frase del último («… La Caldera. Etapa 1 del GR 131 cumplida. Lleva 33,5 km a pie.»), 14 rayos, un solo botón «Seguir» (de oro) con el foco, y la pantalla inerte debajo',
+      s1.fiesta && s1.dentro && s1.dialogo && s1.varios === 3 && s1.grande === 0 && s1.tit === '6 sellos nuevos' && s1.txt === 'Primer paso, 2 días de fuerza, 150 minutos, Sol entero, 10 km a pie, La Caldera. Etapa 1 del GR 131 cumplida. Lleva 33,5 km a pie.' && s1.rayos === 14 && s1.botones.join() === 'Seguir*' && /fiesta: Seguir/.test(s1.foco) && s1.inerte,
+      JSON.stringify([s1.fiesta, s1.dentro, s1.dialogo, s1.varios, s1.grande, s1.tit, s1.txt, s1.rayos, s1.botones, s1.foco, s1.inerte]));
+    await p25.click('#tgc-fiesta-botones button'); await p25.waitForTimeout(500);
+    const s2 = await leer25(p25);
+    prueba('«Seguir» cierra la tarjeta: nada inerte, el foco vuelve al botón del tema, la pantalla sigue abierta y los sellos se quedan', !s2.fiesta && !s2.inerte && s2.foco === '#tgc-tema' && s2.abierto && s2.n === '6 de 11', JSON.stringify([s2.fiesta, s2.inerte, s2.foco, s2.abierto, s2.n]));
+
+    /* al volver a abrir la app, siguen; y aunque pase la semana (todo lo anotado hace 10 días más), siguen con su fecha */
+    await p25.reload({ waitUntil: 'load' }); await abrirApp(p25); await abrirPerfilCuerpo(p25); await suCuerpo(p25); await p25.waitForTimeout(400);
+    const s3 = await leer25(p25);
+    prueba('al volver a abrir la app: los seis sellos siguen, con «Conseguido el <hoy>.», sin la marca de nuevo y sin celebración (ya se celebraron)', s3.n === '6 de 11' && !s3.fiesta && s3.sellos.filter(s => !s.falta).length === 6 && s3.sellos.every(s => !s.nuevo) && s3.sellos.filter(s => !s.falta).every(s => s.sr === 'Conseguido el ' + s3.hoyTxt + '.'), JSON.stringify([s3.n, s3.fiesta, s3.sellos.map(s => s.sr)]));
+    await p25.evaluate(() => {
+      const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const atras = s => { const p = s.split('-').map(Number), d = new Date(p[0], p[1] - 1, p[2]); d.setDate(d.getDate() - 10); return ymd(d); };
+      const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); g.series.forEach(s => { s.d = atras(s.d); }); g.mov.forEach(m => { m.d = atras(m.d); }); localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir();
+    }); await p25.waitForTimeout(400);
+    const s4 = await leer25(p25);
+    const semana4 = await p25.evaluate(() => document.querySelectorAll('#tgc-cielo .tgc-rayo.on, #tgc-cielo .tgc-rayo.encendido').length + ' rayos encendidos; ' + document.querySelectorAll('#tgc-lista .tgc-fila.con').length + ' grupos con series');
+    prueba('pasada la semana (todo lo anotado, 10 días más atrás): la semana en cero (ningún grupo con series en 7 días) y los seis sellos siguen con su fecha, sin celebración', s4.n === '6 de 11' && !s4.fiesta && /; 0 grupos/.test(semana4) && s4.sellos.filter(s => !s.falta).every(s => s.sr === 'Conseguido el ' + s4.hoyTxt + '.'), JSON.stringify([s4.n, s4.fiesta, semana4]));
+    /* de 5 a 17 años: los sellos de la semana se llaman por la meta de su edad */
+    await p25.evaluate(() => { localStorage.setItem('tenerife.perfil', JSON.stringify({ nacimiento: new Date().getFullYear() - 15 })); TG_CUERPO.repintar(); }); await p25.waitForTimeout(200);
+    const s5 = await leer25(p25);
+    prueba('con 15 años (perfil con el año de nacimiento): «3 días de fuerza» y «420 minutos» (las metas de la OMS para su edad); el que ya tenía sigue conseguido', s5.sellos[1].nom === '3 días de fuerza' && s5.sellos[2].nom === '420 minutos' && !s5.sellos[1].falta && !s5.sellos[2].falta && s5.n === '6 de 11', JSON.stringify([s5.sellos[1], s5.sellos[2], s5.n]));
+    await p25.evaluate(() => { localStorage.removeItem('tenerife.perfil'); TG_CUERPO.repintar(); }); await p25.waitForTimeout(100);
+
+    /* con una hoja abierta, la celebración espera: el ejemplo de hoy (11 grupos en 7 días), la hoja de los antebrazos (el que falta) y «+ 1 serie» */
+    await ejemplo(p25, { mov: MOV25, sellos: s1.guardado }); await p25.waitForTimeout(300);
+    await p25.click('#tgc-lista .tgc-fila[data-g="antebrazo"]'); await p25.waitForTimeout(450);
+    const h0 = await leer25(p25);
+    await p25.click('#tgc-guardar'); await p25.waitForTimeout(400);
+    const h1 = await leer25(p25);
+    prueba('con la hoja de un grupo abierta, «+ 1 serie» completa los 12 grupos: el sello se guarda y se pinta («7 de 11»), la hoja dice «Sello nuevo: Doce de doce» y la tarjeta espera (no se planta encima de la hoja)',
+      h0.hojaSelloOculto && !h1.fiesta && h1.n === '7 de 11' && !h1.hojaSelloOculto && h1.hojaSello === 'Sello nuevo: Doce de doce' && h1.guardado && h1.guardado.doce === Object.values(h1.guardado)[0] && h1.sellos[4].id === 'doce' && !h1.sellos[4].falta, JSON.stringify([h0.hojaSelloOculto, h1.fiesta, h1.n, h1.hojaSello, h1.hojaSelloOculto]));
+    await p25.keyboard.press('Escape'); await p25.waitForTimeout(500);
+    const h2 = await leer25(p25);
+    prueba('al cerrar la hoja (Escape): la tarjeta de «Doce de doce» con su sello grande, «Ha trabajado los 12 grupos musculares en 7 días.» y «Seguir»; la línea de la hoja se vacía', h2.fiesta && h2.grande === 1 && h2.varios === 0 && h2.tit === 'Doce de doce' && h2.txt === 'Ha trabajado los 12 grupos musculares en 7 días.' && h2.botones.join() === 'Seguir*' && h2.inerte && h2.hojaSelloOculto && h2.hojaSello === '',
+      JSON.stringify([h2.fiesta, h2.grande, h2.varios, h2.tit, h2.txt, h2.botones, h2.inerte, h2.hojaSello, h2.hojaSelloOculto]));
+    await p25.click('#tgc-fiesta-botones button'); await p25.waitForTimeout(500);
+    const h3 = await leer25(p25);
+    /* el foco: la rejilla se volvió a pintar con la serie, así que el botón del grupo de antes de la hoja ya no existe y la tarjeta se abrió sin nada enfocado; al cerrarla, el foco va a la flecha de la cabecera */
+    prueba('«Seguir»: nada inerte y el foco en la flecha de la cabecera (el botón del grupo de antes de la hoja se volvió a pintar con la serie: ya no existe)', !h3.fiesta && !h3.inerte && h3.foco === '#tgc-back', h3.foco);
+
+    /* «Anotar movimiento» con km que cruzan una parada: la tarjeta de la parada en cuanto se cierra la hoja; Escape la cierra */
+    await p25.click('#tgc-mov-btn'); await p25.waitForTimeout(400);
+    await p25.click('#tgc-mov-tipos .tgc-tipo[data-tipo="senderismo"]'); await p25.fill('#tgc-mov-km', '10'); await p25.dispatchEvent('#tgc-mov-km', 'change'); await p25.waitForTimeout(80);
+    await p25.click('#tgc-mov-guardar'); await p25.waitForTimeout(900);
+    const m1 = await leer25(p25);
+    prueba('anotar 10 km a pie (33,5 → 43,5, pasado El Portillo, 42,9): la tarjeta «El Portillo» con «Etapa 2 del GR 131 cumplida. Lleva 43,5 km a pie.», «8 de 11»', m1.fiesta && m1.grande === 1 && m1.tit === 'El Portillo' && m1.txt === 'Etapa 2 del GR 131 cumplida. Lleva 43,5 km a pie.' && m1.n === '8 de 11' && m1.inerte, JSON.stringify([m1.fiesta, m1.tit, m1.txt, m1.n]));
+    await p25.keyboard.press('Escape'); await p25.waitForTimeout(500);
+    const m2 = await leer25(p25);
+    prueba('Escape cierra solo la tarjeta: la pantalla sigue abierta, nada inerte, el foco en «Anotar movimiento»', !m2.fiesta && m2.abierto && !m2.inerte && m2.foco === '#tgc-mov-btn', JSON.stringify([m2.fiesta, m2.abierto, m2.inerte, m2.foco]));
+    /* TG_CUERPO.cerrarFiesta, para quien ponga la pantalla desde fuera: una tarjeta puesta a mano, y cerrada */
+    await ejemplo(p25, { mov: MOV25.concat([[1, 'senderismo', 200, 14]]), sellos: Object.assign({}, h1.guardado, { e2: null }) }); await p25.waitForTimeout(500);
+    const m3 = await leer25(p25);
+    await p25.evaluate(() => TG_CUERPO.cerrarFiesta()); await p25.waitForTimeout(400);
+    const m4 = await leer25(p25);
+    prueba('un sello guardado mal (fecha nula) se descarta al leer y se vuelve a conseguir (la tarjeta de «El Portillo» otra vez); TG_CUERPO.cerrarFiesta() la cierra', m3.fiesta && m3.tit === 'El Portillo' && !m4.fiesta && !m4.inerte && m4.n === '8 de 11', JSON.stringify([m3.fiesta, m3.tit, m4.fiesta, m4.n]));
+
+    /* la postal: el botón se apaga mientras se prepara, la tarjeta con la imagen (1080 × 1350), «Guardar la imagen» (sin Web Share aquí) la descarga y la tarjeta sigue; «Cerrar» */
+    await p25.evaluate(() => { const r = document.getElementById('tgc-postal'); document.getElementById('cuerpo-panel').scrollTop = r.offsetTop - 72;
+      window.__btnTx = []; new MutationObserver(() => { const t = document.getElementById('tgc-postal-btn-txt').textContent + (document.getElementById('tgc-postal-btn').disabled ? ' (apagado)' : ''); if (window.__btnTx[window.__btnTx.length - 1] !== t) window.__btnTx.push(t); })
+        .observe(document.getElementById('tgc-postal-btn'), { subtree: true, childList: true, characterData: true, attributes: true }); });
+    await p25.waitForTimeout(200);
+    const [descarga] = await Promise.all([p25.waitForEvent('download', { timeout: 15000 }).catch(() => null), (async () => {
+      await p25.click('#tgc-postal-btn'); await esperarPostal(p25); await p25.waitForTimeout(300);
+      const po = await postal25(p25), btnTx = await p25.evaluate(() => window.__btnTx), po2 = await leer25(p25);
+      prueba('«Crear mi postal»: el botón pasa a «Preparando…» (apagado) y vuelve; la tarjeta con la imagen (blob, 1080 × 1350, con su alt), «Su postal», «Mantenga el dedo sobre la imagen para guardarla.», sin rayos, y los botones «Guardar la imagen» (sin Web Share con ficheros en este navegador; con él, «Compartir») y «Cerrar»',
+        btnTx.join('|') === 'Preparando… (apagado)|Crear mi postal' && po && po.src === 'blob:' && po.nat === '1080x1350' && po.completa && po.alt === 'Postal: su personaje ante el Teide, con sus días de fuerza, sus minutos y sus kilómetros.' && po.tit === 'Su postal' && po.txt === 'Mantenga el dedo sobre la imagen para guardarla.' && po.rayos === 0
+        && po.botones.join('|') === (po.share ? 'Compartir' : 'Guardar la imagen') + '|Cerrar' && po2.botones[0].endsWith('*') && po2.inerte && po2.dialogo, JSON.stringify([btnTx, po && [po.src, po.nat, po.alt, po.tit, po.txt, po.rayos, po.botones, po.share], po2.botones]));
+      prueba('la imagen de día: la banda de las cifras clara, el cielo pintado y muchos colores (no un lienzo vacío)', po && claro(po.banda) && claro(po.banda2) && !oscuro(po.cielo) && !claro(po.cielo) && po.colores >= 8, JSON.stringify(po && [po.banda, po.banda2, po.cielo, po.colores]));
+      await p25.click('#tgc-fiesta-botones button:first-child'); await p25.waitForTimeout(600);
+    })()]);
+    let png25 = null;
+    if (descarga) { const ruta = path25.join(os25.tmpdir(), 'tgc-postal-' + process.pid + '.png'); await descarga.saveAs(ruta); png25 = fs25.readFileSync(ruta); fs25.unlinkSync(ruta); }
+    const pd = await leer25(p25);
+    prueba('«Guardar la imagen» descarga tenerife-go-mi-semana.png (un PNG de 1080 × 1350, de más de 100 kB) y la tarjeta sigue abierta', !!descarga && descarga.suggestedFilename() === 'tenerife-go-mi-semana.png' && png25 && png25.length > 100000 && png25.slice(0, 8).toString('hex') === '89504e470d0a1a0a' && png25.readUInt32BE(16) === 1080 && png25.readUInt32BE(20) === 1350 && pd.fiesta,
+      JSON.stringify([!!descarga, descarga && descarga.suggestedFilename(), png25 && png25.length, pd.fiesta]));
+    await p25.click('#tgc-fiesta-botones button:last-child'); await p25.waitForTimeout(500);
+    const pc = await leer25(p25);
+    prueba('«Cerrar» cierra la tarjeta de la postal: nada inerte y el foco de vuelta en «Crear mi postal»', !pc.fiesta && !pc.inerte && pc.foco === '#tgc-postal-btn', JSON.stringify([pc.fiesta, pc.inerte, pc.foco]));
+    /* de noche: la vista previa se vuelve a pintar y la postal lleva la banda oscura */
+    await p25.click('#tgc-tema'); await p25.waitForTimeout(500);
+    const pn0 = await leer25(p25);
+    await p25.click('#tgc-postal-btn'); await esperarPostal(p25); await p25.waitForTimeout(300);
+    const pn = await postal25(p25);
+    prueba('con el tema Noche: la vista previa se vuelve a pintar (otra escena) y la postal lleva la banda oscura, con la imagen igual de grande', pn0.postal.miniHtml !== pc.postal.miniHtml && pn && pn.nat === '1080x1350' && oscuro(pn.banda) && oscuro(pn.banda2) && pn.colores >= 8, JSON.stringify([pn0.postal.miniHtml, pc.postal.miniHtml, pn && [pn.banda, pn.banda2, pn.colores]]));
+    await p25.click('#tgc-fiesta-botones button:last-child'); await p25.waitForTimeout(400);
+    await p25.click('#tgc-tema'); await p25.waitForTimeout(400);
+
+    /* los diez idiomas: las dos secciones, los once sellos (los seis de la semana con nombre y condición en su idioma; las paradas, nombre propio y «GR 131 · km» con
+       el número de su idioma), «8 de 11», la fecha del borde en su idioma, las 42 filas nuevas con sus plurales (pl 3, zh y zht 1, el resto 2), sin desborde, y la
+       política de privacidad nombrando los sellos */
+    const esTx25 = {}, SELLO_PRIV = { es: 'sellos', en: 'stamps', fr: 'tampons', de: 'Stempel', it: 'timbri', nl: 'stempels', zh: '印章', zht: '印章', bg: 'печати', pl: 'pieczątki' };
+    for (const l of L25) {
+      await idioma(p25, l); await p25.waitForTimeout(120);
+      const t = await p25.evaluate(l => {
+        const g = id => document.getElementById(id).textContent.trim();
+        const filas = Object.keys(UI_TX).filter(k => /^cuerpo(Sello|Sellos|Postal|Seguir|Compartir|GuardarImagen|CerrarB)/.test(k));
+        return { tit: g('tgc-sellos-tit'), sub: g('tgc-sellos-sub'), n: g('tgc-sellos-n'), pTit: g('tgc-postal-tit'), pTxt: g('tgc-postal-p'), pBtn: g('tgc-postal-btn-txt'),
+          sellos: [...document.querySelectorAll('#tgc-sellos-lista .tgc-sello')].map(li => ({ id: li.dataset.id, falta: li.classList.contains('falta'), nom: li.querySelector('.tgc-sello-nom').textContent, cond: li.querySelector('.tgc-sello-cond').textContent, sr: li.querySelector('.tgc-sr').textContent, anillo: [...li.querySelectorAll('textPath')].map(x => x.textContent) })),
+          filas: filas.length, vacias: filas.filter(k => !UI_TX[k][l]), plurales: ['cuerpoSelloN_fuerza', 'cuerpoSelloN_mov', 'cuerpoSellosNuevos', 'cuerpoSelloT_fuerza', 'cuerpoPostalLDias'].map(k => UI_TX[k][l].split('|').length).join(''),
+          pendiente: UI_TX.cuerpoSelloPendiente[l], privacidad: UI_TX.ppDatosCuerpoTxt[l], desborde: document.getElementById('cuerpo-panel').scrollWidth > document.getElementById('cuerpo-panel').clientWidth, lang: document.getElementById('cuerpo-panel').getAttribute('lang') };
+      }, l);
+      if (l === 'es') Object.assign(esTx25, t);
+      const semana = t.sellos.slice(0, 6), paradas = t.sellos.slice(6), vacias = [...(['tit', 'sub', 'n', 'pTit', 'pTxt', 'pBtn'].filter(k => !t[k])), ...t.sellos.filter(s => !s.nom || !s.cond || !s.sr).map(s => s.id)];
+      const iguales = l === 'es' ? [] : [...(['tit', 'sub', 'pTit', 'pTxt', 'pBtn'].filter(k => t[k] === esTx25[k])), ...semana.filter((s, i) => s.nom === esTx25.sellos[i].nom || s.cond === esTx25.sellos[i].cond).map(s => s.id)];
+      const km = { e1: '29', e2: '42', e3: '56', e4: '67', e5: '85' };
+      prueba(l + ': «' + t.tit + '» y «' + t.pTit + '» con todos sus textos' + (l === 'es' ? '' : ', en su idioma') + ', «' + t.n + '», los sellos de la semana nombrados en su idioma, las paradas con «GR 131» y su km, la fecha del borde, las 42 filas nuevas con sus plurales, sin desborde, y la política de privacidad con «' + SELLO_PRIV[l] + '»',
+        !vacias.length && !iguales.length && /8/.test(t.n) && /11/.test(t.n) && paradas.every(s => /GR 131/.test(s.cond) && s.cond.indexOf(km[s.id]) >= 0) && t.sellos.filter(s => !s.falta).every(s => s.anillo.length === 2 && s.anillo[0] === 'TENERIFE GO' && s.anillo[1].length >= 6 && s.sr !== t.pendiente && s.sr.length > 8)
+        && t.sellos.filter(s => s.falta).every(s => s.sr === t.pendiente && !s.anillo.length) && t.filas === 42 && !t.vacias.length && t.plurales === (l === 'pl' ? '33333' : /^zh/.test(l) ? '11111' : '22222') && !t.desborde && t.privacidad.indexOf(SELLO_PRIV[l]) > 0 && t.lang === (l === 'zht' ? 'zh-Hant' : l === 'zh' ? 'zh-Hans' : l),
+        JSON.stringify({ vacias, iguales, n: t.n, filas: t.filas, vaciasTx: t.vacias, plurales: t.plurales, desborde: t.desborde, priv: t.privacidad.indexOf(SELLO_PRIV[l]), anillo: t.sellos[0].anillo, paradas: paradas.map(s => s.cond) }));
+    }
+    await idioma(p25, 'es');
+
+    /* «Borrar los datos» se lleva los sellos */
+    await p25.evaluate(() => document.getElementById('tgc-borrar').click()); await p25.evaluate(() => document.getElementById('tgc-borrar-si').click()); await p25.waitForTimeout(600);
+    const bz25 = await leer25(p25);
+    prueba('«Borrar los datos»: los sellos fuera (ninguno guardado, «0 de 11», todos pendientes) y sin celebración', bz25.guardado === null && bz25.n === '0 de 11' && bz25.sellos.every(s => s.falta) && !bz25.fiesta, JSON.stringify([bz25.guardado, bz25.n, bz25.fiesta]));
+    prueba('bloque 6: sin errores de página', e25.length === 0, e25.join(' | '));
+    await c25.close();
+
+    /* a 320 px: la tarjeta de la celebración y la de la postal caben, y nada pasa del borde */
+    const c25b = await contexto(b, { fiesta: true, blob: true, contexto: { viewport: { width: 320, height: 568 } } }), p25b = await c25b.newPage(), e25b = []; vigilar(p25b, e25b);
+    await abrirApp(p25b); await abrirPerfilCuerpo(p25b); await suCuerpo(p25b);
+    await ejemplo(p25b, { mov: MOV25 }); await p25b.waitForTimeout(500);
+    const e320 = await p25b.evaluate(() => { const r = document.querySelector('#tgc-fiesta .tgc-fiesta-tarj').getBoundingClientRect(), p = document.getElementById('cuerpo-panel');
+      return { fiesta: !document.getElementById('tgc-fiesta').hidden, l: Math.round(r.left), r: Math.round(r.right), t: Math.round(r.top), b: Math.round(r.bottom), desborde: p.scrollWidth > p.clientWidth, tit: document.getElementById('tgc-fiesta-tit').textContent }; });
+    prueba('a 320 × 568: la tarjeta de los seis sellos cabe en la pantalla (sus 24 px de margen a cada lado, arriba y abajo dentro de 568) y nada pasa del borde', e320.fiesta && e320.l >= 16 && e320.r <= 304 && e320.t >= 0 && e320.b <= 568 && !e320.desborde && e320.tit === '6 sellos nuevos', JSON.stringify(e320));
+    await p25b.click('#tgc-fiesta-botones button'); await p25b.waitForTimeout(400);
+    await p25b.evaluate(() => { const r = document.getElementById('tgc-postal'); document.getElementById('cuerpo-panel').scrollTop = r.offsetTop - 72; }); await p25b.waitForTimeout(200);
+    const p320 = await p25b.evaluate(() => { const b = document.getElementById('tgc-postal-btn').getBoundingClientRect(), m = document.getElementById('tgc-postal-mini'), s = document.getElementById('tgc-sellos-lista'), p = document.getElementById('cuerpo-panel');
+      return { btnDentro: b.left >= 0 && b.right <= 320, btnAlto: Math.round(b.height), mini: m.offsetWidth + 'x' + m.offsetHeight, sellosDeslizan: s.scrollWidth > s.clientWidth, desborde: p.scrollWidth > p.clientWidth }; });
+    await p25b.click('#tgc-postal-btn'); await esperarPostal(p25b); await p25b.waitForTimeout(300);
+    const pp320 = await postal25(p25b);
+    prueba('a 320: «Crear mi postal» cabe (44 px de alto o más), la vista previa a 80 × 100, los sellos se deslizan en su tira sin ensanchar la página, y la tarjeta de la postal cabe entera', p320.btnDentro && p320.btnAlto >= 44 && p320.mini === '80x100' && p320.sellosDeslizan && !p320.desborde && pp320 && pp320.nat === '1080x1350' && pp320.rect.l >= 16 && pp320.rect.r <= 304 && pp320.rect.t >= 0 && pp320.rect.b <= 568, JSON.stringify([p320, pp320 && pp320.rect]));
+    prueba('a 320: sin errores de página', e25b.length === 0, e25b.join(' | '));
+    await c25b.close();
+
+    /* con «reducir movimiento»: la tarjeta sin rayos y sin la animación del sello */
+    const c25r = await contexto(b, { fiesta: true, contexto: { reducedMotion: 'reduce' } }), p25r = await c25r.newPage(), e25r = []; vigilar(p25r, e25r);
+    await abrirApp(p25r); await abrirPerfilCuerpo(p25r); await suCuerpo(p25r);
+    await ejemplo(p25r, { mov: MOV25 }); await p25r.waitForTimeout(400);
+    const rm = await leer25(p25r);
+    const anim = await p25r.evaluate(() => [document.querySelector('#tgc-sellos-lista .tgc-sello.nuevo svg'), document.querySelector('#tgc-fiesta .tgc-fiesta-varios svg')].map(e => getComputedStyle(e).animationDuration + ' ' + getComputedStyle(e).transitionDuration));
+    prueba('con «reducir movimiento»: la tarjeta sale igual, sin rayos, y las animaciones del sello nuevo y de los sellos de la tarjeta duran 0,01 ms (la regla general de la pantalla)', rm.fiesta && rm.tit === '6 sellos nuevos' && rm.rayos === 0 && anim.every(a => a.split(' ').every(v => parseFloat(v) < 0.001)), JSON.stringify([rm.fiesta, rm.tit, rm.rayos, anim]));
+    prueba('con «reducir movimiento»: sin errores de página', e25r.length === 0, e25r.join(' | '));
+    await c25r.close();
+
+    /* con el 3D encendido: la vista previa y la postal llevan la foto del motor, y la celebración le saca una sonrisa */
+    const c25t = await contexto(b, { fiesta: true, blob: true, tresD: true }), p25t = await c25t.newPage(), e25t = []; vigilar(p25t, e25t);
+    await abrirApp(p25t); await abrirPerfilCuerpo(p25t); await suCuerpo(p25t);
+    const activo25 = await p25t.waitForFunction(() => ['activo', 'reserva'].includes(TG_CUERPO.tresD().estado), null, { timeout: 60000 }).then(() => true).catch(() => false);
+    await p25t.waitForTimeout(700);
+    const est25 = await p25t.evaluate(() => TG_CUERPO.tresD().estado);
+    await ejemplo(p25t, { mov: MOV25 }); await p25t.waitForTimeout(600);
+    const t3 = await leer25(p25t), son25 = await p25t.evaluate(() => { const t = TG_CUERPO.tresD(); return t.motor ? t.motor.estado.sonr : null; });
+    prueba('con el 3D activo: la celebración le saca una sonrisa al personaje y la vista previa de la postal lleva la foto del motor (una imagen, no el dibujo)', activo25 && est25 === 'activo' && t3.fiesta && son25 > 0.3 && t3.postal.miniImg === 1 && t3.postal.miniSvg === 1, JSON.stringify([activo25, est25, t3.fiesta, son25, t3.postal.miniImg, t3.postal.miniSvg]));
+    await p25t.click('#tgc-fiesta-botones button'); await p25t.waitForTimeout(400);
+    await p25t.click('#tgc-postal-btn'); await esperarPostal(p25t); await p25t.waitForTimeout(300);
+    const p3 = await postal25(p25t);
+    prueba('con el 3D activo: la postal sale igual (1080 × 1350, la banda clara, muchos colores)', p3 && p3.nat === '1080x1350' && claro(p3.banda) && p3.colores >= 8, JSON.stringify(p3 && [p3.nat, p3.banda, p3.colores]));
+    prueba('con el 3D: sin errores de página', e25t.length === 0, e25t.join(' | '));
+    await c25t.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

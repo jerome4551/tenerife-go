@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (452 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (494 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -193,6 +193,48 @@
     "cuerpoIslaTrazadoDe": {"es": "El trazado del GR 131 del mapa es el oficial: {fuente}.", "en": "The GR 131 line on the map is the official track: {fuente}.", "fr": "Le tracé du GR 131 sur la carte est le tracé officiel : {fuente}.", "de": "Die Linie des GR 131 auf der Karte ist der offizielle Track: {fuente}.", "it": "Il tracciato del GR 131 sulla mappa è quello ufficiale: {fuente}.", "nl": "De lijn van de GR 131 op de kaart is het officiële tracé: {fuente}.", "zh": "地图中的 GR 131 线路为官方轨迹：{fuente}。", "zht": "地圖中的 GR 131 線路為官方軌跡：{fuente}。", "bg": "Линията на GR 131 на картата е официалното трасе: {fuente}.", "pl": "Linia GR 131 na mapie to oficjalny ślad: {fuente}."},
     "cuerpoMovNotaPie": {"es": "Los kilómetros a pie avanzan su travesía del GR 131.", "en": "Kilometres on foot move you along the GR 131.", "fr": "Les kilomètres à pied font avancer votre traversée du GR 131.", "de": "Kilometer zu Fuß bringen Sie auf dem GR 131 voran.", "it": "I chilometri a piedi fanno avanzare la traversata del GR 131.", "nl": "Kilometers te voet brengen u verder op de GR 131.", "zh": "步行公里数会推进您的 GR 131 穿越之旅。", "zht": "步行公里數會推進您的 GR 131 穿越之旅。", "bg": "Километрите пеша ви придвижват по GR 131.", "pl": "Kilometry pieszo posuwają wędrówkę szlakiem GR 131."},
     "cuerpoMovNotaOtro": {"es": "Cuenta para sus minutos de la semana. Para el GR 131 solo suman los kilómetros a pie.", "en": "It counts towards your minutes this week. Only kilometres on foot count for the GR 131.", "fr": "Cela compte pour vos minutes de la semaine. Pour le GR 131, seuls les kilomètres à pied comptent.", "de": "Das zählt für Ihre Minuten der Woche. Für den GR 131 zählen nur Kilometer zu Fuß.", "it": "Conta per i minuti della settimana. Per il GR 131 contano solo i chilometri a piedi.", "nl": "Het telt mee voor uw minuten van de week. Voor de GR 131 tellen alleen kilometers te voet.", "zh": "计入本周的分钟数。GR 131 只计步行公里数。", "zht": "計入本週的分鐘數。GR 131 只計步行公里數。", "bg": "Брои се за минутите ви през седмицата. За GR 131 се броят само километрите пеша.", "pl": "Liczy się do minut w tygodniu. Do GR 131 liczą się tylko kilometry pieszo."},
+    "cuerpoSellosTitulo": {"es": "Sus sellos", "en": "Your stamps", "fr": "Vos tampons", "de": "Ihre Stempel", "it": "I suoi timbri", "nl": "Uw stempels", "zh": "您的印章", "zht": "您的印章", "bg": "Вашите печати", "pl": "Pieczątki"},
+    "cuerpoSellosSub": {"es": "Los que consiga se quedan, aunque pase la semana.", "en": "The ones you earn stay, even after the week moves on.", "fr": "Ceux que vous obtenez restent, même quand la semaine passe.", "de": "Was Sie erreichen, bleibt – auch wenn die Woche vorbeigeht.", "it": "Quelli che ottiene restano, anche quando la settimana passa.", "nl": "Wat u behaalt, blijft staan, ook als de week voorbijgaat.", "zh": "获得的印章会一直保留，即使这一周过去。", "zht": "獲得的印章會一直保留，即使這一週過去。", "bg": "Спечелените остават, дори когато седмицата отмине.", "pl": "Zdobyte zostają, nawet gdy tydzień minie."},
+    "cuerpoSellosDe": {"es": "{n} de {total}", "en": "{n} of {total}", "fr": "{n} sur {total}", "de": "{n} von {total}", "it": "{n} su {total}", "nl": "{n} van {total}", "zh": "{n}/{total}", "zht": "{n}/{total}", "bg": "{n} от {total}", "pl": "{n} z {total}"},
+    "cuerpoSelloConseguido": {"es": "Conseguido el {fecha}.", "en": "Earned on {fecha}.", "fr": "Obtenu le {fecha}.", "de": "Erreicht am {fecha}.", "it": "Ottenuto il {fecha}.", "nl": "Behaald op {fecha}.", "zh": "获得于 {fecha}。", "zht": "獲得於 {fecha}。", "bg": "Спечелен на {fecha}.", "pl": "Zdobyta {fecha}."},
+    "cuerpoSelloPendiente": {"es": "Pendiente.", "en": "Not yet earned.", "fr": "Pas encore obtenu.", "de": "Noch nicht erreicht.", "it": "Non ancora ottenuto.", "nl": "Nog niet behaald.", "zh": "尚未获得。", "zht": "尚未獲得。", "bg": "Още не е спечелен.", "pl": "Jeszcze niezdobyta."},
+    "cuerpoSelloN_primer": {"es": "Primer paso", "en": "First step", "fr": "Premier pas", "de": "Erster Schritt", "it": "Primo passo", "nl": "Eerste stap", "zh": "第一步", "zht": "第一步", "bg": "Първа крачка", "pl": "Pierwszy krok"},
+    "cuerpoSelloN_fuerza": {"es": "{n} día de fuerza|{n} días de fuerza", "en": "{n} strength day|{n} strength days", "fr": "{n} jour de force|{n} jours de force", "de": "{n} Krafttag|{n} Krafttage", "it": "{n} giorno di forza|{n} giorni di forza", "nl": "{n} krachtdag|{n} krachtdagen", "zh": "{n} 天力量训练", "zht": "{n} 天力量訓練", "bg": "{n} ден сила|{n} дни сила", "pl": "{n} dzień siły|{n} dni siły|{n} dni siły"},
+    "cuerpoSelloN_mov": {"es": "{n} minuto|{n} minutos", "en": "{n} minute|{n} minutes", "fr": "{n} minute|{n} minutes", "de": "{n} Minute|{n} Minuten", "it": "{n} minuto|{n} minuti", "nl": "{n} minuut|{n} minuten", "zh": "{n} 分钟", "zht": "{n} 分鐘", "bg": "{n} минута|{n} минути", "pl": "{n} minuta|{n} minuty|{n} minut"},
+    "cuerpoSelloN_sol": {"es": "Sol entero", "en": "Full sun", "fr": "Soleil entier", "de": "Volle Sonne", "it": "Sole pieno", "nl": "Volle zon", "zh": "满日", "zht": "滿日", "bg": "Пълно слънце", "pl": "Pełne słońce"},
+    "cuerpoSelloN_doce": {"es": "Doce de doce", "en": "Twelve of twelve", "fr": "Douze sur douze", "de": "Zwölf von zwölf", "it": "Dodici su dodici", "nl": "Twaalf van twaalf", "zh": "十二分之十二", "zht": "十二分之十二", "bg": "Дванайсет от дванайсет", "pl": "Dwanaście na dwanaście"},
+    "cuerpoSelloN_km10": {"es": "10 km a pie", "en": "10 km on foot", "fr": "10 km à pied", "de": "10 km zu Fuß", "it": "10 km a piedi", "nl": "10 km te voet", "zh": "步行 10 公里", "zht": "步行 10 公里", "bg": "10 км пеша", "pl": "10 km pieszo"},
+    "cuerpoSelloC_primer": {"es": "Su primera anotación", "en": "Your first entry", "fr": "Votre première note", "de": "Ihr erster Eintrag", "it": "La sua prima annotazione", "nl": "Uw eerste notitie", "zh": "您的第一条记录", "zht": "您的第一條記錄", "bg": "Първият ви запис", "pl": "Pierwszy wpis"},
+    "cuerpoSelloC_fuerza": {"es": "En 7 días", "en": "In 7 days", "fr": "En 7 jours", "de": "In 7 Tagen", "it": "In 7 giorni", "nl": "In 7 dagen", "zh": "7 天内", "zht": "7 天內", "bg": "За 7 дни", "pl": "W 7 dni"},
+    "cuerpoSelloC_mov": {"es": "De movimiento en 7 días", "en": "Of movement in 7 days", "fr": "De mouvement en 7 jours", "de": "Bewegung in 7 Tagen", "it": "Di movimento in 7 giorni", "nl": "Beweging in 7 dagen", "zh": "7 天内的运动", "zht": "7 天內的運動", "bg": "Движение за 7 дни", "pl": "Ruchu w 7 dni"},
+    "cuerpoSelloC_sol": {"es": "Fuerza y movimiento", "en": "Strength and movement", "fr": "Force et mouvement", "de": "Kraft und Bewegung", "it": "Forza e movimento", "nl": "Kracht en beweging", "zh": "力量与运动", "zht": "力量與運動", "bg": "Сила и движение", "pl": "Siła i ruch"},
+    "cuerpoSelloC_doce": {"es": "Los 12 grupos en 7 días", "en": "All 12 groups in 7 days", "fr": "Les 12 groupes en 7 jours", "de": "Alle 12 Gruppen in 7 Tagen", "it": "I 12 gruppi in 7 giorni", "nl": "De 12 groepen in 7 dagen", "zh": "7 天内练遍 12 个肌群", "zht": "7 天內練遍 12 個肌群", "bg": "12-те групи за 7 дни", "pl": "12 grup w 7 dni"},
+    "cuerpoSelloC_km10": {"es": "Camino del GR 131", "en": "Along the GR 131", "fr": "Sur le GR 131", "de": "Auf dem GR 131", "it": "Lungo il GR 131", "nl": "Op de GR 131", "zh": "GR 131 途中", "zht": "GR 131 途中", "bg": "По GR 131", "pl": "Na szlaku GR 131"},
+    "cuerpoSelloCEtapa": {"es": "GR 131 · km {km}", "en": "GR 131 · km {km}", "fr": "GR 131 · km {km}", "de": "GR 131 · km {km}", "it": "GR 131 · km {km}", "nl": "GR 131 · km {km}", "zh": "GR 131 · {km} 公里", "zht": "GR 131 · {km} 公里", "bg": "GR 131 · км {km}", "pl": "GR 131 · km {km}"},
+    "cuerpoSelloNuevoDe": {"es": "Sello nuevo: {nombre}", "en": "New stamp: {nombre}", "fr": "Nouveau tampon : {nombre}", "de": "Neuer Stempel: {nombre}", "it": "Nuovo timbro: {nombre}", "nl": "Nieuwe stempel: {nombre}", "zh": "新印章：{nombre}", "zht": "新印章：{nombre}", "bg": "Нов печат: {nombre}", "pl": "Nowa pieczątka: {nombre}"},
+    "cuerpoSellosNuevos": {"es": "{n} sello nuevo|{n} sellos nuevos", "en": "{n} new stamp|{n} new stamps", "fr": "{n} nouveau tampon|{n} nouveaux tampons", "de": "{n} neuer Stempel|{n} neue Stempel", "it": "{n} nuovo timbro|{n} nuovi timbri", "nl": "{n} nieuwe stempel|{n} nieuwe stempels", "zh": "{n} 枚新印章", "zht": "{n} 枚新印章", "bg": "{n} нов печат|{n} нови печата", "pl": "{n} nowa pieczątka|{n} nowe pieczątki|{n} nowych pieczątek"},
+    "cuerpoSelloT_primer": {"es": "Su primera anotación. El sol de su semana ya tiene un rayo.", "en": "Your first entry. The sun of your week has its first ray.", "fr": "Votre première note. Le soleil de votre semaine a déjà un rayon.", "de": "Ihr erster Eintrag. Die Sonne Ihrer Woche hat ihren ersten Strahl.", "it": "La sua prima annotazione. Il sole della sua settimana ha già un raggio.", "nl": "Uw eerste notitie. De zon van uw week heeft zijn eerste straal.", "zh": "您的第一条记录。本周的太阳已有了第一道光芒。", "zht": "您的第一條記錄。本週的太陽已有了第一道光芒。", "bg": "Първият ви запис. Слънцето на седмицата ви вече има един лъч.", "pl": "Pierwszy wpis. Słońce tego tygodnia ma już pierwszy promień."},
+    "cuerpoSelloT_fuerza": {"es": "Fuerza {n} día en 7: la recomendación de la OMS para su edad, cumplida.|Fuerza {n} días en 7: la recomendación de la OMS para su edad, cumplida.", "en": "Strength on {n} day in 7: the WHO recommendation for your age, met.|Strength on {n} days in 7: the WHO recommendation for your age, met.", "fr": "De la force {n} jour sur 7 : la recommandation de l’OMS pour votre âge est atteinte.|De la force {n} jours sur 7 : la recommandation de l’OMS pour votre âge est atteinte.", "de": "Kraft an {n} Tag in 7: die WHO-Empfehlung für Ihr Alter ist erfüllt.|Kraft an {n} Tagen in 7: die WHO-Empfehlung für Ihr Alter ist erfüllt.", "it": "Forza {n} giorno su 7: la raccomandazione dell’OMS per la sua età è raggiunta.|Forza {n} giorni su 7: la raccomandazione dell’OMS per la sua età è raggiunta.", "nl": "Kracht op {n} dag in 7: de WHO-aanbeveling voor uw leeftijd is gehaald.|Kracht op {n} dagen in 7: de WHO-aanbeveling voor uw leeftijd is gehaald.", "zh": "7 天内 {n} 天力量训练：已达到世卫组织对您年龄段的建议。", "zht": "7 天內 {n} 天力量訓練：已達到世界衛生組織對您年齡段的建議。", "bg": "Сила {n} ден от 7: препоръката на СЗО за вашата възраст е изпълнена.|Сила {n} дни от 7: препоръката на СЗО за вашата възраст е изпълнена.", "pl": "Siła {n} dzień na 7: zalecenie WHO dla tego wieku spełnione.|Siła {n} dni na 7: zalecenie WHO dla tego wieku spełnione.|Siła {n} dni na 7: zalecenie WHO dla tego wieku spełnione."},
+    "cuerpoSelloT_mov": {"es": "Ha llegado a los {n} minutos de movimiento en 7 días que recomienda la OMS para su edad.", "en": "You have reached the {n} minutes of movement in 7 days the WHO recommends for your age.", "fr": "Vous avez atteint les {n} minutes de mouvement en 7 jours recommandées par l’OMS pour votre âge.", "de": "Sie haben die {n} Minuten Bewegung in 7 Tagen erreicht, die die WHO für Ihr Alter empfiehlt.", "it": "Ha raggiunto i {n} minuti di movimento in 7 giorni raccomandati dall’OMS per la sua età.", "nl": "U hebt de {n} minuten beweging in 7 dagen gehaald die de WHO voor uw leeftijd aanbeveelt.", "zh": "您已达到世卫组织对您年龄段建议的 7 天内 {n} 分钟运动量。", "zht": "您已達到世界衛生組織對您年齡段建議的 7 天內 {n} 分鐘運動量。", "bg": "Достигнахте {n} минути движение за 7 дни, които СЗО препоръчва за вашата възраст.", "pl": "Osiągnięto {n} minut ruchu w 7 dni, które WHO zaleca dla tego wieku."},
+    "cuerpoSelloT_sol": {"es": "Fuerza y movimiento cumplidos. El sol de su semana está arriba.", "en": "Strength and movement done. The sun of your week is up.", "fr": "Force et mouvement atteints. Le soleil de votre semaine est au plus haut.", "de": "Kraft und Bewegung geschafft. Die Sonne Ihrer Woche steht oben.", "it": "Forza e movimento raggiunti. Il sole della sua settimana è alto.", "nl": "Kracht en beweging gehaald. De zon van uw week staat hoog.", "zh": "力量与运动均已达标。本周的太阳已升到顶点。", "zht": "力量與運動均已達標。本週的太陽已升到頂點。", "bg": "Сила и движение – изпълнени. Слънцето на седмицата ви е горе.", "pl": "Siła i ruch spełnione. Słońce tego tygodnia jest wysoko."},
+    "cuerpoSelloT_doce": {"es": "Ha trabajado los 12 grupos musculares en 7 días.", "en": "You have worked all 12 muscle groups in 7 days.", "fr": "Vous avez travaillé les 12 groupes musculaires en 7 jours.", "de": "Sie haben alle 12 Muskelgruppen in 7 Tagen trainiert.", "it": "Ha allenato i 12 gruppi muscolari in 7 giorni.", "nl": "U hebt alle 12 spiergroepen in 7 dagen getraind.", "zh": "您在 7 天内练遍了全部 12 个肌群。", "zht": "您在 7 天內練遍了全部 12 個肌群。", "bg": "Тренирахте всичките 12 мускулни групи за 7 дни.", "pl": "Przećwiczono wszystkie 12 grup mięśniowych w 7 dni."},
+    "cuerpoSelloT_km10": {"es": "Diez kilómetros a pie por la isla. La Caldera está a {km}.", "en": "Ten kilometres on foot across the island. La Caldera is {km} away.", "fr": "Dix kilomètres à pied sur l’île. La Caldera est à {km}.", "de": "Zehn Kilometer zu Fuß über die Insel. La Caldera ist {km} entfernt.", "it": "Dieci chilometri a piedi per l’isola. La Caldera è a {km}.", "nl": "Tien kilometer te voet over het eiland. La Caldera is nog {km} ver.", "zh": "已在岛上步行十公里。距 La Caldera 还有 {km}。", "zht": "已在島上步行十公里。距 La Caldera 還有 {km}。", "bg": "Десет километра пеша по острова. La Caldera е на {km}.", "pl": "Dziesięć kilometrów pieszo po wyspie. Do La Caldera zostało {km}."},
+    "cuerpoSelloTEtapa": {"es": "Etapa {n} del GR 131 cumplida. Lleva {km} a pie.", "en": "Stage {n} of the GR 131 done. You have walked {km}.", "fr": "Étape {n} du GR 131 franchie. Vous avez parcouru {km} à pied.", "de": "Etappe {n} des GR 131 geschafft. Sie sind {km} zu Fuß gegangen.", "it": "Tappa {n} del GR 131 completata. Ha percorso {km} a piedi.", "nl": "Etappe {n} van de GR 131 gehaald. U hebt {km} te voet afgelegd.", "zh": "GR 131 第 {n} 段已完成。您已步行 {km}。", "zht": "GR 131 第 {n} 段已完成。您已步行 {km}。", "bg": "Етап {n} от GR 131 е изминат. Извървяхте {km} пеша.", "pl": "Etap {n} szlaku GR 131 zaliczony. Przebyto pieszo {km}."},
+    "cuerpoSeguir": {"es": "Seguir", "en": "Continue", "fr": "Continuer", "de": "Weiter", "it": "Continua", "nl": "Verder", "zh": "继续", "zht": "繼續", "bg": "Продължи", "pl": "Dalej"},
+    "cuerpoPostalTitulo": {"es": "Su postal", "en": "Your postcard", "fr": "Votre carte postale", "de": "Ihre Postkarte", "it": "La sua cartolina", "nl": "Uw ansichtkaart", "zh": "您的明信片", "zht": "您的明信片", "bg": "Вашата картичка", "pl": "Pocztówka"},
+    "cuerpoPostalTexto": {"es": "Su semana en una imagen, para guardarla o enviarla.", "en": "Your week in one picture, to save or send.", "fr": "Votre semaine en une image, à garder ou à envoyer.", "de": "Ihre Woche in einem Bild, zum Speichern oder Verschicken.", "it": "La sua settimana in un’immagine, da salvare o inviare.", "nl": "Uw week in één beeld, om te bewaren of te versturen.", "zh": "把您的一周做成一张图片，可以保存或分享。", "zht": "把您的一週做成一張圖片，可以儲存或分享。", "bg": "Вашата седмица в една снимка – да я запазите или изпратите.", "pl": "Tydzień na jednym obrazku – do zapisania lub wysłania."},
+    "cuerpoPostalCrear": {"es": "Crear mi postal", "en": "Create my postcard", "fr": "Créer ma carte postale", "de": "Meine Postkarte erstellen", "it": "Crea la mia cartolina", "nl": "Mijn ansichtkaart maken", "zh": "制作我的明信片", "zht": "製作我的明信片", "bg": "Създай картичката ми", "pl": "Utwórz pocztówkę"},
+    "cuerpoPostalPreparando": {"es": "Preparando…", "en": "Preparing…", "fr": "Préparation…", "de": "Wird erstellt …", "it": "Preparazione…", "nl": "Bezig…", "zh": "正在制作…", "zht": "正在製作…", "bg": "Подготвя се…", "pl": "Przygotowywanie…"},
+    "cuerpoPostalLema": {"es": "Mi semana en Tenerife", "en": "My week in Tenerife", "fr": "Ma semaine à Tenerife", "de": "Meine Woche auf Teneriffa", "it": "La mia settimana a Tenerife", "nl": "Mijn week op Tenerife", "zh": "我在特内里费的一周", "zht": "我在特內里費的一週", "bg": "Моята седмица в Тенерифе", "pl": "Mój tydzień na Teneryfie"},
+    "cuerpoPostalLDias": {"es": "día con fuerza|días con fuerza", "en": "strength day|strength days", "fr": "jour de force|jours de force", "de": "Krafttag|Krafttage", "it": "giorno di forza|giorni di forza", "nl": "krachtdag|krachtdagen", "zh": "天力量训练", "zht": "天力量訓練", "bg": "ден сила|дни сила", "pl": "dzień siły|dni siły|dni siły"},
+    "cuerpoPostalLMin": {"es": "min de movimiento", "en": "min of movement", "fr": "min de mouvement", "de": "Min. Bewegung", "it": "min di movimento", "nl": "min beweging", "zh": "分钟运动", "zht": "分鐘運動", "bg": "мин движение", "pl": "min ruchu"},
+    "cuerpoPostalLKm": {"es": "km del GR 131", "en": "km of the GR 131", "fr": "km du GR 131", "de": "km auf dem GR 131", "it": "km del GR 131", "nl": "km op de GR 131", "zh": "公里 GR 131", "zht": "公里 GR 131", "bg": "км по GR 131", "pl": "km szlaku GR 131"},
+    "cuerpoPostalAlt": {"es": "Postal: su personaje ante el Teide, con sus días de fuerza, sus minutos y sus kilómetros.", "en": "Postcard: your character in front of Mount Teide, with your strength days, minutes and kilometres.", "fr": "Carte postale : votre personnage devant le Teide, avec vos jours de force, vos minutes et vos kilomètres.", "de": "Postkarte: Ihre Figur vor dem Teide, mit Ihren Krafttagen, Minuten und Kilometern.", "it": "Cartolina: il suo personaggio davanti al Teide, con i giorni di forza, i minuti e i chilometri.", "nl": "Ansichtkaart: uw personage voor de Teide, met uw krachtdagen, minuten en kilometers.", "zh": "明信片：您的角色站在泰德峰前，附有您的力量训练天数、分钟数和公里数。", "zht": "明信片：您的角色站在泰德峰前，附有您的力量訓練天數、分鐘數和公里數。", "bg": "Картичка: вашият герой пред Тейде, с дните сила, минутите и километрите ви.", "pl": "Pocztówka: postać przed Teide, z dniami siły, minutami i kilometrami."},
+    "cuerpoPostalGuardar": {"es": "Mantenga el dedo sobre la imagen para guardarla.", "en": "Press and hold the image to save it.", "fr": "Appuyez longuement sur l’image pour l’enregistrer.", "de": "Halten Sie das Bild gedrückt, um es zu speichern.", "it": "Tenga premuta l’immagine per salvarla.", "nl": "Houd de afbeelding ingedrukt om ze op te slaan.", "zh": "长按图片即可保存。", "zht": "長按圖片即可儲存。", "bg": "Задръжте пръста върху снимката, за да я запазите.", "pl": "Aby zapisać obraz, należy go przytrzymać."},
+    "cuerpoCompartir": {"es": "Compartir", "en": "Share", "fr": "Partager", "de": "Teilen", "it": "Condividi", "nl": "Delen", "zh": "分享", "zht": "分享", "bg": "Споделяне", "pl": "Udostępnij"},
+    "cuerpoGuardarImagen": {"es": "Guardar la imagen", "en": "Save the image", "fr": "Enregistrer l’image", "de": "Bild speichern", "it": "Salva l’immagine", "nl": "Afbeelding opslaan", "zh": "保存图片", "zht": "儲存圖片", "bg": "Запази снимката", "pl": "Zapisz obraz"},
+    "cuerpoCerrarB": {"es": "Cerrar", "en": "Close", "fr": "Fermer", "de": "Schließen", "it": "Chiudi", "nl": "Sluiten", "zh": "关闭", "zht": "關閉", "bg": "Затвори", "pl": "Zamknij"},
+    "cuerpoPostalError": {"es": "No se ha podido crear la imagen en este navegador.", "en": "The image could not be created in this browser.", "fr": "Impossible de créer l’image dans ce navigateur.", "de": "Das Bild konnte in diesem Browser nicht erstellt werden.", "it": "Non è stato possibile creare l’immagine in questo browser.", "nl": "De afbeelding kon in deze browser niet worden gemaakt.", "zh": "无法在此浏览器中生成图片。", "zht": "無法在此瀏覽器中產生圖片。", "bg": "Снимката не можа да се създаде в този браузър.", "pl": "Nie udało się utworzyć obrazu w tej przeglądarce."},
     "cuerpoSecCuerpo": {"es": "Cuerpo", "en": "Body", "fr": "Corps", "de": "Körper", "it": "Corpo", "nl": "Lichaam", "zh": "身体", "zht": "身體", "bg": "Тяло", "pl": "Ciało"},
     "cuerpoSecCara": {"es": "Pelo y cara", "en": "Hair and face", "fr": "Cheveux et visage", "de": "Haare und Gesicht", "it": "Capelli e viso", "nl": "Haar en gezicht", "zh": "头发和面部", "zht": "頭髮和臉部", "bg": "Коса и лице", "pl": "Włosy i twarz"},
     "cuerpoSecRopa": {"es": "Ropa", "en": "Clothes", "fr": "Vêtements", "de": "Kleidung", "it": "Abbigliamento", "nl": "Kleding", "zh": "衣着", "zht": "衣著", "bg": "Облекло", "pl": "Ubranie"},
@@ -288,7 +330,7 @@
     "cuerpoPrivacidad": {"es": "Todo se guarda solo en este dispositivo. No se sube a ninguna parte.", "en": "Everything is saved on this device only. Nothing is uploaded.", "fr": "Tout est enregistré uniquement sur cet appareil. Rien n’est envoyé.", "de": "Alles wird nur auf diesem Gerät gespeichert. Nichts wird hochgeladen.", "it": "Tutto viene salvato solo su questo dispositivo. Non viene caricato nulla.", "nl": "Alles wordt alleen op dit apparaat opgeslagen. Er wordt niets geüpload.", "zh": "所有内容只保存在本设备上，不会上传。", "zht": "所有內容只儲存在此裝置上，不會上傳。", "bg": "Всичко се пази само на това устройство. Нищо не се качва.", "pl": "Wszystko jest zapisywane tylko na tym urządzeniu. Nic nie jest wysyłane."},
     "cuerpoAviso": {"es": "Información general para personas sanas. No sustituye el consejo de un profesional sanitario.", "en": "General information for healthy people. It does not replace advice from a health professional.", "fr": "Informations générales destinées aux personnes en bonne santé. Elles ne remplacent pas l’avis d’un professionnel de santé.", "de": "Allgemeine Informationen für gesunde Menschen. Sie ersetzen nicht den Rat medizinischer Fachleute.", "it": "Informazioni generali per persone in buona salute. Non sostituiscono il parere di un professionista sanitario.", "nl": "Algemene informatie voor gezonde mensen. Dit vervangt niet het advies van een zorgprofessional.", "zh": "面向健康人群的一般信息，不能替代医疗专业人员的建议。", "zht": "提供給健康人士的一般資訊，不能取代醫療專業人員的建議。", "bg": "Обща информация за здрави хора. Не замества съвета на медицински специалист.", "pl": "Ogólne informacje dla osób zdrowych. Nie zastępują porady pracownika ochrony zdrowia."},
     "cuerpoBorrar": {"es": "Borrar los datos de «Su cuerpo»", "en": "Delete «Your body» data", "fr": "Effacer les données de «Votre corps»", "de": "Daten von «Ihr Körper» löschen", "it": "Elimina i dati di «Corpo»", "nl": "Gegevens van «Uw lichaam» wissen", "zh": "删除「我的身体」数据", "zht": "刪除「我的身體」資料", "bg": "Изтрий данните от «Вашето тяло»", "pl": "Usuń dane z sekcji «Ciało»"},
-    "cuerpoBorrarSeguro": {"es": "¿Borrar su aspecto, todas las series y el movimiento anotados, el deporte elegido y el diario de comidas? No se puede deshacer.", "en": "Delete your look, all the sets and movement you logged, the sport you chose and your food diary? This cannot be undone.", "fr": "Effacer votre apparence, toutes les séries et le mouvement notés, le sport choisi et le journal alimentaire ? Cette action est irréversible.", "de": "Ihr Aussehen, alle eingetragenen Sätze und Bewegungen, die gewählte Sportart und das Ernährungstagebuch löschen? Das lässt sich nicht rückgängig machen.", "it": "Eliminare l’aspetto, tutte le serie e il movimento annotati, lo sport scelto e il diario alimentare? L’operazione non si può annullare.", "nl": "Uw uiterlijk, alle genoteerde sets en beweging, de gekozen sport en het voedingsdagboek wissen? Dit kan niet ongedaan worden gemaakt.", "zh": "要删除您的外观、所有已记录的组数和运动、所选的运动项目和饮食记录吗？此操作无法撤销。", "zht": "要刪除您的外觀、所有已記錄的組數和運動、所選的運動項目和飲食記錄嗎？此操作無法復原。", "bg": "Да се изтрият ли външният ви вид, всички записани серии и движение, избраният спорт и хранителният дневник? Това не може да се отмени.", "pl": "Usunąć wygląd, wszystkie zapisane serie i ruch, wybrany sport i dziennik posiłków? Tej operacji nie można cofnąć."},
+    "cuerpoBorrarSeguro": {"es": "¿Borrar su aspecto, todas las series y el movimiento anotados, el deporte elegido, el diario de comidas y sus sellos? No se puede deshacer.", "en": "Delete your look, all the sets and movement you logged, the sport you chose, your food diary and your stamps? This cannot be undone.", "fr": "Effacer votre apparence, toutes les séries et le mouvement notés, le sport choisi, le journal alimentaire et vos tampons ? Cette action est irréversible.", "de": "Ihr Aussehen, alle eingetragenen Sätze und Bewegungen, die gewählte Sportart, das Ernährungstagebuch und Ihre Stempel löschen? Das lässt sich nicht rückgängig machen.", "it": "Eliminare l’aspetto, tutte le serie e il movimento annotati, lo sport scelto, il diario alimentare e i suoi timbri? L’operazione non si può annullare.", "nl": "Uw uiterlijk, alle genoteerde sets en beweging, de gekozen sport, het voedingsdagboek en uw stempels wissen? Dit kan niet ongedaan worden gemaakt.", "zh": "要删除您的外观、所有已记录的组数和运动、所选的运动项目、饮食记录和您的印章吗？此操作无法撤销。", "zht": "要刪除您的外觀、所有已記錄的組數和運動、所選的運動項目、飲食記錄和您的印章嗎？此操作無法復原。", "bg": "Да се изтрият ли външният ви вид, всички записани серии и движение, избраният спорт, хранителният дневник и печатите ви? Това не може да се отмени.", "pl": "Usunąć wygląd, wszystkie zapisane serie i ruch, wybrany sport, dziennik posiłków i pieczątki? Tej operacji nie można cofnąć."},
     "cuerpoBorrarSi": {"es": "Sí, borrar", "en": "Yes, delete", "fr": "Oui, effacer", "de": "Ja, löschen", "it": "Sì, elimina", "nl": "Ja, wissen", "zh": "确定删除", "zht": "確定刪除", "bg": "Да, изтрий", "pl": "Tak, usuń"},
     "cuerpoBorrado": {"es": "Datos borrados", "en": "Data deleted", "fr": "Données effacées", "de": "Daten gelöscht", "it": "Dati eliminati", "nl": "Gegevens gewist", "zh": "数据已删除", "zht": "資料已刪除", "bg": "Данните са изтрити", "pl": "Dane usunięte"},
     "cuerpoNoGuardado": {"es": "No se ha podido guardar en este dispositivo.", "en": "Could not save on this device.", "fr": "Impossible d’enregistrer sur cet appareil.", "de": "Auf diesem Gerät konnte nicht gespeichert werden.", "it": "Impossibile salvare su questo dispositivo.", "nl": "Opslaan op dit apparaat is niet gelukt.", "zh": "无法保存到本设备。", "zht": "無法儲存到此裝置。", "bg": "Не можа да се запази на това устройство.", "pl": "Nie udało się zapisać na tym urządzeniu."},
@@ -1790,12 +1832,46 @@
   /* el trazado oficial del GR 131, si algún día está (tools/gr131_trazado.py lo escribe desde un GPX); si no, el
      esquema: una curva suave entre las paradas */
   var GR131_TRAZADO = './datos/cuerpo/gr131-trazado.json';
+  /* ── los once sellos (8-11-2026, bloque 6) ──
+     Los del plan («Amanecer», 6-11): Primer paso · los días de fuerza · los minutos · Sol entero · Doce de doce ·
+     10 km a pie · y las cinco paradas del GR 131. Las metas son las de la OMS para la edad de la persona (2 días y
+     150 min los adultos; 3 y 420 de 5 a 17 años: metaDias, metaMin), así que el nombre de esos dos sellos lleva la
+     cifra. Una vez conseguido, un sello se queda (st.sellos[id] = la fecha), aunque la semana pase: es una
+     colección, no una racha. Los iconos son trazos propios (24 × 24). */
+  var SELLO_ICONO = {
+    huella: '<path d="M9.5 3.5c1.3 0 2.2 1.5 2.2 3.5s-.9 3.7-2.3 3.7S7 9.2 7 7.2s1.1-3.7 2.5-3.7zM15.8 8.5c1.1.2 1.7 1.5 1.4 3.2-.3 1.6-1.3 2.9-2.4 2.7-1.2-.2-1.7-1.6-1.4-3.2.3-1.7 1.3-2.9 2.4-2.7zM7.2 12.8c1.2-.1 2.2.6 2.4 1.8.3 1.5-.5 2.9-1.7 3.1-1.2.2-2.2-.7-2.4-2.2-.2-1.4.5-2.6 1.7-2.7zM13.3 16.8c1-.1 1.9.5 2.1 1.5.2 1.2-.5 2.2-1.5 2.4-1.1.2-2-.6-2.2-1.7-.1-1.1.5-2.1 1.6-2.2z"/>',
+    pesa: '<path d="M3.5 9.5v5M6.5 7v10M17.5 7v10M20.5 9.5v5M6.5 12h11"/>',
+    ola: '<path d="M3 10c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 2 2M3 15c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 2 2"/>',
+    cuerpo: '<circle cx="12" cy="5" r="2.2"/><path d="M7 9.5h10M12 9.5V15M12 15l-3 5.5M12 15l3 5.5M7 9.5L6 14M17 9.5l1 4.5"/>',
+    bota: '<path d="M8 3.5h5v7l5 2.5c1.5.7 2.5 1.8 2.5 3.5V18h-17v-3c0-2 4.5-3 4.5-6z"/><path d="M3.5 20.5h17"/>',
+    pino: '<path d="M12 3l4 5.5h-2.3L17 13h-3l3.5 4.5h-11L10 13H7l3.3-4.5H8zM12 17.5V21"/>',
+    teide: '<path d="M2.5 19.5L10 7l1.2-1.5h1.6L14 7l7.5 12.5zM9.2 9.8l1.8 2 1.5-1.5 1.5 2"/>',
+    estrella: '<path d="M12 3.5l2.5 5.3 5.7.7-4.2 4 1.1 5.7L12 16.4l-5.1 2.8L8 13.5l-4.2-4 5.7-.7z"/>',
+    casa: '<path d="M4 11.5L12 5l8 6.5M6 10.5V19h12v-8.5M10 19v-5h4v5"/>',
+    mar: '<circle cx="16.5" cy="7" r="3"/><path d="M2.5 14c2 0 2 1.8 4 1.8s2-1.8 4-1.8 2 1.8 4 1.8 2-1.8 4-1.8 2 1.8 3 1.8M2.5 18.5c2 0 2 1.8 4 1.8s2-1.8 4-1.8 2 1.8 4 1.8 2-1.8 4-1.8 2 1.8 3 1.8"/>',
+    sol: '<circle cx="12" cy="12" r="4"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/>'
+  };
+  var SELLOS = [
+    { id: 'primer', icono: 'huella', color: '--oro', ok: function () { return st.series.length > 0 || st.mov.length > 0; } },
+    { id: 'fuerza', icono: 'pesa', color: '--fuerza', ok: function (R) { return R.diasFuerza >= metaDias(); } },
+    { id: 'mov', icono: 'ola', color: '--mov', ok: function (R) { return R.min >= metaMin(); } },
+    { id: 'sol', icono: 'sol', color: '--oro', ok: function (R) { return R.diasFuerza >= metaDias() && R.min >= metaMin(); } },
+    { id: 'doce', icono: 'cuerpo', color: '--zonas', ok: function (R) { return R.grupos >= 12; } },
+    { id: 'km10', icono: 'bota', color: '--mov', ok: function () { return kmPie() >= 10; } },
+    { id: 'e1', icono: 'pino', color: '--verde', parada: 1 },
+    { id: 'e2', icono: 'teide', color: '--zonas', parada: 2 },
+    { id: 'e3', icono: 'estrella', color: '--oro', parada: 3 },
+    { id: 'e4', icono: 'casa', color: '--verde', parada: 4 },
+    { id: 'e5', icono: 'mar', color: '--fuerza', parada: 5 }
+  ];
+  SELLOS.forEach(function (s) { if (s.parada) s.ok = function () { return kmPie() >= GR131.paradas[s.parada].km; }; });
+  var SELLOS_IDS = SELLOS.map(function (s) { return s.id; });
   function movDe(id) { for (var i = 0; i < MOV.length; i++) { if (MOV[i].id === id) return MOV[i]; } return MOV[0]; }
   /* los km, al metro: tres decimales (8-11-2026, Jerome: «quiero lo más preciso posible»; antes, uno). Se
      redondea con el número escrito en decimal y no por × 1000, que con 0,5005 da 500,49999… y 0,5: así da
      0,501. Lo que no se escribe así (1e-7), por × 1000 */
   function km3(v) { var r = Number(Math.round(Number(v + 'e3')) + 'e-3'); return isFinite(r) ? r : Math.round(v * 1000) / 1000; }
-  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], deporte: '', comida: comVacio() }; }
+  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], deporte: '', comida: comVacio(), sellos: {} }; }
   function valida(s) {
     var r = vacio();
     if (!s || typeof s !== 'object') return r;
@@ -1826,6 +1902,8 @@
     if (typeof s.deporte === 'string' && s.deporte.length <= 30 && esId(s.deporte)) r.deporte = s.deporte;
     /* el diario de comidas (parte 5): comValida() lo comprueba campo a campo */
     r.comida = comValida(s.comida);
+    /* los sellos (bloque 6): solo los de la lista, con la fecha en que se consiguieron (no futura) */
+    if (s.sellos && typeof s.sellos === 'object') SELLOS_IDS.forEach(function (id) { var f = s.sellos[id]; if (esFecha(f) && f <= max) r.sellos[id] = f; });
     return r;
   }
   function leer() { try { return valida(JSON.parse(localStorage.getItem(KEY))); } catch (e) { return vacio(); } }
@@ -2098,6 +2176,7 @@
         clearTimeout(reloj3d); reloj3d = setTimeout(function () { if (en3d()) $('tgc-cara').textContent = ''; }, 500);
         renderFigura();
         vivo3d();
+        if (abierto) renderPostalMini(resumen());   /* (bloque 6) la vista previa de la postal pasa del dibujo a la foto del motor */
       });
     }).catch(function () { if (estado3d === 'cargando') fallo3d(); });
   }
@@ -2109,7 +2188,7 @@
         if (reintentos3d++ < 3) setTimeout(function () {
           if (!lienzo3d || !lienzo3d.parentNode) { fallo3d(); return; }
           var nuevo = lienzoNuevo(); lienzo3d.parentNode.replaceChild(nuevo, lienzo3d); lienzo3d = nuevo;
-          if (crear3d(C3.datos())) { estado3d = 'activo'; lienzo3d.classList.add('lista'); $('tgc-cara').textContent = ''; renderFigura(); vivo3d(); }
+          if (crear3d(C3.datos())) { estado3d = 'activo'; lienzo3d.classList.add('lista'); $('tgc-cara').textContent = ''; renderFigura(); vivo3d(); if (abierto) renderPostalMini(resumen()); }
           else fallo3d(true);
         }, 400);
         else fallo3d(true);
@@ -2131,7 +2210,7 @@
     if (lienzo3d && lienzo3d.parentNode) lienzo3d.parentNode.removeChild(lienzo3d);
     lienzo3d = null;
     var f = $('tgc-fig'); if (f) { f.classList.remove('es-3d'); $('tgc').classList.remove('es-3d'); }
-    if (abierto) renderFigura();
+    if (abierto) { renderFigura(); renderPostalMini(resumen()); }   /* (bloque 6) la vista previa de la postal vuelve al dibujo */
   }
   /* el personaje con el aspecto, los niveles y el modo de ahora; si al aspecto le faltan piezas, se piden
      y, mientras, sigue el de antes (el personaje no se queda a medias) */
@@ -2291,7 +2370,20 @@
       s += tajinaste(W * 0.12, H * 0.905, H * 0.2, 0.5, 1) + tajinaste(W * 0.245, H * 0.955, H * 0.115, -0.4, 2) + tajinaste(W * 0.735, H * 0.93, H * 0.165, 0.3, 3);
       return s + '</svg>';
     }
-    return { cfg: cfg, vars: vars, svg: svg };
+    /* el mismo dibujo con los colores ya escritos, sin variables de CSS ni transformaciones de CSS: para cargarlo
+       como imagen (la postal, bloque 6), donde las variables del elemento raíz no llegan a todos los navegadores */
+    function fijo(W, H, c, rayos, idp) {
+      var s = svg(W, H, c, rayos), m = {};
+      if (idp) s = s.replace(/tgc-esc-/g, idp + '-');   /* ids propios (los degradados): que no choquen con los de la escena */
+      CLAVES.forEach(function (k) { m[k] = c[k]; });
+      m.estrellas = c.estrellas.toFixed(3);
+      var ysol = ((0.58 - 0.32 * c.sube + 0.16 * (c.asoma || 0)) * H).toFixed(1);
+      s = s.replace(/ style="--e-[^"]*"/, '');
+      s = s.replace(/style="transform:translate\(([\d.\-]+)px, var\(--e-ysol\)\)"/, 'transform="translate($1 ' + ysol + ')"');
+      s = s.replace(/style="opacity:var\(--e-estrellas\)"/, 'opacity="' + m.estrellas + '"');
+      return s.replace(/var\(--e-([A-Za-z0-9]+)\)/g, function (_, k) { return m[k] || '#000'; });
+    }
+    return { cfg: cfg, vars: vars, svg: svg, fijo: fijo };
   })();
   var escW = 0, escH = 0, escE = 0, escAnim = null, escRayos = '', escEntrada = false, escTema = '';
   /* cuánto se ha cumplido la semana, de 0 a 1: las tres metas a partes iguales (7-11-2026, bloque 4; antes, la
@@ -3063,6 +3155,7 @@
     renderFigura();
     if (antesDeHoja && document.contains(antesDeHoja) && typeof antesDeHoja.focus === 'function') { try { antesDeHoja.focus({ preventScroll: true }); } catch (e) {} }
     antesDeHoja = null;
+    soltarSellos();
   }
   /* «Las cifras»: la misma hoja, con su página; se abre desde la cabecera, desde «Sus últimos 7
      días» y desde la referencia de la hoja de un grupo (que se cierra antes) */
@@ -3099,6 +3192,7 @@
     cifrasHistoria = false;
     if (antesDeCifras && document.contains(antesDeCifras) && typeof antesDeCifras.focus === 'function') { try { antesDeCifras.focus({ preventScroll: true }); } catch (e) {} }
     antesDeCifras = null;
+    soltarSellos();
   }
   /* ── «Anotar movimiento» (7-11-2026, bloque 4): la misma hoja, con su página. Qué ha hecho (cinco tipos),
      los minutos (±5, o escritos), los kilómetros (±0,5, o escritos, al metro; desde el 8-11-2026, también a nado
@@ -3133,6 +3227,7 @@
     movHistoria = false;
     if (antesDeMov && document.contains(antesDeMov) && typeof antesDeMov.focus === 'function') { try { antesDeMov.focus({ preventScroll: true }); } catch (e) {} }
     antesDeMov = null;
+    soltarSellos();
   }
   /* lo que hay escrito en el campo de los km: con coma o con punto, al metro y hasta el tope del tipo; nada o algo
      que no es un número, null */
@@ -3293,8 +3388,215 @@
     var l = lengua();
     panel.setAttribute('lang', l === 'zht' ? 'zh-Hant' : (l === 'zh' ? 'zh-Hans' : l));
   }
+  /* ══ los sellos, las celebraciones y la postal (8-11-2026, bloque 6) ══
+     Los sellos se comprueban en cada pintado de «Músculos» (comprobarSellos, desde renderMusculos): el que se
+     cumple por primera vez se guarda con la fecha de hoy y se celebra con una tarjeta sobre la pantalla (la
+     «fiesta»); si hay una hoja abierta (la de un grupo, «Anotar movimiento» o «Las cifras»), la celebración
+     espera a que se cierre y la hoja de un grupo lo dice en una línea. La postal es una imagen de 1080 × 1350
+     (la escena de la semana, el personaje, las tres cifras) hecha en un lienzo, que se enseña en la misma
+     tarjeta para guardarla con el dedo, compartirla con el menú del móvil (Web Share con ficheros, si el
+     navegador lo tiene) o descargarla. Todo se queda en el dispositivo. */
+  var fiestaCola = [], fiestaActiva = null, antesDeFiesta = null, sellosEnEspera = [], postalUrl = null, postalBlob = null, postalMiniClave = '', postalMiniEspera = false;
+  function hayHoja() { return !!(grupoAbierto || movAbierto || cifrasAbiertas); }
+  function escHtml(t) { return String(t).replace(/[<>&"]/g, function (c) { return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]; }); }
+  function nombreSello(s) {
+    if (s.parada) return GR131.paradas[s.parada].corto;
+    if (s.id === 'fuerza') return tx('cuerpoSelloN_fuerza', { n: metaDias() });
+    if (s.id === 'mov') return tx('cuerpoSelloN_mov', { n: metaMin() });
+    return tx('cuerpoSelloN_' + s.id);
+  }
+  /* el km de una parada, como en «Las cifras»: 29,8 · 42,9 · 56,0 · 67,3 · 85,55 */
+  function kmParada(km) { try { return new Intl.NumberFormat(locale(), { minimumFractionDigits: 1, maximumFractionDigits: 2 }).format(km); } catch (e) { return String(km); } }
+  function condSello(s) { return s.parada ? tx('cuerpoSelloCEtapa', { km: kmParada(GR131.paradas[s.parada].km) }) : tx('cuerpoSelloC_' + s.id); }
+  function fechaSello(f) { try { return new Intl.DateTimeFormat(locale(), { day: 'numeric', month: 'short', year: 'numeric' }).format(fecha(f)); } catch (e) { return f; } }
+  /* el sello: un círculo con la marca y la fecha en el borde y el icono en medio; sin conseguir, a trazos y gris */
+  function selloSvg(s, f, sufijo) {
+    var col = f ? 'var(' + s.color + ')' : 'var(--tinta-2)', id = 'tgc-sello-' + s.id + (sufijo || '');
+    /* data-sin-traducir: «TENERIFE GO» del borde es la marca, como el h1 de la portada (barrido_pantallas.js lo veía como texto latino sin traducir en chino y búlgaro) */
+    var o = '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false" data-sin-traducir="marca"><g transform="rotate(' + (f ? -9 : 0) + ' 50 50)" fill="none" style="stroke:' + col + ';color:' + col + '">' +
+      '<circle cx="50" cy="50" r="46" stroke-width="' + (f ? 3 : 1.5) + '"' + (f ? '' : ' stroke-dasharray="4 5"') + '/>';
+    if (f) {
+      o += '<circle cx="50" cy="50" r="30" stroke-width="1" stroke-dasharray="1.5 3.5" stroke-linecap="round"/>' +
+        '<path id="' + id + 'a" d="M12.5 50a37.5 37.5 0 0 1 75 0" stroke="none"/><text font-size="8.2" font-weight="700" letter-spacing="1.6" stroke="none" style="fill:' + col + ';font-family:var(--font-body)"><textPath href="#' + id + 'a" startOffset="50%" text-anchor="middle">TENERIFE GO</textPath></text>' +
+        '<path id="' + id + 'b" d="M11 50a39 39 0 0 0 78 0" stroke="none"/><text font-size="7.4" font-weight="600" letter-spacing="1.2" stroke="none" style="fill:' + col + ';font-family:var(--font-body)"><textPath href="#' + id + 'b" startOffset="50%" text-anchor="middle">' + escHtml(fechaSello(f).toUpperCase()) + '</textPath></text>';
+    }
+    return o + '<g transform="translate(' + (f ? '31 31) scale(1.6' : '35 35) scale(1.25') + ')" stroke-width="' + (f ? 1.5 : 1.4) + '" stroke-linecap="round" stroke-linejoin="round">' + SELLO_ICONO[s.icono] + '</g></g></svg>';
+  }
+  function renderSellos(nuevos) {
+    var ul = $('tgc-sellos-lista'); if (!ul) return;
+    ul.textContent = ''; var n = 0;
+    SELLOS.forEach(function (s) {
+      var f = st.sellos[s.id]; if (f) n++;
+      var li = el('li', 'tgc-sello' + (f ? '' : ' falta') + (nuevos && nuevos.indexOf(s.id) >= 0 ? ' nuevo' : ''));
+      li.dataset.id = s.id;
+      li.innerHTML = selloSvg(s, f, '');
+      li.appendChild(el('span', 'tgc-sello-nom', nombreSello(s)));
+      li.appendChild(el('span', 'tgc-sello-cond', condSello(s)));
+      li.appendChild(el('span', 'tgc-sr', f ? tx('cuerpoSelloConseguido', { fecha: fechaSello(f) }) : tx('cuerpoSelloPendiente')));
+      ul.appendChild(li);
+    });
+    $('tgc-sellos-n').textContent = tx('cuerpoSellosDe', { n: n, total: SELLOS.length });
+  }
+  /* los que se cumplen por primera vez: se guardan con la fecha y se celebran (o esperan a que se cierre la hoja) */
+  function comprobarSellos(R) {
+    var nuevos = [];
+    SELLOS.forEach(function (s) { if (!st.sellos[s.id] && s.ok(R)) { st.sellos[s.id] = hoy(); nuevos.push(s); } });
+    if (nuevos.length) guardar();
+    renderSellos(nuevos.map(function (s) { return s.id; }));
+    /* TG_CUERPO_SIN_FIESTA (como TG_CUERPO_SIN_HISTORIA): las pruebas que no son de los sellos lo ponen para que
+       la tarjeta no se plante encima de lo que están tocando; los sellos se guardan y se pintan igual */
+    if (!nuevos.length || window.TG_CUERPO_SIN_FIESTA) return;
+    if (hayHoja()) { sellosEnEspera = sellosEnEspera.concat(nuevos); avisoSelloHoja(); } else celebrarSellos(nuevos);
+  }
+  function avisoSelloHoja() {
+    var p = $('tgc-hoja-sello'); if (!p) return;
+    p.textContent = !sellosEnEspera.length ? '' : sellosEnEspera.length === 1 ? tx('cuerpoSelloNuevoDe', { nombre: nombreSello(sellosEnEspera[0]) }) : tx('cuerpoSellosNuevos', { n: sellosEnEspera.length });
+    p.hidden = !sellosEnEspera.length;
+  }
+  /* al cerrar una hoja (o al abrir la pantalla): lo que esperaba se celebra, salvo que otra hoja se haya abierto
+     en el mismo gesto («Las cifras» desde la hoja de un grupo): entonces sigue esperando */
+  function soltarSellos() {
+    if (!sellosEnEspera.length) return;
+    setTimeout(function () {
+      if (!sellosEnEspera.length || hayHoja() || !abierto) return;
+      var n = sellosEnEspera; sellosEnEspera = []; avisoSelloHoja();
+      celebrarSellos(n);
+    }, 60);
+  }
+  function textoSello(s) {
+    if (s.parada) return tx('cuerpoSelloTEtapa', { n: s.parada, km: tx('medidaKm', { n: fmtN(kmPie(), 1) }) });
+    if (s.id === 'fuerza') return tx('cuerpoSelloT_fuerza', { n: metaDias() });
+    if (s.id === 'mov') return tx('cuerpoSelloT_mov', { n: metaMin() });
+    if (s.id === 'km10') return tx('cuerpoSelloT_km10', { km: tx('medidaKm', { n: fmtN(Math.max(0, GR131.paradas[1].km - kmPie()), 1) }) });
+    return tx('cuerpoSelloT_' + s.id);
+  }
+  function frases(a, b) { return a + (/^zh/.test(lengua()) ? '' : ' ') + b; }
+  function celebrarSellos(nuevos) {
+    if (nuevos.length === 1) { celebrar({ arte: selloSvg(nuevos[0], st.sellos[nuevos[0].id], '-g'), titulo: nombreSello(nuevos[0]), texto: textoSello(nuevos[0]) }); return; }
+    var ult = nuevos[nuevos.length - 1], zh = /^zh/.test(lengua());
+    celebrar({ arte: '<div class="tgc-fiesta-varios">' + nuevos.slice(-3).map(function (s) { return selloSvg(s, st.sellos[s.id], '-v'); }).join('') + '</div>',
+      titulo: tx('cuerpoSellosNuevos', { n: nuevos.length }), texto: frases(lista(nuevos.map(nombreSello)) + (zh ? '。' : '.'), textoSello(ult)) });
+  }
+  /* la tarjeta de celebración: una cola; cada una espera a «Seguir» (o a Escape) */
+  function celebrar(item) { fiestaCola.push(item); if (!fiestaActiva) siguienteFiesta(); }
+  function siguienteFiesta() {
+    var f = $('tgc-fiesta'), it = fiestaCola.shift();
+    if (fiestaActiva && fiestaActiva.postal && postalUrl) { try { URL.revokeObjectURL(postalUrl); } catch (e) {} postalUrl = null; postalBlob = null; }
+    if (!it) {
+      fiestaActiva = null; f.classList.remove('dentro'); debajoInerte(false);
+      setTimeout(function () { if (!fiestaActiva) { f.hidden = true; f.innerHTML = ''; } }, reducido ? 0 : 260);
+      /* el foco vuelve a donde estaba; si aquello ya no se puede enfocar (estaba en el perfil, que queda inerte debajo), a la flecha */
+      if (antesDeFiesta && document.contains(antesDeFiesta) && typeof antesDeFiesta.focus === 'function') { try { antesDeFiesta.focus({ preventScroll: true }); } catch (e) {} }
+      if (abierto && (!antesDeFiesta || antesDeFiesta === document.body || document.activeElement !== antesDeFiesta)) { try { $('tgc-back').focus({ preventScroll: true }); } catch (e) {} }
+      antesDeFiesta = null;
+      return;
+    }
+    if (!fiestaActiva) antesDeFiesta = it.antes || document.activeElement;   /* it.antes: el botón que la pidió, si al apagarse perdió el foco («Crear mi postal») */
+    fiestaActiva = it;
+    if (en3d() && !it.sinSonrisa) M3.sonrie(3.6);
+    var ray = '';
+    if (!reducido && !it.sinRayos) for (var i = 0; i < 14; i++) ray += '<i style="--a:' + (i * 360 / 14) + 'deg;animation-delay:' + (i % 3 * 0.05) + 's;background:var(' + (i % 2 ? '--n2' : '--n3') + ')"></i>';
+    f.innerHTML = '<div class="tgc-fiesta-rayos" aria-hidden="true">' + ray + '</div><div class="tgc-fiesta-tarj" role="dialog" aria-modal="true" aria-labelledby="tgc-fiesta-tit">' + it.arte +
+      '<h2 id="tgc-fiesta-tit"></h2><p id="tgc-fiesta-txt"></p><div class="tgc-fiesta-botones" id="tgc-fiesta-botones"></div></div>';
+    $('tgc-fiesta-tit').textContent = it.titulo; $('tgc-fiesta-txt').textContent = it.texto;
+    var botones = it.botones || [{ texto: tx('cuerpoSeguir'), clase: 'gold' }], caja = $('tgc-fiesta-botones');
+    botones.forEach(function (b) {
+      var btn = el('button', 'tgc-btn ' + (b.clase || 'ghost')); btn.type = 'button'; btn.appendChild(el('span', '', b.texto));
+      btn.addEventListener('click', function () { if (b.fn) { if (b.fn() === false) return; } siguienteFiesta(); });
+      caja.appendChild(btn);
+    });
+    f.hidden = false; void f.offsetWidth; f.classList.add('dentro'); debajoInerte(true);
+    try { caja.firstChild.focus({ preventScroll: true }); } catch (e) {}
+  }
+  function cerrarFiesta() { if (fiestaActiva) { fiestaCola = []; siguienteFiesta(); } }
+
+  /* ── la postal ── */
+  function figuraSvgPara(R, w, h) {
+    var o = R.total > 0 ? { vista: 'frente', modo: 'musculos', aspecto: st.aspecto, niveles: R.niveles, cara: true, id: 'tgc-postal-fig', viewBox: '40 8 320 784' } : { vista: 'frente', modo: 'aspecto', aspecto: st.aspecto, niveles: R.niveles, cara: true, id: 'tgc-postal-fig', viewBox: '40 8 320 784' };
+    return F.svg(o).replace('width="100%" height="100%"', 'width="' + w + '" height="' + h + '"');
+  }
+  /* la miniatura de la tarjeta: la escena y el personaje (la foto del 3D cuando está listo; si no, el dibujo) */
+  function renderPostalMini(R) {
+    var m = $('tgc-postal-mini'); if (!m) return;
+    var tres = en3d() && M3 && M3.preparado(), clave = [progreso(R).toFixed(2), tema, rayosDe().join(''), JSON.stringify(R.niveles), JSON.stringify(st.aspecto), tres ? '3d' : 'svg', lengua()].join('|');
+    if (clave === postalMiniClave) return;
+    postalMiniClave = clave;
+    var cf = ESC.cfg(progreso(R), tema);
+    m.innerHTML = ESC.fijo(96, 120, cf, rayosDe(), 'tgc-escm');
+    if (tres) { var foto = M3.foto({ ancho: 160, alto: 320, musculos: R.total > 0, sonrisa: 0.8 }); var im = el('img', 'tgc-postal-mini-fig'); im.alt = ''; im.src = foto.toDataURL(); m.appendChild(im); }
+    else {
+      var caja = el('div', 'tgc-postal-mini-fig'); caja.innerHTML = figuraSvgPara(R, '100%', '100%'); m.appendChild(caja);
+      if (en3d() && M3 && !postalMiniEspera) { postalMiniEspera = true; M3.listo(function () { postalMiniEspera = false; if (abierto) renderPostalMini(resumen()); }); }
+    }
+  }
+  function imagenDe(svgTxt) {
+    return new Promise(function (ok, mal) { var im = new Image(); im.onload = function () { ok(im); }; im.onerror = function () { mal(new Error('svg')); }; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgTxt); });
+  }
+  /* la imagen: 1080 × 1350 (4:5), la escena, el personaje, el título, las tres cifras y la marca */
+  function crearPostal() {
+    var R = resumen(), W = 1080, H = 1350, noche = tema === 'noche', cf = ESC.cfg(progreso(R), tema);
+    var textos = [tx('cuerpoPostalLema'), tx('cuerpoPostalLDias', { n: R.diasFuerza }), tx('cuerpoPostalLMin'), tx('cuerpoPostalLKm')].join('');
+    var fuentes = (document.fonts && document.fonts.load) ? Promise.all([document.fonts.load('600 92px "Cormorant Garamond"', textos + '0123456789'), document.fonts.load('500 30px "DM Sans"', textos)]).catch(function () {}) : Promise.resolve();
+    return fuentes.then(function () {
+      return Promise.all([imagenDe(ESC.fijo(W, H, cf, rayosDe(), 'tgc-escp')),
+        (en3d() && M3 && M3.preparado()) ? Promise.resolve(M3.foto({ ancho: 900, alto: 1800, musculos: R.total > 0, sonrisa: 0.8 })) : imagenDe(figuraSvgPara(R, 450, 900))]);
+    }).then(function (im) {
+      var cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+      var x = cv.getContext('2d'), tinta = noche ? '#F6F1E7' : '#12233A';
+      x.drawImage(im[0], 0, 0, W, H);
+      x.drawImage(im[1], W / 2 - 225, 1085 - 900, 450, 900);
+      /* el título, en la cabecera */
+      x.fillStyle = tinta; x.textBaseline = 'alphabetic'; x.textAlign = 'center';
+      var titulo = tx('cuerpoPostalLema'), tam = 92;
+      x.font = '600 ' + tam + 'px "Cormorant Garamond", Georgia, serif';
+      while (x.measureText(titulo).width > W - 120 && tam > 48) { tam -= 4; x.font = '600 ' + tam + 'px "Cormorant Garamond", Georgia, serif'; }
+      x.fillText(titulo, W / 2, 132);
+      /* la banda de abajo, con las tres cifras */
+      var by = H - 252;
+      x.fillStyle = noche ? 'rgba(15,17,23,.88)' : 'rgba(255,255,255,.94)';
+      if (x.roundRect) { x.beginPath(); x.roundRect(50, by, W - 100, 202, 36); x.fill(); } else x.fillRect(50, by, W - 100, 202);
+      var datos = [[fmtN(R.diasFuerza, 0), tx('cuerpoPostalLDias', { n: R.diasFuerza }), noche ? '#FF6B81' : '#C2334F'], [fmtN(R.min, 0), tx('cuerpoPostalLMin'), noche ? '#3CC8D6' : '#0B7C86'], [fmtN(kmPie(), 1), tx('cuerpoPostalLKm'), noche ? '#F5C76B' : '#8A6A12']];
+      datos.forEach(function (d, i) {
+        var cx = 50 + (W - 100) * (i + 0.5) / 3, t2 = 30;
+        x.textAlign = 'center'; x.fillStyle = d[2]; x.font = '600 100px "Cormorant Garamond", Georgia, serif'; x.fillText(d[0], cx, by + 104);
+        x.fillStyle = noche ? '#F0ECE4' : '#12233A'; x.font = '500 ' + t2 + 'px "DM Sans", system-ui, sans-serif';
+        while (x.measureText(d[1]).width > (W - 100) / 3 - 16 && t2 > 18) { t2 -= 2; x.font = '500 ' + t2 + 'px "DM Sans", system-ui, sans-serif'; }
+        x.fillText(d[1], cx, by + 156);
+      });
+      x.textAlign = 'center'; x.fillStyle = tinta; x.font = '500 28px "DM Sans", system-ui, sans-serif'; x.fillText('Tenerife Go · tenerifego.app', W / 2, H - 16);
+      return new Promise(function (ok, mal) {
+        if (cv.toBlob) cv.toBlob(function (b) { if (b) ok(b); else mal(new Error('blob')); }, 'image/png');
+        else { try { var d = cv.toDataURL('image/png'), bin = atob(d.split(',')[1]), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); ok(new Blob([u], { type: 'image/png' })); } catch (e) { mal(e); } }
+      });
+    });
+  }
+  function ficheroPostal(blob) { try { return new File([blob], 'tenerife-go-mi-semana.png', { type: 'image/png' }); } catch (e) { return null; } }
+  function puedeCompartir(blob) { var f = ficheroPostal(blob); return !!(f && navigator.share && navigator.canShare && navigator.canShare({ files: [f] })); }
+  function descargarPostal(blob) {
+    var url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = 'tenerife-go-mi-semana.png'; a.style.display = 'none'; document.body.appendChild(a); a.click();
+    setTimeout(function () { try { URL.revokeObjectURL(url); } catch (e) {} if (a.parentNode) a.remove(); }, 4000);
+  }
+  function compartirPostal(blob) {
+    var f = ficheroPostal(blob);
+    if (f && navigator.share && navigator.canShare && navigator.canShare({ files: [f] })) {
+      navigator.share({ files: [f], title: tx('cuerpoPostalLema') }).catch(function (err) { if (!err || err.name !== 'AbortError') descargarPostal(blob); });
+    } else descargarPostal(blob);
+  }
+  function abrirPostal() {
+    var b = $('tgc-postal-btn'); if (!b || b.disabled) return;
+    b.disabled = true; $('tgc-postal-btn-txt').textContent = tx('cuerpoPostalPreparando');
+    crearPostal().then(function (blob) {
+      b.disabled = false; $('tgc-postal-btn-txt').textContent = tx('cuerpoPostalCrear');
+      postalBlob = blob; postalUrl = URL.createObjectURL(blob);
+      var im = el('img', 'tgc-postal-img'); im.alt = tx('cuerpoPostalAlt'); im.src = postalUrl; im.width = 1080; im.height = 1350;
+      var botones = [{ texto: tx(puedeCompartir(blob) ? 'cuerpoCompartir' : 'cuerpoGuardarImagen'), clase: 'gold', fn: function () { if (postalBlob) compartirPostal(postalBlob); return false; } }, { texto: tx('cuerpoCerrarB'), clase: 'ghost' }];
+      celebrar({ arte: im.outerHTML, titulo: tx('cuerpoPostalTitulo'), texto: tx('cuerpoPostalGuardar'), botones: botones, sinRayos: true, postal: true, antes: b });
+    }).catch(function () { b.disabled = false; $('tgc-postal-btn-txt').textContent = tx('cuerpoPostalCrear'); toast(tx('cuerpoPostalError')); });
+  }
+
   var islaAnimar = false;
-  function renderMusculos() { var R = resumen(); renderResumen(R); renderHoy(R); renderIsla(islaAnimar); islaAnimar = false; renderLista(R); renderFigura(R); }
+  function renderMusculos() { var R = resumen(); renderResumen(R); renderHoy(R); renderIsla(islaAnimar); islaAnimar = false; renderLista(R); renderFigura(R); comprobarSellos(R); renderPostalMini(R); }
   function renderModo() {
     var m = modo === 'musculos', a = modo === 'aspecto', c = modo === 'comida', q = modo === 'preguntar';
     $('tgc').classList.toggle('is-aspecto', a);
@@ -3332,7 +3634,7 @@
   function enganchar() {
     $('tgc-back').addEventListener('click', function () { cerrar(); });
     panel.addEventListener('scroll', pegada, { passive: true });
-    $('tgc-tema').addEventListener('click', function () { ponerTema(tema === 'dia' ? 'noche' : 'dia', true); renderFigura(); });
+    $('tgc-tema').addEventListener('click', function () { ponerTema(tema === 'dia' ? 'noche' : 'dia', true); renderFigura(); renderPostalMini(resumen()); });
     $('tgc-cifras-btn').addEventListener('click', abrirCifras);
     $('tgc-cifras-link').addEventListener('click', abrirCifras);
     $('tgc-cifras-cerrar').addEventListener('click', function () { cerrarCifras(); });
@@ -3398,6 +3700,7 @@
     $('tgc-mov-hist').addEventListener('click', function (e) { var b = e.target.closest('.tgc-hist-x'); if (b) borrarMov(Number(b.dataset.i)); });
     /* «Hoy en la isla» (bloque 5): la zona del tiempo */
     $('tgc-hoy-zona').addEventListener('change', function () { elegirZona($('tgc-hoy-zona').value); });
+    $('tgc-postal-btn').addEventListener('click', abrirPostal);
     $('tgc-menos').addEventListener('click', quitarUna);
     $('tgc-guardar').addEventListener('click', function () { anotar(1); });
     $('tgc-mas3').addEventListener('click', function () { anotar(3); });
@@ -3487,7 +3790,8 @@
     montar3d(); vivo3d();
     if (modo === 'aspecto') traerTodo3d();
     pedirHoy(); pedirTrazado();           /* el tiempo de la zona (si lo guardado tiene más de 30 min) y el trazado oficial, si está */
-    try { $('tgc-back').focus({ preventScroll: true }); } catch (e) {}
+    if (!fiestaActiva) { try { $('tgc-back').focus({ preventScroll: true }); } catch (e) {} }   /* con una celebración recién puesta (renderTodo), el foco se queda en ella */
+    soltarSellos();                       /* sellos que esperaban a que se cerrara una hoja cuando se cerró la pantalla */
   }
   /* la cabecera va en cristal sobre la escena y se vuelve opaca al bajar (o sin escena) */
   function pegada() {
@@ -3503,6 +3807,7 @@
     if (cifrasAbiertas) cerrarCifras(true);
     if (grupoAbierto) cerrarHoja(true);
     abierto = false;
+    cerrarFiesta();                       /* la celebración que hubiera, fuera (lo que esperaba sigue esperando) */
     panel.hidden = true;
     vivo3d();
     $('tgc-toast').classList.remove('show');
@@ -3545,7 +3850,7 @@
     /* y no lo oye nadie más, tampoco en window: el Escape del perfil, si se enganchó después que
        este, ya no vería la hoja abierta y cerraría también el perfil */
     e.stopImmediatePropagation();
-    if (ejAbierto) volverGrupo(); else if (grupoAbierto) cerrarHoja(); else if (cifrasAbiertas) cerrarCifras(); else if (movAbierto) cerrarMov(); else cerrar();
+    if (fiestaActiva) cerrarFiesta(); else if (ejAbierto) volverGrupo(); else if (grupoAbierto) cerrarHoja(); else if (cifrasAbiertas) cerrarCifras(); else if (movAbierto) cerrarMov(); else cerrar();
   }, true);
   try { TG_IDIOMA.registrar('cuerpo', function () { if (abierto) renderTodo(); }); } catch (e) {}
 
@@ -4219,6 +4524,8 @@
   --fuerza: #C2334F; --fuerza-f: #FBE3E8; --mov: #0B7C86; --mov-f: #D9F1F2;
   /* el esquema de la isla (8-11-2026, bloque 5): la tierra, su borde, el Teide y el halo de los nombres */
   --isla-relleno: #F3DCAB; --isla-borde: #B98B4E; --isla-teide: #7A6FB8; --halo-mapa: rgba(255,255,255,0.82);
+  /* los sellos del pinar (8-11-2026, bloque 6): un verde con contraste 5,0 sobre el fondo */
+  --verde: #2A7A4B; --verde-f: #DDF2E4;
   --rojo: #B3261E; --rojo-f: #FBE3E8;
   --cristal: rgba(255,255,255,0.72); --cristal-borde: rgba(255,255,255,0.9); --sobre-cielo: #12233A;
   --suave: rgba(18,35,58,0.06); --suave-2: rgba(18,35,58,0.14); --suave-3: rgba(18,35,58,0.55);
@@ -4241,6 +4548,7 @@
   --oro: #F5C76B; --oro-vivo: #D4AF37; --oro-f: #33290F; --zonas: #9B8CFF; --zonas-f: #262447;
   --fuerza: #FF6B81; --fuerza-f: #3A1F2B; --mov: #3CC8D6; --mov-f: #12333A;
   --isla-relleno: #3B4257; --isla-borde: #6B7690; --isla-teide: #9B8CFF; --halo-mapa: rgba(15,17,23,0.78);
+  --verde: #6FD39A; --verde-f: #16352A;
   --rojo: #FFB4A8; --rojo-f: #3A1F2B;
   --cristal: rgba(15,17,23,0.55); --cristal-borde: rgba(255,255,255,0.16); --sobre-cielo: #F6F1E7;
   --suave: rgba(240,236,228,0.06); --suave-2: rgba(240,236,228,0.14); --suave-3: rgba(240,236,228,0.5);
@@ -4438,6 +4746,56 @@
 .tgc-tramo b { position: absolute; top: -3px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--fondo); border: 2px solid var(--tinta-2); box-sizing: border-box; }
 .tgc-tramo b.pasada { background: var(--mov); border-color: var(--mov); }
 .tgc-sig { margin: 0; font-size: 15px; line-height: 1.45; }
+
+/* ── los sellos (8-11-2026, bloque 6): una página de pasaporte con el borde dentado, de lado a lado, y la tira
+   que se desliza; la postal, una tarjeta con la miniatura torcida; la celebración, una tarjeta sobre todo ── */
+.tgc-sellos { position: relative; margin: 0 calc(-1 * var(--gr)) 0 calc(-1 * var(--gl)); padding: 24px 0 18px; background: var(--tarjeta); min-width: 0; }
+.tgc-sellos::before, .tgc-sellos::after { content: ""; position: absolute; left: 0; right: 0; height: 9px; background: radial-gradient(circle at 9px 0, var(--fondo) 6.5px, transparent 7px) 0 0 / 18px 9px repeat-x; pointer-events: none; }
+.tgc-sellos::before { top: 0; }
+.tgc-sellos::after { bottom: 0; transform: scaleY(-1); }
+.tgc-sellos-cab { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 0 var(--gr) 0 var(--gl); min-width: 0; }
+.tgc-sellos-cab h2 { margin: 0; font: 600 28px/1.1 var(--font-display); color: var(--tinta); letter-spacing: .1px; text-wrap: balance; }
+.tgc-sellos-cab .tgc-sub { margin: 2px 0 0; font-size: 14px; color: var(--tinta-2); line-height: 1.4; }
+.tgc-sellos-n { position: static; flex: none; margin-top: 4px; border-style: solid; background: var(--fondo); font-variant-numeric: tabular-nums; }
+.tgc-sellos-lista { list-style: none; margin: 14px 0 0; padding: 6px var(--gr) 10px var(--gl); display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.tgc-sellos-lista::-webkit-scrollbar { display: none; }
+.tgc-sello { position: relative; flex: none; width: 92px; display: flex; flex-direction: column; align-items: center; gap: 6px; scroll-snap-align: start; text-align: center; color: var(--tinta); }   /* relative: su .tgc-sr (absoluto) se queda dentro de la tira, no ensancha la sección */
+.tgc-sello svg { width: 86px; height: 86px; display: block; }
+.tgc-sello-nom { font-size: 12px; font-weight: 600; line-height: 1.2; }
+.tgc-sello-cond { font-size: 11px; color: var(--tinta-2); line-height: 1.2; }
+.tgc-sello.falta { color: var(--tinta-2); }
+.tgc-sello.falta svg { opacity: .5; }
+.tgc-sello.nuevo svg { animation: tgc-sellar .6s cubic-bezier(.2, 1.5, .4, 1); }
+@keyframes tgc-sellar { from { transform: scale(1.7) rotate(-20deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.tgc-hoja-sello { margin: 0; font-size: 14px; font-weight: 700; color: var(--oro); }
+.tgc-postal { min-width: 0; }
+.tgc-postal-caja { border-radius: 22px; background: var(--tarjeta); border: 1px solid var(--linea); padding: 16px; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; align-items: center; }
+.tgc-postal-mini { position: relative; width: 96px; aspect-ratio: 4 / 5; border-radius: 10px; overflow: hidden; background: var(--fondo); box-shadow: var(--sombra); transform: rotate(-3deg); }
+.tgc-postal-mini > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.tgc-postal-mini-fig { position: absolute; left: 50%; bottom: 3%; height: 74%; width: auto; aspect-ratio: 1 / 2; transform: translateX(-50%); }
+.tgc-postal-mini-fig svg { width: 100%; height: 100%; display: block; }
+img.tgc-postal-mini-fig { object-fit: contain; }
+.tgc-postal-txt { display: grid; gap: 6px; min-width: 0; justify-items: start; }
+.tgc-postal-txt h2 { margin: 0; font: 600 28px/1.1 var(--font-display); color: var(--tinta); letter-spacing: .1px; text-wrap: balance; }
+.tgc-postal-txt p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--tinta-2); }
+.tgc-postal-txt .tgc-btn { margin-top: 6px; }
+.tgc-fiesta { position: fixed; inset: 0; z-index: 12; display: grid; place-items: center; background: var(--velo); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); padding: 24px; opacity: 0; transition: opacity var(--t-normal) var(--ease-out); }
+.tgc-fiesta.dentro { opacity: 1; }
+.tgc-fiesta-tarj { position: relative; width: min(100%, 340px); max-height: calc(100vh - 48px); max-height: calc(100svh - 48px); overflow: auto; border-radius: 28px; background: var(--hoja); color: var(--tinta); padding: 26px 22px 20px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.35); transform: translateY(16px) scale(.96); transition: transform var(--t-slow) var(--ease-bounce); }
+.tgc-fiesta.dentro .tgc-fiesta-tarj { transform: none; }
+.tgc-fiesta-tarj > svg { width: 170px; height: 170px; margin: 0 auto; display: block; animation: tgc-sellar .7s cubic-bezier(.2, 1.5, .4, 1) .1s both; }
+.tgc-fiesta-varios { display: flex; justify-content: center; gap: 6px; }
+.tgc-fiesta-varios svg { width: 96px; height: 96px; animation: tgc-sellar .6s cubic-bezier(.2, 1.5, .4, 1) both; }
+.tgc-fiesta-varios svg:nth-child(2) { animation-delay: .12s; }
+.tgc-fiesta-varios svg:nth-child(3) { animation-delay: .24s; }
+.tgc-fiesta-tarj h2 { margin: 10px 0 0; font: 600 32px/1.05 var(--font-display); color: var(--tinta); text-wrap: balance; }
+.tgc-fiesta-tarj p { margin: 8px 0 0; font-size: 15px; line-height: 1.45; color: var(--tinta-2); }
+.tgc-fiesta-botones { display: grid; gap: 8px; margin-top: 18px; }
+.tgc-fiesta-botones .tgc-btn { width: 100%; }
+img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: block; box-shadow: var(--sombra); }
+.tgc-fiesta-rayos { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.tgc-fiesta-rayos i { position: absolute; left: 50%; top: 42%; width: 6px; height: 22px; margin: -11px 0 0 -3px; border-radius: 6px; opacity: 0; animation: tgc-rayito 1s ease-out forwards; }
+@keyframes tgc-rayito { 0% { transform: rotate(var(--a)) translateY(-60px) scaleY(.4); opacity: 0; } 25% { opacity: 1; } 100% { transform: rotate(var(--a)) translateY(-220px) scaleY(1); opacity: 0; } }
 
 /* la semana, día a día: las series anotadas cada día, en oro */
 .tgc-dias7 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; position: relative; }
@@ -4830,6 +5188,9 @@
   .tgc-meta-n { font-size: 44px; }
   .tgc-isla-cifra { font-size: 44px; }
   .tgc-top h1 { font-size: 26px; }
+  .tgc-postal-caja { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; padding: 14px; }
+  .tgc-postal-mini { width: 80px; }
+  .tgc-postal-txt .tgc-btn { white-space: normal; text-align: left; min-height: 44px; padding: 8px 14px; max-width: 100%; }
 }
 /* en una pantalla ancha la escena deja de ir de borde a borde */
 @media (min-width: 600px) {
@@ -4963,6 +5324,23 @@
       <h2 id="tgc-grupos-tit">Los 12 grupos musculares</h2>
       <p class="tgc-ayuda" id="tgc-grupos-ayuda"></p>
       <ul class="tgc-lista" id="tgc-lista"></ul>
+    </section>
+    <section class="tgc-sellos" id="tgc-sellos" aria-labelledby="tgc-sellos-tit">
+      <div class="tgc-sellos-cab">
+        <div><h2 id="tgc-sellos-tit">Sus sellos</h2><p class="tgc-sub" id="tgc-sellos-sub"></p></div>
+        <span class="tgc-etiqueta tgc-sellos-n" id="tgc-sellos-n"></span>
+      </div>
+      <ul class="tgc-sellos-lista" id="tgc-sellos-lista"></ul>
+    </section>
+    <section class="tgc-postal" id="tgc-postal" aria-labelledby="tgc-postal-tit">
+      <div class="tgc-postal-caja">
+        <div class="tgc-postal-mini" id="tgc-postal-mini" aria-hidden="true"></div>
+        <div class="tgc-postal-txt">
+          <h2 id="tgc-postal-tit">Su postal</h2>
+          <p id="tgc-postal-p"></p>
+          <button type="button" class="tgc-btn gold" id="tgc-postal-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l5-4.5 4 3.5 3-2.5 6 5"/><circle cx="15.5" cy="9.5" r="1.4"/></svg><span id="tgc-postal-btn-txt">Crear mi postal</span></button>
+        </div>
+      </div>
     </section>
   </div>
 
@@ -5099,6 +5477,7 @@
     </div>
     <button type="button" class="tgc-ver" id="tgc-h-ref">Referencia: 10 series (ACSM)</button>
   </div>
+  <p class="tgc-hoja-sello" id="tgc-hoja-sello" role="status" hidden></p>
   <h3 id="tgc-hist-tit">Lo último anotado</h3>
   <ul class="tgc-hist" id="tgc-hist"></ul>
   <p class="tgc-ayuda" id="tgc-hist-nada"></p>
@@ -5236,6 +5615,7 @@
   </div>
 </div>
 <div class="tgc-toast" id="tgc-toast" role="status" aria-live="polite"><span id="tgc-toast-txt"></span><button type="button" id="tgc-toast-btn" hidden></button></div>
+<div class="tgc-fiesta" id="tgc-fiesta" hidden></div>
 `;
   /* Las claves de los textos fijos del cuerpo: [selector, como, clave]; como es tx (el texto),
      aria (aria-label) o ph (placeholder, data-tx-ph: el mismo atributo que traduce applyUiTx de la app). No van en la cadena como marcas (fuente.py pega el modulo dentro de
@@ -5317,6 +5697,12 @@
     ['#tgc-hoy-zona-l', 'tx', 'cuerpoHoyZona'],
     ['#tgc-isla-tit', 'tx', 'cuerpoIslaTitulo'],
     ['#tgc-isla-esquema', 'tx', 'cuerpoIslaEsquema'],
+    /* (8-11-2026, bloque 6) los sellos y la postal: lo fijo; los sellos los pone renderSellos */
+    ['#tgc-sellos-tit', 'tx', 'cuerpoSellosTitulo'],
+    ['#tgc-sellos-sub', 'tx', 'cuerpoSellosSub'],
+    ['#tgc-postal-tit', 'tx', 'cuerpoPostalTitulo'],
+    ['#tgc-postal-p', 'tx', 'cuerpoPostalTexto'],
+    ['#tgc-postal-btn-txt', 'tx', 'cuerpoPostalCrear'],
     ['#tgc-cifras-link', 'tx', 'cuerpoCifras'],
     ['#tgc-grupos-tit', 'tx', 'cuerpoGruposTitulo'],
     ['#tgc-grupos-ayuda', 'tx', 'cuerpoGruposAyuda'],
@@ -5394,6 +5780,8 @@
     mini: mini,
     tema: function () { return tema; },
     repintar: function () { if (abierto) renderTodo(); },
+    /* (8-11-2026, bloque 6) cierra la tarjeta de celebración que haya y vacía la cola */
+    cerrarFiesta: cerrarFiesta,
     estado: function () { return st; },
     preguntar: function (q) { abrir({ pregunta: q }); },
     asistente: function () { return { buscador: buscador, datos: ASIS, preguntar: responder }; },
