@@ -280,6 +280,9 @@ echo; echo "════════ «Su cuerpo»: el dibujo y la pestaña Cuer
 # manipulado que no ejecuta nada.
 control probar_figura.js node tools/probar_figura.js
 control probar_cuerpo.js node tools/probar_cuerpo.js "$PUERTO"
+# (8-11-2026, bloque 5) la costa del esquema de «Cruce la isla», contra los limites municipales, y el trazado del GR 131 si lo hay
+control cuerpo_isla.py python3 tools/cuerpo_isla.py --comprobar
+control gr131_trazado.py python3 tools/gr131_trazado.py --comprobar
 echo; echo "════════ la isla en 3D: el relieve, los textos y la vista de verdad en un movil emulado, sin conexion ════════"
 # Desde el 31 de octubre de 2026. El relieve (mapa/tenerife-relieve*.png y
 # .json) lo hace tools/relieve_construir.py desde el MDT05 del IGN

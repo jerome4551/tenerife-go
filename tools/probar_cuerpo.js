@@ -186,9 +186,11 @@ async function ejemplo(pg) {
   /* desde el 3 de noviembre, con «Comida», «Preguntar» y «Su deporte», 109; desde el 6 (bloque 2), con
      el tema, «Las cifras», «+ 1 serie», «+3» y la referencia corta, y sin el lema, los pies de las vistas
      ni el paso de la hoja, 108; desde el 7 (bloque 4), con las tres metas (su nombre y «Meta cumplida»,
-     6), «Anotar movimiento» y su hoja (17) y sin las tres cifras de antes (3), 128; y 2 placeholders (el del
-     buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (128 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 128 && r2.ph === 2, r2.n + '/' + r2.ph);
+     6), «Anotar movimiento» y su hoja (17) y sin las tres cifras de antes (3), 128; desde el 8 (bloque 5), con
+     «Hoy en la isla» (el título y la etiqueta de la zona), «Cruce la isla» (el título y «Esquema») y con la nota de
+     la hoja del movimiento puesta por código (dos notas), 131; y 2 placeholders (el del buscador de ejercicios y el
+     de la pregunta) */
+  prueba('textos fijos puestos (131 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 131 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -1709,7 +1711,7 @@ async function ejemplo(pg) {
     prueba('«Anotar movimiento» abre su página de la hoja, con el foco en el título y su entrada en el historial', h23.abierta && h23.etiqueta === 'tgc-mov-tit' && h23.foco === 'tgc-mov-tit' && h23.inerte && h23.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1,"tgCuerpoMov":1}', JSON.stringify(h23));
     prueba('la hoja: el título, la frase, los cinco tipos con su icono (Caminar elegido), 30 min, 2,5 km, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
       && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,nadar:false:Nadar:1,bici:false:Bici:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.kmL === 'Kilómetros' && h23.hoy === 'true'
-      && h23.boton === 'Anotar 30 min y 2,5 km' && h23.nota === 'Todo suma minutos y kilómetros a su semana.', JSON.stringify(h23));
+      && h23.boton === 'Anotar 30 min y 2,5 km' && /GR 131/.test(h23.nota), JSON.stringify(h23));   /* desde el bloque 5, la nota de a pie habla del GR 131 */
     prueba('lo último anotado: las tres, de hoy hacia atrás, con el tipo, los minutos y los km', h23.hist === 'Caminar · 35 min y 3 km | Senderismo · 150 min y 9,5 km | Nadar · 30 min y 1 km', h23.hist);
     await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p23.waitForTimeout(60);
     const hojaMov = () => p23.evaluate(() => ({ kmFila: document.getElementById('tgc-mov-km-fila').hidden, min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, menos: document.getElementById('tgc-mov-km-menos').disabled, mas: document.getElementById('tgc-mov-km-mas').disabled,
@@ -1877,6 +1879,238 @@ async function ejemplo(pg) {
     await idioma(p23, 'es');
     prueba('bloque 4: sin errores de página', e23.length === 0, e23.join(' | '));
     await c23.close();
+  }
+
+  // 24. (8-11-2026, bloque 5) la isla. «Hoy en la isla»: el tiempo de UNA zona de las seis del panel del sol
+  //     (Costa Adeje por defecto, elegida en un desplegable y recordada en tenerife.cuerpo.hoy; sin geolocalización),
+  //     pedido a Open-Meteo (los mismos servicios que la app; con mar solo en las zonas de costa) y cacheado 30 min:
+  //     los chips (UV con su categoría de la OMS por el entero que se enseña, grados, mar, viento, lluvia o nieve),
+  //     los avisos de AEMET vigentes hoy que tocan la zona (con las funciones de la app), el consejo del día (la
+  //     semana y el sol de la OMS con las cuatro horas alrededor del mediodía solar de la zona) y la fuente con su
+  //     hora; sin red, lo último guardado con «de hace N h»; sin nada, «Sin datos». «Cruce la isla»: el GR 131
+  //     (85,55 km, decisión 5) con TODOS los km a pie anotados, en un esquema (la costa real, las seis paradas en su
+  //     sitio y una curva entre ellas, con la etiqueta «Esquema»), la cuenta, la barra y la siguiente parada; al
+  //     anotar con km, el marcador avanza animado; si hay trazado oficial (datos/cuerpo/gr131-trazado.json), se
+  //     dibuja ese y se quita «Esquema»; uno malo se descarta. Las notas de la hoja del movimiento. Y todo en los
+  //     diez idiomas, con la política de privacidad nombrando la zona
+  {
+    const fs = require('fs'), path = require('path');
+    const M24 = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    /* las paradas y el total, del módulo (la misma fuente que lee tools/gr131_trazado.py) */
+    const gr = M24.match(/var GR131 = \{ total: ([\d.]+), paradas: \[([\s\S]*?)\] \};/);
+    const PARADAS = [...gr[2].matchAll(/\{ id: '(\w+)', nombre: '([^']+)', corto: '[^']+', km: ([\d.]+), lat: ([\d.\-]+), lon: ([\d.\-]+) \}/g)].map(m => ({ id: m[1], nombre: m[2], km: +m[3], lat: +m[4], lon: +m[5] }));
+    const COSTA = (M24.match(/var COSTA = '([^']+)';/) || [])[1] || '';
+    const costaPts = COSTA.split(' ').map(x => x.split(',').map(Number));
+    prueba('el módulo: el GR 131 de 85,55 km con sus seis paradas en orden de km, de La Esperanza (0) a Arona (85,55), todas dentro de Tenerife', +gr[1] === 85.55 && PARADAS.length === 6 && PARADAS[0].id === 'esperanza' && PARADAS[5].id === 'arona' && PARADAS[5].km === 85.55
+      && PARADAS.every((p, i) => (!i || p.km > PARADAS[i - 1].km) && p.lat > 28 && p.lat < 28.6 && p.lon > -16.95 && p.lon < -16.1), JSON.stringify(PARADAS.map(p => p.id + ':' + p.km)));
+    prueba('la costa del esquema: de 200 a 400 puntos «lat,lon», todos dentro de la isla (tools/cuerpo_isla.py la saca de los límites municipales)', costaPts.length >= 200 && costaPts.length <= 400 && costaPts.every(p => p.length === 2 && p[0] > 27.98 && p[0] < 28.61 && p[1] > -16.95 && p[1] < -16.1), costaPts.length + ' puntos');
+
+    /* Open-Meteo de pega: por la latitud de la URL se sabe la zona; Costa Adeje de día con mar, el Teide de noche con nieve */
+    const TIEMPO = { current: { temperature_2m: 24.3, uv_index: 8.6, wind_speed_10m: 15.2, weather_code: 1, is_day: 1 }, daily: { uv_index_max: [9.1] } };
+    const TEIDE = { current: { temperature_2m: 3.8, uv_index: 0, wind_speed_10m: 42, weather_code: 73, is_day: 0 }, daily: { uv_index_max: [7.6] } };
+    const MAR = { current: { sea_surface_temperature: 21.4, wave_height: 0.8 } };
+    const peticiones = [];
+    let red = true;
+    const c24 = await contexto(b), p24 = await c24.newPage(), e24 = []; vigilar(p24, e24);
+    await p24.route('https://api.open-meteo.com/**', r => { peticiones.push(r.request().url()); if (!red) return r.abort(); r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(/latitude=28\.22/.test(r.request().url()) ? TEIDE : TIEMPO) }); });
+    await p24.route('https://marine-api.open-meteo.com/**', r => { peticiones.push(r.request().url()); if (!red) return r.abort(); r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(MAR) }); });
+    await p24.addInitScript(() => { window.__geo = 0; if (navigator.geolocation) { const g = navigator.geolocation; ['getCurrentPosition', 'watchPosition'].forEach(k => { const o = g[k].bind(g); g[k] = function () { window.__geo++; return o.apply(g, arguments); }; }); } });
+    await abrirApp(p24); await abrirPerfilCuerpo(p24); await suCuerpo(p24);
+    await ejemplo(p24);
+    const conMov24 = async (mov) => {
+      await p24.evaluate(mov => {
+        const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+        const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+        const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')), t = Date.now() - 5e5;
+        g.mov = mov.map((x, i) => ({ d: hace(x[0]), tipo: x[1], min: x[2], km: x[3], t: t + i }));
+        localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir();
+      }, mov);
+      await p24.waitForTimeout(300);
+    };
+    /* hoy 3 km a pie, hace 3 una caminata de 9,5, hace 5 a nado (con 5 km escritos: no cuentan) y hace 12 una travesía de 21 */
+    await conMov24([[0, 'caminar', 35, 3], [3, 'senderismo', 150, 9.5], [5, 'nadar', 30, 5], [12, 'senderismo', 240, 21]]);
+    await p24.waitForFunction(() => document.querySelectorAll('#tgc-hoy-chips .tgc-hoy-chip').length > 0, null, { timeout: 5000 }).catch(() => {});
+    const leer24 = () => p24.evaluate(() => {
+      const g = id => document.getElementById(id), sel = g('tgc-hoy-zona');
+      return { orden: [...g('tgc-vista-musculos').querySelectorAll(':scope > section')].map(s => s.className.split(' ')[0]).join(' '),
+        zonas: [...sel.options].map(o => o.value + ':' + o.textContent + ':' + o.getAttribute('data-sin-traducir')).join(','), zona: sel.value, zonaL: g('tgc-hoy-zona-l').textContent,
+        chips: [...document.querySelectorAll('#tgc-hoy-chips .tgc-hoy-chip')].map(c => c.className.replace('tgc-hoy-chip', '').trim() + '=' + c.textContent.trim() + (c.querySelector('svg') ? '' : ' SIN-ICONO')),
+        estado: g('tgc-hoy-estado').textContent, estadoOculto: g('tgc-hoy-estado').hidden, avisos: [...document.querySelectorAll('#tgc-hoy-aviso p')].map(p => p.textContent), avisoOculto: g('tgc-hoy-aviso').hidden,
+        consejo: g('tgc-hoy-consejo').textContent, fuente: g('tgc-hoy-fuente').textContent, cache: localStorage.getItem('tenerife.cuerpo.hoy'),
+        km: g('tgc-isla-km').textContent, de: g('tgc-isla-de').textContent, sig: g('tgc-isla-sig').textContent, sub: g('tgc-isla-sub').textContent, esquema: !g('tgc-isla-esquema').hidden,
+        svgs: document.querySelectorAll('#tgc-mapa svg').length, aria: document.querySelector('#tgc-mapa svg').getAttribute('aria-label'), rol: document.querySelector('#tgc-mapa svg').getAttribute('role'),
+        paradas: [...document.querySelectorAll('#tgc-mapa .tgc-isla-parada')].map(p => p.querySelector('text').textContent + (p.classList.contains('pasada') ? '*' : '')).join(','),
+        teide: !!document.querySelector('#tgc-mapa .tgc-isla-teide') && document.querySelector('#tgc-mapa .tgc-isla-teide-t').textContent, ruta: document.querySelector('#tgc-mapa .tgc-isla-ruta').getAttribute('stroke-dasharray'),
+        marca: g('tgc-isla-marca').getAttribute('transform'), hecha: (g('tgc-isla-hecha').getAttribute('d') || '').length, barra: g('tgc-tramo-hecho').style.width, puntos: document.querySelectorAll('#tgc-tramo b').length,
+        pasadasBarra: document.querySelectorAll('#tgc-tramo b.pasada').length, cifras: g('tgc-cifras-isla').textContent, geo: window.__geo,
+        desborde: g('cuerpo-panel').scrollWidth > g('cuerpo-panel').clientWidth };
+    });
+    const r24 = await leer24();
+    prueba('en «Músculos», el orden de la maqueta: la semana, «Hoy en la isla», «Cruce la isla» y los 12 grupos', /tgc-semana tgc-hoy-isla tgc-isla tgc-grupos/.test(r24.orden), r24.orden);
+    prueba('la zona: las seis del panel del sol, sin traducir (nombres propios), Costa Adeje por defecto, con su etiqueta', r24.zonas === 'adeje:Costa Adeje:nombre propio,medano:El Médano:nombre propio,gigantes:Los Gigantes:nombre propio,puerto:Puerto de la Cruz:nombre propio,santacruz:Santa Cruz:nombre propio,teide:Teide:nombre propio' && r24.zona === 'adeje' && r24.zonaL === 'Zona del tiempo', r24.zonas + ' ' + r24.zona);
+    prueba('los chips de Costa Adeje: «UV 9 · muy alto» (8,6 → 9, la categoría del entero, con su color), 24°, Mar 21° y 15 km/h, cada uno con su icono; sin lluvia ni nieve (código 1)', r24.chips.join('|') === 'uv uv-muyalto=UV 9 · muy alto|=24°|=Mar 21°|=15 km/h', r24.chips.join('|'));
+    prueba('la fuente con su hora («Open-Meteo, a las HH:MM»), sin estado (hay datos) y sin geolocalización', /^Open-Meteo, a las \d\d:\d\d$/.test(r24.fuente) && r24.estadoOculto && r24.geo === 0, r24.fuente + ' geo ' + r24.geo);
+    const pet = peticiones.filter(u => /latitude=28\.078/.test(u));
+    prueba('dos peticiones para Costa Adeje, con sus coordenadas, la hora de Canarias y los campos de la app (temperatura, UV, viento, código, día; del mar, temperatura y ola)', pet.length === 2 && pet.some(u => /api\.open-meteo\.com\/v1\/forecast\?latitude=28\.078&longitude=-16\.737&timezone=Atlantic%2FCanary&current=temperature_2m,uv_index,wind_speed_10m,weather_code,is_day&daily=uv_index_max&forecast_days=1$/.test(u))
+      && pet.some(u => /marine-api\.open-meteo\.com\/v1\/marine\?latitude=28\.078&longitude=-16\.737&timezone=Atlantic%2FCanary&current=sea_surface_temperature,wave_height$/.test(u)), pet.join(' | '));
+    const cache24 = JSON.parse(r24.cache || 'null');
+    prueba('lo guardado en tenerife.cuerpo.hoy: la zona, la hora y los datos (temp 24,3; UV 8,6; máx 9,1; viento 15,2; código 1; día; mar 21,4; ola 0,8)', cache24 && cache24.zona === 'adeje' && Date.now() - cache24.t < 60000 && JSON.stringify(cache24.d) === '{"temp":24.3,"uv":8.6,"uvMax":9.1,"viento":15.2,"codigo":1,"dia":true,"mar":21.4,"ola":0.8}', r24.cache);
+    /* el consejo: la semana cumplida (el ejemplo con el movimiento: 5 días con fuerza, 215 min) y el sol de la OMS por el UV máximo
+       del día (9,1 → 9: evitar el sol del mediodía), con las cuatro horas alrededor del mediodía solar de Costa Adeje en hora
+       de Canarias, redondeadas al cuarto de hora hacia fuera: entre 3 h 45 y 4 h 30, y con las 12:45 dentro (el mediodía solar
+       a −16,74° cae entre las 12:50 y las 13:23 según el día del año) */
+    const horas = r24.consejo.match(/de (\d\d):(\d\d) a (\d\d):(\d\d)\)/), minA = horas && (+horas[1] * 60 + +horas[2]), minB = horas && (+horas[3] * 60 + +horas[4]);
+    prueba('el consejo: «Semana cumplida…» y «Con un UV máximo de 9 hoy, la OMS pide evitar el sol del mediodía (aquí, de HH:MM a HH:MM): sombra, camiseta, crema y sombrero.»', /^Semana cumplida: fuerza y movimiento\. Lo que haga hoy es de regalo\. Con un UV máximo de 9 hoy, la OMS pide evitar el sol del mediodía \(aquí, de \d\d:\d\d a \d\d:\d\d\): sombra, camiseta, crema y sombrero\.$/.test(r24.consejo), r24.consejo);
+    prueba('…las horas: cuatro alrededor del mediodía solar de la zona (de 3 h 45 a 4 h 30, con las 12:45 dentro, a cuartos de hora)', horas && minB - minA >= 225 && minB - minA <= 270 && minA <= 12 * 60 + 45 && minB >= 12 * 60 + 45 && minA % 15 === 0 && minB % 15 === 0, horas && horas[0]);
+    /* la isla */
+    prueba('«Cruce la isla»: 33,5 km a pie de todos los tiempos (3 + 9,5 + 21; los 5 a nado no cuentan) de 85,55, dos paradas pasadas (La Esperanza y La Caldera), la siguiente El Portillo a 9,4 km', r24.km === '33,5' && r24.de === 'de 85,55 km' && r24.sig === 'Siguiente parada: El Portillo, a 9,4 km.' && r24.paradas === 'La Esperanza*,La Caldera*,El Portillo,Guajara,Vilaflor,Arona' && r24.pasadasBarra === 1 && r24.puntos === 5, JSON.stringify([r24.km, r24.de, r24.sig, r24.paradas, r24.pasadasBarra, r24.puntos]));
+    prueba('el mapa: un solo dibujo (role img, con su aria-label y los km), el esquema (etiqueta «Esquema», la ruta a puntos), el Teide, el marcador movido y el trazo hecho, y la barra al 39,16 %', r24.svgs === 1 && r24.rol === 'img' && r24.aria === 'Esquema de Tenerife con el GR 131, de La Esperanza a Arona. Lleva 33,5 km.' && r24.esquema && r24.ruta === '1 6' && r24.teide === 'Teide' && /^translate\(/.test(r24.marca) && r24.hecha > 20 && /^39\.1\d*%$/.test(r24.barra), JSON.stringify([r24.svgs, r24.rol, r24.aria, r24.esquema, r24.ruta, r24.teide, r24.marca, r24.hecha, r24.barra]));
+    prueba('el subtítulo y «Las cifras»: los 85,55 km de Tenerife ON, las paradas con sus km de Webtenerife, la costa de los límites municipales, OpenStreetMap (ODbL) y que el trazado entre paradas es un esquema', r24.sub === 'El GR 131, de La Esperanza a Arona, con los kilómetros que ande aquí.' && /mide 85,55 km \(Tenerife ON, Cabildo de Tenerife\)/.test(r24.cifras) && /La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55/.test(r24.cifras) && /límites municipales de 2015/.test(r24.cifras) && /OpenStreetMap, ODbL/.test(r24.cifras) && /es un esquema, no el sendero\.$/.test(r24.cifras), r24.cifras);
+    prueba('nada pasa del borde', !r24.desborde);
+
+    /* la zona cambia a Teide: una sola petición (sin mar), de noche: el UV máximo del día (7,6 → 8: evitar el sol), 4 °C, 42 km/h y nieve (código 73); se recuerda */
+    const antes = peticiones.length;
+    await p24.selectOption('#tgc-hoy-zona', 'teide'); await p24.waitForTimeout(600);
+    const t24 = await leer24();
+    prueba('Teide: una petición más (solo el tiempo, sin mar), chips «UV máx. hoy 8», 4°, 42 km/h y «Nieve» (sin mar ni UV actual: es de noche), y la zona guardada', peticiones.length - antes === 1 && /latitude=28\.22/.test(peticiones[peticiones.length - 1]) && t24.chips.join('|') === 'uv=UV máx. hoy 8|=4°|=42 km/h|tiempo=Nieve' && t24.zona === 'teide' && JSON.parse(t24.cache).zona === 'teide', JSON.stringify([peticiones.length - antes, t24.chips, t24.zona]));
+    prueba('…y el consejo mira el entero (7,6 → 8): «evitar el sol del mediodía»', /Con un UV máximo de 8 hoy, la OMS pide evitar el sol del mediodía/.test(t24.consejo), t24.consejo);
+    /* otra vez Costa Adeje: dentro de los 30 min no se vuelve a pedir nada; el tiempo sale de la caché */
+    await p24.selectOption('#tgc-hoy-zona', 'adeje'); await p24.waitForTimeout(600);
+    const antes2 = peticiones.length;
+    await p24.evaluate(() => { TG_CUERPO.cerrar(); }); await p24.waitForTimeout(200); await suCuerpo(p24); await p24.waitForTimeout(300);
+    const v24 = await leer24();
+    prueba('cerrar y abrir dentro de los 30 min: ninguna petición nueva, los chips de la caché', peticiones.length === antes2 && v24.chips.length === 4 && v24.zona === 'adeje', (peticiones.length - antes2) + ' ' + v24.chips.join('|'));
+
+    /* «Borrar los datos» se lleva también la zona y el tiempo guardados (la política dice que lo borra todo): vuelve Costa Adeje y se pide de nuevo */
+    await p24.selectOption('#tgc-hoy-zona', 'teide'); await p24.waitForTimeout(600);
+    const antes3 = peticiones.length;
+    await p24.evaluate(() => document.getElementById('tgc-borrar').click()); await p24.evaluate(() => document.getElementById('tgc-borrar-si').click()); await p24.waitForTimeout(700);
+    const bz = await leer24();
+    prueba('«Borrar los datos» borra también tenerife.cuerpo.hoy: vuelve Costa Adeje, se pide otra vez y los chips llegan; 0 km en la isla', bz.cache !== null && JSON.parse(bz.cache).zona === 'adeje' && bz.zona === 'adeje' && peticiones.length > antes3 && bz.chips.length === 4 && bz.km === '0', JSON.stringify([bz.zona, bz.cache && JSON.parse(bz.cache).zona, peticiones.length - antes3, bz.chips.length, bz.km]));
+    await ejemplo(p24); await conMov24([[0, 'caminar', 35, 3], [3, 'senderismo', 150, 9.5], [5, 'nadar', 30, 5], [12, 'senderismo', 240, 21]]);
+
+    /* los avisos de AEMET: uno naranja de lluvia que cubre el sur (con el polígono de la zona «Este, sur y oeste» de AEMET), otro
+       del mismo fenómeno que no debe repetirse, uno amarillo de viento solo en el norte; los de mañana no salen. Con wxDatos
+       puesto a mano (el fichero de la app cambia cada día) */
+    await p24.evaluate(() => {
+      const hoy = new Date(), ini = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), 0, 0, 0).toISOString(), fin = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate(), 23, 59, 59).toISOString();
+      const man = new Date(hoy.getTime() + 864e5), ini2 = new Date(man.getFullYear(), man.getMonth(), man.getDate(), 0, 0, 0).toISOString(), fin2 = new Date(man.getFullYear(), man.getMonth(), man.getDate(), 23, 59, 59).toISOString();
+      const SUR = ['28.27,-16.85 28.31,-16.79 28.27,-16.7 28.21,-16.68 28.2,-16.64 28.25,-16.55 28.28,-16.54 28.31,-16.5 28.35,-16.48 28.39,-16.44 28.34,-16.39 28.34,-16.36 28.31,-16.36 28.2,-16.42 28.14,-16.44 28.08,-16.49 28.03,-16.55 28.03,-16.6 28.0,-16.64 28.0,-16.68 28.01,-16.71 28.05,-16.71 28.05,-16.74 28.09,-16.74 28.11,-16.77 28.21,-16.84 28.27,-16.85'];
+      const NORTE = ['28.49,-16.43 28.43,-16.39 28.39,-16.44 28.35,-16.48 28.31,-16.5 28.28,-16.54 28.25,-16.55 28.2,-16.64 28.21,-16.68 28.27,-16.7 28.31,-16.79 28.27,-16.85 28.31,-16.88 28.34,-16.92 28.36,-16.92 28.37,-16.86 28.39,-16.83 28.38,-16.81 28.37,-16.75 28.38,-16.7 28.4,-16.67 28.39,-16.6 28.42,-16.55 28.42,-16.52 28.44,-16.47 28.49,-16.43'];
+      window.__wxAntes = wxDatos;
+      wxDatos = { avisos: [
+        { id: 'a1', nivel: 'naranja', fenomeno: 'PR', inicio: ini, fin: fin, zonas: [{ codigo: '659603', nombre_es: 'Este, sur y oeste de Tenerife', poligonos: SUR }] },
+        { id: 'a2', nivel: 'amarillo', fenomeno: 'PR', inicio: ini, fin: fin, zonas: [{ codigo: '659603', nombre_es: 'Este, sur y oeste de Tenerife', poligonos: SUR }] },
+        { id: 'a3', nivel: 'amarillo', fenomeno: 'VI', inicio: ini, fin: fin, zonas: [{ codigo: '659601', nombre_es: 'Norte de Tenerife', poligonos: NORTE }] },
+        { id: 'a4', nivel: 'rojo', fenomeno: 'TO', inicio: ini2, fin: fin2, zonas: [{ codigo: '659603', nombre_es: 'Este, sur y oeste de Tenerife', poligonos: SUR }] }
+      ] };
+      TG_CUERPO.repintar();
+    });
+    await p24.waitForTimeout(200);
+    const av24 = await leer24();
+    prueba('los avisos de AEMET en Costa Adeje: el naranja de lluvias de hoy («⚠️ Aviso naranja · Lluvias · AEMET» y «De 00:00 a 23:59»), uno solo por fenómeno, sin el de viento del norte ni el rojo de mañana', !av24.avisoOculto && av24.avisos.length === 1 && /^⚠️ Aviso naranja · Lluvias · AEMET 🕐 De 00:00 a 23:59$/.test(av24.avisos[0]) && !!(await p24.$('#tgc-hoy-aviso .tgc-aviso-naranja')), JSON.stringify(av24.avisos));
+    await p24.selectOption('#tgc-hoy-zona', 'puerto'); await p24.waitForTimeout(600);
+    const av24b = await leer24();
+    prueba('en Puerto de la Cruz (norte): el amarillo de vientos, y no el del sur', av24b.avisos.length === 1 && /^⚠️ Aviso amarillo · Vientos · AEMET/.test(av24b.avisos[0]), JSON.stringify(av24b.avisos));
+    await p24.evaluate(() => { wxDatos = { avisos: [] }; TG_CUERPO.repintar(); }); await p24.waitForTimeout(100);
+    prueba('sin avisos, la línea no está', await p24.evaluate(() => document.getElementById('tgc-hoy-aviso').hidden && !document.querySelectorAll('#tgc-hoy-aviso p').length));
+    await p24.evaluate(() => { wxDatos = window.__wxAntes; });
+    await p24.selectOption('#tgc-hoy-zona', 'adeje'); await p24.waitForTimeout(600);
+
+    /* el consejo según la semana: sin nada, el primer paso; con fuerza a medias, los días que faltan y los grupos sin anotar (los de su deporte si lo eligió); con la fuerza hecha y pocos minutos, los minutos */
+    await p24.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], mov: [] })); TG_CUERPO.abrir(); }); await p24.waitForTimeout(300);
+    const c1 = await leer24();
+    prueba('sin nada anotado: «Un buen primer paso…» más el sol; 0 km, La Caldera a 29,8 km, La Esperanza pasada (el inicio), barra al 0 %', /^Un buen primer paso: toque una zona de su cuerpo y anote lo que haga hoy\. Con un UV máximo de 9 hoy/.test(c1.consejo) && c1.km === '0' && c1.sig === 'Siguiente parada: La Caldera, a 29,8 km.' && c1.paradas.startsWith('La Esperanza*,La Caldera,') && c1.barra === '0%' && c1.aria.endsWith('Lleva 0 km.'), JSON.stringify([c1.consejo, c1.km, c1.sig, c1.barra]));
+    await p24.evaluate(() => {
+      const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [{ d: ymd(new Date()), g: 'pecho', n: 3, t: 1 }], mov: [], deporte: 'senderismo' })); TG_CUERPO.abrir();
+    }); await p24.waitForTimeout(300);
+    const c2 = await leer24();
+    prueba('un día de fuerza (pecho) y senderismo elegido: «Le falta 1 día de fuerza…» y «Para Senderismo y caminar, aún sin anotar: Cuádriceps, Glúteos y cadera, Pantorrillas y espinillas.» (los grupos prioritarios de su deporte, como los nombra el módulo)', /^Le falta 1 día de fuerza para cerrar la semana\. Para Senderismo y caminar, aún sin anotar: Cuádriceps, Glúteos y cadera, Pantorrillas y espinillas\. Con un UV máximo de 9 hoy/.test(c2.consejo), c2.consejo);
+    await p24.evaluate(() => {
+      const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const ayer = new Date(); ayer.setDate(ayer.getDate() - 1);
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [{ d: ymd(new Date()), g: 'pecho', n: 3, t: 1 }, { d: ymd(ayer), g: 'dorsal', n: 3, t: 2 }], mov: [{ d: ymd(new Date()), tipo: 'caminar', min: 40, km: 3, t: 3 }] })); TG_CUERPO.abrir();
+    }); await p24.waitForTimeout(300);
+    const c3 = await leer24();
+    prueba('dos días de fuerza y 40 min: «Le faltan 110 minutos de movimiento para cerrar la semana.»', /^Le faltan 110 minutos de movimiento para cerrar la semana\. Con un UV máximo de 9 hoy/.test(c3.consejo), c3.consejo);
+    /* de 5 a 17 años: 3 días y 420 min */
+    await p24.evaluate(() => { localStorage.setItem('tenerife.perfil', JSON.stringify({ nacimiento: new Date().getFullYear() - 15 })); TG_CUERPO.repintar(); }); await p24.waitForTimeout(200);
+    const c4 = await leer24();
+    prueba('con 15 años: «Le falta 1 día de fuerza…» (la meta es 3)', /^Le falta 1 día de fuerza para cerrar la semana\./.test(c4.consejo), c4.consejo);
+    await p24.evaluate(() => { localStorage.removeItem('tenerife.perfil'); TG_CUERPO.repintar(); });
+
+    /* anotar movimiento con km: el marcador avanza animado (1,4 s) hasta los km nuevos; la isla se enseña */
+    await conMov24([[0, 'caminar', 35, 3], [3, 'senderismo', 150, 9.5], [12, 'senderismo', 240, 21]]);
+    const marcaAntes = await p24.evaluate(() => document.getElementById('tgc-isla-marca').getAttribute('transform'));
+    await p24.click('#tgc-mov-btn'); await p24.waitForTimeout(350);
+    await p24.click('#tgc-mov-tipos .tgc-tipo[data-tipo="senderismo"]'); await p24.fill('#tgc-mov-km', '5'); await p24.dispatchEvent('#tgc-mov-km', 'change');
+    const notaPie = await p24.evaluate(() => document.getElementById('tgc-mov-nota').textContent);
+    await p24.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p24.waitForTimeout(60);
+    const notaNado = await p24.evaluate(() => document.getElementById('tgc-mov-nota').textContent);
+    prueba('la nota de la hoja: a pie, «Los kilómetros a pie avanzan su travesía del GR 131.»; a nado, «Cuenta para sus minutos de la semana. Para el GR 131 solo suman los kilómetros a pie.»', notaPie === 'Los kilómetros a pie avanzan su travesía del GR 131.' && notaNado === 'Cuenta para sus minutos de la semana. Para el GR 131 solo suman los kilómetros a pie.', notaPie + ' | ' + notaNado);
+    await p24.click('#tgc-mov-tipos .tgc-tipo[data-tipo="senderismo"]'); await p24.fill('#tgc-mov-km', '5'); await p24.dispatchEvent('#tgc-mov-km', 'change'); await p24.waitForTimeout(60);
+    await p24.click('#tgc-mov-guardar'); await p24.waitForTimeout(250);
+    const medio = await p24.evaluate(() => ({ marca: document.getElementById('tgc-isla-marca').getAttribute('transform'), km: document.getElementById('tgc-isla-km').textContent }));
+    await p24.waitForTimeout(1700);
+    const fin24 = await p24.evaluate(() => ({ marca: document.getElementById('tgc-isla-marca').getAttribute('transform'), km: document.getElementById('tgc-isla-km').textContent, sig: document.getElementById('tgc-isla-sig').textContent, barra: document.getElementById('tgc-tramo-hecho').style.width }));
+    prueba('anotar 5 km a pie: 38,5 km, El Portillo a 4,4 km, la barra al 45 %, y el marcador se mueve (a los 250 ms ya no está donde estaba; a los 2 s, quieto en los 38,5)', fin24.km === '38,5' && fin24.sig === 'Siguiente parada: El Portillo, a 4,4 km.' && /^45\.0\d*%$/.test(fin24.barra) && medio.marca !== marcaAntes && fin24.marca !== marcaAntes, JSON.stringify([marcaAntes, medio, fin24]));
+    await p24.evaluate(() => { TG_CUERPO.repintar(); }); await p24.waitForTimeout(50);
+    prueba('…y al volver a pintar sin anotar, el marcador no se mueve del sitio', await p24.evaluate(m => document.getElementById('tgc-isla-marca').getAttribute('transform') === m, fin24.marca));
+    /* la travesía entera */
+    await conMov24([[1, 'senderismo', 300, 40], [8, 'senderismo', 300, 30], [20, 'caminar', 200, 16]]);
+    const fin24b = await leer24();
+    prueba('86 km a pie: «Ha cruzado la isla: de La Esperanza a Arona, a pie.», las seis paradas pasadas y la barra al 100 %', fin24b.km === '86' && fin24b.sig === 'Ha cruzado la isla: de La Esperanza a Arona, a pie.' && fin24b.paradas.split(',').every(p => /\*$/.test(p)) && fin24b.barra === '100%' && fin24b.pasadasBarra === 5, JSON.stringify([fin24b.km, fin24b.sig, fin24b.paradas, fin24b.barra]));
+
+    /* sin red: con la caché vieja (3 h), los chips de la caché y «de hace 3 h (sin conexión ahora)»; sin caché, «Sin datos…» y el consejo solo con la semana */
+    red = false;
+    await p24.evaluate(() => { const c = JSON.parse(localStorage.getItem('tenerife.cuerpo.hoy')); c.t = Date.now() - 3 * 36e5; localStorage.setItem('tenerife.cuerpo.hoy', JSON.stringify(c)); });
+    await p24.reload({ waitUntil: 'load' }); await abrirApp(p24); await abrirPerfilCuerpo(p24); await suCuerpo(p24); await p24.waitForTimeout(700);
+    const sr = await leer24();
+    prueba('sin red, con lo guardado hace 3 h: los chips de entonces y «Open-Meteo, de hace 3 h (sin conexión ahora)»; sin estado', sr.chips.length === 4 && sr.fuente === 'Open-Meteo, de hace 3 h (sin conexión ahora)' && sr.estadoOculto, JSON.stringify([sr.chips, sr.fuente, sr.estado]));
+    await p24.evaluate(() => { localStorage.removeItem('tenerife.cuerpo.hoy'); });
+    await p24.reload({ waitUntil: 'load' }); await abrirApp(p24); await abrirPerfilCuerpo(p24); await suCuerpo(p24); await p24.waitForTimeout(700);
+    const sn = await leer24();
+    prueba('sin red y sin nada guardado: ningún chip, «Sin datos del tiempo ahora. Compruebe la conexión.», sin fuente, y el consejo solo con la semana (sin sol)', sn.chips.length === 0 && sn.estado === 'Sin datos del tiempo ahora. Compruebe la conexión.' && !sn.estadoOculto && sn.fuente === '' && !/OMS/.test(sn.consejo) && sn.consejo.length > 10, JSON.stringify([sn.chips, sn.estado, sn.fuente, sn.consejo]));
+    red = true;
+
+    /* el trazado oficial: un fichero válido (recto entre paradas, con los km clavados) quita «Esquema» y dibuja la línea seguida con su fuente en «Las cifras»; uno malo (km que retroceden) se descarta */
+    const trazado = (malo) => { const pts = []; for (let i = 0; i < PARADAS.length - 1; i++) { const a = PARADAS[i], b = PARADAS[i + 1]; for (let k = 0; k < 20; k++) { const f = k / 20; pts.push([+(a.lat + (b.lat - a.lat) * f).toFixed(5), +(a.lon + (b.lon - a.lon) * f).toFixed(5), +(a.km + (b.km - a.km) * f).toFixed(2)]); } } pts.push([PARADAS[5].lat, PARADAS[5].lon, 85.55]); if (malo) pts[40][2] = 10; return { fuente: 'PRUEBA (no oficial)', generado: '2026-11-08', puntos: pts }; };
+    let bueno = true;
+    await p24.route('**/datos/cuerpo/gr131-trazado.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(trazado(!bueno)) }));
+    await p24.reload({ waitUntil: 'load' }); await abrirApp(p24); await abrirPerfilCuerpo(p24); await suCuerpo(p24); await p24.waitForTimeout(700);
+    const of24 = await leer24();
+    prueba('con el trazado oficial: sin «Esquema», la ruta seguida (sin puntos), 101 vértices, un solo dibujo, y «Las cifras» con su fuente («El trazado del GR 131 del mapa es el oficial: PRUEBA (no oficial).»)', !of24.esquema && of24.ruta === null && of24.svgs === 1 && /El trazado del GR 131 del mapa es el oficial: PRUEBA \(no oficial\)\.$/.test(of24.cifras) && !/es un esquema/.test(of24.cifras)
+      && (await p24.evaluate(() => document.querySelector('#tgc-mapa .tgc-isla-ruta').getAttribute('d').split('L').length)) === 101 && of24.paradas === 'La Esperanza*,La Caldera*,El Portillo*,Guajara*,Vilaflor*,Arona*', JSON.stringify([of24.esquema, of24.ruta, of24.svgs, of24.cifras.slice(-90)]));
+    bueno = false;
+    await p24.reload({ waitUntil: 'load' }); await abrirApp(p24); await abrirPerfilCuerpo(p24); await suCuerpo(p24); await p24.waitForTimeout(700);
+    const mal24 = await leer24();
+    prueba('un trazado malo (los km retroceden) se descarta: sigue el esquema', mal24.esquema && mal24.ruta === '1 6' && /es un esquema, no el sendero\.$/.test(mal24.cifras), JSON.stringify([mal24.esquema, mal24.ruta]));
+    await p24.unroute('**/datos/cuerpo/gr131-trazado.json');
+
+    /* los diez idiomas: nada vacío, nada en castellano fuera del castellano (menos los nombres propios), sin desborde; y la política de privacidad nombra la zona de «Hoy en la isla» */
+    await p24.reload({ waitUntil: 'load' }); await abrirApp(p24); await abrirPerfilCuerpo(p24); await suCuerpo(p24); await ejemplo(p24);
+    await conMov24([[0, 'caminar', 35, 3], [3, 'senderismo', 150, 9.5], [12, 'senderismo', 240, 21]]);
+    await p24.waitForFunction(() => document.querySelectorAll('#tgc-hoy-chips .tgc-hoy-chip').length > 0, null, { timeout: 5000 }).catch(() => {});
+    const esTx24 = {};
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      await idioma(p24, l); await p24.waitForTimeout(100);
+      const t = await p24.evaluate(l => {
+        const g = id => document.getElementById(id).textContent.trim();
+        return { tit: g('tgc-hoy-tit'), zonaL: g('tgc-hoy-zona-l'), chips: [...document.querySelectorAll('#tgc-hoy-chips .tgc-hoy-chip')].map(c => c.textContent.trim()).join(' | '), consejo: g('tgc-hoy-consejo'), fuente: g('tgc-hoy-fuente'),
+          islaTit: g('tgc-isla-tit'), sub: g('tgc-isla-sub'), esquema: g('tgc-isla-esquema'), de: g('tgc-isla-de'), sig: g('tgc-isla-sig'), aria: document.querySelector('#tgc-mapa svg').getAttribute('aria-label'), cifras: g('tgc-cifras-isla'),
+          zonas: [...document.getElementById('tgc-hoy-zona').options].map(o => o.textContent).join(','), privacidad: UI_TX.ppDatosCuerpoTxt[l], hoyTit: UI_TX.cuerpoHoyTitulo[l],
+          desborde: document.getElementById('cuerpo-panel').scrollWidth > document.getElementById('cuerpo-panel').clientWidth, lang: document.getElementById('cuerpo-panel').getAttribute('lang') };
+      }, l);
+      if (l === 'es') Object.assign(esTx24, t);
+      const claves = ['tit', 'zonaL', 'chips', 'consejo', 'fuente', 'islaTit', 'sub', 'esquema', 'de', 'sig', 'aria', 'cifras'];
+      const vacias = claves.filter(k => !t[k]), iguales = l === 'es' ? [] : claves.filter(k => t[k] === esTx24[k]);
+      prueba(l + ': «Hoy en la isla» y «Cruce la isla» con todos sus textos' + (l === 'es' ? '' : ', en su idioma') + ', las seis zonas con su nombre propio, sin desborde, y la política de privacidad nombra la zona de «' + t.hoyTit + '»',
+        !vacias.length && !iguales.length && t.zonas === 'Costa Adeje,El Médano,Los Gigantes,Puerto de la Cruz,Santa Cruz,Teide' && !t.desborde && t.privacidad.indexOf(t.hoyTit) > 0 && /85[.,]55/.test(t.de) && /85[.,]55/.test(t.cifras) && t.lang === (l === 'zht' ? 'zh-Hant' : l === 'zh' ? 'zh-Hans' : l), JSON.stringify({ vacias, iguales, zonas: t.zonas, desborde: t.desborde, priv: t.privacidad.indexOf(t.hoyTit) }));
+    }
+    await idioma(p24, 'es');
+    prueba('bloque 5: sin errores de página', e24.length === 0, e24.join(' | '));
+    await c24.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

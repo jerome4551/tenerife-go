@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (417 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (452 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -147,7 +147,6 @@
     "cuerpoMovMenosKm": {"es": "Medio kilómetro menos", "en": "Half a kilometre less", "fr": "Un demi-kilomètre de moins", "de": "Einen halben Kilometer weniger", "it": "Mezzo chilometro in meno", "nl": "Een halve kilometer minder", "zh": "减少半公里", "zht": "減少半公里", "bg": "Половин километър по-малко", "pl": "Pół kilometra mniej"},
     "cuerpoMovMasKm": {"es": "Medio kilómetro más", "en": "Half a kilometre more", "fr": "Un demi-kilomètre de plus", "de": "Einen halben Kilometer mehr", "it": "Mezzo chilometro in più", "nl": "Een halve kilometer meer", "zh": "增加半公里", "zht": "增加半公里", "bg": "Половин километър повече", "pl": "Pół kilometra więcej"},
     "cuerpoMovBoton": {"es": "Anotar {que}", "en": "Log {que}", "fr": "Noter {que}", "de": "{que} eintragen", "it": "Annota {que}", "nl": "{que} noteren", "zh": "记录 {que}", "zht": "記錄 {que}", "bg": "Запиши {que}", "pl": "Zapisz {que}"},
-    "cuerpoMovNota": {"es": "Todo suma minutos y kilómetros a su semana.", "en": "Everything adds minutes and kilometres to your week.", "fr": "Tout ajoute des minutes et des kilomètres à votre semaine.", "de": "Alles zählt als Minuten und Kilometer für Ihre Woche.", "it": "Tutto aggiunge minuti e chilometri alla settimana.", "nl": "Alles telt als minuten en kilometers voor uw week.", "zh": "一切都计入本周的分钟数和公里数。", "zht": "一切都計入本週的分鐘數和公里數。", "bg": "Всичко добавя минути и километри към седмицата ви.", "pl": "Wszystko dodaje minuty i kilometry do tygodnia."},
     "cuerpoMovAnotado": {"es": "{tipo}: {que} anotados", "en": "{tipo}: {que} logged", "fr": "{tipo} : {que} notés", "de": "{tipo}: {que} eingetragen", "it": "{tipo}: {que} annotati", "nl": "{tipo}: {que} genoteerd", "zh": "{tipo}：已记录 {que}", "zht": "{tipo}：已記錄 {que}", "bg": "{tipo}: записани {que}", "pl": "{tipo}: zapisano {que}"},
     "cuerpoMovSinHistorial": {"es": "Aún no hay movimiento anotado.", "en": "No movement logged yet.", "fr": "Aucun mouvement noté pour l’instant.", "de": "Noch keine Bewegung eingetragen.", "it": "Ancora nessun movimento annotato.", "nl": "Nog geen beweging genoteerd.", "zh": "尚未记录运动。", "zht": "尚未記錄運動。", "bg": "Все още няма записано движение.", "pl": "Nie zapisano jeszcze żadnego ruchu."},
     "cuerpoMov_caminar": {"es": "Caminar", "en": "Walking", "fr": "Marche", "de": "Gehen", "it": "Camminata", "nl": "Wandelen", "zh": "步行", "zht": "步行", "bg": "Ходене", "pl": "Spacer"},
@@ -157,6 +156,43 @@
     "cuerpoMov_bici": {"es": "Bici", "en": "Cycling", "fr": "Vélo", "de": "Radfahren", "it": "Bici", "nl": "Fietsen", "zh": "骑车", "zht": "騎車", "bg": "Колело", "pl": "Rower"},
     "cuerpoRecoMovAdulto": {"es": "La OMS (2020) recomienda a los adultos de 150 a 300 minutos de actividad moderada a la semana: caminar a buen paso, nadar, pedalear.", "en": "The WHO (2020) recommends that adults do 150 to 300 minutes of moderate activity a week: brisk walking, swimming, cycling.", "fr": "L’OMS (2020) recommande aux adultes 150 à 300 minutes d’activité modérée par semaine : marche rapide, natation, vélo.", "de": "Die WHO (2020) empfiehlt Erwachsenen 150 bis 300 Minuten moderate Aktivität pro Woche: zügiges Gehen, Schwimmen, Radfahren.", "it": "L’OMS (2020) raccomanda agli adulti da 150 a 300 minuti di attività moderata a settimana: camminata a passo svelto, nuoto, bicicletta.", "nl": "De WHO (2020) raadt volwassenen 150 tot 300 minuten matige activiteit per week aan: stevig wandelen, zwemmen, fietsen.", "zh": "世卫组织（2020）建议成年人每周进行 150 至 300 分钟的中等强度活动：快走、游泳、骑车。", "zht": "世界衛生組織（2020）建議成年人每週進行 150 至 300 分鐘的中等強度活動：快走、游泳、騎車。", "bg": "СЗО (2020) препоръчва на възрастните от 150 до 300 минути умерена активност седмично: бързо ходене, плуване, колоездене.", "pl": "WHO (2020) zaleca dorosłym od 150 do 300 minut umiarkowanej aktywności tygodniowo: szybki marsz, pływanie, jazdę na rowerze."},
     "cuerpoRecoMovJoven": {"es": "De 5 a 17 años, la OMS (2020) recomienda una media de 60 minutos al día de actividad moderada o intensa: 420 a la semana.", "en": "For ages 5 to 17, the WHO (2020) recommends an average of 60 minutes a day of moderate or vigorous activity: 420 a week.", "fr": "De 5 à 17 ans, l’OMS (2020) recommande en moyenne 60 minutes par jour d’activité modérée ou intense : 420 par semaine.", "de": "Für 5- bis 17-Jährige empfiehlt die WHO (2020) im Durchschnitt 60 Minuten moderate oder intensive Aktivität pro Tag: 420 pro Woche.", "it": "Dai 5 ai 17 anni l’OMS (2020) raccomanda in media 60 minuti al giorno di attività moderata o intensa: 420 a settimana.", "nl": "Voor 5- tot 17-jarigen raadt de WHO (2020) gemiddeld 60 minuten per dag matige of intensieve activiteit aan: 420 per week.", "zh": "世卫组织（2020）建议 5–17 岁的儿童青少年平均每天进行 60 分钟中等或高强度活动：每周 420 分钟。", "zht": "世界衛生組織（2020）建議 5–17 歲的兒童及青少年平均每天進行 60 分鐘中等或高強度活動：每週 420 分鐘。", "bg": "За възрастта от 5 до 17 години СЗО (2020) препоръчва средно 60 минути на ден умерена или интензивна активност: 420 седмично.", "pl": "Dzieciom i młodzieży w wieku 5–17 lat WHO (2020) zaleca średnio 60 minut dziennie umiarkowanej lub intensywnej aktywności: 420 tygodniowo."},
+    /* (8-11-2026, bloque 5) «Hoy en la isla» (la zona, los chips, el consejo, la fuente) y «Cruce la isla» (el GR 131) */
+    "cuerpoHoyTitulo": {"es": "Hoy en la isla", "en": "Today on the island", "fr": "Aujourd’hui sur l’île", "de": "Heute auf der Insel", "it": "Oggi sull’isola", "nl": "Vandaag op het eiland", "zh": "今天在岛上", "zht": "今天在島上", "bg": "Днес на острова", "pl": "Dziś na wyspie"},
+    "cuerpoHoyZona": {"es": "Zona del tiempo", "en": "Weather zone", "fr": "Zone météo", "de": "Wetterzone", "it": "Zona del meteo", "nl": "Weerzone", "zh": "天气区域", "zht": "天氣區域", "bg": "Зона за времето", "pl": "Strefa pogody"},
+    "cuerpoHoyUv": {"es": "UV {n} · {cat}", "en": "UV {n} · {cat}", "fr": "UV {n} · {cat}", "de": "UV {n} · {cat}", "it": "UV {n} · {cat}", "nl": "UV {n} · {cat}", "zh": "紫外线 {n} · {cat}", "zht": "紫外線 {n} · {cat}", "bg": "UV индекс {n} · {cat}", "pl": "UV {n} · {cat}"},
+    "cuerpoHoyUvMax": {"es": "UV máx. hoy {n}", "en": "UV max today {n}", "fr": "UV max. aujourd’hui {n}", "de": "UV max. heute {n}", "it": "UV max oggi {n}", "nl": "UV max. vandaag {n}", "zh": "今日最高紫外线 {n}", "zht": "今日最高紫外線 {n}", "bg": "Макс. UV днес {n}", "pl": "Maks. UV dziś {n}"},
+    "cuerpoUvBajo": {"es": "bajo", "en": "low", "fr": "faible", "de": "niedrig", "it": "basso", "nl": "laag", "zh": "低", "zht": "低", "bg": "нисък", "pl": "niski"},
+    "cuerpoUvModerado": {"es": "moderado", "en": "moderate", "fr": "modéré", "de": "mäßig", "it": "moderato", "nl": "matig", "zh": "中等", "zht": "中等", "bg": "умерен", "pl": "umiarkowany"},
+    "cuerpoUvAlto": {"es": "alto", "en": "high", "fr": "élevé", "de": "hoch", "it": "alto", "nl": "hoog", "zh": "高", "zht": "高", "bg": "висок", "pl": "wysoki"},
+    "cuerpoUvMuyAlto": {"es": "muy alto", "en": "very high", "fr": "très élevé", "de": "sehr hoch", "it": "molto alto", "nl": "zeer hoog", "zh": "很高", "zht": "很高", "bg": "много висок", "pl": "bardzo wysoki"},
+    "cuerpoUvExtremo": {"es": "extremo", "en": "extreme", "fr": "extrême", "de": "extrem", "it": "estremo", "nl": "extreem", "zh": "极高", "zht": "極高", "bg": "екстремен", "pl": "ekstremalny"},
+    "cuerpoHoyMar": {"es": "Mar {n}°", "en": "Sea {n}°", "fr": "Mer {n}°", "de": "Meer {n}°", "it": "Mare {n}°", "nl": "Zee {n}°", "zh": "海水 {n}°", "zht": "海水 {n}°", "bg": "Море {n}°", "pl": "Morze {n}°"},
+    "cuerpoHoyLluvia": {"es": "Lluvia", "en": "Rain", "fr": "Pluie", "de": "Regen", "it": "Pioggia", "nl": "Regen", "zh": "降雨", "zht": "降雨", "bg": "Дъжд", "pl": "Deszcz"},
+    "cuerpoHoyNieve": {"es": "Nieve", "en": "Snow", "fr": "Neige", "de": "Schnee", "it": "Neve", "nl": "Sneeuw", "zh": "降雪", "zht": "降雪", "bg": "Сняг", "pl": "Śnieg"},
+    "cuerpoHoyCargando": {"es": "Consultando el tiempo…", "en": "Checking the weather…", "fr": "Consultation de la météo…", "de": "Wetter wird abgefragt…", "it": "Consultazione del meteo…", "nl": "Het weer wordt opgehaald…", "zh": "正在查询天气…", "zht": "正在查詢天氣…", "bg": "Проверка на времето…", "pl": "Sprawdzanie pogody…"},
+    "cuerpoHoySinDatos": {"es": "Sin datos del tiempo ahora. Compruebe la conexión.", "en": "No weather data right now. Check your connection.", "fr": "Pas de données météo pour l’instant. Vérifiez la connexion.", "de": "Gerade keine Wetterdaten. Prüfen Sie die Verbindung.", "it": "Nessun dato meteo al momento. Controllare la connessione.", "nl": "Nu geen weergegevens. Controleer de verbinding.", "zh": "目前没有天气数据。请检查网络连接。", "zht": "目前沒有天氣資料。請檢查網路連線。", "bg": "Няма данни за времето сега. Проверете връзката.", "pl": "Brak danych pogodowych. Warto sprawdzić połączenie."},
+    "cuerpoHoyFuente": {"es": "Open-Meteo, a las {h}", "en": "Open-Meteo, at {h}", "fr": "Open-Meteo, à {h}", "de": "Open-Meteo, um {h}", "it": "Open-Meteo, alle {h}", "nl": "Open-Meteo, om {h}", "zh": "来自 Open-Meteo，{h}", "zht": "來自 Open-Meteo，{h}", "bg": "Open-Meteo, в {h}", "pl": "Open-Meteo, o {h}"},
+    "cuerpoHoyFuenteVieja": {"es": "Open-Meteo, de hace {n} h (sin conexión ahora)", "en": "Open-Meteo, from {n} h ago (no connection right now)", "fr": "Open-Meteo, il y a {n} h (pas de connexion pour l’instant)", "de": "Open-Meteo, vor {n} Std. (gerade keine Verbindung)", "it": "Open-Meteo, di {n} h fa (ora senza connessione)", "nl": "Open-Meteo, van {n} u geleden (nu geen verbinding)", "zh": "Open-Meteo，{n} 小时前（当前无网络连接）", "zht": "Open-Meteo，{n} 小時前（目前無網路連線）", "bg": "Open-Meteo, отпреди {n} ч (сега няма връзка)", "pl": "Open-Meteo, sprzed {n} godz. (teraz brak połączenia)"},
+    "cuerpoHoyPrimero": {"es": "Un buen primer paso: toque una zona de su cuerpo y anote lo que haga hoy.", "en": "A good first step: tap a part of your body and log what you do today.", "fr": "Un bon premier pas : touchez une zone de votre corps et notez ce que vous faites aujourd’hui.", "de": "Ein guter erster Schritt: Tippen Sie auf eine Körperzone und tragen Sie ein, was Sie heute tun.", "it": "Un buon primo passo: toccare una zona del corpo e annotare cosa si fa oggi.", "nl": "Een goede eerste stap: tik op een lichaamszone en noteer wat u vandaag doet.", "zh": "好的第一步：点按身体的一个部位，记录您今天做的运动。", "zht": "好的第一步：點按身體的一個部位，記錄您今天做的運動。", "bg": "Добра първа стъпка: докоснете зона от тялото си и запишете какво правите днес.", "pl": "Dobry pierwszy krok: wystarczy dotknąć strefy ciała i zapisać, co robi się dzisiaj."},
+    "cuerpoHoyFaltaFuerza": {"es": "Le falta {n} día de fuerza para cerrar la semana.|Le faltan {n} días de fuerza para cerrar la semana.", "en": "You need {n} more strength day to close the week.|You need {n} more strength days to close the week.", "fr": "Il vous manque {n} jour de renforcement pour boucler la semaine.|Il vous manque {n} jours de renforcement pour boucler la semaine.", "de": "Ihnen fehlt noch {n} Krafttag, um die Woche zu schließen.|Ihnen fehlen noch {n} Krafttage, um die Woche zu schließen.", "it": "Manca {n} giorno di forza per chiudere la settimana.|Mancano {n} giorni di forza per chiudere la settimana.", "nl": "U mist nog {n} krachtdag om de week rond te maken.|U mist nog {n} krachtdagen om de week rond te maken.", "zh": "再有 {n} 天力量训练就能完成本周。", "zht": "再有 {n} 天肌力訓練就能完成本週。", "bg": "Остава ви {n} ден със силови упражнения, за да затворите седмицата.|Остават ви {n} дни със силови упражнения, за да затворите седмицата.", "pl": "Do zamknięcia tygodnia brakuje {n} dnia treningu siłowego.|Do zamknięcia tygodnia brakuje {n} dni treningu siłowego.|Do zamknięcia tygodnia brakuje {n} dni treningu siłowego."},
+    "cuerpoHoySinAnotar": {"es": "Aún sin anotar: {lista}.", "en": "Not logged yet: {lista}.", "fr": "Pas encore noté : {lista}.", "de": "Noch nicht eingetragen: {lista}.", "it": "Ancora da annotare: {lista}.", "nl": "Nog niet genoteerd: {lista}.", "zh": "尚未记录：{lista}。", "zht": "尚未記錄：{lista}。", "bg": "Все още незаписани: {lista}.", "pl": "Jeszcze niezapisane: {lista}."},
+    "cuerpoHoyParaDeporte": {"es": "Para {deporte}, aún sin anotar: {lista}.", "en": "For {deporte}, not logged yet: {lista}.", "fr": "Pour {deporte}, pas encore noté : {lista}.", "de": "Für {deporte} noch nicht eingetragen: {lista}.", "it": "Per {deporte}, ancora da annotare: {lista}.", "nl": "Voor {deporte} nog niet genoteerd: {lista}.", "zh": "{deporte}所需、尚未记录：{lista}。", "zht": "{deporte}所需、尚未記錄：{lista}。", "bg": "За {deporte}, все още незаписани: {lista}.", "pl": "Dla {deporte} jeszcze niezapisane: {lista}."},
+    "cuerpoHoyFaltaMin": {"es": "Le falta {n} minuto de movimiento para cerrar la semana.|Le faltan {n} minutos de movimiento para cerrar la semana.", "en": "You need {n} more minute of movement to close the week.|You need {n} more minutes of movement to close the week.", "fr": "Il vous manque {n} minute de mouvement pour boucler la semaine.|Il vous manque {n} minutes de mouvement pour boucler la semaine.", "de": "Ihnen fehlt noch {n} Minute Bewegung, um die Woche zu schließen.|Ihnen fehlen noch {n} Minuten Bewegung, um die Woche zu schließen.", "it": "Manca {n} minuto di movimento per chiudere la settimana.|Mancano {n} minuti di movimento per chiudere la settimana.", "nl": "U mist nog {n} minuut beweging om de week rond te maken.|U mist nog {n} minuten beweging om de week rond te maken.", "zh": "本周还需再运动 {n} 分钟，才能完成每周目标。", "zht": "本週還需再運動 {n} 分鐘，才能完成每週目標。", "bg": "Остава ви {n} минута движение, за да затворите седмицата.|Остават ви {n} минути движение, за да затворите седмицата.", "pl": "Do zamknięcia tygodnia brakuje {n} minuty ruchu.|Do zamknięcia tygodnia brakuje {n} minut ruchu.|Do zamknięcia tygodnia brakuje {n} minut ruchu."},
+    "cuerpoHoyCumplida": {"es": "Semana cumplida: fuerza y movimiento. Lo que haga hoy es de regalo.", "en": "Week complete: strength and movement. Anything you do today is a bonus.", "fr": "Semaine bouclée : renforcement et mouvement. Ce que vous faites aujourd’hui est en plus.", "de": "Woche geschafft: Kraft und Bewegung. Was Sie heute tun, ist Zugabe.", "it": "Settimana completa: forza e movimento. Quello che si fa oggi è un regalo.", "nl": "Week volbracht: kracht en beweging. Wat u vandaag doet, is extra.", "zh": "本周已完成：力量和运动。今天做的都是额外收获。", "zht": "本週已完成：肌力和運動。今天做的都是額外收穫。", "bg": "Седмицата е изпълнена: сила и движение. Каквото направите днес, е подарък.", "pl": "Tydzień zaliczony: siła i ruch. Wszystko, co dziś się zrobi, jest bonusem."},
+    "cuerpoHoySol8": {"es": "Con un UV máximo de {n} hoy, la OMS pide evitar el sol del mediodía (aquí, de {a} a {b}): sombra, camiseta, crema y sombrero.", "en": "With a peak UV index of {n} today, the WHO says to avoid the midday sun (here, from {a} to {b}): shade, shirt, sunscreen and hat.", "fr": "Avec un indice UV maximal de {n} aujourd’hui, l’OMS demande d’éviter le soleil de la mi-journée (ici, de {a} à {b}) : ombre, t-shirt, crème et chapeau.", "de": "Bei einem UV-Index von maximal {n} heute rät die WHO, die Mittagssonne zu meiden (hier von {a} bis {b}): Schatten, Shirt, Sonnencreme und Hut.", "it": "Con un indice UV massimo di {n} oggi, l’OMS chiede di evitare il sole di mezzogiorno (qui dalle {a} alle {b}): ombra, maglietta, crema e cappello.", "nl": "Bij een maximale UV-index van {n} vandaag vraagt de WHO de middagzon te mijden (hier van {a} tot {b}): schaduw, shirt, zonnebrand en hoed.", "zh": "今日最高紫外线指数 {n}：世卫组织建议避开正午阳光（此地 {a} 至 {b}），并注意遮阴、穿上衣、涂防晒霜、戴帽子。", "zht": "今日最高紫外線指數 {n}：世界衛生組織建議避開正午陽光（此地 {a} 至 {b}），並注意遮蔭、穿上衣、塗防曬乳、戴帽子。", "bg": "При максимален UV индекс {n} днес СЗО препоръчва да избягвате обедното слънце (тук от {a} до {b}): сянка, тениска, крем и шапка.", "pl": "Przy maksymalnym indeksie UV {n} dziś WHO zaleca unikać słońca w południe (tutaj od {a} do {b}): cień, koszulka, krem i kapelusz."},
+    "cuerpoHoySol3": {"es": "Con un UV máximo de {n} hoy, la OMS pide sombra al mediodía (aquí, de {a} a {b}), camiseta, crema y sombrero.", "en": "With a peak UV index of {n} today, the WHO says to seek shade at midday (here, from {a} to {b}), plus shirt, sunscreen and hat.", "fr": "Avec un indice UV maximal de {n} aujourd’hui, l’OMS demande de l’ombre à la mi-journée (ici, de {a} à {b}), un t-shirt, de la crème et un chapeau.", "de": "Bei einem UV-Index von maximal {n} heute rät die WHO zu Schatten in der Mittagszeit (hier von {a} bis {b}), Shirt, Sonnencreme und Hut.", "it": "Con un indice UV massimo di {n} oggi, l’OMS chiede ombra a mezzogiorno (qui dalle {a} alle {b}), maglietta, crema e cappello.", "nl": "Bij een maximale UV-index van {n} vandaag vraagt de WHO schaduw rond het middaguur (hier van {a} tot {b}), een shirt, zonnebrand en een hoed.", "zh": "今日最高紫外线指数 {n}：世卫组织建议正午时分（此地 {a} 至 {b}）寻找遮阴，并穿上衣、涂防晒霜、戴帽子。", "zht": "今日最高紫外線指數 {n}：世界衛生組織建議正午時分（此地 {a} 至 {b}）尋找遮蔭，並穿上衣、塗防曬乳、戴帽子。", "bg": "При максимален UV индекс {n} днес СЗО препоръчва сянка по обед (тук от {a} до {b}), тениска, крем и шапка.", "pl": "Przy maksymalnym indeksie UV {n} dziś WHO zaleca cień w południe (tutaj od {a} do {b}), koszulkę, krem i kapelusz."},
+    "cuerpoIslaTitulo": {"es": "Cruce la isla", "en": "Cross the island", "fr": "Traversez l’île", "de": "Die Insel durchqueren", "it": "Attraversare l’isola", "nl": "Steek het eiland over", "zh": "穿越全岛", "zht": "穿越全島", "bg": "Прекосете острова", "pl": "Przejście przez wyspę"},
+    "cuerpoIslaSub": {"es": "El GR 131, de La Esperanza a Arona, con los kilómetros que ande aquí.", "en": "The GR 131, from La Esperanza to Arona, with the kilometres you walk here.", "fr": "Le GR 131, de La Esperanza à Arona, avec les kilomètres que vous marchez ici.", "de": "Der GR 131 von La Esperanza nach Arona, mit den Kilometern, die Sie hier zu Fuß gehen.", "it": "Il GR 131, da La Esperanza ad Arona, con i chilometri che si percorrono qui.", "nl": "De GR 131, van La Esperanza naar Arona, met de kilometers die u hier loopt.", "zh": "GR 131 步道，从 La Esperanza 到 Arona，用您在这里步行的公里数前进。", "zht": "GR 131 步道，從 La Esperanza 到 Arona，用您在這裡步行的公里數前進。", "bg": "GR 131, от La Esperanza до Arona, с километрите, които извървите тук.", "pl": "Szlak GR 131, z La Esperanza do Arony, z kilometrami przebytymi tu pieszo."},
+    "cuerpoIslaDe": {"es": "de {n} km", "en": "of {n} km", "fr": "sur {n} km", "de": "von {n} km", "it": "di {n} km", "nl": "van {n} km", "zh": "共 {n} 公里", "zht": "共 {n} 公里", "bg": "от {n} км", "pl": "z {n} km"},
+    "cuerpoIslaSiguiente": {"es": "Siguiente parada: {parada}, a {km}.", "en": "Next stop: {parada}, {km} to go.", "fr": "Prochaine étape : {parada}, dans {km}.", "de": "Nächster Halt: {parada}, noch {km}.", "it": "Prossima tappa: {parada}, tra {km}.", "nl": "Volgende halte: {parada}, over {km}.", "zh": "下一站：{parada}，还有 {km}。", "zht": "下一站：{parada}，還有 {km}。", "bg": "Следваща спирка: {parada}, след {km}.", "pl": "Następny przystanek: {parada}, za {km}."},
+    "cuerpoIslaCruzada": {"es": "Ha cruzado la isla: de La Esperanza a Arona, a pie.", "en": "You have crossed the island: from La Esperanza to Arona, on foot.", "fr": "Vous avez traversé l’île : de La Esperanza à Arona, à pied.", "de": "Sie haben die Insel durchquert: von La Esperanza nach Arona, zu Fuß.", "it": "Isola attraversata: da La Esperanza ad Arona, a piedi.", "nl": "U bent het eiland overgestoken: van La Esperanza naar Arona, te voet.", "zh": "您已穿越全岛：从 La Esperanza 步行到 Arona。", "zht": "您已穿越全島：從 La Esperanza 步行到 Arona。", "bg": "Прекосихте острова: от La Esperanza до Arona, пеша.", "pl": "Wyspa przebyta: z La Esperanza do Arony, pieszo."},
+    "cuerpoIslaEsquema": {"es": "Esquema", "en": "Sketch", "fr": "Schéma", "de": "Schema", "it": "Schema", "nl": "Schets", "zh": "示意图", "zht": "示意圖", "bg": "Схема", "pl": "Schemat"},
+    "cuerpoIslaMapaAria": {"es": "Esquema de Tenerife con el GR 131, de La Esperanza a Arona. Lleva {km} km.", "en": "Sketch of Tenerife with the GR 131, from La Esperanza to Arona. You have walked {km} km.", "fr": "Schéma de Tenerife avec le GR 131, de La Esperanza à Arona. Vous en êtes à {km} km.", "de": "Schema von Teneriffa mit dem GR 131 von La Esperanza nach Arona. Sie sind bei {km} km.", "it": "Schema di Tenerife con il GR 131, da La Esperanza ad Arona. Percorsi {km} km.", "nl": "Schets van Tenerife met de GR 131, van La Esperanza naar Arona. U staat op {km} km.", "zh": "特内里费示意图与 GR 131 步道，从 La Esperanza 到 Arona。已走 {km} 公里。", "zht": "特內里費示意圖與 GR 131 步道，從 La Esperanza 到 Arona。已走 {km} 公里。", "bg": "Схема на Тенерифе с GR 131, от La Esperanza до Arona. Изминати {km} км.", "pl": "Schemat Teneryfy ze szlakiem GR 131, z La Esperanza do Arony. Przebyto {km} km."},
+    "cuerpoIslaFuente": {"es": "El GR 131 Anaga–Chasna mide 85,55 km (Tenerife ON, Cabildo de Tenerife) y sus paradas están a los kilómetros de las fichas de Webtenerife: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. En el mapa, la costa sale de los límites municipales de 2015 y las paradas, de OpenStreetMap (© colaboradores de OpenStreetMap, ODbL).", "en": "The GR 131 Anaga–Chasna is 85.55 km long (Tenerife ON, Cabildo de Tenerife) and its stops are at the kilometre marks of the Webtenerife trail sheets: La Caldera 29.8 · El Portillo 42.9 · Degollada de Guajara 56.0 · Vilaflor 67.3 · Arona 85.55. On the map, the coastline comes from the 2015 municipal boundaries and the stops from OpenStreetMap (© OpenStreetMap contributors, ODbL).", "fr": "Le GR 131 Anaga–Chasna mesure 85,55 km (Tenerife ON, Cabildo de Tenerife) et ses étapes sont aux kilomètres des fiches de Webtenerife : La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Sur la carte, la côte vient des limites municipales de 2015 et les étapes, d’OpenStreetMap (© les contributeurs d’OpenStreetMap, ODbL).", "de": "Der GR 131 Anaga–Chasna ist 85,55 km lang (Tenerife ON, Cabildo de Tenerife); seine Halte liegen bei den Kilometern der Webtenerife-Wegblätter: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Auf der Karte stammt die Küste aus den Gemeindegrenzen von 2015 und die Halte aus OpenStreetMap (© OpenStreetMap-Mitwirkende, ODbL).", "it": "Il GR 131 Anaga–Chasna misura 85,55 km (Tenerife ON, Cabildo de Tenerife) e le sue tappe sono ai chilometri delle schede di Webtenerife: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Nella mappa, la costa viene dai confini municipali del 2015 e le tappe da OpenStreetMap (© collaboratori di OpenStreetMap, ODbL).", "nl": "De GR 131 Anaga–Chasna is 85,55 km lang (Tenerife ON, Cabildo de Tenerife) en de haltes liggen op de kilometers van de Webtenerife-routebladen: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Op de kaart komt de kust uit de gemeentegrenzen van 2015 en komen de haltes uit OpenStreetMap (© OpenStreetMap-bijdragers, ODbL).", "zh": "GR 131 Anaga–Chasna 步道全长 85.55 公里（Tenerife ON，特内里费岛议会），各站点位于 Webtenerife 路线资料中的公里处：La Caldera 29.8 · El Portillo 42.9 · Degollada de Guajara 56.0 · Vilaflor 67.3 · Arona 85.55。地图中的海岸线来自 2015 年市镇边界，站点来自 OpenStreetMap（© OpenStreetMap 贡献者，ODbL）。", "zht": "GR 131 Anaga–Chasna 步道全長 85.55 公里（Tenerife ON，特內里費島議會），各站點位於 Webtenerife 路線資料中的公里處：La Caldera 29.8 · El Portillo 42.9 · Degollada de Guajara 56.0 · Vilaflor 67.3 · Arona 85.55。地圖中的海岸線來自 2015 年市鎮邊界，站點來自 OpenStreetMap（© OpenStreetMap 貢獻者，ODbL）。", "bg": "GR 131 Anaga–Chasna е дълъг 85,55 км (Tenerife ON, Cabildo de Tenerife), а спирките му са на километрите от маршрутните листове на Webtenerife: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. На картата брегът е от общинските граници от 2015 г., а спирките — от OpenStreetMap (© сътрудници на OpenStreetMap, ODbL).", "pl": "Szlak GR 131 Anaga–Chasna ma 85,55 km (Tenerife ON, Cabildo de Tenerife), a jego przystanki leżą na kilometrach z kart szlaków Webtenerife: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Na mapie linia brzegowa pochodzi z granic gmin z 2015 r., a przystanki z OpenStreetMap (© autorzy OpenStreetMap, ODbL)."},
+    "cuerpoIslaEsquemaNota": {"es": "El trazado entre paradas es un esquema, no el sendero.", "en": "The line between stops is a sketch, not the trail itself.", "fr": "Le tracé entre les étapes est un schéma, pas le sentier.", "de": "Die Linie zwischen den Halten ist ein Schema, nicht der Weg selbst.", "it": "Il tracciato tra le tappe è uno schema, non il sentiero.", "nl": "De lijn tussen de haltes is een schets, niet het pad zelf.", "zh": "站点之间的线路为示意，并非实际步道。", "zht": "站點之間的線路為示意，並非實際步道。", "bg": "Линията между спирките е схема, а не самата пътека.", "pl": "Linia między przystankami to schemat, nie sam szlak."},
+    "cuerpoIslaTrazadoDe": {"es": "El trazado del GR 131 del mapa es el oficial: {fuente}.", "en": "The GR 131 line on the map is the official track: {fuente}.", "fr": "Le tracé du GR 131 sur la carte est le tracé officiel : {fuente}.", "de": "Die Linie des GR 131 auf der Karte ist der offizielle Track: {fuente}.", "it": "Il tracciato del GR 131 sulla mappa è quello ufficiale: {fuente}.", "nl": "De lijn van de GR 131 op de kaart is het officiële tracé: {fuente}.", "zh": "地图中的 GR 131 线路为官方轨迹：{fuente}。", "zht": "地圖中的 GR 131 線路為官方軌跡：{fuente}。", "bg": "Линията на GR 131 на картата е официалното трасе: {fuente}.", "pl": "Linia GR 131 na mapie to oficjalny ślad: {fuente}."},
+    "cuerpoMovNotaPie": {"es": "Los kilómetros a pie avanzan su travesía del GR 131.", "en": "Kilometres on foot move you along the GR 131.", "fr": "Les kilomètres à pied font avancer votre traversée du GR 131.", "de": "Kilometer zu Fuß bringen Sie auf dem GR 131 voran.", "it": "I chilometri a piedi fanno avanzare la traversata del GR 131.", "nl": "Kilometers te voet brengen u verder op de GR 131.", "zh": "步行公里数会推进您的 GR 131 穿越之旅。", "zht": "步行公里數會推進您的 GR 131 穿越之旅。", "bg": "Километрите пеша ви придвижват по GR 131.", "pl": "Kilometry pieszo posuwają wędrówkę szlakiem GR 131."},
+    "cuerpoMovNotaOtro": {"es": "Cuenta para sus minutos de la semana. Para el GR 131 solo suman los kilómetros a pie.", "en": "It counts towards your minutes this week. Only kilometres on foot count for the GR 131.", "fr": "Cela compte pour vos minutes de la semaine. Pour le GR 131, seuls les kilomètres à pied comptent.", "de": "Das zählt für Ihre Minuten der Woche. Für den GR 131 zählen nur Kilometer zu Fuß.", "it": "Conta per i minuti della settimana. Per il GR 131 contano solo i chilometri a piedi.", "nl": "Het telt mee voor uw minuten van de week. Voor de GR 131 tellen alleen kilometers te voet.", "zh": "计入本周的分钟数。GR 131 只计步行公里数。", "zht": "計入本週的分鐘數。GR 131 只計步行公里數。", "bg": "Брои се за минутите ви през седмицата. За GR 131 се броят само километрите пеша.", "pl": "Liczy się do minut w tygodniu. Do GR 131 liczą się tylko kilometry pieszo."},
     "cuerpoSecCuerpo": {"es": "Cuerpo", "en": "Body", "fr": "Corps", "de": "Körper", "it": "Corpo", "nl": "Lichaam", "zh": "身体", "zht": "身體", "bg": "Тяло", "pl": "Ciało"},
     "cuerpoSecCara": {"es": "Pelo y cara", "en": "Hair and face", "fr": "Cheveux et visage", "de": "Haare und Gesicht", "it": "Capelli e viso", "nl": "Haar en gezicht", "zh": "头发和面部", "zht": "頭髮和臉部", "bg": "Коса и лице", "pl": "Włosy i twarz"},
     "cuerpoSecRopa": {"es": "Ropa", "en": "Clothes", "fr": "Vêtements", "de": "Kleidung", "it": "Abbigliamento", "nl": "Kleding", "zh": "衣着", "zht": "衣著", "bg": "Облекло", "pl": "Ubranie"},
@@ -1698,11 +1734,13 @@
      pie: los kilómetros se piden (y, en el bloque 5, avanzarán por el GR 131). Desde el 8-11-2026, en los cinco:
      Jerome, de nadar y de la bici, «Cuentan también» (la decisión 4; antes, solo a pie). A nado y en bici la hoja
      empieza en 0 km. max: el tope de km de una anotación, solo para frenar un error al escribir (425 por 4,25);
-     desde el 8-11-2026, 200 en bici (Jerome: «200 mejor») y 100 en los demás (antes, 60 en todos) */
+     desde el 8-11-2026, 200 en bici (Jerome: «200 mejor») y 100 en los demás (antes, 60 en todos). aPie (bloque 5):
+     sus km avanzan por el GR 131, que es a pie (Jerome, 8-11: nadar o hacer surf «no es como si camino a pie»);
+     a nado y en bici suman a la semana, y en el bloque 7 cada persona elige si también al GR 131 */
   var MOV = [
-    { id: 'caminar', min: 30, km: 2.5, pie: true, max: 100 },
-    { id: 'senderismo', min: 120, km: 8, pie: true, max: 100 },
-    { id: 'correr', min: 30, km: 5, pie: true, max: 100 },
+    { id: 'caminar', min: 30, km: 2.5, pie: true, aPie: true, max: 100 },
+    { id: 'senderismo', min: 120, km: 8, pie: true, aPie: true, max: 100 },
+    { id: 'correr', min: 30, km: 5, pie: true, aPie: true, max: 100 },
     { id: 'nadar', min: 30, km: 0, pie: true, max: 100 },
     { id: 'bici', min: 60, km: 0, pie: true, max: 200 }
   ];
@@ -1717,6 +1755,41 @@
     nadar: icoMov('<path d="M2.5 17.5c1.6 0 1.6 1.2 3.2 1.2s1.6-1.2 3.2-1.2 1.6 1.2 3.1 1.2 1.6-1.2 3.2-1.2 1.6 1.2 3.2 1.2 1.6-1.2 3.1-1.2"/><circle cx="17.2" cy="8.2" r="1.9"/><path d="M4.5 14.5l5.5-5 3.5 3.5 2.5 1.5"/>'),
     bici: icoMov('<circle cx="6" cy="16.5" r="3.5"/><circle cx="18" cy="16.5" r="3.5"/><path d="M6 16.5l4-7h5l3 7M10 9.5l2.5 7M9 7h3M15 9.5l-1-3h2"/>')
   };
+  /* ── «Hoy en la isla» y «Cruce la isla» (8-11-2026, bloque 5) ──
+     Las seis zonas del panel «¿Dónde hace sol ahora?» de la app (index.html, MC_ZONES), con las mismas coordenadas:
+     la persona elige una y se recuerda en el dispositivo; el tiempo se pide a Open-Meteo con las coordenadas de la
+     zona, nunca con la posición de nadie. El Teide no tiene mar. */
+  var ZONAS = [
+    { id: 'adeje', nombre: 'Costa Adeje', lat: 28.0780, lon: -16.7370, mar: true },
+    { id: 'medano', nombre: 'El Médano', lat: 28.0450, lon: -16.5360, mar: true },
+    { id: 'gigantes', nombre: 'Los Gigantes', lat: 28.2440, lon: -16.8415, mar: true },
+    { id: 'puerto', nombre: 'Puerto de la Cruz', lat: 28.4150, lon: -16.5480, mar: true },
+    { id: 'santacruz', nombre: 'Santa Cruz', lat: 28.4682, lon: -16.2475, mar: true },
+    { id: 'teide', nombre: 'Teide', lat: 28.2200, lon: -16.6160, mar: false }
+  ];
+  /* El GR 131 Anaga–Chasna: 85,55 km en total (Tenerife ON, Cabildo de Tenerife; la decisión 5 de Jerome) y las
+     paradas a los kilómetros de las fichas de Webtenerife (29,8 · 42,9 · 56,0 · 67,3; la última, el total). Las
+     coordenadas de las paradas son las de OpenStreetMap (el extracto de Geofabrik de 26-9-2026 que lleva el
+     repositorio, datos/osm-geofabrik; © colaboradores de OpenStreetMap, ODbL), que coinciden con las fichas de la
+     app: el ayuntamiento de El Rosario (junto a la plaza del Adelantado, en La Esperanza), el área recreativa de La
+     Caldera, el centro de visitantes de El Portillo, la degollada de Guajara, Vilaflor y la plaza del Cristo de la
+     Salud, en Arona. corto: el nombre en el mapa. */
+  var GR131 = { total: 85.55, paradas: [
+    { id: 'esperanza', nombre: 'La Esperanza', corto: 'La Esperanza', km: 0, lat: 28.450988, lon: -16.367182 },
+    { id: 'caldera', nombre: 'La Caldera', corto: 'La Caldera', km: 29.8, lat: 28.357339, lon: -16.501643 },
+    { id: 'portillo', nombre: 'El Portillo', corto: 'El Portillo', km: 42.9, lat: 28.304557, lon: -16.566618 },
+    { id: 'guajara', nombre: 'Degollada de Guajara', corto: 'Guajara', km: 56.0, lat: 28.219188, lon: -16.598240 },
+    { id: 'vilaflor', nombre: 'Vilaflor', corto: 'Vilaflor', km: 67.3, lat: 28.159095, lon: -16.636509 },
+    { id: 'arona', nombre: 'Arona', corto: 'Arona', km: 85.55, lat: 28.100275, lon: -16.680903 }
+  ] };
+  var TEIDE = { nombre: 'Teide', lat: 28.2725, lon: -16.6422 };   /* la cumbre, como en la ficha de la app; el nombre es propio, como los de las paradas */
+  /* La costa de Tenerife: el borde exterior de los límites municipales de 2015 que lleva el repositorio, simplificado
+     a 265 puntos (tools/cuerpo_isla.py la escribe y la comprueba). «lat,lon», desde la punta de Anaga, en el sentido
+     de las agujas del reloj. */
+  var COSTA = '28.5811,-16.1341 28.5739,-16.1341 28.5727,-16.1282 28.5637,-16.1267 28.5593,-16.1200 28.5536,-16.1194 28.5463,-16.1275 28.5364,-16.1295 28.5321,-16.1256 28.5350,-16.1332 28.5314,-16.1392 28.5271,-16.1385 28.5249,-16.1432 28.5214,-16.1431 28.5228,-16.1563 28.5183,-16.1677 28.5082,-16.1805 28.5084,-16.1865 28.4961,-16.2002 28.4928,-16.2111 28.4991,-16.2027 28.4946,-16.2119 28.4837,-16.2252 28.4829,-16.2284 28.4905,-16.2196 28.4907,-16.2250 28.4849,-16.2292 28.4855,-16.2371 28.4710,-16.2462 28.4689,-16.2432 28.4791,-16.2356 28.4557,-16.2470 28.4681,-16.2428 28.4634,-16.2474 28.4545,-16.2490 28.4557,-16.2525 28.4505,-16.2538 28.4518,-16.2600 28.4472,-16.2698 28.4143,-16.3007 28.4046,-16.3176 28.4000,-16.3202 28.4006,-16.3337 28.3867,-16.3472 28.3795,-16.3606 28.3619,-16.3636 28.3542,-16.3698 28.3195,-16.3593 28.3044,-16.3617 28.2847,-16.3838 28.2646,-16.3873 28.2580,-16.3948 28.2349,-16.4073 28.2237,-16.4097 28.2046,-16.4247 28.1985,-16.4210 28.1886,-16.4275 28.1812,-16.4259 28.1737,-16.4303 28.1683,-16.4250 28.1642,-16.4271 28.1646,-16.4315 28.1568,-16.4344 28.1493,-16.4257 28.1411,-16.4333 28.1423,-16.4398 28.1351,-16.4417 28.1347,-16.4488 28.1294,-16.4488 28.1206,-16.4630 28.1140,-16.4620 28.1084,-16.4722 28.1043,-16.4727 28.0902,-16.4899 28.0786,-16.4927 28.0769,-16.5030 28.0677,-16.5066 28.0639,-16.5145 28.0593,-16.5154 28.0595,-16.5206 28.0528,-16.5225 28.0497,-16.5316 28.0427,-16.5342 28.0422,-16.5411 28.0289,-16.5413 28.0248,-16.5469 28.0314,-16.5571 28.0292,-16.5956 28.0191,-16.6128 28.0221,-16.6109 28.0185,-16.6257 28.0099,-16.6311 28.0093,-16.6383 28.0038,-16.6435 28.0082,-16.6515 28.0059,-16.6562 28.0086,-16.6643 28.0033,-16.6668 28.0047,-16.6718 27.9981,-16.6789 27.9989,-16.6913 28.0040,-16.7018 28.0124,-16.7078 28.0280,-16.7047 28.0329,-16.7093 28.0471,-16.7113 28.0501,-16.7183 28.0459,-16.7174 28.0518,-16.7240 28.0510,-16.7326 28.0546,-16.7372 28.0726,-16.7327 28.0779,-16.7381 28.0798,-16.7355 28.0866,-16.7379 28.0925,-16.7498 28.0985,-16.7527 28.1012,-16.7593 28.1051,-16.7581 28.1047,-16.7617 28.1099,-16.7625 28.1096,-16.7694 28.1135,-16.7683 28.1125,-16.7726 28.1184,-16.7745 28.1201,-16.7795 28.1578,-16.8043 28.1745,-16.8069 28.1798,-16.8131 28.1808,-16.8199 28.1936,-16.8279 28.1997,-16.8280 28.2075,-16.8375 28.2174,-16.8363 28.2205,-16.8398 28.2263,-16.8394 28.2265,-16.8434 28.2337,-16.8419 28.2392,-16.8464 28.2405,-16.8427 28.2474,-16.8441 28.2484,-16.8396 28.2555,-16.8378 28.2642,-16.8409 28.2686,-16.8509 28.2729,-16.8503 28.2748,-16.8593 28.2831,-16.8634 28.2879,-16.8617 28.2900,-16.8664 28.2995,-16.8708 28.3029,-16.8800 28.3124,-16.8804 28.3207,-16.8925 28.3320,-16.8965 28.3424,-16.9159 28.3419,-16.9259 28.3428,-16.9207 28.3532,-16.9238 28.3609,-16.9178 28.3652,-16.9050 28.3633,-16.8910 28.3689,-16.8853 28.3673,-16.8821 28.3712,-16.8712 28.3756,-16.8701 28.3756,-16.8602 28.3790,-16.8605 28.3881,-16.8489 28.3867,-16.8432 28.3907,-16.8411 28.3936,-16.8281 28.3872,-16.8254 28.3762,-16.8086 28.3790,-16.8044 28.3768,-16.7944 28.3733,-16.7922 28.3746,-16.7740 28.3708,-16.7683 28.3758,-16.7633 28.3707,-16.7521 28.3824,-16.7341 28.3770,-16.7308 28.3770,-16.7246 28.3833,-16.7242 28.3839,-16.7201 28.3877,-16.7193 28.3838,-16.7132 28.3839,-16.7010 28.3873,-16.6946 28.3959,-16.6940 28.3927,-16.6932 28.3905,-16.6809 28.3943,-16.6756 28.4020,-16.6742 28.3990,-16.6708 28.4012,-16.6672 28.3988,-16.6615 28.4015,-16.6581 28.3958,-16.6528 28.3986,-16.6439 28.3941,-16.6368 28.3964,-16.6274 28.3941,-16.6039 28.4005,-16.5962 28.3982,-16.5879 28.4051,-16.5782 28.4042,-16.5727 28.4126,-16.5664 28.4111,-16.5623 28.4189,-16.5549 28.4175,-16.5460 28.4210,-16.5434 28.4204,-16.5395 28.4168,-16.5403 28.4166,-16.5332 28.4189,-16.5141 28.4250,-16.5028 28.4406,-16.4939 28.4375,-16.4876 28.4410,-16.4766 28.4486,-16.4700 28.4549,-16.4735 28.4553,-16.4675 28.4599,-16.4660 28.4597,-16.4562 28.4686,-16.4567 28.4738,-16.4492 28.4774,-16.4512 28.4743,-16.4451 28.4801,-16.4444 28.4893,-16.4287 28.5006,-16.4243 28.5028,-16.4263 28.5123,-16.4199 28.5182,-16.4209 28.5336,-16.4022 28.5336,-16.3984 28.5383,-16.3977 28.5463,-16.3860 28.5482,-16.3774 28.5452,-16.3656 28.5497,-16.3545 28.5534,-16.3539 28.5575,-16.3340 28.5654,-16.3316 28.5705,-16.3339 28.5768,-16.3294 28.5788,-16.3192 28.5712,-16.3158 28.5744,-16.3071 28.5691,-16.2964 28.5711,-16.2880 28.5765,-16.2855 28.5719,-16.2751 28.5780,-16.2725 28.5693,-16.2570 28.5718,-16.2432 28.5654,-16.2237 28.5685,-16.2063 28.5727,-16.1997 28.5721,-16.1928 28.5852,-16.1722 28.5840,-16.1684 28.5886,-16.1583';
+  /* el trazado oficial del GR 131, si algún día está (tools/gr131_trazado.py lo escribe desde un GPX); si no, el
+     esquema: una curva suave entre las paradas */
+  var GR131_TRAZADO = './datos/cuerpo/gr131-trazado.json';
   function movDe(id) { for (var i = 0; i < MOV.length; i++) { if (MOV[i].id === id) return MOV[i]; } return MOV[0]; }
   /* los km, al metro: tres decimales (8-11-2026, Jerome: «quiero lo más preciso posible»; antes, uno). Se
      redondea con el número escrito en decimal y no por × 1000, que con 0,5005 da 500,49999… y 0,5: así da
@@ -2390,6 +2463,278 @@
     $('tgc-dia-grupos').textContent = trozos.length ? trozos.join(' · ') : tx('cuerpoSinAnotar');
   }
   function nombreMov(id) { return tx('cuerpoMov_' + id) || id; }
+
+  /* ── «Hoy en la isla» (8-11-2026, bloque 5): el tiempo de la zona elegida, de Open-Meteo (los mismos
+     servicios y campos que el panel «¿Dónde hace sol ahora?» y el del mar), el aviso de AEMET que toque la zona
+     hoy (las funciones de la app) y el consejo del día: la semana primero y el sol después. Lo último que llegó
+     se guarda 30 minutos en el dispositivo (tenerife.cuerpo.hoy, con la zona); sin red, se enseña con su hora. ── */
+  var HOY_CLAVE = 'tenerife.cuerpo.hoy', HOY_VIDA = 30 * 60 * 1000, HOY_ESPERA = 8000;
+  var hoyCache = null, hoyPidiendo = false, hoyError = false, hoyPedido = 0, hoyCtl = null;
+  function zonaTiempo(id) { for (var i = 0; i < ZONAS.length; i++) { if (ZONAS[i].id === id) return ZONAS[i]; } return ZONAS[0]; }
+  function leerHoy() {
+    try {
+      var c = JSON.parse(localStorage.getItem(HOY_CLAVE) || 'null');
+      if (c && typeof c === 'object' && zonaTiempo(c.zona).id === c.zona) {
+        var d = (c.d && typeof c.d === 'object') ? c.d : null, num = function (v) { return (typeof v === 'number' && isFinite(v)) ? v : null; };
+        return { zona: c.zona, t: (typeof c.t === 'number' && c.t > 0) ? c.t : 0, d: d && num(d.temp) !== null ? { temp: num(d.temp), uv: num(d.uv), uvMax: num(d.uvMax), viento: num(d.viento), codigo: num(d.codigo), dia: d.dia !== false, mar: num(d.mar), ola: num(d.ola) } : null };
+      }
+    } catch (e) {}
+    return null;
+  }
+  function hoyEstado() { if (!hoyCache) hoyCache = leerHoy() || { zona: ZONAS[0].id, t: 0, d: null }; return hoyCache; }
+  function guardarHoy() { try { localStorage.setItem(HOY_CLAVE, JSON.stringify(hoyCache)); } catch (e) {} }
+  function zonaHoy() { return zonaTiempo(hoyEstado().zona); }
+  function elegirZona(id) {
+    var z = zonaTiempo(id);
+    if (hoyEstado().zona === z.id) return;
+    hoyCache = { zona: z.id, t: 0, d: null }; hoyError = false; guardarHoy();
+    renderHoy(resumen()); pedirHoy(true);
+  }
+  /* pide el tiempo de la zona si lo guardado tiene más de 30 minutos (o si se fuerza, al cambiar de zona); una
+     petición a la vez: si se fuerza con una en el aire, la vieja se corta y lo que traiga se ignora (mio) */
+  function pedirHoy(forzar) {
+    var c = hoyEstado();
+    if (hoyPidiendo) { if (!forzar) return; if (hoyCtl) { try { hoyCtl.abort(); } catch (e) {} } }
+    if (!forzar && c.d && Date.now() - c.t < HOY_VIDA) return;
+    if (typeof fetch !== 'function' || location.protocol === 'file:') return;
+    var z = zonaTiempo(c.zona), mio = ++hoyPedido;
+    hoyPidiendo = true; hoyError = false; renderHoy(resumen());
+    var ctl = (typeof AbortController === 'function') ? new AbortController() : null; hoyCtl = ctl;
+    var reloj = setTimeout(function () { if (ctl) ctl.abort(); }, HOY_ESPERA);
+    var base = 'latitude=' + z.lat + '&longitude=' + z.lon + '&timezone=Atlantic%2FCanary';
+    var pide = function (url) { return fetch(url, ctl ? { signal: ctl.signal } : {}).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
+    var tiempo = pide('https://api.open-meteo.com/v1/forecast?' + base + '&current=temperature_2m,uv_index,wind_speed_10m,weather_code,is_day&daily=uv_index_max&forecast_days=1');
+    var mar = z.mar ? pide('https://marine-api.open-meteo.com/v1/marine?' + base + '&current=sea_surface_temperature,wave_height').catch(function () { return null; }) : Promise.resolve(null);
+    Promise.all([tiempo, mar]).then(function (r) {
+      var cu = (r[0] && r[0].current) || {}, dd = (r[0] && r[0].daily) || {}, m = (r[1] && r[1].current) || {};
+      var num = function (v) { return (typeof v === 'number' && isFinite(v)) ? v : null; };
+      if (num(cu.temperature_2m) === null) throw new Error('sin temperatura');
+      if (mio !== hoyPedido || hoyEstado().zona !== z.id) return;    /* cambió de zona mientras llegaba */
+      hoyCache = { zona: z.id, t: Date.now(), d: { temp: num(cu.temperature_2m), uv: num(cu.uv_index), uvMax: num(Array.isArray(dd.uv_index_max) ? dd.uv_index_max[0] : null),
+        viento: num(cu.wind_speed_10m), codigo: num(cu.weather_code), dia: cu.is_day !== 0, mar: num(m.sea_surface_temperature), ola: num(m.wave_height) } };
+      guardarHoy();
+    }).catch(function () { if (mio === hoyPedido) hoyError = true; }).then(function () {
+      clearTimeout(reloj); if (mio === hoyPedido) hoyPidiendo = false; if (abierto) renderHoy(resumen());
+    });
+  }
+  /* las categorías del índice UV de la OMS (las mismas del panel del mar): <3 bajo, 3-5 moderado, 6-7 alto, 8-10 muy alto, 11+ extremo */
+  function uvCat(uv) { return uv < 3 ? 'cuerpoUvBajo' : uv < 6 ? 'cuerpoUvModerado' : uv < 8 ? 'cuerpoUvAlto' : uv < 11 ? 'cuerpoUvMuyAlto' : 'cuerpoUvExtremo'; }
+  var ICONOS_HOY = {
+    uv: icoMov('<circle cx="12" cy="13" r="4"/><path d="M12 3.5v2.5M4.5 13H2M22 13h-2.5M6 7l1.7 1.7M18 7l-1.7 1.7M4 20h16"/>'),
+    termo: icoMov('<path d="M10 4a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v6"/>'),
+    ola: icoMov('<path d="M2.5 14c2 0 2 1.8 4 1.8s2-1.8 4-1.8 2 1.8 4 1.8 2-1.8 4-1.8 2 1.8 3 1.8M2.5 18.5c2 0 2 1.8 4 1.8s2-1.8 4-1.8 2 1.8 4 1.8 2-1.8 4-1.8 2 1.8 3 1.8"/>'),
+    viento: icoMov('<path d="M3 9h11a3 3 0 1 0-3-3M3 14h15a3 3 0 1 1-3 3M3 19h7"/>'),
+    lluvia: icoMov('<path d="M7 15.5A4.5 4.5 0 0 1 7.6 6.6 6 6 0 0 1 19 8.2a3.6 3.6 0 0 1-1 7.3H7z"/><path d="M8 18l-1 3M12 18l-1 3M16 18l-1 3"/>'),
+    nieve: icoMov('<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/>')
+  };
+  /* un chip del tiempo: el icono (constante) y el texto (textContent) */
+  function chipHoy(cls, icono, texto) { var c = el('span', 'tgc-hoy-chip' + (cls ? ' ' + cls : '')); c.innerHTML = icono; c.appendChild(el('span', '', texto)); return c; }
+  /* las cuatro horas alrededor del mediodía solar de la zona, hoy (la OMS: el máximo de UV «ocurre en las cuatro
+     horas alrededor del mediodía solar»), en hora de Canarias y redondeadas al cuarto de hora hacia fuera; el
+     mediodía solar sale de la longitud (4 min por grado) y de la ecuación del tiempo, con la fórmula aproximada
+     de los manuales de energía solar (9,87·sen 2B − 7,53·cos B − 1,5·sen B, B = 360°·(n − 81)/365; se desvía
+     un par de minutos como mucho, y el cuarto de hora se lo come) */
+  function mediodia(lon, cuando) {
+    var d = cuando || new Date(), n = Math.floor((d.getTime() - Date.UTC(d.getUTCFullYear(), 0, 0)) / 864e5);
+    var B = 2 * Math.PI * (n - 81) / 365, eot = 9.87 * Math.sin(2 * B) - 7.53 * Math.cos(B) - 1.5 * Math.sin(B);
+    var mediodiaUTC = 720 - 4 * lon - eot;   /* minutos desde las 0:00 UTC */
+    var hora = function (min) {
+      var f = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 0, Math.round(min)));
+      try { return new Intl.DateTimeFormat(locale(), { timeZone: 'Atlantic/Canary', hour: '2-digit', minute: '2-digit' }).format(f); } catch (e) { return ''; }
+    };
+    return { a: hora(Math.floor((mediodiaUTC - 120) / 15) * 15), b: hora(Math.ceil((mediodiaUTC + 120) / 15) * 15) };
+  }
+  /* los avisos de AEMET vigentes hoy que tocan la zona (los dos más graves, uno por fenómeno), con las funciones de la
+     app (wxVigentes ya los ordena por nivel; si no están, nada) */
+  function avisosHoy(z) {
+    try {
+      if (typeof wxVigentes !== 'function' || typeof wxAvisoEn !== 'function' || typeof wxDia !== 'function' || !window.TGO_AVISOS) return [];
+      var d = wxDia(new Date()), fen = {}, lista = wxVigentes().filter(function (a) {
+        if (!wxAvisoEn(a, z.lat, z.lon) || wxDia(new Date(a.inicio)) > d || fen[a.fenomeno]) return false;
+        fen[a.fenomeno] = true; return true;
+      });
+      return lista.slice(0, 2);
+    } catch (e) { return []; }
+  }
+  /* el consejo del día: la semana (como en la maqueta) y el sol de la OMS (desde 8, evitar el sol del mediodía;
+     de 3 a 7, sombra al mediodía), con las horas de la zona */
+  function consejoHoy(R, d) {
+    var p = [];
+    if (R.total === 0 && R.min === 0) p.push(tx('cuerpoHoyPrimero'));
+    else if (R.diasFuerza < metaDias()) {
+      p.push(tx('cuerpoHoyFaltaFuerza', { n: metaDias() - R.diasFuerza }));
+      var sin = GRUPOS.filter(function (g) { return !R.series[g]; }), pr = prioActual().filter(function (g) { return !R.series[g]; });
+      if (pr.length) p.push(tx('cuerpoHoyParaDeporte', { deporte: tx('cuerpoDep_' + st.deporte), lista: lista(pr.map(nombre)) }));
+      else if (sin.length) p.push(tx('cuerpoHoySinAnotar', { lista: lista(sin.slice(0, 3).map(nombre)) }));
+    }
+    else if (R.min < metaMin()) p.push(tx('cuerpoHoyFaltaMin', { n: metaMin() - R.min }));
+    else p.push(tx('cuerpoHoyCumplida'));
+    if (d) {
+      /* el índice UV de la OMS es un entero: se redondea antes de mirar el umbral, para decir lo mismo que el número que se enseña */
+      var uvm = d.uvMax !== null && d.uvMax !== undefined ? d.uvMax : d.uv;
+      if (uvm !== null && uvm !== undefined) { uvm = Math.round(uvm); if (uvm >= 3) { var h = mediodia(zonaHoy().lon); p.push(tx(uvm >= 8 ? 'cuerpoHoySol8' : 'cuerpoHoySol3', { n: fmtN(uvm, 0), a: h.a, b: h.b })); } }
+    }
+    return p.join(/^zh/.test(lengua()) ? '' : ' ');
+  }
+  function renderHoy(R) {
+    var c = hoyEstado(), z = zonaTiempo(c.zona), d = c.d, sel = $('tgc-hoy-zona');
+    if (sel.options.length !== ZONAS.length) { sel.textContent = ''; ZONAS.forEach(function (x) { var o = el('option', '', x.nombre); o.value = x.id; o.setAttribute('data-sin-traducir', 'nombre propio'); sel.appendChild(o); }); }
+    sel.value = z.id;
+    var chips = $('tgc-hoy-chips'); chips.textContent = '';
+    if (d) {
+      var lluvia = d.codigo !== null && ((d.codigo >= 51 && d.codigo <= 67) || (d.codigo >= 80 && d.codigo <= 82) || d.codigo >= 95);
+      var nieve = d.codigo !== null && ((d.codigo >= 71 && d.codigo <= 77) || d.codigo === 85 || d.codigo === 86);
+      var uvr = d.uv !== null ? Math.round(d.uv) : null;   /* la categoría de la OMS, del entero que se enseña */
+      if (d.dia && uvr !== null) chips.appendChild(chipHoy('uv ' + uvCat(uvr).replace('cuerpoUv', 'uv-').toLowerCase(), ICONOS_HOY.uv, tx('cuerpoHoyUv', { n: fmtN(uvr, 0), cat: tx(uvCat(uvr)) })));
+      else if (d.uvMax !== null) chips.appendChild(chipHoy('uv', ICONOS_HOY.uv, tx('cuerpoHoyUvMax', { n: fmtN(d.uvMax, 0) })));
+      chips.appendChild(chipHoy('', ICONOS_HOY.termo, fmtN(d.temp, 0) + '°'));   /* «24°», como el panel del sol de la app */
+      if (d.mar !== null) chips.appendChild(chipHoy('', ICONOS_HOY.ola, tx('cuerpoHoyMar', { n: fmtN(d.mar, 0) })));
+      if (d.viento !== null) chips.appendChild(chipHoy('', ICONOS_HOY.viento, tx('medidaKmh', { n: fmtN(d.viento, 0) })));
+      if (nieve) chips.appendChild(chipHoy('tiempo', ICONOS_HOY.nieve, tx('cuerpoHoyNieve')));
+      else if (lluvia) chips.appendChild(chipHoy('tiempo', ICONOS_HOY.lluvia, tx('cuerpoHoyLluvia')));
+    }
+    /* el estado: cargando, o sin datos (nunca llegaron); con datos viejos, la hora en la fuente */
+    var est = $('tgc-hoy-estado');
+    est.textContent = hoyPidiendo && !d ? tx('cuerpoHoyCargando') : (!d && hoyError ? tx('cuerpoHoySinDatos') : '');
+    est.hidden = !est.textContent;
+    var avs = avisosHoy(z), pa = $('tgc-hoy-aviso'); pa.textContent = '';
+    avs.forEach(function (av) {
+      var fila = el('p', 'tgc-hoy-aviso-fila');
+      fila.appendChild(el('span', 'tgc-aviso-' + av.nivel, window.TGO_AVISOS.linea(av))); fila.appendChild(document.createTextNode(' ')); fila.appendChild(el('span', 'tgc-aviso-cuando', window.TGO_AVISOS.cuando(av)));
+      pa.appendChild(fila);
+    });
+    pa.hidden = !avs.length;
+    $('tgc-hoy-consejo').textContent = consejoHoy(R, d);
+    var f = $('tgc-hoy-fuente');
+    if (d) {
+      var horas = Math.round((Date.now() - c.t) / 36e5), hora = '';
+      try { hora = new Intl.DateTimeFormat(locale(), { timeZone: 'Atlantic/Canary', hour: '2-digit', minute: '2-digit' }).format(new Date(c.t)); } catch (e) {}
+      f.textContent = (Date.now() - c.t > 2 * 36e5) ? tx('cuerpoHoyFuenteVieja', { n: horas }) : tx('cuerpoHoyFuente', { h: hora });
+    } else f.textContent = '';
+    f.hidden = !f.textContent;
+  }
+
+  /* ── «Cruce la isla» (8-11-2026, bloque 5): el GR 131 con todos los kilómetros a pie que haya anotado (un viaje,
+     no una semana). El mapa es un esquema: la costa real (COSTA), las seis paradas en su sitio y, entre ellas, una
+     curva suave; si llega el trazado oficial (GR131_TRAZADO), se dibuja ese y se quita la etiqueta «Esquema». ── */
+  var ISLA_W = 358, ISLA_M = 14, ISLA_LON = [-16.94, -16.10], ISLA_LAT = [27.985, 28.60];
+  var islaK = Math.cos(28.3 * Math.PI / 180), islaEsc = (ISLA_W - 2 * ISLA_M) / ((ISLA_LON[1] - ISLA_LON[0]) * islaK);
+  var ISLA_H = Math.round((ISLA_LAT[1] - ISLA_LAT[0]) * islaEsc + 2 * ISLA_M);
+  function islaP(lat, lon) { return [ISLA_M + (lon - ISLA_LON[0]) * islaK * islaEsc, ISLA_M + (ISLA_LAT[1] - lat) * islaEsc]; }
+  function f1(n) { return (Math.round(n * 10) / 10).toFixed(1); }
+  var islaCosta = null, islaRuta = null, islaOficial = false, trazadoPedido = false, trazadoFuente = '';
+  function costaPath() {
+    if (!islaCosta) islaCosta = 'M' + COSTA.split(' ').map(function (s) { var p = s.split(','), q = islaP(+p[0], +p[1]); return f1(q[0]) + ' ' + f1(q[1]); }).join('L') + 'Z';
+    return islaCosta;
+  }
+  /* la ruta como puntos del esquema con su kilómetro: el esquema, muestreando la curva entre paradas (el km se
+     reparte dentro de cada tramo según el largo dibujado); o el trazado oficial, si está */
+  function rutaPuntos() {
+    if (islaRuta) return islaRuta;
+    var pts = [], paradas = GR131.paradas.map(function (p) { return islaP(p.lat, p.lon); });
+    for (var t = 0; t < paradas.length - 1; t++) {
+      var p0 = paradas[Math.max(0, t - 1)], p1 = paradas[t], p2 = paradas[t + 1], p3 = paradas[Math.min(paradas.length - 1, t + 2)], seg = [];
+      for (var i = 0; i <= 12; i++) {
+        var u = i / 12, u2 = u * u, u3 = u2 * u;
+        seg.push([0.5 * ((2 * p1[0]) + (-p0[0] + p2[0]) * u + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * u2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * u3),
+          0.5 * ((2 * p1[1]) + (-p0[1] + p2[1]) * u + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * u2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * u3)]);
+      }
+      var largo = [0]; for (var j = 1; j < seg.length; j++) largo.push(largo[j - 1] + Math.hypot(seg[j][0] - seg[j - 1][0], seg[j][1] - seg[j - 1][1]));
+      var desde = GR131.paradas[t].km, hasta = GR131.paradas[t + 1].km;
+      seg.forEach(function (q, j) { if (t && !j) return; pts.push({ x: q[0], y: q[1], km: desde + (hasta - desde) * largo[j] / largo[largo.length - 1] }); });
+    }
+    islaRuta = pts; return pts;
+  }
+  /* el trazado oficial: [[lat, lon, km], …] con el km de cada punto; se comprueba campo a campo */
+  function ponerTrazado(j) {
+    if (!j || !Array.isArray(j.puntos) || j.puntos.length < 10) return false;
+    var pts = [], ok = true, ult = -1;
+    j.puntos.forEach(function (p) {
+      if (!ok) return;
+      if (!Array.isArray(p) || p.length < 3 || !isFinite(p[0]) || !isFinite(p[1]) || !isFinite(p[2]) || p[0] < 27.9 || p[0] > 28.7 || p[1] < -17.1 || p[1] > -16 || p[2] < ult) { ok = false; return; }
+      var q = islaP(p[0], p[1]); pts.push({ x: q[0], y: q[1], km: p[2] }); ult = p[2];
+    });
+    if (!ok || Math.abs(ult - GR131.total) > 0.5) return false;
+    islaRuta = pts; islaOficial = true; trazadoFuente = (typeof j.fuente === 'string') ? j.fuente.slice(0, 300) : ''; return true;
+  }
+  function pedirTrazado() {
+    if (trazadoPedido || typeof fetch !== 'function' || location.protocol === 'file:') return;
+    trazadoPedido = true;
+    fetch(GR131_TRAZADO).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) { if (ponerTrazado(j)) { if (islaSvg) { islaSvg.remove(); islaSvg = null; } if (abierto) renderIsla(); } }).catch(function () {});
+  }
+  function enKm(km) {
+    var pts = rutaPuntos(); km = Math.max(0, Math.min(GR131.total, km));
+    for (var i = 1; i < pts.length; i++) {
+      if (km <= pts[i].km) { var a = pts[i - 1], b = pts[i], f = (km - a.km) / ((b.km - a.km) || 1); return { x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f, i: i }; }
+    }
+    var u = pts[pts.length - 1]; return { x: u.x, y: u.y, i: pts.length - 1 };
+  }
+  function hechoPath(km) {
+    var e = enKm(km), l = rutaPuntos().slice(0, e.i).map(function (p) { return [p.x, p.y]; }); l.push([e.x, e.y]);
+    return l.length > 1 ? 'M' + l.map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L') : '';
+  }
+  /* todos los kilómetros a pie anotados (a nado y en bici se guardan con 0 km; por si acaso, solo cuentan los tipos a pie) */
+  function kmPie() { var k = 0; st.mov.forEach(function (x) { if (movDe(x.tipo).aPie) k += x.km; }); return km3(k); }
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+  function nodoSvg(tag, at) { var e = document.createElementNS(SVG_NS, tag); for (var k in at) { if (at[k] !== null && at[k] !== undefined) e.setAttribute(k, at[k]); } return e; }
+  var islaSvg = null, kmVisto = 0, kmAnim = null;
+  /* el mapa se construye una vez; después solo se mueven el marcador, el trazo hecho y las paradas pasadas */
+  function construirIsla() {
+    var svg = nodoSvg('svg', { viewBox: '0 0 ' + ISLA_W + ' ' + ISLA_H, role: 'img' });
+    svg.appendChild(nodoSvg('path', { d: costaPath(), 'class': 'tgc-isla-tierra', 'stroke-width': 1.6, 'stroke-linejoin': 'round' }));
+    var tp = islaP(TEIDE.lat, TEIDE.lon);
+    svg.appendChild(nodoSvg('path', { d: 'M' + f1(tp[0] - 11) + ' ' + f1(tp[1] + 7) + 'L' + f1(tp[0] - 1.5) + ' ' + f1(tp[1] - 9) + 'L' + f1(tp[0] + 2.5) + ' ' + f1(tp[1] - 9) + 'L' + f1(tp[0] + 12) + ' ' + f1(tp[1] + 7) + 'Z', 'class': 'tgc-isla-teide' }));
+    var tt = nodoSvg('text', { x: f1(tp[0] - 15), y: f1(tp[1] + 4), 'text-anchor': 'end', 'class': 'tgc-isla-teide-t', 'data-sin-traducir': 'nombre propio' }); tt.textContent = TEIDE.nombre; svg.appendChild(tt);
+    var pts = rutaPuntos();
+    svg.appendChild(nodoSvg('path', { d: 'M' + pts.map(function (p) { return f1(p.x) + ' ' + f1(p.y); }).join('L'), 'class': 'tgc-isla-ruta', fill: 'none', 'stroke-width': 2.4, 'stroke-dasharray': islaOficial ? null : '1 6', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
+    svg.appendChild(nodoSvg('path', { id: 'tgc-isla-hecha', d: '', 'class': 'tgc-isla-hecha', fill: 'none', 'stroke-width': 4.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
+    var lado = [1, 1, 1, 1, -1, -1]; /* a qué lado va cada nombre: a la derecha salvo Vilaflor y Arona (la costa oeste está cerca) */
+    GR131.paradas.forEach(function (p, i) {
+      var q = i ? enKm(p.km) : { x: pts[0].x, y: pts[0].y }, g = nodoSvg('g', { 'class': 'tgc-isla-parada', 'data-km': p.km });
+      g.appendChild(nodoSvg('circle', { cx: f1(q.x), cy: f1(q.y), r: 5.5, 'stroke-width': 2 }));
+      var t = nodoSvg('text', { x: f1(q.x + lado[i] * 10), y: f1(q.y + 4), 'text-anchor': lado[i] > 0 ? 'start' : 'end', 'data-sin-traducir': 'nombre propio' }); t.textContent = p.corto; g.appendChild(t);
+      svg.appendChild(g);
+    });
+    var m = nodoSvg('g', { id: 'tgc-isla-marca', 'class': 'tgc-isla-marca' });
+    m.appendChild(nodoSvg('circle', { r: 11, 'class': 'halo' })); m.appendChild(nodoSvg('circle', { r: 6.5, 'stroke-width': 2.5 }));
+    svg.appendChild(m);
+    return svg;
+  }
+  function ponerKm(km) {
+    var p = enKm(km), mk = $('tgc-isla-marca'), rh = $('tgc-isla-hecha');
+    if (mk) mk.setAttribute('transform', 'translate(' + f1(p.x) + ' ' + f1(p.y) + ')');
+    if (rh) rh.setAttribute('d', hechoPath(km));
+    if (islaSvg) islaSvg.querySelectorAll('.tgc-isla-parada').forEach(function (g) { g.classList.toggle('pasada', km >= Number(g.getAttribute('data-km'))); });
+    kmVisto = km;
+  }
+  function renderIsla(animar) {
+    var km = kmPie(), caja = $('tgc-mapa');
+    if (!islaSvg || !caja.contains(islaSvg)) { if (islaSvg) islaSvg.remove(); islaSvg = construirIsla(); caja.insertBefore(islaSvg, caja.firstChild); kmVisto = km; }
+    islaSvg.setAttribute('aria-label', tx('cuerpoIslaMapaAria', { km: fmtN(km, 1) }));
+    $('tgc-isla-esquema').hidden = islaOficial;
+    if (animar && !reducido && Math.abs(km - kmVisto) > 0.05) {
+      if (kmAnim) cancelAnimationFrame(kmAnim);
+      var desde = kmVisto, t0 = null, paso = function (ts) {
+        if (t0 === null) t0 = ts;
+        var x = Math.min(1, (ts - t0) / 1400), y = 1 - Math.pow(1 - x, 3);
+        ponerKm(desde + (km - desde) * y);
+        if (x < 1) kmAnim = requestAnimationFrame(paso); else kmAnim = null;
+      };
+      kmAnim = requestAnimationFrame(paso);
+    } else { if (kmAnim) { cancelAnimationFrame(kmAnim); kmAnim = null; } ponerKm(km); }
+    $('tgc-isla-km').textContent = fmtN(km, 1);
+    $('tgc-isla-de').textContent = tx('cuerpoIslaDe', { n: fmtN(GR131.total, 2) });
+    $('tgc-tramo-hecho').style.width = Math.min(100, km / GR131.total * 100) + '%';
+    var tramo = $('tgc-tramo');
+    if (!tramo.querySelector('b')) GR131.paradas.slice(1).forEach(function (p) { var b = el('b'); b.style.left = (p.km / GR131.total * 100).toFixed(2) + '%'; b.dataset.km = p.km; tramo.appendChild(b); });
+    tramo.querySelectorAll('b').forEach(function (b) { b.classList.toggle('pasada', km >= Number(b.dataset.km)); });
+    var sig = null; GR131.paradas.forEach(function (p) { if (!sig && p.km > 0 && km < p.km) sig = p; });
+    $('tgc-isla-sig').textContent = sig ? tx('cuerpoIslaSiguiente', { parada: sig.nombre, km: tx('medidaKm', { n: fmtN(km3(sig.km - km), 1) }) }) : tx('cuerpoIslaCruzada');
+    $('tgc-isla-sub').textContent = tx('cuerpoIslaSub');
+    /* «Las cifras»: de dónde sale el GR 131 del mapa; con el esquema, que lo es; con el trazado oficial, su fuente */
+    $('tgc-cifras-isla').textContent = tx('cuerpoIslaFuente') + (/^zh/.test(lengua()) ? '' : ' ') + (islaOficial ? tx('cuerpoIslaTrazadoDe', { fuente: trazadoFuente }) : tx('cuerpoIslaEsquemaNota'));
+  }
   /* (6-11-2026, bloque 2) cada grupo, un botón grande de la rejilla: el nombre, el color de su nivel con
      las series de 7 días y la última vez. Lo mismo que el dibujo, para quien prefiera tocar aquí */
   function renderLista(R) {
@@ -2832,6 +3177,7 @@
     renderValores();
     $('tgc-mov-hoy').setAttribute('aria-pressed', movSel.dia === 'hoy' ? 'true' : 'false');
     $('tgc-mov-ayer').setAttribute('aria-pressed', movSel.dia === 'ayer' ? 'true' : 'false');
+    $('tgc-mov-nota').textContent = tx(movDe(movSel.tipo).aPie ? 'cuerpoMovNotaPie' : 'cuerpoMovNotaOtro');   /* (bloque 5) a pie, el GR 131 */
     /* lo último anotado: las ocho últimas, de la más reciente a la más antigua */
     var ul = $('tgc-mov-hist'); ul.textContent = '';
     var mias = st.mov.map(function (x, i) { return { x: x, i: i }; })
@@ -2855,21 +3201,23 @@
     if (st.mov.length > MAX_MOV) st.mov = st.mov.slice(-MAX_MOV);
     if (!guardar()) { st.mov.pop(); return; }
     cerrarMov();
-    renderMusculos();
+    islaAnimar = x.km > 0; renderMusculos();
     if (en3d()) M3.sonrie(2.2);          /* movimiento anotado: el personaje sonríe, como con una serie */
+    /* con kilómetros, la isla a la vista: el marcador avanza por el GR 131 (bloque 5) */
+    if (x.km > 0 && modo === 'musculos') setTimeout(function () { var s = $('tgc-isla'); if (s && abierto) { try { s.scrollIntoView({ behavior: reducido ? 'auto' : 'smooth', block: 'center' }); } catch (e) {} } }, 350);
     deshacer = { mov: x };
     toast(tx('cuerpoMovAnotado', { tipo: nombreMov(x.tipo), que: minKm(x.min, x.km) }), tx('cuerpoDeshacer'), function () {
       if (!deshacer || !deshacer.mov) return;
       var i = st.mov.indexOf(deshacer.mov); if (i >= 0) st.mov.splice(i, 1);
       deshacer = null;
-      guardar(); renderMusculos(); renderMov();
+      guardar(); islaAnimar = true; renderMusculos(); renderMov();
     });
   }
   function borrarMov(i) {
     var x = st.mov[i]; if (!x) return;
     st.mov.splice(i, 1);
     if (!guardar()) { st.mov.splice(i, 0, x); return; }
-    renderMusculos(); renderMov();
+    islaAnimar = x.km > 0; renderMusculos(); renderMov();
     deshacer = { mov: x, i: i };
     toast(tx('cuerpoEntradaBorrada'), tx('cuerpoDeshacer'), function () {
       if (!deshacer || !deshacer.mov) return;
@@ -2945,7 +3293,8 @@
     var l = lengua();
     panel.setAttribute('lang', l === 'zht' ? 'zh-Hant' : (l === 'zh' ? 'zh-Hans' : l));
   }
-  function renderMusculos() { var R = resumen(); renderResumen(R); renderLista(R); renderFigura(R); }
+  var islaAnimar = false;
+  function renderMusculos() { var R = resumen(); renderResumen(R); renderHoy(R); renderIsla(islaAnimar); islaAnimar = false; renderLista(R); renderFigura(R); }
   function renderModo() {
     var m = modo === 'musculos', a = modo === 'aspecto', c = modo === 'comida', q = modo === 'preguntar';
     $('tgc').classList.toggle('is-aspecto', a);
@@ -3024,9 +3373,9 @@
     $('tgc-borrar').addEventListener('click', function () { $('tgc-borrar').hidden = true; $('tgc-borrar-confirm').hidden = false; try { $('tgc-borrar-no').focus(); } catch (e) {} });
     $('tgc-borrar-no').addEventListener('click', function () { $('tgc-borrar-confirm').hidden = true; $('tgc-borrar').hidden = false; try { $('tgc-borrar').focus(); } catch (e) {} });
     $('tgc-borrar-si').addEventListener('click', function () {
-      try { localStorage.removeItem(KEY); } catch (e) {}
-      st = vacio(); $('tgc-borrar-confirm').hidden = true; $('tgc-borrar').hidden = false;
-      renderTodo(); toast(tx('cuerpoBorrado'));
+      try { localStorage.removeItem(KEY); localStorage.removeItem(HOY_CLAVE); } catch (e) {}   /* también la zona y el tiempo guardados (bloque 5) */
+      st = vacio(); hoyCache = null; hoyError = false; $('tgc-borrar-confirm').hidden = true; $('tgc-borrar').hidden = false;
+      renderTodo(); pedirHoy(); toast(tx('cuerpoBorrado'));
     });
     /* la hoja */
     $('tgc-velo').addEventListener('click', function () { if (movAbierto) cerrarMov(); else if (cifrasAbiertas) cerrarCifras(); else cerrarHoja(); });
@@ -3047,6 +3396,8 @@
     $('tgc-mov-ayer').addEventListener('click', function () { movSel.dia = 'ayer'; renderMov(); });
     $('tgc-mov-guardar').addEventListener('click', anotarMov);
     $('tgc-mov-hist').addEventListener('click', function (e) { var b = e.target.closest('.tgc-hist-x'); if (b) borrarMov(Number(b.dataset.i)); });
+    /* «Hoy en la isla» (bloque 5): la zona del tiempo */
+    $('tgc-hoy-zona').addEventListener('change', function () { elegirZona($('tgc-hoy-zona').value); });
     $('tgc-menos').addEventListener('click', quitarUna);
     $('tgc-guardar').addEventListener('click', function () { anotar(1); });
     $('tgc-mas3').addEventListener('click', function () { anotar(3); });
@@ -3135,6 +3486,7 @@
     renderTodo();
     montar3d(); vivo3d();
     if (modo === 'aspecto') traerTodo3d();
+    pedirHoy(); pedirTrazado();           /* el tiempo de la zona (si lo guardado tiene más de 30 min) y el trazado oficial, si está */
     try { $('tgc-back').focus({ preventScroll: true }); } catch (e) {}
   }
   /* la cabecera va en cristal sobre la escena y se vuelve opaca al bajar (o sin escena) */
@@ -3865,6 +4217,8 @@
   --oro: #8A6A12; --oro-vivo: #D4AF37; --oro-f: #FBF2D4; --zonas: #5B4FCF; --zonas-f: #E7E4FB;
   /* las tres metas de la semana (7-11-2026, bloque 4): fuerza, movimiento y grupos (--zonas); contraste con el fondo 4,85 · 4,43 · 5,43 */
   --fuerza: #C2334F; --fuerza-f: #FBE3E8; --mov: #0B7C86; --mov-f: #D9F1F2;
+  /* el esquema de la isla (8-11-2026, bloque 5): la tierra, su borde, el Teide y el halo de los nombres */
+  --isla-relleno: #F3DCAB; --isla-borde: #B98B4E; --isla-teide: #7A6FB8; --halo-mapa: rgba(255,255,255,0.82);
   --rojo: #B3261E; --rojo-f: #FBE3E8;
   --cristal: rgba(255,255,255,0.72); --cristal-borde: rgba(255,255,255,0.9); --sobre-cielo: #12233A;
   --suave: rgba(18,35,58,0.06); --suave-2: rgba(18,35,58,0.14); --suave-3: rgba(18,35,58,0.55);
@@ -3886,6 +4240,7 @@
   --tinta: #F0ECE4; --tinta-2: #A8B3C4; --fondo: #0F1117; --tarjeta: #1B2330; --linea: #2D3A4A;
   --oro: #F5C76B; --oro-vivo: #D4AF37; --oro-f: #33290F; --zonas: #9B8CFF; --zonas-f: #262447;
   --fuerza: #FF6B81; --fuerza-f: #3A1F2B; --mov: #3CC8D6; --mov-f: #12333A;
+  --isla-relleno: #3B4257; --isla-borde: #6B7690; --isla-teide: #9B8CFF; --halo-mapa: rgba(15,17,23,0.78);
   --rojo: #FFB4A8; --rojo-f: #3A1F2B;
   --cristal: rgba(15,17,23,0.55); --cristal-borde: rgba(255,255,255,0.16); --sobre-cielo: #F6F1E7;
   --suave: rgba(240,236,228,0.06); --suave-2: rgba(240,236,228,0.14); --suave-3: rgba(240,236,228,0.5);
@@ -4026,6 +4381,63 @@
 /* «Anotar movimiento», bajo la semana */
 .tgc-mov-btn { justify-self: stretch; }
 .tgc-mov-btn svg { color: var(--mov); }
+
+/* (8-11-2026, bloque 5) «Hoy en la isla»: una tarjeta de oro suave con la zona, los chips del tiempo, el aviso
+   de AEMET si lo hay, el consejo y la fuente */
+.tgc-hoy-isla { min-width: 0; }
+.tgc-hoy-caja { border-radius: 22px; background: var(--oro-f); padding: 16px 18px 14px; display: grid; gap: 10px; }
+.tgc-hoy-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.tgc-hoy-cab h2 { margin: 0; font: 600 24px/1.1 var(--font-display); letter-spacing: -0.2px; }
+.tgc-hoy-zona { position: relative; display: inline-flex; align-items: center; flex: none; max-width: 52%; }
+.tgc-hoy-zona select {
+  appearance: none; -webkit-appearance: none; max-width: 100%; min-height: 36px; padding: 0 28px 0 12px; border-radius: 999px; border: 1px solid var(--linea);
+  background: var(--tarjeta); color: var(--tinta); font: 600 13px/1 var(--font-body); text-overflow: ellipsis; cursor: pointer;
+}
+.tgc-hoy-zona svg { position: absolute; right: 10px; pointer-events: none; color: var(--tinta-2); }
+.tgc-hoy-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.tgc-hoy-chips:empty { display: none; }
+.tgc-hoy-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 10px; background: var(--tarjeta); color: var(--tinta); }
+.tgc-hoy-chip svg { width: 16px; height: 16px; flex: none; }
+/* el UV con los colores de la OMS por categoría (amarillo, naranja, rojo, violeta); bajo, neutro */
+.tgc-hoy-chip.uv-moderado { background: var(--n3); color: #12233A; }
+.tgc-hoy-chip.uv-alto { background: var(--n2); color: #12233A; }
+.tgc-hoy-chip.uv-muyalto { background: var(--n1); color: #12233A; }
+.tgc-hoy-chip.uv-extremo { background: var(--zonas); color: #FFFFFF; }
+.tgc-hoy-estado, .tgc-hoy-fuente { font-size: 13px; color: var(--tinta-2); margin: 0; }
+.tgc-hoy-aviso { display: grid; gap: 6px; }
+.tgc-hoy-aviso-fila { margin: 0; font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+.tgc-hoy-aviso .tgc-aviso-cuando { color: var(--tinta-2); font-size: 13px; }
+.tgc-aviso-amarillo, .tgc-aviso-naranja, .tgc-aviso-rojo { font-weight: 700; padding: 3px 9px; border-radius: 999px; color: #12233A; }
+.tgc-aviso-amarillo { background: #FFE48A; } .tgc-aviso-naranja { background: #FFB74D; } .tgc-aviso-rojo { background: #FF8A80; }
+.tgc-hoy-consejo { margin: 0; padding-top: 12px; border-top: 1px solid rgba(138,106,18,0.28); font-size: 15px; line-height: 1.45; font-weight: 600; }
+#cuerpo-panel[data-tema="noche"] .tgc-hoy-consejo { border-top-color: rgba(245,199,107,0.32); }
+
+/* «Cruce la isla»: el esquema, la cuenta de kilómetros, la barra con las paradas y la siguiente */
+.tgc-isla { display: grid; gap: 12px; min-width: 0; }
+.tgc-isla h2 { margin: 0; font: 600 28px/1.1 var(--font-display); color: var(--tinta); letter-spacing: .1px; text-wrap: balance; }
+.tgc-isla .tgc-sub { margin: 2px 0 0; font-size: 14px; color: var(--tinta-2); line-height: 1.4; }
+.tgc-mapa { position: relative; border-radius: 22px; overflow: hidden; background: var(--mov-f); }
+.tgc-mapa svg { display: block; width: 100%; height: auto; }
+.tgc-etiqueta { position: absolute; right: 10px; top: 10px; font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 999px; border: 1px dashed var(--tinta-2); color: var(--tinta-2); background: var(--mov-f); }
+.tgc-isla-tierra { fill: var(--isla-relleno); stroke: var(--isla-borde); }
+.tgc-isla-teide { fill: var(--isla-teide); }
+.tgc-isla-teide-t { font: 600 11px var(--font-body); fill: var(--tinta-2); }
+.tgc-isla-ruta { stroke: var(--tinta); opacity: .7; }
+.tgc-isla-hecha { stroke: var(--mov); }
+.tgc-isla-parada circle { fill: var(--isla-relleno); stroke: var(--tinta); }
+.tgc-isla-parada.pasada circle { fill: var(--mov); stroke: var(--mov); }
+.tgc-isla-parada text { font: 500 11.5px var(--font-body); fill: var(--tinta); paint-order: stroke; stroke: var(--halo-mapa); stroke-width: 3.5px; stroke-linejoin: round; }
+.tgc-isla-parada.pasada text { font-weight: 700; }
+.tgc-isla-marca circle { fill: var(--oro-vivo); stroke: #fff; }
+.tgc-isla-marca .halo { opacity: .3; stroke: none; }
+.tgc-cuenta { display: flex; align-items: baseline; gap: 10px; }
+.tgc-isla-cifra { font: 600 54px/.9 var(--font-display); color: var(--mov); letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.tgc-de { font-size: 14px; color: var(--tinta-2); }
+.tgc-tramo { height: 8px; border-radius: 8px; background: var(--linea); position: relative; margin: 0 7px; }
+.tgc-tramo i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 8px; background: var(--mov); transition: width 900ms var(--ease-emph); }
+.tgc-tramo b { position: absolute; top: -3px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--fondo); border: 2px solid var(--tinta-2); box-sizing: border-box; }
+.tgc-tramo b.pasada { background: var(--mov); border-color: var(--mov); }
+.tgc-sig { margin: 0; font-size: 15px; line-height: 1.45; }
 
 /* la semana, día a día: las series anotadas cada día, en oro */
 .tgc-dias7 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; position: relative; }
@@ -4416,6 +4828,7 @@
 @media (max-width: 359px) {
   .tgc-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tgc-meta-n { font-size: 44px; }
+  .tgc-isla-cifra { font-size: 44px; }
   .tgc-top h1 { font-size: 26px; }
 }
 /* en una pantalla ancha la escena deja de ir de borde a borde */
@@ -4522,6 +4935,29 @@
           <p id="tgc-reco-mov"></p>
         </div>
       </div>
+    </section>
+    <section class="tgc-hoy-isla" id="tgc-hoy-isla" aria-labelledby="tgc-hoy-tit">
+      <div class="tgc-hoy-caja">
+        <div class="tgc-hoy-cab">
+          <h2 id="tgc-hoy-tit">Hoy en la isla</h2>
+          <label class="tgc-hoy-zona"><span class="tgc-sr" id="tgc-hoy-zona-l">Zona</span><select id="tgc-hoy-zona"></select>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></label>
+        </div>
+        <div class="tgc-hoy-chips" id="tgc-hoy-chips"></div>
+        <p class="tgc-hoy-estado" id="tgc-hoy-estado" role="status"></p>
+        <div class="tgc-hoy-aviso" id="tgc-hoy-aviso" hidden></div>
+        <p class="tgc-hoy-consejo" id="tgc-hoy-consejo"></p>
+        <p class="tgc-hoy-fuente" id="tgc-hoy-fuente"></p>
+      </div>
+    </section>
+    <section class="tgc-isla" id="tgc-isla" aria-labelledby="tgc-isla-tit">
+      <div class="tgc-cab">
+        <div><h2 id="tgc-isla-tit">Cruce la isla</h2><p class="tgc-sub" id="tgc-isla-sub"></p></div>
+      </div>
+      <div class="tgc-mapa" id="tgc-mapa"><span class="tgc-etiqueta" id="tgc-isla-esquema">Esquema</span></div>
+      <div class="tgc-cuenta"><span class="tgc-isla-cifra" id="tgc-isla-km">0</span><span class="tgc-de" id="tgc-isla-de"></span></div>
+      <div class="tgc-tramo" id="tgc-tramo" aria-hidden="true"><i id="tgc-tramo-hecho"></i></div>
+      <p class="tgc-sig" id="tgc-isla-sig" aria-live="polite"></p>
     </section>
     <section class="tgc-grupos" id="tgc-grupos">
       <h2 id="tgc-grupos-tit">Los 12 grupos musculares</h2>
@@ -4751,6 +5187,7 @@
     <p class="tgc-cifras-p" id="tgc-cifras-reco"></p>
     <p class="tgc-cifras-p" id="tgc-cifras-mov"></p>
     <p class="tgc-cifras-p" id="tgc-cifras-ref"></p>
+    <p class="tgc-cifras-p" id="tgc-cifras-isla"></p>
     <p class="tgc-fuentes" id="tgc-fuentes"></p>
   </div>
 
@@ -4873,9 +5310,13 @@
     ['#tgc-mov-cuando', 'tx', 'cuerpoCuando'],
     ['#tgc-mov-hoy', 'tx', 'cuerpoHoyB'],
     ['#tgc-mov-ayer', 'tx', 'cuerpoAyerB'],
-    ['#tgc-mov-nota', 'tx', 'cuerpoMovNota'],
     ['#tgc-mov-hist-tit', 'tx', 'cuerpoHistorial'],
     ['#tgc-mov-hist-nada', 'tx', 'cuerpoMovSinHistorial'],
+    /* (8-11-2026, bloque 5) «Hoy en la isla» y «Cruce la isla»: lo fijo; lo demás lo ponen renderHoy y renderIsla */
+    ['#tgc-hoy-tit', 'tx', 'cuerpoHoyTitulo'],
+    ['#tgc-hoy-zona-l', 'tx', 'cuerpoHoyZona'],
+    ['#tgc-isla-tit', 'tx', 'cuerpoIslaTitulo'],
+    ['#tgc-isla-esquema', 'tx', 'cuerpoIslaEsquema'],
     ['#tgc-cifras-link', 'tx', 'cuerpoCifras'],
     ['#tgc-grupos-tit', 'tx', 'cuerpoGruposTitulo'],
     ['#tgc-grupos-ayuda', 'tx', 'cuerpoGruposAyuda'],

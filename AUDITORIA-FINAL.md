@@ -8901,7 +8901,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3371 filas (y 5.521 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3406 filas (y 5.556 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9023,7 +9023,13 @@ noviembre, el bloque 3 (el personaje en 3D): una fila más en `CUERPO_UI` (389),
 aviso de la hoja «Aspecto» con lo que el 3D aún no tiene: 3343 y 5.491. Y el mismo 7 de
 noviembre, el bloque 4 (la semana): 28 filas más en `CUERPO_UI` (417): las tres metas, «Anotar
 movimiento» con su hoja (los cinco tipos, los minutos, los kilómetros a pie, su nota y su aviso)
-y la recomendación del movimiento de la OMS para adultos y de 5 a 17 años: 3371 y 5.519. El
+y la recomendación del movimiento de la OMS para adultos y de 5 a 17 años: 3371 y 5.519. El 8 de
+noviembre, la ficha de la etapa 2 del GR-131: dos filas más fuera del fuente, 3371 y 5.521. Y el
+bloque 5 (la isla): 35 filas más en `CUERPO_UI` (452): «Hoy en la isla» (la zona del
+tiempo, los chips, las cinco categorías del índice UV de la OMS, el estado, la fuente con su hora, el
+consejo del día y las dos frases del sol), «Cruce la isla» (el título, el subtítulo, la cuenta, la
+siguiente parada, la travesía hecha, «Esquema», la etiqueta del mapa y sus fuentes) y las dos notas de
+la hoja del movimiento (a pie y a nado o en bici) en vez de una: 3406 y 5.556. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
