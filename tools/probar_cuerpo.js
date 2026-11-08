@@ -1651,22 +1651,23 @@ async function ejemplo(pg) {
 
   // 23. (7-11-2026, bloque 4) la semana: las tres metas (días con fuerza de 2, minutos de movimiento de 150 y
   //     grupos de 12; de 5 a 17 años, 3 y 420) y «Anotar movimiento»: su hoja (qué ha hecho, los minutos ±5 o
-  //     escritos, los km a pie ±0,5 o escritos con coma, solo a pie; hoy o ayer), «Anotar» guarda en
+  //     escritos, los km ±0,5 o escritos con coma, de los cinco tipos; hoy o ayer), «Anotar» guarda en
   //     tenerife.cuerpo (mov), cierra y avisa con «Deshacer»; lo último anotado con ×; los días con movimiento
   //     llevan su punto y encienden su rayo; el detalle del día dice minutos y km; Escape, «atrás» y el velo
   //     cierran la hoja; lo guardado roto se descarta campo a campo; «Borrar los datos» lo borra; el asistente
-  //     cuenta el movimiento en «¿Cómo voy esta semana?»; y los textos nuevos, en los diez idiomas
+  //     cuenta el movimiento en «¿Cómo voy esta semana?»; y los textos nuevos, en los diez idiomas.
+  //     (8-11-2026) Nadar y bici también suman km (Jerome: «Cuentan también»); antes, solo a pie
   {
     const c23 = await contexto(b), p23 = await c23.newPage(), e23 = []; vigilar(p23, e23);
     await abrirApp(p23); await abrirPerfilCuerpo(p23); await suCuerpo(p23);
     await ejemplo(p23);
-    /* el ejemplo, con movimiento: hoy 35 min y 3 km a pie; hace 3, una caminata larga sin series; hace 5, a nado */
+    /* el ejemplo, con movimiento: hoy 35 min y 3 km caminando; hace 3, una caminata larga sin series; hace 5, a nado, 1 km */
     const conMov = async () => {
       await p23.evaluate(() => {
         const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
         const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
         const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')), t = Date.now() - 5e5;
-        g.mov = [{ d: hace(0), tipo: 'caminar', min: 35, km: 3, t: t }, { d: hace(3), tipo: 'senderismo', min: 150, km: 9.5, t: t + 1 }, { d: hace(5), tipo: 'nadar', min: 30, km: 0, t: t + 2 }];
+        g.mov = [{ d: hace(0), tipo: 'caminar', min: 35, km: 3, t: t }, { d: hace(3), tipo: 'senderismo', min: 150, km: 9.5, t: t + 1 }, { d: hace(5), tipo: 'nadar', min: 30, km: 1, t: t + 2 }];
         localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir();
       });
       await p23.waitForTimeout(250);
@@ -1699,19 +1700,29 @@ async function ejemplo(pg) {
       etiqueta: document.getElementById('tgc-hoja').getAttribute('aria-labelledby'), foco: document.activeElement && document.activeElement.id,
       tit: document.getElementById('tgc-mov-tit').textContent, lema: document.getElementById('tgc-mov-lema').textContent,
       tipos: [...document.querySelectorAll('#tgc-mov-tipos .tgc-tipo')].map(b => b.dataset.tipo + ':' + b.getAttribute('aria-pressed') + ':' + b.textContent.trim() + ':' + (b.querySelector('svg') ? 1 : 0)).join(','),
-      min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, kmFila: document.getElementById('tgc-mov-km-fila').hidden,
+      min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, kmFila: document.getElementById('tgc-mov-km-fila').hidden, kmL: document.getElementById('tgc-mov-km-l').textContent,
       hoy: document.getElementById('tgc-mov-hoy').getAttribute('aria-pressed'), boton: document.getElementById('tgc-mov-guardar-txt').textContent, nota: document.getElementById('tgc-mov-nota').textContent,
       hist: [...document.querySelectorAll('#tgc-mov-hist .tgc-hist-fila')].map(li => li.querySelector('.tgc-hist-n').textContent).join(' | '), inerte: document.getElementById('tgc').inert,
       estado: JSON.stringify(history.state)
     }));
     prueba('«Anotar movimiento» abre su página de la hoja, con el foco en el título y su entrada en el historial', h23.abierta && h23.etiqueta === 'tgc-mov-tit' && h23.foco === 'tgc-mov-tit' && h23.inerte && h23.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1,"tgCuerpoMov":1}', JSON.stringify(h23));
-    prueba('la hoja: el título, la frase, los cinco tipos con su icono (Caminar elegido), 30 min, 2,5 km a pie, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
-      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,nadar:false:Nadar:1,bici:false:Bici:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.hoy === 'true'
-      && h23.boton === 'Anotar 30 min y 2,5 km' && /solo a pie/.test(h23.nota), JSON.stringify(h23));
-    prueba('lo último anotado: las tres, de hoy hacia atrás, con el tipo, los minutos y los km', h23.hist === 'Caminar · 35 min y 3 km | Senderismo · 150 min y 9,5 km | Nadar · 30 min', h23.hist);
+    prueba('la hoja: el título, la frase, los cinco tipos con su icono (Caminar elegido), 30 min, 2,5 km, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
+      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,nadar:false:Nadar:1,bici:false:Bici:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.kmL === 'Kilómetros' && h23.hoy === 'true'
+      && h23.boton === 'Anotar 30 min y 2,5 km' && h23.nota === 'Todo suma minutos y kilómetros a su semana.', JSON.stringify(h23));
+    prueba('lo último anotado: las tres, de hoy hacia atrás, con el tipo, los minutos y los km', h23.hist === 'Caminar · 35 min y 3 km | Senderismo · 150 min y 9,5 km | Nadar · 30 min y 1 km', h23.hist);
     await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p23.waitForTimeout(60);
-    const n23 = await p23.evaluate(() => ({ kmFila: document.getElementById('tgc-mov-km-fila').hidden, min: document.getElementById('tgc-mov-min').value, boton: document.getElementById('tgc-mov-guardar-txt').textContent, pulsado: document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]').dataset.tipo }));
-    prueba('Nadar: sin el campo de los kilómetros (decisión 4: solo a pie), 30 min, y el botón solo dice los minutos', n23.kmFila && n23.min === '30' && n23.boton === 'Anotar 30 min' && n23.pulsado === 'nadar', JSON.stringify(n23));
+    const hojaMov = () => p23.evaluate(() => ({ kmFila: document.getElementById('tgc-mov-km-fila').hidden, min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, menos: document.getElementById('tgc-mov-km-menos').disabled,
+      boton: document.getElementById('tgc-mov-guardar-txt').textContent, pulsado: document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]').dataset.tipo }));
+    /* los km se escriben solo si su campo se ve: sin él, la prueba sale en rojo y no se para */
+    const escribeKm = async v => { if (await p23.isVisible('#tgc-mov-km')) { await p23.fill('#tgc-mov-km', v); await p23.dispatchEvent('#tgc-mov-km', 'change'); } await p23.waitForTimeout(60); };
+    const n23 = await hojaMov();
+    prueba('Nadar: con el campo de los kilómetros (desde el 8-11-2026), en 0 y con «−» apagado, 30 min, y el botón solo dice los minutos', !n23.kmFila && n23.km === '0' && n23.menos && n23.min === '30' && n23.boton === 'Anotar 30 min' && n23.pulsado === 'nadar', JSON.stringify(n23));
+    await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="bici"]'); await p23.waitForTimeout(60);
+    const bi23 = await hojaMov();
+    await escribeKm('42,5');
+    const bk23 = await hojaMov();
+    prueba('Bici: con el campo de los kilómetros, en 0, 60 min; escritos 42,5 km, el botón los dice', !bi23.kmFila && bi23.km === '0' && bi23.min === '60' && bi23.boton === 'Anotar 60 min' && bi23.pulsado === 'bici'
+      && !bk23.kmFila && bk23.km === '42,5' && !bk23.menos && bk23.boton === 'Anotar 60 min y 42,5 km', JSON.stringify([bi23, bk23]));
     await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="senderismo"]'); await p23.waitForTimeout(60);
     const s23 = await p23.evaluate(() => ({ min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, kmFila: document.getElementById('tgc-mov-km-fila').hidden }));
     prueba('Senderismo propone 120 min y 8 km', s23.min === '120' && s23.km === '8' && !s23.kmFila, JSON.stringify(s23));
@@ -1738,6 +1749,20 @@ async function ejemplo(pg) {
     prueba('«Anotar» guarda ayer (senderismo, 7 min, 4,3 km) en tenerife.cuerpo, cierra la hoja y avisa con «Deshacer»', g23.n === 4 && g23.u === 'senderismo,7,4.3,true,true' && g23.guardado === 4 && g23.cerrada && g23.toast === 'Senderismo: 7 min y 4,3 km anotados' && g23.deshacer === 'Deshacer' && g23.min === '222' && g23.estado === '{"tgPerfil":1,"tgCuerpo":1}', JSON.stringify(g23));
     await p23.click('#tgc-toast-btn'); await p23.waitForTimeout(150);
     prueba('«Deshacer» quita lo anotado y las metas vuelven (215)', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 3 && JSON.parse(localStorage.getItem('tenerife.cuerpo')).mov.length === 3 && document.getElementById('tgc-st-min').textContent === '215'));
+    /* (8-11-2026) en bici, hoy, 60 min y 42,5 km: se guardan los km y suman al día */
+    await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(300);
+    await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="bici"]'); await p23.click('#tgc-mov-hoy'); await p23.waitForTimeout(60);
+    await escribeKm('42,5');
+    await p23.click('#tgc-mov-guardar'); await p23.waitForTimeout(450);
+    const b23 = await p23.evaluate(() => {
+      const m = TG_CUERPO.estado().mov, u = m[m.length - 1], g = JSON.parse(localStorage.getItem('tenerife.cuerpo'));
+      return { n: m.length, u: u && [u.tipo, u.min, u.km].join(','), guardado: g.mov.length && g.mov[g.mov.length - 1].km, toast: document.getElementById('tgc-toast-txt').textContent,
+        min: document.getElementById('tgc-st-min').textContent, hoy: document.querySelector('#tgc-dias7 li:nth-child(7) .tgc-dia').getAttribute('aria-label') };
+    });
+    prueba('en bici también se guardan los km: bici, 60 min y 42,5 km; avisa «Bici: 60 min y 42,5 km anotados» y hoy dice «10 series · 95 min y 45,5 km»', b23.n === 4 && b23.u === 'bici,60,42.5' && b23.guardado === 42.5
+      && b23.toast === 'Bici: 60 min y 42,5 km anotados' && b23.min === '275' && /: 10 series · 95 min y 45,5 km$/.test(b23.hoy), JSON.stringify(b23));
+    await p23.click('#tgc-toast-btn'); await p23.waitForTimeout(150);
+    prueba('…y «Deshacer» la quita (215)', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 3 && JSON.parse(localStorage.getItem('tenerife.cuerpo')).mov.length === 3 && document.getElementById('tgc-st-min').textContent === '215'));
 
     /* (8-11-2026) escrita una cifra, el primer toque en otro tipo entra: al salir del campo («change») se redibujaba
        la hoja entera y el botón tocado desaparecía. Y lo escrito se toma al escribirlo («input»): «Anotar» lo guarda
@@ -1798,20 +1823,20 @@ async function ejemplo(pg) {
     });
     await p23.waitForTimeout(250);
     const v23 = await p23.evaluate(() => TG_CUERPO.estado().mov.map(x => [x.tipo, x.min, x.km, x.t].join(':')).join(' | ') + ' // ' + document.getElementById('tgc-st-min').textContent);
-    prueba('roto: quedan 3 (99 km → 60; a nado, sin km; km negativos → 0; t raro → 0); fuera un tipo desconocido, 0 y 601 min, fechas de mañana o mal escritas, medio minuto y un texto', v23 === 'caminar:30:60:0 | nadar:30:0:0 | correr:25:0:0 // 85', v23);
+    prueba('roto: quedan 3 (99 km → 60; a nado, con sus 5 km, desde el 8-11-2026; km negativos → 0; t raro → 0); fuera un tipo desconocido, 0 y 601 min, fechas de mañana o mal escritas, medio minuto y un texto', v23 === 'caminar:30:60:0 | nadar:30:5:0 | correr:25:0:0 // 85', v23);
 
     /* «Borrar los datos» se lleva el movimiento */
     await conMov();
     await p23.evaluate(() => document.getElementById('tgc-borrar').click()); await p23.evaluate(() => document.getElementById('tgc-borrar-si').click()); await p23.waitForTimeout(200);
     prueba('«Borrar los datos» borra también el movimiento: 0 min, ningún punto, ningún rayo', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 0 && document.getElementById('tgc-st-min').textContent === '0' && !document.querySelector('#tgc-dias7 .con-mov') && [...document.querySelectorAll('#tgc-cielo .tgc-rayo')].every(r => r.getAttribute('opacity') !== '1')));
 
-    /* el asistente: «¿Cómo voy esta semana?» cuenta el movimiento (215 min y 12,5 km a pie); sin movimiento, no lo nombra */
+    /* el asistente: «¿Cómo voy esta semana?» cuenta el movimiento (215 min y 13,5 km, el de a nado también); sin movimiento, no lo nombra */
     await ejemplo(p23); await conMov();
     const pregunta = async q => { await p23.fill('#tgc-preg', q); await p23.click('#tgc-preg-enviar'); await p23.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-turno .tgc-resp-t').length > 0, null, { timeout: 15000 }).catch(() => {}); await p23.waitForTimeout(150); };
     await p23.click('#tgc-modo-p'); await p23.waitForFunction(() => { const f = document.getElementById('tgc-preg-form'); return f && !f.hidden; }, null, { timeout: 15000 }).catch(() => {});
     await pregunta('¿Cómo voy esta semana?');
     const a23 = await p23.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));
-    prueba('el asistente dice el movimiento de la semana: «215 min y 12,5 km a pie» (con «min», como la pantalla: «1 minutos» no)', a23.some(t => t === 'Movimiento anotado en 7 días: 215 min y 12,5 km a pie.'), a23.join(' | '));
+    prueba('el asistente dice el movimiento de la semana: «215 min y 13,5 km», con el km a nado (con «min», como la pantalla: «1 minutos» no)', a23.some(t => t === 'Movimiento anotado en 7 días: 215 min y 13,5 km.'), a23.join(' | '));
     await p23.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); g.mov = []; localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir({ modo: 'preguntar' }); }); await p23.waitForTimeout(200);
     await pregunta('¿Cómo voy esta semana?');
     const a23b = await p23.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));

@@ -143,11 +143,11 @@
     "cuerpoMovMinutos": {"es": "Minutos", "en": "Minutes", "fr": "Minutes", "de": "Minuten", "it": "Minuti", "nl": "Minuten", "zh": "分钟", "zht": "分鐘", "bg": "Минути", "pl": "Minuty"},
     "cuerpoMovMenos5": {"es": "5 minutos menos", "en": "5 minutes less", "fr": "5 minutes de moins", "de": "5 Minuten weniger", "it": "5 minuti in meno", "nl": "5 minuten minder", "zh": "减少 5 分钟", "zht": "減少 5 分鐘", "bg": "5 минути по-малко", "pl": "5 minut mniej"},
     "cuerpoMovMas5": {"es": "5 minutos más", "en": "5 minutes more", "fr": "5 minutes de plus", "de": "5 Minuten mehr", "it": "5 minuti in più", "nl": "5 minuten meer", "zh": "增加 5 分钟", "zht": "增加 5 分鐘", "bg": "5 минути повече", "pl": "5 minut więcej"},
-    "cuerpoMovKm": {"es": "Kilómetros a pie", "en": "Kilometres on foot", "fr": "Kilomètres à pied", "de": "Kilometer zu Fuß", "it": "Chilometri a piedi", "nl": "Kilometers te voet", "zh": "步行公里数", "zht": "步行公里數", "bg": "Километри пеша", "pl": "Kilometry pieszo"},
+    "cuerpoMovKm": {"es": "Kilómetros", "en": "Kilometres", "fr": "Kilomètres", "de": "Kilometer", "it": "Chilometri", "nl": "Kilometers", "zh": "公里数", "zht": "公里數", "bg": "Километри", "pl": "Kilometry"},
     "cuerpoMovMenosKm": {"es": "Medio kilómetro menos", "en": "Half a kilometre less", "fr": "Un demi-kilomètre de moins", "de": "Einen halben Kilometer weniger", "it": "Mezzo chilometro in meno", "nl": "Een halve kilometer minder", "zh": "减少半公里", "zht": "減少半公里", "bg": "Половин километър по-малко", "pl": "Pół kilometra mniej"},
     "cuerpoMovMasKm": {"es": "Medio kilómetro más", "en": "Half a kilometre more", "fr": "Un demi-kilomètre de plus", "de": "Einen halben Kilometer mehr", "it": "Mezzo chilometro in più", "nl": "Een halve kilometer meer", "zh": "增加半公里", "zht": "增加半公里", "bg": "Половин километър повече", "pl": "Pół kilometra więcej"},
     "cuerpoMovBoton": {"es": "Anotar {que}", "en": "Log {que}", "fr": "Noter {que}", "de": "{que} eintragen", "it": "Annota {que}", "nl": "{que} noteren", "zh": "记录 {que}", "zht": "記錄 {que}", "bg": "Запиши {que}", "pl": "Zapisz {que}"},
-    "cuerpoMovNota": {"es": "Todo suma minutos a su semana. Los kilómetros, solo a pie.", "en": "Everything adds minutes to your week. Kilometres, only on foot.", "fr": "Tout ajoute des minutes à votre semaine. Les kilomètres, seulement à pied.", "de": "Alles zählt als Minuten für Ihre Woche. Kilometer nur zu Fuß.", "it": "Tutto aggiunge minuti alla settimana. I chilometri, solo a piedi.", "nl": "Alles telt als minuten voor uw week. Kilometers alleen te voet.", "zh": "一切都计入本周的分钟数；公里数只计步行。", "zht": "一切都計入本週的分鐘數；公里數只計步行。", "bg": "Всичко добавя минути към седмицата ви. Километрите — само пеша.", "pl": "Wszystko dodaje minuty do tygodnia. Kilometry — tylko pieszo."},
+    "cuerpoMovNota": {"es": "Todo suma minutos y kilómetros a su semana.", "en": "Everything adds minutes and kilometres to your week.", "fr": "Tout ajoute des minutes et des kilomètres à votre semaine.", "de": "Alles zählt als Minuten und Kilometer für Ihre Woche.", "it": "Tutto aggiunge minuti e chilometri alla settimana.", "nl": "Alles telt als minuten en kilometers voor uw week.", "zh": "一切都计入本周的分钟数和公里数。", "zht": "一切都計入本週的分鐘數和公里數。", "bg": "Всичко добавя минути и километри към седмицата ви.", "pl": "Wszystko dodaje minuty i kilometry do tygodnia."},
     "cuerpoMovAnotado": {"es": "{tipo}: {que} anotados", "en": "{tipo}: {que} logged", "fr": "{tipo} : {que} notés", "de": "{tipo}: {que} eingetragen", "it": "{tipo}: {que} annotati", "nl": "{tipo}: {que} genoteerd", "zh": "{tipo}：已记录 {que}", "zht": "{tipo}：已記錄 {que}", "bg": "{tipo}: записани {que}", "pl": "{tipo}: zapisano {que}"},
     "cuerpoMovSinHistorial": {"es": "Aún no hay movimiento anotado.", "en": "No movement logged yet.", "fr": "Aucun mouvement noté pour l’instant.", "de": "Noch keine Bewegung eingetragen.", "it": "Ancora nessun movimento annotato.", "nl": "Nog geen beweging genoteerd.", "zh": "尚未记录运动。", "zht": "尚未記錄運動。", "bg": "Все още няма записано движение.", "pl": "Nie zapisano jeszcze żadnego ruchu."},
     "cuerpoMov_caminar": {"es": "Caminar", "en": "Walking", "fr": "Marche", "de": "Gehen", "it": "Camminata", "nl": "Wandelen", "zh": "步行", "zht": "步行", "bg": "Ходене", "pl": "Spacer"},
@@ -1691,16 +1691,18 @@
        mov: [{ d: 'AAAA-MM-DD', tipo: caminar | senderismo | correr | nadar | bici, min: 1-600, km: 0-60, t: instante }],
        comida: { on, pausa, d: { 'AAAA-MM-DD': { grupo: raciones } } } }
      (e, el id del ejercicio, solo si se anotó desde su ficha; deporte, el elegido en «Su deporte» o ''; mov, el
-     movimiento de «Anotar movimiento» (7-11-2026, bloque 4: los km solo a pie, decisión 4); comida, el diario por
-     raciones, apagado hasta que la persona lo enciende) */
+     movimiento de «Anotar movimiento» (7-11-2026, bloque 4; los km, de los cinco tipos desde el 8-11-2026);
+     comida, el diario por raciones, apagado hasta que la persona lo enciende) */
   /* los cinco tipos de movimiento, con los minutos y los km que propone la hoja al elegirlos (los de la maqueta);
-     pie: los kilómetros se piden (y, en el bloque 5, avanzarán por el GR 131: solo a pie, decisión 4) */
+     pie: los kilómetros se piden (y, en el bloque 5, avanzarán por el GR 131). Desde el 8-11-2026, en los cinco:
+     Jerome, de nadar y de la bici, «Cuentan también» (la decisión 4; antes, solo a pie). A nado y en bici la hoja
+     empieza en 0 km */
   var MOV = [
     { id: 'caminar', min: 30, km: 2.5, pie: true },
     { id: 'senderismo', min: 120, km: 8, pie: true },
     { id: 'correr', min: 30, km: 5, pie: true },
-    { id: 'nadar', min: 30, km: 0, pie: false },
-    { id: 'bici', min: 60, km: 0, pie: false }
+    { id: 'nadar', min: 30, km: 0, pie: true },
+    { id: 'bici', min: 60, km: 0, pie: true }
   ];
   var MOV_IDS = MOV.map(function (m) { return m.id; });
   var MIN_MAX = 600, KM_MAX = 60, MAX_MOV = 2000;
@@ -1732,7 +1734,7 @@
       }).slice(-MAX_ENTRADAS);
     }
     /* el movimiento (bloque 4): el tipo, de la lista; los minutos, enteros de 1 a 600; los km, de 0 a 60 con un
-       decimal y solo a pie (a nado o en bici, 0) */
+       decimal, en los tipos que los piden (desde el 8-11-2026, los cinco) */
     if (Array.isArray(s.mov)) {
       r.mov = s.mov.filter(function (x) {
         return x && typeof x === 'object' && esFecha(x.d) && x.d <= max && x.d >= min && MOV_IDS.indexOf(x.tipo) >= 0 &&
@@ -2749,8 +2751,8 @@
     antesDeCifras = null;
   }
   /* ── «Anotar movimiento» (7-11-2026, bloque 4): la misma hoja, con su página. Qué ha hecho (cinco tipos),
-     los minutos (±5, o escritos), los kilómetros a pie (±0,5, o escritos; solo caminar, senderismo y correr:
-     decisión 4), hoy o ayer; «Anotar» guarda, cierra y avisa con «Deshacer». Debajo, lo último anotado, con ×.
+     los minutos (±5, o escritos), los kilómetros (±0,5, o escritos; desde el 8-11-2026, también a nado y en
+     bici), hoy o ayer; «Anotar» guarda, cierra y avisa con «Deshacer». Debajo, lo último anotado, con ×.
      Todo queda en tenerife.cuerpo, en el dispositivo; los kilómetros del perfil (su pestaña «Evolución», que se
      suben a la cuenta con permiso) no se tocan ── */
   var movAbierto = false, movHistoria = false, antesDeMov = null, movSel = null;
@@ -3255,7 +3257,7 @@
     function nombres(gs) { return lista(gs.map(nombre)); }
     if (id === 'mi-semana') {
       var hechos = GRUPOS.filter(function (g) { return R.series[g] > 0; });
-      /* (bloque 4) los minutos y los km a pie de la semana; sin movimiento, min vale null y el párrafo que lo
+      /* (bloque 4) los minutos y los km de la semana; sin movimiento, min vale null y el párrafo que lo
          nombra no sale (tarjetaRespuesta) */
       return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos), min: R.min || null, km: fmtN(R.km, 1) } };
     }
@@ -4767,7 +4769,7 @@
         </div>
       </div>
       <div class="tgc-fila-ctl" id="tgc-mov-km-fila">
-        <span id="tgc-mov-km-l">Kilómetros a pie</span>
+        <span id="tgc-mov-km-l">Kilómetros</span>
         <div class="tgc-paso">
           <button type="button" id="tgc-mov-km-menos">−</button>
           <input type="text" class="tgc-km" id="tgc-mov-km" inputmode="decimal" autocomplete="off" value="2,5" aria-labelledby="tgc-mov-km-l">
