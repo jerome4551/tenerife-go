@@ -185,8 +185,11 @@ console.log('\n=== lugares ===');
    Esta cifra subio una vez por sesion de gasolineras hasta la ultima alta, y se
    cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea.
    980 -> 979 el 31 de octubre de 2026: la bodega Cueva del Rey (Icod), cerrada.
-   Jerome: «Cerrado permanentemente quítala». */
-debe('lugares', PLACES.length, PLACES.length === 979);
+   Jerome: «Cerrado permanentemente quítala».
+   979 -> 980 el 8 de noviembre de 2026: la etapa 2 del GR-131, La Caldera - El
+   Portillo (gr131-etapa2-caldera-portillo). Jerome: «La etapa 2 créala si los datos
+   son reales». */
+debe('lugares', PLACES.length, PLACES.length === 980);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

@@ -27,7 +27,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **979**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
+| Lugares | **980**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -8776,7 +8776,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3371 filas (y 5.519 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3371 filas (y 5.521 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9040,11 +9040,11 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **979** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **979** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **980** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **980** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
-| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
+| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **117** · 0 huérfanos |
 | De esos, `warn:"mar"` | **50** |
 | URLs de lugar sin cifrar | **0** de 22 |
 
@@ -9055,6 +9055,8 @@ y «786» con 162 y 980. Las URLs pasaron de 16 a 18 el 30 de octubre: las dos
 fuentes del estado (Los Patos y la Bodega Frontos). Y los lugares, de 980 a
 979 el 31 de octubre: la bodega Cueva del Rey, cerrada. Ese día, las URLs, a
 22: las fuentes de los cuatro cerrados nuevos (Punta de Teno y Las Hayas).
+Los lugares, de 979 a 980 el 8 de noviembre: la etapa 2 del GR-131, La
+Caldera – El Portillo; y con ella, los avisos `warn`, de 116 a 117 («sendero»).
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no

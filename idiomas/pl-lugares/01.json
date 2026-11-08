@@ -261,6 +261,10 @@
   "desc": "Pierwszy odcinek szlaku dalekobieżnego GR-131, który przecina całą wyspę. 29,8 km, 14 h 20 min, na wysokości od 915 do 1819 m n.p.m.; suma podejść 1853 m, suma zejść 1568 m. Rusza z wioski La Esperanza (grzbiet) i biegnie chronionym borem sosnowym do strefy rekreacyjnej La Caldera (Aguamansa). Lasy sosny kanaryjskiej, charakterystyczna mistyczna mgła. Szlak biało-czerwony, w trakcie oficjalnego zatwierdzania. Trudność bardzo wysoka. Etapy jednodniowe. Autobus: linia 41 przewoźnika Transportes La Esperanza, z dworca autobusowego w La Lagunie (Intercambiador) do Las Rosas w La Esperanza, codziennie.",
   "cat": "GR-131 odcinek 1 · Cumbre Dorsal (Bardzo wysoka · 29,8 km · 14 h 20 min)"
  },
+ "gr131-etapa2-caldera-portillo": {
+  "desc": "Odcinek 2 szlaku GR-131 Anaga-Chasna. Rusza ścieżką z parkingu strefy rekreacyjnej La Caldera (Aguamansa), w borze sosnowym przecina szlak SL-TF 81 Camino de La Orilla del Monte i mija krzyż Cruz del Dornajito. Ścieżkami i odcinkami duktu wspina się bez przerwy dawnym Traktem Królewskim Chasna aż do skrzyżowania El Portillo, przy Centrum dla Zwiedzających, już w Parku Narodowym Teide. 13,1 km, 5 h 40 min, do wysokości 2033 m n.p.m.; suma podejść 1188 m, suma zejść 347 m. Szlak w trakcie oficjalnego zatwierdzania. Trudność średnia.",
+  "cat": "GR-131 odcinek 2 · La Orotava (Średnia · 13,1 km · 5 h 40 min)"
+ },
  "gr131-tramo5-vilaflor-arona": {
   "desc": "Ostatni etap GR-131 na Teneryfie, dojście na turystyczne południe. 17,7 km, 7 h 20 min, na wysokości od 627 do 1610 m n.p.m.; suma podejść 597 m, suma zejść 1394 m. Rusza spod kościoła San Pedro w Vilaflor, mija kaplicę San Roque i przysiółek Ifonche i dochodzi do placu La Salud w historycznym centrum Arony. Sosna kanaryjska na początku, dalej niski busz tabaib i wilczomleczy. Widoki na La Gomerę. Zamknięcie wyspiarskiej trasy, która zaczęła się w La Esperanza. Trudność wysoka. Powrót autobusem 482/480 z Arony.",
   "cat": "GR-131 odcinek 5 · Południe (Wysoka · 17,7 km · 7 h 20 min)"

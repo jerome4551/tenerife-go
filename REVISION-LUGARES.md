@@ -1,7 +1,7 @@
-# Revisión de los 979 lugares
+# Revisión de los 980 lugares
 
-**31 de octubre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 979, no una muestra. Lo que no se puede comprobar desde aquí sale
+**8 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
+Barre los 980, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 164 verificadas con su fuente · 815 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 165 verificadas con su fuente · 815 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -98,7 +98,7 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **164** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **165** |
 | Coordenada nunca comprobada por nadie | **815** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
@@ -154,6 +154,7 @@ De dónde viene cada una:
 | `gas-tf82-guia-isora` | 2026-10-03 | Registro del MITECO, IDEESS 9176 (Shell · Avenida Isora). Regla del LEEME de gasolineras: misma marca a 150-300 m -> coordenada del registro. Antes 28.2137, -16.7829, a 166 m. |
 | `golf-amarilla` | 2026-09-27 | OSM del repositorio: «Amarilla Golf» (golf_course), el UNICO con ese nombre en toda la isla, y cae en San Miguel de Abona, que es lo que dice la ficha (tools/municipio_raya.py: 13 de 14 paradas sin raya en medio, todas de San Miguel). El pin redondo estaba a 1.919 m. |
 | `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
+| `gr131-etapa2-caldera-portillo` | 2026-11-08 | Webtenerife, track oficial (GPX) del tramo Area Recreativa La Caldera - El Portillo del GR 131: primer punto 28.357870, -16.502259, redondeado a 4 decimales (8-11-2026) |
 | `hiperdino-los-realejos` | 2026-09-29 | SuperDino, ficha de la propia empresa en Google: «SuperDino Los Realejos, Pl. Mencey Bencomo, s/n, 38410 Los Realejos», tel. 922 44 16 81. Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM (node/8428054218) esta a 27 m de la Plaza Mencey Bencomo. |
 | `jardines-victoria-orotava` | 2026-10-17 | OSM area/25092134 «Jardines del marquesado de la Quinta Roja», punto dentro del poligono; Turismo de Tenerife, ficha «Victoria Gardens»: «C/ Tomás Pérez s/n - Plaza de la Constitución, s/n»  [datos/entregas/lanzamiento-lugares.json] |
 | `las-vistas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -331,14 +332,14 @@ cuáles, así que desde aquí no se pueden separar.
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 979, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 980, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **29** |
 | 3 | ~110 m | **138** |
-| 4 | ~11 m | **554** |
+| 4 | ~11 m | **555** |
 | 5 | ~1 m | **42** |
 | 6 | ~10 cm | **188** |
 | 7 | ~1 cm | **25** |
@@ -519,12 +520,12 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 979
+  lugares....................................... 980
     que nombran un municipio.................... 510
     de esos, comprobados contra el POLIGONO del Cabildo 500
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
-  no declaran municipio......................... 454
+  no declaran municipio......................... 455
 
   nombran una ZONA, que no es un municipio: no hay nada que comprobar
       bici-alquiler-sur             dice «Las Américas»  ·  el poligono dice «Adeje»
@@ -564,7 +565,7 @@ que cada semana saliera una lista nueva.
 | **Que el sitio exista** | pasó con `charco-infierno-arafo` y con `montana-colorada`, que se dieron de baja. No hay forma de saberlo sin una fuente de fuera |
 | **Horarios, precios y teléfonos** | cambian y no hay contra qué contrastarlos |
 | **Lo que dice cada descripción** | que un pueblo sea «famoso por sus aguacates» no se puede verificar con lo que hay dentro del repositorio |
-| **El municipio de 454 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
+| **El municipio de 455 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
 | **El de 15 más** | solo nombran una zona que abarca varios municipios, no un municipio |
 | **El de 10 que sí lo nombran** | el punto cae en el agua, fuera de todos los polígonos: no hay con qué compararlo |
 
@@ -573,16 +574,16 @@ tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 979
+## 6 · Lo que sí queda comprobado sobre los 980
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **979 de 979** |
-| Caen en tierra (capa `earth` de OSM) | **970** de 979; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
-| Ids únicos y con el formato `[a-z0-9-]` | **979** de 979 |
-| Tienen `desc` y `cat` en los diez idiomas | **979** de 979 |
+| Caen dentro de la caja de Tenerife | **980 de 980** |
+| Caen en tierra (capa `earth` de OSM) | **971** de 980; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **980** de 980 |
+| Tienen `desc` y `cat` en los diez idiomas | **980** de 980 |
 | Referencias huérfanas desde el planificador | **0** de 162 |
 | Zonas de baño sin orientación | **0** de 100 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |
 | Colores fuera de `#rrggbb` | **0** |
-| Avisos `warn` cuyo tipo no existe | **0** de 116 |
+| Avisos `warn` cuyo tipo no existe | **0** de 117 |
