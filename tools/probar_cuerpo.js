@@ -1500,7 +1500,10 @@ async function ejemplo(pg) {
       ['sin WebGL 2', { tresD: true }, () => { const g = HTMLCanvasElement.prototype.getContext; HTMLCanvasElement.prototype.getContext = function (t) { return t === 'webgl2' ? null : g.apply(this, arguments); }; }, 'no', 0],
       ['con el 3D apagado (tenerife.cuerpo.3d = «no»)', {}, null, 'no', 0],
       ['sin el motor (modulos/cuerpo3d.js no llega)', { tresD: true, corta: /modulos\/cuerpo3d\.js/ }, null, 'no', 1],
-      ['sin un fichero de datos (cuerpo-a1 no llega)', { tresD: true, corta: /cuerpo-a1\./ }, null, 'no', -1]
+      ['sin un fichero de datos (cuerpo-a1 no llega)', { tresD: true, corta: /cuerpo-a1\./ }, null, 'no', -1],
+      /* (8-11-2026) una textura que no llega: antes el 3D se quedaba «cargando» toda la sesión (listo() no avisaba
+         nunca) y al volver a abrir no se intentaba otra vez */
+      ['sin una textura (la del ojo no llega)', { tresD: true, corta: /tex-ojo\./ }, null, 'no', -1]
     ];
     for (const [nombre, opc, prep, estadoQueToca, nPed] of casos) {
       const cx = await contexto(b, opc), px = await cx.newPage(), ex = [], ped = []; vigilar(px, ex);
@@ -1600,6 +1603,40 @@ async function ejemplo(pg) {
       };
       prueba('el mapa de músculos va a la tarjeta con los bytes que lee el toque, de un lienzo de lectura, y no con la imagen ni con createImageBitmap (WebKit)',
         r.bytes && r.lectura && !r.imagenBitmap, JSON.stringify(r));
+    }
+
+    /* (8-11-2026) ninguna llamada de dibujo del 3D rechazada por WebGL, tampoco en el primer cuadro. Antes, el primer
+       cuadro daba tres INVALID_OPERATION («Mismatch between texture format and sampler type»): la textura de la sombra
+       se quedaba en la unidad 0, la que lee uTex, y una textura nueva se creaba en la unidad activa, la 7, pisando la
+       sombra. Ahora la sombra vive en la 7 y las texturas se crean en la 6, que ningún sombreador lee. Se cuenta
+       getError() tras cada llamada de dibujo del lienzo del 3D (el del mapa no cuenta). Pasa cuando el cuerpo llega
+       antes que el resto de las piezas, como por la red de un móvil: el primer cuadro pide entonces las texturas a
+       mitad del dibujo. Aquí todo llega a la vez y aspecto() las pide antes, en la 0; por eso el pelo y las zapatillas
+       se retrasan 1,5 s (sin el retraso, el motor de antes también salía en verde) */
+    {
+      const cg = await contexto(b, { tresD: true }), pg = await cg.newPage(), eg = []; vigilar(pg, eg);
+      await pg.route(/\/datos\/cuerpo3d\/(pelo|zapatillas)[^/]*\.bin$/, async r => { await new Promise(res => setTimeout(res, 1500)); return r.continue(); });
+      await pg.addInitScript(() => {
+        const P = WebGL2RenderingContext.prototype; window.__gl3d = { llamadas: 0, mal: [] };
+        for (const n of ['drawElements', 'drawArrays']) {
+          const o = P[n];
+          P[n] = function () {
+            const r = o.apply(this, arguments);
+            if (this.canvas && this.canvas.id === 'tgc-lienzo') {
+              const g = window.__gl3d, e = this.getError(); g.llamadas++;
+              if (e && g.mal.length < 10) g.mal.push(n + ' n.º ' + g.llamadas + ': ' + e);
+            }
+            return r;
+          };
+        }
+      });
+      await abrirApp(pg); await abrirPerfilCuerpo(pg); await suCuerpo(pg);
+      await pg.waitForFunction(() => ['activo', 'reserva'].includes(TG_CUERPO.tresD().estado), null, { timeout: 60000 }).catch(() => {});
+      await pg.waitForTimeout(1000);
+      const rg = await pg.evaluate(() => ({ estado: TG_CUERPO.tresD().estado, llamadas: window.__gl3d.llamadas, mal: window.__gl3d.mal }));
+      prueba('ninguna llamada de dibujo del 3D rechazada por WebGL, tampoco en el primer cuadro (la sombra en su unidad; las texturas nuevas, en otra)',
+        rg.estado === 'activo' && rg.llamadas > 20 && rg.mal.length === 0 && eg.length === 0, JSON.stringify(rg) + ' ' + eg.join(' | '));
+      await cg.close();
     }
   }
 

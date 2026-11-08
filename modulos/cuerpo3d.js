@@ -391,8 +391,11 @@
       return { p: p, u: u };
     }
     var PR = { piel: programa(FS_PIEL), ojo: programa(FS_OJO), pelo: programa(FS_PELO), vello: programa(FS_VELLO), tela: programa(FS_TELA), calz: programa(FS_CALZ), prof: programa(FS_PROF), lente: programa(FS_LENTE) };
-    /* el mapa de sombras: una textura de profundidad vista desde el sol */
+    /* el mapa de sombras: una textura de profundidad vista desde el sol. Vive en la unidad 7, la que leen los
+       sombreadores (uSombra), y no en la 0: el primer cuadro dibujaba la sombra con ella en la 0, que es la de uTex
+       (un sampler2D), y WebGL rechazaba esas llamadas (8-11-2026) */
     var SM = 1024, somTex = gl.createTexture(), somFbo = gl.createFramebuffer();
+    gl.activeTexture(gl.TEXTURE7);
     gl.bindTexture(gl.TEXTURE_2D, somTex);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.DEPTH_COMPONENT24, SM, SM, 0, gl.DEPTH_COMPONENT, gl.UNSIGNED_INT, null);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
@@ -939,16 +942,27 @@
     }
 
     /* --- texturas --- */
-    var T = {}, pendientes = 0, alListo = [], fallos = [];
+    /* Se crean y se cargan en la unidad 6, que ningún sombreador lee (las texturas van en la 0 a la 3, y la sombra en
+       la 7). En la unidad activa, como antes, una textura nueva pisaba la que estuviera allí: tex(0, textura(…))
+       crea la textura antes de pasar a la 0, con la 7 aún activa tras comunes(), y la sombra se quedaba sin su
+       textura en esa llamada; WebGL la rechazaba (8-11-2026). Y una textura que no llega cuenta como hecha para
+       listo(), y preparado() no da por bueno un cuerpo al que le falta una: queda el dibujo, y se vuelve a intentar */
+    var T = {}, pendientes = 0, alListo = [], fallos = [], CARGA = 6;
+    function hecha() {
+      pendientes--;
+      if (!pendientes) { var l = alListo; alListo = []; l.forEach(function (f) { f(); }); }
+    }
     function textura(clave) {
       if (T[clave]) return T[clave];
       var t = gl.createTexture(); T[clave] = t;
+      gl.activeTexture(gl.TEXTURE0 + CARGA);
       gl.bindTexture(gl.TEXTURE_2D, t);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([128, 128, 128, 0]));
       if (!D.tex[clave]) return t;
       pendientes++;
       var im = new Image();
       im.onload = function () {
+        gl.activeTexture(gl.TEXTURE0 + CARGA);
         gl.bindTexture(gl.TEXTURE_2D, t);
         gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
         gl.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL, gl.NONE);
@@ -970,10 +984,9 @@
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
         var e = gl.getExtension('EXT_texture_filter_anisotropic');
         if (e && clave !== 'mus_id') gl.texParameterf(gl.TEXTURE_2D, e.TEXTURE_MAX_ANISOTROPY_EXT, 4);
-        pendientes--; pide();
-        if (!pendientes) { var l = alListo; alListo = []; l.forEach(function (f) { f(); }); }
+        pide(); hecha();
       };
-      im.onerror = function () { pendientes--; fallos.push(clave); if (opc.alFallar) opc.alFallar(clave); };
+      im.onerror = function () { fallos.push(clave); if (opc.alFallar) opc.alFallar(clave); hecha(); };
       im.src = D.tex[clave];      /* una URL (la app) o un data: (la maqueta) */
       return t;
     }
@@ -1335,8 +1348,8 @@
         var alto = D.alto[vr()], y = alto + 0.7 - (alto + 1.4) * E.barr, visto = alto * 1.10 / E.zoom, cy = E.cy == null ? alto * 0.5 : E.cy;
         return (0.5 - (y - cy) / visto) * lienzo.clientHeight;
       },
-      /* true cuando el cuerpo ya se ha dibujado con la variante pedida y sin texturas pendientes */
-      preparado: function () { var m = M.cuerpo; return !!(dibujado && m && m.var === variante() && !pendientes); },
+      /* true cuando el cuerpo ya se ha dibujado con la variante pedida, sin texturas pendientes y sin ninguna que no llegara */
+      preparado: function () { var m = M.cuerpo; return !!(dibujado && m && m.var === variante() && !pendientes && !fallos.length); },
       /* lo que la malla tiene de verdad: la variante del cuerpo en pantalla y las mallas creadas */
       tiene: function () { var m = M.cuerpo; return { variante: m ? m.var : null, mallas: Object.keys(M), fallos: fallos.slice() }; },
       /* han llegado datos nuevos (mallas, variantes, texturas): se tienen en cuenta en el próximo cuadro */
