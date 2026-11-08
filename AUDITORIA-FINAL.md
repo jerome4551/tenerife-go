@@ -8901,7 +8901,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3448 filas (y 5.598 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3489 filas (y 5.639 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9034,7 +9034,14 @@ bloque 6 (los sellos y la postal): 42 filas más en `CUERPO_UI` (494): «Sus sel
 subtítulo, la cuenta, lo conseguido y lo pendiente, los once nombres y sus condiciones, el aviso de
 la hoja, la tarjeta de la celebración con sus frases y «Seguir») y «Su postal» (el título, el texto,
 «Crear mi postal», «Preparando…», el lema y los tres pies de la imagen, su texto alternativo, cómo
-guardarla, «Compartir», «Guardar la imagen», «Cerrar» y el fallo): 3448 y 5.598. El
+guardarla, «Compartir», «Guardar la imagen», «Cerrar» y el fallo): 3448 y 5.598. Y esa noche,
+el bloque 7 (el movimiento, deporte a deporte): 42 filas más en `CUERPO_UI` y una menos (535): los
+nueve deportes nuevos de «Anotar movimiento», los metros a nado, el desnivel, la intensidad (sus dos
+nombres, la prueba del habla y el «por dos» de la OMS), la tarjeta de la meta de un adulto, las notas
+de la hoja según el deporte, «Por deporte» (las veces, las inmersiones, el tiempo, el ritmo y el
+desnivel), lo que aconseja la DAN antes de volar, lo que cuenta para la travesía (a pie, en bici, a
+nado, en kayak) y dos párrafos de «Las cifras»; fuera, la nota de a nado o en bici del bloque 5:
+3489 y 5.639. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

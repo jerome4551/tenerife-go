@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (494 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (535 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -133,12 +133,13 @@
     "cuerpoMetaHecha": {"es": "Meta cumplida", "en": "Goal met", "fr": "Objectif atteint", "de": "Ziel erreicht", "it": "Obiettivo raggiunto", "nl": "Doel gehaald", "zh": "已达成目标", "zht": "已達成目標", "bg": "Целта е постигната", "pl": "Cel osiągnięty"},
     "cuerpoMetaFuerzaDe": {"es": "de {n} días con fuerza", "en": "of {n} strength days", "fr": "sur {n} jours de renforcement", "de": "von {n} Krafttagen", "it": "di {n} giorni di forza", "nl": "van {n} krachtdagen", "zh": "目标：{n} 天力量训练", "zht": "目標：{n} 天肌力訓練", "bg": "от {n} дни със силови упражнения", "pl": "z {n} dni treningu siłowego"},
     "cuerpoMetaMovDe": {"es": "de {n} min de movimiento", "en": "of {n} min of movement", "fr": "sur {n} min de mouvement", "de": "von {n} Min. Bewegung", "it": "di {n} min di movimento", "nl": "van {n} min beweging", "zh": "目标：{n} 分钟运动", "zht": "目標：{n} 分鐘運動", "bg": "от {n} мин движение", "pl": "z {n} min ruchu"},
+    "cuerpoMetaMovDeEq": {"es": "de {n} min (intensos ×2)", "en": "of {n} min (vigorous ×2)", "fr": "sur {n} min (soutenues ×2)", "de": "von {n} Min. (intensive ×2)", "it": "di {n} min (vigorosi ×2)", "nl": "van {n} min (zware ×2)", "zh": "目标：{n} 分钟（高强度×2）", "zht": "目標：{n} 分鐘（高強度×2）", "bg": "от {n} мин (интензивни ×2)", "pl": "z {n} min (intensywne ×2)"},
     "cuerpoMetaGruposDe": {"es": "de {n} grupos trabajados", "en": "of {n} groups worked", "fr": "sur {n} groupes travaillés", "de": "von {n} trainierten Gruppen", "it": "di {n} gruppi allenati", "nl": "van {n} getrainde groepen", "zh": "目标：{n} 个肌群", "zht": "目標：{n} 個肌群", "bg": "от {n} тренирани групи", "pl": "z {n} ćwiczonych grup"},
     "cuerpoMin": {"es": "{n} min", "en": "{n} min", "fr": "{n} min", "de": "{n} Min.", "it": "{n} min", "nl": "{n} min", "zh": "{n}分钟", "zht": "{n}分鐘", "bg": "{n} мин", "pl": "{n} min"},
     "cuerpoMinKm": {"es": "{min} min y {km} km", "en": "{min} min and {km} km", "fr": "{min} min et {km} km", "de": "{min} Min. und {km} km", "it": "{min} min e {km} km", "nl": "{min} min en {km} km", "zh": "{min}分钟和{km}公里", "zht": "{min}分鐘和{km}公里", "bg": "{min} мин и {km} км", "pl": "{min} min i {km} km"},
     "cuerpoSemanaLeyenda": {"es": "Sus últimos 7 días: las series y el movimiento de cada día", "en": "Your last 7 days: each day’s sets and movement", "fr": "Vos 7 derniers jours : les séries et le mouvement de chaque jour", "de": "Ihre letzten 7 Tage: die Sätze und die Bewegung jedes Tages", "it": "Gli ultimi 7 giorni: le serie e il movimento di ogni giorno", "nl": "Uw afgelopen 7 dagen: de sets en de beweging van elke dag", "zh": "过去 7 天：每天的组数和运动", "zht": "過去 7 天：每天的組數和運動", "bg": "Вашите последни 7 дни: сериите и движението за всеки ден", "pl": "Ostatnie 7 dni: serie i ruch każdego dnia"},
     "cuerpoMovAnotar": {"es": "Anotar movimiento", "en": "Log movement", "fr": "Noter du mouvement", "de": "Bewegung eintragen", "it": "Annotare il movimento", "nl": "Beweging noteren", "zh": "记录运动", "zht": "記錄運動", "bg": "Записване на движение", "pl": "Zapisywanie ruchu"},
-    "cuerpoMovLema": {"es": "Caminar, subir, nadar: lo que haga en la isla cuenta.", "en": "Walking, climbing, swimming: whatever you do on the island counts.", "fr": "Marcher, grimper, nager : tout ce que vous faites sur l’île compte.", "de": "Gehen, Steigen, Schwimmen: Alles, was Sie auf der Insel tun, zählt.", "it": "Camminare, salire, nuotare: tutto ciò che si fa sull’isola conta.", "nl": "Wandelen, klimmen, zwemmen: alles wat u op het eiland doet, telt.", "zh": "步行、登高、游泳：您在岛上做的一切都算数。", "zht": "步行、登高、游泳：您在島上做的一切都算數。", "bg": "Ходене, изкачване, плуване: всичко, което правите на острова, се брои.", "pl": "Spacer, wspinaczka, pływanie: liczy się wszystko, co robi się na wyspie."},
+    "cuerpoMovLema": {"es": "Cada deporte, con sus datos: lo que haga en la isla cuenta.", "en": "Each sport with its own data: whatever you do on the island counts.", "fr": "Chaque sport avec ses propres données : tout ce que vous faites sur l’île compte.", "de": "Jede Sportart mit ihren eigenen Daten: Alles, was Sie auf der Insel tun, zählt.", "it": "Ogni sport con i suoi dati: tutto ciò che si fa sull’isola conta.", "nl": "Elke sport met zijn eigen gegevens: alles wat u op het eiland doet, telt.", "zh": "每项运动记录各自的数据：您在岛上做的一切都算数。", "zht": "每項運動記錄各自的資料：您在島上做的一切都算數。", "bg": "Всеки спорт със своите данни: всичко, което правите на острова, се брои.", "pl": "Każdy sport z własnymi danymi: liczy się wszystko, co robi się na wyspie."},
     "cuerpoMovQue": {"es": "Qué ha hecho", "en": "What you did", "fr": "Ce que vous avez fait", "de": "Was Sie gemacht haben", "it": "Che cosa ha fatto", "nl": "Wat u hebt gedaan", "zh": "做了什么", "zht": "做了什麼", "bg": "Какво направихте", "pl": "Rodzaj ruchu"},
     "cuerpoMovMinutos": {"es": "Minutos", "en": "Minutes", "fr": "Minutes", "de": "Minuten", "it": "Minuti", "nl": "Minuten", "zh": "分钟", "zht": "分鐘", "bg": "Минути", "pl": "Minuty"},
     "cuerpoMovMenos5": {"es": "5 minutos menos", "en": "5 minutes less", "fr": "5 minutes de moins", "de": "5 Minuten weniger", "it": "5 minuti in meno", "nl": "5 minuten minder", "zh": "减少 5 分钟", "zht": "減少 5 分鐘", "bg": "5 минути по-малко", "pl": "5 minut mniej"},
@@ -154,7 +155,7 @@
     "cuerpoMov_correr": {"es": "Correr", "en": "Running", "fr": "Course à pied", "de": "Laufen", "it": "Corsa", "nl": "Hardlopen", "zh": "跑步", "zht": "跑步", "bg": "Бягане", "pl": "Bieganie"},
     "cuerpoMov_nadar": {"es": "Nadar", "en": "Swimming", "fr": "Natation", "de": "Schwimmen", "it": "Nuoto", "nl": "Zwemmen", "zh": "游泳", "zht": "游泳", "bg": "Плуване", "pl": "Pływanie"},
     "cuerpoMov_bici": {"es": "Bici", "en": "Cycling", "fr": "Vélo", "de": "Radfahren", "it": "Bici", "nl": "Fietsen", "zh": "骑车", "zht": "騎車", "bg": "Колело", "pl": "Rower"},
-    "cuerpoRecoMovAdulto": {"es": "La OMS (2020) recomienda a los adultos de 150 a 300 minutos de actividad moderada a la semana: caminar a buen paso, nadar, pedalear.", "en": "The WHO (2020) recommends that adults do 150 to 300 minutes of moderate activity a week: brisk walking, swimming, cycling.", "fr": "L’OMS (2020) recommande aux adultes 150 à 300 minutes d’activité modérée par semaine : marche rapide, natation, vélo.", "de": "Die WHO (2020) empfiehlt Erwachsenen 150 bis 300 Minuten moderate Aktivität pro Woche: zügiges Gehen, Schwimmen, Radfahren.", "it": "L’OMS (2020) raccomanda agli adulti da 150 a 300 minuti di attività moderata a settimana: camminata a passo svelto, nuoto, bicicletta.", "nl": "De WHO (2020) raadt volwassenen 150 tot 300 minuten matige activiteit per week aan: stevig wandelen, zwemmen, fietsen.", "zh": "世卫组织（2020）建议成年人每周进行 150 至 300 分钟的中等强度活动：快走、游泳、骑车。", "zht": "世界衛生組織（2020）建議成年人每週進行 150 至 300 分鐘的中等強度活動：快走、游泳、騎車。", "bg": "СЗО (2020) препоръчва на възрастните от 150 до 300 минути умерена активност седмично: бързо ходене, плуване, колоездене.", "pl": "WHO (2020) zaleca dorosłym od 150 do 300 minut umiarkowanej aktywności tygodniowo: szybki marsz, pływanie, jazdę na rowerze."},
+    "cuerpoRecoMovAdulto": {"es": "La OMS (2020) recomienda a los adultos de 150 a 300 minutos de actividad moderada a la semana, como caminar a buen paso, o de 75 a 150 de actividad intensa, como correr: cada minuto intenso cuenta por dos.", "en": "The WHO (2020) recommends that adults do 150 to 300 minutes of moderate activity a week, such as brisk walking, or 75 to 150 minutes of vigorous activity, such as running: each vigorous minute counts as two.", "fr": "L’OMS (2020) recommande aux adultes 150 à 300 minutes d’activité modérée par semaine, comme la marche rapide, ou 75 à 150 minutes d’activité soutenue, comme la course : chaque minute soutenue compte double.", "de": "Die WHO (2020) empfiehlt Erwachsenen pro Woche 150 bis 300 Minuten Aktivität mit moderater Intensität, etwa zügiges Gehen, oder 75 bis 150 Minuten mit hoher Intensität, etwa Laufen: Jede Minute mit hoher Intensität zählt doppelt.", "it": "L’OMS (2020) raccomanda agli adulti da 150 a 300 minuti di attività moderata a settimana, come camminare a passo svelto, o da 75 a 150 di attività vigorosa, come correre: ogni minuto vigoroso conta doppio.", "nl": "De WHO (2020) raadt volwassenen per week 150 tot 300 minuten matige activiteit aan, zoals stevig wandelen, of 75 tot 150 minuten zware activiteit, zoals hardlopen: elke zware minuut telt dubbel.", "zh": "世卫组织（2020）建议成年人每周进行 150 至 300 分钟中等强度活动（如快走），或 75 至 150 分钟高强度活动（如跑步）：一分钟高强度算作两分钟。", "zht": "世界衛生組織（2020）建議成年人每週進行 150 至 300 分鐘中等強度活動（如快走），或 75 至 150 分鐘高強度活動（如跑步）：一分鐘高強度算作兩分鐘。", "bg": "СЗО (2020) препоръчва на възрастните от 150 до 300 минути умерена активност седмично, например бързо ходене, или от 75 до 150 минути интензивна, например бягане: всяка интензивна минута се брои за две.", "pl": "WHO (2020) zaleca dorosłym od 150 do 300 minut umiarkowanej aktywności tygodniowo, np. szybkiego marszu, albo od 75 do 150 minut intensywnej, np. biegania: każda minuta intensywna liczy się podwójnie."},
     "cuerpoRecoMovJoven": {"es": "De 5 a 17 años, la OMS (2020) recomienda una media de 60 minutos al día de actividad moderada o intensa: 420 a la semana.", "en": "For ages 5 to 17, the WHO (2020) recommends an average of 60 minutes a day of moderate or vigorous activity: 420 a week.", "fr": "De 5 à 17 ans, l’OMS (2020) recommande en moyenne 60 minutes par jour d’activité modérée ou intense : 420 par semaine.", "de": "Für 5- bis 17-Jährige empfiehlt die WHO (2020) im Durchschnitt 60 Minuten moderate oder intensive Aktivität pro Tag: 420 pro Woche.", "it": "Dai 5 ai 17 anni l’OMS (2020) raccomanda in media 60 minuti al giorno di attività moderata o intensa: 420 a settimana.", "nl": "Voor 5- tot 17-jarigen raadt de WHO (2020) gemiddeld 60 minuten per dag matige of intensieve activiteit aan: 420 per week.", "zh": "世卫组织（2020）建议 5–17 岁的儿童青少年平均每天进行 60 分钟中等或高强度活动：每周 420 分钟。", "zht": "世界衛生組織（2020）建議 5–17 歲的兒童及青少年平均每天進行 60 分鐘中等或高強度活動：每週 420 分鐘。", "bg": "За възрастта от 5 до 17 години СЗО (2020) препоръчва средно 60 минути на ден умерена или интензивна активност: 420 седмично.", "pl": "Dzieciom i młodzieży w wieku 5–17 lat WHO (2020) zaleca średnio 60 minut dziennie umiarkowanej lub intensywnej aktywności: 420 tygodniowo."},
     /* (8-11-2026, bloque 5) «Hoy en la isla» (la zona, los chips, el consejo, la fuente) y «Cruce la isla» (el GR 131) */
     "cuerpoHoyTitulo": {"es": "Hoy en la isla", "en": "Today on the island", "fr": "Aujourd’hui sur l’île", "de": "Heute auf der Insel", "it": "Oggi sull’isola", "nl": "Vandaag op het eiland", "zh": "今天在岛上", "zht": "今天在島上", "bg": "Днес на острова", "pl": "Dziś na wyspie"},
@@ -182,17 +183,57 @@
     "cuerpoHoySol8": {"es": "Con un UV máximo de {n} hoy, la OMS pide evitar el sol del mediodía (aquí, de {a} a {b}): sombra, camiseta, crema y sombrero.", "en": "With a peak UV index of {n} today, the WHO says to avoid the midday sun (here, from {a} to {b}): shade, shirt, sunscreen and hat.", "fr": "Avec un indice UV maximal de {n} aujourd’hui, l’OMS demande d’éviter le soleil de la mi-journée (ici, de {a} à {b}) : ombre, t-shirt, crème et chapeau.", "de": "Bei einem UV-Index von maximal {n} heute rät die WHO, die Mittagssonne zu meiden (hier von {a} bis {b}): Schatten, Shirt, Sonnencreme und Hut.", "it": "Con un indice UV massimo di {n} oggi, l’OMS chiede di evitare il sole di mezzogiorno (qui dalle {a} alle {b}): ombra, maglietta, crema e cappello.", "nl": "Bij een maximale UV-index van {n} vandaag vraagt de WHO de middagzon te mijden (hier van {a} tot {b}): schaduw, shirt, zonnebrand en hoed.", "zh": "今日最高紫外线指数 {n}：世卫组织建议避开正午阳光（此地 {a} 至 {b}），并注意遮阴、穿上衣、涂防晒霜、戴帽子。", "zht": "今日最高紫外線指數 {n}：世界衛生組織建議避開正午陽光（此地 {a} 至 {b}），並注意遮蔭、穿上衣、塗防曬乳、戴帽子。", "bg": "При максимален UV индекс {n} днес СЗО препоръчва да избягвате обедното слънце (тук от {a} до {b}): сянка, тениска, крем и шапка.", "pl": "Przy maksymalnym indeksie UV {n} dziś WHO zaleca unikać słońca w południe (tutaj od {a} do {b}): cień, koszulka, krem i kapelusz."},
     "cuerpoHoySol3": {"es": "Con un UV máximo de {n} hoy, la OMS pide sombra al mediodía (aquí, de {a} a {b}), camiseta, crema y sombrero.", "en": "With a peak UV index of {n} today, the WHO says to seek shade at midday (here, from {a} to {b}), plus shirt, sunscreen and hat.", "fr": "Avec un indice UV maximal de {n} aujourd’hui, l’OMS demande de l’ombre à la mi-journée (ici, de {a} à {b}), un t-shirt, de la crème et un chapeau.", "de": "Bei einem UV-Index von maximal {n} heute rät die WHO zu Schatten in der Mittagszeit (hier von {a} bis {b}), Shirt, Sonnencreme und Hut.", "it": "Con un indice UV massimo di {n} oggi, l’OMS chiede ombra a mezzogiorno (qui dalle {a} alle {b}), maglietta, crema e cappello.", "nl": "Bij een maximale UV-index van {n} vandaag vraagt de WHO schaduw rond het middaguur (hier van {a} tot {b}), een shirt, zonnebrand en een hoed.", "zh": "今日最高紫外线指数 {n}：世卫组织建议正午时分（此地 {a} 至 {b}）寻找遮阴，并穿上衣、涂防晒霜、戴帽子。", "zht": "今日最高紫外線指數 {n}：世界衛生組織建議正午時分（此地 {a} 至 {b}）尋找遮蔭，並穿上衣、塗防曬乳、戴帽子。", "bg": "При максимален UV индекс {n} днес СЗО препоръчва сянка по обед (тук от {a} до {b}), тениска, крем и шапка.", "pl": "Przy maksymalnym indeksie UV {n} dziś WHO zaleca cień w południe (tutaj od {a} do {b}), koszulkę, krem i kapelusz."},
     "cuerpoIslaTitulo": {"es": "Cruce la isla", "en": "Cross the island", "fr": "Traversez l’île", "de": "Die Insel durchqueren", "it": "Attraversare l’isola", "nl": "Steek het eiland over", "zh": "穿越全岛", "zht": "穿越全島", "bg": "Прекосете острова", "pl": "Przejście przez wyspę"},
-    "cuerpoIslaSub": {"es": "El GR 131, de La Esperanza a Arona, con los kilómetros que ande aquí.", "en": "The GR 131, from La Esperanza to Arona, with the kilometres you walk here.", "fr": "Le GR 131, de La Esperanza à Arona, avec les kilomètres que vous marchez ici.", "de": "Der GR 131 von La Esperanza nach Arona, mit den Kilometern, die Sie hier zu Fuß gehen.", "it": "Il GR 131, da La Esperanza ad Arona, con i chilometri che si percorrono qui.", "nl": "De GR 131, van La Esperanza naar Arona, met de kilometers die u hier loopt.", "zh": "GR 131 步道，从 La Esperanza 到 Arona，用您在这里步行的公里数前进。", "zht": "GR 131 步道，從 La Esperanza 到 Arona，用您在這裡步行的公里數前進。", "bg": "GR 131, от La Esperanza до Arona, с километрите, които извървите тук.", "pl": "Szlak GR 131, z La Esperanza do Arony, z kilometrami przebytymi tu pieszo."},
+    "cuerpoIslaSub": {"es": "El GR 131, de La Esperanza a Arona, con los kilómetros que anote aquí.", "en": "The GR 131, from La Esperanza to Arona, with the kilometres you log here.", "fr": "Le GR 131, de La Esperanza à Arona, avec les kilomètres que vous notez ici.", "de": "Der GR 131 von La Esperanza nach Arona, mit den Kilometern, die Sie hier eintragen.", "it": "Il GR 131, da La Esperanza ad Arona, con i chilometri che si annotano qui.", "nl": "De GR 131, van La Esperanza naar Arona, met de kilometers die u hier noteert.", "zh": "GR 131 步道，从 La Esperanza 到 Arona，用您在这里记录的公里数前进。", "zht": "GR 131 步道，從 La Esperanza 到 Arona，用您在這裡記錄的公里數前進。", "bg": "GR 131, от La Esperanza до Arona, с километрите, които отбележите тук.", "pl": "Szlak GR 131, z La Esperanza do Arony, z kilometrami zapisanymi tutaj."},
     "cuerpoIslaDe": {"es": "de {n} km", "en": "of {n} km", "fr": "sur {n} km", "de": "von {n} km", "it": "di {n} km", "nl": "van {n} km", "zh": "共 {n} 公里", "zht": "共 {n} 公里", "bg": "от {n} км", "pl": "z {n} km"},
     "cuerpoIslaSiguiente": {"es": "Siguiente parada: {parada}, a {km}.", "en": "Next stop: {parada}, {km} to go.", "fr": "Prochaine étape : {parada}, dans {km}.", "de": "Nächster Halt: {parada}, noch {km}.", "it": "Prossima tappa: {parada}, tra {km}.", "nl": "Volgende halte: {parada}, over {km}.", "zh": "下一站：{parada}，还有 {km}。", "zht": "下一站：{parada}，還有 {km}。", "bg": "Следваща спирка: {parada}, след {km}.", "pl": "Następny przystanek: {parada}, za {km}."},
-    "cuerpoIslaCruzada": {"es": "Ha cruzado la isla: de La Esperanza a Arona, a pie.", "en": "You have crossed the island: from La Esperanza to Arona, on foot.", "fr": "Vous avez traversé l’île : de La Esperanza à Arona, à pied.", "de": "Sie haben die Insel durchquert: von La Esperanza nach Arona, zu Fuß.", "it": "Isola attraversata: da La Esperanza ad Arona, a piedi.", "nl": "U bent het eiland overgestoken: van La Esperanza naar Arona, te voet.", "zh": "您已穿越全岛：从 La Esperanza 步行到 Arona。", "zht": "您已穿越全島：從 La Esperanza 步行到 Arona。", "bg": "Прекосихте острова: от La Esperanza до Arona, пеша.", "pl": "Wyspa przebyta: z La Esperanza do Arony, pieszo."},
+    "cuerpoIslaCruzada": {"es": "Ha cruzado la isla: de La Esperanza a Arona.", "en": "You have crossed the island: from La Esperanza to Arona.", "fr": "Vous avez traversé l’île : de La Esperanza à Arona.", "de": "Sie haben die Insel durchquert: von La Esperanza nach Arona.", "it": "Isola attraversata: da La Esperanza ad Arona.", "nl": "U bent het eiland overgestoken: van La Esperanza naar Arona.", "zh": "您已穿越全岛：从 La Esperanza 到 Arona。", "zht": "您已穿越全島：從 La Esperanza 到 Arona。", "bg": "Прекосихте острова: от La Esperanza до Arona.", "pl": "Wyspa przebyta: z La Esperanza do Arony."},
     "cuerpoIslaEsquema": {"es": "Esquema", "en": "Sketch", "fr": "Schéma", "de": "Schema", "it": "Schema", "nl": "Schets", "zh": "示意图", "zht": "示意圖", "bg": "Схема", "pl": "Schemat"},
-    "cuerpoIslaMapaAria": {"es": "Esquema de Tenerife con el GR 131, de La Esperanza a Arona. Lleva {km} km.", "en": "Sketch of Tenerife with the GR 131, from La Esperanza to Arona. You have walked {km} km.", "fr": "Schéma de Tenerife avec le GR 131, de La Esperanza à Arona. Vous en êtes à {km} km.", "de": "Schema von Teneriffa mit dem GR 131 von La Esperanza nach Arona. Sie sind bei {km} km.", "it": "Schema di Tenerife con il GR 131, da La Esperanza ad Arona. Percorsi {km} km.", "nl": "Schets van Tenerife met de GR 131, van La Esperanza naar Arona. U staat op {km} km.", "zh": "特内里费示意图与 GR 131 步道，从 La Esperanza 到 Arona。已走 {km} 公里。", "zht": "特內里費示意圖與 GR 131 步道，從 La Esperanza 到 Arona。已走 {km} 公里。", "bg": "Схема на Тенерифе с GR 131, от La Esperanza до Arona. Изминати {km} км.", "pl": "Schemat Teneryfy ze szlakiem GR 131, z La Esperanza do Arony. Przebyto {km} km."},
+    "cuerpoIslaMapaAria": {"es": "Esquema de Tenerife con el GR 131, de La Esperanza a Arona. Lleva {km} km.", "en": "Sketch of Tenerife with the GR 131, from La Esperanza to Arona. You have covered {km} km.", "fr": "Schéma de Tenerife avec le GR 131, de La Esperanza à Arona. Vous en êtes à {km} km.", "de": "Schema von Teneriffa mit dem GR 131 von La Esperanza nach Arona. Sie sind bei {km} km.", "it": "Schema di Tenerife con il GR 131, da La Esperanza ad Arona. Percorsi {km} km.", "nl": "Schets van Tenerife met de GR 131, van La Esperanza naar Arona. U staat op {km} km.", "zh": "特内里费示意图与 GR 131 步道，从 La Esperanza 到 Arona。已走 {km} 公里。", "zht": "特內里費示意圖與 GR 131 步道，從 La Esperanza 到 Arona。已走 {km} 公里。", "bg": "Схема на Тенерифе с GR 131, от La Esperanza до Arona. Изминати {km} км.", "pl": "Schemat Teneryfy ze szlakiem GR 131, z La Esperanza do Arony. Przebyto {km} km."},
     "cuerpoIslaFuente": {"es": "El GR 131 Anaga–Chasna mide 85,55 km (Tenerife ON, Cabildo de Tenerife) y sus paradas están a los kilómetros de las fichas de Webtenerife: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. En el mapa, la costa sale de los límites municipales de 2015 y las paradas, de OpenStreetMap (© colaboradores de OpenStreetMap, ODbL).", "en": "The GR 131 Anaga–Chasna is 85.55 km long (Tenerife ON, Cabildo de Tenerife) and its stops are at the kilometre marks of the Webtenerife trail sheets: La Caldera 29.8 · El Portillo 42.9 · Degollada de Guajara 56.0 · Vilaflor 67.3 · Arona 85.55. On the map, the coastline comes from the 2015 municipal boundaries and the stops from OpenStreetMap (© OpenStreetMap contributors, ODbL).", "fr": "Le GR 131 Anaga–Chasna mesure 85,55 km (Tenerife ON, Cabildo de Tenerife) et ses étapes sont aux kilomètres des fiches de Webtenerife : La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Sur la carte, la côte vient des limites municipales de 2015 et les étapes, d’OpenStreetMap (© les contributeurs d’OpenStreetMap, ODbL).", "de": "Der GR 131 Anaga–Chasna ist 85,55 km lang (Tenerife ON, Cabildo de Tenerife); seine Halte liegen bei den Kilometern der Webtenerife-Wegblätter: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Auf der Karte stammt die Küste aus den Gemeindegrenzen von 2015 und die Halte aus OpenStreetMap (© OpenStreetMap-Mitwirkende, ODbL).", "it": "Il GR 131 Anaga–Chasna misura 85,55 km (Tenerife ON, Cabildo de Tenerife) e le sue tappe sono ai chilometri delle schede di Webtenerife: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Nella mappa, la costa viene dai confini municipali del 2015 e le tappe da OpenStreetMap (© collaboratori di OpenStreetMap, ODbL).", "nl": "De GR 131 Anaga–Chasna is 85,55 km lang (Tenerife ON, Cabildo de Tenerife) en de haltes liggen op de kilometers van de Webtenerife-routebladen: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Op de kaart komt de kust uit de gemeentegrenzen van 2015 en komen de haltes uit OpenStreetMap (© OpenStreetMap-bijdragers, ODbL).", "zh": "GR 131 Anaga–Chasna 步道全长 85.55 公里（Tenerife ON，特内里费岛议会），各站点位于 Webtenerife 路线资料中的公里处：La Caldera 29.8 · El Portillo 42.9 · Degollada de Guajara 56.0 · Vilaflor 67.3 · Arona 85.55。地图中的海岸线来自 2015 年市镇边界，站点来自 OpenStreetMap（© OpenStreetMap 贡献者，ODbL）。", "zht": "GR 131 Anaga–Chasna 步道全長 85.55 公里（Tenerife ON，特內里費島議會），各站點位於 Webtenerife 路線資料中的公里處：La Caldera 29.8 · El Portillo 42.9 · Degollada de Guajara 56.0 · Vilaflor 67.3 · Arona 85.55。地圖中的海岸線來自 2015 年市鎮邊界，站點來自 OpenStreetMap（© OpenStreetMap 貢獻者，ODbL）。", "bg": "GR 131 Anaga–Chasna е дълъг 85,55 км (Tenerife ON, Cabildo de Tenerife), а спирките му са на километрите от маршрутните листове на Webtenerife: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. На картата брегът е от общинските граници от 2015 г., а спирките — от OpenStreetMap (© сътрудници на OpenStreetMap, ODbL).", "pl": "Szlak GR 131 Anaga–Chasna ma 85,55 km (Tenerife ON, Cabildo de Tenerife), a jego przystanki leżą na kilometrach z kart szlaków Webtenerife: La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55. Na mapie linia brzegowa pochodzi z granic gmin z 2015 r., a przystanki z OpenStreetMap (© autorzy OpenStreetMap, ODbL)."},
     "cuerpoIslaEsquemaNota": {"es": "El trazado entre paradas es un esquema, no el sendero.", "en": "The line between stops is a sketch, not the trail itself.", "fr": "Le tracé entre les étapes est un schéma, pas le sentier.", "de": "Die Linie zwischen den Halten ist ein Schema, nicht der Weg selbst.", "it": "Il tracciato tra le tappe è uno schema, non il sentiero.", "nl": "De lijn tussen de haltes is een schets, niet het pad zelf.", "zh": "站点之间的线路为示意，并非实际步道。", "zht": "站點之間的線路為示意，並非實際步道。", "bg": "Линията между спирките е схема, а не самата пътека.", "pl": "Linia między przystankami to schemat, nie sam szlak."},
     "cuerpoIslaTrazadoDe": {"es": "El trazado del GR 131 del mapa es el oficial: {fuente}.", "en": "The GR 131 line on the map is the official track: {fuente}.", "fr": "Le tracé du GR 131 sur la carte est le tracé officiel : {fuente}.", "de": "Die Linie des GR 131 auf der Karte ist der offizielle Track: {fuente}.", "it": "Il tracciato del GR 131 sulla mappa è quello ufficiale: {fuente}.", "nl": "De lijn van de GR 131 op de kaart is het officiële tracé: {fuente}.", "zh": "地图中的 GR 131 线路为官方轨迹：{fuente}。", "zht": "地圖中的 GR 131 線路為官方軌跡：{fuente}。", "bg": "Линията на GR 131 на картата е официалното трасе: {fuente}.", "pl": "Linia GR 131 na mapie to oficjalny ślad: {fuente}."},
     "cuerpoMovNotaPie": {"es": "Los kilómetros a pie avanzan su travesía del GR 131.", "en": "Kilometres on foot move you along the GR 131.", "fr": "Les kilomètres à pied font avancer votre traversée du GR 131.", "de": "Kilometer zu Fuß bringen Sie auf dem GR 131 voran.", "it": "I chilometri a piedi fanno avanzare la traversata del GR 131.", "nl": "Kilometers te voet brengen u verder op de GR 131.", "zh": "步行公里数会推进您的 GR 131 穿越之旅。", "zht": "步行公里數會推進您的 GR 131 穿越之旅。", "bg": "Километрите пеша ви придвижват по GR 131.", "pl": "Kilometry pieszo posuwają wędrówkę szlakiem GR 131."},
-    "cuerpoMovNotaOtro": {"es": "Cuenta para sus minutos de la semana. Para el GR 131 solo suman los kilómetros a pie.", "en": "It counts towards your minutes this week. Only kilometres on foot count for the GR 131.", "fr": "Cela compte pour vos minutes de la semaine. Pour le GR 131, seuls les kilomètres à pied comptent.", "de": "Das zählt für Ihre Minuten der Woche. Für den GR 131 zählen nur Kilometer zu Fuß.", "it": "Conta per i minuti della settimana. Per il GR 131 contano solo i chilometri a piedi.", "nl": "Het telt mee voor uw minuten van de week. Voor de GR 131 tellen alleen kilometers te voet.", "zh": "计入本周的分钟数。GR 131 只计步行公里数。", "zht": "計入本週的分鐘數。GR 131 只計步行公里數。", "bg": "Брои се за минутите ви през седмицата. За GR 131 се броят само километрите пеша.", "pl": "Liczy się do minut w tygodniu. Do GR 131 liczą się tylko kilometry pieszo."},
+    "cuerpoMov_kayak": {"es": "Kayak", "en": "Kayaking", "fr": "Kayak", "de": "Kajakfahren", "it": "Kayak", "nl": "Kajakken", "zh": "皮划艇", "zht": "獨木舟", "bg": "Каяк", "pl": "Kajak"},
+    "cuerpoMov_sup": {"es": "Pádel surf", "en": "Stand-up paddle", "fr": "Stand-up paddle", "de": "Stand-up-Paddling", "it": "SUP", "nl": "Suppen", "zh": "桨板", "zht": "立槳", "bg": "Падълборд", "pl": "Deska SUP"},
+    "cuerpoMov_surf": {"es": "Surf", "en": "Surfing", "fr": "Surf", "de": "Surfen", "it": "Surf", "nl": "Surfen", "zh": "冲浪", "zht": "衝浪", "bg": "Сърф", "pl": "Surfing"},
+    "cuerpoMov_windsurf": {"es": "Windsurf y kitesurf", "en": "Windsurfing and kitesurfing", "fr": "Planche à voile et kitesurf", "de": "Windsurfen und Kitesurfen", "it": "Windsurf e kitesurf", "nl": "Windsurfen en kitesurfen", "zh": "帆板和风筝冲浪", "zht": "風帆衝浪和風箏衝浪", "bg": "Уиндсърф и кайтсърф", "pl": "Windsurfing i kitesurfing"},
+    "cuerpoMov_buceo": {"es": "Buceo", "en": "Scuba diving", "fr": "Plongée", "de": "Tauchen", "it": "Immersioni", "nl": "Duiken", "zh": "潜水", "zht": "潛水", "bg": "Гмуркане", "pl": "Nurkowanie"},
+    "cuerpoMov_golf": {"es": "Golf", "en": "Golf", "fr": "Golf", "de": "Golf", "it": "Golf", "nl": "Golf", "zh": "高尔夫", "zht": "高爾夫", "bg": "Голф", "pl": "Golf"},
+    "cuerpoMov_padel": {"es": "Pádel", "en": "Padel", "fr": "Padel", "de": "Padel", "it": "Padel", "nl": "Padel", "zh": "板式网球", "zht": "板式網球", "bg": "Падел", "pl": "Padel"},
+    "cuerpoMov_escalada": {"es": "Escalada", "en": "Climbing", "fr": "Escalade", "de": "Klettern", "it": "Arrampicata", "nl": "Klimmen", "zh": "攀岩", "zht": "攀岩", "bg": "Катерене", "pl": "Wspinaczka"},
+    "cuerpoMov_otro": {"es": "Otro deporte", "en": "Another sport", "fr": "Autre sport", "de": "Andere Sportart", "it": "Altro sport", "nl": "Andere sport", "zh": "其他运动", "zht": "其他運動", "bg": "Друг спорт", "pl": "Inny sport"},
+    "cuerpoMovMetros": {"es": "Metros", "en": "Metres", "fr": "Mètres", "de": "Meter", "it": "Metri", "nl": "Meter", "zh": "米数", "zht": "公尺數", "bg": "Метри", "pl": "Metry"},
+    "cuerpoMovMenosM": {"es": "50 metros menos", "en": "50 metres less", "fr": "50 mètres de moins", "de": "50 Meter weniger", "it": "50 metri in meno", "nl": "50 meter minder", "zh": "减少 50 米", "zht": "減少 50 公尺", "bg": "50 метра по-малко", "pl": "50 metrów mniej"},
+    "cuerpoMovMasM": {"es": "50 metros más", "en": "50 metres more", "fr": "50 mètres de plus", "de": "50 Meter mehr", "it": "50 metri in più", "nl": "50 meter meer", "zh": "增加 50 米", "zht": "增加 50 公尺", "bg": "50 метра повече", "pl": "50 metrów więcej"},
+    "cuerpoMovDes": {"es": "Desnivel positivo (m)", "en": "Elevation gain (m)", "fr": "Dénivelé positif (m)", "de": "Höhenmeter bergauf (m)", "it": "Dislivello positivo (m)", "nl": "Hoogtemeters omhoog (m)", "zh": "累计爬升（米）", "zht": "累計爬升（公尺）", "bg": "Изкачване (м)", "pl": "Przewyższenie (m)"},
+    "cuerpoMovInt": {"es": "Intensidad", "en": "Intensity", "fr": "Intensité", "de": "Intensität", "it": "Intensità", "nl": "Intensiteit", "zh": "强度", "zht": "強度", "bg": "Интензивност", "pl": "Intensywność"},
+    "cuerpoIntM": {"es": "Moderada", "en": "Moderate", "fr": "Modérée", "de": "Moderat", "it": "Moderata", "nl": "Matig", "zh": "中等强度", "zht": "中等強度", "bg": "Умерена", "pl": "Umiarkowana"},
+    "cuerpoIntV": {"es": "Intensa", "en": "Vigorous", "fr": "Soutenue", "de": "Hoch", "it": "Vigorosa", "nl": "Zwaar", "zh": "高强度", "zht": "高強度", "bg": "Интензивна", "pl": "Intensywna"},
+    "cuerpoIntAyuda": {"es": "Moderada: puede hablar, pero no cantar. Intensa: no puede decir más de unas palabras sin parar a respirar.", "en": "Moderate: you can talk, but not sing. Vigorous: you can't say more than a few words without pausing for breath.", "fr": "Modérée : vous pouvez parler, mais pas chanter. Soutenue : vous ne pouvez pas dire plus de quelques mots sans reprendre votre souffle.", "de": "Moderat: Sie können sprechen, aber nicht singen. Hoch: Sie können nur wenige Worte sagen, ohne Luft holen zu müssen.", "it": "Moderata: riesce a parlare, ma non a cantare. Vigorosa: non riesce a dire più di qualche parola senza fermarsi a respirare.", "nl": "Matig: u kunt praten, maar niet zingen. Zwaar: u kunt maar een paar woorden zeggen zonder op adem te komen.", "zh": "中等强度：能说话，但不能唱歌。高强度：说不了几个字就得停下来喘气。", "zht": "中等強度：能說話，但不能唱歌。高強度：說不了幾個字就得停下來換氣。", "bg": "Умерена: можете да говорите, но не и да пеете. Интензивна: не можете да кажете повече от няколко думи, без да спрете да си поемете дъх.", "pl": "Umiarkowana: można mówić, ale nie śpiewać. Intensywna: nie da się powiedzieć więcej niż kilku słów bez złapania oddechu."},
+    "cuerpoIntDoble": {"es": "Para su meta, cada minuto intenso cuenta por dos (OMS).", "en": "For your goal, each vigorous minute counts as two (WHO).", "fr": "Pour votre objectif, chaque minute d’intensité soutenue compte double (OMS).", "de": "Für Ihr Ziel zählt jede Minute mit hoher Intensität doppelt (WHO).", "it": "Per il suo obiettivo, ogni minuto vigoroso conta doppio (OMS).", "nl": "Voor uw doel telt elke zware minuut dubbel (WHO).", "zh": "计入您的目标时，每分钟高强度运动算作两分钟（世卫组织）。", "zht": "計入您的目標時，每分鐘高強度運動算作兩分鐘（世界衛生組織）。", "bg": "За целта ви всяка интензивна минута се брои за две (СЗО).", "pl": "Do celu każda minuta intensywnego wysiłku liczy się podwójnie (WHO)."},
+    "cuerpoMinM": {"es": "{min} min y {m} m", "en": "{min} min and {m} m", "fr": "{min} min et {m} m", "de": "{min} Min. und {m} m", "it": "{min} min e {m} m", "nl": "{min} min en {m} m", "zh": "{min}分钟和{m}米", "zht": "{min}分鐘和{m}公尺", "bg": "{min} мин и {m} м", "pl": "{min} min i {m} m"},
+    "cuerpoMovNotaElige": {"es": "Su distancia no cuenta para el GR 131, salvo que lo elija en «{seccion}».", "en": "This distance doesn't count towards the GR 131 unless you choose it in «{seccion}».", "fr": "Sa distance ne compte pas pour le GR 131, sauf si vous le choisissez dans «{seccion}».", "de": "Die Strecke zählt nicht für den GR 131, außer Sie wählen es unter «{seccion}».", "it": "La distanza non conta per il GR 131, a meno che non lo scelga in «{seccion}».", "nl": "De afstand telt niet mee voor de GR 131, tenzij u dat kiest bij «{seccion}».", "zh": "这项距离不计入 GR 131，除非您在「{seccion}」中选择计入。", "zht": "這項距離不計入 GR 131，除非您在「{seccion}」中選擇計入。", "bg": "Разстоянието не се брои за GR 131, освен ако не го изберете в «{seccion}».", "pl": "Dystans nie liczy się do GR 131, chyba że zostanie to wybrane w sekcji «{seccion}»."},
+    "cuerpoMovNotaElegido": {"es": "Su distancia también cuenta para su travesía del GR 131: lo eligió en «{seccion}».", "en": "This distance also counts towards your GR 131 crossing: you chose it in «{seccion}».", "fr": "Sa distance compte aussi pour votre traversée du GR 131 : vous l’avez choisi dans «{seccion}».", "de": "Die Strecke zählt auch für Ihre Durchquerung auf dem GR 131: so gewählt unter «{seccion}».", "it": "La distanza conta anche per la sua traversata del GR 131: lo ha scelto in «{seccion}».", "nl": "De afstand telt ook mee voor uw tocht over de GR 131: zo gekozen bij «{seccion}».", "zh": "这项距离也计入您的 GR 131 之旅：您在「{seccion}」中选择了计入。", "zht": "這項距離也計入您的 GR 131 之旅：您在「{seccion}」中選擇了計入。", "bg": "Разстоянието се брои и за прехода ви по GR 131: избрахте го в «{seccion}».", "pl": "Dystans liczy się też do przejścia GR 131: tak wybrano w sekcji «{seccion}»."},
+    "cuerpoMovNotaMin": {"es": "Suma minutos a su semana.", "en": "It adds minutes to your week.", "fr": "Cela ajoute des minutes à votre semaine.", "de": "Das zählt für Ihre Minuten der Woche.", "it": "Aggiunge minuti alla sua settimana.", "nl": "Dit telt mee voor uw minuten van de week.", "zh": "计入您本周的运动分钟数。", "zht": "計入您本週的運動分鐘數。", "bg": "Добавя минути към седмицата ви.", "pl": "Dodaje minuty do tygodnia."},
+    "cuerpoMovNotaBuceo": {"es": "Antes de volar, la DAN aconseja esperar al menos 12 horas tras una inmersión, y 18 tras varias en un día o en varios días de buceo.", "en": "Before flying, DAN advises waiting at least 12 hours after one dive, and 18 after multiple dives in a day or multiple days of diving.", "fr": "Avant de prendre l’avion, le DAN conseille d’attendre au moins 12 heures après une plongée, et 18 après plusieurs plongées dans la journée ou plusieurs jours de plongée.", "de": "Vor dem Fliegen rät DAN, nach einem Tauchgang mindestens 12 Stunden zu warten, nach mehreren an einem Tag oder an mehreren Tauchtagen 18.", "it": "Prima di volare, il DAN consiglia di aspettare almeno 12 ore dopo un’immersione, e 18 dopo più immersioni in un giorno o in più giorni di immersioni.", "nl": "DAN raadt aan om vóór het vliegen minstens 12 uur te wachten na één duik, en 18 uur na meerdere duiken op een dag of op meerdere duikdagen.", "zh": "DAN 建议：单次潜水后至少等 12 小时再乘飞机；一天内多次潜水或多日潜水后，至少等 18 小时。", "zht": "DAN 建議：單次潛水後至少等 12 小時再搭飛機；一天內多次潛水或多日潛水後，至少等 18 小時。", "bg": "Преди полет DAN съветва да изчакате поне 12 часа след едно гмуркане и 18 след няколко гмуркания в един ден или в няколко дни с гмуркания.", "pl": "Przed lotem DAN zaleca odczekać co najmniej 12 godzin po jednym nurkowaniu, a 18 po kilku nurkowaniach w ciągu dnia lub kilku dniach nurkowania."},
+    "cuerpoDepsTit": {"es": "Por deporte", "en": "By sport", "fr": "Par sport", "de": "Nach Sportart", "it": "Per sport", "nl": "Per sport", "zh": "按运动", "zht": "按運動", "bg": "По спорт", "pl": "Według sportu"},
+    "cuerpoVeces": {"es": "{n} vez|{n} veces", "en": "{n} time|{n} times", "fr": "{n} fois|{n} fois", "de": "{n}-mal|{n}-mal", "it": "{n} volta|{n} volte", "nl": "{n} keer|{n} keer", "zh": "{n} 次", "zht": "{n} 次", "bg": "{n} път|{n} пъти", "pl": "{n} raz|{n} razy|{n} razy"},
+    "cuerpoInmersiones": {"es": "{n} inmersión|{n} inmersiones", "en": "{n} dive|{n} dives", "fr": "{n} plongée|{n} plongées", "de": "{n} Tauchgang|{n} Tauchgänge", "it": "{n} immersione|{n} immersioni", "nl": "{n} duik|{n} duiken", "zh": "{n} 次潜水", "zht": "{n} 次潛水", "bg": "{n} гмуркане|{n} гмуркания", "pl": "{n} nurkowanie|{n} nurkowania|{n} nurkowań"},
+    "cuerpoDurHM": {"es": "{h} h {m} min", "en": "{h} h {m} min", "fr": "{h} h {m} min", "de": "{h} h {m} min", "it": "{h} h {m} min", "nl": "{h} u {m} min", "zh": "{h}小时{m}分", "zht": "{h}小時{m}分", "bg": "{h} ч {m} мин", "pl": "{h} godz. {m} min"},
+    "cuerpoDurH": {"es": "{h} h", "en": "{h} h", "fr": "{h} h", "de": "{h} h", "it": "{h} h", "nl": "{h} u", "zh": "{h}小时", "zht": "{h}小時", "bg": "{h} ч", "pl": "{h} godz."},
+    "cuerpoRitmoKm": {"es": "{t} min/km", "en": "{t} min/km", "fr": "{t} min/km", "de": "{t} min/km", "it": "{t} min/km", "nl": "{t} min/km", "zh": "每公里 {t}", "zht": "每公里 {t}", "bg": "{t} мин/км", "pl": "{t} min/km"},
+    "cuerpoRitmo100": {"es": "{t} min/100 m", "en": "{t} min/100 m", "fr": "{t} min/100 m", "de": "{t} min/100 m", "it": "{t} min/100 m", "nl": "{t} min/100 m", "zh": "每 100 米 {t}", "zht": "每 100 公尺 {t}", "bg": "{t} мин/100 м", "pl": "{t} min/100 m"},
+    "cuerpoDesnivel": {"es": "{n} m de desnivel", "en": "{n} m elevation gain", "fr": "{n} m de dénivelé", "de": "{n} Höhenmeter", "it": "{n} m di dislivello", "nl": "{n} hoogtemeters", "zh": "爬升 {n} 米", "zht": "爬升 {n} 公尺", "bg": "{n} м изкачване", "pl": "{n} m przewyższenia"},
+    "cuerpoDan12": {"es": "Si va a volar: la DAN aconseja esperar al menos 12 horas desde la última inmersión. Si nota cualquier síntoma, pida atención médica antes de volar.", "en": "If you are flying: DAN advises waiting at least 12 hours after your last dive. If you notice any symptom, get medical help before flying.", "fr": "Si vous prenez l’avion : le DAN conseille d’attendre au moins 12 heures après votre dernière plongée. Au moindre symptôme, consultez un médecin avant de voler.", "de": "Wenn Sie fliegen: DAN rät, nach dem letzten Tauchgang mindestens 12 Stunden zu warten. Bei Beschwerden lassen Sie sich vor dem Flug ärztlich untersuchen.", "it": "Se deve volare: il DAN consiglia di aspettare almeno 12 ore dall’ultima immersione. Se nota qualsiasi sintomo, chieda assistenza medica prima di volare.", "nl": "Als u gaat vliegen: DAN raadt aan minstens 12 uur na uw laatste duik te wachten. Merkt u klachten, zoek dan medische hulp voordat u vliegt.", "zh": "如果您要乘飞机：DAN 建议在最后一次潜水后至少等 12 小时。如有任何症状，请先就医，再考虑乘机。", "zht": "如果您要搭飛機：DAN 建議在最後一次潛水後至少等 12 小時。如有任何症狀，請先就醫，再考慮搭機。", "bg": "Ако ще летите: DAN съветва да изчакате поне 12 часа след последното гмуркане. Ако забележите какъвто и да е симптом, потърсете медицинска помощ преди полета.", "pl": "Przed lotem: DAN zaleca odczekać co najmniej 12 godzin od ostatniego nurkowania. Przy jakichkolwiek objawach należy przed lotem zgłosić się do lekarza."},
+    "cuerpoDan18": {"es": "Si va a volar: tras varias inmersiones en un día o en varios días de buceo, la DAN aconseja esperar al menos 18 horas desde la última. Si nota cualquier síntoma, pida atención médica antes de volar.", "en": "If you are flying: after multiple dives in a day or multiple days of diving, DAN advises waiting at least 18 hours after the last one. If you notice any symptom, get medical help before flying.", "fr": "Si vous prenez l’avion : après plusieurs plongées dans la journée ou plusieurs jours de plongée, le DAN conseille d’attendre au moins 18 heures après la dernière. Au moindre symptôme, consultez un médecin avant de voler.", "de": "Wenn Sie fliegen: Nach mehreren Tauchgängen an einem Tag oder an mehreren Tauchtagen rät DAN, nach dem letzten mindestens 18 Stunden zu warten. Bei Beschwerden lassen Sie sich vor dem Flug ärztlich untersuchen.", "it": "Se deve volare: dopo più immersioni in un giorno o in più giorni di immersioni, il DAN consiglia di aspettare almeno 18 ore dall’ultima. Se nota qualsiasi sintomo, chieda assistenza medica prima di volare.", "nl": "Als u gaat vliegen: na meerdere duiken op een dag of op meerdere duikdagen raadt DAN aan minstens 18 uur na de laatste te wachten. Merkt u klachten, zoek dan medische hulp voordat u vliegt.", "zh": "如果您要乘飞机：一天内多次潜水或多日潜水后，DAN 建议在最后一次潜水后至少等 18 小时。如有任何症状，请先就医，再考虑乘机。", "zht": "如果您要搭飛機：一天內多次潛水或多日潛水後，DAN 建議在最後一次潛水後至少等 18 小時。如有任何症狀，請先就醫，再考慮搭機。", "bg": "Ако ще летите: след няколко гмуркания в един ден или в няколко дни с гмуркания DAN съветва да изчакате поне 18 часа след последното. Ако забележите какъвто и да е симптом, потърсете медицинска помощ преди полета.", "pl": "Przed lotem: po kilku nurkowaniach w ciągu dnia lub kilku dniach nurkowania DAN zaleca odczekać co najmniej 18 godzin od ostatniego. Przy jakichkolwiek objawach należy przed lotem zgłosić się do lekarza."},
+    "cuerpoGrCuentan": {"es": "Cuentan para su travesía", "en": "Counting towards your crossing", "fr": "Comptent pour votre traversée", "de": "Zählt für Ihre Durchquerung", "it": "Contano per la sua traversata", "nl": "Telt mee voor uw tocht", "zh": "计入您的横穿之旅", "zht": "計入您的橫越之旅", "bg": "Броят се за прехода ви", "pl": "Liczy się do przejścia"},
+    "cuerpoGrPie": {"es": "A pie", "en": "On foot", "fr": "À pied", "de": "Zu Fuß", "it": "A piedi", "nl": "Te voet", "zh": "步行", "zht": "步行", "bg": "Пеша", "pl": "Pieszo"},
+    "cuerpoGrSiempre": {"es": "siempre", "en": "always", "fr": "toujours", "de": "immer", "it": "sempre", "nl": "altijd", "zh": "始终计入", "zht": "始終計入", "bg": "винаги", "pl": "zawsze"},
+    "cuerpoGrBici": {"es": "En bici", "en": "By bike", "fr": "À vélo", "de": "Mit dem Rad", "it": "In bici", "nl": "Op de fiets", "zh": "骑车", "zht": "騎車", "bg": "С колело", "pl": "Na rowerze"},
+    "cuerpoGrNado": {"es": "A nado", "en": "Swimming", "fr": "À la nage", "de": "Schwimmend", "it": "A nuoto", "nl": "Zwemmend", "zh": "游泳", "zht": "游泳", "bg": "Плувайки", "pl": "Wpław"},
+    "cuerpoGrKayak": {"es": "En kayak", "en": "By kayak", "fr": "En kayak", "de": "Mit dem Kajak", "it": "In kayak", "nl": "Per kajak", "zh": "划皮划艇", "zht": "划獨木舟", "bg": "С каяк", "pl": "Kajakiem"},
+    "cuerpoCifrasInt": {"es": "La intensidad de cada anotación la elige usted: moderada si puede hablar pero no cantar; intensa si no puede decir más de unas palabras sin parar a respirar (CDC). La que propone cada deporte sale del Compendio de Actividades Físicas de 2024 (Herrmann y cols.): desde 6 MET, intensa. Para los adultos, la OMS (2020) pide de 150 a 300 minutos moderados a la semana o de 75 a 150 intensos: por eso un minuto intenso cuenta por dos. De 5 a 17 años, la OMS cuenta igual los minutos moderados y los intensos.", "en": "You choose the intensity of each entry: moderate if you can talk but not sing; vigorous if you can't say more than a few words without pausing for breath (CDC). The one each sport suggests comes from the 2024 Compendium of Physical Activities (Herrmann et al.): from 6 METs, vigorous. For adults, the WHO (2020) asks for 150 to 300 moderate minutes a week or 75 to 150 vigorous ones: that is why a vigorous minute counts as two. From 5 to 17, the WHO counts moderate and vigorous minutes alike.", "fr": "Vous choisissez l’intensité de chaque note : modérée si vous pouvez parler mais pas chanter ; soutenue si vous ne pouvez pas dire plus de quelques mots sans reprendre votre souffle (CDC). Celle que propose chaque sport vient du Compendium des activités physiques de 2024 (Herrmann et al.) : à partir de 6 MET, soutenue. Pour les adultes, l’OMS (2020) demande de 150 à 300 minutes modérées par semaine ou de 75 à 150 soutenues : c’est pourquoi une minute soutenue compte double. De 5 à 17 ans, l’OMS compte de la même façon les minutes modérées et soutenues.", "de": "Die Intensität jedes Eintrags wählen Sie: moderat, wenn Sie sprechen, aber nicht singen können; hoch, wenn Sie nur wenige Worte sagen können, ohne Luft holen zu müssen (CDC). Die Vorgabe jeder Sportart stammt aus dem Compendium of Physical Activities von 2024 (Herrmann et al.): ab 6 MET hoch. Für Erwachsene empfiehlt die WHO (2020) pro Woche 150 bis 300 Minuten mit moderater oder 75 bis 150 Minuten mit hoher Intensität: Deshalb zählt eine Minute mit hoher Intensität doppelt. Von 5 bis 17 Jahren zählt die WHO Minuten mit moderater und hoher Intensität gleich.", "it": "L’intensità di ogni annotazione la sceglie lei: moderata se riesce a parlare ma non a cantare; vigorosa se non riesce a dire più di qualche parola senza fermarsi a respirare (CDC). Quella proposta da ogni sport viene dal Compendio delle attività fisiche del 2024 (Herrmann et al.): da 6 MET, vigorosa. Per gli adulti, l’OMS (2020) chiede da 150 a 300 minuti moderati a settimana o da 75 a 150 vigorosi: per questo un minuto vigoroso conta doppio. Da 5 a 17 anni, l’OMS conta allo stesso modo i minuti moderati e quelli vigorosi.", "nl": "De intensiteit van elke notitie kiest u zelf: matig als u kunt praten maar niet zingen; zwaar als u maar een paar woorden kunt zeggen zonder op adem te komen (CDC). Wat elke sport voorstelt, komt uit het Compendium of Physical Activities van 2024 (Herrmann e.a.): vanaf 6 MET zwaar. Voor volwassenen vraagt de WHO (2020) 150 tot 300 matige minuten per week of 75 tot 150 zware: daarom telt een zware minuut dubbel. Van 5 tot 17 jaar telt de WHO matige en zware minuten even zwaar.", "zh": "每条记录的强度由您选择：能说话但不能唱歌，为中等强度；说不了几个字就得停下来喘气，为高强度（美国疾控中心）。每项运动默认的强度来自《2024 年身体活动纲要》（Herrmann 等）：6 MET 及以上为高强度。对成年人，世卫组织（2020）建议每周 150 至 300 分钟中等强度活动，或 75 至 150 分钟高强度活动：因此一分钟高强度算作两分钟。5 至 17 岁，世卫组织对中等强度和高强度的分钟同样计算。", "zht": "每筆記錄的強度由您選擇：能說話但不能唱歌，為中等強度；說不了幾個字就得停下來換氣，為高強度（美國疾病管制中心）。每項運動預設的強度來自《2024 年身體活動綱要》（Herrmann 等）：6 MET 以上為高強度。對成年人，世界衛生組織（2020）建議每週 150 至 300 分鐘中等強度活動，或 75 至 150 分鐘高強度活動：因此一分鐘高強度算作兩分鐘。5 至 17 歲，世界衛生組織對中等強度和高強度的分鐘同樣計算。", "bg": "Интензивността на всеки запис избирате Вие: умерена, ако можете да говорите, но не и да пеете; интензивна, ако не можете да кажете повече от няколко думи, без да спрете да си поемете дъх (CDC). Предложената за всеки спорт идва от Компендиума на физическите дейности от 2024 г. (Herrmann и сътр.): от 6 MET нагоре – интензивна. За възрастните СЗО (2020) препоръчва от 150 до 300 минути умерена активност седмично или от 75 до 150 интензивна: затова една интензивна минута се брои за две. От 5 до 17 години СЗО брои еднакво умерените и интензивните минути.", "pl": "Intensywność każdego wpisu wybiera się samodzielnie: umiarkowana, gdy można mówić, ale nie śpiewać; intensywna, gdy nie da się powiedzieć więcej niż kilku słów bez złapania oddechu (CDC). Propozycja dla każdego sportu pochodzi z Kompendium aktywności fizycznych z 2024 r. (Herrmann i in.): od 6 MET intensywna. Dla dorosłych WHO (2020) zaleca od 150 do 300 minut umiarkowanego wysiłku tygodniowo albo od 75 do 150 intensywnego: dlatego minuta intensywna liczy się podwójnie. W wieku od 5 do 17 lat WHO liczy tak samo minuty umiarkowane i intensywne."},
+    "cuerpoCifrasDan": {"es": "Volar después de bucear: al menos 12 horas tras una inmersión sin descompresión y 18 tras varias en un día o en varios días de buceo; con paradas de descompresión, bastante más (DAN, taller de 2002).", "en": "Flying after diving: at least 12 hours after a single no-decompression dive and 18 after multiple dives in a day or multiple days of diving; after dives with decompression stops, substantially longer (DAN, 2002 workshop).", "fr": "Prendre l’avion après la plongée : au moins 12 heures après une plongée sans décompression et 18 après plusieurs plongées dans la journée ou plusieurs jours de plongée ; avec des paliers de décompression, nettement plus (DAN, atelier de 2002).", "de": "Fliegen nach dem Tauchen: mindestens 12 Stunden nach einem einzelnen Nullzeit-Tauchgang und 18 nach mehreren Tauchgängen an einem Tag oder an mehreren Tauchtagen; nach Dekompressionstauchgängen deutlich länger (DAN, Workshop 2002).", "it": "Volare dopo le immersioni: almeno 12 ore dopo un’immersione senza decompressione e 18 dopo più immersioni in un giorno o in più giorni di immersioni; con soste di decompressione, molto di più (DAN, workshop del 2002).", "nl": "Vliegen na het duiken: minstens 12 uur na één duik zonder decompressie en 18 uur na meerdere duiken op een dag of op meerdere duikdagen; na duiken met decompressiestops aanzienlijk langer (DAN, workshop van 2002).", "zh": "潜水后乘飞机：单次免减压潜水后至少 12 小时；一天内多次潜水或多日潜水后至少 18 小时；需要减压停留的潜水后，要长得多（DAN，2002 年研讨会）。", "zht": "潛水後搭飛機：單次免減壓潛水後至少 12 小時；一天內多次潛水或多日潛水後至少 18 小時；需要減壓停留的潛水後，要長得多（DAN，2002 年研討會）。", "bg": "Полет след гмуркане: поне 12 часа след едно гмуркане без декомпресия и 18 след няколко гмуркания в един ден или в няколко дни с гмуркания; след гмуркания с декомпресионни спирки – значително повече (DAN, работна среща от 2002 г.).", "pl": "Lot po nurkowaniu: co najmniej 12 godzin po jednym nurkowaniu bezdekompresyjnym i 18 po kilku nurkowaniach w ciągu dnia lub kilku dniach nurkowania; po nurkowaniach z przystankami dekompresyjnymi znacznie dłużej (DAN, warsztaty z 2002 r.)."},
     "cuerpoSellosTitulo": {"es": "Sus sellos", "en": "Your stamps", "fr": "Vos tampons", "de": "Ihre Stempel", "it": "I suoi timbri", "nl": "Uw stempels", "zh": "您的印章", "zht": "您的印章", "bg": "Вашите печати", "pl": "Pieczątki"},
     "cuerpoSellosSub": {"es": "Los que consiga se quedan, aunque pase la semana.", "en": "The ones you earn stay, even after the week moves on.", "fr": "Ceux que vous obtenez restent, même quand la semaine passe.", "de": "Was Sie erreichen, bleibt – auch wenn die Woche vorbeigeht.", "it": "Quelli che ottiene restano, anche quando la settimana passa.", "nl": "Wat u behaalt, blijft staan, ook als de week voorbijgaat.", "zh": "获得的印章会一直保留，即使这一周过去。", "zht": "獲得的印章會一直保留，即使這一週過去。", "bg": "Спечелените остават, дори когато седмицата отмине.", "pl": "Zdobyte zostają, nawet gdy tydzień minie."},
     "cuerpoSellosDe": {"es": "{n} de {total}", "en": "{n} of {total}", "fr": "{n} sur {total}", "de": "{n} von {total}", "it": "{n} su {total}", "nl": "{n} van {total}", "zh": "{n}/{total}", "zht": "{n}/{total}", "bg": "{n} от {total}", "pl": "{n} z {total}"},
@@ -203,7 +244,7 @@
     "cuerpoSelloN_mov": {"es": "{n} minuto|{n} minutos", "en": "{n} minute|{n} minutes", "fr": "{n} minute|{n} minutes", "de": "{n} Minute|{n} Minuten", "it": "{n} minuto|{n} minuti", "nl": "{n} minuut|{n} minuten", "zh": "{n} 分钟", "zht": "{n} 分鐘", "bg": "{n} минута|{n} минути", "pl": "{n} minuta|{n} minuty|{n} minut"},
     "cuerpoSelloN_sol": {"es": "Sol entero", "en": "Full sun", "fr": "Soleil entier", "de": "Volle Sonne", "it": "Sole pieno", "nl": "Volle zon", "zh": "满日", "zht": "滿日", "bg": "Пълно слънце", "pl": "Pełne słońce"},
     "cuerpoSelloN_doce": {"es": "Doce de doce", "en": "Twelve of twelve", "fr": "Douze sur douze", "de": "Zwölf von zwölf", "it": "Dodici su dodici", "nl": "Twaalf van twaalf", "zh": "十二分之十二", "zht": "十二分之十二", "bg": "Дванайсет от дванайсет", "pl": "Dwanaście na dwanaście"},
-    "cuerpoSelloN_km10": {"es": "10 km a pie", "en": "10 km on foot", "fr": "10 km à pied", "de": "10 km zu Fuß", "it": "10 km a piedi", "nl": "10 km te voet", "zh": "步行 10 公里", "zht": "步行 10 公里", "bg": "10 км пеша", "pl": "10 km pieszo"},
+    "cuerpoSelloN_km10": {"es": "10 km de travesía", "en": "10 km of the crossing", "fr": "10 km de traversée", "de": "10 km Durchquerung", "it": "10 km di traversata", "nl": "10 km van de tocht", "zh": "穿越 10 公里", "zht": "穿越 10 公里", "bg": "10 км от прехода", "pl": "10 km przejścia"},
     "cuerpoSelloC_primer": {"es": "Su primera anotación", "en": "Your first entry", "fr": "Votre première note", "de": "Ihr erster Eintrag", "it": "La sua prima annotazione", "nl": "Uw eerste notitie", "zh": "您的第一条记录", "zht": "您的第一條記錄", "bg": "Първият ви запис", "pl": "Pierwszy wpis"},
     "cuerpoSelloC_fuerza": {"es": "En 7 días", "en": "In 7 days", "fr": "En 7 jours", "de": "In 7 Tagen", "it": "In 7 giorni", "nl": "In 7 dagen", "zh": "7 天内", "zht": "7 天內", "bg": "За 7 дни", "pl": "W 7 dni"},
     "cuerpoSelloC_mov": {"es": "De movimiento en 7 días", "en": "Of movement in 7 days", "fr": "De mouvement en 7 jours", "de": "Bewegung in 7 Tagen", "it": "Di movimento in 7 giorni", "nl": "Beweging in 7 dagen", "zh": "7 天内的运动", "zht": "7 天內的運動", "bg": "Движение за 7 дни", "pl": "Ruchu w 7 dni"},
@@ -218,8 +259,8 @@
     "cuerpoSelloT_mov": {"es": "Ha llegado a los {n} minutos de movimiento en 7 días que recomienda la OMS para su edad.", "en": "You have reached the {n} minutes of movement in 7 days the WHO recommends for your age.", "fr": "Vous avez atteint les {n} minutes de mouvement en 7 jours recommandées par l’OMS pour votre âge.", "de": "Sie haben die {n} Minuten Bewegung in 7 Tagen erreicht, die die WHO für Ihr Alter empfiehlt.", "it": "Ha raggiunto i {n} minuti di movimento in 7 giorni raccomandati dall’OMS per la sua età.", "nl": "U hebt de {n} minuten beweging in 7 dagen gehaald die de WHO voor uw leeftijd aanbeveelt.", "zh": "您已达到世卫组织对您年龄段建议的 7 天内 {n} 分钟运动量。", "zht": "您已達到世界衛生組織對您年齡段建議的 7 天內 {n} 分鐘運動量。", "bg": "Достигнахте {n} минути движение за 7 дни, които СЗО препоръчва за вашата възраст.", "pl": "Osiągnięto {n} minut ruchu w 7 dni, które WHO zaleca dla tego wieku."},
     "cuerpoSelloT_sol": {"es": "Fuerza y movimiento cumplidos. El sol de su semana está arriba.", "en": "Strength and movement done. The sun of your week is up.", "fr": "Force et mouvement atteints. Le soleil de votre semaine est au plus haut.", "de": "Kraft und Bewegung geschafft. Die Sonne Ihrer Woche steht oben.", "it": "Forza e movimento raggiunti. Il sole della sua settimana è alto.", "nl": "Kracht en beweging gehaald. De zon van uw week staat hoog.", "zh": "力量与运动均已达标。本周的太阳已升到顶点。", "zht": "力量與運動均已達標。本週的太陽已升到頂點。", "bg": "Сила и движение – изпълнени. Слънцето на седмицата ви е горе.", "pl": "Siła i ruch spełnione. Słońce tego tygodnia jest wysoko."},
     "cuerpoSelloT_doce": {"es": "Ha trabajado los 12 grupos musculares en 7 días.", "en": "You have worked all 12 muscle groups in 7 days.", "fr": "Vous avez travaillé les 12 groupes musculaires en 7 jours.", "de": "Sie haben alle 12 Muskelgruppen in 7 Tagen trainiert.", "it": "Ha allenato i 12 gruppi muscolari in 7 giorni.", "nl": "U hebt alle 12 spiergroepen in 7 dagen getraind.", "zh": "您在 7 天内练遍了全部 12 个肌群。", "zht": "您在 7 天內練遍了全部 12 個肌群。", "bg": "Тренирахте всичките 12 мускулни групи за 7 дни.", "pl": "Przećwiczono wszystkie 12 grup mięśniowych w 7 dni."},
-    "cuerpoSelloT_km10": {"es": "Diez kilómetros a pie por la isla. La Caldera está a {km}.", "en": "Ten kilometres on foot across the island. La Caldera is {km} away.", "fr": "Dix kilomètres à pied sur l’île. La Caldera est à {km}.", "de": "Zehn Kilometer zu Fuß über die Insel. La Caldera ist {km} entfernt.", "it": "Dieci chilometri a piedi per l’isola. La Caldera è a {km}.", "nl": "Tien kilometer te voet over het eiland. La Caldera is nog {km} ver.", "zh": "已在岛上步行十公里。距 La Caldera 还有 {km}。", "zht": "已在島上步行十公里。距 La Caldera 還有 {km}。", "bg": "Десет километра пеша по острова. La Caldera е на {km}.", "pl": "Dziesięć kilometrów pieszo po wyspie. Do La Caldera zostało {km}."},
-    "cuerpoSelloTEtapa": {"es": "Etapa {n} del GR 131 cumplida. Lleva {km} a pie.", "en": "Stage {n} of the GR 131 done. You have walked {km}.", "fr": "Étape {n} du GR 131 franchie. Vous avez parcouru {km} à pied.", "de": "Etappe {n} des GR 131 geschafft. Sie sind {km} zu Fuß gegangen.", "it": "Tappa {n} del GR 131 completata. Ha percorso {km} a piedi.", "nl": "Etappe {n} van de GR 131 gehaald. U hebt {km} te voet afgelegd.", "zh": "GR 131 第 {n} 段已完成。您已步行 {km}。", "zht": "GR 131 第 {n} 段已完成。您已步行 {km}。", "bg": "Етап {n} от GR 131 е изминат. Извървяхте {km} пеша.", "pl": "Etap {n} szlaku GR 131 zaliczony. Przebyto pieszo {km}."},
+    "cuerpoSelloT_km10": {"es": "Diez kilómetros de travesía por la isla. La Caldera está a {km}.", "en": "Ten kilometres of your crossing of the island. La Caldera is {km} away.", "fr": "Dix kilomètres de traversée sur l’île. La Caldera est à {km}.", "de": "Zehn Kilometer Durchquerung der Insel. La Caldera ist {km} entfernt.", "it": "Dieci chilometri di traversata dell’isola. La Caldera è a {km}.", "nl": "Tien kilometer van uw tocht over het eiland. La Caldera is nog {km} ver.", "zh": "已在岛上穿越十公里。距 La Caldera 还有 {km}。", "zht": "已在島上穿越十公里。距 La Caldera 還有 {km}。", "bg": "Десет километра от прехода по острова. La Caldera е на {km}.", "pl": "Dziesięć kilometrów przejścia przez wyspę. Do La Caldera zostało {km}."},
+    "cuerpoSelloTEtapa": {"es": "Etapa {n} del GR 131 cumplida. Lleva {km} de travesía.", "en": "Stage {n} of the GR 131 done. You have covered {km}.", "fr": "Étape {n} du GR 131 franchie. Vous avez parcouru {km}.", "de": "Etappe {n} des GR 131 geschafft. Sie haben {km} zurückgelegt.", "it": "Tappa {n} del GR 131 completata. Ha percorso {km}.", "nl": "Etappe {n} van de GR 131 gehaald. U hebt {km} afgelegd.", "zh": "GR 131 第 {n} 段已完成。您已前进 {km}。", "zht": "GR 131 第 {n} 段已完成。您已前進 {km}。", "bg": "Етап {n} от GR 131 е изминат. Изминахте {km}.", "pl": "Etap {n} szlaku GR 131 zaliczony. Przebyto {km}."},
     "cuerpoSeguir": {"es": "Seguir", "en": "Continue", "fr": "Continuer", "de": "Weiter", "it": "Continua", "nl": "Verder", "zh": "继续", "zht": "繼續", "bg": "Продължи", "pl": "Dalej"},
     "cuerpoPostalTitulo": {"es": "Su postal", "en": "Your postcard", "fr": "Votre carte postale", "de": "Ihre Postkarte", "it": "La sua cartolina", "nl": "Uw ansichtkaart", "zh": "您的明信片", "zht": "您的明信片", "bg": "Вашата картичка", "pl": "Pocztówka"},
     "cuerpoPostalTexto": {"es": "Su semana en una imagen, para guardarla o enviarla.", "en": "Your week in one picture, to save or send.", "fr": "Votre semaine en une image, à garder ou à envoyer.", "de": "Ihre Woche in einem Bild, zum Speichern oder Verschicken.", "it": "La sua settimana in un’immagine, da salvare o inviare.", "nl": "Uw week in één beeld, om te bewaren of te versturen.", "zh": "把您的一周做成一张图片，可以保存或分享。", "zht": "把您的一週做成一張圖片，可以儲存或分享。", "bg": "Вашата седмица в една снимка – да я запазите или изпратите.", "pl": "Tydzień na jednym obrazku – do zapisania lub wysłania."},
@@ -1766,36 +1807,69 @@
 
   /* ── lo guardado: tenerife.cuerpo, solo en el dispositivo, validado campo a campo al leerlo ──
      { v: 1, aspecto: {…}, series: [{ d: 'AAAA-MM-DD', g: grupo, n: 1-30, t: instante, e: ejercicio }], deporte: id,
-       mov: [{ d: 'AAAA-MM-DD', tipo: caminar | senderismo | correr | nadar | bici, min: 1-600,
-               km: 0-100 (en bici, 0-200), al metro, t: instante }],
-       comida: { on, pausa, d: { 'AAAA-MM-DD': { grupo: raciones } } } }
+       mov: [{ d: 'AAAA-MM-DD', tipo: uno de MOV, min: 1-600, int: 'm' | 'v', km: 0-tope del deporte (los que piden
+               distancia; a nado se escribe en metros), al metro, des: 1-4000 (m; a pie, monte y carrera), t: instante }],
+       gr: [los de bici, nadar y kayak que la persona elige contar para el GR 131],
+       comida: { on, pausa, d: { 'AAAA-MM-DD': { grupo: raciones } } }, sellos: { id: 'AAAA-MM-DD' } }
      (e, el id del ejercicio, solo si se anotó desde su ficha; deporte, el elegido en «Su deporte» o ''; mov, el
-     movimiento de «Anotar movimiento» (7-11-2026, bloque 4; los km, de los cinco tipos desde el 8-11-2026);
-     comida, el diario por raciones, apagado hasta que la persona lo enciende) */
-  /* los cinco tipos de movimiento, con los minutos y los km que propone la hoja al elegirlos (los de la maqueta);
-     pie: los kilómetros se piden (y, en el bloque 5, avanzarán por el GR 131). Desde el 8-11-2026, en los cinco:
-     Jerome, de nadar y de la bici, «Cuentan también» (la decisión 4; antes, solo a pie). A nado y en bici la hoja
-     empieza en 0 km. max: el tope de km de una anotación, solo para frenar un error al escribir (425 por 4,25);
-     desde el 8-11-2026, 200 en bici (Jerome: «200 mejor») y 100 en los demás (antes, 60 en todos). aPie (bloque 5):
-     sus km avanzan por el GR 131, que es a pie (Jerome, 8-11: nadar o hacer surf «no es como si camino a pie»);
-     a nado y en bici suman a la semana, y en el bloque 7 cada persona elige si también al GR 131 */
+     movimiento de «Anotar movimiento» (7-11-2026, bloque 4; los km, de los cinco tipos desde el 8-11-2026; desde
+     el bloque 7, catorce deportes, cada uno con sus datos, y la intensidad); comida, el diario por raciones,
+     apagado hasta que la persona lo enciende) */
+  /* (8-11-2026, bloque 7) los deportes de «Anotar movimiento», cada uno con sus datos (Jerome, 8-11: «todos los
+     deportes que tenemos en la app y incluido el gimnasio deben coger datos diferentes, que son deportes
+     diferentes»): los cinco del bloque 4 y los demás de la app («Su deporte» y las categorías del mapa). El
+     gimnasio ya tenía los suyos: las series por grupo muscular, aparte. min: los minutos que propone la hoja;
+     dist: la distancia que pide ('km'; a nado, 'm': se escribe en metros y se guarda en km, al metro; sin dist,
+     ninguna), con km: la que propone (los de la maqueta; a nado, en bici y en kayak, 0) y max: su tope en km, que
+     solo frena un error al escribir (425 por 4,25): 200 en bici (Jerome: «200 mejor»), 10 a nado, 100 en los
+     demás; des: pide el desnivel positivo, en metros; gr: true, sus km avanzan siempre el GR 131, que es a pie;
+     'elige', solo si la persona lo elige en «Cruce la isla» (Jerome, 8-11: «dejar la posibilidad a cada usuario
+     de elegir»; nadando o haciendo surf «no es como si camino a pie»); met y cod: el MET y el código del
+     Compendio de Actividades Físicas de 2024 (Herrmann y cols., J Sport Health Sci 2024;13:6-12;
+     pacompendium.com) del que sale la intensidad que se propone: desde 6 MET, intensa (la frontera de la OMS y
+     de los CDC). El pádel no está en el Compendio: el tenis de dobles (15685, 4,5). «Otro deporte», moderada. La
+     persona la cambia en cada anotación (la prueba del habla, de los CDC) */
   var MOV = [
-    { id: 'caminar', min: 30, km: 2.5, pie: true, aPie: true, max: 100 },
-    { id: 'senderismo', min: 120, km: 8, pie: true, aPie: true, max: 100 },
-    { id: 'correr', min: 30, km: 5, pie: true, aPie: true, max: 100 },
-    { id: 'nadar', min: 30, km: 0, pie: true, max: 100 },
-    { id: 'bici', min: 60, km: 0, pie: true, max: 200 }
+    { id: 'caminar', min: 30, dist: 'km', km: 2.5, max: 100, gr: true, met: 3.5, cod: '17160' },
+    { id: 'senderismo', min: 120, dist: 'km', km: 8, max: 100, gr: true, des: true, met: 6.0, cod: '17080' },
+    { id: 'correr', min: 30, dist: 'km', km: 5, max: 100, gr: true, des: true, met: 8.0, cod: '12150' },
+    { id: 'bici', min: 60, dist: 'km', km: 0, max: 200, gr: 'elige', met: 7.0, cod: '01014' },
+    { id: 'nadar', min: 30, dist: 'm', km: 0, max: 10, gr: 'elige', met: 6.0, cod: '18310' },
+    { id: 'kayak', min: 60, dist: 'km', km: 0, max: 100, gr: 'elige', met: 5.0, cod: '18100' },
+    { id: 'sup', min: 60, met: 6.5, cod: '18224' },
+    { id: 'surf', min: 90, met: 3.0, cod: '18220' },
+    { id: 'windsurf', min: 90, met: 5.0, cod: '18380' },
+    { id: 'buceo', min: 45, met: 6.8, cod: '18208' },
+    { id: 'golf', min: 240, met: 4.5, cod: '15255' },
+    { id: 'padel', min: 90, met: 4.5, cod: '15685' },
+    { id: 'escalada', min: 120, met: 8.0, cod: '15533' },
+    { id: 'otro', min: 30, met: 3.0, cod: '' }
   ];
   var MOV_IDS = MOV.map(function (m) { return m.id; });
-  var MIN_MAX = 600, MAX_MOV = 2000;
-  /* los iconos de los cinco tipos (los de la maqueta), constantes: van con innerHTML en los botones de la hoja */
+  var GR_ELIGE = MOV.filter(function (m) { return m.gr === 'elige'; }).map(function (m) { return m.id; });
+  var MIN_MAX = 600, MAX_MOV = 2000, DES_MAX = 4000;
+  /* la intensidad que propone cada deporte: desde 6 MET, intensa ('v'); si no, moderada ('m') */
+  function intDe(m) { return m.met >= 6 ? 'v' : 'm'; }
+  /* el deporte que la hoja propone la primera vez, según «Su deporte» */
+  var DEP_MOV = { senderismo: 'senderismo', mar: 'nadar', carrera: 'correr', ciclismo: 'bici', surf: 'surf', buceo: 'buceo', golf: 'golf', padel: 'padel', otro: 'otro' };
+  /* los iconos de los catorce deportes (los cinco de la maqueta y nueve propios, de trazo, como ellos):
+     constantes, van con innerHTML en los botones de la hoja y en la semana por deporte */
   function icoMov(d) { return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; }
   var ICONOS_MOV = {
     caminar: icoMov('<circle cx="13" cy="4.2" r="1.8"/><path d="M13 8l-3 3 1 4-2.5 6M13 8l1.5 4 3 2M11 15l3 2.5 1 4.5M10 11l-3 1.5"/>'),
     senderismo: icoMov('<path d="M3 20l5.5-10 3.5 6 2.5-4L21 20z"/><path d="M8.5 10l1.6 2.8"/><circle cx="17.5" cy="5.5" r="1.8"/>'),
     correr: icoMov('<circle cx="15" cy="4.2" r="1.8"/><path d="M8 9.5l4-1.5 3 3 3.5.5M12 8l-1.5 5 3.5 3-1 5M10.5 13l-2 3H5"/>'),
+    bici: icoMov('<circle cx="6" cy="16.5" r="3.5"/><circle cx="18" cy="16.5" r="3.5"/><path d="M6 16.5l4-7h5l3 7M10 9.5l2.5 7M9 7h3M15 9.5l-1-3h2"/>'),
     nadar: icoMov('<path d="M2.5 17.5c1.6 0 1.6 1.2 3.2 1.2s1.6-1.2 3.2-1.2 1.6 1.2 3.1 1.2 1.6-1.2 3.2-1.2 1.6 1.2 3.2 1.2 1.6-1.2 3.1-1.2"/><circle cx="17.2" cy="8.2" r="1.9"/><path d="M4.5 14.5l5.5-5 3.5 3.5 2.5 1.5"/>'),
-    bici: icoMov('<circle cx="6" cy="16.5" r="3.5"/><circle cx="18" cy="16.5" r="3.5"/><path d="M6 16.5l4-7h5l3 7M10 9.5l2.5 7M9 7h3M15 9.5l-1-3h2"/>')
+    kayak: icoMov('<path d="M2.5 15.5c4 2.6 15 2.6 19 0-4-1.6-15-1.6-19 0z"/><circle cx="12" cy="8.2" r="1.7"/><path d="M12 10.2v3.6M4.5 6.5l15 11M3.6 5.8l1.9-.6-.4 1.9zM20.4 18.2l-1.9.6.4-1.9z"/>'),
+    sup: icoMov('<path d="M3 20c2.5-1.3 15.5-1.3 18 0"/><circle cx="10.5" cy="4.2" r="1.7"/><path d="M10.5 6.2v6.3l-2 5.5M10.5 12.5l2.2 5.5M10.5 8.4l5.5 2.2M17 4.5l-1.6 15M16 19.5l-.4-2.6 1.6.1z"/>'),
+    surf: icoMov('<path d="M2.5 15c2-5.5 6.5-9 12-9 3.3 0 6 2 6.5 4.5-2.6-1.2-5.6-.4-6.8 2.3"/><path d="M3.5 20.5c3.5-1.8 13.5-1.8 17 0"/>'),
+    windsurf: icoMov('<path d="M12 3v14.5"/><path d="M12 3.5c4 2.8 6.4 7.8 6.4 13.5H12"/><path d="M12 8.5l-4 3.5"/><path d="M3.5 19.5c3.5 1.4 13.5 1.4 17 0"/>'),
+    buceo: icoMov('<path d="M3.5 9h17v4a3 3 0 0 1-3 3h-2.2L12 13.8 8.7 16H6.5a3 3 0 0 1-3-3z"/><path d="M20.5 11.5h1"/><circle cx="18.5" cy="5.5" r="1.2"/><circle cx="15.5" cy="3.8" r=".9"/>'),
+    golf: icoMov('<path d="M8.5 21V3l8 3.4-8 3.4"/><circle cx="15.5" cy="18" r="2.2"/><path d="M4.5 21h8"/>'),
+    padel: icoMov('<path d="M14.2 3.6a5.8 5.8 0 0 1 4.1 9.9l-3.5 3.5a5.8 5.8 0 1 1-8.2-8.2l3.5-3.5a5.8 5.8 0 0 1 4.1-1.7z"/><path d="M7 17l-3.5 3.5"/><path d="M12 8.5h.01M15 8.8h.01M11.5 11.6h.01M14.6 11.9h.01"/><circle cx="19.5" cy="19.5" r="1.6"/>'),
+    escalada: icoMov('<rect x="6.5" y="2.8" width="11" height="18.4" rx="5.5"/><path d="M6.5 9.5l5-1.5"/><path d="M12.5 15.5h5"/>'),
+    otro: icoMov('<circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/>')
   };
   /* ── «Hoy en la isla» y «Cruce la isla» (8-11-2026, bloque 5) ──
      Las seis zonas del panel «¿Dónde hace sol ahora?» de la app (index.html, MC_ZONES), con las mismas coordenadas:
@@ -1857,21 +1931,21 @@
     { id: 'mov', icono: 'ola', color: '--mov', ok: function (R) { return R.min >= metaMin(); } },
     { id: 'sol', icono: 'sol', color: '--oro', ok: function (R) { return R.diasFuerza >= metaDias() && R.min >= metaMin(); } },
     { id: 'doce', icono: 'cuerpo', color: '--zonas', ok: function (R) { return R.grupos >= 12; } },
-    { id: 'km10', icono: 'bota', color: '--mov', ok: function () { return kmPie() >= 10; } },
+    { id: 'km10', icono: 'bota', color: '--mov', ok: function () { return kmGR() >= 10; } },
     { id: 'e1', icono: 'pino', color: '--verde', parada: 1 },
     { id: 'e2', icono: 'teide', color: '--zonas', parada: 2 },
     { id: 'e3', icono: 'estrella', color: '--oro', parada: 3 },
     { id: 'e4', icono: 'casa', color: '--verde', parada: 4 },
     { id: 'e5', icono: 'mar', color: '--fuerza', parada: 5 }
   ];
-  SELLOS.forEach(function (s) { if (s.parada) s.ok = function () { return kmPie() >= GR131.paradas[s.parada].km; }; });
+  SELLOS.forEach(function (s) { if (s.parada) s.ok = function () { return kmGR() >= GR131.paradas[s.parada].km; }; });
   var SELLOS_IDS = SELLOS.map(function (s) { return s.id; });
   function movDe(id) { for (var i = 0; i < MOV.length; i++) { if (MOV[i].id === id) return MOV[i]; } return MOV[0]; }
   /* los km, al metro: tres decimales (8-11-2026, Jerome: «quiero lo más preciso posible»; antes, uno). Se
      redondea con el número escrito en decimal y no por × 1000, que con 0,5005 da 500,49999… y 0,5: así da
      0,501. Lo que no se escribe así (1e-7), por × 1000 */
   function km3(v) { var r = Number(Math.round(Number(v + 'e3')) + 'e-3'); return isFinite(r) ? r : Math.round(v * 1000) / 1000; }
-  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], deporte: '', comida: comVacio(), sellos: {} }; }
+  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], gr: [], deporte: '', comida: comVacio(), sellos: {} }; }
   function valida(s) {
     var r = vacio();
     if (!s || typeof s !== 'object') return r;
@@ -1887,17 +1961,24 @@
         return y;
       }).slice(-MAX_ENTRADAS);
     }
-    /* el movimiento (bloque 4): el tipo, de la lista; los minutos, enteros de 1 a 600; los km, de 0 a su tope (100;
-       en bici, 200), al metro, en los tipos que los piden (desde el 8-11-2026, los cinco) */
+    /* el movimiento (bloque 4): el deporte, de la lista; los minutos, enteros de 1 a 600; los km, de 0 a su tope,
+       al metro, en los deportes que piden distancia; (bloque 7) la intensidad, 'm' o 'v' (si falta, en lo anotado
+       antes del bloque 7, moderada: no se cuenta por dos lo que la persona no dijo que fuera intenso), y el
+       desnivel, de 1 a 4.000 m, en los que lo piden */
     if (Array.isArray(s.mov)) {
       r.mov = s.mov.filter(function (x) {
         return x && typeof x === 'object' && esFecha(x.d) && x.d <= max && x.d >= min && MOV_IDS.indexOf(x.tipo) >= 0 &&
           typeof x.min === 'number' && Math.floor(x.min) === x.min && x.min >= 1 && x.min <= MIN_MAX;
       }).map(function (x) {
-        var k = (movDe(x.tipo).pie && typeof x.km === 'number' && isFinite(x.km) && x.km > 0) ? Math.min(movDe(x.tipo).max, km3(x.km)) : 0;
-        return { d: x.d, tipo: x.tipo, min: x.min, km: k, t: (typeof x.t === 'number' && isFinite(x.t) && x.t > 0) ? x.t : 0 };
+        var m = movDe(x.tipo);
+        var k = (m.dist && typeof x.km === 'number' && isFinite(x.km) && x.km > 0) ? Math.min(m.max, km3(x.km)) : 0;
+        var y = { d: x.d, tipo: x.tipo, min: x.min, km: k, int: x.int === 'v' ? 'v' : 'm', t: (typeof x.t === 'number' && isFinite(x.t) && x.t > 0) ? x.t : 0 };
+        if (m.des && typeof x.des === 'number' && isFinite(x.des) && x.des >= 1) y.des = Math.min(DES_MAX, Math.round(x.des));
+        return y;
       }).slice(-MAX_MOV);
     }
+    /* (bloque 7) lo que la persona eligió contar también para el GR 131: bici, nadar y kayak, sin repetir */
+    if (Array.isArray(s.gr)) r.gr = s.gr.filter(function (id, i) { return GR_ELIGE.indexOf(id) >= 0 && s.gr.indexOf(id) === i; });
     /* el deporte: solo la forma de un id (si no es uno de la lista, deporteActual() no lo encuentra) */
     if (typeof s.deporte === 'string' && s.deporte.length <= 30 && esId(s.deporte)) r.deporte = s.deporte;
     /* el diario de comidas (parte 5): comValida() lo comprueba campo a campo */
@@ -1938,10 +2019,15 @@
 
   /* ── las cuentas de los últimos 7 días (hoy y los 6 anteriores) ── */
   function nivel(n) { return n >= 10 ? 3 : n >= 5 ? 2 : n >= 1 ? 1 : 0; }
-  /* series y grupos por grupo, los días con fuerza, y (bloque 4) los minutos y los km del movimiento y los días
-     activos (con series o con movimiento) */
+  /* series y grupos por grupo, los días con fuerza, y (bloque 4) el movimiento y los días activos (con series o
+     con movimiento). (Bloque 7) min: los minutos para la meta de la semana: de adulto, cada minuto intenso cuenta
+     por dos (la OMS, 2020: de 150 a 300 minutos moderados o de 75 a 150 intensos; los CDC: un minuto intenso, como
+     dos moderados); de 5 a 17 años, todos igual (la OMS: 60 al día de media, moderados o intensos). tiempo: los
+     minutos de verdad. deps: cada deporte, con sus veces, sus minutos, su distancia (y los minutos de las
+     anotaciones con distancia, para el ritmo), su desnivel y las anotaciones de cada día (el buceo y el avión).
+     Ya no hay unos km de la semana: no se suman kilómetros de deportes distintos */
   function resumen() {
-    var h = hoy(), desde = sumar(h, -6), r = { series: {}, dias: {}, ultima: {}, total: 0, diasFuerza: 0, grupos: 0, niveles: {}, min: 0, km: 0, diasMov: 0, diasActivos: 0 }, todos = {}, conMov = {}, activos = {};
+    var h = hoy(), desde = sumar(h, -6), r = { series: {}, dias: {}, ultima: {}, total: 0, diasFuerza: 0, grupos: 0, niveles: {}, min: 0, tiempo: 0, deps: {}, diasMov: 0, diasActivos: 0 }, todos = {}, conMov = {}, activos = {}, dos = adulto();
     GRUPOS.forEach(function (g) { r.series[g] = 0; r.dias[g] = {}; r.ultima[g] = null; });
     st.series.forEach(function (x) {
       if (x.d > h) return;
@@ -1950,9 +2036,12 @@
     });
     st.mov.forEach(function (x) {
       if (x.d > h || x.d < desde) return;
-      r.min += x.min; r.km += x.km; conMov[x.d] = 1; activos[x.d] = 1;
+      r.min += x.min * (dos && x.int === 'v' ? 2 : 1); r.tiempo += x.min; conMov[x.d] = 1; activos[x.d] = 1;
+      var o = r.deps[x.tipo] || (r.deps[x.tipo] = { n: 0, min: 0, km: 0, minKm: 0, des: 0, dias: {} });
+      o.n++; o.min += x.min; o.dias[x.d] = (o.dias[x.d] || 0) + 1;
+      if (x.km > 0) { o.km = km3(o.km + x.km); o.minKm += x.min; }
+      if (x.des) o.des += x.des;
     });
-    r.km = km3(r.km);
     GRUPOS.forEach(function (g) { r.dias[g] = Object.keys(r.dias[g]).length; if (r.series[g]) r.grupos++; r.niveles[g] = nivel(r.series[g]); });
     r.diasFuerza = Object.keys(todos).length; r.diasMov = Object.keys(conMov).length; r.diasActivos = Object.keys(activos).length;
     return r;
@@ -2469,12 +2558,67 @@
   function fmtN(n, dec) { try { return new Intl.NumberFormat(locale(), { minimumFractionDigits: 0, maximumFractionDigits: dec }).format(n); } catch (e) { return String(n); } }
   /* «30 min y 2,5 km» (o solo los minutos): lo que se lee en el día, en el botón de la hoja y en el aviso */
   function minKm(min, km) { return km > 0 ? tx('cuerpoMinKm', { min: fmtN(min, 0), km: fmtN(km, 3) }) : tx('cuerpoMin', { n: min }); }
+  /* (bloque 7) lo de un deporte con su distancia: «30 min y 2,5 km», a nado «30 min y 1500 m», sin distancia «45 min» */
+  function queMov(tipo, min, km) {
+    var m = movDe(tipo);
+    if (!m.dist || !(km > 0)) return tx('cuerpoMin', { n: fmtN(min, 0) });
+    return m.dist === 'm' ? tx('cuerpoMinM', { min: fmtN(min, 0), m: fmtN(Math.round(km * 1000), 0) }) : minKm(min, km);
+  }
+  /* «1 h 30 min», «2 h», «45 min» */
+  function fmtDur(min) {
+    var h = Math.floor(min / 60), m = min % 60;
+    return !h ? tx('cuerpoMin', { n: fmtN(m, 0) }) : (m ? tx('cuerpoDurHM', { h: fmtN(h, 0), m: fmtN(m, 0) }) : tx('cuerpoDurH', { h: fmtN(h, 0) }));
+  }
+  /* el ritmo, en minutos y segundos: «5:30» */
+  function fmtRitmo(minPor) { var sg = Math.round(minPor * 60); return Math.floor(sg / 60) + ':' + String(sg % 60).padStart(2, '0'); }
+  /* que una línea no parta una cifra de su unidad («1050 m», «5:56 min/km») */
+  function sinPartir(s) { return String(s).replace(/(\d) (?=\S)/g, '$1\u00a0'); }
+  /* la línea de un deporte en la semana: las veces (en el buceo, las inmersiones), el tiempo, la distancia y lo que
+     se calcula con ella (correr, el ritmo por km; en bici y en kayak, la velocidad; a nado, el ritmo por 100 m), y
+     el desnivel. El ritmo y la velocidad, solo con las anotaciones que llevan distancia */
+  function lineaDep(id, o) {
+    var m = movDe(id), t = [tx(id === 'buceo' ? 'cuerpoInmersiones' : 'cuerpoVeces', { n: o.n }), fmtDur(o.min).replace(/ /g, '\u00a0')];
+    if (o.km > 0) {
+      t.push(m.dist === 'm' ? tx('medidaM', { n: fmtN(Math.round(o.km * 1000), 0) }) : tx('medidaKm', { n: fmtN(o.km, 3) }));
+      if (id === 'correr') t.push(tx('cuerpoRitmoKm', { t: fmtRitmo(o.minKm / o.km) }));
+      else if (id === 'bici' || id === 'kayak') t.push(tx('medidaKmh', { n: fmtN(o.km / (o.minKm / 60), 1) }));
+      else if (id === 'nadar') t.push(tx('cuerpoRitmo100', { t: fmtRitmo(o.minKm / (o.km * 10)) }));
+    }
+    if (o.des > 0) t.push(tx('cuerpoDesnivel', { n: fmtN(o.des, 0) }));
+    /* el punto, al final de la línea si la línea se parte */
+    return t.map(sinPartir).join('\u00a0· ');
+  }
+  /* el buceo y el avión (DAN, taller de 2002: «for multiple dives per day or multiple days of diving», 18 h; una
+     sola inmersión sin descompresión, 12 h): con una inmersión hoy o ayer (si no, ya pasaron las 18 h), 18 h si en
+     la semana hubo más de una, 12 h si fue esa sola. No se calcula una hora: no se sabe cuándo acabó cada inmersión */
+  function danTxt(o) {
+    var h = hoy();
+    if (!o.dias[h] && !o.dias[sumar(h, -1)]) return '';
+    return tx(o.n >= 2 ? 'cuerpoDan18' : 'cuerpoDan12');
+  }
+  /* «Por deporte»: una fila por cada deporte de los últimos 7 días, en el orden de la hoja */
+  function renderDeps(R) {
+    var caja = $('tgc-deps'), ul = $('tgc-deps-lista'); if (!caja) return;
+    ul.textContent = '';
+    var ids = MOV_IDS.filter(function (id) { return R.deps[id]; });
+    caja.hidden = !ids.length;
+    ids.forEach(function (id) {
+      var o = R.deps[id], li = el('li', 'tgc-dep'), ic = el('span', 'tgc-dep-ico'), t = el('div', 'tgc-dep-txt');
+      li.dataset.tipo = id; ic.innerHTML = ICONOS_MOV[id]; li.appendChild(ic);
+      t.appendChild(el('b', 'tgc-dep-nom', nombreMov(id)));
+      t.appendChild(el('span', 'tgc-dep-cifras', lineaDep(id, o)));
+      if (id === 'buceo') { var d = danTxt(o); if (d) t.appendChild(el('p', 'tgc-dep-dan', d)); }
+      li.appendChild(t); ul.appendChild(li);
+    });
+  }
   /* (7-11-2026, bloque 4) las tres metas de la semana: los días con fuerza, los minutos de movimiento y los grupos
      trabajados, cada una con su cifra, «de cuántos», su raya y la marca de cumplida (como en la maqueta) */
   var metasAntes = null;
   function meta(id, valor, meta_, claveDe) {
     var m = $('tgc-meta-' + id), b = m.querySelector('.tgc-meta-n b'), hecha = valor >= meta_;
     var txt = fmtN(valor, 0);
+    /* (bloque 7) con los minutos intensos por dos, la semana pasa de mil a menudo: la cifra baja de talla y no se parte */
+    b.parentNode.classList.toggle('larga', valor >= 1000 && valor < 10000); b.parentNode.classList.toggle('muy-larga', valor >= 10000);
     if (b.textContent !== txt) {
       b.textContent = txt;
       /* la cifra salta al cambiar (no al abrir ni al cambiar de idioma) */
@@ -2492,7 +2636,8 @@
   function renderResumen(R) {
     var ahora = {
       fuerza: meta('fuerza', R.diasFuerza, metaDias(), 'cuerpoMetaFuerzaDe'),
-      mov: meta('mov', R.min, metaMin(), 'cuerpoMetaMovDe'),
+      /* (bloque 7) para un adulto, cada minuto intenso cuenta por dos (OMS 2020): la tarjeta lo dice */
+      mov: meta('mov', R.min, metaMin(), adulto() ? 'cuerpoMetaMovDeEq' : 'cuerpoMetaMovDe'),
       grupos: meta('grupos', R.grupos, 12, 'cuerpoMetaGruposDe')
     };
     metasAntes = ahora;
@@ -2506,24 +2651,33 @@
     $('tgc-cifras-mov').textContent = tx(adulto() ? 'cuerpoRecoMovAdulto' : 'cuerpoRecoMovJoven');
     $('tgc-cifras-ref').textContent = tx('cuerpoRefSeries'); $('tgc-cifras-ref').hidden = !adulto();
     $('tgc-h-ref').hidden = !adulto();
+    $('tgc-cifras-int').textContent = tx('cuerpoCifrasInt');   /* (bloque 7) la intensidad y el buceo */
+    $('tgc-cifras-dan').textContent = tx('cuerpoCifrasDan');
     renderSemana();
+    renderDeps(R);
   }
   /* la semana: hoy y los 6 días anteriores, con las series anotadas cada día y sus grupos, y (bloque 4) los
-     minutos y los km de movimiento y sus tipos */
+     minutos de movimiento y (bloque 7) cada deporte del día, con sus minutos y su distancia */
   var diaSel = null;
   function semana() {
     var h = hoy(), ds = [];
-    for (var i = 6; i >= 0; i--) ds.push({ d: sumar(h, -i), n: 0, g: {}, min: 0, km: 0, tipos: {} });
+    for (var i = 6; i >= 0; i--) ds.push({ d: sumar(h, -i), n: 0, g: {}, min: 0, deps: {} });
     st.series.forEach(function (x) { ds.forEach(function (o) { if (o.d === x.d) { o.n += x.n; o.g[x.g] = 1; } }); });
-    st.mov.forEach(function (x) { ds.forEach(function (o) { if (o.d === x.d) { o.min += x.min; o.km = km3(o.km + x.km); o.tipos[x.tipo] = 1; } }); });
+    st.mov.forEach(function (x) { ds.forEach(function (o) {
+      if (o.d !== x.d) return;
+      var p = o.deps[x.tipo] || (o.deps[x.tipo] = { min: 0, km: 0 });
+      o.min += x.min; p.min += x.min; p.km = km3(p.km + x.km);
+    }); });
     return ds;
   }
   function fmtDia(s, largo) {
     try { return fecha(s).toLocaleDateString(locale(), largo ? { weekday: 'long', day: 'numeric', month: 'long' } : { weekday: 'short' }).replace(/\.$/, ''); }
     catch (e) { return s; }
   }
-  /* lo del día en una línea: «10 series · 30 min y 2,5 km» (solo movimiento, si no hubo series; «0 series» si no hubo nada) */
-  function textoDia(o) { var t = []; if (o.n > 0 || !o.min) t.push(tx('cuerpoNSeries', { n: o.n })); if (o.min > 0) t.push(minKm(o.min, o.km)); return t.join(' · '); }
+  /* lo del día en una línea: «10 series · 1 h 5 min» (solo movimiento, si no hubo series; «0 series» si no hubo
+     nada). (Bloque 7) los minutos de todos los deportes del día, sin sus distancias: cada deporte, con la suya, en
+     la línea de debajo */
+  function textoDia(o) { var t = []; if (o.n > 0 || !o.min) t.push(tx('cuerpoNSeries', { n: o.n })); if (o.min > 0) t.push(fmtDur(o.min)); return t.join(' · '); }
   function renderSemana() {
     var ds = semana(), h = hoy(), ol = $('tgc-dias7');
     if (!diaSel || diaSel > h || diaSel < ds[0].d) diaSel = h;
@@ -2550,7 +2704,7 @@
     var o = (ds || semana()).filter(function (x) { return x.d === diaSel; })[0];
     if (!o) return;
     $('tgc-dia-txt').textContent = dosPuntos(fmtDia(o.d, true), textoDia(o));
-    var gs = GRUPOS.filter(function (g) { return o.g[g]; }).map(nombre), ts = MOV_IDS.filter(function (t) { return o.tipos[t]; }).map(nombreMov);
+    var gs = GRUPOS.filter(function (g) { return o.g[g]; }).map(nombre), ts = MOV_IDS.filter(function (t) { return o.deps[t]; }).map(function (t) { return dosPuntos(nombreMov(t), sinPartir(queMov(t, o.deps[t].min, o.deps[t].km))); });
     var trozos = []; if (gs.length) trozos.push(lista(gs)); if (ts.length) trozos.push(lista(ts));
     $('tgc-dia-grupos').textContent = trozos.length ? trozos.join(' · ') : tx('cuerpoSinAnotar');
   }
@@ -2767,7 +2921,38 @@
     return l.length > 1 ? 'M' + l.map(function (p) { return f1(p[0]) + ' ' + f1(p[1]); }).join('L') : '';
   }
   /* todos los kilómetros a pie anotados (a nado y en bici se guardan con 0 km; por si acaso, solo cuentan los tipos a pie) */
-  function kmPie() { var k = 0; st.mov.forEach(function (x) { if (movDe(x.tipo).aPie) k += x.km; }); return km3(k); }
+  /* (bloque 7) si los km de un deporte avanzan el GR 131: a pie, siempre; bici, nado y kayak, si la persona lo
+     eligió en «Cruce la isla» (st.gr) */
+  function cuentaGR(id) { var m = movDe(id); return m.gr === true || (m.gr === 'elige' && st.gr.indexOf(id) >= 0); }
+  /* los km de la travesía: todos los anotados que cuentan (un viaje, no una semana) */
+  function kmGR() { var k = 0; st.mov.forEach(function (x) { if (x.km > 0 && cuentaGR(x.tipo)) k += x.km; }); return km3(k); }
+  /* las opciones de lo que cuenta: a pie, fijo; bici, nado y kayak, botones que se encienden y se apagan */
+  var MARCA_SI = '<svg class="tgc-gr-si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.5l5 5 10-11"/></svg>';
+  function renderGr() {
+    var caja = $('tgc-gr-ops'); if (!caja) return;
+    if (caja.children.length !== GR_ELIGE.length) {
+      caja.textContent = '';
+      GR_ELIGE.forEach(function (id) {
+        var b = el('button', 'tgc-gr-op'); b.type = 'button'; b.dataset.gr = id;
+        /* el icono del deporte; elegido, la marca de «A pie» en su lugar (el estado lo dice aria-pressed) */
+        b.innerHTML = '<span class="tgc-gr-ico" aria-hidden="true">' + ICONOS_MOV[id] + '</span>' + MARCA_SI; b.appendChild(el('span', 'tgc-gr-txt')); caja.appendChild(b);
+      });
+    }
+    var nombres = { bici: 'cuerpoGrBici', nadar: 'cuerpoGrNado', kayak: 'cuerpoGrKayak' };
+    GR_ELIGE.forEach(function (id, i) {
+      var b = caja.children[i];
+      b.setAttribute('aria-pressed', st.gr.indexOf(id) >= 0 ? 'true' : 'false');
+      b.querySelector('.tgc-gr-txt').textContent = tx(nombres[id]);
+    });
+  }
+  function elegirGr(id) {
+    if (GR_ELIGE.indexOf(id) < 0) return;
+    var antes = st.gr.slice(), i = st.gr.indexOf(id);
+    if (i >= 0) st.gr.splice(i, 1); else st.gr.push(id);
+    if (!guardar()) { st.gr = antes; return; }
+    islaAnimar = true; renderMusculos();
+    if (movAbierto) renderMov();
+  }
   var SVG_NS = 'http://www.w3.org/2000/svg';
   function nodoSvg(tag, at) { var e = document.createElementNS(SVG_NS, tag); for (var k in at) { if (at[k] !== null && at[k] !== undefined) e.setAttribute(k, at[k]); } return e; }
   var islaSvg = null, kmVisto = 0, kmAnim = null;
@@ -2801,7 +2986,7 @@
     kmVisto = km;
   }
   function renderIsla(animar) {
-    var km = kmPie(), caja = $('tgc-mapa');
+    var km = kmGR(), caja = $('tgc-mapa');
     if (!islaSvg || !caja.contains(islaSvg)) { if (islaSvg) islaSvg.remove(); islaSvg = construirIsla(); caja.insertBefore(islaSvg, caja.firstChild); kmVisto = km; }
     islaSvg.setAttribute('aria-label', tx('cuerpoIslaMapaAria', { km: fmtN(km, 1) }));
     $('tgc-isla-esquema').hidden = islaOficial;
@@ -2824,6 +3009,7 @@
     var sig = null; GR131.paradas.forEach(function (p) { if (!sig && p.km > 0 && km < p.km) sig = p; });
     $('tgc-isla-sig').textContent = sig ? tx('cuerpoIslaSiguiente', { parada: sig.nombre, km: tx('medidaKm', { n: fmtN(km3(sig.km - km), 1) }) }) : tx('cuerpoIslaCruzada');
     $('tgc-isla-sub').textContent = tx('cuerpoIslaSub');
+    renderGr();
     /* «Las cifras»: de dónde sale el GR 131 del mapa; con el esquema, que lo es; con el trazado oficial, su fuente */
     $('tgc-cifras-isla').textContent = tx('cuerpoIslaFuente') + (/^zh/.test(lengua()) ? '' : ' ') + (islaOficial ? tx('cuerpoIslaTrazadoDe', { fuente: trazadoFuente }) : tx('cuerpoIslaEsquemaNota'));
   }
@@ -3194,13 +3380,16 @@
     antesDeCifras = null;
     soltarSellos();
   }
-  /* ── «Anotar movimiento» (7-11-2026, bloque 4): la misma hoja, con su página. Qué ha hecho (cinco tipos),
-     los minutos (±5, o escritos), los kilómetros (±0,5, o escritos, al metro; desde el 8-11-2026, también a nado
-     y en bici), hoy o ayer; «Anotar» guarda, cierra y avisa con «Deshacer». Debajo, lo último anotado, con ×.
+  /* ── «Anotar movimiento» (7-11-2026, bloque 4): la misma hoja, con su página. Qué ha hecho (desde el bloque 7,
+     catorce deportes), los minutos (±5, o escritos), la distancia si el deporte la pide (los km, ±0,5, o
+     escritos, al metro; a nado, los metros, ±50), el desnivel si lo pide (±50 m), la intensidad (moderada o
+     intensa: la que propone el deporte, y la persona la cambia), hoy o ayer; «Anotar» guarda, cierra y avisa con
+     «Deshacer». Debajo, lo último anotado, con ×.
      Todo queda en tenerife.cuerpo, en el dispositivo; los kilómetros del perfil (su pestaña «Evolución», que se
      suben a la cuenta con permiso) no se tocan ── */
   var movAbierto = false, movHistoria = false, antesDeMov = null, movSel = null;
-  function movReset() { var m = MOV[0]; movSel = { tipo: m.id, min: m.min, km: m.km, dia: 'hoy' }; }
+  /* la primera vez, el deporte de «Su deporte» si tiene uno en la hoja; si no, caminar */
+  function movReset() { var m = movDe(DEP_MOV[st.deporte] || MOV[0].id); movSel = { tipo: m.id, min: m.min, km: m.km, des: 0, int: intDe(m), dia: 'hoy' }; }
   function abrirMov() {
     if (movAbierto) return;
     if (grupoAbierto) cerrarHoja(true);
@@ -3229,13 +3418,22 @@
     antesDeMov = null;
     soltarSellos();
   }
-  /* lo que hay escrito en el campo de los km: con coma o con punto, al metro y hasta el tope del tipo; nada o algo
-     que no es un número, null */
+  /* lo que hay escrito en el campo de la distancia: los km, con coma o con punto, al metro y hasta el tope del
+     deporte; a nado, los metros (un entero; sin puntos ni comas de miles), que se guardan en km; nada o algo que
+     no es un número, null */
   function leerKm() {
     if (!movSel) return null;
-    var s = String($('tgc-mov-km').value || '').replace(/\s/g, '').replace(',', '.');
+    var m = movDe(movSel.tipo), s = String($('tgc-mov-km').value || '').replace(/\s/g, '');
+    if (m.dist === 'm') { s = s.replace(/[.,'’]/g, ''); if (!/^\d+$/.test(s)) return null; return Math.max(0, Math.min(m.max, km3(parseInt(s, 10) / 1000))); }
+    s = s.replace(',', '.');
     if (!/^\d+(\.\d+)?$/.test(s)) return null;
-    return Math.max(0, Math.min(movDe(movSel.tipo).max, km3(parseFloat(s))));
+    return Math.max(0, Math.min(m.max, km3(parseFloat(s))));
+  }
+  /* el desnivel escrito: un entero de 0 a 4.000 m; algo que no es un número, null */
+  function leerDes() {
+    var s = String($('tgc-mov-des').value || '').replace(/[\s.,'’]/g, '');
+    if (!/^\d+$/.test(s)) return null;
+    return Math.min(DES_MAX, parseInt(s, 10));
   }
   /* lo que hay escrito en el campo de los minutos: un entero de 1 a 600; nada, 0 o algo que no es un número, null */
   function leerMin() {
@@ -3248,19 +3446,42 @@
      «Anotar» guarda lo escrito aunque el navegador no saque del campo al tocarlo */
   function renderValores(escribiendo) {
     if (!movSel) return;
-    var m = movDe(movSel.tipo);
+    var m = movDe(movSel.tipo), enM = m.dist === 'm';
     if (escribiendo !== 'min') $('tgc-mov-min').value = String(movSel.min);
     $('tgc-mov-min-menos').disabled = movSel.min <= 1;
     $('tgc-mov-min-mas').disabled = movSel.min >= MIN_MAX;
-    $('tgc-mov-km-fila').hidden = !m.pie;
-    if (escribiendo !== 'km') $('tgc-mov-km').value = fmtN(movSel.km, 3);
+    /* (bloque 7) la distancia, si el deporte la pide: en km, o en metros a nado (sin separador de miles: el campo
+       se vuelve a leer) */
+    $('tgc-mov-km-fila').hidden = !m.dist;
+    $('tgc-mov-km-l').textContent = tx(enM ? 'cuerpoMovMetros' : 'cuerpoMovKm');
+    $('tgc-mov-km').setAttribute('inputmode', enM ? 'numeric' : 'decimal');
+    if (escribiendo !== 'km') $('tgc-mov-km').value = enM ? String(Math.round(movSel.km * 1000)) : fmtN(movSel.km, 3);
+    $('tgc-mov-km-menos').setAttribute('aria-label', tx(enM ? 'cuerpoMovMenosM' : 'cuerpoMovMenosKm'));
+    $('tgc-mov-km-mas').setAttribute('aria-label', tx(enM ? 'cuerpoMovMasM' : 'cuerpoMovMasKm'));
     $('tgc-mov-km-menos').disabled = movSel.km <= 0;
     $('tgc-mov-km-mas').disabled = movSel.km >= m.max;
-    $('tgc-mov-guardar-txt').textContent = tx('cuerpoMovBoton', { que: minKm(movSel.min, m.pie ? movSel.km : 0) });
+    /* el desnivel, a pie en el monte y corriendo */
+    $('tgc-mov-des-fila').hidden = !m.des;
+    if (escribiendo !== 'des') $('tgc-mov-des').value = String(movSel.des || 0);
+    $('tgc-mov-des-menos').disabled = !(movSel.des > 0);
+    $('tgc-mov-des-mas').disabled = movSel.des >= DES_MAX;
+    /* la intensidad: la de la anotación; de adulto, lo que cuenta para la meta */
+    $('tgc-mov-int-m').setAttribute('aria-pressed', movSel.int === 'm' ? 'true' : 'false');
+    $('tgc-mov-int-v').setAttribute('aria-pressed', movSel.int === 'v' ? 'true' : 'false');
+    $('tgc-mov-int-ayuda').textContent = tx('cuerpoIntAyuda') + (adulto() ? (/^zh/.test(lengua()) ? '' : ' ') + tx('cuerpoIntDoble') : '');
+    $('tgc-mov-guardar-txt').textContent = tx('cuerpoMovBoton', { que: queMov(m.id, movSel.min, m.dist ? movSel.km : 0) });
+  }
+  /* la nota de la hoja, según el deporte: a pie, el GR 131; bici, nado y kayak, si cuentan para él (lo que eligió
+     la persona); el buceo, el avión (DAN); los demás, que suman minutos */
+  function notaMov(m) {
+    if (m.gr === true) return tx('cuerpoMovNotaPie');
+    if (m.gr === 'elige') return tx(cuentaGR(m.id) ? 'cuerpoMovNotaElegido' : 'cuerpoMovNotaElige', { seccion: tx('cuerpoIslaTitulo') });
+    if (m.id === 'buceo') return tx('cuerpoMovNotaBuceo');
+    return tx('cuerpoMovNotaMin');
   }
   function renderMov() {
     if (!movAbierto || !movSel) return;
-    /* los cinco tipos, con su icono y su nombre */
+    /* los catorce deportes, con su icono y su nombre */
     var caja = $('tgc-mov-tipos'); caja.textContent = '';
     MOV.forEach(function (x) {
       var b = el('button', 'tgc-tipo'); b.type = 'button'; b.dataset.tipo = x.id;
@@ -3272,14 +3493,17 @@
     renderValores();
     $('tgc-mov-hoy').setAttribute('aria-pressed', movSel.dia === 'hoy' ? 'true' : 'false');
     $('tgc-mov-ayer').setAttribute('aria-pressed', movSel.dia === 'ayer' ? 'true' : 'false');
-    $('tgc-mov-nota').textContent = tx(movDe(movSel.tipo).aPie ? 'cuerpoMovNotaPie' : 'cuerpoMovNotaOtro');   /* (bloque 5) a pie, el GR 131 */
+    $('tgc-mov-nota').textContent = notaMov(movDe(movSel.tipo));   /* (bloques 5 y 7) el GR 131, el avión, los minutos */
     /* lo último anotado: las ocho últimas, de la más reciente a la más antigua */
     var ul = $('tgc-mov-hist'); ul.textContent = '';
     var mias = st.mov.map(function (x, i) { return { x: x, i: i }; })
       .sort(function (a, b) { return a.x.d === b.x.d ? b.x.t - a.x.t || b.i - a.i : (a.x.d < b.x.d ? 1 : -1); }).slice(0, 8);
     mias.forEach(function (o) {
-      var li = el('li', 'tgc-hist-fila'), que = nombreMov(o.x.tipo) + ' · ' + minKm(o.x.min, o.x.km), f = fmtFecha(o.x.d);
-      li.appendChild(el('span', 'tgc-hist-n', que));
+      var que = nombreMov(o.x.tipo) + ' · ' + queMov(o.x.tipo, o.x.min, o.x.km) + (o.x.des ? ' · ' + tx('cuerpoDesnivel', { n: fmtN(o.x.des, 0) }) : '');
+      var li = el('li', 'tgc-hist-fila'), f = fmtFecha(o.x.d), n = el('span', 'tgc-hist-n', que);
+      /* (bloque 7) la intensidad, cuando es intensa: también en lo que lee el lector de pantalla */
+      if (o.x.int === 'v') { n.appendChild(el('span', 'tgc-int-marca', tx('cuerpoIntV'))); que += ' · ' + tx('cuerpoIntV'); }
+      li.appendChild(n);
       li.appendChild(el('span', 'tgc-hist-f', f));
       var b = el('button', 'tgc-hist-x', '×'); b.type = 'button'; b.dataset.i = String(o.i);
       b.setAttribute('aria-label', tx('cuerpoBorrarEntrada', { series: que, fecha: f }));
@@ -3287,21 +3511,22 @@
     });
     $('tgc-mov-hist-nada').hidden = mias.length > 0;
   }
-  function elegirMov(id) { var m = movDe(id); movSel.tipo = m.id; movSel.min = m.min; movSel.km = m.km; renderMov(); }
+  function elegirMov(id) { var m = movDe(id); movSel.tipo = m.id; movSel.min = m.min; movSel.km = m.km; movSel.des = 0; movSel.int = intDe(m); renderMov(); }
   function anotarMov() {
     if (!movSel) return;
     var m = movDe(movSel.tipo), d = movSel.dia === 'ayer' ? sumar(hoy(), -1) : hoy();
-    var x = { d: d, tipo: m.id, min: Math.max(1, Math.min(MIN_MAX, Math.round(movSel.min))), km: m.pie ? Math.max(0, Math.min(m.max, km3(movSel.km))) : 0, t: Date.now() };
+    var x = { d: d, tipo: m.id, min: Math.max(1, Math.min(MIN_MAX, Math.round(movSel.min))), km: m.dist ? Math.max(0, Math.min(m.max, km3(movSel.km))) : 0, int: movSel.int === 'v' ? 'v' : 'm', t: Date.now() };
+    if (m.des && movSel.des > 0) x.des = Math.min(DES_MAX, Math.round(movSel.des));
     st.mov.push(x);
     if (st.mov.length > MAX_MOV) st.mov = st.mov.slice(-MAX_MOV);
     if (!guardar()) { st.mov.pop(); return; }
     cerrarMov();
-    islaAnimar = x.km > 0; renderMusculos();
+    islaAnimar = x.km > 0 && cuentaGR(x.tipo); renderMusculos();
     if (en3d()) M3.sonrie(2.2);          /* movimiento anotado: el personaje sonríe, como con una serie */
-    /* con kilómetros, la isla a la vista: el marcador avanza por el GR 131 (bloque 5) */
-    if (x.km > 0 && modo === 'musculos') setTimeout(function () { var s = $('tgc-isla'); if (s && abierto) { try { s.scrollIntoView({ behavior: reducido ? 'auto' : 'smooth', block: 'center' }); } catch (e) {} } }, 350);
+    /* con kilómetros que cuentan para el GR 131, la isla a la vista: el marcador avanza (bloque 5) */
+    if (islaAnimar && modo === 'musculos') setTimeout(function () { var s = $('tgc-isla'); if (s && abierto) { try { s.scrollIntoView({ behavior: reducido ? 'auto' : 'smooth', block: 'center' }); } catch (e) {} } }, 350);
     deshacer = { mov: x };
-    toast(tx('cuerpoMovAnotado', { tipo: nombreMov(x.tipo), que: minKm(x.min, x.km) }), tx('cuerpoDeshacer'), function () {
+    toast(tx('cuerpoMovAnotado', { tipo: nombreMov(x.tipo), que: queMov(x.tipo, x.min, x.km) }), tx('cuerpoDeshacer'), function () {
       if (!deshacer || !deshacer.mov) return;
       var i = st.mov.indexOf(deshacer.mov); if (i >= 0) st.mov.splice(i, 1);
       deshacer = null;
@@ -3312,7 +3537,7 @@
     var x = st.mov[i]; if (!x) return;
     st.mov.splice(i, 1);
     if (!guardar()) { st.mov.splice(i, 0, x); return; }
-    islaAnimar = x.km > 0; renderMusculos(); renderMov();
+    islaAnimar = x.km > 0 && cuentaGR(x.tipo); renderMusculos(); renderMov();
     deshacer = { mov: x, i: i };
     toast(tx('cuerpoEntradaBorrada'), tx('cuerpoDeshacer'), function () {
       if (!deshacer || !deshacer.mov) return;
@@ -3464,10 +3689,10 @@
     }, 60);
   }
   function textoSello(s) {
-    if (s.parada) return tx('cuerpoSelloTEtapa', { n: s.parada, km: tx('medidaKm', { n: fmtN(kmPie(), 1) }) });
+    if (s.parada) return tx('cuerpoSelloTEtapa', { n: s.parada, km: tx('medidaKm', { n: fmtN(kmGR(), 1) }) });
     if (s.id === 'fuerza') return tx('cuerpoSelloT_fuerza', { n: metaDias() });
     if (s.id === 'mov') return tx('cuerpoSelloT_mov', { n: metaMin() });
-    if (s.id === 'km10') return tx('cuerpoSelloT_km10', { km: tx('medidaKm', { n: fmtN(Math.max(0, GR131.paradas[1].km - kmPie()), 1) }) });
+    if (s.id === 'km10') return tx('cuerpoSelloT_km10', { km: tx('medidaKm', { n: fmtN(Math.max(0, GR131.paradas[1].km - kmGR()), 1) }) });
     return tx('cuerpoSelloT_' + s.id);
   }
   function frases(a, b) { return a + (/^zh/.test(lengua()) ? '' : ' ') + b; }
@@ -3555,7 +3780,7 @@
       var by = H - 252;
       x.fillStyle = noche ? 'rgba(15,17,23,.88)' : 'rgba(255,255,255,.94)';
       if (x.roundRect) { x.beginPath(); x.roundRect(50, by, W - 100, 202, 36); x.fill(); } else x.fillRect(50, by, W - 100, 202);
-      var datos = [[fmtN(R.diasFuerza, 0), tx('cuerpoPostalLDias', { n: R.diasFuerza }), noche ? '#FF6B81' : '#C2334F'], [fmtN(R.min, 0), tx('cuerpoPostalLMin'), noche ? '#3CC8D6' : '#0B7C86'], [fmtN(kmPie(), 1), tx('cuerpoPostalLKm'), noche ? '#F5C76B' : '#8A6A12']];
+      var datos = [[fmtN(R.diasFuerza, 0), tx('cuerpoPostalLDias', { n: R.diasFuerza }), noche ? '#FF6B81' : '#C2334F'], [fmtN(R.tiempo, 0), tx('cuerpoPostalLMin'), noche ? '#3CC8D6' : '#0B7C86'], [fmtN(kmGR(), 1), tx('cuerpoPostalLKm'), noche ? '#F5C76B' : '#8A6A12']];
       datos.forEach(function (d, i) {
         var cx = 50 + (W - 100) * (i + 0.5) / 3, t2 = 30;
         x.textAlign = 'center'; x.fillStyle = d[2]; x.font = '600 100px "Cormorant Garamond", Georgia, serif'; x.fillText(d[0], cx, by + 104);
@@ -3615,7 +3840,7 @@
     panel.classList.toggle('sin-escena', q || c);
     pegada();
   }
-  function renderTodo() { aplicarTextos(); ponerTema(tema); renderModo(); renderMusculos(); renderDeporte(); renderEditor(); renderComida(); if (grupoAbierto) renderHoja(); if (modo === 'preguntar') renderAsistente(); }
+  function renderTodo() { aplicarTextos(); ponerTema(tema); renderModo(); renderMusculos(); renderDeporte(); renderEditor(); renderComida(); if (grupoAbierto) renderHoja(); if (modo === 'preguntar') renderAsistente(); if (movAbierto) renderMov(); }
   function setModo(m) {
     if (m === modo) return;
     modo = m; renderModo(); renderFigura(); vivo3d();
@@ -3690,8 +3915,17 @@
     $('tgc-mov-min-mas').addEventListener('click', function () { movSel.min = Math.min(MIN_MAX, movSel.min + 5); renderMov(); });
     $('tgc-mov-min').addEventListener('input', function () { var v = leerMin(); if (movSel && v !== null) { movSel.min = v; renderValores('min'); } });
     $('tgc-mov-min').addEventListener('change', function () { var v = leerMin(); if (movSel && v !== null) movSel.min = v; renderValores(); });
-    $('tgc-mov-km-menos').addEventListener('click', function () { movSel.km = Math.max(0, km3(movSel.km - 0.5)); renderMov(); });
-    $('tgc-mov-km-mas').addEventListener('click', function () { movSel.km = Math.min(movDe(movSel.tipo).max, km3(movSel.km + 0.5)); renderMov(); });
+    /* (bloque 7) a nado, de 50 en 50 m; en los demás, de medio en medio km */
+    function pasoKm() { return movDe(movSel.tipo).dist === 'm' ? 0.05 : 0.5; }
+    $('tgc-mov-km-menos').addEventListener('click', function () { movSel.km = Math.max(0, km3(movSel.km - pasoKm())); renderMov(); });
+    $('tgc-mov-km-mas').addEventListener('click', function () { movSel.km = Math.min(movDe(movSel.tipo).max, km3(movSel.km + pasoKm())); renderMov(); });
+    $('tgc-mov-des-menos').addEventListener('click', function () { movSel.des = Math.max(0, (movSel.des || 0) - 50); renderMov(); });
+    $('tgc-mov-des-mas').addEventListener('click', function () { movSel.des = Math.min(DES_MAX, (movSel.des || 0) + 50); renderMov(); });
+    $('tgc-mov-des').addEventListener('input', function () { var v = leerDes(); if (movSel && v !== null) { movSel.des = v; renderValores('des'); } });
+    $('tgc-mov-des').addEventListener('change', function () { var v = leerDes(); if (movSel && v !== null) movSel.des = v; renderValores(); });
+    $('tgc-mov-int-m').addEventListener('click', function () { movSel.int = 'm'; renderValores(); });
+    $('tgc-mov-int-v').addEventListener('click', function () { movSel.int = 'v'; renderValores(); });
+    $('tgc-gr-ops').addEventListener('click', function (e) { var b = e.target.closest('.tgc-gr-op'); if (b) elegirGr(b.dataset.gr); });
     $('tgc-mov-km').addEventListener('input', function () { var v = leerKm(); if (movSel && v !== null) { movSel.km = v; renderValores('km'); } });
     $('tgc-mov-km').addEventListener('change', function () { var v = leerKm(); if (movSel && v !== null) movSel.km = v; renderValores(); });
     $('tgc-mov-hoy').addEventListener('click', function () { movSel.dia = 'hoy'; renderMov(); });
@@ -3923,7 +4157,11 @@
       var hechos = GRUPOS.filter(function (g) { return R.series[g] > 0; });
       /* (bloque 4) los minutos y los km de la semana; sin movimiento, min vale null y el párrafo que lo
          nombra no sale (tarjetaRespuesta) */
-      return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos), min: R.min || null, km: fmtN(R.km, 3) } };
+      /* (bloque 7) el movimiento, deporte a deporte, con su distancia («Senderismo: 270 min y 18,5 km»), y los
+         minutos que cuentan para la meta (de adulto, los intensos por dos) de cuántos; sin movimiento, mov vale
+         null y el párrafo que lo nombra no sale (tarjetaRespuesta) */
+      var movs = MOV_IDS.filter(function (t) { return R.deps[t]; }).map(function (t) { return dosPuntos(nombreMov(t), queMov(t, R.deps[t].min, R.deps[t].km)); });
+      return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos), mov: movs.length ? lista(movs) : null, min: R.min, meta: metaMin() } };
     }
     if (id === 'que-entreno-hoy') {
       var faltan = GRUPOS.filter(function (g) { return !R.series[g]; });
@@ -4346,6 +4584,8 @@
   function engancharDeporte() {
     $('tgc-dep-sel').addEventListener('change', function () {
       st.deporte = deporteDe(this.value) ? this.value : '';
+      /* (bloque 7) la hoja del movimiento propone el deporte nuevo la próxima vez que se abra */
+      movSel = null;
       guardar(); renderMusculos(); renderDeporte();
     });
     $('tgc-dep-reintentar').addEventListener('click', function () { depError = false; renderDeporte(); });
@@ -4674,6 +4914,10 @@
 .tgc-meta { min-width: 0; display: grid; gap: 6px; align-content: start; }
 .tgc-meta-n { display: flex; align-items: flex-start; gap: 4px; font: 600 54px/.9 var(--font-display); letter-spacing: -1px; color: var(--tinta); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .tgc-meta-n.salta { animation: tgc-salta 450ms var(--ease-bounce); }
+.tgc-meta-n b { white-space: nowrap; }
+.tgc-meta-n.larga { font-size: 40px; letter-spacing: -.5px; }
+.tgc-meta-n.muy-larga { font-size: 32px; letter-spacing: -.5px; }
+.tgc-meta.mov .tgc-meta-de { hyphens: manual; }
 @keyframes tgc-salta { 0% { transform: translateY(8px) scale(.9); } 100% { transform: none; } }
 .tgc-meta-ok { margin-top: 6px; font: 700 13px/1 var(--font-body); letter-spacing: 0; animation: tgc-aparece 400ms var(--ease-bounce); }
 @keyframes tgc-aparece { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
@@ -4970,6 +5214,30 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-tipos .tgc-tipo { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 13px 0 10px; }
 .tgc-tipos .tgc-tipo svg { flex: none; }
 .tgc-paso input.tgc-km { width: 72px; }
+/* ── (bloque 7) el movimiento por deporte: la intensidad en la hoja, «Por deporte» en la semana y lo que cuenta
+   para el GR 131 en «Cruce la isla» ── */
+.tgc-int-ayuda { margin: -4px 0 0; }
+.tgc-int-marca { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; font-size: 11.5px; font-weight: 700; background: var(--oro-f); color: var(--oro); vertical-align: 1px; }
+.tgc-deps { display: grid; gap: 8px; min-width: 0; }
+.tgc-deps h3 { margin: 0; font-size: 14px; font-weight: 700; color: var(--tinta); }
+.tgc-deps-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.tgc-dep { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 10px; align-items: start; padding: 8px 10px; border-radius: 14px; background: var(--fondo); }
+.tgc-dep-ico { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--mov-f); color: var(--mov); }
+.tgc-dep-txt { display: grid; gap: 2px; min-width: 0; }
+.tgc-dep-nom { font-size: 14px; font-weight: 700; }
+.tgc-dep-cifras { font-size: 13px; line-height: 1.4; color: var(--tinta-2); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.tgc-dep-dan { margin: 4px 0 0; padding: 6px 9px; border-radius: 10px; font-size: 13px; line-height: 1.4; background: var(--oro-f); color: var(--tinta); }
+.tgc-gr { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.tgc-gr-l { width: 100%; font-size: 13px; font-weight: 600; color: var(--tinta-2); }
+.tgc-gr-fijo { display: inline-flex; align-items: center; gap: 5px; min-height: 38px; padding: 0 12px 0 10px; border-radius: 999px; background: var(--mov); color: var(--fondo); font-size: 13px; font-weight: 600; }
+.tgc-gr-ops { display: contents; }
+.tgc-gr-op { display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 0 12px 0 9px; border-radius: 999px; border: 1.5px solid var(--linea); background: transparent; font-size: 13px; color: var(--tinta); transition: border-color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out); }
+.tgc-gr-ico { display: inline-flex; flex: none; }
+.tgc-gr-op svg { width: 18px; height: 18px; flex: none; }
+.tgc-gr-op[aria-pressed="true"] { border-color: var(--mov); background: var(--mov); color: var(--fondo); font-weight: 600; }
+.tgc-gr-op .tgc-gr-si { display: none; width: 14px; height: 14px; }
+.tgc-gr-op[aria-pressed="true"] .tgc-gr-si { display: block; }
+.tgc-gr-op[aria-pressed="true"] .tgc-gr-ico { display: none; }
 
 /* ── los ejercicios: la lista del grupo y la ficha de cada uno ── */
 .tgc-pag { display: grid; gap: 14px; min-width: 0; }
@@ -5186,6 +5454,8 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 @media (max-width: 359px) {
   .tgc-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tgc-meta-n { font-size: 44px; }
+  .tgc-meta-n.larga { font-size: 31px; }
+  .tgc-meta-n.muy-larga { font-size: 25px; }
   .tgc-isla-cifra { font-size: 44px; }
   .tgc-top h1 { font-size: 26px; }
   .tgc-postal-caja { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; padding: 14px; }
@@ -5285,6 +5555,10 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
         <p class="tgc-dia-txt" id="tgc-dia-txt"></p>
         <p class="tgc-dia-grupos" id="tgc-dia-grupos"></p>
       </div>
+      <div class="tgc-deps" id="tgc-deps" hidden>
+        <h3 id="tgc-deps-tit">Por deporte</h3>
+        <ul class="tgc-deps-lista" id="tgc-deps-lista"></ul>
+      </div>
       <button type="button" class="tgc-btn wide tgc-mov-btn" id="tgc-mov-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4.2" r="1.8"/><path d="M13 8l-3 3 1 4-2.5 6M13 8l1.5 4 3 2M11 15l3 2.5 1 4.5M10 11l-3 1.5"/></svg>
         <span>Anotar movimiento</span>
@@ -5314,6 +5588,11 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     <section class="tgc-isla" id="tgc-isla" aria-labelledby="tgc-isla-tit">
       <div class="tgc-cab">
         <div><h2 id="tgc-isla-tit">Cruce la isla</h2><p class="tgc-sub" id="tgc-isla-sub"></p></div>
+      </div>
+      <div class="tgc-gr" id="tgc-gr" role="group" aria-labelledby="tgc-gr-l">
+        <span class="tgc-gr-l" id="tgc-gr-l">Cuentan para su travesía</span>
+        <span class="tgc-gr-fijo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12.5l5 5 10-11"/></svg><span id="tgc-gr-pie">A pie</span><span class="tgc-sr">, <span id="tgc-gr-siempre">siempre</span></span></span>
+        <span class="tgc-gr-ops" id="tgc-gr-ops"></span>
       </div>
       <div class="tgc-mapa" id="tgc-mapa"><span class="tgc-etiqueta" id="tgc-isla-esquema">Esquema</span></div>
       <div class="tgc-cuenta"><span class="tgc-isla-cifra" id="tgc-isla-km">0</span><span class="tgc-de" id="tgc-isla-de"></span></div>
@@ -5565,6 +5844,8 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     </div>
     <p class="tgc-cifras-p" id="tgc-cifras-reco"></p>
     <p class="tgc-cifras-p" id="tgc-cifras-mov"></p>
+    <p class="tgc-cifras-p" id="tgc-cifras-int"></p>
+    <p class="tgc-cifras-p" id="tgc-cifras-dan"></p>
     <p class="tgc-cifras-p" id="tgc-cifras-ref"></p>
     <p class="tgc-cifras-p" id="tgc-cifras-isla"></p>
     <p class="tgc-fuentes" id="tgc-fuentes"></p>
@@ -5599,6 +5880,22 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
           <button type="button" id="tgc-mov-km-mas">+</button>
         </div>
       </div>
+      <div class="tgc-fila-ctl" id="tgc-mov-des-fila" hidden>
+        <span id="tgc-mov-des-l">Desnivel positivo (m)</span>
+        <div class="tgc-paso">
+          <button type="button" id="tgc-mov-des-menos">−</button>
+          <input type="text" class="tgc-km" id="tgc-mov-des" inputmode="numeric" autocomplete="off" value="0" aria-labelledby="tgc-mov-des-l">
+          <button type="button" id="tgc-mov-des-mas">+</button>
+        </div>
+      </div>
+      <div class="tgc-fila-ctl">
+        <span id="tgc-mov-int-l">Intensidad</span>
+        <div class="tgc-dias tgc-int" role="group" aria-labelledby="tgc-mov-int-l">
+          <button type="button" id="tgc-mov-int-m" aria-pressed="false">Moderada</button>
+          <button type="button" id="tgc-mov-int-v" aria-pressed="false">Intensa</button>
+        </div>
+      </div>
+      <p class="tgc-ayuda tgc-int-ayuda" id="tgc-mov-int-ayuda"></p>
       <div class="tgc-fila-ctl">
         <span id="tgc-mov-cuando">Cuándo</span>
         <div class="tgc-dias" role="group" aria-labelledby="tgc-mov-cuando">
@@ -5687,6 +5984,17 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     ['#tgc-mov-km-l', 'tx', 'cuerpoMovKm'],
     ['#tgc-mov-km-menos', 'aria', 'cuerpoMovMenosKm'],
     ['#tgc-mov-km-mas', 'aria', 'cuerpoMovMasKm'],
+    /* (bloque 7) el desnivel, la intensidad, «Por deporte» y lo que cuenta para el GR 131 */
+    ['#tgc-mov-des-l', 'tx', 'cuerpoMovDes'],
+    ['#tgc-mov-des-menos', 'aria', 'cuerpoMovMenosM'],
+    ['#tgc-mov-des-mas', 'aria', 'cuerpoMovMasM'],
+    ['#tgc-mov-int-l', 'tx', 'cuerpoMovInt'],
+    ['#tgc-mov-int-m', 'tx', 'cuerpoIntM'],
+    ['#tgc-mov-int-v', 'tx', 'cuerpoIntV'],
+    ['#tgc-deps-tit', 'tx', 'cuerpoDepsTit'],
+    ['#tgc-gr-l', 'tx', 'cuerpoGrCuentan'],
+    ['#tgc-gr-pie', 'tx', 'cuerpoGrPie'],
+    ['#tgc-gr-siempre', 'tx', 'cuerpoGrSiempre'],
     ['#tgc-mov-cuando', 'tx', 'cuerpoCuando'],
     ['#tgc-mov-hoy', 'tx', 'cuerpoHoyB'],
     ['#tgc-mov-ayer', 'tx', 'cuerpoAyerB'],

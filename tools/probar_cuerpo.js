@@ -71,6 +71,9 @@
  *   - y el bloque 4 (la semana): las tres metas en vez de las tres cifras (4) y «Anotar movimiento»
  *     con su hoja, sus datos (mov), los puntos y los rayos de los dias con movimiento, los menores,
  *     lo roto, borrar, el asistente y los diez idiomas (23).
+ *   - el bloque 5 («Hoy en la isla» y «Cruce la isla», 24), el 6 (los sellos y la postal, 25) y el 7 (el
+ *     movimiento deporte a deporte: los datos de cada uno, la intensidad y la meta, «Por deporte», el
+ *     buceo y el avión, y lo que cada persona elige contar para el GR 131, 26).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -134,7 +137,8 @@ async function idioma(pg, l) { await pg.evaluate(l => setLang(l), l); await pg.w
    cuantos dias, el ejercicio (o null si se anoto solo el grupo), sus grupos principales y las
    series; una anotacion por grupo principal. Con la pantalla abierta, abrir() vuelve a leerlo.
    mas (8-11-2026, bloque 6): lo demas que se guarda con el ejemplo; mas.mov va como filas
-   [hace cuantos dias, tipo, minutos, km] y lo demas (sellos, deporte…) tal cual */
+   [hace cuantos dias, tipo, minutos, km] (bloque 7: y, si hace falta, un quinto con lo demas de la
+   anotacion, { int, des }) y lo demas (sellos, deporte, gr…) tal cual */
 async function ejemplo(pg, mas) {
   await pg.evaluate(mas => {
     const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
@@ -148,7 +152,7 @@ async function ejemplo(pg, mas) {
     const t = Date.now() - 1e6, series = [];
     S.forEach(x => x[2].forEach(g => { const s = { d: hace(x[0]), g, n: x[3], t: t + series.length }; if (x[1]) s.e = x[1]; series.push(s); }));
     const g = { v: 1, aspecto: TG_FIGURA.normaliza(null), series };
-    if (mas) Object.keys(mas).forEach(k => { g[k] = k === 'mov' ? mas.mov.map((x, i) => ({ d: hace(x[0]), tipo: x[1], min: x[2], km: x[3], t: t + 500 + i })) : mas[k]; });
+    if (mas) Object.keys(mas).forEach(k => { g[k] = k === 'mov' ? mas.mov.map((x, i) => Object.assign({ d: hace(x[0]), tipo: x[1], min: x[2], km: x[3], t: t + 500 + i }, x[4] || {})) : mas[k]; });
     localStorage.setItem('tenerife.cuerpo', JSON.stringify(g));
     TG_CUERPO.abrir();
   }, mas || null);
@@ -197,9 +201,11 @@ async function ejemplo(pg, mas) {
      6), «Anotar movimiento» y su hoja (17) y sin las tres cifras de antes (3), 128; desde el 8 (bloque 5), con
      «Hoy en la isla» (el título y la etiqueta de la zona), «Cruce la isla» (el título y «Esquema») y con la nota de
      la hoja del movimiento puesta por código (dos notas), 131; desde el 8 (bloque 6), con «Sus sellos» (el título y el
-     subtítulo) y «Su postal» (el título, el texto y «Crear mi postal»), 136; y 2 placeholders (el del buscador de
-     ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (136 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 136 && r2.ph === 2, r2.n + '/' + r2.ph);
+     subtítulo) y «Su postal» (el título, el texto y «Crear mi postal»), 136; desde el 8 (bloque 7), con el desnivel
+     (su nombre y sus «−» y «+»), la intensidad (su nombre, «Moderada» e «Intensa»), «Por deporte» y lo que cuenta
+     para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; y 2 placeholders (el
+     del buscador de ejercicios y el de la pregunta) */
+  prueba('textos fijos puestos (146 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 146 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -247,7 +253,7 @@ async function ejemplo(pg, mas) {
     };
   });
   prueba('metas: 5 de 2 días con fuerza, cumplida, con la raya llena y su nombre', r4.fuerza.n === '5' && r4.fuerza.de === 'de 2 días con fuerza' && r4.fuerza.hecha && r4.fuerza.ok && r4.fuerza.raya === '100%' && r4.fuerza.nombre === 'Días con fuerza', JSON.stringify(r4.fuerza));
-  prueba('metas: 0 de 150 min de movimiento (el ejemplo no tiene), sin cumplir, con la raya vacía', r4.mov.n === '0' && r4.mov.de === 'de 150 min de movimiento' && !r4.mov.hecha && !r4.mov.ok && r4.mov.raya === '0%' && r4.mov.nombre === 'Minutos de movimiento', JSON.stringify(r4.mov));
+  prueba('metas: 0 de 150 min (el ejemplo no tiene; desde el bloque 7, «intensos ×2»: para un adulto, cada minuto intenso cuenta por dos), sin cumplir, con la raya vacía', r4.mov.n === '0' && r4.mov.de === 'de 150 min (intensos ×2)' && !r4.mov.hecha && !r4.mov.ok && r4.mov.raya === '0%' && r4.mov.nombre === 'Minutos de movimiento', JSON.stringify(r4.mov));
   prueba('metas: 11 de 12 grupos trabajados, sin cumplir, con la raya al 92 %', r4.grupos.n === '11' && r4.grupos.de === 'de 12 grupos trabajados' && !r4.grupos.hecha && r4.grupos.raya === '92%' && r4.grupos.nombre === 'Grupos trabajados', JSON.stringify(r4.grupos));
   prueba('metas: la cifra «Series» del resumen ya no está (las series siguen en cada grupo y en la hoja)', r4.sinSeries);
   prueba('niveles del ejemplo', JSON.stringify(r4.niveles) === JSON.stringify({ pecho: '2', dorsal: '2', espalda_alta: '1', hombros: '2', biceps: '1', triceps: '2', antebrazo: '0', core: '1', gluteos: '3', cuadriceps: '2', isquios: '1', pantorrilla: '2' }), JSON.stringify(r4.niveles));
@@ -1698,13 +1704,17 @@ async function ejemplo(pg, mas) {
       reco: document.getElementById('tgc-reco-mov').textContent, cifras: document.getElementById('tgc-cifras-mov').textContent
     }));
     const m23 = await metaDe(p23, 'mov');
-    prueba('movimiento: 215 de 150 min, cumplida, con la raya llena', m23.n === '215' && m23.de === 'de 150 min de movimiento' && m23.hecha && m23.raya === '100%', JSON.stringify(m23));
+    /* (bloque 7) lo anotado antes, sin intensidad, cuenta como moderado: 35 + 150 + 30, sin nada por dos */
+    prueba('movimiento: 215 de 150 min (intensos ×2), cumplida, con la raya llena; lo anotado sin intensidad cuenta como moderado', m23.n === '215' && m23.de === 'de 150 min (intensos ×2)' && m23.hecha && m23.raya === '100%', JSON.stringify(m23));
     prueba('el sol: los siete rayos, también los de los días que solo tienen movimiento (hace 3 y hace 5)', r23.rayos === '1111111', r23.rayos);
     prueba('la semana: el punto del movimiento en hoy, hace 3 y hace 5', r23.conMov === '0101001', r23.conMov);
-    prueba('hoy: «10 series · 35 min y 3 km», con sus grupos y «Caminar»', /: 10 series · 35 min y 3 km$/.test(r23.hoy) && r23.hoyG === 'Pecho, Hombros, Tríceps · Caminar' && r23.ariaHoy === r23.hoy, r23.hoy + ' | ' + r23.hoyG);
-    prueba('hace 3 días, solo movimiento: «150 min y 9,5 km» (sin «0 series»)', /: 150 min y 9,5 km$/.test(r23.ariaHace3), r23.ariaHace3);
+    /* (bloque 7) la línea del día dice las series y el tiempo; cada deporte, con su distancia, va debajo (sin partir
+       una cifra de su unidad: con espacios duros, que aquí se leen como espacios) */
+    const sp = t => String(t).replace(/\u00a0/g, ' ');
+    prueba('hoy: «10 series · 35 min», y debajo sus grupos y «Caminar: 35 min y 3 km»', /: 10 series · 35 min$/.test(r23.hoy) && sp(r23.hoyG) === 'Pecho, Hombros, Tríceps · Caminar: 35 min y 3 km' && r23.ariaHoy === r23.hoy, r23.hoy + ' | ' + r23.hoyG);
+    prueba('hace 3 días, solo movimiento: «2 h 30 min» (sin «0 series»)', /: 2 h 30 min$/.test(r23.ariaHace3), r23.ariaHace3);
     await p23.click('#tgc-dias7 li:nth-child(4) .tgc-dia'); await p23.waitForTimeout(80);
-    prueba('…y al tocarlo, debajo dice «Senderismo»', await p23.evaluate(() => document.getElementById('tgc-dia-grupos').textContent === 'Senderismo' && /150 min y 9,5 km$/.test(document.getElementById('tgc-dia-txt').textContent)));
+    prueba('…y al tocarlo, debajo dice «Senderismo: 150 min y 9,5 km»', await p23.evaluate(() => document.getElementById('tgc-dia-grupos').textContent.replace(/\u00a0/g, ' ') === 'Senderismo: 150 min y 9,5 km' && /2 h 30 min$/.test(document.getElementById('tgc-dia-txt').textContent)));
     prueba('la leyenda de la semana nombra las series y el movimiento; la recomendación del movimiento (OMS, 150 a 300) en la caja y en «Las cifras»', /series y el movimiento/.test(r23.leyenda) && /150 a 300/.test(r23.reco) && r23.cifras === r23.reco && r23.pista, JSON.stringify(r23));
 
     /* la hoja */
@@ -1720,17 +1730,17 @@ async function ejemplo(pg, mas) {
       estado: JSON.stringify(history.state)
     }));
     prueba('«Anotar movimiento» abre su página de la hoja, con el foco en el título y su entrada en el historial', h23.abierta && h23.etiqueta === 'tgc-mov-tit' && h23.foco === 'tgc-mov-tit' && h23.inerte && h23.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1,"tgCuerpoMov":1}', JSON.stringify(h23));
-    prueba('la hoja: el título, la frase, los cinco tipos con su icono (Caminar elegido), 30 min, 2,5 km, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
-      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,nadar:false:Nadar:1,bici:false:Bici:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.kmL === 'Kilómetros' && h23.hoy === 'true'
+    prueba('la hoja: el título, la frase, los catorce deportes con su icono (Caminar elegido; desde el bloque 7, la bici con los de tierra y los del mar juntos), 30 min, 2,5 km, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
+      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,bici:false:Bici:1,nadar:false:Nadar:1,kayak:false:Kayak:1,sup:false:Pádel surf:1,surf:false:Surf:1,windsurf:false:Windsurf y kitesurf:1,buceo:false:Buceo:1,golf:false:Golf:1,padel:false:Pádel:1,escalada:false:Escalada:1,otro:false:Otro deporte:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.kmL === 'Kilómetros' && h23.hoy === 'true'
       && h23.boton === 'Anotar 30 min y 2,5 km' && /GR 131/.test(h23.nota), JSON.stringify(h23));   /* desde el bloque 5, la nota de a pie habla del GR 131 */
-    prueba('lo último anotado: las tres, de hoy hacia atrás, con el tipo, los minutos y los km', h23.hist === 'Caminar · 35 min y 3 km | Senderismo · 150 min y 9,5 km | Nadar · 30 min y 1 km', h23.hist);
+    prueba('lo último anotado: las tres, de hoy hacia atrás, con el tipo, los minutos y la distancia (a nado, en metros desde el bloque 7)', h23.hist === 'Caminar · 35 min y 3 km | Senderismo · 150 min y 9,5 km | Nadar · 30 min y 1000 m', h23.hist);
     await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p23.waitForTimeout(60);
     const hojaMov = () => p23.evaluate(() => ({ kmFila: document.getElementById('tgc-mov-km-fila').hidden, min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value, menos: document.getElementById('tgc-mov-km-menos').disabled, mas: document.getElementById('tgc-mov-km-mas').disabled,
       boton: document.getElementById('tgc-mov-guardar-txt').textContent, pulsado: document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]').dataset.tipo }));
     /* los km se escriben solo si su campo se ve: sin él, la prueba sale en rojo y no se para */
     const escribeKm = async v => { if (await p23.isVisible('#tgc-mov-km')) { await p23.fill('#tgc-mov-km', v); await p23.dispatchEvent('#tgc-mov-km', 'change'); } await p23.waitForTimeout(60); };
     const n23 = await hojaMov();
-    prueba('Nadar: con el campo de los kilómetros (desde el 8-11-2026), en 0 y con «−» apagado, 30 min, y el botón solo dice los minutos', !n23.kmFila && n23.km === '0' && n23.menos && n23.min === '30' && n23.boton === 'Anotar 30 min' && n23.pulsado === 'nadar', JSON.stringify(n23));
+    prueba('Nadar: con el campo de la distancia (desde el 8-11-2026; en metros desde el bloque 7), en 0 y con «−» apagado, 30 min, y el botón solo dice los minutos', !n23.kmFila && n23.km === '0' && n23.menos && n23.min === '30' && n23.boton === 'Anotar 30 min' && n23.pulsado === 'nadar', JSON.stringify(n23));
     await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="bici"]'); await p23.waitForTimeout(60);
     const bi23 = await hojaMov();
     await escribeKm('42,5');
@@ -1766,7 +1776,8 @@ async function ejemplo(pg, mas) {
       return { n: m.length, u: u && [u.tipo, u.min, u.km, u.d === ymd(ayer), u.t > 0].join(','), guardado: g.mov.length, cerrada: document.getElementById('tgc-hoja').hidden && !document.getElementById('tgc').inert,
         toast: document.getElementById('tgc-toast-txt').textContent, deshacer: document.getElementById('tgc-toast-btn').textContent, min: document.getElementById('tgc-st-min').textContent, estado: JSON.stringify(history.state) };
     });
-    prueba('«Anotar» guarda ayer (senderismo, 7 min, 4,25 km) en tenerife.cuerpo, cierra la hoja y avisa con «Deshacer»', g23.n === 4 && g23.u === 'senderismo,7,4.25,true,true' && g23.guardado === 4 && g23.cerrada && g23.toast === 'Senderismo: 7 min y 4,25 km anotados' && g23.deshacer === 'Deshacer' && g23.min === '222' && g23.estado === '{"tgPerfil":1,"tgCuerpo":1}', JSON.stringify(g23));
+    /* (bloque 7) el senderismo se propone intenso (6 MET en el Compendio): sus 7 min cuentan por dos, 215 + 14 */
+    prueba('«Anotar» guarda ayer (senderismo, 7 min, 4,25 km) en tenerife.cuerpo, cierra la hoja y avisa con «Deshacer»; la meta, 229 (intenso, por dos)', g23.n === 4 && g23.u === 'senderismo,7,4.25,true,true' && g23.guardado === 4 && g23.cerrada && g23.toast === 'Senderismo: 7 min y 4,25 km anotados' && g23.deshacer === 'Deshacer' && g23.min === '229' && g23.estado === '{"tgPerfil":1,"tgCuerpo":1}', JSON.stringify(g23));
     await p23.click('#tgc-toast-btn'); await p23.waitForTimeout(150);
     prueba('«Deshacer» quita lo anotado y las metas vuelven (215)', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 3 && JSON.parse(localStorage.getItem('tenerife.cuerpo')).mov.length === 3 && document.getElementById('tgc-st-min').textContent === '215'));
     /* (8-11-2026) en bici, hoy, 60 min y 42,5 km: se guardan los km y suman al día */
@@ -1779,8 +1790,8 @@ async function ejemplo(pg, mas) {
       return { n: m.length, u: u && [u.tipo, u.min, u.km].join(','), guardado: g.mov.length && g.mov[g.mov.length - 1].km, toast: document.getElementById('tgc-toast-txt').textContent,
         min: document.getElementById('tgc-st-min').textContent, hoy: document.querySelector('#tgc-dias7 li:nth-child(7) .tgc-dia').getAttribute('aria-label') };
     });
-    prueba('en bici también se guardan los km: bici, 60 min y 42,5 km; avisa «Bici: 60 min y 42,5 km anotados» y hoy dice «10 series · 95 min y 45,5 km»', b23.n === 4 && b23.u === 'bici,60,42.5' && b23.guardado === 42.5
-      && b23.toast === 'Bici: 60 min y 42,5 km anotados' && b23.min === '275' && /: 10 series · 95 min y 45,5 km$/.test(b23.hoy), JSON.stringify(b23));
+    prueba('en bici también se guardan los km: bici, 60 min y 42,5 km; avisa «Bici: 60 min y 42,5 km anotados», la meta sube a 335 (la bici se propone intensa: 60 por dos) y hoy dice «10 series · 1 h 35 min»', b23.n === 4 && b23.u === 'bici,60,42.5' && b23.guardado === 42.5
+      && b23.toast === 'Bici: 60 min y 42,5 km anotados' && b23.min === '335' && /: 10 series · 1 h 35 min$/.test(b23.hoy), JSON.stringify(b23));
     await p23.click('#tgc-toast-btn'); await p23.waitForTimeout(150);
     prueba('…y «Deshacer» la quita (215)', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 3 && JSON.parse(localStorage.getItem('tenerife.cuerpo')).mov.length === 3 && document.getElementById('tgc-st-min').textContent === '215'));
 
@@ -1858,7 +1869,8 @@ async function ejemplo(pg, mas) {
     await p23.click('#tgc-modo-p'); await p23.waitForFunction(() => { const f = document.getElementById('tgc-preg-form'); return f && !f.hidden; }, null, { timeout: 15000 }).catch(() => {});
     await pregunta('¿Cómo voy esta semana?');
     const a23 = await p23.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));
-    prueba('el asistente dice el movimiento de la semana: «215 min y 13,5 km», con el km a nado (con «min», como la pantalla: «1 minutos» no)', a23.some(t => t === 'Movimiento anotado en 7 días: 215 min y 13,5 km.'), a23.join(' | '));
+    /* (bloque 7) cada deporte con lo suyo, y los minutos que cuentan para la meta */
+    prueba('el asistente dice el movimiento de la semana, deporte a deporte («Nadar: 30 min y 1000 m»), y los minutos que cuentan para la meta (215 de 150)', a23.some(t => t === 'Movimiento anotado en 7 días: Caminar: 35 min y 3 km, Senderismo: 150 min y 9,5 km, Nadar: 30 min y 1000 m. Para su meta cuentan 215 de 150 minutos.'), a23.join(' | '));
     await p23.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); g.mov = []; localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir({ modo: 'preguntar' }); }); await p23.waitForTimeout(200);
     await pregunta('¿Cómo voy esta semana?');
     const a23b = await p23.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));
@@ -1976,7 +1988,7 @@ async function ejemplo(pg, mas) {
     /* la isla */
     prueba('«Cruce la isla»: 33,5 km a pie de todos los tiempos (3 + 9,5 + 21; los 5 a nado no cuentan) de 85,55, dos paradas pasadas (La Esperanza y La Caldera), la siguiente El Portillo a 9,4 km', r24.km === '33,5' && r24.de === 'de 85,55 km' && r24.sig === 'Siguiente parada: El Portillo, a 9,4 km.' && r24.paradas === 'La Esperanza*,La Caldera*,El Portillo,Guajara,Vilaflor,Arona' && r24.pasadasBarra === 1 && r24.puntos === 5, JSON.stringify([r24.km, r24.de, r24.sig, r24.paradas, r24.pasadasBarra, r24.puntos]));
     prueba('el mapa: un solo dibujo (role img, con su aria-label y los km), el esquema (etiqueta «Esquema», la ruta a puntos), el Teide, el marcador movido y el trazo hecho, y la barra al 39,16 %', r24.svgs === 1 && r24.rol === 'img' && r24.aria === 'Esquema de Tenerife con el GR 131, de La Esperanza a Arona. Lleva 33,5 km.' && r24.esquema && r24.ruta === '1 6' && r24.teide === 'Teide' && /^translate\(/.test(r24.marca) && r24.hecha > 20 && /^39\.1\d*%$/.test(r24.barra), JSON.stringify([r24.svgs, r24.rol, r24.aria, r24.esquema, r24.ruta, r24.teide, r24.marca, r24.hecha, r24.barra]));
-    prueba('el subtítulo y «Las cifras»: los 85,55 km de Tenerife ON, las paradas con sus km de Webtenerife, la costa de los límites municipales, OpenStreetMap (ODbL) y que el trazado entre paradas es un esquema', r24.sub === 'El GR 131, de La Esperanza a Arona, con los kilómetros que ande aquí.' && /mide 85,55 km \(Tenerife ON, Cabildo de Tenerife\)/.test(r24.cifras) && /La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55/.test(r24.cifras) && /límites municipales de 2015/.test(r24.cifras) && /OpenStreetMap, ODbL/.test(r24.cifras) && /es un esquema, no el sendero\.$/.test(r24.cifras), r24.cifras);
+    prueba('el subtítulo y «Las cifras»: los 85,55 km de Tenerife ON, las paradas con sus km de Webtenerife, la costa de los límites municipales, OpenStreetMap (ODbL) y que el trazado entre paradas es un esquema', r24.sub === 'El GR 131, de La Esperanza a Arona, con los kilómetros que anote aquí.' && /mide 85,55 km \(Tenerife ON, Cabildo de Tenerife\)/.test(r24.cifras) && /La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3 · Arona 85,55/.test(r24.cifras) && /límites municipales de 2015/.test(r24.cifras) && /OpenStreetMap, ODbL/.test(r24.cifras) && /es un esquema, no el sendero\.$/.test(r24.cifras), r24.cifras);
     prueba('nada pasa del borde', !r24.desborde);
 
     /* la zona cambia a Teide: una sola petición (sin mar), de noche: el UV máximo del día (7,6 → 8: evitar el sol), 4 °C, 42 km/h y nieve (código 73); se recuerda */
@@ -2059,7 +2071,7 @@ async function ejemplo(pg, mas) {
     const notaPie = await p24.evaluate(() => document.getElementById('tgc-mov-nota').textContent);
     await p24.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p24.waitForTimeout(60);
     const notaNado = await p24.evaluate(() => document.getElementById('tgc-mov-nota').textContent);
-    prueba('la nota de la hoja: a pie, «Los kilómetros a pie avanzan su travesía del GR 131.»; a nado, «Cuenta para sus minutos de la semana. Para el GR 131 solo suman los kilómetros a pie.»', notaPie === 'Los kilómetros a pie avanzan su travesía del GR 131.' && notaNado === 'Cuenta para sus minutos de la semana. Para el GR 131 solo suman los kilómetros a pie.', notaPie + ' | ' + notaNado);
+    prueba('la nota de la hoja: a pie, «Los kilómetros a pie avanzan su travesía del GR 131.»; a nado (bloque 7), «Su distancia no cuenta para el GR 131, salvo que lo elija en «Cruce la isla».»', notaPie === 'Los kilómetros a pie avanzan su travesía del GR 131.' && notaNado === 'Su distancia no cuenta para el GR 131, salvo que lo elija en «Cruce la isla».', notaPie + ' | ' + notaNado);
     await p24.click('#tgc-mov-tipos .tgc-tipo[data-tipo="senderismo"]'); await p24.fill('#tgc-mov-km', '5'); await p24.dispatchEvent('#tgc-mov-km', 'change'); await p24.waitForTimeout(60);
     await p24.click('#tgc-mov-guardar'); await p24.waitForTimeout(250);
     const medio = await p24.evaluate(() => ({ marca: document.getElementById('tgc-isla-marca').getAttribute('transform'), km: document.getElementById('tgc-isla-km').textContent }));
@@ -2071,7 +2083,7 @@ async function ejemplo(pg, mas) {
     /* la travesía entera */
     await conMov24([[1, 'senderismo', 300, 40], [8, 'senderismo', 300, 30], [20, 'caminar', 200, 16]]);
     const fin24b = await leer24();
-    prueba('86 km a pie: «Ha cruzado la isla: de La Esperanza a Arona, a pie.», las seis paradas pasadas y la barra al 100 %', fin24b.km === '86' && fin24b.sig === 'Ha cruzado la isla: de La Esperanza a Arona, a pie.' && fin24b.paradas.split(',').every(p => /\*$/.test(p)) && fin24b.barra === '100%' && fin24b.pasadasBarra === 5, JSON.stringify([fin24b.km, fin24b.sig, fin24b.paradas, fin24b.barra]));
+    prueba('86 km a pie: «Ha cruzado la isla: de La Esperanza a Arona.» (desde el bloque 7, sin «a pie»: puede contar la bici, el nado o el kayak), las seis paradas pasadas y la barra al 100 %', fin24b.km === '86' && fin24b.sig === 'Ha cruzado la isla: de La Esperanza a Arona.' && fin24b.paradas.split(',').every(p => /\*$/.test(p)) && fin24b.barra === '100%' && fin24b.pasadasBarra === 5, JSON.stringify([fin24b.km, fin24b.sig, fin24b.paradas, fin24b.barra]));
 
     /* sin red: con la caché vieja (3 h), los chips de la caché y «de hace 3 h (sin conexión ahora)»; sin caché, «Sin datos…» y el consejo solo con la semana */
     red = false;
@@ -2176,8 +2188,8 @@ async function ejemplo(pg, mas) {
     prueba('en «Músculos», tras los 12 grupos, «Sus sellos» y «Su postal»', /tgc-grupos tgc-sellos tgc-postal$/.test(v25.orden), v25.orden);
     prueba('sin nada anotado: los 11 sellos pendientes («0 de 11»), cada uno con su dibujo, su nombre, su condición y «Pendiente.» para el lector de pantalla; nada guardado, ninguna celebración',
       v25.sellos.length === 11 && v25.sellos.every(s => s.falta && !s.nuevo && s.svg && s.nom && s.cond && s.sr === 'Pendiente.' && s.anillo === '') && v25.n === '0 de 11' && !v25.fiesta && v25.guardado === null, JSON.stringify([v25.n, v25.fiesta, v25.guardado, v25.sellos.map(s => s.sr)]));
-    prueba('los nombres y las condiciones: Primer paso (Su primera anotación), 2 días de fuerza (En 7 días), 150 minutos (De movimiento en 7 días), Sol entero (Fuerza y movimiento), Doce de doce (Los 12 grupos en 7 días), 10 km a pie (Camino del GR 131) y las cinco paradas del GR 131 con su km (29,8 · 42,9 · 56,0 · 67,3 · 85,55)',
-      v25.sellos.map(s => s.id + ':' + s.nom + '/' + s.cond).join('|') === 'primer:Primer paso/Su primera anotación|fuerza:2 días de fuerza/En 7 días|mov:150 minutos/De movimiento en 7 días|sol:Sol entero/Fuerza y movimiento|doce:Doce de doce/Los 12 grupos en 7 días|km10:10 km a pie/Camino del GR 131|e1:La Caldera/GR 131 · km 29,8|e2:El Portillo/GR 131 · km 42,9|e3:Guajara/GR 131 · km 56,0|e4:Vilaflor/GR 131 · km 67,3|e5:Arona/GR 131 · km 85,55',
+    prueba('los nombres y las condiciones: Primer paso (Su primera anotación), 2 días de fuerza (En 7 días), 150 minutos (De movimiento en 7 días), Sol entero (Fuerza y movimiento), Doce de doce (Los 12 grupos en 7 días), 10 km de travesía (Camino del GR 131; «a pie» hasta el bloque 7) y las cinco paradas del GR 131 con su km (29,8 · 42,9 · 56,0 · 67,3 · 85,55)',
+      v25.sellos.map(s => s.id + ':' + s.nom + '/' + s.cond).join('|') === 'primer:Primer paso/Su primera anotación|fuerza:2 días de fuerza/En 7 días|mov:150 minutos/De movimiento en 7 días|sol:Sol entero/Fuerza y movimiento|doce:Doce de doce/Los 12 grupos en 7 días|km10:10 km de travesía/Camino del GR 131|e1:La Caldera/GR 131 · km 29,8|e2:El Portillo/GR 131 · km 42,9|e3:Guajara/GR 131 · km 56,0|e4:Vilaflor/GR 131 · km 67,3|e5:Arona/GR 131 · km 85,55',
       v25.sellos.map(s => s.id + ':' + s.nom + '/' + s.cond).join('|'));
     prueba('«Su postal»: el título, el texto, «Crear mi postal» y la vista previa (la escena y el personaje dibujados, sin ids repetidos en la página)', v25.postal.tit === 'Su postal' && v25.postal.p === 'Su semana en una imagen, para guardarla o enviarla.' && v25.postal.btn === 'Crear mi postal' && !v25.postal.desactivado
       && v25.postal.miniSvg >= 2 && v25.postal.miniFig && v25.postal.miniImg === 0 && v25.postal.idsRepetidos.length === 0, JSON.stringify(v25.postal));
@@ -2190,8 +2202,8 @@ async function ejemplo(pg, mas) {
     prueba('el ejemplo con 33,5 km a pie: seis sellos de golpe (Primer paso, 2 días de fuerza, 150 minutos, Sol entero, 10 km a pie y La Caldera), guardados con la fecha de hoy, marcados «nuevo», «6 de 11»; «Doce de doce» (11 grupos en 7 días) y las otras paradas, pendientes',
       s1.sellos.filter(s => !s.falta).map(s => s.id).join() === 'primer,fuerza,mov,sol,km10,e1' && s1.sellos.filter(s => !s.falta).every(s => s.nuevo && s.sr === 'Conseguido el ' + s1.hoyTxt + '.' && s.anillo === 'TENERIFE GO/' + s1.hoyTxt.toUpperCase()) && s1.sellos.filter(s => s.falta).every(s => !s.nuevo)
       && s1.n === '6 de 11' && s1.guardado && Object.keys(s1.guardado).sort().join() === 'e1,fuerza,km10,mov,primer,sol' && Object.values(s1.guardado).every(f => f === s1.hoyYmd), JSON.stringify([s1.n, s1.guardado, s1.sellos.filter(s => !s.falta).map(s => s.sr + ' ' + s.anillo)]));
-    prueba('la celebración: una tarjeta (diálogo modal con su título) con los tres últimos sellos dibujados, «6 sellos nuevos», la lista y la frase del último («… La Caldera. Etapa 1 del GR 131 cumplida. Lleva 33,5 km a pie.»), 14 rayos, un solo botón «Seguir» (de oro) con el foco, y la pantalla inerte debajo',
-      s1.fiesta && s1.dentro && s1.dialogo && s1.varios === 3 && s1.grande === 0 && s1.tit === '6 sellos nuevos' && s1.txt === 'Primer paso, 2 días de fuerza, 150 minutos, Sol entero, 10 km a pie, La Caldera. Etapa 1 del GR 131 cumplida. Lleva 33,5 km a pie.' && s1.rayos === 14 && s1.botones.join() === 'Seguir*' && /fiesta: Seguir/.test(s1.foco) && s1.inerte,
+    prueba('la celebración: una tarjeta (diálogo modal con su título) con los tres últimos sellos dibujados, «6 sellos nuevos», la lista y la frase del último («… La Caldera. Etapa 1 del GR 131 cumplida. Lleva 33,5 km de travesía.»), 14 rayos, un solo botón «Seguir» (de oro) con el foco, y la pantalla inerte debajo',
+      s1.fiesta && s1.dentro && s1.dialogo && s1.varios === 3 && s1.grande === 0 && s1.tit === '6 sellos nuevos' && s1.txt === 'Primer paso, 2 días de fuerza, 150 minutos, Sol entero, 10 km de travesía, La Caldera. Etapa 1 del GR 131 cumplida. Lleva 33,5 km de travesía.' && s1.rayos === 14 && s1.botones.join() === 'Seguir*' && /fiesta: Seguir/.test(s1.foco) && s1.inerte,
       JSON.stringify([s1.fiesta, s1.dentro, s1.dialogo, s1.varios, s1.grande, s1.tit, s1.txt, s1.rayos, s1.botones, s1.foco, s1.inerte]));
     await p25.click('#tgc-fiesta-botones button'); await p25.waitForTimeout(500);
     const s2 = await leer25(p25);
@@ -2237,7 +2249,7 @@ async function ejemplo(pg, mas) {
     await p25.click('#tgc-mov-tipos .tgc-tipo[data-tipo="senderismo"]'); await p25.fill('#tgc-mov-km', '10'); await p25.dispatchEvent('#tgc-mov-km', 'change'); await p25.waitForTimeout(80);
     await p25.click('#tgc-mov-guardar'); await p25.waitForTimeout(900);
     const m1 = await leer25(p25);
-    prueba('anotar 10 km a pie (33,5 → 43,5, pasado El Portillo, 42,9): la tarjeta «El Portillo» con «Etapa 2 del GR 131 cumplida. Lleva 43,5 km a pie.», «8 de 11»', m1.fiesta && m1.grande === 1 && m1.tit === 'El Portillo' && m1.txt === 'Etapa 2 del GR 131 cumplida. Lleva 43,5 km a pie.' && m1.n === '8 de 11' && m1.inerte, JSON.stringify([m1.fiesta, m1.tit, m1.txt, m1.n]));
+    prueba('anotar 10 km a pie (33,5 → 43,5, pasado El Portillo, 42,9): la tarjeta «El Portillo» con «Etapa 2 del GR 131 cumplida. Lleva 43,5 km de travesía.», «8 de 11»', m1.fiesta && m1.grande === 1 && m1.tit === 'El Portillo' && m1.txt === 'Etapa 2 del GR 131 cumplida. Lleva 43,5 km de travesía.' && m1.n === '8 de 11' && m1.inerte, JSON.stringify([m1.fiesta, m1.tit, m1.txt, m1.n]));
     await p25.keyboard.press('Escape'); await p25.waitForTimeout(500);
     const m2 = await leer25(p25);
     prueba('Escape cierra solo la tarjeta: la pantalla sigue abierta, nada inerte, el foco en «Anotar movimiento»', !m2.fiesta && m2.abierto && !m2.inerte && m2.foco === '#tgc-mov-btn', JSON.stringify([m2.fiesta, m2.abierto, m2.inerte, m2.foco]));
@@ -2353,6 +2365,248 @@ async function ejemplo(pg, mas) {
     prueba('con el 3D activo: la postal sale igual (1080 × 1350, la banda clara, muchos colores)', p3 && p3.nat === '1080x1350' && claro(p3.banda) && p3.colores >= 8, JSON.stringify(p3 && [p3.nat, p3.banda, p3.colores]));
     prueba('con el 3D: sin errores de página', e25t.length === 0, e25t.join(' | '));
     await c25t.close();
+  }
+
+  // 26. (8-11-2026, bloque 7) el movimiento, deporte a deporte. Jerome, 8-11: «todos los deportes que tenemos en la app y
+  //     incluido el gimnasio deben coger datos diferentes, que son deportes diferentes»; y para el GR 131, «dejar la
+  //     posibilidad a cada usuario de elegir». Catorce deportes en la hoja, cada uno con lo suyo: los minutos y la
+  //     intensidad (la que propone el Compendio de Actividades Físicas de 2024: desde 6 MET, intensa); la distancia, en km
+  //     (caminar, senderismo, correr, bici y kayak) o en metros (nadar); el desnivel (senderismo y correr); nada más en los
+  //     demás. Para la meta de un adulto, cada minuto intenso cuenta por dos (OMS 2020); a un menor, no; lo anotado antes,
+  //     sin intensidad, cuenta como moderado. «Por deporte»: las veces, el tiempo, la distancia, el ritmo (correr, por km;
+  //     nadar, por 100 m), la velocidad (bici y kayak) y el desnivel; el buceo, con lo que aconseja la DAN antes de volar
+  //     (12 h tras una inmersión; 18 tras varias en un día o en días seguidos). «Cruce la isla»: a pie, siempre; la bici,
+  //     el nado y el kayak, si la persona lo elige (se guarda). «Su deporte» propone el suyo en la hoja. El asistente, «Las
+  //     cifras» y la política lo dicen. Lo guardado roto, campo a campo; en los diez idiomas; a 320 px y de noche
+  {
+    const c26 = await contexto(b), p26 = await c26.newPage(), e26 = []; vigilar(p26, e26);
+    await abrirApp(p26); await abrirPerfilCuerpo(p26); await suCuerpo(p26);
+    const L26 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+    /* la semana del ejemplo: hoy, dos inmersiones; ayer, a correr con desnivel; hace 2, un sendero largo; hace 3, a nado y
+       surf; hace 5, en bici; y hace 12, otro sendero (fuera de la semana, dentro de la travesía) */
+    const MOV26 = [[0, 'buceo', 48, 0, { int: 'v' }], [0, 'buceo', 42, 0, { int: 'v' }], [1, 'correr', 32, 5.4, { int: 'v', des: 60 }], [2, 'senderismo', 270, 13.2, { int: 'v', des: 950 }],
+      [3, 'nadar', 35, 1.4, { int: 'v' }], [3, 'surf', 90, 0, { int: 'm' }], [5, 'bici', 75, 24, { int: 'v' }], [12, 'senderismo', 240, 21]];
+    const leer26 = (p) => p.evaluate(() => {
+      const g = id => document.getElementById(id), m = g('tgc-meta-mov');
+      return { deps: [...document.querySelectorAll('#tgc-deps-lista .tgc-dep')].map(li => li.dataset.tipo + ': ' + li.querySelector('.tgc-dep-nom').textContent + ' / ' + li.querySelector('.tgc-dep-cifras').textContent.replace(/ /g, ' ')),
+        depsIco: [...document.querySelectorAll('#tgc-deps-lista .tgc-dep')].every(li => li.querySelector('.tgc-dep-ico svg')),
+        dan: (document.querySelector('#tgc-deps-lista .tgc-dep-dan') || {}).textContent || '', depsOculto: g('tgc-deps').hidden, depsTit: g('tgc-deps-tit').textContent,
+        min: m.querySelector('.tgc-meta-n b').textContent, de: m.querySelector('.tgc-meta-de').textContent, hecha: m.classList.contains('hecha'), larga: m.querySelector('.tgc-meta-n').classList.contains('larga'),
+        lineas: m.querySelector('.tgc-meta-n b').getClientRects().length,
+        hoy: g('tgc-dia-txt').textContent, hoyG: g('tgc-dia-grupos').textContent.replace(/ /g, ' '),
+        km: g('tgc-isla-km').textContent, sig: g('tgc-isla-sig').textContent, grL: g('tgc-gr-l').textContent, grPie: g('tgc-gr-pie').textContent, grSiempre: g('tgc-gr-siempre').textContent,
+        grRol: g('tgc-gr').getAttribute('role') + ':' + g('tgc-gr').getAttribute('aria-labelledby'),
+        gr: [...document.querySelectorAll('#tgc-gr-ops .tgc-gr-op')].map(b => b.dataset.gr + ':' + b.getAttribute('aria-pressed') + ':' + b.querySelector('.tgc-gr-txt').textContent).join(','),
+        guardadoGr: JSON.stringify((JSON.parse(localStorage.getItem('tenerife.cuerpo') || '{}')).gr || null),
+        cifrasInt: g('tgc-cifras-int').textContent, cifrasDan: g('tgc-cifras-dan').textContent,
+        desborde: g('cuerpo-panel').scrollWidth > g('cuerpo-panel').clientWidth };
+    });
+    const hoja26 = (p) => p.evaluate(() => {
+      const g = id => document.getElementById(id), pul = document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]');
+      return { sel: pul && pul.dataset.tipo, min: g('tgc-mov-min').value, km: g('tgc-mov-km-fila').hidden ? null : g('tgc-mov-km').value, kmL: g('tgc-mov-km-l').textContent,
+        des: g('tgc-mov-des-fila').hidden ? null : g('tgc-mov-des').value, desL: g('tgc-mov-des-l') ? g('tgc-mov-des-l').textContent : '',
+        int: g('tgc-mov-int-v').getAttribute('aria-pressed') === 'true' ? 'v' : (g('tgc-mov-int-m').getAttribute('aria-pressed') === 'true' ? 'm' : '?'),
+        intM: g('tgc-mov-int-m').textContent.trim(), intV: g('tgc-mov-int-v').textContent.trim(), intL: g('tgc-mov-int-l') ? g('tgc-mov-int-l').textContent : '',
+        ayuda: g('tgc-mov-int-ayuda').textContent, nota: g('tgc-mov-nota').textContent, boton: g('tgc-mov-guardar-txt').textContent,
+        ariaKmMas: g('tgc-mov-km-mas').getAttribute('aria-label'), ariaDesMas: g('tgc-mov-des-mas').getAttribute('aria-label'), ariaDesMenos: g('tgc-mov-des-menos').getAttribute('aria-label'),
+        n: document.querySelectorAll('#tgc-mov-tipos .tgc-tipo').length, iconos: [...document.querySelectorAll('#tgc-mov-tipos .tgc-tipo')].every(b => b.querySelector('svg')),
+        tipos: [...document.querySelectorAll('#tgc-mov-tipos .tgc-tipo span')].map(x => x.textContent).join(','),
+        hist: [...document.querySelectorAll('#tgc-mov-hist .tgc-hist-fila')].map(li => li.querySelector('.tgc-hist-n').textContent + ' @' + li.querySelector('.tgc-hist-x').getAttribute('aria-label')),
+        desborde: g('tgc-hoja').scrollWidth > g('tgc-hoja').clientWidth + 1 };
+    });
+    const sp26 = t => String(t).replace(/ /g, ' ');
+    const ultimo26 = () => p26.evaluate(() => { const m = TG_CUERPO.estado().mov, u = m[m.length - 1], gu = JSON.parse(localStorage.getItem('tenerife.cuerpo')).mov.slice(-1)[0];
+      return { u: JSON.stringify([u.tipo, u.min, u.km, u.int, u.des === undefined ? '-' : u.des]), g: JSON.stringify([gu.tipo, gu.min, gu.km, gu.int, gu.des === undefined ? '-' : gu.des]), toast: document.getElementById('tgc-toast-txt').textContent, min: document.getElementById('tgc-st-min').textContent }; });
+
+    await ejemplo(p26, { mov: MOV26, deporte: 'buceo' });
+    const r26 = await leer26(p26);
+    prueba('«Por deporte»: una fila por deporte de la semana, en el orden de la hoja y con su icono: las veces, el tiempo, la distancia (a nado, en metros), el ritmo (correr, por km; nadar, por 100 m), la velocidad (bici) y el desnivel',
+      r26.depsTit === 'Por deporte' && !r26.depsOculto && r26.depsIco && r26.deps.join(' | ') === 'senderismo: Senderismo / 1 vez · 4 h 30 min · 13,2 km · 950 m de desnivel | correr: Correr / 1 vez · 32 min · 5,4 km · 5:56 min/km · 60 m de desnivel | bici: Bici / 1 vez · 1 h 15 min · 24 km · 19,2 km/h | nadar: Nadar / 1 vez · 35 min · 1400 m · 2:30 min/100 m | surf: Surf / 1 vez · 1 h 30 min | buceo: Buceo / 2 inmersiones · 1 h 30 min', r26.deps.join(' | '));
+    prueba('el buceo: con dos inmersiones hoy, lo que aconseja la DAN antes de volar (18 horas desde la última) y que, con cualquier síntoma, pida atención médica', r26.dan === 'Si va a volar: tras varias inmersiones en un día o en varios días de buceo, la DAN aconseja esperar al menos 18 horas desde la última. Si nota cualquier síntoma, pida atención médica antes de volar.', r26.dan);
+    prueba('la meta de un adulto: 592 minutos de verdad y 1094 para la meta (502 intensos por dos y 90 de surf, moderado), «de 150 min (intensos ×2)», cumplida; la cifra, una talla menor y en una sola línea', r26.min === '1094' && r26.de === 'de 150 min (intensos ×2)' && r26.hecha && r26.larga && r26.lineas === 1, JSON.stringify([r26.min, r26.de, r26.hecha, r26.larga, r26.lineas]));
+    prueba('hoy: «10 series · 1 h 30 min» (las series del ejemplo y el tiempo de las dos inmersiones) y debajo, tras los grupos, «Buceo: 90 min»', /: 10 series · 1 h 30 min$/.test(r26.hoy) && / · Buceo: 90 min$/.test(r26.hoyG), r26.hoy + ' | ' + r26.hoyG);
+    prueba('«Las cifras»: de dónde sale la intensidad (CDC, el Compendio de 2024, desde 6 MET, la OMS de 2020 y el «por dos») y lo del buceo y el avión (DAN, taller de 2002)', /CDC/.test(r26.cifrasInt) && /Compendio de Actividades Físicas de 2024/.test(r26.cifrasInt) && /6 MET/.test(r26.cifrasInt) && /OMS \(2020\)/.test(r26.cifrasInt) && /por dos/.test(r26.cifrasInt)
+      && /12 horas/.test(r26.cifrasDan) && /18/.test(r26.cifrasDan) && /DAN, taller de 2002/.test(r26.cifrasDan), r26.cifrasInt + ' | ' + r26.cifrasDan);
+
+    /* «Cruce la isla»: a pie, siempre; la bici, el nado y el kayak, a elección (botones con aria-pressed, guardado) */
+    prueba('«Cruce la isla»: 39,6 km a pie (13,2 + 5,4 + 21: la bici y el nado no cuentan si no se eligen), «Cuentan para su travesía» (un grupo con su nombre), «A pie» siempre y tres botones sin pulsar: En bici, A nado, En kayak',
+      r26.km === '39,6' && r26.grL === 'Cuentan para su travesía' && r26.grRol === 'group:tgc-gr-l' && r26.grPie === 'A pie' && r26.grSiempre === 'siempre' && r26.gr === 'bici:false:En bici,nadar:false:A nado,kayak:false:En kayak' && (r26.guardadoGr === 'null' || r26.guardadoGr === '[]'),
+      JSON.stringify([r26.km, r26.grL, r26.grRol, r26.grPie, r26.grSiempre, r26.gr, r26.guardadoGr]));
+    const gr26 = async id => { await p26.click('#tgc-gr-ops .tgc-gr-op[data-gr="' + id + '"]'); await p26.waitForTimeout(1600); return leer26(p26); };
+    const gb = await gr26('bici');
+    prueba('«En bici» pulsado: sus 24 km suman (63,6), la siguiente parada se acerca (Vilaflor, a 3,7 km), el botón lo dice (aria-pressed) y se guarda', gb.km === '63,6' && gb.sig === 'Siguiente parada: Vilaflor, a 3,7 km.' && /^bici:true:/.test(gb.gr) && gb.guardadoGr === '["bici"]', JSON.stringify([gb.km, gb.sig, gb.gr, gb.guardadoGr]));
+    const gn = await gr26('nadar');
+    prueba('…y «A nado» también: 65 km (1,4 a nado), guardados los dos', gn.km === '65' && gn.gr === 'bici:true:En bici,nadar:true:A nado,kayak:false:En kayak' && gn.guardadoGr === '["bici","nadar"]', JSON.stringify([gn.km, gn.gr, gn.guardadoGr]));
+    const gq = await gr26('bici');
+    prueba('quitar la bici: 41 km, guardado solo el nado', gq.km === '41' && gq.gr === 'bici:false:En bici,nadar:true:A nado,kayak:false:En kayak' && gq.guardadoGr === '["nadar"]', JSON.stringify([gq.km, gq.gr, gq.guardadoGr]));
+    await gr26('nadar');
+    const gk = await gr26('kayak');
+    prueba('quitar el nado (39,6 otra vez) y elegir el kayak (sin km de kayak, la cifra no cambia)', gk.km === '39,6' && gk.guardadoGr === '["kayak"]' && /kayak:true/.test(gk.gr), JSON.stringify([gk.km, gk.guardadoGr, gk.gr]));
+    prueba('la isla, «Por deporte» y la meta: nada pasa del borde', !gk.desborde);
+
+    /* la hoja: «Su deporte» (buceo) propone el buceo; cada deporte, sus campos y su intensidad */
+    await p26.click('#tgc-mov-btn'); await p26.waitForTimeout(350);
+    const hb = await hoja26(p26);
+    prueba('la hoja: catorce deportes con su icono; con «Su deporte» en el buceo, propone el buceo: 45 min, intensa, sin distancia ni desnivel, la nota de la DAN y «Anotar 45 min»', hb.n === 14 && hb.iconos && hb.sel === 'buceo' && hb.min === '45' && hb.km === null && hb.des === null && hb.int === 'v'
+      && hb.nota === 'Antes de volar, la DAN aconseja esperar al menos 12 horas tras una inmersión, y 18 tras varias en un día o en varios días de buceo.' && hb.boton === 'Anotar 45 min', JSON.stringify(hb));
+    prueba('la intensidad: «Moderada» e «Intensa», con la prueba del habla y, para un adulto, que cada minuto intenso cuenta por dos (OMS)', hb.intL === 'Intensidad' && hb.intM === 'Moderada' && hb.intV === 'Intensa'
+      && hb.ayuda === 'Moderada: puede hablar, pero no cantar. Intensa: no puede decir más de unas palabras sin parar a respirar. Para su meta, cada minuto intenso cuenta por dos (OMS).', JSON.stringify([hb.intL, hb.intM, hb.intV, hb.ayuda]));
+    const cada = [];
+    for (const t of ['caminar', 'senderismo', 'correr', 'bici', 'nadar', 'kayak', 'sup', 'surf', 'windsurf', 'buceo', 'golf', 'padel', 'escalada', 'otro']) {
+      await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="' + t + '"]'); await p26.waitForTimeout(40);
+      const h = await hoja26(p26); cada.push([h.sel, h.min, h.km === null ? '-' : h.kmL + ' ' + h.km, h.des === null ? '-' : h.des, h.int, h.nota].join(':'));
+    }
+    const PIE = 'Los kilómetros a pie avanzan su travesía del GR 131.', ELIGE = 'Su distancia no cuenta para el GR 131, salvo que lo elija en «Cruce la isla».', ELEGIDO = 'Su distancia también cuenta para su travesía del GR 131: lo eligió en «Cruce la isla».', MIN = 'Suma minutos a su semana.', DAN = hb.nota;
+    const ESPERADO = ['caminar:30:Kilómetros 2,5:-:m:' + PIE, 'senderismo:120:Kilómetros 8:0:v:' + PIE, 'correr:30:Kilómetros 5:0:v:' + PIE, 'bici:60:Kilómetros 0:-:v:' + ELIGE, 'nadar:30:Metros 0:-:v:' + ELIGE,
+      'kayak:60:Kilómetros 0:-:m:' + ELEGIDO, 'sup:60:-:-:v:' + MIN, 'surf:90:-:-:m:' + MIN, 'windsurf:90:-:-:m:' + MIN, 'buceo:45:-:-:v:' + DAN, 'golf:240:-:-:m:' + MIN, 'padel:90:-:-:m:' + MIN, 'escalada:120:-:-:v:' + MIN, 'otro:30:-:-:m:' + MIN];
+    const malos26 = ESPERADO.filter((x, i) => cada[i] !== x);
+    prueba('cada deporte, lo suyo: los minutos que propone; la distancia en km (caminar, senderismo, correr, bici, kayak) o en metros (nadar); el desnivel (senderismo y correr); la intensidad del Compendio (desde 6 MET, intensa); y su nota (a pie, el GR 131; bici y nado, «salvo que lo elija»; el kayak, elegido arriba, «lo eligió»; el buceo, la DAN; los demás, los minutos)',
+      !malos26.length, malos26.map(x => cada[ESPERADO.indexOf(x)]).join(' || '));
+
+    /* a nado, en metros: de 50 en 50; escritos 1500; moderada; «Anotar» lo guarda en km, al metro */
+    await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p26.click('#tgc-mov-km-mas'); await p26.waitForTimeout(40);
+    const n1 = await hoja26(p26);
+    await p26.fill('#tgc-mov-km', '1500'); await p26.dispatchEvent('#tgc-mov-km', 'change'); await p26.waitForTimeout(40);
+    const n2 = await hoja26(p26);
+    await p26.fill('#tgc-mov-km', '12000'); await p26.dispatchEvent('#tgc-mov-km', 'change'); await p26.waitForTimeout(40);
+    const n3 = await hoja26(p26);
+    await p26.fill('#tgc-mov-km', '1500'); await p26.dispatchEvent('#tgc-mov-km', 'change');
+    await p26.click('#tgc-mov-int-m'); await p26.waitForTimeout(40);
+    const n4 = await hoja26(p26);
+    prueba('a nado, en metros: «+» suma 50 («50 metros más»), escritos 1500 el botón dice «Anotar 30 min y 1500 m», 12000 se queda en 10000 (el tope, 10 km) y «Moderada» se marca',
+      n1.km === '50' && n1.ariaKmMas === '50 metros más' && n1.boton === 'Anotar 30 min y 50 m' && n2.km === '1500' && n2.boton === 'Anotar 30 min y 1500 m' && n3.km === '10000' && n4.km === '1500' && n4.int === 'm', JSON.stringify([n1.km, n1.ariaKmMas, n1.boton, n2.km, n2.boton, n3.km, n4.km, n4.int]));
+    await p26.click('#tgc-mov-guardar'); await p26.waitForTimeout(450);
+    const u1 = await ultimo26();
+    prueba('«Anotar»: nadar, 30 min, 1,5 km, moderada (en la memoria y en tenerife.cuerpo), «Nadar: 30 min y 1500 m anotados», y la meta sube 30 (moderado): 1124', u1.u === '["nadar",30,1.5,"m","-"]' && u1.g === u1.u && u1.toast === 'Nadar: 30 min y 1500 m anotados' && u1.min === '1124', JSON.stringify(u1));
+
+    /* a correr, con desnivel: de 50 en 50, tope 4000, letras no; intensa; lo último anotado lo dice */
+    await p26.click('#tgc-mov-btn'); await p26.waitForTimeout(350);
+    await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="correr"]'); await p26.click('#tgc-mov-des-mas'); await p26.click('#tgc-mov-des-mas'); await p26.waitForTimeout(40);
+    const d1 = await hoja26(p26);
+    await p26.fill('#tgc-mov-des', '5000'); await p26.dispatchEvent('#tgc-mov-des', 'change'); await p26.waitForTimeout(40);
+    const d2 = await hoja26(p26);
+    await p26.fill('#tgc-mov-des', 'abc'); await p26.dispatchEvent('#tgc-mov-des', 'change'); await p26.waitForTimeout(40);
+    const d3 = await hoja26(p26);
+    await p26.fill('#tgc-mov-des', '250'); await p26.dispatchEvent('#tgc-mov-des', 'change'); await p26.waitForTimeout(40);
+    const d4 = await hoja26(p26);
+    prueba('el desnivel, a correr: «Desnivel positivo (m)», «+» de 50 en 50 («50 metros más»; 100), 5000 se queda en 4000, letras no (4000) y escritos 250; intensa', d1.desL === 'Desnivel positivo (m)' && d1.des === '100' && d1.ariaDesMas === '50 metros más' && d1.ariaDesMenos === '50 metros menos'
+      && d2.des === '4000' && d3.des === '4000' && d4.des === '250' && d4.int === 'v', JSON.stringify([d1.desL, d1.des, d1.ariaDesMas, d2.des, d3.des, d4.des, d4.int]));
+    await p26.click('#tgc-mov-guardar'); await p26.waitForTimeout(450);
+    const u2 = await ultimo26();
+    prueba('«Anotar»: correr, 30 min, 5 km, intensa, 250 m de desnivel; la meta sube 60 (intenso, por dos): 1184', u2.u === '["correr",30,5,"v",250]' && u2.g === u2.u && u2.toast === 'Correr: 30 min y 5 km anotados' && u2.min === '1184', JSON.stringify(u2));
+    await p26.click('#tgc-mov-btn'); await p26.waitForTimeout(350);
+    const hh = await hoja26(p26);
+    prueba('lo último anotado: «Correr · 30 min y 5 km · 250 m de desnivel» con la marca «Intensa», y la × lo dice entero («… · Intensa»); el nado, sin marca', /^Correr · 30 min y 5 km · 250 m de desnivelIntensa @Borrar: Correr · 30 min y 5 km · 250 m de desnivel · Intensa, /.test(sp26(hh.hist[0])) && /^Nadar · 30 min y 1500 m @/.test(sp26(hh.hist[1])), hh.hist.slice(0, 2).join(' || '));
+    /* el golf: sin distancia ni desnivel, moderado */
+    await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="golf"]'); await p26.waitForTimeout(40);
+    await p26.click('#tgc-mov-guardar'); await p26.waitForTimeout(450);
+    const u3 = await ultimo26();
+    prueba('el golf: 240 min, moderado, sin km ni desnivel; la meta, 1424', u3.u === '["golf",240,0,"m","-"]' && u3.toast === 'Golf: 240 min anotados' && u3.min === '1424', JSON.stringify(u3));
+
+    /* de 5 a 17 años: nada por dos (892 minutos de verdad, de 420), y la ayuda no dice lo de «por dos» */
+    await p26.evaluate(() => { localStorage.setItem('tenerife.perfil', JSON.stringify({ nacimiento: new Date().getFullYear() - 15 })); TG_CUERPO.repintar(); }); await p26.waitForTimeout(100);
+    const j26 = await leer26(p26);
+    await p26.click('#tgc-mov-btn'); await p26.waitForTimeout(350);
+    const jh = await hoja26(p26);
+    prueba('con 15 años: 892 de 420 min de movimiento (los minutos de verdad: a un menor, nada cuenta por dos) y la ayuda de la intensidad sin el «por dos»', j26.min === '892' && j26.de === 'de 420 min de movimiento' && j26.hecha && jh.ayuda === 'Moderada: puede hablar, pero no cantar. Intensa: no puede decir más de unas palabras sin parar a respirar.', JSON.stringify([j26.min, j26.de, jh.ayuda]));
+    await p26.keyboard.press('Escape'); await p26.waitForTimeout(150);
+    await p26.evaluate(() => { localStorage.removeItem('tenerife.perfil'); TG_CUERPO.repintar(); });
+
+    /* «Su deporte» propone el suyo: el mar, a nado; el ciclismo, la bici; la carrera, correr; sin deporte, caminar. Elegido en
+       su lista con la pantalla abierta, la hoja propone el nuevo (lo de la última vez se olvida) */
+    const propone = [];
+    for (const [dep, tipo] of [['mar', 'nadar'], ['ciclismo', 'bici'], ['carrera', 'correr'], ['surf', 'surf'], ['golf', 'golf'], ['otro', 'otro'], ['', 'caminar']]) {
+      await p26.selectOption('#tgc-dep-sel', dep); await p26.waitForTimeout(150);
+      await p26.click('#tgc-mov-btn'); await p26.waitForTimeout(300);
+      const h = await hoja26(p26); propone.push((dep || '(nada)') + '→' + h.sel + (h.sel === tipo ? '' : ' (y no ' + tipo + ')'));
+      await p26.keyboard.press('Escape'); await p26.waitForTimeout(120);
+    }
+    prueba('«Su deporte» propone el suyo en la hoja: el mar, a nado; el ciclismo, la bici; la carrera, correr; el surf, el golf y «Otro», los suyos; sin deporte, caminar', !propone.some(x => / \(y no /.test(x)), propone.join(', '));
+
+    /* el buceo y el avión (la DAN: 12 h tras una sola inmersión; 18 tras varias en un día o varios días de buceo): una
+       inmersión ayer, 12 h; una hace 3 días, nada (ya pasaron); una hoy y otra ayer, 18 h; una ayer y otra hace 4 días, 18 h */
+    const danCon = async mov => { await ejemplo(p26, { mov }); return (await leer26(p26)).dan; };
+    const dn1 = await danCon([[1, 'buceo', 50, 0, { int: 'v' }]]), dn2 = await danCon([[3, 'buceo', 50, 0, { int: 'v' }]]), dn3 = await danCon([[0, 'buceo', 50, 0, { int: 'v' }], [1, 'buceo', 40, 0, { int: 'v' }]]),
+      dn4 = await danCon([[1, 'buceo', 50, 0, { int: 'v' }], [4, 'buceo', 45, 0, { int: 'v' }]]);
+    prueba('el buceo y el avión: una inmersión ayer, «al menos 12 horas»; una hace 3 días, nada (ya pasaron las 18 h); una hoy y otra ayer, y una ayer y otra hace 4 días (varios días de buceo en la semana), «18 horas»',
+      dn1 === 'Si va a volar: la DAN aconseja esperar al menos 12 horas desde la última inmersión. Si nota cualquier síntoma, pida atención médica antes de volar.' && dn2 === '' && /18 horas/.test(dn3) && /18 horas/.test(dn4), JSON.stringify([dn1, dn2, dn3, dn4]));
+
+    /* el asistente: «¿Cómo voy esta semana?», deporte a deporte, y los minutos que cuentan para la meta */
+    await ejemplo(p26, { mov: MOV26 });
+    await p26.click('#tgc-modo-p'); await p26.waitForFunction(() => { const f = document.getElementById('tgc-preg-form'); return f && !f.hidden; }, null, { timeout: 15000 }).catch(() => {});
+    await p26.fill('#tgc-preg', '¿Cómo voy esta semana?'); await p26.click('#tgc-preg-enviar');
+    await p26.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-turno .tgc-resp-t').length > 0, null, { timeout: 15000 }).catch(() => {}); await p26.waitForTimeout(150);
+    const a26 = await p26.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-turno:last-child .tgc-resp-p li')].map(li => li.textContent));
+    prueba('el asistente: «Movimiento anotado en 7 días: Senderismo: 270 min y 13,2 km, …, Buceo: 90 min. Para su meta cuentan 1094 de 150 minutos.»',
+      a26.some(t => t === 'Movimiento anotado en 7 días: Senderismo: 270 min y 13,2 km, Correr: 32 min y 5,4 km, Bici: 75 min y 24 km, Nadar: 35 min y 1400 m, Surf: 90 min, Buceo: 90 min. Para su meta cuentan 1094 de 150 minutos.'), a26.join(' | '));
+    await p26.click('#tgc-modo-m'); await p26.waitForTimeout(150);
+
+    /* lo guardado roto: la intensidad que no es 'v' o 'm' (o falta), moderada; el desnivel, solo en los que lo piden, de 1 a
+       4000; la distancia, solo en los que la piden, con su tope (a nado, 10 km); lo elegido para el GR 131, de la lista y sin repetir */
+    await p26.evaluate(() => {
+      const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')), h = ymd(new Date());
+      g.mov = [{ d: h, tipo: 'caminar', min: 30, km: 2, int: 'x', des: 300 }, { d: h, tipo: 'senderismo', min: 60, km: 4, int: 'v', des: 5000 }, { d: h, tipo: 'correr', min: 30, km: 5, des: -5 },
+        { d: h, tipo: 'golf', min: 120, km: 3, int: 'v' }, { d: h, tipo: 'nadar', min: 30, km: 12 }, { d: h, tipo: 'escalada', min: 60, int: 'V', des: 200 }, { d: h, tipo: 'senderismo', min: 60, km: 3, des: 120.6 }];
+      g.gr = ['bici', 'bici', 'coche', 'nadar', 7];
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir();
+    });
+    await p26.waitForTimeout(250);
+    const v26 = await p26.evaluate(() => { const s = TG_CUERPO.estado(); return s.mov.map(x => [x.tipo, x.min, x.km, x.int, x.des === undefined ? '-' : x.des].join(':')).join(' | ') + ' // ' + JSON.stringify(s.gr); });
+    prueba('roto: la intensidad rara o que falta, moderada; el desnivel fuera donde no va (caminar, escalada) o si es negativo, 5000 → 4000 y 120,6 → 121; los km del golf, fuera; a nado, 12 km → 10; para el GR 131, solo bici y nado, una vez',
+      v26 === 'caminar:30:2:m:- | senderismo:60:4:v:4000 | correr:30:5:m:- | golf:120:0:v:- | nadar:30:10:m:- | escalada:60:0:m:- | senderismo:60:3:m:121 // ["bici","nadar"]', v26);
+    await p26.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); g.gr = 'bici'; localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir(); }); await p26.waitForTimeout(150);
+    prueba('…y si lo elegido no es una lista, nada elegido', await p26.evaluate(() => JSON.stringify(TG_CUERPO.estado().gr) === '[]'));
+
+    /* en los diez idiomas: la semana por deporte, la isla y la hoja con sus textos (nada vacío, nada en castellano fuera del
+       castellano, sin marcadores ni «|» sueltos), los plurales de cada idioma, y la política con el GR 131 */
+    await ejemplo(p26, { mov: MOV26 });
+    const es26 = {};
+    for (const l of L26) {
+      await idioma(p26, l);
+      const v = await leer26(p26);
+      await p26.click('#tgc-mov-btn'); await p26.waitForTimeout(250);
+      await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p26.waitForTimeout(40);
+      const hn = await hoja26(p26);
+      await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="correr"]'); await p26.waitForTimeout(40);
+      const hc = await hoja26(p26);
+      await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="buceo"]'); await p26.waitForTimeout(40);
+      const hb2 = await hoja26(p26);
+      const ui = await p26.evaluate(l => ({ veces: UI_TX.cuerpoVeces[l].split('|').length, inm: UI_TX.cuerpoInmersiones[l].split('|').length, priv: UI_TX.ppDatosCuerpoTxt[l],
+        lang: document.getElementById('cuerpo-panel').getAttribute('lang') }), l);
+      await p26.keyboard.press('Escape'); await p26.waitForTimeout(120);
+      const t = { deps: v.deps.join(' // '), dan: v.dan, depsTit: v.depsTit, grL: v.grL, gr: v.gr, grPie: v.grPie, cifrasInt: v.cifrasInt, cifrasDan: v.cifrasDan, de: v.de,
+        kmL: hn.kmL, notaNado: hn.nota, ariaKm: hn.ariaKmMas, desL: hc.desL, ariaDes: hc.ariaDesMas, notaPie: hc.nota, intL: hc.intL, intM: hc.intM, intV: hc.intV, ayuda: hc.ayuda, notaBuceo: hb2.nota, tipos: hc.tipos };
+      if (l === 'es') Object.assign(es26, t);
+      const vacias = Object.keys(t).filter(k => !t[k]), iguales = l === 'es' ? [] : Object.keys(t).filter(k => t[k] === es26[k]);
+      const sueltos = Object.keys(t).filter(k => /[{}|]/.test(t[k]));
+      const formas = ui.veces === (l === 'pl' ? 3 : /^zh/.test(l) ? 1 : 2) && ui.inm === ui.veces;
+      prueba(l + ': «Por deporte», la isla con lo que cuenta para la travesía y la hoja (metros, desnivel, intensidad, las notas) con todos sus textos' + (l === 'es' ? '' : ', en su idioma') + ', sin marcadores sueltos, con los plurales del idioma, sin desborde, y la política con el GR 131',
+        !vacias.length && !iguales.length && !sueltos.length && formas && !v.desborde && !hn.desborde && !hc.desborde && ui.priv.indexOf('GR 131') > 0 && /GR 131/.test(t.notaNado) && t.dan.length > 40,
+        JSON.stringify({ vacias, iguales, sueltos, formas: [ui.veces, ui.inm], desborde: [v.desborde, hn.desborde, hc.desborde], priv: ui.priv.indexOf('GR 131'), lang: ui.lang }));
+    }
+    await idioma(p26, 'es');
+    prueba('la política (es): el movimiento con el deporte, la intensidad, la distancia, el desnivel y lo que se elige contar para el GR 131', await p26.evaluate(() => /la intensidad/.test(UI_TX.ppDatosCuerpoTxt.es) && /el desnivel/.test(UI_TX.ppDatosCuerpoTxt.es) && /qué deportes elige contar para el GR 131/.test(UI_TX.ppDatosCuerpoTxt.es)));
+    prueba('bloque 7: sin errores de página', e26.length === 0, e26.join(' | '));
+    await c26.close();
+
+    /* a 320 px y de noche: la cifra de la meta en una línea, los botones de la travesía elegidos como «A pie», y nada pasa del borde */
+    const c26b = await contexto(b, { contexto: { viewport: { width: 320, height: 568 } } }), p26b = await c26b.newPage(), e26b = []; vigilar(p26b, e26b);
+    await abrirApp(p26b); await abrirPerfilCuerpo(p26b); await suCuerpo(p26b);
+    await p26b.click('#tgc-tema'); await p26b.waitForTimeout(200);
+    await ejemplo(p26b, { mov: MOV26, gr: ['bici'] });
+    await idioma(p26b, 'en'); await p26b.waitForTimeout(500);   /* el color de los botones cambia con una transición corta */
+    const n320 = await leer26(p26b);
+    const col = await p26b.evaluate(() => { const a = getComputedStyle(document.querySelector('.tgc-gr-fijo')), b = getComputedStyle(document.querySelector('#tgc-gr-ops .tgc-gr-op[aria-pressed="true"]')), c = getComputedStyle(document.querySelector('#tgc-gr-ops .tgc-gr-op[aria-pressed="false"]'));
+      const si = document.querySelector('#tgc-gr-ops .tgc-gr-op[aria-pressed="true"] .tgc-gr-si'), ico = document.querySelector('#tgc-gr-ops .tgc-gr-op[aria-pressed="true"] .tgc-gr-ico');
+      return { fijo: a.backgroundColor + '/' + a.color, si: b.backgroundColor + '/' + b.color, no: c.backgroundColor, marca: getComputedStyle(si).display !== 'none' && getComputedStyle(ico).display === 'none', tema: TG_CUERPO.tema() }; });
+    await p26b.click('#tgc-mov-btn'); await p26b.waitForTimeout(300);
+    await p26b.click('#tgc-mov-tipos .tgc-tipo[data-tipo="senderismo"]'); await p26b.waitForTimeout(40);
+    const h320 = await hoja26(p26b);
+    prueba('a 320 px, de noche y en inglés: «1,094» en una línea, «Por deporte» y la isla sin desborde, la hoja (senderismo, con desnivel e intensidad) tampoco; la bici elegida, del color de «A pie» y con su marca en lugar del icono',
+      n320.min === '1,094' && n320.lineas === 1 && !n320.desborde && !h320.desborde && h320.des === '0' && col.tema === 'noche' && col.si === col.fijo && col.no !== col.si.split('/')[0] && col.marca, JSON.stringify([n320.min, n320.lineas, n320.desborde, h320.desborde, h320.des, col]));
+    prueba('a 320 px: sin errores de página', e26b.length === 0, e26b.join(' | '));
+    await c26b.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
