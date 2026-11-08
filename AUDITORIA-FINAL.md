@@ -6935,6 +6935,131 @@ alertas) se pasó después, también en verde.
   maneras de tocar «Anotar», con «change» y sin él;
 - la revisión nativa de los textos nuevos en nueve idiomas.
 
+## El GR-131: las cinco etapas, con los datos oficiales (8 de noviembre)
+
+Jerome, el 8 de noviembre, a la corrección de las fichas del GR-131: «4 si ,
+si son datos verificadas !»; a la etapa que faltaba: «La etapa 2 créala si
+lo datos son reales»; a Vilaflor en chino: «Vilaflor en chino si igualó los
+demás»; y a fijar la versión de Ubuntu de los flujos de GitHub: «2 ,
+aguantará a largo plazo ubuntu». Cinco commits:
+- `03ed8ff`, las cuatro fichas que había, con los datos oficiales;
+- `f839ad1`, los tres flujos con Playwright, en `ubuntu-24.04`;
+- `e3a8f7e`, Vilaflor en chino, igual en todas las fichas;
+- `9cdc1af`, la guagua de La Esperanza, la línea 41;
+- `eb8c37b`, la ficha nueva de la etapa 2 (980 lugares).
+
+**De dónde sale cada dato**
+- Distancia, duración, dificultad, alturas, desniveles, homologación y
+  recorrido: la página de cada tramo en Webtenerife (Turismo de Tenerife), en
+  castellano, consultadas el 8 de noviembre de 2026.
+- La numeración: el Camino Natural Anaga-Chasna del Ministerio de Agricultura
+  (MAPA), que parte el GR-131 de Tenerife en cinco etapas: 1 La Esperanza –
+  La Caldera, 2 La Caldera – El Portillo, 3 El Portillo – Degollada de
+  Guajara, 4 Degollada de Guajara – Vilaflor y 5 Vilaflor – Arona.
+- Las guaguas de Arona: `datos/titsa.js`, del GTFS de TITSA. La parada
+  «Arona» la sirven la 480 (Arona – Los Cristianos) y la 482 (Vilaflor – La
+  Escalona – Arona – Los Cristianos). La 417 que decía la ficha no pasa por
+  Arona (es Costa Adeje – Guía de Isora).
+- La guagua de La Esperanza: no es de TITSA (en `datos/titsa.js` no hay
+  ninguna parada a menos de 2,2 km del pueblo). Jerome mandó lo que encontró,
+  la línea 041 de Transportes La Esperanza, y se comprobó en la web de la
+  empresa (transporteslaesperanza.com, «Transporte regular y urbano»): «La
+  línea 41, (intercambiador La Laguna - Las Rosas en La Esperanza) servicio
+  interurbano, con servicio continuo todos los días de la semana.» Sin
+  horarios: la empresa no los publica y caducan.
+- Los desniveles se redondean al metro (1.140,52 m → 1.141 m).
+
+**Las fichas**
+
+| Ficha (el `id` no cambia) | Decía | Dice ahora |
+|---|---|---|
+| `gr131-tramo1-esperanza-caldera` | 14 km, 5 horas, media, 850 m, «sendero homologado», «Conexión con bus desde La Esperanza» | 29,8 km, 14 h 20 min, muy alta, entre 915 y 1.819 m, sube 1.853 m y baja 1.568 m, «en trámites de homologación»; la línea 41 de Transportes La Esperanza, del intercambiador de La Laguna a Las Rosas, todos los días |
+| `gr131-etapa2-caldera-portillo` | (no estaba) | «Tramo 2», 13,1 km, 5 h 40 min, media, hasta 2.033 m, sube 1.188 m y baja 347 m, «en trámites de homologación»; del aparcamiento del área recreativa de La Caldera, por el SL-TF 81 y la Cruz del Dornajito, al cruce de El Portillo |
+| `gr131-tramo2-portillo-guajara` | «Tramo 2», ~14 km, alta, 2.030 m y 2.715 m | «Tramo 3», 13,1 km, 4 h, media, entre 2.058 y 2.389 m, sube 494 m y baja 140 m |
+| `gr131-tramo3-guajara-vilaflor` | «Tramo 3», ~12 km, alta, 2.715 m, bajada de 1.300 m, «desciende por el Paisaje Lunar» | «Tramo 4», 11,3 km, 5 h, media, entre 1.390 y 2.425 m, sube 182 m y baja 1.141 m; el Paisaje Lunar es un desvío por el PR-TF 72, al mirador de Los Escurriales |
+| `gr131-tramo5-vilaflor-arona` | 12 km, 4 horas, media, «prácticamente todo descenso», 610 m, guagua 482/417 | 17,7 km, 7 h 20 min, alta, entre 627 y 1.610 m, sube 597 m y baja 1.394 m, de la iglesia de San Pedro a la plaza de La Salud; guagua 482/480 |
+
+- Los ids se quedan: favoritos y visitados siguen apuntando a la misma
+  ficha. Los nombres de los tramos 3 y 4 cambian de número.
+- La etiqueta «1300m» del tramo 4 pasa a «1141m», también en
+  `idiomas/etiquetas-sin-traducir.json` (es una cifra: no se traduce).
+- La ficha nueva lleva el aviso «sendero», que es lo que recomienda su
+  propia página (consultar el estado, calzado y ropa, agua). Su punto es el
+  primero del track oficial (el GPX de esa página), 28.357870, -16.502259, a
+  4 decimales, apuntado con su fuente en `datos/verificado.json` con
+  `tools/fijar_coordenada.py` (cae en tierra). Su municipio, La Orotava, el
+  del punto; su zona del planificador, Norte (`tools/zonas_lugares.py`).
+- Fuera, a propósito: la «altura mínima 944 m» de la página de la etapa 2.
+  No cuadra con sus propios datos: el tramo 1 llega a La Caldera a unos
+  1.200 m (915 m y 285 m netos de subida) y la ficha de La Caldera dice
+  1.200 m. El GPX no trae alturas con que comprobarla.
+
+**De 979 a 980 lugares**, como el 31 de octubre: `tools/auditar_datos.js`
+(la cifra, a mano y con su historia), el JSON-LD de `index.html`, la ficha
+de la App Store (los diez idiomas y en-US), la de Google Play (rehecha con
+`tools/google_play_ficha.js --escribir`), las notas a Apple
+(`LANZAMIENTO-APP-STORE.md`), el README (senderismo, de 37 a 38),
+`REVISION-LUGARES.md` (rehecho con `tools/informe_lugares.js`) y las tablas
+de este documento (lugares, avisos `warn` de 116 a 117, y las filas de
+idiomas de 5.519 a 5.521). Si la ficha de Google Play ya está copiada en
+Play Console, hay que cambiar «979» por «980»; la de la App Store se sube con
+su flujo.
+
+**Vilaflor en chino** (`e3a8f7e`): seis fichas decían 维拉弗洛尔 (en
+tradicional, 維拉弗洛爾): `paisaje-lunar` (dos veces), `pino-gordo-vilaflor`,
+`bici-bc5-vilaflor`, `bici-agua-vilaflor`, `pp-ifonche` y
+`cueva-santo-hermano-pedro`. Pasan a 比拉弗洛尔 (比拉弗洛爾), lo que ya decían
+las demás, las del GR-131 y el glosario de categorías, y como el chino
+transcribe la «v» castellana (Valencia, 巴伦西亚). En los mapas no cambia
+nada: en el plano, Vilaflor sale en castellano, porque ninguna categoría
+acaba en «Vilaflor» (`tools/nombres_chinos_mapa.py --comprobar`, al día); el
+3D pinta el nombre de OpenStreetMap (比拉夫洛尔).
+
+**De paso, en los textos que ya se tocaban**: el italiano decía «Tronco» en
+dos etiquetas y pasa a «Tratto», como las otras; y el «环岛» («alrededor de
+la isla») del tramo 5 pasa a «全岛穿越», porque el GR cruza la isla.
+
+**Lo que se queda como estaba**, porque no tiene fuente y no es sospechoso:
+el pinar y la niebla del tramo 1, las tabaibas, euforbias y vistas a La
+Gomera del tramo 5, el km 32 de la TF-21 y «Vilaflor es la localidad
+habitada más alta de Tenerife».
+
+**Los flujos con Playwright** (`f839ad1`). Desde el 19 de octubre de 2026
+GitHub pasa `ubuntu-latest` a Ubuntu 26.04, poco a poco hasta el 19 de
+noviembre, y Playwright no admite 26.04 hasta la 1.61. El 8 de noviembre
+`comprobar-dominio` falló al instalar Chromium («Playwright does not support
+chromium on ubuntu26.04-x64»); la web estaba bien, el control no llegó a
+mirarla. `ubuntu-24.04`, fijo, solo en los tres trabajos con Playwright:
+`comprobar-dominio.yml` («instalar», Playwright 1.56.1), `app-store.yml`
+(«ficha», las capturas de la tienda, 1.56.1) y `generar-mapa.yml`
+(«generar», la prueba de estilo, 1.49.1). Los demás siguen en
+`ubuntu-latest`: los robots ya corren en 26.04 sin problema. GitHub mantiene
+dos versiones estables a la vez y anuncia con fecha la retirada de la más
+vieja; cuando le toque a 24.04, el paso es `ubuntu-26.04` con Playwright
+1.61 o posterior, mirando antes que las capturas y la prueba de estilo salen
+igual.
+
+**Controles**, sobre el árbol con los cinco commits: `auditar_idioma.js` en
+los nueve idiomas, 0 hallazgos; `castellano_suelto.js`, `auditar_fuente_pl.js`
+y `auditar_etiquetas.js`, OK; `auditar_datos.js`, `auditar_readme.js`,
+`auditar_app_store.js`, `google_play_ficha.js`, `auditar_municipio.js`,
+`zonas_lugares.py --comprobar`, `nombres_chinos_mapa.py --comprobar` e
+`informe_lugares.js --comprobar`, en verde.
+
+**La auditoría entera**, sobre `472891d` (árbol `10515685…`), que en `main` es
+`eb8c37b`: «AUDITORIA EN VERDE»: ningún control en rojo ni sin ejecutar (4.711
+líneas, 1 h 50 min). Puesta la rama al día con `main`, solo entran commits de
+los robots (las alertas del Gobierno de Canarias, los avisos de AEMET y los
+terremotos del IGN): solo cambian sus ficheros de datos, y los controles que
+los leen salen en verde.
+
+**Lo que queda:**
+- si la ficha de Google Play ya está copiada en Play Console, «979» pasa a
+  «980» (Jerome);
+- Webtenerife publica el GPX oficial de cada tramo: puede ser el trazado de
+  «Cruce la isla» (`tools/gr131_trazado.py`), mirando antes su licencia;
+- la revisión nativa de los textos nuevos en nueve idiomas.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
