@@ -1688,7 +1688,8 @@
 
   /* ── lo guardado: tenerife.cuerpo, solo en el dispositivo, validado campo a campo al leerlo ──
      { v: 1, aspecto: {…}, series: [{ d: 'AAAA-MM-DD', g: grupo, n: 1-30, t: instante, e: ejercicio }], deporte: id,
-       mov: [{ d: 'AAAA-MM-DD', tipo: caminar | senderismo | correr | nadar | bici, min: 1-600, km: 0-60, t: instante }],
+       mov: [{ d: 'AAAA-MM-DD', tipo: caminar | senderismo | correr | nadar | bici, min: 1-600,
+               km: 0-100 (en bici, 0-200), al metro, t: instante }],
        comida: { on, pausa, d: { 'AAAA-MM-DD': { grupo: raciones } } } }
      (e, el id del ejercicio, solo si se anotó desde su ficha; deporte, el elegido en «Su deporte» o ''; mov, el
      movimiento de «Anotar movimiento» (7-11-2026, bloque 4; los km, de los cinco tipos desde el 8-11-2026);
@@ -1696,16 +1697,17 @@
   /* los cinco tipos de movimiento, con los minutos y los km que propone la hoja al elegirlos (los de la maqueta);
      pie: los kilómetros se piden (y, en el bloque 5, avanzarán por el GR 131). Desde el 8-11-2026, en los cinco:
      Jerome, de nadar y de la bici, «Cuentan también» (la decisión 4; antes, solo a pie). A nado y en bici la hoja
-     empieza en 0 km */
+     empieza en 0 km. max: el tope de km de una anotación, solo para frenar un error al escribir (425 por 4,25);
+     desde el 8-11-2026, 200 en bici (Jerome: «200 mejor») y 100 en los demás (antes, 60 en todos) */
   var MOV = [
-    { id: 'caminar', min: 30, km: 2.5, pie: true },
-    { id: 'senderismo', min: 120, km: 8, pie: true },
-    { id: 'correr', min: 30, km: 5, pie: true },
-    { id: 'nadar', min: 30, km: 0, pie: true },
-    { id: 'bici', min: 60, km: 0, pie: true }
+    { id: 'caminar', min: 30, km: 2.5, pie: true, max: 100 },
+    { id: 'senderismo', min: 120, km: 8, pie: true, max: 100 },
+    { id: 'correr', min: 30, km: 5, pie: true, max: 100 },
+    { id: 'nadar', min: 30, km: 0, pie: true, max: 100 },
+    { id: 'bici', min: 60, km: 0, pie: true, max: 200 }
   ];
   var MOV_IDS = MOV.map(function (m) { return m.id; });
-  var MIN_MAX = 600, KM_MAX = 60, MAX_MOV = 2000;
+  var MIN_MAX = 600, MAX_MOV = 2000;
   /* los iconos de los cinco tipos (los de la maqueta), constantes: van con innerHTML en los botones de la hoja */
   function icoMov(d) { return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; }
   var ICONOS_MOV = {
@@ -1716,7 +1718,10 @@
     bici: icoMov('<circle cx="6" cy="16.5" r="3.5"/><circle cx="18" cy="16.5" r="3.5"/><path d="M6 16.5l4-7h5l3 7M10 9.5l2.5 7M9 7h3M15 9.5l-1-3h2"/>')
   };
   function movDe(id) { for (var i = 0; i < MOV.length; i++) { if (MOV[i].id === id) return MOV[i]; } return MOV[0]; }
-  function km1(v) { return Math.round(v * 10) / 10; }
+  /* los km, al metro: tres decimales (8-11-2026, Jerome: «quiero lo más preciso posible»; antes, uno). Se
+     redondea con el número escrito en decimal y no por × 1000, que con 0,5005 da 500,49999… y 0,5: así da
+     0,501. Lo que no se escribe así (1e-7), por × 1000 */
+  function km3(v) { var r = Number(Math.round(Number(v + 'e3')) + 'e-3'); return isFinite(r) ? r : Math.round(v * 1000) / 1000; }
   function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], deporte: '', comida: comVacio() }; }
   function valida(s) {
     var r = vacio();
@@ -1733,14 +1738,14 @@
         return y;
       }).slice(-MAX_ENTRADAS);
     }
-    /* el movimiento (bloque 4): el tipo, de la lista; los minutos, enteros de 1 a 600; los km, de 0 a 60 con un
-       decimal, en los tipos que los piden (desde el 8-11-2026, los cinco) */
+    /* el movimiento (bloque 4): el tipo, de la lista; los minutos, enteros de 1 a 600; los km, de 0 a su tope (100;
+       en bici, 200), al metro, en los tipos que los piden (desde el 8-11-2026, los cinco) */
     if (Array.isArray(s.mov)) {
       r.mov = s.mov.filter(function (x) {
         return x && typeof x === 'object' && esFecha(x.d) && x.d <= max && x.d >= min && MOV_IDS.indexOf(x.tipo) >= 0 &&
           typeof x.min === 'number' && Math.floor(x.min) === x.min && x.min >= 1 && x.min <= MIN_MAX;
       }).map(function (x) {
-        var k = (movDe(x.tipo).pie && typeof x.km === 'number' && isFinite(x.km) && x.km > 0) ? Math.min(KM_MAX, km1(x.km)) : 0;
+        var k = (movDe(x.tipo).pie && typeof x.km === 'number' && isFinite(x.km) && x.km > 0) ? Math.min(movDe(x.tipo).max, km3(x.km)) : 0;
         return { d: x.d, tipo: x.tipo, min: x.min, km: k, t: (typeof x.t === 'number' && isFinite(x.t) && x.t > 0) ? x.t : 0 };
       }).slice(-MAX_MOV);
     }
@@ -1796,7 +1801,7 @@
       if (x.d > h || x.d < desde) return;
       r.min += x.min; r.km += x.km; conMov[x.d] = 1; activos[x.d] = 1;
     });
-    r.km = km1(r.km);
+    r.km = km3(r.km);
     GRUPOS.forEach(function (g) { r.dias[g] = Object.keys(r.dias[g]).length; if (r.series[g]) r.grupos++; r.niveles[g] = nivel(r.series[g]); });
     r.diasFuerza = Object.keys(todos).length; r.diasMov = Object.keys(conMov).length; r.diasActivos = Object.keys(activos).length;
     return r;
@@ -2298,7 +2303,7 @@
   /* los números con el formato del idioma («2,5» en castellano, «2.5» en inglés) */
   function fmtN(n, dec) { try { return new Intl.NumberFormat(locale(), { minimumFractionDigits: 0, maximumFractionDigits: dec }).format(n); } catch (e) { return String(n); } }
   /* «30 min y 2,5 km» (o solo los minutos): lo que se lee en el día, en el botón de la hoja y en el aviso */
-  function minKm(min, km) { return km > 0 ? tx('cuerpoMinKm', { min: fmtN(min, 0), km: fmtN(km, 1) }) : tx('cuerpoMin', { n: min }); }
+  function minKm(min, km) { return km > 0 ? tx('cuerpoMinKm', { min: fmtN(min, 0), km: fmtN(km, 3) }) : tx('cuerpoMin', { n: min }); }
   /* (7-11-2026, bloque 4) las tres metas de la semana: los días con fuerza, los minutos de movimiento y los grupos
      trabajados, cada una con su cifra, «de cuántos», su raya y la marca de cumplida (como en la maqueta) */
   var metasAntes = null;
@@ -2345,7 +2350,7 @@
     var h = hoy(), ds = [];
     for (var i = 6; i >= 0; i--) ds.push({ d: sumar(h, -i), n: 0, g: {}, min: 0, km: 0, tipos: {} });
     st.series.forEach(function (x) { ds.forEach(function (o) { if (o.d === x.d) { o.n += x.n; o.g[x.g] = 1; } }); });
-    st.mov.forEach(function (x) { ds.forEach(function (o) { if (o.d === x.d) { o.min += x.min; o.km = km1(o.km + x.km); o.tipos[x.tipo] = 1; } }); });
+    st.mov.forEach(function (x) { ds.forEach(function (o) { if (o.d === x.d) { o.min += x.min; o.km = km3(o.km + x.km); o.tipos[x.tipo] = 1; } }); });
     return ds;
   }
   function fmtDia(s, largo) {
@@ -2751,8 +2756,8 @@
     antesDeCifras = null;
   }
   /* ── «Anotar movimiento» (7-11-2026, bloque 4): la misma hoja, con su página. Qué ha hecho (cinco tipos),
-     los minutos (±5, o escritos), los kilómetros (±0,5, o escritos; desde el 8-11-2026, también a nado y en
-     bici), hoy o ayer; «Anotar» guarda, cierra y avisa con «Deshacer». Debajo, lo último anotado, con ×.
+     los minutos (±5, o escritos), los kilómetros (±0,5, o escritos, al metro; desde el 8-11-2026, también a nado
+     y en bici), hoy o ayer; «Anotar» guarda, cierra y avisa con «Deshacer». Debajo, lo último anotado, con ×.
      Todo queda en tenerife.cuerpo, en el dispositivo; los kilómetros del perfil (su pestaña «Evolución», que se
      suben a la cuenta con permiso) no se tocan ── */
   var movAbierto = false, movHistoria = false, antesDeMov = null, movSel = null;
@@ -2784,11 +2789,13 @@
     if (antesDeMov && document.contains(antesDeMov) && typeof antesDeMov.focus === 'function') { try { antesDeMov.focus({ preventScroll: true }); } catch (e) {} }
     antesDeMov = null;
   }
-  /* lo que hay escrito en el campo de los km: con coma o con punto; nada o algo que no es un número, null */
+  /* lo que hay escrito en el campo de los km: con coma o con punto, al metro y hasta el tope del tipo; nada o algo
+     que no es un número, null */
   function leerKm() {
+    if (!movSel) return null;
     var s = String($('tgc-mov-km').value || '').replace(/\s/g, '').replace(',', '.');
     if (!/^\d+(\.\d+)?$/.test(s)) return null;
-    return Math.max(0, Math.min(KM_MAX, km1(parseFloat(s))));
+    return Math.max(0, Math.min(movDe(movSel.tipo).max, km3(parseFloat(s))));
   }
   /* lo que hay escrito en el campo de los minutos: un entero de 1 a 600; nada, 0 o algo que no es un número, null */
   function leerMin() {
@@ -2806,9 +2813,9 @@
     $('tgc-mov-min-menos').disabled = movSel.min <= 1;
     $('tgc-mov-min-mas').disabled = movSel.min >= MIN_MAX;
     $('tgc-mov-km-fila').hidden = !m.pie;
-    if (escribiendo !== 'km') $('tgc-mov-km').value = fmtN(movSel.km, 1);
+    if (escribiendo !== 'km') $('tgc-mov-km').value = fmtN(movSel.km, 3);
     $('tgc-mov-km-menos').disabled = movSel.km <= 0;
-    $('tgc-mov-km-mas').disabled = movSel.km >= KM_MAX;
+    $('tgc-mov-km-mas').disabled = movSel.km >= m.max;
     $('tgc-mov-guardar-txt').textContent = tx('cuerpoMovBoton', { que: minKm(movSel.min, m.pie ? movSel.km : 0) });
   }
   function renderMov() {
@@ -2843,7 +2850,7 @@
   function anotarMov() {
     if (!movSel) return;
     var m = movDe(movSel.tipo), d = movSel.dia === 'ayer' ? sumar(hoy(), -1) : hoy();
-    var x = { d: d, tipo: m.id, min: Math.max(1, Math.min(MIN_MAX, Math.round(movSel.min))), km: m.pie ? Math.max(0, Math.min(KM_MAX, km1(movSel.km))) : 0, t: Date.now() };
+    var x = { d: d, tipo: m.id, min: Math.max(1, Math.min(MIN_MAX, Math.round(movSel.min))), km: m.pie ? Math.max(0, Math.min(m.max, km3(movSel.km))) : 0, t: Date.now() };
     st.mov.push(x);
     if (st.mov.length > MAX_MOV) st.mov = st.mov.slice(-MAX_MOV);
     if (!guardar()) { st.mov.pop(); return; }
@@ -3032,8 +3039,8 @@
     $('tgc-mov-min-mas').addEventListener('click', function () { movSel.min = Math.min(MIN_MAX, movSel.min + 5); renderMov(); });
     $('tgc-mov-min').addEventListener('input', function () { var v = leerMin(); if (movSel && v !== null) { movSel.min = v; renderValores('min'); } });
     $('tgc-mov-min').addEventListener('change', function () { var v = leerMin(); if (movSel && v !== null) movSel.min = v; renderValores(); });
-    $('tgc-mov-km-menos').addEventListener('click', function () { movSel.km = Math.max(0, km1(movSel.km - 0.5)); renderMov(); });
-    $('tgc-mov-km-mas').addEventListener('click', function () { movSel.km = Math.min(KM_MAX, km1(movSel.km + 0.5)); renderMov(); });
+    $('tgc-mov-km-menos').addEventListener('click', function () { movSel.km = Math.max(0, km3(movSel.km - 0.5)); renderMov(); });
+    $('tgc-mov-km-mas').addEventListener('click', function () { movSel.km = Math.min(movDe(movSel.tipo).max, km3(movSel.km + 0.5)); renderMov(); });
     $('tgc-mov-km').addEventListener('input', function () { var v = leerKm(); if (movSel && v !== null) { movSel.km = v; renderValores('km'); } });
     $('tgc-mov-km').addEventListener('change', function () { var v = leerKm(); if (movSel && v !== null) movSel.km = v; renderValores(); });
     $('tgc-mov-hoy').addEventListener('click', function () { movSel.dia = 'hoy'; renderMov(); });
@@ -3259,7 +3266,7 @@
       var hechos = GRUPOS.filter(function (g) { return R.series[g] > 0; });
       /* (bloque 4) los minutos y los km de la semana; sin movimiento, min vale null y el párrafo que lo
          nombra no sale (tarjetaRespuesta) */
-      return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos), min: R.min || null, km: fmtN(R.km, 1) } };
+      return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos), min: R.min || null, km: fmtN(R.km, 3) } };
     }
     if (id === 'que-entreno-hoy') {
       var faltan = GRUPOS.filter(function (g) { return !R.series[g]; });
