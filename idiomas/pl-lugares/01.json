@@ -258,12 +258,12 @@
   "cat": "Szlak · Teide (Łatwy · 5 km · 2h)"
  },
  "gr131-tramo1-esperanza-caldera": {
-  "desc": "Pierwszy odcinek szlaku dalekobieżnego GR-131, który przecina całą wyspę. 14 km, 5 godzin. Rusza z wioski La Esperanza (grzbiet, 850 m) i biegnie chronionym borem sosnowym do strefy rekreacyjnej La Caldera (Aguamansa). Lasy sosny kanaryjskiej, charakterystyczna mistyczna mgła. Szlak atestowany, biało-czerwony. Trudność średnia. Etapy jednodniowe. Dojazd autobusem do La Esperanza.",
-  "cat": "GR-131 odcinek 1 · Cumbre Dorsal (Średni · 14 km · 5h)"
+  "desc": "Pierwszy odcinek szlaku dalekobieżnego GR-131, który przecina całą wyspę. 29,8 km, 14 h 20 min, na wysokości od 915 do 1819 m n.p.m.; suma podejść 1853 m, suma zejść 1568 m. Rusza z wioski La Esperanza (grzbiet) i biegnie chronionym borem sosnowym do strefy rekreacyjnej La Caldera (Aguamansa). Lasy sosny kanaryjskiej, charakterystyczna mistyczna mgła. Szlak biało-czerwony, w trakcie oficjalnego zatwierdzania. Trudność bardzo wysoka. Etapy jednodniowe. Dojazd autobusem do La Esperanza.",
+  "cat": "GR-131 odcinek 1 · Cumbre Dorsal (Bardzo wysoka · 29,8 km · 14 h 20 min)"
  },
  "gr131-tramo5-vilaflor-arona": {
-  "desc": "Ostatni etap GR-131 na Teneryfie, dojście na turystyczne południe. 12 km, 4 godziny, praktycznie samo zejście. Rusza z Vilaflor (1400 m) do centrum Arony (610 m). Sosna kanaryjska na początku, dalej niski busz tabaib i wilczomleczy. Widoki na La Gomerę. Zamknięcie wyspiarskiej trasy, która zaczęła się w La Esperanza. Powrót autobusem 482/417 z Arony.",
-  "cat": "GR-131 odcinek 5 · Południe (Średni · 12 km · 4h)"
+  "desc": "Ostatni etap GR-131 na Teneryfie, dojście na turystyczne południe. 17,7 km, 7 h 20 min, na wysokości od 627 do 1610 m n.p.m.; suma podejść 597 m, suma zejść 1394 m. Rusza spod kościoła San Pedro w Vilaflor, mija kaplicę San Roque i przysiółek Ifonche i dochodzi do placu La Salud w historycznym centrum Arony. Sosna kanaryjska na początku, dalej niski busz tabaib i wilczomleczy. Widoki na La Gomerę. Zamknięcie wyspiarskiej trasy, która zaczęła się w La Esperanza. Trudność wysoka. Powrót autobusem 482/480 z Arony.",
+  "cat": "GR-131 odcinek 5 · Południe (Wysoka · 17,7 km · 7 h 20 min)"
  },
  "sendero-barranco-infierno": {
   "desc": "⚠️ REZERWACJA OBOWIĄZKOWA na barrancodelinfierno.es (20 osób co 30 minut). Wstęp kosztuje 16 € dla dorosłego nierezydenta i 6 € dla rezydentów Wysp Kanaryjskich (barrancodelinfierno.es, listopad 2026). Najczęściej odwiedzana trasa południa. 6,5 km w obie strony, około 3 godzin. Wejście w centrum Adeje. Prowadzi „Gardzielą Piekieł” do najwyższego wodospadu Teneryfy (80 m). Kask obowiązkowy (zapewniony). Nie dla dzieci poniżej 5 lat. Jaskinie guanczów wzdłuż trasy. Jeśli trzeba ją zamknąć z powodu pogody lub ze względów bezpieczeństwa, organizator wysyła e-mail o 8:30 tego samego dnia. Trzeba zabrać wodę i buty trekkingowe.",
@@ -290,12 +290,12 @@
   "cat": "Szlaki piesze · Chinamada · Domy w skale · Anaga"
  },
  "gr131-tramo2-portillo-guajara": {
-  "desc": "Odcinek 2 szlaku GR-131 Anaga-Chasna. Z Centrum dla Zwiedzających El Portillo (TF-21 km 32, 2030 m) biegnie dawnym Traktem Królewskim Chasna przez Las Siete Cañadas do przełęczy Degollada de Guajara (2715 m). Długość ~14 km. Trudność wysoka. Strefa chroniona Parku Narodowego Teide: nie wolno biwakować ani schodzić ze szlaku.",
-  "cat": "GR-131 · Odcinek 2 · Siete Cañadas · Teide · Wysoka"
+  "desc": "Odcinek 3 szlaku GR-131 Anaga-Chasna. Z Centrum dla Zwiedzających El Portillo (TF-21 km 32) biegnie dawnym Traktem Królewskim Chasna przez Las Siete Cañadas do przełęczy Degollada de Guajara. 13,1 km, 4 h, na wysokości od 2058 do 2389 m n.p.m.; suma podejść 494 m, suma zejść 140 m. Trudność średnia. Strefa chroniona Parku Narodowego Teide: nie wolno biwakować ani schodzić ze szlaku.",
+  "cat": "GR-131 · Odcinek 3 · Siete Cañadas · Teide · Średnia"
  },
  "gr131-tramo3-guajara-vilaflor": {
-  "desc": "Odcinek 3 szlaku GR-131. Z przełęczy Degollada de Guajara (2715 m) schodzi przez Księżycowy Krajobraz i bory Vilaflor do samej wioski (1400 m). Zejście 1300 m na ~12 km. Szlak przechodzi przy początku PR-TF 72 (Księżycowy Krajobraz). Vilaflor to najwyżej położona zamieszkana miejscowość Teneryfy. Trudność wysoka.",
-  "cat": "GR-131 · Odcinek 3 · Guajara → Vilaflor · Wysoka"
+  "desc": "Odcinek 4 szlaku GR-131. Z przełęczy Degollada de Guajara prowadzi przez obszary tufu wulkanicznego na trasie dawnego Traktu Królewskiego Chasna, wchodzi w bór sosnowy i schodzi do duktu Madre del Agua i wąwozu Las Mesas, a dalej do Vilaflor. 11,3 km, 5 h, na wysokości od 1390 do 2425 m n.p.m.; suma podejść 182 m, suma zejść 1141 m. W borze odbicie szlakiem PR-TF 72 (Vilaflor – Księżycowy Krajobraz – Vilaflor) prowadzi na punkt widokowy Los Escurriales. Vilaflor to najwyżej położona zamieszkana miejscowość Teneryfy. Trudność średnia.",
+  "cat": "GR-131 · Odcinek 4 · Guajara → Vilaflor · Średnia"
  },
  "pr-tf-52-monte-agua": {
   "desc": "PR-TF-52 Monte del Agua to jeden z najbardziej spektakularnych i najmniej uczęszczanych szlaków lasu wawrzynowego na Teneryfie, w Parku Wiejskim Teno. Zaczyna się w przysiółku Erjos (gmina Los Silos) i biegnie przez gęsty las wawrzynowy Monte del Agua do Las Portelas, z możliwością kontynuacji do El Palmar. Długość: 10,5 km. Trudność: niska (łagodne nachylenie niemal na całej trasie). Maksymalna wysokość: ~1100 m. Pierwotny las wawrzynowy z gołębiem turkusowym (endemitem) i gołębiem kanaryjskim, follao, viñátigo, lipą, ostrokrzewem i wielkimi wrzoścami. Spektakularny punkt widokowy w Mesita del Hurto nad lasem. Widoki na Teide z wyższych partii. Bardzo mały ruch w porównaniu ze szlakami Anagi.",
