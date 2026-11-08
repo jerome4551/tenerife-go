@@ -3,8 +3,8 @@
  "canal": "https://www.aemet.es/documentos_d/eltiempo/prediccion/avisos/rss/CAP_AFAP6596_RSS.xml",
  "web": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=6596",
  "aemet": {
-  "fichero": "Z_CAP_C_LEMM_20261107225001_AFAP6596.tar.gz",
-  "publicado": "2026-11-07T22:50:01+00:00",
+  "fichero": "Z_CAP_C_LEMM_20261108072703_AFAP6596.tar.gz",
+  "publicado": "2026-11-08T07:27:03+00:00",
   "titulo": "Estado completo de avisos para Tenerife",
   "alcance": "2026-11-10T23:59:59+00:00",
   "zonas_isla": [
@@ -16,7 +16,7 @@
    "659603C"
   ]
  },
- "consultado": "2026-11-08T06:41:25Z",
+ "consultado": "2026-11-08T07:57:39Z",
  "avisos": [
   {
    "id": "2.49.0.0.724.0.ES.20261107170516.659601VIRM09001794071116",
@@ -319,7 +319,67 @@
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261107101027.659602VIRM09001794046227",
+   "id": "2.49.0.0.724.0.ES.20261108072703.659602COCO08151794122823",
+   "nivel": "amarillo",
+   "fenomeno": "CO",
+   "fenomeno_es": "Costeros",
+   "parametro": "CO",
+   "parametro_es": "Costeros",
+   "valor": "",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659602C",
+     "nombre_es": "Costa - Área metropolitana de Tenerife",
+     "poligonos": [
+      "28.34,-16.36 28.38,-16.36 28.45,-16.25 28.48,-16.23 28.52,-16.15 28.55,-16.12 28.59,-16.16 28.56,-16.22 28.58,-16.32 28.56,-16.33 28.55,-16.38 28.52,-16.42 28.49,-16.43 28.68,-16.6 28.75,-16.65 28.81,-16.59 28.85,-16.52 28.88,-16.45 28.9,-16.37 28.9,-16.28 28.92,-16.22 28.92,-16.15 28.91,-16.08 28.9,-16.01 28.87,-15.95 28.83,-15.9 28.77,-15.83 28.71,-15.79 28.66,-15.76 28.59,-15.75 28.53,-15.75 28.49,-15.76 28.36,-15.9 28.279494505494505,-15.989450549450549 28.27,-16.0 28.21,-16.05 28.23,-16.11 28.34,-16.36"
+     ]
+    }
+   ],
+   "inicio": "2026-11-08T07:00:00+00:00",
+   "fin": "2026-11-08T14:59:59+00:00",
+   "emitido": "2026-11-08T07:27:03Z",
+   "es": {
+    "descripcion": "En costa sureste de Tenerife: Viento del Suroeste de 50 a 61 km/h (fuerza 7).",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "En costa sureste de Tenerife: Viento del Suroeste de 50 a 61 km/h (fuerza 7).",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261108072703.659603COCO08151794122823",
+   "nivel": "amarillo",
+   "fenomeno": "CO",
+   "fenomeno_es": "Costeros",
+   "parametro": "CO",
+   "parametro_es": "Costeros",
+   "valor": "",
+   "probabilidad": "40%-70%",
+   "zonas": [
+    {
+     "codigo": "659603C",
+     "nombre_es": "Costa - Este, sur y oeste de Tenerife",
+     "poligonos": [
+      "28.21,-17.01 28.210689655172416,-17.008160919540231 28.27,-16.85 28.21,-16.84 28.11,-16.77 28.09,-16.74 28.05,-16.74 28.05,-16.71 28.01,-16.71 28.0,-16.68 28.0,-16.64 28.03,-16.6 28.03,-16.55 28.08,-16.49 28.14,-16.44 28.2,-16.42 28.31,-16.36 28.34,-16.36 28.23,-16.11 28.21,-16.05 28.02,-16.15 27.9,-16.18 27.81,-16.27 27.77,-16.31 27.74,-16.37 27.71,-16.43 27.7,-16.49 27.68,-16.65 27.68,-16.72 27.69,-16.79 27.71,-16.86 27.74,-16.92 27.78,-16.97 27.88,-16.94 28.0,-16.94 28.1,-16.95 28.16,-16.98 28.21,-17.01"
+     ]
+    }
+   ],
+   "inicio": "2026-11-08T07:00:00+00:00",
+   "fin": "2026-11-08T14:59:59+00:00",
+   "emitido": "2026-11-08T07:27:03Z",
+   "es": {
+    "descripcion": "En costa sureste de Tenerife: Viento del Suroeste de 50 a 61 km/h (fuerza 7).",
+    "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
+   },
+   "en": {
+    "descripcion": "En costa sureste de Tenerife: Viento del Suroeste de 50 a 61 km/h (fuerza 7).",
+    "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
+   }
+  },
+  {
+   "id": "2.49.0.0.724.0.ES.20261108072703.659602VIRM09001794122823",
    "nivel": "amarillo",
    "fenomeno": "VI",
    "fenomeno_es": "Vientos",
@@ -336,20 +396,20 @@
      ]
     }
    ],
-   "inicio": "2026-11-08T00:00:00+00:00",
+   "inicio": "2026-11-08T07:00:00+00:00",
    "fin": "2026-11-08T23:59:59+00:00",
-   "emitido": "2026-11-07T10:10:27Z",
+   "emitido": "2026-11-08T07:27:03Z",
    "es": {
-    "descripcion": "Rachas máximas: 70 km/h. Viento del suroeste afectando principalmente a medianías y cumbres.",
+    "descripcion": "Rachas máximas: 70 km/h. Viento del suroeste afectando principalmente a medianías y cumbres, donde localmente las rachas podrán alcanzar los 90 km/h.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "Maximum gust of wind: 70 km/h. Viento del suroeste afectando principalmente a medianías y cumbres.",
+    "descripcion": "Maximum gust of wind: 70 km/h. Viento del suroeste afectando principalmente a medianías y cumbres, donde localmente las rachas podrán alcanzar los 90 km/h.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   },
   {
-   "id": "2.49.0.0.724.0.ES.20261107101027.659603VIRM09001794046227",
+   "id": "2.49.0.0.724.0.ES.20261108072703.659603VIRM09001794122823",
    "nivel": "amarillo",
    "fenomeno": "VI",
    "fenomeno_es": "Vientos",
@@ -366,15 +426,15 @@
      ]
     }
    ],
-   "inicio": "2026-11-08T00:00:00+00:00",
+   "inicio": "2026-11-08T07:00:00+00:00",
    "fin": "2026-11-08T23:59:59+00:00",
-   "emitido": "2026-11-07T10:10:27Z",
+   "emitido": "2026-11-08T07:27:03Z",
    "es": {
-    "descripcion": "Rachas máximas: 70 km/h. Viento del suroeste afectando principalmente a medianías y cumbres.",
+    "descripcion": "Rachas máximas: 70 km/h. Viento del suroeste afectando principalmente a medianías y cumbres, donde localmente las rachas podrán alcanzar los 90 km/h.",
     "instruccion": "Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno."
    },
    "en": {
-    "descripcion": "Maximum gust of wind: 70 km/h. Viento del suroeste afectando principalmente a medianías y cumbres.",
+    "descripcion": "Maximum gust of wind: 70 km/h. Viento del suroeste afectando principalmente a medianías y cumbres, donde localmente las rachas podrán alcanzar los 90 km/h.",
     "instruccion": "Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas."
    }
   }
