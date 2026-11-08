@@ -6619,6 +6619,80 @@ VERDE»: ningún control en rojo ni sin ejecutar.
 - la revisión nativa de la fila nueva en nueve idiomas;
 - las decisiones 1 a 10 de la nota, si quiere otra cosa.
 
+## «Su cuerpo»: el 3D que no salía en el iPhone (8 de noviembre)
+
+Jerome, el 7 de noviembre a las 23:35, con una captura de su iPhone en la que
+«Su cuerpo» sale con el dibujo y no con el 3D: «Cuando entro en el link no veo
+la misma cosas que en el app […] primero mira porque no aparece online». El
+enlace es la página de prueba del 3D, con el motor y los datos publicados.
+
+**Lo comprobado:**
+- La página de prueba lleva el motor publicado, byte a byte (sha256
+  `9e9f27fc…`), y los mismos datos: si allí sale el 3D, el iPhone lo dibuja.
+- El bloque 3 llegó a la web a las 22:29 (hora UTC, la de Canarias en
+  noviembre; Pages, `be8b61f`), una hora antes de la captura.
+- La web publicada, en Chromium como un iPhone 15 Pro y de noche, como en la
+  captura: el 3D sale a los 6,3 s la primera vez y a los 3,4 s al volver, ya
+  con el service worker. Las 16 piezas del aspecto llegan con un 200.
+- La app solo preguntaba por una versión nueva al arrancar. El iPhone deja la
+  app instalada dormida y, al volver, sigue la misma página. Si «Su cuerpo»
+  ya se había abierto antes de las 22:29, seguía el módulo del bloque 2, que
+  no tiene 3D. Jerome lo confirmó al cerrar la app del todo y abrirla otra
+  vez: «A hora si está. Lo tengo y todo funciona».
+
+**El arreglo de la app** (`26ee402`). `index.html` pregunta también al volver a la
+app, si hace 5 minutos o más de la última vez. Si hay versión nueva, sale el
+aviso de siempre, con «Recargar»; la app no se recarga sola. `auditar_sw.js`
+lo prueba en Chromium con la app de verdad, servida por un servidor propio
+que cambia `sw.js` cuando se le pide (sección 11, cinco controles):
+- al abrir, se pregunta, sin aviso;
+- antes de 5 minutos no se vuelve a preguntar, ni con la página oculta;
+- pasados 5 minutos, al volver, se pregunta y sale el aviso con «Recargar»;
+- otra vuelta enseguida no pregunta otra vez.
+
+Con el `index.html` publicado, el control de la vuelta sale en rojo: no se
+pregunta y no sale el aviso. La primera versión de la prueba no lo distinguía.
+La pregunta del arranque va en cola detrás de la instalación y a veces llegaba
+después del cambio de `sw.js`. Ahora la prueba espera a que `sw.js` lleve 3 s
+sin pedirse.
+
+**Dos fallos del motor, vistos de paso** (`b8caa26`):
+- **El primer cuadro.** Daba tres llamadas de dibujo rechazadas por WebGL
+  («Mismatch between texture format and sampler type»), también en la web
+  publicada. Pasa cuando el cuerpo llega antes que el pelo y las zapatillas,
+  como por la red de un móvil. Las dos causas:
+  - la textura de la sombra se quedaba en la unidad 0, la que lee `uTex`;
+  - una textura nueva se creaba en la unidad activa, la 7, y pisaba la
+    sombra.
+
+  Ahora la sombra vive en la 7 desde el principio, y las texturas se crean y
+  se cargan en la 6, que ningún sombreador lee. Contado con `getError()`
+  tras cada llamada: 3 rechazadas en la web publicada, y las mismas 3 en local
+  con el pelo y las zapatillas retrasados; ninguna con el motor nuevo.
+- **Una textura que no llega.** Dejaba el 3D «cargando» toda la sesión:
+  `listo()` no avisaba nunca, y al abrir otra vez no se intentaba de nuevo.
+  Ahora cuenta como hecha, y `preparado()` no da por bueno un cuerpo al que le
+  falta una. Queda el dibujo, y se vuelve a intentar al abrir.
+
+`probar_cuerpo.js` (22) lo prueba con tres controles: «sin una textura (la
+del ojo no llega)», con su segundo intento, y «ninguna llamada de dibujo del
+3D rechazada por WebGL». En local todo llega a la vez, así que la prueba
+retrasa 1,5 s el pelo y las zapatillas; sin el retraso, el motor publicado
+también salía en verde. Con el motor publicado, los tres salen en rojo (309
+controles, 3 en rojo); con el nuevo, en verde (349 de 349, ya con el bloque 4
+encima). Sin la textura, el
+motor publicado enseñaba el 3D igualmente, con el ojo sin textura.
+
+**WebKit.** La prueba en una máquina Mac de GitHub (el motor de Safari), como
+la del 1 de noviembre, no se lanzó: subir la prueba a la rama de trabajo de la
+sesión necesitaba un permiso que no había. Lo vio el iPhone de Jerome.
+
+**Las pruebas y la auditoría entera** son las del bloque 4, que va encima (la
+sección siguiente).
+
+**Para la sesión de «Su cuerpo»:** el motor (`modulos/cuerpo3d.js`) cambia.
+La próxima entrega tiene que salir de este, o vuelven los dos fallos.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
