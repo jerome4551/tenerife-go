@@ -1739,6 +1739,30 @@ async function ejemplo(pg) {
     await p23.click('#tgc-toast-btn'); await p23.waitForTimeout(150);
     prueba('«Deshacer» quita lo anotado y las metas vuelven (215)', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 3 && JSON.parse(localStorage.getItem('tenerife.cuerpo')).mov.length === 3 && document.getElementById('tgc-st-min').textContent === '215'));
 
+    /* (8-11-2026) escrita una cifra, el primer toque en otro tipo entra: al salir del campo («change») se redibujaba
+       la hoja entera y el botón tocado desaparecía. Y lo escrito se toma al escribirlo («input»): «Anotar» lo guarda
+       aunque no haya «change», por si el navegador no saca del campo al tocar un botón */
+    const tipoMov = () => p23.evaluate(() => ({ pulsado: document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]').dataset.tipo, min: document.getElementById('tgc-mov-min').value, km: document.getElementById('tgc-mov-km').value }));
+    await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(300);
+    await p23.click('#tgc-mov-min'); await p23.fill('#tgc-mov-min', '45');
+    await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="correr"]'); await p23.waitForTimeout(60);
+    const tc23 = await tipoMov();
+    prueba('escritos 45 minutos, el primer toque en «Correr» entra (antes se perdía) y propone sus 30 min y 5 km', tc23.pulsado === 'correr' && tc23.min === '30' && tc23.km === '5', JSON.stringify(tc23));
+    await p23.click('#tgc-mov-km'); await p23.fill('#tgc-mov-km', '6,5');
+    await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="caminar"]'); await p23.waitForTimeout(60);
+    const tk23 = await tipoMov();
+    prueba('escritos 6,5 km, el primer toque en «Caminar» también entra (30 min y 2,5 km)', tk23.pulsado === 'caminar' && tk23.min === '30' && tk23.km === '2,5', JSON.stringify(tk23));
+    await p23.click('#tgc-mov-hoy'); await p23.waitForTimeout(60);
+    await p23.evaluate(() => {
+      const escribe = (id, v) => { const e = document.getElementById(id); e.value = v; e.dispatchEvent(new Event('input', { bubbles: true })); };
+      escribe('tgc-mov-min', '50'); escribe('tgc-mov-km', '3,5'); document.getElementById('tgc-mov-guardar').click();
+    });
+    await p23.waitForTimeout(450);
+    const ti23 = await p23.evaluate(() => { const m = TG_CUERPO.estado().mov, u = m[m.length - 1]; return { n: m.length, u: u && [u.tipo, u.min, u.km].join(','), toast: document.getElementById('tgc-toast-txt').textContent, min: document.getElementById('tgc-st-min').textContent }; });
+    prueba('escritos 50 min y 3,5 km, «Anotar» sin salir del campo guarda lo escrito: «Caminar: 50 min y 3,5 km anotados»', ti23.n === 4 && ti23.u === 'caminar,50,3.5' && ti23.toast === 'Caminar: 50 min y 3,5 km anotados' && ti23.min === '265', JSON.stringify(ti23));
+    await p23.click('#tgc-toast-btn'); await p23.waitForTimeout(150);
+    prueba('…y «Deshacer» también lo quita (215)', await p23.evaluate(() => TG_CUERPO.estado().mov.length === 3 && JSON.parse(localStorage.getItem('tenerife.cuerpo')).mov.length === 3 && document.getElementById('tgc-st-min').textContent === '215'));
+
     /* lo último anotado: × borra, con deshacer */
     await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(300);
     await p23.click('#tgc-mov-hist .tgc-hist-fila:first-child .tgc-hist-x'); await p23.waitForTimeout(150);

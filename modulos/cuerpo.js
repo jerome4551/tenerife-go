@@ -2788,9 +2788,29 @@
     if (!/^\d+(\.\d+)?$/.test(s)) return null;
     return Math.max(0, Math.min(KM_MAX, km1(parseFloat(s))));
   }
+  /* lo que hay escrito en el campo de los minutos: un entero de 1 a 600; nada, 0 o algo que no es un número, null */
+  function leerMin() {
+    var v = Math.round(Number($('tgc-mov-min').value));
+    return isFinite(v) && v >= 1 ? Math.min(MIN_MAX, v) : null;
+  }
+  /* las cifras de la hoja: los dos campos (menos el que se está escribiendo), sus −/+ y el botón. (8-11-2026)
+     Lo escrito se toma en cuanto vale («input»); al salir del campo («change») se pinta solo esto y no la hoja
+     entera: redibujarla quitaba el botón que se estaba tocando y el primer toque tras escribir se perdía. Y así
+     «Anotar» guarda lo escrito aunque el navegador no saque del campo al tocarlo */
+  function renderValores(escribiendo) {
+    if (!movSel) return;
+    var m = movDe(movSel.tipo);
+    if (escribiendo !== 'min') $('tgc-mov-min').value = String(movSel.min);
+    $('tgc-mov-min-menos').disabled = movSel.min <= 1;
+    $('tgc-mov-min-mas').disabled = movSel.min >= MIN_MAX;
+    $('tgc-mov-km-fila').hidden = !m.pie;
+    if (escribiendo !== 'km') $('tgc-mov-km').value = fmtN(movSel.km, 1);
+    $('tgc-mov-km-menos').disabled = movSel.km <= 0;
+    $('tgc-mov-km-mas').disabled = movSel.km >= KM_MAX;
+    $('tgc-mov-guardar-txt').textContent = tx('cuerpoMovBoton', { que: minKm(movSel.min, m.pie ? movSel.km : 0) });
+  }
   function renderMov() {
     if (!movAbierto || !movSel) return;
-    var m = movDe(movSel.tipo);
     /* los cinco tipos, con su icono y su nombre */
     var caja = $('tgc-mov-tipos'); caja.textContent = '';
     MOV.forEach(function (x) {
@@ -2800,16 +2820,9 @@
       b.appendChild(el('span', '', nombreMov(x.id)));
       caja.appendChild(b);
     });
-    $('tgc-mov-min').value = String(movSel.min);
-    $('tgc-mov-min-menos').disabled = movSel.min <= 1;
-    $('tgc-mov-min-mas').disabled = movSel.min >= MIN_MAX;
-    $('tgc-mov-km-fila').hidden = !m.pie;
-    $('tgc-mov-km').value = fmtN(movSel.km, 1);
-    $('tgc-mov-km-menos').disabled = movSel.km <= 0;
-    $('tgc-mov-km-mas').disabled = movSel.km >= KM_MAX;
+    renderValores();
     $('tgc-mov-hoy').setAttribute('aria-pressed', movSel.dia === 'hoy' ? 'true' : 'false');
     $('tgc-mov-ayer').setAttribute('aria-pressed', movSel.dia === 'ayer' ? 'true' : 'false');
-    $('tgc-mov-guardar-txt').textContent = tx('cuerpoMovBoton', { que: minKm(movSel.min, m.pie ? movSel.km : 0) });
     /* lo último anotado: las ocho últimas, de la más reciente a la más antigua */
     var ul = $('tgc-mov-hist'); ul.textContent = '';
     var mias = st.mov.map(function (x, i) { return { x: x, i: i }; })
@@ -3015,10 +3028,12 @@
     $('tgc-mov-tipos').addEventListener('click', function (e) { var b = e.target.closest('.tgc-tipo'); if (b) elegirMov(b.dataset.tipo); });
     $('tgc-mov-min-menos').addEventListener('click', function () { movSel.min = Math.max(1, movSel.min - 5); renderMov(); });
     $('tgc-mov-min-mas').addEventListener('click', function () { movSel.min = Math.min(MIN_MAX, movSel.min + 5); renderMov(); });
-    $('tgc-mov-min').addEventListener('change', function () { var v = Math.round(Number($('tgc-mov-min').value)); if (isFinite(v) && v >= 1) movSel.min = Math.min(MIN_MAX, v); renderMov(); });
+    $('tgc-mov-min').addEventListener('input', function () { var v = leerMin(); if (movSel && v !== null) { movSel.min = v; renderValores('min'); } });
+    $('tgc-mov-min').addEventListener('change', function () { var v = leerMin(); if (movSel && v !== null) movSel.min = v; renderValores(); });
     $('tgc-mov-km-menos').addEventListener('click', function () { movSel.km = Math.max(0, km1(movSel.km - 0.5)); renderMov(); });
     $('tgc-mov-km-mas').addEventListener('click', function () { movSel.km = Math.min(KM_MAX, km1(movSel.km + 0.5)); renderMov(); });
-    $('tgc-mov-km').addEventListener('change', function () { var v = leerKm(); if (v !== null) movSel.km = v; renderMov(); });
+    $('tgc-mov-km').addEventListener('input', function () { var v = leerKm(); if (movSel && v !== null) { movSel.km = v; renderValores('km'); } });
+    $('tgc-mov-km').addEventListener('change', function () { var v = leerKm(); if (movSel && v !== null) movSel.km = v; renderValores(); });
     $('tgc-mov-hoy').addEventListener('click', function () { movSel.dia = 'hoy'; renderMov(); });
     $('tgc-mov-ayer').addEventListener('click', function () { movSel.dia = 'ayer'; renderMov(); });
     $('tgc-mov-guardar').addEventListener('click', anotarMov);
