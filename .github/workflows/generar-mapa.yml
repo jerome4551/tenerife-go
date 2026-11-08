@@ -35,7 +35,13 @@ permissions: {}
 
 jobs:
   generar:
-    runs-on: ubuntu-latest
+    # ubuntu-24.04 fijo, no ubuntu-latest: desde el 19-10-2026 GitHub pasa
+    # ubuntu-latest a Ubuntu 26.04, y Playwright 1.49.1 no instala alli su
+    # Chromium (asi fallo comprobar-dominio el 8-11-2026). GitHub mantiene la
+    # etiqueta fija hasta que anuncie su retirada, con fecha. Entonces:
+    # ubuntu-26.04 con Playwright 1.61 o posterior, mirando antes que
+    # la prueba de estilo dibuja igual.
+    runs-on: ubuntu-24.04
     timeout-minutes: 90
     permissions:
       contents: read          # solo leer el repositorio
