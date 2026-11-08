@@ -101,7 +101,15 @@ async function abrir(ua, L, op) {
   if (empezar) await empezar.click().catch(() => {});
   return { ctx, p };
 }
-const sale = (p, ms) => p.waitForSelector('.pwa-install-banner.show', { timeout: ms || 10000 }).then(() => true, () => false);
+/* que salga, y que haya acabado de subir: el banner entra deslizándose (transform, --t-slower) y, medido a mitad,
+   asoma encima de la barra de abajo. El 8 de noviembre de 2026, con la auditoría entera cargando la máquina, el
+   neerlandés se midió a mitad de la subida (abajo 797 px; acabado, 724) y salió en rojo un banner que estaba bien */
+const sale = (p, ms) => p.waitForSelector('.pwa-install-banner.show', { timeout: ms || 10000 })
+  .then(() => p.waitForFunction(() => {
+    const t = getComputedStyle(document.querySelector('.pwa-install-banner')).transform;
+    return t === 'none' || t === 'matrix(1, 0, 0, 1, 0, 0)';
+  }, null, { timeout: ms || 10000 }))
+  .then(() => true, () => false);
 const medir = p => p.evaluate(() => {
   const el = document.querySelector('.pwa-install-banner');
   if (!el) return null;
