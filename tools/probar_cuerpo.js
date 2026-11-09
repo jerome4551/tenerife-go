@@ -2705,6 +2705,39 @@ async function ejemplo(pg, mas) {
     const F27 = await p27.evaluate(() => ({ piel: TG_FIGURA.PIEL[9], arriba: TG_FIGURA.ROPA_COLOR[3], abajo: TG_FIGURA.ROPA_COLOR[6], pelo: TG_FIGURA.PELO_COLOR[0], calzado: TG_FIGURA.ROPA_COLOR[8] }));
     prueba('la persona lleva los colores de «Aspecto» (piel, ropa de arriba y de abajo, pelo y calzado), en el mapa y en su botón', b6.comp === 'persona' && Object.values(F27).every(c => b6.html.indexOf(c) >= 0) &&
       await p27.evaluate(c => document.querySelector('#tgc-comp-pie .tgc-comp-op[data-comp="persona"]').innerHTML.indexOf(c) >= 0, F27.piel), JSON.stringify(F27));
+    /* (encima del bloque 8) el compañero va por encima de los textos del mapa: la etiqueta que le queda debajo (una parada, el
+       Teide o su altitud) se aclara mientras él está ahí y vuelve al irse. Como en las capturas del 9-11: a pie a 29,2 km, el
+       senderista sobre «La Caldera»; en bici a 53,2 km, la de montaña sobre «3715 m». A 10 km no hay ninguna debajo. Y nunca
+       una aclarada sin el compañero encima, ni una con él encima sin aclarar (las cajas en pantalla, ya quieto) */
+    const etisDe = async pg => { await pg.waitForTimeout(450); return pg.evaluate(() => {
+      const c = document.getElementById('tgc-isla-comp').getBoundingClientRect(), r = [];
+      document.querySelectorAll('#tgc-mapa svg .tgc-isla-teide-t, #tgc-isla-alt, #tgc-mapa svg .tgc-isla-parada text').forEach(t => {
+        const k = t.getBoundingClientRect(), encima = k.width > 0 && k.left < c.right && k.right > c.left && k.top < c.bottom && k.bottom > c.top;
+        r.push({ n: t.textContent, encima, op: Number(getComputedStyle(t).opacity) });
+      });
+      return { aclaradas: r.filter(x => x.op < 0.5).map(x => x.n), malAclaradas: r.filter(x => (x.op < 0.5) !== x.encima).map(x => x.n + (x.encima ? ' (encima, sin aclarar)' : ' (aclarada sin nada encima)')), ops: r.map(x => x.n + ':' + x.op).join(',') };
+    }); };
+    await conComp([[0, 'senderismo', 300, 29.2]], [], { pie: 'persona', bici: 'carretera' }); const et1 = await etisDe(p27);
+    prueba('a pie a 29,2 km, el senderista encima de «La Caldera»: la etiqueta se aclara; las demás, no', et1.aclaradas.indexOf('La Caldera') >= 0 && !et1.malAclaradas.length, JSON.stringify(et1));
+    await conComp([[1, 'senderismo', 120, 10], [0, 'bici', 200, 43.2]], ['bici'], { pie: 'persona', bici: 'montana' }); const et2 = await etisDe(p27);
+    prueba('en bici a 53,2 km, la de montaña encima de la altitud del Teide: «3715 m» se aclara; las que no tiene encima, no', et2.aclaradas.indexOf('3715 m') >= 0 && !et2.malAclaradas.length, JSON.stringify(et2));
+    await conComp([[0, 'senderismo', 200, 10]], [], { pie: 'lagarto', bici: 'carretera' }); const et3 = await etisDe(p27);
+    prueba('a 10 km, sin ninguna etiqueta debajo: ninguna aclarada (y «3715 m», que lo estaba, vuelve)', !et3.aclaradas.length && !et3.malAclaradas.length, JSON.stringify(et3));
+    /* …y con «reducir movimiento», con el mapa ya pintado: ahí la app hace de cada cambio una transición de 0,01 ms y lo que se lee
+       en el momento es lo de antes (la primera versión del arreglo iba un paso por detrás). A pie a 29,2 km; pulsar «En bici» (la
+       bici, 24 km más: 53,2, la de montaña junto al Teide): «3715 m» aclarada y «La Caldera» ya no */
+    {
+      const cR = await contexto(b, { contexto: { reducedMotion: 'reduce' } }), pR = await cR.newPage(), eR = []; vigilar(pR, eR);
+      await abrirApp(pR); await abrirPerfilCuerpo(pR); await suCuerpo(pR);
+      await ejemplo(pR, { mov: [[1, 'senderismo', 300, 29.2], [0, 'bici', 60, 24]], gr: [], comp: { pie: 'persona', bici: 'montana' } });
+      const r1 = await etisDe(pR);
+      prueba('con «reducir movimiento», a pie a 29,2 km: «La Caldera» aclarada; las demás, no', r1.aclaradas.indexOf('La Caldera') >= 0 && !r1.malAclaradas.length, JSON.stringify(r1));
+      await pR.click('#tgc-gr-ops .tgc-gr-op[data-gr="bici"]');
+      const r2 = await etisDe(pR), cmp2 = await pR.evaluate(() => document.getElementById('tgc-isla-marca').getAttribute('data-comp') + ' ' + document.getElementById('tgc-isla-km').textContent);
+      prueba('…y al pulsar «En bici» (la de montaña, 53,2 km): «3715 m» aclarada y «La Caldera» ya no, sin esperar a otro pintado', cmp2 === 'montana 53,2' && r2.aclaradas.indexOf('3715 m') >= 0 && r2.aclaradas.indexOf('La Caldera') < 0 && !r2.malAclaradas.length, cmp2 + ' ' + JSON.stringify(r2));
+      prueba('…sin errores de página', !eR.length, eR.join(' | '));
+      await cR.close();
+    }
     const roto = await p27.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, comp: { pie: 'gato', bici: '<b>' }, senderos: { 'prtf-1-mercedes-cruz-carmen': '2020-01-01', 'Mal Id': '2026-01-01', 'montana-blanca': '2999-01-01', 'sendero-chinyero': 'ayer' } })); TG_CUERPO.abrir(); return JSON.parse(localStorage.getItem('tenerife.cuerpo') || 'null'); });
     await p27.waitForTimeout(200);
     const v2 = await leer27();

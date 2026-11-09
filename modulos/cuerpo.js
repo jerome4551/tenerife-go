@@ -3177,7 +3177,7 @@
   }
   var SVG_NS = 'http://www.w3.org/2000/svg';
   function nodoSvg(tag, at) { var e = document.createElementNS(SVG_NS, tag); for (var k in at) { if (at[k] !== null && at[k] !== undefined) e.setAttribute(k, at[k]); } return e; }
-  var islaSvg = null, kmVisto = 0, kmAnim = null, compVisto = '', mirada = 0;
+  var islaSvg = null, kmVisto = 0, kmAnim = null, compVisto = '', mirada = 0, compPos = null, compCajas = {};
   /* (bloque 8) el contorno blanco de pegatina y la sombra de los compañeros; un id por dibujo (el mapa y cada botón) */
   function pegatina(id, r) {
     return '<filter id="' + id + '" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">' +
@@ -3237,7 +3237,7 @@
     m.appendChild(nodoSvg('ellipse', { cx: 0, cy: 0.4, rx: 8, ry: 2, 'class': 'sombra' }));
     salto.appendChild(nodoSvg('g', { id: 'tgc-isla-comp' }));
     giro.appendChild(salto); m.appendChild(giro); svg.appendChild(m);
-    compVisto = ''; mirada = 0;
+    compVisto = ''; mirada = 0; compPos = null;
     return svg;
   }
   /* (bloque 8) quién va por el mapa: el del último deporte anotado que cuenta para la travesía (a pie, el que se eligió; en
@@ -3261,6 +3261,7 @@
     caja.setAttribute('transform', 'scale(' + COMP_TAM[id] + ') translate(-32 -59.6)');
     caja.innerHTML = '<g class="tgc-comp-arte comp-' + id + '" filter="url(#tgc-pegatina)">' + COMP_ARTE[id](col) + '</g>';
     compVisto = clave; $('tgc-isla-marca').setAttribute('data-comp', id);
+    aclararEtiquetas();
   }
   function saltito(m) {
     if (!m || reducido) return;
@@ -3270,12 +3271,39 @@
   function ponerKm(km) {
     var p = enKm(km), mk = $('tgc-isla-marca'), rh = $('tgc-isla-hecha');
     if (mk) mk.setAttribute('transform', 'translate(' + f1(p.x) + ' ' + f1(p.y) + ')');
+    compPos = { x: Number(f1(p.x)), y: Number(f1(p.y)) };
     if (rh) rh.setAttribute('d', hechoPath(km));
     if (islaSvg) islaSvg.querySelectorAll('.tgc-isla-parada').forEach(function (g) { g.classList.toggle('pasada', km >= Number(g.getAttribute('data-km'))); });
     /* (bloque 8) hacia dónde mira: hacia donde sigue la ruta (al final, hacia donde venía); solo cambia con un giro claro */
     var a = enKm(Math.max(0, km - 0.6)), b = enKm(Math.min(GR131.total, km + 0.6)), dx = b.x - a.x, gi = $('tgc-isla-giro');
     if (gi && Math.abs(dx) > 0.4) { var mi = dx < 0 ? -1 : 1; if (mi !== mirada) { mirada = mi; gi.setAttribute('transform', mi < 0 ? 'scale(-1 1)' : 'scale(1 1)'); } }
     kmVisto = km;
+    aclararEtiquetas();
+  }
+  /* (encima del bloque 8) el compañero va por encima de los textos del mapa: la etiqueta que le queda debajo (una parada,
+     el Teide o su altitud) se aclara mientras él está ahí y vuelve al irse. Las cuentas van en las unidades del mapa: el
+     compañero, por dónde lo pone ponerKm, su tamaño (COMP_TAM) y hacia dónde mira; cada texto, por su caja (getBBox, que
+     no se mueve). No se lee lo ya pintado: con «reducir movimiento», la app hace de cada cambio una transición de 0,01 ms
+     y lo leído en el momento sería lo de antes. Sin el mapa a la vista (sin cajas) no se toca nada */
+  function cajaArte(id) {
+    if (compCajas[id]) return compCajas[id];
+    var caja = $('tgc-isla-comp'), g = caja && caja.firstElementChild, k = null;
+    try { k = g && g.getBBox(); } catch (e) { k = null; }
+    if (!k || !k.width || !k.height) return null;
+    compCajas[id] = { x: k.x, y: k.y, w: k.width, h: k.height };
+    return compCajas[id];
+  }
+  function aclararEtiquetas() {
+    var mk = $('tgc-isla-marca'), id = mk && mk.getAttribute('data-comp'), s = id && COMP_TAM[id], a = s && cajaArte(id);
+    if (!islaSvg || !compPos || !a) return;
+    var x0 = s * (a.x - 32), x1 = s * (a.x + a.w - 32), y0 = compPos.y + s * (a.y - 59.6), y1 = compPos.y + s * (a.y + a.h - 59.6);
+    if (mirada < 0) { var v = x0; x0 = -x1; x1 = -v; }
+    x0 += compPos.x; x1 += compPos.x;
+    islaSvg.querySelectorAll('.tgc-isla-teide-t, .tgc-isla-alt, .tgc-isla-parada text').forEach(function (t) {
+      var k = null; try { k = t.getBBox(); } catch (e) { k = null; }
+      if (!k || !k.width) return;
+      t.classList.toggle('tapada', k.x < x1 && k.x + k.width > x0 && k.y < y1 && k.y + k.height > y0);
+    });
   }
   /* (bloque 8) «Su compañero de travesía»: a pie, tres; en bici (si la bici cuenta), tres; cada uno con su dibujo y su nombre */
   var compPintado = '';
@@ -3336,6 +3364,7 @@
     $('tgc-isla-alt').textContent = tx('medidaM', { n: fmtN(TEIDE.alt, 0) });
     $('tgc-isla-km10').textContent = tx('medidaKm', { n: fmtN(10, 0) });
     $('tgc-isla-norte').textContent = tx('cuerpoIslaNorte');
+    aclararEtiquetas();
     renderGr(); renderComp();
     /* «Las cifras»: de dónde sale el GR 131 del mapa; con el esquema, que lo es; con el trazado oficial, su fuente */
     $('tgc-cifras-isla').textContent = tx('cuerpoIslaFuente') + (/^zh/.test(lengua()) ? '' : ' ') + (islaOficial ? tx('cuerpoIslaTrazadoDe', { fuente: trazadoFuente }) : tx('cuerpoIslaEsquemaNota'));
@@ -5446,6 +5475,10 @@
 .tgc-isla-parada.pasada circle.nucleo { fill: var(--isla-punto); }
 .tgc-isla-parada text { font: 500 10.4px var(--font-body); fill: var(--tinta); paint-order: stroke; stroke: var(--halo-mapa); stroke-width: 2.8px; stroke-linejoin: round; }
 .tgc-isla-parada.pasada text { fill: var(--mov); font-weight: 500; }
+/* (encima del bloque 8) la etiqueta que el compañero tiene encima, aclarada mientras está ahí */
+.tgc-isla-teide-t, .tgc-isla-alt, .tgc-isla-parada text { transition: opacity .25s ease; }
+.tgc-isla-teide-t.tapada, .tgc-isla-alt.tapada, .tgc-isla-parada text.tapada { opacity: .25; }
+@media (prefers-reduced-motion: reduce) { .tgc-isla-teide-t, .tgc-isla-alt, .tgc-isla-parada text { transition: none; } }
 .tgc-isla-escala .linea { fill: none; stroke: var(--tinta-2); stroke-width: 1.1; stroke-linecap: round; }
 .tgc-isla-escala text { font: 500 8.2px var(--font-body); fill: var(--tinta-2); paint-order: stroke; stroke: var(--halo-mapa); stroke-width: 2.4px; stroke-linejoin: round; }
 .tgc-isla-escala .aguja { fill: var(--tinta-2); }
