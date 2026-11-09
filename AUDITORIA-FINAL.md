@@ -7132,6 +7132,42 @@ del IGN): solo cambian sus ficheros de datos, y los controles que los leen salen
 verá Jerome antes); probar «Compartir» la postal en un iPhone; y que un nativo de cada idioma lea los textos
 nuevos, como dice la nota 27.
 
+## El panel de reservas que nada abría, fuera (9 de noviembre)
+
+Jerome, el 9 de noviembre, al bloque viejo de reservas de `index.html` («nadie lo ve ni lo puede abrir; tiene
+tres excursiones de ejemplo con precio y cuatro recuerdos con precio. ¿Lo quito?»): «quítalo».
+
+**Lo que había.** Un panel de reservas de excursiones (`#booking-panel`) que ningún botón abría: a
+`openBookingFromCard()` no la llamaba nadie y a `openBookingPanel()`, solo ella. Llevaba datos de ejemplo con
+precio que la app nunca enseñaba: `EXCURSIONS_DATA` («Teide al Amanecer», 89 €; «Avistamiento de Ballenas»,
+45 €; «Anaga Bosque Primario», 55 €; con sus horas, sus plazas y lo que incluían) y `SOUVENIRS_DATA` (cuatro
+recuerdos con precio, que nada leía). La tienda de verdad sale de las tablas de Supabase y no cambia.
+
+**Lo que se quita** (`e12af5d`): el HTML del panel, las dos tablas de ejemplo, las siete funciones del panel
+(`openBookingPanel`, `closeBookingPanel`, `changePeople`, `updateBookingTotal`, `updateBookingCTA`,
+`handleBookingCTA` y `openBookingFromCard`), sus estilos (estaban dos veces, iguales) y los 20 textos que solo
+usaba él, en los diez idiomas. Se quedan la cesta (`addToCart`), la tienda (`addSouvenirToCart`) y
+`showBookingSoon()`, la de «Pagar» en la cesta. En `tools/auditar_web.js`, el botón de la reserva sale de los
+rótulos que se reescriben al tocar (ahora, cinco). Las cifras de «Idiomas»: 3468 y 5.618.
+
+**Comprobado.** Antes de quitar nada, cada nombre se buscó en todo el repositorio: el panel solo se nombraba a sí
+mismo y en esa prueba de `auditar_web.js`. El guion que lo quita para si un trozo no sale las veces que toca, y
+mira que las dos copias de los estilos sean iguales y que no se lleve nada de la cesta ni de la tienda. Después,
+los 37 scripts de la página compilan, y salen en verde:
+- `auditar_claves_tx.js`: ninguna clave pedida que no exista;
+- `barrido_idiomas.js`;
+- `auditar_web.js`, sin errores de página;
+- `castellano_suelto.js`, `auditar_frases.js` y `auditar_letras.js`;
+- `auditar_seguridad.py`, con lo mismo marcado que antes;
+- `auditar_xss.js`;
+- `probar_play.js`, 249 de 249;
+- `auditar_sin_traducir.js`.
+
+**La auditoría entera**, sobre `958775c` (árbol `058f7b30…`), que en `main` es `e12af5d`: «AUDITORIA EN VERDE»: ningún
+control en rojo ni sin ejecutar (4.840 líneas, 1 h 55 min). Puesta la rama al día con `main`, solo entran commits de los
+robots (los satélites de CelesTrak, los terremotos del IGN y las alertas del Gobierno de Canarias): solo cambian sus
+ficheros de datos, y los controles que los leen salen en verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
