@@ -2633,7 +2633,7 @@ async function ejemplo(pg, mas) {
   //     noche, que se cambian con el tema) con la costa de COSTA debajo; el Teide con su altitud, la escala y el norte, sin
   //     que ninguna etiqueta tape un punto. La ruta:
   //     la funda, lo que falta a puntos rojos, lo hecho del color del movimiento. El compañero: el de a pie elegido sin nada
-  //     anotado; la bici elegida si lo último que cuenta es en bici; el nadador y el kayak; mira hacia donde va; anda mientras
+  //     anotado; la bici elegida si lo último que cuenta es en bici; a nado o en kayak, el de antes (no cuentan); mira hacia donde va; anda mientras
   //     avanza; los colores de «Aspecto»; el selector, guardado y validado. Los senderos: los de la guía (places[], «senderismo»),
   //     por zonas; marcar y desmarcar; la cuenta, el porcentaje (hacia abajo) y la barra; los puntos del mapa (uno lleva a su
   //     fila); las celebraciones; lo guardado validado; «Borrar los datos» se lo lleva; «Las cifras» con las dos notas de
@@ -2688,7 +2688,8 @@ async function ejemplo(pg, mas) {
     prueba('elegir el presa canario: se guarda (comp.pie), va por el mapa y su botón queda pulsado', v1.guardado && v1.guardado.comp && v1.guardado.comp.pie === 'perro' && v1.comp === 'perro' && /^persona:Senderista,perro\*:Presa canario/.test(v1.pie), JSON.stringify([v1.guardado && v1.guardado.comp, v1.comp, v1.pie]));
     prueba('…y da un saltito en el mapa', await p27.evaluate(() => document.getElementById('tgc-isla-marca').classList.contains('salta')));
 
-    /* según lo último anotado que cuenta: bici (si cuenta), a pie, a nado, en kayak */
+    /* según lo último anotado que cuenta: bici (si cuenta) o a pie; el nado y el kayak no cuentan nunca (Jerome, 8-11-2026:
+       «A pie y bici»: por el agua la isla se rodea, no se cruza) */
     const conComp = async (mov, gr, comp, aspecto) => { await ejemplo(p27, Object.assign({ mov, gr, comp }, aspecto ? { aspecto } : {})); await p27.waitForTimeout(250); return leer27(); };
     const b1 = await conComp([[2, 'caminar', 60, 5], [0, 'bici', 60, 20]], ['bici'], { pie: 'perro', bici: 'electrica' });
     prueba('lo último en bici, con la bici elegida para la travesía: va la bici eléctrica elegida; la fila de la bici sale, con la eléctrica pulsada', b1.comp === 'electrica' && b1.biciVisible && b1.bici === 'carretera,montana,electrica*', JSON.stringify([b1.comp, b1.biciVisible, b1.bici]));
@@ -2698,7 +2699,8 @@ async function ejemplo(pg, mas) {
     prueba('lo último en bici, pero la bici no cuenta para la travesía: va el de a pie (el presa canario) y la fila de la bici no sale', b3.comp === 'perro' && !b3.biciVisible, JSON.stringify([b3.comp, b3.biciVisible]));
     const b4 = await conComp([[1, 'caminar', 60, 5], [0, 'nadar', 40, 1.5]], ['nadar'], { pie: 'perro', bici: 'montana' });
     const b5 = await conComp([[1, 'caminar', 60, 5], [0, 'kayak', 60, 6]], ['kayak'], { pie: 'perro', bici: 'montana' });
-    prueba('a nado, el nadador; en kayak, el kayak (si cuentan)', b4.comp === 'nadador' && b5.comp === 'kayak', JSON.stringify([b4.comp, b5.comp]));
+    prueba('lo último a nado o en kayak (aunque lo guardado diga que cuentan: al leerlo, para el GR 131 solo queda la bici): el compañero sigue siendo el de a pie, el presa canario',
+      b4.comp === 'perro' && b5.comp === 'perro', JSON.stringify([b4.comp, b5.comp]));
     const b6 = await conComp([[0, 'caminar', 60, 5]], [], { pie: 'persona', bici: 'carretera' }, Object.assign({}, await p27.evaluate(() => TG_FIGURA.normaliza(null)), { piel: 9, arribaColor: 3, abajoColor: 6, peloColor: 0, calzadoColor: 8 }));
     const F27 = await p27.evaluate(() => ({ piel: TG_FIGURA.PIEL[9], arriba: TG_FIGURA.ROPA_COLOR[3], abajo: TG_FIGURA.ROPA_COLOR[6], pelo: TG_FIGURA.PELO_COLOR[0], calzado: TG_FIGURA.ROPA_COLOR[8] }));
     prueba('la persona lleva los colores de «Aspecto» (piel, ropa de arriba y de abajo, pelo y calzado), en el mapa y en su botón', b6.comp === 'persona' && Object.values(F27).every(c => b6.html.indexOf(c) >= 0) &&

@@ -232,11 +232,10 @@
     "cuerpoGrBici": {"es": "En bici", "en": "By bike", "fr": "À vélo", "de": "Mit dem Rad", "it": "In bici", "nl": "Op de fiets", "zh": "骑车", "zht": "騎車", "bg": "С колело", "pl": "Na rowerze"},
     "cuerpoCifrasInt": {"es": "La intensidad de cada anotación la elige usted: moderada si puede hablar pero no cantar; intensa si no puede decir más de unas palabras sin parar a respirar (CDC). La que propone cada deporte sale del Compendio de Actividades Físicas de 2024 (Herrmann y cols.): desde 6 MET, intensa. Para los adultos, la OMS (2020) pide de 150 a 300 minutos moderados a la semana o de 75 a 150 intensos: por eso un minuto intenso cuenta por dos. De 5 a 17 años, la OMS cuenta igual los minutos moderados y los intensos.", "en": "You choose the intensity of each entry: moderate if you can talk but not sing; vigorous if you can't say more than a few words without pausing for breath (CDC). The one each sport suggests comes from the 2024 Compendium of Physical Activities (Herrmann et al.): from 6 METs, vigorous. For adults, the WHO (2020) asks for 150 to 300 moderate minutes a week or 75 to 150 vigorous ones: that is why a vigorous minute counts as two. From 5 to 17, the WHO counts moderate and vigorous minutes alike.", "fr": "Vous choisissez l’intensité de chaque note : modérée si vous pouvez parler mais pas chanter ; soutenue si vous ne pouvez pas dire plus de quelques mots sans reprendre votre souffle (CDC). Celle que propose chaque sport vient du Compendium des activités physiques de 2024 (Herrmann et al.) : à partir de 6 MET, soutenue. Pour les adultes, l’OMS (2020) demande de 150 à 300 minutes modérées par semaine ou de 75 à 150 soutenues : c’est pourquoi une minute soutenue compte double. De 5 à 17 ans, l’OMS compte de la même façon les minutes modérées et soutenues.", "de": "Die Intensität jedes Eintrags wählen Sie: moderat, wenn Sie sprechen, aber nicht singen können; hoch, wenn Sie nur wenige Worte sagen können, ohne Luft holen zu müssen (CDC). Die Vorgabe jeder Sportart stammt aus dem Compendium of Physical Activities von 2024 (Herrmann et al.): ab 6 MET hoch. Für Erwachsene empfiehlt die WHO (2020) pro Woche 150 bis 300 Minuten mit moderater oder 75 bis 150 Minuten mit hoher Intensität: Deshalb zählt eine Minute mit hoher Intensität doppelt. Von 5 bis 17 Jahren zählt die WHO Minuten mit moderater und hoher Intensität gleich.", "it": "L’intensità di ogni annotazione la sceglie lei: moderata se riesce a parlare ma non a cantare; vigorosa se non riesce a dire più di qualche parola senza fermarsi a respirare (CDC). Quella proposta da ogni sport viene dal Compendio delle attività fisiche del 2024 (Herrmann et al.): da 6 MET, vigorosa. Per gli adulti, l’OMS (2020) chiede da 150 a 300 minuti moderati a settimana o da 75 a 150 vigorosi: per questo un minuto vigoroso conta doppio. Da 5 a 17 anni, l’OMS conta allo stesso modo i minuti moderati e quelli vigorosi.", "nl": "De intensiteit van elke notitie kiest u zelf: matig als u kunt praten maar niet zingen; zwaar als u maar een paar woorden kunt zeggen zonder op adem te komen (CDC). Wat elke sport voorstelt, komt uit het Compendium of Physical Activities van 2024 (Herrmann e.a.): vanaf 6 MET zwaar. Voor volwassenen vraagt de WHO (2020) 150 tot 300 matige minuten per week of 75 tot 150 zware: daarom telt een zware minuut dubbel. Van 5 tot 17 jaar telt de WHO matige en zware minuten even zwaar.", "zh": "每条记录的强度由您选择：能说话但不能唱歌，为中等强度；说不了几个字就得停下来喘气，为高强度（美国疾控中心）。每项运动默认的强度来自《2024 年身体活动纲要》（Herrmann 等）：6 MET 及以上为高强度。对成年人，世卫组织（2020）建议每周 150 至 300 分钟中等强度活动，或 75 至 150 分钟高强度活动：因此一分钟高强度算作两分钟。5 至 17 岁，世卫组织对中等强度和高强度的分钟同样计算。", "zht": "每筆記錄的強度由您選擇：能說話但不能唱歌，為中等強度；說不了幾個字就得停下來換氣，為高強度（美國疾病管制中心）。每項運動預設的強度來自《2024 年身體活動綱要》（Herrmann 等）：6 MET 以上為高強度。對成年人，世界衛生組織（2020）建議每週 150 至 300 分鐘中等強度活動，或 75 至 150 分鐘高強度活動：因此一分鐘高強度算作兩分鐘。5 至 17 歲，世界衛生組織對中等強度和高強度的分鐘同樣計算。", "bg": "Интензивността на всеки запис избирате Вие: умерена, ако можете да говорите, но не и да пеете; интензивна, ако не можете да кажете повече от няколко думи, без да спрете да си поемете дъх (CDC). Предложената за всеки спорт идва от Компендиума на физическите дейности от 2024 г. (Herrmann и сътр.): от 6 MET нагоре – интензивна. За възрастните СЗО (2020) препоръчва от 150 до 300 минути умерена активност седмично или от 75 до 150 интензивна: затова една интензивна минута се брои за две. От 5 до 17 години СЗО брои еднакво умерените и интензивните минути.", "pl": "Intensywność każdego wpisu wybiera się samodzielnie: umiarkowana, gdy można mówić, ale nie śpiewać; intensywna, gdy nie da się powiedzieć więcej niż kilku słów bez złapania oddechu (CDC). Propozycja dla każdego sportu pochodzi z Kompendium aktywności fizycznych z 2024 r. (Herrmann i in.): od 6 MET intensywna. Dla dorosłych WHO (2020) zaleca od 150 do 300 minut umiarkowanego wysiłku tygodniowo albo od 75 do 150 intensywnego: dlatego minuta intensywna liczy się podwójnie. W wieku od 5 do 17 lat WHO liczy tak samo minuty umiarkowane i intensywne."},
     "cuerpoCifrasDan": {"es": "Volar después de bucear: al menos 12 horas tras una inmersión sin descompresión y 18 tras varias en un día o en varios días de buceo; con paradas de descompresión, bastante más (DAN, taller de 2002).", "en": "Flying after diving: at least 12 hours after a single no-decompression dive and 18 after multiple dives in a day or multiple days of diving; after dives with decompression stops, substantially longer (DAN, 2002 workshop).", "fr": "Prendre l’avion après la plongée : au moins 12 heures après une plongée sans décompression et 18 après plusieurs plongées dans la journée ou plusieurs jours de plongée ; avec des paliers de décompression, nettement plus (DAN, atelier de 2002).", "de": "Fliegen nach dem Tauchen: mindestens 12 Stunden nach einem einzelnen Nullzeit-Tauchgang und 18 nach mehreren Tauchgängen an einem Tag oder an mehreren Tauchtagen; nach Dekompressionstauchgängen deutlich länger (DAN, Workshop 2002).", "it": "Volare dopo le immersioni: almeno 12 ore dopo un’immersione senza decompressione e 18 dopo più immersioni in un giorno o in più giorni di immersioni; con soste di decompressione, molto di più (DAN, workshop del 2002).", "nl": "Vliegen na het duiken: minstens 12 uur na één duik zonder decompressie en 18 uur na meerdere duiken op een dag of op meerdere duikdagen; na duiken met decompressiestops aanzienlijk langer (DAN, workshop van 2002).", "zh": "潜水后乘飞机：单次免减压潜水后至少 12 小时；一天内多次潜水或多日潜水后至少 18 小时；需要减压停留的潜水后，要长得多（DAN，2002 年研讨会）。", "zht": "潛水後搭飛機：單次免減壓潛水後至少 12 小時；一天內多次潛水或多日潛水後至少 18 小時；需要減壓停留的潛水後，要長得多（DAN，2002 年研討會）。", "bg": "Полет след гмуркане: поне 12 часа след едно гмуркане без декомпресия и 18 след няколко гмуркания в един ден или в няколко дни с гмуркания; след гмуркания с декомпресионни спирки – значително повече (DAN, работна среща от 2002 г.).", "pl": "Lot po nurkowaniu: co najmniej 12 godzin po jednym nurkowaniu bezdekompresyjnym i 18 po kilku nurkowaniach w ciągu dnia lub kilku dniach nurkowania; po nurkowaniach z przystankami dekompresyjnymi znacznie dłużej (DAN, warsztaty z 2002 r.)."},
-    /* (8-11-2026, bloque 8) el mapa con relieve, el compañero de travesía y «Senderos de la isla» */
     "cuerpoCompTit": {"es": "Su compañero de travesía", "en": "Your crossing companion", "fr": "Votre compagnon de traversée", "de": "Ihr Begleiter auf der Durchquerung", "it": "Compagno di traversata", "nl": "Uw reisgenoot", "zh": "您的穿越伙伴", "zht": "您的穿越夥伴", "bg": "Вашият спътник в прехода", "pl": "Kompan na szlaku"},
-    "cuerpoCompAyuda": {"es": "Avanza por el mapa con sus kilómetros y cambia con lo último que anote: a pie, el que elija aquí; en bici, su bici; a nado o en kayak, nadando o remando.", "en": "It moves along the map with your kilometres and changes with your latest entry: on foot, the one you choose here; by bike, your bike; swimming or kayaking, it swims or paddles.", "fr": "Il avance sur la carte avec vos kilomètres et change selon votre dernière activité notée : à pied, celui que vous choisissez ici ; à vélo, votre vélo ; à la nage ou en kayak, il nage ou pagaie.", "de": "Er bewegt sich mit Ihren Kilometern über die Karte und wechselt mit Ihrem letzten Eintrag: zu Fuß der, den Sie hier wählen; mit dem Rad Ihr Rad; beim Schwimmen oder Kajakfahren schwimmt oder paddelt er.", "it": "Avanza sulla mappa con i chilometri e cambia secondo l’ultima attività annotata: a piedi, quello scelto qui; in bici, la bici scelta; a nuoto o in kayak, nuota o pagaia.", "nl": "Hij beweegt over de kaart met uw kilometers en wisselt met uw laatste notitie: te voet degene die u hier kiest; op de fiets uw fiets; bij zwemmen of kajakken zwemt of peddelt hij.", "zh": "它会随您的公里数在地图上前进，并随最近一次记录而变化：步行时是您在这里选的伙伴；骑车时是您的自行车；游泳或划皮划艇时，它就游泳或划桨。", "zht": "它會隨您的公里數在地圖上前進，並隨最近一次記錄而變化：步行時是您在這裡選的夥伴；騎車時是您的自行車；游泳或划獨木舟時，它就游泳或划槳。", "bg": "Придвижва се по картата с вашите километри и се сменя според последния ви запис: пеша – този, когото изберете тук; с колело – вашето колело; при плуване или каяк – плува или гребе.", "pl": "Porusza się po mapie razem z kilometrami i zmienia się według ostatniego wpisu: pieszo – ten wybrany tutaj; rowerem – wybrany rower; wpław lub kajakiem – płynie albo wiosłuje."},
+    "cuerpoCompAyuda": {"es": "Avanza por el mapa con sus kilómetros y cambia con lo último que cuente para su travesía: a pie, el que elija aquí; en bici, su bici.", "en": "It moves along the map with your kilometres and changes with your latest entry that counts towards your crossing: on foot, the one you choose here; by bike, your bike.", "fr": "Il avance sur la carte avec vos kilomètres et change selon votre dernière activité qui compte pour votre traversée : à pied, celui que vous choisissez ici ; à vélo, votre vélo.", "de": "Er bewegt sich mit Ihren Kilometern über die Karte und wechselt mit Ihrem letzten Eintrag, der für Ihre Durchquerung zählt: zu Fuß der, den Sie hier wählen; mit dem Rad Ihr Rad.", "it": "Avanza sulla mappa con i chilometri e cambia secondo l’ultima attività annotata che conta per la traversata: a piedi, quello scelto qui; in bici, la bici scelta.", "nl": "Hij beweegt over de kaart met uw kilometers en wisselt met uw laatste notitie die meetelt voor uw tocht: te voet degene die u hier kiest; op de fiets uw fiets.", "zh": "它会随您的公里数在地图上前进，并随最近一次计入穿越之旅的记录而变化：步行时是您在这里选的伙伴；骑车时是您的自行车。", "zht": "它會隨您的公里數在地圖上前進，並隨最近一次計入穿越之旅的記錄而變化：步行時是您在這裡選的夥伴；騎車時是您的自行車。", "bg": "Придвижва се по картата с вашите километри и се сменя според последния ви запис, който се брои за прехода: пеша – този, когото изберете тук; с колело – вашето колело.", "pl": "Porusza się po mapie razem z kilometrami i zmienia się według ostatniego wpisu, który liczy się do przejścia: pieszo – ten wybrany tutaj; rowerem – wybrany rower."},
     "cuerpoComp_persona": {"es": "Senderista", "en": "Hiker", "fr": "Randonneur", "de": "Wanderer", "it": "Escursionista", "nl": "Wandelaar", "zh": "徒步者", "zht": "健行者", "bg": "Турист", "pl": "Turysta"},
-    "cuerpoComp_perro": {"es": "Presa canario", "en": "Canary Mastiff", "fr": "Dogue canarien", "de": "Kanarendogge", "it": "Dogo canario", "nl": "Canarische dog", "zh": "加那利犬", "zht": "加那利犬", "bg": "Канарски дог", "pl": "Dog kanaryjski"},
+    "cuerpoComp_perro": {"es": "Presa canario", "en": "Presa Canario", "fr": "Presa Canario", "de": "Presa Canario", "it": "Presa Canario", "nl": "Presa Canario", "zh": "普雷萨加纳利犬", "zht": "普雷薩加納利犬", "bg": "Преса Канарио", "pl": "Presa Canario"},
     "cuerpoComp_lagarto": {"es": "Lagarto tizón", "en": "Tenerife lizard", "fr": "Lézard de Tenerife", "de": "Teneriffa-Eidechse", "it": "Lucertola di Tenerife", "nl": "Tenerifehagedis", "zh": "特内里费蜥蜴", "zht": "特內里費蜥蜴", "bg": "Тенерифски гущер", "pl": "Jaszczurka teneryfska"},
     "cuerpoComp_carretera": {"es": "De carretera", "en": "Road bike", "fr": "Vélo de route", "de": "Rennrad", "it": "Bici da strada", "nl": "Racefiets", "zh": "公路车", "zht": "公路車", "bg": "Шосеен", "pl": "Szosowy"},
     "cuerpoComp_montana": {"es": "De montaña", "en": "Mountain bike", "fr": "VTT", "de": "Mountainbike", "it": "Mountain bike", "nl": "Mountainbike", "zh": "山地车", "zht": "登山車", "bg": "Планински", "pl": "Górski"},
@@ -1943,13 +1942,14 @@
      fuente.responsabilidad), y tools/cuerpo_isla_relieve.py --comprobar mira que sigan siendo esas */
   var COPERNICUS_NOTAS = ['produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved',
     'The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30'];
-  /* el compañero de travesía (bloque 8): a pie, uno de tres; en bici, una de tres; a nado y en kayak, el suyo */
+  /* el compañero de travesía (bloque 8): a pie, uno de tres; en bici, una de tres. Por el agua la isla se rodea, no se
+     cruza: ni a nado ni en kayak (Jerome, 8-11-2026: «A pie y bici») */
   var COMP_PIE = ['persona', 'perro', 'lagarto'], COMP_BICI = ['carretera', 'montana', 'electrica'];
   /* su tamaño en el mapa (el dibujo mide 64): los altos, algo más de la mitad; los bajos, un poco más */
-  var COMP_TAM = { persona: .56, perro: .6, lagarto: .72, carretera: .58, montana: .58, electrica: .58, nadador: .62, kayak: .6 };
+  var COMP_TAM = { persona: .56, perro: .6, lagarto: .72, carretera: .58, montana: .58, electrica: .58 };
   /* (8-11-2026, bloque 8) Los compañeros de travesía: dibujos en SVG, de lado y mirando a la derecha, en una caja de 64 × 64 con
      el suelo en y = 60, sin degradados ni ids (se ponen varias veces en la misma pantalla): el volumen sale de capas encima, de
-     negro o blanco translúcido. Las partes que se mueven llevan su clase (pierna-a/b, brazo-a/b, cola, rueda, biela, ola, remo).
+     negro o blanco translúcido. Las partes que se mueven llevan su clase (pierna-a/b, brazo-a/b, cola, rueda, biela).
      La persona y los ciclistas llevan los colores de «Aspecto»; el presa canario es leonado atigrado con su máscara negra; el
      lagarto tizón (Gallotia galloti), el macho, pardo oscuro con las manchas azules del costado y de la mejilla. */
   var COMP_ARTE = (function () {
@@ -2108,49 +2108,11 @@
         '<path d="M' + (hombro[0] - 1.2) + ' ' + (hombro[1] - 1.2) + ' L' + (codo[0] - .6) + ' ' + (codo[1] - 1.2) + '" stroke="' + c.arriba + '" stroke-width="3.2" stroke-linecap="round"/>';
       return bici + plato + cuerpo + biela;
     }
-    function nadador(c) {
-      return g('ola', '<path d="M3 47.6 q3.6 -3 7.4 -.4 t7.4 0 t7.4 0 t7.4 0 t7.4 0 t7.4 0 t7.4 .4 q2.4 1.2 1.6 3.6 q-3.6 7.2 -28 7.6 q-24 -.2 -28 -7.2 q-1 -2.6 1.6 -4z" fill="#3E9DE0"/>') +
-        '<path d="M12 49.4 q12 -3.6 28 -2.8 q4 .6 3.4 3 q-13 1.4 -31 .8z" fill="' + c.piel + '" fill-opacity=".6"/>' +
-        g('brazo-a', '<path d="M38.4 44.6 q-1.2 -9.4 7.4 -14.6 q6.4 -2.6 9.6 2" fill="none" stroke="' + c.piel + '" stroke-width="3.2" stroke-linecap="round"/><circle cx="55.2" cy="32.6" r="1.8" fill="' + c.piel + '"/>', ' style="transform-origin:38.4px 44.6px"') +
-        '<circle cx="44" cy="42.6" r="5" fill="' + c.piel + '"/>' +
-        '<path d="M39.2 41.6 q.6 -5.4 5.4 -5.6 q4.6 .2 5 4.2 q-5.6 -.8 -10.4 1.4z" fill="' + c.arriba + '"/>' +
-        '<path d="M40.8 38.8 q1.6 -2 4 -2 q-2 1 -2.6 2.4z" fill="#fff" fill-opacity=".35"/>' +
-        '<rect x="45" y="40.6" width="4.4" height="2.2" rx="1.1" fill="#1D2230"/><rect x="45.8" y="41" width="1.4" height=".8" rx=".4" fill="#9FD8FF"/>' +
-        '<path d="M46.4 45.4 q1.6 .6 2.6 -.2" fill="none" stroke="#000" stroke-opacity=".4" stroke-width=".7" stroke-linecap="round"/>' +
-        '<g fill="#fff"><path d="M30 46.4 q3 -2 6 0 q-3 1.2 -6 0z" fill-opacity=".9"/><path d="M48 46.8 q3.4 -2.2 7 .2 q-3.6 1 -7 -.2z" fill-opacity=".9"/>' +
-          '</g>' +
-        g('ola', '<path d="M6 52 q3.4 -2.6 7 -.2 t7 0 t7 0 t7 0 t7 0 t7 0 t7 .2 q1.6 1 .6 2.8 q-4.2 4.8 -23.4 5 q-19.4 -.2 -24 -4.8 q-1 -2 1 -3z" fill="#1F72B6"/>' +
-          '<path d="M8 52.2 q3 -2 6 -.2 t7 0 t7 0 t7 0 t7 0 t7 0" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width=".8" stroke-linecap="round"/>');
-    }
-    function kayak(c) {
-      return g('ola', '<path d="M1 49 q3.8 -3 7.8 -.4 t7.8 0 t7.8 0 t7.8 0 t7.8 0 t7.8 0 t7.8 .4 q2 1.4 1 3.6 q-4 6.6 -30 6.8 q-25.6 -.2 -29.6 -6.6 q-.8 -2.4 2 -3.8z" fill="#3E9DE0"/>') +
-        '<path d="M27.4 42.6 q-.8 -9.4 3 -14.8 q3.6 -2.4 7.2 0 q2.2 5.6 1.6 14.8z" fill="#F2B632"/>' +
-        '<path d="M27.4 42.6 q-.8 -9.4 3 -14.8 q1 -.6 2 -.8 q-2.6 6.4 -1.6 15.6z" fill="#000" fill-opacity=".14"/>' +
-        '<path d="M33.2 27.4 q2.4 -.2 4.4 1 q1.4 3.4 1.6 7 q-2 -4.8 -6 -8z" fill="#fff" fill-opacity=".3"/>' +
-        '<path d="M29.6 33 h9.2 M29.2 37.4 h9.8" stroke="#000" stroke-opacity=".22" stroke-width="1"/>' +
-        '<path d="M31 27.6 q2.6 1.6 5.4 0" fill="none" stroke="' + c.arriba + '" stroke-width="2.2" stroke-linecap="round"/>' +
-        '<circle cx="34.2" cy="21.4" r="4.8" fill="' + c.piel + '"/>' +
-        '<path d="M29.6 21 q-.2 -5.8 5 -6.2 q4.6 0 5.4 4.2 q-2.4 -.6 -4.2 .4 q-3.2 -.4 -6.2 1.6z" fill="' + c.pelo + '"/>' +
-        '<circle cx="36.8" cy="21.2" r=".7" fill="#1E1A18"/>' +
-        g('remo', '<path d="M14 43.6 L54 22" stroke="#4A4F57" stroke-width="1.6" stroke-linecap="round"/>' +
-          '<path d="M50.4 20.4 q4.8 -3.4 8 -2 q.8 1.6 -1.6 3.8 q-3.4 2.4 -5.6 1.6z" fill="#2F80ED"/><path d="M50.4 20.4 q4.8 -3.4 8 -2 q-3.6 .6 -7.2 3.6z" fill="#fff" fill-opacity=".35"/>' +
-          '<path d="M17.6 45.2 q-4.8 3.4 -8 2 q-.8 -1.6 1.6 -3.8 q3.4 -2.4 5.6 -1.6z" fill="#2F80ED"/>' +
-          '<path d="M31 33.2 L38.4 29.4" stroke="' + c.piel + '" stroke-width="2.6" stroke-linecap="round"/><circle cx="38.6" cy="29.2" r="1.7" fill="' + c.piel + '"/>' +
-          '<path d="M28.6 34.6 L24 38.4" stroke="' + c.piel + '" stroke-width="2.6" stroke-linecap="round"/><circle cx="23.8" cy="38.6" r="1.7" fill="' + c.piel + '"/>',
-          ' style="transform-origin:34px 33px"') +
-        '<path d="M3 44.6 q28 -4.4 58 -.6 q-2.6 4.8 -10 5.4 q-17 1.2 -38 -.2 q-7.4 -.8 -10 -4.6z" fill="#E4573A"/>' +
-        '<path d="M3 44.6 q28 -4.4 58 -.6 q-28 -2 -58 .6z" fill="#fff" fill-opacity=".35"/>' +
-        '<path d="M8 47.6 q22 2.4 48 -.4 q-2.4 2 -6 2.4 q-17 1.2 -36 -.2 q-4 -.6 -6 -1.8z" fill="#000" fill-opacity=".2"/>' +
-        '<ellipse cx="33" cy="43" rx="6.6" ry="1.2" fill="#1D2230"/>' +
-        g('ola', '<path d="M5 52.6 q3.6 -2.4 7.2 -.2 t7.2 0 t7.2 0 t7.2 0 t7.2 0 t7.2 0 t7.2 .2 q1.4 1 .4 2.6 q-4 4.6 -25.4 4.8 q-20.8 -.2 -25 -4.6 q-.8 -1.8 1.6 -2.8z" fill="#1F72B6"/>' +
-          '<path d="M7 52.8 q3.4 -2 6.8 -.2 t7.2 0 t7.2 0 t7.2 0 t7.2 0 t7.2 0" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width=".8" stroke-linecap="round"/>');
-    }
     return {
       persona: persona, perro: perro, lagarto: lagarto,
       carretera: function (c) { return ciclista(c, 'carretera'); },
       montana: function (c) { return ciclista(c, 'montana'); },
-      electrica: function (c) { return ciclista(c, 'electrica'); },
-      nadador: nadador, kayak: kayak
+      electrica: function (c) { return ciclista(c, 'electrica'); }
     };
   })();
   /* ── los once sellos (8-11-2026, bloque 6) ──
@@ -3279,12 +3241,12 @@
     return svg;
   }
   /* (bloque 8) quién va por el mapa: el del último deporte anotado que cuenta para la travesía (a pie, el que se eligió; en
-     bici, la bici elegida; a nado y en kayak, el suyo); sin nada anotado, el de a pie */
+     bici, la bici elegida; el nado y el kayak no cuentan nunca, así que no cambian el compañero); sin nada anotado, el de a pie */
   function compActual() {
     var ult = null;
     st.mov.forEach(function (x) { if (x.km > 0 && cuentaGR(x.tipo) && (!ult || x.d > ult.d || (x.d === ult.d && x.t >= ult.t))) ult = x; });
     if (!ult) return st.comp.pie;
-    return ult.tipo === 'bici' ? st.comp.bici : ult.tipo === 'nadar' ? 'nadador' : ult.tipo === 'kayak' ? 'kayak' : st.comp.pie;
+    return ult.tipo === 'bici' ? st.comp.bici : st.comp.pie;
   }
   /* los colores de la persona y de los ciclistas: los de «Aspecto» (piel, pelo, ropa de arriba, de abajo y calzado) */
   function compColores() {
@@ -5493,26 +5455,19 @@
 .tgc-isla-sendero.hecho .punto { fill: var(--verde); stroke: var(--isla-punto); }
 .tgc-isla-marca { cursor: pointer; }
 .tgc-isla-marca .sombra { fill: #000; opacity: .22; }
-/* (bloque 8) el compañero se mueve: piernas y brazos desde arriba, la cola desde su raíz, ruedas, biela, olas y pala */
+/* (bloque 8) el compañero se mueve: piernas y brazos desde arriba, la cola desde su raíz, las ruedas y la biela */
 .tgc-comp-arte .pierna-a, .tgc-comp-arte .pierna-b, .tgc-comp-arte .brazo-a, .tgc-comp-arte .brazo-b, .tgc-comp-arte .cola { transform-box: fill-box; transform-origin: 50% 6%; }
 .tgc-comp-arte .cola { transform-origin: 100% 12%; }
-.comp-nadador .brazo-a { transform-box: view-box; }
 .tgc-isla-marca.anda .pierna-a, .tgc-isla-marca.anda .brazo-b { animation: tgc-paso .46s ease-in-out infinite alternate; }
 .tgc-isla-marca.anda .pierna-b, .tgc-isla-marca.anda .brazo-a { animation: tgc-paso .46s ease-in-out infinite alternate-reverse; }
 .tgc-isla-marca.anda .comp-carretera .pierna-a, .tgc-isla-marca.anda .comp-montana .pierna-a, .tgc-isla-marca.anda .comp-electrica .pierna-a { animation: tgc-pedal .35s ease-in-out infinite alternate; }
 .tgc-isla-marca.anda .comp-carretera .pierna-b, .tgc-isla-marca.anda .comp-montana .pierna-b, .tgc-isla-marca.anda .comp-electrica .pierna-b { animation: tgc-pedal .35s ease-in-out infinite alternate-reverse; }
 .tgc-isla-marca.anda .rueda, .tgc-isla-marca.anda .biela { animation: tgc-gira .7s linear infinite; }
-.tgc-isla-marca.anda .comp-nadador .brazo-a { animation: tgc-gira-atras 1s linear infinite; }
-.tgc-isla-marca.anda .remo { animation: tgc-remo .8s ease-in-out infinite alternate; }
-.tgc-isla-marca .ola { animation: tgc-ola 2.6s ease-in-out infinite; }
 .tgc-isla-marca .cola { animation: tgc-cola 1.6s ease-in-out infinite alternate; }
 .tgc-isla-marca.salta .tgc-isla-salto { animation: tgc-salta .6s cubic-bezier(.3,.7,.4,1); }
 @keyframes tgc-paso { from { transform: rotate(-17deg); } to { transform: rotate(17deg); } }
 @keyframes tgc-pedal { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
 @keyframes tgc-gira { to { transform: rotate(360deg); } }
-@keyframes tgc-gira-atras { to { transform: rotate(-360deg); } }
-@keyframes tgc-remo { from { transform: rotate(-16deg); } to { transform: rotate(16deg); } }
-@keyframes tgc-ola { 50% { transform: translateX(-1.6px); } }
 @keyframes tgc-cola { from { transform: rotate(-7deg); } to { transform: rotate(9deg); } }
 @keyframes tgc-salta { 0% { transform: translateY(0); } 35% { transform: translateY(-7px); } 60% { transform: translateY(0); } 78% { transform: translateY(-2px); } 100% { transform: translateY(0); } }
 .tgc-cuenta { display: flex; align-items: baseline; gap: 10px; }
