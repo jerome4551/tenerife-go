@@ -7099,8 +7099,9 @@ cuerpo» (`textos.py`, `ui.js`, `cuerpo.html`, `estilos.css`, `textos-fijos.js`,
 el asistente), y `construir.py` da su módulo byte a byte, salvo un comentario suelto dentro de `CUERPO_UI`, que
 pasa a `textos.py`; los datos, iguales. El módulo publicado sale de esas fuentes. `CUERPO_UI`: 534 filas.
 
-**Comprobado, dato a dato.** Los catorce códigos y MET del Compendio de 2024 (pacompendium.com, página a
-página), la DAN de 2002 (12 h tras una inmersión sin descompresión, 18 tras varias en un día o en varios días,
+**Comprobado, dato a dato.** Los trece códigos y MET del Compendio de 2024 (pacompendium.com, página a página;
+el pádel, que no está en el Compendio, con el del tenis de dobles, 15685; «Otro deporte», sin código, moderada),
+la DAN de 2002 (12 h tras una inmersión sin descompresión, 18 tras varias en un día o en varios días,
 bastante más con paradas de descompresión), la prueba del habla de los CDC, la OMS de 2020 (actividad física) y
 la del índice UV (sus cinco categorías, sus consejos y el máximo «en las cuatro horas alrededor del mediodía
 solar»). Las seis zonas, las de `MC_ZONES`; las seis paradas, cada una sobre su elemento del extracto de
