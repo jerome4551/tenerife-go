@@ -283,6 +283,9 @@ control probar_cuerpo.js node tools/probar_cuerpo.js "$PUERTO"
 # (8-11-2026, bloque 5) la costa del esquema de «Cruce la isla», contra los limites municipales, y el trazado del GR 131 si lo hay
 control cuerpo_isla.py python3 tools/cuerpo_isla.py --comprobar
 control gr131_trazado.py python3 tools/gr131_trazado.py --comprobar
+# (8-11-2026, bloque 8) el fondo del mapa de «Cruce la isla»: los dos WebP y su .json, pintados con el relieve,
+# el mapa OSM, la costa y la herramienta de hoy, y en la proyeccion del modulo (solo sumas sha256: no pinta nada)
+control cuerpo_isla_relieve.py python3 tools/cuerpo_isla_relieve.py --comprobar
 echo; echo "════════ la isla en 3D: el relieve, los textos y la vista de verdad en un movil emulado, sin conexion ════════"
 # Desde el 31 de octubre de 2026. El relieve (mapa/tenerife-relieve*.png y
 # .json) lo hace tools/relieve_construir.py desde el MDT05 del IGN

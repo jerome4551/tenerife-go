@@ -1,0 +1,63 @@
+{
+ "formato": 1,
+ "que": "El fondo del mapa de «Cruce la isla» (modulos/cuerpo.js): relieve, suelo, mar y costa. Lo pinta tools/cuerpo_isla_relieve.py.",
+ "proyeccion": {
+  "ISLA_W": 358,
+  "ISLA_M": 14,
+  "ISLA_LON": [
+   -16.94,
+   -16.1
+  ],
+  "ISLA_LAT": [
+   27.985,
+   28.6
+  ],
+  "ISLA_H": 302
+ },
+ "escala": 3,
+ "tamaño": [
+  1074,
+  906
+ ],
+ "calidad_webp": 82,
+ "relieve_fuente": "copernicus-glo30",
+ "entradas": {
+  "relieve": {
+   "fichero": "mapa/tenerife-relieve.png",
+   "sha256": "79d0e4930e2025bd2285bf854216c64da237f6ce690ac3cdcdbf19c6a23ee3c4"
+  },
+  "relieve_ao": {
+   "fichero": "mapa/tenerife-relieve-ao.png",
+   "sha256": "44cdcadaeb8672f5766a17827a2e284cb9718b9e018864bac950831c2f0df2f7"
+  },
+  "relieve_json": {
+   "fichero": "mapa/tenerife-relieve.json",
+   "sha256": "9631a6319dc1b1cdd0e6e256a7d82a7d678abbf090f661958d3f041008babcd4"
+  },
+  "osm": {
+   "fichero": "mapa/tenerife-osm.pmtiles",
+   "sha256": "5650072c84e361675d115f6bc124aa2da1bd7712e311651f4b819f81907789e1"
+  },
+  "costa": {
+   "fichero": "datos/osm-geofabrik/municipios/municipios_tenerife.geojson",
+   "sha256": "85ca113c57a1ea375707ff86ee9c280bcc252980699897ed0df3f804b46c3fa2"
+  },
+  "herramienta": {
+   "fichero": "tools/cuerpo_isla_relieve.py",
+   "sha256": "d7a5f9b0dc220ad3cbefe7fbe775224a4a6e4087801f7a3f051c7624abaafa0e"
+  }
+ },
+ "fondos": {
+  "dia": {
+   "fichero": "datos/cuerpo/isla-relieve-dia.webp",
+   "bytes": 41116,
+   "sha256": "60d8a02b64be0339d30e46978b8e9985461e9f53fe86908f869e323ea1a06cda"
+  },
+  "noche": {
+   "fichero": "datos/cuerpo/isla-relieve-noche.webp",
+   "bytes": 28354,
+   "sha256": "d8936e1f145c43500d3392e6eb634a422b6681cf409cdb34223951bb98be3635"
+  }
+ },
+ "nota": "Las tres lineas del mar son dibujo, no profundidades. El suelo, de OpenStreetMap (ODbL); el relieve, el de «La isla en 3D»."
+}

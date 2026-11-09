@@ -68,7 +68,10 @@ const CORE = [
      (datos/cuerpo/*.json: los 533 ejercicios, uno comun y uno por idioma, y desde el 3 de
      noviembre las respuestas del asistente y las guias de los deportes, uno por idioma) no se
      precargan: son los diez idiomas y cada persona lee uno. Se guardan al usarlos, tambien
-     «red primero», y asi sin conexion sale lo ultimo que se abrio. */
+     «red primero», y asi sin conexion sale lo ultimo que se abrio. Lo mismo el fondo del mapa
+     de «Cruce la isla» (9 de noviembre de 2026, bloque 8: datos/cuerpo/isla-relieve-dia.webp y
+     -noche.webp, unos 41 y 28 kB, de tools/cuerpo_isla_relieve.py): se guarda la primera vez que
+     se ve con red; si no hay, el mapa sale con la costa que el modulo dibuja debajo. */
   './modulos/cuerpo.js',
   /* El panel de EMERGENCIAS (22 de octubre de 2026): tiene que estar sin
      conexion desde el primer dia, y no esperar a la red: va abajo con su
@@ -391,7 +394,7 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/avatares.js') ||
           url.pathname.endsWith('/modulos/perfil.js') ||
           url.pathname.endsWith('/modulos/cuerpo.js') ||
-          /\/datos\/cuerpo\/[a-z0-9-]+\.json$/.test(url.pathname) ||
+          /\/datos\/cuerpo\/[a-z0-9-]+\.(json|webp)$/.test(url.pathname) ||
           url.pathname.endsWith('/modulos/cuerpo3d.js') ||
           url.pathname.endsWith('/datos/cuerpo3d/indice.json') ||
           url.pathname.endsWith('/modulos/isla3d.js') ||

@@ -9009,7 +9009,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3468 filas (y 5.618 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3493 filas (y 5.643 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9152,7 +9152,12 @@ nado, en kayak) y dos párrafos de «Las cifras»; fuera, la nota de a nado o en
 3489 y 5.639. Y encima, con Jerome («A pie y bici»: por el agua la isla se rodea, no se cruza),
 fuera «A nado» y «En kayak» de la travesía y una nota más en la hoja, la del nado y el kayak (534):
 3488 y 5.638. El 9 de noviembre, fuera el panel de reservas que nada abría (Jerome: «quítalo»), con sus 20
-textos: 3468 y 5.618. El
+textos: 3468 y 5.618. Y encima, el bloque 8, hecho la madrugada del 9 (el mapa de la travesía, su compañero
+y los senderos): 25 filas más en `CUERPO_UI` (559): el compañero (el título, la ayuda y los seis que
+se eligen: senderista, presa canario, lagarto tizón y las tres bicis), el norte del mapa, «Senderos de
+la isla» (el título, el subtítulo, las dos cuentas, el norte y el sur, «Hecho el…», las tres
+celebraciones con su texto y el aviso de cuando la lista no llega) y dos párrafos de «Las cifras» (el
+fondo del mapa, con las dos notas de la licencia del relieve, y los senderos): 3493 y 5.643. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de

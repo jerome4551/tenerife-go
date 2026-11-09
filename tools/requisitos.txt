@@ -25,6 +25,9 @@
 #                                coteja con su .json. Para REGENERARLO hace falta
 #                                ademas scipy, que solo instala el workflow
 #                                generar-relieve.yml.
+#   scipy (solo para pintar)     tools/cuerpo_isla_relieve.py, que pinta el fondo del mapa
+#                                de «Cruce la isla» (numpy, scipy y Pillow con WebP). Su
+#                                --comprobar, el de auditar.sh, no necesita nada: mira sumas.
 #   Pillow                       tools/app_preparar.js --comprobar abre con PIL el
 #                                icono y el arranque de la app de la tienda
 #                                (app/ios/plantillas/AppIcon-1024.png, 1024x1024

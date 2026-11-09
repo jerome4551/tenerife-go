@@ -203,9 +203,10 @@ async function ejemplo(pg, mas) {
      la hoja del movimiento puesta por código (dos notas), 131; desde el 8 (bloque 6), con «Sus sellos» (el título y el
      subtítulo) y «Su postal» (el título, el texto y «Crear mi postal»), 136; desde el 8 (bloque 7), con el desnivel
      (su nombre y sus «−» y «+»), la intensidad (su nombre, «Moderada» e «Intensa»), «Por deporte» y lo que cuenta
-     para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; y 2 placeholders (el
+     para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; desde el 8 (bloque 8), con
+     «Su compañero de travesía» (el título, «A pie», «En bici» y la ayuda) y «Senderos de la isla» (el título), 151; y 2 placeholders (el
      del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (146 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 146 && r2.ph === 2, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (151 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 151 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -1973,7 +1974,7 @@ async function ejemplo(pg, mas) {
         desborde: g('cuerpo-panel').scrollWidth > g('cuerpo-panel').clientWidth };
     });
     const r24 = await leer24();
-    prueba('en «Músculos», el orden de la maqueta: la semana, «Hoy en la isla», «Cruce la isla» y los 12 grupos', /tgc-semana tgc-hoy-isla tgc-isla tgc-grupos/.test(r24.orden), r24.orden);
+    prueba('en «Músculos», el orden de la maqueta: la semana, «Hoy en la isla», «Cruce la isla» (y desde el bloque 8, «Senderos de la isla») y los 12 grupos', /tgc-semana tgc-hoy-isla tgc-isla tgc-send tgc-grupos/.test(r24.orden), r24.orden);
     prueba('la zona: las seis del panel del sol, sin traducir (nombres propios), Costa Adeje por defecto, con su etiqueta', r24.zonas === 'adeje:Costa Adeje:nombre propio,medano:El Médano:nombre propio,gigantes:Los Gigantes:nombre propio,puerto:Puerto de la Cruz:nombre propio,santacruz:Santa Cruz:nombre propio,teide:Teide:nombre propio' && r24.zona === 'adeje' && r24.zonaL === 'Zona del tiempo', r24.zonas + ' ' + r24.zona);
     prueba('los chips de Costa Adeje: «UV 9 · muy alto» (8,6 → 9, la categoría del entero, con su color), 24°, Mar 21° y 15 km/h, cada uno con su icono; sin lluvia ni nieve (código 1)', r24.chips.join('|') === 'uv uv-muyalto=UV 9 · muy alto|=24°|=Mar 21°|=15 km/h', r24.chips.join('|'));
     prueba('la fuente con su hora («Open-Meteo, a las HH:MM»), sin estado (hay datos) y sin geolocalización', /^Open-Meteo, a las \d\d:\d\d$/.test(r24.fuente) && r24.estadoOculto && r24.geo === 0, r24.fuente + ' geo ' + r24.geo);
@@ -1996,7 +1997,7 @@ async function ejemplo(pg, mas) {
     prueba('…las horas: cuatro alrededor del mediodía solar de la zona (de 3 h 45 a 4 h 30, con las 12:45 dentro, a cuartos de hora)', horas && minB - minA >= 225 && minB - minA <= 270 && minA <= 12 * 60 + 45 && minB >= 12 * 60 + 45 && minA % 15 === 0 && minB % 15 === 0, horas && horas[0]);
     /* la isla */
     prueba('«Cruce la isla»: 33,5 km a pie de todos los tiempos (3 + 9,5 + 21; los 5 a nado no cuentan) de 85,55, dos paradas pasadas (La Esperanza y La Caldera), la siguiente El Portillo a 9,4 km', r24.km === '33,5' && r24.de === 'de 85,55 km' && r24.sig === 'Siguiente parada: El Portillo, a 9,4\u00a0km.' && r24.paradas === 'La Esperanza*,La Caldera*,El Portillo,Guajara,Vilaflor,Arona' && r24.pasadasBarra === 1 && r24.puntos === 5, JSON.stringify([r24.km, r24.de, r24.sig, r24.paradas, r24.pasadasBarra, r24.puntos]));
-    prueba('el mapa: un solo dibujo (role img, con su aria-label y los km), el esquema (etiqueta «Esquema», la ruta a puntos), el Teide, el marcador movido y el trazo hecho, y la barra al 39,16 %', r24.svgs === 1 && r24.rol === 'img' && r24.aria === 'Esquema de Tenerife con el GR 131, de La Esperanza a Arona. Lleva 33,5 km.' && r24.esquema && r24.ruta === '1 6' && r24.teide === 'Teide' && /^translate\(/.test(r24.marca) && r24.hecha > 20 && /^39\.1\d*%$/.test(r24.barra), JSON.stringify([r24.svgs, r24.rol, r24.aria, r24.esquema, r24.ruta, r24.teide, r24.marca, r24.hecha, r24.barra]));
+    prueba('el mapa: un solo dibujo (role img, con su aria-label y los km), el esquema (etiqueta «Esquema», la ruta a puntos), el Teide, el marcador movido y el trazo hecho, y la barra al 39,16 %', r24.svgs === 1 && r24.rol === 'img' && r24.aria === 'Esquema de Tenerife con el GR 131, de La Esperanza a Arona. Lleva 33,5 km.' && r24.esquema && r24.ruta === '0.1 4.6' && r24.teide === 'Teide' && /^translate\(/.test(r24.marca) && r24.hecha > 20 && /^39\.1\d*%$/.test(r24.barra), JSON.stringify([r24.svgs, r24.rol, r24.aria, r24.esquema, r24.ruta, r24.teide, r24.marca, r24.hecha, r24.barra]));
     prueba('el subtítulo y «Las cifras»: los 85,55 km de Tenerife ON, las paradas a los km acumulados de los tramos de Webtenerife y Arona, el final, a 85,55, la costa de los límites municipales del Cabildo (2015, CC BY), OpenStreetMap (ODbL) y que el trazado entre paradas es un esquema', r24.sub === 'El GR 131, de La Esperanza a Arona, con los kilómetros que anote aquí.' && /mide 85,55 km \(Tenerife ON, Cabildo de Tenerife\)/.test(r24.cifras) && /Las paradas están a los kilómetros acumulados de los tramos de Webtenerife \(La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3\), y Arona, el final, a 85,55\./.test(r24.cifras) && /la costa sale de los límites municipales del Cabildo de Tenerife \(2015, CC BY\) y las paradas, de OpenStreetMap/.test(r24.cifras) && /OpenStreetMap, ODbL/.test(r24.cifras) && /es un esquema, no el sendero\.$/.test(r24.cifras), r24.cifras);
     prueba('nada pasa del borde', !r24.desborde);
 
@@ -2118,7 +2119,7 @@ async function ejemplo(pg, mas) {
     bueno = false;
     await p24.reload({ waitUntil: 'load' }); await abrirApp(p24); await abrirPerfilCuerpo(p24); await suCuerpo(p24); await p24.waitForTimeout(700);
     const mal24 = await leer24();
-    prueba('un trazado malo (los km retroceden) se descarta: sigue el esquema', mal24.esquema && mal24.ruta === '1 6' && /es un esquema, no el sendero\.$/.test(mal24.cifras), JSON.stringify([mal24.esquema, mal24.ruta]));
+    prueba('un trazado malo (los km retroceden) se descarta: sigue el esquema', mal24.esquema && mal24.ruta === '0.1 4.6' && /es un esquema, no el sendero\.$/.test(mal24.cifras), JSON.stringify([mal24.esquema, mal24.ruta]));
     await p24.unroute('**/datos/cuerpo/gr131-trazado.json');
 
     /* los diez idiomas: nada vacío, nada en castellano fuera del castellano (menos los nombres propios), sin desborde; y la política de privacidad nombra la zona de «Hoy en la isla» */
@@ -2623,6 +2624,205 @@ async function ejemplo(pg, mas) {
       n320.min === '1,094' && n320.lineas === 1 && !n320.desborde && !h320.desborde && h320.des === '0' && col.tema === 'noche' && col.si === col.fijo && col.no !== col.si.split('/')[0] && col.marca, JSON.stringify([n320.min, n320.lineas, n320.desborde, h320.desborde, h320.des, col]));
     prueba('a 320 px: sin errores de página', e26b.length === 0, e26b.join(' | '));
     await c26b.close();
+  }
+
+  // 27. (8-11-2026, bloque 8) el mapa de «Cruce la isla» con su relieve, el compañero de travesía y «Senderos de la isla».
+  //     Jerome, 8-11: «No me gusta la línea. Quiero algo interactivo que adelante con la gente […] Un bici si en bici […]
+  //     Caminando puedes hacer diferentes personajes, como un perro canario (presa canario), un lagarto, una persona. ¿La mapa
+  //     puedes poner diferentes rutas? Para que la gente pueda intentar lograr un 100 %». El fondo: dos WebP (de día y de
+  //     noche, que se cambian con el tema) con la costa de COSTA debajo; el Teide con su altitud, la escala y el norte, sin
+  //     que ninguna etiqueta tape un punto. La ruta:
+  //     la funda, lo que falta a puntos rojos, lo hecho del color del movimiento. El compañero: el de a pie elegido sin nada
+  //     anotado; la bici elegida si lo último que cuenta es en bici; el nadador y el kayak; mira hacia donde va; anda mientras
+  //     avanza; los colores de «Aspecto»; el selector, guardado y validado. Los senderos: los de la guía (places[], «senderismo»),
+  //     por zonas; marcar y desmarcar; la cuenta, el porcentaje (hacia abajo) y la barra; los puntos del mapa (uno lleva a su
+  //     fila); las celebraciones; lo guardado validado; «Borrar los datos» se lo lleva; «Las cifras» con las dos notas de
+  //     Copernicus palabra por palabra; la política; y los diez idiomas sin desborde a 320 px
+  {
+    const c27 = await contexto(b), p27 = await c27.newPage(), e27 = []; vigilar(p27, e27);
+    await abrirApp(p27); await abrirPerfilCuerpo(p27); await suCuerpo(p27);
+    await vacio(p27); await p27.waitForTimeout(300);
+    const leer27 = () => p27.evaluate(() => {
+      const g = id => document.getElementById(id), svg = document.querySelector('#tgc-mapa svg'), arte = g('tgc-isla-comp').querySelector('.tgc-comp-arte');
+      return {
+        ims: [...svg.querySelectorAll('image.tgc-isla-relieve')].map(i => i.getAttribute('href') + ':' + getComputedStyle(i).display),
+        costa: !!svg.querySelector('.tgc-isla-tierra'), alt: g('tgc-isla-alt').textContent, km10: g('tgc-isla-km10').textContent, norte: g('tgc-isla-norte').textContent,
+        funda: !!svg.querySelector('.tgc-isla-funda'), ruta: svg.querySelector('.tgc-isla-ruta').getAttribute('stroke-dasharray'), rutaColor: getComputedStyle(svg.querySelector('.tgc-isla-ruta')).stroke,
+        hechaColor: getComputedStyle(g('tgc-isla-hecha')).stroke, mov: getComputedStyle(document.getElementById('cuerpo-panel')).getPropertyValue('--mov').trim(),
+        comp: g('tgc-isla-marca').getAttribute('data-comp'), giro: g('tgc-isla-giro').getAttribute('transform'), filtro: arte ? arte.getAttribute('filter') : '', html: g('tgc-isla-comp').innerHTML,
+        pie: [...document.querySelectorAll('#tgc-comp-pie .tgc-comp-op')].map(x => x.dataset.comp + (x.getAttribute('aria-pressed') === 'true' ? '*' : '') + ':' + x.textContent).join(','),
+        bici: [...document.querySelectorAll('#tgc-comp-bici .tgc-comp-op')].map(x => x.dataset.comp + (x.getAttribute('aria-pressed') === 'true' ? '*' : '')).join(','), biciVisible: !g('tgc-comp-bici-f').hidden,
+        puntos: svg.querySelectorAll('.tgc-isla-sendero').length, puntosHechos: svg.querySelectorAll('.tgc-isla-sendero.hecho').length,
+        pc: g('tgc-send-pc').textContent, de: g('tgc-send-de').textContent, barra: g('tgc-send-hecho').style.width, sub: g('tgc-send-sub').textContent,
+        zonas: [...document.querySelectorAll('#tgc-send-lista details')].map(d => d.dataset.zona + ':' + d.querySelector('.tgc-send-zc').textContent).join(','),
+        filas: document.querySelectorAll('#tgc-send-lista .tgc-send-op').length, cifrasMapa: g('tgc-cifras-mapa').textContent, cifrasSend: g('tgc-cifras-send').textContent,
+        orden: [...g('tgc-vista-musculos').querySelectorAll(':scope > section')].map(s => s.className.split(' ')[0]).join(' '),
+        guardado: JSON.parse(localStorage.getItem('tenerife.cuerpo') || 'null')
+      };
+    });
+    const v0 = await leer27();
+    const totalSend = await p27.evaluate(() => places.filter(p => p.category === 'senderismo').length), grSend = await p27.evaluate(() => places.filter(p => p.category === 'senderismo' && /\bGR-? ?131\b/.test(p.name)).length);
+    const fondos = await p27.evaluate(() => Promise.all(['dia', 'noche'].map(t => new Promise(r => { const i = new Image(); i.onload = () => r(i.naturalWidth + 'x' + i.naturalHeight); i.onerror = () => r('error'); i.src = './datos/cuerpo/isla-relieve-' + t + '.webp'; }))));
+    prueba('el fondo: los dos relieves (de día a la vista, de noche escondido), 1074 × 906 los dos, y la costa debajo por si no cargan', v0.ims.join(',') === './datos/cuerpo/isla-relieve-dia.webp:inline,./datos/cuerpo/isla-relieve-noche.webp:none' && fondos.join(',') === '1074x906,1074x906' && v0.costa, JSON.stringify([v0.ims, fondos, v0.costa]));
+    prueba('el Teide con su altitud («3715 m»), la escala («10 km») y el norte («N»)', v0.alt === '3715 m' && v0.km10 === '10 km' && v0.norte === 'N', JSON.stringify([v0.alt, v0.km10, v0.norte]));
+    /* ninguna etiqueta del mapa tapa un punto de sendero o una parada (la caja entera del texto, con 1,2 de margen alrededor
+       de cada punto): con la altitud del Teide a la izquierda del pico, la salida de Pico Viejo caía encima de la cifra */
+    const choques27 = await p27.evaluate(() => {
+      const svg = document.querySelector('#tgc-mapa svg'), caja = el => { const k = el.getBBox(); return { x0: k.x, y0: k.y, x1: k.x + k.width, y1: k.y + k.height, n: el.textContent }; };
+      const etiquetas = [...svg.querySelectorAll('.tgc-isla-teide-t, #tgc-isla-alt, .tgc-isla-parada text, #tgc-isla-km10, #tgc-isla-norte')].map(caja);
+      const puntos = [...svg.querySelectorAll('.tgc-isla-sendero .punto')].map(c => ({ x: +c.getAttribute('cx'), y: +c.getAttribute('cy'), r: +c.getAttribute('r') + 1.2, n: c.parentNode.getAttribute('data-id') }))
+        .concat([...svg.querySelectorAll('.tgc-isla-parada circle:not(.nucleo)')].map(c => ({ x: +c.getAttribute('cx'), y: +c.getAttribute('cy'), r: +c.getAttribute('r') + 1, n: 'parada ' + c.parentNode.getAttribute('data-km') })));
+      const mal = [];
+      etiquetas.forEach(e => puntos.forEach(p => { if (Math.hypot(Math.max(e.x0, Math.min(p.x, e.x1)) - p.x, Math.max(e.y0, Math.min(p.y, e.y1)) - p.y) < p.r) mal.push(e.n + ' × ' + p.n); }));
+      return { mal, etiquetas: etiquetas.length, puntos: puntos.length };
+    });
+    prueba('ninguna etiqueta del mapa (el Teide y su altitud, las seis paradas, la escala y el norte) tapa un punto de sendero o una parada', !choques27.mal.length && choques27.etiquetas === 10 && choques27.puntos === totalSend - grSend + 6, JSON.stringify(choques27));
+    prueba('la ruta: la funda, lo que falta a puntos rojos (el esquema) y lo hecho del color del movimiento', v0.funda && v0.ruta === '0.1 4.6' && /^rgb\(200, 49, 43\)$/.test(v0.rutaColor) && v0.hechaColor === 'rgb(11, 124, 134)', JSON.stringify([v0.funda, v0.ruta, v0.rutaColor, v0.hechaColor]));
+    prueba('sin nada anotado: el compañero de a pie de serie (senderista), mirando hacia donde va la ruta (al suroeste: girado), con su contorno de pegatina', v0.comp === 'persona' && v0.giro === 'scale(-1 1)' && v0.filtro === 'url(#tgc-pegatina)' && /class="pierna-a"/.test(v0.html), JSON.stringify([v0.comp, v0.giro, v0.filtro]));
+    prueba('«Su compañero de travesía»: a pie, senderista (elegido), presa canario y lagarto tizón; la fila de la bici, escondida (la bici no cuenta)', v0.pie === 'persona*:Senderista,perro:Presa canario,lagarto:Lagarto tizón' && !v0.biciVisible, JSON.stringify([v0.pie, v0.biciVisible]));
+    prueba('en «Músculos»: la semana, «Hoy en la isla», «Cruce la isla», «Senderos de la isla» y los 12 grupos', /tgc-semana tgc-hoy-isla tgc-isla tgc-send tgc-grupos/.test(v0.orden), v0.orden);
+
+    /* elegir el presa canario: se guarda, el mapa lo pone y el botón lo dice */
+    await p27.click('#tgc-comp-pie .tgc-comp-op[data-comp="perro"]'); await p27.waitForTimeout(150);
+    const v1 = await leer27();
+    prueba('elegir el presa canario: se guarda (comp.pie), va por el mapa y su botón queda pulsado', v1.guardado && v1.guardado.comp && v1.guardado.comp.pie === 'perro' && v1.comp === 'perro' && /^persona:Senderista,perro\*:Presa canario/.test(v1.pie), JSON.stringify([v1.guardado && v1.guardado.comp, v1.comp, v1.pie]));
+    prueba('…y da un saltito en el mapa', await p27.evaluate(() => document.getElementById('tgc-isla-marca').classList.contains('salta')));
+
+    /* según lo último anotado que cuenta: bici (si cuenta), a pie, a nado, en kayak */
+    const conComp = async (mov, gr, comp, aspecto) => { await ejemplo(p27, Object.assign({ mov, gr, comp }, aspecto ? { aspecto } : {})); await p27.waitForTimeout(250); return leer27(); };
+    const b1 = await conComp([[2, 'caminar', 60, 5], [0, 'bici', 60, 20]], ['bici'], { pie: 'perro', bici: 'electrica' });
+    prueba('lo último en bici, con la bici elegida para la travesía: va la bici eléctrica elegida; la fila de la bici sale, con la eléctrica pulsada', b1.comp === 'electrica' && b1.biciVisible && b1.bici === 'carretera,montana,electrica*', JSON.stringify([b1.comp, b1.biciVisible, b1.bici]));
+    const b2 = await conComp([[2, 'bici', 60, 20], [0, 'senderismo', 120, 8]], ['bici'], { pie: 'lagarto', bici: 'montana' });
+    prueba('lo último a pie (senderismo), aunque antes fuera en bici: va el de a pie elegido (el lagarto tizón)', b2.comp === 'lagarto', b2.comp);
+    const b3 = await conComp([[2, 'caminar', 60, 5], [0, 'bici', 60, 20]], [], { pie: 'perro', bici: 'montana' });
+    prueba('lo último en bici, pero la bici no cuenta para la travesía: va el de a pie (el presa canario) y la fila de la bici no sale', b3.comp === 'perro' && !b3.biciVisible, JSON.stringify([b3.comp, b3.biciVisible]));
+    const b4 = await conComp([[1, 'caminar', 60, 5], [0, 'nadar', 40, 1.5]], ['nadar'], { pie: 'perro', bici: 'montana' });
+    const b5 = await conComp([[1, 'caminar', 60, 5], [0, 'kayak', 60, 6]], ['kayak'], { pie: 'perro', bici: 'montana' });
+    prueba('a nado, el nadador; en kayak, el kayak (si cuentan)', b4.comp === 'nadador' && b5.comp === 'kayak', JSON.stringify([b4.comp, b5.comp]));
+    const b6 = await conComp([[0, 'caminar', 60, 5]], [], { pie: 'persona', bici: 'carretera' }, Object.assign({}, await p27.evaluate(() => TG_FIGURA.normaliza(null)), { piel: 9, arribaColor: 3, abajoColor: 6, peloColor: 0, calzadoColor: 8 }));
+    const F27 = await p27.evaluate(() => ({ piel: TG_FIGURA.PIEL[9], arriba: TG_FIGURA.ROPA_COLOR[3], abajo: TG_FIGURA.ROPA_COLOR[6], pelo: TG_FIGURA.PELO_COLOR[0], calzado: TG_FIGURA.ROPA_COLOR[8] }));
+    prueba('la persona lleva los colores de «Aspecto» (piel, ropa de arriba y de abajo, pelo y calzado), en el mapa y en su botón', b6.comp === 'persona' && Object.values(F27).every(c => b6.html.indexOf(c) >= 0) &&
+      await p27.evaluate(c => document.querySelector('#tgc-comp-pie .tgc-comp-op[data-comp="persona"]').innerHTML.indexOf(c) >= 0, F27.piel), JSON.stringify(F27));
+    const roto = await p27.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, comp: { pie: 'gato', bici: '<b>' }, senderos: { 'prtf-1-mercedes-cruz-carmen': '2020-01-01', 'Mal Id': '2026-01-01', 'montana-blanca': '2999-01-01', 'sendero-chinyero': 'ayer' } })); TG_CUERPO.abrir(); return JSON.parse(localStorage.getItem('tenerife.cuerpo') || 'null'); });
+    await p27.waitForTimeout(200);
+    const v2 = await leer27();
+    prueba('lo guardado roto: un compañero que no está → los de serie; de los senderos, solo el id bien escrito con su fecha (ni ids raros, ni fechas futuras, ni «ayer»)', v2.comp === 'persona' && /^persona\*/.test(v2.pie) && v2.de === '1 de ' + totalSend + ' senderos', JSON.stringify([v2.comp, v2.pie, v2.de, roto && roto.senderos]));
+
+    /* «Senderos de la isla» */
+    await vacio(p27); await p27.waitForTimeout(250);
+    const s0 = await leer27();
+    const zonaDe = await p27.evaluate(() => { const r = {}; document.querySelectorAll('#tgc-send-lista details').forEach(d => d.querySelectorAll('.tgc-send-op').forEach(b => { r[b.dataset.id] = d.dataset.zona; })); return r; });
+    prueba('los senderos son los de la guía: ' + totalSend + ' filas (places[], «senderismo»), un punto en el mapa por cada uno menos las ' + grSend + ' etapas del GR 131 (que son la ruta)', totalSend >= 30 && s0.filas === totalSend && s0.puntos === totalSend - grSend && s0.sub === 'Los ' + totalSend + ' senderos de la guía. Márquelos cuando los haga y llegue al 100 %.', JSON.stringify([totalSend, s0.filas, s0.puntos, s0.sub]));
+    prueba('por zonas, en este orden: Anaga, Teno, Teide, Norte y Sur, con su cuenta («0 de N»), que suman todos', /^anaga:0 de \d+,teno:0 de \d+,teide:0 de \d+,norte:0 de \d+,sur:0 de \d+$/.test(s0.zonas) && s0.zonas.split(',').reduce((a, z) => a + Number(z.split(' de ')[1]), 0) === totalSend, s0.zonas);
+    prueba('cada sendero en su zona: PR-TF 1 en Anaga, Teno Alto en Teno, Montaña Blanca en Teide, Chinyero en Norte, el tramo 5 del GR 131 en Sur', zonaDe['prtf-1-mercedes-cruz-carmen'] === 'anaga' && zonaDe['sendero-teno-baracan'] === 'teno' && zonaDe['montana-blanca'] === 'teide' && zonaDe['sendero-chinyero'] === 'norte' && zonaDe['gr131-tramo5-vilaflor-arona'] === 'sur', JSON.stringify(zonaDe));
+    prueba('sin ninguno: «0 %», «0 de ' + totalSend + ' senderos», la barra a cero', s0.pc.replace(/\s/g, '') === '0%' && s0.de === '0 de ' + totalSend + ' senderos' && s0.barra === '0%', JSON.stringify([s0.pc, s0.de, s0.barra]));
+    await p27.evaluate(() => { document.querySelector('#tgc-send-lista details[data-zona="anaga"]').open = true; });
+    await p27.click('#tgc-send-lista .tgc-send-op[data-id="prtf-1-mercedes-cruz-carmen"]'); await p27.waitForTimeout(150);
+    const s1 = await leer27();
+    const fila1 = await p27.evaluate(() => { const b = document.querySelector('#tgc-send-lista .tgc-send-op[data-id="prtf-1-mercedes-cruz-carmen"]'); return { pres: b.getAttribute('aria-pressed'), meta: b.querySelector('.tgc-send-meta').textContent, hoy: new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }) }; });
+    const pc1 = Math.floor(1 / totalSend * 100);
+    prueba('marcar PR-TF 1: pulsado, «Hecho el (hoy)», ' + pc1 + ' % (hacia abajo), «1 de ' + totalSend + ' senderos», Anaga «1 de …», su punto del mapa en verde y guardado con la fecha de hoy', fila1.pres === 'true' && fila1.meta === 'Hecho el ' + fila1.hoy && s1.pc.replace(/\s/g, '') === pc1 + '%' && s1.de === '1 de ' + totalSend + ' senderos' && /^anaga:1 de /.test(s1.zonas) && s1.puntosHechos === 1 && s1.guardado.senderos['prtf-1-mercedes-cruz-carmen'] === await p27.evaluate(() => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }), JSON.stringify([fila1, s1.pc, s1.de, s1.zonas.split(',')[0], s1.puntosHechos]));
+    await p27.click('#tgc-send-lista .tgc-send-op[data-id="prtf-1-mercedes-cruz-carmen"]'); await p27.waitForTimeout(120);
+    const s2 = await leer27();
+    prueba('…y desmarcarlo: vuelve a 0, sin punto verde y sin nada guardado', s2.de === '0 de ' + totalSend + ' senderos' && s2.puntosHechos === 0 && !Object.keys(s2.guardado.senderos).length, JSON.stringify([s2.de, s2.puntosHechos, s2.guardado.senderos]));
+    /* el porcentaje, hacia abajo: con todos menos uno no dice 100 */
+    const ids = await p27.evaluate(() => places.filter(p => p.category === 'senderismo').map(p => p.id));
+    const conSend = async n => { await p27.evaluate(l => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo') || '{"v":1}'); g.senderos = {}; l.forEach(id => { g.senderos[id] = '2026-11-01'; }); localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir(); }, ids.slice(0, n)); await p27.waitForTimeout(150); return leer27(); };
+    const casi = await conSend(totalSend - 1), todo = await conSend(totalSend);
+    prueba('el porcentaje va hacia abajo: con ' + (totalSend - 1) + ' de ' + totalSend + ', «' + Math.floor((totalSend - 1) / totalSend * 100) + ' %» (no 100); con todos, «100 %», la barra llena y todas las zonas completas', casi.pc.replace(/\s/g, '') === Math.floor((totalSend - 1) / totalSend * 100) + '%' && todo.pc.replace(/\s/g, '') === '100%' && todo.barra === '100%' && await p27.evaluate(() => [...document.querySelectorAll('#tgc-send-lista details')].every(d => d.classList.contains('completa'))), JSON.stringify([casi.pc, todo.pc, todo.barra]));
+    /* un punto del mapa lleva a su fila: abre su zona y la enfoca */
+    await vacio(p27); await p27.waitForTimeout(200);
+    await p27.evaluate(() => { const g = document.querySelector('#tgc-mapa .tgc-isla-sendero[data-id="sendero-teno-baracan"] .toque'); g.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+    await p27.waitForTimeout(400);
+    prueba('tocar un punto del mapa (Teno Alto): se abre Teno y la fila queda enfocada', await p27.evaluate(() => document.querySelector('#tgc-send-lista details[data-zona="teno"]').open && document.activeElement && document.activeElement.dataset.id === 'sendero-teno-baracan'));
+    /* «Las cifras» y la política */
+    const cop = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'mapa', 'tenerife-relieve.json'), 'utf8')).fuente;
+    prueba('«Las cifras»: el fondo del mapa (Copernicus GLO-30, OpenStreetMap ODbL, las líneas del mar no son profundidades) con las dos notas de Copernicus palabra por palabra; y de dónde salen los senderos', s0.cifrasMapa.indexOf('«' + cop.credito + '»') >= 0 && s0.cifrasMapa.indexOf('«' + cop.responsabilidad + '»') >= 0 && /Copernicus GLO-30/.test(s0.cifrasMapa) && /OpenStreetMap, ODbL/.test(s0.cifrasMapa) && /no profundidades/.test(s0.cifrasMapa) && s0.cifrasSend === 'Los senderos son los ' + totalSend + ' de la guía, con el nombre, el punto de salida y los datos de su ficha. Lo que marca como hecho lo apunta usted y se queda solo en este aparato.', s0.cifrasMapa.slice(0, 120));
+    prueba('la política (es): los senderos marcados como hechos y el compañero de la travesía', await p27.evaluate(() => /los senderos que marque como hechos \(con su fecha\), el compañero que elija para la travesía/.test(UI_TX.ppDatosCuerpoTxt.es)));
+    /* «Borrar los datos» se lleva el compañero y los senderos */
+    await conComp([[0, 'caminar', 60, 5]], [], { pie: 'lagarto', bici: 'montana' });
+    await p27.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); g.senderos = { 'montana-blanca': '2026-11-01' }; localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir(); });
+    await p27.waitForTimeout(150);
+    await p27.evaluate(() => { document.getElementById('tgc-borrar').click(); document.getElementById('tgc-borrar-si').click(); }); await p27.waitForTimeout(250);
+    const v3 = await leer27();
+    prueba('«Borrar los datos de «Su cuerpo»» se lleva el compañero y los senderos (vuelve el senderista, 0 senderos)', v3.comp === 'persona' && /^0 de /.test(v3.de) && (!v3.guardado || !v3.guardado.senderos || !Object.keys(v3.guardado.senderos).length), JSON.stringify([v3.comp, v3.de]));
+    /* el compañero anda mientras avanza: anotar 4 km a pie */
+    await conComp([[1, 'caminar', 60, 10]], [], { pie: 'perro', bici: 'carretera' });
+    await p27.click('#tgc-mov-btn'); await p27.waitForTimeout(350);
+    await p27.click('#tgc-mov-tipos .tgc-tipo[data-tipo="caminar"]'); await p27.fill('#tgc-mov-km', '4'); await p27.dispatchEvent('#tgc-mov-km', 'change'); await p27.waitForTimeout(60);
+    await p27.click('#tgc-mov-guardar'); await p27.waitForTimeout(300);
+    const andando = await p27.evaluate(() => ({ anda: document.getElementById('tgc-isla-marca').classList.contains('anda'), comp: document.getElementById('tgc-isla-marca').getAttribute('data-comp'), anim: getComputedStyle(document.querySelector('#tgc-isla-comp .pierna-a')).animationName }));
+    await p27.waitForTimeout(1700);
+    const quieto = await p27.evaluate(() => ({ anda: document.getElementById('tgc-isla-marca').classList.contains('anda'), anim: getComputedStyle(document.querySelector('#tgc-isla-comp .pierna-a')).animationName }));
+    prueba('anotar 4 km a pie: el presa canario anda mientras avanza (las patas se mueven) y a los 2 s se para', andando.anda && andando.comp === 'perro' && andando.anim === 'tgc-paso' && !quieto.anda && quieto.anim === 'none', JSON.stringify([andando, quieto]));
+    /* de noche: el relieve de noche */
+    await p27.click('#tgc-tema'); await p27.waitForTimeout(200);
+    const n27 = await leer27();
+    prueba('de noche: el relieve de noche a la vista y el de día escondido', n27.ims.join(',') === './datos/cuerpo/isla-relieve-dia.webp:none,./datos/cuerpo/isla-relieve-noche.webp:inline', n27.ims.join(','));
+    await p27.click('#tgc-tema'); await p27.waitForTimeout(150);
+    /* los diez idiomas: nada vacío, nada en castellano fuera del castellano */
+    const malos27 = [];
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      await idioma(p27, l);
+      const r = await p27.evaluate(() => {
+        const g = id => document.getElementById(id);
+        return { tit: g('tgc-comp-l').textContent, ayuda: g('tgc-comp-ayuda').textContent, send: g('tgc-send-tit').textContent, sub: g('tgc-send-sub').textContent, de: g('tgc-send-de').textContent,
+          nombres: [...document.querySelectorAll('#tgc-comp-pie .tgc-comp-nom, #tgc-comp-bici .tgc-comp-nom')].map(n => n.textContent), norte: g('tgc-isla-norte').textContent, alt: g('tgc-isla-alt').textContent,
+          zonas: [...document.querySelectorAll('#tgc-send-lista .tgc-send-zn')].map(n => n.textContent), cifras: g('tgc-cifras-mapa').textContent };
+      });
+      const textos = [r.tit, r.ayuda, r.send, r.sub, r.de, r.norte, r.alt, r.cifras].concat(r.nombres);
+      if (textos.some(t => !t || !t.trim())) malos27.push(l + ': vacío');
+      if (l !== 'es' && [r.tit, r.ayuda, r.send, r.sub].some(t => /compañero|Senderos de la isla|Márquelos/.test(t))) malos27.push(l + ': castellano');
+      if (/^zh/.test(l) && ![r.tit, r.send, r.sub, r.norte].every(t => /[一-鿿]/.test(t))) malos27.push(l + ': sin chino');
+      if (l === 'bg' && ![r.tit, r.send, r.sub, r.norte].every(t => /[Ѐ-ӿ]/.test(t))) malos27.push(l + ': sin cirílico');
+      if (r.zonas.length !== 5) malos27.push(l + ': zonas ' + r.zonas.length);
+    }
+    await idioma(p27, 'es');
+    prueba('los textos del bloque 8 en los diez idiomas: nada vacío, nada en castellano fuera del castellano, el chino en chino y el búlgaro en cirílico', malos27.length === 0, malos27.join(' | '));
+    prueba('bloque 8: sin errores de página', e27.length === 0, e27.join(' | '));
+    await c27.close();
+
+    /* las celebraciones: el primero, el 25 % y el 100 % */
+    const c27f = await contexto(b, { fiesta: true }), p27f = await c27f.newPage(), e27f = []; vigilar(p27f, e27f);
+    await abrirApp(p27f); await abrirPerfilCuerpo(p27f); await suCuerpo(p27f); await vacio(p27f); await p27f.waitForTimeout(250);
+    const fiesta = async () => { await p27f.waitForTimeout(450); const r = await p27f.evaluate(() => { const f = document.getElementById('tgc-fiesta'); const n = t => (t || '').replace(/\u00a0/g, ' '); return { abierta: !f.hidden, tit: n((f.querySelector('#tgc-fiesta-tit') || {}).textContent), txt: n((f.querySelector('#tgc-fiesta-txt') || {}).textContent), arte: !!f.querySelector('.tgc-send-arte') }; }); await p27f.keyboard.press('Escape'); await p27f.waitForTimeout(350); return r; };
+    await p27f.evaluate(() => { document.querySelector('#tgc-send-lista details[data-zona="anaga"]').open = true; });
+    await p27f.click('#tgc-send-lista .tgc-send-op[data-id="prtf-1-mercedes-cruz-carmen"]');
+    const f1 = await fiesta();
+    prueba('el primer sendero: la celebración «Su primer sendero» («PR-TF 1 · Las Mercedes — Cruz del Carmen: el primero de los ' + totalSend + ' senderos de la guía.»), con su dibujo', f1.abierta && f1.tit === 'Su primer sendero' && f1.txt === 'PR-TF 1 · Las Mercedes — Cruz del Carmen: el primero de los ' + totalSend + ' senderos de la guía.' && f1.arte, JSON.stringify(f1));
+    const cuarto = Math.ceil(totalSend / 4);
+    await p27f.evaluate(l => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); l.forEach(id => { g.senderos[id] = '2026-11-01'; }); localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir(); }, ids.filter(id => id !== 'prtf-1-mercedes-cruz-carmen' && id !== 'montana-blanca').slice(0, cuarto - 2));
+    await p27f.waitForTimeout(200);
+    await p27f.evaluate(() => { document.querySelector('#tgc-send-lista details[data-zona="teide"]').open = true; });
+    await p27f.click('#tgc-send-lista .tgc-send-op[data-id="montana-blanca"]');
+    const f2 = await fiesta();
+    prueba('al pasar del 25 %: «El 25 % de los senderos» y «Lleva ' + cuarto + ' de ' + totalSend + '. Cada sendero, una parte nueva de la isla.»', f2.abierta && f2.tit === 'El 25 % de los senderos' && f2.txt === 'Lleva ' + cuarto + ' de ' + totalSend + '. Cada sendero, una parte nueva de la isla.', JSON.stringify(f2));
+    await p27f.evaluate(l => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); l.forEach(id => { g.senderos[id] = '2026-11-01'; }); localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir(); }, ids.filter(id => id !== 'sendero-chinyero'));
+    await p27f.waitForTimeout(200);
+    await p27f.evaluate(() => { document.querySelector('#tgc-send-lista details[data-zona="norte"]').open = true; });
+    await p27f.click('#tgc-send-lista .tgc-send-op[data-id="sendero-chinyero"]');
+    const f3 = await fiesta();
+    prueba('el último: «Todos los senderos» y «Ha hecho los ' + totalSend + ' senderos de la guía: el 100 %.»', f3.abierta && f3.tit === 'Todos los senderos' && f3.txt === 'Ha hecho los ' + totalSend + ' senderos de la guía: el 100 %.', JSON.stringify(f3));
+    prueba('las celebraciones: sin errores de página', e27f.length === 0, e27f.join(' | '));
+    await c27f.close();
+
+    /* a 320 px, de noche y en alemán (los textos más largos): nada pasa del borde */
+    const c27b = await contexto(b, { contexto: { viewport: { width: 320, height: 568 } } }), p27b = await c27b.newPage(), e27b = []; vigilar(p27b, e27b);
+    await abrirApp(p27b); await abrirPerfilCuerpo(p27b); await suCuerpo(p27b);
+    await p27b.click('#tgc-tema'); await p27b.waitForTimeout(150);
+    await ejemplo(p27b, { mov: [[1, 'caminar', 60, 5], [0, 'bici', 60, 20]], gr: ['bici'], comp: { pie: 'perro', bici: 'montana' }, senderos: { 'montana-blanca': '2026-11-01' } });
+    for (const l of ['de', 'bg', 'pl']) {
+      await idioma(p27b, l); await p27b.waitForTimeout(150);
+      await p27b.evaluate(() => document.querySelectorAll('#tgc-send-lista details').forEach(d => { d.open = true; }));
+      const r = await p27b.evaluate(() => {
+        const p = document.getElementById('cuerpo-panel'), b = p.getBoundingClientRect();
+        const anchos = [...p.querySelectorAll('#tgc-isla *, #tgc-send *')].filter(n => { if (!n.getClientRects().length || n.closest('svg')) return false; const x = n.getBoundingClientRect(); return x.right > b.right + 0.5 || x.left < b.left - 0.5; }).map(n => n.id || (typeof n.className === 'string' ? n.className : '') || n.tagName).slice(0, 5);
+        return { anchos, psw: p.scrollWidth, pcw: p.clientWidth };
+      });
+      prueba('a 320 px, de noche, en ' + l + ': «Cruce la isla» (con las dos filas del compañero) y «Senderos de la isla» (todas las zonas abiertas) sin desborde', r.psw <= r.pcw && r.anchos.length === 0, `${r.psw}>${r.pcw} ${r.anchos.join(',')}`);
+    }
+    prueba('a 320 px: sin errores de página', e27b.length === 0, e27b.join(' | '));
+    await c27b.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
