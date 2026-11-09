@@ -7060,6 +7060,77 @@ los leen salen en verde.
   «Cruce la isla» (`tools/gr131_trazado.py`), mirando antes su licencia;
 - la revisión nativa de los textos nuevos en nueve idiomas.
 
+## «Su cuerpo», bloques 5, 6 y 7: el tiempo de la isla, el GR 131, los sellos, la postal y cada deporte con sus datos (8 de noviembre)
+
+Las notas 26 y 27 de la sesión de «Su cuerpo»: tres parches (`0005`, `0006` y `0007`) hechos sobre el `main`
+de las 21:13 (`7ab40b0`), que entran con `git am`, sin `-3`, y dan los tres árboles de la nota (comprobado). Se
+publican tal cual (`8c7111d`, `76774bc` y `483e62d`) y, encima, tres commits: `e3eff8e` (lo de encima), `943d3e9` (la
+política) y `4b17df3` (el chino). Sustituyen a la integración del bloque 5 que había preparado Claude Code (con
+un selector «a pie / en bici / a nado»), que no se publica.
+
+**Lo que traen.** El bloque 5: «Hoy en la isla» (el tiempo de una de las seis zonas del panel del sol, de
+Open-Meteo, sin la posición de nadie; los avisos de AEMET de la zona; el consejo del día con el sol de la OMS)
+y «Cruce la isla» (el GR 131 de La Esperanza a Arona sobre un esquema de la isla). El 6: «Sus sellos» (once,
+con su fecha, solo en el dispositivo), las celebraciones y «Su postal» (una imagen de 1080 × 1350 que se
+comparte con el menú del móvil o se descarga; no sube a ningún servidor). El 7: catorce deportes en «Anotar
+movimiento», cada uno con sus datos (la distancia en km o, a nado, en metros; el desnivel en el monte y
+corriendo), la intensidad de cada anotación (moderada o intensa, con la prueba del habla de los CDC; la que se
+propone, del Compendio de Actividades Físicas de 2024: desde 6 MET, intensa), la meta de un adulto con cada
+minuto intenso por dos (la OMS, 2020: de 150 a 300 minutos moderados o de 75 a 150 intensos), «Por deporte»,
+y el buceo y el avión (la DAN, taller de 2002).
+
+**Lo que decidió Jerome.** El GR 131, «A pie y bici»: a pie cuenta siempre y la bici, si la persona la elige; el
+nado y el kayak suman a la semana, nunca a la travesía («como cruza la isla nadando? La puede rodear pero cruzar
+no»), y la hoja lo dice al elegirlos. Los sellos, «Primero el móvil»: la opción de guardarlos también en la
+cuenta irá después, con su propio permiso y su frase. Y la frase de privacidad entera de «Su cuerpo»: «Si por la
+política».
+
+**Lo de encima** (`e3eff8e`): el crédito de Open-Meteo junto a sus datos, el de los paneles de la app (la entrega
+solo decía «Open-Meteo, a las HH:MM»); «Las cifras», con las paradas a los km acumulados de los tramos de
+Webtenerife y Arona, el final, a 85,55 (las fichas suman 85,0), y con la fuente de la costa: el recurso de
+polígonos de «Límites Municipales de Tenerife» del Cabildo de Tenerife (CC BY; el zip del repositorio pesa los
+970,8 KiB del portal y tiene su proyección); el aria-label del mapa en chino («已走», andado, no vale en bici) y
+la coma del chino en «Para {deporte}, aún sin anotar»; los km de la travesía, de los sellos y de la postal, al
+metro, y la cifra con su unidad sin partirse; y un comentario que atribuía a los CDC el «por dos», que es de la
+OMS.
+
+**Las fuentes.** La entrega cambiaba el módulo construido. Sus cambios están ahora en las fuentes de «Su
+cuerpo» (`textos.py`, `ui.js`, `cuerpo.html`, `estilos.css`, `textos-fijos.js`, `asistente.js`, `deporte.js` y
+el asistente), y `construir.py` da su módulo byte a byte, salvo un comentario suelto dentro de `CUERPO_UI`, que
+pasa a `textos.py`; los datos, iguales. El módulo publicado sale de esas fuentes. `CUERPO_UI`: 534 filas.
+
+**Comprobado, dato a dato.** Los catorce códigos y MET del Compendio de 2024 (pacompendium.com, página a
+página), la DAN de 2002 (12 h tras una inmersión sin descompresión, 18 tras varias en un día o en varios días,
+bastante más con paradas de descompresión), la prueba del habla de los CDC, la OMS de 2020 (actividad física) y
+la del índice UV (sus cinco categorías, sus consejos y el máximo «en las cuatro horas alrededor del mediodía
+solar»). Las seis zonas, las de `MC_ZONES`; las seis paradas, cada una sobre su elemento del extracto de
+OpenStreetMap del repositorio (a 0,0 m); el Teide, el de la ficha «Pico del Teide — Cumbre». Nada inventado.
+
+**Las traducciones.** Las 121 filas nuevas o cambiadas, leídas en los diez idiomas (el sentido, el trato de
+usted, el polaco impersonal, el «Вие» del búlgaro, los marcadores y los plurales). Un arreglo (`4b17df3`): en
+«Cuentan para su travesía», el chino decía «横穿之旅» y el tradicional «橫越之旅»; las demás filas, «穿越之旅».
+
+**La seguridad.** Lo que viene de la persona o de lo guardado va por `textContent`; `innerHTML`, solo con iconos
+fijos y dibujos del propio código; la fecha de los sellos, escapada; lo guardado, validado campo a campo al
+leerlo. La única petición nueva es a Open-Meteo, con las coordenadas fijas de cada zona; la CSP ya la permitía,
+y también las imágenes `blob:` y `data:` de la postal.
+
+**Controles.** `probar_cuerpo.js`, 485 controles, todos en verde (las pruebas de la entrega, al día: la bici
+sola en la travesía, la nota del agua, el crédito, «Las cifras» y la cifra sin partir); `probar_figura.js`,
+`cuerpo_isla.py --comprobar`, `gr131_trazado.py --comprobar`, `auditar_sw.js`, `auditar_xss.js`,
+`auditar_registro.js`, `auditar_claves_tx.js`, `castellano_suelto.js`, `generar_privacidad.py --comprobar`,
+`app_preparar.js --comprobar`, `auditar_readme.js`, `barrido_idiomas.js` (5.638) y `auditar_web.js` (3488), en
+verde, antes y después del arreglo del chino.
+
+**La auditoría entera**, sobre `d7f82fa` (árbol `396d8d9d…`), que en `main` es `943d3e9`, la rama sin el arreglo del
+chino, que solo cambia esas dos filas: «AUDITORIA EN VERDE»: ningún control en rojo ni sin ejecutar (4.841 líneas,
+1 h 50 min). Puesta la rama al día con `main`, solo entran commits de los robots (los avisos de AEMET y los terremotos
+del IGN): solo cambian sus ficheros de datos, y los controles que los leen salen en verde.
+
+**Pendiente.** La opción de guardar los sellos también en la cuenta (con el permiso del perfil y su frase, que
+verá Jerome antes); probar «Compartir» la postal en un iPhone; y que un nativo de cada idioma lea los textos
+nuevos, como dice la nota 27.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
