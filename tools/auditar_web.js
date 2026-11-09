@@ -597,9 +597,10 @@ function revisar(tablas, o) {
        · «+N mas - sigue escribiendo» del buscador
        · la pista 🅰️/🅱️ de la ruta, que el marcado pinta traducida con
          data-tx y activatePick() machacaba con un literal
-       · el boton de la reserva, «Pagar»/«Anadir a la cesta»
        · el boton del planificador cuando eliges mas de una actividad,
          que dpApplyUiTexts() deja traducido y dpiSelectZone machacaba
+     (el quinto, el boton de la reserva, «Pagar»/«Anadir a la cesta», se fue
+     el 9-11-2026 con su panel, que nada abria)
      Asi que este control TOCA. Se pide bulgaro, que cambia de alfabeto: si
      despues de usar la app queda algo en alfabeto latino donde deberia
      haber cirilico, es que alguien lo reescribio. */
@@ -630,9 +631,6 @@ function revisar(tablas, o) {
     activatePick('dest'); await esperar(250);
     mira('pista de ruta B', (document.getElementById('route-pick-hint') || {}).textContent);
 
-    try { updateBookingCTA(); } catch (e) {}
-    mira('boton de reserva', (document.getElementById('booking-cta-btn') || {}).textContent);
-
     const cards = [...document.querySelectorAll('#dpi-zone-grid .dp-zone-card')];
     if (cards.length >= 2) {
       cards[0].click(); await esperar(200);
@@ -645,7 +643,7 @@ function revisar(tablas, o) {
     return o;
   }).catch(e => ['(no se pudo recorrer: ' + String(e).slice(0, 80) + ')']);
   console.log('\n=== texto que se vuelve castellano al USAR la app ===');
-  console.log('  ' + (tocado.length ? 'MAL' : 'OK ') + ' seis rotulos que se reescriben al tocar siguen en su idioma');
+  console.log('  ' + (tocado.length ? 'MAL' : 'OK ') + ' cinco rotulos que se reescriben al tocar siguen en su idioma');
   tocado.forEach(t => console.log('      <--  ' + t));
   if (tocado.length) docMal = 1;
 

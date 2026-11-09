@@ -8973,7 +8973,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3488 filas (y 5.638 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3468 filas (y 5.618 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9115,7 +9115,8 @@ desnivel), lo que aconseja la DAN antes de volar, lo que cuenta para la travesí
 nado, en kayak) y dos párrafos de «Las cifras»; fuera, la nota de a nado o en bici del bloque 5:
 3489 y 5.639. Y encima, con Jerome («A pie y bici»: por el agua la isla se rodea, no se cruza),
 fuera «A nado» y «En kayak» de la travesía y una nota más en la hoja, la del nado y el kayak (534):
-3488 y 5.638. El
+3488 y 5.638. El 9 de noviembre, fuera el panel de reservas que nada abría (Jerome: «quítalo»), con sus 20
+textos: 3468 y 5.618. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
