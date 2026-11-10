@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (559 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (560 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -548,6 +548,7 @@
     "cuerpoDepPrioTag": {"es": "Prioridad", "en": "Priority", "fr": "Priorité", "de": "Vorrang", "it": "Priorità", "nl": "Prioriteit", "zh": "优先", "zht": "優先", "bg": "Приоритет", "pl": "Priorytet"},
     "cuerpoDepFiguraPrio": {"es": "Grupos prioritarios para {deporte}: {lista}.", "en": "Priority groups for {deporte}: {lista}.", "fr": "Groupes prioritaires pour {deporte} : {lista}.", "de": "Vorrangige Gruppen für {deporte}: {lista}.", "it": "Gruppi prioritari per {deporte}: {lista}.", "nl": "Prioritaire groepen voor {deporte}: {lista}.", "zh": "{deporte}的优先肌群：{lista}。", "zht": "{deporte}的優先肌群：{lista}。", "bg": "Приоритетни групи за {deporte}: {lista}.", "pl": "Grupy priorytetowe ({deporte}): {lista}."},
     "cuerpoModoComida": {"es": "Comida", "en": "Food", "fr": "Repas", "de": "Essen", "it": "Cibo", "nl": "Eten", "zh": "饮食", "zht": "飲食", "bg": "Храна", "pl": "Jedzenie"},
+    "cuerpoModoEvolucion": {"es": "Evolución", "en": "Progress", "fr": "Évolution", "de": "Verlauf", "it": "Progressi", "nl": "Voortgang", "zh": "进展", "zht": "進展", "bg": "Напредък", "pl": "Postępy"},
     "cuerpoComTitulo": {"es": "Su comida", "en": "Your food", "fr": "Votre alimentation", "de": "Ihre Ernährung", "it": "Alimentazione", "nl": "Uw eten", "zh": "我的饮食", "zht": "我的飲食", "bg": "Вашето хранене", "pl": "Jedzenie"},
     "cuerpoComLema": {"es": "Anote lo que come por raciones, como las cuenta la Agencia Española de Seguridad Alimentaria y Nutrición (AESAN). No cuenta calorías ni le pone objetivos: le enseña su semana al lado de la guía.", "en": "Log what you eat in servings, the way the Spanish Agency for Food Safety and Nutrition (AESAN) counts them. It does not count calories or set targets: it shows your week next to the guide.", "fr": "Notez ce que vous mangez en portions, comme les compte l’Agence espagnole de sécurité alimentaire et de nutrition (AESAN). Pas de calories ni d’objectifs : votre semaine, à côté du guide.", "de": "Notieren Sie, was Sie essen, in Portionen, so wie die spanische Agentur für Lebensmittelsicherheit und Ernährung (AESAN) sie zählt. Keine Kalorien, keine Ziele: nur Ihre Woche neben dem Leitfaden.", "it": "Annoti ciò che mangia in porzioni, come le conta l’Agenzia spagnola per la sicurezza alimentare e la nutrizione (AESAN). Niente calorie né obiettivi: la sua settimana accanto alla guida.", "nl": "Noteer wat u eet in porties, zoals het Spaanse agentschap voor voedselveiligheid en voeding (AESAN) ze telt. Geen calorieën en geen doelen: alleen uw week naast de richtlijn.", "zh": "按份记录您吃的食物，计份方式与西班牙食品安全与营养局（AESAN）相同。这里不计算热量，也不设目标：只把您的一周和指南放在一起看。", "zht": "按份記錄您吃的食物，計份方式與西班牙食品安全與營養局（AESAN）相同。這裡不計算熱量，也不設目標：只把您的一週和指南放在一起看。", "bg": "Записвайте какво ядете в порции, както ги брои Испанската агенция по безопасност на храните и хранене (AESAN). Без калории и без цели: само вашата седмица до насоките.", "pl": "Proszę zapisywać posiłki w porcjach, tak jak liczy je Hiszpańska Agencja Bezpieczeństwa Żywności i Żywienia (AESAN). Bez kalorii i bez celów: tylko tydzień obok wytycznych."},
     "cuerpoComEmpezar": {"es": "Empezar a anotar", "en": "Start logging", "fr": "Commencer", "de": "Mit dem Notieren beginnen", "it": "Inizia ad annotare", "nl": "Beginnen met noteren", "zh": "开始记录", "zht": "開始記錄", "bg": "Започнете да записвате", "pl": "Zacznij zapisywać"},
@@ -2207,9 +2208,14 @@
   function leer() { try { return valida(JSON.parse(localStorage.getItem(KEY))); } catch (e) { return vacio(); } }
   var st = leer();
   function guardar() {
-    try { localStorage.setItem(KEY, JSON.stringify(st)); return true; }
+    try { localStorage.setItem(KEY, JSON.stringify(st)); }
     catch (e) { toast(tx('cuerpoNoGuardado')); return false; }
+    avisarCambio();
+    return true;
   }
+  /* (#99, 10-11-2026) lo guardado ha cambiado: el perfil (modulos/perfil.js) vuelve a contar los km de su «Su
+     evolución», que lee los de «Anotar movimiento» de aquí */
+  function avisarCambio() { try { window.dispatchEvent(new Event('tg-cuerpo-cambia')); } catch (e) {} }
 
   /* Los nombres latinos de la Terminologia Anatomica (TA2, FIPAT; sus términos son de dominio
      público), los verificados el 24-10-2026 en las listas de FIPAT (ifaa.unifr.ch, fechadas el
@@ -3853,8 +3859,9 @@
      escritos, al metro; a nado, los metros, ±50), el desnivel si lo pide (±50 m), la intensidad (moderada o
      intensa: la que propone el deporte, y la persona la cambia), hoy o ayer; «Anotar» guarda, cierra y avisa con
      «Deshacer». Debajo, lo último anotado, con ×.
-     Todo queda en tenerife.cuerpo, en el dispositivo; los kilómetros del perfil (su pestaña «Evolución», que se
-     suben a la cuenta con permiso) no se tocan ── */
+     Todo queda en tenerife.cuerpo, en el dispositivo. Desde el 10-11-2026 (#99) sus km son también los de «Su
+     evolución» (la pestaña «Evolución»): el perfil los lee de aquí, junto a los que se anotaron antes en él, que
+     siguen allí y van a la cuenta con permiso; estos no salen del dispositivo ── */
   var movAbierto = false, movHistoria = false, antesDeMov = null, movSel = null;
   /* la primera vez, el deporte de «Su deporte» si tiene uno en la hoja; si no, caminar */
   function movReset() { var m = movDe(DEP_MOV[st.deporte] || MOV[0].id); movSel = { tipo: m.id, min: m.min, km: m.km, des: 0, int: intDe(m), dia: 'hoy' }; }
@@ -4293,31 +4300,59 @@
   var islaAnimar = false;
   function renderMusculos() { var R = resumen(); renderResumen(R); renderHoy(R); renderIsla(islaAnimar); islaAnimar = false; renderSenderos(); renderLista(R); renderFigura(R); comprobarSellos(R); renderPostalMini(R); }
   function renderModo() {
-    var m = modo === 'musculos', a = modo === 'aspecto', c = modo === 'comida', q = modo === 'preguntar';
+    var m = modo === 'musculos', a = modo === 'aspecto', c = modo === 'comida', q = modo === 'preguntar', e = modo === 'evolucion';
     $('tgc').classList.toggle('is-aspecto', a);
     $('tgc').classList.toggle('is-comida', c);
     $('tgc').classList.toggle('is-preguntar', q);
+    $('tgc').classList.toggle('is-evolucion', e);
     $('tgc-modo-m').setAttribute('aria-pressed', m ? 'true' : 'false');
     $('tgc-modo-a').setAttribute('aria-pressed', a ? 'true' : 'false');
     $('tgc-modo-c').setAttribute('aria-pressed', c ? 'true' : 'false');
+    $('tgc-modo-e').setAttribute('aria-pressed', e ? 'true' : 'false');
     $('tgc-modo-p').setAttribute('aria-pressed', q ? 'true' : 'false');
+    /* (#99) «Evolución», solo con el perfil, que presta sus tarjetas (en el prototipo no está) */
+    $('tgc-modo-e').hidden = !perfilPresta();
     $('tgc-vista-musculos').hidden = !m;
     $('tgc-vista-aspecto').hidden = !a;
     $('tgc-vista-comida').hidden = !c;
+    $('tgc-vista-evolucion').hidden = !e;
     $('tgc-vista-preguntar').hidden = !q;
-    /* la escena con el personaje no pinta nada en «Comida» ni en «Preguntar» */
-    $('tgc-escena').hidden = q || c;
-    panel.classList.toggle('sin-escena', q || c);
+    /* la escena con el personaje no pinta nada en «Comida», «Evolución» ni «Preguntar» */
+    $('tgc-escena').hidden = q || c || e;
+    panel.classList.toggle('sin-escena', q || c || e);
     pegada();
+    if (e) prestarPerfil();
+  }
+  /* ── «Evolución» (#99, 10-11-2026; Jerome: «Que todo sea juntos»): «Sus datos» y «Su evolución» del perfil,
+     aquí dentro. No se rehacen: el perfil (modulos/perfil.js, TG_PERFIL.prestar) mueve sus dos tarjetas a
+     #tgc-evo-montaje, con todo lo suyo (sus datos, sus eventos, su cuenta), y las recupera al cerrar esta
+     pantalla (devolver). Sus avisos salen en los de aquí; sus colores de Día y Noche, en estilos.css. Sin el
+     perfil (el prototipo), la pestaña no sale ── */
+  var prestado = false;
+  function perfilPresta() { var P = window.TG_PERFIL; return !!(P && typeof P.prestar === 'function' && typeof P.devolver === 'function'); }
+  function prestarPerfil() {
+    if (prestado || !perfilPresta()) return;
+    prestado = true;
+    try { if (window.TG_PERFIL.prestar($('tgc-evo-montaje'), { toast: function (t) { toast(t); } }) === false) prestado = false; } catch (x) {}
+  }
+  function devolverPerfil() {
+    if (!prestado) return;
+    prestado = false;
+    try { window.TG_PERFIL.devolver(); } catch (x) {}
   }
   function renderTodo() { aplicarTextos(); ponerTema(tema); renderModo(); renderMusculos(); renderDeporte(); renderEditor(); renderComida(); if (grupoAbierto) renderHoja(); if (modo === 'preguntar') renderAsistente(); if (movAbierto) renderMov(); }
   function setModo(m) {
     if (m === modo) return;
+    if (m === 'evolucion' && !perfilPresta()) return;
+    var antes = modo;
     modo = m; renderModo(); renderFigura(); vivo3d();
     if (m === 'aspecto') traerTodo3d();
-    if (m === 'musculos' || m === 'aspecto') { panel.scrollTop = 0; }
+    if (m === 'musculos' || m === 'aspecto' || m === 'evolucion') { panel.scrollTop = 0; }
     if (m === 'preguntar') renderAsistente();
     if (m === 'comida') renderComida();
+    /* (#99) en «Evolución» se puede cambiar el año de nacimiento, que decide las metas de la OMS y lo de los
+       menores: al salir, «Músculos» y «Su deporte», otra vez */
+    if (antes === 'evolucion') { renderMusculos(); renderDeporte(); }
   }
 
   /* ── eventos (una vez, al montar) ── */
@@ -4337,6 +4372,7 @@
     $('tgc-modo-m').addEventListener('click', function () { setModo('musculos'); });
     $('tgc-modo-a').addEventListener('click', function () { setModo('aspecto'); });
     $('tgc-modo-c').addEventListener('click', function () { setModo('comida'); });
+    $('tgc-modo-e').addEventListener('click', function () { setModo('evolucion'); });
     $('tgc-modo-p').addEventListener('click', function () { setModo('preguntar'); });
     engancharAsistente();
     engancharComida();
@@ -4372,7 +4408,7 @@
     $('tgc-borrar-si').addEventListener('click', function () {
       try { localStorage.removeItem(KEY); localStorage.removeItem(HOY_CLAVE); } catch (e) {}   /* también la zona y el tiempo guardados (bloque 5) */
       st = vacio(); hoyCache = null; hoyError = false; $('tgc-borrar-confirm').hidden = true; $('tgc-borrar').hidden = false;
-      renderTodo(); pedirHoy(); toast(tx('cuerpoBorrado'));
+      renderTodo(); pedirHoy(); toast(tx('cuerpoBorrado')); avisarCambio();
     });
     /* la hoja */
     $('tgc-velo').addEventListener('click', function () { if (movAbierto) cerrarMov(); else if (cifrasAbiertas) cerrarCifras(); else cerrarHoja(); });
@@ -4480,8 +4516,9 @@
     montar();
     st = leer();
     tema = leerTema();
-    if (op && (op.modo === 'aspecto' || op.modo === 'musculos' || op.modo === 'comida' || op.modo === 'preguntar')) modo = op.modo;
+    if (op && (op.modo === 'aspecto' || op.modo === 'musculos' || op.modo === 'comida' || op.modo === 'preguntar' || op.modo === 'evolucion')) modo = op.modo;
     if (op && typeof op.pregunta === 'string') { modo = 'preguntar'; preguntaPendiente = op.pregunta; }
+    if (modo === 'evolucion' && !perfilPresta()) modo = 'musculos';
     if (!abierto) {
       diaSel = null; vista = 'frente'; movSel = null;
       /* la entrada (el sol que asoma, las barras que crecen y la rejilla que aparece): una vez, al abrir */
@@ -4504,6 +4541,8 @@
     pedirHoy(); pedirTrazado();           /* el tiempo de la zona (si lo guardado tiene más de 30 min) y el trazado oficial, si está */
     if (!fiestaActiva) { try { $('tgc-back').focus({ preventScroll: true }); } catch (e) {} }   /* con una celebración recién puesta (renderTodo), el foco se queda en ella */
     soltarSellos();                       /* sellos que esperaban a que se cerrara una hoja cuando se cerró la pantalla */
+    /* (#99) desde «Anotar movimiento» de «Su evolución», cuando se veía en el perfil: la hoja, encima */
+    if (op && op.mov === true && !fiestaActiva) abrirMov();
   }
   /* la cabecera va en cristal sobre la escena y se vuelve opaca al bajar (o sin escena) */
   function pegada() {
@@ -4520,6 +4559,7 @@
     if (grupoAbierto) cerrarHoja(true);
     abierto = false;
     cerrarFiesta();                       /* la celebración que hubiera, fuera (lo que esperaba sigue esperando) */
+    devolverPerfil();                     /* (#99) «Sus datos» y «Su evolución», de vuelta al perfil */
     panel.hidden = true;
     vivo3d();
     $('tgc-toast').classList.remove('show');
@@ -4527,7 +4567,10 @@
     perfilDebajo(false);
     if (historia && !sinHistoria) { try { atrasPendiente = true; history.back(); } catch (x) { atrasPendiente = false; } }
     historia = false;
-    if (antesDeAbrir && typeof antesDeAbrir.focus === 'function' && document.contains(antesDeAbrir)) { try { antesDeAbrir.focus({ preventScroll: true }); } catch (x) {} }
+    /* el foco, a lo que lo tenía; (#99) si ya no se ve (el botón «Anotar movimiento» de «Su evolución», cuando se veía
+       en el perfil, se va con las tarjetas, que al volver quedan ocultas), a «Abrir» de la tarjeta de «Su cuerpo» */
+    var vuelta = antesDeAbrir && document.contains(antesDeAbrir) && antesDeAbrir.getClientRects().length ? antesDeAbrir : document.getElementById('tgp-cuerpo-abrir');
+    if (vuelta && typeof vuelta.focus === 'function') { try { vuelta.focus({ preventScroll: true }); } catch (x) {} }
     antesDeAbrir = null;
   }
   /* «atrás»: primero la ficha, luego la hoja, luego la pantalla. El back() de cerrar() también llega
@@ -5371,7 +5414,7 @@
 .tgc.is-aspecto .tgc-pista { display: none; }
 
 /* ── bajo la escena ── */
-.tgc-vista-m, .tgc-vista-a, .tgc-vista-c, .tgc-vista-p { display: grid; gap: 26px; min-width: 0; padding: 16px var(--gr) 8px var(--gl); }
+.tgc-vista-m, .tgc-vista-a, .tgc-vista-c, .tgc-vista-e, .tgc-vista-p { display: grid; gap: 26px; min-width: 0; padding: 16px var(--gr) 8px var(--gl); }
 .tgc-leyenda { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 13px; color: var(--tinta-2); }
 .tgc-leyenda p { margin: 0; font-weight: 600; color: var(--tinta); }
 .tgc-leyenda ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 12px; }
@@ -5694,9 +5737,42 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-confirm { display: grid; gap: 10px; padding: 12px; border-radius: 16px; border: 1px solid var(--rojo); background: var(--rojo-f); color: var(--tinta); }
 .tgc-confirm div { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
 
+/* ── «Evolución» (#99, 10-11-2026): «Sus datos» y «Su evolución», las tarjetas del perfil. modulos/perfil.js las
+   presta con sus reglas (.tgp-*, y la clase tgp en #tgc-evo-montaje); aquí, los colores de esta pantalla, en Día y
+   en Noche: sus variables, y lo poco que el perfil escribe con un color fijo, pensado para su fondo oscuro ── */
+#tgc-evo-montaje {
+  --panel: var(--tarjeta); --panel2: var(--fondo); --border: var(--linea); --text: var(--tinta); --muted: var(--tinta-2); --dark: var(--fondo);
+  --gold: var(--oro); --gold-light: var(--oro-vivo); --ok: var(--verde); --warn: var(--oro); --bad: var(--rojo);
+  --shadow-glow: 0 0 0 3px var(--zonas-f); --r: 22px;
+  color-scheme: inherit; max-width: none; margin: 0; gap: 26px;
+}
+#cuerpo-panel[data-tema="noche"] #tgc-evo-montaje { --gold: var(--oro-vivo); --gold-light: var(--oro); }
+#tgc-evo-montaje .tgp-card { padding: 18px 16px; }
+#tgc-evo-montaje .tgp-card-head { flex-wrap: wrap; align-items: center; }
+#tgc-evo-montaje .tgp-card h2 { font: 600 28px/1.1 var(--font-display); color: var(--tinta); letter-spacing: .1px; }
+#tgc-evo-montaje .tgp-input { background: var(--tarjeta); border: 1.5px solid var(--linea); }
+#tgc-evo-montaje .tgp-input:focus { border-color: var(--zonas); box-shadow: 0 0 0 3px var(--zonas-f); }
+#tgc-evo-montaje .tgp-seg, #tgc-evo-montaje .tgp-imc, #tgc-evo-montaje .tgp-tile, #tgc-evo-montaje .tgp-log li { background: var(--fondo); }
+#tgc-evo-montaje .tgp-tile { border-color: transparent; }
+#tgc-evo-montaje .tgp-seg button.is-on { background: var(--tinta); color: var(--fondo); }
+#tgc-evo-montaje .tgp-btn { min-height: 44px; border-radius: 14px; border-width: 1.5px; font-weight: 700; }
+#tgc-evo-montaje .tgp-btn:hover { box-shadow: none; border-color: var(--tinta-2); }
+#tgc-evo-montaje .tgp-btn.gold, #tgc-evo-montaje .tgp-btn.gold:hover { background: var(--oro-vivo); border-color: var(--oro-vivo); color: var(--boton-tinta); }
+#tgc-evo-montaje .tgp-imc .val, #tgc-evo-montaje .tgp-ranges button.is-on { color: var(--tinta); }
+#tgc-evo-montaje .tgp-ranges button.is-on { background: var(--oro-f); border-color: var(--oro); }
+#tgc-evo-montaje .tgp-imc .cat { background: var(--suave); }
+#tgc-evo-montaje .tgp-imc .cat.ok { background: var(--verde-f); color: var(--verde); }
+#tgc-evo-montaje .tgp-imc .cat.warn { background: var(--oro-f); color: var(--oro); }
+#tgc-evo-montaje .tgp-imc .cat.bad { background: var(--rojo-f); color: var(--rojo); }
+#tgc-evo-montaje .tgp-tile .v.up, #tgc-evo-montaje .tgp-tip b { color: var(--oro); }
+#tgc-evo-montaje .tgp-chart .grid { stroke: var(--suave-2); }
+#tgc-evo-montaje .tgp-chart .bar { opacity: 1; }
+#tgc-evo-montaje .tgp-tip { background: var(--hoja); box-shadow: var(--sombra); }
+#tgc-evo-montaje :focus-visible { outline: 3px solid var(--zonas); outline-offset: 2px; }
+
 /* ── la barra de modos, abajo ── */
 .tgc-modos {
-  position: fixed; z-index: 8; left: 0; right: 0; bottom: 0; margin: 0 auto; width: 100%; max-width: 560px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px;
+  position: fixed; z-index: 8; left: 0; right: 0; bottom: 0; margin: 0 auto; width: 100%; max-width: 560px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px;
   background: var(--tarjeta); border-top: 1px solid var(--linea);
   padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px));
 }
@@ -6262,6 +6338,10 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     </section>
   </div>
 
+  <div class="tgc-vista-e" id="tgc-vista-evolucion" hidden>
+    <div id="tgc-evo-montaje"></div>
+  </div>
+
   <div class="tgc-vista-p" id="tgc-vista-preguntar" hidden>
     <section class="tgc-card tgc-asis" id="tgc-asis" aria-labelledby="tgc-asis-tit">
       <h2 id="tgc-asis-tit">Pregunte lo que quiera</h2>
@@ -6300,6 +6380,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
   <button type="button" id="tgc-modo-m" aria-pressed="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 9.5v5M6.5 6.5v11M17.5 6.5v11M20.5 9.5v5M6.5 12h11"/></svg><span class="txt">Músculos</span></button>
   <button type="button" id="tgc-modo-a" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20c.5-4 3.2-6 7-6s6.5 2 7 6"/></svg><span class="txt">Aspecto</span></button>
   <button type="button" id="tgc-modo-c" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v7a2 2 0 0 0 4 0V3M9 12v9M16 3c-1.8 1.5-2.5 3.8-2.5 6.5 0 1.5 1 2.5 2.5 2.5v9"/></svg><span class="txt">Comida</span></button>
+  <button type="button" id="tgc-modo-e" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M5 15.5l4.5-4.5 3.5 3.5 6-6.5"/><path d="M14.5 8h4.5v4.5"/></svg><span class="txt">Evolución</span></button>
   <button type="button" id="tgc-modo-p" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H12l-4.5 4v-4h-1A2.5 2.5 0 0 1 4 13.5z"/><path d="M9.8 8.6a2.3 2.3 0 0 1 4.4.7c0 1.5-2.2 1.8-2.2 3.2M12 14.3v.1"/></svg><span class="txt">Preguntar</span></button>
 </nav>
 
@@ -6508,6 +6589,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     ['#tgc-modo-a .txt', 'tx', 'cuerpoModoAspecto'],
     ['#tgc-modo-p .txt', 'tx', 'cuerpoModoPreguntar'],
     ['#tgc-modo-c .txt', 'tx', 'cuerpoModoComida'],
+    ['#tgc-modo-e .txt', 'tx', 'cuerpoModoEvolucion'],
     ['#tgc-com-tit', 'tx', 'cuerpoComTitulo'],
     ['#tgc-com-lema', 'tx', 'cuerpoComLema'],
     ['#tgc-com-empezar span', 'tx', 'cuerpoComEmpezar'],
@@ -6673,6 +6755,13 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     mini: mini,
     tema: function () { return tema; },
     repintar: function () { if (abierto) renderTodo(); },
+    /* (#99) el botón «Anotar movimiento» de «Su evolución» (modulos/perfil.js): la hoja, con la pantalla abierta;
+       y el nombre de cada deporte, para su lista de kilómetros */
+    anotarMovimiento: function () { if (abierto && !fiestaActiva) abrirMov(); },
+    nombreMov: function (id) { return MOV_IDS.indexOf(id) >= 0 ? nombreMov(id) : ''; },
+    /* (#99) lo anotado con km, tal como esta pantalla lo ha leído y validado (una copia): el perfil lo suma en
+       «Su evolución → Kilómetros» con los km que se anotaron antes allí */
+    kmMov: function () { return st.mov.filter(function (x) { return x.km > 0; }).map(function (x) { return { d: x.d, tipo: x.tipo, min: x.min, km: x.km, t: x.t }; }); },
     /* (8-11-2026, bloque 6) cierra la tarjeta de celebración que haya y vacía la cola */
     cerrarFiesta: cerrarFiesta,
     estado: function () { return st; },

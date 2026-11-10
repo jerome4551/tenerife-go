@@ -44,8 +44,9 @@
  *      excepcion de 2027 del Carnaval) las prueba tools/probar_fechas_oro.js.
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 468 filas de PERFIL_UI (109 de la pantalla -nueve de ellas, las unidades
- *      en la lengua de cada uno, del 6 de noviembre de 2026-, 47 de sets, 312 de
+ *   6. las 467 filas de PERFIL_UI (108 de la pantalla -ocho de ellas, las unidades
+ *      en la lengua de cada uno, del 6 de noviembre de 2026; la de los km se fue con
+ *      el formulario de km el 10 de noviembre, #99-, 47 de sets, 312 de
  *      avatares: 235, 49 de oro y 28 retirados), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
@@ -328,7 +329,7 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 468, 'PERFIL_UI: 468 filas', claves.length);
+ok(claves.length === 467, 'PERFIL_UI: 467 filas', claves.length);
 ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 312 && !claves.includes('perfilAv_en_cabina'), '47 filas de sets y 312 de avatares: 235, 49 de oro y 28 retirados (y 100 de la pantalla, con las dos pestañas y las cuatro de la tarjeta «Su cuerpo»); ninguna de la cabina');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
@@ -551,8 +552,10 @@ const topeApp = +((CODIGO.match(/var TOPE_REGISTROS = (\d+);/) || [])[1]);
 const topesSql = [...SQL.matchAll(/group by \w\.user_id having count\(\*\) > (\d+)\) then/g)].map(m => +m[1]);
 ok(topeApp === 2000 && topesSql.length === 2 && topesSql.every(n => n === topeApp) && (SQL.match(/raise exception ''[^']+'' using errcode = ''54000'';/g) || []).length === 2,
   'como mucho 2.000 pesos y 2.000 caminatas por cuenta: la misma cifra en perfil.sql (los dos disparadores, error 54000) y en el modulo (TOPE_REGISTROS)', topeApp + ' / ' + topesSql.join(','));
-ok(/function pesoNoCabe\(d\) \{ return st\.medidas\.length >= TOPE_REGISTROS && !st\.medidas\.some/.test(CODIGO) && /if \(st\.km\.length >= TOPE_REGISTROS\) \{ avisoTope\('tgp-km-nuevo-h'\); return; \}/.test(CODIGO),
-  'con el tope lleno, un peso de un dia nuevo o una caminata mas no se anotan (cambiar el peso de un dia que ya lo tiene, siempre)');
+/* (#99, 10-11-2026) aqui ya no se anota ninguna caminata: los km nuevos van a «Anotar movimiento» de «Su cuerpo»
+   (en el dispositivo); los de antes se ven, se borran y siguen en la cuenta. Ni formulario de km ni st.km.push */
+ok(/function pesoNoCabe\(d\) \{ return st\.medidas\.length >= TOPE_REGISTROS && !st\.medidas\.some/.test(CODIGO) && !/st\.km\.push\(/.test(CODIGO) && !/tgp-add-km|tgp-km-nuevo/.test(CODIGO),
+  'con el tope lleno, un peso de un dia nuevo no se anota (cambiar el peso de un dia que ya lo tiene, siempre); y aqui no se anota ninguna caminata (#99: van a «Anotar movimiento» de «Su cuerpo»)');
 
 console.log('\n  ' + cuenta + ' controles, ' + (fallos ? fallos + ' con fallo' : 'todos en verde'));
 process.exit(fallos ? 1 : 0);

@@ -206,7 +206,7 @@ async function ejemplo(pg, mas) {
      para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; desde el 8 (bloque 8), con
      «Su compañero de travesía» (el título, «A pie», «En bici» y la ayuda) y «Senderos de la isla» (el título), 151; y 2 placeholders (el
      del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (151 elementos, con la línea de la IA, y 2 placeholders)', r2.n === 151 && r2.ph === 2, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (152 elementos, con la línea de la IA y, desde el 10-11-2026, la pestaña «Evolución»; y 2 placeholders)', r2.n === 152 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -888,18 +888,18 @@ async function ejemplo(pg, mas) {
   }
 
   // 15. (la app) los menores, con el año de nacimiento escrito en el formulario del perfil, el de
-  //     verdad (la pestaña Cuerpo, debajo de «Su cuerpo»: se cierra la pantalla, se escribe y se guarda,
-  //     y se vuelve a abrir). Sin la referencia del 10 (ni en «Las cifras» ni en la hoja), y con la
-  //     recomendación de su edad; con un año de adulto, o sin año, la referencia vuelve
+  //     verdad: desde el 10-11-2026 (#99), en la pestaña «Evolución» de «Su cuerpo» (se escribe, se guarda y
+  //     se vuelve a «Músculos», que se pinta otra vez al salir de «Evolución»). Sin la referencia del 10 (ni en
+  //     «Las cifras» ni en la hoja), y con la recomendación de su edad; con un año de adulto, o sin año, vuelve
   {
     const c5 = await contexto(b), p5 = await c5.newPage(), e5 = []; vigilar(p5, e5);
     await abrirApp(p5); await abrirPerfilCuerpo(p5); await suCuerpo(p5);
     const anio = await p5.evaluate(() => new Date().getFullYear());
     const conAnio = async (v) => {
-      if (await p5.evaluate(() => window.TG_CUERPO && TG_CUERPO.abierto())) { await p5.keyboard.press('Escape'); await p5.waitForTimeout(250); }
+      await p5.click('#tgc-modo-e'); await p5.waitForTimeout(250);
       await p5.fill('#tgp-nac', v); await p5.click('#tgp-save'); await p5.waitForTimeout(200);
       const guardado = await p5.evaluate(() => (JSON.parse(localStorage.getItem('tenerife.perfil')) || {}).nacimiento);
-      await suCuerpo(p5);
+      await p5.click('#tgc-modo-m'); await p5.waitForTimeout(250);
       return Object.assign({ guardado }, await p5.evaluate(() => ({ ref: !document.getElementById('tgc-cifras-ref').hidden, hRef: !document.getElementById('tgc-h-ref').hidden,
         reco: document.getElementById('tgc-reco').textContent, cifras: document.getElementById('tgc-cifras-reco').textContent })));
     };
@@ -2858,6 +2858,133 @@ async function ejemplo(pg, mas) {
     }
     prueba('a 320 px: sin errores de página', e27b.length === 0, e27b.join(' | '));
     await c27b.close();
+  }
+
+  // 28. (10-11-2026, #99; Jerome: «Que todo sea juntos») la pestaña «Evolución»: «Sus datos» y «Su evolución» del perfil,
+  //     dentro de «Su cuerpo». En la pestaña Cuerpo del perfil, solo la tarjeta; la barra, de cinco, en orden y sin
+  //     rótulos cortados (360 y 390 px, diez idiomas); las dos tarjetas, prestadas (las mismas, no una copia), con los
+  //     colores de Día y de Noche; los km, juntos: los de antes del perfil (con «Borrar») y los de «Anotar
+  //     movimiento» (con el nombre de su deporte; el surf, sin km, no cuenta); «Anotar movimiento» abre la hoja y lo
+  //     anotado suma; un peso guardado avisa en el aviso de «Su cuerpo»; al cerrar, vuelven al perfil, ocultas; al
+  //     volver a abrir, otra vez en «Evolución»; un tipo de deporte con HTML no entra; y sin TG_PERFIL.prestar (el
+  //     prototipo), la pestaña no sale
+  {
+    const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+    const perfil = { v: 1, nombre: 'Alex', avatar: '', unidades: 'metric', altura_cm: 178, nacimiento: 1990, objetivo_kg: 78, creado: hace(30), rango: 30, tab: 'km', pestana: 'cuerpo',
+      medidas: [0, 3, 6, 9].map(n => ({ d: hace(n), kg: 80 - n / 10 })), km: [{ id: 'antes-1-a1b2c3d4e5f6', d: hace(2), km: 4.2 }, { id: 'antes-2-a1b2c3d4e5f6', d: hace(20), km: 10 }] };
+    const T0 = Date.now() - 3600e3;
+    const cuerpo = { v: 1, series: [], gr: [], mov: [[0, 'bici', 60, 24], [1, 'senderismo', 300, 29.2], [3, 'nadar', 30, 0.05], [0, 'surf', 90, 0], [4, '<img src=x onerror=alert(1)>', 30, 7]]
+      .map((x, i) => ({ d: hace(x[0]), tipo: x[1], min: x[2], km: x[3], int: 'm', t: T0 + i })) };
+    /* los de «Su cuerpo» que valen: 24 + 29,2 + 0,05 (el tipo con HTML no es un deporte de la lista: «Su cuerpo» no lo lee).
+       En metros, como los cuenta el perfil: 4,2 + 24 + 29,2 + 0,05 son 57.450 m, «57,5 km» (con los decimales de la
+       máquina daba 57,4499… y salía «57,4») */
+    const M = { total: 4200 + 10000 + 24000 + 29200 + 50, siete: 4200 + 24000 + 29200 + 50, hoy: 24000 };
+    const NOMBRE = { es: 'Evolución', en: 'Progress', fr: 'Évolution', de: 'Verlauf', it: 'Progressi', nl: 'Voortgang', zh: '进展', zht: '進展', bg: 'Напредък', pl: 'Postępy' };
+    const TOT = { es: 'Total', en: 'Total', fr: 'Total', de: 'Gesamt', it: 'Totale', nl: 'Totaal', zh: '累计', zht: '累計', bg: 'Общо', pl: 'Łącznie' };
+    const c28 = await contexto(b), p28 = await c28.newPage(), e28 = []; vigilar(p28, e28);
+    await c28.addInitScript(([p, c]) => { try { if (!sessionStorage.getItem('s28')) { localStorage.setItem('tenerife.perfil', p); localStorage.setItem('tenerife.cuerpo', c); sessionStorage.setItem('s28', '1'); } } catch (e) {} },
+      [JSON.stringify(perfil), JSON.stringify(cuerpo)]);
+    await abrirApp(p28); await abrirPerfilCuerpo(p28);
+    await p28.waitForFunction(() => window.TG_CUERPO, null, { timeout: 15000 }); await p28.waitForTimeout(200);
+    const tab = await p28.evaluate(() => ({ datos: document.getElementById('tgp-datos').hidden, evo: document.getElementById('tgp-evo').hidden, tarjeta: !!document.getElementById('tgp-cuerpo').getClientRects().length,
+      padre: document.getElementById('tgp-datos').parentNode.id }));
+    prueba('28: en la pestaña Cuerpo del perfil, solo la tarjeta de «Su cuerpo» («Sus datos» y «Su evolución», ocultas en su sitio)', tab.datos && tab.evo && tab.tarjeta && tab.padre === 'tgp-p-cuerpo', JSON.stringify(tab));
+    await suCuerpo(p28);
+    const barra = () => p28.evaluate(() => [...document.querySelectorAll('#tgc-modos button')].filter(x => x.getClientRects().length).map(x => {
+      const t = x.querySelector('.txt'), rg = document.createRange(); rg.selectNodeContents(t);
+      const lineas = new Set([...rg.getClientRects()].map(q => Math.round(q.top))).size;
+      return { id: x.id, txt: t.textContent, partida: lineas > 1 && !/\s/.test(t.textContent.trim()), fuera: t.scrollWidth > t.clientWidth + 1 || x.scrollWidth > x.clientWidth + 1 };
+    }));
+    const b0 = await barra();
+    prueba('28: la barra, de cinco y en orden: Músculos · Aspecto · Comida · Evolución · Preguntar', b0.map(x => x.id).join() === 'tgc-modo-m,tgc-modo-a,tgc-modo-c,tgc-modo-e,tgc-modo-p', b0.map(x => x.txt).join(' · '));
+    await p28.evaluate(() => { window.__antes28 = [document.getElementById('tgp-datos'), document.getElementById('tgp-evo')]; });
+    await p28.click('#tgc-modo-e'); await p28.waitForTimeout(300);
+    const v = await p28.evaluate(() => {
+      const nodos = window.__antes28;
+      const m = document.getElementById('tgc-evo-montaje'), d = document.getElementById('tgp-datos'), e = document.getElementById('tgp-evo');
+      return { vista: !document.getElementById('tgc-vista-evolucion').hidden, escena: document.getElementById('tgc-escena').hidden, pulsado: document.getElementById('tgc-modo-e').getAttribute('aria-pressed'),
+        dentro: m.contains(d) && m.contains(e) && !d.hidden && !e.hidden, mismos: d === nodos[0] && e === nodos[1], unaVez: document.querySelectorAll('#tgp-datos, #tgp-evo').length === 2,
+        fondo: getComputedStyle(e).backgroundColor, titulo: getComputedStyle(e.querySelector('h2')).color };
+    });
+    prueba('28: «Evolución»: las dos tarjetas del perfil dentro (las mismas, sin copia), sin la escena, con el botón pulsado', v.vista && v.escena && v.pulsado === 'true' && v.dentro && v.mismos && v.unaVez, JSON.stringify(v));
+    prueba('28: de Día, con los colores de «Su cuerpo»: la tarjeta blanca y el título en su tinta', v.fondo === 'rgb(255, 255, 255)' && v.titulo === 'rgb(18, 35, 58)', v.fondo + ' / ' + v.titulo);
+    /* los km, juntos */
+    await p28.click('#tgp-evo-tabs [data-tab="km"]'); await p28.waitForTimeout(250);
+    const km = () => p28.evaluate(() => ({ v: [...document.querySelectorAll('#tgp-km-tiles .tgp-tile .v')].map(t => t.textContent), k: [...document.querySelectorAll('#tgp-km-tiles .tgp-tile .k')].map(t => t.textContent),
+      filas: [...document.querySelectorAll('#tgp-km-log li')].map(li => ({ km: li.children[1].textContent, x: !!li.querySelector('.x'), q: (li.querySelector('.q') || {}).textContent || '' })),
+      html: !!document.querySelector('#tgp-evo img, #tgp-evo [onerror]') }));
+    const f = m => new Intl.NumberFormat('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(Math.round(m / 100) / 10) + ' km';
+    const k1 = await km();
+    prueba('28: los km juntos: 7 días, hoy y «Total» (los de antes y los de «Anotar movimiento»; el surf, sin km, y el tipo con HTML, fuera)', JSON.stringify(k1.v) === JSON.stringify([f(M.siete), f(M.hoy), f(M.total)]) && k1.v[0] === '57,5 km' && k1.k[2] === 'Total', JSON.stringify(k1));
+    prueba('28: la lista: los de antes con «Borrar»; los de «Su cuerpo», con el nombre de su deporte; sin HTML de nadie', k1.filas.length === 5 && k1.filas.filter(x => x.x).length === 2 &&
+      k1.filas.filter(x => !x.x).map(x => x.q).join() === 'Bici,Senderismo,Nadar' && !k1.html, JSON.stringify(k1.filas));
+    /* «Anotar movimiento»: la hoja; caminar, con sus km, y el total sube */
+    await p28.click('#tgp-km-anotar'); await p28.waitForTimeout(400);
+    const h = await p28.evaluate(() => ({ hoja: !document.getElementById('tgc-hoja').hidden, mov: !document.getElementById('tgc-pag-mov').hidden }));
+    await p28.click('#tgc-mov-tipos .tgc-tipo[data-tipo="caminar"]'); await p28.waitForTimeout(150);
+    const kmC = await p28.evaluate(() => Number(String(document.getElementById('tgc-mov-km').value).replace(',', '.')));
+    await p28.click('#tgc-mov-guardar'); await p28.waitForTimeout(500);
+    const k2 = await km(), foco = await p28.evaluate(() => document.activeElement && document.activeElement.id);
+    prueba('28: «Anotar movimiento» abre la hoja de «Su cuerpo»; lo anotado (caminar, ' + kmC + ' km) suma en el momento, y el foco vuelve al botón', h.hoja && h.mov && kmC > 0 &&
+      k2.v[2] === f(M.total + Math.round(kmC * 1000)) && k2.filas[0].q === 'Caminar' && foco === 'tgp-km-anotar', JSON.stringify({ h, k2: k2.v, primera: k2.filas[0], foco }));
+    /* un peso: «Guardado ✓», en el aviso de «Su cuerpo» */
+    await p28.click('#tgp-evo-tabs [data-tab="peso"]'); await p28.waitForTimeout(150);
+    await p28.fill('#tgp-peso-nuevo', '79,6'); await p28.click('#tgp-add-peso button[type="submit"]'); await p28.waitForTimeout(250);
+    const av = await p28.evaluate(() => ({ t: document.getElementById('tgc-toast').classList.contains('show') ? document.getElementById('tgc-toast-txt').textContent : '', esp: tx('perfilGuardado'),
+      kg: (JSON.parse(localStorage.getItem('tenerife.perfil')).medidas || []).filter(m => m.kg === 79.6).length }));
+    prueba('28: un peso guardado en «Evolución» se guarda en el perfil, y «Guardado ✓» sale en el aviso de «Su cuerpo»', av.t === av.esp && av.kg === 1, JSON.stringify(av));
+    /* Noche */
+    await p28.click('#tgc-tema'); await p28.waitForTimeout(200);
+    const n = await p28.evaluate(() => ({ fondo: getComputedStyle(document.getElementById('tgp-evo')).backgroundColor, titulo: getComputedStyle(document.querySelector('#tgp-evo h2')).color,
+      esquema: getComputedStyle(document.getElementById('tgc-evo-montaje')).colorScheme }));
+    await p28.click('#tgc-tema'); await p28.waitForTimeout(150);
+    prueba('28: de Noche, también los de «Su cuerpo»: la tarjeta en su azul de noche, el título claro y los controles oscuros', n.fondo === 'rgb(27, 35, 48)' && n.titulo === 'rgb(240, 236, 228)' && n.esquema === 'dark', JSON.stringify(n));
+    /* los diez idiomas: la barra a 390 y a 360, y los textos de las dos tarjetas */
+    const malI = [];
+    for (const L of Object.keys(NOMBRE)) {
+      await idioma(p28, L); await p28.waitForTimeout(150);
+      await p28.click('#tgp-evo-tabs [data-tab="km"]'); await p28.waitForTimeout(120);
+      for (const w of [390, 360]) {
+        await p28.setViewportSize({ width: w, height: 844 }); await p28.waitForTimeout(120);
+        (await barra()).filter(x => x.partida || x.fuera).forEach(x => malI.push(L + '@' + w + ' barra: ' + x.txt));
+      }
+      const r = await p28.evaluate(() => {
+        const m = document.getElementById('tgc-evo-montaje'), out = [];
+        m.querySelectorAll('[data-tx]').forEach(n => { if (n.getClientRects().length && !n.textContent.trim()) out.push('vacío ' + n.getAttribute('data-tx')); });
+        const w = document.createTreeWalker(m, NodeFilter.SHOW_TEXT); let t;
+        while ((t = w.nextNode())) { const s = t.data.trim(); if (s && /\b(perfil|cuerpo|medida)[A-Z]\w+/.test(s)) out.push('clave ' + s); }
+        m.querySelectorAll('*').forEach(e => { if (!e.getClientRects().length || e.closest('svg, .tgp-tip')) return; const q = e.getBoundingClientRect(); if (q.right > innerWidth + 1 || q.left < -1) out.push('fuera ' + (e.id || e.className)); });
+        return { out, nombre: document.querySelector('#tgc-modo-e .txt').textContent, total: document.querySelectorAll('#tgp-km-tiles .tgp-tile .k')[2].textContent,
+          anotar: document.querySelector('#tgp-km-anotar span').textContent, hoja: tx('cuerpoMovAnotar') };
+      });
+      r.out.forEach(x => malI.push(L + ': ' + x));
+      if (r.nombre !== NOMBRE[L]) malI.push(L + ': la pestaña dice «' + r.nombre + '»');
+      if (r.total !== TOT[L]) malI.push(L + ': «Total» dice «' + r.total + '»');
+      if (r.anotar !== r.hoja) malI.push(L + ': el botón dice «' + r.anotar + '» y la hoja «' + r.hoja + '»');
+    }
+    await idioma(p28, 'es'); await p28.setViewportSize({ width: 390, height: 844 }); await p28.waitForTimeout(150);
+    prueba('28: en los diez idiomas: la pestaña con su nombre, sin cortar a 390 ni a 360 px; «Total» y «Anotar movimiento» (el mismo de la hoja), traducidos; nada vacío, ninguna clave suelta, nada fuera', !malI.length, malI.slice(0, 8).join(' | '));
+    /* cerrar: vuelven al perfil, ocultas; al abrir otra vez, en «Evolución» y prestadas otra vez */
+    await p28.keyboard.press('Escape'); await p28.waitForTimeout(400);
+    const c1 = await p28.evaluate(() => ({ abierto: TG_CUERPO.abierto(), padres: [document.getElementById('tgp-datos').parentNode.id, document.getElementById('tgp-evo').parentNode.id].join(),
+      ocultas: document.getElementById('tgp-datos').hidden && document.getElementById('tgp-evo').hidden, clase: document.getElementById('tgc-evo-montaje').classList.contains('tgp'), perfil: !document.getElementById('perfil-panel').hidden }));
+    prueba('28: al cerrar «Su cuerpo» (Escape), las dos vuelven a la pestaña Cuerpo del perfil, ocultas, y el perfil sigue abierto', !c1.abierto && c1.padres === 'tgp-p-cuerpo,tgp-p-cuerpo' && c1.ocultas && !c1.clase && c1.perfil, JSON.stringify(c1));
+    await suCuerpo(p28);
+    const c2 = await p28.evaluate(() => ({ e: document.getElementById('tgc-modo-e').getAttribute('aria-pressed'), dentro: document.getElementById('tgc-evo-montaje').contains(document.getElementById('tgp-evo')) }));
+    prueba('28: al volver a abrir, sigue en «Evolución», con las dos dentro', c2.e === 'true' && c2.dentro, JSON.stringify(c2));
+    /* sin TG_PERFIL.prestar (como en el prototipo): la pestaña no sale y no se puede pedir */
+    await p28.keyboard.press('Escape'); await p28.waitForTimeout(300);
+    const sin = await p28.evaluate(() => {
+      const p = TG_PERFIL.prestar; TG_PERFIL.prestar = undefined;
+      TG_CUERPO.abrir({ modo: 'evolucion' });
+      const r = { boton: document.getElementById('tgc-modo-e').hidden, musculos: document.getElementById('tgc-modo-m').getAttribute('aria-pressed'), vista: document.getElementById('tgc-vista-evolucion').hidden };
+      TG_CUERPO.cerrar(); TG_PERFIL.prestar = p; return r;
+    });
+    await p28.waitForTimeout(300);
+    prueba('28: sin TG_PERFIL.prestar (el prototipo), «Evolución» no sale, y pedirla abre «Músculos»', sin.boton && sin.musculos === 'true' && sin.vista, JSON.stringify(sin));
+    prueba('28: sin errores de página', e28.length === 0, e28.join(' | '));
+    await c28.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

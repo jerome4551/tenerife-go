@@ -36,7 +36,16 @@
    campo al leerlo. En la cuenta, solo con el permiso expreso de esa cuenta
    («Acepto»), en las tablas de supabase/perfil.sql: apartado «la nube, con
    permiso». Las visitas comprobadas (tenerife.visitas) no suben nunca, ni
-   la lista de los de oro conseguidos (st.oro): sube el avatar elegido. */
+   la lista de los de oro conseguidos (st.oro): sube el avatar elegido.
+
+   «SUS DATOS» Y «SU EVOLUCION», DENTRO DE «SU CUERPO» (#99, 10 de noviembre
+   de 2026; Jerome: «Que todo sea juntos»). Las dos tarjetas se ven en la
+   pestaña «Evolución» de «Su cuerpo» (modulos/cuerpo.js): TG_PERFIL.prestar()
+   las mueve alli, con todo lo suyo, y devolver() las trae de vuelta. En la
+   pestaña Cuerpo de aqui queda la tarjeta de «Su cuerpo»; las dos solo se
+   ven aqui si ese modulo no llega. Los kilometros son un solo registro: los
+   de «Anotar movimiento» de «Su cuerpo» y los que se anotaron antes aqui
+   (renderKm). */
 (function () {
   'use strict';
 
@@ -93,7 +102,6 @@
     "perfilUCm": {"es": "cm", "en": "cm", "fr": "cm", "de": "cm", "it": "cm", "nl": "cm", "zh": "厘米", "zht": "公分", "bg": "см", "pl": "cm"},
     "perfilULb": {"es": "lb", "en": "lb", "fr": "lb", "de": "lb", "it": "lb", "nl": "lb", "zh": "磅", "zht": "磅", "bg": "фунта", "pl": "lb"},
     "perfilUIn": {"es": "in", "en": "in", "fr": "in", "de": "in", "it": "in", "nl": "in", "zh": "英寸", "zht": "吋", "bg": "инча", "pl": "in"},
-    "perfilUKm": {"es": "km", "en": "km", "fr": "km", "de": "km", "it": "km", "nl": "km", "zh": "公里", "zht": "公里", "bg": "км", "pl": "km"},
     "perfilMedKg": {"es": "{n} kg", "en": "{n} kg", "fr": "{n} kg", "de": "{n} kg", "it": "{n} kg", "nl": "{n} kg", "zh": "{n}公斤", "zht": "{n}公斤", "bg": "{n} кг", "pl": "{n} kg"},
     "perfilMedCm": {"es": "{n} cm", "en": "{n} cm", "fr": "{n} cm", "de": "{n} cm", "it": "{n} cm", "nl": "{n} cm", "zh": "{n}厘米", "zht": "{n}公分", "bg": "{n} см", "pl": "{n} cm"},
     "perfilMedLb": {"es": "{n} lb|{n} lb", "en": "{n} lb|{n} lb", "fr": "{n} lb|{n} lb", "de": "{n} lb|{n} lb", "it": "{n} lb|{n} lb", "nl": "{n} lb|{n} lb", "zh": "{n}磅", "zht": "{n}磅", "bg": "{n} фунт|{n} фунта", "pl": "{n} lb|{n} lb|{n} lb"},
@@ -117,7 +125,7 @@
     "perfilRango30": {"es": "30 días", "en": "30 days", "fr": "30 jours", "de": "30 Tage", "it": "30 giorni", "nl": "30 dagen", "zh": "30天", "zht": "30天", "bg": "30 дни", "pl": "30 dni"},
     "perfilRango90": {"es": "90 días", "en": "90 days", "fr": "90 jours", "de": "90 Tage", "it": "90 giorni", "nl": "90 dagen", "zh": "90天", "zht": "90天", "bg": "90 дни", "pl": "90 dni"},
     "perfilRangoAnio": {"es": "1 año", "en": "1 year", "fr": "1 an", "de": "1 Jahr", "it": "1 anno", "nl": "1 jaar", "zh": "1年", "zht": "1年", "bg": "1 година", "pl": "1 rok"},
-    "perfilTotalCaminado": {"es": "Total caminado", "en": "Total walked", "fr": "Total parcouru", "de": "Insgesamt gelaufen", "it": "Totale a piedi", "nl": "Totaal gelopen", "zh": "累计步行", "zht": "累計步行", "bg": "Общо изминато", "pl": "Łączny dystans"},
+    "perfilTotal": {"es": "Total", "en": "Total", "fr": "Total", "de": "Gesamt", "it": "Totale", "nl": "Totaal", "zh": "累计", "zht": "累計", "bg": "Общо", "pl": "Łącznie"},
     "perfilHoy": {"es": "Hoy", "en": "Today", "fr": "Aujourd’hui", "de": "Heute", "it": "Oggi", "nl": "Vandaag", "zh": "今天", "zht": "今天", "bg": "Днес", "pl": "Dziś"},
     "perfilBorrarRegistro": {"es": "Borrar", "en": "Delete", "fr": "Supprimer", "de": "Löschen", "it": "Elimina", "nl": "Verwijderen", "zh": "删除", "zht": "刪除", "bg": "Изтрий", "pl": "Usuń"},
     "perfilIsla": {"es": "Su isla", "en": "Your island", "fr": "Votre île", "de": "Ihre Insel", "it": "Sull’isola", "nl": "Uw eiland", "zh": "我的岛屿", "zht": "我的島嶼", "bg": "Вашият остров", "pl": "Na wyspie"},
@@ -140,7 +148,7 @@
     "perfilInvitado": {"es": "Invitado", "en": "Guest", "fr": "Invité", "de": "Gast", "it": "Ospite", "nl": "Gast", "zh": "访客", "zht": "訪客", "bg": "Гост", "pl": "Gość"},
     "perfilExportar": {"es": "Descargar datos del perfil", "en": "Download profile data", "fr": "Télécharger les données du profil", "de": "Profildaten herunterladen", "it": "Scarica i dati del profilo", "nl": "Profielgegevens downloaden", "zh": "下载个人资料数据", "zht": "下載個人檔案資料", "bg": "Изтегли данните на профила", "pl": "Pobierz dane profilu"},
     "perfilAnadir": {"es": "Añadir", "en": "Add", "fr": "Ajouter", "de": "Hinzufügen", "it": "Aggiungi", "nl": "Toevoegen", "zh": "添加", "zht": "新增", "bg": "Добави", "pl": "Dodaj"},
-    "perfilDistancia": {"es": "Distancia", "en": "Distance", "fr": "Distance", "de": "Strecke", "it": "Distanza", "nl": "Afstand", "zh": "距离", "zht": "距離", "bg": "Разстояние", "pl": "Dystans"},
+    "perfilAnotarMov": {"es": "Anotar movimiento", "en": "Log movement", "fr": "Noter du mouvement", "de": "Bewegung eintragen", "it": "Annotare il movimento", "nl": "Beweging noteren", "zh": "记录运动", "zht": "記錄運動", "bg": "Записване на движение", "pl": "Zapisywanie ruchu"},
     "perfilUltimos7": {"es": "Últimos 7 días", "en": "Last 7 days", "fr": "7 derniers jours", "de": "Letzte 7 Tage", "it": "Ultimi 7 giorni", "nl": "Laatste 7 dagen", "zh": "最近7天", "zht": "最近7天", "bg": "Последните 7 дни", "pl": "Ostatnie 7 dni"},
     "perfilFecha": {"es": "Fecha", "en": "Date", "fr": "Date", "de": "Datum", "it": "Data", "nl": "Datum", "zh": "日期", "zht": "日期", "bg": "Дата", "pl": "Data"},
     "perfilRango": {"es": "Entre {min} y {max}", "en": "Between {min} and {max}", "fr": "Entre {min} et {max}", "de": "Zwischen {min} und {max}", "it": "Tra {min} e {max}", "nl": "Tussen {min} en {max}", "zh": "须在{min}到{max}之间", "zht": "須在{min}到{max}之間", "bg": "Между {min} и {max}", "pl": "Od {min} do {max}"},
@@ -604,6 +612,7 @@
   /* Que de tiempo a leerlo: unos 55 ms por letra (150 por caracter chino), entre 2,2 y 7 s
      (los avisos de la nube llegan a 120 letras). */
   function toast(txt) {
+    if (prestamo && prestamo.toast) { try { prestamo.toast(String(txt)); return; } catch (x) {} }
     var e = $('tgp-toast'); if (!e) return;
     e.textContent = txt; e.classList.add('show'); clearTimeout(toastT);
     var cjk = (String(txt).match(/[\u3000-\u9fff\uff00-\uffef]/g) || []).length;
@@ -1047,9 +1056,12 @@
 
   /* ── textos: los del cuerpo (data-tx, data-tx-ph, data-tx-aria), en el idioma de la app ── */
   function aplicarTextos() {
-    panel.querySelectorAll('[data-tx]').forEach(function (n) { var v = tx(n.getAttribute('data-tx')); if (v) n.textContent = v; });
-    panel.querySelectorAll('[data-tx-ph]').forEach(function (n) { n.placeholder = tx(n.getAttribute('data-tx-ph')); });
-    panel.querySelectorAll('[data-tx-aria]').forEach(function (n) { n.setAttribute('aria-label', tx(n.getAttribute('data-tx-aria'))); });
+    /* (#99) con «Sus datos» y «Su evolución» prestadas a «Su cuerpo», tambien las suyas */
+    (prestamo ? [panel, prestamo.caja] : [panel]).forEach(function (raiz) {
+      raiz.querySelectorAll('[data-tx]').forEach(function (n) { var v = tx(n.getAttribute('data-tx')); if (v) n.textContent = v; });
+      raiz.querySelectorAll('[data-tx-ph]').forEach(function (n) { n.placeholder = tx(n.getAttribute('data-tx-ph')); });
+      raiz.querySelectorAll('[data-tx-aria]').forEach(function (n) { n.setAttribute('aria-label', tx(n.getAttribute('data-tx-aria'))); });
+    });
     /* el lang del contenedor, para partir las palabras largas por silabas (hyphens: auto) */
     var l = lengua();
     $('tgp').setAttribute('lang', l === 'zht' ? 'zh-Hant' : (l === 'zh' ? 'zh-Hans' : l));
@@ -1237,14 +1249,13 @@
     var uPeso = tx(imp ? 'perfilULb' : 'perfilUKg');
     $('tgp-altura-u').textContent = tx(imp ? 'perfilUIn' : 'perfilUCm');
     $('tgp-peso-u').textContent = uPeso; $('tgp-peso-nuevo-u').textContent = uPeso; $('tgp-objetivo-u').textContent = uPeso;
-    $('tgp-km-nuevo-u').textContent = tx('perfilUKm');
     $('tgp-altura').value = st.altura_cm ? (imp ? String(Math.round(st.altura_cm / CM_IN)) : mostrarNum(st.altura_cm, st.altura_cm % 1 ? 1 : 0)) : '';
     var p = pesoActual();
     $('tgp-peso').value = p ? mostrarNum(deKg(p), 1) : '';
     $('tgp-nac').value = st.nacimiento || '';
     $('tgp-objetivo').value = st.objetivo_kg ? mostrarNum(deKg(st.objetivo_kg), 1) : '';
     ['tgp-objetivo'].forEach(function (id) { $(id).setAttribute('aria-invalid', 'false'); $(id + '-h').textContent = ''; $(id + '-h').classList.remove('error'); });
-    panel.querySelectorAll('#tgp-unidades button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.u === st.unidades); });
+    $('tgp-unidades').querySelectorAll('button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.u === st.unidades); });
     tocado = { altura: false, peso: false, nac: false };
     ayudas();
   }
@@ -1318,9 +1329,9 @@
   function conSigno(kg) { return (kg > 0 ? '+' : (kg < 0 ? '−' : '')) + pesoMostrar(Math.abs(kg)); }
   function renderEvo() {
     $('tgp-evo-peso').hidden = st.tab !== 'peso'; $('tgp-evo-km').hidden = st.tab !== 'km';
-    panel.querySelectorAll('#tgp-evo-tabs button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.tab === st.tab); });
-    panel.querySelectorAll('#tgp-ranges button').forEach(function (b) { b.classList.toggle('is-on', +b.dataset.r === st.rango); });
-    ['tgp-peso-fecha', 'tgp-km-fecha'].forEach(function (id) { $(id).value = hoy(); $(id).max = hoy(); });
+    $('tgp-evo-tabs').querySelectorAll('button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.tab === st.tab); });
+    $('tgp-ranges').querySelectorAll('button').forEach(function (b) { b.classList.toggle('is-on', +b.dataset.r === st.rango); });
+    $('tgp-peso-fecha').value = hoy(); $('tgp-peso-fecha').max = hoy();
     renderPeso(); renderKm();
   }
   function tile(k, v, s, cls) { var e = el('div', 'tgp-tile'); e.appendChild(el('div', 'k', k)); e.appendChild(el('div', 'v' + (cls ? ' ' + cls : ''), v)); if (s) e.appendChild(el('div', 's', s)); return e; }
@@ -1371,33 +1382,72 @@
     svg.addEventListener('pointermove', mostrar); svg.addEventListener('pointerdown', mostrar); svg.addEventListener('pointerleave', function () { tip.classList.remove('show'); });
   }
 
-  /* ── evolucion: kilometros ── */
+  /* ── evolucion: kilometros ──
+     (#99, 10 de noviembre de 2026; Jerome: «Que todo sea juntos») Un solo registro: el de «Anotar movimiento» de
+     «Su cuerpo» (todo deporte con distancia: a pie, corriendo, en bici, a nado, en kayak) y, con el, los km que se
+     anotaron antes aqui (st.km: se pueden borrar y siguen yendo a la cuenta con permiso). Los de «Su cuerpo» estan
+     en tenerife.cuerpo, en el dispositivo, y no suben a ninguna parte; se leen validados, con los limites de alli
+     (modulos/cuerpo.js, valida()): una fecha de verdad, de hace como mucho 3 × 366 dias a mañana, de los ultimos
+     2.000, de 1 a 600 minutos, y de mas de 0 a 200 km (su tope mayor, el de la bici). Con «Su cuerpo» cargado
+     (lo normal, con las tarjetas alli) son los que el mismo ha leido y validado (TG_CUERPO.kmMov), y se vuelven a
+     mirar aqui; sin el, los de tenerife.cuerpo, con esas reglas (lo que alli queda fuera por no ser un deporte de su
+     lista no se puede mirar sin el: aqui basta con que tenga forma de nombre). Se borran en su hoja, con su ×; aqui
+     llevan el nombre del deporte (TG_CUERPO.nombreMov, si el modulo esta cargado) */
+  var KM_CUERPO = { clave: 'tenerife.cuerpo', dias: 3 * 366, cuantos: 2000, minutos: 600, max: 200 };
+  function kmCuerpo() {
+    var c = window.TG_CUERPO, mov = null, h = hoy(), out = [];
+    if (c && typeof c.kmMov === 'function') { try { mov = c.kmMov(); } catch (e) { mov = null; } }
+    if (!Array.isArray(mov)) {
+      var s = null; try { s = JSON.parse(localStorage.getItem(KM_CUERPO.clave)); } catch (e) { s = null; }
+      mov = s && typeof s === 'object' && Array.isArray(s.mov) ? s.mov : [];
+    }
+    mov.slice(-KM_CUERPO.cuantos).forEach(function (x) {
+      if (!x || typeof x !== 'object' || !esFecha(x.d) || ymd(fecha(x.d)) !== x.d) return;
+      if (typeof x.tipo !== 'string' || !/^[a-z]{1,20}$/.test(x.tipo)) return;
+      if (typeof x.min !== 'number' || Math.floor(x.min) !== x.min || x.min < 1 || x.min > KM_CUERPO.minutos) return;
+      if (typeof x.km !== 'number' || !isFinite(x.km) || x.km <= 0) return;
+      var n = dias(x.d, h); if (n < -1 || n > KM_CUERPO.dias) return;
+      out.push({ d: x.d, km: Math.min(KM_CUERPO.max, x.km), tipo: x.tipo, t: typeof x.t === 'number' && isFinite(x.t) ? x.t : 0 });
+    });
+    return out;
+  }
+  /* Las cuentas, en metros enteros: con los decimales de la maquina, 4,2 + 24 + 29,2 + 0,05 daba 57,4499… y salia
+     «57,4 km» por «57,5 km». Se redondea en metros: a la decima de km (la mitad, hacia arriba) y lo que no llega a
+     0,1 km, a la centesima (50 m a nado: «0,05 km», no «0,1 km») */
+  function metros(km) { return Math.round(km * 1000); }
+  function fmtKm(m) { return m > 0 && m < 100 ? fmt(Math.round(m / 10) / 100, 2) : fmt(Math.round(m / 100) / 10, 1); }
   function renderKm() {
     var tiles = $('tgp-km-tiles'), chart = $('tgp-km-chart'), log = $('tgp-km-log'); tiles.textContent = ''; chart.textContent = ''; log.textContent = '';
+    var todos = st.km.map(function (k) { return { d: k.d, m: metros(k.km), id: k.id }; })
+      .concat(kmCuerpo().map(function (k) { return { d: k.d, m: metros(k.km), tipo: k.tipo, t: k.t }; }));
     var h = hoy(), siete = 0, total = 0, hoyKm = 0, porDia = {};
-    st.km.forEach(function (k) { total += k.km; var d = dias(k.d, h); if (d >= 0 && d <= 6) { siete += k.km; porDia[k.d] = (porDia[k.d] || 0) + k.km; } if (k.d === h) hoyKm += k.km; });
+    todos.forEach(function (k) { total += k.m; var d = dias(k.d, h); if (d >= 0 && d <= 6) { siete += k.m; porDia[k.d] = (porDia[k.d] || 0) + k.m; } if (k.d === h) hoyKm += k.m; });
     /* Los 7 dias que acaban hoy, que son las barras que se ven (no la semana del calendario). */
-    tiles.appendChild(tile(tx('perfilUltimos7'), tx('medidaKm', { n: fmt(siete, 1) })));
-    tiles.appendChild(tile(tx('perfilHoy'), tx('medidaKm', { n: fmt(hoyKm, 1) })));
-    tiles.appendChild(tile(tx('perfilTotalCaminado'), tx('medidaKm', { n: fmt(total, 1) })));
-    if (!st.km.length) { chart.appendChild(el('div', 'tgp-empty', tx('perfilSinDatos'))); return; }
+    tiles.appendChild(tile(tx('perfilUltimos7'), tx('medidaKm', { n: fmtKm(siete) })));
+    tiles.appendChild(tile(tx('perfilHoy'), tx('medidaKm', { n: fmtKm(hoyKm) })));
+    tiles.appendChild(tile(tx('perfilTotal'), tx('medidaKm', { n: fmtKm(total) })));
+    if (!todos.length) { chart.appendChild(el('div', 'tgp-empty', tx('perfilSinDatos'))); return; }
     var NS = 'http://www.w3.org/2000/svg', W = 320, H = 140, T = 18, B = 22, L = 10, R = 10;
     var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', tx('perfilKm'));
     var diasArr = []; for (var i = 6; i >= 0; i--) { var d = new Date(); d.setDate(d.getDate() - i); diasArr.push(ymd(d)); }
-    var maxKm = Math.max(1, Math.max.apply(null, diasArr.map(function (d) { return porDia[d] || 0; })));
+    var maxKm = Math.max(1000, Math.max.apply(null, diasArr.map(function (d) { return porDia[d] || 0; })));
     var bw = (W - L - R) / 7, ancho = bw * 0.56;
     diasArr.forEach(function (d, i) {
       var v = porDia[d] || 0, x = L + i * bw + (bw - ancho) / 2, hh = v ? Math.max(4, (v / maxKm) * (H - T - B)) : 0, y = H - B - hh;
       var r = document.createElementNS(NS, 'rect'); r.setAttribute('x', x); r.setAttribute('y', y); r.setAttribute('width', ancho); r.setAttribute('height', hh); r.setAttribute('rx', 4); r.setAttribute('class', 'bar' + (d === h ? ' today' : '')); svg.appendChild(r);
       if (hh > 8) { var base = document.createElementNS(NS, 'rect'); base.setAttribute('x', x); base.setAttribute('y', H - B - 4); base.setAttribute('width', ancho); base.setAttribute('height', 4); base.setAttribute('class', 'bar' + (d === h ? ' today' : '')); svg.appendChild(base); }
-      if (v) { var vl = document.createElementNS(NS, 'text'); vl.setAttribute('x', x + ancho / 2); vl.setAttribute('y', y - 5); vl.setAttribute('class', 'bar-label'); vl.textContent = fmt(v, 1); svg.appendChild(vl); }
+      if (v) { var vl = document.createElementNS(NS, 'text'); vl.setAttribute('x', x + ancho / 2); vl.setAttribute('y', y - 5); vl.setAttribute('class', 'bar-label'); vl.textContent = fmtKm(v); svg.appendChild(vl); }
       var dl = document.createElementNS(NS, 'text'); dl.setAttribute('x', x + ancho / 2); dl.setAttribute('y', H - 6); dl.setAttribute('class', 'axis'); dl.setAttribute('text-anchor', 'middle'); dl.textContent = fecha(d).toLocaleDateString(locale(), { weekday: 'short' }); svg.appendChild(dl);
     });
     var ejeX = document.createElementNS(NS, 'line'); ejeX.setAttribute('x1', L); ejeX.setAttribute('x2', W - R); ejeX.setAttribute('y1', H - B); ejeX.setAttribute('y2', H - B); ejeX.setAttribute('class', 'grid'); svg.appendChild(ejeX);
     chart.appendChild(svg);
-    st.km.slice().sort(function (a, b) { return a.d < b.d ? 1 : -1; }).slice(0, 8).forEach(function (k) {
-      var li = el('li'); li.appendChild(el('span', 'd', fmtFecha(k.d, { day: 'numeric', month: 'short', year: '2-digit' }))); li.appendChild(el('span', '', tx('medidaKm', { n: fmt(k.km, 1) })));
-      var x = el('button', 'x', tx('perfilBorrarRegistro')); x.type = 'button'; x.dataset.id = k.id; x.dataset.tipo = 'km'; li.appendChild(x); log.appendChild(li);
+    /* lo ultimo, primero: por fecha y, el mismo dia, lo de «Su cuerpo» por la hora en que se anoto */
+    var c = window.TG_CUERPO, nombre = c && typeof c.nombreMov === 'function' ? c.nombreMov : null;
+    todos.slice().sort(function (a, b) { return a.d !== b.d ? (a.d < b.d ? 1 : -1) : (b.t || 0) - (a.t || 0); }).slice(0, 8).forEach(function (k) {
+      var li = el('li'); li.appendChild(el('span', 'd', fmtFecha(k.d, { day: 'numeric', month: 'short', year: '2-digit' }))); li.appendChild(el('span', '', tx('medidaKm', { n: fmtKm(k.m) })));
+      if (k.id) { var x = el('button', 'x', tx('perfilBorrarRegistro')); x.type = 'button'; x.dataset.id = k.id; x.dataset.tipo = 'km'; li.appendChild(x); }
+      else { var q = ''; if (nombre && k.tipo) { try { q = String(nombre(k.tipo) || ''); } catch (e) { q = ''; } } li.appendChild(el('span', 'q', q)); }
+      log.appendChild(li);
     });
   }
 
@@ -1644,20 +1694,47 @@
   function cuerpoTarjeta() {
     var mini = $('tgp-cuerpo-mini');
     var poner = function () {
+      cuerpoNoLlega = false; cuerpoTarjetas();
       var c = window.TG_CUERPO;
       if (!abierto || !c || typeof c.mini !== 'function' || !mini) return;
       c.mini(mini);
     };
     if (window.TG_CUERPO) { poner(); return; }
-    if (typeof window.TG_CUERPO_CARGAR !== 'function') return;
-    window.TG_CUERPO_CARGAR().then(poner, function () {});
+    if (typeof window.TG_CUERPO_CARGAR !== 'function') { cuerpoNoLlega = true; cuerpoTarjetas(); return; }
+    window.TG_CUERPO_CARGAR().then(poner, function () { cuerpoNoLlega = true; cuerpoTarjetas(); });
+  }
+  /* (#99) «Sus datos» y «Su evolución» viven en «Su cuerpo» (su pestaña «Evolución»): en la pestaña Cuerpo de aqui,
+     ocultas; solo si el modulo no llega (sin red y sin haberlo guardado nunca) se ven aqui, para no perderlas.
+     Mientras llega, ocultas: lo normal es que llegue (el service worker lo guarda) */
+  var cuerpoNoLlega = false;
+  function cuerpoTarjetas() {
+    if (prestamo || !panel) return;
+    var ver = cuerpoNoLlega && !window.TG_CUERPO;
+    $('tgp-datos').hidden = !ver; $('tgp-evo').hidden = !ver;
   }
   /* «Abrir»: la pantalla «Su cuerpo», encima del perfil; si el modulo no llega, la tarjeta lo dice */
   function cuerpoAbrir() {
     var aviso = $('tgp-cuerpo-error');
     aviso.hidden = true;
-    var abre = function () { var c = window.TG_CUERPO; if (c && typeof c.abrir === 'function') { c.abrir(); poner(); } else aviso.hidden = false; };
+    var abre = function () { var c = window.TG_CUERPO; if (c && typeof c.abrir === 'function') { cuerpoNoLlega = false; cuerpoTarjetas(); c.abrir(); poner(); } else aviso.hidden = false; };
     var poner = function () { var c = window.TG_CUERPO, mini = $('tgp-cuerpo-mini'); if (c && typeof c.mini === 'function' && mini) c.mini(mini); };
+    if (window.TG_CUERPO) { abre(); return; }
+    if (typeof window.TG_CUERPO_CARGAR !== 'function') { aviso.hidden = false; return; }
+    window.TG_CUERPO_CARGAR().then(abre, function () { aviso.hidden = false; });
+  }
+  /* (#99) «Anotar movimiento», en «Su evolución → Kilómetros»: la hoja de «Su cuerpo». Con las tarjetas alli (lo
+     normal), la abre encima; si se ven aqui porque el modulo no llegaba, lo vuelve a pedir y abre «Su cuerpo» en
+     «Evolución» con la hoja; si sigue sin llegar, lo dice debajo del boton */
+  function kmAnotar() {
+    var aviso = $('tgp-km-anotar-error');
+    aviso.hidden = true;
+    var c = window.TG_CUERPO;
+    if (c && typeof c.abierto === 'function' && c.abierto() && typeof c.anotarMovimiento === 'function') { c.anotarMovimiento(); return; }
+    var abre = function () {
+      var c = window.TG_CUERPO;
+      if (c && typeof c.abrir === 'function') { cuerpoNoLlega = false; cuerpoTarjetas(); c.abrir({ modo: 'evolucion', mov: true }); }
+      else aviso.hidden = false;
+    };
     if (window.TG_CUERPO) { abre(); return; }
     if (typeof window.TG_CUERPO_CARGAR !== 'function') { aviso.hidden = false; return; }
     window.TG_CUERPO_CARGAR().then(abre, function () { aviso.hidden = false; });
@@ -1677,7 +1754,7 @@
       if (panel.scrollTop > y) panel.scrollTop = Math.max(0, y);
     }
   }
-  function renderTodo() { aplicarTextos(); renderPestanas(); renderHero(false); renderSets(); renderDatos(); renderEvo(); renderIsla(); renderCuenta(); }
+  function renderTodo() { aplicarTextos(); renderPestanas(); renderHero(false); renderSets(); renderDatos(); renderEvo(); renderIsla(); renderCuenta(); cuerpoTarjetas(); }
 
   /* ── eventos del cuerpo (una vez, al montarlo) ── */
   function enganchar() {
@@ -1753,14 +1830,8 @@
       if (pesoNoCabe(d)) { avisoTope('tgp-peso-nuevo-h'); return; }
       anotarPeso(d, aKg(v)); guardar(); $('tgp-peso-nuevo').value = ''; renderDatos(); renderEvo(); toast(tx('perfilGuardado'));
     });
-    $('tgp-add-km').addEventListener('submit', function (e) {
-      e.preventDefault(); var a = $('tgp-km-nuevo-h'); a.textContent = ''; a.classList.remove('error');
-      var v = campo('tgp-km-nuevo', RANGO.km, 'tgp-km-nuevo-h'); if (v === undefined || v === null) return;
-      var d = fechaValida('tgp-km-fecha', 'tgp-km-nuevo-h'); if (!d) return;
-      if (st.km.length >= TOPE_REGISTROS) { avisoTope('tgp-km-nuevo-h'); return; }
-      var id = nuevoId(); st.km.push({ id: id, d: d, km: Math.round(v * 10) / 10 }); marcar('km', id, 1);
-      guardar(); $('tgp-km-nuevo').value = ''; renderEvo(); toast(tx('perfilGuardado'));
-    });
+    /* (#99) los km se anotan en «Su cuerpo», con «Anotar movimiento» (kmAnotar) */
+    $('tgp-km-anotar').addEventListener('click', kmAnotar);
     /* Se borra el registro pulsado: los de peso por su fecha (uno por dia), los de km por su id (puede haber varios el mismo dia). */
     $('tgp-evo').addEventListener('click', function (e) {
       var x = e.target.closest('.x'); if (!x) return;
@@ -2165,9 +2236,14 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-add input[type="date"] { padding-right: 10px; font-size: .92rem; -webkit-appearance: none; appearance: none; align-self: stretch; }
 .tgp-add input[type="date"]::-webkit-date-and-time-value { text-align: start; }
 .tgp-log { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 4px; max-height: 150px; overflow: auto; }
-.tgp-log li { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: .84rem; padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,0.03); font-variant-numeric: tabular-nums; }
-.tgp-log .d { color: var(--muted); } .tgp-log .x { background: none; border: 0; color: var(--muted); padding: 2px 6px; font-size: .78rem; }
+.tgp-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px; font-size: .84rem; padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,0.03); font-variant-numeric: tabular-nums; }
+.tgp-log li > :last-child { justify-self: end; }
+.tgp-log .d { color: var(--muted); } .tgp-log .x { background: none; border: 0; color: var(--muted); padding: 2px 6px; font-size: .78rem; text-decoration: underline; text-underline-offset: 3px; }
 .tgp-log .x:hover { color: var(--bad); }
+/* (#99) en los km, lo de «Su cuerpo» lleva el nombre de su deporte donde lo de antes lleva «Borrar» */
+.tgp-log .q { color: var(--muted); font-size: .78rem; padding: 2px 6px; text-align: end; overflow-wrap: anywhere; }
+.tgp-km-anotar { display: grid; gap: 6px; margin-top: 12px; }
+.tgp-km-anotar .tgp-cuerpo-error { margin: 0; }
 
 /* isla */
 .tgp-isla-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
@@ -2489,12 +2565,10 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     <div id="tgp-evo-km" hidden>
       <div class="tgp-tiles" id="tgp-km-tiles"></div>
       <div class="tgp-chart" id="tgp-km-chart"></div>
-      <form class="tgp-add" id="tgp-add-km" novalidate>
-        <input class="tgp-input" type="date" id="tgp-km-fecha">
-        <div class="tgp-input-wrap"><input class="tgp-input" type="text" inputmode="decimal" autocomplete="off" enterkeyhint="done" id="tgp-km-nuevo" aria-describedby="tgp-km-nuevo-h"><span class="tgp-unit" id="tgp-km-nuevo-u">km</span></div>
-        <button type="submit" class="tgp-btn gold"><span>Añadir</span></button>
-        <div class="tgp-help tgp-add-help" id="tgp-km-nuevo-h" aria-live="polite"></div>
-      </form>
+      <div class="tgp-km-anotar">
+        <button type="button" class="tgp-btn gold wide" id="tgp-km-anotar"><span>Anotar movimiento</span></button>
+        <p class="tgp-cuerpo-error" id="tgp-km-anotar-error" role="alert" hidden>No se pudo abrir. Compruebe la conexión e inténtelo de nuevo.</p>
+      </div>
       <ul class="tgp-log" id="tgp-km-log"></ul>
     </div>
   </section>
@@ -2583,9 +2657,8 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     ['#tgp-add-peso button span', 'tx', 'perfilAnadir'],
     ['label[for="tgp-objetivo"]', 'tx', 'perfilObjetivo'],
     ['#tgp-objetivo', 'ph', 'perfilObjetivoPlaceholder'],
-    ['#tgp-km-fecha', 'aria', 'perfilFecha'],
-    ['#tgp-km-nuevo', 'ph', 'perfilDistancia'],
-    ['#tgp-add-km button span', 'tx', 'perfilAnadir'],
+    ['#tgp-km-anotar span', 'tx', 'perfilAnotarMov'],
+    ['#tgp-km-anotar-error', 'tx', 'perfilCuerpoError'],
     ['#tgp-isla h2', 'tx', 'perfilIsla'],
     ['#tgp-isla .tgp-sellos-titulo', 'tx', 'perfilSellos'],
     ['#tgp-cuenta h2', 'tx', 'perfilCuenta'],
@@ -2609,6 +2682,35 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     estado: function () { return st; },
     esperar: function () { return nubeCadena; },
     /* abre una de las pestañas ('viaje', 'cuerpo' o 'cuenta'), con el perfil abierto */
-    pestana: function (p) { if (abierto) irAPestana(p, false); }
+    pestana: function (p) { if (abierto) irAPestana(p, false); },
+    /* (#99) «Sus datos» y «Su evolución», a la pestaña «Evolución» de «Su cuerpo» (modulos/cuerpo.js) */
+    prestar: prestar,
+    devolver: devolver
   };
+  /* (#99, 10 de noviembre de 2026) Se mueven los dos elementos, no se copian: sus eventos van con ellos, $() los
+     encuentra en todo el documento, y lo que se guarde es lo mismo que aqui (y en la cuenta, solo con permiso). La
+     caja de «Su cuerpo» lleva la clase tgp, para las reglas de aqui (sus colores los pone «Su cuerpo»). Mientras
+     estan alli, los avisos salen con op.toast, el de «Su cuerpo». Al cerrar «Su cuerpo», devolver() las trae a su
+     sitio, al final de la pestaña Cuerpo. */
+  var prestamo = null;
+  function prestar(caja, op) {
+    if (!caja || caja.nodeType !== 1) return false;
+    montar();
+    if (prestamo && prestamo.caja !== caja) devolver();
+    prestamo = { caja: caja, toast: op && typeof op.toast === 'function' ? op.toast : null };
+    caja.classList.add('tgp');
+    [$('tgp-datos'), $('tgp-evo')].forEach(function (n) { n.hidden = false; if (n.parentNode !== caja) caja.appendChild(n); });
+    aplicarTextos(); renderDatos(); renderEvo();
+    return true;
+  }
+  function devolver() {
+    if (!prestamo) return;
+    var caja = prestamo.caja, p = $('tgp-p-cuerpo');
+    prestamo = null;
+    if (p) [$('tgp-datos'), $('tgp-evo')].forEach(function (n) { if (n && n.parentNode !== p) p.appendChild(n); });
+    caja.classList.remove('tgp');
+    cuerpoTarjetas();
+  }
+  /* «Su cuerpo» avisa cuando guarda (un movimiento anotado, borrado o deshecho): los km, otra vez */
+  window.addEventListener('tg-cuerpo-cambia', function () { if (prestamo) renderKm(); });
 })();
