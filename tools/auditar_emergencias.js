@@ -48,7 +48,10 @@ const DOMINIOS = ['gobiernodecanarias.org', '112canarias.com', 'boe.es', 'involc
   'resus.org.uk', 'ilcor.org', 'nhs.uk', 'seup.org', 'comunidad.madrid', 'alicante.es', 'aesan.gob.es', 'mjusticia.gob.es',
   /* 1 de noviembre: el portal Infoplayas Canarias, el origen de las banderas
      que se usan hoy (el mismo visor al que lleva el globo de cada playa) */
-  'infoplayascanarias.es'];
+  'infoplayascanarias.es',
+  /* 10 de noviembre: el Govern de les Illes Balears, la fuente de «Avísele
+     enseguida» (sosRes1) en la guia del rescate */
+  'caib.es'];
 /* Los robots que dan datos al panel: su fichero y su flujo */
 const ROBOTS = { 'sismos-ign.json': 'sismos-ign.yml', 'semaforo-involcan.json': 'semaforo-involcan.yml', 'alertas-canarias.json': 'alertas-canarias.yml' };
 const SHELL = ['sosNavAria', 'sosTitulo', 'sosLlamar', 'sosLlamarSub', 'sosCargando', 'sosErrorCarga', 'sosReintentar', 'sosVolver'];
@@ -233,6 +236,16 @@ const ANULADA = /116\/2018|\/boc\/2018\/152\/|\/boc\/2022\/148\//;
 const anuladaMal = Object.entries(SOS.fuentes).filter(([, f]) => ANULADA.test(f.url || '')).map(([id]) => id)
   .concat(Object.keys(UI).filter(k => ANULADA.test(JSON.stringify(UI[k]))));
 ok(!anuladaMal.length, 'nada del Decreto 116/2018, anulado, ni de la Orden de 2022 que modificaba sus anexos: ni en las fuentes ni en las filas', anuladaMal.join(', '));
+
+/* sosRes1, «Avísele enseguida y siga sus indicaciones» (el socorrista), la
+   ultima linea sin fuente leida: la dicen las dos paginas de emergencias del
+   Govern de les Illes Balears (10 de noviembre de 2026; Jerome: «si») */
+const rescate = SOS.guias.find(g => g.id === 'rescate') || { f: [], b: [] };
+const conRes1 = rescate.b.some(b => (b.lista || []).includes('sosRes1'));
+ok(conRes1 && ['goibEmergencias', 'goibPlaya'].every(id => (rescate.f || []).includes(id) &&
+    /^https:\/\/www\.caib\.es\//.test((SOS.fuentes[id] || {}).url || '') && (SOS.fuentes[id] || {}).org === 'sosOrgBaleares'),
+  'la guia del rescate cita las dos paginas del Govern de les Illes Balears, la fuente de «Avísele enseguida» (sosRes1)',
+  (rescate.f || []).join(', '));
 
 /* ── 4. index.html, sw.js, manifiesto ── */
 console.log('— index.html, sw.js y el manifiesto');

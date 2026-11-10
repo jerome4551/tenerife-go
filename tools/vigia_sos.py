@@ -69,11 +69,13 @@ CAMBIAN_SIEMPRE = {'involcan'}
 # de Pediatria, la Comunidad de Madrid, el telefono de toxicologia y «Tu
 # Europa». No: Tenerife ON, el Cabildo y Aena (cambian cada dia) ni la
 # pagina de impresion del Resuscitation Council UK (se genera al pedirla).
+# Desde el 10 de noviembre, las dos paginas de emergencias del Govern de les
+# Illes Balears, la fuente de «Avísele enseguida» (www.caib.es).
 DOMINIOS = ('www.gobiernodecanarias.org', 'www.112canarias.com', 'www.ign.es', 'www.boe.es',
             'www.sanidad.gob.es', 'www.transportes.gob.es', 'www.interior.gob.es',
             'recursosemergencias.educacionfpydeportes.gob.es', 'ivhhn.org', 'www.ivhhn.org',
             'www.erc.edu', 'costr.ilcor.org', 'www.nhs.uk', 'enfamilia.aeped.es',
-            'www.comunidad.madrid', 'www.mjusticia.gob.es', 'europa.eu')
+            'www.comunidad.madrid', 'www.mjusticia.gob.es', 'europa.eu', 'www.caib.es')
 # Y paginas que no son fuente de ninguna guia pero donde aparece lo nuevo:
 # el indice de consejos del Gobierno de Canarias (un riesgo con consejos
 # nuevos, como los maremotos, saldria ahi).
@@ -262,6 +264,7 @@ def probar():
         ok('involcan' not in u and 'planes' in u and 'indiceConsejos' in u and all(v.startswith('https://') for v in u.values()),
            'las fuentes salen del modulo (%d), sin el boletin semanal y con el indice de consejos' % len(u))
         ok(not any(re.search(r'rtvc|diariodeavisos|/noticias/|doi\.org', v) for v in u.values()), 'sin noticias ni prensa (falsas alarmas)')
+        ok('goibEmergencias' in u and 'goibPlaya' in u, 'las dos paginas del Govern de les Illes Balears (la fuente de «Avísele enseguida») tambien se miran')
     paginas = {
         'a': b'<!doctype html><html><head><style>.x{}</style><script>var n=1</script></head><body><h1>Consejos</h1><p>Llame al 112.</p></body></html>',
         'b': b'%PDF-1.4 prueba',
