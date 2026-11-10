@@ -247,6 +247,13 @@ ok(conRes1 && ['goibEmergencias', 'goibPlaya'].every(id => (rescate.f || []).inc
   'la guia del rescate cita las dos paginas del Govern de les Illes Balears, la fuente de «Avísele enseguida» (sosRes1)',
   (rescate.f || []).join(', '));
 
+/* la nota de la App 112 Canarias no dice que haya que validar el movil con un
+   SMS al instalarla: no esta en su pagina oficial ni en otra fuente encontrada
+   (10 de noviembre de 2026; Jerome: «quítalo») */
+const app112 = UI.sosApp112 || {};
+ok(LANGS.every(l => app112[l] && !/SMS/.test(app112[l])), 'la nota de la App 112 Canarias, sin el SMS al instalarla, en los diez idiomas',
+  LANGS.filter(l => /SMS/.test(app112[l] || '')).join(', '));
+
 /* ── 4. index.html, sw.js, manifiesto ── */
 console.log('— index.html, sw.js y el manifiesto');
 ok(/<button[^>]*id="v19-nav-sos"[^>]*onclick="abrirSOS\(\)"/.test(idx), 'el boton SOS esta en la barra de abajo');
