@@ -7302,6 +7302,108 @@ verde (4.892 líneas, 1 h 56 min). Puesta la rama al día con `main`, solo entra
 Gobierno de Canarias, los avisos de AEMET, los terremotos del IGN, el boletín de INVOLCAN y los satélites de CelesTrak):
 solo cambian sus ficheros de datos, y los controles que los leen salen en verde.
 
+## La cuenta: contraseñas de 8 caracteres, comprobadas contra las filtradas (Have I Been Pwned) (10 de noviembre)
+
+**Por qué.** El asesor de seguridad de Supabase avisa de que la protección contra contraseñas filtradas está apagada.
+Jerome: «lo puedes hacer tú tiene conector». Pero esa opción de Supabase «está disponible en el plan Pro y superiores»
+(su documentación), y el proyecto está en el gratuito: no se puede encender desde el conector. El 10 de noviembre Jerome
+eligió la otra salida, que lo haga la app («B»).
+
+**Lo que cambia** (`0d2e78e`), solo al crear la cuenta, que es la única vez que se pone una contraseña (la app no tiene
+«cambiar contraseña»):
+- 8 caracteres como mínimo (Supabase: «Anything less than 8 characters is not recommended»; antes, 6), en el campo, en
+  su ayuda y en el aviso. Entrar en una cuenta que ya existe no cambia: una de 6 sigue valiendo.
+- La contraseña se convierte en el dispositivo en su huella SHA-1, y a Pwned Passwords solo salen sus 5 primeros
+  caracteres, con `Add-Padding`: devuelve entre 800 y 1000 huellas que empiezan igual, y la comparación final la hace
+  el dispositivo. Nunca salen la contraseña ni el correo, ni cookies ni `Referer`. Si ha salido en filtraciones, un
+  aviso y no se crea la cuenta; si el servicio no contesta en 6 s, no se impide crearla.
+- Los tres textos nuevos (la ayuda de los 8, su aviso y el de la contraseña filtrada), en los diez idiomas.
+- La CSP deja pedir a `https://api.pwnedpasswords.com`, y el service worker no guarda su respuesta (`EN_VIVO`), que
+  dejaría en el móvil el principio de la huella.
+
+Comprobado con la documentación de la API (sin clave, sin límite, con `Add-Padding` y sin exigir atribución) y con su
+CORS (`Access-Control-Allow-Origin: *` y `Add-Padding` entre las cabeceras permitidas).
+
+**La política** (`e732e63`): Have I Been Pwned, entre los terceros que reciben datos, con su política
+(`https://haveibeenpwned.com/Privacy`) y la frase que aprobó Jerome el 10: «al crear la cuenta, la app comprueba si la
+contraseña que eligió está en las listas de contraseñas robadas en ataques a otras webs. Solo envía un trozo pequeño de
+un código hecho a partir de la contraseña, nunca la contraseña ni su correo. La comparación final la hace su
+dispositivo.», en los diez idiomas.
+
+**Controles.** `probar_contrasena.js`, nuevo, en `auditar.sh`: 20 controles, 15 en rojo antes del cambio y todos en
+verde después. `auditar_sw.js`: la respuesta de `api.pwnedpasswords.com` no se guarda (en rojo antes, en verde después).
+
+**Supabase.** El asesor de seguridad, mirado el 10 de noviembre (lo que cambia es de la app, no de Supabase), da:
+`admins`, `push_sends` y `push_subs` con RLS y sin políticas (nadie entra directo); `guardar_push_sub()`, que se puede
+llamar sin sesión y con ella; `es_admin()` y `borrar_mi_cuenta()`, solo con sesión; y la protección de contraseñas
+filtradas apagada (`auth_leaked_password_protection`), que en Supabase es del plan Pro («Leaked password protection is
+available on the Pro Plan and above»): ahora la hace la app, al crear la cuenta.
+
+**La auditoría entera**, una sola para esto y para la pestaña «Evolución»: en la sección siguiente.
+
+## «Su cuerpo»: «Sus datos» y «Su evolución», en su pestaña «Evolución»; los kilómetros, un solo registro (10 de noviembre)
+
+**Lo que pidió Jerome** (9 de noviembre): «Que todo sea juntos». En la pestaña Cuerpo del perfil había tres tarjetas,
+«Su cuerpo», «Sus datos» (altura, peso, año de nacimiento, el IMC y las unidades) y «Su evolución» (el peso y los
+kilómetros), y dos registros de kilómetros: el del perfil y el de «Anotar movimiento» de «Su cuerpo». El plan, el 9;
+su «si», el 10, y a las dos frases de la política, el mismo día.
+
+**Cómo** (`57ee2d6`). Las dos tarjetas no se rehacen: el perfil las presta (`TG_PERFIL.prestar`) a una pestaña nueva de
+«Su cuerpo», «Evolución», en la barra de abajo entre «Comida» y «Preguntar», y las recupera al cerrar «Su cuerpo»
+(`devolver`). Son las mismas, con sus eventos, sus datos y su cuenta: lo que se cambia allí se guarda igual que en el
+perfil, y sube a la cuenta solo con su permiso. Sus avisos («Guardado ✓») salen en los de «Su cuerpo», y sus colores
+son los de Día y de Noche de «Su cuerpo» (sus variables y lo poco que el perfil escribe con un color fijo). Al salir de
+«Evolución», «Músculos» y «Su deporte» se vuelven a pintar: el año de nacimiento decide las metas de la OMS. En la
+pestaña Cuerpo del perfil queda la tarjeta de «Su cuerpo»; las dos solo se ven allí si su módulo no llega (sin red y sin
+haberlo guardado nunca). Sin `TG_PERFIL.prestar` (el prototipo de la sesión de «Su cuerpo»), la pestaña no sale.
+
+**La barra, de cinco.** «Evolución» es, en cada idioma, el título de la tarjeta sin el posesivo: «Progress»,
+«Évolution», «Verlauf», «Progressi», «Voortgang», «进展», «進展», «Напредък», «Postępy». A 390 y a 360 px ningún rótulo
+se corta, en los diez idiomas; en búlgaro, «Външен вид» va en dos líneas, entero.
+
+**Los kilómetros, un solo registro**: los de «Anotar movimiento» (todo deporte con distancia: a pie, corriendo, en bici,
+a nado y en kayak) y, con ellos, los que se anotaron antes en el perfil, que siguen ahí, se pueden borrar y van a la
+cuenta con permiso. El formulario de km del perfil se va; en su lugar, «Anotar movimiento», que abre la hoja de «Su
+cuerpo». «Total caminado» pasa a «Total»: con la bici y el agua ya no es solo caminar. La lista lleva el nombre del
+deporte en lo de «Su cuerpo» (que se borra en su hoja, con su ×) y «Borrar», subrayado, en lo de antes. Lo de «Su
+cuerpo» se lee tal como él mismo lo valida (`TG_CUERPO.kmMov`); sin su módulo, de `tenerife.cuerpo` con sus mismas
+reglas (una fecha de verdad, de hace como mucho 3 × 366 días a mañana; de 1 a 600 minutos; de más de 0 a 200 km). Las
+cuentas, en metros enteros: con los decimales de la máquina, 4,2 + 24 + 29,2 + 0,05 daba 57,4499… y salía «57,4 km»;
+ahora, «57,5 km», y 50 m a nado, «0,05 km».
+
+**La política** (`1ca8576`): en «Sus datos» (`ppDatosPerfilTxt`), «los pesos y kilómetros que anote (con su fecha)» pasa
+a «los pesos que anote y los kilómetros que anotó antes en el perfil (con su fecha)»: los nuevos se anotan en «Su
+cuerpo». En «Su cuerpo» (`ppDatosCuerpoTxt`), fuera «Del perfil, esta pantalla lee el año de nacimiento y el último
+peso, sin cambiarlos.», y en su lugar: «En su pestaña «Evolución» están también sus datos del perfil (altura, peso y año
+de nacimiento) y su evolución: lo que cambie ahí se guarda igual que en el perfil, y en su cuenta solo si lo tiene
+activado. Los kilómetros que anote en «Su cuerpo» se quedan en su dispositivo.». En los diez idiomas, con los nombres
+que ya usa la app para la pestaña y para «Su cuerpo»; la fecha de la política sigue siendo «noviembre de 2026».
+
+**Controles.**
+- `probar_cuerpo.js`: la parte 28, nueva: la tarjeta sola en el perfil; la barra de cinco, en orden; las dos tarjetas
+  dentro, las mismas y sin copia; los colores de Día y de Noche; los km juntos y su lista; «Anotar movimiento», que
+  abre la hoja y lo anotado suma, con el foco de vuelta al botón; el aviso del peso; los diez idiomas a 390 y 360 px;
+  la vuelta al cerrar; otra vez en «Evolución» al abrir; un tipo de deporte con HTML que no entra; y sin
+  `TG_PERFIL.prestar`. La 15 escribe ahora el año de nacimiento en «Evolución». En total, 543 controles, en verde.
+- `probar_perfil.js`: la parte 1e, nueva: sin el módulo de «Su cuerpo», las dos tarjetas en el perfil, los km juntos y
+  validados (fuera los que no valen) y «Anotar movimiento», que dice que no se pudo abrir. Las partes que tocan esas dos
+  tarjetas (1, 2, 2b, 2c y 4) corren sin `modulos/cuerpo.js`, que es cuando se ven en el perfil; la 9 borra un km de
+  antes (ya no se anotan aquí); la 11, un campo de fecha; la n37, ninguna caminata nueva; la p2 y la p4, la tarjeta sola
+  en la pestaña Cuerpo; y la p6 y la p6e (el iPhone), con esa pestaña corta: empieza justo debajo de la barra, entera
+  (la barra pegada se prueba en Viaje: p6b, p6c y p6e). En total, 153 controles, en verde.
+- `auditar_perfil.js`: 467 filas (fuera `perfilUKm`, `perfilDistancia` y `perfilTotalCaminado`; dentro `perfilTotal` y
+  `perfilAnotarMov`), y el tope: con 2.000 pesos, uno de un día nuevo no se anota, y aquí no se anota ninguna caminata.
+
+**Las fuentes de «Su cuerpo»** (`src/ui.js`, `cuerpo.html`, `estilos.css`, `textos.py` y `textos-fijos.js`):
+`construir.py` da el `modulos/cuerpo.js` del commit, byte a byte. Van a su sesión en su paquete, con su LEEME.
+
+**La auditoría entera**, sobre `53e643f` (árbol `8a88f69d…`), que en `main` es `1ca8576`, con la contraseña de la
+sección anterior debajo: ningún control sin ejecutar y solo dos en rojo, `auditar_web.js` y `barrido_idiomas.js`, que
+cotejan las cifras de «Idiomas» de esta página (3496 y 5.646; con las filas nuevas, 3500 y 5.647): las pone al día este
+commit, y los dos, pasados otra vez, salen en verde (4.941 líneas, 1 h 57 min). Puesta la rama al día con `main`, solo
+entran commits de los robots (las alertas del Gobierno de Canarias, los avisos de AEMET, los precios de las gasolineras
+y los terremotos del IGN): solo cambian sus ficheros de datos, y los controles que los leen salen en verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -9143,7 +9245,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3496 filas (y 5.646 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3500 filas (y 5.647 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9293,7 +9395,11 @@ la isla» (el título, el subtítulo, las dos cuentas, el norte y el sur, «Hech
 celebraciones con su texto y el aviso de cuando la lista no llega) y dos párrafos de «Las cifras» (el
 fondo del mapa, con las dos notas de la licencia del relieve, y los senderos): 3493 y 5.643. El 10 de noviembre, las
 dos fuentes del Govern de les Illes Balears para la guía del rescate: 3 filas más en `EMERG_UI` (603), el nombre del
-Govern y el título de cada página: 3496 y 5.646. El
+Govern y el título de cada página: 3496 y 5.646. Y ese día, la contraseña de la cuenta: 3 filas más en `AUTH_STRINGS`
+(la ayuda de los 8 caracteres, su aviso y el de la contraseña filtrada; esa tabla va por idioma y no entra en la cuenta
+de `barrido_idiomas.js`) y una en la política, la de Have I Been Pwned; y la pestaña «Evolución» de «Su cuerpo»: una
+fila menos en `PERFIL_UI` (467: fuera `perfilUKm`, `perfilDistancia` y `perfilTotalCaminado`; dentro `perfilTotal` y
+`perfilAnotarMov`) y una más en `CUERPO_UI` (560), el nombre de la pestaña: 3500 y 5.647. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
