@@ -34,6 +34,7 @@
 "ppTercTitulo":"Dritte, die Daten erhalten",
 "ppTercIntro":"Damit sie funktioniert, fragt die App externe Dienste ab. Alle erhalten Ihre IP-Adresse und außerdem:",
 "ppTercSupabase":"Konto, Favoriten, Benachrichtigungs-Abo und, mit Ihrer Einwilligung, Profil und Fortschritte.",
+"ppTercHibp":"beim Anlegen des Kontos prüft die App, ob das von Ihnen gewählte Passwort auf den Listen von Passwörtern steht, die bei Angriffen auf andere Websites gestohlen wurden. Sie sendet nur ein kleines Stück eines aus dem Passwort berechneten Codes, nie das Passwort oder Ihre E-Mail-Adresse. Den endgültigen Abgleich macht Ihr Gerät.",
 "ppTercMapas":"die Kartenkacheln, also welchen Bereich Sie gerade ansehen.",
 "ppTercOsrm":"Start und Ziel, wenn Sie eine Autoroute berechnen.",
 "ppTercNominatim":"den Text, den Sie bei der Adresssuche eingeben.",

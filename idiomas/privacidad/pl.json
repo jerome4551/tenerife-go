@@ -34,6 +34,7 @@
 "ppTercTitulo":"Podmioty trzecie, które otrzymują dane",
 "ppTercIntro":"Żeby działać, aplikacja pobiera dane z usług zewnętrznych. Wszystkie otrzymują adres IP urządzenia, a ponadto:",
 "ppTercSupabase":"konto, ulubione, subskrypcję powiadomień oraz – za zgodą – profil i postępy.",
+"ppTercHibp":"przy zakładaniu konta aplikacja sprawdza, czy wybrane hasło jest na listach haseł skradzionych podczas ataków na inne strony. Wysyła tylko mały fragment kodu utworzonego z hasła, nigdy samego hasła ani adresu e-mail. Ostatecznego porównania dokonuje urządzenie.",
 "ppTercMapas":"kafelki mapy, czyli to, jaki obszar jest oglądany.",
 "ppTercOsrm":"początek i cel przy wyznaczaniu trasy samochodem.",
 "ppTercNominatim":"tekst wpisany przy szukaniu adresu.",

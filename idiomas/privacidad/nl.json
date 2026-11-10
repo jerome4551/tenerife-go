@@ -34,6 +34,7 @@
 "ppTercTitulo":"Derden die gegevens ontvangen",
 "ppTercIntro":"Om te werken vraagt de app gegevens op bij externe diensten. Ze ontvangen allemaal uw IP-adres en daarnaast:",
 "ppTercSupabase":"account, favorieten, meldingsabonnement en, met uw toestemming, profiel en voortgang.",
+"ppTercHibp":"bij het aanmaken van het account controleert de app of het wachtwoord dat u hebt gekozen op de lijsten staat van wachtwoorden die bij aanvallen op andere websites zijn gestolen. Ze verstuurt alleen een klein stukje van een code die uit het wachtwoord is berekend, nooit het wachtwoord of uw e-mailadres. De uiteindelijke vergelijking doet uw apparaat.",
 "ppTercMapas":"de kaarttegels, oftewel welk gebied u bekijkt.",
 "ppTercOsrm":"start en bestemming wanneer u een autoroute berekent.",
 "ppTercNominatim":"de tekst die u typt bij het zoeken van een adres.",

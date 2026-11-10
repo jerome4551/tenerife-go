@@ -39,6 +39,7 @@
 "ppTercTitulo":"Terceros que reciben datos",
 "ppTercIntro":"Para funcionar, la app pide datos a servicios externos. Todos reciben su dirección IP y, además:",
 "ppTercSupabase":"cuenta, favoritos, suscripción de notificaciones y, con su permiso, el perfil y los progresos.",
+"ppTercHibp":"al crear la cuenta, la app comprueba si la contraseña que eligió está en las listas de contraseñas robadas en ataques a otras webs. Solo envía un trozo pequeño de un código hecho a partir de la contraseña, nunca la contraseña ni su correo. La comparación final la hace su dispositivo.",
 "ppTercMapas":"las teselas del mapa, o sea qué zona está mirando.",
 "ppTercOsrm":"origen y destino cuando calcula una ruta en coche.",
 "ppTercNominatim":"el texto que escribe al buscar una dirección.",

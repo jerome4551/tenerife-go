@@ -34,6 +34,7 @@
 "ppTercTitulo":"Terzi che ricevono dati",
 "ppTercIntro":"Per funzionare, l’app interroga servizi esterni. Tutti ricevono il Suo indirizzo IP e inoltre:",
 "ppTercSupabase":"account, preferiti, iscrizione alle notifiche e, con il consenso, profilo e progressi.",
+"ppTercHibp":"quando crea l’account, l’app controlla se la password che ha scelto compare negli elenchi di password rubate in attacchi ad altri siti. Invia solo un piccolo pezzo di un codice ricavato dalla password, mai la password né il Suo indirizzo e-mail. Il confronto finale lo fa il Suo dispositivo.",
 "ppTercMapas":"i tasselli della mappa, cioè quale zona sta guardando.",
 "ppTercOsrm":"partenza e arrivo quando calcola un percorso in auto.",
 "ppTercNominatim":"il testo che scrive cercando un indirizzo.",

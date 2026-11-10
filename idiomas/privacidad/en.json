@@ -34,6 +34,7 @@
 "ppTercTitulo":"Third parties that receive data",
 "ppTercIntro":"To work, the app requests data from outside services. They all receive your IP address and, in addition:",
 "ppTercSupabase":"account, favourites, notification subscription and, with your permission, profile and progress.",
+"ppTercHibp":"when you create the account, the app checks whether the password you chose is on the lists of passwords stolen in attacks on other websites. It only sends a small piece of a code made from the password, never the password or your email address. The final comparison is done by your device.",
 "ppTercMapas":"the map tiles, which is to say which area you are looking at.",
 "ppTercOsrm":"start and end points when you calculate a driving route.",
 "ppTercNominatim":"the text you type when searching for an address.",
