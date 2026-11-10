@@ -2,8 +2,23 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-10T15:15:31Z",
+ "consultado": "2026-11-10T15:49:36Z",
  "alertas": [
+  {
+   "t": "2026-11-10T15:24:30Z",
+   "titulo": "El Gobierno de Canarias declara la prealerta por riesgo de inundaciones en el archipiélago",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-prealerta-por-riesgo-de-inundaciones-en-el-archipielago/"
+  },
+  {
+   "t": "2026-11-10T15:06:34Z",
+   "titulo": "El Gobierno de Canarias activa la prealerta por riesgo de desprendimientos en islas occidentales y Gran Canaria",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-activa-la-prealerta-por-riesgo-de-desprendimientos-en-islas-occidentales-y-gran-canaria-2/"
+  },
+  {
+   "t": "2026-11-10T14:37:58Z",
+   "titulo": "El Gobierno de Canarias declara la alerta por lluvia en La Palma",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-alerta-por-lluvia-en-la-palma/"
+  },
   {
    "t": "2026-11-10T14:07:01Z",
    "titulo": "El Gobierno de Canarias actualiza la situación y declara la alerta por fenómenos costeros en todas las islas",
@@ -48,21 +63,6 @@
    "t": "2026-11-06T16:53:20Z",
    "titulo": "El Gobierno de Canarias declara la prealerta por riesgo de inundaciones en el archipiélago",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-prealerta-por-riesgo-de-inundaciones-en-en-el-archipielago/"
-  },
-  {
-   "t": "2026-11-06T16:38:30Z",
-   "titulo": "El Gobierno declara la situación de prealerta por tormentas en Canarias",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-declara-la-situacion-de-prealerta-por-tormentas-en-canarias/"
-  },
-  {
-   "t": "2026-11-06T16:30:50Z",
-   "titulo": "El Gobierno declara la situación de alerta por lluvias en El Hierro, La Palma, La Gomera, Tenerife y Gran Canaria",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-declara-la-situacion-de-alerta-por-lluvias-en-el-hierro-la-palma-la-gomera-tenerife-y-gran-canaria/"
-  },
-  {
-   "t": "2026-11-06T16:26:32Z",
-   "titulo": "El Gobierno de Canarias declara la alerta por fenómenos costeros en el archipiélago",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-alerta-por-fenomenos-costeros-en-el-archipielago-3/"
   }
  ],
  "descartados": 0
