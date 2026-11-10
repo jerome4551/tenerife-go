@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-11-09T16:35:25Z",
- "fecha_ministerio": "09/11/2026 17:35:25",
- "franja": "2026-11-09 15:00",
+ "fecha": "2026-11-10T07:27:26Z",
+ "fecha_ministerio": "10/11/2026 8:27:26",
+ "franja": "2026-11-10 07:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -84,26 +84,26 @@
    "cuantas": 2,
    "g95": [
     {
-     "id": "gas-7780-arona",
-     "ideess": "7780",
-     "precio": 1.55
+     "id": "gas-8280-arona",
+     "ideess": "8280",
+     "precio": 1.535
     },
     {
-     "id": "gas-9483-arona",
-     "ideess": "9483",
-     "precio": 1.563
+     "id": "gas-10543-arona",
+     "ideess": "10543",
+     "precio": 1.539
     }
    ],
    "diesel": [
     {
-     "id": "gas-7780-arona",
-     "ideess": "7780",
-     "precio": 1.7
-    },
-    {
      "id": "gas-8280-arona",
      "ideess": "8280",
-     "precio": 1.709
+     "precio": 1.669
+    },
+    {
+     "id": "gas-10543-arona",
+     "ideess": "10543",
+     "precio": 1.679
     }
    ]
   },
@@ -112,16 +112,16 @@
    "cuantas": 1,
    "g95": [
     {
-     "id": "gas-7786-candelaria",
-     "ideess": "7786",
-     "precio": 1.498
+     "id": "gas-7834-candelaria",
+     "ideess": "7834",
+     "precio": 1.489
     }
    ],
    "diesel": [
     {
      "id": "gas-7834-candelaria",
      "ideess": "7834",
-     "precio": 1.719
+     "precio": 1.649
     }
    ]
   },
@@ -155,11 +155,6 @@
    ],
    "diesel": [
     {
-     "id": "gas-7778-el-sauzal",
-     "ideess": "7778",
-     "precio": 1.739
-    },
-    {
      "id": "gas-tf5-el-sauzal",
      "ideess": "7700",
      "precio": 1.739
@@ -173,7 +168,12 @@
     {
      "id": "gas-7718-fasnia",
      "ideess": "7718",
-     "precio": 1.559
+     "precio": 1.569
+    },
+    {
+     "id": "gas-7835-fasnia",
+     "ideess": "7835",
+     "precio": 1.569
     }
    ],
    "diesel": [
@@ -296,16 +296,16 @@
    "cuantas": 1,
    "g95": [
     {
-     "id": "gas-7724-la-guancha",
-     "ideess": "7724",
-     "precio": 1.457
+     "id": "gas-11566-la-guancha",
+     "ideess": "11566",
+     "precio": 1.459
     }
    ],
    "diesel": [
     {
-     "id": "gas-7724-la-guancha",
-     "ideess": "7724",
-     "precio": 1.597
+     "id": "gas-11566-la-guancha",
+     "ideess": "11566",
+     "precio": 1.649
     }
    ]
   },
@@ -603,11 +603,6 @@
    ],
    "diesel": [
     {
-     "id": "gas-15101-tegueste",
-     "ideess": "15101",
-     "precio": 1.745
-    },
-    {
      "id": "gas-7728-tegueste",
      "ideess": "7728",
      "precio": 1.745
@@ -645,15 +640,15 @@
    "diesel": 1.723
   },
   "gas-10543-arona": {
-   "g95": 1.579,
-   "diesel": 1.719
+   "g95": 1.539,
+   "diesel": 1.679
   },
   "gas-10591-los-realejos": {
    "g95": 1.579,
    "diesel": 1.719
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.599,
+   "g95": 1.589,
    "diesel": 1.749
   },
   "gas-10635-arafo": {
@@ -673,8 +668,8 @@
    "diesel": 1.748
   },
   "gas-10924-santa-cruz-de-tenerife": {
-   "g95": 1.565,
-   "diesel": 1.729
+   "g95": 1.465,
+   "diesel": 1.629
   },
   "gas-10950-fasnia": {
    "g95": 1.599,
@@ -697,7 +692,7 @@
    "diesel": 1.789
   },
   "gas-11394-santa-cruz-de-tenerife": {
-   "g95": 1.679,
+   "g95": 1.669,
    "diesel": 1.769
   },
   "gas-11525-adeje": {
@@ -714,7 +709,7 @@
   },
   "gas-11690-granadilla-de-abona": {
    "g95": 1.559,
-   "diesel": 1.719
+   "diesel": 1.729
   },
   "gas-11731-arico": {
    "g95": 1.569,
@@ -730,7 +725,7 @@
   },
   "gas-12381-la-orotava": {
    "g95": 1.559,
-   "diesel": 1.709
+   "diesel": 1.719
   },
   "gas-12412-santa-cruz-de-tenerife": {
    "diesel": 1.733
@@ -745,11 +740,11 @@
   },
   "gas-12630-arafo": {
    "g95": 1.559,
-   "diesel": 1.745
+   "diesel": 1.755
   },
   "gas-12776-adeje": {
    "g95": 1.599,
-   "diesel": 1.739
+   "diesel": 1.759
   },
   "gas-12784-adeje": {
    "g95": 1.598,
@@ -761,7 +756,7 @@
   },
   "gas-13228-adeje": {
    "g95": 1.599,
-   "diesel": 1.739
+   "diesel": 1.759
   },
   "gas-13292-san-miguel-de-abona": {
    "g95": 1.499,
@@ -825,7 +820,7 @@
   },
   "gas-15101-tegueste": {
    "g95": 1.585,
-   "diesel": 1.745
+   "diesel": 1.755
   },
   "gas-15182-tacoronte": {
    "g95": 1.579,
@@ -948,8 +943,8 @@
    "diesel": 1.699
   },
   "gas-7684-los-realejos": {
-   "g95": 1.565,
-   "diesel": 1.735
+   "g95": 1.505,
+   "diesel": 1.685
   },
   "gas-7685-los-realejos": {
    "g95": 1.568,
@@ -988,12 +983,12 @@
    "diesel": 1.719
   },
   "gas-7713-santa-cruz-de-tenerife": {
-   "g95": 1.589,
-   "diesel": 1.749
+   "g95": 1.579,
+   "diesel": 1.759
   },
   "gas-7718-fasnia": {
-   "g95": 1.559,
-   "diesel": 1.749
+   "g95": 1.569,
+   "diesel": 1.755
   },
   "gas-7719-candelaria": {
    "g95": 1.528,
@@ -1012,8 +1007,8 @@
    "diesel": 1.699
   },
   "gas-7724-la-guancha": {
-   "g95": 1.457,
-   "diesel": 1.597
+   "g95": 1.547,
+   "diesel": 1.677
   },
   "gas-7725-san-cristobal-de-la-laguna": {
    "g95": 1.537,
@@ -1060,12 +1055,12 @@
    "diesel": 1.739
   },
   "gas-7752-guimar": {
-   "g95": 1.569,
-   "diesel": 1.729
+   "g95": 1.559,
+   "diesel": 1.719
   },
   "gas-7766-arona": {
    "g95": 1.599,
-   "diesel": 1.739
+   "diesel": 1.759
   },
   "gas-7767-la-matanza-de-acentejo": {
    "g95": 1.609,
@@ -1073,7 +1068,7 @@
   },
   "gas-7768-la-orotava": {
    "g95": 1.559,
-   "diesel": 1.709
+   "diesel": 1.719
   },
   "gas-7769-san-cristobal-de-la-laguna": {
    "g95": 1.549,
@@ -1089,15 +1084,15 @@
   },
   "gas-7778-el-sauzal": {
    "g95": 1.579,
-   "diesel": 1.739
+   "diesel": 1.749
   },
   "gas-7780-arona": {
    "g95": 1.55,
    "diesel": 1.7
   },
   "gas-7784-san-cristobal-de-la-laguna": {
-   "g95": 1.579,
-   "diesel": 1.745
+   "g95": 1.569,
+   "diesel": 1.749
   },
   "gas-7786-candelaria": {
    "g95": 1.498,
@@ -1120,16 +1115,16 @@
    "diesel": 1.759
   },
   "gas-7817-san-cristobal-de-la-laguna": {
-   "g95": 1.565,
-   "diesel": 1.735
+   "g95": 1.559,
+   "diesel": 1.739
   },
   "gas-7818-santa-cruz-de-tenerife": {
-   "g95": 1.579,
-   "diesel": 1.745
+   "g95": 1.569,
+   "diesel": 1.749
   },
   "gas-7819-san-cristobal-de-la-laguna": {
    "g95": 1.585,
-   "diesel": 1.745
+   "diesel": 1.755
   },
   "gas-7827-los-silos": {
    "g95": 1.579,
@@ -1148,8 +1143,8 @@
    "diesel": 1.739
   },
   "gas-7834-candelaria": {
-   "g95": 1.559,
-   "diesel": 1.719
+   "g95": 1.489,
+   "diesel": 1.649
   },
   "gas-7835-fasnia": {
    "g95": 1.569,
@@ -1272,8 +1267,8 @@
    "diesel": 1.725
   },
   "gas-8280-arona": {
-   "g95": 1.575,
-   "diesel": 1.709
+   "g95": 1.535,
+   "diesel": 1.669
   },
   "gas-8326-arafo": {
    "g95": 1.569,
@@ -1284,12 +1279,12 @@
    "diesel": 1.689
   },
   "gas-8749-guimar": {
-   "g95": 1.569,
-   "diesel": 1.729
+   "g95": 1.559,
+   "diesel": 1.719
   },
   "gas-8751-san-cristobal-de-la-laguna": {
-   "g95": 1.579,
-   "diesel": 1.739
+   "g95": 1.569,
+   "diesel": 1.735
   },
   "gas-8753-puerto-de-la-cruz": {
    "g95": 1.549,
@@ -1408,8 +1403,8 @@
    "diesel": 1.748
   },
   "gas-tf1-guimar": {
-   "g95": 1.559,
-   "diesel": 1.749
+   "g95": 1.569,
+   "diesel": 1.755
   },
   "gas-tf2-lalaguna": {
    "g95": 1.509,
@@ -1428,8 +1423,8 @@
    "diesel": 1.739
   },
   "gas-tf5-lalaguna": {
-   "g95": 1.579,
-   "diesel": 1.739
+   "g95": 1.569,
+   "diesel": 1.749
   },
   "gas-tf5-los-realejos": {
    "g95": 1.559,
@@ -1437,7 +1432,7 @@
   },
   "gas-tf5-ptocz": {
    "g95": 1.559,
-   "diesel": 1.709
+   "diesel": 1.719
   },
   "gas-tf5-tacoronte": {
    "g95": 1.589,
