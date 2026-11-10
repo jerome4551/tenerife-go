@@ -2,8 +2,18 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-10T11:52:53Z",
+ "consultado": "2026-11-10T15:15:31Z",
  "alertas": [
+  {
+   "t": "2026-11-10T14:07:01Z",
+   "titulo": "El Gobierno de Canarias actualiza la situación y declara la alerta por fenómenos costeros en todas las islas",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-y-declara-la-alerta-por-fenomenos-costeros-en-todas-las-islas-2/"
+  },
+  {
+   "t": "2026-11-10T13:57:50Z",
+   "titulo": "El Gobierno de Canarias actualiza hasta alerta máxima por viento en La Palma y Tenerife",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-hasta-alerta-maxima-por-viento-en-la-palma-y-tenerife/"
+  },
   {
    "t": "2026-11-09T16:02:32Z",
    "titulo": "El Gobierno de Canarias actualiza la situación pasando a alerta por viento en todas las islas",
@@ -53,16 +63,6 @@
    "t": "2026-11-06T16:26:32Z",
    "titulo": "El Gobierno de Canarias declara la alerta por fenómenos costeros en el archipiélago",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-alerta-por-fenomenos-costeros-en-el-archipielago-3/"
-  },
-  {
-   "t": "2026-11-06T16:21:53Z",
-   "titulo": "El Gobierno de Canarias declara la situación de alerta por viento en las islas occidentales y Gran Canaria",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-situacion-de-alerta-por-viento-en-las-islas-occidentales-y-gran-canaria-3/"
-  },
-  {
-   "t": "2026-11-06T14:46:11Z",
-   "titulo": "El Gobierno de Canarias finaliza la prealerta por lluvias en La Palma",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-prealerta-por-lluvias-en-la-palma-2/"
   }
  ],
  "descartados": 0
