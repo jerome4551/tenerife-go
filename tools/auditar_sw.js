@@ -380,6 +380,9 @@ function opaca() {
     const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
     const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1].replace(/\/\*[\s\S]*?\*\//g, '');
     ok(core.includes("'./modulos/cuerpo.js'"), '«Su cuerpo»: modulos/cuerpo.js esta en el precache (CORE)');
+    /* (10-11-2026) Jero y sus tours: sin conexion desde el primer dia (el tour del cielo se abre
+       donde se mira el cielo), y «red primero», abajo, con los demas modulos */
+    ok(core.includes("'./modulos/guia.js'"), 'los tours: modulos/guia.js esta en el precache (CORE)');
     ok(!/datos\/cuerpo/.test(core), '«Su cuerpo»: y sus datos no, se guardan al usarlos');
     const SITIO = 'https://tenerifego.app/';
     class Peticion extends Request {
@@ -402,7 +405,12 @@ function opaca() {
     const nunca = await pedir(sw, SITIO + 'datos/cuerpo/asistente-de.json');
     ok(!nunca, '«Su cuerpo»: sin red, un fichero de datos que nunca se pidio falla limpio (no cuelga) y la pantalla lo dice', nunca && nunca.status);
     hayRed = true;
-    for (const f of ['modulos/cuerpo.js', 'datos/cuerpo/ejercicios.json', 'datos/cuerpo/ejercicios-bg.json', 'datos/cuerpo/asistente-zht.json', 'datos/cuerpo/deportes-pl.json']) {
+    ok(!!(await app.match(new Request(SITIO + 'modulos/guia.js'))), 'los tours: al instalar la app, modulos/guia.js entra en el cache sin abrir ningun tour');
+    hayRed = false;
+    const rg = await pedir(sw, SITIO + 'modulos/guia.js');
+    ok(rg && rg.status === 200, 'los tours: sin red, modulos/guia.js sale del cache', rg && rg.status);
+    hayRed = true;
+    for (const f of ['modulos/guia.js', 'modulos/cuerpo.js', 'datos/cuerpo/ejercicios.json', 'datos/cuerpo/ejercicios-bg.json', 'datos/cuerpo/asistente-zht.json', 'datos/cuerpo/deportes-pl.json']) {
       version = 'red-1';
       const r1 = await pedir(sw, SITIO + f); await espera();
       const t1 = r1 && await r1.text();

@@ -9245,7 +9245,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3500 filas (y 5.647 filas, dentro y fuera del fuente)
+## Idiomas · 50 tablas, 3590 filas (y 5.737 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9399,7 +9399,10 @@ Govern y el título de cada página: 3496 y 5.646. Y ese día, la contraseña de
 (la ayuda de los 8 caracteres, su aviso y el de la contraseña filtrada; esa tabla va por idioma y no entra en la cuenta
 de `barrido_idiomas.js`) y una en la política, la de Have I Been Pwned; y la pestaña «Evolución» de «Su cuerpo»: una
 fila menos en `PERFIL_UI` (467: fuera `perfilUKm`, `perfilDistancia` y `perfilTotalCaminado`; dentro `perfilTotal` y
-`perfilAnotarMov`) y una más en `CUERPO_UI` (560), el nombre de la pestaña: 3500 y 5.647. El
+`perfilAnotarMov`) y una más en `CUERPO_UI` (560), el nombre de la pestaña: 3500 y 5.647.
+Y ese mismo día, Jero y sus tours: una tabla más, `GUIA_UI` (`modulos/guia.js`), con 133 filas (40 de las 47
+del tour de antes y 93 nuevas: 51 de la app y del cielo, 25 de «Su cuerpo», el botón de cerrar del menú y los 16
+chistes de Jero), y en `index.html` quedan cuatro (`tourVer`, de antes, y tres nuevas): 50 tablas, 3590 y 5.737. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -11737,6 +11740,206 @@ saldría «🐾 Con mascotas 🐾». El rótulo es el texto y en pantalla sale
   con las dos de hoy: 157.
 - Las etiquetas «Teide» y «Fañabé» de Golf Costa Adeje no salen en el texto
   oficial nuevo. No se han tocado: lo decide Jerome.
+
+## Jero, el presentador: el tour de la app por capítulos, el del cielo y el de «Su cuerpo» (10 de noviembre)
+
+Jerome, el 10 de noviembre de 2026, con dos fotos suyas: «Necesito que tenemos un tour de explicación
+como el que tenemos pero mucho más completo y necesito uno nuevo por la zona de estrella», y «lo que
+yo quiero con los tours explicativos es un personaje animado de mí. Como un presentador de la isla».
+Y «lo mismo por el cuerpo (espera que sube el bloque 8)»: el bloque 8 subió ese mismo día, así que el
+tour de «Su cuerpo» va aquí también, hecho sobre el `main` que ya lo lleva.
+
+**Qué hay** (`modulos/guia.js`, carga perezosa, 103 kB comprimidos; en `index.html` queda el cargador):
+
+- **Jero**: un dibujo SVG hecho a mano en el propio módulo, con el pelo, las gafas, la sonrisa y la
+  camiseta de las fotos (el estampado es un Teide a brochazos, no la marca de la camiseta), dentro de
+  un aro dorado como el del logotipo. Articulado con muelles: cabeza, mirada, cejas, párpados, boca
+  (siete bocas, según la letra que se escribe) y dos brazos de dos huesos con cuatro manos. Saluda,
+  celebra, levanta el pulgar y señala el punto de la pantalla que se le pide, con el brazo del lado
+  que toca. Seis atuendos (el último, de deporte: cinta en el pelo y toalla al cuello) y seis cielos dentro del aro. Sin filtros de CSS: Safari recorta lo que
+  se sale de la caja de un elemento con `filter`, y los brazos se salen.
+- **El motor**: el foco sobre la interfaz de verdad, Jero siempre entre su bocadillo y lo que señala
+  (encima o debajo), la estela del dedo al foco, el texto que se escribe solo, los capítulos en la
+  barra, deslizar el bocadillo, Escape, las flechas, y la voz, opcional, con las voces del móvil
+  (`TG_VOZ`, solo `localService`), que pasa sola al paso siguiente. Para los lectores de pantalla,
+  el paso entero de una vez. Con «reducir movimiento», nada se mueve. Con el móvil tumbado (apaisado y
+  de 500 px de alto o menos), el bocadillo va al lado de lo que señala.
+- **El tour de la app**, versión 3: de 18 a 25 pasos, en cinco capítulos. Nuevos: la isla en 3D, la
+  leyenda, los favoritos, el asistente, el perfil, las emergencias y sin cobertura; el de los
+  marcadores señala un marcador de verdad y explica los grupos. Los textos de antes se quedan como
+  estaban (solo «se las enseñamos» pasa a «se las enseño»: habla Jero).
+- **El tour del cielo**: 13 pasos por las cinco pestañas, dentro del panel. La luz roja se enciende
+  en su paso y se apaga al salir, si no estaba puesta. No pregunta al abrir el panel: el botón de
+  Jero late y un globito lo dice, una sola vez por dispositivo. De noche, la primera vez, el panel
+  ofrece la luz roja en una barra encima de su cuerpo (`#cielo-pista`): mientras dura la visita se
+  aparta, y al acabar vuelve tal cual, sin darla por vista.
+- **El tour de «Su cuerpo»**: 19 pasos bajando por la pantalla (el personaje, los colores, el deporte,
+  las metas de la semana, anotar movimiento, «Hoy en la isla», el mapa de «Cruce la isla» y su
+  compañero, los senderos, los grupos, los sellos, la postal, lo que se guarda y los dos botones de
+  arriba) y, al final, «Aspecto», «Comida», «Evolución» y «Preguntar» en su botón de la barra de abajo
+  («Evolución», las dos tarjetas del perfil, llegó a `main` ese mismo día, con este tour ya hecho: lleva
+  su paso, con las palabras de la política de privacidad). **No anota
+  nada, no abre hojas y no cambia de vista**: entrar en «Aspecto» pide el resto del 3D y entrar en
+  «Preguntar», las respuestas del asistente, y eso no lo decide un tour. Jero va de deporte, se pone
+  las gafas de sol en «Hoy en la isla» y la gorra y la mochila en la travesía y los senderos. Se
+  ofrece como el del cielo, una vez por dispositivo (`tenerife.tour.cuerpo`); el globito sale encima del
+  botón (debajo taparía la leyenda) y, si al abrir hay una celebración encima (un sello recién
+  conseguido), espera a la vez siguiente: no se gasta donde nadie lo ve.
+- **`modulos/cuerpo.js` no se toca** (lo hace su propia entrega, bloque a bloque). El botón de Jero se
+  lo pone el cargador de `index.html`: ve llegar el panel a `<body>` y abrirse, y lo cuelga de la
+  escena, abajo a la izquierda, frente a «Girar», con el mismo dibujo que el del cielo. Lo que el tour
+  señala son los `id` de esa pantalla, y el control mira, sin navegador, que sigan en el módulo.
+- **«Ver el tour»** abre el menú de visitas (la app, un capítulo, el cielo o «Su cuerpo»); el panel del
+  cielo y «Su cuerpo» llevan el botón con la cara de Jero.
+
+**Dos cosas que solo se vieron midiendo.** Con «reducir movimiento», `index.html` le pone a todo una
+transición de 0,01 ms: lo que se mide en el mismo instante de cambiar una clase es todavía lo de
+antes, y el bocadillo se colocaba con la altura del paso anterior (se salía de la pantalla en un
+móvil de 360 × 640). Dentro del tour no hay transiciones con esa preferencia, y el gesto se hace dos
+cuadros después. Y al cerrar el panel de rutas la barra de abajo tarda en volver a su sitio: el paso
+siguiente espera 260 ms antes de medir.
+
+**Seis cosas que salieron al hacer el de «Su cuerpo».** (1) **Escape cerraba «Su cuerpo» y no el
+tour**: esa pantalla oye su Escape en la captura de `window` y corta ahí; el del tour, que estaba en
+la captura de `document`, no llegaba a oírlo. Ahora el cargador de `index.html` engancha el suyo al
+arrancar, también en la captura de `window`, y va por delante de todos los módulos: con un tour
+abierto, Escape cierra el tour y nada más. (2) **El botón de cerrar del menú de visitas salía vacío**:
+el motor pedía `guiaMenuCerrar` y la fila no existía. Estaba así desde la mañana y ningún control lo
+veía (los de idioma miran las filas que hay, no las que se piden con `T()`); lo cazó una captura de
+pantalla. Ahora `auditar_tour.js` mira, sin navegador, que cada texto que el módulo pide exista, y
+con él, que ningún botón salga sin texto. (3) **El menú decía «12 pasos» para el cielo y el tour tiene
+13**: el botón de la luz roja lo destapa `modulos/cielo.js` al llegar, y con el panel sin abrir el
+paso no se contaba. (4) **«Atrás» cierra «Su cuerpo» y el tour se quedaba encima**: ahora un tour se
+va con la pantalla que enseña. Y una quinta, del control de «Su cuerpo» (`tools/probar_cuerpo.js`):
+cuenta los nodos con texto traducido de su pantalla, y el botón de Jero con `data-tx` le sumaba uno;
+el rótulo del botón sigue al idioma por su cuenta y esa cuenta vuelve a ser la suya. Y una sexta: **con
+tres visitas, el menú no cabía en un móvil de 320 × 568**, y centrado con `align-items` la cabeza de
+Jero quedaba cortada arriba, sin forma de llegar a ella. Ahora se centra con márgenes (lo que no cabe
+se recorre desde su principio) y, donde no cabe a su tamaño, se aprieta: cabe entero en los diez idiomas.
+
+**El repaso del personaje (el mismo 10 de noviembre, por la tarde).** Jerome, al ver los tours: «Me
+gusta muchísimo el concepto y todo el tour. Lo único: el yo dibujado tiene que hacer mejor las manos.
+Cuando muestra algo parece que está haciendo 🖕. […] Trabaja más los brazos, la cara más trabajada
+también. […] El personaje necesita ser más detallista. Más emoción también. Algunos chistes».
+
+- **La mano que señala** era un puño con un solo dedo recto en el centro, y así se lee como otro
+  gesto. Ahora es un índice: sale del borde de la mano que da al pulgar, el pulgar se ve, abierto, y
+  los otros tres dedos van doblados y marcados uno a uno. Hacia arriba, la mano sube por su lado de la
+  cabeza y nunca pasa por delante de la cara (un dedo en la frente es otro gesto); la estela une la
+  yema con lo que se señala. Las cuatro manos son nuevas, con sus dedos, su contorno y sus pliegues:
+  la abierta (saluda, celebra), la de presentador (los dedos juntos hacia lo que enseña: para una
+  tarjeta o un tramo de pantalla; el índice se queda para los botones), la que señala y el pulgar
+  arriba.
+- **Los brazos** tienen forma (el bíceps, el antebrazo que se estrecha, el codo, la muñeca) y la manga
+  lleva su dobladillo y su pespunte. **La cara**: los párpados son dos curvas que se mueven (abrir,
+  entornar, guiñar, reír), el iris tiene su borde y sus brillos, cada ceja tiene su forma y se mueve
+  por su cuenta, el pelo va por mechones, las gafas llevan remaches y plaquetas, y la camiseta, su
+  canalé y sus costuras. Se probó una barba de puntitos y se quitó: a media distancia parecían pecas.
+- **Doce caras** (`EMO`): contento, risa, guiño, pícaro, asombro, ilusión, pensativo, serio, cariño,
+  apuro, frío y fiesta, con lo que le sale al lado (unos destellos, una duda, la gota del apuro, el
+  vaho del frío, unas notas, un corazón) y lo que hace el cuerpo (la risa sacude los hombros, el frío
+  hace tiritar). Cada paso lleva la suya, y con una exclamación levanta las cejas.
+- **Dieciséis chistes**: un aparte de Jero al final de algunos pasos (la fila `kC`), en cursiva, que
+  cuenta con otra cara. Siete en la app, cuatro en el cielo y cinco en «Su cuerpo»; ninguno en los
+  pasos serios (el mar, las emergencias, «Hoy en la isla», la comida, lo que se guarda). Hablan de él
+  o de la isla, y nada que la app no haga: que aquí al autobús se le dice «guagua»; que con el gorro
+  del frontal parece minero; que subió a la cumbre en camiseta (el paso dice «Abríguese», y Jero
+  tirita).
+  «Guagua» se queda en castellano en los nueve idiomas, entre comillas: es lo que ese aparte enseña.
+  Va aceptada, con su motivo, en las dos listas que lo miran: `idiomas/castellano-aceptado.json` (zh,
+  zht y bg, donde la veía `castellano_suelto.js`) y `idiomas/pantalla-aceptado.json` (la frase exacta
+  en los nueve, que es lo que ve `barrido_pantallas.js` en el bocadillo y en el texto del paso para
+  los lectores de pantalla).
+- **Lo que salió al mirarlo**: en las capturas del tour de «Su cuerpo», de las gafas de Jero salían dos
+  barras blancas hasta arriba de la pantalla. Eran los ojos: los muelles de los párpados, nuevos y más
+  rígidos que los demás, se desbocaban cuando el móvil va lento (un cuadro cada 50 ms, que es lo que
+  da el navegador de las pruebas). Los muelles se integran ahora a pasos de 12 ms como mucho, vaya el
+  móvil como vaya, y la abertura del ojo tiene tope. El control lo prueba a 20 cuadros por segundo: sin
+  el arreglo da «ojos de 23×830».
+- **Lo que salió al pasar la auditoría entera de noche**: `auditar_tour.js` pasaba por la tarde y a las
+  21 h salió en rojo. De noche, la primera vez que se abre, el panel del cielo ofrece la luz roja en una
+  barra de unos 80 px encima de su cuerpo, y esa barra le quitaba el sitio a la visita justo cuando más
+  se va a ver: en un móvil de 320×568 el bocadillo tapaba lo que señalaba en dos pasos (los planetas y
+  «Apunte al cielo»), y Jero se quedaba en miniatura en diez de los trece. Ahora la visita aparta la
+  barra mientras dura (una clase en el panel y una regla en los estilos del módulo) y la devuelve al
+  acabar. Y el control ya no depende de la hora: recorre el cielo con el reloj de la página a las 23:30
+  UTC, mira que la barra esté, que la visita la aparte y que vuelva sin darse por vista. Sin el arreglo
+  da los mismos rojos que dio esa noche.
+- **Y lo que salió al repasar el panel con la luz roja puesta**, que ningún control miraba: en rojo la
+  cabecera lleva también el regulador de brillo, y con el botón de Jero ya no cabía en un renglón en
+  un móvil estrecho. El título se quedaba sin sitio y el botón lo pisaba: a 320 px en francés,
+  neerlandés, búlgaro y polaco, y en búlgaro hasta 381 px (en `main`, sin el botón, solo se pisaban
+  8 px en búlgaro a 320). Por debajo de 390 px, con la luz roja, la cabecera va ahora en dos renglones:
+  arriba el título y la ✕; debajo, Jero, «Luz roja» y el regulador, que coge el ancho que queda.
+  Medido en ocho anchos (de 320 a 412 px) y los diez idiomas: nada pisa a nada. Mientras dura la visita
+  de Jero, no: ese renglón de más le quitaba el sitio (con la luz roja ya puesta al empezar, a 320×568
+  Jero salía en miniatura en nueve o diez pasos de trece, y en tres idiomas el bocadillo tapaba la
+  carta), así que el regulador, que con la visita encima no se puede tocar, se aparta y la cabecera es
+  la de siempre. `auditar_tour.js` mira las dos cosas en los diez idiomas y los cuatro móviles: en el
+  paso de la luz roja, que el regulador no esté; y al acabar la visita, con la luz puesta a mano, que
+  estén los cinco y nada pise a nada. Sin el arreglo, en búlgaro da «se pisan cielo-titulo y
+  cielo-tour-btn» a 320 y a 360 px.
+- **Y con el móvil tumbado**, que el control tampoco recorría (sus cuatro móviles van de pie): a
+  844×390 casi nunca cabe nada ni encima ni debajo de lo que se señala, así que Jero salía en
+  miniatura en casi todos los pasos, el bocadillo tapaba lo señalado en varios (cinco de la app, casi
+  todos los del cielo) y el último paso se salía por abajo, con su botón a medias. El tour de antes,
+  sin personaje, cabía mejor (un paso tapado, el de «Organice su día»). Ahora, apaisado y bajo, el
+  bocadillo va **al lado** de lo que señala, a la altura de la mano de Jero; de una tarjeta ancha se
+  enseña su lado izquierdo; y el saludo y la despedida se aprietan hasta caber. A 844×390, los tres
+  tours sin tapar nada y sin salirse, y el de la app con Jero a su tamaño. `auditar_tour.js` los
+  recorre así en castellano; sin el arreglo da 35 fallos. En pantallas tumbadas más pequeñas no cabe
+  todo: a 667×375 quedan tapados un paso de la app («Organice su día»; con el tour de antes eran ese
+  y «Ruta del día») y el primero de «Su cuerpo»; a 568×320, tres de la app («Organice su día», «Ruta
+  del día» y «El asistente») y ese mismo de «Su cuerpo». Ahí nada se sale de la pantalla y el botón
+  de seguir queda siempre a mano.
+- **El globito, encima de la visita**: quien tocara el botón de Jero antes de que saliera su globito
+  (sale a los 0,9 s de abrir el panel) lo veía aparecer después, encima del primer paso. Al empezar
+  una visita se quitan los globitos, y con una abierta no se ofrece otro.
+
+**Lo que dicen los textos**, cotejado con la app: el relieve y los gestos del 3D (los de su ayuda), los
+favoritos con y sin cuenta y el perfil opcional (la política de privacidad), el 112 del panel SOS
+(está en el armazón), el mapa detallado (el aviso del panel «ⓘ») y, del cielo, lo que dice cada
+tarjeta. Tres frases se afinaron al cotejarlas: lo que se calcula en el móvil son las horas y las
+posiciones (las nubes y Wikipedia piden red); la fecha cambia «Esta noche» y la carta, no el panel
+entero; y la carta es el cielo de Tenerife (se calcula para Izaña), no «desde aquí». Los de «Su
+cuerpo» dicen lo que dice su pantalla (sus propias filas, que el tour usa de título en quince
+pasos: catorce de `modulos/cuerpo.js` y, en el de «Evolución», el de su tarjeta, que vive en
+`modulos/perfil.js`): los tres colores por su orden, los días de fuerza y los minutos que recomienda la OMS para
+la edad, los
+datos de cada deporte (minutos e intensidad en todos; distancia y desnivel donde los pide la hoja),
+la travesía a pie y, si se elige, en bici, el diario de comidas apagado hasta que se enciende y las
+respuestas escritas de antemano que se buscan en el móvil. No llevan cifras que puedan cambiar (ni
+los senderos, ni los sellos, ni los ejercicios): solo los pasos, que se cuentan.
+Dos se afinaron en el repaso final, cotejando otra vez con `modulos/cuerpo.js`: las metas que siguen a
+la OMS por la edad son dos (`metaDias()` y `metaMin()`), no las tres (los grupos son siempre 12); y
+no todos los senderos tienen punto en el mapa (las etapas del GR 131 son la propia ruta, y empiezan
+en sus paradas): el texto dice que los puntos marcan dónde empiezan, no que cada sendero tenga el
+suyo. Y la leyenda, que decía «la app o el cielo», nombra ahora las tres visitas.
+
+**La política de privacidad** dice ahora «si ya vio los tours» (son tres), en los ocho idiomas que
+marcan el plural; el chino no lo marca.
+
+**Controles**: `tools/auditar_tour.js`, rehecho: los tres tours enteros en los diez idiomas y cuatro
+móviles (que nada tape lo que se señala, que quepa, que Jero esté y señale, las cifras, el panel de
+rutas, la luz roja, lo guardado; cada tour se acaba pulsando su último botón, y si no se puede
+pulsar es un fallo), el menú con sus tres visitas y los pasos que de verdad tiene cada
+una (y entero también en 320 × 568), las novedades, con movimiento (la mano que señala tal como queda dibujada, y el
+chiste, que llega después del texto y con su cara), con el móvil lento, la voz en tres idiomas con una voz falsa (lee
+también el chiste) y sin el módulo. En cada paso: el chiste, si lo hay, entero para los lectores de pantalla y con otra
+cara; el índice para los botones y la mano abierta para lo grande. En
+«Su cuerpo», además: que el tour no cambie de vista, no abra hojas, no pida datos a la red y no
+escriba en lo guardado; y, en castellano, por el camino de verdad (Cuenta, la pestaña Cuerpo y
+«Abrir»): el globito una vez (y que espere si hay una celebración encima), Escape, «atrás», el botón
+(uno, también en «Aspecto»), el tema Noche y sin el módulo de la pantalla. Y antes de abrir el navegador: cada texto pedido existe, el nombre de
+«Su cuerpo» del menú, y el de cada frase que la nombra, es el de su módulo en los diez idiomas, lo que el tour señala sigue allí,
+los chistes siguen (y ninguno en un paso serio), cada cara que pide un paso existe y la mano que señala es un índice. En 320 × 568 Jero sale en miniatura en algunos pasos, por falta de
+sitio (y en 360 × 640, en un paso del cielo en algunos idiomas, desde que llevan chiste); en 390 × 844 y 412 × 915, nunca. `auditar_cielo.js` busca el paso del cielo en el módulo,
+`auditar_sw.js` mira que el módulo esté sin conexión y llegue nuevo, y `barrido_pantallas.js`
+espera al módulo y recorre los 25 pasos.
+
+**Lo que no se ha comprobado aquí**: un iPhone de verdad (el dibujo, la voz de iOS y VoiceOver) y
+las nueve lenguas con un nativo. El nombre del personaje, «Jero», y la frase «Vivo en Tenerife y he
+hecho esta guía de la isla» los decide Jerome.
 
 ## El tour de bienvenida, rehecho (11 de octubre)
 

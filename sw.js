@@ -84,6 +84,10 @@ const CORE = [
      las sumas con las que el modulo comprueba los dos PNG, asi que uno nuevo
      con los PNG de antes no se dibuja (lo dice, en vez de pintar mal). */
   './modulos/isla3d.js', './mapa/tenerife-relieve.json', './mapa/tenerife-relieve.png', './mapa/tenerife-relieve-ao.png',
+  /* Jero y sus tours (10 de noviembre de 2026): el presentador, el motor y los tours de la
+     app, del cielo y de «Su cuerpo». No se pide al arrancar, pero tiene que estar sin conexion:
+     el tour del cielo se abre donde se mira el cielo. Va tambien «red primero» abajo, como los demas. */
+  './modulos/guia.js',
   /* Los satelites (21 de octubre de 2026): el motor SGP4 y los elementos
      orbitales que renueva el robot cada dia. Los elementos van tambien «red
      primero» abajo: cambian a diario. */
@@ -400,6 +404,7 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/cuerpo3d.js') ||
           url.pathname.endsWith('/datos/cuerpo3d/indice.json') ||
           url.pathname.endsWith('/modulos/isla3d.js') ||
+          url.pathname.endsWith('/modulos/guia.js') ||
           /\/mapa\/tenerife-relieve(-ao)?\.(png|json)$/.test(url.pathname) ||
           url.pathname.endsWith('/datos/cielo.json') ||
           url.pathname.endsWith('/datos/satelites.json') ||

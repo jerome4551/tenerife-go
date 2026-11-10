@@ -131,6 +131,11 @@
   "asistente · palabras de ese idioma que coinciden con el castellano o lo toman: el ingles dice «fiestas» (la app tambien: «Fiestas and traditions»), en italiano «casco» es el casco y el escaldón va con su articulo": {
    "en": ["fiestas@faq app-01.a", "fiestas@faq app-20.a"],
    "it": ["casco@faq pla-16.a", "nell’escaldón@faq com-04.a"]
+  },
+  "el tour, 10 de noviembre de 2026 · un chiste de Jero enseña la palabra (Aquí al autobús se le dice «guagua»: dígalo y ya parecerá de la isla): es la leccion, no un resto": {
+   "zh": ["guagua@es:se le dice «guagua»"],
+   "zht": ["guagua@es:se le dice «guagua»"],
+   "bg": ["guagua@es:se le dice «guagua»"]
   }
  },
  "frases": {

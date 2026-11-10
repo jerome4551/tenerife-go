@@ -52,7 +52,8 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # panel SOS (22 de octubre de 2026), y modulos/cuerpo.js, «Su cuerpo» (31 de
 # octubre de 2026).
 # Y modulos/isla3d.js, «La isla en 3D» (31 de octubre de 2026).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js; do
+# Y modulos/guia.js, Jero y sus tours (10 de noviembre de 2026).
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -251,9 +252,13 @@ echo; echo "════════ texto que no cambia al cambiar de idioma �
 control auditar_sin_traducir.js node tools/auditar_sin_traducir.js "$PUERTO"
 echo; echo "════════ lo que se ve en pantalla, en los diez idiomas (paneles y fichas) ════════"
 control barrido_pantallas.js node tools/barrido_pantallas.js "$PUERTO"
-echo; echo "════════ el tour de bienvenida, entero, en los diez idiomas y cuatro moviles ════════"
+echo; echo "════════ los tours con Jero (el de la app, el del cielo y el de «Su cuerpo»), enteros, en los diez idiomas y cuatro moviles ════════"
 # Desde el 11 de octubre de 2026: el tour lo recorre de verdad, paso a paso.
 # Sus textos estuvieron un mes en listas que ningun control leia.
+# Desde el 10 de noviembre de 2026 son tres, con un presentador (modulos/guia.js):
+# el personaje, el menu de visitas, la voz, «reducir movimiento» y sin el modulo.
+# El de «Su cuerpo», ademas, no cambia de vista, no abre hojas, no pide datos y no
+# escribe en lo guardado; y sin navegador se mira que cada texto pedido exista.
 control auditar_tour.js node tools/auditar_tour.js "$PUERTO"
 echo; echo "════════ el cielo de Tenerife: textos, catalogo, calculos contra el IMCCE y la IMO, y sin conexion ════════"
 # Desde el 17 de octubre de 2026. El panel se carga al abrirlo

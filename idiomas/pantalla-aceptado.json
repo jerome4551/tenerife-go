@@ -167,5 +167,34 @@
   "pl": [
    "Hallgrímskirkja"
   ]
+ },
+ "El aparte de Jero en el paso de las guaguas de su tour (modulos/guia.js, tourGuaguasC): «Aquí al autobús se le dice “guagua”. Dígalo y ya parecerá de la isla». La palabra canaria es justo lo que el aparte enseña y va entre comillas en los nueve idiomas, como el nombre del avatar «tf-guagua»; lo demás de la frase está en su idioma. El barrido la ve en el bocadillo y, dentro, en el texto del paso para los lectores de pantalla (10/11/2026)": {
+  "en": [
+   "Here a bus is called a “guagua”. Say it and you’ll sound like a local."
+  ],
+  "fr": [
+   "Ici, le bus s’appelle une « guagua ». Dites-le et on vous croira de l’île."
+  ],
+  "de": [
+   "Hier heißt der Bus „Guagua“. Sagen Sie es, und Sie klingen schon wie von hier."
+  ],
+  "it": [
+   "Qui l’autobus si chiama «guagua». Lo dica e sembrerà già dell’isola."
+  ],
+  "nl": [
+   "Hier heet de bus een “guagua”. Zeg het en u klinkt al als een eilander."
+  ],
+  "zh": [
+   "这里把公交车叫作“guagua”。说出这个词，您就像本地人了。"
+  ],
+  "zht": [
+   "這裡把公車叫作「guagua」。說出這個詞，您就像本地人了。"
+  ],
+  "bg": [
+   "Тук на автобуса му казват „guagua“. Кажете го и ще звучите като местен."
+  ],
+  "pl": [
+   "Autobus nazywa się tu „guagua”. Wystarczy to powiedzieć, żeby brzmieć jak miejscowy."
+  ]
  }
 }

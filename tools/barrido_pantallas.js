@@ -273,8 +273,8 @@ window.__estados = [
         alertas: { consultado: iso(ahora - 1200000), alertas: [{ t: iso(ahora - 3 * 3600000), titulo: 'PRUEBA · El Gobierno de Canarias declara la prealerta por lluvias', enlace: 'https://www3.gobiernodecanarias.org/noticias/category/alertas/' }] } });
       TG_SOS.abrir(); await espera(300); }],
   ['leyenda', async () => { const b = document.getElementById('map-legend-toggle'); if (b) b.click(); }],
-  ['tour', async () => { window.v19StartTour(); await espera(500);
-      const t = []; for (let i = 0; i < 14; i++) { t.push(document.getElementById('v19-tour').innerText); const n = document.querySelector('#v19-tour .v19t-next'); if (!n || !document.getElementById('v19-tour').classList.contains('open')) break; n.click(); await espera(250); }
+  ['tour', async () => { await window.v19StartTour(); await espera(500);   // (10-11-2026) el tour llega con modulos/guia.js: se espera
+      const t = []; for (let i = 0; i < 60; i++) { t.push(document.getElementById('v19-tour').innerText); const n = document.querySelector('#v19-tour .v19t-next'); if (!n || !document.getElementById('v19-tour').classList.contains('open')) break; n.click(); await espera(250); }
       window.__extra = t; }],
 ];
 window.espera = ms => new Promise(r => setTimeout(r, ms));

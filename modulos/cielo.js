@@ -2241,6 +2241,7 @@
     var tf = tarjetaFotos(n); if (tf) c.appendChild(tf);
     /* Planetas */
     var t3 = tarjeta(T('Planetas'));
+    t3.setAttribute('data-guia', 'planetas');     // el tour del panel la señala (modulos/guia.js)
     var pl = planetasNoche(n);
     if (!pl.length) t3.appendChild(el('div', 'cielo-item-sub', T('SinPlanetas')));
     pl.forEach(function (p) {
@@ -2691,6 +2692,7 @@
     t0.appendChild(el('p', 'cielo-p', T('Starlight')));
     c.appendChild(t0);
     var t1 = tarjeta(T('Sitios'));
+    t1.setAttribute('data-guia', 'sitios');       // el tour del panel la señala (modulos/guia.js)
     SITIOS.forEach(function (s) {
       var existe = s[0] && typeof places !== 'undefined' && places.some(function (p) { return p.id === s[0]; });
       var it = el('div', 'cielo-item');

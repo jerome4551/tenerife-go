@@ -25,6 +25,7 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 | `datos/cuerpo/` | Los datos de «Su cuerpo»: los 533 ejercicios (`ejercicios.json`, con sus grupos, su material, su nivel y sus fuentes, y `ejercicios-<idioma>.json`, con su nombre y sus pasos), las 178 respuestas del asistente (`asistente-<idioma>.json`) y las guías de los deportes (`deportes-<idioma>.json`), uno por idioma. La pantalla pide solo los de su idioma, al abrir la biblioteca o la hoja de un grupo, «Preguntar» o un deporte, y el service worker los guarda al usarlos. |
 | `modulos/emergencias.js` | El panel «Emergencias» del botón SOS: qué hacer ante una erupción, un terremoto u otra emergencia en Tenerife y a quién llamar, con sus fuentes oficiales y sus textos en los diez idiomas. Se pide al abrirlo y el service worker lo guarda desde el primer día; la barra del 112 está en `index.html` y llama aunque el módulo no llegue. |
 | `modulos/isla3d.js` | «La isla en 3D», el botón «3D» del mapa: el relieve de verdad de la isla con el mapa encima, los nombres, la luz del sol de ahora con sus sombras (o la luna) y los gestos, en WebGL a mano y sin bibliotecas, con sus textos en los diez idiomas. Se pide al tocar el botón y el service worker lo guarda con el relieve, para que abra sin conexión. |
+| `modulos/guia.js` | Jero, el presentador de los tours: un dibujo SVG propio con el aspecto de Jerome, articulado (gira la cabeza, mira, parpadea, mueve la boca con lo que dice, saluda y señala con el brazo el botón que explica) y con sus atuendos; el motor de tours (el foco sobre la interfaz de verdad, el bocadillo, la voz opcional con las voces del móvil) y los tres tours, el de la app por capítulos, el del panel del cielo y el de «Su cuerpo», con sus textos en los diez idiomas. Se pide al ofrecer el tour a quien no lo ha visto, al tocar «Ver el tour» en la leyenda o el botón de Jero del panel del cielo o de «Su cuerpo», y la primera vez que se abre uno de los dos (para ofrecerse desde su botón); el service worker lo guarda desde el primer día. |
 | `mapa/tenerife-relieve*.png` y `.json` | El relieve de «La isla en 3D»: una celda de 60 m del MDT05 del IGN (el terreno de los vuelos LiDAR, 5 m) o, si ese no sale, del Copernicus DEM GLO-30 (ESA / Unión Europea), con la costa del mapa detallado. Lo hace `tools/relieve_construir.py` desde el workflow «Generar relieve 3D»; mientras no exista, el botón no sale. El de ahora, del 1 de noviembre de 2026, sale del Copernicus DEM: la API del IGN solo da trozos de 0,01° y no dio tiempo a bajar la isla entera (`AUDITORIA-FINAL.md`). Qué es cada fichero, la licencia y cómo se rehace: `mapa/RELIEVE.md`. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
@@ -44,7 +45,7 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
-`index.html` y funciona. Las piezas aparte son siete. La red de guaguas, que son
+`index.html` y funciona. Las piezas aparte son ocho. La red de guaguas, que son
 datos y no código: 1 MB que solo se usa con las guaguas y que dentro de la
 página había que leer y compilar en cada apertura. El panel del cielo
 (`modulos/cielo.js`, con su motor y su catálogo), que se pide solo cuando
@@ -65,6 +66,9 @@ que la pantalla pide al abrirse si el navegador tiene WebGL 2: el motor, el
 Y «La isla en 3D»
 (`modulos/isla3d.js`, con su relieve en `mapa/`), que se pide al tocar «3D» y
 que el service worker también guarda desde el primer día.
+Y Jero, el presentador de los tours (`modulos/guia.js`, con el motor, los tres
+tours y sus textos en los diez idiomas), que se pide al ofrecer el tour o al
+tocar «Ver el tour» y que el service worker guarda igual, desde el primer día.
 
 ### Probarlo en local
 
@@ -274,7 +278,9 @@ cada posición con los elementos keplerianos de la JPL
 **La luz roja** tiñe toda la pantalla (no solo el panel) y lleva un
 regulador de brillo, en el panel y en «Apunta al cielo»; la barra del
 sistema se pone en rojo oscuro; y si se abre el panel de noche con la luz
-blanca, una pista lo ofrece una vez. **Sin cobertura**, el panel sigue
+blanca, una pista lo ofrece una vez. Con la luz roja, en un móvil de menos
+de 390 px de ancho la cabecera va en dos renglones (el título y la ✕;
+debajo, Jero, «Luz roja» y el regulador). **Sin cobertura**, el panel sigue
 calculándolo todo: «Esta noche» dice qué falta sin red (las nubes y
 Wikipedia) y de cuándo son los elementos de los satélites, y «Dónde ir»
 comprueba antes de subir que los ficheros del panel están guardados en el
@@ -393,14 +399,87 @@ escribe a mano**: sale de su magnitud y de la altura máxima a la que llega
 desde Tenerife.
 
 **Los textos van en `modulos/cielo.js`** (`CIELO_UI` y las tablas `CIELO_*`),
-con la misma forma que `UI_TX`; solo las siete filas que hacen falta antes de
-cargarlo (el botón, el título, «cargando») están en `index.html`. Lo que dicen
+con la misma forma que `UI_TX`; solo las ocho filas que hacen falta antes de
+cargarlo (el botón, el título, «cargando» y el botón de la visita guiada) están
+en `index.html`. Lo que dicen
 de leyes, certificaciones y sitios lleva encima su fuente.
 `tools/auditar_cielo.js` comprueba los textos contra el código y el catálogo,
 abre las cinco pestañas en los diez idiomas, coteja los cálculos con el IMCCE,
 la IMO y otros, y abre el panel con el servidor apagado. Como el módulo no
 tiene etiqueta, se declara con un comentario `CARGA-PEREZOSA:` para que
 `tools/fuente.js` lo pegue al fuente y las herramientas de idiomas lo vean.
+
+### Los tours, con Jero de presentador
+
+Tres visitas guiadas, y las tres las hace **Jero**: un dibujo SVG propio con el
+aspecto de Jerome (`modulos/guia.js`, que no se pide al arrancar). Está
+articulado —gira la cabeza, mira, parpadea, respira, mueve la boca con lo que
+dice, saluda y señala con el brazo el botón que explica— y cambia de atuendo
+según el paso: gafas de sol para el tiempo y el mar, gorra y mochila para el
+mapa y las rutas, antifaz para las fiestas, gorro con frontal para el cielo,
+cinta en el pelo y toalla al cuello para «Su cuerpo».
+
+- **Las manos son manos.** La que señala es un índice: sale del lado del
+  pulgar, que se ve, y los otros tres dedos van doblados y marcados; nunca
+  pasa por delante de la cara. Un botón se señala con el índice; algo grande
+  (una tarjeta, un tramo de pantalla) se enseña con la mano abierta, de
+  presentador. La primera versión llevaba un dedo solo en el centro del puño
+  y parecía otro gesto: el control mira que no vuelva.
+- **Doce caras** (contento, risa, guiño, pícaro, asombro, ilusión, pensativo,
+  serio, cariño, apuro, frío y fiesta): cada paso lleva la suya. Los
+  párpados y las cejas se mueven por su cuenta, y con una exclamación
+  levanta las cejas.
+- **Algunos chistes**: dieciséis pasos acaban con un aparte de Jero, en
+  cursiva, que cuenta con otra cara («Aquí al autobús se le dice “guagua”.
+  Dígalo y ya parecerá de la isla»). Ninguno en los pasos serios: el mar,
+  las emergencias, la comida, lo que se guarda.
+
+- **El tour de la app**, por capítulos (el mapa, hoy en la isla, moverse, su
+  viaje y por si acaso). Se ofrece una vez al cerrar la bienvenida; quien vio
+  uno anterior lo ve ofrecido una vez, como novedades. Un botón que hoy no
+  existe (el 3D sin relieve, el «ⓘ» en la app de las tiendas) no se enseña.
+- **El tour del cielo**, por las pestañas del panel 🔭, con la luz roja
+  encendida un momento en su paso. No pregunta al abrir el panel: la primera
+  vez, el botón con la cara de Jero late y un globito lo dice, una sola vez.
+  De noche, la barra que ofrece la luz roja se aparta mientras dura la visita
+  y vuelve al acabar.
+- **El tour de «Su cuerpo»**, bajando por la pantalla: el personaje y sus
+  colores, el deporte, las metas de la semana, anotar movimiento, «Hoy en la
+  isla», «Cruce la isla» y su compañero, los senderos, los grupos, los
+  sellos, la postal, lo que se guarda (solo en el dispositivo) y, en la barra
+  de abajo, «Aspecto», «Comida», «Evolución» y «Preguntar». No anota nada, no
+  abre hojas y
+  no cambia de vista: entrar en «Aspecto» o en «Preguntar» pide sus datos a
+  la red, y eso no lo decide un tour. Se ofrece como el del cielo: el botón
+  con la cara de Jero, dentro de la escena (abajo a la izquierda, frente a
+  «Girar»), late la primera vez. Ese botón lo pone el cargador de
+  `index.html` cada vez que la pantalla se abre: `modulos/cuerpo.js` no se
+  toca. Escape cierra el tour y nada más; «atrás» cierra la pantalla y el
+  tour se va con ella.
+- **«Ver el tour»**, en la leyenda del mapa, abre el menú de visitas: la app
+  entera, un capítulo, el cielo o «Su cuerpo».
+- **La voz** es opcional (el altavoz del bocadillo): lee cada paso con las
+  voces instaladas en el móvil, las de la audioguía (`speechSynthesis`, solo
+  `localService`), y pasa sola al siguiente. No se guarda: cada tour empieza
+  callado.
+- Las cifras se cuentan, no se escriben (los lugares, los idiomas, las
+  costas, los pasos), y lo que se señala es la interfaz de verdad.
+- En un móvil pequeño, donde no cabe, el bocadillo se aprieta y Jero se queda
+  en miniatura; con el móvil tumbado, el bocadillo va al lado de lo que
+  señala; con «reducir movimiento» no se mueve nada.
+- Se guarda solo si ya se vio cada uno, o si el del cielo o el de «Su
+  cuerpo» ya se ofreció (`tenerife.tour.seen`, `tenerife.tour.cielo` y
+  `tenerife.tour.cuerpo`).
+
+`tools/auditar_tour.js` los recorre enteros en los diez idiomas y en cuatro
+tamaños de móvil, con la voz (una voz falsa que apunta lo que se lee), con
+movimiento, con el móvil lento (un cuadro cada 50 ms: los muelles de Jero no
+se desbocan) y sin el módulo. Antes de abrir el navegador mira que cada texto
+que el módulo pide exista, que cada frase que nombra «Su cuerpo» la llame
+como su pantalla, que lo que su tour señala siga estando en
+`modulos/cuerpo.js` con ese nombre, que los chistes sigan ahí (y no en los
+pasos serios), que cada cara que pide un paso exista y que la mano que
+señala siga siendo un índice.
 
 ### Emergencias (SOS)
 

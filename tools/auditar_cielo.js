@@ -21,7 +21,7 @@
  *      tools/cielo_fuentes.sh); si no, que dice venir de esos commits.
  *   2. el observatorio: la misma coordenada en el modulo, en el catalogo, en
  *      tools/cielo_construir.js y en la ficha «observatorio» de places[].
- *   3. los textos: cada fila de CIELO_UI, de las siete del boton (UI_TX) y de
+ *   3. los textos: cada fila de CIELO_UI, de las ocho del armazon (UI_TX) y de
  *      las tablas de nombres, con los diez idiomas, los mismos {marcadores}
  *      en cada forma de plural, tres formas en polaco y una en chino, y el
  *      alfabeto de cada idioma. Que exista cada fila que pide el codigo, y
@@ -339,10 +339,13 @@ const cascaraSrc = index.includes(INI_M) ? index.slice(index.indexOf(INI_M), ind
 const TABLAS = ['CIELO_CON', 'CIELO_EST', 'CIELO_DOB', 'CIELO_CUERPO', 'CIELO_LLU', 'CIELO_TIPO', 'CIELO_OBJ', 'CIELO_DESC'];
 const T = {}; TABLAS.forEach(n => { T[n] = tablaModulo(n) || {}; });
 const tour = {};
-for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k + '": {');
+/* (10-11-2026) el tour vive en modulos/guia.js, con sus filas y sus pasos */
+const guiaSrc = lee('modulos/guia.js');
+for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(guiaSrc, '"' + k + '": {');
 {
   ok(Object.keys(CIELO_UI).length > 200, 'CIELO_UI se lee de modulos/cielo.js', Object.keys(CIELO_UI).length + ' filas');
-  ok(Object.keys(CASCARA).length === 7, 'las siete filas del boton y del «cargando» estan en index.html', Object.keys(CASCARA).join(', '));
+  /* (10-11-2026) la octava: el rotulo del boton de la visita guiada, que va en el armazon del panel */
+  ok(Object.keys(CASCARA).length === 8 && CASCARA.cieloTourBtn, 'las ocho filas del armazon (el boton, el «cargando» y el boton de la visita guiada) estan en index.html', Object.keys(CASCARA).join(', '));
   const HAN = /[㐀-鿿]/, CIR = /[Ѐ-ӿ]/;
   const marcas = s => (s.match(/\{[a-z]+\}/g) || []).sort().join(',');
   const mal = [];
@@ -378,7 +381,9 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
   for (const n of TABLAS) for (const [k, f] of Object.entries(T[n])) revisar(n + '.' + k, f);
   const nFilas = Object.keys(CIELO_UI).length + Object.keys(CASCARA).length + 2 + TABLAS.reduce((a, n) => a + Object.keys(T[n]).length, 0);
   ok(!mal.length, nFilas + ' filas: diez idiomas, {marcadores} por forma de plural, alfabeto de cada uno', mal.slice(0, 8).join(' · ') + (mal.length > 8 ? ' · y ' + (mal.length - 8) + ' mas' : ''));
-  ok(tour.tourCieloT && tour.tourCieloP && /\{ sel: '#cielo-btn',[^}]*k: 'tourCielo'/.test(index), 'el tour tiene su paso (#cielo-btn) y sus dos filas');
+  ok(tour.tourCieloT && tour.tourCieloP && /\{ sel: '#cielo-btn',[^}]*k: 'tourCielo'/.test(guiaSrc), 'el tour tiene su paso (#cielo-btn) y sus dos filas');
+  ok(/id="cielo-tour-btn"/.test(index) && /TOURS\.cielo = \{/.test(guiaSrc) && /data-guia', 'planetas'/.test(modulo) && /data-guia', 'sitios'/.test(modulo),
+     'el panel tiene su propio tour: el boton de Jero (#cielo-tour-btn), TOURS.cielo y las dos tarjetas que señala (data-guia)');
   /* El calendario y los avisos dicen lo que hacen (22-10-2026). El .ics de un
      paso avisa media hora antes y el de lo demas, el dia antes: la nota de
      cada uno y la de «Mis avisos» tienen que decir eso. Y ninguna que
