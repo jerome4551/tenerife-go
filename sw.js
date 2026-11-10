@@ -312,7 +312,9 @@ self.addEventListener('fetch', e => {
      Wikipedia: eso es contenido, no un dato vivo, y ahi ayuda sin mentir. */
   /* Los precios de las gasolineras, desde el 7 de octubre, se piden en vivo al
      Ministerio como el tiempo a Open-Meteo: tampoco se cachean aqui. */
-  const EN_VIVO = ['open-meteo.com', 'project-osrm.org', 'serviciosmin.gob.es', 'minetur.gob.es'];
+  /* Y desde el 10 de noviembre, la comprobación de las contraseñas filtradas (api.pwnedpasswords.com): ni se guarda
+     ni se sirve de la cache, que dejaría en el móvil el principio de la huella. */
+  const EN_VIVO = ['open-meteo.com', 'project-osrm.org', 'serviciosmin.gob.es', 'minetur.gob.es', 'pwnedpasswords.com'];
   if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') ||
       EN_VIVO.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) {
     return; // no cachear apis, tiempo ni rutas - siempre fresco

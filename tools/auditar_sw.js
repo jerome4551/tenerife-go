@@ -166,7 +166,8 @@ function opaca() {
     for (const u of ['https://nominatim.openstreetmap.org/search?q=x',
                      'https://api.open-meteo.com/v1/forecast?latitude=28',
                      'https://xyz.supabase.co/rest/v1/perfiles',
-                     'https://router.project-osrm.org/route/v1/driving/1,2;3,4']) {
+                     'https://router.project-osrm.org/route/v1/driving/1,2;3,4',
+                     'https://api.pwnedpasswords.com/range/5BAA6']) {
       const r = await pedir(sw, u);
       ok(r === null, 'no se toca: ' + new URL(u).hostname);
     }

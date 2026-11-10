@@ -164,7 +164,7 @@ window.onunhandledrejection = function(e) {
 </script>
 
 <title>Tenerife Go — Mapa Interactivo</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://tenerifego.app https://*.supabase.co wss://*.supabase.co https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; connect-src 'self' https://tenerifego.app https://*.supabase.co wss://*.supabase.co https://api.pwnedpasswords.com https://energia.serviciosmin.gob.es https://sedeaplicaciones.minetur.gob.es https://nominatim.openstreetmap.org https://router.project-osrm.org https://api.open-meteo.com https://marine-api.open-meteo.com https://*.wikipedia.org https://*.wikimedia.org; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"/>
 <!-- Sin Google Analytics desde el 30 de octubre de 2026 (Jerome: «Google
      analítica puedes quitarlo»), ni en la web ni en las tiendas, y sin él no
      hay aviso de cookies: la app no pone ninguna. -->
@@ -8003,6 +8003,7 @@ const AUTH_STRINGS = {
     authEmailPlaceholder: 'nombre@email.com',
     authPasswordLabel:  'Contraseña',
     authPasswordPlaceholder: 'Mínimo 6 caracteres',
+    authPasswordPlaceholder8: 'Mínimo 8 caracteres',
     authLoginBtn:       'Entrar',
     authSignupBtn:      'Registrarme',
     authGuestBtn:       'Seguir sin cuenta',
@@ -8015,6 +8016,8 @@ const AUTH_STRINGS = {
     authErrorInvalid:   'Email o contraseña incorrectos',
     authErrorNotConfirmed: 'Confirme su email antes de entrar. Revise su bandeja.',
     authErrorWeak:      'La contraseña debe tener al menos 6 caracteres',
+    authErrorCorta8:    'La contraseña debe tener al menos 8 caracteres',
+    authErrorFiltrada:  'Esta contraseña ha salido en filtraciones de datos de otras webs. Elija otra.',
     authErrorEmail:     'Email no válido',
     authErrorExists:    'Ya existe una cuenta con este email',
     authErrorGeneric:   'Algo ha ido mal. Inténtelo de nuevo.',
@@ -8038,6 +8041,7 @@ const AUTH_STRINGS = {
     authEmailPlaceholder: 'you@email.com',
     authPasswordLabel:  'Password',
     authPasswordPlaceholder: 'At least 6 characters',
+    authPasswordPlaceholder8: 'At least 8 characters',
     authLoginBtn:       'Log in',
     authSignupBtn:      'Create account',
     authGuestBtn:       'Continue without account',
@@ -8050,6 +8054,8 @@ const AUTH_STRINGS = {
     authErrorInvalid:   'Invalid email or password',
     authErrorNotConfirmed: 'Please confirm your email first. Check your inbox.',
     authErrorWeak:      'Password must be at least 6 characters',
+    authErrorCorta8:    'Password must be at least 8 characters',
+    authErrorFiltrada:  'This password has appeared in data leaks from other websites. Please choose another one.',
     authErrorEmail:     'Invalid email',
     authErrorExists:    'An account with this email already exists',
     authErrorGeneric:   'Something went wrong. Try again.',
@@ -8073,6 +8079,7 @@ const AUTH_STRINGS = {
     authEmailPlaceholder: 'vous@email.com',
     authPasswordLabel:  'Mot de passe',
     authPasswordPlaceholder: '6 caractères minimum',
+    authPasswordPlaceholder8: '8 caractères minimum',
     authLoginBtn:       'Se connecter',
     authSignupBtn:      'Créer un compte',
     authGuestBtn:       'Continuer sans compte',
@@ -8085,6 +8092,8 @@ const AUTH_STRINGS = {
     authErrorInvalid:   'Email ou mot de passe incorrect',
     authErrorNotConfirmed: 'Confirmez d\'abord votre email. Vérifiez votre boîte.',
     authErrorWeak:      'Le mot de passe doit faire au moins 6 caractères',
+    authErrorCorta8:    'Le mot de passe doit faire au moins 8 caractères',
+    authErrorFiltrada:  'Ce mot de passe est apparu dans des fuites de données d’autres sites. Choisissez-en un autre.',
     authErrorEmail:     'Email invalide',
     authErrorExists:    'Un compte avec cet email existe déjà',
     authErrorGeneric:   'Une erreur est survenue. Réessayez.',
@@ -8108,6 +8117,7 @@ const AUTH_STRINGS = {
     authEmailPlaceholder: 'name@email.com',
     authPasswordLabel:  'Passwort',
     authPasswordPlaceholder: 'Mindestens 6 Zeichen',
+    authPasswordPlaceholder8: 'Mindestens 8 Zeichen',
     authLoginBtn:       'Anmelden',
     authSignupBtn:      'Konto erstellen',
     authGuestBtn:       'Ohne Konto fortfahren',
@@ -8120,6 +8130,8 @@ const AUTH_STRINGS = {
     authErrorInvalid:   'E-Mail oder Passwort falsch',
     authErrorNotConfirmed: 'Bitte bestätigen Sie zuerst Ihre E-Mail. Prüfen Sie Ihr Postfach.',
     authErrorWeak:      'Das Passwort muss mindestens 6 Zeichen lang sein',
+    authErrorCorta8:    'Das Passwort muss mindestens 8 Zeichen lang sein',
+    authErrorFiltrada:  'Dieses Passwort ist bei Datenlecks anderer Websites aufgetaucht. Bitte wählen Sie ein anderes.',
     authErrorEmail:     'Ungültige E-Mail',
     authErrorExists:    'Ein Konto mit dieser E-Mail existiert bereits',
     authErrorGeneric:   'Etwas ist schiefgelaufen. Versuchen Sie es erneut.',
@@ -8143,6 +8155,7 @@ const AUTH_STRINGS = {
     authEmailPlaceholder: 'nome@email.com',
     authPasswordLabel:  'Password',
     authPasswordPlaceholder: 'Minimo 6 caratteri',
+    authPasswordPlaceholder8: 'Minimo 8 caratteri',
     authLoginBtn:       'Accedi',
     authSignupBtn:      'Crea account',
     authGuestBtn:       'Continua senza account',
@@ -8155,6 +8168,8 @@ const AUTH_STRINGS = {
     authErrorInvalid:   'Email o password errati',
     authErrorNotConfirmed: 'Confermi prima la Sua email. Controlli la Sua casella di posta.',
     authErrorWeak:      'La password deve avere almeno 6 caratteri',
+    authErrorCorta8:    'La password deve avere almeno 8 caratteri',
+    authErrorFiltrada:  'Questa password è comparsa in fughe di dati di altri siti. Ne scelga un’altra.',
     authErrorEmail:     'Email non valida',
     authErrorExists:    'Esiste già un account con questa email',
     authErrorGeneric:   'Qualcosa è andato storto. Riprovi.',
@@ -8178,6 +8193,7 @@ const AUTH_STRINGS = {
     authEmailPlaceholder: 'naam@email.com',
     authPasswordLabel:  'Wachtwoord',
     authPasswordPlaceholder: 'Minimaal 6 tekens',
+    authPasswordPlaceholder8: 'Minimaal 8 tekens',
     authLoginBtn:       'Inloggen',
     authSignupBtn:      'Account aanmaken',
     authGuestBtn:       'Doorgaan zonder account',
@@ -8190,6 +8206,8 @@ const AUTH_STRINGS = {
     authErrorInvalid:   'E-mail of wachtwoord onjuist',
     authErrorNotConfirmed: 'Bevestig eerst uw e-mail. Controleer uw inbox.',
     authErrorWeak:      'Het wachtwoord moet minstens 6 tekens lang zijn',
+    authErrorCorta8:    'Het wachtwoord moet minstens 8 tekens lang zijn',
+    authErrorFiltrada:  'Dit wachtwoord is opgedoken in datalekken van andere websites. Kies een ander wachtwoord.',
     authErrorEmail:     'Ongeldig e-mailadres',
     authErrorExists:    'Er bestaat al een account met deze e-mail',
     authErrorGeneric:   'Er ging iets mis. Probeer het opnieuw.',
@@ -8213,6 +8231,7 @@ const AUTH_STRINGS = {
     authEmailPlaceholder: '您@email.com',
     authPasswordLabel:  '密码',
     authPasswordPlaceholder: '至少 6 个字符',
+    authPasswordPlaceholder8: '至少 8 个字符',
     authLoginBtn:       '登录',
     authSignupBtn:      '创建账户',
     authGuestBtn:       '不登录继续',
@@ -8225,6 +8244,8 @@ const AUTH_STRINGS = {
     authErrorInvalid:   '邮箱或密码错误',
     authErrorNotConfirmed: '请先确认您的邮箱。请检查收件箱。',
     authErrorWeak:      '密码至少需要 6 个字符',
+    authErrorCorta8:    '密码至少需要 8 个字符',
+    authErrorFiltrada:  '此密码曾出现在其他网站的数据泄露中。请另选一个。',
     authErrorEmail:     '无效的邮箱',
     authErrorExists:    '该邮箱已注册',
     authErrorGeneric:   '出现错误。请重试。',
@@ -8249,6 +8270,7 @@ const AUTH_STRINGS = {
     "authEmailPlaceholder": "vashiat@email.com",
     "authPasswordLabel": "Парола",
     "authPasswordPlaceholder": "Минимум 6 знака",
+    "authPasswordPlaceholder8": "Минимум 8 знака",
     "authLoginBtn": "Влез",
     "authSignupBtn": "Регистрирай ме",
     "authGuestBtn": "Продължи без акаунт",
@@ -8261,6 +8283,8 @@ const AUTH_STRINGS = {
     "authErrorInvalid": "Грешен имейл или парола",
     "authErrorNotConfirmed": "Потвърдете имейла си, преди да влезете. Проверете пощата си.",
     "authErrorWeak": "Паролата трябва да е поне 6 знака",
+    "authErrorCorta8": "Паролата трябва да е поне 8 знака",
+    "authErrorFiltrada": "Тази парола е изтекла при пробиви в данните на други сайтове. Изберете друга.",
     "authErrorEmail": "Невалиден имейл",
     "authErrorExists": "Вече има акаунт с този имейл",
     "authErrorGeneric": "Нещо се обърка. Опитайте отново.",
@@ -8272,7 +8296,7 @@ const AUTH_STRINGS = {
     "authMergeYes": "Да, обедини ги",
     "authMergeNo": "Не, изтрий ги",
     "authClose": "Затвори"
-}, pl: {"authBtnGuest":"Konto","authBtnUser":"Moje konto","authModalTitle":"Konto","authTabLogin":"Zaloguj się","authTabSignup":"Załóż konto","authTabGuest":"Kontynuuj jako gość","authEmailLabel":"E-mail","authEmailPlaceholder":"nazwa@email.com","authPasswordLabel":"Hasło","authPasswordPlaceholder":"Minimum 6 znaków","authLoginBtn":"Wejdź","authSignupBtn":"Zarejestruj mnie","authGuestBtn":"Dalej bez konta","authGuestHint":"Z aplikacji można korzystać tak samo. Ulubione zapiszą się tylko na tym urządzeniu.","authLoading":"Wczytywanie…","authLogoutBtn":"Wyloguj się","authLoggedAs":"Zalogowano jako","authSignupSuccess":"Wysłaliśmy e-mail z potwierdzeniem konta. Po potwierdzeniu można się zalogować.","authLoginSuccess":"Witamy z powrotem","authErrorInvalid":"Nieprawidłowy e-mail lub hasło","authErrorNotConfirmed":"Przed zalogowaniem trzeba potwierdzić adres e-mail. Proszę sprawdzić skrzynkę.","authErrorWeak":"Hasło musi mieć co najmniej 6 znaków","authErrorEmail":"Nieprawidłowy e-mail","authErrorExists":"Konto z tym adresem już istnieje","authErrorGeneric":"Coś poszło nie tak. Proszę spróbować jeszcze raz.","authErrorNetwork":"Brak połączenia. Proszę spróbować ponownie, gdy wróci internet.","authSyncTitle":"Synchronizacja","authSyncOn":"Ulubione zapisują się w chmurze","authSyncOff":"Sesja lokalna, bez synchronizacji","authMergePrompt":"Na tym urządzeniu są zapisane ulubione. Dodać je do konta?","authMergeYes":"Tak, połącz","authMergeNo":"Nie, odrzuć","authClose":"Zamknij"}
+}, pl: {"authBtnGuest":"Konto","authBtnUser":"Moje konto","authModalTitle":"Konto","authTabLogin":"Zaloguj się","authTabSignup":"Załóż konto","authTabGuest":"Kontynuuj jako gość","authEmailLabel":"E-mail","authEmailPlaceholder":"nazwa@email.com","authPasswordLabel":"Hasło","authPasswordPlaceholder":"Minimum 6 znaków","authPasswordPlaceholder8":"Minimum 8 znaków","authLoginBtn":"Wejdź","authSignupBtn":"Zarejestruj mnie","authGuestBtn":"Dalej bez konta","authGuestHint":"Z aplikacji można korzystać tak samo. Ulubione zapiszą się tylko na tym urządzeniu.","authLoading":"Wczytywanie…","authLogoutBtn":"Wyloguj się","authLoggedAs":"Zalogowano jako","authSignupSuccess":"Wysłaliśmy e-mail z potwierdzeniem konta. Po potwierdzeniu można się zalogować.","authLoginSuccess":"Witamy z powrotem","authErrorInvalid":"Nieprawidłowy e-mail lub hasło","authErrorNotConfirmed":"Przed zalogowaniem trzeba potwierdzić adres e-mail. Proszę sprawdzić skrzynkę.","authErrorWeak":"Hasło musi mieć co najmniej 6 znaków","authErrorCorta8":"Hasło musi mieć co najmniej 8 znaków","authErrorFiltrada":"To hasło pojawiło się w wyciekach danych z innych stron. Należy wybrać inne.","authErrorEmail":"Nieprawidłowy e-mail","authErrorExists":"Konto z tym adresem już istnieje","authErrorGeneric":"Coś poszło nie tak. Proszę spróbować jeszcze raz.","authErrorNetwork":"Brak połączenia. Proszę spróbować ponownie, gdy wróci internet.","authSyncTitle":"Synchronizacja","authSyncOn":"Ulubione zapisują się w chmurze","authSyncOff":"Sesja lokalna, bez synchronizacji","authMergePrompt":"Na tym urządzeniu są zapisane ulubione. Dodać je do konta?","authMergeYes":"Tak, połącz","authMergeNo":"Nie, odrzuć","authClose":"Zamknij"}
 };
 // Fusión: añade las claves de AUTH_STRINGS a cada idioma de LANGS
 Object.keys(AUTH_STRINGS).forEach(lang => {
@@ -8302,6 +8326,7 @@ const ZHT_OVERRIDES = {
     authEmailPlaceholder: '您@email.com',
     authPasswordLabel: '密碼',
     authPasswordPlaceholder: '至少 6 個字元',
+    authPasswordPlaceholder8: '至少 8 個字元',
     authLoginBtn: '登入',
     authSignupBtn: '建立帳戶',
     authGuestBtn: '不登入繼續',
@@ -8314,6 +8339,8 @@ const ZHT_OVERRIDES = {
     authErrorInvalid: '電子郵件或密碼錯誤',
     authErrorNotConfirmed: '請先確認您的電子郵件。請檢查收件匣。',
     authErrorWeak: '密碼至少需要 6 個字元',
+    authErrorCorta8: '密碼至少需要 8 個字元',
+    authErrorFiltrada: '此密碼曾出現在其他網站的資料外洩中。請另選一個。',
     authErrorEmail: '無效的電子郵件',
     authErrorExists: '該電子郵件已註冊',
     authErrorGeneric: '發生錯誤。請重試。',
@@ -22213,7 +22240,7 @@ window.addEventListener('hashchange', () => {
       </div>
       <div class="auth-field">
         <label for="auth-signup-password" id="auth-signup-password-label">Contraseña</label>
-        <input type="password" id="auth-signup-password" autocomplete="new-password" required minlength="6" maxlength="72"/>
+        <input type="password" id="auth-signup-password" autocomplete="new-password" required minlength="8" maxlength="72"/>
       </div>
       <button type="submit" class="auth-submit" id="auth-signup-submit">Registrarme</button>
       <div class="auth-msg" id="auth-signup-msg" role="alert" aria-live="polite"></div>
@@ -22578,7 +22605,7 @@ window.addEventListener('hashchange', () => {
     els.signupEmailLabel.textContent    = L_.authEmailLabel    || 'Email';
     els.signupPasswordLabel.textContent = L_.authPasswordLabel || 'Contraseña';
     els.signupEmail.placeholder    = L_.authEmailPlaceholder    || '';
-    els.signupPassword.placeholder = L_.authPasswordPlaceholder || '';
+    els.signupPassword.placeholder = L_.authPasswordPlaceholder8 || L_.authPasswordPlaceholder || '';
     els.signupSubmit.textContent   = L_.authSignupBtn || 'Registrarme';
 
     els.guestHint.textContent = L_.authGuestHint || '';
@@ -22679,6 +22706,33 @@ window.addEventListener('hashchange', () => {
     return data;
   }
 
+  /* Contraseñas filtradas (10 de noviembre de 2026; Jerome, opción «B»: el plan gratuito de Supabase no la trae). Al crear la
+     cuenta, la contraseña se convierte aquí en su huella SHA-1 y a Have I Been Pwned (Pwned Passwords) solo salen los 5
+     primeros caracteres: devuelve todas las huellas filtradas que empiezan igual, con relleno (Add-Padding: entre 800 y
+     1000 líneas, para que ni el tamaño diga nada) y la comparación se hace en el dispositivo. Nunca sale la contraseña ni
+     el correo. true: ha salido en filtraciones; false: no; null: no se pudo saber (sin red, sin crypto.subtle o más de
+     6 s), y entonces no se impide crear la cuenta. Las líneas de relleno llevan la cuenta 0. */
+  async function contrasenaFiltrada(pass) {
+    try {
+      if (!window.crypto || !crypto.subtle || typeof TextEncoder === 'undefined') return null;
+      const huella = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-1', new TextEncoder().encode(pass))))
+        .map(b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
+      const ctl = typeof AbortController === 'function' ? new AbortController() : null;
+      const reloj = ctl ? setTimeout(() => ctl.abort(), 6000) : null;
+      try {
+        const r = await fetch('https://api.pwnedpasswords.com/range/' + huella.slice(0, 5), {
+          headers: { 'Add-Padding': 'true' }, cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer',
+          signal: ctl ? ctl.signal : undefined });
+        if (!r.ok) return null;
+        const resto = huella.slice(5);
+        for (const linea of (await r.text()).split(/\r?\n/)) {
+          if (linea.length > 36 && linea.charAt(35) === ':' && linea.slice(0, 35).toUpperCase() === resto) return parseInt(linea.slice(36), 10) > 0;
+        }
+        return false;
+      } finally { if (reloj) clearTimeout(reloj); }
+    } catch (e) { return null; }
+  }
+
   async function doSignup(email, password) {
     if (!sbClient) throw new Error('Auth not configured');
     const { data, error } = await sbClient.auth.signUp({
@@ -22761,7 +22815,7 @@ window.addEventListener('hashchange', () => {
       clearMessages();
 
       if (!isValidEmail(email)) { showMessage(els.signupMsg, 'error', L().authErrorEmail || 'Email inválido'); return; }
-      if (pass.length < 6)      { showMessage(els.signupMsg, 'error', L().authErrorWeak  || 'Contraseña corta'); return; }
+      if (pass.length < 8)      { showMessage(els.signupMsg, 'error', L().authErrorCorta8 || 'Contraseña corta'); return; }
 
       if (!AUTH_CONFIGURED) {
         showMessage(els.signupMsg, 'error', tx('authNotConfigured'));
@@ -22771,6 +22825,7 @@ window.addEventListener('hashchange', () => {
       authBusy = true;
       setBusy(els.signupSubmit, true);
       try {
+        if (await contrasenaFiltrada(pass) === true) { showMessage(els.signupMsg, 'error', L().authErrorFiltrada || 'Contraseña filtrada'); return; }
         await doSignup(email, pass);
         // Con confirmación obligatoria, NO se inicia sesión hasta confirmar
         showMessage(els.signupMsg, 'success', L().authSignupSuccess || 'Revisa tu email');

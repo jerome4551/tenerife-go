@@ -210,6 +210,10 @@ echo "════════ lo que pide Google Play (LANZAMIENTO-PLAY.md, Fas
 # Desde el 16 de octubre de 2026: la tienda fuera de la vista y el boton de
 # administrador en la cuenta, y lo que vaya entrando de la Fase 1.
 control probar_play.js node tools/probar_play.js "$PUERTO"
+echo "════════ la contraseña al crear la cuenta: 8 caracteres y no filtrada (Have I Been Pwned) ════════"
+# Desde el 10 de noviembre de 2026 (Jerome, «B»): el plan gratuito de Supabase no trae la comprobación de
+# contraseñas filtradas, así que la hace la app, por k-anonimato: solo salen 5 caracteres de la huella.
+control probar_contrasena.js node tools/probar_contrasena.js "$PUERTO"
 echo "════════ borrar-cuenta.html, al dia con sus textos y con los botones de la app ════════"
 # La pagina que pide Google Play (1.2) cita los botones de la app en cada
 # idioma; si uno cambia de nombre y no se vuelve a generar, para aqui.
