@@ -7168,6 +7168,87 @@ control en rojo ni sin ejecutar (4.840 líneas, 1 h 55 min). Puesta la rama al d
 robots (los satélites de CelesTrak, los terremotos del IGN y las alertas del Gobierno de Canarias): solo cambian sus
 ficheros de datos, y los controles que los leen salen en verde.
 
+## «Su cuerpo», bloque 8: el mapa de «Cruce la isla» con relieve, el compañero de travesía y «Senderos de la isla» (9 de noviembre)
+
+La nota 28 de la sesión de «Su cuerpo»: un parche (`0008`) hecho encima de su `0007`. Comprobado aquí: sobre el `main`
+de la noche del 8 (`9752889`), sus `0005`, `0006` y `0007` dan el árbol `84ee304e…` y, con el `0008`, el `c2d31b02…`,
+los dos de la nota. Sobre `main`, que ya tiene los bloques 5-7 con lo de encima, entra con `git am -3` (`b73e25a`), con
+los choques resueltos y contados en su mensaje. Encima, dos commits: lo de encima (`5b0c15f`) y la etiqueta que el
+compañero tiene encima (`bc81640`).
+
+**Lo que pidió Jerome** (8 de noviembre, a la sesión de «Su cuerpo»): «Quiero que la dibujes mucho mejor. Que parece
+un dibujo infantil», y después: «No me gusta la línea. Quiero algo interactivo que adelante con la gente […] Un bici si
+en bici […] Caminando puedes hacer diferentes personajes, como un perro canario (presa canario), un lagarto, una
+persona. ¿La mapa puedes poner diferentes rutas? Para que la gente pueda intentar lograr un 100 %».
+
+**Lo que trae.** El mapa de «Cruce la isla» con su relieve y su suelo de fondo (dos WebP de 1074 × 906, de día y de
+noche, que pinta `tools/cuerpo_isla_relieve.py`), la ruta (lo hecho, del color del movimiento; lo que falta, a puntos
+rojos, porque sigue siendo el esquema), el Teide con su altitud, la escala y el norte. El compañero de travesía, en vez
+del punto: senderista, presa canario o lagarto tizón a pie, y una de tres bicis, con los colores de «Aspecto», que
+anda o pedalea mientras avanza. «Su compañero de travesía», para elegirlo. «Senderos de la isla»: los 38 senderos de
+la guía (las fichas de senderismo) por zonas (Anaga 18, Teno 5, Teide 7, Norte 4 y Sur 4), para marcarlos hechos con su
+fecha hasta el 100 %, con un punto en el mapa por sendero y tres celebraciones. Lo marca la persona y se queda en el
+aparato; no es un registro verificado, y «Las cifras» lo dice.
+
+**Lo de encima** (`5b0c15f`), con lo que decidió Jerome para la travesía, «A pie y bici»:
+- el nado y el kayak no cuentan nunca para la travesía, así que no cambian el compañero: fuera el nadador y el kayak
+  (sus dibujos, sus tamaños, sus animaciones y sus ramas en `compActual()`), que con lo publicado no se veían nunca;
+- la ayuda del compañero, sin el agua, en los diez idiomas;
+- el perro, con el nombre oficial de la raza: «Presa Canario» (FCI, estándar 346, desde el 1 de enero de 2019; su ficha
+  lo pone igual en sus cuatro idiomas) en inglés, francés, alemán, italiano, neerlandés y polaco; en chino, el de la
+  China Kennel Union, miembro de la FCI (su aviso del 20 de diciembre de 2018), «普雷萨加纳利犬», y en chino tradicional, el
+  mismo con sus caracteres, «普雷薩加納利犬»; en búlgaro, el de la FCI en cirílico, «Преса Канарио», como la Wikipedia búlgara
+  escribe «Кане Корсо Италиано» (no hay nombre búlgaro propio en ninguna fuente oficial). La entrega llevaba nombres de
+  uso o antiguos;
+- la política, en alemán: sin una coma de delante de «und» que ya estaba en lo publicado.
+
+**La etiqueta que el compañero tiene encima** (`bc81640`). Visto en las capturas del bloque 8: a pie a 29,2 km, el
+senderista pisaba «La Caldera»; en bici a 53,2 km, la de montaña tapaba la «m» de «3715 m». Ahora, la etiqueta que le
+queda debajo (una parada, el Teide o su altitud) se aclara mientras él está ahí y vuelve al irse. Las cuentas van en las
+unidades del mapa (el compañero, por donde lo pone `ponerKm`, su tamaño y hacia dónde mira; cada texto, por su caja),
+no en lo ya pintado: con «reducir movimiento», la app hace de cada cambio una transición de 0,01 ms, y lo leído en el
+momento es lo de antes. Una primera versión, que medía en pantalla, iba por eso un paso por detrás. No cambia ningún
+texto, en ningún idioma. Jerome, el 10 de noviembre: «si».
+
+**Comprobado.**
+- **El fondo del mapa:** vuelto a pintar aquí con su herramienta, sobre su árbol, sale **byte a byte** el de la
+  entrega. Sale del relieve de «La isla en 3D» (Copernicus GLO-30), de la capa landuse del mapa OSM del repositorio y
+  de la costa de los límites municipales. La herramienta solo lee esos ficheros y no pide nada a nadie, y su
+  `--comprobar` va en `auditar.sh`.
+- **Las dos notas de Copernicus:** son, letra a letra, las de `mapa/tenerife-relieve.json`.
+- **Los 38 senderos y sus zonas:** cuadran con su punto de salida.
+- **El Teide:** 3715 m, los de su ficha.
+- **La seguridad:** los nombres y las líneas de los senderos van como texto; los dibujos, solo con colores de la paleta
+  fija; lo guardado se valida al leerlo (el compañero, de la lista; cada sendero, un id con forma de id y una fecha que
+  no sea futura).
+- **Las traducciones:** las 25 filas nuevas, leídas en los diez idiomas.
+
+**La política.** Se añade, tras los sellos, «los senderos que marque como hechos (con su fecha), el compañero que elija
+para la travesía», en los diez idiomas, con `generar_privacidad.py`. Jerome, el 10 de noviembre: «si».
+
+**Controles.** `probar_cuerpo.js`, 529 controles, todos en verde: sus 521, los dos de lo publicado (lo último a nado o
+en kayak deja el compañero de a pie) y seis de la etiqueta (a pie, en bici, sin nada debajo y con «reducir
+movimiento»; con el módulo del bloque 8, cuatro de ellos en rojo, y con la primera versión, dos). También en verde:
+- `probar_figura.js`;
+- `cuerpo_isla.py`, `gr131_trazado.py` y `cuerpo_isla_relieve.py`, con `--comprobar`;
+- `auditar_registro.js`, `auditar_sw.js` (82), `auditar_xss.js`, `auditar_web.js` (3493) y `auditar_sin_traducir.js`;
+- `auditar_claves_tx.js`, `castellano_suelto.js` y `generar_privacidad.py --comprobar`;
+- `auditar_idioma.js`, en los diez idiomas;
+- `barrido_idiomas.js` (5.643), `auditar_readme.js` y `app_preparar.js --comprobar`.
+
+**La auditoría entera**, sobre `f402bcb` (árbol `6f6b6f1e…`), que en `main` es `bc81640`: «AUDITORIA EN VERDE»: ningún
+control en rojo ni sin ejecutar (4.885 líneas, 1 h 54 min). Antes, sin la etiqueta, sobre `b193846` (árbol `daefbee8…`),
+que en `main` es `5b0c15f`: también en verde (4.879 líneas, 1 h 55 min). Una primera pasada de esa se paró en cuanto
+salió en rojo `auditar_idioma.js`, en chino, chino tradicional y búlgaro: «Presa Canario» iba en letras latinas, y en
+esos tres idiomas cada texto lleva su alfabeto. El fallo venía del commit de encima: se arregló con los nombres de
+arriba y la auditoría se pasó otra vez entera. Puesta la rama al día con `main`, solo entran commits de los robots (los
+avisos de AEMET, las alertas del Gobierno de Canarias, los satélites de CelesTrak, el boletín de INVOLCAN, los
+terremotos del IGN, los precios de las gasolineras y las huellas del vigía SOS): solo cambian sus ficheros de datos, y
+los controles que los leen salen en verde.
+
+**Pendiente.** Probarlo en un iPhone (el mapa, el compañero, los senderos y VoiceOver); el trazado oficial del GR 131,
+cuando llegue el GPX de Tenerife ON; y que un nativo lea los textos nuevos.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
