@@ -769,7 +769,7 @@
     sanidadAcuatico: { org: 'sosOrgSanidad', fte: 'fte_sanidadAcuatico', url: 'https://www.sanidad.gob.es/areas/sanidadAmbiental/riesgosAmbientales/calorExtremo/publicaciones/docs/prevencionAccidentesMedioAcuatico.pdf' },
     goibEmergencias: { org: 'sosOrgBaleares', fte: 'fte_goibEmergencias', url: 'https://www.caib.es/webgoib/es/w/emergencias' },
     goibPlaya:     { org: 'sosOrgBaleares', fte: 'fte_goibPlaya', url: 'https://www.caib.es/sites/112/es/en_la_playa_seguros-7008/' },
-    aepMedusas:    { org: 'sosOrgAep', fte: 'fte_aepMedusas', url: 'https://enfamilia.aeped.es/printpdf/temas-salud/picaduras-medusas' },
+    aepMedusas:    { org: 'sosOrgAep', fte: 'fte_aepMedusas', url: 'https://www.aeped.es/enfamilia/salud-en-familia/picaduras-medusas' },
     nhsPicaduras:  { org: 'sosOrgNhs', fte: 'fte_nhsPicaduras', url: 'https://www.nhs.uk/conditions/jellyfish-and-other-sea-creature-stings/' },
     preevidCarabela: { org: 'sosOrgMurcia', fte: 'fte_preevidCarabela', url: 'https://www.murciasalud.es/preevid/22399' },
     preevid:       { org: 'sosOrgMurcia', fte: 'fte_preevid', url: 'https://www.murciasalud.es/preevid/20042' },

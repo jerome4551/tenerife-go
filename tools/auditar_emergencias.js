@@ -254,6 +254,11 @@ const app112 = UI.sosApp112 || {};
 ok(LANGS.every(l => app112[l] && !/SMS/.test(app112[l])), 'la nota de la App 112 Canarias, sin el SMS al instalarla, en los diez idiomas',
   LANGS.filter(l => /SMS/.test(app112[l] || '')).join(', '));
 
+/* la fuente de las medusas de la Asociacion Espanola de Pediatria, en su direccion nueva: la vieja
+   (enfamilia.aeped.es) lleva a la portada de En Familia (10 de noviembre de 2026; Jerome: «Medusa también») */
+ok((SOS.fuentes.aepMedusas || {}).url === 'https://www.aeped.es/enfamilia/salud-en-familia/picaduras-medusas',
+  'la fuente de las medusas lleva al articulo, en su direccion nueva', (SOS.fuentes.aepMedusas || {}).url);
+
 /* ── 4. index.html, sw.js, manifiesto ── */
 console.log('— index.html, sw.js y el manifiesto');
 ok(/<button[^>]*id="v19-nav-sos"[^>]*onclick="abrirSOS\(\)"/.test(idx), 'el boton SOS esta en la barra de abajo');
