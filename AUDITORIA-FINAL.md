@@ -7249,6 +7249,59 @@ los controles que los leen salen en verde.
 **Pendiente.** Probarlo en un iPhone (el mapa, el compañero, los senderos y VoiceOver); el trazado oficial del GR 131,
 cuando llegue el GPX de Tenerife ON; y que un nativo lea los textos nuevos.
 
+## SOS: la fuente de «Avísele enseguida», la App 112 sin el SMS y las medusas en su dirección nueva (10 de noviembre)
+
+En la guía «Rescate», con socorrista, «Avísele enseguida y siga sus indicaciones.» (`sosRes1`) era la única línea del
+panel sin fuente leída: lo que quedaba de la sección del 1 de noviembre. La dicen dos páginas de emergencias del Govern
+de les Illes Balears, leídas el 10 de noviembre (ninguna lleva fecha):
+- «Emergencias» (`https://www.caib.es/webgoib/es/w/emergencias`), en «En la playa»: «Si observas a alguna persona con
+  problemas dentro del agua, avisa inmediatamente al socorrista o llama al 112.»;
+- 112 Islas Baleares, «En la playa, seguros» (`https://www.caib.es/sites/112/es/en_la_playa_seguros-7008/`): «Sigue las
+  indicaciones de los socorristas y lee las indicaciones de los paneles informativos de las playas.».
+
+Se le propuso a Jerome el 9 de noviembre añadirlas sin cambiar ningún texto; el 10: «si».
+
+**Lo que cambia** (`04dbd82`): solo las fuentes de la guía. En `SOS_FUENTES`, las dos páginas (`goibEmergencias` y
+`goibPlaya`), con el Govern como organismo; en `EMERG_UI`, tres filas nuevas en los diez idiomas: el nombre del Govern
+(«Gobierno de las Illes Balears», «Government of the Balearic Islands»…) y el título de cada página («Emergencias: en
+la playa», «112: en la playa, seguros»…). Ninguna fila de la guía cambia, y `SOS_REVISADO` sigue en el 1 de noviembre:
+es una fuente más para una línea que ya estaba, no una revisión del panel.
+
+**La App 112 Canarias** (`2db0c7b`). Al leer las páginas que el vigía dio por cambiadas el 9 de noviembre: la nota de la
+App 112 Canarias (`sosApp112`) acababa con «Al instalarla hay que validar el móvil con un SMS.». Su página oficial
+(`https://www.112canarias.com/112/app-112-canarias/`, actualizada el 30 de noviembre de 2023) no lo dice: solo que la
+app puede «Avisar mediante mensaje SMS al contacto que indiques». Tampoco se encontró en otra fuente. Jerome, el 10 de
+noviembre: «quítalo». Fuera esa frase, en los diez idiomas; el resto de la nota es lo que dice la página.
+
+**El vigía.** Las dos páginas responden y su `robots.txt` deja leerlas, así que el vigía también las mira desde ahora
+(`www.caib.es`, entre las webs que mira, con un control en su `--probar`). El 9 de noviembre dio por rota «Incendios
+domésticos», de la Comunidad de Madrid (tres 404 seguidos). Comprobado el 10: la página está y responde a un navegador;
+la web de la Comunidad contesta 404 solo cuando quien pide se presenta como el vigía (`TenerifeGo/1.0`). No se cambia
+nada, y el vigía no se hace pasar por un navegador. Las otras páginas que dio por cambiadas (las del 112 de Canarias,
+ES-Alert, SOMU, el 012, la revisión del ILCOR sobre las quemaduras y Tu Europa) dicen lo mismo que el panel: lo que
+cambió es la cabecera de noticias o el menú. La de las medusas de la Asociación Española de Pediatría se ha mudado: su
+dirección vieja (`https://enfamilia.aeped.es/printpdf/temas-salud/picaduras-medusas`) lleva a la portada de En Familia.
+
+**Las medusas** (`1c1eeab`). El artículo está ahora en
+`https://www.aeped.es/enfamilia/salud-en-familia/picaduras-medusas` y dice lo que cita la guía: enjuagar con agua de mar
+y no con agua dulce; no rascar ni frotar; ni vinagre ni amoniaco diluidos, ni orina; al centro médico o al 112 si hay
+síntomas. Jerome, el 10 de noviembre: «Medusa también». Solo cambia la dirección de `aepMedusas`; ninguna fila. El vigía
+mira desde ahora `www.aeped.es` en vez de `enfamilia.aeped.es` (con eso mira también el PDF de la AEP sobre el
+ahogamiento, de la guía del rescate, que ya estaba allí).
+
+**Controles.** `auditar_emergencias.js`: `caib.es` entre los dominios oficiales, y tres controles nuevos: que la guía
+del rescate cite las dos páginas con el Govern como organismo, que la nota de la App 112 no lleve el SMS en ningún
+idioma y que la fuente de las medusas esté en su dirección nueva; cada uno en rojo antes de su cambio y en verde después
+(42 controles). `vigia_sos.py --probar`: dos controles nuevos, `www.caib.es` y `www.aeped.es` entre las webs que mira.
+`auditar_idioma.js` en los diez idiomas, sin ningún hallazgo; `probar_emergencias.js`, 261 controles, en verde.
+
+**La auditoría entera**, sobre `abb162c` (árbol `17a223a8…`), que en `main` es `1c1eeab`: ningún control sin ejecutar y
+solo dos en rojo, `auditar_web.js` y `barrido_idiomas.js`, que cotejan las cifras de «Idiomas» de esta página (3493 y
+5.643; con las tres filas nuevas, 3496 y 5.646): las pone al día este commit, y los dos, pasados otra vez, salen en
+verde (4.892 líneas, 1 h 56 min). Puesta la rama al día con `main`, solo entran commits de los robots (las alertas del
+Gobierno de Canarias, los avisos de AEMET, los terremotos del IGN, el boletín de INVOLCAN y los satélites de CelesTrak):
+solo cambian sus ficheros de datos, y los controles que los leen salen en verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -9090,7 +9143,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3493 filas (y 5.643 filas, dentro y fuera del fuente)
+## Idiomas · 49 tablas, 3496 filas (y 5.646 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -9238,7 +9291,9 @@ y los senderos): 25 filas más en `CUERPO_UI` (559): el compañero (el título, 
 se eligen: senderista, presa canario, lagarto tizón y las tres bicis), el norte del mapa, «Senderos de
 la isla» (el título, el subtítulo, las dos cuentas, el norte y el sur, «Hecho el…», las tres
 celebraciones con su texto y el aviso de cuando la lista no llega) y dos párrafos de «Las cifras» (el
-fondo del mapa, con las dos notas de la licencia del relieve, y los senderos): 3493 y 5.643. El
+fondo del mapa, con las dos notas de la licencia del relieve, y los senderos): 3493 y 5.643. El 10 de noviembre, las
+dos fuentes del Govern de les Illes Balears para la guía del rescate: 3 filas más en `EMERG_UI` (603), el nombre del
+Govern y el título de cada página: 3496 y 5.646. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
