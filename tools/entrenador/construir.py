@@ -42,6 +42,12 @@ PIE = '''
 })();
 '''
 trozos = {t.name: t.read_text(encoding='utf-8') for t in (aqui / 'src').glob('*.js')}
+# dos funciones con el mismo nombre en trozos distintos: la segunda pisa a la primera sin avisar
+vistas = {}
+for nombre in sorted(trozos):
+    for f in re.findall(r'^  function ([A-Za-z0-9_$]+)', trozos[nombre], re.M):
+        assert f not in vistas, 'la función %s está en %s y en %s' % (f, vistas[f], nombre)
+        vistas[f] = nombre
 trozos['90-huellas.js'] = huellas
 out = CAB + '\n'.join(trozos[n] for n in sorted(trozos)) + PIE
 destino = repo / 'modulos' / 'entrenador.js'

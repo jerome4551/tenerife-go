@@ -7,7 +7,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
     python3 tools/entrenador/construir.py              # src/ → modulos/entrenador.js
     python3 tools/entrenador/construir.py --comprobar  # ¿el módulo es el de sus fuentes?
     python3 tools/entrenador/muestra.py                # los datos para las páginas de prueba
-    node tools/auditar_entrenador.js 8766              # con python3 -m http.server 8766 en la raíz
+    node tools/auditar_entrenador.js 8766              # con python3 -m http.server 8766 en la raíz (tarda unos minutos)
 
 ## Qué hay
 
@@ -15,16 +15,17 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 |---|---|
 | `src/00-nucleo.js` | vectores, giros (bases y cuaterniones), curvas de tiempo |
 | `src/10-esqueleto.js` | las medidas de Jérôme (en cm), la postura escrita → huesos, la mezcla por arcos, clavar un pie o una mano |
-| `src/20-figura.js` | la cámara y el cuerpo: torso por secciones, brazos y piernas, manos, zapatillas, el brillo de los músculos |
-| `src/30-cabeza.js` | la cabeza de `modulos/guia.js` (de frente), y de perfil y de espaldas; las caras |
+| `src/20-figura.js` | la cámara y el cuerpo, dibujado por masas a tres tintas: torso, brazos y piernas, manos con dedos, zapatillas que se doblan, el brillo de los músculos |
+| `src/30-cabeza.js` | la cabeza de `modulos/guia.js` (de frente), y de perfil y de espaldas; las caras, la mirada y el tupé, que va un instante detrás |
 | `src/40-escenario.js` | la escena: el orden de pintado, la sombra, los tres decorados (fuera, calistenia, gimnasio; día y noche) |
 | `src/50-material.js` | barra, mancuernas, banco, soporte, barra de dominadas, escalón, pared, polea… |
-| `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los anillos, el encuadre |
+| `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
+| `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los anillos, el encuadre; y los gestos del presentador |
 | `src/70-coreografias.js` | **las coreografías**, una por ejercicio |
-| `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz; sus textos (10 idiomas) |
+| `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
-| `pruebas/` | hojas de contacto, el reproductor suelto, las capturas y la grabación a MP4 |
+| `pruebas/` | hojas de contacto, los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
 | `muestra/` | la página de muestra (un solo fichero, para enseñarla en el móvil) |
 
 ## La regla
@@ -59,10 +60,10 @@ Con `bi`/`bd`, `mi`/`md`, `pi`/`pd`, `ti`/`td` se da cada lado por separado.
 | `b: { e, z, g, c }` | el brazo por ángulos: `e` cuánto se levanta (0 cuelga, 90 horizontal), `z` hacia dónde (0 al frente, 90 al lado), `g` giro del húmero, `c` el codo |
 | `b: { a: [x, y, z], polo: [...], en: 'torax' \| 'pelvis' }` | el brazo por destino: la muñeca va a ese punto (del mundo, o del tórax o la pelvis) y el codo tira hacia `polo` |
 | `b: { cuelga: [dx, dz], largo }` | el brazo colgando a plomo del hombro (peso muerto) |
-| `m: { tipo, prono, mun, lat }` | la mano: `puno`, `abierta`, `suelta`, `indice`, `pulgar`; `prono` 90 palma abajo o atrás, −90 arriba o adelante |
+| `m: { tipo, prono, mun, lat }` | la mano: `puno`, `abierta`, `plana`, `suelta`, `indice`, `pulgar` (un gesto pasa a otro poco a poco: los dedos se cierran, no saltan); `prono` 90 palma abajo o atrás, −90 arriba o adelante |
 | `p: { suelo: [x, z], abre, talon, alto, polo }` | el pie plantado: dónde cae el tobillo, cuánto apunta hacia fuera, cuánto sube el talón, sobre qué altura pisa |
 | `p: { a: [x, y, z], polo }` · `p: { e, z, g, c }` | la pierna por destino del tobillo, o por ángulos (colgado, tumbado) |
-| `t: { punta, arriba }` · `t: { tob }` | el pie a mano (vectores del mundo) o el ángulo del tobillo |
+| `t: { punta, arriba, flex }` · `t: { tob }` | el pie a mano (vectores del mundo; `flex`, cuánto se dobla la zapatilla por la bola del pie) o el ángulo del tobillo |
 
 Ayudas: `sobre(base, cambios)`, `refleja(postura)`, `tabla(ángulo, extra)` (en plancha sobre las
 puntas), `aLosLados(codo)`, `PUNO`, `PRONO`, `SUPINO`, `SUELTA`, `PALMA_ABAJO`, `bajaSube`, `subeBaja`.
@@ -104,9 +105,55 @@ del centro), `'mi=x,y,z'` (a un punto).
 
 Para grabar un MP4 (1080 × 1920, 30 cuadros por segundo): `python3 tools/entrenador/pruebas/graba.py salida.mp4 <id> [idioma]`.
 
+## El dibujo
+
+Cada pieza del cuerpo (brazo, antebrazo, muslo, pierna, las tres del torso, la mano, cada falange, la zapatilla) es una
+o varias **masas**: secciones elípticas a lo largo de un hueso. En cada cuadro se proyectan sus puntos y se traza su
+**envolvente convexa**; dentro, tres tintas planas (sombra, medio y luz, con la luz arriba a la izquierda) y, por fuera,
+una línea de contorno del color de la pieza, más oscuro. La bola de una articulación es de la pieza que se pinta
+primero; la otra llega «con la boca abierta» (sin contorno por ese lado), y así el codo y la rodilla no enseñan una
+costura. Todo es SVG y números: sin filtros, sin degradados por pieza, sin imágenes.
+
+## La vida (`55-vida.js`)
+
+Se aplica a cada cuadro **antes de clavar** pies y manos, así que no cambia ninguna postura de la ficha: lo clavado se
+vuelve a clavar después (y si el aire o el peso lo dejan un pelo fuera de alcance, es el cuerpo el que se arrima).
+
+- **Respira**, a su ritmo: no se acompasa con la repetición (no le dice a nadie cuándo coger aire). Más hondo cuando viene de trabajar.
+- **La demora**: la cadera manda; el tronco la sigue 0,04 s después; la columna, 0,08; la cabeza, 0,13.
+- **Los muelles**: al frenar, la cabeza cabecea (2,6° como mucho en un ejercicio; 6° de cerca) y los brazos sueltos se balancean. El tupé va detrás de la cabeza.
+- **El peso**: de pie y quieto, pasa de un pie al otro, despacio. Tumbado, sentado o en una isometría, no.
+- **Al hablar de cerca**, la mano levantada marca el compás y la cabeza asiente.
+
+Con «reducir movimiento» del sistema, nada de esto se mueve.
+
+## Los gestos del presentador (`60-director.js`)
+
+`PRESENTA` son sus posturas clave y `GESTOS`, las secuencias: antes del gesto lo recoge, llega pasándose un poco y se
+asienta. Cada ejercicio tiene el suyo, siempre el mismo (sale de su `id`), para que los vídeos no sean todos iguales:
+
+| momento | gestos |
+|---|---|
+| cabecera | se asoma por un lado (así espera en la portada), entra, y: `saludo` (saluda con la mano), `visera` (la mano a la ceja) o `vamos` (sube el puño) |
+| consejo (`'nota'`) | `consejo` (el índice en alto, y lo menea) si es corto; `explica` (la palma abierta) si es largo |
+| cierre | `pulgar`, `dos` (los dos pulgares) o `fuerza` (saca bíceps) |
+
+Para verlos fotograma a fotograma: `pruebas/busto.html?g=saludo,visera&n=8` (y un ejercicio en marcha:
+`pruebas/busto.html?id=<id>&rep=1&n=8&t1=3.6`).
+
+## La voz
+
+Es la del aparato (Web Speech), pero **elegida** (`vocesDe`, en `80-reproductor.js`): un iPhone enseña a las webs, lo
+primero de cada idioma, las voces «Eloquence» (Eddy, Flo, Grandma, Grandpa, Reed, Rocko, Sandy, Shelley), un
+sintetizador por reglas de hace más de veinte años; quedarse con «la primera del idioma» es acabar con una de esas. Aquí se puntúan
+(premium, mejorada, Siri, las normales) y las robóticas y las de broma no se eligen nunca. Si el aparato no enseña
+ninguna que valga y es de Apple, no se elige: se le da el idioma y pone la suya. Solo voces del dispositivo.
+`TG_ENTRENADOR.voces('es')` dice qué elegiría este aparato y qué voces enseña.
+
 ## Lo que el dibujo no hace bien (todavía)
 
 - Un brazo o un muslo que apunta hacia la cámara se ve corto y gordo: es un dibujo plano por pieza.
   Se arregla eligiendo la vista (de lado para las bisagras y las sentadillas).
 - Solo el escalón tapa de verdad lo que tiene detrás; el resto del material se ordena por distancia.
-- La zapatilla es rígida: de puntillas gira sobre la bola y se levanta lo justo para no hundirse.
+- Las piezas se ordenan por distancia, enteras: cuando dos se cruzan (un brazo por delante del pecho), el cambio de
+  orden es de un cuadro a otro.

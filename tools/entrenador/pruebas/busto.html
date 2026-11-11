@@ -1,0 +1,34 @@
+<!doctype html><meta charset="utf-8"><title>el presentador, gesto a gesto</title>
+<!-- Un gesto del presentador, fotograma a fotograma:  busto.html?g=saludo&n=10&t1=3   (g: los de GESTOS; id: el ejercicio que se carga)
+     O un ejercicio en marcha, de cuerpo entero:        busto.html?id=sentadilla-peso-corporal&rep=1&n=10&t1=3.6 -->
+<style>
+  body { margin: 0; background: #1b2330; font: 12px sans-serif; color: #fff; }
+  .fila { display: flex; flex-wrap: wrap; }
+  .celda { width: 300px; height: 345px; position: relative; margin: 2px; overflow: hidden; background: #334; }
+  .celda svg { width: 100%; height: 100%; display: block; }
+  .celda span { position: absolute; left: 4px; top: 3px; color: #12233A; background: rgba(255,255,255,.8); padding: 1px 5px; border-radius: 6px; }
+</style>
+<div class="fila" id="f"></div>
+<script src="../../../modulos/entrenador.js"></script>
+<script>
+var T = TG_ENTRENADOR._, Q = new URLSearchParams(location.search);
+var TAM = Number(Q.get('tam')) || 1; if (TAM !== 1) { var st = document.createElement('style'); st.textContent = '.celda{width:' + Math.round(300 * TAM) + 'px;height:' + Math.round(345 * TAM) + 'px}'; document.head.appendChild(st); }
+var id = Q.get('id') || 'sentadilla-peso-corporal', g = Q.get('g') || 'saludo', n = Number(Q.get('n')) || 10, t0 = Number(Q.get('t0')) || 0, t1 = Number(Q.get('t1')) || 3;
+(Q.get('rep') ? [id] : g.split(',')).forEach(function (g) {
+  var dur = 0; if (!Q.get('rep') && T.GESTOS[g]) T.GESTOS[g].sec.forEach(function (q) { dur += q[1]; });
+  var fin = Q.get('t1') ? t1 : dur + 0.35;
+  var tiempos = Q.get('ts') ? Q.get('ts').split(',').map(Number) : Array.from({ length: n }, function (_, i) { return t0 + (fin - t0) * i / Math.max(1, n - 1); });
+  var fila = document.createElement('div'); fila.className = 'fila'; document.body.appendChild(fila);
+  tiempos.forEach(function (t) {
+    var c = document.createElement('div'); c.className = 'celda'; fila.appendChild(c);
+    var e = new T.Escenario(c), d = new T.Director(e);
+    e.ambiente(Q.get('amb') || 'fuera', Q.get('tema') || 'dia');
+    d.cargar(T.COREO[id]);
+    if (Q.get('rep')) { d.aPostura(d.inicio, 0); d.cuadro(0.001, true); d.aRep(0); if (Q.get('vista')) d.vista = Number(Q.get('vista')); d.salto = true; }
+    else { d.aBusto(true); d.gesto(g, true); if (Q.get('habla')) e.cab.hablar(60); }
+    d.cuadro(0.0001, true);
+    for (var k = 0, N = Math.round(t * 60); k < N; k++) d.cuadro(1 / 60, false);
+    var s = document.createElement('span'); s.textContent = (Q.get('rep') ? id : g) + ' · ' + t.toFixed(2) + ' s'; c.appendChild(s);
+  });
+});
+</script>

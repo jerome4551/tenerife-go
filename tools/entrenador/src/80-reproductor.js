@@ -131,6 +131,43 @@
   /* datos: { id, nombre, pasos: [texto…], pasosEs: [texto en castellano…] (para los anillos), prim: [grupos], sec: [grupos],
               nombres: { grupo: su nombre }, etiquetas: [texto…], entorno: 'gimnasio' | 'fuera' | 'calistenia', nivel: 1-3 }
      opc:   { idioma, tema: 'dia' | 'noche', tx: función que da un texto de ENT_UI (si la app tiene los suyos), alAcabar, auto } */
+  /* ── qué voz ──
+     La del móvil (Web Speech), como la audioguía, pero ELIGIÉNDOLA. Un iPhone enseña a las webs, lo primero de cada
+     idioma, las voces «Eloquence» (Eddy, Flo, Grandma, Grandpa, Reed, Rocko, Sandy, Shelley): un sintetizador por
+     reglas de hace más de veinte años (ETI-Eloquence; su empresa se vendió en 2001). Quedarse con «la primera del
+     idioma» es acabar con una de esas: suena a navegador viejo. Aquí se puntúan: primero las buenas (premium,
+     mejorada, Siri), luego las normales del sistema; las robóticas y las de broma, nunca. Y si el aparato no enseña
+     ninguna que valga (Safari no deja ver a las webs las voces que se descargan: lo dice Apple en sus foros de
+     desarrolladores, hilo 723503), no se elige: se le da el idioma y pone la suya, la que el sistema tiene para ese
+     idioma. Solo voces del dispositivo: ninguna manda el texto fuera (por eso «que ponga la suya» solo vale en
+     aparatos de Apple, donde todas lo son). */
+  var VOZ_NO = /eloquence|\b(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley)\b|\b(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|kathy|ralph)\b|espeak/i;
+  var VOZ_BUENA = [[/premium/i, 30], [/enhanced|mejorada|optimizada|améliorée|erweitert|ottimizzata|verbeterd|ulepszon|增强|優化/i, 22], [/siri/i, 18], [/natural|neural/i, 16]];
+  /* Jérôme es un hombre: a igual calidad, una voz de hombre */
+  var VOZ_EL = /\b(jorge|diego|carlos|juan|enrique|pablo|daniel|arthur|oliver|gordon|george|thomas|jacques|nicolas|paul|markus|yannick|viktor|martin|stefan|luca|cosimo|xander|frank|krzysztof|jacek|adam|ivan|li-mu|kangkang)\b/i;
+  function notaVoz(v, quiero) {
+    var uri = String(v.voiceURI || ''), todo = uri + ' ' + String(v.name || ''), lang = String(v.lang || '').replace('_', '-').toLowerCase(), n, i;
+    if (v.localService === false || VOZ_NO.test(todo)) return -1;
+    n = lang === quiero ? 40 : (lang.slice(0, 2) === quiero.slice(0, 2) && lang.slice(0, 2) !== 'zh') ? 10 : -1;
+    if (n < 0) return -1;
+    for (i = 0; i < VOZ_BUENA.length; i++) if (VOZ_BUENA[i][0].test(todo)) { n += VOZ_BUENA[i][1]; break; }
+    if (i === VOZ_BUENA.length) n += /super-compact/i.test(uri) ? 0 : /compact/i.test(uri) ? 6 : 8;
+    if (VOZ_EL.test(todo)) n += 3;
+    return n;
+  }
+  function vocesDe(idioma) {
+    var locale = (window.TG_VOZ && window.TG_VOZ.locale(idioma)) || VOZ_LOCALE[idioma] || 'es-ES', quiero = locale.toLowerCase(), lista = [], mejor = null, nota = -1, del = false, ag = '';
+    try { lista = window.speechSynthesis.getVoices() || []; } catch (e) { lista = []; }
+    for (var i = 0; i < lista.length; i++) {
+      var n = notaVoz(lista[i], quiero), lg = String(lista[i].lang || '').replace('_', '-').toLowerCase();
+      if (lg.slice(0, 2) === quiero.slice(0, 2)) del = true;
+      if (n > nota) { nota = n; mejor = lista[i]; }
+    }
+    try { ag = navigator.userAgent || ''; } catch (e2) { ag = ''; }
+    var apple = /iP(hone|ad|od)/.test(ag) || (/Macintosh/.test(ag) && lista.some(function (v) { return /^com\.apple\./.test(String(v.voiceURI || '')); }));
+    /* «que ponga la suya»: en un aparato de Apple, si aún no hay lista o si las del idioma que enseña son las robóticas */
+    return { locale: locale, voz: nota >= 0 ? mejor : null, nota: nota, sistema: !(nota >= 0) && apple && (!lista.length || del), lista: lista };
+  }
   function Reproductor(caja, datos, opc) {
     opc = opc || {};
     var yo = this, co = COREO[datos.id];
@@ -216,6 +253,8 @@
     this.bVoz = boton('', ICO.voz, T('entVozOn'), function () { yo.voz(!yo.conVoz); });
     this.bVoz.setAttribute('aria-pressed', 'false');
     if (!this.hayVoz()) this.bVoz.hidden = true;
+    /* las voces llegan tarde en algunos navegadores: cuando lleguen, se vuelve a mirar si hay alguna que valga */
+    try { if (window.speechSynthesis && window.speechSynthesis.addEventListener) { this._voces = function () { yo.bVoz.hidden = !yo.hayVoz(); if (yo.bVoz.hidden && yo.conVoz) yo.voz(false); }; window.speechSynthesis.addEventListener('voiceschanged', this._voces); } } catch (e) {}
     pie.appendChild(mandos);
     raiz.appendChild(pie);
     caja.appendChild(raiz);
@@ -252,7 +291,12 @@
     if (max) { c.style.minHeight = Math.ceil(max + 26) + 'px'; this.anchoMedido = ancho; }
   };
   Reproductor.prototype.hayVoz = function () {
-    try { if (window.TG_VOZ) return window.TG_VOZ.hayVoces() && !!window.TG_VOZ.vozLocal(this.idioma); return 'speechSynthesis' in window && typeof SpeechSynthesisUtterance === 'function'; } catch (e) { return false; }
+    try {
+      if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance !== 'function') return false;
+      var v = vocesDe(this.idioma);
+      /* si el navegador aún no ha dicho qué voces tiene, se ofrece; al ir a hablar se vuelve a mirar */
+      return !v.lista.length || !!v.voz || v.sistema;
+    } catch (e) { return false; }
   };
   Reproductor.prototype.reproducir = function () {
     if (this.suena) return;
@@ -275,9 +319,15 @@
   /* un cuadro */
   Reproductor.prototype.cuadro = function (ahora) {
     if (!this.suena) return;
-    /* si el móvil va justo, se saltan cuadros antes que ir a cámara lenta (hasta 10 por segundo) */
+    /* si al móvil le cuesta (más de media ración de cuadro solo en mover el dibujo), pinta uno de cada dos: 30 por
+       segundo, a su velocidad. Y si aun así va justo, se saltan cuadros antes que ir a cámara lenta (hasta 10 por segundo). */
+    if (this.aMitad && (this.par = !this.par)) { this.raf = requestAnimationFrame(this._cuadro); return; }
     var dt = Math.min(0.1, Math.max(0, (ahora - this.antes) / 1000)); this.antes = ahora;
+    var t0 = performance.now();
     this.avanzar(dt);
+    var coste = performance.now() - t0;
+    this.costeM = this.costeM == null ? coste : this.costeM + (coste - this.costeM) * 0.06; this.nCoste = (this.nCoste || 0) + 1;
+    if (this.nCoste > 45) this.aMitad = this.costeM > (this.aMitad ? 5.5 : 9);
     if (this.suena) this.raf = requestAnimationFrame(this._cuadro);
   };
   /* avanza el tiempo (lo usa también la grabación, cuadro a cuadro) */
@@ -366,14 +416,15 @@
       escribir('', ICO.mano, '', this.datos.nombre);
       this.pasoT.textContent = ''; this.pasoT.appendChild(el('b', '', this.datos.nombre)); this.palabras = [];
       var et = (this.datos.etiquetas || []).join(' · '); if (et) this.pasoT.appendChild(document.createTextNode(et));
-      plano(true, function () { d.aPostura('saluda1', 0); d.aSecuencia([['saluda2', 0.26], ['saluda1', 0.26], ['saluda2', 0.26], ['saluda1', 0.26], ['saluda2', 0.26], ['saluda1', 0.26], ['listo', 0.6]], 'saluda1'); cab.emocion('ilusion'); d.marcar([]); });
+      plano(true, function () { d.gesto(d.gestoPara('cabecera', yo.hash()), true); d.marcar([]); });
       this.decir(this.datos.nombre);
     } else if (t.tipo === 'cierre') {
       this.chipPaso.textContent = T('entVideo');
       var fr = T('entFin' + (1 + (this.hash() % N_FIN)));
       this.kicker.textContent = this.datos.nombre; this.nombre.textContent = T('entTurno');
       escribir('', ICO.mano, T('entTurno'), fr, true);
-      plano(true, function () { d.aPostura('pulgar', 0.5); cab.emocion('guino'); d.marcar([]); });
+      var deCerca = d.busto;
+      plano(true, function () { d.gesto(d.gestoPara('cierre', yo.hash() >>> 3), !deCerca); d.marcar([]); });
       this.decir(T('entTurno') + ' ' + fr);
     } else {
       var a = t.accion;
@@ -381,7 +432,9 @@
       this.titulo.classList.remove('ve');
       if (a === 'nota') {
         escribir('', ICO.bombilla, T('entConsejo'), t.texto);
-        plano(true, function () { d.aPostura('consejo', 0.45); cab.emocion('atento'); cab.hablar(Math.min(t.dur - 0.6, 3.2)); d.marcar([]); });
+        /* un consejo corto, con el índice en alto; uno largo, explicándolo con la mano abierta (por el texto en castellano: igual en todos los idiomas) */
+        var yaCerca = d.busto;
+        plano(true, function () { d.gesto(d.gestoPara('consejo', (t.es || t.texto).length > 110 ? 1 : 0), !yaCerca); cab.hablar(Math.min(t.dur - 0.6, 3.2)); d.marcar([]); });
       } else {
         escribir(String(t.i + 1), '', '', t.texto);
         plano(false, function () {
@@ -404,7 +457,7 @@
   };
   /* un número fijo por ejercicio, para elegir su frase de cierre */
   Reproductor.prototype.hash = function () { var s = this.datos.id || '', h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; };
-  /* ── la voz: la del móvil (las voces instaladas), como la audioguía ── */
+  /* ── la voz: la del móvil (las voces instaladas), elegida con vocesDe ── */
   Reproductor.prototype.voz = function (si) {
     this.conVoz = !!si && this.hayVoz();
     this.bVoz.setAttribute('aria-pressed', this.conVoz ? 'true' : 'false');
@@ -417,10 +470,12 @@
     if (!this.conVoz || !this.suena) return;
     try {
       window.speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(texto), v = window.TG_VOZ ? window.TG_VOZ.vozLocal(this.idioma) : null;
-      u.lang = (window.TG_VOZ && window.TG_VOZ.locale(this.idioma)) || VOZ_LOCALE[this.idioma] || 'es-ES';
-      if (v) u.voice = v;
-      u.rate = 0.98;
+      var u = new SpeechSynthesisUtterance(texto), v = vocesDe(this.idioma);
+      /* ninguna voz del dispositivo que valga, y no es un aparato que ponga la suya: mejor callado que robótico */
+      if (!v.voz && !v.sistema) { this.conVoz = false; this.bVoz.hidden = true; this.bVoz.setAttribute('aria-pressed', 'false'); return; }
+      u.lang = v.locale;
+      if (v.voz) u.voice = v.voz;
+      u.rate = 0.97; u.pitch = 1;
       this.hablando = true; this.vozArranco = false; this.esc.cab.hablar(60);
       var fin = function () { if (yo.uVoz === u) { yo.hablando = false; yo.esc.cab.hablar(0); } };
       u.onstart = function () { if (yo.uVoz === u) yo.vozArranco = true; };
@@ -437,6 +492,7 @@
   Reproductor.prototype.quitar = function () {
     this.pausar(); this.callar();
     window.removeEventListener('resize', this._medir);
+    try { if (this._voces) window.speechSynthesis.removeEventListener('voiceschanged', this._voces); } catch (e) {}
     if (this.io) this.io.disconnect();
     if (this.raiz.parentNode) this.raiz.parentNode.removeChild(this.raiz);
   };

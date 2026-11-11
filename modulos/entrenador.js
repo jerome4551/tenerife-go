@@ -156,17 +156,19 @@
     return { u: [s * se * sz, -ce, se * cz], b0: [s * ce * sz, se, ce * cz] };
   }
 
+  /* el gesto de la mano, en números: cuánto se cierran los dedos (0, abierta; 1, puño), cuánto el índice,
+     cuánto se abren en abanico y cuánto se levanta el pulgar. Así un gesto pasa a otro poco a poco. */
+  var GESTO = { abierta: [0.04, 0.04, 1, 0], plana: [0.03, 0.03, 0.12, 0], suelta: [0.3, 0.26, 0.3, 0], puno: [1, 1, 0.2, 0], indice: [1, 0, 0.2, 0], pulgar: [1, 1, 0.2, 1] };
   /* el pie plantado: [x, z] es donde cae el tobillo; abre, cuánto apunta hacia fuera; talon, cuánto
      se levanta el talón (gira sobre la bola del pie); alto, si pisa sobre algo; rumbo, el del cuerpo */
   function piePlantado(k, f, rumbo) {
     var s = signo(k), ang = (rumbo || 0) + s * (f.abre || 0);
     var pt = [Math.sin(ang * RAD), 0, Math.cos(ang * RAD)], y0 = f.alto || 0, t = (f.talon || 0) * RAD;
-    /* de puntillas, la zapatilla (rígida) gira sobre la bola: sube lo justo para que la puntera no se hunda */
-    var sube = t > 0 ? 2.1 * (1 - Math.cos(t)) + 1.8 * Math.sin(t) : 0;
-    var bola = [f.suelo[0] + pt[0] * D.bola, y0 + sube, f.suelo[1] + pt[2] * D.bola];
+    /* de puntillas gira sobre la bola, y la zapatilla se dobla por ahí: el antepié sigue plano en el suelo */
+    var bola = [f.suelo[0] + pt[0] * D.bola, y0, f.suelo[1] + pt[2] * D.bola];
     var atras = por(pt, -1), arriba = [0, 1, 0];
     var tob = mas(bola, mas(por(mas(por(atras, Math.cos(t)), por(arriba, Math.sin(t))), D.bola), por(mas(por(arriba, Math.cos(t)), por(pt, Math.sin(t))), D.tobillo)));
-    return { tob: tob, punta: unidad(mas(por(pt, Math.cos(t)), por(arriba, -Math.sin(t)))), arriba: unidad(mas(por(arriba, Math.cos(t)), por(pt, Math.sin(t)))) };
+    return { tob: tob, punta: unidad(mas(por(pt, Math.cos(t)), por(arriba, -Math.sin(t)))), arriba: unidad(mas(por(arriba, Math.cos(t)), por(pt, Math.sin(t)))), flex: Math.max(0, f.talon || 0) };
   }
 
   /* De la postura escrita al estado canónico: la pelvis, los ángulos de la columna y, de cada
@@ -213,7 +215,8 @@
       }
       /* ── la mano ── */
       var m = deLado(P, 'm', k) || {};
-      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0 };
+      var gm = GESTO[m.tipo] || GESTO.suelta;
+      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0, c: gm[0], ci: gm[1], ab: gm[2], pu: gm[3] };
       /* ── la pierna ── */
       var q = deLado(P, 'p', k) || { suelo: [s * D.caderaX, 0], abre: 6 };
       var cad = mas(S.p, aplicar(S.B, [s * D.caderaX, 0, 0]));
@@ -231,7 +234,7 @@
       }
       /* ── el pie: plantado (dos vectores del mundo) o suelto (el ángulo del tobillo) ── */
       var t = deLado(P, 't', k) || {};
-      S.t[k] = pie ? { punta: pie.punta, arriba: pie.arriba } : (t.punta ? { punta: unidad(t.punta), arriba: unidad(t.arriba || [0, 1, 0]) } : { tob: t.tob == null ? 8 : t.tob });
+      S.t[k] = pie ? { punta: pie.punta, arriba: pie.arriba, flex: pie.flex } : (t.punta ? { punta: unidad(t.punta), arriba: unidad(t.arriba || [0, 1, 0]), flex: t.flex || 0 } : { tob: t.tob == null ? 8 : t.tob, flex: t.flex || 0 });
     });
     return S;
   }
@@ -269,9 +272,8 @@
       L.cod = mas(L.hom, por(uw, D.brazo)); L.mun = mas(L.cod, por(lw, D.antebrazo));
       L.uw = uw; L.lw = lw;
       /* el frente del brazo (el bíceps): hacia donde se dobla el codo */
-      var fb = sinParte(lw, uw);
-      if (largo(fb) < 0.06) fb = S.b[k].b ? aplicar(T.Bt, S.b[k].b) : sinParte(aplicar(T.Bt, [0, 0, 1]), uw);
-      L.frenteBrazo = unidad(fb, [0, 0, 1]);
+      var fb = sinParte(lw, uw), fb0 = unidad(sinParte(S.b[k].b ? aplicar(T.Bt, S.b[k].b) : aplicar(T.Bt, [0, 0, 1]), uw), [0, 0, 1]), wb = entre((largo(fb) - 0.04) / 0.3, 0, 1);
+      L.frenteBrazo = unidad(mas(por(unidad(fb, fb0), wb), por(fb0, 1 - wb)), fb0);
       var M = manoDe(k, uw, lw, S.b[k].b ? aplicar(T.Bt, S.b[k].b) : null, S.m[k]);
       L.mano = M; L.agarre = mas(L.mun, por(M.dir, D.mano)); L.dedos = mas(L.mun, por(M.dir, D.dedos));
       L.cad = mas(S.p, aplicar(S.B, [s * D.caderaX, 0, 0]));
@@ -279,9 +281,8 @@
       L.rod = mas(L.cad, por(qu, D.muslo)); L.tob = mas(L.rod, por(ql, D.pierna));
       L.qu = qu; L.ql = ql;
       /* el frente del muslo (el cuádriceps): al contrario de donde se dobla la rodilla */
-      var fm = sinParte(por(ql, -1), qu);
-      if (largo(fm) < 0.06) fm = S.q[k].b ? aplicar(S.B, S.q[k].b) : sinParte(aplicar(S.B, [0, 0, 1]), qu);
-      L.frenteMuslo = unidad(fm, [0, 0, 1]);
+      var fm = sinParte(por(ql, -1), qu), fm0 = unidad(sinParte(S.q[k].b ? aplicar(S.B, S.q[k].b) : aplicar(S.B, [0, 0, 1]), qu), [0, 0, 1]), wm = entre((largo(fm) - 0.04) / 0.3, 0, 1);
+      L.frenteMuslo = unidad(mas(por(unidad(fm, fm0), wm), por(fm0, 1 - wm)), fm0);
       var t = S.t[k], punta, arriba;
       if (t.punta) { punta = t.punta; arriba = t.arriba; }
       else {
@@ -293,10 +294,9 @@
         var a = (t.tob || 0) * RAD;
         punta = unidad(mas(por(fr, Math.cos(a)), por(ql, Math.sin(a)))); arriba = unidad(mas(por(ql, -Math.cos(a)), por(fr, Math.sin(a))));
       }
-      var fp = sinParte(qu, ql);
-      if (largo(fp) < 0.06) fp = sinParte(L.frenteMuslo, ql);
-      L.frentePierna = unidad(fp, [0, 0, 1]);
-      L.punta = punta; L.arriba = arriba;
+      var fp = sinParte(qu, ql), fp0 = unidad(sinParte(L.frenteMuslo, ql), [0, 0, 1]), wp = entre((largo(fp) - 0.04) / 0.3, 0, 1);
+      L.frentePierna = unidad(mas(por(unidad(fp, fp0), wp), por(fp0, 1 - wp)), fp0);
+      L.punta = punta; L.arriba = arriba; L.flex = t.flex || 0;
       L.suela = menos(L.tob, por(arriba, D.tobillo));
       L.talon = menos(L.suela, por(punta, D.talon)); L.dedosPie = mas(L.suela, por(punta, D.punta));
     });
@@ -314,13 +314,15 @@
       S.b[k] = { u: arco(a.b[k].u, b.b[k].u, t), l: arco(a.b[k].l, b.b[k].l, t), b: a.b[k].b && b.b[k].b ? unidad(mezcla(a.b[k].b, b.b[k].b, t)) : (a.b[k].b || b.b[k].b) };
       S.q[k] = { u: arco(a.q[k].u, b.q[k].u, t), l: arco(a.q[k].l, b.q[k].l, t), b: a.q[k].b && b.q[k].b ? unidad(mezcla(a.q[k].b, b.q[k].b, t)) : (a.q[k].b || b.q[k].b) };
       var ma = a.m[k], mb = b.m[k];
-      S.m[k] = { tipo: t < 0.5 ? ma.tipo : mb.tipo, prono: mezclaN(ma.prono, mb.prono, t), mun: mezclaN(ma.mun, mb.mun, t), lat: mezclaN(ma.lat, mb.lat, t) };
+      S.m[k] = { tipo: t < 0.5 ? ma.tipo : mb.tipo, prono: mezclaN(ma.prono, mb.prono, t), mun: mezclaN(ma.mun, mb.mun, t), lat: mezclaN(ma.lat, mb.lat, t),
+                 c: mezclaN(ma.c, mb.c, t), ci: mezclaN(ma.ci, mb.ci, t), ab: mezclaN(ma.ab, mb.ab, t), pu: mezclaN(ma.pu, mb.pu, t) };
       var ta = a.t[k], tb = b.t[k];
-      if (ta.punta && tb.punta) S.t[k] = { punta: arco(ta.punta, tb.punta, t), arriba: arco(ta.arriba, tb.arriba, t) };
+      var fx = mezclaN(ta.flex || 0, tb.flex || 0, t);
+      if (ta.punta && tb.punta) S.t[k] = { punta: arco(ta.punta, tb.punta, t), arriba: arco(ta.arriba, tb.arriba, t), flex: fx };
       else if (ta.punta || tb.punta) {
         /* de plantado a suelto (o al revés): por los vectores del mundo de cada extremo */
-        S.t[k] = { punta: arco(A[k].punta, Bb[k].punta, t), arriba: arco(A[k].arriba, Bb[k].arriba, t) };
-      } else S.t[k] = { tob: mezclaN(ta.tob, tb.tob, t) };
+        S.t[k] = { punta: arco(A[k].punta, Bb[k].punta, t), arriba: arco(A[k].arriba, Bb[k].arriba, t), flex: fx };
+      } else S.t[k] = { tob: mezclaN(ta.tob, tb.tob, t), flex: fx };
     });
     return armar(S);
   }
@@ -369,6 +371,9 @@
     boca: '#6e1f24', lengua: '#e2706f', diente: '#ffffff',
     pant: '#19b6a6', pantS: '#0e8a7e', pantL: '#3fd2c2', oro: '#F5C76B', oroS: '#D4AF37',
     zapa: '#f6f3ea', zapaS: '#d9d4c4', suela: '#1b1f29',
+    /* el dibujo a tres tintas (sombra, medio, luz) y su línea */
+    pielB: '#b9775a', pielLu: '#fbd8bb', camiB: '#11141b', camiSS: '#1c2029', camiLL: '#434b63', pantB: '#0a6a61', pantSS: '#0f9488',
+    calc: '#fbfaf5', calcS: '#dcd8cc', calcB: '#b4ae9f', zapaB: '#a39d8c', zapaL: '#ffffff', media: '#ffffff', mediaS: '#e2ded2', piso: '#272c3a', pisoB: '#141821',
     n1: '#EE5F7E', n2: '#FFA04A', n3: '#FFE48A'
   };
   /* un color entre dos */
@@ -376,8 +381,12 @@
     var x = parseInt(a.slice(1), 16), y = parseInt(b.slice(1), 16), r = function (s) { return Math.round(((x >> s) & 255) + ((((y >> s) & 255) - ((x >> s) & 255)) * t)); };
     return '#' + ((1 << 24) + (r(16) << 16) + (r(8) << 8) + r(0)).toString(16).slice(1);
   }
-  var LEJOS = '#232a45';
-  function lejos(c) { return tinte(c, LEJOS, 0.2); }
+  /* lo que queda del otro lado del cuerpo: un punto más oscuro y un pelo más frío, sin agrisarlo */
+  function lejos(c) {
+    var x = parseInt(c.slice(1), 16), r = (x >> 16) & 255, g = (x >> 8) & 255, b = x & 255;
+    r = Math.round(r * 0.93); g = Math.round(g * 0.885); b = Math.round(b * 0.875);
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + Math.min(255, b)).toString(16).slice(1);
+  }
 
   function crear(tag, attrs, padre) {
     var e = document.createElementNS(NS, tag);
@@ -397,15 +406,6 @@
     }
     return s;
   }
-  /* la forma de un hueso colgante: perfiles [y, semiancho], simétrica, con los extremos planos (los redondean las rótulas) */
-  function formaHueso(perf) {
-    var D2 = perf.map(function (q) { return [q[1], q[0]]; }), I = perf.slice().reverse().map(function (q) { return [-q[1], q[0]]; });
-    return 'M' + n1(D2[0][0]) + ',' + n1(D2[0][1]) + curva(D2) + 'L' + n1(I[0][0]) + ',' + n1(I[0][1]) + curva(I) + 'z';
-  }
-  function ladosHueso(perf) {
-    var D2 = perf.map(function (q) { return [q[1], q[0]]; }), I = perf.map(function (q) { return [-q[1], q[0]]; });
-    return 'M' + n1(D2[0][0]) + ',' + n1(D2[0][1]) + curva(D2) + 'M' + n1(I[0][0]) + ',' + n1(I[0][1]) + curva(I);
-  }
   function elipse(cx, cy, rx, ry) {
     return 'M' + n1(cx - rx) + ',' + n1(cy) + ' a' + n1(rx) + ',' + n1(ry) + ' 0 1 0 ' + n1(2 * rx) + ',0 a' + n1(rx) + ',' + n1(ry) + ' 0 1 0 ' + n1(-2 * rx) + ',0z';
   }
@@ -418,21 +418,133 @@
       ' L' + n1(b[0] + rb * Math.cos(a2)) + ',' + n1(b[1] + rb * Math.sin(a2)) + ' A' + n1(rb) + ',' + n1(rb) + ' 0 ' + (be > 0 ? 0 : 1) + ' 1 ' + n1(b[0] + rb * Math.cos(a1)) + ',' + n1(b[1] + rb * Math.sin(a1)) + 'z';
   }
 
-  /* los perfiles de cada hueso, en centímetros */
-  var PERF = {
-    brazo: [[0, 5.6], [8, 6.0], [17, 5.3], [27, 4.5]],
-    manga: [[-1, 6.5], [6, 6.7], [12.5, 6.5]],
-    ante: [[0, 4.5], [6, 5.0], [14, 4.2], [24, 3.2]],
-    muslo: [[0, 9.4], [11, 9.6], [26, 7.8], [40, 6.0]],
-    pernera: [[-1, 10.1], [10, 10.3], [20, 9.9]],
-    pierna: [[0, 5.9], [9, 6.3], [21, 5.1], [33, 3.7], [38, 3.6]],
-    calcetin: [[31, 4.1], [38, 3.95]]
+  /* ───────────────────────── las formas: masas con volumen ─────────────────────────
+     Cada pieza del cuerpo es una o varias MASAS: secciones elípticas [t, a, b, cs, cf] a lo largo de
+     un hueso (t, a lo largo; a, el semiancho hacia fuera; b, el semifondo hacia delante; cs y cf, lo
+     que se desplaza el centro). En cada cuadro se proyectan y se traza su envolvente: el contorno
+     cambia con el punto de vista (el gemelo sobresale por detrás, el bíceps por delante).
+     Y se pintan a tres tintas, con la luz arriba a la izquierda: la masa entera en sombra, encima
+     lo que queda al recortarla con ella misma corrida hacia la luz (el tono medio) y, corrida más,
+     la luz. Sin degradados: como un dibujo. */
+  var K_EL = 14, COS_EL = [], SIN_EL = [];
+  (function () { for (var i = 0; i < K_EL; i++) { COS_EL.push(Math.cos(i * 2 * Math.PI / K_EL)); SIN_EL.push(Math.sin(i * 2 * Math.PI / K_EL)); } })();
+  var LUZ = [-0.5, -0.866];
+  function lado2(a, b, p) { return (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]); }
+  /* la envolvente convexa de unos puntos (antihoraria en sus números) */
+  function envolvente(P) {
+    P.sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; });
+    var n = P.length, H = [], k = 0, i, t;
+    for (i = 0; i < n; i++) { while (k >= 2 && lado2(H[k - 2], H[k - 1], P[i]) <= 0) k--; H[k++] = P[i]; }
+    for (i = n - 2, t = k + 1; i >= 0; i--) { while (k >= t && lado2(H[k - 2], H[k - 1], P[i]) <= 0) k--; H[k++] = P[i]; }
+    H.length = Math.max(0, k - 1);
+    return H;
+  }
+  /* S ∩ (S corrida dx, dy): lo que queda de una forma convexa al recortarla con ella misma desplazada */
+  function recorte(S, dx, dy) {
+    var out = S, n = S.length, i, j;
+    for (i = 0; i < n && out.length; i++) {
+      var ax = S[i][0] + dx, ay = S[i][1] + dy, bx = S[(i + 1) % n][0] + dx, by = S[(i + 1) % n][1] + dy, inp = out, m = inp.length;
+      out = [];
+      for (j = 0; j < m; j++) {
+        var p = inp[j], q = inp[(j + 1) % m];
+        var dp = (bx - ax) * (p[1] - ay) - (by - ay) * (p[0] - ax), dq = (bx - ax) * (q[1] - ay) - (by - ay) * (q[0] - ax);
+        if (dp >= 0) out.push(p);
+        if ((dp >= 0) !== (dq >= 0)) { var u = dp / (dp - dq); out.push([p[0] + (q[0] - p[0]) * u, p[1] + (q[1] - p[1]) * u]); }
+      }
+    }
+    return out;
+  }
+  function poli(H) {
+    if (H.length < 3) return '';
+    var s = 'M' + n1(H[0][0]) + ',' + n1(H[0][1]);
+    for (var i = 1; i < H.length; i++) s += 'L' + n1(H[i][0]) + ',' + n1(H[i][1]);
+    return s + 'z';
+  }
+  /* la línea de una masa: su contorno, menos sus bocas (los tramos entre dos puntos de la misma boca),
+     que es por donde se une a la pieza de al lado */
+  function contorno(H) {
+    var n = H.length, s = '', pluma = false, i;
+    if (n < 3) return '';
+    for (i = 0; i < n; i++) {
+      var a = H[i], b = H[(i + 1) % n];
+      if (a[2] && a[2] === b[2]) { pluma = false; continue; }
+      if (!pluma) { s += 'M' + n1(a[0]) + ',' + n1(a[1]); pluma = true; }
+      s += 'L' + n1(b[0]) + ',' + n1(b[1]);
+    }
+    return s;
+  }
+  /* los puntos de una sección (una elipse en el espacio), en la pantalla; m, la marca de boca */
+  function anillo(P, c, ax, ay, bx, by, m) { for (var j = 0; j < K_EL; j++) P.push([c[0] + ax * COS_EL[j] + bx * SIN_EL[j], c[1] + ay * COS_EL[j] + by * SIN_EL[j], m || 0]); }
+  /* una masa en el marco de un hueso: O, y los ejes e (a lo largo), s (hacia fuera) y f (al frente).
+     tapas: 1, redondea el principio (media bola); 2, el final; 3, los dos.
+     bocas: 1, el principio va sin línea (ahí se une a otra pieza); 2, el final; 3, los dos */
+  function masa(cam, O, e, s, f, secc, tapas, bocas) {
+    var o = cam.p(O), E2 = cam.d(e), S2 = cam.d(s), F2 = cam.d(f), esc = cam.esc, P = [], i, ult = secc.length - 1;
+    var uno = function (t, a, b, cs, cf, m) {
+      anillo(P, [o[0] + (E2[0] * t + S2[0] * cs + F2[0] * cf) * esc, o[1] + (E2[1] * t + S2[1] * cs + F2[1] * cf) * esc], S2[0] * a * esc, S2[1] * a * esc, F2[0] * b * esc, F2[1] * b * esc, m);
+    };
+    for (i = 0; i < secc.length; i++) uno(secc[i][0], secc[i][1], secc[i][2], secc[i][3] || 0, secc[i][4] || 0, (i === 0 && (bocas & 1) && !(tapas & 1)) ? 1 : (i === ult && (bocas & 2) && !(tapas & 2)) ? 2 : 0);
+    if (tapas & 1) { var q = secc[0], m = Math.min(q[1], q[2]); uno(q[0] - m * 0.5, q[1] * 0.86, q[2] * 0.86, q[3] || 0, q[4] || 0); uno(q[0] - m * 0.88, q[1] * 0.46, q[2] * 0.46, q[3] || 0, q[4] || 0); }
+    if (tapas & 2) { var z = secc[secc.length - 1], w = Math.min(z[1], z[2]); uno(z[0] + w * 0.5, z[1] * 0.86, z[2] * 0.86, z[3] || 0, z[4] || 0); uno(z[0] + w * 0.88, z[1] * 0.46, z[2] * 0.46, z[3] || 0, z[4] || 0); }
+    return envolvente(P);
+  }
+  /* hacia dónde se corre la luz en una pieza alargada: de lado, hacia la luz. Devuelve [nx, ny, c]:
+     la normal del lado de la luz y cuánto mira a ella (0, la pieza va en la dirección de la luz) */
+  function haciaLuz(A, B) {
+    var dx = B[0] - A[0], dy = B[1] - A[1], l = Math.sqrt(dx * dx + dy * dy);
+    if (l < 3) return [LUZ[0], LUZ[1], 1];
+    var nx = -dy / l, ny = dx / l, c = nx * LUZ[0] + ny * LUZ[1];
+    if (c < 0) { nx = -nx; ny = -ny; c = -c; }
+    return [nx, ny, Math.pow(c, 0.6)];
+  }
+  /* lo que se va trazando de una capa en un cuadro: la base, el tono medio y la luz */
+  function Tintas() { this.c = ''; this.b = ''; this.m = ''; this.l = ''; }
+  /* añade una masa: H, su envolvente; v, hacia la luz; r, su radio en la pantalla */
+  Tintas.prototype.pon = function (H, v, r, conLuz) {
+    if (H.length < 3) return;
+    this.c += contorno(H); this.b += poli(H);
+    var c = v[2], kS = r * 0.42;
+    this.m += poli(recorte(H, (v[0] * c + LUZ[0] * (1 - c) * 0.6) * kS, (v[1] * c + LUZ[1] * (1 - c) * 0.6) * kS));
+    if (conLuz) { var kL = r * (1.58 + 0.6 * (1 - c)); this.l += poli(recorte(H, v[0] * kL, v[1] * kL)); }
+  };
+  /* la mitad de un aro que queda de este lado: C, su centro; U y V, sus ejes (ya con su radio) */
+  function aro(cam, C3, U, V, abre) {
+    var th0 = Math.atan2(punto(V, cam.k), punto(U, cam.k)), c = cam.p(C3), U2 = cam.d(U), V2 = cam.d(V), esc = cam.esc, s = '', N = 9, ab = abre || 1.66;
+    for (var i = 0; i <= N; i++) {
+      var th = th0 - ab + 2 * ab * i / N, co = Math.cos(th), si = Math.sin(th);
+      s += (i ? 'L' : 'M') + n1(c[0] + (U2[0] * co + V2[0] * si) * esc) + ',' + n1(c[1] + (U2[1] * co + V2[1] * si) * esc);
+    }
+    return s;
+  }
+  function linea(cam, pts) { var s = ''; for (var i = 0; i < pts.length; i++) { var p = cam.p(pts[i]); s += (i ? 'L' : 'M') + n1(p[0]) + ',' + n1(p[1]); } return s; }
+
+  /* ── el cuerpo de Jérôme, en centímetros ──
+     piel y tela: masas { s: secciones, t: tapas, r: su radio (para el grosor de la sombra) } */
+  var CUERPO = {
+    brazo: {
+      piel: [{ s: [[0, 5.6, 5.8], [7, 6.3, 6.9, 0, 0.8], [14, 6.0, 6.5, 0, 0.7], [21, 5.1, 5.3], [27, 4.7, 4.9]], r: 5.8, une: 'fin' },
+             { s: [[-0.4, 3.2, 3.5, 0.4, 0], [1.2, 5.0, 5.3, 0.9, 0], [3.4, 5.8, 6.1, 1.2, 0], [6, 6.0, 6.3, 1.3, 0], [9, 5.6, 5.9, 1.1, 0], [12.5, 4.5, 4.8, 0.7, 0]], r: 6, t: 0, b: 1 }],
+      tela: [{ s: [[-1.2, 4.0, 4.3, 0.4, 0], [0.5, 5.7, 6.0, 0.9, 0], [3, 6.5, 6.8, 1.2, 0], [6, 6.7, 7.0, 1.3, 0.2], [9.5, 6.5, 6.9, 0.9, 0.4], [12.9, 6.3, 6.7, 0.4, 0.5]], r: 6.6, t: 0, b: 1 }]
+    },
+    ante: {
+      piel: [{ s: [[0, 4.9, 5.1], [5, 5.5, 5.8, 0.4, 0.2], [11, 4.9, 4.9, 0.2, 0], [18, 3.8, 3.5], [24, 3.5, 3.0]], r: 4.8, une: 'ppio', une2: 'fin' }],
+      tela: [{ s: [[18.4, 4.25, 3.95], [22.8, 4.05, 3.6]], t: 0, r: 4 }]           /* la muñequera (solo en la izquierda) */
+    },
+    muslo: {
+      piel: [{ s: [[0, 9.0, 9.3], [8, 9.5, 10.2, 0, 0.9], [18, 8.7, 9.5, 0, 0.9], [28, 7.3, 7.9, 0, 0.5], [36, 6.3, 6.6], [40, 6.1, 6.3]], r: 8.2, une: 'fin' }],
+      tela: [{ s: [[-4.5, 8.4, 8.6], [-1, 9.7, 9.9], [5, 10.3, 10.8, 0, 0.6], [12, 10.4, 11.1, 0, 0.9], [19.6, 10.7, 11.3, 0, 0.9]], r: 10.2, t: 0, b: 1 }]
+    },
+    pierna: {
+      piel: [{ s: [[0, 6.1, 6.3], [4, 5.9, 6.2, 0, -0.4], [10, 6.3, 7.4, 0.2, -2.0], [17, 5.7, 6.4, 0.1, -1.7], [26, 4.3, 4.6, 0, -0.6], [33, 3.7, 3.9], [38, 3.6, 3.9]], r: 5.5, une: 'ppio', t: 2 },
+             { s: [[-2.4, 3.3, 2.2, 0, 3.8], [0.8, 3.9, 2.7, 0, 4.0], [3.8, 3.1, 2.0, 0, 3.7]], t: 3, r: 3.4 }],       /* la rótula */
+      tela: [{ s: [[30.4, 4.4, 4.6, 0, -0.2], [34, 4.2, 4.4], [38.8, 4.2, 4.5]], t: 0, b: 2, r: 4.2 }]                 /* el calcetín */
+    }
   };
   /* las secciones del tronco: marco (p, pelvis; l, lumbar; t, tórax), altura, semiancho, semifondo y centro en z */
   var SECC = [
-    ['p', -10, 8.6, 8.2, 0.4], ['p', -3.5, 17.6, 12.6, -1.6], ['p', 4.5, 16.4, 11.6, -0.8],
-    ['l', 3.5, 14.6, 10.6, 0.0],
-    ['t', 1.5, 15.8, 11.4, 0.7], ['t', 11.5, 18.4, 12.9, 1.6], ['t', 19.5, 19.6, 11.0, 0.5], ['t', 23.6, 14.8, 8.6, -0.2], ['t', 26, 9.4, 7.2, -0.6]
+    ['p', -10, 8.6, 8.2, 0.4], ['p', -3.5, 17.6, 12.6, -1.6], ['p', 4.5, 16.2, 11.6, -0.8],
+    ['l', 3.5, 14.4, 10.6, 0.0],
+    ['t', 1.5, 15.8, 11.5, 0.7], ['t', 11.5, 18.8, 13.2, 1.7], ['t', 20.6, 21.2, 11.4, 0.5], ['t', 23.9, 14.6, 8.8, -0.2], ['t', 26.2, 8.6, 7.2, -0.6]
   ];
 
   /* los parches de músculo del tronco: sobre un plano pegado a la superficie de su marco.
@@ -452,134 +564,119 @@
     ['gluteos', 'p', [16.4, -2, -2.4], [1, 0, -0.1], elipse(0, 0, 6.5, 7.6)],
     ['gluteos', 'p', [-16.4, -2, -2.4], [-1, 0, -0.1], elipse(0, 0, 6.5, 7.6)]
   ];
-  /* los de los miembros: [grupo, hueso, cara (1, la de delante; -1, la de atrás; 0, todo), y de, y a, semiancho] */
-  var PARCHES_M = [
-    ['hombros', 'brazo', 0, -5.4, 7.6, 6.8],
-    ['biceps', 'brazo', 1, 6, 23.5, 5.0], ['triceps', 'brazo', -1, 5, 24.5, 5.0],
-    ['antebrazo', 'ante', 0, 1.5, 18.5, 4.6],
-    ['cuadriceps', 'muslo', 1, 6, 37, 8.0], ['isquios', 'muslo', -1, 7, 36, 7.6],
-    ['pantorrilla', 'pierna', -1, 3, 23, 5.6]
+  /* los de los miembros: un elipsoide pegado al hueso.
+     [grupo, hueso, cara (1, delante; -1, detrás; 0, entero), centro a lo largo, hacia fuera, al frente, semiejes: largo, ancho, fondo] */
+  var CALCOS = [
+    ['hombros', 'brazo', 0, 2.6, 1.5, 0, 6.6, 5.6, 5.8],
+    ['biceps', 'brazo', 1, 15, 0, 2.7, 8.4, 4.5, 3.7], ['triceps', 'brazo', -1, 15, 0, -2.0, 9.4, 4.5, 3.7],
+    ['antebrazo', 'ante', 0, 9, 0.2, 0, 8.6, 4.3, 4.3],
+    ['cuadriceps', 'muslo', 1, 20, 0, 4.2, 15, 7.3, 5.9], ['isquios', 'muslo', -1, 21, 0, -2.9, 14, 7.0, 5.6],
+    ['pantorrilla', 'pierna', -1, 12.5, 0, -3.6, 9.6, 5.0, 4.0]
   ];
   var GRUPOS = ['pecho', 'dorsal', 'espalda_alta', 'hombros', 'biceps', 'triceps', 'antebrazo', 'core', 'gluteos', 'cuadriceps', 'isquios', 'pantorrilla'];
 
   var N_FIG = 0;
   /* ───────────────────────── Jérôme, de cuerpo entero ─────────────────────────
-     Se crea una vez (sus piezas son nodos de SVG) y en cada cuadro solo se mueven: los huesos
-     son dibujos colgantes que se colocan con una matriz; el tronco, las manos y los pies se
-     vuelven a trazar. */
+     Se crea una vez (sus piezas son nodos de SVG) y en cada cuadro se vuelven a trazar. */
   function Figura(defs) {
-    var u = 'tge' + (++N_FIG);
+    var u = 'tge' + (++N_FIG), yo = this;
     this.u = u;
     var id = function (n) { return u + '-' + n; }, url = function (n) { return 'url(#' + u + '-' + n + ')'; };
     this.url = url;
-    /* ── las pinturas: cada una, con su versión «de lejos» (el brazo y la pierna del otro lado) ── */
-    var grad = function (n, x1, y1, x2, y2, paradas, deUsuario) {
-      [0, 1].forEach(function (far) {
-        var g = crear('linearGradient', { id: id(n + (far ? 'L' : '')), x1: x1, y1: y1, x2: x2, y2: y2 }, defs);
-        if (deUsuario) g.setAttribute('gradientUnits', 'userSpaceOnUse');
-        paradas.forEach(function (p) { crear('stop', { offset: p[0], 'stop-color': far ? lejos(p[1]) : p[1] }, g); });
-      });
-    };
-    /* la piel de un hueso: de lado a lado, como un cilindro con la luz un poco a la izquierda */
-    var pielDe = function (n, w) { grad(n, -w, 0, w, 0, [[0, C.pielS], [0.3, C.pielL], [0.62, C.piel], [1, C.pielSS]], true); };
-    pielDe('pb', 6.2); pielDe('pa', 5.2); pielDe('pm', 9.9); pielDe('pp', 6.5);
-    grad('manga', -6.9, 0, 6.9, 0, [[0, C.cami], [0.34, tinte(C.cami, C.camiL, 0.75)], [0.7, C.cami], [1, C.camiS]], true);
-    grad('pern', -10.5, 0, 10.5, 0, [[0, C.pant], [0.32, C.pantL], [0.66, C.pant], [1, C.pantS]], true);
-    grad('calc', -4.2, 0, 4.2, 0, [[0, '#e6e2d6'], [0.35, '#ffffff'], [1, '#cfcabb']], true);
-    grad('cami', 0, 0, 0, 1, [[0, C.camiL], [0.4, C.cami], [1, C.camiS]]);
-    grad('pant', 0, 0, 0, 1, [[0, C.pantL], [0.45, C.pant], [1, C.pantS]]);
-    grad('zapa', 0, 0, 0, 1, [[0, '#ffffff'], [0.6, C.zapa], [1, C.zapaS]]);
-    grad('mano', 0, 0, 1, 1, [[0, C.pielL], [0.55, C.piel], [1, C.pielS]]);
-
     /* los músculos que trabajan: una mancha de calor (amarillo con borde naranja, como el nivel alto del maniquí) y, los secundarios, rosa */
     [['mus3', [[0, '#FFF6CF', 0.98], [0.42, C.n3, 0.95], [0.8, C.n2, 0.82], [1, C.n2, 0]]], ['mus1', [[0, '#FFA0B4', 0.86], [0.6, C.n1, 0.74], [1, C.n1, 0]]]].forEach(function (m) {
       var g = crear('radialGradient', { id: id(m[0]), cx: 0.5, cy: 0.5, r: 0.5 }, defs);
       m[1].forEach(function (p) { crear('stop', { offset: p[0], 'stop-color': p[1], 'stop-opacity': p[2] }, g); });
     });
-    var T = ' stroke="' + C.pielT + '" stroke-opacity=".42" stroke-width="1" vector-effect="non-scaling-stroke" fill="none" stroke-linecap="round"';
     this.P = {};        /* las piezas: cada una, un nodo; en cada cuadro se le da su fondo para ordenarlas */
     var P = this.P;
-    var grupo = function (n, html) { var g = crear('g', { 'class': 'tge-' + n }); g.innerHTML = html; P[n] = g; return g; };
-    var pinta = function (n) { return ' fill="' + url(n) + '" data-p="' + n + '"'; };
-    /* una rótula que no se aplasta: dentro del hueso, deshace su escala a lo largo */
-    var rotula = function (y, r, n) { return '<g class="tge-rot" data-y="' + y + '"><circle r="' + r + '"' + pinta(n) + '/></g>'; };
-    var parche = function (hueso) {
-      return PARCHES_M.filter(function (m) { return m[1] === hueso; }).map(function (m) {
-        var cy = (m[3] + m[4]) / 2, ry = (m[4] - m[3]) / 2;
-        return '<g class="tge-mus" data-g="' + m[0] + '" data-cara="' + m[2] + '" opacity="0"><path d="' + elipse(0, cy, m[5] * 1.12, ry * 1.08) + '"/></g>';
-      }).join('');
+    var grupo = function (n) { var g = crear('g', { 'class': 'tge-' + n }); g._t = []; g._mus = []; P[n] = g; return g; };
+    /* una tinta: un trazo con su color (y, la de la base, con su línea, que se pinta por debajo) */
+    var tinta = function (g, color, borde, padre) {
+      var e = crear('path', { d: '', fill: color }, padre || g);
+      e._col = color;
+      if (borde) { e._bor = borde; e.setAttribute('stroke', borde); e.setAttribute('paint-order', 'stroke'); e.setAttribute('stroke-linejoin', 'round'); e._ancho = true; }
+      g._t.push(e);
+      return e;
     };
+    /* una capa: la línea (debajo), la base en sombra, el tono medio y, si la lleva, la luz */
+    var capa = function (g, tS, tM, tL, borde, padre) {
+      var c = crear('path', { d: '', fill: 'none', stroke: borde, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, padre || g);
+      c._bor = borde; c._ancho = true; g._t.push(c);
+      return { c: c, b: tinta(g, tS, null, padre), m: tinta(g, tM, null, padre), l: tL ? tinta(g, tL, null, padre) : null };
+    };
+    var raya = function (g, color, extra) {
+      var e = crear('path', { d: '', fill: 'none', stroke: color, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g);
+      e._bor = color; g._t.push(e);
+      if (extra) for (var q in extra) e.setAttribute(q, extra[q]);
+      return e;
+    };
+    var calcos = function (g, hueso) {
+      CALCOS.forEach(function (m) {
+        if (m[1] !== hueso) return;
+        var e = crear('ellipse', { 'class': 'tge-mus', rx: 1, ry: 1, opacity: 0 }, g);
+        e._g = m[0]; e._def = m; g._mus.push(e);
+      });
+    };
+    this.mus = [];
     LADOS.forEach(function (k) {
-      /* el muslo, con la pernera del pantalón y su raya */
-      grupo('muslo' + k,
-        '<clipPath id="' + id('cm' + k) + '"><path d="' + formaHueso([[-11, 10.2], [0, 10.2], [11, 9.6], [26, 7.8], [40, 6.0], [46, 6.0]]) + '"/></clipPath>' +
-        rotula(40, 6.0, 'pm') + '<path d="' + formaHueso(PERF.muslo) + '"' + pinta('pm') + '/><path d="' + ladosHueso(PERF.muslo) + '"' + T + '/>' +
-        '<g clip-path="' + url('cm' + k) + '">' + parche('muslo') + '</g>' +
-        rotula(0, 10.1, 'pern') + '<path d="' + formaHueso(PERF.pernera) + '"' + pinta('pern') + '/>' +
-        '<path d="M-9.9,20 Q0,23.6 9.9,20 L10,17.3 Q0,20.9 -10,17.3z" fill="' + C.pantS + '" opacity=".5"/>' +
-        '<path class="tge-raya" d="M0,-3 L0,19.6" stroke="' + C.oro + '" stroke-width="1.6" stroke-linecap="round"/>');
-      /* la pierna, con el calcetín */
-      grupo('pierna' + k,
-        '<clipPath id="' + id('cp' + k) + '"><path d="' + formaHueso([[-6, 6.2], [0, 5.9], [9, 6.3], [21, 5.1], [33, 3.7], [38, 3.6]]) + '"/></clipPath>' +
-        rotula(0, 5.95, 'pp') + '<path d="' + formaHueso(PERF.pierna) + '"' + pinta('pp') + '/><path d="' + ladosHueso(PERF.pierna) + '"' + T + '/>' +
-        '<g clip-path="' + url('cp' + k) + '">' + parche('pierna') + '</g>' +
-        rotula(38, 4.0, 'calc') + '<path d="' + formaHueso(PERF.calcetin) + '"' + pinta('calc') + '/>' +
-        '<path d="M-4,32.8 h8 M-4,34.6 h8" stroke="' + C.pant + '" stroke-width="0.95"/>');
+      var g;
+      /* el muslo: la piel, sus músculos y la pernera del pantalón, con su dobladillo y su raya */
+      g = grupo('muslo' + k); g.piel = capa(g, C.pielS, C.piel, C.pielLu, C.pielB); calcos(g, 'muslo');
+      g.tela = capa(g, C.pantSS, C.pant, C.pantL, C.pantB); g.dob = raya(g, C.pantB); g.raya = raya(g, C.oro);
+      /* la pierna: la piel con la rótula, el gemelo y el calcetín con sus dos rayas */
+      g = grupo('pierna' + k); g.piel = capa(g, C.pielS, C.piel, C.pielLu, C.pielB); calcos(g, 'pierna');
+      g.tela = capa(g, C.calcS, C.calc, null, C.calcB); g.rayas = raya(g, C.pant);
       /* el brazo, con la manga */
-      grupo('brazo' + k,
-        '<clipPath id="' + id('cb' + k) + '"><path d="' + formaHueso([[-9, 6.9], [0, 6.7], [8, 6.3], [17, 5.3], [27, 4.5], [31, 4.5]]) + '"/></clipPath>' +
-        rotula(27, 4.55, 'pb') + '<path d="' + formaHueso(PERF.brazo) + '"' + pinta('pb') + '/><path d="' + ladosHueso(PERF.brazo) + '"' + T + '/>' +
-        rotula(0, 6.6, 'manga') + '<path d="' + formaHueso(PERF.manga) + '"' + pinta('manga') + '/>' +
-        '<path d="M-6.5,12.5 Q0,15.2 6.5,12.5 L6.55,10.6 Q0,13.3 -6.55,10.6z" fill="' + C.camiL + '" opacity=".7"/>' +
-        '<g clip-path="' + url('cb' + k) + '">' + parche('brazo') + '</g>');
-      grupo('ante' + k,
-        '<clipPath id="' + id('ca' + k) + '"><path d="' + formaHueso([[-5, 4.8], [0, 4.5], [6, 5.0], [14, 4.2], [24, 3.2], [27, 3.2]]) + '"/></clipPath>' +
-        rotula(0, 4.55, 'pa') + rotula(24, 3.25, 'pa') + '<path d="' + formaHueso(PERF.ante) + '"' + pinta('pa') + '/><path d="' + ladosHueso(PERF.ante) + '"' + T + '/>' +
-        '<g clip-path="' + url('ca' + k) + '">' + parche('ante') + '</g>');
-      /* la mano y el pie se trazan en cada cuadro */
-      grupo('mano' + k,
-        '<path class="tge-m-pulgar" d=""' + pinta('mano') + ' stroke="' + C.pielT + '" stroke-opacity=".45" stroke-width=".8"/>' +
-        '<path class="tge-m-dedo" d=""' + pinta('mano') + ' stroke="' + C.pielT + '" stroke-opacity=".45" stroke-width=".8"/>' +
-        '<path class="tge-m-palma" d=""' + pinta('mano') + ' stroke="' + C.pielT + '" stroke-opacity=".45" stroke-width=".8"/>' +
-        '<path class="tge-m-rayas" d="" fill="none" stroke="' + C.pielT + '" stroke-width=".8" stroke-linecap="round" opacity=".5"/>');
-      grupo('pie' + k,
-        '<path class="tge-suela" d="" fill="' + C.suela + '"/>' +
-        '<path class="tge-zapa" d=""' + pinta('zapa') + ' stroke="#bdb7a6" stroke-width=".7"/>' +
-        '<path class="tge-franja" d="" fill="none" stroke="' + C.oroS + '" stroke-linecap="round"/>' +
-        '<path class="tge-cordon" d="" fill="none" stroke="' + C.pant + '" stroke-linecap="round"/>');
+      g = grupo('brazo' + k); g.piel = capa(g, C.pielS, C.piel, C.pielLu, C.pielB); calcos(g, 'brazo');
+      g.tela = capa(g, C.camiSS, C.cami, C.camiLL, C.camiB); g.dob = raya(g, C.camiL);
+      g = grupo('ante' + k); g.piel = capa(g, C.pielS, C.piel, C.pielLu, C.pielB); calcos(g, 'ante');
+      if (k === 'i') { g.tela = capa(g, C.pantSS, C.pant, null, C.pantB); g.rayas = raya(g, '#f3fffd'); }
+      /* la mano: la palma, cuatro dedos (cada uno con su línea) y el pulgar */
+      g = grupo('mano' + k);
+      g.gd = crear('g', null, g); g.gp = crear('g', null, g); g.gu = crear('g', null, g);
+      g.dedos = [0, 1, 2, 3].map(function () { return tinta(g, C.piel, C.pielB, g.gd); });
+      g.palma = capa(g, C.pielS, C.piel, null, C.pielB, g.gp);
+      g.nud = raya(g, C.pielB); g.gp.appendChild(g.nud);
+      g.pulgar = tinta(g, C.piel, C.pielB, g.gu);
+      /* la zapatilla: el piso, la media suela, la pala y sus detalles */
+      g = grupo('pie' + k);
+      g.piso = tinta(g, C.piso, C.pisoB); g.media = capa(g, C.mediaS, C.media, null, C.zapaB);
+      g.pala = capa(g, C.zapaS, C.zapa, C.zapaL, C.zapaB);
+      g.talonera = tinta(g, C.pant, C.pantB); g.punt = raya(g, '#c4bfb1'); g.franja = raya(g, C.oroS); g.cordon = raya(g, C.pant);
     });
     /* el tronco: el pantalón, la camiseta (con su estampado y sus músculos) y el cuello */
-    grupo('pantalon', '<path class="tge-f" d="" fill="' + url('pant') + '" stroke="' + C.pantS + '" stroke-width=".8" stroke-linejoin="round"/>' +
-      '<clipPath id="' + id('cpan') + '"><path class="tge-rec" d=""/></clipPath><g class="tge-parches" clip-path="' + url('cpan') + '"></g>' +
-      '<path class="tge-cint" d="" fill="none" stroke="' + C.pantS + '" stroke-width="2.4" stroke-linecap="round" opacity=".65"/>');
-    grupo('camiseta', '<path class="tge-f" d="" fill="' + url('cami') + '" stroke="' + C.camiS + '" stroke-width=".8" stroke-linejoin="round"/>' +
-      '<clipPath id="' + id('ccam') + '"><path class="tge-rec" d=""/></clipPath>' +
-      '<g clip-path="' + url('ccam') + '"><g class="tge-estampa">' +
-        '<path d="M-6.4,-3.4 L-2.2,2.6 L-0.5,4.1 L1,2.6 L2.7,3.9 L4.4,2.2 L7.8,-3.4z" fill="#f6f2e8"/>' +
-        '<path d="M-7.4,-4.4 h16" stroke="' + C.oro + '" stroke-width="0.9" stroke-linecap="round"/>' +
-        '<g fill="#ff7a45"><circle cx="-9" cy="0" r=".75"/><circle cx="-7.2" cy="2.6" r=".45"/><circle cx="9.4" cy=".4" r=".6"/><circle cx="7.3" cy="4.3" r=".4"/></g>' +
-        '<g fill="#4fb3ff"><circle cx="10.2" cy="-2.4" r=".7"/><circle cx="-10.2" cy="-3" r=".5"/><circle cx="-4.3" cy="4.8" r=".38"/></g>' +
-      '</g><g class="tge-parches"></g></g>' +
-      '<path class="tge-escote" d="" fill="none" stroke="' + C.camiL + '" stroke-width="2.4" stroke-linecap="round"/>');
-    grupo('cuello', '<path class="tge-f" d="" fill="none" stroke="' + C.pielS + '" stroke-linecap="round"/><path class="tge-f2" d="" fill="none" stroke="' + C.piel + '" stroke-linecap="round"/>');
+    var tronco = function (n, tS, tM, borde, dentro) {
+      var g = grupo(n);
+      g.f = tinta(g, tS, borde);
+      var cp = crear('clipPath', { id: id('c' + n) }, g); g.rec = crear('path', { d: '' }, cp);
+      g.dentro = crear('g', { 'clip-path': url('c' + n) }, g);
+      g.luz = tinta(g, tM, null, g.dentro);
+      if (dentro) { var d = crear('g', null, g.dentro); d.innerHTML = dentro; g.estampa = d; }
+      g.parches = crear('g', { 'class': 'tge-parches' }, g.dentro);
+      return g;
+    };
+    var gp = tronco('pantalon', C.pantSS, C.pant, C.pantB);
+    gp.cint = raya(gp, C.pantB);
+    var gc = tronco('camiseta', C.camiSS, C.cami, C.camiB,
+      '<path d="M-7.2,-3.6 L-2.6,2.9 L-0.6,4.7 L1.1,2.9 L3,4.4 L4.9,2.5 L8.6,-3.6z" fill="#f6f2e8"/>' +
+      '<path d="M-2.6,2.9 L-0.6,4.7 L1.1,2.9 L3,4.4 L4.9,2.5 L3.2,1.5 L1.2,2.1 L-0.5,1.2z" fill="#ffffff"/>' +
+      '<path d="M-8.4,-4.8 h18" stroke="' + C.oro + '" stroke-width="1" stroke-linecap="round"/>' +
+      '<g fill="#ff7a45"><circle cx="-10" cy="0" r=".8"/><circle cx="-8" cy="2.9" r=".5"/><circle cx="10.4" cy=".4" r=".65"/><circle cx="8.1" cy="4.7" r=".45"/></g>' +
+      '<g fill="#4fb3ff"><circle cx="11.3" cy="-2.6" r=".75"/><circle cx="-11.3" cy="-3.3" r=".55"/><circle cx="-4.8" cy="5.3" r=".4"/></g>');
+    gc.bajo = raya(gc, C.camiB); gc.escote = raya(gc, C.camiLL); gc.escote2 = raya(gc, C.camiB); gc.dentro.appendChild(gc.escote); gc.dentro.appendChild(gc.escote2);
+    var gn = grupo('cuello'); gn.piel = capa(gn, C.pielS, C.piel, null, C.pielB);
     /* los parches de músculo del tronco */
     this.parches = PARCHES.map(function (m) {
-      var cont = (m[1] === 'p' ? P.pantalon : P.camiseta).querySelector('.tge-parches');
-      var g = crear('g', { 'class': 'tge-mus', 'data-g': m[0], opacity: 0 }, cont);
+      var g = crear('g', { 'class': 'tge-mus', opacity: 0 }, (m[1] === 'p' ? gp : gc).parches);
       crear('path', { d: m[4] }, g);
+      g._g = m[0];
       return { g: g, marco: m[1], o: m[2], n: unidad(m[3]) };
     });
-    Object.keys(P).forEach(function (n) {
-      var g = P[n];
-      g._rot = Array.prototype.slice.call(g.querySelectorAll('.tge-rot'));
-      g._mus = Array.prototype.slice.call(g.querySelectorAll('.tge-mus'));
-      g._pint = Array.prototype.slice.call(g.querySelectorAll('[data-p]'));
-      g._raya = g.querySelector('.tge-raya');
-      g._q = {};
-      Array.prototype.forEach.call(g.querySelectorAll('[class]'), function (e) { g._q[e.getAttribute('class')] = e; });
-    });
+    Object.keys(P).forEach(function (n) { P[n]._t.forEach(function (e) { if (e._col) e._colL = lejos(e._col); if (e._bor) e._borL = lejos(e._bor); }); });
     this.lejos = {};
     this.pulso = 1;          /* cuánto brillan los músculos ahora mismo (el motor lo sube en el esfuerzo) */
+    this.aire = 0;           /* la respiración: de −1 a 1 (el motor la mueve) */
     this.musculos([], []);
   }
   /* qué músculos se encienden: principales (amarillo) y secundarios (rosa), como en el maniquí de la ficha */
@@ -587,92 +684,84 @@
     var nv = {}, yo = this;
     (sec || []).forEach(function (g) { nv[g] = 1; });
     (prim || []).forEach(function (g) { nv[g] = 3; });
-    Object.keys(this.P).forEach(function (n) {
-      yo.P[n]._mus.forEach(function (g) {
-        var q = nv[g.getAttribute('data-g')] || 0;
-        g._nivel = q; g.setAttribute('fill', yo.url(q === 3 ? 'mus3' : 'mus1')); g.style.display = q ? '' : 'none';
-      });
-    });
+    var uno = function (e) { var q = nv[e._g] || 0; e._nivel = q; e.setAttribute('fill', yo.url(q === 3 ? 'mus3' : 'mus1')); e.style.display = q ? '' : 'none'; };
+    Object.keys(this.P).forEach(function (n) { yo.P[n]._mus.forEach(uno); });
+    this.parches.forEach(function (p) { uno(p.g); });
   };
-  /* la pieza del otro lado, más oscura: se le cambian las pinturas */
+  /* la pieza del otro lado, un punto más oscura: se le cambian las tintas */
   Figura.prototype.oscurecer = function (n, si) {
     if (this.lejos[n] === si) return;
     this.lejos[n] = si;
-    var g = this.P[n], u = this.url;
-    g._pint.forEach(function (e) { e.setAttribute('fill', u(e.getAttribute('data-p') + (si ? 'L' : ''))); });
+    this.P[n]._t.forEach(function (e) {
+      if (e._col) e.setAttribute('fill', si ? e._colL : e._col);
+      if (e._bor) e.setAttribute('stroke', si ? e._borL : e._bor);
+    });
   };
+  /* el ancho de la línea de una pieza, según la escala */
+  function anchos(g, esc) {
+    if (g._esc === esc) return;
+    g._esc = esc;
+    for (var i = 0; i < g._t.length; i++) if (g._t[i]._ancho) g._t[i].setAttribute('stroke-width', n2(1.2 * esc));
+  }
+  function vuelca(c, T) { pon(c.c, 'd', T.c); pon(c.b, 'd', T.b); pon(c.m, 'd', T.m); if (c.l) pon(c.l, 'd', T.l); }
 
-  /* coloca un hueso colgante entre dos puntos de la pantalla */
-  function colocar(g, A, B, L, esc) {
-    var dx = B[0] - A[0], dy = B[1] - A[1], l = Math.sqrt(dx * dx + dy * dy), f = Math.max(0.04, l / (L * esc));
-    var c = l > 1e-3 ? dy / l : 1, s = l > 1e-3 ? -dx / l : 0;     /* el coseno y el seno del giro */
-    pon(g, 'transform', 'matrix(' + n2(esc * c) + ',' + n2(esc * s) + ',' + n2(-esc * f * s) + ',' + n2(esc * f * c) + ',' + n1(A[0]) + ',' + n1(A[1]) + ')');
-    var inv = n2(1 / f);
-    for (var i = 0; i < g._rot.length; i++) pon(g._rot[i], 'transform', 'translate(0,' + g._rot[i].getAttribute('data-y') + ') scale(1,' + inv + ')');
-  }
-  /* de qué lado del hueso (en su dibujo) asoma una dirección del mundo, y cuánto mira a la cámara */
-  function ladoDe(dir, A3, B3, cam) {
-    var eje = unidad(menos(B3, A3)), x3 = unidad(cruz(eje, cam.k), [1, 0, 0]);
-    var e2 = cam.d(eje), x2 = cam.d(x3), sg = (x2[0] * e2[1] - x2[1] * e2[0]) >= 0 ? 1 : -1;
-    return [punto(dir, x3) * sg, punto(dir, cam.k)];
-  }
-  /* el parche de una cara del hueso: se corre hacia el lado por donde asoma esa cara y se estrecha si se ve de canto */
-  function caraHueso(g, frente, A3, B3, cam, pulso, medio) {
-    if (!g._mus.length) return;
-    var ld = null;
+  /* los músculos de un hueso: cada elipsoide, proyectado (una elipse) */
+  function calcar(g, cam, O, e, s, f, pulso) {
     for (var i = 0; i < g._mus.length; i++) {
       var m = g._mus[i]; if (!m._nivel) continue;
-      var cara = Number(m.getAttribute('data-cara')), op = 1, tr = '';
-      if (cara) {
-        ld = ld || ladoDe(frente, A3, B3, cam);
-        var h = ld[1] * cara;
-        op = entre((h + 0.6) / 0.6, 0, 1);
-        tr = 'translate(' + n2(ld[0] * cara * medio * 0.6) + ',0) scale(' + n2(0.55 + 0.45 * Math.max(0, h)) + ',1)';
-      }
-      pon(m, 'transform', tr);
+      var d = m._def, cara = d[2], op = 1;
+      if (cara) op = entre((punto(f, cam.k) * cara + 0.55) / 0.7, 0, 1);
+      if (op <= 0.01) { pon(m, 'opacity', '0'); continue; }
+      var c = cam.p(mas(O, mas(por(e, d[3]), mas(por(s, d[4]), por(f, d[5]))))), esc = cam.esc;
+      var a1 = cam.d(e), a2 = cam.d(s), a3 = cam.d(f);
+      var x1 = a1[0] * d[6], y1 = a1[1] * d[6], x2 = a2[0] * d[7], y2 = a2[1] * d[7], x3 = a3[0] * d[8], y3 = a3[1] * d[8];
+      var m11 = x1 * x1 + x2 * x2 + x3 * x3, m22 = y1 * y1 + y2 * y2 + y3 * y3, m12 = x1 * y1 + x2 * y2 + x3 * y3;
+      var md = (m11 + m22) / 2, df = Math.sqrt((m11 - m22) * (m11 - m22) / 4 + m12 * m12), ang = 0.5 * Math.atan2(2 * m12, m11 - m22) / RAD;
+      pon(m, 'rx', n1(Math.sqrt(Math.max(0.01, md + df)) * esc)); pon(m, 'ry', n1(Math.sqrt(Math.max(0.01, md - df)) * esc));
+      pon(m, 'transform', 'translate(' + n1(c[0]) + ',' + n1(c[1]) + ') rotate(' + n1(ang) + ')');
       pon(m, 'opacity', n2(op * (m._nivel === 3 ? 1 : 0.9) * pulso));
     }
   }
 
-  /* Pinta el esqueleto E visto por la cámara: mueve las piezas y deja en la lista lo que hay que ordenar. */
+  /* Pinta el esqueleto E visto por la cámara: traza las piezas y deja en la lista lo que hay que ordenar. */
   Figura.prototype.pintar = function (E, cam, lista) {
-    var P = this.P, esc = cam.esc, yo = this, pulso = this.pulso;
+    var P = this.P, esc = cam.esc, yo = this, pulso = this.pulso, aire = this.aire || 0;
     var bases = { p: [E.Bp, E.pel], l: [E.Bl, E.lum], t: [E.Bt, E.tor] };
-    /* ── el tronco: las secciones, proyectadas ── */
+    Object.keys(P).forEach(function (n) { anchos(P[n], esc); });
+    /* ── el tronco: las secciones, proyectadas (el pecho se hincha un poco al respirar) ── */
     var cen = [], izq = [], der = [], i, n = SECC.length;
-    for (i = 0; i < n; i++) cen.push(cam.p(mas(bases[SECC[i][0]][1], aplicar(bases[SECC[i][0]][0], [0, SECC[i][1], SECC[i][4]]))));
+    for (i = 0; i < n; i++) cen.push(cam.p(mas(bases[SECC[i][0]][1], aplicar(bases[SECC[i][0]][0], [0, SECC[i][1], SECC[i][4] + (i === 5 ? aire * 0.5 : 0)]))));
     for (i = 0; i < n; i++) {
       var a = cen[Math.max(0, i - 1)], b = cen[Math.min(n - 1, i + 1)], tx = b[0] - a[0], ty = b[1] - a[1], tl = Math.sqrt(tx * tx + ty * ty) || 1;
-      var nx = -ty / tl, ny = tx / tl, Bm = bases[SECC[i][0]][0];
-      var U = cam.d(Bm[0]), W = cam.d(Bm[2]);
-      var un = (U[0] * nx + U[1] * ny) * SECC[i][2], wn = (W[0] * nx + W[1] * ny) * SECC[i][3], r = Math.sqrt(un * un + wn * wn) || 1e-6;
+      var nx = -ty / tl, ny = tx / tl, Bm = bases[SECC[i][0]][0], hin = (i === 5 || i === 4) ? 1 + aire * 0.022 : 1;
+      var U = cam.d(Bm[0]), W = cam.d(Bm[2]), sa = SECC[i][2] * (i === 5 ? 1 + aire * 0.008 : 1), sb = SECC[i][3] * hin;
+      var un = (U[0] * nx + U[1] * ny) * sa, wn = (W[0] * nx + W[1] * ny) * sb, r = Math.sqrt(un * un + wn * wn) || 1e-6;
       /* el punto de apoyo de la elipse en la dirección n */
-      var sx = (U[0] * SECC[i][2] * un + W[0] * SECC[i][3] * wn) / r * esc, sy = (U[1] * SECC[i][2] * un + W[1] * SECC[i][3] * wn) / r * esc;
+      var sx = (U[0] * sa * un + W[0] * sb * wn) / r * esc, sy = (U[1] * sa * un + W[1] * sb * wn) / r * esc;
       izq.push([cen[i][0] + sx, cen[i][1] + sy]); der.push([cen[i][0] - sx, cen[i][1] - sy]);
     }
     /* el pantalón: de la entrepierna a la cintura, redondeado por abajo */
     var Lp = izq.slice(0, 4), Rp = der.slice(0, 4).reverse(), e0 = [cen[0][0] - cen[1][0], cen[0][1] - cen[1][1]];
     var dPan = 'M' + n1(Lp[0][0]) + ',' + n1(Lp[0][1]) + curva(Lp) + 'L' + n1(Rp[0][0]) + ',' + n1(Rp[0][1]) + curva(Rp) +
       'Q' + n1(cen[0][0] + e0[0] * 0.5) + ',' + n1(cen[0][1] + e0[1] * 0.5) + ' ' + n1(Lp[0][0]) + ',' + n1(Lp[0][1]) + 'z';
-    pon(P.pantalon._q['tge-f'], 'd', dPan); pon(P.pantalon._q['tge-rec'], 'd', dPan);
-    pon(P.pantalon._q['tge-cint'], 'd', 'M' + n1(izq[3][0]) + ',' + n1(izq[3][1]) + ' L' + n1(der[3][0]) + ',' + n1(der[3][1]));
-    /* la camiseta: de la cintura (un poco por debajo) al cuello */
-    var bajo = [(izq[2][0] + izq[3][0]) / 2, (izq[2][1] + izq[3][1]) / 2], bajoD = [(der[2][0] + der[3][0]) / 2, (der[2][1] + der[3][1]) / 2];
+    var gp = P.pantalon, gc = P.camiseta, lx = LUZ[0] * esc, ly = LUZ[1] * esc;
+    pon(gp.f, 'd', dPan); pon(gp.rec, 'd', dPan); pon(gp.luz, 'd', dPan); pon(gp.luz, 'transform', 'translate(' + n1(lx * 2.6) + ',' + n1(ly * 2.6) + ')');
+    /* la camiseta: de un poco por debajo de la cintura al cuello */
+    var bajo = [izq[2][0] * 0.7 + izq[3][0] * 0.3, izq[2][1] * 0.7 + izq[3][1] * 0.3], bajoD = [der[2][0] * 0.7 + der[3][0] * 0.3, der[2][1] * 0.7 + der[3][1] * 0.3];
     var L2 = [bajo].concat(izq.slice(3)), R2 = der.slice(3).reverse().concat([bajoD]);
-    var dCam = 'M' + n1(L2[0][0]) + ',' + n1(L2[0][1]) + curva(L2) + 'L' + n1(R2[0][0]) + ',' + n1(R2[0][1]) + curva(R2) +
-      'Q' + n1((bajo[0] + bajoD[0]) / 2 + (cen[2][0] - cen[3][0]) * 0.35) + ',' + n1((bajo[1] + bajoD[1]) / 2 + (cen[2][1] - cen[3][1]) * 0.35) + ' ' + n1(bajo[0]) + ',' + n1(bajo[1]) + 'z';
-    pon(P.camiseta._q['tge-f'], 'd', dCam); pon(P.camiseta._q['tge-rec'], 'd', dCam);
-    /* el escote: una curva bajo el cuello, por delante (solo si se ve el pecho) */
-    var kt = cam.d(E.Bt[2])[2], esco = P.camiseta._q['tge-escote'];
-    if (kt > 0.12) {
-      var e1 = cam.p(mas(E.tor, aplicar(E.Bt, [7.6, 25.6, 3.4]))), e2 = cam.p(mas(E.tor, aplicar(E.Bt, [-7.6, 25.6, 3.4]))), e3 = cam.p(mas(E.tor, aplicar(E.Bt, [0, 20.6, 9.2])));
-      pon(esco, 'd', 'M' + n1(e1[0]) + ',' + n1(e1[1]) + ' Q' + n1(e3[0]) + ',' + n1(e3[1]) + ' ' + n1(e2[0]) + ',' + n1(e2[1]));
-      pon(esco, 'opacity', n2(entre((kt - 0.12) * 3, 0, 1)));
-    } else pon(esco, 'opacity', '0');
+    var qx = (bajo[0] + bajoD[0]) / 2 + (cen[2][0] - cen[3][0]) * 0.42, qy = (bajo[1] + bajoD[1]) / 2 + (cen[2][1] - cen[3][1]) * 0.42;
+    var dCam = 'M' + n1(L2[0][0]) + ',' + n1(L2[0][1]) + curva(L2) + 'L' + n1(R2[0][0]) + ',' + n1(R2[0][1]) + curva(R2) + 'Q' + n1(qx) + ',' + n1(qy) + ' ' + n1(bajo[0]) + ',' + n1(bajo[1]) + 'z';
+    pon(gc.f, 'd', dCam); pon(gc.rec, 'd', dCam); pon(gc.luz, 'd', dCam); pon(gc.luz, 'transform', 'translate(' + n1(lx * 3.3) + ',' + n1(ly * 3.3) + ')');
+    /* el bajo de la camiseta, con su pespunte */
+    pon(gc.bajo, 'd', 'M' + n1(bajoD[0]) + ',' + n1(bajoD[1]) + 'Q' + n1(qx) + ',' + n1(qy - 1.5 * esc) + ' ' + n1(bajo[0]) + ',' + n1(bajo[1])); pon(gc.bajo, 'stroke-width', n2(0.7 * esc)); pon(gc.bajo, 'opacity', '.7');
+    /* el cuello de la camiseta: un aro inclinado, y se ve la mitad de este lado */
+    var Bt = E.Bt, oc = mas(E.tor, aplicar(Bt, [0, 24.6, 0.4])), uc = por(Bt[0], 7.7), vc = mas(por(Bt[2], 7.0), por(Bt[1], -2.5));
+    var dEsc = aro(cam, oc, uc, vc, 1.75);
+    pon(gc.escote, 'd', dEsc); pon(gc.escote, 'stroke-width', n2(2.3 * esc)); pon(gc.escote2, 'd', dEsc); pon(gc.escote2, 'stroke-width', n2(0.5 * esc)); pon(gc.escote2, 'opacity', '.55');
     /* el estampado: un plano pegado al pecho */
-    var est = P.camiseta._q['tge-estampa'];
+    var kt = cam.d(Bt[2])[2], est = gc.estampa;
     if (kt > 0.1) {
-      var o = cam.p(mas(E.tor, aplicar(E.Bt, [0, 8.5, 12.4]))), X = cam.d(E.Bt[0]), Y = cam.d(E.Bt[1]), ke = esc * 0.92;
+      var o = cam.p(mas(E.tor, aplicar(Bt, [0, 9.2, 13.0 + aire * 0.5]))), X = cam.d(Bt[0]), Y = cam.d(Bt[1]), ke = esc * 0.92;
       pon(est, 'transform', 'matrix(' + n2(X[0] * ke) + ',' + n2(X[1] * ke) + ',' + n2(Y[0] * ke) + ',' + n2(Y[1] * ke) + ',' + n1(o[0]) + ',' + n1(o[1]) + ')');
       pon(est, 'opacity', n2(entre((kt - 0.1) * 2.4, 0, 1)));
     } else pon(est, 'opacity', '0');
@@ -686,99 +775,173 @@
       pon(pa.g, 'transform', 'matrix(' + n2(X2[0] * esc) + ',' + n2(X2[1] * esc) + ',' + n2(Y2[0] * esc) + ',' + n2(Y2[1] * esc) + ',' + n1(o2[0]) + ',' + n1(o2[1]) + ')');
       pon(pa.g, 'opacity', n2(entre(ve * 1.7, 0, 1) * (nv === 3 ? 1 : 0.9) * pulso));
     }
-    var zTor = cam.p(mas(E.tor, aplicar(E.Bt, [0, 11, 0])))[2], zPel = cam.p(E.pel)[2];
-    lista.push({ z: zPel, el: P.pantalon }, { z: zTor + 0.4, el: P.camiseta });
-    /* el cuello */
-    var c1 = cam.p(mas(E.tor, aplicar(E.Bt, [0, 23.5, -0.6]))), c2 = cam.p(mas(E.cab, aplicar(E.Bc, [0, 3, 0])));
-    var dc = 'M' + n1(c1[0]) + ',' + n1(c1[1]) + ' L' + n1(c2[0]) + ',' + n1(c2[1]);
-    pon(P.cuello._q['tge-f'], 'd', dc); pon(P.cuello._q['tge-f'], 'stroke-width', n1(13 * esc)); pon(P.cuello._q['tge-f2'], 'd', dc); pon(P.cuello._q['tge-f2'], 'stroke-width', n1(9.6 * esc));
-    lista.push({ z: (c1[2] + c2[2]) / 2 - 0.5, el: P.cuello });
+    var zTor = cam.p(mas(E.tor, aplicar(Bt, [0, 11, 0])))[2], zPel = cam.p(E.pel)[2];
+    lista.push({ z: zPel, el: gp }, { z: zTor + 0.4, el: gc });
+    /* el cuello: una masa, con la sombra de la barbilla arriba */
+    var n0 = mas(E.tor, aplicar(Bt, [0, 23.2, -0.5])), n1v = mas(E.cab, aplicar(E.Bc, [0, 4, 0.4])), en = menos(n1v, n0), ln = largo(en) || 1;
+    en = por(en, 1 / ln);
+    var fn = unidad(sinParte(Bt[2], en), [0, 0, 1]), sn = cruz(en, fn), gn = P.cuello;
+    var Hn = masa(cam, n0, en, sn, fn, [[-1, 6.2, 5.9], [ln * 0.5, 5.5, 5.5], [ln + 1, 5.3, 5.6]], 0, 3), c1 = cam.p(n0), c2 = cam.p(n1v);
+    var dnx = c1[0] - c2[0], dny = c1[1] - c2[1], dnl = Math.sqrt(dnx * dnx + dny * dny) || 1;
+    pon(gn.piel.c, 'd', contorno(Hn)); pon(gn.piel.b, 'd', poli(Hn)); pon(gn.piel.m, 'd', poli(recorte(Hn, dnx / dnl * 4.6 * esc, dny / dnl * 4.6 * esc)));
+    lista.push({ z: Math.min((c1[2] + c2[2]) / 2 - 0.5, zTor + 0.3), el: gn });
 
     /* ── los brazos y las piernas ── */
     var zc = { i: cam.p(E.i.cad)[2], d: cam.p(E.d.cad)[2] }, zh = { i: cam.p(E.i.hom)[2], d: cam.p(E.d.hom)[2] };
     LADOS.forEach(function (k) {
-      var L = E[k], o = k === 'i' ? 'd' : 'i';
-      /* del otro lado y por detrás: más oscuro (con un margen, para que no parpadee) */
+      var L = E[k], o = k === 'i' ? 'd' : 'i', sg = k === 'i' ? -1 : 1;
+      /* del otro lado y por detrás: un punto más oscuro (con un margen, para que no parpadee) */
       var lp = zc[o] - zc[k], lb = zh[o] - zh[k];
       var farP = yo.lejos['muslo' + k] ? lp > 3 : lp > 6, farB = yo.lejos['brazo' + k] ? lb > 4 : lb > 8;
       ['muslo', 'pierna', 'pie'].forEach(function (q) { yo.oscurecer(q + k, farP); });
       ['brazo', 'ante', 'mano'].forEach(function (q) { yo.oscurecer(q + k, farB); });
       var cad = cam.p(L.cad), rod = cam.p(L.rod), tob = cam.p(L.tob), hom = cam.p(L.hom), cod = cam.p(L.cod), mun = cam.p(L.mun);
-      colocar(P['muslo' + k], cad, rod, D.muslo, esc); colocar(P['pierna' + k], rod, tob, D.pierna, esc);
-      colocar(P['brazo' + k], hom, cod, D.brazo, esc); colocar(P['ante' + k], cod, mun, D.antebrazo, esc);
-      caraHueso(P['muslo' + k], L.frenteMuslo, L.cad, L.rod, cam, pulso, 9);
-      caraHueso(P['pierna' + k], L.frentePierna, L.rod, L.tob, cam, pulso, 5.6);
-      caraHueso(P['brazo' + k], L.frenteBrazo, L.hom, L.cod, cam, pulso, 5.6);
-      caraHueso(P['ante' + k], L.frenteBrazo, L.cod, L.mun, cam, pulso, 4.6);
-      /* la raya del pantalón, por fuera del muslo */
-      var ry = ladoDe(aplicar(E.Bp, [signo(k), 0, 0]), L.cad, L.rod, cam), gm = P['muslo' + k];
-      pon(gm._raya, 'transform', 'translate(' + n2(ry[0] * 9.2) + ',0)'); pon(gm._raya, 'opacity', n2(entre((ry[1] + 0.45) * 2.2, 0, 1)));
-      lista.push({ z: (cad[2] + rod[2]) / 2, el: P['muslo' + k], pts: [L.cad, L.rod] }, { z: (rod[2] + tob[2]) / 2 - 0.2, el: P['pierna' + k], pts: [L.rod, L.tob] },
-                 { z: (hom[2] + cod[2]) / 2 + 0.6, el: P['brazo' + k], pts: [L.hom, L.cod] }, { z: (cod[2] + mun[2]) / 2 + 0.8, el: P['ante' + k], pts: [L.cod, L.mun] });
-      yo.mano(k, L, cam, lista, E.S.m[k].tipo);
+      /* Una pieza: su piel y su tela, masa a masa. La bola de una articulación (la rodilla, el codo, la
+         muñeca) es de la pieza que se pinta primero; la otra llega a ella con boca, sin línea. bolaP y
+         bolaF dicen si esta pieza lleva la del principio y la del final. */
+      var pieza = function (g, def, O, e, f, A2, B2, bolaP, bolaF) {
+        var s = por(unidad(cruz(e, f), [1, 0, 0]), sg), v = haciaLuz(A2, B2), T = new Tintas(), j, q, tp, bc;
+        for (j = 0; j < def.piel.length; j++) {
+          q = def.piel[j];
+          if (q.une) { tp = (bolaP ? 1 : 0) | (bolaF ? 2 : 0); bc = 3 & ~tp; } else { tp = q.t || 0; bc = q.b || 0; }
+          T.pon(masa(cam, O, e, s, f, q.s, tp, bc), v, q.r * esc, true);
+        }
+        vuelca(g.piel, T);
+        calcar(g, cam, O, e, s, f, pulso);
+        if (g.tela) {
+          T = new Tintas();
+          for (j = 0; j < def.tela.length; j++) T.pon(masa(cam, O, e, s, f, def.tela[j].s, def.tela[j].t || 0, def.tela[j].b || 0), v, def.tela[j].r * esc, !!g.tela.l);
+          vuelca(g.tela, T);
+        }
+        return s;
+      };
+      var gm = P['muslo' + k], gq = P['pierna' + k], gb = P['brazo' + k], ga = P['ante' + k], s;
+      var zM = (cad[2] + rod[2]) / 2, zQ = (rod[2] + tob[2]) / 2 - 0.2, zB = (hom[2] + cod[2]) / 2 + 0.6, zA = (cod[2] + mun[2]) / 2 + 0.8, zMano = cam.p(L.agarre)[2] + 1.6;
+      /* el muslo: el dobladillo de la pernera y la raya dorada, por fuera */
+      s = pieza(gm, CUERPO.muslo, L.cad, L.qu, L.frenteMuslo, cad, rod, false, zM <= zQ);
+      var om = mas(L.cad, mas(por(L.qu, 20.5), por(L.frenteMuslo, 0.9)));
+      pon(gm.dob, 'd', aro(cam, om, por(s, 11.0), por(L.frenteMuslo, 11.5), 1.5)); pon(gm.dob, 'stroke-width', n2(1.5 * esc)); pon(gm.dob, 'opacity', '.55');
+      var vr = punto(s, cam.k);
+      if (vr > -0.3) {
+        pon(gm.raya, 'd', linea(cam, [mas(L.cad, mas(por(L.qu, -1.5), por(s, 9.9))), mas(L.cad, mas(por(L.qu, 6), mas(por(s, 10.9), por(L.frenteMuslo, 0.6)))), mas(L.cad, mas(por(L.qu, 13), mas(por(s, 11.0), por(L.frenteMuslo, 0.9)))), mas(L.cad, mas(por(L.qu, 19.6), mas(por(s, 11.0), por(L.frenteMuslo, 0.9))))]));
+        pon(gm.raya, 'stroke-width', n2(1.5 * esc)); pon(gm.raya, 'opacity', n2(entre((vr + 0.3) * 2.4, 0, 1)));
+      } else pon(gm.raya, 'opacity', '0');
+      /* la pierna: las dos rayas del calcetín */
+      s = pieza(gq, CUERPO.pierna, L.rod, L.ql, L.frentePierna, rod, tob, zQ < zM, false);
+      pon(gq.rayas, 'd', aro(cam, mas(L.rod, por(L.ql, 31.9)), por(s, 4.55), por(L.frentePierna, 4.75), 1.5) + aro(cam, mas(L.rod, por(L.ql, 33.7)), por(s, 4.45), por(L.frentePierna, 4.65), 1.5));
+      pon(gq.rayas, 'stroke-width', n2(0.95 * esc));
+      /* el brazo: el dobladillo de la manga */
+      s = pieza(gb, CUERPO.brazo, L.hom, L.uw, L.frenteBrazo, hom, cod, false, zB <= zA);
+      pon(gb.dob, 'd', aro(cam, mas(L.hom, mas(por(L.uw, 13.2), mas(por(s, 0.5), por(L.frenteBrazo, 0.5)))), por(s, 6.6), por(L.frenteBrazo, 7.0), 1.5)); pon(gb.dob, 'stroke-width', n2(1.2 * esc)); pon(gb.dob, 'opacity', '.8');
+      s = pieza(ga, CUERPO.ante, L.cod, L.lw, L.frenteBrazo, cod, mun, zA < zB, zA <= zMano);
+      if (ga.rayas) { pon(ga.rayas, 'd', aro(cam, mas(L.cod, por(L.lw, 20.6)), por(s, 4.1), por(L.frenteBrazo, 3.7), 1.5)); pon(ga.rayas, 'stroke-width', n2(0.9 * esc)); }
+      lista.push({ z: zM, el: gm, pts: [L.cad, L.rod] }, { z: zQ, el: gq, pts: [L.rod, L.tob] }, { z: zB, el: gb, pts: [L.hom, L.cod] }, { z: zA, el: ga, pts: [L.cod, L.mun] });
+      yo.mano(k, L, cam, lista, E.S.m[k], zMano < zA);
       yo.pie(k, L, cam, lista);
     });
   };
 
-  /* La mano: dos cápsulas (la palma con los dedos, y el pulgar). Cerrada es un puño; abierta, una
-     manopla que se ve ancha de cara y fina de canto. */
-  Figura.prototype.mano = function (k, L, cam, lista, tipo) {
-    var g = this.P['mano' + k], esc = cam.esc, m = L.mano, Q = g._q;
-    var cara = Math.abs(punto(m.palma, cam.k));
-    if (tipo === 'puno' || tipo === 'indice' || tipo === 'pulgar') {
-      var c3 = L.agarre, c = cam.p(c3), nud = cam.p(mas(c3, por(m.dir, 2.6)));
-      pon(Q['tge-m-palma'], 'd', capsula(cam.p(mas(L.mun, por(m.dir, 2.4))), 3.5 * esc, nud, 4.5 * esc));
-      /* el pulgar, cruzado por delante del puño, del lado del eje del agarre; o levantado */
-      var p1 = cam.p(mas(c3, mas(por(m.eje, 3.4), por(m.dir, -1.6)))), p2 = cam.p(mas(c3, mas(por(m.eje, 3.8), por(m.dir, 2.6))));
-      if (tipo === 'pulgar') { p1 = cam.p(mas(c3, por(m.eje, 2.6))); p2 = cam.p(mas(c3, mas(por(m.eje, 11.5), por(m.dir, -1)))); }
-      pon(Q['tge-m-pulgar'], 'd', capsula(p1, 2.1 * esc, p2, 1.8 * esc));
-      /* el índice, estirado (para un consejo) */
-      if (tipo === 'indice') pon(Q['tge-m-dedo'], 'd', capsula(cam.p(mas(c3, mas(por(m.dir, 2.5), por(m.eje, 2.2)))), 1.9 * esc, cam.p(mas(c3, mas(por(m.dir, 14), por(m.eje, 2.4)))), 1.6 * esc));
-      else pon(Q['tge-m-dedo'], 'd', '');
-      /* los nudillos */
-      var u = cam.d(m.dir), v = cam.d(m.eje), r = '';
-      for (var j = -1; j <= 1; j++) {
-        var b3 = mas(c3, mas(por(m.dir, 4.4), por(m.eje, j * 2.1))), b = cam.p(b3);
-        r += 'M' + n1(b[0] - u[0] * 1.2 * esc) + ',' + n1(b[1] - u[1] * 1.2 * esc) + ' l' + n1(-u[0] * 1.6 * esc) + ',' + n1(-u[1] * 1.6 * esc);
+  /* ── la mano ──
+     La palma es una masa; cada dedo, tres falanges que se doblan hacia la palma; el pulgar, dos.
+     Según el gesto: abierta, suelta, puño (también agarrando), índice (los demás, cerrados) y pulgar. */
+  var DEDOS = [[3.15, 6.7, 1.14, 7], [1.05, 7.6, 1.17, 1.5], [-1.05, 7.1, 1.1, -4], [-3.0, 5.6, 0.97, -10]];     /* a un lado, largo, grosor, abanico */
+  var ABRE = [4, 4, 2], CIERRA = [80, 96, 60];
+  Figura.prototype.mano = function (k, L, cam0, lista, M, bola) {
+    var g = this.P['mano' + k], KM = 1.12, m = L.mano, W = L.mun, dir = m.dir, eje = m.eje, pal = m.palma;
+    /* la mano, un punto más grande que la del esqueleto (es un dibujo): todo crece desde la muñeca */
+    var cam = { p: function (q) { return cam0.p(mas(W, por(menos(q, W), KM))); }, d: function (v) { return cam0.d(v); }, k: cam0.k, esc: cam0.esc * KM }, esc = cam.esc;
+    var c = M.c == null ? 0.3 : M.c, ci = M.ci == null ? c : M.ci, abn = M.ab == null ? 0.3 : M.ab, pu = M.pu || 0;
+    var deCara = punto(pal, cam.k) >= 0;
+    /* la palma mira a la cámara: los dedos y el pulgar, por encima; si no, por debajo */
+    if (g._cara !== deCara) { g._cara = deCara; if (deCara) { g.appendChild(g.gd); g.appendChild(g.gu); } else { g.insertBefore(g.gd, g.gp); g.insertBefore(g.gu, g.gp); } }
+    var a2 = cam.p(W), b2 = cam.p(L.dedos), v = haciaLuz(a2, b2);
+    var Hp = masa(cam, W, dir, eje, pal, [[0, 3.2, 2.4], [3, 4.1, 2.1, 0.1, 0], [6.6, 4.55, 1.85], [9.1, 4.3, 1.5]], bola ? 3 : 2, bola ? 0 : 1);
+    var T = new Tintas(); T.pon(Hp, v, 3.6 * esc, false); vuelca(g.palma, T);
+    for (var f = 0; f < 4; f++) {
+      var q = DEDOS[f], cf = f === 0 ? ci : c;
+      var ab = q[3] * abn * RAD, base = mas(W, mas(por(dir, 9.0 - Math.abs(f - 1.3) * 0.45), por(eje, q[0])));
+      var d0 = mas(por(dir, Math.cos(ab)), por(eje, Math.sin(ab))), acum = 0, p = base, s = '', lf = [0.44, 0.31, 0.25];
+      for (var j = 0; j < 3; j++) {
+        acum += (ABRE[j] + (CIERRA[j] - ABRE[j]) * cf) * RAD;
+        var dd = mas(por(d0, Math.cos(acum)), por(pal, Math.sin(acum))), p2 = mas(p, por(dd, q[1] * lf[j]));
+        s += capsula(cam.p(p), q[2] * (1 - j * 0.07) * esc, cam.p(p2), q[2] * (0.93 - j * 0.07) * esc);
+        p = p2;
       }
-      pon(Q['tge-m-rayas'], 'd', r);
-      lista.push({ z: c[2] + 1.6, el: g, pts: [L.mun, L.dedos] });
-    } else {
-      /* abierta: la palma, cuatro dedos y el pulgar. Suelta, los dedos se curvan hacia la palma. De canto se ve fina. */
-      var su = tipo === 'suelta', gr = 1.5 + 2.7 * cara;
-      var a = cam.p(mas(L.mun, por(m.dir, 2.6))), b2 = cam.p(mas(L.mun, por(m.dir, 7.6)));
-      pon(Q['tge-m-palma'], 'd', capsula(a, Math.max(gr * 0.86, 2.3) * esc, b2, Math.max(gr, 2.5) * esc));
-      var dd = '', LARGOS = [6.4, 7.5, 7.1, 5.6], rr = '';
-      for (var f = 0; f < 4; f++) {
-        var lat = (f - 1.5) * 2.05, nud = mas(L.mun, mas(por(m.dir, 8.3 - Math.abs(f - 1.4) * 0.5), por(m.eje, -lat)));
-        var lf = LARGOS[f], pta = su ? mas(nud, mas(por(m.dir, lf * 0.62), por(m.palma, lf * 0.5))) : mas(nud, mas(por(m.dir, lf), por(m.eje, -lat * 0.12)));
-        dd += capsula(cam.p(nud), 1.08 * esc, cam.p(pta), 0.95 * esc);
-      }
-      pon(Q['tge-m-dedo'], 'd', dd);
-      var q1 = cam.p(mas(L.mun, mas(por(m.dir, 3.2), por(m.eje, 2.4)))), q2 = cam.p(mas(L.mun, mas(por(m.dir, su ? 7.4 : 7.0), por(m.eje, su ? 4.4 : 6.6))));
-      pon(Q['tge-m-pulgar'], 'd', capsula(q1, 1.9 * esc, q2, 1.3 * esc));
-      pon(Q['tge-m-rayas'], 'd', '');
-      lista.push({ z: (a[2] + b2[2]) / 2 + 1.2, el: g, pts: [L.mun, L.dedos] });
+      pon(g.dedos[f], 'd', s);
     }
+    /* el pulgar: abierto hacia su lado, cruzado por delante del puño o levantado; entre uno y otro, lo que toque */
+    var u0 = mas(W, mas(por(dir, 2.7), mas(por(eje, 3.3), por(pal, 0.7))));
+    var wU = pu, wF = c * (1 - pu), wA = (1 - c) * (1 - pu);
+    var pto = function (aD, aE, aP, fD, fE, fP, uD, uE, uP) { return mas(W, mas(por(dir, aD * wA + fD * wF + uD * wU), mas(por(eje, aE * wA + fE * wF + uE * wU), por(pal, aP * wA + fP * wF + uP * wU)))); };
+    var u1 = pto(5.1, 6.3, 0.7, 5.6, 4.0, 2.4, 3.2, 7.3, 0.7), u2 = pto(7.4, 8.7, 0.7, 8.2, 0.9, 3.7, 3.0, 11.0, 0.7);
+    pon(g.pulgar, 'd', capsula(cam.p(u0), 1.75 * esc, cam.p(u1), 1.4 * esc) + capsula(cam.p(u1), 1.4 * esc, cam.p(u2), 1.18 * esc));
+    /* los nudillos, si se ve el dorso */
+    var nd = '';
+    if (!deCara) for (f = 0; f < 4; f++) { var nb = mas(W, mas(por(dir, 8.9 - Math.abs(f - 1.3) * 0.45), mas(por(eje, DEDOS[f][0]), por(pal, -1.3)))); nd += linea(cam, [mas(nb, por(eje, -0.6)), mas(nb, por(dir, 0.5)), mas(nb, por(eje, 0.6))]); }
+    pon(g.nud, 'd', nd); pon(g.nud, 'stroke-width', n2(0.42 * esc)); pon(g.nud, 'opacity', '.6');
+    lista.push({ z: cam0.p(L.agarre)[2] + 1.6, el: g, pts: [L.mun, L.dedos] });
   };
-  /* La zapatilla: dos bolas (el talón y la punta) y lo que las une; la suela es la misma forma, oscura
-     y un poco más abajo, así que asoma por debajo desde cualquier lado. */
+
+  /* ── la zapatilla ──
+     Tres masas (el piso, la media suela y la pala) en el marco del pie. Se dobla por la bola: de
+     puntillas, el antepié sigue plano en el suelo. Y sus detalles: la puntera, la talonera, la
+     franja y los cordones. */
+  var ZAPA = {
+    piso: [[-6.5, 3.3, 0.75, 0.75], [-3, 4.0, 0.75, 0.75], [4, 4.3, 0.75, 0.75], [12, 5.0, 0.75, 0.75], [16.6, 4.4, 0.7, 0.85], [19.3, 2.6, 0.6, 1.3]],
+    media: [[-6.8, 3.5, 1.5, 2.6], [-3, 4.2, 1.6, 2.7], [4, 4.4, 1.35, 2.45], [12, 5.1, 1.05, 2.05], [16.6, 4.5, 0.95, 2.1], [19.5, 2.7, 0.8, 2.4]],
+    pala: [[-6.1, 3.1, 3.0, 6.3], [-3.6, 3.8, 4.0, 7.0], [1.5, 4.0, 3.7, 6.7], [6.5, 4.3, 3.0, 5.7], [11.5, 4.7, 2.45, 4.8], [15.6, 4.4, 2.0, 4.15], [18.8, 2.9, 1.5, 3.45]]
+  };
+  /* lo más bajo de la zapatilla tal como se dibuja (la altura, en el mundo, del punto más bajo de su piso): lo usa
+     tools/auditar_entrenador.js para comprobar que pisa y no se hunde. Plana en el suelo, da 0. */
+  function bajoZapa(L, k) {
+    var sg = k === 'i' ? 1 : -1, fl = (L.flex || 0) * RAD, cf = Math.cos(fl), sf = Math.sin(fl);
+    var lado = por(unidad(cruz(L.arriba, L.punta), [1, 0, 0]), sg), bola = mas(L.suela, por(L.punta, D.bola));
+    var pf = mas(por(L.punta, cf), por(L.arriba, sf)), af = mas(por(L.arriba, cf), por(L.punta, -sf)), min = 1e9;
+    ZAPA.piso.forEach(function (q) {
+      var atras = q[0] <= D.bola, U = atras ? L.arriba : af;
+      var c = atras ? mas(L.suela, mas(por(L.punta, q[0]), por(L.arriba, q[3]))) : mas(bola, mas(por(pf, q[0] - D.bola), por(af, q[3])));
+      min = Math.min(min, c[1] - Math.sqrt(lado[1] * lado[1] * q[1] * q[1] + U[1] * U[1] * q[2] * q[2]));
+    });
+    return min;
+  }
   Figura.prototype.pie = function (k, L, cam, lista) {
-    var g = this.P['pie' + k], esc = cam.esc, Q = g._q;
-    var t3 = mas(L.suela, mas(por(L.punta, -2.2), por(L.arriba, 5.0))), p3 = mas(L.suela, mas(por(L.punta, D.punta - 4.2), por(L.arriba, 3.8)));
-    var t = cam.p(t3), p = cam.p(p3), rt = 5.3 * esc, rp = 3.9 * esc;
-    var ab = cam.d(L.arriba), bx = -ab[0] * 1.7 * esc, by = -ab[1] * 1.7 * esc;
-    pon(Q['tge-zapa'], 'd', capsula(t, rt, p, rp));
-    pon(Q['tge-suela'], 'd', capsula([t[0] + bx, t[1] + by], rt, [p[0] + bx, p[1] + by], rp));
-    var dx = p[0] - t[0], dy = p[1] - t[1], l = Math.sqrt(dx * dx + dy * dy);
-    if (l > rt * 1.2) {
-      pon(Q['tge-franja'], 'd', 'M' + n1(t[0] + dx * 0.3 + bx * 0.2) + ',' + n1(t[1] + dy * 0.3 + by * 0.2) + ' L' + n1(t[0] + dx * 0.66 + bx * 0.2) + ',' + n1(t[1] + dy * 0.66 + by * 0.2));
-      pon(Q['tge-franja'], 'stroke-width', n1(1.5 * esc)); pon(Q['tge-franja'], 'opacity', '1');
-    } else pon(Q['tge-franja'], 'opacity', '0');
-    /* el borde del tobillo */
-    var c1 = cam.p(mas(L.tob, por(L.arriba, -1.2)));
-    pon(Q['tge-cordon'], 'd', 'M' + n1(c1[0] - 3.2 * esc) + ',' + n1(c1[1]) + ' h' + n1(6.4 * esc)); pon(Q['tge-cordon'], 'stroke-width', n1(1.3 * esc));
-    lista.push({ z: (t[2] + p[2]) / 2 + 0.5, el: g, pts: [L.talon, L.dedosPie, mas(L.suela, por(L.arriba, 1.5))] });
+    var g = this.P['pie' + k], esc = cam.esc, sg = k === 'i' ? 1 : -1;
+    var fl = (L.flex || 0) * RAD, cf = Math.cos(fl), sf = Math.sin(fl);
+    var lado = por(unidad(cruz(L.arriba, L.punta), [1, 0, 0]), sg), bola = mas(L.suela, por(L.punta, D.bola));
+    var pf = mas(por(L.punta, cf), por(L.arriba, sf)), af = mas(por(L.arriba, cf), por(L.punta, -sf));       /* el antepié, doblado */
+    var L2 = cam.d(lado), A2 = cam.d(L.arriba), F2 = cam.d(af);
+    /* un punto de la zapatilla: t a lo largo, h de alto, w a un lado */
+    var pt = function (t, h, w) {
+      return t <= D.bola ? mas(L.suela, mas(por(L.punta, t), mas(por(L.arriba, h), por(lado, w || 0)))) : mas(bola, mas(por(pf, t - D.bola), mas(por(af, h), por(lado, w || 0))));
+    };
+    var nube = function (secc) {
+      var P = [];
+      for (var i = 0; i < secc.length; i++) {
+        var q = secc[i], c = cam.p(pt(q[0], q[3])), U2 = q[0] <= D.bola ? A2 : F2;
+        anillo(P, c, L2[0] * q[1] * esc, L2[1] * q[1] * esc, U2[0] * q[2] * esc, U2[1] * q[2] * esc);
+      }
+      return envolvente(P);
+    };
+    var t2 = cam.p(pt(-6, 3)), p2 = cam.p(pt(19, 3)), v = haciaLuz(t2, p2), T;
+    pon(g.piso, 'd', poli(nube(ZAPA.piso)));
+    T = new Tintas(); T.pon(nube(ZAPA.media), v, 2.2 * esc, false); vuelca(g.media, T);
+    T = new Tintas(); T.pon(nube(ZAPA.pala), v, 4.2 * esc, true); vuelca(g.pala, T);
+    /* la talonera */
+    var Pt = []; anillo(Pt, cam.p(pt(-6.2, 7.2)), L2[0] * 2.3 * esc, L2[1] * 2.3 * esc, A2[0] * 2.5 * esc, A2[1] * 2.5 * esc); anillo(Pt, cam.p(pt(-4.6, 7.4)), L2[0] * 2.9 * esc, L2[1] * 2.9 * esc, A2[0] * 2.7 * esc, A2[1] * 2.7 * esc);
+    pon(g.talonera, 'd', punto(L.punta, cam.k) < 0.35 ? poli(envolvente(Pt)) : '');
+    /* la puntera: una costura que cruza por delante */
+    pon(g.punt, 'd', aro(cam, pt(14.6, 4.2), por(lado, 4.5), por(fl ? af : L.arriba, 2.1), 1.5)); pon(g.punt, 'stroke-width', n2(0.6 * esc));
+    /* la franja, por el lado que se ve */
+    var vl = punto(lado, cam.k), ws = vl >= 0 ? 1 : -1;
+    if (Math.abs(vl) > 0.2) {
+      pon(g.franja, 'd', linea(cam, [pt(-1.5, 4.3, ws * 4.15), pt(3.5, 4.5, ws * 4.3), pt(8.6, 5.6, ws * 4.2)]));
+      pon(g.franja, 'stroke-width', n2(1.25 * esc)); pon(g.franja, 'opacity', n2(entre((Math.abs(vl) - 0.2) * 3, 0, 1)));
+    } else pon(g.franja, 'opacity', '0');
+    /* los cordones, por arriba */
+    var va = punto(L.arriba, cam.k), dc = '';
+    if (va > -0.25) { for (var j = 0; j < 3; j++) { var tt = 3.6 + j * 2.5, hh = 10.3 - j * 1.35; dc += linea(cam, [pt(tt, hh - 0.9, -1.9), pt(tt + 0.5, hh, 0), pt(tt, hh - 0.9, 1.9)]); } }
+    pon(g.cordon, 'd', dc); pon(g.cordon, 'stroke-width', n2(0.75 * esc)); pon(g.cordon, 'opacity', n2(entre((va + 0.25) * 2, 0, 1)));
+    lista.push({ z: (t2[2] + p2[2]) / 2 + 0.5, el: g, pts: [L.talon, L.dedosPie, mas(L.suela, por(L.arriba, 1.5))] });
   };
 
   /* ───────────────────────── la cabeza de Jérôme ─────────────────────────
@@ -996,7 +1159,7 @@
     var q = function (s) { return g.querySelector(s); };
     this.R = {
       frente: q('.tgh-frente'), perfil: q('.tgh-perfil'), espalda: q('.tgh-espalda'),
-      rasgos: q('.tgh-frente .tgh-rasgos'), tupe: q('.tgh-frente .tgh-tupe'), orejaI: q('.tgh-oreja-i'), orejaD: q('.tgh-oreja-d'), mejillas: q('.tgh-mejillas'),
+      rasgos: q('.tgh-frente .tgh-rasgos'), tupe: q('.tgh-frente .tgh-tupe'), tupeP: q('.tgh-perfil .tgh-tupe'), tupeE: q('.tgh-espalda .tgh-tupe'), orejaI: q('.tgh-oreja-i'), orejaD: q('.tgh-oreja-d'), mejillas: q('.tgh-mejillas'),
       cejaI: q('.tgh-ceja-i'), cejaD: q('.tgh-ceja-d'), cejaP: q('.tgh-ceja-p'),
       iris: Array.prototype.slice.call(g.querySelectorAll('.tgh-iris')), rubor: Array.prototype.slice.call(g.querySelectorAll('.tgh-rubor')),
       bocaF: q('.tgh-boca-fondo'), bocaD: q('.tgh-dientes'), bocaL: q('.tgh-boca-linea'), bocaR: q('.tgh-boca-rayas'), lengua: q('.tgh-lengua'),
@@ -1015,6 +1178,8 @@
     this.m = { aI: 1, aD: 1, bb: 0.25, cIy: 0, cIr: 0, cDy: 0, cDr: 0, mx: 0, my: 0, rubor: 0.24, sudor: 0 };
     this.boca = 'sonrisa'; this.bocaBase = 'sonrisa'; this.parp = 0; this.parpT = -1; this.prox = 1.4; this.t = 0; this.habla = 0; this.bocaT = 0;
     this.vista = ''; this.escala = 0.195;
+    /* el tupé va un instante detrás de la cabeza: dos muelles (se ladea, se estira) y de dónde venía */
+    this.peloA = new Muelle(17, 0.25); this.peloY = new Muelle(20, 0.3); this.cAnt = null; this.vF = [0, 0, 0]; this.vS = [0, 0, 0]; this.dt = 0; this.corte = true;
   }
   /* la cabeza de perfil: el cráneo, la frente, la nariz, los labios, el mentón y la mandíbula */
   var PERFIL = 'M150,50 C176,48 200,62 208,86 C211,96 212,104 211,110 C209,114 207,117 208,121 C210,128 216,138 224,147 C229,152 231,155 228,158 C225,160 218,160 214,160 C212,163 213,166 216,169 C218,171 219,173 217,175 C216,176 216,178 217,180 C218,183 216,186 213,187 C210,188 209,190 210,193 C213,199 213,205 207,209 C200,213 188,212 176,208 C162,204 150,198 142,190 C134,182 130,170 128,158 C120,156 106,150 98,140 C88,126 86,104 94,84 C104,62 126,50 150,50z';
@@ -1037,11 +1202,14 @@
   Cabeza.prototype.sudar = function (cuanto) { this.m.sudor = cuanto ? 1 : 0; };
   Cabeza.prototype.hablar = function (seg) { this.habla = seg ? this.t + seg : 0; if (!seg) this.boca = this.bocaBase; };
   Cabeza.prototype.letra = function (ch) { var v = visema(ch); this.boca = v || this.bocaBase; };
+  Cabeza.prototype.parpadea = function () { if (this.parpT < 0) this.parpT = 0; };
   /* un paso de tiempo: el parpadeo, la boca que habla y lo que va hacia su meta */
-  Cabeza.prototype.paso = function (dt) {
-    var v = this.v, m = this.m, k = 1 - Math.exp(-dt * 14), n;
-    this.t += dt;
-    for (n in m) v[n] += (m[n] - v[n]) * (n === 'sudor' ? 1 - Math.exp(-dt * 3) : k);
+  Cabeza.prototype.paso = function (dt, parado) {
+    var v = this.v, m = this.m, k = parado ? 1 : 1 - Math.exp(-dt * 14), n;
+    if (parado) dt = 0;
+    this.t += dt; this.dt = dt;
+    /* los ojos van de un punto a otro de un salto corto, no deslizándose */
+    for (n in m) v[n] += (m[n] - v[n]) * (n === 'sudor' ? 1 - Math.exp(-dt * 3) : (n === 'mx' || n === 'my') ? (parado ? 1 : 1 - Math.exp(-dt * 26)) : k);
     if (this.parpT < 0 && this.t > this.prox) this.parpT = 0;
     if (this.parpT >= 0) {
       this.parpT += dt; var f = this.parpT / 0.15;
@@ -1068,12 +1236,29 @@
       R.frente.style.display = vista === 'frente' ? '' : 'none'; R.perfil.style.display = vista === 'perfil' ? '' : 'none'; R.espalda.style.display = vista === 'espalda' ? '' : 'none';
     }
     var parp = this.parp, e = this.e, ojos = e.ojos || [1, 1];
+    /* el tupé: lo que cambia la velocidad de la cabeza (el tirón), visto en la pantalla y en unidades del dibujo */
+    var tir = [0, 0], dtp = this.dt;
+    if (this.corte || !this.cAnt || quieto()) { this.vF = [0, 0, 0]; this.vS = [0, 0, 0]; this.peloA.x = this.peloA.v = this.peloY.x = this.peloY.v = 0; this.corte = false; }
+    else if (dtp > 0) {
+      var mov = menos(E.cab, this.cAnt);
+      if (largo(mov) > 22) { this.vF = [0, 0, 0]; this.vS = [0, 0, 0]; }
+      else { var vel = por(mov, 1 / dtp); this.vF = mezcla(this.vF, vel, 1 - Math.exp(-dtp / 0.04)); this.vS = mezcla(this.vS, vel, 1 - Math.exp(-dtp / 0.18)); }
+      var tw = cam.d(menos(this.vF, this.vS)); tir = [tw[0] / this.escala, tw[1] / this.escala];
+    }
+    this.cAnt = E.cab;
+    var pelo = function (g, giro, vol, cx, cy, extra) {
+      /* al dibujo: se deshace su giro (y su volteo, de perfil) */
+      var cg = Math.cos(giro * RAD), sg = Math.sin(giro * RAD), lx = tir[0] * cg + tir[1] * sg, ly = (-tir[0] * sg + tir[1] * cg) * vol;
+      var a = yo0.peloA.paso(entre(-0.024 * lx, -6, 6), dtp), sy = 1 + yo0.peloY.paso(entre(0.0003 * ly, -0.035, 0.045), dtp);
+      pon(g, 'transform', (extra || '') + 'rotate(' + n1(a) + ' ' + cx + ' ' + cy + ') translate(0,' + n1(cy * (1 - sy)) + ') scale(1,' + n2(sy) + ')');
+    }, yo0 = this;
     if (vista === 'perfil') {
       var fl = Math.sqrt(f[0] * f[0] + f[1] * f[1]) || 1, ang = Math.atan2(f[1], f[0]) / RAD;
       var a = ang * RAD, sx = Math.sin(a), cx = Math.cos(a);
       /* tras girar, el «arriba» del dibujo es (sen, −cos); si no coincide con el de la cabeza, se voltea */
       var vol = (sx * up[0] - cx * up[1]) < 0 ? -1 : 1;
       pon(this.g, 'transform', 'translate(' + n1(pos[0]) + ',' + n1(pos[1]) + ') rotate(' + n1(ang) + ') scale(' + n2(k) + ',' + n2(k * vol) + ') translate(-150,-206)');
+      pelo(R.tupeP, ang, vol, 146, 84);
       /* el ojo que se ve: el del lado de la cámara */
       var ab = (kx > 0 ? v.aI : v.aD) * (1 - parp), aa = entre(ab, 0, 1.3);
       var clave = aa.toFixed(2);
@@ -1095,7 +1280,7 @@
         var s = kz < 0 ? -1 : 1, dx = -kx * 40 * s, dy = ky * 30 * s, ap = 1 - 0.22 * Math.abs(kx);
         pon(R.rasgos, 'transform', 'translate(' + n1(160 + dx) + ',' + n1(dy) + ') scale(' + n2(ap) + ',1) translate(-160,0)');
         pon(R.mejillas, 'transform', 'translate(' + n1(dx * 0.7) + ',' + n1(dy * 0.6) + ')');
-        pon(R.tupe, 'transform', 'translate(' + n1(dx * 0.3) + ',' + n1(dy * 0.2) + ')');
+        pelo(R.tupe, roll, 1, 160, 98, 'translate(' + n1(dx * 0.3) + ',' + n1(dy * 0.2) + ') ');
         pon(R.orejaI, 'transform', 'translate(' + n1(-dx * 0.42) + ',' + n1(-dy * 0.3) + ')'); pon(R.orejaD, 'transform', 'translate(' + n1(-dx * 0.42) + ',' + n1(-dy * 0.3) + ')');
         pon(R.orejaI, 'opacity', dx > 14 ? '0' : '1'); pon(R.orejaD, 'opacity', dx < -14 ? '0' : '1');
         pon(R.cejaI, 'transform', 'translate(0,' + n2(-v.cIy) + ') rotate(' + n2(v.cIr) + ' 130 104)'); pon(R.cejaD, 'transform', 'translate(0,' + n2(-v.cDy) + ') rotate(' + n2(v.cDr) + ' 190 104)');
@@ -1114,7 +1299,7 @@
           R.bocaF.setAttribute('d', b2.f); R.bocaClip.setAttribute('d', b2.f); R.bocaD.setAttribute('d', b2.d); R.bocaL.setAttribute('d', b2.l); R.bocaR.setAttribute('d', b2.r || '');
           R.lengua.style.display = b2.f && !b2.r ? '' : 'none';
         }
-      }
+      } else pelo(R.tupeE, roll, 1, 160, 98);
     }
     var ru = n2(v.rubor);
     if (R._ru !== ru) { R._ru = ru; R.rubor.forEach(function (gg) { gg.setAttribute('opacity', ru); }); }
@@ -1146,8 +1331,11 @@
     this.cab = new Cabeza(this.defs, this.fig.u);
     this.material = [];        /* las piezas de material en escena */
     this.orden = '';
-    this.sombra = crear('ellipse', { fill: '#1a1408', opacity: 0.24 }, this.sombras);
-    this.sombra2 = crear('ellipse', { fill: '#1a1408', opacity: 0.18 }, this.sombras);
+    /* las sombras: una mancha suave bajo el cuerpo y otra, más prieta, bajo cada pie que pisa */
+    var gs = crear('radialGradient', { id: this.fig.u + '-somb', cx: 0.5, cy: 0.5, r: 0.5 }, this.defs);
+    this.sombTintas = [[0, 0.46], [0.5, 0.26], [1, 0]].map(function (q) { return crear('stop', { offset: q[0], 'stop-color': '#1a1408', 'stop-opacity': q[1] }, gs); });
+    this.sombra = crear('ellipse', { fill: 'url(#' + this.fig.u + '-somb)' }, this.sombras);
+    this.pisada = { i: crear('ellipse', { fill: 'url(#' + this.fig.u + '-somb)' }, this.sombras), d: crear('ellipse', { fill: 'url(#' + this.fig.u + '-somb)' }, this.sombras) };
     this.tarima = crear('ellipse', { fill: 'rgba(255,255,255,.16)', stroke: 'rgba(255,255,255,.35)', 'stroke-width': 1 }, this.suelo);
     this.nombreAmb = ''; this.tema = 'dia';
   }
@@ -1187,8 +1375,14 @@
     var dx = cabS[0] - pieS[0], dy = cabS[1] - pieS[1], l2 = Math.sqrt(dx * dx + dy * dy);
     var k = 1 / (1 + alto / 70), rx = Math.max(19 * cam.esc, l2 * 0.56) * k, ry = Math.max(22 * cam.esc * Math.sin(cam.picado * RAD), 4) * k;
     var cx = n1((cabS[0] + pieS[0]) / 2), cy = n1((cabS[1] + pieS[1]) / 2);
-    pon(this.sombra, 'cx', cx); pon(this.sombra, 'cy', cy); pon(this.sombra, 'rx', n1(rx)); pon(this.sombra, 'ry', n1(ry)); pon(this.sombra, 'opacity', n2(0.24 * k));
-    pon(this.sombra2, 'cx', cx); pon(this.sombra2, 'cy', cy); pon(this.sombra2, 'rx', n1(rx * 0.6)); pon(this.sombra2, 'ry', n1(ry * 0.6)); pon(this.sombra2, 'opacity', n2(0.2 * k));
+    pon(this.sombra, 'cx', cx); pon(this.sombra, 'cy', cy); pon(this.sombra, 'rx', n1(rx * 1.3)); pon(this.sombra, 'ry', n1(ry * 1.45)); pon(this.sombra, 'opacity', n2(0.74 * k));
+    for (var kk = 0; kk < 2; kk++) {
+      var Lq = E[LADOS[kk]], ps = this.pisada[LADOS[kk]], hq = Math.min(Lq.suela[1], Lq.suela[1] + Lq.punta[1] * 12) - sy;
+      if (hq > 7 || hq < -4) { pon(ps, 'opacity', '0'); continue; }
+      var cq = cam.p([Lq.suela[0] + Lq.punta[0] * 6.5, sy, Lq.suela[2] + Lq.punta[2] * 6.5]), d2 = cam.d([Lq.punta[0], 0, Lq.punta[2]]), lq = Math.sqrt(d2[0] * d2[0] + d2[1] * d2[1]);
+      pon(ps, 'cx', n1(cq[0])); pon(ps, 'cy', n1(cq[1] + 1)); pon(ps, 'rx', n1((7 + 9 * lq) * cam.esc)); pon(ps, 'ry', n1(Math.max(2.4, (3.5 + 7 * Math.sin(cam.picado * RAD)) * cam.esc * 0.62)));
+      pon(ps, 'opacity', n2(0.95 * entre(1 - hq / 7, 0, 1)));
+    }
     /* la tarima y el horizonte del ambiente siguen a la cámara */
     var o = cam.p([cam.mira[0], 0, cam.mira[2]]), R = 118 * cam.esc;
     pon(this.tarima, 'cx', n1(o[0])); pon(this.tarima, 'cy', n1(o[1])); pon(this.tarima, 'rx', n1(R)); pon(this.tarima, 'ry', n1(Math.max(6, R * Math.sin(cam.picado * RAD))));
@@ -1317,7 +1511,7 @@
     this.fondo.innerHTML = '<g class="tge-a-cielo">' + A.cielo + '</g><g class="tge-a-lejos">' + A.lejos + '</g><g class="tge-a-suelo">' + A.suelo + '</g>';
     this.tarima.setAttribute('fill', nombre === 'gimnasio' ? 'rgba(255,255,255,.07)' : tema === 'noche' ? 'rgba(255,255,255,.06)' : 'rgba(255,255,255,.2)');
     this.tarima.setAttribute('stroke', nombre === 'gimnasio' || tema === 'noche' ? 'rgba(255,255,255,.16)' : 'rgba(255,255,255,.5)');
-    this.sombra.setAttribute('fill', tema === 'noche' || nombre === 'gimnasio' ? '#000' : '#4A2C12'); this.sombra2.setAttribute('fill', tema === 'noche' || nombre === 'gimnasio' ? '#000' : '#4A2C12');
+    this.sombTintas.forEach(function (q) { q.setAttribute('stop-color', tema === 'noche' || nombre === 'gimnasio' ? '#000' : '#4A2C12'); });
     this.ajustarAmbiente();
   };
   Escenario.prototype.ajustarAmbiente = function () {
@@ -1718,6 +1912,125 @@
     this.e.pon(cam, c, this.o.radio || 11, lista, 1.2);
   };
 
+  /* ───────────────────────── la vida ─────────────────────────
+     Lo que separa a un muñeco que pasa de una postura a otra de alguien que está ahí:
+       · respira, y más hondo cuando viene de trabajar;
+       · el cuerpo no llega todo a la vez: el tronco va un instante detrás de la cadera, y la
+         cabeza, detrás del tronco (la demora);
+       · al frenar, la cabeza cabecea y los brazos sueltos se balancean (los muelles);
+       · de pie y quieto, reparte el peso de un pie a otro;
+       · cuando habla de cerca, acompaña con la mano y con la cabeza.
+     Nada de esto es técnica del ejercicio y nada mueve lo clavado: se aplica ANTES de clavar los
+     pies y las manos, así que el pie sigue en su sitio y la mano en la barra. La respiración va a
+     su ritmo, sin acompasarse con la repetición: no le dice a nadie cuándo coger aire. Con
+     «reducir movimiento» del sistema, no hace nada. */
+  function Muelle(w, z) { this.x = 0; this.v = 0; this.w = w; this.z = z; }
+  /* hacia la meta, con un punto de rebote; en pasos de 1/120 s, para que no se dispare si el móvil va justo */
+  Muelle.prototype.paso = function (meta, dt) {
+    var n = Math.max(1, Math.ceil(dt * 120)), h = dt / n, i;
+    for (i = 0; i < n; i++) { this.v += (-this.w * this.w * (this.x - meta) - 2 * this.z * this.w * this.v) * h; this.x += this.v * h; }
+    if (!isFinite(this.x) || !isFinite(this.v)) { this.x = 0; this.v = 0; }
+    return this.x;
+  };
+  var DEMORA = { tronco: 0.04, columna: 0.08, cabeza: 0.13 };
+  function Vida() { this.t = 0; this.fase = 0.3; this.fatiga = 0; this.aire = 0; this.quietoK = 0; this.hablaK = 0; this.corte(); }
+  /* un corte de plano o un salto de postura: se olvida de dónde venía (sin esto, daría un latigazo) */
+  Vida.prototype.corte = function () {
+    this.cabP = new Muelle(12, 0.4); this.cabR = new Muelle(12, 0.4);
+    this.bz = { i: [new Muelle(7.4, 0.2), new Muelle(7.4, 0.2)], d: [new Muelle(7.4, 0.2), new Muelle(7.4, 0.2)] };
+    this.linea = []; this.reloj = 0; this.antes = null; this.vF = [0, 0, 0]; this.vS = [0, 0, 0]; this.tiron = [0, 0, 0];
+  };
+  /* cómo iba hace «seg» segundos: entre las dos anotaciones que lo rodean */
+  Vida.prototype.hace = function (seg) {
+    var L = this.linea, t = this.reloj - seg, i;
+    if (L.length < 2 || t >= L[L.length - 1].t) return L[L.length - 1];
+    if (t <= L[0].t) return L[0];
+    for (i = L.length - 1; i > 0; i--) if (L[i - 1].t <= t) break;
+    var a = L[i - 1], b = L[i], u = b.t > a.t ? entre((t - a.t) / (b.t - a.t), 0, 1) : 1;
+    return { B: mezclaBase(a.B, b.B, u), col: mezcla(a.col, b.col, u), cab: mezcla(a.cab, b.cab, u) };
+  };
+  /* E: el esqueleto de este instante, aún sin clavar. o: { busto, esf, rep, dePie, habla, libres: { i, d } } */
+  Vida.prototype.paso = function (E, dt, o) {
+    if (quieto()) return E;
+    var S = E.S, yo = this, k;
+    this.t += dt;
+    /* ── la demora: la cadera manda; el tronco, la columna y la cabeza le siguen ── */
+    if (dt > 0) {
+      this.reloj += dt;
+      this.linea.push({ t: this.reloj, B: S.B, col: S.col, cab: S.cab });
+      while (this.linea.length > 2 && this.linea[1].t < this.reloj - 0.3) this.linea.shift();
+    }
+    var B = S.B, col = S.col.slice(), cab = S.cab.slice();
+    if (this.linea.length > 1) {
+      B = this.hace(DEMORA.tronco).B; col = this.hace(DEMORA.columna).col.slice(); cab = this.hace(DEMORA.cabeza).cab.slice();
+    }
+    /* ── respira ── */
+    this.fatiga += ((o.rep || o.esf > 0.3 ? 1 : 0) - this.fatiga) * (1 - Math.exp(-dt / (o.rep ? 12 : 7)));
+    this.fase += dt * (0.23 + 0.2 * this.fatiga);
+    var f = this.fase % 1;
+    /* coge aire más deprisa de lo que lo suelta */
+    var aire = f < 0.42 ? -Math.cos(f / 0.42 * Math.PI) : Math.cos((f - 0.42) / 0.58 * Math.PI);
+    var hondo = 0.55 + 0.45 * this.fatiga;
+    this.aire = aire * hondo;
+    var sube = this.aire * (0.34 + 0.3 * this.fatiga);
+    col[0] -= this.aire * 0.55; cab[0] += this.aire * 0.5;
+    var hom = { i: [S.hom.i[0] + sube, S.hom.i[1]], d: [S.hom.d[0] + sube, S.hom.d[1]] };
+    /* ── reparte el peso: solo de pie y quieto ── */
+    var p = S.p;
+    this.quietoK += ((o.dePie && largo(this.vS) < 3 ? 1 : 0) - this.quietoK) * (1 - Math.exp(-dt * (o.dePie ? 1.1 : 6)));
+    if (this.quietoK > 0.01) {
+      var vaiven = (0.62 * Math.sin(this.t * 0.83) + 0.38 * Math.sin(this.t * 1.37 + 1.3)) * this.quietoK, cerca = o.busto ? 1.5 : 1;
+      p = mas(p, por(B[0], 0.85 * cerca * vaiven));
+      col[1] -= 1.1 * cerca * vaiven; cab[2] += 0.9 * cerca * vaiven; cab[1] += 0.8 * cerca * Math.sin(this.t * 0.47 + 0.6) * this.quietoK;
+      hom.i[0] += 0.3 * vaiven; hom.d[0] -= 0.3 * vaiven;
+    }
+    /* ── al frenar: la cabeza cabecea; los brazos sueltos se balancean ── */
+    /* (en un ejercicio, apenas: un par de grados; de cerca, cuando presenta, algo más) */
+    var tl = aLocal(E.Bc, this.tiron), tope = o.busto ? 6 : 2.6;
+    cab[0] += this.cabP.paso(entre(0.085 * tl[1] - 0.08 * tl[2], -tope, tope), dt);
+    cab[2] += this.cabR.paso(entre(-0.09 * tl[0], -tope, tope), dt);
+    var tt = aLocal(E.Bt, this.tiron), brazos = { i: S.b.i, d: S.b.d }, manos = { i: S.m.i, d: S.m.d };
+    /* ── cuando habla de cerca, la mano que tiene levantada marca el compás, y la cabeza asiente ── */
+    this.hablaK += ((o.habla ? 1 : 0) - this.hablaK) * (1 - Math.exp(-dt * 5));
+    var compas = (0.7 * Math.sin(this.t * 9.4) + 0.3 * Math.sin(this.t * 5.9 + 0.8)) * this.hablaK;
+    cab[0] += 1.5 * Math.sin(this.t * 4.7) * this.hablaK;
+    LADOS.forEach(function (lado) {
+      var b = S.b[lado], m = S.m[lado], uw = aplicar(E.Bt, b.u), M = yo.bz[lado];
+      /* cuánto cuelga (apunta al suelo), cuánto está suelta la mano, y si no está agarrada a nada */
+      var cuelga = entre((-uw[1] - 0.72) / 0.2, 0, 1) * entre((0.8 - m.c) / 0.3, 0, 1) * (o.libres && o.libres[lado] === false ? 0 : 1);
+      var amp = (o.busto ? 1 : 0.3) * cuelga;
+      var lat = M[0].paso(entre(-0.075 * tt[0], -16, 16), dt) * amp, fro = M[1].paso(entre(0.075 * tt[2], -16, 16), dt) * amp;
+      var u = b.u, l = b.l, cambia = false;
+      if (Math.abs(lat) > 0.02 || Math.abs(fro) > 0.02) {
+        u = girar(girar(u, [0, 0, 1], lat), [1, 0, 0], fro); l = girar(girar(l, [0, 0, 1], lat * 1.5), [1, 0, 0], fro * 1.5); cambia = true;
+      }
+      /* el brazo levantado, al hablar */
+      var alto = entre((uw[1] + 0.55) / 0.5, 0, 1) * (o.busto ? 1 : 0);
+      if (alto * Math.abs(compas) > 0.004) { l = girar(l, [1, 0, 0], -2.6 * compas * alto); u = girar(u, [1, 0, 0], -0.9 * compas * alto); cambia = true; }
+      if (cambia) brazos[lado] = { u: unidad(u), l: unidad(l), b: b.b };
+      /* los dedos de la mano suelta no se quedan de piedra */
+      if (m.c < 0.7 && m.c > 0.12) {
+        var dd = 0.035 * Math.sin(yo.t * 0.9 + (lado === 'i' ? 0 : 1.7)) + 0.02 * yo.aire;
+        manos[lado] = { tipo: m.tipo, prono: m.prono, mun: m.mun, lat: m.lat, c: m.c + dd, ci: m.ci + dd * 0.8, ab: m.ab, pu: m.pu };
+      }
+    });
+    return armar({ p: p, B: B, col: col, cab: cab, hom: hom, b: brazos, q: S.q, m: manos, t: S.t });
+  };
+  /* tras pintar: a qué velocidad va el tórax, y el tiron (el cambio de velocidad) que mueve los muelles */
+  Vida.prototype.mide = function (E, dt) {
+    if (!(dt > 0)) return;
+    var p = E.tor;
+    if (this.antes) {
+      var d = menos(p, this.antes);
+      if (largo(d) > 22) { this.vF = [0, 0, 0]; this.vS = [0, 0, 0]; }        /* un salto: no es movimiento */
+      else {
+        var v = por(d, 1 / dt), kf = 1 - Math.exp(-dt / 0.05), ks = 1 - Math.exp(-dt / 0.22);
+        this.vF = mezcla(this.vF, v, kf); this.vS = mezcla(this.vS, v, ks);
+      }
+    }
+    this.antes = p; this.tiron = menos(this.vF, this.vS);
+  };
+
   /* ───────────────────────── el director ─────────────────────────
      Toma una coreografía (posturas clave, la repetición, lo que va clavado) y la interpreta:
      dónde está Jérôme en cada instante, qué cara pone, cómo brillan los músculos, por dónde va
@@ -1766,14 +2079,66 @@
     gluteos: function (E) { return mas(E.pel, aplicar(E.Bp, [0, -2, -12])); }, cadera: function (E) { return E.pel; }, barbilla: function (E) { return mas(E.cab, aplicar(E.Bc, [0, 1, 9])); }
   };
 
-  /* las posturas del presentador (el busto, de frente): saluda, da un consejo, levanta el pulgar */
+  /* ── el presentador (el busto, de frente) ──
+     Las posturas clave de sus gestos. Se escriben como las de un ejercicio; lo que no se dice, cuelga suelto. */
   var PRESENTA = {
     listo: { m: { tipo: 'suelta' } },
-    saluda1: { cab: [0, 0, -5], bi: { e: 148, z: 80, g: 0, c: 58 }, mi: { tipo: 'abierta', prono: 0 }, md: { tipo: 'suelta' } },
-    saluda2: { cab: [0, 0, -5], bi: { e: 148, z: 80, g: 0, c: 96 }, mi: { tipo: 'abierta', prono: 0 }, md: { tipo: 'suelta' } },
-    consejo: { cab: [2, 0, 4], bi: { e: 42, z: 36, g: 0, c: 118 }, mi: { tipo: 'indice', prono: 0 }, md: { tipo: 'suelta' } },
-    pulgar: { cab: [0, 0, 5], bi: { e: 46, z: 40, g: 0, c: 104 }, mi: { tipo: 'pulgar', prono: 0 }, md: { tipo: 'suelta' } }
+    /* se asoma por un lado, ladeado (así espera en la portada); se recoge un poco, entra pasándose y se endereza */
+    asoma: { pel: [-60, D.pelvis - 1, 0], giro: [0, 0, 21], cab: [-2, 6, 7], hom: { i: [1.5, 0], d: [0, 0] }, m: { tipo: 'suelta' } },
+    asoma0: { pel: [-65, D.pelvis - 2, 0], giro: [0, 0, 25], cab: [-3, 8, 9], hom: { i: [2, 0], d: [0, 0] }, m: { tipo: 'suelta' } },
+    entra: { pel: [5, D.pelvis, 0], giro: [0, 0, -5], cab: [0, 0, -3], m: { tipo: 'suelta' } },
+    /* la misma entrada, con la mano ya subiendo: llega saludando */
+    entraS: { pel: [5, D.pelvis, 0], giro: [0, 0, -5], cab: [0, 0, -3], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 70, z: 48, g: 0, c: 118 }, mi: { tipo: 'abierta', prono: 0 }, md: { tipo: 'suelta' } },
+    /* saluda con la mano: el antebrazo va y viene, y la muñeca llega un poco después */
+    saluda1: { cab: [-2, 0, 5], col: [0, 2.5, 0], hom: { i: [2.4, 0], d: [0, 0] }, bi: { e: 126, z: 66, g: 0, c: 46 }, mi: { tipo: 'abierta', prono: 0, lat: -13 }, md: { tipo: 'suelta' } },
+    saluda2: { cab: [-2, 0, 7], col: [0, 3.5, 0], hom: { i: [2.8, 0], d: [0, 0] }, bi: { e: 122, z: 66, g: 0, c: 88 }, mi: { tipo: 'abierta', prono: 0, lat: 13 }, md: { tipo: 'suelta' } },
+    /* el saludo de visera: sube el codo, la mano plana a la ceja, y sale */
+    visera0: { cab: [0, -3, 2], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 58, z: 58, g: 24, c: 104 }, mi: { tipo: 'plana', prono: -60 }, md: { tipo: 'suelta' } },
+    visera1: { cab: [-3, -5, 4], hom: { i: [2, 0], d: [0, 0] }, bi: { e: 80, z: 50, g: 30, c: 150 }, mi: { tipo: 'plana', prono: -90 }, md: { tipo: 'suelta' } },
+    visera2: { cab: [-5, 4, 5], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 84, z: 56, g: 20, c: 104 }, mi: { tipo: 'plana', prono: -70 }, md: { tipo: 'suelta' } },
+    /* «¡vamos!»: recoge el puño y lo sube */
+    vamos0: { pel: [0, D.pelvis - 3.2, 0], giro: [0, 5, 0], cab: [5, 0, 0], bi: { e: 26, z: 26, g: 0, c: 104 }, mi: { tipo: 'puno', prono: -20 }, md: { tipo: 'suelta' } },
+    vamos1: { pel: [0, D.pelvis + 1.6, 0], giro: [0, -4, 0], col: [-2, 0, 0], cab: [-7, 0, 4], hom: { i: [3, 0], d: [0, 0] }, bi: { e: 100, z: 52, g: 0, c: 122 }, mi: { tipo: 'puno', prono: -20 }, md: { tipo: 'puno' } },
+    vamos2: { cab: [-3, 0, 3], hom: { i: [1.6, 0], d: [0, 0] }, bi: { e: 90, z: 52, g: 0, c: 114 }, mi: { tipo: 'puno', prono: -20 }, md: { tipo: 'suelta' } },
+    /* un consejo: el índice arriba, y lo menea */
+    consejo0: { cab: [3, 0, 0], bi: { e: 24, z: 30, g: 0, c: 92 }, mi: { tipo: 'indice', prono: 0 }, md: { tipo: 'suelta' } },
+    consejo: { cab: [2, 0, 4], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 42, z: 36, g: 0, c: 118 }, mi: { tipo: 'indice', prono: 0 }, md: { tipo: 'suelta' } },
+    consejoA: { cab: [2, 3, 5], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 43, z: 36, g: 0, c: 118 }, mi: { tipo: 'indice', prono: 0, lat: 15 }, md: { tipo: 'suelta' } },
+    consejoB: { cab: [2, -3, 3], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 43, z: 36, g: 0, c: 118 }, mi: { tipo: 'indice', prono: 0, lat: -15 }, md: { tipo: 'suelta' } },
+    /* o lo explica con la palma abierta, hacia arriba */
+    explica0: { cab: [3, 0, 0], bi: { e: 18, z: 26, g: 0, c: 72 }, mi: { tipo: 'suelta', prono: -50 }, md: { tipo: 'suelta' } },
+    explica: { cab: [1, 4, 4], col: [0, 2, 0], hom: { i: [1.4, 0], d: [0, 0] }, bi: { e: 34, z: 34, g: 0, c: 108 }, mi: { tipo: 'abierta', prono: -90 }, md: { tipo: 'suelta' } },
+    /* el pulgar arriba: lo recoge, lo saca pasándose y lo asienta */
+    pulgar0: { cab: [3, 0, 0], bi: { e: 22, z: 26, g: 0, c: 86 }, mi: { tipo: 'puno', prono: 0 }, md: { tipo: 'suelta' } },
+    pulgar1: { cab: [-3, 0, 7], hom: { i: [2.6, 0], d: [0, 0] }, bi: { e: 56, z: 42, g: 0, c: 110 }, mi: { tipo: 'pulgar', prono: 0 }, md: { tipo: 'suelta' } },
+    pulgar: { cab: [0, 0, 5], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 46, z: 40, g: 0, c: 104 }, mi: { tipo: 'pulgar', prono: 0 }, md: { tipo: 'suelta' } },
+    /* los dos pulgares */
+    dos0: { cab: [4, 0, 0], b: { e: 20, z: 28, g: 0, c: 84 }, m: { tipo: 'puno', prono: 0 } },
+    dos1: { cab: [-5, 0, 0], hom: [2.6, 0], b: { e: 55, z: 50, g: 0, c: 110 }, m: { tipo: 'pulgar', prono: 0 } },
+    dos: { cab: [-2, 0, 0], hom: [1.2, 0], b: { e: 46, z: 47, g: 0, c: 105 }, m: { tipo: 'pulgar', prono: 0 } },
+    /* saca bíceps */
+    fuerza0: { cab: [3, 0, 0], b: { e: 50, z: 76, g: 0, c: 132 }, m: { tipo: 'puno', prono: 0 } },
+    fuerza1: { cab: [-4, 0, 0], hom: [2.4, 0], b: { e: 95, z: 84, g: 0, c: 130 }, m: { tipo: 'puno', prono: 0 } },
+    fuerza: { cab: [-2, 0, 0], hom: [1.4, 0], b: { e: 92, z: 84, g: 0, c: 118 }, m: { tipo: 'puno', prono: 0 } }
   };
+  /* los gestos: de qué postura salen, la secuencia ([postura, segundos, curva]) y la cara de cada momento ([segundo, cara]).
+     Como en el dibujo animado de siempre: antes del gesto, lo recoge; llega pasándose un poco; y se asienta. */
+  var GESTOS = {
+    saludo: { desde: 'asoma', sec: [['asoma0', 0.17, 'sale'], ['entraS', 0.42, 'suave'], ['saluda1', 0.3, 'suave'], ['saluda2', 0.2], ['saluda1', 0.2], ['saluda2', 0.2], ['saluda1', 0.2], ['saluda2', 0.2], ['listo', 0.6]],
+      cara: [[0, 'ilusion'], [2.3, 'contento']] },
+    visera: { desde: 'asomaD', sec: [['asomaD0', 0.17, 'sale'], ['entraD', 0.4, 'suave'], ['listo', 0.2], ['visera0', 0.3], ['visera1', 0.17, 'sale'], ['visera1', 0.32], ['visera2', 0.17, 'sale'], ['visera2', 0.4], ['listo', 0.6]],
+      cara: [[0, 'ilusion'], [1.1, 'guino'], [2.1, 'contento']] },
+    vamos: { desde: 'asoma', sec: [['asoma0', 0.17, 'sale'], ['entra', 0.4, 'suave'], ['vamos0', 0.3], ['vamos1', 0.25, 'sale'], ['vamos2', 0.2], ['vamos2', 0.5], ['listo', 0.6]],
+      cara: [[0, 'ilusion'], [0.85, 'concentra'], [1.2, 'risa'], [2.1, 'contento']] },
+    consejo: { desde: 'listo', sec: [['consejo0', 0.26], ['consejo', 0.24, 'sale'], ['consejoA', 0.2], ['consejoB', 0.24], ['consejoA', 0.24], ['consejo', 0.26]], cara: [[0, 'atento']] },
+    explica: { desde: 'listo', sec: [['explica0', 0.26], ['explica', 0.34, 'sale']], cara: [[0, 'atento']] },
+    pulgar: { desde: 'listo', sec: [['pulgar0', 0.28], ['pulgar1', 0.17, 'sale'], ['pulgar', 0.2]], cara: [[0, 'contento'], [0.42, 'guino']] },
+    dos: { desde: 'listo', sec: [['dos0', 0.28], ['dos1', 0.17, 'sale'], ['dos', 0.2]], cara: [[0, 'contento'], [0.42, 'risa']] },
+    fuerza: { desde: 'listo', sec: [['fuerza0', 0.34], ['fuerza1', 0.22, 'sale'], ['fuerza', 0.22], ['fuerza1', 0.24], ['fuerza', 0.26]], cara: [[0, 'contento'], [0.36, 'esfuerzo'], [0.9, 'guino']] }
+  };
+  /* el plano de cerca: la escala, a dónde mira, y cuánto se acerca (y baja) mientras dura */
+  var BUSTO = { esc: 3.5, picado: 4, mira: [0, D.pelvis + 44, 0], oy: 268, acerca: 0.04, baja: 5 };
+  var GESTOS_DE = { cabecera: ['saludo', 'visera', 'vamos'], consejo: ['consejo', 'explica'], cierre: ['pulgar', 'dos', 'fuerza'] };
   function Director(esc) {
     this.esc = esc; this.K = {}; this.rep = []; this.T = 1; this.clavos = [];
     this.modo = 'postura'; this.meta = null; this.tau = 0; this.w = 1; this.Eprev = null; this.E = null;
@@ -1784,13 +2149,17 @@
     this.pPunta = crear('circle', { r: 4.2, fill: '#fff6d8', stroke: '#F5C76B', 'stroke-width': 1.6 }, this.gRastro);
     this.gMarcas = crear('g', { 'class': 'tge-marcas' }, esc.encima);
     this.cMarcas = [0, 1, 2, 3].map(function () { var g = crear('g', { opacity: 0 }, this.gMarcas); crear('circle', { r: 13, fill: 'none', stroke: '#F5C76B', 'stroke-width': 2.6 }, g); crear('circle', { r: 13, fill: 'none', stroke: '#fff', 'stroke-width': 1, opacity: 0.8 }, g); return g; }, this);
-    this.vistas = [{ rumbo: 35 }]; this.vista = 0; this.busto = false; this.bustoK = 0;
+    this.vistas = [{ rumbo: 35 }]; this.vista = 0; this.busto = false; this.tBusto = 0;
+    this.vida = new Vida(); this.gestoDe = null; this.gestoN = ''; this.tGesto = 0; this.metas = []; this.cortes = 0;
   }
   /* carga una coreografía */
   Director.prototype.cargar = function (co) {
     var yo = this, n;
     this.co = co; this.K = {};
     for (n in PRESENTA) this.K[n] = resolver(PRESENTA[n]);
+    /* y por el otro lado */
+    ['asoma', 'asoma0', 'entra'].forEach(function (q) { yo.K[q + 'D'] = resolver(refleja(PRESENTA[q])); });
+    this.K.asomaD0 = this.K.asoma0D;
     for (n in co.posturas) this.K[n] = resolver(co.posturas[n]);
     this.esc.poner(co.material || []);
     /* la repetición: de dónde sale cada tramo */
@@ -1804,6 +2173,7 @@
     this.clavos = (co.clavos || []).map(clavo);
     this.rastroDe = co.rastro || null; this.rastro = [];
     this.modo = 'postura'; this.meta = this.inicio; this.tau = 0; this.w = 1; this.Eprev = null; this.reps = 0; this.sec = null;
+    this.vida.corte(); this.cortes++; this.gestoDe = null;
     this.encuadrar();
   };
   function clavo(s) {
@@ -1813,43 +2183,64 @@
   }
   /* las posturas en las que ya no hay nada clavado (se ha soltado de la barra) */
   Director.prototype.suelto = function (n) { return !!(this.co && this.co.sinClavos && this.co.sinClavos.indexOf(n) >= 0); };
-  /* el esqueleto de la repetición en el instante tau, con lo clavado en su sitio */
-  Director.prototype.enRep = function (tau) {
+  /* el esqueleto de la repetición en el instante tau, aún sin clavar, y con qué se clava */
+  Director.prototype.mezclaRep = function (tau) {
     var i, s = this.rep[this.rep.length - 1];
     for (i = 0; i < this.rep.length; i++) if (tau < this.rep[i].t0 + this.rep[i].dur) { s = this.rep[i]; break; }
     var u = entre((tau - s.t0) / s.dur, 0, 1), e = s.curva(u), A = this.K[s.de], B = this.K[s.a];
-    var E = s.de === s.a ? A : mezclar(A, B, e);
     this.tramo = s; this.tramoU = u;
-    return this.clavar(E, A, B, e, s.clavos ? s.clavos.map(clavo) : this.clavos);
+    return { E: s.de === s.a ? A : mezclar(A, B, e), A: A, B: B, e: e, clavos: s.clavos ? s.clavos.map(clavo) : this.clavos };
   };
   Director.prototype.clavar = function (E, A, B, e, clavos) {
     if (!clavos || !clavos.length) return E;
-    var mats = this.esc.material, i, hecho = false, S;
-    /* se trabaja sobre una copia del estado: la postura clave no se toca */
-    S = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: { i: E.S.q.i, d: E.S.q.d }, m: E.S.m, t: E.S.t };
-    var E2 = { S: S, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d };
+    var mats = this.esc.material, i, S, lista = [];
     for (i = 0; i < mats.length; i++) if (mats[i].antes) mats[i].colocar(E);
+    /* a dónde va cada cosa */
     for (i = 0; i < clavos.length; i++) {
       var c = clavos[i]; if (!c) continue;
       var k = c.que.charAt(1), meta;
       if (c.que.charAt(0) === 't') meta = c.en || mezcla(A[k].tob, B[k].tob, e);
       else if (c.mat != null && mats[c.mat] && mats[c.mat].agarre) meta = munecaPara(E, k, mats[c.mat].agarre(c.x));
       else meta = c.en || mezcla(A[k].mun, B[k].mun, e);
-      clavar(E2, c.que, meta); hecho = true;
+      lista.push([c.que, meta]);
     }
-    return hecho ? armar(S) : E;
+    if (!lista.length) return E;
+    /* si la vida (el aire, el peso) deja algo un pelo fuera de alcance, es el cuerpo el que se arrima: la mano no suelta
+       la barra. Mover la cadera mueve hombros y caderas lo mismo, así que se va corrigiendo lo que más falta, unas vueltas. */
+    var corr = [0, 0, 0], v, l, peor, falta, tope, vuelta, q, L, brazo;
+    for (vuelta = 0; vuelta < 4; vuelta++) {
+      peor = null; falta = 0.004;
+      for (i = 0; i < lista.length; i++) {
+        q = lista[i]; L = E[q[0].charAt(1)]; brazo = q[0].charAt(0) === 'm'; tope = (brazo ? D.brazo + D.antebrazo : D.muslo + D.pierna) - 0.02;
+        v = menos(q[1], mas(brazo ? L.hom : L.cad, corr)); l = largo(v);
+        if (l - tope > falta) { falta = l - tope; peor = por(v, falta / l); }
+      }
+      if (!peor) break;
+      corr = mas(corr, peor);
+    }
+    /* se trabaja sobre una copia del estado: la postura clave no se toca */
+    S = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: { i: E.S.q.i, d: E.S.q.d }, m: E.S.m, t: E.S.t };
+    l = largo(corr);
+    if (l > 0) { if (l > 3) corr = por(corr, 3 / l); S.p = mas(S.p, corr); E = armar(S); }
+    var E2 = { S: S, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d };
+    for (i = 0; i < lista.length; i++) { clavar(E2, lista[i][0], lista[i][1]); this.metas.push(lista[i]); }
+    return armar(S);
   };
+  /* el esqueleto de la repetición en el instante tau, con lo clavado en su sitio (sin la vida: para medir y comprobar) */
+  Director.prototype.enRep = function (tau) { var r = this.mezclaRep(tau); return this.clavar(r.E, r.A, r.B, r.e, r.clavos); };
   /* ── qué hace ── */
   Director.prototype.aPostura = function (nombre, seg) {
     if (!this.K[nombre]) return;
     this.Eprev = this.E; this.w = this.E && seg !== 0 ? 0 : 1; this.durW = seg || 0.7;
-    this.metaPrev = this.meta; this.modo = 'postura'; this.meta = nombre; this.sec = null;
+    this.metaPrev = this.meta; this.modo = 'postura'; this.meta = nombre; this.sec = null; this.gestoDe = null;
+    this.vida.linea = []; if (seg === 0) { this.vida.corte(); this.cortes++; }
   };
   Director.prototype.aRep = function (seg) {
     if (!this.rep.length) return this.aPostura(this.inicio, seg);
     if (this.modo === 'rep') return;
     this.Eprev = this.E; this.w = this.E && seg !== 0 ? 0 : 1; this.durW = seg || 0.6;
-    this.modo = 'rep'; this.tau = 0; this.rastro = []; this.sec = null;
+    this.modo = 'rep'; this.tau = 0; this.rastro = []; this.sec = null; this.gestoDe = null;
+    this.vida.linea = [];
   };
   /* una secuencia que se toca una vez (por ejemplo, sacar la barra del soporte): [[postura, segundos, curva], …] */
   Director.prototype.aSecuencia = function (lista, desde) {
@@ -1858,49 +2249,91 @@
     this.secT = t0; this.tau = 0; this.modo = 'sec'; this.Eprev = this.E; this.w = this.E ? 0 : 1; this.durW = 0.45; this.rastro = [];
     this.metaPrev = this.meta;
     this.meta = lista[lista.length - 1][0];
+    this.vida.linea = []; this.gestoDe = null;
   };
+  /* un gesto del presentador: sale de su postura, toca la secuencia y va poniendo las caras */
+  Director.prototype.gesto = function (nombre, deGolpe) {
+    var g = GESTOS[nombre]; if (!g) return;
+    var desde = g.desde, sec = g.sec;
+    /* con «reducir movimiento» del sistema no entra deslizándose por un lado: ya está ahí, y hace su gesto */
+    if (quieto() && /^asoma/.test(desde)) { desde = 'listo'; sec = sec.filter(function (q) { return !/^(asoma|entra)/.test(q[0]); }); }
+    /* de golpe (tras un corte, o en la portada): arranca en su primera postura; si no, llega a ella desde donde esté */
+    if (deGolpe || !this.E) { this.aPostura(desde, 0); this.E = this.K[desde]; }
+    this.aSecuencia(sec, desde); if (deGolpe) this.w = 1;
+    this.gestoDe = g; this.gestoN = nombre; this.tGesto = 0; this.caraN = 0;
+  };
+  /* cuánto dura un gesto */
+  Director.prototype.duraGesto = function (nombre) { var g = GESTOS[nombre], t = 0; if (g) g.sec.forEach(function (q) { t += q[1]; }); return t; };
+  /* el gesto que le toca a un momento (cabecera, consejo, cierre): uno fijo por ejercicio, para que no sean todos iguales */
+  Director.prototype.gestoPara = function (momento, n) { var l = GESTOS_DE[momento] || []; return l.length ? l[(n >>> 0) % l.length] : null; };
   /* un cuadro: avanza el tiempo y pinta */
   Director.prototype.cuadro = function (dt, parado) {
-    var esc = this.esc, E, v = parado ? 0 : this.vel, yo = this;
+    var esc = this.esc, E, v = parado ? 0 : this.vel, yo = this, A, B, e = 0, clavos = null, i;
     this.t += dt;
     if (this.modo === 'rep') {
       this.tau += dt * v;
       if (this.tau >= this.T) { this.tau -= this.T; this.reps++; if (this.alRepetir) this.alRepetir(this.reps); }
-      E = this.enRep(this.tau);
+      var r = this.mezclaRep(this.tau); E = r.E; A = r.A; B = r.B; e = r.e; clavos = r.clavos;
       this.esf += ((this.tramo.esf ? 1 : 0) - this.esf) * (1 - Math.exp(-dt * 7));
     } else if (this.modo === 'sec') {
       this.tau = Math.min(this.secT, this.tau + dt * v);
-      var s = this.sec[this.sec.length - 1], i;
+      var s = this.sec[this.sec.length - 1];
       for (i = 0; i < this.sec.length; i++) if (this.tau < this.sec[i].t0 + this.sec[i].dur) { s = this.sec[i]; break; }
-      var e = s.curva(entre((this.tau - s.t0) / s.dur, 0, 1)), A = this.K[s.de], B = this.K[s.a];
+      e = s.curva(entre((this.tau - s.t0) / s.dur, 0, 1)); A = this.K[s.de]; B = this.K[s.a];
       this.secDe = s.de; this.secU = entre((this.tau - s.t0) / s.dur, 0, 1);
-      E = this.clavar(s.de === s.a ? A : mezclar(A, B, e), A, B, e, s.clavos ? s.clavos.map(clavo) : this.clavos);
+      E = s.de === s.a ? A : mezclar(A, B, e); clavos = s.clavos ? s.clavos.map(clavo) : this.clavos;
       this.esf += (0 - this.esf) * (1 - Math.exp(-dt * 5));
       if (this.tau >= this.secT) { this.modo = 'postura'; this.w = 1; }
     } else {
-      E = this.K[this.meta] || this.K.listo;
-      if (this.co && this.meta !== 'listo' && !this.busto && !this.suelto(this.meta)) E = this.clavar(E, E, E, 0, this.clavos);
+      E = this.K[this.meta] || this.K.listo; A = B = E;
+      if (this.co && this.meta !== 'listo' && !this.suelto(this.meta)) clavos = this.clavos;
       this.esf += ((this.co && this.co.isometrico && this.meta === this.co.isometrico ? 0.8 : 0) - this.esf) * (1 - Math.exp(-dt * 4));
     }
+    /* de cerca presenta: ahí no hay barra que agarrar ni suelo que pisar */
+    if (this.busto) clavos = null;
+    /* el gesto del presentador va poniendo sus caras */
+    if (this.gestoDe) {
+      this.tGesto += dt * v;
+      var caras = this.gestoDe.cara || [];
+      while (this.caraN < caras.length && caras[this.caraN][0] <= this.tGesto) { esc.cab.emocion(caras[this.caraN][1]); if (this.caraN) esc.cab.parpadea(); this.caraN++; }
+    }
+    /* la vida (respira, llega por partes, cabecea al frenar), antes de clavar: lo clavado no se mueve */
+    var libres = { i: true, d: true }, dePie = false;
+    if (clavos) for (i = 0; i < clavos.length; i++) if (clavos[i] && clavos[i].que.charAt(0) === 'm') libres[clavos[i].que.charAt(1)] = false;
+    /* de pie: el tronco derecho y la cadera a su altura (sentado o tumbado, descansa en algo: no se balancea) */
+    dePie = E.S.B[1][1] > 0.94 && E.S.p[1] > D.pelvis - 9 && this.modo === 'postura' && this.w >= 1 && !(this.co && this.co.isometrico === this.meta && !this.busto);
+    E = this.vida.paso(E, parado ? 0 : dt, { busto: this.busto, esf: this.esf, rep: this.modo === 'rep', dePie: dePie, habla: this.busto && esc.cab.habla > esc.cab.t, libres: libres });
+    this.metas = [];            /* lo que se clava en este cuadro, y dónde (lo coteja la auditoría: lo clavado no se mueve) */
+    if (clavos && clavos.length) E = this.clavar(E, A, B, e, clavos);
     /* de donde estaba a donde va */
     if (this.w < 1 && this.Eprev) {
       this.w = Math.min(1, this.w + dt / this.durW);
       E = mezclar(this.Eprev, E, CURVA.suave(this.w));
     }
-    /* respira: un punto de pecho y de hombros */
-    var resp = Math.sin(this.t * (1.6 + this.esf * 1.6));
-    if (!quieto()) {
-      var S = E.S, S2 = { p: S.p, B: S.B, col: [S.col[0] - resp * 0.5, S.col[1], S.col[2]], cab: [S.cab[0] + resp * 0.5, S.cab[1], S.cab[2]],
-        hom: { i: [S.hom.i[0] + resp * 0.35, S.hom.i[1]], d: [S.hom.d[0] + resp * 0.35, S.hom.d[1]] }, b: S.b, q: S.q, m: S.m, t: S.t };
-      if (this.modo === 'postura' && this.w >= 1 && (!this.co || !this.clavos.length || this.busto || this.meta === 'listo')) E = armar(S2);
-    }
     this.E = E;
-    /* la cámara: hacia su vista, con suavidad */
-    var cam = esc.cam, V = this.busto ? this.vBusto : this.vistas[this.vista], kk = 1 - Math.exp(-dt * 5.5);
+    this.vida.mide(E, parado ? 0 : dt);
+    /* la cámara: hacia su vista, con suavidad; de cerca, se va acercando muy despacio */
+    var cam = esc.cam, V = this.vistas[this.vista], kk = 1 - Math.exp(-dt * 5.5);
+    if (this.busto) {
+      if (!parado) this.tBusto += dt;
+      var cerca = quieto() ? 0 : CURVA.suave(entre(this.tBusto / 5, 0, 1));
+      V = { rumbo: this.vBusto.rumbo, picado: this.vBusto.picado, esc: this.vBusto.esc * (1 + BUSTO.acerca * cerca), mira: this.vBusto.mira, ox: this.vBusto.ox, oy: this.vBusto.oy + BUSTO.baja * cerca };
+    }
     if (this.salto) { kk = 1; this.salto = false; }
     var dr = V.rumbo - cam.rumbo; while (dr > 180) dr -= 360; while (dr < -180) dr += 360;
     cam.rumbo += dr * kk; cam.esc += (V.esc - cam.esc) * kk; cam.ox += (V.ox - cam.ox) * kk; cam.oy += (V.oy - cam.oy) * kk; cam.picado += (V.picado - cam.picado) * kk;
     cam.mira = mezcla(cam.mira, V.mira, kk);
+    /* la mirada: a quien le escucha; cuando el paso nombra algo, un vistazo a eso; y, de cerca, no se queda clavada */
+    var cab = esc.cab, mx = 0, my = 0, edad = this.t - (this.tMarca || 0);
+    if (!this.busto && this.marcas.length && edad > 0.3 && edad < 1.7 && cam.k) {
+      var pm = cam.p(PUNTOS[this.marcas[0]](E)), pc = cam.p(E.cab), up = cam.d(E.Bc[1]), ru = Math.atan2(up[0], -up[1]);
+      var gx = pm[0] - pc[0], gy = pm[1] - pc[1], gl = Math.sqrt(gx * gx + gy * gy);
+      if (gl > 16 * cam.esc) { gx /= gl; gy /= gl; mx = gx * Math.cos(ru) + gy * Math.sin(ru); my = -gx * Math.sin(ru) + gy * Math.cos(ru); }
+    } else if (this.busto && !quieto()) {
+      var ciclo = this.t / 3.1, fz = ciclo - Math.floor(ciclo), nn = Math.floor(ciclo);
+      if (fz > 0.86) { mx = 0.5 * Math.sin(nn * 12.9898 + 4.1); my = 0.28 * Math.sin(nn * 78.233 + 1.7); }
+    }
+    cab.m.mx = mx; cab.m.my = my;
     /* lo que aún no se ha cogido (la barra en el suelo) se queda en su sitio */
     this.ctx = this.ctx || {};
     var rp = this.co && this.co.reposo;
@@ -1911,7 +2344,8 @@
     var mats = esc.material, j;
     for (j = 0; j < mats.length; j++) { mats[j].colocar(E, this.ctx); mats[j].oculto = this.busto; }
     esc.fig.pulso = this.busto ? 0 : 0.72 + 0.28 * this.esf + 0.06 * Math.sin(this.t * 5);
-    esc.cab.paso(dt);
+    esc.fig.aire = this.vida.aire;
+    esc.cab.paso(dt, parado);
     esc.soloFigura = this.busto;
     esc.pintar(E, this.ctx);
     this.pintarRastro(E, dt, v);
@@ -1976,12 +2410,12 @@
       return { rumbo: r, picado: picado, esc: e, mira: mira, ox: ANCHO / 2 - (a[0] + b[0]) / 2 * e, oy: 58 + (ALTO - 96) / 2 - (a[1] + b[1]) / 2 * e + 4 };
     });
     /* el busto: de frente, de cerca, para saludar y para los consejos */
-    this.vBusto = { rumbo: 0, picado: 4, esc: 3.5, mira: [0, D.pelvis + 44, 0], ox: ANCHO / 2, oy: 268 };
+    this.vBusto = { rumbo: 0, picado: BUSTO.picado, esc: BUSTO.esc, mira: BUSTO.mira, ox: ANCHO / 2, oy: BUSTO.oy };
     this.vista = Math.min(this.vista, this.vistas.length - 1);
     this.salto = true;
   };
   Director.prototype.girar = function () { this.vista = (this.vista + 1) % this.vistas.length; return this.vista; };
-  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; } };
+  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; this.tBusto = 0; this.vida.corte(); this.cortes++; this.esc.cab.corte = true; } };
 
   /* ───────────────────────── las coreografías ─────────────────────────
      Una por ejercicio (la clave es el id de la ficha en datos/cuerpo/ejercicios.json). Cada una
@@ -2007,10 +2441,10 @@
   function subeBaja(b, a, t) { t = t || [1.2, 0.3, 1.7, 0.45]; return [[b, t[0], 'empuje'], [b, t[1]], [a, t[2], 'freno'], [a, t[3]]]; }
   /* boca arriba en el suelo (la cabeza hacia −Z) y boca abajo sobre las puntas de los pies (la cabeza hacia +Z) */
   var SUPINO_SUELO = { pel: [0, 11.5, 20], giro: [0, -90, 0] };
-  var PIES_PUNTA = { punta: [0, -0.94, 0.34], arriba: [0, 0.34, 0.94] };
-  /* en tabla sobre las puntas de los pies (los tobillos en z = −100, a TOB_PUNTA del suelo: la puntera lo toca), con
+  var PIES_PUNTA = { punta: [0, -0.94, 0.34], arriba: [0, 0.34, 0.94], flex: 70 };
+  /* en tabla sobre las puntas de los pies (los tobillos en z = −100, a TOB_PUNTA del suelo: la bola del pie lo pisa y la zapatilla se dobla), con
      el cuerpo a «ang» grados del suelo */
-  var TOB_PUNTA = 17;
+  var TOB_PUNTA = 14;
   function tabla(ang, extra) {
     var s = Math.sin(ang * RAD), c = Math.cos(ang * RAD);
     return sobre({ pel: [0, TOB_PUNTA + 78 * s, -100 + 78 * c], giro: [0, 90 - ang, 0], cab: [-16, 0, 0], p: { e: 0, z: 0, c: 0 }, t: PIES_PUNTA, m: { tipo: 'abierta', prono: 90, mun: -72 } }, extra || {});
@@ -2298,7 +2732,7 @@
     var juntas = { a: [4.5, 5, 15], polo: [1, 0.25, -0.5] };
     COREO['flexion-diamante'] = {
       vista: [78, 28], picado: 16, rastro: 'pecho', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
-      posturas: { a: tabla(18.7, { b: juntas }), b: tabla(1.8, { b: juntas, cab: [-22, 0, 0] }) },
+      posturas: { a: tabla(20.2, { b: juntas }), b: tabla(3.2, { b: juntas, cab: [-22, 0, 0] }) },
       rep: bajaSube('b', 'a', [1.7, 0.2, 1.1, 0.5]),
       pasos: ['a', 'a', 'rep']
     };
@@ -2322,7 +2756,7 @@
     var manos = { a: [19, 5, 13.3], polo: [0.55, 0.25, -1] };
     COREO.flexion = {
       vista: [78, 28], picado: 16, rastro: 'pecho', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
-      posturas: { a: tabla(18.7, { b: manos }), b: tabla(-0.5, { b: manos, cab: [-24, 0, 0] }) },
+      posturas: { a: tabla(20.2, { b: manos }), b: tabla(1.0, { b: manos, cab: [-24, 0, 0] }) },
       rep: bajaSube('b', 'a', [1.6, 0.2, 1.1, 0.5]),
       pasos: ['a', 'a', 'rep', 'rep']
     };
@@ -2448,7 +2882,7 @@
 
   /* ══════════ CORE ══════════ */
   (function () {
-    var ang = 7.1, s = Math.sin(ang * RAD), c = Math.cos(ang * RAD);
+    var ang = 8.5, s = Math.sin(ang * RAD), c = Math.cos(ang * RAD);
     var brazos = { a: [19, 4, -100 + 121.5 * c + 24], polo: [0, -1, -0.25] };
     COREO['plancha-antebrazos'] = {
       vista: [80, 30], picado: 16, isometrico: 'a',
@@ -2638,6 +3072,43 @@
   /* datos: { id, nombre, pasos: [texto…], pasosEs: [texto en castellano…] (para los anillos), prim: [grupos], sec: [grupos],
               nombres: { grupo: su nombre }, etiquetas: [texto…], entorno: 'gimnasio' | 'fuera' | 'calistenia', nivel: 1-3 }
      opc:   { idioma, tema: 'dia' | 'noche', tx: función que da un texto de ENT_UI (si la app tiene los suyos), alAcabar, auto } */
+  /* ── qué voz ──
+     La del móvil (Web Speech), como la audioguía, pero ELIGIÉNDOLA. Un iPhone enseña a las webs, lo primero de cada
+     idioma, las voces «Eloquence» (Eddy, Flo, Grandma, Grandpa, Reed, Rocko, Sandy, Shelley): un sintetizador por
+     reglas de hace más de veinte años (ETI-Eloquence; su empresa se vendió en 2001). Quedarse con «la primera del
+     idioma» es acabar con una de esas: suena a navegador viejo. Aquí se puntúan: primero las buenas (premium,
+     mejorada, Siri), luego las normales del sistema; las robóticas y las de broma, nunca. Y si el aparato no enseña
+     ninguna que valga (Safari no deja ver a las webs las voces que se descargan: lo dice Apple en sus foros de
+     desarrolladores, hilo 723503), no se elige: se le da el idioma y pone la suya, la que el sistema tiene para ese
+     idioma. Solo voces del dispositivo: ninguna manda el texto fuera (por eso «que ponga la suya» solo vale en
+     aparatos de Apple, donde todas lo son). */
+  var VOZ_NO = /eloquence|\b(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley)\b|\b(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|kathy|ralph)\b|espeak/i;
+  var VOZ_BUENA = [[/premium/i, 30], [/enhanced|mejorada|optimizada|améliorée|erweitert|ottimizzata|verbeterd|ulepszon|增强|優化/i, 22], [/siri/i, 18], [/natural|neural/i, 16]];
+  /* Jérôme es un hombre: a igual calidad, una voz de hombre */
+  var VOZ_EL = /\b(jorge|diego|carlos|juan|enrique|pablo|daniel|arthur|oliver|gordon|george|thomas|jacques|nicolas|paul|markus|yannick|viktor|martin|stefan|luca|cosimo|xander|frank|krzysztof|jacek|adam|ivan|li-mu|kangkang)\b/i;
+  function notaVoz(v, quiero) {
+    var uri = String(v.voiceURI || ''), todo = uri + ' ' + String(v.name || ''), lang = String(v.lang || '').replace('_', '-').toLowerCase(), n, i;
+    if (v.localService === false || VOZ_NO.test(todo)) return -1;
+    n = lang === quiero ? 40 : (lang.slice(0, 2) === quiero.slice(0, 2) && lang.slice(0, 2) !== 'zh') ? 10 : -1;
+    if (n < 0) return -1;
+    for (i = 0; i < VOZ_BUENA.length; i++) if (VOZ_BUENA[i][0].test(todo)) { n += VOZ_BUENA[i][1]; break; }
+    if (i === VOZ_BUENA.length) n += /super-compact/i.test(uri) ? 0 : /compact/i.test(uri) ? 6 : 8;
+    if (VOZ_EL.test(todo)) n += 3;
+    return n;
+  }
+  function vocesDe(idioma) {
+    var locale = (window.TG_VOZ && window.TG_VOZ.locale(idioma)) || VOZ_LOCALE[idioma] || 'es-ES', quiero = locale.toLowerCase(), lista = [], mejor = null, nota = -1, del = false, ag = '';
+    try { lista = window.speechSynthesis.getVoices() || []; } catch (e) { lista = []; }
+    for (var i = 0; i < lista.length; i++) {
+      var n = notaVoz(lista[i], quiero), lg = String(lista[i].lang || '').replace('_', '-').toLowerCase();
+      if (lg.slice(0, 2) === quiero.slice(0, 2)) del = true;
+      if (n > nota) { nota = n; mejor = lista[i]; }
+    }
+    try { ag = navigator.userAgent || ''; } catch (e2) { ag = ''; }
+    var apple = /iP(hone|ad|od)/.test(ag) || (/Macintosh/.test(ag) && lista.some(function (v) { return /^com\.apple\./.test(String(v.voiceURI || '')); }));
+    /* «que ponga la suya»: en un aparato de Apple, si aún no hay lista o si las del idioma que enseña son las robóticas */
+    return { locale: locale, voz: nota >= 0 ? mejor : null, nota: nota, sistema: !(nota >= 0) && apple && (!lista.length || del), lista: lista };
+  }
   function Reproductor(caja, datos, opc) {
     opc = opc || {};
     var yo = this, co = COREO[datos.id];
@@ -2723,6 +3194,8 @@
     this.bVoz = boton('', ICO.voz, T('entVozOn'), function () { yo.voz(!yo.conVoz); });
     this.bVoz.setAttribute('aria-pressed', 'false');
     if (!this.hayVoz()) this.bVoz.hidden = true;
+    /* las voces llegan tarde en algunos navegadores: cuando lleguen, se vuelve a mirar si hay alguna que valga */
+    try { if (window.speechSynthesis && window.speechSynthesis.addEventListener) { this._voces = function () { yo.bVoz.hidden = !yo.hayVoz(); if (yo.bVoz.hidden && yo.conVoz) yo.voz(false); }; window.speechSynthesis.addEventListener('voiceschanged', this._voces); } } catch (e) {}
     pie.appendChild(mandos);
     raiz.appendChild(pie);
     caja.appendChild(raiz);
@@ -2759,7 +3232,12 @@
     if (max) { c.style.minHeight = Math.ceil(max + 26) + 'px'; this.anchoMedido = ancho; }
   };
   Reproductor.prototype.hayVoz = function () {
-    try { if (window.TG_VOZ) return window.TG_VOZ.hayVoces() && !!window.TG_VOZ.vozLocal(this.idioma); return 'speechSynthesis' in window && typeof SpeechSynthesisUtterance === 'function'; } catch (e) { return false; }
+    try {
+      if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance !== 'function') return false;
+      var v = vocesDe(this.idioma);
+      /* si el navegador aún no ha dicho qué voces tiene, se ofrece; al ir a hablar se vuelve a mirar */
+      return !v.lista.length || !!v.voz || v.sistema;
+    } catch (e) { return false; }
   };
   Reproductor.prototype.reproducir = function () {
     if (this.suena) return;
@@ -2782,9 +3260,15 @@
   /* un cuadro */
   Reproductor.prototype.cuadro = function (ahora) {
     if (!this.suena) return;
-    /* si el móvil va justo, se saltan cuadros antes que ir a cámara lenta (hasta 10 por segundo) */
+    /* si al móvil le cuesta (más de media ración de cuadro solo en mover el dibujo), pinta uno de cada dos: 30 por
+       segundo, a su velocidad. Y si aun así va justo, se saltan cuadros antes que ir a cámara lenta (hasta 10 por segundo). */
+    if (this.aMitad && (this.par = !this.par)) { this.raf = requestAnimationFrame(this._cuadro); return; }
     var dt = Math.min(0.1, Math.max(0, (ahora - this.antes) / 1000)); this.antes = ahora;
+    var t0 = performance.now();
     this.avanzar(dt);
+    var coste = performance.now() - t0;
+    this.costeM = this.costeM == null ? coste : this.costeM + (coste - this.costeM) * 0.06; this.nCoste = (this.nCoste || 0) + 1;
+    if (this.nCoste > 45) this.aMitad = this.costeM > (this.aMitad ? 5.5 : 9);
     if (this.suena) this.raf = requestAnimationFrame(this._cuadro);
   };
   /* avanza el tiempo (lo usa también la grabación, cuadro a cuadro) */
@@ -2873,14 +3357,15 @@
       escribir('', ICO.mano, '', this.datos.nombre);
       this.pasoT.textContent = ''; this.pasoT.appendChild(el('b', '', this.datos.nombre)); this.palabras = [];
       var et = (this.datos.etiquetas || []).join(' · '); if (et) this.pasoT.appendChild(document.createTextNode(et));
-      plano(true, function () { d.aPostura('saluda1', 0); d.aSecuencia([['saluda2', 0.26], ['saluda1', 0.26], ['saluda2', 0.26], ['saluda1', 0.26], ['saluda2', 0.26], ['saluda1', 0.26], ['listo', 0.6]], 'saluda1'); cab.emocion('ilusion'); d.marcar([]); });
+      plano(true, function () { d.gesto(d.gestoPara('cabecera', yo.hash()), true); d.marcar([]); });
       this.decir(this.datos.nombre);
     } else if (t.tipo === 'cierre') {
       this.chipPaso.textContent = T('entVideo');
       var fr = T('entFin' + (1 + (this.hash() % N_FIN)));
       this.kicker.textContent = this.datos.nombre; this.nombre.textContent = T('entTurno');
       escribir('', ICO.mano, T('entTurno'), fr, true);
-      plano(true, function () { d.aPostura('pulgar', 0.5); cab.emocion('guino'); d.marcar([]); });
+      var deCerca = d.busto;
+      plano(true, function () { d.gesto(d.gestoPara('cierre', yo.hash() >>> 3), !deCerca); d.marcar([]); });
       this.decir(T('entTurno') + ' ' + fr);
     } else {
       var a = t.accion;
@@ -2888,7 +3373,9 @@
       this.titulo.classList.remove('ve');
       if (a === 'nota') {
         escribir('', ICO.bombilla, T('entConsejo'), t.texto);
-        plano(true, function () { d.aPostura('consejo', 0.45); cab.emocion('atento'); cab.hablar(Math.min(t.dur - 0.6, 3.2)); d.marcar([]); });
+        /* un consejo corto, con el índice en alto; uno largo, explicándolo con la mano abierta (por el texto en castellano: igual en todos los idiomas) */
+        var yaCerca = d.busto;
+        plano(true, function () { d.gesto(d.gestoPara('consejo', (t.es || t.texto).length > 110 ? 1 : 0), !yaCerca); cab.hablar(Math.min(t.dur - 0.6, 3.2)); d.marcar([]); });
       } else {
         escribir(String(t.i + 1), '', '', t.texto);
         plano(false, function () {
@@ -2911,7 +3398,7 @@
   };
   /* un número fijo por ejercicio, para elegir su frase de cierre */
   Reproductor.prototype.hash = function () { var s = this.datos.id || '', h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; };
-  /* ── la voz: la del móvil (las voces instaladas), como la audioguía ── */
+  /* ── la voz: la del móvil (las voces instaladas), elegida con vocesDe ── */
   Reproductor.prototype.voz = function (si) {
     this.conVoz = !!si && this.hayVoz();
     this.bVoz.setAttribute('aria-pressed', this.conVoz ? 'true' : 'false');
@@ -2924,10 +3411,12 @@
     if (!this.conVoz || !this.suena) return;
     try {
       window.speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(texto), v = window.TG_VOZ ? window.TG_VOZ.vozLocal(this.idioma) : null;
-      u.lang = (window.TG_VOZ && window.TG_VOZ.locale(this.idioma)) || VOZ_LOCALE[this.idioma] || 'es-ES';
-      if (v) u.voice = v;
-      u.rate = 0.98;
+      var u = new SpeechSynthesisUtterance(texto), v = vocesDe(this.idioma);
+      /* ninguna voz del dispositivo que valga, y no es un aparato que ponga la suya: mejor callado que robótico */
+      if (!v.voz && !v.sistema) { this.conVoz = false; this.bVoz.hidden = true; this.bVoz.setAttribute('aria-pressed', 'false'); return; }
+      u.lang = v.locale;
+      if (v.voz) u.voice = v.voz;
+      u.rate = 0.97; u.pitch = 1;
       this.hablando = true; this.vozArranco = false; this.esc.cab.hablar(60);
       var fin = function () { if (yo.uVoz === u) { yo.hablando = false; yo.esc.cab.hablar(0); } };
       u.onstart = function () { if (yo.uVoz === u) yo.vozArranco = true; };
@@ -2944,6 +3433,7 @@
   Reproductor.prototype.quitar = function () {
     this.pausar(); this.callar();
     window.removeEventListener('resize', this._medir);
+    try { if (this._voces) window.speechSynthesis.removeEventListener('voiceschanged', this._voces); } catch (e) {}
     if (this.io) this.io.disconnect();
     if (this.raiz.parentNode) this.raiz.parentNode.removeChild(this.raiz);
   };
@@ -2953,7 +3443,7 @@
 
   /* ───────────────────────── lo que sale del módulo ───────────────────────── */
   window.TG_ENTRENADOR = {
-    version: 1,
+    version: 2,
     /* ¿tiene vídeo este ejercicio? Con n (los pasos que trae su ficha), solo si son los mismos que se
        coreografiaron: si la ficha cambia de pasos, el vídeo deja de salir hasta que se revise. */
     tiene: function (id, n) { var co = Object.prototype.hasOwnProperty.call(COREO, id) ? COREO[id] : null; return !!co && (n == null || (co.pasos || []).length === n); },
@@ -2961,9 +3451,15 @@
     /* monta el vídeo de un ejercicio en una caja; devuelve el reproductor (reproducir, pausar, irA, tema, quitar) o null */
     montar: function (caja, datos, opc) { return datos && this.tiene(datos.id, (datos.pasos || []).length) ? new Reproductor(caja, datos, opc) : null; },
     textos: ENT_UI,
+    /* qué voz usaría el vídeo en este aparato para un idioma, y cuáles enseña el navegador (para saber por qué suena como suena) */
+    voces: function (idioma) {
+      var v = vocesDe(idioma);
+      return { locale: v.locale, elegida: v.voz ? String(v.voz.name) : null, sistema: v.sistema,
+        lista: v.lista.map(function (q) { return { nombre: String(q.name), lang: String(q.lang), uri: String(q.voiceURI), local: q.localService !== false, nota: notaVoz(q, v.locale.toLowerCase()) }; }) };
+    },
     /* la huella de los pasos en castellano con los que se hizo cada coreografía (la coteja tools/auditar_entrenador.js) */
     huellas: HUELLAS,
-    _: { resolver: resolver, mezclar: mezclar, clavar: clavar, armar: armar, Escenario: Escenario, Director: Director, Camara: Camara, D: D, C: C, CURVA: CURVA, COREO: COREO, MATERIAL: MATERIAL, PRESENTA: PRESENTA, PUNTOS: PUNTOS, EMO: EMO, Reproductor: Reproductor }
+    _: { resolver: resolver, mezclar: mezclar, clavar: clavar, armar: armar, Escenario: Escenario, Director: Director, Camara: Camara, D: D, C: C, CURVA: CURVA, COREO: COREO, MATERIAL: MATERIAL, PRESENTA: PRESENTA, GESTOS: GESTOS, GESTOS_DE: GESTOS_DE, Vida: Vida, bajoZapa: bajoZapa, BUSTO: BUSTO, ANCHO: ANCHO, ALTO: ALTO, PUNTOS: PUNTOS, EMO: EMO, Reproductor: Reproductor }
   };
 
 })();

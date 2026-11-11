@@ -61,6 +61,25 @@
   .mandos li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 10px; align-items: baseline; }
   .mandos kbd { justify-self: start; min-width: 44px; text-align: center; padding: 3px 8px; border-radius: 9px; border: 1.5px solid var(--linea); background: var(--tarjeta); font: 700 12.5px/1.5 var(--font-body); color: var(--tinta); }
 
+  .nuevo { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; max-width: 62ch; }
+  .nuevo li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+  .nuevo li::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--oro-vivo); transform: translateY(-1px); justify-self: center; }
+  .nuevo b { font-weight: 600; }
+  .voz-caja { display: grid; gap: 10px; padding: 14px 16px; border-radius: 18px; border: 1.5px solid var(--linea); background: var(--tarjeta); max-width: 62ch; }
+  .voz-caja strong { font-weight: 600; overflow-wrap: anywhere; }
+  .voz-caja p { font-size: 14.5px; color: var(--tinta-2); }
+  .boton { justify-self: start; min-height: 44px; padding: 0 18px; border-radius: 14px; border: 1.5px solid var(--oro-vivo); background: var(--oro-suave); color: var(--tinta); font: 600 15px/1 var(--font-body); cursor: pointer; }
+  .boton:focus-visible { outline: 3px solid var(--oro-vivo); outline-offset: 2px; }
+  .boton[disabled] { opacity: .5; cursor: default; }
+  details.voces { max-width: 62ch; font-size: 14px; }
+  details.voces summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; color: var(--tinta-2); }
+  .voces ul { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+  .voces li { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; padding: 7px 10px; border-radius: 10px; border: 1px solid var(--linea); overflow-wrap: anywhere; }
+  .voces li span { color: var(--tinta-2); font-size: 12.5px; }
+  .voces li em { font-style: normal; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 8px; border: 1px solid var(--linea); color: var(--tinta-2); }
+  .voces li.elegida { border-color: var(--oro-vivo); background: var(--oro-suave); }
+  .voces li.elegida em { border-color: var(--oro-vivo); color: var(--oro); }
+
   @media (min-width: 900px) {
     .pagina { padding-block: 34px 72px; gap: 30px; }
     .dos { grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 44px; }
@@ -93,6 +112,16 @@
         <div class="grupos" id="grupos"></div>
       </section>
 
+      <section class="estado" aria-labelledby="t-nuevo">
+        <h2 id="t-nuevo">Lo que cambia en esta versión</h2>
+        <ul class="nuevo">
+          <li><span><b>El dibujo, rehecho.</b> Contorno, sombras planas, manos con dedos, zapatillas con cordones que se doblan al pisar, muñequera. Antes eran tubos con degradado.</span></li>
+          <li><span><b>Se mueve como alguien, no como un muñeco.</b> Respira, la cabeza y el tupé llegan un instante después que el cuerpo, los brazos sueltos se balancean, reparte el peso y mira a lo que el paso nombra.</span></li>
+          <li><span><b>Gestos nuevos.</b> Se asoma por un lado y entra; saluda con la mano, con la visera o subiendo el puño; da los consejos con el índice o con la palma; y cierra con un pulgar, con los dos o sacando bíceps. Cada ejercicio tiene los suyos.</span></li>
+          <li><span><b>La voz ya no coge la robótica.</b> Abajo se ve cuál usa este teléfono.</span></li>
+        </ul>
+      </section>
+
       <section class="estado" aria-labelledby="t-estado">
         <h2 id="t-estado">Lo que hay y lo que falta</h2>
         <div class="medida">
@@ -111,8 +140,22 @@
           <li><kbd>‹ ›</kbd><span>Pasan de un paso a otro. También vale tocar el lado izquierdo o el derecho del vídeo; el centro lo pausa.</span></li>
           <li><kbd>½×</kbd><span>Lo pone a cámara lenta.</span></li>
           <li><kbd>↻</kbd><span>Lo enseña desde otro lado.</span></li>
-          <li><kbd>Voz</kbd><span>Lee cada paso con la voz del teléfono, si hay una instalada en ese idioma.</span></li>
+          <li><kbd>Voz</kbd><span>Lee cada paso con la mejor voz que el teléfono deje usar en ese idioma; las robóticas, nunca.</span></li>
         </ul>
+      </section>
+
+      <section class="estado" aria-labelledby="t-voz">
+        <h2 id="t-voz">La voz de este teléfono</h2>
+        <div class="voz-caja">
+          <div>El vídeo usará: <strong id="voz-cual">…</strong></div>
+          <p id="voz-por"></p>
+          <button class="boton" type="button" id="voz-probar">Probar esta voz</button>
+        </div>
+        <details class="voces">
+          <summary id="voz-n">Las voces que este teléfono enseña</summary>
+          <ul id="voz-lista"></ul>
+        </details>
+        <p>La voz la pone el teléfono, no la app. Un iPhone solo deja a las páginas web usar unas pocas de las suyas, y entre ellas van unas robóticas, de un sintetizador de hace más de veinte años; las voces buenas que se descargan en Ajustes no se las enseña. Para que Jérôme tenga una voz propia y natural haría falta grabarla o generarla una vez y llevar el audio dentro de la app: eso está sin decidir.</p>
       </section>
     </div>
   </div>
@@ -196,6 +239,40 @@
   Array.prototype.forEach.call(document.querySelectorAll('[data-n]'), function (n) { var v = cifras[n.getAttribute('data-n')]; if (v) n.textContent = v; });
   document.getElementById('barra').style.width = (100 * ids.length / M.total).toFixed(1) + '%';
 
-  lista(); montar(false);
+  /* la voz de este teléfono: cuál elige el vídeo y cuáles enseña el navegador */
+  var FRASE = { es: 'Hola, soy Jérôme. Vamos paso a paso.', en: 'Hello, I am Jérôme. Let us take it step by step.', fr: 'Bonjour, je suis Jérôme. Allons-y étape par étape.', de: 'Hallo, ich bin Jérôme. Gehen wir Schritt für Schritt vor.', it: 'Ciao, sono Jérôme. Andiamo passo dopo passo.', nl: 'Hallo, ik ben Jérôme. We gaan stap voor stap.', zh: '你好，我是 Jérôme。我们一步一步来。', zht: '你好，我是 Jérôme。我們一步一步來。', bg: 'Здравейте, аз съм Jérôme. Да вървим стъпка по стъпка.', pl: 'Dzień dobry, jestem Jérôme. Zróbmy to krok po kroku.' };
+  function voz() {
+    var cual = document.getElementById('voz-cual'), por = document.getElementById('voz-por'), ul = document.getElementById('voz-lista'), bot = document.getElementById('voz-probar'), v;
+    try { v = ENT.voces(lang); } catch (e) { v = null; }
+    var hay = !!v && 'speechSynthesis' in window && typeof window.SpeechSynthesisUtterance === 'function';
+    var delIdioma = hay ? v.lista.filter(function (q) { return String(q.lang).replace('_', '-').toLowerCase().slice(0, 2) === v.locale.slice(0, 2).toLowerCase(); }) : [];
+    ul.textContent = '';
+    if (!hay) { cual.textContent = 'ninguna'; por.textContent = 'Este navegador no deja leer en voz alta.'; bot.disabled = true; document.getElementById('voz-n').textContent = 'Este navegador no enseña voces'; return; }
+    if (v.elegida) { cual.textContent = v.elegida; por.textContent = 'Es la mejor de las ' + delIdioma.length + ' que el teléfono enseña en este idioma.'; }
+    else if (v.sistema) { cual.textContent = 'la que ponga el teléfono'; por.textContent = v.lista.length ? 'En este idioma el teléfono solo enseña voces robóticas (' + delIdioma.length + '). El vídeo no elige ninguna: le da el idioma y deja que ponga la suya.' : 'El teléfono aún no ha dicho qué voces tiene. El vídeo le da el idioma y deja que ponga la suya.'; }
+    else { cual.textContent = 'ninguna'; por.textContent = 'No hay ninguna voz del aparato que valga en este idioma: el botón de voz no sale.'; }
+    bot.disabled = !(v.elegida || v.sistema);
+    document.getElementById('voz-n').textContent = 'Las voces que este teléfono enseña en este idioma (' + delIdioma.length + ' de ' + v.lista.length + ')';
+    delIdioma.forEach(function (q) {
+      var li = document.createElement('li'), b = document.createElement('b'), s2 = document.createElement('span'), em = document.createElement('em');
+      b.textContent = q.nombre; s2.textContent = q.lang + ' · ' + q.uri;
+      em.textContent = q.nombre === v.elegida ? 'la elegida' : !q.local ? 'de red: no' : q.nota < 0 ? 'robótica: no' : 'vale';
+      if (q.nombre === v.elegida) li.className = 'elegida';
+      li.appendChild(b); li.appendChild(em); li.appendChild(s2); ul.appendChild(li);
+    });
+  }
+  document.getElementById('voz-probar').addEventListener('click', function () {
+    try {
+      var v = ENT.voces(lang), u = new SpeechSynthesisUtterance(FRASE[lang] || FRASE.es), todas = window.speechSynthesis.getVoices() || [];
+      window.speechSynthesis.cancel();
+      u.lang = v.locale; u.rate = 0.97;
+      if (v.elegida) for (var i = 0; i < todas.length; i++) if (todas[i].name === v.elegida && String(todas[i].lang).replace('_', '-').toLowerCase().slice(0, 2) === v.locale.slice(0, 2).toLowerCase()) { u.voice = todas[i]; break; }
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  });
+  try { if (window.speechSynthesis && window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged', voz); } catch (e) {}
+  sel.addEventListener('change', voz);
+
+  lista(); montar(false); voz();
 })();
 </script>

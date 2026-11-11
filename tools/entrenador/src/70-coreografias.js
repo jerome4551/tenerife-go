@@ -22,10 +22,10 @@
   function subeBaja(b, a, t) { t = t || [1.2, 0.3, 1.7, 0.45]; return [[b, t[0], 'empuje'], [b, t[1]], [a, t[2], 'freno'], [a, t[3]]]; }
   /* boca arriba en el suelo (la cabeza hacia −Z) y boca abajo sobre las puntas de los pies (la cabeza hacia +Z) */
   var SUPINO_SUELO = { pel: [0, 11.5, 20], giro: [0, -90, 0] };
-  var PIES_PUNTA = { punta: [0, -0.94, 0.34], arriba: [0, 0.34, 0.94] };
-  /* en tabla sobre las puntas de los pies (los tobillos en z = −100, a TOB_PUNTA del suelo: la puntera lo toca), con
+  var PIES_PUNTA = { punta: [0, -0.94, 0.34], arriba: [0, 0.34, 0.94], flex: 70 };
+  /* en tabla sobre las puntas de los pies (los tobillos en z = −100, a TOB_PUNTA del suelo: la bola del pie lo pisa y la zapatilla se dobla), con
      el cuerpo a «ang» grados del suelo */
-  var TOB_PUNTA = 17;
+  var TOB_PUNTA = 14;
   function tabla(ang, extra) {
     var s = Math.sin(ang * RAD), c = Math.cos(ang * RAD);
     return sobre({ pel: [0, TOB_PUNTA + 78 * s, -100 + 78 * c], giro: [0, 90 - ang, 0], cab: [-16, 0, 0], p: { e: 0, z: 0, c: 0 }, t: PIES_PUNTA, m: { tipo: 'abierta', prono: 90, mun: -72 } }, extra || {});
@@ -313,7 +313,7 @@
     var juntas = { a: [4.5, 5, 15], polo: [1, 0.25, -0.5] };
     COREO['flexion-diamante'] = {
       vista: [78, 28], picado: 16, rastro: 'pecho', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
-      posturas: { a: tabla(18.7, { b: juntas }), b: tabla(1.8, { b: juntas, cab: [-22, 0, 0] }) },
+      posturas: { a: tabla(20.2, { b: juntas }), b: tabla(3.2, { b: juntas, cab: [-22, 0, 0] }) },
       rep: bajaSube('b', 'a', [1.7, 0.2, 1.1, 0.5]),
       pasos: ['a', 'a', 'rep']
     };
@@ -337,7 +337,7 @@
     var manos = { a: [19, 5, 13.3], polo: [0.55, 0.25, -1] };
     COREO.flexion = {
       vista: [78, 28], picado: 16, rastro: 'pecho', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
-      posturas: { a: tabla(18.7, { b: manos }), b: tabla(-0.5, { b: manos, cab: [-24, 0, 0] }) },
+      posturas: { a: tabla(20.2, { b: manos }), b: tabla(1.0, { b: manos, cab: [-24, 0, 0] }) },
       rep: bajaSube('b', 'a', [1.6, 0.2, 1.1, 0.5]),
       pasos: ['a', 'a', 'rep', 'rep']
     };
@@ -463,7 +463,7 @@
 
   /* ══════════ CORE ══════════ */
   (function () {
-    var ang = 7.1, s = Math.sin(ang * RAD), c = Math.cos(ang * RAD);
+    var ang = 8.5, s = Math.sin(ang * RAD), c = Math.cos(ang * RAD);
     var brazos = { a: [19, 4, -100 + 121.5 * c + 24], polo: [0, -1, -0.25] };
     COREO['plancha-antebrazos'] = {
       vista: [80, 30], picado: 16, isometrico: 'a',

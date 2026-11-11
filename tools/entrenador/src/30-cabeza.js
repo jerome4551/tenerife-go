@@ -213,7 +213,7 @@
     var q = function (s) { return g.querySelector(s); };
     this.R = {
       frente: q('.tgh-frente'), perfil: q('.tgh-perfil'), espalda: q('.tgh-espalda'),
-      rasgos: q('.tgh-frente .tgh-rasgos'), tupe: q('.tgh-frente .tgh-tupe'), orejaI: q('.tgh-oreja-i'), orejaD: q('.tgh-oreja-d'), mejillas: q('.tgh-mejillas'),
+      rasgos: q('.tgh-frente .tgh-rasgos'), tupe: q('.tgh-frente .tgh-tupe'), tupeP: q('.tgh-perfil .tgh-tupe'), tupeE: q('.tgh-espalda .tgh-tupe'), orejaI: q('.tgh-oreja-i'), orejaD: q('.tgh-oreja-d'), mejillas: q('.tgh-mejillas'),
       cejaI: q('.tgh-ceja-i'), cejaD: q('.tgh-ceja-d'), cejaP: q('.tgh-ceja-p'),
       iris: Array.prototype.slice.call(g.querySelectorAll('.tgh-iris')), rubor: Array.prototype.slice.call(g.querySelectorAll('.tgh-rubor')),
       bocaF: q('.tgh-boca-fondo'), bocaD: q('.tgh-dientes'), bocaL: q('.tgh-boca-linea'), bocaR: q('.tgh-boca-rayas'), lengua: q('.tgh-lengua'),
@@ -232,6 +232,8 @@
     this.m = { aI: 1, aD: 1, bb: 0.25, cIy: 0, cIr: 0, cDy: 0, cDr: 0, mx: 0, my: 0, rubor: 0.24, sudor: 0 };
     this.boca = 'sonrisa'; this.bocaBase = 'sonrisa'; this.parp = 0; this.parpT = -1; this.prox = 1.4; this.t = 0; this.habla = 0; this.bocaT = 0;
     this.vista = ''; this.escala = 0.195;
+    /* el tupé va un instante detrás de la cabeza: dos muelles (se ladea, se estira) y de dónde venía */
+    this.peloA = new Muelle(17, 0.25); this.peloY = new Muelle(20, 0.3); this.cAnt = null; this.vF = [0, 0, 0]; this.vS = [0, 0, 0]; this.dt = 0; this.corte = true;
   }
   /* la cabeza de perfil: el cráneo, la frente, la nariz, los labios, el mentón y la mandíbula */
   var PERFIL = 'M150,50 C176,48 200,62 208,86 C211,96 212,104 211,110 C209,114 207,117 208,121 C210,128 216,138 224,147 C229,152 231,155 228,158 C225,160 218,160 214,160 C212,163 213,166 216,169 C218,171 219,173 217,175 C216,176 216,178 217,180 C218,183 216,186 213,187 C210,188 209,190 210,193 C213,199 213,205 207,209 C200,213 188,212 176,208 C162,204 150,198 142,190 C134,182 130,170 128,158 C120,156 106,150 98,140 C88,126 86,104 94,84 C104,62 126,50 150,50z';
@@ -254,11 +256,14 @@
   Cabeza.prototype.sudar = function (cuanto) { this.m.sudor = cuanto ? 1 : 0; };
   Cabeza.prototype.hablar = function (seg) { this.habla = seg ? this.t + seg : 0; if (!seg) this.boca = this.bocaBase; };
   Cabeza.prototype.letra = function (ch) { var v = visema(ch); this.boca = v || this.bocaBase; };
+  Cabeza.prototype.parpadea = function () { if (this.parpT < 0) this.parpT = 0; };
   /* un paso de tiempo: el parpadeo, la boca que habla y lo que va hacia su meta */
-  Cabeza.prototype.paso = function (dt) {
-    var v = this.v, m = this.m, k = 1 - Math.exp(-dt * 14), n;
-    this.t += dt;
-    for (n in m) v[n] += (m[n] - v[n]) * (n === 'sudor' ? 1 - Math.exp(-dt * 3) : k);
+  Cabeza.prototype.paso = function (dt, parado) {
+    var v = this.v, m = this.m, k = parado ? 1 : 1 - Math.exp(-dt * 14), n;
+    if (parado) dt = 0;
+    this.t += dt; this.dt = dt;
+    /* los ojos van de un punto a otro de un salto corto, no deslizándose */
+    for (n in m) v[n] += (m[n] - v[n]) * (n === 'sudor' ? 1 - Math.exp(-dt * 3) : (n === 'mx' || n === 'my') ? (parado ? 1 : 1 - Math.exp(-dt * 26)) : k);
     if (this.parpT < 0 && this.t > this.prox) this.parpT = 0;
     if (this.parpT >= 0) {
       this.parpT += dt; var f = this.parpT / 0.15;
@@ -285,12 +290,29 @@
       R.frente.style.display = vista === 'frente' ? '' : 'none'; R.perfil.style.display = vista === 'perfil' ? '' : 'none'; R.espalda.style.display = vista === 'espalda' ? '' : 'none';
     }
     var parp = this.parp, e = this.e, ojos = e.ojos || [1, 1];
+    /* el tupé: lo que cambia la velocidad de la cabeza (el tirón), visto en la pantalla y en unidades del dibujo */
+    var tir = [0, 0], dtp = this.dt;
+    if (this.corte || !this.cAnt || quieto()) { this.vF = [0, 0, 0]; this.vS = [0, 0, 0]; this.peloA.x = this.peloA.v = this.peloY.x = this.peloY.v = 0; this.corte = false; }
+    else if (dtp > 0) {
+      var mov = menos(E.cab, this.cAnt);
+      if (largo(mov) > 22) { this.vF = [0, 0, 0]; this.vS = [0, 0, 0]; }
+      else { var vel = por(mov, 1 / dtp); this.vF = mezcla(this.vF, vel, 1 - Math.exp(-dtp / 0.04)); this.vS = mezcla(this.vS, vel, 1 - Math.exp(-dtp / 0.18)); }
+      var tw = cam.d(menos(this.vF, this.vS)); tir = [tw[0] / this.escala, tw[1] / this.escala];
+    }
+    this.cAnt = E.cab;
+    var pelo = function (g, giro, vol, cx, cy, extra) {
+      /* al dibujo: se deshace su giro (y su volteo, de perfil) */
+      var cg = Math.cos(giro * RAD), sg = Math.sin(giro * RAD), lx = tir[0] * cg + tir[1] * sg, ly = (-tir[0] * sg + tir[1] * cg) * vol;
+      var a = yo0.peloA.paso(entre(-0.024 * lx, -6, 6), dtp), sy = 1 + yo0.peloY.paso(entre(0.0003 * ly, -0.035, 0.045), dtp);
+      pon(g, 'transform', (extra || '') + 'rotate(' + n1(a) + ' ' + cx + ' ' + cy + ') translate(0,' + n1(cy * (1 - sy)) + ') scale(1,' + n2(sy) + ')');
+    }, yo0 = this;
     if (vista === 'perfil') {
       var fl = Math.sqrt(f[0] * f[0] + f[1] * f[1]) || 1, ang = Math.atan2(f[1], f[0]) / RAD;
       var a = ang * RAD, sx = Math.sin(a), cx = Math.cos(a);
       /* tras girar, el «arriba» del dibujo es (sen, −cos); si no coincide con el de la cabeza, se voltea */
       var vol = (sx * up[0] - cx * up[1]) < 0 ? -1 : 1;
       pon(this.g, 'transform', 'translate(' + n1(pos[0]) + ',' + n1(pos[1]) + ') rotate(' + n1(ang) + ') scale(' + n2(k) + ',' + n2(k * vol) + ') translate(-150,-206)');
+      pelo(R.tupeP, ang, vol, 146, 84);
       /* el ojo que se ve: el del lado de la cámara */
       var ab = (kx > 0 ? v.aI : v.aD) * (1 - parp), aa = entre(ab, 0, 1.3);
       var clave = aa.toFixed(2);
@@ -312,7 +334,7 @@
         var s = kz < 0 ? -1 : 1, dx = -kx * 40 * s, dy = ky * 30 * s, ap = 1 - 0.22 * Math.abs(kx);
         pon(R.rasgos, 'transform', 'translate(' + n1(160 + dx) + ',' + n1(dy) + ') scale(' + n2(ap) + ',1) translate(-160,0)');
         pon(R.mejillas, 'transform', 'translate(' + n1(dx * 0.7) + ',' + n1(dy * 0.6) + ')');
-        pon(R.tupe, 'transform', 'translate(' + n1(dx * 0.3) + ',' + n1(dy * 0.2) + ')');
+        pelo(R.tupe, roll, 1, 160, 98, 'translate(' + n1(dx * 0.3) + ',' + n1(dy * 0.2) + ') ');
         pon(R.orejaI, 'transform', 'translate(' + n1(-dx * 0.42) + ',' + n1(-dy * 0.3) + ')'); pon(R.orejaD, 'transform', 'translate(' + n1(-dx * 0.42) + ',' + n1(-dy * 0.3) + ')');
         pon(R.orejaI, 'opacity', dx > 14 ? '0' : '1'); pon(R.orejaD, 'opacity', dx < -14 ? '0' : '1');
         pon(R.cejaI, 'transform', 'translate(0,' + n2(-v.cIy) + ') rotate(' + n2(v.cIr) + ' 130 104)'); pon(R.cejaD, 'transform', 'translate(0,' + n2(-v.cDy) + ') rotate(' + n2(v.cDr) + ' 190 104)');
@@ -331,7 +353,7 @@
           R.bocaF.setAttribute('d', b2.f); R.bocaClip.setAttribute('d', b2.f); R.bocaD.setAttribute('d', b2.d); R.bocaL.setAttribute('d', b2.l); R.bocaR.setAttribute('d', b2.r || '');
           R.lengua.style.display = b2.f && !b2.r ? '' : 'none';
         }
-      }
+      } else pelo(R.tupeE, roll, 1, 160, 98);
     }
     var ru = n2(v.rubor);
     if (R._ru !== ru) { R._ru = ru; R.rubor.forEach(function (gg) { gg.setAttribute('opacity', ru); }); }

@@ -15,6 +15,10 @@
  *    · cada coreografía, por dentro: las posturas que nombra existen, lo clavado se entiende, el
  *      material es de los que hay, y ninguna postura clave da un número imposible ni mete un pie
  *      bajo el suelo;
+ *    · los gestos del presentador (saluda, la visera, «¡vamos!», el consejo, el pulgar…): sus posturas
+ *      existen, ninguna mano levantada se sale del cuadro y ninguna va más deprisa de lo que se ve;
+ *    · la voz: con las voces que enseña un iPhone (las «Eloquence», robóticas), un PC o un Android,
+ *      nunca se elige una robótica ni una de red, y si no hay ninguna que valga no se ofrece;
  *    · los textos propios (TG_ENTRENADOR.textos), en los diez idiomas y con sus {huecos};
  *    · el módulo: sin eval, sin console.log, y sin innerHTML que reciba un texto de la ficha;
  *    · los enganches: el CARGA-PEREZOSA y la ruta en index.html, el precache y «red primero» en
@@ -22,7 +26,10 @@
  * 2. En Chromium, móvil emulado (320 de ancho, el más estrecho): el vídeo de CADA ejercicio, entero,
  *    cuadro a cuadro, en castellano y en otro idioma (los nueve van rotando): acaba, dura lo que
  *    tiene que durar, lo que se lee en cada paso es el paso de la ficha, palabra por palabra, no
- *    hay ningún NaN en el dibujo y nada se sale de ancho.
+ *    hay ningún NaN en el dibujo y nada se sale de ancho. Y EL MOVIMIENTO, medido en cada cuadro:
+ *    lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque Jérôme respire y
+ *    reparta el peso; nada se teletransporta de un cuadro al siguiente; respira; la cabeza y el
+ *    tupé no se pasan de vueltas; y de cerca ninguna mano se sale del cuadro.
  * 3. En la app de verdad: «Su cuerpo» → un grupo → una ficha con coreografía: el vídeo sale, no
  *    arranca solo, se pone en marcha al tocarlo, sigue al cambiar de tema, no se reinicia al
  *    guardar unas series y se quita al volver; en una ficha sin coreografía no sale nada.
@@ -90,10 +97,10 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
       let S; try { S = T.resolver(P[n]); } catch (e) { peros.push('postura ' + n + ': ' + e.message); return; }
       ['i', 'd'].forEach(k => {
         ['hom', 'cod', 'mun', 'cad', 'rod', 'tob', 'talon', 'dedosPie', 'dedos'].forEach(q => { if (!finito(S[k][q])) peros.push('postura ' + n + ': ' + q + ' ' + k + ' sin número'); });
-        /* la zapatilla, como se dibuja (20-figura.js): dos bolas, la del talón y la de la puntera, y la suela 1,7 cm más abajo; plana pisa a −2,0 */
+        /* la zapatilla, como se dibuja (bajoZapa, en 20-figura.js: el punto más bajo de su piso, que se dobla por la bola del pie): plana pisa a 0 */
         if (finito(S[k].suela) && finito(S[k].punta) && finito(S[k].arriba)) {
-          const en = (a, u) => S[k].suela[1] + S[k].punta[1] * a + S[k].arriba[1] * u, bajo = Math.min(en(-2.2, 5.0) - 5.3, en(13.8, 3.8) - 3.9) - 1.7 * Math.abs(S[k].arriba[1]);
-          if (bajo < -3.2) peros.push('postura ' + n + ': la zapatilla ' + k + ' se hunde ' + (-bajo).toFixed(1) + ' cm en el suelo');
+          const bajo = T.bajoZapa(S[k], k);
+          if (!(bajo > -1.2)) peros.push('postura ' + n + ': la zapatilla ' + k + ' se hunde ' + (-bajo).toFixed(1) + ' cm en el suelo');
         }
       });
       if (!finito(S.pel) || !finito(S.cab)) peros.push('postura ' + n + ': el tronco sin número');
@@ -101,6 +108,70 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     if (peros.length) mal.push(id + ': ' + Array.from(new Set(peros)).slice(0, 4).join('; '));
   });
   ok(!mal.length, 'las ' + ids.length + ' coreografías, por dentro: posturas, tramos, clavos, material, y ninguna postura imposible', mal.slice(0, 6));
+  /* los gestos del presentador */
+  {
+    const G = T.GESTOS, PR = T.PRESENTA, peros = [], dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+    /* la postura de un nombre (las que entran por el otro lado son las mismas, reflejadas: a efectos de prisa y de alcance, iguales) */
+    const base = n => n.replace(/^(asoma|entra)D(0?)$/, '$1$2'), K = n => T.resolver(PR[base(n)]);
+    const B = T.BUSTO, esc = B.esc * (1 + B.acerca), enX = x => T.ANCHO / 2 + x * esc, enY = y => B.oy + B.baja - (y - B.mira[1]) * esc;
+    const momentos = Object.keys(T.GESTOS_DE);
+    momentos.forEach(m => T.GESTOS_DE[m].forEach(g => { if (!G[g]) peros.push(m + ': el gesto «' + g + '» no existe'); }));
+    Object.keys(G).forEach(g => {
+      const q = G[g]; let de = q.desde, t = 0;
+      if (!PR[base(de)]) { peros.push(g + ': sale de «' + de + '», que no existe'); return; }
+      if (!Array.isArray(q.cara) || !q.cara.every(c => T.EMO[c[1]] && c[0] >= 0)) peros.push(g + ': una cara que no existe');
+      q.sec.forEach(s => {
+        if (!PR[base(s[0])]) { peros.push(g + ': postura «' + s[0] + '» no existe'); return; }
+        if (!(s[1] > 0) || (s[2] && !T.CURVA[s[2]])) peros.push(g + ': tramo «' + s[0] + '» sin duración o con una curva que no existe');
+        const A = K(de), Z = K(s[0]), cur = T.CURVA[s[2] || 'suave'], n = Math.max(1, Math.round(s[1] * 30)), entrada = /^(asoma|entra)/.test(s[0]);
+        let ant = null, prisa = 0;
+        for (let i = 0; i <= n; i++) {
+          /* la prisa de la mano, respecto al cuerpo (al entrar por un lado, el cuerpo lleva la suya) */
+          const X = de === s[0] ? A : T.mezclar(A, Z, cur(i / n)), pts = [X.i.mun, X.d.mun].map(p => [p[0] - X.pel[0], p[1] - X.pel[1], p[2] - X.pel[2]]);
+          if (ant) pts.forEach((p, j) => { prisa = Math.max(prisa, dist(p, ant[j])); });
+          ant = pts;
+          /* una mano levantada, dentro del cuadro (menos mientras entra por un lado) */
+          if (!entrada) ['i', 'd'].forEach(k => {
+            const L = X[k]; if (L.mun[1] < 104) return;
+            const al = X.S.m[k].c > 0.6 ? 9 : 16, x = enX(L.mun[0] + L.mano.dir[0] * al), y = enY(L.mun[1] + L.mano.dir[1] * al);
+            if (x < 4 || x > T.ANCHO - 4 || y < 56) peros.push(g + ': en «' + s[0] + '» la mano ' + k + ' se sale del cuadro (' + x.toFixed(0) + ', ' + y.toFixed(0) + ')');
+          });
+        }
+        /* más de 14 cm en un treintavo de segundo (4 m/s) ya no se ve: es un salto */
+        if (prisa > 14) peros.push(g + ': hacia «' + s[0] + '» la mano va a ' + prisa.toFixed(1) + ' cm por cuadro');
+        de = s[0]; t += s[1];
+      });
+      if (t > 3.2) peros.push(g + ': dura ' + t.toFixed(2) + ' s');
+    });
+    ok(!peros.length && momentos.length === 3 && momentos.every(m => T.GESTOS_DE[m].length >= 2), 'los gestos del presentador (' + Object.keys(G).length + '): sus posturas y sus caras existen, las manos no se salen del cuadro ni van a saltos', Array.from(new Set(peros)).slice(0, 6));
+  }
+  /* la voz: qué elige con las voces que enseña cada aparato */
+  {
+    const con = (ua, voces) => { const c = { window: { speechSynthesis: { getVoices: () => voces } }, navigator: { userAgent: ua }, document: {}, Math, Object, Array, JSON, String, Number, RegExp, Error, console: { log() {} } }; vm.runInNewContext(mod, c); return c.window.TG_ENTRENADOR; };
+    const IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1';
+    const PC = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
+    const ANDROID = 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36';
+    const elo = lang => ['Eddy', 'Flo', 'Grandma', 'Grandpa', 'Reed', 'Rocko', 'Sandy', 'Shelley'].map(n => ({ name: n + ' (' + lang + ')', lang, voiceURI: 'com.apple.eloquence.' + lang + '.' + n, localService: true }));
+    const v = (name, lang, uri, local) => ({ name, lang, voiceURI: uri, localService: local !== false });
+    const monica = v('Mónica', 'es-ES', 'com.apple.voice.compact.es-ES.Monica'), jorge = v('Jorge', 'es-ES', 'com.apple.voice.compact.es-ES.Jorge');
+    /* [aparato, las voces que enseña, idioma, qué voz se espera (null: ninguna elegida), ¿que ponga el sistema la suya?] */
+    const casos = [
+      ['un iPhone que solo enseña las robóticas', IPHONE, elo('es-ES').concat(elo('es-MX')), 'es', null, true],
+      ['un iPhone con las robóticas y Mónica', IPHONE, elo('es-ES').concat([monica]), 'es', 'Mónica', false],
+      ['un iPhone con Mónica y Jorge (a igual calidad, la de hombre)', IPHONE, elo('es-ES').concat([monica, jorge]), 'es', 'Jorge', false],
+      ['un iPhone con una voz premium', IPHONE, elo('es-ES').concat([jorge, v('Marisol (Premium)', 'es-ES', 'com.apple.voice.premium.es-ES.Marisol')]), 'es', 'Marisol (Premium)', false],
+      ['un iPhone que aún no ha dicho qué voces tiene', IPHONE, [], 'es', null, true],
+      ['un iPhone, en inglés, con robóticas y de broma', IPHONE, elo('en-GB').concat(elo('en-US'), [v('Zarvox', 'en-US', 'com.apple.speech.synthesis.voice.Zarvox'), v('Bad News', 'en-US', 'com.apple.speech.synthesis.voice.BadNews')]), 'en', null, true],
+      ['un iPhone sin ninguna voz en búlgaro', IPHONE, elo('es-ES').concat([monica]), 'bg', null, false],
+      ['un PC con una voz de red y una del sistema', PC, [v('Google español', 'es-ES', 'Google español', false), v('Microsoft Helena - Spanish (Spain)', 'es-ES', 'Microsoft Helena - Spanish (Spain)')], 'es', 'Microsoft Helena - Spanish (Spain)', false],
+      ['un PC que solo tiene voces de red', PC, [v('Google español', 'es-ES', 'Google español', false)], 'es', null, false],
+      ['un Android', ANDROID, [v('español España', 'es_ES', 'español España'), v('English United Kingdom', 'en_GB', 'English United Kingdom')], 'es', 'español España', false]
+    ];
+    const malas = [];
+    casos.forEach(c => { let r; try { r = con(c[1], c[2]).voces(c[3]); } catch (e) { malas.push(c[0] + ': ' + e.message); return; } if (r.elegida !== c[4] || r.sistema !== c[5]) malas.push(c[0] + ': elige ' + JSON.stringify(r.elegida) + (r.sistema ? ' (la del sistema)' : '')); });
+    ok(!malas.length, 'la voz (' + casos.length + ' aparatos de prueba): nunca una robótica («Eloquence») ni una de red; si el iPhone no enseña otra, pone él la suya; si no hay ninguna que valga, no se ofrece', malas);
+    ok(!/TG_VOZ\.vozLocal/.test(mod), 'el vídeo ya no coge «la primera voz del idioma» (TG_VOZ.vozLocal): elige la suya');
+  }
   /* los textos propios */
   const filas = Object.keys(E.textos), cojos = [];
   filas.forEach(k => {
@@ -147,7 +218,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     await pg.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
     const total = await pg.evaluate(l => window.preparar(l), LANGS);
     info('datos de ' + total + ' ejercicios');
-    const peros = []; let pasados = 0, cuadros = 0;
+    const peros = [], gestos = {}, tope = {}; let pasados = 0, cuadros = 0;
     for (let i = 0; i < ids.length; i++) {
       const id = ids[i];
       for (const l of ['es', LANGS[1 + (i % 9)]]) {
@@ -164,11 +235,25 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         if (r.nodos < 40) q.push('el dibujo, casi vacío (' + r.nodos + ' nodos)');
         if (r.ancho > r.vista) q.push('se sale de ancho: ' + r.ancho + ' > ' + r.vista);
         if (r.modos.indexOf('busto') < 0) q.push('sin plano de cerca');
+        /* el movimiento */
+        const mv = r.mov; r.gestos.forEach(g => { gestos[g] = (gestos[g] || 0) + 1; });
+        if (!(mv.clavo <= 0.02)) q.push('lo clavado se mueve ' + mv.clavo + ' cm (' + mv.clavoEn + ')');
+        if (!(mv.salto <= 14)) q.push('el cuerpo da un salto de ' + mv.salto + ' cm en un cuadro (' + mv.saltoEn + ')');
+        if (!(mv.saltoM <= 36)) q.push('una mano o un pie da un salto de ' + mv.saltoM + ' cm en un cuadro (' + mv.saltoMEn + ')');
+        if (!(mv.aireMax - mv.aireMin > 0.8)) q.push('no respira');
+        if (!(mv.cabRep <= 4.5 && mv.cabBusto <= 10.5 && mv.pelo <= 11 && mv.brazo <= 17)) q.push('un muelle se pasa: cabeza ' + mv.cabRep + '° en la repetición y ' + mv.cabBusto + '° de cerca, tupé ' + mv.pelo + '°, brazo ' + mv.brazo + '°');
+        if (mv.fuera) q.push('de cerca, una mano se sale del cuadro (' + mv.fuera + ' cuadros)');
+        ['clavo', 'salto', 'saltoM', 'cabRep', 'cabBusto', 'pelo'].forEach(k => { tope[k] = Math.max(tope[k] || 0, mv[k]); });
         if (q.length) peros.push(id + ' (' + l + '): ' + q.join('; ')); else pasados++;
         cuadros += r.cuadros;
       }
     }
     ok(!peros.length && pasados === ids.length * 2, 'los ' + ids.length + ' vídeos, enteros, en castellano y en otro idioma (' + pasados + ' pases, ' + cuadros + ' cuadros): acaban, duran lo suyo, se lee el paso de la ficha palabra por palabra, sin NaN y sin salirse de ancho', peros.slice(0, 8));
+    info('el movimiento, lo más de todo: lo clavado se mueve ' + tope.clavo + ' cm; el cuerpo, ' + tope.salto + ' cm en un cuadro (a 30 por segundo); una mano, ' + tope.saltoM + ' cm; la cabeza cabecea ' + tope.cabRep + '° en una repetición y ' + tope.cabBusto + '° al entrar; el tupé, ' + tope.pelo + '°');
+    const delMov = peros.filter(p => /clavado|salto|respira|muelle|sale del cuadro/.test(p));
+    ok(!delMov.length, 'el movimiento, medido en cada cuadro de los ' + ids.length + ' vídeos: lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque respire y reparta el peso; nada se teletransporta; respira; los muelles no se pasan; de cerca ninguna mano se sale', delMov.slice(0, 6));
+    const faltan = []; ['cabecera', 'cierre'].forEach(mo => T.GESTOS_DE[mo].forEach(g => { if (!gestos[mo + ':' + g]) faltan.push(mo + ':' + g); }));
+    ok(!faltan.length && Object.keys(gestos).every(g => /^(cabecera|cierre|consejo):/.test(g)), 'los gestos se reparten: cada ejercicio tiene el suyo en la cabecera y en el cierre, y salen todos (' + Object.keys(gestos).map(g => g.split(':')[1] + ' ' + gestos[g]).join(', ') + ')', faltan);
     /* con «reducir movimiento»: se monta y se pasa igual */
     const ctx2 = await nav.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
     const pg2 = await ctx2.newPage(); vigila(pg2);

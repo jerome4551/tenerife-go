@@ -21,8 +21,11 @@
     this.cab = new Cabeza(this.defs, this.fig.u);
     this.material = [];        /* las piezas de material en escena */
     this.orden = '';
-    this.sombra = crear('ellipse', { fill: '#1a1408', opacity: 0.24 }, this.sombras);
-    this.sombra2 = crear('ellipse', { fill: '#1a1408', opacity: 0.18 }, this.sombras);
+    /* las sombras: una mancha suave bajo el cuerpo y otra, más prieta, bajo cada pie que pisa */
+    var gs = crear('radialGradient', { id: this.fig.u + '-somb', cx: 0.5, cy: 0.5, r: 0.5 }, this.defs);
+    this.sombTintas = [[0, 0.46], [0.5, 0.26], [1, 0]].map(function (q) { return crear('stop', { offset: q[0], 'stop-color': '#1a1408', 'stop-opacity': q[1] }, gs); });
+    this.sombra = crear('ellipse', { fill: 'url(#' + this.fig.u + '-somb)' }, this.sombras);
+    this.pisada = { i: crear('ellipse', { fill: 'url(#' + this.fig.u + '-somb)' }, this.sombras), d: crear('ellipse', { fill: 'url(#' + this.fig.u + '-somb)' }, this.sombras) };
     this.tarima = crear('ellipse', { fill: 'rgba(255,255,255,.16)', stroke: 'rgba(255,255,255,.35)', 'stroke-width': 1 }, this.suelo);
     this.nombreAmb = ''; this.tema = 'dia';
   }
@@ -62,8 +65,14 @@
     var dx = cabS[0] - pieS[0], dy = cabS[1] - pieS[1], l2 = Math.sqrt(dx * dx + dy * dy);
     var k = 1 / (1 + alto / 70), rx = Math.max(19 * cam.esc, l2 * 0.56) * k, ry = Math.max(22 * cam.esc * Math.sin(cam.picado * RAD), 4) * k;
     var cx = n1((cabS[0] + pieS[0]) / 2), cy = n1((cabS[1] + pieS[1]) / 2);
-    pon(this.sombra, 'cx', cx); pon(this.sombra, 'cy', cy); pon(this.sombra, 'rx', n1(rx)); pon(this.sombra, 'ry', n1(ry)); pon(this.sombra, 'opacity', n2(0.24 * k));
-    pon(this.sombra2, 'cx', cx); pon(this.sombra2, 'cy', cy); pon(this.sombra2, 'rx', n1(rx * 0.6)); pon(this.sombra2, 'ry', n1(ry * 0.6)); pon(this.sombra2, 'opacity', n2(0.2 * k));
+    pon(this.sombra, 'cx', cx); pon(this.sombra, 'cy', cy); pon(this.sombra, 'rx', n1(rx * 1.3)); pon(this.sombra, 'ry', n1(ry * 1.45)); pon(this.sombra, 'opacity', n2(0.74 * k));
+    for (var kk = 0; kk < 2; kk++) {
+      var Lq = E[LADOS[kk]], ps = this.pisada[LADOS[kk]], hq = Math.min(Lq.suela[1], Lq.suela[1] + Lq.punta[1] * 12) - sy;
+      if (hq > 7 || hq < -4) { pon(ps, 'opacity', '0'); continue; }
+      var cq = cam.p([Lq.suela[0] + Lq.punta[0] * 6.5, sy, Lq.suela[2] + Lq.punta[2] * 6.5]), d2 = cam.d([Lq.punta[0], 0, Lq.punta[2]]), lq = Math.sqrt(d2[0] * d2[0] + d2[1] * d2[1]);
+      pon(ps, 'cx', n1(cq[0])); pon(ps, 'cy', n1(cq[1] + 1)); pon(ps, 'rx', n1((7 + 9 * lq) * cam.esc)); pon(ps, 'ry', n1(Math.max(2.4, (3.5 + 7 * Math.sin(cam.picado * RAD)) * cam.esc * 0.62)));
+      pon(ps, 'opacity', n2(0.95 * entre(1 - hq / 7, 0, 1)));
+    }
     /* la tarima y el horizonte del ambiente siguen a la cámara */
     var o = cam.p([cam.mira[0], 0, cam.mira[2]]), R = 118 * cam.esc;
     pon(this.tarima, 'cx', n1(o[0])); pon(this.tarima, 'cy', n1(o[1])); pon(this.tarima, 'rx', n1(R)); pon(this.tarima, 'ry', n1(Math.max(6, R * Math.sin(cam.picado * RAD))));
@@ -192,7 +201,7 @@
     this.fondo.innerHTML = '<g class="tge-a-cielo">' + A.cielo + '</g><g class="tge-a-lejos">' + A.lejos + '</g><g class="tge-a-suelo">' + A.suelo + '</g>';
     this.tarima.setAttribute('fill', nombre === 'gimnasio' ? 'rgba(255,255,255,.07)' : tema === 'noche' ? 'rgba(255,255,255,.06)' : 'rgba(255,255,255,.2)');
     this.tarima.setAttribute('stroke', nombre === 'gimnasio' || tema === 'noche' ? 'rgba(255,255,255,.16)' : 'rgba(255,255,255,.5)');
-    this.sombra.setAttribute('fill', tema === 'noche' || nombre === 'gimnasio' ? '#000' : '#4A2C12'); this.sombra2.setAttribute('fill', tema === 'noche' || nombre === 'gimnasio' ? '#000' : '#4A2C12');
+    this.sombTintas.forEach(function (q) { q.setAttribute('stop-color', tema === 'noche' || nombre === 'gimnasio' ? '#000' : '#4A2C12'); });
     this.ajustarAmbiente();
   };
   Escenario.prototype.ajustarAmbiente = function () {

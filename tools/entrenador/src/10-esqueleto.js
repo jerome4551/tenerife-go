@@ -37,17 +37,19 @@
     return { u: [s * se * sz, -ce, se * cz], b0: [s * ce * sz, se, ce * cz] };
   }
 
+  /* el gesto de la mano, en números: cuánto se cierran los dedos (0, abierta; 1, puño), cuánto el índice,
+     cuánto se abren en abanico y cuánto se levanta el pulgar. Así un gesto pasa a otro poco a poco. */
+  var GESTO = { abierta: [0.04, 0.04, 1, 0], plana: [0.03, 0.03, 0.12, 0], suelta: [0.3, 0.26, 0.3, 0], puno: [1, 1, 0.2, 0], indice: [1, 0, 0.2, 0], pulgar: [1, 1, 0.2, 1] };
   /* el pie plantado: [x, z] es donde cae el tobillo; abre, cuánto apunta hacia fuera; talon, cuánto
      se levanta el talón (gira sobre la bola del pie); alto, si pisa sobre algo; rumbo, el del cuerpo */
   function piePlantado(k, f, rumbo) {
     var s = signo(k), ang = (rumbo || 0) + s * (f.abre || 0);
     var pt = [Math.sin(ang * RAD), 0, Math.cos(ang * RAD)], y0 = f.alto || 0, t = (f.talon || 0) * RAD;
-    /* de puntillas, la zapatilla (rígida) gira sobre la bola: sube lo justo para que la puntera no se hunda */
-    var sube = t > 0 ? 2.1 * (1 - Math.cos(t)) + 1.8 * Math.sin(t) : 0;
-    var bola = [f.suelo[0] + pt[0] * D.bola, y0 + sube, f.suelo[1] + pt[2] * D.bola];
+    /* de puntillas gira sobre la bola, y la zapatilla se dobla por ahí: el antepié sigue plano en el suelo */
+    var bola = [f.suelo[0] + pt[0] * D.bola, y0, f.suelo[1] + pt[2] * D.bola];
     var atras = por(pt, -1), arriba = [0, 1, 0];
     var tob = mas(bola, mas(por(mas(por(atras, Math.cos(t)), por(arriba, Math.sin(t))), D.bola), por(mas(por(arriba, Math.cos(t)), por(pt, Math.sin(t))), D.tobillo)));
-    return { tob: tob, punta: unidad(mas(por(pt, Math.cos(t)), por(arriba, -Math.sin(t)))), arriba: unidad(mas(por(arriba, Math.cos(t)), por(pt, Math.sin(t)))) };
+    return { tob: tob, punta: unidad(mas(por(pt, Math.cos(t)), por(arriba, -Math.sin(t)))), arriba: unidad(mas(por(arriba, Math.cos(t)), por(pt, Math.sin(t)))), flex: Math.max(0, f.talon || 0) };
   }
 
   /* De la postura escrita al estado canónico: la pelvis, los ángulos de la columna y, de cada
@@ -94,7 +96,8 @@
       }
       /* ── la mano ── */
       var m = deLado(P, 'm', k) || {};
-      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0 };
+      var gm = GESTO[m.tipo] || GESTO.suelta;
+      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0, c: gm[0], ci: gm[1], ab: gm[2], pu: gm[3] };
       /* ── la pierna ── */
       var q = deLado(P, 'p', k) || { suelo: [s * D.caderaX, 0], abre: 6 };
       var cad = mas(S.p, aplicar(S.B, [s * D.caderaX, 0, 0]));
@@ -112,7 +115,7 @@
       }
       /* ── el pie: plantado (dos vectores del mundo) o suelto (el ángulo del tobillo) ── */
       var t = deLado(P, 't', k) || {};
-      S.t[k] = pie ? { punta: pie.punta, arriba: pie.arriba } : (t.punta ? { punta: unidad(t.punta), arriba: unidad(t.arriba || [0, 1, 0]) } : { tob: t.tob == null ? 8 : t.tob });
+      S.t[k] = pie ? { punta: pie.punta, arriba: pie.arriba, flex: pie.flex } : (t.punta ? { punta: unidad(t.punta), arriba: unidad(t.arriba || [0, 1, 0]), flex: t.flex || 0 } : { tob: t.tob == null ? 8 : t.tob, flex: t.flex || 0 });
     });
     return S;
   }
@@ -150,9 +153,8 @@
       L.cod = mas(L.hom, por(uw, D.brazo)); L.mun = mas(L.cod, por(lw, D.antebrazo));
       L.uw = uw; L.lw = lw;
       /* el frente del brazo (el bíceps): hacia donde se dobla el codo */
-      var fb = sinParte(lw, uw);
-      if (largo(fb) < 0.06) fb = S.b[k].b ? aplicar(T.Bt, S.b[k].b) : sinParte(aplicar(T.Bt, [0, 0, 1]), uw);
-      L.frenteBrazo = unidad(fb, [0, 0, 1]);
+      var fb = sinParte(lw, uw), fb0 = unidad(sinParte(S.b[k].b ? aplicar(T.Bt, S.b[k].b) : aplicar(T.Bt, [0, 0, 1]), uw), [0, 0, 1]), wb = entre((largo(fb) - 0.04) / 0.3, 0, 1);
+      L.frenteBrazo = unidad(mas(por(unidad(fb, fb0), wb), por(fb0, 1 - wb)), fb0);
       var M = manoDe(k, uw, lw, S.b[k].b ? aplicar(T.Bt, S.b[k].b) : null, S.m[k]);
       L.mano = M; L.agarre = mas(L.mun, por(M.dir, D.mano)); L.dedos = mas(L.mun, por(M.dir, D.dedos));
       L.cad = mas(S.p, aplicar(S.B, [s * D.caderaX, 0, 0]));
@@ -160,9 +162,8 @@
       L.rod = mas(L.cad, por(qu, D.muslo)); L.tob = mas(L.rod, por(ql, D.pierna));
       L.qu = qu; L.ql = ql;
       /* el frente del muslo (el cuádriceps): al contrario de donde se dobla la rodilla */
-      var fm = sinParte(por(ql, -1), qu);
-      if (largo(fm) < 0.06) fm = S.q[k].b ? aplicar(S.B, S.q[k].b) : sinParte(aplicar(S.B, [0, 0, 1]), qu);
-      L.frenteMuslo = unidad(fm, [0, 0, 1]);
+      var fm = sinParte(por(ql, -1), qu), fm0 = unidad(sinParte(S.q[k].b ? aplicar(S.B, S.q[k].b) : aplicar(S.B, [0, 0, 1]), qu), [0, 0, 1]), wm = entre((largo(fm) - 0.04) / 0.3, 0, 1);
+      L.frenteMuslo = unidad(mas(por(unidad(fm, fm0), wm), por(fm0, 1 - wm)), fm0);
       var t = S.t[k], punta, arriba;
       if (t.punta) { punta = t.punta; arriba = t.arriba; }
       else {
@@ -174,10 +175,9 @@
         var a = (t.tob || 0) * RAD;
         punta = unidad(mas(por(fr, Math.cos(a)), por(ql, Math.sin(a)))); arriba = unidad(mas(por(ql, -Math.cos(a)), por(fr, Math.sin(a))));
       }
-      var fp = sinParte(qu, ql);
-      if (largo(fp) < 0.06) fp = sinParte(L.frenteMuslo, ql);
-      L.frentePierna = unidad(fp, [0, 0, 1]);
-      L.punta = punta; L.arriba = arriba;
+      var fp = sinParte(qu, ql), fp0 = unidad(sinParte(L.frenteMuslo, ql), [0, 0, 1]), wp = entre((largo(fp) - 0.04) / 0.3, 0, 1);
+      L.frentePierna = unidad(mas(por(unidad(fp, fp0), wp), por(fp0, 1 - wp)), fp0);
+      L.punta = punta; L.arriba = arriba; L.flex = t.flex || 0;
       L.suela = menos(L.tob, por(arriba, D.tobillo));
       L.talon = menos(L.suela, por(punta, D.talon)); L.dedosPie = mas(L.suela, por(punta, D.punta));
     });
@@ -195,13 +195,15 @@
       S.b[k] = { u: arco(a.b[k].u, b.b[k].u, t), l: arco(a.b[k].l, b.b[k].l, t), b: a.b[k].b && b.b[k].b ? unidad(mezcla(a.b[k].b, b.b[k].b, t)) : (a.b[k].b || b.b[k].b) };
       S.q[k] = { u: arco(a.q[k].u, b.q[k].u, t), l: arco(a.q[k].l, b.q[k].l, t), b: a.q[k].b && b.q[k].b ? unidad(mezcla(a.q[k].b, b.q[k].b, t)) : (a.q[k].b || b.q[k].b) };
       var ma = a.m[k], mb = b.m[k];
-      S.m[k] = { tipo: t < 0.5 ? ma.tipo : mb.tipo, prono: mezclaN(ma.prono, mb.prono, t), mun: mezclaN(ma.mun, mb.mun, t), lat: mezclaN(ma.lat, mb.lat, t) };
+      S.m[k] = { tipo: t < 0.5 ? ma.tipo : mb.tipo, prono: mezclaN(ma.prono, mb.prono, t), mun: mezclaN(ma.mun, mb.mun, t), lat: mezclaN(ma.lat, mb.lat, t),
+                 c: mezclaN(ma.c, mb.c, t), ci: mezclaN(ma.ci, mb.ci, t), ab: mezclaN(ma.ab, mb.ab, t), pu: mezclaN(ma.pu, mb.pu, t) };
       var ta = a.t[k], tb = b.t[k];
-      if (ta.punta && tb.punta) S.t[k] = { punta: arco(ta.punta, tb.punta, t), arriba: arco(ta.arriba, tb.arriba, t) };
+      var fx = mezclaN(ta.flex || 0, tb.flex || 0, t);
+      if (ta.punta && tb.punta) S.t[k] = { punta: arco(ta.punta, tb.punta, t), arriba: arco(ta.arriba, tb.arriba, t), flex: fx };
       else if (ta.punta || tb.punta) {
         /* de plantado a suelto (o al revés): por los vectores del mundo de cada extremo */
-        S.t[k] = { punta: arco(A[k].punta, Bb[k].punta, t), arriba: arco(A[k].arriba, Bb[k].arriba, t) };
-      } else S.t[k] = { tob: mezclaN(ta.tob, tb.tob, t) };
+        S.t[k] = { punta: arco(A[k].punta, Bb[k].punta, t), arriba: arco(A[k].arriba, Bb[k].arriba, t), flex: fx };
+      } else S.t[k] = { tob: mezclaN(ta.tob, tb.tob, t), flex: fx };
     });
     return armar(S);
   }

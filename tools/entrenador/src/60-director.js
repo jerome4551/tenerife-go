@@ -46,14 +46,66 @@
     gluteos: function (E) { return mas(E.pel, aplicar(E.Bp, [0, -2, -12])); }, cadera: function (E) { return E.pel; }, barbilla: function (E) { return mas(E.cab, aplicar(E.Bc, [0, 1, 9])); }
   };
 
-  /* las posturas del presentador (el busto, de frente): saluda, da un consejo, levanta el pulgar */
+  /* ── el presentador (el busto, de frente) ──
+     Las posturas clave de sus gestos. Se escriben como las de un ejercicio; lo que no se dice, cuelga suelto. */
   var PRESENTA = {
     listo: { m: { tipo: 'suelta' } },
-    saluda1: { cab: [0, 0, -5], bi: { e: 148, z: 80, g: 0, c: 58 }, mi: { tipo: 'abierta', prono: 0 }, md: { tipo: 'suelta' } },
-    saluda2: { cab: [0, 0, -5], bi: { e: 148, z: 80, g: 0, c: 96 }, mi: { tipo: 'abierta', prono: 0 }, md: { tipo: 'suelta' } },
-    consejo: { cab: [2, 0, 4], bi: { e: 42, z: 36, g: 0, c: 118 }, mi: { tipo: 'indice', prono: 0 }, md: { tipo: 'suelta' } },
-    pulgar: { cab: [0, 0, 5], bi: { e: 46, z: 40, g: 0, c: 104 }, mi: { tipo: 'pulgar', prono: 0 }, md: { tipo: 'suelta' } }
+    /* se asoma por un lado, ladeado (así espera en la portada); se recoge un poco, entra pasándose y se endereza */
+    asoma: { pel: [-60, D.pelvis - 1, 0], giro: [0, 0, 21], cab: [-2, 6, 7], hom: { i: [1.5, 0], d: [0, 0] }, m: { tipo: 'suelta' } },
+    asoma0: { pel: [-65, D.pelvis - 2, 0], giro: [0, 0, 25], cab: [-3, 8, 9], hom: { i: [2, 0], d: [0, 0] }, m: { tipo: 'suelta' } },
+    entra: { pel: [5, D.pelvis, 0], giro: [0, 0, -5], cab: [0, 0, -3], m: { tipo: 'suelta' } },
+    /* la misma entrada, con la mano ya subiendo: llega saludando */
+    entraS: { pel: [5, D.pelvis, 0], giro: [0, 0, -5], cab: [0, 0, -3], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 70, z: 48, g: 0, c: 118 }, mi: { tipo: 'abierta', prono: 0 }, md: { tipo: 'suelta' } },
+    /* saluda con la mano: el antebrazo va y viene, y la muñeca llega un poco después */
+    saluda1: { cab: [-2, 0, 5], col: [0, 2.5, 0], hom: { i: [2.4, 0], d: [0, 0] }, bi: { e: 126, z: 66, g: 0, c: 46 }, mi: { tipo: 'abierta', prono: 0, lat: -13 }, md: { tipo: 'suelta' } },
+    saluda2: { cab: [-2, 0, 7], col: [0, 3.5, 0], hom: { i: [2.8, 0], d: [0, 0] }, bi: { e: 122, z: 66, g: 0, c: 88 }, mi: { tipo: 'abierta', prono: 0, lat: 13 }, md: { tipo: 'suelta' } },
+    /* el saludo de visera: sube el codo, la mano plana a la ceja, y sale */
+    visera0: { cab: [0, -3, 2], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 58, z: 58, g: 24, c: 104 }, mi: { tipo: 'plana', prono: -60 }, md: { tipo: 'suelta' } },
+    visera1: { cab: [-3, -5, 4], hom: { i: [2, 0], d: [0, 0] }, bi: { e: 80, z: 50, g: 30, c: 150 }, mi: { tipo: 'plana', prono: -90 }, md: { tipo: 'suelta' } },
+    visera2: { cab: [-5, 4, 5], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 84, z: 56, g: 20, c: 104 }, mi: { tipo: 'plana', prono: -70 }, md: { tipo: 'suelta' } },
+    /* «¡vamos!»: recoge el puño y lo sube */
+    vamos0: { pel: [0, D.pelvis - 3.2, 0], giro: [0, 5, 0], cab: [5, 0, 0], bi: { e: 26, z: 26, g: 0, c: 104 }, mi: { tipo: 'puno', prono: -20 }, md: { tipo: 'suelta' } },
+    vamos1: { pel: [0, D.pelvis + 1.6, 0], giro: [0, -4, 0], col: [-2, 0, 0], cab: [-7, 0, 4], hom: { i: [3, 0], d: [0, 0] }, bi: { e: 100, z: 52, g: 0, c: 122 }, mi: { tipo: 'puno', prono: -20 }, md: { tipo: 'puno' } },
+    vamos2: { cab: [-3, 0, 3], hom: { i: [1.6, 0], d: [0, 0] }, bi: { e: 90, z: 52, g: 0, c: 114 }, mi: { tipo: 'puno', prono: -20 }, md: { tipo: 'suelta' } },
+    /* un consejo: el índice arriba, y lo menea */
+    consejo0: { cab: [3, 0, 0], bi: { e: 24, z: 30, g: 0, c: 92 }, mi: { tipo: 'indice', prono: 0 }, md: { tipo: 'suelta' } },
+    consejo: { cab: [2, 0, 4], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 42, z: 36, g: 0, c: 118 }, mi: { tipo: 'indice', prono: 0 }, md: { tipo: 'suelta' } },
+    consejoA: { cab: [2, 3, 5], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 43, z: 36, g: 0, c: 118 }, mi: { tipo: 'indice', prono: 0, lat: 15 }, md: { tipo: 'suelta' } },
+    consejoB: { cab: [2, -3, 3], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 43, z: 36, g: 0, c: 118 }, mi: { tipo: 'indice', prono: 0, lat: -15 }, md: { tipo: 'suelta' } },
+    /* o lo explica con la palma abierta, hacia arriba */
+    explica0: { cab: [3, 0, 0], bi: { e: 18, z: 26, g: 0, c: 72 }, mi: { tipo: 'suelta', prono: -50 }, md: { tipo: 'suelta' } },
+    explica: { cab: [1, 4, 4], col: [0, 2, 0], hom: { i: [1.4, 0], d: [0, 0] }, bi: { e: 34, z: 34, g: 0, c: 108 }, mi: { tipo: 'abierta', prono: -90 }, md: { tipo: 'suelta' } },
+    /* el pulgar arriba: lo recoge, lo saca pasándose y lo asienta */
+    pulgar0: { cab: [3, 0, 0], bi: { e: 22, z: 26, g: 0, c: 86 }, mi: { tipo: 'puno', prono: 0 }, md: { tipo: 'suelta' } },
+    pulgar1: { cab: [-3, 0, 7], hom: { i: [2.6, 0], d: [0, 0] }, bi: { e: 56, z: 42, g: 0, c: 110 }, mi: { tipo: 'pulgar', prono: 0 }, md: { tipo: 'suelta' } },
+    pulgar: { cab: [0, 0, 5], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 46, z: 40, g: 0, c: 104 }, mi: { tipo: 'pulgar', prono: 0 }, md: { tipo: 'suelta' } },
+    /* los dos pulgares */
+    dos0: { cab: [4, 0, 0], b: { e: 20, z: 28, g: 0, c: 84 }, m: { tipo: 'puno', prono: 0 } },
+    dos1: { cab: [-5, 0, 0], hom: [2.6, 0], b: { e: 55, z: 50, g: 0, c: 110 }, m: { tipo: 'pulgar', prono: 0 } },
+    dos: { cab: [-2, 0, 0], hom: [1.2, 0], b: { e: 46, z: 47, g: 0, c: 105 }, m: { tipo: 'pulgar', prono: 0 } },
+    /* saca bíceps */
+    fuerza0: { cab: [3, 0, 0], b: { e: 50, z: 76, g: 0, c: 132 }, m: { tipo: 'puno', prono: 0 } },
+    fuerza1: { cab: [-4, 0, 0], hom: [2.4, 0], b: { e: 95, z: 84, g: 0, c: 130 }, m: { tipo: 'puno', prono: 0 } },
+    fuerza: { cab: [-2, 0, 0], hom: [1.4, 0], b: { e: 92, z: 84, g: 0, c: 118 }, m: { tipo: 'puno', prono: 0 } }
   };
+  /* los gestos: de qué postura salen, la secuencia ([postura, segundos, curva]) y la cara de cada momento ([segundo, cara]).
+     Como en el dibujo animado de siempre: antes del gesto, lo recoge; llega pasándose un poco; y se asienta. */
+  var GESTOS = {
+    saludo: { desde: 'asoma', sec: [['asoma0', 0.17, 'sale'], ['entraS', 0.42, 'suave'], ['saluda1', 0.3, 'suave'], ['saluda2', 0.2], ['saluda1', 0.2], ['saluda2', 0.2], ['saluda1', 0.2], ['saluda2', 0.2], ['listo', 0.6]],
+      cara: [[0, 'ilusion'], [2.3, 'contento']] },
+    visera: { desde: 'asomaD', sec: [['asomaD0', 0.17, 'sale'], ['entraD', 0.4, 'suave'], ['listo', 0.2], ['visera0', 0.3], ['visera1', 0.17, 'sale'], ['visera1', 0.32], ['visera2', 0.17, 'sale'], ['visera2', 0.4], ['listo', 0.6]],
+      cara: [[0, 'ilusion'], [1.1, 'guino'], [2.1, 'contento']] },
+    vamos: { desde: 'asoma', sec: [['asoma0', 0.17, 'sale'], ['entra', 0.4, 'suave'], ['vamos0', 0.3], ['vamos1', 0.25, 'sale'], ['vamos2', 0.2], ['vamos2', 0.5], ['listo', 0.6]],
+      cara: [[0, 'ilusion'], [0.85, 'concentra'], [1.2, 'risa'], [2.1, 'contento']] },
+    consejo: { desde: 'listo', sec: [['consejo0', 0.26], ['consejo', 0.24, 'sale'], ['consejoA', 0.2], ['consejoB', 0.24], ['consejoA', 0.24], ['consejo', 0.26]], cara: [[0, 'atento']] },
+    explica: { desde: 'listo', sec: [['explica0', 0.26], ['explica', 0.34, 'sale']], cara: [[0, 'atento']] },
+    pulgar: { desde: 'listo', sec: [['pulgar0', 0.28], ['pulgar1', 0.17, 'sale'], ['pulgar', 0.2]], cara: [[0, 'contento'], [0.42, 'guino']] },
+    dos: { desde: 'listo', sec: [['dos0', 0.28], ['dos1', 0.17, 'sale'], ['dos', 0.2]], cara: [[0, 'contento'], [0.42, 'risa']] },
+    fuerza: { desde: 'listo', sec: [['fuerza0', 0.34], ['fuerza1', 0.22, 'sale'], ['fuerza', 0.22], ['fuerza1', 0.24], ['fuerza', 0.26]], cara: [[0, 'contento'], [0.36, 'esfuerzo'], [0.9, 'guino']] }
+  };
+  /* el plano de cerca: la escala, a dónde mira, y cuánto se acerca (y baja) mientras dura */
+  var BUSTO = { esc: 3.5, picado: 4, mira: [0, D.pelvis + 44, 0], oy: 268, acerca: 0.04, baja: 5 };
+  var GESTOS_DE = { cabecera: ['saludo', 'visera', 'vamos'], consejo: ['consejo', 'explica'], cierre: ['pulgar', 'dos', 'fuerza'] };
   function Director(esc) {
     this.esc = esc; this.K = {}; this.rep = []; this.T = 1; this.clavos = [];
     this.modo = 'postura'; this.meta = null; this.tau = 0; this.w = 1; this.Eprev = null; this.E = null;
@@ -64,13 +116,17 @@
     this.pPunta = crear('circle', { r: 4.2, fill: '#fff6d8', stroke: '#F5C76B', 'stroke-width': 1.6 }, this.gRastro);
     this.gMarcas = crear('g', { 'class': 'tge-marcas' }, esc.encima);
     this.cMarcas = [0, 1, 2, 3].map(function () { var g = crear('g', { opacity: 0 }, this.gMarcas); crear('circle', { r: 13, fill: 'none', stroke: '#F5C76B', 'stroke-width': 2.6 }, g); crear('circle', { r: 13, fill: 'none', stroke: '#fff', 'stroke-width': 1, opacity: 0.8 }, g); return g; }, this);
-    this.vistas = [{ rumbo: 35 }]; this.vista = 0; this.busto = false; this.bustoK = 0;
+    this.vistas = [{ rumbo: 35 }]; this.vista = 0; this.busto = false; this.tBusto = 0;
+    this.vida = new Vida(); this.gestoDe = null; this.gestoN = ''; this.tGesto = 0; this.metas = []; this.cortes = 0;
   }
   /* carga una coreografía */
   Director.prototype.cargar = function (co) {
     var yo = this, n;
     this.co = co; this.K = {};
     for (n in PRESENTA) this.K[n] = resolver(PRESENTA[n]);
+    /* y por el otro lado */
+    ['asoma', 'asoma0', 'entra'].forEach(function (q) { yo.K[q + 'D'] = resolver(refleja(PRESENTA[q])); });
+    this.K.asomaD0 = this.K.asoma0D;
     for (n in co.posturas) this.K[n] = resolver(co.posturas[n]);
     this.esc.poner(co.material || []);
     /* la repetición: de dónde sale cada tramo */
@@ -84,6 +140,7 @@
     this.clavos = (co.clavos || []).map(clavo);
     this.rastroDe = co.rastro || null; this.rastro = [];
     this.modo = 'postura'; this.meta = this.inicio; this.tau = 0; this.w = 1; this.Eprev = null; this.reps = 0; this.sec = null;
+    this.vida.corte(); this.cortes++; this.gestoDe = null;
     this.encuadrar();
   };
   function clavo(s) {
@@ -93,43 +150,64 @@
   }
   /* las posturas en las que ya no hay nada clavado (se ha soltado de la barra) */
   Director.prototype.suelto = function (n) { return !!(this.co && this.co.sinClavos && this.co.sinClavos.indexOf(n) >= 0); };
-  /* el esqueleto de la repetición en el instante tau, con lo clavado en su sitio */
-  Director.prototype.enRep = function (tau) {
+  /* el esqueleto de la repetición en el instante tau, aún sin clavar, y con qué se clava */
+  Director.prototype.mezclaRep = function (tau) {
     var i, s = this.rep[this.rep.length - 1];
     for (i = 0; i < this.rep.length; i++) if (tau < this.rep[i].t0 + this.rep[i].dur) { s = this.rep[i]; break; }
     var u = entre((tau - s.t0) / s.dur, 0, 1), e = s.curva(u), A = this.K[s.de], B = this.K[s.a];
-    var E = s.de === s.a ? A : mezclar(A, B, e);
     this.tramo = s; this.tramoU = u;
-    return this.clavar(E, A, B, e, s.clavos ? s.clavos.map(clavo) : this.clavos);
+    return { E: s.de === s.a ? A : mezclar(A, B, e), A: A, B: B, e: e, clavos: s.clavos ? s.clavos.map(clavo) : this.clavos };
   };
   Director.prototype.clavar = function (E, A, B, e, clavos) {
     if (!clavos || !clavos.length) return E;
-    var mats = this.esc.material, i, hecho = false, S;
-    /* se trabaja sobre una copia del estado: la postura clave no se toca */
-    S = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: { i: E.S.q.i, d: E.S.q.d }, m: E.S.m, t: E.S.t };
-    var E2 = { S: S, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d };
+    var mats = this.esc.material, i, S, lista = [];
     for (i = 0; i < mats.length; i++) if (mats[i].antes) mats[i].colocar(E);
+    /* a dónde va cada cosa */
     for (i = 0; i < clavos.length; i++) {
       var c = clavos[i]; if (!c) continue;
       var k = c.que.charAt(1), meta;
       if (c.que.charAt(0) === 't') meta = c.en || mezcla(A[k].tob, B[k].tob, e);
       else if (c.mat != null && mats[c.mat] && mats[c.mat].agarre) meta = munecaPara(E, k, mats[c.mat].agarre(c.x));
       else meta = c.en || mezcla(A[k].mun, B[k].mun, e);
-      clavar(E2, c.que, meta); hecho = true;
+      lista.push([c.que, meta]);
     }
-    return hecho ? armar(S) : E;
+    if (!lista.length) return E;
+    /* si la vida (el aire, el peso) deja algo un pelo fuera de alcance, es el cuerpo el que se arrima: la mano no suelta
+       la barra. Mover la cadera mueve hombros y caderas lo mismo, así que se va corrigiendo lo que más falta, unas vueltas. */
+    var corr = [0, 0, 0], v, l, peor, falta, tope, vuelta, q, L, brazo;
+    for (vuelta = 0; vuelta < 4; vuelta++) {
+      peor = null; falta = 0.004;
+      for (i = 0; i < lista.length; i++) {
+        q = lista[i]; L = E[q[0].charAt(1)]; brazo = q[0].charAt(0) === 'm'; tope = (brazo ? D.brazo + D.antebrazo : D.muslo + D.pierna) - 0.02;
+        v = menos(q[1], mas(brazo ? L.hom : L.cad, corr)); l = largo(v);
+        if (l - tope > falta) { falta = l - tope; peor = por(v, falta / l); }
+      }
+      if (!peor) break;
+      corr = mas(corr, peor);
+    }
+    /* se trabaja sobre una copia del estado: la postura clave no se toca */
+    S = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: { i: E.S.q.i, d: E.S.q.d }, m: E.S.m, t: E.S.t };
+    l = largo(corr);
+    if (l > 0) { if (l > 3) corr = por(corr, 3 / l); S.p = mas(S.p, corr); E = armar(S); }
+    var E2 = { S: S, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d };
+    for (i = 0; i < lista.length; i++) { clavar(E2, lista[i][0], lista[i][1]); this.metas.push(lista[i]); }
+    return armar(S);
   };
+  /* el esqueleto de la repetición en el instante tau, con lo clavado en su sitio (sin la vida: para medir y comprobar) */
+  Director.prototype.enRep = function (tau) { var r = this.mezclaRep(tau); return this.clavar(r.E, r.A, r.B, r.e, r.clavos); };
   /* ── qué hace ── */
   Director.prototype.aPostura = function (nombre, seg) {
     if (!this.K[nombre]) return;
     this.Eprev = this.E; this.w = this.E && seg !== 0 ? 0 : 1; this.durW = seg || 0.7;
-    this.metaPrev = this.meta; this.modo = 'postura'; this.meta = nombre; this.sec = null;
+    this.metaPrev = this.meta; this.modo = 'postura'; this.meta = nombre; this.sec = null; this.gestoDe = null;
+    this.vida.linea = []; if (seg === 0) { this.vida.corte(); this.cortes++; }
   };
   Director.prototype.aRep = function (seg) {
     if (!this.rep.length) return this.aPostura(this.inicio, seg);
     if (this.modo === 'rep') return;
     this.Eprev = this.E; this.w = this.E && seg !== 0 ? 0 : 1; this.durW = seg || 0.6;
-    this.modo = 'rep'; this.tau = 0; this.rastro = []; this.sec = null;
+    this.modo = 'rep'; this.tau = 0; this.rastro = []; this.sec = null; this.gestoDe = null;
+    this.vida.linea = [];
   };
   /* una secuencia que se toca una vez (por ejemplo, sacar la barra del soporte): [[postura, segundos, curva], …] */
   Director.prototype.aSecuencia = function (lista, desde) {
@@ -138,49 +216,91 @@
     this.secT = t0; this.tau = 0; this.modo = 'sec'; this.Eprev = this.E; this.w = this.E ? 0 : 1; this.durW = 0.45; this.rastro = [];
     this.metaPrev = this.meta;
     this.meta = lista[lista.length - 1][0];
+    this.vida.linea = []; this.gestoDe = null;
   };
+  /* un gesto del presentador: sale de su postura, toca la secuencia y va poniendo las caras */
+  Director.prototype.gesto = function (nombre, deGolpe) {
+    var g = GESTOS[nombre]; if (!g) return;
+    var desde = g.desde, sec = g.sec;
+    /* con «reducir movimiento» del sistema no entra deslizándose por un lado: ya está ahí, y hace su gesto */
+    if (quieto() && /^asoma/.test(desde)) { desde = 'listo'; sec = sec.filter(function (q) { return !/^(asoma|entra)/.test(q[0]); }); }
+    /* de golpe (tras un corte, o en la portada): arranca en su primera postura; si no, llega a ella desde donde esté */
+    if (deGolpe || !this.E) { this.aPostura(desde, 0); this.E = this.K[desde]; }
+    this.aSecuencia(sec, desde); if (deGolpe) this.w = 1;
+    this.gestoDe = g; this.gestoN = nombre; this.tGesto = 0; this.caraN = 0;
+  };
+  /* cuánto dura un gesto */
+  Director.prototype.duraGesto = function (nombre) { var g = GESTOS[nombre], t = 0; if (g) g.sec.forEach(function (q) { t += q[1]; }); return t; };
+  /* el gesto que le toca a un momento (cabecera, consejo, cierre): uno fijo por ejercicio, para que no sean todos iguales */
+  Director.prototype.gestoPara = function (momento, n) { var l = GESTOS_DE[momento] || []; return l.length ? l[(n >>> 0) % l.length] : null; };
   /* un cuadro: avanza el tiempo y pinta */
   Director.prototype.cuadro = function (dt, parado) {
-    var esc = this.esc, E, v = parado ? 0 : this.vel, yo = this;
+    var esc = this.esc, E, v = parado ? 0 : this.vel, yo = this, A, B, e = 0, clavos = null, i;
     this.t += dt;
     if (this.modo === 'rep') {
       this.tau += dt * v;
       if (this.tau >= this.T) { this.tau -= this.T; this.reps++; if (this.alRepetir) this.alRepetir(this.reps); }
-      E = this.enRep(this.tau);
+      var r = this.mezclaRep(this.tau); E = r.E; A = r.A; B = r.B; e = r.e; clavos = r.clavos;
       this.esf += ((this.tramo.esf ? 1 : 0) - this.esf) * (1 - Math.exp(-dt * 7));
     } else if (this.modo === 'sec') {
       this.tau = Math.min(this.secT, this.tau + dt * v);
-      var s = this.sec[this.sec.length - 1], i;
+      var s = this.sec[this.sec.length - 1];
       for (i = 0; i < this.sec.length; i++) if (this.tau < this.sec[i].t0 + this.sec[i].dur) { s = this.sec[i]; break; }
-      var e = s.curva(entre((this.tau - s.t0) / s.dur, 0, 1)), A = this.K[s.de], B = this.K[s.a];
+      e = s.curva(entre((this.tau - s.t0) / s.dur, 0, 1)); A = this.K[s.de]; B = this.K[s.a];
       this.secDe = s.de; this.secU = entre((this.tau - s.t0) / s.dur, 0, 1);
-      E = this.clavar(s.de === s.a ? A : mezclar(A, B, e), A, B, e, s.clavos ? s.clavos.map(clavo) : this.clavos);
+      E = s.de === s.a ? A : mezclar(A, B, e); clavos = s.clavos ? s.clavos.map(clavo) : this.clavos;
       this.esf += (0 - this.esf) * (1 - Math.exp(-dt * 5));
       if (this.tau >= this.secT) { this.modo = 'postura'; this.w = 1; }
     } else {
-      E = this.K[this.meta] || this.K.listo;
-      if (this.co && this.meta !== 'listo' && !this.busto && !this.suelto(this.meta)) E = this.clavar(E, E, E, 0, this.clavos);
+      E = this.K[this.meta] || this.K.listo; A = B = E;
+      if (this.co && this.meta !== 'listo' && !this.suelto(this.meta)) clavos = this.clavos;
       this.esf += ((this.co && this.co.isometrico && this.meta === this.co.isometrico ? 0.8 : 0) - this.esf) * (1 - Math.exp(-dt * 4));
     }
+    /* de cerca presenta: ahí no hay barra que agarrar ni suelo que pisar */
+    if (this.busto) clavos = null;
+    /* el gesto del presentador va poniendo sus caras */
+    if (this.gestoDe) {
+      this.tGesto += dt * v;
+      var caras = this.gestoDe.cara || [];
+      while (this.caraN < caras.length && caras[this.caraN][0] <= this.tGesto) { esc.cab.emocion(caras[this.caraN][1]); if (this.caraN) esc.cab.parpadea(); this.caraN++; }
+    }
+    /* la vida (respira, llega por partes, cabecea al frenar), antes de clavar: lo clavado no se mueve */
+    var libres = { i: true, d: true }, dePie = false;
+    if (clavos) for (i = 0; i < clavos.length; i++) if (clavos[i] && clavos[i].que.charAt(0) === 'm') libres[clavos[i].que.charAt(1)] = false;
+    /* de pie: el tronco derecho y la cadera a su altura (sentado o tumbado, descansa en algo: no se balancea) */
+    dePie = E.S.B[1][1] > 0.94 && E.S.p[1] > D.pelvis - 9 && this.modo === 'postura' && this.w >= 1 && !(this.co && this.co.isometrico === this.meta && !this.busto);
+    E = this.vida.paso(E, parado ? 0 : dt, { busto: this.busto, esf: this.esf, rep: this.modo === 'rep', dePie: dePie, habla: this.busto && esc.cab.habla > esc.cab.t, libres: libres });
+    this.metas = [];            /* lo que se clava en este cuadro, y dónde (lo coteja la auditoría: lo clavado no se mueve) */
+    if (clavos && clavos.length) E = this.clavar(E, A, B, e, clavos);
     /* de donde estaba a donde va */
     if (this.w < 1 && this.Eprev) {
       this.w = Math.min(1, this.w + dt / this.durW);
       E = mezclar(this.Eprev, E, CURVA.suave(this.w));
     }
-    /* respira: un punto de pecho y de hombros */
-    var resp = Math.sin(this.t * (1.6 + this.esf * 1.6));
-    if (!quieto()) {
-      var S = E.S, S2 = { p: S.p, B: S.B, col: [S.col[0] - resp * 0.5, S.col[1], S.col[2]], cab: [S.cab[0] + resp * 0.5, S.cab[1], S.cab[2]],
-        hom: { i: [S.hom.i[0] + resp * 0.35, S.hom.i[1]], d: [S.hom.d[0] + resp * 0.35, S.hom.d[1]] }, b: S.b, q: S.q, m: S.m, t: S.t };
-      if (this.modo === 'postura' && this.w >= 1 && (!this.co || !this.clavos.length || this.busto || this.meta === 'listo')) E = armar(S2);
-    }
     this.E = E;
-    /* la cámara: hacia su vista, con suavidad */
-    var cam = esc.cam, V = this.busto ? this.vBusto : this.vistas[this.vista], kk = 1 - Math.exp(-dt * 5.5);
+    this.vida.mide(E, parado ? 0 : dt);
+    /* la cámara: hacia su vista, con suavidad; de cerca, se va acercando muy despacio */
+    var cam = esc.cam, V = this.vistas[this.vista], kk = 1 - Math.exp(-dt * 5.5);
+    if (this.busto) {
+      if (!parado) this.tBusto += dt;
+      var cerca = quieto() ? 0 : CURVA.suave(entre(this.tBusto / 5, 0, 1));
+      V = { rumbo: this.vBusto.rumbo, picado: this.vBusto.picado, esc: this.vBusto.esc * (1 + BUSTO.acerca * cerca), mira: this.vBusto.mira, ox: this.vBusto.ox, oy: this.vBusto.oy + BUSTO.baja * cerca };
+    }
     if (this.salto) { kk = 1; this.salto = false; }
     var dr = V.rumbo - cam.rumbo; while (dr > 180) dr -= 360; while (dr < -180) dr += 360;
     cam.rumbo += dr * kk; cam.esc += (V.esc - cam.esc) * kk; cam.ox += (V.ox - cam.ox) * kk; cam.oy += (V.oy - cam.oy) * kk; cam.picado += (V.picado - cam.picado) * kk;
     cam.mira = mezcla(cam.mira, V.mira, kk);
+    /* la mirada: a quien le escucha; cuando el paso nombra algo, un vistazo a eso; y, de cerca, no se queda clavada */
+    var cab = esc.cab, mx = 0, my = 0, edad = this.t - (this.tMarca || 0);
+    if (!this.busto && this.marcas.length && edad > 0.3 && edad < 1.7 && cam.k) {
+      var pm = cam.p(PUNTOS[this.marcas[0]](E)), pc = cam.p(E.cab), up = cam.d(E.Bc[1]), ru = Math.atan2(up[0], -up[1]);
+      var gx = pm[0] - pc[0], gy = pm[1] - pc[1], gl = Math.sqrt(gx * gx + gy * gy);
+      if (gl > 16 * cam.esc) { gx /= gl; gy /= gl; mx = gx * Math.cos(ru) + gy * Math.sin(ru); my = -gx * Math.sin(ru) + gy * Math.cos(ru); }
+    } else if (this.busto && !quieto()) {
+      var ciclo = this.t / 3.1, fz = ciclo - Math.floor(ciclo), nn = Math.floor(ciclo);
+      if (fz > 0.86) { mx = 0.5 * Math.sin(nn * 12.9898 + 4.1); my = 0.28 * Math.sin(nn * 78.233 + 1.7); }
+    }
+    cab.m.mx = mx; cab.m.my = my;
     /* lo que aún no se ha cogido (la barra en el suelo) se queda en su sitio */
     this.ctx = this.ctx || {};
     var rp = this.co && this.co.reposo;
@@ -191,7 +311,8 @@
     var mats = esc.material, j;
     for (j = 0; j < mats.length; j++) { mats[j].colocar(E, this.ctx); mats[j].oculto = this.busto; }
     esc.fig.pulso = this.busto ? 0 : 0.72 + 0.28 * this.esf + 0.06 * Math.sin(this.t * 5);
-    esc.cab.paso(dt);
+    esc.fig.aire = this.vida.aire;
+    esc.cab.paso(dt, parado);
     esc.soloFigura = this.busto;
     esc.pintar(E, this.ctx);
     this.pintarRastro(E, dt, v);
@@ -256,9 +377,9 @@
       return { rumbo: r, picado: picado, esc: e, mira: mira, ox: ANCHO / 2 - (a[0] + b[0]) / 2 * e, oy: 58 + (ALTO - 96) / 2 - (a[1] + b[1]) / 2 * e + 4 };
     });
     /* el busto: de frente, de cerca, para saludar y para los consejos */
-    this.vBusto = { rumbo: 0, picado: 4, esc: 3.5, mira: [0, D.pelvis + 44, 0], ox: ANCHO / 2, oy: 268 };
+    this.vBusto = { rumbo: 0, picado: BUSTO.picado, esc: BUSTO.esc, mira: BUSTO.mira, ox: ANCHO / 2, oy: BUSTO.oy };
     this.vista = Math.min(this.vista, this.vistas.length - 1);
     this.salto = true;
   };
   Director.prototype.girar = function () { this.vista = (this.vista + 1) % this.vistas.length; return this.vista; };
-  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; } };
+  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; this.tBusto = 0; this.vida.corte(); this.cortes++; this.esc.cab.corte = true; } };

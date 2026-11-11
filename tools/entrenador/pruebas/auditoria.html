@@ -24,19 +24,46 @@ window.montar = function (id, lang, tema) {
   return window.R ? { pasos: t[1], nombre: t[0], dur: window.R.tramos.reduce(function (a, q) { return a + q.dur; }, 0) } : null;
 };
 window.entero = function () {
-  var R = window.R, leido = [], raros = 0, cuadros = 0, nodos = 0, modos = {};
+  var R = window.R, d = R.dir, leido = [], raros = 0, cuadros = 0, nodos = 0, modos = {}, gestos = {};
+  /* el movimiento, medido: lo clavado no se mueve, nada se teletransporta, y Jérôme respira y no se pasa de vueltas */
+  var mov = { clavo: 0, clavoEn: '', salto: 0, saltoEn: '', saltoM: 0, saltoMEn: '', aireMin: 9, aireMax: -9, cabRep: 0, cabBusto: 0, pelo: 0, brazo: 0, fuera: 0 };
+  var antes = null, cortesAntes = -1, tramoAntes = -1, dist = function (a, b) { return Math.sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2])); };
   R.suena = true; R.gran.hidden = true;
   while (!R.fin && cuadros < 30 * 300) {
     R.avanzar(1 / 30); cuadros++;
-    var t = R.tramos[R.n];
+    var t = R.tramos[R.n], E = d.E, v = d.vida, cab = R.esc.cab;
     if (t.tipo === 'paso' && R.tt > t.dur * 0.9 && leido[t.i] == null) leido[t.i] = R.pasoL.textContent;
-    modos[R.dir.busto ? 'busto' : R.dir.modo] = 1;
+    modos[d.busto ? 'busto' : d.modo] = 1;
+    if (d.busto && d.gestoN && !R.pendiente && (t.tipo !== 'paso' || t.accion === 'nota')) gestos[(t.tipo === 'paso' ? 'consejo' : t.tipo) + ':' + d.gestoN] = 1;
+    /* lo clavado: el tobillo o la muñeca, donde se le dijo (sin contar mientras pasa de una postura a otra) */
+    if (!d.busto && d.w >= 1) d.metas.forEach(function (m) {
+      var L = E[m[0].charAt(1)], e = dist(m[0].charAt(0) === 't' ? L.tob : L.mun, m[1]);
+      if (e > mov.clavo) { mov.clavo = e; mov.clavoEn = m[0] + ' en el tramo ' + R.n; }
+    });
+    /* de un cuadro al siguiente, nada da un salto (salvo en un corte de plano o al cambiar de postura de golpe) */
+    /* el cuerpo (la cadera, la cabeza) y las manos y los pies se miden aparte: una mano que se suelta de la barra cae deprisa */
+    var ahora = [E.pel, E.cab, E.i.mun, E.d.mun, E.i.tob, E.d.tob];
+    if (antes && d.cortes === cortesAntes) ahora.forEach(function (p, i) { var e = dist(p, antes[i]), q = i < 2 ? 'salto' : 'saltoM'; if (e > mov[q]) { mov[q] = e; mov[q + 'En'] = ['cadera', 'cabeza', 'mano i', 'mano d', 'pie i', 'pie d'][i] + ', tramo ' + R.n + ' (' + R.tt.toFixed(2) + ' s)'; } });
+    antes = ahora; cortesAntes = d.cortes;
+    mov.aireMin = Math.min(mov.aireMin, v.aire); mov.aireMax = Math.max(mov.aireMax, v.aire);
+    var c0 = Math.max(Math.abs(v.cabP.x), Math.abs(v.cabR.x));
+    if (d.busto) mov.cabBusto = Math.max(mov.cabBusto, c0); else if (d.modo === 'rep' && d.w >= 1) mov.cabRep = Math.max(mov.cabRep, c0);
+    mov.pelo = Math.max(mov.pelo, Math.abs(cab.peloA.x));
+    ['i', 'd'].forEach(function (k) { mov.brazo = Math.max(mov.brazo, Math.abs(v.bz[k][0].x), Math.abs(v.bz[k][1].x)); });
+    /* de cerca, una mano levantada no se sale del cuadro (pasados los primeros instantes, cuando entra por un lado) */
+    if (d.busto && R.esc.cam.k && R.tt > 0.75 && R.corteT == null) ['i', 'd'].forEach(function (k) {
+      if (E[k].mun[1] < 104) return;
+      /* hasta donde llega la mano: la punta de los dedos, o los nudillos si es un puño */
+      var L = E[k], al = E.S.m[k].c > 0.6 ? 9 : 16, q = R.esc.cam.p([L.mun[0] + L.mano.dir[0] * al, L.mun[1] + L.mano.dir[1] * al, L.mun[2] + L.mano.dir[2] * al]);
+      if (q[0] < 2 || q[0] > 398 || q[1] < 50) mov.fuera++;
+    });
     if (cuadros % 15 === 0) {
       var s = R.raiz.querySelector('svg'); nodos = Math.max(nodos, s.querySelectorAll('*').length);
       if (/NaN|Infinity|undefined/.test(new XMLSerializer().serializeToString(s))) raros++;
     }
   }
+  ['clavo', 'salto', 'saltoM', 'aireMin', 'aireMax', 'cabRep', 'cabBusto', 'pelo', 'brazo'].forEach(function (k) { mov[k] = Math.round(mov[k] * 1000) / 1000; });
   return { fin: R.fin, cuadros: cuadros, leido: leido, raros: raros, nodos: nodos, modos: Object.keys(modos), ancho: document.documentElement.scrollWidth, vista: document.documentElement.clientWidth,
-           titulo: R.nombre.textContent, voz: R.bVoz.hidden ? 'sin' : 'con' };
+           titulo: R.nombre.textContent, voz: R.bVoz.hidden ? 'sin' : 'con', mov: mov, gestos: Object.keys(gestos) };
 };
 </script>
