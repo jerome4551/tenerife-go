@@ -7470,6 +7470,108 @@ otra vez en verde.
   «Jérôme 推荐»); en el tour, en búlgaro y en chino, va en su alfabeto. Si se quiere igual en todas partes, lo decide
   Jérôme.
 
+## El nombre de Jérôme en la forma de cada idioma, el búlgaro que corrigió una nativa y «Esta noche» del cielo (11 de noviembre)
+
+**El nombre: por qué.** Con los tours publicados, el nombre iba en el tour en el alfabeto de cada idioma («Жером»,
+«热罗姆», «熱羅姆») y en el resto de la app con letras latinas también en búlgaro y en chino («Говори с Jérôme», «Jérôme 推荐»),
+y en varias frases sin acentos («Jerome»). Jérôme, el 11 de noviembre, a cuál de las dos formas: «En la forma correcta
+de la traducción». Es la del tour: la de la Wikipedia de cada idioma para el nombre francés Jérôme (la sección anterior,
+con sus fuentes), y «Jérôme», con sus acentos, en los idiomas de letra latina. El autor y el copyright de la página se
+le preguntaron aparte, porque el copyright es texto legal; su respuesta: «Si».
+
+**Lo que cambia** (`b1bdd11`), solo el nombre:
+- El asistente (`CHAT_STR`, en `index.html`): las dos frases que lo nombran (`thanks`, al dar las gracias, y
+  `fallback`, cuando no encuentra la respuesta), en castellano, inglés, francés, alemán, italiano, neerlandés,
+  chino, chino tradicional y búlgaro; y el título del contacto (`contactTitle`) en chino, chino tradicional y
+  búlgaro. El polaco ya decía «Jérôme», declinado («Jérôme'a», «Jérôme'em»).
+- La administración: «Recomendaciones de Jérôme» (`admRecomendaciones` y `admCatRecomendacion`), en chino y chino
+  tradicional. El búlgaro ya decía «Жером».
+- La respuesta de «¿Qué hago si algo falla?» (`app-21`), en los diez idiomas, en sus fuentes
+  (`faq/fuente/faq-kb-bloque-G1-app.json` y `faq/fuente/bg/G1-app.json`), y `faq/<idioma>.json` rehechos con
+  `python3 tools/generar_faq.py`. Antes de tocar nada, rehacerlos no cambiaba ni un byte; después, en cada uno
+  cambia el nombre y nada más.
+
+**El autor y el copyright** (`54e18a2`): «Jérôme B» donde decía «Jerome B», en tres líneas de `index.html`:
+`<meta name="author">`, `<meta name="copyright">` y el copyright de la cabecera del código. Ya lo escribían así el autor
+del JSON-LD, el de los GPX y la firma «By Jérôme B». No queda ningún «Jerome B».
+
+**Lo que no cambia:**
+- «Jérôme Bourgeois», el nombre completo, que ya llevaba sus acentos: en la política de privacidad (el responsable
+  de los datos, en los diez idiomas) y en el copyright de la ficha del App Store.
+- La firma «By Jérôme B» (marcada como sin traducir) y el mensaje en castellano que se le manda por WhatsApp
+  («¡Hola Jérôme!…»).
+- El resto de cada frase. El título del contacto va en imperativo en italiano, búlgaro y polaco («Parla con…»,
+  «Говори с…», «Napisz do…»), y es a propósito: desde el 22 de octubre los botones de esos idiomas van en
+  imperativo, como en sus apps (`ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL` de `tools/auditar_registro.js`).
+- Las notas internas que lo citan («Jerome: «…»»): los comentarios del código, el registro de fuentes
+  (`datos/verificado.json`) y los motivos de las excepciones de la auditoría. No se ven.
+- Las cifras de «Idiomas»: cambian valores, no filas.
+
+**Controles del nombre.** Antes de la auditoría entera, `node tools/auditar_faq.js` (la base de conocimiento, en verde)
+y `node tools/barrido_idiomas.js bg` (5.737 filas, completas en búlgaro). En todos los ficheros de la app, ninguna fila
+de búlgaro, chino o chino tradicional con el nombre en letra latina; y en `index.html` y los módulos, todos los «Jerome»
+que quedan están dentro de un comentario.
+
+**El búlgaro: lo que corrigió una nativa en el tour** (`9d2e75e`). Jérôme, el 11 de noviembre, con capturas del tour
+comentadas por una hablante nativa de búlgaro. Lo que dijo, y dónde:
+- «Es mejor poner "спрете"», en el saludo: «можете да го спрете по всяко време» (decía «пропуснете», el «skip»
+  del inglés).
+- «"от този момент" es mejor dicho "в този момент"» y «debe ser "Работи без интернет връзка."», en «La isla en 3D».
+- «Corregirlo a "каталог за просто око"», en «El cielo de Tenerife».
+- De «И места, подходящи за домашни любимци, или достъпни»: «tiene que pararse a "за домашни любимци."». Esas dos
+  palabras son el filtro «Достъпно ♿» de la app, y solas no se entienden: en vez de quitarlas, la frase dice para
+  quién, «…или достъпни за хора с увреждания», a falta de que ella lo confirme.
+
+Y «без връзка» pasa a «без интернет връзка» en las otras siete frases que dicen lo mismo: tres del tour (emergencias,
+sin cobertura y el cielo), el mapa detallado (`index.html`), dos del panel del cielo (`modulos/cielo.js`) y la respuesta
+`app-24` del asistente (`faq/fuente/bg/G1-app.json`, con `faq/bg.json` rehecho por `tools/generar_faq.py`: solo cambia
+esa respuesta). Las palabras clave del asistente («без връзка» entre ellas) no se tocan: así escribe la gente.
+
+**El búlgaro: los calcos que quedaban** (`f36ac6e`). La lista de dudas que salió al repasar el búlgaro de los tres tours
+después de las correcciones de la nativa; Jérôme, el 11 de noviembre: «Si».
+- «Търсете всяко място» (cada lugar) → «Потърсете което и да е място».
+- «по официалната цена на министерството» → «с официалните цени на министерството» (el ministerio publica los
+  precios, no los fija).
+- «Ще ви ги покажа едно по едно» → «един по един» (los instrumentos).
+- «по времето на Канарските острови» → «по канарско време».
+- «колко струва нощта» («cuánto cuesta la noche») → «колко добра е нощта».
+- «от най-лесното към най-финото» → «към най-трудното», y lo mismo en dos frases del panel del cielo.
+- «за да отворите картона му» → «за да видите информацията за него».
+- «с картината от камерата отзад» → «с образа от камерата на заден план».
+- «с дните сила» → «с дните със силови упражнения», en el tour y en «Su cuerpo».
+- «от La Esperanza до Arona» → «от Ла Есперанса до Арона», en cirílico como «Пуерто де ла Крус» en el resto del
+  búlgaro (el tour y tres frases de «Su cuerpo»). La nota de las fuentes del GR 131, que cita las etapas con los
+  nombres de Webtenerife, se queda como está.
+
+«Su cuerpo» cambia por sus fuentes: cuatro entradas búlgaras en `src/correcciones.json`, cada una con su motivo, y
+`construir.py`. El `modulos/cuerpo.js` que sale es el publicado con esas cuatro frases y nada más. Controles de los dos
+commits del búlgaro: `node tools/auditar_faq.js` y `node tools/auditar_letras.js`, en verde, y
+`node tools/barrido_idiomas.js bg`, 5.737 filas, completas en búlgaro.
+
+**El cielo: «Esta noche» sigue al reloj** (`7d4688e`). Lo encontró la auditoría del 11 de noviembre (`auditar_cielo.js`,
+parte 11): con los elementos de los satélites de ese día, el primer paso de la Estación cae la noche siguiente a la de
+abrir el panel, y «Esta noche» seguía siendo la noche en que se abrió; «Ver en el mapa del cielo» no tenía paso que
+enseñar y la prueba se rompía. Hasta entonces el primer paso caía la misma noche y no se veía. En la app, quien dejaba
+la app abierta y volvía otro día veía la noche de ayer. Ahora el panel recuerda si la noche la eligió quien mira (‹ ›, 📅
+o la app al abrir una noche concreta: `fechaElegida`). Al abrir el panel, si no la eligió y ya no es la de hoy, pasa a
+la de hoy y la carta vuelve a su hora de siempre; «Hoy» y «Ahora» la dejan otra vez siguiendo al reloj. La regla de las
+7 de la mañana (`nocheDeHoy`) no cambia. `auditar_cielo.js` lo comprueba al final de la parte 11, con el reloj de la
+página: el panel vuelto a abrir al día siguiente enseña la noche de ese día, una noche elegida se respeta y, con «Hoy»,
+sigue otra vez al reloj.
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre los cinco commits antes de ponerlos encima de lo último de los
+robots: en verde, sin un solo rojo. Entre otros, `auditar_cielo.js` (310 controles, con la comprobación nueva de la
+parte 11), los tours (`auditar_tour.js`: la app, 25 pasos; el cielo, 13; «Su cuerpo», 19; en los diez idiomas y en
+cuatro móviles), `probar_cuerpo.js` (543 controles) y `barrido_idiomas.js` (5.737 filas, completas en búlgaro). Encima
+de lo último de `main` (`0dbe56d`) solo cambian cinco ficheros de los robots (`datos/alertas-canarias.json`,
+`datos/avisos-aemet.json`, `datos/precios-gasolineras.json`, `datos/semaforo-involcan.json` y `datos/sismos-ign.json`),
+y los controles que los leen salen otra vez en verde.
+
+**Lo que queda:**
+- Que la hablante nativa confirme «достъпни за хора с увреждания».
+- El repaso del resto del búlgaro (las descripciones de los lugares, la FAQ, el panel SOS, la política) va aparte,
+  con sus propias propuestas y su propia auditoría.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
