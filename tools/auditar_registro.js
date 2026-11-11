@@ -358,11 +358,11 @@ const ROTULOS_BG = new Set([
    rotulo y tampoco cuenta. */
 const ROTULOS_PL = new Set([
   'Anuluj', '✓ Dodaj do koszyka', 'Dodaj do mojego kalendarza', 'Dodaj do mojej trasy', 'Dodaj do sklepu', 'Dodaj do ulubionych', '➕ Dodaj pamiątkę',
-  'Dodaj wycieczkę', '➕ Dodaj wycieczkę', 'Edytuj trasę', '✏️ Edytuj trasę', 'Filtruj', 'Kontynuuj jako gość', 'Kup', "Napisz do Jérôme'a",
+  'Dodaj wycieczkę', '➕ Dodaj wycieczkę', 'Edytuj trasę', '✏️ Edytuj trasę', 'Filtruj', 'Kontynuuj jako gość', 'Kup', 'Napisz do Jérôme’a',
   'Nie, odrzuć', 'Odtwórz noc', 'Odśwież', '✅ Opublikuj na mapie', 'Otwórz legendę', 'Otwórz w Mapach Google', 'Oznacz jako odwiedzone',
   '○ Oznacz jako odwiedzone', 'Pobierz szczegóły ({mb} MB)', '📥 Pobierz trasę dnia (GPX)', 'Pokaż jego drogę tej nocy',
   '✈️ Pokaż linie na lotnisko południowe', '✈️ Pokaż linie na lotnisko północne', 'Pokaż na mapie', 'Pokaż na mapie nieba', 'Pokaż tylko ulubione',
-  'Pokaż wszystkie', "⭐ Polecenia Jérôme'a — dodaj firmę", 'Pomiń', 'Potwierdź rezerwację', 'Przeczytaj cały artykuł', 'Przybliż', 'Rezerwuj', 'Skopiuj link',
+  'Pokaż wszystkie', '⭐ Polecenia Jérôme’a — dodaj firmę', 'Pomiń', 'Potwierdź rezerwację', 'Przeczytaj cały artykuł', 'Przybliż', 'Rezerwuj', 'Skopiuj link',
   '💊 Sprawdź dyżurną aptekę na dziś', '💊 Sprawdź dyżurną aptekę na dziś (oficjalne)', 'Sprawdź kompas', 'Spróbuj ponownie', 'Szukaj', 'Szukaj celu',
   'Szukaj miejsca...', 'Szukaj obiektu', 'Szukaj początku', 'Szukaj przystanku lub linii...', 'Szukaj: Orion, M42, Wega…', 'Słuchaj', '▶ Słuchaj',
   'Tak, połącz', 'Udostępnij', '📤 Udostępnij', 'Udostępnij miejsce', 'Udostępnij plan', 'Ukryj drogę',
