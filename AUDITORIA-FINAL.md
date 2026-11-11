@@ -7404,6 +7404,72 @@ commit, y los dos, pasados otra vez, salen en verde (4.941 líneas, 1 h 57 min).
 entran commits de los robots (las alertas del Gobierno de Canarias, los avisos de AEMET, los precios de las gasolineras
 y los terremotos del IGN): solo cambian sus ficheros de datos, y los controles que los leen salen en verde.
 
+## El presentador se llama Jérôme, y los tours de la nota 29, traídos y repasados (11 de noviembre)
+
+**Por qué.** Los tours de la nota 29 (la sección «Jérôme, el presentador: el tour de la app por capítulos, el del cielo
+y el de «Su cuerpo»», más abajo) llegaron con el presentador llamado «Jero». Jérôme, el 11 de noviembre, al recibirlos:
+«Lllamalo Jérôme no jero».
+
+**El nombre** (`b979482`):
+- Las cinco filas de `modulos/guia.js` que lo nombran (`guiaHolaT`, `guiaNovP`, `guiaVozOn`, `guiaCiPestanasP` y
+  `guiaCuPersonajeP`), en los diez idiomas:
+  - en castellano, inglés, francés, alemán, italiano, neerlandés y polaco, «Jérôme». En polaco, el botón de la voz es
+    «Głos Jérôme’a»: los nombres que acaban en -e muda llevan la terminación detrás de un apóstrofo. Lo dice la
+    Poradnia Językowa PWN («Końcówki gramatyczne po imionach i nazwiskach zakończonych na -e nieme […] zapisujemy
+    po apostrofie», con «George’em»), la regla 244 de sus normas («Nazwiska zakończone na -e nieme»: «Cage’a»,
+    «Verne’a») y su diccionario ortográfico, en el francés Pierre: «Pier•re’a»;
+  - en búlgaro, «Жером»; en chino, «热罗姆»; en chino tradicional, «熱羅姆». Así escribe el nombre francés Jérôme la
+    Wikipedia de cada idioma: Жером Боатенг y Жером Бонапарт; 热罗姆·博阿滕, 热罗姆·罗滕 y 热罗姆·波拿巴;
+    熱羅姆·博阿滕 y 熱羅姆·凱維埃爾. En su alfabeto, para que se lea y para que la voz del móvil lo diga, y sin los
+    espacios que separaban el nombre latino de los caracteres chinos: «您好！我是热罗姆», «Здравейте! Аз съм Жером».
+- En lo demás que traía la entrega, la palabra suelta «Jero» pasa a «Jérôme»: los comentarios, los mensajes de los
+  controles, `README.md`, este documento y el motivo de dos excepciones (`idiomas/castellano-aceptado.json` e
+  `idiomas/pantalla-aceptado.json`). Los nombres internos (`crearJero`, `D.jero`, `.tgg-jero`…) no se ven y se
+  quedan.
+- Lo hizo un guion que para si algo no cuadra: cada fila, con sus diez idiomas y «Jero» una sola vez en cada uno; lo
+  que da en chino, en búlgaro y el polaco de la voz, exactamente lo de arriba; y al final, ni un «Jero» suelto en los
+  once ficheros. En `modulos/guia.js` había 82: 50 en las cinco filas y 32 en los comentarios. Quedan 67 «Jérôme»
+  (35 en las filas, en los siete idiomas de letra latina, y 32 en los comentarios) y 15 en su alfabeto.
+
+**La nota 29, traída** (`2c280b2`): con `git am`, sobre el `main` del 11 de noviembre. Entró limpia, y los 22 ficheros
+que toca quedan byte a byte como dice la nota (sus sha256). `aplicar_guia.py`, que hace lo mismo trozo a trozo, no hizo
+falta y no se ejecutó. `modulos/cuerpo.js`, `modulos/perfil.js` y `tools/probar_cuerpo.js` no cambian.
+
+**Repasada antes de traerla:**
+- **Seguridad.** El módulo no pide nada a la red (ni `fetch`, ni `XMLHttpRequest`, ni `import()`) y no evalúa código
+  (ni `eval` ni `new Function`). Sus dos `innerHTML` son dibujos fijos del propio fichero (el de Jérôme, con un
+  contador para sus `id`, y los iconos de los botones), nunca texto de fuera. Solo guarda si ya se vio cada tour
+  (`tenerife.tour.seen`, `tenerife.tour.cielo` y `tenerife.tour.cuerpo`), dentro de un `try`. La voz va con
+  `TG_VOZ`, como la noche guiada del cielo: elige solo voces instaladas en el dispositivo (`localService`).
+- **Los textos.** De usted en todas las filas (en polaco, impersonal; en búlgaro, «Вие»). Cada frase, cotejada con
+  lo que hace la app: el 3D sin conexión, los favoritos en la nube solo con cuenta, el asistente en los diez
+  idiomas, el 112 del panel de emergencias, cada pestaña del cielo y, en «Su cuerpo», los colores, la comida y la
+  evolución.
+
+**La política** (`ppDatosPrefTxt`, en `2c280b2`): «si ya vio el tour» pasa a «si ya vio los tours» en los ocho idiomas
+que marcan el plural (el chino no lo marca). Es texto legal: Jérôme dio su sí el 11 de noviembre («Sí y publica si está
+todo verde»).
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre estos dos commits antes de ponerlos encima de lo último de los
+robots: en verde, sin un solo rojo. También `auditar_isla3d.js`, que en el entorno de la nota daba un rojo que no era de
+ella («doble toque»: aquí, de 9000 a 4500 m), y los tres que allí no se pudieron ejecutar por falta de `pmtiles`. Los
+tours (`auditar_tour.js`): sin navegador, 163 textos pedidos y 57 pasos, 16 con chiste; en el navegador, la app (25
+pasos), el cielo (13) y «Su cuerpo» (19), en los diez idiomas y en cuatro móviles, y además con el móvil tumbado, con la
+voz, con movimiento y sin los módulos. `probar_play.js`, 249 de 249; `probar_cuerpo.js`, 543 controles;
+`auditar_web.js`, 50 tablas y 3590 filas, y `barrido_idiomas.js`, 5.737: las cifras de «Idiomas» que pone la nota (el
+nombre no cambia ninguna). Encima de lo último de `main` (`17c607f`) solo cambian tres ficheros de los robots
+(`datos/alertas-canarias.json`, `datos/avisos-aemet.json` y `datos/sismos-ign.json`), y los controles que los leen salen
+otra vez en verde.
+
+**Lo que queda:**
+- Probarlo en un iPhone: la lista «En el móvil» de la nota 29 (el dibujo y la mano que señala, las caras, los
+  chistes, la voz de iOS, VoiceOver, «reducir movimiento», el móvil tumbado, el cielo de noche con la luz roja y «Su
+  cuerpo» con el gesto de volver).
+- Que un nativo de cada idioma lea los textos nuevos y, lo primero, los dieciséis chistes.
+- En el resto de la app, el nombre de Jérôme va con letras latinas en los diez idiomas («Говори с Jérôme»,
+  «Jérôme 推荐»); en el tour, en búlgaro y en chino, va en su alfabeto. Si se quiere igual en todas partes, lo decide
+  Jérôme.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
