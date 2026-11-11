@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* auditar_tour.js — los tours con Jero, enteros, en los diez idiomas.
+/* auditar_tour.js — los tours con Jérôme, enteros, en los diez idiomas.
  *
  * POR QUE EXISTE. El 11 de octubre de 2026 Jerome pidio rehacer el tour
  * («añadimos cosas») y «verifica que se traduce en cada idioma. Sin
@@ -10,24 +10,24 @@
  * solo se ve abriendolo: el tour de verdad, en un navegador.
  *
  * EL 10 DE NOVIEMBRE DE 2026 el tour paso a tener un presentador («un
- * personaje animado de mí», Jero) y a ser dos: el de la app, por capitulos, y
+ * personaje animado de mí», Jérôme) y a ser dos: el de la app, por capitulos, y
  * el del panel del cielo. Todo vive en modulos/guia.js, que se pide cuando
  * hace falta. Este control se rehizo con ellos. Y esa misma tarde, con el
  * bloque 8 de «Su cuerpo» ya en main, llego el tercero: el de esa pantalla.
  *
  * QUE HACE, por idioma:
  *   · entra como alguien nuevo (elige el idioma en la bienvenida y pulsa
- *     «Comenzar»): tiene que salir Jero con la pregunta del tour;
+ *     «Comenzar»): tiene que salir Jérôme con la pregunta del tour;
  *   · recorre el tour de la app con «Siguiente» en cuatro tamaños de movil
  *     (320×568, 360×640, 390×844, 412×915) y en cada paso mira:
  *       - texto sin {…} por sustituir, sin «undefined», «NaN» ni «null», y
  *         el mismo texto, entero, para los lectores de pantalla;
  *       - que lo que se señala este en pantalla (el foco no queda en el
- *         centro) y que ni el bocadillo ni Jero lo tapen;
- *       - que el bocadillo y Jero quepan enteros en la pantalla, que no se
+ *         centro) y que ni el bocadillo ni Jérôme lo tapen;
+ *       - que el bocadillo y Jérôme quepan enteros en la pantalla, que no se
  *         salga nada por dentro y que ningun boton se parta en dos lineas;
- *       - que Jero este y señale: una mano con el dedo estirado y ese brazo
- *         fuera del aro. Donde no cabe, Jero se queda en miniatura en la
+ *       - que Jérôme este y señale: una mano con el dedo estirado y ese brazo
+ *         fuera del aro. Donde no cabe, Jérôme se queda en miniatura en la
  *         esquina del bocadillo y mira hacia lo que explica: eso solo se
  *         admite en los dos moviles pequeños (320×568 y 360×640);
  *       - las cifras que se cuentan: los lugares del mapa, los idiomas, las
@@ -40,7 +40,7 @@
  *     una con los pasos que de verdad tiene, los capitulos, el boton de cerrar
  *     con su texto, que en el movil mas pequeño se vea entero (o se pueda
  *     recorrer entero), y que un capitulo empieza en su primer paso;
- *   · el tour del cielo: la primera vez, el boton de Jero se ofrece con un
+ *   · el tour del cielo: la primera vez, el boton de Jérôme se ofrece con un
  *     globito; el tour recorre las cinco pestañas en los cuatro tamaños, con
  *     lo mismo de arriba en cada paso; la luz roja se enciende en su paso y se
  *     apaga al salir; al terminar queda guardado y el globito no vuelve. Se
@@ -48,14 +48,14 @@
  *     ofrece la luz roja en su barra, y se mira que la visita la aparte
  *     mientras dura y la devuelva al acabar, sin darla por vista. Y la
  *     cabecera del panel con la luz roja: durante la visita, sin el regulador
- *     de brillo; fuera de ella, con los cinco (el titulo, Jero, «Luz roja»,
+ *     de brillo; fuera de ella, con los cinco (el titulo, Jérôme, «Luz roja»,
  *     el regulador y la ✕) sin que nada pise a nada ni se salga, en los
  *     cuatro tamaños;
  *   · con el movil tumbado (844×390, en castellano): los tres tours enteros,
  *     con lo mismo de arriba en cada paso; apaisado y bajo, el bocadillo va
  *     al lado de lo que señala, y el ultimo paso tiene que caber entero;
  *   · el tour de «Su cuerpo»: la pantalla se abre como la abre la app
- *     (abrirCuerpo); lleva el boton de Jero dentro de su escena (se lo pone el
+ *     (abrirCuerpo); lleva el boton de Jérôme dentro de su escena (se lo pone el
  *     cargador de index.html: modulos/cuerpo.js no se toca) y la primera vez
  *     se ofrece con su globito; el tour baja por la pantalla en los cuatro
  *     tamaños, con lo mismo de arriba en cada paso, y ademas: no cambia de
@@ -68,7 +68,7 @@
  * el del modulo en los diez idiomas (en el menu y en cada frase que la
  * nombra) y lo que el tour señala en esa pantalla sigue estando en
  * modulos/cuerpo.js con ese nombre.
- * Y en castellano, ademas: con movimiento (Jero vivo, el texto que se escribe
+ * Y en castellano, ademas: con movimiento (Jérôme vivo, el texto que se escribe
  * y la estela), la voz con una voz falsa que apunta lo que se lee (sin
  * emojis, en el idioma, y pasa sola al paso siguiente), sin el modulo (la
  * app sigue y lo dice) y, en «Su cuerpo»: por el camino de verdad (Cuenta, la
@@ -132,7 +132,7 @@ function estatico() {
   /* 1b · los chistes («Algunos chistes», Jerome, 10-11-2026): que sigan ahi, y ninguno en los pasos serios */
   if (chistes < 12) out.push('solo quedan ' + chistes + ' pasos con chiste en los tres tours');
   for (const k of ['tourSos', 'tourMar', 'guiaCuComida', 'guiaCuPrivado', 'guiaCuHoy', 'guiaCuEvolucion']) if (new RegExp("k: '" + k + "'[^\\n]*chiste: true").test(motor)) out.push('el paso «' + k + '» es serio y lleva un chiste');
-  /* 1c · cada cara que pide un paso (emo, emoC) es uno de los gestos que Jero sabe poner */
+  /* 1c · cada cara que pide un paso (emo, emoC) es uno de los gestos que Jérôme sabe poner */
   const emoTxt = (guia.match(/var EMO = \{([\s\S]*?)\n  \};/) || [, ''])[1], gestos = new Set([...emoTxt.matchAll(/^\s*(\w+):\s*\{/gm)].map(m => m[1]));
   if (gestos.size < 8) out.push('solo encuentro ' + gestos.size + ' gestos en EMO: el control ya no sabe leerlos');
   const pedidos = new Set([...motor.matchAll(/\bemoC?: '(\w+)'/g)].map(m => m[1]));
@@ -232,8 +232,8 @@ function problemasDelPaso(donde, i, d, S, tam) {
   /* un paso con chiste lo cuenta con otra cara */
   if (d.chiste && (!d.estado.jero || d.estado.jero.emocion === 'contento')) out.push(donde + ': el chiste se cuenta con la cara de siempre');
   if (!dentro(d.tarjeta, d)) out.push(donde + ': el bocadillo se sale de la pantalla (' + cuad(d.tarjeta) + ' en ' + d.vw + '×' + d.vh + ')');
-  if (!d.jero) out.push(donde + ': Jero no esta');
-  if (d.jero && !dentro(d.jero, d)) out.push(donde + ': Jero se sale de la pantalla (' + cuad(d.jero) + ' en ' + d.vw + '×' + d.vh + ')');
+  if (!d.jero) out.push(donde + ': Jérôme no esta');
+  if (d.jero && !dentro(d.jero, d)) out.push(donde + ': Jérôme se sale de la pantalla (' + cuad(d.jero) + ' en ' + d.vw + '×' + d.vh + ')');
   if (d.sale.length) out.push(donde + ': se sale el texto de ' + d.sale.join(', '));
   if (d.partidos.length) out.push(donde + ': boton partido en dos lineas: ' + d.partidos.join(', '));
   if (d.fantasma) out.push(donde + ': queda abierto el hueco del paso anterior, sin oscurecer');
@@ -245,14 +245,14 @@ function problemasDelPaso(donde, i, d, S, tam) {
   }
   if (!d.hueco) { out.push(donde + ': lo que se señala no esta en pantalla (foco en el centro)'); return out; }
   if (d.pisa || corta(d.tarjeta, d.hueco)) out.push(donde + ': el bocadillo tapa lo que señala');
-  if (d.jero && corta(d.jero, d.hueco)) out.push(donde + ': Jero tapa lo que señala');
+  if (d.jero && corta(d.jero, d.hueco)) out.push(donde + ': Jérôme tapa lo que señala');
   if (d.hueco.height < 40 || d.hueco.width < 40) out.push(donde + ': el foco es demasiado pequeño (' + Math.round(d.hueco.width) + '×' + Math.round(d.hueco.height) + ')');
-  if (d.nivel === 3) { if (tam !== '320×568' && tam !== '360×640' && tam !== TUMBADO) out.push(donde + ': Jero no cabe entero y sale en miniatura (solo se admite en los dos moviles pequeños y con el movil tumbado)'); }
+  if (d.nivel === 3) { if (tam !== '320×568' && tam !== '360×640' && tam !== TUMBADO) out.push(donde + ': Jérôme no cabe entero y sale en miniatura (solo se admite en los dos moviles pequeños y con el movil tumbado)'); }
   else {
     /* un boton se señala con el indice; algo grande, con la mano abierta de presentador */
     const j = d.estado.jero, apunta = m => m === 'senala' || m === 'palma', lado = j && (apunta(j.mano.i) ? 'i' : apunta(j.mano.d) ? 'd' : null);
     const grande = d.hueco.width > Math.min(d.vw * 0.62, 300) && d.hueco.height > 64;
-    if (!lado) out.push(donde + ': Jero no señala');
+    if (!lado) out.push(donde + ': Jérôme no señala');
     else {
       if (j.dentro[lado]) out.push(donde + ': el brazo que señala no sale del aro');
       if (j.mano[lado] !== (grande ? 'palma' : 'senala')) out.push(donde + ': señala con «' + j.mano[lado] + '» algo de ' + Math.round(d.hueco.width) + '×' + Math.round(d.hueco.height) + ' (el indice es para los botones; la mano abierta, para lo grande)');
@@ -265,7 +265,7 @@ function problemasDelPaso(donde, i, d, S, tam) {
    del tour, no del control: se apunta y se sigue. */
 async function pulsa(p, sel) { try { await p.click(sel, { timeout: 4000 }); return true; } catch (e) { return false; } }
 const listo = (p, ms) => p.waitForFunction(() => { const t = document.getElementById('v19-tour'); return t && t.getAttribute('data-listo') === '1'; }, null, { timeout: ms || 6000 }).then(() => true, () => false);
-/* en miniatura Jero tapa la esquina del bocadillo a proposito: lo que no puede es tapar lo que se señala */
+/* en miniatura Jérôme tapa la esquina del bocadillo a proposito: lo que no puede es tapar lo que se señala */
 const textoPaso = d => [d.titulo, d.cuerpo, d.chiste, d.nuevo].filter(Boolean).concat(d.botones).join(' ¦ ');
 
 async function entra(b, L, opc) {
@@ -329,7 +329,7 @@ async function idioma(b, L) {
              nuevo: !!c.querySelector('.v19t-nuevo'), jero: !!c.querySelector('.tgg-jero svg'), cabe: (() => { const q = c.querySelector('.v19t-card').getBoundingClientRect(); return q.left >= 0 && q.right <= innerWidth && q.bottom <= innerHeight; })() }; });
   textos['pregunta'] = preg.t + ' ¦ ' + preg.c + ' ¦ ' + preg.botones.join(' ¦ ');
   if (preg.nuevo) fallos.push(L + ': alguien nuevo ve la etiqueta de novedades');
-  if (!preg.jero) fallos.push(L + ': la pregunta sale sin Jero');
+  if (!preg.jero) fallos.push(L + ': la pregunta sale sin Jérôme');
   if (!preg.cabe) fallos.push(L + ': la pregunta no cabe en la pantalla');
   if (ROTO.test(textos['pregunta'])) fallos.push(L + ': pregunta rota «' + textos['pregunta'].slice(0, 90) + '»');
   if (preg.botones.length !== 2 || preg.botones.some(x => !x.trim())) fallos.push(L + ': la pregunta tiene que llevar sus dos botones, con texto («' + preg.botones.join('», «') + '»)');
@@ -399,7 +399,7 @@ async function idioma(b, L) {
       if (m.chips.length !== 5) fallos.push(L + ': el menu enseña ' + m.chips.length + ' capitulos de la app (son cinco)');
       if (!m.leyenda) fallos.push(L + ': la leyenda se queda abierta debajo del menu');
       /* en el movil mas pequeño, con tres visitas y cinco capitulos, el menu tiene que verse entero o poder
-         recorrerse entero: ni la cabeza de Jero cortada por arriba ni el boton de cerrar fuera de la pantalla */
+         recorrerse entero: ni la cabeza de Jérôme cortada por arriba ni el boton de cerrar fuera de la pantalla */
       await p.evaluate(() => window.TG_GUIA.cerrar());
       await p.setViewportSize({ width: 320, height: 568 });
       await p.evaluate(() => window.v19TourMenu());
@@ -471,7 +471,7 @@ async function idioma(b, L) {
     if (!cargo) fallos.push(L + ': el panel del cielo no carga');
     else {
       const pista = await q.waitForSelector('.tgg-pista', { timeout: 8000 }).then(n => n.textContent(), () => null);
-      if (!pista) fallos.push(L + ': Jero no se ofrece la primera vez que se abre el panel del cielo');
+      if (!pista) fallos.push(L + ': Jérôme no se ofrece la primera vez que se abre el panel del cielo');
       else { textos['pista'] = pista; if (ROTO.test(pista)) fallos.push(L + ': pista rota «' + pista + '»'); }
       const nombre = await q.evaluate(() => document.getElementById('cielo-tour-btn').getAttribute('aria-label'));
       textos['boton del cielo'] = nombre || '';
@@ -480,7 +480,7 @@ async function idioma(b, L) {
       for (const [w, h] of TAMANOS) {
         const tam = w + '×' + h;
         await q.setViewportSize({ width: w, height: h });
-        if (w === TAMANOS[0][0]) { if (!(await pulsa(q, '#cielo-tour-btn'))) { fallos.push(L + ': no se puede pulsar el boton de Jero del panel del cielo'); break; } }
+        if (w === TAMANOS[0][0]) { if (!(await pulsa(q, '#cielo-tour-btn'))) { fallos.push(L + ': no se puede pulsar el boton de Jérôme del panel del cielo'); break; } }
         else await q.evaluate(() => window.v19TourCielo());
         if (!(await q.waitForSelector('#v19-tour.open', { timeout: 15000 }).then(() => true, () => false))) { fallos.push(L + ' ' + tam + ': el tour del cielo no se abre'); break; }
         const b1 = await barra();
@@ -520,14 +520,14 @@ async function idioma(b, L) {
         const b2 = await barra();
         if (b0 && b0.ve && (!b2 || !b2.ve)) fallos.push(L + ' ' + tam + ': al terminar el tour del cielo no vuelve la barra de la luz roja');
         /* Y FUERA DE LA VISITA, con la luz roja puesta: la cabecera lleva tambien el regulador de brillo, y
-           con el boton de Jero ya no cabia en un renglon en un movil estrecho: el boton pisaba el titulo (a
+           con el boton de Jérôme ya no cabia en un renglon en un movil estrecho: el boton pisaba el titulo (a
            320 px en cuatro idiomas; en bulgaro, hasta 381). Por debajo de 390 px va en dos renglones
            (index.html). Que esten los cinco, que nada pise a nada y que nada se salga. */
         if (!fin.abierto && !fin.rojo && !(await pulsa(q, '#cielo-rojo'))) fallos.push(L + ' ' + tam + ': al acabar la visita del cielo no se puede tocar «Luz roja»');
         else if (!fin.abierto && !fin.rojo) {
           await q.waitForTimeout(250);
           const cab = await q.evaluate(MEDIR_CABECERA);
-          if (cab.n !== 5 || !cab.regulador) fallos.push(L + ' ' + tam + ': con la luz roja, la cabecera del panel del cielo lleva ' + cab.n + ' cosas (se esperan el titulo, Jero, «Luz roja», el regulador y la ✕)');
+          if (cab.n !== 5 || !cab.regulador) fallos.push(L + ' ' + tam + ': con la luz roja, la cabecera del panel del cielo lleva ' + cab.n + ' cosas (se esperan el titulo, Jérôme, «Luz roja», el regulador y la ✕)');
           if (cab.pisa.length) fallos.push(L + ' ' + tam + ': con la luz roja, en la cabecera del panel del cielo se pisan ' + cab.pisa.join('; '));
           if (cab.fuera.length) fallos.push(L + ' ' + tam + ': con la luz roja, se sale de la cabecera del panel del cielo ' + cab.fuera.join(', '));
           await pulsa(q, '#cielo-rojo'); await q.waitForTimeout(150);
@@ -540,7 +540,7 @@ async function idioma(b, L) {
       await q.click('#cielo-cerrar').catch(() => {});
       await q.click('#cielo-btn').catch(() => {});
       await q.waitForTimeout(1900);
-      if (await q.$('.tgg-pista')) fallos.push(L + ': Jero se vuelve a ofrecer en el panel del cielo despues de ver su tour');
+      if (await q.$('.tgg-pista')) fallos.push(L + ': Jérôme se vuelve a ofrecer en el panel del cielo despues de ver su tour');
     }
     if (c.err.length) fallos.push(L + ': errores de pagina en el tour del cielo: ' + c.err.slice(0, 3).join(' | '));
     await c.ctx.close();
@@ -554,24 +554,24 @@ async function idioma(b, L) {
     await q.waitForTimeout(700);
     await q.evaluate(() => window.abrirCuerpo());
     const abre = await q.waitForFunction(() => window.TG_CUERPO && window.TG_CUERPO.abierto() && !!document.getElementById('cuerpo-tour-btn'), null, { timeout: 30000 }).then(() => true, () => false);
-    if (!abre) fallos.push(L + ': «Su cuerpo» no se abre, o se abre sin el boton de Jero');
+    if (!abre) fallos.push(L + ': «Su cuerpo» no se abre, o se abre sin el boton de Jérôme');
     else {
       const pista = await q.waitForSelector('.tgg-pista', { timeout: 9000 }).then(n => n.textContent(), () => null);
-      if (!pista) fallos.push(L + ': Jero no se ofrece la primera vez que se abre «Su cuerpo»');
+      if (!pista) fallos.push(L + ': Jérôme no se ofrece la primera vez que se abre «Su cuerpo»');
       else { textos['pista del cuerpo'] = pista; if (ROTO.test(pista)) fallos.push(L + ': pista rota «' + pista + '»'); }
       const bot = await q.evaluate(() => { const x = document.getElementById('cuerpo-tour-btn'), r = x.getBoundingClientRect(), e = document.getElementById('tgc-escena').getBoundingClientRect(), g = document.getElementById('tgc-girar').getBoundingClientRect();
         return { nombre: x.getAttribute('aria-label') || '', dentro: r.left >= e.left && r.right <= e.right && r.top >= e.top && r.bottom <= e.bottom && r.width >= 40, pisaGirar: Math.min(r.right, g.right) - Math.max(r.left, g.left) > 0 && Math.min(r.bottom, g.bottom) - Math.max(r.top, g.top) > 0 }; });
       textos['boton del cuerpo'] = bot.nombre;
-      if (!bot.nombre.trim()) fallos.push(L + ': el boton de Jero de «Su cuerpo» no tiene nombre');
-      if (!bot.dentro) fallos.push(L + ': el boton de Jero no queda dentro de la escena de «Su cuerpo»');
-      if (bot.pisaGirar) fallos.push(L + ': el boton de Jero pisa «Girar»');
+      if (!bot.nombre.trim()) fallos.push(L + ': el boton de Jérôme de «Su cuerpo» no tiene nombre');
+      if (!bot.dentro) fallos.push(L + ': el boton de Jérôme no queda dentro de la escena de «Su cuerpo»');
+      if (bot.pisaGirar) fallos.push(L + ': el boton de Jérôme pisa «Girar»');
       const guardado = () => q.evaluate(() => ({ datos: localStorage.getItem('tenerife.cuerpo'), tema: localStorage.getItem('tenerife.cuerpo.tema') }));
       const antes = await guardado();
       for (const [w, h] of TAMANOS) {
         const tam = w + '×' + h;
         await q.setViewportSize({ width: w, height: h });
         await q.waitForTimeout(250);
-        if (w === TAMANOS[0][0]) { if (!(await pulsa(q, '#cuerpo-tour-btn'))) { fallos.push(L + ': no se puede pulsar el boton de Jero de «Su cuerpo»'); break; } }
+        if (w === TAMANOS[0][0]) { if (!(await pulsa(q, '#cuerpo-tour-btn'))) { fallos.push(L + ': no se puede pulsar el boton de Jérôme de «Su cuerpo»'); break; } }
         else await q.evaluate(() => window.v19TourCuerpo());
         if (!(await q.waitForSelector('#v19-tour.open', { timeout: 15000 }).then(() => true, () => false))) { fallos.push(L + ' ' + tam + ': el tour de «Su cuerpo» no se abre'); break; }
         const desde = pedidos.length;
@@ -611,9 +611,9 @@ async function idioma(b, L) {
       await q.waitForTimeout(300);
       await q.evaluate(() => window.abrirCuerpo());
       await q.waitForTimeout(2600);
-      if (await q.$('.tgg-pista')) fallos.push(L + ': Jero se vuelve a ofrecer en «Su cuerpo» despues de ver su tour');
+      if (await q.$('.tgg-pista')) fallos.push(L + ': Jérôme se vuelve a ofrecer en «Su cuerpo» despues de ver su tour');
       const cuantos = await q.evaluate(() => document.querySelectorAll('.cuerpo-tour-btn').length);
-      if (cuantos !== 1) fallos.push(L + ': al volver a abrir «Su cuerpo» hay ' + cuantos + ' botones de Jero');
+      if (cuantos !== 1) fallos.push(L + ': al volver a abrir «Su cuerpo» hay ' + cuantos + ' botones de Jérôme');
     }
     if (c.err.length) fallos.push(L + ': errores de pagina en el tour de «Su cuerpo»: ' + c.err.slice(0, 3).join(' | '));
     await c.ctx.close();
@@ -624,7 +624,7 @@ async function idioma(b, L) {
 /* ── en castellano: con movimiento, con voz y sin el modulo ── */
 async function aparte(b) {
   const fallos = [];
-  /* con movimiento: Jero vive, el texto se escribe y la estela une el dedo con el foco */
+  /* con movimiento: Jérôme vive, el texto se escribe y la estela une el dedo con el foco */
   {
     const { ctx, p, err } = await entra(b, 'es', { movimiento: true });
     await p.waitForSelector('.v19t-prompt', { timeout: 8000 }).catch(() => fallos.push('con movimiento: no sale la pregunta'));
@@ -635,8 +635,8 @@ async function aparte(b) {
     await p.waitForFunction(() => !document.querySelector('.tgg-pordecir').textContent, null, { timeout: 8000 }).catch(() => fallos.push('con movimiento: el texto no termina de escribirse'));
     const d = await p.evaluate(() => ({ e: window.TG_GUIA.estado(), estela: !!document.querySelector('.tgg-rastro.ve'), d: document.querySelector('.tgg-rastro').getAttribute('d') || '' }));
     if (antes.resto === 0) fallos.push('con movimiento: el texto sale escrito de golpe');
-    if (!d.e.jero.vivo) fallos.push('con movimiento: Jero no se mueve');
-    if (d.e.jero.mano.i !== 'senala' && d.e.jero.mano.d !== 'senala') fallos.push('con movimiento: Jero no señala');
+    if (!d.e.jero.vivo) fallos.push('con movimiento: Jérôme no se mueve');
+    if (d.e.jero.mano.i !== 'senala' && d.e.jero.mano.d !== 'senala') fallos.push('con movimiento: Jérôme no señala');
     if (!d.estela || !/^M[\d.-]+,[\d.-]+ Q/.test(d.d)) fallos.push('con movimiento: no hay estela del dedo al foco');
     /* la mano que señala, tal como queda dibujada: el pulgar a un lado del indice, los tres dedos doblados
        al otro, y el indice bien mas largo que ellos. Un dedo solo en medio del puño parecia otro gesto. */
@@ -684,7 +684,7 @@ async function aparte(b) {
     if (err.length) fallos.push('con movimiento: errores de pagina: ' + err.slice(0, 3).join(' | '));
     await ctx.close();
   }
-  /* con el movil lento: un cuadro cada 50 ms (20 por segundo). Los muelles de Jero no se desbocan: a
+  /* con el movil lento: un cuadro cada 50 ms (20 por segundo). Los muelles de Jérôme no se desbocan: a
      ese paso los de los parpados se iban al techo, y de las gafas salian dos barras blancas hasta
      arriba de la pantalla (se vio en las capturas del tour de «Su cuerpo», el 10-11-2026) */
   {
@@ -705,7 +705,7 @@ async function aparte(b) {
     for (let i = 0; i < 6; i++) {            // del buscador a los marcadores, con el chiste del dado y el asombro del 3D por el camino
       await listo(p, 9000); await p.waitForTimeout(2200);
       const m = await mira();
-      if (!m) { fallos.push('movil lento: Jero no esta'); break; }
+      if (!m) { fallos.push('movil lento: Jérôme no esta'); break; }
       if (m.ojos.some(o => o[0] > 26 || o[1] > 34)) fallos.push('movil lento, paso ' + (i + 1) + ': los parpados se desbocan (ojos de ' + m.ojos.map(o => o.map(Math.round).join('×')).join(' y ') + ')');
       if (m.raro.length) fallos.push('movil lento, paso ' + (i + 1) + ': un muelle se desboca (' + m.raro[0].slice(0, 60) + ')');
       await p.click('#v19-tour .v19t-next').catch(() => {});
@@ -764,7 +764,7 @@ async function aparte(b) {
   }
   /* CON EL MOVIL TUMBADO (844×390), los tres tours enteros. El control recorria cuatro moviles de pie, y
      tumbado casi nunca cabe nada ni encima ni debajo de lo que se señala: el bocadillo lo tapaba en
-     varios pasos, Jero salia en miniatura en casi todos y el ultimo paso se salia por abajo, con su
+     varios pasos, Jérôme salia en miniatura en casi todos y el ultimo paso se salia por abajo, con su
      boton a medias (10-11-2026; el tour de antes, sin personaje, cabia mejor). Ahora, apaisado y bajo, el
      bocadillo va al lado de lo que señala (de una tarjeta ancha se enseña su lado izquierdo) y el ultimo
      paso se aprieta hasta caber. Se mira lo mismo que de pie en cada paso; la miniatura se admite. */
@@ -780,7 +780,7 @@ async function aparte(b) {
         if (pasos.length !== S) fallos.push('tumbado: el tour «' + tour + '» se queda en el paso ' + pasos.length + ' de ' + S);
         /* el de la app es el que se ofrece al entrar: ahi, ni en miniatura */
         const mini = pasos.filter(d => d.nivel === 3).length;
-        if (tour === 'app' && mini) fallos.push('tumbado: en el tour de la app Jero sale en miniatura en ' + mini + ' paso(s), y de lado cabe a su tamaño');
+        if (tour === 'app' && mini) fallos.push('tumbado: en el tour de la app Jérôme sale en miniatura en ' + mini + ' paso(s), y de lado cabe a su tamaño');
         /* y el ultimo paso, que no señala nada: entero, con su boton dentro de la pantalla */
         const fin = await p.evaluate(() => { const n = document.querySelector('#v19-tour .v19t-next'), r = n.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight && r.left >= 0 && r.right <= innerWidth; });
         if (!fin) fallos.push('tumbado: en el ultimo paso del tour «' + tour + '» el boton de terminar no cabe en la pantalla');
@@ -804,7 +804,7 @@ async function aparte(b) {
     await p.waitForTimeout(2200);
     if (await p.$('.tgg-pista')) fallos.push('el globito: vuelve a salir la segunda vez');
     await p.click('#cielo-tour-btn').catch(() => {});
-    if (!(await p.waitForSelector('#v19-tour.open', { timeout: 8000 }).then(() => true, () => false))) fallos.push('el globito: ofrecido y no visto, el boton de Jero ya no abre el tour del cielo');
+    if (!(await p.waitForSelector('#v19-tour.open', { timeout: 8000 }).then(() => true, () => false))) fallos.push('el globito: ofrecido y no visto, el boton de Jérôme ya no abre el tour del cielo');
     if (err.length) fallos.push('el globito: errores de pagina: ' + err.slice(0, 3).join(' | '));
     await ctx.close();
   }
@@ -822,14 +822,14 @@ async function aparte(b) {
     await p.click('#tgp-tab-cuerpo').catch(() => {});
     await p.click('#tgp-cuerpo-abrir').catch(() => fallos.push(C + 'no se puede pulsar «Abrir» en la pestaña Cuerpo'));
     const hay = await p.waitForFunction(() => window.TG_CUERPO && window.TG_CUERPO.abierto() && !!document.getElementById('cuerpo-tour-btn'), null, { timeout: 30000 }).then(() => true, () => false);
-    if (!hay) fallos.push(C + 'abierta desde el perfil, no lleva el boton de Jero');
+    if (!hay) fallos.push(C + 'abierta desde el perfil, no lleva el boton de Jérôme');
     else {
       /* el globito, una vez por dispositivo: al enseñarlo se guarda «0» */
       await p.waitForSelector('.tgg-pista', { timeout: 9000 }).catch(() => fallos.push(C + 'el globito no sale la primera vez'));
       const g1 = await p.evaluate(() => localStorage.getItem('tenerife.tour.cuerpo'));
       if (g1 !== '0') fallos.push(C + 'al enseñar el globito se guarda «' + g1 + '» y no «0»');
       /* Escape cierra el tour y nada mas («Su cuerpo» oye su Escape en la captura de window) */
-      if (!(await abreTour())) fallos.push(C + 'el boton de Jero no abre el tour');
+      if (!(await abreTour())) fallos.push(C + 'el boton de Jérôme no abre el tour');
       else {
         await pulsa(p, '#v19-tour .v19t-next'); await listo(p);
         await p.keyboard.press('Escape'); await p.waitForTimeout(350);
@@ -849,24 +849,24 @@ async function aparte(b) {
       await p.waitForFunction(() => window.TG_CUERPO.abierto(), null, { timeout: 8000 }).catch(() => {});
       await p.waitForTimeout(2400);
       const n = await p.evaluate(() => ({ b: document.querySelectorAll('.cuerpo-tour-btn').length, pista: !!document.querySelector('.tgg-pista') }));
-      if (n.b !== 1) fallos.push(C + 'al volver a abrirla hay ' + n.b + ' botones de Jero');
+      if (n.b !== 1) fallos.push(C + 'al volver a abrirla hay ' + n.b + ' botones de Jérôme');
       if (n.pista) fallos.push(C + 'el globito vuelve a salir');
       /* en «Aspecto» el boton se ve, y desde ahi el tour vuelve a «Músculos»; en «Comida» no hay escena ni boton */
       await p.click('#tgc-modo-a'); await p.waitForTimeout(700);
-      if (!(await p.evaluate(() => { const r = document.getElementById('cuerpo-tour-btn').getBoundingClientRect(); return r.width > 0 && r.bottom <= innerHeight && r.top >= 0; }))) fallos.push(C + 'en «Aspecto» el boton de Jero no se ve');
+      if (!(await p.evaluate(() => { const r = document.getElementById('cuerpo-tour-btn').getBoundingClientRect(); return r.width > 0 && r.bottom <= innerHeight && r.top >= 0; }))) fallos.push(C + 'en «Aspecto» el boton de Jérôme no se ve');
       if (await abreTour()) {
         const e = await como();
         if (e.m !== 'true' || e.paso !== 'guiaCuPersonaje') fallos.push(C + 'desde «Aspecto», el tour no vuelve a «Músculos» (vista ' + e.m + ', paso ' + e.paso + ')');
         await p.keyboard.press('Escape'); await p.waitForTimeout(300);
-      } else fallos.push(C + 'desde «Aspecto», el boton de Jero no abre el tour');
+      } else fallos.push(C + 'desde «Aspecto», el boton de Jérôme no abre el tour');
       await p.click('#tgc-modo-c'); await p.waitForTimeout(400);
-      if (await p.evaluate(() => document.getElementById('cuerpo-tour-btn').getClientRects().length > 0)) fallos.push(C + 'en «Comida» el boton de Jero se queda a la vista sin escena');
+      if (await p.evaluate(() => document.getElementById('cuerpo-tour-btn').getClientRects().length > 0)) fallos.push(C + 'en «Comida» el boton de Jérôme se queda a la vista sin escena');
       /* «Evolución» (10-11-2026): las dos tarjetas del perfil, sin escena. Su pestaña tiene que estar (el tour
-         la señala en su paso) y, dentro, tampoco se queda el boton de Jero a la vista */
+         la señala en su paso) y, dentro, tampoco se queda el boton de Jérôme a la vista */
       if (!(await p.$('#tgc-modo-e'))) fallos.push(C + 'no esta la pestaña «Evolución» (#tgc-modo-e), que el tour señala');
       else {
         await p.click('#tgc-modo-e'); await p.waitForTimeout(600);
-        if (await p.evaluate(() => document.getElementById('cuerpo-tour-btn').getClientRects().length > 0)) fallos.push(C + 'en «Evolución» el boton de Jero se queda a la vista sin escena');
+        if (await p.evaluate(() => document.getElementById('cuerpo-tour-btn').getClientRects().length > 0)) fallos.push(C + 'en «Evolución» el boton de Jérôme se queda a la vista sin escena');
       }
       await p.click('#tgc-modo-m'); await p.waitForTimeout(400);
       /* el tema Noche, de punta a punta */
@@ -876,7 +876,7 @@ async function aparte(b) {
         await pulsa(p, '#v19-tour.open .v19t-next');
         const t = await p.evaluate(() => ({ tema: window.TG_CUERPO.tema(), abierto: window.TG_GUIA.estado().abierto }));
         if (t.tema !== 'noche' || t.abierto) fallos.push(C + 'tras el tour en Noche: tema «' + t.tema + '», tour abierto ' + t.abierto);
-      } else fallos.push(C + 'en el tema Noche, el boton de Jero no abre el tour');
+      } else fallos.push(C + 'en el tema Noche, el boton de Jérôme no abre el tour');
     }
     if (err.length) fallos.push(C + 'errores de pagina: ' + err.slice(0, 3).join(' | '));
     await ctx.close();
@@ -945,13 +945,13 @@ async function aparte(b) {
     await p.click('#cielo-cerrar').catch(() => {});
     await p.evaluate(() => { const t = document.getElementById('layer-toast'); if (t) t.textContent = ''; window.abrirCuerpo(); });
     const cu = await p.waitForFunction(() => window.TG_CUERPO && window.TG_CUERPO.abierto() && !!document.getElementById('cuerpo-tour-btn'), null, { timeout: 30000 }).then(() => true, () => false);
-    if (!cu) fallos.push('sin el modulo: «Su cuerpo» no se abre con su boton de Jero');
+    if (!cu) fallos.push('sin el modulo: «Su cuerpo» no se abre con su boton de Jérôme');
     else {
       await p.waitForTimeout(2200);
       if (await p.$('.tgg-pista')) fallos.push('sin el modulo: sale la pista de «Su cuerpo»');
       await p.click('#cuerpo-tour-btn').catch(() => {});
       const av2 = await p.waitForFunction(() => { const t = document.getElementById('layer-toast'); return t && t.textContent; }, null, { timeout: 6000 }).then(h => h.jsonValue(), () => '');
-      if (av2 !== esperado) fallos.push('sin el modulo: el boton de Jero de «Su cuerpo» no dice que no se ha podido cargar («' + av2 + '»)');
+      if (av2 !== esperado) fallos.push('sin el modulo: el boton de Jérôme de «Su cuerpo» no dice que no se ha podido cargar («' + av2 + '»)');
     }
     if (err.length) fallos.push('sin el modulo: errores de pagina: ' + err.slice(0, 3).join(' | '));
     await ctx.close();
@@ -962,7 +962,7 @@ async function aparte(b) {
 (async () => {
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const P = (k, v) => console.log('  ' + String(k).padEnd(52, '.') + ' ' + v);
-  console.log('=== los tours con Jero, en los ' + IDIOMAS.length + ' idiomas ===');
+  console.log('=== los tours con Jérôme, en los ' + IDIOMAS.length + ' idiomas ===');
   const res = {};
   let total = 0;
   const est = estatico();
@@ -976,7 +976,7 @@ async function aparte(b) {
     const ks = Object.keys(res[L].textos), sj = res[L].sinJero;
     const peq = Object.keys(sj).filter(k => sj[k]).map(k => k + ': ' + sj[k]).join(', ');
     P(L + ' · app ' + ks.filter(k => k.startsWith('app ')).length + ' pasos, cielo ' + ks.filter(k => k.startsWith('cielo ')).length + ', cuerpo ' + ks.filter(k => k.startsWith('cuerpo ')).length + ', en ' + TAMANOS.length + ' tamaños',
-      (res[L].fallos.length ? res[L].fallos.length + ' fallo(s)' : 'bien') + (peq ? ' — Jero en miniatura por falta de sitio (' + peq + ')' : ''));
+      (res[L].fallos.length ? res[L].fallos.length + ' fallo(s)' : 'bien') + (peq ? ' — Jérôme en miniatura por falta de sitio (' + peq + ')' : ''));
     res[L].fallos.slice(0, 14).forEach(f => console.log('       ' + f));
   }
   let ap = [];

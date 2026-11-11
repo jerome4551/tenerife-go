@@ -18,7 +18,7 @@
      también», «más emoción», «algunos chistes». Desde entonces: las manos son
      manos (LA QUE SEÑALA ES UN INDICE: sale del lado del pulgar, que se ve, con
      los otros tres dedos doblados; lo grande se enseña con la mano abierta), los
-     brazos tienen forma, los parpados y las cejas se mueven por su cuenta, Jero
+     brazos tienen forma, los parpados y las cejas se mueven por su cuenta, Jérôme
      pone doce caras (EMO) y algunos pasos acaban con un chiste suyo (la fila kC).
    · El motor de tours: el foco sobre la interfaz de verdad, el bocadillo con
      el texto que se escribe solo, la estela del dedo al foco, los capitulos y
@@ -32,7 +32,7 @@
    COMO LLEGA
    No se pide al arrancar: lo pide el cargador de index.html (bloque TOUR) al
    cerrar la bienvenida de quien no ha visto el tour, al tocar «Ver el tour»
-   en la leyenda del mapa o el boton con la cara de Jero del panel del cielo
+   en la leyenda del mapa o el boton con la cara de Jérôme del panel del cielo
    o de «Su cuerpo», y la primera vez que se abre uno de los dos (la pista).
    El service worker lo guarda desde el primer dia (CORE), asi que tambien
    sale sin cobertura. tools/fuente.js y tools/fuente.py lo pegan al final del
@@ -98,10 +98,10 @@
     "tourLogrosT": {"es": "Logros", "en": "Achievements", "fr": "Succès", "de": "Erfolge", "it": "Traguardi", "nl": "Prestaties", "zh": "成就", "zht": "成就", "bg": "Постижения", "pl": "Osiągnięcia"},
     "tourLogrosP": {"es": "Marque los lugares que visita y desbloquee trofeos mientras explora la isla.", "en": "Mark the places you visit and unlock trophies as you explore the island.", "fr": "Marquez les lieux que vous visitez et débloquez des trophées en explorant l'île.", "de": "Markieren Sie die Orte, die Sie besuchen, und schalten Sie Trophäen frei, während Sie die Insel entdecken.", "it": "Segni i luoghi che visita e sblocchi trofei mentre esplora l'isola.", "nl": "Markeer de plekken die u bezoekt en ontgrendel trofeeën terwijl u het eiland verkent.", "zh": "标记去过的地点，在探索全岛的同时解锁奖杯。", "zht": "標記去過的地點，在探索全島的同時解鎖獎盃。", "bg": "Отбелязвайте местата, които посещавате, и отключвайте трофеи, докато опознавате острова.", "pl": "Zaznaczanie odwiedzonych miejsc odblokowuje trofea w miarę odkrywania wyspy."},
     "tourMarcadoresT": {"es": "Toque los marcadores", "en": "Tap the markers", "fr": "Touchez les marqueurs", "de": "Tippen Sie auf die Marker", "it": "Tocchi i marcatori", "nl": "Tik op de markers", "zh": "点按地图标记", "zht": "點按地圖標記", "bg": "Докоснете маркерите", "pl": "Znaczniki na mapie"},
-    "guiaHolaT": {"es": "¡Hola! Soy Jero", "en": "Hi! I’m Jero", "fr": "Bonjour ! Je suis Jero", "de": "Hallo! Ich bin Jero", "it": "Salve! Sono Jero", "nl": "Hallo! Ik ben Jero", "zh": "您好！我是 Jero", "zht": "您好！我是 Jero", "bg": "Здравейте! Аз съм Jero", "pl": "Dzień dobry! Jestem Jero"},
+    "guiaHolaT": {"es": "¡Hola! Soy Jérôme", "en": "Hi! I’m Jérôme", "fr": "Bonjour ! Je suis Jérôme", "de": "Hallo! Ich bin Jérôme", "it": "Salve! Sono Jérôme", "nl": "Hallo! Ik ben Jérôme", "zh": "您好！我是热罗姆", "zht": "您好！我是熱羅姆", "bg": "Здравейте! Аз съм Жером", "pl": "Dzień dobry! Jestem Jérôme"},
     "guiaHolaP": {"es": "Vivo en Tenerife y he hecho esta guía de la isla. ¿Le enseño la app? Son {S} pasos y puede saltarlo cuando quiera.", "en": "I live in Tenerife and I built this guide to the island. Shall I show you around the app? It takes {S} steps and you can skip it at any time.", "fr": "J’habite à Tenerife et j’ai créé ce guide de l’île. Je vous fais visiter l’appli ? Il y a {S} étapes, et vous pouvez passer quand vous voulez.", "de": "Ich lebe auf Teneriffa und habe diesen Inselführer gebaut. Darf ich Ihnen die App zeigen? Es sind {S} Schritte, und Sie können jederzeit überspringen.", "it": "Vivo a Tenerife e ho creato questa guida dell’isola. Le mostro l’app? Sono {S} passi e può saltarli quando vuole.", "nl": "Ik woon op Tenerife en heb deze gids van het eiland gemaakt. Zal ik u de app laten zien? Het zijn {S} stappen en u kunt op elk moment overslaan.", "zh": "我住在特内里费，这份海岛指南是我做的。带您看看这个应用好吗？一共{S}步，随时可以跳过。", "zht": "我住在特內里費，這份海島指南是我做的。帶您看看這個應用程式好嗎？一共{S}步，隨時可以跳過。", "bg": "Живея на Тенерифе и направих този пътеводител за острова. Да ви покажа ли приложението? {S} стъпки са и можете да го пропуснете по всяко време.", "pl": "Mieszkam na Teneryfie i stworzyłem ten przewodnik po wyspie. Pokazać aplikację w {S} krokach? Przewodnik można pominąć w każdej chwili."},
-    "guiaNovP": {"es": "Ahora la visita se la hago yo: soy Jero, vivo en Tenerife y le enseño la app entera, con el cielo, las emergencias y todo lo nuevo. Son {S} pasos.", "en": "From now on I’ll be your guide: I’m Jero, I live in Tenerife and I’ll show you the whole app, with the night sky, emergencies and everything new. It takes {S} steps.", "fr": "Désormais, c’est moi qui vous fais la visite : je suis Jero, j’habite à Tenerife et je vous montre toute l’appli, avec le ciel, les urgences et toutes les nouveautés. Il y a {S} étapes.", "de": "Ab jetzt führe ich Sie: Ich bin Jero, lebe auf Teneriffa und zeige Ihnen die ganze App, mit dem Sternenhimmel, den Notfällen und allem Neuen. Es sind {S} Schritte.", "it": "D’ora in poi la visita gliela faccio io: sono Jero, vivo a Tenerife e Le mostro tutta l’app, con il cielo, le emergenze e tutte le novità. Sono {S} passi.", "nl": "Vanaf nu leid ik u rond: ik ben Jero, ik woon op Tenerife en laat u de hele app zien, met de sterrenhemel, de noodgevallen en al het nieuwe. Het zijn {S} stappen.", "zh": "从现在起由我来带您参观：我是 Jero，住在特内里费，带您看完整个应用，包括星空、紧急情况和所有新功能。一共{S}步。", "zht": "從現在起由我來帶您參觀：我是 Jero，住在特內里費，帶您看完整個應用程式，包括星空、緊急情況和所有新功能。一共{S}步。", "bg": "Отсега аз ще ви развеждам: аз съм Jero, живея на Тенерифе и ще ви покажа цялото приложение, с небето, спешните случаи и всичко ново. {S} стъпки са.", "pl": "Od teraz oprowadzam osobiście: jestem Jero, mieszkam na Teneryfie i pokażę całą aplikację, z niebem, nagłymi wypadkami i wszystkimi nowościami, w {S} krokach."},
-    "guiaVozOn": {"es": "Escuchar a Jero", "en": "Listen to Jero", "fr": "Écouter Jero", "de": "Jero zuhören", "it": "Ascoltare Jero", "nl": "Naar Jero luisteren", "zh": "听 Jero 讲解", "zht": "聽 Jero 講解", "bg": "Гласът на Jero", "pl": "Głos Jero"},
+    "guiaNovP": {"es": "Ahora la visita se la hago yo: soy Jérôme, vivo en Tenerife y le enseño la app entera, con el cielo, las emergencias y todo lo nuevo. Son {S} pasos.", "en": "From now on I’ll be your guide: I’m Jérôme, I live in Tenerife and I’ll show you the whole app, with the night sky, emergencies and everything new. It takes {S} steps.", "fr": "Désormais, c’est moi qui vous fais la visite : je suis Jérôme, j’habite à Tenerife et je vous montre toute l’appli, avec le ciel, les urgences et toutes les nouveautés. Il y a {S} étapes.", "de": "Ab jetzt führe ich Sie: Ich bin Jérôme, lebe auf Teneriffa und zeige Ihnen die ganze App, mit dem Sternenhimmel, den Notfällen und allem Neuen. Es sind {S} Schritte.", "it": "D’ora in poi la visita gliela faccio io: sono Jérôme, vivo a Tenerife e Le mostro tutta l’app, con il cielo, le emergenze e tutte le novità. Sono {S} passi.", "nl": "Vanaf nu leid ik u rond: ik ben Jérôme, ik woon op Tenerife en laat u de hele app zien, met de sterrenhemel, de noodgevallen en al het nieuwe. Het zijn {S} stappen.", "zh": "从现在起由我来带您参观：我是热罗姆，住在特内里费，带您看完整个应用，包括星空、紧急情况和所有新功能。一共{S}步。", "zht": "從現在起由我來帶您參觀：我是熱羅姆，住在特內里費，帶您看完整個應用程式，包括星空、緊急情況和所有新功能。一共{S}步。", "bg": "Отсега аз ще ви развеждам: аз съм Жером, живея на Тенерифе и ще ви покажа цялото приложение, с небето, спешните случаи и всичко ново. {S} стъпки са.", "pl": "Od teraz oprowadzam osobiście: jestem Jérôme, mieszkam na Teneryfie i pokażę całą aplikację, z niebem, nagłymi wypadkami i wszystkimi nowościami, w {S} krokach."},
+    "guiaVozOn": {"es": "Escuchar a Jérôme", "en": "Listen to Jérôme", "fr": "Écouter Jérôme", "de": "Jérôme zuhören", "it": "Ascoltare Jérôme", "nl": "Naar Jérôme luisteren", "zh": "听热罗姆讲解", "zht": "聽熱羅姆講解", "bg": "Гласът на Жером", "pl": "Głos Jérôme’a"},
     "guiaVozOff": {"es": "Parar la voz", "en": "Stop the voice", "fr": "Arrêter la voix", "de": "Stimme anhalten", "it": "Fermare la voce", "nl": "Stem stoppen", "zh": "停止朗读", "zht": "停止朗讀", "bg": "Спиране на гласа", "pl": "Zatrzymanie głosu"},
     "guiaMenuT": {"es": "¿Qué le enseño?", "en": "What shall I show you?", "fr": "Que voulez-vous voir ?", "de": "Was darf ich Ihnen zeigen?", "it": "Cosa Le mostro?", "nl": "Wat zal ik u laten zien?", "zh": "想让我带您看什么？", "zht": "想讓我帶您看什麼？", "bg": "Какво да ви покажа?", "pl": "Co pokazać?"},
     "guiaMenuP": {"es": "Elija una visita. Puede salir de ella cuando quiera.", "en": "Pick a tour. You can leave it at any time.", "fr": "Choisissez une visite. Vous pouvez la quitter quand vous voulez.", "de": "Wählen Sie eine Tour. Sie können sie jederzeit beenden.", "it": "Scelga una visita. Può uscirne quando vuole.", "nl": "Kies een tour. U kunt er op elk moment mee stoppen.", "zh": "请选择一个导览，随时可以退出。", "zht": "請選擇一個導覽，隨時可以退出。", "bg": "Изберете обиколка. Можете да излезете от нея по всяко време.", "pl": "Do wyboru są przewodniki. Każdy można przerwać w dowolnej chwili."},
@@ -132,7 +132,7 @@
     "tourFinT": {"es": "¡La isla es suya!", "en": "The island is yours!", "fr": "L’île est à vous !", "de": "Die Insel gehört Ihnen!", "it": "L’isola è Sua!", "nl": "Het eiland is van u!", "zh": "整座岛都是您的！", "zht": "整座島都是您的！", "bg": "Островът е ваш!", "pl": "Wyspa stoi otworem!"},
     "tourFinP": {"es": "Toque cualquier marcador para empezar. Este tour está siempre en la leyenda del mapa, y el cielo y «Su cuerpo» tienen el suyo dentro. ¡Que la disfrute!", "en": "Tap any marker to get started. This tour is always in the map legend, and the night sky and “Your body” each have their own inside. Enjoy the island!", "fr": "Touchez n’importe quel marqueur pour commencer. Ce tour se trouve toujours dans la légende de la carte, et le ciel et « Votre corps » ont chacun le leur. Profitez bien de l’île !", "de": "Tippen Sie auf einen beliebigen Marker, um loszulegen. Diese Tour finden Sie immer in der Kartenlegende, und der Sternenhimmel und „Ihr Körper“ haben jeweils ihre eigene. Viel Freude auf der Insel!", "it": "Tocchi un marcatore qualsiasi per cominciare. Questo tour è sempre nella legenda della mappa, e il cielo e «Corpo» hanno ciascuno il proprio. Si goda l’isola!", "nl": "Tik op een marker om te beginnen. Deze tour staat altijd in de legenda van de kaart, en de sterrenhemel en “Uw lichaam” hebben elk hun eigen tour. Geniet van het eiland!", "zh": "点任意一个标记就可以开始。这个导览随时可以在地图图例中找到，星空面板和“我的身体”里也各有自己的导览。祝您玩得愉快！", "zht": "點任意一個標記就可以開始。這個導覽隨時可以在地圖圖例中找到，星空面板和「我的身體」裡也各有自己的導覽。祝您玩得愉快！", "bg": "Докоснете който и да е маркер, за да започнете. Тази обиколка е винаги в легендата на картата, а небето и „Вашето тяло“ имат всяко своя. Приятно прекарване на острова!", "pl": "Wystarczy dotknąć dowolnego znacznika, żeby zacząć. Ten przewodnik jest zawsze w legendzie mapy, a niebo i sekcja „Ciało” mają własne. Udanego pobytu na wyspie!"},
     "guiaCiPestanasT": {"es": "El panel, pestaña a pestaña", "en": "The panel, tab by tab", "fr": "Le panneau, onglet par onglet", "de": "Das Panel, Reiter für Reiter", "it": "Il pannello, scheda per scheda", "nl": "Het paneel, tabblad voor tabblad", "zh": "逐页了解星空面板", "zht": "逐頁了解星空面板", "bg": "Панелът, раздел по раздел", "pl": "Panel, zakładka po zakładce"},
-    "guiaCiPestanasP": {"es": "Soy Jero y le enseño el panel del cielo en {S} pasos. Las horas y las posiciones se calculan en su móvil, para el Observatorio del Teide y en hora de Canarias: por eso funciona también sin cobertura.", "en": "I’m Jero and I’ll show you the sky panel in {S} steps. Times and positions are calculated on your phone, for the Teide Observatory and in Canary Islands time: that’s why it also works with no signal.", "fr": "Je suis Jero et je vous montre le panneau du ciel en {S} étapes. Les heures et les positions sont calculées sur votre téléphone, pour l’Observatoire du Teide et à l’heure des Canaries : c’est pourquoi il fonctionne aussi sans réseau.", "de": "Ich bin Jero und zeige Ihnen das Himmels-Panel in {S} Schritten. Zeiten und Positionen werden auf Ihrem Handy berechnet, für das Teide-Observatorium und in kanarischer Zeit: Deshalb funktioniert es auch ohne Netz.", "it": "Sono Jero e Le mostro il pannello del cielo in {S} passi. Gli orari e le posizioni si calcolano sul Suo telefono, per l’Osservatorio del Teide e nell’ora delle Canarie: per questo funziona anche senza rete.", "nl": "Ik ben Jero en laat u het hemelpaneel zien in {S} stappen. Tijden en posities worden op uw telefoon berekend, voor het Teide-observatorium en in Canarische tijd: daarom werkt het ook zonder bereik.", "zh": "我是 Jero，用{S}步带您了解星空面板。时间和位置都在您的手机上计算，以泰德天文台为准、采用加那利时间，所以没有信号也能用。", "zht": "我是 Jero，用{S}步帶您了解星空面板。時間和位置都在您的手機上計算，以泰德天文台為準、採用加那利時間，所以沒有訊號也能用。", "bg": "Аз съм Jero и ще ви покажа панела за небето в {S} стъпки. Часовете и позициите се изчисляват на телефона ви, за обсерваторията Тейде и по времето на Канарските острови: затова работи и без покритие.", "pl": "Jestem Jero i pokażę panel nieba w {S} krokach. Godziny i pozycje oblicza telefon, dla Obserwatorium Teide i w czasie kanaryjskim: dlatego działa także bez zasięgu."},
+    "guiaCiPestanasP": {"es": "Soy Jérôme y le enseño el panel del cielo en {S} pasos. Las horas y las posiciones se calculan en su móvil, para el Observatorio del Teide y en hora de Canarias: por eso funciona también sin cobertura.", "en": "I’m Jérôme and I’ll show you the sky panel in {S} steps. Times and positions are calculated on your phone, for the Teide Observatory and in Canary Islands time: that’s why it also works with no signal.", "fr": "Je suis Jérôme et je vous montre le panneau du ciel en {S} étapes. Les heures et les positions sont calculées sur votre téléphone, pour l’Observatoire du Teide et à l’heure des Canaries : c’est pourquoi il fonctionne aussi sans réseau.", "de": "Ich bin Jérôme und zeige Ihnen das Himmels-Panel in {S} Schritten. Zeiten und Positionen werden auf Ihrem Handy berechnet, für das Teide-Observatorium und in kanarischer Zeit: Deshalb funktioniert es auch ohne Netz.", "it": "Sono Jérôme e Le mostro il pannello del cielo in {S} passi. Gli orari e le posizioni si calcolano sul Suo telefono, per l’Osservatorio del Teide e nell’ora delle Canarie: per questo funziona anche senza rete.", "nl": "Ik ben Jérôme en laat u het hemelpaneel zien in {S} stappen. Tijden en posities worden op uw telefoon berekend, voor het Teide-observatorium en in Canarische tijd: daarom werkt het ook zonder bereik.", "zh": "我是热罗姆，用{S}步带您了解星空面板。时间和位置都在您的手机上计算，以泰德天文台为准、采用加那利时间，所以没有信号也能用。", "zht": "我是熱羅姆，用{S}步帶您了解星空面板。時間和位置都在您的手機上計算，以泰德天文台為準、採用加那利時間，所以沒有訊號也能用。", "bg": "Аз съм Жером и ще ви покажа панела за небето в {S} стъпки. Часовете и позициите се изчисляват на телефона ви, за обсерваторията Тейде и по времето на Канарските острови: затова работи и без покритие.", "pl": "Jestem Jérôme i pokażę panel nieba w {S} krokach. Godziny i pozycje oblicza telefon, dla Obserwatorium Teide i w czasie kanaryjskim: dlatego działa także bez zasięgu."},
     "guiaCiNocheT": {"es": "Esta noche… o la que quiera", "en": "Tonight… or any night you like", "fr": "Ce soir… ou la nuit de votre choix", "de": "Heute Nacht … oder jede andere", "it": "Stanotte… o la notte che vuole", "nl": "Vannacht… of welke nacht u maar wilt", "zh": "今晚……或任何一晚", "zht": "今晚……或任何一晚", "bg": "Тази нощ… или която пожелаете", "pl": "Ta noc… albo dowolna inna"},
     "guiaCiNocheP": {"es": "Con las flechas pasa de una noche a otra y con 📅 elige cualquier fecha: esta pestaña y la carta del cielo pasan a esa noche.", "en": "The arrows move from one night to the next, and 📅 lets you pick any date: this tab and the sky map switch to that night.", "fr": "Les flèches passent d’une nuit à l’autre et 📅 permet de choisir n’importe quelle date : cet onglet et la carte du ciel passent à cette nuit-là.", "de": "Mit den Pfeilen wechseln Sie von Nacht zu Nacht, mit 📅 wählen Sie ein beliebiges Datum: Dieser Reiter und die Himmelskarte wechseln zu dieser Nacht.", "it": "Con le frecce passa da una notte all’altra e con 📅 sceglie qualsiasi data: questa scheda e la mappa del cielo passano a quella notte.", "nl": "Met de pijlen gaat u van nacht naar nacht en met 📅 kiest u een willekeurige datum: dit tabblad en de hemelkaart schakelen naar die nacht.", "zh": "用箭头可以切换到前一晚或后一晚，用 📅 可以选择任意日期：本页和星图都会切换到那一晚。", "zht": "用箭頭可以切換到前一晚或後一晚，用 📅 可以選擇任意日期：本頁和星圖都會切換到那一晚。", "bg": "Със стрелките минавате от една нощ към друга, а с 📅 избирате която и да е дата: този раздел и картата на небето преминават към тази нощ.", "pl": "Strzałki przechodzą z nocy na noc, a 📅 pozwala wybrać dowolną datę: ta zakładka i mapa nieba przełączają się na tę noc."},
     "guiaCiIndiceP": {"es": "De 0 a 10, cuánto vale la noche para mirar estrellas: cuenta las horas de noche cerrada, la Luna y las nubes previstas. La fórmula está escrita debajo.", "en": "From 0 to 10, how good the night is for stargazing: it counts the hours of full darkness, the Moon and the forecast cloud. The formula is written just below.", "fr": "De 0 à 10, ce que vaut la nuit pour observer les étoiles : il compte les heures de nuit noire, la Lune et les nuages prévus. La formule est écrite juste en dessous.", "de": "Von 0 bis 10: wie gut die Nacht zum Sternegucken ist. Gezählt werden die Stunden völliger Dunkelheit, der Mond und die vorhergesagten Wolken. Die Formel steht direkt darunter.", "it": "Da 0 a 10, quanto vale la notte per guardare le stelle: conta le ore di notte fonda, la Luna e le nuvole previste. La formula è scritta sotto.", "nl": "Van 0 tot 10: hoe goed de nacht is om sterren te kijken. Het telt de uren volledige duisternis, de maan en de verwachte bewolking. De formule staat eronder.", "zh": "从 0 到 10，表示这一晚适不适合观星：综合了完全黑夜的时长、月亮和预报的云量。计算公式就写在下面。", "zht": "從 0 到 10，表示這一晚適不適合觀星：綜合了完全黑夜的時長、月亮和預報的雲量。計算公式就寫在下面。", "bg": "От 0 до 10 — колко струва нощта за гледане на звезди: отчита часовете пълна тъмнина, Луната и прогнозираните облаци. Формулата е написана отдолу.", "pl": "Od 0 do 10: ile warta jest noc do oglądania gwiazd. Liczą się godziny pełnej ciemności, Księżyc i prognozowane chmury. Wzór jest zapisany poniżej."},
@@ -153,7 +153,7 @@
     "guiaCuTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "guiaCuPista": {"es": "¿Le enseño esta pantalla?", "en": "Shall I show you this screen?", "fr": "Je vous montre cet écran ?", "de": "Soll ich Ihnen diesen Bildschirm zeigen?", "it": "Le mostro questa schermata?", "nl": "Zal ik u dit scherm laten zien?", "zh": "要我带您看看这个页面吗？", "zht": "要我帶您看看這個頁面嗎？", "bg": "Да ви покажа ли този екран?", "pl": "Pokazać ten ekran?"},
     "guiaCuPersonajeT": {"es": "Su personaje", "en": "Your character", "fr": "Votre personnage", "de": "Ihre Figur", "it": "Il Suo personaggio", "nl": "Uw personage", "zh": "您的人物", "zht": "您的人物", "bg": "Вашият герой", "pl": "Postać"},
-    "guiaCuPersonajeP": {"es": "Soy Jero y le enseño «Su cuerpo» en {S} pasos. Este es su personaje: toque uno de sus músculos y podrá anotar una serie. «{girar}» lo enseña de espaldas.", "en": "I’m Jero and I’ll show you “Your body” in {S} steps. This is your character: tap one of its muscles and you can log a set. “{girar}” shows it from behind.", "fr": "Je suis Jero et je vous montre « Votre corps » en {S} étapes. Voici votre personnage : touchez l’un de ses muscles pour noter une série. « {girar} » le montre de dos.", "de": "Ich bin Jero und zeige Ihnen „Ihr Körper“ in {S} Schritten. Das ist Ihre Figur: Tippen Sie auf einen ihrer Muskeln, um einen Satz einzutragen. „{girar}“ zeigt sie von hinten.", "it": "Sono Jero e Le mostro «Corpo» in {S} passi. Questo è il Suo personaggio: tocchi uno dei suoi muscoli e potrà annotare una serie. «{girar}» lo mostra di spalle.", "nl": "Ik ben Jero en laat u “Uw lichaam” zien in {S} stappen. Dit is uw personage: tik op een van de spieren en u kunt een set noteren. “{girar}” laat het van achteren zien.", "zh": "我是 Jero，用{S}步带您了解“我的身体”。这是您的人物：点它的任意一块肌肉，就能记录一组。点“{girar}”可以看背面。", "zht": "我是 Jero，用{S}步帶您了解「我的身體」。這是您的人物：點它的任意一塊肌肉，就能記錄一組。點「{girar}」可以看背面。", "bg": "Аз съм Jero и ще ви покажа „Вашето тяло“ в {S} стъпки. Това е вашият герой: докоснете някой от мускулите му и ще можете да запишете серия. „{girar}“ го показва в гръб.", "pl": "Jestem Jero i pokażę sekcję „Ciało” w {S} krokach. Oto postać: wystarczy dotknąć jednego z jej mięśni, żeby zapisać serię. „{girar}” pokazuje ją od tyłu."},
+    "guiaCuPersonajeP": {"es": "Soy Jérôme y le enseño «Su cuerpo» en {S} pasos. Este es su personaje: toque uno de sus músculos y podrá anotar una serie. «{girar}» lo enseña de espaldas.", "en": "I’m Jérôme and I’ll show you “Your body” in {S} steps. This is your character: tap one of its muscles and you can log a set. “{girar}” shows it from behind.", "fr": "Je suis Jérôme et je vous montre « Votre corps » en {S} étapes. Voici votre personnage : touchez l’un de ses muscles pour noter une série. « {girar} » le montre de dos.", "de": "Ich bin Jérôme und zeige Ihnen „Ihr Körper“ in {S} Schritten. Das ist Ihre Figur: Tippen Sie auf einen ihrer Muskeln, um einen Satz einzutragen. „{girar}“ zeigt sie von hinten.", "it": "Sono Jérôme e Le mostro «Corpo» in {S} passi. Questo è il Suo personaggio: tocchi uno dei suoi muscoli e potrà annotare una serie. «{girar}» lo mostra di spalle.", "nl": "Ik ben Jérôme en laat u “Uw lichaam” zien in {S} stappen. Dit is uw personage: tik op een van de spieren en u kunt een set noteren. “{girar}” laat het van achteren zien.", "zh": "我是热罗姆，用{S}步带您了解“我的身体”。这是您的人物：点它的任意一块肌肉，就能记录一组。点“{girar}”可以看背面。", "zht": "我是熱羅姆，用{S}步帶您了解「我的身體」。這是您的人物：點它的任意一塊肌肉，就能記錄一組。點「{girar}」可以看背面。", "bg": "Аз съм Жером и ще ви покажа „Вашето тяло“ в {S} стъпки. Това е вашият герой: докоснете някой от мускулите му и ще можете да запишете серия. „{girar}“ го показва в гръб.", "pl": "Jestem Jérôme i pokażę sekcję „Ciało” w {S} krokach. Oto postać: wystarczy dotknąć jednego z jej mięśni, żeby zapisać serię. „{girar}” pokazuje ją od tyłu."},
     "guiaCuLeyendaP": {"es": "Cada músculo se enciende según las series que lleve anotadas en los últimos 7 días: primero en rosa, luego en naranja y, con más, en amarillo.", "en": "Each muscle lights up according to the sets you have logged in the last 7 days: pink first, then orange and, with more, yellow.", "fr": "Chaque muscle s’allume selon les séries notées ces 7 derniers jours : d’abord en rose, puis en orange et, avec davantage, en jaune.", "de": "Jeder Muskel leuchtet je nach den Sätzen, die Sie in den letzten 7 Tagen eingetragen haben: erst rosa, dann orange und bei noch mehr gelb.", "it": "Ogni muscolo si accende in base alle serie annotate negli ultimi 7 giorni: prima in rosa, poi in arancione e, con più serie, in giallo.", "nl": "Elke spier licht op naargelang de sets die u in de afgelopen 7 dagen hebt genoteerd: eerst roze, dan oranje en met nog meer geel.", "zh": "每块肌肉会根据过去 7 天记录的组数亮起：先是粉色，然后是橙色，组数更多时是黄色。", "zht": "每塊肌肉會根據過去 7 天記錄的組數亮起：先是粉色，然後是橘色，組數更多時是黃色。", "bg": "Всеки мускул светва според сериите, които сте записали през последните 7 дни: първо в розово, после в оранжево, а при още повече — в жълто.", "pl": "Każdy mięsień podświetla się zależnie od serii zapisanych w ostatnich 7 dniach: najpierw na różowo, potem na pomarańczowo, a przy większej liczbie na żółto."},
     "guiaCuDeporteP": {"es": "Elija el deporte que practica: su personaje marca los grupos que más le sirven, y debajo verá qué dicen los estudios y cómo encajarlo en su semana.", "en": "Choose the sport you do: your character marks the muscle groups that help most, and below you’ll see what the studies say and how to fit it into your week.", "fr": "Choisissez le sport que vous pratiquez : votre personnage indique les groupes les plus utiles et, en dessous, vous verrez ce que disent les études et comment l’intégrer à votre semaine.", "de": "Wählen Sie Ihren Sport: Ihre Figur markiert die Muskelgruppen, die am meisten helfen, und darunter sehen Sie, was die Studien sagen und wie er in Ihre Woche passt.", "it": "Scelga lo sport che pratica: il Suo personaggio indica i gruppi più utili e, sotto, vedrà che cosa dicono gli studi e come inserirlo nella Sua settimana.", "nl": "Kies de sport die u beoefent: uw personage markeert de spiergroepen die het meest helpen, en daaronder ziet u wat de studies zeggen en hoe u het in uw week inpast.", "zh": "选择您从事的运动：人物会标出最有帮助的肌群，下面还能看到研究结论，以及如何把它安排进您的一周。", "zht": "選擇您從事的運動：人物會標出最有幫助的肌群，下面還能看到研究結論，以及如何把它安排進您的一週。", "bg": "Изберете спорта, който практикувате: вашият герой отбелязва най-полезните мускулни групи, а отдолу ще видите какво казват проучванията и как да го впишете в седмицата си.", "pl": "Po wybraniu uprawianego sportu postać zaznacza najbardziej przydatne grupy mięśni, a poniżej widać, co mówią badania i jak wpleść go w tydzień."},
     "guiaCuSemanaP": {"es": "Tres metas: días con fuerza y minutos de movimiento, los que recomienda la OMS para su edad, y grupos trabajados. Debajo, su semana día a día: toque un día y verá lo que anotó.", "en": "Three goals: strength days and minutes of movement, as the WHO recommends for your age, and groups worked. Below, your week day by day: tap a day to see what you logged.", "fr": "Trois objectifs : jours de renforcement et minutes de mouvement, ceux que l’OMS recommande pour votre âge, et groupes travaillés. En dessous, votre semaine jour par jour : touchez un jour pour voir ce que vous avez noté.", "de": "Drei Ziele: Krafttage und Minuten Bewegung, wie von der WHO für Ihr Alter empfohlen, und trainierte Gruppen. Darunter Ihre Woche Tag für Tag: Tippen Sie auf einen Tag, um zu sehen, was Sie eingetragen haben.", "it": "Tre obiettivi: giorni di forza e minuti di movimento, quelli che l’OMS raccomanda per la Sua età, e gruppi allenati. Sotto, la Sua settimana giorno per giorno: tocchi un giorno per vedere che cosa ha annotato.", "nl": "Drie doelen: krachtdagen en minuten beweging, zoals de WHO voor uw leeftijd aanbeveelt, en getrainde groepen. Daaronder uw week van dag tot dag: tik op een dag om te zien wat u hebt genoteerd.", "zh": "三个目标：力量训练天数和运动分钟数（依据世界卫生组织对您这个年龄的建议），以及练过的肌群。下面是按天显示的一周：点某一天，就能看到当天的记录。", "zht": "三個目標：肌力訓練天數和運動分鐘數（依據世界衛生組織對您這個年齡的建議），以及練過的肌群。下面是按天顯示的一週：點某一天，就能看到當天的記錄。", "bg": "Три цели: дни със силови упражнения и минути движение, колкото препоръчва СЗО за вашата възраст, и тренирани групи. Отдолу е седмицата ви ден по ден: докоснете ден, за да видите какво сте записали.", "pl": "Trzy cele: dni treningu siłowego i minuty ruchu, tyle, ile zaleca WHO dla danego wieku, oraz ćwiczone grupy. Poniżej tydzień dzień po dniu: dotknięcie dnia pokazuje, co zostało zapisane."},
@@ -220,13 +220,13 @@
 '.tgg-chispa.ve { opacity: 1; animation: tggChispa 1.3s ease-in-out infinite; }',
 '@keyframes tggChispa { 0%, 100% { transform: scale(0.75) rotate(0deg); } 50% { transform: scale(1.2) rotate(45deg); } }',
 
-/* la unidad: Jero y, debajo, su bocadillo */
+/* la unidad: Jérôme y, debajo, su bocadillo */
 '.tgg-unidad { --tgg-jw: 124px; position: absolute; left: 0; top: 0; width: min(92vw, 372px); transition: transform .46s cubic-bezier(.25,.9,.3,1); will-change: transform; }',
 '.tgg-unidad.estatica { position: relative; transform: none !important; }',
 '.tgg-unidad .tgg-jero { position: absolute; left: 50%; top: 0; z-index: 2; width: var(--tgg-jw); height: calc(var(--tgg-jw) * 1.15625); margin-left: calc(var(--tgg-jw) / -2); transition: width .4s cubic-bezier(.25,.9,.3,1), height .4s cubic-bezier(.25,.9,.3,1), margin-left .4s cubic-bezier(.25,.9,.3,1); }',
 '.tgg-unidad.abajo .tgg-jero { top: auto; bottom: 0; }',
 '.tgg-unidad.abajo .v19t-card { margin-top: 0; margin-bottom: calc(var(--tgg-jw) * 0.856); }',
-/* cuando no cabe ni pequeño, Jero en miniatura, asomado a la esquina del bocadillo; y el bocadillo, apretado */
+/* cuando no cabe ni pequeño, Jérôme en miniatura, asomado a la esquina del bocadillo; y el bocadillo, apretado */
 '.tgg-unidad.mini .tgg-jero, .tgg-unidad.mini.abajo .tgg-jero { left: 8px; margin-left: 0; top: 0; bottom: auto; }',
 '.tgg-unidad.mini .v19t-card, .tgg-unidad.mini.abajo .v19t-card { margin-top: 20px; margin-bottom: 0; }',
 '.tgg-unidad.mini .v19t-num { padding-left: 62px; }',
@@ -243,7 +243,7 @@
    sale de la caja de un elemento con filter, y los brazos se salen */
 '.tgg-jero { pointer-events: none; }',
 '.tgg-jero[data-escena="rojo"] .tgg-halo { opacity: 0; }',
-/* la fiesta del ultimo paso: unos papelillos que salen de Jero */
+/* la fiesta del ultimo paso: unos papelillos que salen de Jérôme */
 '.tgg-fiesta { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }',
 '.tgg-fiesta i { position: absolute; left: -4px; top: -3px; width: 8px; height: 6px; border-radius: 1.5px; opacity: 0; animation: tggVuela 1.7s cubic-bezier(.15,.7,.3,1) forwards; }',
 '.tgg-fiesta i.tgg-redondo { width: 6px; height: 6px; border-radius: 50%; }',
@@ -262,7 +262,7 @@
 '.tgg-frontal-halo { animation: tggHalo 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }',
 '@keyframes tggHalo { 0%, 100% { transform: scale(0.9); opacity: 0.2; } 50% { transform: scale(1.12); opacity: 0.34; } }',
 '.tgg-brillo { animation: tggBrillo 6s ease-in-out infinite; }',
-/* lo que le sale a Jero segun el animo (data-fx): una cosa cada vez */
+/* lo que le sale a Jérôme segun el animo (data-fx): una cosa cada vez */
 '.tgg-fx { display: none; transform-box: fill-box; transform-origin: center; }',
 '.tgg-jero[data-fx="gota"] .tgg-fx-gota, .tgg-jero[data-fx="lagrima"] .tgg-fx-lagrima, .tgg-jero[data-fx="chispas"] .tgg-fx-chispas, .tgg-jero[data-fx="duda"] .tgg-fx-duda,',
 '.tgg-jero[data-fx="vaho"] .tgg-fx-vaho, .tgg-jero[data-fx="notas"] .tgg-fx-notas, .tgg-jero[data-fx="corazon"] .tgg-fx-corazon { display: inline; }',
@@ -302,7 +302,7 @@
 '.v19t-card h3 { margin: 0 0 6px; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; font-size: 1.38rem; line-height: 1.15; color: #F5C76B; letter-spacing: 0.01em; text-wrap: balance; }',
 '.v19t-card p { margin: 0 0 13px; font-size: 0.875rem; line-height: 1.5; color: #d3dae8; text-wrap: pretty; }',
 '.tgg-pordecir { opacity: 0; }',
-/* el aparte de Jero (su chiste): debajo del texto, en cursiva y dorado */
+/* el aparte de Jérôme (su chiste): debajo del texto, en cursiva y dorado */
 '.v19t-card p.tgg-con-chiste { margin-bottom: 5px; }',
 '.v19t-card p.tgg-chiste { font-style: italic; color: #f0d48a; font-size: 0.84rem; line-height: 1.42; }',
 '.tgg-unidad.compacta .v19t-card p.tgg-con-chiste { margin-bottom: 3px; }',
@@ -324,7 +324,7 @@
 /* la pregunta del principio y el menu de visitas */
 '.v19t-prompt { position: fixed; inset: 0; z-index: 8600; display: flex; align-items: center; justify-content: center; background: rgba(6,9,15,0.74); animation: v19tIn .25s ease; font-family: "DM Sans", system-ui, sans-serif; overflow: auto; padding: 14px 0; box-sizing: border-box; }',
 '@keyframes v19tIn { from { opacity: 0; } }',
-/* centrado con margenes y no con align-items: si lo de dentro no cabe, se puede bajar desde su principio (centrado a secas, la cabeza de Jero quedaba cortada arriba y sin forma de llegar a ella) */
+/* centrado con margenes y no con align-items: si lo de dentro no cabe, se puede bajar desde su principio (centrado a secas, la cabeza de Jérôme quedaba cortada arriba y sin forma de llegar a ella) */
 '.v19t-prompt > .tgg-unidad { margin: auto; }',
 '.v19t-prompt .v19t-card { padding-top: calc(var(--tgg-jw) * 0.19 + 8px); }',
 /* el menu, apretado, en los moviles donde no cabe a su tamaño */
@@ -354,7 +354,7 @@
 '#v19-tour.tgg-oscuro .v19t-card { background: linear-gradient(180deg, #10141f, #090c14); border-color: rgba(212,175,55,0.3); }',
 '#v19-tour.tgg-oscuro .v19t-card p { color: #c2c9d8; }',
 
-/* la pista junto a un boton y la cara de Jero dentro de un boton */
+/* la pista junto a un boton y la cara de Jérôme dentro de un boton */
 '.tgg-pista { position: fixed; z-index: 8845; max-width: 240px; padding: 8px 12px; border-radius: 12px; background: linear-gradient(180deg, #1d2535, #131926); border: 1px solid rgba(212,175,55,0.55); color: #F5C76B; font: 600 0.78rem/1.3 "DM Sans", system-ui, sans-serif; box-shadow: 0 8px 22px rgba(0,0,0,0.5); pointer-events: none; animation: tggPista .35s cubic-bezier(0.2, 1.3, 0.4, 1) both; }',
 '.tgg-pista::before { content: ""; position: absolute; top: -6px; left: var(--tgg-pico, 50%); width: 10px; height: 10px; margin-left: -5px; background: #1d2535; border-left: 1px solid rgba(212,175,55,0.55); border-top: 1px solid rgba(212,175,55,0.55); transform: rotate(45deg); }',
 '.tgg-pista.tgg-pista-arriba::before { top: auto; bottom: -6px; transform: rotate(225deg); }',
@@ -1206,7 +1206,7 @@
   /* ───────────────────────── el motor ─────────────────────────
      Un tour es una lista de pasos por capitulos. Cada paso señala algo de la
      interfaz de verdad (sel), y antes de señalarlo puede pedir que se abra lo
-     que haga falta (ctx, antes). Jero vive encima de su bocadillo: lo mira, lo
+     que haga falta (ctx, antes). Jérôme vive encima de su bocadillo: lo mira, lo
      señala con el brazo del lado que toca y una estela une el dedo con el foco. */
   var CLAVE_APP = 'tenerife.tour.seen';
   function leer(k) { try { return localStorage.getItem(k); } catch (e) { return undefined; } }
@@ -1300,7 +1300,7 @@
     D.h3 = el('h3');
     D.p = el('p', 'tgg-texto'); D.dicho = el('span', 'tgg-dicho'); D.pordecir = el('span', 'tgg-pordecir');
     D.p.appendChild(D.dicho); D.p.appendChild(D.pordecir);
-    /* el aparte de Jero: su chiste, debajo del texto y con otra letra */
+    /* el aparte de Jérôme: su chiste, debajo del texto y con otra letra */
     D.pc = el('p', 'tgg-chiste'); D.dichoC = el('span', 'tgg-dicho'); D.pordecirC = el('span', 'tgg-pordecir');
     D.pc.appendChild(D.dichoC); D.pc.appendChild(D.pordecirC);
     D.cuerpo.appendChild(capL); D.cuerpo.appendChild(D.h3); D.cuerpo.appendChild(D.p); D.cuerpo.appendChild(D.pc);
@@ -1453,7 +1453,7 @@
 
   /* Lo que se señala puede moverse despues de señalarlo: un panel que acaba de pintarse, una
      lista que crece, una imagen que llega. Durante unos segundos se vuelve a colocar (coloca) y
-     a medir, y si ha cambiado, el foco y Jero lo siguen. */
+     a medir, y si ha cambiado, el foco y Jérôme lo siguen. */
   function clavo(r) { return r ? [r.left, r.top, r.width, r.height].map(Math.round).join() : ''; }
   function vigilar() {
     var ses = M.ses, veces = 0;
@@ -1490,7 +1490,7 @@
       var k = M.caps[c], f = i >= k.desde + k.n ? 1 : i < k.desde ? 0 : (i - k.desde + 1) / k.n;
       if (bs[c]) bs[c].firstChild.style.width = Math.round(f * 100) + '%';
     }
-    /* Jero se viste para el paso */
+    /* Jérôme se viste para el paso */
     D.jero.vestir(st.atuendo || M.tour.atuendo || '');
     D.jero.escena(st.escena || M.tour.escena || 'noche');
     D.jero.emocion(st.emo || 'contento');
@@ -1503,16 +1503,16 @@
     var sinAnimar = !!(opc && opc.sinAnimar) || quieto();
     var r = rectDe(st), heroe = !r;
     M.clavo = clavo(r);
-    /* Jero va siempre entre su bocadillo y lo que señala: encima del bocadillo si el foco queda
+    /* Jérôme va siempre entre su bocadillo y lo que señala: encima del bocadillo si el foco queda
        arriba (uhN) y debajo, asomando hacia el boton, si queda abajo (uhA). Cuando no cabe ni
        encima ni debajo de lo que señala se va apretando, por niveles: 1, el bocadillo compacto;
-       2, ademas Jero pequeño; 3, Jero en miniatura, asomado a la esquina del bocadillo (ya no
+       2, ademas Jérôme pequeño; 3, Jérôme en miniatura, asomado a la esquina del bocadillo (ya no
        señala con el brazo: mira). Si lo señalado es un trozo de un panel, en cada nivel se prueba
        antes a acortar el foco. Lo ultimo es pisar lo que se señala, y auditar_tour.js lo da por
        fallo. En pantallas de 600 px de alto o menos se empieza en el nivel 1.
        Con la pantalla apaisada y baja (un movil tumbado, 844×390) casi nunca cabe ni encima ni
        debajo, y sobra sitio a los lados: si en vertical no cabe a su tamaño y al lado si, va al
-       lado, a la altura de la mano de Jero. Y el saludo y la despedida, que no señalan nada, se
+       lado, a la altura de la mano de Jérôme. Y el saludo y la despedida, que no señalan nada, se
        aprietan hasta caber enteros. */
     var nv = 0, jw, uhN, uhA, uh, ch, uw, debajo = false, pisa = false;
     var medir = function () {
@@ -1588,7 +1588,7 @@
     var gesto = function () {
       if (ses !== M.ses || !M.abierto || miClavo !== M.clavo) return;
       if (r) {
-        /* el punto que se señala: el centro si es pequeño; si es ancho, lo mas cerca de Jero */
+        /* el punto que se señala: el centro si es pequeño; si es ancho, lo mas cerca de Jérôme */
         var jc = D.jero.el.getBoundingClientRect(), jx = jc.left + jc.width / 2, jy = jc.top + jc.height * 0.36;
         var px = r.width > 150 ? entre(jx, r.left + 26, r.right - 26) : (r.left + r.right) / 2;
         var py = r.height > 90 ? (jy < r.top ? r.top + 22 : jy > r.bottom ? r.bottom - 22 : (r.top + r.bottom) / 2) : (r.top + r.bottom) / 2;
@@ -1603,11 +1603,11 @@
     };
     /* Nunca en el acto: con «reducir movimiento» la app pone a todo una transicion de 0,01 ms
        (index.html), y lo que se mide en el mismo instante del cambio es todavia lo de antes.
-       Dos cuadros despues ya esta todo en su sitio, y Jero apunta desde donde de verdad esta. */
+       Dos cuadros despues ya esta todo en su sitio, y Jérôme apunta desde donde de verdad esta. */
     reloj(gesto, sinAnimar ? 50 : (opc && opc.primero ? 260 : 480));
   }
 
-  /* ── la fiesta del ultimo paso: papelillos (o estrellas) que salen de Jero ── */
+  /* ── la fiesta del ultimo paso: papelillos (o estrellas) que salen de Jérôme ── */
   function fiesta(tipo) {
     if (quieto() || !D.fiesta) return;
     var j = D.jero.el.getBoundingClientRect(), cx = j.left + j.width / 2, cy = j.top + j.height * 0.5;
@@ -1646,8 +1646,8 @@
   }
 
   /* ── el texto que se escribe solo ──
-     Primero lo que explica el paso; si el paso lleva un aparte (un chiste de Jero), una pausa,
-     Jero cambia de cara y se escribe debajo, con otra letra. */
+     Primero lo que explica el paso; si el paso lleva un aparte (un chiste de Jérôme), una pausa,
+     Jérôme cambia de cara y se escribe debajo, con otra letra. */
   function pintarTexto(letras, n) {
     var c = M.corte;
     D.dicho.textContent = letras.slice(0, Math.min(n, c)).join('');
@@ -1690,7 +1690,7 @@
   /* ── en voz alta ──
      Con las voces del propio movil, las mismas de la audioguia de los lugares
      (index.html, TG_VOZ): solo voces instaladas en el dispositivo, asi que lee sin
-     red y el texto no sale del movil. Con la voz puesta, Jero presenta solo: al
+     red y el texto no sale del movil. Con la voz puesta, Jérôme presenta solo: al
      acabar un paso pasa al siguiente. No se guarda: cada tour empieza callado. */
   var EMOJI = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{2190}-\u{21FF}\u{FE0F}\u{200D}]/gu;
   function vozHay() {
@@ -1765,7 +1765,7 @@
   function iniciar(nombre, opc) {
     var tour = TOURS[nombre]; if (!tour) return false;
     cerrarPregunta(); cerrarMenu();
-    /* un globito que llegue tarde (quien toca el boton de Jero antes de que salga) no se queda encima de la visita */
+    /* un globito que llegue tarde (quien toca el boton de Jérôme antes de que salga) no se queda encima de la visita */
     Array.prototype.slice.call(document.querySelectorAll('.tgg-pista')).forEach(function (g) { if (g.parentNode) g.parentNode.removeChild(g); });
     Array.prototype.slice.call(document.querySelectorAll('.tgg-llama')).forEach(function (x) { x.classList.remove('tgg-llama'); });
     construir();
@@ -1791,7 +1791,7 @@
     return true;
   }
 
-  /* ── la pregunta del principio: Jero saluda y pregunta si enseña el tour ── */
+  /* ── la pregunta del principio: Jérôme saluda y pregunta si enseña el tour ── */
   var pregunta = null, preguntaJero = null;
   function cerrarPregunta() {
     if (preguntaJero) { preguntaJero.quitar(); preguntaJero = null; }
@@ -1892,7 +1892,7 @@
     menuEl.setAttribute('aria-label', t.textContent);
     menuEl.appendChild(h.uni);
     document.body.appendChild(menuEl);
-    /* con tres visitas y los capitulos, en un movil pequeño no cabe a su tamaño: se aprieta y Jero se encoge */
+    /* con tres visitas y los capitulos, en un movil pequeño no cabe a su tamaño: se aprieta y Jérôme se encoge */
     if (h.uni.offsetHeight > window.innerHeight - 28) { menuEl.classList.add('tgg-prieto'); h.uni.style.setProperty('--tgg-jw', '92px'); }
     h.jero.vivir(true);
     setTimeout(function () { if (menuJero === h.jero) h.jero.saludar(1.8); }, 380);
@@ -1919,16 +1919,16 @@
   /* ───────────────────────── los tours ─────────────────────────
      Cada paso: sel (lo que señala: un selector, o una funcion que devuelve el
      nodo o los nodos), k (sus dos filas, kT y kP; t si el titulo es una fila
-     que la app ya tiene), ico, lo que Jero lleva puesto (atuendo, escena) y la
+     que la app ya tiene), ico, lo que Jérôme lleva puesto (atuendo, escena) y la
      cara que pone (emo: uno de los gestos de EMO). Con «chiste», el paso lleva un
-     aparte de Jero (la fila kC), que se escribe al final con otra cara (emoC).
+     aparte de Jérôme (la fila kC), que se escribe al final con otra cara (emoC).
      «si» decide si el paso existe hoy (un boton que no esta no se enseña); ctx y
      antes abren lo que haga falta antes de señalarlo. */
   function $(id) { return document.getElementById(id); }
   function hay(sel) { var n = nodos(sel); for (var i = 0; i < n.length; i++) if (seVe(n[i])) return true; return false; }
   function panelRutasAbierto() { try { return !!routePanelOpen; } catch (e) { return false; } }
   /* el marcador (o el grupo) que se señala: el de mas arriba de los que se ven enteros, lejos de
-     los botones de las esquinas. Debajo queda sitio para Jero y su bocadillo. */
+     los botones de las esquinas. Debajo queda sitio para Jérôme y su bocadillo. */
   function pinCentral() {
     var W = window.innerWidth, H = window.innerHeight, mejor = null, ym = 1e9;
     var ns = document.querySelectorAll('.leaflet-marker-pane .leaflet-marker-icon');
@@ -2184,12 +2184,12 @@
     return true;
   }
 
-  /* la cara de Jero, quieta, para un boton */
+  /* la cara de Jérôme, quieta, para un boton */
   function cara() { ponerEstilos(); var j = crearJero(); j.el.classList.add('tgg-cara'); return j.el; }
 
   window.TG_GUIA = {
     version: 3,
-    /* ofrece un tour a quien no lo ha visto (la pregunta con Jero) */
+    /* ofrece un tour a quien no lo ha visto (la pregunta con Jérôme) */
     ofrecer: ofrecer,
     /* empieza un tour: 'app', 'cielo' o 'cuerpo' */
     iniciar: lanzar,
@@ -2198,7 +2198,7 @@
     cerrar: function () { terminar(false); cerrarPregunta(); cerrarMenu(); },
     visto: function (nombre) { var t = TOURS[nombre]; return !t || visto(t) >= t.version; },
     pista: pista, cara: cara, tours: TOURS,
-    /* un Jero suelto, con sus gestos, para ponerlo donde haga falta */
+    /* un Jérôme suelto, con sus gestos, para ponerlo donde haga falta */
     personaje: function (opc) { ponerEstilos(); return crearJero(opc); },
     /* para las herramientas de tools/ */
     estado: function () {

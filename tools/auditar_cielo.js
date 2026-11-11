@@ -383,7 +383,7 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(guiaSrc, '"' + k
   ok(!mal.length, nFilas + ' filas: diez idiomas, {marcadores} por forma de plural, alfabeto de cada uno', mal.slice(0, 8).join(' · ') + (mal.length > 8 ? ' · y ' + (mal.length - 8) + ' mas' : ''));
   ok(tour.tourCieloT && tour.tourCieloP && /\{ sel: '#cielo-btn',[^}]*k: 'tourCielo'/.test(guiaSrc), 'el tour tiene su paso (#cielo-btn) y sus dos filas');
   ok(/id="cielo-tour-btn"/.test(index) && /TOURS\.cielo = \{/.test(guiaSrc) && /data-guia', 'planetas'/.test(modulo) && /data-guia', 'sitios'/.test(modulo),
-     'el panel tiene su propio tour: el boton de Jero (#cielo-tour-btn), TOURS.cielo y las dos tarjetas que señala (data-guia)');
+     'el panel tiene su propio tour: el boton de Jérôme (#cielo-tour-btn), TOURS.cielo y las dos tarjetas que señala (data-guia)');
   /* El calendario y los avisos dicen lo que hacen (22-10-2026). El .ics de un
      paso avisa media hora antes y el de lo demas, el dia antes: la nota de
      cada uno y la de «Mis avisos» tienen que decir eso. Y ninguna que

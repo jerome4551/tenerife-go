@@ -380,7 +380,7 @@ function opaca() {
     const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
     const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1].replace(/\/\*[\s\S]*?\*\//g, '');
     ok(core.includes("'./modulos/cuerpo.js'"), '«Su cuerpo»: modulos/cuerpo.js esta en el precache (CORE)');
-    /* (10-11-2026) Jero y sus tours: sin conexion desde el primer dia (el tour del cielo se abre
+    /* (10-11-2026) Jérôme y sus tours: sin conexion desde el primer dia (el tour del cielo se abre
        donde se mira el cielo), y «red primero», abajo, con los demas modulos */
     ok(core.includes("'./modulos/guia.js'"), 'los tours: modulos/guia.js esta en el precache (CORE)');
     ok(!/datos\/cuerpo/.test(core), '«Su cuerpo»: y sus datos no, se guardan al usarlos');

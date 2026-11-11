@@ -25,7 +25,7 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 | `datos/cuerpo/` | Los datos de «Su cuerpo»: los 533 ejercicios (`ejercicios.json`, con sus grupos, su material, su nivel y sus fuentes, y `ejercicios-<idioma>.json`, con su nombre y sus pasos), las 178 respuestas del asistente (`asistente-<idioma>.json`) y las guías de los deportes (`deportes-<idioma>.json`), uno por idioma. La pantalla pide solo los de su idioma, al abrir la biblioteca o la hoja de un grupo, «Preguntar» o un deporte, y el service worker los guarda al usarlos. |
 | `modulos/emergencias.js` | El panel «Emergencias» del botón SOS: qué hacer ante una erupción, un terremoto u otra emergencia en Tenerife y a quién llamar, con sus fuentes oficiales y sus textos en los diez idiomas. Se pide al abrirlo y el service worker lo guarda desde el primer día; la barra del 112 está en `index.html` y llama aunque el módulo no llegue. |
 | `modulos/isla3d.js` | «La isla en 3D», el botón «3D» del mapa: el relieve de verdad de la isla con el mapa encima, los nombres, la luz del sol de ahora con sus sombras (o la luna) y los gestos, en WebGL a mano y sin bibliotecas, con sus textos en los diez idiomas. Se pide al tocar el botón y el service worker lo guarda con el relieve, para que abra sin conexión. |
-| `modulos/guia.js` | Jero, el presentador de los tours: un dibujo SVG propio con el aspecto de Jerome, articulado (gira la cabeza, mira, parpadea, mueve la boca con lo que dice, saluda y señala con el brazo el botón que explica) y con sus atuendos; el motor de tours (el foco sobre la interfaz de verdad, el bocadillo, la voz opcional con las voces del móvil) y los tres tours, el de la app por capítulos, el del panel del cielo y el de «Su cuerpo», con sus textos en los diez idiomas. Se pide al ofrecer el tour a quien no lo ha visto, al tocar «Ver el tour» en la leyenda o el botón de Jero del panel del cielo o de «Su cuerpo», y la primera vez que se abre uno de los dos (para ofrecerse desde su botón); el service worker lo guarda desde el primer día. |
+| `modulos/guia.js` | Jérôme, el presentador de los tours: un dibujo SVG propio con el aspecto de Jerome, articulado (gira la cabeza, mira, parpadea, mueve la boca con lo que dice, saluda y señala con el brazo el botón que explica) y con sus atuendos; el motor de tours (el foco sobre la interfaz de verdad, el bocadillo, la voz opcional con las voces del móvil) y los tres tours, el de la app por capítulos, el del panel del cielo y el de «Su cuerpo», con sus textos en los diez idiomas. Se pide al ofrecer el tour a quien no lo ha visto, al tocar «Ver el tour» en la leyenda o el botón de Jérôme del panel del cielo o de «Su cuerpo», y la primera vez que se abre uno de los dos (para ofrecerse desde su botón); el service worker lo guarda desde el primer día. |
 | `mapa/tenerife-relieve*.png` y `.json` | El relieve de «La isla en 3D»: una celda de 60 m del MDT05 del IGN (el terreno de los vuelos LiDAR, 5 m) o, si ese no sale, del Copernicus DEM GLO-30 (ESA / Unión Europea), con la costa del mapa detallado. Lo hace `tools/relieve_construir.py` desde el workflow «Generar relieve 3D»; mientras no exista, el botón no sale. El de ahora, del 1 de noviembre de 2026, sale del Copernicus DEM: la API del IGN solo da trozos de 0,01° y no dio tiempo a bajar la isla entera (`AUDITORIA-FINAL.md`). Qué es cada fichero, la licencia y cómo se rehace: `mapa/RELIEVE.md`. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
@@ -66,7 +66,7 @@ que la pantalla pide al abrirse si el navegador tiene WebGL 2: el motor, el
 Y «La isla en 3D»
 (`modulos/isla3d.js`, con su relieve en `mapa/`), que se pide al tocar «3D» y
 que el service worker también guarda desde el primer día.
-Y Jero, el presentador de los tours (`modulos/guia.js`, con el motor, los tres
+Y Jérôme, el presentador de los tours (`modulos/guia.js`, con el motor, los tres
 tours y sus textos en los diez idiomas), que se pide al ofrecer el tour o al
 tocar «Ver el tour» y que el service worker guarda igual, desde el primer día.
 
@@ -280,7 +280,7 @@ regulador de brillo, en el panel y en «Apunta al cielo»; la barra del
 sistema se pone en rojo oscuro; y si se abre el panel de noche con la luz
 blanca, una pista lo ofrece una vez. Con la luz roja, en un móvil de menos
 de 390 px de ancho la cabecera va en dos renglones (el título y la ✕;
-debajo, Jero, «Luz roja» y el regulador). **Sin cobertura**, el panel sigue
+debajo, Jérôme, «Luz roja» y el regulador). **Sin cobertura**, el panel sigue
 calculándolo todo: «Esta noche» dice qué falta sin red (las nubes y
 Wikipedia) y de cuándo son los elementos de los satélites, y «Dónde ir»
 comprueba antes de subir que los ficheros del panel están guardados en el
@@ -409,9 +409,9 @@ la IMO y otros, y abre el panel con el servidor apagado. Como el módulo no
 tiene etiqueta, se declara con un comentario `CARGA-PEREZOSA:` para que
 `tools/fuente.js` lo pegue al fuente y las herramientas de idiomas lo vean.
 
-### Los tours, con Jero de presentador
+### Los tours, con Jérôme de presentador
 
-Tres visitas guiadas, y las tres las hace **Jero**: un dibujo SVG propio con el
+Tres visitas guiadas, y las tres las hace **Jérôme**: un dibujo SVG propio con el
 aspecto de Jerome (`modulos/guia.js`, que no se pide al arrancar). Está
 articulado —gira la cabeza, mira, parpadea, respira, mueve la boca con lo que
 dice, saluda y señala con el brazo el botón que explica— y cambia de atuendo
@@ -429,7 +429,7 @@ cinta en el pelo y toalla al cuello para «Su cuerpo».
   serio, cariño, apuro, frío y fiesta): cada paso lleva la suya. Los
   párpados y las cejas se mueven por su cuenta, y con una exclamación
   levanta las cejas.
-- **Algunos chistes**: dieciséis pasos acaban con un aparte de Jero, en
+- **Algunos chistes**: dieciséis pasos acaban con un aparte de Jérôme, en
   cursiva, que cuenta con otra cara («Aquí al autobús se le dice “guagua”.
   Dígalo y ya parecerá de la isla»). Ninguno en los pasos serios: el mar,
   las emergencias, la comida, lo que se guarda.
@@ -440,7 +440,7 @@ cinta en el pelo y toalla al cuello para «Su cuerpo».
   existe (el 3D sin relieve, el «ⓘ» en la app de las tiendas) no se enseña.
 - **El tour del cielo**, por las pestañas del panel 🔭, con la luz roja
   encendida un momento en su paso. No pregunta al abrir el panel: la primera
-  vez, el botón con la cara de Jero late y un globito lo dice, una sola vez.
+  vez, el botón con la cara de Jérôme late y un globito lo dice, una sola vez.
   De noche, la barra que ofrece la luz roja se aparta mientras dura la visita
   y vuelve al acabar.
 - **El tour de «Su cuerpo»**, bajando por la pantalla: el personaje y sus
@@ -451,7 +451,7 @@ cinta en el pelo y toalla al cuello para «Su cuerpo».
   abre hojas y
   no cambia de vista: entrar en «Aspecto» o en «Preguntar» pide sus datos a
   la red, y eso no lo decide un tour. Se ofrece como el del cielo: el botón
-  con la cara de Jero, dentro de la escena (abajo a la izquierda, frente a
+  con la cara de Jérôme, dentro de la escena (abajo a la izquierda, frente a
   «Girar»), late la primera vez. Ese botón lo pone el cargador de
   `index.html` cada vez que la pantalla se abre: `modulos/cuerpo.js` no se
   toca. Escape cierra el tour y nada más; «atrás» cierra la pantalla y el
@@ -464,7 +464,7 @@ cinta en el pelo y toalla al cuello para «Su cuerpo».
   callado.
 - Las cifras se cuentan, no se escriben (los lugares, los idiomas, las
   costas, los pasos), y lo que se señala es la interfaz de verdad.
-- En un móvil pequeño, donde no cabe, el bocadillo se aprieta y Jero se queda
+- En un móvil pequeño, donde no cabe, el bocadillo se aprieta y Jérôme se queda
   en miniatura; con el móvil tumbado, el bocadillo va al lado de lo que
   señala; con «reducir movimiento» no se mueve nada.
 - Se guarda solo si ya se vio cada uno, o si el del cielo o el de «Su
@@ -473,7 +473,7 @@ cinta en el pelo y toalla al cuello para «Su cuerpo».
 
 `tools/auditar_tour.js` los recorre enteros en los diez idiomas y en cuatro
 tamaños de móvil, con la voz (una voz falsa que apunta lo que se lee), con
-movimiento, con el móvil lento (un cuadro cada 50 ms: los muelles de Jero no
+movimiento, con el móvil lento (un cuadro cada 50 ms: los muelles de Jérôme no
 se desbocan) y sin el módulo. Antes de abrir el navegador mira que cada texto
 que el módulo pide exista, que cada frase que nombra «Su cuerpo» la llame
 como su pantalla, que lo que su tour señala siga estando en

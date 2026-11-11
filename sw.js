@@ -84,7 +84,7 @@ const CORE = [
      las sumas con las que el modulo comprueba los dos PNG, asi que uno nuevo
      con los PNG de antes no se dibuja (lo dice, en vez de pintar mal). */
   './modulos/isla3d.js', './mapa/tenerife-relieve.json', './mapa/tenerife-relieve.png', './mapa/tenerife-relieve-ao.png',
-  /* Jero y sus tours (10 de noviembre de 2026): el presentador, el motor y los tours de la
+  /* Jérôme y sus tours (10 de noviembre de 2026): el presentador, el motor y los tours de la
      app, del cielo y de «Su cuerpo». No se pide al arrancar, pero tiene que estar sin conexion:
      el tour del cielo se abre donde se mira el cielo. Va tambien «red primero» abajo, como los demas. */
   './modulos/guia.js',

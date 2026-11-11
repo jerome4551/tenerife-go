@@ -24305,12 +24305,12 @@ window.addEventListener('hashchange', () => {
      LOS TOURS, CON JERO DE PRESENTADOR (10 de noviembre de 2026)
      El de la app se ofrece UNA vez por version (localStorage
      'tenerife.tour.seen' guarda la version vista): al cerrar la bienvenida
-     sale Jero, saluda y pregunta si enseña la app, con [Ahora no] /
+     sale Jérôme, saluda y pregunta si enseña la app, con [Ahora no] /
      [Ver el tour]; quien vio uno anterior ve "¡Hay novedades!". Si acepta:
      el tour entero, por capitulos, con el foco sobre la interfaz de verdad
-     y Jero señalando cada boton. Se vuelve a ver desde la leyenda del mapa
+     y Jérôme señalando cada boton. Se vuelve a ver desde la leyenda del mapa
      («Ver el tour» abre el menu de visitas), y el panel del cielo tiene el
-     suyo en el boton con la cara de Jero. Todo ello (el dibujo, el motor,
+     suyo en el boton con la cara de Jérôme. Todo ello (el dibujo, el motor,
      los dos tours y sus textos en los diez idiomas) vive en
      modulos/guia.js, que se pide cuando hace falta: aqui solo quedan el
      cargador y las animaciones de siempre.
@@ -24410,10 +24410,10 @@ window.addEventListener('hashchange', () => {
      CARGA-PEREZOSA: modulos/guia.js
      Y el mismo dia, con el bloque 8 de «Su cuerpo» ya en main, el tour de esa
      pantalla («Lo mismo por el cuerpo»).
-     El presentador (Jero, un dibujo SVG articulado), el motor de tours, los
+     El presentador (Jérôme, un dibujo SVG articulado), el motor de tours, los
      tres tours y sus textos en los diez idiomas viven en modulos/guia.js, que
      se pide cuando hace falta: al cerrar la bienvenida de quien no ha visto
-     el tour, al tocar «Ver el tour» en la leyenda del mapa o el boton de Jero
+     el tour, al tocar «Ver el tour» en la leyenda del mapa o el boton de Jérôme
      del panel del cielo o de «Su cuerpo», y la primera vez que se abre uno de
      los dos (para la pista). En index.html serian unos 103 kB comprimidos mas en
      la primera descarga de todo el mundo. El service worker lo guarda desde
@@ -24429,10 +24429,10 @@ window.addEventListener('hashchange', () => {
        guardan «99», y con eso se saltan tambien las pistas del cielo y de
        «Su cuerpo».
      · El del cielo no pregunta al abrir el panel: la primera vez, el boton de
-       Jero late y un globito lo dice unos segundos, una sola vez. Se guarda
+       Jérôme late y un globito lo dice unos segundos, una sola vez. Se guarda
        aparte («tenerife.tour.cielo»: «0», ofrecido; «1», visto).
      · El de «Su cuerpo», igual («tenerife.tour.cuerpo»). Esa pantalla la pinta
-       modulos/cuerpo.js, que no se toca: el boton de Jero se lo pone este
+       modulos/cuerpo.js, que no se toca: el boton de Jérôme se lo pone este
        cargador, dentro de su escena, cada vez que se abre.
      · tools/auditar_tour.js recorre los tres enteros, en los diez idiomas y en
        cuatro tamaños de movil. */
@@ -24443,7 +24443,7 @@ window.addEventListener('hashchange', () => {
 
   /* Las tres filas que hacen falta antes de que llegue el modulo: el boton de
      la leyenda, lo que se dice si el modulo no llega y el rotulo del boton de
-     Jero en «Su cuerpo». El del panel del cielo (cieloTourBtn) va con las
+     Jérôme en «Su cuerpo». El del panel del cielo (cieloTourBtn) va con las
      filas de ese panel, mas arriba: lo pide su armazon, y tools/auditar_cielo.js
      quiere en sus tablas cada fila que el panel pide. Las demas van con el
      modulo (GUIA_UI). */
@@ -24486,11 +24486,11 @@ window.addEventListener('hashchange', () => {
   window.v19TourMenu = function () {
     return cargar().then(function () { return window.TG_GUIA.menu(); }, sinModulo);
   };
-  // El boton de Jero del panel del cielo
+  // El boton de Jérôme del panel del cielo
   window.v19TourCielo = function () {
     return cargar().then(function () { return window.TG_GUIA.iniciar('cielo'); }, sinModulo);
   };
-  /* La primera vez que alguien abre el panel del cielo, Jero se ofrece desde
+  /* La primera vez que alguien abre el panel del cielo, Jérôme se ofrece desde
      su boton: late y un globito lo dice unos segundos. No tapa nada ni pide
      nada, y sale UNA vez por dispositivo: al enseñarlo se guarda «0»
      (ofrecido) en «tenerife.tour.cielo»; el tour, al verse o saltarse,
@@ -24507,7 +24507,7 @@ window.addEventListener('hashchange', () => {
       }, function () {});
     }, 900);
   };
-  // El boton de Jero de «Su cuerpo»
+  // El boton de Jérôme de «Su cuerpo»
   window.v19TourCuerpo = function () {
     return cargar().then(function () { return window.TG_GUIA.iniciar('cuerpo'); }, sinModulo);
   };
@@ -24535,7 +24535,7 @@ window.addEventListener('hashchange', () => {
   /* «Su cuerpo» la pinta modulos/cuerpo.js, que no se toca (lo hace su propia
      entrega): desde aqui se ve llegar su panel (se cuelga de <body> la primera
      vez que se abre) y abrirse (deja de estar hidden), y entonces se le pone el
-     boton de Jero dentro de la escena, abajo a la izquierda, con el mismo
+     boton de Jérôme dentro de la escena, abajo a la izquierda, con el mismo
      dibujo que el del cielo, y se ofrece la pista de la primera vez. */
   function botonCuerpo(panel) {
     var esc = panel.querySelector('#tgc-escena'), cara = document.querySelector('#cielo-tour-btn svg');
@@ -24548,7 +24548,7 @@ window.addEventListener('hashchange', () => {
     rotuloCuerpo();
     /* el rotulo sigue al idioma por su cuenta, sin data-tx: los textos de esa pantalla los cuenta
        su propio control (tools/probar_cuerpo.js), y este boton no es suyo */
-    if (!rotuloCuerpo.puesto) { rotuloCuerpo.puesto = true; try { TG_IDIOMA.registrar('el boton de Jero de «Su cuerpo»', rotuloCuerpo); } catch (e) {} }
+    if (!rotuloCuerpo.puesto) { rotuloCuerpo.puesto = true; try { TG_IDIOMA.registrar('el boton de Jérôme de «Su cuerpo»', rotuloCuerpo); } catch (e) {} }
   }
   function rotuloCuerpo() {
     var b = document.getElementById('cuerpo-tour-btn'); if (!b) return;
@@ -35193,14 +35193,14 @@ setTimeout(renderBanoHoy, 1200);
   font-size: 0.72rem; cursor: pointer; padding: 4px 8px; border-radius: 999px; line-height: 1.2;
 }
 .cielo-cab .cielo-cerrar { border: none; font-size: 1.1rem; color: rgba(255,255,255,0.4); padding: 0 4px; }
-/* el boton de Jero: el tour del panel (modulos/guia.js) */
+/* el boton de Jérôme: el tour del panel (modulos/guia.js) */
 .cielo-cab .cielo-tour-btn { flex: none; width: 32px; height: 32px; padding: 0; border: none; border-radius: 50%; background: none; }
 .cielo-cab .cielo-tour-btn svg { display: block; width: 100%; height: 100%; }
-/* Con la luz roja puesta la cabecera lleva tambien el regulador de brillo, y con el boton de Jero ya no
+/* Con la luz roja puesta la cabecera lleva tambien el regulador de brillo, y con el boton de Jérôme ya no
    cabe todo en un renglon en un movil estrecho: el titulo se quedaba sin sitio y el boton lo pisaba (a
    320 px en cuatro idiomas; en bulgaro, hasta 381). Por debajo de 390 px, en rojo, la cabecera va en dos
-   renglones: arriba el titulo y la ✕; debajo, Jero, «Luz roja» y el regulador, que coge lo que queda.
-   Mientras dura la visita de Jero (el panel lleva la clase tgg-de-visita) no: ese renglon de mas le
+   renglones: arriba el titulo y la ✕; debajo, Jérôme, «Luz roja» y el regulador, que coge lo que queda.
+   Mientras dura la visita de Jérôme (el panel lleva la clase tgg-de-visita) no: ese renglon de mas le
    quitaba el sitio a la visita en los moviles pequeños, y el regulador, que entonces no se puede tocar,
    se aparta (modulos/guia.js): la cabecera es la de siempre. tools/auditar_tour.js mira las dos cosas,
    en los diez idiomas y los cuatro moviles. */
@@ -35658,7 +35658,7 @@ html.cielo-rojo body::before {
     cargar().then(function () { if (abierto()) window.TG_CIELO.abrir(); },
                   function () { if (abierto()) aviso(tx('cieloErrorCarga'), true); });
   }
-  /* Jero se ofrece desde su boton la primera vez (el bloque LOS TOURS) */
+  /* Jérôme se ofrece desde su boton la primera vez (el bloque LOS TOURS) */
   function pista() { try { if (window.v19PistaCielo) window.v19PistaCielo(); } catch (e) {} }
   function cerrar() {
     if (window.TG_CIELO) window.TG_CIELO.cerrar();
@@ -35685,7 +35685,7 @@ html.cielo-rojo body::before {
       });
     }
     var x = document.getElementById('cielo-cerrar'); if (x) x.addEventListener('click', cerrar);
-    /* el tour del panel, con Jero (modulos/guia.js) */
+    /* el tour del panel, con Jérôme (modulos/guia.js) */
     var g = document.getElementById('cielo-tour-btn');
     if (g) g.addEventListener('click', function (e) { e.stopPropagation(); if (window.v19TourCielo) window.v19TourCielo(); });
     if (location.hash === '#cielo') setTimeout(abrir, 600);
