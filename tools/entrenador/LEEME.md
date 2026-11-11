@@ -20,12 +20,12 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/40-escenario.js` | la escena: el orden de pintado, la sombra, los tres decorados (fuera, calistenia, gimnasio; día y noche) |
 | `src/50-material.js` | barra, mancuernas, banco, soporte, barra de dominadas, escalón, pared, polea… |
 | `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
-| `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los anillos, el encuadre; y los gestos del presentador |
+| `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los avisos, el encuadre; y los gestos del presentador |
 | `src/70-coreografias.js` | **las coreografías**, una por ejercicio |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
-| `pruebas/` | hojas de contacto, los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
+| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
 | `muestra/` | la página de muestra (un solo fichero, para enseñarla en el móvil) |
 
 ## La regla
@@ -72,7 +72,7 @@ puntas), `aLosLados(codo)`, `PUNO`, `PRONO`, `SUPINO`, `SUELTA`, `PALMA_ABAJO`, 
 
 ```js
 COREO['sentadilla-peso-corporal'] = {
-  vista: [42, 90],                 // la cámara, y la de «Girar»
+  vista: [42, 90],                 // la cámara, y la de «Girar» (un rumbo, o [rumbo, picado] si esa se mira desde otra altura)
   rastro: 'pel',                   // qué punto deja estela (PUNTOS, en 60-director.js)
   esfuerzo: [2],                   // en qué tramos de la repetición aprieta (la cara, el brillo)
   clavos: ['ti', 'td'],            // lo que no se mueve: tobillos (ti, td), manos (mi, md)
@@ -98,6 +98,10 @@ del centro), `'mi=x,y,z'` (a un punto).
 1. Leer los pasos de la ficha en castellano. Contarlos.
 2. Escribir las posturas clave y probarlas en la hoja de contacto, desde las dos vistas:
    `python3 tools/entrenador/pruebas/foto.py "file://$PWD/tools/entrenador/pruebas/hoja.html?id=<id>&medio=0" salida.png 1200 800 700`
+   Y **elegir la vista mirándola**, con los músculos encendidos: `pruebas/vistas.html?id=<id>&filas=vistas` (sus dos vistas,
+   cinco momentos de la repetición) o `pruebas/vistas.html?id=<id>&rumbos=20,45,70,110&ts=0,1.5&picado=26` (candidatas).
+   La primera vista tiene que enseñar lo que el ejercicio trabaja: que la mano o el antebrazo no tapen el hombro y el
+   pecho (en el press de banca, de pies a cabeza y desde arriba, no de lado).
 3. Verla en el reproductor de verdad, paso a paso:
    `python3 tools/entrenador/pruebas/tira.py salida.png <id> "p1+2,p2+1.5,p3+2,c+2"`
    (o varios de golpe, dos fotogramas por paso: `pruebas/flujo.py salida.png "id1,id2,…"`).
@@ -113,6 +117,18 @@ o varias **masas**: secciones elípticas a lo largo de un hueso. En cada cuadro 
 una línea de contorno del color de la pieza, más oscuro. La bola de una articulación es de la pieza que se pinta
 primero; la otra llega «con la boca abierta» (sin contorno por ese lado), y así el codo y la rodilla no enseñan una
 costura. Todo es SVG y números: sin filtros, sin degradados por pieza, sin imágenes.
+
+**El tronco** no es una envolvente: son nueve secciones (`SECC`), con otra entre cada dos por una curva suave, y su
+contorno es la **unión** de las envolventes de cada tres seguidas. Así vale desde cualquier lado, también tumbado y
+visto de pies a cabeza (lo que asoma entonces es el pecho entero y la tapa de los hombros), y no pierde la cintura.
+
+**Los músculos que trabajan** son elipsoides pegados al cuerpo (`PARCHES` en el tronco, `CALCOS` en los miembros), que
+se proyectan: de frente, la mancha entera; de canto, un bulto de luz en el borde. El del hombro va **por encima de la
+manga** (debajo, la manga lo tapaba y solo asomaba un cerco). El estampado de la camiseta o se ve o no se ve: de canto
+no se queda a medio borrar.
+
+**El aviso** de lo que nombra un paso (la rodilla, el hombro…) son dos ondas que se abren desde el punto y se apagan,
+como al tocar un mapa: dura dos segundos (`MARCA_DUR`) y no se queda encima del cuerpo mientras trabaja.
 
 ## La cabeza (`30-cabeza.js`)
 
@@ -172,6 +188,9 @@ ninguna que valga y es de Apple, no se elige: se le da el idioma y pone la suya.
 
 - Un brazo o un muslo que apunta hacia la cámara se ve corto y gordo: es un dibujo plano por pieza.
   Se arregla eligiendo la vista (de lado para las bisagras y las sentadillas).
+- Un brazo muy doblado visto de lado se pliega sobre sí mismo: el antebrazo y la mano tapan el brazo y el hombro
+  (pasaba en el press de banca). También se arregla con la vista; `auditar_entrenador.js` deja la lista de los
+  ejercicios en los que pasa más de un 20 % de la repetición, para mirarlos a ojo.
 - Solo el escalón tapa de verdad lo que tiene detrás; el resto del material se ordena por distancia.
 - Las piezas se ordenan por distancia, enteras: cuando dos se cruzan (un brazo por delante del pecho), el cambio de
   orden es de un cuadro a otro.

@@ -29,7 +29,10 @@
  *    hay ningún NaN en el dibujo y nada se sale de ancho. Y EL MOVIMIENTO, medido en cada cuadro:
  *    lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque Jérôme respire y
  *    reparta el peso; nada se teletransporta de un cuadro al siguiente; respira; la cabeza y el
- *    tupé no se pasan de vueltas; y de cerca ninguna mano se sale del cuadro. Y LA CABEZA, que es una
+ *    tupé no se pasan de vueltas; y de cerca ninguna mano se sale del cuadro. Y EL DIBUJO, también en
+ *    cada cuadro y desde las dos vistas (en castellano, la primera; en el otro idioma, la de «Girar»):
+ *    el tronco entero cabe en su silueta, el estampado no se queda a medio borrar, un músculo encendido
+ *    no se queda en un borrón y los avisos duran lo que una mirada. Y LA CABEZA, que es una
  *    sola y gira de verdad: vista desde 72 lados, sin números imposibles, con los rasgos que tocan
  *    (de frente, los dos ojos; de perfil, uno; de espaldas, ninguno y el nudo de la cinta).
  * 3. En la app de verdad: «Su cuerpo» → un grupo → una ficha con coreografía: el vídeo sale, no
@@ -93,7 +96,10 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     (co.esfuerzo || []).forEach(i => { if (!(i >= 0 && i < (co.rep || []).length)) peros.push('esfuerzo ' + i); });
     if (co.rastro && !T.PUNTOS[co.rastro]) peros.push('rastro ' + co.rastro);
     (co.material || []).forEach(m => { if (!T.MATERIAL[m[0]]) peros.push('material ' + m[0]); });
-    if (!Array.isArray(co.vista) || co.vista.length < 1 || co.vista.length > 2 || !co.vista.every(v => typeof v === 'number')) peros.push('vista');
+    /* una vista es un rumbo, o [rumbo, picado] si esa se mira desde otra altura */
+    const num = v => typeof v === 'number' && isFinite(v);
+    if (!Array.isArray(co.vista) || co.vista.length < 1 || co.vista.length > 2 || !co.vista.every(v => num(v) || (Array.isArray(v) && v.length === 2 && num(v[0]) && num(v[1]) && v[1] >= 0 && v[1] <= 60))) peros.push('vista');
+    if (co.picado != null && !(num(co.picado) && co.picado >= 0 && co.picado <= 60)) peros.push('picado');
     /* las posturas clave: todo número, y los pies no bajan del suelo (ni de lo que pisan) */
     Object.keys(P).forEach(n => {
       let S; try { S = T.resolver(P[n]); } catch (e) { peros.push('postura ' + n + ': ' + e.message); return; }
@@ -220,13 +226,22 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     await pg.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
     const total = await pg.evaluate(l => window.preparar(l), LANGS);
     info('datos de ' + total + ' ejercicios');
-    const peros = [], gestos = {}, tope = {}; let pasados = 0, cuadros = 0;
+    const peros = [], gestos = {}, tope = {}, dibujo = [], plegados = []; let pasados = 0, cuadros = 0, mirados = 0, girados = 0, borron = 99;
     for (let i = 0; i < ids.length; i++) {
       const id = ids[i];
       for (const l of ['es', LANGS[1 + (i % 9)]]) {
         const m = await pg.evaluate(a => window.montar(a[0], a[1], a[2]), [id, l, i % 2 ? 'noche' : 'dia']);
         if (!m) { peros.push(id + ' (' + l + '): no se monta'); continue; }
-        const r = await pg.evaluate(() => window.entero());
+        /* en castellano, desde la primera vista; en el otro idioma, desde la de «Girar» */
+        const r = await pg.evaluate(v => window.entero(v), l === 'es' ? 0 : 1);
+        /* el dibujo */
+        const dq = [], db = r.dib; mirados += db.mirados; if (r.vistaN === 1) girados++; borron = Math.min(borron, db.borron);
+        if (db.estampaSeguidos > 20) dq.push('el estampado se queda a medio borrar ' + db.estampaSeguidos + ' cuadros seguidos');
+        if (db.marca > T.MARCA_DUR + 0.3) dq.push('un aviso se queda ' + db.marca + ' s encima');
+        if (db.borron < 2.6) dq.push('un músculo encendido se queda en un borrón de ' + db.borron + ' cm');
+        if (db.fuera) dq.push('el tronco se sale de su silueta (' + db.fuera + ' puntos; ' + db.fueraEn + ')');
+        if (r.vistaN === 0 && db.pleg > 20) plegados.push(id + ' ' + db.pleg + ' %');
+        if (dq.length) dibujo.push(id + ' (vista ' + (r.vistaN + 1) + '): ' + dq.join('; '));
         const esperados = Math.round(m.dur * 30), q = [];
         if (!r.fin) q.push('no acaba');
         /* cada tramo acaba en el primer cuadro que pasa de su duración: uno de más por tramo, como mucho */
@@ -254,6 +269,9 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     info('el movimiento, lo más de todo: lo clavado se mueve ' + tope.clavo + ' cm; el cuerpo, ' + tope.salto + ' cm en un cuadro (a 30 por segundo); una mano, ' + tope.saltoM + ' cm; la cabeza cabecea ' + tope.cabRep + '° en una repetición y ' + tope.cabBusto + '° al entrar; el tupé, ' + tope.pelo + '°');
     const delMov = peros.filter(p => /clavado|salto|respira|muelle|sale del cuadro/.test(p));
     ok(!delMov.length, 'el movimiento, medido en cada cuadro de los ' + ids.length + ' vídeos: lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque respire y reparta el peso; nada se teletransporta; respira; los muelles no se pasan; de cerca ninguna mano se sale', delMov.slice(0, 6));
+    ok(!dibujo.length && mirados > 100000 && girados >= ids.length - 1, 'el dibujo, medido en cada cuadro y desde las dos vistas de cada ejercicio (' + girados + ' pases desde la de «Girar»; ' + mirados + ' puntos del tronco mirados): el tronco entero cabe en su silueta (también visto de pies a cabeza), el estampado no se queda a medio borrar, un músculo encendido no se queda en un borrón (el menor, ' + borron + ' cm de semieje) y los avisos duran lo que una mirada', dibujo.slice(0, 6));
+    /* no es un control (una mano delante del hombro es lo natural en un curl o en un press visto de frente): es la lista de lo que conviene mirar a ojo al elegir la vista */
+    info('para mirar a ojo — en la primera vista, el brazo de este lado plegado sobre sí mismo y con el hombro tras la mano más del 20 % de la repetición: ' + (plegados.length ? plegados.join(', ') : 'ninguno'));
     const faltan = []; ['cabecera', 'cierre'].forEach(mo => T.GESTOS_DE[mo].forEach(g => { if (!gestos[mo + ':' + g]) faltan.push(mo + ':' + g); }));
     ok(!faltan.length && Object.keys(gestos).every(g => /^(cabecera|cierre|consejo):/.test(g)), 'los gestos se reparten: cada ejercicio tiene el suyo en la cabecera y en el cierre, y salen todos (' + Object.keys(gestos).map(g => g.split(':')[1] + ' ' + gestos[g]).join(', ') + ')', faltan);
     /* la cabeza: una sola, con volumen, vista desde todos los lados */

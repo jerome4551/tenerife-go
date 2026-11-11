@@ -1,6 +1,6 @@
   /* ───────────────────────── lo que sale del módulo ───────────────────────── */
   window.TG_ENTRENADOR = {
-    version: 2,
+    version: 3,
     /* ¿tiene vídeo este ejercicio? Con n (los pasos que trae su ficha), solo si son los mismos que se
        coreografiaron: si la ficha cambia de pasos, el vídeo deja de salir hasta que se revise. */
     tiene: function (id, n) { var co = Object.prototype.hasOwnProperty.call(COREO, id) ? COREO[id] : null; return !!co && (n == null || (co.pasos || []).length === n); },
@@ -16,5 +16,5 @@
     },
     /* la huella de los pasos en castellano con los que se hizo cada coreografía (la coteja tools/auditar_entrenador.js) */
     huellas: HUELLAS,
-    _: { resolver: resolver, mezclar: mezclar, clavar: clavar, armar: armar, Escenario: Escenario, Director: Director, Camara: Camara, D: D, C: C, CURVA: CURVA, COREO: COREO, MATERIAL: MATERIAL, PRESENTA: PRESENTA, GESTOS: GESTOS, GESTOS_DE: GESTOS_DE, Vida: Vida, bajoZapa: bajoZapa, BUSTO: BUSTO, ANCHO: ANCHO, ALTO: ALTO, PUNTOS: PUNTOS, EMO: EMO, Reproductor: Reproductor }
+    _: { resolver: resolver, mezclar: mezclar, clavar: clavar, armar: armar, Escenario: Escenario, Director: Director, Camara: Camara, D: D, C: C, CURVA: CURVA, COREO: COREO, MATERIAL: MATERIAL, PRESENTA: PRESENTA, GESTOS: GESTOS, GESTOS_DE: GESTOS_DE, Vida: Vida, bajoZapa: bajoZapa, BUSTO: BUSTO, ANCHO: ANCHO, ALTO: ALTO, PUNTOS: PUNTOS, EMO: EMO, Reproductor: Reproductor, SECC: SECC, MARCA_DUR: MARCA_DUR }
   };

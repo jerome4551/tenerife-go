@@ -396,13 +396,16 @@
     });
     /* ── las gafas: el plano de los cristales, el canto de la montura cuando se ve de lado y las patillas ── */
     calco(this.gafas, PL.gafas, 0.07);
-    var dCanto = '';
+    /* visto desde arriba con la cara hacia el suelo (una flexión, una plancha), de las gafas solo asomaría una patilla
+       suelta junto al pelo: ahí se van apagando; con la cara a la vista, o por detrás a su altura, se quedan */
+    var dCanto = '', opPat = n2(Math.max(entre(k3[2] / 0.1, 0, 1), entre((0.7 - k3[1]) / 0.16, 0, 1)));
     [0, 1].forEach(function (n) {
       var s = n ? 1 : -1, de = s * k3[0], pat = linea(camDe(pr), (k3[2] < -0.3 ? [] : [[s * 10.55, 16.9, 11.7]]).concat([[s * 11.25, 16.7, 5], [s * 11.2, 16.3, 0.6], [s * 10.6, 14.1, -1.3]]));
       pon(yo.patA[n], 'd', de > -0.08 ? pat : ''); pon(yo.patD[n], 'd', de > -0.08 || k3[2] < 0.1 ? '' : pat);
+      pon(yo.patA[n], 'opacity', opPat); pon(yo.patD[n], 'opacity', opPat);
       if (de > 0.22 && k3[2] > -0.35) dCanto += linea(camDe(pr), [[s * 10.55, 19.4, 11.7], [s * 10.55, 12.1, 11.7]]);
     });
-    pon(this.canto, 'd', dCanto);
+    pon(this.canto, 'd', dCanto); pon(this.canto, 'opacity', opPat);
     /* ── el sudor ── */
     var su = entre(v.sudor, 0, 1) * (0.55 + 0.45 * Math.sin(this.t * 3.1)), cae = n1((this.t * 9) % 14);
     [0, 1].forEach(function (n) {

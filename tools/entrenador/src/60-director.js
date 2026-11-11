@@ -115,7 +115,7 @@
     this.pRastro = [0, 1, 2, 3].map(function (i) { return crear('path', { fill: 'none', stroke: '#F5C76B', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': 2 + i * 1.1, opacity: 0.16 + i * 0.2 }, this.gRastro); }, this);
     this.pPunta = crear('circle', { r: 4.2, fill: '#fff6d8', stroke: '#F5C76B', 'stroke-width': 1.6 }, this.gRastro);
     this.gMarcas = crear('g', { 'class': 'tge-marcas' }, esc.encima);
-    this.cMarcas = [0, 1, 2, 3].map(function () { var g = crear('g', { opacity: 0 }, this.gMarcas); crear('circle', { r: 13, fill: 'none', stroke: '#F5C76B', 'stroke-width': 2.6 }, g); crear('circle', { r: 13, fill: 'none', stroke: '#fff', 'stroke-width': 1, opacity: 0.8 }, g); return g; }, this);
+    this.cMarcas = [0, 1, 2, 3].map(function () { var g = crear('g', { opacity: 0 }, this.gMarcas); g._o = [0, 1].map(function () { return crear('circle', { r: 1, fill: 'none', stroke: '#F5C76B', 'stroke-linecap': 'round', opacity: 0 }, g); }); return g; }, this);
     this.vistas = [{ rumbo: 35 }]; this.vista = 0; this.busto = false; this.tBusto = 0;
     this.vida = new Vida(); this.gestoDe = null; this.gestoN = ''; this.tGesto = 0; this.metas = []; this.cortes = 0;
   }
@@ -340,15 +340,25 @@
     });
     if (n) { pon(this.pPunta, 'cx', n1(P[n - 1][0])); pon(this.pPunta, 'cy', n1(P[n - 1][1])); pon(this.pPunta, 'opacity', '1'); } else pon(this.pPunta, 'opacity', '0');
   };
-  /* los anillos sobre lo que nombra el paso */
+  /* el aviso sobre lo que nombra el paso: dos ondas que se abren desde el punto y se apagan, como cuando se toca un
+     mapa. Dura lo que una mirada (MARCA_DUR): no se queda encima del cuerpo mientras trabaja. Con «reducir
+     movimiento», un aro quieto que aparece y se va. */
+  var MARCA_DUR = 2.1;
   Director.prototype.marcar = function (nombres) { this.marcas = (nombres || []).filter(function (n) { return PUNTOS[n]; }).slice(0, 4); this.tMarca = this.t; };
   Director.prototype.pintarMarcas = function (E) {
-    var cam = this.esc.cam, yo = this, edad = this.t - (this.tMarca || 0);
-    this.cMarcas.forEach(function (g, i) {
-      var nom = yo.marcas[i];
-      if (!nom || yo.busto || edad > 4.2) { pon(g, 'opacity', '0'); return; }
-      var p = cam.p(PUNTOS[nom](E)), late = 1 + 0.16 * Math.sin(yo.t * 6 - i), op = Math.min(1, edad * 4) * Math.min(1, (4.2 - edad) * 1.6);
-      pon(g, 'transform', 'translate(' + n1(p[0]) + ',' + n1(p[1]) + ') scale(' + n2(late) + ')'); pon(g, 'opacity', n2(op));
+    var cam = this.esc.cam, yo = this, edad = this.t - (this.tMarca || 0) - 0.25, fijo = quieto();
+    this.cMarcas.forEach(function (g) {
+      var nom = yo.marcas[yo.cMarcas.indexOf(g)];
+      if (!nom || yo.busto || edad < 0 || edad > MARCA_DUR) { pon(g, 'opacity', '0'); return; }
+      var p = cam.p(PUNTOS[nom](E));
+      pon(g, 'transform', 'translate(' + n1(p[0]) + ',' + n1(p[1]) + ')'); pon(g, 'opacity', '1');
+      g._o.forEach(function (c, j) {
+        /* cada onda: 1,15 s; la segunda sale 0,75 s después */
+        var u = fijo ? (j ? -1 : edad / MARCA_DUR) : (edad - j * 0.75) / 1.15;
+        if (u < 0 || u > 1) { pon(c, 'opacity', '0'); return; }
+        var r = fijo ? 11 : 4 + 13 * (1 - (1 - u) * (1 - u)), op = fijo ? Math.min(1, u * 6, (1 - u) * 3) : Math.min(1, u * 8) * Math.pow(1 - u, 1.4);
+        pon(c, 'r', n1(r)); pon(c, 'stroke-width', n2(fijo ? 2.2 : 3 - 1.9 * u)); pon(c, 'opacity', n2(op * 0.95));
+      });
     });
   };
   /* ── el encuadre: que todo lo que pasa quepa, visto desde cada vista ── */
@@ -371,11 +381,13 @@
     var rumbos = co.vista || [35, 90], picado = co.picado == null ? 9 : co.picado, cam = new Camara();
     /* cada vista, con su escala: lo que se ve cabe entre la barra de arriba y el borde de abajo */
     this.vistas = rumbos.map(function (r) {
-      cam.rumbo = r; cam.picado = picado; cam.esc = 1; cam.ox = 0; cam.oy = 0; cam.mira = mira; cam.calc();
+      /* una vista es un rumbo, o [rumbo, picado] si esa se mira desde otra altura */
+      var pic = r.length ? r[1] : picado; if (r.length) r = r[0];
+      cam.rumbo = r; cam.picado = pic; cam.esc = 1; cam.ox = 0; cam.oy = 0; cam.mira = mira; cam.calc();
       var a = [1e9, 1e9], b = [-1e9, -1e9];
       pts.forEach(function (p) { var q = cam.p(p); a[0] = Math.min(a[0], q[0]); a[1] = Math.min(a[1], q[1]); b[0] = Math.max(b[0], q[0]); b[1] = Math.max(b[1], q[1]); });
       var e = entre(Math.min((ANCHO - 36) / (b[0] - a[0] + 12), (ALTO - 96) / (b[1] - a[1] + 8)) * (co.zoom || 1), 0.9, 2.6);
-      return { rumbo: r, picado: picado, esc: e, mira: mira, ox: ANCHO / 2 - (a[0] + b[0]) / 2 * e, oy: 58 + (ALTO - 96) / 2 - (a[1] + b[1]) / 2 * e + 4 };
+      return { rumbo: r, picado: pic, esc: e, mira: mira, ox: ANCHO / 2 - (a[0] + b[0]) / 2 * e, oy: 58 + (ALTO - 96) / 2 - (a[1] + b[1]) / 2 * e + 4 };
     });
     /* el busto: de frente, de cerca, para saludar y para los consejos */
     this.vBusto = { rumbo: 0, picado: BUSTO.picado, esc: BUSTO.esc, mira: BUSTO.mira, ox: ANCHO / 2, oy: BUSTO.oy };

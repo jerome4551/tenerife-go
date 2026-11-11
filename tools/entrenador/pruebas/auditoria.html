@@ -42,8 +42,44 @@ window.cabezaGira = function () {
   });
   return out;
 };
-window.entero = function () {
+/* vista: 1, para pasarlo entero desde la otra vista (la de «Girar») */
+window.entero = function (vista) {
   var R = window.R, d = R.dir, leido = [], raros = 0, cuadros = 0, nodos = 0, modos = {}, gestos = {};
+  if (vista && d.vistas.length > vista) { d.vista = vista; d.salto = true; }
+  /* el dibujo, medido: el estampado no se queda a medio borrar; el aviso de lo que nombra el paso dura lo que una mirada;
+     un músculo encendido no se queda en un borrón; el tronco entero cabe en su silueta (también visto de pies a cabeza);
+     y el brazo de este lado no se pasa la repetición plegado sobre sí mismo, tapándose el hombro con su propia mano */
+  var T = TG_ENTRENADOR._, dib = { estampa: 0, estampaSeguidos: 0, marca: 0, borron: 99, fuera: 0, fueraEn: '', mirados: 0, pleg: 0, plegN: 0 };
+  var svgD = R.raiz.querySelector('svg'), pt = svgD.createSVGPoint(), fig = R.esc.fig, gc = fig.P.camiseta, gp = fig.P.pantalon, seguidos = 0;
+  var dentro = function (q) { pt.x = q[0]; pt.y = q[1]; return gc.f.isPointInFill(pt) || gp.f.isPointInFill(pt); };
+  var aSeg = function (p, a, b) { var vx = b[0] - a[0], vy = b[1] - a[1], l2 = vx * vx + vy * vy, u = l2 ? Math.max(0, Math.min(1, ((p[0] - a[0]) * vx + (p[1] - a[1]) * vy) / l2)) : 0; return [Math.hypot(p[0] - a[0] - vx * u, p[1] - a[1] - vy * u), a[2] + (b[2] - a[2]) * u]; };
+  var medirDibujo = function (E) {
+    var cam = R.esc.cam, esc = cam.esc, oe = Number(gc.estampa.getAttribute('opacity'));
+    if (oe > 0.04 && oe < 0.96) { dib.estampa++; seguidos++; dib.estampaSeguidos = Math.max(dib.estampaSeguidos, seguidos); } else seguidos = 0;
+    d.cMarcas.forEach(function (g) { if (Number(g.getAttribute('opacity')) > 0) dib.marca = Math.max(dib.marca, d.t - d.tMarca); });
+    fig.parches.forEach(function (pa) { if (pa.g._nivel && Number(pa.g.getAttribute('opacity')) > 0.25) dib.borron = Math.min(dib.borron, Math.min(Number(pa.g.getAttribute('rx')), Number(pa.g.getAttribute('ry'))) / esc); });
+    if (cuadros % 3 === 0) {
+      var bases = { p: [E.Bp, E.pel], l: [E.Bl, E.lum], t: [E.Bt, E.tor] };
+      T.SECC.forEach(function (q, i) {
+        /* la primera y la última son las tapas (la entrepierna y el cuello): vistas de canto son una raya, y un punto suyo cae justo en el borde */
+        if (i === 0 || i === T.SECC.length - 1) return;
+        var B = bases[q[0]][0], O = bases[q[0]][1];
+        [[0.88 * q[2], 0], [-0.88 * q[2], 0], [0, 0.88 * q[3]], [0, -0.88 * q[3]]].forEach(function (w) {
+          var l = [w[0], q[1], q[4] + w[1]], p3 = [O[0] + B[0][0] * l[0] + B[1][0] * l[1] + B[2][0] * l[2], O[1] + B[0][1] * l[0] + B[1][1] * l[1] + B[2][1] * l[2], O[2] + B[0][2] * l[0] + B[1][2] * l[1] + B[2][2] * l[2]];
+          dib.mirados++;
+          if (!dentro(cam.p(p3))) { dib.fuera++; if (!dib.fueraEn) dib.fueraEn = 'sección ' + i + ', tramo ' + R.n + ' (' + R.tt.toFixed(2) + ' s)'; }
+        });
+      });
+    }
+    if (!d.busto && d.modo === 'rep' && d.w >= 1) {
+      var k = cam.p(E.i.hom)[2] >= cam.p(E.d.hom)[2] ? 'i' : 'd', L = E[k], S = cam.p(L.hom), C = cam.p(L.cod), W = cam.p(L.mun), M = cam.p(L.agarre), cub = 0, N = 6;
+      var u1 = [L.cod[0] - L.hom[0], L.cod[1] - L.hom[1], L.cod[2] - L.hom[2]], u2 = [L.mun[0] - L.cod[0], L.mun[1] - L.cod[1], L.mun[2] - L.cod[2]];
+      var doblado = Math.acos(Math.max(-1, Math.min(1, (u1[0] * u2[0] + u1[1] * u2[1] + u1[2] * u2[2]) / (Math.hypot(u1[0], u1[1], u1[2]) * Math.hypot(u2[0], u2[1], u2[2]) || 1)))) * 180 / Math.PI;
+      for (var j = 0; j < N; j++) { var u = 0.15 + 0.75 * j / (N - 1), p = [S[0] + (C[0] - S[0]) * u, S[1] + (C[1] - S[1]) * u, S[2] + (C[2] - S[2]) * u], q = aSeg(p, C, W); if (q[0] / esc < 4.2 && q[1] > p[2] + 1) cub++; }
+      var qs = aSeg(S, C, M);
+      dib.plegN++; if (doblado > 50 && cub >= N - 1 && qs[0] / esc < 6.2 && qs[1] > S[2] + 2) dib.pleg++;
+    }
+  };
   /* el movimiento, medido: lo clavado no se mueve, nada se teletransporta, y Jérôme respira y no se pasa de vueltas */
   var mov = { clavo: 0, clavoEn: '', salto: 0, saltoEn: '', saltoM: 0, saltoMEn: '', aireMin: 9, aireMax: -9, cabRep: 0, cabBusto: 0, pelo: 0, brazo: 0, fuera: 0 };
   var antes = null, cortesAntes = -1, tramoAntes = -1, dist = function (a, b) { return Math.sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2])); };
@@ -76,6 +112,7 @@ window.entero = function () {
       var L = E[k], al = E.S.m[k].c > 0.6 ? 9 : 16, q = R.esc.cam.p([L.mun[0] + L.mano.dir[0] * al, L.mun[1] + L.mano.dir[1] * al, L.mun[2] + L.mano.dir[2] * al]);
       if (q[0] < 2 || q[0] > 398 || q[1] < 50) mov.fuera++;
     });
+    medirDibujo(E);
     if (cuadros % 15 === 0) {
       var s = R.raiz.querySelector('svg'); nodos = Math.max(nodos, s.querySelectorAll('*').length);
       if (/NaN|Infinity|undefined/.test(new XMLSerializer().serializeToString(s))) raros++;
@@ -83,6 +120,8 @@ window.entero = function () {
   }
   ['clavo', 'salto', 'saltoM', 'aireMin', 'aireMax', 'cabRep', 'cabBusto', 'pelo', 'brazo'].forEach(function (k) { mov[k] = Math.round(mov[k] * 1000) / 1000; });
   return { fin: R.fin, cuadros: cuadros, leido: leido, raros: raros, nodos: nodos, modos: Object.keys(modos), ancho: document.documentElement.scrollWidth, vista: document.documentElement.clientWidth,
-           titulo: R.nombre.textContent, voz: R.bVoz.hidden ? 'sin' : 'con', mov: mov, gestos: Object.keys(gestos) };
+           titulo: R.nombre.textContent, voz: R.bVoz.hidden ? 'sin' : 'con', mov: mov, gestos: Object.keys(gestos),
+           dib: { estampa: dib.estampa, estampaSeguidos: dib.estampaSeguidos, marca: Math.round(dib.marca * 100) / 100, borron: Math.round(dib.borron * 100) / 100, fuera: dib.fuera, fueraEn: dib.fueraEn, mirados: dib.mirados,
+                  pleg: dib.plegN ? Math.round(100 * dib.pleg / dib.plegN) : 0 }, vistas: d.vistas.length, vistaN: d.vista };
 };
 </script>

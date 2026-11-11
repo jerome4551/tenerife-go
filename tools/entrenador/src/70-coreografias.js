@@ -114,7 +114,7 @@
   (function () {
     var pies = { suelo: [11, 62], abre: 4, polo: [0.1, 1, 0.2] }, manos = { a: [27, 4, 26], polo: [1, 0.2, 0] };
     COREO['puente-gluteos'] = {
-      vista: [72, 24], picado: 16, rastro: 'pel', esfuerzo: [0, 1], clavos: ['ti', 'td', 'mi', 'md'],
+      vista: [72, [28, 30]], picado: 16, rastro: 'pel', esfuerzo: [0, 1], clavos: ['ti', 'td', 'mi', 'md'],
       posturas: {
         a: sobre(SUPINO_SUELO, { p: pies, b: manos, m: PALMA_ABAJO }),
         b: { pel: [0, 27.5, 16.5], giro: [0, -66.8, 0], cab: [-23, 0, 0], p: pies, b: manos, m: PALMA_ABAJO }
@@ -312,7 +312,7 @@
     /* la flexión diamante: las manos juntas, bajo el pecho */
     var juntas = { a: [4.5, 5, 15], polo: [1, 0.25, -0.5] };
     COREO['flexion-diamante'] = {
-      vista: [78, 28], picado: 16, rastro: 'pecho', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
+      vista: [78, [32, 34]], picado: 16, rastro: 'pecho', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
       posturas: { a: tabla(20.2, { b: juntas }), b: tabla(3.2, { b: juntas, cab: [-22, 0, 0] }) },
       rep: bajaSube('b', 'a', [1.7, 0.2, 1.1, 0.5]),
       pasos: ['a', 'a', 'rep']
@@ -323,7 +323,7 @@
   (function () {
     var tumbado = { pel: [0, 55, 30], giro: [0, -90, 0], p: { suelo: [17, 68], abre: 8, polo: [0.2, 1, 0.3] }, m: PRONO };
     COREO['press-banca-barra'] = {
-      vista: [60, 18], rastro: 'manos', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
+      vista: [30, 0], picado: 32, rastro: 'manos', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
       material: [['banco', { largo: 124 }], ['soporte', { z: -36, alto: 106, ancho: 52 }], ['barra']],
       posturas: {
         sop: sobre(tumbado, { b: { a: [30, 98, -36], polo: [1, -0.4, 0.4] } }),
@@ -336,7 +336,7 @@
     };
     var manos = { a: [19, 5, 13.3], polo: [0.55, 0.25, -1] };
     COREO.flexion = {
-      vista: [78, 28], picado: 16, rastro: 'pecho', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
+      vista: [78, [32, 34]], picado: 16, rastro: 'pecho', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
       posturas: { a: tabla(20.2, { b: manos }), b: tabla(1.0, { b: manos, cab: [-24, 0, 0] }) },
       rep: bajaSube('b', 'a', [1.6, 0.2, 1.1, 0.5]),
       pasos: ['a', 'a', 'rep', 'rep']
@@ -452,7 +452,7 @@
     pasos: ['a', { sec: [['a2', 0.8]], desde: 'a' }, 'rep']
   };
   COREO['press-militar-barra'] = {
-    vista: [50, 0], rastro: 'manos', esfuerzo: [0], clavos: ['mi', 'md'], material: [['barra', { discos: 17 }]],
+    vista: [22, 78], rastro: 'manos', esfuerzo: [0], clavos: ['mi', 'md'], material: [['barra', { discos: 17 }]],
     posturas: {
       a: { b: { a: [26, HOMBRO - 8.5, 15], polo: [0.3, -1, 0.6] }, m: PRONO },
       b: { b: { a: [26, HOMBRO + 49, 9], polo: [0.6, -0.2, 0.8] }, m: PRONO, cab: [-6, 0, 0] }
@@ -466,7 +466,7 @@
     var ang = 8.5, s = Math.sin(ang * RAD), c = Math.cos(ang * RAD);
     var brazos = { a: [19, 4, -100 + 121.5 * c + 24], polo: [0, -1, -0.25] };
     COREO['plancha-antebrazos'] = {
-      vista: [80, 30], picado: 16, isometrico: 'a',
+      vista: [80, [32, 34]], picado: 16, isometrico: 'a',
       posturas: {
         a0: { pel: [0, 11.5, -22], giro: [0, 90, 0], col: [-26, 0, 0], cab: [-14, 0, 0], p: { e: 0, z: 0, c: 0 }, t: { punta: [0, 0, -1], arriba: [0, -1, 0] }, b: brazos, m: PALMA_ABAJO },
         a: { pel: [0, TOB_PUNTA + 78 * s, -100 + 78 * c], giro: [0, 90 - ang, 0], cab: [-12, 0, 0], p: { e: 0, z: 0, c: 0 }, t: PIES_PUNTA, b: brazos, m: PALMA_ABAJO }
@@ -477,7 +477,7 @@
     /* el crunch: se enrolla el tronco; la pelvis y los pies no se mueven */
     var nuca = { a: [8, 37, -8], en: 'torax', polo: [1, 0.2, -0.3] }, pc = { suelo: [11, 60], abre: 4, polo: [0.1, 1, 0.2] };
     COREO['crunch-abdominal'] = {
-      vista: [74, 26], picado: 16, rastro: 'hombros', esfuerzo: [0, 1], clavos: ['ti', 'td'],
+      vista: [74, [30, 32]], picado: 16, rastro: 'hombros', esfuerzo: [0, 1], clavos: ['ti', 'td'],
       posturas: {
         a: sobre(SUPINO_SUELO, { p: pc, b: nuca, m: SUELTA }),
         b: sobre(SUPINO_SUELO, { col: [36, 0, 0], cab: [6, 0, 0], p: pc, b: nuca, m: SUELTA })
@@ -489,7 +489,7 @@
     var centro = { pel: [0, 11.5, 0], giro: [0, -90, 0], b: { e: 90, z: 0, g: 0, c: 0 }, m: SUELTA, p: { e: 90, z: 0, g: 0, c: 90 }, t: { tob: 0 } };
     var lado = sobre(centro, { bi: { e: 174, z: 0, g: 0, c: 0 }, bd: { e: 90, z: 0, g: 0, c: 0 }, pi: { e: 90, z: 0, g: 0, c: 90 }, pd: { e: 7, z: 0, g: 0, c: 4 } });
     COREO['bicho-muerto'] = {
-      vista: [72, 30], picado: 16, rastro: 'md', esfuerzo: [0, 1, 4, 5],
+      vista: [72, [40, 36]], picado: 16, rastro: 'md', esfuerzo: [0, 1, 4, 5],
       posturas: { a: centro, b: lado, b2: refleja(lado) },
       rep: [['b', 1.5, 'freno'], ['b', 0.3], ['a', 1.3, 'suave'], ['a', 0.3], ['b2', 1.5, 'freno'], ['b2', 0.3], ['a', 1.3, 'suave'], ['a', 0.3]],
       pasos: ['a', 'a', 'rep', { rep: 3.4 }]

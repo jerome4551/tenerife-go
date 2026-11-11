@@ -1,0 +1,50 @@
+<!doctype html><meta charset="utf-8"><title>un ejercicio, desde varios lados</title>
+<!-- Para elegir la vista de un ejercicio: la repetición (o una postura) vista desde varios rumbos, con los músculos encendidos.
+       vistas.html?id=press-banca-barra&rumbos=20,40,60,90,120&ts=0,0.9,1.9            (ts: instantes de la repetición)
+       vistas.html?id=press-banca-barra&rumbos=20,40,60&pos=sop,a,b&picado=16           (pos: posturas clave)
+     Más: picado, tam (tamaño de la celda), mus=0 (sin músculos), marcas=pecho (los avisos), amb, tema, zoom -->
+<style>
+  body { margin: 0; background: #1b2330; font: 12px sans-serif; color: #fff; }
+  .fila { display: flex; flex-wrap: nowrap; }
+  .celda { width: 300px; height: 345px; position: relative; margin: 2px; overflow: hidden; background: #334; flex: none; }
+  .celda svg { width: 100%; height: 100%; display: block; }
+  .celda span { position: absolute; left: 4px; top: 3px; color: #12233A; background: rgba(255,255,255,.8); padding: 1px 5px; border-radius: 6px; }
+</style>
+<div id="f"></div>
+<script src="../../../modulos/entrenador.js"></script>
+<script src="datos-muestra.js"></script>
+<script>
+var T = TG_ENTRENADOR._, Q = new URLSearchParams(location.search);
+var TAM = Number(Q.get('tam')) || 1; if (TAM !== 1) { var st = document.createElement('style'); st.textContent = '.celda{width:' + Math.round(300 * TAM) + 'px;height:' + Math.round(345 * TAM) + 'px}'; document.head.appendChild(st); }
+var id = Q.get('id') || 'press-banca-barra', co0 = T.COREO[id];
+/* las vistas: las que se pidan (rumbos=…) o las dos del ejercicio, tal como las trae (un rumbo, o [rumbo, picado]) */
+var vistas = Q.get('rumbos') ? Q.get('rumbos').split(',').map(Number) : (co0.vista || [35, 90]);
+/* los instantes: ts (segundos de la repetición), pos (posturas clave) o, si no se dice, cinco momentos de la repetición
+   (o todas las posturas, si el ejercicio no tiene repetición) */
+var durRep = 0; (co0.rep || []).forEach(function (q) { durRep += q[1]; });
+var pos = Q.get('pos') ? Q.get('pos').split(',') : (!Q.get('ts') && !durRep ? Object.keys(co0.posturas) : null);
+var ts = Q.get('ts') ? Q.get('ts').split(',').map(Number) : [0, 0.2, 0.4, 0.6, 0.8].map(function (f) { return f * durRep; });
+var x = window.TG_MUESTRA && TG_MUESTRA.ej[id];
+var porFilas = Q.get('filas') === 'vistas';       /* filas=vistas: una fila por vista y una columna por instante */
+var A = porFilas ? vistas : (pos || ts), B = porFilas ? (pos || ts) : vistas;
+A.forEach(function (qa) {
+  var fila = document.createElement('div'); fila.className = 'fila'; document.getElementById('f').appendChild(fila);
+  B.forEach(function (qb) {
+    var r = porFilas ? qa : qb, q = porFilas ? qb : qa;
+    var c = document.createElement('div'); c.className = 'celda'; fila.appendChild(c);
+    var e = new T.Escenario(c), d = new T.Director(e), co = {}, k;
+    for (k in co0) co[k] = co0[k];
+    co.vista = [r]; if (Q.get('picado')) co.picado = Number(Q.get('picado')); if (Q.get('zoom')) co.zoom = Number(Q.get('zoom'));
+    e.ambiente(Q.get('amb') || (x ? x.e[0] : 'fuera'), Q.get('tema') || 'dia');
+    d.cargar(co);
+    if (x && Q.get('mus') !== '0') e.fig.musculos(x.g, x.s);
+    if (pos) { d.aPostura(q, 0); d.cuadro(0.001, true); d.salto = true; d.cuadro(0.0001, true); for (k = 0; k < 30; k++) d.cuadro(1 / 60, false); }
+    else {
+      d.aPostura(d.inicio, 0); d.cuadro(0.001, true); d.aRep(0); d.salto = true; d.cuadro(0.0001, true);
+      if (Q.get('marcas')) d.marcar(Q.get('marcas').split(','));
+      for (var i = 0, N = Math.round(q * 60); i < N; i++) d.cuadro(1 / 60, false);
+    }
+    var s = document.createElement('span'); s.textContent = (Q.get('rot') ? id + ' · ' : '') + 'rumbo ' + (r.length ? r[0] + ' (picado ' + r[1] + ')' : r) + ' · ' + (pos ? q : q.toFixed(2) + ' s'); c.appendChild(s);
+  });
+});
+</script>

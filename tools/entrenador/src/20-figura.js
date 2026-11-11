@@ -83,6 +83,8 @@
   var K_EL = 14, COS_EL = [], SIN_EL = [];
   (function () { for (var i = 0; i < K_EL; i++) { COS_EL.push(Math.cos(i * 2 * Math.PI / K_EL)); SIN_EL.push(Math.sin(i * 2 * Math.PI / K_EL)); } })();
   var LUZ = [-0.5, -0.866];
+  var K_TR = 18, COS_TR = [], SIN_TR = [];        /* los anillos del tronco, la pieza más grande, llevan más puntos */
+  (function () { for (var i = 0; i < K_TR; i++) { COS_TR.push(Math.cos(i * 2 * Math.PI / K_TR)); SIN_TR.push(Math.sin(i * 2 * Math.PI / K_TR)); } })();
   function lado2(a, b, p) { return (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]); }
   /* la envolvente convexa de unos puntos (antihoraria en sus números) */
   function envolvente(P) {
@@ -201,27 +203,29 @@
     ['t', 1.5, 15.8, 11.5, 0.7], ['t', 11.5, 18.8, 13.2, 1.7], ['t', 20.6, 21.2, 11.4, 0.5], ['t', 23.9, 14.6, 8.8, -0.2], ['t', 26.2, 8.6, 7.2, -0.6]
   ];
 
-  /* los parches de músculo del tronco: sobre un plano pegado a la superficie de su marco.
-     [grupo, marco, origen local, normal local, forma en el plano (x a lo ancho, y hacia arriba)] */
+  /* los músculos del tronco: un elipsoide pegado a la superficie de su marco, como los de los miembros. Así se ven
+     bien desde cualquier lado: de frente, la mancha entera; de canto, un bulto de luz en el borde (un parche plano,
+     de canto, se quedaba en un borrón).
+     [grupo, marco, centro local, normal local (hacia fuera), semiejes: a lo ancho, a lo alto, de fondo] */
   var PARCHES = [
-    ['pecho', 't', [8.2, 13.6, 11.6], [0.42, 0.1, 0.9], 'M-8,4 C-5.4,7 3.2,7.2 7.6,5 C9.3,1.8 8.9,-3.2 6,-5.8 C1.8,-7.8 -4.8,-6.9 -7.6,-3.7 C-8.7,-1.1 -8.7,1.7 -8,4z'],
-    ['pecho', 't', [-8.2, 13.6, 11.6], [-0.42, 0.1, 0.9], 'M8,4 C5.4,7 -3.2,7.2 -7.6,5 C-9.3,1.8 -8.9,-3.2 -6,-5.8 C-1.8,-7.8 4.8,-6.9 7.6,-3.7 C8.7,-1.1 8.7,1.7 8,4z'],
-    ['core', 'l', [0, 3, 10.8], [0, 0, 1], 'M-7,13.6 C-2.2,15 2.2,15 7,13.6 L7.4,-6.4 C4.4,-12.8 -4.4,-12.8 -7.4,-6.4z'],
-    ['core', 'l', [12.3, 3, 5], [0.86, 0, 0.5], elipse(0, 2, 4.6, 10)],
-    ['core', 'l', [-12.3, 3, 5], [-0.86, 0, 0.5], elipse(0, 2, 4.6, 10)],
-    ['core', 'l', [0, 2, -10.2], [0, 0, -1], 'M-7.6,10.6 C-3.2,11.6 3.2,11.6 7.6,10.6 L6.5,-7.4 C2.2,-9.5 -2.2,-9.5 -6.5,-7.4z'],
-    ['dorsal', 't', [9.6, 8, -9.6], [0.5, 0, -0.87], 'M7,9.5 C2.2,11.6 -5.4,10.6 -8.6,7.4 L-6,-10.6 C-2.2,-12.2 2.2,-10 4.3,-5.3 C6.5,0 8,5.3 7,9.5z'],
-    ['dorsal', 't', [-9.6, 8, -9.6], [-0.5, 0, -0.87], 'M-7,9.5 C-2.2,11.6 5.4,10.6 8.6,7.4 L6,-10.6 C2.2,-12.2 -2.2,-10 -4.3,-5.3 C-6.5,0 -8,5.3 -7,9.5z'],
-    ['espalda_alta', 't', [0, 17.4, -10.4], [0, 0.1, -1], 'M0,10 C5.4,8.4 11.8,5.4 16,3.6 C10.8,0.5 5.4,-4.3 0,-11.8 C-5.4,-4.3 -10.8,0.5 -16,3.6 C-11.8,5.4 -5.4,8.4 0,10z'],
-    ['gluteos', 'p', [8, -2.5, -11.2], [0.45, 0, -0.9], elipse(0, 0, 8, 8.6)],
-    ['gluteos', 'p', [-8, -2.5, -11.2], [-0.45, 0, -0.9], elipse(0, 0, 8, 8.6)],
-    ['gluteos', 'p', [16.4, -2, -2.4], [1, 0, -0.1], elipse(0, 0, 6.5, 7.6)],
-    ['gluteos', 'p', [-16.4, -2, -2.4], [-1, 0, -0.1], elipse(0, 0, 6.5, 7.6)]
+    ['pecho', 't', [8.4, 13.4, 10.2], [0.42, 0.1, 0.9], 8.6, 6.8, 3.8],
+    ['pecho', 't', [-8.4, 13.4, 10.2], [-0.42, 0.1, 0.9], 8.6, 6.8, 3.8],
+    ['core', 'l', [0, 4, 9.2], [0, 0, 1], 7.4, 13.4, 3.4],
+    ['core', 'l', [11.2, 5, 4.4], [0.86, 0, 0.5], 4.6, 10, 3],
+    ['core', 'l', [-11.2, 5, 4.4], [-0.86, 0, 0.5], 4.6, 10, 3],
+    ['core', 'l', [0, 3, -8.8], [0, 0, -1], 7.6, 10.4, 3.2],
+    ['dorsal', 't', [9, 7.6, -8.4], [0.5, 0, -0.87], 8.2, 11.6, 3.6],
+    ['dorsal', 't', [-9, 7.6, -8.4], [-0.5, 0, -0.87], 8.2, 11.6, 3.6],
+    ['espalda_alta', 't', [0, 17.2, -9.2], [0, 0.1, -1], 15, 9.4, 3.4],
+    ['gluteos', 'p', [7.6, -2.5, -9.8], [0.45, 0, -0.9], 8, 8.6, 3.8],
+    ['gluteos', 'p', [-7.6, -2.5, -9.8], [-0.45, 0, -0.9], 8, 8.6, 3.8],
+    ['gluteos', 'p', [15, -2, -2.4], [1, 0, -0.1], 6.5, 7.6, 3.2],
+    ['gluteos', 'p', [-15, -2, -2.4], [-1, 0, -0.1], 6.5, 7.6, 3.2]
   ];
   /* los de los miembros: un elipsoide pegado al hueso.
      [grupo, hueso, cara (1, delante; -1, detrás; 0, entero), centro a lo largo, hacia fuera, al frente, semiejes: largo, ancho, fondo] */
   var CALCOS = [
-    ['hombros', 'brazo', 0, 2.6, 1.5, 0, 6.6, 5.6, 5.8],
+    ['hombros', 'brazo', 0, 3.6, 1.3, 0.2, 6.0, 5.4, 5.6],
     ['biceps', 'brazo', 1, 15, 0, 2.7, 8.4, 4.5, 3.7], ['triceps', 'brazo', -1, 15, 0, -2.0, 9.4, 4.5, 3.7],
     ['antebrazo', 'ante', 0, 9, 0.2, 0, 8.6, 4.3, 4.3],
     ['cuadriceps', 'muslo', 1, 20, 0, 4.2, 15, 7.3, 5.9], ['isquios', 'muslo', -1, 21, 0, -2.9, 14, 7.0, 5.6],
@@ -265,9 +269,11 @@
       if (extra) for (var q in extra) e.setAttribute(q, extra[q]);
       return e;
     };
-    var calcos = function (g, hueso) {
+    /* los músculos de un hueso: sus elipses. «encima» dice cuáles se piden (el del hombro va sobre la manga: si no,
+       la manga lo tapa y solo asoma un cerco) */
+    var calcos = function (g, hueso, encima) {
       CALCOS.forEach(function (m) {
-        if (m[1] !== hueso) return;
+        if (m[1] !== hueso || (m[0] === 'hombros') !== !!encima) return;
         var e = crear('ellipse', { 'class': 'tge-mus', rx: 1, ry: 1, opacity: 0 }, g);
         e._g = m[0]; e._def = m; g._mus.push(e);
       });
@@ -283,7 +289,7 @@
       g.tela = capa(g, C.calcS, C.calc, null, C.calcB); g.rayas = raya(g, C.pant);
       /* el brazo, con la manga */
       g = grupo('brazo' + k); g.piel = capa(g, C.pielS, C.piel, C.pielLu, C.pielB); calcos(g, 'brazo');
-      g.tela = capa(g, C.camiSS, C.cami, C.camiLL, C.camiB); g.dob = raya(g, C.camiL);
+      g.tela = capa(g, C.camiSS, C.cami, C.camiLL, C.camiB); calcos(g, 'brazo', true); g.dob = raya(g, C.camiL);
       g = grupo('ante' + k); g.piel = capa(g, C.pielS, C.piel, C.pielLu, C.pielB); calcos(g, 'ante');
       if (k === 'i') { g.tela = capa(g, C.pantSS, C.pant, null, C.pantB); g.rayas = raya(g, '#f3fffd'); }
       /* la mano: la palma, cuatro dedos (cada uno con su línea) y el pulgar */
@@ -322,10 +328,9 @@
     var gn = grupo('cuello'); gn.piel = capa(gn, C.pielS, C.piel, null, C.pielB);
     /* los parches de músculo del tronco */
     this.parches = PARCHES.map(function (m) {
-      var g = crear('g', { 'class': 'tge-mus', opacity: 0 }, (m[1] === 'p' ? gp : gc).parches);
-      crear('path', { d: m[4] }, g);
+      var g = crear('ellipse', { 'class': 'tge-mus', rx: 1, ry: 1, opacity: 0 }, (m[1] === 'p' ? gp : gc).parches);
       g._g = m[0];
-      return { g: g, marco: m[1], o: m[2], n: unidad(m[3]) };
+      return { g: g, marco: m[1], o: m[2], n: unidad(m[3]), a: m[4], b: m[5], c: m[6] };
     });
     Object.keys(P).forEach(function (n) { P[n]._t.forEach(function (e) { if (e._col) e._colL = lejos(e._col); if (e._bor) e._borL = lejos(e._bor); }); });
     this.lejos = {};
@@ -359,20 +364,23 @@
   }
   function vuelca(c, T) { pon(c.c, 'd', T.c); pon(c.b, 'd', T.b); pon(c.m, 'd', T.m); if (c.l) pon(c.l, 'd', T.l); }
 
-  /* los músculos de un hueso: cada elipsoide, proyectado (una elipse) */
+  /* un elipsoide visto por la cámara es una elipse: c, su centro en la pantalla; a1, a2 y a3, sus ejes vistos por la
+     cámara (cam.d); r1, r2 y r3, sus semiejes */
+  function elipsoide(m, c, a1, a2, a3, r1, r2, r3, esc) {
+    var x1 = a1[0] * r1, y1 = a1[1] * r1, x2 = a2[0] * r2, y2 = a2[1] * r2, x3 = a3[0] * r3, y3 = a3[1] * r3;
+    var m11 = x1 * x1 + x2 * x2 + x3 * x3, m22 = y1 * y1 + y2 * y2 + y3 * y3, m12 = x1 * y1 + x2 * y2 + x3 * y3;
+    var md = (m11 + m22) / 2, df = Math.sqrt((m11 - m22) * (m11 - m22) / 4 + m12 * m12), ang = 0.5 * Math.atan2(2 * m12, m11 - m22) / RAD;
+    pon(m, 'rx', n1(Math.sqrt(Math.max(0.01, md + df)) * esc)); pon(m, 'ry', n1(Math.sqrt(Math.max(0.01, md - df)) * esc));
+    pon(m, 'transform', 'translate(' + n1(c[0]) + ',' + n1(c[1]) + ') rotate(' + n1(ang) + ')');
+  }
+  /* los músculos de un hueso: cada elipsoide, proyectado */
   function calcar(g, cam, O, e, s, f, pulso) {
     for (var i = 0; i < g._mus.length; i++) {
       var m = g._mus[i]; if (!m._nivel) continue;
       var d = m._def, cara = d[2], op = 1;
       if (cara) op = entre((punto(f, cam.k) * cara + 0.55) / 0.7, 0, 1);
       if (op <= 0.01) { pon(m, 'opacity', '0'); continue; }
-      var c = cam.p(mas(O, mas(por(e, d[3]), mas(por(s, d[4]), por(f, d[5]))))), esc = cam.esc;
-      var a1 = cam.d(e), a2 = cam.d(s), a3 = cam.d(f);
-      var x1 = a1[0] * d[6], y1 = a1[1] * d[6], x2 = a2[0] * d[7], y2 = a2[1] * d[7], x3 = a3[0] * d[8], y3 = a3[1] * d[8];
-      var m11 = x1 * x1 + x2 * x2 + x3 * x3, m22 = y1 * y1 + y2 * y2 + y3 * y3, m12 = x1 * y1 + x2 * y2 + x3 * y3;
-      var md = (m11 + m22) / 2, df = Math.sqrt((m11 - m22) * (m11 - m22) / 4 + m12 * m12), ang = 0.5 * Math.atan2(2 * m12, m11 - m22) / RAD;
-      pon(m, 'rx', n1(Math.sqrt(Math.max(0.01, md + df)) * esc)); pon(m, 'ry', n1(Math.sqrt(Math.max(0.01, md - df)) * esc));
-      pon(m, 'transform', 'translate(' + n1(c[0]) + ',' + n1(c[1]) + ') rotate(' + n1(ang) + ')');
+      elipsoide(m, cam.p(mas(O, mas(por(e, d[3]), mas(por(s, d[4]), por(f, d[5]))))), cam.d(e), cam.d(s), cam.d(f), d[6], d[7], d[8], cam.esc);
       pon(m, 'opacity', n2(op * (m._nivel === 3 ? 1 : 0.9) * pulso));
     }
   }
@@ -382,52 +390,71 @@
     var P = this.P, esc = cam.esc, yo = this, pulso = this.pulso, aire = this.aire || 0;
     var bases = { p: [E.Bp, E.pel], l: [E.Bl, E.lum], t: [E.Bt, E.tor] };
     Object.keys(P).forEach(function (n) { anchos(P[n], esc); });
-    /* ── el tronco: las secciones, proyectadas (el pecho se hincha un poco al respirar) ── */
-    var cen = [], izq = [], der = [], i, n = SECC.length;
-    for (i = 0; i < n; i++) cen.push(cam.p(mas(bases[SECC[i][0]][1], aplicar(bases[SECC[i][0]][0], [0, SECC[i][1], SECC[i][4] + (i === 5 ? aire * 0.5 : 0)]))));
+    /* ── el tronco ──
+       Sus secciones son elipses en el espacio (el pecho se hincha un poco al respirar) y, entre cada dos, va otra
+       por una curva suave. El contorno es la unión de las envolventes de cada tres secciones seguidas: así vale
+       desde cualquier lado (también de pies a cabeza, tumbado, cuando el tronco se ve en escorzo y lo que asoma es
+       el pecho entero y la tapa de los hombros) y no pierde la cintura. */
+    var S3 = [], i, n = SECC.length, sP = [0];
     for (i = 0; i < n; i++) {
-      var a = cen[Math.max(0, i - 1)], b = cen[Math.min(n - 1, i + 1)], tx = b[0] - a[0], ty = b[1] - a[1], tl = Math.sqrt(tx * tx + ty * ty) || 1;
-      var nx = -ty / tl, ny = tx / tl, Bm = bases[SECC[i][0]][0], hin = (i === 5 || i === 4) ? 1 + aire * 0.022 : 1;
-      var U = cam.d(Bm[0]), W = cam.d(Bm[2]), sa = SECC[i][2] * (i === 5 ? 1 + aire * 0.008 : 1), sb = SECC[i][3] * hin;
-      var un = (U[0] * nx + U[1] * ny) * sa, wn = (W[0] * nx + W[1] * ny) * sb, r = Math.sqrt(un * un + wn * wn) || 1e-6;
-      /* el punto de apoyo de la elipse en la dirección n */
-      var sx = (U[0] * sa * un + W[0] * sb * wn) / r * esc, sy = (U[1] * sa * un + W[1] * sb * wn) / r * esc;
-      izq.push([cen[i][0] + sx, cen[i][1] + sy]); der.push([cen[i][0] - sx, cen[i][1] - sy]);
+      var q0 = SECC[i], Bm = bases[q0[0]][0];
+      S3.push([mas(bases[q0[0]][1], aplicar(Bm, [0, q0[1], q0[4] + (i === 5 ? aire * 0.5 : 0)])), por(Bm[0], q0[2] * (i === 5 ? 1 + aire * 0.008 : 1)), por(Bm[2], q0[3] * ((i === 5 || i === 4) ? 1 + aire * 0.022 : 1))]);
+      if (i) sP.push(sP[i - 1] + largo(menos(S3[i][0], S3[i - 1][0])));
     }
-    /* el pantalón: de la entrepierna a la cintura, redondeado por abajo */
-    var Lp = izq.slice(0, 4), Rp = der.slice(0, 4).reverse(), e0 = [cen[0][0] - cen[1][0], cen[0][1] - cen[1][1]];
-    var dPan = 'M' + n1(Lp[0][0]) + ',' + n1(Lp[0][1]) + curva(Lp) + 'L' + n1(Rp[0][0]) + ',' + n1(Rp[0][1]) + curva(Rp) +
-      'Q' + n1(cen[0][0] + e0[0] * 0.5) + ',' + n1(cen[0][1] + e0[1] * 0.5) + ' ' + n1(Lp[0][0]) + ',' + n1(Lp[0][1]) + 'z';
+    /* hacia dónde va cada cosa (el centro y los dos semiejes) al pasar por la sección i */
+    var pend = function (j, q) { var a = Math.max(0, j - 1), b = Math.min(n - 1, j + 1); return por(menos(S3[b][q], S3[a][q]), 1 / ((sP[b] - sP[a]) || 1)); };
+    /* una sección entre la i y la siguiente, a t del camino: [centro, semieje a lo ancho, semieje de fondo] */
+    var entreSecc = function (j, t) {
+      var h = sP[j + 1] - sP[j], t2 = t * t, t3 = t2 * t, h10 = (t3 - 2 * t2 + t) * h, h11 = (t3 - t2) * h, h01 = 3 * t2 - 2 * t3, r = [];
+      for (var q = 0; q < 3; q++) r.push(mas(mezcla(S3[j][q], S3[j + 1][q], h01), mas(por(pend(j, q), h10), por(pend(j + 1, q), h11))));
+      return r;
+    };
+    var anilloTr = function (T3) {
+      var c = cam.p(T3[0]), a = cam.d(T3[1]), f = cam.d(T3[2]), P = [];
+      for (var j = 0; j < K_TR; j++) P.push([c[0] + (a[0] * COS_TR[j] + f[0] * SIN_TR[j]) * esc, c[1] + (a[1] * COS_TR[j] + f[1] * SIN_TR[j]) * esc]);
+      return P;
+    };
+    /* los anillos: el 2·i es la sección i; el 2·i + 1, la de en medio hasta la siguiente */
+    var AN = [];
+    for (i = 0; i < n; i++) { AN.push(anilloTr(S3[i])); if (i < n - 1) AN.push(anilloTr(entreSecc(i, 0.5))); }
+    /* de tres en tres, y cada trío monta sobre el siguiente: si fueran de dos en dos, cuando una sección se ve justo de
+       canto (una raya) las dos envolventes que la comparten solo se tocarían en esa raya, y ahí asomaría la costura */
+    var union = function (lista) { var d = ''; for (var j = 0; j + 2 < lista.length; j++) d += poli(envolvente(lista[j].concat(lista[j + 1], lista[j + 2]))); return d; };
+    /* el pantalón: de la entrepierna a la cintura */
+    var dPan = union(AN.slice(0, 7));
     var gp = P.pantalon, gc = P.camiseta, lx = LUZ[0] * esc, ly = LUZ[1] * esc;
     pon(gp.f, 'd', dPan); pon(gp.rec, 'd', dPan); pon(gp.luz, 'd', dPan); pon(gp.luz, 'transform', 'translate(' + n1(lx * 2.6) + ',' + n1(ly * 2.6) + ')');
     /* la camiseta: de un poco por debajo de la cintura al cuello */
-    var bajo = [izq[2][0] * 0.7 + izq[3][0] * 0.3, izq[2][1] * 0.7 + izq[3][1] * 0.3], bajoD = [der[2][0] * 0.7 + der[3][0] * 0.3, der[2][1] * 0.7 + der[3][1] * 0.3];
-    var L2 = [bajo].concat(izq.slice(3)), R2 = der.slice(3).reverse().concat([bajoD]);
-    var qx = (bajo[0] + bajoD[0]) / 2 + (cen[2][0] - cen[3][0]) * 0.42, qy = (bajo[1] + bajoD[1]) / 2 + (cen[2][1] - cen[3][1]) * 0.42;
-    var dCam = 'M' + n1(L2[0][0]) + ',' + n1(L2[0][1]) + curva(L2) + 'L' + n1(R2[0][0]) + ',' + n1(R2[0][1]) + curva(R2) + 'Q' + n1(qx) + ',' + n1(qy) + ' ' + n1(bajo[0]) + ',' + n1(bajo[1]) + 'z';
+    var bajo3 = entreSecc(2, 0.3), dCam = union([anilloTr(bajo3)].concat(AN.slice(5)));
     pon(gc.f, 'd', dCam); pon(gc.rec, 'd', dCam); pon(gc.luz, 'd', dCam); pon(gc.luz, 'transform', 'translate(' + n1(lx * 3.3) + ',' + n1(ly * 3.3) + ')');
-    /* el bajo de la camiseta, con su pespunte */
-    pon(gc.bajo, 'd', 'M' + n1(bajoD[0]) + ',' + n1(bajoD[1]) + 'Q' + n1(qx) + ',' + n1(qy - 1.5 * esc) + ' ' + n1(bajo[0]) + ',' + n1(bajo[1])); pon(gc.bajo, 'stroke-width', n2(0.7 * esc)); pon(gc.bajo, 'opacity', '.7');
+    /* el bajo de la camiseta, con su pespunte: la mitad de su aro que queda de este lado */
+    pon(gc.bajo, 'd', aro(cam, mas(bajo3[0], por(unidad(menos(S3[3][0], S3[2][0])), 1.3)), bajo3[1], bajo3[2], 1.5)); pon(gc.bajo, 'stroke-width', n2(0.7 * esc)); pon(gc.bajo, 'opacity', '.7');
     /* el cuello de la camiseta: un aro inclinado, y se ve la mitad de este lado */
     var Bt = E.Bt, oc = mas(E.tor, aplicar(Bt, [0, 24.6, 0.4])), uc = por(Bt[0], 7.7), vc = mas(por(Bt[2], 7.0), por(Bt[1], -2.5));
     var dEsc = aro(cam, oc, uc, vc, 1.75);
     pon(gc.escote, 'd', dEsc); pon(gc.escote, 'stroke-width', n2(2.3 * esc)); pon(gc.escote2, 'd', dEsc); pon(gc.escote2, 'stroke-width', n2(0.5 * esc)); pon(gc.escote2, 'opacity', '.55');
     /* el estampado: un plano pegado al pecho */
     var kt = cam.d(Bt[2])[2], est = gc.estampa;
-    if (kt > 0.1) {
+    /* o se ve o no se ve: de canto no se queda a medio borrar, como un fantasma (se quedaba así toda una sentadilla en
+       la pared). Aparece cuando el pecho mira a la cámara lo bastante y se va cuando deja de hacerlo, con un margen
+       entre lo uno y lo otro para que no parpadee, y tarda en hacerlo unos pocos cuadros */
+    if (kt > 0.4) this.estV = true; else if (kt < 0.32) this.estV = false;
+    this.estO = this.estO == null ? (this.estV ? 1 : 0) : this.estO + ((this.estV ? 1 : 0) - this.estO) * 0.34;
+    if (Math.abs(this.estO - (this.estV ? 1 : 0)) < 0.04) this.estO = this.estV ? 1 : 0;
+    if (this.estO > 0) {
       var o = cam.p(mas(E.tor, aplicar(Bt, [0, 9.2, 13.0 + aire * 0.5]))), X = cam.d(Bt[0]), Y = cam.d(Bt[1]), ke = esc * 0.92;
       pon(est, 'transform', 'matrix(' + n2(X[0] * ke) + ',' + n2(X[1] * ke) + ',' + n2(Y[0] * ke) + ',' + n2(Y[1] * ke) + ',' + n1(o[0]) + ',' + n1(o[1]) + ')');
-      pon(est, 'opacity', n2(entre((kt - 0.1) * 2.4, 0, 1)));
-    } else pon(est, 'opacity', '0');
-    /* los músculos del tronco: cada parche, en su plano */
+    }
+    pon(est, 'opacity', n2(this.estO));
+    /* los músculos del tronco: cada elipsoide, proyectado; lo que queda al otro lado del cuerpo no se ve */
     for (i = 0; i < this.parches.length; i++) {
       var pa = this.parches[i], nv = pa.g._nivel;
       if (!nv) continue;
       var Bq = bases[pa.marco][0], nw = aplicar(Bq, pa.n), ve = punto(nw, cam.k);
-      if (ve < 0.06) { pon(pa.g, 'opacity', '0'); continue; }
-      var ey = unidad(sinParte(Bq[1], nw)), ex = cruz(ey, nw), o2 = cam.p(mas(bases[pa.marco][1], aplicar(Bq, pa.o))), X2 = cam.d(ex), Y2 = cam.d(ey);
-      pon(pa.g, 'transform', 'matrix(' + n2(X2[0] * esc) + ',' + n2(X2[1] * esc) + ',' + n2(Y2[0] * esc) + ',' + n2(Y2[1] * esc) + ',' + n1(o2[0]) + ',' + n1(o2[1]) + ')');
-      pon(pa.g, 'opacity', n2(entre(ve * 1.7, 0, 1) * (nv === 3 ? 1 : 0.9) * pulso));
+      if (ve < 0.02) { pon(pa.g, 'opacity', '0'); continue; }
+      var ey = unidad(sinParte(Bq[1], nw)), ex = cruz(ey, nw);
+      elipsoide(pa.g, cam.p(mas(bases[pa.marco][1], aplicar(Bq, pa.o))), cam.d(ex), cam.d(ey), cam.d(nw), pa.a, pa.b, pa.c, esc);
+      pon(pa.g, 'opacity', n2(entre(ve / 0.3, 0, 1) * (nv === 3 ? 1 : 0.9) * pulso));
     }
     var zTor = cam.p(mas(E.tor, aplicar(Bt, [0, 11, 0])))[2], zPel = cam.p(E.pel)[2];
     lista.push({ z: zPel, el: gp }, { z: zTor + 0.4, el: gc });

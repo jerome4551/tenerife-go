@@ -74,9 +74,10 @@
       pon(ps, 'opacity', n2(0.95 * entre(1 - hq / 7, 0, 1)));
     }
     /* la tarima y el horizonte del ambiente siguen a la cámara */
-    var o = cam.p([cam.mira[0], 0, cam.mira[2]]), R = 118 * cam.esc;
-    pon(this.tarima, 'cx', n1(o[0])); pon(this.tarima, 'cy', n1(o[1])); pon(this.tarima, 'rx', n1(R)); pon(this.tarima, 'ry', n1(Math.max(6, R * Math.sin(cam.picado * RAD))));
-    var hor = Math.round(o[1] - 46 - 20 * cam.esc);
+    var o = cam.p([cam.mira[0], 0, cam.mira[2]]), R = 118 * cam.esc, ryT = Math.max(6, R * Math.sin(cam.picado * RAD));
+    pon(this.tarima, 'cx', n1(o[0])); pon(this.tarima, 'cy', n1(o[1])); pon(this.tarima, 'rx', n1(R)); pon(this.tarima, 'ry', n1(ryT));
+    /* el horizonte: cuanto más desde arriba se mira, más suelo se ve (y la tarima nunca se sale del suelo) */
+    var hor = Math.round(Math.min(o[1] - 46 - 20 * cam.esc, o[1] - ryT * 1.1 - 8));
     if (this.soloFigura) hor = Math.max(hor, ALTO + 260);      /* de cerca, que no asome nada de lo de lejos */
     if (this.horizonte !== hor) { this.horizonte = hor; this.ajustarAmbiente(); }
   };
