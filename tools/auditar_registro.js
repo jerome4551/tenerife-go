@@ -21,8 +21,10 @@
  *     los pasos de sus 533 ejercicios, un fichero por idioma:
  *     datos/cuerpo/ejercicios-<l>.json; 31 de octubre de 2026; y desde el 3
  *     de noviembre sus respuestas del asistente y sus guias de los deportes:
- *     datos/cuerpo/asistente-<l>.json y deportes-<l>.json) y las etiquetas de
- *     las fichas (tags[] de index.html e idiomas/etiquetas/<l>.json).
+ *     datos/cuerpo/asistente-<l>.json y deportes-<l>.json), las etiquetas de
+ *     las fichas (tags[] de index.html e idiomas/etiquetas/<l>.json) y, desde
+ *     el 12 de noviembre, el tour con Jérôme (GUIA_UI, modulos/guia.js) y el
+ *     vídeo de los ejercicios (ENT_UI, modulos/entrenador.js).
  *
  * Los idiomas de HECHOS ya estan pasados a usted: cualquier marca es un
  * fallo y se lista. Los demas se cuentan como pendientes (no fallan), para
@@ -316,6 +318,8 @@ const ROTULOS_IT = new Set([
   'Aggiungi una porzione: {g}', 'Togli una porzione: {g}', 'Metti in pausa il diario',
   /* y los de la postal (8 de noviembre de 2026, bloque 6) */
   'Crea la mia cartolina', 'Salva l’immagine',
+  /* y los del vídeo de los ejercicios (modulos/entrenador.js, 12 de noviembre de 2026) */
+  'Riproduci', 'Rivedi',
 ]);
 
 /* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
@@ -342,6 +346,8 @@ const ROTULOS_BG = new Set([
   'Отвори SOS ръководството', 'Виж {grupo}', 'Виж упражнението', 'Промени външния вид', 'Виж мускулите',
   /* y los de la postal (8 de noviembre de 2026, bloque 6) */
   'Създай картичката ми', 'Запази снимката',
+  /* y los del vídeo de los ejercicios (modulos/entrenador.js, 12 de noviembre de 2026) */
+  'Пусни', 'Гледай отново',
 ]);
 
 /* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
@@ -386,6 +392,8 @@ const ROTULOS_PL = new Set([
   'Zapisz {que}',
   /* y los de la postal (8 de noviembre de 2026, bloque 6) */
   'Utwórz pocztówkę', 'Zapisz obraz',
+  /* y los del vídeo de los ejercicios (modulos/entrenador.js, 12 de noviembre de 2026) */
+  'Odtwórz', 'Obejrzyj ponownie',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»
@@ -438,6 +446,10 @@ const EXENTOS = [
   ['fr', /le service de santé britannique, dans ses exercices du genou pour les coureurs, demande que/, '«le service… demande que»: tercera persona, no el imperativo (sentadilla-rodillas)'],
   ['pl', /którą osiągnęli ci, którzy je jedli/, '«ci, którzy»: «ci» es el demostrativo, «los que», no «a ti» (hidratos)'],
   ['pl', /przycisk «Usuń dane z sekcji „Ciało”»/, 'cita el boton «Usuń dane z sekcji «Ciało»» con las comillas de dentro como „…”, que el quitar de los rotulos citados no ve (borrar-datos; ppDatosCuerpoTxt)'],
+  /* el tour (modulos/guia.js) y el vídeo de los ejercicios (modulos/entrenador.js), que este control lee
+     desde el 12 de noviembre de 2026 */
+  ['fr', /^Marche, course à pied, natation/, '«Marche» es el nombre, la marcha, al principio de una lista de deportes; no el imperativo (guiaCuMovP, el tour de «Su cuerpo»)'],
+  ['it', 'Tocca a Lei!', '«Tocca a Lei»: le toca a usted; tercera persona de toccare, con Lei, no el imperativo de tu (entTurno, el cierre del vídeo)'],
   /* la politica de privacidad (ppDatosCuerpoTxt, 3 de noviembre de 2026) */
   ['bg', /с «Изтрий данните от «Вашето тяло»»/, 'cita el boton «Изтрий данните от «Вашето тяло»» (ROTULOS_BG) con comillas dentro de comillas, que el quitar de los rotulos citados no ve'],
 ];
@@ -538,7 +550,9 @@ async function textos() {
   /* las filas de los modulos de carga perezosa (CIELO_UI, PERFIL_UI, desde el 22
      de octubre de 2026 EMERG_UI del panel SOS y, desde el 31, CUERPO_UI de «Su
      cuerpo» e ISLA3D_UI de «La isla en 3D»), una por linea */
-  for (const f of ['modulos/cielo.js', 'modulos/perfil.js', 'modulos/emergencias.js', 'modulos/cuerpo.js', 'modulos/isla3d.js']) {
+  /* (12 de noviembre de 2026) y GUIA_UI del tour con Jérôme, publicado el 11 sin que este control lo leyera, y ENT_UI
+     del vídeo de los ejercicios */
+  for (const f of ['modulos/cielo.js', 'modulos/perfil.js', 'modulos/emergencias.js', 'modulos/cuerpo.js', 'modulos/isla3d.js', 'modulos/guia.js', 'modulos/entrenador.js']) {
     for (const m of lee(f).matchAll(/^\s*"?([A-Za-z0-9_-]+)"?: (\{"es": .*\}),?\s*$/gm)) {
       let d; try { d = JSON.parse(m[2]); } catch (e) { continue; }
       for (const l of IDI) mete(f, m[1], l, d[l]);
