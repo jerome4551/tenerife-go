@@ -1,0 +1,201 @@
+<title>Jérôme, el entrenador</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap">
+<style>
+  /* El vídeo manda: arriba en el móvil y fijo a la izquierda en pantalla ancha; al lado, la lista para elegir. */
+  :root {
+    --fondo: #EEF3F8; --tarjeta: #FFFFFF; --tinta: #12233A; --tinta-2: #51627A; --linea: #D5DFEA;
+    --oro: #8A6A12; --oro-vivo: #D4AF37; --oro-suave: #FBF3D9; --n3: #FFE48A; --n2: #FFA04A; --n1: #EE5F7E;
+    --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --fondo: #0F1117; --tarjeta: #1B2330; --tinta: #F0ECE4; --tinta-2: #A8B3C4; --linea: #2D3A4A; --oro: #F5C76B; --oro-suave: #2A2618; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --fondo: #0F1117; --tarjeta: #1B2330; --tinta: #F0ECE4; --tinta-2: #A8B3C4; --linea: #2D3A4A; --oro: #F5C76B; --oro-suave: #2A2618; color-scheme: dark; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  body { background: var(--fondo); color: var(--tinta); font: 400 16px/1.55 var(--font-body); -webkit-text-size-adjust: 100%; }
+  .pagina { max-width: 1040px; margin: 0 auto; padding-block: 22px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 22px; }
+
+  .cabeza { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 20px; }
+  .cabeza-t { flex: 1 1 250px; min-width: 0; display: grid; gap: 2px; }
+  .antetitulo { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--oro); }
+  h1 { margin: 0; font: 600 clamp(34px, 8.6vw, 46px)/1 var(--font-display); letter-spacing: -.01em; text-wrap: balance; }
+  .entrada { margin: 6px 0 0; color: var(--tinta-2); max-width: 46ch; }
+  .idioma { display: grid; gap: 4px; font-size: 12px; font-weight: 600; color: var(--tinta-2); }
+  .idioma select { appearance: none; -webkit-appearance: none; min-height: 44px; padding: 0 38px 0 14px; border-radius: 14px; border: 1.5px solid var(--linea); background-color: var(--tarjeta); color: var(--tinta); font: 600 15px/1 var(--font-body);
+    background-image: linear-gradient(45deg, transparent 50%, var(--tinta-2) 50%), linear-gradient(135deg, var(--tinta-2) 50%, transparent 50%); background-position: calc(100% - 19px) 19px, calc(100% - 14px) 19px; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+  .idioma select:focus-visible, .ej:focus-visible { outline: 3px solid var(--oro-vivo); outline-offset: 2px; }
+
+  .dos { display: grid; gap: 26px; align-items: start; }
+  .escenario { min-width: 0; }
+  .marco { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 30px; padding: 10px; max-width: 440px; margin: 0 auto; }
+  .lado { min-width: 0; display: grid; gap: 30px; }
+
+  h2 { margin: 0 0 4px; font: 600 27px/1.1 var(--font-display); text-wrap: balance; }
+  .sub { margin: 0; color: var(--tinta-2); font-size: 14.5px; }
+  .grupos { display: grid; gap: 18px; margin-top: 16px; }
+  .grupo { display: grid; gap: 8px; }
+  .grupo h3 { margin: 0; display: flex; align-items: center; gap: 8px; font: 700 12px/1.3 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--tinta-2); }
+  .grupo h3 i { width: 10px; height: 10px; border-radius: 50%; background: var(--n3); box-shadow: 0 0 0 2.5px var(--n2); flex: none; }
+  .fila { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ej { flex: 1 1 158px; display: grid; gap: 3px; align-content: start; text-align: left; min-height: 62px; padding: 10px 12px; border-radius: 16px; border: 1.5px solid var(--linea); background: var(--tarjeta); color: var(--tinta); font: inherit; cursor: pointer; min-width: 0; transition: border-color .15s ease, background .15s ease, transform .12s ease; }
+  .ej b { font-weight: 600; font-size: 14.5px; line-height: 1.25; overflow-wrap: anywhere; }
+  .ej span { font-size: 12px; color: var(--tinta-2); line-height: 1.3; }
+  .ej:hover { border-color: var(--oro-vivo); }
+  .ej:active { transform: scale(.98); }
+  .ej[aria-pressed="true"] { border-color: var(--oro-vivo); background: var(--oro-suave); }
+  .ej[aria-pressed="true"] span { color: var(--oro); font-weight: 600; }
+
+  .estado { display: grid; gap: 12px; padding-top: 26px; border-top: 1px solid var(--linea); }
+  .medida { display: grid; gap: 7px; }
+  .medida-n { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .medida-n strong { font: 600 40px/1 var(--font-display); font-variant-numeric: tabular-nums; }
+  .medida-n > span { color: var(--tinta-2); font-size: 14.5px; }
+  .barra { height: 8px; border-radius: 8px; background: var(--linea); overflow: hidden; }
+  .barra i { display: block; height: 100%; border-radius: 8px; background: linear-gradient(90deg, var(--n2), var(--oro-vivo)); }
+  .estado p { margin: 0; max-width: 62ch; font-size: 15px; }
+  .estado p + p { margin-top: -2px; }
+  .mandos { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; max-width: 62ch; }
+  .mandos li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+  .mandos kbd { justify-self: start; min-width: 44px; text-align: center; padding: 3px 8px; border-radius: 9px; border: 1.5px solid var(--linea); background: var(--tarjeta); font: 700 12.5px/1.5 var(--font-body); color: var(--tinta); }
+
+  @media (min-width: 900px) {
+    .pagina { padding-block: 34px 72px; gap: 30px; }
+    .dos { grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 44px; }
+    .escenario { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 18px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ej { transition: none; } }
+</style>
+
+<div class="pagina">
+  <header class="cabeza">
+    <div class="cabeza-t">
+      <span class="antetitulo">Tenerife Go · Su cuerpo</span>
+      <h1>Jérôme, el entrenador</h1>
+      <p class="entrada">Cada ejercicio, explicado paso a paso por Jérôme. Estos son los primeros <span data-n="hechos">40</span>.</p>
+    </div>
+    <label class="idioma" for="idioma">Idioma del vídeo
+      <select id="idioma"></select>
+    </label>
+  </header>
+
+  <div class="dos">
+    <section class="escenario" aria-label="Vídeo del ejercicio">
+      <div class="marco" id="marco"></div>
+    </section>
+
+    <div class="lado">
+      <section aria-labelledby="t-elegir">
+        <h2 id="t-elegir">Elija un ejercicio</h2>
+        <p class="sub">Al tocarlo, Jérôme lo enseña arriba.</p>
+        <div class="grupos" id="grupos"></div>
+      </section>
+
+      <section class="estado" aria-labelledby="t-estado">
+        <h2 id="t-estado">Lo que hay y lo que falta</h2>
+        <div class="medida">
+          <div class="medida-n"><strong><span data-n="hechos">40</span> de <span data-n="total">533</span></strong><span>ejercicios de la app tienen vídeo</span></div>
+          <div class="barra" role="img" aria-label="Parte de los ejercicios que ya tiene vídeo"><i id="barra"></i></div>
+        </div>
+        <p>Están los más habituales de los 12 grupos musculares. Los otros <span data-n="faltan">493</span> llegan por tandas; mientras tanto, su ficha sigue como hoy.</p>
+        <p>Jérôme hace lo que dice cada paso de la ficha y el texto que se lee es el de la ficha, sin técnica añadida. Sale en los 10 idiomas de la app; los 9 que no son español esperan revisión nativa.</p>
+        <p>No hay archivos de vídeo. Jérôme es un dibujo que se mueve dentro de la app, así que funciona sin conexión y los <span data-n="hechos">40</span> ejercicios juntos pesan <span data-n="peso">224</span> KB.</p>
+        <p>Nada de esto está subido a GitHub todavía.</p>
+      </section>
+
+      <section class="estado" aria-labelledby="t-mandos">
+        <h2 id="t-mandos">Los mandos</h2>
+        <ul class="mandos">
+          <li><kbd>‹ ›</kbd><span>Pasan de un paso a otro. También vale tocar el lado izquierdo o el derecho del vídeo; el centro lo pausa.</span></li>
+          <li><kbd>½×</kbd><span>Lo pone a cámara lenta.</span></li>
+          <li><kbd>↻</kbd><span>Lo enseña desde otro lado.</span></li>
+          <li><kbd>Voz</kbd><span>Lee cada paso con la voz del teléfono, si hay una instalada en ese idioma.</span></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>/*__MOTOR__*/</script>
+<script>/*__DATOS__*/</script>
+<script>
+(function () {
+  var M = window.TG_MUESTRA, ENT = window.TG_ENTRENADOR;
+  var ORDEN = ['cuadriceps', 'gluteos', 'isquios', 'pantorrilla', 'pecho', 'dorsal', 'espalda_alta', 'hombros', 'biceps', 'triceps', 'antebrazo', 'core'];
+  var IDIOMAS = [['es', 'Español'], ['en', 'English'], ['fr', 'Français'], ['de', 'Deutsch'], ['it', 'Italiano'], ['nl', 'Nederlands'], ['zh', '简体中文'], ['zht', '繁體中文'], ['bg', 'Български'], ['pl', 'Polski']];
+  var ids = Object.keys(M.ej).filter(function (id) { return ENT.tiene(id); });
+  var lang = 'es', actual = 'sentadilla-peso-corporal', R = null;
+  try { var g = localStorage.getItem('jerome-idioma'); if (g && IDIOMAS.some(function (q) { return q[0] === g; })) lang = g; } catch (e) {}
+  var h0 = (location.hash || '').slice(1); if (ids.indexOf(h0) >= 0) actual = h0;
+
+  function tr(k) { return (M.ui[k] && (M.ui[k][lang] || M.ui[k].es)) || ''; }
+  function nombre(id) { var x = M.ej[id]; return (x.tx[lang] || x.tx.es)[0]; }
+  function tema() {
+    var a = document.documentElement.getAttribute('data-theme');
+    if (a === 'dark') return 'noche'; if (a === 'light') return 'dia';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'noche' : 'dia';
+  }
+  function etiquetas(x) {
+    return [tr('cuerpoEnt_' + x.e[0]), tr('cuerpoNivel_' + x.n)].concat(x.m.filter(function (m) { return m !== 'ninguno'; }).map(function (m) { return tr('cuerpoMat_' + m); })).filter(Boolean);
+  }
+  function montar(auto) {
+    var x = M.ej[actual], t = x.tx[lang] || x.tx.es, nombres = {};
+    x.g.concat(x.s).forEach(function (q) { nombres[q] = tr('cuerpoG_' + q); });
+    if (R) R.quitar();
+    R = ENT.montar(document.getElementById('marco'), { id: actual, nombre: t[0], pasos: t[1], pasosEs: x.tx.es[1], prim: x.g, sec: x.s, nombres: nombres, nivel: x.n, entorno: x.e[0], etiquetas: etiquetas(x) }, { idioma: lang, tema: tema(), auto: !!auto });
+  }
+  function lista() {
+    var caja = document.getElementById('grupos'); caja.textContent = '';
+    ORDEN.forEach(function (gr) {
+      var suyos = ids.filter(function (id) { return M.ej[id].g[0] === gr; });
+      if (!suyos.length) return;
+      var s = document.createElement('div'); s.className = 'grupo';
+      var h = document.createElement('h3'); h.appendChild(document.createElement('i')); h.appendChild(document.createTextNode(tr('cuerpoG_' + gr))); s.appendChild(h);
+      var f = document.createElement('div'); f.className = 'fila';
+      suyos.forEach(function (id) {
+        var x = M.ej[id], b = document.createElement('button'); b.type = 'button'; b.className = 'ej'; b.id = 'ej-' + id; b.setAttribute('aria-pressed', id === actual ? 'true' : 'false');
+        var n = document.createElement('b'); n.textContent = nombre(id); b.appendChild(n);
+        var m = document.createElement('span'); m.textContent = [tr('cuerpoEnt_' + x.e[0]), tr('cuerpoNivel_' + x.n)].filter(Boolean).join(' · '); b.appendChild(m);
+        b.addEventListener('click', function () { elegir(id, true); });
+        f.appendChild(b);
+      });
+      s.appendChild(f); caja.appendChild(s);
+    });
+  }
+  function marcar() {
+    ids.forEach(function (id) { var b = document.getElementById('ej-' + id); if (b) b.setAttribute('aria-pressed', id === actual ? 'true' : 'false'); });
+  }
+  function elegir(id, tocado) {
+    if (ids.indexOf(id) < 0) return;
+    actual = id; marcar(); montar(tocado);
+    if (tocado) {
+      try { if ((location.hash || '').slice(1) !== id) location.hash = id; } catch (e) {}
+      var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var m = document.getElementById('marco'), r = m.getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight * 0.35) m.scrollIntoView({ block: 'start', behavior: quieto ? 'auto' : 'smooth' });
+    }
+  }
+
+  var sel = document.getElementById('idioma');
+  IDIOMAS.forEach(function (q) { var o = document.createElement('option'); o.value = q[0]; o.textContent = q[1]; sel.appendChild(o); });
+  sel.value = lang;
+  sel.addEventListener('change', function () {
+    lang = sel.value; try { localStorage.setItem('jerome-idioma', lang); } catch (e) {}
+    lista(); montar(false);
+  });
+  window.addEventListener('hashchange', function () { var id = (location.hash || '').slice(1); if (id !== actual && ids.indexOf(id) >= 0) elegir(id, false); });
+  /* el decorado, de día o de noche, como el tema de quien mira */
+  var alTema = function () { if (R) R.tema(tema()); };
+  if (window.matchMedia) { var mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', alTema); else if (mq.addListener) mq.addListener(alTema); }
+  if (window.MutationObserver) new MutationObserver(alTema).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  /* las cifras, de los datos */
+  var cifras = { hechos: ids.length, total: M.total, faltan: M.total - ids.length, peso: /*__PESO__*/0 };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-n]'), function (n) { var v = cifras[n.getAttribute('data-n')]; if (v) n.textContent = v; });
+  document.getElementById('barra').style.width = (100 * ids.length / M.total).toFixed(1) + '%';
+
+  lista(); montar(false);
+})();
+</script>

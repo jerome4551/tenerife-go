@@ -35891,6 +35891,13 @@ html.cielo-rojo body::before {
   var MODULO_CUERPO = './modulos/cuerpo.js', cargaCuerpo = null;
   window.TG_CUERPO_DATOS = './datos/cuerpo/';
   window.TG_CUERPO_3D = { modulo: './modulos/cuerpo3d.js', datos: './datos/cuerpo3d/' };
+  /* CARGA-PEREZOSA: modulos/entrenador.js
+     Jérôme, el entrenador (11 de noviembre de 2026): el vídeo de cada ejercicio de «Su cuerpo». No son
+     archivos de vídeo: es el personaje, dibujado, que hace lo que dice cada paso de la ficha. El motor
+     y las coreografías van en ese módulo, que pide modulos/cuerpo.js al abrir la ficha de un ejercicio;
+     el service worker lo precarga, para que salga sin conexión. Solo sale en los ejercicios que tienen
+     coreografía; en los demás la ficha queda como estaba. */
+  window.TG_CUERPO_ENTRENADOR = './modulos/entrenador.js';
   function cargarCuerpo() {
     if (window.TG_CUERPO) return Promise.resolve();
     if (cargaCuerpo) return cargaCuerpo;

@@ -1,0 +1,43 @@
+<!doctype html><meta charset="utf-8"><title>galería</title>
+<style>
+  body { margin: 0; background: #dfe7f0; font: 12px sans-serif; }
+  .fila { display: flex; flex-wrap: wrap; }
+  .celda { width: 240px; height: 276px; position: relative; background: linear-gradient(180deg, #8FA8E6 0%, #c9b6e4 45%, #f6c9a8 72%, #eccb8f 73%, #e4c083 100%); margin: 2px; overflow: hidden; }
+  .celda svg { width: 100%; height: 100%; display: block; }
+  .celda span { position: absolute; left: 4px; top: 3px; color: #12233A; background: rgba(255,255,255,.7); padding: 1px 5px; border-radius: 6px; }
+</style>
+<div class="fila" id="f"></div>
+<script src="../../../modulos/entrenador.js"></script>
+<script>
+var T = TG_ENTRENADOR._, D = T.D;
+var POSES = {
+  'de pie': {},
+  'brazos en cruz': { bi: { e: 90, z: 90, c: 0 }, bd: { e: 90, z: 90, c: 0 }, mi: { tipo: 'abierta' }, md: { tipo: 'abierta' } },
+  'saludo': { bi: { e: 150, z: 80, g: 0, c: 60 }, mi: { tipo: 'abierta', prono: -90 }, cab: [0, 0, -6] },
+  'sentadilla': { pel: [0, 50, -22], giro: [0, 38, 0], col: [6, 0, 0], cab: [-30, 0, 0], bi: { e: 82, z: 6, c: 12 }, bd: { e: 82, z: 6, c: 12 }, pi: { suelo: [15, 0], abre: 18 }, pd: { suelo: [-15, 0], abre: 18 }, mi: { tipo: 'abierta' }, md: { tipo: 'abierta' } },
+  'curl': { bi: { e: 6, z: 0, c: 130 }, bd: { e: 6, z: 0, c: 130 }, mi: { tipo: 'puno', prono: -90 }, md: { tipo: 'puno', prono: -90 } },
+  'press arriba': { bi: { e: 172, z: 60, c: 6 }, bd: { e: 172, z: 60, c: 6 }, mi: { tipo: 'puno', prono: 90 }, md: { tipo: 'puno', prono: 90 } },
+  'zancada': { pel: [0, 56, 8], giro: [0, 6, 0], pi: { suelo: [10, 46], abre: 0 }, pd: { suelo: [-10, -44], abre: 0, talon: 62 }, bi: { e: 20, z: 180, c: 40 }, bd: { e: 30, z: 0, c: 50 } },
+  'plancha': { pel: [0, 26, 0], giro: [0, 80, 0], cab: [-50, 0, 0], bi: { a: [17, 0, 58], polo: [0, 0.3, -1] }, bd: { a: [-17, 0, 58], polo: [0, 0.3, -1] }, pi: { a: [10, 12, -74], polo: [0, -1, 0.2] }, pd: { a: [-10, 12, -74], polo: [0, -1, 0.2] }, ti: { punta: [0, -1, 0.1], arriba: [0, 0.1, 1] }, td: { punta: [0, -1, 0.1], arriba: [0, 0.1, 1] }, mi: { tipo: 'abierta', prono: 90, mun: -80 }, md: { tipo: 'abierta', prono: 90, mun: -80 } },
+  'tumbado': { pel: [0, 12, 0], giro: [0, -90, 0], bi: { e: 80, z: 75, g: 90, c: 95 }, bd: { e: 80, z: 75, g: 90, c: 95 }, pi: { e: 55, z: 0, c: 100 }, pd: { e: 55, z: 0, c: 100 }, mi: { tipo: 'puno', prono: 90 }, md: { tipo: 'puno', prono: 90 } },
+  'colgado': { pel: [0, 150, 0], bi: { e: 176, z: 60, c: 4 }, bd: { e: 176, z: 60, c: 4 }, pi: { e: 4, z: 0, c: 10 }, pd: { e: 4, z: 0, c: 10 }, ti: { tob: 30 }, td: { tob: 30 }, mi: { tipo: 'puno', prono: 90 }, md: { tipo: 'puno', prono: 90 } }
+};
+var CAMS = [0, 35, 90, 150];
+var Q = new URLSearchParams(location.search), soloPose = Q.get('pose') || '', TAM = Number(Q.get('tam')) || 1;
+if (TAM !== 1) { var st = document.createElement('style'); st.textContent = '.celda{width:' + 240*TAM + 'px;height:' + 276*TAM + 'px}'; document.head.appendChild(st); }
+if (Q.get('cams')) CAMS = Q.get('cams').split(',').map(Number);
+Object.keys(POSES).forEach(function (n) {
+  if (soloPose && soloPose.split('|').indexOf(n) < 0) return;
+  CAMS.forEach(function (rumbo) {
+    var c = document.createElement('div'); c.className = 'celda'; document.getElementById('f').appendChild(c);
+    var e = new T.Escenario(c);
+    var s = document.createElement('span'); s.textContent = n + ' · ' + rumbo + '°'; c.appendChild(s);
+    e.cam.rumbo = rumbo; e.cam.esc = 1.9; e.cam.ox = 200; e.cam.oy = 250; e.cam.mira = [0, 86, 0];
+    if (n === 'colgado') { e.cam.mira = [0, 150, 0]; }
+    if (n === 'plancha' || n === 'tumbado') { e.cam.mira = [0, 30, 0]; e.cam.oy = 330; }
+    if (Q.get('mus')) e.fig.musculos(Q.get('mus').split(','), (Q.get('sec') || '').split(','));
+    var E = T.resolver(POSES[n]);
+    e.pintar(E);
+  });
+});
+</script>

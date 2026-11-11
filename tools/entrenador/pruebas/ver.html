@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ver</title>
+<link rel="stylesheet" href="../../../vendor/fuentes.css">
+<style>
+  html, body { margin: 0; background: #EEF3F8; }
+  body.noche { background: #0F1117; }
+  #caja { max-width: 430px; margin: 0 auto; padding: 12px; background: #fff; min-height: 100vh; box-sizing: border-box; }
+  body.noche #caja { background: #1B2330; }
+</style>
+<div id="caja"></div>
+<script src="../../../modulos/entrenador.js"></script>
+<script src="datos-muestra.js"></script>
+<script>
+var Q = new URLSearchParams(location.search), id = Q.get('id') || 'sentadilla-peso-corporal', lang = Q.get('lang') || 'es', tema = Q.get('tema') || 'dia';
+if (tema === 'noche') document.body.className = 'noche';
+var M = TG_MUESTRA, x = M.ej[id], t = x.tx[lang] || x.tx.es, tr = function (k) { return (M.ui[k] && (M.ui[k][lang] || M.ui[k].es)) || k; };
+var nombres = {}; x.g.concat(x.s).forEach(function (g) { nombres[g] = tr('cuerpoG_' + g); });
+var R = TG_ENTRENADOR.montar(document.getElementById('caja'), {
+  id: id, nombre: t[0], pasos: t[1], pasosEs: x.tx.es[1], prim: x.g, sec: x.s, nombres: nombres, nivel: x.n, entorno: Q.get('amb') || x.e[0],
+  etiquetas: [tr('cuerpoEnt_' + x.e[0]), tr('cuerpoNivel_' + x.n)].concat(x.m.filter(function (m) { return m !== 'ninguno'; }).map(function (m) { return tr('cuerpoMat_' + m); }))
+}, { idioma: lang, tema: tema });
+/* para las capturas: avanza tantos segundos, a pasos de 1/30 */
+window.adelanta = function (seg) { R.suena = true; R.gran.hidden = true; for (var i = 0, n = Math.round(seg * 30); i < n; i++) R.avanzar(1 / 30); R.suena = false; };
+if (Q.get('t')) adelanta(Number(Q.get('t')));
+if (Q.get('auto')) R.reproducir();
+</script>

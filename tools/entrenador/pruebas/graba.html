@@ -1,0 +1,35 @@
+<!doctype html><meta charset="utf-8"><title>graba</title>
+<link rel="stylesheet" href="../../../vendor/fuentes.css">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { width: 540px; height: 960px; overflow: hidden; background: radial-gradient(120% 60% at 50% 0%, #26324a 0%, #151b28 46%, #0F1117 100%); font-family: "DM Sans", system-ui, sans-serif; color: #F0ECE4; display: flex; flex-direction: column; }
+  .marca { display: flex; align-items: center; gap: 10px; padding: 50px 26px 16px; }
+  .marca i { width: 11px; height: 11px; border-radius: 50%; background: linear-gradient(180deg, #f6d268, #D4AF37); box-shadow: 0 0 0 4px rgba(212,175,55,.2); }
+  .marca b { font-weight: 700; font-size: 15px; letter-spacing: .2em; text-transform: uppercase; color: #F5C76B; }
+  .marca span { margin-left: auto; font-size: 15px; color: #A8B3C4; }
+  #caja { width: 366px; zoom: 1.366; margin: 0 0 0 14.6px; }
+  .tgv-mandos, .tgv-gran, .tgv-zona { display: none !important; }
+  .tgv-paso { min-height: 150px !important; background: #1B2330 !important; }
+  .pie { margin-top: auto; padding: 0 26px 30px; display: flex; align-items: center; gap: 10px; font-size: 14.5px; color: #A8B3C4; }
+  .pie hr { flex: 1; border: 0; height: 1px; background: linear-gradient(90deg, rgba(212,175,55,.6), rgba(212,175,55,0)); }
+</style>
+<div class="marca"><i></i><b>Tenerife Go</b><span id="sec"></span></div>
+<div id="caja"></div>
+<div class="pie"><span id="firma"></span><hr></div>
+<script src="../../../modulos/entrenador.js"></script>
+<script src="datos-muestra.js"></script>
+<script>
+var Q = new URLSearchParams(location.search), id = Q.get('id') || 'sentadilla-peso-corporal', lang = Q.get('lang') || 'es';
+var M = TG_MUESTRA, x = M.ej[id], t = x.tx[lang] || x.tx.es, tr = function (k) { return (M.ui[k] && (M.ui[k][lang] || M.ui[k].es)) || k; };
+var nombres = {}; x.g.concat(x.s).forEach(function (g) { nombres[g] = tr('cuerpoG_' + g); });
+document.getElementById('sec').textContent = tr('cuerpoEjercicios') !== 'cuerpoEjercicios' ? tr('cuerpoEjercicios') : '';
+document.getElementById('firma').textContent = TG_ENTRENADOR.textos.entCon[lang] || TG_ENTRENADOR.textos.entCon.es;
+var R = TG_ENTRENADOR.montar(document.getElementById('caja'), {
+  id: id, nombre: t[0], pasos: t[1], pasosEs: x.tx.es[1], prim: x.g, sec: x.s, nombres: nombres, nivel: x.n, entorno: Q.get('amb') || x.e[0],
+  etiquetas: [tr('cuerpoEnt_' + x.e[0]), tr('cuerpoNivel_' + x.n)].concat(x.m.filter(function (m) { return m !== 'ninguno'; }).map(function (m) { return tr('cuerpoMat_' + m); }))
+}, { idioma: lang, tema: Q.get('tema') || 'dia' });
+R.raiz.setAttribute('data-tema', 'noche');      /* los rótulos, en oscuro; el decorado, de día */
+window.total = R.tramos.reduce(function (a, q) { return a + q.dur; }, 0);
+window.empieza = function () { R.suena = true; R.gran.hidden = true; R.medir(); };
+window.paso = function (dt) { if (!R.fin) R.avanzar(dt); return R.fin; };
+</script>

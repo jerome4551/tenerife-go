@@ -2751,6 +2751,7 @@
     tema = t === 'noche' ? 'noche' : 'dia';
     if (guardar_) { try { localStorage.setItem(KEY_TEMA, tema); } catch (e) {} }
     panel.setAttribute('data-tema', tema);
+    if (videoEjR) videoEjR.tema(tema);
     if (M3) M3.luz(luz3d(escE));
     var b = $('tgc-tema');
     b.setAttribute('aria-label', tx(tema === 'dia' ? 'cuerpoTemaNoche' : 'cuerpoTemaDia'));
@@ -3690,6 +3691,48 @@
     return s;
   }
 
+  /* ── el vídeo del ejercicio (11 de noviembre de 2026): Jérôme lo enseña paso a paso ──
+     El motor y las coreografías van en modulos/entrenador.js, que se pide al abrir la primera ficha
+     (el service worker lo precarga). Solo sale en los ejercicios que tienen coreografía, y solo si
+     la ficha trae los mismos pasos con los que se hizo; en los demás, y si el módulo no llega, la
+     ficha queda como estaba. No arranca solo: lo pone en marcha quien lo toca. */
+  var MODULO_ENT = typeof window.TG_CUERPO_ENTRENADOR === 'string' ? window.TG_CUERPO_ENTRENADOR : './modulos/entrenador.js';
+  var cargaEnt = null, videoEjR = null, videoEjDe = '';
+  function cargarEntrenador() {
+    if (cargaEnt) return cargaEnt;
+    cargaEnt = new Promise(function (ok, mal) {
+      if (window.TG_ENTRENADOR) { ok(); return; }
+      var s = document.createElement('script');
+      s.src = MODULO_ENT;
+      s.onload = function () { if (window.TG_ENTRENADOR) ok(); else mal(new Error('entrenador')); };
+      s.onerror = function () { s.remove(); mal(new Error('entrenador')); };
+      document.head.appendChild(s);
+    }).catch(function (e) { cargaEnt = null; throw e; });
+    return cargaEnt;
+  }
+  function quitarVideoEj() {
+    if (videoEjR) { try { videoEjR.quitar(); } catch (e) {} videoEjR = null; }
+    videoEjDe = '';
+    var c = $('tgc-ej-video'); if (c) { c.textContent = ''; c.hidden = true; }
+  }
+  function videoEj(x, t) {
+    /* el mismo ejercicio en el mismo idioma: se queda como está (guardar unas series no lo reinicia) */
+    var clave = x.id + '|' + lengua();
+    if (videoEjR && videoEjDe === clave) return;
+    quitarVideoEj();
+    cargarEntrenador().then(function () {
+      var E = window.TG_ENTRENADOR, c = $('tgc-ej-video');
+      if (ejAbierto !== x.id || !c || videoEjR || !E.tiene(x.id, t.pasos.length)) return;
+      var nombres = {}, es = (EJ_TX.es || {})[x.id];
+      x.g.concat(x.s).forEach(function (g) { nombres[g] = nombre(g); });
+      var etq = [tx('cuerpoEnt_' + x.en[0]), tx('cuerpoNivel_' + x.n)].concat(x.m.filter(function (m) { return m !== 'ninguno'; }).map(function (m) { return tx('cuerpoMat_' + m); }));
+      c.hidden = false;
+      videoEjR = E.montar(c, { id: x.id, nombre: t.nombre, pasos: t.pasos, pasosEs: Array.isArray(es) && Array.isArray(es[1]) ? es[1] : null, prim: x.g, sec: x.s, nombres: nombres, etiquetas: etq, entorno: x.en[0], nivel: x.n },
+        { idioma: lengua(), tema: tema });
+      if (videoEjR) videoEjDe = clave; else c.hidden = true;
+    }, function () {});
+  }
+
   /* ── la ficha de un ejercicio (la segunda página de la hoja) ── */
   function abrirEj(id) {
     if (!EJ || !EJ.porId[id] || !grupoAbierto) return;
@@ -3708,6 +3751,7 @@
   function volverGrupo(sinHistoria) {
     if (!ejAbierto) return;
     ejAbierto = null;
+    quitarVideoEj();
     $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false;
     $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-hoja-tit');
     if (ejHistoria && !sinHistoria) { try { atrasPendiente = true; history.back(); } catch (e) { atrasPendiente = false; } }
@@ -3760,6 +3804,7 @@
       a.setAttribute('data-sin-traducir', 'el título original de la fuente');
       li.appendChild(a); ul.appendChild(li);
     });
+    videoEj(x, t);
   }
   /* anotar desde la ficha: una anotación por cada grupo principal, con el ejercicio */
   function anotarEj() {
@@ -3807,6 +3852,7 @@
     /* con la ficha de un ejercicio abierta hay dos entradas del historial: se quitan las dos de una vez */
     var pasos = (hojaHistoria ? 1 : 0) + (ejHistoria ? 1 : 0);
     grupoAbierto = null; ejAbierto = null;
+    quitarVideoEj();
     $('tgc-velo').hidden = true; $('tgc-hoja').hidden = true;
     $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false;
     debajoInerte(false); panel.classList.remove('con-hoja');
@@ -5916,6 +5962,8 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-ej-chips li { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font-size: 13px; background: var(--fondo); border: 1px solid var(--linea); }
 .tgc-ej-chips li.ent { border-color: var(--oro-vivo); color: var(--oro); }
 .tgc-ej-chips li.niv .tgc-ej-puntos i { width: 6px; height: 6px; }
+/* el vídeo del ejercicio (modulos/entrenador.js): Jérôme lo enseña paso a paso; sin coreografía, no sale */
+.tgc-ej-video { width: 100%; max-width: 430px; min-width: 0; justify-self: center; }
 .tgc-ej-cuerpo { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; padding: 12px; border-radius: 18px; background: var(--fondo); border: 1px solid var(--linea); }
 .tgc-ej-figuras { display: flex; gap: 4px; }
 .tgc-ej-fig { width: 68px; aspect-ratio: 320 / 784; }
@@ -6453,6 +6501,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     </div>
     <button type="button" class="tgc-link tgc-ej-base" id="tgc-ej-variante" hidden></button>
     <ul class="tgc-ej-chips" id="tgc-ej-chips"></ul>
+    <div class="tgc-ej-video" id="tgc-ej-video" hidden></div>
     <div class="tgc-ej-cuerpo">
       <div class="tgc-ej-figuras" id="tgc-ej-figuras" aria-hidden="true">
         <div class="tgc-ej-fig" id="tgc-ej-fig-frente"></div>

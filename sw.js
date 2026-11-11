@@ -73,6 +73,11 @@ const CORE = [
      -noche.webp, unos 41 y 28 kB, de tools/cuerpo_isla_relieve.py): se guarda la primera vez que
      se ve con red; si no hay, el mapa sale con la costa que el modulo dibuja debajo. */
   './modulos/cuerpo.js',
+  /* Jérôme, el entrenador (11 de noviembre de 2026): el vídeo de cada ejercicio de «Su cuerpo»
+     (el motor y las coreografías, unos 230 kB; no hay archivos de vídeo). Lo pide modulos/cuerpo.js
+     al abrir la ficha de un ejercicio, y donde se mira es en el gimnasio o en la calle: tiene que
+     estar sin conexión desde el primer día. Aquí y «red primero» abajo, como el módulo de «Su cuerpo». */
+  './modulos/entrenador.js',
   /* El panel de EMERGENCIAS (22 de octubre de 2026): tiene que estar sin
      conexion desde el primer dia, y no esperar a la red: va abajo con su
      propia estrategia (cache al instante, red por detras). */
@@ -401,6 +406,7 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/perfil.js') ||
           url.pathname.endsWith('/modulos/cuerpo.js') ||
           /\/datos\/cuerpo\/[a-z0-9-]+\.(json|webp)$/.test(url.pathname) ||
+          url.pathname.endsWith('/modulos/entrenador.js') ||
           url.pathname.endsWith('/modulos/cuerpo3d.js') ||
           url.pathname.endsWith('/datos/cuerpo3d/indice.json') ||
           url.pathname.endsWith('/modulos/isla3d.js') ||

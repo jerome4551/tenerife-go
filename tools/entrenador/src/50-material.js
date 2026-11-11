@@ -1,0 +1,391 @@
+  /* ───────────────────────── el material ─────────────────────────
+     Cada pieza se pinta con unas pocas formas en tres dimensiones (un cilindro es un trazo
+     grueso; un disco, una elipse; una caja, sus caras a la vista) y deja sus nodos en la lista
+     con su fondo, como las piezas de Jérôme. Las que se agarran saben dónde están sus agarres.
+     colocar(E, antes): antes de clavar las manos (lo que va en el mundo o pegado al cuerpo) o
+     después (lo que cuelga de las manos). */
+  var M_COL = { hierro: '#39414f', hierroL: '#6b7686', hierroS: '#1e2430', cromo: '#c7ced8', cromoS: '#8b95a3', goma: '#20252e', gomaL: '#3a414d',
+                tapiz: '#27406e', tapizL: '#3b5a94', tapizS: '#1a2c4e', madera: '#c99a5b', maderaS: '#9c7038', oro: '#D4AF37', cuerda: '#e8dfc8', banda: '#EE5F7E', agua: '#19b6a6' };
+  function trazo(clase, color, ancho) { return crear('path', { 'class': clase || '', fill: 'none', stroke: color, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': ancho || 1 }); }
+  function ponLinea(e, a, b, ancho) { pon(e, 'd', 'M' + n1(a[0]) + ',' + n1(a[1]) + ' L' + n1(b[0]) + ',' + n1(b[1])); if (ancho != null) pon(e, 'stroke-width', n1(ancho)); }
+  /* un cilindro: dos trazos (el cuerpo y su brillo) */
+  function Cilindro(color, brillo) {
+    this.g = crear('g'); this.a = trazo('', color); this.b = trazo('', brillo || 'rgba(255,255,255,.35)');
+    this.g.appendChild(this.a); this.g.appendChild(this.b);
+  }
+  Cilindro.prototype.pon = function (cam, p3, q3, r, lista, sesgo) {
+    var p = cam.p(p3), q = cam.p(q3), w = 2 * r * cam.esc;
+    ponLinea(this.a, p, q, w);
+    /* el brillo, corrido hacia arriba a la izquierda */
+    var dx = q[0] - p[0], dy = q[1] - p[1], l = Math.sqrt(dx * dx + dy * dy) || 1, nx = -dy / l, ny = dx / l;
+    if (ny > 0) { nx = -nx; ny = -ny; }
+    ponLinea(this.b, [p[0] + nx * w * 0.22, p[1] + ny * w * 0.22], [q[0] + nx * w * 0.22, q[1] + ny * w * 0.22], Math.max(0.6, w * 0.22));
+    if (lista) lista.push({ z: (p[2] + q[2]) / 2 + (sesgo || 0), el: this.g });
+    return [p, q];
+  };
+  /* un disco (una pesa, una polea): un círculo con su eje, que de canto se ve como una elipse con grosor */
+  function Disco(color, canto, centro) {
+    this.g = crear('g');
+    this.t = crear('path', { fill: canto || M_COL.goma }, this.g);
+    this.c = crear('ellipse', { fill: color, stroke: canto || M_COL.goma, 'stroke-width': 0.8 }, this.g);
+    this.i = crear('ellipse', { fill: 'none', stroke: 'rgba(255,255,255,.22)', 'stroke-width': 1 }, this.g);
+    this.n = crear('ellipse', { fill: centro || M_COL.cromo }, this.g);
+  }
+  Disco.prototype.pon = function (cam, c3, eje, R, grosor, lista, sesgo) {
+    var e = cam.d(eje), ez = e[2], l2 = Math.sqrt(e[0] * e[0] + e[1] * e[1]);
+    var ang = l2 > 1e-3 ? Math.atan2(e[1], e[0]) / RAD : 0;
+    var rx = Math.max(0.6, R * cam.esc * Math.abs(ez)), ry = R * cam.esc;
+    /* la cara que mira a la cámara y la de detrás */
+    var s = ez >= 0 ? 1 : -1, cf = cam.p(mas(c3, por(eje, s * grosor / 2))), cb = cam.p(mas(c3, por(eje, -s * grosor / 2)));
+    var rot = 'rotate(' + n1(ang) + ')';
+    var put = function (el, c, kx, ky) { pon(el, 'transform', 'translate(' + n1(c[0]) + ',' + n1(c[1]) + ') ' + rot); pon(el, 'rx', n1(rx * kx)); pon(el, 'ry', n1(ry * ky)); };
+    put(this.c, cf, 1, 1); put(this.i, cf, 0.62, 0.62); put(this.n, cf, 0.2, 0.2);
+    /* el canto: lo que une las dos caras */
+    var a = ang * RAD, ux = -Math.sin(a) * ry, uy = Math.cos(a) * ry;
+    pon(this.t, 'd', 'M' + n1(cb[0] + ux) + ',' + n1(cb[1] + uy) + ' L' + n1(cf[0] + ux) + ',' + n1(cf[1] + uy) + ' L' + n1(cf[0] - ux) + ',' + n1(cf[1] - uy) + ' L' + n1(cb[0] - ux) + ',' + n1(cb[1] - uy) + 'z');
+    if (!this._fondo) { this._fondo = crear('ellipse', { fill: this.t.getAttribute('fill') }); this.g.insertBefore(this._fondo, this.t); }
+    put(this._fondo, cb, 1, 1);
+    if (lista) lista.push({ z: cam.p(c3)[2] + (sesgo || 0), el: this.g });
+  };
+  /* una caja: un centro, una base y sus tres medidas; se pintan las caras que miran a la cámara */
+  function Caja(colores) {
+    this.g = crear('g'); this.col = colores;     /* [arriba, lado claro, lado oscuro, abajo] */
+    this.caras = [0, 1, 2].map(function () { return crear('path', { 'stroke-linejoin': 'round', 'stroke-width': 0.8 }, this.g); }, this);
+  }
+  Caja.prototype.pon = function (cam, c3, B, med, lista, sesgo, zModo) {
+    var hx = med[0] / 2, hy = med[1] / 2, hz = med[2] / 2, yo = this, n = 0, zmin = 1e9, zc = cam.p(c3)[2];
+    var v = function (sx, sy, sz) { return cam.p(mas(c3, aplicar(B, [sx * hx, sy * hy, sz * hz]))); };
+    var caras = [
+      [B[1], [[-1, 1, -1], [1, 1, -1], [1, 1, 1], [-1, 1, 1]], 0], [por(B[1], -1), [[-1, -1, -1], [1, -1, -1], [1, -1, 1], [-1, -1, 1]], 3],
+      [B[0], [[1, -1, -1], [1, 1, -1], [1, 1, 1], [1, -1, 1]], 1], [por(B[0], -1), [[-1, -1, -1], [-1, 1, -1], [-1, 1, 1], [-1, -1, 1]], 1],
+      [B[2], [[-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1]], 2], [por(B[2], -1), [[-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1]], 2]
+    ];
+    caras.forEach(function (c) {
+      var ve = punto(c[0], cam.k);
+      if (ve <= 0.02 || n > 2) return;
+      var d = '', el = yo.caras[n++];
+      c[1].forEach(function (q, i) { var p = v(q[0], q[1], q[2]); zmin = Math.min(zmin, p[2]); d += (i ? 'L' : 'M') + n1(p[0]) + ',' + n1(p[1]); });
+      pon(el, 'd', d + 'z'); pon(el, 'fill', yo.col[c[2]]); pon(el, 'stroke', yo.col[c[2]]);
+      el.style.display = '';
+    });
+    for (; n < 3; n++) this.caras[n].style.display = 'none';
+    if (lista) lista.push({ z: (zModo === 'fondo' ? zmin : zc) + (sesgo || 0), el: this.g });
+  };
+  /* una esfera */
+  function Esfera(defs, u, color, claro, oscuro) {
+    var g = crear('radialGradient', { id: u, cx: 0.36, cy: 0.3, r: 0.8 }, defs);
+    [[0, claro], [0.5, color], [1, oscuro]].forEach(function (p) { crear('stop', { offset: p[0], 'stop-color': p[1] }, g); });
+    this.g = crear('g'); this.c = crear('circle', { fill: 'url(#' + u + ')', stroke: oscuro, 'stroke-width': 0.8 }, this.g);
+  }
+  Esfera.prototype.pon = function (cam, c3, R, lista, sesgo) {
+    var c = cam.p(c3);
+    pon(this.c, 'cx', n1(c[0])); pon(this.c, 'cy', n1(c[1])); pon(this.c, 'r', n1(R * cam.esc));
+    if (lista) lista.push({ z: c[2] + (sesgo || 0), el: this.g });
+    return c;
+  };
+
+  var MATERIAL = {};
+  var N_MAT = 0;
+  /* ── la barra: sigue a las manos, o va pegada al cuerpo (a la espalda, a la cadera), o en un punto del mundo.
+     o: { ancla: 'manos' | 'torax' | 'pelvis' | 'mundo', en: [x, y, z], eje: [x, y, z], largo, discos (radio; 0, sin discos), z (barra Z) } */
+  MATERIAL.barra = function (esc, o) {
+    o = o || {};
+    this.o = o; this.L = o.largo || 200; this.R = o.discos == null ? 21 : o.discos;
+    this.barra = new Cilindro(M_COL.cromo); this.manguitos = [new Cilindro(M_COL.cromoS), new Cilindro(M_COL.cromoS)];
+    this.discos = this.R ? [new Disco(M_COL.goma, M_COL.hierroS, M_COL.cromo), new Disco(M_COL.goma, M_COL.hierroS, M_COL.cromo), new Disco(o.color || '#c9413f', M_COL.hierroS, M_COL.cromo), new Disco(o.color || '#c9413f', M_COL.hierroS, M_COL.cromo)] : [];
+    this.c = [0, 100, 30]; this.eje = [1, 0, 0];
+    this.antes = (o.ancla || 'manos') !== 'manos';
+  };
+  MATERIAL.barra.prototype.colocar = function (E, ctx) {
+    var o = this.o, a = o.ancla || 'manos';
+    if (o.reposo && ctx && ctx.reposo) { this.c = o.reposo; this.eje = [1, 0, 0]; }
+    else if (a === 'manos') {
+      this.c = mezcla(E.i.agarre, E.d.agarre, 0.5);
+      var e = menos(E.i.agarre, E.d.agarre);
+      this.eje = largo(e) > 4 ? unidad(e) : E.Bt[0];
+      if (o.una) { this.c = E[o.una].agarre; this.eje = E[o.una].mano.eje; }
+    } else if (a === 'torax') { this.c = mas(E.tor, aplicar(E.Bt, o.en)); this.eje = aplicar(E.Bt, o.eje || [1, 0, 0]); }
+    else if (a === 'pelvis') { this.c = mas(E.pel, aplicar(E.Bp, o.en)); this.eje = aplicar(E.Bp, o.eje || [1, 0, 0]); }
+    else { this.c = o.en; this.eje = unidad(o.eje || [1, 0, 0]); }
+  };
+  /* dónde se agarra: a x centímetros del centro, hacia la izquierda de Jérôme (+) o hacia su derecha (−) */
+  MATERIAL.barra.prototype.agarre = function (x) { return mas(this.c, por(this.eje, x)); };
+  MATERIAL.barra.prototype.extremos = function () {
+    var h = this.L / 2, R = this.R || 2, c = this.c, e = this.eje, r = [];
+    [1, -1].forEach(function (s) { var p = mas(c, por(e, s * h)); r.push(mas(p, [0, R, 0]), mas(p, [0, -R, 0]), mas(p, [0, 0, R]), mas(p, [0, 0, -R]), mas(p, [R, 0, 0]), mas(p, [-R, 0, 0])); });
+    return r;
+  };
+  MATERIAL.barra.prototype.pintar = function (E, cam, lista) {
+    var h = this.L / 2, c = this.c, e = this.eje, yo = this, sg = this.o.sesgo || 0;
+    this.barra.pon(cam, mas(c, por(e, -h)), mas(c, por(e, h)), 1.5, lista, 2.2 + sg);
+    [1, -1].forEach(function (s, i) {
+      if (!yo.R) return;
+      yo.manguitos[i].pon(cam, mas(c, por(e, s * (h - 36))), mas(c, por(e, s * h)), 2.4, lista, 2.3 + sg);
+      yo.discos[i].pon(cam, mas(c, por(e, s * (h - 30))), e, yo.R, 4.4, lista, sg);
+      yo.discos[i + 2].pon(cam, mas(c, por(e, s * (h - 24.6))), e, yo.R * 0.8, 3.4, lista, sg + (s * punto(e, cam.k) > 0 ? 0.6 : -0.6));
+    });
+  };
+  /* ── las mancuernas: una en cada mano (o en una sola), con el eje del agarre ── */
+  MATERIAL.mancuernas = function (esc, o) {
+    o = o || {};
+    this.o = o; this.lados = o.lado ? [o.lado] : ['i', 'd'];
+    this.p = {};
+    this.lados.forEach(function (k) { this.p[k] = { m: new Cilindro(M_COL.cromo), a: new Disco(M_COL.hierro, M_COL.hierroS, M_COL.hierroL), b: new Disco(M_COL.hierro, M_COL.hierroS, M_COL.hierroL) }; }, this);
+  };
+  MATERIAL.mancuernas.prototype.colocar = function () {};
+  MATERIAL.mancuernas.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, R = o.radio || 6.6;
+    this.lados.forEach(function (k) {
+      var L = E[k], c = L.agarre, e = o.vertical ? L.mano.dir : L.mano.eje, p = this.p[k];
+      if (o.dos) { c = mezcla(E.i.agarre, E.d.agarre, 0.5); e = o.ejeDos ? aplicar(E.Bt, o.ejeDos) : L.mano.dir; }
+      p.m.pon(cam, mas(c, por(e, -9)), mas(c, por(e, 9)), 1.4, lista, 0.9);
+      p.a.pon(cam, mas(c, por(e, 10.5)), e, R, 5.4, lista, 0.4); p.b.pon(cam, mas(c, por(e, -10.5)), e, R, 5.4, lista, 0.4);
+    }, this);
+  };
+  /* ── la pesa rusa: cuelga de la mano (o de las dos) ── */
+  MATERIAL.kettlebell = function (esc, o) {
+    this.o = o || {};
+    this.bola = new Esfera(esc.defs, 'tgm' + (++N_MAT), M_COL.hierro, M_COL.hierroL, M_COL.hierroS);
+    this.asa = trazo('', M_COL.hierroS, 3); this.bola.g.insertBefore(this.asa, this.bola.c);
+  };
+  MATERIAL.kettlebell.prototype.colocar = function () {};
+  MATERIAL.kettlebell.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, c = o.lado ? E[o.lado].agarre : mezcla(E.i.agarre, E.d.agarre, 0.5);
+    /* cuelga hacia donde apunta la mano, y un poco hacia abajo */
+    var dir = unidad(mas(o.lado ? E[o.lado].mano.dir : unidad(mas(E.i.mano.dir, E.d.mano.dir)), [0, -(o.peso == null ? 0.35 : o.peso), 0]));
+    var b3 = mas(c, por(dir, 13.5)), b = cam.p(b3), a = cam.p(c), r = 9.2 * cam.esc;
+    var px = -(b[1] - a[1]), py = b[0] - a[0], l = Math.sqrt(px * px + py * py) || 1; px = px / l * r * 0.62; py = py / l * r * 0.62;
+    pon(this.asa, 'd', 'M' + n1(b[0] + px) + ',' + n1(b[1] + py) + ' Q' + n1(a[0] + px * 1.5) + ',' + n1(a[1] + py * 1.5) + ' ' + n1(a[0]) + ',' + n1(a[1]) + ' Q' + n1(a[0] - px * 1.5) + ',' + n1(a[1] - py * 1.5) + ' ' + n1(b[0] - px) + ',' + n1(b[1] - py));
+    pon(this.asa, 'stroke-width', n1(2.6 * cam.esc));
+    this.bola.pon(cam, b3, 9.2, lista, 0.6);
+  };
+  /* ── el banco: el asiento y, si se pide, el respaldo inclinado. o: { en: [x, z], rumbo, largo, alto, ancho, respaldo: grados, asiento: largo del asiento } ── */
+  MATERIAL.banco = function (esc, o) {
+    o = o || {};
+    this.o = o;
+    var tap = [M_COL.tapizL, M_COL.tapiz, M_COL.tapizS, M_COL.tapizS], hie = [M_COL.hierroL, M_COL.hierro, M_COL.hierroS, M_COL.hierroS];
+    this.asiento = new Caja(tap); this.resp = o.respaldo != null ? new Caja(tap) : null;
+    this.patas = [new Caja(hie), new Caja(hie)]; this.puntal = new Cilindro(M_COL.hierro); this.pies = [new Cilindro(M_COL.hierroS), new Cilindro(M_COL.hierroS)];
+    this.antes = true;
+  };
+  MATERIAL.banco.prototype.colocar = function () {};
+  MATERIAL.banco.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, B = giroY(o.rumbo || 0), alto = o.alto || 44, ancho = o.ancho || 28, lar = o.largo || 120, sg = o.sesgo == null ? -14 : o.sesgo;
+    var c = [o.en ? o.en[0] : 0, 0, o.en ? o.en[1] : 0], gr = 7;
+    var al = function (x, y, z) { return mas(c, aplicar(B, [x, y, z])); };
+    if (this.resp) {
+      /* el asiento, corto, y el respaldo, que gira sobre su borde */
+      var la = o.asiento || 38, lr = lar - la, ang = o.respaldo, Br = componer(B, giroX(-ang));
+      this.asiento.pon(cam, al(0, alto - gr / 2, -lar / 2 + la / 2), B, [ancho, gr, la], lista, sg, 'fondo');
+      var bis = al(0, alto - gr / 2, -lar / 2 + la);
+      this.resp.pon(cam, mas(bis, aplicar(Br, [0, 0, lr / 2])), Br, [ancho, gr, lr], lista, sg, 'fondo');
+      /* el puntal que sostiene el respaldo */
+      this.puntal.pon(cam, al(0, 3, -lar / 2 + la + lr * 0.5), mas(bis, aplicar(Br, [0, -gr / 2, lr * 0.62])), 2.6, lista, sg - 3);
+    } else this.asiento.pon(cam, al(0, alto - gr / 2, 0), B, [ancho, gr, lar], lista, sg, 'fondo');
+    this.patas[0].pon(cam, al(0, (alto - gr) / 2, -lar / 2 + 14), B, [ancho * 0.5, alto - gr, 5], lista, sg - 2, 'fondo');
+    this.patas[1].pon(cam, al(0, (alto - gr) / 2, lar / 2 - 16), B, [ancho * 0.5, alto - gr, 5], lista, sg - 2, 'fondo');
+    this.pies[0].pon(cam, al(-ancho * 0.62, 1.6, -lar / 2 + 14), al(ancho * 0.62, 1.6, -lar / 2 + 14), 2, lista, sg - 3);
+    this.pies[1].pon(cam, al(-ancho * 0.62, 1.6, lar / 2 - 16), al(ancho * 0.62, 1.6, lar / 2 - 16), 2, lista, sg - 3);
+  };
+  MATERIAL.banco.prototype.extremos = function () {
+    var o = this.o, B = giroY(o.rumbo || 0), c = [o.en ? o.en[0] : 0, 0, o.en ? o.en[1] : 0], w = (o.ancho || 28) / 2, l = (o.largo || 120) / 2, h = o.alto || 44, r = [];
+    [[-w, -l], [w, -l], [w, l], [-w, l]].forEach(function (q) { r.push(mas(c, aplicar(B, [q[0], 0, q[1]])), mas(c, aplicar(B, [q[0], h, q[1]]))); });
+    if (o.respaldo != null) { var la = o.asiento || 38, lr = (o.largo || 120) - la; r.push(mas(c, aplicar(B, [0, h + Math.sin(o.respaldo * RAD) * lr, -l + la + Math.cos(o.respaldo * RAD) * lr]))); }
+    return r;
+  };
+  /* dónde queda la superficie del banco (para tumbarse o sentarse): un punto a z del centro, y el respaldo */
+  MATERIAL.banco.prototype.alto = function () { return this.o.alto || 44; };
+  /* ── el soporte de la barra (dos postes con su gancho) ── */
+  MATERIAL.soporte = function (esc, o) {
+    this.o = o || {}; this.postes = [new Cilindro(M_COL.hierro), new Cilindro(M_COL.hierro)]; this.ganchos = [new Cilindro(M_COL.hierroL), new Cilindro(M_COL.hierroL)];
+    this.bases = [new Cilindro(M_COL.hierroS), new Cilindro(M_COL.hierroS)];
+    this.antes = true;
+  };
+  MATERIAL.soporte.prototype.colocar = function () {};
+  MATERIAL.soporte.prototype.extremos = function () { var o = this.o, w = o.ancho || 52, z = o.z || 0, h = (o.alto || 100) + 8; return [[w, h, z], [-w, h, z], [w, 0, z - 22], [-w, 0, z + 22]]; };
+  MATERIAL.soporte.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, z = o.z || 0, h = o.alto || 100, w = o.ancho || 52, yo = this, sg = o.sesgo == null ? -6 : o.sesgo;
+    [1, -1].forEach(function (s, i) {
+      yo.postes[i].pon(cam, [s * w, 0, z], [s * w, h + 8, z], 2.4, lista, sg);
+      yo.ganchos[i].pon(cam, [s * w, h - 2.5, z], [s * w, h - 2.5, z + 7], 1.6, lista, sg + 0.5);
+      yo.bases[i].pon(cam, [s * w, 1.5, z - 22], [s * w, 1.5, z + 22], 2.2, lista, sg - 1);
+    });
+  };
+  /* ── la barra de dominadas: dos postes y el travesaño. o: { alto, ancho, z } ── */
+  MATERIAL.barra_dominadas = function (esc, o) {
+    this.o = o || {}; this.postes = [new Cilindro(M_COL.hierro), new Cilindro(M_COL.hierro)]; this.trav = new Cilindro(M_COL.cromo);
+    this.bases = [new Cilindro(M_COL.hierroS), new Cilindro(M_COL.hierroS)];
+    this.antes = true;
+  };
+  MATERIAL.barra_dominadas.prototype.colocar = function () {};
+  MATERIAL.barra_dominadas.prototype.agarre = function (x) { return [x, this.o.alto || 225, this.o.z || 0]; };
+  MATERIAL.barra_dominadas.prototype.extremos = function () { var o = this.o, w = o.ancho || 66, z = o.z || 0, h = (o.alto || 225) + 6; return [[w + 3, h, z], [-w - 3, h, z], [w, 0, z - 26], [-w, 0, z + 26], [w, 0, z + 26], [-w, 0, z - 26]]; };
+  MATERIAL.barra_dominadas.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, h = o.alto || 225, w = o.ancho || 66, z = o.z || 0, yo = this;
+    [1, -1].forEach(function (s, i) {
+      yo.postes[i].pon(cam, [s * w, 0, z], [s * w, h + 4, z], 3, lista, -4);
+      yo.bases[i].pon(cam, [s * w, 1.5, z - 26], [s * w, 1.5, z + 26], 2.4, lista, -5);
+    });
+    this.trav.pon(cam, [-w, h, z], [w, h, z], 1.7, lista, 2.2);
+  };
+  /* ── las paralelas: dos barras a los lados. o: { alto, ancho, largo } ── */
+  MATERIAL.paralelas = function (esc, o) {
+    this.o = o || {}; this.b = [new Cilindro(M_COL.cromo), new Cilindro(M_COL.cromo)];
+    this.p = [0, 1, 2, 3].map(function () { return new Cilindro(M_COL.hierro); });
+    this.antes = true;
+  };
+  MATERIAL.paralelas.prototype.colocar = function () {};
+  MATERIAL.paralelas.prototype.extremos = function () { var o = this.o, w = o.ancho || 27, l = (o.largo || 110) / 2, z = o.z || 0, h = o.alto || 118; return [[w, h, z - l], [-w, h, z + l], [w, 0, z + l], [-w, 0, z - l]]; };
+  MATERIAL.paralelas.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, h = o.alto || 118, w = o.ancho || 27, l = (o.largo || 110) / 2, z0 = o.z || 0, yo = this;
+    [1, -1].forEach(function (s, i) {
+      yo.b[i].pon(cam, [s * w, h, z0 - l], [s * w, h, z0 + l], 1.9, lista, s * punto([1, 0, 0], cam.k) > 0 ? 3 : -3);
+      yo.p[i * 2].pon(cam, [s * w, 0, z0 - l + 8], [s * w, h, z0 - l + 8], 2.4, lista, -4); yo.p[i * 2 + 1].pon(cam, [s * w, 0, z0 + l - 8], [s * w, h, z0 + l - 8], 2.4, lista, -4);
+    });
+  };
+  /* ── el escalón o el cajón ── */
+  MATERIAL.escalon = function (esc, o) {
+    this.o = o || {}; this.c = new Caja(o.madera ? ['#dab173', M_COL.madera, M_COL.maderaS, M_COL.maderaS] : ['#4a5364', M_COL.hierro, M_COL.hierroS, M_COL.hierroS]);
+    this.tira = new Caja([M_COL.agua, '#0e8a7e', '#0e8a7e', '#0e8a7e']);
+    this.antes = true;
+  };
+  MATERIAL.escalon.prototype.colocar = function () {};
+  MATERIAL.escalon.prototype.extremos = function () { var o = this.o, m = o.med || [80, 20, 36], x = o.en ? o.en[0] : 0, z = o.en ? o.en[1] : 30; return [[x - m[0] / 2, 0, z - m[2] / 2], [x + m[0] / 2, m[1], z + m[2] / 2], [x + m[0] / 2, 0, z - m[2] / 2], [x - m[0] / 2, m[1], z + m[2] / 2]]; };
+  MATERIAL.escalon.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, m = o.med || [80, 20, 36], c = [o.en ? o.en[0] : 0, m[1] / 2, o.en ? o.en[1] : 30];
+    this.c.pon(cam, c, BASE0, m, lista, o.sesgo == null ? -30 : o.sesgo, 'fondo');
+    var it = lista[lista.length - 1];
+    this.tira.pon(cam, [c[0], m[1] - 1.2, c[2]], BASE0, [m[0] + 0.6, 2.4, m[2] + 0.6], lista, (o.sesgo == null ? -30 : o.sesgo) + 0.1, 'fondo');
+    lista[lista.length - 1].z = it.z + 0.1;
+    /* tapa lo que le queda detrás y por debajo de la tapa; lo que tiene encima, nunca */
+    this.tapa = { min: [c[0] - m[0] / 2, 0, c[2] - m[2] / 2], max: [c[0] + m[0] / 2, m[1], c[2] + m[2] / 2], z: it.z };
+  };
+  /* ── la esterilla ── */
+  MATERIAL.esterilla = function (esc, o) { this.o = o || {}; this.c = new Caja(['#5B4FCF', '#463cab', '#3a3190', '#3a3190']); this.antes = true; };
+  MATERIAL.esterilla.prototype.colocar = function () {};
+  MATERIAL.esterilla.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, B = giroY(o.rumbo || 0);
+    this.c.pon(cam, [o.en ? o.en[0] : 0, 0.8, o.en ? o.en[1] : 0], B, o.med || [62, 1.6, 180], lista, -400);
+  };
+  /* ── la pared: un paño vertical, que no tape a Jérôme ── */
+  MATERIAL.pared = function (esc, o) {
+    this.o = o || {}; this.g = crear('g');
+    this.f = crear('path', { fill: '#e9e2d2', stroke: '#cfc5ad', 'stroke-width': 1, 'stroke-linejoin': 'round' }, this.g);
+    this.z = crear('path', { fill: '#b9ae93' }, this.g);
+    this.l = crear('path', { fill: 'none', stroke: '#d8cfba', 'stroke-width': 1 }, this.g);
+    this.antes = true;
+  };
+  MATERIAL.pared.prototype.colocar = function () {};
+  MATERIAL.pared.prototype.extremos = function () { var o = this.o, z = o.z == null ? 40 : o.z; return [[(o.x || 0) - 40, 0, z], [(o.x || 0) + 40, 150, z]]; };
+  MATERIAL.pared.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, z = o.z == null ? 40 : o.z, w = o.ancho || 150, h = o.alto || 215, n = o.normal || [0, 0, -1], gr = 8;
+    /* la pared está en el plano z; se ve su cara (hacia Jérôme) y su canto */
+    var t = unidad(cruz([0, 1, 0], n)), c = [o.x || 0, 0, z], q = function (a, y, d) { return cam.p(mas(c, mas(por(t, a), mas([0, y, 0], por(n, -d))))); };
+    var A = q(-w / 2, 0, 0), B2 = q(w / 2, 0, 0), C2 = q(w / 2, h, 0), D2 = q(-w / 2, h, 0);
+    pon(this.f, 'd', 'M' + n1(A[0]) + ',' + n1(A[1]) + ' L' + n1(B2[0]) + ',' + n1(B2[1]) + ' L' + n1(C2[0]) + ',' + n1(C2[1]) + ' L' + n1(D2[0]) + ',' + n1(D2[1]) + 'z');
+    /* el canto del lado que se ve */
+    var s = punto(t, cam.k) > 0 ? 1 : -1, E1 = q(s * w / 2, 0, 0), E2 = q(s * w / 2, h, 0), E3 = q(s * w / 2, h, gr), E4 = q(s * w / 2, 0, gr);
+    pon(this.z, 'd', 'M' + n1(E1[0]) + ',' + n1(E1[1]) + ' L' + n1(E2[0]) + ',' + n1(E2[1]) + ' L' + n1(E3[0]) + ',' + n1(E3[1]) + ' L' + n1(E4[0]) + ',' + n1(E4[1]) + 'z');
+    var l = '';
+    for (var y = 43; y < h; y += 43) { var a1 = q(-w / 2, y, 0), a2 = q(w / 2, y, 0); l += 'M' + n1(a1[0]) + ',' + n1(a1[1]) + ' L' + n1(a2[0]) + ',' + n1(a2[1]); }
+    pon(this.l, 'd', l);
+    /* si la cámara ve la cara de la pared, va detrás de todo; si la ve por detrás, no se pinta la cara (solo el canto) */
+    var ve = punto(n, cam.k);
+    this.f.style.display = ve > 0.05 ? '' : 'none'; this.l.style.display = ve > 0.05 ? '' : 'none';
+    lista.push({ z: -500, el: this.g });
+  };
+  /* ── la polea: la columna, la polea a su altura y el cable hasta el agarre. o: { en: [x, z], alto, a: 'manos' | 'i' | 'd' | 'tobillo-i', agarre: 'barra' | 'cuerda' | 'asa' } ── */
+  MATERIAL.polea = function (esc, o) {
+    o = o || {};
+    this.o = o; this.col = new Caja(['#566072', M_COL.hierro, M_COL.hierroS, M_COL.hierroS]); this.base = new Caja(['#566072', M_COL.hierro, M_COL.hierroS, M_COL.hierroS]);
+    this.rueda = new Disco(M_COL.hierroL, M_COL.hierroS, M_COL.cromo); this.cable = trazo('', '#11151c', 1.2);
+    this.pesas = new Caja(['#7b8696', '#5b6575', '#434c5a', '#434c5a']); this.guia = new Cilindro(M_COL.cromo);
+    this.asa = new Cilindro(M_COL.cromo); this.cuerdas = [new Cilindro(M_COL.cuerda, 'rgba(255,255,255,.4)'), new Cilindro(M_COL.cuerda, 'rgba(255,255,255,.4)')];
+    this.gc = crear('g'); this.gc.appendChild(this.cable);
+    this.largo0 = null; this.antes = false;
+  };
+  MATERIAL.polea.prototype.colocar = function () {};
+  MATERIAL.polea.prototype.punto = function () { var o = this.o; return [o.en ? o.en[0] : 0, o.alto == null ? 200 : o.alto, (o.en ? o.en[1] : 90) - 9]; };
+  MATERIAL.polea.prototype.extremos = function () { var o = this.o, x = o.en ? o.en[0] : 0, z = o.en ? o.en[1] : 90, H = o.torre || 218; return [[x - 5, H, z], [x + 5, H, z], [x - 27, 0, z - 29], [x + 27, 0, z + 17]]; };
+  MATERIAL.polea.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, x = o.en ? o.en[0] : 0, z = o.en ? o.en[1] : 90, H = o.torre || 218, pp = this.punto(), sg = o.sesgo == null ? -8 : o.sesgo;
+    this.col.pon(cam, [x, H / 2, z], BASE0, [9, H, 9], lista, sg, 'fondo');
+    this.base.pon(cam, [x, 3, z - 6], BASE0, [54, 6, 46], lista, sg - 20, 'fondo');
+    this.rueda.pon(cam, [x, pp[1], z - 8], [1, 0, 0], 5.2, 2.2, lista, sg + 1);
+    /* a qué va el cable */
+    var a = o.a || 'manos', fin, yo = this;
+    if (a === 'manos') fin = mezcla(E.i.agarre, E.d.agarre, 0.5);
+    else if (a === 'i' || a === 'd') fin = E[a].agarre;
+    else if (a === 'tobillo-i' || a === 'tobillo-d') fin = E[a.slice(-1)].tob;
+    else if (a === 'pelvis') fin = mas(E.pel, aplicar(E.Bp, o.punto || [0, 0, 0]));
+    var ag = o.agarre || (a === 'manos' ? 'barra' : 'asa');
+    if (ag === 'cuerda' && a === 'manos') {
+      var nudo = mas(fin, por(unidad(menos(pp, fin)), 9));
+      this.cuerdas[0].pon(cam, nudo, E.i.agarre, 1.3, lista, 1.4); this.cuerdas[1].pon(cam, nudo, E.d.agarre, 1.3, lista, 1.4);
+      this.cuerdas[0].g.style.display = ''; this.cuerdas[1].g.style.display = ''; this.asa.g.style.display = 'none';
+      fin = nudo;
+    } else if (ag === 'barra' && a === 'manos') {
+      var e = unidad(menos(E.i.agarre, E.d.agarre), [1, 0, 0]), medio = largo(menos(E.i.agarre, E.d.agarre)) / 2 + 9;
+      this.asa.pon(cam, mas(fin, por(e, -medio)), mas(fin, por(e, medio)), 1.4, lista, 2);
+      this.asa.g.style.display = ''; this.cuerdas[0].g.style.display = 'none'; this.cuerdas[1].g.style.display = 'none';
+    } else {
+      if (a === 'i' || a === 'd') { var ej = E[a].mano.eje; this.asa.pon(cam, mas(fin, por(ej, -6)), mas(fin, por(ej, 6)), 1.3, lista, 2); this.asa.g.style.display = ''; }
+      else this.asa.g.style.display = 'none';
+      this.cuerdas[0].g.style.display = 'none'; this.cuerdas[1].g.style.display = 'none';
+    }
+    var p1 = cam.p(pp), p2 = cam.p(fin);
+    ponLinea(this.cable, p1, p2, Math.max(1, 0.7 * cam.esc));
+    lista.push({ z: (p1[2] + p2[2]) / 2 + 1, el: this.gc });
+    /* las pesas suben lo que se alarga el cable */
+    var lar = largo(menos(pp, fin));
+    if (this.largo0 == null || o.reinicia) this.largo0 = o.largo0 == null ? lar : o.largo0;
+    var sube = entre(lar - this.largo0, 0, 120);
+    this.pesas.pon(cam, [x, 20 + sube + 16, z + 9], BASE0, [22, 32, 9], lista, sg - 3, 'fondo');
+    this.guia.pon(cam, [x, 6, z + 9], [x, H - 6, z + 9], 0.7, lista, sg - 4);
+  };
+  /* ── la banda elástica: de un punto a la mano (o de un pie a su mano, o de una mano a la otra). o: { de: 'pies' | [x,y,z] | 'i', a: 'manos' | 'i' | 'd' } ── */
+  MATERIAL.banda = function (esc, o) {
+    this.o = o || {}; this.g = crear('g');
+    this.t = [0, 1, 2, 3].map(function () { var p = trazo('', (o && o.color) || M_COL.banda, 2); this.g.appendChild(p); return p; }, this);
+    this.antes = false;
+  };
+  MATERIAL.banda.prototype.colocar = function () {};
+  MATERIAL.banda.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, tramos = [], zs = 0, yo = this;
+    var pie = function (k) { return mas(E[k].suela, por(E[k].punta, 6)); };
+    if (o.de === 'pies') { ['i', 'd'].forEach(function (k) { if (!o.a || o.a === 'manos' || o.a === k) tramos.push([pie(o.unPie ? o.unPie : k), E[k].agarre]); }); if (!o.unPie) tramos.push([pie('i'), pie('d')]); }
+    else if (o.de === 'manos') tramos.push([E.i.agarre, E.d.agarre]);
+    else if (o.de === 'rodillas') { var r1 = mas(E.i.rod, por(E.i.qu, -7)), r2 = mas(E.d.rod, por(E.d.qu, -7)); tramos.push([mas(r1, [0, 0, 6]), mas(r2, [0, 0, 6])], [mas(r1, [0, 0, -6]), mas(r2, [0, 0, -6])]); }
+    else if (o.de === 'tobillos') tramos.push([mas(E.i.tob, [0, 3, 0]), mas(E.d.tob, [0, 3, 0])]);
+    else { var ks = o.a === 'i' || o.a === 'd' ? [o.a] : ['i', 'd']; ks.forEach(function (k) { tramos.push([o.de, E[k].agarre]); }); }
+    this.t.forEach(function (p, i) {
+      if (!tramos[i]) { p.style.display = 'none'; return; }
+      p.style.display = '';
+      var a = cam.p(tramos[i][0]), b = cam.p(tramos[i][1]), l = largo(menos(tramos[i][0], tramos[i][1]));
+      /* cuanto más se estira, más fina */
+      ponLinea(p, a, b, entre(4.2 - l / 45, 1.6, 3.6) * cam.esc * 0.55);
+      zs = Math.max(zs, (a[2] + b[2]) / 2);
+    });
+    lista.push({ z: zs + 2, el: this.g });
+  };
+  /* ── el fitball ── */
+  MATERIAL.fitball = function (esc, o) { this.o = o || {}; this.e = new Esfera(esc.defs, 'tgm' + (++N_MAT), '#5B4FCF', '#9B8CFF', '#3a3190'); this.antes = true; };
+  MATERIAL.fitball.prototype.colocar = function () {};
+  MATERIAL.fitball.prototype.extremos = function () { var o = this.o, R = o.radio || 30, en = o.en || [0, 30]; return [[en[0] - R, 0, en[1]], [en[0] + R, 2 * R, en[1]], [en[0], R, en[1] + R], [en[0], R, en[1] - R]]; };
+  MATERIAL.fitball.prototype.pintar = function (E, cam, lista, ctx) {
+    var o = this.o, R = o.radio || 30, en = (ctx && ctx.fitball) || o.en || [0, 30];
+    this.e.pon(cam, [en[0], R, en[1]], R, lista, o.sesgo == null ? -10 : o.sesgo);
+  };
+  /* ── el disco y el balón: entre las manos ── */
+  MATERIAL.disco = function (esc, o) { this.o = o || {}; this.d = new Disco(M_COL.goma, M_COL.hierroS, M_COL.cromo); };
+  MATERIAL.disco.prototype.colocar = function () {};
+  MATERIAL.disco.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, c = mezcla(E.i.agarre, E.d.agarre, 0.5), e = o.eje ? aplicar(E.Bt, o.eje) : unidad(cruz(menos(E.i.agarre, E.d.agarre), E.i.mano.dir), E.Bt[2]);
+    this.d.pon(cam, c, e, o.radio || 15, 3.4, lista, o.sesgo == null ? -1.2 : o.sesgo);
+  };
+  MATERIAL.balon_medicinal = function (esc, o) { this.o = o || {}; this.e = new Esfera(esc.defs, 'tgm' + (++N_MAT), '#d9682e', '#f39a5b', '#8f3d14'); };
+  MATERIAL.balon_medicinal.prototype.colocar = function () {};
+  MATERIAL.balon_medicinal.prototype.pintar = function (E, cam, lista, ctx) {
+    var c = (ctx && ctx.balon) || mezcla(E.i.agarre, E.d.agarre, 0.5);
+    this.e.pon(cam, c, this.o.radio || 11, lista, 1.2);
+  };
