@@ -76,6 +76,14 @@
  * la pantalla y el tour se va con ella, el boton es uno y se ve tambien en
  * «Aspecto» (desde ahi el tour vuelve a «Músculos»), el tema Noche, y sin el
  * modulo de la pantalla la visita lo dice.
+ * Y con Samsung Internet (11-11-2026: su modo oscuro le ponia a Jérôme la cara
+ * casi negra, y alli se pinta en un canvas a partir de su SVG): la pregunta
+ * del principio con canvas, igual que el SVG, y sin cambiar con el modo oscuro
+ * forzado de Chromium (con otro navegador, nada de esto); un catalogo con un
+ * Jérôme suelto (cada escena, gesto de la cara, atuendo, postura y boca), el
+ * canvas frente al SVG en cada uno; que el canvas sigue solo los fundidos de
+ * CSS; y el tour de la app entero con ese navegador, con el canvas igual que
+ * el SVG en cada paso y sin que se salga nada por los lados.
  * Y al final, entre idiomas: ningun texto puede ser igual que el castellano
  * (en los otros nueve) ni que el ingles (en los otros ocho). tx() cae al
  * ingles si a una fila le falta el idioma: sin esta comparacion, una fila
@@ -270,8 +278,8 @@ const textoPaso = d => [d.titulo, d.cuerpo, d.chiste, d.nuevo].filter(Boolean).c
 
 async function entra(b, L, opc) {
   opc = opc || {};
-  const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', reducedMotion: opc.movimiento ? 'no-preference' : 'reduce',
-                                   locale: 'es-ES', timezoneId: 'Atlantic/Canary' });
+  const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', reducedMotion: opc.movimiento ? 'no-preference' : 'reduce',
+                                                 locale: 'es-ES', timezoneId: 'Atlantic/Canary' }, opc.ua ? { userAgent: opc.ua } : {}));
   if (opc.antes) await ctx.addInitScript(opc.antes, opc.dato);
   await ctx.addInitScript(CONSENT);
   if (opc.sinModulo) await ctx.route('**/modulos/guia.js', r => r.abort());
@@ -959,6 +967,227 @@ async function aparte(b) {
   return fallos;
 }
 
+/* Samsung Internet (11-11-2026). Con su modo oscuro repinta los SVG a su manera y no hace caso de color-scheme: a
+   Jérôme le ponía la cara casi negra. Lo único que deja tal cual es un canvas (probado en su móvil, Samsung Internet
+   30), así que allí Jérôme se pinta en un canvas a partir de su propio SVG. Aquí, con el user-agent de ese móvil:
+   1. la pregunta del principio: hay canvas y el SVG queda invisible; con el reloj de la página parado, el canvas es
+      el mismo dibujo que el SVG (píxel a píxel, salvo el borde) y la cara, del color de la piel; con el modo oscuro
+      forzado de Chromium y sin la etiqueta color-scheme (lo que hace Samsung), el canvas no cambia; y el canvas no
+      hace que nada se salga por los lados. Con otro navegador, ni canvas ni SVG tocado;
+   2. el catálogo: un Jérôme suelto en cada escena, cada gesto de la cara (con su efecto), cada atuendo, cada postura
+      y cada boca; con sus animaciones CSS paradas en el mismo instante, el canvas frente al SVG;
+   3. solo: tras un cambio de escena, que es un fundido CSS sin nada que mueva el SVG, el canvas acaba igual que el
+      SVG sin que nadie le pida pintar;
+   4. el tour de la app entero con ese navegador (sin movimiento, como los de cada idioma): los controles de cada
+      paso, y en cada uno, sin pedirle que pinte, el canvas igual que el SVG y nada que se salga por los lados. */
+const UA_SAMSUNG = 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/30.0 Chrome/143.0.0.0 Mobile Safari/537.36';
+/* un Jérôme con canvas en dos capturas de la misma zona, una con el canvas y otra con el SVG, comparadas en la propia
+   pagina: la diferencia media (0-255), el % de pixeles muy distintos (mas de 64) y el color de un punto en cada una.
+   El canvas va en su propia capa y el navegador lo pone hasta un pixel de pantalla mas alla de donde pinta el SVG
+   (medido el 11-11-2026: con ese pixel corregido, la diferencia media baja de 2-4 a 0,3-2): se compara con el canvas
+   movido hasta dos pixeles de la captura hacia cada lado y vale el mejor. Un error de dibujo (un color, una pieza
+   que falta o sobra) no se arregla moviendo dos pixeles */
+async function lienzoFrenteSvg(p, sel, clip, punto) {
+  const foto = async () => (await p.screenshot({ clip })).toString('base64');
+  const ver = svg => p.evaluate(([s, v]) => {
+    const j = document.querySelector(s);
+    j.querySelector('svg.tgg-svg').style.opacity = v ? '1' : '0';
+    j.querySelector('canvas.tgg-lienzo').style.visibility = v ? 'hidden' : '';
+  }, [sel, svg]);
+  const conLienzo = await foto();
+  await ver(true);
+  const conSvg = await foto();
+  await ver(false);
+  return p.evaluate(async ([a, s, pt]) => {
+    const px = async u => { const im = new Image(); im.src = 'data:image/png;base64,' + u; await im.decode();
+      const c = document.createElement('canvas'); c.width = im.width; c.height = im.height; const g = c.getContext('2d'); g.drawImage(im, 0, 0); return g.getImageData(0, 0, im.width, im.height); };
+    const A = await px(a), B = await px(s), W = A.width, H = A.height, M = 2;
+    let mejor = null;
+    for (let dy = -M; dy <= M; dy++) for (let dx = -M; dx <= M; dx++) {
+      let suma = 0, mucho = 0, n = 0;
+      for (let y = M; y < H - M; y++) {
+        for (let x = M, ia = ((y + dy) * W + M + dx) * 4, ib = (y * W + M) * 4; x < W - M; x++, ia += 4, ib += 4) {
+          const m = Math.max(Math.abs(A.data[ia] - B.data[ib]), Math.abs(A.data[ia + 1] - B.data[ib + 1]), Math.abs(A.data[ia + 2] - B.data[ib + 2]));
+          suma += m; if (m > 64) mucho++; n++;
+        }
+      }
+      if (!mejor || suma / n < mejor.media) mejor = { media: suma / n, mucho: 100 * mucho / n, dx, dy };
+    }
+    const color = (D, X, Y) => { const k = (Math.round(Y) * D.width + Math.round(X)) * 4; return [D.data[k], D.data[k + 1], D.data[k + 2]]; };
+    return Object.assign(mejor, { puntoLienzo: pt && color(A, pt[0], pt[1]), puntoSvg: pt && color(B, pt[0], pt[1]) });
+  }, [conLienzo, conSvg, punto || null]);
+}
+const IGUAL = d => d.media < 3 && d.mucho < 1;
+const MEDIDAS = [];                                // [donde, diferencia media, % muy distintos], para el resumen
+const MIDE = (donde, d) => { MEDIDAS.push([donde, d.media, d.mucho]); return d; };
+const CIFRAS = d => 'diferencia media ' + d.media.toFixed(2) + ', ' + d.mucho.toFixed(2) + ' % de pixeles muy distintos, con el canvas movido ' + d.dx + ',' + d.dy + ' px';
+/* lo que se sale por culpa del canvas (sobresale un 25 % del dibujo por cada lado): la pagina y cada caja con su
+   propio scroll alrededor de Jérôme, medidas con el canvas y sin el. Las cajas sin scroll no cuentan: lo que
+   sobresale de ellas no mueve nada */
+const DESBORDE = () => {
+  const de = document.documentElement, cvs = [...document.querySelectorAll('canvas.tgg-lienzo')];
+  const rueda = e => { const s = getComputedStyle(e); return /auto|scroll/.test(s.overflowX + ' ' + s.overflowY); };
+  const mide = () => {
+    const m = { 'la pagina, a lo ancho': de.scrollWidth - innerWidth, 'la pagina, a lo alto': de.scrollHeight - innerHeight };
+    cvs.forEach((cv, n) => { for (let e = cv.parentElement, k = 0; e && e !== de; e = e.parentElement, k++) {
+      if (!rueda(e)) continue;
+      const nom = (e.id ? '#' + e.id : e.tagName.toLowerCase() + '.' + [...e.classList].join('.'));
+      m[nom + ' (' + n + '.' + k + '), a lo ancho'] = e.scrollWidth - e.clientWidth;
+      m[nom + ' (' + n + '.' + k + '), a lo alto'] = e.scrollHeight - e.clientHeight; } });
+    return m;
+  };
+  const con = mide();
+  cvs.forEach(cv => { cv.style.display = 'none'; });
+  const sin = mide();
+  cvs.forEach(cv => { cv.style.display = ''; });
+  return Object.keys(con).filter(k => con[k] > Math.max(0, sin[k]) + 1).map(k => k + ': ' + con[k] + ' px de mas');
+};
+
+/* 2 y 3: un Jérôme suelto (TG_GUIA.personaje) encima de todo, sobre un fondo liso */
+const ZONA = { x: 0, y: 0, width: 330, height: 380 };
+async function catalogo(p) {
+  const fallos = [], guia = fs.readFileSync(path.join(RAIZ, 'modulos/guia.js'), 'utf8');
+  const emos = [...((guia.match(/var EMO = \{([\s\S]*?)\n  \};/) || [, ''])[1]).matchAll(/^ {4}(\w+): *\{/gm)].map(m => m[1]);
+  if (emos.length < 12) fallos.push('catalogo: no se leen los gestos de la cara de modulos/guia.js (' + emos.length + ')');
+  const estados = [].concat(
+    ['noche', 'dia', 'tarde', 'cielo', 'rojo', 'fiesta'].map(v => ['escena', v]),
+    emos.map(v => ['cara', v]),
+    ['sol', 'fiesta', 'frontal', 'frontal-rojo', 'gorra', 'deporte'].map(v => ['atuendo', v]),
+    ['saludar', 'presentar', 'pulgar', 'celebrar', 'senalar abajo a la izquierda', 'senalar a la derecha', 'mostrar arriba', 'mirar'].map(v => ['postura', v]),
+    ['a', 'e', 'o', 'm', 's'].map(v => ['letra', v]));
+  const hay = await p.evaluate(() => {
+    if (!window.TG_GUIA || typeof TG_GUIA.personaje !== 'function') return false;
+    const d = document.createElement('div'); d.id = 'prueba-jero';
+    d.style.cssText = 'position:fixed;left:0;top:0;width:330px;height:380px;z-index:2147483647;background:#0b0f19;';
+    const j = TG_GUIA.personaje({ escena: 'noche' });
+    j.el.style.cssText = 'position:absolute;left:65px;top:72px;width:200px;height:231.25px;';
+    d.appendChild(j.el); document.body.appendChild(d); window.__jeroPrueba = j;
+    return !!j.el.tggLienzo;
+  });
+  if (!hay) { fallos.push('catalogo: el Jérôme suelto no lleva canvas'); return fallos; }
+  const SEL = '#prueba-jero .tgg-jero';
+  const poner = e => p.evaluate(([que, v]) => {
+    const j = window.__jeroPrueba;
+    j.escena('noche'); j.vestir(''); j.emocion('contento'); j.callar(); j.reposo();
+    if (que === 'escena') j.escena(v);
+    else if (que === 'cara') j.emocion(v);
+    else if (que === 'atuendo') j.vestir(v);
+    else if (que === 'letra') j.letra(v);
+    else if (v === 'saludar') j.saludar(2);
+    else if (v === 'presentar') j.presentar();
+    else if (v === 'pulgar') j.pulgar();
+    else if (v === 'celebrar') j.celebrar();
+    else if (v === 'senalar abajo a la izquierda') j.senalar(8, 370);
+    else if (v === 'senalar a la derecha') j.senalar(325, 150);
+    else if (v === 'mostrar arriba') j.mostrar(165, 4);
+    else if (v === 'mirar') j.mirar(320, 20);
+  }, e);
+  for (const e of estados) {
+    await poner(e);
+    await p.waitForTimeout(700);                    // los fundidos de escena duran 0,55 s
+    await p.evaluate(() => { const j = window.__jeroPrueba; j.svg.getAnimations({ subtree: true }).forEach(a => a.pause()); j.el.tggLienzo.dibujar(); });
+    const d = MIDE('catalogo ' + e.join(' '), await lienzoFrenteSvg(p, SEL, ZONA));
+    await p.evaluate(() => window.__jeroPrueba.svg.getAnimations({ subtree: true }).forEach(a => a.play()));
+    if (!IGUAL(d)) fallos.push('catalogo, ' + e.join(' «') + '»: el canvas no es el mismo dibujo que el SVG (' + CIFRAS(d) + ')');
+  }
+  /* 3 · solo: de la noche al dia es un fundido CSS; con Jérôme quieto (sin bucle), nada cambia en el SVG */
+  await poner(['escena', 'noche']);
+  await p.waitForTimeout(900);
+  await p.evaluate(() => window.__jeroPrueba.escena('dia'));
+  await p.waitForTimeout(1300);
+  const solo = MIDE('solo, de la noche al dia', await lienzoFrenteSvg(p, SEL, ZONA));
+  if (!IGUAL(solo)) fallos.push('solo: tras el fundido de la noche al dia, el canvas no acaba igual que el SVG (' + CIFRAS(solo) + ')');
+  await p.evaluate(() => { window.__jeroPrueba.quitar(); document.getElementById('prueba-jero').remove(); });
+  return fallos;
+}
+
+/* 4 · el tour de la app entero con el navegador de Samsung */
+async function tourSamsung(b) {
+  const fallos = [];
+  const { ctx, p, err } = await entra(b, 'es', { ua: UA_SAMSUNG });
+  try {
+    await p.waitForSelector('.v19t-prompt', { timeout: 8000 });
+    if (!(await pulsa(p, '.v19t-prompt .v19t-next'))) { fallos.push('tour con Samsung: no se puede abrir'); return fallos; }
+    await p.waitForSelector('#v19-tour.open', { timeout: 6000 });
+    const SEL = '#v19-tour .tgg-unidad > .tgg-jero';
+    const { S } = await recorre(p, 'es', 'app con Samsung Internet', '390×844', fallos, { enPaso: async (d, i) => {
+      const donde = 'tour con Samsung, paso ' + (i + 1) + ' (' + d.estado.paso + ')';
+      await p.waitForTimeout(150);                  // lo que cambio al colocarse llega al canvas en un cuadro o dos
+      const r = await p.evaluate(s => {
+        const j = document.querySelector(s), cv = j && j.querySelector('canvas.tgg-lienzo'), svg = j && j.querySelector('svg.tgg-svg');
+        if (!cv) return null;
+        const q = cv.getBoundingClientRect();
+        return { op: getComputedStyle(svg).opacity, x: q.x, y: q.y, w: q.width, h: q.height };
+      }, SEL);
+      if (!r) { fallos.push(donde + ': Jérôme sin canvas'); return; }
+      if (r.op !== '0') fallos.push(donde + ': el SVG se ve (opacidad ' + r.op + ')');
+      const des = await p.evaluate(DESBORDE);
+      if (des.length) fallos.push(donde + ': por el canvas se sale algo: ' + des.join('; '));
+      const x0 = Math.max(0, r.x), y0 = Math.max(0, r.y), x1 = Math.min(d.vw, r.x + r.w), y1 = Math.min(d.vh, r.y + r.h);
+      if (!(x1 - x0 > 10 && y1 - y0 > 10)) { fallos.push(donde + ': el canvas no esta en pantalla'); return; }
+      const c = MIDE('tour, ' + d.estado.paso, await lienzoFrenteSvg(p, SEL, { x: x0, y: y0, width: x1 - x0, height: y1 - y0 }));
+      if (!IGUAL(c)) fallos.push(donde + ': el canvas no es el mismo dibujo que el SVG (' + CIFRAS(c) + ')');
+    } });
+    if (!(S > 5)) fallos.push('tour con Samsung: el tour tiene ' + S + ' pasos');
+    if (err.length) fallos.push('tour con Samsung: errores de pagina: ' + err.slice(0, 3).join(' | '));
+  } catch (e) { fallos.push('tour con Samsung: se paro: ' + String(e && e.message || e).split('\n')[0]); }
+  finally { await ctx.close(); }
+  return fallos;
+}
+
+async function samsung(b) {
+  const fallos = [], caras = {};
+  const navs = [['samsung', b], ['otro', b], ['forzado', await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--blink-settings=forceDarkModeEnabled=true'] })]];
+  try {
+    for (const [modo, nav] of navs) {
+      const ctx = await nav.newContext(Object.assign({ viewport: { width: 360, height: 780 }, deviceScaleFactor: 2, serviceWorkers: 'block', locale: 'es-ES', timezoneId: 'Atlantic/Canary' },
+                                                     modo === 'otro' ? {} : { userAgent: UA_SAMSUNG }));
+      if (modo === 'forzado') await ctx.route(/\/index\.html/, async r => { const rs = await r.fetch(); r.fulfill({ response: rs, body: (await rs.text()).replace(/<meta name="color-scheme" content="dark"\/>/, '') }); });
+      await ctx.addInitScript(CONSENT);
+      const p = await ctx.newPage();
+      const err = []; p.on('pageerror', e => err.push(e.message));
+      await p.clock.install({ time: new Date('2026-11-11T14:01:00Z') });
+      await p.goto(URL_APP, { waitUntil: 'networkidle' });
+      await p.click('.v19-w-lang[data-lang="es"]'); await p.click('#v19-welcome-start');
+      const sale = await p.waitForSelector('.v19t-prompt .tgg-jero', { timeout: 8000 }).then(() => true, () => false);
+      if (!sale) { fallos.push(modo + ': no sale la pregunta con Jérôme'); await ctx.close(); continue; }
+      await p.waitForTimeout(1200);
+      await p.clock.pauseAt(await p.evaluate(() => Date.now() + 200));
+      const r = await p.evaluate(() => {
+        const j = document.querySelector('.v19t-prompt .tgg-jero'), svg = j.querySelector('svg.tgg-svg'), cv = j.querySelector('canvas.tgg-lienzo');
+        svg.getAnimations({ subtree: true }).forEach(a => a.pause());     // las estrellas, el halo: quietos en las dos capturas
+        if (j.tggLienzo) j.tggLienzo.dibujar();
+        const b = j.getBoundingClientRect(), c = j.querySelector('.tgg-cara').getBoundingClientRect();
+        return { samsung: !!window.TG_GUIA.samsung, lienzo: !!cv, op: getComputedStyle(svg).opacity, caja: [b.x, b.y, b.width, b.height], cara: [c.x + c.width / 2, c.y + c.height * 0.62] };
+      });
+      if (modo === 'otro') {
+        if (r.samsung || r.lienzo || r.op !== '1') fallos.push('otro navegador: no tiene que haber canvas ni el SVG invisible (' + JSON.stringify(r) + ')');
+      } else if (!r.samsung || !r.lienzo || r.op !== '0') fallos.push(modo + ': falta el canvas o el SVG no esta invisible (' + JSON.stringify(r) + ')');
+      else {
+        const [x, y, w, h] = r.caja, clip = { x: Math.max(0, x - 0.1 * w), y: Math.max(0, y - 0.1 * h), width: Math.min(360 - Math.max(0, x - 0.1 * w), 1.2 * w), height: 1.2 * h };
+        const d = await lienzoFrenteSvg(p, '.v19t-prompt .tgg-jero', clip, [(r.cara[0] - clip.x) * 2, (r.cara[1] - clip.y) * 2]);
+        if (modo === 'samsung') MIDE('la pregunta', d);
+        caras[modo] = d.puntoLienzo;
+        if (modo === 'samsung' && !IGUAL(d)) fallos.push('samsung: el canvas no es el mismo dibujo que el SVG (' + CIFRAS(d) + ')');
+        if (modo === 'samsung' && Math.max(...d.puntoLienzo.map((v, i) => Math.abs(v - d.puntoSvg[i]))) > 12) fallos.push('samsung: la cara del canvas (' + d.puntoLienzo + ') no es la del SVG (' + d.puntoSvg + ')');
+        if (modo === 'forzado' && caras.samsung && Math.max(...d.puntoLienzo.map((v, i) => Math.abs(v - caras.samsung[i]))) > 12) fallos.push('modo oscuro forzado: la cara del canvas cambia (' + d.puntoLienzo + ' frente a ' + caras.samsung + ')');
+        if (modo === 'forzado' && Math.max(...d.puntoSvg.map((v, i) => Math.abs(v - (caras.samsung || d.puntoSvg)[i]))) <= 12) fallos.push('modo oscuro forzado: la prueba no vale, el SVG tampoco cambia (' + d.puntoSvg + ')');
+        const des = await p.evaluate(DESBORDE);
+        if (des.length) fallos.push(modo + ': por el canvas se sale algo en la pregunta: ' + des.join('; '));
+        if (modo === 'samsung') {
+          await p.evaluate(() => document.querySelector('.v19t-prompt .tgg-jero svg.tgg-svg').getAnimations({ subtree: true }).forEach(a => a.play()));
+          await p.clock.resume();
+          fallos.push(...await catalogo(p));
+        }
+      }
+      if (err.length) fallos.push(modo + ': errores de pagina: ' + err.slice(0, 2).join(' | '));
+      await ctx.close();
+    }
+  } finally { await navs[2][1].close(); }
+  fallos.push(...await tourSamsung(b));
+  return fallos;
+}
+
 (async () => {
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const P = (k, v) => console.log('  ' + String(k).padEnd(52, '.') + ' ' + v);
@@ -984,6 +1213,13 @@ async function aparte(b) {
   P('con movimiento (y con el movil lento), con voz (es, pl, zht), con el movil tumbado, los globitos, «Su cuerpo» por dentro y sin los modulos', ap.length ? ap.length + ' fallo(s)' : 'bien');
   ap.slice(0, 14).forEach(f => console.log('       ' + f));
   total += ap.length;
+  let sm = [];
+  try { sm = await samsung(b); } catch (e) { sm = ['la prueba de Samsung Internet no pudo seguir: ' + String(e && e.message || e).split('\n')[0]]; }
+  const peor = MEDIDAS.slice().sort((x, y) => y[1] - x[1])[0];
+  P('Samsung Internet: Jérôme en canvas, igual que su SVG, y con el oscuro forzado tambien', (sm.length ? sm.length + ' fallo(s)' : 'bien') +
+    (peor ? ' (' + MEDIDAS.length + ' comparaciones; la mayor diferencia, ' + peor[1].toFixed(2) + ' de media y ' + peor[2].toFixed(2) + ' % muy distintos, en ' + peor[0] + ')' : ''));
+  sm.slice(0, 8).forEach(f => console.log('       ' + f));
+  total += sm.length;
   await b.close();
   // entre idiomas: nada igual al castellano ni (salvo el propio) al ingles
   const iguales = [];
