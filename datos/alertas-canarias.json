@@ -2,8 +2,13 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-11T07:16:01Z",
+ "consultado": "2026-11-11T11:28:59Z",
  "alertas": [
+  {
+   "t": "2026-11-11T11:15:10Z",
+   "titulo": "El Gobierno de Canarias actualiza la situación permaneciendo La Palma en Alerta por lluvias",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-permaneciendo-la-palma-en-alerta-por-lluvias/"
+  },
   {
    "t": "2026-11-10T15:24:30Z",
    "titulo": "El Gobierno de Canarias declara la prealerta por riesgo de inundaciones en el archipiélago",
@@ -58,11 +63,6 @@
    "t": "2026-11-08T11:35:51Z",
    "titulo": "El Gobierno de Canarias actualiza la situación pasando a prealerta por fenómenos costeros en el archipiélago",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-pasando-a-prealerta-por-fenomenos-costeros-en-el-archipielago/"
-  },
-  {
-   "t": "2026-11-06T16:53:20Z",
-   "titulo": "El Gobierno de Canarias declara la prealerta por riesgo de inundaciones en el archipiélago",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-prealerta-por-riesgo-de-inundaciones-en-en-el-archipielago/"
   }
  ],
  "descartados": 0
