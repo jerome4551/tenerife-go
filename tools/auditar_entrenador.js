@@ -220,12 +220,16 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   const opc = { args: ['--no-sandbox', '--disable-gpu'] };
   if (fs.existsSync('/usr/bin/google-chrome')) opc.executablePath = '/usr/bin/google-chrome';
   const nav = await chromium.launch(opc);
+  /* solo el sitio de prueba: lo de fuera (el tiempo, Supabase, las fuentes de letra…) se corta, como en las demás
+     auditorías; así la prueba no manda nada a nadie y no depende de la red (12 de noviembre de 2026) */
+  const soloLocal = ctx => ctx.route('**/*', r => { const u = r.request().url(); return u.startsWith(SITIO) || /^(data|blob):/.test(u) ? r.continue() : r.abort(); });
   const errores = [];
   const vigila = pg => { pg.on('pageerror', e => errores.push(String(e).slice(0, 200))); pg.on('console', m => { if (m.type() === 'error' && !/ERR_|Failed to load resource/.test(m.text())) errores.push('consola: ' + m.text().slice(0, 200)); }); };
 
   console.log('\n════ 2. el vídeo de cada ejercicio, entero (Chromium, 320 de ancho) ════');
   {
     const ctx = await nav.newContext({ viewport: { width: 320, height: 640 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
+    await soloLocal(ctx);
     const pg = await ctx.newPage(); vigila(pg);
     await pg.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
     const total = await pg.evaluate(l => window.preparar(l), LANGS);
@@ -288,6 +292,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     ok(!/tgh-perfil|tgh-espalda|tgh-frente/.test(mod), 'ya no hay tres dibujos de cabeza (de frente, de perfil y de espaldas) entre los que saltar');
     /* con «reducir movimiento»: se monta y se pasa igual */
     const ctx2 = await nav.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
+    await soloLocal(ctx2);
     const pg2 = await ctx2.newPage(); vigila(pg2);
     await pg2.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
     await pg2.evaluate(l => window.preparar(l), ['es']);
@@ -299,6 +304,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   console.log('\n════ 3. en la app: la ficha de un ejercicio ════');
   {
     const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
+    await soloLocal(ctx);
     const pg = await ctx.newPage(); vigila(pg);
     const Q = (f, a) => pg.evaluate(f, a), espera = ms => pg.waitForTimeout(ms);
     await pg.goto(SITIO + 'index.html', { waitUntil: 'domcontentloaded' });

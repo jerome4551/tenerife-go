@@ -53,7 +53,8 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # octubre de 2026).
 # Y modulos/isla3d.js, «La isla en 3D» (31 de octubre de 2026).
 # Y modulos/guia.js, Jérôme y sus tours (10 de noviembre de 2026).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js; do
+# Y modulos/entrenador.js, el vídeo de cada ejercicio de «Su cuerpo» (12 de noviembre de 2026).
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js modulos/entrenador.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -297,6 +298,10 @@ control gr131_trazado.py python3 tools/gr131_trazado.py --comprobar
 # (8-11-2026, bloque 8) el fondo del mapa de «Cruce la isla»: los dos WebP y su .json, pintados con el relieve,
 # el mapa OSM, la costa y la herramienta de hoy, y en la proyeccion del modulo (solo sumas sha256: no pinta nada)
 control cuerpo_isla_relieve.py python3 tools/cuerpo_isla_relieve.py --comprobar
+# (12-11-2026) el video de cada ejercicio (modulos/entrenador.js: Jérôme, el entrenador; notas 32 y 33): el modulo es el
+# de sus fuentes, cada coreografia con su ficha sin cambiar, cada video entero y cuadro a cuadro en dos idiomas y desde
+# sus dos vistas, la voz, y en la app la ficha con video y sin el
+control auditar_entrenador.js node tools/auditar_entrenador.js "$PUERTO"
 echo; echo "════════ la isla en 3D: el relieve, los textos y la vista de verdad en un movil emulado, sin conexion ════════"
 # Desde el 31 de octubre de 2026. El relieve (mapa/tenerife-relieve*.png y
 # .json) lo hace tools/relieve_construir.py desde el MDT05 del IGN
