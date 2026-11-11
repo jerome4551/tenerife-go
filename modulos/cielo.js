@@ -1410,6 +1410,7 @@
   var S = {
     abierto: false, pestana: 'noche', datos: null, carga: null, fallo: false,
     fecha: null,                      // 'AAAA-MM-DD' de la noche que se mira (hora de Canarias)
+    fechaElegida: false,              // la eligio quien mira (‹ ›, 📅, «Hoy»); si no, al abrir es la de hoy
     noche: null, nocheFecha: null, nocheLang: null,
     eventos: null, eventosDia: null,
     cat: { tipo: 'todo', nivel: 0, estaNoche: false, busca: '' },
@@ -2139,7 +2140,7 @@
   function cambiarFecha(f) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(f || '')) return;
     vozParar();                                   // otra noche, otras paradas
-    S.fecha = f;
+    S.fecha = f; S.fechaElegida = f !== nocheDeHoy();
     var M = S.mapa; M.t = null; M.porDefecto = true; M.desfase = 0; M.ahora = false; M.corre = false;
     pintar();
   }
@@ -3474,7 +3475,7 @@
     M.botonPlay = bp;
     c1.appendChild(bp); c1.appendChild(rg);
     c1.appendChild(botonMapa(T('Ahora'), null, function () {
-      M.t = null; M.ahora = true; M.porDefecto = false; M.desfase = 0; M.corre = false; S.fecha = nocheDeHoy(); pintar();
+      M.t = null; M.ahora = true; M.porDefecto = false; M.desfase = 0; M.corre = false; S.fecha = nocheDeHoy(); S.fechaElegida = false; pintar();
     }));
     c.appendChild(c1);
     /* hacia donde se mira */
@@ -6327,7 +6328,14 @@
     ['fi-panel', 'mc-panel', 'wx-panel', 'mar-panel'].forEach(function (id) { var x = document.getElementById(id); if (x) x.style.display = 'none'; });
     p.style.display = 'flex';
     S.abierto = true;
-    if (!S.fecha) S.fecha = nocheDeHoy();
+    /* «Esta noche» sigue al reloj: quien deja la app abierta y vuelve otro dia ve la noche de ese dia, no la de
+       ayer, y la carta vuelve a su hora de siempre. La noche que eligio el (‹ ›, 📅) se respeta. */
+    var hoyN = nocheDeHoy();
+    if (!S.fecha) S.fecha = hoyN;
+    else if (!S.fechaElegida && S.fecha !== hoyN) {
+      S.fecha = hoyN;
+      var M0 = S.mapa; M0.t = null; M0.porDefecto = false; M0.desfase = 0; M0.ahora = false; M0.corre = false;
+    }
     document.documentElement.classList.toggle('cielo-rojo', S.rojo);
     temaRojo(S.rojo); pintarBrillo();
     pintar();
@@ -6378,7 +6386,7 @@
     abrir: abrir, cerrar: cerrar, estado: S, cargar: cargar,
     /* las curiosidades de las 88 en un idioma (el de ahora si no se dice) */
     curiosidades: function (l) { return cargarCurCon(l); },
-    ver: function (p, fecha) { S.pestana = p || 'noche'; if (fecha) S.fecha = fecha; abrir(); return cargar().then(function () { pintar(); }); },
+    ver: function (p, fecha) { S.pestana = p || 'noche'; if (fecha) { S.fecha = fecha; S.fechaElegida = fecha !== nocheDeHoy(); } abrir(); return cargar().then(function () { pintar(); }); },
     eventos: function (fecha) { return eventos(fecha); },
     noche: function (f) { return calcularNoche(f); },
     planetas: function (f) { return planetasNoche(calcularNoche(f)); },

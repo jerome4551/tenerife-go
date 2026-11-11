@@ -2394,6 +2394,23 @@ async function satelites(b) {
     if (!/TRIGGER:-PT30M/.test(t.ics)) malIdi.push(L + ': .ics sin la alarma de media hora');
   }
   ok(!malIdi.length, 'en los ' + IDI.length + ' idiomas: tarjeta, calendario, fichas y .ics sin texto roto, sin palabras repetidas (el rumbo lleva ya su preposicion) y cada uno en su idioma', malIdi.slice(0, 4).join(' · '));
+  /* «Esta noche» sigue al reloj (11-11-2026): el panel abierto una noche y vuelto a abrir al dia siguiente enseña la
+     noche de ese dia (hasta entonces se quedaba con la de ayer); una noche elegida con ‹ › o 📅 se respeta, y «Hoy»
+     la deja otra vez siguiendo al reloj. 20:00 UTC es la misma fecha en Canarias en invierno y en verano. */
+  const diaA = (n, h) => new Date(Date.UTC(T0.getUTCFullYear(), T0.getUTCMonth(), T0.getUTCDate() + n, h, 0, 0));
+  const fl = d => d.toISOString().slice(0, 10), elegida = fl(diaA(6, 20)), sig = {};
+  await p.clock.setFixedTime(diaA(0, 20));
+  sig.a = await p.evaluate(async () => { const S = TG_CIELO.estado; TG_CIELO.cerrar(); S.fecha = null; S.fechaElegida = false; await TG_CIELO.ver('noche'); return S.fecha; });
+  await p.clock.setFixedTime(diaA(1, 20));
+  sig.b = await p.evaluate(async () => { TG_CIELO.cerrar(); await TG_CIELO.ver('noche'); return TG_CIELO.estado.fecha; });
+  sig.eligio = await p.evaluate(f => { TG_CIELO.cambiarFecha(f); TG_CIELO.cerrar(); return TG_CIELO.estado.fechaElegida; }, elegida);
+  await p.clock.setFixedTime(diaA(2, 20));
+  sig.c = await p.evaluate(async () => { await TG_CIELO.ver('noche'); return TG_CIELO.estado.fecha; });
+  sig.hoy = await p.evaluate(f => { TG_CIELO.cambiarFecha(f); TG_CIELO.cerrar(); return TG_CIELO.estado.fechaElegida; }, fl(diaA(2, 20)));
+  await p.clock.setFixedTime(diaA(3, 20));
+  sig.d = await p.evaluate(async () => { await TG_CIELO.ver('noche'); return TG_CIELO.estado.fecha; });
+  ok(sig.a === fl(diaA(0, 20)) && sig.b === fl(diaA(1, 20)) && sig.eligio === true && sig.c === elegida && sig.hoy === false && sig.d === fl(diaA(3, 20)),
+     '«Esta noche» sigue al reloj: el panel vuelto a abrir al dia siguiente enseña la noche de ese dia; una noche elegida con ‹ › o 📅 se respeta, y «Hoy» la deja otra vez siguiendo al reloj', JSON.stringify(sig));
   ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
   await ctx.close();
 }
