@@ -5,8 +5,8 @@
 import json, re, pathlib, sys
 aqui = pathlib.Path(__file__).resolve().parent
 repo = aqui.parents[1]
-coreo = (aqui / 'src' / '70-coreografias.js').read_text(encoding='utf-8')
-ids = [a or b for a, b in re.findall(r"^\s*COREO(?:\['([a-z0-9-]+)'\]|\.([a-z0-9_]+)) = \{", coreo, re.M)]
+coreo = '\n'.join(t.read_text(encoding='utf-8') for t in sorted((aqui / 'src').glob('7*.js')))
+ids = [a or b for a, b in re.findall(r"^\s*COREO(?:\['([a-z0-9-]+)'\]|\.([a-z0-9_]+)) = ", coreo, re.M)]
 E = {e['id']: e for e in json.loads((repo / 'datos/cuerpo/ejercicios.json').read_text(encoding='utf-8'))['ejercicios']}
 falta = [i for i in ids if i not in E]
 if falta: sys.exit('coreografías sin ficha: ' + ', '.join(falta))

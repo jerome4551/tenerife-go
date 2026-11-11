@@ -21,7 +21,8 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/50-material.js` | barra, mancuernas, banco, soporte, barra de dominadas, escalón, pared, polea… |
 | `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
 | `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los avisos, el encuadre; y los gestos del presentador |
-| `src/70-coreografias.js` | **las coreografías**, una por ejercicio |
+| `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos) |
+| `src/71-pecho.js` | las coreografías del bloque 2: **pecho** (35), por familias (tumbado en un banco, las poleas, las flexiones, los fondos, los estiramientos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
@@ -92,6 +93,37 @@ que caber), `isometrico: 'c'`, `reposo: ['a0']` (el material espera en su sitio)
 
 Los clavos: `'ti'` (el tobillo, donde esté), `'mi@0:28'` (la mano al agarre del material 0, a 28 cm
 del centro), `'mi=x,y,z'` (a un punto).
+
+## Los bloques
+
+Los 533 ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x` (`construir.py` junta todos los
+`src/7*.js` y apunta la huella de los pasos de cada ejercicio):
+
+| bloque | trozo | qué |
+|---|---|---|
+| 1 | `70-coreografias.js` | los 40 más conocidos, de los 12 grupos |
+| 2 | `71-pecho.js` | pecho: 35 (todo lo que no pide banda, máquina, cinta de suspensión, fitball ni disco) |
+
+En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
+`tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
+`plancha`…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
+
+## El material (`50-material.js`)
+
+`barra` (con discos, o `barra_z`), `mancuernas` (una en cada mano, en una sola, o una entre las dos), `kettlebell`,
+`banco`, `soporte` (el de la barra), `barra_dominadas`, `paralelas`, `escalon`, `esterilla`, `pared`, `polea`.
+
+- `banco`: `respaldo: 45` lo inclina; `85`, casi vertical (una silla); **negativo, declinado**. Con el respaldo
+  levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba).
+- `polea`: `rumbo` gira la columna (`180`, detrás de Jérôme; `90` y `−90`, una a cada lado mirando al centro: el
+  cruce de poleas); `a`, a qué va el cable (`'manos'`, `'i'`, `'d'`…); `encuadre`, hasta qué altura cuenta para el
+  encuadre (tumbado entre dos poleas, lo que importa está abajo).
+- `paralelas`: tienen `agarre` (`'mi@0:27'`, `'md@0:-27'`): la mano va a la barra de su lado.
+- `soporte`: `z` y `alto` son donde descansa la barra: el agarre de la postura que la coge tiene que caer ahí.
+
+Material que falta por dibujar (lo piden 115 ejercicios): banda elástica, máquinas, multipower, cinta de suspensión,
+fitball, disco, balón medicinal, anillas y rueda abdominal.
 
 ## Cómo se hace una
 

@@ -159,13 +159,16 @@
     pon(this.asa, 'stroke-width', n1(2.6 * cam.esc));
     this.bola.pon(cam, b3, 9.2, lista, 0.6);
   };
-  /* ── el banco: el asiento y, si se pide, el respaldo inclinado. o: { en: [x, z], rumbo, largo, alto, ancho, respaldo: grados, asiento: largo del asiento } ── */
+  /* ── el banco: el asiento y, si se pide, el respaldo inclinado. o: { en: [x, z], rumbo, largo, alto, ancho, respaldo: grados, asiento: largo del asiento }
+     El respaldo sale del asiento hacia +Z (con rumbo 180, hacia −Z: así se tumba Jérôme, que mira a +Z, con la cabeza hacia −Z).
+     respaldo: 45, inclinado; 85, casi vertical (una silla); negativo, declinado (la cabeza más baja que la cadera) ── */
   MATERIAL.banco = function (esc, o) {
     o = o || {};
     this.o = o;
     var tap = [M_COL.tapizL, M_COL.tapiz, M_COL.tapizS, M_COL.tapizS], hie = [M_COL.hierroL, M_COL.hierro, M_COL.hierroS, M_COL.hierroS];
     this.asiento = new Caja(tap); this.resp = o.respaldo != null ? new Caja(tap) : null;
     this.patas = [new Caja(hie), new Caja(hie)]; this.puntal = new Cilindro(M_COL.hierro); this.pies = [new Cilindro(M_COL.hierroS), new Cilindro(M_COL.hierroS)];
+    this.riel = this.resp ? new Cilindro(M_COL.hierroS) : null;
     this.antes = true;
   };
   MATERIAL.banco.prototype.colocar = function () {};
@@ -182,10 +185,16 @@
       /* el puntal que sostiene el respaldo */
       this.puntal.pon(cam, al(0, 3, -lar / 2 + la + lr * 0.5), mas(bis, aplicar(Br, [0, -gr / 2, lr * 0.62])), 2.6, lista, sg - 3);
     } else this.asiento.pon(cam, al(0, alto - gr / 2, 0), B, [ancho, gr, lar], lista, sg, 'fondo');
+    /* las patas: la de delante, bajo el asiento. La del fondo: en un banco plano, bajo el otro extremo; con el respaldo
+       levantado, un taco al pie del puntal (suelta detrás del respaldo parecía un poste); declinado, hasta donde baja el respaldo */
+    var zf = lar / 2 - 16, hp = alto - gr;
+    if (this.resp && o.respaldo > 0) { zf = -lar / 2 + (o.asiento || 38) + (lar - (o.asiento || 38)) * 0.5; hp = 7; }
+    else if (this.resp) hp = Math.max(6, alto - gr / 2 + Math.tan(o.respaldo * RAD) * (lar - (o.asiento || 38) - 16) - gr * 0.6);
     this.patas[0].pon(cam, al(0, (alto - gr) / 2, -lar / 2 + 14), B, [ancho * 0.5, alto - gr, 5], lista, sg - 2, 'fondo');
-    this.patas[1].pon(cam, al(0, (alto - gr) / 2, lar / 2 - 16), B, [ancho * 0.5, alto - gr, 5], lista, sg - 2, 'fondo');
+    this.patas[1].pon(cam, al(0, hp / 2, zf), B, [ancho * 0.5, hp, 5], lista, sg - 2, 'fondo');
     this.pies[0].pon(cam, al(-ancho * 0.62, 1.6, -lar / 2 + 14), al(ancho * 0.62, 1.6, -lar / 2 + 14), 2, lista, sg - 3);
-    this.pies[1].pon(cam, al(-ancho * 0.62, 1.6, lar / 2 - 16), al(ancho * 0.62, 1.6, lar / 2 - 16), 2, lista, sg - 3);
+    this.pies[1].pon(cam, al(-ancho * 0.62, 1.6, zf), al(ancho * 0.62, 1.6, zf), 2, lista, sg - 3);
+    if (this.riel) this.riel.pon(cam, al(0, 2, -lar / 2 + 14), al(0, 2, zf), 1.7, lista, sg - 4);
   };
   MATERIAL.banco.prototype.extremos = function () {
     var o = this.o, B = giroY(o.rumbo || 0), c = [o.en ? o.en[0] : 0, 0, o.en ? o.en[1] : 0], w = (o.ancho || 28) / 2, l = (o.largo || 120) / 2, h = o.alto || 44, r = [];
@@ -235,6 +244,8 @@
     this.antes = true;
   };
   MATERIAL.paralelas.prototype.colocar = function () {};
+  /* dónde se agarra: en la barra de su lado (x > 0, la de su izquierda), a la altura de «manos» a lo largo de ella */
+  MATERIAL.paralelas.prototype.agarre = function (x) { var o = this.o; return [(x >= 0 ? 1 : -1) * (o.ancho || 27), o.alto || 118, (o.z || 0) + (o.manos || 0)]; };
   MATERIAL.paralelas.prototype.extremos = function () { var o = this.o, w = o.ancho || 27, l = (o.largo || 110) / 2, z = o.z || 0, h = o.alto || 118; return [[w, h, z - l], [-w, h, z + l], [w, 0, z + l], [-w, 0, z - l]]; };
   MATERIAL.paralelas.prototype.pintar = function (E, cam, lista) {
     var o = this.o, h = o.alto || 118, w = o.ancho || 27, l = (o.largo || 110) / 2, z0 = o.z || 0, yo = this;
@@ -294,7 +305,7 @@
     this.f.style.display = ve > 0.05 ? '' : 'none'; this.l.style.display = ve > 0.05 ? '' : 'none';
     lista.push({ z: -500, el: this.g });
   };
-  /* ── la polea: la columna, la polea a su altura y el cable hasta el agarre. o: { en: [x, z], alto, a: 'manos' | 'i' | 'd' | 'tobillo-i', agarre: 'barra' | 'cuerda' | 'asa' } ── */
+  /* ── la polea: la columna, la polea a su altura y el cable hasta el agarre. o: { en: [x, z], alto, rumbo, a: 'manos' | 'i' | 'd' | 'tobillo-i', agarre: 'barra' | 'cuerda' | 'asa' } ── */
   MATERIAL.polea = function (esc, o) {
     o = o || {};
     this.o = o; this.col = new Caja(['#566072', M_COL.hierro, M_COL.hierroS, M_COL.hierroS]); this.base = new Caja(['#566072', M_COL.hierro, M_COL.hierroS, M_COL.hierroS]);
@@ -305,13 +316,17 @@
     this.largo0 = null; this.antes = false;
   };
   MATERIAL.polea.prototype.colocar = function () {};
-  MATERIAL.polea.prototype.punto = function () { var o = this.o; return [o.en ? o.en[0] : 0, o.alto == null ? 200 : o.alto, (o.en ? o.en[1] : 90) - 9]; };
-  MATERIAL.polea.prototype.extremos = function () { var o = this.o, x = o.en ? o.en[0] : 0, z = o.en ? o.en[1] : 90, H = o.torre || 218; return [[x - 5, H, z], [x + 5, H, z], [x - 27, 0, z - 29], [x + 27, 0, z + 17]]; };
+  /* la columna, girada: su polea mira hacia −Z (rumbo 0), hacia +Z (180: la columna queda detrás de Jérôme) o hacia el centro
+     desde un lado (90, la de su izquierda; −90, la de su derecha: el cruce de poleas) */
+  MATERIAL.polea.prototype.al = function (x, y, z) { var o = this.o; return mas([o.en ? o.en[0] : 0, 0, o.en ? o.en[1] : 90], aplicar(giroY(o.rumbo || 0), [x, y, z])); };
+  MATERIAL.polea.prototype.punto = function () { var o = this.o; return this.al(0, o.alto == null ? 200 : o.alto, -9); };
+  /* encuadre: hasta qué altura cuenta la columna para el encuadre (tumbado entre dos poleas, lo que importa está abajo: la columna sigue y se sale por arriba) */
+  MATERIAL.polea.prototype.extremos = function () { var H = Math.min(this.o.torre || 218, this.o.encuadre || 1e9); return [this.al(-5, H, 0), this.al(5, H, 0), this.al(-27, 0, -29), this.al(27, 0, 17), this.al(27, 0, -29), this.al(-27, 0, 17)]; };
   MATERIAL.polea.prototype.pintar = function (E, cam, lista) {
-    var o = this.o, x = o.en ? o.en[0] : 0, z = o.en ? o.en[1] : 90, H = o.torre || 218, pp = this.punto(), sg = o.sesgo == null ? -8 : o.sesgo;
-    this.col.pon(cam, [x, H / 2, z], BASE0, [9, H, 9], lista, sg, 'fondo');
-    this.base.pon(cam, [x, 3, z - 6], BASE0, [54, 6, 46], lista, sg - 20, 'fondo');
-    this.rueda.pon(cam, [x, pp[1], z - 8], [1, 0, 0], 5.2, 2.2, lista, sg + 1);
+    var o = this.o, H = o.torre || 218, pp = this.punto(), sg = o.sesgo == null ? -8 : o.sesgo, B = giroY(o.rumbo || 0);
+    this.col.pon(cam, this.al(0, H / 2, 0), B, [9, H, 9], lista, sg, 'fondo');
+    this.base.pon(cam, this.al(0, 3, -6), B, [54, 6, 46], lista, sg - 20, 'fondo');
+    this.rueda.pon(cam, this.al(0, pp[1], -8), B[0], 5.2, 2.2, lista, sg + 1);
     /* a qué va el cable */
     var a = o.a || 'manos', fin, yo = this;
     if (a === 'manos') fin = mezcla(E.i.agarre, E.d.agarre, 0.5);
@@ -340,8 +355,8 @@
     var lar = largo(menos(pp, fin));
     if (this.largo0 == null || o.reinicia) this.largo0 = o.largo0 == null ? lar : o.largo0;
     var sube = entre(lar - this.largo0, 0, 120);
-    this.pesas.pon(cam, [x, 20 + sube + 16, z + 9], BASE0, [22, 32, 9], lista, sg - 3, 'fondo');
-    this.guia.pon(cam, [x, 6, z + 9], [x, H - 6, z + 9], 0.7, lista, sg - 4);
+    this.pesas.pon(cam, this.al(0, 20 + sube + 16, 9), B, [22, 32, 9], lista, sg - 3, 'fondo');
+    this.guia.pon(cam, this.al(0, 6, 9), this.al(0, H - 6, 9), 0.7, lista, sg - 4);
   };
   /* ── la banda elástica: de un punto a la mano (o de un pie a su mano, o de una mano a la otra). o: { de: 'pies' | [x,y,z] | 'i', a: 'manos' | 'i' | 'd' } ── */
   MATERIAL.banda = function (esc, o) {
