@@ -193,7 +193,11 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     });
   });
   ok(filas.length >= 20 && !cojos.length, 'los textos del vídeo (' + filas.length + ' filas), en los diez idiomas y con sus {huecos}', cojos.slice(0, 6));
-  ok(LANGS.every(l => /Jérôme/.test(E.textos.entCon[l])) && !/\bJero\b/.test(mod.replace(/\/\*[\s\S]*?\*\//g, '')), 'el personaje se llama Jérôme en los diez idiomas (y ya no «Jero»)');
+  /* el nombre, en la forma de cada idioma, como en el tour (Jérôme, 11-11-2026: «En la forma correcta de la traducción»):
+     «Jérôme» en los de letra latina; en búlgaro y en chino, la suya y nunca la latina */
+  const NOMBRE = { bg: 'Жером', zh: '热罗姆', zht: '熱羅姆' };
+  ok(LANGS.every(l => E.textos.entCon[l].includes(NOMBRE[l] || 'Jérôme') && (!NOMBRE[l] || !/J[eé]r[oô]me/i.test(E.textos.entCon[l])))
+     && !/\bJero\b/.test(mod.replace(/\/\*[\s\S]*?\*\//g, '')), 'el personaje se llama Jérôme en los diez idiomas, en la forma de cada uno («Жером», «热罗姆», «熱羅姆»), y ya no «Jero»');
   ok(!/\beval\s*\(|new Function|console\.log/.test(mod), 'el módulo: sin eval, sin new Function, sin console.log');
   const conHtml = mod.split('\n').filter(l => /\.innerHTML\s*=/.test(l));
   ok(conHtml.length > 0 && conHtml.every(l => !/datos\.|\.texto|\bnombre\b|pasos|etiquetas|\btx\b/.test(l.replace(/\/\*.*?\*\//g, ''))), 'innerHTML (' + conHtml.length + ' veces) solo recibe dibujos e iconos del propio módulo, nunca un texto de la ficha',
