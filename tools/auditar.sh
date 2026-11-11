@@ -250,6 +250,8 @@ echo; echo "════════ texto que se queda en el idioma de arranque
 control auditar_arranque.js node tools/auditar_arranque.js "$PUERTO"
 echo; echo "════════ texto que no cambia al cambiar de idioma ════════"
 control auditar_sin_traducir.js node tools/auditar_sin_traducir.js "$PUERTO"
+echo; echo "════════ texto de un idioma en el alfabeto de otro ════════"
+control auditar_escrituras.js node tools/auditar_escrituras.js "$PUERTO"
 echo; echo "════════ lo que se ve en pantalla, en los diez idiomas (paneles y fichas) ════════"
 control barrido_pantallas.js node tools/barrido_pantallas.js "$PUERTO"
 echo; echo "════════ los tours con Jérôme (el de la app, el del cielo y el de «Su cuerpo»), enteros, en los diez idiomas y cuatro moviles ════════"
