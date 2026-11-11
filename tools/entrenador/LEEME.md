@@ -16,7 +16,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/00-nucleo.js` | vectores, giros (bases y cuaterniones), curvas de tiempo |
 | `src/10-esqueleto.js` | las medidas de Jérôme (en cm), la postura escrita → huesos, la mezcla por arcos, clavar un pie o una mano |
 | `src/20-figura.js` | la cámara y el cuerpo, dibujado por masas a tres tintas: torso, brazos y piernas, manos con dedos, zapatillas que se doblan, el brillo de los músculos |
-| `src/30-cabeza.js` | la cabeza de `modulos/guia.js` (de frente), y de perfil y de espaldas; las caras, la mirada y el tupé, que va un instante detrás |
+| `src/30-cabeza.js` | la cabeza, con volumen: gira de verdad (ya no son tres dibujos). Las caras, la mirada y el tupé, que va un instante detrás |
 | `src/40-escenario.js` | la escena: el orden de pintado, la sombra, los tres decorados (fuera, calistenia, gimnasio; día y noche) |
 | `src/50-material.js` | barra, mancuernas, banco, soporte, barra de dominadas, escalón, pared, polea… |
 | `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
@@ -113,6 +113,24 @@ o varias **masas**: secciones elípticas a lo largo de un hueso. En cada cuadro 
 una línea de contorno del color de la pieza, más oscuro. La bola de una articulación es de la pieza que se pinta
 primero; la otra llega «con la boca abierta» (sin contorno por ese lado), y así el codo y la rodilla no enseñan una
 costura. Todo es SVG y números: sin filtros, sin degradados por pieza, sin imágenes.
+
+## La cabeza (`30-cabeza.js`)
+
+Está hecha como el cuerpo y **gira de verdad**: antes eran tres dibujos planos (de frente, de perfil y de espaldas)
+entre los que se saltaba, y de tres cuartos salía el de frente con los rasgos corridos.
+
+- El cráneo, la quijada y el mentón son elipsoides; el pelo, el cráneo un punto más gordo por encima de **la línea del
+  pelo** (un plano que baja de la frente a la nuca). Se pinta la cabeza entera en el color del pelo y, encima, la piel
+  que se ve desde donde mira la cámara (por detrás es al revés: el pelo de la nuca va sobre la piel).
+- La nariz y las orejas son bultos: de perfil, asoman. El tupé son púas (conos) y la cinta, un aro con su nudo.
+- Los rasgos (ojos, cejas, boca, colorete, gotas de sudor) van **pegados a la cara, cada uno en su plano** (`PL`): al
+  girar se estrechan y se esconden solos. La boca son dos mitades, una a cada lado, para que de perfil se le vea la
+  comisura. Las gafas son un plano rígido, con su canto y sus patillas.
+- Las bocas (`BOCAS`), las caras (`EMO`) y los párpados son los del presentador de `modulos/guia.js`, en sus medidas:
+  una unidad de aquel dibujo son 0,195 cm (`U_CARA`). `K_CAB` agranda la cabeza entera (1,13).
+- Las medidas van en centímetros desde `E.cab`, que es **la base de la cabeza (la barbilla)**, no su centro.
+
+Para verla desde varios lados: `pruebas/galeria.html?pose=de%20pie&tam=5&cams=0,35,90,125,180`.
 
 ## La vida (`55-vida.js`)
 

@@ -29,7 +29,9 @@
  *    hay ningún NaN en el dibujo y nada se sale de ancho. Y EL MOVIMIENTO, medido en cada cuadro:
  *    lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque Jérôme respire y
  *    reparta el peso; nada se teletransporta de un cuadro al siguiente; respira; la cabeza y el
- *    tupé no se pasan de vueltas; y de cerca ninguna mano se sale del cuadro.
+ *    tupé no se pasan de vueltas; y de cerca ninguna mano se sale del cuadro. Y LA CABEZA, que es una
+ *    sola y gira de verdad: vista desde 72 lados, sin números imposibles, con los rasgos que tocan
+ *    (de frente, los dos ojos; de perfil, uno; de espaldas, ninguno y el nudo de la cinta).
  * 3. En la app de verdad: «Su cuerpo» → un grupo → una ficha con coreografía: el vídeo sale, no
  *    arranca solo, se pone en marcha al tocarlo, sigue al cambiar de tema, no se reinicia al
  *    guardar unas series y se quita al volver; en una ficha sin coreografía no sale nada.
@@ -254,6 +256,14 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     ok(!delMov.length, 'el movimiento, medido en cada cuadro de los ' + ids.length + ' vídeos: lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque respire y reparta el peso; nada se teletransporta; respira; los muelles no se pasan; de cerca ninguna mano se sale', delMov.slice(0, 6));
     const faltan = []; ['cabecera', 'cierre'].forEach(mo => T.GESTOS_DE[mo].forEach(g => { if (!gestos[mo + ':' + g]) faltan.push(mo + ':' + g); }));
     ok(!faltan.length && Object.keys(gestos).every(g => /^(cabecera|cierre|consejo):/.test(g)), 'los gestos se reparten: cada ejercicio tiene el suyo en la cabecera y en el cierre, y salen todos (' + Object.keys(gestos).map(g => g.split(':')[1] + ' ' + gestos[g]).join(', ') + ')', faltan);
+    /* la cabeza: una sola, con volumen, vista desde todos los lados */
+    await pg.evaluate(a => window.montar(a, 'es', 'dia'), ids[0]);
+    const cg = await pg.evaluate(() => window.cabezaGira()), f = cg.frente || {}, pf = cg.perfil || {}, es = cg.espalda || {};
+    ok(cg.vistas === 72 && !cg.raros && f.ojos === 2 && f.bocas === 2 && f.gafas && !f.nudo && !f.nuca && f.cinta && f.pelo && f.piel
+      && pf.ojos === 1 && pf.bocas === 1 && pf.cinta
+      && es.ojos === 0 && es.bocas === 0 && !es.gafas && es.nudo && es.nuca && es.cinta,
+      'la cabeza gira de verdad (' + cg.vistas + ' vistas: cada 15°, y desde arriba y desde abajo): sin números imposibles; de frente, los dos ojos y la boca entera; de perfil, un ojo y media boca; de espaldas, ni cara ni gafas, y el nudo de la cinta', cg);
+    ok(!/tgh-perfil|tgh-espalda|tgh-frente/.test(mod), 'ya no hay tres dibujos de cabeza (de frente, de perfil y de espaldas) entre los que saltar');
     /* con «reducir movimiento»: se monta y se pasa igual */
     const ctx2 = await nav.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
     const pg2 = await ctx2.newPage(); vigila(pg2);

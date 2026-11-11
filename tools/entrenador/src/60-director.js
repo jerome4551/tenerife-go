@@ -59,10 +59,10 @@
     /* saluda con la mano: el antebrazo va y viene, y la muñeca llega un poco después */
     saluda1: { cab: [-2, 0, 5], col: [0, 2.5, 0], hom: { i: [2.4, 0], d: [0, 0] }, bi: { e: 126, z: 66, g: 0, c: 46 }, mi: { tipo: 'abierta', prono: 0, lat: -13 }, md: { tipo: 'suelta' } },
     saluda2: { cab: [-2, 0, 7], col: [0, 3.5, 0], hom: { i: [2.8, 0], d: [0, 0] }, bi: { e: 122, z: 66, g: 0, c: 88 }, mi: { tipo: 'abierta', prono: 0, lat: 13 }, md: { tipo: 'suelta' } },
-    /* el saludo de visera: sube el codo, la mano plana a la ceja, y sale */
-    visera0: { cab: [0, -3, 2], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 58, z: 58, g: 24, c: 104 }, mi: { tipo: 'plana', prono: -60 }, md: { tipo: 'suelta' } },
-    visera1: { cab: [-3, -5, 4], hom: { i: [2, 0], d: [0, 0] }, bi: { e: 80, z: 50, g: 30, c: 150 }, mi: { tipo: 'plana', prono: -90 }, md: { tipo: 'suelta' } },
-    visera2: { cab: [-5, 4, 5], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 84, z: 56, g: 20, c: 104 }, mi: { tipo: 'plana', prono: -70 }, md: { tipo: 'suelta' } },
+    /* el saludo de visera: sube el codo, la mano plana a la ceja (la cabeza mide desde la barbilla: la ceja queda a 161 cm), y sale */
+    visera0: { cab: [0, -3, 2], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 68, z: 58, g: 22, c: 100 }, mi: { tipo: 'plana', prono: -60 }, md: { tipo: 'suelta' } },
+    visera1: { cab: [-3, -5, 4], hom: { i: [2, 0], d: [0, 0] }, bi: { e: 100, z: 55, g: 20, c: 122 }, mi: { tipo: 'plana', prono: -90 }, md: { tipo: 'suelta' } },
+    visera2: { cab: [-5, 4, 5], hom: { i: [1.2, 0], d: [0, 0] }, bi: { e: 104, z: 58, g: 16, c: 88 }, mi: { tipo: 'plana', prono: -70 }, md: { tipo: 'suelta' } },
     /* «¡vamos!»: recoge el puño y lo sube */
     vamos0: { pel: [0, D.pelvis - 3.2, 0], giro: [0, 5, 0], cab: [5, 0, 0], bi: { e: 26, z: 26, g: 0, c: 104 }, mi: { tipo: 'puno', prono: -20 }, md: { tipo: 'suelta' } },
     vamos1: { pel: [0, D.pelvis + 1.6, 0], giro: [0, -4, 0], col: [-2, 0, 0], cab: [-7, 0, 4], hom: { i: [3, 0], d: [0, 0] }, bi: { e: 100, z: 52, g: 0, c: 122 }, mi: { tipo: 'puno', prono: -20 }, md: { tipo: 'puno' } },
@@ -359,7 +359,8 @@
     (co.encuadra || []).forEach(function (s) { usadas[s] = 1; });
     for (n in usadas) {
       var E = this.suelto(n) ? this.K[n] : this.clavar(this.K[n], this.K[n], this.K[n], 0, this.clavos);
-      pts.push(mas(E.cab, aplicar(E.Bc, [0, 37, 2])), mas(E.cab, aplicar(E.Bc, [0, 16, 13])), mas(E.cab, aplicar(E.Bc, [0, 16, -13])), E.pel);
+      /* la cabeza: lo alto del tupé (a 43 cm de la barbilla) y sus lados */
+      pts.push(mas(E.cab, aplicar(E.Bc, [0, 43, 3])), mas(E.cab, aplicar(E.Bc, [0, 18, 14])), mas(E.cab, aplicar(E.Bc, [0, 18, -14])), E.pel);
       LADOS.forEach(function (k) { pts.push(E[k].dedos, E[k].cod, E[k].rod, E[k].dedosPie, E[k].talon, E[k].hom); });
       mats.forEach(function (m) { m.colocar(E); if (m.extremos) pts = pts.concat(m.extremos(E)); });
     }

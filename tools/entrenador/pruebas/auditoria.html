@@ -23,6 +23,25 @@ window.montar = function (id, lang, tema) {
     nombres: nombres, etiquetas: [x.e[0]], entorno: x.e[0], nivel: x.n }, { idioma: lang, tema: tema || 'dia' });
   return window.R ? { pasos: t[1], nombre: t[0], dur: window.R.tramos.reduce(function (a, q) { return a + q.dur; }, 0) } : null;
 };
+/* la cabeza, vista desde todos los lados (cada 15° de rumbo, y desde arriba y desde abajo): que no salga ningún número
+   imposible y que los rasgos se escondan cuando toca */
+window.cabezaGira = function () {
+  var R = window.R, d = R.dir, cab = R.esc.cab, cam = R.esc.cam, out = { raros: 0, vistas: 0, frente: null, perfil: null, espalda: null };
+  var ve = function (g) { return g.style.display !== 'none'; };
+  d.aBusto(true); d.aPostura('listo', 0);
+  [-25, 9, 40].forEach(function (pic) {
+    for (var r = 0; r < 360; r += 15) {
+      d.cuadro(0.0001, true); cam.rumbo = r; cam.picado = pic; R.esc.pintar(d.E, d.ctx); out.vistas++;
+      if (/NaN|Infinity|undefined/.test(new XMLSerializer().serializeToString(cab.g))) out.raros++;
+      if (pic === 9 && (r === 0 || r === 90 || r === 180)) out[r === 0 ? 'frente' : r === 90 ? 'perfil' : 'espalda'] = {
+        ojos: (ve(cab.ojo[0].g) ? 1 : 0) + (ve(cab.ojo[1].g) ? 1 : 0), bocas: (ve(cab.boca[0].g) ? 1 : 0) + (ve(cab.boca[1].g) ? 1 : 0), gafas: ve(cab.gafas),
+        nudo: !!cab.nudo.getAttribute('d'), nuca: !!cab.nuca[0].getAttribute('d'), cinta: !!cab.cinta.getAttribute('d'), pelo: !!cab.pelo[0].getAttribute('d'), piel: !!cab.piel[0].getAttribute('d'),
+        nodos: cab.g.querySelectorAll('*').length
+      };
+    }
+  });
+  return out;
+};
 window.entero = function () {
   var R = window.R, d = R.dir, leido = [], raros = 0, cuadros = 0, nodos = 0, modos = {}, gestos = {};
   /* el movimiento, medido: lo clavado no se mueve, nada se teletransporta, y Jérôme respira y no se pasa de vueltas */
