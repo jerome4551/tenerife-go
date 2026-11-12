@@ -2,8 +2,13 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-12T19:12:59Z",
+ "consultado": "2026-11-12T20:29:53Z",
  "alertas": [
+  {
+   "t": "2026-11-12T19:01:03Z",
+   "titulo": "El Gobierno de Canarias finaliza la situación de alerta por fenómenos costeros en todas las islas",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-situacion-de-alerta-por-fenomenos-costeros-en-todas-las-islas/"
+  },
   {
    "t": "2026-11-12T08:16:11Z",
    "titulo": "El Gobierno de Canarias finaliza la alerta por lluvia en La Palma",
@@ -58,11 +63,6 @@
    "t": "2026-11-09T16:02:32Z",
    "titulo": "El Gobierno de Canarias actualiza la situación pasando a alerta por viento en todas las islas",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-pasando-a-alerta-por-viento-en-todas-las-islas/"
-  },
-  {
-   "t": "2026-11-09T12:56:31Z",
-   "titulo": "El Gobierno de Canarias finaliza la prealerta por lluvias en el Archipiélago",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finaliza-la-prealerta-por-lluvias-en-el-archipielago-3/"
   }
  ],
  "descartados": 0
