@@ -7835,6 +7835,29 @@ cuatro robots (`datos/alertas-canarias.json`, `datos/avisos-aemet.json`, `datos/
   Google Fonts; la app no (las lleva en `vendor/fuentes/`). No está enlazada desde la app.
 - Los bloques 3 a 15: la sesión del entrenador tiene que hacerlos sobre este `main`, con estos cambios.
 
+## El panel SOS, a la una: «medida a la 01:10» (12 de noviembre)
+
+**Por qué.** El lote anterior dejó la hora con el artículo en singular a la una en toda la app («a la 01:10»,
+«all’01:10»), menos en el panel SOS, que tiene su propia función de textos y no se toca sin el sí de Jérôme. Su sí, el
+12 de noviembre: «Panel sos si cámbialo».
+
+**Lo que cambia** (`52ff4c8`): la hora en que se midieron las coordenadas, en «Mis coordenadas» («precisión ±8 m ·
+medida a las {h}»), decía «medida a las 01:10» a la una, y en italiano «rilevata alle 01:10». En `t()` de
+`modulos/emergencias.js`, si lo que entra en una marca es la una, `txLaUna` (la de `index.html`) cambia el artículo que
+va justo delante, y nada más: «medida a la 01:10», «rilevata all’01:10». Fuera de la página
+(`tools/auditar_emergencias.js` carga el módulo solo), sin `txLaUna`, como estaba. Es la única fila del panel con una
+hora así; la otra con `{h}`, «en las últimas {h} horas», es un número de horas. `tools/probar_emergencias.js` lo pide en
+castellano y en italiano (y «a las 11:10», «alle 11:10»), y el polaco, como estaba: 262 controles, en verde.
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre el commit antes de ponerlo encima de lo último de los robots:
+«AUDITORIA EN VERDE», ningún control en rojo ni roto. Entre otros, `probar_emergencias.js` (262 controles, con la hora a
+la una en castellano, en italiano y en polaco, en el panel de verdad), `auditar_emergencias.js` (42), `probar_cuerpo.js`
+(543), `auditar_escrituras.js` (sin navegador, 2745 filas de diez idiomas en todo el fuente y 156.765 textos en 88
+ficheros; en la página, 13 tablas y 9338 textos), `barrido_idiomas.js` (5.766 filas) y `auditar_web.js` (52 tablas, 3619
+filas). Encima de lo último de `main` (`b6d1a10`) solo cambian los ficheros de seis robots (`datos/satelites.json`,
+`datos/semaforo-involcan.json`, `datos/alertas-canarias.json`, `datos/avisos-aemet.json`,
+`datos/precios-gasolineras.json` y `datos/sismos-ign.json`), y los controles que los leen salen otra vez en verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
