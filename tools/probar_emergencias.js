@@ -227,6 +227,14 @@ async function abrirApp(b, L, opc) {
     await encender();
     ok((await punto()).includes('sos-punto-amarillo'), 'boletin amarillo de hace 2 dias: el punto del SOS sale, amarillo', await punto());
     await abrirVivo();
+    /* a la una (12-11-2026, con el sí de Jérôme): la hora de las coordenadas con el artículo en singular, como en tx() */
+    const una = await p.evaluate(() => { const antes = currentLang, r = [];
+      try { for (const l of ['es', 'it', 'pl']) { currentLang = l; r.push(TG_SOS.t('sosCoordsPrecision', { m: 8, h: '01:10' }), TG_SOS.t('sosCoordsPrecision', { m: 8, h: '11:10' })); } }
+      finally { currentLang = antes; }
+      return r; });
+    ok(JSON.stringify(una) === JSON.stringify(['precisión ±8 m · medida a la 01:10', 'precisión ±8 m · medida a las 11:10',
+      'precisione ±8 m · rilevata all’01:10', 'precisione ±8 m · rilevata alle 11:10', 'dokładność ±8 m · pomiar o 01:10', 'dokładność ±8 m · pomiar o 11:10']),
+      'la hora de las coordenadas, a la una: «medida a la 01:10», «rilevata all’01:10» (y «a las 11:10», «alle 11:10»; el polaco, como estaba)', una);
     const vivo = await p.innerText('#sos-vivo').catch(() => '');
     ok(vivo.includes(await prefijo('sosSemaforoBoletin', { f: '@@', c: '' })) && vivo.includes(await p.evaluate(() => TG_SOS.t('sosColor_amarillo'))), '«Que pasa ahora» dice el boletin, con su fecha y su color', vivo.slice(0, 160));
     ok(await p.locator('#sos-vivo .sos-luz-amarillo').count() === 1, 'con la luz de su color');

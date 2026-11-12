@@ -1122,7 +1122,12 @@
       var formas = s.split('|');
       s = formas[formaPlural(Number(vars.n), formas.length)];
     }
-    if (vars) for (var v in vars) if (Object.prototype.hasOwnProperty.call(vars, v)) s = s.split('{' + v + '}').join(String(vars[v]));
+    if (vars) for (var v in vars) if (Object.prototype.hasOwnProperty.call(vars, v)) {
+      /* a la una, el artículo en singular: «medida a la 01:10», «rilevata all’01:10» (12-11-2026, con el sí de Jérôme),
+         como en las filas de la app (txLaUna, en index.html); fuera de la página, sin él, como estaba */
+      if (typeof txLaUna === 'function' && typeof vars[v] === 'string' && /^0?1:\d\d/.test(vars[v])) s = txLaUna(s, '{' + v + '}');
+      s = s.split('{' + v + '}').join(String(vars[v]));
+    }
     return s;
   }
   /* org: un nombre propio, o una fila sosOrg* */
