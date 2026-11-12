@@ -206,7 +206,7 @@ async function ejemplo(pg, mas) {
      para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; desde el 8 (bloque 8), con
      «Su compañero de travesía» (el título, «A pie», «En bici» y la ayuda) y «Senderos de la isla» (el título), 151; y 2 placeholders (el
      del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (154 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha; y 2 placeholders)', r2.n === 154 && r2.ph === 2, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (160 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?»; y 2 placeholders)', r2.n === 160 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -3039,6 +3039,178 @@ async function ejemplo(pg, mas) {
     prueba('28: sin TG_PERFIL.prestar (el prototipo), «Evolución» no sale, y pedirla abre «Músculos»', sin.boton && sin.musculos === 'true' && sin.vista, JSON.stringify(sin));
     prueba('28: sin errores de página', e28.length === 0, e28.join(' | '));
     await c28.close();
+  }
+
+  // 29. (12-11-2026, #120; Jérôme: «A y B si») «¿Qué entreno hoy?» en «Músculos», con lo anotado: cada grupo dos veces
+  //     por semana, la segunda cuando ya están todos, y nunca antes de 48 horas (lo de hoy o de ayer descansa); delante,
+  //     los prioritarios de su deporte y luego el que hace más que no se trabaja; el caso de Jérôme (pecho el lunes: el
+  //     miércoles no sale pecho); el sitio de cada día (en casa, con el material que marque), guardado y con los
+  //     ejercicios de ese sitio al abrir un grupo; «¿Por qué?», con las dos respuestas y sus fuentes; diez idiomas; y lo
+  //     guardado que no vale, fuera
+  {
+    const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+    const c29 = await contexto(b), p29 = await c29.newPage(), e29 = []; vigilar(p29, e29);
+    await abrirApp(p29); await abrirPerfilCuerpo(p29); await suCuerpo(p29);
+    const G29 = await p29.evaluate(() => TG_FIGURA.GRUPOS.slice());
+    /* filas [hace cuántos días, grupo, series]; lo demás (deporte, sitio, material) tal cual */
+    const poner = (filas, extra) => p29.evaluate(([f, ex]) => {
+      const T0 = Date.now() - 5e6;
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify(Object.assign({ v: 1, series: f.map((x, i) => ({ d: x[0], g: x[1], n: x[2], t: T0 + i })) }, ex || {})));
+      TG_CUERPO.abrir();
+    }, [filas.map(x => [hace(x[0]), x[1], x[2]]), extra || null]).then(() => p29.waitForTimeout(200));
+    const nombres = () => p29.evaluate(() => Object.fromEntries([...document.querySelectorAll('#tgc-lista .tgc-fila')].map(b => [b.dataset.g, b.querySelector('.tgc-fila-nom').firstChild.textContent])));
+    const plan = () => p29.evaluate(() => ({
+      abierto: !document.getElementById('tgc-plan-cuerpo').hidden, exp: document.getElementById('tgc-plan-btn').getAttribute('aria-expanded'),
+      btn: document.getElementById('tgc-plan-btn-txt').textContent, res: document.getElementById('tgc-plan-resumen').textContent,
+      tit: document.getElementById('tgc-plan-tit').textContent, txt: document.getElementById('tgc-plan-txt').textContent,
+      lista: !document.getElementById('tgc-plan-lista').hidden,
+      grupos: [...document.querySelectorAll('#tgc-plan-lista .tgc-plan-g')].map(b => b.dataset.g),
+      prio: [...document.querySelectorAll('#tgc-plan-lista .tgc-plan-g.prio')].map(b => b.dataset.g),
+      metas: Object.fromEntries([...document.querySelectorAll('#tgc-plan-lista .tgc-plan-g')].map(b => [b.dataset.g, b.querySelector('.tgc-plan-g-meta').textContent])),
+      desc: document.getElementById('tgc-plan-descansan').hidden ? null : document.getElementById('tgc-plan-descansan').textContent,
+      sitios: [...document.querySelectorAll('#tgc-plan-sitios button')].map(b => b.dataset.sitio + ':' + b.getAttribute('aria-pressed')),
+      casaTxt: (document.querySelector('#tgc-plan-sitios [data-sitio="casa"]') || {}).textContent,
+      mat: !document.getElementById('tgc-plan-mat').hidden, matAbierto: document.getElementById('tgc-plan-mat').open,
+      matSel: document.getElementById('tgc-plan-mat-sel').hidden ? null : document.getElementById('tgc-plan-mat-sel').textContent, mats: [...document.querySelectorAll('#tgc-plan-mats button')].map(b => b.dataset.mat + ':' + b.getAttribute('aria-pressed')),
+      donde: document.getElementById('tgc-plan-donde').textContent, porque: document.getElementById('tgc-plan-porque').textContent }));
+    const abrirPlan = async () => { if (!(await plan()).abierto) { await p29.click('#tgc-plan-btn'); await p29.waitForTimeout(250); } };
+    const N = await nombres();
+    const lis = gs => gs.map(g => N[g]).join(', ');
+    const D48 = 'Para un mismo grupo, el ACSM (2011) aconsejaba al menos 48 horas entre sesiones.';
+    const OMS = 'La OMS recomienda a los adultos ejercicios de fuerza al menos 2 días por semana, con todos los grupos musculares principales, y de 5 a 17 años, al menos 3 días.';
+    const SUAVE = 'Descansar no es estar quieto: caminar o moverse suave en los días libres también suma para la salud.';
+    const sin = (gs, quita) => gs.filter(g => quita.indexOf(g) < 0);
+
+    // sin nada anotado: un primer día de cuerpo completo, con los seis grupos del asistente y el nivel inicial
+    await poner([]);
+    const NADA = ['pecho', 'dorsal', 'hombros', 'core', 'cuadriceps', 'isquios'];
+    const p0 = await plan();
+    prueba('29: el botón «¿Qué entreno hoy?», cerrado, con «Para hoy: …» debajo', p0.btn === '¿Qué entreno hoy?' && !p0.abierto && p0.exp === 'false' && p0.res === 'Para hoy: ' + lis(NADA) + '.', JSON.stringify(p0));
+    await abrirPlan();
+    const p0b = await plan();
+    prueba('29: sin nada anotado, «Hoy le tocan» los seis del primer día, de nivel inicial; nadie descansa', p0b.abierto && p0b.exp === 'true' && p0b.tit === 'Hoy le tocan' &&
+      p0b.txt === 'Todavía no tiene nada anotado. Para empezar, un día de cuerpo completo con ejercicios de nivel inicial:' && JSON.stringify(p0b.grupos) === JSON.stringify(NADA) && p0b.desc === null, JSON.stringify(p0b));
+    prueba('29: «¿Dónde entrena hoy?», cuatro sitios y ninguno elegido; el material, escondido', p0b.donde === '¿Dónde entrena hoy?' &&
+      p0b.sitios.join() === 'gimnasio:false,casa:false,fuera:false,calistenia:false' && p0b.casaTxt === 'En casa' && !p0b.mat && p0b.porque === '¿Por qué?', JSON.stringify(p0b));
+    await p29.click('#tgc-plan-lista [data-g="pecho"]'); await p29.waitForSelector('.tgc-ej-fila', { timeout: 8000 }); await p29.waitForTimeout(150);
+    const h0 = await p29.evaluate(() => ({ tit: document.getElementById('tgc-hoja-tit').textContent, niv: document.querySelector('#tgc-ej-niv [aria-pressed="true"]').dataset.v,
+      ent: document.querySelector('#tgc-ej-ent [aria-pressed="true"]').dataset.v, niveles: [...new Set([...document.querySelectorAll('.tgc-ej-fila .tgc-ej-niv')].map(e => e.textContent))] }));
+    prueba('29: el primer día, «Pecho» abre su hoja con el nivel inicial y todos los sitios', h0.tit === N.pecho && h0.niv === '1' && h0.ent === 'todos' && h0.niveles.join() === 'Inicial', JSON.stringify(h0));
+    await p29.keyboard.press('Escape'); await p29.waitForTimeout(250);
+
+    // el caso de Jérôme: pecho el lunes; el miércoles (dos días después) no sale pecho, y no descansa (ya pasaron 48 h)
+    await poner([[2, 'pecho', 4]]);
+    const p1 = await plan();
+    prueba('29: Jérôme: pecho hace 2 días; hoy no sale pecho, salen los otros 11 y nadie descansa', JSON.stringify(p1.grupos) === JSON.stringify(sin(G29, ['pecho'])) && p1.desc === null &&
+      p1.txt === 'Los grupos sin series en los últimos 7 días.', JSON.stringify(p1));
+
+    // hoy o ayer: descansa (48 horas); los demás, primero el que hace más que no se trabaja
+    await poner([[0, 'pecho', 3], [1, 'dorsal', 3], [3, 'hombros', 3], [20, 'biceps', 3], [12, 'triceps', 3], [9, 'core', 3]].concat(sin(G29, ['pecho', 'dorsal', 'hombros', 'biceps', 'triceps', 'core']).map(g => [8, g, 2])));
+    const p2 = await plan();
+    const esp2 = ['biceps', 'triceps', 'core'].concat(sin(G29, ['pecho', 'dorsal', 'hombros', 'biceps', 'triceps', 'core']));
+    prueba('29: el que hace más que no se trabaja, primero (20, 12 y 9 días; los de 8, en su orden)', JSON.stringify(p2.grupos) === JSON.stringify(esp2), JSON.stringify(p2.grupos));
+    prueba('29: lo de hoy y ayer descansa: «Descansan hoy (los trabajó ayer u hoy): Pecho, Dorsales.» y las 48 horas del ACSM', p2.desc === 'Descansan hoy (los trabajó ayer u hoy): ' + lis(['pecho', 'dorsal']) + '. ' + D48, p2.desc);
+    prueba('29: cada grupo dice cuándo se trabajó por última vez', p2.metas.biceps.indexOf('hace 20 días') >= 0 && p2.metas.core.indexOf('hace 9 días') >= 0, JSON.stringify(p2.metas));
+
+    // todos una vez: la segunda vuelta, sin los que llevan dos días ni los de hoy y ayer
+    await poner(G29.map(g => [3, g, 3]).concat([[1, 'pecho', 3], [1, 'espalda_alta', 3]]));
+    const p3 = await plan();
+    prueba('29: con los 12 trabajados, la segunda vez: los que llevan un día, sin los que descansan', JSON.stringify(p3.grupos) === JSON.stringify(sin(G29, ['pecho', 'espalda_alta'])) &&
+      p3.tit === 'Hoy le tocan' && p3.txt === 'Ya ha trabajado los 12 grupos en los últimos 7 días; estos, un solo día. ' + OMS && p3.res === 'Para hoy: ' + lis(sin(G29, ['pecho', 'espalda_alta'])) + '.', JSON.stringify(p3));
+    // todos ayer: lo que queda descansa
+    await poner(G29.map(g => [1, g, 3]));
+    const p4 = await plan();
+    prueba('29: todo trabajado ayer: «Hoy, descanso», sin lista, y descansan los 12', p4.tit === 'Hoy, descanso' && !p4.lista && p4.grupos.length === 0 && p4.res === 'Hoy, descanso o actividad suave.' &&
+      p4.txt === 'Lo que le queda lo trabajó ayer u hoy. ' + SUAVE && p4.desc === 'Descansan hoy (los trabajó ayer u hoy): ' + lis(G29) + '. ' + D48, JSON.stringify(p4));
+    // todos dos días: hecho
+    await poner(G29.map(g => [5, g, 3]).concat(G29.map(g => [3, g, 3])));
+    const p5 = await plan();
+    prueba('29: los 12 con dos días o más: «Hoy, descanso» y nadie descansa por las 48 horas', p5.tit === 'Hoy, descanso' && p5.grupos.length === 0 && p5.desc === null &&
+      p5.txt === 'Ha trabajado los 12 grupos al menos 2 días en los últimos 7. ' + SUAVE, JSON.stringify(p5));
+
+    // con un deporte: sus prioritarios delante (la misma marca que la lista de los 12)
+    const dep = await p29.evaluate(() => [...document.querySelectorAll('#tgc-dep-sel option')].map(o => o.value).filter(Boolean)[0]);
+    await poner([[2, 'pecho', 4]], { deporte: dep });
+    const prio = await p29.evaluate(() => [...document.querySelectorAll('#tgc-lista .tgc-fila.prio')].map(b => b.dataset.g));
+    const p6 = await plan();
+    const esp6 = prio.filter(g => g !== 'pecho').concat(sin(G29, prio.concat(['pecho'])));
+    prueba('29: con «' + dep + '», sus prioritarios delante y marcados, y la frase que lo dice', prio.length > 0 && JSON.stringify(p6.grupos) === JSON.stringify(esp6) &&
+      JSON.stringify(p6.prio) === JSON.stringify(prio.filter(g => g !== 'pecho')) && p6.txt === 'Los grupos sin series en los últimos 7 días. Delante, los prioritarios para su deporte.', JSON.stringify({ prio, p6 }));
+
+    // el sitio del día y el material de casa: se guardan y filtran los ejercicios
+    await poner([[0, 'pecho', 3]]);
+    const datos29 = await p29.evaluate(async () => (await (await fetch('datos/cuerpo/ejercicios.json')).json()).ejercicios);
+    const cuenta = (g, f) => datos29.filter(x => x.g.includes(g) && f(x)).length;
+    const casaCon = tiene => x => x.m.every(m => m === 'ninguno' || m === 'pared' || tiene.includes(m));
+    await p29.click('#tgc-plan-sitios [data-sitio="gimnasio"]'); await p29.waitForTimeout(150);
+    const p7 = await plan();
+    prueba('29: «Gimnasio», elegido y guardado; cada grupo con sus ejercicios de gimnasio', p7.sitios.join() === 'gimnasio:true,casa:false,fuera:false,calistenia:false' &&
+      await p29.evaluate(() => JSON.parse(localStorage.getItem('tenerife.cuerpo')).sitio === 'gimnasio') && p7.metas.dorsal.indexOf(cuenta('dorsal', x => x.e.includes('gimnasio')) + ' ejercicios') === 0, JSON.stringify(p7.metas));
+    await p29.click('#tgc-plan-sitios [data-sitio="casa"]'); await p29.waitForTimeout(150);
+    const p8 = await plan();
+    prueba('29: «En casa»: «¿Qué tiene en casa?», abierto, con 16 materiales sin marcar; dorsales, «ningún ejercicio con lo que tiene»', p8.mat && p8.matAbierto && p8.matSel === null && p8.mats.length === 16 && p8.mats.every(m => /:false$/.test(m)) &&
+      cuenta('dorsal', casaCon([])) === 0 && p8.metas.dorsal.indexOf('ningún ejercicio con lo que tiene') === 0, JSON.stringify(p8));
+    await p29.click('#tgc-plan-mats [data-mat="barra_dominadas"]'); await p29.waitForTimeout(150);
+    const p9 = await plan(), nDor = cuenta('dorsal', casaCon(['barra_dominadas']));
+    prueba('29: con la barra de dominadas, dorsales ya tiene ' + nDor + ' ejercicios, el material se guarda y la lista sigue abierta mientras marca', nDor > 0 && p9.metas.dorsal.indexOf(nDor + ' ejercicio') === 0 &&
+      p9.matAbierto && p9.matSel === 'Barra de dominadas' &&
+      JSON.stringify(await p29.evaluate(() => JSON.parse(localStorage.getItem('tenerife.cuerpo')).material)) === '["barra_dominadas"]', JSON.stringify(p9.metas));
+    await p29.click('#tgc-plan-lista [data-g="dorsal"]'); await p29.waitForSelector('.tgc-ej-fila', { timeout: 8000 }); await p29.waitForTimeout(150);
+    const h9 = await p29.evaluate(() => ({ ent: document.querySelector('#tgc-ej-ent [aria-pressed="true"]').dataset.v, ids: [...document.querySelectorAll('.tgc-ej-fila')].map(b => b.dataset.id),
+      ayuda: document.getElementById('tgc-ej-casa-ayuda').hidden ? null : document.getElementById('tgc-ej-casa-ayuda').textContent }));
+    const esp9 = datos29.filter(x => x.g.includes('dorsal') && casaCon(['barra_dominadas'])(x)).map(x => x.id);
+    prueba('29: «Dorsales» abre su hoja «En casa», con esos ejercicios y la frase que lo explica', h9.ent === 'casa' && JSON.stringify(h9.ids) === JSON.stringify(esp9) &&
+      h9.ayuda === 'En casa: los ejercicios con el material que marcó en «¿Qué entreno hoy?».', JSON.stringify(h9));
+    await p29.keyboard.press('Escape'); await p29.waitForTimeout(250);
+
+    // al volver otro día con el material ya marcado, la lista sale plegada y la línea dice lo marcado
+    await p29.evaluate(() => { TG_CUERPO.cerrar(); }); await p29.waitForTimeout(300);
+    await p29.reload({ waitUntil: 'load' }); await abrirApp(p29); await abrirPerfilCuerpo(p29); await suCuerpo(p29); await abrirPlan();
+    const p10 = await plan();
+    prueba('29: otro día, «En casa» sigue elegido y su material plegado, con «Barra de dominadas» a la vista', p10.sitios.indexOf('casa:true') >= 0 && p10.mat && !p10.matAbierto &&
+      p10.matSel === 'Barra de dominadas', JSON.stringify(p10));
+    // la continuidad en la ficha: al abrir un ejercicio, sus series, repeticiones y peso de la última vez
+    await poner([[3, 'pecho', 5]]);
+    await p29.evaluate(() => { const e = JSON.parse(localStorage.getItem('tenerife.cuerpo')); e.series[0].e = 'press-banca-barra'; e.series[0].r = 8; e.series[0].kg = 42.5; localStorage.setItem('tenerife.cuerpo', JSON.stringify(e)); TG_CUERPO.abrir(); });
+    await p29.waitForTimeout(200);
+    await p29.click('#tgc-lista .tgc-fila[data-g="pecho"]'); await p29.waitForSelector('.tgc-ej-fila', { timeout: 8000 });
+    await p29.click('#tgc-ej-ent [data-v="todos"]'); await p29.click('.tgc-ej-fila[data-id="press-banca-barra"]'); await p29.waitForTimeout(250);
+    const f10 = await p29.evaluate(() => ({ n: document.getElementById('tgc-ej-n').value, r: document.getElementById('tgc-ej-reps').value, kg: document.getElementById('tgc-ej-kg').value,
+      ult: document.getElementById('tgc-ej-ultima').textContent }));
+    prueba('29: la ficha sigue donde lo dejó: 5 series, 8 repeticiones y 42,5 kg, como la última vez', f10.n === '5' && f10.r === '8' && f10.kg === '42,5' &&
+      f10.ult === 'La última vez, hace 3 días: 5 × 8 con 42,5 kg', JSON.stringify(f10));
+    await p29.keyboard.press('Escape'); await p29.waitForTimeout(150); await p29.keyboard.press('Escape'); await p29.waitForTimeout(250);
+    await poner([[0, 'pecho', 3]], { sitio: 'casa', material: ['barra_dominadas'] }); await abrirPlan();
+    // «¿Por qué?»: «Preguntar», con las dos respuestas y sus fuentes
+    await p29.click('#tgc-plan-porque');
+    await p29.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-resp').length >= 2, null, { timeout: 10000 }).catch(() => {});
+    await p29.waitForTimeout(200);
+    const q29 = await p29.evaluate(() => ({ modo: document.getElementById('tgc-modo-p').getAttribute('aria-pressed'), charla: document.getElementById('tgc-charla').textContent,
+      fuentes: document.querySelectorAll('#tgc-charla .tgc-resp-f').length }));
+    prueba('29: «¿Por qué?» abre «Preguntar» con «¿Cuántas veces por semana trabajo cada músculo?» y «¿Cuántos días de descanso necesito?», con sus fuentes',
+      q29.modo === 'true' && q29.charla.indexOf('¿Cuántas veces por semana trabajo cada músculo?') >= 0 && q29.charla.indexOf('¿Cuántos días de descanso necesito?') >= 0 && q29.fuentes >= 2, JSON.stringify(q29).slice(0, 300));
+    await p29.click('#tgc-modo-m'); await p29.waitForTimeout(250);
+
+    // diez idiomas: el botón es la pregunta del asistente; sus textos, sin marcas sueltas ni castellano fuera del castellano
+    const Q = { en: 'What should I train today?', fr: 'Qu’est-ce que j’entraîne aujourd’hui ?', de: 'Was trainiere ich heute?', it: 'Cosa alleno oggi?', nl: 'Wat train ik vandaag?',
+      zh: '今天练什么？', zht: '今天練什麼？', bg: 'Какво да тренирам днес?', pl: 'Co dziś trenować?' };
+    const es29 = await plan();
+    for (const [l, q] of Object.entries(Q)) {
+      await idioma(p29, l);
+      const m = await plan();
+      const txts = [m.res, m.tit, m.txt, m.donde, m.porque, m.casaTxt].concat(Object.values(m.metas));
+      prueba('29, ' + l + ': «' + q + '», y la tarjeta en su idioma', m.btn === q && txts.every(t => t && t.indexOf('{') < 0) &&
+        [m.tit, m.txt, m.donde, m.porque, m.casaTxt].every((t, i) => t !== [es29.tit, es29.txt, es29.donde, es29.porque, es29.casaTxt][i]), JSON.stringify(m).slice(0, 400));
+    }
+    await idioma(p29, 'es');
+
+    // lo guardado: el sitio, de la lista; el material, de la lista y sin repetir
+    await p29.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'piscina', material: ['mancuernas', 'mancuernas', '<img src=x>', 'maquina', 'banda'] })); TG_CUERPO.abrir(); });
+    const v29 = await p29.evaluate(() => { const e = TG_CUERPO.estado(); return { sitio: e.sitio, material: e.material }; });
+    prueba('29: lo guardado que no vale, fuera: un sitio que no es de la lista, materiales repetidos, con HTML o de gimnasio', v29.sitio === '' && JSON.stringify(v29.material) === '["mancuernas","banda"]', JSON.stringify(v29));
+    prueba('29: sin errores de página', e29.length === 0, e29.join(' | '));
+    await c29.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
