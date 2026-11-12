@@ -3369,6 +3369,36 @@ async function ejemplo(pg, mas) {
     await c31.close();
   }
 
+  // 32. (12-11-2026, #120) la política de privacidad dice lo que «Su cuerpo» guarda de nuevo, en los diez idiomas: las
+  //     repeticiones y el peso, y el sitio donde entrena con el material de casa, citando el botón «¿Qué entreno hoy?»
+  //     tal cual (cuerpoPlanBtn); y la app lleva ese mismo texto (index.html, que escribe tools/generar_privacidad.py)
+  {
+    const fs = require('fs'), path = require('path');
+    const s = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s.indexOf('var CUERPO_UI = {'), j = s.indexOf('\n  };', i);
+      for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    const CARGA = { es: 'si los escribe, las repeticiones y el peso', en: 'if you enter them, the reps and the weight', fr: 'si vous les indiquez, les répétitions et le poids',
+      de: 'wenn Sie sie angeben, die Wiederholungen und das Gewicht', it: 'se li scrive, le ripetizioni e il peso', nl: 'als u die invult, de herhalingen en het gewicht',
+      zh: '您填写的次数与重量', zht: '您填寫的次數與重量', bg: 'повторенията и тежестта, ако ги въведете', pl: 'powtórzenia i ciężar, jeśli zostaną podane' };
+    const SITIO = { es: 'el sitio donde entrena y el material que marque para casa', en: 'the place where you train and the equipment you tick for home',
+      fr: 'le lieu où vous vous entraînez et le matériel coché pour la maison', de: 'den Ort, an dem Sie trainieren, und die Geräte, die Sie für zu Hause markieren',
+      it: 'il luogo dove si allena e gli attrezzi segnati per casa', nl: 'de plek waar u traint en het materiaal dat u voor thuis aanvinkt',
+      zh: '选择的训练地点和在家可用的器材', zht: '選擇的訓練地點和在家可用的器材', bg: 'мястото, където тренирате, и уредите, които отбележите за вкъщи',
+      pl: 'miejsce treningu i sprzęt zaznaczony jako dostępny w domu' };
+    const idx = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+    const mal32 = [];
+    for (const l of Object.keys(CARGA)) {
+      const t = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'idiomas', 'privacidad', l + '.json'), 'utf8')).ppDatosCuerpoTxt;
+      const bt = UI.cuerpoPlanBtn[l], cita = /^zh/.test(l) ? '「' + bt + '」' : '«' + bt + '»';
+      if (!t.includes(CARGA[l])) mal32.push(l + ': las repeticiones y el peso');
+      if (!t.includes(SITIO[l])) mal32.push(l + ': el sitio y el material');
+      if (!t.includes(cita)) mal32.push(l + ': ' + cita);
+      if (!idx.includes(JSON.stringify(t).slice(1, -1))) mal32.push(l + ': index.html no lleva el texto de idiomas/privacidad');
+    }
+    prueba('32: la política de privacidad dice, en los diez idiomas, las repeticiones y el peso, el sitio y el material de casa, y cita «¿Qué entreno hoy?» tal cual; la app lleva ese texto',
+      Object.keys(CARGA).length === 10 && !mal32.length, mal32.join(' · '));
+  }
+
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
   console.log('\n  ' + (ok + mal) + ' controles, ' + (mal ? mal + ' en rojo' : 'todos en verde'));
   await b.close();
