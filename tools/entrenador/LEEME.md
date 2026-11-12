@@ -24,6 +24,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos) |
 | `src/71-pecho.js` | las coreografías del bloque 2: **pecho** (35), por familias (tumbado en un banco, las poleas, las flexiones, los fondos, los estiramientos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
+| `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
 | `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |

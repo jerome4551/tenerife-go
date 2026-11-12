@@ -74,9 +74,10 @@ const CORE = [
      se ve con red; si no hay, el mapa sale con la costa que el modulo dibuja debajo. */
   './modulos/cuerpo.js',
   /* Jérôme, el entrenador (11 de noviembre de 2026): el vídeo de cada ejercicio de «Su cuerpo»
-     (el motor y las coreografías, unos 230 kB; no hay archivos de vídeo). Lo pide modulos/cuerpo.js
-     al abrir la ficha de un ejercicio, y donde se mira es en el gimnasio o en la calle: tiene que
-     estar sin conexión desde el primer día. Aquí y «red primero» abajo, como el módulo de «Su cuerpo». */
+     (el motor y las coreografías, unos 320 kB con los 75 ejercicios del bloque 2; no hay archivos
+     de vídeo). Lo pide modulos/cuerpo.js al abrir la ficha de un ejercicio, y donde se mira es en
+     el gimnasio o en la calle: tiene que estar sin conexión desde el primer día. Aquí y «red
+     primero» abajo, como el módulo de «Su cuerpo». */
   './modulos/entrenador.js',
   /* El panel de EMERGENCIAS (22 de octubre de 2026): tiene que estar sin
      conexion desde el primer dia, y no esperar a la red: va abajo con su

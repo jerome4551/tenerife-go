@@ -38,6 +38,8 @@
  * 3. En la app de verdad: «Su cuerpo» → un grupo → una ficha con coreografía: el vídeo sale, no
  *    arranca solo, se pone en marcha al tocarlo, sigue al cambiar de tema, no se reinicia al
  *    guardar unas series y se quita al volver; en una ficha sin coreografía no sale nada.
+ * 4. Con Samsung Internet (12 de noviembre de 2026): el vídeo en un canvas que copia su SVG (su modo oscuro
+ *    repinta los SVG): el mismo dibujo, se repinta solo, el modo oscuro forzado no lo cambia; en otro navegador, nada.
  * Cero errores de página. Sale con 1 si algo falla.
  */
 'use strict';
@@ -333,6 +335,123 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     const sin = await Q(() => { const f = Array.from(document.querySelectorAll('#tgc-ej-lista .tgc-ej-fila')).filter(b => !window.TG_ENTRENADOR.tiene(b.dataset.id))[0]; if (!f) return ''; f.click(); return f.dataset.id; }); await espera(900);
     ok(!sin || await Q(() => document.getElementById('tgc-ej-video').hidden && !document.querySelector('.tgv')), 'en una ficha sin coreografía («' + sin + '») no sale nada: queda como estaba');
     await ctx.close();
+  }
+
+  console.log('\n════ 4. Samsung Internet: el vídeo en un canvas, con sus mismos colores ════');
+  /* (12 de noviembre de 2026) Con su modo oscuro, Samsung Internet repinta los SVG y no hace caso de color-scheme (en el
+     tour le ponía a Jérôme la cara casi negra); allí el vídeo se pinta en un canvas a partir de su propio SVG
+     (tools/entrenador/src/85-lienzo.js, el mismo arreglo que el del tour). Con el user-agent de ese móvil: hay canvas y el
+     SVG queda invisible; en cuatro momentos (la cabecera, el primer paso, uno del medio y el cierre) de tres ejercicios,
+     de día y de noche, el canvas es el mismo dibujo que el SVG; con el vídeo en marcha, el canvas se repinta solo; con el
+     modo oscuro forzado de Chromium (lo que hace Samsung) el SVG cambia y el canvas no; y con otro navegador, ni canvas
+     ni SVG tocado. El parpadeo va con Math.random: aquí, con una semilla fija, para que el mismo momento sea el mismo
+     dibujo en los dos navegadores. */
+  {
+    const UA_SAMSUNG = 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/30.0 Chrome/143.0.0.0 Mobile Safari/537.36';
+    const SEMILLA = '(() => { let s = 20261112; Math.random = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; })();';
+    const MUESTRA = [...new Set([ids[0], ids.find(i => /^press-banca/.test(i)), ids[ids.length - 1]].filter(Boolean))];
+    const IGUAL = d => d.media < 3 && d.mucho < 1;
+    const CIFRAS = d => 'diferencia media ' + d.media.toFixed(2) + ', ' + d.mucho.toFixed(2) + ' % de píxeles muy distintos';
+    /* dos capturas de la escena (base64), comparadas en la propia página: la diferencia media (0-255) y el % de píxeles
+       muy distintos (más de 64), con una moviéndose hasta M píxeles hacia cada lado (el canvas va en su propia capa y el
+       navegador puede ponerlo un píxel más allá: lo midió el tour), y vale la mejor */
+    const compara = (pg, a, b, M) => pg.evaluate(async ([a, b, M]) => {
+      const px = async u => { const im = new Image(); im.src = 'data:image/png;base64,' + u; await im.decode();
+        const c = document.createElement('canvas'); c.width = im.width; c.height = im.height; const g = c.getContext('2d'); g.drawImage(im, 0, 0); return g.getImageData(0, 0, im.width, im.height); };
+      const A = await px(a), B = await px(b), W = Math.min(A.width, B.width), H = Math.min(A.height, B.height);
+      let mejor = null;
+      for (let dy = -M; dy <= M; dy++) for (let dx = -M; dx <= M; dx++) {
+        let suma = 0, mucho = 0, n = 0;
+        for (let y = M; y < H - M; y++) for (let x = M; x < W - M; x++) {
+          const ia = ((y + dy) * A.width + x + dx) * 4, ib = (y * B.width + x) * 4;
+          const m = Math.max(Math.abs(A.data[ia] - B.data[ib]), Math.abs(A.data[ia + 1] - B.data[ib + 1]), Math.abs(A.data[ia + 2] - B.data[ib + 2]));
+          suma += m; if (m > 64) mucho++; n++;
+        }
+        if (!mejor || suma / n < mejor.media) mejor = { media: suma / n, mucho: 100 * mucho / n };
+      }
+      return mejor;
+    }, [a, b, M]);
+    /* va a un momento (tramo n, s segundos dentro), a 30 cuadros por segundo, con todo lo animado por CSS parado, y pinta */
+    const IR = ([n, s]) => {
+      const R = window.R; R.irA(n);
+      for (let k = 0; k < Math.round(s * 30); k++) R.avanzar(1 / 30);
+      document.getAnimations().forEach(a => a.pause());
+      const e = R.raiz.querySelector('.tgv-escena'), svg = e.querySelector('svg.tge-svg'), cv = e.querySelector('canvas.tgv-lienzo');
+      /* en las capturas, solo el dibujo: los rótulos de encima son HTML, y el modo oscuro forzado los cambia aparte */
+      for (const k of e.children) if (k !== svg && k !== cv) k.style.visibility = 'hidden';
+      if (e.tgvLienzo) e.tgvLienzo.dibujar();
+      const b = e.getBoundingClientRect();
+      return { samsung: !!window.TG_ENTRENADOR.samsung, lienzo: !!cv, op: getComputedStyle(svg).opacity, caja: [b.x, b.y, b.width, b.height] };
+    };
+    const VER = svg => { const e = document.querySelector('.tgv-escena'); e.querySelector('svg.tge-svg').style.opacity = svg ? '1' : '0'; e.querySelector('canvas.tgv-lienzo').style.visibility = svg ? 'hidden' : ''; };
+    const fotos = async (pg, r) => {
+      const clip = { x: Math.ceil(r.caja[0]), y: Math.ceil(r.caja[1]), width: Math.floor(r.caja[2]) - 1, height: Math.floor(r.caja[3]) - 1 };
+      const lienzo = (await pg.screenshot({ clip })).toString('base64');
+      await pg.evaluate(VER, true);
+      const svg = (await pg.screenshot({ clip })).toString('base64');
+      await pg.evaluate(VER, false);
+      return { lienzo, svg };
+    };
+    const oscuro = await chromium.launch(Object.assign({}, opc, { args: opc.args.concat(['--blink-settings=forceDarkModeEnabled=true']) }));
+    const malS = [], refs = {}, medidas = [];
+    let momentos = 0, coste = null;
+    try {
+      for (const [modo, b] of [['samsung', nav], ['otro', nav], ['forzado', oscuro]]) {
+        const ctx = await b.newContext(Object.assign({ viewport: { width: 360, height: 780 }, deviceScaleFactor: 2, serviceWorkers: 'block' }, modo === 'otro' ? {} : { userAgent: UA_SAMSUNG }));
+        await soloLocal(ctx);
+        await ctx.addInitScript(SEMILLA);
+        const pg = await ctx.newPage(); vigila(pg);
+        await pg.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
+        await pg.evaluate(l => window.preparar(l), ['es']);
+        for (const id of (modo === 'samsung' ? MUESTRA : [MUESTRA[0]])) for (const tema of (modo === 'samsung' ? ['dia', 'noche'] : ['dia'])) {
+          const m = await pg.evaluate(a => window.montar(a[0], 'es', a[1]), [id, tema]);
+          if (!m) { malS.push(modo + ': ' + id + ' no se monta'); continue; }
+          const N = m.pasos.length;
+          for (const mo of [[0, 1.2], [1, 0.8], [1 + Math.floor(N / 2), 2.0], [N + 1, 1.0]]) {
+            const r = await pg.evaluate(IR, mo), donde = modo + ' · ' + id + ' (' + tema + ') · tramo ' + mo[0] + ' a ' + mo[1] + ' s';
+            if (modo === 'otro') { if (r.samsung || r.lienzo || r.op !== '1') malS.push('otro navegador, ' + donde + ': ni canvas ni SVG invisible (' + JSON.stringify(r) + ')'); continue; }
+            if (!r.samsung || !r.lienzo || r.op !== '0') { malS.push(donde + ': falta el canvas o el SVG no está invisible (' + JSON.stringify(r) + ')'); continue; }
+            const f = await fotos(pg, r), k = id + '|' + tema + '|' + mo.join('/');
+            momentos++;
+            /* con Samsung, el canvas es el mismo dibujo que su SVG; con el modo oscuro forzado el SVG se oscurece (eso es
+               lo que hace ese modo) y lo que vale es que el canvas no cambie y el SVG sí, contra el mismo momento sin él */
+            if (modo === 'samsung') {
+              const d = await compara(pg, f.lienzo, f.svg, 2);
+              medidas.push(d.media);
+              if (!IGUAL(d)) malS.push(donde + ': el canvas no es el mismo dibujo que el SVG (' + CIFRAS(d) + ')');
+              refs[k] = f;
+            } else if (!refs[k]) malS.push(donde + ': falta el mismo momento sin el modo oscuro forzado');
+            else {
+              const dl = await compara(pg, f.lienzo, refs[k].lienzo, 2), ds = await compara(pg, f.svg, refs[k].svg, 0);
+              if (!IGUAL(dl)) malS.push(donde + ': con el modo oscuro forzado, el canvas cambia (' + CIFRAS(dl) + ')');
+              if (!(ds.media >= 8)) malS.push(donde + ': la prueba no vale, el SVG tampoco cambia con el modo oscuro forzado (' + CIFRAS(ds) + ')');
+            }
+          }
+          if (modo === 'samsung' && id === MUESTRA[0] && tema === 'dia') {
+            /* el vídeo en marcha: el canvas se repinta solo, sin pedírselo */
+            await pg.evaluate(() => { document.getAnimations().forEach(a => a.play()); window.R.irA(1); window.R.reproducir(); });
+            await pg.waitForTimeout(1500);
+            await pg.evaluate(() => window.R.pausar());
+            await pg.waitForTimeout(400);
+            const r = await pg.evaluate(() => { document.getAnimations().forEach(a => a.pause()); const e = document.querySelector('.tgv-escena'), b = e.getBoundingClientRect();
+              for (const k of e.children) if (k.localName !== 'svg' && k.localName !== 'canvas') k.style.visibility = 'hidden';
+              return { caja: [b.x, b.y, b.width, b.height] }; });
+            const f = await fotos(pg, r), d = await compara(pg, f.lienzo, f.svg, 2);
+            if (!IGUAL(d)) malS.push('samsung · ' + id + ': con el vídeo en marcha el canvas no se repinta solo (' + CIFRAS(d) + ')');
+            /* lo que cuesta pintarlo: 60 cuadros, solo el canvas, y con la CPU frenada ×4 */
+            const mide = () => pg.evaluate(() => { const R = window.R, e = R.raiz.querySelector('.tgv-escena'); R.irA(2); let t = 0; for (let k = 0; k < 60; k++) { R.avanzar(1 / 30); const t0 = performance.now(); e.tgvLienzo.dibujar(); t += performance.now() - t0; } return t / 60; });
+            const normal = await mide(), cdp = await ctx.newCDPSession(pg);
+            await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+            const frenada = await mide();
+            await cdp.send('Emulation.setCPUThrottlingRate', { rate: 1 });
+            coste = [normal, frenada];
+          }
+        }
+        await ctx.close();
+      }
+    } finally { await oscuro.close(); }
+    ok(!malS.length && momentos >= MUESTRA.length * 2 * 4 + 4, 'Samsung Internet: el vídeo en un canvas (' + MUESTRA.join(', ') + '; ' + momentos + ' momentos, de día y de noche, y con el modo oscuro forzado): el mismo dibujo que el SVG (la mayor diferencia media, ' + (medidas.length ? Math.max(...medidas).toFixed(2) : '–') + ' de 255), se repinta solo con el vídeo en marcha, el modo oscuro no lo cambia y en otro navegador no hay canvas', malS.slice(0, 6));
+    if (coste) info('pintar el canvas, un cuadro: ' + coste[0].toFixed(1) + ' ms de media; con la CPU frenada ×4, ' + coste[1].toFixed(1) + ' ms (como mucho 30 veces por segundo)');
   }
   await nav.close();
   ok(!errores.length, 'cero errores de página', errores.slice(0, 5));

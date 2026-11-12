@@ -8,6 +8,8 @@
     /* monta el vídeo de un ejercicio en una caja; devuelve el reproductor (reproducir, pausar, irA, tema, quitar) o null */
     montar: function (caja, datos, opc) { return datos && this.tiene(datos.id, (datos.pasos || []).length) ? new Reproductor(caja, datos, opc) : null; },
     textos: ENT_UI,
+    /* ¿se pinta en un canvas? (Samsung Internet: 85-lienzo.js) */
+    samsung: EN_SAMSUNG,
     /* qué voz usaría el vídeo en este aparato para un idioma, y cuáles enseña el navegador (para saber por qué suena como suena) */
     voces: function (idioma) {
       var v = vocesDe(idioma);

@@ -38,6 +38,7 @@
 '.tgv[data-tema="noche"] { --tv-tinta: var(--tinta, #F0ECE4); --tv-tinta2: var(--tinta-2, #A8B3C4); --tv-fondo: var(--fondo, #0F1117); --tv-tarjeta: var(--tarjeta, #1B2330); --tv-linea: var(--linea, #2D3A4A); --tv-oro: var(--oro, #F5C76B); }',
 '.tgv-escena { position: relative; border-radius: 22px; overflow: hidden; background: #8FA8E6; aspect-ratio: 400 / 460; isolation: isolate; touch-action: manipulation; -webkit-user-select: none; user-select: none; }',
 '.tgv-escena .tge-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }',
+'.tgv-escena .tgv-lienzo { position: absolute; display: block; pointer-events: none; }',
 '.tgv-sombra-alta { position: absolute; left: 0; right: 0; top: 0; height: 86px; background: linear-gradient(180deg, rgba(10,16,32,.42), rgba(10,16,32,0)); pointer-events: none; z-index: 2; }',
 /* la barra de tramos, como las historias */
 '.tgv-barras { position: absolute; z-index: 4; left: 12px; right: 12px; top: 11px; display: flex; gap: 4px; pointer-events: none; }',
@@ -186,6 +187,8 @@
     var escena = el('div', 'tgv-escena'); escena.setAttribute('role', 'group'); escena.setAttribute('aria-label', T('entVideo') + ': ' + datos.nombre);
     raiz.appendChild(escena);
     this.esc = new Escenario(escena);
+    /* en Samsung Internet, el dibujo en un canvas encima del SVG (85-lienzo.js): su modo oscuro no lo repinta */
+    this.lienzo = EN_SAMSUNG ? lienzo(this.esc.svg, escena, 0) : null;
     this.esc.ambiente(co.ambiente || datos.entorno || 'fuera', opc.tema);
     this.dir = new Director(this.esc);
     this.dir.cargar(co);
@@ -496,5 +499,6 @@
     window.removeEventListener('resize', this._medir);
     try { if (this._voces) window.speechSynthesis.removeEventListener('voiceschanged', this._voces); } catch (e) {}
     if (this.io) this.io.disconnect();
+    if (this.lienzo) { try { this.lienzo.soltar(); } catch (e) {} this.lienzo = null; }
     if (this.raiz.parentNode) this.raiz.parentNode.removeChild(this.raiz);
   };
