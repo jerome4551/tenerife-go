@@ -458,6 +458,21 @@ async function openMeteo(pg) {
       pl: ['Od 10:00 do 23:59', 'Dziś, godz. 10:00 – jutro, godz. 07:59', 'Dziś, godz. 10:00 – sobota, godz. 07:59',
            'Jutro, od 00:00 do 23:59', 'Sobota, od 00:00 do 23:59', 'Wczoraj, godz. 10:00 – dziś, godz. 23:59'],
     };
+    /* la una (tx, txLaUna): en castellano y en italiano, el artículo en singular: hoy de 10:00 a mañana a la 01:00, y
+       hoy de 01:00 a 05:59 */
+    const UNA = [['2026-11-12T10:00:00Z', '2026-11-13T01:00:00Z'], ['2026-11-12T01:00:00Z', '2026-11-12T05:59:00Z']];
+    const ESPERA_UNA = {
+      es: ['Desde hoy a las 10:00 hasta mañana a la 01:00', 'De 01:00 a 05:59'],
+      en: ['From today at 10:00 to tomorrow at 01:00', 'From 01:00 to 05:59'],
+      fr: ['Aujourd’hui à 10:00 – demain à 01:00', 'De 01:00 à 05:59'],
+      de: ['Von heute um 10:00 bis morgen um 01:00', 'Von 01:00 bis 05:59'],
+      it: ['Da oggi alle 10:00 a domani all’01:00', 'Dall’01:00 alle 05:59'],
+      nl: ['Van vandaag om 10:00 tot morgen om 01:00', 'Van 01:00 tot 05:59'],
+      zh: ['今天 10:00 至 明天 01:00', '01:00 至 05:59'],
+      zht: ['今天 上午10:00 至 明天 上午01:00', '上午01:00 至 上午05:59'],
+      bg: ['От днес в 10:00 до утре в 01:00', 'От 01:00 до 05:59'],
+      pl: ['Dziś, godz. 10:00 – jutro, godz. 01:00', 'Od 01:00 do 05:59'],
+    };
     /* el pie: lo que va en el {h} o el {f} de su fila: «Comprobado:» ayer a las 23:03 y hoy a las 07:05, «desde» hoy a
        las 07:05, y «hasta» mañana y el sábado a las 23:59 */
     const PIE = {
@@ -484,6 +499,8 @@ async function openMeteo(pg) {
       await pg.evaluate(l => { try { setLang(l); } catch (e) {} }, L);
       const r = await pg.evaluate(av => av.map(x => wxCuandoTxt({ inicio: x[0], fin: x[1] })), AVISOS);
       caso(`[${L}] los avisos: «${r[1]}», «${r[3]}» y «${r[5]}»`, JSON.stringify(r) === JSON.stringify(ESPERA[L]), JSON.stringify({ sale: r, espera: ESPERA[L] }));
+      const u = await pg.evaluate(av => av.map(x => wxCuandoTxt({ inicio: x[0], fin: x[1] })), UNA);
+      caso(`[${L}] a la una: «${u[0]}» y «${u[1]}»`, JSON.stringify(u) === JSON.stringify(ESPERA_UNA[L]), JSON.stringify({ sale: u, espera: ESPERA_UNA[L] }));
       const pie = await pg.evaluate(() => [
         tx('wxComprobado', { h: wxHoraCorta('2026-11-11T23:03:00Z') }), tx('wxComprobado', { h: wxHoraCorta('2026-11-12T07:05:00Z') }),
         tx('wxSinComprobar', { h: wxDesdeCuando('2026-11-12T07:05:00Z') }),

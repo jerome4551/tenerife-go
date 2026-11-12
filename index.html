@@ -9541,7 +9541,21 @@ function tx(clave, vars) {
     var formas = s.split('|');
     s = formas[pluralIdx(vars.n, formas.length)];
   }
-  if (vars) for (var k in vars) s = s.split('{' + k + '}').join(vars[k]);
+  if (vars) for (var k in vars) {
+    if (typeof vars[k] === 'string' && /^0?1:\d\d/.test(vars[k])) s = txLaUna(s, '{' + k + '}');
+    s = s.split('{' + k + '}').join(vars[k]);
+  }
+  return s;
+}
+/* La una (12 de noviembre de 2026). En castellano y en italiano el artículo de la hora va en singular con la una: «a
+   la 01:10», «hacia la 01:10», «desde la 01:10»; «all’01:10», «dall’01:10», «verso l’01:10». Las filas dicen «a las
+   {h}», «alle {h}», que es lo de las demás horas, y salía «Sale a las 01:10», «Sorge alle 01:10»: si lo que entra en
+   {h} es la una, aquí se cambia el artículo que va justo delante. Solo eso: nada más en la fila cambia. */
+function txLaUna(s, marca) {
+  var m = marca.replace(/[{}]/g, '\\$&'), l = currentLang || 'es';
+  if (l === 'es') return s.replace(new RegExp('(^|\\s)([Ll])as ' + m, 'g'), '$1$2a ' + marca);
+  if (l === 'it') return s.replace(new RegExp('(^|\\s)([Aa]|[Dd]a|[Ss]u|[Dd]e|[Nn]e)lle ' + m, 'g'), '$1$2ll’' + marca)
+                          .replace(new RegExp('(^|\\s)([Ll])e ' + m, 'g'), '$1$2’' + marca);
   return s;
 }
 

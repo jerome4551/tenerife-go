@@ -1643,7 +1643,8 @@ async function apunta(b) {
   pide('Betelgeuse', f.bet, 'Brilla como unos ' + num(dos(bet.lum), 0) + ' soles', mal);
   pide('Betelgeuse', f.bet, 'Su brillo varía entre mag. ' + num(bet.vr[1], 1) + ' y ' + num(bet.vr[2], 1), mal);
   pide('Betelgeuse', f.bet, 'Altura máxima desde Tenerife: ' + num(bet.alt, 0) + '°', mal);
-  pide('Betelgeuse', f.bet, 'Esta noche', mal); pide('Betelgeuse', f.bet, 'sale a las ', mal); pide('Betelgeuse', f.bet, 'se pone a las ', mal);
+  // «a la» vale para «a las 21:10» y para la una, «a la 01:10» (12-11-2026)
+  pide('Betelgeuse', f.bet, 'Esta noche', mal); pide('Betelgeuse', f.bet, 'sale a la', mal); pide('Betelgeuse', f.bet, 'se pone a la', mal);
   pide('Sirio', f.sir, 'Está a ' + num(sir.al, 1) + ' años luz: la luz que ve salió de ella en ' + (f.anio - Math.round(sir.al)), mal);
   pide('Sirio', f.sir, 'Brilla como unos ' + num(dos(sir.lum), 0) + ' soles', mal);
   pide('Sirio', f.sir, 'Clase: enana, como el Sol', mal);
@@ -1666,6 +1667,34 @@ async function apunta(b) {
   const roto = [f.bet, f.sir, f.luna, f.sol, f.jup, f.m42, f.ori, f.carta7].join('\n').match(/undefined|NaN|\[object|\{[a-z]+\}/g);
   if (roto) mal.push('texto roto: ' + roto.join(', '));
   ok(!mal.length, 'la ficha dice lo que dan el catalogo y el motor: Betelgeuse, Sirio, la Luna, el Sol, Jupiter y sus lunas, M42, Orion y una estrella de la carta (7 Cet)', mal.slice(0, 6).join(' · '));
+  /* La una (12-11-2026): en castellano y en italiano, con la una el artículo va en singular («Sale a la 01:10»,
+     «Sorge all’01:10»; tx, txLaUna). Todas las filas de UI_TX, ya con las del cielo, con la una en cada marca de hora
+     (y un 2 en {n}, que elige el plural): ninguna deja «las 01:10» ni «alle», «dalle» o «le 01:10»; y las demás
+     horas siguen con su «a las» y su «alle». */
+  const una = await p.evaluate(() => {
+    const antes = currentLang, mal = [];
+    let n = 0, bien = [];
+    try {
+      for (const l of ['es', 'it']) {
+        currentLang = l;
+        for (const k of Object.keys(UI_TX)) {
+          const s0 = UI_TX[k] && UI_TX[k][l];
+          if (typeof s0 !== 'string' || !/\{[A-Za-z0-9_]+\}/.test(s0)) continue;
+          const v = {};
+          for (const m of s0.match(/\{[A-Za-z0-9_]+\}/g)) v[m.slice(1, -1)] = m === '{n}' ? 2 : '01:10';
+          const s = tx(k, v); n++;
+          if (l === 'es' ? /(^|\s)[Ll]as 01:10/.test(s) : /(^|\s)([Aa]|[Dd]a|[Ss]u|[Dd]e|[Nn]e)lle 01:10|(^|\s)[Ll]e 01:10/.test(s)) mal.push(l + ' ' + k + ': «' + s.slice(0, 90) + '»');
+        }
+      }
+      currentLang = 'es'; bien.push(tx('cieloLunaSale', { h: '01:10' }), tx('cieloLunaSale', { h: '11:10' }));
+      currentLang = 'it'; bien.push(tx('cieloLunaSale', { h: '01:10' }), tx('cieloLunaSale', { h: '11:10' }), tx('cieloVisibleDeA', { a: '23:40', b: '01:10' }));
+    } finally { currentLang = antes; }
+    return { n, mal, bien };
+  });
+  // las del cielo son unas 180 por idioma: con menos de 350, es que no se leyeron
+  ok(!una.mal.length && una.n > 350 && JSON.stringify(una.bien) === JSON.stringify(['Sale a la 01:10', 'Sale a las 11:10', 'Sorge all’01:10', 'Sorge alle 11:10', 'Visibile dalle 23:40 all’01:10']),
+     'la una, en castellano y en italiano: «Sale a la 01:10», «Sorge all’01:10» (y «a las 11:10», «alle 11:10»), en las ' + una.n + ' filas con marcas de la app y del cielo',
+     JSON.stringify({ mal: una.mal.slice(0, 6), bien: una.bien, n: una.n }));
   /* en los diez idiomas: sin texto roto, y los mismos datos (mismo numero de lineas) */
   const porIdioma = await p.evaluate(IDI => {
     const D = TG_CIELO.estado.datos, t = new Date('2026-12-13T22:00:00Z'), out = {};
@@ -2320,7 +2349,9 @@ async function satelites(b) {
     for (const k of ['iss', 'tiangong', 'hubble']) {
       const f = carta.fichas[k], pr = carta.proximos[k];
       if (!f.includes(nom[k]) || !/Satélite artificial/.test(f) || !/A \d[\d.]* km de altura, a \d,\d km\/s/.test(f) || !/Elementos orbitales del/.test(f) || /undefined|NaN|\{/.test(f)) malF.push(k + ': ' + f.slice(0, 120));
-      if (pr ? !(f.includes('Próximo paso visible') && f.includes('aparece a las ' + hora(pr.h)) && f.includes('sube hasta ' + pr.alt + '°')) : !/Sin pasos visibles/.test(f)) malF.push(k + ' proximo paso: ' + f.slice(0, 200));
+      // a la una, «aparece a la 01:10» (12-11-2026)
+      const aLas = h => (/^01:/.test(h) ? 'a la ' : 'a las ') + h;
+      if (pr ? !(f.includes('Próximo paso visible') && f.includes('aparece ' + aLas(hora(pr.h))) && f.includes('sube hasta ' + pr.alt + '°')) : !/Sin pasos visibles/.test(f)) malF.push(k + ' proximo paso: ' + f.slice(0, 200));
     }
     ok(!malF.length, 'la ficha de cada uno: nombre, «Satélite artificial», altura y velocidad, el proximo paso visible (o que no hay en siete noches) y la fecha de los elementos', malF.join(' | '));
     /* el .ics y el aviso del primer paso */
