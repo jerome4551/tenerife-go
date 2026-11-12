@@ -9227,12 +9227,25 @@ Object.assign(UI_TX, {
      linea de los paneles del tiempo y del mar (wxZonasEnLinea) */
   "wxZonaIsla": {"es":"Toda la isla","en":"Whole island","fr":"Toute l’île","de":"Ganze Insel","it":"Tutta l’isola","nl":"Hele eiland","zh":"全岛","zht":"全島","bg":"Целият остров", pl: "Cała wyspa"},
   "wxZonaCostaIsla": {"es":"Toda la costa","en":"Whole coast","fr":"Toute la côte","de":"Ganze Küste","it":"Tutta la costa","nl":"Hele kust","zh":"全岛沿海","zht":"全島沿海","bg":"Цялото крайбрежие", pl: "Całe wybrzeże"},
-  "wxDeA": {"es":"De {a} a {b}","en":"From {a} to {b}","fr":"Du {a} au {b}","de":"Von {a} bis {b}","it":"Da {a} a {b}","nl":"Van {a} tot {b}","zh":"{a} 至 {b}","zht":"{a} 至 {b}","bg":"От {a} до {b}", pl: "Od {a} do {b}"},
+  "wxDeA": {"es":"De {a} a {b}","en":"From {a} to {b}","fr":"De {a} à {b}","de":"Von {a} bis {b}","it":"Dalle {a} alle {b}","nl":"Van {a} tot {b}","zh":"{a} 至 {b}","zht":"{a} 至 {b}","bg":"От {a} до {b}", pl: "Od {a} do {b}"},
+  /* (12 de noviembre de 2026) cuando un aviso no empieza y acaba hoy, con el día dicho como se dice: «Desde hoy a
+     las 10:00 hasta el jueves a las 07:59», «От днес в 10:00 до четвъртък в 07:59»; y si es de un solo día que no es
+     hoy, «Mañana, de 00:00 a 23:59», «El sábado, de 00:00 a 23:59» (wxCuandoTxt). Antes salía la fecha corta del
+     navegador («чт, 12, 07:59», «jue 12, 07:59»), que una nativa de búlgaro no entendía. En francés y en polaco, con
+     un guion: «Du…au» y «Od…do» piden otra forma de «aujourd’hui» y del día de la semana. En italiano, las horas
+     con su artículo: «dalle 10:00 alle 23:59» */
+  "wxDesdeHasta": {"es":"Desde {a} hasta {b}","en":"From {a} to {b}","fr":"{a} – {b}","de":"Von {a} bis {b}","it":"Da {a} a {b}","nl":"Van {a} tot {b}","zh":"{a} 至 {b}","zht":"{a} 至 {b}","bg":"От {a} до {b}", pl: "{a} – {b}"},
+  "wxHoyA": {"es":"hoy a las {h}","en":"today at {h}","fr":"aujourd’hui à {h}","de":"heute um {h}","it":"oggi alle {h}","nl":"vandaag om {h}","zh":"今天 {h}","zht":"今天 {h}","bg":"днес в {h}", pl: "dziś, godz. {h}"},
+  "wxAyerA": {"es":"ayer a las {h}","en":"yesterday at {h}","fr":"hier à {h}","de":"gestern um {h}","it":"ieri alle {h}","nl":"gisteren om {h}","zh":"昨天 {h}","zht":"昨天 {h}","bg":"вчера в {h}", pl: "wczoraj, godz. {h}"},
+  "wxMananaA": {"es":"mañana a las {h}","en":"tomorrow at {h}","fr":"demain à {h}","de":"morgen um {h}","it":"domani alle {h}","nl":"morgen om {h}","zh":"明天 {h}","zht":"明天 {h}","bg":"утре в {h}", pl: "jutro, godz. {h}"},
+  "wxDiaA": {"es":"el {d} a las {h}","en":"{d} at {h}","fr":"{d} à {h}","de":"{d} um {h}","it":"{d} alle {h}","nl":"{d} om {h}","zh":"{d} {h}","zht":"{d} {h}","bg":"{d} в {h}", pl: "{d}, godz. {h}"},
+  "wxMananaDeA": {"es":"Mañana, de {a} a {b}","en":"Tomorrow, from {a} to {b}","fr":"Demain, de {a} à {b}","de":"Morgen von {a} bis {b}","it":"Domani, dalle {a} alle {b}","nl":"Morgen van {a} tot {b}","zh":"明天 {a} 至 {b}","zht":"明天 {a} 至 {b}","bg":"Утре, от {a} до {b}", pl: "Jutro, od {a} do {b}"},
+  "wxDiaDeA": {"es":"el {d}, de {a} a {b}","en":"{d}, from {a} to {b}","fr":"{d}, de {a} à {b}","de":"{d} von {a} bis {b}","it":"{d}, dalle {a} alle {b}","nl":"{d} van {a} tot {b}","zh":"{d} {a} 至 {b}","zht":"{d} {a} 至 {b}","bg":"{d}, от {a} до {b}", pl: "{d}, od {a} do {b}"},
   "wxHoraCanarias": {"es":"hora de Canarias","en":"Canary Islands time","fr":"heure des Canaries","de":"Kanarenzeit","it":"ora delle Canarie","nl":"Canarische tijd","zh":"加那利群岛时间","zht":"加那利群島時間","bg":"канарско време", pl: "czas na Wyspach Kanaryjskich"},
   "wxProb": {"es":"Probabilidad: {p}","en":"Probability: {p}","fr":"Probabilité : {p}","de":"Wahrscheinlichkeit: {p}","it":"Probabilità: {p}","nl":"Kans: {p}","zh":"概率：{p}","zht":"機率：{p}","bg":"Вероятност: {p}", pl: "Prawdopodobieństwo: {p}"},
   "wxTextoAemet": {"es":"Texto de AEMET","en":"AEMET text","fr":"Texte de l’AEMET (en espagnol)","de":"Text der AEMET (auf Spanisch)","it":"Testo dell’AEMET (in spagnolo)","nl":"Tekst van AEMET (in het Spaans)","zh":"AEMET 原文（西班牙语）","zht":"AEMET 原文（西班牙語）","bg":"Текст на AEMET (на испански)", pl: "Tekst AEMET (po hiszpańsku)"},
   "wxSinAvisos": {"es":"Sin avisos de AEMET para Tenerife","en":"No AEMET warnings for Tenerife","fr":"Aucune alerte de l’AEMET pour Tenerife","de":"Keine AEMET-Warnungen für Teneriffa","it":"Nessuna allerta AEMET per Tenerife","nl":"Geen AEMET-waarschuwingen voor Tenerife","zh":"AEMET 未对特内里费发布预警","zht":"AEMET 未對特內里費發布預警","bg":"Няма предупреждения от AEMET за Тенерифе", pl: "Brak ostrzeżeń AEMET dla Teneryfy"},
-  "wxSinAvisosHasta": {"es":"Sin avisos de AEMET para Tenerife hasta {f}","en":"No AEMET warnings for Tenerife until {f}","fr":"Aucune alerte de l’AEMET pour Tenerife jusqu’au {f}","de":"Keine AEMET-Warnungen für Teneriffa bis {f}","it":"Nessuna allerta AEMET per Tenerife fino a {f}","nl":"Geen AEMET-waarschuwingen voor Tenerife tot {f}","zh":"截至{f}，AEMET 未对特内里费发布预警","zht":"截至{f}，AEMET 未對特內里費發布預警","bg":"Няма предупреждения от AEMET за Тенерифе до {f}", pl: "Brak ostrzeżeń AEMET dla Teneryfy do {f}"},
+  "wxSinAvisosHasta": {"es":"Sin avisos de AEMET para Tenerife hasta {f}","en":"No AEMET warnings for Tenerife until {f}","fr":"Aucune alerte de l’AEMET pour Tenerife jusqu’à {f}","de":"Keine AEMET-Warnungen für Teneriffa bis {f}","it":"Nessuna allerta AEMET per Tenerife fino a {f}","nl":"Geen AEMET-waarschuwingen voor Tenerife tot {f}","zh":"截至{f}，AEMET 未对特内里费发布预警","zht":"截至{f}，AEMET 未對特內里費發布預警","bg":"Няма предупреждения от AEMET за Тенерифе до {f}", pl: "Brak ostrzeżeń AEMET dla Teneryfy do {f}"},
   "wxHayAvisos": {"es":"{n} aviso de AEMET para Tenerife|{n} avisos de AEMET para Tenerife","en":"{n} AEMET warning for Tenerife|{n} AEMET warnings for Tenerife","fr":"{n} alerte de l’AEMET pour Tenerife|{n} alertes de l’AEMET pour Tenerife","de":"{n} AEMET-Warnung für Teneriffa|{n} AEMET-Warnungen für Teneriffa","it":"{n} allerta AEMET per Tenerife|{n} allerte AEMET per Tenerife","nl":"{n} AEMET-waarschuwing voor Tenerife|{n} AEMET-waarschuwingen voor Tenerife","zh":"AEMET 对特内里费发布了 {n} 条预警","zht":"AEMET 對特內里費發布了 {n} 則預警","bg":"{n} предупреждение от AEMET за Тенерифе|{n} предупреждения от AEMET за Тенерифе", pl: "{n} ostrzeżenie AEMET dla Teneryfy|{n} ostrzeżenia AEMET dla Teneryfy|{n} ostrzeżeń AEMET dla Teneryfy"},
   "wxComprobado": {"es":"Comprobado: {h}","en":"Checked: {h}","fr":"Vérifié : {h}","de":"Geprüft: {h}","it":"Controllato: {h}","nl":"Gecontroleerd: {h}","zh":"核对时间：{h}","zht":"核對時間：{h}","bg":"Проверено: {h}", pl: "Sprawdzono: {h}"},
   "wxSinComprobar": {"es":"No se han podido comprobar los avisos desde {h}: puede haber cambios.","en":"Warnings could not be checked since {h}: there may be changes.","fr":"Les alertes n’ont pas pu être vérifiées depuis {h} : il peut y avoir du nouveau.","de":"Die Warnungen konnten seit {h} nicht geprüft werden – es kann Änderungen geben.","it":"Non è stato possibile controllare le allerte da {h}: potrebbero esserci novità.","nl":"De waarschuwingen konden sinds {h} niet worden gecontroleerd: er kan iets veranderd zijn.","zh":"自{h}起无法核对预警，情况可能已有变化。","zht":"自{h}起無法核對預警，情況可能已有變化。","bg":"Предупрежденията не са проверявани от {h}: възможно е да има промени.", pl: "Nie udało się sprawdzić ostrzeżeń od {h}: mogły zajść zmiany."},
@@ -28835,8 +28848,71 @@ function wxHora(iso, conDia) {
   try { return new Intl.DateTimeFormat(wxLocale(), o).format(d); }
   catch (e) { return d.toISOString().slice(0, 16).replace('T', ' ') + ' UTC'; }
 }
-// con el dia delante solo si no es hoy
-function wxHoraCorta(iso) { return wxHora(iso, wxDia(new Date(iso)) !== wxDia(new Date())); }
+/* Cuándo se miró, para «Comprobado: …»: la hora sola si es hoy, «ayer a las 23:03» si fue ayer (12 de noviembre de
+   2026: cada noche, de las 00:00 a la siguiente vuelta del robot, salía «mié 11, 23:03», la fecha corta del navegador
+   que una nativa de búlgaro no entendía) y, si es de antes, con esa fecha corta. Detrás de «desde» (wxDesdeCuando),
+   también «hoy a las 07:05». */
+function wxHoraCorta(iso) {
+  var d = new Date(iso);
+  if (isNaN(d)) return '';
+  var r = wxRelativo(wxDia(d));
+  return r === 'hoy' ? wxHora(iso, false) : r === 'ayer' ? tx('wxAyerA', { h: wxHora(iso, false) }) : wxHora(iso, true);
+}
+function wxDesdeCuando(iso) {
+  var d = new Date(iso);
+  if (isNaN(d)) return '';
+  var r = wxRelativo(wxDia(d));
+  return r === 'hoy' ? tx('wxHoyA', { h: wxHora(iso, false) }) : wxHoraCorta(iso);
+}
+/* Un momento de un aviso dicho como se dice (12 de noviembre de 2026): «hoy a las 10:00», «mañana a las 07:59», «el
+   jueves a las 07:59» (el día de la semana entero, del navegador). Y cuándo es un aviso: si empieza y acaba hoy, «De
+   10:00 a 23:59», como siempre; si es de un solo día que no es hoy, «Mañana, de 00:00 a 23:59» o «El sábado, de 00:00
+   a 23:59»; si no, «Desde hoy a las 10:00 hasta el jueves a las 07:59». Los avisos de AEMET duran horas o pocos días:
+   el día de la semana basta y no se confunde. Mañana es el día siguiente del calendario de Canarias, no «dentro de
+   24 horas», que el día del cambio de hora no lo es. */
+function wxDiaSiguiente(dia) {
+  var p = String(dia).split('-');
+  return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + 1)).toISOString().slice(0, 10);
+}
+// el día de un momento frente a hoy, en el calendario de Canarias: 'hoy', 'ayer', 'manana' o '' (otro día)
+function wxRelativo(dia) {
+  var hoy = wxDia(new Date());
+  return dia === hoy ? 'hoy' : wxDiaSiguiente(dia) === hoy ? 'ayer' : dia === wxDiaSiguiente(hoy) ? 'manana' : '';
+}
+function wxSemana(d) {
+  try { return new Intl.DateTimeFormat(wxLocale(), { timeZone:'Atlantic/Canary', weekday:'long' }).format(d); }
+  catch (e) { return ''; }
+}
+function wxMayuscula(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function wxDiaHora(iso) {
+  var d = new Date(iso);
+  if (isNaN(d)) return '';
+  var h = wxHora(iso, false), r = wxRelativo(wxDia(d));
+  if (r === 'hoy') return tx('wxHoyA', { h: h });
+  if (r === 'ayer') return tx('wxAyerA', { h: h });
+  if (r === 'manana') return tx('wxMananaA', { h: h });
+  var w = wxSemana(d);
+  return w ? tx('wxDiaA', { d: w, h: h }) : wxHora(iso, true);
+}
+/* Hasta cuándo no hay avisos («Sin avisos de AEMET para Tenerife hasta el sábado a las 23:59»). En polaco, «do» pide
+   genitivo: «do jutra», «do soboty» (Intl da el nominativo, «sobota»); «dziś» no cambia. */
+var WX_PL_DOPELNIACZ = { 'jutro': 'jutra', 'poniedziałek': 'poniedziałku', 'wtorek': 'wtorku', 'środa': 'środy',
+  'czwartek': 'czwartku', 'piątek': 'piątku', 'sobota': 'soboty', 'niedziela': 'niedzieli' };
+function wxHasta(iso) {
+  var s = wxDiaHora(iso);
+  if (wxLang() === 'pl') s = s.replace(/^([^,]+),/, function (x, w) { return (WX_PL_DOPELNIACZ[w] || w) + ','; });
+  return s;
+}
+function wxCuandoTxt(a) {
+  var ini = new Date(a.inicio), fin = new Date(a.fin), hoy = wxDia(new Date()), dia = wxDia(ini);
+  if (!isNaN(ini) && !isNaN(fin) && dia === wxDia(fin)) {
+    var de = { a: wxHora(a.inicio), b: wxHora(a.fin) }, w;
+    if (dia === hoy) return tx('wxDeA', de);
+    if (dia === wxDiaSiguiente(hoy)) return tx('wxMananaDeA', de);
+    if ((w = wxSemana(ini))) return wxMayuscula(tx('wxDiaDeA', { d: w, a: de.a, b: de.b }));
+  }
+  return wxMayuscula(tx('wxDesdeHasta', { a: wxDiaHora(a.inicio), b: wxDiaHora(a.fin) }));
+}
 
 function wxNombreZona(z) {
   var cod = String((z && z.codigo) || ''), n = tx('wxZona_' + cod.replace(/C$/, ''));
@@ -28914,7 +28990,7 @@ function wxTarjeta(a) {
   }
   if (a.probabilidad) dato.push(tx('wxProb', { p: a.probabilidad }));
   if (dato.length) c.appendChild(wxEl('div', 'wx-alert-param', dato.join(' · ')));
-  c.appendChild(wxEl('div', 'wx-alert-time', '🕐 ' + tx('wxDeA', { a: wxHora(a.inicio, true), b: wxHora(a.fin, true) })
+  c.appendChild(wxEl('div', 'wx-alert-time', '🕐 ' + wxCuandoTxt(a)
                                             + ' (' + tx('wxHoraCanarias') + ')'));
   /* El texto lo escribe AEMET y solo lo da en castellano y en ingles: en
      ingles para quien tiene la app en ingles, en castellano para los demas
@@ -28940,17 +29016,17 @@ function wxPieDeLinea(box, vig) {
   if (!vig.length && wxEstado === 'ok') {
     var alc = wxDatos.aemet && wxDatos.aemet.alcance;
     box.appendChild(wxEl('span', 'wx-linea-txt', '✓ ' + ((alc && Date.parse(alc) > Date.now())
-      ? tx('wxSinAvisosHasta', { f: wxHora(alc, true) }) : tx('wxSinAvisos'))));
+      ? tx('wxSinAvisosHasta', { f: wxHasta(alc) }) : tx('wxSinAvisos'))));
   }
   if (wxEstado === 'viejo') {
-    var v = wxEl('div', 'wx-linea-viejo', tx('wxSinComprobar', { h: wxHoraCorta(wxDatos.consultado) }) + ' ');
+    var v = wxEl('div', 'wx-linea-viejo', tx('wxSinComprobar', { h: wxDesdeCuando(wxDatos.consultado) }) + ' ');
     v.appendChild(wxEnlaceAemet());
     box.appendChild(v);
   } else {
     box.appendChild(wxEl('div', 'wx-linea-hora', tx('wxComprobado', { h: wxHoraCorta(wxDatos.consultado) }) + ' · AEMET'));
   }
 }
-function wxCuando(a) { return '🕐 ' + tx('wxDeA', { a: wxHoraCorta(a.inicio), b: wxHoraCorta(a.fin) }); }
+function wxCuando(a) { return '🕐 ' + wxCuandoTxt(a); }
 /* Las zonas de un aviso, para una linea. Si las tiene todas las de la isla,
    «Toda la isla» (o «Toda la costa»): AEMET suele poner el mismo aviso en las
    tres zonas de Tenerife, y nombrarlas ocupaba tres renglones. Cuales son
@@ -29006,7 +29082,7 @@ function renderWxAlerts() {
     estado.textContent = '';
     if (wxEstado === 'viejo' || wxEstado === 'error') {
       estado.appendChild(wxEl('span', '', (wxEstado === 'viejo'
-        ? tx('wxSinComprobar', { h: wxHoraCorta(wxDatos.consultado) }) : tx('wxNoDisponible')) + ' '));
+        ? tx('wxSinComprobar', { h: wxDesdeCuando(wxDatos.consultado) }) : tx('wxNoDisponible')) + ' '));
       estado.appendChild(wxEnlaceAemet());
       estado.style.display = 'block';
     } else estado.style.display = 'none';

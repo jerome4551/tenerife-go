@@ -9499,7 +9499,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 50 tablas, 3590 filas (y 5.737 filas, dentro y fuera del fuente)
+## Idiomas · 50 tablas, 3597 filas (y 5.744 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para

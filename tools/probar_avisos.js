@@ -175,13 +175,15 @@ async function openMeteo(pg) {
     const lineasTiempo = await pg.evaluate(() => [...document.querySelectorAll('#mc-avisos .wx-linea-btn')].map(b => b.textContent));
 
     const m = await panelMar(pg);
-    const deA = esperado.wxDeA.split('{a}')[0];
+    /* la hora de cada línea: la de wxCuandoTxt («De 10:00 a 15:00», o «Desde hoy a las 23:00 hasta mañana a las
+       04:00» si cruza la medianoche), que se prueba aparte con el reloj parado */
+    const cuandos = await pg.evaluate(() => wxVigentes().map(a => '🕐 ' + wxCuandoTxt(a)));
     caso(`[${L}] panel del mar: los dos avisos lo primero, el peor arriba, con zona y hora`,
          m.primero === 'mar-avisos' && m.arriba.length === 2
          && m.arriba[0].includes(esperado.wxNivel_naranja) && m.arriba[0].includes(esperado.wxFen_CO)
          && m.arriba[0].includes(esperado.wxCosta.replace('{z}', esperado.wxZona_659603))
          && m.arriba[1].includes(esperado.wxNivel_amarillo) && m.arriba[1].includes(esperado.wxFen_PR)
-         && m.arriba[1].includes(esperado.wxZona_659601) && m.arriba.every(a => a.includes('🕐 ' + deA)),
+         && m.arriba[1].includes(esperado.wxZona_659601) && m.arriba.every(a => cuandos.some(c => a.includes(c))),
          JSON.stringify({ primero: m.primero, arriba: m.arriba }));
     caso(`[${L}] panel del tiempo: los mismos dos avisos, enteros`,
          lineasTiempo.length === 2 && JSON.stringify(lineasTiempo) === JSON.stringify(m.arriba) && !dosAvisos(linea),
@@ -200,8 +202,10 @@ async function openMeteo(pg) {
       const app = [tarjetas.map(t => t.app).join(' | '), linea, lineasTiempo.join(' | '), m.arriba.join(' | '), pt.dice,
                    m.filas.map(f => f.aemet).join(' | '), m.nota].join(' | ');
       const cast = ['Aviso ', 'Lluvias', 'Costeros', 'Fenómenos', 'Norte de Tenerife', 'Probabilidad', 'hora de Canarias',
-                    'Texto de AEMET', 'Comprobado', 'Quedan fuera', ' De ']
+                    'Texto de AEMET', 'Comprobado', 'Quedan fuera']
         .filter(p => app.includes(p));
+      /* «De 10:00 a 15:00» es castellano; «De 10:00 à 15:00», francés (12-11-2026): se ve en el « a » */
+      if (/ De \d\d?:\d\d a |Desde (hoy|mañana|el) /.test(app)) cast.push('«De… a…» o «Desde…»');
       caso(`[${L}] sin rotulos en castellano`, cast.length === 0, cast.join(', ') + ' en: ' + app.slice(0, 300));
     }
     caso(`[${L}] sin errores de pagina`, errores.length === 0, errores.join(' / '));
@@ -249,7 +253,11 @@ async function openMeteo(pg) {
     const { pg } = await abrir(deManana, 'es');
     const m = await panelMar(pg);
     const pt = await punto(pg);
-    caso('[es] arriba, con su hora', m.arriba.length === 1 && m.arriba[0].includes('🕐 De '), JSON.stringify(m.arriba));
+    /* de 30 a 36 horas desde ahora, nunca hoy (12-11-2026): según la hora, «Mañana, de…», «El sábado, de…» o «Desde
+       mañana a las… hasta el sábado a las…» */
+    const cuando = await pg.evaluate(() => '🕐 ' + wxCuandoTxt(wxVigentes()[0]));
+    caso('[es] arriba, con su hora: «' + cuando + '»', m.arriba.length === 1 && m.arriba[0].includes(cuando)
+         && /^🕐 (Mañana, de |El [a-zéá]+, de |Desde (mañana|el [a-zéá]+) a las? )/.test(cuando) && !/\bhoy\b/.test(cuando), JSON.stringify(m.arriba));
     caso('[es] el punto del 🌊 si: el aviso esta en pie', pt.ve && /wx-naranja/.test(pt.cls), JSON.stringify(pt));
     caso('[es] ninguna costa con aviso para hoy, tres playas, sin nota', m.filas.every(f => !f.aemet) && m.playas.length === 3 && m.nota === '',
          JSON.stringify(m));
@@ -286,13 +294,15 @@ async function openMeteo(pg) {
     const sur = await globo(pg, 'el-duque');
     const norte = await globo(pg, 'playa-jardin');
     const q = {};
-    for (const k of ['wxNivel_naranja', 'wxFen_CO', 'wxDeA']) q[k] = await T(pg, k, L);
+    for (const k of ['wxNivel_naranja', 'wxFen_CO']) q[k] = await T(pg, k, L);
+    const cuandoCO = await pg.evaluate(() => '🕐 ' + wxCuandoTxt(wxVigentes().find(a => a.fenomeno === 'CO')));
     caso(`[${L}] Playa del Duque (sur, con el costero): «⚠️ AEMET» naranja, y el aviso lo primero, con su hora`,
          sur.chip === '⚠️ AEMET' && /wx-naranja/.test(sur.clase) && sur.lineas === 1 && sur.mar
          && sur.primera.includes(q.wxNivel_naranja) && sur.primera.includes(q.wxFen_CO) && sur.primera.includes('AEMET')
-         && sur.primera.includes('🕐 ' + q.wxDeA.split('{a}')[0]), JSON.stringify(sur));
+         && sur.primera.includes(cuandoCO), JSON.stringify(sur));
     caso(`[${L}] Playa Jardín (norte): el globo de siempre`, norte.chip === null && norte.lineas === 0 && norte.mar, JSON.stringify(norte));
-    if (L !== 'es') caso(`[${L}] sin rotulos en castellano`, !/Aviso |Fenómenos|De \d/.test(sur.primera || ''), sur.primera);
+    /* «De 10:00 a 15:00» es castellano; «De 10:00 à 15:00», francés (12-11-2026): el castellano se ve en el « a » */
+    if (L !== 'es') caso(`[${L}] sin rotulos en castellano`, !/Aviso |Fenómenos|De \d\d?:\d\d a |Desde (hoy|mañana|el) /.test(sur.primera || ''), sur.primera);
     caso(`[${L}] sin errores de pagina`, errores.length === 0, errores.join(' / '));
     if (L === 'es') {
       // el mar sale ya de SEA_CACHE; el aviso se mira cada vez: acabado, ya no esta
@@ -411,6 +421,80 @@ async function openMeteo(pg) {
          linea.includes(await T(pg, 'wxNivel_naranja', 'fr')) && !linea.includes('Aviso naranja'), linea);
     caso('y lo de arriba del panel del mar', mar.includes(await T(pg, 'wxNivel_naranja', 'fr')) && !mar.includes('Aviso naranja'), mar);
     caso('y lo que dice el punto', fr.split('|').some(f => pt.dice === f.replace('{n}', '2')), pt.dice);
+    await pg.close();
+  }
+
+  console.log('\n=== la hora de un aviso, dicha como se dice (el reloj, el jueves 12 de noviembre de 2026 a las 09:00) ===');
+  /* (12 de noviembre de 2026) Antes salía la fecha corta del navegador («чт, 12, 07:59», «jue 12, 07:59»), que una
+     nativa de búlgaro no entendía («mejor dicho: de hoy a las 10:00 hasta jueves a las 07:59»). Ahora, si el aviso
+     empieza y acaba hoy, «De 10:00 a 23:59», como siempre; si no, el día dicho como se dice: hoy, ayer, mañana o el
+     día de la semana; y si es de un solo día que no es hoy, «Mañana, de 00:00 a 23:59», «El sábado, de 00:00 a
+     23:59». Seis avisos de prueba: hoy de 10:00 a 23:59, de hoy a mañana, de hoy al sábado, mañana entero, el sábado
+     entero y de ayer a hoy. Y lo mismo en el pie del panel: «Comprobado: ayer a las 23:03» (de hoy, la hora sola),
+     «…desde hoy a las 07:05…» y «Sin avisos… hasta el sábado a las 23:59» (en polaco, «do soboty»). */
+  {
+    const AVISOS = [['2026-11-12T10:00:00Z', '2026-11-12T23:59:00Z'], ['2026-11-12T10:00:00Z', '2026-11-13T07:59:00Z'],
+      ['2026-11-12T10:00:00Z', '2026-11-14T07:59:00Z'], ['2026-11-13T00:00:00Z', '2026-11-13T23:59:00Z'],
+      ['2026-11-14T00:00:00Z', '2026-11-14T23:59:00Z'], ['2026-11-11T10:00:00Z', '2026-11-12T23:59:00Z']];
+    const ESPERA = {
+      es: ['De 10:00 a 23:59', 'Desde hoy a las 10:00 hasta mañana a las 07:59', 'Desde hoy a las 10:00 hasta el sábado a las 07:59',
+           'Mañana, de 00:00 a 23:59', 'El sábado, de 00:00 a 23:59', 'Desde ayer a las 10:00 hasta hoy a las 23:59'],
+      en: ['From 10:00 to 23:59', 'From today at 10:00 to tomorrow at 07:59', 'From today at 10:00 to Saturday at 07:59',
+           'Tomorrow, from 00:00 to 23:59', 'Saturday, from 00:00 to 23:59', 'From yesterday at 10:00 to today at 23:59'],
+      fr: ['De 10:00 à 23:59', 'Aujourd’hui à 10:00 – demain à 07:59', 'Aujourd’hui à 10:00 – samedi à 07:59',
+           'Demain, de 00:00 à 23:59', 'Samedi, de 00:00 à 23:59', 'Hier à 10:00 – aujourd’hui à 23:59'],
+      de: ['Von 10:00 bis 23:59', 'Von heute um 10:00 bis morgen um 07:59', 'Von heute um 10:00 bis Samstag um 07:59',
+           'Morgen von 00:00 bis 23:59', 'Samstag von 00:00 bis 23:59', 'Von gestern um 10:00 bis heute um 23:59'],
+      it: ['Dalle 10:00 alle 23:59', 'Da oggi alle 10:00 a domani alle 07:59', 'Da oggi alle 10:00 a sabato alle 07:59',
+           'Domani, dalle 00:00 alle 23:59', 'Sabato, dalle 00:00 alle 23:59', 'Da ieri alle 10:00 a oggi alle 23:59'],
+      nl: ['Van 10:00 tot 23:59', 'Van vandaag om 10:00 tot morgen om 07:59', 'Van vandaag om 10:00 tot zaterdag om 07:59',
+           'Morgen van 00:00 tot 23:59', 'Zaterdag van 00:00 tot 23:59', 'Van gisteren om 10:00 tot vandaag om 23:59'],
+      zh: ['10:00 至 23:59', '今天 10:00 至 明天 07:59', '今天 10:00 至 星期六 07:59', '明天 00:00 至 23:59', '星期六 00:00 至 23:59',
+           '昨天 10:00 至 今天 23:59'],
+      zht: ['上午10:00 至 下午11:59', '今天 上午10:00 至 明天 上午07:59', '今天 上午10:00 至 星期六 上午07:59',
+            '明天 上午12:00 至 下午11:59', '星期六 上午12:00 至 下午11:59', '昨天 上午10:00 至 今天 下午11:59'],
+      bg: ['От 10:00 до 23:59', 'От днес в 10:00 до утре в 07:59', 'От днес в 10:00 до събота в 07:59',
+           'Утре, от 00:00 до 23:59', 'Събота, от 00:00 до 23:59', 'От вчера в 10:00 до днес в 23:59'],
+      pl: ['Od 10:00 do 23:59', 'Dziś, godz. 10:00 – jutro, godz. 07:59', 'Dziś, godz. 10:00 – sobota, godz. 07:59',
+           'Jutro, od 00:00 do 23:59', 'Sobota, od 00:00 do 23:59', 'Wczoraj, godz. 10:00 – dziś, godz. 23:59'],
+    };
+    /* el pie: lo que va en el {h} o el {f} de su fila: «Comprobado:» ayer a las 23:03 y hoy a las 07:05, «desde» hoy a
+       las 07:05, y «hasta» mañana y el sábado a las 23:59 */
+    const PIE = {
+      es: ['ayer a las 23:03', '07:05', 'hoy a las 07:05', 'mañana a las 23:59', 'el sábado a las 23:59'],
+      en: ['yesterday at 23:03', '07:05', 'today at 07:05', 'tomorrow at 23:59', 'Saturday at 23:59'],
+      fr: ['hier à 23:03', '07:05', 'aujourd’hui à 07:05', 'demain à 23:59', 'samedi à 23:59'],
+      de: ['gestern um 23:03', '07:05', 'heute um 07:05', 'morgen um 23:59', 'Samstag um 23:59'],
+      it: ['ieri alle 23:03', '07:05', 'oggi alle 07:05', 'domani alle 23:59', 'sabato alle 23:59'],
+      nl: ['gisteren om 23:03', '07:05', 'vandaag om 07:05', 'morgen om 23:59', 'zaterdag om 23:59'],
+      zh: ['昨天 23:03', '07:05', '今天 07:05', '明天 23:59', '星期六 23:59'],
+      zht: ['昨天 下午11:03', '上午07:05', '今天 上午07:05', '明天 下午11:59', '星期六 下午11:59'],
+      bg: ['вчера в 23:03', '07:05', 'днес в 07:05', 'утре в 23:59', 'събота в 23:59'],
+      pl: ['wczoraj, godz. 23:03', '07:05', 'dziś, godz. 07:05', 'jutra, godz. 23:59', 'soboty, godz. 23:59'],
+    };
+    const pg = await ctx.newPage();
+    const errores = [];
+    pg.on('pageerror', e => errores.push(e.message));
+    await pg.clock.install({ time: new Date('2026-11-12T09:00:00Z') });
+    await openMeteo(pg);
+    await pg.route('**/datos/avisos-aemet.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(sinAvisos) }));
+    await pg.goto(BASE, { waitUntil: 'load' });
+    await pg.waitForFunction(() => typeof setLang === 'function' && typeof wxCuandoTxt === 'function', null, { timeout: 30000 });
+    for (const L of IDIOMAS) {
+      await pg.evaluate(l => { try { setLang(l); } catch (e) {} }, L);
+      const r = await pg.evaluate(av => av.map(x => wxCuandoTxt({ inicio: x[0], fin: x[1] })), AVISOS);
+      caso(`[${L}] los avisos: «${r[1]}», «${r[3]}» y «${r[5]}»`, JSON.stringify(r) === JSON.stringify(ESPERA[L]), JSON.stringify({ sale: r, espera: ESPERA[L] }));
+      const pie = await pg.evaluate(() => [
+        tx('wxComprobado', { h: wxHoraCorta('2026-11-11T23:03:00Z') }), tx('wxComprobado', { h: wxHoraCorta('2026-11-12T07:05:00Z') }),
+        tx('wxSinComprobar', { h: wxDesdeCuando('2026-11-12T07:05:00Z') }),
+        tx('wxSinAvisosHasta', { f: wxHasta('2026-11-13T23:59:00Z') }), tx('wxSinAvisosHasta', { f: wxHasta('2026-11-14T23:59:00Z') })]);
+      const filas = {};
+      for (const k of ['wxComprobado', 'wxSinComprobar', 'wxSinAvisosHasta']) filas[k] = await T(pg, k, L);
+      const quiere = [filas.wxComprobado.replace('{h}', PIE[L][0]), filas.wxComprobado.replace('{h}', PIE[L][1]),
+        filas.wxSinComprobar.replace('{h}', PIE[L][2]), filas.wxSinAvisosHasta.replace('{f}', PIE[L][3]), filas.wxSinAvisosHasta.replace('{f}', PIE[L][4])];
+      caso(`[${L}] el pie: «${pie[0]}» y «${pie[4]}»`, JSON.stringify(pie) === JSON.stringify(quiere), JSON.stringify({ sale: pie, espera: quiere }));
+    }
+    caso('la hora dicha como se dice: sin errores de página', errores.length === 0, errores.join(' / '));
     await pg.close();
   }
 
