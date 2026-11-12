@@ -3141,7 +3141,7 @@ async function vozAlta(b) {
   ok(r.antes.tg === 'object' && r.antes.dentro && r.antes.estado === 'parado' && /^🔊 Leer en voz alta Lo leen las voces instaladas en el dispositivo, sin red: así puede mirar al cielo y no a la pantalla\. Tras cada parada hay 30 segundos para buscarla/.test(r.antes.caja),
      'la tarjeta «Su noche guiada» lleva el boton «Leer en voz alta» y la nota (las voces del dispositivo, sin red, 30 segundos por parada)', r.antes.caja);
   const intro = r.dichos[0] || {};
-  ok(r.alTocar.dichos === 1 && intro.text === 'Noche guiada: ' + N + ' paradas, de lo más fácil a lo más fino. Hora de referencia: ' + r.tarjeta.ref + '. Tras cada una, una pausa para buscarla en el cielo.'
+  ok(r.alTocar.dichos === 1 && intro.text === 'Noche guiada: ' + N + ' paradas, de la más fácil de ver a la más difícil. Hora de referencia: ' + r.tarjeta.ref + '. Tras cada una, una pausa para buscarla en el cielo.'
      && intro.lang === 'es-ES' && intro.voz === 'Mónica' && intro.rate === 0.95,
      'al tocar, en el acto: «Noche guiada: ' + N + ' paradas… Hora de referencia: ' + r.tarjeta.ref + '…», en es-ES con la voz del dispositivo (Mónica) y no con la de red que va antes en la lista', JSON.stringify(intro));
   /* cada parada dice lo que pone la tarjeta, en orden */
