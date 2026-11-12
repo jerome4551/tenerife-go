@@ -206,7 +206,7 @@ async function ejemplo(pg, mas) {
      para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; desde el 8 (bloque 8), con
      «Su compañero de travesía» (el título, «A pie», «En bici» y la ayuda) y «Senderos de la isla» (el título), 151; y 2 placeholders (el
      del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (160 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?»; y 2 placeholders)', r2.n === 160 && r2.ph === 2, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (161 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?» y el título de «Su fuerza»; y 2 placeholders)', r2.n === 161 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -3296,6 +3296,77 @@ async function ejemplo(pg, mas) {
     await idioma(p30, 'es');
     prueba('30: sin errores de página', e30.length === 0, e30.join(' | '));
     await c30.close();
+  }
+
+  // 31. (12-11-2026, #120) «Su fuerza», en «Evolución»: cada ejercicio anotado con repeticiones o peso, el más reciente
+  //     primero, con cuántas veces, la última, la mejor marca (el peso más alto; sin peso, las más repeticiones) y la
+  //     primera, y su línea pequeña; lo anotado sin repeticiones ni peso no sale; sin nada, la ayuda; diez idiomas
+  {
+    const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+    const c31 = await contexto(b), p31 = await c31.newPage(), e31 = []; vigilar(p31, e31);
+    await abrirApp(p31); await abrirPerfilCuerpo(p31); await suCuerpo(p31);
+    /* [hace cuántos días, ejercicio, grupo, series, repeticiones, kg] */
+    const F = [[20, 'press-banca-barra', 'pecho', 3, 10, 40], [10, 'press-banca-barra', 'pecho', 3, 8, 45], [3, 'press-banca-barra', 'pecho', 3, 10, 45],
+      [1, 'press-banca-barra', 'pecho', 4, 6, 50], [5, 'dominadas', 'dorsal', 3, 6, 0], [2, 'dominadas', 'dorsal', 3, 8, 0], [4, 'curl-mancuernas', 'biceps', 3, 0, 0]];
+    const leer31 = () => p31.evaluate(() => ({
+      tit: document.getElementById('tgc-fuerza-tit').textContent, ayuda: document.getElementById('tgc-fuerza-ayuda').hidden ? null : document.getElementById('tgc-fuerza-ayuda').textContent,
+      lista: !document.getElementById('tgc-fuerza-lista').hidden,
+      ej: [...document.querySelectorAll('#tgc-fuerza-lista .tgc-fuerza-ej')].map(li => ({ nom: li.querySelector('.tgc-fuerza-nom').textContent, veces: li.querySelector('.tgc-fuerza-veces').textContent,
+        datos: [...li.querySelectorAll('.tgc-fuerza-datos li')].map(x => x.textContent), mejor: (li.querySelector('.tgc-fuerza-datos .mejor') || {}).textContent,
+        puntos: (li.querySelector('.tgc-fuerza-linea polyline') || { getAttribute: () => '' }).getAttribute('points').split(' ').filter(Boolean).length,
+        bolita: !!li.querySelector('.tgc-fuerza-linea circle') })),
+      visible: !!document.getElementById('tgc-fuerza').getClientRects().length }));
+    // sin nada con repeticiones ni peso: la ayuda
+    await p31.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [] })); TG_CUERPO.abrir(); });
+    await p31.click('#tgc-modo-e'); await p31.waitForTimeout(300);
+    const v0 = await leer31();
+    prueba('31: «Su fuerza» en «Evolución»; sin nada anotado con repeticiones o peso, la ayuda', v0.visible && v0.tit === 'Su fuerza' && !v0.lista && v0.ej.length === 0 &&
+      v0.ayuda === 'Cuando anote un ejercicio con sus repeticiones o su peso, aquí verá cómo progresa: la primera vez, la última y la mejor.', JSON.stringify(v0));
+    await p31.click('#tgc-modo-m'); await p31.waitForTimeout(200);
+    await p31.evaluate(f => {
+      const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+      const T0 = Date.now() - 5e6;
+      const series = f.map((x, i) => { const s = { d: hace(x[0]), g: x[2], n: x[3], t: T0 + i * 100, e: x[1] }; if (x[4]) s.r = x[4]; if (x[5]) s.kg = x[5]; return s; });
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series })); TG_CUERPO.abrir();
+    }, F);
+    await p31.click('#tgc-modo-e');
+    await p31.waitForFunction(() => document.querySelectorAll('#tgc-fuerza-lista .tgc-fuerza-ej').length === 2 && !/^[a-z0-9-]+$/.test(document.querySelector('#tgc-fuerza-lista .tgc-fuerza-nom').textContent), null, { timeout: 8000 }).catch(() => {});
+    const nombres31 = await p31.evaluate(async () => { const d = await (await fetch('datos/cuerpo/ejercicios-es.json')).json(); return { press: d['press-banca-barra'][0], dom: d['dominadas'][0] }; });
+    const v1 = await leer31();
+    const [pr, dm] = v1.ej;
+    prueba('31: dos ejercicios, el más reciente primero (el curl, sin repeticiones ni peso, no sale)', v1.ej.length === 2 && pr.nom === nombres31.press && dm.nom === nombres31.dom && !v1.ayuda, JSON.stringify(v1).slice(0, 300));
+    prueba('31: press de banca: 4 veces; la última y la mejor, 4 × 6 con 50 kg; la primera, 3 × 10 con 40 kg', pr.veces === '4 veces' &&
+      /^Última vez: 4 × 6 con 50 kg \(.+\)$/.test(pr.datos[0]) && /^Mejor marca: 4 × 6 con 50 kg \(.+\)$/.test(pr.datos[1]) && /^Primera vez: 3 × 10 con 40 kg \(.+\)$/.test(pr.datos[2]) &&
+      pr.mejor === pr.datos[1], JSON.stringify(pr));
+    prueba('31: dominadas, sin peso: la mejor marca, la de más repeticiones (3 × 8)', dm.veces === '2 veces' && /^Última vez: 3 × 8 \(.+\)$/.test(dm.datos[0]) &&
+      /^Mejor marca: 3 × 8 \(.+\)$/.test(dm.datos[1]) && /^Primera vez: 3 × 6 \(.+\)$/.test(dm.datos[2]), JSON.stringify(dm));
+    prueba('31: la línea pequeña: 4 pesos del press y 2 repeticiones de las dominadas, con el último punto marcado', pr.puntos === 4 && dm.puntos === 2 && pr.bolita && dm.bolita, JSON.stringify([pr.puntos, dm.puntos]));
+    // a igual peso, la de más repeticiones es la mejor
+    await p31.click('#tgc-modo-m'); await p31.waitForTimeout(200);
+    await p31.evaluate(() => {
+      const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+      const T0 = Date.now() - 5e6;
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [{ d: hace(6), g: 'cuadriceps', n: 3, t: T0, e: 'sentadilla-trasera-barra', r: 12, kg: 60 },
+        { d: hace(2), g: 'cuadriceps', n: 3, t: T0 + 100, e: 'sentadilla-trasera-barra', r: 8, kg: 60 }] })); TG_CUERPO.abrir();
+    });
+    await p31.click('#tgc-modo-e'); await p31.waitForTimeout(400);
+    const v2 = await leer31();
+    prueba('31: a igual peso, la mejor marca es la de más repeticiones (3 × 12 con 60 kg, no la última)', v2.ej.length === 1 && /^Mejor marca: 3 × 12 con 60 kg \(.+\)$/.test(v2.ej[0].datos[1]) &&
+      /^Última vez: 3 × 8 con 60 kg/.test(v2.ej[0].datos[0]), JSON.stringify(v2.ej));
+    // diez idiomas
+    const TIT = { en: 'Your strength', fr: 'Votre force', de: 'Ihre Kraft', it: 'Forza', nl: 'Uw kracht', zh: '我的力量', zht: '我的力量', bg: 'Вашата сила', pl: 'Siła' };
+    for (const [l, t] of Object.entries(TIT)) {
+      await idioma(p31, l);
+      const m = await leer31();
+      prueba('31, ' + l + ': «' + t + '», con sus fechas y cifras en su idioma', m.tit === t && m.ej.length === 1 && m.ej[0].datos.every(x => x && x.indexOf('{') < 0) &&
+        m.ej[0].datos[1] !== v2.ej[0].datos[1] && m.ej[0].veces.indexOf('{') < 0, JSON.stringify(m.ej).slice(0, 300));
+    }
+    await idioma(p31, 'es');
+    prueba('31: sin errores de página', e31.length === 0, e31.join(' | '));
+    await c31.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

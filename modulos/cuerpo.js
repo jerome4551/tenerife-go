@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (590 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (596 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -474,6 +474,12 @@
     "cuerpoPlanSinEj": {"es": "ningún ejercicio con lo que tiene", "en": "no exercises with what you have", "fr": "aucun exercice avec ce que vous avez", "de": "keine Übung mit Ihrer Ausstattung", "it": "nessun esercizio con quello che ha", "nl": "geen oefeningen met wat u hebt", "zh": "用您现有的器材没有可做的动作", "zht": "用您現有的器材沒有可做的動作", "bg": "няма упражнения с това, което имате", "pl": "brak ćwiczeń z dostępnym sprzętem"},
     "cuerpoPlanPorQue": {"es": "¿Por qué?", "en": "Why?", "fr": "Pourquoi ?", "de": "Warum?", "it": "Perché?", "nl": "Waarom?", "zh": "为什么？", "zht": "為什麼？", "bg": "Защо?", "pl": "Dlaczego?"},
     "cuerpoEjCasaAyuda": {"es": "En casa: los ejercicios con el material que marcó en «{seccion}».", "en": "At home: the exercises with the equipment you ticked in «{seccion}».", "fr": "À la maison : les exercices avec le matériel que vous avez coché dans «{seccion}».", "de": "Zu Hause: die Übungen mit den Geräten, die Sie unter «{seccion}» markiert haben.", "it": "A casa: gli esercizi con gli attrezzi che ha segnato in «{seccion}».", "nl": "Thuis: de oefeningen met het materiaal dat u bij «{seccion}» hebt aangevinkt.", "zh": "在家：显示您在「{seccion}」里选的器材能做的动作。", "zht": "在家：顯示您在「{seccion}」裡選的器材能做的動作。", "bg": "Вкъщи: упражненията с уредите, отбелязани в «{seccion}».", "pl": "W domu: ćwiczenia ze sprzętem zaznaczonym w sekcji «{seccion}»."},
+    "cuerpoFuerzaTit": {"es": "Su fuerza", "en": "Your strength", "fr": "Votre force", "de": "Ihre Kraft", "it": "Forza", "nl": "Uw kracht", "zh": "我的力量", "zht": "我的力量", "bg": "Вашата сила", "pl": "Siła"},
+    "cuerpoFuerzaAyuda": {"es": "Cuando anote un ejercicio con sus repeticiones o su peso, aquí verá cómo progresa: la primera vez, la última y la mejor.", "en": "When you log an exercise with its reps or weight, you will see your progress here: the first time, the last and the best.", "fr": "Quand vous notez un exercice avec ses répétitions ou son poids, vous verrez ici votre progression : la première fois, la dernière et le meilleur résultat.", "de": "Wenn Sie eine Übung mit Wiederholungen oder Gewicht eintragen, sehen Sie hier Ihre Fortschritte: das erste Mal, das letzte und den Bestwert.", "it": "Quando annota un esercizio con le ripetizioni o il peso, qui vedrà come progredisce: la prima volta, l’ultima e il miglior risultato.", "nl": "Als u een oefening noteert met de herhalingen of het gewicht, ziet u hier uw vooruitgang: de eerste keer, de laatste en het beste resultaat.", "zh": "记录动作时填上次数或重量，就能在这里看到进步：第一次、最近一次和最好成绩。", "zht": "記錄動作時填上次數或重量，就能在這裡看到進步：第一次、最近一次和最好成績。", "bg": "Когато запишете упражнение с повторенията или тежестта, тук ще виждате напредъка си: първия път, последния и най-добрия резултат.", "pl": "Po zapisaniu ćwiczenia z powtórzeniami lub ciężarem widać tu postępy: pierwszy raz, ostatni i najlepszy wynik."},
+    "cuerpoFuerzaUltima": {"es": "Última vez: {que} ({fecha})", "en": "Last time: {que} ({fecha})", "fr": "Dernière fois : {que} ({fecha})", "de": "Letztes Mal: {que} ({fecha})", "it": "Ultima volta: {que} ({fecha})", "nl": "Laatste keer: {que} ({fecha})", "zh": "最近一次：{que}（{fecha}）", "zht": "最近一次：{que}（{fecha}）", "bg": "Последен път: {que} ({fecha})", "pl": "Ostatnio: {que} ({fecha})"},
+    "cuerpoFuerzaMejor": {"es": "Mejor marca: {que} ({fecha})", "en": "Best: {que} ({fecha})", "fr": "Meilleur résultat : {que} ({fecha})", "de": "Bestwert: {que} ({fecha})", "it": "Miglior risultato: {que} ({fecha})", "nl": "Beste resultaat: {que} ({fecha})", "zh": "最好成绩：{que}（{fecha}）", "zht": "最好成績：{que}（{fecha}）", "bg": "Най-добър резултат: {que} ({fecha})", "pl": "Najlepszy wynik: {que} ({fecha})"},
+    "cuerpoFuerzaPrimera": {"es": "Primera vez: {que} ({fecha})", "en": "First time: {que} ({fecha})", "fr": "Première fois : {que} ({fecha})", "de": "Erstes Mal: {que} ({fecha})", "it": "Prima volta: {que} ({fecha})", "nl": "Eerste keer: {que} ({fecha})", "zh": "第一次：{que}（{fecha}）", "zht": "第一次：{que}（{fecha}）", "bg": "Първи път: {que} ({fecha})", "pl": "Pierwszy raz: {que} ({fecha})"},
+    "cuerpoFuerzaVeces": {"es": "{n} vez|{n} veces", "en": "{n} time|{n} times", "fr": "{n} fois|{n} fois", "de": "{n}-mal|{n}-mal", "it": "{n} volta|{n} volte", "nl": "{n} keer|{n} keer", "zh": "{n} 次", "zht": "{n} 次", "bg": "{n} път|{n} пъти", "pl": "{n} raz|{n} razy|{n} razy"},
     "cuerpoNF_datos": {"es": "conjunto de datos", "en": "dataset", "fr": "jeu de données", "de": "Datensatz", "it": "set di dati", "nl": "dataset", "zh": "数据集", "zht": "資料集", "bg": "набор от данни", "pl": "zbiór danych"},
     "cuerpoNF_articulo": {"es": "artículo para profesionales", "en": "article for professionals", "fr": "article pour les professionnels", "de": "Fachartikel", "it": "articolo per professionisti", "nl": "artikel voor professionals", "zh": "面向专业人士的文章", "zht": "給專業人士的文章", "bg": "статия за специалисти", "pl": "artykuł dla specjalistów"},
     "cuerpoNF_estudioACE": {"es": "estudio patrocinado por ACE", "en": "study sponsored by ACE", "fr": "étude financée par l’ACE", "de": "von ACE geförderte Studie", "it": "studio finanziato da ACE", "nl": "door ACE gesponsorde studie", "zh": "ACE 资助的研究", "zht": "ACE 資助的研究", "bg": "проучване, финансирано от ACE", "pl": "badanie sponsorowane przez ACE"},
@@ -3823,6 +3829,76 @@
     dsc.textContent = dsc.hidden ? '' : tx('cuerpoPlanDescansan', { lista: lista(P.descansan.map(nombre)) }) + ' ' + tx('cuerpoPlan48');
   }
 
+  /* ══ (#120, 12-11-2026) «Su fuerza», en «Evolución» (Jérôme: «guarda los kilos y las repeticiones para ver mejor los
+     datos de mejoramiento de cada uno»; «todo debe entrar en la evolución de cada uno») ══
+     Cada ejercicio anotado con repeticiones o peso: cuántas veces, la primera, la última y la mejor (el peso más alto;
+     a igual peso, más repeticiones; sin peso, las más repeticiones), y una línea pequeña con su peso (o sus
+     repeticiones) de las últimas 12 veces. Solo aritmética de lo anotado; los más recientes, primero */
+  var FUERZA_MAX = 20;
+  function fuerzaDe(id) {
+    var ns = notasEj(id).filter(function (x) { return x.r || x.kg; });
+    if (!ns.length) return null;
+    var conKg = ns.some(function (x) { return x.kg; });
+    var vale = function (x) { return conKg ? (x.kg || 0) : (x.r || 0); };
+    var mejor = ns.reduce(function (m, x) {
+      if (vale(x) > vale(m)) return x;
+      if (vale(x) === vale(m) && (x.r || 0) >= (m.r || 0)) return x;
+      return m;
+    }, ns[0]);
+    return { id: id, notas: ns, primera: ns[0], ultima: ns[ns.length - 1], mejor: mejor, valores: ns.filter(function (x) { return vale(x) > 0; }).slice(-12).map(vale) };
+  }
+  function lineaFuerza(vs) {
+    /* a lo ancho de la tarjeta, debajo de las cifras (así las fechas no se parten); escala sin deformarse */
+    var NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg'), w = 300, h = 30, p = 4;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false'); svg.setAttribute('class', 'tgc-fuerza-linea');
+    var mn = Math.min.apply(null, vs), mx = Math.max.apply(null, vs), rango = mx - mn || 1;
+    var pts = vs.map(function (v, i) {
+      var x = vs.length === 1 ? w / 2 : p + i * (w - 2 * p) / (vs.length - 1);
+      var y = mx === mn ? h / 2 : h - p - (v - mn) * (h - 2 * p) / rango;
+      return [Math.round(x * 10) / 10, Math.round(y * 10) / 10];
+    });
+    if (pts.length > 1) {
+      var pl = document.createElementNS(NS, 'polyline');
+      pl.setAttribute('points', pts.map(function (q) { return q[0] + ',' + q[1]; }).join(' '));
+      svg.appendChild(pl);
+    }
+    var ult = pts[pts.length - 1], c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', String(ult[0])); c.setAttribute('cy', String(ult[1])); c.setAttribute('r', '2.6');
+    svg.appendChild(c);
+    return svg;
+  }
+  function renderFuerza() {
+    if (!$('tgc-fuerza')) return;
+    var ids = [], vistos = {};
+    st.series.forEach(function (x) { if (x.e && (x.r || x.kg) && !vistos[x.e]) { vistos[x.e] = 1; ids.push(x.e); } });
+    var fs = ids.map(fuerzaDe).filter(Boolean).sort(function (a, b) {
+      var ua = a.ultima, ub = b.ultima;
+      return ua.d === ub.d ? ub.t - ua.t : (ua.d < ub.d ? 1 : -1);
+    }).slice(0, FUERZA_MAX);
+    var ay = $('tgc-fuerza-ayuda'), ul = $('tgc-fuerza-lista');
+    ay.hidden = fs.length > 0; ay.textContent = tx('cuerpoFuerzaAyuda');
+    ul.textContent = ''; ul.hidden = !fs.length;
+    if (!fs.length) return;
+    /* los nombres de los ejercicios están en sus datos: se piden si aún no han llegado */
+    if (!EJ || !EJ_TX[lengua()]) { cargarEjercicios().then(function () { if (modo === 'evolucion') renderFuerza(); }, function () {}); }
+    fs.forEach(function (f) {
+      var li = el('li', 'tgc-fuerza-ej');
+      var cab = el('div', 'tgc-fuerza-cab');
+      cab.appendChild(el('span', 'tgc-fuerza-nom', nombreEj(f.id)));
+      cab.appendChild(el('span', 'tgc-fuerza-veces', tx('cuerpoFuerzaVeces', { n: f.notas.length })));
+      li.appendChild(cab);
+      var cuerpo = el('div', 'tgc-fuerza-cuerpo'), dl = el('ul', 'tgc-fuerza-datos');
+      [['cuerpoFuerzaUltima', f.ultima], ['cuerpoFuerzaMejor', f.mejor], ['cuerpoFuerzaPrimera', f.primera]].forEach(function (q) {
+        dl.appendChild(el('li', q[0] === 'cuerpoFuerzaMejor' ? 'mejor' : '', tx(q[0], { que: cargaTxt(q[1]), fecha: fmtFecha(q[1].d) })));
+      });
+      cuerpo.appendChild(dl);
+      if (f.valores.length) cuerpo.appendChild(lineaFuerza(f.valores));
+      li.appendChild(cuerpo);
+      ul.appendChild(li);
+    });
+  }
+
   /* ── la lista de ejercicios del grupo, con sus filtros ── */
   function renderEjLista() {
     var g = grupoAbierto, ul = $('tgc-ej-lista'), estado = $('tgc-ej-estado');
@@ -4571,7 +4647,7 @@
     $('tgc-escena').hidden = q || c || e;
     panel.classList.toggle('sin-escena', q || c || e);
     pegada();
-    if (e) prestarPerfil();
+    if (e) { prestarPerfil(); renderFuerza(); }
   }
   /* ── «Evolución» (#99, 10-11-2026; Jerome: «Que todo sea juntos»): «Sus datos» y «Su evolución» del perfil,
      aquí dentro. No se rehacen: el perfil (modulos/perfil.js, TG_PERFIL.prestar) mueve sus dos tarjetas a
@@ -6182,6 +6258,22 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-plan-mat-sel { font-weight: 400; font-size: 13px; color: var(--tinta-2); }
 .tgc-plan-mat .tgc-ayuda { margin: 0; }
 .tgc-ej-casa { margin: 0; }
+/* (#120) «Su fuerza», en «Evolución»: cada ejercicio con su última vez, su mejor marca y la primera, y una línea pequeña */
+.tgc-fuerza { display: grid; gap: 10px; margin-top: 14px; }
+.tgc-fuerza h2 { margin: 0; }
+.tgc-fuerza .tgc-ayuda { margin: 0; }
+.tgc-fuerza-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.tgc-fuerza-lista[hidden] { display: none; }
+.tgc-fuerza-ej { display: grid; gap: 6px; padding: 12px 14px; border-radius: 14px; background: var(--fondo); border: 1px solid var(--linea); }
+.tgc-fuerza-cab { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 10px; }
+.tgc-fuerza-nom { font-weight: 700; font-size: 15px; }
+.tgc-fuerza-veces { font-size: 13px; color: var(--tinta-2); font-variant-numeric: tabular-nums; }
+.tgc-fuerza-cuerpo { display: grid; gap: 6px; }
+.tgc-fuerza-datos { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 13.5px; line-height: 1.4; font-variant-numeric: tabular-nums; min-width: 0; }
+.tgc-fuerza-datos .mejor { font-weight: 700; }
+.tgc-fuerza-linea { display: block; width: 100%; height: 30px; }
+.tgc-fuerza-linea polyline { fill: none; stroke: var(--oro); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tgc-fuerza-linea circle { fill: var(--oro); }
 .tgc-ej-ultima { margin: 0 0 10px; padding: 10px 12px; border-radius: 14px; background: var(--oro-f); font-weight: 600; font-size: 14px; line-height: 1.4; font-variant-numeric: tabular-nums; }
 
 /* «Anotar movimiento» (bloque 4): «Qué ha hecho» encima de sus cinco tipos, con su icono */
@@ -6702,6 +6794,11 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 
   <div class="tgc-vista-e" id="tgc-vista-evolucion" hidden>
     <div id="tgc-evo-montaje"></div>
+    <section class="tgc-card tgc-fuerza" id="tgc-fuerza" aria-labelledby="tgc-fuerza-tit">
+      <h2 id="tgc-fuerza-tit">Su fuerza</h2>
+      <p class="tgc-ayuda" id="tgc-fuerza-ayuda"></p>
+      <ul class="tgc-fuerza-lista" id="tgc-fuerza-lista"></ul>
+    </section>
   </div>
 
   <div class="tgc-vista-p" id="tgc-vista-preguntar" hidden>
@@ -7094,6 +7191,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     ['#tgc-plan-mat-tit', 'tx', 'cuerpoPlanMat'],
     ['#tgc-plan-mat-ayuda', 'tx', 'cuerpoPlanMatAyuda'],
     ['#tgc-plan-porque', 'tx', 'cuerpoPlanPorQue'],
+    ['#tgc-fuerza-tit', 'tx', 'cuerpoFuerzaTit'],
     ['#tgc-ej-niv', 'aria', 'cuerpoNivelFiltro'],
     ['#tgc-ej-niv [data-v="0"]', 'tx', 'cuerpoNivelTodos'],
     ['#tgc-ej-niv [data-v="1"]', 'tx', 'cuerpoNivel_1'],
