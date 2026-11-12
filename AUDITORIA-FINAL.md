@@ -7572,6 +7572,92 @@ y los controles que los leen salen otra vez en verde.
 - El repaso del resto del búlgaro (las descripciones de los lugares, la FAQ, el panel SOS, la política) va aparte,
   con sus propias propuestas y su propia auditoría.
 
+## El búlgaro, leído entero; el chino tradicional; la Casa del Vino de Tenerife; y Jérôme en Samsung Internet (11 de noviembre)
+
+**Por qué.** Jérôme, con las correcciones de una hablante nativa: «Y revisa todo el resto también más problema en
+búlgaro». Se leyó todo el búlgaro de la app: la interfaz (992 textos), el panel SOS (604), el perfil (467), «Su cuerpo»
+(561), el cielo (821 y 88 curiosidades), las preguntas frecuentes (129), las etiquetas (799) y las 980 fichas de lugares
+(descripción, categoría, horario y aviso), y un programa miró los 7.900 textos: ni letras latinas dentro de palabras
+cirílicas, ni letras rusas o ucranianas, ni espacios mal puestos. La lista, en tres apartados, se le mandó a Jérôme: A,
+los errores, se arreglan; B, los calcos, se arreglan si no dice que no; C, el panel SOS y la política de privacidad,
+solo con su sí (no entra aquí).
+
+**A. Lo que decía algo que no es, y las erratas** (`f130987`):
+- Peces y cetáceos mal traducidos (el castellano estaba bien; los nombres, de la Wikipedia búlgara): en el buceo de
+  Tabaiba, «едри есетри» (esturiones) donde dice «grandes medregales» → «едри кехлибарени риби», y «караси»
+  (carpín, de río) donde dice «sargos» → «морски каракуди»; en Las Galletas, «лаврак, зъбани» → «групери,
+  зъбари»; en la pesca de Los Abrigos, Los Cristianos y Los Gigantes, el sargo, el mero, la chopa, el patudo y
+  la cherna; en las marisquerías de Los Abrigos, «черна риба» → «американски бибан»; en el kayak de Los Gigantes,
+  «сиви гринди» → «големи сиви делфини». Se quedan «морска жаба» (pez rana) y «морски фунийки» (lapas): no hay
+  nombre búlgaro con fuente.
+- «МТВ» (siete fichas de bici), que en cirílico se lee «MTV» → «MTB»; «6а» con una «а» cirílica → «6a».
+- «гуачинче» es neutro: las ocho fichas que lo hacían masculino, con lo que concuerda, y el plural castellano
+  «гуачинчес» → «гуачинчета» (fichas, asistente, tour y FAQ; las palabras clave del asistente no se tocan).
+- «със» solo delante de [с] o [з]; erratas («минголф», «барков», «Амария», «полугородска», «Наъгълник»); la frase
+  de los filtros de la FAQ, como la corrigió la nativa en el tour; la fase de un planeta («осветеност»); y en «Su
+  cuerpo», por sus fuentes, «Нито един», «Мината на {fecha}» y «вашия» / «вие».
+
+**B. Los calcos y los nombres escritos de dos maneras** (`856f10f`):
+- Lo que corrigió la nativa, donde se repite («дни сила» → «силови дни», «по официалната цена» → «с официалните
+  цени», «картината» → «образа от камерата», «любимци» → «домашни любимци»).
+- Palabras que no se dicen así: «Зареждане…», «Изчисляване…»; las rutas, «Откъде» / «Докъде» (el «Начало» se
+  confundía con el del menú) y, en la leyenda, «Начална точка (A)» / «Крайна точка (B)»; «Декрет» por «Указ»;
+  «Без спасители» / «Със спасители»; «Водещ» por «Референтен» (17); «най-добре оборудвани» por «най-пълноценни»;
+  «с или без»; el aviso de zona forestal; los rótulos del mapa; en el cielo, «Тянгун», «Уикипедия», «НАСА» y las
+  constelaciones como las llama la app.
+- Lo escrito de dos maneras, a la forma que más usa la app: «Лос Кристианос», «Вале Сан Лоренсо», «Лас Гайетас»,
+  «Анчиета», «Корона Форестал», «аква обувки»; «на Тенерифе» (una isla va con «на»), fuera del panel SOS; y los
+  miles sin el punto del castellano («1400 м», «821 700»).
+- «Su cuerpo», por sus fuentes (`src/correcciones.json`, cada entrada con su motivo, y `construir.py`): el
+  `modulos/cuerpo.js` que sale es el publicado con esas frases y nada más.
+
+**El chino tradicional** (`655807c`): en `ZHT_OVERRIDES.categories`, la categoría de las mascotas decía «Зона за любимци
+🐾», en búlgaro, y en chino tradicional salía así en la lista de categorías, los filtros y las fichas. Ahora «寵物友善區 🐾».
+No lo veía ningún control: `auditar_sin_traducir.js` busca lo que no cambia al cambiar de idioma, y esta fila sí
+cambiaba, pero al idioma equivocado. `tools/auditar_escrituras.js`, nuevo y en `tools/auditar.sh`: recorre `LANGS`,
+`UI_TX` y las demás tablas de `index.html` con las diez lenguas (13 tablas, 9268 textos) y marca cirílico fuera del
+búlgaro y caracteres chinos fuera de zh y zht. Antes del arreglo, en rojo con esta fila y solo esta; después, en verde.
+
+**La Casa del Vino** (`0e3e074`): la ficha de El Sauzal decía «Casa del Vino de Canarias» en los diez idiomas. Se llama
+«La Casa del Vino de Tenerife» (su web, casadelvinotenerife.com, y Webtenerife, del Cabildo, que es su dueño); la propia
+ficha de la Casa del Vino ya la llamaba «el museo del vino de Tenerife». El polaco, también en su fuente por bloques
+(`idiomas/pl-lugares/05.json`), que es de donde se monta `idiomas/pl.json`.
+
+**Jérôme en Samsung Internet** (`0279760`). Un usuario búlgaro mandó una captura de Samsung Internet con Jérôme casi
+negro. Es el modo oscuro de ese navegador: repinta los SVG a su manera y no hace caso de `color-scheme`. Probado en un
+móvil con Samsung Internet 30 el mismo dibujo de ocho maneras, solo el canvas salía idéntico. En `modulos/guia.js`, solo
+con Samsung Internet, el SVG sigue en su sitio y se anima igual, pero invisible, y un canvas encima lo copia pieza a
+pieza; vuelve a pintarse cuando cambia el SVG, el tamaño o corre una animación CSS (30 veces por segundo como mucho), en
+píxeles enteros de la pantalla, y si algo fallara al pintar, el SVG vuelve a verse. En los demás navegadores no cambia
+nada. `tools/auditar_tour.js` lo comprueba con el user-agent de ese móvil: la pregunta del principio, 37 estados de
+Jérôme (escenas, caras, atuendos, posturas y bocas), el fundido de la noche al día y el tour de la app entero; en cada
+uno, el canvas frente al SVG (64 comparaciones; la mayor diferencia, 2,07 de 255 de media, en la pregunta), y con el
+modo oscuro forzado de Chromium el SVG cambia y el canvas no.
+
+**La plantilla de los avisos de las gasolineras** (`b1e872f`): `datos/gasolineras/avisos.json` decía en neerlandés
+«voordat je» en los dos avisos de «última gasolinera antes del Teide», y la app dice «voordat u» desde que el neerlandés
+pasó a usted (`74c30f8`). No se ve en la app, pero `tools/verificar_bloques.py` daba esos dos fallos y una ficha rehecha
+desde la plantilla habría salido de tú. Ahora, de usted; `verificar_bloques.py` sin fallos y `revisar_gasolineras.py`
+sin hallazgos.
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre los seis commits antes de ponerlos encima de lo último de los
+robots. La primera pasada dio un rojo, `auditar_fuente_pl.js`: el bloque del polaco de El Sauzal
+(`idiomas/pl-lugares/05.json`) seguía diciendo «de Canarias»; se arregló en su commit y se pasó entera otra vez. Esa dio
+otro, `probar_cuerpo.js`: la respuesta del asistente de «Su cuerpo» sobre borrar los datos citaba el botón de pausa con
+su nombre de antes («Спрете дневника»); se arregló, desde su fuente, en el commit de los calcos, y `probar_cuerpo.js`
+(543 controles) y `auditar_registro.js` se pasaron otra vez sobre el árbol arreglado: los dos en verde (543 controles, y
+117.622 textos). Todo lo demás, en verde: entre otros, `auditar_escrituras.js` (13 tablas, 9268 textos), los tours con
+el user-agent de Samsung (`auditar_tour.js`: 64 comparaciones del canvas con el SVG, la mayor diferencia 2,07 de 255 de
+media), `barrido_idiomas.js` (5.737 filas, completas en búlgaro) y `auditar_fuente_pl.js` (1960 textos). Encima de lo
+último de `main` (`f9fec4f`) solo cambian los ficheros de cuatro robots (`datos/alertas-canarias.json`,
+`datos/avisos-aemet.json`, `datos/satelites.json` y `datos/sismos-ign.json`), y los controles que los leen salen otra
+vez en verde.
+
+**Lo que queda:**
+- C, el panel SOS (siete frases, «на Тенерифе» entre ellas) y la política (tres), espera el sí de Jérôme.
+- Que la persona del Samsung abra la app en Samsung Internet con el modo oscuro y mire a Jérôme.
+- Que un hablante nativo de búlgaro lea las fichas cambiadas.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
