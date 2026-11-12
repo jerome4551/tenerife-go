@@ -475,6 +475,10 @@ IGUAL_UI.fr.push('Variante de {nombre}');
 /* y en italiano, «+ 1 serie» (el boton de la hoja de un grupo, 6 de noviembre de 2026, bloque 2):
    «serie» es la misma palabra en las dos lenguas */
 IGUAL_UI.it.push('+ 1 serie');
+/* y en italiano, las series con su peso, en «La última vez» de la ficha y en «Su fuerza» (12 de noviembre de
+   2026, #120): «3 × 10 con 50 kg» y «3 serie con 50 kg». «con» es la misma preposición en las dos lenguas, y
+   las marcas las rellena la app con cifras y con «serie», que ya es italiano */
+IGUAL_UI.it.push('{series} × {reps} con {kg} kg', '{series} con {kg} kg');
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
    El ultimo trozo de cada `cat` en castellano es siempre el municipio o el
