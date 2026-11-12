@@ -3213,6 +3213,91 @@ async function ejemplo(pg, mas) {
     await c29.close();
   }
 
+  // 30. (12-11-2026, #120) «¿Qué entreno hoy?» en «Preguntar», con el mismo cálculo que la tarjeta de «Músculos»:
+  //     cada caso con su texto (los nuevos: la segunda vez de la semana y el descanso de 48 horas), «en casa» entre los
+  //     filtros, la fuente de las 48 horas (Garber et al., ACSM 2011) entre sus fuentes, los grupos como botones que abren
+  //     su hoja con el sitio de hoy (el primer día, con el nivel inicial), y los diez idiomas
+  {
+    const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+    const c30 = await contexto(b), p30 = await c30.newPage(), e30 = []; vigilar(p30, e30);
+    await abrirApp(p30); await abrirPerfilCuerpo(p30); await suCuerpo(p30);
+    const G30 = await p30.evaluate(() => TG_FIGURA.GRUPOS.slice());
+    const N30 = await p30.evaluate(() => Object.fromEntries([...document.querySelectorAll('#tgc-lista .tgc-fila')].map(b => [b.dataset.g, b.querySelector('.tgc-fila-nom').firstChild.textContent])));
+    const sin = (gs, quita) => gs.filter(g => quita.indexOf(g) < 0);
+    const lis = gs => gs.map(g => N30[g]).join(', ');
+    const poner = (filas, extra) => p30.evaluate(([f, ex]) => {
+      const T0 = Date.now() - 5e6;
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify(Object.assign({ v: 1, series: f.map((x, i) => ({ d: x[0], g: x[1], n: x[2], t: T0 + i })) }, ex || {})));
+      TG_CUERPO.abrir();
+    }, [filas.map(x => [hace(x[0]), x[1], x[2]]), extra || null]).then(() => p30.waitForTimeout(200));
+    /* la pregunta, ya hecha (su chip de «Preguntar»), y la última tarjeta de respuesta */
+    const preguntar = async () => {
+      await p30.click('#tgc-modo-p');
+      await p30.waitForFunction(() => document.querySelector('#tgc-sugeridas .tgc-chip-preg[data-id="que-entreno-hoy"]'), null, { timeout: 10000 });
+      await p30.evaluate(() => { const v = document.getElementById('tgc-asis-vaciar'); if (v && !v.hidden) v.click(); });
+      await p30.click('#tgc-sugeridas .tgc-chip-preg[data-id="que-entreno-hoy"]');
+      await p30.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-resp').length >= 1, null, { timeout: 8000 });
+      await p30.waitForTimeout(150);
+      return p30.evaluate(() => {
+        const rs = document.querySelectorAll('#tgc-charla .tgc-resp'), r = rs[rs.length - 1];
+        return { t: (r.querySelector('.tgc-resp-t') || {}).textContent, p: [...r.querySelectorAll('.tgc-resp-p li')].map(x => x.textContent),
+          grupos: [...r.querySelectorAll('.tgc-resp-links button[data-plan]')].map(x => x.dataset.g), plan: [...new Set([...r.querySelectorAll('.tgc-resp-links button[data-plan]')].map(x => x.dataset.plan))],
+          botones: [...r.querySelectorAll('.tgc-resp-links button[data-plan]')].map(x => x.textContent),
+          fuentes: [...r.querySelectorAll('.tgc-resp-f li a')].map(a => a.textContent) };
+      });
+    };
+    const D48 = 'Para un mismo grupo, el ACSM (2011) aconsejaba al menos 48 horas entre sesiones.';
+    const OMS = 'La OMS recomienda a los adultos ejercicios de fuerza al menos 2 días por semana, con todos los grupos musculares principales, y de 5 a 17 años, al menos 3 días.';
+
+    await poner([[0, 'pecho', 3], [1, 'dorsal', 3], [3, 'hombros', 3]]);
+    const a1 = await preguntar();
+    const esp1 = sin(G30, ['pecho', 'dorsal', 'hombros']);
+    prueba('30: lo que falta, como en la tarjeta: «Le faltan por trabajar en los últimos 7 días: …», y un botón por grupo', a1.t === 'Le faltan por trabajar en los últimos 7 días: ' + lis(esp1) + '.' &&
+      JSON.stringify(a1.grupos) === JSON.stringify(esp1) && a1.plan.join() === 'faltan' && a1.botones[0] === 'Ver ' + N30[esp1[0]], JSON.stringify(a1).slice(0, 400));
+    prueba('30: los filtros que nombra, con «en casa»', a1.p[0] === 'Toque cualquiera de esos grupos para ver sus ejercicios, con filtros por gimnasio, en casa, fuera o calistenia y por nivel.', a1.p[0]);
+    prueba('30: sus tres fuentes, con la de las 48 horas (Garber et al., ACSM 2011)', a1.fuentes.length === 3 && /Garber/.test(a1.fuentes[2]), JSON.stringify(a1.fuentes));
+
+    await poner(G30.map(g => [3, g, 3]).concat([[1, 'pecho', 3]]));
+    const a2 = await preguntar();
+    const esp2 = sin(G30, ['pecho']);
+    prueba('30: la segunda vez de la semana, con la OMS y las 48 horas', a2.t === 'Ya ha trabajado los 12 grupos en los últimos 7 días. Para la segunda vez de la semana le tocan: ' + lis(esp2) + '.' &&
+      a2.p[0] === OMS && a2.p[1] === D48 + ' Los que trabajó ayer u hoy no salen.' && JSON.stringify(a2.grupos) === JSON.stringify(esp2) && a2.plan.join() === 'segunda', JSON.stringify(a2).slice(0, 500));
+
+    await poner(G30.map(g => [1, g, 3]));
+    const a3 = await preguntar();
+    prueba('30: lo que queda, trabajado ayer u hoy: descanso, sin botones de grupo', a3.t === 'Lo que le queda lo trabajó ayer u hoy: ' + lis(G30) + '. Hoy puede descansar o moverse suave.' &&
+      a3.p[0] === D48 && a3.grupos.length === 0, JSON.stringify(a3).slice(0, 400));
+
+    await poner(G30.map(g => [5, g, 3]).concat(G30.map(g => [3, g, 3])));
+    const a4 = await preguntar();
+    prueba('30: los 12 con dos días o más: la respuesta de siempre, «Ha trabajado los 12 grupos…»', /^Ha trabajado los 12 grupos en los últimos 7 días/.test(a4.t) && a4.grupos.length === 0, JSON.stringify(a4).slice(0, 300));
+
+    // el primer día: los seis grupos del texto, como botones, con el nivel inicial al abrirlos; y el sitio de hoy
+    await poner([], { sitio: 'fuera' });
+    const a5 = await preguntar();
+    prueba('30: sin nada anotado, los seis grupos del primer día como botones', JSON.stringify(a5.grupos) === JSON.stringify(['pecho', 'dorsal', 'hombros', 'core', 'cuadriceps', 'isquios']) && a5.plan.join() === 'nada', JSON.stringify(a5).slice(0, 300));
+    await p30.click('#tgc-charla .tgc-resp:last-child .tgc-resp-links button[data-g="core"]');
+    await p30.waitForSelector('.tgc-ej-fila', { timeout: 8000 }); await p30.waitForTimeout(150);
+    const h5 = await p30.evaluate(() => ({ tit: document.getElementById('tgc-hoja-tit').textContent, niv: document.querySelector('#tgc-ej-niv [aria-pressed="true"]').dataset.v,
+      ent: document.querySelector('#tgc-ej-ent [aria-pressed="true"]').dataset.v, modo: document.getElementById('tgc-modo-m').getAttribute('aria-pressed') }));
+    prueba('30: «Ver Abdomen…» abre su hoja en «Músculos», «Fuera» (el sitio de hoy) y el nivel inicial', h5.tit === N30.core && h5.niv === '1' && h5.ent === 'fuera' && h5.modo === 'true', JSON.stringify(h5));
+    await p30.keyboard.press('Escape'); await p30.waitForTimeout(250);
+
+    // diez idiomas: la respuesta en su idioma, sin marcas sueltas, y los botones «Ver …» traducidos
+    await poner([[0, 'pecho', 3]]);
+    const aEs = await preguntar();
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      await idioma(p30, l);
+      const a = await preguntar();
+      prueba('30, ' + l + ': la respuesta y sus botones en su idioma', a.t && a.t.indexOf('{') < 0 && a.t !== aEs.t && a.p.every(x => x.indexOf('{') < 0) && a.grupos.length === 11 &&
+        a.botones.every(x => x && x.indexOf('Ver ') !== 0 && x.indexOf('{') < 0) && a.fuentes.length === 3, JSON.stringify(a).slice(0, 300));
+    }
+    await idioma(p30, 'es');
+    prueba('30: sin errores de página', e30.length === 0, e30.join(' | '));
+    await c30.close();
+  }
+
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
   console.log('\n  ' + (ok + mal) + ' controles, ' + (mal ? mal + ' en rojo' : 'todos en verde'));
   await b.close();

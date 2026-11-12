@@ -3758,7 +3758,9 @@
     if (faltan.length) return { caso: 'faltan', grupos: faltan, descansan: desc };
     var segunda = GRUPOS.filter(function (g) { return R.dias[g] === 1 && !descansa(g); }).sort(orden);
     if (segunda.length) return { caso: 'segunda', grupos: segunda, descansan: desc };
-    return { caso: GRUPOS.some(function (g) { return R.dias[g] === 1; }) ? 'descanso' : 'todos', grupos: [], descansan: desc };
+    /* lo que queda para la segunda vez (un día en 7) y descansa; si no queda nada, todos llevan dos días o más */
+    var quedan = GRUPOS.filter(function (g) { return R.dias[g] === 1; });
+    return { caso: quedan.length ? 'descanso' : 'todos', grupos: [], descansan: desc, quedan: quedan };
   }
   /* si un ejercicio se puede hacer en ese sitio: en casa, con lo que marcó (y sin material o con la pared); en los
      demás, el entorno del catálogo */
@@ -4964,9 +4966,16 @@
       return { caso: R.total ? 'algo' : 'nada', vars: { series: R.total, grupos: R.grupos, dias: R.diasFuerza, lista: nombres(hechos), mov: movs.length ? lista(movs) : null, min: R.min, meta: metaMin() } };
     }
     if (id === 'que-entreno-hoy') {
-      var faltan = GRUPOS.filter(function (g) { return !R.series[g]; });
-      if (!R.total && !st.series.length) return { caso: 'nada', vars: {} };
-      return faltan.length ? { caso: 'faltan', vars: { lista: nombres(faltan), n: faltan.length } } : { caso: 'todos', vars: {} };
+      /* (#120, 12-11-2026) el mismo cálculo que «¿Qué entreno hoy?» de «Músculos» (planHoy, en ui.js): lo que no se
+         ha trabajado en 7 días; con todo trabajado, la segunda vez de la semana; lo de hoy o de ayer descansa. Delante,
+         los prioritarios de su deporte (aquí, aunque no se esté en «Músculos»). Los grupos salen también como botones */
+      var dep = deporteActual(), P = planHoy(R, dep ? dep.prio : []);
+      var c = P.caso === 'faltan' ? { caso: 'faltan', vars: { lista: nombres(P.grupos), n: P.grupos.length } }
+        : P.caso === 'segunda' ? { caso: 'segunda', vars: { lista: nombres(P.grupos) } }
+        : P.caso === 'descanso' ? { caso: 'descanso', vars: { lista: nombres(P.quedan) } }
+        : { caso: P.caso, vars: {} };
+      c.grupos = P.grupos; c.plan = P.caso;
+      return c;
     }
     if (id === 'cumplo-recomendacion') {
       if (e === null) return { caso: 'sin_edad', vars: { dias: R.diasFuerza, meta: 2 } };
@@ -5050,8 +5059,8 @@
   }
   function tarjetaRespuesta(turno) {
     var r = ASIS.porId[turno.id], caja = el('div', 'tgc-resp' + (turno.urgente ? ' es-urgente' : ''));
-    var cuerpo = r.r, vars = {};
-    if (r.tipo === 'calculo') { var c = calcular(r.id); cuerpo = r.casos[c.caso] || r.casos.nada || null; vars = c.vars; }
+    var cuerpo = r.r, vars = {}, grupos = [], plan = '';
+    if (r.tipo === 'calculo') { var c = calcular(r.id); cuerpo = r.casos[c.caso] || r.casos.nada || null; vars = c.vars; grupos = c.grupos || []; plan = c.plan || ''; }
     if (turno.urgente) {
       var cab = el('p', 'tgc-resp-urg', tx('cuerpoAsisUrgencia'));
       caja.appendChild(cab);
@@ -5068,6 +5077,8 @@
     if (cuerpo.n) caja.appendChild(el('p', 'tgc-resp-n', rellena(cuerpo.n, vars)));
     var ls = el('div', 'tgc-resp-links');
     r.links.forEach(function (l) { if (turno.urgente && l.tel === '112') return; var b = enlace(l); if (b) ls.appendChild(b); });
+    /* (#120) los grupos que tocan hoy: cada uno abre su hoja con el sitio de hoy (y, el primer día, el nivel inicial) */
+    grupos.forEach(function (g) { var b = enlace({ g: g }); if (b) { b.dataset.plan = plan; ls.appendChild(b); } });
     if (ls.childNodes.length) caja.appendChild(ls);
     if (r.f.length) {
       var det = el('details', 'tgc-resp-f'), sum = el('summary');
@@ -5169,7 +5180,10 @@
     $('tgc-vista-preguntar').addEventListener('click', function (e) {
       var b = e.target.closest('button, a'); if (!b) return;
       if (b.classList.contains('tgc-chip-preg')) { preguntarId(b.dataset.id); return; }
-      if (b.dataset.g) { setModo('musculos'); abrirHoja(b.dataset.g); return; }
+      if (b.dataset.g) {
+        if (b.dataset.plan) { ejEntorno = st.sitio || 'todos'; ejNivel = b.dataset.plan === 'nada' ? 1 : 0; }
+        setModo('musculos'); abrirHoja(b.dataset.g); return;
+      }
       if (b.dataset.ej) {
         var id = b.dataset.ej;
         setModo('musculos');
