@@ -1218,15 +1218,24 @@ async function ejemplo(pg, mas) {
     const citas = t => { const out = [];
       for (let i = t.indexOf('«'); i >= 0; i = t.indexOf('«', i + 1)) { let n = 0, j = i; for (; j < t.length; j++) { if (t[j] === '«') n++; else if (t[j] === '»' && --n === 0) break; } out.push(t.slice(i + 1, j)); }
       return out; };
-    const porEs = {}; for (const [k, v] of Object.entries(UI)) (porEs[v.es] = porEs[v.es] || []).push(k);
-    const usos = []; for (const [donde, t] of Object.entries(T.es)) for (const c of citas(t)) if (porEs[c]) usos.push([donde, porEs[c]]);
+    /* (12-11-2026) las comillas de dentro se escriben a la manera de cada idioma («Borrar los datos de “Su cuerpo”»,
+       «Изтрий данните от „Вашето тяло“», 「删除『我的身体』数据」): se compara sin mirar de qué tipo son. Antes, una cita
+       con comillas dentro no se miraba, y el búlgaro de «borrar-datos» seguía citando el botón de antes, «Изтриване…» */
+    const sinComillas = t => String(t).replace(/[«»“”„‟‘’‚「」『』]/g, '"');
+    const porEs = {}; for (const [k, v] of Object.entries(UI)) (porEs[sinComillas(v.es)] = porEs[sinComillas(v.es)] || []).push(k);
+    const usos = []; for (const [donde, t] of Object.entries(T.es)) for (const c of citas(t)) if (porEs[sinComillas(c)]) usos.push([donde, porEs[sinComillas(c)]]);
     const malas = [];
     for (const [donde, ks] of usos) for (const l of L.slice(1)) {
-      const t = T[l][donde] || '';
-      if (!ks.some(k => t.includes(UI[k][l]) || (l === 'pl' && t.includes(UI[k][l].replace(/«([^«»]*)»/g, '„$1”')))))
+      const t = sinComillas(T[l][donde] || '');
+      if (!ks.some(k => t.includes(sinComillas(UI[k][l]))))
         malas.push(l + ' ' + donde + ': «' + ks.map(k => UI[k][l]).join('» o «') + '»');
     }
     prueba('las respuestas y las guías que citan un texto de la pantalla (' + usos.length + ' citas) lo citan tal cual en los diez idiomas', usos.length >= 20 && !malas.length, malas.slice(0, 4).join(' · '));
+    /* (12-11-2026, #120) «progresar» decía «La app guarda cuántas series hace, no el peso»: desde #120 guarda también
+       las repeticiones y el peso. Ahora manda a «Su fuerza», en la pestaña «Evolución», con sus nombres tal cual */
+    const malProg = L.filter(l => { const x = lee('asistente-' + l + '.json').respuestas.find(r => r.id === 'progresar'), t = sinComillas(((x || {}).r || {}).p ? x.r.p[3] : '');
+      return !t.includes(sinComillas(UI.cuerpoFuerzaTit[l])) || !t.includes(sinComillas(UI.cuerpoModoEvolucion[l])); });
+    prueba('«progresar» ya no dice que la app no guarda el peso: manda a «Su fuerza», en «Evolución», en los diez idiomas', !malProg.length, malProg.join(' '));
     /* y la política de privacidad (ppDatosCuerpoTxt), que dice con qué botón se borra todo: ese botón, tal cual
        (3 de noviembre de 2026: en búlgaro citaba «Изтриване…», el de un módulo de antes, y la pantalla dice «Изтрий…») */
     const malPol = [];
