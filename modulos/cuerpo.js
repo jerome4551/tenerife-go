@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (560 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (568 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -444,6 +444,14 @@
     "cuerpoSecundario": {"es": "Secundario", "en": "Secondary", "fr": "Secondaire", "de": "Hilfsmuskeln", "it": "Secondari", "nl": "Hulpspieren", "zh": "辅助肌群", "zht": "輔助肌群", "bg": "Помощни", "pl": "Pomocnicze"},
     "cuerpoAnotarEj": {"es": "Anotar series de este ejercicio", "en": "Log sets of this exercise", "fr": "Noter des séries de cet exercice", "de": "Sätze dieser Übung eintragen", "it": "Annotare le serie di questo esercizio", "nl": "Sets van deze oefening noteren", "zh": "记录这个动作的组数", "zht": "記錄這個動作的組數", "bg": "Записване на серии от това упражнение", "pl": "Zapisywanie serii tego ćwiczenia"},
     "cuerpoAnotadoEj": {"es": "{ejercicio}: {n} serie anotada|{ejercicio}: {n} series anotadas", "en": "{ejercicio}: {n} set logged|{ejercicio}: {n} sets logged", "fr": "{ejercicio} : {n} série notée|{ejercicio} : {n} séries notées", "de": "{ejercicio}: {n} Satz eingetragen|{ejercicio}: {n} Sätze eingetragen", "it": "{ejercicio}: {n} serie annotata|{ejercicio}: {n} serie annotate", "nl": "{ejercicio}: {n} set genoteerd|{ejercicio}: {n} sets genoteerd", "zh": "{ejercicio}：已记录 {n} 组", "zht": "{ejercicio}：已記錄 {n} 組", "bg": "{ejercicio}: записана {n} серия|{ejercicio}: записани {n} серии", "pl": "{ejercicio}: zapisano {n} serię|{ejercicio}: zapisano {n} serie|{ejercicio}: zapisano {n} serii"},
+    "cuerpoEjReps": {"es": "Repeticiones", "en": "Reps", "fr": "Répétitions", "de": "Wiederholungen", "it": "Ripetizioni", "nl": "Herhalingen", "zh": "次数", "zht": "次數", "bg": "Повторения", "pl": "Powtórzenia"},
+    "cuerpoEjKg": {"es": "Peso (kg)", "en": "Weight (kg)", "fr": "Poids (kg)", "de": "Gewicht (kg)", "it": "Peso (kg)", "nl": "Gewicht (kg)", "zh": "重量（公斤）", "zht": "重量（公斤）", "bg": "Тежест (кг)", "pl": "Ciężar (kg)"},
+    "cuerpoEjCargaAyuda": {"es": "Las repeticiones y el peso son opcionales: con ellos verá cómo progresa, en «{seccion}».", "en": "Reps and weight are optional: with them you will see how you progress, in «{seccion}».", "fr": "Les répétitions et le poids sont facultatifs : avec eux, vous verrez votre progression, dans «{seccion}».", "de": "Wiederholungen und Gewicht sind freiwillig: Damit sehen Sie Ihre Fortschritte, unter «{seccion}».", "it": "Ripetizioni e peso sono facoltativi: con questi vedrà come progredisce, in «{seccion}».", "nl": "Herhalingen en gewicht zijn optioneel: daarmee ziet u uw vooruitgang, bij «{seccion}».", "zh": "次数和重量可填可不填：填了就能在「{seccion}」里看到进步。", "zht": "次數和重量可填可不填：填了就能在「{seccion}」裡看到進步。", "bg": "Повторенията и тежестта не са задължителни: с тях ще виждате напредъка си в «{seccion}».", "pl": "Powtórzenia i ciężar są opcjonalne: dzięki nim widać postępy w sekcji «{seccion}»."},
+    "cuerpoEjCargaMal": {"es": "Revise las repeticiones (un número entero de 1 a 200) y el peso en kilos (por ejemplo, 12,5).", "en": "Check the reps (a whole number from 1 to 200) and the weight in kilos (for example, 12.5).", "fr": "Vérifiez les répétitions (un nombre entier de 1 à 200) et le poids en kilos (par exemple 12,5).", "de": "Prüfen Sie die Wiederholungen (eine ganze Zahl von 1 bis 200) und das Gewicht in Kilo (zum Beispiel 12,5).", "it": "Controlli le ripetizioni (un numero intero da 1 a 200) e il peso in chili (per esempio 12,5).", "nl": "Controleer de herhalingen (een heel getal van 1 tot 200) en het gewicht in kilo (bijvoorbeeld 12,5).", "zh": "请检查次数（1 到 200 的整数）和重量（公斤，例如 12.5）。", "zht": "請檢查次數（1 到 200 的整數）和重量（公斤，例如 12.5）。", "bg": "Проверете повторенията (цяло число от 1 до 200) и тежестта в килограми (например 12,5).", "pl": "Należy sprawdzić powtórzenia (liczba całkowita od 1 do 200) i ciężar w kilogramach (np. 12,5)."},
+    "cuerpoEjUltima": {"es": "La última vez, {cuando}: {que}", "en": "Last time, {cuando}: {que}", "fr": "La dernière fois, {cuando} : {que}", "de": "Letztes Mal, {cuando}: {que}", "it": "L’ultima volta, {cuando}: {que}", "nl": "Vorige keer, {cuando}: {que}", "zh": "上次（{cuando}）：{que}", "zht": "上次（{cuando}）：{que}", "bg": "Последния път, {cuando}: {que}", "pl": "Ostatnio, {cuando}: {que}"},
+    "cuerpoCargaSR": {"es": "{series} × {reps}", "en": "{series} × {reps}", "fr": "{series} × {reps}", "de": "{series} × {reps}", "it": "{series} × {reps}", "nl": "{series} × {reps}", "zh": "{series} 组 × {reps} 次", "zht": "{series} 組 × {reps} 次", "bg": "{series} × {reps}", "pl": "{series} × {reps}"},
+    "cuerpoCargaSRK": {"es": "{series} × {reps} con {kg} kg", "en": "{series} × {reps} at {kg} kg", "fr": "{series} × {reps} à {kg} kg", "de": "{series} × {reps} mit {kg} kg", "it": "{series} × {reps} con {kg} kg", "nl": "{series} × {reps} met {kg} kg", "zh": "{series} 组 × {reps} 次，{kg}公斤", "zht": "{series} 組 × {reps} 次，{kg}公斤", "bg": "{series} × {reps} с {kg} кг", "pl": "{series} × {reps}, {kg} kg"},
+    "cuerpoCargaSK": {"es": "{series} con {kg} kg", "en": "{series} at {kg} kg", "fr": "{series} à {kg} kg", "de": "{series} mit {kg} kg", "it": "{series} con {kg} kg", "nl": "{series} met {kg} kg", "zh": "{series}，{kg}公斤", "zht": "{series}，{kg}公斤", "bg": "{series} с {kg} кг", "pl": "{series}, {kg} kg"},
     "cuerpoNF_datos": {"es": "conjunto de datos", "en": "dataset", "fr": "jeu de données", "de": "Datensatz", "it": "set di dati", "nl": "dataset", "zh": "数据集", "zht": "資料集", "bg": "набор от данни", "pl": "zbiór danych"},
     "cuerpoNF_articulo": {"es": "artículo para profesionales", "en": "article for professionals", "fr": "article pour les professionnels", "de": "Fachartikel", "it": "articolo per professionisti", "nl": "artikel voor professionals", "zh": "面向专业人士的文章", "zht": "給專業人士的文章", "bg": "статия за специалисти", "pl": "artykuł dla specjalistów"},
     "cuerpoNF_estudioACE": {"es": "estudio patrocinado por ACE", "en": "study sponsored by ACE", "fr": "étude financée par l’ACE", "de": "von ACE geförderte Studie", "it": "studio finanziato da ACE", "nl": "door ACE gesponsorde studie", "zh": "ACE 资助的研究", "zht": "ACE 資助的研究", "bg": "проучване, финансирано от ACE", "pl": "badanie sponsorowane przez ACE"},
@@ -1753,6 +1761,10 @@
   var KEY = 'tenerife.cuerpo';
   var GRUPOS = F.GRUPOS;
   var MAX_N = 30, MAX_ENTRADAS = 3000, DIAS_GUARDA = 3 * 366;
+  /* (#120, 12-11-2026) las repeticiones y el peso de una anotación desde la ficha de un ejercicio: topes para
+     comprobar lo que se escribe (no son recomendaciones) */
+  var MAX_REPS = 200, MAX_KG = 500;
+  function kg2(v) { var r = Number(Math.round(Number(v + 'e2')) + 'e-2'); return isFinite(r) ? r : Math.round(v * 100) / 100; }
   var reducido = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   /* El prototipo (un artefacto dentro de otra página) pone TG_CUERPO_SIN_HISTORIA: allí el historial
      es el de la página de fuera, y un back() de más la cambiaría. En la app no se pone. */
@@ -2168,6 +2180,10 @@
       }).map(function (x) {
         var y = { d: x.d, g: x.g, n: x.n, t: (typeof x.t === 'number' && isFinite(x.t) && x.t > 0) ? x.t : 0 };
         if (typeof x.e === 'string' && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(x.e) && x.e.length <= 80) y.e = x.e;
+        /* (#120) las repeticiones (enteras, de 1 a MAX_REPS) y el peso (más de 0 y hasta MAX_KG, a la centésima),
+           solo en lo anotado desde la ficha de un ejercicio */
+        if (y.e && typeof x.r === 'number' && Math.floor(x.r) === x.r && x.r >= 1 && x.r <= MAX_REPS) y.r = x.r;
+        if (y.e && typeof x.kg === 'number' && isFinite(x.kg) && x.kg > 0 && x.kg <= MAX_KG && kg2(x.kg) > 0) y.kg = kg2(x.kg);
         return y;
       }).slice(-MAX_ENTRADAS);
     }
@@ -2291,6 +2307,9 @@
   var DATOS_3D = typeof RUTA_3D.datos === 'string' ? RUTA_3D.datos : './datos/cuerpo3d/';
   var M3 = null, C3 = null, lienzo3d = null, estado3d = 'no', carga3d = null, reintentos3d = 0, pedido3d = '', movido3d = false, reloj3d = null;
   var ejEntorno = 'todos', ejNivel = 0, ejBuscar = '', ejAbierto = null, ejHistoria = false, antesDeEj = null;
+  /* (#120) de qué ejercicio son las repeticiones y el peso escritos en la ficha: al abrir otro, se rellenan con los
+     de su última vez (para seguir donde lo dejó); al guardar, se quedan para la serie siguiente */
+  var ejCargaDe = null;
   /* para buscar: minúsculas y sin tildes («sentadilla bulgara» encuentra «Sentadilla búlgara») */
   function plano(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 
@@ -2347,6 +2366,42 @@
   function nombreEj(id) { var t = txEj(id); return t ? t.nombre : id; }
   /* la última vez que se anotó cada ejercicio */
   function ultimasEj() { var u = {}; st.series.forEach(function (x) { if (x.e && x.d <= hoy() && (!u[x.e] || x.d > u[x.e])) u[x.e] = x.d; }); return u; }
+  /* (#120, 12-11-2026) las anotaciones de un ejercicio, de la más antigua a la última. Una anotación desde la ficha
+     deja una fila por grupo principal (el mismo ejercicio, el mismo día y horas seguidas: ahora + k): para el
+     ejercicio cuenta una vez. Lo anotado antes de guardar la hora (t = 0) se junta si coinciden día y series */
+  function notasEj(id) {
+    var h = hoy(), out = [];
+    st.series.filter(function (x) { return x.e === id && x.d <= h; })
+      .sort(function (a, b) { return a.d === b.d ? a.t - b.t : (a.d < b.d ? -1 : 1); })
+      .forEach(function (x) {
+        var p = out[out.length - 1];
+        if (p && p.d === x.d && (x.t && p.t ? x.t - p.t < 50 : (!x.t && !p.t && p.n === x.n))) return;
+        out.push(x);
+      });
+    return out;
+  }
+  /* «3 × 10 con 20 kg», «3 × 10», «3 series con 20 kg» o «3 series», según lo que se anotó */
+  function cargaTxt(x) {
+    if (x.r && x.kg) return tx('cuerpoCargaSRK', { series: x.n, reps: x.r, kg: fmtN(x.kg, 2) });
+    if (x.r) return tx('cuerpoCargaSR', { series: x.n, reps: x.r });
+    if (x.kg) return tx('cuerpoCargaSK', { series: tx('cuerpoNSeries', { n: x.n }), kg: fmtN(x.kg, 2) });
+    return tx('cuerpoNSeries', { n: x.n });
+  }
+  /* lo que se escribe en la ficha: vacío es null (no se guarda); lo que no vale, false */
+  function leerReps() {
+    var s = String($('tgc-ej-reps').value || '').trim();
+    if (!s) return null;
+    if (!/^\d{1,3}$/.test(s)) return false;
+    var v = Number(s); return v >= 1 && v <= MAX_REPS ? v : false;
+  }
+  /* un campo que no vale: aria-invalid="true" (vacío valdría «false» para un lector de pantalla) */
+  function marcarMal(id, mal) { var n = $(id); if (mal) n.setAttribute('aria-invalid', 'true'); else n.removeAttribute('aria-invalid'); }
+  function leerKg() {
+    var s = String($('tgc-ej-kg').value || '').replace(/\s/g, '').replace(',', '.');
+    if (!s) return null;
+    if (!/^\d{1,3}(\.\d{1,2})?$/.test(s)) return false;
+    var v = Number(s); return v > 0 && v <= MAX_KG ? kg2(v) : false;
+  }
 
   /* ── el personaje ── */
   function etiquetaFigura(v, R) {
@@ -3618,7 +3673,7 @@
     var mias = st.series.map(function (x, i) { return { x: x, i: i }; }).filter(function (o) { return o.x.g === g; })
       .sort(function (a, b) { return a.x.d === b.x.d ? b.x.t - a.x.t || b.i - a.i : (a.x.d < b.x.d ? 1 : -1); }).slice(0, 6);
     mias.forEach(function (o) {
-      var li = el('li', 'tgc-hist-fila'), series = tx('cuerpoNSeries', { n: o.x.n }), f = fmtFecha(o.x.d);
+      var li = el('li', 'tgc-hist-fila'), series = cargaTxt(o.x), f = fmtFecha(o.x.d);
       var txt = el('span', 'tgc-hist-n', series);
       /* si se anotó desde la ficha de un ejercicio, su nombre (cuando los ejercicios ya están cargados) */
       if (o.x.e && EJ && EJ.porId[o.x.e]) txt.appendChild(el('span', 'tgc-hist-ej', nombreEj(o.x.e)));
@@ -3750,7 +3805,7 @@
   }
   function volverGrupo(sinHistoria) {
     if (!ejAbierto) return;
-    ejAbierto = null;
+    ejAbierto = null; ejCargaDe = null;
     quitarVideoEj();
     $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false;
     $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-hoja-tit');
@@ -3796,6 +3851,19 @@
     var ol = $('tgc-ej-pasos'); ol.textContent = '';
     t.pasos.forEach(function (p) { ol.appendChild(el('li', '', p)); });
     pintarPaso('tgc-ej');
+    /* (#120) la última vez, con sus repeticiones y su peso si los anotó */
+    var ns = notasEj(x.id), u = ns[ns.length - 1], pu = $('tgc-ej-ultima');
+    pu.hidden = !u;
+    pu.textContent = u ? tx('cuerpoEjUltima', { cuando: cuando(u.d), que: cargaTxt(u) }) : '';
+    if (ejCargaDe !== x.id) {
+      ejCargaDe = x.id;
+      var ur = null, uk = null;
+      for (var i = ns.length - 1; i >= 0 && (ur === null || uk === null); i--) { if (ur === null && ns[i].r) ur = ns[i].r; if (uk === null && ns[i].kg) uk = ns[i].kg; }
+      $('tgc-ej-reps').value = ur ? String(ur) : '';
+      $('tgc-ej-kg').value = uk ? fmtN(uk, 2) : '';
+      $('tgc-ej-reps').removeAttribute('aria-invalid'); $('tgc-ej-kg').removeAttribute('aria-invalid');
+    }
+    $('tgc-ej-carga-ayuda').textContent = tx('cuerpoEjCargaAyuda', { seccion: tx('cuerpoModoEvolucion') });
     var ul = $('tgc-ej-fuentes'); ul.textContent = '';
     x.f.forEach(function (q) {
       var li = el('li'), a = el('a', '', fuenteTxt(q[0]));
@@ -3810,8 +3878,12 @@
   function anotarEj() {
     var x = EJ && EJ.porId[ejAbierto]; if (!x) return;
     var n = Math.max(1, Math.min(MAX_N, Math.round(Number($('tgc-ej-n').value) || anotarN)));
+    /* (#120) las repeticiones y el peso, si los escribió; si algo no vale, no se guarda nada y se dice */
+    var r = leerReps(), kg = leerKg();
+    marcarMal('tgc-ej-reps', r === false); marcarMal('tgc-ej-kg', kg === false);
+    if (r === false || kg === false) { toast(tx('cuerpoEjCargaMal')); try { $(r === false ? 'tgc-ej-reps' : 'tgc-ej-kg').focus(); } catch (e) {} return; }
     var d = anotarDia === 'ayer' ? sumar(hoy(), -1) : hoy(), ahora = Date.now(), antes = st.series.length;
-    x.g.forEach(function (g, k) { st.series.push({ d: d, g: g, n: n, t: ahora + k, e: x.id }); });
+    x.g.forEach(function (g, k) { var y = { d: d, g: g, n: n, t: ahora + k, e: x.id }; if (r) y.r = r; if (kg) y.kg = kg; st.series.push(y); });
     if (st.series.length > MAX_ENTRADAS) st.series = st.series.slice(-MAX_ENTRADAS);
     if (!guardar()) { st.series.length = Math.min(st.series.length, antes); return; }
     anotarN = n;
@@ -3851,7 +3923,7 @@
     if (!grupoAbierto) return;
     /* con la ficha de un ejercicio abierta hay dos entradas del historial: se quitan las dos de una vez */
     var pasos = (hojaHistoria ? 1 : 0) + (ejHistoria ? 1 : 0);
-    grupoAbierto = null; ejAbierto = null;
+    grupoAbierto = null; ejAbierto = null; ejCargaDe = null;
     quitarVideoEj();
     $('tgc-velo').hidden = true; $('tgc-hoja').hidden = true;
     $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false;
@@ -5892,6 +5964,17 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
   font: 600 20px/1 var(--font-body); font-variant-numeric: tabular-nums; -moz-appearance: textfield; appearance: textfield;
 }
 .tgc-paso input::-webkit-outer-spin-button, .tgc-paso input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+/* (#120) las repeticiones y el peso: del tamaño del número de series, para escribir con el teclado numérico */
+.tgc-fila-ctl > label { font-weight: 600; font-size: 14px; }
+.tgc-carga {
+  width: 108px; height: 44px; border-radius: 12px; border: 1.5px solid var(--linea); background: var(--tarjeta); color: inherit; text-align: center;
+  font: 600 20px/1 var(--font-body); font-variant-numeric: tabular-nums; -moz-appearance: textfield; appearance: textfield;
+}
+.tgc-carga::-webkit-outer-spin-button, .tgc-carga::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.tgc-carga:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; }
+.tgc-carga[aria-invalid="true"] { border-color: var(--rojo); background: var(--rojo-f); }
+.tgc-ej-carga-ayuda { margin: -4px 0 0; }
+.tgc-ej-ultima { margin: 0 0 10px; padding: 10px 12px; border-radius: 14px; background: var(--oro-f); font-weight: 600; font-size: 14px; line-height: 1.4; font-variant-numeric: tabular-nums; }
 
 /* «Anotar movimiento» (bloque 4): «Qué ha hecho» encima de sus cinco tipos, con su icono */
 .tgc-campo { display: grid; gap: 8px; }
@@ -6520,6 +6603,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
       <ul class="tgc-ej-variantes" id="tgc-ej-variantes"></ul>
     </div>
     <h3 id="tgc-ej-anotar-tit">Anotar series de este ejercicio</h3>
+    <p class="tgc-ej-ultima" id="tgc-ej-ultima" hidden></p>
     <div class="tgc-anotar">
       <div class="tgc-fila-ctl">
         <span id="tgc-ej-cuantas">Series</span>
@@ -6529,6 +6613,15 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
           <button type="button" id="tgc-ej-mas">+</button>
         </div>
       </div>
+      <div class="tgc-fila-ctl">
+        <label for="tgc-ej-reps" id="tgc-ej-reps-l">Repeticiones</label>
+        <input type="number" class="tgc-carga" id="tgc-ej-reps" inputmode="numeric" min="1" max="200" step="1" autocomplete="off">
+      </div>
+      <div class="tgc-fila-ctl">
+        <label for="tgc-ej-kg" id="tgc-ej-kg-l">Peso (kg)</label>
+        <input type="text" class="tgc-carga" id="tgc-ej-kg" inputmode="decimal" maxlength="6" autocomplete="off" spellcheck="false">
+      </div>
+      <p class="tgc-ayuda tgc-ej-carga-ayuda" id="tgc-ej-carga-ayuda">Las repeticiones y el peso son opcionales: con ellos verá cómo progresa, en «Evolución».</p>
       <div class="tgc-fila-ctl">
         <span id="tgc-ej-cuando">Cuándo</span>
         <div class="tgc-dias" role="group" aria-labelledby="tgc-ej-cuando">
@@ -6780,6 +6873,8 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     ['#tgc-ej-cuantas', 'tx', 'cuerpoCuantas'],
     ['#tgc-ej-menos', 'aria', 'cuerpoMenos'],
     ['#tgc-ej-mas', 'aria', 'cuerpoMas'],
+    ['#tgc-ej-reps-l', 'tx', 'cuerpoEjReps'],
+    ['#tgc-ej-kg-l', 'tx', 'cuerpoEjKg'],
     ['#tgc-ej-cuando', 'tx', 'cuerpoCuando'],
     ['#tgc-ej-hoy', 'tx', 'cuerpoHoyB'],
     ['#tgc-ej-ayer', 'tx', 'cuerpoAyerB'],

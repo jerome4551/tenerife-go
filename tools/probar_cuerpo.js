@@ -206,7 +206,7 @@ async function ejemplo(pg, mas) {
      para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; desde el 8 (bloque 8), con
      «Su compañero de travesía» (el título, «A pie», «En bici» y la ayuda) y «Senderos de la isla» (el título), 151; y 2 placeholders (el
      del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (152 elementos, con la línea de la IA y, desde el 10-11-2026, la pestaña «Evolución»; y 2 placeholders)', r2.n === 152 && r2.ph === 2, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (154 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha; y 2 placeholders)', r2.n === 154 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -708,6 +708,48 @@ async function ejemplo(pg, mas) {
   prueba('Escape en la ficha vuelve al grupo', await pg.evaluate(() => !document.getElementById('tgc-hoja').hidden && !document.getElementById('tgc-pag-grupo').hidden && document.getElementById('tgc-pag-ej').hidden));
   prueba('el historial del grupo nombra el ejercicio', await pg.evaluate(n => [...document.querySelectorAll('.tgc-hist-ej')].some(e => e.textContent === n), datosEs[ej.id][0]));
   prueba('el foco vuelve a la fila del ejercicio', await pg.evaluate(id => document.activeElement && document.activeElement.dataset && document.activeElement.dataset.id === id, ej.id));
+  // (#120, 12-11-2026; Jérôme: «guarda los kilos y las repeticiones») las repeticiones y el peso de la ficha:
+  // opcionales, comprobados, con «la última vez» (en los diez idiomas, con la coma de cada uno) y en el historial
+  await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
+  const leerFicha = () => pg.evaluate(() => ({ ult: document.getElementById('tgc-ej-ultima').textContent, oculto: document.getElementById('tgc-ej-ultima').hidden,
+    reps: document.getElementById('tgc-ej-reps').value, kg: document.getElementById('tgc-ej-kg').value, ayuda: document.getElementById('tgc-ej-carga-ayuda').textContent,
+    lReps: document.getElementById('tgc-ej-reps-l').textContent, lKg: document.getElementById('tgc-ej-kg-l').textContent,
+    malR: document.getElementById('tgc-ej-reps').getAttribute('aria-invalid'), malK: document.getElementById('tgc-ej-kg').getAttribute('aria-invalid'),
+    toast: document.getElementById('tgc-toast-txt').textContent }));
+  const c1a = await leerFicha();
+  prueba('kilos: la ficha dice «La última vez, hoy: 4 series» y no rellena repeticiones ni peso que no se anotaron', !c1a.oculto && c1a.ult === 'La última vez, hoy: 4 series' && c1a.reps === '' && c1a.kg === '', JSON.stringify(c1a));
+  prueba('kilos: «Repeticiones», «Peso (kg)» y la ayuda, que nombra «Evolución»', c1a.lReps === 'Repeticiones' && c1a.lKg === 'Peso (kg)' &&
+    c1a.ayuda === 'Las repeticiones y el peso son opcionales: con ellos verá cómo progresa, en «Evolución».', JSON.stringify(c1a));
+  const antesC1 = await pg.evaluate(() => TG_CUERPO.estado().series.length);
+  for (const [reps, kg, cual] of [['0', '', 'r'], ['201', '', 'r'], ['2.5', '', 'r'], ['10', 'abc', 'k'], ['10', '501', 'k'], ['10', '-5', 'k'], ['10', '0', 'k'], ['10', '12,345', 'k']]) {
+    await pg.fill('#tgc-ej-reps', reps); await pg.fill('#tgc-ej-kg', kg); await pg.click('#tgc-ej-guardar'); await pg.waitForTimeout(80);
+    const m = await leerFicha();
+    prueba('kilos: «' + reps + '» y «' + kg + '» no se guardan, y se dice cuál no vale', m.toast === 'Revise las repeticiones (un número entero de 1 a 200) y el peso en kilos (por ejemplo, 12,5).' &&
+      (cual === 'r' ? m.malR === 'true' : m.malK === 'true' && m.malR === null) && await pg.evaluate(n => TG_CUERPO.estado().series.length === n, antesC1), JSON.stringify(m));
+  }
+  await pg.fill('#tgc-ej-reps', '10'); await pg.fill('#tgc-ej-kg', '12,5'); await pg.click('#tgc-ej-guardar'); await pg.waitForTimeout(150);
+  const c1b = await pg.evaluate(() => { const s = TG_CUERPO.estado().series; return { nuevas: s.slice(-3), n: s.length, guardado: JSON.parse(localStorage.getItem('tenerife.cuerpo')).series.slice(-3) }; });
+  const nuevasC1 = c1b.nuevas.slice(-ej.g.length), guardadasC1 = c1b.guardado.slice(-ej.g.length);
+  prueba('kilos: 10 repeticiones y 12,5 kg, en cada grupo principal, guardados', c1b.n === antesC1 + ej.g.length && nuevasC1.every((x, k) => x.e === ej.id && x.g === ej.g[k] && x.n === 4 && x.r === 10 && x.kg === 12.5) &&
+    guardadasC1.every(x => x.r === 10 && x.kg === 12.5), JSON.stringify(c1b));
+  const c1c = await leerFicha();
+  prueba('kilos: «La última vez, hoy: 4 × 10 con 12,5 kg», y las cifras se quedan para la serie siguiente', c1c.ult === 'La última vez, hoy: 4 × 10 con 12,5 kg' && c1c.reps === '10' && c1c.kg === '12,5' && c1c.malR === null && c1c.malK === null, JSON.stringify(c1c));
+  /* cada idioma con su frase y sus dos etiquetas (en italiano, «Peso (kg)» se escribe igual que en castellano) */
+  const ESPERA_C1 = { en: ['Last time, today: 4 × 10 at 12.5 kg', 'Reps', 'Weight (kg)'], fr: ['La dernière fois, aujourd’hui : 4 × 10 à 12,5 kg', 'Répétitions', 'Poids (kg)'],
+    de: ['Letztes Mal, heute: 4 × 10 mit 12,5 kg', 'Wiederholungen', 'Gewicht (kg)'], it: ['L’ultima volta, oggi: 4 × 10 con 12,5 kg', 'Ripetizioni', 'Peso (kg)'],
+    nl: ['Vorige keer, vandaag: 4 × 10 met 12,5 kg', 'Herhalingen', 'Gewicht (kg)'], zh: ['上次（今天）：4 组 × 10 次，12.5公斤', '次数', '重量（公斤）'],
+    zht: ['上次（今天）：4 組 × 10 次，12.5公斤', '次數', '重量（公斤）'], bg: ['Последния път, днес: 4 × 10 с 12,5 кг', 'Повторения', 'Тежест (кг)'],
+    pl: ['Ostatnio, dziś: 4 × 10, 12,5 kg', 'Powtórzenia', 'Ciężar (kg)'] };
+  for (const [l, e] of Object.entries(ESPERA_C1)) {
+    await idioma(pg, l);
+    const m = await leerFicha();
+    prueba('kilos, ' + l + ': «' + e[0] + '», «' + e[1] + '» y «' + e[2] + '», y la ayuda en su idioma', m.ult === e[0] && m.lReps === e[1] && m.lKg === e[2] && m.ayuda && m.ayuda.indexOf('{') < 0 &&
+      m.ayuda !== c1a.ayuda, JSON.stringify(m));
+  }
+  await idioma(pg, 'es');
+  await pg.keyboard.press('Escape'); await pg.waitForTimeout(150);
+  const c1d = await pg.evaluate(() => { const f = document.querySelector('#tgc-hist .tgc-hist-n'); return f ? f.firstChild.textContent : null; });
+  prueba('kilos: el historial del grupo dice «4 × 10 con 12,5 kg»', c1d === '4 × 10 con 12,5 kg', c1d);
   // «atrás» por niveles: ficha → grupo → «Su cuerpo», en el perfil
   await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
   await pg.goBack(); await pg.waitForTimeout(200);
@@ -809,6 +851,17 @@ async function ejemplo(pg, mas) {
   await pg.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [{ d: '2026-10-20', g: 'pecho', n: 3, e: '<b>x</b>' }, { d: '2026-10-21', g: 'pecho', n: 2, e: 'press-banca' }] })); TG_CUERPO.abrir(); });
   const r12d = await pg.evaluate(() => TG_CUERPO.estado().series);
   prueba('id de ejercicio raro: fuera; la anotación se queda', r12d.length === 2 && !('e' in r12d[0]) && r12d[1].e === 'press-banca', JSON.stringify(r12d));
+  // (#120) lo guardado: repeticiones y peso solo con ejercicio, enteras de 1 a 200 y de más de 0 a 500 kg, a la centésima
+  await pg.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [
+    { d: '2026-10-20', g: 'pecho', n: 3, r: 10, kg: 20 },
+    { d: '2026-10-21', g: 'pecho', n: 3, e: 'press-banca', r: 0, kg: -1 },
+    { d: '2026-10-22', g: 'pecho', n: 3, e: 'press-banca', r: 2.5, kg: 501 },
+    { d: '2026-10-23', g: 'pecho', n: 3, e: 'press-banca', r: '10', kg: '20' },
+    { d: '2026-10-24', g: 'pecho', n: 3, e: 'press-banca', r: 201, kg: 0 },
+    { d: '2026-10-25', g: 'pecho', n: 3, e: 'press-banca', r: 12, kg: 12.345 },
+    { d: '2026-10-26', g: 'pecho', n: 3, e: 'press-banca', r: 200, kg: 500 }] })); TG_CUERPO.abrir(); });
+  const c1e = await pg.evaluate(() => TG_CUERPO.estado().series.map(x => [x.r === undefined ? '-' : x.r, x.kg === undefined ? '-' : x.kg]));
+  prueba('kilos, lo guardado: sin ejercicio, ni repeticiones ni peso; lo que no vale, fuera; el peso a la centésima', JSON.stringify(c1e) === JSON.stringify([['-', '-'], ['-', '-'], ['-', '-'], ['-', '-'], ['-', '-'], [12, 12.35], [200, 500]]), JSON.stringify(c1e));
 
   // 11. contraste de los niveles con «sin trabajar» (WCAG 1.4.11: 3:1)
   const r11 = await pg.evaluate(() => { const n = TG_FIGURA.MUSC.nivel, L = TG_FIGURA.lum; const c = (a, b) => { const x = L(a), y = L(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }; return [1, 2, 3].map(i => c(n[0], n[i])); });
