@@ -7749,6 +7749,92 @@ Samsung (64 comparaciones). Encima de lo último de `main` (`6a5ed01`) solo camb
 - El panel SOS dice «medida a las {h}» y «rilevata alle {h}» (la hora del GPS): a la una, «a las 01:10». Espera el sí
   de Jérôme.
 
+## Jérôme, el entrenador: el vídeo de 75 ejercicios de «Su cuerpo» (notas 32 y 33), traído y repasado (12 de noviembre)
+
+**Por qué.** Jérôme, el 11 de noviembre, al ver la cabeza nueva del personaje: «recuerda que es para todos los
+ejercicios del cuerpo presentes en la app, y si faltan hazlos. Bloque por bloque». La sesión del entrenador entregó ese
+día los dos primeros bloques en un zip (`jerome-entrenador-bloques-1-2.zip`, con sus notas 32 y 33): el vídeo de 75 de
+los 533 ejercicios (238 de sus 1.667 pasos). No son archivos de vídeo: es Jérôme, dibujado, que hace lo que dice cada
+paso de la ficha; arriba se ve el paso y abajo se lee, en el idioma de la app. Un módulo perezoso,
+`modulos/entrenador.js`, que `modulos/cuerpo.js` pide al abrir la ficha de un ejercicio; en las fichas sin coreografía
+no sale nada. La regla de la nota: cada coreografía sale de los pasos verificados de su ficha y no añade técnica que la
+ficha no diga; si un paso cambia, la auditoría se pone en rojo y ese vídeo deja de salir. Jérôme lo vio y dijo «sube»
+(el 12 de noviembre, hacia las 10:30).
+
+**Lo que llega** (`9b79c11`…`9b48c34`, los cinco commits de la entrega, tal cual): las sumas sha256 de los cinco parches
+y de los ficheros son las de la nota; sobre su base (`17c607f`) los cinco dan el árbol que dice
+(`0303cd3426ee4a8ed21361c59fdac89157b20eba`), y encima de lo nuestro entran sin un conflicto: los 33 ficheros nuevos,
+idénticos, y en `index.html`, `sw.js` y `modulos/cuerpo.js` las mismas líneas. `modulos/cuerpo.js` solo se cambia desde
+sus fuentes: sus siete trozos van a `src/ui.js`, `src/estilos.css` y `src/cuerpo.html` de «Su cuerpo», y `construir.py`
+da byte a byte el `modulos/cuerpo.js` del parche. `modulos/entrenador.js` sale igual de sus fuentes
+(`tools/entrenador/construir.py --comprobar`). Revisado a mano: sin red (ni `fetch`, ni nada guardado en el teléfono),
+`innerHTML` solo con dibujos del propio módulo y un contador como prefijo de los ids, los textos de la ficha con
+`textContent`, y la voz solo con voces del aparato (`localService`).
+
+**El nombre, como en el resto de la app** (`17a6448`): los textos propios del vídeo traían «Jérôme» en letra latina en
+búlgaro y en chino («Jérôme ще ви покаже», «听 Jérôme 讲解»…). Ahora «Жером», «热罗姆» y «熱羅姆», como el tour. Y los
+dos botones de la voz, «Escuchar a Jérôme» y «Parar la voz», que son el mismo botón que el del tour con el mismo
+castellano, dicen lo mismo que `guiaVozOn` y `guiaVozOff` en los diez idiomas. 13 textos en tres filas. Y la prueba
+del propio vídeo, que pedía «Jérôme» en letra latina en los diez idiomas, pide ahora la forma de cada uno.
+
+**Controles nuevos o ampliados:**
+- `auditar_escrituras.js` (`c4fc866`): además de lo que la página tiene al cargar, sin navegador, las 2745 filas de diez
+  idiomas de todo el fuente, con los módulos perezosos, y 156.765 textos de 88 ficheros de un idioma; y el nombre: en
+  búlgaro y en chino, nunca en letra latina. En rojo con los seis textos del vídeo tal como llegaron; en verde con el
+  arreglo.
+- `auditar_entrenador.js` (`de25419`): llegó sin cortar la red y, al abrir la app de verdad, la página pedía lo de fuera
+  desde la máquina que audita. Ahora solo el sitio de prueba, como las demás. Y entra en `tools/auditar.sh`, y
+  `modulos/entrenador.js` en la lista de los módulos que se comprueban con `node --check`.
+- `auditar_registro.js` (`30dd7f1`): el trato de usted no miraba el tour (`modulos/guia.js`, 1330 textos, publicado el
+  11) ni el vídeo. Ahora los dos. Lo que marcan, mirado uno a uno, no es tuteo: los botones del vídeo en imperativo
+  (como todos los de italiano, búlgaro y polaco: `ROTULOS_*`), «Tocca a Lei!» (le toca a usted) y «Marche» (la
+  marcha, en una lista de deportes), estos dos a `EXENTOS` con su motivo.
+
+**El apóstrofo del nombre** (`dab4556`): en polaco, «Jérôme'a» y «Jérôme’a», según la pantalla; ahora todos con el
+tipográfico, como la PWN y el resto. En inglés, los dos rótulos de la administración, «Jérôme’s». No queda ningún
+«Jérôme'».
+
+**Las tablas de idioma** (`1ee04b6`): `VOZ_LOCALE` (`{es: 'es-ES', …}`, los códigos de las voces del aparato) tiene la
+forma de una fila de diez idiomas; lleva ahora su declaración `SIN-TRADUCIR`, como `TTS_LOCALE` en el tour, para que
+ningún control la tome por texto sin traducir. Y las cifras de «Idiomas»: el vídeo suma dos tablas (`ENT_UI`, 21 filas,
+y `VOZ_LOCALE`) y 22 filas: de 50 a 52 tablas y de 3597 a 3619 filas en lo que alcanza `auditar_web.js`, y de 5.744 a
+5.766 dentro y fuera del fuente.
+
+**Samsung Internet** (`d7426d2`): el vídeo dibuja a Jérôme en SVG, como el tour, y el modo oscuro de Samsung Internet le
+habría puesto la cara oscura. El mismo arreglo que el del tour (`lienzo`, de `modulos/guia.js`), en su propio trozo
+(`tools/entrenador/src/85-lienzo.js`): solo con Samsung Internet, el SVG sigue animándose invisible y un canvas encima
+lo copia; aquí, además, el borde antes que el relleno (`paint-order`, el tronco y los miembros) y los degradados del
+ambiente, que cambian con el tema. Fuera del navegador (la auditoría carga el módulo para leer sus coreografías) no es
+Samsung: la primera prueba se rompió ahí, sin `navigator`, y ahora no. `auditar_entrenador.js` lo comprueba con el
+user-agent de ese móvil: en 28 momentos de tres ejercicios (la sentadilla, el press de banca y el estiramiento del
+pecho), de día y de noche, el canvas es el mismo dibujo que el SVG (la mayor diferencia media, 0,24 de 255); se repinta
+solo con el vídeo en marcha; con el modo oscuro forzado de Chromium, el canvas no cambia y el SVG sí; y en otro
+navegador no hay canvas. Pintar un cuadro, 5,7 ms (30,4 con la CPU frenada ×4). Y `sw.js` decía «unos 230 kB», el tamaño
+del primer bloque: con los 75 ejercicios y esto, unos 320 kB.
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre los doce commits antes de ponerlos encima de lo último de los
+robots: todo en verde. Entre otros, `auditar_entrenador.js` (39 controles: el módulo de sus fuentes, cada vídeo entero y
+cuadro a cuadro, la ficha en la app y Samsung Internet), `probar_cuerpo.js` (543), `auditar_escrituras.js` (sin
+navegador, 2745 filas de diez idiomas en todo el fuente y 156.765 textos en 88 ficheros; en la página, 13 tablas y 9338
+textos), `auditar_registro.js` (119.302 textos, con el tour y el vídeo), `barrido_idiomas.js` (5.766 filas) y
+`auditar_web.js` (52 tablas, 3619 filas). Antes, la prueba propia del vídeo dio dos rojos que eran de la prueba y no del
+vídeo: pedía «Jérôme» en letra latina en los diez idiomas (ahora la forma de cada uno, en el commit del nombre) y, con
+el modo oscuro forzado, comparaba el canvas con el SVG que ese modo oscurece a propósito (ahora compara cada uno con el
+mismo momento sin ese modo, como la del tour); y una primera vez se rompió al cargar el módulo fuera del navegador, sin
+`navigator` (arreglado en el commit de Samsung). Encima de lo último de `main` (`5aff4ba`) solo cambian los ficheros de
+cuatro robots (`datos/alertas-canarias.json`, `datos/avisos-aemet.json`, `datos/precios-gasolineras.json` y
+`datos/sismos-ign.json`), y los controles que los leen salen otra vez en verde.
+
+**Lo que queda:**
+- La persona del Samsung: primero el tour, ya publicado; si ahí sale bien, el vídeo usa el mismo arreglo.
+- En un iPhone de verdad, el vídeo no se ha probado (todo es Chromium).
+- Los 21 textos propios del vídeo, en nueve idiomas, esperan revisión nativa.
+- El peso: el módulo va en el precache de todos (unos 320 kB); con los 533 ejercicios, unos 730 kB. La nota propone
+  partirlo por grupos más adelante.
+- La página de muestra de la sesión del entrenador (`tools/entrenador/muestra/plantilla.html`) pide las letras a
+  Google Fonts; la app no (las lleva en `vendor/fuentes/`). No está enlazada desde la app.
+- Los bloques 3 a 15: la sesión del entrenador tiene que hacerlos sobre este `main`, con estos cambios.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
