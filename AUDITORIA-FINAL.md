@@ -7658,6 +7658,97 @@ vez en verde.
 - Que la persona del Samsung abra la app en Samsung Internet con el modo oscuro y mire a Jérôme.
 - Que un hablante nativo de búlgaro lea las fichas cambiadas.
 
+## El búlgaro del SOS y de la privacidad, lo que vio una nativa, la hora de los avisos y el cielo dicho claro (12 de noviembre)
+
+**Por qué.** Tres cosas de Jérôme, el 12 de noviembre por la noche. «Si el búlgaro»: el apartado C de la revisión
+del búlgaro, el panel SOS y la política de privacidad, que no se tocan sin su sí (la sección anterior). Las capturas de
+una hablante nativa de búlgaro con lo que vio en la app. Y, del panel del cielo: «Cómo se calcula no se entiende nada.
+En plan lo leí 20 veces y sigo sin entender cómo lo calculan», «Su noche guiada igual. Botón llévame y después flecha no
+sé qué. No es muy friendly user», y al ver la primera versión nueva, «lo de la iluminación sigue largo».
+
+**El panel SOS y la privacidad, en búlgaro** (`3e0f0ea`). El panel (`modulos/emergencias.js`), 12 frases, sin cambiar lo
+que dicen: «Ако сте на посещение» → «Ако сте турист» (2); en el coche, «…и спрете притока на въздух отвън»; con la
+ceniza, «Разкачете» («desconecte») los depósitos de agua de lluvia, no «Изключете» («apague»); la nota de la mascota en
+la puerta, «…че сте го взели със себе си»; con las lluvias, «не включвайте нищо, което може да даде искра»; la fuente
+del NHS, «преразгледано», como la otra; y «на Тенерифе» (5): una isla va con «на». La política
+(`idiomas/privacidad/bg.json`, con `index.html` y `privacidad.html` rehechos por `tools/generar_privacidad.py`: cambian
+tres filas, solo en búlgaro): «легитимен интерес», la palabra del artículo 6.1.f del RGPD en búlgaro (EUR-Lex); la
+cámara, «образа от камерата»; y «ние не я виждаме», sin el «никога» que el castellano no dice.
+
+**Lo que vio la nativa** (`634d211`):
+- El último paso del tour: «…а небето и „Вашето тяло“ имат всяко своя», sin sentido. Ella lo dejó en «имат свое
+  собствено меню»; lo que tienen es su propio tour («tienen el suyo dentro»), así que va su frase con «обиколки»:
+  «…имат свои собствени обиколки. Приятно изкарване на острова!».
+- «Báñese hoy aquí»: «бурните брегове отпадат» («las costas bravas se caen») → «без бреговете с бурно море»; y el
+  mismo calco en la nota de los avisos de AEMET de esa tarjeta: «…отпадат» → «…не са включени».
+
+**La hora de los avisos de AEMET, en los diez idiomas** (`bc2355a`). La nativa, sobre «От 10:00 до чт, 12, 07:59»: «es
+mejor dicho “de hoy a las 10:00 hasta jueves a las 07:59”». Era la fecha corta del navegador, y salía así en todos los
+idiomas («jue 12, 07:59», «Fr., 13., 07:59», «13日周五 07:59»). Ahora (`wxCuandoTxt`, en las líneas de los paneles del
+tiempo y del mar, en el globo de una playa y en la tarjeta), si el aviso empieza y acaba hoy, como siempre («De 10:00 a
+23:59»); si es de un solo día que no es hoy, «Mañana, de 00:00 a 23:59» o «El sábado, de 00:00 a 23:59»; si no, cada
+extremo con el día dicho como se dice, hoy, ayer, mañana o el día de la semana, y la hora: «Desde hoy a las 10:00 hasta
+el sábado a las 07:59», «From today at 10:00 to Saturday at 07:59», «Aujourd’hui à 10:00 – samedi à 07:59», «Von heute
+um 10:00 bis Samstag um 07:59», «Da oggi alle 10:00 a sabato alle 07:59», «Van vandaag om 10:00 tot zaterdag om 07:59»,
+«今天 10:00 至 星期六 07:59», «今天 上午10:00 至 星期六 上午07:59», «От днес в 10:00 до събота в 07:59» y «Dziś, godz. 10:00 – sobota,
+godz. 07:59». En francés y en polaco, con un guion, porque «Du…au» y «Od…do» piden otra forma de «aujourd’hui» y del día
+de la semana. «Mañana» es el día siguiente del calendario de Canarias, no «dentro de 24 horas», que el día del cambio de
+hora no lo es.
+
+El pie del panel tenía la misma fecha corta, y cada noche, de las 00:00 a la siguiente vuelta del robot, decía
+«Comprobado: mié 11, 23:03». Ahora «Comprobado: ayer a las 23:03» (de hoy, la hora sola), «…desde hoy a las 07:05…»
+cuando no se ha podido comprobar y «Sin avisos de AEMET para Tenerife hasta el sábado a las 23:59». En polaco, «do» pide
+genitivo («do jutra», «do soboty»; el navegador da «sobota»): una tabla de los siete días. En francés, «jusqu’à», que
+con «demain» no vale «jusqu’au». Y dos horas mal dichas: el francés de «De 10:00 a 23:59» decía «Du 10:00 au 23:59», que
+es para fechas, y ahora «De 10:00 à 23:59»; el italiano, «Da 10:00 a 23:59», sin el artículo de las horas, y ahora
+«Dalle 10:00 alle 23:59».
+
+Siete filas nuevas de `UI_TX`, con los diez idiomas. `tools/probar_avisos.js` coteja la hora de cada línea con
+`wxCuandoTxt` y, con el reloj parado (jueves 12 a las 09:00), pide la frase exacta en los diez idiomas para seis avisos
+(hoy, hoy-mañana, hoy-sábado, mañana entero, el sábado entero y ayer-hoy) y para el pie; lo que mira que no haya
+castellano fuera del castellano ya no confunde «De 10:00 à 23:59» con «De 10:00 a 23:59».
+
+**A la una** (`a0f94e5`). Con la una, el artículo va en singular: «a la una», «all’una». Las filas dicen «a las {h}» y
+«alle {h}», como para las demás horas, y salía «Sale a las 01:10», «Sorge alle 01:10», «Open-Meteo, a las 01:35»,
+«Visibile dalle 23:40 alle 01:10»: la Luna sale o se pone entre la una y las dos cada mes, y AEMET ha puesto avisos que
+empiezan a la 01:00. En `tx()`, por donde pasan las filas con marcas (la app, el cielo, «Su cuerpo», los avisos), si lo
+que entra en una marca es la una, `txLaUna` cambia el artículo que va justo delante, y nada más: «a la», «hacia la»,
+«desde la»; «all’», «dall’», «verso l’». `auditar_cielo.js` pasa la una por todas las filas con marcas de la app y del
+cielo, en castellano y en italiano, y ninguna deja «las 01:10» ni «alle 01:10»; `probar_avisos.js` y `probar_cuerpo.js`,
+lo mismo en lo suyo. El panel SOS no pasa por `tx()`: su «medida a las {h}» queda como está, que el panel no se toca sin
+el sí de Jérôme.
+
+**El cielo, para que se entienda** (`caba6b8`). El índice de la noche, en tres frases, diciendo lo que hace
+`indiceNoche()` sin la fórmula: «10 es una noche oscura del todo, sin Luna y sin nubes. Baja con la Luna en el cielo
+(más cuanto más llena) y con las nubes previstas en las cumbres. No cuentan las nubes bajas, ni la luz de las ciudades,
+ni el viento.» «Su noche guiada» dice qué hacer con «Llévame»: «toque «Llévame» y levante el móvil hacia el cielo: una
+flecha le indica hacia dónde moverlo hasta que salga «¡Ahí está!»», que es lo que hace «Apunte al cielo» con un
+objetivo. Y «de lo más fácil a lo más fino» («fino» no se entendía) pasa a «de la más fácil de ver a la más difícil»
+también en la frase que se oye al leer la noche y en el paso del tour del cielo. Los diez idiomas; `auditar_cielo.js`
+espera la frase nueva de la voz.
+
+**Las cifras de «Idiomas»**: 7 filas más (de 3590 a 3597 filas en las tablas de `index.html`, y de 5.737 a 5.744 dentro
+y fuera del fuente).
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre estos commits antes de ponerlos encima de lo último de los
+robots: un rojo, `auditar_arranque.js`, que no era de la app. Carga la página dos veces por idioma y compara los textos,
+y el tiempo lo da Open-Meteo en vivo: hacia las 04:00 el viento cambió entre una carga y otra («💨 N 8 km/h» y «💨 NW 11
+km/h», en alemán y en polaco). Ahora todas las cargas reciben la misma respuesta de Open-Meteo (`53262cb`), y en verde:
+16.119 textos comparados, ninguno distinto. Y la auditoría rehízo con `app_preparar.js` el permiso de la cámara de la
+app de iOS en búlgaro (`app/ios/plantillas/bg.lproj/InfoPlist.strings`), que sale de la frase de la política: le faltaba
+al commit del panel SOS y la política, y va en él (`app_preparar.js --comprobar`, en verde en ese commit). Todo lo
+demás, en verde: entre otros, `probar_avisos.js` (187 de 187), `auditar_cielo.js` (con la una en 470 filas),
+`auditar_registro.js` (117.762 textos), `auditar_escrituras.js` (13 tablas, 9338 textos), `barrido_idiomas.js` (5.744
+filas), `auditar_web.js` (50 tablas, 3597 filas), `probar_cuerpo.js` (543 controles) y los tours con el user-agent de
+Samsung (64 comparaciones). Encima de lo último de `main` (`6a5ed01`) solo cambian los ficheros de dos robots
+(`datos/alertas-canarias.json` y `datos/sismos-ign.json`), y los controles que los leen salen otra vez en verde.
+
+**Lo que queda:**
+- Que la nativa lea el SOS y la política en búlgaro, ya cambiados.
+- Que alguien de cada idioma lea la hora nueva de los avisos y los dos textos del cielo.
+- El panel SOS dice «medida a las {h}» y «rilevata alle {h}» (la hora del GPS): a la una, «a las 01:10». Espera el sí
+  de Jérôme.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
