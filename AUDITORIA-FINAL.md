@@ -7977,6 +7977,85 @@ rojos, los dos de este documento: sus cifras de idiomas (`auditar_web.js`, 52 ta
 `barrido_idiomas.js`, 5.817 filas, antes 5.802), que pone al día este commit. Lo demás, en verde: `auditar_idioma.js`, 0
 hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted.
 
+## «Su cuerpo»: 417 ejercicios nuevos para casa y fuera, el sitio «casa» y las notas de las fuentes (bloque 35, 13 de noviembre)
+
+**Por qué.** Jérôme pidió ejercicios nuevos: «Unos 250 especialmente por casa. 250 por fuera. (Son números de
+referencia; si son más, mejor.) No repite los que tenemos.» La sesión de «Su cuerpo» trajo 464 fichas en los diez
+idiomas, cada una con sus fuentes y lo leído en ellas, con una revisión independiente que comprobó las citas palabra por
+palabra (nota 35, versión 2 del 13 de noviembre: con dos fichas de antebrazos con un cubo de arroz).
+
+**Lo que cambia**, un commit por apartado:
+
+- `ae74579`: el catálogo pasa de 533 a 950 fichas: las 533 de antes, iguales y delante (la prueba 36 lleva su huella), y
+  417 nuevas, con su nombre y sus pasos en los diez idiomas. El sitio «casa» entra en el catálogo: lo que solo lleva
+  «casa» no sale en gimnasio, fuera ni calistenia. La regla de casa sigue siendo la de siempre (todo el material sin
+  nada, la pared o marcado) y añade una condición: nada de correr ni desplazarse (patrón «locomocion»); las 533 salen
+  igual que antes. Seis materiales nuevos en «¿Qué tiene en casa?» (de 16 a 22): botellas o garrafas, silla, toalla,
+  mochila con peso, mesa o encimera y cubo con arroz o arena; el aparato biosaludable, como las máquinas, no se marca.
+  Cada ficha enseña todas sus fuentes, hasta 6 (antes 4: doce traen 5, dos de ellas de las 533). Las notas que la
+  entrega escribió en castellano dentro de los títulos de las fuentes («revisado por fisioterapeutas», «Gobierno de
+  Queensland», «extracto …, Guardia Nacional de Colorado»…) salen traducidas, 41 notas nuevas en los diez idiomas; el
+  título de un documento en castellano (Ministerio de Sanidad, ayuntamientos) es su nombre y se queda. En
+  `idiomas/castellano-aceptado.json`, «mountain climber» en búlgaro, como «dead hang».
+- `665ce04`: el asistente, con el catálogo nuevo: «Hay 950 ejercicios con fuente»; 125 de los 950 traen el nivel de su
+  fuente (81 de antes y 44 nuevos) y los otros 825 son una estimación; 502 de nivel inicial, 343 intermedios y 105
+  avanzados; y el filtro «Dónde» con sus cuatro sitios (Gimnasio, Fuera, Calistenia o En casa; «En casa» ya estaba en
+  la hoja). En los diez idiomas, con la forma de cada cifra en polaco («950 ćwiczeń», «Są 502 ćwiczenia»).
+- `7ed3a4c`: el control del trato de usted (`tools/auditar_registro.js`) tomaba por tuteo una frase francesa nueva,
+  «Pliez les coudes pour que le bout des doigts pointe vers le plafond et touche le mur derrière vous» (paso 2 de
+  «estiramiento-hombros-pared-brazos-en-cruz»): «touche» es el subjuntivo, en tercera persona. Va a `EXENTOS` con su
+  motivo, como «que le tronc tienne». El trato, repasado a mano en las 417 fichas nuevas, en los idiomas que lo
+  distinguen (francés, alemán, italiano, neerlandés, búlgaro, polaco y los dos chinos): ningún tuteo.
+- `58e4407`: la prueba del tiempo de «Hoy en la isla» (`tools/probar_cuerpo.js`) contaba todas las peticiones de la
+  página a Open-Meteo. La app hace las suyas (el panel del mar, «Báñese hoy aquí», el cielo…) y, en la auditoría de
+  este bloque, una cayó en la espera al cambiar al Teide: 2 en vez de 1 (al repetirla, 1). Ahora cuenta las del módulo,
+  que se reconocen por sus campos; si el módulo pidiera de más, se sigue viendo.
+- `e4a125e`: las fuentes de la ficha, plegadas, como pidió Jérôme al aceptar las 6 («si pero entonce con un link con las
+  fuentes que si aparecen 6 es demasiado»): «› Fuentes» y su número en una pastilla, como en «Preguntar» y en las
+  rutinas. Al tocarlo se abren; otra ficha, o la misma al volver a abrirla, salen plegadas. Sin textos nuevos: «Fuentes»
+  ya estaba en los diez idiomas. La prueba 36 lleva un control nuevo, en rojo con el módulo de antes.
+
+**Lo comprobado de las fuentes.** Las 417 fichas citan 765 veces 225 páginas. Claude Code leyó palabra por palabra lo
+citado de 202: 143 bajadas (1.714 trozos) y 59 de ACE con WebFetch (422 trozos, todos están; una frase inventada de
+control sale «no»). Las otras 23 responden 403 a los robots, también a WebFetch, y no se fuerzan. Tres de ellas son
+hojas del ATP 7-22.02 del Ejército de EE. UU. que aloja la Guardia Nacional de Colorado: lo citado de ellas se buscó en
+el manual entero, en armypubs.army.mil (octubre de 2020, con su cambio 1 de septiembre de 2025), y de 283 trozos, 274
+están palabra por palabra. De los 9 que no, 8 son la redacción de 2020 que el cambio 1 reescribió sin cambiar el
+ejercicio («Runner’s position», «pulling», «initiate a backwards fall»…), y uno es de la «Salida por caída», que
+respaldan también dos fuentes leídas aquí (Australian Athletics y Wesleyan). Lo citado de las otras 20 (Mayo Clinic, el
+Ayuntamiento de Madrid, dos hospitales del NHS…; 238 trozos) lo comprobó la revisión de la entrega; 31 fichas no
+tienen otra fuente que esas 20 páginas (una, además, el ATP). El nivel que dan las páginas de ACE coincide con el de
+cada ficha que dice traerlo.
+
+**Lo que no está**, y por qué:
+
+- 47 de las 464 fichas. 13 no tienen ninguna fuente que abra (6 con todas caídas o con el texto cambiado y 7 con solo
+  fuentes del Uruguay, que no responden); 8 tienen pasos que solo respaldaba una que ya no abre; y 22 tienen pasos que
+  dependen en parte de seis sitios que hoy no responden (la Secretaría Nacional del Deporte del Uruguay, el Municipio B
+  de Montevideo, el Ayuntamiento de Pinto, dos; Triathlon Australia y UF Health): vuelven cuando se puedan leer. Siete
+  variantes de esas 22 entran sueltas, sin «variante de»; dos fichas que esos sitios solo repetían entran sin su enlace.
+  Y 4 son ejercicios que el cambio 1 quitó del ATP 7-22.02 («De caminar a correr», «Correr en el sitio y arrancar
+  dejándose caer», «Salida de sprint desde plancha» y «Saltos con las puntas hacia fuera y hacia dentro»): sus fichas
+  solo citaban las hojas de 2020, y el manual de hoy ya no los trae.
+- La revisión nativa de los textos nuevos y la revisión profesional, que la app ya dice que no tiene.
+
+**Las pruebas.** `tools/probar_cuerpo.js`, con la 36 nueva y la 14 y la 29 al día: 687 controles, en verde. Con
+lo publicado, la 36 da 11 rojos de 15, y la 29 y la de las notas de las fuentes, rojo. Los validadores del asistente dan
+lo mismo que antes, nada nuevo; el del catálogo, sin errores; `castellano_suelto.js`, en verde.
+
+**La auditoría entera** sobre `ee40aea` (árbol `7f76ed4e`), los cinco commits de arriba encima de `main` (`9cb0695`); en
+`main` son los mismos, rebasados sobre tres commits de los robots (`19f041a`, terremotos; `1b88773`, avisos de AEMET, y
+`70d12e1`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`, `datos/avisos-aemet.json` y
+`datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el rebase. En sus 70 bloques,
+dos rojos, los dos de este documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.718 filas, antes 3.670;
+`barrido_idiomas.js`, 5.865 filas, antes 5.817: las 41 notas y los 7 materiales nuevos), que pone al día este commit. Lo
+demás, en verde: `probar_cuerpo.js`, 687; `auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`,
+todo de usted (137.392 textos); `castellano_suelto.js`; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0
+textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares,
+74 y 153; `auditar_entrenador.js`, 39; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots. Dos pasadas
+antes: una, sobre las 954 fichas de antes de quitar las cuatro del ATP, encontró el tuteo que no era (`7ed3a4c`); la
+otra, sobre los tres primeros commits, la prueba del tiempo que fallaba a veces (`58e4407`).
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -9818,7 +9897,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3670 filas (y 5.817 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3718 filas (y 5.865 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
