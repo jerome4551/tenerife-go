@@ -3602,7 +3602,7 @@ async function ejemplo(pg, mas) {
     // en casa: lo que se puede con lo marcado (o la alternativa que sí), los sustitutos y las pautas de segundos
     const c1a = S('casa-1-a'), puede = (id, mat) => RU.x[id][1].every(m => m === 'ninguno' || m === 'pared' || mat.indexOf(m) >= 0);
     const enCasa = mat => c1a.e.map(z => { const t = [z[0]].concat(z[2]), v = t.filter(id => puede(id, mat)); return (v.length ? v : t)[0]; });
-    await poner([], { sitio: 'casa', material: [], nivel: 1 }); await esperarSes();
+    await poner([], { sitio: 'casa', material: [], matRev: 1, nivel: 1 }); await esperarSes();   // (nota 37) la lista ya revisada y sin nada marcado
     const a7 = await leer(), MS = ['mancuernas', 'disco', 'banco', 'general'];
     prueba('35: en casa sin nada marcado, cada ejercicio el de la sesión o su primera alternativa sin material (' + enCasa([]).filter((id, i) => id !== c1a.e[i][0]).join(', ') + ')',
       a7.sesNom === 'Sesión A · Inicial' && JSON.stringify(a7.ejs.map(e => e.id)) === JSON.stringify(enCasa([])) && enCasa([]).some((id, i) => id !== c1a.e[i][0]), JSON.stringify(a7.ejs.map(e => e.id)));
@@ -3611,10 +3611,18 @@ async function ejemplo(pg, mas) {
     const hom = a7.ejs.find(e => e.id === 'empuje-isometrico-hombro-pared'), pla = a7.ejs.find(e => e.id === 'plancha-antebrazos');
     prueba('35: las pautas de segundos: «3 × 5 × 20–30 s» (empuje isométrico, NHS) y «2–3 × 10–30 s» (plancha, Harvard)', hom && hom.pauta === '3 × 5 × 20–30 s' && pla && pla.pauta === '2–3 × 10–30 s',
       JSON.stringify([hom, pla]));
-    await poner([], { sitio: 'casa', material: ['mancuernas', 'banco'], nivel: 1 }); await esperarSes();
+    /* (nota 37) la sesión A de casa pide botellas y una silla: con eso marcado, sus ejercicios tal cual; con mancuernas y
+       banco, lo que pide botellas o silla pasa a su alternativa con mancuernas o banco (lo de antes del bloque 37). Las
+       dos, con la lista ya revisada (matRev: 1): marcado justo eso */
+    const MC = [...new Set(c1a.e.flatMap(z => RU.x[z[0]][1]).filter(m => m !== 'ninguno' && m !== 'pared'))];
+    await poner([], { sitio: 'casa', material: MC, matRev: 1, nivel: 1 }); await esperarSes();
     const a8 = await leer();
-    prueba('35: en casa con mancuernas y banco marcados, los ejercicios de la sesión tal cual', JSON.stringify(a8.ejs.map(e => e.id)) === JSON.stringify(enCasa(['mancuernas', 'banco'])) &&
-      JSON.stringify(enCasa(['mancuernas', 'banco'])) === JSON.stringify(c1a.e.map(z => z[0])), JSON.stringify(a8.ejs.map(e => e.id)));
+    prueba('35: en casa con lo que pide la sesión marcado (' + MC.join(', ') + '), los ejercicios de la sesión tal cual', JSON.stringify(a8.ejs.map(e => e.id)) === JSON.stringify(enCasa(MC)) &&
+      JSON.stringify(enCasa(MC)) === JSON.stringify(c1a.e.map(z => z[0])), JSON.stringify(a8.ejs.map(e => e.id)));
+    await poner([], { sitio: 'casa', material: ['mancuernas', 'banco'], matRev: 1, nivel: 1 }); await esperarSes();
+    const a8b = await leer(), conM = enCasa(['mancuernas', 'banco']);
+    prueba('35: en casa con mancuernas y banco marcados, lo que pide botellas o silla pasa a su alternativa (' + conM.filter((id, i) => id !== c1a.e[i][0]).join(', ') + ')',
+      JSON.stringify(a8b.ejs.map(e => e.id)) === JSON.stringify(conM) && conM.includes('remo-mancuerna-un-brazo') && conM.includes('curl-mancuernas'), JSON.stringify(a8b.ejs.map(e => e.id)));
 
     // fuera, con banda en la sesión: el botón lleva a la sesión de calistenia del mismo nivel
     await poner([], { sitio: 'fuera', nivel: 2 }); await esperarSes();
