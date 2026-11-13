@@ -3408,6 +3408,25 @@ async function ejemplo(pg, mas) {
       Object.keys(CARGA).length === 10 && !mal32.length, mal32.join(' · '));
   }
 
+  // 33. (12-11-2026) «Preguntar»: lo que dice cada fuente, entre comillas una sola vez. 163 citas de cada idioma ya traían
+  //     las suyas («…» […] «…») y salían dobles («« … »»); las que no las traen, entre comillas, como antes
+  {
+    const c33 = await contexto(b), p33 = await c33.newPage(), e33 = []; vigilar(p33, e33);
+    await abrirApp(p33); await abrirPerfilCuerpo(p33); await suCuerpo(p33);
+    await p33.click('#tgc-modo-p');
+    await p33.waitForFunction(() => document.querySelector('#tgc-sugeridas .tgc-chip-preg[data-id="que-entreno-hoy"]'), null, { timeout: 10000 });
+    await p33.click('#tgc-sugeridas .tgc-chip-preg[data-id="que-entreno-hoy"]');
+    await p33.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-resp').length >= 1, null, { timeout: 8000 });
+    await p33.waitForTimeout(150);
+    const q33 = await p33.evaluate(() => [...document.querySelectorAll('#tgc-charla .tgc-resp-leido')].map(p => p.lastChild.textContent));
+    const d33 = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'datos', 'cuerpo', 'asistente-es.json'), 'utf8')).respuestas.find(r => r.id === 'que-entreno-hoy').f.map(f => f.leido);
+    prueba('33: «Preguntar»: lo que dice cada fuente, entre comillas una sola vez (las 3 de «¿Qué entreno hoy?»: 1 sin comillas en los datos y 2 que ya las traen)',
+      q33.length === 3 && d33.filter(t => /^«/.test(t)).length === 2 && q33.every(t => /^«/.test(t) && /»$/.test(t) && !/««|»»/.test(t)) &&
+      q33.every((t, i) => t === (/^«/.test(d33[i]) ? d33[i] : '«' + d33[i] + '»')), JSON.stringify(q33.map(t => t.slice(0, 30) + '…' + t.slice(-10))));
+    prueba('33: sin errores de página', e33.length === 0, e33.join(' | '));
+    await c33.close();
+  }
+
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
   console.log('\n  ' + (ok + mal) + ' controles, ' + (mal ? mal + ' en rojo' : 'todos en verde'));
   await b.close();

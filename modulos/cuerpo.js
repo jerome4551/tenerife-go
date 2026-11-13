@@ -5165,7 +5165,9 @@
       r.f.forEach(function (q) {
         var li = el('li'), a = el('a', '', q.titulo); a.href = q.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.appendChild(a);
         if (q.fecha) li.appendChild(el('span', 'tgc-resp-fecha', ' · ' + q.fecha));
-        if (q.leido) { var ql = el('p', 'tgc-resp-leido'); ql.appendChild(el('b', '', tx('cuerpoAsisLeido') + ': ')); ql.appendChild(document.createTextNode('«' + q.leido + '»')); li.appendChild(ql); }
+        /* (12-11-2026) lo leído va entre comillas; si quien lo copió ya las puso («…» […] «…»), tal cual: antes salían dobles,
+           ««…»», en 163 citas de cada idioma */
+        if (q.leido) { var ql = el('p', 'tgc-resp-leido'); ql.appendChild(el('b', '', tx('cuerpoAsisLeido') + ': ')); ql.appendChild(document.createTextNode(/^«/.test(q.leido) ? q.leido : '«' + q.leido + '»')); li.appendChild(ql); }
         /* sin cita literal guardada (la fuente se leyó en la ronda del 24-10 y queda su resumen): se dice, no se inventa una cita */
         else if (q.resumen) li.appendChild(el('p', 'tgc-resp-leido tgc-resp-resumen', tx('cuerpoAsisResumen')));
         fl.appendChild(li);
