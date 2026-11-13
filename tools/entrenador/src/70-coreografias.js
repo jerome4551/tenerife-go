@@ -31,7 +31,10 @@
     return sobre({ pel: [0, TOB_PUNTA + 78 * s, -100 + 78 * c], giro: [0, 90 - ang, 0], cab: [-16, 0, 0], p: { e: 0, z: 0, c: 0 }, t: PIES_PUNTA, m: { tipo: 'abierta', prono: 90, mun: -72 } }, extra || {});
   }
   /* colgado de la barra de dominadas (a 225 cm) */
-  var COLGADO = { p: { e: 6, z: 0, c: 16 }, t: { tob: 28 }, m: PRONO };
+  /* la mano en una barra atravesada (la de dominadas, la del jalón): se dice a lo largo de qué va la barra y de qué lado queda la
+     palma (hacia delante, o hacia él en las supinas), y el antebrazo gira lo que haga falta, esté el codo donde esté */
+  var EN_BARRA = { tipo: 'puno', barra: [1, 0, 0], palma: [0, 0, 1] }, EN_BARRA_SUP = { tipo: 'puno', barra: [1, 0, 0], palma: [0, 0, -1] };
+  var COLGADO = { p: { e: 6, z: 0, c: 16 }, t: { tob: 28 }, m: EN_BARRA };
 
   /* ══════════ CUÁDRICEPS ══════════ */
   (function () {
@@ -321,7 +324,7 @@
 
   /* ══════════ PECHO ══════════ */
   (function () {
-    var tumbado = { pel: [0, 55, 30], giro: [0, -90, 0], p: { suelo: [17, 68], abre: 8, polo: [0.2, 1, 0.3] }, m: PRONO };
+    var tumbado = { pel: [0, 55, 30], giro: [0, -90, 0], p: { suelo: [17, 68], abre: 8, polo: [0.2, 1, 0.3] }, m: EN_BARRA };       /* las palmas, hacia los pies */
     COREO['press-banca-barra'] = {
       vista: [30, 0], picado: 32, rastro: 'manos', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
       material: [['banco', { largo: 124 }], ['soporte', { z: -43.5, alto: 104.5, ancho: 52 }], ['barra']],       /* la barra de «sop», sobre los ganchos (a z + 3,5) */
@@ -358,7 +361,7 @@
       pasos: ['a', { sec: [['a2', 1.0, 'suave']], desde: 'a' }, 'rep', 'rep']
     };
     /* supinas: las palmas hacia uno; los codos bajan por delante del cuerpo */
-    var sup = sobre(COLGADO, { m: SUPINO });
+    var sup = sobre(COLGADO, { m: EN_BARRA_SUP });
     COREO['dominadas-supinas'] = {
       vista: [30, 96], rastro: 'barbilla', esfuerzo: [0], clavos: ['mi@0:20', 'md@0:-20'],
       material: [['barra_dominadas', { alto: 225, ancho: 62 }]],
@@ -402,7 +405,7 @@
     /* el remo invertido: el cuerpo gira sobre los talones; las manos, en la barra */
     function bajoBarra(ang, extra) {
       var s = Math.sin(ang * RAD), c = Math.cos(ang * RAD);
-      return sobre({ pel: [0, 8 + 78 * s, 88 - 78 * c], giro: [0, -(90 - ang), 0], p: { e: 0, z: 0, c: 0 }, t: { punta: [0, 0.97, 0.24], arriba: [0, 0.24, -0.97] }, m: PRONO, b: { a: [26, 72, 0], polo: [1, -1, 0.1] } }, extra || {});
+      return sobre({ pel: [0, 8 + 78 * s, 88 - 78 * c], giro: [0, -(90 - ang), 0], p: { e: 0, z: 0, c: 0 }, t: { punta: [0, 0.97, 0.24], arriba: [0, 0.24, -0.97] }, m: EN_BARRA, b: { a: [26, 72, 0], polo: [1, -1, 0.1] } }, extra || {});
     }
     COREO['remo-invertido'] = {
       vista: [72, 28], rastro: 'pecho', esfuerzo: [0], clavos: ['mi@0:26', 'md@0:-26', 'ti', 'td'],
@@ -498,8 +501,8 @@
       vista: [62, 0], rastro: 'rodillas', esfuerzo: [0, 1], clavos: ['mi@0:24', 'md@0:-24'],
       material: [['barra_dominadas', { alto: 225, ancho: 62 }]],
       posturas: {
-        a: { pel: [0, 121, -2], hom: [1, 0], p: { e: 4, z: 0, c: 8 }, t: { tob: 26 }, m: PRONO, b: { a: [24, 217, 0], polo: [1, -0.2, 0.5] } },
-        b: { pel: [0, 121.5, -4], giro: [0, -8, 0], col: [12, 0, 0], hom: [1, 0], p: { e: 90, z: 0, c: 96 }, t: { tob: 10 }, m: PRONO, b: { a: [24, 217, 0], polo: [1, -0.2, 0.5] } }
+        a: { pel: [0, 121, -2], hom: [1, 0], p: { e: 4, z: 0, c: 8 }, t: { tob: 26 }, m: EN_BARRA, b: { a: [24, 217, 0], polo: [1, -0.2, 0.5] } },
+        b: { pel: [0, 121.5, -4], giro: [0, -8, 0], col: [12, 0, 0], hom: [1, 0], p: { e: 90, z: 0, c: 96 }, t: { tob: 10 }, m: EN_BARRA, b: { a: [24, 217, 0], polo: [1, -0.2, 0.5] } }
       },
       rep: [['b', 1.1, 'empuje'], ['b', 0.45], ['a', 1.6, 'freno'], ['a', 0.4]],
       pasos: ['a', 'rep', 'rep']

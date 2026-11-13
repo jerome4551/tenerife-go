@@ -99,7 +99,7 @@
        (los ganchos del soporte salen 7 cm hacia +Z desde el poste, a «alto»: el agarre de «sop» tiene que caer encima, a z + 3,5) */
     function pressBarra(ang, o) {
       var base = o.base || {};
-      var P = function (d, codo) { return tumbado(ang, sobre(base, { b: brazo(ang, d, codo || o.codo || [0.8, -1, 0.1]), m: PRONO })); };
+      var P = function (d, codo) { return tumbado(ang, sobre(base, { b: brazo(ang, d, codo || o.codo || [0.8, -1, 0.1]), m: EN_BARRA })); };
       return {
         vista: o.vista, picado: o.picado, rastro: 'manos', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
         material: [banco(ang), ['soporte', o.soporte], ['barra', { discos: 17 }]],

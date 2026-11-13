@@ -8,6 +8,8 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
     python3 tools/entrenador/construir.py --comprobar  # ¿el módulo es el de sus fuentes?
     python3 tools/entrenador/muestra.py                # los datos para las páginas de prueba
     node tools/auditar_entrenador.js 8766              # con python3 -m http.server 8766 en la raíz (tarda unos minutos)
+    node tools/auditar_entrenador.js 8766 72           # mientras se hace un bloque: cuadro a cuadro, solo los vídeos de src/72-*.js (pase parcial),
+                                                       # y con Samsung Internet (el canvas), todos esos y no tres de muestra
 
 ## Qué hay
 
@@ -23,11 +25,12 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los avisos, el encuadre; y los gestos del presentador |
 | `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos) |
 | `src/71-pecho.js` | las coreografías del bloque 2: **pecho** (35), por familias (tumbado en un banco, las poleas, las flexiones, los fondos, los estiramientos) |
+| `src/72-dorsal.js` | las coreografías del bloque 3: **dorsal** (35), por familias (colgado de la barra, el front lever, los jalones, los remos, la polea a una mano, los estiramientos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
-| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
+| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), el repaso paso a paso contra la ficha (`repaso.py`), las medidas de una postura (`mide.js`), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
 | `muestra/` | la página de muestra (un solo fichero, para enseñarla en el móvil) |
 
 ## La regla
@@ -63,12 +66,17 @@ Con `bi`/`bd`, `mi`/`md`, `pi`/`pd`, `ti`/`td` se da cada lado por separado.
 | `b: { a: [x, y, z], polo: [...], en: 'torax' \| 'pelvis' }` | el brazo por destino: la muñeca va a ese punto (del mundo, o del tórax o la pelvis) y el codo tira hacia `polo` |
 | `b: { cuelga: [dx, dz], largo }` | el brazo colgando a plomo del hombro (peso muerto) |
 | `m: { tipo, prono, mun, lat }` | la mano: `puno`, `abierta`, `plana`, `suelta`, `indice`, `pulgar` (un gesto pasa a otro poco a poco: los dedos se cierran, no saltan); `prono` 90 palma abajo o atrás, −90 arriba o adelante |
+| `m: { tipo, barra: [x, y, z], palma: [x, y, z] }` | la mano que **agarra algo**: se dice, en el mundo, a lo largo de qué va lo que agarra (`barra`) y hacia dónde mira la palma (`palma`; con `barra`, solo de qué lado queda), y el antebrazo gira lo que haga falta, esté el codo donde esté. `EN_BARRA` (la palma hacia delante: una dominada, un press tumbado), `EN_BARRA_SUP` (hacia él). Con `prono` solo, el puño gira con el codo y acaba atravesado en la barra |
 | `p: { suelo: [x, z], abre, talon, alto, polo }` | el pie plantado: dónde cae el tobillo, cuánto apunta hacia fuera, cuánto sube el talón, sobre qué altura pisa |
 | `p: { a: [x, y, z], polo }` · `p: { e, z, g, c }` | la pierna por destino del tobillo, o por ángulos (colgado, tumbado) |
 | `t: { punta, arriba, flex }` · `t: { tob }` | el pie a mano (vectores del mundo; `flex`, cuánto se dobla la zapatilla por la bola del pie) o el ángulo del tobillo |
 
 Ayudas: `sobre(base, cambios)`, `refleja(postura)`, `tabla(ángulo, extra)` (en plancha sobre las
-puntas), `aLosLados(codo)`, `PUNO`, `PRONO`, `SUPINO`, `SUELTA`, `PALMA_ABAJO`, `bajaSube`, `subeBaja`.
+puntas), `aLosLados(codo)`, `PUNO`, `PRONO`, `SUPINO`, `SUELTA`, `PALMA_ABAJO`, `EN_BARRA`, `EN_BARRA_SUP`, `COLGADO`,
+`bajaSube`, `subeBaja`.
+
+La rodilla de un pie plantado se dobla hacia delante de la pelvis; con el tronco muy inclinado (una bisagra de cadera:
+más de 50°) va hacia donde apunta el pie, que es por donde se dobla de verdad. Si hace falta otra cosa, `polo`.
 
 ## Una coreografía
 
@@ -104,27 +112,52 @@ Los 533 ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x`
 |---|---|---|
 | 1 | `70-coreografias.js` | los 40 más conocidos, de los 12 grupos |
 | 2 | `71-pecho.js` | pecho: 35 (todo lo que no pide banda, máquina, cinta de suspensión, fitball ni disco) |
+| 3 | `72-dorsal.js` | dorsal: 35 (quedan 5: las dominadas asistidas con banda y en máquina, las lastradas con disco y el lanzamiento de balón medicinal) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
-`plancha`…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+`plancha`…; en `72-dorsal.js`: `cuelga`/`activo`/`arriba` (colgado), `palanca(cabeceo, ángulo de los brazos)` (el front
+lever), `sentado` + `arribaJ`/`abajoJ` (los jalones), `inclinado(ángulo)` + `colgando`/`anteTronco` (los remos),
+`arrodillado`…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
 si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
+
+Dos ayudas de `72-dorsal.js` valen para cualquier bloque: `conAgarre(postura, punto, polo, lado)` (el centro del puño
+cae en ese punto del mundo: una barra que va al ombligo, una mancuerna junto a la cadera) y `estirado(postura, hacia,
+lado)` (el brazo, estirado desde el hombro hacia un punto: la polea). Lo que se coge más tarde (el agarre de la polea,
+la barra T en el suelo) espera en su sitio: `reposo` en el material y en la coreografía.
 
 ## El material (`50-material.js`)
 
 `barra` (con discos, o `barra_z`), `mancuernas` (una en cada mano, en una sola, o una entre las dos), `kettlebell`,
-`banco`, `soporte` (el de la barra), `barra_dominadas`, `paralelas`, `escalon`, `esterilla`, `pared`, `polea`.
+`banco`, `soporte` (el de la barra), `barra_dominadas`, `paralelas`, `escalon`, `esterilla`, `pared`, `polea`,
+`landmine` (la barra T) y `toalla` (algo blando).
 
 - `banco`: `respaldo: 45` lo inclina; `85`, casi vertical (una silla); **negativo, declinado**. Con el respaldo
   levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba).
 - `polea`: `rumbo` gira la columna (`180`, detrás de Jérôme; `90` y `−90`, una a cada lado mirando al centro: el
   cruce de poleas); `a`, a qué va el cable (`'manos'`, `'i'`, `'d'`…); `encuadre`, hasta qué altura cuenta para el
   encuadre (tumbado entre dos poleas, lo que importa está abajo).
+  La **máquina de jalón** es la polea con `brazo` (cuánto sale de la columna el brazo de arriba: la polea va en su
+  punta), `asiento: [a cuánto de la columna, alto]` y `rodillo: [a cuánto, alto]`. `agarre`: `'barra'`, `'cuerda'`,
+  `'asa'` (a una mano) o `'v'` (el triángulo). `reposo: [x, y, z]`: dónde cuelga el agarre mientras nadie lo ha cogido.
+- `barra_dominadas`: `paralelos: 23` le pone dos agarres cortos que salen hacia delante (las palmas enfrentadas; el
+  clavo `'mi@0:23'` va entonces a la mitad del agarre); `voladizo: 104` la convierte en una torre (los postes, detrás,
+  y la barra colgando de dos brazos: de lado, nada se cruza por delante de quien cuelga en horizontal).
+- `landmine`: la barra T. `pivote: [x, z]` (el anclaje), `a` (quién la lleva: `'manos'`, `'i'`, `'d'`), `asas`
+  (`'v'`, dos agarres estrechos bajo la barra; `'ancha'`, un travesaño), `sobra` (cuánto sigue la barra más allá de
+  las manos; ahí van los discos) o `dentro` (si se coge por la punta: a cuánto quedan los discos, hacia el anclaje),
+  `reposo`. La mano va siempre a la misma distancia del anclaje: el agarre sube por un arco (`enArco`).
 - `paralelas`: tienen `agarre` (`'mi@0:27'`, `'md@0:-27'`): la mano va a la barra de su lado.
 - `soporte`: `z` y `alto` son donde descansa la barra: el agarre de la postura que la coge tiene que caer ahí.
 
-Material que falta por dibujar (lo piden 115 ejercicios): banda elástica, máquinas, multipower, cinta de suspensión,
-fitball, disco, balón medicinal, anillas y rueda abdominal.
+**De qué se dibuja.** El material, como todo lo demás, solo con `path`, `circle`, `ellipse` y `rect` (en grupos `g`,
+con sus degradados y sus recortes): es lo que `src/85-lienzo.js` sabe copiar al canvas con Samsung Internet. Un
+`line`, un `polygon`, un `text`, un `use`, una máscara o un filtro, en ese navegador no se verían, y en Chromium nadie
+lo notaría: `auditar_entrenador.js` lo mira en cada vídeo y se pone en rojo.
+
+Material que falta (lo piden 115 ejercicios): máquinas, multipower, cinta de suspensión, anillas y rueda abdominal,
+sin dibujar; y `banda`, `fitball`, `disco` y `balon_medicinal`, que tienen un primer dibujo en `50-material.js` pero
+ninguna coreografía los usa todavía: están sin probar.
 
 ## Cómo se hace una
 
@@ -135,8 +168,16 @@ fitball, disco, balón medicinal, anillas y rueda abdominal.
    cinco momentos de la repetición) o `pruebas/vistas.html?id=<id>&rumbos=20,45,70,110&ts=0,1.5&picado=26` (candidatas).
    La primera vista tiene que enseñar lo que el ejercicio trabaja: que la mano o el antebrazo no tapen el hombro y el
    pecho (en el press de banca, de pies a cabeza y desde arriba, no de lado).
-3. Verla en el reproductor de verdad, paso a paso:
-   `python3 tools/entrenador/pruebas/tira.py salida.png <id> "p1+2,p2+1.5,p3+2,c+2"`
+   Los números, medidos y no a ojo: `node tools/entrenador/pruebas/mide.js <id> a,b agarre,codo,palma` dice dónde quedan
+   los puños, la barbilla o el pecho de cada postura, cuánto se dobla el codo y hacia dónde mira la palma.
+   Los rótulos de los músculos tapan la esquina de abajo a la izquierda del vídeo: lo que pasa a ras de suelo (una
+   barra que sube desde el suelo, unas mancuernas) tiene que quedar a la derecha (un rumbo negativo: mira hacia la
+   derecha de la pantalla). Y la cabeza, lejos de la esquina de arriba a la izquierda, donde va «Paso 1 de 4» (`zoom`).
+   Jérôme tiene que caber entero en el cuadro en las dos vistas, a 4 px o más del borde (de los 400 del dibujo): la
+   auditoría lo mide y dice cuáles se arriman más. Si uno toca el borde, `zoom: 0.92` (o menos) en su coreografía.
+3. Verla en el reproductor de verdad, paso a paso, **con el texto de cada paso al lado**:
+   `python3 tools/entrenador/pruebas/repaso.py carpeta "id1,id2,…"` (una hoja por ejercicio: una fila por paso, y la
+   vista de «Girar»). Para un momento concreto: `python3 tools/entrenador/pruebas/tira.py salida.png <id> "p1+2,p2+1.5,p3+2,c+2"`
    (o varios de golpe, dos fotogramas por paso: `pruebas/flujo.py salida.png "id1,id2,…"`).
 4. `python3 tools/entrenador/construir.py` y `node tools/auditar_entrenador.js 8766`.
 

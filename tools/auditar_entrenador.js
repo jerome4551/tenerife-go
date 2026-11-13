@@ -4,6 +4,9 @@
  *
  *     python3 -m http.server 8766 &      (desde la raíz del repo)
  *     node tools/auditar_entrenador.js 8766
+ *     node tools/auditar_entrenador.js 8766 72           un pase PARCIAL: en la sección 2, solo los vídeos del trozo src/72-*.js,
+ *                                                        y en la 4 (Samsung Internet), todos esos y no tres de muestra
+ *     node tools/auditar_entrenador.js 8766 id1,id2      o solo esos ejercicios (mientras se hace un bloque; la entrega se audita entera)
  *
  * 1. Sin navegador:
  *    · el módulo es el que sale de sus fuentes (tools/entrenador/construir.py --comprobar);
@@ -26,7 +29,8 @@
  * 2. En Chromium, móvil emulado (320 de ancho, el más estrecho): el vídeo de CADA ejercicio, entero,
  *    cuadro a cuadro, en castellano y en otro idioma (los nueve van rotando): acaba, dura lo que
  *    tiene que durar, lo que se lee en cada paso es el paso de la ficha, palabra por palabra, no
- *    hay ningún NaN en el dibujo y nada se sale de ancho. Y EL MOVIMIENTO, medido en cada cuadro:
+ *    hay ningún NaN en el dibujo y nada se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
+ *    que el canvas de Samsung Internet sabe copiar (trazados, círculos, elipses y rectángulos). Y EL MOVIMIENTO, medido en cada cuadro:
  *    lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque Jérôme respire y
  *    reparta el peso; nada se teletransporta de un cuadro al siguiente; respira; la cabeza y el
  *    tupé no se pasan de vueltas; y de cerca ninguna mano se sale del cuadro. Y EL DIBUJO, también en
@@ -40,12 +44,18 @@
  *    guardar unas series y se quita al volver; en una ficha sin coreografía no sale nada.
  * 4. Con Samsung Internet (12 de noviembre de 2026): el vídeo en un canvas que copia su SVG (su modo oscuro
  *    repinta los SVG): el mismo dibujo, se repinta solo, el modo oscuro forzado no lo cambia; en otro navegador, nada.
+ *    Entero, con tres ejercicios de muestra; en un pase parcial, con todos los que se piden.
  * Cero errores de página. Sale con 1 si algo falla.
  */
 'use strict';
 const fs = require('fs'), path = require('path'), cp = require('child_process'), crypto = require('crypto'), vm = require('vm');
 const RAIZ = path.join(__dirname, '..');
 const PUERTO = process.argv[2] || '8766';
+const MARGEN = 4;                         /* px (de los 400 de ancho del dibujo) que le tienen que quedar a Jérôme hasta el borde del cuadro */
+/* lo que el canvas de Samsung Internet copia del dibujo (tools/entrenador/src/85-lienzo.js: ruta y pieza); una pieza de otro tipo
+   (line, polygon, polyline, text, use, image…), o con máscara o filtro, allí no se pintaría, y nadie lo vería en Chromium */
+const COPIA = ['g', 'path', 'circle', 'ellipse', 'rect', 'defs', 'clipPath', 'linearGradient', 'radialGradient', 'stop', 'title', 'desc'];
+const SOLO = process.argv[3] || '';       /* '72' (un trozo de coreografías) o 'id1,id2': un pase parcial de la sección 2 */
 const SITIO = 'http://127.0.0.1:' + PUERTO + '/';
 const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 const HUECO = /\{(\w+)\}/g;
@@ -69,6 +79,15 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   const EJ = {}; JSON.parse(lee('datos/cuerpo/ejercicios.json')).ejercicios.forEach(e => { EJ[e.id] = e; });
   const TX = {}; LANGS.forEach(l => { TX[l] = JSON.parse(lee('datos/cuerpo/ejercicios-' + l + '.json')); });
   info(ids.length + ' ejercicios con vídeo, de ' + Object.keys(EJ).length);
+  /* un pase parcial: los vídeos que se pasan cuadro a cuadro (lo demás se comprueba igual, de todos) */
+  let idsVideo = ids;
+  if (/^\d\d$/.test(SOLO)) {
+    const trozo = fs.readdirSync(path.join(RAIZ, 'tools/entrenador/src')).filter(n => n.indexOf(SOLO + '-') === 0)[0], fuente = trozo ? lee('tools/entrenador/src/' + trozo) : '';
+    idsVideo = ids.filter(id => fuente.indexOf("COREO['" + id + "'] = ") >= 0 || fuente.indexOf('COREO.' + id + ' = ') >= 0);
+  } else if (SOLO) idsVideo = SOLO.split(',').filter(id => ids.indexOf(id) >= 0);
+  const PARCIAL = idsVideo.length !== ids.length;
+  if (SOLO && !idsVideo.length) { console.log('  MAL «' + SOLO + '» no es un trozo de coreografías ni una lista de ejercicios con vídeo'); process.exit(1); }
+  if (PARCIAL) info('PASE PARCIAL: cuadro a cuadro, solo ' + idsVideo.length + ' de los ' + ids.length + ' vídeos');
   ok(ids.length > 0 && ids.every(id => EJ[id]), 'cada coreografía es de un ejercicio que existe', ids.filter(id => !EJ[id]));
   const sinPasos = [], otraFicha = [];
   ids.forEach(id => {
@@ -236,9 +255,10 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     await pg.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
     const total = await pg.evaluate(l => window.preparar(l), LANGS);
     info('datos de ' + total + ' ejercicios');
-    const peros = [], gestos = {}, tope = {}, dibujo = [], plegados = []; let pasados = 0, cuadros = 0, mirados = 0, girados = 0, borron = 99;
-    for (let i = 0; i < ids.length; i++) {
-      const id = ids[i];
+    const peros = [], gestos = {}, tope = {}, dibujo = [], plegados = [], salen = [], arrimados = [], piezas = {}, noCopia = []; let pasados = 0, cuadros = 0, mirados = 0, girados = 0, borron = 99, encuadrados = 0;
+    for (let n = 0; n < idsVideo.length; n++) {
+      /* el idioma y el tema de cada uno, los de siempre (por su puesto entre todos), se pase entero o por partes */
+      const id = idsVideo[n], i = ids.indexOf(id);
       for (const l of ['es', LANGS[1 + (i % 9)]]) {
         const m = await pg.evaluate(a => window.montar(a[0], a[1], a[2]), [id, l, i % 2 ? 'noche' : 'dia']);
         if (!m) { peros.push(id + ' (' + l + '): no se monta'); continue; }
@@ -251,7 +271,14 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         if (db.borron < 2.6) dq.push('un músculo encendido se queda en un borrón de ' + db.borron + ' cm');
         if (db.fuera) dq.push('el tronco se sale de su silueta (' + db.fuera + ' puntos; ' + db.fueraEn + ')');
         if (r.vistaN === 0 && db.pleg > 20) plegados.push(id + ' ' + db.pleg + ' %');
+        /* el cuerpo, entero dentro del cuadro y sin tocar el borde (le quedan MARGEN px, de los 400 del dibujo) en cada momento
+           que se mira: uno de cada ocho cuadros, fuera de los planos de cerca */
+        encuadrados += db.salidos; arrimados.push([-db.sale, id + ' (vista ' + (r.vistaN + 1) + ') ' + (-db.sale).toFixed(1) + ' px ' + db.saleEn]);
+        if (db.salidos && -db.sale < MARGEN) salen.push(id + ' (vista ' + (r.vistaN + 1) + '): ' + (db.sale > 0 ? 'se sale ' + db.sale + ' px ' : 'le quedan ' + (-db.sale).toFixed(1) + ' px ') + db.saleEn);
         if (dq.length) dibujo.push(id + ' (vista ' + (r.vistaN + 1) + '): ' + dq.join('; '));
+        /* de qué está hecho el dibujo: solo de lo que el canvas de Samsung Internet sabe copiar (sección 4) */
+        const raras = (r.tipos || []).filter(t => { piezas[t] = 1; return COPIA.indexOf(t) < 0; });
+        if (raras.length || r.ajenos || !(r.tipos || []).length) noCopia.push(id + ': ' + (raras.length ? '<' + raras.join('>, <') + '>' : r.ajenos ? r.ajenos + ' piezas con máscara o filtro' : 'sin medir'));
         const esperados = Math.round(m.dur * 30), q = [];
         if (!r.fin) q.push('no acaba');
         /* cada tramo acaba en el primer cuadro que pasa de su duración: uno de más por tramo, como mucho */
@@ -275,15 +302,19 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         cuadros += r.cuadros;
       }
     }
-    ok(!peros.length && pasados === ids.length * 2, 'los ' + ids.length + ' vídeos, enteros, en castellano y en otro idioma (' + pasados + ' pases, ' + cuadros + ' cuadros): acaban, duran lo suyo, se lee el paso de la ficha palabra por palabra, sin NaN y sin salirse de ancho', peros.slice(0, 8));
+    ok(!peros.length && pasados === idsVideo.length * 2, 'los ' + idsVideo.length + ' vídeos, enteros, en castellano y en otro idioma (' + pasados + ' pases, ' + cuadros + ' cuadros): acaban, duran lo suyo, se lee el paso de la ficha palabra por palabra, sin NaN y sin salirse de ancho', peros.slice(0, 8));
     info('el movimiento, lo más de todo: lo clavado se mueve ' + tope.clavo + ' cm; el cuerpo, ' + tope.salto + ' cm en un cuadro (a 30 por segundo); una mano, ' + tope.saltoM + ' cm; la cabeza cabecea ' + tope.cabRep + '° en una repetición y ' + tope.cabBusto + '° al entrar; el tupé, ' + tope.pelo + '°');
     const delMov = peros.filter(p => /clavado|salto|respira|muelle|sale del cuadro/.test(p));
-    ok(!delMov.length, 'el movimiento, medido en cada cuadro de los ' + ids.length + ' vídeos: lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque respire y reparta el peso; nada se teletransporta; respira; los muelles no se pasan; de cerca ninguna mano se sale', delMov.slice(0, 6));
-    ok(!dibujo.length && mirados > 100000 && girados >= ids.length - 1, 'el dibujo, medido en cada cuadro y desde las dos vistas de cada ejercicio (' + girados + ' pases desde la de «Girar»; ' + mirados + ' puntos del tronco mirados): el tronco entero cabe en su silueta (también visto de pies a cabeza), el estampado no se queda a medio borrar, un músculo encendido no se queda en un borrón (el menor, ' + borron + ' cm de semieje) y los avisos duran lo que una mirada', dibujo.slice(0, 6));
+    ok(!delMov.length, 'el movimiento, medido en cada cuadro de los ' + idsVideo.length + ' vídeos: lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque respire y reparta el peso; nada se teletransporta; respira; los muelles no se pasan; de cerca ninguna mano se sale', delMov.slice(0, 6));
+    ok(!dibujo.length && mirados > (PARCIAL ? 1000 : 100000) && girados >= idsVideo.length - 1, 'el dibujo, medido en cada cuadro y desde las dos vistas de cada ejercicio (' + girados + ' pases desde la de «Girar»; ' + mirados + ' puntos del tronco mirados): el tronco entero cabe en su silueta (también visto de pies a cabeza), el estampado no se queda a medio borrar, un músculo encendido no se queda en un borrón (el menor, ' + borron + ' cm de semieje) y los avisos duran lo que una mirada', dibujo.slice(0, 6));
+    arrimados.sort((a, b) => a[0] - b[0]);
+    ok(!salen.length && encuadrados > (PARCIAL ? 100 : 10000), 'Jérôme no se sale del cuadro ni toca su borde: fuera de los planos de cerca, todo lo que se dibuja de su cuerpo queda dentro, a ' + MARGEN + ' px o más del borde, en las dos vistas de cada ejercicio (' + encuadrados + ' momentos mirados)', salen.slice(0, 8));
+    info('los que más se arriman al borde del cuadro: ' + arrimados.slice(0, 6).map(a => a[1]).join(' · '));
+    ok(!noCopia.length && Object.keys(piezas).length >= 6, 'el dibujo de los ' + idsVideo.length + ' vídeos está hecho solo de lo que el canvas de Samsung Internet copia (' + Object.keys(piezas).sort().join(', ') + '): trazados, círculos, elipses y rectángulos, en grupos, con sus degradados y recortes, sin máscaras ni filtros; otra cosa, en ese navegador no se vería', [...new Set(noCopia)].slice(0, 8));
     /* no es un control (una mano delante del hombro es lo natural en un curl o en un press visto de frente): es la lista de lo que conviene mirar a ojo al elegir la vista */
     info('para mirar a ojo — en la primera vista, el brazo de este lado plegado sobre sí mismo y con el hombro tras la mano más del 20 % de la repetición: ' + (plegados.length ? plegados.join(', ') : 'ninguno'));
     const faltan = []; ['cabecera', 'cierre'].forEach(mo => T.GESTOS_DE[mo].forEach(g => { if (!gestos[mo + ':' + g]) faltan.push(mo + ':' + g); }));
-    ok(!faltan.length && Object.keys(gestos).every(g => /^(cabecera|cierre|consejo):/.test(g)), 'los gestos se reparten: cada ejercicio tiene el suyo en la cabecera y en el cierre, y salen todos (' + Object.keys(gestos).map(g => g.split(':')[1] + ' ' + gestos[g]).join(', ') + ')', faltan);
+    ok((PARCIAL || !faltan.length) && Object.keys(gestos).every(g => /^(cabecera|cierre|consejo):/.test(g)), 'los gestos se reparten: cada ejercicio tiene el suyo en la cabecera y en el cierre, y salen todos (' + Object.keys(gestos).map(g => g.split(':')[1] + ' ' + gestos[g]).join(', ') + ')', faltan);
     /* la cabeza: una sola, con volumen, vista desde todos los lados */
     await pg.evaluate(a => window.montar(a, 'es', 'dia'), ids[0]);
     const cg = await pg.evaluate(() => window.cabezaGira()), f = cg.frente || {}, pf = cg.perfil || {}, es = cg.espalda || {};
@@ -315,7 +346,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     await Q(() => { const s = document.getElementById('v19-welcome-start'); if (s) s.click(); }); await espera(1500);
     const abierto = await Q(() => window.abrirCuerpo().then(() => true, () => false)); await espera(2500);
     ok(abierto, '«Su cuerpo» se abre');
-    const conVideo = ids.filter(id => EJ[id].g[0] === 'pecho')[0] || ids[0], grupo = EJ[conVideo].g[0];
+    const conVideo = (PARCIAL ? idsVideo[0] : ids.filter(id => EJ[id].g[0] === 'pecho')[0]) || ids[0], grupo = EJ[conVideo].g[0];
     await Q(g => document.querySelector('#cuerpo-panel .tgc-fila[data-g="' + g + '"]').click(), grupo); await espera(1800);
     ok(await Q(() => !window.TG_ENTRENADOR), 'el módulo no se pide hasta abrir una ficha');
     await Q(id => document.querySelector('#tgc-ej-lista .tgc-ej-fila[data-id="' + id + '"]').click(), conVideo); await espera(1800);
@@ -349,7 +380,11 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   {
     const UA_SAMSUNG = 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/30.0 Chrome/143.0.0.0 Mobile Safari/537.36';
     const SEMILLA = '(() => { let s = 20261112; Math.random = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; })();';
-    const MUESTRA = [...new Set([ids[0], ids.find(i => /^press-banca/.test(i)), ids[ids.length - 1]].filter(Boolean))];
+    /* entero: tres ejercicios (el primero, el press de banca y el último), de día y de noche. En un pase parcial: todos los
+       que se piden, cada uno con su tema (el primero, de día, que es con el que se compara el modo oscuro forzado), para
+       ver con ese navegador el material nuevo de un bloque antes de entregarlo */
+    const MUESTRA = PARCIAL ? idsVideo : [...new Set([ids[0], ids.find(i => /^press-banca/.test(i)), ids[ids.length - 1]].filter(Boolean))];
+    const TEMAS = id => !PARCIAL ? ['dia', 'noche'] : [id !== MUESTRA[0] && ids.indexOf(id) % 2 ? 'noche' : 'dia'];
     const IGUAL = d => d.media < 3 && d.mucho < 1;
     const CIFRAS = d => 'diferencia media ' + d.media.toFixed(2) + ', ' + d.mucho.toFixed(2) + ' % de píxeles muy distintos';
     /* dos capturas de la escena (base64), comparadas en la propia página: la diferencia media (0-255) y el % de píxeles
@@ -403,7 +438,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         const pg = await ctx.newPage(); vigila(pg);
         await pg.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
         await pg.evaluate(l => window.preparar(l), ['es']);
-        for (const id of (modo === 'samsung' ? MUESTRA : [MUESTRA[0]])) for (const tema of (modo === 'samsung' ? ['dia', 'noche'] : ['dia'])) {
+        for (const id of (modo === 'samsung' ? MUESTRA : [MUESTRA[0]])) for (const tema of (modo === 'samsung' ? TEMAS(id) : ['dia'])) {
           const m = await pg.evaluate(a => window.montar(a[0], 'es', a[1]), [id, tema]);
           if (!m) { malS.push(modo + ': ' + id + ' no se monta'); continue; }
           const N = m.pasos.length;
@@ -450,11 +485,11 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         await ctx.close();
       }
     } finally { await oscuro.close(); }
-    ok(!malS.length && momentos >= MUESTRA.length * 2 * 4 + 4, 'Samsung Internet: el vídeo en un canvas (' + MUESTRA.join(', ') + '; ' + momentos + ' momentos, de día y de noche, y con el modo oscuro forzado): el mismo dibujo que el SVG (la mayor diferencia media, ' + (medidas.length ? Math.max(...medidas).toFixed(2) : '–') + ' de 255), se repinta solo con el vídeo en marcha, el modo oscuro no lo cambia y en otro navegador no hay canvas', malS.slice(0, 6));
+    ok(!malS.length && momentos >= MUESTRA.reduce((n, id) => n + TEMAS(id).length, 0) * 4 + 4, 'Samsung Internet: el vídeo en un canvas (' + (PARCIAL ? 'los ' + MUESTRA.length + ' del pase parcial' : MUESTRA.join(', ')) + '; ' + momentos + ' momentos, de día y de noche, y con el modo oscuro forzado): el mismo dibujo que el SVG (la mayor diferencia media, ' + (medidas.length ? Math.max(...medidas).toFixed(2) : '–') + ' de 255), se repinta solo con el vídeo en marcha, el modo oscuro no lo cambia y en otro navegador no hay canvas', malS.slice(0, 6));
     if (coste) info('pintar el canvas, un cuadro: ' + coste[0].toFixed(1) + ' ms de media; con la CPU frenada ×4, ' + coste[1].toFixed(1) + ' ms (como mucho 30 veces por segundo)');
   }
   await nav.close();
   ok(!errores.length, 'cero errores de página', errores.slice(0, 5));
-  console.log('\n' + (fallos ? '  ' + fallos + ' de ' + hechos + ' controles EN ROJO' : '  ' + hechos + ' controles, todos en verde'));
+  console.log('\n' + (fallos ? '  ' + fallos + ' de ' + hechos + ' controles EN ROJO' : '  ' + hechos + ' controles, todos en verde') + (PARCIAL ? '   (PASE PARCIAL: ' + idsVideo.length + ' de ' + ids.length + ' vídeos; la entrega se audita entera)' : ''));
   process.exit(fallos ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(2); });

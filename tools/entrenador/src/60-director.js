@@ -190,7 +190,20 @@
     l = largo(corr);
     if (l > 0) { if (l > 3) corr = por(corr, 3 / l); S.p = mas(S.p, corr); E = armar(S); }
     var E2 = { S: S, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d };
-    for (i = 0; i < lista.length; i++) { clavar(E2, lista[i][0], lista[i][1]); this.metas.push(lista[i]); }
+    for (i = 0; i < lista.length; i++) clavar(E2, lista[i][0], lista[i][1]);
+    /* la mano en un agarre del material: la muñeca se calculó con el codo de antes de clavar; con el codo ya en su sitio se
+       afina (segunda pasada), y el centro del puño cae en la barra aunque el brazo esté muy doblado */
+    var afina = false;
+    for (i = 0; i < clavos.length; i++) if (clavos[i] && clavos[i].que.charAt(0) === 'm' && clavos[i].mat != null && mats[clavos[i].mat] && mats[clavos[i].mat].agarre) afina = true;
+    if (afina) {
+      E = armar(S); E2 = { S: S, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d }; var n = 0;
+      for (i = 0; i < clavos.length; i++) {
+        c = clavos[i]; if (!c) continue;
+        if (c.que.charAt(0) === 'm' && c.mat != null && mats[c.mat] && mats[c.mat].agarre) { lista[n][1] = munecaPara(E, c.que.charAt(1), mats[c.mat].agarre(c.x)); clavar(E2, lista[n][0], lista[n][1]); }
+        n++;
+      }
+    }
+    for (i = 0; i < lista.length; i++) this.metas.push(lista[i]);
     return armar(S);
   };
   /* el esqueleto de la repetición en el instante tau, con lo clavado en su sitio (sin la vida: para medir y comprobar) */

@@ -63,6 +63,8 @@
     if (q.suelo) r.suelo = [-q.suelo[0], q.suelo[1]];
     if (q.punta) r.punta = [-q.punta[0], q.punta[1], q.punta[2]];
     if (q.arriba) r.arriba = [-q.arriba[0], q.arriba[1], q.arriba[2]];
+    if (q.palma) r.palma = [-q.palma[0], q.palma[1], q.palma[2]];
+    if (q.barra) r.barra = [-q.barra[0], q.barra[1], q.barra[2]];
     return r;
   }
   function deLado(P, pre, k) { return P[pre + k] || (P[pre] ? (k === 'i' ? P[pre] : reflejo(P[pre])) : null); }
@@ -97,14 +99,20 @@
       /* ── la mano ── */
       var m = deLado(P, 'm', k) || {};
       var gm = GESTO[m.tipo] || GESTO.suelta;
-      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0, c: gm[0], ci: gm[1], ab: gm[2], pu: gm[3] };
+      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0, c: gm[0], ci: gm[1], ab: gm[2], pu: gm[3], pal: m.palma ? unidad(m.palma) : null, bar: m.barra ? unidad(m.barra) : null, w: m.palma || m.barra ? 1 : 0 };
       /* ── la pierna ── */
       var q = deLado(P, 'p', k) || { suelo: [s * D.caderaX, 0], abre: 6 };
       var cad = mas(S.p, aplicar(S.B, [s * D.caderaX, 0, 0]));
       var pie = null, rumbo = (P.giro && P.giro[0]) || 0;
       if (q.suelo) { pie = piePlantado(k, q, q.rumbo == null ? rumbo : q.rumbo); q = { a: pie.tob, polo: q.polo, plantado: true }; }
       if (q.a) {
-        var pq = q.polo || aplicar(S.B, [s * 0.25, 0.1, 1]);
+        var pq = q.polo;
+        if (!pq) {
+          pq = aplicar(S.B, [s * 0.25, 0.1, 1]);
+          /* con el tronco muy inclinado hacia delante (una bisagra de cadera), «delante de la pelvis» es el suelo y la rodilla se
+             iría hacia fuera: con el pie plantado, la rodilla va hacia donde apunta el pie */
+          if (pie) { var wq = entre((-S.B[2][1] - 0.766) / 0.174, 0, 1); if (wq > 0) pq = mezcla(pq, [pie.punta[0] + s * 0.08, 0.5, pie.punta[2]], wq * wq * (3 - 2 * wq)); }
+        }
         var rq = dosHuesos(cad, q.a, D.muslo, D.pierna, mas(cad, por(pq, 100)));
         S.q[k] = { u: aLocal(S.B, unidad(menos(rq.medio, cad))), l: aLocal(S.B, unidad(menos(rq.fin, rq.medio))) };
       } else {
@@ -135,6 +143,23 @@
     bis = unidad(bis, [1, 0, 0]);                 /* la bisagra del codo */
     var eje0 = unidad(cruz(bis, lw)), palma0 = por(bis, s);
     var pr = (m.prono || 0) * s;      /* prono > 0: la palma hacia atrás o hacia abajo; < 0: hacia delante o hacia arriba */
+    /* o se dice, en el mundo, hacia dónde mira la palma (m.palma) o a lo largo de qué va lo que agarra (m.barra, y entonces
+       m.palma solo dice de qué lado de la barra queda la palma): la mano que agarra una barra no gira con el codo.
+       El antebrazo gira lo que haga falta; si apunta casi hacia donde debería mirar la palma, manda el prono */
+    var mira = m.pal;
+    if (m.bar && m.w > 0) {
+      var qb = cruz(m.bar, lw);
+      if (largo(qb) > 0.2) { qb = unidad(qb); mira = punto(qb, m.pal || girar(palma0, lw, pr)) < 0 ? por(qb, -1) : qb; }
+    }
+    if (mira && m.w > 0) {
+      var tp = sinParte(mira, lw), lt = largo(tp);
+      if (lt > 0.2) {
+        tp = por(tp, 1 / lt);
+        var dif = Math.atan2(punto(cruz(palma0, tp), lw), punto(palma0, tp)) / RAD - pr;
+        while (dif > 180) dif -= 360; while (dif < -180) dif += 360;
+        pr += dif * m.w * entre((lt - 0.2) / 0.3, 0, 1);
+      }
+    }
     var eje = girar(eje0, lw, pr), palma = girar(palma0, lw, pr);
     var dir = lw;
     if (m.mun) { dir = girar(lw, eje, -m.mun * s); palma = girar(palma, eje, -m.mun * s); }
@@ -196,7 +221,9 @@
       S.q[k] = { u: arco(a.q[k].u, b.q[k].u, t), l: arco(a.q[k].l, b.q[k].l, t), b: a.q[k].b && b.q[k].b ? unidad(mezcla(a.q[k].b, b.q[k].b, t)) : (a.q[k].b || b.q[k].b) };
       var ma = a.m[k], mb = b.m[k];
       S.m[k] = { tipo: t < 0.5 ? ma.tipo : mb.tipo, prono: mezclaN(ma.prono, mb.prono, t), mun: mezclaN(ma.mun, mb.mun, t), lat: mezclaN(ma.lat, mb.lat, t),
-                 c: mezclaN(ma.c, mb.c, t), ci: mezclaN(ma.ci, mb.ci, t), ab: mezclaN(ma.ab, mb.ab, t), pu: mezclaN(ma.pu, mb.pu, t) };
+                 c: mezclaN(ma.c, mb.c, t), ci: mezclaN(ma.ci, mb.ci, t), ab: mezclaN(ma.ab, mb.ab, t), pu: mezclaN(ma.pu, mb.pu, t),
+                 pal: ma.pal && mb.pal ? unidad(mezcla(ma.pal, mb.pal, t), mb.pal) : (ma.pal || mb.pal),
+                 bar: ma.bar && mb.bar ? unidad(mezcla(ma.bar, punto(ma.bar, mb.bar) < 0 ? por(mb.bar, -1) : mb.bar, t), mb.bar) : (ma.bar || mb.bar), w: mezclaN(ma.w || 0, mb.w || 0, t) };
       var ta = a.t[k], tb = b.t[k];
       var fx = mezclaN(ta.flex || 0, tb.flex || 0, t);
       if (ta.punta && tb.punta) S.t[k] = { punta: arco(ta.punta, tb.punta, t), arriba: arco(ta.arriba, tb.arriba, t), flex: fx };

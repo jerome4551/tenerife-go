@@ -44,13 +44,41 @@ window.cabezaGira = function () {
 };
 /* vista: 1, para pasarlo entero desde la otra vista (la de «Girar») */
 window.entero = function (vista) {
-  var R = window.R, d = R.dir, leido = [], raros = 0, cuadros = 0, nodos = 0, modos = {}, gestos = {};
+  var R = window.R, d = R.dir, leido = [], raros = 0, cuadros = 0, nodos = 0, modos = {}, gestos = {}, tipos = {}, ajenos = 0;
   if (vista && d.vistas.length > vista) { d.vista = vista; d.salto = true; }
   /* el dibujo, medido: el estampado no se queda a medio borrar; el aviso de lo que nombra el paso dura lo que una mirada;
      un músculo encendido no se queda en un borrón; el tronco entero cabe en su silueta (también visto de pies a cabeza);
      y el brazo de este lado no se pasa la repetición plegado sobre sí mismo, tapándose el hombro con su propia mano */
-  var T = TG_ENTRENADOR._, dib = { estampa: 0, estampaSeguidos: 0, marca: 0, borron: 99, fuera: 0, fueraEn: '', mirados: 0, pleg: 0, plegN: 0 };
+  var T = TG_ENTRENADOR._, dib = { estampa: 0, estampaSeguidos: 0, marca: 0, borron: 99, fuera: 0, fueraEn: '', mirados: 0, pleg: 0, plegN: 0, sale: -999, saleEn: '', salidos: 0 };
   var svgD = R.raiz.querySelector('svg'), pt = svgD.createSVGPoint(), fig = R.esc.fig, gc = fig.P.camiseta, gp = fig.P.pantalon, seguidos = 0;
+  /* y Jérôme no se sale del cuadro (salvo de cerca, que ese plano lo corta a propósito): la caja de todo lo que se dibuja de su
+     cuerpo (cada pieza y la cabeza; lo que está apagado o lleva su propio transform, los rasgos de la cara, no cuenta), contra
+     lo que de verdad se ve del dibujo (el svg recorta lo que no cabe en su caja) */
+  var piezas = [R.esc.cab.g], qn; for (qn in fig.P) piezas.push(fig.P[qn]);
+  var hojasDe = piezas.map(function (g) { return g.querySelectorAll('path,ellipse,circle,rect,polygon,line'); });
+  var seVe = function (h, tope) { for (var x = h; x && x !== tope.parentNode; x = x.parentNode) if (x.getAttribute && (x.getAttribute('opacity') === '0' || x.getAttribute('transform') || (x.style && x.style.display === 'none'))) return false; return true; };
+  var marco = (function () { var r = svgD.getBoundingClientRect(), k = Math.max(r.width / 400, r.height / 460), w = r.width / k, h = r.height / k; return [(400 - w) / 2, (460 - h) / 2, (400 + w) / 2, (460 + h) / 2]; })();
+  var medirMarco = function () {
+    var a = [1e9, 1e9], b = [-1e9, -1e9], i, j, hs, r, CERCA = 14;
+    var suma = function (r) { if (r.x < a[0]) a[0] = r.x; if (r.y < a[1]) a[1] = r.y; if (r.x + r.width > b[0]) b[0] = r.x + r.width; if (r.y + r.height > b[1]) b[1] = r.y + r.height; };
+    for (i = 0; i < piezas.length; i++) {
+      if (!piezas[i].parentNode) continue;
+      /* la caja de la pieza entera, de una vez; solo si se arrima al borde se miran sus trazos uno a uno, sin lo apagado
+         (el estampado de la camiseta, cuando no se ve, espera en la esquina del dibujo) */
+      try { r = piezas[i].getBBox(); } catch (x) { continue; }
+      if (!r.width && !r.height) continue;
+      if (r.x >= marco[0] + CERCA && r.y >= marco[1] + CERCA && r.x + r.width <= marco[2] - CERCA && r.y + r.height <= marco[3] - CERCA) { suma(r); continue; }
+      for (hs = hojasDe[i], j = 0; j < hs.length; j++) {
+        if (!seVe(hs[j], piezas[i])) continue;
+        try { r = hs[j].getBBox(); } catch (x) { continue; }
+        if (r.width || r.height) suma(r);
+      }
+    }
+    if (a[0] > b[0]) return;
+    var lados = [['izquierda', marco[0] - a[0]], ['derecha', b[0] - marco[2]], ['arriba', marco[1] - a[1]], ['abajo', b[1] - marco[3]]];
+    dib.salidos++;
+    lados.forEach(function (l) { if (l[1] > dib.sale) { dib.sale = l[1]; dib.saleEn = 'por ' + l[0] + ', tramo ' + R.n + ' (' + R.tt.toFixed(2) + ' s)'; } });
+  };
   var dentro = function (q) { pt.x = q[0]; pt.y = q[1]; return gc.f.isPointInFill(pt) || gp.f.isPointInFill(pt); };
   var aSeg = function (p, a, b) { var vx = b[0] - a[0], vy = b[1] - a[1], l2 = vx * vx + vy * vy, u = l2 ? Math.max(0, Math.min(1, ((p[0] - a[0]) * vx + (p[1] - a[1]) * vy) / l2)) : 0; return [Math.hypot(p[0] - a[0] - vx * u, p[1] - a[1] - vy * u), a[2] + (b[2] - a[2]) * u]; };
   var medirDibujo = function (E) {
@@ -113,15 +141,19 @@ window.entero = function (vista) {
       if (q[0] < 2 || q[0] > 398 || q[1] < 50) mov.fuera++;
     });
     medirDibujo(E);
+    if (!d.busto && cuadros % 8 === 0) medirMarco();
     if (cuadros % 15 === 0) {
-      var s = R.raiz.querySelector('svg'); nodos = Math.max(nodos, s.querySelectorAll('*').length);
+      var s = R.raiz.querySelector('svg'), todos = s.querySelectorAll('*'), ni; nodos = Math.max(nodos, todos.length);
       if (/NaN|Infinity|undefined/.test(new XMLSerializer().serializeToString(s))) raros++;
+      /* de qué está hecho el dibujo: con Samsung Internet lo copia un canvas (src/85-lienzo.js), que solo sabe de trazados,
+         círculos, elipses y rectángulos, sin máscaras ni filtros; lo que no sea eso, allí no se vería */
+      for (ni = 0; ni < todos.length; ni++) { tipos[todos[ni].localName] = 1; if (todos[ni].hasAttribute('mask') || todos[ni].hasAttribute('filter')) ajenos++; }
     }
   }
   ['clavo', 'salto', 'saltoM', 'aireMin', 'aireMax', 'cabRep', 'cabBusto', 'pelo', 'brazo'].forEach(function (k) { mov[k] = Math.round(mov[k] * 1000) / 1000; });
   return { fin: R.fin, cuadros: cuadros, leido: leido, raros: raros, nodos: nodos, modos: Object.keys(modos), ancho: document.documentElement.scrollWidth, vista: document.documentElement.clientWidth,
-           titulo: R.nombre.textContent, voz: R.bVoz.hidden ? 'sin' : 'con', mov: mov, gestos: Object.keys(gestos),
-           dib: { estampa: dib.estampa, estampaSeguidos: dib.estampaSeguidos, marca: Math.round(dib.marca * 100) / 100, borron: Math.round(dib.borron * 100) / 100, fuera: dib.fuera, fueraEn: dib.fueraEn, mirados: dib.mirados,
+           titulo: R.nombre.textContent, voz: R.bVoz.hidden ? 'sin' : 'con', mov: mov, gestos: Object.keys(gestos), tipos: Object.keys(tipos), ajenos: ajenos,
+           dib: { estampa: dib.estampa, estampaSeguidos: dib.estampaSeguidos, marca: Math.round(dib.marca * 100) / 100, borron: Math.round(dib.borron * 100) / 100, fuera: dib.fuera, fueraEn: dib.fueraEn, mirados: dib.mirados, sale: Math.round(dib.sale * 10) / 10, saleEn: dib.saleEn, salidos: dib.salidos,
                   pleg: dib.plegN ? Math.round(100 * dib.pleg / dib.plegN) : 0 }, vistas: d.vistas.length, vistaN: d.vista };
 };
 </script>
