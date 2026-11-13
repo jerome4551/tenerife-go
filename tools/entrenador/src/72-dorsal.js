@@ -3,19 +3,11 @@
      que la ficha no diga. Van por familias: colgado de la barra, el front lever, los jalones, los remos, la polea a una
      mano y los estiramientos. */
   (function () {
-    function une(a, b) { var r = {}, k; for (k in a) r[k] = a[k]; for (k in (b || {})) r[k] = b[k]; return r; }
 
     /* ── colgado de la barra de dominadas (a 225 cm) ── */
-    var ALTO = 225, BRAZO = D.brazo + D.antebrazo + D.mano;      /* del hombro al centro del agarre, con el brazo estirado: 59 */
-    function barraD(o) { return ['barra_dominadas', une({ alto: ALTO, ancho: 62 }, o)]; }
-    /* a qué altura queda la cadera con los brazos estirados: cuanto más abiertas las manos (G, a cada lado), más arriba */
-    function yColgado(G, hom) { var dx = G - D.hombroX; return ALTO - Math.sqrt((BRAZO - 0.3) * (BRAZO - 0.3) - dx * dx) - 43.5 - (hom || 0); }
-    /* colgado, suelto (los hombros suben hacia las orejas) y con los omóplatos abajo y atrás */
-    function cuelga(G, extra) { return sobre(COLGADO, sobre({ pel: [0, yColgado(G, 3.5), -2], hom: [3.5, 0], b: { a: [G, ALTO - 8, 0], polo: [1, -0.2, 0.5] } }, extra || {})); }
-    function activo(G, extra) { return sobre(COLGADO, sobre({ pel: [0, yColgado(G, -2), -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [G, ALTO - 8, 0], polo: [1, -0.3, 0.4] } }, extra || {})); }
+    var ALTO = ALTO_BARRA;                                       /* cuelga, activo, barraD y clavosB, en 70-coreografias.js */
     /* arriba: la cadera a «y», el tronco un poco hacia atrás y los codos hacia el suelo */
     function arriba(G, y, extra) { return sobre(COLGADO, sobre({ pel: [0, y, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], b: { a: [G, ALTO - 8, 0], polo: [1, -1, 0.1] } }, extra || {})); }
-    function clavosB(G, G2) { return ['mi@0:' + G, 'md@0:' + (-(G2 == null ? G : G2))]; }
     var SUBE_BAJA = [['b', 1.3, 'empuje'], ['b', 0.5], ['a2', 1.9, 'freno'], ['a2', 0.45]];
     /* la mano en la barra (EN_BARRA, en 70-coreografias.js): con la palma hacia delante (el agarre de una dominada) o hacia él
        (supino); y en un agarre que va de delante atrás, con las palmas enfrentadas */
@@ -85,7 +77,7 @@
       material: [barraD()],
       posturas: { a: cuelga(28), b: arriba(28, 175, { hom: [-3, -2] }) },
       inicio: 'a', encuadra: ['b'],
-      pasos: [{ sec: [['a', 1.0], ['b', 1.5, 'empuje']], desde: 'a' }, 'b', { sec: [['b', 1.0], ['a', 3.4, 'freno']], desde: 'b' }]
+      pasos: [{ sec: [['a', 1.0], ['b', 1.5, 'empuje']], desde: 'a' }, 'b', { sec: [['b', 0.9], ['a', 3.4, 'freno']], desde: 'b' }]
     };
     /* medio recorrido: la mitad baja en la repetición; la mitad alta, en su paso */
     COREO['dominadas-parciales'] = (function () {
@@ -96,7 +88,7 @@
         posturas: { a2: activo(28), m: medio, b: arriba(28, 172) },
         inicio: 'a2', encuadra: ['b'],
         rep: [['m', 1.0, 'empuje'], ['m', 0.3], ['a2', 1.4, 'freno'], ['a2', 0.4]],
-        pasos: ['a2', 'rep', { sec: [['b', 1.0, 'empuje'], ['b', 0.6], ['m', 1.4, 'freno'], ['m', 0.3], ['b', 1.0, 'empuje'], ['b', 0.5], ['m', 1.4, 'freno'], ['m', 0.3], ['b', 1.0, 'empuje']], desde: 'm' }]
+        pasos: ['a2', 'rep', { sec: [['b', 1.0, 'empuje'], ['b', 0.6], ['m', 1.4, 'freno'], ['m', 0.3], ['b', 1.0, 'empuje']], desde: 'm' }]
       };
     })();
     /* hacia una mano, con el otro brazo casi estirado; y a la siguiente, hacia la otra */
@@ -133,7 +125,7 @@
         pasos: [
           { sec: [['a', 1.0], ['b', 1.4, 'empuje']], desde: 'a' },
           { sec: [['b', 0.8], ['bi', 1.5, 'suave']], desde: 'b' },
-          { sec: [['bd', 1.7, 'suave'], ['bd', 0.3], ['bi', 1.7, 'suave'], ['bi', 0.3], ['b', 0.9, 'suave'], ['b', 0.3], ['a', 2.4, 'freno']], desde: 'bi' }
+          { sec: [['bd', 1.6, 'suave'], ['bd', 0.25], ['bi', 1.6, 'suave'], ['bi', 0.25], ['b', 0.8, 'suave'], ['b', 0.2], ['a', 2.2, 'freno']], desde: 'bi' }
         ]
       };
     })();
@@ -170,7 +162,7 @@
     var cuelgaFL = cuelga(GL, { p: { e: 3, z: 0, c: 4 }, t: { tob: 30 } });
     /* la subida y la bajada pasan por una postura intermedia (los brazos siguen estirados) sin pararse en ella */
     function sube(de, m, f, t) { return { sec: [[de, t == null ? 0.8 : t], [m, 1.3, 'entra'], [f, 1.3, 'sale']], desde: de }; }
-    function aguantaYBaja(f, m, a) { return { sec: [[f, 2.2], [m, 1.5, 'entra'], [a, 1.5, 'sale']], desde: f }; }
+    function aguantaYBaja(f, m, a, t) { return { sec: [[f, t == null ? 2.2 : t], [m, 1.5, 'entra'], [a, 1.5, 'sale']], desde: f }; }       /* t: lo que aguanta, si el paso es corto */
     COREO['front-lever'] = {
       vista: V_FL, isometrico: 'f', clavos: clavosB(GL),
       material: [TORRE],
@@ -189,7 +181,7 @@
         f: palanca(90, 30, RECOGIDAS)
       },
       inicio: 'a', encuadra: ['f', 't'],
-      pasos: [{ sec: [['a', 0.9], ['t', 1.1, 'suave']], desde: 'a' }, sube('t', 'm', 'f', 0.01), aguantaYBaja('f', 'm', 't')]
+      pasos: [{ sec: [['a', 0.9], ['t', 1.1, 'suave']], desde: 'a' }, sube('t', 'm', 'f', 0.01), aguantaYBaja('f', 'm', 't', 1.3)]
     };
     /* la dominada en front lever: sin perder la horizontal, el pecho sube hacia la barra */
     COREO['dominada-front-lever'] = (function () {
@@ -213,30 +205,7 @@
       pasos: [{ sec: [['a', 0.8], ['b', 1.4, 'empuje']], desde: 'a' }, 'rep', 'rep']
     };
 
-    /* ── dos ayudas para colocar las manos ──
-       conAgarre: la postura P con el centro del puño izquierdo en g (el derecho, en su reflejo) y el codo hacia «polo»: la muñeca
-       queda a una mano de g, en la línea del antebrazo. k: 'b' (los dos brazos), 'bi' o 'bd' (uno solo; g es entonces el de ese lado) */
-    function conAgarre(P, g, polo, k) {
-      k = k || 'b';
-      var w = [g[0], g[1] - D.mano, g[2]], i, E, c = {};
-      for (i = 0; i < 5; i++) {
-        c[k] = { a: w, polo: polo };
-        E = resolver(sobre(P, c));
-        w = menos(g, por(unidad(menos(g, E[k === 'bd' ? 'd' : 'i'].cod)), D.mano));
-      }
-      c[k] = { a: w, polo: polo };
-      return sobre(P, c);
-    }
-    /* estirado: el brazo, estirado desde el hombro de la postura P hacia el punto q (a «flojo» cm de estirarse del todo); el puño
-       queda en esa línea. k, como arriba; si es 'b', q es el de la mano izquierda */
-    function estirado(P, q, k, flojo, polo) {
-      k = k || 'b';
-      var E = resolver(P), h = E[k === 'bd' ? 'd' : 'i'].hom, u = unidad(menos(q, h)), c = {};
-      c[k] = { a: mas(h, por(u, BRAZO - D.mano - (flojo == null ? 0.25 : flojo))), polo: polo || [k === 'bd' ? -1 : 1, -0.3, -0.3] };
-      return sobre(P, c);
-    }
-    /* dónde queda el puño de una postura */
-    function agarreDe(P, k) { return resolver(P)[k || 'i'].agarre; }
+    /* (conAgarre, estirado y agarreDe, las ayudas para colocar las manos, están en 70-coreografias.js) */
 
     /* ── los jalones: sentado en la máquina, de cara a la columna, con los muslos bajo el rodillo ──
        La barra cuelga de la polea, que queda por delante de la cara: baja por delante de ella hasta la parte alta del pecho. */
@@ -375,19 +344,7 @@
       };
     })();
 
-    /* ── los remos inclinados: de pie, el tronco inclinado desde la cadera ──
-       inclinado(ang): el tronco a «ang» grados de la vertical (90, paralelo al suelo), la cadera hacia atrás y las rodillas algo
-       flexionadas; los pies no se mueven */
-    function inclinado(ang, extra) {
-      var k = Math.sin(ang * RAD);
-      return sobre({ pel: [0, PIE - 2 - 5.5 * k, -27.5 * k], giro: [0, ang, 0], cab: [-ang * 0.3, 0, 0], p: { suelo: [11, 0], abre: 7 } }, extra || {});
-    }
-    var DE_PIE = { p: { suelo: [11, 0], abre: 7 } };
-    /* el punto del cuerpo ante el que acaba la barra o la mancuerna: a «arriba» cm de la cadera a lo largo del tronco y a «fuera» de su
-       eje hacia delante (hacia el suelo, si está inclinado) */
-    function anteTronco(P, arriba_, fuera, x) { var E = resolver(P); return mas(E.pel, mas(aplicar(E.Bp, [0, arriba_, 0]), mas(aplicar(E.Bl, [0, 0, fuera]), [x || 0, 0, 0]))); }
-    /* colgando: el puño, en la vertical del hombro (más «dz» hacia delante), con el brazo estirado */
-    function colgando(P, G, dz) { var h = resolver(P).i.hom; return estirado(P, [G, h[1] - BRAZO, h[2] + (dz || 0)], 'b', 0.3, [1, 0.2, -0.6]); }
+    /* ── los remos inclinados: de pie, el tronco inclinado desde la cadera (inclinado, colgando y anteTronco, en 70-coreografias.js) ── */
 
     /* con mancuernas: el pecho, paralelo al suelo; las mancuernas, por debajo de las rodillas; y suben hacia las caderas, con los codos cerca */
     COREO['remo-inclinado-mancuernas'] = (function () {

@@ -327,7 +327,9 @@
      o: { en: [x, z], alto, rumbo, a: 'manos' | 'i' | 'd' | 'tobillo-i', agarre: 'barra' | 'cuerda' | 'asa' | 'v' (el triángulo de palmas enfrentadas) }
      La máquina de jalón es esta misma con: brazo (cuánto sale de la columna el brazo de arriba hacia quien tira; la polea va en su
      punta), asiento: [a cuánto de la columna, alto] y rodillo: [a cuánto de la columna, alto] (el que sujeta los muslos).
-     reposo: [x, y, z], dónde cuelga el agarre mientras nadie lo ha cogido (en las posturas que la coreografía diga en «reposo») ── */
+     reposo: [x, y, z], dónde cuelga el agarre mientras nadie lo ha cogido (en las posturas que la coreografía diga en «reposo»).
+     El remo sentado es esta misma, baja, con apoyo: [a cuánto de la columna, alto, grados], la chapa inclinada donde se apoyan
+     los pies (el asiento es un banco aparte) ── */
   MATERIAL.polea = function (esc, o) {
     o = o || {};
     this.o = o; this.col = new Caja(['#566072', M_COL.hierro, M_COL.hierroS, M_COL.hierroS]); this.base = new Caja(['#566072', M_COL.hierro, M_COL.hierroS, M_COL.hierroS]);
@@ -340,6 +342,7 @@
     this.viga = o.brazo ? new Caja(hie) : null;
     this.sillin = o.asiento ? new Caja([M_COL.tapizL, M_COL.tapiz, M_COL.tapizS, M_COL.tapizS]) : null; this.patSillin = o.asiento ? new Caja(hie) : null;
     this.rod = o.rodillo ? new Cilindro(M_COL.tapiz, 'rgba(255,255,255,.2)') : null; this.sopRod = o.rodillo ? new Cilindro(M_COL.hierro) : null;
+    this.chapa = o.apoyo ? new Caja(['#7b8696', '#5b6575', '#434c5a', '#434c5a']) : null; this.patChapa = o.apoyo ? new Caja(hie) : null;
     this.largo0 = null; this.antes = false;
   };
   MATERIAL.polea.prototype.colocar = function () {};
@@ -365,6 +368,12 @@
       var zr = -o.rodillo[0], hr = o.rodillo[1];
       this.rod.pon(cam, this.al(-17, hr, zr), this.al(17, hr, zr), 5, lista, 4);
       this.sopRod.pon(cam, this.al(0, hr, zr), this.al(0, hr, 0), 1.8, lista, -6);
+    }
+    /* el remo sentado: la chapa de los pies, inclinada (por arriba se aleja de quien rema), sobre su pie */
+    if (this.chapa) {
+      var zc = -o.apoyo[0], hc = o.apoyo[1], Bc = componer(B, giroX(o.apoyo[2] == null ? 25 : o.apoyo[2]));
+      this.chapa.pon(cam, this.al(0, hc, zc), Bc, [46, 34, 3], lista, -18, 'fondo');
+      this.patChapa.pon(cam, this.al(0, (hc - 8) / 2, zc + 7), B, [30, hc - 8, 6], lista, -19, 'fondo');
     }
     /* a qué va el cable */
     var a = o.a || 'manos', fin, yo = this, suelto = !!(o.reposo && ctx && ctx.reposo);

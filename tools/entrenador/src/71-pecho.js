@@ -401,7 +401,7 @@
         posturas: { a: a, b: b, a2: refleja(a), b2: refleja(b) },
         encuadra: ['b', 'b2'],
         pasos: ['a', { sec: [['b', 1.4, 'suave', ['mi', 'td']]], desde: 'a' },
-                { sec: [['b', 1.0, null, ['mi', 'ti', 'td']], ['a', 1.2, 'suave', ['mi', 'td']], ['a2', 1.1, 'suave', ['ti', 'td']], ['b2', 1.4, 'suave', ['md', 'ti']]], desde: 'b' }]
+                { sec: [['b', 0.6, null, ['mi', 'ti', 'td']], ['a', 1.2, 'suave', ['mi', 'td']], ['a2', 1.1, 'suave', ['ti', 'td']], ['b2', 1.4, 'suave', ['md', 'ti']]], desde: 'b' }]
       };
     })();
     /* de lado junto a una pared, con la mano en ella y el brazo estirado a la altura del hombro: gira el cuerpo hacia el otro lado.
@@ -420,7 +420,7 @@
         },
         encuadra: ['b', 'b2'],
         pasos: ['a', { sec: [['b', 1.7, 'suave', ['mi']]], desde: 'a' },
-                { sec: [['b', 1.0, null, ['mi']], ['a', 1.3, 'suave', ['mi']], ['a2', 1.5, 'suave', []], ['b2', 1.6, 'suave', ['md']]], desde: 'b' }]
+                { sec: [['b', 0.4, null, ['mi']], ['a', 1.0, 'suave', ['mi']], ['a2', 1.4, 'suave', []], ['b2', 1.5, 'suave', ['md']]], desde: 'b' }]
       };
     })();
   })();

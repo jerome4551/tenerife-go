@@ -36,6 +36,55 @@
   var EN_BARRA = { tipo: 'puno', barra: [1, 0, 0], palma: [0, 0, 1] }, EN_BARRA_SUP = { tipo: 'puno', barra: [1, 0, 0], palma: [0, 0, -1] };
   var COLGADO = { p: { e: 6, z: 0, c: 16 }, t: { tob: 28 }, m: EN_BARRA };
 
+  /* ══════════ ayudas para cualquier bloque (nacieron en el 3, con el dorsal) ══════════ */
+  function une(a, b) { var r = {}, k; for (k in a) r[k] = a[k]; for (k in (b || {})) r[k] = b[k]; return r; }
+  var BRAZO = D.brazo + D.antebrazo + D.mano;      /* del hombro al centro del agarre, con el brazo estirado: 59 */
+  /* ── colgado de la barra de dominadas (a 225 cm) ── */
+  var ALTO_BARRA = 225;
+  function barraD(o) { return ['barra_dominadas', une({ alto: ALTO_BARRA, ancho: 62 }, o)]; }
+  /* a qué altura queda la cadera con los brazos estirados: cuanto más abiertas las manos (G, a cada lado), más arriba */
+  function yColgado(G, hom) { var dx = G - D.hombroX; return ALTO_BARRA - Math.sqrt((BRAZO - 0.3) * (BRAZO - 0.3) - dx * dx) - 43.5 - (hom || 0); }
+  /* colgado, suelto (los hombros suben hacia las orejas) y con los omóplatos abajo y atrás */
+  function cuelga(G, extra) { return sobre(COLGADO, sobre({ pel: [0, yColgado(G, 3.5), -2], hom: [3.5, 0], b: { a: [G, ALTO_BARRA - 8, 0], polo: [1, -0.2, 0.5] } }, extra || {})); }
+  function activo(G, extra) { return sobre(COLGADO, sobre({ pel: [0, yColgado(G, -2), -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [G, ALTO_BARRA - 8, 0], polo: [1, -0.3, 0.4] } }, extra || {})); }
+  function clavosB(G, G2) { return ['mi@0:' + G, 'md@0:' + (-(G2 == null ? G : G2))]; }
+  /* ── dos ayudas para colocar las manos ──
+     conAgarre: la postura P con el centro del puño izquierdo en g (el derecho, en su reflejo) y el codo hacia «polo»: la muñeca
+     queda a una mano de g, en la línea del antebrazo. k: 'b' (los dos brazos), 'bi' o 'bd' (uno solo; g es entonces el de ese lado) */
+  function conAgarre(P, g, polo, k) {
+    k = k || 'b';
+    var w = [g[0], g[1] - D.mano, g[2]], i, E, c = {};
+    for (i = 0; i < 5; i++) {
+      c[k] = { a: w, polo: polo };
+      E = resolver(sobre(P, c));
+      w = menos(g, por(unidad(menos(g, E[k === 'bd' ? 'd' : 'i'].cod)), D.mano));
+    }
+    c[k] = { a: w, polo: polo };
+    return sobre(P, c);
+  }
+  /* estirado: el brazo, estirado desde el hombro de la postura P hacia el punto q (a «flojo» cm de estirarse del todo); el puño
+     queda en esa línea. k, como arriba; si es 'b', q es el de la mano izquierda */
+  function estirado(P, q, k, flojo, polo) {
+    k = k || 'b';
+    var E = resolver(P), h = E[k === 'bd' ? 'd' : 'i'].hom, u = unidad(menos(q, h)), c = {};
+    c[k] = { a: mas(h, por(u, BRAZO - D.mano - (flojo == null ? 0.25 : flojo))), polo: polo || [k === 'bd' ? -1 : 1, -0.3, -0.3] };
+    return sobre(P, c);
+  }
+  /* dónde queda el puño de una postura */
+  function agarreDe(P, k) { return resolver(P)[k || 'i'].agarre; }
+  /* inclinado(ang): de pie, el tronco a «ang» grados de la vertical (90, paralelo al suelo), la cadera hacia atrás y las rodillas algo
+     flexionadas; los pies no se mueven */
+  function inclinado(ang, extra) {
+    var k = Math.sin(ang * RAD);
+    return sobre({ pel: [0, PIE - 2 - 5.5 * k, -27.5 * k], giro: [0, ang, 0], cab: [-ang * 0.3, 0, 0], p: { suelo: [11, 0], abre: 7 } }, extra || {});
+  }
+  var DE_PIE = { p: { suelo: [11, 0], abre: 7 } };
+  /* el punto del cuerpo ante el que acaba la barra o la mancuerna: a «arriba» cm de la cadera a lo largo del tronco y a «fuera» de su
+     eje hacia delante (hacia el suelo, si está inclinado) */
+  function anteTronco(P, arriba_, fuera, x) { var E = resolver(P); return mas(E.pel, mas(aplicar(E.Bp, [0, arriba_, 0]), mas(aplicar(E.Bl, [0, 0, fuera]), [x || 0, 0, 0]))); }
+  /* colgando: el puño, en la vertical del hombro (más «dz» hacia delante), con el brazo estirado */
+  function colgando(P, G, dz) { var h = resolver(P).i.hom; return estirado(P, [G, h[1] - BRAZO, h[2] + (dz || 0)], 'b', 0.3, [1, 0.2, -0.6]); }
+
   /* ══════════ CUÁDRICEPS ══════════ */
   (function () {
     var pies = { suelo: [14, 0], abre: 14, polo: [0.32, 0.1, 1] };
@@ -254,7 +303,7 @@
       material: [['pared', { z: 52, normal: [0, 0, -1], ancho: 130 }]],
       posturas: { a: e1, b: e2, a2: refleja(e1), b2: refleja(e2) },
       inicio: 'a', encuadra: ['b'],
-      pasos: ['a', { sec: [['b', 1.5, 'suave']], desde: 'a' }, { sec: [['b', 2.6], ['a', 0.9, 'suave'], ['a2', 1.1, 'suave'], ['b2', 1.5, 'suave']], desde: 'b' }]
+      pasos: ['a', { sec: [['b', 1.5, 'suave']], desde: 'a' }, { sec: [['b', 0.8], ['a', 0.9, 'suave'], ['a2', 1.1, 'suave'], ['b2', 1.5, 'suave']], desde: 'b' }]
     };
   })();
 
@@ -475,7 +524,7 @@
         a: { pel: [0, TOB_PUNTA + 78 * s, -100 + 78 * c], giro: [0, 90 - ang, 0], cab: [-12, 0, 0], p: { e: 0, z: 0, c: 0 }, t: PIES_PUNTA, b: brazos, m: PALMA_ABAJO }
       },
       inicio: 'a0', encuadra: ['a'],
-      pasos: ['a0', { sec: [['a', 1.3, 'suave']], desde: 'a0' }, { sec: [['a', 5.5], ['a0', 1.5, 'suave']], desde: 'a' }]
+      pasos: ['a0', { sec: [['a', 1.3, 'suave']], desde: 'a0' }, { sec: [['a', 5.25], ['a0', 1.5, 'suave']], desde: 'a' }]
     };
     /* el crunch: se enrolla el tronco; la pelvis y los pies no se mueven */
     var nuca = { a: [8, 37, -8], en: 'torax', polo: [1, 0.2, -0.3] }, pc = { suelo: [11, 60], abre: 4, polo: [0.1, 1, 0.2] };

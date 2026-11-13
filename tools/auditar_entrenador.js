@@ -30,7 +30,9 @@
  *    cuadro a cuadro, en castellano y en otro idioma (los nueve van rotando): acaba, dura lo que
  *    tiene que durar, lo que se lee en cada paso es el paso de la ficha, palabra por palabra, no
  *    hay ningún NaN en el dibujo y nada se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
- *    que el canvas de Samsung Internet sabe copiar (trazados, círculos, elipses y rectángulos). Y EL MOVIMIENTO, medido en cada cuadro:
+ *    que el canvas de Samsung Internet sabe copiar (trazados, círculos, elipses y rectángulos). Y CADA SECUENCIA CABE EN SU PASO, en
+ *    los diez idiomas: un paso dura lo que se tarda en leer su texto, no lo que dure su acción, y una secuencia más larga se
+ *    quedaría a medias al entrar el paso siguiente (la cuenta se coteja con lo que dura cada paso en el reproductor). Y EL MOVIMIENTO, medido en cada cuadro:
  *    lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque Jérôme respire y
  *    reparta el peso; nada se teletransporta de un cuadro al siguiente; respira; la cabeza y el
  *    tupé no se pasan de vueltas; y de cerca ninguna mano se sale del cuadro. Y EL DIBUJO, también en
@@ -137,6 +139,31 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     if (peros.length) mal.push(id + ': ' + Array.from(new Set(peros)).slice(0, 4).join('; '));
   });
   ok(!mal.length, 'las ' + ids.length + ' coreografías, por dentro: posturas, tramos, clavos, material, y ninguna postura imposible', mal.slice(0, 6));
+  /* cada secuencia cabe en su paso. Un paso dura lo que se tarda en leer su texto (80-reproductor.js: 4,4 s como poco, y 0,058 s por
+     letra, o 0,16 por carácter en chino), no lo que dure su acción; cuando entra el paso siguiente, la secuencia que no ha acabado se
+     queda a medias (y «vuelve despacio» no llega a verse). Se mira en los diez idiomas: manda el texto más corto. Lo que sobra tras la
+     última postura, si es quedarse quieto en ella (mantener), no cuenta: eso sí puede pasar de largo. Y si el paso viene de un plano
+     de cerca (el primero, tras la cabecera; o el que sigue a un consejo), su acción arranca cuando la cortinilla tapa: 0,25 s después.
+     Se da por bueno en la sección 2, con la cuenta cotejada con lo que dura cada paso en el reproductor de verdad. */
+  const CORTINILLA = 0.25;
+  const durPaso = (l, tx) => Math.max(4.4, 1.9 + tx.length * (/^zh/.test(l) ? 0.16 : 0.058));
+  const noCaben = []; let secuencias = 0, conSec = 0, justa = [99, ''];
+  ids.forEach(id => {
+    const co = T.COREO[id]; let alguna = false;
+    (co.pasos || []).forEach((p, k) => {
+      if (!p || !Array.isArray(p.sec) || !p.sec.length) return;
+      const sec = p.sec, n = sec.length, total = sec.reduce((a, q) => a + q[1], 0);
+      const antes = n > 1 ? sec[n - 2][0] : (p.desde || co.inicio || 'a'), util = total - (sec[n - 1][0] === antes ? sec[n - 1][1] : 0);
+      let corto = null;
+      LANGS.forEach(l => { const t = TX[l][id]; if (!t || !Array.isArray(t[1]) || typeof t[1][k] !== 'string') return; const d = durPaso(l, t[1][k]); if (!corto || d < corto[1]) corto = [l, d]; });
+      if (!corto) return;
+      const hay = corto[1] - (k === 0 || co.pasos[k - 1] === 'nota' ? CORTINILLA : 0);
+      secuencias++; alguna = true;
+      if (hay - util < justa[0]) justa = [hay - util, id + ', paso ' + (k + 1) + ' (' + corto[0] + ')'];
+      if (util > hay - 0.05) noCaben.push(id + ', paso ' + (k + 1) + ': ' + util.toFixed(2) + ' s de secuencia y en el paso hay ' + hay.toFixed(2) + ' s en ' + corto[0]);
+    });
+    if (alguna) conSec++;
+  });
   /* los gestos del presentador */
   {
     const G = T.GESTOS, PR = T.PRESENTA, peros = [], dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
@@ -255,7 +282,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     await pg.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
     const total = await pg.evaluate(l => window.preparar(l), LANGS);
     info('datos de ' + total + ' ejercicios');
-    const peros = [], gestos = {}, tope = {}, dibujo = [], plegados = [], salen = [], arrimados = [], piezas = {}, noCopia = []; let pasados = 0, cuadros = 0, mirados = 0, girados = 0, borron = 99, encuadrados = 0;
+    const peros = [], gestos = {}, tope = {}, dibujo = [], plegados = [], salen = [], arrimados = [], piezas = {}, noCopia = [], otraDur = []; let pasados = 0, cuadros = 0, mirados = 0, girados = 0, borron = 99, encuadrados = 0, cotejados = 0;
     for (let n = 0; n < idsVideo.length; n++) {
       /* el idioma y el tema de cada uno, los de siempre (por su puesto entre todos), se pase entero o por partes */
       const id = idsVideo[n], i = ids.indexOf(id);
@@ -279,6 +306,9 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         /* de qué está hecho el dibujo: solo de lo que el canvas de Samsung Internet sabe copiar (sección 4) */
         const raras = (r.tipos || []).filter(t => { piezas[t] = 1; return COPIA.indexOf(t) < 0; });
         if (raras.length || r.ajenos || !(r.tipos || []).length) noCopia.push(id + ': ' + (raras.length ? '<' + raras.join('>, <') + '>' : r.ajenos ? r.ajenos + ' piezas con máscara o filtro' : 'sin medir'));
+        /* lo que dura cada paso en el reproductor es lo que dice la cuenta de arriba (con la que se mira que cada secuencia quepa) */
+        if (!Array.isArray(m.durs) || m.durs.length !== m.pasos.length) otraDur.push(id + ' (' + l + '): sin las duraciones de sus pasos');
+        else m.durs.forEach((d, k) => { cotejados++; if (Math.abs(d - durPaso(l, m.pasos[k])) > 1e-9) otraDur.push(id + ' (' + l + '), paso ' + (k + 1) + ': dura ' + d + ' s y la cuenta da ' + durPaso(l, m.pasos[k])); });
         const esperados = Math.round(m.dur * 30), q = [];
         if (!r.fin) q.push('no acaba');
         /* cada tramo acaba en el primer cuadro que pasa de su duración: uno de más por tramo, como mucho */
@@ -303,6 +333,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
       }
     }
     ok(!peros.length && pasados === idsVideo.length * 2, 'los ' + idsVideo.length + ' vídeos, enteros, en castellano y en otro idioma (' + pasados + ' pases, ' + cuadros + ' cuadros): acaban, duran lo suyo, se lee el paso de la ficha palabra por palabra, sin NaN y sin salirse de ancho', peros.slice(0, 8));
+    ok(!noCaben.length && !otraDur.length && secuencias > 0 && cotejados >= idsVideo.length * 2, 'cada secuencia cabe en su paso, en los diez idiomas (' + secuencias + ' secuencias de ' + conSec + ' ejercicios; la más justa, con ' + justa[0].toFixed(2) + ' s de margen: ' + justa[1] + '): un paso dura lo que se tarda en leerlo, no lo que dure su acción, y una secuencia más larga se quedaría a medias; la cuenta es la del reproductor (cotejada en ' + cotejados + ' pasos de estos ' + idsVideo.length + ' vídeos)', noCaben.concat(otraDur).slice(0, 8));
     info('el movimiento, lo más de todo: lo clavado se mueve ' + tope.clavo + ' cm; el cuerpo, ' + tope.salto + ' cm en un cuadro (a 30 por segundo); una mano, ' + tope.saltoM + ' cm; la cabeza cabecea ' + tope.cabRep + '° en una repetición y ' + tope.cabBusto + '° al entrar; el tupé, ' + tope.pelo + '°');
     const delMov = peros.filter(p => /clavado|salto|respira|muelle|sale del cuadro/.test(p));
     ok(!delMov.length, 'el movimiento, medido en cada cuadro de los ' + idsVideo.length + ' vídeos: lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque respire y reparta el peso; nada se teletransporta; respira; los muelles no se pasan; de cerca ninguna mano se sale', delMov.slice(0, 6));

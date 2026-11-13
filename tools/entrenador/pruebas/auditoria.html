@@ -21,7 +21,8 @@ window.montar = function (id, lang, tema) {
   x.g.concat(x.s).forEach(function (g) { nombres[g] = g; });
   window.R = TG_ENTRENADOR.montar(document.getElementById('caja'), { id: id, nombre: t[0], pasos: t[1], pasosEs: TXS.es[id][1], prim: x.g, sec: x.s.filter(function (g) { return x.g.indexOf(g) < 0; }),
     nombres: nombres, etiquetas: [x.e[0]], entorno: x.e[0], nivel: x.n }, { idioma: lang, tema: tema || 'dia' });
-  return window.R ? { pasos: t[1], nombre: t[0], dur: window.R.tramos.reduce(function (a, q) { return a + q.dur; }, 0) } : null;
+  return window.R ? { pasos: t[1], nombre: t[0], dur: window.R.tramos.reduce(function (a, q) { return a + q.dur; }, 0),
+    durs: window.R.tramos.filter(function (q) { return q.tipo === 'paso'; }).map(function (q) { return q.dur; }) } : null;
 };
 /* la cabeza, vista desde todos los lados (cada 15° de rumbo, y desde arriba y desde abajo): que no salga ningún número
    imposible y que los rasgos se escondan cuando toca */
