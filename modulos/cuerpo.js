@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (596 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (611 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -480,6 +480,21 @@
     "cuerpoFuerzaMejor": {"es": "Mejor marca: {que} ({fecha})", "en": "Best: {que} ({fecha})", "fr": "Meilleur résultat : {que} ({fecha})", "de": "Bestwert: {que} ({fecha})", "it": "Miglior risultato: {que} ({fecha})", "nl": "Beste resultaat: {que} ({fecha})", "zh": "最好成绩：{que}（{fecha}）", "zht": "最好成績：{que}（{fecha}）", "bg": "Най-добър резултат: {que} ({fecha})", "pl": "Najlepszy wynik: {que} ({fecha})"},
     "cuerpoFuerzaPrimera": {"es": "Primera vez: {que} ({fecha})", "en": "First time: {que} ({fecha})", "fr": "Première fois : {que} ({fecha})", "de": "Erstes Mal: {que} ({fecha})", "it": "Prima volta: {que} ({fecha})", "nl": "Eerste keer: {que} ({fecha})", "zh": "第一次：{que}（{fecha}）", "zht": "第一次：{que}（{fecha}）", "bg": "Първи път: {que} ({fecha})", "pl": "Pierwszy raz: {que} ({fecha})"},
     "cuerpoFuerzaVeces": {"es": "{n} vez|{n} veces", "en": "{n} time|{n} times", "fr": "{n} fois|{n} fois", "de": "{n}-mal|{n}-mal", "it": "{n} volta|{n} volte", "nl": "{n} keer|{n} keer", "zh": "{n} 次", "zht": "{n} 次", "bg": "{n} път|{n} пъти", "pl": "{n} raz|{n} razy|{n} razy"},
+    "cuerpoPlanNivel": {"es": "¿A qué nivel entrena?", "en": "At what level do you train?", "fr": "À quel niveau vous entraînez-vous ?", "de": "Auf welchem Niveau trainieren Sie?", "it": "A che livello si allena?", "nl": "Op welk niveau traint u?", "zh": "您的训练水平如何？", "zht": "您的訓練程度如何？", "bg": "На какво ниво тренирате?", "pl": "Jaki poziom treningu?"},
+    "cuerpoNivelTope": {"es": "A tope", "en": "All out", "fr": "À fond", "de": "Volle Kraft", "it": "Al massimo", "nl": "Alles geven", "zh": "全力以赴", "zht": "全力以赴", "bg": "С пълна сила", "pl": "Na maksimum"},
+    "cuerpoRutHoy": {"es": "Su sesión de hoy", "en": "Your session today", "fr": "Votre séance du jour", "de": "Ihre Einheit heute", "it": "La sua sessione di oggi", "nl": "Uw sessie van vandaag", "zh": "今天的训练", "zht": "今天的訓練", "bg": "Вашата тренировка днес", "pl": "Dzisiejszy trening"},
+    "cuerpoRutSesion": {"es": "Sesión {letra} · {nivel}", "en": "Session {letra} · {nivel}", "fr": "Séance {letra} · {nivel}", "de": "Einheit {letra} · {nivel}", "it": "Sessione {letra} · {nivel}", "nl": "Sessie {letra} · {nivel}", "zh": "训练 {letra} · {nivel}", "zht": "訓練 {letra} · {nivel}", "bg": "Тренировка {letra} · {nivel}", "pl": "Trening {letra} · {nivel}"},
+    "cuerpoRutSeg": {"es": "{series} × {seg} s", "en": "{series} × {seg} s", "fr": "{series} × {seg} s", "de": "{series} × {seg} s", "it": "{series} × {seg} s", "nl": "{series} × {seg} s", "zh": "{series} 组 × {seg} 秒", "zht": "{series} 組 × {seg} 秒", "bg": "{series} × {seg} с", "pl": "{series} × {seg} s"},
+    "cuerpoSegN": {"es": "{n} s", "en": "{n} s", "fr": "{n} s", "de": "{n} s", "it": "{n} s", "nl": "{n} s", "zh": "{n}秒", "zht": "{n}秒", "bg": "{n} с", "pl": "{n} s"},
+    "cuerpoRutDesc": {"es": "Descanso: {t}", "en": "Rest: {t}", "fr": "Repos : {t}", "de": "Pause: {t}", "it": "Recupero: {t}", "nl": "Rust: {t}", "zh": "组间休息：{t}", "zht": "組間休息：{t}", "bg": "Почивка: {t}", "pl": "Przerwa: {t}"},
+    "cuerpoRutAlt": {"es": "Alternativas", "en": "Alternatives", "fr": "Alternatives", "de": "Alternativen", "it": "Alternative", "nl": "Alternatieven", "zh": "替代动作", "zht": "替代動作", "bg": "Алтернативи", "pl": "Zamienniki"},
+    "cuerpoRutDescansa": {"es": "Hoy no: este grupo se trabajó ayer u hoy (48 horas).", "en": "Not today: this muscle group was worked yesterday or today (48 hours).", "fr": "Pas aujourd’hui : ce groupe a été travaillé hier ou aujourd’hui (48 heures).", "de": "Heute nicht: Diese Muskelgruppe wurde gestern oder heute trainiert (48 Stunden).", "it": "Oggi no: questo gruppo è stato allenato ieri o oggi (48 ore).", "nl": "Vandaag niet: deze spiergroep is gisteren of vandaag getraind (48 uur).", "zh": "今天不练：这个肌群昨天或今天已经练过（48小时）。", "zht": "今天不練：這個肌群昨天或今天已經練過（48小時）。", "bg": "Не днес: тази група беше тренирана вчера или днес (48 часа).", "pl": "Nie dziś: ta partia była ćwiczona wczoraj lub dziś (48 godzin)."},
+    "cuerpoRutCalentar": {"es": "Antes de empezar: cómo calentar", "en": "Before you start: how to warm up", "fr": "Avant de commencer : comment s’échauffer", "de": "Vor dem Start: So wärmen Sie sich auf", "it": "Prima di iniziare: come riscaldarsi", "nl": "Voor u begint: zo warmt u op", "zh": "开始前：如何热身", "zht": "開始前：如何熱身", "bg": "Преди да започнете: как да загреете", "pl": "Przed startem: jak się rozgrzać"},
+    "cuerpoRutSinBanda": {"es": "¿Sin banda elástica? Haga la sesión de calistenia del mismo nivel, en un parque con barras.", "en": "No resistance band? Do the calisthenics session of the same level, in a park with bars.", "fr": "Pas de bande élastique ? Faites la séance de callisthénie du même niveau, dans un parc avec des barres.", "de": "Kein Widerstandsband? Machen Sie die Calisthenics-Einheit auf demselben Niveau, in einem Park mit Stangen.", "it": "Non ha un elastico? Faccia la sessione di calisthenics dello stesso livello, in un parco con le sbarre.", "nl": "Geen weerstandsband? Doe de calisthenicssessie van hetzelfde niveau, in een park met stangen.", "zh": "没有弹力带？请在有单杠和双杠的公园，做同一水平的自重训练。", "zht": "沒有彈力帶？請在有單槓和雙槓的公園，做同一程度的自重訓練。", "bg": "Нямате ластик? Направете тренировката по калистеника на същото ниво, в парк с лостове.", "pl": "Brak gumy oporowej? Wystarczy trening kalisteniki na tym samym poziomie, w parku z drążkami."},
+    "cuerpoRutMayores": {"es": "Tiene 65 años o más: antes de «{tope}», lea esto.", "en": "You are 65 or over: read this before «{tope}».", "fr": "Vous avez 65 ans ou plus : lisez ceci avant «{tope}».", "de": "Sie sind 65 oder älter: Lesen Sie dies vor «{tope}».", "it": "Ha 65 anni o più: legga questo prima di «{tope}».", "nl": "U bent 65 of ouder: lees dit vóór «{tope}».", "zh": "您已年满65岁：选择「{tope}」之前，请先读这个。", "zht": "您已年滿65歲：選擇「{tope}」之前，請先讀這個。", "bg": "На 65 или повече години сте: прочетете това преди «{tope}».", "pl": "Wiek 65+: przed «{tope}» warto to przeczytać."},
+    "cuerpoRutMenores": {"es": "Tiene menos de 18 años: antes de entrenar, lea esto.", "en": "You are under 18: read this before you train.", "fr": "Vous avez moins de 18 ans : lisez ceci avant de vous entraîner.", "de": "Sie sind unter 18: Lesen Sie dies, bevor Sie trainieren.", "it": "Ha meno di 18 anni: legga questo prima di allenarsi.", "nl": "U bent jonger dan 18: lees dit voordat u gaat trainen.", "zh": "您未满18岁：训练前，请先读这个。", "zht": "您未滿18歲：訓練前，請先讀這個。", "bg": "Под 18 години сте: прочетете това, преди да тренирате.", "pl": "Wiek poniżej 18 lat: przed treningiem warto to przeczytać."},
+    "cuerpoRutSemana": {"es": "Lleva 6 días seguidos entrenando: hoy, descanso total. El consenso sobre sobreentrenamiento (ECSS/ACSM, 2013) aconseja a los deportistas al menos un día de descanso total a la semana.", "en": "You have trained 6 days in a row: today, full rest. The consensus on overtraining (ECSS/ACSM, 2013) advises athletes to take at least one full day of rest a week.", "fr": "Six jours d’entraînement d’affilée : aujourd’hui, repos complet. Le consensus sur le surentraînement (ECSS/ACSM, 2013) conseille aux sportifs au moins un jour de repos complet par semaine.", "de": "Sie haben 6 Tage hintereinander trainiert: Heute ist ein kompletter Ruhetag dran. Der Konsens zum Übertraining (ECSS/ACSM, 2013) rät Sportlern zu mindestens einem kompletten Ruhetag pro Woche.", "it": "6 giorni di allenamento di fila: oggi, riposo completo. Il consenso sul sovrallenamento (ECSS/ACSM, 2013) consiglia agli atleti almeno un giorno di riposo completo a settimana.", "nl": "U hebt 6 dagen achter elkaar getraind: vandaag volledige rust. De consensus over overtraining (ECSS/ACSM, 2013) raadt sporters minstens één volledige rustdag per week aan.", "zh": "您已连续训练 6 天：今天完全休息。关于过度训练的共识（ECSS/ACSM，2013）建议运动员每周至少完全休息一天。", "zht": "您已連續訓練 6 天：今天完全休息。關於過度訓練的共識（ECSS/ACSM，2013）建議運動員每週至少完全休息一天。", "bg": "Тренирали сте 6 поредни дни: днес — пълна почивка. Консенсусът за претренирането (ECSS/ACSM, 2013) съветва спортистите да имат поне един ден пълна почивка седмично.", "pl": "6 dni treningu z rzędu: dziś pełny odpoczynek. Konsensus w sprawie przetrenowania (ECSS/ACSM, 2013) zaleca sportowcom co najmniej jeden dzień pełnego odpoczynku w tygodniu."},
+    "cuerpoRutSust": {"es": "¿Sin mancuernas, disco o banco?", "en": "No dumbbells, weight plate or bench?", "fr": "Pas d’haltères, de disque ou de banc ?", "de": "Keine Kurzhanteln, Hantelscheibe oder Bank?", "it": "Non ha manubri, disco o panca?", "nl": "Geen dumbbells, halterschijf of bank?", "zh": "没有哑铃、杠铃片或训练凳？", "zht": "沒有啞鈴、槓片或訓練椅？", "bg": "Нямате дъмбели, диск или пейка?", "pl": "Brak hantli, talerza lub ławki?"},
     "cuerpoNF_datos": {"es": "conjunto de datos", "en": "dataset", "fr": "jeu de données", "de": "Datensatz", "it": "set di dati", "nl": "dataset", "zh": "数据集", "zht": "資料集", "bg": "набор от данни", "pl": "zbiór danych"},
     "cuerpoNF_articulo": {"es": "artículo para profesionales", "en": "article for professionals", "fr": "article pour les professionnels", "de": "Fachartikel", "it": "articolo per professionisti", "nl": "artikel voor professionals", "zh": "面向专业人士的文章", "zht": "給專業人士的文章", "bg": "статия за специалисти", "pl": "artykuł dla specjalistów"},
     "cuerpoNF_estudioACE": {"es": "estudio patrocinado por ACE", "en": "study sponsored by ACE", "fr": "étude financée par l’ACE", "de": "von ACE geförderte Studie", "it": "studio finanziato da ACE", "nl": "door ACE gesponsorde studie", "zh": "ACE 资助的研究", "zht": "ACE 資助的研究", "bg": "проучване, финансирано от ACE", "pl": "badanie sponsorowane przez ACE"},
@@ -2202,7 +2217,7 @@
      redondea con el número escrito en decimal y no por × 1000, que con 0,5005 da 500,49999… y 0,5: así da
      0,501. Lo que no se escribe así (1e-7), por × 1000 */
   function km3(v) { var r = Number(Math.round(Number(v + 'e3')) + 'e-3'); return isFinite(r) ? r : Math.round(v * 1000) / 1000; }
-  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], gr: [], deporte: '', comida: comVacio(), sellos: {}, comp: { pie: COMP_PIE[0], bici: COMP_BICI[0] }, senderos: {}, sitio: '', material: [] }; }
+  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], gr: [], deporte: '', comida: comVacio(), sellos: {}, comp: { pie: COMP_PIE[0], bici: COMP_BICI[0] }, senderos: {}, sitio: '', material: [], nivel: 0 }; }
   function valida(s) {
     var r = vacio();
     if (!s || typeof s !== 'object') return r;
@@ -2245,6 +2260,8 @@
     /* (#120) dónde entrena hoy y el material que marcó para casa: solo de las listas */
     if (SITIOS.indexOf(s.sitio) >= 0) r.sitio = s.sitio;
     if (Array.isArray(s.material)) r.material = s.material.filter(function (m, i) { return MAT_CASA.indexOf(m) >= 0 && s.material.indexOf(m) === i; });
+    /* (nota 34) el nivel de las rutinas: 1 a 3, o 4 («A tope») */
+    if ([1, 2, 3, 4].indexOf(s.nivel) >= 0) r.nivel = s.nivel;
     /* el diario de comidas (parte 5): comValida() lo comprueba campo a campo */
     r.comida = comValida(s.comida);
     /* los sellos (bloque 6): solo los de la lista, con la fecha en que se consiguieron (no futura) */
@@ -3772,9 +3789,10 @@
      demás, el entorno del catálogo */
   function ejDeSitio(x, sitio) {
     if (!sitio || sitio === 'todos') return true;
-    if (sitio === 'casa') return x.m.every(function (m) { return m === 'ninguno' || m === 'pared' || st.material.indexOf(m) >= 0; });
+    if (sitio === 'casa') return puedeEnCasa(x.m);
     return x.en.indexOf(sitio) >= 0;
   }
+  function puedeEnCasa(ms) { return ms.every(function (m) { return m === 'ninguno' || m === 'pared' || st.material.indexOf(m) >= 0; }); }
   function nEjSitio(g, sitio, nivel) {
     if (!EJ) return null;
     return EJ.lista.filter(function (x) { return x.g.indexOf(g) >= 0 && ejDeSitio(x, sitio) && (!nivel || x.n === nivel); }).length;
@@ -3783,9 +3801,13 @@
     if (!$('tgc-plan')) return;
     R = R || resumen();
     var prio = prioActual(), P = planHoy(R, prio); planUltimo = P;
+    /* (nota 34) con el sitio y el nivel elegidos, la sesión de la rutina (sus datos se piden la primera vez) */
+    if (!RUT && !rutCarga && !rutError && st.sitio && nivelRut()) cargarRutinas().then(function () { renderPlan(); }, function () {});
+    var SH = sesionDatos(R);
     var hay = P.grupos.length > 0;
     $('tgc-plan-btn').setAttribute('aria-expanded', planAbierto ? 'true' : 'false');
-    $('tgc-plan-resumen').textContent = hay ? tx('cuerpoPlanPara', { lista: lista(P.grupos.map(nombre)) }) : tx('cuerpoPlanResDescanso');
+    $('tgc-plan-resumen').textContent = SH ? (SH.descanso ? tx('cuerpoPlanResDescanso') : tx('cuerpoPlanPara', { lista: SH.nombre }))
+      : (hay ? tx('cuerpoPlanPara', { lista: lista(P.grupos.map(nombre)) }) : tx('cuerpoPlanResDescanso'));
     $('tgc-plan-cuerpo').hidden = !planAbierto;
     if (!planAbierto) return;
     var sit = $('tgc-plan-sitios'); sit.textContent = '';
@@ -3805,6 +3827,36 @@
       var b = el('button', '', tx('cuerpoMat_' + m)); b.type = 'button'; b.dataset.mat = m;
       b.setAttribute('aria-pressed', st.material.indexOf(m) >= 0 ? 'true' : 'false'); mats.appendChild(b);
     });
+    /* (nota 34) el nivel, después del sitio; «A tope», solo a mayores de edad. Para menores, la respuesta de la NSCA
+       sobre jóvenes; desde los 65, la de mayores (no llegar al fallo) */
+    var nf = $('tgc-plan-nivel-f'), nv = $('tgc-plan-niveles'), ad = adulto(), em = edadMax(), ed = $('tgc-plan-edad');
+    nf.hidden = !st.sitio; nv.textContent = '';
+    NIVELES_RUT.forEach(function (n) {
+      if (n === 4 && !ad) return;
+      var b = el('button', '', nombreNivel(n)); b.type = 'button'; b.dataset.nivel = String(n);
+      b.setAttribute('aria-pressed', nivelRut() === n ? 'true' : 'false'); nv.appendChild(b);
+    });
+    ed.dataset.preg = !ad ? 'adolescentes-pesas' : (em !== null && em >= 65 ? 'mayores-ejercicio' : '');
+    ed.textContent = !ad ? tx('cuerpoRutMenores') : (ed.dataset.preg ? tx('cuerpoRutMayores', { tope: tx('cuerpoNivelTope') }) : '');
+    ed.hidden = nf.hidden || !ed.dataset.preg;
+    /* la sesión de hoy, con los nombres de los ejercicios ya cargados; si todo lo de la sesión descansa, «Hoy, descanso»
+       con las frases de siempre; sin nivel (o sin las rutinas), el plan por grupos */
+    /* sin el catálogo (no llegó), el plan por grupos de siempre en lugar de una tarjeta vacía */
+    var modoSes = SH ? (SH.descanso ? 'descanso' : (EJ ? 'sesion' : (ejError ? '' : 'cargando'))) : '';
+    /* los nombres de los ejercicios, en el idioma de la app: se piden si aún no han llegado (también al cambiar de idioma) */
+    if ((modoSes === 'sesion' || modoSes === 'cargando') && (!EJ || !EJ_TX[lengua()]) && !ejCarga) cargarEjercicios().then(function () { if (planAbierto) renderPlan(); }, function () {});
+    $('tgc-ses').hidden = modoSes !== 'sesion';
+    if (modoSes === 'sesion') renderSesion(SH);
+    $('tgc-plan-tit').hidden = $('tgc-plan-txt').hidden = modoSes === 'sesion' || modoSes === 'cargando';
+    if (modoSes) {
+      $('tgc-plan-tit').textContent = modoSes === 'descanso' ? tx('cuerpoPlanDescansoTit') : '';
+      $('tgc-plan-txt').textContent = modoSes !== 'descanso' ? '' : (SH.semana ? tx('cuerpoRutSemana') : tx('cuerpoPlanTxtDescanso') + ' ' + tx('cuerpoPlanSuave'));
+      $('tgc-plan-lista').textContent = ''; $('tgc-plan-lista').hidden = true;
+      var dd = $('tgc-plan-descansan');
+      dd.hidden = modoSes !== 'descanso' || !P.descansan.length;
+      dd.textContent = dd.hidden ? '' : tx('cuerpoPlanDescansan', { lista: lista(P.descansan.map(nombre)) }) + ' ' + tx('cuerpoPlan48');
+      return;
+    }
     $('tgc-plan-tit').textContent = tx(hay ? 'cuerpoPlanLeTocan' : 'cuerpoPlanDescansoTit');
     var txt = [];
     if (P.caso === 'nada') txt.push(tx('cuerpoPlanTxtNada'));
@@ -3827,6 +3879,193 @@
     var dsc = $('tgc-plan-descansan');
     dsc.hidden = !P.descansan.length;
     dsc.textContent = dsc.hidden ? '' : tx('cuerpoPlanDescansan', { lista: lista(P.descansan.map(nombre)) }) + ' ' + tx('cuerpoPlan48');
+  }
+
+  /* ══ (nota 34, 12-11-2026) Las rutinas en «¿Qué entreno hoy?» (Jérôme: «Se lo pasas a Claude Code y él lo monta»;
+     «3 si», «4 si»; «Si todo en verde sube») ══
+     datos/rutinas.json (se pide al usarse, como los ejercicios): 68 sesiones, para 4 sitios y 4 niveles (Inicial,
+     Intermedio, Avanzado y «A tope»), con la pauta de cada ejercicio (series; repeticiones o segundos; descanso), hasta
+     3 alternativas y las fuentes de cada cifra, con lo leído; y, de cada ejercicio, sus grupos y su material (del
+     catálogo). Se comprueba todo al leerlo: una sesión que no cuadra no se usa.
+     - El nivel se elige una vez y se guarda (st.nivel). «A tope» no se ofrece a menores de 18 (el año de nacimiento del
+       perfil, la menor edad posible, adulto()).
+     - La sesión de hoy: la siguiente a la última hecha (el día más reciente con algún ejercicio suyo anotado, el
+       principal o una alternativa), en el orden de las letras; si ese día es hoy, la misma. Un ejercicio cuyo grupo se
+       trabajó hoy o ayer lleva «Hoy no» (las 48 horas del ACSM, 2011); si no queda ninguno, «Hoy, descanso».
+     - En casa, el ejercicio de la sesión o, si no se puede con lo marcado, su primera alternativa que sí.
+     - Fuera, si la sesión pide banda elástica, un botón lleva a la de calistenia del mismo nivel (la nota 34). */
+  var NIVELES_RUT = [1, 2, 3, 4];
+  var IDIOMAS_RUT = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+  var RUT = null, rutCarga = null, rutError = false;
+  function txL(o) { if (!o || typeof o !== 'object') return ''; var v = o[lengua()]; return typeof v === 'string' && v ? v : (typeof o.es === 'string' ? o.es : ''); }
+  function parRut(v, min, max) {
+    return Array.isArray(v) && v.length === 2 && v.every(function (n) { return typeof n === 'number' && Math.floor(n) === n && n >= min && n <= max; }) && v[0] <= v[1] ? [v[0], v[1]] : null;
+  }
+  function textosRut(o) {
+    if (!o || typeof o !== 'object') return null;
+    var r = {};
+    return IDIOMAS_RUT.every(function (l) { var t = o[l]; if (typeof t === 'string' && t && t.length <= 600) { r[l] = t; return true; } return false; }) ? r : null;
+  }
+  function indexarRut(d) {
+    if (!d || typeof d !== 'object' || d.v !== 1 || !d.f || typeof d.f !== 'object' || !d.p || typeof d.p !== 'object' || !Array.isArray(d.s) ||
+        !d.h || typeof d.h !== 'object' || !d.x || typeof d.x !== 'object') return null;
+    /* mapas sin prototipo: un id como «constructor» no encuentra nada que no esté en los datos */
+    var f = Object.create(null), p = Object.create(null), x = Object.create(null), s = [], h = Object.create(null);
+    Object.keys(d.f).forEach(function (k) {
+      var q = d.f[k];
+      if (!esId(k) || !q || typeof q.c !== 'string' || !q.c || q.c.length > 80 || typeof q.u !== 'string' || q.u.length > 400 || !/^https:\/\/[^\s"'<>]+$/.test(q.u) ||
+          typeof q.l !== 'string' || !q.l || q.l.length > 4000) return;
+      f[k] = { c: q.c, u: q.u, l: q.l };
+    });
+    var claves = function (fs) { return Array.isArray(fs) && fs.length > 0 && fs.length <= 8 && fs.every(function (k) { return typeof k === 'string' && f[k]; }) ? fs.slice() : null; };
+    Object.keys(d.p).forEach(function (k) {
+      var q = d.p[k]; if (!esId(k) || !q || typeof q !== 'object') return;
+      var y = { s: parRut(q.s, 1, 10), r: q.r == null ? null : parRut(q.r, 1, 100), t: q.t == null ? null : parRut(q.t, 1, 600),
+                d: q.d == null ? null : parRut(q.d, 1, 600), f: claves(q.f), x: q.x == null ? null : textosRut(q.x) };
+      if (!y.s || !y.f || (!y.r && !y.t) || (q.r != null && !y.r) || (q.t != null && !y.t) || (q.d != null && !y.d) || (q.x != null && !y.x)) return;
+      p[k] = y;
+    });
+    Object.keys(d.x).forEach(function (k) {
+      var q = d.x[k];
+      if (!esId(k) || !Array.isArray(q) || q.length !== 2 || !Array.isArray(q[0]) || !Array.isArray(q[1])) return;
+      var g = soloDe(q[0], GRUPOS), m = soloDe(q[1], MATERIALES);
+      if (g.length && g.length === q[0].length && m.length === q[1].length) x[k] = [g, m];
+    });
+    d.s.forEach(function (q) {
+      if (!q || !esId(q.id) || SITIOS.indexOf(q.si) < 0 || NIVELES_RUT.indexOf(q.n) < 0 || typeof q.l !== 'string' || !/^[A-Z]$/.test(q.l) ||
+          !Array.isArray(q.e) || !q.e.length || q.e.length > 15) return;
+      var e = q.e.map(function (z) {
+        return Array.isArray(z) && z.length === 3 && esId(z[0]) && x[z[0]] && p[z[1]] && Array.isArray(z[2]) && z[2].length <= 3 &&
+          z[2].every(function (a) { return esId(a) && x[a] && a !== z[0]; }) ? [z[0], z[1], z[2].slice()] : null;
+      });
+      if (e.every(Boolean)) s.push({ id: q.id, si: q.si, n: q.n, l: q.l, e: e });
+    });
+    ['mancuernas', 'disco', 'banco', 'general'].forEach(function (m) {
+      var q = d.h[m], t = q && textosRut(q.t), fs = q && claves(q.f);
+      if (t && fs) h[m] = { t: t, f: fs };
+    });
+    return s.length ? { f: f, p: p, x: x, s: s, h: h } : null;
+  }
+  function cargarRutinas() {
+    if (RUT) return Promise.resolve();
+    if (rutCarga) return rutCarga;
+    rutError = false;
+    rutCarga = pedirJSON('rutinas.json').then(function (d) { RUT = indexarRut(d); if (!RUT) { rutError = true; throw new Error('rutinas'); } },
+      function (e) { rutError = true; throw e; });
+    var fin = function () { rutCarga = null; };
+    rutCarga.then(fin, fin);
+    return rutCarga;
+  }
+  /* el nivel guardado; «A tope» guardado de quien ahora sale menor de edad no vale (se vuelve a preguntar) */
+  function nivelRut() { var n = st.nivel; return NIVELES_RUT.indexOf(n) < 0 || (n === 4 && !adulto()) ? 0 : n; }
+  function nombreNivel(n) { return n === 4 ? tx('cuerpoNivelTope') : tx('cuerpoNivel_' + n); }
+  function sesionesDe(sitio, nivel) {
+    return RUT ? RUT.s.filter(function (q) { return q.si === sitio && q.n === nivel; }).sort(function (a, b) { return a.l < b.l ? -1 : (a.l > b.l ? 1 : 0); }) : [];
+  }
+  function idsSes(q) { var r = []; q.e.forEach(function (z) { [z[0]].concat(z[2]).forEach(function (id) { if (r.indexOf(id) < 0) r.push(id); }); }); return r; }
+  function sesionHoy() {
+    var nivel = nivelRut(), ss = st.sitio && nivel ? sesionesDe(st.sitio, nivel) : [];
+    if (!ss.length) return null;
+    var h = hoy(), ids = ss.map(idsSes), ultimo = '';
+    st.series.forEach(function (z) { if (z.e && z.d <= h && z.d > ultimo && ids.some(function (l) { return l.indexOf(z.e) >= 0; })) ultimo = z.d; });
+    var i = 0, deHoy = false;
+    if (ultimo) {
+      var hechos = Object.create(null); st.series.forEach(function (z) { if (z.e && z.d === ultimo) hechos[z.e] = 1; });
+      var cuenta = ids.map(function (l) { return l.filter(function (id) { return hechos[id]; }).length; });
+      var k = cuenta.indexOf(Math.max.apply(null, cuenta));
+      deHoy = ultimo === h;
+      i = deHoy ? k : (k + 1) % ss.length;
+    }
+    return { s: ss[i], deHoy: deHoy };
+  }
+  /* al menos un día de descanso total a la semana (el consenso ECSS/ACSM, 2013, que la app ya cita en «¿Cuántos días de
+     descanso necesito?»): con fuerza anotada cada uno de los 6 días anteriores y nada hoy, hoy no hay sesión */
+  function seisSeguidos() {
+    var h = hoy(), dias = Object.create(null);
+    st.series.forEach(function (z) { dias[z.d] = 1; });
+    if (dias[h]) return false;
+    for (var k = 1; k <= 6; k++) if (!dias[sumar(h, -k)]) return false;
+    return true;
+  }
+  function sesionDatos(R) {
+    var S = RUT ? sesionHoy() : null;
+    if (!S) return null;
+    if (!S.deHoy && seisSeguidos()) return { s: S.s, deHoy: false, ejs: [], descanso: true, semana: true, nombre: tx('cuerpoRutSesion', { letra: S.s.l, nivel: nombreNivel(S.s.n) }) };
+    var ayer = sumar(hoy(), -1);
+    var ejs = S.s.e.map(function (z) {
+      var todos = [z[0]].concat(z[2]);
+      var vale = S.s.si === 'casa' ? todos.filter(function (id) { return puedeEnCasa(RUT.x[id][1]); }) : todos;
+      var usa = vale.length ? vale : todos, id = usa[0];
+      return { id: id, alts: usa.slice(1), p: RUT.p[z[1]],
+               descansa: !S.deHoy && RUT.x[id][0].some(function (g) { return !!R.ultima[g] && R.ultima[g] >= ayer; }) };
+    });
+    return { s: S.s, deHoy: S.deHoy, ejs: ejs, descanso: ejs.every(function (e) { return e.descansa; }),
+             nombre: tx('cuerpoRutSesion', { letra: S.s.l, nivel: nombreNivel(S.s.n) }) };
+  }
+  /* «2–3», o «3» si las dos cifras son iguales */
+  function rango(v) { return v[0] === v[1] ? fmtN(v[0], 0) : fmtN(v[0], 0) + '–' + fmtN(v[1], 0); }
+  /* «2–3 × 10–15 · Descanso: 1–2 min»; con segundos, «2–3 × 30–60 s»; con las dos cosas, «3 × 5 × 20–30 s» */
+  function pautaTxt(q) {
+    var out = q.r ? tx('cuerpoCargaSR', { series: rango(q.s), reps: rango(q.r) }) + (q.t ? ' × ' + tx('cuerpoSegN', { n: rango(q.t) }) : '')
+      : tx('cuerpoRutSeg', { series: rango(q.s), seg: rango(q.t) });
+    if (q.d) out += ' · ' + tx('cuerpoRutDesc', { t: q.d[0] % 60 === 0 && q.d[1] % 60 === 0 ? tx('cuerpoMin', { n: rango([q.d[0] / 60, q.d[1] / 60]) }) : tx('cuerpoSegN', { n: rango(q.d) }) });
+    return out;
+  }
+  /* las fuentes, como en «Preguntar»: el nombre corto con su enlace y lo leído, tal como se copió (ya entre comillas) */
+  function fuentesRut(ks) {
+    var det = el('details', 'tgc-resp-f tgc-ses-fuentes'), sum = el('summary'), ul = el('ul');
+    ks = ks.filter(function (k) { return RUT.f[k]; });
+    sum.appendChild(el('span', '', tx('cuerpoAsisFuentes', { n: ks.length })));
+    det.appendChild(sum);
+    ks.forEach(function (k) {
+      var q = RUT.f[k], li = el('li'), a = el('a', '', q.c), lp = el('p', 'tgc-resp-leido');
+      a.href = q.u; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.appendChild(a);
+      lp.appendChild(el('b', '', tx('cuerpoAsisLeido') + ': ')); lp.appendChild(document.createTextNode(q.l)); li.appendChild(lp);
+      ul.appendChild(li);
+    });
+    det.appendChild(ul);
+    return det;
+  }
+  function renderSesion(SH) {
+    $('tgc-ses-nom').textContent = SH.nombre;
+    /* el esfuerzo: arriba, la frase de la mayoría de los ejercicios; la otra (el ejercicio pesado del día en «A tope»), en
+       el suyo */
+    var veces = Object.create(null);
+    SH.ejs.forEach(function (e) { var t = txL(e.p.x); if (t) veces[t] = (veces[t] || 0) + 1; });
+    var arriba = Object.keys(veces).sort(function (a, b) { return veces[b] - veces[a]; })[0] || '';
+    $('tgc-ses-esf').textContent = arriba; $('tgc-ses-esf').hidden = !arriba;
+    /* en casa: qué usar si no tiene mancuernas, disco o banco (y la regla general), con sus fuentes */
+    var sus = $('tgc-ses-sust'), stx = $('tgc-ses-sust-txt'), MS = ['mancuernas', 'disco', 'banco', 'general'];
+    var hayS = SH.s.si === 'casa' && MS.some(function (m) { return RUT.h[m]; });
+    sus.hidden = !hayS; stx.textContent = '';
+    if (hayS) {
+      var fs = [];
+      MS.forEach(function (m) { if (!RUT.h[m]) return; stx.appendChild(el('p', 'tgc-ayuda', txL(RUT.h[m].t))); RUT.h[m].f.forEach(function (k) { if (fs.indexOf(k) < 0) fs.push(k); }); });
+      stx.appendChild(fuentesRut(fs));
+    }
+    /* fuera, con banda elástica en la sesión: a la de calistenia del mismo nivel */
+    $('tgc-ses-banda').hidden = !(SH.s.si === 'fuera' && SH.ejs.some(function (e) { return RUT.x[e.id][1].indexOf('banda') >= 0; }) && sesionesDe('calistenia', SH.s.n).length);
+    var ol = $('tgc-ses-lista'), fk = [];
+    ol.textContent = '';
+    SH.ejs.forEach(function (e) {
+      var li = el('li', 'tgc-ses-ej' + (e.descansa ? ' descansa' : '')), b = el('button', 'tgc-ses-ej-btn');
+      b.type = 'button'; b.dataset.id = e.id;
+      b.appendChild(el('span', 'tgc-ses-ej-nom', nombreEj(e.id)));
+      b.appendChild(el('span', 'tgc-ses-ej-pauta', pautaTxt(e.p)));
+      li.appendChild(b);
+      var t = txL(e.p.x);
+      if (t && t !== arriba) li.appendChild(el('p', 'tgc-ses-ej-esf', t));
+      if (e.descansa) li.appendChild(el('p', 'tgc-ses-no', tx('cuerpoRutDescansa')));
+      if (e.alts.length) {
+        var d = el('details', 'tgc-ses-alt'), w = el('div', 'tgc-ses-alts');
+        d.appendChild(el('summary', '', tx('cuerpoRutAlt')));
+        e.alts.forEach(function (a) { var ab = el('button', 'tgc-ver', nombreEj(a)); ab.type = 'button'; ab.dataset.id = a; w.appendChild(ab); });
+        d.appendChild(w); li.appendChild(d);
+      }
+      e.p.f.forEach(function (k) { if (fk.indexOf(k) < 0) fk.push(k); });
+      ol.appendChild(li);
+    });
+    var fb = $('tgc-ses-f'); fb.textContent = ''; fb.appendChild(fuentesRut(fk));
   }
 
   /* ══ (#120, 12-11-2026) «Su fuerza», en «Evolución» (Jérôme: «guarda los kilos y las repeticiones para ver mejor los
@@ -4786,7 +5025,7 @@
     /* (#120) «¿Qué entreno hoy?»: abrir y cerrar; el sitio y el material se guardan al tocarlos; un grupo abre su hoja
        con el filtro del sitio (y, el primer día, el nivel inicial); «¿Por qué?», las dos respuestas con sus fuentes */
     $('tgc-plan-btn').addEventListener('click', function () {
-      planAbierto = !planAbierto; renderPlan();
+      planAbierto = !planAbierto; if (planAbierto) rutError = false; renderPlan();
       if (planAbierto && !EJ) cargarEjercicios().then(function () { if (planAbierto) renderPlan(); }, function () {});
     });
     $('tgc-plan-sitios').addEventListener('click', function (e) {
@@ -4812,6 +5051,33 @@
       abrirHoja(b.dataset.g, true);
     });
     $('tgc-plan-porque').addEventListener('click', function () { preguntaIdPendiente = ['frecuencia-musculo', 'dias-descanso']; setModo('preguntar'); });
+    /* (nota 34) el nivel se guarda al tocarlo («A tope», solo a mayores de edad); la nota de la edad, el calentamiento y
+       «sin banda» (a calistenia, mismo nivel); un ejercicio de la sesión (o una alternativa) abre su ficha */
+    $('tgc-plan-niveles').addEventListener('click', function (e) {
+      var b = e.target.closest('button'), n = b ? Number(b.dataset.nivel) : 0;
+      if (NIVELES_RUT.indexOf(n) < 0 || (n === 4 && !adulto())) return;
+      var antes = st.nivel; st.nivel = n;
+      if (!guardar()) st.nivel = antes;
+      renderPlan();
+      try { $('tgc-plan-niveles').querySelector('[data-nivel="' + st.nivel + '"]').focus(); } catch (x) {}
+    });
+    $('tgc-plan-edad').addEventListener('click', function () {
+      var id = this.dataset.preg;
+      if (id === 'adolescentes-pesas' || id === 'mayores-ejercicio') { preguntaIdPendiente = [id]; setModo('preguntar'); }
+    });
+    $('tgc-ses-calentar').addEventListener('click', function () { preguntaIdPendiente = ['calentar']; setModo('preguntar'); });
+    $('tgc-ses-banda').addEventListener('click', function () {
+      var antes = st.sitio; st.sitio = 'calistenia'; matTocado = false;
+      if (!guardar()) st.sitio = antes;
+      renderPlan();
+      try { $('tgc-plan-sitios').querySelector('[data-sitio="' + st.sitio + '"]').focus(); } catch (x) {}
+    });
+    $('tgc-ses-lista').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-id]'), x = b && EJ && EJ.porId[b.dataset.id];
+      if (!x) return;
+      ejEntorno = st.sitio || 'todos'; ejNivel = 0;
+      abrirHoja(x.g[0], true); abrirEj(x.id);
+    });
     $('tgc-ej-niv').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; ejNivel = Number(b.dataset.v) || 0; renderEjLista(); });
     $('tgc-ej-buscar').addEventListener('input', function () { ejBuscar = this.value; renderEjLista(); });
     $('tgc-ej-reintentar').addEventListener('click', function () { ejError = false; renderEjLista(); });
@@ -6259,6 +6525,30 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-plan-mat > summary:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; border-radius: 8px; }
 .tgc-plan-mat-sel { font-weight: 400; font-size: 13px; color: var(--tinta-2); }
 .tgc-plan-mat .tgc-ayuda { margin: 0; }
+/* (nota 34) «Su sesión de hoy»: el nombre de la sesión, la frase de esfuerzo, cada ejercicio con su pauta (toda la fila
+   abre su ficha), lo que descansa, sus alternativas y las fuentes de las cifras */
+.tgc-ses { display: grid; gap: 10px; }
+.tgc-ses h3 { margin: 2px 0 0; font-size: 16px; }
+.tgc-ses-nom { margin: -6px 0 0; font-size: 14px; font-weight: 600; color: var(--tinta-2); }
+.tgc-ses .tgc-ayuda { margin: 0; }
+.tgc-ses-sust-txt { display: grid; gap: 8px; }
+.tgc-ses-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: tgc-ses; }
+.tgc-ses-ej { display: grid; gap: 6px; padding: 10px 14px; border-radius: 14px; border: 1.5px solid var(--linea); background: var(--fondo); counter-increment: tgc-ses; }
+.tgc-ses-ej.descansa { border-style: dashed; }
+.tgc-ses-ej.descansa .tgc-ses-ej-btn { opacity: .72; }
+.tgc-ses-ej-btn { display: grid; gap: 3px; width: 100%; min-height: 44px; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: start; cursor: pointer; }
+.tgc-ses-ej-btn:focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; border-radius: 8px; }
+.tgc-ses-ej-nom { font-weight: 700; font-size: 15px; line-height: 1.3; }
+.tgc-ses-ej-nom::before { content: counter(tgc-ses) ". "; color: var(--tinta-2); font-weight: 600; font-variant-numeric: tabular-nums; }
+.tgc-ses-ej-pauta { justify-self: start; padding: 1px 10px; border-radius: 999px; border: 1px solid var(--linea); background: var(--tarjeta); font-size: 13px; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.tgc-ses-ej-esf { margin: 0; font-size: 13px; line-height: 1.4; color: var(--tinta-2); }
+.tgc-ses-no { margin: 0; font-size: 13px; line-height: 1.4; font-weight: 600; color: var(--rojo); }
+.tgc-ses-alt > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; min-height: 32px; font-size: 13px; font-weight: 600; color: var(--tinta-2); }
+.tgc-ses-alt > summary::-webkit-details-marker { display: none; }
+.tgc-ses-alt > summary::before { content: "›"; display: inline-block; color: var(--oro); font-weight: 700; transition: transform var(--t-fast) var(--ease-out); }
+.tgc-ses-alt[open] > summary::before { transform: rotate(90deg); }
+.tgc-ses-alt > summary:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; border-radius: 8px; }
+.tgc-ses-alts { display: flex; flex-wrap: wrap; gap: 2px 16px; }
 .tgc-ej-casa { margin: 0; }
 /* (#120) «Su fuerza», en «Evolución»: cada ejercicio con su última vez, su mejor marca y la primera, y una línea pequeña */
 .tgc-fuerza { display: grid; gap: 10px; margin-top: 14px; }
@@ -6603,6 +6893,24 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
           <div class="tgc-seg" id="tgc-plan-mats"></div>
           <p class="tgc-ayuda" id="tgc-plan-mat-ayuda">Marque lo que tenga; sin marcar nada, salen los ejercicios sin material.</p>
         </details>
+        <fieldset class="tgc-op" id="tgc-plan-nivel-f" hidden>
+          <legend id="tgc-plan-nivel-tit">¿A qué nivel entrena?</legend>
+          <div class="tgc-seg" id="tgc-plan-niveles"></div>
+        </fieldset>
+        <button type="button" class="tgc-ver" id="tgc-plan-edad" hidden></button>
+        <section class="tgc-ses" id="tgc-ses" aria-labelledby="tgc-ses-tit" hidden>
+          <h3 id="tgc-ses-tit">Su sesión de hoy</h3>
+          <p class="tgc-ses-nom" id="tgc-ses-nom"></p>
+          <p class="tgc-ayuda tgc-ses-esf" id="tgc-ses-esf" hidden></p>
+          <details class="tgc-plan-mat tgc-ses-sust" id="tgc-ses-sust" hidden>
+            <summary><span id="tgc-ses-sust-tit">¿Sin mancuernas, disco o banco?</span></summary>
+            <div class="tgc-ses-sust-txt" id="tgc-ses-sust-txt"></div>
+          </details>
+          <button type="button" class="tgc-ver" id="tgc-ses-banda" hidden>¿Sin banda elástica? Haga la sesión de calistenia del mismo nivel, en un parque con barras.</button>
+          <button type="button" class="tgc-ver" id="tgc-ses-calentar">Antes de empezar: cómo calentar</button>
+          <ol class="tgc-ses-lista" id="tgc-ses-lista"></ol>
+          <div id="tgc-ses-f"></div>
+        </section>
         <h3 id="tgc-plan-tit"></h3>
         <p class="tgc-ayuda" id="tgc-plan-txt"></p>
         <ul class="tgc-plan-lista" id="tgc-plan-lista"></ul>
@@ -7193,6 +7501,11 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     ['#tgc-plan-mat-tit', 'tx', 'cuerpoPlanMat'],
     ['#tgc-plan-mat-ayuda', 'tx', 'cuerpoPlanMatAyuda'],
     ['#tgc-plan-porque', 'tx', 'cuerpoPlanPorQue'],
+    ['#tgc-plan-nivel-tit', 'tx', 'cuerpoPlanNivel'],
+    ['#tgc-ses-tit', 'tx', 'cuerpoRutHoy'],
+    ['#tgc-ses-sust-tit', 'tx', 'cuerpoRutSust'],
+    ['#tgc-ses-banda', 'tx', 'cuerpoRutSinBanda'],
+    ['#tgc-ses-calentar', 'tx', 'cuerpoRutCalentar'],
     ['#tgc-fuerza-tit', 'tx', 'cuerpoFuerzaTit'],
     ['#tgc-ej-niv', 'aria', 'cuerpoNivelFiltro'],
     ['#tgc-ej-niv [data-v="0"]', 'tx', 'cuerpoNivelTodos'],

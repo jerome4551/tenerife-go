@@ -206,7 +206,7 @@ async function ejemplo(pg, mas) {
      para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; desde el 8 (bloque 8), con
      «Su compañero de travesía» (el título, «A pie», «En bici» y la ayuda) y «Senderos de la isla» (el título), 151; y 2 placeholders (el
      del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (161 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?» y el título de «Su fuerza»; y 2 placeholders)', r2.n === 161 && r2.ph === 2, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (166 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?» y el título de «Su fuerza»; desde la nota 34, los cinco de las rutinas: «¿A qué nivel entrena?», «Su sesión de hoy», «¿Sin mancuernas, disco o banco?», «sin banda» y «cómo calentar» (166); y 2 placeholders)', r2.n === 166 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -3457,6 +3457,223 @@ async function ejemplo(pg, mas) {
     }
     prueba('34: «progresar» da la regla del ACSM de 2009 (2–10 %, 1 o 2 repeticiones más, dos sesiones seguidas), con su fuente la primera y lo leído, en los diez idiomas',
       Object.keys(REGLA).length === 10 && !mal34.length, mal34.join(' · '));
+  }
+
+  // 35. (12-11-2026, nota 34; Jérôme: «3 si», «4 si», «Si todo en verde sube») las rutinas en «¿Qué entreno hoy?»: el
+  //     nivel (después del sitio, guardado; «A tope» solo a mayores de edad, con la nota de la edad), la sesión de hoy (la
+  //     A el primer día; la misma si hoy ya hizo algo de ella; la siguiente si no), lo que descansa (48 horas) y el día de
+  //     descanso, cada pauta con sus cifras, la frase de esfuerzo y las fuentes con lo leído; en casa, lo que se puede con
+  //     lo marcado y los sustitutos; fuera, sin banda, a calistenia; una fila abre su ficha; diez idiomas; y lo guardado
+  //     que no vale, fuera
+  {
+    const fs = require('fs'), path = require('path');
+    const DAT = n => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', n), 'utf8'));
+    const RU = DAT('rutinas.json'), NOM = DAT('ejercicios-es.json');
+    const s35 = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s35.indexOf('var CUERPO_UI = {'), j = s35.indexOf('\n  };', i);
+      for (const l of s35.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
+    const ANIO = new Date().getFullYear();
+    const S = id => RU.s.find(s => s.id === id);
+    const rg = v => v[0] === v[1] ? String(v[0]) : v[0] + '–' + v[1];
+    /* la pauta como debe leerse en castellano: «2–3 × 8–12 · Descanso: 1–2 min», «2–3 × 10–30 s», «3 × 5 × 20–30 s» */
+    const pautaEs = k => { const q = RU.p[k]; let o = q.r ? rg(q.s) + ' × ' + rg(q.r) + (q.t ? ' × ' + rg(q.t) + ' s' : '') : rg(q.s) + ' × ' + rg(q.t) + ' s';
+      if (q.d) o += ' · Descanso: ' + (q.d[0] % 60 === 0 && q.d[1] % 60 === 0 ? rg([q.d[0] / 60, q.d[1] / 60]) + ' min' : rg(q.d) + ' s'); return o; };
+    const c35 = await contexto(b), p35 = await c35.newPage(), e35 = []; vigilar(p35, e35);
+    await abrirApp(p35); await abrirPerfilCuerpo(p35); await suCuerpo(p35);
+    /* lo anotado: [hace cuántos días, ejercicio], una fila por grupo principal (como anota la ficha); el año de nacimiento, en el perfil */
+    const poner = (ejs, extra, nac) => p35.evaluate(([f, ex, na]) => {
+      const T0 = Date.now() - 5e6;
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify(Object.assign({ v: 1, series: f.map((x, i) => ({ d: x[0], g: x[1], n: 3, t: T0 + i, e: x[2] })) }, ex || {})));
+      const pf = JSON.parse(localStorage.getItem('tenerife.perfil') || '{}'); if (na) pf.nacimiento = na; else delete pf.nacimiento;
+      localStorage.setItem('tenerife.perfil', JSON.stringify(pf));
+      TG_CUERPO.abrir();
+    }, [ejs.flatMap(([n, id]) => RU.x[id][0].map(g => [hace(n), g, id])), extra || null, nac || null]).then(() => p35.waitForTimeout(250));
+    const leer = () => p35.evaluate(() => {
+      const $ = id => document.getElementById(id), vis = id => !$(id).hidden;
+      return {
+        abierto: vis('tgc-plan-cuerpo'), res: $('tgc-plan-resumen').textContent,
+        nivelVis: vis('tgc-plan-nivel-f'), nivelTit: $('tgc-plan-nivel-tit').textContent,
+        niveles: [...document.querySelectorAll('#tgc-plan-niveles button')].map(b => b.dataset.nivel + ':' + b.textContent + ':' + b.getAttribute('aria-pressed')),
+        edad: vis('tgc-plan-edad') ? $('tgc-plan-edad').textContent : null,
+        ses: vis('tgc-ses'), sesTit: $('tgc-ses-tit').textContent, sesNom: $('tgc-ses-nom').textContent,
+        esf: vis('tgc-ses-esf') ? $('tgc-ses-esf').textContent : null,
+        sust: vis('tgc-ses-sust') ? [...$('tgc-ses-sust-txt').children].filter(x => x.tagName === 'P').map(x => x.textContent) : null,
+        sustTit: $('tgc-ses-sust-tit').textContent,
+        banda: vis('tgc-ses-banda') ? $('tgc-ses-banda').textContent : null, calentar: $('tgc-ses-calentar').textContent,
+        ejs: [...document.querySelectorAll('#tgc-ses-lista > li')].map(li => ({ id: li.querySelector('.tgc-ses-ej-btn').dataset.id,
+          nom: li.querySelector('.tgc-ses-ej-nom').textContent, pauta: li.querySelector('.tgc-ses-ej-pauta').textContent,
+          esf: (li.querySelector('.tgc-ses-ej-esf') || {}).textContent || null, no: (li.querySelector('.tgc-ses-no') || {}).textContent || null,
+          alt: (li.querySelector('.tgc-ses-alt summary') || {}).textContent || null, alts: [...li.querySelectorAll('.tgc-ses-alts button')].map(x => x.dataset.id + ':' + x.textContent) })),
+        fsum: (document.querySelector('#tgc-ses-f .tgc-resp-f summary') || {}).textContent || null,
+        fuentes: [...document.querySelectorAll('#tgc-ses-f .tgc-resp-f li')].map(li => ({ c: li.querySelector('a').textContent, u: li.querySelector('a').getAttribute('href'),
+          rel: li.querySelector('a').rel, tg: li.querySelector('a').target, l: li.querySelector('.tgc-resp-leido').lastChild.textContent })),
+        tit: vis('tgc-plan-tit') ? $('tgc-plan-tit').textContent : null, txt: vis('tgc-plan-txt') ? $('tgc-plan-txt').textContent : null,
+        lista: vis('tgc-plan-lista'), desc: vis('tgc-plan-descansan') ? $('tgc-plan-descansan').textContent : null,
+        sitios: [...document.querySelectorAll('#tgc-plan-sitios button')].filter(x => x.getAttribute('aria-pressed') === 'true').map(x => x.dataset.sitio) };
+    });
+    const abrirPlan = async () => { if (!(await leer()).abierto) { await p35.click('#tgc-plan-btn'); await p35.waitForTimeout(250); } };
+    const esperarSes = () => p35.waitForFunction(() => !document.getElementById('tgc-ses').hidden && document.querySelectorAll('#tgc-ses-lista > li').length > 0, null, { timeout: 10000 }).catch(() => {});
+    const ESF = RU.p['n1-general'].x.es, TOPE = RU.p['tope-musculo'].x.es;
+    const fuentesDe = id => { const ks = []; S(id).e.forEach(z => RU.p[z[1]].f.forEach(k => { if (ks.indexOf(k) < 0) ks.push(k); })); return ks; };
+
+    // sin sitio, no se pregunta el nivel; con el sitio, los cuatro niveles (sin año de nacimiento, también «A tope») y el plan por grupos
+    await poner([], { sitio: '' }); await abrirPlan();
+    const a0 = await leer();
+    prueba('35: sin sitio elegido no se pregunta el nivel, y no hay sesión', !a0.nivelVis && !a0.ses && a0.edad === null, JSON.stringify(a0).slice(0, 300));
+    await poner([], { sitio: 'gimnasio' }); await abrirPlan();
+    const a1 = await leer();
+    prueba('35: con el sitio, «¿A qué nivel entrena?» con Inicial, Intermedio, Avanzado y «A tope», ninguno elegido; sin nivel, el plan por grupos de siempre',
+      a1.nivelVis && a1.nivelTit === '¿A qué nivel entrena?' && JSON.stringify(a1.niveles) === JSON.stringify(['1:Inicial:false', '2:Intermedio:false', '3:Avanzado:false', '4:A tope:false']) &&
+      !a1.ses && a1.tit === 'Hoy le tocan' && a1.lista && a1.edad === null, JSON.stringify(a1).slice(0, 400));
+
+    // el nivel se guarda al tocarlo; el primer día, la sesión A, con cada ejercicio, su pauta, la frase de esfuerzo y las fuentes
+    await p35.click('#tgc-plan-niveles [data-nivel="1"]'); await esperarSes();
+    const a2 = await leer(), g1a = S('gimnasio-1-a'), st2 = await p35.evaluate(() => TG_CUERPO.estado().nivel);
+    const fk = fuentesDe('gimnasio-1-a');
+    prueba('35: «Inicial» se guarda (nivel 1) y sale «Su sesión de hoy», «Sesión A · Inicial»; arriba, cerrado, «Para hoy: Sesión A · Inicial.»; sin el plan por grupos',
+      st2 === 1 && a2.ses && a2.sesTit === 'Su sesión de hoy' && a2.sesNom === 'Sesión A · Inicial' && a2.res === 'Para hoy: Sesión A · Inicial.' &&
+      a2.tit === null && a2.txt === null && !a2.lista && a2.desc === null && a2.niveles[0] === '1:Inicial:true', JSON.stringify(a2).slice(0, 400));
+    prueba('35: los ' + g1a.e.length + ' ejercicios de la sesión A del gimnasio, en su orden, con su nombre y su pauta («' + pautaEs('n1-general') + '»), sin «Hoy no»',
+      a2.ejs.length === g1a.e.length && a2.ejs.every((e, i) => e.id === g1a.e[i][0] && e.nom === NOM[e.id][0] && e.pauta === pautaEs(g1a.e[i][1]) && !e.no),
+      JSON.stringify(a2.ejs.map(e => e.id + ' ' + e.pauta)).slice(0, 400));
+    prueba('35: la frase de esfuerzo, una vez arriba («' + ESF.slice(0, 40) + '…»); las alternativas de cada uno, con su nombre; «Antes de empezar: cómo calentar»; ni sustitutos ni banda',
+      a2.esf === ESF && a2.ejs.every(e => !e.esf) && a2.ejs.every((e, i) => JSON.stringify(e.alts) === JSON.stringify(g1a.e[i][2].map(x => x + ':' + NOM[x][0])) && (e.alts.length ? e.alt === 'Alternativas' : e.alt === null)) &&
+      a2.calentar === 'Antes de empezar: cómo calentar' && a2.sust === null && a2.banda === null, JSON.stringify([a2.esf, a2.ejs[0]]).slice(0, 300));
+    prueba('35: las ' + fk.length + ' fuentes de sus cifras, con su nombre corto, su enlace (pestaña nueva, noopener) y lo leído entre comillas',
+      a2.fsum === fk.length + ' fuentes' && a2.fuentes.length === fk.length && a2.fuentes.every((f, i) => f.c === RU.f[fk[i]].c && f.u === RU.f[fk[i]].u && /^https:\/\//.test(f.u) &&
+        f.tg === '_blank' && /noopener/.test(f.rel) && f.l === RU.f[fk[i]].l && /^«/.test(f.l) && /»$/.test(f.l)), JSON.stringify(a2.fuentes.map(f => f.c)));
+
+    // hoy ya hizo algo de la A: sigue la A, sin «Hoy no»; la A ayer (un ejercicio): la B, con «Hoy no» solo en lo de esos grupos
+    await poner([[0, 'prensa-piernas']], { sitio: 'gimnasio', nivel: 1 }); await esperarSes();
+    const a3 = await leer();
+    prueba('35: con algo de la sesión A anotado hoy, la sesión de hoy sigue siendo la A, sin «Hoy no» en nada', a3.sesNom === 'Sesión A · Inicial' && a3.ejs.every(e => !e.no), a3.sesNom);
+    await poner([[1, 'prensa-piernas']], { sitio: 'gimnasio', nivel: 1 }); await esperarSes();
+    const a4 = await leer(), g1b = S('gimnasio-1-b'), ayerG = RU.x['prensa-piernas'][0];
+    const noEsperado = g1b.e.filter(z => RU.x[z[0]][0].some(g => ayerG.indexOf(g) >= 0)).map(z => z[0]);
+    prueba('35: con la A ayer, la B; «Hoy no: este grupo se trabajó ayer u hoy (48 horas).» solo en lo de cuádriceps y glúteos (' + noEsperado.join(', ') + ')',
+      a4.sesNom === 'Sesión B · Inicial' && a4.ejs.length === g1b.e.length && noEsperado.length > 0 &&
+      JSON.stringify(a4.ejs.filter(e => e.no).map(e => e.id)) === JSON.stringify(noEsperado) && a4.ejs.filter(e => e.no).every(e => e.no === 'Hoy no: este grupo se trabajó ayer u hoy (48 horas).'),
+      JSON.stringify(a4.ejs.map(e => e.id + (e.no ? ' NO' : ''))).slice(0, 400));
+    // la A entera ayer: todo lo de la B descansa: «Hoy, descanso»; la A entera hace dos días: la B, sin «Hoy no»
+    await poner(g1a.e.map(z => [1, z[0]]), { sitio: 'gimnasio', nivel: 1 }); await p35.waitForTimeout(300);
+    const a5 = await leer();
+    prueba('35: con la A entera ayer, todo lo de la B descansa: «Hoy, descanso», sin sesión; cerrado, «Hoy, descanso o actividad suave.»',
+      !a5.ses && a5.tit === 'Hoy, descanso' && a5.txt === 'Lo que le queda lo trabajó ayer u hoy. Descansar no es estar quieto: caminar o moverse suave en los días libres también suma para la salud.' &&
+      a5.res === 'Hoy, descanso o actividad suave.' && !a5.lista && /^Descansan hoy/.test(a5.desc || ''), JSON.stringify(a5).slice(0, 400));
+    await poner(g1a.e.map(z => [2, z[0]]), { sitio: 'gimnasio', nivel: 1 }); await esperarSes();
+    const a6 = await leer();
+    prueba('35: con la A entera hace dos días, la B y nada descansa', a6.sesNom === 'Sesión B · Inicial' && a6.ejs.every(e => !e.no), a6.sesNom);
+    // seis días seguidos con fuerza anotada (uno de cada sesión de «A tope», de lunes a sábado): el séptimo, descanso total
+    // (el consenso ECSS/ACSM, 2013); con algo anotado hoy, la sesión de hoy
+    const top = ['gimnasio-3-tope-k', 'gimnasio-3-tope-j', 'gimnasio-3-tope-i', 'gimnasio-3-tope-h', 'gimnasio-3-tope-g', 'gimnasio-3-tope-f'].map(S);
+    await poner(top.map((s, i) => [i + 1, s.e[0][0]]), { sitio: 'gimnasio', nivel: 4 }); await p35.waitForTimeout(300);
+    const a6b = await leer(), SEMANA = 'Lleva 6 días seguidos entrenando: hoy, descanso total. El consenso sobre sobreentrenamiento (ECSS/ACSM, 2013) aconseja a los deportistas al menos un día de descanso total a la semana.';
+    prueba('35: con fuerza anotada los 6 días anteriores, «Hoy, descanso» y «' + SEMANA.slice(0, 45) + '…»; cerrado, «Hoy, descanso o actividad suave.»',
+      !a6b.ses && a6b.tit === 'Hoy, descanso' && a6b.txt === SEMANA && a6b.res === 'Hoy, descanso o actividad suave.', JSON.stringify([a6b.ses, a6b.tit, a6b.txt, a6b.res]));
+    await poner(top.map((s, i) => [i + 1, s.e[0][0]]).concat([[0, top[0].e[0][0]]]), { sitio: 'gimnasio', nivel: 4 }); await esperarSes();
+    const a6c = await leer();
+    prueba('35: con algo de la sesión anotado también hoy, la sesión de hoy (la K, la última hecha)', a6c.ses && a6c.sesNom === 'Sesión K · A tope', a6c.sesNom);
+    await poner(top.slice(1).map((s, i) => [i + 2, s.e[0][0]]), { sitio: 'gimnasio', nivel: 4 }); await esperarSes();
+    const a6d = await leer();
+    prueba('35: con 5 de los 6 días anteriores (ayer sin nada), hay sesión', a6d.ses && !a6d.txt, JSON.stringify([a6d.ses, a6d.sesNom, a6d.txt]));
+
+    // en casa: lo que se puede con lo marcado (o la alternativa que sí), los sustitutos y las pautas de segundos
+    const c1a = S('casa-1-a'), puede = (id, mat) => RU.x[id][1].every(m => m === 'ninguno' || m === 'pared' || mat.indexOf(m) >= 0);
+    const enCasa = mat => c1a.e.map(z => { const t = [z[0]].concat(z[2]), v = t.filter(id => puede(id, mat)); return (v.length ? v : t)[0]; });
+    await poner([], { sitio: 'casa', material: [], nivel: 1 }); await esperarSes();
+    const a7 = await leer(), MS = ['mancuernas', 'disco', 'banco', 'general'];
+    prueba('35: en casa sin nada marcado, cada ejercicio el de la sesión o su primera alternativa sin material (' + enCasa([]).filter((id, i) => id !== c1a.e[i][0]).join(', ') + ')',
+      a7.sesNom === 'Sesión A · Inicial' && JSON.stringify(a7.ejs.map(e => e.id)) === JSON.stringify(enCasa([])) && enCasa([]).some((id, i) => id !== c1a.e[i][0]), JSON.stringify(a7.ejs.map(e => e.id)));
+    prueba('35: en casa, «¿Sin mancuernas, disco o banco?» con los cuatro textos de los sustitutos (y sus fuentes)',
+      a7.sustTit === '¿Sin mancuernas, disco o banco?' && JSON.stringify(a7.sust) === JSON.stringify(MS.map(m => RU.h[m].t.es)), JSON.stringify(a7.sust).slice(0, 300));
+    const hom = a7.ejs.find(e => e.id === 'empuje-isometrico-hombro-pared'), pla = a7.ejs.find(e => e.id === 'plancha-antebrazos');
+    prueba('35: las pautas de segundos: «3 × 5 × 20–30 s» (empuje isométrico, NHS) y «2–3 × 10–30 s» (plancha, Harvard)', hom && hom.pauta === '3 × 5 × 20–30 s' && pla && pla.pauta === '2–3 × 10–30 s',
+      JSON.stringify([hom, pla]));
+    await poner([], { sitio: 'casa', material: ['mancuernas', 'banco'], nivel: 1 }); await esperarSes();
+    const a8 = await leer();
+    prueba('35: en casa con mancuernas y banco marcados, los ejercicios de la sesión tal cual', JSON.stringify(a8.ejs.map(e => e.id)) === JSON.stringify(enCasa(['mancuernas', 'banco'])) &&
+      JSON.stringify(enCasa(['mancuernas', 'banco'])) === JSON.stringify(c1a.e.map(z => z[0])), JSON.stringify(a8.ejs.map(e => e.id)));
+
+    // fuera, con banda en la sesión: el botón lleva a la sesión de calistenia del mismo nivel
+    await poner([], { sitio: 'fuera', nivel: 2 }); await esperarSes();
+    const a9 = await leer();
+    prueba('35: fuera (Intermedio), «¿Sin banda elástica? …» a la vista', a9.sesNom === 'Sesión A · Intermedio' && JSON.stringify(a9.ejs.map(e => e.id)) === JSON.stringify(S('fuera-2-a').e.map(z => z[0])) &&
+      a9.banda === '¿Sin banda elástica? Haga la sesión de calistenia del mismo nivel, en un parque con barras.', JSON.stringify([a9.sesNom, a9.banda]));
+    await p35.click('#tgc-ses-banda'); await esperarSes();
+    const a10 = await leer(), st10 = await p35.evaluate(() => TG_CUERPO.estado().sitio);
+    prueba('35: «sin banda» pasa a «Calistenia» (guardado) y enseña su sesión A de Intermedio', st10 === 'calistenia' && JSON.stringify(a10.sitios) === '["calistenia"]' &&
+      a10.sesNom === 'Sesión A · Intermedio' && JSON.stringify(a10.ejs.map(e => e.id)) === JSON.stringify(S('calistenia-2-a').e.map(z => z[0])) && a10.banda === null, JSON.stringify([st10, a10.sitios, a10.sesNom]));
+
+    // «A tope»: la sesión F, con la frase de «A tope» arriba y, en el ejercicio pesado del día, la suya
+    await poner([], { sitio: 'gimnasio', nivel: 4 }); await esperarSes();
+    const a11 = await leer(), g4f = S('gimnasio-3-tope-f');
+    const pesado = g4f.e.filter(z => z[1] === 'n3-fuerza').map(z => z[0]);
+    prueba('35: «A tope», «Sesión F · A tope», con «' + TOPE.slice(0, 30) + '…» arriba y, en el ejercicio pesado (' + pesado.join(', ') + '), «Pare cada serie…»',
+      a11.sesNom === 'Sesión F · A tope' && a11.esf === TOPE && pesado.length === 1 && a11.ejs.filter(e => e.esf).map(e => e.id).join() === pesado.join() &&
+      a11.ejs.find(e => e.id === pesado[0]).esf === ESF && a11.ejs.find(e => e.id === pesado[0]).pauta === pautaEs('n3-fuerza'), JSON.stringify([a11.sesNom, a11.esf, a11.ejs.map(e => e.esf)]).slice(0, 400));
+
+    // la edad: menores, sin «A tope» y con la respuesta de la NSCA; «A tope» guardado de un menor no vale; desde 65, la nota de mayores
+    await poner([], { sitio: 'gimnasio', nivel: 4 }, ANIO - 15); await p35.waitForTimeout(300);
+    const a12 = await leer();
+    prueba('35: con 14 o 15 años, sin «A tope»; «A tope» guardado no vale (ningún nivel elegido, sin sesión); «Tiene menos de 18 años: antes de entrenar, lea esto.»',
+      JSON.stringify(a12.niveles) === JSON.stringify(['1:Inicial:false', '2:Intermedio:false', '3:Avanzado:false']) && !a12.ses && a12.edad === 'Tiene menos de 18 años: antes de entrenar, lea esto.',
+      JSON.stringify([a12.niveles, a12.ses, a12.edad]));
+    await p35.click('#tgc-plan-edad');
+    await p35.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-resp').length >= 1, null, { timeout: 10000 }).catch(() => {});
+    const q12 = await p35.evaluate(() => ({ modo: document.getElementById('tgc-modo-p').getAttribute('aria-pressed'), charla: document.getElementById('tgc-charla').textContent }));
+    prueba('35: la nota de menores abre «Preguntar» con «¿Pueden los adolescentes hacer pesas?»', q12.modo === 'true' && q12.charla.includes('¿Pueden los adolescentes hacer pesas?'), q12.charla.slice(0, 200));
+    await p35.click('#tgc-modo-m'); await p35.waitForTimeout(200);
+    await poner([], { sitio: 'gimnasio', nivel: 3 }, ANIO - 70); await abrirPlan(); await esperarSes();
+    const a13 = await leer();
+    prueba('35: con 69 o 70 años, los cuatro niveles y «Tiene 65 años o más: antes de «A tope», lea esto.»', a13.niveles.length === 4 && a13.edad === 'Tiene 65 años o más: antes de «A tope», lea esto.' && a13.ses,
+      JSON.stringify([a13.niveles, a13.edad]));
+    await p35.click('#tgc-plan-edad');
+    await p35.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-resp').length >= 1, null, { timeout: 10000 }).catch(() => {});
+    const q13 = await p35.evaluate(() => document.getElementById('tgc-charla').textContent);
+    prueba('35: la nota de mayores abre «Preguntar» con «Tengo más de 65 años: ¿qué ejercicio me conviene?»', q13.includes('Tengo más de 65 años: ¿qué ejercicio me conviene?'), q13.slice(0, 200));
+    await p35.click('#tgc-modo-m'); await p35.waitForTimeout(200);
+
+    // «Antes de empezar: cómo calentar» abre su respuesta; una fila de la sesión abre la ficha de su ejercicio
+    await poner([], { sitio: 'gimnasio', nivel: 1 }); await abrirPlan(); await esperarSes();
+    await p35.click('#tgc-ses-calentar');
+    await p35.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-resp').length >= 1, null, { timeout: 10000 }).catch(() => {});
+    const q14 = await p35.evaluate(() => document.getElementById('tgc-charla').textContent);
+    prueba('35: «Antes de empezar: cómo calentar» abre «¿Cómo caliento antes de entrenar?»', q14.includes('¿Cómo caliento antes de entrenar?'), q14.slice(0, 200));
+    await p35.click('#tgc-modo-m'); await p35.waitForTimeout(200); await abrirPlan(); await esperarSes();
+    await p35.click('#tgc-ses-lista > li:nth-child(3) .tgc-ses-ej-btn');
+    await p35.waitForFunction(() => !document.getElementById('tgc-pag-ej').hidden, null, { timeout: 8000 }).catch(() => {});
+    const f15 = await p35.evaluate(() => ({ ej: !document.getElementById('tgc-pag-ej').hidden, nom: document.getElementById('tgc-ej-nom').textContent }));
+    prueba('35: tocar la tercera fila abre la ficha de «' + NOM[g1a.e[2][0]][0] + '»', f15.ej && f15.nom === NOM[g1a.e[2][0]][0], JSON.stringify(f15));
+    await p35.keyboard.press('Escape'); await p35.waitForTimeout(150); await p35.keyboard.press('Escape'); await p35.waitForTimeout(250);
+
+    // los diez idiomas: los rótulos, el nombre de la sesión, los niveles, las pautas, el esfuerzo y los nombres de los ejercicios
+    await poner([], { sitio: 'gimnasio', nivel: 1 }); await abrirPlan(); await esperarSes();
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      await idioma(p35, l); await p35.waitForTimeout(300); await esperarSes();
+      await p35.waitForFunction(n => { const x = document.querySelector('#tgc-ses-lista .tgc-ses-ej-nom'); return x && !x.textContent.includes(n); }, NOM[g1a.e[0][0]][0], { timeout: 8000 }).catch(() => {});
+      const m = await leer(), NL = DAT('ejercicios-' + l + '.json');
+      const nom = (UI.cuerpoRutSesion[l]).replace('{letra}', 'A').replace('{nivel}', UI.cuerpoNivel_1[l]);
+      const sr = UI.cuerpoCargaSR[l].replace('{series}', '2–3').replace('{reps}', '8–12'), dsc = UI.cuerpoRutDesc[l].replace('{t}', UI.cuerpoMin[l].replace('{n}', '1–2'));
+      const textos = [m.res, m.nivelTit, m.sesTit, m.sesNom, m.esf, m.calentar].concat(m.niveles, m.ejs.map(e => e.pauta), m.ejs.map(e => e.nom));
+      prueba('35, ' + l + ': la sesión en su idioma («' + nom + '», «' + sr + ' · ' + dsc + '»), con los niveles, el esfuerzo y los nombres de los ejercicios',
+        m.sesTit === UI.cuerpoRutHoy[l] && m.sesNom === nom && m.nivelTit === UI.cuerpoPlanNivel[l] && m.calentar === UI.cuerpoRutCalentar[l] &&
+        JSON.stringify(m.niveles.map(x => x.split(':')[1])) === JSON.stringify([UI.cuerpoNivel_1[l], UI.cuerpoNivel_2[l], UI.cuerpoNivel_3[l], UI.cuerpoNivelTope[l]]) &&
+        m.esf === RU.p['n1-general'].x[l] && m.ejs[0].pauta === sr + ' · ' + dsc && m.ejs.every(e => e.nom === (NL[e.id] || NOM[e.id])[0]) &&
+        textos.every(t => t && t.indexOf('{') < 0), JSON.stringify([m.sesNom, m.ejs[0], m.esf]).slice(0, 300));
+    }
+    await idioma(p35, 'es');
+
+    // lo guardado: el nivel, solo 1 a 4 (un número; ni texto ni otro valor)
+    const v35 = [];
+    for (const n of [7, 0, '2', 2.5, null, 4]) {
+      await p35.evaluate(n => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'gimnasio', nivel: n })); TG_CUERPO.abrir(); }, n);
+      v35.push(await p35.evaluate(() => TG_CUERPO.estado().nivel));
+    }
+    prueba('35: lo guardado que no vale, fuera: el nivel solo de 1 a 4 (7, 0, «2», 2,5 y nada se quedan sin nivel; 4 vale)', JSON.stringify(v35) === '[0,0,0,0,0,4]', JSON.stringify(v35));
+    prueba('35: sin errores de página', e35.length === 0, e35.join(' | '));
+    await c35.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
