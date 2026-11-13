@@ -3711,9 +3711,12 @@ async function ejemplo(pg, mas) {
       for (const l of s36.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
     /* la huella de los 533 publicados el 13-11-2026 (datos/cuerpo/ejercicios.json antes del bloque 35) */
     const H533 = '781ea591d52a0e9b55c7e7d0db3230f6751540be40496ae95781d2646d10fd8b';
+    /* (nota 37) y la de las 950 publicadas el 13-11-2026 con el bloque 35: la 951, la búlgara en una silla, va detrás */
+    const H950 = '51c2effd185fd0b28393c47fd2c8a8717187405687fc4b07b9faf97f49517db0';
     const ENT = ['gimnasio', 'fuera', 'calistenia', 'casa'], NUEVOS = ['botella', 'silla', 'toalla', 'mochila', 'mesa', 'cubo'];
-    prueba('36: 950 fichas: las 533 de antes, iguales y delante (su huella), y 417 nuevas; ningún id repetido',
-      D36.length === 950 && crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 533))).digest('hex') === H533 && new Set(D36.map(x => x.id)).size === 950, D36.length + '');
+    prueba('36: 951 fichas: las 533 de antes, iguales y delante (su huella), las 417 del bloque 35 detrás (las 950, con su huella) y la búlgara en una silla (nota 37); ningún id repetido',
+      D36.length === 951 && crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 533))).digest('hex') === H533 &&
+      crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 950))).digest('hex') === H950 && D36[950].id === 'sentadilla-bulgara-silla' && new Set(D36.map(x => x.id)).size === 951, D36.length + '');
     prueba('36: cada ficha, con su sitio (gimnasio, fuera, calistenia o casa) y de 1 a 6 fuentes en https; correr o desplazarse, solo en las nuevas',
       D36.every(x => x.e.length && x.e.every(e => ENT.includes(e)) && x.f.length >= 1 && x.f.length <= 6 && x.f.every(q => /^https:\/\//.test(q[1]))) &&
       D36.slice(0, 533).every(x => x.p !== 'locomocion' && !x.e.includes('casa')) && D36.some(x => x.p === 'locomocion'), '');
