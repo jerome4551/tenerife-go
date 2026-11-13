@@ -436,6 +436,8 @@ const EXENTOS = [
   ['pl', /błagała bogów o pomoc, a ci zmienili ją w klacz/, '«a ci zmienili»: «ci» es el demostrativo, «y estos la convirtieron», no «a ti» (cieloCurConEqu)'],
   /* los pasos de los ejercicios de «Su cuerpo» (datos/cuerpo/ejercicios-<l>.json, 31 de octubre de 2026) */
   ['fr', /pour que le tronc tienne entre les genoux et le banc/, '«que le tronc tienne»: el subjuntivo de tenir, en tercera persona (el tronco), no el «la tienne» de tu (estiramiento-dorsal-codos-banco, paso 1)'],
+  /* (13 de noviembre de 2026, bloque 35) */
+  ['fr', /pour que le bout des doigts pointe vers le plafond et touche le mur derrière vous/, '«que le bout des doigts pointe… et touche»: el subjuntivo de pointer y de toucher, en tercera persona (el bout des doigts), no el imperativo de tu (estiramiento-hombros-pared-brazos-en-cruz, paso 2)'],
   /* (el de «Non scendere», del paso 3 de fondos-entre-bancos, ya no hace falta: desde el 3 de
      noviembre dice «Evitare di scendere», como lo dejo la sesion de «Su cuerpo») */
   /* las respuestas del asistente de «Su cuerpo» (datos/cuerpo/asistente-<l>.json, 3 de noviembre
