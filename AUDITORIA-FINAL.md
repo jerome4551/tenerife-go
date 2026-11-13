@@ -7910,6 +7910,73 @@ antes 5.766), que pone al día este commit, y la cita búlgara de «borrar-datos
 191 pantallas y fichas por idioma y 0 textos sin traducir; `auditar_idioma.js`, 0 hallazgos en los diez; los tours,
 enteros en los diez idiomas y cuatro móviles; el perfil, 153.
 
+## «Su cuerpo»: las rutinas de la nota 34, la regla para subir el peso y las citas de las fuentes (13 de noviembre)
+
+**Por qué.** La nota 34 trajo 68 sesiones de entrenamiento con los ejercicios de la app: 4 sitios (gimnasio, en casa,
+fuera y calistenia) y 4 niveles (Inicial, Intermedio, Avanzado y «A tope»), con la pauta de cada ejercicio (series,
+repeticiones o segundos y descanso), hasta 3 alternativas y la fuente de cada cifra con lo leído. Jérôme, el 12 de
+noviembre: «Busca otras fuentes , no las inventes» (las cifras que solo tenían la NSCA, cuyas páginas piden iniciar
+sesión o dan error 403), «2 si cámbialo» (la regla para subir el peso), «3 si» (guardar el nivel), «4 si»
+(fuera sin banda elástica, la sesión de calistenia) y «Si todo en verde sube».
+
+**Lo que cambia**, un commit por apartado:
+
+- `0fcc2f6`: en «Preguntar», lo que dice cada fuente sale entre comillas una sola vez. 163 citas de cada idioma ya
+  traían las suyas («…» […] «…») y la app les ponía otras: salían dobles, «« … »».
+- `759dd00`: la respuesta «progresar» da la regla del ACSM de 2009 (Ratamess et al.), leída en su PDF: subir el peso un
+  2–10 % cuando, con el mismo peso, salen 1 o 2 repeticiones más de las marcadas en dos sesiones seguidas, menos en los
+  ejercicios de músculos pequeños y más en los de los grandes. Antes decía que las fuentes no daban una regla con
+  cifras. La frase no lleva categoría de evidencia propia (la «B» que hay justo antes es de la frase anterior), así que
+  no se da ninguna; la certeza pasa a moderada (una postura de consenso). Su fuente sustituye a la infografía del ACSM
+  de 2026 (el validador del asistente admite tres): la de 2026 no da ningún porcentaje. En los diez idiomas.
+- `84fe554`: las rutinas en «¿Qué entreno hoy?». Después del sitio, «¿A qué nivel entrena?»: el nivel se guarda. «A
+  tope» no se ofrece a menores de 18 años (por el año de nacimiento del perfil); a ellos, una nota lleva a la respuesta
+  de la NSCA sobre jóvenes y, desde los 65, otra a la de mayores (no llegar al fallo). «Su sesión de hoy»: la siguiente
+  a la última hecha, en el orden de las letras (la misma si hoy ya hizo algo de ella). Cada ejercicio con su pauta («2–3
+  × 8–12 · Descanso: 1–2 min», «2–3 × 10–30 s»), la frase de esfuerzo y sus alternativas; debajo de la lista, las
+  fuentes de esas cifras con lo leído. Lo que se trabajó hoy o ayer lleva «Hoy no» (las 48 horas del ACSM, 2011); si no
+  queda nada, «Hoy, descanso». Tras 6 días seguidos con fuerza anotada, el séptimo es de descanso total (el consenso
+  ECSS/ACSM de 2013, que la app ya cita; la nota 34 lo pone en domingo para «A tope», y la app lo cuenta por días
+  seguidos, empiece cuando empiece la semana). En casa, cada ejercicio el de la sesión o su primera alternativa que se
+  pueda hacer con lo marcado, y qué usar sin mancuernas, disco o banco; fuera, si la sesión pide banda elástica, un
+  botón lleva a la de calistenia del mismo nivel. «Antes de empezar: cómo calentar» abre su respuesta. Los datos,
+  `datos/cuerpo/rutinas.json` (95.472 bytes), se piden al usarlos y se comprueban al leerlos. Quince rótulos nuevos, en
+  los diez idiomas.
+- `a3f5b6c`: la política de privacidad, en los diez idiomas: «Su cuerpo» guarda también el nivel que elija.
+
+**Las cifras de la nota 34 que cambian.** Las que solo tenían la NSCA salen ahora de fuentes que se abren (la
+Colorado State University, 2023; más frases del ACSM de 2009; Garber et al., ACSM 2011; Acıbadem, 2026), y con ellas
+cambian: el descanso de las pautas de resistencia, de hasta 30 s a 30–60 s en Inicial e Intermedio y a 30–120 s en
+Avanzado y «A tope»; el de músculo de «A tope», de 30–90 s a 60–90 s; las series de las dos pautas de Intermedio y de
+las de resistencia de Avanzado y «A tope», de 3–4 a 2–4; el paseo del granjero, de 30 s a 20–40 s. El empuje
+isométrico de hombro lleva sus 5 repeticiones por serie (la hoja de la NHS). Y el ACSM de 2026 va entre las fuentes de
+cada pauta con la frase de esfuerzo.
+
+**Lo que no está**, y por qué:
+
+- el cubo de arroz (antebrazos en casa): no tiene ficha en el catálogo ni el sí de Jérôme;
+- los grupos de «Su deporte» delante dentro de la sesión: está propuesto y sin decidir;
+- la revisión nativa de los textos nuevos y la revisión profesional, que la app ya dice que no tiene.
+
+**Las pruebas.** `tools/probar_cuerpo.js`, con las secciones 33 a 35 nuevas y la 32 al día: 672 controles, en verde. Con
+lo de antes, la 32, la 33 y la 34 salen en rojo, y la 35 no llega a empezar (no hay `datos/cuerpo/rutinas.json`). Los
+validadores del asistente dan lo mismo que antes, nada nuevo; su comprobador de citas, 472 citas, todas en sus notas. El
+de las rutinas, 0 errores y 8 avisos: el paseo del granjero va por segundos en 6 sesiones (así lo da su fuente) y, en
+calistenia Inicial, la «Flexión en pica» y la «Flexión hindú» son de nivel 2 en el catálogo.
+
+**La auditoría entera** sobre `2d8be1a` (árbol `4ebdc0ed`), que en `main` es `a3f5b6c`: allí va encima de tres commits
+de los robots (de `ca2da03` a `4a1ba89`), que solo cambian `datos/alertas-canarias.json`, `datos/avisos-aemet.json` y
+`datos/semaforo-involcan.json`, y los controles que leen esos ficheros, otra vez sobre el árbol de `main`, salieron en
+verde (los avisos de AEMET, 32 y 187; `app_preparar.js` y `probar_app.js`; el panel SOS, 42 y 262; los robots del
+semáforo del INVOLCAN y de las alertas). La primera pasada se cortó en el bloque 64 de 70 (el barrido de pantallas)
+porque el contenedor se reinició, y los siete bloques que faltaban se pasaron después sobre el mismo árbol, en verde
+(`barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; `probar_cuerpo.js`, 672;
+`auditar_entrenador.js`, 39; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots). En los 63 de antes, dos
+rojos, los dos de este documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.670 filas, antes 3.655;
+`barrido_idiomas.js`, 5.817 filas, antes 5.802), que pone al día este commit. Lo demás, en verde: `auditar_idioma.js`, 0
+hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -9751,7 +9818,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3655 filas (y 5.802 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3670 filas (y 5.817 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
