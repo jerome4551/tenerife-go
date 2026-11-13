@@ -7858,6 +7858,58 @@ filas). Encima de lo último de `main` (`b6d1a10`) solo cambian los ficheros de 
 `datos/semaforo-involcan.json`, `datos/alertas-canarias.json`, `datos/avisos-aemet.json`,
 `datos/precios-gasolineras.json` y `datos/sismos-ign.json`), y los controles que los leen salen otra vez en verde.
 
+## «Su cuerpo»: «¿Qué entreno hoy?», las repeticiones y el peso, y «Su fuerza» (12 de noviembre)
+
+**Por qué.** Jérôme, el 12 de noviembre: «Como la gente encuentra sus ejercicios?», «si lunes hago pecho y después
+miércoles pregunto y me dice pecho no sirve», «guarda los kilos y las repeticiones para ver mejor los datos de
+mejoramiento de cada uno» y «todo debe entrar en la evolución de cada uno». A las dos preguntas (A: cada grupo dos veces
+por semana, la segunda cuando ya están todos y nunca antes de 48 horas; B: guardar los kilos y las repeticiones, con la
+política de privacidad en los diez idiomas), «A y B si».
+
+**Lo que cambia**, un commit por apartado:
+
+- `04a82bd`: las repeticiones (de 1 a 200) y el peso (hasta 500 kg, con dos decimales) en la ficha de un ejercicio, con
+  las series, y «La última vez». Lo guardado que no vale se quita al leerlo.
+- `4f717fb`: «¿Qué entreno hoy?» en «Músculos». Dónde entrena hoy (gimnasio, en casa, fuera o calistenia) y, en casa, el
+  material que tiene. Los grupos que tocan, con lo anotado en 7 días: primero los que no tienen series, con los
+  prioritarios del deporte delante; con todos trabajados, la segunda vez de la semana; lo de hoy o de ayer descansa (las
+  48 horas del ACSM, 2011). El primer día, cuerpo completo de nivel inicial. Las frases, copiadas de las respuestas
+  revisadas del asistente; ninguna serie ni repetición recomendada, que eso llega con el bloque de Jérôme.
+- `eb6f528`: la misma respuesta en «Preguntar», con dos casos nuevos en los diez idiomas (la segunda vez de la semana
+  y el descanso), la fuente de las 48 horas (Garber et al., ACSM 2011) y los grupos como botones.
+- `688e94e`: «Su fuerza», en «Evolución»: por ejercicio, la primera vez, la última y la mejor marca, con una línea
+  pequeña de su progreso.
+- `724d783`: la política de privacidad, en los diez idiomas: las repeticiones y el peso, y el sitio donde entrena con el
+  material de casa.
+- `790b185`: en italiano, «3 × 10 con 50 kg» y «3 serie con 50 kg» se escriben igual que en castellano («con» es la
+  misma preposición): declaradas en `IGUAL_UI` de `tools/auditar_idioma.js`, como «+ 1 serie».
+- `5e437e0`: el asistente. La respuesta «progresar» decía «La app guarda cuántas series hace, no el peso», que con
+  `04a82bd` deja de ser verdad: ahora manda a «Su fuerza», en la pestaña «Evolución», con sus nombres tal cual, en los
+  diez idiomas. Y en búlgaro, «borrar-datos» citaba el botón de antes, «Изтриване на данните…», y el botón dice
+  «Изтрий данните…» desde el 23 de octubre. La prueba de las citas de `tools/probar_cuerpo.js` no lo veía porque la
+  cita lleva comillas dentro («Изтрий данните от „Вашето тяло“»): ahora compara sin mirar de qué tipo son, y una
+  prueba más pide lo de «progresar»; las dos, en rojo con lo de antes y en verde con esto.
+- `0399dfc`: `tools/auditar_registro.js` declara esa cita búlgara, con las comillas de dentro a la búlgara, como la
+  del polaco («Usuń dane z sekcji „Ciało”»): la leía como tuteo. En rojo antes, todo de usted después.
+
+**Las pruebas.** `tools/probar_cuerpo.js`, con las secciones 29 a 32 nuevas: 632 controles, en verde. Los
+validadores del asistente dan los mismos avisos que antes, ninguno nuevo, y su buscador acierta lo mismo en los diez
+idiomas, con las urgencias al 100 % y ninguna falsa. `tools/auditar_registro.js`: todo de usted en los diez idiomas.
+
+**La auditoría entera** sobre `4e9f55c` (árbol `0481e884`), que en `main` es `5e437e0`: allí va encima de siete commits
+de los robots (de `fad28a4` a `548d4b3`), que solo cambian `datos/alertas-canarias.json`, `datos/avisos-aemet.json`,
+`datos/satelites.json` y `datos/sismos-ign.json`, y los controles que leen esos ficheros, otra vez sobre el árbol de
+`main`, salieron en verde (los avisos de AEMET, 32 y 187; `app_preparar.js` y `probar_app.js`; `barrido_pantallas.js`, 0
+textos sin traducir; el cielo, 311; el panel SOS, 42 y 262; los robots de sismos y de alertas). La primera pasada se
+cortó en el bloque 68 de 70 («Su cuerpo») porque el contenedor se reinició, y los tres bloques que faltaban se pasaron
+después sobre el mismo árbol, en verde (`probar_cuerpo.js`, 632; `auditar_entrenador.js`, 39; la isla en 3D, 58; el
+panel SOS, 42 y 262, y sus cuatro robots). En los 67 de antes, tres rojos, los tres arreglados: las dos cifras de
+idiomas de este documento (`auditar_web.js`, 52 tablas y 3.655 filas, antes 3.619; `barrido_idiomas.js`, 5.802 filas,
+antes 5.766), que pone al día este commit, y la cita búlgara de «borrar-datos», que declara `0399dfc`
+(`auditar_registro.js`, vuelto a pasar: todo de usted en los diez idiomas). Lo demás, en verde: `barrido_pantallas.js`,
+191 pantallas y fichas por idioma y 0 textos sin traducir; `auditar_idioma.js`, 0 hallazgos en los diez; los tours,
+enteros en los diez idiomas y cuatro móviles; el perfil, 153.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -9699,7 +9751,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3619 filas (y 5.766 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3655 filas (y 5.802 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
