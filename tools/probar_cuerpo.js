@@ -3427,6 +3427,38 @@ async function ejemplo(pg, mas) {
     await c33.close();
   }
 
+  // 34. (12-11-2026, nota 34; Jérôme: «2 si cámbialo») «progresar» da la regla del ACSM de 2009, leída en su PDF: subir
+  //     el peso un 2–10 % cuando, con el mismo peso, salen 1 o 2 repeticiones más de las marcadas en dos sesiones
+  //     seguidas (menos en los músculos pequeños y más en los grandes); su fuente, la primera, con lo leído; certeza
+  //     moderada (una postura de consenso); y ya no dice que no hay regla; en los diez idiomas
+  {
+    const fs = require('fs'), path = require('path');
+    const REGLA = { es: ['El ACSM (2009) da una regla', '1 o 2 repeticiones más', 'dos sesiones seguidas', 'entre un 2 y un 10 %'],
+      en: ['The ACSM (2009) gives a rule', '1 or 2 more repetitions', 'two sessions in a row', 'by 2 to 10%'],
+      fr: ['L’ACSM (2009) donne une règle', '1 ou 2 répétitions de plus', 'deux séances de suite', 'de 2 à 10 %'],
+      de: ['Das ACSM (2009) nennt eine Regel', '1 oder 2 Wiederholungen mehr', 'zwei Einheiten hintereinander', 'um 2 bis 10 %'],
+      it: ['L’ACSM (2009) dà una regola', '1 o 2 ripetizioni in più', 'due sedute di fila', 'dal 2 al 10 %'],
+      nl: ['Het ACSM (2009) geeft een regel', '1 of 2 herhalingen meer', 'twee sessies achter elkaar', 'met 2 tot 10 %'],
+      zh: ['ACSM（2009）给出了一条规则', '多做 1 到 2 次', '连续两次训练', '增加 2% 到 10%'],
+      zht: ['ACSM（2009）給出了一條規則', '多做 1 到 2 次', '連續兩次訓練', '增加 2% 到 10%'],
+      bg: ['ACSM (2009) дава правило', '1 или 2 повторения повече', 'две поредни тренировки', 'с 2 до 10 %'],
+      pl: ['ACSM (2009) podaje regułę', '1 lub 2 powtórzenia więcej', 'dwa kolejne treningi', 'o 2–10%'] };
+    const VIEJO = /no dan una regla|do not give a rule|pas de règle chiffrée|keine Regel mit Zahlen|non danno una regola|geen regel met cijfers|没有给出带数字的规则|沒有給出具體數字的規則|не дават правило|nie podają reguły/;
+    const mal34 = [];
+    for (const [l, trozos] of Object.entries(REGLA)) {
+      const r = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'), 'utf8')).respuestas.find(x => x.id === 'progresar');
+      if (!r) { mal34.push(l + ': sin «progresar»'); continue; }
+      for (const t of trozos) if (!r.r.t.includes(t)) mal34.push(l + ': falta «' + t + '»');
+      if (VIEJO.test(r.r.t)) mal34.push(l + ': sigue diciendo que no hay regla');
+      if (r.f.length !== 3 || r.f[0].url !== 'https://sfu.ca/~ryand/kin343/ACSMresistance.pdf' || !r.f[0].leido.includes('2–10% increase in load be applied') ||
+          !r.f[0].leido.includes('lower percent for small muscle mass exercises') || !/2009/.test(r.f[0].titulo)) mal34.push(l + ': la fuente del ACSM de 2009');
+      if (r.cert !== 'moderada') mal34.push(l + ': certeza ' + r.cert);
+      if (r.r.p.length !== 4) mal34.push(l + ': ' + r.r.p.length + ' puntos');
+    }
+    prueba('34: «progresar» da la regla del ACSM de 2009 (2–10 %, 1 o 2 repeticiones más, dos sesiones seguidas), con su fuente la primera y lo leído, en los diez idiomas',
+      Object.keys(REGLA).length === 10 && !mal34.length, mal34.join(' · '));
+  }
+
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
   console.log('\n  ' + (ok + mal) + ' controles, ' + (mal ? mal + ' en rojo' : 'todos en verde'));
   await b.close();
