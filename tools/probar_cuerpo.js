@@ -3389,22 +3389,23 @@ async function ejemplo(pg, mas) {
     const CARGA = { es: 'si los escribe, las repeticiones y el peso', en: 'if you enter them, the reps and the weight', fr: 'si vous les indiquez, les répétitions et le poids',
       de: 'wenn Sie sie angeben, die Wiederholungen und das Gewicht', it: 'se li scrive, le ripetizioni e il peso', nl: 'als u die invult, de herhalingen en het gewicht',
       zh: '您填写的次数与重量', zht: '您填寫的次數與重量', bg: 'повторенията и тежестта, ако ги въведете', pl: 'powtórzenia i ciężar, jeśli zostaną podane' };
-    const SITIO = { es: 'el sitio donde entrena y el material que marque para casa', en: 'the place where you train and the equipment you tick for home',
-      fr: 'le lieu où vous vous entraînez et le matériel coché pour la maison', de: 'den Ort, an dem Sie trainieren, und die Geräte, die Sie für zu Hause markieren',
-      it: 'il luogo dove si allena e gli attrezzi segnati per casa', nl: 'de plek waar u traint en het materiaal dat u voor thuis aanvinkt',
-      zh: '选择的训练地点和在家可用的器材', zht: '選擇的訓練地點和在家可用的器材', bg: 'мястото, където тренирате, и уредите, които отбележите за вкъщи',
-      pl: 'miejsce treningu i sprzęt zaznaczony jako dostępny w domu' };
+    /* (nota 34) y el nivel que elija para las rutinas */
+    const SITIO = { es: 'el sitio donde entrena, el material que marque para casa y el nivel que elija', en: 'the place where you train, the equipment you tick for home and the level you choose',
+      fr: 'le lieu où vous vous entraînez, le matériel coché pour la maison et le niveau choisi', de: 'den Ort, an dem Sie trainieren, die Geräte, die Sie für zu Hause markieren, und das Niveau, das Sie wählen',
+      it: 'il luogo dove si allena, gli attrezzi segnati per casa e il livello scelto', nl: 'de plek waar u traint, het materiaal dat u voor thuis aanvinkt en het niveau dat u kiest',
+      zh: '选择的训练地点、在家可用的器材和训练水平', zht: '選擇的訓練地點、在家可用的器材和訓練程度', bg: 'мястото, където тренирате, уредите, които отбележите за вкъщи, и нивото, което изберете',
+      pl: 'miejsce treningu, sprzęt zaznaczony jako dostępny w domu i wybrany poziom treningu' };
     const idx = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
     const mal32 = [];
     for (const l of Object.keys(CARGA)) {
       const t = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'idiomas', 'privacidad', l + '.json'), 'utf8')).ppDatosCuerpoTxt;
       const bt = UI.cuerpoPlanBtn[l], cita = /^zh/.test(l) ? '「' + bt + '」' : '«' + bt + '»';
       if (!t.includes(CARGA[l])) mal32.push(l + ': las repeticiones y el peso');
-      if (!t.includes(SITIO[l])) mal32.push(l + ': el sitio y el material');
+      if (!t.includes(SITIO[l])) mal32.push(l + ': el sitio, el material y el nivel');
       if (!t.includes(cita)) mal32.push(l + ': ' + cita);
       if (!idx.includes(JSON.stringify(t).slice(1, -1))) mal32.push(l + ': index.html no lleva el texto de idiomas/privacidad');
     }
-    prueba('32: la política de privacidad dice, en los diez idiomas, las repeticiones y el peso, el sitio y el material de casa, y cita «¿Qué entreno hoy?» tal cual; la app lleva ese texto',
+    prueba('32: la política de privacidad dice, en los diez idiomas, las repeticiones y el peso, el sitio, el material de casa y (nota 34) el nivel, y cita «¿Qué entreno hoy?» tal cual; la app lleva ese texto',
       Object.keys(CARGA).length === 10 && !mal32.length, mal32.join(' · '));
   }
 
