@@ -86,6 +86,9 @@
 
   var MATERIAL = {};
   var N_MAT = 0;
+  /* ¿espera en su sitio (o.reposo), porque todavía nadie lo ha cogido? Lo dice la coreografía («reposo»: en qué posturas); si el
+     material trae su propia lista (reposoEn), manda esa: así dos cosas se cogen en momentos distintos */
+  function enReposo(o, ctx) { return !!(o.reposo && ctx && (o.reposoEn ? ctx.enLista && ctx.enLista(o.reposoEn) : ctx.reposo)); }
   /* ── la barra: sigue a las manos, o va pegada al cuerpo (a la espalda, a la cadera), o en un punto del mundo.
      o: { ancla: 'manos' | 'torax' | 'pelvis' | 'mundo', en: [x, y, z], eje: [x, y, z], largo, discos (radio; 0, sin discos), z (barra Z) } */
   MATERIAL.barra = function (esc, o) {
@@ -98,7 +101,7 @@
   };
   MATERIAL.barra.prototype.colocar = function (E, ctx) {
     var o = this.o, a = o.ancla || 'manos';
-    if (o.reposo && ctx && ctx.reposo) { this.c = o.reposo; this.eje = [1, 0, 0]; }
+    if (enReposo(o, ctx)) { this.c = o.reposo; this.eje = [1, 0, 0]; }
     else if (a === 'manos') {
       this.c = mezcla(E.i.agarre, E.d.agarre, 0.5);
       var e = menos(E.i.agarre, E.d.agarre);
@@ -125,19 +128,21 @@
       yo.discos[i + 2].pon(cam, mas(c, por(e, s * (h - 24.6))), e, yo.R * 0.8, 3.4, lista, sg + (s * punto(e, cam.k) > 0 ? 0.6 : -0.6));
     });
   };
-  /* ── las mancuernas: una en cada mano (o en una sola), con el eje del agarre ── */
+  /* ── las mancuernas: una en cada mano (o en una sola), con el eje del agarre. reposo: { i: [x, y, z], d: […] }, dónde espera cada una
+     mientras nadie la ha cogido (ejeReposo: a lo largo de qué; de delante atrás, si no se dice) ── */
   MATERIAL.mancuernas = function (esc, o) {
     o = o || {};
     this.o = o; this.lados = o.lado ? [o.lado] : ['i', 'd'];
     this.p = {};
     this.lados.forEach(function (k) { this.p[k] = { m: new Cilindro(M_COL.cromo), a: new Disco(M_COL.hierro, M_COL.hierroS, M_COL.hierroL), b: new Disco(M_COL.hierro, M_COL.hierroS, M_COL.hierroL) }; }, this);
   };
-  MATERIAL.mancuernas.prototype.colocar = function () {};
+  MATERIAL.mancuernas.prototype.colocar = function (E, ctx) { this.suelta = enReposo(this.o, ctx); };
   MATERIAL.mancuernas.prototype.pintar = function (E, cam, lista) {
-    var o = this.o, R = o.radio || 6.6;
+    var o = this.o, R = o.radio || 6.6, suelta = this.suelta;
     this.lados.forEach(function (k) {
       var L = E[k], c = L.agarre, e = o.vertical ? L.mano.dir : L.mano.eje, p = this.p[k];
       if (o.dos) { c = mezcla(E.i.agarre, E.d.agarre, 0.5); e = o.ejeDos ? aplicar(E.Bt, o.ejeDos) : L.mano.dir; }
+      if (suelta && o.reposo[k]) { c = o.reposo[k]; e = unidad(o.ejeReposo || [0, 0, 1]); }
       p.m.pon(cam, mas(c, por(e, -9)), mas(c, por(e, 9)), 1.4, lista, 0.9);
       p.a.pon(cam, mas(c, por(e, 10.5)), e, R, 5.4, lista, 0.4); p.b.pon(cam, mas(c, por(e, -10.5)), e, R, 5.4, lista, 0.4);
     }, this);
@@ -376,7 +381,7 @@
       this.patChapa.pon(cam, this.al(0, (hc - 8) / 2, zc + 7), B, [30, hc - 8, 6], lista, -19, 'fondo');
     }
     /* a qué va el cable */
-    var a = o.a || 'manos', fin, yo = this, suelto = !!(o.reposo && ctx && ctx.reposo);
+    var a = o.a || 'manos', fin, yo = this, suelto = enReposo(o, ctx);
     var ag = o.agarre || (a === 'manos' ? 'barra' : 'asa'), ver = { asa: false, cuerda: false, uve: false };
     /* el agarre: en las manos, o colgando del cable si aún no se ha cogido */
     var gi, gd, eje;
@@ -437,7 +442,7 @@
     this.asas = o.asas ? [new Cilindro(M_COL.cromo), new Cilindro(M_COL.cromo)] : null;
     this.antes = false;
   };
-  MATERIAL.landmine.prototype.colocar = function (E, ctx) { this.suelta = !!(this.o.reposo && ctx && ctx.reposo); };
+  MATERIAL.landmine.prototype.colocar = function (E, ctx) { this.suelta = enReposo(this.o, ctx); };
   MATERIAL.landmine.prototype.fin = function (E) { var a = this.o.a || 'manos'; return this.suelta ? this.o.reposo : a === 'manos' ? mezcla(E.i.agarre, E.d.agarre, 0.5) : E[a].agarre; };
   MATERIAL.landmine.prototype.tramo = function (E) {
     var o = this.o, piv = [o.pivote[0], 5, o.pivote[1]], fin = this.fin(E), d = unidad(menos(fin, piv), [0, 0, 1]);

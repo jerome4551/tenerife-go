@@ -8,7 +8,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
     python3 tools/entrenador/construir.py --comprobar  # ¿el módulo es el de sus fuentes?
     python3 tools/entrenador/muestra.py                # los datos para las páginas de prueba
     node tools/auditar_entrenador.js 8766              # con python3 -m http.server 8766 en la raíz (tarda unos minutos)
-    node tools/auditar_entrenador.js 8766 73           # mientras se hace un bloque: cuadro a cuadro, solo los vídeos de src/73-*.js (pase parcial),
+    node tools/auditar_entrenador.js 8766 74           # mientras se hace un bloque: cuadro a cuadro, solo los vídeos de src/74-*.js (pase parcial),
                                                        # y con Samsung Internet (el canvas), todos esos y no tres de muestra
 
 ## Qué hay
@@ -27,6 +27,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/71-pecho.js` | las coreografías del bloque 2: **pecho** (35), por familias (tumbado en un banco, las poleas, las flexiones, los fondos, los estiramientos) |
 | `src/72-dorsal.js` | las coreografías del bloque 3: **dorsal** (35), por familias (colgado de la barra, el front lever, los jalones, los remos, la polea a una mano, los estiramientos) |
 | `src/73-espalda-alta.js` | las coreografías del bloque 4: **espalda alta** (30), por familias (los encogimientos, el remo sentado en polea, los remos libres, los omóplatos, tumbado boca abajo, los estiramientos del cuello) |
+| `src/74-hombros.js` | las coreografías del bloque 5: **hombros** (34), por familias (los press, las elevaciones, la polea a una mano, el deltoides posterior, entre dos poleas, los rotadores, la pica y el pino, la movilidad y los estiramientos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
@@ -99,7 +100,9 @@ para entrar en ese segundo del ciclo), una secuencia que se toca una vez
 
 Más claves: `material: [['barra', {…}], …]`, `inicio`, `encuadra: [...]` (posturas que también tienen
 que caber), `isometrico: 'c'`, `reposo: ['a0']` (el material espera en su sitio), `sinClavos: ['f']`
-(posturas en las que ya se ha soltado), `picado` (16 para los ejercicios de suelo), `zoom`.
+(posturas en las que ya se ha soltado), `picado` (16 para los ejercicios de suelo), `zoom`, `corre: [dx, dy]` (el
+encuadre, corrido eso en las dos vistas, en px de los 400 del dibujo: en un pino, la cabeza y las manos caen justo
+bajo los rótulos de los músculos, y con `corre: [50, 0]` quedan a su derecha).
 
 Los clavos: `'ti'` (el tobillo, donde esté), `'mi@0:28'` (la mano al agarre del material 0, a 28 cm
 del centro), `'mi=x,y,z'` (a un punto).
@@ -126,6 +129,7 @@ Los 533 ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x`
 | 2 | `71-pecho.js` | pecho: 35 (todo lo que no pide banda, máquina, cinta de suspensión, fitball ni disco) |
 | 3 | `72-dorsal.js` | dorsal: 35 (quedan 5: las dominadas asistidas con banda y en máquina, las lastradas con disco y el lanzamiento de balón medicinal) |
 | 4 | `73-espalda-alta.js` | espalda alta: 30 (con los 3 del bloque 1, 33 de 44; quedan 11: 5 con banda, 4 en máquina y 2 con cinta de suspensión) |
+| 5 | `74-hombros.js` | hombros: 34 (con los 3 del bloque 1, 37 de 47; quedan 10: 4 con banda, 3 en máquina, 2 en multipower y 1 con disco) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -133,7 +137,13 @@ En un trozo de bloque, los ejercicios van **por familias**, con una función por
 lever), `sentado` + `arribaJ`/`abajoJ` (los jalones), `inclinado(ángulo)` + `colgando`/`anteTronco` (los remos),
 `arrodillado`…; en `73-espalda-alta.js`: `remoSentado(manos, mano, {…})` (en la máquina de remo), `bocaAbajo` +
 `brazoEn(postura, ángulo, altura)` + `elevacionProna` (la Y, la T, la I), `aUnBrazo(postura, muñeca, …)` (el cuerpo, a
-un brazo estirado justo de una mano apoyada: las flexiones escapulares)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+un brazo estirado justo de una mano apoyada: las flexiones escapulares)…; en `74-hombros.js`: `sentadoEnRespaldo(grados)` y
+`sentadoAlBorde(inclinación)` (en un banco), `poleaLado(alto)` + `alAsa(alto)` (la polea a una mano: se gira hasta que la
+mano llega al asa), `enCruz` y `cuelgan` (los pájaros), `enBancoAlto` (boca abajo, con los brazos colgando), `planas(postura)`
+(las manos, planas en el suelo con los dedos hacia delante, llegue el antebrazo como llegue), `picaEn(muñecas, alto)` (la
+pica: `arriba(beta)`, con los brazos estirados, y `abajo(beta, y)`, con la frente a «y» del suelo; con beta −20 es una
+plancha y con 34 la V invertida, así que de una a otra solo sube la cadera) y `pino(cabeceo, muñecas, zHombros, extra,
+yHombros)` (cabeza abajo sobre las manos)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
 si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
 
 Las ayudas que valen para cualquier bloque están en `70-coreografias.js` (nacieron en el bloque 3 y el 4 las subió
@@ -141,16 +151,21 @@ allí; cada trozo es una función cerrada y no ve las de otro): `conAgarre(postu
 puño cae en ese punto del mundo: una barra que va al ombligo, una mancuerna junto a la cadera), `estirado(postura,
 hacia, lado)` (el brazo, estirado desde el hombro hacia un punto: la polea), `inclinado(ángulo, extra)` (la bisagra de
 cadera), `colgando(postura, manos, delante)` (los brazos a plomo), `anteTronco(postura, arriba, fuera, x)` (un punto
-ante el tronco: el ombligo, el pecho), `cuelga`/`activo`/`clavosB`/`barraD` (colgado de la barra) y `une`. Lo que se
-coge más tarde (el agarre de la polea, la barra T en el suelo) espera en su sitio: `reposo` en el material y en la
-coreografía.
+ante el tronco: el ombligo, el pecho), `cuelga`/`activo`/`clavosB`/`barraD` (colgado de la barra), `une`, `busca(f, meta,
+lo, hi)` (el valor con el que algo mide lo que tiene que medir: cuánto hay que inclinarse para llegar a un asa) y
+`aUnBrazo(postura, muñeca, lo, hi)` (el cuerpo, a un brazo estirado justo de una mano apoyada). Lo que se
+coge más tarde (el agarre de la polea, la barra T en el suelo, unas mancuernas) espera en su sitio: `reposo` en el
+material y en la coreografía. Y si dos cosas se cogen en momentos distintos (el asa de una polea y después la de la
+otra), cada una trae su lista: `reposoEn: ['s', 'g1']`, en su material (espera mientras la postura de la que se sale
+esté en esa lista).
 
 Lo que casi no se mueve (encoger los hombros, juntar los omóplatos, los círculos de hombros) se escribe con `hom:
 [sube, adelanta]`, en centímetros: 6 de subida es «lo más alto que pueda»; −3 de adelanto, los omóplatos juntos.
 
 ## El material (`50-material.js`)
 
-`barra` (con discos, o `barra_z`), `mancuernas` (una en cada mano, en una sola, o una entre las dos), `kettlebell`,
+`barra` (con discos, o `barra_z`), `mancuernas` (una en cada mano, en una sola, o una entre las dos; `reposo: { i: [x, y,
+z], d: […] }`, dónde esperan hasta que se cogen, y `ejeReposo`, a lo largo de qué), `kettlebell`,
 `banco`, `soporte` (el de la barra), `barra_dominadas`, `paralelas`, `escalon`, `esterilla`, `pared`, `polea`,
 `landmine` (la barra T) y `toalla` (algo blando).
 
@@ -197,6 +212,7 @@ ninguna coreografía los usa todavía: están sin probar.
    Los rótulos de los músculos tapan la esquina de abajo a la izquierda del vídeo: lo que pasa a ras de suelo (una
    barra que sube desde el suelo, unas mancuernas) tiene que quedar a la derecha (un rumbo negativo: mira hacia la
    derecha de la pantalla). Y la cabeza, lejos de la esquina de arriba a la izquierda, donde va «Paso 1 de 4» (`zoom`).
+   En un pino, lo que importa (la cabeza y las manos) está abajo y en el centro: `corre: [50, 0]` lo aparta de los rótulos.
    Jérôme tiene que caber entero en el cuadro en las dos vistas, a 4 px o más del borde (de los 400 del dibujo): la
    auditoría lo mide y dice cuáles se arriman más. Si uno toca el borde, `zoom: 0.92` (o menos) en su coreografía.
 3. Verla en el reproductor de verdad, paso a paso, **con el texto de cada paso al lado**:

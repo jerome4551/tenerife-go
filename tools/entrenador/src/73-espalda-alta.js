@@ -6,17 +6,7 @@
      los omóplatos atrás (juntarlos), abajo y atrás, o adelante (separarlos). */
   (function () {
     var ENCOGE = 6;                                   /* lo que suben los hombros «lo más alto que pueda» */
-    /* busca, entre lo y hi, el valor de x con el que f(x) vale «meta» (f, monótona): para dejar un hombro a un brazo justo de una mano apoyada */
-    function busca(f, meta, lo, hi) {
-      var crece = f(hi) > f(lo), i, x;
-      for (i = 0; i < 40; i++) { x = (lo + hi) / 2; if ((f(x) > meta) === crece) hi = x; else lo = x; }
-      return (lo + hi) / 2;
-    }
-    /* la postura P(x) con el hombro izquierdo a un brazo estirado de la muñeca w (que está apoyada y no se mueve) */
-    function aUnBrazo(P, w, lo, hi) {
-      var L = D.brazo + D.antebrazo - 0.35;
-      return P(busca(function (x) { return largo(menos(resolver(P(x)).i.hom, w)); }, L, lo, hi));
-    }
+    /* (busca y aUnBrazo, que nacieron aquí, están con las ayudas de cualquier bloque, en 70-coreografias.js) */
 
     /* ══════════ los encogimientos ══════════ */
     /* con barra: de pie, las rodillas algo flexionadas; la barra cuelga ante los muslos, con las palmas hacia abajo (hacia atrás,

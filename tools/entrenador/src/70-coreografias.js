@@ -84,6 +84,17 @@
   function anteTronco(P, arriba_, fuera, x) { var E = resolver(P); return mas(E.pel, mas(aplicar(E.Bp, [0, arriba_, 0]), mas(aplicar(E.Bl, [0, 0, fuera]), [x || 0, 0, 0]))); }
   /* colgando: el puño, en la vertical del hombro (más «dz» hacia delante), con el brazo estirado */
   function colgando(P, G, dz) { var h = resolver(P).i.hom; return estirado(P, [G, h[1] - BRAZO, h[2] + (dz || 0)], 'b', 0.3, [1, 0.2, -0.6]); }
+  /* busca, entre lo y hi, el valor de x con el que f(x) vale «meta» (f, monótona): para dejar un hombro a un brazo justo de una mano apoyada */
+  function busca(f, meta, lo, hi) {
+    var crece = f(hi) > f(lo), i, x;
+    for (i = 0; i < 40; i++) { x = (lo + hi) / 2; if ((f(x) > meta) === crece) hi = x; else lo = x; }
+    return (lo + hi) / 2;
+  }
+  /* la postura P(x) con el hombro izquierdo a un brazo estirado de la muñeca w (que está apoyada y no se mueve) */
+  function aUnBrazo(P, w, lo, hi) {
+    var L = D.brazo + D.antebrazo - 0.35;
+    return P(busca(function (x) { return largo(menos(resolver(P(x)).i.hom, w)); }, L, lo, hi));
+  }
 
   /* ══════════ CUÁDRICEPS ══════════ */
   (function () {

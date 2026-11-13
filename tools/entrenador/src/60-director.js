@@ -260,7 +260,7 @@
       var s = this.sec[this.sec.length - 1];
       for (i = 0; i < this.sec.length; i++) if (this.tau < this.sec[i].t0 + this.sec[i].dur) { s = this.sec[i]; break; }
       e = s.curva(entre((this.tau - s.t0) / s.dur, 0, 1)); A = this.K[s.de]; B = this.K[s.a];
-      this.secDe = s.de; this.secU = entre((this.tau - s.t0) / s.dur, 0, 1);
+      this.secDe = s.de; this.secA = s.a; this.secU = entre((this.tau - s.t0) / s.dur, 0, 1);
       E = s.de === s.a ? A : mezclar(A, B, e); clavos = s.clavos ? s.clavos.map(clavo) : this.clavos;
       this.esf += (0 - this.esf) * (1 - Math.exp(-dt * 5));
       if (this.tau >= this.secT) { this.modo = 'postura'; this.w = 1; }
@@ -320,6 +320,14 @@
     this.ctx.reposo = !!rp && !this.busto && ((this.modo === 'postura' && rp.indexOf(this.meta) >= 0) ||
       (this.modo === 'sec' && rp.indexOf(this.secDe) >= 0 && this.secU < 0.97) ||
       (this.modo === 'postura' && this.w < 0.96 && rp.indexOf(this.metaPrev) >= 0));
+    /* y cuando dos cosas se cogen en momentos distintos (un asa y después la otra), cada una trae su lista (reposoEn, en su material):
+       espera mientras la postura de salida esté en ella; y, si la de llegada también lo está, hasta el final del tramo */
+    var dir_ = this;
+    this.ctx.enLista = function (l) {
+      return !!l && !dir_.busto && ((dir_.modo === 'postura' && l.indexOf(dir_.meta) >= 0) ||
+        (dir_.modo === 'sec' && l.indexOf(dir_.secDe) >= 0 && (dir_.secU < 0.97 || l.indexOf(dir_.secA) >= 0)) ||
+        (dir_.modo === 'postura' && dir_.w < 0.96 && l.indexOf(dir_.metaPrev) >= 0));
+    };
     /* el material, la figura y lo demás */
     var mats = esc.material, j;
     for (j = 0; j < mats.length; j++) { mats[j].colocar(E, this.ctx); mats[j].oculto = this.busto; }
@@ -400,7 +408,9 @@
       var a = [1e9, 1e9], b = [-1e9, -1e9];
       pts.forEach(function (p) { var q = cam.p(p); a[0] = Math.min(a[0], q[0]); a[1] = Math.min(a[1], q[1]); b[0] = Math.max(b[0], q[0]); b[1] = Math.max(b[1], q[1]); });
       var e = entre(Math.min((ANCHO - 36) / (b[0] - a[0] + 12), (ALTO - 96) / (b[1] - a[1] + 8)) * (co.zoom || 1), 0.9, 2.6);
-      return { rumbo: r, picado: pic, esc: e, mira: mira, ox: ANCHO / 2 - (a[0] + b[0]) / 2 * e, oy: 58 + (ALTO - 96) / 2 - (a[1] + b[1]) / 2 * e + 4 };
+      /* corre: [dx, dy], si lo que importa cae justo bajo las etiquetas de los músculos (en un pino, la cabeza y las manos): el encuadre se corre eso */
+      var cr = co.corre || [0, 0];
+      return { rumbo: r, picado: pic, esc: e, mira: mira, ox: ANCHO / 2 - (a[0] + b[0]) / 2 * e + cr[0], oy: 58 + (ALTO - 96) / 2 - (a[1] + b[1]) / 2 * e + 4 + cr[1] };
     });
     /* el busto: de frente, de cerca, para saludar y para los consejos */
     this.vBusto = { rumbo: 0, picado: BUSTO.picado, esc: BUSTO.esc, mira: BUSTO.mira, ox: ANCHO / 2, oy: BUSTO.oy };
