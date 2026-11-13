@@ -12,17 +12,7 @@
     var ABAJO_Z = { tipo: 'puno', barra: [0, 0, 1], palma: [0, -1, 0] };          /* hacia abajo, lo que agarra va de delante atrás (el brazo, en cruz) */
     var EN_MUSLO = { tipo: 'abierta', prono: 90 };
 
-    /* ── sentado ── */
-    var Z_BIS = 24;                                   /* la bisagra del banco con respaldo (largo 124, asiento 38) */
-    function silla5(ang) { return ['banco', { rumbo: 180, largo: 124, respaldo: ang }]; }
-    /* con la espalda en el respaldo (a «ang» grados: 85, casi vertical; 45, inclinado) y los pies en el suelo */
-    function sentadoEnRespaldo(ang, extra) {
-      var a = ang * RAD, c = Math.cos(a), s = Math.sin(a), k = (11 - 11.5 * c) / s;
-      return sobre({ pel: [0, 55, Z_BIS + 11.5 * s - k * c], giro: [0, -(90 - ang), 0], p: { suelo: [15, Z_BIS + 52], abre: 8, polo: [0.2, 1, 0.3] } }, extra || {});
-    }
-    /* en el extremo de un banco plano, que queda detrás: el tronco, a «inc» grados hacia delante */
-    var BANCO_DETRAS = ['banco', { en: [0, -20], largo: 96 }];
-    function sentadoAlBorde(inc, extra) { return sobre({ pel: [0, 55, 0], giro: [0, inc, 0], cab: [-inc * 0.5, 0, 0], p: { suelo: [13, 42], abre: 7 } }, extra || {}); }
+    /* ── sentado: silla5, sentadoEnRespaldo, BANCO_DETRAS y sentadoAlBorde, en 70-coreografias.js (los usa también el bloque 6) ── */
     /* la muñeca, dicha desde el hombro y en el marco del tórax (gira con el tronco): hacia fuera, hacia la cabeza, hacia delante */
     function desdeHombro(d, polo) { return { a: [D.hombroX + d[0], D.hombroY + d[1], d[2]], en: 'torax', polo: polo || [1, -1, 0.2] }; }
 

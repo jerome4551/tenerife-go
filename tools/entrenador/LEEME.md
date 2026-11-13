@@ -20,7 +20,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/20-figura.js` | la cámara y el cuerpo, dibujado por masas a tres tintas: torso, brazos y piernas, manos con dedos, zapatillas que se doblan, el brillo de los músculos |
 | `src/30-cabeza.js` | la cabeza, con volumen: gira de verdad (ya no son tres dibujos). Las caras, la mirada y el tupé, que va un instante detrás |
 | `src/40-escenario.js` | la escena: el orden de pintado, la sombra, los tres decorados (fuera, calistenia, gimnasio; día y noche) |
-| `src/50-material.js` | barra, mancuernas, banco, soporte, barra de dominadas, escalón, pared, polea… |
+| `src/50-material.js` | barra (y la barra Z), mancuernas, pesa rusa, banco, banco predicador, soporte, barra de dominadas, escalón, pared, polea… |
 | `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
 | `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los avisos, el encuadre; y los gestos del presentador |
 | `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos; y las de cualquier bloque: `conAgarre`, `estirado`, `inclinado`, `colgando`, `anteTronco`, `cuelga`/`activo`, `barraD`…) |
@@ -28,6 +28,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/72-dorsal.js` | las coreografías del bloque 3: **dorsal** (35), por familias (colgado de la barra, el front lever, los jalones, los remos, la polea a una mano, los estiramientos) |
 | `src/73-espalda-alta.js` | las coreografías del bloque 4: **espalda alta** (30), por familias (los encogimientos, el remo sentado en polea, los remos libres, los omóplatos, tumbado boca abajo, los estiramientos del cuello) |
 | `src/74-hombros.js` | las coreografías del bloque 5: **hombros** (34), por familias (los press, las elevaciones, la polea a una mano, el deltoides posterior, entre dos poleas, los rotadores, la pica y el pino, la movilidad y los estiramientos) |
+| `src/75-biceps.js` | las coreografías del bloque 6: **bíceps** (36), por familias (de pie con barra, con mancuernas y con pesa rusa; en un banco; el banco predicador y la araña; las poleas; la barra fija; el estiramiento) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
@@ -120,8 +121,11 @@ cuando se llega a ese paso desde una postura o una secuencia (o saltando a él c
 
 ## Los bloques
 
-Los 533 ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x` (`construir.py` junta todos los
-`src/7*.js` y apunta la huella de los pasos de cada ejercicio):
+Los ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x` (`construir.py` junta todos los
+`src/7*.js` y apunta la huella de los pasos de cada ejercicio). Los bloques 1 a 15 reparten los 533 ejercicios que el
+catálogo tenía hasta el 13-11-2026, y las cuentas de la tabla («quedan N») son sobre esos 533. Ese día el catálogo pasó a
+950: los 417 nuevos (para casa y fuera: botellas, silla, mochila, toalla, mesa, aparatos biosaludables…) están sin
+repartir en bloques y ninguno tiene coreografía todavía.
 
 | bloque | trozo | qué |
 |---|---|---|
@@ -130,6 +134,7 @@ Los 533 ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x`
 | 3 | `72-dorsal.js` | dorsal: 35 (quedan 5: las dominadas asistidas con banda y en máquina, las lastradas con disco y el lanzamiento de balón medicinal) |
 | 4 | `73-espalda-alta.js` | espalda alta: 30 (con los 3 del bloque 1, 33 de 44; quedan 11: 5 con banda, 4 en máquina y 2 con cinta de suspensión) |
 | 5 | `74-hombros.js` | hombros: 34 (con los 3 del bloque 1, 37 de 47; quedan 10: 4 con banda, 3 en máquina, 2 en multipower y 1 con disco) |
+| 6 | `75-biceps.js` | bíceps: 36 (con los 3 del bloque 1, 39 de 50; quedan 11: 4 con banda, 4 con cinta de suspensión, 1 en máquina, 1 con disco y 1 con fitball) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -143,7 +148,11 @@ mano llega al asa), `enCruz` y `cuelgan` (los pájaros), `enBancoAlto` (boca aba
 (las manos, planas en el suelo con los dedos hacia delante, llegue el antebrazo como llegue), `picaEn(muñecas, alto)` (la
 pica: `arriba(beta)`, con los brazos estirados, y `abajo(beta, y)`, con la frente a «y» del suelo; con beta −20 es una
 plancha y con 34 la V invertida, así que de una a otra solo sube la cadera) y `pino(cabeceo, muñecas, zHombros, extra,
-yHombros)` (cabeza abajo sobre las manos)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+yHombros)` (cabeza abajo sobre las manos)…; en `75-biceps.js`: `codoDe(postura, adelante, fuera)` + `doblado(postura, codo, grados)`
+(el curl: el codo se fija en su sitio y el antebrazo gira sobre él; con una barra, `codoHacia` y `abre`, para que las manos no
+cambien de sitio en ella), `flexion(postura, codo, grados, hacia)` (lo mismo con el brazo apoyado en un cojín o en un muslo),
+`curlBarra({…})`, `alterno({…})`, `PRED` (el banco predicador: el cuerpo sentado, dónde va el cojín para ese cuerpo, el codo
+sobre él)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
 si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
 
 Las ayudas que valen para cualquier bloque están en `70-coreografias.js` (nacieron en el bloque 3 y el 4 las subió
@@ -152,8 +161,10 @@ puño cae en ese punto del mundo: una barra que va al ombligo, una mancuerna jun
 hacia, lado)` (el brazo, estirado desde el hombro hacia un punto: la polea), `inclinado(ángulo, extra)` (la bisagra de
 cadera), `colgando(postura, manos, delante)` (los brazos a plomo), `anteTronco(postura, arriba, fuera, x)` (un punto
 ante el tronco: el ombligo, el pecho), `cuelga`/`activo`/`clavosB`/`barraD` (colgado de la barra), `une`, `busca(f, meta,
-lo, hi)` (el valor con el que algo mide lo que tiene que medir: cuánto hay que inclinarse para llegar a un asa) y
-`aUnBrazo(postura, muñeca, lo, hi)` (el cuerpo, a un brazo estirado justo de una mano apoyada). Lo que se
+lo, hi)` (el valor con el que algo mide lo que tiene que medir: cuánto hay que inclinarse para llegar a un asa),
+`aUnBrazo(postura, muñeca, lo, hi)` (el cuerpo, a un brazo estirado justo de una mano apoyada) y, sentado en un banco,
+`silla5(grados)` + `sentadoEnRespaldo(grados)` y `BANCO_DETRAS` + `sentadoAlBorde(inclinación)` (nacieron en el bloque 5 y el 6
+las subió allí). Lo que se
 coge más tarde (el agarre de la polea, la barra T en el suelo, unas mancuernas) espera en su sitio: `reposo` en el
 material y en la coreografía. Y si dos cosas se cogen en momentos distintos (el asa de una polea y después la de la
 otra), cada una trae su lista: `reposoEn: ['s', 'g1']`, en su material (espera mientras la postura de la que se sale
@@ -162,15 +173,31 @@ esté en esa lista).
 Lo que casi no se mueve (encoger los hombros, juntar los omóplatos, los círculos de hombros) se escribe con `hom:
 [sube, adelanta]`, en centímetros: 6 de subida es «lo más alto que pueda»; −3 de adelanto, los omóplatos juntos.
 
+**El codo que no se mueve** («sin mover los codos», «sin despegar el brazo»): las dos posturas dan el mismo codo (un punto
+del mundo, a un brazo justo del hombro) y la muñeca a un antebrazo justo de él, con `polo` hacia el codo. Entre una y otra el
+brazo no cambia y el antebrazo va por su arco: el codo se queda donde está (medido: 0 cm). Y con el brazo casi estirado, que el
+antebrazo se doble solo hacia delante respecto del brazo, nunca hacia dentro: si no, la mano (que se orienta por la bisagra del
+codo) no sabe hacia dónde mira. Por eso con una barra el codo va en la línea del hombro al puño (`codoHacia`).
+
 ## El material (`50-material.js`)
 
-`barra` (con discos, o `barra_z`), `mancuernas` (una en cada mano, en una sola, o una entre las dos; `reposo: { i: [x, y,
-z], d: […] }`, dónde esperan hasta que se cogen, y `ejeReposo`, a lo largo de qué), `kettlebell`,
-`banco`, `soporte` (el de la barra), `barra_dominadas`, `paralelas`, `escalon`, `esterilla`, `pared`, `polea`,
-`landmine` (la barra T) y `toalla` (algo blando).
+`barra` (con discos; `z: true`, la barra Z; `una: 'i'`, la lleva una mano por el centro), `mancuernas` (una en cada mano, en
+una sola, o una entre las dos; `reposo: { i: [x, y, z], d: […] }`, dónde esperan hasta que se cogen, y `ejeReposo`, a lo largo
+de qué; con `lado: 'i', otra: 'd', reposo: {}`, mientras espera la lleva la otra mano: se la pasa), `kettlebell` (`cuelga: true`,
+a plomo de su asa: en un curl), `banco`, `predicador` (el banco Scott), `soporte` (el de la barra), `barra_dominadas`,
+`paralelas`, `escalon`, `esterilla`, `pared`, `polea`, `landmine` (la barra T) y `toalla` (algo blando).
 
 - `banco`: `respaldo: 45` lo inclina; `85`, casi vertical (una silla); **negativo, declinado**. Con el respaldo
-  levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba).
+  levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba). `tapa: true`: el
+  respaldo tapa de verdad lo que tiene detrás (para quien se pone de pie al otro lado, con un brazo por encima).
+- `barra` con `z: true`: corta (120) y con su W en el centro. Se agarra por las rampas de fuera (las manos a 45 cm:
+  22,5 a cada lado) o por las de dentro (a 19: 9,5), con la muñeca a medio girar (`prono: -65`); las dos suben hacia lados
+  contrarios, así que con el agarre estrecho la W queda al revés. El plano de la W lo dan las manos; mientras espera
+  (`reposo`), `w` (hacia dónde sube el extremo de fuera de cada puño: `planoZ(postura)`, en `75-biceps.js`).
+- `predicador`: el cojín (un prisma con su cara inclinada y su cara vertical) sobre su poste, el asiento y, con
+  `ganchos: [y, z]`, los dos soportes donde espera la barra. `en` y `alto` son el canto de arriba del cojín, por el lado
+  del pecho; con `rumbo: 180` se usa desde el otro lado (la araña). El cojín **tapa de verdad** (`taparConCaras`): lo que
+  queda del lado de fuera de una cara que la cámara ve va por delante, y lo demás, por detrás.
 - `polea`: `rumbo` gira la columna (`180`, detrás de Jérôme; `90` y `−90`, una a cada lado mirando al centro: el
   cruce de poleas); `a`, a qué va el cable (`'manos'`, `'i'`, `'d'`…); `encuadre`, hasta qué altura cuenta para el
   encuadre (tumbado entre dos poleas, lo que importa está abajo).

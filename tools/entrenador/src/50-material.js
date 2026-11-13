@@ -71,6 +71,32 @@
     for (; n < 3; n++) this.caras[n].style.display = 'none';
     if (lista) lista.push({ z: (zModo === 'fondo' ? zmin : zc) + (sesgo || 0), el: this.g });
   };
+  /* un prisma: un perfil convexo, dicho de delante atrás ([z, y], en el marco B), que se estira a lo ancho. Se pintan las caras que
+     miran a la cámara y la tapa de ese lado. colores: uno por arista del perfil (la cara que sale de ella); tapa: el de las dos tapas */
+  function Prisma(n, colores, tapa) {
+    this.g = crear('g'); this.col = colores; this.tapa = tapa; this.caras = [];
+    for (var i = 0; i <= n; i++) this.caras.push(crear('path', { 'stroke-linejoin': 'round', 'stroke-width': 0.8 }, this.g));
+  }
+  Prisma.prototype.pon = function (cam, c3, B, perfil, ancho, lista, sesgo) {
+    var n = perfil.length, h = ancho / 2, yo = this, k = 0, zmin = 1e9, i, cz = 0, cy = 0;
+    var v = function (q, s) { return cam.p(mas(c3, aplicar(B, [s * h, q[1], q[0]]))); };
+    var pinta = function (pts, color) {
+      var d = '', el = yo.caras[k++];
+      pts.forEach(function (p, j) { zmin = Math.min(zmin, p[2]); d += (j ? 'L' : 'M') + n1(p[0]) + ',' + n1(p[1]); });
+      pon(el, 'd', d + 'z'); pon(el, 'fill', color); pon(el, 'stroke', color); el.style.display = '';
+    };
+    perfil.forEach(function (q) { cz += q[0] / n; cy += q[1] / n; });
+    for (i = 0; i < n; i++) {
+      /* la normal de la arista, hacia fuera del perfil */
+      var a = perfil[i], b = perfil[(i + 1) % n], nz = b[1] - a[1], ny = a[0] - b[0], l = Math.sqrt(nz * nz + ny * ny) || 1;
+      if (nz * ((a[0] + b[0]) / 2 - cz) + ny * ((a[1] + b[1]) / 2 - cy) < 0) { nz = -nz; ny = -ny; }
+      if (punto(aplicar(B, [0, ny / l, nz / l]), cam.k) > 0.02) pinta([v(a, -1), v(b, -1), v(b, 1), v(a, 1)], this.col[i]);
+    }
+    var lado = punto(B[0], cam.k);
+    if (Math.abs(lado) > 0.02) pinta(perfil.map(function (q) { return v(q, lado > 0 ? 1 : -1); }), this.tapa);
+    for (; k < this.caras.length; k++) this.caras[k].style.display = 'none';
+    if (lista) lista.push({ z: zmin + (sesgo || 0), el: this.g });
+  };
   /* una esfera */
   function Esfera(defs, u, color, claro, oscuro) {
     var g = crear('radialGradient', { id: u, cx: 0.36, cy: 0.3, r: 0.8 }, defs);
@@ -84,16 +110,53 @@
     return c;
   };
 
+  /* Una pieza maciza y convexa (el cojín del predicador, el respaldo de un banco) que tapa de verdad. caras: [[normal hacia fuera, un
+     punto de la cara], …]. Lo que queda entero del lado de fuera de una de sus caras va por delante de la pieza si la cámara ve esa
+     cara, y por detrás si no la ve. El tronco no se puede mover de sitio en la lista (no dice dónde está), así que es la pieza la que
+     se coloca respecto de él; y los brazos y las piernas, respecto de la pieza. it: la pieza, tal como entró en la lista */
+  function taparConCaras(E, cam, lista, it, caras) {
+    var e = 1.5, i;
+    /* 1: por delante; −1: por detrás; 0: no se sabe (la atraviesa) */
+    var lado = function (pts) {
+      var r = 0, j, q, m;
+      for (j = 0; j < caras.length; j++) {
+        m = 1e9;
+        for (q = 0; q < pts.length; q++) m = Math.min(m, punto(caras[j][0], menos(pts[q], caras[j][1])));
+        if (m < -e) continue;
+        if (punto(caras[j][0], cam.k) > 0.02) return 1;
+        r = -1;
+      }
+      return r;
+    };
+    var zTor = cam.p(mas(E.tor, aplicar(E.Bt, [0, 11, 0])))[2] + 0.4, zPel = cam.p(E.pel)[2];
+    var t = lado([E.pel, E.lum, E.tor, mas(E.tor, aplicar(E.Bt, [0, D.hombroY, 0]))]);
+    if (t > 0) it.z = Math.min(zTor, zPel) - 0.7; else if (t < 0) it.z = Math.max(zTor, zPel) + 0.7;
+    for (i = 0; i < lista.length; i++) {
+      var p = lista[i];
+      if (!p.pts || p === it) continue;
+      var s = lado(p.pts);
+      if (s > 0) { if (p.z <= it.z + 0.2) p.z = it.z + 0.5 + p.z / 10000; }
+      else if (s < 0) { if (p.z >= it.z - 0.2) p.z = it.z - 0.4 + p.z / 10000; }
+    }
+  }
+
   var MATERIAL = {};
   var N_MAT = 0;
   /* ¿espera en su sitio (o.reposo), porque todavía nadie lo ha cogido? Lo dice la coreografía («reposo»: en qué posturas); si el
      material trae su propia lista (reposoEn), manda esa: así dos cosas se cogen en momentos distintos */
   function enReposo(o, ctx) { return !!(o.reposo && ctx && (o.reposoEn ? ctx.enLista && ctx.enLista(o.reposoEn) : ctx.reposo)); }
   /* ── la barra: sigue a las manos, o va pegada al cuerpo (a la espalda, a la cadera), o en un punto del mundo.
-     o: { ancla: 'manos' | 'torax' | 'pelvis' | 'mundo', en: [x, y, z], eje: [x, y, z], largo, discos (radio; 0, sin discos), z (barra Z) } */
+     o: { ancla: 'manos' | 'torax' | 'pelvis' | 'mundo', en: [x, y, z], eje: [x, y, z], largo, discos (radio; 0, sin discos), una: 'i' | 'd' (la
+     lleva una sola mano, por el centro), z: true (la barra Z) }
+     La barra Z es corta (120) y su centro hace una W: dos rampas a cada lado, que es donde se agarra, con la muñeca a medio girar. Las
+     de fuera (las manos a 45 cm) y las de dentro (a 19: «por la parte más interior») suben hacia lados contrarios, así que con el
+     agarre estrecho la W queda al revés. Su plano lo dan las manos (hacia dónde sube el extremo de fuera de cada puño); mientras
+     espera (reposo), o.w y o.estrecho */
+  var Z_W = [3, 16, 29], Z_S = 3, Z_ANCHO = 22.5, Z_ESTRECHO = 9.5;      /* la W: dónde están el pico, el valle y el arranque del manguito; su media altura; y el centro de cada rampa */
   MATERIAL.barra = function (esc, o) {
     o = o || {};
-    this.o = o; this.L = o.largo || 200; this.R = o.discos == null ? 21 : o.discos;
+    this.o = o; this.L = o.largo || (o.z ? 120 : 200); this.R = o.discos == null ? (o.z ? 13 : 21) : o.discos;
+    if (o.z) { this.gz = crear('g'); this.za = trazo('', M_COL.cromo); this.zb = trazo('', 'rgba(255,255,255,.35)'); this.gz.appendChild(this.za); this.gz.appendChild(this.zb); this.w = unidad(o.w || [0, 0, 1]); this.zs = o.estrecho ? -1 : 1; }
     this.barra = new Cilindro(M_COL.cromo); this.manguitos = [new Cilindro(M_COL.cromoS), new Cilindro(M_COL.cromoS)];
     this.discos = this.R ? [new Disco(M_COL.goma, M_COL.hierroS, M_COL.cromo), new Disco(M_COL.goma, M_COL.hierroS, M_COL.cromo), new Disco(o.color || '#c9413f', M_COL.hierroS, M_COL.cromo), new Disco(o.color || '#c9413f', M_COL.hierroS, M_COL.cromo)] : [];
     this.c = [0, 100, 30]; this.eje = [1, 0, 0];
@@ -110,6 +173,18 @@
     } else if (a === 'torax') { this.c = mas(E.tor, aplicar(E.Bt, o.en)); this.eje = aplicar(E.Bt, o.eje || [1, 0, 0]); }
     else if (a === 'pelvis') { this.c = mas(E.pel, aplicar(E.Bp, o.en)); this.eje = aplicar(E.Bp, o.eje || [1, 0, 0]); }
     else { this.c = o.en; this.eje = unidad(o.eje || [1, 0, 0]); }
+    if (o.z) {
+      var w0 = o.w || [0, 0, 1], ez = this.eje;
+      if (a === 'manos' && !enReposo(o, ctx)) {
+        var ui = E.i.mano.eje, ud = E.d.mano.eje;
+        if (punto(ui, ez) < 0) ui = por(ui, -1);
+        if (punto(ud, ez) > 0) ud = por(ud, -1);
+        w0 = mas(sinParte(ui, ez), sinParte(ud, ez));
+        if (largo(w0) < 0.12) w0 = this.w;
+        this.zs = largo(menos(E.i.agarre, E.d.agarre)) < Z_ANCHO + Z_ESTRECHO ? -1 : 1;
+      } else this.zs = o.estrecho ? -1 : 1;
+      this.w = unidad(sinParte(w0, ez), this.w);
+    }
   };
   /* dónde se agarra: a x centímetros del centro, hacia la izquierda de Jérôme (+) o hacia su derecha (−) */
   MATERIAL.barra.prototype.agarre = function (x) { return mas(this.c, por(this.eje, x)); };
@@ -119,17 +194,28 @@
     return r;
   };
   MATERIAL.barra.prototype.pintar = function (E, cam, lista) {
-    var h = this.L / 2, c = this.c, e = this.eje, yo = this, sg = this.o.sesgo || 0;
-    this.barra.pon(cam, mas(c, por(e, -h)), mas(c, por(e, h)), 1.5, lista, 2.2 + sg);
+    var h = this.L / 2, c = this.c, e = this.eje, yo = this, sg = this.o.sesgo || 0, mg = 36;
+    if (this.o.z) {
+      /* la W, de un trazo: los manguitos quedan a la altura de los picos */
+      var w = this.w, s0 = this.zs * Z_S, d = '', d2 = '', zm = 0, an = 3 * cam.esc;
+      var P2 = [[-h, s0], [-Z_W[2], s0], [-Z_W[1], -s0], [-Z_W[0], s0], [Z_W[0], s0], [Z_W[1], -s0], [Z_W[2], s0], [h, s0]].map(function (q) { return cam.p(mas(c, mas(por(e, q[0]), por(w, q[1])))); });
+      var dx = P2[7][0] - P2[0][0], dy = P2[7][1] - P2[0][1], l = Math.sqrt(dx * dx + dy * dy) || 1, nx = -dy / l, ny = dx / l;
+      if (ny > 0) { nx = -nx; ny = -ny; }
+      P2.forEach(function (p, i) { zm += p[2] / 8; d += (i ? 'L' : 'M') + n1(p[0]) + ',' + n1(p[1]); d2 += (i ? 'L' : 'M') + n1(p[0] + nx * an * 0.22) + ',' + n1(p[1] + ny * an * 0.22); });
+      pon(this.za, 'd', d); pon(this.za, 'stroke-width', n1(an)); pon(this.zb, 'd', d2); pon(this.zb, 'stroke-width', n1(Math.max(0.6, an * 0.22)));
+      lista.push({ z: zm + 2.2 + sg, el: this.gz });
+      c = mas(c, por(w, s0)); mg = 26;
+    } else this.barra.pon(cam, mas(c, por(e, -h)), mas(c, por(e, h)), 1.5, lista, 2.2 + sg);
     [1, -1].forEach(function (s, i) {
       if (!yo.R) return;
-      yo.manguitos[i].pon(cam, mas(c, por(e, s * (h - 36))), mas(c, por(e, s * h)), 2.4, lista, 2.3 + sg);
-      yo.discos[i].pon(cam, mas(c, por(e, s * (h - 30))), e, yo.R, 4.4, lista, sg);
-      yo.discos[i + 2].pon(cam, mas(c, por(e, s * (h - 24.6))), e, yo.R * 0.8, 3.4, lista, sg + (s * punto(e, cam.k) > 0 ? 0.6 : -0.6));
+      yo.manguitos[i].pon(cam, mas(c, por(e, s * (h - mg))), mas(c, por(e, s * h)), 2.4, lista, 2.3 + sg);
+      yo.discos[i].pon(cam, mas(c, por(e, s * (h - mg + 6))), e, yo.R, 4.4, lista, sg);
+      yo.discos[i + 2].pon(cam, mas(c, por(e, s * (h - mg + 11.4))), e, yo.R * 0.8, 3.4, lista, sg + (s * punto(e, cam.k) > 0 ? 0.6 : -0.6));
     });
   };
   /* ── las mancuernas: una en cada mano (o en una sola), con el eje del agarre. reposo: { i: [x, y, z], d: […] }, dónde espera cada una
-     mientras nadie la ha cogido (ejeReposo: a lo largo de qué; de delante atrás, si no se dice) ── */
+     mientras nadie la ha cogido (ejeReposo: a lo largo de qué; de delante atrás, si no se dice). Con lado: 'i' y otra: 'd' (y
+     reposo: {}), mientras espera la lleva la otra mano: se la pasa de una a otra ── */
   MATERIAL.mancuernas = function (esc, o) {
     o = o || {};
     this.o = o; this.lados = o.lado ? [o.lado] : ['i', 'd'];
@@ -142,12 +228,14 @@
     this.lados.forEach(function (k) {
       var L = E[k], c = L.agarre, e = o.vertical ? L.mano.dir : L.mano.eje, p = this.p[k];
       if (o.dos) { c = mezcla(E.i.agarre, E.d.agarre, 0.5); e = o.ejeDos ? aplicar(E.Bt, o.ejeDos) : L.mano.dir; }
-      if (suelta && o.reposo[k]) { c = o.reposo[k]; e = unidad(o.ejeReposo || [0, 0, 1]); }
+      if (suelta && o.otra) { c = E[o.otra].agarre; e = E[o.otra].mano.eje; }
+      else if (suelta && o.reposo[k]) { c = o.reposo[k]; e = unidad(o.ejeReposo || [0, 0, 1]); }
       p.m.pon(cam, mas(c, por(e, -9)), mas(c, por(e, 9)), 1.4, lista, 0.9);
       p.a.pon(cam, mas(c, por(e, 10.5)), e, R, 5.4, lista, 0.4); p.b.pon(cam, mas(c, por(e, -10.5)), e, R, 5.4, lista, 0.4);
     }, this);
   };
-  /* ── la pesa rusa: cuelga de la mano (o de las dos) ── */
+  /* ── la pesa rusa: cuelga de la mano (o de las dos). cuelga: true, a plomo de su asa, que va en la palma: en un curl, con la mano
+     ya arriba, la bola queda por fuera del antebrazo (del lado del dorso de la mano) ── */
   MATERIAL.kettlebell = function (esc, o) {
     this.o = o || {};
     this.bola = new Esfera(esc.defs, 'tgm' + (++N_MAT), M_COL.hierro, M_COL.hierroL, M_COL.hierroS);
@@ -158,13 +246,18 @@
     var o = this.o, c = o.lado ? E[o.lado].agarre : mezcla(E.i.agarre, E.d.agarre, 0.5);
     /* cuelga hacia donde apunta la mano, y un poco hacia abajo */
     var dir = unidad(mas(o.lado ? E[o.lado].mano.dir : unidad(mas(E.i.mano.dir, E.d.mano.dir)), [0, -(o.peso == null ? 0.35 : o.peso), 0]));
+    if (o.cuelga) {
+      var md = o.lado ? E[o.lado].mano.dir : unidad(mas(E.i.mano.dir, E.d.mano.dir)), mp = o.lado ? E[o.lado].mano.palma : unidad(mas(E.i.mano.palma, E.d.mano.palma));
+      dir = unidad(mas([0, -1, 0], por(mp, -0.55 * Math.max(0, md[1]))));
+    }
     var b3 = mas(c, por(dir, 13.5)), b = cam.p(b3), a = cam.p(c), r = 9.2 * cam.esc;
     var px = -(b[1] - a[1]), py = b[0] - a[0], l = Math.sqrt(px * px + py * py) || 1; px = px / l * r * 0.62; py = py / l * r * 0.62;
     pon(this.asa, 'd', 'M' + n1(b[0] + px) + ',' + n1(b[1] + py) + ' Q' + n1(a[0] + px * 1.5) + ',' + n1(a[1] + py * 1.5) + ' ' + n1(a[0]) + ',' + n1(a[1]) + ' Q' + n1(a[0] - px * 1.5) + ',' + n1(a[1] - py * 1.5) + ' ' + n1(b[0] - px) + ',' + n1(b[1] - py));
     pon(this.asa, 'stroke-width', n1(2.6 * cam.esc));
     this.bola.pon(cam, b3, 9.2, lista, 0.6);
   };
-  /* ── el banco: el asiento y, si se pide, el respaldo inclinado. o: { en: [x, z], rumbo, largo, alto, ancho, respaldo: grados, asiento: largo del asiento }
+  /* ── el banco: el asiento y, si se pide, el respaldo inclinado. o: { en: [x, z], rumbo, largo, alto, ancho, respaldo: grados, asiento: largo del asiento,
+     tapa: true (el respaldo tapa de verdad lo que tiene detrás: para quien se pone de pie al otro lado) }
      El respaldo sale del asiento hacia +Z (con rumbo 180, hacia −Z: así se tumba Jérôme, que mira a +Z, con la cabeza hacia −Z).
      respaldo: 45, inclinado; 85, casi vertical (una silla); negativo, declinado (la cabeza más baja que la cadera) ── */
   MATERIAL.banco = function (esc, o) {
@@ -187,6 +280,12 @@
       this.asiento.pon(cam, al(0, alto - gr / 2, -lar / 2 + la / 2), B, [ancho, gr, la], lista, sg, 'fondo');
       var bis = al(0, alto - gr / 2, -lar / 2 + la);
       this.resp.pon(cam, mas(bis, aplicar(Br, [0, 0, lr / 2])), Br, [ancho, gr, lr], lista, sg, 'fondo');
+      if (o.tapa) {
+        /* de pie detrás de un banco inclinado, con un brazo por encima: el respaldo tapa lo que le queda detrás */
+        var cr = mas(bis, aplicar(Br, [0, 0, lr / 2])), hh = [ancho / 2, gr / 2, lr / 2], caras = [];
+        [0, 1, 2].forEach(function (j) { [1, -1].forEach(function (s) { caras.push([por(Br[j], s), mas(cr, por(Br[j], s * hh[j]))]); }); });
+        taparConCaras(E, cam, lista, lista[lista.length - 1], caras);
+      }
       /* el puntal que sostiene el respaldo */
       this.puntal.pon(cam, al(0, 3, -lar / 2 + la + lr * 0.5), mas(bis, aplicar(Br, [0, -gr / 2, lr * 0.62])), 2.6, lista, sg - 3);
     } else this.asiento.pon(cam, al(0, alto - gr / 2, 0), B, [ancho, gr, lar], lista, sg, 'fondo');
@@ -209,6 +308,73 @@
   };
   /* dónde queda la superficie del banco (para tumbarse o sentarse): un punto a z del centro, y el respaldo */
   MATERIAL.banco.prototype.alto = function () { return this.o.alto || 44; };
+  /* ── el banco predicador (Scott): un cojín con dos caras —la inclinada, donde descansan los brazos, y la vertical, donde va el pecho—
+     sobre su poste, con su asiento detrás. Quien se sienta mira hacia +Z (rumbo 0): el cojín baja alejándose de él.
+     o: { en: [x, z] (el canto de arriba del cojín, por el lado del pecho), rumbo, alto (el de ese canto: 89), ang (cuánto baja la cara
+     inclinada: 45), largo (el de esa cara: 40), ancho (62), asiento: [a cuánto del canto, alto] (false: sin asiento), ganchos: [y, z]
+     (los dos soportes donde espera la barra, por delante del cojín: el centro de la barra, en el marco del banco), sep (a cuánto del
+     centro va cada soporte: 33) } ── */
+  MATERIAL.predicador = function (esc, o) {
+    o = o || {}; this.o = o;
+    var tap = [M_COL.tapizL, M_COL.tapiz, M_COL.tapizS, M_COL.tapizS], hie = ['#566072', M_COL.hierro, M_COL.hierroS, M_COL.hierroS];
+    this.cojin = new Prisma(5, [M_COL.tapizL, M_COL.tapizL, M_COL.tapizS, M_COL.tapizS, M_COL.tapizS], M_COL.tapiz);
+    this.poste = new Caja(hie); this.viga = new Cilindro(M_COL.hierro); this.pies = [new Cilindro(M_COL.hierroS), new Cilindro(M_COL.hierroS)];
+    this.sillin = o.asiento === false ? null : new Caja(tap); this.patSillin = this.sillin ? new Caja(hie) : null;
+    this.ganchos = [];
+    if (o.ganchos) for (var i = 0; i < 6; i++) this.ganchos.push(new Cilindro(i % 3 ? M_COL.hierroL : M_COL.hierro));
+    this.antes = true;
+  };
+  MATERIAL.predicador.prototype.colocar = function () {};
+  MATERIAL.predicador.prototype.al = function (x, y, z) { var o = this.o; return mas([o.en ? o.en[0] : 0, 0, o.en ? o.en[1] : 0], aplicar(giroY(o.rumbo || 0), [x, y, z])); };
+  /* el perfil del cojín ([z, y], desde el canto): el canto, la cara inclinada, su extremo bajo, la de debajo y la vertical */
+  MATERIAL.predicador.prototype.perfil = function () {
+    var o = this.o, a = (o.ang == null ? 45 : o.ang) * RAD, L = o.largo || 40, gr = 9, c = Math.cos(a), s = Math.sin(a);
+    var C = [3 + L * c, -L * s], Dd = [C[0] - gr * s, C[1] - gr * c];
+    return [[0, 0], [3, 0], C, Dd, [0, Dd[1] + Dd[0] * s / c]];
+  };
+  MATERIAL.predicador.prototype.asientoEn = function () { var o = this.o; return o.asiento === false ? null : (o.asiento || [22, 50]); };
+  MATERIAL.predicador.prototype.extremos = function () {
+    var o = this.o, H = o.alto || 89, w = (o.ancho || 62) / 2, P = this.perfil(), as = this.asientoEn(), r = [], yo = this;
+    P.forEach(function (q) { r.push(yo.al(-w, H + q[1], q[0]), yo.al(w, H + q[1], q[0])); });
+    r.push(this.al(-22, 0, P[2][0] * 0.5), this.al(22, 0, P[2][0] * 0.5));
+    if (as) r.push(this.al(-17, as[1], -as[0] - 15), this.al(17, as[1], -as[0] - 15), this.al(-20, 0, -as[0]), this.al(20, 0, -as[0]));
+    if (o.ganchos) { var sp = o.sep || 33; r.push(this.al(-sp, o.ganchos[0] + 4, o.ganchos[1] + 4), this.al(sp, o.ganchos[0] + 4, o.ganchos[1] + 4), this.al(-sp, 0, o.ganchos[1]), this.al(sp, 0, o.ganchos[1])); }
+    return r;
+  };
+  /* el cojín tapa de verdad (taparConCaras): de frente quedaba pintado detrás de quien se sienta, como un respaldo */
+  MATERIAL.predicador.prototype.tapar = function (E, cam, lista, it, P, H, w, B) {
+    var n = P.length, caras = [], i, cz = 0, cy = 0;
+    P.forEach(function (q) { cz += q[0] / n; cy += q[1] / n; });
+    for (i = 0; i < n; i++) {
+      var a = P[i], b = P[(i + 1) % n], nz = b[1] - a[1], ny = a[0] - b[0], l = Math.sqrt(nz * nz + ny * ny) || 1;
+      if (nz * ((a[0] + b[0]) / 2 - cz) + ny * ((a[1] + b[1]) / 2 - cy) < 0) { nz = -nz; ny = -ny; }
+      caras.push([aplicar(B, [0, ny / l, nz / l]), this.al(0, H + a[1], a[0])]);
+    }
+    caras.push([B[0], this.al(w, H, 0)], [por(B[0], -1), this.al(-w, H, 0)]);
+    taparConCaras(E, cam, lista, it, caras);
+  };
+  MATERIAL.predicador.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, B = giroY(o.rumbo || 0), H = o.alto || 89, ancho = o.ancho || 62, P = this.perfil(), as = this.asientoEn(), sg = o.sesgo == null ? -14 : o.sesgo, yo = this;
+    this.cojin.pon(cam, this.al(0, H, 0), B, P, ancho, lista, sg);
+    this.tapar(E, cam, lista, lista[lista.length - 1], P, H, ancho / 2, B);
+    /* el poste, bajo el centro de la cara de debajo; la viga del suelo, del asiento a los ganchos (o al poste), y los pies */
+    var zp = (P[3][0] + P[4][0]) / 2, yp = H + (P[3][1] + P[4][1]) / 2 + 2, z0 = as ? -as[0] : zp - 20, z1 = o.ganchos ? o.ganchos[1] - 3.2 : zp + 16;
+    this.poste.pon(cam, this.al(0, yp / 2, zp), B, [7, yp, 7], lista, sg - 2, 'fondo');
+    this.viga.pon(cam, this.al(0, 2, z0), this.al(0, 2, z1), 2, lista, sg - 4);
+    this.pies[0].pon(cam, this.al(-20, 1.6, z0), this.al(20, 1.6, z0), 2, lista, sg - 3);
+    this.pies[1].pon(cam, this.al(-(o.ganchos ? (o.sep || 33) + 4 : 22), 1.6, z1), this.al(o.ganchos ? (o.sep || 33) + 4 : 22, 1.6, z1), 2, lista, sg - 3);
+    if (this.sillin) {
+      this.sillin.pon(cam, this.al(0, as[1] - 3, -as[0]), B, [32, 6, 28], lista, sg, 'fondo');
+      this.patSillin.pon(cam, this.al(0, (as[1] - 6) / 2, -as[0]), B, [7, as[1] - 6, 7], lista, sg - 2, 'fondo');
+    }
+    /* los ganchos: el poste, la cuna y su uña */
+    if (o.ganchos) [1, -1].forEach(function (s, i) {
+      var x = s * (o.sep || 33), y = o.ganchos[0], z = o.ganchos[1];
+      yo.ganchos[i * 3].pon(cam, yo.al(x, 2, z - 3.2), yo.al(x, y + 3, z - 3.2), 1.7, lista, sg - 1);
+      yo.ganchos[i * 3 + 1].pon(cam, yo.al(x, y - 2.7, z - 3.2), yo.al(x, y - 2.7, z + 3.6), 1.2, lista, sg - 1);
+      yo.ganchos[i * 3 + 2].pon(cam, yo.al(x, y - 2.7, z + 3.6), yo.al(x, y + 1.4, z + 3.6), 1.2, lista, sg - 1);
+    });
+  };
   /* ── el soporte de la barra (dos postes con su gancho) ── */
   MATERIAL.soporte = function (esc, o) {
     this.o = o || {}; this.postes = [new Cilindro(M_COL.hierro), new Cilindro(M_COL.hierro)]; this.ganchos = [new Cilindro(M_COL.hierroL), new Cilindro(M_COL.hierroL)];

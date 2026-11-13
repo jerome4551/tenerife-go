@@ -95,6 +95,17 @@
     var L = D.brazo + D.antebrazo - 0.35;
     return P(busca(function (x) { return largo(menos(resolver(P(x)).i.hom, w)); }, L, lo, hi));
   }
+  /* ── sentado en un banco (nacieron en el bloque 5, con los hombros) ── */
+  var Z_BIS = 24;                                   /* la bisagra del banco con respaldo (largo 124, asiento 38) */
+  function silla5(ang) { return ['banco', { rumbo: 180, largo: 124, respaldo: ang }]; }
+  /* con la espalda en el respaldo (a «ang» grados: 85, casi vertical; 45, inclinado) y los pies en el suelo */
+  function sentadoEnRespaldo(ang, extra) {
+    var a = ang * RAD, c = Math.cos(a), s = Math.sin(a), k = (11 - 11.5 * c) / s;
+    return sobre({ pel: [0, 55, Z_BIS + 11.5 * s - k * c], giro: [0, -(90 - ang), 0], p: { suelo: [15, Z_BIS + 52], abre: 8, polo: [0.2, 1, 0.3] } }, extra || {});
+  }
+  /* en el extremo de un banco plano, que queda detrás: el tronco, a «inc» grados hacia delante */
+  var BANCO_DETRAS = ['banco', { en: [0, -20], largo: 96 }];
+  function sentadoAlBorde(inc, extra) { return sobre({ pel: [0, 55, 0], giro: [0, inc, 0], cab: [-inc * 0.5, 0, 0], p: { suelo: [13, 42], abre: 7 } }, extra || {}); }
 
   /* ══════════ CUÁDRICEPS ══════════ */
   (function () {
