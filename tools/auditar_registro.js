@@ -446,6 +446,9 @@ const EXENTOS = [
   ['fr', /le service de santé britannique, dans ses exercices du genou pour les coureurs, demande que/, '«le service… demande que»: tercera persona, no el imperativo (sentadilla-rodillas)'],
   ['pl', /którą osiągnęli ci, którzy je jedli/, '«ci, którzy»: «ci» es el demostrativo, «los que», no «a ti» (hidratos)'],
   ['pl', /przycisk «Usuń dane z sekcji „Ciało”»/, 'cita el boton «Usuń dane z sekcji «Ciało»» con las comillas de dentro como „…”, que el quitar de los rotulos citados no ve (borrar-datos; ppDatosCuerpoTxt)'],
+  /* (12-11-2026, #120) el bulgaro de «borrar-datos» cita el boton de hoy, en imperativo desde el 23 de octubre (antes citaba
+     «Изтриване…», el de antes): las comillas de dentro, a la bulgara, „…“ */
+  ['bg', /бутонът «Изтрий данните от „Вашето тяло“»/, 'cita el boton «Изтрий данните от «Вашето тяло»» (ROTULOS_BG) con las comillas de dentro como „…“, que el quitar de los rotulos citados no ve (borrar-datos)'],
   /* el tour (modulos/guia.js) y el vídeo de los ejercicios (modulos/entrenador.js), que este control lee
      desde el 12 de noviembre de 2026 */
   ['fr', /^Marche, course à pied, natation/, '«Marche» es el nombre, la marcha, al principio de una lista de deportes; no el imperativo (guiaCuMovP, el tour de «Su cuerpo»)'],
