@@ -2005,6 +2005,12 @@ async function ejemplo(pg, mas) {
     const TEIDE = { current: { temperature_2m: 3.8, uv_index: 0, wind_speed_10m: 42, weather_code: 73, is_day: 0 }, daily: { uv_index_max: [7.6] } };
     const MAR = { current: { sea_surface_temperature: 21.4, wave_height: 0.8 } };
     const peticiones = [];
+    /* (13-11-2026) las peticiones de «Hoy en la isla» se reconocen por sus campos: la app hace las suyas a Open-Meteo (el
+       panel del mar, «Báñese hoy aquí», el cielo…), y una que cayera en la espera de 600 ms se contaba como del módulo (en la
+       auditoría del bloque 35, una vez 2 en vez de 1; al repetirla, 1). Si el módulo pidiera de más, se sigue viendo */
+    const delModulo = u => /^https:\/\/api\.open-meteo\.com\/v1\/forecast\?latitude=[-\d.]+&longitude=[-\d.]+&timezone=Atlantic%2FCanary&current=temperature_2m,uv_index,wind_speed_10m,weather_code,is_day&daily=uv_index_max&forecast_days=1$/.test(u) ||
+      /^https:\/\/marine-api\.open-meteo\.com\/v1\/marine\?latitude=[-\d.]+&longitude=[-\d.]+&timezone=Atlantic%2FCanary&current=sea_surface_temperature,wave_height$/.test(u);
+    const nuevas = desde => peticiones.slice(desde).filter(delModulo);
     let red = true;
     const c24 = await contexto(b), p24 = await c24.newPage(), e24 = []; vigilar(p24, e24);
     await p24.route('https://api.open-meteo.com/**', r => { peticiones.push(r.request().url()); if (!red) return r.abort(); r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(/latitude=28\.22/.test(r.request().url()) ? TEIDE : TIEMPO) }); });
@@ -2055,7 +2061,7 @@ async function ejemplo(pg, mas) {
     const CR_A = 'https://open-meteo.com/|Open-Meteo.com|_blank|noopener,https://creativecommons.org/licenses/by/4.0/|CC BY 4.0|_blank|noopener';
     prueba('el crédito de Open-Meteo junto a sus datos, el de los paneles de la app: con el mar de Costa Adeje, «' + CR_TIEMPO + ' · ' + CR_COPERNICUS + '», con sus tres enlaces (en otra pestaña), sin traducir, en el color de la fuente (no en el blanco de los paneles oscuros)',
       r24.credito === CR_TIEMPO + ' · ' + CR_COPERNICUS && r24.creditoA === CR_A + ',https://marine.copernicus.eu/|' + CR_COPERNICUS + '|_blank|noopener' && r24.creditoSin && r24.creditoColor === r24.fuenteColor, JSON.stringify([r24.credito, r24.creditoA, r24.creditoColor, r24.fuenteColor]));
-    const pet = peticiones.filter(u => /latitude=28\.078/.test(u));
+    const pet = peticiones.filter(u => delModulo(u) && /latitude=28\.078/.test(u));
     prueba('dos peticiones para Costa Adeje, con sus coordenadas, la hora de Canarias y los campos de la app (temperatura, UV, viento, código, día; del mar, temperatura y ola)', pet.length === 2 && pet.some(u => /api\.open-meteo\.com\/v1\/forecast\?latitude=28\.078&longitude=-16\.737&timezone=Atlantic%2FCanary&current=temperature_2m,uv_index,wind_speed_10m,weather_code,is_day&daily=uv_index_max&forecast_days=1$/.test(u))
       && pet.some(u => /marine-api\.open-meteo\.com\/v1\/marine\?latitude=28\.078&longitude=-16\.737&timezone=Atlantic%2FCanary&current=sea_surface_temperature,wave_height$/.test(u)), pet.join(' | '));
     const cache24 = JSON.parse(r24.cache || 'null');
@@ -2077,7 +2083,7 @@ async function ejemplo(pg, mas) {
     const antes = peticiones.length;
     await p24.selectOption('#tgc-hoy-zona', 'teide'); await p24.waitForTimeout(600);
     const t24 = await leer24();
-    prueba('Teide: una petición más (solo el tiempo, sin mar), chips «UV máx. hoy 8», 4°, 42 km/h y «Nieve» (sin mar ni UV actual: es de noche), y la zona guardada', peticiones.length - antes === 1 && /latitude=28\.22/.test(peticiones[peticiones.length - 1]) && t24.chips.join('|') === 'uv=UV máx. hoy 8|=4°|=42 km/h|tiempo=Nieve' && t24.zona === 'teide' && JSON.parse(t24.cache).zona === 'teide', JSON.stringify([peticiones.length - antes, t24.chips, t24.zona]));
+    prueba('Teide: una petición más (solo el tiempo, sin mar), chips «UV máx. hoy 8», 4°, 42 km/h y «Nieve» (sin mar ni UV actual: es de noche), y la zona guardada', nuevas(antes).length === 1 && /latitude=28\.22/.test(nuevas(antes)[0]) && t24.chips.join('|') === 'uv=UV máx. hoy 8|=4°|=42 km/h|tiempo=Nieve' && t24.zona === 'teide' && JSON.parse(t24.cache).zona === 'teide', JSON.stringify([nuevas(antes).length, peticiones.length - antes, t24.chips, t24.zona]));
     prueba('…y el consejo mira el entero (7,6 → 8): «evitar el sol del mediodía»', /Con un UV máximo de 8 hoy, la OMS pide evitar el sol del mediodía/.test(t24.consejo), t24.consejo);
     prueba('…y en el Teide, sin mar, el crédito del tiempo solo («' + CR_TIEMPO + '», dos enlaces)', t24.credito === CR_TIEMPO && t24.creditoA === CR_A, JSON.stringify([t24.credito, t24.creditoA]));
     /* otra vez Costa Adeje: dentro de los 30 min no se vuelve a pedir nada; el tiempo sale de la caché */
@@ -2085,14 +2091,14 @@ async function ejemplo(pg, mas) {
     const antes2 = peticiones.length;
     await p24.evaluate(() => { TG_CUERPO.cerrar(); }); await p24.waitForTimeout(200); await suCuerpo(p24); await p24.waitForTimeout(300);
     const v24 = await leer24();
-    prueba('cerrar y abrir dentro de los 30 min: ninguna petición nueva, los chips de la caché', peticiones.length === antes2 && v24.chips.length === 4 && v24.zona === 'adeje', (peticiones.length - antes2) + ' ' + v24.chips.join('|'));
+    prueba('cerrar y abrir dentro de los 30 min: ninguna petición nueva, los chips de la caché', nuevas(antes2).length === 0 && v24.chips.length === 4 && v24.zona === 'adeje', nuevas(antes2).length + ' ' + (peticiones.length - antes2) + ' ' + v24.chips.join('|'));
 
     /* «Borrar los datos» se lleva también la zona y el tiempo guardados (la política dice que lo borra todo): vuelve Costa Adeje y se pide de nuevo */
     await p24.selectOption('#tgc-hoy-zona', 'teide'); await p24.waitForTimeout(600);
     const antes3 = peticiones.length;
     await p24.evaluate(() => document.getElementById('tgc-borrar').click()); await p24.evaluate(() => document.getElementById('tgc-borrar-si').click()); await p24.waitForTimeout(700);
     const bz = await leer24();
-    prueba('«Borrar los datos» borra también tenerife.cuerpo.hoy: vuelve Costa Adeje, se pide otra vez y los chips llegan; 0 km en la isla', bz.cache !== null && JSON.parse(bz.cache).zona === 'adeje' && bz.zona === 'adeje' && peticiones.length > antes3 && bz.chips.length === 4 && bz.km === '0', JSON.stringify([bz.zona, bz.cache && JSON.parse(bz.cache).zona, peticiones.length - antes3, bz.chips.length, bz.km]));
+    prueba('«Borrar los datos» borra también tenerife.cuerpo.hoy: vuelve Costa Adeje, se pide otra vez y los chips llegan; 0 km en la isla', bz.cache !== null && JSON.parse(bz.cache).zona === 'adeje' && bz.zona === 'adeje' && nuevas(antes3).length > 0 && bz.chips.length === 4 && bz.km === '0', JSON.stringify([bz.zona, bz.cache && JSON.parse(bz.cache).zona, nuevas(antes3).length, peticiones.length - antes3, bz.chips.length, bz.km]));
     await ejemplo(p24); await conMov24([[0, 'caminar', 35, 3], [3, 'senderismo', 150, 9.5], [5, 'nadar', 30, 5], [12, 'senderismo', 240, 21]]);
 
     /* los avisos de AEMET: uno naranja de lluvia que cubre el sur (con el polígono de la zona «Este, sur y oeste» de AEMET), otro
