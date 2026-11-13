@@ -3779,6 +3779,30 @@ async function ejemplo(pg, mas) {
     }
     prueba('36: las cinco fuentes de «' + nom('curl-maquina') + '» (antes salían 4) y de «' + nom('abdominal-banco-biosaludable') + '», en https, en otra pestaña y sin opener; esta, con «Aparato biosaludable»',
       f5.every(r => r.ok) && f5[1].chips.includes('Aparato biosaludable'), JSON.stringify(f5).slice(0, 300));
+    /* (13-11-2026; Jérôme: «con un link con las fuentes que si aparecen 6 es demasiado») las fuentes de la ficha, plegadas tras
+       «› Fuentes» y su número, como en «Preguntar»: al tocarlo se abren; otra ficha, o la misma al volver a abrirla, plegadas */
+    const estadoF = () => p36.evaluate(() => { const d = document.getElementById('tgc-ej-fuentes-det'), a = document.querySelector('#tgc-ej-fuentes a');
+      if (!d) return { falta: 'tgc-ej-fuentes-det' };
+      return { abierto: d.open, oculto: d.hidden, tit: document.getElementById('tgc-ej-fuentes-tit').textContent, n: (document.getElementById('tgc-ej-fuentes-n') || {}).textContent,
+               /* checkVisibility: el contenido de un details plegado tiene caja (content-visibility: hidden) pero no se pinta */
+               enlaces: document.querySelectorAll('#tgc-ej-fuentes a').length, visible: !!(a && (a.checkVisibility ? a.checkVisibility() : a.getClientRects().length)) }; });
+    const abrirF = async (g, id) => {
+      await p36.click('#tgc-lista .tgc-fila[data-g="' + g + '"]'); await p36.waitForSelector('.tgc-ej-fila', { timeout: 8000 });
+      await p36.click('#tgc-ej-ent [data-v="todos"]'); await p36.click('.tgc-ej-fila[data-id="' + id + '"]'); await p36.waitForTimeout(250);
+      return estadoF();
+    };
+    const tocarF = async () => { if (await p36.$('#tgc-ej-fuentes-det > summary')) { await p36.click('#tgc-ej-fuentes-det > summary'); await p36.waitForTimeout(150); } };
+    const salirF = async () => { await p36.keyboard.press('Escape'); await p36.waitForTimeout(150); await p36.keyboard.press('Escape'); await p36.waitForTimeout(200); };
+    const pl = [];
+    if (hay('curl-maquina') && hay('abdominal-banco-biosaludable')) {
+      pl.push(await abrirF('biceps', 'curl-maquina'));
+      await tocarF(); pl.push(await estadoF()); await salirF();
+      pl.push(await abrirF('biceps', 'curl-maquina')); await tocarF(); await salirF();
+      pl.push(await abrirF('core', 'abdominal-banco-biosaludable')); await salirF();
+    }
+    prueba('36: las fuentes de la ficha, plegadas tras «Fuentes» y su número (5): al tocarlo se abren; otra ficha, o la misma al volver, plegadas',
+      pl.length === 4 && !pl[0].abierto && !pl[0].oculto && pl[0].tit === 'Fuentes' && pl[0].n === '5' && pl[0].enlaces === 5 && !pl[0].visible &&
+      pl[1].abierto && pl[1].visible && !pl[2].abierto && !pl[2].visible && !pl[3].abierto && pl[3].n === '5' && !pl[3].visible, JSON.stringify(pl));
     const vacia = { chips: [] };
     const rc = hay('flexion-inclinada-mesa') ? await ficha('pecho', 'flexion-inclinada-mesa') : vacia;
     await idioma(p36, 'en');

@@ -2443,6 +2443,8 @@
   /* (#120) de qué ejercicio son las repeticiones y el peso escritos en la ficha: al abrir otro, se rellenan con los
      de su última vez (para seguir donde lo dejó); al guardar, se quedan para la serie siguiente */
   var ejCargaDe = null;
+  /* (13-11-2026) de qué ejercicio son las fuentes abiertas: cada ficha se abre con ellas plegadas */
+  var ejFuentesDe = null;
   /* para buscar: minúsculas y sin tildes («sentadilla bulgara» encuentra «Sentadilla búlgara») */
   function plano(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 
@@ -4337,7 +4339,7 @@
   }
   function volverGrupo(sinHistoria) {
     if (!ejAbierto) return;
-    ejAbierto = null; ejCargaDe = null;
+    ejAbierto = null; ejCargaDe = null; ejFuentesDe = null;
     quitarVideoEj();
     $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false;
     $('tgc-hoja').setAttribute('aria-labelledby', 'tgc-hoja-tit');
@@ -4398,6 +4400,10 @@
     }
     $('tgc-ej-carga-ayuda').textContent = tx('cuerpoEjCargaAyuda', { seccion: tx('cuerpoModoEvolucion') });
     var ul = $('tgc-ej-fuentes'); ul.textContent = '';
+    /* (13-11-2026) plegadas tras «› Fuentes» y su número; abiertas solo si se tocan, y otra ficha sale plegada */
+    var fdet = $('tgc-ej-fuentes-det');
+    if (ejFuentesDe !== x.id) { fdet.open = false; ejFuentesDe = x.id; }
+    fdet.hidden = !x.f.length; $('tgc-ej-fuentes-n').textContent = String(x.f.length);
     x.f.forEach(function (q) {
       var li = el('li'), a = el('a', '', fuenteTxt(q[0]));
       a.href = q[1]; a.target = '_blank'; a.rel = 'noopener noreferrer';
@@ -4456,7 +4462,7 @@
     if (!grupoAbierto) return;
     /* con la ficha de un ejercicio abierta hay dos entradas del historial: se quitan las dos de una vez */
     var pasos = (hojaHistoria ? 1 : 0) + (ejHistoria ? 1 : 0);
-    grupoAbierto = null; ejAbierto = null; ejCargaDe = null;
+    grupoAbierto = null; ejAbierto = null; ejCargaDe = null; ejFuentesDe = null;
     quitarVideoEj();
     $('tgc-velo').hidden = true; $('tgc-hoja').hidden = true;
     $('tgc-pag-ej').hidden = true; $('tgc-pag-grupo').hidden = false;
@@ -6746,6 +6752,12 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-ej-fuentes { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 13px; }
 .tgc-ej-fuentes a { color: var(--zonas); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .tgc-ej-nota { margin: 10px 0 0; font-size: 13px; line-height: 1.45; color: var(--tinta-2); }
+/* (13-11-2026) las fuentes de la ficha, plegadas como las de «Preguntar», con su número en una pastilla */
+.tgc-ej-fuentes-det { margin-top: 4px; }
+.tgc-ej-fuentes-det > summary { font-weight: 600; }
+.tgc-ej-fuentes-det > summary:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; border-radius: 8px; }
+.tgc-ej-fuentes-n { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 7px; box-sizing: border-box;
+  border-radius: 999px; background: var(--suave-2); color: var(--tinta); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
 
 /* ── el asistente: el modo «Preguntar» ── */
 .tgc-asis { gap: 12px; }
@@ -7357,8 +7369,10 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
       </div>
       <button type="button" class="tgc-btn gold wide" id="tgc-ej-guardar"><span>Guardar</span></button>
     </div>
-    <h3 id="tgc-ej-fuentes-tit">Fuentes</h3>
-    <ul class="tgc-ej-fuentes" id="tgc-ej-fuentes"></ul>
+    <details class="tgc-resp-f tgc-ej-fuentes-det" id="tgc-ej-fuentes-det">
+      <summary><span id="tgc-ej-fuentes-tit">Fuentes</span><span class="tgc-ej-fuentes-n" id="tgc-ej-fuentes-n"></span></summary>
+      <ul class="tgc-ej-fuentes" id="tgc-ej-fuentes"></ul>
+    </details>
     <p class="tgc-ej-nota" id="tgc-ej-nota"></p>
   </div>
 
