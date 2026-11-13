@@ -912,6 +912,10 @@ async function ejemplo(pg, mas) {
       for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
     const d = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'ejercicios.json'), 'utf8'));
     const MARCAS = /\b(conjunto|datos|artículo|profesionales|folleto|hoja|pacientes|vídeo|texto|máquina|ejercicios|fuente|comunitaria|barra|mancuernas|bandas?|poleas?|banco|fitball|fondos|biblioteca|salud|extracto|septiembre|universidad|programa|casa|copia|patrocinado|estudio)\b/i;
+    /* (13-11-2026, bloque 35) las palabras de las notas nuevas (las de los títulos de las fichas nuevas), y las siglas */
+    const MARCAS35 = /\b(revisad[oa]|fisioterapeutas?|cirujano|médico|ejército|gobierno|guía|publicad[oa]|alojad[oa]|cartel|díptico|edición|iniciativa|ayuntamiento|servicio|contenido|consejos|sesiones|técnica|clínica|archivo|entrenadores|Dublín|Misuri|Británica|otros|versión|curso|flexión|encimera|podología|musculoesquelética|comité clínico|balón|medicinal|Guardia Nacional|Departamento|Veteranos|inglesa|web municipal)\b|EE\. ?UU\./i;
+    /* los documentos en castellano (de organismos de España y Uruguay): su título es su nombre y se queda; sus notas, no */
+    const ES_DOC = /^(Ajuntament d'Alzira|Ayuntamiento de |Colexio Oficial de Fisioterapeutas de Galicia|Diputación de Almería|Distrito de Retiro|Ejército de Tierra|Junta de Andalucía|Ministerio de Sanidad|Municipio B de Montevideo|Secretaría Nacional del Deporte|Sociedad Española de Geriatría|Universidad de Cádiz|Universidad de Extremadura|VIVIFRAIL)/;
     /* lo que se queda: el titulo de wger tal como lo trae su conjunto de datos, y cuatro palabras que
        en italiano se escriben igual que en castellano */
     const QUEDA = /wger — Extensión de gluteos en polea/;
@@ -920,14 +924,19 @@ async function ejemplo(pg, mas) {
     let n14 = 0;
     for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
       const tx = k => (UI[k] || {})[L] || '¿' + k + '?';
-      const fuenteTxt = a > 0 && c > b ? new Function('tx', s.slice(a, c + 4) + '\nreturn fuenteTxt;')(tx) : (t => t);
+      const [fuenteTxt, NF, TF] = a > 0 && c > b ? new Function('tx', s.slice(a, c + 4) + '\nreturn [fuenteTxt, NOTAS_FUENTE, TROZOS_FUENTE];')(tx) : [(t => t), {}, []];
+      /* (bloque 35) lo que tiene traducción en este idioma no puede quedar en castellano: ni la nota entera ni el trozo */
+      const restos = Object.keys(NF).filter(k => tx(NF[k]) !== k).map(k => '(' + k + ')').concat(TF.filter(p => tx(p[1]) !== p[0]).map(p => p[0]));
       for (const x of d.ejercicios) for (const q of x.f) {
         n14++;
-        const r = fuenteTxt(q[0]), m = r.replace(QUEDA, '').match(MARCAS);
-        if (/¿cuerpo/.test(r) || (m && !(L === 'it' && ITALIANO.has(m[0].toLowerCase())))) mal14.push(L + ': ' + r);
+        const r = fuenteTxt(q[0]), m = ES_DOC.test(q[0]) ? null : r.replace(QUEDA, '').match(MARCAS) || r.match(MARCAS35);
+        if (/¿cuerpo/.test(r) || (m && !(L === 'it' && ITALIANO.has(m[0].toLowerCase()))) || restos.some(k => r.includes(k))) mal14.push(L + ': ' + r);
       }
     }
     prueba('las ' + d.ejercicios.reduce((n, x) => n + x.f.length, 0) + ' fuentes, en los nueve idiomas: ninguna nota en castellano', n14 > 8000 && !mal14.length, mal14.slice(0, 4).join(' | '));
+    /* (bloque 35) las fichas nuevas traen sus citas con notas nuevas («revisado por fisioterapeutas», «Gobierno de Queensland»…) */
+    prueba('(bloque 35) las fuentes de las fichas nuevas también: ' + d.ejercicios.slice(533).reduce((n, x) => n + x.f.length, 0) + ' citas, con sus notas en los nueve idiomas',
+      d.ejercicios.length > 533 && !mal14.length, d.ejercicios.length + ' fichas');
     for (const L of ['en', 'zh', 'pl']) {
       await idioma(pg, L);
       await pg.click('.tgc-fila[data-g="pecho"]'); await pg.waitForSelector('.tgc-ej-fila');
@@ -3151,18 +3160,22 @@ async function ejemplo(pg, mas) {
     await poner([[0, 'pecho', 3]]);
     const datos29 = await p29.evaluate(async () => (await (await fetch('datos/cuerpo/ejercicios.json')).json()).ejercicios);
     const cuenta = (g, f) => datos29.filter(x => x.g.includes(g) && f(x)).length;
-    const casaCon = tiene => x => x.m.every(m => m === 'ninguno' || m === 'pared' || tiene.includes(m));
+    /* (bloque 35) en casa, además, nada de correr ni desplazarse (patrón «locomocion») */
+    const casaCon = tiene => x => x.p !== 'locomocion' && x.m.every(m => m === 'ninguno' || m === 'pared' || tiene.includes(m));
     await p29.click('#tgc-plan-sitios [data-sitio="gimnasio"]'); await p29.waitForTimeout(150);
     const p7 = await plan();
     prueba('29: «Gimnasio», elegido y guardado; cada grupo con sus ejercicios de gimnasio', p7.sitios.join() === 'gimnasio:true,casa:false,fuera:false,calistenia:false' &&
       await p29.evaluate(() => JSON.parse(localStorage.getItem('tenerife.cuerpo')).sitio === 'gimnasio') && p7.metas.dorsal.indexOf(cuenta('dorsal', x => x.e.includes('gimnasio')) + ' ejercicios') === 0, JSON.stringify(p7.metas));
     await p29.click('#tgc-plan-sitios [data-sitio="casa"]'); await p29.waitForTimeout(150);
     const p8 = await plan();
-    prueba('29: «En casa»: «¿Qué tiene en casa?», abierto, con 16 materiales sin marcar; dorsales, «ningún ejercicio con lo que tiene»', p8.mat && p8.matAbierto && p8.matSel === null && p8.mats.length === 16 && p8.mats.every(m => /:false$/.test(m)) &&
-      cuenta('dorsal', casaCon([])) === 0 && p8.metas.dorsal.indexOf('ningún ejercicio con lo que tiene') === 0, JSON.stringify(p8));
+    /* (bloque 35) 22 materiales (con botellas, silla, toalla, mochila, mesa y cubo), y dorsales ya tiene ejercicios sin material;
+       «ningún ejercicio con lo que tiene», en la 36 con el catálogo de antes */
+    const nDor0 = cuenta('dorsal', casaCon([]));
+    prueba('29: «En casa»: «¿Qué tiene en casa?», abierto, con 22 materiales sin marcar; dorsales, los ' + nDor0 + ' que no necesitan nada', p8.mat && p8.matAbierto && p8.matSel === null && p8.mats.length === 22 && p8.mats.every(m => /:false$/.test(m)) &&
+      nDor0 > 0 && p8.metas.dorsal.indexOf(nDor0 + ' ejercicio') === 0, JSON.stringify(p8));
     await p29.click('#tgc-plan-mats [data-mat="barra_dominadas"]'); await p29.waitForTimeout(150);
     const p9 = await plan(), nDor = cuenta('dorsal', casaCon(['barra_dominadas']));
-    prueba('29: con la barra de dominadas, dorsales ya tiene ' + nDor + ' ejercicios, el material se guarda y la lista sigue abierta mientras marca', nDor > 0 && p9.metas.dorsal.indexOf(nDor + ' ejercicio') === 0 &&
+    prueba('29: con la barra de dominadas, dorsales ya tiene ' + nDor + ' ejercicios, el material se guarda y la lista sigue abierta mientras marca', nDor > nDor0 && p9.metas.dorsal.indexOf(nDor + ' ejercicio') === 0 &&
       p9.matAbierto && p9.matSel === 'Barra de dominadas' &&
       JSON.stringify(await p29.evaluate(() => JSON.parse(localStorage.getItem('tenerife.cuerpo')).material)) === '["barra_dominadas"]', JSON.stringify(p9.metas));
     await p29.click('#tgc-plan-lista [data-g="dorsal"]'); await p29.waitForSelector('.tgc-ej-fila', { timeout: 8000 }); await p29.waitForTimeout(150);
@@ -3675,6 +3688,113 @@ async function ejemplo(pg, mas) {
     prueba('35: lo guardado que no vale, fuera: el nivel solo de 1 a 4 (7, 0, «2», 2,5 y nada se quedan sin nivel; 4 vale)', JSON.stringify(v35) === '[0,0,0,0,0,4]', JSON.stringify(v35));
     prueba('35: sin errores de página', e35.length === 0, e35.join(' | '));
     await c35.close();
+  }
+
+  // 36. (13-11-2026, bloque 35) los ejercicios nuevos para casa y fuera: 950 fichas (las 533 de antes, iguales y delante, y 417
+  //     nuevas); el sitio «casa» en el catálogo (lo que solo lleva «casa» no sale en gimnasio, fuera ni calistenia) y la regla
+  //     de casa (todo el material sin nada, la pared o marcado, y sin correr ni desplazarse); seis materiales nuevos que se
+  //     marcan en «¿Qué tiene en casa?» (22) y el aparato biosaludable, que no; todas las fuentes de una ficha (hasta 6; antes,
+  //     4, y dos de las 533 traen 5); y con el catálogo de antes, «ningún ejercicio con lo que tiene»
+  {
+    const fs = require('fs'), path = require('path'), crypto = require('crypto');
+    const DAT = n => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', n), 'utf8'));
+    const D36 = DAT('ejercicios.json').ejercicios, NOM = DAT('ejercicios-es.json'), nom = id => (NOM[id] || [id])[0], hay = id => D36.some(x => x.id === id);
+    const s36 = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s36.indexOf('var CUERPO_UI = {'), j = s36.indexOf('\n  };', i);
+      for (const l of s36.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    /* la huella de los 533 publicados el 13-11-2026 (datos/cuerpo/ejercicios.json antes del bloque 35) */
+    const H533 = '781ea591d52a0e9b55c7e7d0db3230f6751540be40496ae95781d2646d10fd8b';
+    const ENT = ['gimnasio', 'fuera', 'calistenia', 'casa'], NUEVOS = ['botella', 'silla', 'toalla', 'mochila', 'mesa', 'cubo'];
+    prueba('36: 950 fichas: las 533 de antes, iguales y delante (su huella), y 417 nuevas; ningún id repetido',
+      D36.length === 950 && crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 533))).digest('hex') === H533 && new Set(D36.map(x => x.id)).size === 950, D36.length + '');
+    prueba('36: cada ficha, con su sitio (gimnasio, fuera, calistenia o casa) y de 1 a 6 fuentes en https; correr o desplazarse, solo en las nuevas',
+      D36.every(x => x.e.length && x.e.every(e => ENT.includes(e)) && x.f.length >= 1 && x.f.length <= 6 && x.f.every(q => /^https:\/\//.test(q[1]))) &&
+      D36.slice(0, 533).every(x => x.p !== 'locomocion' && !x.e.includes('casa')) && D36.some(x => x.p === 'locomocion'), '');
+    const casa = tiene => x => x.p !== 'locomocion' && x.m.every(m => m === 'ninguno' || m === 'pared' || tiene.includes(m));
+    const c36 = await contexto(b), p36 = await c36.newPage(), e36 = []; vigilar(p36, e36);
+    await abrirApp(p36); await abrirPerfilCuerpo(p36); await suCuerpo(p36);
+    const poner = extra => p36.evaluate(ex => { localStorage.setItem('tenerife.cuerpo', JSON.stringify(Object.assign({ v: 1, series: [] }, ex))); TG_CUERPO.abrir(); }, extra).then(() => p36.waitForTimeout(250));
+    const hoja = async (g, ent) => {
+      await p36.click('#tgc-lista .tgc-fila[data-g="' + g + '"]'); await p36.waitForSelector('.tgc-ej-fila', { timeout: 8000 });
+      await p36.click('#tgc-ej-ent [data-v="' + ent + '"]'); await p36.waitForTimeout(150);
+      const ids = await p36.evaluate(() => [...document.querySelectorAll('.tgc-ej-fila')].map(b => b.dataset.id));
+      await p36.keyboard.press('Escape'); await p36.waitForTimeout(200);
+      return ids;
+    };
+    const del = (g, f) => D36.filter(x => x.g.includes(g) && f(x)).map(x => x.id);
+    // «¿Qué tiene en casa?»: 22, con los seis nuevos por su nombre; el aparato biosaludable no se marca
+    const abrirPlan = async pg => { if (await pg.evaluate(() => document.getElementById('tgc-plan-cuerpo').hidden)) { await pg.click('#tgc-plan-btn'); await pg.waitForTimeout(250); } };
+    await poner({ sitio: 'casa' }); await abrirPlan(p36);
+    const m1 = await p36.evaluate(() => [...document.querySelectorAll('#tgc-plan-mats [data-mat]')].map(b => [b.dataset.mat, b.textContent.trim()]));
+    const esN = { botella: 'Botellas o garrafas', silla: 'Silla', toalla: 'Toalla', mochila: 'Mochila con peso', mesa: 'Mesa o encimera', cubo: 'Cubo con arroz o arena' };
+    prueba('36: «¿Qué tiene en casa?», con 22 materiales: los seis nuevos con su nombre (' + Object.values(esN).join(', ') + ') y sin el aparato biosaludable',
+      m1.length === 22 && NUEVOS.every(k => m1.some(([d, t]) => d === k && t.includes(esN[k]))) && !m1.some(([d]) => d === 'biosaludable'), JSON.stringify(m1.slice(16)));
+    // la regla de casa en la hoja de cada grupo
+    const a0 = await hoja('antebrazo', 'casa');
+    await poner({ sitio: 'casa', material: ['cubo'] });
+    const a1 = await hoja('antebrazo', 'casa');
+    prueba('36: antebrazos «En casa»: los cubos de arroz solo con «Cubo con arroz o arena» marcado (' + a0.length + ' → ' + a1.length + ')',
+      JSON.stringify(a0) === JSON.stringify(del('antebrazo', casa([]))) && JSON.stringify(a1) === JSON.stringify(del('antebrazo', casa(['cubo']))) &&
+      !a0.includes('cubo-arroz-hundir-y-agarrar') && a1.includes('cubo-arroz-hundir-y-agarrar') && a1.includes('cubo-arroz-muneca-giros-dedos'), JSON.stringify([a0.length, a1.length]));
+    await poner({ sitio: 'casa' });
+    const k0 = await hoja('core', 'casa'), k1 = await hoja('core', 'fuera');
+    prueba('36: core: correr («Carrera con los brazos al frente», sin material) sale fuera y no en casa; en casa, nada de correr ni desplazarse',
+      k1.includes('carrera-brazos-al-frente') && !k0.includes('carrera-brazos-al-frente') && JSON.stringify(k0) === JSON.stringify(del('core', casa([]))) &&
+      k0.every(id => D36.find(x => x.id === id).p !== 'locomocion'), JSON.stringify([k0.length, k1.length]));
+    const solo = [];
+    for (const ent of ['gimnasio', 'fuera', 'calistenia', 'todos']) solo.push((await hoja('pecho', ent)).includes('flexion-inclinada-mesa'));
+    const pm0 = (await hoja('pecho', 'casa')).includes('flexion-inclinada-mesa');
+    await poner({ sitio: 'casa', material: ['mesa'] });
+    const pm1 = (await hoja('pecho', 'casa')).includes('flexion-inclinada-mesa');
+    prueba('36: lo que solo lleva «casa» («' + nom('flexion-inclinada-mesa') + '») no sale en gimnasio, fuera ni calistenia; sí en «Todos», y en «En casa» con la mesa marcada',
+      JSON.stringify(solo) === '[false,false,false,true]' && !pm0 && pm1, JSON.stringify({ solo, pm0, pm1 }));
+    // lo guardado: solo lo que se marca en casa
+    await p36.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'casa', material: ['biosaludable', 'silla', 'cubo', 'silla', 'otra'] })); TG_CUERPO.abrir(); });
+    await p36.waitForTimeout(200);
+    const g36 = await p36.evaluate(() => TG_CUERPO.estado().material);
+    prueba('36: lo guardado que no vale, fuera: el aparato biosaludable y lo desconocido no se quedan, y nada repetido', JSON.stringify(g36) === '["silla","cubo"]', JSON.stringify(g36));
+    // una ficha con seis fuentes, y la de una ficha de casa, en castellano y en inglés
+    const ficha = async (g, id) => {
+      await p36.click('#tgc-lista .tgc-fila[data-g="' + g + '"]'); await p36.waitForSelector('.tgc-ej-fila', { timeout: 8000 });
+      await p36.click('#tgc-ej-ent [data-v="todos"]'); await p36.click('.tgc-ej-fila[data-id="' + id + '"]'); await p36.waitForTimeout(250);
+      const r = await p36.evaluate(() => ({ nom: document.getElementById('tgc-ej-nom').textContent,
+        f: [...document.querySelectorAll('#tgc-ej-fuentes a')].map(a => [a.getAttribute('href'), a.target, a.rel]),
+        chips: [...document.querySelectorAll('#tgc-ej-chips li')].map(li => li.textContent.trim()) }));
+      await p36.keyboard.press('Escape'); await p36.waitForTimeout(150); await p36.keyboard.press('Escape'); await p36.waitForTimeout(200);
+      return r;
+    };
+    await poner({});
+    /* «curl-maquina», de las 533, trae 5 fuentes y hasta ahora enseñaba 4; «abdominal-banco-biosaludable», nueva, también 5 */
+    const f5 = [];
+    for (const [g, id] of [['biceps', 'curl-maquina'], ['core', 'abdominal-banco-biosaludable']]) {
+      const x = D36.find(y => y.id === id) || { f: [] }, r = hay(id) ? await ficha(g, id) : { f: [], chips: [] };
+      f5.push({ id, n: r.f.length, ok: x.f.length === 5 && r.f.length === 5 && r.f.every((e, i) => e[0] === x.f[i][1] && e[1] === '_blank' && /noopener/.test(e[2])), chips: r.chips });
+    }
+    prueba('36: las cinco fuentes de «' + nom('curl-maquina') + '» (antes salían 4) y de «' + nom('abdominal-banco-biosaludable') + '», en https, en otra pestaña y sin opener; esta, con «Aparato biosaludable»',
+      f5.every(r => r.ok) && f5[1].chips.includes('Aparato biosaludable'), JSON.stringify(f5).slice(0, 300));
+    const vacia = { chips: [] };
+    const rc = hay('flexion-inclinada-mesa') ? await ficha('pecho', 'flexion-inclinada-mesa') : vacia;
+    await idioma(p36, 'en');
+    const rcEn = hay('flexion-inclinada-mesa') ? await ficha('pecho', 'flexion-inclinada-mesa') : vacia;
+    await idioma(p36, 'es');
+    prueba('36: una ficha de casa dice «En casa» y «Mesa o encimera»; en inglés, «At home» y «Table or worktop»',
+      rc.chips.includes('En casa') && rc.chips.includes('Mesa o encimera') && rcEn.chips.includes('At home') && rcEn.chips.includes('Table or worktop'), JSON.stringify([rc.chips, rcEn.chips]));
+    prueba('36: sin errores de página', e36.length === 0, e36.join(' | '));
+    await c36.close();
+    // con el catálogo de antes (las 533 primeras): dorsales en casa sin nada marcado, «ningún ejercicio con lo que tiene»
+    const c36b = await contexto(b), p36b = await c36b.newPage(), e36b = []; vigilar(p36b, e36b);
+    await p36b.route('**/datos/cuerpo/ejercicios.json', async r => {
+      const res = await r.fetch(), j = await res.json(); j.ejercicios = j.ejercicios.slice(0, 533);
+      await r.fulfill({ response: res, body: JSON.stringify(j), headers: Object.assign({}, res.headers(), { 'content-type': 'application/json' }) });
+    });
+    await abrirApp(p36b); await abrirPerfilCuerpo(p36b); await suCuerpo(p36b);
+    await p36b.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'casa' })); TG_CUERPO.abrir(); });
+    await p36b.waitForTimeout(250); await abrirPlan(p36b);
+    await p36b.waitForFunction(() => /ejercicio/.test((document.querySelector('#tgc-plan-lista [data-g="dorsal"]') || {}).textContent || ''), null, { timeout: 8000 }).catch(() => {});
+    const md = await p36b.evaluate(() => (document.querySelector('#tgc-plan-lista [data-g="dorsal"]') || {}).textContent || '');
+    prueba('36: con el catálogo de antes, dorsales en casa sin nada marcado: «ningún ejercicio con lo que tiene»', md.includes('ningún ejercicio con lo que tiene'), md.slice(0, 120));
+    prueba('36: sin errores de página (catálogo de antes)', e36b.length === 0, e36b.join(' | '));
+    await c36b.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
