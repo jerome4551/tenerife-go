@@ -3162,8 +3162,9 @@ async function ejemplo(pg, mas) {
     prueba('29: con «' + dep + '», sus prioritarios delante y marcados, y la frase que lo dice', prio.length > 0 && JSON.stringify(p6.grupos) === JSON.stringify(esp6) &&
       JSON.stringify(p6.prio) === JSON.stringify(prio.filter(g => g !== 'pecho')) && p6.txt === 'Los grupos sin series en los últimos 7 días. Delante, los prioritarios para su deporte.', JSON.stringify({ prio, p6 }));
 
-    // el sitio del día y el material de casa: se guardan y filtran los ejercicios
-    await poner([[0, 'pecho', 3]]);
+    // el sitio del día y el material de casa: se guardan y filtran los ejercicios (nota 37: con la lista ya revisada y sin
+    // nada marcado; lo que sale marcado de entrada lo mira la prueba 37)
+    await poner([[0, 'pecho', 3]], { material: [], matRev: 1 });
     const datos29 = await p29.evaluate(async () => (await (await fetch('datos/cuerpo/ejercicios.json')).json()).ejercicios);
     const cuenta = (g, f) => datos29.filter(x => x.g.includes(g) && f(x)).length;
     /* (bloque 35) en casa, además, nada de correr ni desplazarse (patrón «locomocion») */
@@ -3209,7 +3210,7 @@ async function ejemplo(pg, mas) {
     prueba('29: la ficha sigue donde lo dejó: 5 series, 8 repeticiones y 42,5 kg, como la última vez', f10.n === '5' && f10.r === '8' && f10.kg === '42,5' &&
       f10.ult === 'La última vez, hace 3 días: 5 × 8 con 42,5 kg', JSON.stringify(f10));
     await p29.keyboard.press('Escape'); await p29.waitForTimeout(150); await p29.keyboard.press('Escape'); await p29.waitForTimeout(250);
-    await poner([[0, 'pecho', 3]], { sitio: 'casa', material: ['barra_dominadas'] }); await abrirPlan();
+    await poner([[0, 'pecho', 3]], { sitio: 'casa', material: ['barra_dominadas'], matRev: 1 }); await abrirPlan();
     // «¿Por qué?»: «Preguntar», con las dos respuestas y sus fuentes
     await p29.click('#tgc-plan-porque');
     await p29.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-resp').length >= 2, null, { timeout: 10000 }).catch(() => {});
@@ -3234,7 +3235,7 @@ async function ejemplo(pg, mas) {
     await idioma(p29, 'es');
 
     // lo guardado: el sitio, de la lista; el material, de la lista y sin repetir
-    await p29.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'piscina', material: ['mancuernas', 'mancuernas', '<img src=x>', 'maquina', 'banda'] })); TG_CUERPO.abrir(); });
+    await p29.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'piscina', material: ['mancuernas', 'mancuernas', '<img src=x>', 'maquina', 'banda'], matRev: 1 })); TG_CUERPO.abrir(); });
     const v29 = await p29.evaluate(() => { const e = TG_CUERPO.estado(); return { sitio: e.sitio, material: e.material }; });
     prueba('29: lo guardado que no vale, fuera: un sitio que no es de la lista, materiales repetidos, con HTML o de gimnasio', v29.sitio === '' && JSON.stringify(v29.material) === '["mancuernas","banda"]', JSON.stringify(v29));
     prueba('29: sin errores de página', e29.length === 0, e29.join(' | '));
@@ -3731,7 +3732,9 @@ async function ejemplo(pg, mas) {
     const casa = tiene => x => x.p !== 'locomocion' && x.m.every(m => m === 'ninguno' || m === 'pared' || tiene.includes(m));
     const c36 = await contexto(b), p36 = await c36.newPage(), e36 = []; vigilar(p36, e36);
     await abrirApp(p36); await abrirPerfilCuerpo(p36); await suCuerpo(p36);
-    const poner = extra => p36.evaluate(ex => { localStorage.setItem('tenerife.cuerpo', JSON.stringify(Object.assign({ v: 1, series: [] }, ex))); TG_CUERPO.abrir(); }, extra).then(() => p36.waitForTimeout(250));
+    /* (nota 37) con la lista de casa ya revisada (matRev: 1) y sin nada marcado si la escena no marca nada: lo que marca cada
+       escena es lo que hay (sin «material», valida() parte de lo de entrada); lo marcado de entrada lo mira la 37 */
+    const poner = extra => p36.evaluate(ex => { localStorage.setItem('tenerife.cuerpo', JSON.stringify(Object.assign({ v: 1, series: [], material: [], matRev: 1 }, ex))); TG_CUERPO.abrir(); }, extra).then(() => p36.waitForTimeout(250));
     const hoja = async (g, ent) => {
       await p36.click('#tgc-lista .tgc-fila[data-g="' + g + '"]'); await p36.waitForSelector('.tgc-ej-fila', { timeout: 8000 });
       await p36.click('#tgc-ej-ent [data-v="' + ent + '"]'); await p36.waitForTimeout(150);
@@ -3767,7 +3770,7 @@ async function ejemplo(pg, mas) {
     prueba('36: lo que solo lleva «casa» («' + nom('flexion-inclinada-mesa') + '») no sale en gimnasio, fuera ni calistenia; sí en «Todos», y en «En casa» con la mesa marcada',
       JSON.stringify(solo) === '[false,false,false,true]' && !pm0 && pm1, JSON.stringify({ solo, pm0, pm1 }));
     // lo guardado: solo lo que se marca en casa
-    await p36.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'casa', material: ['biosaludable', 'silla', 'cubo', 'silla', 'otra'] })); TG_CUERPO.abrir(); });
+    await p36.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'casa', material: ['biosaludable', 'silla', 'cubo', 'silla', 'otra'], matRev: 1 })); TG_CUERPO.abrir(); });
     await p36.waitForTimeout(200);
     const g36 = await p36.evaluate(() => TG_CUERPO.estado().material);
     prueba('36: lo guardado que no vale, fuera: el aparato biosaludable y lo desconocido no se quedan, y nada repetido', JSON.stringify(g36) === '["silla","cubo"]', JSON.stringify(g36));
@@ -3845,13 +3848,122 @@ async function ejemplo(pg, mas) {
       await r.fulfill({ response: res, body: JSON.stringify(j), headers: Object.assign({}, res.headers(), { 'content-type': 'application/json' }) });
     });
     await abrirApp(p36b); await abrirPerfilCuerpo(p36b); await suCuerpo(p36b);
-    await p36b.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'casa' })); TG_CUERPO.abrir(); });
+    await p36b.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'casa', matRev: 1 })); TG_CUERPO.abrir(); });
     await p36b.waitForTimeout(250); await abrirPlan(p36b);
     await p36b.waitForFunction(() => /ejercicio/.test((document.querySelector('#tgc-plan-lista [data-g="dorsal"]') || {}).textContent || ''), null, { timeout: 8000 }).catch(() => {});
     const md = await p36b.evaluate(() => (document.querySelector('#tgc-plan-lista [data-g="dorsal"]') || {}).textContent || '');
     prueba('36: con el catálogo de antes, dorsales en casa sin nada marcado: «ningún ejercicio con lo que tiene»', md.includes('ningún ejercicio con lo que tiene'), md.slice(0, 120));
     prueba('36: sin errores de página (catálogo de antes)', e36b.length === 0, e36b.join(' | '));
     await c36b.close();
+  }
+
+  // 37. (13-11-2026, nota 37; Jérôme: «Déjalas auto seleccionadas y la gente quita lo que no tiene») «¿Qué tiene en
+  //     casa?»: botellas, silla, toalla y mesa, marcadas de entrada y con la lista abierta mientras no se revisa; con
+  //     ellas, la sesión A de casa tal cual; lo que se quita se queda quitado (otro día también) y lo que lo pide pasa a su
+  //     alternativa; cerrar la lista también la deja revisada; lo guardado antes de la nota 37 recibe las cuatro; lo
+  //     revisado, tal cual; lo que no vale, fuera; diez idiomas
+  {
+    const fs = require('fs'), path = require('path');
+    const RU = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'rutinas.json'), 'utf8'));
+    const s37 = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s37.indexOf('var CUERPO_UI = {'), j = s37.indexOf('\n  };', i);
+      for (const l of s37.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    const AY = UI.cuerpoPlanMatAyuda || {}, ENT = ['botella', 'silla', 'toalla', 'mesa'], orden = a => JSON.stringify(a.slice().sort());
+    const c37 = await contexto(b), p37 = await c37.newPage(), e37 = []; vigilar(p37, e37);
+    await abrirApp(p37); await abrirPerfilCuerpo(p37); await suCuerpo(p37);
+    /* lo guardado (null: nada) y «Su cuerpo» otra vez, como al volver a abrirlo */
+    const poner = o => p37.evaluate(o => { if (o) localStorage.setItem('tenerife.cuerpo', JSON.stringify(o)); else localStorage.removeItem('tenerife.cuerpo'); TG_CUERPO.abrir(); }, o || null)
+      .then(() => p37.waitForTimeout(250));
+    const guardado = () => p37.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo') || '{}'); return { material: g.material, matRev: g.matRev }; });
+    const estado = () => p37.evaluate(() => { const e = TG_CUERPO.estado(); return { material: e.material.slice(), matRev: e.matRev }; });
+    const ver = () => p37.evaluate(() => { const $ = id => document.getElementById(id); return {
+      plan: !$('tgc-plan-cuerpo').hidden, mat: !$('tgc-plan-mat').hidden, abierta: $('tgc-plan-mat').open,
+      sel: $('tgc-plan-mat-sel').hidden ? null : $('tgc-plan-mat-sel').textContent, ayuda: $('tgc-plan-mat-ayuda').textContent,
+      nom: Object.fromEntries([...document.querySelectorAll('#tgc-plan-mats button')].map(x => [x.dataset.mat, x.textContent])),
+      marcados: [...document.querySelectorAll('#tgc-plan-mats button[aria-pressed="true"]')].map(x => x.dataset.mat),
+      ses: !$('tgc-ses').hidden, ejs: [...document.querySelectorAll('#tgc-ses-lista > li .tgc-ses-ej-btn')].map(x => x.dataset.id) }; });
+    const abrirPlan = async () => { if (!(await ver()).plan) { await p37.click('#tgc-plan-btn'); await p37.waitForTimeout(250); } };
+    const sitio = async v => { await p37.click('#tgc-plan-sitios [data-sitio="' + v + '"]'); await p37.waitForTimeout(250); };
+    /* «Gimnasio» y otra vez «En casa»: la lista vuelve a abrirse o plegarse sola, como otro día */
+    const casaOtraVez = async () => { await abrirPlan(); await sitio('gimnasio'); await sitio('casa'); };
+    const esperarSes = () => p37.waitForFunction(() => !document.getElementById('tgc-ses').hidden && document.querySelectorAll('#tgc-ses-lista > li').length > 0, null, { timeout: 10000 }).catch(() => {});
+    const c1a = RU.s.find(s => s.id === 'casa-1-a'), tal = JSON.stringify(c1a.e.map(z => z[0]));
+    const puede = (id, mat) => RU.x[id][1].every(m => m === 'ninguno' || m === 'pared' || mat.indexOf(m) >= 0);
+    const enCasa = mat => c1a.e.map(z => { const t = [z[0]].concat(z[2]), v = t.filter(id => puede(id, mat)); return (v.length ? v : t)[0]; });
+
+    // la primera vez (nada guardado): «En casa», con las cuatro marcadas, la lista abierta y el texto que lo explica
+    await poner(null); await abrirPlan(); await sitio('casa');
+    const r0 = await ver(), s0 = await estado(), g0 = await guardado();
+    prueba('37: la primera vez, «En casa»: botellas, silla, toalla y mesa marcadas (y guardadas), sin revisar, la lista abierta y el texto que dice que se quite lo que no se tenga',
+      r0.mat && r0.abierta && orden(r0.marcados) === orden(ENT) && r0.sel === ENT.map(m => r0.nom[m]).join(', ') && r0.ayuda === AY.es &&
+      JSON.stringify(s0) === JSON.stringify({ material: ENT, matRev: 0 }) && JSON.stringify(g0) === JSON.stringify(s0), JSON.stringify([r0.marcados, r0.sel, r0.abierta, s0, g0]));
+    await p37.click('#tgc-plan-niveles [data-nivel="1"]'); await esperarSes();
+    const r1 = await ver();
+    prueba('37: con lo marcado de entrada, la sesión A de casa (Inicial) sale tal cual, sin ninguna alternativa', r1.ses && JSON.stringify(r1.ejs) === tal &&
+      JSON.stringify(enCasa(ENT)) === tal, JSON.stringify(r1.ejs));
+
+    // quita las botellas: se guarda sin ellas y revisado, la lista sigue abierta mientras marca y lo que las pide pasa a su alternativa
+    const sinB = ['silla', 'toalla', 'mesa'];
+    await p37.click('#tgc-plan-mats [data-mat="botella"]'); await p37.waitForTimeout(250); await esperarSes();
+    const r2 = await ver(), g2 = await guardado();
+    prueba('37: al quitar las botellas, se guarda sin ellas y revisado, y lo que las pide pasa a su alternativa (' + enCasa(sinB).filter((id, i) => id !== c1a.e[i][0]).join(', ') + ')',
+      r2.abierta && JSON.stringify(g2) === JSON.stringify({ material: sinB, matRev: 1 }) && JSON.stringify(r2.ejs) === JSON.stringify(enCasa(sinB)) &&
+      JSON.stringify(enCasa(sinB)) !== tal, JSON.stringify([r2.ejs, g2]));
+
+    // otro día: siguen quitadas, y la lista sale plegada con lo marcado en la línea de debajo
+    await p37.evaluate(() => { TG_CUERPO.cerrar(); }); await p37.waitForTimeout(300);
+    await p37.reload({ waitUntil: 'load' }); await abrirApp(p37); await abrirPerfilCuerpo(p37); await suCuerpo(p37); await abrirPlan(); await esperarSes();
+    const r3 = await ver();
+    prueba('37: otro día, las botellas siguen quitadas, la lista plegada con «' + sinB.map(m => r3.nom[m]).join(', ') + '» a la vista y la sesión con su alternativa',
+      r3.mat && !r3.abierta && orden(r3.marcados) === orden(sinB) && r3.sel === sinB.map(m => r3.nom[m]).join(', ') && JSON.stringify(r3.ejs) === JSON.stringify(enCasa(sinB)),
+      JSON.stringify([r3.abierta, r3.marcados, r3.sel, r3.ejs]));
+
+    // cerrar la lista sin cambiar nada también la deja revisada: las cuatro se quedan, y la próxima vez sale plegada
+    await poner(null); await abrirPlan(); await sitio('casa');
+    const r4a = await ver();
+    await p37.click('#tgc-plan-mat > summary'); await p37.waitForTimeout(300);
+    const g4 = await guardado();
+    await casaOtraVez();
+    const r4 = await ver();
+    prueba('37: al cerrar la lista sin cambiar nada, queda revisada con las cuatro, y la próxima vez sale plegada', r4a.abierta &&
+      JSON.stringify(g4) === JSON.stringify({ material: ENT, matRev: 1 }) && r4.mat && !r4.abierta && orden(r4.marcados) === orden(ENT), JSON.stringify([r4a.abierta, g4, r4.abierta, r4.marcados]));
+
+    // lo guardado antes de la nota 37 (sin matRev): las cuatro se suman a lo que tenía, sin revisar y con la lista abierta
+    await poner({ v: 1, series: [], sitio: 'casa', material: ['mancuernas'] });
+    const s5 = await estado();
+    await casaOtraVez();
+    const r5 = await ver(), g5 = await guardado();
+    prueba('37: lo guardado antes de la nota 37: las cuatro se suman a lo que tenía (mancuernas), sin revisar, con la lista abierta, y así se guarda',
+      JSON.stringify(s5) === JSON.stringify({ material: ['mancuernas'].concat(ENT), matRev: 0 }) && r5.abierta && orden(r5.marcados) === orden(['mancuernas'].concat(ENT)) &&
+      JSON.stringify(g5) === JSON.stringify(s5), JSON.stringify([s5, r5.abierta, r5.marcados, g5]));
+
+    // revisada: lo guardado tal cual (sin nada marcado, nada y la lista abierta; con la banda, solo la banda y plegada)
+    await poner({ v: 1, series: [], sitio: 'casa', material: [], matRev: 1 });
+    const s6 = await estado(); await casaOtraVez(); const r6 = await ver();
+    await poner({ v: 1, series: [], sitio: 'casa', material: ['banda'], matRev: 1 });
+    const s7 = await estado(); await casaOtraVez(); const r7 = await ver();
+    prueba('37: revisada, lo guardado tal cual: sin nada marcado, nada (y la lista abierta); con la banda, solo la banda (y plegada)',
+      JSON.stringify(s6) === JSON.stringify({ material: [], matRev: 1 }) && r6.abierta && !r6.marcados.length && r6.sel === null &&
+      JSON.stringify(s7) === JSON.stringify({ material: ['banda'], matRev: 1 }) && !r7.abierta && JSON.stringify(r7.marcados) === '["banda"]' && r7.sel === r7.nom.banda,
+      JSON.stringify([s6, r6.abierta, s7, r7.abierta, r7.sel]));
+
+    // lo guardado que no vale: solo matRev 1 cuenta como revisada
+    const v37 = [];
+    for (const mr of [true, '1', 2, 0, null]) { await poner({ v: 1, series: [], material: [], matRev: mr }); v37.push(await estado()); }
+    prueba('37: lo guardado que no vale: con matRev true, «1», 2, 0 o nada, la lista no está revisada y lleva las cuatro',
+      v37.every(e => JSON.stringify(e) === JSON.stringify({ material: ENT, matRev: 0 })), JSON.stringify(v37));
+
+    // diez idiomas: el texto de la lista
+    const mal37 = [];
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      await idioma(p37, l);
+      const t = await p37.evaluate(() => document.getElementById('tgc-plan-mat-ayuda').textContent);
+      if (!AY[l] || t !== AY[l] || t === AY.es || t.indexOf('{') >= 0) mal37.push(l + ': ' + t);
+    }
+    await idioma(p37, 'es');
+    prueba('37: el texto de «¿Qué tiene en casa?» en los diez idiomas', !mal37.length && Object.keys(AY).length === 10, mal37.join(' | '));
+    prueba('37: sin errores de página', e37.length === 0, e37.join(' | '));
+    await c37.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

@@ -463,7 +463,7 @@
     "cuerpoPlanDonde": {"es": "¿Dónde entrena hoy?", "en": "Where are you training today?", "fr": "Où vous entraînez-vous aujourd’hui ?", "de": "Wo trainieren Sie heute?", "it": "Dove si allena oggi?", "nl": "Waar traint u vandaag?", "zh": "您今天在哪里训练？", "zht": "您今天在哪裡訓練？", "bg": "Къде тренирате днес?", "pl": "Gdzie dziś trening?"},
     "cuerpoSitio_casa": {"es": "En casa", "en": "At home", "fr": "À la maison", "de": "Zu Hause", "it": "A casa", "nl": "Thuis", "zh": "在家", "zht": "在家", "bg": "Вкъщи", "pl": "W domu"},
     "cuerpoPlanMat": {"es": "¿Qué tiene en casa?", "en": "What do you have at home?", "fr": "Qu’avez-vous à la maison ?", "de": "Was haben Sie zu Hause?", "it": "Che cosa ha a casa?", "nl": "Wat hebt u thuis?", "zh": "您家里有哪些器材？", "zht": "您家裡有哪些器材？", "bg": "Какво имате вкъщи?", "pl": "Jaki sprzęt jest w domu?"},
-    "cuerpoPlanMatAyuda": {"es": "Marque lo que tenga; sin marcar nada, salen los ejercicios sin material.", "en": "Tick what you have; with nothing ticked, you get the exercises without equipment.", "fr": "Cochez ce que vous avez ; sans rien cocher, vous verrez les exercices sans matériel.", "de": "Markieren Sie, was Sie haben; ohne Auswahl erscheinen die Übungen ohne Geräte.", "it": "Segni quello che ha; se non segna nulla, compaiono gli esercizi senza attrezzi.", "nl": "Vink aan wat u hebt; zonder vinkje ziet u de oefeningen zonder materiaal.", "zh": "请选出您有的器材；什么都不选时，显示无需器材的动作。", "zht": "請選出您有的器材；什麼都不選時，顯示無需器材的動作。", "bg": "Отбележете какво имате; ако не отбележите нищо, се показват упражненията без уреди.", "pl": "Można zaznaczyć dostępny sprzęt; bez zaznaczenia widać ćwiczenia bez sprzętu."},
+    "cuerpoPlanMatAyuda": {"es": "De entrada van marcadas botellas, silla, toalla y mesa: quite lo que no tenga y marque lo demás que tenga. Sin nada marcado, salen los ejercicios sin material.", "en": "Bottles, chair, towel and table are ticked from the start: untick what you don't have and tick anything else you have. With nothing ticked, you get the exercises without equipment.", "fr": "Bouteilles, chaise, serviette et table sont cochées d’office : décochez ce que vous n’avez pas et cochez ce que vous avez d’autre. Sans rien cocher, vous verrez les exercices sans matériel.", "de": "Flaschen, Stuhl, Handtuch und Tisch sind von Anfang an markiert: Heben Sie die Markierung bei dem auf, was Sie nicht haben, und markieren Sie, was Sie sonst noch haben. Ohne Auswahl erscheinen die Übungen ohne Geräte.", "it": "Bottiglie, sedia, asciugamano e tavolo sono segnati in partenza: tolga il segno a quello che non ha e segni quello che ha in più. Se non segna nulla, compaiono gli esercizi senza attrezzi.", "nl": "Flessen, stoel, handdoek en tafel zijn vooraf aangevinkt: vink uit wat u niet hebt en vink aan wat u verder nog hebt. Zonder vinkje ziet u de oefeningen zonder materiaal.", "zh": "水瓶、椅子、毛巾和桌子已预先选好：请取消您没有的，再选上您另外有的器材。什么都不选时，显示无需器材的动作。", "zht": "水瓶、椅子、毛巾和桌子已預先選好：請取消您沒有的，再選上您另外有的器材。什麼都不選時，顯示無需器材的動作。", "bg": "Бутилки, стол, кърпа и маса са отбелязани предварително: махнете отметката от това, което нямате, и отбележете другото, което имате. Ако не отбележите нищо, се показват упражненията без уреди.", "pl": "Butelki, krzesło, ręcznik i stół są zaznaczone od początku: można odznaczyć to, czego nie ma, i zaznaczyć inny dostępny sprzęt. Bez zaznaczenia widać ćwiczenia bez sprzętu."},
     "cuerpoPlanPara": {"es": "Para hoy: {lista}.", "en": "For today: {lista}.", "fr": "Pour aujourd’hui : {lista}.", "de": "Für heute: {lista}.", "it": "Per oggi: {lista}.", "nl": "Voor vandaag: {lista}.", "zh": "今天：{lista}。", "zht": "今天：{lista}。", "bg": "За днес: {lista}.", "pl": "Na dziś: {lista}."},
     "cuerpoPlanResDescanso": {"es": "Hoy, descanso o actividad suave.", "en": "Today: rest or light activity.", "fr": "Aujourd’hui : repos ou activité douce.", "de": "Heute: Ruhe oder leichte Bewegung.", "it": "Oggi: riposo o attività leggera.", "nl": "Vandaag: rust of lichte activiteit.", "zh": "今天：休息或轻松活动。", "zht": "今天：休息或輕鬆活動。", "bg": "Днес: почивка или леко движение.", "pl": "Dziś: odpoczynek albo lekka aktywność."},
     "cuerpoPlanLeTocan": {"es": "Hoy le tocan", "en": "Today’s groups", "fr": "Au programme aujourd’hui", "de": "Heute an der Reihe", "it": "Da allenare oggi", "nl": "Vandaag aan de beurt", "zh": "今天该练", "zht": "今天該練", "bg": "Днес са наред", "pl": "Na dziś"},
@@ -2295,7 +2295,12 @@
      redondea con el número escrito en decimal y no por × 1000, que con 0,5005 da 500,49999… y 0,5: así da
      0,501. Lo que no se escribe así (1e-7), por × 1000 */
   function km3(v) { var r = Number(Math.round(Number(v + 'e3')) + 'e-3'); return isFinite(r) ? r : Math.round(v * 1000) / 1000; }
-  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], gr: [], deporte: '', comida: comVacio(), sellos: {}, comp: { pie: COMP_PIE[0], bici: COMP_BICI[0] }, senderos: {}, sitio: '', material: [], nivel: 0 }; }
+  /* (nota 37, 13-11-2026) lo marcado de entrada en «¿Qué tiene en casa?»: botellas, silla, toalla y mesa, que hay en casi
+     cualquier casa, hotel o apartamento (Jérôme: «Déjalas auto seleccionadas y la gente quita lo que no tiene»).
+     matRev: 0 mientras la persona no ha revisado la lista (las cuatro van marcadas y la lista sale abierta); 1 en cuanto
+     marca o quita algo, o la cierra: desde entonces vale lo que deje marcado, también si quita alguna de las cuatro */
+  var MAT_ENTRADA = ['botella', 'silla', 'toalla', 'mesa'].filter(function (m) { return MAT_CASA.indexOf(m) >= 0; });
+  function vacio() { return { v: 1, aspecto: F.normaliza(null), series: [], mov: [], gr: [], deporte: '', comida: comVacio(), sellos: {}, comp: { pie: COMP_PIE[0], bici: COMP_BICI[0] }, senderos: {}, sitio: '', material: MAT_ENTRADA.slice(), matRev: 0, nivel: 0 }; }
   function valida(s) {
     var r = vacio();
     if (!s || typeof s !== 'object') return r;
@@ -2338,6 +2343,10 @@
     /* (#120) dónde entrena hoy y el material que marcó para casa: solo de las listas */
     if (SITIOS.indexOf(s.sitio) >= 0) r.sitio = s.sitio;
     if (Array.isArray(s.material)) r.material = s.material.filter(function (m, i) { return MAT_CASA.indexOf(m) >= 0 && s.material.indexOf(m) === i; });
+    /* (nota 37) revisada (matRev 1, solo ese valor), lo guardado tal cual; sin revisar (también lo guardado antes de la
+       nota 37), las cuatro de entrada, además de lo que ya tuviera marcado */
+    if (s.matRev === 1) r.matRev = 1;
+    else MAT_ENTRADA.forEach(function (m) { if (r.material.indexOf(m) < 0) r.material.push(m); });
     /* (nota 34) el nivel de las rutinas: 1 a 3, o 4 («A tope») */
     if ([1, 2, 3, 4].indexOf(s.nivel) >= 0) r.nivel = s.nivel;
     /* el diario de comidas (parte 5): comValida() lo comprueba campo a campo */
@@ -3905,9 +3914,9 @@
     });
     var casa = st.sitio === 'casa', mats = $('tgc-plan-mats'), det = $('tgc-plan-mat');
     det.hidden = !casa; mats.textContent = '';
-    /* plegado si ya marcó algo (se ve lo marcado en la línea de debajo); abierto si no hay nada. Si la persona lo
-       abre o lo cierra, se queda como lo dejó */
-    if (casa && !matTocado) det.open = !st.material.length;
+    /* plegado si ya marcó algo (se ve lo marcado en la línea de debajo); abierto si no hay nada y (nota 37) mientras no
+       ha revisado lo marcado de entrada. Si la persona lo abre o lo cierra, se queda como lo dejó */
+    if (casa && !matTocado) det.open = !st.material.length || !st.matRev;
     var sel = $('tgc-plan-mat-sel');
     sel.textContent = st.material.map(function (m) { return tx('cuerpoMat_' + m); }).join(/^zh/.test(lengua()) ? '、' : ', ');
     sel.hidden = !st.material.length;
@@ -5127,13 +5136,19 @@
       renderPlan();
       try { $('tgc-plan-sitios').querySelector('[data-sitio="' + st.sitio + '"]').focus(); } catch (x) {}
     });
-    $('tgc-plan-mat').addEventListener('toggle', function () { matTocado = true; });
+    $('tgc-plan-mat').addEventListener('toggle', function () {
+      matTocado = true;
+      /* (nota 37) si la persona la cierra sin haberla revisado, lo marcado queda revisado (la app solo la abre mientras
+         no lo está, así que este cierre es de la persona) */
+      if (!$('tgc-plan-mat').open && !st.matRev) { st.matRev = 1; if (!guardar()) st.matRev = 0; }
+    });
     $('tgc-plan-mats').addEventListener('click', function (e) {
       var b = e.target.closest('button'), m = b && b.dataset.mat; if (MAT_CASA.indexOf(m) < 0) return;
-      var antes = st.material.slice(), i = st.material.indexOf(m);
+      var antes = st.material.slice(), antesRev = st.matRev, i = st.material.indexOf(m);
       matTocado = true;   /* mientras marca, el pliegue se queda abierto */
       if (i >= 0) st.material.splice(i, 1); else st.material.push(m);
-      if (!guardar()) st.material = antes;
+      st.matRev = 1;      /* (nota 37) lo que deje marcado vale desde ahora, también si quita alguna de las cuatro */
+      if (!guardar()) { st.material = antes; st.matRev = antesRev; }
       renderPlan();
       try { $('tgc-plan-mats').querySelector('[data-mat="' + m + '"]').focus(); } catch (x) {}
     });
@@ -6989,7 +7004,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
         <details class="tgc-plan-mat" id="tgc-plan-mat" hidden>
           <summary><span id="tgc-plan-mat-tit">¿Qué tiene en casa?</span><span class="tgc-plan-mat-sel" id="tgc-plan-mat-sel" hidden></span></summary>
           <div class="tgc-seg" id="tgc-plan-mats"></div>
-          <p class="tgc-ayuda" id="tgc-plan-mat-ayuda">Marque lo que tenga; sin marcar nada, salen los ejercicios sin material.</p>
+          <p class="tgc-ayuda" id="tgc-plan-mat-ayuda">De entrada van marcadas botellas, silla, toalla y mesa: quite lo que no tenga y marque lo demás que tenga. Sin nada marcado, salen los ejercicios sin material.</p>
         </details>
         <fieldset class="tgc-op" id="tgc-plan-nivel-f" hidden>
           <legend id="tgc-plan-nivel-tit">¿A qué nivel entrena?</legend>
