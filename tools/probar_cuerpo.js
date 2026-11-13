@@ -3694,7 +3694,8 @@ async function ejemplo(pg, mas) {
   //     nuevas); el sitio «casa» en el catálogo (lo que solo lleva «casa» no sale en gimnasio, fuera ni calistenia) y la regla
   //     de casa (todo el material sin nada, la pared o marcado, y sin correr ni desplazarse); seis materiales nuevos que se
   //     marcan en «¿Qué tiene en casa?» (22) y el aparato biosaludable, que no; todas las fuentes de una ficha (hasta 6; antes,
-  //     4, y dos de las 533 traen 5); y con el catálogo de antes, «ningún ejercicio con lo que tiene»
+  //     4, y dos de las 533 traen 5); las cifras del
+  //     asistente con el catálogo, en los diez idiomas; y con el catálogo de antes, «ningún ejercicio con lo que tiene»
   {
     const fs = require('fs'), path = require('path'), crypto = require('crypto');
     const DAT = n => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', n), 'utf8'));
@@ -3779,6 +3780,21 @@ async function ejemplo(pg, mas) {
     await idioma(p36, 'es');
     prueba('36: una ficha de casa dice «En casa» y «Mesa o encimera»; en inglés, «At home» y «Table or worktop»',
       rc.chips.includes('En casa') && rc.chips.includes('Mesa o encimera') && rcEn.chips.includes('At home') && rcEn.chips.includes('Table or worktop'), JSON.stringify([rc.chips, rcEn.chips]));
+    // las cifras del asistente, con el catálogo, en los diez idiomas (sin navegador)
+    const niv = [1, 2, 3].map(n => D36.filter(x => x.n === n).length);
+    const mal36 = [];
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      const A = DAT('asistente-' + l + '.json'), R = id => (A.respuestas || A).find ? (A.respuestas || A).find(r => r.id === id) : (A.respuestas || A)[id];
+      const enc = R('encontrar-ejercicios').r, nv = R('nivel-del-ejercicio').r;
+      const nums = t => (t.match(/\d+/g) || []).map(Number);
+      const filtros = enc.p[0], total = enc.p[enc.p.length - 1], deFuente = nums(nv.p[0]), niveles = nums(nv.p[3]);
+      if (![UI.cuerpoEnt_gimnasio[l], UI.cuerpoEnt_fuera[l], UI.cuerpoEnt_calistenia[l], UI.cuerpoSitio_casa[l]].every(t => filtros.includes(t))) mal36.push(l + ': filtros «' + filtros + '»');
+      if (!nums(total).includes(D36.length)) mal36.push(l + ': total «' + total + '»');
+      if (!(deFuente.includes(D36.length) && deFuente.filter(n => n !== D36.length).reduce((s, n) => s + n, 0) === D36.length)) mal36.push(l + ': de la fuente «' + nv.p[0] + '»');
+      if (JSON.stringify(niveles) !== JSON.stringify(niv)) mal36.push(l + ': niveles «' + nv.p[3] + '»');
+    }
+    prueba('36: el asistente, con el catálogo, en los diez idiomas: los cuatro sitios del filtro «Dónde» con el nombre de la app, ' + D36.length +
+      ' ejercicios, de la fuente y estimados que suman ' + D36.length + ', y ' + niv.join(', ') + ' por nivel', !mal36.length, mal36.slice(0, 3).join(' | '));
     prueba('36: sin errores de página', e36.length === 0, e36.join(' | '));
     await c36.close();
     // con el catálogo de antes (las 533 primeras): dorsales en casa sin nada marcado, «ningún ejercicio con lo que tiene»
