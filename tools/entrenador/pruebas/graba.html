@@ -29,7 +29,9 @@ var R = TG_ENTRENADOR.montar(document.getElementById('caja'), {
   etiquetas: [tr('cuerpoEnt_' + x.e[0]), tr('cuerpoNivel_' + x.n)].concat(x.m.filter(function (m) { return m !== 'ninguno'; }).map(function (m) { return tr('cuerpoMat_' + m); }))
 }, { idioma: lang, tema: Q.get('tema') || 'dia' });
 R.raiz.setAttribute('data-tema', 'noche');      /* los rótulos, en oscuro; el decorado, de día */
-window.total = R.tramos.reduce(function (a, q) { return a + q.dur; }, 0);
+/* lento=1: a cámara lenta, con su botón («½×»): los pasos del ejercicio duran entonces lo que su movimiento */
+if (Q.get('lento') === '1') R.bLento.click();
+window.total = R.tramos.reduce(function (a, q) { return a + (q.tipo === 'paso' && q.accion !== 'nota' ? q.dur / R.dir.vel : q.dur); }, 0);
 window.empieza = function () { R.suena = true; R.gran.hidden = true; R.medir(); };
 window.paso = function (dt) { if (!R.fin) R.avanzar(dt); return R.fin; };
 </script>

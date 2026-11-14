@@ -1,5 +1,5 @@
 # Graba el vídeo de un ejercicio, cuadro a cuadro (30 por segundo), a 1080 x 1920.
-#   python3 pruebas/graba.py salida.mp4 id [lang] [--prueba t1,t2,…]
+#   python3 pruebas/graba.py salida.mp4 id [lang] [--lento] [--prueba t1,t2,…]        (--lento: a cámara lenta, con «½×»)
 import sys, asyncio, subprocess, time, os
 from playwright.async_api import async_playwright
 FPS = 30
@@ -16,7 +16,7 @@ async def main():
         errs = []
         pg.on('console', lambda m: errs.append(m.text) if m.type in ('error', 'warning') else None)
         pg.on('pageerror', lambda e: errs.append('PAGEERROR ' + str(e)))
-        await pg.goto(AQUI + '/graba.html?id=%s&lang=%s' % (eid, lang))
+        await pg.goto(AQUI + '/graba.html?id=%s&lang=%s%s' % (eid, lang, '&lento=1' if '--lento' in sys.argv else ''))
         await pg.evaluate('document.fonts.ready')
         await pg.wait_for_timeout(400)
         total = await pg.evaluate('total')

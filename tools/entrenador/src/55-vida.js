@@ -35,7 +35,7 @@
     var a = L[i - 1], b = L[i], u = b.t > a.t ? entre((t - a.t) / (b.t - a.t), 0, 1) : 1;
     return { B: mezclaBase(a.B, b.B, u), col: mezcla(a.col, b.col, u), cab: mezcla(a.cab, b.cab, u) };
   };
-  /* E: el esqueleto de este instante, aún sin clavar. o: { busto, esf, rep, dePie, habla, libres: { i, d } } */
+  /* E: el esqueleto de este instante, aún sin clavar. o: { busto, esf, rep, dePie, habla, libres: { i, d }, sobreManos } */
   Vida.prototype.paso = function (E, dt, o) {
     if (quieto()) return E;
     var S = E.S, yo = this, k;
@@ -48,7 +48,10 @@
     }
     var B = S.B, col = S.col.slice(), cab = S.cab.slice();
     if (this.linea.length > 1) {
-      B = this.hace(DEMORA.tronco).B; col = this.hace(DEMORA.columna).col.slice(); cab = this.hace(DEMORA.cabeza).cab.slice();
+      /* (sobreManos: quien anda sobre las manos se sostiene en ellas, y el tronco no va detrás de la cadera: con los brazos
+         estirados y las manos clavadas, esa demora las dejaría fuera de alcance) */
+      if (!o.sobreManos) B = this.hace(DEMORA.tronco).B;
+      col = this.hace(DEMORA.columna).col.slice(); cab = this.hace(DEMORA.cabeza).cab.slice();
     }
     /* ── respira ── */
     this.fatiga += ((o.rep || o.esf > 0.3 ? 1 : 0) - this.fatiga) * (1 - Math.exp(-dt / (o.rep ? 12 : 7)));

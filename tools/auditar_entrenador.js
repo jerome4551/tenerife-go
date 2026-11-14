@@ -32,7 +32,10 @@
  *    hay ningún NaN en el dibujo y nada se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
  *    que el canvas de Samsung Internet sabe copiar (trazados, círculos, elipses y rectángulos). Y CADA SECUENCIA CABE EN SU PASO, en
  *    los diez idiomas: un paso dura lo que se tarda en leer su texto, no lo que dure su acción, y una secuencia más larga se
- *    quedaría a medias al entrar el paso siguiente (la cuenta se coteja con lo que dura cada paso en el reproductor). Y EL MOVIMIENTO, medido en cada cuadro:
+ *    quedaría a medias al entrar el paso siguiente (la cuenta se coteja con lo que dura cada paso en el reproductor). Y A CÁMARA LENTA
+ *    («½×», 14 de noviembre de 2026) se ve lo mismo, más despacio: el paso dura lo que su movimiento, la repetición va al acabar cada
+ *    paso por el mismo punto, y de cerca todo dura lo mismo (con unos de muestra; en un pase parcial, con todos los que se piden).
+ *    Y EL MOVIMIENTO, medido en cada cuadro:
  *    lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque Jérôme respire y
  *    reparta el peso; nada se teletransporta de un cuadro al siguiente; respira; la cabeza y el
  *    tupé no se pasan de vueltas; y de cerca ninguna mano se sale del cuadro. Y EL DIBUJO, también en
@@ -334,6 +337,55 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     }
     ok(!peros.length && pasados === idsVideo.length * 2, 'los ' + idsVideo.length + ' vídeos, enteros, en castellano y en otro idioma (' + pasados + ' pases, ' + cuadros + ' cuadros): acaban, duran lo suyo, se lee el paso de la ficha palabra por palabra, sin NaN y sin salirse de ancho', peros.slice(0, 8));
     ok(!noCaben.length && !otraDur.length && secuencias > 0 && cotejados >= idsVideo.length * 2, 'cada secuencia cabe en su paso, en los diez idiomas (' + secuencias + ' secuencias de ' + conSec + ' ejercicios; la más justa, con ' + justa[0].toFixed(2) + ' s de margen: ' + justa[1] + '): un paso dura lo que se tarda en leerlo, no lo que dure su acción, y una secuencia más larga se quedaría a medias; la cuenta es la del reproductor (cotejada en ' + cotejados + ' pasos de estos ' + idsVideo.length + ' vídeos)', noCaben.concat(otraDur).slice(0, 8));
+    /* a cámara lenta («½×») se ve lo mismo que a velocidad normal, más despacio. El reloj del reproductor va a la velocidad de lo que se
+       está viendo: un ejercicio, a la del Director (0,45); de cerca (la cabecera, un consejo, el cierre), a la suya. Así el paso de un
+       ejercicio dura lo que su movimiento, la secuencia acaba dentro de él y la repetición va, al acabar cada paso y cada tanda, por el
+       mismo punto que a velocidad normal; y de cerca todo dura lo mismo. La cortinilla de un cambio de plano (0,25 s hasta que tapa) va
+       con lo que tapa: despacio al dejar un ejercicio, a su velocidad al dejar un plano de cerca. Hasta el 14-11-2026 cada paso duraba lo
+       mismo con «½×» y el movimiento se quedaba a medias. Las repeticiones no se comparan contándolas (una cuenta entera cambia con un
+       cuadro de diferencia), sino por dónde van, en segundos del ejercicio, con un cuadro de margen por cada paso que lleve la tanda.
+       Entero, con unos de muestra (el de la secuencia más justa, el de la más larga, el de la repetición más larga, uno con consejo, el
+       primero y el pino contra la pared); en un pase parcial, con todos los que se piden. Con el botón de verdad */
+    {
+      const util = p => { const sec = p.sec, n = sec.length, antes = n > 1 ? sec[n - 2][0] : (p.desde || 'a'); return sec.reduce((a, q) => a + q[1], 0) - (sec[n - 1][0] === antes ? sec[n - 1][1] : 0); };
+      const mayor = f => ids.map(id => [f(T.COREO[id]), id]).sort((a, b) => b[0] - a[0])[0][1];
+      const LENTOS = PARCIAL ? idsVideo : [...new Set([justa[1].split(',')[0], mayor(co => Math.max(0, ...(co.pasos || []).filter(p => p && p.sec).map(util))), mayor(co => (co.rep || []).reduce((a, q) => a + q[1], 0)),
+        ids.find(id => (T.COREO[id].pasos || []).indexOf('nota') >= 0), ids[0], 'pino-pared'].filter(id => id && ids.indexOf(id) >= 0))];
+      const CORTE = 0.25, margen = k => 0.036 * k + 0.012, cercaDe = z => z.tipo !== 'paso' || z.nota;
+      const malL = []; let secL = 0, repL = 0, cercaL = 0, velL = 0, tandasL = 0, peorRep = 0, otraCuenta = 0;
+      for (const id of LENTOS) {
+        await pg.evaluate(a => window.montar(a, 'es', 'dia'), id); const a = await pg.evaluate(() => window.pase(false));
+        await pg.evaluate(a => window.montar(a, 'es', 'dia'), id); const b = await pg.evaluate(() => window.pase(true));
+        const q = [];
+        if (!a.fin || !b.fin) q.push('no acaba');
+        if (a.lento || a.vel !== 1 || !b.lento || !(b.vel > 0.2 && b.vel < 0.8) || b.pulsado !== 'true') q.push('el botón «½×» no pone la cámara lenta (velocidad ' + b.vel + ')');
+        if (a.tramos.length !== b.tramos.length) q.push('no tiene los mismos tramos');
+        else a.tramos.forEach((x, k) => {
+          /* lo que tiene que durar a cámara lenta: el tramo de un ejercicio, 1/vel veces lo suyo; uno de cerca, lo mismo. Y si el tramo entra
+             con cortinilla (viene de un plano distinto), ese cuarto de segundo es de lo que había antes y va a su velocidad */
+          const y = b.tramos[k], cerca = cercaDe(x), corta = k > 0 && cercaDe(a.tramos[k - 1]) !== cerca, masCorte = corta ? CORTE / b.vel - CORTE : 0;
+          const debe = cerca ? x.dur + masCorte : x.dur / b.vel - masCorte;
+          if (x.falta > 0.02) q.push('a velocidad normal, la secuencia del tramo ' + k + ' se queda a ' + x.falta + ' s de acabar');
+          if (y.falta > 0.02) q.push('a cámara lenta, la secuencia del tramo ' + k + ' se queda a ' + y.falta + ' s de acabar');
+          if (Math.abs(x.real - x.dur) > 0.05) q.push('a velocidad normal, el tramo ' + k + ' dura ' + x.real + ' s y no ' + x.dur.toFixed(2));
+          if (Math.abs(y.real - debe) > 0.05) q.push('a cámara lenta, el tramo ' + k + (cerca ? ' (de cerca)' : '') + ' dura ' + y.real + ' s y no ' + debe.toFixed(2));
+          /* de cerca, el gesto del presentador va a su velocidad: al acabar el tramo ha andado lo mismo */
+          if (cerca && (x.gesto == null || y.gesto == null || Math.abs(y.gesto - x.gesto) > 0.08)) q.push('a cámara lenta, el gesto del tramo ' + k + ' (de cerca) va por ' + y.gesto + ' s y a velocidad normal por ' + x.gesto);
+          /* al acabar un paso de repeticiones, la tanda va por el mismo punto */
+          if (!x.rep !== !y.rep || (x.rep && x.rep.k !== y.rep.k)) q.push('a cámara lenta, el tramo ' + k + ' no acaba en la misma tanda de repeticiones');
+          else if (x.rep) { peorRep = Math.max(peorRep, Math.abs(x.rep.va - y.rep.va)); if (Math.abs(x.rep.va - y.rep.va) > margen(x.rep.k)) q.push('al acabar el tramo ' + k + ', la repetición va a cámara lenta por ' + y.rep.va + ' s y a velocidad normal por ' + x.rep.va); }
+          if (x.sec) secL++; if (cerca) cercaL++;
+        });
+        /* y al acabar cada tanda (con lo que avanza debajo de la cortinilla que la tapa) */
+        if (a.tandas.length !== b.tandas.length) q.push('a cámara lenta hay ' + b.tandas.length + ' tandas de repeticiones y a velocidad normal ' + a.tandas.length);
+        else a.tandas.forEach((x, i) => { const y = b.tandas[i]; tandasL++; peorRep = Math.max(peorRep, Math.abs(x.va - y.va)); if (x.k !== y.k || Math.abs(x.va - y.va) > margen(x.k + 1)) q.push('la tanda ' + (i + 1) + ' de repeticiones acaba a cámara lenta en ' + y.va + ' s y a velocidad normal en ' + x.va); });
+        if (Math.abs(a.reps - b.reps) > 1) q.push('a cámara lenta se cuentan ' + b.reps + ' repeticiones y a velocidad normal ' + a.reps);
+        if (a.reps !== b.reps) otraCuenta++;
+        repL += b.reps; velL = b.vel;
+        if (q.length) malL.push(id + ': ' + q.slice(0, 3).join('; '));
+      }
+      ok(!malL.length && LENTOS.length > 0 && (PARCIAL || (secL > 0 && repL > 0 && tandasL > 0 && cercaL > LENTOS.length * 2)), 'a cámara lenta («½×», con su botón) se ve lo mismo que a velocidad normal, más despacio (' + LENTOS.length + ' vídeos' + (PARCIAL ? '' : ' de muestra') + ', con ' + secL + ' secuencias, ' + tandasL + ' tandas de repeticiones y ' + repL + ' repeticiones): cada secuencia acaba dentro de su paso; al acabar cada paso y cada tanda, la repetición va por el mismo punto (la mayor diferencia, ' + peorRep.toFixed(3) + ' s' + (otraCuenta ? '; en ' + otraCuenta + ' la cuenta entera cambia en una, por un cuadro' : '') + '); el paso de un ejercicio dura ' + (1 / (velL || 1)).toFixed(2) + ' veces lo suyo y de cerca (la cabecera, los consejos y el cierre: ' + cercaL + ' tramos) todo dura lo mismo y el gesto va a su velocidad; la cortinilla de un cambio de plano va con lo que tapa', malL.slice(0, 6));
+    }
     info('el movimiento, lo más de todo: lo clavado se mueve ' + tope.clavo + ' cm; el cuerpo, ' + tope.salto + ' cm en un cuadro (a 30 por segundo); una mano, ' + tope.saltoM + ' cm; la cabeza cabecea ' + tope.cabRep + '° en una repetición y ' + tope.cabBusto + '° al entrar; el tupé, ' + tope.pelo + '°');
     const delMov = peros.filter(p => /clavado|salto|respira|muelle|sale del cuadro/.test(p));
     ok(!delMov.length, 'el movimiento, medido en cada cuadro de los ' + idsVideo.length + ' vídeos: lo clavado no se mueve (el pie en el suelo, la mano en la barra) aunque respire y reparta el peso; nada se teletransporta; respira; los muelles no se pasan; de cerca ninguna mano se sale', delMov.slice(0, 6));

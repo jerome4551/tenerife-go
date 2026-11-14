@@ -105,7 +105,9 @@ Más claves: `material: [['barra', {…}], …]`, `inicio`, `encuadra: [...]` (p
 que caber), `isometrico: 'c'`, `reposo: ['a0']` (el material espera en su sitio), `sinClavos: ['f']`
 (posturas en las que ya se ha soltado), `picado` (16 para los ejercicios de suelo), `zoom`, `corre: [dx, dy]` (el
 encuadre, corrido eso en las dos vistas, en px de los 400 del dibujo: en un pino, la cabeza y las manos caen justo
-bajo los rótulos de los músculos, y con `corre: [50, 0]` quedan a su derecha).
+bajo los rótulos de los músculos, y con `corre: [50, 0]` quedan a su derecha), `sobreManos: true` (anda sobre las
+manos: el tronco no va un instante detrás de la cadera, que es lo que hace «la vida» en los demás; con los brazos
+estirados y las manos clavadas, esa demora las dejaba fuera de alcance. Lo lleva el pino contra la pared).
 
 Los clavos: `'ti'` (el tobillo, donde esté), `'mi@0:28'` (la mano al agarre del material 0, a 28 cm
 del centro), `'mi=x,y,z'` (a un punto).
@@ -117,6 +119,16 @@ verse. Así que cada secuencia tiene que caber en su paso **en el idioma en que 
 tras la última postura, si es quedarse quieto en ella, no cuenta: mantener sí puede pasar de largo). Y si el paso es
 el primero, o el que sigue a un consejo, su acción arranca 0,25 s después (la cortinilla del cambio de plano).
 `auditar_entrenador.js` lo mira en los diez idiomas y dice cuál va más justa.
+
+**A cámara lenta («½×»)** el Director va a 0,45 mientras se ve un ejercicio, y el reloj del reproductor va a la
+velocidad de lo que se está viendo (`tm`, en `80-reproductor.js`): el paso de un ejercicio dura 1/0,45 veces lo suyo
+y se ve lo mismo que a velocidad normal, más despacio (la secuencia entera y, al acabar el paso, la repetición por el
+mismo punto). Lo que cabe a velocidad normal cabe a cámara lenta. El texto y la voz van a su ritmo (`tt`, el tiempo de
+verdad). De cerca (la cabecera, un consejo, el cierre) no hay ejercicio que mirar despacio: el gesto del presentador
+va a su velocidad y el tramo dura lo mismo. La cortinilla de un cambio de plano va con lo que tapa: al dejar un
+ejercicio, despacio (el ejercicio avanza debajo lo mismo que a velocidad normal, y por eso ese tramo de cerca dura
+0,3 s más); al dejar un plano de cerca, a su velocidad. Hasta el 14-11-2026 cada paso duraba lo mismo con «½×» y el
+movimiento se quedaba a medias en más de la mitad de los vídeos.
 
 La repetición no vuelve a empezar de un paso `'rep'` al siguiente: sigue por donde iba. `{ rep: 2.1 }` solo cuenta
 cuando se llega a ese paso desde una postura o una secuencia (o saltando a él con los mandos).
@@ -135,7 +147,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 2 | `71-pecho.js` | pecho: 35 (todo lo que no pide banda, máquina, cinta de suspensión, fitball ni disco) |
 | 3 | `72-dorsal.js` | dorsal: 35 (quedan 5: las dominadas asistidas con banda y en máquina, las lastradas con disco y el lanzamiento de balón medicinal) |
 | 4 | `73-espalda-alta.js` | espalda alta: 30 (con los 3 del bloque 1, 33 de 44; quedan 11: 5 con banda, 4 en máquina y 2 con cinta de suspensión) |
-| 5 | `74-hombros.js` | hombros: 34 (con los 3 del bloque 1, 37 de 47; quedan 10: 4 con banda, 3 en máquina, 2 en multipower y 1 con disco) |
+| 5 | `74-hombros.js` | hombros: 34 (con los 3 del bloque 1, 37 de 47; quedan 10: 4 con banda, 3 en máquina, 2 en multipower y 1 con disco). El 14-11-2026 (nota 47) el pino contra la pared pasó de tres pasos a cuatro: su ficha dice ahora cómo se sube y cómo se baja, y el vídeo lo hace |
 | 6 | `75-biceps.js` | bíceps: 36 (con los 3 del bloque 1, 39 de 50; quedan 11: 4 con banda, 4 con cinta de suspensión, 1 en máquina, 1 con disco y 1 con fitball) |
 | 7 | `76-triceps.js` | tríceps: 37 (con los 3 del bloque 1, 40 de 47; quedan 7: 2 con cinta de suspensión, 2 con anillas, 1 en multipower, 1 en máquina y 1 con banda) |
 | 8 | `77-antebrazo-pantorrilla.js` | antebrazo: 16 (con el del bloque 1, 17 de 22; quedan 5: 4 con banda y 1 con disco) y pantorrilla: 19 (con los 4 del bloque 1, 23 de 30; quedan 7: 4 en máquina y 3 con banda) |
@@ -296,10 +308,14 @@ ninguna coreografía los usa todavía: están sin probar.
 5. **Lo que se toca, medido.** Una mano en la pared, en el muslo o en el suelo se coloca con su medida, no a ojo: la pared va
    donde llegan las yemas (de perfil exacto, `pruebas/vistas.html?id=<id>&rumbos=90&picado=0&pos=a`, se ve si la mano se queda
    en el aire delante de ella); la mano que descansa en un muslo va sobre su cara de arriba (`manoEnMuslo`); y las yemas, en el
-   suelo y no por debajo. Desde las dos vistas del vídeo un hueco de 7 cm puede no verse; de perfil, sí.
+   suelo y no por debajo. Desde las dos vistas del vídeo un hueco de 7 cm puede no verse; de perfil, sí. Y contra una pared,
+   también las rodillas: con el pecho hacia ella se doblan hacia la pared, y junto a ella no caben (el centro de la rodilla
+   tiene que quedar a 7 cm o más, que es lo que mide con su rótula). En el pino contra la pared el cuerpo se dobla por la
+   cadera, que se aleja de la pared, y las rodillas se abren un poco hacia fuera.
 6. `python3 tools/entrenador/construir.py` y `node tools/auditar_entrenador.js 8766`.
 
-Para grabar un MP4 (1080 × 1920, 30 cuadros por segundo): `python3 tools/entrenador/pruebas/graba.py salida.mp4 <id> [idioma]`.
+Para grabar un MP4 (1080 × 1920, 30 cuadros por segundo): `python3 tools/entrenador/pruebas/graba.py salida.mp4 <id> [idioma] [--lento]`
+(`--lento`: a cámara lenta, con «½×»).
 
 ## El dibujo
 
@@ -384,7 +400,5 @@ ninguna que valga y es de Apple, no se elige: se le da el idioma y pone la suya.
   (pasaba en el press de banca). También se arregla con la vista; `auditar_entrenador.js` deja la lista de los
   ejercicios en los que pasa más de un 20 % de la repetición, para mirarlos a ojo.
 - Solo el escalón tapa de verdad lo que tiene detrás; el resto del material se ordena por distancia.
-- Con «½×» la repetición va a media velocidad, pero cada paso dura lo mismo: una secuencia (sentarse y coger la barra,
-  un estiramiento) va igual de lenta y no le da tiempo a acabar antes de que entre el paso siguiente.
 - Las piezas se ordenan por distancia, enteras: cuando dos se cruzan (un brazo por delante del pecho), el cambio de
   orden es de un cuadro a otro.

@@ -265,7 +265,7 @@
     caja.appendChild(raiz);
 
     this.cajaPaso = paso;
-    this.n = 0; this.tt = 0; this.suena = false; this.fin = false; this.lento = false; this.conVoz = false; this.antes = 0; this.raf = 0;
+    this.n = 0; this.tt = 0; this.tm = 0; this.suena = false; this.fin = false; this.lento = false; this.conVoz = false; this.antes = 0; this.raf = 0;
     this.dir.alRepetir = function (r) { yo.chipRep.textContent = '\u00d7 ' + r; yo.chipRep.classList.toggle('tgv-oculto', !yo.repVisible); };
     this.dir.aBusto(true);
     this.entrar(0, true);
@@ -339,9 +339,17 @@
   Reproductor.prototype.avanzar = function (dt) {
     var t = this.tramos[this.n];
     this.tt += dt;
-    if (this.pendiente) { this.pendT -= dt; if (this.pendT <= 0) { var g0 = this.pendiente; this.pendiente = null; g0(); } }
+    /* el reloj del tramo va a la velocidad de lo que se está viendo, que es la del Director. A cámara lenta («½×») el ejercicio va
+       más despacio y su paso dura en proporción: se ve lo mismo que a velocidad normal (la secuencia entera, las mismas repeticiones),
+       más despacio. De cerca (la cabecera, un consejo, el cierre) no hay ejercicio que mirar despacio: todo va a su velocidad. La
+       cortinilla y el cambio de plano que lleva dentro van con el mismo reloj: al dejar un ejercicio, la cortinilla lo tapa a su
+       paso (y el ejercicio avanza debajo lo mismo que a velocidad normal); al dejar un plano de cerca, al suyo. A velocidad normal
+       dv es dt. tt sigue siendo el tiempo de verdad: el texto y la voz no se frenan */
+    var dv = dt * (this.dir.busto ? 1 : this.dir.vel);
+    this.tm += dv;
+    if (this.pendiente) { this.pendT -= dv; if (this.pendT <= 0) { var g0 = this.pendiente; this.pendiente = null; g0(); } }
     if (this.corteT != null) {
-      this.corteT += dt;
+      this.corteT += dv;
       var uc = this.corteT / 0.52;
       if (uc >= 1) { this.corteT = null; this.corte.style.transform = ''; }
       else { uc = uc < 0.5 ? 2 * uc * uc : 1 - 2 * (1 - uc) * (1 - uc); this.corte.style.transform = 'translateX(' + (-120 + 240 * uc).toFixed(1) + '%) skewX(-12deg)'; }
@@ -353,9 +361,9 @@
     }
     if (this.conVoz && this.hablando && ((!this.vozArranco && this.tt > 2.5) || this.tt > t.dur + 22)) { this.hablando = false; this.esc.cab.hablar(0); }
     var esperaVoz = this.conVoz && this.hablando;
-    var f = entre(this.tt / t.dur, 0, 1);
+    var f = entre(this.tm / t.dur, 0, 1);
     t.barra.firstChild.style.width = (f * 100).toFixed(1) + '%';
-    if (this.tt >= t.dur && !esperaVoz) {
+    if (this.tm >= t.dur && !esperaVoz) {
       if (this.n >= this.tramos.length - 1) { this.acabar(); }
       else this.entrar(this.n + 1);
     }
@@ -392,7 +400,7 @@
     var yo = this, T = this.T, d = this.dir, cab = this.esc.cab, t = this.tramos[n], antes = this.tramos[this.n];
     if (this.pendiente) { var g = this.pendiente; this.pendiente = null; g(); }
     if (!this.suena) { this.corteT = null; this.corte.style.transform = ''; }
-    this.n = n; this.tt = 0;
+    this.n = n; this.tt = 0; this.tm = 0;
     this.tramos.forEach(function (q, i) { q.barra.classList.toggle('hecho', i < n); q.barra.firstChild.style.width = i < n ? '100%' : '0%'; });
     this.bAnt.disabled = n === 0; this.bSig.disabled = n === this.tramos.length - 1;
     var N = this.tramos.length - 2;

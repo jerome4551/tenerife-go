@@ -248,7 +248,8 @@
   Director.prototype.gestoPara = function (momento, n) { var l = GESTOS_DE[momento] || []; return l.length ? l[(n >>> 0) % l.length] : null; };
   /* un cuadro: avanza el tiempo y pinta */
   Director.prototype.cuadro = function (dt, parado) {
-    var esc = this.esc, E, v = parado ? 0 : this.vel, yo = this, A, B, e = 0, clavos = null, i;
+    /* la cámara lenta («½×») es para el ejercicio: de cerca, el presentador saluda y aconseja a su velocidad */
+    var esc = this.esc, E, v = parado ? 0 : this.busto ? 1 : this.vel, yo = this, A, B, e = 0, clavos = null, i;
     this.t += dt;
     if (this.modo === 'rep') {
       this.tau += dt * v;
@@ -282,7 +283,7 @@
     if (clavos) for (i = 0; i < clavos.length; i++) if (clavos[i] && clavos[i].que.charAt(0) === 'm') libres[clavos[i].que.charAt(1)] = false;
     /* de pie: el tronco derecho y la cadera a su altura (sentado o tumbado, descansa en algo: no se balancea) */
     dePie = E.S.B[1][1] > 0.94 && E.S.p[1] > D.pelvis - 9 && this.modo === 'postura' && this.w >= 1 && !(this.co && this.co.isometrico === this.meta && !this.busto);
-    E = this.vida.paso(E, parado ? 0 : dt, { busto: this.busto, esf: this.esf, rep: this.modo === 'rep', dePie: dePie, habla: this.busto && esc.cab.habla > esc.cab.t, libres: libres });
+    E = this.vida.paso(E, parado ? 0 : dt, { busto: this.busto, esf: this.esf, rep: this.modo === 'rep', dePie: dePie, habla: this.busto && esc.cab.habla > esc.cab.t, libres: libres, sobreManos: !this.busto && !!(this.co && this.co.sobreManos) });
     this.metas = [];            /* lo que se clava en este cuadro, y dónde (lo coteja la auditoría: lo clavado no se mueve) */
     if (clavos && clavos.length) E = this.clavar(E, A, B, e, clavos);
     /* de donde estaba a donde va */

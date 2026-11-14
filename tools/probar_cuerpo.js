@@ -3719,11 +3719,13 @@ async function ejemplo(pg, mas) {
     const UI = {}; { const i = s36.indexOf('var CUERPO_UI = {'), j = s36.indexOf('\n  };', i);
       for (const l of s36.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
     /* la huella de los 533 publicados el 13-11-2026 (datos/cuerpo/ejercicios.json antes del bloque 35) */
-    const H533 = '781ea591d52a0e9b55c7e7d0db3230f6751540be40496ae95781d2646d10fd8b';
+    /* (nota 47, 14-11-2026) una de esas 533, «pino-pared», lleva dos fuentes más (su ficha dice ahora cómo se sube y cómo se baja):
+       las tres huellas son las de después de ese cambio. Antes eran 781ea591…0fd8b, 51c2effd…7db0 y d7c2569e…d43c */
+    const H533 = '70019d63eeeeb811d761cc9ed2363518d12f9a144f651d7f5c2f3bd87f0d03a0';
     /* (nota 37) y la de las 950 publicadas el 13-11-2026 con el bloque 35: la 951, la búlgara en una silla, va detrás */
-    const H950 = '51c2effd185fd0b28393c47fd2c8a8717187405687fc4b07b9faf97f49517db0';
+    const H950 = 'de77a61e879b2d3bfeeac38474cd59a5df0167cdb99bc63982318125dbe526f6';
     /* (nota 43) y la de las 951 de la nota 37: detrás van 7 de las 13 fichas del bloque 35 que se quedaron fuera, ya comprobadas */
-    const H951 = 'd7c2569e3b7840002fd2e03f1446ad335433fe821f5a8690969423cad512d43c', N43 = ['press-pecho-de-pie-biosaludable', 'remo-inclinado-una-pierna-botellas', 'curl-biceps-biosaludable', 'abdominal-silla-biosaludable', 'abdominal-silla-mantenido-biosaludable', 'cangrejo-bajando-escaleras', 'salto-desde-primer-escalon'];
+    const H951 = 'ba7f58a80d255dbd0c55abd421997d54362b802f6668fe7de3119545a5b7ce79', N43 = ['press-pecho-de-pie-biosaludable', 'remo-inclinado-una-pierna-botellas', 'curl-biceps-biosaludable', 'abdominal-silla-biosaludable', 'abdominal-silla-mantenido-biosaludable', 'cangrejo-bajando-escaleras', 'salto-desde-primer-escalon'];
     const ENT = ['gimnasio', 'fuera', 'calistenia', 'casa'], NUEVOS = ['botella', 'silla', 'toalla', 'mochila', 'mesa', 'cubo'];
     prueba('36: 958 fichas: las 533 de antes, iguales y delante (su huella), las 417 del bloque 35 detrás (las 950, con su huella), la búlgara en una silla (nota 37; las 951, con su huella) y 7 de las 13 que se quedaron fuera (nota 43); ningún id repetido',
       D36.length === 958 && crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 533))).digest('hex') === H533 &&

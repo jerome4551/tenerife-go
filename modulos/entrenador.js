@@ -2475,7 +2475,7 @@
     var a = L[i - 1], b = L[i], u = b.t > a.t ? entre((t - a.t) / (b.t - a.t), 0, 1) : 1;
     return { B: mezclaBase(a.B, b.B, u), col: mezcla(a.col, b.col, u), cab: mezcla(a.cab, b.cab, u) };
   };
-  /* E: el esqueleto de este instante, aún sin clavar. o: { busto, esf, rep, dePie, habla, libres: { i, d } } */
+  /* E: el esqueleto de este instante, aún sin clavar. o: { busto, esf, rep, dePie, habla, libres: { i, d }, sobreManos } */
   Vida.prototype.paso = function (E, dt, o) {
     if (quieto()) return E;
     var S = E.S, yo = this, k;
@@ -2488,7 +2488,10 @@
     }
     var B = S.B, col = S.col.slice(), cab = S.cab.slice();
     if (this.linea.length > 1) {
-      B = this.hace(DEMORA.tronco).B; col = this.hace(DEMORA.columna).col.slice(); cab = this.hace(DEMORA.cabeza).cab.slice();
+      /* (sobreManos: quien anda sobre las manos se sostiene en ellas, y el tronco no va detrás de la cadera: con los brazos
+         estirados y las manos clavadas, esa demora las dejaría fuera de alcance) */
+      if (!o.sobreManos) B = this.hace(DEMORA.tronco).B;
+      col = this.hace(DEMORA.columna).col.slice(); cab = this.hace(DEMORA.cabeza).cab.slice();
     }
     /* ── respira ── */
     this.fatiga += ((o.rep || o.esf > 0.3 ? 1 : 0) - this.fatiga) * (1 - Math.exp(-dt / (o.rep ? 12 : 7)));
@@ -2807,7 +2810,8 @@
   Director.prototype.gestoPara = function (momento, n) { var l = GESTOS_DE[momento] || []; return l.length ? l[(n >>> 0) % l.length] : null; };
   /* un cuadro: avanza el tiempo y pinta */
   Director.prototype.cuadro = function (dt, parado) {
-    var esc = this.esc, E, v = parado ? 0 : this.vel, yo = this, A, B, e = 0, clavos = null, i;
+    /* la cámara lenta («½×») es para el ejercicio: de cerca, el presentador saluda y aconseja a su velocidad */
+    var esc = this.esc, E, v = parado ? 0 : this.busto ? 1 : this.vel, yo = this, A, B, e = 0, clavos = null, i;
     this.t += dt;
     if (this.modo === 'rep') {
       this.tau += dt * v;
@@ -2841,7 +2845,7 @@
     if (clavos) for (i = 0; i < clavos.length; i++) if (clavos[i] && clavos[i].que.charAt(0) === 'm') libres[clavos[i].que.charAt(1)] = false;
     /* de pie: el tronco derecho y la cadera a su altura (sentado o tumbado, descansa en algo: no se balancea) */
     dePie = E.S.B[1][1] > 0.94 && E.S.p[1] > D.pelvis - 9 && this.modo === 'postura' && this.w >= 1 && !(this.co && this.co.isometrico === this.meta && !this.busto);
-    E = this.vida.paso(E, parado ? 0 : dt, { busto: this.busto, esf: this.esf, rep: this.modo === 'rep', dePie: dePie, habla: this.busto && esc.cab.habla > esc.cab.t, libres: libres });
+    E = this.vida.paso(E, parado ? 0 : dt, { busto: this.busto, esf: this.esf, rep: this.modo === 'rep', dePie: dePie, habla: this.busto && esc.cab.habla > esc.cab.t, libres: libres, sobreManos: !this.busto && !!(this.co && this.co.sobreManos) });
     this.metas = [];            /* lo que se clava en este cuadro, y dónde (lo coteja la auditoría: lo clavado no se mueve) */
     if (clavos && clavos.length) E = this.clavar(E, A, B, e, clavos);
     /* de donde estaba a donde va */
@@ -5770,54 +5774,100 @@
         pasos: ['t0', 't', 'rep']
       };
     })();
-    /* el pino contra la pared, con el pecho hacia ella: las manos en el suelo junto a la pared y las puntas de los pies apoyadas en
-       ella; los brazos, estirados, y la pared sostiene la postura. Para salir baja con control: las manos se alejan andando y los
-       pies bajan por la pared, una mano y el pie contrario cada vez, hasta quedar en plancha */
+    /* el pino contra la pared, con el pecho hacia ella. Se sube andando por la pared: boca abajo, con las manos en el suelo, apoya los
+       pies en ella (paso 1: los dos, antes de mover una mano) y después los sube mientras acerca las manos, una mano o un pie cada
+       vez (paso 2): siempre quedan tres apoyos. Arriba, las manos en el suelo junto a la pared y las puntas de los pies apoyadas en
+       ella; los brazos, estirados, y la pared sostiene la postura (paso 3). Para salir (paso 4) baja por donde subió: las manos se
+       alejan y los pies bajan por la pared, una mano o un pie cada vez, y los pies no dejan la pared hasta que las dos manos están
+       lejos; acaba con los pies en el suelo */
     COREO['pino-pared'] = (function () {
-      var G = 21, ZPL = 13.5, AV = 105, Z0 = ZPL - AV, ZWALL = -113, ZA = ZWALL + 11.5, LB = D.brazo + D.antebrazo - 0.35, dx = G - D.hombroX, L_C = 43.5 + 77.95;
+      var G = 21, ZPL = 13.5, AV = 105, Z0 = ZPL - AV, ZWALL = -113, ZA = ZWALL + 11.5, LB = D.brazo + D.antebrazo - 0.35, dx = G - D.hombroX, L_T = 43.5, L_P = 77.95, L_ANDA = 77.3;
       var PIE_PARED = { punta: [0, 0.574, -0.819], arriba: [0, -0.819, -0.574] }, PIE_AIRE = { punta: [0, -0.26, -0.966], arriba: [0, 0.966, -0.26] };
-      var RODILLA = [0, -1, -0.3], Y_BAJO = 50, SUBE = 7, FUERA = 8;
-      /* el cuerpo, recto de los hombros (sobre el centro de las dos manos, a lo que den los brazos estirados) a un tobillo en la pared */
-      var cuerpo = function (zi, zd) {
-        var zm = Z0 + (zi + zd) / 2 + 1.1, h = Math.abs(zi - zd) / 2 + 1.1, yS = Y_MUN + Math.sqrt(LB * LB - h * h - dx * dx), a = Math.asin(entre((zm - ZA) / L_C, -1, 1));
-        return { yS: yS, zm: zm, c: 180 - a / RAD, yA: yS + L_C * Math.cos(a) };
+      /* la rodilla que se dobla va hacia abajo y hacia la pared, y algo hacia fuera: junto a la pared no cabe de frente */
+      var RODILLA = [0, -1, -0.3], RODILLA_I = [0.5, -1, -0.3], RODILLA_D = [-0.5, -1, -0.3], Y_BAJO = 50, SUBE = 7;
+      /* el cuerpo. Los hombros, sobre el centro de las dos manos, a lo que den los brazos estirados. Y la cadera, donde deja estirada
+         la pierna de uno de los pies que pisan (a las alturas de «pisan») sin que el otro quede fuera de alcance: si ese pie está todo
+         lo alto que llega (recto), el cuerpo queda en línea de los hombros a ese tobillo; si está más bajo, se dobla por la cadera,
+         que se aleja de la pared. Así se anda por una pared: tras acercar una mano, la cadera sale; al subir un pie, el cuerpo se
+         estira. Con el pecho hacia la pared las rodillas se doblan hacia ella, y arriba, entre el cuerpo y la pared, no caben.
+         «lp»: lo que mide la pierna estirada. Arriba, quieto, del todo (L_P); andando, un pelo menos (L_ANDA): con las dos manos y un
+         pie clavados, una pierna estirada del todo no dejaría sitio ni para respirar */
+      var cuerpo = function (zi, zd, pisan, lp) {
+        lp = lp || L_ANDA;
+        var zm = Z0 + (zi + zd) / 2 + 1.1, h = Math.abs(zi - zd) / 2 + 1.1, yS = Y_MUN + Math.sqrt(LB * LB - h * h - dx * dx);
+        var L = L_T + lp, recto = yS + Math.sqrt(Math.max(0, L * L - (zm - ZA) * (zm - ZA))), r = null;
+        (pisan && pisan.length ? pisan : [recto]).forEach(function (yT) {
+          yT = Math.min(yT, recto);
+          var uy = yT - yS, uz = ZA - zm, dd = Math.sqrt(uy * uy + uz * uz), a = (L_T * L_T - lp * lp + dd * dd) / (2 * dd), f = Math.sqrt(Math.max(0, L_T * L_T - a * a));
+          var py = yS + (a * uy - f * uz) / dd, pz = zm + (a * uz + f * uy) / dd, falta = 0;
+          /* lo que le faltaría al otro pie para llegar */
+          (pisan || []).forEach(function (y) { falta = Math.max(falta, Math.sqrt((y - py) * (y - py) + (ZA - pz) * (ZA - pz)) - lp); });
+          if (!r || falta < r.falta) r = { recto: recto, pel: [0, py, pz], c: Math.atan2(zm - pz, yS - py) / RAD, falta: falta };
+        });
+        return r;
       };
-      /* una postura de la bajada: las muñecas, a zi y zd de donde empiezan (o.mi, o.md: esa mano va en el aire), y los tobillos, en la
-         pared a las alturas yi e yd (o.pi, o.pd: ese pie va en el aire, separado de ella) */
+      /* una postura del camino: las muñecas, a zi y zd de donde quedan arriba (o.mi, o.md: esa mano va en el aire), y los tobillos, en
+         la pared a las alturas yi e yd (o.pi, o.pd: ese pie va en el aire, separado de ella esos centímetros) */
       var andando = function (zi, zd, yi, yd, o) {
         o = o || {};
-        var q = cuerpo(zi, zd), s = Math.sin(q.c * RAD), k = Math.cos(q.c * RAD);
-        return planas({ pel: [0, q.yS - 43.5 * k, q.zm - 43.5 * s], giro: [0, q.c, 0], cab: [-16, 0, 0],
-          bi: { a: [G, Y_MUN + (o.mi ? SUBE : 0), Z0 + zi], polo: [1, 0, -0.5] }, bd: { a: [-G, Y_MUN + (o.md ? SUBE : 0), Z0 + zd], polo: [-1, 0, -0.5] },
-          pi: { a: [10, yi, ZA + (o.pi ? FUERA : 0)], polo: RODILLA }, pd: { a: [-10, yd, ZA + (o.pd ? FUERA : 0)], polo: RODILLA }, t: PIE_PARED });
+        var q = cuerpo(zi, zd, (o.pi ? [] : [yi]).concat(o.pd ? [] : [yd]), o.largo);
+        var P = function (cab) {
+          return { pel: q.pel, giro: [0, q.c, 0], cab: [cab, 0, 0],
+            bi: { a: [G, Y_MUN + (o.mi ? SUBE : 0), Z0 + zi], polo: [1, 0, -0.5] }, bd: { a: [-G, Y_MUN + (o.md ? SUBE : 0), Z0 + zd], polo: [-1, 0, -0.5] },
+            pi: { a: [10, yi, ZA + (o.pi || 0)], polo: o.largo ? RODILLA : RODILLA_I }, pd: { a: [-10, yd, ZA + (o.pd || 0)], polo: o.largo ? RODILLA : RODILLA_D }, t: PIE_PARED };
+        };
+        /* la cabeza, mirando al suelo: con el tronco a plomo, algo más, para que el tupé no lo roce (le quedan 4,5 cm) */
+        var tupe = function (cab) { var E = resolver(P(cab)); return mas(E.cab, aplicar(E.Bc, [0, 43, 3]))[1]; };
+        return planas(P(tupe(-16) >= 4.5 ? -16 : busca(tupe, 4.5, -50, -16)));
       };
-      /* las alturas a las que va pisando: la del tobillo que queda en línea con el cuerpo en cada apoyo */
-      var y0 = cuerpo(0, 0).yA, y1 = cuerpo(35, 0).yA, y2 = cuerpo(35, 70).yA, y3 = cuerpo(105, 70).yA, y4 = cuerpo(105, 105).yA, w = [G, Y_MUN, ZPL];
+      var w = [G, Y_MUN, ZPL];
       var pl = planas(aUnBrazo(function (x) { return tabla(x, { b: { a: w, polo: [0.55, 0.25, -1] } }); }, w, 8, 32));
-      /* ya con las manos en su sitio: el cuerpo, a «c» grados de cabeceo, con los hombros sobre ellas */
+      /* con las manos lejos, en su sitio: el cuerpo, a «c» grados de cabeceo, con los hombros sobre ellas */
       var sobreManos = function (c, extra) {
         var yS = Y_MUN + Math.sqrt(LB * LB - 1.1 * 1.1 - dx * dx);
-        return planas(sobre({ pel: [0, yS - 43.5 * Math.cos(c * RAD), ZPL + 1.1 - 43.5 * Math.sin(c * RAD)], giro: [0, c, 0], cab: [-16, 0, 0], b: { a: w, polo: [0.55, 0.25, -1] } }, extra));
+        return planas(sobre({ pel: [0, yS - L_T * Math.cos(c * RAD), ZPL + 1.1 - L_T * Math.sin(c * RAD)], giro: [0, c, 0], cab: [-16, 0, 0], b: { a: w, polo: [0.55, 0.25, -1] } }, extra));
       };
       var enPared = { a: [10, Y_BAJO, ZA], polo: RODILLA };
-      var A = ['md', 'ti'], B = ['mi', 'td'], C = ['mi', 'md', 'ti'], D_ = ['mi', 'md', 'td'];      /* lo que queda apoyado en cada tramo */
+      /* el camino de las manos, de lejos a junto a la pared, en seis pasos de 35 cm (la derecha primero): [la izquierda, la derecha] */
+      var MANOS = [[AV, AV], [AV, 70], [70, 70], [70, 35], [35, 35], [35, 0], [0, 0]];
+      /* la altura a la que pisa el pie que sube tras cada mano: todo lo alto que llega con el cuerpo en línea */
+      var ALTO = MANOS.map(function (m) { return cuerpo(m[0], m[1]).recto; });
+      var TODO = ['mi', 'md', 'ti', 'td'], sin = function (q) { return TODO.filter(function (x) { return x !== q; }); };   /* lo que queda apoyado: siempre tres */
+      var T_MANO = 0.28, tPie = function (cm) { return entre(0.2 + cm / 260, 0.23, 0.48); };      /* medio paso: levantar, o apoyar */
+      var K = { pl: pl }, pies = [Y_BAJO, ALTO[0]], k, m0, m1, der, q, y1, mano, pie, t, fuera;
+      /* primero, los dos pies a la pared (las manos no se mueven): el izquierdo, bajo; el derecho, donde deja la pierna en línea */
+      K.e1 = sobre(pl, { pi: { a: [10, (Y_BAJO + TOB_PUNTA) / 2 + 4, ZA + 13], polo: RODILLA }, ti: PIE_AIRE });
+      K.e2 = sobre(pl, { pi: enPared, ti: PIE_PARED });
+      K.e3 = sobreManos(89, { pi: enPared, ti: PIE_PARED, pd: { a: [-10, (ALTO[0] + TOB_PUNTA) / 2 + 4, ZA + 14], polo: RODILLA }, td: PIE_AIRE });
+      K.c0 = andando(AV, AV, Y_BAJO, ALTO[0]);
+      var apoya = [['pl', 0.6, null, TODO], ['e1', 0.36, 'entra', sin('ti')], ['e2', 0.38, 'sale', sin('ti')], ['e3', 0.4, 'entra', sin('td')], ['c0', 0.4, 'sale', sin('td')]], sube = [];
+      /* después, cinco veces: una mano se acerca (a: en el aire; b: apoyada, con la cadera fuera) y sube el pie contrario (d: en el
+         aire, más separado de la pared cuanto más largo es el paso; c: apoyado, con el cuerpo otra vez en línea) */
+      for (k = 1; k <= 5; k++) {
+        m0 = MANOS[k - 1]; m1 = MANOS[k]; der = k % 2 === 1; mano = der ? 'md' : 'mi';
+        K['a' + k] = andando((m0[0] + m1[0]) / 2, (m0[1] + m1[1]) / 2, pies[0], pies[1], der ? { md: 1 } : { mi: 1 });
+        K['b' + k] = andando(m1[0], m1[1], pies[0], pies[1]);
+        q = der ? 0 : 1; pie = q ? 'td' : 'ti'; y1 = pies[q] + (ALTO[k] - pies[q]) * 0.6; t = tPie(ALTO[k] - pies[q]); fuera = 8 + (ALTO[k] - pies[q]) / 7;
+        K['d' + k] = andando(m1[0], m1[1], q ? pies[0] : y1, q ? y1 : pies[1], q ? { pd: fuera } : { pi: fuera });
+        pies[q] = ALTO[k];
+        K['c' + k] = andando(m1[0], m1[1], pies[0], pies[1]);
+        sube.push(['a' + k, T_MANO, 'entra', sin(mano)], ['b' + k, T_MANO, 'sale', sin(mano)], ['d' + k, t, 'entra', sin(pie)], ['c' + k, t, 'sale', sin(pie)]);
+      }
+      /* y la última mano. Junto a la pared ya no hay sitio para doblar una rodilla: el cuerpo se estira según llega la mano y las
+         puntas de los pies resbalan por la pared hasta su altura, sin despegarse (unos centímetros) */
+      var ARRIBA = cuerpo(0, 0, null, L_P).recto;
+      K.a6 = andando(MANOS[5][0] / 2, 0, (pies[0] + ARRIBA) / 2, (pies[1] + ARRIBA) / 2, { mi: 1 });
+      K.p = andando(0, 0, ARRIBA, ARRIBA, { largo: L_P });
+      sube.push(['a6', T_MANO + 0.04, 'entra', sin('mi')], ['p', T_MANO + 0.04, 'sale', sin('mi')]);
+      /* la bajada, por donde subió: las mismas posturas en orden inverso (lo que entraba en el aire, ahora sale de él) */
+      var todo = apoya.concat(sube), baja = [['p', 0.3, null, ['mi', 'md']]];
+      for (k = todo.length - 1; k >= 1; k--) baja.push([todo[k - 1][0], todo[k][1], todo[k][2] === 'entra' ? 'sale' : 'entra', todo[k][3]]);
       return {
-        vista: [94, [40, 16]], isometrico: 'p', clavos: ['mi', 'md'],
+        vista: [94, [40, 16]], isometrico: 'p', clavos: ['mi', 'md'], sobreManos: true,
         material: [['pared', { z: ZWALL, normal: [0, 0, 1], ancho: 130 }]],
-        posturas: {
-          p: andando(0, 0, y0, y0),
-          m1: andando(17.5, 0, (y0 + y1) / 2, (y0 + y2) / 2, { mi: 1, pd: 1 }), w1: andando(35, 0, y1, y2),
-          m2: andando(35, 35, (y1 + y3) / 2, y2, { md: 1, pi: 1 }), w2: andando(35, 70, y3, y2),
-          m3: andando(70, 70, y3, (y2 + y4) / 2, { mi: 1, pd: 1 }), w3: andando(105, 70, y3, y4),
-          m4: andando(105, 87.5, (y3 + Y_BAJO) / 2, y4, { md: 1, pi: 1 }), w4: andando(105, 105, Y_BAJO, y4),
-          m5: sobreManos(89, { pi: enPared, ti: PIE_PARED, pd: { a: [-10, (y4 + TOB_PUNTA) / 2 + 4, ZA + 14], polo: RODILLA }, td: PIE_AIRE }),
-          w5: sobre(pl, { pi: enPared, ti: PIE_PARED }),
-          m6: sobre(pl, { pi: { a: [10, (Y_BAJO + TOB_PUNTA) / 2 + 4, ZA + 13], polo: RODILLA }, ti: PIE_AIRE }),
-          pl: pl
-        },
-        inicio: 'p', encuadra: ['p', 'w1', 'w2', 'w3', 'w4', 'w5', 'pl'],
-        pasos: ['p', 'p', { sec: [['p', 0.3, null, ['mi', 'md']], ['m1', 0.3, 'entra', A], ['w1', 0.28, 'sale', A], ['m2', 0.3, 'entra', B], ['w2', 0.3, 'sale', B], ['m3', 0.3, 'entra', A], ['w3', 0.3, 'sale', A],
-                                 ['m4', 0.3, 'entra', B], ['w4', 0.3, 'sale', B], ['m5', 0.3, 'entra', C], ['w5', 0.3, 'sale', C], ['m6', 0.28, 'entra', D_], ['pl', 0.3, 'sale', D_]], desde: 'p' }]
+        posturas: K,
+        inicio: 'p', encuadra: ['p', 'b5', 'c4', 'b4', 'c3', 'b3', 'c2', 'b2', 'c1', 'b1', 'c0', 'e2', 'pl'],
+        pasos: [{ sec: apoya, desde: 'pl' }, { sec: sube, desde: 'c0' }, 'p', { sec: baja, desde: 'p' }]
       };
     })();
 
@@ -8240,7 +8290,7 @@
     caja.appendChild(raiz);
 
     this.cajaPaso = paso;
-    this.n = 0; this.tt = 0; this.suena = false; this.fin = false; this.lento = false; this.conVoz = false; this.antes = 0; this.raf = 0;
+    this.n = 0; this.tt = 0; this.tm = 0; this.suena = false; this.fin = false; this.lento = false; this.conVoz = false; this.antes = 0; this.raf = 0;
     this.dir.alRepetir = function (r) { yo.chipRep.textContent = '\u00d7 ' + r; yo.chipRep.classList.toggle('tgv-oculto', !yo.repVisible); };
     this.dir.aBusto(true);
     this.entrar(0, true);
@@ -8314,9 +8364,17 @@
   Reproductor.prototype.avanzar = function (dt) {
     var t = this.tramos[this.n];
     this.tt += dt;
-    if (this.pendiente) { this.pendT -= dt; if (this.pendT <= 0) { var g0 = this.pendiente; this.pendiente = null; g0(); } }
+    /* el reloj del tramo va a la velocidad de lo que se está viendo, que es la del Director. A cámara lenta («½×») el ejercicio va
+       más despacio y su paso dura en proporción: se ve lo mismo que a velocidad normal (la secuencia entera, las mismas repeticiones),
+       más despacio. De cerca (la cabecera, un consejo, el cierre) no hay ejercicio que mirar despacio: todo va a su velocidad. La
+       cortinilla y el cambio de plano que lleva dentro van con el mismo reloj: al dejar un ejercicio, la cortinilla lo tapa a su
+       paso (y el ejercicio avanza debajo lo mismo que a velocidad normal); al dejar un plano de cerca, al suyo. A velocidad normal
+       dv es dt. tt sigue siendo el tiempo de verdad: el texto y la voz no se frenan */
+    var dv = dt * (this.dir.busto ? 1 : this.dir.vel);
+    this.tm += dv;
+    if (this.pendiente) { this.pendT -= dv; if (this.pendT <= 0) { var g0 = this.pendiente; this.pendiente = null; g0(); } }
     if (this.corteT != null) {
-      this.corteT += dt;
+      this.corteT += dv;
       var uc = this.corteT / 0.52;
       if (uc >= 1) { this.corteT = null; this.corte.style.transform = ''; }
       else { uc = uc < 0.5 ? 2 * uc * uc : 1 - 2 * (1 - uc) * (1 - uc); this.corte.style.transform = 'translateX(' + (-120 + 240 * uc).toFixed(1) + '%) skewX(-12deg)'; }
@@ -8328,9 +8386,9 @@
     }
     if (this.conVoz && this.hablando && ((!this.vozArranco && this.tt > 2.5) || this.tt > t.dur + 22)) { this.hablando = false; this.esc.cab.hablar(0); }
     var esperaVoz = this.conVoz && this.hablando;
-    var f = entre(this.tt / t.dur, 0, 1);
+    var f = entre(this.tm / t.dur, 0, 1);
     t.barra.firstChild.style.width = (f * 100).toFixed(1) + '%';
-    if (this.tt >= t.dur && !esperaVoz) {
+    if (this.tm >= t.dur && !esperaVoz) {
       if (this.n >= this.tramos.length - 1) { this.acabar(); }
       else this.entrar(this.n + 1);
     }
@@ -8367,7 +8425,7 @@
     var yo = this, T = this.T, d = this.dir, cab = this.esc.cab, t = this.tramos[n], antes = this.tramos[this.n];
     if (this.pendiente) { var g = this.pendiente; this.pendiente = null; g(); }
     if (!this.suena) { this.corteT = null; this.corte.style.transform = ''; }
-    this.n = n; this.tt = 0;
+    this.n = n; this.tt = 0; this.tm = 0;
     this.tramos.forEach(function (q, i) { q.barra.classList.toggle('hecho', i < n); q.barra.firstChild.style.width = i < n ? '100%' : '0%'; });
     this.bAnt.disabled = n === 0; this.bSig.disabled = n === this.tramos.length - 1;
     var N = this.tramos.length - 2;
@@ -8742,7 +8800,7 @@
   }
 
   /* las huellas de los pasos (las escribe construir.py) */
-  var HUELLAS = {"sentadilla-peso-corporal": "0f72185fe02d", "sentadilla-goblet": "73da97f6d857", "sentadilla-trasera-barra": "e702c8abe1af", "subida-escalon": "4fac36ce3594", "sentadilla-isometrica-pared": "8e2837419645", "sentadilla-salto": "6f6ce9019552", "puente-gluteos": "8a4f295635da", "hip-thrust-banco": "4bf6869bc3d6", "zancada-atras": "91b6d2d8138a", "sentadilla-bulgara": "38ca4696ecd0", "peso-muerto-rumano-barra": "d71e381da0f3", "peso-muerto-rumano-mancuernas": "24746a0b8865", "peso-muerto-barra": "ae78e5a380c9", "buenos-dias-sin-peso": "cc90a8d10eeb", "elevacion-talones-de-pie": "60656844dad8", "elevacion-talones-escalon": "103123f89cab", "saltos-pogo": "3799ccfe9d15", "estiramiento-gemelo-pared": "b00f54237b5d", "curl-mancuernas": "9d76339f7662", "curl-martillo": "8295d3c302c7", "curl-barra": "b8a935cd99bc", "fondos-banco": "56a73eb850df", "extension-triceps-polea-cuerda": "8d95e21e0a40", "flexion-diamante": "1aeeb2eb3e59", "press-banca-barra": "6dbb8ef03cde", "flexion": "3c04ca3d61b2", "dominadas": "b789c525d45f", "dominadas-supinas": "221476f1bd1c", "remo-mancuerna-un-brazo": "04b176e1a1b1", "encogimientos-mancuernas": "03217817abba", "remo-invertido": "240cc2ef7370", "face-pull-polea": "5b2372b043ca", "elevaciones-laterales-mancuernas": "43d59ce9f30b", "elevaciones-frontales-mancuernas": "c48e3f6d0d5f", "press-militar-barra": "b99176a99a22", "plancha-antebrazos": "03ef445ab5bb", "crunch-abdominal": "9cc54e9f434b", "bicho-muerto": "07cc5a277f73", "elevacion-rodillas-colgado": "62f974536661", "suspension-barra": "c86ba37f716f", "press-banca-mancuernas": "ea7e2428539f", "press-inclinado-mancuernas": "ec72ffef0e80", "press-inclinado-mancuernas-agarre-neutro": "60d10b66214b", "press-declinado-mancuernas": "45c9428d0f5a", "press-mancuerna-un-brazo": "66bd8ec609e1", "press-mancuernas-juntas": "f091713b4a71", "press-suelo-mancuernas": "6dfbda271d6b", "press-inclinado-barra": "55155a5da1b0", "press-declinado-barra": "f979c8c00d1e", "aperturas-mancuernas": "280ac673880f", "aperturas-inclinadas-mancuernas": "424fe64cf9dd", "aperturas-declinadas-mancuernas": "61480bf7b82e", "apertura-mancuerna-un-brazo": "07aab169f9f8", "pullover-mancuerna": "f95f5139fb5b", "pullover-barra-brazos-flexionados": "438b948a4041", "cruce-poleas": "bf3634bd668f", "cruce-poleas-bajo-alto": "b5881a421586", "cruce-poleas-alto-bajo": "31e1daaddc42", "press-pecho-polea-un-brazo": "f98b97747751", "aperturas-polea-banco-plano": "9b499a8c4931", "aperturas-polea-banco-inclinado": "90b53f929484", "aperturas-polea-sentado": "f38143f27693", "flexion-pared": "4fc6b2c075b4", "flexion-inclinada": "0d583fcb2245", "flexion-declinada": "9b633bee29db", "flexion-rodillas": "e04101fe4fe8", "flexion-abierta": "5ef35ab79883", "flexion-manos-escalonadas": "3d73f42d667e", "flexion-arquero": "552ca8b5da70", "flexion-explosiva": "dacd796e5eec", "flexion-deficit": "c09f9f22c1f2", "fondos-paralelas": "f581ec3ed8d1", "estiramiento-pecho-sentado": "9036a173b2a4", "estiramiento-pecho-marco-puerta": "608bc0ca7dd6", "estiramiento-pecho-pared": "1e80b89c616c", "dominadas-agarre-ancho": "fba4da55be73", "dominadas-agarre-neutro": "d0e12bbbec58", "dominadas-agarre-estrecho": "85eb11091c5f", "dominadas-negativas": "709903d33f83", "dominada-isometrica": "18851cccd5c8", "dominadas-parciales": "587f42fd5661", "dominadas-arquero": "1581c086412c", "dominadas-maquina-de-escribir": "5b93a8131f7d", "dominadas-comando": "4a0f3cf52fdf", "front-lever": "132e6e529225", "front-lever-agrupado": "e52f4ee659b0", "dominada-front-lever": "9f25c8deed07", "ice-cream-maker": "4a67bfa775af", "jalon-al-pecho": "08895809932c", "jalon-agarre-estrecho": "cc6c54922d1d", "jalon-supino": "7d6ca62d30ec", "jalon-agarre-neutro": "95db1b1ad675", "jalon-unilateral-cruzado": "a9cf4006112b", "jalon-unilateral-rodilla": "d2abe390e093", "jalon-brazos-rectos": "961d7de9fd7a", "jalon-brazos-rectos-cuerda": "7dd10194f44b", "remo-inclinado-mancuernas": "bf7b2a0d1e3b", "remo-inclinado-barra": "4bb81adce53a", "remo-inclinado-barra-supino": "0adea53ee006", "remo-pendlay": "94a18296bc46", "remo-barra-t": "8d3a930c2ccd", "remo-barra-t-agarre-ancho": "17e82c4bc999", "remo-helms": "4cad677e2c09", "remo-renegado": "81ee483467fa", "remo-meadows": "b04ab17e43a0", "remo-polea-de-pie-una-mano": "23738fda0132", "remo-polea-alta-una-mano": "1a41ee852675", "remo-polea-baja-una-mano": "43db63b4f1b3", "estiramiento-dorsal-rodillas-banco": "94ce817076df", "estiramiento-dorsal-codos-banco": "ece271a71996", "encogimientos-barra": "be290b78deb6", "encogimientos-polea": "43e385970f55", "encogimientos-entre-poleas": "7bc2d0890b90", "encogimiento-silverback": "07f0cc6635b5", "encogimientos-sin-peso": "543f5bbdb174", "remo-sentado-polea": "3bdc2494463f", "remo-sentado-polea-agarre-ancho": "15c6497f7bdf", "remo-sentado-polea-supino": "fa5024f5c76b", "remo-alto-polea-sentado": "e00b0aedaa88", "remo-alto-inclinado-mancuernas": "c4b2c4dfdc9d", "remo-landmine-perpendicular": "882699bc5f93", "remo-pecho-apoyado-mancuernas": "6dcad43afddd", "elevacion-plano-escapular": "971bebdc8317", "protraccion-escapular-tumbado": "3aa69164c552", "empaquetado-escapular": "6c8238044d76", "elevacion-trap-3": "c604c8a2e0f8", "angeles-en-pared": "2448cfe79b5e", "flexion-escapular-pared": "3af1450075ed", "flexion-escapular-cuadrupedia": "aa3549977bfd", "dominadas-escapulares": "7962fd8825f9", "elevacion-prona-y": "aa4e674c6926", "elevacion-prona-t": "8af59f9017df", "elevacion-prona-i": "ed2b2c676b66", "elevacion-prona-w": "9d42b45b32e6", "angel-de-nieve-inverso": "0a335f1239ca", "superman-mariposa": "4188fee8571b", "estiramiento-trapecio-superior": "e3834978700e", "estiramiento-elevador-escapula": "a81e533b1ae3", "estiramiento-nuca": "5b06d38b57b6", "circulos-hombros": "f4bf4a834c4c", "press-hombros-barra-sentado": "d66b94946187", "press-hombros-mancuernas": "38003bb6c4eb", "press-hombro-mancuerna-un-brazo": "2775529078f5", "press-arnold": "30a9a896a67a", "press-hombros-inclinado-mancuernas": "5a2942f116c9", "press-hombros-rotacion": "1fe650641685", "push-press": "9c23439d230d", "elevaciones-laterales-sentado": "a522e4675689", "elevacion-frontal-barra": "d13a016dcf7a", "elevacion-lateral-polea": "d9768e4b90df", "apertura-inversa-polea-un-brazo": "7c1dd69f0b58", "rotacion-externa-polea": "82e2462542b8", "pajaro-polea-inclinado": "80de90e40db8", "elevacion-frontal-polea": "b01ed4163239", "pajaros-mancuernas": "377c97f4ed0b", "pajaros-tumbado-banco": "2e8a120c3539", "pajaro-tumbado-un-brazo": "5e522017d6c4", "remo-deltoides-posterior-mancuernas": "512a375699fa", "remo-deltoides-posterior-barra": "92d511ee56d3", "aperturas-inversas-polea": "94ad20265333", "pajaros-polea-sentado": "11ad0428e77f", "rotacion-externa-mancuerna-tumbado": "9e58747504ca", "rotacion-interna-polea": "502383813ddb", "empuje-isometrico-hombro-pared": "2114f9da73fd", "flexion-pica": "d338d144be1b", "flexion-pica-pies-elevados": "89c2229d768a", "flexion-pseudoplancha": "f94d2cd5cdcd", "flexion-hindu": "2941e2517f2f", "pino-libre": "ceb6859fcff7", "flexion-pino-pared": "b189f45c00e7", "pino-pared": "e67aa5df90b7", "circulos-brazos": "4feceeff49aa", "estiramiento-hombro-cruzado": "5fcc791d96b7", "estiramiento-durmiente": "cd8c68cb3d9d", "curl-barra-z": "49740a9b2d10", "curl-barra-z-agarre-estrecho": "eb2b9b031c69", "curl-barra-agarre-ancho": "1f335f883347", "curl-barra-agarre-estrecho": "552503d97091", "curl-invertido-barra": "b72937f3eca8", "curl-barra-una-mano": "0eaeef2420ca", "curl-alterno-mancuernas": "e0813f593947", "curl-martillo-alterno": "d65bb4ec6dd1", "curl-martillo-cruzado": "2aedcef6da17", "curl-arrastre": "601c945889d7", "curl-zottman": "a5630f582437", "curl-invertido-mancuernas": "a2976149a923", "curl-kettlebell": "7d0f8cc88b8a", "curl-kettlebell-una-mano": "bfb012b8a84d", "curl-mancuernas-sentado": "4eab367d82de", "curl-inclinado-mancuernas": "baf6b1f07685", "curl-tumbado-banco": "985003b5b2f6", "curl-arana-mancuernas": "f62c806f3260", "curl-banco-inclinado-de-pie": "10c87c0fc965", "curl-concentrado": "ab3e48cb2803", "curl-concentrado-barra": "0719d317d3e5", "curl-predicador-barra": "ff9b97fde86d", "curl-predicador-mancuerna": "f3acfd9d5da0", "curl-predicador-martillo": "251f0121bf57", "curl-zottman-predicador": "1544293924b5", "curl-predicador-polea": "8bb7bba25bd7", "curl-arana-barra": "dcfaaa10bcd1", "curl-polea-baja": "73d6ab0fc69d", "curl-martillo-polea-cuerda": "398bb612444a", "curl-polea-una-mano": "835a1293eae0", "curl-polea-alta": "7de691557dd4", "curl-tumbado-polea": "c8a6c33bdb7f", "remo-invertido-supino": "0b52f2b036d3", "curl-biceps-peso-corporal": "45052903ce6b", "muscle-up": "3df16b708d6a", "estiramiento-biceps-pared": "47b10edc0fc6", "press-frances-barra-z": "b20130094743", "press-frances-barra": "9eb841b20383", "press-frances-mancuernas": "b59b592c7fe4", "extension-triceps-tumbado-una-mancuerna": "7fb71b2c4945", "extension-triceps-tumbado-un-brazo": "bdd1bc02d02e", "press-frances-inclinado-mancuernas": "2ddf4120251e", "press-frances-declinado-barra-z": "cd7ff5c85568", "press-frances-declinado-mancuernas": "3659844ed836", "press-frances-suelo": "9b3a389c0ba6", "extension-triceps-sobre-cabeza-mancuerna": "b908a9e2b537", "extension-triceps-sentado-mancuerna": "67dec4bd5871", "extension-triceps-un-brazo-mancuerna": "e3a3b9b1cc30", "extension-triceps-sobre-cabeza-barra": "51e7cbafc38c", "patada-triceps-mancuerna": "b6f63b0ba787", "patada-triceps-dos-mancuernas": "a30122c4b427", "patada-triceps-polea": "fa88b3cd73c9", "patada-triceps-banco-inclinado": "2e7472455072", "extension-triceps-polea-barra": "45eb2995ee38", "extension-triceps-polea-barra-v": "78229c79286b", "extension-triceps-polea-agarre-inverso": "6ff3aa1b3c58", "extension-triceps-polea-un-brazo": "25e0b379d4c4", "extension-triceps-polea-sobre-cabeza": "d2fa0a4a1d48", "extension-triceps-polea-baja-un-brazo": "8765bbc5395a", "extension-triceps-polea-tumbado": "fbf8907bc601", "press-banca-agarre-cerrado": "1f4d639c9894", "press-banca-agarre-inverso": "c99bf7210a7c", "press-jm": "293deb7bd38b", "press-mancuernas-codos-pegados": "4a549c7ccdfd", "press-tate": "5da45cdb961a", "fondos-entre-bancos": "cade6ab8aa0b", "fondos-banco-con-rotacion": "f42c711933d7", "fondos-suelo": "f6498a1e076d", "fondos-paralelas-triceps": "a87543f05ec9", "soporte-paralelas": "86d01ecdce17", "flexion-codos-pegados": "4d0d5acff632", "flexion-triceps-rodillas-postura-nino": "40cad99c1148", "estiramiento-triceps": "23749630bc7a", "curl-muneca-barra": "4266eb432a67", "curl-muneca-inverso-barra": "1fd63d360b95", "curl-muneca-mancuernas": "7aa0fc37af51", "curl-muneca-inverso-mancuernas": "d0445519b44b", "desviacion-radial-cubital-peso": "83ea64be8000", "curl-muneca-polea": "018ea2199778", "flexoextension-muneca-de-pie": "79bcff36bf27", "pronacion-supinacion-mancuerna": "e089843c5818", "paseo-granjero": "4f3f01c25ab8", "paseo-granjero-toalla": "000ab7b0d711", "paseo-mancuerna-por-extremo": "78c12ff57d0e", "dominada-con-toallas": "c4ac5564db96", "flexiones-yemas-dedos": "e44fd2e78a14", "estiramiento-flexores-muneca": "06005f8d2c7e", "estiramiento-extensores-muneca": "c07b3c3e48c4", "estiramiento-oracion": "b2bcc0aff59b", "elevacion-talon-una-pierna": "523e85ee24f5", "elevacion-talones-bajada-una-pierna": "d24b81b2acdc", "elevacion-talon-una-pierna-escalon": "c7735180efe2", "elevacion-talones-escalon-mancuerna": "76908d2c4260", "elevacion-talones-barra": "008a1f756a34", "elevacion-talones-sentado-barra": "17d31911ca5b", "elevacion-talones-sentado-mancuernas": "1414ec21b015", "elevacion-talon-sentado-una-pierna": "cbc69b5a115b", "elevacion-talones-sentado": "d16c9e155f78", "elevacion-tibial-de-pie": "4d6423829fc2", "toques-puntas-sentado": "4d727ce9db67", "saltos-pogo-altos": "a11de34fcb70", "saltos-pogo-laterales": "0f9b5ac44cd7", "saltos-laterales-una-pierna": "6347536b32d7", "estiramiento-soleo-pared": "fc149250bd1f", "estiramiento-soleo-escalon": "a2991f81025c", "estiramiento-pantorrilla-toalla": "adef27d88a3c", "estiramiento-tibial-rodillas": "a5082796d817", "estiramiento-tobillo-sentado": "29969aaebf7c"};
+  var HUELLAS = {"sentadilla-peso-corporal": "0f72185fe02d", "sentadilla-goblet": "73da97f6d857", "sentadilla-trasera-barra": "e702c8abe1af", "subida-escalon": "4fac36ce3594", "sentadilla-isometrica-pared": "8e2837419645", "sentadilla-salto": "6f6ce9019552", "puente-gluteos": "8a4f295635da", "hip-thrust-banco": "4bf6869bc3d6", "zancada-atras": "91b6d2d8138a", "sentadilla-bulgara": "38ca4696ecd0", "peso-muerto-rumano-barra": "d71e381da0f3", "peso-muerto-rumano-mancuernas": "24746a0b8865", "peso-muerto-barra": "ae78e5a380c9", "buenos-dias-sin-peso": "cc90a8d10eeb", "elevacion-talones-de-pie": "60656844dad8", "elevacion-talones-escalon": "103123f89cab", "saltos-pogo": "3799ccfe9d15", "estiramiento-gemelo-pared": "b00f54237b5d", "curl-mancuernas": "9d76339f7662", "curl-martillo": "8295d3c302c7", "curl-barra": "b8a935cd99bc", "fondos-banco": "56a73eb850df", "extension-triceps-polea-cuerda": "8d95e21e0a40", "flexion-diamante": "1aeeb2eb3e59", "press-banca-barra": "6dbb8ef03cde", "flexion": "3c04ca3d61b2", "dominadas": "b789c525d45f", "dominadas-supinas": "221476f1bd1c", "remo-mancuerna-un-brazo": "04b176e1a1b1", "encogimientos-mancuernas": "03217817abba", "remo-invertido": "240cc2ef7370", "face-pull-polea": "5b2372b043ca", "elevaciones-laterales-mancuernas": "43d59ce9f30b", "elevaciones-frontales-mancuernas": "c48e3f6d0d5f", "press-militar-barra": "b99176a99a22", "plancha-antebrazos": "03ef445ab5bb", "crunch-abdominal": "9cc54e9f434b", "bicho-muerto": "07cc5a277f73", "elevacion-rodillas-colgado": "62f974536661", "suspension-barra": "c86ba37f716f", "press-banca-mancuernas": "ea7e2428539f", "press-inclinado-mancuernas": "ec72ffef0e80", "press-inclinado-mancuernas-agarre-neutro": "60d10b66214b", "press-declinado-mancuernas": "45c9428d0f5a", "press-mancuerna-un-brazo": "66bd8ec609e1", "press-mancuernas-juntas": "f091713b4a71", "press-suelo-mancuernas": "6dfbda271d6b", "press-inclinado-barra": "55155a5da1b0", "press-declinado-barra": "f979c8c00d1e", "aperturas-mancuernas": "280ac673880f", "aperturas-inclinadas-mancuernas": "424fe64cf9dd", "aperturas-declinadas-mancuernas": "61480bf7b82e", "apertura-mancuerna-un-brazo": "07aab169f9f8", "pullover-mancuerna": "f95f5139fb5b", "pullover-barra-brazos-flexionados": "438b948a4041", "cruce-poleas": "bf3634bd668f", "cruce-poleas-bajo-alto": "b5881a421586", "cruce-poleas-alto-bajo": "31e1daaddc42", "press-pecho-polea-un-brazo": "f98b97747751", "aperturas-polea-banco-plano": "9b499a8c4931", "aperturas-polea-banco-inclinado": "90b53f929484", "aperturas-polea-sentado": "f38143f27693", "flexion-pared": "4fc6b2c075b4", "flexion-inclinada": "0d583fcb2245", "flexion-declinada": "9b633bee29db", "flexion-rodillas": "e04101fe4fe8", "flexion-abierta": "5ef35ab79883", "flexion-manos-escalonadas": "3d73f42d667e", "flexion-arquero": "552ca8b5da70", "flexion-explosiva": "dacd796e5eec", "flexion-deficit": "c09f9f22c1f2", "fondos-paralelas": "f581ec3ed8d1", "estiramiento-pecho-sentado": "9036a173b2a4", "estiramiento-pecho-marco-puerta": "608bc0ca7dd6", "estiramiento-pecho-pared": "1e80b89c616c", "dominadas-agarre-ancho": "fba4da55be73", "dominadas-agarre-neutro": "d0e12bbbec58", "dominadas-agarre-estrecho": "85eb11091c5f", "dominadas-negativas": "709903d33f83", "dominada-isometrica": "18851cccd5c8", "dominadas-parciales": "587f42fd5661", "dominadas-arquero": "1581c086412c", "dominadas-maquina-de-escribir": "5b93a8131f7d", "dominadas-comando": "4a0f3cf52fdf", "front-lever": "132e6e529225", "front-lever-agrupado": "e52f4ee659b0", "dominada-front-lever": "9f25c8deed07", "ice-cream-maker": "4a67bfa775af", "jalon-al-pecho": "08895809932c", "jalon-agarre-estrecho": "cc6c54922d1d", "jalon-supino": "7d6ca62d30ec", "jalon-agarre-neutro": "95db1b1ad675", "jalon-unilateral-cruzado": "a9cf4006112b", "jalon-unilateral-rodilla": "d2abe390e093", "jalon-brazos-rectos": "961d7de9fd7a", "jalon-brazos-rectos-cuerda": "7dd10194f44b", "remo-inclinado-mancuernas": "bf7b2a0d1e3b", "remo-inclinado-barra": "4bb81adce53a", "remo-inclinado-barra-supino": "0adea53ee006", "remo-pendlay": "94a18296bc46", "remo-barra-t": "8d3a930c2ccd", "remo-barra-t-agarre-ancho": "17e82c4bc999", "remo-helms": "4cad677e2c09", "remo-renegado": "81ee483467fa", "remo-meadows": "b04ab17e43a0", "remo-polea-de-pie-una-mano": "23738fda0132", "remo-polea-alta-una-mano": "1a41ee852675", "remo-polea-baja-una-mano": "43db63b4f1b3", "estiramiento-dorsal-rodillas-banco": "94ce817076df", "estiramiento-dorsal-codos-banco": "ece271a71996", "encogimientos-barra": "be290b78deb6", "encogimientos-polea": "43e385970f55", "encogimientos-entre-poleas": "7bc2d0890b90", "encogimiento-silverback": "07f0cc6635b5", "encogimientos-sin-peso": "543f5bbdb174", "remo-sentado-polea": "3bdc2494463f", "remo-sentado-polea-agarre-ancho": "15c6497f7bdf", "remo-sentado-polea-supino": "fa5024f5c76b", "remo-alto-polea-sentado": "e00b0aedaa88", "remo-alto-inclinado-mancuernas": "c4b2c4dfdc9d", "remo-landmine-perpendicular": "882699bc5f93", "remo-pecho-apoyado-mancuernas": "6dcad43afddd", "elevacion-plano-escapular": "971bebdc8317", "protraccion-escapular-tumbado": "3aa69164c552", "empaquetado-escapular": "6c8238044d76", "elevacion-trap-3": "c604c8a2e0f8", "angeles-en-pared": "2448cfe79b5e", "flexion-escapular-pared": "3af1450075ed", "flexion-escapular-cuadrupedia": "aa3549977bfd", "dominadas-escapulares": "7962fd8825f9", "elevacion-prona-y": "aa4e674c6926", "elevacion-prona-t": "8af59f9017df", "elevacion-prona-i": "ed2b2c676b66", "elevacion-prona-w": "9d42b45b32e6", "angel-de-nieve-inverso": "0a335f1239ca", "superman-mariposa": "4188fee8571b", "estiramiento-trapecio-superior": "e3834978700e", "estiramiento-elevador-escapula": "a81e533b1ae3", "estiramiento-nuca": "5b06d38b57b6", "circulos-hombros": "f4bf4a834c4c", "press-hombros-barra-sentado": "d66b94946187", "press-hombros-mancuernas": "38003bb6c4eb", "press-hombro-mancuerna-un-brazo": "2775529078f5", "press-arnold": "30a9a896a67a", "press-hombros-inclinado-mancuernas": "5a2942f116c9", "press-hombros-rotacion": "1fe650641685", "push-press": "9c23439d230d", "elevaciones-laterales-sentado": "a522e4675689", "elevacion-frontal-barra": "d13a016dcf7a", "elevacion-lateral-polea": "d9768e4b90df", "apertura-inversa-polea-un-brazo": "7c1dd69f0b58", "rotacion-externa-polea": "82e2462542b8", "pajaro-polea-inclinado": "80de90e40db8", "elevacion-frontal-polea": "b01ed4163239", "pajaros-mancuernas": "377c97f4ed0b", "pajaros-tumbado-banco": "2e8a120c3539", "pajaro-tumbado-un-brazo": "5e522017d6c4", "remo-deltoides-posterior-mancuernas": "512a375699fa", "remo-deltoides-posterior-barra": "92d511ee56d3", "aperturas-inversas-polea": "94ad20265333", "pajaros-polea-sentado": "11ad0428e77f", "rotacion-externa-mancuerna-tumbado": "9e58747504ca", "rotacion-interna-polea": "502383813ddb", "empuje-isometrico-hombro-pared": "2114f9da73fd", "flexion-pica": "d338d144be1b", "flexion-pica-pies-elevados": "89c2229d768a", "flexion-pseudoplancha": "f94d2cd5cdcd", "flexion-hindu": "2941e2517f2f", "pino-libre": "ceb6859fcff7", "flexion-pino-pared": "b189f45c00e7", "pino-pared": "103123f145a3", "circulos-brazos": "4feceeff49aa", "estiramiento-hombro-cruzado": "5fcc791d96b7", "estiramiento-durmiente": "cd8c68cb3d9d", "curl-barra-z": "49740a9b2d10", "curl-barra-z-agarre-estrecho": "eb2b9b031c69", "curl-barra-agarre-ancho": "1f335f883347", "curl-barra-agarre-estrecho": "552503d97091", "curl-invertido-barra": "b72937f3eca8", "curl-barra-una-mano": "0eaeef2420ca", "curl-alterno-mancuernas": "e0813f593947", "curl-martillo-alterno": "d65bb4ec6dd1", "curl-martillo-cruzado": "2aedcef6da17", "curl-arrastre": "601c945889d7", "curl-zottman": "a5630f582437", "curl-invertido-mancuernas": "a2976149a923", "curl-kettlebell": "7d0f8cc88b8a", "curl-kettlebell-una-mano": "bfb012b8a84d", "curl-mancuernas-sentado": "4eab367d82de", "curl-inclinado-mancuernas": "baf6b1f07685", "curl-tumbado-banco": "985003b5b2f6", "curl-arana-mancuernas": "f62c806f3260", "curl-banco-inclinado-de-pie": "10c87c0fc965", "curl-concentrado": "ab3e48cb2803", "curl-concentrado-barra": "0719d317d3e5", "curl-predicador-barra": "ff9b97fde86d", "curl-predicador-mancuerna": "f3acfd9d5da0", "curl-predicador-martillo": "251f0121bf57", "curl-zottman-predicador": "1544293924b5", "curl-predicador-polea": "8bb7bba25bd7", "curl-arana-barra": "dcfaaa10bcd1", "curl-polea-baja": "73d6ab0fc69d", "curl-martillo-polea-cuerda": "398bb612444a", "curl-polea-una-mano": "835a1293eae0", "curl-polea-alta": "7de691557dd4", "curl-tumbado-polea": "c8a6c33bdb7f", "remo-invertido-supino": "0b52f2b036d3", "curl-biceps-peso-corporal": "45052903ce6b", "muscle-up": "3df16b708d6a", "estiramiento-biceps-pared": "47b10edc0fc6", "press-frances-barra-z": "b20130094743", "press-frances-barra": "9eb841b20383", "press-frances-mancuernas": "b59b592c7fe4", "extension-triceps-tumbado-una-mancuerna": "7fb71b2c4945", "extension-triceps-tumbado-un-brazo": "bdd1bc02d02e", "press-frances-inclinado-mancuernas": "2ddf4120251e", "press-frances-declinado-barra-z": "cd7ff5c85568", "press-frances-declinado-mancuernas": "3659844ed836", "press-frances-suelo": "9b3a389c0ba6", "extension-triceps-sobre-cabeza-mancuerna": "b908a9e2b537", "extension-triceps-sentado-mancuerna": "67dec4bd5871", "extension-triceps-un-brazo-mancuerna": "e3a3b9b1cc30", "extension-triceps-sobre-cabeza-barra": "51e7cbafc38c", "patada-triceps-mancuerna": "b6f63b0ba787", "patada-triceps-dos-mancuernas": "a30122c4b427", "patada-triceps-polea": "fa88b3cd73c9", "patada-triceps-banco-inclinado": "2e7472455072", "extension-triceps-polea-barra": "45eb2995ee38", "extension-triceps-polea-barra-v": "78229c79286b", "extension-triceps-polea-agarre-inverso": "6ff3aa1b3c58", "extension-triceps-polea-un-brazo": "25e0b379d4c4", "extension-triceps-polea-sobre-cabeza": "d2fa0a4a1d48", "extension-triceps-polea-baja-un-brazo": "8765bbc5395a", "extension-triceps-polea-tumbado": "fbf8907bc601", "press-banca-agarre-cerrado": "1f4d639c9894", "press-banca-agarre-inverso": "c99bf7210a7c", "press-jm": "293deb7bd38b", "press-mancuernas-codos-pegados": "4a549c7ccdfd", "press-tate": "5da45cdb961a", "fondos-entre-bancos": "cade6ab8aa0b", "fondos-banco-con-rotacion": "f42c711933d7", "fondos-suelo": "f6498a1e076d", "fondos-paralelas-triceps": "a87543f05ec9", "soporte-paralelas": "86d01ecdce17", "flexion-codos-pegados": "4d0d5acff632", "flexion-triceps-rodillas-postura-nino": "40cad99c1148", "estiramiento-triceps": "23749630bc7a", "curl-muneca-barra": "4266eb432a67", "curl-muneca-inverso-barra": "1fd63d360b95", "curl-muneca-mancuernas": "7aa0fc37af51", "curl-muneca-inverso-mancuernas": "d0445519b44b", "desviacion-radial-cubital-peso": "83ea64be8000", "curl-muneca-polea": "018ea2199778", "flexoextension-muneca-de-pie": "79bcff36bf27", "pronacion-supinacion-mancuerna": "e089843c5818", "paseo-granjero": "4f3f01c25ab8", "paseo-granjero-toalla": "000ab7b0d711", "paseo-mancuerna-por-extremo": "78c12ff57d0e", "dominada-con-toallas": "c4ac5564db96", "flexiones-yemas-dedos": "e44fd2e78a14", "estiramiento-flexores-muneca": "06005f8d2c7e", "estiramiento-extensores-muneca": "c07b3c3e48c4", "estiramiento-oracion": "b2bcc0aff59b", "elevacion-talon-una-pierna": "523e85ee24f5", "elevacion-talones-bajada-una-pierna": "d24b81b2acdc", "elevacion-talon-una-pierna-escalon": "c7735180efe2", "elevacion-talones-escalon-mancuerna": "76908d2c4260", "elevacion-talones-barra": "008a1f756a34", "elevacion-talones-sentado-barra": "17d31911ca5b", "elevacion-talones-sentado-mancuernas": "1414ec21b015", "elevacion-talon-sentado-una-pierna": "cbc69b5a115b", "elevacion-talones-sentado": "d16c9e155f78", "elevacion-tibial-de-pie": "4d6423829fc2", "toques-puntas-sentado": "4d727ce9db67", "saltos-pogo-altos": "a11de34fcb70", "saltos-pogo-laterales": "0f9b5ac44cd7", "saltos-laterales-una-pierna": "6347536b32d7", "estiramiento-soleo-pared": "fc149250bd1f", "estiramiento-soleo-escalon": "a2991f81025c", "estiramiento-pantorrilla-toalla": "adef27d88a3c", "estiramiento-tibial-rodillas": "a5082796d817", "estiramiento-tobillo-sentado": "29969aaebf7c"};
 
   /* ───────────────────────── lo que sale del módulo ───────────────────────── */
   window.TG_ENTRENADOR = {

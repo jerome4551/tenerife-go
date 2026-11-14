@@ -157,4 +157,32 @@ window.entero = function (vista) {
            dib: { estampa: dib.estampa, estampaSeguidos: dib.estampaSeguidos, marca: Math.round(dib.marca * 100) / 100, borron: Math.round(dib.borron * 100) / 100, fuera: dib.fuera, fueraEn: dib.fueraEn, mirados: dib.mirados, sale: Math.round(dib.sale * 10) / 10, saleEn: dib.saleEn, salidos: dib.salidos,
                   pleg: dib.plegN ? Math.round(100 * dib.pleg / dib.plegN) : 0 }, vistas: d.vistas.length, vistaN: d.vista };
 };
+/* el vídeo entero, sin medir el dibujo, a velocidad normal o a cámara lenta (con su botón, «½×»): cuánto dura de verdad cada tramo,
+   cuánto le falta a cada secuencia para acabar cuando entra el tramo siguiente (lo que sobra tras la última postura, si es quedarse
+   quieto en ella, no cuenta), por dónde va la repetición al acabar cada paso y al acabar cada tanda (en segundos del ejercicio: una
+   cuenta entera de repeticiones cambia con un cuadro de diferencia; esto, no) y, de cerca, por dónde va el gesto del presentador */
+window.pase = function (lento) {
+  var R = window.R, d = R.dir, tramos = [], tandas = [], viva = null, antes = null, t = 0, t0 = 0, cuadros = 0, modo0 = d.modo, base = d.reps, k = 0;
+  if (lento) R.bLento.click();
+  R.suena = true; R.gran.hidden = true;
+  while (!R.fin && cuadros < 30 * 900) {
+    var tr = R.tramos[R.n];
+    antes = { n: R.n, tipo: tr.tipo, nota: tr.accion === 'nota', sec: !!(tr.accion && tr.accion.sec), dur: tr.dur, modo: d.modo, tau: d.tau, secT: d.secT, u: d.modo === 'sec' && d.sec ? d.sec[d.sec.length - 1] : null, busto: d.busto, gesto: d.busto && d.gestoDe ? d.tGesto : null, reps: d.reps };
+    R.avanzar(1 / 30); cuadros++; t += 1 / 30;
+    /* una tanda de repeticiones empieza cuando el Director entra en «rep» (dos pasos seguidos de repetición son la misma tanda) y
+       sigue, debajo de la cortinilla, hasta que el plano cambia */
+    if (d.modo === 'rep' && modo0 !== 'rep') { base = d.reps; k = 0; viva = { va: 0, k: 0 }; tandas.push(viva); }
+    if (d.modo === 'rep' && viva) viva.va = Math.round(((d.reps - base) * d.T + d.tau) * 1000) / 1000;
+    modo0 = d.modo;
+    if (R.n !== antes.n || R.fin) {
+      var falta = 0, rep = null;
+      if (antes.sec && antes.modo === 'sec' && !antes.busto) falta = Math.max(0, (antes.u.de === antes.u.a ? antes.u.t0 : antes.secT) - antes.tau);
+      /* por dónde va la tanda de repeticiones al acabar un paso (en segundos del ejercicio), y cuántos pasos lleva la tanda */
+      if (antes.tipo === 'paso' && !antes.nota && antes.modo === 'rep' && !antes.busto) { k++; if (viva) viva.k = k; rep = { va: Math.round(((antes.reps - base) * d.T + antes.tau) * 1000) / 1000, k: k }; }
+      tramos.push({ tipo: antes.tipo, nota: antes.nota, sec: antes.sec, dur: antes.dur, real: Math.round((t - t0) * 1000) / 1000, falta: Math.round(falta * 1000) / 1000, gesto: antes.gesto == null ? null : Math.round(antes.gesto * 1000) / 1000, rep: rep });
+      t0 = t;
+    }
+  }
+  return { fin: R.fin, lento: !!R.lento, vel: d.vel, pulsado: R.bLento.getAttribute('aria-pressed'), reps: d.reps, T: d.T, tramos: tramos, tandas: tandas, cuadros: cuadros };
+};
 </script>
