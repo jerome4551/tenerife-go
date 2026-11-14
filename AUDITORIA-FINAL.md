@@ -7954,7 +7954,8 @@ cada pauta con la frase de esfuerzo.
 
 **Lo que no está**, y por qué:
 
-- el cubo de arroz (antebrazos en casa): no tiene ficha en el catálogo ni el sí de Jérôme;
+- el cubo de arroz (antebrazos en casa): entonces no tenía ficha en el catálogo ni el sí de Jérôme (sus fichas llegaron
+  con el bloque 35, y con la nota 37 va en las rutinas de casa: Inicial B, Intermedio C y Avanzado D);
 - los grupos de «Su deporte» delante dentro de la sesión: está propuesto y sin decidir;
 - la revisión nativa de los textos nuevos y la revisión profesional, que la app ya dice que no tiene.
 
@@ -8116,6 +8117,74 @@ panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, l
 5.865): los bloques no traen ningún texto. Un reinicio del contenedor la cortó durante `auditar_entrenador.js`, que se
 había pasado antes, entero, sobre el mismo árbol (42 en verde); los bloques que faltaban (la isla en 3D y el SOS) se
 pasaron después, también sobre él, en verde.
+
+## «Su cuerpo»: las rutinas de casa con objetos de casa, botellas, silla, toalla y mesa marcadas de entrada, y la búlgara en una silla (nota 37, 14 de noviembre)
+
+**Por qué.** Las rutinas de casa de la nota 34 usaban mancuernas, y el bloque 35 trajo ejercicios con botellas,
+garrafas, mochila, silla, mesa y el cubo de arroz. La sesión de las rutinas lo propuso («Las rutinas de casa todavía
+usan «remo con mancuerna» haciéndolo con botellas; puedo cambiarlas por los remos con garrafa y con mochila del bloque
+35 y añadir el cubo de arroz») y Jérôme respondió: «Prepara el arreglo y si tiene más ejercicio para completarlo hazlo».
+Y sobre marcar de entrada botellas, silla, toalla y mesa: «Déjalas auto seleccionadas y la gente quita lo que no tiene».
+Llegó en la nota 37 (versión 2, `rutinas-casa-37-v2.zip`).
+
+**No cuadraba con lo publicado, y se dijo.** La nota se hizo con las 464 fichas del bloque 35 (997 en el catálogo), y
+entraron 417 (950). Diez de los ejercicios que usa son de las 47 que se quedaron fuera: nueve solo como alternativa (32
+usos, casi todos aparatos biosaludables, fuera) y uno como ejercicio de la sesión (en A tope J, el remo inclinado a una
+pierna con botellas, de las 13 sin ninguna fuente que abra). Se le preguntó a Jérôme si se publicaba así, sin esas nueve
+alternativas y, en A tope J, con el remo inclinado con mancuernas de antes (sus otras dos alternativas, las de la nota),
+y respondió (14-11): «Si sale en verde puedes publicar». Cuatro de los diez vuelven con la nota 43, que va detrás en la
+cola.
+
+**Lo que cambia**, un commit por apartado:
+
+- `466b14c`: la ficha 951, «Sentadilla búlgara con el pie de atrás en una silla», en los diez idiomas, detrás de las
+  950 (iguales y en su orden). Su fuente, Scheurer Health (la explica Ben Zaleski, entrenador personal; 6 de agosto
+  de 2026): las 12 citas están palabra por palabra en la página (con WebFetch: a los robots responde 403; dos frases
+  de control inventadas salen «no»). Casa, con silla; cuádriceps y glúteos; nivel 2 estimado, como la búlgara del
+  catálogo.
+- `9318b47`: el asistente con 951 ejercicios: 125 con el nivel de su fuente (los mismos) y 826 estimados; 502 de
+  nivel inicial, 344 intermedios y 105 avanzados. En búlgaro, «от общо 951 упражнения», sin el artículo sobre un
+  número que acaba en 1.
+- `34da4c4`: las rutinas. En casa, 55 de los 118 ejercicios pasan a su versión con objetos de casa (30 cambios
+  distintos), con hasta tres alternativas en cascada (con material de gimnasio, con otro objeto de casa y sin nada);
+  el cubo de arroz va en los antebrazos de Inicial B, Intermedio C y Avanzado D. Fuera, los mismos ejercicios y
+  pautas; las alternativas de 104 de los 110. Gimnasio y calistenia, las fuentes, las pautas y los sustitutos,
+  iguales; la semana, la misma. En las fuentes de «Su cuerpo», `construir.py` lee lo que se marca en casa de
+  `src/ui.js` (22), en lugar de una copia de las 16 de antes; el `datos/cuerpo/rutinas.json` que sale es, byte a
+  byte, el de la nota con la adaptación.
+- `0219eb7`: lo marcado de entrada. La primera vez, botellas, silla, toalla y mesa salen marcadas y la lista
+  abierta, con su texto en los diez idiomas; queda revisada (`matRev`, solo vale el 1) en cuanto la persona marca o
+  quita algo, o la cierra, y desde entonces vale lo que deje, también otro día. A lo guardado antes se le suman las
+  cuatro, con la lista abierta. Lo que pide lo quitado pasa a su alternativa, como ya hacía la app. Los siete trozos
+  del parche de la nota, en las fuentes (`src/ui.js`, `src/textos.py` y `src/cuerpo.html`); el módulo solo cambia en
+  ellos. `matRev` se queda en el dispositivo; la política de privacidad ya dice «el material que marque para casa».
+
+**Lo comprobado.** El comprobador de las rutinas de la nota (leído antes de usarlo; solo lee): con la nota tal cual, se
+para en los ejercicios que no están; con la adaptación, 0 errores y los 2 avisos de siempre (la flexión en pica y la
+hindú, de nivel 2 en calistenia Inicial). Con lo marcado de entrada, 11 ejercicios de casa pasan a su alternativa; sin
+nada marcado, 15 se quedan como están porque no tienen otra forma sin algo de peso (los curl y el paseo del granjero con
+botellas o garrafas), con «¿Sin mancuernas, disco o banco?» debajo, como decidió la nota 34. El validador del catálogo,
+sin errores; los del asistente dan lo mismo que antes.
+
+**Lo que no está:** la revisión nativa de la ficha nueva y del texto nuevo de «¿Qué tiene en casa?», en los nueve
+idiomas; la revisión profesional, que la app ya dice que no tiene.
+
+**Las pruebas.** `tools/probar_cuerpo.js`: la 37, nueva (10 controles); la 35, con lo que pide la sesión A de casa
+(botellas y silla) tal cual y, con mancuernas y banco, sus alternativas; la 29 y la 36 empiezan sus escenas de casa con
+la lista ya revisada; la 36, con 951 fichas y la huella de las 950 de antes: 698 controles, en verde. Con el módulo y
+los datos de antes, 9 en rojo: la de las 951 fichas y 8 de la 37.
+
+**La auditoría entera** sobre `c875203` (árbol `b5a4c723`), los cuatro commits de arriba encima de `main` (`129d542`);
+en `main` son los mismos, rebasados sobre diez commits de los robots (los terremotos, los avisos de AEMET, las alertas
+del Gobierno de Canarias, el semáforo de INVOLCAN y los precios de las gasolineras), que solo cambian
+`datos/sismos-ign.json`, `datos/avisos-aemet.json`, `datos/alertas-canarias.json`, `datos/semaforo-involcan.json` y
+`datos/precios-gasolineras.json`, y con los controles que leen esos ficheros, en verde tras el rebase. En sus 70
+bloques, ningún rojo: `probar_cuerpo.js`, 698; `auditar_entrenador.js`, 42; `auditar_idioma.js`, 0 hallazgos en los diez
+idiomas; `auditar_registro.js`, todo de usted (137.442 textos); `castellano_suelto.js`; `barrido_pantallas.js`, 191
+pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el
+cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las
+cifras de idiomas del documento, las mismas (52 tablas y 3.718 filas; 5.865). Un reinicio del contenedor cortó la
+primera pasada en su bloque 16; esta es la segunda, entera, sobre el mismo árbol.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
