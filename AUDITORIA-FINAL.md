@@ -8056,6 +8056,67 @@ textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; e
 antes: una, sobre las 954 fichas de antes de quitar las cuatro del ATP, encontró el tuteo que no era (`7ed3a4c`); la
 otra, sobre los tres primeros commits, la prueba del tiempo que fallaba a veces (`58e4407`).
 
+## Jérôme, el entrenador: los bloques 3 y 4, el dorsal y la espalda alta (65 vídeos más; 140 de 533) (notas 36 y 38, 13 de noviembre)
+
+**Por qué.** El encargo de Jérôme, del 11 de noviembre: «es para todos los ejercicios del cuerpo presentes en la app, y
+si faltan hazlos. Bloque por bloque». La sesión del entrenador entregó el bloque 3 (nota 36, el dorsal: 35 vídeos) y el
+4 (nota 38, la espalda alta: 30); los dos, en la cola de Jérôme, con su «Revisa siempre todo y si auditoría en verde
+publica». Van juntos porque el parche del 4 arregla ocho movimientos que se quedaban a medias, cuatro del bloque 3 (y
+cuatro de los bloques 1 y 2, ya publicados): publicar el 3 solo habría sido publicar esos cuatro cortados.
+
+**Lo que llega** (`9012cf3` y `8d4ced2`, los dos commits de la entrega, tal cual): las sumas sha256 de los dos parches
+son las de las notas (el `0006` es el mismo fichero en las dos entregas); sobre lo publicado (`0e9f6b6`) entran con
+`git am` sin un conflicto, y sus 17 ficheros quedan idénticos a las copias de `repo/` de la nota 38.
+`modulos/entrenador.js` sale de sus fuentes (`tools/entrenador/construir.py --comprobar`), y las huellas de los pasos de
+los 140 son las de las fichas: el bloque 35 dejó las 533 iguales. Solo tocan ficheros del entrenador: ni `index.html`,
+ni `sw.js`, ni `modulos/cuerpo.js`, ni `datos/`; ningún texto nuevo (los pasos son los de las fichas, ya en los diez
+idiomas). Revisado a mano: sin red, sin nada guardado en el teléfono, sin `eval` ni temporizadores en las coreografías;
+el material nuevo (la máquina de jalón con su asiento y su rodillo, el agarre en V, los agarres paralelos, la torre de
+dominadas, la barra T, la toalla, la chapa del remo sentado) es trazados, cilindros y cajas, lo que el canvas de Samsung
+Internet copia. Dos herramientas nuevas para hacer los bloques, que la app no usa: `pruebas/mide.js` (corre el módulo en
+una caja de `vm`, sin red ni ficheros) y `pruebas/repaso.py` (la hoja de repaso paso a paso, con Playwright y páginas
+locales).
+
+**Lo que cambia:**
+- `9012cf3`: los 35 vídeos del dorsal (las dominadas, el front lever, los jalones, los remos libres y en polea y dos
+  estiramientos). En los vídeos publicados, la mano agarra la barra a lo largo y con la palma hacia donde dice la
+  ficha (antes el puño giraba con el codo y acababa atravesado), y en las bisagras de cadera las rodillas se doblan
+  hacia donde apunta el pie. La auditoría del vídeo, de 39 a 41 controles: Jérôme no se sale del cuadro, y el dibujo
+  está hecho solo de lo que el canvas de Samsung Internet copia.
+- `8d4ced2`: los 30 vídeos de la espalda alta (encogimientos, remo sentado en polea, omóplatos, boca abajo y cuello). Y
+  ocho secuencias más largas que su paso en algún idioma, que se quedaban a medias al entrar el siguiente (un paso
+  dura lo que se tarda en leerlo): el estiramiento de gemelo en la pared y la plancha sobre antebrazos (bloque 1),
+  los dos estiramientos de pecho en la puerta y en la pared (bloque 2), y la dominada isométrica, las parciales, la
+  máquina de escribir y el front lever agrupado (bloque 3). Se acorta un tiempo (casi siempre una espera); ninguna
+  postura cambia. La auditoría, 42 controles: cada secuencia cabe en su paso, en los diez idiomas.
+- `23c3b11`: la página de muestra (`tools/entrenador/muestra/plantilla.html`, que la app no enlaza) decía «El 3 y el 4
+  están preparados y sin subir a GitHub»; ahora, «Los bloques 1 a 4 ya están en la app».
+
+**Las pruebas.** `tools/auditar_entrenador.js`, sobre el catálogo de 950: 42 controles, en verde. Los 140 vídeos
+enteros, dos veces (280 pases, 251.196 cuadros); 106 secuencias de 76 ejercicios caben en su paso, la más justa con 0,10
+s (el estiramiento de gemelo, en inglés), y la cuenta, cotejada con el reproductor en 902 pasos; 23.528 momentos dentro
+del cuadro (el que más se arrima, a 8,3 px de 400); Samsung Internet, 28 momentos, con una diferencia media de 0,24 de
+255.
+
+**Lo que no está:** un iPhone o un Samsung de verdad (todo es Chromium); que a Jérôme le valgan estos 65 (los tiene en
+la muestra); el «½×», que con media velocidad deja las secuencias a medias desde el bloque 1 (está en
+`80-reproductor.js`, que no se toca: lo decide Jérôme); y el comentario de `sw.js` («unos 320 kB»), que se queda viejo:
+cambiar `sw.js` hace que cada móvil rehaga su precache entero, y el módulo nuevo llega igual con conexión («red
+primero»).
+
+**La auditoría entera** sobre `18dffe5` (árbol `6bf92515`), los tres commits de arriba encima de `main` (`0e9f6b6`); en
+`main` son los mismos, rebasados sobre cuatro commits de los robots (`6203614`, los satélites; `da9a086`, avisos de
+AEMET; `0025717`, terremotos, y `c9ec977`, alertas del Gobierno de Canarias), que solo cambian `datos/satelites.json`,
+`datos/avisos-aemet.json`, `datos/sismos-ign.json` y `datos/alertas-canarias.json`, y con los controles que leen esos
+ficheros, en verde tras el rebase. En sus 70 bloques, ningún rojo: `auditar_entrenador.js`, 42; `probar_cuerpo.js`, 687;
+`auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted (137.392 textos);
+`castellano_suelto.js`; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours,
+enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el
+panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas y 3.718 filas;
+5.865): los bloques no traen ningún texto. Un reinicio del contenedor la cortó durante `auditar_entrenador.js`, que se
+había pasado antes, entero, sobre el mismo árbol (42 en verde); los bloques que faltaban (la isla en 3D y el SOS) se
+pasaron después, también sobre él, en verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
