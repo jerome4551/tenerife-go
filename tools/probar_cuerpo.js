@@ -3602,11 +3602,11 @@ async function ejemplo(pg, mas) {
 
     // en casa: lo que se puede con lo marcado (o la alternativa que sí), los sustitutos y las pautas de segundos
     const c1a = S('casa-1-a'), puede = (id, mat) => RU.x[id][1].every(m => m === 'ninguno' || m === 'pared' || mat.indexOf(m) >= 0);
-    const enCasa = mat => c1a.e.map(z => { const t = [z[0]].concat(z[2]), v = t.filter(id => puede(id, mat)); return (v.length ? v : t)[0]; });
+    const enCasa = mat => { const r = c1a.e.map(z => [z[0]].concat(z[2]).filter(id => puede(id, mat))[0]).filter(Boolean); return r.length ? r : c1a.e.map(z => z[0]); };   // (nota 42) sin ninguno que se pueda, no sale
     await poner([], { sitio: 'casa', material: [], matRev: 1, nivel: 1 }); await esperarSes();   // (nota 37) la lista ya revisada y sin nada marcado
     const a7 = await leer(), MS = ['mancuernas', 'disco', 'banco', 'general'];
-    prueba('35: en casa sin nada marcado, cada ejercicio el de la sesión o su primera alternativa sin material (' + enCasa([]).filter((id, i) => id !== c1a.e[i][0]).join(', ') + ')',
-      a7.sesNom === 'Sesión A · Inicial' && JSON.stringify(a7.ejs.map(e => e.id)) === JSON.stringify(enCasa([])) && enCasa([]).some((id, i) => id !== c1a.e[i][0]), JSON.stringify(a7.ejs.map(e => e.id)));
+    prueba('35: en casa sin nada marcado, cada ejercicio el de la sesión o su primera alternativa sin material (' + enCasa([]).filter(id => !c1a.e.some(z => z[0] === id)).join(', ') + '); sin ninguna, no sale (nota 42)',
+      a7.sesNom === 'Sesión A · Inicial' && JSON.stringify(a7.ejs.map(e => e.id)) === JSON.stringify(enCasa([])) && enCasa([]).some(id => !c1a.e.some(z => z[0] === id)), JSON.stringify(a7.ejs.map(e => e.id)));
     prueba('35: en casa, «¿Sin mancuernas, disco o banco?» con los cuatro textos de los sustitutos (y sus fuentes)',
       a7.sustTit === '¿Sin mancuernas, disco o banco?' && JSON.stringify(a7.sust) === JSON.stringify(MS.map(m => RU.h[m].t.es)), JSON.stringify(a7.sust).slice(0, 300));
     const hom = a7.ejs.find(e => e.id === 'empuje-isometrico-hombro-pared'), pla = a7.ejs.find(e => e.id === 'plancha-antebrazos');
@@ -3893,7 +3893,7 @@ async function ejemplo(pg, mas) {
     const esperarSes = () => p37.waitForFunction(() => !document.getElementById('tgc-ses').hidden && document.querySelectorAll('#tgc-ses-lista > li').length > 0, null, { timeout: 10000 }).catch(() => {});
     const c1a = RU.s.find(s => s.id === 'casa-1-a'), tal = JSON.stringify(c1a.e.map(z => z[0]));
     const puede = (id, mat) => RU.x[id][1].every(m => m === 'ninguno' || m === 'pared' || mat.indexOf(m) >= 0);
-    const enCasa = mat => c1a.e.map(z => { const t = [z[0]].concat(z[2]), v = t.filter(id => puede(id, mat)); return (v.length ? v : t)[0]; });
+    const enCasa = mat => { const r = c1a.e.map(z => [z[0]].concat(z[2]).filter(id => puede(id, mat))[0]).filter(Boolean); return r.length ? r : c1a.e.map(z => z[0]); };   // (nota 42) sin ninguno que se pueda, no sale
 
     // la primera vez (nada guardado): «En casa», con las cuatro marcadas, la lista abierta y el texto que lo explica
     await poner(null); await abrirPlan(); await sitio('casa');
@@ -3910,7 +3910,7 @@ async function ejemplo(pg, mas) {
     const sinB = ['silla', 'toalla', 'mesa'];
     await p37.click('#tgc-plan-mats [data-mat="botella"]'); await p37.waitForTimeout(250); await esperarSes();
     const r2 = await ver(), g2 = await guardado();
-    prueba('37: al quitar las botellas, se guarda sin ellas y revisado, y lo que las pide pasa a su alternativa (' + enCasa(sinB).filter((id, i) => id !== c1a.e[i][0]).join(', ') + ')',
+    prueba('37: al quitar las botellas, se guarda sin ellas y revisado, y lo que las pide pasa a su alternativa (' + enCasa(sinB).filter(id => !c1a.e.some(z => z[0] === id)).join(', ') + ') o, sin ninguna, no sale (nota 42)',
       r2.abierta && JSON.stringify(g2) === JSON.stringify({ material: sinB, matRev: 1 }) && JSON.stringify(r2.ejs) === JSON.stringify(enCasa(sinB)) &&
       JSON.stringify(enCasa(sinB)) !== tal, JSON.stringify([r2.ejs, g2]));
 
@@ -4172,6 +4172,75 @@ async function ejemplo(pg, mas) {
     prueba('40: un estiramientos.json que no vale: no se usa y lo dice («' + UI.cuerpoErrorEj.es + '»), sin errores de página', !r40b.est && r40b.txt === UI.cuerpoErrorEj.es && e40b.length === 0,
       JSON.stringify([r40b, e40b]));
     await c40b.close();
+  }
+
+  // 42. (13-11-2026, nota 42; Jérôme: «si uno no tiene botella como hace ejercicio con botella») en las rutinas de casa,
+  //     lo que no se puede con nada de lo marcado no sale, como en los estiramientos: sin botellas, el curl de la sesión A;
+  //     sin nada marcado, nada que pida material; con mochila, el curl con mochila; en el gimnasio, la sesión tal cual; y
+  //     si en una sesión no quedara ninguno, la sesión tal cual (no «Hoy, descanso»)
+  {
+    const fs = require('fs'), path = require('path');
+    const RU = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'rutinas.json'), 'utf8'));
+    const S42 = (si, n, l) => RU.s.find(q => q.si === si && q.n === n && q.l === l);
+    const c1a = S42('casa', 1, 'A'), mains = c1a.e.map(z => z[0]);
+    const puede = (id, mat) => RU.x[id][1].every(m => m === 'ninguno' || m === 'pared' || mat.indexOf(m) >= 0);
+    /* lo que sale: de cada ejercicio, el primero que se pueda; sin ninguno, fuera; si no quedara ninguno, la sesión tal cual */
+    const enCasa = mat => { const r = c1a.e.map(z => [z[0]].concat(z[2]).filter(id => puede(id, mat))[0]).filter(Boolean); return r.length ? r : mains; };
+    const sinNinguno = mat => c1a.e.filter(z => ![z[0]].concat(z[2]).some(id => puede(id, mat)));
+    const c42 = await contexto(b), p42 = await c42.newPage(), e42 = []; vigilar(p42, e42);
+    await abrirApp(p42); await abrirPerfilCuerpo(p42); await suCuerpo(p42);
+    const poner = o => p42.evaluate(o => { localStorage.setItem('tenerife.cuerpo', JSON.stringify(Object.assign({ v: 1, series: [] }, o))); TG_CUERPO.abrir(); }, o)
+      .then(() => p42.waitForTimeout(250));
+    const leer = () => p42.evaluate(() => { const $ = id => document.getElementById(id); return {
+      abierto: !$('tgc-plan-cuerpo').hidden, ses: !$('tgc-ses').hidden, nom: $('tgc-ses-nom').textContent,
+      tit: $('tgc-plan-tit').hidden ? null : $('tgc-plan-tit').textContent,
+      ejs: [...document.querySelectorAll('#tgc-ses-lista > li .tgc-ses-ej-btn')].map(x => x.dataset.id),
+      alts: [...document.querySelectorAll('#tgc-ses-lista > li')].map(li => [...li.querySelectorAll('.tgc-ses-alts button')].map(x => x.dataset.id)) }; });
+    const abrirPlan = async () => { if (!(await leer()).abierto) { await p42.click('#tgc-plan-btn'); await p42.waitForTimeout(250); } };
+    const esperarSes = () => p42.waitForFunction(() => !document.getElementById('tgc-ses').hidden && document.querySelectorAll('#tgc-ses-lista > li').length > 0, null, { timeout: 10000 }).catch(() => {});
+
+    // sin botellas (silla, toalla y mesa marcadas): el curl con botellas no sale, ni sus alternativas (con mancuernas, mochila o banda)
+    const sinB = ['silla', 'toalla', 'mesa'], q1 = sinNinguno(sinB), ids1 = q1.flatMap(z => [z[0]].concat(z[2]));
+    await poner({ sitio: 'casa', material: sinB, matRev: 1, nivel: 1 }); await abrirPlan(); await esperarSes();
+    const r1 = await leer();
+    prueba('42: sin botellas, en la sesión A de casa (Inicial) no sale «' + q1.map(z => z[0]).join(', ') + '» ni sus alternativas; los otros ' + (mains.length - q1.length) + ', como antes',
+      r1.ses && r1.nom === 'Sesión A · Inicial' && q1.length === 1 && JSON.stringify(r1.ejs) === JSON.stringify(enCasa(sinB)) && r1.ejs.length === mains.length - 1 &&
+      !r1.ejs.some(id => ids1.includes(id)) && !r1.alts.flat().some(id => ids1.includes(id)), JSON.stringify([r1.nom, r1.ejs, q1.map(z => z[0])]));
+
+    // sin nada marcado: nada que pida material, y sale la sesión, no «Hoy, descanso»
+    await poner({ sitio: 'casa', material: [], matRev: 1, nivel: 1 }); await abrirPlan(); await esperarSes();
+    const r2 = await leer();
+    prueba('42: sin nada marcado, la sesión A sale sin nada que pida material (' + enCasa([]).length + ' de ' + mains.length + '), y no «Hoy, descanso»',
+      r2.ses && r2.tit === null && JSON.stringify(r2.ejs) === JSON.stringify(enCasa([])) && r2.ejs.length < mains.length &&
+      r2.ejs.every(id => puede(id, [])) && r2.alts.flat().every(id => puede(id, [])), JSON.stringify([r2.ses, r2.tit, r2.ejs]));
+
+    // con mochila y sin botellas: el curl sale con su alternativa con mochila
+    await poner({ sitio: 'casa', material: ['mochila'], matRev: 1, nivel: 1 }); await abrirPlan(); await esperarSes();
+    const r3 = await leer();
+    prueba('42: con mochila y sin botellas, el curl sale con su alternativa con mochila, y la sesión entera',
+      r3.ses && JSON.stringify(r3.ejs) === JSON.stringify(enCasa(['mochila'])) && r3.ejs.includes('curl-biceps-mochila') && r3.ejs.length === mains.length, JSON.stringify(r3.ejs));
+
+    // en el gimnasio no se quita nada: la sesión tal cual
+    await poner({ sitio: 'gimnasio', nivel: 1 }); await abrirPlan(); await esperarSes();
+    const r4 = await leer(), g1a = S42('gimnasio', 1, 'A');
+    prueba('42: en el gimnasio no se quita nada: la sesión A tal cual', r4.ses && r4.nom === 'Sesión A · Inicial' && JSON.stringify(r4.ejs) === JSON.stringify(g1a.e.map(z => z[0])), JSON.stringify(r4.ejs));
+    prueba('42: sin errores de página', e42.length === 0, e42.join(' | '));
+    await c42.close();
+
+    // si en una sesión no quedara ninguno: un rutinas.json de prueba en el que todo lo de la sesión A de casa pide botellas
+    const RX = JSON.parse(JSON.stringify(RU));
+    c1a.e.forEach(z => [z[0]].concat(z[2]).forEach(id => { RX.x[id][1] = ['botella']; }));
+    const c42b = await contexto(b), p42b = await c42b.newPage(), e42b = []; vigilar(p42b, e42b);
+    await c42b.route('**/datos/cuerpo/rutinas.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(RX) }));
+    await abrirApp(p42b); await abrirPerfilCuerpo(p42b); await suCuerpo(p42b);
+    await p42b.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'casa', material: [], matRev: 1, nivel: 1 })); TG_CUERPO.abrir(); });
+    await p42b.waitForTimeout(250); await p42b.click('#tgc-plan-btn');
+    await p42b.waitForFunction(() => !document.getElementById('tgc-ses').hidden && document.querySelectorAll('#tgc-ses-lista > li').length > 0, null, { timeout: 10000 }).catch(() => {});
+    const r5 = await p42b.evaluate(() => ({ ses: !document.getElementById('tgc-ses').hidden, tit: document.getElementById('tgc-plan-tit').hidden ? null : document.getElementById('tgc-plan-tit').textContent,
+      ejs: [...document.querySelectorAll('#tgc-ses-lista > li .tgc-ses-ej-btn')].map(x => x.dataset.id) }));
+    prueba('42: si en una sesión no quedara ninguno (todo pide botellas y no hay), sale la sesión tal cual, no «Hoy, descanso»; sin errores de página',
+      r5.ses && r5.tit === null && JSON.stringify(r5.ejs) === JSON.stringify(mains) && e42b.length === 0, JSON.stringify([r5, e42b]));
+    await c42b.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

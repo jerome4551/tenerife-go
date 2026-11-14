@@ -4021,7 +4021,8 @@
      - La sesión de hoy: la siguiente a la última hecha (el día más reciente con algún ejercicio suyo anotado, el
        principal o una alternativa), en el orden de las letras; si ese día es hoy, la misma. Un ejercicio cuyo grupo se
        trabajó hoy o ayer lleva «Hoy no» (las 48 horas del ACSM, 2011); si no queda ninguno, «Hoy, descanso».
-     - En casa, el ejercicio de la sesión o, si no se puede con lo marcado, su primera alternativa que sí.
+     - En casa, el ejercicio de la sesión o, si no se puede con lo marcado, su primera alternativa que sí; y si no se
+       puede ninguno, no sale (nota 42).
      - Fuera, si la sesión pide banda elástica, un botón lleva a la de calistenia del mismo nivel (la nota 34). */
   var NIVELES_RUT = [1, 2, 3, 4];
   var IDIOMAS_RUT = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
@@ -4121,13 +4122,20 @@
     if (!S) return null;
     if (!S.deHoy && seisSeguidos()) return { s: S.s, deHoy: false, ejs: [], descanso: true, semana: true, nombre: tx('cuerpoRutSesion', { letra: S.s.l, nivel: nombreNivel(S.s.n) }) };
     var ayer = sumar(hoy(), -1);
+    /* (nota 42) en casa, el de la sesión o su primera alternativa que se pueda con lo marcado; si no se puede ninguno,
+       no sale (Jérôme, 13-11-2026: «si uno no tiene botella como hace ejercicio con botella»), como en los
+       estiramientos. Si no quedara ninguno de la sesión (con las rutinas de hoy no pasa), la sesión tal cual */
+    var uno = function (z, usa) {
+      var id = usa[0];
+      return { id: id, alts: usa.slice(1), p: RUT.p[z[1]],
+               descansa: !S.deHoy && RUT.x[id][0].some(function (g) { return !!R.ultima[g] && R.ultima[g] >= ayer; }) };
+    };
     var ejs = S.s.e.map(function (z) {
       var todos = [z[0]].concat(z[2]);
       var vale = S.s.si === 'casa' ? todos.filter(function (id) { return puedeEnCasa(RUT.x[id][1]); }) : todos;
-      var usa = vale.length ? vale : todos, id = usa[0];
-      return { id: id, alts: usa.slice(1), p: RUT.p[z[1]],
-               descansa: !S.deHoy && RUT.x[id][0].some(function (g) { return !!R.ultima[g] && R.ultima[g] >= ayer; }) };
-    });
+      return vale.length ? uno(z, vale) : null;
+    }).filter(Boolean);
+    if (!ejs.length) ejs = S.s.e.map(function (z) { return uno(z, [z[0]].concat(z[2])); });
     return { s: S.s, deHoy: S.deHoy, ejs: ejs, descanso: ejs.every(function (e) { return e.descansa; }),
              nombre: tx('cuerpoRutSesion', { letra: S.s.l, nivel: nombreNivel(S.s.n) }) };
   }
