@@ -39,7 +39,7 @@
     hi: function (E) { return E.i.hom; }, hd: function (E) { return E.d.hom; }, hombros: function (E) { return mezcla(E.i.hom, E.d.hom, 0.5); },
     ti: function (E) { return E.i.tob; }, td: function (E) { return E.d.tob; }, pies: function (E) { return mezcla(E.i.suela, E.d.suela, 0.5); },
     pi: function (E) { return mas(E.i.suela, por(E.i.punta, 6)); }, pd: function (E) { return mas(E.d.suela, por(E.d.punta, 6)); },
-    tli: function (E) { return E.i.talon; }, tld: function (E) { return E.d.talon; },
+    tli: function (E) { return E.i.talon; }, tld: function (E) { return E.d.talon; }, dpi: function (E) { return E.i.dedosPie; }, dpd: function (E) { return E.d.dedosPie; },
     ri: function (E) { return E.i.rod; }, rd: function (E) { return E.d.rod; }, rodillas: function (E) { return mezcla(E.i.rod, E.d.rod, 0.5); },
     pel: function (E) { return E.pel; }, cab: function (E) { return mas(E.cab, aplicar(E.Bc, [0, 16, 2])); }, pecho: function (E) { return mas(E.tor, aplicar(E.Bt, [0, 12, 12])); },
     espalda: function (E) { return mas(E.lum, aplicar(E.Bl, [0, 6, -10])); }, abdomen: function (E) { return mas(E.lum, aplicar(E.Bl, [0, 3, 10.5])); },
@@ -328,6 +328,8 @@
         (dir_.modo === 'sec' && l.indexOf(dir_.secDe) >= 0 && (dir_.secU < 0.97 || l.indexOf(dir_.secA) >= 0)) ||
         (dir_.modo === 'postura' && dir_.w < 0.96 && l.indexOf(dir_.metaPrev) >= 0));
     };
+    /* de qué postura sale lo que está haciendo: hay material que va de una manera u otra según el tramo (una toalla que pasa de un pie al otro) */
+    this.ctx.de = this.busto ? null : this.modo === 'sec' ? this.secDe : this.modo === 'rep' ? (this.tramo ? this.tramo.de : this.inicio) : this.meta;
     /* el material, la figura y lo demás */
     var mats = esc.material, j;
     for (j = 0; j < mats.length; j++) { mats[j].colocar(E, this.ctx); mats[j].oculto = this.busto; }

@@ -218,12 +218,24 @@
      reposo: {}), mientras espera la lleva la otra mano: se la pasa de una a otra. Con dos: true, una sola entre las dos manos: a lo
      largo de la mano izquierda, de ejeDos (en el marco del tórax) o, con medio: true, de la media de las dos manos (queda derecha
      aunque los antebrazos lleguen en cuña); corre: cuántos cm se corre a lo largo de su eje (las manos, bajo un disco y no en el centro);
-     une: true, si las manos se separan se queda con la de «lado» (la otra la suelta un momento y vuelve a cogerla) ── */
+     une: true, si las manos se separan se queda con la de «lado» (la otra la suelta un momento y vuelve a cogerla).
+     extremo: true (o [a cuánto de la muñeca, cuánto hacia la palma]): no se coge por el asa sino por un extremo; la mano, en garra sobre
+     el disco de arriba (su centro queda donde llegan las yemas), y la mancuerna cuelga a plomo de ella.
+     toalla: true, una toalla en el asa, que la engorda: mientras espera, monta abierta sobre el asa y cae a los dos lados hasta el suelo; se
+     enrolla cuando la mano que llega a ella se cierra, y enrollada sigue, con una punta colgando ── */
+  var TOALLA = ['#f4f1ea', '#e2ddd0', '#cfc8b6'];
   MATERIAL.mancuernas = function (esc, o) {
     o = o || {};
     this.o = o; this.lados = o.lado ? [o.lado] : ['i', 'd'];
     this.p = {};
-    this.lados.forEach(function (k) { this.p[k] = { m: new Cilindro(M_COL.cromo), a: new Disco(M_COL.hierro, M_COL.hierroS, M_COL.hierroL), b: new Disco(M_COL.hierro, M_COL.hierroS, M_COL.hierroL) }; }, this);
+    this.lados.forEach(function (k) {
+      this.p[k] = { m: new Cilindro(M_COL.cromo), a: new Disco(M_COL.hierro, M_COL.hierroS, M_COL.hierroL), b: new Disco(M_COL.hierro, M_COL.hierroS, M_COL.hierroL) };
+      if (o.toalla) {
+        var q = this.p[k]; q.t = new Cilindro(TOALLA[0], 'rgba(255,255,255,.55)'); q.gt = crear('g');
+        q.pt = [TOALLA[0], TOALLA[1]].map(function (c) { return crear('path', { fill: c, stroke: TOALLA[2], 'stroke-width': 0.7, 'stroke-linejoin': 'round' }, q.gt); });
+        q.fl = trazo('', TOALLA[1]); q.gt.appendChild(q.fl);
+      }
+    }, this);
   };
   MATERIAL.mancuernas.prototype.colocar = function (E, ctx) { this.suelta = enReposo(this.o, ctx); };
   MATERIAL.mancuernas.prototype.pintar = function (E, cam, lista) {
@@ -235,10 +247,38 @@
         if (o.une) { var su = entre((largo(menos(E.i.agarre, E.d.agarre)) - 11) / 16, 0, 1); c = mezcla(c, L.agarre, su * su * (3 - 2 * su)); }
         if (o.corre) c = mas(c, por(e, o.corre));
       }
+      if (o.extremo) { var ex = o.extremo.length ? o.extremo : [13, 1]; e = [0, -1, 0]; c = mas(mas(L.mun, mas(por(L.mano.dir, ex[0]), por(L.mano.palma, ex[1]))), por(e, 10.5)); }
       if (suelta && o.otra) { c = E[o.otra].agarre; e = E[o.otra].mano.eje; }
       else if (suelta && o.reposo[k]) { c = o.reposo[k]; e = unidad(o.ejeReposo || [0, 0, 1]); }
       p.m.pon(cam, mas(c, por(e, -9)), mas(c, por(e, 9)), 1.4, lista, 0.9);
       p.a.pon(cam, mas(c, por(e, 10.5)), e, R, 5.4, lista, 0.4); p.b.pon(cam, mas(c, por(e, -10.5)), e, R, 5.4, lista, 0.4);
+      if (p.t) {
+        /* cuánto está enrollada: del todo si ya la llevan; si espera, lo que se haya cerrado la mano que tiene encima */
+        var w = 1, sm = function (x) { x = entre(x, 0, 1); return x * x * (3 - 2 * x); };
+        if (suelta) w = largo(menos(L.agarre, c)) < 9 ? sm((E.S.m[k].c - 0.1) / 0.8) : 0;
+        var rollo = sm((w - 0.3) / 0.7), abierta = w < 0.98, zt = 0, nz = 0;
+        p.t.g.style.display = rollo > 0.02 ? '' : 'none';
+        if (rollo > 0.02) p.t.pon(cam, mas(c, por(e, -7.8)), mas(c, por(e, 7.8)), 1.5 + 2.1 * rollo, lista, 1.0);
+        p.pt[0].style.display = p.pt[1].style.display = abierta ? '' : 'none'; p.fl.style.display = abierta ? 'none' : '';
+        if (abierta) {
+          /* abierta: una tira que monta sobre el asa y cae a los dos lados hasta el suelo, donde descansan sus puntas; al enrollarse, se recoge */
+          var lado = unidad(cruz(e, [0, 1, 0]), [1, 0, 0]), xf = 8.5 * (1 - w) + 3 * w, cae = (c[1] - 0.5) * (1 - w) + 2.2 * w;
+          if (punto(menos(E.pel, c), lado) > 0) lado = por(lado, -1);         /* hacia fuera de quien las va a coger: por ahí cae la punta larga */
+          [1, -1].forEach(function (sl, j) {
+            var d = '', xo = (sl > 0 ? 25 : 13) * (1 - w) + 3 * w;
+            [[-7.4, xo, -cae], [-7.4, xf, -cae], [-7.4, 0, 1.9], [7.4, 0, 1.9], [7.4, xf, -cae], [7.4, xo, -cae]].forEach(function (q3, n) {
+              var q2 = cam.p(mas(c, mas(por(e, q3[0]), mas(por(lado, sl * q3[1]), [0, q3[2], 0])))); zt += q2[2]; nz++; d += (n ? 'L' : 'M') + n1(q2[0]) + ',' + n1(q2[1]);
+            });
+            pon(p.pt[j], 'd', d + 'z');
+          });
+          lista.push({ z: zt / nz + 1.2, el: p.gt });
+        } else {
+          /* enrollada: una punta cuelga del rollo, junto a un disco */
+          var f1 = mas(c, mas(por(e, 5.2), [0, -3, 0])), f2 = mas(f1, [0, -Math.min(6.5, Math.max(0.5, f1[1] - 2.4)), 0]), g1 = cam.p(f1), g2 = cam.p(f2);
+          ponLinea(p.fl, g1, g2, 4.6 * cam.esc);
+          lista.push({ z: (g1[2] + g2[2]) / 2 + 1.1, el: p.gt });
+        }
+      }
     }, this);
   };
   /* ── la pesa rusa: cuelga de la mano (o de las dos). cuelga: true, a plomo de su asa, que va en la palma: en un curl, con la mano
@@ -394,7 +434,7 @@
     var o = this.o, z = o.z || 0, h = o.alto || 100, w = o.ancho || 52, yo = this, sg = o.sesgo == null ? -6 : o.sesgo;
     [1, -1].forEach(function (s, i) {
       yo.postes[i].pon(cam, [s * w, 0, z], [s * w, h + 8, z], 2.4, lista, sg);
-      yo.ganchos[i].pon(cam, [s * w, h - 2.5, z], [s * w, h - 2.5, z + 7], 1.6, lista, sg + 0.5);
+      yo.ganchos[i].pon(cam, [s * w, h - 2.5, z], [s * w, h - 2.5, z + (o.haciaAtras ? -7 : 7)], 1.6, lista, sg + 0.5);
       yo.bases[i].pon(cam, [s * w, 1.5, z - 22], [s * w, 1.5, z + 22], 2.2, lista, sg - 1);
     });
   };
@@ -657,6 +697,54 @@
       this.asas[0].pon(cam, mas(gi, por(d, -7)), mas(gi, por(d, 7)), 1.4, lista, 2.3 + sg);
       this.asas[1].pon(cam, mas(gd, por(d, -7)), mas(gd, por(d, 7)), 1.4, lista, 2.3 + sg);
     }
+  };
+  /* ── las toallas en tiras (una toalla cogida a lo largo, que hace de correa). Cada tira va de un punto a una mano y, pasada la mano,
+     cuelga lo que sobra. o: { ancho (cm), tiras: [{ de: [x, y, z] (de dónde cuelga: lo alto de una barra) | 'pie-i' | 'pie-d' (pasa por la
+     planta de ese pie, bajo la bola: cada tira sale por el lado del pie que da a su mano), a: 'i' | 'd' (la mano), cola (cm que sobran),
+     reposo: [x, y, z] (hasta dónde cuelga mientras nadie la ha cogido: en las posturas que la coreografía diga en «reposo»),
+     sobre: [x, y, z] (un punto de aquello sobre lo que monta —el centro de la barra—: su doblez se pinta por encima de eso),
+     en: [posturas] (solo se pinta en los tramos que salen de una de esas posturas: así una toalla pasa de un pie al otro) }],
+     agarreY (y agarreZ): a qué altura se agarran, si la mano va clavada a ellas }
+     Con de: 'mano-i' o 'mano-d', la tira va de esa mano a la otra: la toalla, tendida entre las dos ── */
+  MATERIAL.toallas = function (esc, o) {
+    this.o = o || {};
+    this.t = (this.o.tiras || []).map(function (q) {
+      var g = crear('g'), b = trazo('', TOALLA[2]), c = trazo('', TOALLA[0]), r = { g: g, b: b, c: c };
+      g.appendChild(b); g.appendChild(c);
+      if (q.sobre) { r.g2 = crear('g'); r.b2 = trazo('', TOALLA[2]); r.c2 = trazo('', TOALLA[0]); r.g2.appendChild(r.b2); r.g2.appendChild(r.c2); }
+      return r;
+    });
+    this.antes = false;
+  };
+  MATERIAL.toallas.prototype.colocar = function () {};
+  /* dónde se agarra la de cada lado: a x del centro, a la altura «agarreY» (para clavar la mano a ella) */
+  MATERIAL.toallas.prototype.agarre = function (x) { return [x, this.o.agarreY, this.o.agarreZ || 0]; };
+  MATERIAL.toallas.prototype.pintar = function (E, cam, lista, ctx) {
+    var o = this.o, an = o.ancho || 5, suelta = !!ctx && (o.reposoEn ? !!ctx.enLista && ctx.enLista(o.reposoEn) : !!ctx.reposo);
+    var linea2 = function (pts) { var d = ''; pts.forEach(function (p3, i) { var p = cam.p(p3); d += (i ? 'L' : 'M') + n1(p[0]) + ',' + n1(p[1]); }); return d; };
+    (o.tiras || []).forEach(function (q, i) {
+      var r = this.t[i], M = E[q.a], pts = [], fin = suelta && q.reposo ? q.reposo : M.agarre, a = q.de;
+      var ve = !q.en || (!!ctx && q.en.indexOf(ctx.de) >= 0);
+      r.g.style.display = ve ? '' : 'none'; if (r.g2) r.g2.style.display = ve ? '' : 'none';
+      if (!ve) return;
+      if (a === 'mano-i' || a === 'mano-d') a = E[a.slice(-1)].agarre;
+      else if (typeof a === 'string') {
+        /* por la planta: del centro, bajo la bola del pie, al canto de su lado; y de ahí, a la mano */
+        var k = a.slice(-1), L = E[k], bola = mas(L.suela, mas(por(L.punta, 12.5), por(L.arriba, -0.9))), lado = unidad(cruz(L.arriba, L.punta), [1, 0, 0]);
+        if (punto(menos(fin, bola), lado) < 0) lado = por(lado, -1);
+        pts.push(bola); a = mas(bola, mas(por(lado, 5.2), por(L.arriba, 0.6)));
+      }
+      pts.push(a, fin);
+      if (!(suelta && q.reposo) && q.cola) pts.push(mas(fin, por(unidad(mas(por(unidad(menos(fin, a)), 0.3), [0, -1, 0])), q.cola)));
+      var d = linea2(pts), w = an * cam.esc;
+      pon(r.b, 'd', d); pon(r.b, 'stroke-width', n1(w)); pon(r.c, 'd', d); pon(r.c, 'stroke-width', n1(Math.max(1, w - 1.5)));
+      lista.push({ z: cam.p(fin)[2] + (q.sesgo == null ? 0.9 : q.sesgo), el: r.g });
+      if (r.g2) {
+        var d2 = linea2([mas(q.de, [0, -4, 0]), q.de]);
+        pon(r.b2, 'd', d2); pon(r.b2, 'stroke-width', n1(w)); pon(r.c2, 'd', d2); pon(r.c2, 'stroke-width', n1(Math.max(1, w - 1.5)));
+        lista.push({ z: cam.p(q.sobre)[2] + 3, el: r.g2 });
+      }
+    }, this);
   };
   /* ── algo blando: una toalla doblada. o: { en: [x, y, z] (su centro), rumbo, cabeceo, med: [ancho, alto, largo] } ── */
   MATERIAL.toalla = function (esc, o) { this.o = o || {}; this.c = new Caja(['#f4f1ea', '#e2ddd0', '#cfc8b6', '#cfc8b6']); this.antes = true; };

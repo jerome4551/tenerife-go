@@ -555,6 +555,8 @@
     var wU = pu, wF = c * (1 - pu), wA = (1 - c) * (1 - pu);
     var pto = function (aD, aE, aP, fD, fE, fP, uD, uE, uP) { return mas(W, mas(por(dir, aD * wA + fD * wF + uD * wU), mas(por(eje, aE * wA + fE * wF + uE * wU), por(pal, aP * wA + fP * wF + uP * wU)))); };
     var u1 = pto(5.1, 6.3, 0.7, 5.6, 4.0, 2.4, 3.2, 7.3, 0.7), u2 = pto(7.4, 8.7, 0.7, 8.2, 0.9, 3.7, 3.0, 11.0, 0.7);
+    /* y el pulgar que apoya (M.ap): baja hacia el lado de la palma hasta donde llegan las yemas de los demás dedos */
+    if (M.ap > 0) { u1 = mezcla(u1, mas(W, mas(por(dir, 4.3), mas(por(eje, 5.6), por(pal, 3.3)))), M.ap); u2 = mezcla(u2, mas(W, mas(por(dir, 5.0), mas(por(eje, 6.6), por(pal, 7.1)))), M.ap); }
     pon(g.pulgar, 'd', capsula(cam.p(u0), 1.75 * esc, cam.p(u1), 1.4 * esc) + capsula(cam.p(u1), 1.4 * esc, cam.p(u2), 1.18 * esc));
     /* los nudillos, si se ve el dorso */
     var nd = '';

@@ -95,7 +95,7 @@
       if (alto * Math.abs(compas) > 0.004) { l = girar(l, [1, 0, 0], -2.6 * compas * alto); u = girar(u, [1, 0, 0], -0.9 * compas * alto); cambia = true; }
       if (cambia) brazos[lado] = { u: unidad(u), l: unidad(l), b: b.b };
       /* los dedos de la mano suelta no se quedan de piedra */
-      if (m.c < 0.7 && m.c > 0.12) {
+      if (m.c < 0.7 && m.c > 0.12 && !(m.ap > 0)) {
         var dd = 0.035 * Math.sin(yo.t * 0.9 + (lado === 'i' ? 0 : 1.7)) + 0.02 * yo.aire;
         manos[lado] = { tipo: m.tipo, prono: m.prono, mun: m.mun, lat: m.lat, c: m.c + dd, ci: m.ci + dd * 0.8, ab: m.ab, pu: m.pu, pal: m.pal, bar: m.bar, w: m.w };
       }

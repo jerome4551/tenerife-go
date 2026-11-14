@@ -20,7 +20,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/20-figura.js` | la cámara y el cuerpo, dibujado por masas a tres tintas: torso, brazos y piernas, manos con dedos, zapatillas que se doblan, el brillo de los músculos |
 | `src/30-cabeza.js` | la cabeza, con volumen: gira de verdad (ya no son tres dibujos). Las caras, la mirada y el tupé, que va un instante detrás |
 | `src/40-escenario.js` | la escena: el orden de pintado, la sombra, los tres decorados (fuera, calistenia, gimnasio; día y noche) |
-| `src/50-material.js` | barra (y la barra Z), mancuernas, pesa rusa, banco, banco predicador, soporte, barra de dominadas, escalón, pared, polea… |
+| `src/50-material.js` | barra (y la barra Z), mancuernas, pesa rusa, banco, banco predicador, soporte, barra de dominadas, escalón, pared, polea, toallas… |
 | `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
 | `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los avisos, el encuadre; y los gestos del presentador |
 | `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos; y las de cualquier bloque: `conAgarre`, `estirado`, `inclinado`, `colgando`, `anteTronco`, `cuelga`/`activo`, `barraD`…) |
@@ -30,11 +30,12 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/74-hombros.js` | las coreografías del bloque 5: **hombros** (34), por familias (los press, las elevaciones, la polea a una mano, el deltoides posterior, entre dos poleas, los rotadores, la pica y el pino, la movilidad y los estiramientos) |
 | `src/75-biceps.js` | las coreografías del bloque 6: **bíceps** (36), por familias (de pie con barra, con mancuernas y con pesa rusa; en un banco; el banco predicador y la araña; las poleas; la barra fija; el estiramiento) |
 | `src/76-triceps.js` | las coreografías del bloque 7: **tríceps** (37), por familias (tumbado: el press francés y sus variantes; por encima de la cabeza; las patadas; las poleas; los press en banco; los fondos y las flexiones; el estiramiento) |
+| `src/77-antebrazo-pantorrilla.js` | las coreografías del bloque 8: **antebrazo** (16) y **pantorrilla** (19), por familias (los curls de muñeca; la muñeca, de pie; los paseos con carga; la dominada con toallas; las flexiones sobre las yemas; los estiramientos de la muñeca · las elevaciones de talón de pie, en escalón, con barra y sentado; el tibial; los saltos; los estiramientos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
-| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), el repaso paso a paso contra la ficha (`repaso.py`), las medidas de una postura (`mide.js`), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
+| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), el repaso paso a paso contra la ficha (`repaso.py`), las medidas de una postura (`mide.js`), el camino de una postura a otra (`camino.js`: dónde una zapatilla baja del suelo), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
 | `muestra/` | la página de muestra (un solo fichero, para enseñarla en el móvil) |
 
 ## La regla
@@ -69,7 +70,7 @@ Con `bi`/`bd`, `mi`/`md`, `pi`/`pd`, `ti`/`td` se da cada lado por separado.
 | `b: { e, z, g, c }` | el brazo por ángulos: `e` cuánto se levanta (0 cuelga, 90 horizontal), `z` hacia dónde (0 al frente, 90 al lado), `g` giro del húmero, `c` el codo |
 | `b: { a: [x, y, z], polo: [...], en: 'torax' \| 'pelvis' }` | el brazo por destino: la muñeca va a ese punto (del mundo, o del tórax o la pelvis) y el codo tira hacia `polo` |
 | `b: { cuelga: [dx, dz], largo }` | el brazo colgando a plomo del hombro (peso muerto) |
-| `m: { tipo, prono, mun, lat }` | la mano: `puno`, `abierta`, `plana`, `suelta`, `indice`, `pulgar` (un gesto pasa a otro poco a poco: los dedos se cierran, no saltan); `prono` 90 palma abajo o atrás, −90 arriba o adelante |
+| `m: { tipo, prono, mun, lat }` | la mano: `puno`, `abierta`, `plana`, `suelta`, `indice`, `pulgar`, `separados` (abierta, con los dedos bien separados) y `yemas` (esa misma en tienda: apoyada solo en las yemas y el pulgar, o en garra sobre algo ancho); un gesto pasa a otro poco a poco: los dedos se cierran, no saltan. `prono` 90 palma abajo o atrás, −90 arriba o adelante; `mun`, cuánto se dobla la muñeca (+ hacia la palma, − hacia el dorso); `lat`, cuánto se ladea (+ hacia el pulgar en la mano izquierda; no se refleja en la derecha) |
 | `m: { tipo, barra: [x, y, z], palma: [x, y, z] }` | la mano que **agarra algo**: se dice, en el mundo, a lo largo de qué va lo que agarra (`barra`) y hacia dónde mira la palma (`palma`; con `barra`, solo de qué lado queda), y el antebrazo gira lo que haga falta, esté el codo donde esté. `EN_BARRA` (la palma hacia delante: una dominada, un press tumbado), `EN_BARRA_SUP` (hacia él). Con `prono` solo, el puño gira con el codo y acaba atravesado en la barra |
 | `p: { suelo: [x, z], abre, talon, alto, polo }` | el pie plantado: dónde cae el tobillo, cuánto apunta hacia fuera, cuánto sube el talón, sobre qué altura pisa |
 | `p: { a: [x, y, z], polo }` · `p: { e, z, g, c }` | la pierna por destino del tobillo, o por ángulos (colgado, tumbado) |
@@ -137,6 +138,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 5 | `74-hombros.js` | hombros: 34 (con los 3 del bloque 1, 37 de 47; quedan 10: 4 con banda, 3 en máquina, 2 en multipower y 1 con disco) |
 | 6 | `75-biceps.js` | bíceps: 36 (con los 3 del bloque 1, 39 de 50; quedan 11: 4 con banda, 4 con cinta de suspensión, 1 en máquina, 1 con disco y 1 con fitball) |
 | 7 | `76-triceps.js` | tríceps: 37 (con los 3 del bloque 1, 40 de 47; quedan 7: 2 con cinta de suspensión, 2 con anillas, 1 en multipower, 1 en máquina y 1 con banda) |
+| 8 | `77-antebrazo-pantorrilla.js` | antebrazo: 16 (con el del bloque 1, 17 de 22; quedan 5: 4 con banda y 1 con disco) y pantorrilla: 19 (con los 4 del bloque 1, 23 de 30; quedan 7: 4 en máquina y 3 con banda) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -158,7 +160,18 @@ brazo casi estirado desde el hombro: devuelve el codo, que ya no se mueve, y el 
 cualquier banco: el brazo quieto y el antebrazo que baja hacia la cabeza), `dosManosArriba({…})` (una mancuerna entre las dos
 manos por encima de la cabeza: para subirla, rodea la cabeza), `patada(postura, brazo, antebrazo, lado)`, `empujon({…})` (ante
 la polea alta, con el codo en el costado), `pressCodos({…})` (los press con los codos pegados) y `plana(postura, dedos)` (la
-mano abierta, plana en el suelo o en el banco, llegue el antebrazo como llegue)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+mano abierta, plana en el suelo o en el banco, llegue el antebrazo como llegue)…; en `77-antebrazo-pantorrilla.js`: `manoA(postura,
+lado, dedos, palma, tipo)` (la mano, dicha en el mundo: hacia dónde van los dedos y hacia dónde mira la palma; devuelve el `prono`, el
+`mun` y el `lat` que hacen falta con el brazo tal como queda), `enMuslos` + `curlMunecaBarra({…})` (sentado, con los antebrazos a lo
+largo de los muslos y las muñecas pasadas las rodillas), `arrodillado(atrás, cabeceo)` + `anteBanco` (de rodillas ante un banco
+atravesado, con los antebrazos encima y las manos por fuera del borde), `paseo(base)` (andar de verdad: `tramo`, las posturas y la
+secuencia de cuatro pasos; `vuelta`, la media vuelta; `enMarco`, del marco de quien anda al mundo), `aCoger(base, agarre)` (agacharse
+a por lo que espera en el suelo), `estiraMuneca({…})`, `deTalon(grados)` (cuánto se adelanta y sube el tobillo al ponerse de puntillas:
+la cadera va con él), `enPunta(x, talón)` (el pie apoyado solo en la punta: por ahí se despega y se posa), `enBorde(x, talón)` (en el
+borde de un escalón), `pieEnBloque` + `sentadoEn` / `pieBajo` + `sentadoBajo` (sentado con los pies en un bloque, o en un banco bajo con
+los pies en el suelo), `sobreMuslo(postura, s, h)` (un punto sobre el muslo tal como queda: lo que se lleva encima sube y baja con la
+rodilla), `manoEnMuslo(postura, lado)` + `manosEnMuslos` (la mano que descansa en el muslo, plana y sobre su cara de arriba, no
+dentro de él) y `enTalon(lado, [x, z], grados)` + `piesEnTalon` (el pie apoyado solo en el talón, con la punta levantada: el tibial)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
 si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
 
 Las ayudas que valen para cualquier bloque están en `70-coreografias.js` (nacieron en el bloque 3 y el 4 las subió
@@ -197,9 +210,12 @@ una sola, o una entre las dos; `reposo: { i: [x, y, z], d: […] }`, dónde espe
 de qué; con `lado: 'i', otra: 'd', reposo: {}`, mientras espera la lleva la otra mano: se la pasa; con `dos: true`, una sola
 entre las dos manos: a lo largo de la mano izquierda, de `ejeDos` (en el marco del tórax) o, con `medio: true`, de la media de
 las dos manos; `corre`, cuántos centímetros se corre a lo largo de su eje (las manos, bajo un disco); `une: true`, si las
-manos se separan se queda con la de `lado`: la otra la suelta un momento y vuelve a cogerla), `kettlebell` (`cuelga: true`,
+manos se separan se queda con la de `lado`: la otra la suelta un momento y vuelve a cogerla; `extremo: true`, cogida por un extremo y
+no por el asa: la mano, en garra sobre el disco de arriba, y la mancuerna a plomo bajo ella; `toalla: true`, una toalla en el asa: mientras
+espera, monta abierta sobre el asa, y se enrolla cuando la mano que llega a ella se cierra), `kettlebell` (`cuelga: true`,
 a plomo de su asa: en un curl), `banco`, `predicador` (el banco Scott), `soporte` (el de la barra), `barra_dominadas`,
-`paralelas`, `escalon`, `esterilla`, `pared`, `polea`, `landmine` (la barra T) y `toalla` (algo blando).
+`paralelas`, `escalon`, `esterilla`, `pared`, `polea`, `landmine` (la barra T), `toalla` (algo blando) y `toallas` (una toalla cogida a
+lo largo, que hace de correa).
 
 - `banco`: `respaldo: 45` lo inclina; `85`, casi vertical (una silla); **negativo, declinado**. Con el respaldo
   levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba). `tapa: true`: el
@@ -229,7 +245,18 @@ a plomo de su asa: en un curl), `banco`, `predicador` (el banco Scott), `soporte
   las manos; ahí van los discos) o `dentro` (si se coge por la punta: a cuánto quedan los discos, hacia el anclaje),
   `reposo`. La mano va siempre a la misma distancia del anclaje: el agarre sube por un arco (`enArco`).
 - `paralelas`: tienen `agarre` (`'mi@0:27'`, `'md@0:-27'`): la mano va a la barra de su lado.
-- `soporte`: `z` y `alto` son donde descansa la barra: el agarre de la postura que la coge tiene que caer ahí.
+- `soporte`: `z` y `alto` son donde descansa la barra: el agarre de la postura que la coge tiene que caer ahí. Con
+  `haciaAtras: true` los ganchos miran hacia −Z: el soporte queda delante de quien saca la barra, que al retroceder se
+  aleja de los postes.
+- `toallas`: tiras de tela, cada una de un punto a una mano. `ancho` y `tiras: [{ de, a, cola, reposo, sobre, en }]`: `de`, de
+  dónde sale (un punto del mundo: lo alto de una barra; `'pie-i'` o `'pie-d'`: pasa por la planta de ese pie, bajo la bola;
+  `'mano-i'` o `'mano-d'`: tendida entre las dos manos); `a`, la mano que la coge (`'i'`, `'d'`); `cola`, lo que sobra pasada la
+  mano; `reposo`, hasta dónde cuelga mientras nadie la ha cogido; `sobre`, un punto de aquello sobre lo que monta (su doblez
+  se pinta por encima); `en: [posturas]`, solo se ve en los tramos que salen de una de esas posturas (así una toalla pasa
+  de un pie al otro). Con `agarreY` (y `agarreZ`) tiene `agarre`: `'mi@1:22'` clava la mano a ella.
+
+El material sabe **de qué postura sale** lo que Jérôme está haciendo (`ctx.de`, que le da `60-director.js`): con eso las
+`toallas` saben en qué pie van. Y `ctx.reposo` / `ctx.enLista([...])`, si lo que espera sigue esperando.
 
 **De qué se dibuja.** El material, como todo lo demás, solo con `path`, `circle`, `ellipse` y `rect` (en grupos `g`,
 con sus degradados y sus recortes): es lo que `src/85-lienzo.js` sabe copiar al canvas con Samsung Internet. Un
@@ -261,7 +288,16 @@ ninguna coreografía los usa todavía: están sin probar.
    `python3 tools/entrenador/pruebas/repaso.py carpeta "id1,id2,…"` (una hoja por ejercicio: una fila por paso, y la
    vista de «Girar»). Para un momento concreto: `python3 tools/entrenador/pruebas/tira.py salida.png <id> "p1+2,p2+1.5,p3+2,c+2"`
    (o varios de golpe, dos fotogramas por paso: `pruebas/flujo.py salida.png "id1,id2,…"`).
-4. `python3 tools/entrenador/construir.py` y `node tools/auditar_entrenador.js 8766`.
+4. **El camino de una postura a otra**: `TODO=1 node tools/entrenador/pruebas/camino.js <id>` dice en qué tramos una
+   zapatilla baja del suelo. Un pie clavado va en línea recta de un tobillo al otro: si entre tanto gira (de plano a de
+   puntillas, o media vuelta sobre el sitio), corta por debajo del suelo; y un pie suelto que cruza con la punta caída, lo
+   roza. Se arregla con una postura intermedia: el pie a medio rodar sobre la punta (`enPunta(x, 28)`), o en el aire y ya
+   mirando de lado (la media vuelta de los paseos). La auditoría mira las posturas clave, no lo que pasa entre ellas.
+5. **Lo que se toca, medido.** Una mano en la pared, en el muslo o en el suelo se coloca con su medida, no a ojo: la pared va
+   donde llegan las yemas (de perfil exacto, `pruebas/vistas.html?id=<id>&rumbos=90&picado=0&pos=a`, se ve si la mano se queda
+   en el aire delante de ella); la mano que descansa en un muslo va sobre su cara de arriba (`manoEnMuslo`); y las yemas, en el
+   suelo y no por debajo. Desde las dos vistas del vídeo un hueco de 7 cm puede no verse; de perfil, sí.
+6. `python3 tools/entrenador/construir.py` y `node tools/auditar_entrenador.js 8766`.
 
 Para grabar un MP4 (1080 × 1920, 30 cuadros por segundo): `python3 tools/entrenador/pruebas/graba.py salida.mp4 <id> [idioma]`.
 

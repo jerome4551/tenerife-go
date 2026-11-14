@@ -38,8 +38,11 @@
   }
 
   /* el gesto de la mano, en números: cuánto se cierran los dedos (0, abierta; 1, puño), cuánto el índice,
-     cuánto se abren en abanico y cuánto se levanta el pulgar. Así un gesto pasa a otro poco a poco. */
-  var GESTO = { abierta: [0.04, 0.04, 1, 0], plana: [0.03, 0.03, 0.12, 0], suelta: [0.3, 0.26, 0.3, 0], puno: [1, 1, 0.2, 0], indice: [1, 0, 0.2, 0], pulgar: [1, 1, 0.2, 1] };
+     cuánto se abren en abanico y cuánto se levanta el pulgar. Así un gesto pasa a otro poco a poco.
+     Un quinto número, si lo hay: cuánto baja el pulgar a apoyarse como un dedo más (la mano en tienda, sobre las yemas, o en garra
+     sobre algo ancho). «separados» es la mano abierta con los dedos bien separados; «yemas», esa misma mano en tienda */
+  var GESTO = { abierta: [0.04, 0.04, 1, 0], plana: [0.03, 0.03, 0.12, 0], suelta: [0.3, 0.26, 0.3, 0], puno: [1, 1, 0.2, 0], indice: [1, 0, 0.2, 0], pulgar: [1, 1, 0.2, 1],
+                separados: [0.04, 0.04, 1.7, 0], yemas: [0.35, 0.35, 1.7, 0, 1] };
   /* el pie plantado: [x, z] es donde cae el tobillo; abre, cuánto apunta hacia fuera; talon, cuánto
      se levanta el talón (gira sobre la bola del pie); alto, si pisa sobre algo; rumbo, el del cuerpo */
   function piePlantado(k, f, rumbo) {
@@ -99,7 +102,7 @@
       /* ── la mano ── */
       var m = deLado(P, 'm', k) || {};
       var gm = GESTO[m.tipo] || GESTO.suelta;
-      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0, c: gm[0], ci: gm[1], ab: gm[2], pu: gm[3], pal: m.palma ? unidad(m.palma) : null, bar: m.barra ? unidad(m.barra) : null, w: m.palma || m.barra ? 1 : 0 };
+      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0, c: gm[0], ci: gm[1], ab: gm[2], pu: gm[3], ap: gm[4] || 0, pal: m.palma ? unidad(m.palma) : null, bar: m.barra ? unidad(m.barra) : null, w: m.palma || m.barra ? 1 : 0 };
       /* ── la pierna ── */
       var q = deLado(P, 'p', k) || { suelo: [s * D.caderaX, 0], abre: 6 };
       var cad = mas(S.p, aplicar(S.B, [s * D.caderaX, 0, 0]));
@@ -221,7 +224,7 @@
       S.q[k] = { u: arco(a.q[k].u, b.q[k].u, t), l: arco(a.q[k].l, b.q[k].l, t), b: a.q[k].b && b.q[k].b ? unidad(mezcla(a.q[k].b, b.q[k].b, t)) : (a.q[k].b || b.q[k].b) };
       var ma = a.m[k], mb = b.m[k];
       S.m[k] = { tipo: t < 0.5 ? ma.tipo : mb.tipo, prono: mezclaN(ma.prono, mb.prono, t), mun: mezclaN(ma.mun, mb.mun, t), lat: mezclaN(ma.lat, mb.lat, t),
-                 c: mezclaN(ma.c, mb.c, t), ci: mezclaN(ma.ci, mb.ci, t), ab: mezclaN(ma.ab, mb.ab, t), pu: mezclaN(ma.pu, mb.pu, t),
+                 c: mezclaN(ma.c, mb.c, t), ci: mezclaN(ma.ci, mb.ci, t), ab: mezclaN(ma.ab, mb.ab, t), pu: mezclaN(ma.pu, mb.pu, t), ap: mezclaN(ma.ap || 0, mb.ap || 0, t),
                  pal: ma.pal && mb.pal ? unidad(mezcla(ma.pal, mb.pal, t), mb.pal) : (ma.pal || mb.pal),
                  bar: ma.bar && mb.bar ? unidad(mezcla(ma.bar, punto(ma.bar, mb.bar) < 0 ? por(mb.bar, -1) : mb.bar, t), mb.bar) : (ma.bar || mb.bar), w: mezclaN(ma.w || 0, mb.w || 0, t) };
       var ta = a.t[k], tb = b.t[k];
