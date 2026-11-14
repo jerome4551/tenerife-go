@@ -124,8 +124,8 @@ cuando se llega a ese paso desde una postura o una secuencia (o saltando a él c
 Los ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x` (`construir.py` junta todos los
 `src/7*.js` y apunta la huella de los pasos de cada ejercicio). Los bloques 1 a 15 reparten los 533 ejercicios que el
 catálogo tenía hasta el 13-11-2026, y las cuentas de la tabla («quedan N») son sobre esos 533. Ese día el catálogo pasó a
-950: los 417 nuevos (para casa y fuera: botellas, silla, mochila, toalla, mesa, aparatos biosaludables…) están sin
-repartir en bloques y ninguno tiene coreografía todavía.
+950, y después (notas 37 y 43) a 958: los 425 nuevos (para casa y fuera: botellas, silla, mochila, toalla, mesa,
+aparatos biosaludables…) están sin repartir en bloques y ninguno tiene coreografía todavía.
 
 | bloque | trozo | qué |
 |---|---|---|
