@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (659 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (660 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -560,6 +560,7 @@
     "cuerpoNF_livewell": {"es": "NHS, servicio de podología de Plymouth", "en": "NHS, Plymouth podiatry service", "fr": "NHS, service de podologie de Plymouth", "de": "NHS, Podologie in Plymouth", "it": "NHS, servizio di podologia di Plymouth", "nl": "NHS, podologische dienst in Plymouth", "zh": "NHS，普利茅斯足病科服务", "zht": "NHS，普利茅斯足科服務", "bg": "NHS, служба по подиатрия в Плимут", "pl": "NHS, poradnia podologiczna w Plymouth"},
     "cuerpoNF_wolves": {"es": "Health Services at Wolves, fisioterapia musculoesquelética", "en": "Health Services at Wolves, musculoskeletal physiotherapy", "fr": "Health Services at Wolves, kinésithérapie musculosquelettique", "de": "Health Services at Wolves, muskuloskelettale Physiotherapie", "it": "Health Services at Wolves, fisioterapia muscoloscheletrica", "nl": "Health Services at Wolves, musculoskeletale fysiotherapie", "zh": "Health Services at Wolves，肌肉骨骼物理治疗", "zht": "Health Services at Wolves，肌肉骨骼物理治療", "bg": "Health Services at Wolves, мускулно-скелетна физиотерапия", "pl": "Health Services at Wolves, fizjoterapia układu mięśniowo-szkieletowego"},
     "cuerpoNF_newham": {"es": "PDF publicado por el ayuntamiento de Newham", "en": "PDF published by Newham Council", "fr": "PDF publié par la municipalité de Newham", "de": "PDF, veröffentlicht vom Bezirk Newham", "it": "PDF pubblicato dal comune di Newham", "nl": "PDF gepubliceerd door de gemeente Newham", "zh": "纽汉区政府发布的 PDF", "zht": "紐漢區政府發布的 PDF", "bg": "PDF, публикуван от общината на Нюъм", "pl": "PDF opublikowany przez gminę Newham"},
+    "cuerpoNF_uruguay": {"es": "Uruguay", "en": "Uruguay", "fr": "Uruguay", "de": "Uruguay", "it": "Uruguay", "nl": "Uruguay", "zh": "乌拉圭", "zht": "烏拉圭", "bg": "Уругвай", "pl": "Urugwaj"},
     "cuerpoNF_va": {"es": "Departamento de Asuntos de Veteranos de EE. UU., programa MOVE!", "en": "US Department of Veterans Affairs, MOVE! programme", "fr": "Département des Anciens Combattants des États-Unis, programme MOVE!", "de": "US-Ministerium für Veteranenangelegenheiten, Programm MOVE!", "it": "Dipartimento degli Affari dei Veterani degli Stati Uniti, programma MOVE!", "nl": "Amerikaans ministerie van Veteranenzaken, programma MOVE!", "zh": "美国退伍军人事务部 MOVE! 计划", "zht": "美國退伍軍人事務部 MOVE! 計畫", "bg": "Министерство по въпросите на ветераните на САЩ, програма MOVE!", "pl": "Departament Spraw Weteranów USA, program MOVE!"},
     "cuerpoNF_guiaColorado": {"es": "guía completa de ejercicios publicada por la Guardia Nacional de Colorado", "en": "complete exercise guide published by the Colorado National Guard", "fr": "guide complet d’exercices publié par la Garde nationale du Colorado", "de": "vollständiger Übungsleitfaden, veröffentlicht von der Nationalgarde von Colorado", "it": "guida completa agli esercizi pubblicata dalla Guardia nazionale del Colorado", "nl": "volledige oefengids, gepubliceerd door de Nationale Garde van Colorado", "zh": "科罗拉多州国民警卫队发布的完整锻炼指南", "zht": "科羅拉多州國民兵發布的完整運動指南", "bg": "пълно ръководство с упражнения, публикувано от Националната гвардия на Колорадо", "pl": "pełny przewodnik po ćwiczeniach opublikowany przez Gwardię Narodową Kolorado"},
     "cuerpoNF_ejercitoEEUU": {"es": "Ejército de EE. UU.", "en": "US Army", "fr": "Armée de terre des États-Unis", "de": "US Army", "it": "Esercito degli Stati Uniti", "nl": "Amerikaanse landmacht", "zh": "美国陆军", "zht": "美國陸軍", "bg": "Армията на САЩ", "pl": "Armia Stanów Zjednoczonych"},
@@ -1913,7 +1914,9 @@
     'contenido de WebMD Ignite': 'cuerpoNF_webmd', 'contenido de WebMD Ignite revisado por su comité clínico': 'cuerpoNF_webmdComite',
     'iniciativa del Gobierno de Australia': 'cuerpoNF_liveup', 'PDF; flexión con las manos en la encimera': 'cuerpoNF_liveupFlexion',
     'NHS, servicio de podología de Plymouth': 'cuerpoNF_livewell', 'Health Services at Wolves, fisioterapia musculoesquelética': 'cuerpoNF_wolves',
-    'PDF publicado por el ayuntamiento de Newham': 'cuerpoNF_newham' };
+    'PDF publicado por el ayuntamiento de Newham': 'cuerpoNF_newham',
+    /* (14-11-2026, nota 43) el país del manual de la Secretaría Nacional del Deporte */
+    'Uruguay': 'cuerpoNF_uruguay' };
   var TROZOS_FUENTE = [['Programa de ejercicio en casa', 'cuerpoNF_programaCasa'], ['copia de la Recommended Routine de r/bodyweightfitness', 'cuerpoNF_copiaRutina'],
     ['Universidad de Sussex', 'cuerpoNF_sussex'], ['hoja de ejercicio', 'cuerpoNF_hojaEjercicio'],
     /* (13-11-2026, bloque 35) trozos de los títulos nuevos (fuera de paréntesis o dentro de una nota más larga) */

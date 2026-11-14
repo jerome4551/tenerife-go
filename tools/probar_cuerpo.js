@@ -3722,10 +3722,14 @@ async function ejemplo(pg, mas) {
     const H533 = '781ea591d52a0e9b55c7e7d0db3230f6751540be40496ae95781d2646d10fd8b';
     /* (nota 37) y la de las 950 publicadas el 13-11-2026 con el bloque 35: la 951, la búlgara en una silla, va detrás */
     const H950 = '51c2effd185fd0b28393c47fd2c8a8717187405687fc4b07b9faf97f49517db0';
+    /* (nota 43) y la de las 951 de la nota 37: detrás van 7 de las 13 fichas del bloque 35 que se quedaron fuera, ya comprobadas */
+    const H951 = 'd7c2569e3b7840002fd2e03f1446ad335433fe821f5a8690969423cad512d43c', N43 = ['press-pecho-de-pie-biosaludable', 'remo-inclinado-una-pierna-botellas', 'curl-biceps-biosaludable', 'abdominal-silla-biosaludable', 'abdominal-silla-mantenido-biosaludable', 'cangrejo-bajando-escaleras', 'salto-desde-primer-escalon'];
     const ENT = ['gimnasio', 'fuera', 'calistenia', 'casa'], NUEVOS = ['botella', 'silla', 'toalla', 'mochila', 'mesa', 'cubo'];
-    prueba('36: 951 fichas: las 533 de antes, iguales y delante (su huella), las 417 del bloque 35 detrás (las 950, con su huella) y la búlgara en una silla (nota 37); ningún id repetido',
-      D36.length === 951 && crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 533))).digest('hex') === H533 &&
-      crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 950))).digest('hex') === H950 && D36[950].id === 'sentadilla-bulgara-silla' && new Set(D36.map(x => x.id)).size === 951, D36.length + '');
+    prueba('36: 958 fichas: las 533 de antes, iguales y delante (su huella), las 417 del bloque 35 detrás (las 950, con su huella), la búlgara en una silla (nota 37; las 951, con su huella) y 7 de las 13 que se quedaron fuera (nota 43); ningún id repetido',
+      D36.length === 958 && crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 533))).digest('hex') === H533 &&
+      crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 950))).digest('hex') === H950 && D36[950].id === 'sentadilla-bulgara-silla' &&
+      crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 951))).digest('hex') === H951 && JSON.stringify(D36.slice(951).map(x => x.id)) === JSON.stringify(N43) &&
+      new Set(D36.map(x => x.id)).size === 958, D36.length + '');
     prueba('36: cada ficha, con su sitio (gimnasio, fuera, calistenia o casa) y de 1 a 6 fuentes en https; correr o desplazarse, solo en las nuevas',
       D36.every(x => x.e.length && x.e.every(e => ENT.includes(e)) && x.f.length >= 1 && x.f.length <= 6 && x.f.every(q => /^https:\/\//.test(q[1]))) &&
       D36.slice(0, 533).every(x => x.p !== 'locomocion' && !x.e.includes('casa')) && D36.some(x => x.p === 'locomocion'), '');
