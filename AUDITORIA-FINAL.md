@@ -8359,6 +8359,80 @@ castellano; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos
 diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y
 262, y sus cuatro robots. `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
 
+## «Su cuerpo»: lo que decidió Jérôme de la nota 43 (14 de noviembre, tarde)
+
+**Por qué.** La nota 43 dejó dos cosas para Jérôme. El nombre de la ficha 9 («Encogimiento abdominal sentado en la silla
+de abdominales» suena a crunch, que dobla la espalda, y su paso 2 dice «Con la espalda recta, lleve el tronco hacia las
+rodillas»): «Nota 43 si cámbialo». Y el nivel del remo inclinado a una pierna con botellas, que con la fuente nueva
+lleva además un peso muerto a una pierna: «el nivel de remo un pierna intermedio».
+
+**Lo que cambia** (`78d9323`): la 9 se llama «Abdominal en la silla de abdominales», a juego con la 10 («Abdominal
+mantenido en la silla de abdominales»), como proponía la nota. En los nueve idiomas, las dos se llamaban «crunch»
+(«Seated crunch», «Crunch hold», 卷腹, «Коремни преси», «Brzuszki»…), y las dos son el mismo movimiento con la espalda
+recta: pasan a un ejercicio de abdominales y, la 10, con su «mantenido» («Ab exercise» y «Ab hold on the outdoor ab
+chair», «Bauchübung» y «Gehaltene Bauchübung am Bauchtrainer», 健腹椅腹肌练习 y 健腹椅腹肌静态练习…). El nombre de la 10 en castellano
+no cambia. En las fuentes de «Su cuerpo», `ejercicios/bloque-43.json` y sus nueve traducciones; con `construir.py`
+cambian solo los diez `datos/cuerpo/ejercicios-<idioma>.json` (dos nombres en cada uno), y ningún nombre se repite en
+ningún idioma.
+
+**Lo que no cambia:** el remo a una pierna ya es de nivel intermedio (nivel 2), como quiere Jérôme. Sus grupos, los de
+siempre: la fuente no nombra músculos. Y las 5 fichas que siguen fuera (sus fuentes no se abren desde aquí) se le
+mandaron a Jérôme, con sus pasos, sus fuentes y lo que leyó la revisión, para la sesión de «Su cuerpo».
+
+## Jérôme, el entrenador: el bloque 7, los tríceps (37 vídeos más; 247 con vídeo) (nota 45, 14 de noviembre)
+
+**Por qué.** El encargo de Jérôme, del 11 de noviembre («es para todos los ejercicios del cuerpo presentes en la app, y
+si faltan hazlos. Bloque por bloque»), y su «Verde sube» del 14 con el bloque 7 (nota 45,
+`jerome-entrenador-bloque-7.zip`).
+
+**Lo que llega.** Tres parches: el `0008r` y el `0009r` (los bloques 5 y 6 rehechos sobre el `main` de las 12:49, que
+solo cambian la frase de estado de la página de muestra: comparados aquí con el `0008` y el `0009`) y el `0010`, el
+bloque 7. Los bloques 5 y 6 ya estaban publicados con los de antes, así que solo entra el `0010`. Revisado a mano: sin
+red, sin nada guardado en el teléfono, sin `eval`, sin caracteres invisibles; solo ficheros del entrenador y ningún
+texto nuevo. Su LEEME y su plantilla de la muestra ya no casaban con lo publicado (`git am -3` no tenía de dónde
+partir): se pusieron los de su carpeta `repo/`, como dice su nota. **Las 210 coreografías publicadas no cambian**,
+comparadas aquí módulo contra módulo (641 posturas, 175.133 números). `modulos/entrenador.js`: 601.014 bytes (163.907
+con `gzip -9`).
+
+**Lo que cambia:**
+- `9d45454`: los 37 vídeos de los tríceps: tumbado (el press francés con barra Z, con barra recta y con mancuernas, en
+  banco plano, inclinado y declinado y en el suelo, y las extensiones con una mancuerna), por encima de la cabeza,
+  las patadas, las poleas (con la barra en V, material nuevo), los press en banco (agarre cerrado, inverso, JM, Tate
+  y con mancuernas), los fondos, el soporte en paralelas, dos flexiones y el estiramiento. Con los 3 del bloque 1,
+  40 de los 47 de tríceps de los 533 de antes. Las 37 son de fichas de tríceps del catálogo (29 de gimnasio, 6 de
+  fuera y 2 de calistenia) y ninguna repite otra. De los 11 ficheros de su `repo/`, 10 quedan byte a byte y el otro
+  es la plantilla, por su frase de estado. `construir.py --comprobar`, en verde.
+- `3f20df8`: la plantilla de la muestra (no la enlaza la app): «Los bloques 1 a 7 ya están en la app»; y en el LEEME,
+  «950 fichas el 13-11, 958 el 14-11» (decía 951: el parche no traía la nota 43).
+
+**Las pruebas.** `tools/auditar_entrenador.js`, sobre el catálogo de 958: 42 controles, en verde. Los 247 vídeos
+enteros, dos veces (494 pases, 436.264 cuadros); 215 secuencias de 162 ejercicios caben en su paso, la más justa con
+0,10 s (el estiramiento de gemelo, en inglés), y la cuenta, cotejada con el reproductor en 1.546 pasos; 40.689 momentos
+dentro del cuadro (el que más se arrima, a 8,3 px); el dibujo, hecho solo de lo que copia el canvas de Samsung Internet,
+y en Samsung Internet, 28 momentos (ahora con el estiramiento de tríceps), con una diferencia media de 0,24 de 255; en
+la app, la ficha con vídeo y la ficha sin vídeo, como estaban.
+
+**Lo que no está:** un iPhone o un Samsung de verdad; que a Jérôme le valgan estos 37 (los tiene en la muestra); y tres
+sitios donde, según su nota, el cuerpo de Jérôme no da (la extensión tumbado con una mancuerna no llega detrás de la
+cabeza, en el press Tate el brazo se mueve y, para subir una mancuerna con las dos manos, la rodea por un lado). **Para
+decidir más adelante (no bloquea):** el «½×», subir al pino por la pared, los rótulos de los músculos, el peso del
+módulo (601 kB) y la extensión en polea con cuerda del bloque 1, que acaba con las manos algo metidas en los muslos (de
+un bloque publicado; su nota propone arreglarla aparte).
+
+## El lote del 14 de noviembre, tarde (la nota 43 y el bloque 7 del entrenador): la auditoría entera
+
+**La auditoría entera** sobre `b075edd` (árbol `c403e7e2`), los tres commits de arriba encima de `main` (`f882ba1`); en
+`main` son los mismos, rebasados sobre cuatro commits de los robots (`fd2de7a`, el semáforo de INVOLCAN; `1195960`,
+terremotos; `4ba52bd`, avisos de AEMET, y `1a62532`, alertas del Gobierno de Canarias), que solo cambian
+`datos/semaforo-involcan.json`, `datos/sismos-ign.json`, `datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y
+con los controles que leen esos ficheros, en verde tras el rebase. En sus 70 bloques, ningún rojo: `probar_cuerpo.js`,
+725; `auditar_entrenador.js`, 42; `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los diez idiomas;
+`auditar_registro.js`, todo de usted (137.802 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262,
+y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas y 3.726 filas; 5.873). `app_preparar.js`
+no cambió ningún fichero del repositorio, ni antes ni después.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
