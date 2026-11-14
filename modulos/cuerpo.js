@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (660 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (667 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -490,6 +490,13 @@
     "cuerpoPlanNivel": {"es": "¿A qué nivel entrena?", "en": "At what level do you train?", "fr": "À quel niveau vous entraînez-vous ?", "de": "Auf welchem Niveau trainieren Sie?", "it": "A che livello si allena?", "nl": "Op welk niveau traint u?", "zh": "您的训练水平如何？", "zht": "您的訓練程度如何？", "bg": "На какво ниво тренирате?", "pl": "Jaki poziom treningu?"},
     "cuerpoNivelTope": {"es": "A tope", "en": "All out", "fr": "À fond", "de": "Volle Kraft", "it": "Al massimo", "nl": "Alles geven", "zh": "全力以赴", "zht": "全力以赴", "bg": "С пълна сила", "pl": "Na maksimum"},
     "cuerpoRutHoy": {"es": "Su sesión de hoy", "en": "Your session today", "fr": "Votre séance du jour", "de": "Ihre Einheit heute", "it": "La sua sessione di oggi", "nl": "Uw sessie van vandaag", "zh": "今天的训练", "zht": "今天的訓練", "bg": "Вашата тренировка днес", "pl": "Dzisiejszy trening"},
+    "cuerpoPlanQue": {"es": "¿Qué quiere hacer hoy?", "en": "What would you like to do today?", "fr": "Que souhaitez-vous faire aujourd’hui ?", "de": "Was möchten Sie heute machen?", "it": "Che cosa vuole fare oggi?", "nl": "Wat wilt u vandaag doen?", "zh": "您今天想做什么？", "zht": "您今天想做什麼？", "bg": "Какво искате да правите днес?", "pl": "Co dziś robić?"},
+    "cuerpoPlanQue_estirar": {"es": "Estiramientos", "en": "Stretching", "fr": "Étirements", "de": "Dehnen", "it": "Allungamento", "nl": "Rekken", "zh": "拉伸", "zht": "伸展", "bg": "Разтягане", "pl": "Rozciąganie"},
+    "cuerpoEstTit": {"es": "Sus estiramientos", "en": "Your stretches", "fr": "Vos étirements", "de": "Ihre Dehnübungen", "it": "I suoi allungamenti", "nl": "Uw rekoefeningen", "zh": "您的拉伸", "zht": "您的伸展", "bg": "Вашите разтягания", "pl": "Ćwiczenia rozciągające"},
+    "cuerpoEstCuerpo": {"es": "Cuerpo completo", "en": "Full body", "fr": "Corps entier", "de": "Ganzer Körper", "it": "Corpo intero", "nl": "Hele lichaam", "zh": "全身", "zht": "全身", "bg": "Цялото тяло", "pl": "Całe ciało"},
+    "cuerpoEstSesion": {"es": "Sesión de hoy", "en": "Today’s session", "fr": "Séance du jour", "de": "Heutige Einheit", "it": "Sessione di oggi", "nl": "Sessie van vandaag", "zh": "今天的训练", "zht": "今天的訓練", "bg": "Днешната тренировка", "pl": "Dzisiejszy trening"},
+    "cuerpoEstAntes": {"es": "¿Tengo que estirar antes o después de entrenar?", "en": "Should I stretch before or after training?", "fr": "Faut-il s’étirer avant ou après l’entraînement ?", "de": "Sollte ich vor oder nach dem Training dehnen?", "it": "Devo fare stretching prima o dopo l’allenamento?", "nl": "Moet ik rekken voor of na het trainen?", "zh": "拉伸应该在训练前还是训练后做？", "zht": "伸展應該在訓練前還是訓練後做？", "bg": "Трябва ли да се разтягам преди или след тренировка?", "pl": "Rozciągać się przed treningiem czy po nim?"},
+    "cuerpoSesEstirar": {"es": "Después: estire lo que ha trabajado", "en": "Afterwards: stretch what you have worked", "fr": "Ensuite : étirez ce que vous avez travaillé", "de": "Danach: Dehnen Sie, was Sie trainiert haben", "it": "Dopo: allunghi ciò che ha allenato", "nl": "Daarna: rek wat u hebt getraind", "zh": "练完后：拉伸今天练过的部位", "zht": "練完後：伸展今天練過的部位", "bg": "След това: разтегнете това, което сте тренирали", "pl": "Potem: rozciągnąć to, co było ćwiczone"},
     "cuerpoRutSesion": {"es": "Sesión {letra} · {nivel}", "en": "Session {letra} · {nivel}", "fr": "Séance {letra} · {nivel}", "de": "Einheit {letra} · {nivel}", "it": "Sessione {letra} · {nivel}", "nl": "Sessie {letra} · {nivel}", "zh": "训练 {letra} · {nivel}", "zht": "訓練 {letra} · {nivel}", "bg": "Тренировка {letra} · {nivel}", "pl": "Trening {letra} · {nivel}"},
     "cuerpoRutSeg": {"es": "{series} × {seg} s", "en": "{series} × {seg} s", "fr": "{series} × {seg} s", "de": "{series} × {seg} s", "it": "{series} × {seg} s", "nl": "{series} × {seg} s", "zh": "{series} 组 × {seg} 秒", "zht": "{series} 組 × {seg} 秒", "bg": "{series} × {seg} с", "pl": "{series} × {seg} s"},
     "cuerpoSegN": {"es": "{n} s", "en": "{n} s", "fr": "{n} s", "de": "{n} s", "it": "{n} s", "nl": "{n} s", "zh": "{n}秒", "zht": "{n}秒", "bg": "{n} с", "pl": "{n} s"},
@@ -3908,6 +3915,8 @@
     $('tgc-plan-btn').setAttribute('aria-expanded', planAbierto ? 'true' : 'false');
     $('tgc-plan-resumen').textContent = SH ? (SH.descanso ? tx('cuerpoPlanResDescanso') : tx('cuerpoPlanPara', { lista: SH.nombre }))
       : (hay ? tx('cuerpoPlanPara', { lista: lista(P.grupos.map(nombre)) }) : tx('cuerpoPlanResDescanso'));
+    /* (nota 40) con «Estiramientos» elegido, eso y la zona */
+    if (planQue === 'estirar' && st.sitio) $('tgc-plan-resumen').textContent = tx('cuerpoPlanPara', { lista: tx('cuerpoPlanQue_estirar') + ' · ' + estZonaNombre() });
     $('tgc-plan-cuerpo').hidden = !planAbierto;
     if (!planAbierto) return;
     var sit = $('tgc-plan-sitios'); sit.textContent = '';
@@ -3927,10 +3936,17 @@
       var b = el('button', '', tx('cuerpoMat_' + m)); b.type = 'button'; b.dataset.mat = m;
       b.setAttribute('aria-pressed', st.material.indexOf(m) >= 0 ? 'true' : 'false'); mats.appendChild(b);
     });
+    /* (nota 40) tras el sitio, qué hacer hoy: fuerza (las rutinas) o estiramientos; no se guarda */
+    var qf = $('tgc-plan-que-f'), qs = $('tgc-plan-que');
+    qf.hidden = !st.sitio; qs.textContent = '';
+    ['fuerza', 'estirar'].forEach(function (v) {
+      var b = el('button', '', tx(v === 'fuerza' ? 'cuerpoTipo_fuerza' : 'cuerpoPlanQue_estirar')); b.type = 'button'; b.dataset.que = v;
+      b.setAttribute('aria-pressed', planQue === v ? 'true' : 'false'); qs.appendChild(b);
+    });
     /* (nota 34) el nivel, después del sitio; «A tope», solo a mayores de edad. Para menores, la respuesta de la NSCA
        sobre jóvenes; desde los 65, la de mayores (no llegar al fallo) */
     var nf = $('tgc-plan-nivel-f'), nv = $('tgc-plan-niveles'), ad = adulto(), em = edadMax(), ed = $('tgc-plan-edad');
-    nf.hidden = !st.sitio; nv.textContent = '';
+    nf.hidden = !st.sitio || planQue === 'estirar'; nv.textContent = '';
     NIVELES_RUT.forEach(function (n) {
       if (n === 4 && !ad) return;
       var b = el('button', '', nombreNivel(n)); b.type = 'button'; b.dataset.nivel = String(n);
@@ -3939,6 +3955,19 @@
     ed.dataset.preg = !ad ? 'adolescentes-pesas' : (em !== null && em >= 65 ? 'mayores-ejercicio' : '');
     ed.textContent = !ad ? tx('cuerpoRutMenores') : (ed.dataset.preg ? tx('cuerpoRutMayores', { tope: tx('cuerpoNivelTope') }) : '');
     ed.hidden = nf.hidden || !ed.dataset.preg;
+    /* (nota 40) con «Estiramientos»: su lista, en lugar de la sesión y del plan por grupos */
+    var conEst = planQue === 'estirar' && !!st.sitio;
+    $('tgc-est').hidden = true; $('tgc-plan-porque').hidden = conEst;
+    if (conEst) {
+      if (!EST && !estCarga && !estError) cargarEstiramientos().then(function () { if (planAbierto) renderPlan(); }, function () { if (planAbierto) renderPlan(); });
+      if ((!EJ || !EJ_TX[lengua()]) && !ejCarga && !ejError) cargarEjercicios().then(function () { if (planAbierto) renderPlan(); }, function () { if (planAbierto) renderPlan(); });
+      $('tgc-ses').hidden = true;
+      $('tgc-plan-lista').textContent = ''; $('tgc-plan-lista').hidden = true; $('tgc-plan-descansan').hidden = true;
+      var fallo = estError || (ejError && !EJ);
+      $('tgc-plan-tit').hidden = true; $('tgc-plan-txt').hidden = !fallo; $('tgc-plan-txt').textContent = fallo ? tx('cuerpoErrorEj') : '';
+      if (!fallo && EST && EJ) { $('tgc-est').hidden = false; renderEst(); }
+      return;
+    }
     /* la sesión de hoy, con los nombres de los ejercicios ya cargados; si todo lo de la sesión descansa, «Hoy, descanso»
        con las frases de siempre; sin nivel (o sin las rutinas), el plan por grupos */
     /* sin el catálogo (no llegó), el plan por grupos de siempre en lugar de una tarjeta vacía */
@@ -4166,6 +4195,143 @@
       ol.appendChild(li);
     });
     var fb = $('tgc-ses-f'); fb.textContent = ''; fb.appendChild(fuentesRut(fk));
+    /* (nota 40) al final, «Después: estire lo que ha trabajado»: los grupos de esta sesión */
+    sesGrupos = [];
+    SH.ejs.forEach(function (e) { RUT.x[e.id][0].forEach(function (g) { if (sesGrupos.indexOf(g) < 0) sesGrupos.push(g); }); });
+    $('tgc-ses-estirar').hidden = !sesGrupos.length;
+  }
+
+  /* ══ (nota 40, 13-11-2026) Los estiramientos, junto a las rutinas (Jérôme: «Hazme un plan completo de estiramiento.
+     Cuerpo completo. Zona individuales. Fuera y adentro. Con y sin material. Verifica las fuentes busca los más fiables
+     posibles»; para la app, «Junto a las rutinas») ══
+     datos/cuerpo/estiramientos.json (se pide al usarse): dentro (casa y gimnasio) y fuera (fuera y calistenia), el cuerpo
+     completo (uno por grupo) y cada uno de los 12 grupos, con hasta 3 alternativas; la pauta del ACSM (2011) y la de los
+     mayores de 65; lo que se da por hecho en cada sitio (en casa, lo marcado), y las fuentes con lo leído. Se comprueba
+     al leerlo: una lista que no cuadra no se usa.
+     - Tras el sitio, «¿Qué quiere hacer hoy?»: Fuerza (las rutinas) o Estiramientos. No se guarda: al abrir la app, Fuerza.
+     - Cada estiramiento: el de la lista o, si no se puede con lo que hay, su primera alternativa que sí; si no se puede
+       ninguno, no sale (como los ejercicios, nota 37: «se quita los ejercicios donde es necesario el material»).
+     - Al final de cada sesión de fuerza, «Después: estire lo que ha trabajado»: el cuerpo completo, solo con los grupos de
+       esa sesión («Sesión de hoy»). */
+  var EST = null, estCarga = null, estError = false, planQue = 'fuerza', estZona = 'cuerpo', estSesGrupos = null, sesGrupos = [];
+  function indexarEst(d) {
+    if (!d || typeof d !== 'object' || d.v !== 1 || !d.f || typeof d.f !== 'object' || !d.i || typeof d.i !== 'object' || !d.p || typeof d.p !== 'object' ||
+        !d.h || typeof d.h !== 'object' || !d.x || typeof d.x !== 'object' || !Array.isArray(d.z)) return null;
+    /* mapas sin prototipo, como en las rutinas */
+    var f = Object.create(null), p = Object.create(null), x = Object.create(null), h = Object.create(null), z = Object.create(null);
+    Object.keys(d.f).forEach(function (k) {
+      var q = d.f[k];
+      if (!esId(k) || !q || typeof q.c !== 'string' || !q.c || q.c.length > 80 || typeof q.u !== 'string' || q.u.length > 400 || !/^https:\/\/[^\s"'<>]+$/.test(q.u) ||
+          typeof q.l !== 'string' || !q.l || q.l.length > 4000) return;
+      f[k] = { c: q.c, u: q.u, l: q.l };
+    });
+    var claves = function (fs) { return Array.isArray(fs) && fs.length > 0 && fs.length <= 8 && fs.every(function (k) { return typeof k === 'string' && f[k]; }) ? fs.slice() : null; };
+    ['adulto', 'mayor'].forEach(function (k) {
+      var q = d.p[k];
+      if (!q || typeof q !== 'object') return;
+      var y = { s: parRut(q.s, 1, 10), r: null, t: parRut(q.t, 1, 600), d: null, f: claves(q.f), x: textosRut(q.x) };
+      if (y.s && y.t && y.f && y.x) p[k] = y;
+    });
+    var it = textosRut(d.i.t), ifs = claves(d.i.f);
+    Object.keys(d.x).forEach(function (k) {
+      var q = d.x[k];
+      if (!esId(k) || !Array.isArray(q) || q.length !== 2 || !Array.isArray(q[0]) || !Array.isArray(q[1])) return;
+      var g = soloDe(q[0], GRUPOS), m = soloDe(q[1], MATERIALES);
+      if (g.length && g.length === q[0].length && m.length && m.length === q[1].length) x[k] = [g, m];
+    });
+    ['gimnasio', 'fuera', 'calistenia'].forEach(function (s) {
+      var m = d.h[s], v = soloDe(m, MATERIALES);
+      if (Array.isArray(m) && v.length === m.length) h[s] = v;
+    });
+    d.z.forEach(function (q) {
+      if (!q || (q.si !== 'dentro' && q.si !== 'fuera') || (q.z !== 'cuerpo' && GRUPOS.indexOf(q.z) < 0) || !Array.isArray(q.e) || !q.e.length || q.e.length > 15) return;
+      var e = q.e.map(function (w) {
+        return Array.isArray(w) && w.length === 2 && esId(w[0]) && x[w[0]] && Array.isArray(w[1]) && w[1].length <= 3 &&
+          w[1].every(function (a) { return esId(a) && x[a] && a !== w[0]; }) ? [w[0], w[1].slice()] : null;
+      });
+      if (e.every(Boolean)) z[q.si + ':' + q.z] = e;
+    });
+    return p.adulto && p.mayor && it && ifs && h.gimnasio && h.fuera && h.calistenia && z['dentro:cuerpo'] && z['fuera:cuerpo'] ?
+      { f: f, p: p, i: { t: it, f: ifs }, x: x, h: h, z: z } : null;
+  }
+  function cargarEstiramientos() {
+    if (EST) return Promise.resolve();
+    if (estCarga) return estCarga;
+    estError = false;
+    estCarga = pedirJSON('estiramientos.json').then(function (d) { EST = indexarEst(d); if (!EST) { estError = true; throw new Error('estiramientos'); } },
+      function (e) { estError = true; throw e; });
+    var fin = function () { estCarga = null; };
+    estCarga.then(fin, fin);
+    return estCarga;
+  }
+  function estZonaNombre() {
+    return estZona === 'sesion' && estSesGrupos && estSesGrupos.length ? tx('cuerpoEstSesion') : (GRUPOS.indexOf(estZona) >= 0 ? nombre(estZona) : tx('cuerpoEstCuerpo'));
+  }
+  /* lo que se puede en cada sitio: en casa, lo marcado (y la pared); en los demás, lo que se da por hecho; sin material, siempre */
+  function estPuede(id) {
+    var ms = EST.x[id][1];
+    if (st.sitio === 'casa') return puedeEnCasa(ms);
+    var hay = EST.h[st.sitio] || [];
+    return ms.every(function (m) { return m === 'ninguno' || hay.indexOf(m) >= 0; });
+  }
+  function estDatos() {
+    var si = st.sitio === 'casa' || st.sitio === 'gimnasio' ? 'dentro' : 'fuera';
+    var deSes = estZona === 'sesion' && estSesGrupos && estSesGrupos.length;
+    var lista = (deSes ? null : EST.z[si + ':' + estZona]) || EST.z[si + ':cuerpo'];
+    if (deSes) lista = lista.filter(function (w) { return estSesGrupos.indexOf(EST.x[w[0]][0][0]) >= 0; });
+    var em = edadMax(), ejs = lista.map(function (w) {
+      var vale = [w[0]].concat(w[1]).filter(estPuede);
+      return vale.length ? { id: vale[0], alts: vale.slice(1) } : null;
+    }).filter(Boolean);
+    /* si no quedara ninguno (con los datos del bloque no pasa), la lista tal cual */
+    if (!ejs.length) ejs = lista.map(function (w) { return { id: w[0], alts: w[1].slice() }; });
+    return { p: em !== null && em >= 65 ? EST.p.mayor : EST.p.adulto, ejs: ejs };
+  }
+  function fuentesEst(ks) {
+    var det = el('details', 'tgc-resp-f tgc-ses-fuentes'), sum = el('summary'), ul = el('ul');
+    ks = ks.filter(function (k) { return EST.f[k]; });
+    sum.appendChild(el('span', '', tx('cuerpoAsisFuentes', { n: ks.length })));
+    det.appendChild(sum);
+    ks.forEach(function (k) {
+      var q = EST.f[k], li = el('li'), a = el('a', '', q.c), lp = el('p', 'tgc-resp-leido');
+      a.href = q.u; a.target = '_blank'; a.rel = 'noopener noreferrer'; li.appendChild(a);
+      lp.appendChild(el('b', '', tx('cuerpoAsisLeido') + ': ')); lp.appendChild(document.createTextNode(q.l)); li.appendChild(lp);
+      ul.appendChild(li);
+    });
+    det.appendChild(ul);
+    return det;
+  }
+  function renderEst() {
+    var zs = $('tgc-est-zonas'), opciones = (estSesGrupos && estSesGrupos.length ? ['sesion'] : []).concat(['cuerpo'], GRUPOS);
+    if (opciones.indexOf(estZona) < 0) estZona = 'cuerpo';
+    zs.textContent = '';
+    opciones.forEach(function (v) {
+      var b = el('button', '', v === 'sesion' ? tx('cuerpoEstSesion') : (v === 'cuerpo' ? tx('cuerpoEstCuerpo') : nombre(v)));
+      b.type = 'button'; b.dataset.zona = v; b.setAttribute('aria-pressed', estZona === v ? 'true' : 'false'); zs.appendChild(b);
+    });
+    var D = estDatos();
+    $('tgc-est-nom').textContent = estZonaNombre() + ' · ' + tx(st.sitio === 'casa' ? 'cuerpoSitio_casa' : 'cuerpoEnt_' + st.sitio);
+    $('tgc-est-como').textContent = txL(D.p.x);
+    $('tgc-est-intro').textContent = txL(EST.i.t);
+    var ol = $('tgc-est-lista');
+    ol.textContent = '';
+    D.ejs.forEach(function (e) {
+      var li = el('li', 'tgc-ses-ej'), b = el('button', 'tgc-ses-ej-btn');
+      b.type = 'button'; b.dataset.id = e.id;
+      b.appendChild(el('span', 'tgc-ses-ej-nom', nombreEj(e.id)));
+      b.appendChild(el('span', 'tgc-ses-ej-pauta', pautaTxt(D.p)));
+      li.appendChild(b);
+      if (e.alts.length) {
+        var d = el('details', 'tgc-ses-alt'), w = el('div', 'tgc-ses-alts');
+        d.appendChild(el('summary', '', tx('cuerpoRutAlt')));
+        e.alts.forEach(function (a) { var ab = el('button', 'tgc-ver', nombreEj(a)); ab.type = 'button'; ab.dataset.id = a; w.appendChild(ab); });
+        d.appendChild(w); li.appendChild(d);
+      }
+      ol.appendChild(li);
+    });
+    var fk = D.p.f.slice();
+    EST.i.f.forEach(function (k) { if (fk.indexOf(k) < 0) fk.push(k); });
+    var fb = $('tgc-est-f'); fb.textContent = ''; fb.appendChild(fuentesEst(fk));
   }
 
   /* ══ (#120, 12-11-2026) «Su fuerza», en «Evolución» (Jérôme: «guarda los kilos y las repeticiones para ver mejor los
@@ -5129,7 +5295,7 @@
     /* (#120) «¿Qué entreno hoy?»: abrir y cerrar; el sitio y el material se guardan al tocarlos; un grupo abre su hoja
        con el filtro del sitio (y, el primer día, el nivel inicial); «¿Por qué?», las dos respuestas con sus fuentes */
     $('tgc-plan-btn').addEventListener('click', function () {
-      planAbierto = !planAbierto; if (planAbierto) rutError = false; renderPlan();
+      planAbierto = !planAbierto; if (planAbierto) { rutError = false; estError = false; } renderPlan();
       if (planAbierto && !EJ) cargarEjercicios().then(function () { if (planAbierto) renderPlan(); }, function () {});
     });
     $('tgc-plan-sitios').addEventListener('click', function (e) {
@@ -5176,6 +5342,34 @@
       if (id === 'adolescentes-pesas' || id === 'mayores-ejercicio') { preguntaIdPendiente = [id]; setModo('preguntar'); }
     });
     $('tgc-ses-calentar').addEventListener('click', function () { preguntaIdPendiente = ['calentar']; setModo('preguntar'); });
+    /* (nota 40) fuerza o estiramientos; la zona; «Después: estire lo que ha trabajado»; la pregunta de antes o después; un
+       estiramiento (o una alternativa) abre su ficha */
+    $('tgc-plan-que').addEventListener('click', function (e) {
+      var b = e.target.closest('button'), v = b && b.dataset.que;
+      if (v !== 'fuerza' && v !== 'estirar') return;
+      planQue = v; estError = false;
+      renderPlan();
+      try { $('tgc-plan-que').querySelector('[data-que="' + planQue + '"]').focus(); } catch (x) {}
+    });
+    $('tgc-est-zonas').addEventListener('click', function (e) {
+      var b = e.target.closest('button'), v = b && b.dataset.zona;
+      if (!v || (v !== 'cuerpo' && v !== 'sesion' && GRUPOS.indexOf(v) < 0)) return;
+      estZona = v; renderPlan();
+      try { $('tgc-est-zonas').querySelector('[data-zona="' + estZona + '"]').focus(); } catch (x) {}
+    });
+    $('tgc-ses-estirar').addEventListener('click', function () {
+      if (!sesGrupos.length) return;
+      estSesGrupos = sesGrupos.slice(); estZona = 'sesion'; planQue = 'estirar'; estError = false;
+      renderPlan();
+      try { $('tgc-est-zonas').querySelector('[data-zona="sesion"]').focus(); } catch (x) {}
+    });
+    $('tgc-est-antes').addEventListener('click', function () { preguntaIdPendiente = ['estirar']; setModo('preguntar'); });
+    $('tgc-est-lista').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-id]'), x = b && EJ && EJ.porId[b.dataset.id];
+      if (!x) return;
+      ejEntorno = st.sitio || 'todos'; ejNivel = 0;
+      abrirHoja(x.g[0], true); abrirEj(x.id);
+    });
     $('tgc-ses-banda').addEventListener('click', function () {
       var antes = st.sitio; st.sitio = 'calistenia'; matTocado = false;
       if (!guardar()) st.sitio = antes;
@@ -7009,6 +7203,10 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
           <div class="tgc-seg" id="tgc-plan-mats"></div>
           <p class="tgc-ayuda" id="tgc-plan-mat-ayuda">De entrada van marcadas botellas, silla, toalla y mesa: quite lo que no tenga y marque lo demás que tenga. Sin nada marcado, salen los ejercicios sin material.</p>
         </details>
+        <fieldset class="tgc-op" id="tgc-plan-que-f" hidden>
+          <legend id="tgc-plan-que-tit">¿Qué quiere hacer hoy?</legend>
+          <div class="tgc-seg" id="tgc-plan-que"></div>
+        </fieldset>
         <fieldset class="tgc-op" id="tgc-plan-nivel-f" hidden>
           <legend id="tgc-plan-nivel-tit">¿A qué nivel entrena?</legend>
           <div class="tgc-seg" id="tgc-plan-niveles"></div>
@@ -7025,7 +7223,18 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
           <button type="button" class="tgc-ver" id="tgc-ses-banda" hidden>¿Sin banda elástica? Haga la sesión de calistenia del mismo nivel, en un parque con barras.</button>
           <button type="button" class="tgc-ver" id="tgc-ses-calentar">Antes de empezar: cómo calentar</button>
           <ol class="tgc-ses-lista" id="tgc-ses-lista"></ol>
+          <button type="button" class="tgc-ver" id="tgc-ses-estirar" hidden>Después: estire lo que ha trabajado</button>
           <div id="tgc-ses-f"></div>
+        </section>
+        <section class="tgc-ses tgc-est" id="tgc-est" aria-labelledby="tgc-est-tit" hidden>
+          <h3 id="tgc-est-tit">Sus estiramientos</h3>
+          <p class="tgc-ses-nom" id="tgc-est-nom"></p>
+          <div class="tgc-seg" id="tgc-est-zonas" role="group" aria-labelledby="tgc-est-tit"></div>
+          <p class="tgc-ayuda tgc-ses-esf" id="tgc-est-como"></p>
+          <p class="tgc-ayuda" id="tgc-est-intro"></p>
+          <button type="button" class="tgc-ver" id="tgc-est-antes">¿Tengo que estirar antes o después de entrenar?</button>
+          <ol class="tgc-ses-lista" id="tgc-est-lista"></ol>
+          <div id="tgc-est-f"></div>
         </section>
         <h3 id="tgc-plan-tit"></h3>
         <p class="tgc-ayuda" id="tgc-plan-txt"></p>
@@ -7624,6 +7833,10 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     ['#tgc-ses-sust-tit', 'tx', 'cuerpoRutSust'],
     ['#tgc-ses-banda', 'tx', 'cuerpoRutSinBanda'],
     ['#tgc-ses-calentar', 'tx', 'cuerpoRutCalentar'],
+    ['#tgc-plan-que-tit', 'tx', 'cuerpoPlanQue'],
+    ['#tgc-ses-estirar', 'tx', 'cuerpoSesEstirar'],
+    ['#tgc-est-tit', 'tx', 'cuerpoEstTit'],
+    ['#tgc-est-antes', 'tx', 'cuerpoEstAntes'],
     ['#tgc-fuerza-tit', 'tx', 'cuerpoFuerzaTit'],
     ['#tgc-ej-niv', 'aria', 'cuerpoNivelFiltro'],
     ['#tgc-ej-niv [data-v="0"]', 'tx', 'cuerpoNivelTodos'],

@@ -206,7 +206,7 @@ async function ejemplo(pg, mas) {
      para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; desde el 8 (bloque 8), con
      «Su compañero de travesía» (el título, «A pie», «En bici» y la ayuda) y «Senderos de la isla» (el título), 151; y 2 placeholders (el
      del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (166 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?» y el título de «Su fuerza»; desde la nota 34, los cinco de las rutinas: «¿A qué nivel entrena?», «Su sesión de hoy», «¿Sin mancuernas, disco o banco?», «sin banda» y «cómo calentar» (166); y 2 placeholders)', r2.n === 166 && r2.ph === 2, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (170 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?» y el título de «Su fuerza»; desde la nota 34, los cinco de las rutinas: «¿A qué nivel entrena?», «Su sesión de hoy», «¿Sin mancuernas, disco o banco?», «sin banda» y «cómo calentar» (166); desde la nota 40, los cuatro de los estiramientos: «¿Qué quiere hacer hoy?», «Sus estiramientos», «¿Tengo que estirar antes o después de entrenar?» y «Después: estire lo que ha trabajado» (170); y 2 placeholders)', r2.n === 170 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -3968,6 +3968,210 @@ async function ejemplo(pg, mas) {
     prueba('37: el texto de «¿Qué tiene en casa?» en los diez idiomas', !mal37.length && Object.keys(AY).length === 10, mal37.join(' | '));
     prueba('37: sin errores de página', e37.length === 0, e37.join(' | '));
     await c37.close();
+  }
+
+  // 40. (13-11-2026, nota 40; Jérôme: «Hazme un plan completo de estiramiento. Cuerpo completo. Zona individuales. Fuera
+  //     y adentro. Con y sin material»; para la app, «Junto a las rutinas») los estiramientos en «¿Qué entreno hoy?»: tras
+  //     el sitio, Fuerza o Estiramientos (no se guarda); el cuerpo completo y los 12 grupos, dentro y fuera, con lo que hay
+  //     (en casa, lo marcado; lo que no se puede, a su alternativa, y sin ninguna, fuera); la pauta del ACSM y la de los
+  //     mayores; el texto y las fuentes; «¿antes o después?» abre su
+  //     respuesta; una fila abre su ficha; al final de la sesión de fuerza, «Después: estire lo que ha trabajado»; el
+  //     resumen; diez idiomas; y un fichero que no vale, fuera
+  {
+    const fs = require('fs'), path = require('path');
+    const DAT = n => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', n), 'utf8'));
+    const ES = DAT('estiramientos.json'), RU = DAT('rutinas.json'), NOM = DAT('ejercicios-es.json');
+    const s40 = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s40.indexOf('var CUERPO_UI = {'), j = s40.indexOf('\n  };', i);
+      for (const l of s40.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    const ANIO = new Date().getFullYear(), G40 = ['pecho', 'dorsal', 'espalda_alta', 'hombros', 'biceps', 'triceps', 'antebrazo', 'core', 'gluteos', 'cuadriceps', 'isquios', 'pantorrilla'];
+    const ENT = ['botella', 'silla', 'toalla', 'mesa'];
+    const LISTA = (si, z) => ES.z.find(q => q.si === si && q.z === z).e;
+    const puede = (id, hay) => ES.x[id][1].every(m => m === 'ninguno' || hay.indexOf(m) >= 0);
+    /* lo que sale: de cada fila, el primero que se pueda; la fila sin ninguno que se pueda no sale (sin ninguna, la lista tal cual) */
+    const ver = (lista, hay) => { const r = lista.map(w => [w[0]].concat(w[1]).filter(id => puede(id, hay))[0]).filter(Boolean); return r.length ? r : lista.map(w => w[0]); };
+    const c40 = await contexto(b), p40 = await c40.newPage(), e40 = []; vigilar(p40, e40);
+    await abrirApp(p40); await abrirPerfilCuerpo(p40); await suCuerpo(p40);
+    /* lo guardado (sin series, o las de unos ejercicios) y el año de nacimiento del perfil; «Su cuerpo» otra vez */
+    const poner = (extra, nac) => p40.evaluate(([ex, na]) => {
+      localStorage.setItem('tenerife.cuerpo', JSON.stringify(Object.assign({ v: 1, series: [] }, ex || {})));
+      const pf = JSON.parse(localStorage.getItem('tenerife.perfil') || '{}'); if (na) pf.nacimiento = na; else delete pf.nacimiento;
+      localStorage.setItem('tenerife.perfil', JSON.stringify(pf));
+      TG_CUERPO.abrir();
+    }, [extra || null, nac || null]).then(() => p40.waitForTimeout(250));
+    const leer = () => p40.evaluate(() => {
+      const $ = id => document.getElementById(id), vis = id => !$(id).hidden;
+      return {
+        abierto: vis('tgc-plan-cuerpo'), res: $('tgc-plan-resumen').textContent,
+        queVis: vis('tgc-plan-que-f'), queTit: $('tgc-plan-que-tit').textContent,
+        que: [...document.querySelectorAll('#tgc-plan-que button')].map(x => x.dataset.que + ':' + x.textContent + ':' + x.getAttribute('aria-pressed')),
+        nivelVis: vis('tgc-plan-nivel-f'), ses: vis('tgc-ses'), porque: vis('tgc-plan-porque'), lista: vis('tgc-plan-lista'),
+        sesEstirar: vis('tgc-ses-estirar') && vis('tgc-ses') ? $('tgc-ses-estirar').textContent : null,
+        sesIds: [...document.querySelectorAll('#tgc-ses-lista > li .tgc-ses-ej-btn')].map(x => x.dataset.id),
+        est: vis('tgc-est'), estTit: $('tgc-est-tit').textContent, nom: $('tgc-est-nom').textContent,
+        como: $('tgc-est-como').textContent, intro: $('tgc-est-intro').textContent, antes: $('tgc-est-antes').textContent,
+        zonas: [...document.querySelectorAll('#tgc-est-zonas button')].map(x => x.dataset.zona + ':' + x.getAttribute('aria-pressed')),
+        zonasTxt: [...document.querySelectorAll('#tgc-est-zonas button')].map(x => x.textContent),
+        ejs: [...document.querySelectorAll('#tgc-est-lista > li')].map(li => ({ id: li.querySelector('.tgc-ses-ej-btn').dataset.id,
+          nom: li.querySelector('.tgc-ses-ej-nom').textContent, pauta: li.querySelector('.tgc-ses-ej-pauta').textContent,
+          alts: [...li.querySelectorAll('.tgc-ses-alts button')].map(x => x.dataset.id) })),
+        fuentes: [...document.querySelectorAll('#tgc-est-f .tgc-resp-f li')].map(li => ({ c: li.querySelector('a').textContent, u: li.querySelector('a').getAttribute('href'),
+          tg: li.querySelector('a').target, rel: li.querySelector('a').rel, l: li.querySelector('.tgc-resp-leido').lastChild.textContent })),
+        txt: vis('tgc-plan-txt') ? $('tgc-plan-txt').textContent : null };
+    });
+    const abrirPlan = async () => { if (!(await leer()).abierto) { await p40.click('#tgc-plan-btn'); await p40.waitForTimeout(250); } };
+    const que = async v => { await p40.click('#tgc-plan-que [data-que="' + v + '"]'); await p40.waitForTimeout(250); };
+    const zona = async v => { await p40.click('#tgc-est-zonas [data-zona="' + v + '"]'); await p40.waitForTimeout(200); };
+    const esperarEst = () => p40.waitForFunction(() => !document.getElementById('tgc-est').hidden && document.querySelectorAll('#tgc-est-lista > li').length > 0, null, { timeout: 10000 }).catch(() => {});
+    const esperarSes = () => p40.waitForFunction(() => !document.getElementById('tgc-ses').hidden && document.querySelectorAll('#tgc-ses-lista > li').length > 0, null, { timeout: 10000 }).catch(() => {});
+    const ids = r => JSON.stringify(r.ejs.map(e => e.id));
+    const PA = '2–4 × 10–30 s', PM = '2 × 30–60 s';
+
+    // sin sitio, no se pregunta qué hacer; con el sitio, Fuerza (elegida) o Estiramientos, y en Fuerza el nivel como hasta ahora
+    await poner({ sitio: '' }); await abrirPlan();
+    const f0 = await leer();
+    prueba('40: sin sitio elegido no se pregunta qué hacer hoy', !f0.queVis && !f0.est, JSON.stringify([f0.queVis, f0.est]));
+    await poner({ sitio: 'casa', material: ENT, matRev: 1 }); await abrirPlan();
+    const f1 = await leer();
+    prueba('40: con el sitio, «¿Qué quiere hacer hoy?» con «Fuerza» (elegida) y «Estiramientos»; con Fuerza, el nivel y nada de estiramientos',
+      f1.queVis && f1.queTit === UI.cuerpoPlanQue.es && JSON.stringify(f1.que) === JSON.stringify(['fuerza:' + UI.cuerpoTipo_fuerza.es + ':true', 'estirar:' + UI.cuerpoPlanQue_estirar.es + ':false']) &&
+      f1.nivelVis && !f1.est && f1.porque, JSON.stringify(f1).slice(0, 400));
+
+    // Estiramientos en casa, con lo de entrada: el cuerpo completo, uno por grupo, con su pauta, su texto y sus fuentes
+    await que('estirar'); await esperarEst();
+    const f2 = await leer(), dentroEnt = ver(LISTA('dentro', 'cuerpo'), ['pared'].concat(ENT));
+    prueba('40: «Estiramientos»: sin nivel, sin sesión, sin el plan por grupos ni «¿Por qué?»; «Sus estiramientos», «Cuerpo completo · En casa» y las 13 zonas',
+      f2.est && !f2.nivelVis && !f2.ses && !f2.lista && !f2.porque && f2.estTit === UI.cuerpoEstTit.es && f2.nom === UI.cuerpoEstCuerpo.es + ' · ' + UI.cuerpoSitio_casa.es &&
+      JSON.stringify(f2.zonas) === JSON.stringify(['cuerpo:true'].concat(G40.map(g => g + ':false'))), JSON.stringify([f2.nom, f2.zonas]).slice(0, 400));
+    prueba('40: el cuerpo completo en casa: 12 estiramientos, uno de cada grupo, con su nombre y «' + PA + '»',
+      ids(f2) === JSON.stringify(dentroEnt) && new Set(f2.ejs.map(e => ES.x[LISTA('dentro', 'cuerpo')[f2.ejs.indexOf(e)][0]][0][0])).size === 12 &&
+      f2.ejs.every(e => e.nom === NOM[e.id][0] && e.pauta === PA), ids(f2));
+    const fk = [...new Set(ES.p.adulto.f.concat(ES.i.f))];
+    prueba('40: arriba, cómo estirar (ACSM, Mayo Clinic) y para qué y cuándo (también la Cochrane y el NHS), con sus ' + fk.length + ' fuentes y lo leído, en pestaña nueva',
+      f2.como === ES.p.adulto.x.es && f2.intro === ES.i.t.es && JSON.stringify(f2.fuentes.map(q => q.c)) === JSON.stringify(fk.map(k => ES.f[k].c)) &&
+      f2.fuentes.every((q, i) => q.u === ES.f[fk[i]].u && q.l === ES.f[fk[i]].l && q.tg === '_blank' && /noopener/.test(q.rel)), JSON.stringify(f2.fuentes.map(q => q.c)));
+
+    // cerrado, el resumen lo dice
+    await p40.click('#tgc-plan-btn'); await p40.waitForTimeout(200);
+    const f3 = await leer();
+    prueba('40: cerrado, «Para hoy: Estiramientos · Cuerpo completo.»', !f3.abierto && f3.res === UI.cuerpoPlanPara.es.replace('{lista}', UI.cuerpoPlanQue_estirar.es + ' · ' + UI.cuerpoEstCuerpo.es), f3.res);
+    await abrirPlan(); await esperarEst();
+
+    // una zona: los isquiotibiales
+    await zona('isquios');
+    const f4 = await leer();
+    prueba('40: «Isquiotibiales»: sus ' + LISTA('dentro', 'isquios').length + ' estiramientos y la zona marcada',
+      ids(f4) === JSON.stringify(ver(LISTA('dentro', 'isquios'), ['pared'].concat(ENT))) &&
+      f4.zonas.includes('isquios:true') && f4.nom.indexOf(UI.cuerpoG_isquios.es) === 0, JSON.stringify([ids(f4), f4.nom]));
+    await zona('cuerpo');
+
+    // en casa sin nada marcado, lo que pide silla pasa a su alternativa; en el gimnasio, lo de un gimnasio; fuera y en calistenia, la lista de fuera
+    await poner({ sitio: 'casa', material: [], matRev: 1 }); await abrirPlan(); await esperarEst();
+    const f5 = await leer(), sinNada = ver(LISTA('dentro', 'cuerpo'), ['pared']);
+    prueba('40: en casa sin nada marcado, lo que pide algo pasa a su alternativa (' + sinNada.filter((id, i) => id !== LISTA('dentro', 'cuerpo')[i][0]).join(', ') + ')',
+      ids(f5) === JSON.stringify(sinNada) && sinNada.some((id, i) => id !== LISTA('dentro', 'cuerpo')[i][0]), ids(f5));
+    await zona('triceps');
+    const f5b = await leer(), quita = LISTA('dentro', 'triceps').filter(w => ![w[0]].concat(w[1]).some(id => puede(id, ['pared']))).map(w => w[0]);
+    prueba('40: en casa sin nada marcado, lo que no se puede con nada no sale (en «Tríceps», ' + quita.map(id => '«' + NOM[id][0] + '»').join(', ') + ')',
+      quita.length > 0 && ids(f5b) === JSON.stringify(ver(LISTA('dentro', 'triceps'), ['pared'])) && f5b.ejs.length === LISTA('dentro', 'triceps').length - quita.length &&
+      f5b.ejs.every(e => quita.indexOf(e.id) < 0 && e.alts.every(a => quita.indexOf(a) < 0)), JSON.stringify([ids(f5b), quita]));
+    await zona('cuerpo');
+    await poner({ sitio: 'gimnasio' }); await abrirPlan(); await esperarEst();
+    const f6 = await leer();
+    prueba('40: en el gimnasio, con lo que hay en un gimnasio', ids(f6) === JSON.stringify(ver(LISTA('dentro', 'cuerpo'), ['pared'].concat(ES.h.gimnasio))) &&
+      f6.nom === UI.cuerpoEstCuerpo.es + ' · ' + UI.cuerpoEnt_gimnasio.es, JSON.stringify([ids(f6), f6.nom]));
+    await poner({ sitio: 'fuera' }); await abrirPlan(); await esperarEst();
+    const f7 = await leer();
+    await poner({ sitio: 'calistenia' }); await abrirPlan(); await esperarEst();
+    const f8 = await leer();
+    prueba('40: fuera y en calistenia, los de fuera (pared, banco o escalón)', ids(f7) === JSON.stringify(ver(LISTA('fuera', 'cuerpo'), ['pared'].concat(ES.h.fuera))) &&
+      ids(f8) === JSON.stringify(ver(LISTA('fuera', 'cuerpo'), ['pared'].concat(ES.h.calistenia))) && f7.nom === UI.cuerpoEstCuerpo.es + ' · ' + UI.cuerpoEnt_fuera.es &&
+      ids(f7) !== ids(f6), JSON.stringify([ids(f7), f7.nom]).slice(0, 400));
+    // todas las zonas, dentro y fuera: con lo de entrada en casa, ninguna lista vacía y cada estiramiento con nombre y pauta
+    const malZ = [];
+    for (const [sitio, si, hay] of [['casa', 'dentro', ['pared'].concat(ENT)], ['fuera', 'fuera', ['pared'].concat(ES.h.fuera)]]) {
+      await poner({ sitio, material: ENT, matRev: 1 }); await abrirPlan(); await esperarEst();
+      for (const z of G40) {
+        await zona(z);
+        const r = await leer();
+        if (ids(r) !== JSON.stringify(ver(LISTA(si, z), hay)) || !r.ejs.length || r.ejs.some(e => e.nom !== NOM[e.id][0] || e.pauta !== PA)) malZ.push(si + ':' + z + ' ' + ids(r));
+      }
+      await zona('cuerpo');
+    }
+    prueba('40: las 12 zonas, dentro y fuera, con su lista, sus nombres y su pauta', !malZ.length, malZ.join(' | '));
+
+    // desde los 65 (año de nacimiento del perfil), la pauta de los mayores
+    await poner({ sitio: 'casa', material: ENT, matRev: 1 }, ANIO - 70); await abrirPlan(); await esperarEst();
+    const f9 = await leer();
+    prueba('40: con 69 o 70 años, «' + PM + '» y el texto de los mayores', f9.ejs.length === 12 && f9.ejs.every(e => e.pauta === PM) && f9.como === ES.p.mayor.x.es, JSON.stringify([f9.ejs[0], f9.como]).slice(0, 300));
+    await poner({ sitio: 'casa', material: ENT, matRev: 1 }); await abrirPlan(); await esperarEst();
+
+    // «¿Tengo que estirar antes o después de entrenar?» abre la respuesta del asistente; una fila abre su ficha
+    await p40.click('#tgc-est-antes');
+    await p40.waitForFunction(() => document.querySelectorAll('#tgc-charla .tgc-resp').length >= 1, null, { timeout: 10000 }).catch(() => {});
+    await p40.waitForTimeout(200);
+    const q40 = await p40.evaluate(() => ({ modo: document.getElementById('tgc-modo-p').getAttribute('aria-pressed'), charla: document.getElementById('tgc-charla').textContent }));
+    prueba('40: «' + UI.cuerpoEstAntes.es + '» abre «Preguntar» con esa respuesta', q40.modo === 'true' && q40.charla.indexOf(UI.cuerpoEstAntes.es) >= 0, q40.charla.slice(0, 200));
+    await p40.click('#tgc-modo-m'); await p40.waitForTimeout(250); await abrirPlan(); await esperarEst();
+    const pri = (await leer()).ejs[0];
+    await p40.click('#tgc-est-lista > li:first-child .tgc-ses-ej-btn'); await p40.waitForTimeout(400);
+    const h40 = await p40.evaluate(() => ({ abierta: !document.getElementById('tgc-hoja').hidden, nom: document.getElementById('tgc-ej-nom').textContent }));
+    prueba('40: tocar el primero abre la ficha de «' + NOM[pri.id][0] + '»', h40.abierta && h40.nom === NOM[pri.id][0], JSON.stringify(h40));
+    await p40.keyboard.press('Escape'); await p40.waitForTimeout(150); await p40.keyboard.press('Escape'); await p40.waitForTimeout(250);
+
+    // de la sesión de fuerza (Intermedio A: el tronco) a los estiramientos de lo trabajado; y otra vez a Fuerza
+    await poner({ sitio: 'casa', material: ENT, matRev: 1, nivel: 2 }); await abrirPlan();
+    await que('fuerza'); await esperarSes();
+    const f10 = await leer(), gs = [...new Set(f10.sesIds.flatMap(id => RU.x[id][0]))];
+    await p40.click('#tgc-ses-estirar'); await esperarEst();
+    const f11 = await leer(), deSes = ver(LISTA('dentro', 'cuerpo').filter(w => gs.includes(ES.x[w[0]][0][0])), ['pared'].concat(ENT));
+    prueba('40: al final de la sesión, «' + UI.cuerpoSesEstirar.es + '»; lleva a «Sesión de hoy», con un estiramiento por grupo de la sesión (' + gs.length + ')',
+      f10.sesEstirar === UI.cuerpoSesEstirar.es && f11.est && f11.zonas[0] === 'sesion:true' && f11.zonasTxt[0] === UI.cuerpoEstSesion.es &&
+      ids(f11) === JSON.stringify(deSes) && gs.length > 0 && gs.length < 12 && f11.ejs.length === gs.length && f11.nom.indexOf(UI.cuerpoEstSesion.es) === 0 &&
+      JSON.stringify(f11.que.map(x => x.split(':')[2])) === '["false","true"]',
+      JSON.stringify([f10.sesEstirar, gs, ids(f11), f11.zonas.slice(0, 2)]).slice(0, 400));
+    await que('fuerza'); await esperarSes();
+    const f12 = await leer();
+    prueba('40: otra vez «Fuerza»: la sesión y el nivel, sin estiramientos', f12.ses && f12.nivelVis && !f12.est && f12.porque, JSON.stringify([f12.ses, f12.nivelVis, f12.est]));
+
+    // no se guarda: al volver a abrir la app, Fuerza
+    await que('estirar'); await esperarEst();
+    await p40.evaluate(() => { TG_CUERPO.cerrar(); }); await p40.waitForTimeout(300);
+    await p40.reload({ waitUntil: 'load' }); await abrirApp(p40); await abrirPerfilCuerpo(p40); await suCuerpo(p40); await abrirPlan();
+    const f13 = await leer(), g13 = await p40.evaluate(() => JSON.parse(localStorage.getItem('tenerife.cuerpo')));
+    prueba('40: no se guarda: otro día sale «Fuerza» elegida, y lo guardado no lleva nada de estiramientos',
+      JSON.stringify(f13.que.map(x => x.split(':')[2])) === '["true","false"]' && !f13.est && !Object.keys(g13).some(k => /est|que/i.test(k)), JSON.stringify([f13.que, Object.keys(g13)]));
+
+    // diez idiomas
+    await que('estirar'); await esperarEst();
+    const es40 = await leer(), mal40 = [];
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      await idioma(p40, l); await p40.waitForTimeout(300);
+      await p40.waitForFunction(n => { const x = document.querySelector('#tgc-est-lista .tgc-ses-ej-nom'); return x && x.textContent !== n; }, es40.ejs[0].nom, { timeout: 8000 }).catch(() => {});
+      const m = await leer(), NL = DAT('ejercicios-' + l + '.json');
+      const pa = UI.cuerpoRutSeg[l].replace('{series}', '2–4').replace('{seg}', '10–30');
+      const t = [m.queTit, m.estTit, m.nom, m.como, m.intro, m.antes].concat(m.zonasTxt, m.que.map(x => x.split(':')[1]));
+      if (m.queTit !== UI.cuerpoPlanQue[l] || m.estTit !== UI.cuerpoEstTit[l] || m.como !== ES.p.adulto.x[l] || m.intro !== ES.i.t[l] || m.antes !== UI.cuerpoEstAntes[l] ||
+          m.nom !== UI.cuerpoEstCuerpo[l] + ' · ' + UI.cuerpoSitio_casa[l] || m.zonasTxt[0] !== UI.cuerpoEstCuerpo[l] || m.zonasTxt[1] !== UI.cuerpoG_pecho[l] ||
+          m.que[1].split(':')[1] !== UI.cuerpoPlanQue_estirar[l] || m.ejs.some(e => e.pauta !== pa || e.nom !== (NL[e.id] || NOM[e.id])[0]) ||
+          t.some(x => !x || x.indexOf('{') >= 0)) mal40.push(l + ': ' + JSON.stringify([m.queTit, m.nom, m.ejs[0]]).slice(0, 160));
+    }
+    await idioma(p40, 'es');
+    prueba('40: en los diez idiomas: la pregunta, las dos opciones, el título, las zonas, la pauta, los textos y los nombres', !mal40.length, mal40.join(' | '));
+    prueba('40: sin errores de página', e40.length === 0, e40.join(' | '));
+    await c40.close();
+
+    // un fichero que no vale (otra versión): «Estiramientos» dice que no se ha podido cargar, sin romper nada
+    const c40b = await contexto(b), p40b = await c40b.newPage(), e40b = []; vigilar(p40b, e40b);
+    await c40b.route('**/datos/cuerpo/estiramientos.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(Object.assign({}, ES, { v: 2 })) }));
+    await abrirApp(p40b); await abrirPerfilCuerpo(p40b); await suCuerpo(p40b);
+    await p40b.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'fuera' })); TG_CUERPO.abrir(); });
+    await p40b.waitForTimeout(250); await p40b.click('#tgc-plan-btn'); await p40b.waitForTimeout(250);
+    await p40b.click('#tgc-plan-que [data-que="estirar"]'); await p40b.waitForTimeout(1200);
+    const r40b = await p40b.evaluate(() => ({ est: !document.getElementById('tgc-est').hidden, txt: document.getElementById('tgc-plan-txt').hidden ? null : document.getElementById('tgc-plan-txt').textContent }));
+    prueba('40: un estiramientos.json que no vale: no se usa y lo dice («' + UI.cuerpoErrorEj.es + '»), sin errores de página', !r40b.est && r40b.txt === UI.cuerpoErrorEj.es && e40b.length === 0,
+      JSON.stringify([r40b, e40b]));
+    await c40b.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
