@@ -215,7 +215,10 @@
   };
   /* ── las mancuernas: una en cada mano (o en una sola), con el eje del agarre. reposo: { i: [x, y, z], d: […] }, dónde espera cada una
      mientras nadie la ha cogido (ejeReposo: a lo largo de qué; de delante atrás, si no se dice). Con lado: 'i' y otra: 'd' (y
-     reposo: {}), mientras espera la lleva la otra mano: se la pasa de una a otra ── */
+     reposo: {}), mientras espera la lleva la otra mano: se la pasa de una a otra. Con dos: true, una sola entre las dos manos: a lo
+     largo de la mano izquierda, de ejeDos (en el marco del tórax) o, con medio: true, de la media de las dos manos (queda derecha
+     aunque los antebrazos lleguen en cuña); corre: cuántos cm se corre a lo largo de su eje (las manos, bajo un disco y no en el centro);
+     une: true, si las manos se separan se queda con la de «lado» (la otra la suelta un momento y vuelve a cogerla) ── */
   MATERIAL.mancuernas = function (esc, o) {
     o = o || {};
     this.o = o; this.lados = o.lado ? [o.lado] : ['i', 'd'];
@@ -227,7 +230,11 @@
     var o = this.o, R = o.radio || 6.6, suelta = this.suelta;
     this.lados.forEach(function (k) {
       var L = E[k], c = L.agarre, e = o.vertical ? L.mano.dir : L.mano.eje, p = this.p[k];
-      if (o.dos) { c = mezcla(E.i.agarre, E.d.agarre, 0.5); e = o.ejeDos ? aplicar(E.Bt, o.ejeDos) : L.mano.dir; }
+      if (o.dos) {
+        c = mezcla(E.i.agarre, E.d.agarre, 0.5); e = o.ejeDos ? aplicar(E.Bt, o.ejeDos) : o.medio ? unidad(mas(E.i.mano.dir, E.d.mano.dir), L.mano.dir) : L.mano.dir;
+        if (o.une) { var su = entre((largo(menos(E.i.agarre, E.d.agarre)) - 11) / 16, 0, 1); c = mezcla(c, L.agarre, su * su * (3 - 2 * su)); }
+        if (o.corre) c = mas(c, por(e, o.corre));
+      }
       if (suelta && o.otra) { c = E[o.otra].agarre; e = E[o.otra].mano.eje; }
       else if (suelta && o.reposo[k]) { c = o.reposo[k]; e = unidad(o.ejeReposo || [0, 0, 1]); }
       p.m.pon(cam, mas(c, por(e, -9)), mas(c, por(e, 9)), 1.4, lista, 0.9);
@@ -495,7 +502,8 @@
     lista.push({ z: -500, el: this.g });
   };
   /* ── la polea: la columna, la polea a su altura y el cable hasta el agarre.
-     o: { en: [x, z], alto, rumbo, a: 'manos' | 'i' | 'd' | 'tobillo-i', agarre: 'barra' | 'cuerda' | 'asa' | 'v' (el triángulo de palmas enfrentadas) }
+     o: { en: [x, z], alto, rumbo, a: 'manos' | 'i' | 'd' | 'tobillo-i', agarre: 'barra' | 'cuerda' | 'asa' | 'v' (el triángulo de palmas enfrentadas) |
+     'barra_v' (la barra en V de los tríceps: dos mangos que bajan del centro hacia fuera) }
      La máquina de jalón es esta misma con: brazo (cuánto sale de la columna el brazo de arriba hacia quien tira; la polea va en su
      punta), asiento: [a cuánto de la columna, alto] y rodillo: [a cuánto de la columna, alto] (el que sujeta los muslos).
      reposo: [x, y, z], dónde cuelga el agarre mientras nadie lo ha cogido (en las posturas que la coreografía diga en «reposo»).
@@ -553,7 +561,7 @@
     var gi, gd, eje;
     if (suelto) {
       fin = o.reposo;
-      var cae = unidad(menos(fin, pp), [0, -1, 0]), lat = unidad(cruz(cae, B[2]), B[0]), w = ag === 'barra' ? (o.ancho0 || 30) : ag === 'cuerda' ? 3 : 5.5;
+      var cae = unidad(menos(fin, pp), [0, -1, 0]), lat = unidad(cruz(cae, B[2]), B[0]), w = ag === 'barra' ? (o.ancho0 || 30) : ag === 'cuerda' ? 3 : ag === 'barra_v' ? (o.ancho0 || 8) : 5.5;
       gi = mas(fin, por(lat, w)); gd = mas(fin, por(lat, -w)); eje = ag === 'v' ? B[2] : lat;
       if (ag === 'cuerda') { fin = mas(fin, por(cae, -29.8)); gi = mas(fin, mas(por(cae, 29.8), por(lat, 3))); gd = mas(fin, mas(por(cae, 29.8), por(lat, -3))); }
     } else {
@@ -577,6 +585,15 @@
         yo.uve[i + 2].pon(cam, mas(g, por(ej, -6.5)), mas(g, por(ej, 6.5)), 1.5, lista, 1.5);
       });
       ver.uve = true; fin = pico;
+    } else if (ag === 'barra_v' && (a === 'manos' || suelto)) {
+      /* la barra en V: dos mangos que bajan del centro hacia fuera, por donde va cada mano; el cable, a su vértice */
+      var cima = mas(fin, por(unidad(menos(pp, fin)), o.pico == null ? 5 : o.pico));
+      [gi, gd].forEach(function (g, i) {
+        var dv = unidad(menos(g, cima));
+        yo.uve[i].pon(cam, cima, mas(g, por(dv, 7.5)), 1.3, lista, 1.6);
+        yo.uve[i + 2].pon(cam, mas(g, por(dv, -5)), mas(g, por(dv, 6.5)), 1.6, lista, 1.5);
+      });
+      ver.uve = true; fin = cima;
     } else if (ag === 'barra' && (a === 'manos' || suelto)) {
       var e = unidad(menos(gi, gd), [1, 0, 0]), medio = largo(menos(gi, gd)) / 2 + (o.sobra == null ? 9 : o.sobra);
       this.asa.pon(cam, mas(fin, por(e, -medio)), mas(fin, por(e, medio)), 1.4, lista, 2);

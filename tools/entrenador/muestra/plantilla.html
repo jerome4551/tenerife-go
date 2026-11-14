@@ -115,6 +115,9 @@
       <section class="estado" aria-labelledby="t-nuevo">
         <h2 id="t-nuevo">Lo que cambia en esta versión</h2>
         <ul class="nuevo">
+          <li><span><b>Bloque 7: los tríceps.</b> 37 ejercicios nuevos: tumbado, el press francés (con barra Z, con barra recta y con mancuernas; en banco plano, inclinado y declinado, y en el suelo) y las extensiones con una mancuerna (a dos manos y a una); por encima de la cabeza (con mancuerna de pie y sentado, a una mano y con barra); las patadas (con una mancuerna, con dos, en polea y con el pecho apoyado en un banco inclinado); las poleas (con barra recta, con barra en V, con agarre inverso, a una mano, sobre la cabeza con cuerda, en polea baja a una mano y tumbado); los press en banco (con agarre cerrado, con agarre inverso, JM, Tate y con mancuernas y los codos pegados); los fondos (entre dos bancos, en banco con rotación, en el suelo y en paralelas), el soporte en paralelas, dos flexiones (con los codos pegados y de rodillas desde la postura del niño) y un estiramiento.</span></li>
+          <li><span><b>La carga pasa junto a la cabeza, medida.</b> Donde la ficha lleva la barra a la frente o la mancuerna por detrás de la cabeza, se mide por dónde pasa en todo el recorrido: la barra para a un par de centímetros de la frente, las mancuernas bajan a los lados de la cabeza y, para subir una mancuerna con las dos manos por encima de ella, Jérôme la rodea por un lado.</span></li>
+          <li><span><b>Material nuevo: la barra en V de la polea.</b> Con sus dos mangos, que bajan hacia fuera. Y donde la ficha manda coger el agarre de la polea en un paso, espera colgando de ella hasta ese paso.</span></li>
           <li><span><b>Bloque 6: los bíceps.</b> 36 ejercicios nuevos: los curls de pie con barra (la barra Z por fuera y por dentro, el agarre ancho y el estrecho, el invertido y el de una mano), con mancuernas (alterno, martillo alterno y cruzado, de arrastre, Zottman e invertido) y con pesa rusa; en un banco (sentado, inclinado, tumbado, la araña, los dos concentrados y el de pie apoyado en un banco inclinado); el banco predicador (con barra, con mancuerna, martillo, Zottman y en polea, y la araña con barra por el otro lado); las poleas (baja, con cuerda, a una mano, entre dos poleas altas y tumbado); la barra fija (el remo invertido supino, el curl con el peso del cuerpo y el muscle-up, en sus tres tiempos) y un estiramiento.</span></li>
           <li><span><b>El codo no se mueve.</b> Donde la ficha dice «sin mover los codos» o «sin despegar el brazo», el codo se queda clavado en su sitio y solo gira el antebrazo: medido, 0 cm en toda la repetición.</span></li>
           <li><span><b>Material nuevo: la barra Z y el banco predicador.</b> La barra Z tiene su W y se agarra por las rampas de fuera o por las de dentro. El banco predicador tiene su cojín, su asiento y los ganchos donde espera la barra; y el cojín tapa de verdad: los brazos van por encima y el cuerpo queda detrás.</span></li>
@@ -143,10 +146,10 @@
           <div class="medida-n"><strong><span data-n="hechos">40</span> de <span data-n="total">533</span></strong><span>ejercicios de la app tienen vídeo</span></div>
           <div class="barra" role="img" aria-label="Parte de los ejercicios que ya tiene vídeo"><i id="barra"></i></div>
         </div>
-        <p>Están los más habituales de los 12 grupos musculares y, de los 533 ejercicios que la app tenía hasta el 13 de noviembre, casi todo el pecho (bloque 2), casi todo el dorsal (bloque 3), casi toda la espalda alta (bloque 4), casi todos los hombros (bloque 5) y casi todos los bíceps (bloque 6). Ese día la app pasó a 950 ejercicios, y después a 958: los 425 nuevos, para hacer en casa y fuera, todavía no tienen vídeo. Los otros <span data-n="faltan">493</span> llegan por bloques; mientras tanto, su ficha sigue como hoy.</p>
+        <p>Están los más habituales de los 12 grupos musculares y, de los 533 ejercicios que la app tenía hasta el 13 de noviembre, casi todo el pecho (bloque 2), casi todo el dorsal (bloque 3), casi toda la espalda alta (bloque 4), casi todos los hombros (bloque 5), casi todos los bíceps (bloque 6) y casi todos los tríceps (bloque 7). Desde ese día la app ha crecido hasta <span data-n="total">951</span> ejercicios: los <span data-n="nuevos">418</span> nuevos, para hacer en casa y fuera, todavía no tienen vídeo. De aquellos 533 quedan <span data-n="quedan">286</span>, que llegan por bloques; mientras tanto, su ficha sigue como hoy.</p>
         <p>Jérôme hace lo que dice cada paso de la ficha y el texto que se lee es el de la ficha, sin técnica añadida. Sale en los 10 idiomas de la app; los 9 que no son español esperan revisión nativa.</p>
         <p>No hay archivos de vídeo. Jérôme es un dibujo que se mueve dentro de la app, así que funciona sin conexión y los <span data-n="hechos">40</span> ejercicios juntos pesan <span data-n="peso">224</span> KB.</p>
-        <p>Los bloques 1 a 6 ya están en la app.</p>
+        <p>Los bloques 1 a 6 ya están en la app. El 7 está preparado y sin subir a GitHub.</p>
       </section>
 
       <section class="estado" aria-labelledby="t-mandos">
@@ -250,7 +253,7 @@
   if (window.MutationObserver) new MutationObserver(alTema).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   /* las cifras, de los datos */
-  var cifras = { hechos: ids.length, total: M.total, faltan: M.total - ids.length, peso: /*__PESO__*/0 };
+  var cifras = { hechos: ids.length, total: M.total, quedan: 533 - ids.length, nuevos: M.total - 533, peso: /*__PESO__*/0 };      /* todos los que tienen vídeo son de los 533 que había hasta el 13-11-2026 */
   Array.prototype.forEach.call(document.querySelectorAll('[data-n]'), function (n) { var v = cifras[n.getAttribute('data-n')]; if (v) n.textContent = v; });
   document.getElementById('barra').style.width = (100 * ids.length / M.total).toFixed(1) + '%';
 

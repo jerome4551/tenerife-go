@@ -36,24 +36,12 @@
       var w = unidad(menos(g, h)), ade = unidad(sinParte([0, 0, 1], w)), al = Math.asin(L * Math.sin(f) / d);
       return mas(h, por(mas(por(w, Math.cos(al)), por(ade, -Math.sin(al))), D.brazo));
     }
-    /* flexion(P, C, fi, ref): lo mismo cuando el brazo no cuelga a plomo (apoyado en un cojín, en un muslo): el antebrazo, doblado «fi»
-       grados respecto del brazo (0, en línea con él), hacia el lado de «ref» */
-    function dirFlex(P, C, fi, ref) {
-      var u = unidad(menos(C, resolver(P).i.hom)), f = unidad(sinParte(ref || [0, 0, 1], u));
-      return mas(por(u, Math.cos(fi * RAD)), por(f, Math.sin(fi * RAD)));
-    }
-    function flexion(P, C, fi, ref) { return { a: mas(C, por(dirFlex(P, C, fi, ref), D.antebrazo)), polo: menos(C, resolver(P).i.hom) }; }
-    /* y con una barra (las manos, a G del centro): el antebrazo se abre o se cierra lo que haga falta, y gira en un cono */
-    function flexionG(P, C, fi, ref, G) {
-      var d = dirFlex(P, C, fi, ref), dx = abre(C, G), l = Math.sqrt(d[1] * d[1] + d[2] * d[2]) || 1, k = Math.sqrt(1 - dx * dx);
-      return { a: mas(C, por([dx, k * d[1] / l, k * d[2] / l], D.antebrazo)), polo: menos(C, resolver(P).i.hom) };
-    }
+    /* cuando el brazo no cuelga a plomo (apoyado en un cojín, en un muslo): flexion, flexionG y abre, en 70-coreografias.js (las usa
+       también el bloque 7) */
     /* el puño (el centro de lo que agarra) de ese brazo */
     function punoEn(C, fi, dx) { return mas(C, por(hacia(fi, dx), D.antebrazo + D.mano)); }
     /* el ángulo con el que el puño queda a «z» (la barra, apoyada en los muslos) */
     function fiPara(C, z, dx) { return Math.asin(entre((z - C[2]) / ((D.antebrazo + D.mano) * Math.sqrt(1 - (dx || 0) * (dx || 0))), -1, 1)) / RAD; }
-    /* cuánto se abre el antebrazo para que el puño quede a G del centro */
-    function abre(C, G) { return (G - C[0]) / (D.antebrazo + D.mano); }
 
     /* ══════════ de pie, con una barra ══════════ */
     var FLEX = { pel: [0, PIE - 2.5, -1.5], giro: [0, 1, 0], p: { suelo: [15, 0], abre: 8 } };       /* «con las rodillas algo flexionadas» */

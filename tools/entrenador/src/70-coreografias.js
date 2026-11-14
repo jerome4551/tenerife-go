@@ -106,6 +106,33 @@
   /* en el extremo de un banco plano, que queda detrás: el tronco, a «inc» grados hacia delante */
   var BANCO_DETRAS = ['banco', { en: [0, -20], largo: 96 }];
   function sentadoAlBorde(inc, extra) { return sobre({ pel: [0, 55, 0], giro: [0, inc, 0], cab: [-inc * 0.5, 0, 0], p: { suelo: [13, 42], abre: 7 } }, extra || {}); }
+  /* ── tumbado boca arriba en un banco (como en el bloque 2, que guarda las suyas; estas son para cualquier bloque) ──
+     ang: 0, plano; 45, inclinado; −15, declinado (la cabeza más baja que la cadera). Inclinado o declinado, el banco va con rumbo 180:
+     el respaldo sale del asiento hacia −Z, que es donde queda la cabeza. La espalda, a 11,5 cm del respaldo; la cadera, a 11 del asiento */
+  function bancoDe(ang) { return ang ? ['banco', { rumbo: 180, largo: 124, respaldo: ang }] : ['banco', { largo: 124 }]; }
+  function tumbadoEn(ang, extra) {
+    var P;
+    if (!ang) P = { pel: [0, 55, 30], giro: [0, -90, 0], p: { suelo: [17, 68], abre: 8, polo: [0.2, 1, 0.3] } };
+    else {
+      var a = ang * RAD, c = Math.cos(a), s = Math.sin(a), k = (11 - 11.5 * c) / s;
+      P = { pel: [0, 55, Z_BIS + 11.5 * s - k * c], giro: [0, -(90 - ang), 0], p: { suelo: [18, 70], abre: 8, polo: [0.2, 1, 0.3] } };
+    }
+    return sobre(P, extra || {});
+  }
+  /* ── el codo que no se mueve (nacieron en el bloque 6, con los bíceps; el 7 las subió aquí) ──
+     flexion(P, C, fi, ref): el brazo izquierdo de la postura P con el codo en C (un punto del mundo, a un brazo justo del hombro) y el
+     antebrazo doblado «fi» grados respecto del brazo (0, en línea con él), hacia el lado de «ref». Con una barra (las manos, a G del
+     centro: flexionG) el antebrazo se abre o se cierra lo que haga falta (abre) y gira en un cono */
+  function abre(C, G) { return (G - C[0]) / (D.antebrazo + D.mano); }
+  function dirFlex(P, C, fi, ref) {
+    var u = unidad(menos(C, resolver(P).i.hom)), f = unidad(sinParte(ref || [0, 0, 1], u));
+    return mas(por(u, Math.cos(fi * RAD)), por(f, Math.sin(fi * RAD)));
+  }
+  function flexion(P, C, fi, ref) { return { a: mas(C, por(dirFlex(P, C, fi, ref), D.antebrazo)), polo: menos(C, resolver(P).i.hom) }; }
+  function flexionG(P, C, fi, ref, G) {
+    var d = dirFlex(P, C, fi, ref), dx = abre(C, G), l = Math.sqrt(d[1] * d[1] + d[2] * d[2]) || 1, k = Math.sqrt(1 - dx * dx);
+    return { a: mas(C, por([dx, k * d[1] / l, k * d[2] / l], D.antebrazo)), polo: menos(C, resolver(P).i.hom) };
+  }
 
   /* ══════════ CUÁDRICEPS ══════════ */
   (function () {
