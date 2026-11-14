@@ -8186,6 +8186,179 @@ cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS,
 cifras de idiomas del documento, las mismas (52 tablas y 3.718 filas; 5.865). Un reinicio del contenedor cortó la
 primera pasada en su bloque 16; esta es la segunda, entera, sobre el mismo árbol.
 
+## «Su cuerpo»: 7 de las 13 fichas del bloque 35 que se quedaron fuera, ya comprobadas en sus fuentes (nota 43, 14 de noviembre)
+
+**Por qué.** Del bloque 35 se quedaron fuera 13 fichas «sin ninguna fuente que abra». Jérôme pidió la lista para que la
+revisara la sesión de «Su cuerpo» («Envíamela para que revise») y volvió con la nota 43 (`fuentes-13-43.zip`): las cinco
+fuentes existen y son de quien decía la ficha; 12 fichas vuelven (7 corregidas, en los diez idiomas) y una se queda
+fuera (el press de hombros de pie en el aparato: su manual no dice qué músculos trabaja). Dos revisiones independientes.
+
+**Lo comprobado aquí, antes de meter nada.** El programa de la nota (`fuentes_13.py`, leído entero antes de usarlo: solo
+lee y escribe en una carpeta nueva) sobre el bloque 35 tal como llegó: las 13 estaban como se esperaba; pasado otra vez
+sobre su salida, no cambia nada. Y cada fuente, abierta aquí y cotejada palabra por palabra con lo leído el 13-11 (lo de
+la nota, más completo que lo del bloque 35):
+
+- el manual de la Secretaría Nacional del Deporte de Uruguay, en gub.uy (PDF de 2022): las 9 frases, en su texto;
+- el folleto de 2026 del Nutrition Education Program de la Universidad de Nebraska-Lincoln (PDF): las 10;
+- el artículo del Mayo Clinic: las 18 (su servidor responde con un error 500, pero la página trae el artículo
+  entero);
+- la copia de Middlesex Health responde 403 a los robots: sus 7 frases están en el artículo del Mayo Clinic.
+
+**Entran 7**: «Press de pecho de pie en el aparato, solo con los brazos» (corregida), «Remo inclinado a una pierna con
+botellas» (corregida, con la fuente de Nebraska), «Curl de bíceps sentado en el aparato biosaludable», «Encogimiento
+abdominal sentado en la silla de abdominales» (corregida), «Abdominal mantenido en la silla de abdominales», «Paso del
+cangrejo bajando escaleras» y «Salto hacia delante desde el primer escalón» (las dos, corregidas, con el aviso de la
+fuente: si no aguanta 45 segundos sobre una pierna sin agarrarse, quizá no pueda hacerlo con seguridad; pregunte a su
+médico). **Se quedan fuera, hasta que se puedan leer, 5**: las 3 de la Universitat de València (su PDF responde 404
+desde aquí, con curl y con WebFetch, aunque el buscador lo tiene) y las 2 del Municipio B de Montevideo (no responde). Y
+la del press de hombros de pie, que la nota deja fuera.
+
+**Lo que cambia**, un commit por apartado:
+
+- `90b12eb`: las 7 fichas, en `ejercicios/bloque-43.json` de las fuentes de «Su cuerpo», detrás de las 951 (iguales y
+  en su orden: 958). La nota «(Uruguay)» del título del manual, en los diez idiomas (`cuerpoNF_uruguay`).
+  `tools/probar_cuerpo.js`, la prueba 36: 958 fichas, con la huella de las 951 de antes y las 7 detrás, en su orden.
+- `bd061ab`: el asistente con 958 ejercicios: 125 con el nivel de su fuente (los mismos) y 833 estimados; 506 de nivel
+  inicial, 347 intermedios y 105 avanzados. En polaco, «pozostałe 833 mają» y «Jest 506 ćwiczeń».
+- `c9f79bb`: las rutinas de la nota 37, con lo que vuelve: en A tope J, el remo inclinado a una pierna con botellas,
+  como la pensó la nota 37; y 3 alternativas en 10 usos. Siguen fuera 6, de fichas que no han entrado (22 usos). El
+  comprobador de la nota 37: 0 errores y los 2 avisos de siempre; con lo marcado de entrada, 10 ejercicios de casa
+  salen con su alternativa (como dice la nota 37); sin nada marcado, 45 con su alternativa y 15 que piden botellas y
+  no tienen otra forma (con la nota 42, esos 15 ya no salen).
+
+**Lo que decide Jérôme (no bloquea; no se ha tocado):** el nombre de la 9 («Encogimiento abdominal sentado en la silla
+de abdominales» suena a crunch; la nota propone «Abdominal en la silla de abdominales») y el nivel o los grupos de la 2
+(con la fuente nueva lleva además un peso muerto a una pierna).
+
+## «Su cuerpo»: los estiramientos, junto a las rutinas (nota 40, 14 de noviembre)
+
+**Por qué.** Jérôme, el 13-11: «Hazme un plan completo de estiramiento. Cuerpo completo. Zona individuales. Fuera y
+adentro. Con y sin material. Verifica las fuentes busca los más fiables posibles»; para la app, «Junto a las rutinas».
+Llegó en la nota 40 (`estiramientos-40.zip`), hecha sobre el catálogo de 998 fichas; aquí son 958 y los 79 estiramientos
+de sus listas están todos (su comprobador: 0 errores y el aviso de las 958 fichas, esperado).
+
+**Lo que cambia**, un commit por apartado:
+
+- `0fb19e0`: en «¿Qué entreno hoy?», tras el sitio, «¿Qué quiere hacer hoy?»: «Fuerza» (las rutinas) o «Estiramientos»
+  (no se guarda). Con «Estiramientos», el cuerpo completo o uno de los 12 grupos, dentro (casa y gimnasio) o fuera
+  (fuera y calistenia): 26 listas, con hasta 3 alternativas cada fila; en casa, con lo marcado, y lo que no se puede
+  con nada, no sale. La pauta del ACSM («2–4 × 10–30 s»; desde los 65, «2 × 30–60 s»), el texto de para qué y cuándo
+  y sus 5 fuentes con lo leído; «¿Tengo que estirar antes o después de entrenar?» abre la respuesta del asistente.
+  Al final de cada sesión de fuerza, «Después: estire lo que ha trabajado». 7 textos nuevos, en los diez idiomas.
+  Los 13 trozos del parche, en las fuentes de «Su cuerpo» (`src/ui.js`, `src/cuerpo.html`, `src/textos-fijos.js` y
+  `src/textos.py`): el módulo que sale es, byte a byte, el del parche sobre el de la nota 43.
+  `datos/cuerpo/estiramientos.json` sale de `estiramientos/estiramientos.json` con `construir.py`, que lo coteja con
+  el catálogo.
+- `ed80f33`: el README, con los datos de «Su cuerpo» al día (decía 533 ejercicios) y los pesos medidos.
+
+**Las fuentes, comprobadas aquí palabra por palabra**: el ACSM de 2011 (Garber et al.; las 7 frases, en la copia de la
+Universidad de Ankara, la que ya citan las respuestas del asistente: el enlace de la revista responde 402 a los robots y
+la nota 40 prevé este cambio), el NHS (las 2; revisada el 16-3-2026) y la Cochrane (las 2; Herbert et al., 2022). Las
+dos páginas de la Mayo Clinic responden 403 a los robots, como en el bloque 35: sus frases son las que leyó la sesión de
+«Su cuerpo». Con dos frases inventadas de control en cada página, que salen «no».
+
+**Un cambio de traducción**: en polaco, el texto de para qué y cuándo decía «może być trzeba zmienić niektóre
+ćwiczenia», coloquial; ahora, «może być konieczna zmiana niektórych ćwiczeń».
+
+**Lo que no está:** la revisión nativa de los textos nuevos en los nueve idiomas y una revisión profesional
+(fisioterapia) de la selección.
+
+## «Su cuerpo»: en casa, lo que no se puede hacer con lo marcado no sale (nota 42, 14 de noviembre)
+
+**Por qué.** Jérôme, a la pregunta de si en las rutinas de fuerza también tenían que desaparecer los ejercicios que
+piden botellas cuando se quitan, como en los estiramientos: «Sí claro si uno no tiene botella como hace ejercicio con
+botella». Llegó en la nota 42 (`rutinas-sin-material-42.zip`).
+
+**Lo que cambia** (`14f5eb7`): en casa, cada ejercicio de la sesión es el de la sesión o su primera alternativa que se
+pueda con lo marcado; si no se puede ninguno, no sale. Si no quedara ninguno en la sesión, la sesión tal cual (con las
+rutinas de hoy no pasa: quedan 4 como poco). Fuera de casa, nada cambia; ningún texto nuevo. Solo deja de salir algo al
+quitar las botellas o sin nada marcado: 15 ejercicios de 9 de las 17 sesiones de casa (7 distintos: los curls con
+botellas, el paseo del granjero con garrafas y la extensión de tríceps con una botella), contados aquí sobre las rutinas
+con lo de la nota 43. Quitar la silla, la toalla o la mesa no quita ninguno. Los dos trozos del parche, en `src/ui.js`:
+el módulo que sale es, byte a byte, el del parche sobre el de la nota 40. `tools/probar_cuerpo.js`: las pruebas 35 y 37
+cuentan lo que sale en casa como la app, y la 42, nueva (6 controles).
+
+**Para decidir más adelante (no bloquea):** sin botellas, el bíceps se queda sin ejercicio en 8 sesiones de casa (no hay
+ninguno sin material en el catálogo); para el antebrazo y el tríceps sí hay formas sin peso, que podrían ser la última
+alternativa. Lo decide Jérôme.
+
+## Jérôme, el entrenador: los bloques 5 y 6, los hombros y los bíceps (70 vídeos más; 210 con vídeo) (notas 39 y 44, 14 de noviembre)
+
+**Por qué.** El encargo de Jérôme, del 11 de noviembre: «es para todos los ejercicios del cuerpo presentes en la app, y
+si faltan hazlos. Bloque por bloque». La sesión del entrenador entregó el bloque 5 (nota 39, los hombros: 34 vídeos) y
+el 6 (nota 44, los bíceps: 36); Jérôme los puso en la cola («Después de estiramientos bloque 5»; «Recuerda ponerlo en
+cola después del bloque 5») con su «Si sale en verde puedes publicar».
+
+**Lo que llega.** Las sumas sha256 de los parches son las de las notas; el `0008` es el mismo fichero en las dos
+entregas, y el `0006` y el `0007` de la nota 44, los ya publicados. Revisado a mano: sin red, sin nada guardado en el
+teléfono, sin `eval`, sin caracteres invisibles; solo tocan ficheros del entrenador (ni `index.html`, ni `sw.js`, ni
+`modulos/cuerpo.js`, ni `datos/`) y ningún texto nuevo: los pasos son los de las fichas, ya en los diez idiomas.
+`modulos/entrenador.js` sale de sus fuentes (`tools/entrenador/construir.py --comprobar`) y las huellas de los pasos de
+los 210 son las de las fichas. **Las coreografías publicadas no cambian**, comparadas aquí módulo contra módulo (sus
+datos y sus posturas resueltas, número a número): las 140 de los bloques 1 a 4 con el bloque 5 (395 posturas, 108.002
+números) y las 174 con el bloque 6 (530 posturas, 145.114 números), sin una diferencia. `modulos/entrenador.js`: 547.548
+bytes (150.537 con `gzip -9`).
+
+**Lo que cambia:**
+- `7bbd7f9`: los 34 vídeos de los hombros (siete press, las elevaciones, el deltoides posterior, los rotadores, la
+  calistenia con la pica, los pinos, la pseudoplancha y la flexión hindú, los círculos con los brazos y dos
+  estiramientos): 174 de los 533 de antes. Entró con `git am -3`, como dice su nota: la plantilla de la muestra
+  chocaba en su frase de estado, la que se cambió al publicar los bloques 3 y 4; lo demás es, byte a byte, lo de su
+  carpeta `repo/`.
+- `6932699`: la plantilla de la muestra (no la enlaza la app): «Los bloques 1 a 5 ya están en la app».
+- `73e59ad`: los 36 vídeos de los bíceps: los curls de pie con barra (la barra Z, recta, con agarre ancho y estrecho,
+  invertida y a una mano), con mancuernas y con pesa rusa; en un banco; en el banco predicador; en polea; en la
+  barra fija (el remo invertido supino, el curl con el peso del cuerpo y el muscle-up) y un estiramiento en la
+  pared. Con los 3 del bloque 1, 39 de los 50 de bíceps de los 533 de antes. Material nuevo en el dibujo: la barra Z
+  y el banco predicador, cuyo cojín tapa de verdad lo que queda detrás. Las 36 son de fichas de bíceps del catálogo
+  (32 de gimnasio, 3 de calistenia y 1 de fuera) y ninguna repite otra. También con `git am -3`, por la misma frase:
+  de los 19 ficheros de su `repo/`, 18 quedan byte a byte y el otro es esa plantilla.
+- `8688214`: la plantilla y el LEEME del entrenador: «Los bloques 1 a 6 ya están en la app», y el catálogo de 958. El
+  parche se hizo sobre el de 950; con las notas 37 y 43 son 958, y los nuevos sin coreografía, 425 (417 + 1 + 7). La
+  cifra «210 de 958» de la muestra sale del catálogo.
+
+**Las pruebas.** `tools/auditar_entrenador.js`, sobre el catálogo de 958: 42 controles, en verde. Los 210 vídeos
+enteros, dos veces (420 pases, 372.248 cuadros); 169 secuencias de 125 ejercicios caben en su paso, la más justa con
+0,10 s (el estiramiento de gemelo, en inglés), y la cuenta, cotejada con el reproductor en 1.324 pasos; 34.721 momentos
+dentro del cuadro (el que más se arrima, a 8,3 px); el dibujo, hecho solo de lo que copia el canvas de Samsung Internet,
+y en Samsung Internet, 28 momentos, con una diferencia media de 0,24 de 255; en la app, la ficha con vídeo y la ficha
+sin vídeo, como estaban.
+
+**Lo que no está:** un iPhone o un Samsung de verdad (todo es Chromium); que a Jérôme le valgan estos 70 (los tiene en
+la muestra). **Para decidir más adelante (no bloquea):** cómo se reparten en bloques los 425 nuevos (245 piden material,
+y su nota dice que lo que piden, botellas y garrafas, una silla, una mochila, una toalla, una mesa o los aparatos
+biosaludables, Jérôme aún no lo tiene dibujado; 51 son de desplazarse); el peso del módulo (partir las coreografías por
+grupo dejaría en el precache solo el motor); el «½×» (con media velocidad, las secuencias no llegan a acabar; es del
+reproductor), subir al pino por la pared, y los rótulos de los músculos, que tapan la esquina de abajo a la izquierda.
+
+## El lote del 14 de noviembre (notas 43, 40 y 42 y los bloques 5 y 6 del entrenador): las pruebas y la auditoría entera
+
+**Por qué juntos.** Es la cola de Jérôme, en su orden («En la cola después del último que te envié»; «Después de
+estiramientos bloque 5»; «Recuerda ponerlo en cola después del bloque 5») y con su «Si sale en verde puedes publicar».
+Cada nota va en sus commits, y cada una sobre la anterior: la 40 se llevó a las fuentes de «Su cuerpo» sobre la 43, y la
+42 sobre la 40; en cada paso, lo que sale de las fuentes es, byte a byte, lo de los parches. Y con las fuentes de la
+punta, `construir.py` da el `modulos/cuerpo.js` del lote (853.593 bytes, 667 filas de `CUERPO_UI`) y sus 33 ficheros
+de `datos/cuerpo/`.
+
+**Las pruebas.** `tools/probar_cuerpo.js`: 725 controles, en verde: la 40, nueva (21 controles: la pregunta, las 26
+listas, lo que no se puede en casa, la pauta de los mayores, «Después: estire lo que ha trabajado», que no se guarda,
+los diez idiomas y un `estiramientos.json` que no vale); la 42, nueva (6); la 36, con 958 fichas y la huella de las 951
+de antes; y la 35 y la 37 cuentan lo que sale en casa como la app. `tools/auditar_entrenador.js`: 42 controles, en verde
+(arriba, en la sección del entrenador).
+
+**La auditoría entera** sobre `36a6f8d` (árbol `40f64a94`), los diez commits de arriba encima de `main` (`60d8725`); en
+`main` son los mismos, rebasados sobre cuatro commits de los robots (`c342dfd`, terremotos; `16a69f0`, avisos de AEMET;
+`6cdfa0f`, alertas del Gobierno de Canarias, y `14af6fd`, precios de las gasolineras), que solo cambian
+`datos/sismos-ign.json`, `datos/avisos-aemet.json`, `datos/alertas-canarias.json` y `datos/precios-gasolineras.json`, y
+con los controles que leen esos ficheros, en verde tras el rebase. En sus 70 bloques, dos rojos, los dos de este
+documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.726 filas, antes 3.718; `barrido_idiomas.js`, 5.873
+filas, antes 5.865: los 7 textos de la nota 40 y la nota «(Uruguay)» de la 43), que pone al día este commit. Lo demás,
+en verde: `probar_cuerpo.js`, 725; `auditar_entrenador.js`, 42; `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos
+en los diez idiomas; `auditar_registro.js`, todo de usted (137.802 textos); `castellano_suelto.js`, ninguna palabra en
+castellano; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los
+diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y
+262, y sus cuatro robots. `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -10027,7 +10200,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3718 filas (y 5.865 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3726 filas (y 5.873 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
