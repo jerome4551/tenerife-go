@@ -8433,6 +8433,74 @@ idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la
 y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas y 3.726 filas; 5.873). `app_preparar.js`
 no cambió ningún fichero del repositorio, ni antes ni después.
 
+## Jérôme, el entrenador: el bloque 8, el antebrazo y la pantorrilla (35 vídeos más; 282 con vídeo) (nota 46, 14 de noviembre)
+
+**Por qué.** El encargo de Jérôme, del 11 de noviembre («es para todos los ejercicios del cuerpo presentes en la app, y
+si faltan hazlos. Bloque por bloque»), y su «si» del 14 por la noche a «si la auditoría sale en verde, ¿lo subo como el
+7?» (nota 46, `jerome-entrenador-bloque-8.zip`).
+
+**Lo que llega.** Dos parches: el `0010r` (el bloque 7 rehecho sobre el `main` de las 15:46, que solo cambia la frase
+del catálogo del LEEME y la de estado de la página de muestra) y el `0011`, el bloque 8. El 7 ya estaba publicado con el
+`0010`, así que solo entra el `0011`: sus fuentes del bloque 7 y su módulo de partida son, blob a blob, los publicados.
+Revisado a mano: sin red, sin nada guardado en el teléfono, sin `eval`, sin caracteres invisibles nuevos; solo ficheros
+del entrenador y ningún texto nuevo. `pruebas/camino.js`, nuevo, es una herramienta: lee `modulos/entrenador.js` en una
+caja de `vm` y no escribe nada. Para su LEEME y su plantilla de la muestra, `git am -3` no tenía de dónde partir: los
+dos ficheros de partida se rehicieron aplicando el parche al revés sobre los de su `repo/`, y sus huellas son las del
+parche (`815e873`, `f3102c9`). Así la fusión fue de verdad y solo chocó la frase de estado. De los 14 ficheros de su
+`repo/`, 12 quedan byte a byte; en el LEEME se queda la frase del catálogo publicada (958 fichas), que su parche no
+cambia, y en la plantilla, la frase de estado. `construir.py --comprobar`, en verde. `modulos/entrenador.js`: 678.625
+bytes (184.701 con `gzip -9`; con el bloque 7, 601.014).
+
+**Esta vez el parche toca el motor** (el esqueleto, la figura, la vida y el director: dos gestos de la mano, `separados`
+y `yemas`, y de qué postura sale lo que se hace, para el material). **Las 247 coreografías publicadas no cambian**,
+comparadas aquí módulo contra módulo: sus datos; sus 759 posturas resueltas (207.122 números); y lo que pasa entre
+postura y postura, con el `Director` de cada módulo, en cada tramo de la repetición y de los pasos (35.500 instantes,
+9.704.308 números). Diferencia: 0. Lo único nuevo en cada postura es el número del pulgar que se apoya (`ap`), que en
+las 247 vale 0 y que el dibujo solo usa cuando pasa de 0.
+
+**Lo que cambia:**
+- `3888ab5`: los 35 vídeos: el antebrazo (16: los curls de muñeca con barra, con mancuernas, inversos y en polea; la
+  flexión y extensión, la pronación y supinación y la desviación radial y cubital; los paseos con carga, andando de
+  verdad; la dominada con toallas; las flexiones sobre las yemas y tres estiramientos de la muñeca) y la pantorrilla
+  (19: las elevaciones de talón de pie y sentado, el tibial, tres saltos y cinco estiramientos). Material nuevo: las
+  toallas, la mancuerna con toalla y cogida por un extremo, y el soporte con los ganchos hacia atrás. Con los del
+  bloque 1, 17 de los 22 de antebrazo y 23 de los 30 de pantorrilla de los 533 de antes.
+- `ebad4a1`: la plantilla de la muestra (no la enlaza la app): «Los bloques 1 a 8 ya están en la app».
+
+**Lo que pasa entre dos posturas.** Con `pruebas/camino.js`, aquí: en los 35, ninguna zapatilla baja más de 1,0 cm del
+suelo. En los 247 publicados, 9 bajan más de 0,8 cm en algún tramo, los mismos que dice su nota: la zancada atrás
+(10,7), la sentadilla isométrica en la pared (6,7), los estiramientos de pecho y de bíceps en la pared (6,5), el de
+gemelo en la pared (6,2), la plancha de antebrazos (2,2) y tres que no llegan a 1 cm. Son de bloques publicados y no se
+tocan aquí.
+
+**Las pruebas.** `tools/auditar_entrenador.js`, sobre el catálogo de 958: 42 controles, en verde. Los 282 vídeos
+enteros, dos veces (564 pases, 493.046 cuadros); 264 secuencias de 194 ejercicios caben en su paso, la más justa con
+0,10 s (el estiramiento de gemelo, en inglés); 45.864 momentos dentro del cuadro (el que más se arrima, a 8,3 px); el
+dibujo, hecho solo de lo que copia el canvas de Samsung Internet, y en Samsung Internet, 28 momentos, con una diferencia
+media de 0,24 de 255; en la app, la ficha con vídeo y la ficha sin vídeo, como estaban.
+
+**Lo que no está:** un iPhone o un Samsung de verdad; que a Jérôme le valgan estos 35 (los tiene en la muestra); los
+contactos que no son un agarre (la mano en la pared, en el muslo o en el suelo), que no mide ningún control; y los dos
+sitios donde, según su nota, el cuerpo de Jérôme no da (sentado con «las rodillas en ángulo recto», en un banco bajo; y
+el brazo estirado que coge la otra mano, algo hacia dentro). **Para decidir más adelante (no bloquea):** arreglar los 9
+publicados que pasan por debajo del suelo y las manos del estiramiento de gemelo, que se quedan a 6 o 7 cm de la pared
+(una entrega aparte); llevar `camino.js` a la auditoría; el «½×», subir al pino por la pared, los rótulos de los
+músculos, el peso del módulo (679 kB) y los 425 nuevos sin vídeo.
+
+## El lote del 14 de noviembre, noche (el bloque 8 del entrenador): la auditoría entera
+
+**La auditoría entera** sobre `cef8efb` (árbol `cdc7bbeb`), los dos commits de arriba encima de `main` (`573d84b`); en
+`main` son los mismos, rebasados sobre cuatro commits de los robots (`d0b36e5`, terremotos; `4121c88`, avisos de AEMET;
+`33eba2d`, satélites, y `cf393f6`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`,
+`datos/avisos-aemet.json`, `datos/satelites.json` y `datos/alertas-canarias.json`, y con los controles que leen esos
+ficheros, en verde tras el rebase. En sus 70 bloques, ningún rojo: `probar_cuerpo.js`, 725; `auditar_entrenador.js`, 42;
+`probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted
+(137.802 textos); `castellano_suelto.js`, ninguna palabra en castellano; `barrido_pantallas.js`, 191 pantallas y fichas
+por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y
+los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del
+documento, las mismas (52 tablas y 3.726 filas; 5.873). `app_preparar.js` no cambió ningún fichero del repositorio, ni
+antes ni después.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
