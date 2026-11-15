@@ -1,0 +1,2513 @@
+{
+ "_": "Rumano (ro) de las fichas de los lugares, trozo 2 de 5 (bloque 6 del rumano): los 156 lugares que no son gasolineras entre el 204 y el 570 de index.html, de «parkinson-tf-realejos» a «bici-ruta-norte-garachico» (las 211 gasolineras de ese tramo van en el trozo 5, el del bloque 9, con las etiquetas). Cada texto lleva el castellano que traduce, ya con las erratas de la entrega del bloque 6 (erratas/, que se ponen antes que este fichero). Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando esten los cinco trozos (R5-R9) y todos casen con index.html. No se edita a mano: sale de la entrega del bloque 6 del rumano.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "parkinson-tf-realejos.desc",
+   "es": "Párkinson Tenerife — Unidad de Atención Integral de Los Realejos. Terapias y apoyo especializado para personas con párkinson y sus familias en el norte de Tenerife (psicología, fisioterapia, logopedia, grupos de apoyo). Calle San Isidro s/n, Los Realejos. Tel. 922 62 53 90.",
+   "forma": "texto",
+   "ro": "Párkinson Tenerife — unitatea de asistență integrală din Los Realejos. Terapii și sprijin specializat pentru persoanele cu boala Parkinson și pentru familiile lor, în nordul insulei Tenerife (psihologie, fizioterapie, logopedie, grupuri de sprijin). Calle San Isidro s/n, Los Realejos. Tel. 922 62 53 90."
+  },
+  {
+   "tabla": "places",
+   "clave": "parkinson-tf-realejos.cat",
+   "es": "Párkinson · Los Realejos · Apoyo",
+   "forma": "texto",
+   "ro": "Parkinson · Los Realejos · Sprijin"
+  },
+  {
+   "tabla": "places",
+   "clave": "parkinson-tf-silos.desc",
+   "es": "Párkinson Tenerife — Unidad de Atención Integral de Los Silos. Apoyo y terapias para personas con párkinson y sus familias en la Isla Baja (noroeste de Tenerife). Plaza de San Bernardo, Los Silos. Tel. 922 62 53 90.",
+   "forma": "texto",
+   "ro": "Párkinson Tenerife — unitatea de asistență integrală din Los Silos. Sprijin și terapii pentru persoanele cu boala Parkinson și pentru familiile lor, în Isla Baja (nord-vestul insulei Tenerife). Plaza de San Bernardo, Los Silos. Tel. 922 62 53 90."
+  },
+  {
+   "tabla": "places",
+   "clave": "parkinson-tf-silos.cat",
+   "es": "Párkinson · Los Silos · Apoyo",
+   "forma": "texto",
+   "ro": "Parkinson · Los Silos · Sprijin"
+  },
+  {
+   "tabla": "places",
+   "clave": "parkinson-tf-granadilla.desc",
+   "es": "Párkinson Tenerife — Unidad de Atención Integral de Granadilla de Abona. Apoyo y terapias para personas con párkinson y sus familias en el sur de Tenerife (psicología, fisioterapia, logopedia, grupos de apoyo). Calle Aguilillas s/n, Granadilla de Abona. Tel. 922 62 53 90.",
+   "forma": "texto",
+   "ro": "Párkinson Tenerife — unitatea de asistență integrală din Granadilla de Abona. Sprijin și terapii pentru persoanele cu boala Parkinson și pentru familiile lor, în sudul insulei Tenerife (psihologie, fizioterapie, logopedie, grupuri de sprijin). Calle Aguilillas s/n, Granadilla de Abona. Tel. 922 62 53 90."
+  },
+  {
+   "tabla": "places",
+   "clave": "parkinson-tf-granadilla.cat",
+   "es": "Párkinson · Granadilla · Apoyo",
+   "forma": "texto",
+   "ro": "Parkinson · Granadilla · Sprijin"
+  },
+  {
+   "tabla": "places",
+   "clave": "violencia-sexual-24h-tenerife.desc",
+   "es": "Centro de Crisis 24h de Tenerife para víctimas de violencia sexual (Instituto Canario de Igualdad, gestionado por Fundación Ideo). Servicio gratuito, confidencial y disponible las 24 horas, todos los días, para mujeres mayores de 16 años que hayan sufrido violencia sexual —reciente o pasada— y para las personas de su entorno. Atención psicológica, jurídica y social. No es necesario denunciar para acceder. Teléfono 647 759 126; en emergencias llama al 112; información en el 012. Más en caeviolenciasexual.com. Por seguridad, la dirección del centro se facilita de forma confidencial al contactar; este punto señala el Instituto Canario de Igualdad.",
+   "forma": "texto",
+   "ro": "Centrul de criză 24h din Tenerife pentru victimele violenței sexuale (Instituto Canario de Igualdad, administrat de Fundación Ideo). Serviciu gratuit, confidențial și disponibil 24 de ore pe zi, în fiecare zi, pentru femeile de peste 16 ani care au suferit violență sexuală — recentă sau din trecut — și pentru persoanele apropiate lor. Asistență psihologică, juridică și socială. Nu este nevoie de o plângere la poliție ca să aveți acces la serviciu. Telefon 647 759 126; în caz de urgență, sunați la 112; informații la 012. Mai multe pe caeviolenciasexual.com. Din motive de siguranță, adresa centrului se comunică în mod confidențial, la primul contact; punctul de pe hartă arată sediul Instituto Canario de Igualdad."
+  },
+  {
+   "tabla": "places",
+   "clave": "violencia-sexual-24h-tenerife.cat",
+   "es": "Violencia Sexual · Atención 24h · Tenerife",
+   "forma": "texto",
+   "ro": "Violență sexuală · Asistență 24h · Tenerife"
+  },
+  {
+   "tabla": "places",
+   "clave": "cavis-violencia-sexual-tenerife.desc",
+   "es": "CAVIS: servicio público del Cabildo de Tenerife (IASS), dentro de la red del Instituto Canario de Igualdad, de atención integral a mujeres víctimas de violencia sexual, sea cual sea su nacionalidad. Apoyo psicológico, jurídico y social, gratuito y confidencial. No hace falta denunciar. Sede de La Laguna: calle Franco de Medina 41, Edificio HICAN IV, portal B, local C, La Cuesta. Teléfono 822 351 910; WhatsApp 658 619 717. Otras sedes: Santa Cruz (avenida Reyes Católicos 35; 822 095 353 o 635 115 145) y San Isidro, Granadilla (calle Castro 4, C. C. Guajara; 822 293 920). Atiende en horario de oficina. Las 24 horas: 112, 016 o el Centro de Crisis de Tenerife, 647 759 126.",
+   "forma": "texto",
+   "ro": "CAVIS: serviciu public al Cabildo de Tenerife (IASS), din rețeaua Instituto Canario de Igualdad, de asistență integrală pentru femeile victime ale violenței sexuale, indiferent de naționalitate. Sprijin psihologic, juridic și social, gratuit și confidențial. Nu este nevoie de o plângere la poliție. Sediul din La Laguna: calle Franco de Medina 41, Edificio HICAN IV, portal B, local C, La Cuesta. Telefon 822 351 910; WhatsApp 658 619 717. Alte sedii: Santa Cruz (avenida Reyes Católicos 35; 822 095 353 sau 635 115 145) și San Isidro, Granadilla (calle Castro 4, C. C. Guajara; 822 293 920). Program: în timpul orelor de birou. 24 de ore pe zi: 112, 016 sau Centrul de criză din Tenerife, 647 759 126."
+  },
+  {
+   "tabla": "places",
+   "clave": "cavis-violencia-sexual-tenerife.cat",
+   "es": "Violencia Sexual · Atención · La Laguna",
+   "forma": "texto",
+   "ro": "Violență sexuală · Asistență · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "siam-mujeres-santacruz.desc",
+   "es": "SIAM — Servicio Integral de Atención a las Mujeres del Cabildo de Tenerife. Información y apoyo psicológico, jurídico y social a mujeres víctimas de violencia de género, de forma gratuita y confidencial. Atención con cita previa en el Palacete de Coviella, calle Francisco de Aguiar y Aguiar 8, Santa Cruz. Para emergencias 112; atención a mujeres 24h, 016.",
+   "forma": "texto",
+   "ro": "SIAM (Servicio Integral de Atención a las Mujeres), serviciul de asistență pentru femei al Cabildo de Tenerife. Informare și sprijin psihologic, juridic și social pentru femeile victime ale violenței de gen, gratuit și confidențial. Asistență cu programare, în Palacete de Coviella, calle Francisco de Aguiar y Aguiar 8, Santa Cruz. Pentru urgențe: 112; asistență pentru femei, 24h: 016."
+  },
+  {
+   "tabla": "places",
+   "clave": "siam-mujeres-santacruz.cat",
+   "es": "Atención a las Mujeres · Santa Cruz",
+   "forma": "texto",
+   "ro": "Asistență pentru femei · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "mujer-adeje.desc",
+   "es": "Punto de atención a mujeres víctimas de violencia de género del municipio de Adeje (Servicios Sociales e Igualdad). Información y apoyo psicológico, jurídico y social, de forma gratuita y confidencial. Junto al Ayuntamiento, en el Callejón de los Frailes, Adeje. Tel. 922 75 62 38. Para emergencias 112; atención a mujeres 24h, 016.",
+   "forma": "texto",
+   "ro": "Punct de asistență pentru femeile victime ale violenței de gen din municipalitatea Adeje (Servicii sociale și egalitate). Informare și sprijin psihologic, juridic și social, gratuit și confidențial. Lângă primărie, pe Callejón de los Frailes, Adeje. Tel. 922 75 62 38. Pentru urgențe: 112; asistență pentru femei, 24h: 016."
+  },
+  {
+   "tabla": "places",
+   "clave": "mujer-adeje.cat",
+   "es": "Atención a la Mujer · Adeje",
+   "forma": "texto",
+   "ro": "Asistență pentru femei · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "mujer-san-miguel.desc",
+   "es": "Punto de atención a mujeres víctimas de violencia de género del municipio de San Miguel de Abona (Servicios Sociales e Igualdad). Información y apoyo psicológico, jurídico y social, de forma gratuita y confidencial. Junto al Ayuntamiento, carretera de Los Abrigos 30. Para emergencias 112; atención a mujeres 24h, 016.",
+   "forma": "texto",
+   "ro": "Punct de asistență pentru femeile victime ale violenței de gen din municipalitatea San Miguel de Abona (Servicii sociale și egalitate). Informare și sprijin psihologic, juridic și social, gratuit și confidențial. Lângă primărie, carretera de Los Abrigos 30. Pentru urgențe: 112; asistență pentru femei, 24h: 016."
+  },
+  {
+   "tabla": "places",
+   "clave": "mujer-san-miguel.cat",
+   "es": "Atención a la Mujer · San Miguel",
+   "forma": "texto",
+   "ro": "Asistență pentru femei · San Miguel"
+  },
+  {
+   "tabla": "places",
+   "clave": "minigolf-oasis-cristianos.desc",
+   "es": "Minigolf en Los Cristianos. Muy familiar y relajado. Ideal para una partida rápida. Ambiente tranquilo sin aglomeraciones. Se recomienda llevar efectivo. Cerca del paseo marítimo de Los Cristianos.",
+   "forma": "texto",
+   "ro": "Minigolf în Los Cristianos. Foarte potrivit pentru familii și relaxant. Ideal pentru o partidă rapidă. Atmosferă liniștită, fără aglomerație. Se recomandă să aveți numerar. Aproape de promenada din Los Cristianos."
+  },
+  {
+   "tabla": "places",
+   "clave": "minigolf-oasis-cristianos.cat",
+   "es": "Minigolf · Los Cristianos · Sur",
+   "forma": "texto",
+   "ro": "Minigolf · Los Cristianos · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "minigolf-parque-santiago.desc",
+   "es": "El minigolf más singular de Las Américas, situado en el corazón del complejo Parque Santiago (Av. Litoral s/n). 3 campos: 2 de 18 hoyos y 1 de 9 hoyos, decorados a mano con mosaicos de cerámica de colores. Jardín exótico con 580 especies de plantas, 60 variedades de cactus (algunos de más de 80 años) y un arroyo serpenteante a lo largo del recorrido. Abierto hasta medianoche. Tiempo ilimitado de juego. Equipo incluido. Bar y refrescos en el acceso. Pago en efectivo.",
+   "forma": "texto",
+   "ro": "Cel mai deosebit minigolf din Las Américas, în inima complexului Parque Santiago (Av. Litoral s/n). 3 parcursuri: 2 de 18 găuri și 1 de 9 găuri, decorate manual cu mozaicuri din ceramică colorată. Grădină exotică cu 580 de specii de plante, 60 de soiuri de cactuși (unii de peste 80 de ani) și un pârâu care șerpuiește de-a lungul traseului. Deschis până la miezul nopții. Timp de joc nelimitat. Echipament inclus. Bar și răcoritoare la intrare. Plata în numerar."
+  },
+  {
+   "tabla": "places",
+   "clave": "minigolf-parque-santiago.cat",
+   "es": "Minigolf · Las Américas · 3 Campos · Jardín Cactus · Hasta Medianoche",
+   "forma": "texto",
+   "ro": "Minigolf · Las Américas · 3 parcursuri · Grădină de cactuși · Până la miezul nopții"
+  },
+  {
+   "tabla": "places",
+   "clave": "minigolf-la-pinta-adeje.desc",
+   "es": "Minigolf de 18 hoyos en Costa Adeje, junto a la Playa de La Pinta (C/ Roma 4). Con vistas al mar. Incluye palos, bolas y tarjeta. Bar/snack bar en el campo. Horario: 12h-22h aprox. (varía). Es el más desafiante de los minigolf de Costa Adeje.",
+   "forma": "texto",
+   "ro": "Minigolf cu 18 găuri în Costa Adeje, lângă Playa de La Pinta (C/ Roma 4). Cu priveliște spre mare. Sunt incluse crosele, mingile și fișa de scor. Bar/snack-bar pe teren. Program: circa 12h-22h (variază). Este cel mai provocator dintre minigolfurile din Costa Adeje."
+  },
+  {
+   "tabla": "places",
+   "clave": "minigolf-la-pinta-adeje.cat",
+   "es": "Minigolf 18 Hoyos · La Pinta · Costa Adeje · Vistas al Mar",
+   "forma": "texto",
+   "ro": "Minigolf cu 18 găuri · La Pinta · Costa Adeje · Priveliște spre mare"
+  },
+  {
+   "tabla": "places",
+   "clave": "minigolf-precise-resort.desc",
+   "es": "Campo de minigolf de 18 hoyos en los jardines subtropicales del Precise Resort, en Los Realejos. Vistas espectaculares al océano Atlántico y al Pico del Teide. Entorno ajardinado único en el norte de Tenerife. Accesible también para no huéspedes del hotel. Horario: 9:00-00:00h. El único mini golf público del norte de Tenerife.",
+   "forma": "texto",
+   "ro": "Teren de minigolf cu 18 găuri în grădinile subtropicale ale Precise Resort, în Los Realejos. Priveliști spectaculoase spre Oceanul Atlantic și spre Pico del Teide. Un cadru cu grădini, unic în nordul insulei Tenerife. Deschis și pentru cei care nu sunt cazați la hotel. Program: 9:00-00:00. Singurul minigolf public din nordul insulei Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "minigolf-precise-resort.cat",
+   "es": "Minigolf 18 Hoyos · Los Realejos · Norte · Vistas Teide",
+   "forma": "texto",
+   "ro": "Minigolf cu 18 găuri · Los Realejos · Nord · Priveliște spre Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-camison.desc",
+   "es": "Playa tranquila entre Las Américas y Los Cristianos. Arena fina y aguas calmadas. Muy familiar.",
+   "forma": "texto",
+   "ro": "Plajă liniștită între Las Américas și Los Cristianos. Nisip fin și ape calme. Foarte potrivită pentru familii."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-camison.cat",
+   "es": "Playa Familiar · Sur",
+   "forma": "texto",
+   "ro": "Plajă pentru familii · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-callao.desc",
+   "es": "Playa de arena oscura poco masificada. Ambiente tranquilo y local. Buenas puestas de sol.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip închis la culoare, puțin aglomerată. Atmosferă liniștită și locală. Apusuri frumoase."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-callao.cat",
+   "es": "Playa · Adeje",
+   "forma": "texto",
+   "ro": "Plajă · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-puertito.desc",
+   "es": "Playa principal del Puertito de Güímar: arena negra y callaos en una ensenada que calma el oleaje, con paseo marítimo y aparcamiento. Ambiente local y familiar, con el club náutico y los restaurantes del caserío a un paso; la reserva natural del Malpaís de Güímar cierra el horizonte. Escarpines recomendados para entrar al agua.",
+   "forma": "texto",
+   "ro": "Plaja principală din Puertito de Güímar: nisip negru și bolovani rotunjiți, într-un golf care domolește valurile, cu promenadă și parcare. Atmosferă locală și de familie, cu clubul nautic și restaurantele din sat la doi pași; rezervația naturală Malpaís de Güímar închide orizontul. Se recomandă încălțăminte de apă pentru intrarea în mare."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-puertito.cat",
+   "es": "Cala · Tortugas Marinas",
+   "forma": "texto",
+   "ro": "Golfuleț · Broaște țestoase marine"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-puertito-adeje.desc",
+   "es": "Pequeña cala de arena oscura y callaos en un caserío marinero de Adeje, célebre por las tortugas que descansaban en su bahía; hoy los avistamientos son ocasionales y no se las debe tocar ni alimentar. Buen snorkel con abundantes peces. Chiringuito junto a la arena y sendero costero desde La Caleta. Aparcamiento muy limitado y obras de un gran complejo hotelero en el entorno.",
+   "forma": "texto",
+   "ro": "Golfuleț cu nisip închis la culoare și bolovani rotunjiți, într-un sat de pescari din Adeje, faimos pentru broaștele țestoase care se odihneau în golful său; astăzi sunt văzute doar din când în când și nu trebuie nici atinse, nici hrănite. Snorkeling bun, cu mulți pești. Bar de plajă lângă nisip și potecă de coastă din La Caleta. Parcare foarte limitată și lucrări la un mare complex hotelier în apropiere."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-puertito-adeje.cat",
+   "es": "Cala · Adeje",
+   "forma": "texto",
+   "ro": "Golfuleț · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "roque-bodegas.desc",
+   "es": "Playa salvaje de arena negra y grava en Anaga, muy cerca de Benijo. Roques imponentes saliendo del mar y olas rompiendo con fuerza. Sin servicios ni socorrismo: naturaleza pura.",
+   "forma": "texto",
+   "ro": "Plajă sălbatică cu nisip negru și pietriș în Anaga, foarte aproape de Benijo. Stânci impunătoare care ies din mare și valuri care se sparg cu putere. Fără servicii și fără salvamari: natură în stare pură."
+  },
+  {
+   "tabla": "places",
+   "clave": "roque-bodegas.cat",
+   "es": "Playa Salvaje · Anaga",
+   "forma": "texto",
+   "ro": "Plajă sălbatică · Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-torviscas.desc",
+   "es": "Playa dorada continua con Fañabé en Costa Adeje. Ideal para familias con niños pequeños, aguas tranquilas y todos los servicios. Ambiente animado con paseo marítimo.",
+   "forma": "texto",
+   "ro": "Plajă aurie, în continuarea plajei Fañabé, în Costa Adeje. Ideală pentru familiile cu copii mici, cu ape liniștite și toate serviciile. Atmosferă animată, cu promenadă."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-torviscas.cat",
+   "es": "Playa Familiar · Costa Adeje",
+   "forma": "texto",
+   "ro": "Plajă pentru familii · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-puerto-santiago.desc",
+   "es": "Playa de arena negra volcánica al pie de Los Gigantes. Pueblo pesquero auténtico con restaurantes locales. Punto de salida de excursiones en barco a los acantilados.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip vulcanic negru la poalele falezelor Los Gigantes. Sat de pescari autentic, cu restaurante locale. Punct de plecare pentru excursiile cu barca spre faleze."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-puerto-santiago.cat",
+   "es": "Playa Negra · Los Gigantes",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru · Los Gigantes"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-diego-hernandez.desc",
+   "es": "Cala virgen oculta entre acantilados en Adeje. Acceso por sendero de 45 minutos o en kayak. Arena dorada rodeada de paredes rocosas verticales. Una de las más bonitas y secretas de Tenerife. De arraigada tradición naturista y ambiente bohemio.",
+   "forma": "texto",
+   "ro": "Golfuleț virgin, ascuns între faleze, în Adeje. Acces pe o potecă de 45 de minute sau cu caiacul. Nisip auriu înconjurat de pereți stâncoși verticali. Una dintre cele mai frumoase și mai ascunse plaje din Tenerife. Cu o veche tradiție naturistă și o atmosferă boemă."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-diego-hernandez.cat",
+   "es": "Cala Virgen · Adeje",
+   "forma": "texto",
+   "ro": "Golfuleț virgin · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-jaquita.desc",
+   "es": "Playa de arena negra en Alcalá, en la costa oeste, dentro del municipio de Guía de Isora. Está pegada a las Piscinas Naturales de Alcalá, los Charcos de La Jaquita, y las une el paseo marítimo. Aparcamiento gratuito junto al Hotel Gran Meliá Isora.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru în Alcalá, pe coasta de vest, în municipalitatea Guía de Isora. Este chiar lângă piscinele naturale din Alcalá, Charcos de La Jaquita, de care o leagă promenada. Parcare gratuită lângă Hotel Gran Meliá Isora."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-jaquita.cat",
+   "es": "Playa de Arena Negra · Alcalá · Guía de Isora",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru · Alcalá · Guía de Isora"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-rambla.desc",
+   "es": "Playa escondida con palmeras naturales y barranco verde en Los Realejos. Sólo accesible a pie por un sendero de 20 minutos entre plataneras. Completamente virgen y sin turistas.",
+   "forma": "texto",
+   "ro": "Plajă ascunsă, cu palmieri naturali și un defileu verde, în Los Realejos. Accesibilă doar pe jos, pe o potecă de 20 de minute printre plantații de banane. Complet virgină și fără turiști."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-rambla.cat",
+   "es": "Playa Oculta · Los Realejos",
+   "forma": "texto",
+   "ro": "Plajă ascunsă · Los Realejos"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-fajana-realejos.desc",
+   "es": "Playa salvaje de arena negra, de unos 130 m de largo por 20 de ancho, en el Paisaje Protegido de la Rambla de Castro. La cascada cae directamente sobre la arena. Se llega en unos 30 minutos a pie por un sendero desde donde se deja el coche, con tramos de escaleras y un último trecho sobre piedras junto al mar: no es recomendable con niños ni con personas mayores. No hay socorrista ni ningún servicio, así que lleve agua, comida y calzado de agarre. El mar del norte va más revuelto y con más corriente que el del sur: báñese solo si está en calma y no se adentre.",
+   "forma": "texto",
+   "ro": "Plajă sălbatică cu nisip negru, lungă de circa 130 m și lată de 20, în peisajul protejat Rambla de Castro. Cascada cade direct pe nisip. Se ajunge pe jos în circa 30 de minute, pe o potecă ce pornește de unde se lasă mașina, cu porțiuni de scări și o ultimă bucată pe pietre, lângă mare: nu se recomandă cu copii și nici cu persoane în vârstă. Nu există salvamar și niciun fel de serviciu, așa că luați apă, mâncare și încălțăminte cu aderență. Marea din nord este mai agitată și are mai mulți curenți decât cea din sud: faceți baie doar dacă e calmă și nu intrați departe."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-fajana-realejos.cat",
+   "es": "Playa de Arena Negra · Los Realejos",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru · Los Realejos"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-amarilla.desc",
+   "es": "Playa de roca volcánica de tonos amarillos y anaranjados al pie de Montaña Amarilla, en el borde de Costa del Silencio. La montaña es Monumento Natural y su saliente resguarda la bahía: el agua suele estar muy tranquila y transparente, y los fondos volcánicos la hacen de las mejores del sur para snorkel. ⚠️ No es de arena: son callaos y plataformas de piedra volcánica, y se entra al agua por escalerillas fijadas en la roca. No hay socorrista. La zona está expuesta al alisio del N-NE y a rachas de componente oeste, aunque el viento en tierra no suele alterar la bahía. Aparcamiento gratuito de línea blanca en las calles Aquiles y Poseidón; no hay parking oficial ni zona azul. Parada de guagua Minerva (7306) a unos 700 m, 8 minutos por el sendero: líneas 470 (Los Cristianos — El Médano) cada 30-40 min y 415 (Aeropuerto Sur) cada hora.",
+   "forma": "texto",
+   "ro": "Plajă de rocă vulcanică în tonuri de galben și portocaliu, la poalele muntelui Montaña Amarilla, la marginea localității Costa del Silencio. Muntele este monument al naturii, iar promontoriul său adăpostește golful: apa este de obicei foarte liniștită și limpede, iar fundul vulcanic face din această plajă unul dintre cele mai bune locuri din sud pentru snorkeling. ⚠️ Nu este o plajă cu nisip: are bolovani rotunjiți și platforme de piatră vulcanică, iar în apă se intră pe scărițe fixate în stâncă. Nu există salvamar. Zona este expusă alizeului din N-NE și rafalelor dinspre vest, deși vântul de pe uscat nu agită de obicei golful. Parcare gratuită, cu linie albă, pe străzile Aquiles și Poseidón; nu există parcare oficială și nici zonă cu plată. Stația de autobuz Minerva (7306) e la circa 700 m, 8 minute pe potecă: liniile 470 (Los Cristianos — El Médano), la fiecare 30-40 de minute, și 415 (Aeroportul Sud), o dată pe oră."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-amarilla.cat",
+   "es": "Playa Volcánica · Monumento Natural · Costa del Silencio",
+   "forma": "texto",
+   "ro": "Plajă vulcanică · Monument al naturii · Costa del Silencio"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-amarilla.aviso",
+   "es": "Línea blanca gratuita en las calles residenciales, Aquiles y Poseidón. No hay parking oficial junto al Monumento Natural ni zona azul; a 5-10 minutos andando suele haber sitio.",
+   "forma": "texto",
+   "ro": "Parcare gratuită, cu linie albă, pe străzile rezidențiale Aquiles și Poseidón. Nu există parcare oficială lângă monumentul naturii și nici zonă cu plată; la 5-10 minute de mers pe jos se găsește de obicei loc."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-las-gaviotas.desc",
+   "es": "⚠️ Perros prohibidos por ordenanza municipal, bajo sanción. La playa nudista más concurrida del norte, junto a Teresitas. Arena negra volcánica y ambiente muy tranquilo y tolerante. Sin servicios pero con aparcamiento cercano.",
+   "forma": "texto",
+   "ro": "⚠️ Câinii sunt interziși prin ordonanța municipală, iar încălcarea se sancționează. Cea mai frecventată plajă nudistă din nord, lângă Teresitas. Nisip vulcanic negru și o atmosferă foarte liniștită și tolerantă. Fără servicii, dar cu parcare în apropiere."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-las-gaviotas.cat",
+   "es": "Playa Nudista · Santa Cruz",
+   "forma": "texto",
+   "ro": "Plajă nudistă · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-candelaria.desc",
+   "es": "Hospital público de referencia del sur de Tenerife. Urgencias generales y pediátricas 24h.",
+   "forma": "texto",
+   "ro": "Spital public de referință pentru sudul insulei Tenerife. Urgențe generale și pediatrice 24h."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-candelaria.cat",
+   "es": "Hospital Público · Santa Cruz",
+   "forma": "texto",
+   "ro": "Spital public · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-candelaria.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-huc.desc",
+   "es": "Hospital público de referencia del norte de Tenerife. Universitario, todas las especialidades.",
+   "forma": "texto",
+   "ro": "Spital public de referință pentru nordul insulei Tenerife. Spital universitar, cu toate specialitățile."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-huc.cat",
+   "es": "Hospital Público · La Laguna",
+   "forma": "texto",
+   "ro": "Spital public · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-huc.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-sur.desc",
+   "es": "Hospital público del sur. Urgencias 24h y especialidades médicas para la comarca.",
+   "forma": "texto",
+   "ro": "Spital public din sud. Urgențe 24h și specialități medicale pentru zona din jur."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-sur.cat",
+   "es": "Hospital Público · Arona",
+   "forma": "texto",
+   "ro": "Spital public · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-sur.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-norte.desc",
+   "es": "Hospital público que atiende a la comarca noroeste. Urgencias generales 24h.",
+   "forma": "texto",
+   "ro": "Spital public care deservește zona de nord-vest. Urgențe generale 24h."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-norte.cat",
+   "es": "Hospital Público · Icod",
+   "forma": "texto",
+   "ro": "Spital public · Icod"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-norte.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-hospiten-sur.desc",
+   "es": "Hospital privado de referencia en el sur turístico. Acepta seguros internacionales.",
+   "forma": "texto",
+   "ro": "Spital privat de referință în sudul turistic. Acceptă asigurări internaționale."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-hospiten-sur.cat",
+   "es": "Hospital Privado · Las Américas",
+   "forma": "texto",
+   "ro": "Spital privat · Las Américas"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-hospiten-sur.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-quiron-sc.desc",
+   "es": "Hospital privado en Santa Cruz. Urgencias 24h, todas las especialidades.",
+   "forma": "texto",
+   "ro": "Spital privat în Santa Cruz. Urgențe 24h, toate specialitățile."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-quiron-sc.cat",
+   "es": "Hospital Privado · Santa Cruz",
+   "forma": "texto",
+   "ro": "Spital privat · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-quiron-sc.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-quiron-adeje.desc",
+   "es": "Hospital privado en Costa Adeje. Atención a turistas, idiomas y aseguradoras internacionales.",
+   "forma": "texto",
+   "ro": "Spital privat în Costa Adeje. Oferă asistență turiștilor, în mai multe limbi, și lucrează cu asigurători internaționali."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-quiron-adeje.cat",
+   "es": "Hospital Privado · Costa Adeje",
+   "forma": "texto",
+   "ro": "Spital privat · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-quiron-adeje.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-bellevue.desc",
+   "es": "Hospital privado en Puerto de la Cruz. Especializado en atención al turista del norte.",
+   "forma": "texto",
+   "ro": "Spital privat în Puerto de la Cruz. Specializat în asistența turiștilor din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-bellevue.cat",
+   "es": "Hospital Privado · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Spital privat · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-bellevue.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-sjd.desc",
+   "es": "Hospital concertado para mutuas, accidentes y privado. Urgencias adultos 24h.",
+   "forma": "texto",
+   "ro": "Spital cu contracte pentru mutuale de asigurare și accidente, care primește și pacienți privați. Urgențe 24h pentru adulți."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-sjd.cat",
+   "es": "Hospital Concertado · Santa Cruz",
+   "forma": "texto",
+   "ro": "Spital cu contract · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-sjd.hours",
+   "es": "Urgencias 24h · adultos",
+   "forma": "texto",
+   "ro": "Urgențe 24h · adulți"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-parque.desc",
+   "es": "Hospital privado en el centro de Santa Cruz. Urgencias 24h adultos y pediátricas.",
+   "forma": "texto",
+   "ro": "Spital privat în centrul orașului Santa Cruz. Urgențe 24h pentru adulți și copii."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-parque.cat",
+   "es": "Hospital Privado · Santa Cruz",
+   "forma": "texto",
+   "ro": "Spital privat · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-parque.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-vithas-sct.desc",
+   "es": "Hospital privado en Santa Cruz con urgencias 24h permanentes desde noviembre 2025. Amplia cartera de especialidades: cardiología, neurología, oncología, ginecología, traumatología y más. UCI 24h. Referente de la sanidad privada en Canarias.",
+   "forma": "texto",
+   "ro": "Spital privat în Santa Cruz, cu urgențe permanente 24h din noiembrie 2025. O gamă largă de specialități: cardiologie, neurologie, oncologie, ginecologie, traumatologie și altele. Terapie intensivă 24h. Un reper al medicinei private din Insulele Canare."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-vithas-sct.cat",
+   "es": "Hospital Privado · Urgencias 24h · Santa Cruz",
+   "forma": "texto",
+   "ro": "Spital privat · Urgențe 24h · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-vithas-sct.hours",
+   "es": "Urgencias 24h · 365 días (desde noviembre 2025)",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile (din noiembrie 2025)"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-hospiten-rambla.desc",
+   "es": "Hospital privado Hospiten en La Rambla de Santa Cruz. Urgencias 24h, maternidad, pediatría, cirugía y todas las especialidades. Centro de referencia para turistas del norte de la isla.",
+   "forma": "texto",
+   "ro": "Spitalul privat Hospiten de pe La Rambla, în Santa Cruz. Urgențe 24h, maternitate, pediatrie, chirurgie și toate specialitățile. Centru de referință pentru turiștii din nordul insulei."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-hospiten-rambla.cat",
+   "es": "Hospital Privado · Urgencias 24h · Santa Cruz",
+   "forma": "texto",
+   "ro": "Spital privat · Urgențe 24h · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-hospiten-rambla.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-uro-tenerife.desc",
+   "es": "Clínica especializada en urología en Santa Cruz. Referente en la isla para patologías urológicas.",
+   "forma": "texto",
+   "ro": "Clinică specializată în urologie, în Santa Cruz. Un reper pe insulă pentru afecțiunile urologice."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-uro-tenerife.cat",
+   "es": "Clínica Especializada · Urología · Santa Cruz",
+   "forma": "texto",
+   "ro": "Clinică specializată · Urologie · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-uro-tenerife.hours",
+   "es": "L-V 9:00–14:00 y 16:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–14:00 și 16:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-ceu-laguna.desc",
+   "es": "Centro de especialidades del SCS en La Laguna. Consultas de especialistas, diagnóstico, rehabilitación y hospital de día. Conectado con el HUC. Cubre La Laguna y municipios del norte.",
+   "forma": "texto",
+   "ro": "Centru de specialități al SCS în La Laguna. Consultații de specialitate, diagnostic, recuperare și spitalizare de zi. Legat de HUC. Deservește La Laguna și municipalitățile din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-ceu-laguna.cat",
+   "es": "Centro de Especialidades · La Laguna",
+   "forma": "texto",
+   "ro": "Centru de specialități · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "hosp-ceu-laguna.hours",
+   "es": "L-V 8:00–21:00 · Sin urgencias nocturnas",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–21:00 · Fără urgențe noaptea"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-adeje.desc",
+   "es": "Atención primaria del municipio de Adeje. Para urgencias fuera de horario, ir al hospital.",
+   "forma": "texto",
+   "ro": "Asistență medicală primară pentru municipalitatea Adeje. Pentru urgențe în afara programului, mergeți la spital."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-adeje.cat",
+   "es": "Centro de Salud · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-adeje.hours",
+   "es": "L-V 8:00–20:00 · Fin de semana cerrado",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00 · Închis în weekend"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-cristianos.desc",
+   "es": "Atención primaria en Los Cristianos. Servicio de urgencias fuera de horario en hospital.",
+   "forma": "texto",
+   "ro": "Asistență medicală primară în Los Cristianos. În afara programului, urgențele se tratează la spital."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-cristianos.cat",
+   "es": "Centro de Salud · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-cristianos.hours",
+   "es": "L-V 8:00–19:30",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–19:30"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-pcruz.desc",
+   "es": "Centro de especialidades médicas para el Valle de la Orotava. Análisis, radiología y consultas.",
+   "forma": "texto",
+   "ro": "Centru de specialități medicale pentru Valle de la Orotava. Analize, radiologie și consultații."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-pcruz.cat",
+   "es": "Especialidades · SCS",
+   "forma": "texto",
+   "ro": "Specialități · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-pcruz.hours",
+   "es": "L-V 8:00–15:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–15:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-orotava.desc",
+   "es": "Centro de salud con servicio de urgencias 24h. Atiende todo el municipio de La Orotava.",
+   "forma": "texto",
+   "ro": "Centru de sănătate cu serviciu de urgențe 24h. Deservește toată municipalitatea La Orotava."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-orotava.cat",
+   "es": "Centro de Salud 24h · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate 24h · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-orotava.hours",
+   "es": "Urgencias 24h en el centro",
+   "forma": "texto",
+   "ro": "Urgențe 24h în acest centru"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-icod.desc",
+   "es": "Atención primaria en Icod. Para urgencias 24h, Hospital del Norte está muy cerca.",
+   "forma": "texto",
+   "ro": "Asistență medicală primară în Icod. Pentru urgențe 24h, Hospital del Norte este foarte aproape."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-icod.cat",
+   "es": "Centro de Salud · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-icod.hours",
+   "es": "L-V 8:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-candelaria.desc",
+   "es": "Atención primaria del municipio de Candelaria.",
+   "forma": "texto",
+   "ro": "Asistență medicală primară pentru municipalitatea Candelaria."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-candelaria.cat",
+   "es": "Centro de Salud · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-candelaria.hours",
+   "es": "L-V 8:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-granadilla.desc",
+   "es": "Centro con urgencias 24h para Granadilla y comarca sureste.",
+   "forma": "texto",
+   "ro": "Centru cu urgențe 24h pentru Granadilla și zona de sud-est."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-granadilla.cat",
+   "es": "Centro de Salud 24h · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate 24h · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-granadilla.hours",
+   "es": "Urgencias 24h en el centro",
+   "forma": "texto",
+   "ro": "Urgențe 24h în acest centru"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-guimar.desc",
+   "es": "Centro con urgencias 24h para Güímar y municipios cercanos.",
+   "forma": "texto",
+   "ro": "Centru cu urgențe 24h pentru Güímar și municipalitățile din apropiere."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-guimar.cat",
+   "es": "Centro de Salud 24h · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate 24h · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-guimar.hours",
+   "es": "Urgencias 24h en el centro",
+   "forma": "texto",
+   "ro": "Urgențe 24h în acest centru"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-sanisidro.desc",
+   "es": "Atención primaria en San Isidro. Servicio de urgencias el fin de semana.",
+   "forma": "texto",
+   "ro": "Asistență medicală primară în San Isidro. Serviciu de urgențe în weekend."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-sanisidro.cat",
+   "es": "Centro de Salud · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-sanisidro.hours",
+   "es": "L-V 8:00–19:00 · Sáb-Dom 24h",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–19:00 · Sâmbătă-duminică 24h"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-realejos.desc",
+   "es": "Atención primaria del municipio de Los Realejos.",
+   "forma": "texto",
+   "ro": "Asistență medicală primară pentru municipalitatea Los Realejos."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-realejos.cat",
+   "es": "Centro de Salud · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-realejos.hours",
+   "es": "L-V 8:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-tacoronte.desc",
+   "es": "Centro con urgencias 24h para Tacoronte y comarca de Acentejo.",
+   "forma": "texto",
+   "ro": "Centru cu urgențe 24h pentru Tacoronte și zona Acentejo."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-tacoronte.cat",
+   "es": "Centro de Salud 24h · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate 24h · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-tacoronte.hours",
+   "es": "Urgencias 24h en el centro",
+   "forma": "texto",
+   "ro": "Urgențe 24h în acest centru"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-medano.desc",
+   "es": "Consultorio local en El Médano. Servicio de urgencias el sábado.",
+   "forma": "texto",
+   "ro": "Dispensar local în El Médano. Serviciu de urgențe sâmbăta."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-medano.cat",
+   "es": "Consultorio · SCS",
+   "forma": "texto",
+   "ro": "Dispensar · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-medano.hours",
+   "es": "L-V 8:00–20:00 · Sáb 24h",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00 · Sâmbătă 24h"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-ofra.desc",
+   "es": "Centro de salud urbano en Santa Cruz, zona Ofra-Delicias.",
+   "forma": "texto",
+   "ro": "Centru de sănătate urban în Santa Cruz, zona Ofra-Delicias."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-ofra.cat",
+   "es": "Centro de Salud · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-ofra.hours",
+   "es": "L-V 8:00–19:30",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–19:30"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-geneto.desc",
+   "es": "Atención primaria en La Laguna, zona Geneto.",
+   "forma": "texto",
+   "ro": "Asistență medicală primară în La Laguna, zona Geneto."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-geneto.cat",
+   "es": "Centro de Salud · SCS",
+   "forma": "texto",
+   "ro": "Centru de sănătate · SCS"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-geneto.hours",
+   "es": "L-V 8:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-arona.desc",
+   "es": "Centro de Atención Primaria del SCS en Arona pueblo, sur de Tenerife. Atiende a Los Cristianos, Las Galletas y Costa del Silencio.",
+   "forma": "texto",
+   "ro": "Centru de asistență medicală primară al SCS în localitatea Arona, în sudul insulei Tenerife. Deservește Los Cristianos, Las Galletas și Costa del Silencio."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-arona.cat",
+   "es": "Centro de Salud · Arona · Sur",
+   "forma": "texto",
+   "ro": "Centru de sănătate · Arona · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-arona.hours",
+   "es": "L-V 8:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-santiago-teide.desc",
+   "es": "Centro de Atención Primaria del SCS en Santiago del Teide, oeste de Tenerife. Atiende a Los Gigantes, Puerto de Santiago y Playa de La Arena.",
+   "forma": "texto",
+   "ro": "Centru de asistență medicală primară al SCS în Santiago del Teide, în vestul insulei Tenerife. Deservește Los Gigantes, Puerto de Santiago și Playa de La Arena."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-santiago-teide.cat",
+   "es": "Centro de Salud · Santiago del Teide · Oeste",
+   "forma": "texto",
+   "ro": "Centru de sănătate · Santiago del Teide · Vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-santiago-teide.hours",
+   "es": "L-V 8:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-buenavista-norte.desc",
+   "es": "Consultorio médico del SCS en Buenavista del Norte, noroeste de Tenerife. Atención primaria para residentes del municipio más occidental de la isla. Para especialidades y urgencias, el hospital de referencia es el Hospital del Norte (Icod de los Vinos).",
+   "forma": "texto",
+   "ro": "Dispensar medical al SCS în Buenavista del Norte, în nord-vestul insulei Tenerife. Asistență medicală primară pentru locuitorii celei mai vestice municipalități a insulei. Pentru specialități și urgențe, spitalul de referință este Hospital del Norte (Icod de los Vinos)."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-buenavista-norte.cat",
+   "es": "Consultorio · Buenavista del Norte · Noroeste",
+   "forma": "texto",
+   "ro": "Dispensar · Buenavista del Norte · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-buenavista-norte.hours",
+   "es": "L-V 8:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-garachico.desc",
+   "es": "Ambulatorio del SCS en Garachico, en la carretera de acceso al municipio desde Icod. Atención primaria para residentes de Garachico y zona norte. Hospital de referencia: Hospital del Norte de Tenerife (Icod de los Vinos).",
+   "forma": "texto",
+   "ro": "Ambulatoriu al SCS în Garachico, pe drumul de acces în municipalitate dinspre Icod. Asistență medicală primară pentru locuitorii din Garachico și din zona de nord. Spital de referință: Hospital del Norte de Tenerife (Icod de los Vinos)."
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-garachico.cat",
+   "es": "Ambulatorio · Garachico · Norte",
+   "forma": "texto",
+   "ro": "Ambulatoriu · Garachico · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "cs-garachico.hours",
+   "es": "L-V 8:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-salamanca.desc",
+   "es": "Farmacia grande abierta 24h en Santa Cruz. Gran selección de productos y parking cercano.",
+   "forma": "texto",
+   "ro": "Farmacie mare, deschisă 24h, în Santa Cruz. O gamă largă de produse și parcare în apropiere."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-salamanca.cat",
+   "es": "Farmacia 24h · Santa Cruz",
+   "forma": "texto",
+   "ro": "Farmacie 24h · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-salamanca.hours",
+   "es": "Abierta 24h · 365 días",
+   "forma": "texto",
+   "ro": "Deschisă 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-anchieta.desc",
+   "es": "Farmacia con horario ampliado en La Laguna, junto al Padre Anchieta. Servicio de guardia.",
+   "forma": "texto",
+   "ro": "Farmacie cu program prelungit în La Laguna, lângă Padre Anchieta. Serviciu de gardă."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-anchieta.cat",
+   "es": "Farmacia Guardia · La Laguna",
+   "forma": "texto",
+   "ro": "Farmacie de gardă · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-anchieta.hours",
+   "es": "L-D 8:00–22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 8:00–22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-blesa.desc",
+   "es": "Farmacia muy concurrida en pleno Los Cristianos. Buen servicio y precios competitivos.",
+   "forma": "texto",
+   "ro": "Farmacie foarte frecventată, în inima localității Los Cristianos. Servicii bune și prețuri competitive."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-blesa.cat",
+   "es": "Farmacia · Los Cristianos",
+   "forma": "texto",
+   "ro": "Farmacie · Los Cristianos"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-blesa.hours",
+   "es": "L-V 8:30–20:30 · Sáb 9:00–20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:30–20:30 · Sâmbătă 9:00–20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-orotava.desc",
+   "es": "Farmacia abierta 365 días al año junto al Centro de Salud Las Dehesas.",
+   "forma": "texto",
+   "ro": "Farmacie deschisă 365 de zile pe an, lângă centrul de sănătate Las Dehesas."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-orotava.cat",
+   "es": "Farmacia · La Orotava",
+   "forma": "texto",
+   "ro": "Farmacie · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-orotava.hours",
+   "es": "Todos los días 9:00–21:00",
+   "forma": "texto",
+   "ro": "Zilnic 9:00–21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-anaga.desc",
+   "es": "Farmacia clásica en la Avenida Anaga, frente al puerto. Atención profesional.",
+   "forma": "texto",
+   "ro": "Farmacie clasică pe Avenida Anaga, vizavi de port. Servicii profesioniste."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-anaga.cat",
+   "es": "Farmacia · Santa Cruz",
+   "forma": "texto",
+   "ro": "Farmacie · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-anaga.hours",
+   "es": "L-V 8:30–21:00 · Sáb-Dom 9:00–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:30–21:00 · Sâmbătă-duminică 9:00–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-galletas.desc",
+   "es": "Farmacia en Las Galletas, sur de Arona. Pueblo costero auténtico.",
+   "forma": "texto",
+   "ro": "Farmacie în Las Galletas, în sudul municipalității Arona. Un sat autentic de pe coastă."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-galletas.cat",
+   "es": "Farmacia · Las Galletas",
+   "forma": "texto",
+   "ro": "Farmacie · Las Galletas"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-galletas.hours",
+   "es": "L-V 8:00–20:00 · Sáb 8:00–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:00–20:00 · Sâmbătă 8:00–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-pharmadeje.desc",
+   "es": "Farmacia turística en Costa Adeje. Inglés, alemán y francés. Servicio de guardia rotativo.",
+   "forma": "texto",
+   "ro": "Farmacie pentru turiști în Costa Adeje. Se vorbește engleză, germană și franceză. Serviciu de gardă prin rotație."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-pharmadeje.cat",
+   "es": "Farmacia · Costa Adeje",
+   "forma": "texto",
+   "ro": "Farmacie · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-pharmadeje.hours",
+   "es": "L-V 9:00–21:00 · Sáb 9:15–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–21:00 · Sâmbătă 9:15–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-hernandez-sct.desc",
+   "es": "Farmacia de guardia permanente 24h en Santa Cruz de Tenerife. Una de las pocas farmacias con servicio ininterrumpido en la capital. Imprescindible para emergencias nocturnas.",
+   "forma": "texto",
+   "ro": "Farmacie de gardă permanentă, 24h, în Santa Cruz de Tenerife. Una dintre puținele farmacii cu program non-stop din capitală. Indispensabilă pentru urgențele de noapte."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-hernandez-sct.cat",
+   "es": "Farmacia 24h · Santa Cruz",
+   "forma": "texto",
+   "ro": "Farmacie 24h · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-hernandez-sct.hours",
+   "es": "24h · Todos los días · Guardia permanente",
+   "forma": "texto",
+   "ro": "24h · Zilnic · Gardă permanentă"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-islas-canarias-sct.desc",
+   "es": "Farmacia en Av. Islas Canarias, Santa Cruz. Turno de guardia rotativo. Amplio horario entre semana. Bien situada en zona céntrica.",
+   "forma": "texto",
+   "ro": "Farmacie pe Av. Islas Canarias, în Santa Cruz. Gardă prin rotație. Program extins în timpul săptămânii. Bine amplasată, într-o zonă centrală."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-islas-canarias-sct.cat",
+   "es": "Farmacia · Santa Cruz Centro",
+   "forma": "texto",
+   "ro": "Farmacie · Centrul orașului Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-islas-canarias-sct.hours",
+   "es": "L-V 8:30–20:00 · S-D 9:00–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 8:30–20:00 · Sâmbătă-duminică 9:00–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-pozo-pcruz.desc",
+   "es": "Farmacia con amplio horario en Puerto de la Cruz. Abierta todos los días del año de 9 a 22h, incluidos festivos. Una de las más accesibles para turistas en el norte de la isla.",
+   "forma": "texto",
+   "ro": "Farmacie cu program extins în Puerto de la Cruz. Deschisă în fiecare zi a anului, 9-22h, inclusiv în zilele de sărbătoare. Una dintre cele mai accesibile pentru turiști din nordul insulei."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-pozo-pcruz.cat",
+   "es": "Farmacia · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Farmacie · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-pozo-pcruz.hours",
+   "es": "Todos los días 09:00–22:00",
+   "forma": "texto",
+   "ro": "Zilnic 09:00–22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-bethencourt-pcruz.desc",
+   "es": "Farmacia con horario extendido en Puerto de la Cruz. Abierta 365 días al año de 8:30 a 22h. Turno de guardia rotativo por las noches. Bien situada en zona turística.",
+   "forma": "texto",
+   "ro": "Farmacie cu program extins în Puerto de la Cruz. Deschisă 365 de zile pe an, 8:30-22h. Gardă de noapte prin rotație. Bine amplasată, în zona turistică."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-bethencourt-pcruz.cat",
+   "es": "Farmacia · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Farmacie · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-bethencourt-pcruz.hours",
+   "es": "Todos los días 08:30–22:00",
+   "forma": "texto",
+   "ro": "Zilnic 08:30–22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-americas-arona.desc",
+   "es": "Farmacia en Los Cristianos, zona turística sur. Amplio horario y atención en varios idiomas. Turno de guardia rotativo con otras farmacias del área.",
+   "forma": "texto",
+   "ro": "Farmacie în Los Cristianos, în zona turistică din sud. Program extins și asistență în mai multe limbi. Gardă prin rotație cu alte farmacii din zonă."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-americas-arona.cat",
+   "es": "Farmacia · Los Cristianos · Sur",
+   "forma": "texto",
+   "ro": "Farmacie · Los Cristianos · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-americas-arona.hours",
+   "es": "L-V 9:00–21:00 · S 9:00–15:00 · Guardia rotativa",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–21:00 · Sâmbătă 9:00–15:00 · Gardă prin rotație"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-adeje-austria.desc",
+   "es": "Farmacia en Adeje, zona centro. Amplio horario entre semana. Guardia rotativa con otras farmacias de la zona de Adeje y Costa Adeje.",
+   "forma": "texto",
+   "ro": "Farmacie în centrul localității Adeje. Program extins în timpul săptămânii. Gardă prin rotație cu alte farmacii din zona Adeje și Costa Adeje."
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-adeje-austria.cat",
+   "es": "Farmacia · Adeje",
+   "forma": "texto",
+   "ro": "Farmacie · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "farm-adeje-austria.hours",
+   "es": "L-V 9:00–21:00 · S 9:00–14:00 · Guardia rotativa",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–21:00 · Sâmbătă 9:00–14:00 · Gardă prin rotație"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-santa-cruz.desc",
+   "es": "⚠️ Puerto comercial de acceso restringido. El principal puerto de Tenerife y uno de los más importantes del Atlántico. Muelles de contenedores, cruceros y carga general. Los grandes transatlánticos atracan aquí — espectáculo impresionante desde el Parque Marítimo. Solo accesible a profesionales y pasajeros de crucero con documentación. El paseo marítimo exterior SÍ es público.",
+   "forma": "texto",
+   "ro": "⚠️ Port comercial cu acces restricționat. Principalul port al insulei Tenerife și unul dintre cele mai importante din Atlantic. Cheiuri pentru containere, nave de croazieră și mărfuri generale. Marile transatlantice acostează aici — un spectacol impresionant de la Parque Marítimo. Accesibil doar pentru profesioniști și pentru pasagerii de croazieră, cu actele necesare. Promenada exterioară ESTE publică."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-santa-cruz.cat",
+   "es": "⚠️ Puerto Comercial · Solo Observación",
+   "forma": "texto",
+   "ro": "⚠️ Port comercial · Doar de privit"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-los-cristianos.desc",
+   "es": "Puerto mixto: comercial (ferrys) y pesquero. Desde aquí salen los ferrys de Fred Olsen y Naviera Armas hacia La Gomera, La Palma y El Hierro. Zona de embarque con acceso controlado para pasajeros con billete. La zona de restaurantes y el paseo marítimo exterior SÍ son públicos y muy animados. Punto de salida de excursiones en barco al sur.",
+   "forma": "texto",
+   "ro": "Port mixt: comercial (feriboturi) și pescăresc. De aici pleacă feriboturile Fred Olsen și Naviera Armas spre La Gomera, La Palma și El Hierro. Zonă de îmbarcare cu acces controlat, pentru pasagerii cu bilet. Zona restaurantelor și promenada exterioară SUNT publice și foarte animate. Punct de plecare pentru excursii cu barca în sud."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-los-cristianos.cat",
+   "es": "Puerto Ferrys · Los Cristianos",
+   "forma": "texto",
+   "ro": "Port de feriboturi · Los Cristianos"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-colon-adeje.desc",
+   "es": "El puerto deportivo más turístico de Tenerife. Más de 300 atraques en plena Costa Adeje. Salida de todas las excursiones marítimas del sur: avistamiento de ballenas, catamaranes, submarinos turísticos, motos de agua, pesca deportiva. Restaurantes, tiendas y ambiente muy animado todo el día. Totalmente accesible al público.",
+   "forma": "texto",
+   "ro": "Cel mai turistic port de agrement din Tenerife. Peste 300 de locuri de acostare, chiar în Costa Adeje. De aici pleacă toate excursiile pe mare din sud: observarea balenelor, catamarane, submarine turistice, scutere de apă, pescuit sportiv. Restaurante, magazine și o atmosferă foarte animată toată ziua. Complet accesibil publicului."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-colon-adeje.cat",
+   "es": "Puerto Deportivo · Costa Adeje",
+   "forma": "texto",
+   "ro": "Port de agrement · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "marina-santa-cruz.desc",
+   "es": "Marina deportiva moderna en Santa Cruz junto al Parque Marítimo César Manrique. Atraques para embarcaciones de recreo con todos los servicios. Paseo marítimo con bares y restaurantes con vistas al océano. Muy cerca del Auditorio de Tenerife. Totalmente público el paseo y zona de restaurantes.",
+   "forma": "texto",
+   "ro": "Port de agrement modern în Santa Cruz, lângă Parque Marítimo César Manrique. Locuri de acostare pentru ambarcațiuni de agrement, cu toate serviciile. Promenadă cu baruri și restaurante cu priveliște spre ocean. Foarte aproape de Auditorio de Tenerife. Promenada și zona restaurantelor sunt complet publice."
+  },
+  {
+   "tabla": "places",
+   "clave": "marina-santa-cruz.cat",
+   "es": "Marina · Santa Cruz",
+   "forma": "texto",
+   "ro": "Port de agrement · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-gigantes.desc",
+   "es": "Uno de los puertos deportivos más espectaculares de Canarias, enclavado al pie de los acantilados de Los Gigantes (600m). Salida de excursiones de avistamiento de cetáceos, buceo y snorkel. Restaurantes con vistas únicas a los acantilados. Puerto muy concurrido en verano. Totalmente accesible al público.",
+   "forma": "texto",
+   "ro": "Unul dintre cele mai spectaculoase porturi de agrement din Insulele Canare, la poalele falezelor Los Gigantes (600 m). De aici pleacă excursii de observare a cetaceelor, de scufundări și de snorkeling. Restaurante cu priveliști unice spre faleze. Port foarte aglomerat vara. Complet accesibil publicului."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-gigantes.cat",
+   "es": "Puerto Deportivo · Los Gigantes",
+   "forma": "texto",
+   "ro": "Port de agrement · Los Gigantes"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-radazul.desc",
+   "es": "Puerto deportivo tranquilo en la urbanización Radazul, costa este de Tenerife. Ambiente local y familiar, menos turístico que los del sur. Buenos servicios náuticos para embarcaciones de recreo. Club náutico con restaurante y terraza con vistas al mar. Ideal para una comida tranquila junto al Atlántico.",
+   "forma": "texto",
+   "ro": "Port de agrement liniștit în cartierul rezidențial Radazul, pe coasta de est a insulei Tenerife. Atmosferă locală și familială, mai puțin turistică decât în porturile din sud. Servicii nautice bune pentru ambarcațiunile de agrement. Club nautic cu restaurant și terasă cu priveliște spre mare. Ideal pentru o masă liniștită lângă Atlantic."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-radazul.cat",
+   "es": "Puerto Deportivo · El Rosario",
+   "forma": "texto",
+   "ro": "Port de agrement · El Rosario"
+  },
+  {
+   "tabla": "places",
+   "clave": "marina-sur-galletas.desc",
+   "es": "Puerto deportivo inaugurado en 2009 en Las Galletas, pueblo con gran tradición pesquera en el sur. Marina tranquila y bien equipada con múltiples servicios náuticos. Restaurantes con ambiente marinero auténtico. Zona de pesca deportiva y excursiones marítimas. Más auténtico y menos masificado que Puerto Colón.",
+   "forma": "texto",
+   "ro": "Port de agrement inaugurat în 2009 în Las Galletas, un sat cu o bogată tradiție pescărească din sud. Port liniștit și bine echipat, cu numeroase servicii nautice. Restaurante cu o atmosferă marinărească autentică. Zonă de pescuit sportiv și de excursii pe mare. Mai autentic și mai puțin aglomerat decât Puerto Colón."
+  },
+  {
+   "tabla": "places",
+   "clave": "marina-sur-galletas.cat",
+   "es": "Marina · Las Galletas · Sur",
+   "forma": "texto",
+   "ro": "Port de agrement · Las Galletas · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-guimar.desc",
+   "es": "Núcleo costero y de baño del Puertito de Güímar, costa este, con un pequeño club náutico. Playa canina oficial adyacente. Solarium y zona de baño junto a la bocana. Ambiente local auténtico muy diferente al turismo masivo del sur. Aguas tranquilas protegidas por espigones.",
+   "forma": "texto",
+   "ro": "Puertito de Güímar este o localitate de coastă cu zonă de baie, pe coasta de est, și are un mic club nautic. Chiar alături, o plajă oficială pentru câini. Solariu și zonă de baie lângă intrarea în port. Atmosferă locală autentică, foarte diferită de turismul de masă din sud. Ape liniștite, protejate de diguri."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-guimar.cat",
+   "es": "Puerto Deportivo · Güímar",
+   "forma": "texto",
+   "ro": "Port de agrement · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-garachico.desc",
+   "es": "Puerto histórico en Garachico, la villa más bella del norte. Fue el mayor puerto de Tenerife hasta que la erupción volcánica de 1706 lo sepultó bajo la lava. El puerto actual es pequeño y pintoresco, rodeado de las famosas piscinas naturales volcánicas de El Caletón. Ambiente histórico único. No apto para grandes embarcaciones.",
+   "forma": "texto",
+   "ro": "Port istoric în Garachico, cea mai frumoasă localitate din nord. A fost cel mai mare port al insulei Tenerife până când erupția vulcanică din 1706 l-a îngropat sub lavă. Portul de azi este mic și pitoresc, înconjurat de faimoasele piscine naturale vulcanice El Caletón. O atmosferă istorică unică. Nu este potrivit pentru ambarcațiunile mari."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-garachico.cat",
+   "es": "Puerto Histórico · Garachico",
+   "forma": "texto",
+   "ro": "Port istoric · Garachico"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-candelaria.desc",
+   "es": "Puerto deportivo La Galera en Candelaria, municipio de la Patrona de Canarias. Instalaciones náuticas junto a la Basílica de la Virgen de Candelaria. Ambiente tranquilo y local. Buen punto de parada en la costa este entre Santa Cruz y Güímar.",
+   "forma": "texto",
+   "ro": "Portul de agrement La Galera din Candelaria, municipalitatea Patroanei Insulelor Canare. Instalații nautice lângă Bazilica Fecioarei din Candelaria. Atmosferă liniștită și locală. Un bun loc de oprire pe coasta de est, între Santa Cruz și Güímar."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-candelaria.cat",
+   "es": "Puerto Deportivo · Candelaria",
+   "forma": "texto",
+   "ro": "Port de agrement · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-pcruz-nautico.desc",
+   "es": "Club náutico histórico en Puerto de la Cruz con instalaciones deportivas y náuticas. Muelle pesquero tradicional con ambiente marinero auténtico. Zona de restaurantes de pescado fresco. El puerto pesquero de Puerto de la Cruz es uno de los más pintorescos del norte de la isla.",
+   "forma": "texto",
+   "ro": "Club nautic istoric în Puerto de la Cruz, cu instalații sportive și nautice. Chei pescăresc tradițional, cu o atmosferă marinărească autentică. Zonă de restaurante cu pește proaspăt. Portul pescăresc din Puerto de la Cruz este unul dintre cele mai pitorești din nordul insulei."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-pcruz-nautico.cat",
+   "es": "Puerto Pesquero & Náutico · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Port pescăresc și de agrement · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-playa-san-juan.desc",
+   "es": "Puerto pesquero y deportivo en Playa San Juan, uno de los pueblos más tranquilos del suroeste. Muy auténtico con botes de pesca tradicionales. Restaurantes de pescado directamente del mar. Vistas a La Gomera en días despejados. Lejos del turismo masivo — un rincón auténtico canario.",
+   "forma": "texto",
+   "ro": "Port pescăresc și de agrement în Playa San Juan, unul dintre cele mai liniștite sate din sud-vest. Foarte autentic, cu bărci de pescuit tradiționale. Restaurante cu pește adus direct din mare. Priveliște spre La Gomera în zilele senine. Departe de turismul de masă — un colț canarian autentic."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-playa-san-juan.cat",
+   "es": "Puerto Pesquero · Playa San Juan",
+   "forma": "texto",
+   "ro": "Port pescăresc · Playa San Juan"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-amarilla-marina.desc",
+   "es": "Puerto deportivo moderno a 10 min del aeropuerto Tenerife Sur. 350 atraques junto al campo de golf Amarilla Golf — el hoyo 12 se asoma al mar en una imagen única con el Teide al fondo. Excursiones en submarino turístico, buceo y snorkel. Restaurantes con vistas al océano.",
+   "forma": "texto",
+   "ro": "Port de agrement modern, la 10 minute de aeroportul Tenerife Sur. 350 de locuri de acostare lângă terenul de golf Amarilla Golf — gaura 12 dă spre mare, într-o imagine unică, cu Teide în fundal. Excursii cu submarinul turistic, scufundări și snorkeling. Restaurante cu priveliște spre ocean."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-amarilla-marina.cat",
+   "es": "Marina · San Miguel de Abona",
+   "forma": "texto",
+   "ro": "Port de agrement · San Miguel de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-rcnt-santa-cruz.desc",
+   "es": "El club náutico más importante de Tenerife, fundado en 1902. Más de 4.500 socios. Instalaciones deportivas completas: náutica, tenis, natación. Atraques para embarcaciones de recreo. Ambiente elegante y social. Referente del deporte náutico en Canarias. La entrada al puerto SÍ es pública para restaurante y eventos.",
+   "forma": "texto",
+   "ro": "Cel mai important club nautic din Tenerife, fondat în 1902. Peste 4.500 de membri. Dotări sportive complete: sporturi nautice, tenis, înot. Locuri de acostare pentru ambarcațiuni de agrement. Atmosferă elegantă și mondenă. Un reper al sporturilor nautice din Insulele Canare. Accesul în port ESTE public pentru restaurant și evenimente."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-rcnt-santa-cruz.cat",
+   "es": "Real Club Náutico · Santa Cruz",
+   "forma": "texto",
+   "ro": "Real Club Náutico · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-marina-tenerife-sc.desc",
+   "es": "Puerto deportivo en la Dársena Pesquera de Santa Cruz, gestionado por la Autoridad Portuaria. Instalaciones náuticas con atraques para embarcaciones de recreo. Ambiente marinero auténtico junto al Puerto Chico. Buena opción para embarcaciones que visitan la capital.",
+   "forma": "texto",
+   "ro": "Port de agrement în Dársena Pesquera din Santa Cruz, administrat de Autoritatea Portuară. Instalații nautice, cu locuri de acostare pentru ambarcațiuni de agrement. Atmosferă marinărească autentică, lângă Puerto Chico. O opțiune bună pentru ambarcațiunile care vizitează capitala."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-marina-tenerife-sc.cat",
+   "es": "Marina Deportiva · Santa Cruz",
+   "forma": "texto",
+   "ro": "Port de agrement · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-alcala.desc",
+   "es": "Pequeño y auténtico puertito pesquero en Alcalá, municipio de Guía de Isora. Barcas de pesca artesanal y ambiente de pueblo marinero tranquilo. Restaurantes de pescado fresco junto al mar. Lejos del turismo masivo, lugar de culto para quienes buscan la Tenerife auténtica. Ideal para el atardecer.",
+   "forma": "texto",
+   "ro": "Mic port pescăresc autentic în Alcalá, municipalitatea Guía de Isora. Bărci de pescuit artizanal și atmosfera unui sat de pescari liniștit. Restaurante cu pește proaspăt lângă mare. Departe de turismul de masă, un loc de cult pentru cei care caută insula Tenerife autentică. Ideal la apusul soarelui."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-alcala.cat",
+   "es": "Puertito Pesquero · Alcalá",
+   "forma": "texto",
+   "ro": "Mic port pescăresc · Alcalá"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-los-abrigos.desc",
+   "es": "Puerto pesquero artesanal en Los Abrigos, uno de los pueblos más genuinos del sur. Lonja pesquera inaugurada en 2013. Los restaurantes del paseo marítimo sirven el pescado recién sacado del mar — uno de los mejores sitios de Tenerife para comer pescado fresco. Ambiente marinero sin artificios turísticos.",
+   "forma": "texto",
+   "ro": "Port de pescuit artizanal în Los Abrigos, unul dintre cele mai autentice sate din sud. Hala pescarilor, inaugurată în 2013. Restaurantele de pe promenadă servesc pește abia scos din mare — unul dintre cele mai bune locuri din Tenerife pentru a mânca pește proaspăt. Atmosferă marinărească nealterată de turism."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-los-abrigos.cat",
+   "es": "Puerto Pesquero · Los Abrigos",
+   "forma": "texto",
+   "ro": "Port pescăresc · Los Abrigos"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-tajao.desc",
+   "es": "Pequeño puertito pesquero en San Miguel de Tajao, costa sureste. Cofradía de Pescadores activa. Pueblo marinero auténtico con barcas tradicionales. Zona de buceo y snorkel. Restaurantes con vista al mar y excelente pescado del día. Relativamente desconocido por los turistas — tesoro escondido del sureste.",
+   "forma": "texto",
+   "ro": "Mic port pescăresc în San Miguel de Tajao, pe coasta de sud-est. Are o breaslă a pescarilor (cofradía) activă. Sat de pescari autentic, cu bărci tradiționale. Zonă de scufundări și snorkeling. Restaurante cu priveliște spre mare și un excelent pește al zilei. Relativ puțin cunoscut de turiști — o comoară ascunsă a sud-estului."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-tajao.cat",
+   "es": "Puertito Pesquero · Tajao",
+   "forma": "texto",
+   "ro": "Mic port pescăresc · Tajao"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-poris-abona.desc",
+   "es": "Pequeño embarcadero en Porís de Abona, costa sureste. Flota pesquera artesanal con pequeñas barcas tradicionales. Playas de El Porís y El Bonito adyacentes. Ambiente de pueblo canario auténtico alejado del turismo. Buen punto de partida para rutas de senderismo por la costa sureste.",
+   "forma": "texto",
+   "ro": "Mic debarcader în Porís de Abona, pe coasta de sud-est. Flotă de pescuit artizanal, cu bărci mici, tradiționale. Alături, plajele El Porís și El Bonito. Atmosfera unui sat canarian autentic, departe de turism. Un bun punct de plecare pentru drumeții pe coasta de sud-est."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-poris-abona.cat",
+   "es": "Embarcadero · Porís de Abona",
+   "forma": "texto",
+   "ro": "Debarcader · Porís de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-san-marcos.desc",
+   "es": "Pequeño puerto pesquero y turístico en San Marcos, barrio costero de Icod de los Vinos. Playa de arena oscura volcánica muy popular entre familias. Restaurantes de pescado fresco junto al malecón. Ambiente local auténtico con vistas al océano desde el norte. A solo 10 min del Drago Milenario.",
+   "forma": "texto",
+   "ro": "Mic port pescăresc și turistic în San Marcos, cartier de pe coasta din Icod de los Vinos. Plajă cu nisip vulcanic închis la culoare, foarte apreciată de familii. Restaurante cu pește proaspăt lângă dig. Atmosferă locală autentică, cu priveliști spre ocean din nordul insulei. La doar 10 minute de Drago Milenario."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-san-marcos.cat",
+   "es": "Puertito · San Marcos · Norte",
+   "forma": "texto",
+   "ro": "Mic port · San Marcos · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-el-medano.desc",
+   "es": "⚠️ No existe puerto deportivo: los barcos y las escuelas de windsurf fondean en la bahía abierta frente a la playa. Bahía abierta de El Médano, la capital del windsurf y kitesurf en Tenerife. Sede de competiciones internacionales. El paseo marítimo de El Médano es uno de los más animados del sur. Ambiente joven y activo, muy diferente al turismo del sur.",
+   "forma": "texto",
+   "ro": "⚠️ Nu există port de agrement: bărcile, inclusiv cele ale școlilor de windsurfing, ancorează în golful deschis din fața plajei. Golful deschis din El Médano, capitala windsurfingului și a kitesurfingului din Tenerife. Gazdă a unor competiții internaționale. Promenada din El Médano este una dintre cele mai animate din sud. Atmosferă tânără și activă, foarte diferită de turismul din sud."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-el-medano.cat",
+   "es": "Puerto Deportivo · El Médano",
+   "forma": "texto",
+   "ro": "Port de agrement · El Médano"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-la-caleta.desc",
+   "es": "⚠️ No hay puerto ni muelle: es la zona costera de baño y restaurantes del pueblo de La Caleta. Pequeño pueblo pesquero en La Caleta, entre Costa Adeje y Playa San Juan. Auténtico y tranquilo a pocos km de la zona turística. Restaurantes de pescado directamente de la lonja. Inicio del paseo marítimo de Costa Adeje. Barcas tradicionales y ambiente local que contrasta con el turismo masivo de la zona.",
+   "forma": "texto",
+   "ro": "⚠️ Nu există port și nici chei: este zona de coastă cu loc de baie și restaurante a satului La Caleta. Mic sat de pescari în La Caleta, între Costa Adeje și Playa San Juan. Autentic și liniștit, la câțiva km de zona turistică. Restaurante cu pește adus direct de la hala pescarilor. Aici începe promenada din Costa Adeje. Bărci tradiționale și o atmosferă locală care contrastează cu turismul de masă din zonă."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-la-caleta.cat",
+   "es": "Puertito Pesquero · La Caleta · Adeje",
+   "forma": "texto",
+   "ro": "Mic port pescăresc · La Caleta · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-san-andres-norte.desc",
+   "es": "⚠️ No hay puerto independiente: es el frente marítimo del pueblo. El muelle más cercano es la Dársena Pesquera de Santa Cruz. Frente marítimo del pueblo pesquero de San Andrés, junto a la famosa Playa de Las Teresitas. Cofradía de Pescadores activa. Ambiente marinero auténtico a 8 km de Santa Cruz. Restaurantes de pescado y mariscos frente al mar. Combinable con la visita a Las Teresitas. Zona histórica del norte de Santa Cruz.",
+   "forma": "texto",
+   "ro": "⚠️ Nu există un port separat: este partea satului dinspre mare. Cel mai apropiat chei este Dársena Pesquera din Santa Cruz. Partea dinspre mare a satului de pescari San Andrés, lângă faimoasa plajă Las Teresitas. Are o breaslă a pescarilor (cofradía) activă. Atmosferă marinărească autentică, la 8 km de Santa Cruz. Restaurante cu pește și fructe de mare, la malul mării. Se poate combina cu o vizită la Las Teresitas. Zonă istorică din nordul orașului Santa Cruz."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-san-andres-norte.cat",
+   "es": "Puerto Pesquero · San Andrés",
+   "forma": "texto",
+   "ro": "Port pescăresc · San Andrés"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-chico-sct.desc",
+   "es": "Puerto deportivo pequeño junto a Marina Tenerife en la Dársena Pesquera de Santa Cruz. Instalaciones náuticas gestionadas por la Autoridad Portuaria. Buenas vistas al Puerto de Santa Cruz y al Teide en días claros. Ambiente marinero tranquilo y auténtico.",
+   "forma": "texto",
+   "ro": "Mic port de agrement lângă Marina Tenerife, în Dársena Pesquera din Santa Cruz. Instalații nautice administrate de Autoritatea Portuară. Priveliști frumoase spre portul din Santa Cruz și, în zilele senine, spre Teide. Atmosferă marinărească liniștită și autentică."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-chico-sct.cat",
+   "es": "Puerto Deportivo · Santa Cruz",
+   "forma": "texto",
+   "ro": "Port de agrement · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-mesa-del-mar.desc",
+   "es": "⚠️ No existe puerto ni muelle: es una zona residencial costera con piscinas naturales y playa. Enclave costero de Mesa del Mar, Tacoronte, norte de Tenerife. Pequeño y familiar, junto a las piscinas naturales volcánicas de Mesa del Mar. Ambiente local auténtico. Buenas vistas al Atlántico norte. Zona de pesca recreativa. Relativamente tranquilo y fuera de las rutas turísticas principales.",
+   "forma": "texto",
+   "ro": "⚠️ Nu există port și nici chei: este o zonă rezidențială pe coastă, cu piscine naturale și plajă. Colțul de coastă Mesa del Mar, în Tacoronte, în nordul insulei Tenerife. Mic și potrivit pentru familii, lângă piscinele naturale vulcanice din Mesa del Mar. Atmosferă locală autentică. Priveliști frumoase spre Atlanticul de nord. Zonă de pescuit recreativ. Relativ liniștit și în afara principalelor trasee turistice."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-mesa-del-mar.cat",
+   "es": "Puerto Deportivo · Mesa del Mar · Tacoronte",
+   "forma": "texto",
+   "ro": "Port de agrement · Mesa del Mar · Tacoronte"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-el-pris.desc",
+   "es": "Pequeño puerto pesquero en El Pris, Tacoronte. Zona muy apreciada por locales para el baño en sus piscinas naturales y para la pesca. Ambiente de pueblo marinero del norte sin turismo masivo. Buenas vistas a Mesa del Mar. Zona de buceo y snorkel en aguas tranquilas.",
+   "forma": "texto",
+   "ro": "Mic port pescăresc în El Pris, Tacoronte. Zonă foarte apreciată de localnici pentru baia în piscinele naturale și pentru pescuit. Atmosfera unui sat de pescari din nord, fără turism de masă. Priveliști frumoase spre Mesa del Mar. Zonă de scufundări și snorkeling, în ape liniștite."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-el-pris.cat",
+   "es": "Puertito Pesquero · El Pris · Tacoronte",
+   "forma": "texto",
+   "ro": "Mic port pescăresc · El Pris · Tacoronte"
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-granadilla-comercial.desc",
+   "es": "⚠️ Puerto comercial de acceso totalmente restringido al público. Puerto industrial de nueva construcción en Granadilla de Abona, sur de Tenerife. Muelles de carga a granel, contenedores y mercancías especiales. Sin acceso público — zona industrial portuaria. Bajo administración de la Autoridad Portuaria de Santa Cruz de Tenerife.",
+   "forma": "texto",
+   "ro": "⚠️ Port comercial, cu acces complet restricționat pentru public. Port industrial nou construit, în Granadilla de Abona, în sudul insulei Tenerife. Cheiuri pentru mărfuri în vrac, containere și mărfuri speciale. Fără acces public — zonă portuară industrială. Administrat de Autoritatea Portuară din Santa Cruz de Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "puerto-granadilla-comercial.cat",
+   "es": "⚠️ Puerto Industrial · Acceso Restringido · Sur",
+   "forma": "texto",
+   "ro": "⚠️ Port industrial · Acces restricționat · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-fasnia.desc",
+   "es": "⚠️ Sin instalaciones portuarias: es una pequeña cala rocosa con abrigo natural mínimo y barcas varadas. Pequeño puertito pesquero en Fasnia, municipio de la costa sureste. Barcas de pesca artesanal en una cala tranquila. Ambiente de pueblo canario auténtico lejos del turismo masivo. Las piscinas naturales volcánicas cercanas son frecuentadas por los locales. Zona de gran belleza natural y poca afluencia.",
+   "forma": "texto",
+   "ro": "⚠️ Fără instalații portuare: este un golfuleț stâncos, cu un adăpost natural minim și bărci trase pe mal. Mic port pescăresc în Fasnia, municipalitate de pe coasta de sud-est. Bărci de pescuit artizanal într-un golfuleț liniștit. Atmosfera unui sat canarian autentic, departe de turismul de masă. Piscinele naturale vulcanice din apropiere sunt frecventate de localnici. Zonă de o mare frumusețe naturală, cu puțini vizitatori."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-fasnia.cat",
+   "es": "Puertito Pesquero · Fasnia",
+   "forma": "texto",
+   "ro": "Mic port pescăresc · Fasnia"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-la-jaca.desc",
+   "es": "Pequeño embarcadero en La Jaca, pedanía de Arico, costa sureste. Zona de pesca artesanal tradicional. Playa de La Jaca adyacente. Entorno solitario y natural muy apreciado por los que buscan rincones sin turismo. Buen punto de observación de la costa sureste virgen.",
+   "forma": "texto",
+   "ro": "Mic debarcader în La Jaca, un cătun din Arico, pe coasta de sud-est. Zonă tradițională de pescuit artizanal. Alături, plaja La Jaca. Un loc retras și natural, foarte apreciat de cei care caută colțuri fără turiști. Un bun punct de observare a coastei virgine de sud-est."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-la-jaca.cat",
+   "es": "Embarcadero · La Jaca · Sureste",
+   "forma": "texto",
+   "ro": "Debarcader · La Jaca · Sud-est"
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-los-silos.desc",
+   "es": "⚠️ Aquí no hay puerto ni muelle: es una cala empedrada con paseo marítimo junto al esqueleto de ballena. Las embarcaciones operan desde Garachico. Rincón costero de Los Silos, noroeste de Tenerife. Pueblo marinero tranquilo junto al Parque Rural de Teno. Barcas de pesca tradicionales. Plaza marinera con restaurantes de pescado fresco. Zona de snorkel en aguas cristalinas. Una de las localidades más tranquilas y auténticas del noroeste.",
+   "forma": "texto",
+   "ro": "⚠️ Aici nu există port și nici chei: este un golfuleț pietruit, cu promenadă, lângă scheletul de balenă. Ambarcațiunile operează din Garachico. Colț de coastă din Los Silos, în nord-vestul insulei Tenerife. Sat de pescari liniștit, lângă Parcul Rural Teno. Bărci de pescuit tradiționale. O piațetă marinărească, cu restaurante cu pește proaspăt. Zonă de snorkeling în ape cristaline. Una dintre cele mai liniștite și mai autentice localități din nord-vest."
+  },
+  {
+   "tabla": "places",
+   "clave": "puertito-los-silos.cat",
+   "es": "Puerto Pesquero · Los Silos · Noroeste",
+   "forma": "texto",
+   "ro": "Port pescăresc · Los Silos · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-los-gigantes.desc",
+   "es": "Los Gigantes es uno de los mejores destinos de buceo de Tenerife, con algunos de los acantilados más altos de Europa (600 m) como telón de fondo submarino. Los Gigantes Diving Centre, en el embarcadero 6 de la Marina, lleva décadas operando inmersiones guiadas PADI a los mejores puntos: cueva de La Corona, arrecifes volcánicos, tortugas verdes y rayas. Visibilidad media 20-30 m. Temperatura del agua 18-24°C todo el año. Cursos Open Water desde cero. También snorkel y bautismos. Salidas diarias en barco. Abierto L-S 9:30-16:00.",
+   "forma": "texto",
+   "ro": "Los Gigantes este una dintre cele mai bune destinații de scufundări din Tenerife, cu unele dintre cele mai înalte faleze din Europa (600 m) drept decor subacvatic. Los Gigantes Diving Centre, la debarcaderul 6 din portul de agrement, organizează de zeci de ani scufundări ghidate PADI în cele mai bune locuri: peștera La Corona, recifuri vulcanice, broaște țestoase verzi și pisici-de-mare. Vizibilitate medie de 20-30 m. Temperatura apei: 18-24°C tot anul. Cursuri Open Water de la zero. De asemenea, snorkeling și botezuri de scufundare. Ieșiri zilnice cu barca. Deschis luni-sâmbătă, 9:30-16:00."
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-los-gigantes.cat",
+   "es": "Buceo & Snorkel · Los Gigantes · PADI · Acantilados",
+   "forma": "texto",
+   "ro": "Scufundări și snorkeling · Los Gigantes · PADI · Faleze"
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-los-cristianos.desc",
+   "es": "Los Cristianos alberga varios centros de buceo PADI en el Paseo Marítimo, junto al puerto. El más reconocido es el Club de Buceo Rincón de Arona (entre Playa Las Vistas y Playa Los Cristianos), con embarcación propia para 12 buceadores. Las inmersiones van a puntos como el Pequeño Puerto, el arrecife de Abades, La Caleta y el pecio El Condesito. Tortugas verdes, mantarrayas, bancos de peces tropicales. Visibilidad media 20-25 m. Temperatura 18-24°C. Cursos PADI, bautismos, snorkel. Salidas mañana y tarde. Reservas por WhatsApp.",
+   "forma": "texto",
+   "ro": "În Los Cristianos sunt mai multe centre de scufundări PADI pe promenadă, lângă port. Cel mai cunoscut este Club de Buceo Rincón de Arona (între Playa Las Vistas și Playa Los Cristianos), cu ambarcațiune proprie pentru 12 scafandri. Scufundările se fac în locuri precum Pequeño Puerto, reciful din Abades, La Caleta și epava El Condesito. Broaște țestoase verzi, diavoli-de-mare, bancuri de pești tropicali. Vizibilitate medie de 20-25 m. Temperatura: 18-24°C. Cursuri PADI, botezuri de scufundare, snorkeling. Ieșiri dimineața și după-amiaza. Rezervări pe WhatsApp."
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-los-cristianos.cat",
+   "es": "Buceo & Snorkel · Los Cristianos · Sur · PADI",
+   "forma": "texto",
+   "ro": "Scufundări și snorkeling · Los Cristianos · Sud · PADI"
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-puerto-colon.desc",
+   "es": "Puerto Colón, en Costa Adeje, es el hub de deportes náuticos más importante del sur de Tenerife. Scuba Point (PADI 5 Star IDC, C/ Puerto Colón 130) es uno de los centros de buceo más reconocidos de la isla, activo desde 1999. Ofrece inmersiones guiadas a La Caleta, Los Morteros (reserva natural), El Puertito de Adeje (tortugas en libertad), cuevas y arrecifes volcánicos. También snorkel en barco, cursos Open Water, Advanced y Rescue. Escuela de divemasters. Salidas diarias 9:30h y 14:00h. El único barco de buceo de Tenerife con WC a bordo.",
+   "forma": "texto",
+   "ro": "Puerto Colón, în Costa Adeje, este cel mai important centru de sporturi nautice din sudul insulei Tenerife. Scuba Point (PADI 5 Star IDC, C/ Puerto Colón 130) este unul dintre cele mai cunoscute centre de scufundări de pe insulă, activ din 1999. Oferă scufundări ghidate la La Caleta, la Los Morteros (rezervație naturală) și la El Puertito de Adeje (broaște țestoase în libertate), în peșteri și pe recifuri vulcanice. De asemenea, snorkeling de pe barcă și cursuri Open Water, Advanced și Rescue. Școală de divemasteri. Ieșiri zilnice la 9:30 și la 14:00. Singura barcă de scufundări din Tenerife cu toaletă la bord."
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-puerto-colon.cat",
+   "es": "Buceo & Snorkel · Puerto Colón · PADI 5★ IDC · Costa Adeje",
+   "forma": "texto",
+   "ro": "Scufundări și snorkeling · Puerto Colón · PADI 5★ IDC · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-puerto-cruz.desc",
+   "es": "El Centro de Buceo Atlantik (PADI 5 Star Gold Palm IDC) opera desde 1994 en Puerto de la Cruz, norte de Tenerife. Con el barco de buceo Gitano llevan a los mejores puntos submarinos del norte: La Catedral (arco volcánico a 30 m, meros, morenas, loros), El Garachico Tunnel (túnel volcánico emblemático a 13 m), Rapadura, Cueva de la Matanza, Baja Realejos y Chimenea. Visibilidad media 20-25 m. Temperatura 18-22°C. Fondos volcánicos únicos: paredes, cuevas, arcos de basalto. Cursos PADI desde Open Water hasta instructor. Bautismos desde 10 años. También excursiones de snorkel. Compromiso con la conservación marina activo.",
+   "forma": "texto",
+   "ro": "Centro de Buceo Atlantik (PADI 5 Star Gold Palm IDC) funcționează din 1994 în Puerto de la Cruz, în nordul insulei Tenerife. Cu barca de scufundări Gitano, vă duce în cele mai bune locuri subacvatice din nord: La Catedral (arc vulcanic la 30 m, cu pești mero, murene și pești-papagal), El Garachico Tunnel (tunel vulcanic emblematic, la 13 m), Rapadura, Cueva de la Matanza, Baja Realejos și Chimenea. Vizibilitate medie de 20-25 m. Temperatura: 18-22°C. Funduri vulcanice unice: pereți, peșteri, arcuri de bazalt. Cursuri PADI, de la Open Water până la instructor. Botezuri de scufundare de la 10 ani. De asemenea, excursii de snorkeling. Implicare activă în conservarea mediului marin."
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-puerto-cruz.cat",
+   "es": "Buceo & Snorkel · Puerto de la Cruz · Norte · PADI 5★",
+   "forma": "texto",
+   "ro": "Scufundări și snorkeling · Puerto de la Cruz · Nord · PADI 5★"
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-las-galletas.desc",
+   "es": "Las Galletas, en el sur de Tenerife, es uno de los hubs de buceo más activos de la isla. La zona de Punta Rasca y El Faro ofrece fondos rocosos volcánicos de hasta 50 metros de profundidad con una extraordinaria diversidad marina: rayas, meros, samas, barracudas, el rarísimo pez rana (perfectamente camuflado), pez globo (tamboril), corales negros y numerosos arcos y cuevas. Todos los niveles. Los buceadores expertos pueden alcanzar los -50 m en veriles rocosos. El Bufadero, cerca de Los Cristianos (10 m de fondo), es una inmersión fácil para cualquier nivel con tortugas y rayas obispo. Centro de referencia: Dive Tenerife Las Galletas.",
+   "forma": "texto",
+   "ro": "Las Galletas, în sudul insulei Tenerife, este unul dintre cele mai active centre de scufundări de pe insulă. Zona Punta Rasca și El Faro are funduri stâncoase vulcanice de până la 50 de metri adâncime, cu o diversitate marină extraordinară: pisici-de-mare, pești mero, pești sama, baracude, rarisimul pește-broască (perfect camuflat), pește-balon (tamboril), corali negri și numeroase arcuri și peșteri. Toate nivelurile. Scafandrii experimentați pot coborî la -50 m, pe pereți stâncoși abrupți. El Bufadero, lângă Los Cristianos (10 m adâncime), este o scufundare ușoară pentru orice nivel, cu broaște țestoase și pisici-de-mare. Centru de referință: Dive Tenerife Las Galletas."
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-las-galletas.cat",
+   "es": "Buceo & Snorkel · Las Galletas · Sur · Punta Rasca · El Faro",
+   "forma": "texto",
+   "ro": "Scufundări și snorkeling · Las Galletas · Sud · Punta Rasca · El Faro"
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-tabaiba.desc",
+   "es": "Tabaiba Baja, al suroeste de Santa Cruz, alberga el buceo en pecio más accesible de Tenerife. El Peñón es un viejo remolcador de 35 metros de eslora hundido en 2006 intencionalmente para crear un arrecife artificial en un fondo de arena a 10-18 metros. Acceso fácil desde la costa. Se puede explorar el interior: sala de máquinas, camarote de proa. En el exterior: densos bancos de barracudas, sargos, jureles, sardinas, trompetas, peces loro. También rayas y grandes medrégales en aguas abiertas alrededor del pecio. Nivel: intermedio. Buceo desde costa, sin barco necesario.",
+   "forma": "texto",
+   "ro": "Tabaiba Baja, la sud-vest de Santa Cruz, oferă cea mai accesibilă scufundare la o epavă din Tenerife. El Peñón este un vechi remorcher, lung de 35 de metri, scufundat intenționat în 2006 pentru a crea un recif artificial, pe un fund de nisip la 10-18 metri. Acces ușor de pe țărm. Se poate explora interiorul: sala mașinilor, cabina de la prova. La exterior: bancuri dense de baracude, pești sargo, stavrizi, sardine, pești-trompetă și pești-papagal. De asemenea, pisici-de-mare și pești medregal mari în apa deschisă din jurul epavei. Nivel: intermediar. Scufundare de pe țărm, fără să fie nevoie de barcă."
+  },
+  {
+   "tabla": "places",
+   "clave": "buceo-tabaiba.cat",
+   "es": "Buceo · Pecio El Peñón · Tabaiba · El Rosario · Intermedio",
+   "forma": "texto",
+   "ro": "Scufundări · Epava El Peñón · Tabaiba · El Rosario · Intermediar"
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-los-gigantes.desc",
+   "es": "Kayak bajo algunos de los acantilados más altos de Europa es la experiencia acuática más icónica de Tenerife. Desde el Puerto de Los Gigantes se palean junto a paredes volcánicas de hasta 600 metros de altura que caen verticalmente al mar. La ruta estándar va hasta el Barranco Seco, con parada para nadar en calas sin acceso por tierra. En temporada favorable se avistan delfines mulares, calderones grises y tortugas. Empresa de referencia: Teno Activo. Salidas todos los días del año. No se necesita experiencia previa — briefing básico en el puerto antes de salir. Duración: ~2 horas. Kayaks individuales y dobles.",
+   "forma": "texto",
+   "ro": "O tură cu caiacul sub unele dintre cele mai înalte faleze din Europa este cea mai emblematică experiență pe apă din Tenerife. Din portul Los Gigantes se vâslește pe lângă pereți vulcanici de până la 600 de metri înălțime, care cad vertical în mare. Traseul obișnuit merge până la Barranco Seco, cu o oprire pentru înot în golfulețe la care nu se poate ajunge pe uscat. În sezonul potrivit se pot vedea delfini cu bot gros, delfini Risso și broaște țestoase. Firmă de referință: Teno Activo. Ieșiri în fiecare zi a anului. Nu este nevoie de experiență — un scurt instructaj în port înainte de plecare. Durată: ~2 ore. Caiace de o persoană și de două persoane."
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-los-gigantes.cat",
+   "es": "Kayak · Los Gigantes · Acantilados 600m · Toda la isla",
+   "forma": "texto",
+   "ro": "Caiac · Los Gigantes · Faleze de 600 m · Toată insula"
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-la-caleta.desc",
+   "es": "La Caleta de Adeje es el punto de partida de kayak más popular del sur de Tenerife. Desde este pequeño pueblo pescador se accede en kayak a tres calas de la costa de Adeje: Playa de Los Morteros (arrecife de roca, 20 min), Playa Diego Hernández (arena dorada, snorkel) y El Puertito de Adeje (1h — 'Bahía de las Tortugas', célebre por sus tortugas verdes, que hoy solo se ven de vez en cuando). Empresa de referencia: Surf Life Tenerife (visita a piscifactorías incluida en algunas excursiones). Aguas muy calmadas, ideal para principiantes y familias. Kayaks individuales y dobles.",
+   "forma": "texto",
+   "ro": "La Caleta de Adeje este cel mai popular punct de plecare cu caiacul din sudul insulei Tenerife. Din acest mic sat de pescari, cu caiacul se ajunge la trei golfulețe de pe coasta din Adeje: Playa de Los Morteros (recif de stâncă, 20 min), Playa Diego Hernández (nisip auriu, snorkeling) și El Puertito de Adeje (1h — „Golful Broaștelor Țestoase”, renumit pentru broaștele țestoase verzi, care azi se văd doar din când în când). Firmă de referință: Surf Life Tenerife (unele excursii includ vizitarea unor ferme piscicole). Ape foarte liniștite, ideale pentru începători și familii. Caiace de o persoană și de două persoane."
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-la-caleta.cat",
+   "es": "Kayak · La Caleta · Calas Ocultas · Tortugas · Sur",
+   "forma": "texto",
+   "ro": "Caiac · La Caleta · Golfulețe ascunse · Broaște țestoase · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-los-cristianos.desc",
+   "es": "Los Cristianos es uno de los mejores puntos de kayak del sur para principiantes. Desde el puerto se realizan excursiones de kayak + snorkel de unas 2,5 horas hasta la Cueva del Palmar y las aguas de Playa Las Vistas. Se avistan tortugas marinas con frecuencia. Empresa de referencia: Kayak Academy Tenerife (salidas diarias). También se pueden ver delfines. Aguas protegidas. Kayaks simples y dobles disponibles. Ideal para la familia.",
+   "forma": "texto",
+   "ro": "Los Cristianos este unul dintre cele mai bune locuri din sud pentru caiac, pentru începători. Din port pleacă excursii de caiac + snorkeling, de circa 2,5 ore, până la Cueva del Palmar și în apele din dreptul Playa Las Vistas. Se văd des broaște țestoase marine. Firmă de referință: Kayak Academy Tenerife (ieșiri zilnice). Se pot vedea și delfini. Ape adăpostite. Sunt disponibile caiace de o persoană și de două persoane. Ideal pentru familie."
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-los-cristianos.cat",
+   "es": "Kayak · Los Cristianos · Sur · Tortugas · Principiantes",
+   "forma": "texto",
+   "ro": "Caiac · Los Cristianos · Sud · Broaște țestoase · Începători"
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-radazul.desc",
+   "es": "Radazul, pequeña marina al sur de Santa Cruz, es el hub de kayak transparente más reconocido del norte-este de Tenerife. Los kayaks de fondo de cristal permiten ver el lecho marino volcánico mientras se palean. Aguas negras y tranquilas de arena volcánica con gran biodiversidad marina: peces tropicales, pulpos, rayas, estrellas de mar. Muy popular entre locales. Fácil acceso desde Santa Cruz (15 min). Empresa de referencia: Radazul Paddle & Kayak. Ideal para todos los niveles. También SUP (Stand Up Paddleboard).",
+   "forma": "texto",
+   "ro": "Radazul, mic port de agrement la sud de Santa Cruz, este cel mai cunoscut centru de caiac transparent din nord-estul insulei Tenerife. Caiacele cu fundul de sticlă vă permit să vedeți fundul mării, vulcanic, în timp ce vâsliți. Ape întunecate și liniștite, deasupra nisipului vulcanic, cu o mare biodiversitate marină: pești tropicali, caracatițe, pisici-de-mare, stele-de-mare. Foarte popular printre localnici. Acces ușor din Santa Cruz (15 minute). Firmă de referință: Radazul Paddle & Kayak. Ideal pentru toate nivelurile. De asemenea, SUP (Stand Up Paddleboard)."
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-radazul.cat",
+   "es": "Kayak Transparente · Radazul · El Rosario · SUP",
+   "forma": "texto",
+   "ro": "Caiac transparent · Radazul · El Rosario · SUP"
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-punta-teno.desc",
+   "es": "⚠️ Sin acceso por carretera: la TF-445 a Punta de Teno está cortada por un desprendimiento desde el 29 de octubre de 2026, y aún no hay fecha de reapertura. Punta de Teno, en el extremo noroeste de Tenerife y dentro del Parque Rural de Teno, ofrece la ruta de kayak más salvaje e inexplorada de la isla. Aguas cristalinas, formaciones volcánicas espectaculares, silencio absoluto y vistas directas a La Gomera y los acantilados de Los Gigantes en la distancia. Sin masificación. Punto de partida desde la propia Punta de Teno (acceso solo en bus lanzadera TF-369 desde Buenavista, o bicicleta — en coche acceso restringido). Ruta avanzada por condiciones variables del Atlántico norte. Solo con buen tiempo y guía experimentado.",
+   "forma": "texto",
+   "ro": "⚠️ Fără acces rutier: drumul TF-445 spre Punta de Teno este închis din cauza unei căderi de pietre din 29 octombrie 2026 și încă nu există o dată de redeschidere. Punta de Teno, în extremitatea de nord-vest a insulei Tenerife, în Parcul Rural Teno, oferă cel mai sălbatic și mai puțin explorat traseu de caiac de pe insulă. Ape cristaline, formațiuni vulcanice spectaculoase, liniște deplină și priveliști directe spre La Gomera și, în depărtare, spre falezele Los Gigantes. Fără aglomerație. Punctul de plecare este chiar Punta de Teno (acces doar cu autobuzul-navetă TF-369 din Buenavista sau cu bicicleta — accesul cu mașina este restricționat). Traseu avansat, din cauza condițiilor schimbătoare din Atlanticul de nord. Doar pe vreme bună și cu un ghid experimentat."
+  },
+  {
+   "tabla": "places",
+   "clave": "kayak-punta-teno.cat",
+   "es": "Kayak · Punta de Teno · Parque Rural Teno · Avanzado",
+   "forma": "texto",
+   "ro": "Caiac · Punta de Teno · Parcul Rural Teno · Avansat"
+  },
+  {
+   "tabla": "places",
+   "clave": "escal-arico.desc",
+   "es": "El Macizo de Arico es la zona de escalada más importante de Tenerife y una de las referencias internacionales del boulder en Europa. El Barranco de Arico Nuevo concentra más de 240 bloques de boulder de basalto volcánico pulido por el agua en un cañón abierto. Ideal de octubre a abril (nublado o frío). Además de boulder, hay escalada deportiva (varios sectores: El Río, Las Vegas, El Patio) con vías de 4 a 8c. La guía roja de Erik Vaquero (2022) describe 1.300+ vías en 17 sectores de toda la isla. El Tenerife Climbing House (C/La Asomadita 8, Arico) es el hostel y escuela de referencia para escaladores internacionales. Acceso: desde Arico Nuevo bajar por C/ Las Cuevas hacia el barranco.",
+   "forma": "texto",
+   "ro": "Masivul Arico este cea mai importantă zonă de escaladă din Tenerife și unul dintre reperele internaționale ale boulderingului în Europa. Barranco de Arico Nuevo adună peste 240 de blocuri de bouldering din bazalt vulcanic, șlefuit de apă, într-un canion deschis. Ideal din octombrie până în aprilie (pe vreme înnorată sau rece). Pe lângă bouldering, există și escaladă sportivă (mai multe sectoare: El Río, Las Vegas, El Patio), cu trasee de la 4 la 8c. Ghidul roșu al lui Erik Vaquero (2022) descrie peste 1.300 de trasee în 17 sectoare de pe toată insula. Tenerife Climbing House (C/La Asomadita 8, Arico) este hostelul și școala de referință pentru cățărătorii din străinătate. Acces: din Arico Nuevo coborâți pe C/ Las Cuevas spre defileu."
+  },
+  {
+   "tabla": "places",
+   "clave": "escal-arico.cat",
+   "es": "Escalada · Arico · Boulder · Deportiva · Internacional",
+   "forma": "texto",
+   "ro": "Escaladă · Arico · Bouldering · Sportivă · Internațional"
+  },
+  {
+   "tabla": "places",
+   "clave": "escal-guaria.desc",
+   "es": "Escuela de escalada deportiva en el Risco de Guaría, en Guía de Isora, dentro del Monumento Natural de la Montaña de Tejina. Más de 130 vías en varios sectores —Entrada, Peter Punk, Comando 25, Utah, Big Wall y Tralla—, sobre roca volcánica y con las líneas más largas de la isla, muchas por encima de los 35 m. Nivel medio-alto: hay poco por debajo de 6a. PERMISO OBLIGATORIO del Cabildo, se pide por internet y hay un cupo diario de 70 personas. De febrero a junio se cierran vías por la nidificación del halcón tagarote. Orientación sur y sol todo el día: mejor madrugar. Se aparca en Acojeja sin bloquear portones ni accesos a las fincas, y se sube a pie entre 15 y 30 minutos. Vistas al Atlántico y a La Gomera.",
+   "forma": "texto",
+   "ro": "Școală de escaladă sportivă pe Risco de Guaría, în Guía de Isora, în cadrul monumentului naturii Montaña de Tejina. Peste 130 de trasee în mai multe sectoare (Entrada, Peter Punk, Comando 25, Utah, Big Wall și Tralla), pe rocă vulcanică și cu cele mai lungi linii de pe insulă, multe de peste 35 m. Nivel mediu spre ridicat: sunt puține trasee sub 6a. PERMIS OBLIGATORIU de la Cabildo (consiliul insular): se cere online și există o limită zilnică de 70 de persoane. Din februarie până în iunie, unele trasee se închid din cauza cuibăritului șoimului berber (halcón tagarote). Orientare sudică și soare toată ziua: e mai bine să porniți devreme. Se parchează în Acojeja, fără a bloca porțile sau accesul la proprietăți, iar urcarea pe jos durează între 15 și 30 de minute. Priveliști spre Atlantic și spre La Gomera."
+  },
+  {
+   "tabla": "places",
+   "clave": "escal-guaria.cat",
+   "es": "Escalada · Guaría · Guía de Isora · Sur · Deportiva",
+   "forma": "texto",
+   "ro": "Escaladă · Guaría · Guía de Isora · Sud · Sportivă"
+  },
+  {
+   "tabla": "places",
+   "clave": "escal-canada-capricho.desc",
+   "es": "La Cañada del Capricho en el Parque Nacional del Teide (2.000 m de altitud) es el paraíso de escalada de alta montaña de Tenerife. Roques, paredes y torres de basalto volcánico angular en un entorno de alta montaña única. Vías desde 6a en adelante con exposición real. El Roque Cinchado y formaciones cercanas ofrecen escalada de varios largos con vistas al Teide y a las Cañadas. Temperatura fresca todo el año — ideal en verano cuando el sur es muy caluroso. Acceso TF-21. Algunos sectores requieren permiso del Parque Nacional.",
+   "forma": "texto",
+   "ro": "Cañada del Capricho, în Parcul Național Teide (la 2.000 m altitudine), este paradisul escaladei de altitudine din Tenerife. Stânci, pereți și turnuri de bazalt vulcanic colțuros, într-un cadru unic de munte înalt. Trasee de la 6a în sus, cu expunere reală. Roque Cinchado și formațiunile din apropiere oferă escaladă pe mai multe lungimi de coardă, cu priveliști spre Teide și spre Las Cañadas. Temperatură răcoroasă tot anul — ideal vara, când în sud este foarte cald. Acces pe TF-21. Unele sectoare necesită permis de la Parcul Național."
+  },
+  {
+   "tabla": "places",
+   "clave": "escal-canada-capricho.cat",
+   "es": "Escalada · Teide · Alta Montaña · Deportiva · Parque Nacional",
+   "forma": "texto",
+   "ro": "Escaladă · Teide · Munte înalt · Sportivă · Parc național"
+  },
+  {
+   "tabla": "places",
+   "clave": "escal-anaga.desc",
+   "es": "El Parque Rural de Anaga concentra las rutas de escalada tradicional y de varios largos más largas de Tenerife, con unas 100 vías. El Roque Negro y el Roque de Las Ánimas son las formaciones más emblemáticas. Escalada en roca volcánica pulida por el agua, con vistas espectaculares al océano Atlántico y a los bosques de laurisilva. Solo para escaladores con experiencia en escalada trad y de varios largos. Las rutas requieren conocimiento de autoprotección. Ambiente salvaje y poco frecuentado. Acceso difícil por pistas forestales.",
+   "forma": "texto",
+   "ro": "Parcul Rural Anaga adună cele mai lungi trasee de escaladă tradițională și pe mai multe lungimi de coardă din Tenerife, cu circa 100 de trasee. Roque Negro și Roque de Las Ánimas sunt formațiunile cele mai emblematice. Escaladă pe rocă vulcanică șlefuită de apă, cu priveliști spectaculoase spre Oceanul Atlantic și spre pădurile de laur. Doar pentru cățărători cu experiență în escalada trad și pe mai multe lungimi de coardă. Traseele necesită cunoștințe de autoasigurare. Cadru sălbatic și puțin frecventat. Acces dificil, pe drumuri forestiere."
+  },
+  {
+   "tabla": "places",
+   "clave": "escal-anaga.cat",
+   "es": "Escalada · Anaga · Trad · Rutas Largas · Norte",
+   "forma": "texto",
+   "ro": "Escaladă · Anaga · Trad · Trasee lungi · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "pesca-deportiva-puerto-colon.desc",
+   "es": "Puerto Colón es el principal hub de pesca deportiva del sur de Tenerife. Los chárteres de pesca salen a diario desde sus muelles en busca de las grandes especies pelágicas del Atlántico: marlin azul (hasta 500 kg), marlin blanco, atún de aleta azul, atún listado, peto, pez espada y dorado. Toda la pesca se realiza con técnica de captura y suelta. El estrecho de La Gomera concentra la mayor densidad de marlin azul de aguas europeas. Temporada óptima: mayo-noviembre. Embarcaciones de 25-35 pies con capitanes certificados. Equipos incluidos. Reservas con antelación recomendadas.",
+   "forma": "texto",
+   "ro": "Puerto Colón este principalul centru de pescuit sportiv din sudul insulei Tenerife. Ambarcațiunile charter pentru pescuit pleacă zilnic de la cheiurile sale în căutarea marilor specii pelagice din Atlantic: marlin albastru (până la 500 kg), marlin alb, ton roșu, ton dungat, wahoo, pește-spadă și mahi-mahi. Tot pescuitul se face după metoda „prinde și eliberează”. Strâmtoarea dintre Tenerife și La Gomera are cea mai mare densitate de marlin albastru din apele europene. Sezonul optim: mai-noiembrie. Ambarcațiuni de 25-35 de picioare, cu căpitani certificați. Echipamentul este inclus. Se recomandă rezervarea din timp."
+  },
+  {
+   "tabla": "places",
+   "clave": "pesca-deportiva-puerto-colon.cat",
+   "es": "Pesca Deportiva · Puerto Colón · Marlin · Atún · Sur",
+   "forma": "texto",
+   "ro": "Pescuit sportiv · Puerto Colón · Marlin · Ton · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "pesca-deportiva-los-cristianos.desc",
+   "es": "El puerto de Los Cristianos es el segundo hub de pesca deportiva del sur de Tenerife, con varios chárteres activos en busca de marlin azul, atún de aleta amarilla, peto y barracuda. Menor frecuencia de salidas que Puerto Colón, pero más tranquilo y auténtico. También chárteres de pesca artesanal costera: sargo, vieja (pez loro canario), pulpo y dorado. Hay salidas compartidas y barcos privados. Temporada: todo el año para costera; mayo-noviembre para pelágicos.",
+   "forma": "texto",
+   "ro": "Portul Los Cristianos este al doilea centru de pescuit sportiv din sudul insulei Tenerife, cu mai multe ambarcațiuni charter active, în căutare de marlin albastru, ton cu înotătoare galbene, wahoo și baracudă. Ieșirile sunt mai rare decât în Puerto Colón, dar atmosfera e mai liniștită și mai autentică. Există și ieșiri charter de pescuit artizanal de coastă: sargo, vieja (pește-papagal canarian), caracatiță și mahi-mahi. Sunt ieșiri în grup și bărci private. Sezon: tot anul pentru pescuitul de coastă; mai-noiembrie pentru speciile pelagice."
+  },
+  {
+   "tabla": "places",
+   "clave": "pesca-deportiva-los-cristianos.cat",
+   "es": "Pesca Deportiva · Los Cristianos · Sur · Marlin · Artesanal",
+   "forma": "texto",
+   "ro": "Pescuit sportiv · Los Cristianos · Sud · Marlin · Artizanal"
+  },
+  {
+   "tabla": "places",
+   "clave": "pesca-los-gigantes.desc",
+   "es": "El Puerto de Los Gigantes tiene una larga tradición de pesca deportiva de altura. Salen a diario a curricán entre los acantilados de Los Gigantes y el estrecho de La Gomera. Modalidades: curricán de altura (marlin azul, marlin blanco, patudo, rabil, dorado, peto, sierra) y pesca de fondo (samas, meros, chernas). También disponible pesca artesanal costera. Chárter privado o compartido.",
+   "forma": "texto",
+   "ro": "Portul Los Gigantes are o lungă tradiție de pescuit sportiv în larg. Bărcile ies zilnic la pescuit la traină între falezele Los Gigantes și strâmtoarea dintre Tenerife și La Gomera. Tipuri: pescuit la traină în larg (marlin albastru, marlin alb, ton cu ochi mari, ton cu înotătoare galbene, mahi-mahi, wahoo, pălămidă) și pescuit la fund (sama, mero, cherne). Se poate face și pescuit artizanal de coastă. Charter privat sau în grup."
+  },
+  {
+   "tabla": "places",
+   "clave": "pesca-los-gigantes.cat",
+   "es": "Pesca Deportiva · Los Gigantes · Marlin · Oeste",
+   "forma": "texto",
+   "ro": "Pescuit sportiv · Los Gigantes · Marlin · Vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "pesca-los-abrigos.desc",
+   "es": "Los Abrigos es un pueblo pescador auténtico y tranquilo en el sur de Tenerife (municipio de Granadilla de Abona), conocido por sus restaurantes de marisco fresco. El pequeño puerto acoge embarcaciones de pesca artesanal y algunos chárteres de pesca deportiva costera: sargo, sama, vieja (pez loro canario), mero, barracuda, chopa. También pesca de curricán de pequeños pelágicos (bonito, listado, sierra, dorado). Ambiente 100% local. Sin masificación turística. La cofradía de pescadores es una de las más activas del sur.",
+   "forma": "texto",
+   "ro": "Los Abrigos este un sat de pescari autentic și liniștit în sudul insulei Tenerife (municipalitatea Granadilla de Abona), cunoscut pentru restaurantele sale cu fructe de mare proaspete. Micul port primește bărci de pescuit artizanal și câteva ambarcațiuni charter de pescuit sportiv de coastă: sargo, sama, vieja (pește-papagal canarian), mero, baracudă, cantar. De asemenea, pescuit la traină pentru specii pelagice mici (bonito, ton dungat, pălămidă, mahi-mahi). Atmosferă 100% locală. Fără turism de masă. Breasla pescarilor (cofradía) este una dintre cele mai active din sud."
+  },
+  {
+   "tabla": "places",
+   "clave": "pesca-los-abrigos.cat",
+   "es": "Pesca Deportiva · Los Abrigos · Sur · Artesanal · Marisco",
+   "forma": "texto",
+   "ro": "Pescuit sportiv · Los Abrigos · Sud · Artizanal · Fructe de mare"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-garcia-sanabria.desc",
+   "es": "El parque urbano más grande del centro de Santa Cruz (67.230 m²) cuenta con una zona de fitness al aire libre con máquinas de calistenia municipales, zona de corredores y amplio espacio para hacer deporte. Totalmente gratuito. Acceso libre todo el día. Muy usado por residentes locales para running matutino y ejercicio diario.",
+   "forma": "texto",
+   "ro": "Cel mai mare parc urban din centrul orașului Santa Cruz (67.230 m²) are o zonă de fitness în aer liber, cu aparate de calistenie ale primăriei, o zonă pentru alergători și mult spațiu pentru sport. Complet gratuit. Acces liber toată ziua. Foarte folosit de localnici pentru alergatul de dimineață și pentru exercițiile zilnice."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-garcia-sanabria.cat",
+   "es": "Fitness · Parque · Santa Cruz",
+   "forma": "texto",
+   "ro": "Fitness · Parc · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-parque-granja.desc",
+   "es": "Gran parque urbano de Santa Cruz con circuito de running bien definido entre palmeras y zonas verdes. Zona de calistenia con barras y paralelas instaladas por el Ayuntamiento. Anfiteatro y espacios abiertos para ejercicios en grupo. Acceso libre y gratuito. Muy frecuentado por deportistas locales al amanecer y al atardecer.",
+   "forma": "texto",
+   "ro": "Mare parc urban din Santa Cruz, cu un circuit de alergare bine delimitat printre palmieri și spații verzi. Zonă de calistenie cu bare și paralele montate de primărie. Amfiteatru și spații deschise pentru exerciții în grup. Acces liber și gratuit. Foarte frecventat de sportivii din zonă în zori și la apus."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-parque-granja.cat",
+   "es": "Running · Calistenia · Santa Cruz",
+   "forma": "texto",
+   "ro": "Alergare · Calistenie · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-rambla-sc.desc",
+   "es": "El paseo más emblemático de Santa Cruz para hacer running: 2,5 km de boulevard arbolado con carril diferenciado para corredores, ciclistas y peatones. Jalonado de esculturas y jardines. Gratuito y accesible todo el día. Uno de los recorridos urbanos más agradables de Canarias para ejercicio al aire libre, incluso en verano gracias a la sombra de los árboles.",
+   "forma": "texto",
+   "ro": "Cea mai emblematică promenadă din Santa Cruz pentru alergare: 2,5 km de bulevard cu copaci, cu benzi separate pentru alergători, bicicliști și pietoni. Presărat cu sculpturi și grădini. Gratuit și accesibil toată ziua. Unul dintre cele mai plăcute trasee urbane din Insulele Canare pentru mișcare în aer liber, chiar și vara, datorită umbrei copacilor."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-rambla-sc.cat",
+   "es": "Running · Boulevard · Santa Cruz",
+   "forma": "texto",
+   "ro": "Alergare · Bulevard · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-medano-playa.desc",
+   "es": "La playa de El Médano ofrece instalaciones deportivas gratuitas únicas en Tenerife: pistas de vóley playa, zona de fútbol playa, canastas de baloncesto y espacio para calistenia junto al paseo marítimo. Capital del windsurf y kitesurf de Tenerife. El paseo es uno de los más animados del sur con ambiente joven y deportivo. Todo al aire libre y gratuito.",
+   "forma": "texto",
+   "ro": "Plaja din El Médano oferă dotări sportive gratuite unice în Tenerife: terenuri de volei pe plajă, o zonă de fotbal pe plajă, coșuri de baschet și spațiu pentru calistenie lângă promenadă. Capitala windsurfingului și a kitesurfingului din Tenerife. Promenada este una dintre cele mai animate din sud, cu o atmosferă tânără și sportivă. Totul în aer liber și gratuit."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-medano-playa.cat",
+   "es": "Deporte Playa · El Médano · Sur",
+   "forma": "texto",
+   "ro": "Sport pe plajă · El Médano · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-costa-adeje-paseo.desc",
+   "es": "El paseo marítimo de Costa Adeje cuenta con zonas de calistenia y fitness al aire libre entre Playa del Duque y Playa Fañabé. Barras de dominadas, paralelas, barras bajas y máquinas de musculación exterior instaladas por el ayuntamiento de Adeje. Gratuito y abierto las 24h. Vista al mar mientras hace deporte. Muy usado tanto por turistas como por residentes.",
+   "forma": "texto",
+   "ro": "Promenada din Costa Adeje are zone de calistenie și fitness în aer liber între Playa del Duque și Playa Fañabé. Bare de tracțiuni, paralele, bare joase și aparate de forță pentru exterior, montate de primăria din Adeje. Gratuit și deschis 24h. Faceți sport cu priveliște spre mare. Foarte folosit atât de turiști, cât și de localnici."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-costa-adeje-paseo.cat",
+   "es": "Fitness · Calistenia · Costa Adeje",
+   "forma": "texto",
+   "ro": "Fitness · Calistenie · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-los-cristianos-paseo.desc",
+   "es": "El paseo marítimo de Los Cristianos incluye una zona de calistenia outdoor con barras de dominadas, fondos y equipamiento de street workout instalado junto a la playa. Vista directa al mar y al puerto. Totalmente gratuito. Disponible las 24h. Muy concurrido por la mañana temprano y al atardecer. El entorno de playa lo convierte en uno de los gimnasios al aire libre con mejor ambiente de Tenerife.",
+   "forma": "texto",
+   "ro": "Promenada din Los Cristianos are o zonă de calistenie în aer liber, cu bare de tracțiuni, paralele pentru flotări și echipamente de street workout montate lângă plajă. Priveliște directă spre mare și spre port. Complet gratuit. Disponibil 24h. Foarte frecventat dimineața devreme și la apus. Cadrul de plajă face din acest loc una dintre sălile de sport în aer liber cu cea mai bună atmosferă din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-los-cristianos-paseo.cat",
+   "es": "Street Workout · Los Cristianos",
+   "forma": "texto",
+   "ro": "Street Workout · Los Cristianos"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-puerto-cruz-piscina.desc",
+   "es": "Puerto de la Cruz cuenta con zona de running y fitness al aire libre a lo largo de su paseo costero junto a las piscinas de Lago Martiánez. Espacio para ejercicio exterior gratuito con vistas al Atlántico. El paseo costero de Puerto de la Cruz es uno de los más bonitos del norte para hacer deporte al amanecer. Barras de calistenia en el entorno del parque costero.",
+   "forma": "texto",
+   "ro": "Puerto de la Cruz are o zonă de alergare și fitness în aer liber de-a lungul promenadei de pe coastă, lângă piscinele Lago Martiánez. Spațiu gratuit pentru exerciții în aer liber, cu priveliște spre Atlantic. Promenada de pe coastă din Puerto de la Cruz este una dintre cele mai frumoase din nord pentru sport în zori. Bare de calistenie în zona parcului de pe coastă."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-puerto-cruz-piscina.cat",
+   "es": "Running · Calistenia · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Alergare · Calistenie · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-orotava-parque.desc",
+   "es": "La Orotava dispone de zonas deportivas al aire libre gratuitas en varios puntos del municipio: pistas de fútbol sala y baloncesto en el Parque del Ranilla, barras de calistenia en el parque municipal y espacio de entrenamiento libre. Acceso gratuito. El municipio invierte en instalaciones deportivas públicas para residentes y visitantes.",
+   "forma": "texto",
+   "ro": "La Orotava are zone de sport în aer liber, gratuite, în mai multe locuri din municipalitate: terenuri de futsal și de baschet în Parque del Ranilla, bare de calistenie în parcul municipal și spațiu pentru antrenament liber. Acces gratuit. Municipalitatea investește în dotări sportive publice pentru localnici și vizitatori."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-orotava-parque.cat",
+   "es": "Deporte Público · La Orotava",
+   "forma": "texto",
+   "ro": "Sport în aer liber · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-san-isidro-zona.desc",
+   "es": "San Isidro (Granadilla de Abona) cuenta con zona deportiva pública gratuita con pistas de fútbol sala outdoor y zona de calistenia en el parque municipal. Muy utilizada por residentes locales. Zona del sur tranquila y auténtica alejada del turismo masivo. Ambiente familiar y vecinal. Acceso libre todo el día.",
+   "forma": "texto",
+   "ro": "San Isidro (Granadilla de Abona) are o zonă de sport publică și gratuită, cu terenuri de futsal în aer liber și o zonă de calistenie în parcul municipal. Foarte folosită de localnici. O zonă liniștită și autentică din sud, departe de turismul de masă. Atmosferă familială, de cartier. Acces liber toată ziua."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-san-isidro-zona.cat",
+   "es": "Deporte Público · San Isidro · Sur",
+   "forma": "texto",
+   "ro": "Sport în aer liber · San Isidro · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-laguna-parque-avenidas.desc",
+   "es": "El municipio de La Laguna, Patrimonio de la Humanidad, cuenta con zona de fitness y calistenia al aire libre en el Parque Las Avenidas y áreas cercanas. Instalaciones municipales gratuitas con barras, máquinas de ejercicio exterior y espacio para entrenamiento funcional. Muy usado por universitarios de la ULL. Acceso libre todo el día.",
+   "forma": "texto",
+   "ro": "Municipalitatea La Laguna, inclusă în Patrimoniul Mondial UNESCO, are o zonă de fitness și calistenie în aer liber în Parque Las Avenidas și în zonele din apropiere. Dotări municipale gratuite, cu bare, aparate pentru exerciții în aer liber și spațiu pentru antrenament funcțional. Foarte folosit de studenții de la ULL. Acces liber toată ziua."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-laguna-parque-avenidas.cat",
+   "es": "Fitness · Calistenia · La Laguna",
+   "forma": "texto",
+   "ro": "Fitness · Calistenie · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-candelaria-paseo.desc",
+   "es": "El paseo marítimo de Candelaria incluye zona de calistenia outdoor y carril de running junto al mar con vistas a la Basílica de la Virgen de Candelaria. Barras instaladas por el ayuntamiento. Totalmente gratuito. El entorno es espectacular: arena volcánica negra, estatuas de los guanches y el mar del Atlántico. Ideal para una sesión de deporte con historia y paisaje.",
+   "forma": "texto",
+   "ro": "Promenada din Candelaria are o zonă de calistenie în aer liber și o bandă de alergare lângă mare, cu priveliște spre Bazilica Fecioarei din Candelaria. Bare montate de primărie. Complet gratuit. Cadrul este spectaculos: nisip vulcanic negru, statuile guanșilor și Oceanul Atlantic. Ideal pentru o sesiune de sport cu istorie și peisaj."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-candelaria-paseo.cat",
+   "es": "Running · Calistenia · Candelaria",
+   "forma": "texto",
+   "ro": "Alergare · Calistenie · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-palm-mar-fitness.desc",
+   "es": "Palm-Mar, pequeño pueblo costero en el sur, dispone de zona de fitness municipal al aire libre y pistas de pádel y tenis de acceso público. Entorno tranquilo y muy local. Una de las pocas zonas del sur donde puede entrenar gratis con vistas al mar fuera de los circuitos turísticos. Ideal para deportistas que buscan tranquilidad.",
+   "forma": "texto",
+   "ro": "Palm-Mar, mică localitate de pe coasta de sud, are o zonă municipală de fitness în aer liber și terenuri publice de padel și tenis. Cadru liniștit și foarte local. Unul dintre puținele locuri din sud unde vă puteți antrena gratuit cu priveliște spre mare, în afara circuitelor turistice. Ideal pentru sportivii care caută liniște."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-palm-mar-fitness.cat",
+   "es": "Fitness · Pádel · Palm-Mar · Sur",
+   "forma": "texto",
+   "ro": "Fitness · Padel · Palm-Mar · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-guia-isora-skate.desc",
+   "es": "Guía de Isora cuenta con un skatepark municipal gratuito y pista multideporte (fútbol sala, baloncesto) en las instalaciones deportivas del municipio. Acceso libre a las pistas exteriores. Ambiente local tranquilo. Una joya para skaters y deportistas en el suroeste de la isla, zona poco turística con instalaciones bien mantenidas por el ayuntamiento.",
+   "forma": "texto",
+   "ro": "Guía de Isora are un skatepark municipal gratuit și un teren multisport (futsal, baschet) în baza sportivă a municipalității. Acces liber la terenurile în aer liber. Atmosferă locală liniștită. O bijuterie pentru skateri și sportivi în sud-vestul insulei, o zonă puțin turistică, cu dotări bine întreținute de primărie."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-guia-isora-skate.cat",
+   "es": "Skate · Multideporte · Guía de Isora",
+   "forma": "texto",
+   "ro": "Skate · Multisport · Guía de Isora"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-arona-multideporte.desc",
+   "es": "El Cabildo de Tenerife ha instalado en Arona tres pistas multideporte de uso libre y gratuito (Plan Insular de Infraestructuras Deportivas 2025): junto al Golf de Las Américas, en El Fraile y en la Urbanización La Estrella (Las Rosas). Pistas de 30×15 m homologadas para baloncesto, voleibol, balonmano y fútbol sala. Sin reserva previa. Gestión municipal del Ayuntamiento de Arona.",
+   "forma": "texto",
+   "ro": "Cabildo de Tenerife (consiliul insular) a amenajat în Arona trei terenuri multisport, de folosință liberă și gratuită (Planul insular de infrastructuri sportive 2025): lângă Golf de Las Américas, în El Fraile și în cartierul rezidențial La Estrella (Las Rosas). Terenuri de 30×15 m, omologate pentru baschet, volei, handbal și futsal. Fără rezervare prealabilă. Administrate de primăria din Arona."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-arona-multideporte.cat",
+   "es": "Multideporte · Arona · Plan Cabildo 2025",
+   "forma": "texto",
+   "ro": "Multisport · Arona · Planul Cabildo 2025"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-realejos-street-workout.desc",
+   "es": "Parque de calistenia y street workout en el Parque Juan Marrero, núcleo de La Montaña (Los Realejos). Homologado por la Federación Mundial de Street Workout y Calistenia (WSWCF). Financiado al 80% por el Cabildo de Tenerife y al 20% por el Ayuntamiento. Totalmente gratuito y al aire libre. Los Realejos cuenta también con parques en El Nazareno y en el Parque Juan Carlos I (junto a los institutos y el Mercado Municipal). Abierto 24 horas.",
+   "forma": "texto",
+   "ro": "Parc de calistenie și street workout în Parque Juan Marrero, în La Montaña (Los Realejos). Omologat de Federația Mondială de Street Workout și Calistenie (WSWCF). Finanțat în proporție de 80% de Cabildo de Tenerife și de 20% de primărie. Complet gratuit și în aer liber. Los Realejos are și parcuri în El Nazareno și în Parque Juan Carlos I (lângă licee și piața municipală). Deschis 24 de ore."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-realejos-street-workout.cat",
+   "es": "Street Workout · WSWCF · Los Realejos",
+   "forma": "texto",
+   "ro": "Street Workout · WSWCF · Los Realejos"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-sc-tenerife-barmania.desc",
+   "es": "Parque de calistenia 'Barmanía Park' en Santa Cruz de Tenerife. Amplio y verde, con sombra natural. Barras de dominadas, paralelas y equipamiento de street workout. Fuente cercana. Punto de encuentro para entrenamiento en grupo. Nivel intermedio. Gratuito y al aire libre. Muy frecuentado por la comunidad local de calistenia de Tenerife.",
+   "forma": "texto",
+   "ro": "Parcul de calistenie „Barmanía Park” din Santa Cruz de Tenerife. Spațios și verde, cu umbră naturală. Bare de tracțiuni, paralele și echipamente de street workout. Cișmea în apropiere. Punct de întâlnire pentru antrenamente în grup. Nivel intermediar. Gratuit și în aer liber. Foarte frecventat de comunitatea locală de calistenie din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-sc-tenerife-barmania.cat",
+   "es": "Calistenia · Barmanía · Santa Cruz",
+   "forma": "texto",
+   "ro": "Calistenie · Barmanía · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-sc-chimisay.desc",
+   "es": "Parque de calistenia en el barrio de Chimisay, Santa Cruz (C/ Eladio Afonso y González 4, 38010). Barras de dominadas en buen estado, con fuente cercana. Ambiente de barrio, muy frecuentado por residentes locales. Acceso gratuito. Nivel intermedio. Los parques de calistenia de Santa Cruz cuentan con superficie de caucho para amortiguación de caídas y están abiertos todo el día.",
+   "forma": "texto",
+   "ro": "Parc de calistenie în cartierul Chimisay, Santa Cruz (C/ Eladio Afonso y González 4, 38010). Bare de tracțiuni în stare bună, cu o cișmea în apropiere. Atmosferă de cartier, foarte frecventat de localnici. Acces gratuit. Nivel intermediar. Parcurile de calistenie din Santa Cruz au suprafață din cauciuc care amortizează căderile și sunt deschise toată ziua."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-sc-chimisay.cat",
+   "es": "Calistenia · Chimisay · Santa Cruz",
+   "forma": "texto",
+   "ro": "Calistenie · Chimisay · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-sc-plaza-espana.desc",
+   "es": "Parque de calistenia junto al Túnel de la Plaza de España en el centro de Santa Cruz. Amplio espacio en zona urbana céntrica, con sombra. Barras en buen estado aunque con algo de desgaste. Punto habitual de encuentro para grupos de street workout. Muy bien ubicado para acceder desde cualquier punto de la capital. Gratuito y abierto todo el día.",
+   "forma": "texto",
+   "ro": "Parc de calistenie lângă tunelul din Plaza de España, în centrul orașului Santa Cruz. Spațiu larg într-o zonă urbană centrală, cu umbră. Bare în stare bună, deși puțin uzate. Punct obișnuit de întâlnire pentru grupurile de street workout. Foarte bine amplasat, ușor de ajuns din orice punct al capitalei. Gratuit și deschis toată ziua."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-sc-plaza-espana.cat",
+   "es": "Calistenia · Centro · Santa Cruz",
+   "forma": "texto",
+   "ro": "Calistenie · Centru · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-skatepark-granja-sc.desc",
+   "es": "Skatepark de 2.500 m² dentro del Parque La Granja de Santa Cruz, diseñado por el arquitecto y skater Daniel Yábar. El diseño incorpora la diversidad del paisaje de Tenerife: áreas con formas orgánicas de hormigón en tonos marrones y ocres, con rocas de basalto como obstáculos naturales. Mini ramp central, varios quarters, rampas, parte de street con escalones, barras y hubbas de distintas alturas, cajones y barras en suelo plano. Acceso gratuito dentro del parque.",
+   "forma": "texto",
+   "ro": "Skatepark de 2.500 m² în Parque La Granja din Santa Cruz, proiectat de arhitectul și skaterul Daniel Yábar. Designul reflectă diversitatea peisajului din Tenerife: zone cu forme organice din beton, în tonuri de maro și ocru, cu roci de bazalt ca obstacole naturale. Un mini ramp central, mai multe quarter-uri, rampe, o zonă de street cu trepte, bare și hubba-uri de diferite înălțimi, box-uri și bare pe teren plat. Acces gratuit, în interiorul parcului."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-skatepark-granja-sc.cat",
+   "es": "Skatepark · La Granja · Santa Cruz",
+   "forma": "texto",
+   "ro": "Skatepark · La Granja · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-skatepark-laguna-copernico.desc",
+   "es": "Skatepark moderno en el barrio de La Manzanilla, La Laguna (C/ Copérnico, CP 38208). Inaugurado hace más de 20 años y recientemente renovado y modernizado: se repasaron alas y bordes con materiales específicos para skate, se construyeron dos escalones y una rampa adicional, se incorporó una pirámide central y se renovó el pintado general. Cuenta con banco y rieles, caderas, rollin y otros obstáculos. Gratuito.",
+   "forma": "texto",
+   "ro": "Skatepark modern în cartierul La Manzanilla, La Laguna (C/ Copérnico, CP 38208). A fost inaugurat acum mai bine de 20 de ani și a fost renovat și modernizat recent: aripile și muchiile au fost refăcute cu materiale speciale pentru skateboarding, s-au construit două trepte și o rampă în plus, s-a adăugat o piramidă centrală și s-a refăcut vopsirea generală. Are bancă și rail-uri, hip-uri, roll-in și alte obstacole. Gratuit."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-skatepark-laguna-copernico.cat",
+   "es": "Skatepark · La Manzanilla · La Laguna",
+   "forma": "texto",
+   "ro": "Skatepark · La Manzanilla · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-pista-multideporte-cabildo-realejos.desc",
+   "es": "Pista multideporte de uso libre instalada en Los Realejos por el Plan Insular de Infraestructuras Deportivas del Cabildo de Tenerife (una de las 25 instaladas en toda la isla). Pista 30×15 m homologada para baloncesto, voleibol, balonmano, fútbol sala y bádminton. Sin reserva previa, uso libre para personas de todas las edades. Gestión municipal. El municipio de Los Realejos está entre los que primero recibieron estas instalaciones dentro del programa 'Tenerife Saludable'.",
+   "forma": "texto",
+   "ro": "Teren multisport de folosință liberă, amenajat în Los Realejos prin Planul insular de infrastructuri sportive al Cabildo de Tenerife (unul dintre cele 25 de terenuri amenajate pe toată insula). Teren de 30×15 m, omologat pentru baschet, volei, handbal, futsal și badminton. Fără rezervare prealabilă, folosință liberă pentru persoane de toate vârstele. Administrat de primărie. Los Realejos este printre primele municipalități care au primit aceste dotări în cadrul programului „Tenerife Saludable”."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-pista-multideporte-cabildo-realejos.cat",
+   "es": "Multideporte · Los Realejos · Plan Cabildo",
+   "forma": "texto",
+   "ro": "Multisport · Los Realejos · Planul Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-pista-multideporte-icod.desc",
+   "es": "Pista multideporte de uso libre entregada al Ayuntamiento de Icod de los Vinos por el Cabildo de Tenerife en 2024, dentro del Plan Insular de Infraestructuras Deportivas. Pista homologada de 30×15 m para baloncesto, voleibol, balonmano, fútbol sala y tenis. Acceso libre, sin reserva, para personas de todas las edades. Ubicada en zona de barrio, perfecta para deporte diario en el municipio del Drago Milenario.",
+   "forma": "texto",
+   "ro": "Teren multisport de folosință liberă, predat primăriei din Icod de los Vinos de Cabildo de Tenerife în 2024, în cadrul Planului insular de infrastructuri sportive. Teren omologat de 30×15 m pentru baschet, volei, handbal, futsal și tenis. Acces liber, fără rezervare, pentru persoane de toate vârstele. Se află într-un cartier, perfect pentru sportul de zi cu zi în municipalitatea unde se află Drago Milenario."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-pista-multideporte-icod.cat",
+   "es": "Multideporte · Icod de los Vinos",
+   "forma": "texto",
+   "ro": "Multisport · Icod de los Vinos"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-pista-multideporte-tacoronte.desc",
+   "es": "Pista multideporte de uso libre en Tacoronte, instalada por el Cabildo de Tenerife en 2024 dentro del Plan Insular de Infraestructuras Deportivas ('Tenerife Saludable'). Homologada para baloncesto, voleibol, balonmano, fútbol sala y bádminton. Uso libre sin reserva, para todas las edades. Tacoronte es municipio vinícola del norte, conocido por sus vinos DO Tacoronte-Acentejo. Esta pista se añade a las instalaciones deportivas del municipio.",
+   "forma": "texto",
+   "ro": "Teren multisport de folosință liberă în Tacoronte, amenajat de Cabildo de Tenerife în 2024, în cadrul Planului insular de infrastructuri sportive („Tenerife Saludable”). Omologat pentru baschet, volei, handbal, futsal și badminton. Folosință liberă, fără rezervare, pentru toate vârstele. Tacoronte este o municipalitate viticolă din nord, cunoscută pentru vinurile DO Tacoronte-Acentejo. Acest teren se adaugă dotărilor sportive ale municipalității."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-pista-multideporte-tacoronte.cat",
+   "es": "Multideporte · Tacoronte · Norte",
+   "forma": "texto",
+   "ro": "Multisport · Tacoronte · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-valle-san-lorenzo-kenguru.desc",
+   "es": "Parque de calistenia Kenguru Pro en Valle San Lorenzo, municipio de Arona (CP 38626). Bien equipado para entrenamiento al aire libre, con ambiente relajado y con sombra. Fuente de agua cercana. Nivel intermedio. Punto de encuentro habitual para la comunidad de street workout del sur de la isla. Gratuito y abierto todo el día.",
+   "forma": "texto",
+   "ro": "Parc de calistenie Kenguru Pro în Valle San Lorenzo, municipalitatea Arona (CP 38626). Bine echipat pentru antrenament în aer liber, cu o atmosferă relaxată și cu umbră. Cișmea în apropiere. Nivel intermediar. Punct de întâlnire obișnuit pentru comunitatea de street workout din sudul insulei. Gratuit și deschis toată ziua."
+  },
+  {
+   "tabla": "places",
+   "clave": "deporte-valle-san-lorenzo-kenguru.cat",
+   "es": "Calistenia Kenguru Pro · Valle San Lorenzo",
+   "forma": "texto",
+   "ro": "Calistenie Kenguru Pro · Valle San Lorenzo"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-bc1-inicio.desc",
+   "es": "Punto de inicio de la ruta ciclista oficial BC-1 del Cabildo, la más larga de Tenerife (84,8 km). Comienza en La Esperanza y recorre el norte de este a oeste por monteverde, pinares y Macizo de Teno. Señalizada en naranja. Índice IBP: 120 (alto). Solo ciclistas con buena condición física y experiencia. Casco obligatorio.",
+   "forma": "texto",
+   "ro": "Punctul de plecare al traseului oficial de ciclism BC-1 al Cabildo, cel mai lung din Tenerife (84,8 km). Pornește din La Esperanza și străbate nordul de la est la vest, prin pădurea veșnic verde, păduri de pin și masivul Teno. Marcat cu portocaliu. Indice IBP: 120 (ridicat). Doar pentru bicicliști cu o condiție fizică bună și cu experiență. Casca este obligatorie."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-bc1-inicio.cat",
+   "es": "MTB Oficial BC-1 · La Esperanza · Cabildo",
+   "forma": "texto",
+   "ro": "MTB oficial BC-1 · La Esperanza · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-bc2-inicio.desc",
+   "es": "Ruta ciclista oficial BC-2 del Cabildo: la más accesible de la red. Corta, desnivel moderado, señalizada en naranja en la Corona Forestal. Ideal para principiantes y familias. Pinos canarios y vistas al Teide. Casco recomendado.",
+   "forma": "texto",
+   "ro": "Traseul oficial de ciclism BC-2 al Cabildo: cel mai accesibil din rețea. Scurt, cu o diferență de nivel moderată, marcat cu portocaliu, în Corona Forestal. Ideal pentru începători și familii. Pini canarieni și priveliști spre Teide. Se recomandă casca."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-bc2-inicio.cat",
+   "es": "MTB Oficial BC-2 · Principiantes · Cabildo",
+   "forma": "texto",
+   "ro": "MTB oficial BC-2 · Începători · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-bc5-vilaflor.desc",
+   "es": "Ruta oficial BC-5 en los pinares de Vilaflor, dentro de la Corona Forestal. 15,7 km con 430 m de desnivel — nivel moderado. Vilaflor es uno de los pueblos más altos de España (1.400 m). Pinar canario con vistas al sur. Duración: ~1h40. Señalizada en naranja.",
+   "forma": "texto",
+   "ro": "Traseul oficial BC-5, în pădurile de pin din Vilaflor, în Corona Forestal. 15,7 km, cu o diferență de nivel de 430 m — nivel moderat. Vilaflor este unul dintre cele mai înalte sate din Spania (1.400 m). Pădure de pin canarian, cu priveliști spre sud. Durată: ~1h40. Marcat cu portocaliu."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-bc5-vilaflor.cat",
+   "es": "MTB Oficial BC-5 · Vilaflor · Moderado",
+   "forma": "texto",
+   "ro": "MTB oficial BC-5 · Vilaflor · Moderat"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-teide-subida.desc",
+   "es": "Una de las subidas ciclistas más espectaculares de Europa. TF-21 desde La Orotava (350 m) hasta el Teide (2.100 m): 50 km y más de 1.700 m de desnivel. Asfalto bien mantenido. Paisaje cambia de laurisilva a pinar y volcán lunar. Muy popular entre pros y aficionados. Mejor al amanecer para evitar calor y tráfico. Solo para ciclistas con excelente forma física.",
+   "forma": "texto",
+   "ro": "Una dintre cele mai spectaculoase urcări cu bicicleta din Europa. TF-21, din La Orotava (350 m) până la Teide (2.100 m): 50 km și peste 1.700 m diferență de nivel. Asfalt bine întreținut. Peisajul trece de la pădurea de laur la pădurea de pin și la un peisaj vulcanic ca de pe Lună. Foarte populară printre profesioniști și amatori. Cel mai bine în zori, ca să evitați căldura și traficul. Doar pentru bicicliști într-o formă fizică excelentă."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-teide-subida.cat",
+   "es": "Ciclismo Carretera · Teide · Nivel Alto",
+   "forma": "texto",
+   "ro": "Ciclism pe șosea · Teide · Nivel ridicat"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-anaga-cruz-carmen.desc",
+   "es": "Pistas técnicas en el monteverde del Parque Rural de Anaga — Reserva de la Biosfera de la UNESCO desde 2015. Paisaje de bosque eterno, niebla y barrancos. Nivel exigente. Acceso desde Cruz del Carmen por TF-12. Solo bicicletas de montaña. Casco obligatorio.",
+   "forma": "texto",
+   "ro": "Piste tehnice în pădurea veșnic verde din Parcul Rural Anaga — Rezervație a Biosferei UNESCO din 2015. Peisaj de pădure veșnică, ceață și defilee. Nivel solicitant. Acces din Cruz del Carmen, pe TF-12. Doar biciclete de munte. Casca este obligatorie."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-anaga-cruz-carmen.cat",
+   "es": "MTB Anaga · Cruz del Carmen",
+   "forma": "texto",
+   "ro": "MTB Anaga · Cruz del Carmen"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-chinyero-ruta.desc",
+   "es": "Ruta única de MTB por la Reserva Natural del Chinyero en la Corona Forestal. Caminos entre pinos sobre suelo volcánico gris — experiencia visual única en el mundo. Cerca del Teide. Nivel moderado-alto. Acceso desde Santiago del Teide. No apta con lluvia (suelo resbaladizo). Descargue el mapa antes de salir.",
+   "forma": "texto",
+   "ro": "Un traseu unic de MTB prin Rezervația Naturală Chinyero, în Corona Forestal. Drumuri printre pini, pe sol vulcanic cenușiu — o experiență vizuală unică în lume. Aproape de Teide. Nivel moderat spre ridicat. Acces din Santiago del Teide. Nu este potrivit pe ploaie (solul devine alunecos). Descărcați harta înainte de plecare."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-chinyero-ruta.cat",
+   "es": "MTB Volcánico · Chinyero · Noroeste",
+   "forma": "texto",
+   "ro": "MTB vulcanic · Chinyero · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-sur.desc",
+   "es": "Mayor concentración de tiendas de alquiler de bici de Tenerife: carretera, MTB y eléctricas. Muchos ofrecen guía, mapas y reparación. Consulte Bike Experience Tenerife (bikeexperiencetenerife.com) y Cycling in Tenerife (cyclingintenerife.com). Reservar con antelación en temporada alta.",
+   "forma": "texto",
+   "ro": "Cea mai mare concentrare de magazine de închiriere de biciclete din Tenerife: de șosea, MTB și electrice. Multe oferă ghid, hărți și reparații. Consultați Bike Experience Tenerife (bikeexperiencetenerife.com) și Cycling in Tenerife (cyclingintenerife.com). Rezervați din timp în sezonul de vârf."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-sur.cat",
+   "es": "Alquiler Bici · Las Américas · Sur",
+   "forma": "texto",
+   "ro": "Închiriere biciclete · Las Américas · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-norte.desc",
+   "es": "Varios puntos de alquiler y servicio de bicicletas en el norte. Punto de partida ideal para la subida al Teide (TF-21), rutas de Anaga y la Corona Forestal. El paseo costero también es apto para ciclismo relajado. Talleres de reparación disponibles.",
+   "forma": "texto",
+   "ro": "Mai multe puncte de închiriere și service pentru biciclete în nord. Punct de plecare ideal pentru urcarea la Teide (TF-21), pentru traseele din Anaga și din Corona Forestal. Promenada de pe coastă este potrivită și pentru plimbări relaxante cu bicicleta. Există ateliere de reparații."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-norte.cat",
+   "es": "Alquiler Bici · Puerto de la Cruz · Norte",
+   "forma": "texto",
+   "ro": "Închiriere biciclete · Puerto de la Cruz · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-agua-la-esperanza.desc",
+   "es": "Punto clave para ciclistas en el norte. Fuentes de agua potable, mesas de picnic y aseos en pleno pinar a 1.000 m. Inicio o parada habitual en la BC-1 y la subida al Teide. Aparcamiento gratuito. Acceso por TF-24. Temperatura fresca — lleve ropa de abrigo.",
+   "forma": "texto",
+   "ro": "Un punct-cheie pentru bicicliști în nord. Cișmele cu apă potabilă, mese de picnic și toalete, în mijlocul pădurii de pin, la 1.000 m. Loc obișnuit de plecare sau de oprire pe BC-1 și pe urcarea spre Teide. Parcare gratuită. Acces pe TF-24. Temperatură răcoroasă — luați haine groase."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-agua-la-esperanza.cat",
+   "es": "Agua y Descanso · Ciclistas · 1000 m",
+   "forma": "texto",
+   "ro": "Apă și odihnă · Bicicliști · 1000 m"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-agua-vilaflor.desc",
+   "es": "Vilaflor (1.400 m), uno de los pueblos más altos de España, es parada obligatoria para ciclistas del sur hacia el Teide. Fuentes de agua, bares y aparcamiento. Inicio de la ruta BC-5. Clima fresco y aire limpio.",
+   "forma": "texto",
+   "ro": "Vilaflor (1.400 m), unul dintre cele mai înalte sate din Spania, este o oprire obligatorie pentru bicicliștii care urcă din sud spre Teide. Cișmele, baruri și parcare. Aici începe traseul BC-5. Climă răcoroasă și aer curat."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-agua-vilaflor.cat",
+   "es": "Agua y Descanso · Vilaflor · BC-5 · 1400m",
+   "forma": "texto",
+   "ro": "Apă și odihnă · Vilaflor · BC-5 · 1400 m"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-ruta-medano-teide.desc",
+   "es": "Una de las rutas de carretera más completas de Tenerife: sale de El Médano (nivel del mar) y asciende por Arafo hasta el Teide acumulando más de 4.400 m de desnivel. Paisajes radicalmente distintos: costa árida, medianías, pinar y volcán. Solo para ciclistas con excelente forma. TF-28 y TF-21. Mejor en invierno o primavera.",
+   "forma": "texto",
+   "ro": "Unul dintre cele mai complete trasee de șosea din Tenerife: pleacă din El Médano (de la nivelul mării) și urcă prin Arafo până la Teide, acumulând peste 4.400 m diferență de nivel. Peisaje radical diferite: coastă aridă, zona de altitudine medie (medianías), pădure de pin și vulcan. Doar pentru bicicliști într-o formă excelentă. TF-28 și TF-21. Cel mai bine iarna sau primăvara."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-ruta-medano-teide.cat",
+   "es": "Carretera Élite · El Médano → Teide",
+   "forma": "texto",
+   "ro": "Șosea, nivel de elită · El Médano → Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-paseo-sur.desc",
+   "es": "El paseo marítimo que une Los Cristianos con Las Américas y Costa Adeje: uno de los pocos tramos costeros de Tenerife aptos para ciclismo relajado. Superficie plana y asfaltada. Ideal para bici eléctrica, de ciudad o de paseo. ~5 km continuos. Recomendable por la mañana antes de la afluencia de peatones. Ceder el paso siempre.",
+   "forma": "texto",
+   "ro": "Promenada care leagă Los Cristianos de Las Américas și de Costa Adeje: unul dintre puținele tronsoane de coastă din Tenerife potrivite pentru plimbări relaxante cu bicicleta. Suprafață plană și asfaltată. Ideală pentru bicicletă electrică, de oraș sau de plimbare. ~5 km neîntrerupți. Se recomandă dimineața, înainte de afluxul de pietoni. Cedați întotdeauna trecerea."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-paseo-sur.cat",
+   "es": "Cicloturismo Costero · Sur · Fácil · 5 km",
+   "forma": "texto",
+   "ro": "Cicloturism pe coastă · Sud · Ușor · 5 km"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-ruta-norte-garachico.desc",
+   "es": "Ruta de carretera circular de 54 km que parte de Garachico (TF-421) y regresa por la TF-42. Terreno abrupto y montañoso del norte de Tenerife: pueblos históricos, viñedos, el mar en el horizonte. Apta solo para ciclistas con buena forma. Tiempo estimado: 3 horas. Mejor en otoño-invierno.",
+   "forma": "texto",
+   "ro": "Traseu circular de șosea, de 54 km, care pleacă din Garachico (TF-421) și se întoarce pe TF-42. Teren abrupt și muntos în nordul insulei Tenerife: sate istorice, podgorii, marea la orizont. Potrivit doar pentru bicicliști într-o formă bună. Timp estimat: 3 ore. Cel mai bine toamna și iarna."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-ruta-norte-garachico.cat",
+   "es": "Carretera · Norte · Dificultad Alta · 54 km",
+   "forma": "texto",
+   "ro": "Șosea · Nord · Dificultate ridicată · 54 km"
+  }
+ ]
+}
