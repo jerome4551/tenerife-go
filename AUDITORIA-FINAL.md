@@ -8664,6 +8664,163 @@ traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 31
 isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (5.873
 filas). `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
 
+## La cámara lenta entera y el pino contra la pared (nota 47 del entrenador, 15 de noviembre)
+
+**La cámara lenta («½×») dejaba los movimientos a medias.** El Director iba a 0,45, pero cada paso duraba lo mismo que a
+velocidad normal: medido en el reproductor con los 282 vídeos, en 61 no acababa una secuencia y en 105 no llegaba a
+verse una repetición entera. Ahora el reloj del reproductor va a la velocidad de lo que se ve: cada paso dura lo suyo
+dividido por 0,45, y a cámara lenta se ve lo mismo que a velocidad normal, más despacio. El texto y la voz van a su
+ritmo; de cerca, el presentador va a su velocidad. A velocidad normal no cambia nada. `auditar_entrenador.js` pasa de 42
+a 43 controles: el nuevo mira, con el botón de verdad, que cada secuencia acaba en su paso y cada tramo dura lo que
+debe, y se pone en rojo con el reproductor de antes.
+
+**El pino contra la pared** (Jérôme, 14-11: que se vea la subida, con su fuente). El vídeo nuevo sube andando por la
+pared y baja por donde subió, siempre con tres apoyos, una mano o un pie cada vez, y la ficha pasa de tres pasos a
+cuatro, que son los del vídeo: boca abajo, con las manos en el suelo, se apoyan los pies en la pared; se suben los pies
+y se acercan las manos; se mantiene; y se sale bajando. En los diez idiomas, de usted. Fuentes: la que ya tenía, wger,
+«Wall Handstand», y dos más, abiertas el 15-11: CrossFit, «The Wall Walk» («three points of contact on the floor, wall,
+or a combination of the two throughout the entire movement»), y la hoja oficial de la prueba 22.1 del CrossFit Open.
+Hecho en las fuentes de «Su cuerpo» y construido con `construir.py`: cambian solo los once ficheros de ejercicios y solo
+esa ficha, byte a byte lo que da el guion de la nota. Las otras 281 coreografías no cambian.
+
+## El rumano, bloque 6, y lo que vio en las fichas: siete erratas, tres etiquetas, Masca y la Rambla (15 de noviembre)
+
+**El bloque 6 del rumano**, sin activar: el segundo de los cinco trozos de las fichas
+(`idiomas/ro-fuente/lugares-2.json`, 358 textos de 156 fichas, sin las gasolineras). No toca la app;
+`tools/revisar_rumano.py`, 0 errores, y casan los 358.
+
+**Siete erratas que vio al traducir**, cada una con su fuente, abierta aquí, y cambiadas en los diez idiomas (71 textos
+en 78 sitios, con el guion de esa sesión, que no cambia nada si un texto no es el de antes):
+
+- El puerto de Santa Cruz no es «el mayor puerto de Canarias», sino el principal de Tenerife: el de Las Palmas movió
+  31,8 millones de toneladas en 2025 (RTVC).
+- La Jaca es de Arico, no de San Miguel de Abona (INVOLCAN, ficha 21, y su código del INE).
+- Los acantilados de Los Gigantes son «algunos de» los más altos de Europa, no los más altos (dos fichas).
+- El kayak de La Caleta: las calas de la costa de Adeje y la playa de Diego Hernández, de arena dorada (Turismo de
+  Canarias).
+- El kayak de Los Cristianos y Montaña Amarilla no son reserva marina: en Canarias hay tres, ninguna en Tenerife
+  (Ministerio de Agricultura, Pesca y Alimentación); Montaña Amarilla es Monumento Natural (INVOLCAN, ficha 17).
+
+**Y lo que quedaba para Jérôme**, que dijo que sí el 15-11:
+
+- Tres etiquetas: Montaña Amarilla, «Monumento Natural»; el kayak de Los Cristianos, «Playa Las Vistas»; La Jaca,
+  «Arico».
+- Masca es de Buenavista del Norte: el caserío, el centro de visitantes y el camino caen en Buenavista en el
+  shapefile municipal del Cabildo, a 1,3-1,4 km de la raya de Santiago del Teide, y las tres paradas de TITSA de
+  Masca son de Buenavista. Santiago del Teide ya no «incluye Masca» (dice que de allí sale la 355 hacia el caserío),
+  el centro de visitantes dice «(Buenavista del Norte)» y Guía de Isora ya no es el «punto de partida» del camino.
+  En los diez idiomas; de paso, el chino del centro de visitantes con los nombres que usa la app, y el alemán de
+  Guía de Isora, «Aride und authentische Landschaft».
+- La ficha de running de la Rambla se llamaba «Rambla del General Gutiérrez», que es otra calle: ahora «Rambla de
+  Santa Cruz — Running».
+
+**Las tres dudas que quedaban** (las farmacias, contra las listas de guardias del Colegio de Farmacéuticos; la playa del
+Puertito de Güímar con «Tortugas Marinas», sin fuente, y los «más de 4.400 m de desnivel» de la ruta en bici de El
+Médano al Teide) las decidió Jérôme el mismo día: van en la sección siguiente.
+
+## Las 13 farmacias, la playa del Cabezo y la ruta de El Médano al Teide, con sus fuentes (15 de noviembre)
+
+Las tres dudas que dejó el bloque 6 del rumano las decidió Jérôme el 15-11: «A, B y C. Revisa las fuentes y puede hacer
+los cambios adecuados pero verifica las fuentes […] Lo que arreglas debe estar arreglado y no a mitad». Un commit por
+apartado, en los diez idiomas, y en cada uno se miró si el mismo error estaba en otras fichas.
+
+**A. Las 13 farmacias**, una por una, contra el buscador del Colegio Oficial de Farmacéuticos de Tenerife, abierto el
+15-11 en un navegador, como lo abre cualquiera (a una petición suelta contesta «no encontrado»), y contra sus listas de
+guardias y horarios ampliados de noviembre de 2026, las de su página de guardias
+(`https://www.coftenerife.es/ciudadanos/farmacias-de-guardia/`), que abre el PDF de cada zona en el visor del propio
+Colegio. Primero se leyeron en la copia que publica farmaten.com; cotejadas el 15-11 con las 18 zonas de Tenerife de la
+página del Colegio, abierta en un navegador, el texto es el mismo en las 16 zonas que estaban en las dos (solo cambia el
+pie «Powered by TCPDF» de la copia); la de Güímar–Arafo de la copia era de octubre y no se usó, y la de Icod de los
+Vinos no estaba. Lo que no cuadraba, cambiado por el dato oficial:
+
+- **Hernández** (José Hernández Alfonso, 47) decía «24 h, guardia permanente», «imprescindible para emergencias
+  nocturnas», y llevaba el distintivo «Farmacia 24 h». Abre de lunes a viernes de 8:00 a 21:00 y el sábado de 9:00 a
+  14:00. En Santa Cruz la de guardia de 24 horas es la de la calle Horacio Nelson, 21, que es nuestra Farmacia
+  Salamanca, y ahora la ficha lo dice. Fuera el distintivo y las etiquetas «24h», «Guardia», «Urgencias» y
+  «Nocturno»; el teléfono es el 922 23 61 79 y el punto estaba a casi 800 m, en la calle del Castillo.
+- **Av. Islas Canarias, 38** abre todos los días del año de 8:00 a 24:00, no «L-V 8:30–20:00», y en Santa Cruz no
+  hay guardia rotativa: fuera esa frase y la etiqueta. El punto estaba a 900 m, en el número 125, que es otra
+  farmacia.
+- **Av. Juan Carlos I, 16** se llamaba «Farmacia Playa de las Américas» y está en Los Cristianos: ahora «Farmacia
+  Av. Juan Carlos I (Los Cristianos)», con su teléfono, 922 79 50 25 (el de la ficha no sale en ninguna fuente), el
+  punto (estaba a 2 km, en Las Américas), el local (Edif. Simón, bloque 4, local 7) y su horario: de lunes a viernes
+  de 9:00 a 20:30, el sábado de 9:00 a 14:00 y de 17:00 a 20:00, y guardia rotativa.
+- **Av. Austria, 40**: teléfono 922 89 27 64, la dirección entera (Apartamentos Malibu Park, local 2, San Eugenio
+  Alto) y su horario (de lunes a viernes de 9:00 a 20:30, el sábado de 9:00 a 17:30). No está en el centro de Adeje,
+  sino en San Eugenio Alto (Costa Adeje).
+- **El Pozo** (Puerto de la Cruz) abre todos los días del año de 8:30 a 21:00, no de 9 a 22.
+- **Anchieta** (La Laguna): el fin de semana abre a las 9:00, no a las 8:00, y la dirección es la del Colegio:
+  Polígono Padre Anchieta, bloque 126, frente a la antigua estación de guaguas.
+- **La Orotava** (Las Araucarias, 6): el Colegio la sitúa frente al pabellón Quiquirá; que esté «junto al Centro de
+  Salud Las Dehesas» no tiene fuente.
+- **Bethencourt** (Puerto de la Cruz): el punto estaba a casi 800 m, a 200 m de otra farmacia.
+- **Blesa** (Los Cristianos): el teléfono es el 922 75 21 64, no un móvil.
+- **Pharmadeje**: la avenida Europa no tiene número allí («S/N», en la lista de guardias); es el local 1-2 del
+  Complejo Oasis, en San Eugenio Alto.
+
+Salamanca, Anaga y Las Galletas estaban bien. Lo que la ficha dice y el Colegio no (los idiomas de Pharmadeje y de la de
+Juan Carlos I, el aparcamiento cerca de la Salamanca, los «precios competitivos» de la Blesa) no se ha podido comprobar
+y se queda como estaba; también el nombre «Pharmadeje», que el Colegio no registra. Esta semana el jueves de la de Juan
+Carlos I es día de guardia, así que el Colegio no da su horario normal de ese día: va con el de lunes a viernes, como
+los otros cuatro días.
+
+**El asistente decía** que la farmacia de guardia cambia «cada día» en todas partes. En Santa Cruz es siempre la misma,
+la de Horacio Nelson, 21, de 24 horas; en La Laguna, el Puerto de la Cruz y Adeje y Arona sí cambia cada día. Ahora lo
+dice así (`sal-06`, diez idiomas, con `tools/generar_faq.py`); lo demás del asistente no cambia.
+
+**El enlace «💊 Ver farmacia de guardia hoy (oficial)»**, que lleva el globo de cada farmacia en los diez idiomas, iba a
+una página de farmaten.com: no es del Colegio, sino la tienda en línea de una farmacia, y esa página ya no existía (404
+el 15-11; la portada del mismo sitio, 200). Ahora va al buscador del Colegio, `https://www.coftenerife.es/farmacias/`,
+que abre con las farmacias abiertas en ese momento: de noche, las de guardia. El rótulo no cambia, y su «(oficial)»
+ahora es verdad.
+
+**B. La playa del Cabezo** (Puertito de Güímar) tenía la categoría «Cala · Tortugas Marinas» y el icono 🐢, copiados de
+El Puertito de Adeje, la ficha siguiente. Ninguna fuente pone tortugas allí: Webtenerife la da como playa de callaos y
+arena negra, y el informe sanitario de su zona de baño (Ayuntamiento de Güímar), tampoco. Ahora «Playa · Güímar», como
+las otras dos playas de Güímar, y 🏖️; de paso, en chino y chino tradicional la misma ficha escribía Güímar de dos
+maneras, y ahora va como las otras 45 veces. Las otras 73 playas de la app, revisadas: ninguna más lleva la categoría o
+el icono de otra ficha.
+
+**C. La ruta en bici El Médano–Arafo–Teide** decía que la subida acumulaba «más de 4.400 m de desnivel». No hay fuente,
+y de ida no cabe: la vuelta entera desde El Médano, 177 km, da 3.977 m (Epic Road Rides), y dentro del Parque Nacional
+la carretera va de unos 1.900 a 2.330 m. Ahora dice que sale al nivel del mar y sube hasta el Parque Nacional del Teide,
+a más de 2.000 m de altitud. Las carreteras eran la TF-28 y la TF-21; por Arafo se sube por la TF-523 hasta la TF-24, en
+el cruce de Los Loros (RTVC, 26-2-2026), y por la TF-24 hasta la TF-21, y así lo dicen la ficha y sus etiquetas. «Mejor
+en invierno o primavera» deja sitio al aviso de que en invierno el Cabildo cierra a veces la TF-24 y la TF-21 por hielo
+o nieve (RTVC, 2024-2026). La etiqueta «4400m» pasa a «2000m», que ya existía; la TF-523 se declara como código de
+carretera y «4400m» sale de las declaradas. Las otras 22 fichas de ciclismo, revisadas: ninguna da un desnivel que no
+cuadre con sus alturas.
+
+**Para el rumano:** 14 filas de su bloque 6 cambian de castellano (12 de las farmacias, la categoría de la playa del
+Cabezo y la descripción de la ruta en bici). Se le devuelven con el castellano de antes y el de ahora; hasta que lleguen
+traducidas, `lugares_traduccion.js` las deja fuera.
+
+## Las farmacias, el Cabezo, la ruta en bici, el bloque 6 del rumano y la nota 47 (15 de noviembre): la auditoría entera
+
+**La auditoría entera** sobre `f7c9e16` (árbol `8b3377f7`), los doce commits de las tres secciones de arriba encima de
+`main` (`4680479`); en `main` son los mismos, rebasados sobre tres commits de los robots (`78a4fda`, los precios de las
+gasolineras; `441cf78`, los avisos de AEMET, y `91fd902`, las alertas del Gobierno de Canarias), que solo cambian
+`datos/precios-gasolineras.json`, `datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y con los controles que
+leen esos ficheros, en verde tras el rebase. En sus 70 bloques, un rojo: `informe_lugares.js`, porque
+`REVISION-LUGARES.md` no estaba al día: las 13 farmacias corregidas cambian la cuenta de decimales de las coordenadas y
+una ficha más nombra su municipio. Se rehízo con `node tools/informe_lugares.js > REVISION-LUGARES.md`, en su commit, y
+su control y el de las cifras del README pasan a verde.
+
+Lo demás, en verde: `auditar_registro.js`, todo de usted (138.120 textos); `auditar_idioma.js`, 0 hallazgos en los diez
+idiomas; `castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.331 nombres propios en cirílico
+y ninguna variante sospechosa; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los
+tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153;
+`probar_figura.js`, 64; `probar_cuerpo.js`, 725; `auditar_entrenador.js`, 43, uno más que antes (el de la cámara lenta);
+la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (5.873
+filas). `app_preparar.js` no cambió ningún fichero del repositorio.
+
+**Y antes de subir**, las listas de guardias que se habían leído en la copia de farmaten.com se cotejaron con las de la
+página oficial del Colegio, abierta en un navegador: en las 16 zonas que estaban en las dos, el mismo texto. Lo que usan
+las fichas y el asistente (la guardia de 24 horas de Horacio Nelson, 21; Av. Islas Canarias, 38, de 8:00 a 24:00 todos
+los días del año; El Pozo, de 8:30 a 21:00 todos los días del año; la avenida Europa sin número en San Eugenio Alto, y
+las guardias que cambian cada día en La Laguna, el Puerto de la Cruz y Adeje y Arona) está tal cual en los PDF del
+Colegio de noviembre.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
