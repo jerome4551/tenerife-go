@@ -176,6 +176,7 @@ def revisar_texto(es, ro, ctx, R, exentos=(), plural_ok=False):
         R.e(ctx, 'espacio doble')
     # castellano suelto (fuera de citas, parentesis y nombres declarados)
     sinCitas = re.sub(r'„[^”]*”|«[^»]*»|\([^)]*\)', ' ', ro)
+    sinCitas = MARC.sub(' ', sinCitas)   # {y}, {t}...: marcadores, no palabras (bloque del cielo)
     for fr_ in FRASES_EXENTAS:
         sinCitas = sinCitas.replace(fr_, ' ')
     for m in PAL.finditer(sinCitas):
@@ -192,12 +193,17 @@ def revisar_texto(es, ro, ctx, R, exentos=(), plural_ok=False):
     # el «de» de los numeros
     for m in re.finditer(r'(?<![\d.,{])(\d{1,3}(?:\.\d{3})*|\d+)(?![\d.,:/])\s+([' + LETRA + r'][' + LETRA + r'/°.]*)', ro):
         n, w = m.group(1).replace('.', ''), m.group(2)
-        if w.lower() in UNIDADES or w.lower() in NO_SUSTANTIVO or w.lower() in MESES or w[0].isupper() or not necesita_de(n):
+        if w.lower() in UNIDADES or w.lower().rstrip('.') in UNIDADES or w.lower() in NO_SUSTANTIVO or w.lower() in MESES or w[0].isupper() or not necesita_de(n):
             continue
         R.e(ctx, '«%s %s» sin «de» (%s pide «de»: «%s de %s»)' % (n, w, n, n, w))
     for m in re.finditer(r'\{([nN])\}\s+([a-zăâîșț]+)', ro):
         if len(fr) == 1 and m.group(2) not in UNIDADES and m.group(2) not in NO_SUSTANTIVO:
             R.a(ctx, '«{%s} %s» sin formas de plural: compruebe que el numero no pasa de 19' % (m.group(1), m.group(2)))
+    # cualquier otra cifra del codigo delante de «milioane», «mii» o «miliarde» (bloque del cielo: «La {d} milioane
+    # de km» salia «159 milioane» en la ficha de Marte): o lleva siempre decimales o el sustantivo va delante
+    for m in re.finditer(r'\{(\w+)\}\s+(milioane|mii|miliarde)\b', ro):
+        if m.group(1) not in ('n', 'N'):
+            R.a(ctx, '«{%s} %s»: desde 20 pide «de»; compruebe que la cifra lleva siempre decimales' % (m.group(1), m.group(2)))
     ce, cr = cifras(es), cifras(ro)
     falt = [c for c in ce if c not in cr]
     if falt:
@@ -231,6 +237,7 @@ def revisar(es, ro, ctx, R, exentos=(), plural_ok=False):
 PLURAL_POR_NUMERO = {'CHAT_STR'}
 FRASES_EXENTAS = (
     'Subdirección de Protección Civil y Emergencias',   # organismo oficial, por su nombre
+    'Roque de los Muchachos',   # el observatorio de La Palma, por su nombre (bloque del cielo)
 )
 # Lo que se queda como esta, con su motivo: nombres propios, citas en
 # castellano que la ficha explica y la voz de quien usa la app.
