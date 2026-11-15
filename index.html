@@ -3064,7 +3064,17 @@ window.onunhandledrejection = function(e) {
     gap: var(--space-3);
     box-shadow: var(--shadow-md);
     pointer-events: none;
-    white-space: nowrap;
+    /* Cabe en la pantalla: el polaco «Wystarczy dotknąć znacznika na mapie,
+       aby wybrać początek» medía unos 365 px en una de 360. Lo que no cabe,
+       a una segunda línea (15 de noviembre de 2026; nota 41). Con left: 50%
+       el ancho disponible sería la mitad de la pantalla: max-content hace que
+       solo parta cuando de verdad no cabe. */
+    width: max-content;
+    max-width: calc(100vw - 32px);
+    box-sizing: border-box;
+    white-space: normal;
+    text-wrap: balance;
+    text-align: center;
     animation: dropIn var(--t-normal) var(--ease-out);
   }
   .pick-toast.visible { display: flex; }
@@ -3642,9 +3652,14 @@ window.onunhandledrejection = function(e) {
     cursor: pointer;
     transition: all var(--t-fast) var(--ease-out);
     line-height: 1.1;
-    white-space: nowrap;
+    /* Sin «…»: en búlgaro «ℹ️ Как да се придвижвам» pedía 133 px en un
+       botón de 97 a 360 px de ancho y salía cortado. Lo que no cabe pasa a
+       una segunda línea (15 de noviembre de 2026; lo vio la sesión del
+       rumano, nota 41). */
+    white-space: normal;
+    text-wrap: balance;
+    overflow-wrap: break-word;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
   /* La pastilla informativa en dorado, a juego con la app */
   #hm-toggle-btn {
