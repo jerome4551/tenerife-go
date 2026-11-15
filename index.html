@@ -4547,10 +4547,12 @@ window.onunhandledrejection = function(e) {
      el ultimo boton -el del idioma- se salia 5 px por la derecha. En los diez
      idiomas, porque no es cosa del texto sino del ancho de los botones.
 
-     No se vuelve a esconder el wordmark: la decision de que se vea es del
-     dueño. Lo que se hace es que CEDA EL PRIMERO. La marca se recorta con
-     puntos suspensivos cuando no cabe, y los botones no se van de la
-     pantalla nunca. Cuando hay sitio se ve entera, que es lo que se queria.
+     La marca CEDA LA PRIMERA: los botones no se van de la pantalla nunca.
+     Cuando hay sitio se ve entera. Cuando no cabe entera, se queda solo el
+     logo: lo decidio el dueño el 15 de noviembre de 2026 («el logo solo
+     entonces»), en vez de la marca recortada con puntos suspensivos. Lo
+     mide el script de la barra, justo detras de su HTML (.solo-logo,
+     abajo); el recorte con «…» queda solo por si ese script no corre.
 
      La causa de fondo era `flex-shrink: 0` en .topbar-brand: con eso el
      navegador no tiene de donde sacar los 9 px que faltan y empuja. */
@@ -4569,6 +4571,23 @@ window.onunhandledrejection = function(e) {
     white-space: nowrap;
   }
   .topbar-logo { flex-shrink: 0; }
+  /* Entera o solo el logo: la clase la pone el script de la barra cuando
+     el nombre no cabe entero. Se esconde a la vista, no a los lectores de
+     pantalla: el h1 «TENERIFE GO» sigue siendo el titulo de la pagina. Si
+     cabe el nombre pero no el eslogan, se quita solo el eslogan. */
+  .topbar-brand.solo-logo .topbar-brand-text {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+  .topbar-brand.sin-eslogan .topbar-brand-text span { display: none !important; }
   /* En móvil, ajustamos tamaños para que sea elegante y ergonómico */
   @media (max-width: 500px) {
     .topbar-brand h1 {
@@ -5916,6 +5935,47 @@ window.onunhandledrejection = function(e) {
     </div>
   </div>
 </div>
+<script>
+// ── LA MARCA DE LA BARRA: ENTERA O SOLO EL LOGO — TENERIFE GO ──
+/* Decision del dueño (Jérôme, 15 de noviembre de 2026): cuando «TENERIFE GO»
+   no cabe entero al lado del logo, se queda solo el logo, en vez de la marca
+   recortada con «…». Se mide de verdad, no con anchos fijos: el sitio libre
+   cambia con la pantalla, con el idioma (el rotulo de la capa del mapa) y con
+   los botones que se ponen en la barra despues de arrancar. Se enseña el
+   texto, se mira si se recorta y, si se recorta, se esconde, todo antes de
+   pintar. Va aqui, justo detras de la barra, para que no se llegue a ver la
+   marca recortada. */
+(function () {
+  'use strict';
+  var marca = document.querySelector('.topbar-brand');
+  var nombre = marca && marca.querySelector('h1');
+  if (!nombre) return;
+  var eslogan = marca.querySelector('.topbar-brand-text span');
+  function recorta(el) {
+    return !!el && el.getClientRects().length > 0 && el.scrollWidth > el.clientWidth + 1;
+  }
+  function ajustar() {
+    marca.classList.remove('solo-logo', 'sin-eslogan');
+    if (recorta(nombre)) marca.classList.add('solo-logo');
+    else if (recorta(eslogan)) marca.classList.add('sin-eslogan');
+  }
+  var pedido = false;
+  function pedir() {
+    if (pedido) return;
+    pedido = true;
+    requestAnimationFrame(function () { pedido = false; ajustar(); });
+  }
+  ajustar();
+  window.addEventListener('resize', pedir);
+  window.addEventListener('orientationchange', pedir);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(pedir);
+  /* Los botones de la derecha no crecen ni encogen con la marca
+     (.topbar-right lleva flex-shrink: 0), asi que vigilar su tamaño no
+     hace bucle: solo avisa cuando llega un boton o cambia un rotulo. */
+  var derecha = document.querySelector('.topbar-right');
+  if (derecha && 'ResizeObserver' in window) new ResizeObserver(pedir).observe(derecha);
+})();
+</script>
 
 <!-- DESPLEGABLE DEL IDIOMA, fuera de la barra de arriba. Lo abre el boton
      #lang-btn de .topbar-right, pero no puede vivir dentro de ella: en el

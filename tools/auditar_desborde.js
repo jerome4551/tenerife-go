@@ -284,6 +284,96 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
     console.log('  ok   el desplegable del idioma, con el dedo, fuera de toda caja con scroll y sin nada encima: ' + pasoIdioma.join(' · '));
   }
 
+  /* 5 · LA MARCA DE LA BARRA, ENTERA O SOLO EL LOGO. Decision del dueño, el
+     15 de noviembre de 2026: «TENERIFE GO» no se queda recortado con «…»
+     cuando no cabe al lado del logo; se queda solo el logo. Antes se
+     recortaba de 320 a 450 px y de 501 a 650 px. Se mira en muchos anchos:
+     o el nombre entero o el texto escondido (1 px), el eslogan nunca
+     recortado, el h1 siempre en la pagina para los lectores de pantalla, la
+     barra dentro de la pantalla; y en la misma pagina, al cambiar de ancho,
+     la marca va y vuelve sola. */
+  const malMarca = [], vistoMarca = {}, frescaEs = {};
+  const mideMarca = () => {
+    const m = document.querySelector('.topbar-brand'), h = m.querySelector('h1');
+    const s = m.querySelector('.topbar-brand-text span'), txt = m.querySelector('.topbar-brand-text');
+    const ve = e => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none';
+    const logo = m.classList.contains('solo-logo');
+    return { logo, ancho: Math.round(txt.getBoundingClientRect().width), quitado: getComputedStyle(txt).display === 'none',
+             nombre: h.textContent.trim(), corta: !logo && h.scrollWidth > h.clientWidth + 1,
+             esloganCorta: !logo && ve(s) && s.scrollWidth > s.clientWidth + 1,
+             fuera: Math.round(document.querySelector('.topbar-right').getBoundingClientRect().right) > innerWidth + 1 };
+  };
+  const anchosMarca = { es: [320, 360, 390, 430, 460, 480, 500, 501, 600, 650, 700, 768, 1280] };
+  for (const L of IDIOMAS) if (L !== 'es') anchosMarca[L] = [360, 600, 768];
+  for (const L of IDIOMAS) {
+    const fila = [];
+    for (const w of anchosMarca[L]) {
+      const ctx = await b.newContext({ viewport: { width: w, height: 800 }, serviceWorkers: 'block' });
+      const q = await ctx.newPage(), errM = [];
+      q.on('pageerror', e => errM.push(e.message));
+      try {
+        await q.addInitScript(l => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tg_lang', l); } catch (e) {} }, L);
+        await q.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'load', timeout: 60000 });
+        await q.waitForFunction(() => typeof setLang === 'function', null, { timeout: 30000 });
+        if (await q.isVisible('#v19-welcome-start')) { await q.click('#v19-welcome-start'); }
+        await q.evaluate(l => setLang(l), L);
+        await q.waitForTimeout(1200);
+        const r = await q.evaluate(mideMarca);
+        const ojo = [];
+        if (r.corta) ojo.push('«TENERIFE GO» recortado con «…»');
+        if (r.esloganCorta) ojo.push('el eslogan recortado');
+        if (r.logo && r.ancho > 1) ojo.push('solo el logo, pero el texto ocupa ' + r.ancho + ' px');
+        if (r.quitado || r.nombre !== 'TENERIFE GO') ojo.push('el h1 ya no esta en la pagina');
+        if (r.fuera) ojo.push('los botones se salen de la pantalla');
+        errM.forEach(x => ojo.push('error de pagina: ' + x));
+        ojo.forEach(x => malMarca.push(L + ' a ' + w + ' px: ' + x));
+        fila.push(w + (r.logo ? ' logo' : ' entera'));
+        if (L === 'es') frescaEs[w] = r.logo ? 'logo' : 'entera';
+      } catch (e) {
+        malMarca.push(L + ' a ' + w + ' px: la prueba se cayo: ' + e.message.split('\n')[0]);
+      } finally {
+        await ctx.close();
+      }
+    }
+    vistoMarca[L] = fila.join(', ');
+  }
+  {
+    const ctx = await b.newContext({ viewport: { width: 360, height: 800 }, serviceWorkers: 'block' });
+    const q = await ctx.newPage(), errM = [];
+    q.on('pageerror', e => errM.push(e.message));
+    try {
+      await q.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tg_lang', 'es'); } catch (e) {} });
+      await q.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'load', timeout: 60000 });
+      await q.waitForFunction(() => typeof setLang === 'function', null, { timeout: 30000 });
+      if (await q.isVisible('#v19-welcome-start')) { await q.click('#v19-welcome-start'); }
+      await q.waitForTimeout(1200);
+      const pasos = [];
+      /* lo que sale al cambiar de ancho tiene que ser lo mismo que al abrir
+         la pagina en ese ancho (arriba), en las dos direcciones */
+      for (const w of [360, 480, 600, 768, 390, 1280, 320]) {
+        await q.setViewportSize({ width: w, height: 800 });
+        await q.waitForTimeout(400);
+        const r = await q.evaluate(mideMarca);
+        pasos.push(w + (r.logo ? ' logo' : ' entera'));
+        if (r.corta || r.esloganCorta) malMarca.push('al pasar a ' + w + ' px en la misma pagina: queda recortada');
+        if (frescaEs[w] && frescaEs[w] !== (r.logo ? 'logo' : 'entera')) malMarca.push('al pasar a ' + w + ' px en la misma pagina queda ' + (r.logo ? 'solo el logo' : 'entera') + ', y abriendola en ese ancho, ' + (frescaEs[w] === 'logo' ? 'solo el logo' : 'entera'));
+      }
+      errM.forEach(x => malMarca.push('al cambiar de ancho: error de pagina: ' + x));
+      vistoMarca['cambiando el ancho'] = pasos.join(', ');
+    } catch (e) {
+      malMarca.push('al cambiar de ancho: la prueba se cayo: ' + e.message.split('\n')[0]);
+    } finally {
+      await ctx.close();
+    }
+  }
+  if (malMarca.length) {
+    fallos++;
+    console.log('  MAL  la marca de la barra: ' + malMarca.length + ' fallo(s)');
+    malMarca.slice(0, 10).forEach(x => console.log('           ' + x));
+  } else {
+    console.log('  ok   la marca de la barra, entera o solo el logo, nunca recortada: ' + IDIOMAS.map(L => L + ' ' + vistoMarca[L]).join(' · ') + '; cambiando el ancho en la misma pagina: ' + vistoMarca['cambiando el ancho']);
+  }
+
   /* El popup en castellano y el de los otros nueve no pueden decir lo MISMO:
      si coinciden es que el texto esta escrito a pelo y no pasa por el idioma,
      que es justo lo que pasaba con «Ver descripcion completa». */
