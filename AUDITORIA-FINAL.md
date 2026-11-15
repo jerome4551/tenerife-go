@@ -8501,6 +8501,112 @@ los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro 
 documento, las mismas (52 tablas y 3.726 filas; 5.873). `app_preparar.js` no cambió ningún fichero del repositorio, ni
 antes ni después.
 
+## Lo que vio de paso la sesión del rumano: cinco fichas con datos falsos, el polaco de las guaguas y el tuteo de sus notas (15 de noviembre)
+
+La sesión que prepara el rumano (nota 41 y la nota de su bloque 5) dejó una lista de cosas que no eran de su trabajo y
+que «decide Jérôme». Se comprobó cada una en `main` y, donde era un dato, contra su fuente oficial. Todo lo que era
+cierto se ha arreglado en los diez idiomas, un commit por apartado; lo que no se pudo confirmar se dice.
+
+**Las frecuencias de las guaguas no tenían polaco.** `FREQ_I18N` («4 salidas/día», «~1 h», «Madrugada»…) traducía las 48
+a ocho idiomas, y un usuario polaco las leía en inglés en las 183 tarjetas de línea: es el respaldo de
+`busFrecuenciaTexto()`. Ninguna herramienta lo veía porque la clave de la tabla es el castellano. Ahora llevan su
+polaco, con su plural («2 kursy», «5 kursów») y las abreviaturas de la app («Pn-Pt», «godz.»). Y
+`tools/auditar_datos.js` tiene un control nuevo: cada frecuencia que usa una línea tiene su fila, y cada fila, todos los
+idiomas de la app menos el castellano. En `main`, rojo con 48 filas sin polaco; con el arreglo, verde. Cuando entre el
+rumano, pedirá también el suyo.
+
+**Tres notas de línea tuteaban.** En `datos/titsa.js`, la del 343 («Si solo vas de Puerto de la Cruz…») y las dos del
+Parador, 342 y 348 («Si la pierdes no hay otra»), en castellano, italiano, neerlandés y polaco. Ahora «Si solo va», «Si
+la pierde», «Se la perde», «Mist u hem» y el impersonal polaco. `tools/auditar_registro.js` no leía ese fichero: ahora
+lo lee, y conoce *perdi*, *jedziesz* y *przegapisz*. En `main`, rojo (castellano 3, italiano 2, neerlandés 2, polaco 3);
+con el arreglo, todo de usted. La fuente del polaco de esas notas (`idiomas/pl-fuente/TITSA_LINES.json`) dice ya lo
+mismo que la app.
+
+**Masca** (`ruta-masca-playa`) se contradecía: el embarcadero cerrado y el sendero obligatorio de bajada y de subida, y
+unas frases después «Recogida en barco incluida al final», «3 horas» y «Solo en grupo organizado». La web oficial del
+Camino del Barranco de Masca, del Cabildo, dice hoy otra cosa: se reservan en ella la entrada y, aparte, el barco de
+vuelta; se baja a pie del caserío al mar, unos 5 km en unas 4 horas, y se sale en barco de la ensenada a Los Gigantes;
+con la entrada de bajada no se puede volver subiendo, salvo si la salida por mar se cierra por el estado del mar; al
+inicio solo se llega en la 355 desde Santiago del Teide; casco (lo presta el personal), calzado de montaña cerrado, al
+menos 1,5 litros de agua, comida, el móvil cargado y un documento; no se admiten menores de 8 años. La ficha se ha
+reescrito con eso; la 355 ya la decía el asistente (`mov-13`).
+
+**Montaña Pelada** decía «Reserva Natural Especial», «duna fósil de arena consolidada» y «vistas sobre el Estrecho de La
+Bocayna», que está entre Lanzarote y Fuerteventura. Sus Normas de Conservación (Gobierno de Canarias) dicen que es
+**Monumento Natural**, una caldera de explosión de una erupción hidromagmática en aguas someras, de 1.900 m de diámetro
+y 62 m de altitud, por eso también Montaña Escachada, hecha de hialoclastitas; la duna fósil está en la Ensenada de
+Pelada. Descripción y categoría reescritas.
+
+**La Montaña de Guaza** también decía «Reserva Natural Especial» y es **Monumento Natural** (Tenerife ON y sus Normas de
+Conservación, BOC 2008/208): cambian esa frase y la categoría.
+
+**El Faro de Rasca** estaba «dentro de la Reserva Natural Especial de Montaña Roja», «construido en 1972», con «acceso
+andando desde El Médano o Playa Diego Hernández»: Montaña Roja está a 14,8 km, en El Médano, y Diego Hernández en Adeje.
+El faro está en la Punta de Rasca (Arona) y se llega desde Palm-Mar por el Malpaís de Rasca, que es Reserva Natural
+Especial (Webtenerife); la torre actual, de 32 m, se encendió en 1978 y delante sigue el primer faro, de 1895 (The
+Lighthouse Directory y Wikipedia: **no se encontró la página de la Autoridad Portuaria**). Y «ballenas piloto,
+calderones» era el mismo animal dos veces.
+
+**El golf de Buenavista** estaba junto al «Parque Natural de Teno»: es Parque Rural, como ya decía la ficha del sendero
+de Teno. El alemán ya ponía «Naturpark Teno», como el resto de la app.
+
+**La etiqueta «Reserva»** quiere decir reserva de plaza en las fichas que la llevan (Masca, El Pijaral, el Barranco del
+Infierno, la Cueva del Viento) y así la traducen ocho idiomas; el polaco decía *Rezerwat*, reserva natural, porque dos
+fichas la usaban en ese sentido. Esas dos, Montaña Pelada y Guaza, llevan ahora «Monumento Natural», y el polaco dice
+*Rezerwacja*.
+
+**La piña del guachinche La Corujera** es la de millo: el inglés, el francés y el alemán decían piña tropical. El
+castellano no cambia.
+
+**Dos textos que no cabían a 360 px.** En el panel de guaguas, el botón «ℹ️ Cómo moverse» salía cortado con «…» en
+búlgaro («ℹ️ Как да се придвижвам» pedía 133 px y tenía 97) y en polaco («ℹ️ Jak się poruszać», 100 en 97). Y en polaco,
+el aviso «Toque un marcador del mapa como *Origen*» («Wystarczy dotknąć znacznika na mapie, aby wybrać *początek*») se
+salía de la pantalla por los dos lados, de −3 a 363 px. Los dos eran del CSS, que no dejaba partir la línea
+(`white-space: nowrap`). Ahora el botón pasa a una segunda línea solo cuando no cabe: en esos dos idiomas la fila de
+botones mide 38 px de alto en vez de 27. Y el aviso mide lo que su texto, sin pasar del ancho de la pantalla menos 32
+px: el primer arreglo, sin eso, lo partía en dos o tres líneas en ocho de los diez idiomas, porque centrado a la mitad
+de la pantalla solo tenía la mitad del ancho. Medido en los diez idiomas, antes y después: a 360 px el aviso va en una
+línea en nueve idiomas y en dos, equilibradas, en polaco, y en los otros ocho idiomas nada cambia de tamaño; a 390 px,
+también todo cabe.
+
+**Tres cosas que cantaron los controles de idioma, las tres en las fichas nuevas de este lote.** La primera auditoría
+entera se cortó en su sección 50 por un reinicio de la máquina; hasta allí, `castellano_suelto.js` vio dos, y
+`auditar_cirilico.py`, pasado a mano antes de volver a lanzarla, la tercera:
+
+- El chino y el chino tradicional de Montaña Pelada llevaban entre paréntesis «cardonal-tabaibal» y «tabaiba dulce»
+  en letra latina. Ahora sin ellas: «植被为大戟灌丛，以甜胶大戟为主», con el nombre chino de *Euphorbia balsamifera* (甜胶大戟 / 甜膠大戟,
+  el de la Wikipedia en chino), y el arbusto como lo dice ya la ficha de Guaza.
+- «Il casco» del italiano de Masca es italiano (el casco que presta el personal), como en el panel SOS y en «Su
+  cuerpo»: va a `idiomas/castellano-aceptado.json` solo para esa ficha (`casco@lugar ruta-masca-playa.desc`).
+- Con el faro de Rasca, «Раска» pasó de dos a cinco veces y «Райска» (la constelación del Ave del Paraíso, «Райска
+  птица», en el cielo) se le parecía. Es otra palabra: va a `CIRILICO-OK` con su motivo, como las demás.
+
+Después, la auditoría entera, desde el principio.
+
+**Lo que no era nada:** `auditar_isla3d.js` da 58 de 58 aquí (allí falló una vez por la máquina), y dos auditorías a la
+vez solo se pisan si comparten puertos: aquí van siempre separadas diez.
+
+**Para el rumano:** seis filas de su bloque 5 (`ruta-masca-playa`, `golf-buenavista`, `montana-pelada` y
+`montana-guaza`, descripción y categoría) y tres de su bloque 1 (las tres notas de línea) cambian de castellano; se le
+devuelven con el castellano de antes y el de ahora. El Faro de Rasca es de un bloque suyo que aún no ha llegado.
+
+## Lo visto de paso por la sesión del rumano (15 de noviembre): la auditoría entera
+
+**La auditoría entera** sobre `3e71537` (árbol `d0d0d3e8`), los doce commits de arriba encima de `main` (`640450c`); en
+`main` son los mismos, rebasados sobre siete commits de los robots (`9b46637` y `97f3b6e`, terremotos; `68de3c8` y
+`da745d5`, alertas del Gobierno de Canarias; `dc37a48` y `e9d8693`, avisos de AEMET, y `7b5a7cb`, precios de las
+gasolineras), que solo cambian `datos/sismos-ign.json`, `datos/alertas-canarias.json`, `datos/avisos-aemet.json` y
+`datos/precios-gasolineras.json`, y con los controles que leen esos ficheros, en verde tras el rebase. En sus 70
+bloques, ningún rojo, y los dos controles nuevos en verde: `auditar_datos.js`, las 48 frecuencias de línea con su fila y
+cada fila con los nueve idiomas que no son el castellano; `auditar_registro.js`, todo de usted (137.900 textos, ahora
+con los de `datos/titsa.js` y las 48 frecuencias en polaco). Lo demás, como siempre: `probar_cuerpo.js`, 725;
+`auditar_entrenador.js`, 42; `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los diez idiomas;
+`castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.324 nombres propios en cirílico y
+ninguna variante sospechosa; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los
+tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D,
+58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas y 3.726
+filas; 5.873). `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
