@@ -180,7 +180,9 @@ const MARCAS = {
        new RegExp('(?:[,:;—–]\\s*|\\sund\\s+)(?:geh|wähl|probier|schau|frag|such|atme|bleib|lass|nimm|gib|sieh|hör|tu|komm|denk|ruh|tipp|öffne|wähle|tippe)(?![' + L_ + '])', 'u'),
        /* «Bitte fülle…», «bitte gib…»: tras «bitte», el imperativo de du (el de Sie es «Bitte füllen Sie») */
        new RegExp('(?<![' + L_ + '])[Bb]itte\\s+(?:fülle|füll|gib|wähle|wähl|tippe|tipp|gehe|geh|versuche|versuch|prüfe|prüf|öffne|schau|sieh|nimm|lies|komm|warte|melde|gib)(?![' + L_ + '])', 'u')],
-  it: [palI('tu', 'ti', 'te', 'tuo', 'tua', 'tuoi', 'tue'),
+  /* «perdi» (15 de noviembre de 2026): «Se la perdi non ce n'è un'altra», en las notas
+     de las lineas de guagua (datos/titsa.js), que este control no leia */
+  it: [palI('tu', 'ti', 'te', 'tuo', 'tua', 'tuoi', 'tue', 'perdi'),
        inicio('Tocca', 'Scegli', 'Scrivi', 'Usa', 'Apri', 'Guarda', 'Prova', 'Cerca', 'Scopri', 'Goditi', 'Attiva', 'Crea', 'Salva', 'Aggiungi', 'Consulta',
          'Togli', 'Alza', 'Disegna', 'Controlla', 'Cancella', 'Chiudi', 'Condividi', 'Scarica', 'Installa', 'Premi', 'Trascina', 'Muovi',
          'Seleziona', 'Segui', 'Accedi', 'Respira', 'Ascolta', 'Immagina', 'Sorridi', 'Prendi', 'Fai', 'Vai', 'Vieni', 'Metti', 'Bevi', 'Mangia', 'Lascia',
@@ -246,7 +248,10 @@ const MARCAS = {
        /* «те» de complemento («те чака», «те води»): «те» es tambien «ellos» («те се
           номерират»), asi que solo con los verbos que lo llevan en la app */
        palI('те (?:чака|води|събужда|предупреди|радва|пазят|приема|гледа|успокоява|прави|връща|приближава|учи|изненада|докосне|проветри|придружи|подреди|успокои|вика)')],
-  pl: [palI('ty', 'ci', 'cię', 'ciebie', 'tobie', 'tobą', 'twój', 'twoja', 'twoje', 'twoich', 'twoim', 'twoją', 'twojej', 'twojego', 'twoi', 'twoimi', 'twym', 'twych', 'twe', 'twoj'),
+  /* «jedziesz» y «przegapisz» (15 de noviembre de 2026): la segunda persona de las notas
+     de las lineas de guagua (datos/titsa.js), que este control no leia */
+  pl: [palI('ty', 'ci', 'cię', 'ciebie', 'tobie', 'tobą', 'twój', 'twoja', 'twoje', 'twoich', 'twoim', 'twoją', 'twojej', 'twojego', 'twoi', 'twoimi', 'twym', 'twych', 'twe', 'twoj',
+            'jedziesz', 'przegapisz'),
        inicio('Dotknij', 'Wybierz', 'Wpisz', 'Użyj', 'Otwórz', 'Zobacz', 'Szukaj', 'Spróbuj', 'Odkryj', 'Włącz', 'Zaakceptuj', 'Utwórz', 'Zapisz', 'Dodaj', 'Usuń',
          'Zmień', 'Wróć', 'Skieruj', 'Podnieś', 'Narysuj', 'Sprawdź', 'Zamknij', 'Udostępnij', 'Pobierz', 'Zainstaluj', 'Naciśnij', 'Przeciągnij', 'Przesuń', 'Zaloguj',
          'Przejrzyj', 'Zareklamuj', 'Korzystaj', 'Kliknij', 'Oddychaj', 'Słuchaj', 'Wyobraź', 'Uśmiechnij', 'Weź', 'Zrób', 'Idź', 'Chodź', 'Powiedz', 'Połóż', 'Pij', 'Jedz',
@@ -595,6 +600,15 @@ async function textos() {
     const a = 'datos/cuerpo/asistente-' + l + '.json', d = 'datos/cuerpo/deportes-' + l + '.json';
     for (const r of json(a).respuestas) recorreCuerpo(r, r.id, l, a);
     for (const x of json(d).deportes) recorreCuerpo(Object.assign({}, x, { qs: (x.qs || []).map(q => q[1]) }), x.id, l, d);
+  }
+  /* las notas de las lineas de guagua (datos/titsa.js, 15 de noviembre de 2026): las
+     ve quien abre una tarjeta de linea y este control no las leia. Lo vio la sesion
+     del rumano (nota 41): «Si solo vas…», «Si la pierdes no hay otra», y lo mismo en
+     italiano, neerlandes y polaco. Mismas parejas «idioma: 'texto'» que index.html */
+  const titsa = lee('datos/titsa.js');
+  const lineaT = i => titsa.slice(0, i).split('\n').length;
+  for (const m of titsa.matchAll(/(?:^|[{,\s])["']?(es|en|fr|de|it|nl|zh|zht|bg|pl)["']?\s*:\s*(["'])((?:\\.|(?!\2)[^\\\n])*)\2/g)) {
+    mete('datos/titsa.js', 'linea ' + lineaT(m.index), m[1], cadena(m[2], m[3]));
   }
   /* las 88 curiosidades de las constelaciones, un fichero por idioma desde el 22 */
   for (const l of IDI) {
