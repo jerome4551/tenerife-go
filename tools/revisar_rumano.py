@@ -234,8 +234,9 @@ def revisar(es, ro, ctx, R, exentos=(), plural_ok=False):
 
 # Tablas cuyos textos pasan por un formateador que elige la forma de plural por
 # el numero aunque el castellano no la necesite: chatFmt() (index.html) lo hace
-# con {n} y, si no lo hay, con {N}.
-PLURAL_POR_NUMERO = {'CHAT_STR'}
+# con {n} y, si no lo hay, con {N}. Y T() de modulos/guia.js pasa siempre a tx()
+# {n} = el numero de lugares del mapa (bloque 4: «{n} de locuri pe hartă»).
+PLURAL_POR_NUMERO = {'CHAT_STR', 'GUIA_UI'}
 FRASES_EXENTAS = (
     'Subdirección de Protección Civil y Emergencias',   # organismo oficial, por su nombre
     'Roque de los Muchachos',   # el observatorio de La Palma, por su nombre (bloque del cielo)
@@ -259,7 +260,8 @@ def main():
     if a and a[0] == '--pares':
         pares = json.load(open(a[1], encoding='utf-8'))
         for p in pares:
-            revisar(p['es'], p['ro'], str(p.get('id')), R, EXENTOS | set(p.get('exentos', [])))
+            revisar(p['es'], p['ro'], str(p.get('id')), R, EXENTOS | set(p.get('exentos', [])),
+                    plural_ok=(p.get('tabla') in PLURAL_POR_NUMERO))   # la tabla, si el par la trae (bloque 4)
         n = len(pares)
     else:
         d = json.load(open(a[0], encoding='utf-8'))

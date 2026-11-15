@@ -333,6 +333,10 @@ ok(claves.length === 467, 'PERFIL_UI: 467 filas', claves.length);
 ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 312 && !claves.includes('perfilAv_en_cabina'), '47 filas de sets y 312 de avatares: 235, 49 de oro y 28 retirados (y 100 de la pantalla, con las dos pestañas y las cuatro de la tarjeta «Su cuerpo»); ninguna de la cabina');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+/* los idiomas que se preparan por bloques (el rumano, 14-11-2026): sus filas ya estan en PERFIL_UI, pero no
+   entran en SUPPORTED_LANGS hasta el interruptor. Se miran como las demas, sin pedirlas; con el interruptor,
+   «ro» pasa a IDI y esta lista se queda vacia sola */
+const PREPARA = ['ro'].filter(l => !IDI.includes(l));
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));
 /* Parejas simplificado/tradicional que de verdad difieren (las de validar_i18n.py del encargo) */
 const PAREJAS = '们們这這个個为為说說时時国國会會对對来來发發东東车車长長门門问問间間关關开開头頭实實现現点點让讓过過还還进進没沒种種样樣' +
@@ -357,17 +361,17 @@ for (const k of claves) {
   const v = PUI[k];
   if (!/^[A-Za-z0-9_]+$/.test(k)) malFilas.push(k + ': clave rara');
   if (!v || typeof v !== 'object') { malFilas.push(k + ': no es una fila'); continue; }
-  const falta = IDI.filter(l => !String(v[l] || '').trim()), sobra = Object.keys(v).filter(l => !IDI.includes(l));
+  const falta = IDI.filter(l => !String(v[l] || '').trim()), sobra = Object.keys(v).filter(l => !IDI.includes(l) && !PREPARA.includes(l));
   if (falta.length) malFilas.push(k + ': faltan ' + falta.join(','));
   if (sobra.length) malFilas.push(k + ': idiomas de mas ' + sobra.join(','));
   const es = v.es || '', mEs = marcadores(es);
-  for (const l of IDI) {
+  for (const l of IDI.concat(PREPARA.filter(x => v[x] !== undefined))) {
     const t = String(v[l] || '');
     if (t.includes('"')) malFilas.push(k + '.' + l + ': comilla doble ASCII');
     if (/[\u00ad\u200b-\u200f\u2028\u2029\u2060\ufeff]/.test(t)) malFilas.push(k + '.' + l + ': guion blando u otro invisible');
     if (marcadores(t) !== mEs) malFilas.push(k + '.' + l + ': marcadores ' + marcadores(t) + ' y en es ' + mEs);
     if (es.includes('|') || t.includes('|')) {
-      const formas = t.split('|'), pide = l === 'pl' ? 3 : (l === 'zh' || l === 'zht' ? 1 : 2);
+      const formas = t.split('|'), pide = (l === 'pl' || l === 'ro') ? 3 : (l === 'zh' || l === 'zht' ? 1 : 2);
       if (formas.length !== pide) malFilas.push(k + '.' + l + ': ' + formas.length + ' formas de plural, pide ' + pide);
       if (es.includes('{n}') && formas.some(f => !f.includes('{n}'))) malFilas.push(k + '.' + l + ': una forma sin {n}');
     }

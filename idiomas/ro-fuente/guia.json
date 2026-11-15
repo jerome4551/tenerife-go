@@ -1,0 +1,938 @@
+{
+ "_": "Rumano (ro) de las filas de GUIA_UI de modulos/guia.js (Jérôme y sus tres visitas: la app, el cielo y «Su cuerpo»). Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. No se edita a mano: sale de la entrega del bloque 4 del rumano.",
+ "idioma": "ro",
+ "fichero": "modulos/guia.js",
+ "filas": [
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourNovT",
+   "es": "¡Hay novedades!",
+   "forma": "texto",
+   "ro": "Avem noutăți!"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourAhoraNo",
+   "es": "Ahora no",
+   "forma": "texto",
+   "ro": "Nu acum"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourSaltar",
+   "es": "Saltar",
+   "forma": "texto",
+   "ro": "Omiteți"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourSiguiente",
+   "es": "Siguiente",
+   "forma": "texto",
+   "ro": "Înainte"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourAtras",
+   "es": "Atrás",
+   "forma": "texto",
+   "ro": "Înapoi"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourAExplorar",
+   "es": "¡A explorar!",
+   "forma": "texto",
+   "ro": "Să explorăm!"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourNuevo",
+   "es": "Nuevo",
+   "forma": "texto",
+   "ro": "Nou"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourBuscarT",
+   "es": "Busque cualquier lugar",
+   "forma": "texto",
+   "ro": "Căutați orice loc"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourBuscarP",
+   "es": "{n} lugares en el mapa: playas, senderos, guachinches, miradores, gasolineras… Escriba el nombre, con tildes o sin ellas.",
+   "forma": "texto",
+   "ro": "{n} loc pe hartă: plaje, trasee, guachinches, puncte de belvedere, benzinării… Scrieți numele, cu sau fără diacritice.|{n} locuri pe hartă: plaje, trasee, guachinches, puncte de belvedere, benzinării… Scrieți numele, cu sau fără diacritice.|{n} de locuri pe hartă: plaje, trasee, guachinches, puncte de belvedere, benzinării… Scrieți numele, cu sau fără diacritice."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourCatT",
+   "es": "Filtre por categorías",
+   "forma": "texto",
+   "ro": "Filtrați după categorii"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourCatP",
+   "es": "Encienda solo lo que le apetece hoy: naturaleza y playas, cultura, deporte, miradores, mercadillos… Y también lugares con mascotas o accesibles.",
+   "forma": "texto",
+   "ro": "Activați doar ce vă tentează azi: natură și plaje, cultură, sport, puncte de belvedere, piețe locale… Și, de asemenea, locuri unde puteți merge cu animale de companie sau locuri accesibile."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourDadoT",
+   "es": "¿Sin plan? Tire el dado",
+   "forma": "texto",
+   "ro": "Fără plan? Aruncați zarul"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourDadoP",
+   "es": "Le lleva a un lugar al azar. Con filtros puestos, la sorpresa es a su gusto.",
+   "forma": "texto",
+   "ro": "Vă duce într-un loc ales la întâmplare. Cu filtrele activate, surpriza e pe gustul dumneavoastră."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourGasT",
+   "es": "La gasolinera más barata, a un toque",
+   "forma": "texto",
+   "ro": "Cea mai ieftină benzinărie, la o atingere distanță"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourGasP",
+   "es": "Toque ⛽ y, con su ubicación, verá las más baratas a 5, 10 o 20 km: gasolina 95 y diésel, con el precio oficial del Ministerio. Cada gasolinera del mapa enseña también su precio.",
+   "forma": "texto",
+   "ro": "Atingeți ⛽ și, pe baza locației dumneavoastră, veți vedea cele mai ieftine benzinării pe o rază de 5, 10 sau 20 km: benzină 95 și motorină, la prețul oficial al Ministerului spaniol. Fiecare benzinărie de pe hartă își arată și prețul."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourMapaT",
+   "es": "Elija su mapa",
+   "forma": "texto",
+   "ro": "Alegeți harta"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourMapaP",
+   "es": "Calles, satélite o relieve: toque para cambiar. El relieve es ideal para el senderismo.",
+   "forma": "texto",
+   "ro": "Străzi, satelit sau relief: atingeți pentru a schimba. Relieful este ideal pentru drumeții."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourMicroT",
+   "es": "Microclimas",
+   "forma": "texto",
+   "ro": "Microclimate"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourMicroP",
+   "es": "Puede llover en un pueblo y hacer sol en el de al lado. Aquí ve el tiempo en directo, zona por zona.",
+   "forma": "texto",
+   "ro": "Poate să plouă într-un sat și să fie soare în satul vecin. Aici vedeți vremea în direct, zonă cu zonă."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourMarT",
+   "es": "El mar hoy",
+   "forma": "texto",
+   "ro": "Marea azi"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourMarP",
+   "es": "El estado del mar en las {C} costas de la isla y dónde bañarse hoy. Si el botón lleva un punto amarillo, naranja o rojo, AEMET tiene avisos: al abrirlo, son lo primero.",
+   "forma": "texto",
+   "ro": "Starea mării pe cele {C} coaste ale insulei și unde puteți face baie azi. Dacă butonul are un punct galben, portocaliu sau roșu, AEMET a emis avertizări: când îl deschideți, ele apar primele."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourFiestasT",
+   "es": "Fiestas y tradiciones",
+   "forma": "texto",
+   "ro": "Sărbători și tradiții"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourFiestasP",
+   "es": "Romerías, carnavales y fiestas patronales, con sus fechas.",
+   "forma": "texto",
+   "ro": "Pelerinaje, carnavaluri și sărbători patronale, cu datele lor."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourCieloT",
+   "es": "El cielo de Tenerife",
+   "forma": "texto",
+   "ro": "Cerul din Tenerife"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourCieloP",
+   "es": "Qué se ve esta noche (Luna, planetas, Vía Láctea), las lluvias de estrellas y los eclipses que vienen, un catálogo según se vea a simple vista, con prismáticos o con telescopio, y la carta del cielo, con luz roja para la noche.",
+   "forma": "texto",
+   "ro": "Ce se vede în noaptea asta (Luna, planetele, Calea Lactee), ploile de meteori și eclipsele care urmează, un catalog împărțit după cum se vede fiecare obiect – cu ochiul liber, cu binoclul sau cu telescopul – și harta cerului, cu lumină roșie pentru noapte."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourGuaguasT",
+   "es": "Guaguas",
+   "forma": "texto",
+   "ro": "Autobuze"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourGuaguasP",
+   "es": "Las paradas cercanas y las líneas de TITSA, para moverse sin coche.",
+   "forma": "texto",
+   "ro": "Stațiile din apropiere și liniile TITSA, ca să vă deplasați fără mașină."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourIdiomaT",
+   "es": "En su idioma",
+   "forma": "texto",
+   "ro": "În limba dumneavoastră"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourIdiomaP",
+   "es": "Toda la app en {L} idiomas. Cámbielo aquí cuando quiera.",
+   "forma": "texto",
+   "ro": "Toată aplicația, în {L} limbi. Puteți schimba limba de aici oricând."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourRutasT",
+   "es": "El botón Rutas",
+   "forma": "texto",
+   "ro": "Butonul „Trasee”"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourRutasP",
+   "es": "Aquí tiene tres herramientas para organizar el viaje: «Organice su día», «Ruta del día» y «A→B». Se las enseño una a una.",
+   "forma": "texto",
+   "ro": "Aici aveți trei instrumente pentru a vă organiza călătoria: „Organizați-vă ziua”, „Traseul zilei” și „A→B”. Vi le arăt pe rând."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourOrganizaT",
+   "es": "Organice su día",
+   "forma": "texto",
+   "ro": "Organizați-vă ziua"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourOrganizaP",
+   "es": "Díganos cuánto tiempo tiene, qué le apetece, si prefiere el norte o el sur y cómo se mueve. Le propone un itinerario ordenado por cercanía, con pausa para comer si es medio día o día completo. Cambie paradas, guárdelo, compártalo o descárguelo en GPX.",
+   "forma": "texto",
+   "ro": "Spuneți-ne cât timp aveți, ce vă tentează, dacă preferați nordul sau sudul și cum vă deplasați. Vă propunem un itinerar ordonat după proximitate, cu pauză de masă dacă e vorba de o jumătate de zi sau de o zi întreagă. Schimbați opririle, salvați-l, distribuiți-l sau descărcați-l în format GPX."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourRutaDiaT",
+   "es": "Ruta del día",
+   "forma": "texto",
+   "ro": "Traseul zilei"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourRutaDiaP",
+   "es": "Elija Norte, Sur o Cumbre y añada con + los lugares que quiera visitar: se numeran en «Mi ruta». Cada parada la centra en el mapa o ve su información. Con 🗓️+ también añade aquí el itinerario de «Organice su día».",
+   "forma": "texto",
+   "ro": "Alegeți Nord, Sud sau Zona înaltă și adăugați cu + locurile pe care doriți să le vizitați: se numerotează în „Traseul meu”. Fiecare oprire o puteți centra pe hartă sau îi puteți vedea informațiile. Cu 🗓️+ adăugați aici și itinerarul din „Organizați-vă ziua”."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourABT",
+   "es": "De A a B",
+   "forma": "texto",
+   "ro": "De la A la B"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourABP",
+   "es": "Elija origen y destino: toque un marcador, escriba una dirección o use su GPS. Verá la ruta en coche, con minutos y kilómetros, y en guagua: la línea de TITSA, el transbordo si hace falta y lo que hay que caminar. Si a esa hora no pasa ninguna, le dice su horario.",
+   "forma": "texto",
+   "ro": "Alegeți punctul de plecare și destinația: atingeți un marcaj, scrieți o adresă sau folosiți GPS-ul. Veți vedea traseul cu mașina, cu minute și kilometri, și cu autobuzul: linia TITSA, schimbarea, dacă e nevoie, și cât trebuie să mergeți pe jos. Dacă la ora aceea nu circulă niciun autobuz, vă arată orarul."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourLogrosT",
+   "es": "Logros",
+   "forma": "texto",
+   "ro": "Realizări"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourLogrosP",
+   "es": "Marque los lugares que visita y desbloquee trofeos mientras explora la isla.",
+   "forma": "texto",
+   "ro": "Marcați locurile pe care le vizitați și deblocați trofee în timp ce explorați insula."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourMarcadoresT",
+   "es": "Toque los marcadores",
+   "forma": "texto",
+   "ro": "Atingeți marcajele"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaHolaT",
+   "es": "¡Hola! Soy Jérôme",
+   "forma": "texto",
+   "ro": "Bună ziua! Sunt Jérôme"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaHolaP",
+   "es": "Vivo en Tenerife y he hecho esta guía de la isla. ¿Le enseño la app? Son {S} pasos y puede saltarlo cuando quiera.",
+   "forma": "texto",
+   "ro": "Locuiesc în Tenerife și am făcut acest ghid al insulei. Vă arăt aplicația? Turul are {S} de pași și îl puteți întrerupe oricând."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaNovP",
+   "es": "Ahora la visita se la hago yo: soy Jérôme, vivo en Tenerife y le enseño la app entera, con el cielo, las emergencias y todo lo nuevo. Son {S} pasos.",
+   "forma": "texto",
+   "ro": "De acum, eu sunt ghidul dumneavoastră: mă numesc Jérôme, locuiesc în Tenerife și vă arăt toată aplicația, cu cerul, urgențele și toate noutățile. Turul are {S} de pași."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaVozOn",
+   "es": "Escuchar a Jérôme",
+   "forma": "texto",
+   "ro": "Ascultați-l pe Jérôme"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaVozOff",
+   "es": "Parar la voz",
+   "forma": "texto",
+   "ro": "Opriți vocea"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaMenuT",
+   "es": "¿Qué le enseño?",
+   "forma": "texto",
+   "ro": "Ce vă arăt?"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaMenuP",
+   "es": "Elija una visita. Puede salir de ella cuando quiera.",
+   "forma": "texto",
+   "ro": "Alegeți un tur. Puteți ieși din el oricând."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaMenuCerrar",
+   "es": "Cerrar",
+   "forma": "texto",
+   "ro": "Închideți"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaMenuApp",
+   "es": "La app, de arriba abajo",
+   "forma": "texto",
+   "ro": "Aplicația, de la A la Z"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaPasos",
+   "es": "{n} paso|{n} pasos",
+   "forma": "texto",
+   "ro": "{n} pas|{n} pași|{n} de pași"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCieloPista",
+   "es": "¿Le enseño este panel?",
+   "forma": "texto",
+   "ro": "Vă arăt acest panou?"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCapMapa",
+   "es": "El mapa",
+   "forma": "texto",
+   "ro": "Harta"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCapHoy",
+   "es": "Hoy en la isla",
+   "forma": "texto",
+   "ro": "Azi pe insulă"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCapMover",
+   "es": "Moverse",
+   "forma": "texto",
+   "ro": "Cum vă deplasați"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCapViaje",
+   "es": "Su viaje",
+   "forma": "texto",
+   "ro": "Călătoria dumneavoastră"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCapAcaso",
+   "es": "Por si acaso",
+   "forma": "texto",
+   "ro": "Pentru orice eventualitate"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourIsla3dT",
+   "es": "La isla en 3D",
+   "forma": "texto",
+   "ro": "Insula în 3D"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourIsla3dP",
+   "es": "El relieve de verdad de la isla, con el mapa encima; si quiere, con la luz del sol de este momento. Un dedo la mueve; dos la acercan, la giran y la inclinan. Funciona sin conexión.",
+   "forma": "texto",
+   "ro": "Relieful real al insulei, cu harta deasupra; dacă doriți, cu lumina soarelui din acest moment. Cu un deget o mutați; cu două o apropiați, o rotiți și o înclinați. Funcționează fără conexiune."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourPinesP",
+   "es": "Cada marcador le dice qué es el lugar, su horario si lo tiene y cómo llegar en coche o en guagua; en la costa, también el estado del mar. Los círculos con un número son grupos de lugares: tóquelos y se abren.",
+   "forma": "texto",
+   "ro": "Fiecare marcaj vă spune ce este locul, programul lui, dacă are, și cum ajungeți acolo cu mașina sau cu autobuzul; pe coastă, și starea mării. Cercurile cu un număr sunt grupuri de locuri: atingeți-le și se deschid."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourLeyendaT",
+   "es": "La leyenda",
+   "forma": "texto",
+   "ro": "Legenda"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourLeyendaP",
+   "es": "Qué significa cada símbolo del mapa. Y dentro me tiene siempre: con «{ver}» vuelvo a enseñarle la app, el cielo o «Su cuerpo».",
+   "forma": "texto",
+   "ro": "Ce înseamnă fiecare simbol de pe hartă. Și acolo mă găsiți mereu: cu „{ver}” vă arăt din nou aplicația, cerul sau „Corpul dumneavoastră”."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourFavT",
+   "es": "Sus favoritos",
+   "forma": "texto",
+   "ro": "Favoritele dumneavoastră"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourFavP",
+   "es": "Guarde con ☆ los lugares que le gusten y aquí los verá juntos. Sin cuenta se quedan en este dispositivo; con cuenta, se sincronizan.",
+   "forma": "texto",
+   "ro": "Salvați cu ☆ locurile care vă plac și le veți vedea aici, împreună. Fără cont, rămân pe acest dispozitiv; cu cont, se sincronizează."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourAsistenteT",
+   "es": "El asistente",
+   "forma": "texto",
+   "ro": "Asistentul"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourAsistenteP",
+   "es": "Pregúntele por la isla o por la app: playas, guaguas, el Teide, dónde comer… Contesta al instante y en su idioma.",
+   "forma": "texto",
+   "ro": "Întrebați-l despre insulă sau despre aplicație: plaje, autobuze, Teide, unde să mâncați… Răspunde imediat și în limba dumneavoastră."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourCuentaT",
+   "es": "Su perfil",
+   "forma": "texto",
+   "ro": "Profilul dumneavoastră"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourCuentaP",
+   "es": "Elija su avatar, lleve la cuenta de los lugares que visita y, si quiere, anote su entrenamiento. La cuenta es opcional: sin ella, todo se queda en su dispositivo.",
+   "forma": "texto",
+   "ro": "Alegeți-vă avatarul, țineți evidența locurilor pe care le vizitați și, dacă doriți, notați-vă antrenamentele. Contul este opțional: fără el, totul rămâne pe dispozitivul dumneavoastră."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourSosT",
+   "es": "Emergencias",
+   "forma": "texto",
+   "ro": "Urgențe"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourSosP",
+   "es": "Qué hacer y a quién llamar ante una emergencia en Tenerife, con fuentes oficiales. El panel se abre también sin conexión y el 112 está siempre a un toque.",
+   "forma": "texto",
+   "ro": "Ce să faceți și pe cine să sunați în caz de urgență în Tenerife, din surse oficiale. Panoul se deschide și fără conexiune, iar 112 este mereu la o atingere distanță."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourOfflineT",
+   "es": "También sin cobertura",
+   "forma": "texto",
+   "ro": "Și fără semnal"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourOfflineP",
+   "es": "La app funciona sin conexión una vez abierta. Aquí puede descargar además el mapa detallado de la isla: se baja una sola vez y se queda en el móvil. Mejor con wifi.",
+   "forma": "texto",
+   "ro": "Odată deschisă, aplicația funcționează fără conexiune. Aici puteți descărca și harta detaliată a insulei: se descarcă o singură dată și rămâne pe telefon. Mai bine prin Wi-Fi."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourFinT",
+   "es": "¡La isla es suya!",
+   "forma": "texto",
+   "ro": "Insula este a dumneavoastră!"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourFinP",
+   "es": "Toque cualquier marcador para empezar. Este tour está siempre en la leyenda del mapa, y el cielo y «Su cuerpo» tienen el suyo dentro. ¡Que la disfrute!",
+   "forma": "texto",
+   "ro": "Atingeți orice marcaj pentru a începe. Acest tur se află mereu în legenda hărții, iar cerul și „Corpul dumneavoastră” își au fiecare propriul tur. Bucurați-vă de insulă!"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiPestanasT",
+   "es": "El panel, pestaña a pestaña",
+   "forma": "texto",
+   "ro": "Panoul, filă cu filă"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiPestanasP",
+   "es": "Soy Jérôme y le enseño el panel del cielo en {S} pasos. Las horas y las posiciones se calculan en su móvil, para el Observatorio del Teide y en hora de Canarias: por eso funciona también sin cobertura.",
+   "forma": "texto",
+   "ro": "Sunt Jérôme și vă arăt panoul cerului în {S} pași. Orele și pozițiile se calculează pe telefonul dumneavoastră, pentru Observatorul Teide și în ora Insulelor Canare: de aceea funcționează și fără semnal."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiNocheT",
+   "es": "Esta noche… o la que quiera",
+   "forma": "texto",
+   "ro": "Noaptea asta… sau oricare alta"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiNocheP",
+   "es": "Con las flechas pasa de una noche a otra y con 📅 elige cualquier fecha: esta pestaña y la carta del cielo pasan a esa noche.",
+   "forma": "texto",
+   "ro": "Cu săgețile treceți de la o noapte la alta, iar cu 📅 alegeți orice dată: această filă și harta cerului trec la noaptea respectivă."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiIndiceP",
+   "es": "De 0 a 10, cuánto vale la noche para mirar estrellas: cuenta las horas de noche cerrada, la Luna y las nubes previstas. La fórmula está escrita debajo.",
+   "forma": "texto",
+   "ro": "De la 0 la 10, cât de bună este noaptea pentru a privi stelele: ține cont de orele de noapte deplină, de Lună și de norii prognozați. Formula este scrisă dedesubt."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiGuiadaP",
+   "es": "Las paradas de esta noche, de la más fácil de ver a la más difícil. Con «{llevame}», una flecha le indica hacia dónde mover el móvil hasta encontrar cada una.",
+   "forma": "texto",
+   "ro": "Opririle din noaptea asta, de la cea mai ușor de văzut la cea mai greu de văzut. Cu „{llevame}”, o săgeată vă arată încotro să mișcați telefonul până găsiți fiecare oprire."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiPlanetasP",
+   "es": "Cada planeta, con sus horas y hacia dónde mirar. La etiqueta dice si se ve a simple vista, con prismáticos o con telescopio. Toque uno y lo verá en la carta del cielo.",
+   "forma": "texto",
+   "ro": "Fiecare planetă, cu orele ei și direcția în care să priviți. Eticheta arată dacă se vede cu ochiul liber, cu binoclul sau cu telescopul. Atingeți una și o veți vedea pe harta cerului."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiCalendarioT",
+   "es": "El calendario del cielo",
+   "forma": "texto",
+   "ro": "Calendarul cerului"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiCalendarioP",
+   "es": "Lluvias de estrellas, eclipses, planetas, fases de la Luna y pasos de satélites. Cada evento se puede añadir a su calendario, o pedir que la app se lo recuerde.",
+   "forma": "texto",
+   "ro": "Ploi de meteori, eclipse, planete, fazele Lunii și treceri de sateliți. Fiecare eveniment se poate adăuga în calendarul dumneavoastră sau puteți cere aplicației să vi-l amintească."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiCatalogoT",
+   "es": "El catálogo",
+   "forma": "texto",
+   "ro": "Catalogul"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiCatalogoP",
+   "es": "Estrellas, constelaciones, cúmulos, nebulosas, galaxias… Busque por nombre o filtre por lo que tenga a mano: sus ojos, unos prismáticos o un telescopio.",
+   "forma": "texto",
+   "ro": "Stele, constelații, roiuri, nebuloase, galaxii… Căutați după nume sau filtrați după ce aveți la îndemână: ochii, un binoclu sau un telescop."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiCartaT",
+   "es": "La carta del cielo",
+   "forma": "texto",
+   "ro": "Harta cerului"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiCartaP",
+   "es": "El cielo tal como se ve desde Tenerife. Arrástrela, pellizque para acercar, corra la noche con ▶ y toque cualquier astro para abrir su ficha.",
+   "forma": "texto",
+   "ro": "Cerul exact așa cum se vede din Tenerife. Glisați harta, depărtați două degete pentru a mări, derulați noaptea cu ▶ și atingeți orice astru pentru a-i deschide fișa."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiApunteP",
+   "es": "Levante el móvil hacia una estrella y le dice cuál es. Si quiere, con la imagen de la cámara detrás. Nada de la cámara ni de los sensores sale del móvil.",
+   "forma": "texto",
+   "ro": "Ridicați telefonul spre o stea și vă spune care este. Dacă doriți, cu imaginea camerei în spate. Nimic din ce captează camera sau senzorii nu iese de pe telefon."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiRojaP",
+   "es": "Tiñe la pantalla de rojo: no deslumbra y la vista sigue adaptada a la oscuridad. Se la enciendo un momento para que la vea.",
+   "forma": "texto",
+   "ro": "Colorează ecranul în roșu: nu vă orbește, iar ochii rămân adaptați la întuneric. V-o aprind o clipă ca s-o vedeți."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiSubirP",
+   "es": "Arriba puede no haber cobertura. Esta tarjeta le dice si el panel ya está guardado en su móvil para usarlo allí sin conexión.",
+   "forma": "texto",
+   "ro": "Sus s-ar putea să nu aveți semnal. Acest card vă arată dacă panoul este deja salvat pe telefon, ca să-l puteți folosi acolo fără conexiune."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiDondeP",
+   "es": "Miradores y otros sitios para ver las estrellas, lo que conviene llevar y las normas del Parque Nacional para la noche.",
+   "forma": "texto",
+   "ro": "Puncte de belvedere și alte locuri de unde puteți privi stelele, ce e bine să luați cu dumneavoastră și regulile Parcului Național pentru noapte."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiFinT",
+   "es": "¡Buenas noches de estrellas!",
+   "forma": "texto",
+   "ro": "Nopți înstelate!"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiFinP",
+   "es": "Abríguese: en las cumbres refresca mucho de noche. Este tour está siempre aquí arriba, en el botón con mi cara.",
+   "forma": "texto",
+   "ro": "Îmbrăcați-vă gros: la altitudine se răcește mult noaptea. Acest tur se află mereu aici sus, la butonul cu fața mea."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuTitulo",
+   "es": "Su cuerpo",
+   "forma": "texto",
+   "ro": "Corpul dumneavoastră"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuPista",
+   "es": "¿Le enseño esta pantalla?",
+   "forma": "texto",
+   "ro": "Vă arăt acest ecran?"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuPersonajeT",
+   "es": "Su personaje",
+   "forma": "texto",
+   "ro": "Personajul dumneavoastră"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuPersonajeP",
+   "es": "Soy Jérôme y le enseño «Su cuerpo» en {S} pasos. Este es su personaje: toque uno de sus músculos y podrá anotar una serie. «{girar}» lo enseña de espaldas.",
+   "forma": "texto",
+   "ro": "Sunt Jérôme și vă arăt „Corpul dumneavoastră” în {S} pași. Acesta este personajul dumneavoastră: atingeți unul dintre mușchii lui și veți putea nota o serie. „{girar}” îl arată din spate."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuLeyendaP",
+   "es": "Cada músculo se enciende según las series que lleve anotadas en los últimos 7 días: primero en rosa, luego en naranja y, con más, en amarillo.",
+   "forma": "texto",
+   "ro": "Fiecare mușchi se aprinde în funcție de seriile notate în ultimele 7 zile: întâi în roz, apoi în portocaliu și, cu mai multe, în galben."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuDeporteP",
+   "es": "Elija el deporte que practica: su personaje marca los grupos que más le sirven, y debajo verá qué dicen los estudios y cómo encajarlo en su semana.",
+   "forma": "texto",
+   "ro": "Alegeți sportul pe care îl practicați: personajul marchează grupele musculare care vă ajută cel mai mult, iar dedesubt veți vedea ce spun studiile și cum să-l încadrați în săptămâna dumneavoastră."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuSemanaP",
+   "es": "Tres metas: días con fuerza y minutos de movimiento, los que recomienda la OMS para su edad, y grupos trabajados. Debajo, su semana día a día: toque un día y verá lo que anotó.",
+   "forma": "texto",
+   "ro": "Trei obiective: zile cu exerciții de forță și minute de mișcare, cât recomandă OMS pentru vârsta dumneavoastră, și grupe musculare lucrate. Dedesubt, săptămâna dumneavoastră zi cu zi: atingeți o zi și veți vedea ce ați notat."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuMovP",
+   "es": "Caminar, correr, nadar, bici, kayak, surf, buceo… Cada deporte tiene sus datos: los minutos y la intensidad y, donde toca, la distancia y el desnivel. Todo suma a su semana.",
+   "forma": "texto",
+   "ro": "Mers pe jos, alergare, înot, bicicletă, caiac, surf, scufundări… Fiecare sport are datele lui: minutele și intensitatea și, unde e cazul, distanța și diferența de nivel. Totul contează pentru săptămâna dumneavoastră."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuHoyP",
+   "es": "El tiempo de la zona que elija, con su índice UV, y los avisos de AEMET que la afectan. Y un consejo para hoy: lo que le falta a su semana y, con sol fuerte, a qué horas buscar sombra.",
+   "forma": "texto",
+   "ro": "Vremea din zona pe care o alegeți, cu indicele UV, și avertizările AEMET care o privesc. Plus un sfat pentru azi: ce îi lipsește săptămânii dumneavoastră și, când soarele e puternic, la ce ore să căutați umbra."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuIslaP",
+   "es": "El GR 131, de La Esperanza a Arona. Cada kilómetro que anote a pie —y en bici, si así lo elige— le hace avanzar por este mapa, de parada en parada.",
+   "forma": "texto",
+   "ro": "Traseul GR 131, între La Esperanza și Arona. Fiecare kilometru pe care îl notați pe jos – și cu bicicleta, dacă alegeți asta – vă face să înaintați pe această hartă, din oprire în oprire."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuCompP",
+   "es": "Elija quién recorre el mapa con sus kilómetros: un senderista, un presa canario o un lagarto tizón. Y si cuenta la bici, podrá elegir la suya.",
+   "forma": "texto",
+   "ro": "Alegeți cine parcurge harta cu kilometrii dumneavoastră: un drumeț, un câine Presa Canario sau o șopârlă de Tenerife. Iar dacă includeți și bicicleta, o puteți alege pe a dumneavoastră."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuSendP",
+   "es": "Los senderos de la guía, por zonas. Marque cada uno cuando lo haga, y a por el 100 %. Los puntos del mapa de arriba marcan dónde empiezan.",
+   "forma": "texto",
+   "ro": "Traseele din ghid, pe zone. Bifați-l pe fiecare când îl parcurgeți și țintiți spre 100 %. Punctele de pe harta de deasupra arată unde încep."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuGruposP",
+   "es": "También puede anotar desde aquí. Cada grupo abre su hoja, con sus series de los últimos 7 días y sus ejercicios: cómo se hace cada uno y de qué fuentes sale.",
+   "forma": "texto",
+   "ro": "Puteți nota și de aici. Fiecare grupă își deschide fișa, cu seriile din ultimele 7 zile și cu exercițiile ei: cum se execută fiecare și din ce surse provine."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuSellosP",
+   "es": "Se consiguen una vez y se quedan, con su fecha: el primer paso, la semana de fuerza, el sol entero, las etapas del GR 131…",
+   "forma": "texto",
+   "ro": "Se obțin o singură dată și rămân, cu data lor: primul pas, săptămâna de forță, soarele întreg, etapele GR 131…"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuPostalP",
+   "es": "Su semana en una imagen: su personaje ante el Teide, con sus días de fuerza, sus minutos y sus kilómetros. Para guardarla o enviarla.",
+   "forma": "texto",
+   "ro": "Săptămâna dumneavoastră într-o imagine: personajul în fața muntelui Teide, cu zilele de forță, minutele și kilometrii. Ca s-o salvați sau s-o trimiteți."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuPrivadoT",
+   "es": "Se queda en su dispositivo",
+   "forma": "texto",
+   "ro": "Rămâne pe dispozitivul dumneavoastră"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuPrivadoP",
+   "es": "Las series, el movimiento y la comida que anota en «Su cuerpo» se guardan solo en este dispositivo: no se suben a ninguna parte. Y el botón de borrar lo quita todo.",
+   "forma": "texto",
+   "ro": "Seriile, mișcarea și mâncarea pe care le notați în „Corpul dumneavoastră” se salvează doar pe acest dispozitiv: nu se încarcă nicăieri. Iar butonul de ștergere elimină tot."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuArribaT",
+   "es": "Día, Noche y las cifras",
+   "forma": "texto",
+   "ro": "Zi, Noapte și cifrele"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuArribaP",
+   "es": "Arriba hay dos botones: uno cambia entre el tema Día y el tema Noche; el otro, la «i», explica de dónde sale cada cifra, con sus fuentes.",
+   "forma": "texto",
+   "ro": "Sus sunt două butoane: unul schimbă între tema Zi și tema Noapte; celălalt, „i”, explică de unde provine fiecare cifră, cu sursele ei."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuAspectoP",
+   "es": "Haga el personaje a su imagen: la silueta, la piel, el peinado, la ropa, las gafas… o pruebe «{azar}». Solo cambia el dibujo.",
+   "forma": "texto",
+   "ro": "Faceți personajul după chipul dumneavoastră: silueta, pielea, coafura, hainele, ochelarii… sau încercați „{azar}”. Se schimbă doar desenul."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuComidaP",
+   "es": "Un diario por raciones, como las cuenta la AESAN. No cuenta calorías ni le pone objetivos. Y empieza apagado: solo se anota si usted lo enciende.",
+   "forma": "texto",
+   "ro": "Un jurnal pe porții, așa cum le numără AESAN. Nu numără calorii și nu vă impune obiective. Și pornește dezactivat: se notează ceva doar dacă îl activați dumneavoastră."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuEvolucionP",
+   "es": "Aquí están sus datos del perfil (altura, peso y año de nacimiento) y su evolución. Lo que cambie aquí se guarda igual que en el perfil, y en su cuenta solo si lo tiene activado.",
+   "forma": "texto",
+   "ro": "Aici sunt datele din profilul dumneavoastră (înălțime, greutate și anul nașterii) și evoluția dumneavoastră. Ce modificați aici se salvează la fel ca în profil, iar în cont, doar dacă ați activat această opțiune."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuPreguntarP",
+   "es": "Sobre entrenar, comer, descansar y hacer deporte en Tenerife. Las respuestas están escritas de antemano, con sus fuentes, y se buscan en su móvil: lo que escribe no se envía a ningún sitio.",
+   "forma": "texto",
+   "ro": "Despre antrenament, alimentație, odihnă și sport în Tenerife. Răspunsurile sunt scrise dinainte, cu sursele lor, și se caută pe telefonul dumneavoastră: ce scrieți nu se trimite nicăieri."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuFinT",
+   "es": "¡A moverse!",
+   "forma": "texto",
+   "ro": "La mișcare!"
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuFinP",
+   "es": "Empiece por lo fácil: toque un músculo y anote lo que haga hoy. Este tour está siempre aquí, en el botón con mi cara, junto a su personaje.",
+   "forma": "texto",
+   "ro": "Începeți cu ce e mai ușor: atingeți un mușchi și notați ce faceți azi. Acest tur se află mereu aici, la butonul cu fața mea, lângă personajul dumneavoastră."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourDadoC",
+   "es": "Yo lo tiro cuando no sé qué hacer. O sea, casi siempre.",
+   "forma": "texto",
+   "ro": "Eu îl arunc când nu știu ce să fac. Adică aproape mereu."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourMicroC",
+   "es": "Por eso salgo de casa con bañador y chaqueta.",
+   "forma": "texto",
+   "ro": "De aceea ies din casă cu costum de baie și geacă."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourFiestasC",
+   "es": "Si viene en Carnaval, traiga disfraz. Dormir, ya dormirá en el avión.",
+   "forma": "texto",
+   "ro": "Dacă veniți de Carnaval, aduceți-vă un costum. Iar de dormit, o să dormiți în avion."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourCieloC",
+   "es": "Con este gorro parezco minero, pero es para ver estrellas.",
+   "forma": "texto",
+   "ro": "Cu căciula asta arăt ca un miner, dar e pentru privit stelele."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourGuaguasC",
+   "es": "Aquí al autobús se le dice «guagua». Dígalo y ya parecerá de la isla.",
+   "forma": "texto",
+   "ro": "Aici autobuzului i se spune „guagua”. Spuneți așa și veți părea de pe insulă."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourAsistenteC",
+   "es": "Sabe de la isla casi tanto como yo. Casi.",
+   "forma": "texto",
+   "ro": "Știe despre insulă aproape cât mine. Aproape."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "tourIdiomaC",
+   "es": "Yo, con las manos, me hago entender en todos.",
+   "forma": "texto",
+   "ro": "Eu, cu mâinile, mă fac înțeles în toate."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiPlanetasC",
+   "es": "Saturno presume de anillos. Yo, de gafas.",
+   "forma": "texto",
+   "ro": "Saturn se laudă cu inelele lui. Eu, cu ochelarii."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiCartaC",
+   "es": "Ojalá los lunes tuvieran este botón.",
+   "forma": "texto",
+   "ro": "Ce n-aș da ca zilele de luni să aibă un buton ca ăsta."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiApunteC",
+   "es": "Con la farola de mi calle no funciona. Ya lo he probado.",
+   "forma": "texto",
+   "ro": "Cu felinarul de pe strada mea nu merge. Am încercat deja."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCiFinC",
+   "es": "Se lo digo yo, que subí en camiseta.",
+   "forma": "texto",
+   "ro": "Vă spun din experiență: am urcat în tricou."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuLeyendaC",
+   "es": "Los míos siguen casi todos en rosa. Que quede entre nosotros.",
+   "forma": "texto",
+   "ro": "Mușchii mei sunt încă aproape toți roz. Să rămână între noi."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuMovC",
+   "es": "Correr detrás de la guagua también cuenta.",
+   "forma": "texto",
+   "ro": "Și alergatul după autobuz contează."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuCompC",
+   "es": "Yo voy con el lagarto. Es el único que me espera.",
+   "forma": "texto",
+   "ro": "Eu merg cu șopârla. E singura care mă așteaptă."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuPostalC",
+   "es": "Presumir un poco también es deporte.",
+   "forma": "texto",
+   "ro": "Și puțină lăudăroșenie e tot un sport."
+  },
+  {
+   "tabla": "GUIA_UI",
+   "clave": "guiaCuFinC",
+   "es": "Yo le espero aquí. Lo mío es señalar.",
+   "forma": "texto",
+   "ro": "Eu vă aștept aici. Specialitatea mea e să arăt cu degetul."
+  }
+ ]
+}
