@@ -19237,9 +19237,12 @@ function htmlGlobo(place) {
     parkingInfo = '<div class="popup-info">' + filas.join('') + '</div>';
   }
 
-  // Enlace farmacia de guardia (solo para farmacias)
+  // Enlace farmacia de guardia (solo para farmacias): el buscador del Colegio Oficial de
+  // Farmacéuticos de Tenerife, que abre con las farmacias abiertas ahora (las de guardia,
+  // de noche). Antes iba a farmaten.com, la tienda en línea de una farmacia, no al Colegio,
+  // y esa página daba 404 (15-11-2026).
   const pharmacyLink = place.emoji === '💊'
-    ? `<a href="https://www.farmaten.com/es/info/farmacias-abiertas-ahora-tenerife.html" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.pharmacyGuardLink}</a>`
+    ? `<a href="https://www.coftenerife.es/farmacias/" target="_blank" rel="noopener noreferrer" class="popup-flag-link">${L.pharmacyGuardLink}</a>`
     : '';
 
   const desc = localized(place.desc);
