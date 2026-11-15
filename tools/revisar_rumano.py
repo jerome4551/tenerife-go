@@ -62,7 +62,8 @@ IMPERATIVO_TU = re.compile(r'(?:^|[.!?¿¡:;—–(„«\n]\s*|[\U0001F000-\U000
 # tras una cifra, lo que no es un sustantivo contado (conjunciones, preposiciones, verbos)
 NO_SUSTANTIVO = {'de', 'și', 'sau', 'ori', 'din', 'dintre', 'la', 'în', 'pe', 'cu', 'fără', 'până', 'spre', 'către', 'după', 'prin',
                  'pentru', 'iar', 'dar', 'ca', 'decât', 'mai', 'a', 'al', 'ale', 'ai', 'este', 'sunt', 'e', 'era', 'au', 'are', 'avea',
-                 'sau', 'ori', 'și', 'nu', 'se', 'ca', 'cât', 'față', 'peste', 'sub', 'lângă', 'pe', 'înainte', 'înapoi', 'î.hr.', 'd.hr.'}
+                 'sau', 'ori', 'și', 'nu', 'se', 'ca', 'cât', 'față', 'peste', 'sub', 'lângă', 'pe', 'înainte', 'înapoi', 'î.hr.', 'd.hr.',
+                 'privind'}   # «Decretul 180/2025 privind…»: el numero de una norma, no una cantidad (bloque de emergencias)
 # las fechas se escriben sin «de»: «1 decembrie», «23 iunie» (DOOM)
 MESES = {'ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie',
          'decembrie', 'ian.', 'feb.', 'mar.', 'apr.', 'iun.', 'iul.', 'aug.', 'sept.', 'oct.', 'nov.', 'dec.'}
