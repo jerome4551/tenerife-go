@@ -1,6 +1,6 @@
 # Revisión de los 980 lugares
 
-**8 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
+**15 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 980, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -339,10 +339,10 @@ menos preciso de cada ficha. Es la cuenta entera de los 980, no un umbral:
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **29** |
 | 3 | ~110 m | **138** |
-| 4 | ~11 m | **555** |
+| 4 | ~11 m | **551** |
 | 5 | ~1 m | **42** |
-| 6 | ~10 cm | **188** |
-| 7 | ~1 cm | **25** |
+| 6 | ~10 cm | **189** |
+| 7 | ~1 cm | **28** |
 | 15 |  | **1** |
 
 **15 son redondas a propósito**: su coordenada es un rótulo, no una
@@ -521,11 +521,11 @@ Salida de `node tools/auditar_municipio.js`:
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
   lugares....................................... 980
-    que nombran un municipio.................... 510
-    de esos, comprobados contra el POLIGONO del Cabildo 500
+    que nombran un municipio.................... 511
+    de esos, comprobados contra el POLIGONO del Cabildo 501
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
-  no declaran municipio......................... 455
+  no declaran municipio......................... 454
 
   nombran una ZONA, que no es un municipio: no hay nada que comprobar
       bici-alquiler-sur             dice «Las Américas»  ·  el poligono dice «Adeje»
@@ -565,7 +565,7 @@ que cada semana saliera una lista nueva.
 | **Que el sitio exista** | pasó con `charco-infierno-arafo` y con `montana-colorada`, que se dieron de baja. No hay forma de saberlo sin una fuente de fuera |
 | **Horarios, precios y teléfonos** | cambian y no hay contra qué contrastarlos |
 | **Lo que dice cada descripción** | que un pueblo sea «famoso por sus aguacates» no se puede verificar con lo que hay dentro del repositorio |
-| **El municipio de 455 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
+| **El municipio de 454 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
 | **El de 15 más** | solo nombran una zona que abarca varios municipios, no un municipio |
 | **El de 10 que sí lo nombran** | el punto cae en el agua, fuera de todos los polígonos: no hay con qué compararlo |
 
