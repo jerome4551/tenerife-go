@@ -6,9 +6,9 @@
   "La app no ensena estos precios si «fecha» tiene mas de 2 dias."
  ],
  "fuente": "Ministerio para la Transicion Ecologica y el Reto Demografico, Geoportal de Gasolineras",
- "fecha": "2026-11-14T15:11:08Z",
- "fecha_ministerio": "14/11/2026 16:11:08",
- "franja": "2026-11-14 15:00",
+ "fecha": "2026-11-15T07:54:30Z",
+ "fecha_ministerio": "15/11/2026 8:54:30",
+ "franja": "2026-11-15 07:00",
  "municipios": {
   "Adeje": {
    "gasolineras": 14,
@@ -96,9 +96,9 @@
      "precio": 1.699
     },
     {
-     "id": "gas-7780-arona",
-     "ideess": "7780",
-     "precio": 1.7
+     "id": "gas-12370-arona",
+     "ideess": "12370",
+     "precio": 1.699
     }
    ]
   },
@@ -143,14 +143,9 @@
    "cuantas": 1,
    "g95": [
     {
-     "id": "gas-7778-el-sauzal",
-     "ideess": "7778",
-     "precio": 1.549
-    },
-    {
-     "id": "gas-7846-el-sauzal",
-     "ideess": "7846",
-     "precio": 1.549
+     "id": "gas-tf5-el-sauzal",
+     "ideess": "7700",
+     "precio": 1.545
     }
    ],
    "diesel": [
@@ -189,9 +184,9 @@
      "precio": 1.481
     },
     {
-     "id": "gas-11690-granadilla-de-abona",
-     "ideess": "11690",
-     "precio": 1.529
+     "id": "gas-7626-granadilla-de-abona",
+     "ideess": "7626",
+     "precio": 1.519
     }
    ],
    "diesel": [
@@ -201,9 +196,9 @@
      "precio": 1.676
     },
     {
-     "id": "gas-7721-granadilla-de-abona",
-     "ideess": "7721",
-     "precio": 1.684
+     "id": "gas-7626-granadilla-de-abona",
+     "ideess": "7626",
+     "precio": 1.679
     }
    ]
   },
@@ -618,8 +613,8 @@
    "diesel": 1.719
   },
   "gas-10633-san-miguel-de-abona": {
-   "g95": 1.585,
-   "diesel": 1.735
+   "g95": 1.575,
+   "diesel": 1.725
   },
   "gas-10635-arafo": {
    "g95": 1.529,
@@ -634,8 +629,8 @@
    "diesel": 1.699
   },
   "gas-10905-san-cristobal-de-la-laguna": {
-   "g95": 1.578,
-   "diesel": 1.748
+   "g95": 1.558,
+   "diesel": 1.728
   },
   "gas-10924-santa-cruz-de-tenerife": {
    "g95": 1.529,
@@ -662,7 +657,7 @@
    "diesel": 1.779
   },
   "gas-11394-santa-cruz-de-tenerife": {
-   "g95": 1.649,
+   "g95": 1.639,
    "diesel": 1.769
   },
   "gas-11525-adeje": {
@@ -691,7 +686,7 @@
   },
   "gas-12370-arona": {
    "g95": 1.555,
-   "diesel": 1.709
+   "diesel": 1.699
   },
   "gas-12381-la-orotava": {
    "g95": 1.539,
@@ -710,7 +705,7 @@
   },
   "gas-12630-arafo": {
    "g95": 1.539,
-   "diesel": 1.719
+   "diesel": 1.709
   },
   "gas-12776-adeje": {
    "g95": 1.569,
@@ -781,7 +776,7 @@
    "diesel": 1.689
   },
   "gas-14982-tacoronte": {
-   "g95": 1.569,
+   "g95": 1.559,
    "diesel": 1.739
   },
   "gas-15044-los-realejos": {
@@ -825,8 +820,8 @@
    "diesel": 1.619
   },
   "gas-16132-granadilla-de-abona": {
-   "g95": 1.545,
-   "diesel": 1.709
+   "g95": 1.525,
+   "diesel": 1.689
   },
   "gas-16177-arafo": {
    "g95": 1.389,
@@ -861,8 +856,8 @@
    "diesel": 1.709
   },
   "gas-7626-granadilla-de-abona": {
-   "g95": 1.539,
-   "diesel": 1.699
+   "g95": 1.519,
+   "diesel": 1.679
   },
   "gas-7628-santa-cruz-de-tenerife": {
    "g95": 1.539,
@@ -885,11 +880,11 @@
    "diesel": 1.739
   },
   "gas-7674-el-sauzal": {
-   "g95": 1.556,
+   "g95": 1.552,
    "diesel": 1.739
   },
   "gas-7675-san-cristobal-de-la-laguna": {
-   "g95": 1.519,
+   "g95": 1.499,
    "diesel": 1.715
   },
   "gas-7676-san-miguel-de-abona": {
@@ -1157,8 +1152,8 @@
    "diesel": 1.739
   },
   "gas-7859-san-miguel-de-abona": {
-   "g95": 1.439,
-   "diesel": 1.599
+   "g95": 1.535,
+   "diesel": 1.695
   },
   "gas-7860-san-cristobal-de-la-laguna": {
    "g95": 1.545,
@@ -1229,7 +1224,7 @@
    "diesel": 1.705
   },
   "gas-7948-santiago-del-teide": {
-   "g95": 1.638,
+   "g95": 1.599,
    "diesel": 1.725
   },
   "gas-8280-arona": {
@@ -1389,11 +1384,11 @@
    "diesel": 1.719
   },
   "gas-tf5-el-sauzal": {
-   "g95": 1.555,
-   "diesel": 1.719
+   "g95": 1.545,
+   "diesel": 1.709
   },
   "gas-tf5-lalaguna": {
-   "g95": 1.519,
+   "g95": 1.499,
    "diesel": 1.715
   },
   "gas-tf5-los-realejos": {
