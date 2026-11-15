@@ -264,7 +264,7 @@
  "farm-anchieta": {
   "desc": "Apteka z wydłużonymi godzinami w La Lagunie, przy Padre Anchieta. Dyżur nocny.",
   "cat": "Apteka dyżurna · La Laguna",
-  "hours": "Pn-Nd 8:00–22:00"
+  "hours": "Pn-Pt 8:00–22:00 · So-Nd 9:00–22:00"
  },
  "farm-blesa": {
   "desc": "Bardzo uczęszczana apteka w samym Los Cristianos. Dobra obsługa i konkurencyjne ceny.",
@@ -272,7 +272,7 @@
   "hours": "Pn-Pt 8:30–20:30 · So 9:00–20:00"
  },
  "farm-orotava": {
-  "desc": "Apteka otwarta 365 dni w roku przy ośrodku zdrowia Las Dehesas.",
+  "desc": "Apteka otwarta 365 dni w roku, naprzeciwko hali sportowej Quiquirá.",
   "cat": "Apteka · La Orotava",
   "hours": "Codziennie 9:00–21:00"
  },
@@ -292,19 +292,19 @@
   "hours": "Pn-Pt 9:00–21:00 · So 9:15–14:00"
  },
  "farm-hernandez-sct": {
-  "desc": "Apteka z całodobowym stałym dyżurem w Santa Cruz de Tenerife. Jedna z niewielu aptek pracujących bez przerwy w stolicy. Niezbędna przy nocnych nagłych wypadkach.",
-  "cat": "Apteka 24h · Santa Cruz",
-  "hours": "24h · Codziennie · Dyżur stały"
+  "desc": "Apteka przy ulicy José Hernández Alfonso, na rogu z ulicą Emilio López, w Santa Cruz de Tenerife. W nocy jest zamknięta: całodobową apteką dyżurną w Santa Cruz jest Farmacia Salamanca przy ulicy Horacio Nelson 21.",
+  "cat": "Apteka · Santa Cruz",
+  "hours": "Pn-Pt 8:00–21:00 · So 9:00–14:00"
  },
  "farm-islas-canarias-sct": {
-  "desc": "Apteka przy Av. Islas Canarias w Santa Cruz. Rotacyjny dyżur nocny. Długie godziny w dni powszednie. Dobrze położona w strefie centralnej.",
+  "desc": "Apteka przy Av. Islas Canarias w Santa Cruz. Otwarta codziennie przez cały rok od 8:00 do 24:00. Dobrze położona w strefie centralnej.",
   "cat": "Apteka · Centrum Santa Cruz",
-  "hours": "Pn-Pt 8:30–20:00 · So-Nd 9:00–14:00"
+  "hours": "Codziennie 8:00–24:00"
  },
  "farm-pozo-pcruz": {
-  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 9:00 do 22:00, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
+  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 8:30 do 21:00, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
   "cat": "Apteka · Puerto de la Cruz",
-  "hours": "Codziennie 09:00–22:00"
+  "hours": "Codziennie 08:30–21:00"
  },
  "farm-bethencourt-pcruz": {
   "desc": "Apteka z wydłużonymi godzinami w Puerto de la Cruz. Otwarta 365 dni w roku od 8:30 do 22:00. Rotacyjny dyżur nocny. Dobrze położona w strefie turystycznej.",
@@ -314,12 +314,12 @@
  "farm-americas-arona": {
   "desc": "Apteka w Los Cristianos, w turystycznej strefie południa. Długie godziny i obsługa w kilku językach. Rotacyjny dyżur z innymi aptekami w okolicy.",
   "cat": "Apteka · Los Cristianos · Południe",
-  "hours": "Pn-Pt 9:00–21:00 · So 9:00–15:00 · Dyżur rotacyjny"
+  "hours": "Pn-Pt 9:00–20:30 · So 9:00–14:00 i 17:00–20:00 · Dyżur rotacyjny"
  },
  "farm-adeje-austria": {
-  "desc": "Apteka w Adeje, w centrum. Długie godziny w dni powszednie. Dyżur rotacyjny z innymi aptekami strefy Adeje i Costa Adeje.",
+  "desc": "Apteka w San Eugenio Alto (Costa Adeje). Długie godziny w dni powszednie. Dyżur rotacyjny z innymi aptekami strefy Adeje i Costa Adeje.",
   "cat": "Apteka · Adeje",
-  "hours": "Pn-Pt 9:00–21:00 · So 9:00–14:00 · Dyżur rotacyjny"
+  "hours": "Pn-Pt 9:00–20:30 · So 9:00–17:30 · Dyżur rotacyjny"
  },
  "gas-tf1-granadilla": {
   "desc": "Carretera TF-1 km 54, Granadilla de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
