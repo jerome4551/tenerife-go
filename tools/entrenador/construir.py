@@ -2,6 +2,9 @@
 # Junta los trozos de tools/entrenador/src/ en modulos/entrenador.js (un solo fichero, sin dependencias).
 #     python3 tools/entrenador/construir.py              lo escribe
 #     python3 tools/entrenador/construir.py --comprobar  dice si el que hay es el que sale de sus fuentes (sale con 1 si no)
+# Y escribe datos/cuerpo/con-video.json (15-11-2026, Jérôme: que los vídeos se encuentren): qué ejercicios tienen
+# vídeo y cuántos pasos tiene su ficha en castellano. Con él, «Su cuerpo» pone 🎬 junto a su nombre en las listas
+# sin pedir este módulo, que pesa; la ficha sigue preguntando a TG_ENTRENADOR.tiene() antes de enseñar el vídeo.
 # Antes apunta en src/90-huellas.js la huella de los pasos en castellano de cada ejercicio con
 # coreografía (los 12 primeros caracteres del sha256 de sus pasos, unidos con un salto de línea):
 # si la ficha cambia, tools/auditar_entrenador.js lo dice y la coreografía se revisa.
@@ -17,6 +20,9 @@ faltan = [i for i in ids if i not in es]
 assert not faltan, 'coreografías sin ficha: %s' % faltan
 def huella(pasos): return hashlib.sha256('\n'.join(pasos).encode('utf-8')).hexdigest()[:12]
 huellas = '  /* las huellas de los pasos (las escribe construir.py) */\n  var HUELLAS = ' + json.dumps({i: huella(es[i][1]) for i in ids}, ensure_ascii=False, separators=(', ', ': ')) + ';\n'
+con_video = ('{\n "_": "Los ejercicios con vídeo de Jérôme (modulos/entrenador.js) y cuántos pasos tiene su ficha en castellano. '
+             'Lo escribe tools/entrenador/construir.py; no se edita a mano.",\n "pasos": {\n'
+             + ',\n'.join('  ' + json.dumps(i) + ': ' + str(len(es[i][1])) for i in sorted(ids)) + '\n }\n}\n')
 CAB = '''/* modulos/entrenador.js — Jérôme, el entrenador (11 de noviembre de 2026): el vídeo de cada
    ejercicio de «Su cuerpo». Lo pide modulos/cuerpo.js al abrir la ficha de un ejercicio;
    tools/fuente.js y tools/fuente.py lo pegan al final del fuente (CARGA-PEREZOSA).
@@ -52,10 +58,14 @@ for nombre in sorted(trozos):
 trozos['90-huellas.js'] = huellas
 out = CAB + '\n'.join(trozos[n] for n in sorted(trozos)) + PIE
 destino = repo / 'modulos' / 'entrenador.js'
+indice = repo / 'datos' / 'cuerpo' / 'con-video.json'
 if '--comprobar' in sys.argv:
     igual = destino.exists() and destino.read_text(encoding='utf-8') == out
+    igual_i = indice.exists() and indice.read_text(encoding='utf-8') == con_video
     print('modulos/entrenador.js', 'es el que sale de tools/entrenador/src/' if igual else 'NO es el que sale de tools/entrenador/src/ (o la ficha de algún ejercicio ha cambiado): python3 tools/entrenador/construir.py')
-    sys.exit(0 if igual else 1)
+    print('datos/cuerpo/con-video.json', 'es el que sale de las coreografías' if igual_i else 'NO es el que sale de las coreografías: python3 tools/entrenador/construir.py')
+    sys.exit(0 if igual and igual_i else 1)
 (aqui / 'src' / '90-huellas.js').write_text(huellas, encoding='utf-8')
 destino.write_text(out, encoding='utf-8')
+indice.write_text(con_video, encoding='utf-8')
 print('modulos/entrenador.js', len(out.encode('utf-8')), 'bytes,', len(trozos), 'trozos,', len(ids), 'coreografías')

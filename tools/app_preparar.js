@@ -302,6 +302,8 @@ function comprobar(montado) {
   /* y los de «Su cuerpo» (31 de octubre de 2026): modulos/cuerpo.js los pide con una ruta
      armada (TG_CUERPO_DATOS mas el fichero), que lo de arriba no ve */
   if (!enWww('datos/cuerpo/ejercicios.json')) faltan.add('datos/cuerpo/ejercicios.json');
+  /* (15-11-2026) y el índice de los ejercicios con vídeo, con el que se pone 🎬 junto a su nombre */
+  if (!enWww('datos/cuerpo/con-video.json')) faltan.add('datos/cuerpo/con-video.json');
   for (const l of IDIOMAS) {
     for (const f of ['ejercicios-' + l + '.json', 'asistente-' + l + '.json', 'deportes-' + l + '.json']) if (!enWww('datos/cuerpo/' + f)) faltan.add('datos/cuerpo/' + f);
   }

@@ -104,6 +104,13 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   ok(!otraFicha.length && Object.keys(E.huellas).length === ids.length, 'las fichas no han cambiado desde que se hicieron sus coreografías (la huella de los pasos en castellano)', otraFicha);
   ok(ids.every(id => E.tiene(id, TX.es[id][1].length)) && !E.tiene(ids[0], TX.es[ids[0]][1].length + 1) && !E.tiene('no-existe') && !E.tiene('toString') && !E.tiene('constructor'),
     'tiene(id, pasos): sí con los pasos de la ficha; no con otros, ni con un ejercicio sin coreografía');
+  /* (15-11-2026) el índice con el que «Su cuerpo» pone 🎬 en las listas sin pedir este módulo: los mismos ejercicios, y con
+     ellos tiene() dice que sí; si sobrara uno, la lista prometería un vídeo que la ficha no enseña, y si faltara, se perdería */
+  let CV = null; try { CV = JSON.parse(lee('datos/cuerpo/con-video.json')).pasos; } catch (e) {}
+  const cvIds = CV && typeof CV === 'object' ? Object.keys(CV) : [];
+  ok(!!CV && cvIds.length === ids.length && ids.every(id => CV[id] === TX.es[id][1].length) && cvIds.every(id => E.tiene(id, CV[id])),
+    'datos/cuerpo/con-video.json: los ' + ids.length + ' ejercicios con vídeo y los pasos de su ficha, y con ellos tiene() dice que sí',
+    { sobran: cvIds.filter(id => ids.indexOf(id) < 0).slice(0, 5), faltan: ids.filter(id => !CV || !(id in CV)).slice(0, 5) });
   /* cada coreografía, por dentro */
   const mal = [];
   const CLAVO = /^([mt][id])(?:@(\d+):(-?[\d.]+))?(?:=(-?[\d.]+),(-?[\d.]+),(-?[\d.]+))?$/;
