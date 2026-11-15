@@ -20,7 +20,10 @@ ERRORES (no se entrega con uno solo):
     1 loc · 2-19 locuri · 20+ de locuri (la regla de CLDR)
   · espacio antes de «?», «!», «:» o «;» (eso es frances, no rumano)
   · palabras castellanas sueltas (y, que, para, con, más, también...)
-    fuera de los nombres propios y las citas declaradas
+    fuera de los nombres propios y las citas declaradas; en las fichas de
+    los lugares (tabla «places», bloque 5), tambien dentro de los nombres
+    de sitio que el rumano copia tal cual del castellano («Casa de los
+    Balcones»): esos se aceptan
   · el tuteo: tu, te, ți, tău, poți, vrei, ai... y el imperativo de tu al
     principio de frase (Atinge, Alege, Încearcă...): la app trata de
     dumneavoastră (Jerome, 21-10-2026: «Usted en toda la app»)
@@ -100,7 +103,17 @@ class Informe:
     def a(self, ctx, msg):
         self.avi.append(ctx + ': ' + msg)
 
-def revisar_texto(es, ro, ctx, R, exentos=(), plural_ok=False):
+def nombre_del_castellano(txt, palabras, j, es):
+    """«Casa de los Balcones», «Playa de las Teresitas»: la palabra va dentro de un nombre de sitio
+    que el rumano copia tal cual del castellano (los nombres de lugar no se traducen). Vale si la
+    palabra de delante, ella y la de detras estan tal cual en el castellano, y la de detras empieza
+    por mayuscula (bloque 5)."""
+    if j == 0 or j + 1 >= len(palabras):
+        return False
+    a, b = palabras[j - 1], palabras[j + 1]
+    return b.group(0)[0].isupper() and txt[a.start():b.end()] in es
+
+def revisar_texto(es, ro, ctx, R, exentos=(), plural_ok=False, nombres_es=False):
     """plural_ok: la fila pasa por un formateador que elige la forma por el numero
     (chatFmt con {n} o {N}; tx() con {n}): el rumano puede traer sus tres formas
     aunque el castellano no las necesite («980 de locuri» / «1012 locuri»)."""
@@ -180,9 +193,12 @@ def revisar_texto(es, ro, ctx, R, exentos=(), plural_ok=False):
     sinCitas = MARC.sub(' ', sinCitas)   # {y}, {t}...: marcadores, no palabras (bloque del cielo)
     for fr_ in FRASES_EXENTAS:
         sinCitas = sinCitas.replace(fr_, ' ')
-    for m in PAL.finditer(sinCitas):
+    palabras = list(PAL.finditer(sinCitas))
+    for j, m in enumerate(palabras):
         w = m.group(0)
         if w in CASTELLANO and w not in exentos:
+            if nombres_es and nombre_del_castellano(sinCitas, palabras, j, es):
+                continue   # dentro de un nombre de sitio copiado del castellano (fichas de los lugares)
             R.e(ctx, 'palabra castellana suelta: «%s»' % w)
     # el tuteo
     for m in TUTEO.finditer(sinCitas):
@@ -196,6 +212,8 @@ def revisar_texto(es, ro, ctx, R, exentos=(), plural_ok=False):
         n, w = m.group(1).replace('.', ''), m.group(2)
         if w.lower() in UNIDADES or w.lower().rstrip('.') in UNIDADES or w.lower() in NO_SUSTANTIVO or w.lower() in MESES or w[0].isupper() or not necesita_de(n):
             continue
+        if re.search(r'(?<![A-Za-z])[A-Z]{1,4}-$', ro[:m.start()]):
+            continue   # el numero de un codigo, no una cantidad: «Drumul TF-24 trece…», «GR-131» (bloque 5)
         R.e(ctx, '«%s %s» sin «de» (%s pide «de»: «%s de %s»)' % (n, w, n, n, w))
     for m in re.finditer(r'\{([nN])\}\s+([a-zăâîșț]+)', ro):
         if len(fr) == 1 and m.group(2) not in UNIDADES and m.group(2) not in NO_SUSTANTIVO:
@@ -210,7 +228,7 @@ def revisar_texto(es, ro, ctx, R, exentos=(), plural_ok=False):
     if falt:
         R.a(ctx, 'cifras del castellano que no estan: %s' % falt)
 
-def revisar(es, ro, ctx, R, exentos=(), plural_ok=False):
+def revisar(es, ro, ctx, R, exentos=(), plural_ok=False, nombres_es=False):
     if isinstance(es, dict):
         if not isinstance(ro, dict):
             R.e(ctx, 'el castellano es un objeto y el rumano no'); return
@@ -220,14 +238,14 @@ def revisar(es, ro, ctx, R, exentos=(), plural_ok=False):
             return
         for k in es:
             if k in ro:
-                revisar(es[k], ro[k], ctx + '.' + str(k), R, exentos, plural_ok)
+                revisar(es[k], ro[k], ctx + '.' + str(k), R, exentos, plural_ok, nombres_es)
     elif isinstance(es, list):
         if not isinstance(ro, list) or len(ro) != len(es):
             R.e(ctx, 'lista de otro largo'); return
         for i, (a, b) in enumerate(zip(es, ro)):
-            revisar(a, b, ctx + '[%d]' % i, R, exentos, plural_ok)
+            revisar(a, b, ctx + '[%d]' % i, R, exentos, plural_ok, nombres_es)
     elif isinstance(es, str):
-        revisar_texto(es, ro, ctx, R, exentos, plural_ok)
+        revisar_texto(es, ro, ctx, R, exentos, plural_ok, nombres_es)
     else:
         if es != ro:
             R.e(ctx, 'valor distinto: %r · %r' % (es, ro))
@@ -237,9 +255,13 @@ def revisar(es, ro, ctx, R, exentos=(), plural_ok=False):
 # con {n} y, si no lo hay, con {N}. Y T() de modulos/guia.js pasa siempre a tx()
 # {n} = el numero de lugares del mapa (bloque 4: «{n} de locuri pe hartă»).
 PLURAL_POR_NUMERO = {'CHAT_STR', 'GUIA_UI'}
+# Tablas cuyos textos llevan los nombres de sitio en castellano, tal cual: las fichas de los
+# lugares (idiomas/ro-fuente/lugares-*.json, bloques 5 a 9). Ver nombre_del_castellano().
+TOPONIMOS = {'places'}
 FRASES_EXENTAS = (
     'Subdirección de Protección Civil y Emergencias',   # organismo oficial, por su nombre
     'Roque de los Muchachos',   # el observatorio de La Palma, por su nombre (bloque del cielo)
+    'con vulcanic',             # rumano: «con» es «cono» (un con vulcanic, el cono volcanico; fichas de los lugares)
 )
 # Lo que se queda como esta, con su motivo: nombres propios, citas en
 # castellano que la ficha explica y la voz de quien usa la app.
@@ -261,12 +283,14 @@ def main():
         pares = json.load(open(a[1], encoding='utf-8'))
         for p in pares:
             revisar(p['es'], p['ro'], str(p.get('id')), R, EXENTOS | set(p.get('exentos', [])),
-                    plural_ok=(p.get('tabla') in PLURAL_POR_NUMERO))   # la tabla, si el par la trae (bloque 4)
+                    plural_ok=(p.get('tabla') in PLURAL_POR_NUMERO),   # la tabla, si el par la trae (bloque 4)
+                    nombres_es=(p.get('tabla') in TOPONIMOS))
         n = len(pares)
     else:
         d = json.load(open(a[0], encoding='utf-8'))
         for f in d['filas']:
-            revisar(f['es'], f['ro'], '%s/%s' % (f['tabla'], f['clave']), R, EXENTOS, plural_ok=(f['tabla'] in PLURAL_POR_NUMERO))
+            revisar(f['es'], f['ro'], '%s/%s' % (f['tabla'], f['clave']), R, EXENTOS, plural_ok=(f['tabla'] in PLURAL_POR_NUMERO),
+                    nombres_es=(f['tabla'] in TOPONIMOS))
         esp = d.get('especiales', {})
         for k, v in esp.get('FREQ_I18N', {}).items():
             revisar_texto(k, v, 'FREQ_I18N/' + k, R, EXENTOS)
