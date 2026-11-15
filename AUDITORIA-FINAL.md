@@ -8607,6 +8607,63 @@ tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y
 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas y 3.726
 filas; 5.873). `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
 
+## El rumano, dormido: sus bloques 1 a 5 y la marca de la barra (15 de noviembre)
+
+El rumano será el idioma once. Lo prepara otra sesión, por bloques, y aquí cada bloque entra **sin activar**: sus textos
+se meten en los ficheros de la app, pero el rumano no se ofrece ni se ve hasta el último bloque, el interruptor
+(`tools/activar_idioma.js`, que se niega mientras falte algún fichero suyo). Jérôme dijo que subieran los cinco
+primeros, el del panel SOS incluido. Cada texto entra por su castellano, con `tools/poner_traduccion.js`: si el
+castellano de la fila no está tal cual en la app, no escribe nada de ese fichero.
+
+- **Bloque 1, la interfaz:** 771 textos en `index.html` (688 filas de idioma, las 48 frecuencias de las guaguas y 35
+  rótulos), rehechos encima de lo visto de paso; las líneas son las mismas que escribía antes, una a una, y las
+  frecuencias llevan además el polaco nuevo. Las cinco notas de línea de `datos/titsa.js` no entran todavía: tres
+  cambiaron de castellano el mismo día (pasaron de tú a usted) y la herramienta no encuentra su castellano de antes.
+  Su rumano ya era de usted; se le mandó a la sesión del rumano el castellano nuevo.
+- **Bloque 2, el cielo:** las 820 filas de idioma de `modulos/cielo.js` y las 88 curiosidades de las constelaciones
+  (`idiomas/cielo/ro.json`). Los nombres de las constelaciones, cotejados por la sesión del rumano con seis fuentes
+  rumanas.
+- **Bloque 3, el panel SOS:** las 603 filas de `modulos/emergencias.js`, de usted, con cada término técnico de una
+  fuente rumana (ERC en rumano, DSU, fiipregatit.ro, el Ministerio de Sanidad rumano, Apple y Android para
+  ES-Alert). Lo autorizó Jérôme el 15-11.
+- **Bloque 4:** los tours de Jérôme (`modulos/guia.js`, 133 filas), el perfil (`modulos/perfil.js`, 467) y la isla
+  en 3D (`modulos/isla3d.js`, 19).
+- **Bloque 5:** el primero de los cinco trozos de las fichas de los lugares (`idiomas/ro-fuente/lugares-1.json`, 408
+  textos de las 203 primeras fichas). No toca la app: `tools/lugares_traduccion.js` montará `idiomas/ro.json` cuando
+  estén los cinco. Hoy casan 402; las otras 6 son las de las fichas corregidas en lo visto de paso, y la herramienta
+  lo dice («CAMBIO EL CASTELLANO») y no las da por buenas.
+
+`tools/revisar_rumano.py` mira cada texto contra su castellano (la forma, los marcadores y las etiquetas, la ș y la ț
+con coma y no con cedilla, las comillas rumanas, los plurales, palabras castellanas sueltas y el tuteo): 0 errores en
+los cinco bloques.
+
+**La marca de la barra.** «TENERIFE GO» se recortaba con «…» al lado del logo cuando no cabía: de 320 a 450 px y de 501
+a 650 px, en los diez idiomas, porque lo que falta es sitio, por los botones de la derecha. Jérôme decidió el 15-11 que,
+cuando no cabe entera, se quede solo el logo («el logo solo entonces»). Lo mide un script pequeño detrás del HTML de la
+barra, antes de pintar, y lo vuelve a medir al cambiar el ancho, al cargar las fuentes y cuando cambian los botones; el
+nombre se esconde a la vista pero no a los lectores de pantalla. Si cabe el nombre y no el eslogan, se quita solo el
+eslogan. `tools/auditar_desborde.js` lo mira en 13 anchos en castellano y en tres en los otros nueve idiomas, y que al
+estrechar y ensanchar la misma página quede igual que al abrirla en ese ancho: en `main`, 43 fallos; con el cambio, en
+verde.
+
+## El rumano, bloques 1 a 5, y la marca de la barra (15 de noviembre): la auditoría entera
+
+**La auditoría entera** sobre `7450d67` (árbol `b7fd3241`), los seis commits de arriba encima de `main` (`1f5e016`); en
+`main` son los mismos, rebasados sobre cinco commits de los robots (`3b0aca1`, terremotos; `214a699`, avisos de AEMET;
+`ce8d7e3`, alertas del Gobierno de Canarias; `13c6e24`, el boletín de INVOLCAN, y `f9a8592`, los satélites), que solo
+cambian `datos/sismos-ign.json`, `datos/avisos-aemet.json`, `datos/alertas-canarias.json`,
+`datos/semaforo-involcan.json` y `datos/satelites.json`, y con los controles que leen esos ficheros, en verde tras el
+rebase. En sus 70 bloques, ningún rojo. La marca de la barra, en `auditar_desborde.js`: entera o solo el logo en los 13
+anchos en castellano y en los tres de cada uno de los otros nueve idiomas, y nada se sale por los lados. El rumano no se
+ve todavía: no está en `SUPPORTED_LANGS`; lo pondrá el interruptor, en el último bloque. `auditar_registro.js`, todo de
+usted (138.109 textos); `auditar_datos.js`, las 48 frecuencias con su fila y cada fila con todos los idiomas de la app;
+`probar_cuerpo.js`, 725; `auditar_entrenador.js`, 42; `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los
+diez idiomas; `castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.324 nombres propios en
+cirílico y ninguna variante sospechosa; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin
+traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la
+isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (5.873
+filas). `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
