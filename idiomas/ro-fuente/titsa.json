@@ -1,0 +1,42 @@
+{
+ "_": "Rumano (ro) de las notas de linea de datos/titsa.js. Lo mete tools/poner_traduccion.js. Sale de la entrega de la nota 41.",
+ "idioma": "ro",
+ "fichero": "datos/titsa.js",
+ "filas": [
+  {
+   "tabla": "TITSA_LINES",
+   "clave": "nota",
+   "es": "El billete de 14,60 € es el recorrido completo, Puerto de la Cruz a Costa Adeje. Si solo vas de Puerto de la Cruz al Aeropuerto Norte son 4,75 €, y del Aeropuerto Sur a Costa Adeje, 3,70 €.",
+   "forma": "texto",
+   "ro": "Biletul de 14,60 € este pentru traseul complet, de la Puerto de la Cruz la Costa Adeje. Dacă mergeți doar de la Puerto de la Cruz la Aeroportul Nord, costă 4,75 €, iar de la Aeroportul Sud la Costa Adeje, 3,70 €."
+  },
+  {
+   "tabla": "TITSA_LINES",
+   "clave": "nota",
+   "es": "Un solo viaje al día, todos los días. Sale a las 09:30 de la Estación de Guaguas del Puerto de la Cruz y llega al Parador a las 11:10. El regreso sale del Parador a las 16:00. Si la pierdes no hay otra: arriba no queda transporte público. Esta línea está excluida de la tarjeta ten+.",
+   "forma": "texto",
+   "ro": "O singură cursă pe zi, în fiecare zi. Pleacă la ora 09:30 din autogara din Puerto de la Cruz și ajunge la Parador la ora 11:10. Cursa de întoarcere pleacă de la Parador la ora 16:00. Dacă o pierdeți, nu există alta: sus nu mai rămâne transport public. Cardul ten+ nu este valabil pe această linie."
+  },
+  {
+   "tabla": "TITSA_LINES",
+   "clave": "nota",
+   "es": "Un solo viaje al día, todos los días. Sale a las 09:25 de la Estación de Costa Adeje y llega al Parador sobre las 11:40. El regreso sale del Parador a las 15:40. Si la pierdes no hay otra: arriba no queda transporte público. Esta línea está excluida de la tarjeta ten+.",
+   "forma": "texto",
+   "ro": "O singură cursă pe zi, în fiecare zi. Pleacă la ora 09:25 din autogara din Costa Adeje și ajunge la Parador în jurul orei 11:40. Cursa de întoarcere pleacă de la Parador la ora 15:40. Dacă o pierdeți, nu există alta: sus nu mai rămâne transport public. Cardul ten+ nu este valabil pe această linie."
+  },
+  {
+   "tabla": "TITSA_LINES",
+   "clave": "nota",
+   "es": "Última expedición sobre la 01:25, por el mismo recorrido. No hay una 473 nocturna a Las Galletas: eso lo cubren la 467 y la 470.",
+   "forma": "texto",
+   "ro": "Ultima cursă pleacă în jurul orei 01:25, pe același traseu. Nu există o linie 473 de noapte spre Las Galletas: acel traseu îl acoperă liniile 467 și 470."
+  },
+  {
+   "tabla": "TITSA_LINES",
+   "clave": "nota",
+   "es": "De lunes a viernes circula de 06:10 a 19:50, con una expedición extra a las 21:00 solo en días lectivos. Sábados, domingos y festivos hay una única salida, a las 08:15. Va por la carretera vieja, no por la autopista.",
+   "forma": "texto",
+   "ro": "De luni până vineri circulă între 06:10 și 19:50, cu o cursă suplimentară la ora 21:00 doar în zilele de școală. Sâmbăta, duminica și în zilele de sărbătoare există o singură plecare, la ora 08:15. Merge pe drumul vechi, nu pe autostradă."
+  }
+ ]
+}

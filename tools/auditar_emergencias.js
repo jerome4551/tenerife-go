@@ -195,7 +195,9 @@ ok(!banMal.length, 'las banderas son las de las playas de Canarias (' + BANDERAS
    tradicional es el simplificado con ZHT_OVERRIDES encima, como en la app */
 const LEYENDA = { verde: 'banderasVerde', amarilla: 'banderasAmarilla', roja: 'banderasRoja',
   negra: 'banderasNegra', naranja: 'banderasNaranja', morada: 'banderasMorada' };
-const cabLangs = [...idx.matchAll(/^ {2}["']?(es|en|fr|de|it|nl|zh|bg|pl)["']?\s*:\s*\{\s*$|^const ZHT_OVERRIDES = \{\s*$/gm)]
+/* «ro» entra en la lista con el primer bloque del rumano (nota 41): su bloque de
+   LANGS va detras del polaco y, sin el, sus rotulos se le daban al polaco. */
+const cabLangs = [...idx.matchAll(/^ {2}["']?(es|en|fr|de|it|nl|zh|bg|pl|ro)["']?\s*:\s*\{\s*$|^const ZHT_OVERRIDES = \{\s*$/gm)]
   .map(m => [m.index, m[1] || 'zht']);
 const leyenda = {};
 Object.values(LEYENDA).forEach(k => {

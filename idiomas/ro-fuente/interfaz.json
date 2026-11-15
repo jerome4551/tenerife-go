@@ -1,0 +1,5816 @@
+{
+ "_": "Rumano (ro) de la interfaz de index.html. Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. No se edita a mano: sale de la entrega de la nota 41.",
+ "idioma": "ro",
+ "filas": [
+  {
+   "tabla": "LANGS",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "flag": "🇪🇸",
+    "code": "ES",
+    "banoHoyTitle": "Báñese hoy aquí:",
+    "banoHoySub": "Viento y mar de ahora · se descartan las costas movidas",
+    "banoHoyNinguna": "Hoy no hay ninguna playa que recomendar: el mar está movido en todas las costas.",
+    "banoHoySinSocorrista": "Sin socorrista",
+    "parkingTitle": "Parking y aforo",
+    "parkingFree": "{free} libres de {total}",
+    "parkingFull": "Completo",
+    "parkingNearby": "Parking cercano",
+    "parkingRealTime": "Tiempo real",
+    "parkingOccupancy": "Ocupación {pct}%",
+    "parkingAlmostFull": "Casi completo",
+    "parkingAvailable": "Sitio disponible",
+    "parkingUpdated": "Actualizado {time}",
+    "parkingBeach": "Parking playa",
+    "parkingTeide": "Parking Teide",
+    "parkingCapacity": "Capacidad",
+    "searchPlaceholder": "Buscar lugar...",
+    "noResults": "No se encontraron lugares",
+    "filterLabel": "Filtrar",
+    "clearBtn": "Limpiar",
+    "showing": "Mostrando",
+    "of": "de",
+    "places": "lugares",
+    "streets": "Calles",
+    "satellite": "Satélite",
+    "topo": "Topo",
+    "isla": "Isla offline",
+    "lifeguard": "🛟 Servicio de socorristas",
+    "lifeguardNow": "🛟 Socorrista ahora",
+    "lifeguardHours": "🛟 Socorristas {h}",
+    "noLifeguard": "⚠️ Sin vigilancia",
+    "blueFlag": "🏆 Bandera Azul 2026",
+    "aguaExcelente": "💧 Agua excelente",
+    "aguaBuena": "💧 Agua buena",
+    "aguaSuficiente": "⚠️ Agua suficiente",
+    "aguaFuente": "Censo oficial de zonas de baño {a}",
+    "flagLink": "🚩 Bandera y socorristas (oficial)",
+    "banderasTitulo": "¿Qué significa cada bandera?",
+    "banderasVerde": "Verde: baño seguro.",
+    "banderasAmarilla": "Amarilla: baño con precaución.",
+    "banderasRoja": "Roja: prohibido el baño.",
+    "banderasNegra": "Negra: prohibido el baño por contaminación o riesgo para la salud.",
+    "banderasNaranja": "Naranja: playa sin servicio de vigilancia.",
+    "banderasMorada": "Morada, o blanca con una medusa: presencia de fauna marina.",
+    "banderasFuente": "Banderas en uso hoy en las playas de Canarias. El Decreto 116/2018 fue anulado por sentencia del Tribunal Supremo (BOC 82, 25/4/2024) y el nuevo modelo está en preparación. Fuente: Subdirección de Protección Civil y Emergencias del Gobierno de Canarias · portal Infoplayas Canarias.",
+    "addFav": "Añadir a favoritos",
+    "removeFav": "Quitar de favoritos",
+    "favTitle": "Mis favoritos",
+    "favEmpty": "Aún no tiene favoritos. Toque la ⭐ en cualquier lugar para guardarlo aquí.",
+    "favCount": "favoritos",
+    "showFavs": "Ver solo favoritos",
+    "emergency24": "🚨 Urgencias 24 h",
+    "pharmacy24": "💊 Farmacia 24 h",
+    "phoneLabel": "📞",
+    "hoursLabel": "🕐",
+    "emergencyTel": "🆘 Emergencias: 112",
+    "pharmacyGuardLink": "💊 Ver farmacia de guardia hoy (oficial)",
+    "shareBtn": "Compartir",
+    "favAdd": "Favorito",
+    "favRemove": "Quitar",
+    "shareTitle": "Un lugar en Tenerife",
+    "shareGmaps": "Abrir en Google Maps",
+    "shareCopied": "¡Enlace copiado!",
+    "shareError": "No se pudo compartir",
+    "gpsTitle": "Mi ubicación",
+    "gpsSearching": "Buscando su posición…",
+    "gpsFound": "Posición encontrada",
+    "gpsError": "No se pudo obtener la ubicación",
+    "gpsDenied": "Permiso de ubicación denegado",
+    "gpsOutside": "Parece que no está en Tenerife",
+    "gpsUseAsOrigin": "Usar como Origen de ruta",
+    "gpsAccuracy": "Precisión",
+    "daytripTitle": "Ruta del día",
+    "daytripZoneNorth": "Norte",
+    "daytripZoneSouth": "Sur",
+    "daytripZoneCenter": "Cumbre",
+    "daytripMyRoute": "Mi ruta",
+    "daytripMyRouteEmpty": "Aún no ha añadido paradas. Elija abajo las que quiera visitar.",
+    "daytripCatalogPrompt": "Elija una zona arriba para ver sugerencias",
+    "daytripCatalogTitle": "Sugerencias",
+    "daytripAdd": "Añadir a mi ruta",
+    "daytripAdded": "Ya en su ruta",
+    "daytripRemove": "Quitar",
+    "daytripCenter": "Centrar en el mapa",
+    "daytripInfo": "Ver info",
+    "busTitle": "Transporte Público",
+    "busSubtitle": "TITSA · Tranvía · {n} líneas",
+    "busClearAll": "Quitar todas",
+    "busTypeTram": "🚊 Tranvía",
+    "busTypeNorth": "🔵 Norte",
+    "busTypeSouth": "🔴 Sur",
+    "busTypeAirport": "✈️ Aeropuerto",
+    "busTypeTeide": "🌋 Teide",
+    "busTypeShuttle": "🟠 Lanzaderas",
+    "busTypeLocal": "🏙️ Municipales y urbanas",
+    "busTypeNight": "🦉 Búho / Nocturnas",
+    "busTerminal": "🏁 Terminal / Intercambiador",
+    "busLinesPassing": "Líneas que pasan:",
+    "busLineSingle": "Línea:",
+    "busTitsaLink": "🔗 Ver horarios en titsa.com",
+    "busTranviaPanel": "🚊 Panel en directo · metrotenerife.com",
+    "busSearchPlaceholder": "Buscar parada o línea...",
+    "busSearchLine": "📋 {n} línea",
+    "busSearchLines": "📋 {n} líneas",
+    "busSearchStop": "📍 {n} parada",
+    "busSearchStops": "📍 {n} paradas",
+    "busSearchStopsCap": "📍 {n} de {total} paradas",
+    "busNoResults": "Sin resultados",
+    "busOfficialLink": "🔗 titsa.com · metrotenerife.com — horarios oficiales",
+    "busFreqLabel": "Frecuencia",
+    "busPriceLabel": "Precio",
+    "busPriceFrom": "desde {p}",
+    "busQuickAirportS": "✈️ Activar líneas Aeropuerto Sur",
+    "busQuickAirportN": "✈️ Activar líneas Aeropuerto Norte",
+    "busShareTitle": "🚌 Mis líneas de bus en Tenerife",
+    "busShareCopied": "¡Enlace de ruta copiado!",
+    "busShareNothing": "Active al menos una línea para compartir",
+    "busShareError": "No se pudo compartir",
+    "nearbyStopsTitle": "🚏 Paradas cerca",
+    "nearbyStopsFrom": "A pie desde {place}",
+    "nearbyStopsFromGps": "A pie desde su ubicación",
+    "nearbyStopsNone": "No hay paradas a menos de 1,5 km",
+    "nearbyStopsMin": "min",
+    "nearbyHowToBtn": "🚏 Cómo llegar en bus",
+    "popupVerFicha": "Ver descripción completa",
+    "directionsBtn": "🚗 Cómo llegar en coche",
+    "busAccessToggleLabel": "Accesible en bus (500 m)",
+    "categories": {
+     "parking": "Parkings",
+     "webcam": "Webcams",
+     "ayuda": "Ayuda & Apoyo",
+     "naturaleza": "Naturaleza",
+     "senderismo": "Senderismo",
+     "playa": "Playas",
+     "nudista": "Playas nudistas",
+     "piscinas": "Piscinas Naturales",
+     "montana": "Montaña",
+     "cultura": "Cultura",
+     "museo": "Museos",
+     "gastronomia": "Gastronomía",
+     "familia": "Familia",
+     "animales": "Animales",
+     "ciudad": "Ciudades",
+     "municipio": "Municipios",
+     "farmacia": "Farmacias",
+     "hospital": "Hospitales",
+     "csalud": "Centros de Salud",
+     "veterinario": "Veterinarios 24h",
+     "gasolinera": "Gasolineras",
+     "gasolinera_barata": "Gasolineras más baratas",
+     "faros": "Faros",
+     "petfriendly": "Friendly Zone 🐾",
+     "accesible": "Accesible ♿",
+     "puerto_comercial": "Puertos Comerciales",
+     "puerto_ocio": "Puertos & Marinas",
+     "deporte_publico": "Deporte al Aire Libre",
+     "ciclismo": "Ciclismo",
+     "parapente": "Parapente",
+     "golf": "Golf",
+     "escalada": "Escalada",
+     "windsurf": "Windsurf & Kitesurf",
+     "kayak": "Kayak & SUP",
+     "buceo": "Buceo & Snorkel",
+     "pesca": "Pesca Deportiva",
+     "barbacoa": "Barbacoa & Picnic",
+     "mirador": "Miradores",
+     "mercadillo": "Mercadillos",
+     "surf": "Surf & Deportes Acuáticos",
+     "supermercado": "Supermercados",
+     "oficina_turismo": "Oficinas de Turismo",
+     "camping": "Campings"
+    }
+   },
+   "ro": {
+    "flag": "🇷🇴",
+    "code": "RO",
+    "banoHoyTitle": "Faceți baie azi aici:",
+    "banoHoySub": "Vântul și marea de acum · coastele cu mare agitată sunt excluse",
+    "banoHoyNinguna": "Azi nu putem recomanda nicio plajă: marea este agitată pe toate coastele.",
+    "banoHoySinSocorrista": "Fără salvamar",
+    "parkingTitle": "Parcare și grad de ocupare",
+    "parkingFree": "{free} libere din {total}",
+    "parkingFull": "Complet",
+    "parkingNearby": "Parcare în apropiere",
+    "parkingRealTime": "Timp real",
+    "parkingOccupancy": "Grad de ocupare {pct}%",
+    "parkingAlmostFull": "Aproape complet",
+    "parkingAvailable": "Locuri disponibile",
+    "parkingUpdated": "Actualizat {time}",
+    "parkingBeach": "Parcare plajă",
+    "parkingTeide": "Parcare Teide",
+    "parkingCapacity": "Capacitate",
+    "searchPlaceholder": "Căutați un loc...",
+    "noResults": "Nu s-au găsit locuri",
+    "filterLabel": "Filtrare",
+    "clearBtn": "Ștergeți",
+    "showing": "Locuri afișate:",
+    "of": "din",
+    "places": "în total",
+    "streets": "Străzi",
+    "satellite": "Satelit",
+    "topo": "Topo",
+    "isla": "Insula offline",
+    "lifeguard": "🛟 Serviciu de salvamari",
+    "lifeguardNow": "🛟 Salvamar acum",
+    "lifeguardHours": "🛟 Salvamari {h}",
+    "noLifeguard": "⚠️ Fără supraveghere",
+    "blueFlag": "🏆 Steagul Albastru 2026",
+    "aguaExcelente": "💧 Apă de calitate excelentă",
+    "aguaBuena": "💧 Apă de calitate bună",
+    "aguaSuficiente": "⚠️ Apă de calitate suficientă",
+    "aguaFuente": "Lista oficială a zonelor de îmbăiere {a}",
+    "flagLink": "🚩 Steag și salvamari (oficial)",
+    "banderasTitulo": "Ce înseamnă fiecare steag?",
+    "banderasVerde": "Verde: îmbăiere sigură.",
+    "banderasAmarilla": "Galben: îmbăiere cu precauție.",
+    "banderasRoja": "Roșu: îmbăierea este interzisă.",
+    "banderasNegra": "Negru: îmbăierea este interzisă din cauza poluării sau a unui risc pentru sănătate.",
+    "banderasNaranja": "Portocaliu: plajă fără serviciu de supraveghere.",
+    "banderasMorada": "Mov sau alb cu o meduză: prezență de faună marină.",
+    "banderasFuente": "Steagurile folosite azi pe plajele din Insulele Canare. Decretul 116/2018 a fost anulat printr-o hotărâre a Tribunalului Suprem (BOC 82, 25/4/2024), iar noul model este în pregătire. Sursa: Subdirección de Protección Civil y Emergencias a Guvernului Insulelor Canare · portalul Infoplayas Canarias.",
+    "addFav": "Adăugați la favorite",
+    "removeFav": "Eliminați din favorite",
+    "favTitle": "Favoritele mele",
+    "favEmpty": "Încă nu aveți favorite. Atingeți ⭐ în fereastra oricărui loc pentru a-l salva aici.",
+    "favCount": "favorite",
+    "showFavs": "Afișați doar favoritele",
+    "emergency24": "🚨 Urgențe 24 h",
+    "pharmacy24": "💊 Farmacie non-stop",
+    "phoneLabel": "📞",
+    "hoursLabel": "🕐",
+    "emergencyTel": "🆘 Urgențe: 112",
+    "pharmacyGuardLink": "💊 Farmacia de gardă de azi (oficial)",
+    "shareBtn": "Distribuiți",
+    "favAdd": "Favorit",
+    "favRemove": "Eliminați",
+    "shareTitle": "Un loc în Tenerife",
+    "shareGmaps": "Deschideți în Google Maps",
+    "shareCopied": "Link copiat!",
+    "shareError": "Nu s-a putut distribui",
+    "gpsTitle": "Locația mea",
+    "gpsSearching": "Se caută poziția dumneavoastră…",
+    "gpsFound": "Poziție găsită",
+    "gpsError": "Nu s-a putut obține locația",
+    "gpsDenied": "Permisiunea de localizare a fost refuzată",
+    "gpsOutside": "Se pare că nu sunteți în Tenerife",
+    "gpsUseAsOrigin": "Folosiți ca punct de plecare",
+    "gpsAccuracy": "Precizie",
+    "daytripTitle": "Traseul zilei",
+    "daytripZoneNorth": "Nord",
+    "daytripZoneSouth": "Sud",
+    "daytripZoneCenter": "Zona înaltă",
+    "daytripMyRoute": "Traseul meu",
+    "daytripMyRouteEmpty": "Încă nu ați adăugat opriri. Alegeți mai jos ce doriți să vizitați.",
+    "daytripCatalogPrompt": "Alegeți o zonă mai sus pentru a vedea sugestii",
+    "daytripCatalogTitle": "Sugestii",
+    "daytripAdd": "Adăugați la traseul meu",
+    "daytripAdded": "Deja în traseu",
+    "daytripRemove": "Eliminați",
+    "daytripCenter": "Centrați pe hartă",
+    "daytripInfo": "Detalii",
+    "busTitle": "Transport public",
+    "busSubtitle": "TITSA · Tramvai · Linii: {n}",
+    "busClearAll": "Dezactivați toate",
+    "busTypeTram": "🚊 Tramvai",
+    "busTypeNorth": "🔵 Nord",
+    "busTypeSouth": "🔴 Sud",
+    "busTypeAirport": "✈️ Aeroport",
+    "busTypeTeide": "🌋 Teide",
+    "busTypeShuttle": "🟠 Navete",
+    "busTypeLocal": "🏙️ Locale și urbane",
+    "busTypeNight": "🦉 Linii de noapte",
+    "busTerminal": "🏁 Terminal / Autogară",
+    "busLinesPassing": "Linii care opresc aici:",
+    "busLineSingle": "Linia:",
+    "busTitsaLink": "🔗 Orarul pe titsa.com",
+    "busTranviaPanel": "🚊 Panou în timp real · metrotenerife.com",
+    "busSearchPlaceholder": "Căutați o stație sau o linie...",
+    "busSearchLine": "📋 {n} linie",
+    "busSearchLines": "📋 Linii: {n}",
+    "busSearchStop": "📍 {n} stație",
+    "busSearchStops": "📍 Stații: {n}",
+    "busSearchStopsCap": "📍 Stații: {n} din {total}",
+    "busNoResults": "Niciun rezultat",
+    "busOfficialLink": "🔗 titsa.com · metrotenerife.com — orare oficiale",
+    "busFreqLabel": "Frecvență",
+    "busPriceLabel": "Preț",
+    "busPriceFrom": "de la {p}",
+    "busQuickAirportS": "✈️ Activați liniile Aeroportului Sud",
+    "busQuickAirportN": "✈️ Activați liniile Aeroportului Nord",
+    "busShareTitle": "🚌 Liniile mele de autobuz în Tenerife",
+    "busShareCopied": "Linkul traseului a fost copiat!",
+    "busShareNothing": "Activați cel puțin o linie pentru a putea distribui",
+    "busShareError": "Nu s-a putut distribui",
+    "nearbyStopsTitle": "🚏 Stații în apropiere",
+    "nearbyStopsFrom": "Pe jos de la {place}",
+    "nearbyStopsFromGps": "Pe jos de la locația dumneavoastră",
+    "nearbyStopsNone": "Nu există stații la mai puțin de 1,5 km",
+    "nearbyStopsMin": "min",
+    "nearbyHowToBtn": "🚏 Cum ajungeți cu autobuzul",
+    "popupVerFicha": "Vedeți descrierea completă",
+    "directionsBtn": "🚗 Cum ajungeți cu mașina",
+    "busAccessToggleLabel": "Accesibil cu autobuzul (500 m)",
+    "categories": {
+     "parking": "Parcări",
+     "webcam": "Camere web",
+     "ayuda": "Ajutor și sprijin",
+     "naturaleza": "Natură",
+     "senderismo": "Drumeții",
+     "playa": "Plaje",
+     "nudista": "Plaje nudiste",
+     "piscinas": "Piscine naturale",
+     "montana": "Munte",
+     "cultura": "Cultură",
+     "museo": "Muzee",
+     "gastronomia": "Gastronomie",
+     "familia": "Familie",
+     "animales": "Animale",
+     "ciudad": "Orașe",
+     "municipio": "Municipalități",
+     "farmacia": "Farmacii",
+     "hospital": "Spitale",
+     "csalud": "Centre de sănătate",
+     "veterinario": "Veterinari 24h",
+     "gasolinera": "Benzinării",
+     "gasolinera_barata": "Cele mai ieftine benzinării",
+     "faros": "Faruri",
+     "petfriendly": "Friendly Zone 🐾",
+     "accesible": "Accesibil ♿",
+     "puerto_comercial": "Porturi comerciale",
+     "puerto_ocio": "Porturi de agrement",
+     "deporte_publico": "Sport în aer liber",
+     "ciclismo": "Ciclism",
+     "parapente": "Parapantă",
+     "golf": "Golf",
+     "escalada": "Escaladă",
+     "windsurf": "Windsurf și kitesurf",
+     "kayak": "Caiac și SUP",
+     "buceo": "Scufundări și snorkeling",
+     "pesca": "Pescuit sportiv",
+     "barbacoa": "Grătar și picnic",
+     "mirador": "Puncte de belvedere",
+     "mercadillo": "Piețe locale",
+     "surf": "Surf și sporturi nautice",
+     "supermercado": "Supermarketuri",
+     "oficina_turismo": "Centre de informare turistică",
+     "camping": "Campinguri"
+    }
+   }
+  },
+  {
+   "tabla": "AUTH_STRINGS",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "authBtnGuest": "Cuenta",
+    "authBtnUser": "Mi cuenta",
+    "authModalTitle": "Su cuenta",
+    "authTabLogin": "Iniciar sesión",
+    "authTabSignup": "Crear cuenta",
+    "authTabGuest": "Continuar como invitado",
+    "authEmailLabel": "Email",
+    "authEmailPlaceholder": "nombre@email.com",
+    "authPasswordLabel": "Contraseña",
+    "authPasswordPlaceholder": "Mínimo 6 caracteres",
+    "authPasswordPlaceholder8": "Mínimo 8 caracteres",
+    "authLoginBtn": "Entrar",
+    "authSignupBtn": "Registrarme",
+    "authGuestBtn": "Seguir sin cuenta",
+    "authGuestHint": "Puede usar la app igual. Sus favoritos se guardarán solo en este dispositivo.",
+    "authLoading": "Cargando…",
+    "authLogoutBtn": "Cerrar sesión",
+    "authLoggedAs": "Sesión iniciada como",
+    "authSignupSuccess": "Le hemos enviado un email para confirmar su cuenta. Revíselo y ya podrá entrar.",
+    "authLoginSuccess": "Bienvenido de vuelta",
+    "authErrorInvalid": "Email o contraseña incorrectos",
+    "authErrorNotConfirmed": "Confirme su email antes de entrar. Revise su bandeja.",
+    "authErrorWeak": "La contraseña debe tener al menos 6 caracteres",
+    "authErrorCorta8": "La contraseña debe tener al menos 8 caracteres",
+    "authErrorFiltrada": "Esta contraseña ha salido en filtraciones de datos de otras webs. Elija otra.",
+    "authErrorEmail": "Email no válido",
+    "authErrorExists": "Ya existe una cuenta con este email",
+    "authErrorGeneric": "Algo ha ido mal. Inténtelo de nuevo.",
+    "authErrorNetwork": "Sin conexión. Vuelva a intentarlo cuando tenga internet.",
+    "authSyncTitle": "Sincronización",
+    "authSyncOn": "Sus favoritos se guardan en la nube",
+    "authSyncOff": "Sesión local, sin sincronización",
+    "authMergePrompt": "Tiene favoritos guardados en este dispositivo. ¿Añadirlos a su cuenta?",
+    "authMergeYes": "Sí, fusionar",
+    "authMergeNo": "No, descartar",
+    "authClose": "Cerrar"
+   },
+   "ro": {
+    "authBtnGuest": "Cont",
+    "authBtnUser": "Contul meu",
+    "authModalTitle": "Contul dumneavoastră",
+    "authTabLogin": "Conectare",
+    "authTabSignup": "Creare cont",
+    "authTabGuest": "Continuați ca invitat",
+    "authEmailLabel": "E-mail",
+    "authEmailPlaceholder": "nume@email.com",
+    "authPasswordLabel": "Parolă",
+    "authPasswordPlaceholder": "Minimum 6 caractere",
+    "authPasswordPlaceholder8": "Minimum 8 caractere",
+    "authLoginBtn": "Conectați-vă",
+    "authSignupBtn": "Creați contul",
+    "authGuestBtn": "Continuați fără cont",
+    "authGuestHint": "Puteți folosi aplicația și fără cont. Favoritele dumneavoastră se vor salva doar pe acest dispozitiv.",
+    "authLoading": "Se încarcă…",
+    "authLogoutBtn": "Deconectare",
+    "authLoggedAs": "V-ați conectat ca",
+    "authSignupSuccess": "V-am trimis un e-mail pentru a vă confirma contul. Verificați-l și apoi vă veți putea conecta.",
+    "authLoginSuccess": "Bine ați revenit",
+    "authErrorInvalid": "E-mailul sau parola sunt incorecte",
+    "authErrorNotConfirmed": "Confirmați adresa de e-mail înainte de a vă conecta. Verificați căsuța de e-mail.",
+    "authErrorWeak": "Parola trebuie să aibă cel puțin 6 caractere",
+    "authErrorCorta8": "Parola trebuie să aibă cel puțin 8 caractere",
+    "authErrorFiltrada": "Această parolă a apărut în scurgeri de date de pe alte site-uri. Alegeți alta.",
+    "authErrorEmail": "Adresă de e-mail nevalidă",
+    "authErrorExists": "Există deja un cont cu această adresă de e-mail",
+    "authErrorGeneric": "Ceva nu a funcționat. Încercați din nou.",
+    "authErrorNetwork": "Fără conexiune. Încercați din nou când aveți internet.",
+    "authSyncTitle": "Sincronizare",
+    "authSyncOn": "Favoritele dumneavoastră se salvează în cloud",
+    "authSyncOff": "Sesiune locală, fără sincronizare",
+    "authMergePrompt": "Aveți favorite salvate pe acest dispozitiv. Le adăugați la cont?",
+    "authMergeYes": "Da, combinați-le",
+    "authMergeNo": "Nu, renunțați la ele",
+    "authClose": "Închideți"
+   }
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "parkingSpaces",
+   "forma": "texto",
+   "es": "{n} plaza|{n} plazas",
+   "ro": "{n} loc|{n} locuri|{n} de locuri"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "parkingFreeOfCharge",
+   "forma": "texto",
+   "es": "Gratuito",
+   "ro": "Gratuit"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "parkingApprox",
+   "forma": "texto",
+   "es": "aprox.",
+   "ro": "aprox."
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "parkingMaxDay",
+   "forma": "texto",
+   "es": "máx. {n} €/día",
+   "ro": "max. {n} €/zi"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "parkingPriceDate",
+   "forma": "texto",
+   "es": "precio de {f}",
+   "ro": "preț din {f}"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "parkingHere",
+   "forma": "texto",
+   "es": "Se puede aparcar aquí",
+   "ro": "Se poate parca aici"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopContact",
+   "forma": "texto",
+   "es": "Contactar",
+   "ro": "Contactați"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopPartner",
+   "forma": "texto",
+   "es": "Negocio Partner",
+   "ro": "Afacere parteneră"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopMaxPeople",
+   "forma": "texto",
+   "es": "Máx. {n} persona|Máx. {n} personas",
+   "ro": "Max. {n} persoană|Max. {n} persoane|Max. {n} de persoane"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "cartEmpty",
+   "forma": "texto",
+   "es": "Su cesta está vacía.",
+   "ro": "Coșul dumneavoastră este gol."
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "cartEmptyHint",
+   "forma": "texto",
+   "es": "Explore excursiones y souvenirs.",
+   "ro": "Explorați excursiile și suvenirurile."
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "cartLoginMsg",
+   "forma": "texto",
+   "es": "Inicie sesión para ver y guardar su cesta",
+   "ro": "Conectați-vă pentru a vedea și salva coșul"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "cartLoginBtn",
+   "forma": "texto",
+   "es": "Iniciar sesión",
+   "ro": "Conectare"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "adRecommend",
+   "forma": "texto",
+   "es": "Patrocinado",
+   "ro": "Sponsorizat"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "adHasta",
+   "forma": "texto",
+   "es": "hasta el {f}",
+   "ro": "până la {f}"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopTitle",
+   "forma": "texto",
+   "es": "Tienda",
+   "ro": "Magazin"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopExc",
+   "forma": "texto",
+   "es": "Excursiones",
+   "ro": "Excursii"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopSouv",
+   "forma": "texto",
+   "es": "Souvenirs",
+   "ro": "Suveniruri"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopBiz",
+   "forma": "texto",
+   "es": "Negocios",
+   "ro": "Afaceri"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopAd",
+   "forma": "texto",
+   "es": "Anúnciese",
+   "ro": "Promovare"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopSoon",
+   "forma": "texto",
+   "es": "PRÓXIMAMENTE",
+   "ro": "ÎN CURÂND"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopBook",
+   "forma": "texto",
+   "es": "Reservar",
+   "ro": "Rezervați"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopBuy",
+   "forma": "texto",
+   "es": "Comprar",
+   "ro": "Cumpărați"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopPerson",
+   "forma": "texto",
+   "es": "/ persona",
+   "ro": "/ persoană"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopUnit",
+   "forma": "texto",
+   "es": "/ unidad",
+   "ro": "/ bucată"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopBizEmpty",
+   "forma": "texto",
+   "es": "Los primeros negocios partner aparecerán aquí.",
+   "ro": "Primele afaceri partenere vor apărea aici."
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "shopBizCta",
+   "forma": "texto",
+   "es": "¿Tiene un negocio en Tenerife? ¡Anúnciese!",
+   "ro": "Aveți o afacere în Tenerife? Promovați-o aici!"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "navHome",
+   "forma": "texto",
+   "es": "Inicio",
+   "ro": "Acasă"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "navFav",
+   "forma": "texto",
+   "es": "Favoritos",
+   "ro": "Favorite"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "navRoutes",
+   "forma": "texto",
+   "es": "Rutas",
+   "ro": "Trasee"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "navShop",
+   "forma": "texto",
+   "es": "Tienda",
+   "ro": "Magazin"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "navChat",
+   "forma": "texto",
+   "es": "Asistente",
+   "ro": "Asistent"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "navAccount",
+   "forma": "texto",
+   "es": "Cuenta",
+   "ro": "Cont"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeOrigin",
+   "forma": "texto",
+   "es": "Origen",
+   "ro": "Plecare"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeDest",
+   "forma": "texto",
+   "es": "Destino",
+   "ro": "Destinație"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routePickHint",
+   "forma": "texto",
+   "es": "Toque aquí para elegir…",
+   "ro": "Atingeți aici pentru a alege…"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeAddrPh",
+   "forma": "texto",
+   "es": "O escriba una dirección…",
+   "ro": "Sau scrieți o adresă…"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeHint",
+   "forma": "texto",
+   "es": "Elija en el mapa, escriba una dirección o use el GPS",
+   "ro": "Alegeți pe hartă, scrieți o adresă sau folosiți GPS-ul"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeByCar",
+   "forma": "texto",
+   "es": "En coche",
+   "ro": "Cu mașina"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeByBus",
+   "forma": "texto",
+   "es": "En guagua",
+   "ro": "Cu autobuzul"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeCarDetail",
+   "forma": "texto",
+   "es": "Ruta por carretera",
+   "ro": "Traseu rutier"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeBusCalc",
+   "forma": "texto",
+   "es": "Calculando opciones de bus…",
+   "ro": "Se calculează variantele cu autobuzul…"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeBackPlace",
+   "forma": "texto",
+   "es": "Volver al lugar",
+   "ro": "Înapoi la fișa locului"
+  },
+  {
+   "tabla": "UI_TX",
+   "clave": "routeMin",
+   "forma": "texto",
+   "es": "min",
+   "ro": "min"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busPago",
+   "forma": "texto",
+   "es": "Puede pagar acercando tarjeta bancaria, móvil o reloj al datáfono del conductor. Con la tarjeta Ten+ el billete sale más barato. En trayectos de más de 20 km, el billete de ida y vuelta lleva un 10 % de descuento.",
+   "ro": "Puteți plăti apropiind cardul bancar, telefonul sau ceasul de terminalul de plată al șoferului. Cu cardul Ten+, biletul este mai ieftin. Pe trasee de peste 20 km, biletul dus-întors are o reducere de 10 %."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busCaminataLarga",
+   "forma": "texto",
+   "es": "Caminata larga hasta la parada ({km} km aprox. por calle).",
+   "ro": "Drum lung pe jos până la stație (aprox. {km} km pe stradă)."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busAltTransbordo",
+   "forma": "texto",
+   "es": "Alternativa con transbordo: {l1}+{l2}, ~{min} min.",
+   "ro": "Variantă cu schimbare: {l1}+{l2}, ~{min} min."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busAltDirecta",
+   "forma": "texto",
+   "es": "Alternativa directa: {l}, ~{min} min.",
+   "ro": "Variantă directă: {l}, ~{min} min."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpSinGuagua",
+   "forma": "texto",
+   "es": "Sin guagua directa ni con un transbordo",
+   "ro": "Fără autobuz direct sau cu o singură schimbare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busSinConexion",
+   "forma": "texto",
+   "es": "No hay líneas que conecten estos dos puntos.",
+   "ro": "Nu există linii care să lege aceste două puncte."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busFueraHorario",
+   "forma": "texto",
+   "es": "A esta hora no pasa ninguna guagua que una estos dos puntos. Horario de las líneas que los unen: {lineas}.",
+   "ro": "La această oră nu circulă niciun autobuz care să lege aceste două puncte. Orarul liniilor care le leagă: {lineas}."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busVuelta",
+   "forma": "texto",
+   "es": "vuelta",
+   "ro": "întoarcere"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busSinParadaOrigen",
+   "forma": "texto",
+   "es": "No hay ninguna parada de guagua a menos de {km} km a pie del origen.",
+   "ro": "Nu există nicio stație de autobuz la mai puțin de {km} km pe jos de punctul de plecare."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busSinParadaDestino",
+   "forma": "texto",
+   "es": "No hay ninguna parada de guagua a menos de {km} km a pie del destino.",
+   "ro": "Nu există nicio stație de autobuz la mai puțin de {km} km pe jos de destinație."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busTransbordo",
+   "forma": "texto",
+   "es": "transbordo",
+   "ro": "schimbare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeToastOrigen",
+   "forma": "texto",
+   "es": "Toque un marcador del mapa como *Origen*",
+   "ro": "Alegeți un loc de pe hartă ca *punct de plecare*"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeToastDestino",
+   "forma": "texto",
+   "es": "Toque un marcador del mapa como *Destino*",
+   "ro": "Alegeți un loc de pe hartă ca *destinație*"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpCompartirTitulo",
+   "forma": "texto",
+   "es": "Mi día en Tenerife",
+   "ro": "Ziua mea în Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpCompartirPie",
+   "forma": "texto",
+   "es": "Planificado con Tenerife GO",
+   "ro": "Planificat cu Tenerife GO"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpZonaSinMas",
+   "forma": "texto",
+   "es": "En esta zona no hay más lugares con lo que ha elegido.",
+   "ro": "În această zonă nu mai sunt alte locuri pentru ce ați ales."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busNoDisponible",
+   "forma": "texto",
+   "es": "Sin conexión",
+   "ro": "Fără legătură"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busSinRuta",
+   "forma": "texto",
+   "es": "No se encontró una ruta en guagua para este trayecto.",
+   "ro": "Nu s-a găsit niciun traseu cu autobuzul pentru această călătorie."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "photoLoading",
+   "forma": "texto",
+   "es": "Cargando",
+   "ro": "Se încarcă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasPrecioG95",
+   "forma": "texto",
+   "es": "Gasolina 95",
+   "ro": "Benzină 95"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasPrecioDiesel",
+   "forma": "texto",
+   "es": "Diésel",
+   "ro": "Motorină"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasBarataUna",
+   "forma": "texto",
+   "es": "la más barata de {m}",
+   "ro": "cea mai ieftină din {m}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasBarataVarias",
+   "forma": "texto",
+   "es": "entre las {n} más baratas de {m}",
+   "ro": "printre cele {n} mai ieftine din {m}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasPrecioFecha",
+   "forma": "texto",
+   "es": "Precio oficial del Ministerio · {f}",
+   "ro": "Preț oficial (Ministerul spaniol) · {f}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasPreciosViejos",
+   "forma": "texto",
+   "es": "No hay precios de hoy: los últimos son del {f}.",
+   "ro": "Nu există prețuri de azi: ultimele sunt din {f}."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasPreciosNo",
+   "forma": "texto",
+   "es": "Los precios no están disponibles ahora.",
+   "ro": "Prețurile nu sunt disponibile acum."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasCercaBoton",
+   "forma": "texto",
+   "es": "La gasolinera más barata cerca de mí",
+   "ro": "Cea mai ieftină benzinărie de lângă mine"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasCercaSub",
+   "forma": "texto",
+   "es": "Gasolina 95 y diésel · precio oficial del Ministerio",
+   "ro": "Benzină 95 și motorină · preț oficial (Ministerul spaniol)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasCercaTitulo",
+   "forma": "texto",
+   "es": "Gasolineras más baratas cerca de usted",
+   "ro": "Cele mai ieftine benzinării din apropierea dumneavoastră"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasCercaRadio",
+   "forma": "texto",
+   "es": "En línea recta, a menos de:",
+   "ro": "În linie dreaptă, la mai puțin de:"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gasCercaNinguna",
+   "forma": "texto",
+   "es": "Ninguna gasolinera con precio a menos de {d}.",
+   "ro": "Nicio benzinărie cu preț la mai puțin de {d}."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeCalculating",
+   "forma": "texto",
+   "es": "Calculando…",
+   "ro": "Se calculează…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeBusSearch",
+   "forma": "texto",
+   "es": "Buscando paradas y líneas…",
+   "ro": "Se caută stații și linii…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gpsNoSupport",
+   "forma": "texto",
+   "es": "GPS no disponible en este navegador",
+   "ro": "GPS indisponibil în acest browser"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "authNotConfigured",
+   "forma": "texto",
+   "es": "Servicio no configurado todavía.",
+   "ro": "Serviciul nu este configurat încă."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "camposObligatorios",
+   "forma": "texto",
+   "es": "Por favor, rellene todos los campos obligatorios (*)",
+   "ro": "Vă rugăm să completați toate câmpurile obligatorii (*)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopAdded",
+   "forma": "texto",
+   "es": "Añadido",
+   "ro": "Adăugat"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admFaltanIdiomas",
+   "forma": "texto",
+   "es": "🌐 Sin traducir: {l}",
+   "ro": "🌐 Netradus: {l}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admTraducido",
+   "forma": "texto",
+   "es": "🌐 Traducido a los {n}",
+   "ro": "🌐 Tradus în toate cele {n}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopMinutes",
+   "forma": "texto",
+   "es": "{n} min",
+   "ro": "{n} min"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopDays",
+   "forma": "texto",
+   "es": "{n} día|{n} días",
+   "ro": "{n} zi|{n} zile|{n} de zile"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopHours",
+   "forma": "texto",
+   "es": "{n} hora|{n} horas",
+   "ro": "{n} oră|{n} ore|{n} de ore"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "pushBtnActivar",
+   "forma": "texto",
+   "es": "Activar notificaciones",
+   "ro": "Activați notificările"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "pushActivando",
+   "forma": "texto",
+   "es": "Activando…",
+   "ro": "Se activează…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "pushActivadas",
+   "forma": "texto",
+   "es": "Notificaciones activadas ✓",
+   "ro": "Notificări activate ✓"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "pushHazInstalar",
+   "forma": "texto",
+   "es": "Para recibir avisos, primero añada la app a la pantalla de inicio: toque Compartir y luego «Añadir a pantalla de inicio». Después vuelva aquí.",
+   "ro": "Pentru a primi alerte, adăugați mai întâi aplicația pe ecranul principal: atingeți Partajați, apoi „Adăugați la ecranul principal”. După aceea, reveniți aici."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "pushNoNavegador",
+   "forma": "texto",
+   "es": "Este navegador no admite notificaciones.",
+   "ro": "Acest browser nu acceptă notificări."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busErrorCalculo",
+   "forma": "texto",
+   "es": "No se pudo calcular el trayecto en bus.",
+   "ro": "Nu s-a putut calcula traseul cu autobuzul."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "emailNoValido",
+   "forma": "texto",
+   "es": "El email no es válido",
+   "ro": "Adresa de e-mail nu este validă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "reservasPronto",
+   "forma": "texto",
+   "es": "🚀 Las reservas estarán disponibles muy pronto. ¡Gracias por su interés!",
+   "ro": "🚀 Rezervările vor fi disponibile foarte curând. Vă mulțumim pentru interes!"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "noSePudoActivar",
+   "forma": "texto",
+   "es": "No se pudo activar: ",
+   "ro": "Nu s-a putut activa: "
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sinMasOpciones",
+   "forma": "texto",
+   "es": "😅 Sin más opciones",
+   "ro": "😅 Nu mai sunt alte variante"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "copiadoPapeles",
+   "forma": "texto",
+   "es": "¡Copiado al portapapeles! 📋",
+   "ro": "Copiat în clipboard! 📋"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gpsNoSoportado",
+   "forma": "texto",
+   "es": "Su navegador no soporta GPS. Elija el origen manualmente en la calculadora.",
+   "ro": "Browserul dumneavoastră nu acceptă GPS. Alegeți manual punctul de plecare în planificatorul de trasee."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "comoLlegarNav",
+   "forma": "texto",
+   "es": "🧭 Cómo llegar",
+   "ro": "🧭 Cum ajungeți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "capaNoDisponible",
+   "forma": "texto",
+   "es": "Capa no disponible",
+   "ro": "Strat indisponibil"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaNoListo",
+   "forma": "texto",
+   "es": "El mapa aún no está listo",
+   "ro": "Harta nu este încă gata"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "capaSinImagenes",
+   "forma": "texto",
+   "es": "No se pueden cargar las imágenes de esta capa",
+   "ro": "Imaginile acestui strat nu se pot încărca"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "capaError",
+   "forma": "texto",
+   "es": "Error al cambiar de capa",
+   "ro": "Eroare la schimbarea stratului"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "capaIslaFallo",
+   "forma": "texto",
+   "es": "No se pudo abrir el mapa de la isla",
+   "ro": "Harta insulei nu s-a putut deschide"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "capaIslaCargando",
+   "forma": "texto",
+   "es": "Abriendo el mapa de la isla…",
+   "ro": "Se deschide harta insulei…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "capaSinRed",
+   "forma": "texto",
+   "es": "Sin red: se pasa al mapa de la isla",
+   "ro": "Fără rețea: se trece la harta insulei"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "contadorLugares",
+   "forma": "texto",
+   "es": "lugar|lugares",
+   "ro": "loc|locuri|de locuri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "contadorResultados",
+   "forma": "texto",
+   "es": "resultado|resultados",
+   "ro": "rezultat|rezultate|de rezultate"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDetalle",
+   "forma": "texto",
+   "es": "Mapa detallado",
+   "ro": "Hartă detaliată"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDetalleNo",
+   "forma": "texto",
+   "es": "sin descargar",
+   "ro": "nedescărcată"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDetalleSi",
+   "forma": "texto",
+   "es": "descargada · {mb} MB",
+   "ro": "descărcată · {mb} MB"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDescargar",
+   "forma": "texto",
+   "es": "Descargar detalle ({mb} MB)",
+   "ro": "Descărcați harta detaliată ({mb} MB)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDescargando",
+   "forma": "texto",
+   "es": "Descargando… {pct}%",
+   "ro": "Se descarcă… {pct}%"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaBorrarDetalle",
+   "forma": "texto",
+   "es": "Borrar el detalle",
+   "ro": "Ștergeți harta detaliată"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDetalleListo",
+   "forma": "texto",
+   "es": "Mapa detallado listo. Ya funciona sin conexión.",
+   "ro": "Harta detaliată este gata. Funcționează acum fără conexiune."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDetalleFallo",
+   "forma": "texto",
+   "es": "No se pudo descargar el mapa detallado.",
+   "ro": "Harta detaliată nu s-a putut descărca."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDetalleFuera",
+   "forma": "texto",
+   "es": "Mapa detallado borrado.",
+   "ro": "Harta detaliată a fost ștearsă."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "mapaDetalleAviso",
+   "forma": "texto",
+   "es": "Se descarga una sola vez y se queda en el móvil. Mejor con wifi.",
+   "ro": "Se descarcă o singură dată și rămâne pe telefon. Mai bine prin Wi-Fi."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "localizando",
+   "forma": "texto",
+   "es": "⏳ Localizando…",
+   "ro": "⏳ Se localizează…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrNombre",
+   "forma": "texto",
+   "es": "El nombre es obligatorio",
+   "ro": "Numele este obligatoriu"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrPrecio",
+   "forma": "texto",
+   "es": "Introduzca un precio válido",
+   "ro": "Introduceți un preț valid"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrSinConexion",
+   "forma": "texto",
+   "es": "Sin conexión con el servidor. Inténtelo de nuevo.",
+   "ro": "Fără conexiune la server. Încercați din nou."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrSinConexionCorto",
+   "forma": "texto",
+   "es": "Sin conexión con el servidor.",
+   "ro": "Fără conexiune la server."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrNoPublicar",
+   "forma": "texto",
+   "es": "No se pudo publicar: ",
+   "ro": "Nu s-a putut publica: "
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrNegocioNombre",
+   "forma": "texto",
+   "es": "⚠️ El nombre del negocio es obligatorio.",
+   "ro": "⚠️ Numele afacerii este obligatoriu."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrCoordsObligatorias",
+   "forma": "texto",
+   "es": "⚠️ Las coordenadas son obligatorias para aparecer en el mapa.",
+   "ro": "⚠️ Coordonatele sunt obligatorii pentru a apărea pe hartă."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrCoordsFormato",
+   "forma": "texto",
+   "es": "⚠️ Coordenadas no válidas. Use punto decimal (ej: 28.0514)",
+   "ro": "⚠️ Coordonate nevalide. Folosiți punctul zecimal (ex.: 28.0514)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrCoordsFuera",
+   "forma": "texto",
+   "es": "⚠️ Esas coordenadas están fuera de Tenerife. Compruebe lat/lng.",
+   "ro": "⚠️ Aceste coordonate sunt în afara insulei Tenerife. Verificați lat/lng."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrSinConexionAviso",
+   "forma": "texto",
+   "es": "⚠️ Sin conexión con el servidor. Inténtelo de nuevo.",
+   "ro": "⚠️ Fără conexiune la server. Încercați din nou."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrNoPublicarAviso",
+   "forma": "texto",
+   "es": "⚠️ No se pudo publicar: ",
+   "ro": "⚠️ Nu s-a putut publica: "
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admConfBorrarItem",
+   "forma": "texto",
+   "es": "¿Borrar este elemento?",
+   "ro": "Ștergeți acest element?"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrNoBorrar",
+   "forma": "texto",
+   "es": "No se pudo borrar: ",
+   "ro": "Nu s-a putut șterge: "
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrNoCambiar",
+   "forma": "texto",
+   "es": "No se pudo cambiar: ",
+   "ro": "Nu s-a putut modifica: "
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrSinGeo",
+   "forma": "texto",
+   "es": "Geolocalización no disponible en este dispositivo.",
+   "ro": "Geolocalizarea nu este disponibilă pe acest dispozitiv."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrGeoFallo",
+   "forma": "texto",
+   "es": "No se pudo obtener la ubicación. Introduzca las coordenadas manualmente.",
+   "ro": "Nu s-a putut obține locația. Introduceți manual coordonatele."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admNadaLocal",
+   "forma": "texto",
+   "es": "No queda nada guardado solo en este dispositivo.",
+   "ro": "Nu mai este nimic salvat doar pe acest dispozitiv."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admConfDescartar",
+   "forma": "texto",
+   "es": "⚠️ Esto descartará {n} elemento(s) que aún están guardados solo en este móvil y NO se han subido. Lo ya publicado no se toca. ¿Continuar?",
+   "ro": "⚠️ Această acțiune va elimina elementele care sunt încă salvate doar pe acest telefon ({n}) și NU au fost încărcate. Ce este deja publicat nu se modifică. Continuați?"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admRestosDescartados",
+   "forma": "texto",
+   "es": "Restos locales descartados. Lo publicado sigue en su sitio.",
+   "ro": "Resturile locale au fost eliminate. Ce este publicat rămâne la locul lui."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSubidaParcial",
+   "forma": "texto",
+   "es": "No se pudo subir todo ({e}). Lo ya subido se conserva.",
+   "ro": "Nu s-a putut încărca totul ({e}). Ce s-a încărcat deja se păstrează."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admNadaSubir",
+   "forma": "texto",
+   "es": "Nada válido que subir (falta el nombre, o coordenadas en los anuncios).",
+   "ro": "Nimic valid de încărcat (lipsește numele sau, la anunțuri, coordonatele)."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSubidos",
+   "forma": "texto",
+   "es": "Subidos {n}. Ya los ve todo el mundo.",
+   "ro": "Încărcate: {n}. Acum le vede toată lumea."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admDescartados",
+   "forma": "texto",
+   "es": " Se quedaron {n} sin subir por datos incompletos.",
+   "ro": " Au rămas neîncărcate: {n}, din cauza datelor incomplete."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSinNegocios",
+   "forma": "texto",
+   "es": "No hay negocios añadidos todavía",
+   "ro": "Încă nu s-au adăugat afaceri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admVisible",
+   "forma": "texto",
+   "es": "Visible",
+   "ro": "Vizibil"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admOculto",
+   "forma": "texto",
+   "es": "Oculto",
+   "ro": "Ascuns"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admBorrar",
+   "forma": "texto",
+   "es": "Borrar",
+   "ro": "Ștergeți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSinCoords",
+   "forma": "texto",
+   "es": "⚠️ Sin coords",
+   "ro": "⚠️ Fără coordonate"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admConectadoComo",
+   "forma": "texto",
+   "es": "Conectado como ",
+   "ro": "V-ați conectat ca "
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSinSesion",
+   "forma": "texto",
+   "es": "Sin sesión.",
+   "ro": "Nicio sesiune deschisă."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admStatSouvenirs",
+   "forma": "texto",
+   "es": "🛍️ Souvenirs",
+   "ro": "🛍️ Suveniruri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admStatExcursiones",
+   "forma": "texto",
+   "es": "🏔️ Excursiones",
+   "ro": "🏔️ Excursii"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admStatAnuncios",
+   "forma": "texto",
+   "es": "📢 Anuncios",
+   "ro": "📢 Anunțuri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admStatVisibles",
+   "forma": "texto",
+   "es": "visibles",
+   "ro": "vizibile"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admStatActivos",
+   "forma": "texto",
+   "es": "activos",
+   "ro": "active"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admStatIngresos",
+   "forma": "texto",
+   "es": "💰 Ingresos anuncios",
+   "ro": "💰 Venituri din anunțuri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrSinServidor",
+   "forma": "texto",
+   "es": "no se pudo contactar con el servidor.\n\nSi el resto de la app va bien, lo más probable es que falte crear la tabla \"{t}\" en Supabase (fichero supabase/tienda.sql).",
+   "ro": "nu s-a putut contacta serverul.\n\nDacă restul aplicației funcționează, cel mai probabil trebuie creat tabelul „{t}” în Supabase (fișierul supabase/tienda.sql)."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrSinTabla",
+   "forma": "texto",
+   "es": "la tabla \"{t}\" no existe todavía en Supabase.\nEjecute supabase/tienda.sql.",
+   "ro": "tabelul „{t}” nu există încă în Supabase.\nRulați supabase/tienda.sql."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrSinPermiso",
+   "forma": "texto",
+   "es": "su cuenta no tiene permisos de administrador para esto.",
+   "ro": "contul dumneavoastră nu are permisiuni de administrator pentru asta."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admErrDesconocido",
+   "forma": "texto",
+   "es": "error desconocido",
+   "ro": "eroare necunoscută"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSinSouvenirs",
+   "forma": "texto",
+   "es": "No hay souvenirs aún",
+   "ro": "Încă nu există suveniruri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSinExcursiones",
+   "forma": "texto",
+   "es": "No hay excursiones aún",
+   "ro": "Încă nu există excursii"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admComprobando",
+   "forma": "texto",
+   "es": "Comprobando…",
+   "ro": "Se verifică…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPanelSinRed",
+   "forma": "texto",
+   "es": "Sin conexión con el servidor. El panel necesita internet.",
+   "ro": "Fără conexiune la server. Panoul are nevoie de internet."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admIniciaSesion",
+   "forma": "texto",
+   "es": "Inicie sesión con su cuenta de administrador.",
+   "ro": "Conectați-vă cu contul de administrator."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSinPermisoCuenta",
+   "forma": "texto",
+   "es": "Esta cuenta no tiene permisos de administrador.",
+   "ro": "Acest cont nu are permisiuni de administrator."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPublicando",
+   "forma": "texto",
+   "es": "Publicando…",
+   "ro": "Se publică…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSubiendo",
+   "forma": "texto",
+   "es": "Subiendo…",
+   "ro": "Se încarcă…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admBtnAdmin",
+   "forma": "texto",
+   "es": "⚙️ Administrador",
+   "ro": "⚙️ Administrator"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admTitulo",
+   "forma": "texto",
+   "es": "⚙️ Panel Admin",
+   "ro": "⚙️ Panou de administrare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admCerrar",
+   "forma": "texto",
+   "es": "Cerrar administración",
+   "ro": "Închideți panoul de administrare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admAcceso",
+   "forma": "texto",
+   "es": "Acceso de Administrador",
+   "ro": "Acces de administrator"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admTabSouvenirs",
+   "forma": "texto",
+   "es": "🛍️ Souvenirs",
+   "ro": "🛍️ Suveniruri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admTabExcursiones",
+   "forma": "texto",
+   "es": "🏔️ Excursiones",
+   "ro": "🏔️ Excursii"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admTabAnuncios",
+   "forma": "texto",
+   "es": "📢 Anuncios",
+   "ro": "📢 Anunțuri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admTabAjustes",
+   "forma": "texto",
+   "es": "⚙️ Ajustes",
+   "ro": "⚙️ Setări"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admAddSouvenir",
+   "forma": "texto",
+   "es": "➕ Añadir souvenir",
+   "ro": "➕ Adăugați un suvenir"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhEmojiRegalo",
+   "forma": "texto",
+   "es": "Emoji 🎁",
+   "ro": "Emoji 🎁"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhProducto",
+   "forma": "texto",
+   "es": "Nombre del producto *",
+   "ro": "Numele produsului *"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhDescCorta",
+   "forma": "texto",
+   "es": "Descripción corta",
+   "ro": "Descriere scurtă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhPrecio",
+   "forma": "texto",
+   "es": "Precio (€)",
+   "ro": "Preț (€)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhTallas",
+   "forma": "texto",
+   "es": "Ej: Tallas S/M/L",
+   "ro": "Ex.: mărimi S/M/L"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admAddTienda",
+   "forma": "texto",
+   "es": "Añadir a la tienda",
+   "ro": "Adăugați în magazin"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSouvenirsActivos",
+   "forma": "texto",
+   "es": "Souvenirs activos",
+   "ro": "Suveniruri active"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admAddExcursion",
+   "forma": "texto",
+   "es": "➕ Añadir excursión",
+   "ro": "➕ Adăugați o excursie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhEmojiVolcan",
+   "forma": "texto",
+   "es": "Emoji 🌋",
+   "ro": "Emoji 🌋"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhExcursionNombre",
+   "forma": "texto",
+   "es": "Nombre de la excursión *",
+   "ro": "Numele excursiei *"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhDescCompleta",
+   "forma": "texto",
+   "es": "Descripción completa",
+   "ro": "Descriere completă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhPrecioPersona",
+   "forma": "texto",
+   "es": "Precio €/persona",
+   "ro": "Preț €/persoană"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhDuracion",
+   "forma": "texto",
+   "es": "Duración (ej: 4 horas)",
+   "ro": "Durată (ex.: 4 ore)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhSalida",
+   "forma": "texto",
+   "es": "Salida desde...",
+   "ro": "Plecare din..."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhMaxPersonas",
+   "forma": "texto",
+   "es": "Máx. personas",
+   "ro": "Max. persoane"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admDificultad",
+   "forma": "texto",
+   "es": "Dificultad",
+   "ro": "Dificultate"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admFacil",
+   "forma": "texto",
+   "es": "Fácil",
+   "ro": "Ușoară"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admMedia",
+   "forma": "texto",
+   "es": "Media",
+   "ro": "Medie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admAlta",
+   "forma": "texto",
+   "es": "Alta",
+   "ro": "Ridicată"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhContactoReserva",
+   "forma": "texto",
+   "es": "WhatsApp o email de reserva",
+   "ro": "WhatsApp sau e-mail pentru rezervări"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admBtnAddExcursion",
+   "forma": "texto",
+   "es": "Añadir excursión",
+   "ro": "Adăugați excursia"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admExcursionesActivas",
+   "forma": "texto",
+   "es": "Excursiones activas",
+   "ro": "Excursii active"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admRecomendaciones",
+   "forma": "texto",
+   "es": "⭐ Recomendaciones de Jérôme — Añadir negocio",
+   "ro": "⭐ Recomandările lui Jérôme — Adăugați o afacere"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admCatRecomendacion",
+   "forma": "texto",
+   "es": "⭐ Recomendación de Jérôme (por defecto)",
+   "ro": "⭐ Recomandarea lui Jérôme (implicit)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admCatTienda",
+   "forma": "texto",
+   "es": "🏙️ Tienda / Servicio",
+   "ro": "🏙️ Magazin / Serviciu"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admCatPet",
+   "forma": "texto",
+   "es": "🐾 Pet Friendly",
+   "ro": "🐾 Pet Friendly"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admCatFamilia",
+   "forma": "texto",
+   "es": "👨‍👩‍👧 Familia",
+   "ro": "👨‍👩‍👧 Familie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admCatSurf",
+   "forma": "texto",
+   "es": "🏄 Surf / Deporte",
+   "ro": "🏄 Surf / Sport"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admCatNaturaleza",
+   "forma": "texto",
+   "es": "🌿 Naturaleza / Excursión",
+   "ro": "🌿 Natură / Excursie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admCatCultura",
+   "forma": "texto",
+   "es": "🏛️ Cultura / Arte",
+   "ro": "🏛️ Cultură / Artă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhTagline",
+   "forma": "texto",
+   "es": "Descripción para el mapa (ej: Cocina canaria tradicional, precio justo, vista al mar)",
+   "ro": "Descriere pentru hartă (ex.: bucătărie canariană tradițională, preț corect, vedere la mare)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhContacto",
+   "forma": "texto",
+   "es": "WhatsApp / web / Instagram / teléfono",
+   "ro": "WhatsApp / site / Instagram / telefon"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhZona",
+   "forma": "texto",
+   "es": "Zona (ej: Los Cristianos, Santa Cruz...)",
+   "ro": "Zonă (ex.: Los Cristianos, Santa Cruz...)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admUbicacion",
+   "forma": "texto",
+   "es": "📍 Ubicación en el mapa *",
+   "ro": "📍 Locația pe hartă *"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhLat",
+   "forma": "texto",
+   "es": "Latitud (ej: 28.0514)",
+   "ro": "Latitudine (ex.: 28.0514)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhLng",
+   "forma": "texto",
+   "es": "Longitud (ej: -16.7143)",
+   "ro": "Longitudine (ex.: -16.7143)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admGpsTitulo",
+   "forma": "texto",
+   "es": "Usar mi ubicación GPS",
+   "ro": "Folosiți locația GPS actuală"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admAyudaCoords",
+   "forma": "texto",
+   "es": "Abra Google Maps, mantenga pulsado en el lugar → copie las coordenadas que aparecen.",
+   "ro": "Deschideți Google Maps, țineți apăsat pe locul dorit → copiați coordonatele care apar."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPromo",
+   "forma": "texto",
+   "es": "🎁 Promoción (opcional)",
+   "ro": "🎁 Promoție (opțional)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhPromo",
+   "forma": "texto",
+   "es": "Ej: 10% descuento mostrando Tenerife Go",
+   "ro": "Ex.: 10% reducere la prezentarea Tenerife Go"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admValidoHasta",
+   "forma": "texto",
+   "es": "Válido hasta",
+   "ro": "Valabil până la"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPhPrecioMes",
+   "forma": "texto",
+   "es": "€/mes cobrado (uso interno)",
+   "ro": "€/lună încasat (uz intern)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admPublicar",
+   "forma": "texto",
+   "es": "✅ Publicar en el mapa",
+   "ro": "✅ Publicați pe hartă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admNegociosMapa",
+   "forma": "texto",
+   "es": "Negocios en el mapa",
+   "ro": "Afaceri pe hartă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSesion",
+   "forma": "texto",
+   "es": "🔑 Sesión",
+   "ro": "🔑 Sesiune"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admNotaPermisos",
+   "forma": "texto",
+   "es": "La contraseña se cambia desde su cuenta, no desde aquí. Los permisos de administrador se conceden en Supabase (tabla",
+   "ro": "Parola se schimbă din contul dumneavoastră, nu de aici. Permisiunile de administrator se acordă în Supabase (tabelul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admGuardadoLocal",
+   "forma": "texto",
+   "es": "☁️ Guardado solo en este móvil",
+   "ro": "☁️ Salvat doar pe acest telefon"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admHay",
+   "forma": "texto",
+   "es": "Hay",
+   "ro": "Elemente nepublicate:"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admMigrarTexto",
+   "forma": "texto",
+   "es": "elemento(s) (souvenirs, excursiones o anuncios) creados cuando el panel guardaba en local, así que no los ve nadie más. Súbalos para que aparezcan en la app de todos.",
+   "ro": "(suveniruri, excursii sau anunțuri), create când panoul salva local, așa că nu le vede nimeni altcineva. Încărcați-le ca să apară în aplicația tuturor."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admSubirNube",
+   "forma": "texto",
+   "es": "Subir a la nube",
+   "ro": "Încărcați în cloud"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admResumen",
+   "forma": "texto",
+   "es": "📊 Resumen",
+   "ro": "📊 Rezumat"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admZonaPeligro",
+   "forma": "texto",
+   "es": "⚠️ Zona de peligro",
+   "ro": "⚠️ Zonă periculoasă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "admBorrarTodo",
+   "forma": "texto",
+   "es": "Borrar todos los datos de la tienda",
+   "ro": "Ștergeți toate datele magazinului"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaVolverAtras",
+   "forma": "texto",
+   "es": "Volver atrás",
+   "ro": "Înapoi"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrar",
+   "forma": "texto",
+   "es": "Cerrar",
+   "ro": "Închideți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarTransporte",
+   "forma": "texto",
+   "es": "Cerrar panel de transporte",
+   "ro": "Închideți panoul de transport"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarCesta",
+   "forma": "texto",
+   "es": "Cerrar cesta",
+   "ro": "Închideți coșul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaQuitarFiltros",
+   "forma": "texto",
+   "es": "Quitar filtros de categoría",
+   "ro": "Eliminați filtrele de categorie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarAsistente",
+   "forma": "texto",
+   "es": "Cerrar asistente",
+   "ro": "Închideți asistentul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaEnviar",
+   "forma": "texto",
+   "es": "Enviar",
+   "ro": "Trimiteți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaGuardarFavoritos",
+   "forma": "texto",
+   "es": "Guardar en favoritos",
+   "ro": "Salvați la favorite"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaComoLlegar",
+   "forma": "texto",
+   "es": "Cómo llegar",
+   "ro": "Cum ajungeți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCompartirLugar",
+   "forma": "texto",
+   "es": "Compartir lugar",
+   "ro": "Distribuiți locul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCompartirItinerario",
+   "forma": "texto",
+   "es": "Compartir itinerario",
+   "ro": "Distribuiți itinerarul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaReiniciarPlan",
+   "forma": "texto",
+   "es": "Reiniciar planificador",
+   "ro": "Resetați planificatorul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarPlanificador",
+   "forma": "texto",
+   "es": "Cerrar planificador",
+   "ro": "Închideți planificatorul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaFiestasPanel",
+   "forma": "texto",
+   "es": "Fiestas y tradiciones de Tenerife",
+   "ro": "Sărbători și tradiții din Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCambiarIdioma",
+   "forma": "texto",
+   "es": "Cambiar idioma",
+   "ro": "Schimbați limba"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaLeyendaMapa",
+   "forma": "texto",
+   "es": "Leyenda del mapa",
+   "ro": "Legenda hărții"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarLeyenda",
+   "forma": "texto",
+   "es": "Cerrar leyenda",
+   "ro": "Închideți legenda"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaAbrirLeyenda",
+   "forma": "texto",
+   "es": "Abrir leyenda",
+   "ro": "Deschideți legenda"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaMarPanel",
+   "forma": "texto",
+   "es": "Estado del mar en Tenerife",
+   "ro": "Starea mării în Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaMcPanel",
+   "forma": "texto",
+   "es": "Microclimas de Tenerife",
+   "ro": "Microclimatele din Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarAviso",
+   "forma": "texto",
+   "es": "Cerrar aviso",
+   "ro": "Închideți mesajul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarParadas",
+   "forma": "texto",
+   "es": "Cerrar paradas cercanas",
+   "ro": "Închideți lista stațiilor din apropiere"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaPrivacidad",
+   "forma": "texto",
+   "es": "Política de privacidad",
+   "ro": "Politica de confidențialitate"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaBuscarOrigen",
+   "forma": "texto",
+   "es": "Buscar origen",
+   "ro": "Căutați punctul de plecare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaBuscarDestino",
+   "forma": "texto",
+   "es": "Buscar destino",
+   "ro": "Căutați destinația"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaLimpiarRuta",
+   "forma": "texto",
+   "es": "Limpiar ruta",
+   "ro": "Ștergeți traseul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaEditarRuta",
+   "forma": "texto",
+   "es": "Editar ruta",
+   "ro": "Modificați traseul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarRutas",
+   "forma": "texto",
+   "es": "Cerrar panel de rutas",
+   "ro": "Închideți panoul de trasee"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaMiCesta",
+   "forma": "texto",
+   "es": "Mi cesta",
+   "ro": "Coșul meu"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarTienda",
+   "forma": "texto",
+   "es": "Cerrar tienda",
+   "ro": "Închideți magazinul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaTienda",
+   "forma": "texto",
+   "es": "Tienda",
+   "ro": "Magazin"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaQuitarDestino",
+   "forma": "texto",
+   "es": "Quitar destino",
+   "ro": "Eliminați destinația"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaQuitarOrigen",
+   "forma": "texto",
+   "es": "Quitar origen",
+   "ro": "Eliminați punctul de plecare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaLogros",
+   "forma": "texto",
+   "es": "Logros",
+   "ro": "Realizări"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaNavPrincipal",
+   "forma": "texto",
+   "es": "Navegación principal",
+   "ro": "Navigare principală"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaIdioma",
+   "forma": "texto",
+   "es": "Idioma",
+   "ro": "Limbă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaBienvenida",
+   "forma": "texto",
+   "es": "Bienvenido a Tenerife Go",
+   "ro": "Bine ați venit în Tenerife Go"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaCerrarAlertas",
+   "forma": "texto",
+   "es": "Cerrar alertas meteorológicas",
+   "ro": "Închideți avertizările meteo"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "phBuscarParada",
+   "forma": "texto",
+   "es": "Buscar parada o línea...",
+   "ro": "Căutați o stație sau o linie..."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "phChat",
+   "forma": "texto",
+   "es": "Pregúnteme sobre Tenerife...",
+   "ro": "Întrebați-mă despre Tenerife..."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "phNegocioDesc",
+   "forma": "texto",
+   "es": "Descripción breve de su negocio *",
+   "ro": "Scurtă descriere a afacerii dumneavoastră *"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "phNegocioEmail",
+   "forma": "texto",
+   "es": "Email de contacto *",
+   "ro": "E-mail de contact *"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "phNegocioNombre",
+   "forma": "texto",
+   "es": "Nombre del negocio *",
+   "ro": "Numele afacerii *"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "phWhatsapp",
+   "forma": "texto",
+   "es": "WhatsApp (con prefijo: +34...)",
+   "ro": "WhatsApp (cu prefixul țării: +34...)"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tLineasBus",
+   "forma": "texto",
+   "es": "Líneas de Bus TITSA",
+   "ro": "Linii de autobuz TITSA"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tRegenerar",
+   "forma": "texto",
+   "es": "Regenerar",
+   "ro": "Regenerați"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tGuardarRutaDia",
+   "forma": "texto",
+   "es": "Guardar en Ruta del día",
+   "ro": "Salvați în Traseul zilei"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tGuardarFavoritos",
+   "forma": "texto",
+   "es": "Guardar en Favoritos",
+   "ro": "Salvați la favorite"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tGenerarNuevo",
+   "forma": "texto",
+   "es": "Generar itinerario nuevo",
+   "ro": "Generați un itinerar nou"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tFavoritos",
+   "forma": "texto",
+   "es": "Favoritos",
+   "ro": "Favorite"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tFiestas",
+   "forma": "texto",
+   "es": "Fiestas y tradiciones",
+   "ro": "Sărbători și tradiții"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tMiUbicacion",
+   "forma": "texto",
+   "es": "Mi ubicación",
+   "ro": "Locația mea"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tCapasMapa",
+   "forma": "texto",
+   "es": "Capas del mapa",
+   "ro": "Straturile hărții"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tZoomIn",
+   "forma": "texto",
+   "es": "Acercar",
+   "ro": "Măriți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tZoomOut",
+   "forma": "texto",
+   "es": "Alejar",
+   "ro": "Micșorați"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tEstadoMar",
+   "forma": "texto",
+   "es": "Estado del mar",
+   "ro": "Starea mării"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tMicroclimas",
+   "forma": "texto",
+   "es": "Microclimas",
+   "ro": "Microclimate"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tInfoApp",
+   "forma": "texto",
+   "es": "Información de la app",
+   "ro": "Informații despre aplicație"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tBuscar",
+   "forma": "texto",
+   "es": "Buscar",
+   "ro": "Căutați"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tBorrarBusqueda",
+   "forma": "texto",
+   "es": "Borrar búsqueda",
+   "ro": "Ștergeți căutarea"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busOficial",
+   "forma": "texto",
+   "es": "🔗 titsa.com · metrotenerife.com — horarios oficiales",
+   "ro": "🔗 titsa.com · metrotenerife.com — orare oficiale"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busPanelTitulo",
+   "forma": "texto",
+   "es": "Transporte Público",
+   "ro": "Transport public"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busTfn",
+   "forma": "texto",
+   "es": "✈️ TFN Norte",
+   "ro": "✈️ TFN Nord"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busTfs",
+   "forma": "texto",
+   "es": "✈️ TFS Sur",
+   "ro": "✈️ TFS Sud"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busEnlaceCopiado",
+   "forma": "texto",
+   "es": "¡Enlace de ruta copiado!",
+   "ro": "Linkul traseului a fost copiat!"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busSubtitulo",
+   "forma": "texto",
+   "es": "TITSA · Tranvía",
+   "ro": "TITSA · Tramvai"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cartPagar",
+   "forma": "texto",
+   "es": "💳 Pagar — Próximamente",
+   "ro": "💳 Plată — În curând"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cartTitulo",
+   "forma": "texto",
+   "es": "🛒 Mi Cesta",
+   "ro": "🛒 Coșul meu"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cartTotal",
+   "forma": "texto",
+   "es": "Total",
+   "ro": "Total"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpNaturaleza",
+   "forma": "texto",
+   "es": "Naturaleza & Playas",
+   "ro": "Natură și plaje"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpCultura",
+   "forma": "texto",
+   "es": "Cultura & Ocio",
+   "ro": "Cultură și timp liber"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpCiudades",
+   "forma": "texto",
+   "es": "Ciudades & Municipios",
+   "ro": "Orașe și municipalități"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpServicios",
+   "forma": "texto",
+   "es": "Servicios",
+   "ro": "Servicii"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpPuertos",
+   "forma": "texto",
+   "es": "Puertos & Marina",
+   "ro": "Porturi comerciale și de agrement"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpMascotas",
+   "forma": "texto",
+   "es": "Con mascotas",
+   "ro": "Cu animale de companie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpAccesible",
+   "forma": "texto",
+   "es": "Accesible",
+   "ro": "Accesibil"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpDeporte",
+   "forma": "texto",
+   "es": "Deporte",
+   "ro": "Sport"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpMiradores",
+   "forma": "texto",
+   "es": "Miradores",
+   "ro": "Puncte de belvedere"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpMercadillos",
+   "forma": "texto",
+   "es": "Mercadillos",
+   "ro": "Piețe locale"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catGrpPractico",
+   "forma": "texto",
+   "es": "Lo Práctico",
+   "ro": "Informații practice"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catPetsZona",
+   "forma": "texto",
+   "es": "Friendly Zone 🐾",
+   "ro": "Friendly Zone 🐾"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catSoloBus",
+   "forma": "texto",
+   "es": "Solo accesibles en bus",
+   "ro": "Doar locuri accesibile cu autobuzul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catSoloBusSub",
+   "forma": "texto",
+   "es": "Paradas TITSA en 500 m",
+   "ro": "Stații TITSA pe o rază de 500 m"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catMostrarTodos",
+   "forma": "texto",
+   "es": "Mostrar todos",
+   "ro": "Afișați tot"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catTitulo",
+   "forma": "texto",
+   "es": "Categorías",
+   "ro": "Categorii"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "chatNombre",
+   "forma": "texto",
+   "es": "Asistente Tenerife GO",
+   "ro": "Asistentul Tenerife GO"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "chatEstado",
+   "forma": "texto",
+   "es": "En línea · Responde al instante",
+   "ro": "Online · Răspunde imediat"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "detFavorito",
+   "forma": "texto",
+   "es": "Favorito",
+   "ro": "Favorit"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "detComoLlegarBus",
+   "forma": "texto",
+   "es": "Cómo llegar en bus",
+   "ro": "Cum ajungeți cu autobuzul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "detCompartir",
+   "forma": "texto",
+   "es": "Compartir",
+   "ro": "Distribuiți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpCompartir",
+   "forma": "texto",
+   "es": "📤 Compartir",
+   "ro": "📤 Distribuiți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpSub",
+   "forma": "texto",
+   "es": "Tenerife GO · Planificador",
+   "ro": "Tenerife GO · Planificator"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpTitulo",
+   "forma": "texto",
+   "es": "Organice su día",
+   "ro": "Organizați-vă ziua"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpiResultado",
+   "forma": "texto",
+   "es": "Su itinerario",
+   "ro": "Itinerarul dumneavoastră"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "gpsBuscando",
+   "forma": "texto",
+   "es": "Buscando su posición…",
+   "ro": "Se caută poziția dumneavoastră…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "multifilterCon",
+   "forma": "texto",
+   "es": "Con",
+   "ro": "Cu"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "multifilterLento",
+   "forma": "texto",
+   "es": "el mapa puede ir más lento",
+   "ro": "harta poate funcționa mai lent"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "nearbySub",
+   "forma": "texto",
+   "es": "A pie desde su ubicación",
+   "ro": "Pe jos de la locația dumneavoastră"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "nearbyTitulo",
+   "forma": "texto",
+   "es": "🚏 Paradas cerca",
+   "ro": "🚏 Stații în apropiere"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "pickOrigen",
+   "forma": "texto",
+   "es": "Toque un lugar en el mapa para el origen",
+   "ro": "Atingeți un loc pe hartă pentru punctul de plecare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "regExito",
+   "forma": "texto",
+   "es": "✅ ¡Solicitud recibida! Le contactaremos en menos de 48 horas.",
+   "ro": "✅ Cerere primită! Vă vom contacta în mai puțin de 48 de ore."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeCalcular",
+   "forma": "texto",
+   "es": "Calcular ruta",
+   "ro": "Calculați traseul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeEditarBtn",
+   "forma": "texto",
+   "es": "✏️ Editar ruta",
+   "ro": "✏️ Modificați traseul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeGuia1",
+   "forma": "texto",
+   "es": "1. Toque",
+   "ro": "1. Atingeți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeGuia1b",
+   "forma": "texto",
+   "es": "→ toque el mapa o use su GPS",
+   "ro": "→ atingeți harta sau folosiți GPS-ul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeGuia2",
+   "forma": "texto",
+   "es": "2. Toque",
+   "ro": "2. Atingeți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeGuia2b",
+   "forma": "texto",
+   "es": "→ toque cualquier lugar",
+   "ro": "→ atingeți orice loc"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeGuia3",
+   "forma": "texto",
+   "es": "3. Pulse",
+   "ro": "3. Apăsați"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeGuia3b",
+   "forma": "texto",
+   "es": "para ver la ruta",
+   "ro": "pentru a vedea traseul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routePanelTitulo",
+   "forma": "texto",
+   "es": "🗺️ Rutas",
+   "ro": "🗺️ Trasee"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "catChipSolo",
+   "forma": "texto",
+   "es": "Solo este",
+   "ro": "Doar aceasta"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "buscarMasEscribe",
+   "forma": "texto",
+   "es": "+{n} más — siga escribiendo",
+   "ro": "Încă {n} — continuați să scrieți"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeTocaOrigen",
+   "forma": "texto",
+   "es": "🅰️ Toque un marcador del mapa…",
+   "ro": "🅰️ Atingeți un marcaj de pe hartă…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeTocaDestino",
+   "forma": "texto",
+   "es": "🅱️ Toque un marcador del mapa…",
+   "ro": "🅱️ Atingeți un marcaj de pe hartă…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpiCrearVarios",
+   "forma": "texto",
+   "es": "Crear itinerario con {n} tipos →",
+   "ro": "Creați itinerarul cu {n} tipuri →"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeTocaMarcador",
+   "forma": "texto",
+   "es": "Toque un marcador del mapa",
+   "ro": "Atingeți un marcaj de pe hartă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shareCopiado",
+   "forma": "texto",
+   "es": "¡Enlace copiado!",
+   "ro": "Link copiat!"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopPlanMes",
+   "forma": "texto",
+   "es": "al mes",
+   "ro": "pe lună"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopPlanCoste",
+   "forma": "texto",
+   "es": "💳 El plan de promoción tiene un coste de",
+   "ro": "💳 Planul de promovare costă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopContactaremos",
+   "forma": "texto",
+   "es": "Nos pondremos en contacto con usted para activar su perfil.",
+   "ro": "Vă vom contacta pentru a vă activa profilul."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopLanzamiento",
+   "forma": "texto",
+   "es": "Actualmente en periodo de lanzamiento —",
+   "ro": "În prezent, în perioada de lansare —"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopFormTitulo",
+   "forma": "texto",
+   "es": "Datos de su negocio",
+   "ro": "Datele afacerii dumneavoastră"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopPanelTitulo",
+   "forma": "texto",
+   "es": "🏪 Tenerife Go Shop",
+   "ro": "🏪 Tenerife Go Shop"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopQuieroAnunciar",
+   "forma": "texto",
+   "es": "🏪 Quiero anunciar mi negocio",
+   "ro": "🏪 Vreau să-mi promovez afacerea"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopEnviarSolicitud",
+   "forma": "texto",
+   "es": "Enviar solicitud",
+   "ro": "Trimiteți cererea"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxLogo",
+   "forma": "texto",
+   "es": "Avisos meteorológicos · Tenerife",
+   "ro": "Avertizări meteo · Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFuente",
+   "forma": "texto",
+   "es": "Fuente: AEMET",
+   "ro": "Sursa: AEMET"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxActualizar",
+   "forma": "texto",
+   "es": "Actualizar",
+   "ro": "Actualizați"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxNivel_amarillo",
+   "forma": "texto",
+   "es": "Aviso amarillo",
+   "ro": "Cod galben"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxNivel_naranja",
+   "forma": "texto",
+   "es": "Aviso naranja",
+   "ro": "Cod portocaliu"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxNivel_rojo",
+   "forma": "texto",
+   "es": "Aviso rojo",
+   "ro": "Cod roșu"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_PR",
+   "forma": "texto",
+   "es": "Lluvias",
+   "ro": "Ploi"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_NE",
+   "forma": "texto",
+   "es": "Nevadas",
+   "ro": "Ninsori"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_VI",
+   "forma": "texto",
+   "es": "Vientos",
+   "ro": "Vânt"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_TO",
+   "forma": "texto",
+   "es": "Tormentas",
+   "ro": "Furtuni cu descărcări electrice"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_AT",
+   "forma": "texto",
+   "es": "Temperaturas máximas",
+   "ro": "Temperaturi maxime"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_BT",
+   "forma": "texto",
+   "es": "Temperaturas mínimas",
+   "ro": "Temperaturi minime"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_CO",
+   "forma": "texto",
+   "es": "Fenómenos costeros",
+   "ro": "Fenomene costiere"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_VS",
+   "forma": "texto",
+   "es": "Polvo en suspensión",
+   "ro": "Praf în suspensie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxFen_NI",
+   "forma": "texto",
+   "es": "Nieblas",
+   "ro": "Ceață"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxPar_P1",
+   "forma": "texto",
+   "es": "Precipitación acumulada en una hora",
+   "ro": "Precipitații cumulate într-o oră"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxPar_P2",
+   "forma": "texto",
+   "es": "Precipitación acumulada en 12 horas",
+   "ro": "Precipitații cumulate în 12 ore"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxPar_NV",
+   "forma": "texto",
+   "es": "Acumulación de nieve en 24 horas",
+   "ro": "Strat de zăpadă acumulat în 24 de ore"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxPar_RM",
+   "forma": "texto",
+   "es": "Rachas máximas",
+   "ro": "Rafale maxime"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxPar_TA",
+   "forma": "texto",
+   "es": "Temperatura máxima",
+   "ro": "Temperatura maximă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxPar_TI",
+   "forma": "texto",
+   "es": "Temperatura mínima",
+   "ro": "Temperatura minimă"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxPar_VIS",
+   "forma": "texto",
+   "es": "Visibilidad",
+   "ro": "Vizibilitate"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxZona_659601",
+   "forma": "texto",
+   "es": "Norte de Tenerife",
+   "ro": "Nordul insulei Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxZona_659602",
+   "forma": "texto",
+   "es": "Área metropolitana de Tenerife",
+   "ro": "Zona metropolitană din Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxZona_659603",
+   "forma": "texto",
+   "es": "Este, sur y oeste de Tenerife",
+   "ro": "Estul, sudul și vestul insulei Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxCosta",
+   "forma": "texto",
+   "es": "Costa – {z}",
+   "ro": "Coasta – {z}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxZonaIsla",
+   "forma": "texto",
+   "es": "Toda la isla",
+   "ro": "Toată insula"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxZonaCostaIsla",
+   "forma": "texto",
+   "es": "Toda la costa",
+   "ro": "Toată coasta"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxDeA",
+   "forma": "texto",
+   "es": "De {a} a {b}",
+   "ro": "De la {a} la {b}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxDesdeHasta",
+   "forma": "texto",
+   "es": "Desde {a} hasta {b}",
+   "ro": "De {a} până {b}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxHoyA",
+   "forma": "texto",
+   "es": "hoy a las {h}",
+   "ro": "azi la ora {h}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxAyerA",
+   "forma": "texto",
+   "es": "ayer a las {h}",
+   "ro": "ieri la ora {h}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxMananaA",
+   "forma": "texto",
+   "es": "mañana a las {h}",
+   "ro": "mâine la ora {h}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxDiaA",
+   "forma": "texto",
+   "es": "el {d} a las {h}",
+   "ro": "{d} la ora {h}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxMananaDeA",
+   "forma": "texto",
+   "es": "Mañana, de {a} a {b}",
+   "ro": "Mâine, de la {a} la {b}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxDiaDeA",
+   "forma": "texto",
+   "es": "el {d}, de {a} a {b}",
+   "ro": "{d}, de la {a} la {b}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxHoraCanarias",
+   "forma": "texto",
+   "es": "hora de Canarias",
+   "ro": "ora Insulelor Canare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxProb",
+   "forma": "texto",
+   "es": "Probabilidad: {p}",
+   "ro": "Probabilitate: {p}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxTextoAemet",
+   "forma": "texto",
+   "es": "Texto de AEMET",
+   "ro": "Textul AEMET"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxSinAvisos",
+   "forma": "texto",
+   "es": "Sin avisos de AEMET para Tenerife",
+   "ro": "Nicio avertizare AEMET pentru Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxSinAvisosHasta",
+   "forma": "texto",
+   "es": "Sin avisos de AEMET para Tenerife hasta {f}",
+   "ro": "Nicio avertizare AEMET pentru Tenerife până {f}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxHayAvisos",
+   "forma": "texto",
+   "es": "{n} aviso de AEMET para Tenerife|{n} avisos de AEMET para Tenerife",
+   "ro": "{n} avertizare AEMET pentru Tenerife|{n} avertizări AEMET pentru Tenerife|{n} de avertizări AEMET pentru Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxComprobado",
+   "forma": "texto",
+   "es": "Comprobado: {h}",
+   "ro": "Verificat: {h}"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxSinComprobar",
+   "forma": "texto",
+   "es": "No se han podido comprobar los avisos desde {h}: puede haber cambios.",
+   "ro": "Ultima verificare reușită a avertizărilor: {h}. Pot exista schimbări."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxNoDisponible",
+   "forma": "texto",
+   "es": "No se han podido consultar los avisos de AEMET.",
+   "ro": "Avertizările AEMET nu au putut fi consultate."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "wxVerAemet",
+   "forma": "texto",
+   "es": "Ver en aemet.es",
+   "ro": "Vedeți pe aemet.es"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "banoHoyAemet",
+   "forma": "texto",
+   "es": "⚠️ Quedan fuera las playas de las costas con aviso de AEMET para hoy.",
+   "ro": "⚠️ Sunt excluse plajele de pe coastele cu avertizare AEMET pentru azi."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "banoHoyNingunaAemet",
+   "forma": "texto",
+   "es": "Hoy no hay ninguna playa que recomendar: donde el mar lo permite, AEMET tiene aviso en la costa.",
+   "ro": "Azi nu putem recomanda nicio plajă: acolo unde marea o permite, AEMET a emis avertizări pentru coastă."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopTresMeses",
+   "forma": "texto",
+   "es": "primeros 3 meses gratis",
+   "ro": "primele 3 luni gratuite"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeGuiaTitulo",
+   "forma": "texto",
+   "es": "✏️ Planificador de Rutas",
+   "ro": "✏️ Planificator de trasee"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeGuiaCalcular",
+   "forma": "texto",
+   "es": "Calcular",
+   "ro": "Calculați"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "multifilterTres",
+   "forma": "texto",
+   "es": "+3 categorías",
+   "ro": "+3 categorii"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "routeMin",
+   "forma": "texto",
+   "es": "min",
+   "ro": "min"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "unidadKm",
+   "forma": "texto",
+   "es": "km",
+   "ro": "km"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "medidaM",
+   "forma": "texto",
+   "es": "{n} m",
+   "ro": "{n} m"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "medidaKm",
+   "forma": "texto",
+   "es": "{n} km",
+   "ro": "{n} km"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "medidaKmh",
+   "forma": "texto",
+   "es": "{n} km/h",
+   "ro": "{n} km/h"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "medidaSeg",
+   "forma": "texto",
+   "es": "{n} s",
+   "ro": "{n} s"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "medidaMm",
+   "forma": "texto",
+   "es": "{n} mm",
+   "ro": "{n} mm"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "medidaCm",
+   "forma": "texto",
+   "es": "{n} cm",
+   "ro": "{n} cm"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "rumboN",
+   "forma": "texto",
+   "es": "N",
+   "ro": "N"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "rumboNE",
+   "forma": "texto",
+   "es": "NE",
+   "ro": "NE"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "rumboE",
+   "forma": "texto",
+   "es": "E",
+   "ro": "E"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "rumboSE",
+   "forma": "texto",
+   "es": "SE",
+   "ro": "SE"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "rumboS",
+   "forma": "texto",
+   "es": "S",
+   "ro": "S"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "rumboSO",
+   "forma": "texto",
+   "es": "SO",
+   "ro": "SV"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "rumboO",
+   "forma": "texto",
+   "es": "O",
+   "ro": "V"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "rumboNO",
+   "forma": "texto",
+   "es": "NO",
+   "ro": "NV"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "busAccesoSinLineas",
+   "forma": "texto",
+   "es": "Active al menos una línea",
+   "ro": "Activați cel puțin o linie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cuentaBorrarBtn",
+   "forma": "texto",
+   "es": "Eliminar cuenta",
+   "ro": "Ștergeți contul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cuentaBorrarAviso",
+   "forma": "texto",
+   "es": "Se borrarán su cuenta, los favoritos que tiene guardados en la nube y, si los guardó allí, su perfil y sus progresos. No se puede deshacer.",
+   "ro": "Se vor șterge contul dumneavoastră, favoritele salvate în cloud și, dacă le-ați salvat acolo, profilul și progresele dumneavoastră. Acțiunea nu poate fi anulată."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cuentaBorrarSi",
+   "forma": "texto",
+   "es": "Sí, eliminar mi cuenta",
+   "ro": "Da, ștergeți-mi contul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cuentaBorrarNo",
+   "forma": "texto",
+   "es": "Cancelar",
+   "ro": "Anulați"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cuentaBorrada",
+   "forma": "texto",
+   "es": "Cuenta eliminada: se han borrado su cuenta y sus favoritos de la nube.",
+   "ro": "Cont șters: contul și favoritele dumneavoastră din cloud au fost șterse."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cuentaBorrarError",
+   "forma": "texto",
+   "es": "No se ha podido eliminar la cuenta desde aquí. Vea cómo pedirlo:",
+   "ro": "Contul nu a putut fi șters de aici. Vedeți cum puteți cere ștergerea:"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cuentaBorrarPagina",
+   "forma": "texto",
+   "es": "Borrar su cuenta",
+   "ro": "Ștergerea contului"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "dpiPreparando",
+   "forma": "texto",
+   "es": "Preparando su itinerario…",
+   "ro": "Se pregătește itinerarul dumneavoastră…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopProntoTitulo",
+   "forma": "texto",
+   "es": "🚀 Tienda completa disponible muy pronto.",
+   "ro": "🚀 Magazinul complet va fi disponibil foarte curând."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopProntoSub",
+   "forma": "texto",
+   "es": "¿Quiere ser notificado? Deje su email en la pestaña Anúnciese.",
+   "ro": "Doriți să vă anunțăm? Lăsați-vă adresa de e-mail în fila Promovare."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopCatPh",
+   "forma": "texto",
+   "es": "Categoría *",
+   "ro": "Categorie *"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopCatRest",
+   "forma": "texto",
+   "es": "🍽️ Restaurante / Bar",
+   "ro": "🍽️ Restaurant / Bar"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopCatHotel",
+   "forma": "texto",
+   "es": "🏨 Hotel / Alojamiento",
+   "ro": "🏨 Hotel / Cazare"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopCatExc",
+   "forma": "texto",
+   "es": "🌋 Excursiones / Tours",
+   "ro": "🌋 Excursii / Tururi"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopCatTienda",
+   "forma": "texto",
+   "es": "🛍️ Tienda / Souvenir",
+   "ro": "🛍️ Magazin / Suveniruri"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopCatSpa",
+   "forma": "texto",
+   "es": "💆 Spa / Bienestar",
+   "ro": "💆 Spa / Wellness"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopCatDeporte",
+   "forma": "texto",
+   "es": "🏄 Deportes / Aventura",
+   "ro": "🏄 Sporturi / Aventură"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "shopCatOtro",
+   "forma": "texto",
+   "es": "📋 Otro",
+   "ro": "📋 Altele"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cieloBoton",
+   "forma": "texto",
+   "es": "Cielo de Tenerife: estrellas, planetas y eclipses",
+   "ro": "Cerul din Tenerife: stele, planete și eclipse"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cieloTitulo",
+   "forma": "texto",
+   "es": "Cielo de Tenerife",
+   "ro": "Cerul din Tenerife"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cieloRojo",
+   "forma": "texto",
+   "es": "Luz roja",
+   "ro": "Lumină roșie"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cieloRojoAyuda",
+   "forma": "texto",
+   "es": "Pantalla en rojo: no deslumbra y la vista sigue adaptada a la oscuridad",
+   "ro": "Ecran roșu: nu orbește, iar ochii rămân adaptați la întuneric"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cieloCargando",
+   "forma": "texto",
+   "es": "Cargando el cielo…",
+   "ro": "Se încarcă cerul…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cieloErrorCarga",
+   "forma": "texto",
+   "es": "No se pudo cargar el cielo. Compruebe la conexión e inténtelo de nuevo.",
+   "ro": "Cerul nu s-a putut încărca. Verificați conexiunea și încercați din nou."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cieloReintentar",
+   "forma": "texto",
+   "es": "Reintentar",
+   "ro": "Încercați din nou"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cieloTourBtn",
+   "forma": "texto",
+   "es": "Visita guiada del panel del cielo",
+   "ro": "Tur ghidat al panoului cerului"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sosNavAria",
+   "forma": "texto",
+   "es": "Emergencias: qué hacer y a quién llamar",
+   "ro": "Urgențe: ce trebuie să faceți și pe cine să sunați"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sosTitulo",
+   "forma": "texto",
+   "es": "Emergencias",
+   "ro": "Urgențe"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sosLlamar",
+   "forma": "texto",
+   "es": "Llamar al 112",
+   "ro": "Sunați la 112"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sosLlamarSub",
+   "forma": "texto",
+   "es": "Gratis y las 24 horas. Atienden en muchos idiomas.",
+   "ro": "Gratuit și non-stop. Se răspunde în multe limbi."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sosCargando",
+   "forma": "texto",
+   "es": "Cargando…",
+   "ro": "Se încarcă…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sosErrorCarga",
+   "forma": "texto",
+   "es": "No se pudo abrir esta sección. Si es una emergencia, llame al 112.",
+   "ro": "Această secțiune nu s-a putut deschide. Dacă este o urgență, sunați la 112."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sosReintentar",
+   "forma": "texto",
+   "es": "Reintentar",
+   "ro": "Încercați din nou"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "sosVolver",
+   "forma": "texto",
+   "es": "Volver",
+   "ro": "Înapoi"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tourVer",
+   "forma": "texto",
+   "es": "Ver el tour",
+   "ro": "Faceți turul"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "tourSinModulo",
+   "forma": "texto",
+   "es": "No se ha podido cargar el tour. Inténtelo de nuevo con conexión.",
+   "ro": "Turul nu s-a putut încărca. Încercați din nou când aveți conexiune."
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "cuerpoTourBtn",
+   "forma": "texto",
+   "es": "Visita guiada de «Su cuerpo»",
+   "ro": "Tur ghidat: „Corpul dumneavoastră”"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "isla3dBoton",
+   "forma": "texto",
+   "es": "Ver la isla en 3D",
+   "ro": "Vedeți insula în 3D"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "isla3dCargando",
+   "forma": "texto",
+   "es": "Preparando el relieve…",
+   "ro": "Se pregătește relieful…"
+  },
+  {
+   "tabla": "(anonima)",
+   "clave": "isla3dErrorCarga",
+   "forma": "texto",
+   "es": "No se pudo abrir la isla en 3D. Vuelva a intentarlo más tarde.",
+   "ro": "Insula în 3D nu s-a putut deschide. Încercați din nou mai târziu."
+  },
+  {
+   "tabla": "SURPRISE_I18N",
+   "clave": null,
+   "forma": "texto",
+   "es": "Sorpréndeme",
+   "ro": "Surprinde-mă"
+  },
+  {
+   "tabla": "labels",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "__codigo__": "group.labelEs"
+   },
+   "ro": {
+    "__codigo__": "group.labelRo"
+   }
+  },
+  {
+   "tabla": "SEA_TX",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "loading": "Cargando el mar…",
+    "error": "Mar no disponible ahora",
+    "title": "El mar aquí",
+    "waves": "Olas",
+    "water": "Agua",
+    "wind": "Viento",
+    "uv": "UV",
+    "s_calm": "En calma",
+    "s_mod": "Moderado",
+    "s_strong": "Fuerte",
+    "s_vstrong": "Muy fuerte",
+    "uv_low": "bajo",
+    "uv_mod": "moderado",
+    "uv_high": "alto",
+    "uv_vhigh": "muy alto",
+    "uv_ext": "extremo",
+    "nd": "sin datos",
+    "tide": "Marea",
+    "t_high": "Pleamar",
+    "t_low": "Bajamar",
+    "t_rising": "subiendo",
+    "t_falling": "bajando",
+    "t_range": "recorrido"
+   },
+   "ro": {
+    "loading": "Se încarcă datele mării…",
+    "error": "Datele mării nu sunt disponibile acum",
+    "title": "Marea aici",
+    "waves": "Valuri",
+    "water": "Apă",
+    "wind": "Vânt",
+    "uv": "UV",
+    "s_calm": "Calmă",
+    "s_mod": "Moderată",
+    "s_strong": "Agitată",
+    "s_vstrong": "Foarte agitată",
+    "uv_low": "scăzut",
+    "uv_mod": "moderat",
+    "uv_high": "ridicat",
+    "uv_vhigh": "foarte ridicat",
+    "uv_ext": "extrem",
+    "nd": "fără date",
+    "tide": "Maree",
+    "t_high": "Maree înaltă",
+    "t_low": "Maree joasă",
+    "t_rising": "în creștere",
+    "t_falling": "în scădere",
+    "t_range": "amplitudine"
+   }
+  },
+  {
+   "tabla": "SEA_WARN",
+   "clave": null,
+   "forma": "texto",
+   "es": "Báñese solo con mar en calma y respete banderas y cierres.",
+   "ro": "Faceți baie doar când marea este calmă și respectați steagurile și interdicțiile de acces."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instalarApp",
+   "forma": "texto",
+   "es": "Instalar aplicación",
+   "ro": "Instalați aplicația"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instalarNombre",
+   "forma": "texto",
+   "es": "Instalar Tenerife Go",
+   "ro": "Instalați Tenerife Go"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "accesoRapido",
+   "forma": "texto",
+   "es": "Acceso rápido y funciona sin conexión",
+   "ro": "Acces rapid, funcționează și fără conexiune"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instalar",
+   "forma": "texto",
+   "es": "Instalar",
+   "ro": "Instalați"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "enAppIos",
+   "forma": "texto",
+   "es": "Aquí no se puede instalar: ábrala en Safari.",
+   "ro": "Aplicația nu se poate instala de aici: deschideți-o în Safari."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "enAppAnd",
+   "forma": "texto",
+   "es": "Aquí no se puede instalar: ábrala en el navegador.",
+   "ro": "Aplicația nu se poate instala de aici: deschideți-o în browser."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "verComo",
+   "forma": "texto",
+   "es": "Ver cómo",
+   "ro": "Vedeți cum"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instTitulo",
+   "forma": "texto",
+   "es": "Instalar la app",
+   "ro": "Instalați aplicația"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instIos",
+   "forma": "texto",
+   "es": "En <b>Safari</b>, toque <b>Compartir</b> (el cuadrado con una flecha; si no lo ve, toque antes <b>•••</b>) y elija <b>Añadir a pantalla de inicio</b>.",
+   "ro": "În <b>Safari</b>, atingeți <b>Partajați</b> (pătratul cu o săgeată; dacă nu îl vedeți, atingeți mai întâi <b>•••</b>) și alegeți <b>Adăugați la ecranul principal</b>."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instIosOtro",
+   "forma": "texto",
+   "es": "Toque <b>Compartir</b> y elija <b>Añadir a pantalla de inicio</b>. Si no aparece, abra esta página en <b>Safari</b>.",
+   "ro": "Atingeți <b>Partajați</b> și alegeți <b>Adăugați la ecranul principal</b>. Dacă nu apare, deschideți această pagină în <b>Safari</b>."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instAppIos",
+   "forma": "texto",
+   "es": "Toque <b>⋯</b> arriba a la derecha y abra la página en el navegador. O copie el enlace con el botón de abajo y péguelo en <b>Safari</b>.",
+   "ro": "Atingeți <b>⋯</b> din dreapta sus și deschideți pagina în browser. Sau copiați linkul cu butonul de mai jos și lipiți-l în <b>Safari</b>."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instAppAnd",
+   "forma": "texto",
+   "es": "Toque <b>⋮</b> arriba a la derecha y abra la página en el navegador. O copie el enlace con el botón de abajo y péguelo en <b>Chrome</b>.",
+   "ro": "Atingeți <b>⋮</b> din dreapta sus și deschideți pagina în browser. Sau copiați linkul cu butonul de mai jos și lipiți-l în <b>Chrome</b>."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instAnd",
+   "forma": "texto",
+   "es": "En <b>Chrome</b>, abra el menú <b>⋮</b> y elija <b>Instalar aplicación</b>.",
+   "ro": "În <b>Chrome</b>, deschideți meniul <b>⋮</b> și alegeți opțiunea de <b>instalare a aplicației</b>."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instPc",
+   "forma": "texto",
+   "es": "En el navegador, busque el icono de <b>instalar</b> en la barra de direcciones, o abra el menú y elija <b>Instalar</b>.",
+   "ro": "În browser, căutați pictograma de <b>instalare</b> în bara de adrese sau deschideți meniul și alegeți opțiunea de <b>instalare</b>."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "copiarEnlace",
+   "forma": "texto",
+   "es": "Copiar el enlace",
+   "ro": "Copiați linkul"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "enlaceCopiado",
+   "forma": "texto",
+   "es": "Enlace copiado",
+   "ro": "Link copiat"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "instOk",
+   "forma": "texto",
+   "es": "Entendido",
+   "ro": "Am înțeles"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "cerrar",
+   "forma": "texto",
+   "es": "Cerrar",
+   "ro": "Închideți"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "versionNueva",
+   "forma": "texto",
+   "es": "Nueva versión disponible",
+   "ro": "Versiune nouă disponibilă"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "recargar",
+   "forma": "texto",
+   "es": "Recargar",
+   "ro": "Reîncărcați"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "tituloInfo",
+   "forma": "texto",
+   "es": "App Tenerife",
+   "ro": "Aplicația Tenerife"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "version",
+   "forma": "texto",
+   "es": "Versión",
+   "ro": "Versiune"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "cargando",
+   "forma": "texto",
+   "es": "cargando…",
+   "ro": "se încarcă…"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "modo",
+   "forma": "texto",
+   "es": "Modo",
+   "ro": "Mod"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "appInstalada",
+   "forma": "texto",
+   "es": "App instalada",
+   "ro": "Aplicație instalată"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "navegador",
+   "forma": "texto",
+   "es": "Navegador",
+   "ro": "Browser"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "cacheUsada",
+   "forma": "texto",
+   "es": "Caché usada",
+   "ro": "Cache utilizat"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "cachesActivas",
+   "forma": "texto",
+   "es": "Cachés activas",
+   "ro": "Cache-uri active"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "conexion",
+   "forma": "texto",
+   "es": "Conexión",
+   "ro": "Conexiune"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "enLinea",
+   "forma": "texto",
+   "es": "En línea",
+   "ro": "Online"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "sinConexion",
+   "forma": "texto",
+   "es": "Sin conexión",
+   "ro": "Fără conexiune"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "vaciarMapa",
+   "forma": "texto",
+   "es": "Vaciar caché del mapa",
+   "ro": "Goliți cache-ul hărții"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "borrarTodo",
+   "forma": "texto",
+   "es": "Borrar TODA la caché",
+   "ro": "Ștergeți TOT cache-ul"
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "confirmarMapa",
+   "forma": "texto",
+   "es": "¿Vaciar solo la caché del mapa? Las zonas del mapa se descargarán otra vez al verlas con conexión.",
+   "ro": "Goliți doar cache-ul hărții? Zonele hărții se vor descărca din nou când le vedeți cu conexiune."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "mapaVaciado",
+   "forma": "texto",
+   "es": "Caché del mapa vaciada.",
+   "ro": "Cache-ul hărții a fost golit."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "confirmarTodo",
+   "forma": "texto",
+   "es": "¿Borrar TODA la caché? La app deberá descargarse de nuevo con conexión. Sus favoritos se conservan.",
+   "ro": "Ștergeți TOT cache-ul? Aplicația va trebui descărcată din nou cu conexiune. Favoritele dumneavoastră se păstrează."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "cacheBorrada",
+   "forma": "texto",
+   "es": "Caché borrada. La app se recargará.",
+   "ro": "Cache-ul a fost șters. Aplicația se va reîncărca."
+  },
+  {
+   "tabla": "PWA_TX",
+   "clave": "infoApp",
+   "forma": "texto",
+   "es": "Información de la app",
+   "ro": "Informații despre aplicație"
+  },
+  {
+   "tabla": "WELCOME_I18N",
+   "clave": null,
+   "forma": "texto",
+   "es": "Comenzar",
+   "ro": "Începeți"
+  },
+  {
+   "tabla": "WELCOME_PLACES_I18N",
+   "clave": null,
+   "forma": "texto",
+   "es": "lugares",
+   "ro": "de locuri"
+  },
+  {
+   "tabla": "LEG_I18N",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "btn": "Leyenda",
+    "title": "Leyenda",
+    "place": "Lugar",
+    "fav": "Favorito",
+    "group": "Grupo de lugares",
+    "route": "Ruta",
+    "origin": "Origen (A)",
+    "dest": "Destino (B)",
+    "gps": "Mi posición",
+    "tour": "Ver el tour"
+   },
+   "ro": {
+    "btn": "Legendă",
+    "title": "Legendă",
+    "place": "Loc",
+    "fav": "Favorit",
+    "group": "Grup de locuri",
+    "route": "Traseu",
+    "origin": "Plecare (A)",
+    "dest": "Destinație (B)",
+    "gps": "Poziția mea",
+    "tour": "Faceți turul"
+   }
+  },
+  {
+   "tabla": "EX_DIFF_TX",
+   "clave": "Fácil",
+   "forma": "texto",
+   "es": "Fácil",
+   "ro": "Ușoară"
+  },
+  {
+   "tabla": "EX_DIFF_TX",
+   "clave": "Media",
+   "forma": "texto",
+   "es": "Media",
+   "ro": "Medie"
+  },
+  {
+   "tabla": "EX_DIFF_TX",
+   "clave": "Alta",
+   "forma": "texto",
+   "es": "Alta",
+   "ro": "Ridicată"
+  },
+  {
+   "tabla": "CHAT_STR",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "senderName": "Asistente",
+    "welcome": "¡Bienvenido a Tenerife GO! 🌴\n\nSoy su asistente y conozco los {N} lugares del mapa. Pregúnteme «¿dónde está…?», pida «playas en el norte» o «qué hacer cerca de mí».",
+    "greet": "¡Hola! 👋 Pregúnteme por cualquiera de los {N} lugares del mapa, por categorías («miradores en el sur») o «qué hacer cerca de mí».",
+    "thanks": "¡De nada! 🌴 Aquí estoy para lo que necesite. Y si quiere hablar con Jérôme directamente, tiene el botón abajo.",
+    "countAns": "Ahora mismo tiene {N} lugares en el mapa 🗺️ — playas, senderos, miradores, guachinches, piscinas naturales y mucho más, con fichas en {L} idiomas.",
+    "catIntro": "🔎 {label}{zone}: hay {n} en la app. Los más destacados:",
+    "catAlso": "📍 Además, en el mapa tiene {n} lugar de esta categoría:|📍 Además, en el mapa tiene {n} lugares de esta categoría. Aquí van algunos:",
+    "catNone": "No encontré lugares de {label}{zone} 😕 Pruebe con otra zona.",
+    "whatIntro": "✨ Planes{zone}. Toque cualquiera para verlo en el mapa:",
+    "whatLbl": "Qué hacer",
+    "ambIntro": "He encontrado varios lugares que encajan. ¿Se refiere a alguno de estos?",
+    "elegirIntro": "¿Necesita ayuda o busca el lugar? Elija:",
+    "emergencia": "🆘 Emergencia",
+    "llamar112": "📞 Llamar al 112",
+    "elegirAyudaIntro": "¿Es una emergencia o necesita ayuda con la app? Elija:",
+    "ayudaApp": "❓ Ayuda con la app",
+    "favOrden": "📍 Sus favoritos ({n}) en orden, desde donde está y sin idas y vueltas, para no cruzar la isla dos veces (distancias en línea recta):",
+    "favOrdenSinPos": "📍 No sé dónde está, así que empiezo por un extremo: sus favoritos ({n}) en orden, sin idas y vueltas (distancias en línea recta):",
+    "favNinguno": "Aún no tiene favoritos ⭐ En el globo de cualquier lugar toque «{btn}» y vuelva a pedírmelo.",
+    "favUno": "📍 De momento solo tiene un favorito:",
+    "favDeTi": "a {d} de usted",
+    "favDelAnterior": "a {d} del anterior",
+    "askZone": "¡Claro! ¿Qué zona le interesa?",
+    "geoFail": "No pude acceder a su ubicación 📵 Dígame una zona (norte, sur, este, oeste) o un pueblo y sigo desde ahí.",
+    "viewMap": "📍 Ver en el mapa",
+    "viewAll": "🗺️ Ver todos en el mapa",
+    "errGeneric": "Ups, algo ha fallado por mi parte 🙈 Inténtelo de nuevo con otras palabras.",
+    "fallback": "Aún no tengo una respuesta exacta para eso 🤔\n\nPuedo ayudarle con:\n• «¿Dónde está + nombre?» — conozco los {N} lugares del mapa\n• «playas / senderos / miradores en el sur»\n• «qué hacer cerca de Garachico»\n\nY para dudas personales, Jérôme está a un toque 👇",
+    "contactTitle": "Hablar con Jérôme",
+    "contactSub": "¿Ayuda personalizada? Escríbale directamente.",
+    "nearYou": "cerca de usted",
+    "nearOf": "cerca de {a}",
+    "zone": {
+     "norte": "en el norte",
+     "sur": "en el sur",
+     "este": "en el este",
+     "oeste": "en el oeste",
+     "centro": "en el centro de la isla",
+     "metro": "en Santa Cruz – La Laguna"
+    },
+    "qrHome": [
+     "Mejores playas",
+     "Senderos",
+     "¿Dónde está Masca?",
+     "Qué hacer cerca de mí"
+    ],
+    "qrZones": [
+     "En el norte",
+     "En el sur",
+     "Cerca de mí"
+    ],
+    "qrZonesFull": [
+     "En el norte",
+     "En el sur",
+     "En el este",
+     "En el oeste",
+     "Cerca de mí"
+    ],
+    "qrAfterPoi": [
+     "Qué hay cerca",
+     "Playas cercanas",
+     "Senderos cercanos"
+    ],
+    "qrThanks": [
+     "Otra pregunta",
+     "Mejores playas"
+    ]
+   },
+   "ro": {
+    "senderName": "Asistent",
+    "welcome": "Bine ați venit în Tenerife GO! 🌴\n\nSunt asistentul dumneavoastră și cunosc toate locurile de pe hartă ({N}). Întrebați-mă „unde este…?”, cereți „plaje în nord” sau „ce pot face în apropiere”.",
+    "greet": "Bună ziua! 👋 Întrebați-mă despre oricare dintre locurile de pe hartă ({N}), pe categorii („puncte de belvedere în sud”) sau „ce pot face în apropiere”.",
+    "thanks": "Cu plăcere! 🌴 Sunt aici pentru tot ce vă trebuie. Iar dacă doriți să vorbiți direct cu Jérôme, aveți butonul mai jos.",
+    "countAns": "În acest moment, pe hartă este {N} loc 🗺️ — plaje, trasee, puncte de belvedere, guachinches, piscine naturale și multe altele, cu fișe în {L} limbi.|În acest moment, pe hartă sunt {N} locuri 🗺️ — plaje, trasee, puncte de belvedere, guachinches, piscine naturale și multe altele, cu fișe în {L} limbi.|În acest moment, pe hartă sunt {N} de locuri 🗺️ — plaje, trasee, puncte de belvedere, guachinches, piscine naturale și multe altele, cu fișe în {L} limbi.",
+    "catIntro": "🔎 {label}{zone}: în aplicație există {n} rezultat:|🔎 {label}{zone}: în aplicație există {n} rezultate. Cele mai importante:|🔎 {label}{zone}: în aplicație există {n} de rezultate. Cele mai importante:",
+    "catAlso": "📍 În plus, pe hartă mai aveți {n} loc din această categorie:|📍 În plus, pe hartă mai aveți {n} locuri din această categorie. Iată câteva:|📍 În plus, pe hartă mai aveți {n} de locuri din această categorie. Iată câteva:",
+    "catNone": "Nu am găsit locuri din categoria {label}{zone} 😕 Încercați altă zonă.",
+    "whatIntro": "✨ Idei{zone}. Atingeți oricare pentru a o vedea pe hartă:",
+    "whatLbl": "Ce puteți face",
+    "ambIntro": "Am găsit mai multe locuri care se potrivesc. Vă referiți la unul dintre acestea?",
+    "elegirIntro": "Aveți nevoie de ajutor sau căutați locul? Alegeți:",
+    "emergencia": "🆘 Urgență",
+    "llamar112": "📞 Sunați la 112",
+    "elegirAyudaIntro": "Este o urgență sau aveți nevoie de ajutor cu aplicația? Alegeți:",
+    "ayudaApp": "❓ Ajutor cu aplicația",
+    "favOrden": "📍 Favoritele dumneavoastră ({n}) în ordine, pornind de unde vă aflați și fără să mergeți încolo și încoace, ca să nu traversați insula de două ori (distanțe în linie dreaptă):",
+    "favOrdenSinPos": "📍 Nu știu unde vă aflați, așa că încep de la un capăt: favoritele dumneavoastră ({n}) în ordine, fără să mergeți încolo și încoace (distanțe în linie dreaptă):",
+    "favNinguno": "Încă nu aveți favorite ⭐ În fereastra oricărui loc atingeți „{btn}” și cereți-mi din nou.",
+    "favUno": "📍 Deocamdată aveți un singur favorit:",
+    "favDeTi": "la {d} de dumneavoastră",
+    "favDelAnterior": "la {d} de cel anterior",
+    "askZone": "Desigur! Ce zonă vă interesează?",
+    "geoFail": "Nu am putut accesa locația dumneavoastră 📵 Spuneți-mi o zonă (nord, sud, est, vest) sau o localitate și continui de acolo.",
+    "viewMap": "📍 Vedeți pe hartă",
+    "viewAll": "🗺️ Vedeți-le pe toate pe hartă",
+    "errGeneric": "Hopa, ceva n-a mers la mine 🙈 Încercați din nou cu alte cuvinte.",
+    "fallback": "Încă nu am un răspuns exact pentru asta 🤔\n\nVă pot ajuta cu:\n• „Unde este + nume?” — cunosc toate locurile de pe hartă ({N})\n• „plaje / trasee / puncte de belvedere în sud”\n• „ce pot face lângă Garachico”\n\nIar pentru ajutor personalizat, Jérôme este la o atingere distanță 👇",
+    "contactTitle": "Vorbiți cu Jérôme",
+    "contactSub": "Ajutor personalizat? Scrieți-i direct.",
+    "nearYou": "în apropierea dumneavoastră",
+    "nearOf": "lângă {a}",
+    "zone": {
+     "norte": "în nord",
+     "sur": "în sud",
+     "este": "în est",
+     "oeste": "în vest",
+     "centro": "în centrul insulei",
+     "metro": "în Santa Cruz – La Laguna"
+    },
+    "qrHome": [
+     "Cele mai bune plaje",
+     "Trasee",
+     "Unde este Masca?",
+     "Ce pot face în apropiere"
+    ],
+    "qrZones": [
+     "În nord",
+     "În sud",
+     "Lângă mine"
+    ],
+    "qrZonesFull": [
+     "În nord",
+     "În sud",
+     "În est",
+     "În vest",
+     "Lângă mine"
+    ],
+    "qrAfterPoi": [
+     "Ce este în apropiere",
+     "Plaje din apropiere",
+     "Trasee din apropiere"
+    ],
+    "qrThanks": [
+     "Altă întrebare",
+     "Cele mai bune plaje"
+    ]
+   }
+  },
+  {
+   "tabla": "MAR_COSTAS",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Norte",
+   "ro": "Nord"
+  },
+  {
+   "tabla": "MAR_COSTAS",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Noroeste",
+   "ro": "Nord-vest"
+  },
+  {
+   "tabla": "MAR_COSTAS",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Anaga",
+   "ro": "Anaga"
+  },
+  {
+   "tabla": "MAR_COSTAS",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Este",
+   "ro": "Est"
+  },
+  {
+   "tabla": "MAR_COSTAS",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Sureste",
+   "ro": "Sud-est"
+  },
+  {
+   "tabla": "MAR_COSTAS",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Sur",
+   "ro": "Sud"
+  },
+  {
+   "tabla": "MAR_COSTAS",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Oeste",
+   "ro": "Vest"
+  },
+  {
+   "tabla": "MAR_NIVELES",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Tranquilo",
+   "ro": "Calmă"
+  },
+  {
+   "tabla": "MAR_NIVELES",
+   "clave": "g",
+   "forma": "texto",
+   "es": "Mar poco movido. Aun así, mire siempre la bandera de la playa.",
+   "ro": "Mare puțin agitată. Chiar și așa, uitați-vă mereu la steagul plajei."
+  },
+  {
+   "tabla": "MAR_NIVELES",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Moderado",
+   "ro": "Moderată"
+  },
+  {
+   "tabla": "MAR_NIVELES",
+   "clave": "g",
+   "forma": "texto",
+   "es": "Hay movimiento. Báñese en playas con socorrista y no se aleje.",
+   "ro": "Marea este moderat agitată. Faceți baie pe plaje cu salvamar și nu vă îndepărtați de mal."
+  },
+  {
+   "tabla": "MAR_NIVELES",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Fuerte",
+   "ro": "Agitată"
+  },
+  {
+   "tabla": "MAR_NIVELES",
+   "clave": "g",
+   "forma": "texto",
+   "es": "Mar movido. Evite piscinas naturales, charcos y rocas: el agua barre sin aviso.",
+   "ro": "Mare agitată. Evitați piscinele naturale, bazinele dintre stânci și stâncile: apa mătură totul fără avertisment."
+  },
+  {
+   "tabla": "MAR_NIVELES",
+   "clave": "nm",
+   "forma": "texto",
+   "es": "Peligroso",
+   "ro": "Periculoasă"
+  },
+  {
+   "tabla": "MAR_NIVELES",
+   "clave": "g",
+   "forma": "texto",
+   "es": "No se meta al agua ni se acerque a la orilla rocosa. Elija otra costa.",
+   "ro": "Nu intrați în apă și nu vă apropiați de țărmul stâncos. Alegeți altă coastă."
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "title",
+   "forma": "texto",
+   "es": "🌊 El mar hoy",
+   "ro": "🌊 Marea azi"
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "sub",
+   "forma": "texto",
+   "es": "Estado por costas · toque una para ver el día",
+   "ro": "Starea mării pe coaste · atingeți una pentru a vedea prognoza zilei"
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "loading",
+   "forma": "texto",
+   "es": "Consultando el estado del mar…",
+   "ro": "Se verifică starea mării…"
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "sinDato",
+   "forma": "texto",
+   "es": "El modelo no da lectura de ninguna costa ahora mismo. Vuelva a intentarlo más tarde.",
+   "ro": "Modelul nu oferă acum date pentru nicio coastă. Încercați din nou mai târziu."
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "error",
+   "forma": "texto",
+   "es": "Sin conexión. No se puede mostrar el estado del mar.",
+   "ro": "Fără conexiune. Starea mării nu poate fi afișată."
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "wave",
+   "forma": "texto",
+   "es": "ola",
+   "ro": "val"
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "period",
+   "forma": "texto",
+   "es": "periodo",
+   "ro": "perioadă"
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "now",
+   "forma": "texto",
+   "es": "ahora",
+   "ro": "acum"
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "best",
+   "forma": "texto",
+   "es": "Costa más tranquila ahora",
+   "ro": "Cea mai calmă coastă acum"
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "swellLong",
+   "forma": "texto",
+   "es": "⚠️ Mar de fondo: la ola parece pequeña pero arrastra con mucha fuerza. Especial cuidado en piscinas naturales y rocas.",
+   "ro": "⚠️ Hulă: valul pare mic, dar trage cu mare forță. Atenție deosebită la piscinele naturale și pe stânci."
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "poolsWarn",
+   "forma": "texto",
+   "es": "🕳️ Piscinas naturales: no recomendadas con este estado del mar.",
+   "ro": "🕳️ Piscine naturale: nerecomandate cu această stare a mării."
+  },
+  {
+   "tabla": "MAR_T",
+   "clave": "disclaimer",
+   "forma": "texto",
+   "es": "Previsión Open-Meteo, no es un aviso oficial. La bandera de la playa y el socorrista mandan siempre.",
+   "ro": "Prognoză Open-Meteo, nu este o avertizare oficială. Steagul plajei și salvamarul au întotdeauna ultimul cuvânt."
+  },
+  {
+   "tabla": "PUSH_TX",
+   "clave": "titulo",
+   "forma": "texto",
+   "es": "¿Un empujón cada mañana?",
+   "ro": "Un mic imbold în fiecare dimineață?"
+  },
+  {
+   "tabla": "PUSH_TX",
+   "clave": "texto",
+   "forma": "texto",
+   "es": "Una frase para empezar el día y una idea de plan. Los domingos, un consejo para saber qué hacer en una emergencia, y un aviso si cambia el semáforo volcánico de Tenerife. Sin publicidad y sin agobiar.",
+   "ro": "O frază pentru a începe ziua și o idee de activitate. Duminica, un sfat despre ce să faceți într-o urgență și o alertă dacă se schimbă semaforul vulcanic al insulei Tenerife. Fără reclame și fără să vă copleșim."
+  },
+  {
+   "tabla": "PUSH_TX",
+   "clave": "si",
+   "forma": "texto",
+   "es": "Sí, avísame",
+   "ro": "Da, vreau"
+  },
+  {
+   "tabla": "PUSH_TX",
+   "clave": "no",
+   "forma": "texto",
+   "es": "Ahora no",
+   "ro": "Nu acum"
+  },
+  {
+   "tabla": "PUSH_TX",
+   "clave": "ok",
+   "forma": "texto",
+   "es": "✅ Listo. Nos vemos por la mañana.",
+   "ro": "✅ Gata. Ne vedem dimineață."
+  },
+  {
+   "tabla": "PUSH_TX",
+   "clave": "denegado",
+   "forma": "texto",
+   "es": "Las notificaciones están bloqueadas. Puede activarlas en los ajustes del móvil.",
+   "ro": "Notificările sunt blocate. Le puteți activa din setările telefonului."
+  },
+  {
+   "tabla": "PUSH_TX",
+   "clave": "error",
+   "forma": "texto",
+   "es": "No se pudo activar. Inténtelo más tarde.",
+   "ro": "Nu s-a putut activa. Încercați mai târziu."
+  },
+  {
+   "tabla": "MC_ZONES",
+   "clave": "sub",
+   "forma": "texto",
+   "es": "Sur",
+   "ro": "Sud"
+  },
+  {
+   "tabla": "MC_ZONES",
+   "clave": "sub",
+   "forma": "texto",
+   "es": "Sureste",
+   "ro": "Sud-est"
+  },
+  {
+   "tabla": "MC_ZONES",
+   "clave": "sub",
+   "forma": "texto",
+   "es": "Oeste",
+   "ro": "Vest"
+  },
+  {
+   "tabla": "MC_ZONES",
+   "clave": "sub",
+   "forma": "texto",
+   "es": "Norte",
+   "ro": "Nord"
+  },
+  {
+   "tabla": "MC_ZONES",
+   "clave": "sub",
+   "forma": "texto",
+   "es": "Capital",
+   "ro": "Capitala"
+  },
+  {
+   "tabla": "MC_ZONES",
+   "clave": "sub",
+   "forma": "texto",
+   "es": "2.150 m",
+   "ro": "2.150 m"
+  },
+  {
+   "tabla": "MC_T",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "title": "☀️ ¿Dónde hace sol ahora?",
+    "best": "Mejor ahora",
+    "refresh": "Actualizar",
+    "loading": "Consultando las 6 zonas…",
+    "error": "Sin conexión. Inténtelo de nuevo más tarde.",
+    "localFile": "Suba la app a la web para ver datos en vivo (no funciona como archivo local).",
+    "sunset": "🌅 El sol se pone hoy a las",
+    "spots": "Para verlo: ",
+    "wind": "viento"
+   },
+   "ro": {
+    "title": "☀️ Unde e soare acum?",
+    "best": "Cel mai bun acum",
+    "refresh": "Actualizați",
+    "loading": "Se verifică cele 6 zone…",
+    "error": "Fără conexiune. Încercați din nou mai târziu.",
+    "localFile": "Publicați aplicația pe web pentru a vedea datele în timp real (nu funcționează ca fișier local).",
+    "sunset": "🌅 Soarele apune azi la ora",
+    "spots": "Unde îl puteți vedea: ",
+    "wind": "vânt"
+   }
+  },
+  {
+   "tabla": "SEA_T",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "calm": "Mar tranquilo",
+    "mid": "Precaución: oleaje moderado",
+    "rough": "⚠️ Mar fuerte — evite el baño",
+    "wave": "ola"
+   },
+   "ro": {
+    "calm": "Mare calmă",
+    "mid": "Atenție: valuri moderate",
+    "rough": "⚠️ Mare agitată — evitați baia",
+    "wave": "val"
+   }
+  },
+  {
+   "tabla": "GPX_T",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "btn": "📥 GPX",
+    "btnDay": "📥 Descargar ruta del día (GPX)",
+    "noRoute": "Calcule primero una ruta",
+    "noDay": "Cree primero su itinerario",
+    "local": "En archivo local el iPhone bloquea el guardado. Funcionará con la app publicada en la web.",
+    "done": "✓ GPX listo — ábralo con Organic Maps, Wikiloc o Komoot"
+   },
+   "ro": {
+    "btn": "📥 GPX",
+    "btnDay": "📥 Descărcați traseul zilei (GPX)",
+    "noRoute": "Calculați mai întâi un traseu",
+    "noDay": "Creați mai întâi itinerarul",
+    "local": "Când aplicația este deschisă ca fișier local, iPhone-ul blochează salvarea. Va funcționa cu aplicația publicată pe web.",
+    "done": "✓ GPX gata — deschideți-l cu Organic Maps, Wikiloc sau Komoot"
+   }
+  },
+  {
+   "tabla": "FI_T",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "title": "🎉 Fiestas y tradiciones",
+    "soon": "Pronto",
+    "foot": "Las fechas móviles se calculan automáticamente cada año",
+    "monthOnly": "Fechas variables"
+   },
+   "ro": {
+    "title": "🎉 Sărbători și tradiții",
+    "soon": "În curând",
+    "foot": "Datele variabile ale sărbătorilor se calculează automat în fiecare an",
+    "monthOnly": "Date variabile"
+   }
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Cabalgata de Reyes Magos",
+   "ro": "Cavalcada Regilor Magi"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "place",
+   "forma": "texto",
+   "es": "Toda la isla",
+   "ro": "Toată insula"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Cabalgatas en todos los municipios; las de Santa Cruz y Garachico (con camellos) son las más espectaculares.",
+   "ro": "Cavalcade în toate municipalitățile; cele din Santa Cruz și Garachico (cu cămile) sunt cele mai spectaculoase."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Carnaval de Santa Cruz",
+   "ro": "Carnavalul din Santa Cruz"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Fiesta de Interés Turístico Internacional y uno de los mayores carnavales del mundo: Gala de la Reina, coso y Entierro de la Sardina.",
+   "ro": "Sărbătoare de Interes Turistic Internațional și unul dintre cele mai mari carnavaluri din lume: Gala Reginei, marea paradă (coso) și Înmormântarea Sardinei."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Semana Santa de La Laguna",
+   "ro": "Săptămâna Sfântă din La Laguna"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Procesiones por el casco histórico Patrimonio de la Humanidad; el Viernes Santo destaca la sobrecogedora Procesión del Silencio.",
+   "ro": "Procesiuni prin centrul istoric, patrimoniu mondial; în Vinerea Mare iese în evidență impresionanta Procesiune a Tăcerii."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Fiestas de la Cruz",
+   "ro": "Sărbătorile Crucii"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "En Los Realejos, la rivalidad entre las calles El Sol y El Medio produce una de las mayores exhibiciones pirotécnicas de España.",
+   "ro": "În Los Realejos, rivalitatea dintre străzile El Sol și El Medio dă naștere unuia dintre cele mai mari spectacole pirotehnice din Spania."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Alfombras del Corpus",
+   "ro": "Covoarele de Corpus Christi"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Alfombras efímeras de flores y arenas volcánicas del Teide cubren las calles y la plaza del Ayuntamiento. Arte único en el mundo.",
+   "ro": "Covoare efemere din flori și nisipuri vulcanice din Teide acoperă străzile și piața primăriei. O artă unică în lume."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Romería de San Isidro",
+   "ro": "Pelerinajul de San Isidro"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Una de las romerías más antiguas de Canarias: carretas engalanadas, trajes de mago, vino del país y música popular.",
+   "ro": "Unul dintre cele mai vechi pelerinaje din Insulele Canare: căruțe împodobite, port tradițional (traje de mago), vin local și muzică populară."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Noche de San Juan",
+   "ro": "Noaptea Sfântului Ioan"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "place",
+   "forma": "texto",
+   "es": "Playas de toda la isla",
+   "ro": "Plajele din toată insula"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Hogueras en las playas la noche del 23 de junio; Playa Jardín en Puerto de la Cruz es uno de los puntos más mágicos.",
+   "ro": "Focuri pe plaje în noaptea de 23 iunie; Playa Jardín din Puerto de la Cruz este unul dintre cele mai magice locuri."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Baño de las Cabras",
+   "ro": "Baia caprelor"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Al amanecer del 24 de junio, tradición de origen guanche: los ganaderos bañan sus cabras en el mar del muelle pesquero.",
+   "ro": "În zorii zilei de 24 iunie, o tradiție de origine guanșă: crescătorii își îmbăiază caprele în mare, lângă portul pescăresc."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Romería de San Benito Abad",
+   "ro": "Pelerinajul de San Benito Abad"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Una de las mayores romerías de Canarias: miles de romeros, carretas con comida típica que se comparte y ganado engalanado.",
+   "ro": "Unul dintre cele mai mari pelerinaje din Insulele Canare: mii de pelerini, căruțe încărcate cu mâncare tradițională împărțită tuturor și animale împodobite."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Virgen del Carmen",
+   "ro": "Fecioara de pe Muntele Carmel"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "La patrona de los marineros sale en procesión marítima: la Virgen embarca rodeada de decenas de barcos engalanados.",
+   "ro": "Ocrotitoarea marinarilor iese în procesiune pe mare: statuia Fecioarei este îmbarcată, înconjurată de zeci de bărci împodobite."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Peregrinación a Candelaria",
+   "ro": "Pelerinajul la Candelaria"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Miles de personas caminan de noche desde toda la isla hasta la Basílica de la Virgen de Candelaria, Patrona de Canarias.",
+   "ro": "Mii de oameni merg noaptea pe jos, din toată insula, până la Bazilica Fecioarei din Candelaria, ocrotitoarea Insulelor Canare."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Fiestas del Cristo",
+   "ro": "Sărbătorile lui Cristos"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Las fiestas mayores de La Laguna: procesión del Cristo, conciertos y unos fuegos artificiales legendarios sobre la ciudad.",
+   "ro": "Principalele sărbători din La Laguna: procesiunea lui Cristos, concerte și focuri de artificii legendare deasupra orașului."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "San Andrés y las Tablas",
+   "ro": "San Andrés și cursa pe scânduri"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "En Icod, los jóvenes se lanzan calle abajo sobre tablas enceradas; en el norte se abren las bodegas con vino nuevo y castañas asadas.",
+   "ro": "În Icod, tinerii coboară în viteză străzile, pe scânduri unse cu ceară; în nord se deschid cramele, cu vin nou și castane coapte."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Navidad y belenes",
+   "ro": "Crăciunul și ieslele"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "place",
+   "forma": "texto",
+   "es": "Toda la isla",
+   "ro": "Toată insula"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Belenes artesanales en cada municipio, el tradicional concierto de Navidad del puerto de Santa Cruz y el canto de Lo Divino.",
+   "ro": "Iesle artizanale în fiecare municipalitate, tradiționalul concert de Crăciun din portul Santa Cruz și cântecele Lo Divino."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Romería de San Roque",
+   "ro": "Pelerinajul de San Roque"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Declarada de Interés Turístico Nacional. Carretas, yuntas de bueyes y rebaños acompañan al santo hasta su ermita, mientras los pescadores hacen una romería marítima por el litoral.",
+   "ro": "Declarat de Interes Turistic Național. Căruțe, perechi de boi și turme îl însoțesc pe sfânt până la capela sa, în timp ce pescarii fac un pelerinaj pe mare de-a lungul coastei."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Romería de San Marcos",
+   "ro": "Pelerinajul de San Marcos"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Declarada de Interés Turístico Nacional y primera de las grandes romerías del año. Sus carretas se decoran con semillas y granos formando verdaderos mosaicos.",
+   "ro": "Declarat de Interes Turistic Național și primul dintre marile pelerinaje ale anului. Carele sale sunt decorate cu semințe și boabe care formează adevărate mozaicuri."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Bajada de la Virgen del Socorro",
+   "ro": "Coborârea Fecioarei del Socorro"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Considerada la romería más antigua de Canarias y declarada de Interés Turístico Regional. La Virgen baja hasta la ermita junto al mar el día 7 y regresa el 8, con la escenificación del Encuentro con los guanches.",
+   "ro": "Considerat cel mai vechi pelerinaj din Insulele Canare și declarat de Interes Turistic Regional. Statuia Fecioarei este coborâtă până la capela de lângă mare pe 7 și se întoarce pe 8, cu reconstituirea Întâlnirii cu guanșii."
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Fiestas Patronales de Adeje",
+   "ro": "Sărbătorile patronale din Adeje"
+  },
+  {
+   "tabla": "FI_DATA",
+   "clave": "desc",
+   "forma": "texto",
+   "es": "Fiestas patronales en honor a la Virgen de la Encarnación y Santa Úrsula, del 9 al 18 de octubre. Son las fiestas mayores del municipio y reúnen a todos sus barrios.",
+   "ro": "Sărbători patronale în cinstea Fecioarei Întrupării și a Sfintei Ursula, între 9 și 18 octombrie. Sunt principalele sărbători ale municipalității și reunesc toate cartierele sale."
+  },
+  {
+   "tabla": "HM_T",
+   "clave": null,
+   "forma": "objeto",
+   "es": {
+    "label": "Cómo moverse",
+    "items": [
+     [
+      "💳",
+      "Tarjeta Ten+",
+      "Tarjeta recargable de TITSA y Tranvía con tarifa reducida frente al billete sencillo. Se compra en estaciones, kioscos y estancos; también existe la app ten+móvil."
+     ],
+     [
+      "🚌",
+      "Pagar el bus",
+      "Pague al conductor en efectivo (importes pequeños) o valide su Ten+ al subir y al bajar. Las guaguas conectan toda la isla."
+     ],
+     [
+      "🚕",
+      "Taxis",
+      "Blancos con taxímetro oficial y paradas señalizadas. Uber y Cabify tienen disponibilidad muy limitada en la isla."
+     ],
+     [
+      "🚗",
+      "Coche de alquiler",
+      "La opción más flexible para Teide, Anaga o Masca. Carreteras de montaña con muchas curvas: revise frenos y reposte antes de subir."
+     ],
+     [
+      "🆘",
+      "Teléfonos útiles",
+      "Emergencias: 112 · Policía Turística: 922 239 942"
+     ]
+    ]
+   },
+   "ro": {
+    "label": "Cum circulați",
+    "items": [
+     [
+      "💳",
+      "Cardul Ten+",
+      "Card reîncărcabil pentru TITSA și tramvai, cu tarif redus față de biletul simplu. Se cumpără din stații, chioșcuri și tutungerii; există și aplicația ten+móvil."
+     ],
+     [
+      "🚌",
+      "Plata autobuzului",
+      "Plătiți șoferului în numerar (sume mici) sau validați cardul Ten+ la urcare și la coborâre. Autobuzele leagă toată insula."
+     ],
+     [
+      "🚕",
+      "Taxiuri",
+      "Albe, cu taximetru oficial și stații semnalizate. Uber și Cabify au o disponibilitate foarte limitată pe insulă."
+     ],
+     [
+      "🚗",
+      "Mașină închiriată",
+      "Cea mai flexibilă variantă pentru Teide, Anaga sau Masca. Drumuri de munte cu multe curbe: verificați frânele și alimentați înainte de urcare."
+     ],
+     [
+      "🆘",
+      "Telefoane utile",
+      "Urgențe: 112 · Poliția Turistică: 922 239 942"
+     ]
+    ]
+   }
+  },
+  {
+   "tabla": "GL_T",
+   "clave": null,
+   "forma": "texto",
+   "es": "📚 Hable como un canario",
+   "ro": "📚 Vorbiți ca un canarian"
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[0][1]",
+   "forma": "texto",
+   "es": "El autobús. Nunca diga \"bus\" aquí.",
+   "ro": "Autobuzul. Aici nu spuneți niciodată „bus”."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[1][1]",
+   "forma": "texto",
+   "es": "\"¡Oye, tú!\" — para llamar a alguien con cariño.",
+   "ro": "„Hei, tu!” — pentru a striga pe cineva cu afecțiune."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[2][1]",
+   "forma": "texto",
+   "es": "Exclamación de sorpresa: \"¡Ños, qué calor!\"",
+   "ro": "Exclamație de surpriză: „¡Ños, qué calor!” (ce cald e!)."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[3][1]",
+   "forma": "texto",
+   "es": "\"¡Increíble!\" — asombro total.",
+   "ro": "„Incredibil!” — uimire totală."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[4][1]",
+   "forma": "texto",
+   "es": "Mucho, un montón: \"había fleje de gente\".",
+   "ro": "Mult, o grămadă: „había fleje de gente” (era o mulțime de oameni)."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[5][1]",
+   "forma": "texto",
+   "es": "Papas pequeñas cocidas con sal, piel arrugada. Con mojo, el plato canario.",
+   "ro": "Cartofi mici fierți cu sare, cu coaja încrețită. Cu mojo, felul de mâncare canarian prin excelență."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[6][1]",
+   "forma": "texto",
+   "es": "Salsa canaria: rojo (picón) o verde (cilantro).",
+   "ro": "Sos canarian: roșu (picant) sau verde (cu coriandru)."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[7][1]",
+   "forma": "texto",
+   "es": "Casa de comidas familiar con vino propio. Busque la placa \"V\" oficial.",
+   "ro": "Local familial care servește vin din producție proprie. Căutați plăcuța oficială „V”."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[8][1]",
+   "forma": "texto",
+   "es": "Picoteo, aperitivo para acompañar el vino.",
+   "ro": "Gustări, aperitiv servit alături de vin."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[9][1]",
+   "forma": "texto",
+   "es": "Palomitas de maíz.",
+   "ro": "Floricele de porumb."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[10][1]",
+   "forma": "texto",
+   "es": "Cría de cabra. \"Írsele a uno el baifo\" = despistarse.",
+   "ro": "Ied (puiul caprei). „Írsele a uno el baifo” = a pierde șirul gândurilor."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[11][1]",
+   "forma": "texto",
+   "es": "Pena suave, nostalgia por algo que pudo ser.",
+   "ro": "Tristețe ușoară, nostalgie după ceva ce ar fi putut fi."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[12][1]",
+   "forma": "texto",
+   "es": "Chanclas. Imprescindibles en la playa.",
+   "ro": "Șlapi. Indispensabili la plajă."
+  },
+  {
+   "tabla": "GL_DATA",
+   "clave": "[13][1]",
+   "forma": "texto",
+   "es": "Fiesta improvisada con comida, vino y música.",
+   "ro": "Petrecere improvizată cu mâncare, vin și muzică."
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Naturaleza",
+    "Bosques, volcanes"
+   ],
+   "ro": [
+    "Natură",
+    "Păduri, vulcani"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Cultura",
+    "Historia, arte"
+   ],
+   "ro": [
+    "Cultură",
+    "Istorie, artă"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Museos",
+    "Exposiciones"
+   ],
+   "ro": [
+    "Muzee",
+    "Expoziții"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Playa & Mar",
+    "Playas, piscinas"
+   ],
+   "ro": [
+    "Plajă și mare",
+    "Plaje, piscine"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Gastronomía",
+    "Guachinches, vinos"
+   ],
+   "ro": [
+    "Gastronomie",
+    "Guachinches, vinuri"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Familia",
+    "Niños, parques"
+   ],
+   "ro": [
+    "Familie",
+    "Copii, parcuri"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Miradores",
+    "Vistas, fotos"
+   ],
+   "ro": [
+    "Puncte de belvedere",
+    "Priveliști, fotografii"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Deporte",
+    "Senderismo, ciclismo, golf"
+   ],
+   "ro": [
+    "Sport",
+    "Drumeții, ciclism, golf"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Aventura",
+    "Surf, buceo, kayak"
+   ],
+   "ro": [
+    "Aventură",
+    "Surf, scufundări, caiac"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Mercadillos",
+    "Productos locales"
+   ],
+   "ro": [
+    "Piețe locale",
+    "Produse locale"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Pueblos & Paseos",
+    "Casco antiguo, puertos"
+   ],
+   "ro": [
+    "Localități și plimbări",
+    "Centre vechi, porturi"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Con perro",
+    "Sitios pet friendly"
+   ],
+   "ro": [
+    "Cu câinele",
+    "Locuri pet friendly"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Picnic & BBQ",
+    "Zonas recreativas"
+   ],
+   "ro": [
+    "Picnic și grătar",
+    "Zone de agrement"
+   ]
+  },
+  {
+   "tabla": "DP_CARDS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Sorpréndeme",
+    "Mezcla de todo"
+   ],
+   "ro": [
+    "Surprinde-mă",
+    "Câte puțin din toate"
+   ]
+  },
+  {
+   "tabla": "DP_STEP_TITLE",
+   "clave": null,
+   "forma": "lista",
+   "es": [
+    "¿Qué quieres hacer?",
+    "Elige uno o varios"
+   ],
+   "ro": [
+    "Ce doriți să faceți?",
+    "Alegeți una sau mai multe variante"
+   ]
+  },
+  {
+   "tabla": "DP_TIMES",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Mañana",
+    "2–3 h · 2 paradas"
+   ],
+   "ro": [
+    "Dimineața",
+    "2–3 h · 2 opriri"
+   ]
+  },
+  {
+   "tabla": "DP_TIMES",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Tarde",
+    "3–4 h · 2–3 paradas"
+   ],
+   "ro": [
+    "După-amiaza",
+    "3–4 h · 2–3 opriri"
+   ]
+  },
+  {
+   "tabla": "DP_TIMES",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Medio día",
+    "4–5 h · 3–4 paradas"
+   ],
+   "ro": [
+    "Jumătate de zi",
+    "4–5 h · 3–4 opriri"
+   ]
+  },
+  {
+   "tabla": "DP_TIMES",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Día completo",
+    "7–8 h · 5–6 paradas"
+   ],
+   "ro": [
+    "Zi întreagă",
+    "7–8 h · 5–6 opriri"
+   ]
+  },
+  {
+   "tabla": "DP_TRANSPORT",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Coche",
+    "Máxima libertad, toda la isla"
+   ],
+   "ro": [
+    "Mașină",
+    "Libertate maximă, toată insula"
+   ]
+  },
+  {
+   "tabla": "DP_TRANSPORT",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Guagua",
+    "TITSA, económico y fácil"
+   ],
+   "ro": [
+    "Autobuz",
+    "TITSA, ieftin și simplu"
+   ]
+  },
+  {
+   "tabla": "DP_TRANSPORT",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "A pie",
+    "Rutas cercanas, ciudad"
+   ],
+   "ro": [
+    "Pe jos",
+    "Trasee din apropiere, oraș"
+   ]
+  },
+  {
+   "tabla": "DP_TRANSPORT",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Bicicleta",
+    "Rutas ciclistas y costa"
+   ],
+   "ro": [
+    "Bicicletă",
+    "Trasee de ciclism și coastă"
+   ]
+  },
+  {
+   "tabla": "DP_ZONAS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Norte",
+    "Santa Cruz, Puerto de la Cruz"
+   ],
+   "ro": [
+    "Nord",
+    "Santa Cruz, Puerto de la Cruz"
+   ]
+  },
+  {
+   "tabla": "DP_ZONAS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Sur",
+    "Los Cristianos, Costa Adeje"
+   ],
+   "ro": [
+    "Sud",
+    "Los Cristianos, Costa Adeje"
+   ]
+  },
+  {
+   "tabla": "DP_ZONAS",
+   "clave": "tx",
+   "forma": "lista",
+   "es": [
+    "Me da igual",
+    "Toda la isla"
+   ],
+   "ro": [
+    "Nu contează",
+    "Toată insula"
+   ]
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "tr15coche",
+   "forma": "texto",
+   "es": "15 min en coche",
+   "ro": "15 min cu mașina"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "tr20titsa",
+   "forma": "texto",
+   "es": "20 min en guagua TITSA",
+   "ro": "20 min cu autobuzul TITSA"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "tr10pie",
+   "forma": "texto",
+   "es": "10 min a pie",
+   "ro": "10 min pe jos"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "tr20coche",
+   "forma": "texto",
+   "es": "20 min en coche",
+   "ro": "20 min cu mașina"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "tr30guagua",
+   "forma": "texto",
+   "es": "30 min en guagua",
+   "ro": "30 min cu autobuzul"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "zNaturaleza",
+   "forma": "texto",
+   "es": "🌿 Naturaleza",
+   "ro": "🌿 Natură"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "zCultura",
+   "forma": "texto",
+   "es": "🏛️ Cultura",
+   "ro": "🏛️ Cultură"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "zPlaya",
+   "forma": "texto",
+   "es": "🏖️ Playa",
+   "ro": "🏖️ Plajă"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "zGastronomia",
+   "forma": "texto",
+   "es": "🍽️ Gastronomía",
+   "ro": "🍽️ Gastronomie"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "zFamilia",
+   "forma": "texto",
+   "es": "👨‍👩‍👧 Familia",
+   "ro": "👨‍👩‍👧 Familie"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "zMix",
+   "forma": "texto",
+   "es": "✨ Lo mejor de hoy",
+   "ro": "✨ Ce e mai bun azi"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "tuItinerario",
+   "forma": "texto",
+   "es": "Su itinerario",
+   "ro": "Itinerarul dumneavoastră"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "verMapa",
+   "forma": "texto",
+   "es": "📍 Ver mapa",
+   "ro": "📍 Vedeți harta"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "otroLugar",
+   "forma": "texto",
+   "es": "🔄 Otro",
+   "ro": "🔄 Altul"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "cambiarEste",
+   "forma": "texto",
+   "es": "Cambiar este lugar",
+   "ro": "Schimbați acest loc"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "quitarDeRuta",
+   "forma": "texto",
+   "es": "Quitar del itinerario",
+   "ro": "Eliminați din itinerar"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "pausaComida",
+   "forma": "texto",
+   "es": "Pausa comida",
+   "ro": "Pauză de masă"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "reservaNecesaria",
+   "forma": "texto",
+   "es": "(reserva necesaria)",
+   "ro": "(rezervare necesară)"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "pausa",
+   "forma": "texto",
+   "es": "🍽️ Pausa",
+   "ro": "🍽️ Pauză"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "timeTitle",
+   "forma": "texto",
+   "es": "¿Cuánto tiempo tiene?",
+   "ro": "Cât timp aveți?"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "transportTitle",
+   "forma": "texto",
+   "es": "¿Cómo se mueve?",
+   "ro": "Cum vă deplasați?"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "dayTypeTitle",
+   "forma": "texto",
+   "es": "¿Qué tipo de día busca?",
+   "ro": "Ce fel de zi căutați?"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "backTime",
+   "forma": "texto",
+   "es": "‹ Cambiar tiempo",
+   "ro": "‹ Schimbați durata"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "backActivities",
+   "forma": "texto",
+   "es": "‹ Cambiar actividades",
+   "ro": "‹ Schimbați activitățile"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "createBtn",
+   "forma": "texto",
+   "es": "Crear itinerario →",
+   "ro": "Creați itinerarul →"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "zonaTitle",
+   "forma": "texto",
+   "es": "¿Qué zona de la isla?",
+   "ro": "Ce zonă a insulei?"
+  },
+  {
+   "tabla": "DP_UI",
+   "clave": "backZona",
+   "forma": "texto",
+   "es": "‹ Cambiar zona",
+   "ro": "‹ Schimbați zona"
+  },
+  {
+   "tabla": "texts",
+   "clave": null,
+   "forma": "lista",
+   "es": [
+    "Sin conexión — usando datos en caché",
+    "✓ Conexión restaurada"
+   ],
+   "ro": [
+    "Fără conexiune — se folosesc datele din memoria cache",
+    "✓ Conexiune restabilită"
+   ]
+  },
+  {
+   "tabla": "TTS_I18N",
+   "clave": "play",
+   "forma": "texto",
+   "es": "Escuchar",
+   "ro": "Ascultați"
+  },
+  {
+   "tabla": "TTS_I18N",
+   "clave": "stop",
+   "forma": "texto",
+   "es": "Parar",
+   "ro": "Opriți"
+  },
+  {
+   "tabla": "WEB_I18N",
+   "clave": null,
+   "forma": "texto",
+   "es": "Ver en directo",
+   "ro": "Vedeți în direct"
+  },
+  {
+   "tabla": "WARN_I18N",
+   "clave": "mar",
+   "forma": "texto",
+   "es": "Mar con oleaje y corrientes: báñese solo con mar en calma y respete banderas y cierres.",
+   "ro": "Mare cu valuri și curenți: faceți baie doar când marea este calmă și respectați steagurile și interdicțiile de acces."
+  },
+  {
+   "tabla": "WARN_I18N",
+   "clave": "altura",
+   "forma": "texto",
+   "es": "Alta montaña: frío, viento, sol intenso y menos oxígeno. Abrigo y protección incluso en verano.",
+   "ro": "Munte înalt: frig, vânt, soare puternic și mai puțin oxigen. Haine groase și protecție solară chiar și vara."
+  },
+  {
+   "tabla": "WARN_I18N",
+   "clave": "sendero",
+   "forma": "texto",
+   "es": "Ruta exigente: calzado de montaña, agua y abrigo. Consulte estado, cierres y reservas oficiales antes de ir.",
+   "ro": "Traseu solicitant: încălțăminte de munte, apă și haine groase. Verificați starea traseului, închiderile și rezervările oficiale înainte de a pleca."
+  },
+  {
+   "tabla": "WARN_I18N",
+   "clave": "vertigo",
+   "forma": "texto",
+   "es": "Bordes y acantilados sin vallar: mantenga distancia y vigile a los niños.",
+   "ro": "Margini și stânci abrupte neîmprejmuite: păstrați distanța și supravegheați copiii."
+  },
+  {
+   "tabla": "WARN_I18N",
+   "clave": "incendio",
+   "forma": "texto",
+   "es": "Zona forestal: el fuego está regulado y se prohíbe en riesgo de incendio. Consulte el Cabildo antes de encender nada.",
+   "ro": "Zonă forestieră: focul este reglementat și interzis când există risc de incendiu. Informați-vă la Cabildo înainte de a aprinde ceva."
+  },
+  {
+   "tabla": "WARN_I18N",
+   "clave": "carretera",
+   "forma": "texto",
+   "es": "Carretera de montaña estrecha y con curvas: conduzca con calma y use los ensanches para cruzarse.",
+   "ro": "Drum de munte îngust și cu curbe: conduceți calm și folosiți lărgirile drumului ca să faceți loc mașinilor din sens opus."
+  },
+  {
+   "tabla": "VIS_I18N",
+   "clave": "mark",
+   "forma": "texto",
+   "es": "Marcar visitado",
+   "ro": "Marcați ca vizitat"
+  },
+  {
+   "tabla": "VIS_I18N",
+   "clave": "done",
+   "forma": "texto",
+   "es": "Visitado",
+   "ro": "Vizitat"
+  },
+  {
+   "tabla": "VIS_I18N",
+   "clave": "badge",
+   "forma": "texto",
+   "es": "Logro",
+   "ro": "Realizare"
+  },
+  {
+   "tabla": "VIS_I18N",
+   "clave": "ok",
+   "forma": "texto",
+   "es": "Visita comprobada",
+   "ro": "Vizită verificată"
+  },
+  {
+   "tabla": "VIS_BADGES",
+   "clave": "name",
+   "forma": "texto",
+   "es": "¡Primer lugar!",
+   "ro": "Primul loc!"
+  },
+  {
+   "tabla": "VIS_BADGES",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Explorador",
+   "ro": "Explorator"
+  },
+  {
+   "tabla": "VIS_BADGES",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Aventurero",
+   "ro": "Aventurier"
+  },
+  {
+   "tabla": "VIS_BADGES",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Conquistador",
+   "ro": "Cuceritor"
+  },
+  {
+   "tabla": "VIS_BADGES",
+   "clave": "name",
+   "forma": "texto",
+   "es": "Leyenda de Tenerife",
+   "ro": "Legendă a insulei Tenerife"
+  },
+  {
+   "tabla": "SUMMIT",
+   "clave": "name",
+   "forma": "texto",
+   "es": "¡La cumbre!",
+   "ro": "Pe vârf!"
+  },
+  {
+   "tabla": "PANEL_I18N",
+   "clave": "title",
+   "forma": "texto",
+   "es": "Logros",
+   "ro": "Realizări"
+  },
+  {
+   "tabla": "PANEL_I18N",
+   "clave": "visited",
+   "forma": "texto",
+   "es": "visitados",
+   "ro": "vizitate"
+  }
+ ],
+ "especiales": {
+  "FREQ_I18N": {
+   "09:25 · vuelta 15:40": "09:25 · întoarcere 15:40",
+   "09:30 · vuelta 16:00": "09:30 · întoarcere 16:00",
+   "10-15 min": "10-15 min",
+   "10-20 min": "10-20 min",
+   "15 min": "15 min",
+   "15-20 min": "15-20 min",
+   "15-30 min": "15-30 min",
+   "2 salidas/día": "2 plecări/zi",
+   "2-3 salidas/día": "2-3 plecări/zi",
+   "20-25 min": "20-25 min",
+   "20-30 min": "20-30 min",
+   "20-40 min": "20-40 min",
+   "23:30 · 01:30 · 03:05": "23:30 · 01:30 · 03:05",
+   "25 min": "25 min",
+   "25-35 min": "25-35 min",
+   "3 salidas/día": "3 plecări/zi",
+   "3-4/día": "3-4/zi",
+   "3-5 salidas/día": "3-5 plecări/zi",
+   "30 min": "30 min",
+   "30 min · 60 min fines de semana": "30 min · 60 min în weekend",
+   "30-40 min": "30-40 min",
+   "30-45 min": "30-45 min",
+   "30-60 min": "30-60 min",
+   "4 salidas/día": "4 plecări/zi",
+   "4-6 salidas/día": "4-6 plecări/zi",
+   "40 min": "40 min",
+   "40-50 min": "40-50 min",
+   "45 min": "45 min",
+   "45-60 min": "45-60 min",
+   "5 salidas/día": "5 plecări/zi",
+   "5-15 min": "5-15 min",
+   "50 min": "50 min",
+   "50-100 min": "50-100 min",
+   "50-60 min": "50-60 min",
+   "55 min": "55 min",
+   "6 salidas · solo laborables": "6 plecări · doar în zilele lucrătoare",
+   "6 salidas/día": "6 plecări/zi",
+   "60 min": "60 min",
+   "60-90 min": "60-90 min",
+   "65 min": "65 min",
+   "90 min": "90 min",
+   "90-120 min": "90-120 min",
+   "Continua": "Continuu",
+   "L-V, 3 salidas/día": "L-V, 3 plecări/zi",
+   "L-V, pocas salidas/día": "L-V, puține plecări/zi",
+   "Madrugada": "Noaptea târziu",
+   "~1 h": "~1 h",
+   "~2 h": "~2 h"
+  },
+  "labelRo": {
+   "Museos": "Muzee",
+   "Veterinarios 24h": "Veterinari 24h",
+   "Gasolineras": "Benzinării",
+   "Gasolineras más baratas": "Cele mai ieftine benzinării",
+   "Friendly Zone": "Friendly Zone",
+   "Accesible": "Accesibil",
+   "Puertos Comerciales": "Porturi comerciale",
+   "Puertos & Marinas": "Porturi de agrement",
+   "Deporte Público": "Sport în aer liber",
+   "Ciclismo": "Ciclism",
+   "Parapente": "Parapantă",
+   "Golf": "Golf",
+   "Escalada": "Escaladă",
+   "Windsurf & Kitesurf": "Windsurf și kitesurf",
+   "Kayak & SUP": "Caiac și SUP",
+   "Buceo & Snorkel": "Scufundări și snorkeling",
+   "Pesca Deportiva": "Pescuit sportiv",
+   "Barbacoa & Picnic": "Grătar și picnic",
+   "Miradores": "Puncte de belvedere",
+   "Mercadillos": "Piețe locale",
+   "Surf & Agua": "Surf și sporturi nautice",
+   "Supermercados": "Supermarketuri",
+   "Oficinas de Turismo": "Centre de informare turistică",
+   "Campings": "Campinguri",
+   "Naturaleza & Playas": "Natură și plaje",
+   "Cultura & Ocio": "Cultură și timp liber",
+   "Ciudades & Municipios": "Orașe și municipalități",
+   "Servicios": "Servicii",
+   "Puertos & Marina": "Porturi comerciale și de agrement",
+   "Con mascotas": "Cu animale de companie",
+   "Deporte": "Sport",
+   "Lo Práctico": "Informații practice"
+  }
+ }
+}
