@@ -325,6 +325,8 @@ const ROTULOS_IT = new Set([
   'Crea la mia cartolina', 'Salva l’immagine',
   /* y los del vídeo de los ejercicios (modulos/entrenador.js, 12 de noviembre de 2026) */
   'Riproduci', 'Rivedi',
+  /* y el botón de la ficha de «Su cuerpo» que lleva al vídeo (15 de noviembre de 2026) */
+  'Vedi il video',
 ]);
 
 /* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
@@ -353,6 +355,8 @@ const ROTULOS_BG = new Set([
   'Създай картичката ми', 'Запази снимката',
   /* y los del vídeo de los ejercicios (modulos/entrenador.js, 12 de noviembre de 2026) */
   'Пусни', 'Гледай отново',
+  /* y el botón de la ficha de «Su cuerpo» que lleva al vídeo (15 de noviembre de 2026) */
+  'Виж видеото',
 ]);
 
 /* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
@@ -399,6 +403,8 @@ const ROTULOS_PL = new Set([
   'Utwórz pocztówkę', 'Zapisz obraz',
   /* y los del vídeo de los ejercicios (modulos/entrenador.js, 12 de noviembre de 2026) */
   'Odtwórz', 'Obejrzyj ponownie',
+  /* y el botón de la ficha de «Su cuerpo» que lleva al vídeo (15 de noviembre de 2026) */
+  'Zobacz film',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»

@@ -74,6 +74,8 @@
  *   - el bloque 5 («Hoy en la isla» y «Cruce la isla», 24), el 6 (los sellos y la postal, 25) y el 7 (el
  *     movimiento deporte a deporte: los datos de cada uno, la intensidad y la meta, «Por deporte», el
  *     buceo y el avión, y lo que cada persona elige contar para el GR 131, 26).
+ *   - y, desde el 15 de noviembre de 2026, los vídeos fáciles de encontrar (43): 🎬 detrás del nombre de los
+ *     ejercicios con vídeo en las listas que abren su ficha, «Solo con vídeo» y «Ver el vídeo», en los diez idiomas.
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -206,7 +208,7 @@ async function ejemplo(pg, mas) {
      para la travesía («Cuentan para su travesía», «A pie» y «siempre», para el lector), 146; desde el 8 (bloque 8), con
      «Su compañero de travesía» (el título, «A pie», «En bici» y la ayuda) y «Senderos de la isla» (el título), 151; y 2 placeholders (el
      del buscador de ejercicios y el de la pregunta) */
-  prueba('textos fijos puestos (170 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?» y el título de «Su fuerza»; desde la nota 34, los cinco de las rutinas: «¿A qué nivel entrena?», «Su sesión de hoy», «¿Sin mancuernas, disco o banco?», «sin banda» y «cómo calentar» (166); desde la nota 40, los cuatro de los estiramientos: «¿Qué quiere hacer hoy?», «Sus estiramientos», «¿Tengo que estirar antes o después de entrenar?» y «Después: estire lo que ha trabajado» (170); y 2 placeholders)', r2.n === 170 && r2.ph === 2, r2.n + '/' + r2.ph);
+  prueba('textos fijos puestos (172 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?» y el título de «Su fuerza»; desde la nota 34, los cinco de las rutinas: «¿A qué nivel entrena?», «Su sesión de hoy», «¿Sin mancuernas, disco o banco?», «sin banda» y «cómo calentar» (166); desde la nota 40, los cuatro de los estiramientos: «¿Qué quiere hacer hoy?», «Sus estiramientos», «¿Tengo que estirar antes o después de entrenar?» y «Después: estire lo que ha trabajado» (170); desde el 15-11-2026, «Solo con vídeo» de los filtros y «Ver el vídeo» de la ficha (172); y 2 placeholders)', r2.n === 172 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
     const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
@@ -3526,7 +3528,8 @@ async function ejemplo(pg, mas) {
         ejs: [...document.querySelectorAll('#tgc-ses-lista > li')].map(li => ({ id: li.querySelector('.tgc-ses-ej-btn').dataset.id,
           nom: li.querySelector('.tgc-ses-ej-nom').textContent, pauta: li.querySelector('.tgc-ses-ej-pauta').textContent,
           esf: (li.querySelector('.tgc-ses-ej-esf') || {}).textContent || null, no: (li.querySelector('.tgc-ses-no') || {}).textContent || null,
-          alt: (li.querySelector('.tgc-ses-alt summary') || {}).textContent || null, alts: [...li.querySelectorAll('.tgc-ses-alts button')].map(x => x.dataset.id + ':' + x.textContent) })),
+          alt: (li.querySelector('.tgc-ses-alt summary') || {}).textContent || null, alts: [...li.querySelectorAll('.tgc-ses-alts button')].map(x => x.dataset.id + ':' + x.firstChild.textContent) })),
+        /* (el nombre de cada alternativa: desde el 15-11-2026 puede llevar detrás el 🎬 de los que tienen vídeo, sección 43) */
         fsum: (document.querySelector('#tgc-ses-f .tgc-resp-f summary') || {}).textContent || null,
         fuentes: [...document.querySelectorAll('#tgc-ses-f .tgc-resp-f li')].map(li => ({ c: li.querySelector('a').textContent, u: li.querySelector('a').getAttribute('href'),
           rel: li.querySelector('a').rel, tg: li.querySelector('a').target, l: li.querySelector('.tgc-resp-leido').lastChild.textContent })),
@@ -4243,6 +4246,177 @@ async function ejemplo(pg, mas) {
     prueba('42: si en una sesión no quedara ninguno (todo pide botellas y no hay), sale la sesión tal cual, no «Hoy, descanso»; sin errores de página',
       r5.ses && r5.tit === null && JSON.stringify(r5.ejs) === JSON.stringify(mains) && e42b.length === 0, JSON.stringify([r5, e42b]));
     await c42b.close();
+  }
+
+  // 43. (15-11-2026; Jérôme: «los vídeos que acompañan los ejercicios son un poco complicados de encontrar. Cuando pone el
+  //     nombre de los ejercicios un emoji vídeo y un botón cuando selecciona el ejercicio») 🎬 detrás del nombre de los
+  //     ejercicios con vídeo (datos/cuerpo/con-video.json) en las listas que abren su ficha (el grupo, la sesión del día y sus
+  //     alternativas, las variantes y «Variante de …»), «🎬 Solo con vídeo» en los filtros del grupo y «🎬 Ver el vídeo» en la
+  //     ficha, que lleva al vídeo y lo pone en marcha; en los diez idiomas. Sin el índice: ni 🎬, ni filtro, ni botón, y la
+  //     ficha enseña el vídeo como antes; sin el módulo del vídeo, el botón se va; un índice con basura no pinta nada raro
+  {
+    const fs = require('fs'), path = require('path');
+    const LEE = f => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', f), 'utf8'));
+    const CV = LEE('con-video.json').pasos, EJS = LEE('ejercicios.json').ejercicios, ES = LEE('ejercicios-es.json');
+    const enPecho = EJS.filter(x => x.g.includes('pecho')), conV = enPecho.filter(x => CV[x.id]), sinV = enPecho.find(x => !CV[x.id]);
+    const EJ1 = 'press-banca-barra', VAR1 = EJS.find(x => x.v === EJ1 && CV[x.id]);
+    const VID = '\u{1F3AC}';
+    /* los tres textos nuevos (src/textos.py de «Su cuerpo»): lo que dice el lector del 🎬, el filtro y el botón */
+    const TXT = { es: ['con vídeo', 'Solo con vídeo', 'Ver el vídeo'], en: ['with video', 'With video only', 'Watch the video'],
+      fr: ['avec vidéo', 'Avec vidéo uniquement', 'Voir la vidéo'], de: ['mit Video', 'Nur mit Video', 'Video ansehen'],
+      it: ['con video', 'Solo con video', 'Vedi il video'], nl: ['met video', 'Alleen met video', 'Bekijk de video'],
+      zh: ['有视频', '仅显示有视频的', '观看视频'], zht: ['有影片', '僅顯示有影片的', '觀看影片'],
+      bg: ['с видео', 'Само с видео', 'Виж видеото'], pl: ['z filmem', 'Tylko z filmem', 'Zobacz film'] };
+    const grupo43 = async (pg, g) => { await pg.click('.tgc-fila[data-g="' + g + '"]'); await pg.waitForSelector('#tgc-ej-lista .tgc-ej-fila', { timeout: 15000 }); await pg.waitForTimeout(150); };
+    const lista43 = pg => pg.evaluate(() => [...document.querySelectorAll('#tgc-ej-lista .tgc-ej-fila')].map(b => {
+      const v = b.querySelectorAll('.tgc-vid'), n = b.querySelector('.tgc-ej-nombre'), m = b.querySelector('.tgc-ej-meta');
+      return { id: b.dataset.id, n: v.length, nom: n ? n.textContent : null, lab: v[0] ? v[0].getAttribute('aria-label') : null, rol: v[0] ? v[0].getAttribute('role') : null,
+        txt: v[0] ? v[0].textContent : null, linea: v[0] && m ? v[0].getBoundingClientRect().bottom <= m.getBoundingClientRect().top + 1 : null,
+        /* pegado: el 🎬 en la línea de la última letra del nombre (no solo, en una línea suya) */
+        pegado: v[0] && n && n.firstChild ? (() => { const r = document.createRange(), x = n.firstChild; r.setStart(x, x.length - 1); r.setEnd(x, x.length);
+          return Math.abs(r.getBoundingClientRect().top - v[0].getBoundingClientRect().top) < 8; })() : null };
+    }));
+    const filtro43 = pg => pg.evaluate(() => { const $ = id => document.getElementById(id), b = $('tgc-ej-vid');
+      return { visto: !!b && !$('tgc-ej-vid-fila').hidden && b.offsetParent !== null, txt: b ? $('tgc-ej-vid-txt').textContent : null, ico: b ? b.querySelector('.tgc-vid-ico').textContent : null,
+        pulsado: b ? b.getAttribute('aria-pressed') : null, est: $('tgc-ej-estado').textContent, ids: [...document.querySelectorAll('#tgc-ej-lista .tgc-ej-fila')].map(x => x.dataset.id) }; });
+    const ficha43 = pg => pg.evaluate(() => { const $ = id => document.getElementById(id), b = $('tgc-ej-vervideo'), v = $('tgc-ej-video');
+      const bb = b && b.getBoundingClientRect(), cb = $('tgc-ej-chips').getBoundingClientRect(), vb = v.getBoundingClientRect(), g = v.querySelector('.tgv-gran');
+      return { visto: !!b && !b.hidden && b.offsetParent !== null, txt: b ? $('tgc-ej-vervideo-txt').textContent : null, ico: b ? b.querySelector('.tgc-vid-ico').textContent : null,
+        oro: !!b && b.classList.contains('gold'), entre: !!b && !b.hidden && bb.top >= cb.bottom - 1 && bb.bottom <= vb.top + 1,
+        video: !v.hidden && !!v.querySelector('.tgv'), suena: !!g && g.hidden }; });
+
+    const c43 = await contexto(b), p43 = await c43.newPage(), e43 = []; vigilar(p43, e43);
+    await abrirApp(p43); await abrirPerfilCuerpo(p43); await suCuerpo(p43); await vacio(p43);
+    await grupo43(p43, 'pecho');
+    const L1 = await lista43(p43);
+    prueba('43: en el grupo del pecho, 🎬 detrás del nombre de los ' + conV.length + ' de ' + enPecho.length + ' ejercicios que tienen vídeo, y de ninguno más; el nombre, solo el nombre',
+      L1.length === enPecho.length && L1.filter(f => f.n).length === conV.length && L1.every(f => f.n === (CV[f.id] ? 1 : 0) && f.nom === ES[f.id][0]),
+      JSON.stringify(L1.filter(f => f.n !== (CV[f.id] ? 1 : 0) || f.nom !== ES[f.id][0]).slice(0, 3)));
+    prueba('43: el 🎬 es un dibujo con «con vídeo» para el lector de pantalla, en la línea del nombre (encima del material y el nivel)',
+      L1.some(f => f.n) && L1.filter(f => f.n).every(f => f.lab === 'con vídeo' && f.rol === 'img' && f.txt === VID && f.linea), JSON.stringify(L1.find(f => f.n)));
+
+    // el filtro: visible, apagado; encendido, solo los que tienen vídeo (y el número lo dice); con el nivel, los dos a la vez
+    const f0 = await filtro43(p43);
+    await p43.click('#tgc-ej-vid', { timeout: 3000 }).catch(() => {}); await p43.waitForTimeout(150);
+    const f1 = await filtro43(p43);
+    prueba('43: «🎬 Solo con vídeo» en los filtros del grupo; al tocarlo, solo los ' + conV.length + ' con vídeo (y lo dice el número), y pulsado',
+      f0.visto && f0.txt === 'Solo con vídeo' && f0.ico === VID && f0.pulsado === 'false' && f0.ids.length === enPecho.length &&
+      f1.pulsado === 'true' && JSON.stringify(f1.ids) === JSON.stringify(conV.map(x => x.id)) && f1.est === conV.length + ' ejercicios', JSON.stringify([f0, f1]).slice(0, 400));
+    await p43.click('#tgc-ej-niv [data-v="1"]'); await p43.waitForTimeout(150);
+    const f2 = await filtro43(p43), n1 = conV.filter(x => (x.n || 1) === 1).map(x => x.id);
+    await p43.click('#tgc-ej-niv [data-v="0"]'); await p43.click('#tgc-ej-vid', { timeout: 3000 }).catch(() => {}); await p43.waitForTimeout(150);
+    const f3 = await filtro43(p43);
+    prueba('43: con «Inicial» además, los ' + n1.length + ' de nivel inicial con vídeo; tocado otra vez, todos (' + enPecho.length + ')',
+      n1.length > 0 && JSON.stringify(f2.ids) === JSON.stringify(n1) && f3.pulsado === 'false' && f3.ids.length === enPecho.length, JSON.stringify([f2.ids.length, n1.length, f3.pulsado, f3.ids.length]));
+
+    // la ficha de uno con vídeo: el botón, dorado, entre las etiquetas y el vídeo; el vídeo, quieto hasta que se toca
+    await p43.click('.tgc-ej-fila[data-id="' + EJ1 + '"]');
+    await p43.waitForFunction(() => document.querySelector('#tgc-ej-video .tgv'), null, { timeout: 15000 }).catch(() => {});
+    const k1 = await ficha43(p43);
+    prueba('43: en la ficha de uno con vídeo, «🎬 Ver el vídeo» (dorado), entre las etiquetas y el vídeo; el vídeo, quieto hasta que se toca',
+      k1.visto && k1.txt === 'Ver el vídeo' && k1.ico === VID && k1.oro && k1.entre && k1.video && !k1.suena, JSON.stringify(k1));
+    // con la ficha bajada hasta el final (el vídeo fuera de la vista), el botón sube hasta el vídeo y lo pone en marcha
+    await p43.evaluate(() => { const h = document.getElementById('tgc-hoja'); h.scrollTop = h.scrollHeight; }); await p43.waitForTimeout(250);
+    const fuera = await p43.evaluate(() => { const h = document.getElementById('tgc-hoja').getBoundingClientRect(), v = document.getElementById('tgc-ej-video').getBoundingClientRect(); return v.bottom <= h.top + 1 || v.top >= h.bottom - 1; });
+    await p43.evaluate(() => { const x = document.getElementById('tgc-ej-vervideo'); if (x) x.click(); }); await p43.waitForTimeout(1200);
+    const k2 = await p43.evaluate(() => { const h = document.getElementById('tgc-hoja').getBoundingClientRect(), v = document.getElementById('tgc-ej-video'), r = v.getBoundingClientRect();
+      return { arriba: Math.round(r.top - h.top), suena: !!v.querySelector('.tgv-gran') && v.querySelector('.tgv-gran').hidden }; });
+    prueba('43: con la ficha bajada (el vídeo fuera de la vista), «Ver el vídeo» sube hasta él y lo pone en marcha',
+      fuera && k2.arriba >= 0 && k2.arriba <= 40 && k2.suena, JSON.stringify([fuera, k2]));
+    // sus variantes, con su 🎬; y en la variante, «Variante de …» con el suyo
+    const vs = await p43.evaluate(() => [...document.querySelectorAll('#tgc-ej-variantes .tgc-ej-var')].map(b => [b.dataset.id, b.querySelectorAll('.tgc-vid').length, b.firstChild.textContent]));
+    prueba('43: las variantes de la ficha llevan 🎬 si tienen vídeo (' + vs.filter(v => v[1]).length + ' de ' + vs.length + '), y el nombre igual',
+      !!VAR1 && vs.length > 0 && vs.some(v => v[0] === VAR1.id) && vs.every(v => v[1] === (CV[v[0]] ? 1 : 0) && v[2] === ES[v[0]][0]), JSON.stringify(vs).slice(0, 300));
+    await p43.click('#tgc-ej-variantes .tgc-ej-var[data-id="' + VAR1.id + '"]'); await p43.waitForTimeout(300);
+    const vb = await p43.evaluate(() => { const b = document.getElementById('tgc-ej-variante'); return { visto: !b.hidden, id: b.dataset.id, n: b.querySelectorAll('.tgc-vid').length, txt: b.firstChild.textContent }; });
+    prueba('43: en la ficha de una variante, «Variante de …» lleva el 🎬 de su base, que tiene vídeo',
+      vb.visto && vb.id === EJ1 && vb.n === 1 && vb.txt === 'Variante de ' + ES[EJ1][0], JSON.stringify(vb));
+    // la ficha de uno sin vídeo: ni botón ni vídeo
+    await p43.keyboard.press('Escape'); await p43.waitForTimeout(250);
+    await p43.click('.tgc-ej-fila[data-id="' + sinV.id + '"]'); await p43.waitForTimeout(1500);
+    const k3 = await ficha43(p43);
+    prueba('43: en la ficha de uno sin vídeo («' + ES[sinV.id][0] + '»), ni el botón ni el vídeo', !k3.visto && !k3.video, JSON.stringify(k3));
+    await p43.keyboard.press('Escape'); await p43.waitForTimeout(200);
+
+    // la sesión del día (gimnasio, Inicial): 🎬 en los ejercicios y en las alternativas que tienen vídeo; y si el filtro estaba
+    // encendido, un ejercicio de la sesión abre su grupo con el filtro apagado (como el nivel)
+    await p43.click('#tgc-ej-vid', { timeout: 3000 }).catch(() => {}); await p43.waitForTimeout(100);
+    await p43.keyboard.press('Escape'); await p43.waitForTimeout(250);
+    await p43.evaluate(() => { localStorage.setItem('tenerife.cuerpo', JSON.stringify({ v: 1, series: [], sitio: 'gimnasio', nivel: 1 })); TG_CUERPO.abrir(); });
+    await p43.waitForTimeout(250);
+    if (await p43.evaluate(() => document.getElementById('tgc-plan-cuerpo').hidden)) { await p43.click('#tgc-plan-btn'); await p43.waitForTimeout(250); }
+    await p43.waitForFunction(() => !document.getElementById('tgc-ses').hidden && document.querySelectorAll('#tgc-ses-lista > li').length > 0, null, { timeout: 10000 }).catch(() => {});
+    const R = await p43.evaluate(() => [...document.querySelectorAll('#tgc-ses-lista > li')].map(li => { const b = li.querySelector('.tgc-ses-ej-btn');
+      return { id: b.dataset.id, n: b.querySelectorAll('.tgc-vid').length, nom: b.querySelector('.tgc-ses-ej-nom').textContent,
+        alts: [...li.querySelectorAll('.tgc-ses-alts button')].map(a => [a.dataset.id, a.querySelectorAll('.tgc-vid').length, a.firstChild.textContent]) }; }));
+    const alts = R.flatMap(f => f.alts);
+    prueba('43: en la sesión del día, 🎬 en los ejercicios (' + R.filter(f => f.n).length + ' de ' + R.length + ') y alternativas (' + alts.filter(a => a[1]).length + ' de ' + alts.length + ') con vídeo, y en ninguno más; el nombre, solo el nombre',
+      R.length > 0 && R.some(f => f.n) && R.every(f => f.n === (CV[f.id] ? 1 : 0) && f.nom === ES[f.id][0]) && alts.every(a => a[1] === (CV[a[0]] ? 1 : 0) && a[2] === ES[a[0]][0]),
+      JSON.stringify(R).slice(0, 400));
+    const sinVr = R.find(f => !f.n) || R[0];
+    await p43.click('#tgc-ses-lista .tgc-ses-ej-btn[data-id="' + sinVr.id + '"]'); await p43.waitForTimeout(400);
+    await p43.keyboard.press('Escape'); await p43.waitForTimeout(250);
+    const f4 = await filtro43(p43);
+    prueba('43: un ejercicio de la sesión abre su grupo con «Solo con vídeo» apagado (estaba encendido), y la lista lo trae',
+      f4.pulsado === 'false' && f4.ids.includes(sinVr.id), JSON.stringify([f4.pulsado, f4.ids.length, sinVr.id]));
+    await p43.keyboard.press('Escape'); await p43.waitForTimeout(200);
+
+    // en los diez idiomas: el filtro, lo que dice el lector del 🎬 (los mismos en cada idioma) y el botón de la ficha
+    await vacio(p43);
+    const malI = [];
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'es']) {
+      await idioma(p43, l);
+      await grupo43(p43, 'pecho');
+      /* todos los sitios: la sesión del día dejó «Gimnasio» puesto */
+      await p43.click('#tgc-ej-ent [data-v="todos"]'); await p43.waitForTimeout(150);
+      await p43.waitForFunction(t => { const v = document.querySelector('#tgc-ej-lista .tgc-vid'); return v && v.getAttribute('aria-label') === t; }, TXT[l][0], { timeout: 10000 }).catch(() => {});
+      const L = await lista43(p43), F = await filtro43(p43);
+      await p43.click('.tgc-ej-fila[data-id="' + EJ1 + '"]'); await p43.waitForTimeout(300);
+      const K = await ficha43(p43);
+      const bien = L.filter(f => f.n).length === conV.length && L.filter(f => f.n).every(f => f.lab === TXT[l][0] && f.pegado) && F.visto && F.txt === TXT[l][1] && K.visto && K.txt === TXT[l][2];
+      if (!bien) malI.push(l + ': ' + JSON.stringify([L.filter(f => f.n).length, (L.find(f => f.n) || {}).lab, L.filter(f => f.n && !f.pegado).map(f => f.id).slice(0, 3), F.txt, K.txt]));
+      await p43.keyboard.press('Escape'); await p43.waitForTimeout(150); await p43.keyboard.press('Escape'); await p43.waitForTimeout(150);
+    }
+    prueba('43: en los diez idiomas, el filtro, el botón y lo que dice el lector del 🎬, cada uno en el suyo, y el 🎬 en los ' + conV.length + ' del pecho, pegado a la última palabra (nunca solo en una línea)', malI.length === 0, malI.join(' | '));
+    prueba('43: sin errores de página', e43.length === 0, e43.join(' | '));
+    await c43.close();
+
+    // sin el módulo del vídeo (no llega): el botón se va y la ficha queda como estaba; el 🎬 de la lista sigue (sale del índice)
+    const c43b = await contexto(b, { corta: /\/modulos\/entrenador\.js/ }), p43b = await c43b.newPage(), e43b = []; vigilar(p43b, e43b);
+    await abrirApp(p43b); await abrirPerfilCuerpo(p43b); await suCuerpo(p43b); await vacio(p43b);
+    await grupo43(p43b, 'pecho');
+    const Lb = await lista43(p43b);
+    await p43b.click('.tgc-ej-fila[data-id="' + EJ1 + '"]'); await p43b.waitForTimeout(1500);
+    const kb = await ficha43(p43b);
+    prueba('43: sin el módulo del vídeo, el botón se va y la ficha queda sin vídeo; el 🎬 de la lista sigue; sin errores de página',
+      Lb.filter(f => f.n).length === conV.length && !kb.visto && !kb.video && e43b.length === 0, JSON.stringify([Lb.filter(f => f.n).length, kb, e43b]));
+    await c43b.close();
+
+    // sin el índice (no llega): ni 🎬, ni filtro, ni botón; la ficha enseña el vídeo como antes
+    const c43c = await contexto(b), p43c = await c43c.newPage(), e43c = []; vigilar(p43c, e43c);
+    await c43c.route('**/datos/cuerpo/con-video.json', r => r.fulfill({ status: 404, contentType: 'text/plain', body: '' }));
+    await abrirApp(p43c); await abrirPerfilCuerpo(p43c); await suCuerpo(p43c); await vacio(p43c);
+    await grupo43(p43c, 'pecho');
+    const Lc = await lista43(p43c), Fc = await filtro43(p43c);
+    await p43c.click('.tgc-ej-fila[data-id="' + EJ1 + '"]');
+    await p43c.waitForFunction(() => document.querySelector('#tgc-ej-video .tgv'), null, { timeout: 15000 }).catch(() => {});
+    const kc = await ficha43(p43c), ec = e43c.filter(e => !/^404 .*\/datos\/cuerpo\/con-video\.json$/.test(e));
+    prueba('43: sin el índice, ni 🎬 ni filtro ni botón, y la ficha enseña el vídeo como antes; sin otros errores',
+      Lc.length === enPecho.length && Lc.every(f => f.n === 0) && !Fc.visto && !kc.visto && kc.video && ec.length === 0, JSON.stringify([Lc.filter(f => f.n).length, Fc.visto, kc, ec]));
+    await c43c.close();
+
+    // un índice con basura: solo cuenta la fila buena (un id del catálogo con los pasos de su ficha); nada se ejecuta
+    const otros = conV.filter(x => x.id !== EJ1 && x.id !== VAR1.id);
+    const basura = '{"pasos": {"<img src=x onerror=window.__malo43=1>": 3, "__proto__": 3, "constructor": 4, "' + EJ1 + '": ' + CV[EJ1] + ', "' + VAR1.id + '": "' + CV[VAR1.id] + '", "' +
+      otros[0].id + '": ' + (CV[otros[0].id] + 1) + ', "' + otros[1].id + '": 2.5}}';
+    const c43d = await contexto(b), p43d = await c43d.newPage(), e43d = []; vigilar(p43d, e43d);
+    await c43d.route('**/datos/cuerpo/con-video.json', r => r.fulfill({ status: 200, contentType: 'application/json', body: basura }));
+    await abrirApp(p43d); await abrirPerfilCuerpo(p43d); await suCuerpo(p43d); await vacio(p43d);
+    await grupo43(p43d, 'pecho');
+    const Ld = await lista43(p43d), malo = await p43d.evaluate(() => window.__malo43 === undefined && !document.querySelector('#cuerpo-panel img[src="x"]'));
+    prueba('43: un índice con basura (HTML, __proto__, pasos en texto, de más o con decimales): solo el 🎬 de la fila buena; nada se ejecuta; sin errores',
+      Ld.filter(f => f.n).map(f => f.id).join() === EJ1 && malo && e43d.length === 0, JSON.stringify([Ld.filter(f => f.n).map(f => f.id), malo, e43d]));
+    await c43d.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

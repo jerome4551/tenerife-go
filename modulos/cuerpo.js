@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (667 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (670 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać"},
@@ -583,6 +583,9 @@
     "cuerpoSinEjFiltro": {"es": "Ningún ejercicio con estos filtros.", "en": "No exercises match these filters.", "fr": "Aucun exercice ne correspond à ces filtres.", "de": "Keine Übung passt zu diesen Filtern.", "it": "Nessun esercizio con questi filtri.", "nl": "Geen oefeningen met deze filters.", "zh": "没有符合筛选条件的动作。", "zht": "沒有符合篩選條件的動作。", "bg": "Няма упражнения с тези филтри.", "pl": "Brak ćwiczeń dla tych filtrów."},
     "cuerpoVarianteDe": {"es": "Variante de {nombre}", "en": "Variation of {nombre}", "fr": "Variante de {nombre}", "de": "Variante von {nombre}", "it": "Variante di {nombre}", "nl": "Variant van {nombre}", "zh": "{nombre}的变体", "zht": "{nombre}的變化式", "bg": "Вариант на {nombre}", "pl": "Wariant: {nombre}"},
     "cuerpoVariantes": {"es": "Variantes", "en": "Variations", "fr": "Variantes", "de": "Varianten", "it": "Varianti", "nl": "Varianten", "zh": "变体", "zht": "變化式", "bg": "Варианти", "pl": "Warianty"},
+    "cuerpoEjConVideo": {"es": "con vídeo", "en": "with video", "fr": "avec vidéo", "de": "mit Video", "it": "con video", "nl": "met video", "zh": "有视频", "zht": "有影片", "bg": "с видео", "pl": "z filmem"},
+    "cuerpoEjSoloVideo": {"es": "Solo con vídeo", "en": "With video only", "fr": "Avec vidéo uniquement", "de": "Nur mit Video", "it": "Solo con video", "nl": "Alleen met video", "zh": "仅显示有视频的", "zht": "僅顯示有影片的", "bg": "Само с видео", "pl": "Tylko z filmem"},
+    "cuerpoEjVerVideo": {"es": "Ver el vídeo", "en": "Watch the video", "fr": "Voir la vidéo", "de": "Video ansehen", "it": "Vedi il video", "nl": "Bekijk de video", "zh": "观看视频", "zht": "觀看影片", "bg": "Виж видеото", "pl": "Zobacz film"},
     "cuerpoFichasPropias": {"es": "Fichas propias de Tenerife Go, comprobadas en las fuentes de cada ejercicio.", "en": "Written by Tenerife Go and checked against each exercise’s sources.", "fr": "Fiches rédigées par Tenerife Go et vérifiées dans les sources de chaque exercice.", "de": "Von Tenerife Go verfasst und anhand der Quellen jeder Übung geprüft.", "it": "Schede scritte da Tenerife Go e verificate sulle fonti di ogni esercizio.", "nl": "Geschreven door Tenerife Go en gecontroleerd aan de hand van de bronnen van elke oefening.", "zh": "由 Tenerife Go 编写，并已对照每个动作的来源核实。", "zht": "由 Tenerife Go 撰寫，並已對照每個動作的來源查核。", "bg": "Написани от Tenerife Go и проверени по източниците на всяко упражнение.", "pl": "Opracowane przez Tenerife Go i sprawdzone w źródłach każdego ćwiczenia."},
     "cuerpoModoPreguntar": {"es": "Preguntar", "en": "Ask", "fr": "Demander", "de": "Fragen", "it": "Domande", "nl": "Vragen", "zh": "提问", "zht": "提問", "bg": "Въпроси", "pl": "Pytania"},
     "cuerpoAsisTitulo": {"es": "Pregunte lo que quiera", "en": "Ask anything", "fr": "Posez votre question", "de": "Fragen Sie, was Sie möchten", "it": "Chieda pure", "nl": "Stel uw vraag", "zh": "随时提问", "zht": "隨時提問", "bg": "Попитайте каквото желаете", "pl": "Proszę pytać"},
@@ -2459,6 +2462,8 @@
   var DATOS_3D = typeof RUTA_3D.datos === 'string' ? RUTA_3D.datos : './datos/cuerpo3d/';
   var M3 = null, C3 = null, lienzo3d = null, estado3d = 'no', carga3d = null, reintentos3d = 0, pedido3d = '', movido3d = false, reloj3d = null;
   var ejEntorno = 'todos', ejNivel = 0, ejBuscar = '', ejAbierto = null, ejHistoria = false, antesDeEj = null;
+  /* (15-11-2026, Jérôme: que los vídeos se encuentren) «Solo con vídeo» en la lista del grupo */
+  var ejVideo = false;
   /* (#120) de qué ejercicio son las repeticiones y el peso escritos en la ficha: al abrir otro, se rellenan con los
      de su última vez (para seguir donde lo dejó); al guardar, se quedan para la serie siguiente */
   var ejCargaDe = null;
@@ -2473,6 +2478,10 @@
      pasos). Si falta el idioma, el castellano. Cada fila se comprueba al leerla. */
   var BASE_DATOS = typeof window.TG_CUERPO_DATOS === 'string' ? window.TG_CUERPO_DATOS : './datos/';
   var EJ = null, EJ_TX = {}, ejCarga = null, ejError = false;
+  /* (15-11-2026) qué ejercicios tienen vídeo y cuántos pasos tiene su ficha en castellano: datos/cuerpo/con-video.json,
+     que escribe tools/entrenador/construir.py. Con él sale 🎬 junto al nombre sin pedir modulos/entrenador.js, que
+     pesa. Si no llega, no salen el 🎬, el filtro ni el botón, y la ficha enseña el vídeo como antes */
+  var VID = null;
   /* (13-11-2026, bloque 35) «casa» en el entorno: un ejercicio pensado para casa (con silla, toalla, botellas…); si solo lleva
      «casa», no sale en gimnasio, fuera ni calistenia. Y los siete materiales nuevos */
   var ENTORNOS = ['gimnasio', 'fuera', 'calistenia', 'casa'];
@@ -2510,11 +2519,13 @@
     ejCarga = Promise.all([
       EJ ? null : pedirJSON('ejercicios.json'),
       EJ_TX.es ? null : pedirJSON('ejercicios-es.json'),
-      (l === 'es' || EJ_TX[l]) ? null : pedirJSON('ejercicios-' + l + '.json').catch(function () { return {}; })
+      (l === 'es' || EJ_TX[l]) ? null : pedirJSON('ejercicios-' + l + '.json').catch(function () { return {}; }),
+      VID ? null : pedirJSON('con-video.json').catch(function () { return null; })
     ]).then(function (r) {
       if (r[0]) EJ = indexar(r[0]);
       if (r[1]) EJ_TX.es = (r[1] && typeof r[1] === 'object') ? r[1] : {};
       if (r[2]) EJ_TX[l] = (r[2] && typeof r[2] === 'object') ? r[2] : {};
+      if (r[3]) VID = leerVid(r[3]);
     }, function (e) { ejError = true; throw e; });
     var fin = function () { ejCarga = null; };
     ejCarga.then(fin, fin);
@@ -2526,6 +2537,33 @@
     return (Array.isArray(x) && typeof x[0] === 'string') ? { nombre: x[0], pasos: Array.isArray(x[1]) ? x[1].filter(function (p) { return typeof p === 'string'; }) : [] } : null;
   }
   function nombreEj(id) { var t = txEj(id); return t ? t.nombre : id; }
+  /* las filas de con-video.json: el id de un ejercicio y los pasos de su ficha (de 1 a 40) */
+  function leerVid(d) {
+    var p = d && typeof d === 'object' && d.pasos && typeof d.pasos === 'object' && !Array.isArray(d.pasos) ? d.pasos : {}, v = {};
+    Object.keys(p).forEach(function (k) { var n = p[k]; if (esId(k) && typeof n === 'number' && n % 1 === 0 && n >= 1 && n <= 40) v[k] = n; });
+    return v;
+  }
+  /* tiene vídeo si su coreografía es de tantos pasos como su ficha en el idioma de la app: lo mismo que mira
+     TG_ENTRENADOR.tiene(id, pasos) antes de enseñarlo (tools/auditar_entrenador.js comprueba que coinciden) */
+  function conVideo(id) {
+    var n = VID && Object.prototype.hasOwnProperty.call(VID, id) ? VID[id] : 0, t = n ? txEj(id) : null;
+    return !!(t && t.pasos.length === n);
+  }
+  /* el 🎬 detrás del nombre: a la vista, el dibujo; al lector de pantalla, «con vídeo». Va pegado a la última palabra
+     con un «word joiner» (U+2060, sin anchura): si no cabe en la línea, baja con ella y no se queda solo */
+  function marcaVideo() {
+    var w = el('span', 'tgc-vid-w', '\u2060'), s = el('span', 'tgc-vid', '\ud83c\udfac');
+    s.setAttribute('role', 'img'); s.setAttribute('aria-label', tx('cuerpoEjConVideo'));
+    w.appendChild(s);
+    return w;
+  }
+  /* el nombre en una lista que abre su ficha: el nombre solo en su span (cls), y el 🎬 a su lado, en la misma línea */
+  function nomConVideo(cls, id) {
+    var w = el('span', cls + '-lin');
+    w.appendChild(el('span', cls, nombreEj(id)));
+    if (conVideo(id)) w.appendChild(marcaVideo());
+    return w;
+  }
   /* la última vez que se anotó cada ejercicio */
   function ultimasEj() { var u = {}; st.series.forEach(function (x) { if (x.e && x.d <= hoy() && (!u[x.e] || x.d > u[x.e])) u[x.e] = x.d; }); return u; }
   /* (#120, 12-11-2026) las anotaciones de un ejercicio, de la más antigua a la última. Una anotación desde la ficha
@@ -4187,7 +4225,7 @@
     SH.ejs.forEach(function (e) {
       var li = el('li', 'tgc-ses-ej' + (e.descansa ? ' descansa' : '')), b = el('button', 'tgc-ses-ej-btn');
       b.type = 'button'; b.dataset.id = e.id;
-      b.appendChild(el('span', 'tgc-ses-ej-nom', nombreEj(e.id)));
+      b.appendChild(nomConVideo('tgc-ses-ej-nom', e.id));
       b.appendChild(el('span', 'tgc-ses-ej-pauta', pautaTxt(e.p)));
       li.appendChild(b);
       var t = txL(e.p.x);
@@ -4196,7 +4234,7 @@
       if (e.alts.length) {
         var d = el('details', 'tgc-ses-alt'), w = el('div', 'tgc-ses-alts');
         d.appendChild(el('summary', '', tx('cuerpoRutAlt')));
-        e.alts.forEach(function (a) { var ab = el('button', 'tgc-ver', nombreEj(a)); ab.type = 'button'; ab.dataset.id = a; w.appendChild(ab); });
+        e.alts.forEach(function (a) { var ab = el('button', 'tgc-ver', nombreEj(a)); ab.type = 'button'; ab.dataset.id = a; if (conVideo(a)) ab.appendChild(marcaVideo()); w.appendChild(ab); });
         d.appendChild(w); li.appendChild(d);
       }
       e.p.f.forEach(function (k) { if (fk.indexOf(k) < 0) fk.push(k); });
@@ -4326,13 +4364,13 @@
     D.ejs.forEach(function (e) {
       var li = el('li', 'tgc-ses-ej'), b = el('button', 'tgc-ses-ej-btn');
       b.type = 'button'; b.dataset.id = e.id;
-      b.appendChild(el('span', 'tgc-ses-ej-nom', nombreEj(e.id)));
+      b.appendChild(nomConVideo('tgc-ses-ej-nom', e.id));
       b.appendChild(el('span', 'tgc-ses-ej-pauta', pautaTxt(D.p)));
       li.appendChild(b);
       if (e.alts.length) {
         var d = el('details', 'tgc-ses-alt'), w = el('div', 'tgc-ses-alts');
         d.appendChild(el('summary', '', tx('cuerpoRutAlt')));
-        e.alts.forEach(function (a) { var ab = el('button', 'tgc-ver', nombreEj(a)); ab.type = 'button'; ab.dataset.id = a; w.appendChild(ab); });
+        e.alts.forEach(function (a) { var ab = el('button', 'tgc-ver', nombreEj(a)); ab.type = 'button'; ab.dataset.id = a; if (conVideo(a)) ab.appendChild(marcaVideo()); w.appendChild(ab); });
         d.appendChild(w); li.appendChild(d);
       }
       ol.appendChild(li);
@@ -4423,10 +4461,15 @@
       ul.textContent = '';
       if (ejError) { estado.textContent = tx('cuerpoErrorEj'); $('tgc-ej-reintentar').hidden = false; }
       else estado.textContent = tx('cuerpoCargandoEj');
+      $('tgc-ej-vid-fila').hidden = true;
       cargarEjercicios().then(function () { if (grupoAbierto === g) renderHoja(); }, function () { if (grupoAbierto === g) renderEjLista(); });
       return;
     }
     var todos = EJ.lista.filter(function (x) { return x.g.indexOf(g) >= 0; });
+    /* (15-11-2026) «Solo con vídeo»: sale si el grupo tiene alguno con vídeo; si no, ni se ve ni filtra */
+    var hayVid = todos.some(function (x) { return conVideo(x.id); }), soloVid = ejVideo && hayVid;
+    $('tgc-ej-vid-fila').hidden = !hayVid;
+    $('tgc-ej-vid').setAttribute('aria-pressed', soloVid ? 'true' : 'false');
     /* (#120) «En casa»: los ejercicios con el material que marcó en «¿Qué entreno hoy?» */
     var casaAy = $('tgc-ej-casa-ayuda');
     casaAy.hidden = ejEntorno !== 'casa';
@@ -4434,6 +4477,7 @@
     var palabras = plano(ejBuscar).split(/\s+/).filter(Boolean);
     var vis = todos.filter(function (x) {
       if (!((ejEntorno === 'todos' || ejDeSitio(x, ejEntorno)) && (!ejNivel || x.n === ejNivel))) return false;
+      if (soloVid && !conVideo(x.id)) return false;
       var n = palabras.length ? plano(nombreEj(x.id)) : '';
       return palabras.every(function (w) { return n.indexOf(w) >= 0; });
     });
@@ -4443,7 +4487,7 @@
     vis.forEach(function (x) {
       var li = el('li'), b = el('button', 'tgc-ej-fila'); b.type = 'button'; b.dataset.id = x.id;
       var t = el('span', 'tgc-ej-txt');
-      t.appendChild(el('span', 'tgc-ej-nombre', nombreEj(x.id)));
+      t.appendChild(nomConVideo('tgc-ej-nombre', x.id));
       /* el material y el nivel, separados por el espacio (sin puntos medios) */
       var meta = el('span', 'tgc-ej-meta');
       x.m.slice(0, 2).forEach(function (m) { meta.appendChild(el('span', '', tx('cuerpoMat_' + m))); meta.appendChild(document.createTextNode(' ')); });
@@ -4490,22 +4534,47 @@
     videoEjDe = '';
     var c = $('tgc-ej-video'); if (c) { c.textContent = ''; c.hidden = true; }
   }
+  /* (15-11-2026) devuelve una promesa con el reproductor montado, o null si no hay vídeo (para «Ver el vídeo») */
   function videoEj(x, t) {
     /* el mismo ejercicio en el mismo idioma: se queda como está (guardar unas series no lo reinicia) */
     var clave = x.id + '|' + lengua();
-    if (videoEjR && videoEjDe === clave) return;
+    if (videoEjR && videoEjDe === clave) return Promise.resolve(videoEjR);
     quitarVideoEj();
-    cargarEntrenador().then(function () {
+    return cargarEntrenador().then(function () {
       var E = window.TG_ENTRENADOR, c = $('tgc-ej-video');
-      if (ejAbierto !== x.id || !c || videoEjR || !E.tiene(x.id, t.pasos.length)) return;
+      /* otra ficha u otro idioma mientras llegaba el módulo: esta llamada ya no vale */
+      if (ejAbierto !== x.id || clave !== x.id + '|' + lengua() || !c) return null;
+      /* ya lo montó otra llamada (el botón «Ver el vídeo» mientras llegaba el módulo) */
+      if (videoEjR) return videoEjDe === clave ? videoEjR : null;
+      if (!E.tiene(x.id, t.pasos.length)) { $('tgc-ej-vervideo').hidden = true; return null; }
       var nombres = {}, es = (EJ_TX.es || {})[x.id];
       x.g.concat(x.s).forEach(function (g) { nombres[g] = nombre(g); });
       var etq = [nombreEnt(x.en[0]), tx('cuerpoNivel_' + x.n)].concat(x.m.filter(function (m) { return m !== 'ninguno'; }).map(function (m) { return tx('cuerpoMat_' + m); }));
       c.hidden = false;
       videoEjR = E.montar(c, { id: x.id, nombre: t.nombre, pasos: t.pasos, pasosEs: Array.isArray(es) && Array.isArray(es[1]) ? es[1] : null, prim: x.g, sec: x.s, nombres: nombres, etiquetas: etq, entorno: x.en[0], nivel: x.n },
         { idioma: lengua(), tema: tema });
-      if (videoEjR) videoEjDe = clave; else c.hidden = true;
-    }, function () {});
+      if (videoEjR) videoEjDe = clave; else { c.hidden = true; $('tgc-ej-vervideo').hidden = true; }
+      return videoEjR;
+    }, function () {
+      /* sin el módulo no hay vídeo: el botón se va (la ficha siguiente lo vuelve a pedir) */
+      if (ejAbierto === x.id) $('tgc-ej-vervideo').hidden = true;
+      return null;
+    });
+  }
+  /* (15-11-2026) «🎬 Ver el vídeo» de la ficha: lleva al vídeo si no se ve entero y lo pone en marcha (si el módulo
+     aún no ha llegado, cuando llegue). El foco se queda en el botón; el paso que suena lo dice el propio vídeo */
+  function verVideo() {
+    var x = EJ && EJ.porId[ejAbierto], t = x && txEj(x.id);
+    if (!t || !conVideo(x.id)) return;
+    videoEj(x, t).then(function (r) {
+      if (!r || ejAbierto !== x.id) return;
+      var h = $('tgc-hoja'), c = $('tgc-ej-video'), ch = c.getBoundingClientRect(), hh = h.getBoundingClientRect();
+      if (ch.top < hh.top || ch.bottom > hh.bottom) {
+        var y = Math.max(0, h.scrollTop + ch.top - hh.top - 12);
+        try { h.scrollTo({ top: y, behavior: reducido ? 'auto' : 'smooth' }); } catch (e) { h.scrollTop = y; }
+      }
+      try { r.reproducir(); } catch (e) {}
+    });
   }
 
   /* ── la ficha de un ejercicio (la segunda página de la hoja) ── */
@@ -4544,11 +4613,12 @@
     /* de qué ejercicio es variante (enlace a él) y cuáles son sus variantes */
     var vb = $('tgc-ej-variante');
     vb.hidden = !(x.v && EJ.porId[x.v]);
-    if (!vb.hidden) { vb.textContent = tx('cuerpoVarianteDe', { nombre: nombreEj(x.v) }); vb.dataset.id = x.v; }
+    if (!vb.hidden) { vb.textContent = tx('cuerpoVarianteDe', { nombre: nombreEj(x.v) }); if (conVideo(x.v)) vb.appendChild(marcaVideo()); vb.dataset.id = x.v; }
     var vars = EJ.lista.filter(function (y) { return y.v === x.id; }), vu = $('tgc-ej-variantes');
     $('tgc-ej-var-caja').hidden = !vars.length; vu.textContent = '';
     vars.forEach(function (y) {
       var li = el('li'), b = el('button', 'tgc-ej-var', nombreEj(y.id)); b.type = 'button'; b.dataset.id = y.id;
+      if (conVideo(y.id)) b.appendChild(marcaVideo());
       li.appendChild(b); vu.appendChild(li);
     });
     var chips = $('tgc-ej-chips'); chips.textContent = '';
@@ -4597,6 +4667,7 @@
       a.setAttribute('data-sin-traducir', 'el título original de la fuente');
       li.appendChild(a); ul.appendChild(li);
     });
+    $('tgc-ej-vervideo').hidden = !conVideo(x.id);
     videoEj(x, t);
   }
   /* anotar desde la ficha: una anotación por cada grupo principal, con el ejercicio */
@@ -5331,7 +5402,7 @@
     });
     $('tgc-plan-lista').addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b || GRUPOS.indexOf(b.dataset.g) < 0) return;
-      ejEntorno = st.sitio || 'todos'; ejNivel = planUltimo && planUltimo.caso === 'nada' ? 1 : 0;
+      ejEntorno = st.sitio || 'todos'; ejNivel = planUltimo && planUltimo.caso === 'nada' ? 1 : 0; ejVideo = false;
       abrirHoja(b.dataset.g, true);
     });
     $('tgc-plan-porque').addEventListener('click', function () { preguntaIdPendiente = ['frecuencia-musculo', 'dias-descanso']; setModo('preguntar'); });
@@ -5375,7 +5446,7 @@
     $('tgc-est-lista').addEventListener('click', function (e) {
       var b = e.target.closest('button[data-id]'), x = b && EJ && EJ.porId[b.dataset.id];
       if (!x) return;
-      ejEntorno = st.sitio || 'todos'; ejNivel = 0;
+      ejEntorno = st.sitio || 'todos'; ejNivel = 0; ejVideo = false;
       abrirHoja(x.g[0], true); abrirEj(x.id);
     });
     $('tgc-ses-banda').addEventListener('click', function () {
@@ -5387,10 +5458,12 @@
     $('tgc-ses-lista').addEventListener('click', function (e) {
       var b = e.target.closest('button[data-id]'), x = b && EJ && EJ.porId[b.dataset.id];
       if (!x) return;
-      ejEntorno = st.sitio || 'todos'; ejNivel = 0;
+      ejEntorno = st.sitio || 'todos'; ejNivel = 0; ejVideo = false;
       abrirHoja(x.g[0], true); abrirEj(x.id);
     });
     $('tgc-ej-niv').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; ejNivel = Number(b.dataset.v) || 0; renderEjLista(); });
+    $('tgc-ej-vid').addEventListener('click', function () { ejVideo = !ejVideo; renderEjLista(); });
+    $('tgc-ej-vervideo').addEventListener('click', verVideo);
     $('tgc-ej-buscar').addEventListener('input', function () { ejBuscar = this.value; renderEjLista(); });
     $('tgc-ej-reintentar').addEventListener('click', function () { ejError = false; renderEjLista(); });
     $('tgc-ej-lista').addEventListener('click', function (e) { var b = e.target.closest('.tgc-ej-fila'); if (b) abrirEj(b.dataset.id); });
@@ -5837,7 +5910,7 @@
       var b = e.target.closest('button, a'); if (!b) return;
       if (b.classList.contains('tgc-chip-preg')) { preguntarId(b.dataset.id); return; }
       if (b.dataset.g) {
-        if (b.dataset.plan) { ejEntorno = st.sitio || 'todos'; ejNivel = b.dataset.plan === 'nada' ? 1 : 0; }
+        if (b.dataset.plan) { ejEntorno = st.sitio || 'todos'; ejNivel = b.dataset.plan === 'nada' ? 1 : 0; ejVideo = false; }
         setModo('musculos'); abrirHoja(b.dataset.g); return;
       }
       if (b.dataset.ej) {
@@ -6038,7 +6111,7 @@
       var y = EJ.porId[e.id]; if (!y) return;
       var li = el('li'), b = el('button'); b.type = 'button'; b.dataset.ej = e.id;
       var t = el('span', 'tgc-ej-txt');
-      t.appendChild(el('span', 'tgc-ej-nombre', nombreEj(e.id)));
+      t.appendChild(nomConVideo('tgc-ej-nombre', e.id));
       t.appendChild(document.createTextNode(' '));
       var meta = el('span', 'tgc-ej-meta');
       meta.appendChild(el('span', '', nombre(y.g[0]))); meta.appendChild(document.createTextNode(' '));
@@ -6850,6 +6923,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-ses-ej.descansa .tgc-ses-ej-btn { opacity: .72; }
 .tgc-ses-ej-btn { display: grid; gap: 3px; width: 100%; min-height: 44px; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: start; cursor: pointer; }
 .tgc-ses-ej-btn:focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; border-radius: 8px; }
+.tgc-ses-ej-nom-lin { font-size: 15px; line-height: 1.3; }
 .tgc-ses-ej-nom { font-weight: 700; font-size: 15px; line-height: 1.3; }
 .tgc-ses-ej-nom::before { content: counter(tgc-ses) ". "; color: var(--tinta-2); font-weight: 600; font-variant-numeric: tabular-nums; }
 .tgc-ses-ej-pauta { justify-self: start; padding: 1px 10px; border-radius: 999px; border: 1px solid var(--linea); background: var(--tarjeta); font-size: 13px; line-height: 1.6; font-variant-numeric: tabular-nums; }
@@ -6937,6 +7011,15 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-ej-fila:hover { border-color: var(--tinta-2); }
 .tgc-ej-txt { display: grid; gap: 2px; min-width: 0; }
 .tgc-ej-nombre { font-weight: 600; overflow-wrap: anywhere; line-height: 1.3; }
+/* (15-11-2026) el nombre y su 🎬 en la misma línea; el 🎬 en inline-block (el subrayado de .tgc-ver y del enlace
+   «Variante de …» no le llega) */
+.tgc-ej-nombre-lin { overflow-wrap: anywhere; line-height: 1.3; }
+/* el envoltorio no se parte: con el «word joiner» de delante, el 🎬 baja con la última palabra y no se queda solo */
+.tgc-vid-w { white-space: nowrap; }
+.tgc-vid { display: inline-block; margin-inline-start: 6px; font-size: .95em; font-weight: 400; line-height: 1; text-decoration: none; }
+.tgc-vid-ico { font-size: 1.1em; line-height: 1; }
+#tgc-ej-vid { display: inline-flex; align-items: center; gap: 6px; }
+.tgc-ej-vervideo { justify-self: start; }
 .tgc-ej-meta { display: flex; flex-wrap: wrap; gap: 0 10px; font-size: 13px; color: var(--tinta-2); }
 .tgc-ej-niv { color: var(--oro); }
 .tgc-ej-lado { display: grid; justify-items: end; gap: 3px; }
@@ -7536,6 +7619,9 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
       <button type="button" data-v="2" aria-pressed="false">Intermedio</button>
       <button type="button" data-v="3" aria-pressed="false">Avanzado</button>
     </div>
+    <div class="tgc-seg" id="tgc-ej-vid-fila" hidden>
+      <button type="button" id="tgc-ej-vid" aria-pressed="false"><span class="tgc-vid-ico" aria-hidden="true">🎬</span><span id="tgc-ej-vid-txt">Solo con vídeo</span></button>
+    </div>
     <input type="search" class="tgc-buscar" id="tgc-ej-buscar" autocomplete="off" spellcheck="false" enterkeyhint="search" maxlength="60">
   </div>
   <p class="tgc-ayuda tgc-ej-casa" id="tgc-ej-casa-ayuda" hidden></p>
@@ -7557,6 +7643,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     </div>
     <button type="button" class="tgc-link tgc-ej-base" id="tgc-ej-variante" hidden></button>
     <ul class="tgc-ej-chips" id="tgc-ej-chips"></ul>
+    <button type="button" class="tgc-btn sm gold tgc-ej-vervideo" id="tgc-ej-vervideo" hidden><span class="tgc-vid-ico" aria-hidden="true">🎬</span><span id="tgc-ej-vervideo-txt">Ver el vídeo</span></button>
     <div class="tgc-ej-video" id="tgc-ej-video" hidden></div>
     <div class="tgc-ej-cuerpo">
       <div class="tgc-ej-figuras" id="tgc-ej-figuras" aria-hidden="true">
@@ -7851,11 +7938,13 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
     ['#tgc-ej-niv [data-v="1"]', 'tx', 'cuerpoNivel_1'],
     ['#tgc-ej-niv [data-v="2"]', 'tx', 'cuerpoNivel_2'],
     ['#tgc-ej-niv [data-v="3"]', 'tx', 'cuerpoNivel_3'],
+    ['#tgc-ej-vid-txt', 'tx', 'cuerpoEjSoloVideo'],
     ['#tgc-ej-buscar', 'aria', 'cuerpoBuscarEj'],
     ['#tgc-ej-buscar', 'ph', 'cuerpoBuscarEjPh'],
     ['#tgc-ej-reintentar span', 'tx', 'cuerpoReintentar'],
     ['#tgc-ej-propias', 'tx', 'cuerpoFichasPropias'],
     ['#tgc-ej-cerrar', 'aria', 'ariaCerrar'],
+    ['#tgc-ej-vervideo-txt', 'tx', 'cuerpoEjVerVideo'],
     ['#tgc-ej-musc-tit', 'tx', 'cuerpoMusculosEj'],
     ['#tgc-ej-prim-l', 'tx', 'cuerpoPrincipal'],
     ['#tgc-ej-sec-l', 'tx', 'cuerpoSecundario'],
