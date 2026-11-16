@@ -209,9 +209,9 @@
   {
    "tabla": "places",
    "clave": "playa-puertito.cat",
-   "es": "Cala · Tortugas Marinas",
+   "es": "Playa · Güímar",
    "forma": "texto",
-   "ro": "Golfuleț · Broaște-țestoase marine"
+   "ro": "Plajă · Güímar"
   },
   {
    "tabla": "places",
@@ -1070,9 +1070,9 @@
   {
    "tabla": "places",
    "clave": "farm-anchieta.hours",
-   "es": "L-D 8:00–22:00",
+   "es": "L-V 8:00–22:00 · Sáb-Dom 9:00–22:00",
    "forma": "texto",
-   "ro": "Luni-duminică 8:00–22:00"
+   "ro": "Luni-vineri 8:00–22:00 · Sâmbătă-duminică 9:00–22:00"
   },
   {
    "tabla": "places",
@@ -1098,9 +1098,9 @@
   {
    "tabla": "places",
    "clave": "farm-orotava.desc",
-   "es": "Farmacia abierta 365 días al año junto al Centro de Salud Las Dehesas.",
+   "es": "Farmacia abierta 365 días al año, frente al pabellón Quiquirá.",
    "forma": "texto",
-   "ro": "Farmacie deschisă 365 de zile pe an, lângă centrul de sănătate Las Dehesas."
+   "ro": "Farmacie deschisă 365 de zile pe an, în fața sălii de sport Quiquirá."
   },
   {
    "tabla": "places",
@@ -1182,30 +1182,30 @@
   {
    "tabla": "places",
    "clave": "farm-hernandez-sct.desc",
-   "es": "Farmacia de guardia permanente 24h en Santa Cruz de Tenerife. Una de las pocas farmacias con servicio ininterrumpido en la capital. Imprescindible para emergencias nocturnas.",
+   "es": "Farmacia en la calle José Hernández Alfonso, esquina a Emilio López, en Santa Cruz de Tenerife. No abre de noche: en Santa Cruz, la farmacia de guardia de 24 horas es la Farmacia Salamanca, en la calle Horacio Nelson, 21.",
    "forma": "texto",
-   "ro": "Farmacie de gardă permanentă, 24h, în Santa Cruz de Tenerife. Una dintre puținele farmacii cu program non-stop din capitală. Indispensabilă pentru urgențele de noapte."
+   "ro": "Farmacie pe strada José Hernández Alfonso, la colț cu Emilio López, în Santa Cruz de Tenerife. Nu este deschisă noaptea: în Santa Cruz, farmacia de gardă deschisă 24 de ore este Farmacia Salamanca, pe strada Horacio Nelson nr. 21."
   },
   {
    "tabla": "places",
    "clave": "farm-hernandez-sct.cat",
-   "es": "Farmacia 24h · Santa Cruz",
+   "es": "Farmacia · Santa Cruz",
    "forma": "texto",
-   "ro": "Farmacie 24h · Santa Cruz"
+   "ro": "Farmacie · Santa Cruz"
   },
   {
    "tabla": "places",
    "clave": "farm-hernandez-sct.hours",
-   "es": "24h · Todos los días · Guardia permanente",
+   "es": "L-V 8:00–21:00 · Sáb 9:00–14:00",
    "forma": "texto",
-   "ro": "24h · Zilnic · Gardă permanentă"
+   "ro": "Luni-vineri 8:00–21:00 · Sâmbătă 9:00–14:00"
   },
   {
    "tabla": "places",
    "clave": "farm-islas-canarias-sct.desc",
-   "es": "Farmacia en Av. Islas Canarias, Santa Cruz. Turno de guardia rotativo. Amplio horario entre semana. Bien situada en zona céntrica.",
+   "es": "Farmacia en Av. Islas Canarias, Santa Cruz. Abre todos los días del año de 8:00 a 24:00. Bien situada en zona céntrica.",
    "forma": "texto",
-   "ro": "Farmacie pe Av. Islas Canarias, în Santa Cruz. Gardă prin rotație. Program extins în timpul săptămânii. Bine amplasată, într-o zonă centrală."
+   "ro": "Farmacie pe Av. Islas Canarias, în Santa Cruz. Este deschisă în fiecare zi a anului, de la 8:00 la 24:00. Bine amplasată, într-o zonă centrală."
   },
   {
    "tabla": "places",
@@ -1217,16 +1217,16 @@
   {
    "tabla": "places",
    "clave": "farm-islas-canarias-sct.hours",
-   "es": "L-V 8:30–20:00 · S-D 9:00–14:00",
+   "es": "Todos los días 8:00–24:00",
    "forma": "texto",
-   "ro": "Luni-vineri 8:30–20:00 · Sâmbătă-duminică 9:00–14:00"
+   "ro": "Zilnic 8:00–24:00"
   },
   {
    "tabla": "places",
    "clave": "farm-pozo-pcruz.desc",
-   "es": "Farmacia con amplio horario en Puerto de la Cruz. Abierta todos los días del año de 9 a 22h, incluidos festivos. Una de las más accesibles para turistas en el norte de la isla.",
+   "es": "Farmacia con amplio horario en Puerto de la Cruz. Abierta todos los días del año de 8:30 a 21:00, incluidos festivos. Una de las más accesibles para turistas en el norte de la isla.",
    "forma": "texto",
-   "ro": "Farmacie cu program extins în Puerto de la Cruz. Deschisă în fiecare zi a anului, 9-22h, inclusiv în zilele de sărbătoare. Una dintre cele mai accesibile pentru turiști din nordul insulei."
+   "ro": "Farmacie cu program extins în Puerto de la Cruz. Deschisă în fiecare zi a anului, de la 8:30 la 21:00, inclusiv în zilele de sărbătoare. Una dintre cele mai accesibile pentru turiști din nordul insulei."
   },
   {
    "tabla": "places",
@@ -1238,9 +1238,9 @@
   {
    "tabla": "places",
    "clave": "farm-pozo-pcruz.hours",
-   "es": "Todos los días 09:00–22:00",
+   "es": "Todos los días 08:30–21:00",
    "forma": "texto",
-   "ro": "Zilnic 09:00–22:00"
+   "ro": "Zilnic 08:30–21:00"
   },
   {
    "tabla": "places",
@@ -1280,16 +1280,16 @@
   {
    "tabla": "places",
    "clave": "farm-americas-arona.hours",
-   "es": "L-V 9:00–21:00 · S 9:00–15:00 · Guardia rotativa",
+   "es": "L-V 9:00–20:30 · Sáb 9:00–14:00 y 17:00–20:00 · Guardia rotativa",
    "forma": "texto",
-   "ro": "Luni-vineri 9:00–21:00 · Sâmbătă 9:00–15:00 · Gardă prin rotație"
+   "ro": "Luni-vineri 9:00–20:30 · Sâmbătă 9:00–14:00 și 17:00–20:00 · Gardă prin rotație"
   },
   {
    "tabla": "places",
    "clave": "farm-adeje-austria.desc",
-   "es": "Farmacia en Adeje, zona centro. Amplio horario entre semana. Guardia rotativa con otras farmacias de la zona de Adeje y Costa Adeje.",
+   "es": "Farmacia en San Eugenio Alto (Costa Adeje). Amplio horario entre semana. Guardia rotativa con otras farmacias de la zona de Adeje y Costa Adeje.",
    "forma": "texto",
-   "ro": "Farmacie în centrul localității Adeje. Program extins în timpul săptămânii. Gardă prin rotație cu alte farmacii din zona Adeje și Costa Adeje."
+   "ro": "Farmacie în San Eugenio Alto (Costa Adeje). Program extins în timpul săptămânii. Gardă prin rotație cu alte farmacii din zona Adeje și Costa Adeje."
   },
   {
    "tabla": "places",
@@ -1301,9 +1301,9 @@
   {
    "tabla": "places",
    "clave": "farm-adeje-austria.hours",
-   "es": "L-V 9:00–21:00 · S 9:00–14:00 · Guardia rotativa",
+   "es": "L-V 9:00–20:30 · Sáb 9:00–17:30 · Guardia rotativa",
    "forma": "texto",
-   "ro": "Luni-vineri 9:00–21:00 · Sâmbătă 9:00–14:00 · Gardă prin rotație"
+   "ro": "Luni-vineri 9:00–20:30 · Sâmbătă 9:00–17:30 · Gardă prin rotație"
   },
   {
    "tabla": "places",
@@ -2470,9 +2470,9 @@
   {
    "tabla": "places",
    "clave": "bici-ruta-medano-teide.desc",
-   "es": "Una de las rutas de carretera más completas de Tenerife: sale de El Médano (nivel del mar) y asciende por Arafo hasta el Teide acumulando más de 4.400 m de desnivel. Paisajes radicalmente distintos: costa árida, medianías, pinar y volcán. Solo para ciclistas con excelente forma. TF-28 y TF-21. Mejor en invierno o primavera.",
+   "es": "Una de las rutas de carretera más completas de Tenerife: sale de El Médano, al nivel del mar, y por Arafo sube hasta el Parque Nacional del Teide, a más de 2.000 m de altitud. Carreteras: TF-28, TF-523, TF-24 y TF-21. Paisajes radicalmente distintos: costa árida, medianías, pinar y volcán. Solo para ciclistas con excelente forma. En invierno, el Cabildo cierra a veces la TF-24 y la TF-21 por hielo o nieve: mire el estado de las carreteras antes de salir.",
    "forma": "texto",
-   "ro": "Unul dintre cele mai complete trasee de șosea din Tenerife: pleacă din El Médano (de la nivelul mării) și urcă prin Arafo până la Teide, acumulând peste 4.400 m diferență de nivel. Peisaje radical diferite: coastă aridă, zona de altitudine medie (medianías), pădure de pin și vulcan. Doar pentru bicicliști într-o formă excelentă. TF-28 și TF-21. Cel mai bine iarna sau primăvara."
+   "ro": "Unul dintre cele mai complete trasee de șosea din Tenerife: pleacă din El Médano, de la nivelul mării, și urcă prin Arafo până în Parcul Național Teide, la peste 2.000 m altitudine. Drumuri: TF-28, TF-523, TF-24 și TF-21. Peisaje radical diferite: coastă aridă, zona de altitudine medie (medianías), pădure de pin și vulcan. Doar pentru bicicliști într-o formă excelentă. Iarna, Cabildo (consiliul insular) închide uneori TF-24 și TF-21 din cauza gheții sau a zăpezii: verificați starea drumurilor înainte de a pleca."
   },
   {
    "tabla": "places",

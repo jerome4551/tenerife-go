@@ -832,9 +832,9 @@
   {
    "tabla": "places",
    "clave": "nucleo-guia-isora.desc",
-   "es": "Municipio tranquilo en la costa oeste, entre Adeje y Los Gigantes. Playa Alcalá y San Juan con pescado fresco. Hotel Abama (5 estrellas GL). Paisaje árido y auténtico, sin masificación. Para el camino de Masca, la guagua obligatoria (línea 355) sale del municipio vecino, Santiago del Teide.",
+   "es": "Municipio tranquilo en la costa oeste, entre Adeje y Los Gigantes. Playa Alcalá y San Juan con pescado fresco. Hotel Abama (5 estrellas GL). Paisaje árido y auténtico, sin masificación. El camino del Barranco de Masca empieza en el caserío de Masca (Buenavista del Norte), adonde va la guagua 355 de TITSA desde Santiago del Teide.",
    "forma": "texto",
-   "ro": "Municipalitate liniștită pe coasta de vest, între Adeje și Los Gigantes. Playa Alcalá și San Juan, cu pește proaspăt. Hotel Abama (5 stele Gran Lujo). Peisaj arid și autentic, fără aglomerație. Pentru traseul de la Masca, autobuzul obligatoriu (linia 355) pleacă din municipalitatea vecină, Santiago del Teide."
+   "ro": "Municipalitate liniștită pe coasta de vest, între Adeje și Los Gigantes. Playa Alcalá și San Juan, cu pește proaspăt. Hotel Abama (5 stele Gran Lujo). Peisaj arid și autentic, fără aglomerație. Traseul din Barranco de Masca începe în cătunul Masca (Buenavista del Norte), unde ajunge autobuzul 355 al TITSA din Santiago del Teide."
   },
   {
    "tabla": "places",
@@ -1028,9 +1028,9 @@
   {
    "tabla": "places",
    "clave": "ciudad-santiago-teide.desc",
-   "es": "Municipio que incluye Tamaimo, Puerto Santiago y Los Gigantes; de aquí sale la carretera TF-436 hacia Masca, que pertenece a Buenavista del Norte. Pueblo de montaña tranquilo a 925 m de altitud, ideal punto de partida para senderos. Volcán Chinyero, última erupción de 1909. Mucho turismo rural.",
+   "es": "Municipio que incluye Tamaimo, Puerto Santiago y Los Gigantes. Pueblo de montaña tranquilo a 925 m de altitud, ideal punto de partida para senderos. De aquí sale la guagua 355 de TITSA hacia el caserío de Masca (Buenavista del Norte), donde empieza el camino del barranco. Volcán Chinyero, última erupción de 1909. Mucho turismo rural.",
    "forma": "texto",
-   "ro": "Municipalitate care cuprinde Tamaimo, Puerto Santiago și Los Gigantes; de aici pornește șoseaua TF-436 spre Masca, care aparține municipalității Buenavista del Norte. Localitate de munte liniștită, la 925 m altitudine, punct de plecare ideal pentru trasee de drumeție. Vulcanul Chinyero, cu ultima erupție în 1909. Mult turism rural."
+   "ro": "Municipalitate care cuprinde Tamaimo, Puerto Santiago și Los Gigantes. Localitate de munte liniștită, la 925 m altitudine, punct de plecare ideal pentru trasee de drumeție. De aici pleacă autobuzul 355 al TITSA spre cătunul Masca (Buenavista del Norte), unde începe traseul prin defileu. Vulcanul Chinyero, cu ultima erupție în 1909. Mult turism rural."
   },
   {
    "tabla": "places",
