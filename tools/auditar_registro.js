@@ -173,7 +173,9 @@ const MARCAS = {
          'Entdeck', 'Sorg', 'Leg', 'Nenn', 'Renn(?!-)', 'Frag', 'Tu', 'Sag', 'Grüß', 'Füll', 'Streck', 'Verdien', 'Dank',
          'Beginn mit', 'Beginn dort', 'Beginn bei', 'Versuch auch', 'Versuch,',
          /* y los que solo vio el repaso a mano, frase a frase (22 de octubre) */
-         'Würfle', 'Fahr', 'Prüf', 'Berechne', 'Versuche es', 'Versuch eine', 'Versuch es', 'Sprich', 'Schreib', 'Park nie'),
+         'Würfle', 'Fahr', 'Prüf', 'Berechne', 'Versuche es', 'Versuch eine', 'Versuch es', 'Sprich', 'Schreib', 'Park nie',
+         /* (16 de noviembre de 2026) el de la cesta vacia, «Stöbere in Touren und Souvenirs.», que no estaba */
+         'Stöbere', 'Stöber'),
        /* tras un emoji: «👋 Frag mich…», «😕 Versuch eine andere Gegend» */
        trasEmoji('Frag', 'Versuch', 'Versuche', 'Probier', 'Probiere', 'Tippe', 'Tipp', 'Wähle', 'Wähl', 'Schau', 'Gib', 'Sieh', 'Geh', 'Komm', 'Such', 'Öffne', 'Sprich'),
        /* y en medio de la frase, en minuscula, tras dos puntos, coma o «und»: «Heute: geh langsam», «wähl eins und geh» */
@@ -202,7 +204,10 @@ const MARCAS = {
          'Filtra', 'Tira', 'Riprova', 'Inserisci', 'Compila', 'Spegni', 'Tieni', 'Scendi', 'Sali', 'Sposta', 'Parcheggia',
          'Porta (?:una|un|qualcosa|comunque|scarpette|acqua)', 'Evita (?:di|il|la|le|i|gli|piscine)', 'Verifica (?:stato|le|il|lo|la|i|gli|sul)', 'Calcola prima',
          'Paga all', 'Segna i', 'Leggilo', 'Toccane', 'Chiedimi', 'Scrivigli', 'Copriti', 'Collegati', 'Esegui',
-         'Non (?:guardare|guardarla|scendere|uscire|pretendere|lasciarlo|definirti|misurarti|giudicarti|paragonare|correre|contarci)'),
+         'Non (?:guardare|guardarla|scendere|uscire|pretendere|lasciarlo|definirti|misurarti|giudicarti|paragonare|correre|contarci)',
+         /* (16 de noviembre de 2026) los de la tienda: la pestaña «Pubblicizzati», el tu de «Anúnciese», que no estaba;
+            y los verbos de sus botones («Prenota», «Acquista», «Contatta», en ROTULOS_IT): en una frase, son de tu */
+         'Pubblicizzati', 'Prenota', 'Acquista', 'Contatta'),
        /* y en medio de la frase, en minuscula: «Prima di salire, controlla…», «… e scegli…»,
           «finito il crepuscolo, guarda a ovest». Sin «attraversa»: en las fichas es el
           sendero el que atraviesa («… e attraversa boschi di laurisilva») */
@@ -236,7 +241,10 @@ const MARCAS = {
          'Остани', 'Поискай', 'Грижи се', 'Назови', 'Раздвижи се', 'Размърдай', 'Изследвай', 'Превземи', 'Прости си', 'Върни', 'Пази (?:съня|се|мира)',
          'Поразгледай', 'Помни', 'Разглеждай', 'Учи се', 'Имай', 'Брой днешната', 'Позволи си', 'Изненадай се', 'Уважавай', 'Уважи', 'Забележи',
          'Почети', 'Продължавай', 'Пускай', 'Подиши', 'Погледай', 'Погледни', 'Движи (?:се|телефона|тялото)', 'Щипни', 'Дръж', 'Начертай',
-         'Постави', 'Приближи', 'Следвай', 'Гледай (?:морето|встрани|хоризонта)', 'Опитай(?! отново)', 'Насочи към звезда'),
+         'Постави', 'Приближи', 'Следвай', 'Гледай (?:морето|встрани|хоризонта)', 'Опитай(?! отново)', 'Насочи към звезда',
+         /* (16 de noviembre de 2026) los verbos de los botones de la tienda («Резервирай», «Купи», «Изпрати заявка», en
+            ROTULOS_BG): en una frase, son de ти */
+         'Резервирай', 'Купи', 'Изпрати'),
        palI('можеш', 'искаш', 'имаш', 'знаеш', 'трябва да\\s+\\S+ш', 'видиш', 'отидеш', 'дойдеш', 'намериш', 'стигнеш', 'влезеш', 'излезеш', 'останеш', 'чуеш',
          'видиш', 'пожелаеш', 'решиш', 'включиш', 'приемеш', 'създадеш', 'запазиш', 'добавиш', 'изтриеш', 'отвориш', 'докоснеш', 'избереш', 'ползваш', 'използваш'),
        /* la segunda persona del presente acaba en -ш (можеш, виждаш, отвориш), y la de
@@ -327,6 +335,8 @@ const ROTULOS_IT = new Set([
   'Riproduci', 'Rivedi',
   /* y el botón de la ficha de «Su cuerpo» que lleva al vídeo (15 de noviembre de 2026) */
   'Vedi il video',
+  /* y los de la tienda y la cesta (16 de noviembre de 2026): reservar, comprar, contactar y pagar */
+  'Prenota', 'Acquista', 'Contatta', '💳 Paga — Prossimamente', 'Togli dal carrello',
 ]);
 
 /* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
@@ -357,6 +367,9 @@ const ROTULOS_BG = new Set([
   'Пусни', 'Гледай отново',
   /* y el botón de la ficha de «Su cuerpo» que lleva al vídeo (15 de noviembre de 2026) */
   'Виж видеото',
+  /* y los de la tienda (16 de noviembre de 2026): reservar, comprar y enviar la solicitud; y «Изпрати», el boton de
+     enviar del asistente y de «Su cuerpo» (ariaEnviar, cuerpoAsisEnviar), que salio al poner «Изпрати» en las marcas */
+  'Резервирай', 'Купи', 'Изпрати заявка', 'Изпрати', 'Премахни от кошницата',
 ]);
 
 /* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
@@ -405,6 +418,8 @@ const ROTULOS_PL = new Set([
   'Odtwórz', 'Obejrzyj ponownie',
   /* y el botón de la ficha de «Su cuerpo» que lleva al vídeo (15 de noviembre de 2026) */
   'Zobacz film',
+  /* y el ✕ de cada artículo de la cesta (16 de noviembre de 2026), como «Usuń z planu» */
+  'Usuń z koszyka',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»
