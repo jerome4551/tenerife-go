@@ -1,0 +1,4438 @@
+{
+ "_": "Rumano (ro) de las fichas de las gasolineras (las «gas-*» de index.html, que van juntas), trozo 5 de 5 (bloque 9 del rumano). Cada texto lleva el castellano que traduce. Los textos no se traducen uno a uno: salen de tools/gasolinera_ficha.py (su vocabulario, sus dias y los avisos de datos/gasolineras/avisos.json, en rumano desde el bloque 9), y las filas de una gasolinera nueva o rehecha las escribe tools/gasolinera_alta.py. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html. No se edita a mano.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-granadilla.desc",
+   "es": "Carretera TF-1 km 54, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera TF-1 km 54, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-granadilla.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-granadilla.hours",
+   "es": "L-D 06:00-00:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-00:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-guaza.desc",
+   "es": "Carretera General Guaza TF-66, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General Guaza TF-66, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-guaza.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-guaza.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-guimar.desc",
+   "es": "Polígono Plan Parcial El Carretón, Arafo. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Polígono Plan Parcial El Carretón, Arafo. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-guimar.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-guimar.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-lalaguna.desc",
+   "es": "Calle Libertad, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Calle Libertad, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-lalaguna.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-lalaguna.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-tacoronte.desc",
+   "es": "Autopista Norte TF-5 km 16, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Autopista Norte TF-5 km 16, Tacoronte. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-tacoronte.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-tacoronte.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-ptocz.desc",
+   "es": "Carretera del Botánico, Puerto de la Cruz. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera del Botánico, Puerto de la Cruz. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-ptocz.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-ptocz.hours",
+   "es": "L-D 06:30-22:30",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:30-22:30"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf2-lalaguna.desc",
+   "es": "Avenida El Paso, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida El Paso, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf2-lalaguna.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf2-lalaguna.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-abades.desc",
+   "es": "Autopista Tenerife Sur km 44,2, Arico. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Autopista Tenerife Sur km 44,2, Arico. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-abades.cat",
+   "es": "Gasolinera · Abades",
+   "forma": "texto",
+   "ro": "Benzinărie · Abades"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf1-abades.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf21-aguamansa.desc",
+   "es": "Carretera Las Cañadas, La Orotava. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Carretera Las Cañadas, La Orotava. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf21-aguamansa.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf21-aguamansa.hours",
+   "es": "L-D 06:00-00:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-00:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-el-bohio.desc",
+   "es": "Autopista TF-5 km 25, La Matanza de Acentejo. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y GLP. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Autopista TF-5 km 25, La Matanza de Acentejo. Carburanți: benzină 95, benzină 98, motorină, motorină premium și GPL. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-el-bohio.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-el-bohio.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-el-sauzal.desc",
+   "es": "Autopista TF-5 km 22,5, El Sauzal. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Autopista TF-5 km 22,5, El Sauzal. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-el-sauzal.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-el-sauzal.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf51-vilaflor.desc",
+   "es": "⚠️ ÚLTIMA gasolinera antes del Parque Nacional del Teide subiendo por la TF-21 desde el sur (Vilaflor). NO hay gasolineras en el Parque Nacional. Imprescindible repostar aquí antes de subir al Teide. Carretera General TF-21, Vilaflor. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "⚠️ ULTIMA benzinărie înainte de Parcul Național Teide, urcând pe drumul TF-21 dinspre sud (Vilaflor). NU există benzinării în Parcul Național. Este indispensabil să alimentați aici înainte de a urca spre Teide. Carretera General TF-21, Vilaflor. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf51-vilaflor.cat",
+   "es": "⚠️ Última Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "⚠️ Ultima benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf51-vilaflor.hours",
+   "es": "L-S 07:00-21:00 · D 08:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:00-21:00 · Duminică 08:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf82-guia-isora.desc",
+   "es": "Avenida Isora, Guía de Isora. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Isora, Guía de Isora. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf82-guia-isora.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf82-guia-isora.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-17:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-17:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-los-realejos.desc",
+   "es": "Calle Los Barros, Los Realejos. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Los Barros, Los Realejos. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-los-realejos.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-tf5-los-realejos.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9629-la-victoria-de-acentejo.desc",
+   "es": "Carretera General del Norte, La Victoria de Acentejo. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, La Victoria de Acentejo. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9629-la-victoria-de-acentejo.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9629-la-victoria-de-acentejo.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7682-el-tanque.desc",
+   "es": "Carretera TF-82, El Tanque. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-82, El Tanque. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7682-el-tanque.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7682-el-tanque.hours",
+   "es": "L-D 06:00-21:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7827-los-silos.desc",
+   "es": "Calle Félix Benítez de Lugo, Los Silos. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Félix Benítez de Lugo, Los Silos. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7827-los-silos.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7827-los-silos.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7683-san-juan-de-la-rambla.desc",
+   "es": "Carretera TF-5, San Juan de la Rambla. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera TF-5, San Juan de la Rambla. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7683-san-juan-de-la-rambla.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7683-san-juan-de-la-rambla.hours",
+   "es": "L-V 05:30-20:30 · S-D 08:00-20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 05:30-20:30 · Sâmbătă-duminică 08:00-20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7888-buenavista-del-norte.desc",
+   "es": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Juan Méndez el Viejo, Buenavista del Norte. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7888-buenavista-del-norte.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7888-buenavista-del-norte.hours",
+   "es": "L-S 06:00-23:00 · D 07:00-10:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-23:00 · Duminică 07:00-10:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7678-santa-ursula.desc",
+   "es": "Carretera Vieja, Santa Úrsula. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera Vieja, Santa Úrsula. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7678-santa-ursula.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7678-santa-ursula.hours",
+   "es": "L-S 06:00-23:00 · D 07:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-23:00 · Duminică 07:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8762-santa-ursula.desc",
+   "es": "Carretera General del Norte, Santa Úrsula. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, Santa Úrsula. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8762-santa-ursula.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8762-santa-ursula.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15101-tegueste.desc",
+   "es": "Carretera General a Punta Hidalgo, Tegueste. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General a Punta Hidalgo, Tegueste. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15101-tegueste.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15101-tegueste.hours",
+   "es": "L-V 06:00-22:00 · S-D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-22:00 · Sâmbătă-duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7865-tegueste.desc",
+   "es": "Carretera TF-154, Tegueste. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-154, Tegueste. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7865-tegueste.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7865-tegueste.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7728-tegueste.desc",
+   "es": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-13 La Laguna-Bajamar, Tegueste. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7728-tegueste.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7728-tegueste.hours",
+   "es": "L-D 06:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8802-el-rosario.desc",
+   "es": "Calle La Campana, El Rosario. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Calle La Campana, El Rosario. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8802-el-rosario.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8802-el-rosario.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7720-el-rosario.desc",
+   "es": "Carretera TF-24 La Laguna-El Portillo, El Rosario. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-24 La Laguna-El Portillo, El Rosario. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7720-el-rosario.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7720-el-rosario.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15713-el-rosario.desc",
+   "es": "Calle Isaac Peral, El Rosario. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Calle Isaac Peral, El Rosario. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15713-el-rosario.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15713-el-rosario.hours",
+   "es": "L-V 06:00-20:00 · S 07:00-17:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-20:00 · Sâmbătă 07:00-17:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7854-la-matanza-de-acentejo.desc",
+   "es": "Carretera General del Norte C-820, La Matanza de Acentejo. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte C-820, La Matanza de Acentejo. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7854-la-matanza-de-acentejo.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7854-la-matanza-de-acentejo.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7767-la-matanza-de-acentejo.desc",
+   "es": "Carretera General del Norte, La Matanza de Acentejo. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, La Matanza de Acentejo. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7767-la-matanza-de-acentejo.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7767-la-matanza-de-acentejo.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-21:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11566-la-guancha.desc",
+   "es": "Avenida Ocho de Agosto, La Guancha. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Ocho de Agosto, La Guancha. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11566-la-guancha.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11566-la-guancha.hours",
+   "es": "L-V 07:00-20:00 · S 08:00-16:00 · D 08:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 07:00-20:00 · Sâmbătă 08:00-16:00 · Duminică 08:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7747-la-guancha.desc",
+   "es": "Avenida Hipólito Sinforiano, La Guancha. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Hipólito Sinforiano, La Guancha. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7747-la-guancha.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7747-la-guancha.hours",
+   "es": "L-V 05:00-21:00 · S 06:00-21:00 · D 07:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 05:00-21:00 · Sâmbătă 06:00-21:00 · Duminică 07:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7724-la-guancha.desc",
+   "es": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera TF-5 Santa Cruz-Icod, La Guancha. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7724-la-guancha.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7724-la-guancha.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7718-fasnia.desc",
+   "es": "Autovía TF-1, Fasnia. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Autovía TF-1, Fasnia. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7718-fasnia.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7718-fasnia.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7835-fasnia.desc",
+   "es": "Carretera Los Roques, Fasnia. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera Los Roques, Fasnia. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7835-fasnia.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7835-fasnia.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10950-fasnia.desc",
+   "es": "Autovía TF-1 km 34, Fasnia. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Autovía TF-1 km 34, Fasnia. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10950-fasnia.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10950-fasnia.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7948-santiago-del-teide.desc",
+   "es": "Avenida Coronel Gorrín, Santiago del Teide. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Coronel Gorrín, Santiago del Teide. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7948-santiago-del-teide.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7948-santiago-del-teide.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9664-santiago-del-teide.desc",
+   "es": "Avenida General Franco 3, Santiago del Teide. Combustibles: gasolina 95, gasolina 98 y gasóleo A. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Avenida General Franco 3, Santiago del Teide. Carburanți: benzină 95, benzină 98 și motorină. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9664-santiago-del-teide.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9664-santiago-del-teide.hours",
+   "es": "L-S 05:30-22:00 · D 05:30-21:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 05:30-22:00 · Duminică 05:30-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7735-santiago-del-teide.desc",
+   "es": "Carretera Puerto Santiago-Tamaimo, Santiago del Teide. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera Puerto Santiago-Tamaimo, Santiago del Teide. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7735-santiago-del-teide.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7735-santiago-del-teide.hours",
+   "es": "L-V 08:00-16:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 08:00-16:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10779-santiago-del-teide.desc",
+   "es": "Carretera General del Sur, Santiago del Teide. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Sur, Santiago del Teide. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10779-santiago-del-teide.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10779-santiago-del-teide.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-21:30",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-21:30"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12523-candelaria.desc",
+   "es": "Avenida Marítima, Candelaria. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Marítima, Candelaria. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12523-candelaria.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12523-candelaria.hours",
+   "es": "L-S 06:00-23:00 · D 08:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-23:00 · Duminică 08:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7834-candelaria.desc",
+   "es": "Calle Las Bichas, Candelaria. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y GLP.",
+   "forma": "texto",
+   "ro": "Calle Las Bichas, Candelaria. Carburanți: benzină 95, benzină 98, motorină, motorină premium și GPL."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7834-candelaria.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7834-candelaria.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7719-candelaria.desc",
+   "es": "Carretera TF-28 General del Sur, Candelaria. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-28 General del Sur, Candelaria. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7719-candelaria.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7719-candelaria.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-15:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-15:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7786-candelaria.desc",
+   "es": "Carretera Acceso a Caletillas, Candelaria. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Carretera Acceso a Caletillas, Candelaria. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7786-candelaria.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7786-candelaria.hours",
+   "es": "L-D 06:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7778-el-sauzal.desc",
+   "es": "Carretera General del Norte, El Sauzal. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, El Sauzal. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7778-el-sauzal.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7778-el-sauzal.hours",
+   "es": "L-S 06:00-23:00 · D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-23:00 · Duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7846-el-sauzal.desc",
+   "es": "Carretera General del Norte, El Sauzal. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, El Sauzal. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7846-el-sauzal.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7846-el-sauzal.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7852-el-sauzal.desc",
+   "es": "Carretera General del Norte, El Sauzal. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, El Sauzal. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7852-el-sauzal.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7852-el-sauzal.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7674-el-sauzal.desc",
+   "es": "Carretera TF-172, El Sauzal. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera TF-172, El Sauzal. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7674-el-sauzal.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7674-el-sauzal.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7829-puerto-de-la-cruz.desc",
+   "es": "Carretera Lavera La Montaña, Puerto de la Cruz. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera Lavera La Montaña, Puerto de la Cruz. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7829-puerto-de-la-cruz.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7829-puerto-de-la-cruz.hours",
+   "es": "L-S 06:00-22:00 · D 08:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 08:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7624-puerto-de-la-cruz.desc",
+   "es": "Carretera del Botánico, Puerto de la Cruz. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera del Botánico, Puerto de la Cruz. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7624-puerto-de-la-cruz.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7624-puerto-de-la-cruz.hours",
+   "es": "L-D 06:00-00:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-00:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8754-puerto-de-la-cruz.desc",
+   "es": "Carretera General Puerto Cruz-Las Arenas, Puerto de la Cruz. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General Puerto Cruz-Las Arenas, Puerto de la Cruz. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8754-puerto-de-la-cruz.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8754-puerto-de-la-cruz.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8753-puerto-de-la-cruz.desc",
+   "es": "Carretera Martiánez TF-31, Puerto de la Cruz. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera Martiánez TF-31, Puerto de la Cruz. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8753-puerto-de-la-cruz.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8753-puerto-de-la-cruz.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7866-icod-de-los-vinos.desc",
+   "es": "Avenida Príncipes de España, Icod de los Vinos. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y GLP.",
+   "forma": "texto",
+   "ro": "Avenida Príncipes de España, Icod de los Vinos. Carburanți: benzină 95, benzină 98, motorină, motorină premium și GPL."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7866-icod-de-los-vinos.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7866-icod-de-los-vinos.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10201-icod-de-los-vinos.desc",
+   "es": "Carretera General C-820, Icod de los Vinos. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera General C-820, Icod de los Vinos. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10201-icod-de-los-vinos.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10201-icod-de-los-vinos.hours",
+   "es": "L-V 05:30-21:30 · S-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 05:30-21:30 · Sâmbătă-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12298-icod-de-los-vinos.desc",
+   "es": "Carretera General C-820, Icod de los Vinos. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera General C-820, Icod de los Vinos. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12298-icod-de-los-vinos.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12298-icod-de-los-vinos.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15846-icod-de-los-vinos.desc",
+   "es": "Camino La Pitera, Icod de los Vinos. Combustibles: gasolina 95 y gasóleo A. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Camino La Pitera, Icod de los Vinos. Carburanți: benzină 95 și motorină. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15846-icod-de-los-vinos.cat",
+   "es": "Gasolinera · Red de Combustibles Canarios",
+   "forma": "texto",
+   "ro": "Benzinărie · Red de Combustibles Canarios"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15846-icod-de-los-vinos.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8760-icod-de-los-vinos.desc",
+   "es": "Calle Francisco Miranda, Icod de los Vinos. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Calle Francisco Miranda, Icod de los Vinos. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8760-icod-de-los-vinos.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8760-icod-de-los-vinos.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7828-arico.desc",
+   "es": "Carretera TF-28, Arico. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera TF-28, Arico. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7828-arico.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7828-arico.hours",
+   "es": "L-V 06:00-22:00 · S-D 07:00-20:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-22:00 · Sâmbătă-duminică 07:00-20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7696-arico.desc",
+   "es": "Carretera General del Sur, Arico. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera General del Sur, Arico. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7696-arico.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7696-arico.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7703-arico.desc",
+   "es": "Carretera TF-1 km 44,2, Arico. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Carretera TF-1 km 44,2, Arico. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7703-arico.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7703-arico.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11731-arico.desc",
+   "es": "Autovía TF-1 km 39, Arico. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Autovía TF-1 km 39, Arico. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11731-arico.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11731-arico.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7770-tacoronte.desc",
+   "es": "Autopista El Torreón, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Autopista El Torreón, Tacoronte. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7770-tacoronte.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7770-tacoronte.hours",
+   "es": "L-S 06:00-00:00 · D 08:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-00:00 · Duminică 08:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15182-tacoronte.desc",
+   "es": "Carretera General del Norte, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, Tacoronte. Carburanți: benzină 95, benzină 98, motorină, motorină premium și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15182-tacoronte.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15182-tacoronte.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7636-tacoronte.desc",
+   "es": "Camino Real, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Camino Real, Tacoronte. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7636-tacoronte.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7636-tacoronte.hours",
+   "es": "L-S 06:00-22:00 · D 08:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 08:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14982-tacoronte.desc",
+   "es": "Carretera General Norte, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General Norte, Tacoronte. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14982-tacoronte.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14982-tacoronte.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7733-tacoronte.desc",
+   "es": "Carretera General del Norte, Tacoronte. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, Tacoronte. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7733-tacoronte.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7733-tacoronte.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7881-guimar.desc",
+   "es": "Avenida Santa Cruz, Güímar. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Avenida Santa Cruz, Güímar. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7881-guimar.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7881-guimar.hours",
+   "es": "L-M 06:00-22:00 · X 05:30-19:30 · J-S 06:00-22:00 · D 07:00-21:00",
+   "forma": "texto",
+   "ro": "Luni-marți 06:00-22:00 · Miercuri 05:30-19:30 · Joi-sâmbătă 06:00-22:00 · Duminică 07:00-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7752-guimar.desc",
+   "es": "Carretera TF-61, Güímar. Combustibles: gasolina 95, gasolina 98 y gasóleo A. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Carretera TF-61, Güímar. Carburanți: benzină 95, benzină 98 și motorină. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7752-guimar.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7752-guimar.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7858-guimar.desc",
+   "es": "Avenida Axaentemir, Güímar. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Axaentemir, Güímar. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7858-guimar.cat",
+   "es": "Gasolinera · El Escobonal",
+   "forma": "texto",
+   "ro": "Benzinărie · El Escobonal"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7858-guimar.hours",
+   "es": "L-S 07:00-21:00 · D 08:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:00-21:00 · Duminică 08:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7621-guimar.desc",
+   "es": "Avenida Obispo Pérez Cáceres, Güímar. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Obispo Pérez Cáceres, Güímar. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7621-guimar.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7621-guimar.hours",
+   "es": "L-S 06:00-22:00 · D 06:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 06:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12479-guimar.desc",
+   "es": "Polígono Industrial Valle de Güímar, Güímar. Combustibles: gasolina 95, gasolina 95 premium, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Polígono Industrial Valle de Güímar, Güímar. Carburanți: benzină 95, benzină premium 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12479-guimar.cat",
+   "es": "Gasolinera · Océano",
+   "forma": "texto",
+   "ro": "Benzinărie · Océano"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12479-guimar.hours",
+   "es": "L-V 06:00-22:00 · S 07:00-22:00 · D 08:00-21:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-22:00 · Sâmbătă 07:00-22:00 · Duminică 08:00-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8749-guimar.desc",
+   "es": "Calle Rigoberto Díaz Melero, Güímar. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Rigoberto Díaz Melero, Güímar. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8749-guimar.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8749-guimar.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7849-guia-de-isora.desc",
+   "es": "Carretera General TF-47, Guía de Isora. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General TF-47, Guía de Isora. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7849-guia-de-isora.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7849-guia-de-isora.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8977-guia-de-isora.desc",
+   "es": "Carretera General TF-82, Guía de Isora. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General TF-82, Guía de Isora. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8977-guia-de-isora.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8977-guia-de-isora.hours",
+   "es": "L-S 06:00-22:00 · D 08:00-17:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 08:00-17:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13972-guia-de-isora.desc",
+   "es": "Avenida La Gaviota, Guía de Isora. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida La Gaviota, Guía de Isora. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13972-guia-de-isora.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13972-guia-de-isora.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10206-guia-de-isora.desc",
+   "es": "Paseo La Libertad, Guía de Isora. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Paseo La Libertad, Guía de Isora. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10206-guia-de-isora.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10206-guia-de-isora.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7722-guia-de-isora.desc",
+   "es": "Carretera TF-47 Armeñime-Puerto Santiago, Guía de Isora. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-47 Armeñime-Puerto Santiago, Guía de Isora. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7722-guia-de-isora.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7722-guia-de-isora.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10345-guia-de-isora.desc",
+   "es": "Tejina de Guía, Guía de Isora. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Tejina de Guía, Guía de Isora. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10345-guia-de-isora.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10345-guia-de-isora.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16267-arafo.desc",
+   "es": "Polígono Industrial El Carretón, Arafo. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Polígono Industrial El Carretón, Arafo. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16267-arafo.cat",
+   "es": "Gasolinera · H2exagon",
+   "forma": "texto",
+   "ro": "Benzinărie · H2exagon"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16267-arafo.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7639-arafo.desc",
+   "es": "Acceso Carretera a La Hidalga, Arafo. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Acceso Carretera a La Hidalga, Arafo. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7639-arafo.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7639-arafo.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16177-arafo.desc",
+   "es": "Camino La Molineta Polígono El Carretón, Arafo. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Camino La Molineta Polígono El Carretón, Arafo. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16177-arafo.cat",
+   "es": "Gasolinera · Plenergy",
+   "forma": "texto",
+   "ro": "Benzinărie · Plenergy"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16177-arafo.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8326-arafo.desc",
+   "es": "Carretera Arafo La Hidalga TF-281, Arafo. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera Arafo La Hidalga TF-281, Arafo. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8326-arafo.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8326-arafo.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12630-arafo.desc",
+   "es": "Plaza Industrial Valle Güímar, Arafo. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Plaza Industrial Valle Güímar, Arafo. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12630-arafo.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12630-arafo.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10635-arafo.desc",
+   "es": "Carretera General del Sur, Arafo. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera General del Sur, Arafo. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10635-arafo.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10635-arafo.hours",
+   "es": "L-S 06:00-21:00 · D 07:00-15:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-21:00 · Duminică 07:00-15:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7859-san-miguel-de-abona.desc",
+   "es": "Carretera General a Las Galletas-Chafiras, San Miguel de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y GLP.",
+   "forma": "texto",
+   "ro": "Carretera General a Las Galletas-Chafiras, San Miguel de Abona. Carburanți: benzină 95, benzină 98, motorină, motorină premium și GPL."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7859-san-miguel-de-abona.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7859-san-miguel-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9614-san-miguel-de-abona.desc",
+   "es": "Carretera General del Sur, San Miguel de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Sur, San Miguel de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9614-san-miguel-de-abona.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9614-san-miguel-de-abona.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14423-san-miguel-de-abona.desc",
+   "es": "Avenida Eugenio Domínguez Sierra, San Miguel de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y GLP. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Avenida Eugenio Domínguez Sierra, San Miguel de Abona. Carburanți: benzină 95, benzină 98, motorină, motorină premium și GPL. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14423-san-miguel-de-abona.cat",
+   "es": "Gasolinera · El Gomero",
+   "forma": "texto",
+   "ro": "Benzinărie · El Gomero"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14423-san-miguel-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13694-san-miguel-de-abona.desc",
+   "es": "Carretera a Los Abrigos, San Miguel de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera a Los Abrigos, San Miguel de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13694-san-miguel-de-abona.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13694-san-miguel-de-abona.hours",
+   "es": "L-V 06:00-20:00 · S 07:00-20:00 · D 07:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-20:00 · Sâmbătă 07:00-20:00 · Duminică 07:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13292-san-miguel-de-abona.desc",
+   "es": "Avenida Lucio Díaz Flores Feo, San Miguel de Abona. Combustibles: gasolina 95, gasolina 95 premium, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Lucio Díaz Flores Feo, San Miguel de Abona. Carburanți: benzină 95, benzină premium 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13292-san-miguel-de-abona.cat",
+   "es": "Gasolinera · Océano",
+   "forma": "texto",
+   "ro": "Benzinărie · Océano"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13292-san-miguel-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13201-san-miguel-de-abona.desc",
+   "es": "Avenida Modesto Hernández González, San Miguel de Abona. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Modesto Hernández González, San Miguel de Abona. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13201-san-miguel-de-abona.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13201-san-miguel-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16520-san-miguel-de-abona.desc",
+   "es": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Claudio Delgado Díaz, San Miguel de Abona. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16520-san-miguel-de-abona.cat",
+   "es": "Gasolinera · Plenergy",
+   "forma": "texto",
+   "ro": "Benzinărie · Plenergy"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16520-san-miguel-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15913-san-miguel-de-abona.desc",
+   "es": "Calle Mencey Adjona, San Miguel de Abona. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Mencey Adjona, San Miguel de Abona. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15913-san-miguel-de-abona.cat",
+   "es": "Gasolinera · Plenergy",
+   "forma": "texto",
+   "ro": "Benzinărie · Plenergy"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15913-san-miguel-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10633-san-miguel-de-abona.desc",
+   "es": "Autopista del Sur km 64,9, San Miguel de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Autopista del Sur km 64,9, San Miguel de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10633-san-miguel-de-abona.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10633-san-miguel-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7676-san-miguel-de-abona.desc",
+   "es": "Carretera TF-65, San Miguel de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera TF-65, San Miguel de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7676-san-miguel-de-abona.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7676-san-miguel-de-abona.hours",
+   "es": "L-D 06:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12381-la-orotava.desc",
+   "es": "Carretera Insular TF-333, La Orotava. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera Insular TF-333, La Orotava. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12381-la-orotava.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12381-la-orotava.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7768-la-orotava.desc",
+   "es": "Urbanización Carmenaty, La Orotava. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Urbanización Carmenaty, La Orotava. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7768-la-orotava.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7768-la-orotava.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9741-la-orotava.desc",
+   "es": "Carretera C-820, La Orotava. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera C-820, La Orotava. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9741-la-orotava.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9741-la-orotava.hours",
+   "es": "L-V 06:00-22:00 · S 07:00-22:00 · D 08:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-22:00 · Sâmbătă 07:00-22:00 · Duminică 08:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7856-la-orotava.desc",
+   "es": "Plaza La Paz, La Orotava. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Plaza La Paz, La Orotava. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7856-la-orotava.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7856-la-orotava.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15901-la-orotava.desc",
+   "es": "Calle Albañilería, La Orotava. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Albañilería, La Orotava. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15901-la-orotava.cat",
+   "es": "Gasolinera · Plenergy",
+   "forma": "texto",
+   "ro": "Benzinărie · Plenergy"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15901-la-orotava.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16315-la-orotava.desc",
+   "es": "Calle Molinos de Gofio, La Orotava. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Molinos de Gofio, La Orotava. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16315-la-orotava.cat",
+   "es": "Gasolinera · Plenergy",
+   "forma": "texto",
+   "ro": "Benzinărie · Plenergy"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16315-la-orotava.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7677-la-orotava.desc",
+   "es": "⚠️ ÚLTIMA gasolinera antes del Parque Nacional del Teide subiendo por la TF-21 desde La Orotava (Aguamansa). NO hay gasolineras en el Parque Nacional. Imprescindible repostar aquí antes de subir al Teide. Carretera TF-21 Aguamansa, La Orotava. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "⚠️ ULTIMA benzinărie înainte de Parcul Național Teide, urcând pe drumul TF-21 dinspre La Orotava (Aguamansa). NU există benzinării în Parcul Național. Este indispensabil să alimentați aici înainte de a urca spre Teide. Carretera TF-21 Aguamansa, La Orotava. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7677-la-orotava.cat",
+   "es": "⚠️ Última Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "⚠️ Ultima benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7677-la-orotava.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7699-la-orotava.desc",
+   "es": "Carretera TF-324, La Orotava. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera TF-324, La Orotava. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7699-la-orotava.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7699-la-orotava.hours",
+   "es": "L-V 06:00-22:00 · S-D 07:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-22:00 · Sâmbătă-duminică 07:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8776-la-orotava.desc",
+   "es": "Carretera General del Norte, La Orotava. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, La Orotava. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8776-la-orotava.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8776-la-orotava.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16132-granadilla-de-abona.desc",
+   "es": "Vía Lado Aire Aeropuerto Tenerife Sur, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Vía Lado Aire Aeropuerto Tenerife Sur, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16132-granadilla-de-abona.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16132-granadilla-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11690-granadilla-de-abona.desc",
+   "es": "Carretera Atogo, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera Atogo, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11690-granadilla-de-abona.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11690-granadilla-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10307-granadilla-de-abona.desc",
+   "es": "Avenida Fundador Gonzalo González, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Fundador Gonzalo González, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10307-granadilla-de-abona.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10307-granadilla-de-abona.hours",
+   "es": "L-D 06:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9490-granadilla-de-abona.desc",
+   "es": "Avenida Santa Cruz, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Santa Cruz, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9490-granadilla-de-abona.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9490-granadilla-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7889-granadilla-de-abona.desc",
+   "es": "Carretera Granadilla Médano, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera Granadilla Médano, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7889-granadilla-de-abona.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7889-granadilla-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7616-granadilla-de-abona.desc",
+   "es": "San Isidro-El Médano, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "San Isidro-El Médano, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7616-granadilla-de-abona.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7616-granadilla-de-abona.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7731-granadilla-de-abona.desc",
+   "es": "Carretera TF-636 San Isidro-Chimiche, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-636 San Isidro-Chimiche, Granadilla de Abona. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7731-granadilla-de-abona.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7731-granadilla-de-abona.hours",
+   "es": "L-D 08:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 08:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7626-granadilla-de-abona.desc",
+   "es": "Acceso Aeropuerto Tenerife Sur, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Acceso Aeropuerto Tenerife Sur, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7626-granadilla-de-abona.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7626-granadilla-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7705-granadilla-de-abona.desc",
+   "es": "Carretera TF-1 km 54, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera TF-1 km 54, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7705-granadilla-de-abona.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7705-granadilla-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7721-granadilla-de-abona.desc",
+   "es": "Carretera TF-64 Granadilla-El Médano, Granadilla de Abona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera TF-64 Granadilla-El Médano, Granadilla de Abona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7721-granadilla-de-abona.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7721-granadilla-de-abona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7840-santa-cruz-de-tenerife.desc",
+   "es": "Calle Pedro de Valdivia, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Pedro de Valdivia, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7840-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7840-santa-cruz-de-tenerife.hours",
+   "es": "L-D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10970-los-realejos.desc",
+   "es": "Carretera TF-342 Los Realejos-La Guancha, Los Realejos. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-342 Los Realejos-La Guancha, Los Realejos. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10970-los-realejos.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10970-los-realejos.hours",
+   "es": "L-S 06:00-22:00 · D 08:00-20:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 08:00-20:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10591-los-realejos.desc",
+   "es": "Carretera del Norte, Los Realejos. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera del Norte, Los Realejos. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10591-los-realejos.cat",
+   "es": "Gasolinera · El Mirador",
+   "forma": "texto",
+   "ro": "Benzinărie · El Mirador"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10591-los-realejos.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10214-los-realejos.desc",
+   "es": "Carretera General de Palo Blanco, Los Realejos. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera General de Palo Blanco, Los Realejos. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10214-los-realejos.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10214-los-realejos.hours",
+   "es": "L-D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7855-los-realejos.desc",
+   "es": "Carretera Los Realejos-Icod El Alto, Los Realejos. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera Los Realejos-Icod El Alto, Los Realejos. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7855-los-realejos.cat",
+   "es": "Gasolinera · Océano",
+   "forma": "texto",
+   "ro": "Benzinărie · Océano"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7855-los-realejos.hours",
+   "es": "L-V 06:15-22:15 · S 06:45-22:15 · D 07:15-22:15",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:15-22:15 · Sâmbătă 06:45-22:15 · Duminică 07:15-22:15"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14769-los-realejos.desc",
+   "es": "Polígono La Gañanía, Los Realejos. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Polígono La Gañanía, Los Realejos. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14769-los-realejos.cat",
+   "es": "Gasolinera · Océano",
+   "forma": "texto",
+   "ro": "Benzinărie · Océano"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14769-los-realejos.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10990-los-realejos.desc",
+   "es": "Calle Los Barros, Los Realejos. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Los Barros, Los Realejos. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10990-los-realejos.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10990-los-realejos.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15044-los-realejos.desc",
+   "es": "Calle Anaga, Los Realejos. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Anaga, Los Realejos. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15044-los-realejos.cat",
+   "es": "Gasolinera · Petroprix",
+   "forma": "texto",
+   "ro": "Benzinărie · Petroprix"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15044-los-realejos.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7685-los-realejos.desc",
+   "es": "Calle Piñera, Los Realejos. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Piñera, Los Realejos. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7685-los-realejos.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7685-los-realejos.hours",
+   "es": "L-V 06:00-22:00 · S-D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-22:00 · Sâmbătă-duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7684-los-realejos.desc",
+   "es": "Carretera TF-326, Los Realejos. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-326, Los Realejos. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7684-los-realejos.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7684-los-realejos.hours",
+   "es": "L-D 06:30-00:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:30-00:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8757-los-realejos.desc",
+   "es": "Carretera El Toscal, Los Realejos. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera El Toscal, Los Realejos. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8757-los-realejos.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8757-los-realejos.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8756-los-realejos.desc",
+   "es": "Carretera General La Zamora 22, Los Realejos. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General La Zamora 22, Los Realejos. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8756-los-realejos.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8756-los-realejos.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7791-los-realejos.desc",
+   "es": "Carretera General Icod-S/C, Los Realejos. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General Icod-S/C, Los Realejos. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7791-los-realejos.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7791-los-realejos.hours",
+   "es": "L-D 06:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13228-adeje.desc",
+   "es": "Avenida Siam, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Siam, Adeje. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13228-adeje.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13228-adeje.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12776-adeje.desc",
+   "es": "Calle Charfa, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Charfa, Adeje. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12776-adeje.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12776-adeje.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7776-adeje.desc",
+   "es": "Polígono Industrial Barranco Las Torres, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Polígono Industrial Barranco Las Torres, Adeje. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7776-adeje.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7776-adeje.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7864-adeje.desc",
+   "es": "Carretera General Adeje a Guía de Isora, Adeje. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera General Adeje a Guía de Isora, Adeje. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7864-adeje.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7864-adeje.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7832-adeje.desc",
+   "es": "General C-822, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y diésel renovable. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "General C-822, Adeje. Carburanți: benzină 95, benzină 98, motorină, motorină premium și motorină regenerabilă. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7832-adeje.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7832-adeje.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7853-adeje.desc",
+   "es": "Urbanización San Eugenio, Adeje. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Urbanización San Eugenio, Adeje. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7853-adeje.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7853-adeje.hours",
+   "es": "L-D 08:00-17:30",
+   "forma": "texto",
+   "ro": "Luni-duminică 08:00-17:30"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13639-adeje.desc",
+   "es": "Calle Charfa Esquina Avenida Las Palmitas, Adeje. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Charfa Esquina Avenida Las Palmitas, Adeje. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13639-adeje.cat",
+   "es": "Gasolinera · GMOil",
+   "forma": "texto",
+   "ro": "Benzinărie · GMOil"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13639-adeje.hours",
+   "es": "L-S 07:00-22:00 · D 09:00-16:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:00-22:00 · Duminică 09:00-16:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8741-adeje.desc",
+   "es": "Carretera General Adeje a Playa San Juan, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Carretera General Adeje a Playa San Juan, Adeje. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8741-adeje.cat",
+   "es": "Gasolinera · H2GO",
+   "forma": "texto",
+   "ro": "Benzinărie · H2GO"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8741-adeje.hours",
+   "es": "L-D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13992-adeje.desc",
+   "es": "Calle Dublín, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Calle Dublín, Adeje. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13992-adeje.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13992-adeje.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16015-adeje.desc",
+   "es": "Avenida de Ayyo, Adeje. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida de Ayyo, Adeje. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16015-adeje.cat",
+   "es": "Gasolinera · Plenergy",
+   "forma": "texto",
+   "ro": "Benzinărie · Plenergy"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16015-adeje.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12784-adeje.desc",
+   "es": "Avenida Ayyo, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Avenida Ayyo, Adeje. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12784-adeje.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12784-adeje.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7709-adeje.desc",
+   "es": "Carretera TF-47, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera TF-47, Adeje. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7709-adeje.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7709-adeje.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11525-adeje.desc",
+   "es": "Avenida Ayyo, Adeje. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Ayyo, Adeje. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11525-adeje.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11525-adeje.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7730-adeje.desc",
+   "es": "Autopista TF-1 Sur a Armeñime, Adeje. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Autopista TF-1 Sur a Armeñime, Adeje. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7730-adeje.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7730-adeje.hours",
+   "es": "L-D 08:00-21:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 08:00-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7787-arona.desc",
+   "es": "Avenida de los Pueblos, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida de los Pueblos, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7787-arona.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7787-arona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7766-arona.desc",
+   "es": "Bulevar Chajofe, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Bulevar Chajofe, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7766-arona.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7766-arona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9920-arona.desc",
+   "es": "Carretera General Valle San Lorenzo-Guaza, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General Valle San Lorenzo-Guaza, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9920-arona.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9920-arona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9947-arona.desc",
+   "es": "Carretera General Valle San Lorenzo, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General Valle San Lorenzo, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9947-arona.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9947-arona.hours",
+   "es": "L-S 07:00-22:00 · D 07:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:00-22:00 · Duminică 07:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10543-arona.desc",
+   "es": "Carretera General Las Galletas, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General Las Galletas, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10543-arona.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10543-arona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7640-arona.desc",
+   "es": "Carretera General, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera General, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7640-arona.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7640-arona.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9483-arona.desc",
+   "es": "Carretera General Guaza Los Cristianos, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General Guaza Los Cristianos, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9483-arona.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9483-arona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10951-arona.desc",
+   "es": "Carretera TF-28, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera TF-28, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10951-arona.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10951-arona.hours",
+   "es": "L-D 07:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 07:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8772-arona.desc",
+   "es": "Autopista del Sur km 70,5, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Autopista del Sur km 70,5, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8772-arona.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8772-arona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12370-arona.desc",
+   "es": "Carretera General TF-66, Arona. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera General TF-66, Arona. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12370-arona.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12370-arona.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10127-arona.desc",
+   "es": "Autopista TF-1 km 65,5, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Autopista TF-1 km 65,5, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10127-arona.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10127-arona.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7780-arona.desc",
+   "es": "Carretera General TF-51, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General TF-51, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7780-arona.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7780-arona.hours",
+   "es": "L-S 07:00-21:00 · D 07:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:00-21:00 · Duminică 07:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8280-arona.desc",
+   "es": "Carretera Valle San Lorenzo-Las Galletas, Arona. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera Valle San Lorenzo-Las Galletas, Arona. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8280-arona.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8280-arona.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7817-san-cristobal-de-la-laguna.desc",
+   "es": "Autopista del Norte km 10,2, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Autopista del Norte km 10,2, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7817-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7817-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10905-san-cristobal-de-la-laguna.desc",
+   "es": "Avenida República Argentina, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida República Argentina, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10905-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10905-san-cristobal-de-la-laguna.hours",
+   "es": "L-S 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7784-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera TF-411, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera TF-411, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7784-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7784-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7819-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera Tejina Bajamar, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera Tejina Bajamar, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7819-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7819-san-cristobal-de-la-laguna.hours",
+   "es": "L-V 06:00-22:00 · S-D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-22:00 · Sâmbătă-duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7872-san-cristobal-de-la-laguna.desc",
+   "es": "Avenida Bajamar, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Bajamar, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7872-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7872-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7860-san-cristobal-de-la-laguna.desc",
+   "es": "Avenida Los Majuelos, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y diésel renovable.",
+   "forma": "texto",
+   "ro": "Avenida Los Majuelos, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină, motorină premium și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7860-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7860-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7862-san-cristobal-de-la-laguna.desc",
+   "es": "Calle Felipe Castillo, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Felipe Castillo, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7862-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7862-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9966-san-cristobal-de-la-laguna.desc",
+   "es": "Calle La Milagrosa La Cuesta, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle La Milagrosa La Cuesta, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9966-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9966-san-cristobal-de-la-laguna.hours",
+   "es": "L-S 06:00-22:00 · D 08:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 08:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9961-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera Sur, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y GLP.",
+   "forma": "texto",
+   "ro": "Carretera Sur, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină, motorină premium și GPL."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9961-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9961-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7861-san-cristobal-de-la-laguna.desc",
+   "es": "Glorieta del Brasil, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y GLP.",
+   "forma": "texto",
+   "ro": "Glorieta del Brasil, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină, motorină premium și GPL."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7861-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7861-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7769-san-cristobal-de-la-laguna.desc",
+   "es": "Polígono Industrial Los Majuelos, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Polígono Industrial Los Majuelos, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7769-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7769-san-cristobal-de-la-laguna.hours",
+   "es": "L-S 06:00-22:00 · D 08:00-21:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 08:00-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15534-san-cristobal-de-la-laguna.desc",
+   "es": "Calle Santa Amelia, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Santa Amelia, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15534-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Océano",
+   "forma": "texto",
+   "ro": "Benzinărie · Océano"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15534-san-cristobal-de-la-laguna.hours",
+   "es": "L-J 06:00-00:00 · V 24 h · S-D 06:00-02:00",
+   "forma": "texto",
+   "ro": "Luni-joi 06:00-00:00 · Vineri 24 h · Sâmbătă-duminică 06:00-02:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13837-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera TF-111, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera TF-111, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13837-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Océano",
+   "forma": "texto",
+   "ro": "Benzinărie · Océano"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13837-san-cristobal-de-la-laguna.hours",
+   "es": "L-S 06:00-22:00 · D 07:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 07:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9290-san-cristobal-de-la-laguna.desc",
+   "es": "Avenida Los Menceyes, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Los Menceyes, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9290-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9290-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-21:30",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-21:30"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11562-san-cristobal-de-la-laguna.desc",
+   "es": "Calle Lázaro López, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Lázaro López, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11562-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11562-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-21:30",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-21:30"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15575-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera TF-152, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-152, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15575-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-15575-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7725-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera TF-24 La Laguna-El Portillo, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-24 La Laguna-El Portillo, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7725-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Pcan",
+   "forma": "texto",
+   "ro": "Benzinărie · Pcan"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7725-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7675-san-cristobal-de-la-laguna.desc",
+   "es": "Camino San Miguel de Geneto, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Camino San Miguel de Geneto, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7675-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7675-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7701-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera General, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera General, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7701-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7701-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-23:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-23:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7686-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera General del Norte, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera General del Norte, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7686-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7686-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7690-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera TF-16, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Carretera TF-16, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7690-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7690-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8768-san-cristobal-de-la-laguna.desc",
+   "es": "Avenida Calvo Sotelo, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Calvo Sotelo, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8768-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8768-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13353-san-cristobal-de-la-laguna.desc",
+   "es": "Camino de la Villa, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Camino de la Villa, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98, motorină și motorină premium. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13353-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Taxlaguna",
+   "forma": "texto",
+   "ro": "Benzinărie · Taxlaguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13353-san-cristobal-de-la-laguna.hours",
+   "es": "L-V 06:30-22:00 · S-D 08:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:30-22:00 · Sâmbătă-duminică 08:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7736-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera TF-12 Las Canteras, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-12 Las Canteras, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7736-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7736-san-cristobal-de-la-laguna.hours",
+   "es": "L-S 07:00-22:00 · D 08:00-21:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:00-22:00 · Duminică 08:00-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8751-san-cristobal-de-la-laguna.desc",
+   "es": "Carretera TF-265, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera TF-265, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8751-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8751-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7734-san-cristobal-de-la-laguna.desc",
+   "es": "Plaza San Cristóbal, San Cristóbal de La Laguna. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Plaza San Cristóbal, San Cristóbal de La Laguna. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7734-san-cristobal-de-la-laguna.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7734-san-cristobal-de-la-laguna.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7815-santa-cruz-de-tenerife.desc",
+   "es": "Avenida Tres de Mayo, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Tres de Mayo, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7815-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7815-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7816-santa-cruz-de-tenerife.desc",
+   "es": "Avenida de Canarias, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida de Canarias, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7816-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7816-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7818-santa-cruz-de-tenerife.desc",
+   "es": "Carretera General del Sur, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Sur, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7818-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · BP",
+   "forma": "texto",
+   "ro": "Benzinărie · BP"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7818-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14353-santa-cruz-de-tenerife.desc",
+   "es": "Calle Subida al Mayorazgo, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Calle Subida al Mayorazgo, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98 și motorină. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14353-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Canary Oil",
+   "forma": "texto",
+   "ro": "Benzinărie · Canary Oil"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14353-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10995-santa-cruz-de-tenerife.desc",
+   "es": "Autovía Santa Cruz-San Andrés, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y GLP.",
+   "forma": "texto",
+   "ro": "Autovía Santa Cruz-San Andrés, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină, motorină premium și GPL."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10995-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10995-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7879-santa-cruz-de-tenerife.desc",
+   "es": "Autovía Santa Cruz-San Andrés, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Autovía Santa Cruz-San Andrés, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7879-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7879-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7880-santa-cruz-de-tenerife.desc",
+   "es": "Avenida Francisco La Roche, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Francisco La Roche, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7880-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7880-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7887-santa-cruz-de-tenerife.desc",
+   "es": "Avenida Venezuela, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Avenida Venezuela, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7887-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7887-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9951-santa-cruz-de-tenerife.desc",
+   "es": "Calle Fomento, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Calle Fomento, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98 și motorină. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9951-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9951-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7871-santa-cruz-de-tenerife.desc",
+   "es": "Calle Guaire, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Guaire, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7871-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7871-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14868-santa-cruz-de-tenerife.desc",
+   "es": "Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A, diésel renovable, GLP y gas natural comprimido. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Calle Jesús Hernández Guzmán, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină, motorină regenerabilă, GPL și gaz natural comprimat. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14868-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14868-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7857-santa-cruz-de-tenerife.desc",
+   "es": "Calle Ortega y Gasset, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Ortega y Gasset, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7857-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7857-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12412-santa-cruz-de-tenerife.desc",
+   "es": "Calle Panamá, Santa Cruz de Tenerife. Combustibles: gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Panamá, Santa Cruz de Tenerife. Carburanți: motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12412-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-12412-santa-cruz-de-tenerife.hours",
+   "es": "L-S 07:00-21:00 · D 08:00-13:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:00-21:00 · Duminică 08:00-13:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8761-santa-cruz-de-tenerife.desc",
+   "es": "Carretera General del Sur, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Sur, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8761-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8761-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7863-santa-cruz-de-tenerife.desc",
+   "es": "Carretera General del Sur, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A, gasóleo premium y diésel renovable. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Carretera General del Sur, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină, motorină premium și motorină regenerabilă. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7863-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7863-santa-cruz-de-tenerife.hours",
+   "es": "L-S 06:00-22:00 · D 08:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 06:00-22:00 · Duminică 08:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10924-santa-cruz-de-tenerife.desc",
+   "es": "Carretera General del Sur, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera General del Sur, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10924-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10924-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10282-santa-cruz-de-tenerife.desc",
+   "es": "Carretera Los Majuelos-Sobradillo, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera Los Majuelos-Sobradillo, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10282-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10282-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7869-santa-cruz-de-tenerife.desc",
+   "es": "Carretera del Rosario C-822, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera del Rosario C-822, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7869-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7869-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7875-santa-cruz-de-tenerife.desc",
+   "es": "Vía Penetración, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable. Además: AdBlue.",
+   "forma": "texto",
+   "ro": "Vía Penetración, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă. De asemenea: AdBlue."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7875-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · DISA",
+   "forma": "texto",
+   "ro": "Benzinărie · DISA"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7875-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13966-santa-cruz-de-tenerife.desc",
+   "es": "Calle Laura Grote de la Puerta, Santa Cruz de Tenerife. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Laura Grote de la Puerta, Santa Cruz de Tenerife. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13966-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · GMOil",
+   "forma": "texto",
+   "ro": "Benzinărie · GMOil"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-13966-santa-cruz-de-tenerife.hours",
+   "es": "L-V 24 h · S 06:00-20:00 · D 08:00-15:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 24 h · Sâmbătă 06:00-20:00 · Duminică 08:00-15:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7637-santa-cruz-de-tenerife.desc",
+   "es": "Autopista TF-1 km 3,5, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Autopista TF-1 km 3,5, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7637-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7637-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9900-santa-cruz-de-tenerife.desc",
+   "es": "Avenida Anaga, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Avenida Anaga, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9900-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-9900-santa-cruz-de-tenerife.hours",
+   "es": "L-V 06:00-22:00 · S-D 07:30-22:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 06:00-22:00 · Sâmbătă-duminică 07:30-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10219-santa-cruz-de-tenerife.desc",
+   "es": "Avenida Ángel Romero, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Avenida Ángel Romero, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10219-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10219-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7628-santa-cruz-de-tenerife.desc",
+   "es": "Calle Filipinas, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Calle Filipinas, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7628-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7628-santa-cruz-de-tenerife.hours",
+   "es": "L-V 07:00-15:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 07:00-15:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14262-santa-cruz-de-tenerife.desc",
+   "es": "Carretera del Rosario, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A, diésel renovable y GLP.",
+   "forma": "texto",
+   "ro": "Carretera del Rosario, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină, motorină regenerabilă și GPL."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14262-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-14262-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10842-santa-cruz-de-tenerife.desc",
+   "es": "Polígono El Mayorazgo, Santa Cruz de Tenerife. Combustibles: gasolina 95 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Polígono El Mayorazgo, Santa Cruz de Tenerife. Carburanți: benzină 95 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10842-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Moeve",
+   "forma": "texto",
+   "ro": "Benzinărie · Moeve"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-10842-santa-cruz-de-tenerife.hours",
+   "es": "L-V 05:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 05:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16466-santa-cruz-de-tenerife.desc",
+   "es": "Calle Panamá, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Calle Panamá, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16466-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Océano",
+   "forma": "texto",
+   "ro": "Benzinărie · Océano"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-16466-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7713-santa-cruz-de-tenerife.desc",
+   "es": "Polígono Industrial Añaza, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Polígono Industrial Añaza, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7713-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7713-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11394-santa-cruz-de-tenerife.desc",
+   "es": "Vía Interior del Puerto, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y diésel renovable.",
+   "forma": "texto",
+   "ro": "Vía Interior del Puerto, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină regenerabilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11394-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Repsol",
+   "forma": "texto",
+   "ro": "Benzinărie · Repsol"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-11394-santa-cruz-de-tenerife.hours",
+   "es": "L-D 07:00-21:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 07:00-21:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8759-santa-cruz-de-tenerife.desc",
+   "es": "Carretera Santa Cruz-La Laguna, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera Santa Cruz-La Laguna, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8759-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8759-santa-cruz-de-tenerife.hours",
+   "es": "L-D 24 h",
+   "forma": "texto",
+   "ro": "Luni-duminică 24 h"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8758-santa-cruz-de-tenerife.desc",
+   "es": "Carretera del Rosario, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98, gasóleo A y gasóleo premium.",
+   "forma": "texto",
+   "ro": "Carretera del Rosario, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98, motorină și motorină premium."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8758-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Shell",
+   "forma": "texto",
+   "ro": "Benzinărie · Shell"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-8758-santa-cruz-de-tenerife.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7727-santa-cruz-de-tenerife.desc",
+   "es": "Polígono El Mayorazgo, Santa Cruz de Tenerife. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Polígono El Mayorazgo, Santa Cruz de Tenerife. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7727-santa-cruz-de-tenerife.cat",
+   "es": "Gasolinera · Tgas",
+   "forma": "texto",
+   "ro": "Benzinărie · Tgas"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7727-santa-cruz-de-tenerife.hours",
+   "es": "L-S 07:30-21:00 · D 08:00-14:00",
+   "forma": "texto",
+   "ro": "Luni-sâmbătă 07:30-21:00 · Duminică 08:00-14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7749-garachico.desc",
+   "es": "Carretera Icod-Buenavista, Garachico. Combustibles: gasolina 95, gasolina 98 y gasóleo A.",
+   "forma": "texto",
+   "ro": "Carretera Icod-Buenavista, Garachico. Carburanți: benzină 95, benzină 98 și motorină."
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7749-garachico.cat",
+   "es": "Gasolinera · La Caleta",
+   "forma": "texto",
+   "ro": "Benzinărie · La Caleta"
+  },
+  {
+   "tabla": "places",
+   "clave": "gas-7749-garachico.hours",
+   "es": "L-D 06:00-22:00",
+   "forma": "texto",
+   "ro": "Luni-duminică 06:00-22:00"
+  }
+ ]
+}

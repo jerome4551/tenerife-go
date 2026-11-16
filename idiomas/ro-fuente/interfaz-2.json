@@ -1,0 +1,13 @@
+{
+ "_": "Rumano (ro) de las filas de la interfaz de index.html que llegaron a main después del bloque 1 (las de la nota 41 están en interfaz.json). Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. No se edita a mano: sale de la entrega del bloque 9 del rumano (16-11-2026). Hoy, una fila: ariaQuitarDeCesta, el ✕ de cada artículo de la cesta (main 934f36d, «La cesta y la tienda, de usted y en los diez idiomas»; «el rumano, sin la fila: va a la sesión del rumano»).",
+ "idioma": "ro",
+ "filas": [
+  {
+   "tabla": "(anonima)",
+   "clave": "ariaQuitarDeCesta",
+   "forma": "texto",
+   "es": "Quitar de la cesta",
+   "ro": "Eliminați din coș"
+  }
+ ]
+}
