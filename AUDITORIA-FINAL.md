@@ -8821,6 +8821,57 @@ los días del año; El Pozo, de 8:30 a 21:00 todos los días del año; la avenid
 las guardias que cambian cada día en La Laguna, el Puerto de la Cruz y Adeje y Arona) está tal cual en los PDF del
 Colegio de noviembre.
 
+## Los vídeos de los ejercicios, fáciles de encontrar: 🎬, «Solo con vídeo» y «Ver el vídeo» (15 de noviembre)
+
+Jérôme, 15-11: «los vídeo que acompaña los ejercicios son un poco complicada de encontrar. Cuando pone el nombre de los
+ejercicios un emoji vídeo y un botón cuando celeciona el ejercicio más fácil encontrar que a hora».
+
+**Lo que pasaba.** 282 de los 958 ejercicios de «Su cuerpo» tienen vídeo (Jérôme lo enseña paso a paso,
+`modulos/entrenador.js`), pero ninguna lista lo decía: había que abrir cada ficha para saberlo. Y el módulo del vídeo
+pesa (684 kB), así que no se puede pedir solo para saber cuáles lo tienen.
+
+**Un índice pequeño** (`58e5e99`). `datos/cuerpo/con-video.json` (282 filas, 9 kB): el id de cada ejercicio con vídeo y
+los pasos de su ficha en castellano. Lo escribe `tools/entrenador/construir.py` con el módulo, de las mismas
+coreografías (nadie lo escribe a mano), y su `--comprobar` dice si está al día. `tools/auditar_entrenador.js` comprueba
+que están los 282, con los pasos de su ficha, y que con esos pasos `TG_ENTRENADOR.tiene()` dice que sí. La app lo pide
+junto a los ejercicios; va también en la app de las tiendas (`tools/app_preparar.js`).
+
+**🎬 detrás del nombre** (`b276114`), en todas las listas que abren la ficha de un ejercicio: la del grupo, la de un
+deporte, la sesión del día y sus alternativas, los estiramientos, las variantes y «Variante de …». Solo si la ficha en
+el idioma de la app tiene tantos pasos como la coreografía: lo mismo que mira el módulo antes de enseñar el vídeo, así
+que no sale un 🎬 sin vídeo detrás (en los diez idiomas casan los 282). El lector de pantalla dice «con vídeo». Va pegado
+a la última palabra: si el nombre no cabe en una línea, baja con ella y no se queda solo.
+
+**«🎬 Solo con vídeo»**, en los filtros de la lista del grupo, con el sitio, el nivel y la búsqueda: en el pecho, 45 de
+80; en el core, 5 de 134. Solo sale si el grupo tiene alguno con vídeo. Abrir un grupo desde «¿Qué entreno hoy?», la
+sesión, los estiramientos o el asistente lo apaga, como el nivel.
+
+**«🎬 Ver el vídeo»**, dorado, en la ficha, entre las etiquetas y el vídeo: lleva al vídeo si no se ve entero y lo pone
+en marcha; si el módulo aún no ha llegado, cuando llegue. Sin el módulo, el botón se va y la ficha queda como estaba.
+
+**En los diez idiomas**, tres textos nuevos: «vídeo» como lo dice el reproductor («film» en polaco), el botón como «Ver
+el ejercicio» y el filtro como «Ver solo favoritos» de la app. «Vedi il video», «Виж видеото» y «Zobacz film», rótulos
+de botón en imperativo como los demás, van a las listas de `tools/auditar_registro.js`.
+
+**Comprobado.** `tools/probar_cuerpo.js`, sección 43: 17 controles, 13 en rojo con el módulo de antes y todos en verde
+con el nuevo (el 🎬 en las 45 del pecho y en ninguna más, el nombre igual, el filtro con el nivel, el botón, el vídeo que
+se pone en marcha con la ficha bajada, las variantes, la sesión del día, los diez idiomas, sin el índice, sin el módulo
+y con un índice con basura). Capturas a 390 px en los diez idiomas (y de noche, en castellano).
+
+**La auditoría entera** (`auditar.sh`, sus 70 bloques), sobre los dos commits antes del rebase: dos rojos, los dos de
+este documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.729 filas, antes 3.726; `barrido_idiomas.js`,
+5.876 filas, antes 5.873: los tres textos nuevos), que pone al día este commit. Lo demás, en verde: `probar_cuerpo.js`,
+741; `auditar_entrenador.js`, 44 (con el índice); `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los diez
+idiomas; `auditar_registro.js`, todo de usted (138.150 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262,
+y sus cuatro robots. `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
+
+En `main`, los dos commits van encima de cinco de los robots (`8d3e9a7` y `588b61e`, avisos de AEMET; `4097b6d`, alertas
+del Gobierno de Canarias; `ad6b301`, terremotos, y `9e4b274`, satélites), que solo cambian `datos/avisos-aemet.json`,
+`datos/alertas-canarias.json`, `datos/sismos-ign.json` y `datos/satelites.json`; los controles que leen esos ficheros,
+en verde tras el rebase.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -10662,7 +10713,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3726 filas (y 5.873 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3729 filas (y 5.876 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
