@@ -20108,26 +20108,47 @@ function busTimeBetween(line, idxA, idxB) {
    La tabla empieza vacia a proposito: se rellena segun vayan llegando
    horarios comprobados, uno a uno. Formato:
 
-     'las-vistas': { desde:'2026-06-15', hasta:'2026-09-15',
-                     h1:'10:00', h2:'19:00', dias:[0,1,2,3,4,5,6],
-                     revisado:'2026-08-08' }
+     'las-vistas': { desde:'2026-09-16', hasta:'2026-12-31',
+                     h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6],
+                     revisado:'2026-11-16' }
+
+   desde y hasta (AAAA-MM-DD, opcionales) son el periodo que da la fuente:
+   fuera de el no se dice nada, y si estan mal escritos tampoco (16 de
+   noviembre de 2026). verano:{ desde:'MM-DD', hasta:'MM-DD', h1, h2 } es
+   el horario que sustituye al de siempre dentro de su ventana.
 
    dias en formato de getDay(): 0 domingo ... 6 sabado. */
 const SOCORRISTAS = {
   /* ARONA - 10:00 a 19:00 en verano, 10:00 a 18:00 el resto del año.
      La ventana de verano, 15/06 a 15/09, sale de la ficha oficial del
      visor, que es la que se vio en pantalla. El horario lo confirma un
-     socorrista en activo. */
-  'las-vistas':                { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'19:00' }, dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
-  'playa-camison':             { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'19:00' }, dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+     socorrista en activo.
+     Renovado el 16 de noviembre de 2026 con el Visor de Playas y Zonas de Baño
+     Marítimas de Canarias (Gobierno de Canarias), lo que enseña su ficha de cada
+     playa en hora canaria: del 16/09/2026 al 31/12/2026, de lunes a domingo, de
+     10:00 a 18:00. Por eso llevan desde y hasta: fuera de ese periodo no se dice
+     nada, aunque la revisión sea reciente.
+     La ficha de «Playa de las Américas» está en la Playa Honda, que el visor
+     da en Arona, con el mismo periodo y el mismo horario. */
+  'las-vistas':                { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'19:00' }, dias:[0,1,2,3,4,5,6], desde:'2026-09-16', hasta:'2026-12-31', revisado:'2026-11-16' },
+  'playa-camison':             { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'19:00' }, dias:[0,1,2,3,4,5,6], desde:'2026-09-16', hasta:'2026-12-31', revisado:'2026-11-16' },
 
   /* ADEJE - 10:00 a 18:00 todo el año: verano e invierno coinciden, asi
-     que no lleva bloque de verano y no hace falta ninguna fecha. */
-  'el-duque':                  { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
-  'playa-americas':            { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
-  'fanabe':                    { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
-  'playa-callao':              { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
-  'playa-torviscas':           { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
+     que no lleva bloque de verano.
+     Renovado el 16 de noviembre de 2026 con el Visor de Playas y Zonas de Baño
+     Marítimas de Canarias (Gobierno de Canarias), lo que enseña su ficha de cada
+     playa en hora canaria: del 16/09/2026 al 31/12/2026, de lunes a domingo, de
+     10:00 a 18:00. Por eso llevan desde y hasta: fuera de ese periodo no se dice
+     nada, aunque la revisión sea reciente.
+     La de Callao Salvaje es la playa de Ajabo del visor. La Caleta NO se
+     renueva: en el punto de su ficha el visor tiene El Varadero y El Muelle,
+     sin socorristas (el que los tiene en La Caleta es La Enramada); su dato
+     de agosto caduca solo. */
+  'el-duque':                  { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], desde:'2026-09-16', hasta:'2026-12-31', revisado:'2026-11-16' },
+  'playa-americas':            { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], desde:'2026-09-16', hasta:'2026-12-31', revisado:'2026-11-16' },
+  'fanabe':                    { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], desde:'2026-09-16', hasta:'2026-12-31', revisado:'2026-11-16' },
+  'playa-callao':              { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], desde:'2026-09-16', hasta:'2026-12-31', revisado:'2026-11-16' },
+  'playa-torviscas':           { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], desde:'2026-09-16', hasta:'2026-12-31', revisado:'2026-11-16' },
   'playa-la-caleta-adeje':     { h1:'10:00', h2:'18:00', dias:[0,1,2,3,4,5,6], revisado:'2026-08-09' },
 
   /* LA LAGUNA - 10:00 a 20:00 en verano, 10:00 a 18:00 el resto del año.
@@ -20139,7 +20160,10 @@ const SOCORRISTAS = {
      Las cuatro playas de esta costa que hay en la app -San Juan de Bajamar,
      El Arenal, Los Troches y El Arenisco- NO estan vigiladas y no deben
      entrar aqui por mucho que sean del mismo municipio: son rompientes de
-     bolos, y una de ellas ni siquiera es apta para el baño. */
+     bolos, y una de ellas ni siquiera es apta para el baño.
+
+     NO se renuevan: el 16 de noviembre de 2026 el visor oficial no da ningún
+     periodo de socorrismo en estas tres; su dato de agosto caduca solo. */
   'piscinas-bajamar':          { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'20:00' }, dias:[0,1,2,3,4,5,6], revisado:'2026-08-11' },
   'punta-hidalgo':             { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'20:00' }, dias:[0,1,2,3,4,5,6], revisado:'2026-08-11' },
   'piscina-jover-tejina':      { h1:'10:00', h2:'18:00', verano:{ desde:'06-15', hasta:'09-15', h1:'10:00', h2:'20:00' }, dias:[0,1,2,3,4,5,6], revisado:'2026-08-11' },
@@ -20213,6 +20237,10 @@ function estadoSocorristas(place) {
   if (!s || !s.revisado) return null;
   const hoy = fechaCanaria();
   if (socDiasEntre(s.revisado, hoy.iso) > SOC_VIDA_DIAS) return null;  // dato de otro trimestre
+  /* el periodo que da la fuente (16-11-2026): fuera de el, nada; mal escrito, nada */
+  const iso = /^\d{4}-\d{2}-\d{2}$/;
+  if (s.desde !== undefined && (!iso.test(s.desde) || hoy.iso < s.desde)) return null;
+  if (s.hasta !== undefined && (!iso.test(s.hasta) || hoy.iso > s.hasta)) return null;
   const h = socHorasHoy(s, hoy.iso);
   if (!h) return null;
   if (Array.isArray(s.dias) && s.dias.indexOf(hoy.dia) < 0) return 'horario';

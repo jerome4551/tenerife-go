@@ -115,6 +115,10 @@ echo; echo "════════ las fichas de gasolinera, en pantalla, en l
 control verificar_fichas_app.js node tools/verificar_fichas_app.js "$PUERTO"
 echo; echo "════════ texto de reserva en castellano ════════"
 control auditar_reservas.py python3 tools/auditar_reservas.py
+echo; echo "════════ el horario de los socorristas ════════"
+# (16 de noviembre de 2026) SOCORRISTAS de index.html: lo renovado con el visor oficial del Gobierno de
+# Canarias, su periodo (desde/hasta) y lo que caduca solo. Sin navegador.
+control probar_socorristas.js node tools/probar_socorristas.js
 echo; echo "════════ mapa sin conexion ════════"
 # El mapa base es un recorte del detallado (31 de octubre de 2026, tarde): tiene que ser el que
 # sale de mapa/tenerife-osm.pmtiles tal como esta, o los dos mapas dirian costas distintas.
