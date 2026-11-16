@@ -211,14 +211,14 @@
    "clave": "playa-puertito.cat",
    "es": "Cala · Tortugas Marinas",
    "forma": "texto",
-   "ro": "Golfuleț · Broaște țestoase marine"
+   "ro": "Golfuleț · Broaște-țestoase marine"
   },
   {
    "tabla": "places",
    "clave": "playa-puertito-adeje.desc",
    "es": "Pequeña cala de arena oscura y callaos en un caserío marinero de Adeje, célebre por las tortugas que descansaban en su bahía; hoy los avistamientos son ocasionales y no se las debe tocar ni alimentar. Buen snorkel con abundantes peces. Chiringuito junto a la arena y sendero costero desde La Caleta. Aparcamiento muy limitado y obras de un gran complejo hotelero en el entorno.",
    "forma": "texto",
-   "ro": "Golfuleț cu nisip închis la culoare și bolovani rotunjiți, într-un sat de pescari din Adeje, faimos pentru broaștele țestoase care se odihneau în golful său; astăzi sunt văzute doar din când în când și nu trebuie nici atinse, nici hrănite. Snorkeling bun, cu mulți pești. Bar de plajă lângă nisip și potecă de coastă din La Caleta. Parcare foarte limitată și lucrări la un mare complex hotelier în apropiere."
+   "ro": "Golfuleț cu nisip închis la culoare și bolovani rotunjiți, într-un sat de pescari din Adeje, faimos pentru broaștele-țestoase care se odihneau în golful său; astăzi sunt văzute doar din când în când și nu trebuie nici atinse, nici hrănite. Snorkeling bun, cu mulți pești. Bar de plajă lângă nisip și potecă de coastă din La Caleta. Parcare foarte limitată și lucrări la un mare complex hotelier în apropiere."
   },
   {
    "tabla": "places",
@@ -1730,7 +1730,7 @@
    "clave": "buceo-los-gigantes.desc",
    "es": "Los Gigantes es uno de los mejores destinos de buceo de Tenerife, con algunos de los acantilados más altos de Europa (600 m) como telón de fondo submarino. Los Gigantes Diving Centre, en el embarcadero 6 de la Marina, lleva décadas operando inmersiones guiadas PADI a los mejores puntos: cueva de La Corona, arrecifes volcánicos, tortugas verdes y rayas. Visibilidad media 20-30 m. Temperatura del agua 18-24°C todo el año. Cursos Open Water desde cero. También snorkel y bautismos. Salidas diarias en barco. Abierto L-S 9:30-16:00.",
    "forma": "texto",
-   "ro": "Los Gigantes este una dintre cele mai bune destinații de scufundări din Tenerife, cu unele dintre cele mai înalte faleze din Europa (600 m) drept decor subacvatic. Los Gigantes Diving Centre, la debarcaderul 6 din portul de agrement, organizează de zeci de ani scufundări ghidate PADI în cele mai bune locuri: peștera La Corona, recifuri vulcanice, broaște țestoase verzi și pisici-de-mare. Vizibilitate medie de 20-30 m. Temperatura apei: 18-24°C tot anul. Cursuri Open Water de la zero. De asemenea, snorkeling și botezuri de scufundare. Ieșiri zilnice cu barca. Deschis luni-sâmbătă, 9:30-16:00."
+   "ro": "Los Gigantes este una dintre cele mai bune destinații de scufundări din Tenerife, cu unele dintre cele mai înalte faleze din Europa (600 m) drept decor subacvatic. Los Gigantes Diving Centre, la debarcaderul 6 din portul de agrement, organizează de zeci de ani scufundări ghidate PADI în cele mai bune locuri: peștera La Corona, recifuri vulcanice, broaște-țestoase verzi și pisici-de-mare. Vizibilitate medie de 20-30 m. Temperatura apei: 18-24°C tot anul. Cursuri Open Water de la zero. De asemenea, snorkeling și botezuri de scufundare. Ieșiri zilnice cu barca. Deschis luni-sâmbătă, 9:30-16:00."
   },
   {
    "tabla": "places",
@@ -1744,7 +1744,7 @@
    "clave": "buceo-los-cristianos.desc",
    "es": "Los Cristianos alberga varios centros de buceo PADI en el Paseo Marítimo, junto al puerto. El más reconocido es el Club de Buceo Rincón de Arona (entre Playa Las Vistas y Playa Los Cristianos), con embarcación propia para 12 buceadores. Las inmersiones van a puntos como el Pequeño Puerto, el arrecife de Abades, La Caleta y el pecio El Condesito. Tortugas verdes, mantarrayas, bancos de peces tropicales. Visibilidad media 20-25 m. Temperatura 18-24°C. Cursos PADI, bautismos, snorkel. Salidas mañana y tarde. Reservas por WhatsApp.",
    "forma": "texto",
-   "ro": "În Los Cristianos sunt mai multe centre de scufundări PADI pe promenadă, lângă port. Cel mai cunoscut este Club de Buceo Rincón de Arona (între Playa Las Vistas și Playa Los Cristianos), cu ambarcațiune proprie pentru 12 scafandri. Scufundările se fac în locuri precum Pequeño Puerto, reciful din Abades, La Caleta și epava El Condesito. Broaște țestoase verzi, diavoli-de-mare, bancuri de pești tropicali. Vizibilitate medie de 20-25 m. Temperatura: 18-24°C. Cursuri PADI, botezuri de scufundare, snorkeling. Ieșiri dimineața și după-amiaza. Rezervări pe WhatsApp."
+   "ro": "În Los Cristianos sunt mai multe centre de scufundări PADI pe promenadă, lângă port. Cel mai cunoscut este Club de Buceo Rincón de Arona (între Playa Las Vistas și Playa Los Cristianos), cu ambarcațiune proprie pentru 12 scafandri. Scufundările se fac în locuri precum Pequeño Puerto, reciful din Abades, La Caleta și epava El Condesito. Broaște-țestoase verzi, diavoli-de-mare, bancuri de pești tropicali. Vizibilitate medie de 20-25 m. Temperatura: 18-24°C. Cursuri PADI, botezuri de scufundare, snorkeling. Ieșiri dimineața și după-amiaza. Rezervări pe WhatsApp."
   },
   {
    "tabla": "places",
@@ -1758,7 +1758,7 @@
    "clave": "buceo-puerto-colon.desc",
    "es": "Puerto Colón, en Costa Adeje, es el hub de deportes náuticos más importante del sur de Tenerife. Scuba Point (PADI 5 Star IDC, C/ Puerto Colón 130) es uno de los centros de buceo más reconocidos de la isla, activo desde 1999. Ofrece inmersiones guiadas a La Caleta, Los Morteros (reserva natural), El Puertito de Adeje (tortugas en libertad), cuevas y arrecifes volcánicos. También snorkel en barco, cursos Open Water, Advanced y Rescue. Escuela de divemasters. Salidas diarias 9:30h y 14:00h. El único barco de buceo de Tenerife con WC a bordo.",
    "forma": "texto",
-   "ro": "Puerto Colón, în Costa Adeje, este cel mai important centru de sporturi nautice din sudul insulei Tenerife. Scuba Point (PADI 5 Star IDC, C/ Puerto Colón 130) este unul dintre cele mai cunoscute centre de scufundări de pe insulă, activ din 1999. Oferă scufundări ghidate la La Caleta, la Los Morteros (rezervație naturală) și la El Puertito de Adeje (broaște țestoase în libertate), în peșteri și pe recifuri vulcanice. De asemenea, snorkeling de pe barcă și cursuri Open Water, Advanced și Rescue. Școală de divemasteri. Ieșiri zilnice la 9:30 și la 14:00. Singura barcă de scufundări din Tenerife cu toaletă la bord."
+   "ro": "Puerto Colón, în Costa Adeje, este cel mai important centru de sporturi nautice din sudul insulei Tenerife. Scuba Point (PADI 5 Star IDC, C/ Puerto Colón 130) este unul dintre cele mai cunoscute centre de scufundări de pe insulă, activ din 1999. Oferă scufundări ghidate la La Caleta, la Los Morteros (rezervație naturală) și la El Puertito de Adeje (broaște-țestoase în libertate), în peșteri și pe recifuri vulcanice. De asemenea, snorkeling de pe barcă și cursuri Open Water, Advanced și Rescue. Școală de divemasteri. Ieșiri zilnice la 9:30 și la 14:00. Singura barcă de scufundări din Tenerife cu toaletă la bord."
   },
   {
    "tabla": "places",
@@ -1786,7 +1786,7 @@
    "clave": "buceo-las-galletas.desc",
    "es": "Las Galletas, en el sur de Tenerife, es uno de los hubs de buceo más activos de la isla. La zona de Punta Rasca y El Faro ofrece fondos rocosos volcánicos de hasta 50 metros de profundidad con una extraordinaria diversidad marina: rayas, meros, samas, barracudas, el rarísimo pez rana (perfectamente camuflado), pez globo (tamboril), corales negros y numerosos arcos y cuevas. Todos los niveles. Los buceadores expertos pueden alcanzar los -50 m en veriles rocosos. El Bufadero, cerca de Los Cristianos (10 m de fondo), es una inmersión fácil para cualquier nivel con tortugas y rayas obispo. Centro de referencia: Dive Tenerife Las Galletas.",
    "forma": "texto",
-   "ro": "Las Galletas, în sudul insulei Tenerife, este unul dintre cele mai active centre de scufundări de pe insulă. Zona Punta Rasca și El Faro are funduri stâncoase vulcanice de până la 50 de metri adâncime, cu o diversitate marină extraordinară: pisici-de-mare, pești mero, pești sama, baracude, rarisimul pește-broască (perfect camuflat), pește-balon (tamboril), corali negri și numeroase arcuri și peșteri. Toate nivelurile. Scafandrii experimentați pot coborî la -50 m, pe pereți stâncoși abrupți. El Bufadero, lângă Los Cristianos (10 m adâncime), este o scufundare ușoară pentru orice nivel, cu broaște țestoase și pisici-de-mare. Centru de referință: Dive Tenerife Las Galletas."
+   "ro": "Las Galletas, în sudul insulei Tenerife, este unul dintre cele mai active centre de scufundări de pe insulă. Zona Punta Rasca și El Faro are funduri stâncoase vulcanice de până la 50 de metri adâncime, cu o diversitate marină extraordinară: pisici-de-mare, pești mero, pești sama, baracude, rarisimul pește-broască (perfect camuflat), pește-balon (tamboril), corali negri și numeroase arcuri și peșteri. Toate nivelurile. Scafandrii experimentați pot coborî la -50 m, pe pereți stâncoși abrupți. El Bufadero, lângă Los Cristianos (10 m adâncime), este o scufundare ușoară pentru orice nivel, cu broaște-țestoase și pisici-de-mare. Centru de referință: Dive Tenerife Las Galletas."
   },
   {
    "tabla": "places",
@@ -1814,7 +1814,7 @@
    "clave": "kayak-los-gigantes.desc",
    "es": "Kayak bajo algunos de los acantilados más altos de Europa es la experiencia acuática más icónica de Tenerife. Desde el Puerto de Los Gigantes se palean junto a paredes volcánicas de hasta 600 metros de altura que caen verticalmente al mar. La ruta estándar va hasta el Barranco Seco, con parada para nadar en calas sin acceso por tierra. En temporada favorable se avistan delfines mulares, calderones grises y tortugas. Empresa de referencia: Teno Activo. Salidas todos los días del año. No se necesita experiencia previa — briefing básico en el puerto antes de salir. Duración: ~2 horas. Kayaks individuales y dobles.",
    "forma": "texto",
-   "ro": "O tură cu caiacul sub unele dintre cele mai înalte faleze din Europa este cea mai emblematică experiență pe apă din Tenerife. Din portul Los Gigantes se vâslește pe lângă pereți vulcanici de până la 600 de metri înălțime, care cad vertical în mare. Traseul obișnuit merge până la Barranco Seco, cu o oprire pentru înot în golfulețe la care nu se poate ajunge pe uscat. În sezonul potrivit se pot vedea delfini cu bot gros, delfini Risso și broaște țestoase. Firmă de referință: Teno Activo. Ieșiri în fiecare zi a anului. Nu este nevoie de experiență — un scurt instructaj în port înainte de plecare. Durată: ~2 ore. Caiace de o persoană și de două persoane."
+   "ro": "O tură cu caiacul sub unele dintre cele mai înalte faleze din Europa este cea mai emblematică experiență pe apă din Tenerife. Din portul Los Gigantes se vâslește pe lângă pereți vulcanici de până la 600 de metri înălțime, care cad vertical în mare. Traseul obișnuit merge până la Barranco Seco, cu o oprire pentru înot în golfulețe la care nu se poate ajunge pe uscat. În sezonul potrivit se pot vedea delfini cu bot gros, delfini Risso și broaște-țestoase. Firmă de referință: Teno Activo. Ieșiri în fiecare zi a anului. Nu este nevoie de experiență — un scurt instructaj în port înainte de plecare. Durată: ~2 ore. Caiace de o persoană și de două persoane."
   },
   {
    "tabla": "places",
@@ -1828,28 +1828,28 @@
    "clave": "kayak-la-caleta.desc",
    "es": "La Caleta de Adeje es el punto de partida de kayak más popular del sur de Tenerife. Desde este pequeño pueblo pescador se accede en kayak a tres calas de la costa de Adeje: Playa de Los Morteros (arrecife de roca, 20 min), Playa Diego Hernández (arena dorada, snorkel) y El Puertito de Adeje (1h — 'Bahía de las Tortugas', célebre por sus tortugas verdes, que hoy solo se ven de vez en cuando). Empresa de referencia: Surf Life Tenerife (visita a piscifactorías incluida en algunas excursiones). Aguas muy calmadas, ideal para principiantes y familias. Kayaks individuales y dobles.",
    "forma": "texto",
-   "ro": "La Caleta de Adeje este cel mai popular punct de plecare cu caiacul din sudul insulei Tenerife. Din acest mic sat de pescari, cu caiacul se ajunge la trei golfulețe de pe coasta din Adeje: Playa de Los Morteros (recif de stâncă, 20 min), Playa Diego Hernández (nisip auriu, snorkeling) și El Puertito de Adeje (1h — „Golful Broaștelor Țestoase”, renumit pentru broaștele țestoase verzi, care azi se văd doar din când în când). Firmă de referință: Surf Life Tenerife (unele excursii includ vizitarea unor ferme piscicole). Ape foarte liniștite, ideale pentru începători și familii. Caiace de o persoană și de două persoane."
+   "ro": "La Caleta de Adeje este cel mai popular punct de plecare cu caiacul din sudul insulei Tenerife. Din acest mic sat de pescari, cu caiacul se ajunge la trei golfulețe de pe coasta din Adeje: Playa de Los Morteros (recif de stâncă, 20 min), Playa Diego Hernández (nisip auriu, snorkeling) și El Puertito de Adeje (1h — „Golful Broaștelor-Țestoase”, renumit pentru broaștele-țestoase verzi, care azi se văd doar din când în când). Firmă de referință: Surf Life Tenerife (unele excursii includ vizitarea unor ferme piscicole). Ape foarte liniștite, ideale pentru începători și familii. Caiace de o persoană și de două persoane."
   },
   {
    "tabla": "places",
    "clave": "kayak-la-caleta.cat",
    "es": "Kayak · La Caleta · Calas Ocultas · Tortugas · Sur",
    "forma": "texto",
-   "ro": "Caiac · La Caleta · Golfulețe ascunse · Broaște țestoase · Sud"
+   "ro": "Caiac · La Caleta · Golfulețe ascunse · Broaște-țestoase · Sud"
   },
   {
    "tabla": "places",
    "clave": "kayak-los-cristianos.desc",
    "es": "Los Cristianos es uno de los mejores puntos de kayak del sur para principiantes. Desde el puerto se realizan excursiones de kayak + snorkel de unas 2,5 horas hasta la Cueva del Palmar y las aguas de Playa Las Vistas. Se avistan tortugas marinas con frecuencia. Empresa de referencia: Kayak Academy Tenerife (salidas diarias). También se pueden ver delfines. Aguas protegidas. Kayaks simples y dobles disponibles. Ideal para la familia.",
    "forma": "texto",
-   "ro": "Los Cristianos este unul dintre cele mai bune locuri din sud pentru caiac, pentru începători. Din port pleacă excursii de caiac + snorkeling, de circa 2,5 ore, până la Cueva del Palmar și în apele din dreptul Playa Las Vistas. Se văd des broaște țestoase marine. Firmă de referință: Kayak Academy Tenerife (ieșiri zilnice). Se pot vedea și delfini. Ape adăpostite. Sunt disponibile caiace de o persoană și de două persoane. Ideal pentru familie."
+   "ro": "Los Cristianos este unul dintre cele mai bune locuri din sud pentru caiac, pentru începători. Din port pleacă excursii de caiac + snorkeling, de circa 2,5 ore, până la Cueva del Palmar și în apele din dreptul Playa Las Vistas. Se văd des broaște-țestoase marine. Firmă de referință: Kayak Academy Tenerife (ieșiri zilnice). Se pot vedea și delfini. Ape adăpostite. Sunt disponibile caiace de o persoană și de două persoane. Ideal pentru familie."
   },
   {
    "tabla": "places",
    "clave": "kayak-los-cristianos.cat",
    "es": "Kayak · Los Cristianos · Sur · Tortugas · Principiantes",
    "forma": "texto",
-   "ro": "Caiac · Los Cristianos · Sud · Broaște țestoase · Începători"
+   "ro": "Caiac · Los Cristianos · Sud · Broaște-țestoase · Începători"
   },
   {
    "tabla": "places",

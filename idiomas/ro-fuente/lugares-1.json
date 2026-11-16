@@ -622,9 +622,9 @@
   {
    "tabla": "places",
    "clave": "ruta-masca-playa.desc",
-   "es": "⚠️ Acceso regulado por el Cabildo: reserva previa obligatoria en su web oficial y calzado de montaña homologado. El embarcadero está cerrado al tráfico recreativo, por lo que el sendero es obligatorio de bajada y de subida. La ruta de senderismo más famosa y espectacular de Tenerife. 3 horas de descenso por el barranco hasta la playa virgen de Masca. Recogida en barco incluida al final. Reserva obligatoria. Solo en grupo organizado.",
+   "es": "⚠️ Acceso regulado por el Cabildo: hay que reservar en su web oficial la entrada al camino y el barco de vuelta. Se baja a pie desde el caserío de Masca hasta el mar, unos 5 km en unas 4 horas, y se sale en barco desde la ensenada hasta Los Gigantes: con la entrada de bajada no se puede volver subiendo por el barranco, salvo si la salida por mar se cierra por el estado del mar, y entonces hay que regresar a pie. Al inicio solo se llega en la guagua 355 de TITSA desde Santiago del Teide. Obligatorio: calzado de montaña cerrado, el casco que presta el personal del camino, al menos 1,5 litros de agua por persona, algo de comida energética, el móvil cargado y un documento de identidad. No se admiten menores de 8 años. La ruta de senderismo más famosa y espectacular de Tenerife.",
    "forma": "texto",
-   "ro": "⚠️ Acces reglementat de Cabildo (consiliul insular): rezervare prealabilă obligatorie pe site-ul său oficial și încălțăminte de munte omologată. Debarcaderul este închis pentru ambarcațiunile de agrement, așa că traseul se face obligatoriu pe jos, și la coborâre, și la urcare. Cel mai faimos și mai spectaculos traseu de drumeție din Tenerife. 3 ore de coborâre prin defileu până la plaja virgină din Masca. Preluarea cu barca la final este inclusă. Rezervare obligatorie. Doar în grup organizat."
+   "ro": "⚠️ Acces reglementat de Cabildo (consiliul insular): pe site-ul său oficial trebuie să rezervați biletul de intrare pe traseu și barca de întoarcere. Coborârea se face pe jos, din cătunul Masca până la mare, circa 5 km în aproximativ 4 ore, iar din golfuleț se pleacă cu barca spre Los Gigantes: cu biletul de coborâre nu vă puteți întoarce urcând prin defileu, decât dacă ieșirea pe mare se închide din cauza stării mării; în acest caz trebuie să vă întoarceți pe jos. La începutul traseului se ajunge doar cu autobuzul TITSA 355 din Santiago del Teide. Obligatoriu: încălțăminte de munte închisă, casca pe care v-o împrumută personalul traseului, cel puțin 1,5 litri de apă de persoană, puțină mâncare energizantă, telefonul mobil încărcat și un act de identitate. Nu sunt admiși copiii sub 8 ani. Cel mai faimos și mai spectaculos traseu de drumeție din Tenerife."
   },
   {
    "tabla": "places",
@@ -1098,9 +1098,9 @@
   {
    "tabla": "places",
    "clave": "golf-buenavista.desc",
-   "es": "Campo de golf diseñado por Severiano Ballesteros, situado en el extremo noroeste de Tenerife. 18 hoyos Par 72, 6.150 m. Entorno natural espectacular junto al océano y el Parque Natural de Teno. Varios hoyos bordean el acantilado con la sensación de golpear directamente al mar. Lagos en hoyos 9 y 18. Academia de golf. Hotel Meliá Hacienda del Conde 5* integrado. Tel: 922 129 034.",
+   "es": "Campo de golf diseñado por Severiano Ballesteros, situado en el extremo noroeste de Tenerife. 18 hoyos Par 72, 6.150 m. Entorno natural espectacular junto al océano y el Parque Rural de Teno. Varios hoyos bordean el acantilado con la sensación de golpear directamente al mar. Lagos en hoyos 9 y 18. Academia de golf. Hotel Meliá Hacienda del Conde 5* integrado. Tel: 922 129 034.",
    "forma": "texto",
-   "ro": "Teren de golf proiectat de Severiano Ballesteros, în extremitatea de nord-vest a insulei Tenerife. 18 găuri, par 72, 6.150 m. Cadru natural spectaculos, lângă ocean și Parcul Natural Teno. Mai multe găuri mărginesc faleza, cu senzația că loviți mingea direct spre mare. Lacuri la găurile 9 și 18. Academie de golf. Hotelul Meliá Hacienda del Conde 5*, integrat. Tel.: 922 129 034."
+   "ro": "Teren de golf proiectat de Severiano Ballesteros, în extremitatea de nord-vest a insulei Tenerife. 18 găuri, par 72, 6.150 m. Cadru natural spectaculos, lângă ocean și Parcul Rural Teno. Mai multe găuri mărginesc faleza, cu senzația că loviți mingea direct spre mare. Lacuri la găurile 9 și 18. Academie de golf. Hotelul Meliá Hacienda del Conde 5*, integrat. Tel.: 922 129 034."
   },
   {
    "tabla": "places",
@@ -1448,16 +1448,16 @@
   {
    "tabla": "places",
    "clave": "montana-pelada.desc",
-   "es": "Reserva Natural Especial junto a El Médano y Montaña Roja. Duna fósil de arena consolidada formada hace miles de años. El ascenso regala vistas únicas sobre el Estrecho de La Bocayna y La Gomera en el horizonte. Ecosistema frágil de plantas endémicas canarias. Subida corta y moderada, ideal al amanecer.",
+   "es": "Monumento Natural junto al mar, al noreste de El Médano. Es la caldera de una erupción hidromagmática en aguas poco profundas: casi 1,9 km de diámetro y solo 62 m de altura, por eso también la llaman Montaña Escachada. Está hecha de hialoclastitas, piroclastos amarillentos muy compactados. Una pista recorre el borde del cráter. La costa es un acantilado con playas de arena volcánica, y en la Ensenada de Pelada hay una duna fósil. Vegetación de cardonal-tabaibal, sobre todo tabaiba dulce. Subida corta y moderada, ideal al amanecer.",
    "forma": "texto",
-   "ro": "Rezervație naturală specială lângă El Médano și Montaña Roja. Dună fosilă de nisip consolidat, formată acum mii de ani. Urcarea vă răsplătește cu priveliști unice asupra strâmtorii La Bocayna și asupra insulei La Gomera, la orizont. Ecosistem fragil, cu plante endemice canariene. Urcare scurtă și moderată, ideală la răsărit."
+   "ro": "Monument al naturii lângă mare, la nord-est de El Médano. Este caldera unei erupții hidromagmatice în ape puțin adânci: are aproape 1,9 km în diametru și doar 62 m înălțime, de aceea i se mai spune Montaña Escachada („muntele turtit”). Este alcătuită din hialoclastite, materiale piroclastice gălbui, foarte compactate. Un drum de pământ merge pe marginea craterului. Coasta este o faleză cu plaje de nisip vulcanic, iar în Ensenada de Pelada se află o dună fosilă. Vegetație de tufărișuri de cardón și tabaiba, mai ales tabaiba dulce. Urcare scurtă și moderată, ideală la răsărit."
   },
   {
    "tabla": "places",
    "clave": "montana-pelada.cat",
-   "es": "Volcán · Reserva Natural",
+   "es": "Volcán · Monumento Natural",
    "forma": "texto",
-   "ro": "Vulcan · Rezervație naturală"
+   "ro": "Vulcan · Monument al naturii"
   },
   {
    "tabla": "places",
@@ -1476,16 +1476,16 @@
   {
    "tabla": "places",
    "clave": "montana-guaza.desc",
-   "es": "El gran guardián del sur de Tenerife con 427 m. Reserva Natural Especial que domina Los Cristianos y Las Américas. Sendero circular de 2 horas por un paisaje semiárido de tabaibal y cardonal. En la cima, panorama de 360° que abarca desde el Teide hasta La Gomera, El Hierro y La Palma en días claros. Un mirador natural que los turistas no esperan encontrar.",
+   "es": "El gran guardián del sur de Tenerife con 427 m. Monumento Natural que domina Los Cristianos y Las Américas. Sendero circular de 2 horas por un paisaje semiárido de tabaibal y cardonal. En la cima, panorama de 360° que abarca desde el Teide hasta La Gomera, El Hierro y La Palma en días claros. Un mirador natural que los turistas no esperan encontrar.",
    "forma": "texto",
-   "ro": "Marele străjer al sudului insulei Tenerife, cu 427 m. Rezervație naturală specială care domină Los Cristianos și Las Américas. Traseu circular de 2 ore printr-un peisaj semiarid, cu tufărișuri de tabaiba și cardón. Din vârf, o panoramă de 360° care cuprinde, în zilele senine, totul de la Teide până la La Gomera, El Hierro și La Palma. Un punct de belvedere natural pe care turiștii nu se așteaptă să-l găsească."
+   "ro": "Marele străjer al sudului insulei Tenerife, cu 427 m. Monument al naturii care domină Los Cristianos și Las Américas. Traseu circular de 2 ore printr-un peisaj semiarid, cu tufărișuri de tabaiba și cardón. Din vârf, o panoramă de 360° care cuprinde, în zilele senine, totul de la Teide până la La Gomera, El Hierro și La Palma. Un punct de belvedere natural pe care turiștii nu se așteaptă să-l găsească."
   },
   {
    "tabla": "places",
    "clave": "montana-guaza.cat",
-   "es": "Volcán · Reserva Natural Sur",
+   "es": "Volcán · Monumento Natural · Sur",
    "forma": "texto",
-   "ro": "Vulcan · Rezervație naturală din sud"
+   "ro": "Vulcan · Monument al naturii · Sud"
   },
   {
    "tabla": "places",
@@ -2136,7 +2136,7 @@
    "clave": "guachinche-romance.desc",
    "es": "Guachinche de La Orotava con jardín y palmeras. Especialidades: chuletón a la brasa, chorizo flambeado en mesa, croquetas de jamón caseras, setas salteadas. Vino propio y vistas al norte. 📍 Ctra. Gral. Las Cañadas km 9,2, Barroso · 🕐 Mié-Dom (mañana y noche) · ☎ 676 86 96 29.",
    "forma": "texto",
-   "ro": "Guachinche din La Orotava, cu grădină și palmieri. Specialități: chuletón (cotlet mare de vită) la grătar, chorizo flambat la masă, crochete de casă cu jamón, ciuperci sotate. Vin propriu și priveliști spre nord. 📍 Ctra. Gral. Las Cañadas km 9,2, Barroso · 🕐 Miercuri-duminică (ziua și seara) · ☎ 676 86 96 29."
+   "ro": "Guachinche din La Orotava, cu grădină și palmieri. Specialități: cotlet mare de vită la grătar, chorizo flambat la masă, crochete de casă cu șuncă, ciuperci sotate. Vin propriu și priveliști spre nord. 📍 Ctra. Gral. Las Cañadas km 9,2, Barroso · 🕐 Miercuri-duminică (ziua și seara) · ☎ 676 86 96 29."
   },
   {
    "tabla": "places",
@@ -2234,7 +2234,7 @@
    "clave": "guachinche-casa-lito.desc",
    "es": "Guachinche con terraza panorámica sobre el Atlántico. Carnes al horno de leña: chuletón, secreto ibérico, pollo asado y churrasco. Escaldón de gofio y queso a la miel con un toque picante. 📍 C. Tijarafe 35, Santa Úrsula · 🕐 Lun-Mar y Jue 13:00-17:00, Vie-Sáb 13:00-22:00, Dom 13:00-17:00, cierra Mié · ☎ 630 59 00 07.",
    "forma": "texto",
-   "ro": "Guachinche cu terasă panoramică deasupra Atlanticului. Carne la cuptorul cu lemne: chuletón, secreto ibérico, pui fript și churrasco. Escaldón de gofio și brânză cu miere, cu o notă picantă. 📍 C. Tijarafe 35, Santa Úrsula · 🕐 Luni-marți și joi 13:00-17:00, vineri-sâmbătă 13:00-22:00, duminică 13:00-17:00, închis miercuri · ☎ 630 59 00 07."
+   "ro": "Guachinche cu terasă panoramică deasupra Atlanticului. Carne la cuptorul cu lemne: cotlet mare de vită, secreto ibérico, pui fript și churrasco. Escaldón de gofio și brânză cu miere, cu o notă picantă. 📍 C. Tijarafe 35, Santa Úrsula · 🕐 Luni-marți și joi 13:00-17:00, vineri-sâmbătă 13:00-22:00, duminică 13:00-17:00, închis miercuri · ☎ 630 59 00 07."
   },
   {
    "tabla": "places",
@@ -2290,7 +2290,7 @@
    "clave": "guachinche-parralito.desc",
    "es": "Guachinche auténtico bajo parras. Cocina tradicional: huevos al estampido (submarino), carne fiesta, quesillo casero de postre. Solo abre Jue-Dom mediodía. 📍 C. San Cristóbal 66, La Matanza · 🕐 Jue-Dom 11:30-16:00, cierra Lun-Mié · ☎ 822 09 18 24. Llegar pronto.",
    "forma": "texto",
-   "ro": "Guachinche autentic, sub bolți de viță-de-vie. Bucătărie tradițională: huevos al estampido (submarino), carne fiesta, quesillo de casă la desert. Deschis doar joi-duminică, la prânz. 📍 C. San Cristóbal 66, La Matanza · 🕐 Joi-duminică 11:30-16:00, închis luni-miercuri · ☎ 822 09 18 24. Veniți devreme."
+   "ro": "Guachinche autentic, sub bolți de viță-de-vie. Bucătărie tradițională: huevos al estampido („submarin”), carne fiesta, quesillo de casă la desert. Deschis doar joi-duminică, la prânz. 📍 C. San Cristóbal 66, La Matanza · 🕐 Joi-duminică 11:30-16:00, închis luni-miercuri · ☎ 822 09 18 24. Veniți devreme."
   },
   {
    "tabla": "places",
@@ -2430,7 +2430,7 @@
    "clave": "restaurante-drago.desc",
    "es": "Antigua casa canaria del s. XVIII junto al Drago Milenario, hoy restaurante y tienda. Cocina canaria, quesos y vinos locales, y terraza-jardín entre buganvillas con vistas al árbol.",
    "forma": "texto",
-   "ro": "Veche casă canariană din secolul al XVIII-lea, lângă Drago Milenario, astăzi restaurant și magazin. Bucătărie canariană, brânzeturi și vinuri locale și o terasă-grădină printre buganvilee, cu priveliște spre arbore."
+   "ro": "Veche casă canariană din secolul al XVIII-lea, lângă Drago Milenario, astăzi restaurant și magazin. Bucătărie canariană, brânzeturi și vinuri locale și o terasă-grădină printre tufe de bougainvillea (floarea de hârtie), cu priveliște spre arbore."
   },
   {
    "tabla": "places",
@@ -2528,7 +2528,7 @@
    "clave": "monkey-park.desc",
    "es": "Pequeño zoo refugio fundado en 1991 en Arona, especializado en cría y conservación de primates en peligro. Lémures de cola anillada, monos ardilla, gibones, tortugas, iguanas, cocodrilos, grandes felinos y aves exóticas. Puede alimentar a los animales con comida del parque.",
    "forma": "texto",
-   "ro": "Mic zoo-refugiu, fondat în 1991 în Arona, specializat în reproducerea și conservarea primatelor pe cale de dispariție. Lemuri cu coada inelată, maimuțe-veveriță, giboni, broaște țestoase, iguane, crocodili, feline mari și păsări exotice. Puteți hrăni animalele cu mâncare de la parc."
+   "ro": "Mic zoo-refugiu, fondat în 1991 în Arona, specializat în reproducerea și conservarea primatelor pe cale de dispariție. Lemuri cu coada inelată, maimuțe-veveriță, giboni, broaște-țestoase, iguane, crocodili, feline mari și păsări exotice. Puteți hrăni animalele cu mâncare de la parc."
   },
   {
    "tabla": "places",
@@ -2626,7 +2626,7 @@
    "clave": "park-la-vega.desc",
    "es": "El parque más completo de La Laguna (22.000 m²): zona infantil con toboganes y columpios, rocódromo, skatepark, pistas de baloncesto, tenis de mesa, circuito de BMX, estanque con nenúfares, ranas y tortugas, puentes y senderos entre árboles. Gratuito y abierto todo el año. Ideal para familias con niños de todas las edades.",
    "forma": "texto",
-   "ro": "Cel mai complet parc din La Laguna (22.000 m²): zonă pentru copii cu tobogane și leagăne, perete de escaladă, skatepark, terenuri de baschet, tenis de masă, circuit de BMX, iaz cu nuferi, broaște și broaște țestoase, poduri și alei printre copaci. Gratuit și deschis tot anul. Ideal pentru familiile cu copii de toate vârstele."
+   "ro": "Cel mai complet parc din La Laguna (22.000 m²): zonă pentru copii cu tobogane și leagăne, perete de escaladă, skatepark, terenuri de baschet, tenis de masă, circuit de BMX, iaz cu nuferi, broaște și broaște-țestoase, poduri și alei printre copaci. Gratuit și deschis tot anul. Ideal pentru familiile cu copii de toate vârstele."
   },
   {
    "tabla": "places",
