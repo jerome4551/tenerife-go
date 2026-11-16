@@ -108,7 +108,7 @@
  "turismo-cv-telesforo": {
   "desc": "Centrum informacyjne Parku Narodowego Teide w centrum La Orotava. Multimedialne muzeum na trzech piętrach o Teide, wulkanach i historii wyspy. Wstęp wolny.",
   "cat": "Centrum informacyjne · P.N. Teide · La Orotava",
-  "hours": "Codziennie 9:00–16:00"
+  "hours": "Wt-Nd 9:00–14:00 i 15:30–18:00"
  },
  "turismo-cv-canada-blanca": {
   "desc": "Centrum informacyjne Parku Narodowego Teide, obok Paradoru (~2.100 m). Wystawa o wulkanie i parku, sala kinowa, sklep oraz kawiarnia z tarasem i widokiem na Teide. Wstęp wolny.",
@@ -166,8 +166,8 @@
   "hours": "Pn-Pt 9:00–15:00 · Sob 10:00–13:00"
  },
  "camping-nauta": {
-  "desc": "Jedyny prywatny kemping otwarty przez cały rok na Teneryfie. Przy plaży San Marcos w Icod. Miejsca pod namioty, bungalowy i kampery. Basen i restauracja.",
-  "cat": "Kemping · Prywatny · Północny zachód",
+  "desc": "Jedyny prywatny kemping otwarty przez cały rok na Teneryfie. W Cañada Blanca, przy Las Galletas (Arona), przy drodze TF-653. Miejsca pod namioty, bungalowy i kampery. Basen i restauracja.",
+  "cat": "Kemping · Prywatny · Południe",
   "hours": "Otwarte przez cały rok"
  },
  "camping-madre-agua": {
@@ -201,7 +201,7 @@
   "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
  },
  "camping-san-jose-llanos": {
-  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w El Tanque. Leży w Parku Przyrody Corona Forestal. Z placem zabaw i restauracją w pobliżu. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w El Tanque. Leży w Specjalnym Rezerwacie Przyrody Chinyero. Z placem zabaw i restauracją w pobliżu. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
   "cat": "Pole namiotowe · El Tanque · Cabildo",
   "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
  },
@@ -211,7 +211,7 @@
   "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
  },
  "camping-las-calderetas": {
-  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w El Sauzal. Leży w Parku Przyrody Corona Forestal. Z oznakowanymi szlakami i placem zabaw. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w El Sauzal. Leży w Chronionym Krajobrazie Las Lagunetas. Z oznakowanymi szlakami i placem zabaw. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
   "cat": "Pole namiotowe · El Sauzal · Cabildo",
   "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
  },
@@ -251,7 +251,7 @@
   "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
  },
  "camping-las-raices": {
-  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w La Esperanza. Leży w Parku Przyrody Corona Forestal. Punkt startowy kilku leśnych szlaków. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
+  "desc": "Oficjalne pole namiotowe Cabildo Teneryfy w La Esperanza. Leży w Chronionym Krajobrazie Las Lagunetas. Punkt startowy kilku leśnych szlaków. Obok teren rekreacyjny z toaletami, paleniskami i wodą. Biwak bezpłatny za wcześniejszym zezwoleniem (rezerwacja przez Tenerife ON).",
   "cat": "Pole namiotowe · La Esperanza · Cabildo",
   "hours": "Wymagane wcześniejsze zezwolenie · rezerwacja przez Tenerife ON"
  },
@@ -260,19 +260,19 @@
   "cat": "Muzeum · Karnawał · Santa Cruz"
  },
  "casa-carta-valle-guerra": {
-  "desc": "Pańska rezydencja z XVII wieku zamieniona w Muzeum Etnografii i Antropologii Teneryfy. Unikatowa kanaryjska architektura kolonialna. Kolekcje życia wiejskiego, strojów i historycznych narzędzi.",
+  "desc": "Pańska rezydencja z XVII wieku, dziś jedna z dwóch siedzib Muzeum Historii i Antropologii Teneryfy. Unikatowa kanaryjska architektura kolonialna. Kolekcje życia wiejskiego, strojów i historycznych narzędzi.",
   "cat": "Muzeum Etnografii · Valle de Guerra"
  },
  "iglesia-concepcion-laguna": {
-  "desc": "Najstarszy kościół na Wyspach Kanaryjskich (1511). Pięciokondygnacyjna wieża w stylu mudéjar, symbol La Laguna. Przechowuje Krzyż Konkwisty przywieziony przez Alonso Fernándeza de Lugo. Wpisany na listę światowego dziedzictwa wraz z miastem.",
+  "desc": "Pierwszy kościół parafialny Teneryfy, założony w 1511 roku. Jego kamienna wieża z końca XVII wieku jest symbolem La Laguna, a wewnątrz zachowały się drewniane stropy w stylu mudéjar. Wpisany na listę światowego dziedzictwa wraz z miastem.",
   "cat": "Kościół · La Laguna · UNESCO"
  },
  "palacio-nava-laguna": {
-  "desc": "Barokowy pałac z XVIII wieku, jeden z najbardziej reprezentatywnych przykładów kanaryjskiej architektury świeckiej. Siedziba różnych instytucji kultury. Fasada z typowo kanaryjskim drewnianym balkonem ciągnącym się przez całą szerokość. Położony w historycznym centrum La Laguna wpisanym na listę UNESCO.",
+  "desc": "⚠️ Zamknięty dla zwiedzających na czas prac konserwatorskich; otwierany tylko podczas okazjonalnych zwiedzań z przewodnikiem. Barokowy pałac z XVIII wieku, jeden z najbardziej reprezentatywnych przykładów kanaryjskiej architektury świeckiej. Kamienna fasada z 1776 roku z elementami manierystycznymi, barokowymi i klasycystycznymi. Położony w historycznym centrum La Laguna wpisanym na listę UNESCO.",
   "cat": "Pałac · La Laguna · UNESCO"
  },
  "iglesia-san-agustin-laguna": {
-  "desc": "Augustiański klasztor i kościół z XVI wieku. Dziś siedziba Wyższego Konserwatorium Muzycznego Wysp Kanaryjskich. Nawa ma piękny strop w stylu mudéjar. Część zespołu zabytkowego La Laguna wpisanego na listę światowego dziedzictwa.",
+  "desc": "Augustiański klasztor i kościół z XVI wieku. W dawnym klasztorze mieści się dziś szkoła średnia Canarias Cabrera Pinto; kościół spłonął w 1964 roku i zostały z niego tylko mury i łuki. Część zespołu zabytkowego La Laguna wpisanego na listę światowego dziedzictwa.",
   "cat": "Kościół · Klasztor · La Laguna"
  },
  "iglesia-san-marcos-icod": {
@@ -280,15 +280,15 @@
   "cat": "Kościół · Icod de los Vinos"
  },
  "iglesia-san-juan-orotava": {
-  "desc": "Barokowy kościół z XVIII wieku w historycznym sercu La Orotava. Jeden z najpiękniejszych na Wyspach Kanaryjskich, z klasycystyczną fasadą z kamienia wulkanicznego. Wnętrze ze złoconymi ołtarzami i otoczoną wielką czcią figurą Matki Bożej Niepokalanego Poczęcia. La Orotava to jedno z najpiękniejszych historycznych miast Teneryfy.",
+  "desc": "Barokowy kościół z XVIII wieku w historycznym sercu La Orotava. Jeden z najpiękniejszych na Wyspach Kanaryjskich, z klasycystyczną fasadą z kamienia wulkanicznego. Wnętrze ze złoconymi ołtarzami i figurą Chrystusa przywiązanego do kolumny dłuta Pedra Roldána (1689), niesioną w procesji wieczorem w Wielki Czwartek. La Orotava to jedno z najpiękniejszych historycznych miast Teneryfy.",
   "cat": "Kościół · La Orotava · Barok"
  },
  "palacio-episcopal-laguna": {
-  "desc": "Siedziba biskupstwa Teneryfy w historycznym centrum La Laguna wpisanym na listę UNESCO. Budynek z XVIII wieku z piękną barokową kamienną fasadą i typowymi kanaryjskimi drewnianymi balkonami. Stojąc naprzeciwko katedry, tworzy część najważniejszego zespołu zabytkowego wysp.",
+  "desc": "Siedziba biskupstwa Teneryfy w historycznym centrum La Laguna wpisanym na listę UNESCO. Budynek z XVII wieku z piękną barokową kamienną fasadą. Stojąc naprzeciwko katedry, tworzy część najważniejszego zespołu zabytkowego wysp.",
   "cat": "Pałac · La Laguna · UNESCO"
  },
  "teatro-guimera": {
-  "desc": "Najstarszy i najważniejszy teatr Wysp Kanaryjskich, otwarty w 1851 roku. Architektura klasycystyczna, widownia na 900 osób. Siedziba Orkiestry Symfonicznej Teneryfy i baletu Víctora Ullate. Uznany za dobro kultury. Wstęp do holu bezpłatny.",
+  "desc": "⚠️ Zamknięty z powodu remontu od 2025 roku; ponowne otwarcie zaplanowano na 2028 rok. Najstarszy i najważniejszy teatr Wysp Kanaryjskich, otwarty w 1851 roku. Architektura klasycystyczna. Uznany za dobro kultury.",
   "cat": "Teatr · Santa Cruz · Zabytkowy"
  },
  "teatro-leal-laguna": {
@@ -316,7 +316,7 @@
   "cat": "Supermarket · HiperDino · El Sauzal"
  },
  "super-hiperdino-santiago-teide": {
-  "desc": "HiperDino w Santiago del Teide. Jedyny duży supermarket w gminie. Obsługuje także El Tanque, Los Silos i Buenavista del Norte.",
+  "desc": "HiperDino w Santiago del Teide. Obsługuje także El Tanque, Los Silos i Buenavista del Norte.",
   "cat": "Supermarket · HiperDino · Santiago del Teide"
  },
  "super-hiperdino-arona-pueblo": {
@@ -328,11 +328,11 @@
   "cat": "Supermarket · HiperDino · San Miguel"
  },
  "super-hiperdino-buenavista": {
-  "desc": "HiperDino w Buenavista del Norte, najdalej na północny zachód wysuniętej gminie. Obsługuje także Los Silos. Najbardziej na północ położony supermarket na wyspie.",
+  "desc": "HiperDino w Buenavista del Norte, najdalej na północny zachód wysuniętej gminie. Obsługuje także Los Silos.",
   "cat": "Supermarket · HiperDino · Buenavista"
  },
  "minimarket-24h-arona": {
-  "desc": "Sklep 24 godziny w strefie miasteczka Arona. Produkty podstawowe, napoje i przekąski dla mieszkańców wnętrza gminy.",
+  "desc": "Sklep 24 godziny w Los Cristianos (Arona). Produkty podstawowe, napoje i przekąski.",
   "cat": "Sklep 24h · Arona"
  },
  "hiperdino-los-realejos": {
@@ -396,19 +396,19 @@
   "cat": "Turystyka · El Médano · Granadilla · Windsurfing"
  },
  "turismo-tacoronte": {
-  "desc": "Punkt informacji turystycznej Tacoronte. Najstarsza winiarska apelacja pochodzenia na Wyspach Kanaryjskich — Tacoronte-Acentejo. Informacje o winiarniach, guachinches, świętach gminy (San Marcos), kaplicach i trasach po północy Teneryfy.",
+  "desc": "Punkt informacji turystycznej Tacoronte. Najstarsza winiarska apelacja pochodzenia na Wyspach Kanaryjskich — Tacoronte-Acentejo. Informacje o winiarniach, guachinches, świętach gminy (Cristo de los Dolores, we wrześniu), kaplicach i trasach po północy Teneryfy.",
   "cat": "Turystyka · Tacoronte · DO Wina · Północ"
  },
  "castillo-paso-alto": {
-  "desc": "Twierdza z XVII wieku na promenadzie nadmorskiej w Santa Cruz, zbudowana do obrony miasta przed atakami piratów i flot. Była jednym z punktów obrony podczas słynnego ataku admirała Nelsona w 1797 roku. Dziś siedziba Wojskowego Muzeum Historycznego Wysp Kanaryjskich. Widok na port i zatokę.",
-  "cat": "Zamek · Santa Cruz · Muzeum Wojskowe · Zabytkowy"
+  "desc": "Twierdza z XVII wieku na promenadzie nadmorskiej w Santa Cruz, zbudowana do obrony miasta przed atakami piratów i flot. Była jednym z punktów obrony podczas słynnego ataku admirała Nelsona w 1797 roku. Od 2023 roku należy do miasta Santa Cruz, które chce urządzić w niej muzeum jej historii. Widok na port i zatokę.",
+  "cat": "Zamek · Santa Cruz · Zabytkowy"
  },
  "ermita-san-telmo": {
-  "desc": "Mała kaplica z XVIII wieku w Puerto de la Cruz, poświęcona patronowi marynarzy. Położona nad samym morzem w dzielnicy La Ranilla, jest jedną z najstarszych i najbardziej malowniczych kaplic miasta. Plac przed nią ma widok wprost na Atlantyk i wulkaniczne skały — to jeden z najbardziej fotogenicznych zakątków północy.",
+  "desc": "Mała kaplica z XVIII wieku w Puerto de la Cruz, poświęcona patronowi marynarzy. Położona nad samym morzem, na początku promenady San Telmo, jest jedną z najstarszych i najbardziej malowniczych kaplic miasta. Plac przed nią ma widok wprost na Atlantyk i wulkaniczne skały — to jeden z najbardziej fotogenicznych zakątków północy.",
   "cat": "Kaplica · Puerto de la Cruz · Marynarze · Fotogeniczna"
  },
  "plaza-adelantado-laguna": {
-  "desc": "Historyczne serce San Cristóbal de La Laguna (miasta wpisanego na listę światowego dziedzictwa UNESCO). Plac otoczony najbardziej charakterystycznymi budynkami starówki: ratuszem, klasztorem Santa Catalina, kościołem Concepción i Casa del Corregidor. Pośrodku francuska marmurowa fontanna (1870). Pierwsze płyty położono w 1798 roku, zieleń urządzono w 1843. Scena najważniejszych wydarzeń kulturalnych miasta. Bardzo lokalna i żywa atmosfera.",
+  "desc": "Historyczne serce San Cristóbal de La Laguna (miasta wpisanego na listę światowego dziedzictwa UNESCO). Plac otoczony najbardziej charakterystycznymi budynkami starówki: ratuszem, klasztorem Santa Catalina, Pałacem Nava, kaplicą San Miguel i Casa del Corregidor. Pośrodku francuska marmurowa fontanna (1870). Pierwsze płyty położono w 1798 roku, zieleń urządzono w 1843. Scena najważniejszych wydarzeń kulturalnych miasta. Bardzo lokalna i żywa atmosfera.",
   "cat": "Plac zabytkowy · La Laguna · Dziedzictwo UNESCO"
  },
  "casa-salazar-laguna": {

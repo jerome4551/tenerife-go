@@ -345,12 +345,12 @@
   "cat": "Targ · Weekend · Candelaria"
  },
  "mercadillo-medano": {
-  "desc": "Targ rzeczy używanych i rękodzieła w El Médano. Niedziele rano na placu miejscowości. Swobodna atmosfera społeczności surferów i miejscowych.",
-  "cat": "Targ · Niedziele · El Médano"
+  "desc": "Targ rzeczy używanych i rękodzieła w El Médano. Soboty rano na placu miejscowości. Swobodna atmosfera społeczności surferów i miejscowych.",
+  "cat": "Targ · Soboty · El Médano"
  },
  "mercadillo-guimar": {
-  "desc": "Cotygodniowy targ w Güímar. Czwartki rano na głównym placu. Lokalne owoce i warzywa, rośliny, kwiaty i produkty rolne ze wschodu Teneryfy.",
-  "cat": "Targ · Czwartki · Güímar"
+  "desc": "Targ rolników w Güímar: w niedziele rano na Plaza de San Pedro, a w czwartki po południu w El Puertito de Güímar. Lokalne owoce i warzywa, rośliny, kwiaty i produkty rolne ze wschodu Teneryfy.",
+  "cat": "Targ · Niedziele · Güímar"
  },
  "mercadillo-los-cristianos": {
   "desc": "Popularny targ w Los Cristianos. Niedziele rano przy porcie. Rzeczy używane, rękodzieło, ubrania i pamiątki. Bardzo gwarny w sezonie wysokim.",
@@ -361,12 +361,12 @@
   "cat": "Targ · Śr/So · Las Américas"
  },
  "mercadillo-costa-adeje": {
-  "desc": "Targ na promenadzie Costa Adeje. Czwartki i niedziele. Rękodzieło, aloes, produkty kanaryjskie i biżuteria. Swobodna atmosfera nad morzem.",
-  "cat": "Targ · Czw/Nd · Costa Adeje"
+  "desc": "Targ na promenadzie Costa Adeje. Czwartki i soboty. Rękodzieło, aloes, produkty kanaryjskie i biżuteria. Swobodna atmosfera nad morzem.",
+  "cat": "Targ · Czw/So · Costa Adeje"
  },
  "mercadillo-arona": {
-  "desc": "Cotygodniowy targ w miejscowości Arona. Soboty rano na placu. Owoce, warzywa i produkty lokalne z gminy. Bardzo lokalna atmosfera, bez turystów.",
-  "cat": "Targ · Soboty · Arona"
+  "desc": "Targ rolników gminy Arona, w Valle San Lorenzo. Piątki i soboty rano. Owoce, warzywa i produkty lokalne z gminy. Bardzo lokalna atmosfera.",
+  "cat": "Targ · Pt/So · Arona"
  },
  "mercadillo-granadilla-sur": {
   "desc": "Tradycyjny targ w starym mieście Granadilli. Wtorki rano. Produkty rolne południa: ziemniaki, pomidory, kukurydza i lokalne rękodzieło.",
@@ -397,7 +397,7 @@
   "cat": "Targ · La Victoria de Acentejo · Północ"
  },
  "guachinche-vilaflor": {
-  "desc": "Tradycyjny guachinche w Vilaflor, najwyżej położonej wiosce Hiszpanii (1400 m). Domowa kuchnia, miejscowe wino, obfite porcje i znakomite sosy mojo. Bardzo popularny wśród piechurów z GR-131.",
+  "desc": "Tradycyjny guachinche w Vilaflor, najwyżej położonej wiosce Wysp Kanaryjskich (1400 m). Domowa kuchnia, miejscowe wino, obfite porcje i znakomite sosy mojo. Bardzo popularny wśród piechurów z GR-131.",
   "cat": "Guachinche · Vilaflor · 1400 m"
  },
  "rest-tipico-el-jable": {
