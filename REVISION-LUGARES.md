@@ -1,6 +1,6 @@
 # Revisión de los 980 lugares
 
-**15 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
+**16 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 980, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -521,11 +521,11 @@ Salida de `node tools/auditar_municipio.js`:
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
   lugares....................................... 980
-    que nombran un municipio.................... 511
-    de esos, comprobados contra el POLIGONO del Cabildo 501
+    que nombran un municipio.................... 512
+    de esos, comprobados contra el POLIGONO del Cabildo 502
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
-  no declaran municipio......................... 454
+  no declaran municipio......................... 453
 
   nombran una ZONA, que no es un municipio: no hay nada que comprobar
       bici-alquiler-sur             dice «Las Américas»  ·  el poligono dice «Adeje»
@@ -565,7 +565,7 @@ que cada semana saliera una lista nueva.
 | **Que el sitio exista** | pasó con `charco-infierno-arafo` y con `montana-colorada`, que se dieron de baja. No hay forma de saberlo sin una fuente de fuera |
 | **Horarios, precios y teléfonos** | cambian y no hay contra qué contrastarlos |
 | **Lo que dice cada descripción** | que un pueblo sea «famoso por sus aguacates» no se puede verificar con lo que hay dentro del repositorio |
-| **El municipio de 454 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
+| **El municipio de 453 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
 | **El de 15 más** | solo nombran una zona que abarca varios municipios, no un municipio |
 | **El de 10 que sí lo nombran** | el punto cae en el agua, fuera de todos los polígonos: no hay con qué compararlo |
 
