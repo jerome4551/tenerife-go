@@ -228,6 +228,8 @@ echo "════════ la politica de privacidad: el panel y privacidad.
 # 1.3: los dos salen de idiomas/privacidad y citan botones y etiquetas de la
 # app; si alguno cambia y no se vuelve a generar, para aqui.
 control generar_privacidad.py python3 tools/generar_privacidad.py --comprobar
+# 4b de la nota 48 (16-11-2026): la página de los enlaces rotos, desde idiomas/404
+control generar_404.py python3 tools/generar_404.py --comprobar
 
 echo "════════ la app para las tiendas (App Store): app/www/ montado, el modo nativo en un navegador y la ficha ════════"
 # Desde el 21 de octubre de 2026 («P4»): la misma PWA dentro de Capacitor.
