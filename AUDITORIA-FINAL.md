@@ -8872,6 +8872,49 @@ del Gobierno de Canarias; `ad6b301`, terremotos, y `9e4b274`, satélites), que s
 `datos/alertas-canarias.json`, `datos/sismos-ign.json` y `datos/satelites.json`; los controles que leen esos ficheros,
 en verde tras el rebase.
 
+## La cesta y la tienda, de usted y en los diez idiomas (16 de noviembre)
+
+Jérôme, 16-11: «Lo de la cesta arréglalo».
+
+**Lo que pasaba.** La tienda y la cesta siguen apagadas (`TIENDA_ACTIVA = false`: ni el botón de la barra de abajo ni la
+cesta se ven, y nada las abre), pero sus textos estaban mal y saldrían así el día que se enciendan. La cesta vacía
+tuteaba en alemán («Stöbere in Touren und Souvenirs.»). La pestaña «Anúnciese» tuteaba en italiano («Pubblicizzati», con
+su «ti»). La frase de «Souvenirs» que manda a esa pestaña citaba una que no existe en francés («Promouvoir»), búlgaro
+(«Реклама») y chino («推广», «推廣»). Y el ✕ de cada artículo de la cesta decía «Eliminar» en castellano en todos los
+idiomas: era un `aria-label` fijo en el código.
+
+**Lo que cambia** (`index.html`, `UI_TX`):
+- `cartEmptyHint`, en alemán: «Stöbern Sie in Touren und Souvenirs.»
+- `shopAd`, en italiano: «Pubblicità», un nombre, como «Reklama» en polaco o «Werben» en alemán; y `shopProntoSub`
+  la cita igual.
+- `shopProntoSub` cita la pestaña de la app: «Annoncez-vous», «Рекламирайте се», «投放广告», «投放廣告».
+- Una fila nueva, `ariaQuitarDeCesta`, en los diez idiomas («Quitar de la cesta», como «Quitar del itinerario»),
+  para el ✕ de cada artículo. El rumano, sin la fila: va a la sesión del rumano.
+
+**El control** (`tools/auditar_registro.js`). «Stöbere» y «Pubblicizzati» no estaban entre sus marcas y por eso no
+salían. Ahora sí, y con ellas los verbos de los botones de la tienda en italiano («Prenota», «Acquista», «Contatta») y
+en búlgaro («Резервирай», «Купи», «Изпрати»): en una frase, son de tú. Los botones, que en italiano, búlgaro y polaco
+van en imperativo, pasan a `ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL`, con «Изпрати», el botón de enviar del asistente y
+de «Su cuerpo», que salió al poner la marca. Con el `index.html` de antes, rojo en alemán, italiano y búlgaro; con este,
+todo de usted en los diez idiomas.
+
+**Comprobado en el navegador**, con la tienda encendida solo en la prueba (la respuesta de `index.html` se cambia en el
+navegador; el repositorio no se toca), a 390 px y en los diez idiomas: las cuatro pestañas, la frase que cita la pestaña
+que existe, la cesta vacía con sus dos textos, la cesta con dos artículos (el ✕ con el texto de su idioma, «Total» y
+«Pagar»), ningún texto de la tienda o la cesta en castellano fuera del castellano y ningún error de página.
+
+**La auditoría entera** (`auditar.sh`, sus 70 bloques), sobre el commit de la cesta: dos rojos, los dos de este
+documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.730 filas, antes 3.729; `barrido_idiomas.js`, 5.877
+filas, antes 5.876: la fila nueva del ✕), que pone al día este commit. Lo demás, en verde: `auditar_registro.js`, todo
+de usted (138.170 textos); `auditar_idioma.js`, 0 hallazgos en los diez idiomas; `castellano_suelto.js`, ninguna palabra
+en castellano; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; `probar_cuerpo.js`,
+741; `auditar_entrenador.js`, 44; el cielo, 311; el perfil y los avatares, 74 y 153; el panel SOS y sus robots.
+`app_preparar.js` no cambió ningún fichero del repositorio.
+
+En `main`, el commit va encima de tres de los robots (alertas del Gobierno de Canarias, avisos de AEMET y terremotos),
+que solo cambian `datos/alertas-canarias.json`, `datos/avisos-aemet.json` y `datos/sismos-ign.json`; los controles que
+leen esos ficheros, en verde tras el rebase.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -10713,7 +10756,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3729 filas (y 5.876 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3730 filas (y 5.877 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
