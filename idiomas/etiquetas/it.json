@@ -108,7 +108,7 @@
  "Bodega": "Cantina",
  "Bodegas": "Cantine",
  "Bohemio": "Bohémien",
- "Bolos": "Bowling",
+ "Bolos": "Ciottoloni",
  "Bordados": "Ricami",
  "Bosque": "Bosco",
  "Botánico": "Botanico",
@@ -135,7 +135,7 @@
  "Camino real": "Cammino reale",
  "Campamento": "Campo",
  "Camping": "Campeggio",
- "Campo": "Campo",
+ "Campo": "Prodotti della campagna",
  "Canarias": "Canarie",
  "Canario": "Canario",
  "Capital": "Capitale",
@@ -211,7 +211,6 @@
  "Cultura": "Cultura",
  "Curricán": "Traina",
  "Cúpula": "Cupola",
- "Dedos": "Prese di dita",
  "Defensa": "Difesa",
  "Delfines": "Delfini",
  "Deportes": "Sport",
@@ -230,7 +229,7 @@
  "DO Tacoronte-Acentejo": "DO Tacoronte-Acentejo",
  "DO Tenerife": "DO Tenerife",
  "Domingo": "Domenica",
- "Dorada": "Orata",
+ "Dorada": "Sabbia dorata",
  "Dorado": "Lampuga",
  "Dramático": "Drammatico",
  "Drogas": "Droghe",
@@ -797,5 +796,6 @@
  "Santuario": "Santuario",
  "Pino canario": "Pino delle Canarie",
  "Árbol monumental": "Albero monumentale",
- "Siglo XVI": "XVI secolo"
+ "Siglo XVI": "XVI secolo",
+ "Casco obligatorio": "Casco obbligatorio"
 }

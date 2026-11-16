@@ -108,7 +108,7 @@
  "Bodega": "Wijnhuis",
  "Bodegas": "Wijnhuizen",
  "Bohemio": "Bohemien",
- "Bolos": "Bowlen",
+ "Bolos": "Keien",
  "Bordados": "Borduurwerk",
  "Bosque": "Bos",
  "Botánico": "Botanisch",
@@ -135,7 +135,7 @@
  "Camino real": "Koningspad",
  "Campamento": "Kamp",
  "Camping": "Camping",
- "Campo": "Baan",
+ "Campo": "Producten van het land",
  "Canarias": "Canarische Eilanden",
  "Canario": "Canarisch",
  "Capital": "Hoofdstad",
@@ -211,7 +211,6 @@
  "Cultura": "Cultuur",
  "Curricán": "Trollen",
  "Cúpula": "Koepel",
- "Dedos": "Vingergrepen",
  "Defensa": "Verdediging",
  "Delfines": "Dolfijnen",
  "Deportes": "Sport",
@@ -230,7 +229,7 @@
  "DO Tacoronte-Acentejo": "DO Tacoronte-Acentejo",
  "DO Tenerife": "DO Tenerife",
  "Domingo": "Zondag",
- "Dorada": "Goudbrasem",
+ "Dorada": "Goudkleurig zand",
  "Dorado": "Goudmakreel",
  "Dramático": "Dramatisch",
  "Drogas": "Drugs",
@@ -797,5 +796,6 @@
  "Santuario": "Heiligdom",
  "Pino canario": "Canarische den",
  "Árbol monumental": "Monumentale boom",
- "Siglo XVI": "16e eeuw"
+ "Siglo XVI": "16e eeuw",
+ "Casco obligatorio": "Helm verplicht"
 }

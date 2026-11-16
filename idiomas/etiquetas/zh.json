@@ -108,7 +108,7 @@
  "Bodega": "酒庄",
  "Bodegas": "酒庄",
  "Bohemio": "波西米亚风",
- "Bolos": "保龄球",
+ "Bolos": "卵石",
  "Bordados": "刺绣",
  "Bosque": "森林",
  "Botánico": "植物",
@@ -135,7 +135,7 @@
  "Camino real": "皇家古道",
  "Campamento": "营地",
  "Camping": "露营地",
- "Campo": "球场",
+ "Campo": "田园产品",
  "Canarias": "加那利群岛",
  "Canario": "加那利",
  "Capital": "首府",
@@ -211,7 +211,6 @@
  "Cultura": "文化",
  "Curricán": "拖钓",
  "Cúpula": "穹顶",
- "Dedos": "指力点",
  "Defensa": "防御",
  "Delfines": "海豚",
  "Deportes": "运动",
@@ -230,7 +229,7 @@
  "DO Tacoronte-Acentejo": "塔科龙特-阿森特霍原产地",
  "DO Tenerife": "特内里费原产地",
  "Domingo": "周日",
- "Dorada": "金头鲷",
+ "Dorada": "金色沙滩",
  "Dorado": "鲯鳅",
  "Dramático": "震撼",
  "Drogas": "毒品",
@@ -797,5 +796,6 @@
  "Santuario": "圣所",
  "Pino canario": "加那利松",
  "Árbol monumental": "巨木",
- "Siglo XVI": "16世纪"
+ "Siglo XVI": "16世纪",
+ "Casco obligatorio": "必须佩戴头盔"
 }

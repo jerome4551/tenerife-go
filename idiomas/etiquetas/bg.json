@@ -108,7 +108,7 @@
  "Bodega": "Изба",
  "Bodegas": "Изби",
  "Bohemio": "Бохемски",
- "Bolos": "Боулинг",
+ "Bolos": "Обли камъни",
  "Bordados": "Бродерии",
  "Bosque": "Гора",
  "Botánico": "Ботанически",
@@ -135,7 +135,7 @@
  "Camino real": "Кралски път",
  "Campamento": "Лагер",
  "Camping": "Къмпинг",
- "Campo": "Игрище",
+ "Campo": "Продукти от полето",
  "Canarias": "Канарски острови",
  "Canario": "Канарски",
  "Capital": "Столица",
@@ -211,7 +211,6 @@
  "Cultura": "Култура",
  "Curricán": "Тролинг",
  "Cúpula": "Купол",
- "Dedos": "Хватки за пръсти",
  "Defensa": "Отбрана",
  "Delfines": "Делфини",
  "Deportes": "Спорт",
@@ -230,7 +229,7 @@
  "DO Tacoronte-Acentejo": "DO Такоронте-Асентехо",
  "DO Tenerife": "DO Тенерифе",
  "Domingo": "Неделя",
- "Dorada": "Ципура",
+ "Dorada": "Златен пясък",
  "Dorado": "Махи-махи",
  "Dramático": "Драматично",
  "Drogas": "Наркотици",
@@ -797,5 +796,6 @@
  "Santuario": "Светилище",
  "Pino canario": "Канарски бор",
  "Árbol monumental": "Монументално дърво",
- "Siglo XVI": "XVI век"
+ "Siglo XVI": "XVI век",
+ "Casco obligatorio": "Каската е задължителна"
 }
