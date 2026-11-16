@@ -1039,7 +1039,7 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
     if (!/3[., ]?100/.test(t['ruta-pico-viejo']) || !/800/.test(t['ruta-pico-viejo']) || !/3[., ]?100/.test(t['mir-narices-teide'])) mal24.push(l + ' sin el crater a unos 3.100 m');
   }
   ok(!mal24.length && /name:"Sendero del Sanatorio \(PNT 16\)", emoji:"[^"]*", color:"#6d4c41", lat:28\.253674, lng:-16\.625022,/.test(index)
-     && !/zie je/.test(textos.nl['mir-narices-teide']) && /Ноздрите на Тейде · 2661 м/.test(lee('idiomas/bg.json')),
+     && !/zie je/.test(textos.nl['mir-narices-teide']) && /Ноздрите на Тейде · TF-38/.test(lee('idiomas/bg.json')),
      'las fichas del Teide en los diez idiomas, con lo que dicen las fuentes del 24 de octubre: cuatro islas a la vista y no siete, el crater de Pico Viejo a unos 3.100 m, la reserva del PNT 07 y el Sanatorio, que es el PNT 16, con la salida de su mapa',
      mal24.slice(0, 8).join(' · '));
   /* las lluvias con la Luna arriba parte de la noche */

@@ -8,8 +8,8 @@
   "cat": "Bezpłatny grill · Garachico · 400 miejsc"
  },
  "ar-san-jose-llanos": {
-  "desc": "Strefa rekreacyjna w El Tanque, w Parku Wiejskim Teno. 38 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy z widokiem na masyw Teno. Bardzo spokojna strefa na północnym zachodzie.",
-  "cat": "Bezpłatny grill · El Tanque · Park Wiejski Teno"
+  "desc": "Strefa rekreacyjna w El Tanque, w Specjalnym Rezerwacie Przyrody Chinyero. 38 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy z widokiem na masyw Teno. Bardzo spokojna strefa na północnym zachodzie.",
+  "cat": "Bezpłatny grill · El Tanque · Chinyero"
  },
  "ar-el-lagar": {
   "desc": "Strefa rekreacyjna w Icod de los Vinos, w górnej części gminy, w Corona Forestal. 24 stoły. Bezpłatne paleniska, toalety i parking. Bór sosnowy blisko historycznych winnic Icod.",
@@ -20,11 +20,11 @@
   "cat": "Bezpłatny grill · Icod de los Vinos · 20 stołów"
  },
  "ar-chio": {
-  "desc": "Jedna z największych na Teneryfie, 650 miejsc, w Guía de Isora pod wulkanicznymi borami Chío. Bezpłatne paleniska, stoły, toalety i parking. Spektakularny krajobraz wulkaniczny z widokiem na morze i La Gomerę.",
+  "desc": "⚠️ Według Tenerife ON w dni robocze zamknięta z powodu prac: otwarta w weekendy i święta. Jedna z największych na Teneryfie, 650 miejsc, w Guía de Isora pod wulkanicznymi borami Chío. Bezpłatne paleniska, stoły, toalety i parking. Spektakularny krajobraz wulkaniczny z widokiem na morze i La Gomerę.",
   "cat": "Bezpłatny grill · Guía de Isora · 650 miejsc"
  },
  "ar-los-frailes": {
-  "desc": "Strefa rekreacyjna w Arafo na 900 m, u wylotu Doliny Güímar. 38 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy po stronie południowo-wschodniej. Bardzo spokojna i dobrze utrzymana.",
+  "desc": "⚠️ Według Tenerife ON tymczasowo zamknięta ze względu na zagrożenie dla bezpieczeństwa: przed wyjazdem warto sprawdzić tenerifeon.es. Strefa rekreacyjna w Arafo na 900 m, u wylotu Doliny Güímar. 38 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy po stronie południowo-wschodniej. Bardzo spokojna i dobrze utrzymana.",
   "cat": "Bezpłatny grill · Arafo · 900 m · 38 stołów"
  },
  "ar-las-lajas": {
@@ -44,7 +44,7 @@
   "cat": "Bezpłatny grill · Tegueste · Park Anaga"
  },
  "ar-hoya-abade": {
-  "desc": "Strefa rekreacyjna w La Victoria de Acentejo, w Corona Forestal. 25 stołów. Bezpłatne paleniska, toalety i parking. Bór sosnowy na średnich wysokościach północy.",
+  "desc": "⚠️ Według Tenerife ON zamknięta od pożaru lasu latem 2023 roku: leży w strefie zamkniętej. Strefa rekreacyjna w La Victoria de Acentejo, w Chronionym Krajobrazie Las Lagunetas. 25 stołów. Bezpłatne paleniska i parking; brak toalet. Bór sosnowy na średnich wysokościach północy.",
   "cat": "Bezpłatny grill · La Victoria de Acentejo"
  },
  "ar-el-contador": {
@@ -52,8 +52,8 @@
   "cat": "Bezpłatny grill · Arico · Południowy wschód"
  },
  "ar-los-brezos": {
-  "desc": "Strefa rekreacyjna w Candelarii, w Parku Wiejskim Anaga. 20 stołów. Bezpłatne paleniska, toalety i parking. Las wawrzynowy i wrzosiec kanaryjski po wschodniej stronie Anagi.",
-  "cat": "Bezpłatny grill · Candelaria · Park Anaga"
+  "desc": "Gminna strefa rekreacyjna w Candelarii. 20 stołów. Bezpłatne paleniska, toalety i parking. W wyższych partiach południowo-wschodniej części wyspy, tam gdzie zaczyna się szlak SL-TF 294 Los Brezos.",
+  "cat": "Bezpłatny grill · Candelaria"
  },
  "pp-taucho": {
   "desc": "Najpopularniejsze miejsce startu paralotni na Teneryfie, na 760 m n.p.m. w gminie Adeje. Idealne na loty tandemowe dla początkujących: stabilny pasat, dobre kominy termiczne i spektakularne widoki na Barranco del Infierno i wybrzeże Costa Adeje. Zwykle lądowanie na równinie Taucho-Armeñime albo na plaży La Caleta. Optymalny sezon: od września do maja. Loty tandemowe z certyfikowanym pilotem dostępne przez cały rok.",
@@ -64,8 +64,8 @@
   "cat": "Paralotniarstwo · Start południe · 1100 m · Poziom średniozaawansowany"
  },
  "pp-izana": {
-  "desc": "Najbardziej spektakularny start paralotniowy na Teneryfie: 2200 m n.p.m. w Parku Narodowym Teide, między 33 a 34 kilometrem drogi TF-24. Jeden z lotów dwuosobowych o największym przewyższeniu w Europie — lądowanie na poziomie morza w Puerto de la Cruz albo na wschodnim wybrzeżu. Widoki na Teide, kalderę oraz doliny La Orotava i Güímar. Tylko dla pilotów z licencją albo loty tandemowe ze szkołami specjalistycznymi. Warunki bardzo zmienne: zawsze zasięgnij informacji przed lotem.",
-  "cat": "Paralotniarstwo · Szczyt Teide · 2200 m · Tylko eksperci lub specjalistyczny tandem"
+  "desc": "⚠️ Zamknięty: według Kanaryjskiej Federacji Sportów Lotniczych (FECDA) ten start nie znalazł się w nowym planie użytkowania i zarządzania Parku Narodowego Teide. Obecnie korzysta się z tymczasowego startu w pobliżu La Tarta, przy drodze TF-24, poza parkiem: przed rezerwacją warto zapytać w szkole. Był to najbardziej spektakularny start paralotniowy na Teneryfie: 2200 m n.p.m. w Parku Narodowym Teide, między 33 a 34 kilometrem drogi TF-24. Jeden z lotów dwuosobowych o największym przewyższeniu w Europie — lądowanie na poziomie morza w Puerto de la Cruz albo na wschodnim wybrzeżu. Widoki na Teide, kalderę oraz doliny La Orotava i Güímar. Tylko dla pilotów z licencją albo loty tandemowe ze szkołami specjalistycznymi. Warunki bardzo zmienne: zawsze zasięgnij informacji przed lotem.",
+  "cat": "Paralotniarstwo · Izaña · 2200 m · Tylko eksperci lub specjalistyczny tandem"
  },
  "pp-la-corona": {
   "desc": "Start paralotniowy na północy Teneryfy, na 765 m n.p.m. w Los Realejos. Używany, gdy wiatr wieje z północy albo ze wschodu. Widoki na Dolinę La Orotava, Puerto de la Cruz i północny Atlantyk. Lądowanie na Finca Los Quintos albo na Playa del Socorro. Najlepszy sezon: jesień, wiosna i lato. Typowy pasat północy. Poziom: początkujący-średniozaawansowany wcześnie rano i późnym popołudniem, średniozaawansowany-zaawansowany w południe.",
@@ -80,11 +80,11 @@
   "cat": "Paralotniarstwo · Start wschód · ~700 m · Güímar"
  },
  "faro-teno": {
-  "desc": "⚠️ Brak dojazdu: droga TF-445 do Punta de Teno jest zamknięta z powodu osuwiska skalnego od 29 października 2026 r. i nie ma jeszcze daty ponownego otwarcia. Najbardziej ikoniczna latarnia Teneryfy, na północno-zachodnim krańcu. Zbudowana w 1897 roku, wznosi się nad imponującymi klifami Teno na 70 m nad morzem. Dojazd spektakularną i wąską drogą TF-445 — zarezerwowaną dla mieszkańców i transportu publicznego — która wije się między górami. Od latarni epickie widoki na La Gomerę i Los Gigantes. Chroniony ekosystem morski z delfinami i żółwiami.",
+  "desc": "⚠️ Brak dojazdu: droga TF-445 do Punta de Teno jest zamknięta z powodu osuwiska skalnego od 29 października 2026 r. i nie ma jeszcze daty ponownego otwarcia. Najbardziej ikoniczna latarnia Teneryfy, na północno-zachodnim krańcu. Działa od 1897 roku i wznosi się nad imponującymi klifami Teno; jej światło znajduje się około 60 m nad morzem. Dojazd spektakularną i wąską drogą TF-445 — zarezerwowaną dla mieszkańców i transportu publicznego — która wije się między górami. Od latarni epickie widoki na La Gomerę i Los Gigantes. Chroniony ekosystem morski z delfinami i żółwiami.",
   "cat": "Latarnia historyczna · Buenavista del Norte"
  },
  "faro-anaga": {
-  "desc": "Położona na Punta de Anaga, północno-wschodnim krańcu Teneryfy. Zbudowana w 1863 roku, jest jedną z najstarszych latarni Wysp Kanaryjskich. Otoczona lasem wawrzynowym i pionowymi klifami Parku Wiejskiego Anaga. Dostęp tylko pieszo szlakiem z Chamorgi (około 45 min). Widoki na morze La Caleta, La Rambla i dzikie wybrzeże Anagi.",
+  "desc": "Położona na Punta de Anaga, północno-wschodnim krańcu Teneryfy. Zbudowana w 1863 roku, jest jedną z najstarszych latarni Wysp Kanaryjskich. Otoczona pionowymi klifami Parku Wiejskiego Anaga. Dostęp tylko pieszo szlakiem z Chamorgi (1 h 40 min). Widoki na Roque Bermejo, Roques de Anaga i całe wschodnie wybrzeże masywu. Na szlaku prawie nie ma cienia: warto zabrać wodę i ochronę przeciwsłoneczną.",
   "cat": "Latarnia · Punta Anaga"
  },
  "faro-rasca": {
@@ -92,7 +92,7 @@
   "cat": "Latarnia · Malpaís de Rasca"
  },
  "faro-abona": {
-  "desc": "Najwyżej położona latarnia Wysp Kanaryjskich, 193 m n.p.m. Zbudowana w 1895 roku na południowym wschodzie wyspy, w gminie Arico. Biała wieża o wysokości 28 m, widoczna z dużych odległości. Otoczona czarnymi polami lawowymi i widokiem na otwarte morze. Strefa łowiectwa podwodnego i surfingu. Wstęp wolny drogą gruntową z TF-1.",
+  "desc": "Latarnia na południowym wschodzie wyspy, w gminie Arico, między Abades a Poris de Abona. Pierwszą ukończono w 1902 roku, obecna wieża działa od 1976 roku. Wieża o wysokości 39 m, biała w czerwone pasy, ze światłem 54 m n.p.m., widoczna z dużych odległości. Otoczona czarnymi polami lawowymi i widokiem na otwarte morze. Strefa łowiectwa podwodnego i surfingu. Wstęp wolny drogą gruntową z TF-1.",
   "cat": "Latarnia · Arico · Południowy wschód"
  },
  "faro-punta-hidalgo": {
@@ -120,7 +120,7 @@
   "cat": "Gmina · Południe Teneryfy"
  },
  "ciudad-arona": {
-  "desc": "Gmina obejmująca Los Cristianos i Las Américas. Miasteczko Arona na średnich wysokościach zachowuje wiejski charakter. Siam Park, Jungle Park i najlepsze plaże południa czynią z tej gminy najbardziej turystyczną.",
+  "desc": "Gmina obejmująca Los Cristianos i Las Américas. Miasteczko Arona na średnich wysokościach zachowuje wiejski charakter. Jungle Park i najlepsze plaże południa czynią z tej gminy jedną z najbardziej turystycznych na wyspie.",
   "cat": "Gmina · Los Cristianos · Las Américas"
  },
  "ciudad-garachico": {
@@ -128,7 +128,7 @@
   "cat": "Miasteczko historyczne · Północny zachód"
  },
  "ciudad-icod": {
-  "desc": "Słynne z Tysiącletniego Smoczego Drzewa i winiarni czerwonego wina. Dobrze zachowana architektura kolonialna, Motyle Świata i Cueva del Viento 5 minut dalej. Najlepsze rzemieślnicze wino czerwone Teneryfy.",
+  "desc": "Słynne z Tysiącletniego Smoczego Drzewa i winiarni czerwonego wina. Dobrze zachowana architektura kolonialna, motylarnia Mariposario del Drago i Cueva del Viento 5 minut dalej. Najlepsze rzemieślnicze wino czerwone Teneryfy.",
   "cat": "Miasto Smoczego Drzewa · Północny zachód"
  },
  "ciudad-candelaria": {
@@ -136,7 +136,7 @@
   "cat": "Sanktuarium · Wschód Teneryfy"
  },
  "ciudad-guimar": {
-  "desc": "Znane z Piramid Güímar, tajemniczych budowli badanych przez Thora Heyerdahla. Żyzna dolina na południowo-wschodnim zboczu Teide. Lokalne rzemiosło i produkty rolne wysokiej jakości.",
+  "desc": "Znane z Piramid Güímar, tajemniczych budowli badanych przez Thora Heyerdahla. Żyzna dolina na południowo-wschodnim zboczu grzbietu Cumbre Dorsal. Lokalne rzemiosło i produkty rolne wysokiej jakości.",
   "cat": "Dolina południowego wschodu · Güímar"
  },
  "ciudad-granadilla": {
@@ -224,15 +224,15 @@
   "cat": "Wioska górska · Zachód"
  },
  "ciudad-vilaflor": {
-  "desc": "Najwyżej położona wioska Hiszpanii, 1400 m. Krystalicznie czyste powietrze, stuletnie bory sosnowe i wyjątkowe wysokogórskie wina. Południowa brama Parku Narodowego Teide. Słynie z kasztanów, migdałowców i najlepszych sosen kanaryjskich.",
-  "cat": "Najwyżej położona wioska Hiszpanii · Południe"
+  "desc": "Najwyżej położona wioska Wysp Kanaryjskich, 1400 m. Krystalicznie czyste powietrze, stuletnie bory sosnowe i wyjątkowe wysokogórskie wina. Południowa brama Parku Narodowego Teide. Słynie z kasztanów, migdałowców i najlepszych sosen kanaryjskich.",
+  "cat": "Najwyżej położona wioska Wysp Kanaryjskich · Południe"
  },
  "ciudad-san-miguel": {
-  "desc": "Gmina na południu z urokliwym starym miastem i turystyczną strefą nadmorską (Golf del Sur, Amarilla Golf, Costa del Silencio). Autentyczna mieszanka tradycyjnej kanaryjskiej wioski i turystycznych osiedli z polami golfowymi.",
+  "desc": "Gmina na południu z urokliwym starym miastem i turystyczną strefą nadmorską (Golf del Sur, Amarilla Golf). Autentyczna mieszanka tradycyjnej kanaryjskiej wioski i turystycznych osiedli z polami golfowymi.",
   "cat": "Gmina · Południe"
  },
  "ciudad-arico": {
-  "desc": "Gmina na południowym wschodzie, największa powierzchniowo na Teneryfie. Suchy krajobraz, pola lawowe i dziewicza plaża Los Abrigos. Latarnia Punta de Abona, najwyższa na Wyspach Kanaryjskich. Rezerwat nieba, idealny na astronomię.",
+  "desc": "Gmina na południowym wschodzie, druga pod względem powierzchni na Teneryfie po La Orotava. Suchy krajobraz, pola lawowe i dziewicza plaża Los Abrigos. Latarnia Punta de Abona. Rezerwat nieba, idealny na astronomię.",
   "cat": "Gmina · Południowy wschód"
  },
  "ciudad-fasnia": {
@@ -256,7 +256,7 @@
   "cat": "Wioska Anagi · La Laguna"
  },
  "nucleo-taganana": {
-  "desc": "Miejscowość w zielonym sercu Anagi, dostępna krętą drogą wśród lasu wawrzynowego. Tradycyjne domy zawieszone na zboczu, tarasowe winnice i dwie pobliskie plaże: Almáciga i Benijo. Dziedzictwo Biosfery UNESCO.",
+  "desc": "Miejscowość w zielonym sercu Anagi, dostępna krętą drogą wśród lasu wawrzynowego. Tradycyjne domy zawieszone na zboczu, tarasowe winnice i dwie pobliskie plaże: Almáciga i Benijo. Anaga jest rezerwatem biosfery UNESCO.",
   "cat": "Wioska · Anaga UNESCO"
  },
  "nucleo-igueste-san-andres": {
@@ -268,7 +268,7 @@
   "cat": "Wioska wiejska · La Laguna"
  },
  "nucleo-valle-guerra": {
-  "desc": "Wiejska miejscowość między Tegueste a Tacoronte. Niziny, plantacje bananów, winnice i Dom-Muzeum Wieśniaka. Atmosfera całkowicie rolnicza, bez obecności turystów. Wyborne lokalne warzywa i najlepsze awokado na Teneryfie.",
+  "desc": "Wiejska miejscowość między Tegueste a Tacoronte. Niziny, plantacje bananów, winnice i Casa de Carta, siedziba Muzeum Historii i Antropologii Teneryfy. Atmosfera całkowicie rolnicza, bez obecności turystów. Wyborne lokalne warzywa i najlepsze awokado na Teneryfie.",
   "cat": "Wioska wiejska · La Laguna"
  },
  "nucleo-mesa-mar": {
@@ -276,7 +276,7 @@
   "cat": "Osiedle nadmorskie · Tacoronte"
  },
  "nucleo-realejo-bajo": {
-  "desc": "Stare miasto Los Realejos z najstarszym kościołem Teneryfy (św. Jakuba Apostoła, 1496). Tradycyjna kanaryjska atmosfera, plac ze stuletnimi drzewami i szlacheckie domy z XVII wieku. Dziedzictwo historyczno-artystyczne.",
+  "desc": "Stare miasto Los Realejos z kościołem La Concepción; najstarszy kościół Teneryfy (św. Jakuba Apostoła, 1496) stoi tuż obok, w Realejo Alto. Tradycyjna kanaryjska atmosfera, plac ze stuletnimi drzewami i szlacheckie domy z XVII wieku. Dziedzictwo historyczno-artystyczne.",
   "cat": "Stare miasto · Los Realejos"
  },
  "nucleo-la-ranilla": {
@@ -316,7 +316,7 @@
   "cat": "Latarnia nowoczesna · Puerto de la Cruz"
  },
  "faro-abona-viejo": {
-  "desc": "Pierwotna latarnia Punta de Abona, zbudowana w 1902 roku, która działała do zastąpienia jej obecną latarnią w 1978 roku. Biała wieża w klasycznym stylu kanaryjskim wciąż stoi jako element historyczny przy nowoczesnej latarni. Jeden z najbardziej samotnych i pięknych zakątków południowo-wschodniego wybrzeża. Dojazd drogą gruntową z drogi na Abades — zalecany samochód o wysokim zawieszeniu.",
+  "desc": "Pierwotna latarnia Punta de Abona, zbudowana w 1902 roku, która działała do zastąpienia jej obecną latarnią w 1976 roku. Biały parterowy budynek z laterną na płaskim dachu wciąż stoi jako element historyczny przy nowoczesnej latarni. Jeden z najbardziej samotnych i pięknych zakątków południowo-wschodniego wybrzeża. Dojazd drogą gruntową z drogi na Abades — zalecany samochód o wysokim zawieszeniu.",
   "cat": "Latarnia historyczna · Punta de Abona"
  },
  "faro-santa-cruz-puerto": {
@@ -328,7 +328,7 @@
   "cat": "Latarnia portowa · Los Cristianos"
  },
  "faro-garachico": {
-  "desc": "Mała historyczna latarnia w dawnym porcie Garachico, najpiękniejszego miasteczka północy Teneryfy. Port został częściowo zniszczony przez erupcję z 1706 roku, która pogrzebała miasto pod lawą. Obecna latarnia wyznacza wejście do naturalnych basenów wulkanicznych, które uczyniły z tej strefy jedno z najbardziej osobliwych miejsc wyspy.",
+  "desc": "Mała historyczna latarnia w dawnym porcie Garachico, najpiękniejszego miasteczka północy Teneryfy. Erupcja z 1706 roku pogrzebała port pod lawą i zniszczyła dużą część miasteczka. Obecna latarnia wyznacza wejście do naturalnych basenów wulkanicznych, które uczyniły z tej strefy jedno z najbardziej osobliwych miejsc wyspy.",
   "cat": "Latarnia historyczna · Garachico"
  },
  "camel-park": {
