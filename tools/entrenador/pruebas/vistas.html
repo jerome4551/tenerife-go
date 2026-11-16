@@ -2,6 +2,7 @@
 <!-- Para elegir la vista de un ejercicio: la repetición (o una postura) vista desde varios rumbos, con los músculos encendidos.
        vistas.html?id=press-banca-barra&rumbos=20,40,60,90,120&ts=0,0.9,1.9            (ts: instantes de la repetición)
        vistas.html?id=press-banca-barra&rumbos=20,40,60&pos=sop,a,b&picado=16           (pos: posturas clave)
+       vistas.html?id=peso-muerto-barra&rumbos=40,90&paso=2&ts=0.3,0.6,0.9,1.2           (paso: instantes de la secuencia de ese paso)
      Más: picado, tam (tamaño de la celda), mus=0 (sin músculos), marcas=pecho (los avisos), amb, tema, zoom -->
 <style>
   body { margin: 0; background: #1b2330; font: 12px sans-serif; color: #fff; }
@@ -39,7 +40,12 @@ A.forEach(function (qa) {
     d.cargar(co);
     if (x && Q.get('mus') !== '0') e.fig.musculos(x.g, x.s);
     if (pos) { d.aPostura(q, 0); d.cuadro(0.001, true); d.salto = true; d.cuadro(0.0001, true); for (k = 0; k < 30; k++) d.cuadro(1 / 60, false); }
-    else {
+    else if (Q.get('paso') && co0.pasos[Number(Q.get('paso')) - 1] && co0.pasos[Number(Q.get('paso')) - 1].sec) {
+      /* paso=N: los instantes son segundos de la secuencia de ese paso (por ejemplo, de coger la barra) */
+      var pa = co0.pasos[Number(Q.get('paso')) - 1];
+      d.aPostura(pa.desde || d.inicio, 0); d.cuadro(0.001, true); d.aSecuencia(pa.sec, pa.desde); d.w = 1; d.salto = true; d.cuadro(0.0001, true);
+      for (var i2 = 0, N2 = Math.round(q * 60); i2 < N2; i2++) d.cuadro(1 / 60, false);
+    } else {
       d.aPostura(d.inicio, 0); d.cuadro(0.001, true); d.aRep(0); d.salto = true; d.cuadro(0.0001, true);
       if (Q.get('marcas')) d.marcar(Q.get('marcas').split(','));
       for (var i = 0, N = Math.round(q * 60); i < N; i++) d.cuadro(1 / 60, false);

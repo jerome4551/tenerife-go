@@ -473,7 +473,7 @@
       return sobre(P, { m: m });
     }
     /* las manos, en el borde del banco que tiene detrás (como en los fondos en banco del bloque 1): los dedos, hacia delante */
-    var BORDE = { a: [19, 47, -3], polo: [0.12, 0.25, -1] }, EN_BORDE = { tipo: 'abierta', prono: 90, mun: -78 };
+    var BORDE = { a: [29, 47, -3], polo: [0.12, 0.25, -1] }, EN_BORDE = { tipo: 'abierta', prono: 90, mun: -78 };
     var BANCO_FONDOS = ['banco', { rumbo: 90, en: [0, -17], largo: 110 }], EN_BANCO = [0, -0.2, 0.98];
     /* entre dos bancos: los talones, en el otro, con las piernas estiradas; baja con los codos hacia atrás hasta los 90° y sube hasta casi
        estirar los brazos */
@@ -482,7 +482,7 @@
       return {
         vista: [70, 24], rastro: 'hombros', esfuerzo: [0], clavos: ['mi', 'md', 'ti', 'td'],
         material: [BANCO_FONDOS, ['banco', { rumbo: 90, en: [0, 92], largo: 110 }]],
-        posturas: { a: plana(sobre(talones, { pel: [0, 52.5, 8] }), EN_BANCO), b: plana(sobre(talones, { pel: [0, 37.6, 9], cab: [-6, 0, 0] }), EN_BANCO) },
+        posturas: { a: plana(sobre(talones, { pel: [0, 51.5, 8] }), EN_BANCO), b: plana(sobre(talones, { pel: [0, 37.6, 9], cab: [-6, 0, 0] }), EN_BANCO) },
         inicio: 'b', encuadra: ['a'],
         rep: [['a', 1.2, 'empuje'], ['a', 0.4], ['b', 1.7, 'freno'], ['b', 0.35]],
         pasos: ['a', { sec: [['b', 1.7, 'freno']], desde: 'a' }, 'rep']
@@ -491,13 +491,13 @@
     /* con rotación: sentado en el banco, despega los glúteos; baja hasta los 90° y sube; y arriba gira el tronco y cruza una mano por
        delante mientras el otro brazo le sostiene, la vuelve a apoyar y, tras la bajada siguiente, lo hace hacia el otro lado */
     COREO['fondos-banco-con-rotacion'] = (function () {
-      var pies = { suelo: [10, 47], abre: 4, polo: [0, 1, 0.5] }, arriba_ = { pel: [0, 52.5, 8], p: pies, b: BORDE, m: EN_BORDE };
+      var pies = { suelo: [10, 47], abre: 4, polo: [0, 1, 0.5] }, arriba_ = { pel: [0, 51.5, 8], p: pies, b: BORDE, m: EN_BORDE };
       var cruza = { tipo: 'suelta', palma: [0, -1, 0] };
       var I = ['mi', 'ti', 'td'], Dd = ['md', 'ti', 'td'];       /* lo que sigue apoyado mientras una mano cruza */
       return {
         vista: [-58, -16], rastro: 'hombros', esfuerzo: [5, 11], clavos: ['mi', 'md', 'ti', 'td'], material: [BANCO_FONDOS],
         posturas: {
-          s: { pel: [0, 55, -9], p: { suelo: [10, 34], abre: 4, polo: [0, 1, 0.5] }, b: BORDE, m: EN_BORDE },
+          s: { pel: [0, 55, -9], hom: [-2.5, 0], p: { suelo: [10, 34], abre: 4, polo: [0, 1, 0.5] }, b: BORDE, m: EN_BORDE },
           a: arriba_,
           b: plana(sobre(arriba_, { pel: [0, 37.6, 9], cab: [-6, 0, 0] }), EN_BANCO),
           r1: sobre(arriba_, { col: [0, 0, 28], cab: [0, 10, 0], bd: { a: [20, 99, 34], polo: [-0.4, -1, 0.1] }, md: cruza }),
@@ -512,11 +512,12 @@
     /* en el suelo: sentado, con las rodillas dobladas, los pies juntos y las manos apoyadas detrás (los dedos, hacia delante); estira los
        brazos y despega la cadera; dobla los codos para bajarla y vuelve a estirarlos */
     COREO['fondos-suelo'] = (function () {
-      var base = { p: { suelo: [4, 47], abre: 2, polo: [0.1, 1, 0.3] }, b: { a: [19, 5, -26], polo: [0.12, 0.3, -1] }, m: { tipo: 'abierta', prono: 90, mun: -72 } };
-      var con = function (y, z, atras, cab) { return plana(sobre(base, { pel: [0, y, z], giro: [0, -atras, 0], cab: [cab, 0, 0] })); };
+      var W = [19, ALTO_MUN, -26], base = { p: { suelo: [4, 47], abre: 2, polo: [0.1, 1, 0.3] }, b: { a: W, polo: [0.12, 0.3, -1] }, m: EN_SUELO };
+      var con = function (y, z, atras, cab) { return sobre(base, { pel: [0, y, z], giro: [0, -atras, 0], cab: [cab, 0, 0] }); };
       return {
         vista: [72, 28], picado: 14, rastro: 'pel', esfuerzo: [2], clavos: ['mi', 'md', 'ti', 'td'],
-        posturas: { s: con(11.5, 4.5, 24, 10), a: con(21.1, 3.5, 37.5, 22), b: con(12.6, 4, 43.5, 26) },
+        /* arriba, con los brazos estirados: la cadera, a la altura que deja el hombro a un brazo justo de la mano (se busca) */
+        posturas: { s: con(11.5, 4.5, 24, 10), a: aUnBrazo(function (y) { return con(y, 3.5, 37.5, 22); }, W, 12, 30), b: con(12.6, 4, 43.5, 26) },
         inicio: 'a', encuadra: ['a'],
         rep: [['b', 1.5, 'freno'], ['b', 0.3], ['a', 1.1, 'empuje'], ['a', 0.45]],
         pasos: ['s', { sec: [['a', 1.3, 'empuje']], desde: 's' }, 'rep']
@@ -550,10 +551,10 @@
     };
     /* la flexión con los codos pegados: las manos, a la anchura de los hombros; los codos van hacia atrás, junto a los costados */
     COREO['flexion-codos-pegados'] = (function () {
-      var manos = { a: [19, 5, 13.3], polo: [0.1, 0.3, -1] };
+      var manos = { a: [19, ALTO_MUN, 13.3], polo: [0.1, 0.3, -1] };
       return {
         vista: [78, [32, 34]], picado: 16, rastro: 'pecho', esfuerzo: [0], clavos: ['mi', 'md', 'ti', 'td'],
-        posturas: { a: tabla(20.2, { b: manos }), b: plana(tabla(2.2, { b: manos, cab: [-24, 0, 0] })) },
+        posturas: { a: tablaAlta(manos.a, manos.polo), b: tabla(2.2, { b: manos, cab: [-24, 0, 0] }) },
         inicio: 'b', encuadra: ['a'],
         rep: [['a', 1.1, 'empuje'], ['a', 0.45], ['b', 1.7, 'freno'], ['b', 0.25]],
         pasos: ['a', { sec: [['b', 1.7, 'freno']], desde: 'a' }, 'rep']
@@ -563,25 +564,26 @@
        de ahí); adelanta el cuerpo sobre las rodillas y baja el pecho entre las manos, con los codos hacia atrás; empuja y vuelve a
        sentarse sobre los talones. Las rodillas, en el suelo (en z = −60): la cadera gira sobre ellas */
     COREO['flexion-triceps-rodillas-postura-nino'] = (function () {
-      var ZM = -8, K = [7, -60];                      /* las muñecas; y las rodillas (alto, z) */
+      var ZM = -8, K = [7, -60], W = [19, ALTO_MUN, ZM];      /* las muñecas (las manos, apoyadas de plano); y las rodillas (alto, z) */
       var piernas = { a: [10, 7, -98], polo: [0, -1, 0.3] }, pies = { punta: [0, -0.1, -1], arriba: [0, -1, 0.1] };
-      var mano = function (mun) { return { tipo: 'abierta', prono: 90, mun: mun }; };
       /* la cadera, sobre el arco de las rodillas (a un muslo de ellas), y el tronco recto hasta el hombro, que queda en [alto, z] */
-      var con = function (S, polo, cab, mun) {
+      var con = function (S, polo, cab) {
         var d = Math.sqrt((S[0] - K[0]) * (S[0] - K[0]) + (S[1] - K[1]) * (S[1] - K[1])), T = 43.5, d1 = (D.muslo * D.muslo - T * T + d * d) / (2 * d), hh = Math.sqrt(D.muslo * D.muslo - d1 * d1);
         var u = [(S[0] - K[0]) / d, (S[1] - K[1]) / d], cad = [K[0] + d1 * u[0] + hh * u[1], K[1] + d1 * u[1] - hh * u[0]];
-        return plana({ pel: [0, cad[0], cad[1]], giro: [0, Math.atan2(S[1] - cad[1], S[0] - cad[0]) / RAD, 0], cab: [cab, 0, 0], p: piernas, t: pies, b: { a: [19, 5, ZM], polo: polo }, m: mano(mun) });
+        return { pel: [0, cad[0], cad[1]], giro: [0, Math.atan2(S[1] - cad[1], S[0] - cad[0]) / RAD, 0], cab: [cab, 0, 0], p: piernas, t: pies, b: { a: W, polo: polo }, m: EN_SUELO };
       };
+      /* la postura del niño: sentado sobre los talones, con la espalda redonda y los brazos estirados hacia delante: el tronco se inclina lo
+         justo (se busca) para que las manos lleguen a su sitio, que es de donde ya no se mueven; la frente queda junto al suelo */
+      var n = aUnBrazo(function (g) { return { pel: [0, 23, -96.7], giro: [0, g, 0], col: [30, 0, 0], cab: [3, 0, 0], p: piernas, t: pies, b: { a: W, polo: [0.3, 1, -0.2] }, m: EN_SUELO }; }, W, 50, 85);
+      var b = con([16.5, ZM + 8], [0.1, 0.4, -1], -50), u = con([53.2, ZM + 1], [0.15, 0.2, -1], -14);
+      /* de una a otra, la cadera gira sobre las rodillas (arcoRodillas): del niño a la flexión son 100°, y vuelve desde arriba otros 80° */
+      var posturas = { n: n, b: b, u: u }, baja = porArco(posturas, 'nb', n, b, 'b', 3, 1.8, K), vuelve = porArco(posturas, 'un', u, n, 'n', 3, 1.2, K);
       return {
         vista: [78, [32, 34]], picado: 16, rastro: 'pecho', esfuerzo: [0], clavos: ['mi', 'md', 'ti', 'td'],
-        posturas: {
-          n: plana({ pel: [0, 23, -96.7], giro: [0, 62, 0], col: [30, 0, 0], cab: [16, 0, 0], p: piernas, t: pies, b: { a: [19, 5, ZM], polo: [0.3, 1, -0.2] }, m: mano(-24) }),
-          b: con([16.5, ZM + 8], [0.1, 0.4, -1], -24, -62),
-          u: con([55.8, ZM + 1], [0.15, 0.2, -1], -14, -72)
-        },
+        posturas: posturas,
         inicio: 'b', encuadra: ['n', 'u'],
-        rep: [['u', 1.1, 'empuje'], ['n', 1.2, 'suave'], ['n', 0.6], ['b', 1.8, 'freno'], ['b', 0.3]],
-        pasos: ['n', { sec: [['b', 1.8, 'freno']], desde: 'n' }, 'rep']
+        rep: [['u', 1.1, 'empuje']].concat(vuelve, [['n', 0.6]], baja, [['b', 0.3]]),
+        pasos: ['n', { sec: baja, desde: 'n' }, 'rep']
       };
     })();
 

@@ -120,6 +120,18 @@
       return { b: base, n: n, dir: dir, L: q[2], R: q[3], aro: aro };
     });
   })();
+  /* lo que le falta a la cabeza (el pelo, la quijada, el mentón, la nariz, las orejas y las púas del tupé en reposo) para tocar un
+     plano: como las medidas de 20-figura.js, para la auditoría de los contactos */
+  function cabezaAPlano(E, P0, n, en) {
+    var Bc = E.Bc, nl = [punto(n, Bc[0]), punto(n, Bc[1]), punto(n, Bc[2])], d0 = punto(n, menos(E.cab, P0)), min = 1e9;
+    if (en && !en(mas(E.cab, aplicar(Bc, por(MELENA.c, K_CAB))))) return min;        /* la cabeza, fuera del paño que se mide */
+    [MELENA, QUIJADA, MENTON, NARIZ, OREJA, { c: [-OREJA.c[0], OREJA.c[1], OREJA.c[2]], r: OREJA.r }].forEach(function (el) {
+      var a = nl[0] * el.r[0], b = nl[1] * el.r[1], c = nl[2] * el.r[2];
+      min = Math.min(min, d0 + K_CAB * (nl[0] * el.c[0] + nl[1] * el.c[1] + nl[2] * el.c[2] - Math.sqrt(a * a + b * b + c * c)));
+    });
+    PUAS.forEach(function (q) { min = Math.min(min, d0 + K_CAB * (nl[0] * (q.b[0] + q.dir[0] * q.L) + nl[1] * (q.b[1] + q.dir[1] * q.L) + nl[2] * (q.b[2] + q.dir[2] * q.L))); });
+    return min;
+  }
   /* la cinta: un aro alrededor de la cabeza, más alto en la frente que en la nuca */
   var CINTA = (function () {
     var L = [], N = 40, j, t, fi, DB = 5.6 * RAD, r = [MELENA.r[0] + 0.3, MELENA.r[1] + 0.3, MELENA.r[2] + 0.3];

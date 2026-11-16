@@ -548,10 +548,12 @@
       return {
         vista: [-55, -140], picado: 20, rastro: 'manos', esfuerzo: [0, 1], reposo: ['s'],
         material: [['polea', { en: [0, ZC], alto: 14, a: 'manos', agarre: 'barra', reposo: g, ancho0: G, sobra: 6, encuadre: 60 }]],
-        posturas: { s: sobre(P, { b: { a: [C[0] + 4, 5, C[2] + 23], polo: [0.4, -0.2, 1] }, m: { tipo: 'abierta', palma: [0, -1, 0] } }), a: a, m: en(84), b: en(142) },
+        /* para coger la barra, primero levanta las manos del suelo (s1) y después las gira: girándolas a ras de suelo, el canto lo rozaba */
+        posturas: { s: sobre(P, { b: { a: [C[0] + 4, ALTO_MUN, C[2] + 23], polo: [0.4, -0.2, 1] }, m: EN_SUELO }),
+          s1: sobre(P, { b: { a: [C[0] + 2.5, 13.5, C[2] + 24], polo: [0.4, -0.2, 1] }, m: { tipo: 'abierta', palma: [0, -1, 0] } }), a: a, m: en(84), b: en(142) },
         encuadra: ['s'],
         rep: [['m', 0.75, 'entra'], ['b', 0.65, 'sale'], ['b', 0.7], ['m', 0.9, 'entra'], ['a', 1.1, 'sale'], ['a', 0.45]],
-        pasos: ['s', { sec: [['a', 1.4, 'suave']], desde: 's' }, 'rep']
+        pasos: ['s', { sec: [['s1', 0.6, 'entra'], ['a', 0.9, 'sale']], desde: 's' }, 'rep']
       };
     })();
 
@@ -628,26 +630,29 @@
     COREO['estiramiento-biceps-pared'] = (function () {
       var L = D.brazo + D.antebrazo - 0.35;           /* del hombro a la muñeca, con el brazo estirado */
       var punto = [D.hombroX + Math.sqrt(L * L - 2.5 * 2.5 - 2 * 2), 127, -2], punto2 = [punto[0], punto[1], -punto[2]];
-      var mano = { tipo: 'abierta', prono: 0, mun: -70 };
+      var mano = apoyada([0, 1, 0], [1, 0, 0]);          /* apoyada de plano en la pared, con los dedos hacia arriba: la muñeca, a ALTO_MUN de ella */
       var estira = { bi: { a: punto, polo: [0.3, -1, -0.4] }, mi: mano, md: SUELTA };
       var vuelto = { pi: { suelo: [-10, 0], abre: 6 }, pd: { suelo: [10, 0], abre: 6 }, bd: { a: punto2, polo: [0.3, -1, 0.4] }, md: mano, mi: SUELTA };
       /* al girar el cuerpo, se arrima a la pared lo justo para que el brazo siga estirado y la mano no se mueva */
       var girado = function (x) { return sobre(estira, { pel: [x, 86, 2], giro: [-38, 0, 0], cab: [0, 10, 0] }); };
       var girado2 = function (x) { return sobre(vuelto, { pel: [x, 86, -2], giro: [218, 0, 0], cab: [0, -10, 0] }); };
       var x2 = busca(function (x) { return largo(menos(resolver(girado2(x)).d.hom, punto2)); }, L, 0, 14);
+      var posturas = {
+        s: { b: aLosLados(8), m: SUELTA },
+        a: estira,
+        b: aUnBrazo(girado, punto, 0, 14),
+        a2: sobre(vuelto, { giro: [180, 0, 0] }),
+        b2: girado2(x2)
+      };
+      /* la media vuelta, de cara a la pared y con los brazos sueltos: los pies giran con el cuerpo, sin atravesar el suelo */
+      var vuelta = mediaVuelta(posturas, 'v', 1.1, { b: aLosLados(8), m: SUELTA }, 'a2'), T2 = ['ti', 'td'];
       return {
         vista: [-34, -150], isometrico: 'b2', clavos: [],
-        material: [['pared', { x: punto[0] + 8.5, z: 0, normal: [-1, 0, 0], ancho: 130 }]],
-        posturas: {
-          s: { b: aLosLados(8), m: SUELTA },
-          a: estira,
-          b: aUnBrazo(girado, punto, 0, 14),
-          a2: sobre(vuelto, { giro: [180, 0, 0] }),
-          b2: girado2(x2)
-        },
+        material: [['pared', { x: punto[0] + ALTO_MUN, z: 0, normal: [-1, 0, 0], ancho: 130 }]],
+        posturas: posturas,
         inicio: 's', encuadra: ['b', 'b2'],
-        pasos: ['s', { sec: [['a', 1.4, 'suave', []]], desde: 's' },
-                { sec: [['b', 1.4, 'suave', ['mi']], ['b', 0.7, null, ['mi']], ['a', 0.7, 'suave', ['mi']], ['a2', 1.1, 'suave', []], ['b2', 1.1, 'suave', ['md']]], desde: 'a' }]
+        pasos: ['s', { sec: [['a', 1.4, 'suave', T2]], desde: 's' },
+                { sec: [['b', 1.4, 'suave', ['mi', 'ti', 'td']], ['b', 0.7, null, ['mi', 'ti', 'td']], ['a', 0.7, 'suave', ['mi', 'ti', 'td']]].concat(vuelta, [['b2', 1.1, 'suave', ['md', 'ti', 'td']]]), desde: 'a' }]
       };
     })();
   })();

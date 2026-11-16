@@ -402,9 +402,9 @@
     /* de puntillas: el pie gira sobre su bola, el tobillo sube y se adelanta, y la cadera va con él (la pierna sigue como estaba).
        deTalon(g): cuánto se adelanta el tobillo y cuánto sube con el talón levantado g grados (negativo: por debajo del apoyo) */
     function deTalon(g) { var t = g * RAD; return [D.bola - D.bola * Math.cos(t) + D.tobillo * Math.sin(t), D.bola * Math.sin(t) + D.tobillo * Math.cos(t) - D.tobillo]; }
-    /* las manos en la pared de delante, a la altura del pecho. La pared, a z = 46: con la muñeca a 43,5 y la mano plana y hacia arriba,
-       es donde llegan las yemas (medido de perfil: la mano toca la pared, no se queda en el aire delante de ella) */
-    var PARED = ['pared', { z: 46, normal: [0, 0, -1], ancho: 130 }], EN_PARED = { a: [17, 120, 43.5], polo: [0.7, -1, -0.5] }, M_PARED = { tipo: 'abierta', prono: 90, mun: -68 };
+    /* las manos en la pared de delante, a la altura del pecho, apoyadas de plano y con los dedos hacia arriba (70-coreografias.js,
+       PLANA_PARED): la muñeca, en z = 43,5, y la cara de la pared, a ALTO_MUN de ella */
+    var PARED = ['pared', { z: 43.5 + ALTO_MUN, normal: [0, 0, -1], ancho: 130 }], EN_PARED = { a: [17, 120, 43.5], polo: [0.7, -1, -0.5] }, M_PARED = PLANA_PARED;
     var MI_MD = ['mi', 'md'], K_I = ['mi', 'md', 'ti'], K_D = ['mi', 'md', 'td'], K_2 = ['mi', 'md', 'ti', 'td'];
     /* la pierna que no apoya: la rodilla doblada y el pie atrás, en el aire */
     var RECOGIDA = { e: 12, z: 0, c: 76 }, PIE_SUELTO = { tob: 22 };
@@ -475,20 +475,20 @@
                 { sec: [['b', 0.4, null, ['ti']], ['a', 1.5, 'freno', ['ti']], ['d', 0.6, 'suave', ['ti']], ['a2', 0.7, 'suave', ['td']], ['b2', 1.2, 'suave', ['td']]], desde: 'b' }]
       };
     })();
-    /* con una mancuerna en una mano: la otra mano se sujeta a la pared, que queda delante, justo pasado el escalón (a z = 40: la muñeca, a
-       37,5). Sube los talones tanto como
+    /* con una mancuerna en una mano: la otra mano se apoya de plano en la pared, que queda delante, justo pasado el escalón (la muñeca, a
+       z = 37,5, y la cara de la pared, a ALTO_MUN de ella). Sube los talones tanto como
        le resulte cómodo, una pausa, y baja despacio hasta notar el estiramiento (los talones, por debajo del escalón) */
     COREO['elevacion-talones-escalon-mancuerna'] = (function () {
       var enPared = { a: [-17, PIE + ALTO_E + 34, 37.5], polo: [-0.7, -1, -0.4] }, K = ['ti', 'td', 'md'];
       var en = function (talon, extra) { var q = deTalon(talon); return sobre({ pel: [0, PIE + ALTO_E + q[1] - 0.4, Z_PIE + q[0]], p: enBorde(10, talon), bi: aLosLados(5), mi: NEUTRA }, extra); };
       var apoyada = { bd: enPared, md: M_PARED };
       return {
-        vista: [[104, 10], [152, 14]], rastro: 'tli', esfuerzo: [3], clavos: K,
-        material: [ESCALON, ['pared', { z: 40, normal: [0, 0, -1], ancho: 130 }], ['mancuernas', { lado: 'i' }]],
+        vista: [[104, 10], [152, 14]], rastro: 'tli', esfuerzo: [3], clavos: K, clavosEn: { s: ['ti', 'td'] },      /* en s la mano aún cuelga suelta */
+        material: [ESCALON, ['pared', { z: 37.5 + ALTO_MUN, normal: [0, 0, -1], ancho: 130 }], ['mancuernas', { lado: 'i' }]],
         posturas: { s: en(0, { bd: aLosLados(8), md: SUELTA }), n: en(0, apoyada), a: en(-9, apoyada), b: en(40, apoyada) },
         inicio: 'b', encuadra: ['s', 'a'],
         rep: [['b', 0.5], ['a', 1.9, 'freno'], ['a', 0.35], ['b', 1.3, 'suave']],
-        pasos: ['s', { sec: [['n', 1.0, 'suave', T2], ['b', 1.3, 'suave', K]], desde: 's' }, 'rep']
+        pasos: ['s', { sec: [['n', 1.0, 'suave', K], ['b', 1.3, 'suave', K]], desde: 's' }, 'rep']        /* la mano va derecha a la pared: no se pasa */
       };
     })();
     /* con barra: la saca del soporte apoyada en la parte alta de la espalda, retrocede y separa los pies a la anchura de la cadera; con el
@@ -730,7 +730,7 @@
     /* el sóleo, en un escalón: apoya un pie entero en el escalón, mirando hacia delante; sin despegar el talón, lleva la rodilla hacia delante;
        mantiene, y repite con la otra pierna. Las manos, en la cintura (sujetarse es «si lo necesita») */
     COREO['estiramiento-soleo-escalon'] = (function () {
-      var cintura = { b: { a: [15.5, 3, 7], en: 'pelvis', polo: [1, 0, -0.9] }, m: SUELTA };
+      var cintura = { b: { a: [16, 13, 6], en: 'pelvis', polo: [1, 0, -0.3] }, m: SUELTA };      /* en la cintura, por encima del pliegue de la cadera: al subir la rodilla, el muslo no les llega */
       var enEsc = { suelo: [10, 26], abre: 2, alto: ALTO_E, polo: [0, 0.2, 1] }, atras = { suelo: [-10, -8], abre: 4 };
       var s = sobre(cintura, { pel: [0, PIE, -8], pi: { suelo: [10, -8], abre: 4 }, pd: atras });
       var a = sobre(cintura, { pel: [0, PIE - 2, 3], pi: enEsc, pd: atras }), b = sobre(cintura, { pel: [0, 81.7, 14.8], giro: [0, 4, 0], pi: enEsc, pd: atras });
@@ -790,11 +790,13 @@
       var P = function (g) { return arrodillado(ATRAS, -g, { hom: [-2.5, -2], cab: [g * 0.6, 0, 0], m: mano }); };
       var g = busca(function (q) { return largo(menos(resolver(P(q)).i.hom, Q)); }, D.brazo + D.antebrazo + D.dedos - 0.9, -8, 30);
       var e = estirado(P(g), Q, 'b', 0.6, [1, 0.2, -0.6]);
+      /* de arrodillado a sentado en los talones (y de vuelta), la cadera gira sobre las rodillas, que están en el suelo, en z = 0 */
+      var posturas = { k: k, e: e }, K = [5.5, 0], baja = porArco(posturas, 'ke', k, e, 'e', 2, 2.6, K), sube = porArco(posturas, 'ek', e, k, 'k', 2, 2.4, K);
       return {
         vista: [[96, 12], [146, 16]], isometrico: 'e',
-        posturas: { k: k, e: e },
+        posturas: posturas,
         inicio: 'k', encuadra: ['e'],
-        pasos: ['k', { sec: [['e', 2.6, 'suave']], desde: 'k' }, { sec: [['e', 3.6], ['k', 2.4, 'suave']], desde: 'e' }]
+        pasos: ['k', { sec: baja, desde: 'k' }, { sec: [['e', 3.6]].concat(sube), desde: 'e' }]
       };
     })();
     /* el tobillo, sentado: erguido en un banco, sujeto al asiento con las manos; estira una pierna y la levanta del suelo; lleva la punta del

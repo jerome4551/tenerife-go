@@ -263,31 +263,34 @@
     /* los ángeles: de espaldas a la pared (los talones, la cadera, los hombros y la nuca la tocan); los brazos, contra ella, con los
        codos en ángulo recto a la altura de los hombros; se estiran hacia arriba deslizándose por la pared y vuelven */
     COREO['angeles-en-pared'] = (function () {
-      var ZP = -13.4, base = { pel: [0, PIE - 0.5, -1.2], cab: [-3, 0, 0], p: { suelo: [9, ZP + D.talon + 0.6], abre: 5 } };
-      var mano = { tipo: 'abierta', palma: [0, 0, 1] };                                 /* el dorso, contra la pared */
-      var hy = resolver(base).i.hom[1], zc = ZP + 4.2;
+      var ZP = -13.4, base = { pel: [0, PIE - 0.9, -1.2], p: { suelo: [9, ZP + D.talon + 0.6], abre: 5 } };
+      /* el dorso de la mano, apoyado de plano en la pared (la palma mira hacia fuera de ella; la muñeca, a ALTO_MUN): los dedos siguen
+         la línea del antebrazo, que también la toca (el codo queda a 6 cm de ella: el antebrazo es más grueso que la mano) */
+      var dorso = function (dedos) { return apoyada(dedos, [0, 0, 1]); };
+      var hy = resolver(base).i.hom[1], zc = ZP + ALTO_MUN;
       return {
-        vista: [18, 62], rastro: 'manos', esfuerzo: [0], clavos: ['ti', 'td'],
+        vista: [18, 62], rastro: 'manos', esfuerzo: [0], clavos: ['ti', 'td', 'mi', 'md'],          /* las manos resbalan por la pared en línea recta */
+        clavosEn: { a: ['ti', 'td'] },                                                              /* antes de colocarlas, cuelgan sueltas */
         material: [['pared', { z: ZP, normal: [0, 0, 1], ancho: 170 }]],
         posturas: {
           a: sobre(base, { b: aLosLados(8), m: SUELTA }),
-          w: sobre(base, { b: { a: [D.hombroX + 26.2, hy + 23.6, zc], polo: [1, -0.25, -0.35] }, m: mano }),
-          y: sobre(base, { b: { a: [D.hombroX + 15, hy + 48.5, zc], polo: [1, -0.5, -0.3] }, m: mano })
+          w: sobre(base, { b: { a: [D.hombroX + 26.2, hy + 23.6, zc], polo: [1, -0.25, -0.2] }, m: dorso([0, 1, 0]) }),
+          y: sobre(base, { b: { a: [D.hombroX + 15, hy + 48.5, zc], polo: [1, -0.5, -0.3] }, m: dorso([0.27, 0.96, 0]) })
         },
         inicio: 'w', encuadra: ['y'],
         rep: [['y', 1.5, 'suave'], ['y', 0.4], ['w', 1.7, 'freno'], ['w', 0.4]],
-        pasos: ['a', { sec: [['w', 1.6, 'suave']], desde: 'a' }, 'rep', { rep: 1.9 }]
+        pasos: ['a', { sec: [['w', 1.6, 'suave', ['ti', 'td']]], desde: 'a' }, 'rep', { rep: 1.9 }]        /* al colocar los brazos, las manos van sueltas */
       };
     })();
     /* la flexión escapular: las manos en la pared y los brazos estirados, que no se doblan; el cuerpo se acerca (los omóplatos se
        juntan, atrás y abajo) y se aleja (la parte alta de la espalda se redondea y los omóplatos se separan) */
     COREO['flexion-escapular-pared'] = (function () {
-      var W = [19, 121, 49.5], mp = { tipo: 'abierta', prono: 90, mun: -68 };
+      var W = [19, 121, 49.5], ZP = W[2] + ALTO_MUN, mp = PLANA_PARED;       /* las palmas, de plano en la pared: las muñecas, a ALTO_MUN de ella */
       var recto = function (extra) { return function (fi) { return sobre({ pel: [0, 8 + 78 * Math.cos(fi * RAD), 78 * Math.sin(fi * RAD)], giro: [0, fi, 0], p: { suelo: [10, 0], abre: 4 }, b: { a: W, polo: [0.3, -1, -0.3] }, m: mp }, extra); }; };
       var n = aUnBrazo(recto({}), W, -8, 25), r = aUnBrazo(recto({ hom: [-1.2, -3.4], col: [-3, 0, 0] }), W, -8, 25), p = aUnBrazo(recto({ hom: [0.5, 3.8], col: [11, 0, 0], cab: [6, 0, 0] }), W, -8, 25);
       return {
         vista: [-86, -146], rastro: 'pecho', esfuerzo: [0, 1, 2, 3], clavos: ['mi', 'md', 'ti', 'td'],
-        material: [['pared', { z: 58, normal: [0, 0, -1], ancho: 130 }]],
+        material: [['pared', { z: ZP, normal: [0, 0, -1], ancho: 130 }]],
         posturas: { a: n, r: r, p: p },
         inicio: 'r',
         rep: [['p', 1.6, 'suave'], ['p', 0.8], ['r', 1.6, 'suave'], ['r', 0.7]],
@@ -296,7 +299,7 @@
     })();
     /* y a cuatro patas: las manos bajo los hombros y las rodillas bajo la cadera; los brazos, estirados, no se doblan */
     COREO['flexion-escapular-cuadrupedia'] = (function () {
-      var ZR = -34, YM = 5, mp = { tipo: 'abierta', prono: 90, mun: -78 };
+      var ZR = -34, YM = ALTO_MUN, mp = EN_SUELO;
       var piernas = { a: [10, 7, ZR - 38], polo: [0, -1, 0.3] }, pies = { punta: [0, -0.1, -1], arriba: [0, -1, 0.1] };
       var P = function (extra, w) { return function (cab) { return sobre({ pel: [0, 47, ZR], giro: [0, cab, 0], cab: [-10, 0, 0], p: piernas, t: pies, b: { a: w || [19, YM, 0], polo: [0.4, 0.2, -1] }, m: mp }, extra); }; };
       /* las manos, bajo los hombros de la postura neutra */
@@ -326,16 +329,19 @@
        con los hombros, no con la zona lumbar»: el tronco no se mueve; suben los hombros (atrás) y, con ellos, los brazos. */
     var Z_BA = -22;
     function bocaAbajo(extra) { return sobre({ pel: [0, 11.5, Z_BA], giro: [0, 90, 0], cab: [-9, 0, 0], p: { e: 0, z: 0, c: 0 }, t: { punta: [0, 0, -1], arriba: [0, -1, 0] } }, extra || {}); }
-    var SUELO_M = 4.6, ARRIBA_H = [-1.5, -3.2];
+    /* los brazos, apoyados: la mano, de canto (las palmas enfrentadas), con la muñeca a ALTO_CANTO del suelo y los dedos tendidos en él */
+    var SUELO_M = ALTO_CANTO, ARRIBA_H = [-1.5, -3.2];
     /* el brazo, estirado desde el hombro, a «ang» grados de la línea del cuerpo (0, por encima de la cabeza; 90, en cruz) y con la muñeca a «y» del suelo */
     function brazoEn(P, ang, y) {
       var h = resolver(P).i.hom, L = D.brazo + D.antebrazo - 0.4, k = Math.sqrt(1 - (y - h[1]) * (y - h[1]) / (L * L));
       return sobre(P, { b: { a: [h[0] + L * k * Math.sin(ang * RAD), y, h[2] + L * k * Math.cos(ang * RAD)], polo: [0.5, 0.2, -1] } });
     }
     function palmaA(ang) { return { tipo: 'plana', palma: [-Math.cos(ang * RAD), 0, Math.sin(ang * RAD)] }; }      /* hacia el eje del cuerpo: los pulgares, arriba */
+    /* la misma mano, apoyada en el suelo: los dedos, tendidos a lo largo del brazo (a «ang» grados de la línea del cuerpo) */
+    function enSuelo(m, ang) { return une(m, { dedos: [Math.sin(ang * RAD), 0, Math.cos(ang * RAD)] }); }
     /* la Y, la T y la I: se tumba; lleva los omóplatos abajo y atrás; despega los brazos y mantiene; y los apoya */
     function elevacionProna(ang, m, alto, pasos) {
-      var a = brazoEn(bocaAbajo({ m: m }), ang, SUELO_M), a2 = brazoEn(bocaAbajo({ m: m, hom: [-1.5, -1.4] }), ang, SUELO_M + 0.4), b = brazoEn(bocaAbajo({ m: m, hom: ARRIBA_H }), ang, alto);
+      var a = brazoEn(bocaAbajo({ m: enSuelo(m, ang) }), ang, SUELO_M), a2 = brazoEn(bocaAbajo({ m: enSuelo(m, ang), hom: [-1.5, -1.4] }), ang, SUELO_M + 0.4), b = brazoEn(bocaAbajo({ m: m, hom: ARRIBA_H }), ang, alto);
       return { vista: [[-38, 28], [-146, 34]], rastro: 'manos', isometrico: 'b', posturas: { a: a, a2: a2, b: b }, pasos: pasos };
     }
     var PASOS_4 = ['a', { sec: [['a2', 1.3, 'suave']], desde: 'a' }, { sec: [['b', 1.3, 'empuje'], ['b', 9]], desde: 'a2' }, { sec: [['b', 0.5], ['a', 1.7, 'suave']], desde: 'b' }];
@@ -347,7 +353,7 @@
       var m = { tipo: 'plana', palma: [0, -1, 0] }, w = function (z, h) { return bocaAbajo({ m: m, hom: h, b: { a: [47.5, 27, z], en: 'torax', polo: [0.85, -1, z > 0 ? 0.35 : -0.1] } }); };
       return {
         vista: [[-38, 28], [-146, 34]], rastro: 'manos', isometrico: 'b',
-        posturas: { a: w(7, [0, 0]), b: w(-3.5, [-1, -3.2]) },
+        posturas: { a: w(8.75, [0, 0]), b: w(-3.5, [-1, -3.2]) },        /* apoyados: la muñeca, a 2,75 cm del suelo (la palma, hacia abajo) */
         pasos: ['a', { sec: [['b', 1.4, 'empuje']], desde: 'a' }, { sec: [['b', 2.4], ['a', 1.6, 'suave']], desde: 'b' }]
       };
     })();
@@ -356,7 +362,7 @@
       var m = { tipo: 'plana', palma: [0, -1, 0] }, sube = bocaAbajo({ m: m, hom: [-1, -3] });
       return {
         vista: [[-38, 28], [-146, 34]], zoom: 0.92, rastro: 'manos', esfuerzo: [0, 1, 2, 3, 4],       /* en cruz, a medio barrido, las manos llegan al borde */
-        posturas: { a: brazoEn(bocaAbajo({ m: m }), 7, SUELO_M - 1.4), f: brazoEn(sube, 9, 19), t: brazoEn(sube, 90, 21), c: brazoEn(sube, 158, 20) },
+        posturas: { a: brazoEn(bocaAbajo({ m: enSuelo(m, 7) }), 7, ALTO_MUN + 0.05), f: brazoEn(sube, 9, 19), t: brazoEn(sube, 90, 21), c: brazoEn(sube, 158, 20) },
         inicio: 'f',
         rep: [['t', 1.7, 'entra'], ['c', 1.7, 'sale'], ['c', 0.4], ['t', 1.7, 'entra'], ['f', 1.7, 'sale'], ['f', 0.4]],
         pasos: ['a', { sec: [['f', 0.9, 'suave'], ['t', 1.6, 'entra'], ['c', 1.7, 'sale']], desde: 'a' },

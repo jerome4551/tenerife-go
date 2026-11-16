@@ -5,7 +5,10 @@
 <script>
 /* La página de tools/auditar_entrenador.js: monta el vídeo de un ejercicio con los datos de verdad de la app
    (datos/cuerpo/) y lo pasa entero, cuadro a cuadro, apuntando lo que se lee en cada paso. */
-var DATOS = '../../../datos/cuerpo/', EJ = null, TXS = {};
+var DATOS = '../../../datos/cuerpo/', EJ = null, TXS = {}, NOMBRES = {};
+/* los nombres de los grupos musculares, como los pone la app en cada idioma ({ idioma: { grupo: nombre } }; los lee la auditoría de
+   modulos/cuerpo.js): con ellos la leyenda mide lo que mide de verdad */
+window.nombrar = function (n) { NOMBRES = n || {}; return Object.keys(NOMBRES).length; };
 function pedir(f) { return fetch(DATOS + f).then(function (r) { if (!r.ok) throw new Error(f + ' ' + r.status); return r.json(); }); }
 window.preparar = function (idiomas) {
   return Promise.all([pedir('ejercicios.json')].concat(idiomas.map(function (l) { return pedir('ejercicios-' + l + '.json'); }))).then(function (r) {
@@ -18,11 +21,20 @@ window.R = null;
 window.montar = function (id, lang, tema) {
   if (window.R) { window.R.quitar(); window.R = null; }
   var x = EJ[id], t = (TXS[lang] || {})[id] || TXS.es[id], nombres = {};
-  x.g.concat(x.s).forEach(function (g) { nombres[g] = g; });
+  x.g.concat(x.s).forEach(function (g) { nombres[g] = (NOMBRES[lang] && NOMBRES[lang][g]) || g; });
   window.R = TG_ENTRENADOR.montar(document.getElementById('caja'), { id: id, nombre: t[0], pasos: t[1], pasosEs: TXS.es[id][1], prim: x.g, sec: x.s.filter(function (g) { return x.g.indexOf(g) < 0; }),
     nombres: nombres, etiquetas: [x.e[0]], entorno: x.e[0], nivel: x.n }, { idioma: lang, tema: tema || 'dia' });
   return window.R ? { pasos: t[1], nombre: t[0], dur: window.R.tramos.reduce(function (a, q) { return a + q.dur; }, 0),
     durs: window.R.tramos.filter(function (q) { return q.tipo === 'paso'; }).map(function (q) { return q.dur; }) } : null;
+};
+/* la leyenda de músculos del vídeo montado: va en su fila, debajo del dibujo (dentro, tapaba a Jérôme). Dónde está, si pisa el
+   dibujo, si algo suyo se sale del ancho del reproductor, y lo que pone */
+window.leyenda = function () {
+  var R = window.R, l = R.musc, esc = R.raiz.querySelector('.tgv-escena'), a = l.getBoundingClientRect(), b = esc.getBoundingClientRect(), c = R.raiz.getBoundingClientRect();
+  var pisa = Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)), sale = 0, i, q;
+  for (i = 0; i < l.children.length; i++) { q = l.children[i].getBoundingClientRect(); sale = Math.max(sale, q.right - c.right, c.left - q.left); }
+  return { dentro: esc.contains(l), pisa: Math.round(pisa), sale: Math.round(sale * 10) / 10, alto: Math.round(a.height), bajo: Math.round(a.top - b.bottom), n: l.children.length,
+    textos: Array.prototype.map.call(l.children, function (s) { return s.textContent; }), ancho: document.documentElement.scrollWidth, vista: document.documentElement.clientWidth };
 };
 /* la cabeza, vista desde todos los lados (cada 15° de rumbo, y desde arriba y desde abajo): que no salga ningún número
    imposible y que los rasgos se escondan cuando toca */

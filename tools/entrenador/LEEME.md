@@ -35,7 +35,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
-| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), el repaso paso a paso contra la ficha (`repaso.py`), las medidas de una postura (`mide.js`), el camino de una postura a otra (`camino.js`: dónde una zapatilla baja del suelo), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
+| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), el repaso paso a paso contra la ficha (`repaso.py`), las medidas de una postura (`mide.js`), el camino de una postura a otra (`camino.js`: dónde una zapatilla baja del suelo), los contactos (`contactos.js`: el suelo, las paredes, la mano que se apoya y las manos en los muslos, de todas o de una; lo usa la auditoría), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
 | `muestra/` | la página de muestra (un solo fichero, para enseñarla en el móvil) |
 
 ## La regla
@@ -72,6 +72,7 @@ Con `bi`/`bd`, `mi`/`md`, `pi`/`pd`, `ti`/`td` se da cada lado por separado.
 | `b: { cuelga: [dx, dz], largo }` | el brazo colgando a plomo del hombro (peso muerto) |
 | `m: { tipo, prono, mun, lat }` | la mano: `puno`, `abierta`, `plana`, `suelta`, `indice`, `pulgar`, `separados` (abierta, con los dedos bien separados) y `yemas` (esa misma en tienda: apoyada solo en las yemas y el pulgar, o en garra sobre algo ancho); un gesto pasa a otro poco a poco: los dedos se cierran, no saltan. `prono` 90 palma abajo o atrás, −90 arriba o adelante; `mun`, cuánto se dobla la muñeca (+ hacia la palma, − hacia el dorso); `lat`, cuánto se ladea (+ hacia el pulgar en la mano izquierda; no se refleja en la derecha) |
 | `m: { tipo, barra: [x, y, z], palma: [x, y, z] }` | la mano que **agarra algo**: se dice, en el mundo, a lo largo de qué va lo que agarra (`barra`) y hacia dónde mira la palma (`palma`; con `barra`, solo de qué lado queda), y el antebrazo gira lo que haga falta, esté el codo donde esté. `EN_BARRA` (la palma hacia delante: una dominada, un press tumbado), `EN_BARRA_SUP` (hacia él). Con `prono` solo, el puño gira con el codo y acaba atravesado en la barra |
+| `m: { tipo, palma: [x, y, z], dedos: [x, y, z] }` | la mano que **se apoya de plano** en algo: se dice, en el mundo, hacia dónde mira la palma y hacia dónde van los dedos, y la mano se queda así haga lo que haga el antebrazo (sin `dedos`, los dedos siguen la línea del antebrazo y la mano se inclina con él: las yemas se hunden o el talón de la mano se levanta). `apoyada(dedos, palma, tipo)` la escribe; `EN_SUELO` (la palma abajo, los dedos al frente) y `PLANA_PARED` (la palma hacia la pared de delante, los dedos arriba). La muñeca de una mano apoyada va a **`ALTO_MUN` (2,7 cm)** de su superficie; de canto (el meñique abajo), a `ALTO_CANTO` (5,1) |
 | `p: { suelo: [x, z], abre, talon, alto, polo }` | el pie plantado: dónde cae el tobillo, cuánto apunta hacia fuera, cuánto sube el talón, sobre qué altura pisa |
 | `p: { a: [x, y, z], polo }` · `p: { e, z, g, c }` | la pierna por destino del tobillo, o por ángulos (colgado, tumbado) |
 | `t: { punta, arriba, flex }` · `t: { tob }` | el pie a mano (vectores del mundo; `flex`, cuánto se dobla la zapatilla por la bola del pie) o el ángulo del tobillo |
@@ -103,7 +104,9 @@ para entrar en ese segundo del ciclo), una secuencia que se toca una vez
 
 Más claves: `material: [['barra', {…}], …]`, `inicio`, `encuadra: [...]` (posturas que también tienen
 que caber), `isometrico: 'c'`, `reposo: ['a0']` (el material espera en su sitio), `sinClavos: ['f']`
-(posturas en las que ya se ha soltado), `picado` (16 para los ejercicios de suelo), `zoom`, `corre: [dx, dy]` (el
+(posturas en las que ya se ha soltado), `clavosEn: { s: ['ti', 'td'] }` (lo que va clavado mientras se mantiene esa
+postura, si no es lo de `clavos`: una mano solo se clava donde agarra o apoya; la que cuelga suelta mientras espera, no:
+clavada en el aire, el cuerpo, que respira y se balancea, se le echa encima), `picado` (16 para los ejercicios de suelo), `zoom`, `corre: [dx, dy]` (el
 encuadre, corrido eso en las dos vistas, en px de los 400 del dibujo: en un pino, la cabeza y las manos caen justo
 bajo los rótulos de los músculos, y con `corre: [50, 0]` quedan a su derecha), `sobreManos: true` (anda sobre las
 manos: el tronco no va un instante detrás de la cadera, que es lo que hace «la vida» en los demás; con los brazos
@@ -298,7 +301,8 @@ ninguna coreografía los usa todavía: están sin probar.
    auditoría lo mide y dice cuáles se arriman más. Si uno toca el borde, `zoom: 0.92` (o menos) en su coreografía.
 3. Verla en el reproductor de verdad, paso a paso, **con el texto de cada paso al lado**:
    `python3 tools/entrenador/pruebas/repaso.py carpeta "id1,id2,…"` (una hoja por ejercicio: una fila por paso, y la
-   vista de «Girar»). Para un momento concreto: `python3 tools/entrenador/pruebas/tira.py salida.png <id> "p1+2,p2+1.5,p3+2,c+2"`
+   vista de «Girar»). Y un tramo, instante a instante y desde donde haga falta: `pruebas/vistas.html?id=<id>&rumbos=90,20&ts=0,0.5,1`
+   (segundos de la repetición) o `…&paso=2&ts=0.3,0.6,0.9` (segundos de la secuencia de ese paso). Para un momento concreto: `python3 tools/entrenador/pruebas/tira.py salida.png <id> "p1+2,p2+1.5,p3+2,c+2"`
    (o varios de golpe, dos fotogramas por paso: `pruebas/flujo.py salida.png "id1,id2,…"`).
 4. **El camino de una postura a otra**: `TODO=1 node tools/entrenador/pruebas/camino.js <id>` dice en qué tramos una
    zapatilla baja del suelo. Un pie clavado va en línea recta de un tobillo al otro: si entre tanto gira (de plano a de
@@ -312,10 +316,35 @@ ninguna coreografía los usa todavía: están sin probar.
    también las rodillas: con el pecho hacia ella se doblan hacia la pared, y junto a ella no caben (el centro de la rodilla
    tiene que quedar a 7 cm o más, que es lo que mide con su rótula). En el pino contra la pared el cuerpo se dobla por la
    cadera, que se aleja de la pared, y las rodillas se abren un poco hacia fuera.
+   **Y se comprueba**: `node tools/entrenador/pruebas/contactos.js <id>` da, de ese ejercicio, lo más hundido de cada
+   cosa en el suelo y en cada pared, a cuánto queda de su superficie la mano que se apoya, y lo que una mano se mete en un
+   muslo (en cada tramo, en cada postura mantenida y en el vídeo cuadro a cuadro, con Jérôme respirando). Sin argumentos,
+   las repasa todas y dice cuáles se salen de los límites (`LIMITES`, en ese fichero): una zapatilla o una mano, 1 cm en el
+   suelo o en una pared; la mano apoyada, a menos de 1 cm; una mano en un muslo, 1 cm quieta y 2 de paso. La auditoría lo
+   pasa entero (sección 1).
 6. `python3 tools/entrenador/construir.py` y `node tools/auditar_entrenador.js 8766`.
 
 Para grabar un MP4 (1080 × 1920, 30 cuadros por segundo): `python3 tools/entrenador/pruebas/graba.py salida.mp4 <id> [idioma] [--lento]`
 (`--lento`: a cámara lenta, con «½×»).
+
+## Las manos y los muslos (`60-director.js`, `20-figura.js`)
+
+Una mano no se mete en un muslo. Lo cuida el Director, no cada coreografía:
+
+- **Cada postura clave se resuelve con las manos fuera** (`clave`): la mano que la coreografía deja dentro de un muslo sale
+  hacia fuera de su eje hasta no tocarlo (menos las clavadas en esa postura: esas van donde se les dice).
+- **En cada cuadro, lo que roza se aparta** (`despejar`, con `apartaMano`): la mano entera, como se dibuja, contra la piel
+  y la pernera de los dos muslos.
+- **La mano que iba a cruzar un muslo por dentro lo rodea** (`rodeoDe`, `rodear`): entre dos posturas la mano va por donde
+  la lleva el brazo, y ese camino a veces atraviesa un muslo. De cada tramo se mira una vez; si se mete hondo, el trozo que
+  pasa cerca del muslo se cambia por otro que gira alrededor de él, abierto lo justo para que pase la mano entera.
+- **Lo apartado no da tirones** (`suave`): de un cuadro al siguiente cambia como mucho 90 cm/s.
+
+Lo que sí toca a la coreografía: las manos «en la cadera» van **en la cintura** (`{ a: [16, 13, 6], en: 'pelvis', polo:
+[1, 0, -0.3] }`), por encima del pliegue de la cadera, porque más abajo el muslo se les echa encima en cuanto se dobla la
+cadera; las manos que agarran el borde de un banco junto a la cadera, a 29 cm del centro (la mano entera, con su pulgar,
+fuera del muslo); una barra que sube pegada a las piernas se agarra por fuera de ellas (27 cm); y una mano que cuelga no
+se clava (`clavosEn`).
 
 ## El dibujo
 

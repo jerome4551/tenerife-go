@@ -60,9 +60,10 @@
 '.tgv-etiquetas { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }',
 '.tgv-etiquetas span { padding: 2px 9px; border-radius: 999px; border: 1px solid rgba(255,255,255,.5); color: #fff; font-size: 12px; }',
 /* los músculos que trabajan: la leyenda, sobre la escena */
-'.tgv-musc { position: absolute; z-index: 3; left: 12px; bottom: 12px; display: grid; gap: 4px; justify-items: start; pointer-events: none; transition: opacity .3s ease; max-width: 62%; }',
-'.tgv-musc span { display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px 2px 7px; border-radius: 999px; background: rgba(13,20,36,.5); color: #fff; font-size: 11.5px; font-weight: 600; line-height: 1.5; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }',
-'.tgv-musc i { width: 9px; height: 9px; border-radius: 50%; flex: none; background: #FFE48A; box-shadow: 0 0 0 2px rgba(255,160,74,.55); }',
+/* la leyenda de músculos: en su fila, debajo del vídeo (dentro del dibujo tapaba a Jérôme: los pies, las manos…) */
+'.tgv-musc { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 6px; min-width: 0; min-height: 23px; margin: -2px 2px; transition: opacity .3s ease; }',
+'.tgv-musc span { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 1px 10px 1px 8px; border-radius: 999px; border: 1px solid var(--tv-linea); background: var(--tv-fondo); color: var(--tv-tinta); font-size: 11.5px; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }',
+'.tgv-musc i { width: 9px; height: 9px; border-radius: 50%; flex: none; background: #FFD24A; box-shadow: 0 0 0 2px rgba(255,150,60,.75); }',
 '.tgv-musc .sec i { background: #EE5F7E; box-shadow: none; }',
 '.tgv-oculto { opacity: 0 !important; }',
 /* las zonas de toque: atrás, pausa, adelante */
@@ -216,7 +217,7 @@
     this.nombre = el('p', 'tgv-nombre', datos.nombre); tit.appendChild(this.nombre);
     var etq = el('div', 'tgv-etiquetas'); (datos.etiquetas || []).forEach(function (e) { etq.appendChild(el('span', '', e)); }); tit.appendChild(etq);
     escena.appendChild(tit);
-    /* la leyenda de músculos */
+    /* la leyenda de músculos (se cuelga más abajo, en el pie: aparece y desaparece sin que nada se mueva de sitio) */
     var mus = el('div', 'tgv-musc tgv-oculto'); this.musc = mus;
     var nomb = datos.nombres || {};
     (datos.prim || []).forEach(function (g) { var s = el('span'); s.appendChild(el('i')); s.appendChild(document.createTextNode(nomb[g] || g)); mus.appendChild(s); });
@@ -224,7 +225,6 @@
     if (secs.length > cabenSec) cabenSec = Math.max(1, cabenSec - 1);
     secs.slice(0, cabenSec).forEach(function (g) { var s = el('span', 'sec'); s.appendChild(el('i')); s.appendChild(document.createTextNode(nomb[g] || g)); mus.appendChild(s); });
     if (secs.length > cabenSec) { var mas2 = el('span', 'sec'); mas2.appendChild(el('i')); mas2.appendChild(document.createTextNode('+' + (secs.length - cabenSec))); mas2.title = secs.slice(cabenSec).map(function (g) { return nomb[g] || g; }).join(', '); mus.appendChild(mas2); }
-    escena.appendChild(mus);
     /* las zonas de toque */
     var zona = function (cls, rot, f) { var b = el('button', 'tgv-zona ' + cls); b.type = 'button'; b.setAttribute('aria-label', rot); b.addEventListener('click', f); escena.appendChild(b); return b; };
     zona('izq', T('entAnt'), function () { yo.irA(yo.n - 1); });
@@ -234,8 +234,9 @@
     this.gran.addEventListener('click', function () { if (yo.fin) yo.irA(0); yo.reproducir(); });
     escena.appendChild(this.gran);
     this.corte = el('div', 'tgv-corte'); escena.appendChild(this.corte);
-    /* debajo: el paso y los mandos */
+    /* debajo: la leyenda de músculos (en su fila: ya no va sobre el dibujo), el paso y los mandos */
     var pie = el('div', 'tgv-pie');
+    pie.appendChild(mus);
     var paso = el('div', 'tgv-paso'); paso.setAttribute('aria-live', 'polite');
     this.pasoN = el('span', 'tgv-paso-n'); this.pasoT = el('p', 'tgv-paso-t');
     this.pasoL = el('span', 'tgv-solo-lector');       /* el paso entero, de una vez, para los lectores de pantalla */

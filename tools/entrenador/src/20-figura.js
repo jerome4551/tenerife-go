@@ -514,8 +514,8 @@
       /* el brazo: el dobladillo de la manga */
       s = pieza(gb, CUERPO.brazo, L.hom, L.uw, L.frenteBrazo, hom, cod, false, zB <= zA);
       pon(gb.dob, 'd', aro(cam, mas(L.hom, mas(por(L.uw, 13.2), mas(por(s, 0.5), por(L.frenteBrazo, 0.5)))), por(s, 6.6), por(L.frenteBrazo, 7.0), 1.5)); pon(gb.dob, 'stroke-width', n2(1.2 * esc)); pon(gb.dob, 'opacity', '.8');
-      s = pieza(ga, CUERPO.ante, L.cod, L.lw, L.frenteBrazo, cod, mun, zA < zB, zA <= zMano);
-      if (ga.rayas) { pon(ga.rayas, 'd', aro(cam, mas(L.cod, por(L.lw, 20.6)), por(s, 4.1), por(L.frenteBrazo, 3.7), 1.5)); pon(ga.rayas, 'stroke-width', n2(0.9 * esc)); }
+      s = pieza(ga, CUERPO.ante, L.cod, L.lw, L.frenteAnte, cod, mun, zA < zB, zA <= zMano);
+      if (ga.rayas) { pon(ga.rayas, 'd', aro(cam, mas(L.cod, por(L.lw, 20.6)), por(s, 4.1), por(L.frenteAnte, 3.7), 1.5)); pon(ga.rayas, 'stroke-width', n2(0.9 * esc)); }
       lista.push({ z: zM, el: gm, pts: [L.cad, L.rod] }, { z: zQ, el: gq, pts: [L.rod, L.tob] }, { z: zB, el: gb, pts: [L.hom, L.cod] }, { z: zA, el: ga, pts: [L.cod, L.mun] });
       yo.mano(k, L, cam, lista, E.S.m[k], zMano < zA);
       yo.pie(k, L, cam, lista);
@@ -526,29 +526,23 @@
      La palma es una masa; cada dedo, tres falanges que se doblan hacia la palma; el pulgar, dos.
      Según el gesto: abierta, suelta, puño (también agarrando), índice (los demás, cerrados) y pulgar. */
   var DEDOS = [[3.15, 6.7, 1.14, 7], [1.05, 7.6, 1.17, 1.5], [-1.05, 7.1, 1.1, -4], [-3.0, 5.6, 0.97, -10]];     /* a un lado, largo, grosor, abanico */
-  var ABRE = [4, 4, 2], CIERRA = [80, 96, 60];
-  Figura.prototype.mano = function (k, L, cam0, lista, M, bola) {
-    var g = this.P['mano' + k], KM = 1.12, m = L.mano, W = L.mun, dir = m.dir, eje = m.eje, pal = m.palma;
-    /* la mano, un punto más grande que la del esqueleto (es un dibujo): todo crece desde la muñeca */
-    var cam = { p: function (q) { return cam0.p(mas(W, por(menos(q, W), KM))); }, d: function (v) { return cam0.d(v); }, k: cam0.k, esc: cam0.esc * KM }, esc = cam.esc;
-    var c = M.c == null ? 0.3 : M.c, ci = M.ci == null ? c : M.ci, abn = M.ab == null ? 0.3 : M.ab, pu = M.pu || 0;
-    var deCara = punto(pal, cam.k) >= 0;
-    /* la palma mira a la cámara: los dedos y el pulgar, por encima; si no, por debajo */
-    if (g._cara !== deCara) { g._cara = deCara; if (deCara) { g.appendChild(g.gd); g.appendChild(g.gu); } else { g.insertBefore(g.gd, g.gp); g.insertBefore(g.gu, g.gp); } }
-    var a2 = cam.p(W), b2 = cam.p(L.dedos), v = haciaLuz(a2, b2);
-    var Hp = masa(cam, W, dir, eje, pal, [[0, 3.2, 2.4], [3, 4.1, 2.1, 0.1, 0], [6.6, 4.55, 1.85], [9.1, 4.3, 1.5]], bola ? 3 : 2, bola ? 0 : 1);
-    var T = new Tintas(); T.pon(Hp, v, 3.6 * esc, false); vuelca(g.palma, T);
+  var ABRE = [4, 4, 2], CIERRA = [80, 96, 60], KM = 1.12;
+  var PALMA = [[0, 3.2, 2.4], [3, 4.1, 2.1, 0.1, 0], [6.6, 4.55, 1.85], [9.1, 4.3, 1.5]];
+  /* los huesos de la mano con su gesto, en el mundo y a su medida (sin agrandar): de cada dedo, sus cuatro puntos (la base y el
+     final de cada falange); y los tres del pulgar. Los usan el dibujo y la medida de los contactos: son los mismos */
+  function huesosMano(L, M) {
+    var m = L.mano, W = L.mun, dir = m.dir, eje = m.eje, pal = m.palma;
+    var c = M.c == null ? 0.3 : M.c, ci = M.ci == null ? c : M.ci, abn = M.ab == null ? 0.3 : M.ab, pu = M.pu || 0, H = { dedos: [], pulgar: null };
     for (var f = 0; f < 4; f++) {
       var q = DEDOS[f], cf = f === 0 ? ci : c;
       var ab = q[3] * abn * RAD, base = mas(W, mas(por(dir, 9.0 - Math.abs(f - 1.3) * 0.45), por(eje, q[0])));
-      var d0 = mas(por(dir, Math.cos(ab)), por(eje, Math.sin(ab))), acum = 0, p = base, s = '', lf = [0.44, 0.31, 0.25];
+      var d0 = mas(por(dir, Math.cos(ab)), por(eje, Math.sin(ab))), acum = 0, p = base, lf = [0.44, 0.31, 0.25], P = [base];
       for (var j = 0; j < 3; j++) {
         acum += (ABRE[j] + (CIERRA[j] - ABRE[j]) * cf) * RAD;
         var dd = mas(por(d0, Math.cos(acum)), por(pal, Math.sin(acum))), p2 = mas(p, por(dd, q[1] * lf[j]));
-        s += capsula(cam.p(p), q[2] * (1 - j * 0.07) * esc, cam.p(p2), q[2] * (0.93 - j * 0.07) * esc);
-        p = p2;
+        P.push(p2); p = p2;
       }
-      pon(g.dedos[f], 'd', s);
+      H.dedos.push(P);
     }
     /* el pulgar: abierto hacia su lado, cruzado por delante del puño o levantado; entre uno y otro, lo que toque */
     var u0 = mas(W, mas(por(dir, 2.7), mas(por(eje, 3.3), por(pal, 0.7))));
@@ -557,6 +551,25 @@
     var u1 = pto(5.1, 6.3, 0.7, 5.6, 4.0, 2.4, 3.2, 7.3, 0.7), u2 = pto(7.4, 8.7, 0.7, 8.2, 0.9, 3.7, 3.0, 11.0, 0.7);
     /* y el pulgar que apoya (M.ap): baja hacia el lado de la palma hasta donde llegan las yemas de los demás dedos */
     if (M.ap > 0) { u1 = mezcla(u1, mas(W, mas(por(dir, 4.3), mas(por(eje, 5.6), por(pal, 3.3)))), M.ap); u2 = mezcla(u2, mas(W, mas(por(dir, 5.0), mas(por(eje, 6.6), por(pal, 7.1)))), M.ap); }
+    H.pulgar = [u0, u1, u2];
+    return H;
+  }
+  Figura.prototype.mano = function (k, L, cam0, lista, M, bola) {
+    var g = this.P['mano' + k], m = L.mano, W = L.mun, dir = m.dir, eje = m.eje, pal = m.palma;
+    /* la mano, un punto más grande que la del esqueleto (es un dibujo): todo crece desde la muñeca */
+    var cam = { p: function (q) { return cam0.p(mas(W, por(menos(q, W), KM))); }, d: function (v) { return cam0.d(v); }, k: cam0.k, esc: cam0.esc * KM }, esc = cam.esc;
+    var deCara = punto(pal, cam.k) >= 0, HM = huesosMano(L, M);
+    /* la palma mira a la cámara: los dedos y el pulgar, por encima; si no, por debajo */
+    if (g._cara !== deCara) { g._cara = deCara; if (deCara) { g.appendChild(g.gd); g.appendChild(g.gu); } else { g.insertBefore(g.gd, g.gp); g.insertBefore(g.gu, g.gp); } }
+    var a2 = cam.p(W), b2 = cam.p(L.dedos), v = haciaLuz(a2, b2);
+    var Hp = masa(cam, W, dir, eje, pal, PALMA, bola ? 3 : 2, bola ? 0 : 1);
+    var T = new Tintas(); T.pon(Hp, v, 3.6 * esc, false); vuelca(g.palma, T);
+    for (var f = 0; f < 4; f++) {
+      var q = DEDOS[f], hd = HM.dedos[f], s = '';
+      for (var j = 0; j < 3; j++) s += capsula(cam.p(hd[j]), q[2] * (1 - j * 0.07) * esc, cam.p(hd[j + 1]), q[2] * (0.93 - j * 0.07) * esc);
+      pon(g.dedos[f], 'd', s);
+    }
+    var u0 = HM.pulgar[0], u1 = HM.pulgar[1], u2 = HM.pulgar[2];
     pon(g.pulgar, 'd', capsula(cam.p(u0), 1.75 * esc, cam.p(u1), 1.4 * esc) + capsula(cam.p(u1), 1.4 * esc, cam.p(u2), 1.18 * esc));
     /* los nudillos, si se ve el dorso */
     var nd = '';
@@ -587,6 +600,141 @@
     });
     return min;
   }
+  /* ── lo que mide el dibujo ──
+     A qué distancia queda de un plano (el suelo, una pared, lo alto de un escalón) lo más cercano de cada pieza tal como se dibuja:
+     0, lo toca; negativo, se mete en él. El plano es un punto (P0) y su normal (n, unidad) hacia el lado libre. Y cuánto se mete una
+     mano en un muslo. Lo usa tools/auditar_entrenador.js (los contactos); el vídeo, no. */
+  function seccAPlano(O, e, s, f, secc, P0, n, k, en) {
+    var ne = punto(n, e), ns = punto(n, s), nf = punto(n, f), d0 = punto(n, menos(O, P0)), min = 1e9, i, q;
+    k = k || 1;
+    for (i = 0; i < secc.length; i++) {
+      q = secc[i];
+      if (en && !en(mas(O, por(mas(por(e, q[0]), mas(por(s, q[3] || 0), por(f, q[4] || 0))), k)))) continue;      /* fuera del paño: no cuenta */
+      min = Math.min(min, d0 + k * (ne * q[0] + ns * (q[3] || 0) + nf * (q[4] || 0) - Math.sqrt(ns * ns * q[1] * q[1] + nf * nf * q[2] * q[2])));
+    }
+    return min;
+  }
+  /* las bolas de la mano dibujada (la palma, las falanges y el pulgar): [centro, radio], ya agrandadas */
+  function bolasMano(L, M) {
+    var W = L.mun, m = L.mano, H = huesosMano(L, M), B = [], f, j;
+    var pon1 = function (p, r) { B.push([mas(W, por(menos(p, W), KM)), r * KM]); };
+    for (f = 0; f < 4; f++) for (j = 0; j < 4; j++) pon1(H.dedos[f][j], DEDOS[f][2] * (j ? 1 - j * 0.07 : 1));
+    pon1(H.pulgar[0], 1.75); pon1(H.pulgar[1], 1.4); pon1(H.pulgar[2], 1.18);
+    /* la palma: en cada sección, su centro y sus dos lados, con medio grosor de radio */
+    PALMA.forEach(function (q) { [-1, 0, 1].forEach(function (u) { pon1(mas(W, mas(por(m.dir, q[0]), por(m.eje, (q[3] || 0) + u * (q[1] - q[2])))), q[2]); }); });
+    return B;
+  }
+  /* «en» (opcional, en todas): una función que dice si un punto cae en el paño que se mide (una pared estrecha, la tapa de un banco):
+     lo que queda fuera de él no cuenta. Sin ella, el plano no tiene bordes */
+  function manoAPlano(L, M, P0, n, en) {
+    var m = L.mano, min = seccAPlano(L.mun, m.dir, m.eje, m.palma, PALMA, P0, n, KM, en), B = bolasMano(L, M), i;
+    for (i = 0; i < 19; i++) if (!en || en(B[i][0])) min = Math.min(min, punto(n, menos(B[i][0], P0)) - B[i][1]);          /* los dedos y el pulgar */
+    return min;
+  }
+  function zapaAPlano(L, k, P0, n, en) {
+    var sg = k === 'i' ? 1 : -1, fl = (L.flex || 0) * RAD, cf = Math.cos(fl), sf = Math.sin(fl);
+    var lado = por(unidad(cruz(L.arriba, L.punta), [1, 0, 0]), sg), bola = mas(L.suela, por(L.punta, D.bola));
+    var pf = mas(por(L.punta, cf), por(L.arriba, sf)), af = mas(por(L.arriba, cf), por(L.punta, -sf)), min = 1e9, nl = punto(n, lado);
+    [ZAPA.piso, ZAPA.media, ZAPA.pala].forEach(function (S) {
+      S.forEach(function (q) {
+        var atras = q[0] <= D.bola, nu = punto(n, atras ? L.arriba : af);
+        var c = atras ? mas(L.suela, mas(por(L.punta, q[0]), por(L.arriba, q[3]))) : mas(bola, mas(por(pf, q[0] - D.bola), por(af, q[3])));
+        if (en && !en(c)) return;
+        min = Math.min(min, punto(n, menos(c, P0)) - Math.sqrt(nl * nl * q[1] * q[1] + nu * nu * q[2] * q[2]));
+      });
+    });
+    return min;
+  }
+  /* un miembro: 'muslo', 'pierna' (con su rótula), 'brazo' o 'ante'; su piel */
+  function miembroAPlano(E, k, cual, P0, n, en) {
+    var L = E[k], sg = k === 'i' ? -1 : 1, O, e, f;
+    if (cual === 'muslo') { O = L.cad; e = L.qu; f = L.frenteMuslo; } else if (cual === 'pierna') { O = L.rod; e = L.ql; f = L.frentePierna; }
+    else if (cual === 'brazo') { O = L.hom; e = L.uw; f = L.frenteBrazo; } else { O = L.cod; e = L.lw; f = L.frenteAnte; }
+    var s = por(unidad(cruz(e, f), [1, 0, 0]), sg), min = 1e9;
+    CUERPO[cual].piel.forEach(function (q) {
+      /* con las tapas redondas de sus extremos (la bola del codo, de la rodilla, de la muñeca, del tobillo), como las pone masa():
+         la bola es de la pieza que se pinta primero, que depende de la cámara, así que aquí cuentan las de las dos */
+      var S = q.s.slice(), tp = (q.t || 0) | (q.une === 'ppio' || q.une2 === 'ppio' ? 1 : 0) | (q.une === 'fin' || q.une2 === 'fin' ? 2 : 0), z, w;
+      if (tp & 1) { z = q.s[0]; w = Math.min(z[1], z[2]); S.push([z[0] - w * 0.5, z[1] * 0.86, z[2] * 0.86, z[3] || 0, z[4] || 0], [z[0] - w * 0.88, z[1] * 0.46, z[2] * 0.46, z[3] || 0, z[4] || 0]); }
+      if (tp & 2) { z = q.s[q.s.length - 1]; w = Math.min(z[1], z[2]); S.push([z[0] + w * 0.5, z[1] * 0.86, z[2] * 0.86, z[3] || 0, z[4] || 0], [z[0] + w * 0.88, z[1] * 0.46, z[2] * 0.46, z[3] || 0, z[4] || 0]); }
+      min = Math.min(min, seccAPlano(O, e, s, f, S, P0, n, 1, en));
+    });
+    return min;
+  }
+  function troncoAPlano(E, P0, n, en) {
+    var bases = { p: [E.Bp, E.pel], l: [E.Bl, E.lum], t: [E.Bt, E.tor] }, min = 1e9;
+    SECC.forEach(function (q) {
+      var B = bases[q[0]][0], c = mas(bases[q[0]][1], aplicar(B, [0, q[1], q[4]])), na = punto(n, B[0]) * q[2], nb = punto(n, B[2]) * q[3];
+      if (en && !en(c)) return;
+      min = Math.min(min, punto(n, menos(c, P0)) - Math.sqrt(na * na + nb * nb));
+    });
+    return min;
+  }
+  /* cuánto se mete la mano k en el muslo m (su piel y, arriba, la pernera): > 0, dentro; 0, lo toca; < 0, separada. Entre «desde» y
+     «hasta» centímetros de la cadera (por defecto, de 8 a 37: ni la cadera ni la rodilla) */
+  function manoEnMuslo(E, k, m, desde, hasta) {
+    var L = E[m], O = L.cad, e = L.qu, f = L.frenteMuslo, s = por(unidad(cruz(e, f), [1, 0, 0]), m === 'i' ? -1 : 1), B = bolasMano(E[k], E.S.m[k]), max = -1e9;
+    var en = function (S, t) {            /* la sección de una masa a t de la cadera: [semiancho, semifondo, a un lado, al frente] */
+      if (t < S[0][0] || t > S[S.length - 1][0]) return null;
+      for (var i = 1; i < S.length; i++) if (t <= S[i][0]) { var a = S[i - 1], b = S[i], u = (t - a[0]) / ((b[0] - a[0]) || 1); return [a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u, (a[3] || 0) + ((b[3] || 0) - (a[3] || 0)) * u, (a[4] || 0) + ((b[4] || 0) - (a[4] || 0)) * u]; }
+      return null;
+    };
+    B.forEach(function (q) {
+      var v = menos(q[0], O), t = punto(v, e);
+      if (t < (desde == null ? 8 : desde) || t > (hasta == null ? 37 : hasta)) return;
+      [CUERPO.muslo.piel[0].s, CUERPO.muslo.tela[0].s].forEach(function (S) {
+        var c = en(S, t); if (!c) return;
+        var x = punto(v, s) - c[2], z = punto(v, f) - c[3], ro = Math.sqrt(x * x + z * z) || 1e-6, cx = x / ro, cz = z / ro;
+        max = Math.max(max, c[0] * c[1] / Math.sqrt(c[1] * c[1] * cx * cx + c[0] * c[0] * cz * cz) + q[1] - ro);
+      });
+    });
+    return max;
+  }
+  /* ── las manos no se meten en los muslos ──
+     apartaMano(E, k): cuánto y hacia dónde hay que mover la muñeca k para que su mano (tal como se dibuja) salga de los dos muslos
+     (su piel y, arriba, la pernera), y cómo de adentro está. Devuelve { v, c } o null si no toca ninguno:
+     · v: la media de lo que pide cada parte metida (lo que se mete, hacia fuera del eje del muslo), pesando mucho más la que más: si
+       todas piden lo mismo, es casi lo de la más metida (y el Director repite hasta acabar de sacarla); si unas piden un lado y
+       otras el contrario, se anulan poco a poco;
+     · c: lo cerca del eje que llega lo más metido (1, en la piel; 0, en el eje).
+     Cuenta el muslo de 8 a 37 cm de la cadera; hacia la cadera y hacia la rodilla se va afinando hasta quedar en nada (de 8 a 4 y de
+     37 a 40): las manos en la cintura y en las rodillas no se mueven de su sitio. Es la misma superficie que mide manoEnMuslo (la piel y, arriba, la
+     pernera): donde acaba la pernera hay un escalón, y de que la mano no salte al cruzarlo se ocupa el Director, que desliza lo
+     apartado (60-director.js: despejar, en cada cuadro, y suave) */
+  function apartaMano(E, k) {
+    var B = bolasMano(E[k], E.S.m[k]), sx = 0, sy = 0, sz = 0, sw = 0, cmin = 2, cual = null, MASAS = [CUERPO.muslo.piel[0].s, CUERPO.muslo.tela[0].s];
+    var en = function (S, t) {
+      if (t < S[0][0] || t > S[S.length - 1][0]) return null;
+      for (var i = 1; i < S.length; i++) if (t <= S[i][0]) { var a = S[i - 1], b = S[i], u = (t - a[0]) / ((b[0] - a[0]) || 1); return [a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u, (a[3] || 0) + ((b[3] || 0) - (a[3] || 0)) * u, (a[4] || 0) + ((b[4] || 0) - (a[4] || 0)) * u]; }
+      return null;
+    };
+    LADOS.forEach(function (m) {
+      var L = E[m], O = L.cad, e = L.qu, f = L.frenteMuslo, s = por(unidad(cruz(e, f), [1, 0, 0]), m === 'i' ? -1 : 1);
+      B.forEach(function (q) {
+        var v = menos(q[0], O), t = punto(v, e), r = Math.min(entre((t - 4) / 4, 0, 1), entre((40 - t) / 3, 0, 1)), d = 0, n, c, x, z, ro, cx, cz, R, dn, ux, uz, co, w;
+        if (r <= 0) return;
+        /* la superficie que toca: de la piel y la pernera (donde la hay), la de más afuera */
+        for (n = 0; n < 2; n++) {
+          c = en(MASAS[n], t); if (!c) continue;
+          x = punto(v, s) - c[2]; z = punto(v, f) - c[3]; ro = Math.sqrt(x * x + z * z);
+          cx = ro > 1e-6 ? x / ro : 1; cz = ro > 1e-6 ? z / ro : 0;
+          R = r * c[0] * c[1] / Math.sqrt(c[1] * c[1] * cx * cx + c[0] * c[0] * cz * cz);
+          dn = R + q[1] - ro;
+          if (R >= 0.3 && dn > d) { d = dn; ux = cx; uz = cz; co = ro / R; }
+        }
+        if (d <= 0) return;
+        if (co < cmin) { cmin = co; cual = m; }
+        w = d * d; sw += w; sx += w * d * (ux * s[0] + uz * f[0]); sy += w * d * (ux * s[1] + uz * f[1]); sz += w * d * (ux * s[2] + uz * f[2]);
+      });
+    });
+    if (sw <= 0) return null;
+    return { v: [sx / sw, sy / sw, sz / sw], c: cmin, m: cual };
+  }
+  /* la muñeca k vista desde el muslo m: [a lo largo (desde la cadera), a qué distancia de su eje, y a qué lado (grados: 0, hacia fuera;
+     90, por delante; 180, hacia el otro muslo)]; y al revés, el punto del mundo que es eso */
+  function marcoMuslo(E, m) { var L = E[m], f = L.frenteMuslo; return { O: L.cad, e: L.qu, f: f, s: por(unidad(cruz(L.qu, f), [1, 0, 0]), m === 'i' ? -1 : 1) }; }
+  function cilMuslo(E, k, m) { var M = marcoMuslo(E, m), v = menos(E[k].mun, M.O), x = punto(v, M.s), z = punto(v, M.f); return [punto(v, M.e), Math.sqrt(x * x + z * z), Math.atan2(z, x) / RAD]; }
+  function deCilMuslo(E, m, c) { var M = marcoMuslo(E, m), a = c[2] * RAD; return mas(M.O, mas(por(M.e, c[0]), mas(por(M.s, c[1] * Math.cos(a)), por(M.f, c[1] * Math.sin(a))))); }
   Figura.prototype.pie = function (k, L, cam, lista) {
     var g = this.P['pie' + k], esc = cam.esc, sg = k === 'i' ? 1 : -1;
     var fl = (L.flex || 0) * RAD, cf = Math.cos(fl), sf = Math.sin(fl);

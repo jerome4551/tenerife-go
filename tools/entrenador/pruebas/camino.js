@@ -8,7 +8,10 @@
      node tools/entrenador/pruebas/camino.js <id> [<id>…]         de cada ejercicio, lo más hundido y el pie clavado más despegado
      TODO=1 node tools/entrenador/pruebas/camino.js <id> [<id>…]  cada tramo en que una zapatilla baja más de 0,8 cm, y cuánto
 
-   El suelo es y = 0: en un escalón o en un bloque las cifras salen sobre el suelo, no sobre lo que se pisa. */
+   El suelo es y = 0: en un escalón o en un bloque las cifras salen sobre el suelo, no sobre lo que se pisa.
+
+   Desde el 16 de noviembre de 2026 esto mismo, y lo demás que se toca (las manos, las paredes, los muslos), lo mide
+   pruebas/contactos.js con el dibujo entero, y lo pasa la auditoría. Esto queda para mirar un pie tramo a tramo. */
 const vm = require('vm'), fs = require('fs'), path = require('path');
 const nodo = () => ({ style: {}, childNodes: [], setAttribute() {}, getAttribute() { return ''; }, appendChild(c) { return c; }, insertBefore(c) { return c; }, removeChild() {}, get firstChild() { return null; } });
 const caja = { window: {}, document: { createElementNS: nodo, createElement: nodo }, Math, Object, Array, JSON, String, Number, RegExp, Error, console: { log() {} } };

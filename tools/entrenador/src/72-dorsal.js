@@ -589,7 +589,7 @@
       var plana = { tipo: 'abierta', prono: 90, mun: -14 }, canto = { tipo: 'plana', palma: [-1, 0, 0], mun: 0 };
       var enBanco = { a: MUN, polo: [0.6, -1, -0.2] };
       return {
-        vista: [74, [40, 22]], isometrico: 'e', clavos: T4R,
+        vista: [74, [40, 22]], isometrico: 'e', clavos: T4R, clavosEn: { k: ['ti', 'td'] },      /* de rodillas, antes de apoyarlas, las manos cuelgan sueltas */
         material: [['banco', { rumbo: 90, en: [0, MUN[2] + 6], largo: 110 }]],
         posturas: {
           k: arrodillado(0, 0, { b: aLosLados(8), m: SUELTA }),

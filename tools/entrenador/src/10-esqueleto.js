@@ -68,6 +68,7 @@
     if (q.arriba) r.arriba = [-q.arriba[0], q.arriba[1], q.arriba[2]];
     if (q.palma) r.palma = [-q.palma[0], q.palma[1], q.palma[2]];
     if (q.barra) r.barra = [-q.barra[0], q.barra[1], q.barra[2]];
+    if (q.dedos) r.dedos = [-q.dedos[0], q.dedos[1], q.dedos[2]];
     return r;
   }
   function deLado(P, pre, k) { return P[pre + k] || (P[pre] ? (k === 'i' ? P[pre] : reflejo(P[pre])) : null); }
@@ -102,7 +103,8 @@
       /* ── la mano ── */
       var m = deLado(P, 'm', k) || {};
       var gm = GESTO[m.tipo] || GESTO.suelta;
-      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0, c: gm[0], ci: gm[1], ab: gm[2], pu: gm[3], ap: gm[4] || 0, pal: m.palma ? unidad(m.palma) : null, bar: m.barra ? unidad(m.barra) : null, w: m.palma || m.barra ? 1 : 0 };
+      S.m[k] = { tipo: m.tipo || 'suelta', prono: m.prono || 0, mun: m.mun || 0, lat: m.lat || 0, c: gm[0], ci: gm[1], ab: gm[2], pu: gm[3], ap: gm[4] || 0, pal: m.palma ? unidad(m.palma) : null, bar: m.barra ? unidad(m.barra) : null, w: m.palma || m.barra ? 1 : 0,
+                 ded: m.palma && m.dedos ? unidad(m.dedos) : null, wd: m.palma && m.dedos ? 1 : 0 };
       /* ── la pierna ── */
       var q = deLado(P, 'p', k) || { suelo: [s * D.caderaX, 0], abre: 6 };
       var cad = mas(S.p, aplicar(S.B, [s * D.caderaX, 0, 0]));
@@ -159,7 +161,9 @@
       if (lt > 0.2) {
         tp = por(tp, 1 / lt);
         var dif = Math.atan2(punto(cruz(palma0, tp), lw), punto(palma0, tp)) / RAD - pr;
-        while (dif > 180) dif -= 360; while (dif < -180) dif += 360;
+        /* por el camino corto; y si hay que dar casi media vuelta, siempre por el mismo lado (girando la palma hacia atrás, que es
+           como gira el antebrazo): con ±180 justos, de un instante al siguiente la mano cambiaba de lado y daba un salto */
+        dif *= s; while (dif > 210) dif -= 360; while (dif <= -150) dif += 360; dif *= s;
         pr += dif * m.w * entre((lt - 0.2) / 0.3, 0, 1);
       }
     }
@@ -167,6 +171,14 @@
     var dir = lw;
     if (m.mun) { dir = girar(lw, eje, -m.mun * s); palma = girar(palma, eje, -m.mun * s); }
     if (m.lat) { var ej2 = girar(eje, palma, m.lat); dir = girar(dir, palma, m.lat); eje = ej2; }
+    /* la mano apoyada (en el suelo, en una pared): se dice en el mundo hacia dónde mira la palma (m.palma) y hacia dónde van los
+       dedos (m.dedos), y la mano queda así haga lo que haga el antebrazo: la muñeca se dobla lo que haga falta. Entre una postura
+       apoyada y otra que no lo está, m.wd dice cuánto manda */
+    if (m.ded && m.pal && m.wd > 0) {
+      var pF = m.pal, dF = unidad(sinParte(m.ded, pF), dir);
+      if (m.wd < 1) { pF = unidad(mezcla(unidad(palma), pF, m.wd), pF); dF = unidad(sinParte(mezcla(unidad(dir), dF, m.wd), pF), dF); }
+      return { dir: dF, eje: por(cruz(pF, dF), s), palma: pF };
+    }
     return { dir: unidad(dir), eje: unidad(eje), palma: unidad(palma) };
   }
 
@@ -183,6 +195,9 @@
       /* el frente del brazo (el bíceps): hacia donde se dobla el codo */
       var fb = sinParte(lw, uw), fb0 = unidad(sinParte(S.b[k].b ? aplicar(T.Bt, S.b[k].b) : aplicar(T.Bt, [0, 0, 1]), uw), [0, 0, 1]), wb = entre((largo(fb) - 0.04) / 0.3, 0, 1);
       L.frenteBrazo = unidad(mas(por(unidad(fb, fb0), wb), por(fb0, 1 - wb)), fb0);
+      /* el frente del antebrazo (su cara de dentro, la de la palma): perpendicular a él, en el plano en que se dobla el codo. Con el
+         brazo estirado es el del brazo; con el codo doblado gira con el antebrazo (el del brazo, a 90°, queda a lo largo de él) */
+      L.frenteAnte = unidad(sinParte(menos(por(L.frenteBrazo, punto(uw, lw)), por(uw, largo(sinParte(lw, uw)))), lw), L.frenteBrazo);
       var M = manoDe(k, uw, lw, S.b[k].b ? aplicar(T.Bt, S.b[k].b) : null, S.m[k]);
       L.mano = M; L.agarre = mas(L.mun, por(M.dir, D.mano)); L.dedos = mas(L.mun, por(M.dir, D.dedos));
       L.cad = mas(S.p, aplicar(S.B, [s * D.caderaX, 0, 0]));
@@ -222,11 +237,15 @@
       S.hom[k] = [mezclaN(a.hom[k][0], b.hom[k][0], t), mezclaN(a.hom[k][1], b.hom[k][1], t)];
       S.b[k] = { u: arco(a.b[k].u, b.b[k].u, t), l: arco(a.b[k].l, b.b[k].l, t), b: a.b[k].b && b.b[k].b ? unidad(mezcla(a.b[k].b, b.b[k].b, t)) : (a.b[k].b || b.b[k].b) };
       S.q[k] = { u: arco(a.q[k].u, b.q[k].u, t), l: arco(a.q[k].l, b.q[k].l, t), b: a.q[k].b && b.q[k].b ? unidad(mezcla(a.q[k].b, b.q[k].b, t)) : (a.q[k].b || b.q[k].b) };
-      var ma = a.m[k], mb = b.m[k];
+      var ma = a.m[k], mb = b.m[k], pa = ma.pal, pb = mb.pal;
+      /* de una mano con la palma dicha a otra que agarra una barra sin decirla (o al revés): la palma va de la una a la que de verdad
+         tiene la otra postura. Si se quedara fija la que se dijo, al llegar la mano se daría la vuelta de golpe */
+      if (pa && !pb && mb.bar) pb = Bb[k].mano.palma; else if (pb && !pa && ma.bar) pa = A[k].mano.palma;
       S.m[k] = { tipo: t < 0.5 ? ma.tipo : mb.tipo, prono: mezclaN(ma.prono, mb.prono, t), mun: mezclaN(ma.mun, mb.mun, t), lat: mezclaN(ma.lat, mb.lat, t),
                  c: mezclaN(ma.c, mb.c, t), ci: mezclaN(ma.ci, mb.ci, t), ab: mezclaN(ma.ab, mb.ab, t), pu: mezclaN(ma.pu, mb.pu, t), ap: mezclaN(ma.ap || 0, mb.ap || 0, t),
-                 pal: ma.pal && mb.pal ? unidad(mezcla(ma.pal, mb.pal, t), mb.pal) : (ma.pal || mb.pal),
-                 bar: ma.bar && mb.bar ? unidad(mezcla(ma.bar, punto(ma.bar, mb.bar) < 0 ? por(mb.bar, -1) : mb.bar, t), mb.bar) : (ma.bar || mb.bar), w: mezclaN(ma.w || 0, mb.w || 0, t) };
+                 pal: pa && pb ? unidad(mezcla(pa, pb, t), pb) : (pa || pb),
+                 bar: ma.bar && mb.bar ? unidad(mezcla(ma.bar, punto(ma.bar, mb.bar) < 0 ? por(mb.bar, -1) : mb.bar, t), mb.bar) : (ma.bar || mb.bar), w: mezclaN(ma.w || 0, mb.w || 0, t),
+                 ded: ma.ded && mb.ded ? unidad(mezcla(ma.ded, mb.ded, t), mb.ded) : (ma.ded || mb.ded), wd: mezclaN(ma.wd || 0, mb.wd || 0, t) };
       var ta = a.t[k], tb = b.t[k];
       var fx = mezclaN(ta.flex || 0, tb.flex || 0, t);
       if (ta.punta && tb.punta) S.t[k] = { punta: arco(ta.punta, tb.punta, t), arriba: arco(ta.arriba, tb.arriba, t), flex: fx };

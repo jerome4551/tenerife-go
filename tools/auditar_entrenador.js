@@ -18,6 +18,10 @@
  *    · cada coreografía, por dentro: las posturas que nombra existen, lo clavado se entiende, el
  *      material es de los que hay, y ninguna postura clave da un número imposible ni mete un pie
  *      bajo el suelo;
+ *    · LOS CONTACTOS (16 de noviembre de 2026), en cada tramo, en cada postura mantenida y en el vídeo cuadro a cuadro
+ *      (tools/entrenador/pruebas/contactos.js): ninguna zapatilla ni ninguna mano se hunde más de 1 cm en el suelo o en
+ *      una pared; la mano que se apoya, toca; el cuerpo no atraviesa el suelo ni las paredes; las manos no se meten en
+ *      los muslos, y lo que el Director las aparta no da tirones;
  *    · los gestos del presentador (saluda, la visera, «¡vamos!», el consejo, el pulgar…): sus posturas
  *      existen, ninguna mano levantada se sale del cuadro y ninguna va más deprisa de lo que se ve;
  *    · la voz: con las voces que enseña un iPhone (las «Eloquence», robóticas), un PC o un Android,
@@ -29,7 +33,8 @@
  * 2. En Chromium, móvil emulado (320 de ancho, el más estrecho): el vídeo de CADA ejercicio, entero,
  *    cuadro a cuadro, en castellano y en otro idioma (los nueve van rotando): acaba, dura lo que
  *    tiene que durar, lo que se lee en cada paso es el paso de la ficha, palabra por palabra, no
- *    hay ningún NaN en el dibujo y nada se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
+ *    hay ningún NaN en el dibujo y nada se sale de ancho; LA LEYENDA DE MÚSCULOS (16 de noviembre de 2026) va en su fila bajo el
+ *    vídeo y, con los nombres de la app en los diez idiomas, no pisa el dibujo ni se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
  *    que el canvas de Samsung Internet sabe copiar (trazados, círculos, elipses y rectángulos). Y CADA SECUENCIA CABE EN SU PASO, en
  *    los diez idiomas: un paso dura lo que se tarda en leer su texto, no lo que dure su acción, y una secuencia más larga se
  *    quedaría a medias al entrar el paso siguiente (la cuenta se coteja con lo que dura cada paso en el reproductor). Y A CÁMARA LENTA
@@ -122,6 +127,9 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     usadas.add(co.inicio || 'a'); tramos(co.rep);
     (co.pasos || []).forEach(p => { if (typeof p === 'string') { if (p !== 'rep' && p !== 'nota') usadas.add(p); } else if (p && p.sec) { if (p.desde) usadas.add(p.desde); tramos(p.sec); } else if (!(p && p.rep != null)) peros.push('un paso que no se entiende'); });
     ['encuadra', 'reposo', 'sinClavos'].forEach(k => (co[k] || []).forEach(n => usadas.add(n)));
+    /* lo clavado mientras mantiene una postura, si no es lo de siempre (clavosEn: { postura: [clavos] }) */
+    if (co.clavosEn != null && (typeof co.clavosEn !== 'object' || Array.isArray(co.clavosEn))) peros.push('clavosEn');
+    else Object.keys(co.clavosEn || {}).forEach(n => { usadas.add(n); if (!Array.isArray(co.clavosEn[n])) peros.push('clavosEn.' + n); else co.clavosEn[n].forEach(c => clavos.push(c)); });
     if (co.isometrico) usadas.add(co.isometrico);
     usadas.forEach(n => { if (!hay(n)) peros.push('postura «' + n + '» no existe'); });
     if ((co.pasos || []).some(p => p === 'rep' || (p && p.rep != null)) && !(co.rep || []).length) peros.push('pasos con repetición, sin repetición');
@@ -149,6 +157,25 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     if (peros.length) mal.push(id + ': ' + Array.from(new Set(peros)).slice(0, 4).join('; '));
   });
   ok(!mal.length, 'las ' + ids.length + ' coreografías, por dentro: posturas, tramos, clavos, material, y ninguna postura imposible', mal.slice(0, 6));
+  /* LOS CONTACTOS (16 de noviembre de 2026). Lo de arriba mira las posturas clave; esto, también lo que pasa entre dos, y con todo
+     lo que se dibuja (no solo los pies): tools/entrenador/pruebas/contactos.js recorre cada tramo de la repetición y de las secuencias
+     con el Director de verdad, y el vídeo entero cuadro a cuadro con Jérôme respirando, y mide con las cuentas del dibujo. Lo que se
+     apoya, toca; y nada atraviesa el suelo, una pared ni un muslo. Los límites, en CT.LIMITES (cm) */
+  const CT = require('./entrenador/pruebas/contactos.js'), TC = CT.carga(), fuera = {};
+  ids.forEach(id => {
+    let malC; try { malC = CT.juzga(CT.mide(TC, id), CT.video(TC, id, TX.es[id] ? TX.es[id][1] : [])); } catch (e) { malC = [{ que: 'error', v: 0, donde: e.message }]; }
+    malC.forEach(q => { (fuera[q.que] = fuera[q.que] || []).push(id + ': ' + (q.v ? q.v + ' cm · ' : '') + q.donde); });
+  });
+  const deC = (...c) => [].concat(...c.map(q => fuera[q] || []));
+  ok(!deC('error').length, 'los contactos de las ' + ids.length + ' coreografías se pueden medir (cada tramo, cada postura mantenida y el vídeo cuadro a cuadro)', deC('error').slice(0, 4));
+  ok(!deC('zapa-suelo', 'zapa-pared').length, 'el camino de los pies: en ningún tramo ni postura una zapatilla se hunde más de 1 cm en el suelo ni en una pared', deC('zapa-suelo', 'zapa-pared').slice(0, 6));
+  ok(!deC('mano-suelo', 'mano-pared').length, 'las manos: ninguna se hunde más de 1 cm en el suelo ni en una pared', deC('mano-suelo', 'mano-pared').slice(0, 6));
+  ok(!deC('apoyada', 'hueco').length, 'la mano que se apoya (en el suelo, en una pared o en un banco) toca: queda a menos de 1 cm; y ninguna mano abierta se queda delante de una superficie sin tocarla', deC('apoyada', 'hueco').slice(0, 6));
+  ok(!deC('cuerpo-suelo', 'cuerpo-pared', 'tronco-suelo', 'tronco-pared', 'cabeza-suelo', 'cabeza-pared').length, 'el cuerpo no atraviesa el suelo ni las paredes (brazos y piernas, ni 2,5 cm; tumbado, el tronco y la cabeza se asientan menos de 4)',
+    deC('cuerpo-suelo', 'cuerpo-pared', 'tronco-suelo', 'tronco-pared', 'cabeza-suelo', 'cabeza-pared').slice(0, 6));
+  ok(!deC('mano-muslo', 'mano-muslo-quieta', 'mano-muslo-vida', 'mano-muslo-quieta-vida').length, 'las manos no se meten en los muslos: quietas, ni 1 cm (tampoco en el vídeo, mientras respira y se balancea); de paso, ni 2',
+    deC('mano-muslo', 'mano-muslo-quieta', 'mano-muslo-vida', 'mano-muslo-quieta-vida').slice(0, 6));
+  ok(!deC('tiron').length, 'lo que el Director aparta una mano de un muslo no da tirones (cambia a menos de ' + CT.LIMITES.tiron + ' cm/s)', deC('tiron').slice(0, 6));
   /* cada secuencia cabe en su paso. Un paso dura lo que se tarda en leer su texto (80-reproductor.js: 4,4 s como poco, y 0,058 s por
      letra, o 0,16 por carácter en chino), no lo que dure su acción; cuando entra el paso siguiente, la secuencia que no ha acabado se
      queda a medias (y «vuelve despacio» no llega a verse). Se mira en los diez idiomas: manda el texto más corto. Lo que sobra tras la
@@ -292,6 +319,33 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     await pg.goto(SITIO + 'tools/entrenador/pruebas/auditoria.html');
     const total = await pg.evaluate(l => window.preparar(l), LANGS);
     info('datos de ' + total + ' ejercicios');
+    /* LA LEYENDA DE MÚSCULOS (16 de noviembre de 2026). Iba dentro del dibujo, abajo a la izquierda, y tapaba a Jérôme (los pies, las
+       manos, las piernas) en muchos vídeos según el idioma: ahora va en su fila, debajo. Se mira en los diez idiomas y con los nombres
+       que pone la app (los de modulos/cuerpo.js; antes esta página ponía el identificador, que es más corto): que no pise el dibujo,
+       que ninguna píldora se salga del ancho del reproductor (a 320 px, el móvil más estrecho) y que cada una lleve su nombre */
+    const GRUPOS = {};
+    { const re = /"cuerpoG_(\w+)":\s*(\{[^}]*\})/g, fuente = lee('modulos/cuerpo.js'); let mm;
+      while ((mm = re.exec(fuente))) { try { const o = JSON.parse(mm[2]); LANGS.forEach(l => { if (typeof o[l] === 'string' && o[l]) (GRUPOS[l] = GRUPOS[l] || {})[mm[1]] = o[l]; }); } catch (e) {} } }
+    await pg.evaluate(n => window.nombrar(n), GRUPOS);
+    const leyMal = []; let leyVistas = 0, leyAlta = [0, ''];
+    for (const id of idsVideo) {
+      const grupos = EJ[id].g.concat(EJ[id].s);
+      for (const l of LANGS) {
+        const m = await pg.evaluate(a => window.montar(a[0], a[1], 'dia'), [id, l]);
+        if (!m) { leyMal.push(id + ' (' + l + '): no se monta'); continue; }
+        const y = await pg.evaluate(() => window.leyenda()), q = []; leyVistas++;
+        if (y.dentro || y.pisa) q.push('pisa el dibujo (' + y.pisa + ' px²)');
+        if (y.sale > 0.5) q.push('se sale ' + y.sale + ' px del ancho del reproductor');
+        if (y.ancho > y.vista) q.push('la página se ensancha a ' + y.ancho + ' px');
+        if (!y.n || y.textos.some(t => !t || grupos.indexOf(t) >= 0)) q.push('una píldora sin su nombre: ' + y.textos.join(' | '));
+        if (grupos.some(g => !(GRUPOS[l] || {})[g])) q.push('un grupo sin nombre en la app');
+        if (y.alto > leyAlta[0]) leyAlta = [y.alto, id + ' (' + l + ')'];
+        if (q.length) leyMal.push(id + ' (' + l + '): ' + q.join('; '));
+      }
+    }
+    ok(Object.keys(GRUPOS).length === LANGS.length && !leyMal.length && leyVistas === idsVideo.length * LANGS.length,
+      'la leyenda de músculos, con los nombres de la app en los diez idiomas (' + leyVistas + ' vistas, a 320 px): en su fila bajo el vídeo, sin pisar el dibujo ni salirse de ancho', leyMal.slice(0, 6));
+    info('la leyenda más alta: ' + leyAlta[0] + ' px · ' + leyAlta[1]);
     const peros = [], gestos = {}, tope = {}, dibujo = [], plegados = [], salen = [], arrimados = [], piezas = {}, noCopia = [], otraDur = []; let pasados = 0, cuadros = 0, mirados = 0, girados = 0, borron = 99, encuadrados = 0, cotejados = 0;
     for (let n = 0; n < idsVideo.length; n++) {
       /* el idioma y el tema de cada uno, los de siempre (por su puesto entre todos), se pase entero o por partes */

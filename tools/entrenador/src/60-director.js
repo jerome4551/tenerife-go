@@ -127,12 +127,12 @@
     /* y por el otro lado */
     ['asoma', 'asoma0', 'entra'].forEach(function (q) { yo.K[q + 'D'] = resolver(refleja(PRESENTA[q])); });
     this.K.asomaD0 = this.K.asoma0D;
-    for (n in co.posturas) this.K[n] = resolver(co.posturas[n]);
+    for (n in co.posturas) this.K[n] = this.clave(co.posturas[n], co, n);
     this.esc.poner(co.material || []);
     /* la repetición: de dónde sale cada tramo */
     var desde = co.inicio || 'a', t0 = 0;
     this.rep = (co.rep || []).map(function (s, i) {
-      var r = { de: desde, a: s[0], t0: t0, dur: s[1], curva: CURVA[s[2] || (s[0] === desde ? 'lineal' : 'suave')] || CURVA.suave, esf: (co.esfuerzo || []).indexOf(i) >= 0, clavos: s[3] };
+      var r = { de: desde, a: s[0], t0: t0, dur: s[1], curva: CURVA[s[2] || (s[0] === desde ? 'lineal' : 'suave')] || CURVA.suave, esf: (co.esfuerzo || []).indexOf(i) >= 0, clavos: s[3], src: s };
       desde = s[0]; t0 += s[1]; return r;
     });
     this.T = t0 || 1;
@@ -140,7 +140,11 @@
     this.clavos = (co.clavos || []).map(clavo);
     this.rastroDe = co.rastro || null; this.rastro = [];
     this.modo = 'postura'; this.meta = this.inicio; this.tau = 0; this.w = 1; this.Eprev = null; this.reps = 0; this.sec = null;
-    this.vida.corte(); this.cortes++; this.gestoDe = null;
+    this.vida.corte(); this.cortes++; this.gestoDe = null; this.ap = null;
+    /* los rodeos de la repetición, mirados ya; salvo en las muy largas (un paseo, unos saltos de lado a lado: decenas de tramos),
+       que se miran al llegar a cada uno: ahí mirarlos todos de golpe tardaría más que lo que ahorra */
+    this.metas = [];
+    if (this.rep.length <= RODEO_REP) this.rodeos(this.rep);
     this.encuadrar();
   };
   function clavo(s) {
@@ -150,6 +154,13 @@
   }
   /* las posturas en las que ya no hay nada clavado (se ha soltado de la barra) */
   Director.prototype.suelto = function (n) { return !!(this.co && this.co.sinClavos && this.co.sinClavos.indexOf(n) >= 0); };
+  /* lo clavado mientras mantiene una postura: lo de la coreografía, salvo que esa postura traiga su lista (clavosEn: { postura: [...] }).
+     Una mano solo se clava donde agarra o apoya: la que cuelga suelta mientras espera, no (clavada en el aire, el cuerpo, que respira
+     y se balancea, se le echaría encima) */
+  Director.prototype.clavosDe = function (n) {
+    var en = this.co && this.co.clavosEn && this.co.clavosEn[n];
+    return en ? en.map(clavo) : this.clavos;
+  };
   /* el esqueleto de la repetición en el instante tau, aún sin clavar, y con qué se clava */
   Director.prototype.mezclaRep = function (tau) {
     var i, s = this.rep[this.rep.length - 1];
@@ -206,14 +217,176 @@
     for (i = 0; i < lista.length; i++) this.metas.push(lista[i]);
     return armar(S);
   };
+  /* las manos no se meten en los muslos (20-figura.js, apartaMano): la que roza uno o se mete un poco (y no va clavada a nada: la que
+     agarra una barra fija o apoya en el suelo se queda donde está) se aparta hasta sacarla, y el brazo se vuelve a resolver hacia
+     donde ya se doblaba. Solo lo que roza o se mete poco: si lo más metido de la mano no pasa de la mitad del radio del muslo (unos
+     6 cm), se saca del todo; de ahí hacia el eje, cada vez menos, y la mano que cruza un muslo por el centro no se toca (ahí «hacia
+     fuera» no dice nada: eso se arregla en su coreografía). Cuánto, se decide con la mano donde estaba, antes de moverla: así, de un
+     instante al siguiente, no da saltos. «clavos», lo clavado en este cuadro */
+  Director.prototype.despejar = function (E, clavos) {
+    var libre = { i: true, d: true }, i, k, n, r, a, S, E2, c, R = null;
+    if (clavos) for (i = 0; i < clavos.length; i++) { c = clavos[i]; if (c && c.que.charAt(0) === 'm') libre[c.que.charAt(1)] = false; }
+    for (i = 0; i < 2; i++) {
+      k = LADOS[i]; if (!libre[k]) continue;
+      r = apartaMano(E, k); if (!r) continue;
+      a = entre((r.c - 0.25) / 0.25, 0, 1); if (a <= 0) continue;
+      /* hasta sacarla (unas vueltas: al apartarla de un muslo puede rozar otra parte)… */
+      S = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: E.S.q, m: E.S.m, t: E.S.t }; E2 = E;
+      for (n = 0; n < 6 && r && (r.v[0] * r.v[0] + r.v[1] * r.v[1] + r.v[2] * r.v[2]) > 1e-4; n++) {
+        clavar({ S: S, Bt: E2.Bt, Bp: E2.Bp, i: E2.i, d: E2.d }, 'm' + k, mas(E2[k].mun, r.v));
+        E2 = armar(S); r = apartaMano(E2, k);
+      }
+      /* … y de ese camino, la parte que toca */
+      if (!R) R = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: E.S.q, m: E.S.m, t: E.S.t };
+      clavar({ S: R, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d }, 'm' + k, mas(E[k].mun, por(menos(E2[k].mun, E[k].mun), a)));
+    }
+    return R ? armar(R) : E;
+  };
+  /* ── la mano no cruza un muslo por dentro ──
+     Entre dos posturas la mano va por donde la lleva el brazo (se mezclan los ángulos), y ese camino a veces atraviesa un muslo de
+     parte a parte. Ahí apartar no vale (por el centro, «hacia fuera» no dice nada): hay que rodearlo. De cada tramo se mira una
+     vez el camino de cada mano libre; si se mete hondo en un muslo (más de la mitad de su radio), el trozo del camino que pasa cerca
+     de él se cambia por otro que lo rodea: de donde entraba a donde salía, girando alrededor del muslo y a la distancia de su eje
+     que traía y que lleva (todo en el marco del muslo, que también se mueve). Lo que aún roce, lo quita despejar.
+     s, el tramo ({ de, a, … }); guarda en él lo que encuentra (s.rodeo: null, o por mano { m, e1, e2, c1, c2, df }) */
+  var RODEO_N = 24, RODEO_M = 12, RODEO_CERCA = 5, RODEO_REP = 16;
+  Director.prototype.rodeoDe = function (s, A, B, clavos) {
+    if (s.rodeo !== undefined) return s.rodeo;
+    /* ya mirado en esta coreografía (otra vez el mismo paso, o el vídeo montado de nuevo): se guarda en el tramo tal como viene escrito */
+    var o = s.src;
+    if (o && o._rodeoCo === this.co && o._rodeoDe === s.de) return (s.rodeo = o._rodeo);
+    var yo = this, metas = this.metas, libre = { i: true, d: true }, R = null, E = [], i, j, c, q;
+    if (clavos) for (i = 0; i < clavos.length; i++) { c = clavos[i]; if (c && c.que.charAt(0) === 'm') libre[c.que.charAt(1)] = false; }
+    this.metas = [];            /* lo que se clava al probar el camino no cuenta como clavado en este cuadro */
+    for (j = 0; j <= RODEO_N; j++) { q = mezclar(A, B, j / RODEO_N); if (clavos && clavos.length) q = this.clavar(q, A, B, j / RODEO_N, clavos); E.push(q); }
+    LADOS.forEach(function (k) {
+      if (!libre[k]) return;
+      var m = null, j, a, j1 = 0, j2 = RODEO_N, c1, c2, df, medio, otro;
+      /* el muslo que rodea: el primero en el que se mete hondo (si después cruza también el otro, el mismo rodeo, que se abre lo que
+         haga falta, le pasa por encima) */
+      for (j = 0; j <= RODEO_N && !m; j++) { a = apartaMano(E[j], k); if (a && a.c < 0.5) m = a.m; }
+      if (!m) return;
+      var cerca = function (j) { return Math.max(manoEnMuslo(E[j], k, 'i', 0, 44), manoEnMuslo(E[j], k, 'd', 0, 44)) > -RODEO_CERCA; };
+      while (j1 < RODEO_N && !cerca(j1)) j1++;
+      while (j2 > 0 && !cerca(j2)) j2--;
+      j1 = Math.max(0, j1 - 1); j2 = Math.min(RODEO_N, j2 + 1);
+      if (j2 <= j1) return;
+      c1 = cilMuslo(E[j1], k, m); c2 = cilMuslo(E[j2], k, m); df = c2[2] - c1[2];
+      while (df > 180) df -= 360;
+      while (df <= -180) df += 360;
+      /* por qué lado: por el que ya iba (la vuelta que da el camino sin rodeo alrededor del eje del muslo, sumada punto a punto);
+         y si pasaba casi por el mismo eje (ahí la vuelta no dice nada), por el más corto o, si es casi media vuelta, por delante */
+      var dis = 0, romin = 1e9, ant = c1, ac;
+      for (j = j1 + 1; j <= j2; j++) { ac = cilMuslo(E[j], k, m); medio = ac[2] - ant[2]; while (medio > 180) medio -= 360; while (medio <= -180) medio += 360; dis += medio; romin = Math.min(romin, ac[1]); ant = ac; }
+      if (romin > 7) { if (Math.abs(dis - df) > 180) df = dis > df ? df + 360 : df - 360; }
+      else {
+        /* por el más corto; pero por detrás del muslo (por debajo, si está sentado) solo si la mano viene de detrás del cuerpo o va
+           allí; y si es casi media vuelta, por delante */
+        medio = c1[2] + df / 2; otro = c1[2] + (df > 0 ? df - 360 : df + 360) / 2;
+        var detras = function (j) { return punto(menos(E[j][k].mun, E[j].S.p), E[j].Bp[2]) < -9; };
+        if (Math.sin(medio * RAD) < -0.5 ? !(detras(j1) || detras(j2)) : (Math.abs(df) > 165 && Math.sin(otro * RAD) > Math.sin(medio * RAD))) df = df > 0 ? df - 360 : df + 360;
+      }
+      /* y a esa distancia se le suma, punto a punto, lo que haga falta para que la mano entera (los dedos van por delante de la
+         muñeca) pase sin tocarlo: se prueba el camino y, donde aún se mete, se abre un poco más (unas vueltas) */
+      var q = { m: m, e1: j1 / RODEO_N, e2: j2 / RODEO_N, c1: c1, c2: c2, df: df, mas: [], iba: dis, eje: romin }, n, v, u, P, S, z, hubo;
+      for (n = 0; n <= RODEO_M; n++) q.mas.push(0);
+      for (v = 0; v < 5; v++) {
+        hubo = false;
+        for (n = 1; n < RODEO_M; n++) {
+          u = n / RODEO_M; P = yo.clavar(mezclar(A, B, q.e1 + (q.e2 - q.e1) * u), A, B, q.e1 + (q.e2 - q.e1) * u, clavos);
+          S = { p: P.S.p, B: P.S.B, col: P.S.col, cab: P.S.cab, hom: P.S.hom, b: { i: P.S.b.i, d: P.S.b.d }, q: P.S.q, m: P.S.m, t: P.S.t };
+          clavar({ S: S, Bt: P.Bt, Bp: P.Bp, i: P.i, d: P.d }, 'm' + k, deCilMuslo(P, m, cilRodeo(q, u)));
+          P = armar(S); z = Math.max(manoEnMuslo(P, k, 'i', 2, 39), manoEnMuslo(P, k, 'd', 2, 39));
+          if (z > -0.4 && q.mas[n] < 30) { q.mas[n] += z + 0.9; hubo = true; }
+        }
+        if (!hubo) break;
+      }
+      (R = R || {})[k] = q;
+    });
+    this.metas = metas;
+    if (o) { o._rodeoCo = this.co; o._rodeoDe = s.de; o._rodeo = R; }
+    return (s.rodeo = R);
+  };
+  /* los rodeos de unos tramos, mirados de antemano (al cargar la coreografía, los de la repetición; al empezar una secuencia, los
+     suyos): mirar un tramo son unas decenas de posturas, y hecho en mitad del movimiento sería un cuadro que llega tarde */
+  Director.prototype.rodeos = function (tramos) {
+    var metas = this.metas, i, t;
+    for (i = 0; i < tramos.length; i++) {
+      t = tramos[i];
+      if (t.de === t.a || !this.K[t.de] || !this.K[t.a]) continue;
+      /* si aún no se puede (un material que todavía no está en su sitio), se mirará al llegar a ese tramo, como antes */
+      try { this.rodeoDe(t, this.K[t.de], this.K[t.a], t.clavos ? t.clavos.map(clavo) : this.clavos); } catch (e) { t.rodeo = undefined; this.metas = metas; }
+    }
+  };
+  /* el punto u (de 0 a 1) de un rodeo, visto desde su muslo */
+  function cilRodeo(q, u) {
+    var x = u * RODEO_M, n = Math.min(RODEO_M - 1, Math.floor(x)), f = x - n;
+    return [q.c1[0] + (q.c2[0] - q.c1[0]) * u, q.c1[1] + (q.c2[1] - q.c1[1]) * u + q.mas[n] + (q.mas[n + 1] - q.mas[n]) * f, q.c1[2] + q.df * u];
+  }
+  Director.prototype.rodear = function (E, s, A, B, e, clavos) {
+    var r = this.rodeoDe(s, A, B, clavos), R = null, i, k, q, u;
+    if (!r) return E;
+    for (i = 0; i < 2; i++) {
+      k = LADOS[i]; q = r[k]; if (!q || e <= q.e1 || e >= q.e2) continue;
+      u = (e - q.e1) / (q.e2 - q.e1);
+      if (!R) R = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: E.S.q, m: E.S.m, t: E.S.t };
+      clavar({ S: R, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d }, 'm' + k, deCilMuslo(E, q.m, cilRodeo(q, u)));
+    }
+    return R ? armar(R) : E;
+  };
+  /* un tramo (de la repetición o de una secuencia) en su punto e (de 0 a 1, ya con su curva): mezclado, con lo clavado en su sitio, el
+     rodeo y lo apartado (sin la vida: para medir y comprobar) */
+  Director.prototype.enTramo = function (s, e) {
+    var A = this.K[s.de], B = this.K[s.a], cl = s.clavos ? s.clavos.map(clavo) : this.clavos, E = s.de === s.a ? A : mezclar(A, B, e);
+    E = this.clavar(E, A, B, e, cl);
+    if (s.de !== s.a) E = this.rodear(E, s, A, B, e, cl);
+    return this.despejar(E, cl);
+  };
+  /* lo apartado no da tirones: en lo que se ve, de un cuadro al siguiente cambia como mucho VAP cm por segundo. Cuando la mano pasa de
+     un lado del muslo al otro, o el muslo le sale al paso de golpe, se desliza a su sitio (un décimo de segundo) en vez de saltar. En una
+     postura mantenida es exacto, y también en el primer cuadro tras un corte. E0, antes de apartar; E1, apartado del todo */
+  var VAP = 90;
+  Director.prototype.suave = function (E0, E1, dt, clavos) {
+    var ap = this.ap, exacto = !ap || !(dt > 0) || dt > 0.25 || (this.modo === 'postura' && this.w >= 1), tope = VAP * dt, fija = {}, R = null, i, k, c, p, d, l;
+    if (!ap) ap = this.ap = { i: [0, 0, 0], d: [0, 0, 0] };
+    if (clavos) for (i = 0; i < clavos.length; i++) { c = clavos[i]; if (c && c.que.charAt(0) === 'm') fija[c.que.charAt(1)] = true; }
+    for (i = 0; i < 2; i++) {
+      k = LADOS[i]; p = menos(E1[k].mun, E0[k].mun); d = menos(p, ap[k]); l = largo(d);
+      if (exacto || fija[k] || l <= tope) { ap[k] = p; continue; }
+      ap[k] = mas(ap[k], por(d, tope / l));
+      if (!R) R = { p: E1.S.p, B: E1.S.B, col: E1.S.col, cab: E1.S.cab, hom: E1.S.hom, b: { i: E1.S.b.i, d: E1.S.b.d }, q: E1.S.q, m: E1.S.m, t: E1.S.t };
+      clavar({ S: R, Bt: E1.Bt, Bp: E1.Bp, i: E1.i, d: E1.d }, 'm' + k, mas(E0[k].mun, ap[k]));
+    }
+    return R ? armar(R) : E1;
+  };
+  /* una postura clave de una coreografía, resuelta: con las manos fuera de los muslos. Aquí, quieta, se saca del todo la mano que
+     esté metida en uno, por honda que esté (en movimiento, despejar solo aparta lo que roza): hacia fuera del eje del muslo, hasta que
+     no lo toque. Menos las manos que la coreografía lleva clavadas en esa postura (agarran algo fijo o apoyan en el suelo) */
+  Director.prototype.clave = function (P, co, nombre) {
+    var E = resolver(P), fijas = {}, i, k, n, r, S = null;
+    var suelta = !!(co && co.sinClavos && co.sinClavos.indexOf(nombre) >= 0);
+    (suelta ? [] : (co && ((co.clavosEn && co.clavosEn[nombre]) || co.clavos)) || []).forEach(function (q) { if (typeof q === 'string' && q.charAt(0) === 'm') fijas[q.charAt(1)] = true; });
+    for (n = 0; n < 12; n++) {
+      var movio = false;
+      for (i = 0; i < 2; i++) {
+        k = LADOS[i]; if (fijas[k]) continue;
+        r = apartaMano(E, k); if (!r || r.v[0] * r.v[0] + r.v[1] * r.v[1] + r.v[2] * r.v[2] < 1e-4) continue;
+        if (!S) S = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: E.S.q, m: E.S.m, t: E.S.t };
+        clavar({ S: S, Bt: E.Bt, Bp: E.Bp, i: E.i, d: E.d }, 'm' + k, mas(E[k].mun, r.v)); movio = true;
+      }
+      if (!movio) break;
+      E = armar(S);
+    }
+    return E;
+  };
   /* el esqueleto de la repetición en el instante tau, con lo clavado en su sitio (sin la vida: para medir y comprobar) */
-  Director.prototype.enRep = function (tau) { var r = this.mezclaRep(tau); return this.clavar(r.E, r.A, r.B, r.e, r.clavos); };
+  Director.prototype.enRep = function (tau) { var r = this.mezclaRep(tau); return this.enTramo(this.tramo, r.e); };
   /* ── qué hace ── */
   Director.prototype.aPostura = function (nombre, seg) {
     if (!this.K[nombre]) return;
     this.Eprev = this.E; this.w = this.E && seg !== 0 ? 0 : 1; this.durW = seg || 0.7;
     this.metaPrev = this.meta; this.modo = 'postura'; this.meta = nombre; this.sec = null; this.gestoDe = null;
-    this.vida.linea = []; if (seg === 0) { this.vida.corte(); this.cortes++; }
+    this.vida.linea = []; if (seg === 0) { this.vida.corte(); this.cortes++; this.ap = null; }
   };
   Director.prototype.aRep = function (seg) {
     if (!this.rep.length) return this.aPostura(this.inicio, seg);
@@ -225,7 +398,8 @@
   /* una secuencia que se toca una vez (por ejemplo, sacar la barra del soporte): [[postura, segundos, curva], …] */
   Director.prototype.aSecuencia = function (lista, desde) {
     var de = desde || this.meta || this.inicio, t0 = 0;
-    this.sec = lista.map(function (s) { var r = { de: de, a: s[0], t0: t0, dur: s[1], curva: CURVA[s[2] || 'suave'] || CURVA.suave, clavos: s[3] }; de = s[0]; t0 += s[1]; return r; });
+    this.sec = lista.map(function (s) { var r = { de: de, a: s[0], t0: t0, dur: s[1], curva: CURVA[s[2] || 'suave'] || CURVA.suave, clavos: s[3], src: s }; de = s[0]; t0 += s[1]; return r; });
+    this.rodeos(this.sec);
     this.secT = t0; this.tau = 0; this.modo = 'sec'; this.Eprev = this.E; this.w = this.E ? 0 : 1; this.durW = 0.45; this.rastro = [];
     this.metaPrev = this.meta;
     this.meta = lista[lista.length - 1][0];
@@ -249,12 +423,12 @@
   /* un cuadro: avanza el tiempo y pinta */
   Director.prototype.cuadro = function (dt, parado) {
     /* la cámara lenta («½×») es para el ejercicio: de cerca, el presentador saluda y aconseja a su velocidad */
-    var esc = this.esc, E, v = parado ? 0 : this.busto ? 1 : this.vel, yo = this, A, B, e = 0, clavos = null, i;
+    var esc = this.esc, E, v = parado ? 0 : this.busto ? 1 : this.vel, yo = this, A, B, e = 0, clavos = null, i, tr = null;
     this.t += dt;
     if (this.modo === 'rep') {
       this.tau += dt * v;
       if (this.tau >= this.T) { this.tau -= this.T; this.reps++; if (this.alRepetir) this.alRepetir(this.reps); }
-      var r = this.mezclaRep(this.tau); E = r.E; A = r.A; B = r.B; e = r.e; clavos = r.clavos;
+      var r = this.mezclaRep(this.tau); E = r.E; A = r.A; B = r.B; e = r.e; clavos = r.clavos; tr = this.tramo;
       this.esf += ((this.tramo.esf ? 1 : 0) - this.esf) * (1 - Math.exp(-dt * 7));
     } else if (this.modo === 'sec') {
       this.tau = Math.min(this.secT, this.tau + dt * v);
@@ -262,12 +436,12 @@
       for (i = 0; i < this.sec.length; i++) if (this.tau < this.sec[i].t0 + this.sec[i].dur) { s = this.sec[i]; break; }
       e = s.curva(entre((this.tau - s.t0) / s.dur, 0, 1)); A = this.K[s.de]; B = this.K[s.a];
       this.secDe = s.de; this.secA = s.a; this.secU = entre((this.tau - s.t0) / s.dur, 0, 1);
-      E = s.de === s.a ? A : mezclar(A, B, e); clavos = s.clavos ? s.clavos.map(clavo) : this.clavos;
+      E = s.de === s.a ? A : mezclar(A, B, e); clavos = s.clavos ? s.clavos.map(clavo) : this.clavos; tr = s;
       this.esf += (0 - this.esf) * (1 - Math.exp(-dt * 5));
       if (this.tau >= this.secT) { this.modo = 'postura'; this.w = 1; }
     } else {
       E = this.K[this.meta] || this.K.listo; A = B = E;
-      if (this.co && this.meta !== 'listo' && !this.suelto(this.meta)) clavos = this.clavos;
+      if (this.co && this.meta !== 'listo' && !this.suelto(this.meta)) clavos = this.clavosDe(this.meta);
       this.esf += ((this.co && this.co.isometrico && this.meta === this.co.isometrico ? 0.8 : 0) - this.esf) * (1 - Math.exp(-dt * 4));
     }
     /* de cerca presenta: ahí no hay barra que agarrar ni suelo que pisar */
@@ -286,11 +460,14 @@
     E = this.vida.paso(E, parado ? 0 : dt, { busto: this.busto, esf: this.esf, rep: this.modo === 'rep', dePie: dePie, habla: this.busto && esc.cab.habla > esc.cab.t, libres: libres, sobreManos: !this.busto && !!(this.co && this.co.sobreManos) });
     this.metas = [];            /* lo que se clava en este cuadro, y dónde (lo coteja la auditoría: lo clavado no se mueve) */
     if (clavos && clavos.length) E = this.clavar(E, A, B, e, clavos);
+    /* la mano que iba a cruzar un muslo por dentro, lo rodea */
+    if (tr && tr.de !== tr.a && !this.busto) E = this.rodear(E, tr, A, B, e, clavos);
     /* de donde estaba a donde va */
     if (this.w < 1 && this.Eprev) {
       this.w = Math.min(1, this.w + dt / this.durW);
       E = mezclar(this.Eprev, E, CURVA.suave(this.w));
     }
+    E = this.suave(E, this.despejar(E, clavos), dt, clavos);
     this.E = E;
     this.vida.mide(E, parado ? 0 : dt);
     /* la cámara: hacia su vista, con suavidad; de cerca, se va acercando muy despacio */
@@ -421,4 +598,4 @@
     this.salto = true;
   };
   Director.prototype.girar = function () { this.vista = (this.vista + 1) % this.vistas.length; return this.vista; };
-  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; this.tBusto = 0; this.vida.corte(); this.cortes++; this.esc.cab.corte = true; } };
+  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; this.tBusto = 0; this.vida.corte(); this.cortes++; this.ap = null; this.esc.cab.corte = true; } };
