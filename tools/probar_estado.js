@@ -7,10 +7,14 @@
  * solo propone POIs sin estado o con estado "abierto"». Los Patos, cerrada por
  * decreto: «Fuera del planificador y de cualquier sugerencia o puntuación de
  * baño. Se queda en el mapa, con aviso de cierre». La Bodega Frontos,
- * «solo_reserva»: fuera del planificador.
+ * «solo_reserva»: fuera del planificador. Y desde el 16 de noviembre de 2026
+ * (nota 48), «restringido»: los senderos del Teide con hielo y nieve, que el
+ * Cabildo deja solo para personas expertas o con guía acreditado; no es
+ * «cerrado», pero tampoco se propone mientras dure.
  *
  * QUE MIRA, con su propia regla y no con la de la app:
- *   · los datos: cada estado es «abierto», «cerrado» o «solo_reserva», con su
+ *   · los datos: cada estado es «abierto», «cerrado», «solo_reserva» o
+ *     «restringido», con su
  *     fuente (https) y la fecha en que se verifico (AAAA-MM-DD); y los dos de
  *     Jerome, con el suyo;
  *   · que sigan en el mapa con su aviso: su ficha, en los diez idiomas,
@@ -35,7 +39,12 @@ const IDIOMAS = ((html.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1]
   .split(',').map(x => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
 /* los dos que verifico Jerome el 30 de octubre de 2026 */
 const DE_JEROME = { 'playa-los-patos': 'cerrado', 'bodega-frontos-granadilla': 'solo_reserva' };
-const ESTADOS = ['abierto', 'cerrado', 'solo_reserva'];
+const ESTADOS = ['abierto', 'cerrado', 'solo_reserva', 'restringido'];
+/* El Teide con hielo y nieve (Cabildo, desde el 1-11-2026, sin fecha de fin; nota 48): tres fichas que se sugerían,
+   ahora «restringido» y con el aviso; y La Rambleta, con el aviso pero sugerible (es el mirador del teleférico, no un
+   sendero). QUITAR este bloque, con el aviso de las fichas y su estado, cuando el Cabildo levante la restricción. */
+const TEIDE_HIELO = ['montana-blanca', 'ruta-pico-viejo', 'pico-teide-cumbre'];
+const TEIDE_HIELO_SOLO_AVISO = ['mir-rambleta-teide'];
 
 let malos = 0, total = 0;
 const caso = (nombre, ok, detalle) => {
@@ -117,7 +126,7 @@ const EN_LA_PAGINA = async () => {
     const antes = [...new Set(await fn())].filter(id => !NO(places.find(p => p.id === id)));
     const elegidos = antes.slice(0, 3).map(id => places.find(p => p.id === id));
     const res = { elegidos: elegidos.map(p => p.id) };
-    for (const estado of ['cerrado', 'solo_reserva']) {
+    for (const estado of ['cerrado', 'solo_reserva', 'restringido']) {
       elegidos.forEach(p => { p.estado = estado; });
       const ids = await fn();
       res[estado] = elegidos.filter(p => ids.includes(p.id)).map(p => p.id);
@@ -155,10 +164,23 @@ const EN_LA_PAGINA = async () => {
   console.log('=== los datos ===');
   const malDato = d.datos.filter(x => !ESTADOS.includes(x.estado) || !/^https:\/\/[^\s]+$/.test(x.fuente || '')
     || !/^\d{4}-\d{2}-\d{2}$/.test(x.verificado || '') || isNaN(Date.parse(x.verificado)));
-  caso(`${d.datos.length} lugares con estado: cada uno «abierto», «cerrado» o «solo_reserva», con su fuente (https) y su fecha (AAAA-MM-DD)`,
+  caso(`${d.datos.length} lugares con estado: cada uno «abierto», «cerrado», «solo_reserva» o «restringido», con su fuente (https) y su fecha (AAAA-MM-DD)`,
     d.datos.length > 0 && malDato.length === 0, JSON.stringify(malDato));
   const jerome = Object.entries(DE_JEROME).map(([id, e]) => { const x = d.datos.find(y => y.id === id); return [id, e, x && x.estado]; });
   caso(`los de Jerome: ${jerome.map(([id, e]) => id + ', ' + e).join('; ')}`, jerome.every(([, e, v]) => e === v), JSON.stringify(jerome));
+  const teide = TEIDE_HIELO.map(id => { const x = d.datos.find(y => y.id === id); return [id, x && x.estado]; });
+  caso(`el Teide con hielo y nieve: ${TEIDE_HIELO.join(', ')}, «restringido» y fuera de las sugerencias`,
+    teide.every(([id, e]) => e === 'restringido' && d.noSugeribles.includes(id)), JSON.stringify(teide));
+  const rambleta = TEIDE_HIELO_SOLO_AVISO.map(id => [id, (d.datos.find(y => y.id === id) || {}).estado, d.noSugeribles.includes(id)]);
+  caso(`${TEIDE_HIELO_SOLO_AVISO.join(', ')}: sin estado, se sigue sugiriendo`, rambleta.every(([, e, no]) => e === undefined && !no), JSON.stringify(rambleta));
+  const sinAvisoTeide = [];
+  for (const L of IDIOMAS) for (const id of TEIDE_HIELO.concat(TEIDE_HIELO_SOLO_AVISO)) {
+    const desc = L === 'es' ? ((html.split('id:"' + id + '"')[1] || '').match(/desc:\{ es:"([^"]*)"/) || [])[1]
+      : (JSON.parse(fs.readFileSync(path.join(RAIZ, 'idiomas', L + '.json'), 'utf8'))[id] || {}).desc;
+    if (!desc || !desc.startsWith('⚠️') || !desc.includes('PNT 07') || !desc.includes('Tenerife ON')) sinAvisoTeide.push(L + ' ' + id);
+  }
+  caso(`las ${TEIDE_HIELO.length + TEIDE_HIELO_SOLO_AVISO.length} fichas del Teide llevan delante el aviso del Cabildo (⚠️, PNT 07…, Tenerife ON) en los ${IDIOMAS.length} idiomas`,
+    sinAvisoTeide.length === 0, sinAvisoTeide.join(', '));
   const sinAviso = [];
   for (const L of IDIOMAS) for (const id of d.noSugeribles) {
     const desc = L === 'es' ? ((html.split('id:"' + id + '"')[1] || '').match(/desc:\{ es:"([^"]*)"/) || [])[1]
@@ -173,8 +195,8 @@ const EN_LA_PAGINA = async () => {
 
   console.log('\n=== con un estado de prueba en lugares que si salen ===');
   for (const [k, v] of Object.entries(d.prueba)) {
-    caso(`${k}: con «cerrado» y con «solo_reserva» desaparecen, con «abierto» vuelven (${v.elegidos.join(', ')})`,
-      v.elegidos.length > 0 && v.cerrado.length === 0 && v.solo_reserva.length === 0 && v.abierto.length === v.elegidos.length, JSON.stringify(v));
+    caso(`${k}: con «cerrado», con «solo_reserva» y con «restringido» desaparecen, con «abierto» vuelven (${v.elegidos.join(', ')})`,
+      v.elegidos.length > 0 && v.cerrado.length === 0 && v.solo_reserva.length === 0 && v.restringido.length === 0 && v.abierto.length === v.elegidos.length, JSON.stringify(v));
   }
 
   console.log('\n=== por su nombre ===');
