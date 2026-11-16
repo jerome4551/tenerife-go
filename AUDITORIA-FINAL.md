@@ -8956,6 +8956,143 @@ En `main`, el commit va encima de siete de los robots (terremotos, el vigía SOS
 los avisos de AEMET, los precios de las gasolineras y los satélites), que solo cambian sus ficheros de datos; los
 controles que leen esos ficheros, en verde tras el rebase.
 
+## El Teide con hielo y nieve, Masca cerrado y el PR-TF 51 entero (nota 48, 16 de noviembre)
+
+Jérôme, 16-11, con la nota 48: «desde el 1-11 el Cabildo restringe por hielo y nieve siete senderos del Teide (PNT 07,
+09, 10, 11, 12, 23 y 28). Solo pueden ir expertos en alta montaña o personas con un guía acreditado por el Parque.
+Necesitan autorización de Tenerife ON, crampones y piolet, y no hay fecha de fin. La app no lo dice y sigue proponiendo
+esas rutas. Además, el Barranco de Masca seguía cerrado el 12-11 y la app también lo propone.» Los textos de los once
+idiomas son los de la nota 48, revisada por dos revisores independientes; cada dato se ha vuelto a mirar en su fuente
+oficial el mismo día.
+
+**El Teide.** La resolución del Cabildo, en Tenerife ON («Restricted access to the trails of the Teide stratovolcano due
+to ice and snow»), la que leyó la nota 48. Hoy esa web pide una verificación de seguridad, que no se salta, así que no
+se ha podido volver a leer aquí; la prensa la da por vigente y sin fecha de fin (Diario de Avisos, 1 y 4 de noviembre) y
+no hay noticia de que se haya levantado (un «reabre Montaña Blanca» de RTVC que sale al buscar es de enero de 2025). Lo
+que cambia:
+- El aviso de la nota (`aviso_teide`), delante de la descripción de `montana-blanca`, `ruta-pico-viejo`,
+  `pico-teide-cumbre` y `mir-rambleta-teide`, en los diez idiomas y en las tres filas rumanas que hay.
+- Las tres primeras, con un `estado` nuevo, «restringido», con su fuente y su fecha. No es «cerrado»: los senderos
+  siguen abiertos para quien cumple las condiciones, y nada lo enseña como cerrado. Pero mientras dure no se propone
+  (`lugarSugerible`): ni en «Organice su día», ni en «Ruta del día», ni en lo que sugiere el asistente. La Rambleta
+  se sigue proponiendo: es el mirador del teleférico, no un sendero; lleva el aviso porque manda al PNT 12 y al PNT
+  10.
+- El asistente: `tei-01` (los permisos) y `tei-06` (cómo se llega a La Rambleta a pie) llevan delante el mismo
+  aviso, en los diez idiomas (`faq/fuente/` y `generar_faq.py`).
+- Ninguna otra ficha del Teide lo lleva: el Sanatorio (PNT 16), Samara (PNT 13), Guajara, el GR-131, el teleférico y
+  los miradores no están en la resolución.
+
+**Masca** (`ruta-masca-playa`). El 12-11, al desactivar el plan de emergencias por la borrasca Charles, el Cabildo dejó
+cerrado el Barranco de Masca «hasta que se confirme que las condiciones permiten su apertura». Su web oficial, «Masca
+today», actualizada hoy a las 13:46: «Camino del barranco de Masca y puntos de control: Closed». La ficha lleva
+`estado:"cerrado"` con esa página y la fecha de hoy, como `faro-teno`: sigue en el mapa con su aviso y su enlace, y no
+se propone.
+
+**El PR-TF 51** (`sendero-prtf-51-punta-teno`). La ficha decía 11 km y 4 horas, dificultad media, el túnel de Teno y una
+regulación de 2025 sin fuente. Su página oficial en Tenerife ON, leída por la nota 48: lineal, 22,60 km, 5 h 5 min,
+dificultad alta (MIDE), sube 932,81 m y baja 1.938,61 m, del área recreativa de San José de Los Llanos al km 7 de la
+TF-445. Hoy no se ha podido volver a leer (la verificación de seguridad); la distancia casa con OpenStreetMap (22,1 km)
+y Walkaholic (22,75 km). Ahora:
+- la descripción y la categoría de la nota 48, en los diez idiomas y en su fila rumana, empezando por el aviso de la
+  TF-445 de `faro-teno`, letra por letra;
+- `estado:"cerrado"`: acaba en la carretera cortada desde el 29 de octubre, y la vuelta es la guagua 369 desde Punta
+  de Teno, que no puede llegar;
+- fuera las etiquetas «Túnel», «Regulación» y «Faro».
+
+**La cabecera** (punto 4c: «la B»). Una sola descripción, la del «mapa interactivo gratuito»: «premium» podía hacer
+pensar que se paga. Y el título al compartir, «Su guía interactiva de la isla»: tuteaba.
+
+**Los controles.** `tools/probar_estado.js` conoce el estado «restringido» y mira el Teide: las tres fichas,
+restringidas y fuera de todas las sugerencias; La Rambleta, sugerible; las cuatro con el aviso en los diez idiomas. Con
+el `index.html` publicado, 2 de 29 en rojo (las tres fichas sin estado y las cuatro sin aviso); con este, 29 de 29.
+`auditar_faq.js`, en verde.
+
+**Lo que queda**, y se dice: la coordenada del PR-TF 51 (el primer punto del track oficial) y las tres fichas nuevas (el
+refugio de Altavista, el PNT 23 y el PNT 28), que esperan su coordenada oficial; quitar los avisos cuando el Cabildo
+levante la restricción y abra la TF-445. El 1 de enero de 2027 se vuelve a mirar el estado de todas las rutas.
+
+**La auditoría entera**: la de toda la nota 48, al final de la sección siguiente.
+
+## Lo que dura cada ruta en «Organice su día», la página de los enlaces rotos, robots.txt y sitemap.xml (nota 48, 16 de noviembre)
+
+**Las rutas, con su duración oficial** (punto 2; Jérôme: «Como siempre solo lo que tiene fuente el resto lo pones en la
+nota y lo buscamos o quitamos»). El planificador daba dos horas a todas las rutas de senderismo
+(`DP_DURATION.senderismo`): a Montaña Blanca, que su propia ficha da de cinco a siete, y al primer tramo del GR-131, de
+14 h 20 min. Ahora (`index.html`, tabla `DP_MIN_RUTA`, junto a `DP_DURATION`):
+- 15 rutas llevan los minutos de su fuente oficial, con la dirección de la fuente al lado; si la fuente da un
+  intervalo, la cifra alta. Son 14 de las 15 de la nota 48 que ya tienen ficha y el Barranco del Infierno, cuya web
+  oficial dice «unas 3 horas ida y vuelta» (la nota lo daba sin fuente; ya estaba comprobado el 5 de noviembre).
+  Leídas hoy: la guía del visitante del Teide del MITECO (el Sanatorio, 1 h 45 min; Samara, 2 h 45 min; Pico Viejo,
+  «4-6 horas»), Webtenerife (los cinco tramos del GR-131), la web del Camino del Barranco de Masca («unas 4 horas en
+  descenso») y la del Barranco del Infierno. Las cinco de Tenerife ON (el PNT 07 y los PR-TF 04, 06.1, 51 y 52) son
+  las que leyó la nota 48: hoy su web pide una verificación de seguridad, que no se salta.
+- Fuera, el Roque del Conde. Su página del Ayuntamiento de Adeje ya no está (lleva a la portada) y, según el
+  buscador, daba a la vez 3,7 y 4,2 km, «unas 2 horas» y 1 h 44 min. Su ficha sigue diciendo lo que dice; el
+  planificador no la propone hasta tener una cifra oficial clara.
+- Una ruta sin fuente no se propone hasta tenerla, ni al hacer el itinerario ni con «🔄 Otro». Son 23, en la lista de
+  abajo: se buscan o se quitan, ficha a ficha.
+- Una ruta que no cabe en el tiempo elegido, con la comida si la hay, tampoco: el tramo de 14 h 20 min no cabe
+  nunca, y el de 7 h 20 min no cabe en un día con comida (8 horas).
+- La parada dice su duración de verdad (el Barranco del Infierno, «~180 min»), y el itinerario la suma para caber en
+  su tiempo, como hasta ahora.
+- Lo que no es senderismo sigue como estaba. No hay ningún texto nuevo.
+
+Las rutas sin fuente (23): `cumbre-dorsal`, `sendero-la-orotava`, `ruta-anaga-taganana`, `sendero-sentidos`,
+`sendero-pijaral`, `sendero-afur-taganana`, `sendero-guajara`, `sendero-teno-baracan`, `sendero-chinyero`,
+`prtf-1-mercedes-cruz-carmen`, `prtf-2-taborno-pico-ingles`, `prtf-5-chamorga-igueste`, `prtf-6-3-benijo-draguillo`,
+`prtf-10-cruz-carmen-chinamada`, `sendero-bosque-enigmas`, `sendero-roque-bodegas`, `prtf-6-chamorga-roque-bermejo`,
+`prtf-9-afur-carboneras`, `prtf-11-cruz-carmen-batan`, `sendero-prtf-72-paisaje-lunar`, `sendero-prtf-58-camino-risco`,
+`pr-tf-3-chinamada` y `sendero-roque-conde`. Por qué no tiene fuente cada una lo dice la nota 48: no es un sendero
+oficial con ficha, Tenerife ON no da la cifra, o la ficha es un tramo o una circular de varios senderos.
+
+Las cifras oficiales de los senderos lineales son de ida (el Sanatorio, «4,58 km de ida, 1 h 45 min»): el planificador
+las suma tal cual y la parada siguiente sale del punto de la ficha, que es el inicio. Queda dicho para el bloque de las
+fichas de senderismo.
+
+Las fichas que no casan con su fuente (la nota 48 las lista): `sendero-samara` (dice 5 km y 2 h; el MITECO, 4,6 km y 2 h
+45 min), `prtf-4-bailadero-taganana` (5 km y 2 h; Tenerife ON, 3,05 km y 1 h 40 min), `prtf-6-1-chamorga-faro-anaga`
+(3,2 km; Tenerife ON, 2,78 km) y `pr-tf-52-monte-agua` (10,5 km, dificultad baja; Tenerife ON, 10,69 km, 4 h 25 min,
+alta). El planificador ya usa la cifra oficial; lo que enseñan las fichas se corrige en el bloque de las 38 fichas de
+senderismo, con los textos en los once idiomas.
+
+**El control** (`tools/probar_organiza.js`), con su propia lista de minutos, no la de la app: la tabla de la app es esa
+lista, cada ruta con su fuente y en una ficha de senderismo; en los 1.344 itinerarios, ninguna ruta sin fuente, cada una
+con sus minutos en pantalla y cabiendo en su tiempo con la comida; y «🔄 Otro», en «Deporte», no trae ninguna sin fuente
+ni que no quepa. Con el `index.html` de antes, 3 en rojo: proponía, por ejemplo, `cumbre-dorsal` (sin fuente), el tramo
+5 del GR-131 (7 h 20 min) en una mañana de 3 horas, y el Barranco del Infierno salía con «~120 min». Con este, 626 de
+626 en los diez idiomas: 25 rutas en los 1.344 itinerarios y 11 con «Otro», todas con fuente y cabiendo.
+
+**La página de los enlaces rotos** (punto 4b: «sí»). Quien llegaba por un enlace roto veía la página genérica de GitHub.
+Ahora `404.html`, que GitHub Pages enseña en cualquier dirección que no existe: sale de `idiomas/404/<idioma>.json` (los
+textos de la nota 48) con `tools/generar_404.py`, con el armazón de las otras páginas fijas (`tools/pagina_fija.py`):
+diez idiomas, el de la app o el del navegador, y un botón que lleva a la app. El icono y el botón van con ruta absoluta,
+porque la página se sirve en la dirección rota, sea cual sea. `auditar.sh` comprueba que está al día, como las otras dos
+páginas.
+
+**robots.txt y sitemap.xml.** No existían. `robots.txt` lo permite todo y da la dirección del mapa del sitio;
+`sitemap.xml` lista las tres páginas públicas (la app, la privacidad y borrar la cuenta), sin fecha de cambio, que
+caduca.
+
+**La auditoría entera** (`auditar.sh`), sobre la nota 48 entera, en dos tramos: el contenedor se reinició a las 21:50 y
+la cortó en «el perfil y los avatares»; se siguió desde ese bloque hasta el final, y otra vez «cada idioma, uno por
+uno», sobre el commit del control (abajo), con un `auditar.sh` recortado (la misma cabecera y los mismos bloques, tal
+cual). Los bloques del primer tramo no dependen de ese commit, que solo cambia `tools/auditar_idioma.js`.
+
+- Tres rojos en el primer tramo, ninguno de la app: el de este documento (`auditar_datos.js`: «URLs de lugar sin
+  cifrar», 0 de 27, antes 22, por las cinco fuentes de los estados nuevos), que pone al día este commit; y dos del
+  control de idiomas en la categoría del PR-TF 51 («PR-TF 51 · Teno (Alta · 22,6 km · 5 h 5 min)»): en francés leía
+  como cifra de más el «05» de «5 h 05», la forma francesa (como «7 h 20» o «1 h 45» en las demás fichas), y en
+  italiano «Alta», la dificultad, que se escribe igual que en castellano y no estaba declarada con las demás
+  («Medio», «Farmacia», «Faro»). Arreglado el control en su commit (`auditar_idioma.js`): de 1 y 1 hallazgos a 0 en
+  los diez idiomas; «5 h 50» sigue sin casar con «5 h 5 min». Los textos no cambian.
+- Lo demás, en verde: `probar_organiza.js`, 626 de 626; `probar_estado.js`, 29 de 29; `auditar_registro.js`, 138.170
+  textos, todo de usted; `castellano_suelto.js`, ninguna palabra en castellano; `barrido_pantallas.js`, 191
+  pantallas y fichas por idioma y 0 textos sin traducir; el asistente, 0 fallos de 122; y, en el segundo tramo, cada
+  idioma uno por uno, 0 hallazgos en los diez; el perfil, 74 controles, y los avatares, 153; «Su cuerpo», 64 bien y
+  0 mal y 741 controles, y el entrenador, 44; la isla en 3D, el relieve y 58 controles; y emergencias, los 42
+  controles del módulo, los 262 del panel en los diez idiomas y sin conexión y las pruebas de sus robots. Al final,
+  «AUDITORIA EN VERDE».
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -11102,7 +11239,7 @@ no la secundaria**.
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **117** · 0 huérfanos |
 | De esos, `warn:"mar"` | **50** |
-| URLs de lugar sin cifrar | **0** de 22 |
+| URLs de lugar sin cifrar | **0** de 27 |
 
 Cada cifra de esta tabla, y las dos del texto de abajo (los filtros del alias
 y las líneas con más de dos terminales), las coteja `auditar_datos.js`: si una
