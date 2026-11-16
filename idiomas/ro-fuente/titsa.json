@@ -6,21 +6,21 @@
   {
    "tabla": "TITSA_LINES",
    "clave": "nota",
-   "es": "El billete de 14,60 € es el recorrido completo, Puerto de la Cruz a Costa Adeje. Si solo vas de Puerto de la Cruz al Aeropuerto Norte son 4,75 €, y del Aeropuerto Sur a Costa Adeje, 3,70 €.",
+   "es": "El billete de 14,60 € es el recorrido completo, Puerto de la Cruz a Costa Adeje. Si solo va de Puerto de la Cruz al Aeropuerto Norte son 4,75 €, y del Aeropuerto Sur a Costa Adeje, 3,70 €.",
    "forma": "texto",
    "ro": "Biletul de 14,60 € este pentru traseul complet, de la Puerto de la Cruz la Costa Adeje. Dacă mergeți doar de la Puerto de la Cruz la Aeroportul Nord, costă 4,75 €, iar de la Aeroportul Sud la Costa Adeje, 3,70 €."
   },
   {
    "tabla": "TITSA_LINES",
    "clave": "nota",
-   "es": "Un solo viaje al día, todos los días. Sale a las 09:30 de la Estación de Guaguas del Puerto de la Cruz y llega al Parador a las 11:10. El regreso sale del Parador a las 16:00. Si la pierdes no hay otra: arriba no queda transporte público. Esta línea está excluida de la tarjeta ten+.",
+   "es": "Un solo viaje al día, todos los días. Sale a las 09:30 de la Estación de Guaguas del Puerto de la Cruz y llega al Parador a las 11:10. El regreso sale del Parador a las 16:00. Si la pierde no hay otra: arriba no queda transporte público. Esta línea está excluida de la tarjeta ten+.",
    "forma": "texto",
    "ro": "O singură cursă pe zi, în fiecare zi. Pleacă la ora 09:30 din autogara din Puerto de la Cruz și ajunge la Parador la ora 11:10. Cursa de întoarcere pleacă de la Parador la ora 16:00. Dacă o pierdeți, nu există alta: sus nu mai rămâne transport public. Cardul ten+ nu este valabil pe această linie."
   },
   {
    "tabla": "TITSA_LINES",
    "clave": "nota",
-   "es": "Un solo viaje al día, todos los días. Sale a las 09:25 de la Estación de Costa Adeje y llega al Parador sobre las 11:40. El regreso sale del Parador a las 15:40. Si la pierdes no hay otra: arriba no queda transporte público. Esta línea está excluida de la tarjeta ten+.",
+   "es": "Un solo viaje al día, todos los días. Sale a las 09:25 de la Estación de Costa Adeje y llega al Parador sobre las 11:40. El regreso sale del Parador a las 15:40. Si la pierde no hay otra: arriba no queda transporte público. Esta línea está excluida de la tarjeta ten+.",
    "forma": "texto",
    "ro": "O singură cursă pe zi, în fiecare zi. Pleacă la ora 09:25 din autogara din Costa Adeje și ajunge la Parador în jurul orei 11:40. Cursa de întoarcere pleacă de la Parador la ora 15:40. Dacă o pierdeți, nu există alta: sus nu mai rămâne transport public. Cardul ten+ nu este valabil pe această linie."
   },
