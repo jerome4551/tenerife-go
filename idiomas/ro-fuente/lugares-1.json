@@ -1000,16 +1000,16 @@
   {
    "tabla": "places",
    "clave": "sendero-prtf-51-punta-teno.desc",
-   "es": "Sendero histórico hasta el faro más remoto de la isla. 11 km solo ida, 4 horas. Atraviesa el túnel de Teno (linterna recomendada) y desciende por el Camino del Risco hacia Punta de Teno. ⚠️ Desde 1 enero 2025: acceso a Punta de Teno regulado 10-19h (solo bus). El sendero permanece abierto pero no se puede llegar en coche entre esas horas. Vistas a La Gomera y La Palma.",
+   "es": "⚠️ Sin acceso por carretera: la TF-445 a Punta de Teno está cortada por un desprendimiento desde el 29 de octubre de 2026, y aún no hay fecha de reapertura. El PR-TF 51 sale del área recreativa de San José de Los Llanos (El Tanque), pasa por Los Bailaderos (Teno Alto) y baja hasta la carretera de Punta de Teno, en el km 7 de la TF-445: justo la que está cortada. Lineal, 22,6 km y unas 5 horas, de dificultad alta según el Cabildo; sube 933 m y baja 1.939 m.",
    "forma": "texto",
-   "ro": "Traseu istoric până la cel mai izolat far al insulei. 11 km doar dus, 4 ore. Trece prin tunelul Teno (se recomandă o lanternă) și coboară pe Camino del Risco spre Punta de Teno. ⚠️ Din 1 ianuarie 2025: accesul la Punta de Teno este reglementat 10-19h (doar cu autobuzul). Traseul rămâne deschis, dar în acest interval nu se poate ajunge cu mașina. Priveliști spre La Gomera și La Palma."
+   "ro": "⚠️ Fără acces rutier: drumul TF-445 spre Punta de Teno este închis din cauza unei căderi de pietre din 29 octombrie 2026 și încă nu există o dată de redeschidere. Traseul PR-TF 51 pornește din zona de agrement San José de Los Llanos (El Tanque), trece prin Los Bailaderos (Teno Alto) și coboară până la drumul spre Punta de Teno, la km 7 al TF-445: tocmai cel închis. Liniar, 22,6 km și circa 5 ore, cu dificultate ridicată potrivit Cabildo (consiliul insular); urcare de 933 m și coborâre de 1.939 m."
   },
   {
    "tabla": "places",
    "clave": "sendero-prtf-51-punta-teno.cat",
-   "es": "PR-TF 51 · Teno (Medio · 11 km · 4h)",
+   "es": "PR-TF 51 · Teno (Alta · 22,6 km · 5 h 5 min)",
    "forma": "texto",
-   "ro": "PR-TF 51 · Teno (Mediu · 11 km · 4h)"
+   "ro": "PR-TF 51 · Teno (Ridicată · 22,6 km · 5 h 5 min)"
   },
   {
    "tabla": "places",
