@@ -325,6 +325,10 @@ function sinMiriadas(t) {
 }
 const cifras = s => {
   s = sinMiriadas(sinRomanos(String(s)));
+  /* El frances escribe las duraciones con los minutos en dos cifras, «5 h 05», como manda su
+     tipografia, y el castellano «5 h 5 min»: ese cero no es una cifra que sobre. Solo detras de
+     «N h»: «5 h 50» sigue siendo 50 y no casa con «5 h 5 min» (el PR-TF 51, nota 48, 16-11-2026). */
+  s = s.replace(/(\d\s*h\s*)0(\d)(?!\d)/g, '$1$2');
   /* El separador de millares cambia con el idioma: 1.024 en castellano,
      1,024 en ingles y 1 024 -con espacio- en frances y bulgaro. Se quitan
      los tres, o "1 024" se leia como el numero 024 y no casaba con nada. */
@@ -393,7 +397,9 @@ const IGUAL_OK = {
        'Farmacia', 'Farmacia 24h', 'Museo', 'Museo del Vino', 'Faro',
        'Faro Moderno', 'Teatro', 'Piscina', 'Patrimonio', 'Patrimonio UNESCO',
        'Convento', 'Santuario', 'Ambulatorio', 'Turismo', 'Cala', 'Centro',
-       'Calistenia', 'Calistenia Kenguru Pro', 'D.O.', 'Noroeste', 'Medio'],
+       'Calistenia', 'Calistenia Kenguru Pro', 'D.O.', 'Noroeste', 'Medio',
+       /* la dificultad de un sendero (MIDE): «Alta», como en castellano (el PR-TF 51, nota 48) */
+       'Alta'],
   nl: ['Guachinche', 'Golf', 'Minigolf', 'Kayak', 'Fitness', 'Marina',
        'Street Workout', 'Skatepark', 'Windsurf', 'Caldera', 'Camping',
        'Modernista', 'Real Club Náutico', 'D.O.'],
