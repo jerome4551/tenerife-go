@@ -8915,6 +8915,47 @@ En `main`, el commit va encima de tres de los robots (alertas del Gobierno de Ca
 que solo cambian `datos/alertas-canarias.json`, `datos/avisos-aemet.json` y `datos/sismos-ign.json`; los controles que
 leen esos ficheros, en verde tras el rebase.
 
+## Los socorristas de las playas, renovados con el visor oficial y con su periodo (16 de noviembre)
+
+**Lo que pasaba.** Los horarios de socorristas de las fichas se leyeron en agosto y, a propósito, dejan de decirse a los
+100 días de su revisión (`SOC_VIDA_DIAS`): el servicio se contrata por trimestres. Iban a dejar de salir entre el 17 y
+el 19 de noviembre.
+
+**La fuente.** El Visor de Playas y Zonas de Baño Marítimas de Canarias, del Gobierno de Canarias, leído el 16 de
+noviembre en la ficha de cada playa y en hora canaria: del 16/09/2026 al 31/12/2026, de lunes a domingo, de 10:00 a
+18:00, en Las Vistas y El Camisón (Arona) y en El Duque, Fañabé, Torviscas, Callao Salvaje (la playa de Ajabo del visor)
+y la Playa Honda, donde está la ficha de «Playa de las Américas» (Adeje). La hora se comprobó con el mismo código del
+visor en hora canaria: sus horas de inicio y fin (09:00 y 18:00 en UTC) son las 10:00 y las 18:00 en Canarias.
+
+**Lo que cambia** (`index.html`, tabla `SOCORRISTAS`):
+- Esas siete fichas, con el horario del visor, su periodo (`desde` 2026-09-16, `hasta` 2026-12-31) y la revisión del
+  16 de noviembre.
+- `estadoSocorristas()` mira ahora `desde` y `hasta` (AAAA-MM-DD): fuera del periodo de la fuente no se dice nada,
+  aunque la revisión sea reciente; y si están mal escritos, tampoco. Sin esto, con la revisión de hoy, el horario se
+  habría seguido diciendo hasta febrero, después de que acabe el periodo del visor.
+- No se renuevan, y dejan de decirse solas como estaba previsto: La Caleta de Adeje (en el punto de su ficha el
+  visor tiene El Varadero y El Muelle, sin socorristas) y las piscinas de Bajamar, Punta del Hidalgo y Jover (el
+  visor no da ahora ningún periodo). Sus fichas vuelven a lo de siempre: «Servicio de socorristas», sin horario (y
+  en La Caleta, como en todas las playas, el enlace al visor).
+- Ningún texto nuevo: los horarios salen con las frases de siempre, en los diez idiomas.
+
+**El control** (`tools/probar_socorristas.js`, nuevo, en `tools/auditar.sh`): lee de `index.html` la tabla y las
+funciones que deciden qué se enseña y las corre con el reloj puesto, sin navegador. 52 controles: las siete fichas
+renovadas dicen su horario dentro del periodo y nada a partir del 1 de enero; el verano de Arona no se cuela en
+noviembre; un `desde` o un `hasta` fuera de fecha o mal escrito no deja decir nada; y las cuatro sin renovar ya no se
+dicen el 20 de noviembre. Con el `index.html` de antes, 32 en rojo; con este, todos en verde.
+
+**La auditoría entera** (`auditar.sh`, sus 71 bloques), sobre el commit de los socorristas: en verde, ningún control en
+rojo. Entre ellos, `probar_socorristas.js`, 52 de 52; `auditar_registro.js`, todo de usted en los diez idiomas;
+`castellano_suelto.js`, ninguna palabra en castellano; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0
+textos sin traducir; el mapa, 137; «Su cuerpo», 741; el entrenador, 44; el cielo, 311; el perfil y los avatares, 74 y
+153; la isla en 3D y el panel SOS con sus robots, en verde. Al acabar, el árbol seguía limpio: `app_preparar.js` no
+cambió ningún fichero del repositorio.
+
+En `main`, el commit va encima de siete de los robots (terremotos, el vigía SOS, las alertas del Gobierno de Canarias,
+los avisos de AEMET, los precios de las gasolineras y los satélites), que solo cambian sus ficheros de datos; los
+controles que leen esos ficheros, en verde tras el rebase.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
