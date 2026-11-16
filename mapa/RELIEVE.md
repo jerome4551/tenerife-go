@@ -28,7 +28,8 @@ pide nada: en la app de las tiendas sería un 404).
   árboles ni edificios, con una exactitud vertical de 50 cm según su metadato.
   Lo baja `tools/relieve_ign.py` de la API de coberturas de la IDEE
   (`api-coverages.idee.es`, colección `EL.ElevationGridCoverage_4258_5_C`, sin
-  cuenta), a trozos de 0,04° (y en cuatro más pequeños si uno no sale), solo
+  cuenta), a trozos de 0,019° (el servicio no da cajas de más de 2.500 m de
+  ancho o de alto; y en cuatro más pequeños si uno no sale), solo
   los que tocan tierra, y lo deja en un mosaico de bloques de 3 × 3 píxeles
   (unos 14 m). Antes de usarlo se compara con el Copernicus DEM en las celdas
   de tierra: si la diferencia mediana pasa de 15 m o la media de su valor
@@ -96,7 +97,7 @@ copias, y `--comprobar` las del `.json`.
 
 Con el workflow **Generar relieve 3D** (`.github/workflows/generar-relieve.yml`):
 repositorio → Actions → Run workflow. Desde el móvil, en Safari, vale igual.
-Baja las teselas de Copernicus y el MDT05 del IGN (con 40 minutos de tope),
+Baja las teselas de Copernicus y el MDT05 del IGN (con 90 minutos de tope),
 construye con el IGN (y lo compara con Copernicus) y, si eso no sale, con
 Copernicus; pasa
 `--comprobar` y hace commit (el relieve y la huella de `sw.js` y de

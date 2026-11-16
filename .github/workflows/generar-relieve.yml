@@ -56,7 +56,7 @@ permissions: {}
 jobs:
   generar:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 120
     permissions:
       contents: read
     outputs:
@@ -98,10 +98,12 @@ jobs:
         if: github.event.inputs.fuente != 'copernicus'
         continue-on-error: true
         # si la IDEE va muy lenta o no contesta, este paso se corta solo y el relieve sale de
-        # Copernicus; sin este tope, el del job (75 min) lo cortaria todo y no saldria ninguno.
+        # Copernicus; sin este tope, el del job (120 min) lo cortaria todo y no saldria ninguno.
         # Un paso que se pasa de tiempo queda «failure» y, con continue-on-error, el job sigue
-        # (actions/runner, src/Runner.Worker/StepsRunner.cs y ApplyContinueOnError)
-        timeout-minutes: 40
+        # (actions/runner, src/Runner.Worker/StepsRunner.cs y ApplyContinueOnError).
+        # 90 min (16-11-2026): el 1 de noviembre, con 40, se corto a los 1.867 trozos de 0,01 grados;
+        # con los de 0,019 grados de ahora son unos 610, y si la IDEE va lenta hay margen
+        timeout-minutes: 90
         run: |
           set -o pipefail
           python3 tools/relieve_ign.py dem-ign 2>&1 | tee ign.txt
