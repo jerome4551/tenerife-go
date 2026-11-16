@@ -50,7 +50,9 @@ import unicodedata
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RAIZ, 'tools'))
 
-IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']
+# El rumano (ro), desde el bloque 9 del rumano: sus textos no van a idiomas/ro.json sino, con el castellano
+# que traducen, a idiomas/ro-fuente/lugares-5.json; idiomas/ro.json lo monta tools/lugares_traduccion.js ro.
+IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']
 
 # ── EL VOCABULARIO ───────────────────────────────────────────────────────────
 # Esto es lo que hay que revisar. Doce palabras.
@@ -58,39 +60,39 @@ V = {
  'gasolinera': {'es': 'Gasolinera', 'en': 'Petrol station', 'fr': 'Station-service',
                 'de': 'Tankstelle', 'it': 'Distributore', 'nl': 'Tankstation',
                 'zh': '加油站', 'zht': '加油站', 'bg': 'Бензиностанция',
-                'pl': 'Stacja paliw'},
+                'pl': 'Stacja paliw', 'ro': 'Benzinărie'},
  'combustibles': {'es': 'Combustibles', 'en': 'Fuels', 'fr': 'Carburants',
                   'de': 'Kraftstoffe', 'it': 'Carburanti', 'nl': 'Brandstoffen',
-                  'zh': '燃料', 'zht': '燃料', 'bg': 'Горива', 'pl': 'Paliwa'},
+                  'zh': '燃料', 'zht': '燃料', 'bg': 'Горива', 'pl': 'Paliwa', 'ro': 'Carburanți'},
  'g95': {'es': 'gasolina 95', 'en': 'petrol 95', 'fr': 'essence 95', 'de': 'Benzin 95',
          'it': 'benzina 95', 'nl': 'benzine 95', 'zh': '95号汽油', 'zht': '95號汽油',
-         'bg': 'бензин 95', 'pl': 'benzyna 95'},
+         'bg': 'бензин 95', 'pl': 'benzyna 95', 'ro': 'benzină 95'},
  'g98': {'es': 'gasolina 98', 'en': 'petrol 98', 'fr': 'essence 98', 'de': 'Benzin 98',
          'it': 'benzina 98', 'nl': 'benzine 98', 'zh': '98号汽油', 'zht': '98號汽油',
-         'bg': 'бензин 98', 'pl': 'benzyna 98'},
+         'bg': 'бензин 98', 'pl': 'benzyna 98', 'ro': 'benzină 98'},
  'gasoleo': {'es': 'gasóleo A', 'en': 'diesel', 'fr': 'gazole', 'de': 'Diesel',
              'it': 'gasolio', 'nl': 'diesel', 'zh': '柴油', 'zht': '柴油',
-             'bg': 'дизел', 'pl': 'olej napędowy'},
+             'bg': 'дизел', 'pl': 'olej napędowy', 'ro': 'motorină'},
  'premium': {'es': 'gasóleo premium', 'en': 'premium diesel', 'fr': 'gazole premium',
              'de': 'Premium-Diesel', 'it': 'gasolio premium', 'nl': 'premiumdiesel',
              'zh': '优质柴油', 'zht': '優質柴油', 'bg': 'премиум дизел',
-             'pl': 'olej napędowy premium'},
+             'pl': 'olej napędowy premium', 'ro': 'motorină premium'},
  'g95p': {'es': 'gasolina 95 premium', 'en': 'premium petrol 95', 'fr': 'essence 95 premium',
           'de': 'Premium-Benzin 95', 'it': 'benzina 95 premium', 'nl': 'premium benzine 95',
           'zh': '优质95号汽油', 'zht': '優質95號汽油', 'bg': 'бензин 95 премиум',
-          'pl': 'benzyna 95 premium'},
+          'pl': 'benzyna 95 premium', 'ro': 'benzină premium 95'},
  'renovable': {'es': 'diésel renovable', 'en': 'renewable diesel', 'fr': 'gazole renouvelable',
                'de': 'erneuerbarer Diesel', 'it': 'gasolio rinnovabile',
                'nl': 'hernieuwbare diesel', 'zh': '可再生柴油', 'zht': '可再生柴油',
-               'bg': 'възобновяем дизел', 'pl': 'odnawialny olej napędowy'},
+               'bg': 'възобновяем дизел', 'pl': 'odnawialny olej napędowy', 'ro': 'motorină regenerabilă'},
  'gnc': {'es': 'gas natural comprimido', 'en': 'compressed natural gas',
          'fr': 'gaz naturel comprimé', 'de': 'komprimiertes Erdgas',
          'it': 'gas naturale compresso', 'nl': 'gecomprimeerd aardgas',
          'zh': '压缩天然气', 'zht': '壓縮天然氣', 'bg': 'компресиран природен газ',
-         'pl': 'sprężony gaz ziemny'},
+         'pl': 'sprężony gaz ziemny', 'ro': 'gaz natural comprimat'},
  'glp': {'es': 'GLP', 'en': 'LPG', 'fr': 'GPL', 'de': 'Autogas', 'it': 'GPL',
          'nl': 'LPG', 'zh': '液化石油气', 'zht': '液化石油氣', 'bg': 'газ LPG',
-         'pl': 'LPG'},
+         'pl': 'LPG', 'ro': 'GPL'},
  'dospuntos': {'zh': '：', 'zht': '：'},
  # El AdBlue no es un combustible -es un aditivo para el escape de los diesel-
  # asi que no va en la lista de «Combustibles»: va aparte, con la misma forma de
@@ -98,14 +100,14 @@ V = {
  # surtidor y se escribe igual en los diez. Lo pidio Jerome el 3 de octubre.
  'ademas': {'es': 'Además', 'en': 'Also', 'fr': 'Également', 'de': 'Außerdem',
             'it': 'Inoltre', 'nl': 'Ook', 'zh': '另有', 'zht': '另有', 'bg': 'Също',
-            'pl': 'Także'},   # el chino usa los suyos, de ancho completo
+            'pl': 'Także', 'ro': 'De asemenea'},   # el chino usa los suyos, de ancho completo
  'y': {'es': 'y', 'en': 'and', 'fr': 'et', 'de': 'und', 'it': 'e', 'nl': 'en',
-       'zh': '和', 'zht': '和', 'bg': 'и', 'pl': 'i'},
+       'zh': '和', 'zht': '和', 'bg': 'и', 'pl': 'i', 'ro': 'și'},
  'coma': {'zh': '、', 'zht': '、'},     # el chino enumera con ideografica, no con «,»
  'punto': {'zh': '。', 'zht': '。'},
  'veinticuatro': {'es': '24 h', 'en': '24 h', 'fr': '24 h', 'de': '24 Std.',
                   'it': '24 h', 'nl': '24 u', 'zh': '24小时', 'zht': '24小時',
-                  'bg': '24 ч', 'pl': '24 h'},
+                  'bg': '24 ч', 'pl': '24 h', 'ro': '24 h'},
 }
 # Los siete dias abreviados. Las letras del castellano (L M X J V S D) no valen
 # en ningun otro idioma: cada uno lleva las suyas.
@@ -120,9 +122,14 @@ DIAS = {
  'zht': ['週一', '週二', '週三', '週四', '週五', '週六', '週日'],
  'bg':  ['Пон', 'Вто', 'Сря', 'Чет', 'Пет', 'Съб', 'Нед'],
  'pl':  ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So', 'Nd'],
+ 'ro':  ['Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă', 'Duminică'],
 }
 CODIGO = {'L': 0, 'M': 1, 'X': 2, 'J': 3, 'V': 4, 'S': 5, 'D': 6}
 GUION = {'zh': '至', 'zht': '至'}      # el chino no usa el guion para los rangos
+# El rumano escribe los dias enteros, como en el resto de sus fichas («Luni-vineri 9:00–17:00»), y en un
+# tramo el segundo va en minuscula: «Luni-vineri», «Sâmbătă-duminică». Los dias, en rumano, se escriben con
+# minuscula; el primero lleva mayuscula porque empieza el tramo.
+DIAS_ENTEROS = {'ro'}
 
 # ── COMO SE LEE EL REGISTRO ──────────────────────────────────────────────────
 # El registro escribe TODO EN MAYUSCULAS, abrevia el tipo de via, y en 24 de las
@@ -478,7 +485,8 @@ def horario(txt, L):
                 piezas.append(tramo)
                 crudas.append(tramo)
                 continue
-            etiqueta = '%s%s%s' % (dias[CODIGO[a]], g, dias[CODIGO[b]])
+            fin = dias[CODIGO[b]].lower() if L in DIAS_ENTEROS else dias[CODIGO[b]]
+            etiqueta = '%s%s%s' % (dias[CODIGO[a]], g, fin)
         elif cod in CODIGO:
             etiqueta = dias[CODIGO[cod]]
         else:

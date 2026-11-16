@@ -8,7 +8,7 @@
  "7677": {
   "estacion": "REPSOL BARROSO · Carretera TF-21 Aguamansa · La Orotava",
   "por_que": "Es la ultima gasolinera subiendo al Teide por la TF-21: esta unos 1,3 km mas arriba por la misma carretera que la Cepsa La Cañada (7790), que era la que llevaba el aviso. Jerome, 3 de octubre: «Si quitale pero ponle a la ultima entonce».",
-  "de_donde": "Los textos son los que tenia gas-tf21-aguamansa en los diez idiomas, trasladados tal cual. El frances se completo el 4 de octubre: decia menos que los otros nueve (le faltaban «desde La Orotava (Aguamansa)» y «antes de subir al Teide»).",
+  "de_donde": "Los textos son los que tenia gas-tf21-aguamansa en los diez idiomas, trasladados tal cual. El frances se completo el 4 de octubre: decia menos que los otros nueve (le faltaban «desde La Orotava (Aguamansa)» y «antes de subir al Teide»). El rumano (ro) se tradujo del castellano en el bloque 9 del rumano (16 de noviembre de 2026).",
   "cat": {
    "es": "⚠️ Última Gasolinera",
    "en": "⚠️ Last Petrol",
@@ -19,7 +19,8 @@
    "zh": "⚠️ 最后一个加油站",
    "zht": "⚠️ 最後一個加油站",
    "bg": "⚠️ Последна бензиностанция",
-   "pl": "⚠️ Ostatnia stacja paliw"
+   "pl": "⚠️ Ostatnia stacja paliw",
+   "ro": "⚠️ Ultima benzinărie"
   },
   "desc": {
    "es": "⚠️ ÚLTIMA gasolinera antes del Parque Nacional del Teide subiendo por la TF-21 desde La Orotava (Aguamansa). NO hay gasolineras en el Parque Nacional. Imprescindible repostar aquí antes de subir al Teide.",
@@ -31,7 +32,8 @@
    "zh": "⚠️ 经TF-21从拉奥罗塔瓦（阿瓜曼萨）上行进入泰德国家公园前的最后一个加油站。国家公园内没有加油站。上泰德峰前务必在此加油。",
    "zht": "⚠️ 經TF-21從拉奧羅塔瓦（阿瓜曼薩）上行進入泰德國家公園前的最後一個加油站。國家公園內沒有加油站。上泰德峰前務必在此加油。",
    "bg": "⚠️ ПОСЛЕДНАТА бензиностанция преди Национален парк Тейде по TF-21 откъм Ла Оротава (Агуаманса). В националния парк НЯМА бензиностанции. Задължително заредете тук, преди да се качите на Тейде.",
-   "pl": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 z La Orotava (Aguamansa). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide."
+   "pl": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 z La Orotava (Aguamansa). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide.",
+   "ro": "⚠️ ULTIMA benzinărie înainte de Parcul Național Teide, urcând pe drumul TF-21 dinspre La Orotava (Aguamansa). NU există benzinării în Parcul Național. Este indispensabil să alimentați aici înainte de a urca spre Teide."
   },
   "tags": [
    "TF-21",
@@ -45,6 +47,7 @@
  "7951": {
   "estacion": "DISA · CARRETERA GENERAL 821 KM. 68,80 · Vilaflor",
   "por_que": "Es la ultima gasolinera subiendo al Teide por el sur: segun el registro no hay ninguna estacion mas arriba de Vilaflor camino del Parque Nacional (Vilaflor solo tiene esta) y en el Parque no hay ninguna. Esta a 14 m de la TF-21 en OSM. La gemela por el norte es la Repsol Barroso (7677). La antigua gas-tf51-vilaflor ya lo decia («Ultima gasolinera antes de la zona alta», con el ⚠️); se conserva al rehacerla en la sesion 91 (Jerome, 4 de octubre: «Arregla lo que puedes»), con la misma forma que el aviso de la Barroso.",
+  "de_donde": "El rumano (ro) se tradujo del castellano en el bloque 9 del rumano (16 de noviembre de 2026).",
   "cat": {
    "es": "⚠️ Última Gasolinera",
    "en": "⚠️ Last Petrol",
@@ -55,7 +58,8 @@
    "zh": "⚠️ 最后一个加油站",
    "zht": "⚠️ 最後一個加油站",
    "bg": "⚠️ Последна бензиностанция",
-   "pl": "⚠️ Ostatnia stacja paliw"
+   "pl": "⚠️ Ostatnia stacja paliw",
+   "ro": "⚠️ Ultima benzinărie"
   },
   "desc": {
    "es": "⚠️ ÚLTIMA gasolinera antes del Parque Nacional del Teide subiendo por la TF-21 desde el sur (Vilaflor). NO hay gasolineras en el Parque Nacional. Imprescindible repostar aquí antes de subir al Teide.",
@@ -67,7 +71,8 @@
    "zh": "⚠️ 经TF-21从南部（Vilaflor）上行进入泰德国家公园前的最后一个加油站。国家公园内没有加油站。上泰德峰前务必在此加油。",
    "zht": "⚠️ 經TF-21從南部（Vilaflor）上行進入泰德國家公園前的最後一個加油站。國家公園內沒有加油站。上泰德峰前務必在此加油。",
    "bg": "⚠️ ПОСЛЕДНАТА бензиностанция преди Национален парк Тейде по TF-21 откъм юг (Vilaflor). В националния парк НЯМА бензиностанции. Задължително заредете тук, преди да се качите на Тейде.",
-   "pl": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 od południa (Vilaflor). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide."
+   "pl": "⚠️ OSTATNIA stacja paliw przed Parkiem Narodowym Teide, jadąc drogą TF-21 od południa (Vilaflor). W Parku Narodowym NIE MA stacji paliw. Trzeba koniecznie zatankować tutaj przed wjazdem na Teide.",
+   "ro": "⚠️ ULTIMA benzinărie înainte de Parcul Național Teide, urcând pe drumul TF-21 dinspre sud (Vilaflor). NU există benzinării în Parcul Național. Este indispensabil să alimentați aici înainte de a urca spre Teide."
   },
   "tags": [
    "TF-21",
