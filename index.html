@@ -32712,6 +32712,58 @@ const DP_DURATION = {
   deporte_publico:45, ciclismo:45, parapente:120, surf:120, windsurf:120, golf:240, escalada:180, kayak:120, buceo:180, pesca:300, barbacoa:120, camping:180,
 };
 
+/* Lo que dura cada ruta de senderismo, en minutos, con su fuente oficial
+   (nota 48, 16 de noviembre de 2026; Jérôme: «Como siempre solo lo que tiene
+   fuente»). Hasta entonces todas duraban lo mismo, DP_DURATION.senderismo,
+   dos horas: Montaña Blanca, de cinco a siete según su propia ficha, y el
+   primer tramo del GR-131, de 14 h 20 min, también dos. Ahora:
+   · una ruta de esta tabla dura lo que dice su fuente (si la fuente da un
+     intervalo, la cifra alta: «4-6 horas» son 360 minutos);
+   · una que no está, no se propone hasta tener la suya (se busca o se
+     quita, ficha a ficha);
+   · y una que no cabe en el tiempo elegido, con la comida si la hay,
+     tampoco: el tramo de 14 h 20 min no cabe nunca.
+   Fuentes leídas el 16 de noviembre de 2026; las de Tenerife ON, por la nota
+   48 (ese día su web pedía una verificación de seguridad, que no se salta, y
+   no se pudieron volver a leer aquí). Lo que no es senderismo sigue con
+   DP_DURATION. probar_organiza.js lo mira con su propia lista. */
+const DP_MIN_RUTA = {
+  // Parque Nacional del Teide: Tenerife ON (Cabildo) y la guía del visitante
+  // de la Red de Parques Nacionales (MITECO)
+  'montana-blanca': [355, 'https://www.tenerifeon.es/en/routes/hiking/pnt-07-montana-blanca-la-rambleta'],
+  'ruta-pico-viejo': [360, 'https://www.miteco.gob.es/es/parques-nacionales-oapn/red-parques-nacionales/parques-nacionales/teide/guia-visitante/itinerarios.html'],
+  'sendero-pico-viejo': [105, 'https://www.miteco.gob.es/es/parques-nacionales-oapn/red-parques-nacionales/parques-nacionales/teide/guia-visitante/itinerarios.html'],
+  'sendero-samara': [165, 'https://www.miteco.gob.es/es/parques-nacionales-oapn/red-parques-nacionales/parques-nacionales/teide/guia-visitante/itinerarios.html'],
+  // Anaga y Teno: Tenerife ON (Cabildo)
+  'prtf-4-bailadero-taganana': [100, 'https://www.tenerifeon.es/en/routes/hiking/pr-tf-04-el-bailadero-taganana'],
+  'prtf-6-1-chamorga-faro-anaga': [100, 'https://www.tenerifeon.es/en/routes/hiking/tf-06-1-tafada-variant'],
+  'pr-tf-52-monte-agua': [265, 'https://www.tenerifeon.es/en/routes/hiking/pr-tf-52-erjos-las-portelas'],
+  'sendero-prtf-51-punta-teno': [305, 'https://www.tenerifeon.es/en/routes/hiking/pr-tf-51-san-jose-de-los-llanos'],
+  // el GR-131, tramo a tramo: Webtenerife (Turismo de Tenerife)
+  'gr131-tramo1-esperanza-caldera': [860, 'https://www.webtenerife.com/que-hacer/naturaleza/senderismo/senderos/anaga-chasna-tramo-esperanza-caldera/'],
+  'gr131-etapa2-caldera-portillo': [340, 'https://www.webtenerife.com/que-hacer/naturaleza/senderismo/senderos/anaga-chasna-tramo-caldera-portillo/'],
+  'gr131-tramo2-portillo-guajara': [240, 'https://www.webtenerife.com/que-hacer/naturaleza/senderismo/senderos/anaga-chasna-tramo-portillo-degollada-guajara/'],
+  'gr131-tramo3-guajara-vilaflor': [300, 'https://www.webtenerife.com/que-hacer/naturaleza/senderismo/senderos/anaga-chasna-tramo-degollada-guajara-vilaflor/'],
+  'gr131-tramo5-vilaflor-arona': [440, 'https://www.webtenerife.com/que-hacer/naturaleza/senderismo/senderos/anaga-chasna-tramo-vilaflor-arona/'],
+  // Masca: la web del camino, del Cabildo («unas 4 horas en descenso»)
+  'ruta-masca-playa': [240, 'https://caminobarrancodemasca.com/es/masca/por-tu-seguridad/'],
+  // el Barranco del Infierno: su web oficial («unas 3 horas ida y vuelta»)
+  'sendero-barranco-infierno': [180, 'https://www.barrancodelinfierno.es/'],
+};
+/* Lo que dura una parada: la de su ruta, con fuente; si no, la de su
+   categoría. */
+function dpDuracion(p) {
+  const r = p && Object.prototype.hasOwnProperty.call(DP_MIN_RUTA, p.id) ? DP_MIN_RUTA[p.id] : null;
+  return r ? r[0] : (DP_DURATION[p && p.category] || 30);
+}
+/* Si se puede proponer en un tiempo de `tope` minutos, con `comidaMin` para
+   comer: una ruta, solo con su duración con fuente y si cabe; lo demás, sí. */
+function dpRutaCabe(p, tope, comidaMin) {
+  if (!p || p.category !== 'senderismo') return true;
+  const r = Object.prototype.hasOwnProperty.call(DP_MIN_RUTA, p.id) ? DP_MIN_RUTA[p.id] : null;
+  return !!r && r[0] + (comidaMin || 0) <= tope;
+}
+
 // Emojis de transición
 /* Llevan CLAVE, no texto: escritos a pelo salian en castellano en los diez
    idiomas. Las duraciones son orientativas y estan en el propio rotulo, no
@@ -33303,7 +33355,7 @@ function dpEsComida(p) {
 function dpMinutos(stops, modo) {
   let min = 0, sinGuagua = 0;
   stops.forEach((p, i) => {
-    min += DP_DURATION[p.category] || 30;
+    min += dpDuracion(p);
     if (!i) return;
     const t = dpTramo(stops[i - 1], p, modo);
     if (t.sinGuagua) sinGuagua++;
@@ -33344,7 +33396,7 @@ function dpTramoMinRapido(a, b) {
    visita aun puede ser la que mas quita. */
 function dpAjustar(stops, tramo, tope, conComida, comidaSola) {
   const st = stops.slice();
-  const dura = p => DP_DURATION[p.category] || 30;
+  const dura = dpDuracion;
   let coste = st.reduce((s, p, i) => s + dura(p) + (i ? tramo(st[i - 1], p) : 0), 0);
   while (coste > tope) {
     const iC = conComida ? st.findIndex(dpEsComida) : -1;
@@ -33376,9 +33428,12 @@ function dpiGenerate() {
   const cats = dpiCategorias();
   const all  = (typeof places !== 'undefined' ? places : []);
   // Con Norte o Sur, solo los lugares de esa zona (DP_ZONA_LUGAR); solo lo
-  // que se sugiere (lugarSugerible: ni cerrado ni solo con reserva); y si la
-  // comida va aparte, ningun sitio de comer
-  const vale = p => p.name && p.lat && p.lng && dpiEnZona(p) && lugarSugerible(p);
+  // que se sugiere (lugarSugerible: ni cerrado, ni solo con reserva, ni
+  // restringido); una ruta, solo con su duracion con fuente y si cabe en el
+  // tiempo, con la comida (DP_MIN_RUTA); y si la comida va aparte, ningun
+  // sitio de comer
+  const comidaMin = dpiComidaMin();
+  const vale = p => p.name && p.lat && p.lng && dpiEnZona(p) && lugarSugerible(p) && dpRutaCabe(p, tope, comidaMin);
   const pool = all.filter(p => cats.includes(p.category) && vale(p) && !(conComida && dpEsComida(p)));
   dpiAviso = false;
   if (!pool.length) { dpiAviso = dpiZona !== 'igual'; dpiRenderResult([]); return; }
@@ -33514,7 +33569,7 @@ function dpiRenderResult(stops) {
   container.innerHTML = stops.map((place, i) => {
     const name  = escapeHtml(place.name);
     const desc  = dpDesc(place, 100);
-    const dur   = DP_DURATION[place.category] || 30;
+    const dur   = dpDuracion(place);
     const emoji = escapeHtml(place.emoji || '📍');
     const isLunch = dpEsComida(place);
     if (!isLunch) visita++;
@@ -33615,6 +33670,16 @@ function dpTramoHtml(a, b, modo) {
   return '~' + t.min + ' ' + MIN + ' · ' + escapeHtml(kmRuta(t.km)) + ' ' + KM;
 }
 
+/* Los minutos de la comida en el tiempo elegido: ninguno si no se come
+   (mañana y tarde); si se come, lo menos que dura comer en lo elegido
+   (Gastronomía, Picnic & BBQ) o, si no se eligio, en un sitio de comer:
+   lo que dpiGenerate pone para comer. */
+function dpiComidaMin() {
+  if (dpiTime !== 'fullday' && dpiTime !== 'halfday') return 0;
+  const c = dpiCategorias().filter(x => x === 'gastronomia' || x === 'barbacoa');
+  return Math.min(...(c.length ? c : ['gastronomia']).map(x => DP_DURATION[x] || 30));
+}
+
 /* «🔄 Otro». Hasta el 13 de octubre de 2026 cogia cualquier lugar de la isla
    con esas categorias -con dos tarjetas o mas, ni eso: las de «Sorpréndeme»-
    y podia cambiar una parada de Los Cristianos por una de Anaga. Ahora: de lo
@@ -33626,15 +33691,20 @@ function dpTramoHtml(a, b, modo) {
    comida por otro sitio de comer (en una bodega podia traer un guachinche y
    comer dos veces), nunca por uno que no se sugiere (lugarSugerible),
    y de esos cinco, al azar, uno con el que el itinerario siga cabiendo en su
-   tiempo; si con ninguno cabe, el que menos se pasa. */
+   tiempo; si con ninguno cabe, el que menos se pasa. Desde el 16 de
+   noviembre de 2026 (nota 48), una ruta, solo con su duracion con fuente y
+   si cabe en el tiempo (DP_MIN_RUTA), como al hacer el itinerario. */
 function dpiSwapOne(idx) {
   const current = dpCurrentStops[idx];
   if (!current) return;
   const comida = dpEsComida(current);
   const cats = comida ? [current.category] : dpiCategorias().concat([current.category]);
+  const tope = DP_TOPE_MIN[dpiTime] || DP_TOPE_MIN.fullday, comidaMin = dpiComidaMin();
   const candidates = (typeof places !== 'undefined' ? places : [])
     .filter(p => cats.includes(p.category) && dpEsComida(p) === comida && lugarSugerible(p)
       && !dpUsedIds.has(p.id) && p.name && p.lat && p.lng && dpiEnZona(p)
+      // una ruta, solo con su duracion con fuente y si cabe (DP_MIN_RUTA)
+      && dpRutaCabe(p, tope, comidaMin)
       // ni del sitio de esta parada ni del de ninguna otra del itinerario
       && !dpCurrentStops.some(st => dpMismoSitio(st, p)))
     .map(p => ({ p, d: haversineKm(current.lat, current.lng, p.lat, p.lng) }))
@@ -33642,7 +33712,6 @@ function dpiSwapOne(idx) {
   const sameCat = candidates.filter(x => x.p.category === current.category);
   const cerca = (sameCat.length ? sameCat : candidates).slice(0, 5);
   if (!cerca.length) { return; }
-  const tope = DP_TOPE_MIN[dpiTime] || DP_TOPE_MIN.fullday;
   let pick = null, menor = Infinity;
   for (const x of cerca.slice().sort(() => Math.random() - 0.5)) {
     const prueba = dpCurrentStops.slice();

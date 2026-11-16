@@ -96,6 +96,17 @@
  * ficha da por obligatorio (reserva o permiso obligatorio, imprescindible,
  * necesita autorizacion, solo con cita) la lleva.
  *
+ * Y desde el 16 de noviembre de 2026 (nota 48; Jérôme: «Como siempre solo lo
+ * que tiene fuente»), lo que dura cada ruta de senderismo, con una lista
+ * propia: los minutos que da su fuente oficial (Tenerife ON, la guía del
+ * visitante del Teide del MITECO, Webtenerife, la web del Camino del Barranco
+ * de Masca y la del Barranco del Infierno; si da un intervalo, la cifra alta):
+ *   · la tabla de la app (DP_MIN_RUTA) es esa lista, cada ruta con su fuente
+ *     (https) y en una ficha de senderismo;
+ *   · en los 1.344 itinerarios, ninguna ruta sin fuente, cada una con sus
+ *     minutos en pantalla y cabiendo en su tiempo con la comida (una hora);
+ *   · y «🔄 Otro», en «Deporte», no trae ninguna sin fuente ni que no quepa.
+ *
  *     node tools/probar_organiza.js [puerto]
  *     node tools/probar_organiza.js [puerto] de,zh     solo esos (y el castellano)
  */
@@ -143,6 +154,18 @@ const RECORRER = async () => {
   const comer = p => p.category === 'barbacoa' || (p.category === 'gastronomia' && TIPOS_COMER.includes(tipo(p)));
   // lo que no se sugiere: un estado que no es «abierto» (Jerome, 30 de octubre de 2026)
   const NO_SUGERIBLE = p => !!p && !!p.estado && p.estado !== 'abierto';
+  /* lo que dura cada ruta, en minutos, leido en su fuente oficial el 16 de
+     noviembre de 2026 (nota 48): lista propia, no la de la app */
+  const RUTAS = {
+    'montana-blanca': 355, 'ruta-pico-viejo': 360, 'sendero-pico-viejo': 105, 'sendero-samara': 165,
+    'prtf-4-bailadero-taganana': 100, 'prtf-6-1-chamorga-faro-anaga': 100, 'pr-tf-52-monte-agua': 265,
+    'sendero-prtf-51-punta-teno': 305, 'gr131-tramo1-esperanza-caldera': 860, 'gr131-etapa2-caldera-portillo': 340,
+    'gr131-tramo2-portillo-guajara': 240, 'gr131-tramo3-guajara-vilaflor': 300, 'gr131-tramo5-vilaflor-arona': 440,
+    'ruta-masca-playa': 240, 'sendero-barranco-infierno': 180 };
+  const COMER_MIN = 60; // la comida en un sitio de comer, una hora
+  const rutaMal = (p, tiempo) => p.category !== 'senderismo' ? ''
+    : !Object.prototype.hasOwnProperty.call(RUTAS, p.id) ? 'sin fuente'
+    : RUTAS[p.id] + (tiempo === 'halfday' || tiempo === 'fullday' ? COMER_MIN : 0) > DP_TOPE_MIN[tiempo] ? 'no cabe' : '';
   // los topes de cada tiempo y el subtitulo de su tarjeta en este idioma
   out.topes = DP_TIMES.map(o => ({ id: o.id, sub: (o.tx[L] || [])[1] || '', tope: DP_TOPE_MIN[o.id], min: DP_MIN_PARADAS[o.id], max: DP_STOPS[o.id] }));
   const textos = (nombre) => {
@@ -395,8 +418,8 @@ const RECORRER = async () => {
     const num = s => { const m = String(s).match(/~(\d+)/); return m ? +m[1] : 0; };
     const hav30 = (a, b) => { const R = 6371, r = x => x * Math.PI / 180, dl = r(b.lat - a.lat), dn = r(b.lng - a.lng);
       const h = Math.sin(dl / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
-    const mal30 = { tope: [], comidas: [], sitio: [], etiqueta: [], numeros: [], cerrado: [], guagua: [], reserva: [] };
-    let n30 = 0, conMinimo = 0, aPie = 0, conLinea = 0;
+    const mal30 = { tope: [], comidas: [], sitio: [], etiqueta: [], numeros: [], cerrado: [], guagua: [], reserva: [], ruta: [] };
+    let n30 = 0, conMinimo = 0, aPie = 0, conLinea = 0, rutas = 0;
     for (const c of DP_CARDS) for (const tiempo of ['morning', 'afternoon', 'halfday', 'fullday']) for (const modo of ['coche', 'guagua', 'pie', 'bici'])
     for (const zona of ['norte', 'sur', 'igual']) for (let k = 1; k <= 2; k++) {
       sem.v = 3000 + k;
@@ -428,6 +451,15 @@ const RECORRER = async () => {
         if (!!r !== !!st[i].reserva || (r && limpio(r.textContent) !== dpT('reservaNecesaria'))) mal30.reserva.push(nombre + ': ' + st[i].id);
       });
       st.forEach(p => { if (NO_SUGERIBLE(p)) mal30.cerrado.push(nombre + ': ' + p.id); });
+      // las rutas: con fuente, sus minutos en pantalla y cabiendo con la comida
+      const metas = [...document.querySelectorAll('#dpi-itinerary .dp-stop-meta')];
+      st.forEach((p, i) => {
+        if (p.category !== 'senderismo') return;
+        rutas++;
+        const mal = rutaMal(p, tiempo), visto = num(metas[i] ? metas[i].textContent : '');
+        if (mal) mal30.ruta.push(nombre + ': ' + p.id + ' (' + mal + ')');
+        else if (visto !== RUTAS[p.id]) mal30.ruta.push(nombre + ': ' + p.id + ' ~' + visto + ' min en pantalla; su fuente, ' + RUTAS[p.id]);
+      });
       // en guagua: a pie si es un paseo o si se llega antes; con linea, nunca un paseo; sin guagua, solo si no se puede andar
       if (modo === 'guagua') seps.forEach((s, i) => {
         const km = hav30(st[i], st[i + 1]) * 1.3, apie = Math.round(km / 4.5 * 60);
@@ -438,7 +470,7 @@ const RECORRER = async () => {
         else { aPie++; if (icono !== '🚶' || km > 2.6 || min !== apie) mal30.guagua.push(que); }
       });
     }
-    p30.matriz = { n: n30, conMinimo, aPie, conLinea, mal: mal30 };
+    p30.matriz = { n: n30, conMinimo, aPie, conLinea, rutas, mal: mal30 };
     // la reserva, contra la ficha: el que la lleva lo dice, y lo que la ficha da por obligatorio la lleva
     const DICE = /reserv|cita\b|permiso|autoriza/i;
     const OBLIGA = /(reserva|permiso)[^.]{0,25}(obligatori|imprescindible)|imprescindible reservar|reservar imprescindible|necesita autorizaci[oó]n|solo visitas con cita/i;
@@ -463,6 +495,32 @@ const RECORRER = async () => {
       }
     }
     p30.otro = otro;
+    /* 16 de noviembre de 2026 (nota 48): la tabla de la app es la lista de
+       arriba, cada ruta con su fuente y en una ficha de senderismo */
+    {
+      const tabla = typeof DP_MIN_RUTA === 'object' && DP_MIN_RUTA ? DP_MIN_RUTA : {};
+      const tiene = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+      const r48 = p30.rutas48 = { n: Object.keys(RUTAS).length, senderismo: places.filter(p => p.category === 'senderismo').length };
+      r48.distintas = Object.keys(RUTAS).filter(id => !tiene(tabla, id) || !Array.isArray(tabla[id]) || tabla[id][0] !== RUTAS[id])
+        .concat(Object.keys(tabla).filter(id => !tiene(RUTAS, id))).map(id => id + ' ' + JSON.stringify(tiene(tabla, id) ? tabla[id] : null));
+      r48.sinFuente = Object.keys(tabla).filter(id => !/^https:\/\/[^\s"'<>]+$/.test(String((tabla[id] || [])[1])));
+      r48.noEsRuta = Object.keys(tabla).filter(id => !places.some(p => p.id === id && p.category === 'senderismo'));
+      // «Otro» en «Deporte», por la mañana y el dia entero: ninguna ruta sin fuente ni que no quepa
+      r48.otro = []; r48.otroRutas = 0;
+      for (let k = 1; k <= 8; k++) for (const tiempo of ['morning', 'fullday']) {
+        sem.v = 700 + k;
+        dpiReset(); dpiTime = tiempo; dpiSelectedZones = ['deporte']; dpiZone = 'deporte'; dpiZona = 'igual'; dpiTransport = 'coche';
+        dpiGenerate();
+        for (let i = 0; i < dpCurrentStops.length; i++) {
+          dpiSwapOne(i);
+          const p = dpCurrentStops[i];
+          if (p.category !== 'senderismo') continue;
+          r48.otroRutas++;
+          const mal = rutaMal(p, tiempo);
+          if (mal) r48.otro.push(k + '/' + tiempo + ': ' + p.id + ' (' + mal + ')');
+        }
+      }
+    }
     // compartir: la misma lista que la pantalla (las visitas numeradas, la comida con 🍽️)
     sem.v = 501;
     dpiReset(); dpiTime = 'fullday'; dpiSelectedZones = ['mix']; dpiZone = 'mix'; dpiZona = 'igual'; dpiTransport = 'coche';
@@ -628,6 +686,13 @@ const RECORRER = async () => {
         m.mal.guagua.length === 0 && m.aPie > 0 && m.conLinea > 0, ej(m.mal.guagua));
       console.log(`  info  ${m.conMinimo} de ${m.n} con las paradas que promete su tarjeta; los demas, menos, para caber en su tiempo`);
       caso(`[es] «Otro» con «Sorpréndeme»: la comida por otro sitio de comer, una visita por otra visita, nada cerrado`, p.otro.length === 0, ej(p.otro));
+      {
+        const r = p.rutas48;
+        caso(`[es] lo que dura cada ruta (DP_MIN_RUTA): las ${r.n} con fuente, con los minutos de su fuente oficial, y ninguna mas`, r.n === 15 && r.distintas.length === 0, ej(r.distintas));
+        caso(`[es] cada una con su fuente (https) y en una ficha de senderismo (de ${r.senderismo})`, r.sinFuente.length === 0 && r.noEsRuta.length === 0, JSON.stringify([r.sinFuente, r.noEsRuta]));
+        caso(`[es] en los ${m.n} itinerarios, ${m.rutas} rutas: ninguna sin fuente, cada una con sus minutos en pantalla y cabiendo en su tiempo con la comida`, m.rutas > 0 && m.mal.ruta.length === 0, ej(m.mal.ruta));
+        caso(`[es] «Otro» en «Deporte», por la mañana y el dia entero (${r.otroRutas} rutas): ninguna sin fuente ni que no quepa`, r.otroRutas > 0 && r.otro.length === 0, ej(r.otro));
+      }
       caso(`[es] compartir numera igual que la pantalla (${p.compartir.pantalla.join(' ')})`, p.compartir.pantalla.length > 2 && JSON.stringify(p.compartir.lineas) === JSON.stringify(p.compartir.pantalla), JSON.stringify(p.compartir));
     }
     if (d.zonas.azar) {
