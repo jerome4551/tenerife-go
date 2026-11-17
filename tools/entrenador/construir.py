@@ -126,8 +126,11 @@ for fuente in de_trozo:
     # encerrado: nada declarado en su nivel de arriba (lo vería como suyo todo el motor, y aquí ya no)
     fs, vs = nombres_arriba(texto)
     assert not fs and not vs, '%s declara en su nivel de arriba %s: un trozo va encerrado en su función' % (fuente, fs + vs)
-    # lo que usa del motor: todo nombre suyo que aparezca en el texto (de más no importa; de menos, la auditoría lo coteja)
-    usa = sorted(set(IDENT.findall(texto)) & set(vistas) | set(['COREO']))
+    # lo que usa del motor: todo nombre suyo que aparezca en el texto (de más no importa; de menos, la auditoría lo coteja).
+    # Los nombres se cortan como los corta JavaScript, donde una letra con tilde no es letra de nombre: la auditoría lee el
+    # texto así, y «cruzándose» en un comentario es para ella el nombre `cruz` (17-11-2026, bloque 10: con el \w de Python,
+    # que sí cuenta la «á», el trozo no lo importaba y la auditoría decía «usa cruz y no lo recibe»)
+    usa = sorted(set(re.findall(r'[A-Za-z_$][A-Za-z0-9_$]*', texto)) & set(vistas) | set(['COREO']))
     for v in usa:
         if v in variables and cambia(v):
             sys.exit('%s usa %s, que el motor cambia después de declararlo (%s): un trozo recibe una copia' % (fuente, v, variables[v]))

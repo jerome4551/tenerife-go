@@ -148,6 +148,7 @@
   /* ── la barra: sigue a las manos, o va pegada al cuerpo (a la espalda, a la cadera), o en un punto del mundo.
      o: { ancla: 'manos' | 'torax' | 'pelvis' | 'mundo', en: [x, y, z], eje: [x, y, z], largo, discos (radio; 0, sin discos), una: 'i' | 'd' (la
      lleva una sola mano, por el centro), z: true (la barra Z) }
+     almohadilla: true, lleva en el centro una almohadilla (un rulo de goma de 40 cm: el hip thrust).
      La barra Z es corta (120) y su centro hace una W: dos rampas a cada lado, que es donde se agarra, con la muñeca a medio girar. Las
      de fuera (las manos a 45 cm) y las de dentro (a 19: «por la parte más interior») suben hacia lados contrarios, así que con el
      agarre estrecho la W queda al revés. Su plano lo dan las manos (hacia dónde sube el extremo de fuera de cada puño); mientras
@@ -159,6 +160,7 @@
     if (o.z) { this.gz = crear('g'); this.za = trazo('', M_COL.cromo); this.zb = trazo('', 'rgba(255,255,255,.35)'); this.gz.appendChild(this.za); this.gz.appendChild(this.zb); this.w = unidad(o.w || [0, 0, 1]); this.zs = o.estrecho ? -1 : 1; }
     this.barra = new Cilindro(M_COL.cromo); this.manguitos = [new Cilindro(M_COL.cromoS), new Cilindro(M_COL.cromoS)];
     this.discos = this.R ? [new Disco(M_COL.goma, M_COL.hierroS, M_COL.cromo), new Disco(M_COL.goma, M_COL.hierroS, M_COL.cromo), new Disco(o.color || '#c9413f', M_COL.hierroS, M_COL.cromo), new Disco(o.color || '#c9413f', M_COL.hierroS, M_COL.cromo)] : [];
+    if (o.almohadilla) this.pad = new Cilindro(M_COL.gomaL, 'rgba(255,255,255,.16)');
     this.c = [0, 100, 30]; this.eje = [1, 0, 0];
     this.antes = (o.ancla || 'manos') !== 'manos';
   };
@@ -206,6 +208,7 @@
       lista.push({ z: zm + 2.2 + sg, el: this.gz });
       c = mas(c, por(w, s0)); mg = 26;
     } else this.barra.pon(cam, mas(c, por(e, -h)), mas(c, por(e, h)), 1.5, lista, 2.2 + sg);
+    if (this.pad) this.pad.pon(cam, mas(c, por(e, -20)), mas(c, por(e, 20)), 3.2, lista, 2.4 + sg);
     [1, -1].forEach(function (s, i) {
       if (!yo.R) return;
       yo.manguitos[i].pon(cam, mas(c, por(e, s * (h - mg))), mas(c, por(e, s * h)), 2.4, lista, 2.3 + sg);
@@ -542,7 +545,8 @@
     lista.push({ z: -500, el: this.g });
   };
   /* ── la polea: la columna, la polea a su altura y el cable hasta el agarre.
-     o: { en: [x, z], alto, rumbo, a: 'manos' | 'i' | 'd' | 'tobillo-i', agarre: 'barra' | 'cuerda' | 'asa' | 'v' (el triángulo de palmas enfrentadas) |
+     o: { en: [x, z], alto, rumbo, a: 'manos' | 'i' | 'd' | 'tobillo-i' | 'tobillo-d' (con tobillera: true, se ve la tobillera: una banda justo
+     encima del tobillo, y el cable va a su lado, no al centro del tobillo), agarre: 'barra' | 'cuerda' | 'asa' | 'v' (el triángulo de palmas enfrentadas) |
      'barra_v' (la barra en V de los tríceps: dos mangos que bajan del centro hacia fuera) }
      La máquina de jalón es esta misma con: brazo (cuánto sale de la columna el brazo de arriba hacia quien tira; la polea va en su
      punta), asiento: [a cuánto de la columna, alto] y rodillo: [a cuánto de la columna, alto] (el que sujeta los muslos).
@@ -562,6 +566,7 @@
     this.sillin = o.asiento ? new Caja([M_COL.tapizL, M_COL.tapiz, M_COL.tapizS, M_COL.tapizS]) : null; this.patSillin = o.asiento ? new Caja(hie) : null;
     this.rod = o.rodillo ? new Cilindro(M_COL.tapiz, 'rgba(255,255,255,.2)') : null; this.sopRod = o.rodillo ? new Cilindro(M_COL.hierro) : null;
     this.chapa = o.apoyo ? new Caja(['#7b8696', '#5b6575', '#434c5a', '#434c5a']) : null; this.patChapa = o.apoyo ? new Caja(hie) : null;
+    if (o.tobillera) this.cinta = new Cilindro('#2b3340', 'rgba(255,255,255,.2)');
     this.largo0 = null; this.antes = false;
   };
   MATERIAL.polea.prototype.colocar = function () {};
@@ -607,7 +612,17 @@
     } else {
       if (a === 'manos') fin = mezcla(E.i.agarre, E.d.agarre, 0.5);
       else if (a === 'i' || a === 'd') fin = E[a].agarre;
-      else if (a === 'tobillo-i' || a === 'tobillo-d') fin = E[a.slice(-1)].tob;
+      else if (a === 'tobillo-i' || a === 'tobillo-d') {
+        fin = E[a.slice(-1)].tob;
+        if (this.cinta) {
+          /* la tobillera: de 2 a 9 cm por encima del tobillo; el cable se engancha en su lado, mirando a la polea. Se pinta justo encima
+             de su pierna (con la profundidad de la pierna entera, no la del tobillo: si no, con la rodilla más cerca de la cámara quedaría debajo) */
+          var Lt = E[a.slice(-1)], ct = menos(Lt.tob, por(Lt.ql, 5.5));
+          this.cinta.pon(cam, menos(Lt.tob, por(Lt.ql, 9)), menos(Lt.tob, por(Lt.ql, 2)), 4.9);
+          lista.push({ z: (cam.p(Lt.rod)[2] + cam.p(Lt.tob)[2]) / 2 + 0.1, el: this.cinta.g });
+          fin = mas(ct, por(unidad(sinParte(menos(pp, ct), Lt.ql), [0, 0, 1]), 4.9));
+        }
+      }
       else if (a === 'pelvis') fin = mas(E.pel, aplicar(E.Bp, o.punto || [0, 0, 0]));
       gi = E.i.agarre; gd = E.d.agarre; eje = a === 'i' || a === 'd' ? E[a].mano.eje : null;
     }

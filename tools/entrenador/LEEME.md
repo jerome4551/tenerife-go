@@ -33,6 +33,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/76-triceps.js` | las coreografías del bloque 7: **tríceps** (37), por familias (tumbado: el press francés y sus variantes; por encima de la cabeza; las patadas; las poleas; los press en banco; los fondos y las flexiones; el estiramiento) |
 | `src/77-antebrazo-pantorrilla.js` | las coreografías del bloque 8: **antebrazo** (16) y **pantorrilla** (19), por familias (los curls de muñeca; la muñeca, de pie; los paseos con carga; la dominada con toallas; las flexiones sobre las yemas; los estiramientos de la muñeca · las elevaciones de talón de pie, en escalón, con barra y sentado; el tibial; los saltos; los estiramientos) |
 | `src/78-cuadriceps.js` | las coreografías del bloque 9: **cuádriceps** (31), por familias (las sentadillas sobre los dos pies: con mancuernas, con barra, con apoyo, en la pared, la hindú; sentarse y levantarse; los escalones; a una pierna; de rodillas; en el suelo; los estiramientos de pie y tumbado de lado; los saltos) |
+| `src/79-gluteos.js` | las coreografías del bloque 10: **glúteos** (43), por familias (tumbado de lado; de lado sobre el antebrazo y las planchas de Copenhague; a cuatro patas y boca abajo; de pie con las manos en la pared; el puente y el hip thrust; las poleas, con la tobillera y con la cuerda; la pesa rusa; las zancadas: en el sitio, al frente, atrás, andando, cruzada y de lado, sin peso, con mancuernas y con barra; la búlgara; el escalón de lado; el peso muerto sumo; los estiramientos; los saltos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía (todas; al motor van las del bloque 1 y a cada trozo, las suyas) |
@@ -79,6 +80,10 @@ del motor que aparezca en su texto). Dos reglas para escribir un fuente `7N`:
 1. **Va encerrado en su función** (`(function () { … })();`), sin nada declarado fuera: lo que quiera compartir con
    otros trozos va en `70-coreografias.js`.
 2. **Del motor solo usa lo que no cambia** después de declararse (funciones y constantes). `construir.py` se para si no.
+
+Los nombres se buscan en todo el texto del trozo, comentarios incluidos, y se cortan como los corta JavaScript: una
+letra con tilde no es letra de nombre, así que «cruzándose» en un comentario cuenta como usar `cruz` (la auditoría lo
+lee así; desde el bloque 10 `construir.py` también, y lo importa: antes no, y la auditoría decía «usa cruz y no lo recibe»).
 
 **Las herramientas.** En Node, `pruebas/motor.js` carga el motor y todos sus trozos (`contactos.js`, `camino.js`,
 `mide.js` y la auditoría lo usan). Las páginas de `pruebas/` llevan `todo.js` detrás del motor, que trae todos los
@@ -208,6 +213,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 7 | `76-triceps.js` | tríceps: 37 (con los 3 del bloque 1, 40 de 47; quedan 7: 2 con cinta de suspensión, 2 con anillas, 1 en multipower, 1 en máquina y 1 con banda) |
 | 8 | `77-antebrazo-pantorrilla.js` | antebrazo: 16 (con el del bloque 1, 17 de 22; quedan 5: 4 con banda y 1 con disco) y pantorrilla: 19 (con los 4 del bloque 1, 23 de 30; quedan 7: 4 en máquina y 3 con banda) |
 | 9 | `78-cuadriceps.js` | cuádriceps: 31 (con los 6 del bloque 1, 37 de 50; quedan 13: 6 en máquina, 2 con disco, 2 con banda (uno, además, con polea), 1 con cinta de suspensión, 1 en multipower y 1 con balón medicinal) |
+| 10 | `79-gluteos.js` | glúteos: 43 (con los 4 del bloque 1, 47 de 57; quedan 10: 6 con banda, 3 en máquina y 1 con fitball) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -245,7 +251,20 @@ los brazos y los clavos), `subidaBanco(carga, clavos)` (subir a un banco y bajar
 siguiente vez al revés: las posturas, la repetición y por dónde va el pie para no atravesar el canto), `DE_RODILLAS` + `K_ROD`
 (de rodillas: con `porArco`, la cadera gira sobre las rodillas) y, tumbado de lado con la cabeza en la mano, el codo que se
 apoya donde le toca (a un brazo del hombro y a un antebrazo y una mano de la cabeza) y `medio(lado)` (a medio rodar de un lado
-al otro sobre la espalda: la orientación se da por sus ejes, con `base: baseEjes(…)`)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+al otro sobre la espalda: la orientación se da por sus ejes, con `base: baseEjes(…)`)…; en `79-gluteos.js`: `deLado` + `almohada` +
+`piernaAbajo`/`piernaArriba`/`piernaCon` (tumbado de lado, con la cabeza sobre el brazo de abajo: la pierna de abajo descansa donde la
+zapatilla no se hunde y la de arriba gira sobre su cadera) y `darLaVuelta(posturas, prefijo, de, dobladas)` (cambiar de lado rodando
+sobre la espalda: añade sus posturas y devuelve los tramos), `recostado` + `enLinea(grados, hombro)` + `antebrazoEn` (de lado sobre el
+antebrazo: con la cadera en el suelo o en línea, sin que el hombro de abajo se mueva de encima del codo), `aCuatro` (a cuatro patas),
+`aLaPared` + `piernaRecta(postura, fuera, atrás)` (de pie con las manos en la pared), `enPuente(grados)` y `enBanco(alto de la cadera)`
+(el puente y el hip thrust: los hombros no se mueven de su sitio) con `enIngle(postura, radio)` (dónde descansa lo que se lleva en el
+pliegue de la cadera: la barra con su almohadilla, las mancuernas), `zancadas(x, carga, xa)` (todas las posturas de una zancada, dichas
+por dónde pisa el pie de delante: `pie`, `alta`, `baja`; el paso al frente, `va` y `talon`, y su vuelta, `empuja` y `vuelve`; el paso
+atrás, `atras` y `sube`; y andando, `alza` y `pasa`), `conMancuernas` y `conBarra` (la carga: vale con el cuerpo mirando a cualquier
+lado), `andando(x, carga, juntando)` (las zancadas caminando: ida, media vuelta y regreso, con `enMarco`, como los paseos del bloque 8),
+`lateral(carga, inclinación)` (el paso de lado y la bajada, con la espinilla a plomo: se busca hacia dónde va la rodilla), `bulgara(carga)`
+(el pie de atrás sube al banco por el aire, sin cortar su canto), `corre(f)` + `corriendo(izquierdo, derecho)` (los brazos, como al
+correr: los del bloque 9) y `abrirPies`, `altoCon` y `alAire` (las del bloque 9, que cada trozo guarda las suyas)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
 si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
 
 Las ayudas que valen para cualquier bloque están en `70-coreografias.js` (nacieron en el bloque 3 y el 4 las subió
@@ -286,16 +305,18 @@ codo) no sabe hacia dónde mira. Por eso con una barra el codo va en la línea d
 el antebrazo tiene que ir hacia dentro (el codo en el costado y las manos juntas en la barra en V de la polea), o el brazo
 cuelga estirado, la mano se dice en el mundo (`palma: […]`, y `barra: […]` si agarra una barra).
 
-**Los saltos** (bloques 1, 8 y 9). En el aire no hay nada clavado (`[]` en ese tramo). Se despega por las puntas y se cae sobre
+**Los saltos** (bloques 1, 8, 9 y 10). En el aire no hay nada clavado (`[]` en ese tramo). Se despega por las puntas y se cae sobre
 la parte delantera del pie, que rueda hasta el talón mientras la cadera baja. Con el tobillo clavado, pasar de pisar de plano a
 estar de puntillas en un solo tramo hunde la zapatilla (el tobillo va en línea recta y el pie gira sobre su bola: 1,1 cm con 48°):
 entre agachado y despegando va una postura de **medio empuje**, con el talón a medio levantar y la cadera a medio camino. En un
 salto que cambia de sitio (el horizontal) las posturas de la vuelta son las de la ida giradas media vuelta, y la cámara encuadra
-todo el recorrido.
+todo el recorrido. Y un brazo que sube de golpe (del costado a por encima de la cabeza) también se reparte entre las posturas del
+impulso: en un solo tramo de una décima, la mano iría a más de medio metro por cuadro.
 
 ## El material (`50-material.js`)
 
-`barra` (con discos; `z: true`, la barra Z; `una: 'i'`, la lleva una mano por el centro), `mancuernas` (una en cada mano, en
+`barra` (con discos; `z: true`, la barra Z; `una: 'i'`, la lleva una mano por el centro; `almohadilla: true`, con un rulo de goma
+de 40 cm en el centro: el hip thrust), `mancuernas` (una en cada mano, en
 una sola, o una entre las dos; `reposo: { i: [x, y, z], d: […] }`, dónde esperan hasta que se cogen, y `ejeReposo`, a lo largo
 de qué; con `lado: 'i', otra: 'd', reposo: {}`, mientras espera la lleva la otra mano: se la pasa; con `dos: true`, una sola
 entre las dos manos: a lo largo de la mano izquierda, de `ejeDos` (en el marco del tórax) o, con `medio: true`, de la media de
@@ -320,8 +341,9 @@ una toalla clara apenas se ve) y `toallas` (una toalla cogida a lo largo, que ha
   del pecho; con `rumbo: 180` se usa desde el otro lado (la araña). El cojín **tapa de verdad** (`taparConCaras`): lo que
   queda del lado de fuera de una cara que la cámara ve va por delante, y lo demás, por detrás.
 - `polea`: `rumbo` gira la columna (`180`, detrás de Jérôme; `90` y `−90`, una a cada lado mirando al centro: el
-  cruce de poleas); `a`, a qué va el cable (`'manos'`, `'i'`, `'d'`…); `encuadre`, hasta qué altura cuenta para el
-  encuadre (tumbado entre dos poleas, lo que importa está abajo).
+  cruce de poleas); `a`, a qué va el cable (`'manos'`, `'i'`, `'d'`…; `'tobillo-i'` y `'tobillo-d'`, a un tobillo: con
+  `tobillera: true` se ve la tobillera, una banda justo encima del tobillo, y el cable se engancha en el lado de ella que mira a la
+  polea); `encuadre`, hasta qué altura cuenta para el encuadre (tumbado entre dos poleas, lo que importa está abajo).
   La **máquina de jalón** es la polea con `brazo` (cuánto sale de la columna el brazo de arriba: la polea va en su
   punta), `asiento: [a cuánto de la columna, alto]` y `rodillo: [a cuánto, alto]`. `agarre`: `'barra'`, `'cuerda'`,
   `'asa'` (a una mano), `'v'` (el triángulo) o `'barra_v'` (la barra en V de los tríceps: dos mangos que bajan del centro
