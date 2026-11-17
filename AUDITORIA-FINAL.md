@@ -9462,6 +9462,63 @@ SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de 
 Al acabar, el repositorio sin ningún cambio: `app_preparar.js` montó `app/www/` (237 ficheros, uno más: el trozo de los
 cuádriceps) y lo cotejó.
 
+## El asistente: los saludos, las categorías en singular, «ten+», el IVA, los papeles y «guanche» (lo que vio la sesión del rumano, 17 de noviembre, noche)
+
+**De dónde viene.** Al traducir el asistente al rumano (su bloque 10), la sesión del rumano dejó para Code, sin parche,
+lo que no llegaba a su respuesta: los saludos y las gracias en polaco, búlgaro y chino; las categorías polacas en
+singular («stacja paliw»), y cuatro preguntas en castellano («tarjeta ten+», «inglés», «IVA», «guanche»). Aquí se miró
+cada una en los diez idiomas con `tools/probar_faq.js`, en rojo antes y en verde después, y va un commit por apartado.
+
+**Los saludos y las gracias** (`index.html`). El asistente solo reconocía algunos, en castellano, inglés, francés,
+alemán, italiano y neerlandés: «Dzień dobry», «Dziękuję», «Здравейте», «Благодаря», «你好» o «谢谢», y también «buenos
+días», «Guten Tag», «buongiorno», «goedemorgen», «vielen Dank» o «dank u wel», daban el «no tengo respuesta». Ahora hay
+una lista de saludos y otra de gracias, en los diez idiomas (y en rumano, para cuando se encienda), con la regla de
+antes: un saludo con como mucho una palabra de más («hola Jérôme»), unas gracias con dos («gracias por todo»), y lo que
+pregunta algo más sigue su camino («Dzień dobry, gdzie jest plaża» va a «¿Qué playas hay?»). En chino, que no separa las
+palabras, solo vale la frase entera: «你好，我想去海滩» sigue preguntando por las playas. Las respuestas ya estaban escritas en
+los diez idiomas. Dos saludos son también otra palabra sin tildes: «cześć» (hola) y «część» (parte) quedan en «czesc», y
+en rumano «bună» es «hola» y «buena»; esos dos solo saludan solos, y «północna część» o «plajă bună» siguen su camino.
+38 casos nuevos, 25 en rojo antes.
+
+**Las categorías en singular** (`faq/fuente/intenciones/<idioma>.json`). En castellano e inglés «farmacia», «faro» o
+«mirador» sacan la lista de la categoría; en los otros idiomas solo estaba el rótulo del menú, que va en plural. Entran
+65 palabras (francés 9, alemán 14, italiano 6, neerlandés 14, polaco 15, búlgaro 7), solo las que no daban ninguna
+respuesta y no están en una clave de la base: «Apotheke», «plage» o «Tankstelle» ya llevaban a la suya, y «Leuchtturm»,
+«Supermarkt» o «Berg» están en «leuchtturm teno», «supermarkt öffnungszeiten» o «höchster berg spaniens», que la
+perderían. Esas preguntas dan lo mismo que antes, comprobado una a una. Los 65 casos, en rojo antes.
+
+**«ten+», el IVA, los papeles y «guanche»** (`index.html` y `faq/fuente/claves/<idioma>.json`, con su motivo). «ten+»:
+`chatNorm` quitaba el «+», y «tarjeta ten+» se iba a la respuesta del dinero; ahora escribe «ten plus», como las claves
+de `mov-04`, solo pegado a «ten» y a principio de palabra («top ten beaches» siguen siendo las playas). El IVA:
+`pra-12`, el IGIC, solo tenía «iva en canarias»; entran «iva», «vat», «tva», «mehrwertsteuer» y «mwst», «btw» y «ддс».
+Los papeles: `pra-04`, la documentación; entran «papeles» y «documentos», «papers», «papiers», «papiere» y «papieren»
+(en italiano, polaco, búlgaro y chino ya estaban). «Guanche», en singular, en castellano, inglés, francés, alemán y
+neerlandés, y en chino «古安切人», la otra forma que da la Wikipedia en chino («又译古安切人»). «Inglés» a secas sigue dando los
+tres sitios del Pico del Inglés (el mirador, el PR-TF 2 y la subida en bici desde San Andrés): es una lectura tan buena
+como la otra, y «¿hablan inglés?» ya lleva a `pra-06`. 36 casos, 31 en rojo antes.
+
+**Comprobado aquí.** `probar_faq.js`, 261 de 261 (eran 122); las 8.576 preguntas y claves de la base, en los diez
+idiomas, pasadas antes y después: solo cambian las 89 que entran (65 categorías y 24 claves), y ninguna pasa a ser un
+saludo o unas gracias; `generar_faq.py` cambia solo los `faq/<idioma>.json` de los idiomas tocados; `auditar_faq.js`,
+`auditar_seguridad.py`, `auditar_cirilico.py` y `auditar_escrituras.js`, en verde. Las fuentes del rumano ya tienen «ten
+plus», «tva», «acte» y «guanche»: no hay nada que devolverles.
+
+**La auditoría entera** sobre `15ed2b5` (árbol `fb571c9c`): los tres commits del asistente encima de `main` (`47d2bb8`).
+En `main` es lo mismo, rebasado sobre tres commits de los robots (`68c5bd5`, terremotos; `55a158e`, avisos de AEMET, y
+`43887a3`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`, `datos/avisos-aemet.json` y
+`datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el rebase. En los 61 bloques de
+`auditar.sh`, ningún rojo: las preguntas de prueba al asistente, 0 fallos de 261; los datos, 975 lugares en todas partes
+(también en el resumen de este documento) y ninguna cifra de lugares que no sea 975 en lo que se lee;
+`probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626; `auditar_idioma.js`, 0 hallazgos en los diez idiomas;
+`auditar_registro.js`, todo de usted (137.787 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_cirilico.py`, 2.340 nombres propios en cirílico y ninguna variante sospechosa; `auditar_seguridad.py`, ningún
+atributo repetido en una etiqueta; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir;
+los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153;
+`probar_figura.js`, 64; `probar_cuerpo.js`, 741; `auditar_entrenador.js`, 79 (313 ejercicios con vídeo, de 958); la isla
+en 3D, 57; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52 tablas y
+3.730 filas; 5.867). Al acabar, el repositorio sin ningún cambio: `app_preparar.js` montó `app/www/` (237 ficheros) y lo
+cotejó.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
