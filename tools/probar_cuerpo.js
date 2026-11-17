@@ -3728,11 +3728,14 @@ async function ejemplo(pg, mas) {
     /* la huella de los 533 publicados el 13-11-2026 (datos/cuerpo/ejercicios.json antes del bloque 35) */
     /* (nota 47, 14-11-2026) una de esas 533, «pino-pared», lleva dos fuentes más (su ficha dice ahora cómo se sube y cómo se baja):
        las tres huellas son las de después de ese cambio. Antes eran 781ea591…0fd8b, 51c2effd…7db0 y d7c2569e…d43c */
-    const H533 = '70019d63eeeeb811d761cc9ed2363518d12f9a144f651d7f5c2f3bd87f0d03a0';
+    /* (nota 51, 17-11-2026) y cuatro de esas 533 llevan ahora la toalla en su material («paseo-granjero-toalla», «dominada-con-toallas»,
+       «cuadriceps-isometrico-toalla» y «estiramiento-pantorrilla-toalla»: la pedían sus pasos y su nombre, y su material no la decía):
+       las tres huellas son las de después de ese cambio. Antes eran 70019d63…03a0, de77a61e…26f6 y ba7f58a8…ce79 */
+    const H533 = '35db9560e5e990794aca9eb96fcc0ee75db2064004853537cc09ced34979289d';
     /* (nota 37) y la de las 950 publicadas el 13-11-2026 con el bloque 35: la 951, la búlgara en una silla, va detrás */
-    const H950 = 'de77a61e879b2d3bfeeac38474cd59a5df0167cdb99bc63982318125dbe526f6';
+    const H950 = '27b553986671a2d06b28f8cc46c0777c915aaf898575e82cbf89d29e05cb61f2';
     /* (nota 43) y la de las 951 de la nota 37: detrás van 7 de las 13 fichas del bloque 35 que se quedaron fuera, ya comprobadas */
-    const H951 = 'ba7f58a80d255dbd0c55abd421997d54362b802f6668fe7de3119545a5b7ce79', N43 = ['press-pecho-de-pie-biosaludable', 'remo-inclinado-una-pierna-botellas', 'curl-biceps-biosaludable', 'abdominal-silla-biosaludable', 'abdominal-silla-mantenido-biosaludable', 'cangrejo-bajando-escaleras', 'salto-desde-primer-escalon'];
+    const H951 = '25010d76ae00d8cd5838d70beed78987eb8585ddc33f8ec9ab9bab0aa167ff6f', N43 = ['press-pecho-de-pie-biosaludable', 'remo-inclinado-una-pierna-botellas', 'curl-biceps-biosaludable', 'abdominal-silla-biosaludable', 'abdominal-silla-mantenido-biosaludable', 'cangrejo-bajando-escaleras', 'salto-desde-primer-escalon'];
     const ENT = ['gimnasio', 'fuera', 'calistenia', 'casa'], NUEVOS = ['botella', 'silla', 'toalla', 'mochila', 'mesa', 'cubo'];
     prueba('36: 958 fichas: las 533 de antes, iguales y delante (su huella), las 417 del bloque 35 detrás (las 950, con su huella), la búlgara en una silla (nota 37; las 951, con su huella) y 7 de las 13 que se quedaron fuera (nota 43); ningún id repetido',
       D36.length === 958 && crypto.createHash('sha256').update(JSON.stringify(D36.slice(0, 533))).digest('hex') === H533 &&
@@ -3760,7 +3763,7 @@ async function ejemplo(pg, mas) {
     const abrirPlan = async pg => { if (await pg.evaluate(() => document.getElementById('tgc-plan-cuerpo').hidden)) { await pg.click('#tgc-plan-btn'); await pg.waitForTimeout(250); } };
     await poner({ sitio: 'casa' }); await abrirPlan(p36);
     const m1 = await p36.evaluate(() => [...document.querySelectorAll('#tgc-plan-mats [data-mat]')].map(b => [b.dataset.mat, b.textContent.trim()]));
-    const esN = { botella: 'Botellas o garrafas', silla: 'Silla', toalla: 'Toalla', mochila: 'Mochila con peso', mesa: 'Mesa o encimera', cubo: 'Cubo con arroz o arena' };
+    const esN = { botella: 'Botellas o garrafas', silla: 'Silla', toalla: 'Toalla', mochila: 'Mochila o bolsas con peso', mesa: 'Mesa o encimera', cubo: 'Cubo con arroz o arena' };
     prueba('36: «¿Qué tiene en casa?», con 22 materiales: los seis nuevos con su nombre (' + Object.values(esN).join(', ') + ') y sin el aparato biosaludable',
       m1.length === 22 && NUEVOS.every(k => m1.some(([d, t]) => d === k && t.includes(esN[k]))) && !m1.some(([d]) => d === 'biosaludable'), JSON.stringify(m1.slice(16)));
     // la regla de casa en la hoja de cada grupo

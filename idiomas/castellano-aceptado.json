@@ -70,10 +70,9 @@
    "zht": ["max@es:VO2m"],
    "bg": ["max@es:VO2m", "and@es:Academy of Nutrition and Dietetics", "and@cuerpo asistente vegano-b12.r.p[0]"]
   },
-  "«Su cuerpo», sus datos (3 de noviembre de 2026): el nombre con que se conoce el ejercicio en los gimnasios, en ingles y entre parentesis, como en castellano («Suspensión en barra (dead hang)»); y el «Ice cream maker», que el castellano deja en ingles": {
+  "«Su cuerpo», sus datos (3 de noviembre de 2026): el nombre con que se conoce el ejercicio en los gimnasios, en ingles y entre parentesis, como en castellano («Suspensión en barra (dead hang)»). (El «Ice cream maker», que el chino tradicional dejaba en ingles, va en caracteres desde el 17 de noviembre de 2026.)": {
    "bg": ["dead@es:(dead hang)", "hang@es:(dead hang)", "toes@es:(toes to bar)", "bar@es:(toes to bar)", "hollow@es:(hollow hold)", "hold@es:(hollow hold)",
-          "dead@es:(dead bug)", "bug@es:(dead bug)", "bird@es:(bird dog)", "dog@es:(bird dog)", "mountain@es:(mountain climber)", "climber@es:(mountain climber)"],
-   "zht": ["cream@es:Ice cream maker", "maker@es:Ice cream maker"]
+          "dead@es:(dead bug)", "bug@es:(dead bug)", "bird@es:(bird dog)", "dog@es:(bird dog)", "mountain@es:(mountain climber)", "climber@es:(mountain climber)"]
   },
   "en chino, la palabra castellana entre parentesis DESPUES de traducirla, para reconocerla en los carteles": {
    "zh": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"],
