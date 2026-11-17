@@ -1,7 +1,7 @@
-# Revisión de los 976 lugares
+# Revisión de los 975 lugares
 
 **17 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 976, no una muestra. Lo que no se puede comprobar desde aquí sale
+Barre los 975, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 163 verificadas con su fuente · 813 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 163 verificadas con su fuente · 812 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -99,7 +99,7 @@ parecía que todo fallaba siempre.
 | | fichas |
 |---|---|
 | **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **163** |
-| Coordenada nunca comprobada por nadie | **813** |
+| Coordenada nunca comprobada por nadie | **812** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -330,14 +330,14 @@ cuáles, así que desde aquí no se pueden separar.
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 976, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 975, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **29** |
 | 3 | ~110 m | **136** |
-| 4 | ~11 m | **549** |
+| 4 | ~11 m | **548** |
 | 5 | ~1 m | **42** |
 | 6 | ~10 cm | **189** |
 | 7 | ~1 cm | **28** |
@@ -401,7 +401,7 @@ caigan a la vez por casualidad es una entre un millón.
 
 ## 2 · Fichas que comparten coordenada exacta
 
-**64 grupos, 142 fichas.** La mayoría es a propósito: una playa y su
+**63 grupos, 140 fichas.** La mayoría es a propósito: una playa y su
 webcam, una playa y su ficha de accesibilidad, un área recreativa y su
 zona de acampada, un puerto y los tres negocios que salen de él.
 
@@ -454,7 +454,7 @@ Son pares o tríos donde las acompañantes llevan prefijo conocido (`wc-`,
 - `ciudad-orotava` = `wc-orotava`
 - `nucleo-los-gigantes` = `wc-gigantes`
 
-### 22 grupos que conviene mirar
+### 21 grupos que conviene mirar
 
 Aquí dos fichas distintas comparten punto sin que el prefijo lo explique.
 Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
@@ -462,7 +462,6 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 - `bosque-esperanza` = `ar-las-raices` = `camping-las-raices`  ·  `28.4198,-16.3784`
 - `mirador-la-ruleta` = `mirador-ruleta-canadas`  ·  `28.2231,-16.6313`
 - `san-juan` = `nucleo-playa-san-juan` = `wc-san-juan`  ·  `28.1816,-16.8171`
-- `cumbre-dorsal` = `mir-la-jardina`  ·  `28.5241,-16.2881`
 - `sendero-sentidos` = `sendero-bosque-enigmas` = `bici-anaga-cruz-carmen` = `turismo-cv-cruz-carmen`  ·  `28.53115,-16.27984`
 - `sendero-afur-taganana` = `prtf-9-afur-carboneras`  ·  `28.5554,-16.2481`
 - `sendero-roque-bodegas` = `roque-bodegas`  ·  `28.569,-16.2051`
@@ -518,12 +517,12 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 976
+  lugares....................................... 975
     que nombran un municipio.................... 508
     de esos, comprobados contra el POLIGONO del Cabildo 498
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
-  no declaran municipio......................... 453
+  no declaran municipio......................... 452
 
   nombran una ZONA, que no es un municipio: no hay nada que comprobar
       bici-alquiler-sur             dice «Las Américas»  ·  el poligono dice «Adeje»
@@ -563,7 +562,7 @@ que cada semana saliera una lista nueva.
 | **Que el sitio exista** | pasó con `charco-infierno-arafo` y con `montana-colorada`, que se dieron de baja. No hay forma de saberlo sin una fuente de fuera |
 | **Horarios, precios y teléfonos** | cambian y no hay contra qué contrastarlos |
 | **Lo que dice cada descripción** | que un pueblo sea «famoso por sus aguacates» no se puede verificar con lo que hay dentro del repositorio |
-| **El municipio de 453 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
+| **El municipio de 452 fichas** | no declaran ninguno en el `cat` ni en el nombre, así que no hay nada que contrastar |
 | **El de 15 más** | solo nombran una zona que abarca varios municipios, no un municipio |
 | **El de 10 que sí lo nombran** | el punto cae en el agua, fuera de todos los polígonos: no hay con qué compararlo |
 
@@ -572,15 +571,15 @@ tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 976
+## 6 · Lo que sí queda comprobado sobre los 975
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **976 de 976** |
-| Caen en tierra (capa `earth` de OSM) | **967** de 976; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
-| Ids únicos y con el formato `[a-z0-9-]` | **976** de 976 |
-| Tienen `desc` y `cat` en los diez idiomas | **976** de 976 |
-| Referencias huérfanas desde el planificador | **0** de 162 |
+| Caen dentro de la caja de Tenerife | **975 de 975** |
+| Caen en tierra (capa `earth` de OSM) | **966** de 975; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **975** de 975 |
+| Tienen `desc` y `cat` en los diez idiomas | **975** de 975 |
+| Referencias huérfanas desde el planificador | **0** de 161 |
 | Zonas de baño sin orientación | **0** de 99 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |
 | Colores fuera de `#rrggbb` | **0** |
