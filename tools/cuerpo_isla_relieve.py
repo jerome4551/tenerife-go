@@ -15,9 +15,10 @@ QUE PINTA
   ficheros sale (con su sha256), la proyeccion, el tamaño y el sha256 de cada fondo.
 
 DE DONDE SALE (nada se inventa ni se pide a ningun servicio)
-  · El relieve: mapa/tenerife-relieve.png, el de «La isla en 3D» (el Copernicus DEM GLO-30
-    en celdas de 60 m, o el MDT05 del IGN si un dia el workflow lo cambia: entonces este
-    fondo hay que rehacerlo y su credito, el de «Las cifras», tambien; --comprobar lo dice).
+  · El relieve: mapa/tenerife-relieve.png, el de «La isla en 3D»: desde el 17 de noviembre de
+    2026, el MDT05 del IGN en celdas de 60 m (hasta entonces, el Copernicus DEM GLO-30). Si un dia
+    el workflow lo cambia de fuente, este fondo hay que rehacerlo y su credito, el de «Las
+    cifras» (cuerpoCifrasMapa y RELIEVE_NOTAS del modulo), tambien; --comprobar lo dice.
     La altura sombrea las laderas (luz del noroeste) y aclara la cumbre; la fraccion de cielo
     (mapa/tenerife-relieve-ao.png) oscurece barrancos y calderas.
   · El suelo: la capa landuse de mapa/tenerife-osm.pmtiles (z11; OpenStreetMap, ODbL): bosque
@@ -31,8 +32,8 @@ DE DONDE SALE (nada se inventa ni se pide a ningun servicio)
 
 LO QUE HACE FALTA
   Para pintar: numpy, scipy y Pillow con WebP. Para --comprobar, nada: solo la biblioteca
-  estandar (sumas sha256, la proyeccion del modulo y las dos notas de Copernicus que enseña «Las
-  cifras»), asi que va en tools/auditar.sh.
+  estandar (sumas sha256, la proyeccion del modulo y la nota de la licencia del relieve que
+  enseña «Las cifras»), asi que va en tools/auditar.sh.
 """
 import collections
 import hashlib
@@ -59,7 +60,7 @@ FORMATO = 1
 ESCALA = 3                 # pixeles del fondo por unidad del viewBox del mapa
 CALIDAD = 82               # WebP con perdida; method=6 (el mas lento, el mas pequeño)
 R_TIERRA = 6378137.0
-FUENTE_RELIEVE = 'copernicus-glo30'   # la que nombra el credito de «Las cifras» (cuerpoCifrasMapa)
+FUENTE_RELIEVE = 'ign-mdt05'   # la que nombra el credito de «Las cifras» (cuerpoCifrasMapa), desde el 17-11-2026
 
 ENTRADAS = {
     'relieve': RELIEVE, 'relieve_ao': RELIEVE_AO, 'relieve_json': RELIEVE_JSON,
@@ -132,8 +133,9 @@ def pintar_todo():
         raise SystemExit('Pillow no tiene WebP: para.')
     rel = json.load(open(RELIEVE_JSON, encoding='utf-8'))
     if rel['fuente']['id'] != FUENTE_RELIEVE:
-        raise SystemExit('El relieve sale de %r y el credito de «Las cifras» nombra a Copernicus: hay que cambiar '
-                         'cuerpoCifrasMapa (y FUENTE_RELIEVE aqui) antes de pintar. Para.' % rel['fuente']['id'])
+        raise SystemExit('El relieve sale de %r y el credito de «Las cifras» nombra otra fuente (%r): hay que cambiar '
+                         'cuerpoCifrasMapa y RELIEVE_NOTAS del modulo (y FUENTE_RELIEVE aqui) antes de pintar. Para.'
+                         % (rel['fuente']['id'], FUENTE_RELIEVE))
     P = proyeccion()
     W, H = P['ISLA_W'] * ESCALA, P['ISLA_H'] * ESCALA
 
@@ -310,8 +312,10 @@ def comprobar():
         elif e.get('sha256') != sha256(ruta):
             fallos.append('%s ha cambiado desde que se pinto el fondo: hay que volver a pintarlo' % os.path.relpath(ruta, RAIZ))
     rel = json.load(open(RELIEVE_JSON, encoding='utf-8'))
-    if rel['fuente']['id'] != FUENTE_RELIEVE or m.get('relieve_fuente') != FUENTE_RELIEVE:
-        fallos.append('el relieve sale de %r y el credito del mapa nombra a Copernicus' % rel['fuente']['id'])
+    if rel['fuente']['id'] != FUENTE_RELIEVE:
+        fallos.append('el relieve sale de %r y el credito del mapa nombra otra fuente (%r)' % (rel['fuente']['id'], FUENTE_RELIEVE))
+    elif m.get('relieve_fuente') != FUENTE_RELIEVE:
+        fallos.append('el fondo se pinto con el relieve de %r y el de hoy es %r: hay que volver a pintarlo' % (m.get('relieve_fuente'), FUENTE_RELIEVE))
     for t, nombre in FONDOS.items():
         ruta = os.path.join(SALIDA, nombre)
         f = m.get('fondos', {}).get(t, {})
@@ -334,10 +338,18 @@ def comprobar():
     for t, nombre in FONDOS.items():
         if ("'./datos/cuerpo/%s'" % nombre) not in s:
             fallos.append('el modulo no pide datos/cuerpo/%s' % nombre)
-    # las dos notas de Copernicus que enseña «Las cifras», palabra por palabra las del relieve
-    for k in ('credito', 'responsabilidad'):
-        if ("'%s'" % rel['fuente'][k]) not in s:
-            fallos.append('COPERNICUS_NOTAS del modulo no lleva, palabra por palabra, fuente.%s de mapa/tenerife-relieve.json' % k)
+    # la nota (o las notas) de la licencia del relieve que enseña «Las cifras»: RELIEVE_NOTAS del modulo tiene que ser,
+    # palabra por palabra y en orden, fuente.credito y fuente.responsabilidad de mapa/tenerife-relieve.json, sin las
+    # vacias (la del IGN no tiene responsabilidad) y sin ninguna mas (17-11-2026: con el MDT05, ni una de Copernicus)
+    deben = [rel['fuente'][k] for k in ('credito', 'responsabilidad') if rel['fuente'].get(k)]
+    mn = re.search(r"\n  var RELIEVE_NOTAS = \[((?:'[^'\\\n]*'(?:,\s*)?)+)\];", s)
+    tiene = re.findall(r"'([^'\\\n]*)'", mn.group(1)) if mn else None
+    if tiene is None:
+        fallos.append('el modulo no tiene RELIEVE_NOTAS (las notas de la licencia del relieve)')
+    elif tiene != deben:
+        fallos.append('RELIEVE_NOTAS del modulo (%r) no son, palabra por palabra, las de mapa/tenerife-relieve.json (%r)' % (tiene, deben))
+    if 'COPERNICUS_NOTAS' in s and rel['fuente']['id'] != 'copernicus-glo30':
+        fallos.append('el modulo sigue teniendo COPERNICUS_NOTAS con el relieve de %r' % rel['fuente']['id'])
     if fallos:
         for x in fallos:
             print('FALLA: ' + x)
