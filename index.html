@@ -10388,11 +10388,6 @@ const places = [
     cat:{ es:"Cráter · Parque Nacional" },
     tags:["Cráter","Teide","Senderismo","Fotografía","Parque Nacional"] },
 
-  { id:"cumbre-dorsal", category:"senderismo", name:"Cumbre Dorsal — Mirador La Jardina", emoji:"🌄", color:"#37474f", lat:28.5241, lng:-16.2881,
-    desc:{ es:"La columna vertebral de Tenerife a más de 1.000 m. Carretera TF-24 entre bosques de pino canario con niebla mística. Mirador de La Jardina con vistas al Teide y a ambas costas." },
-    cat:{ es:"Ruta Panorámica · Interior" },
-    tags:["Pinar","Niebla","Teide","Mirador","Panorámica"] },
-
   { id:"sendero-la-orotava", category:"senderismo", name:"Sendero Teide — La Orotava (TF-7)", emoji:"🥾", color:"#2e7d32", lat:28.3650, lng:-16.5900,
     desc:{ es:"Histórico camino real que une La Orotava con el Teide. 18 km de ascenso continuo entre pinar y cañadas. El mismo camino que usaban los guanches para llegar a la cima sagrada. Requiere buen estado físico." },
     cat:{ es:"Sendero Histórico · Norte–Teide" },
@@ -15906,7 +15901,8 @@ const LUGARES_RETIRADOS = new Set([
   'palacio-episcopal-laguna',   // la Casa Salazar (casa-salazar-laguna), sede del Obispado: el mismo edificio
   'playa-castillo-pcruz',       // uno de los tres tramos de la Playa Jardín (playa-jardin)
   'playa-puertito-guimar',      // la playa para perros de El Cabezo, en el Puertito de Güímar (playa-cabezo)
-  'mir-pico-flores-anaga'       // quitada: el mirador abandonado del Pico de las Flores, sin vistas por el pinar
+  'mir-pico-flores-anaga',      // quitada: el mirador abandonado del Pico de las Flores, sin vistas por el pinar
+  'cumbre-dorsal'               // quitada: «Cumbre Dorsal — Mirador La Jardina», en el punto del Mirador La Jardina (mir-la-jardina)
 ]);
 let favorites = new Set();
 let showOnlyFavorites = false;
@@ -21180,7 +21176,7 @@ const DAY_TRIP_ZONES = {
       'loro-parque', 'casa-balcones', 'cueva-viento', 'tea-tenerife', 'castillo-san-felipe',
       'iglesia-orotava', 'palacio-carta', 'museo-bellas-artes', 'bosque-esperanza', 'mirador-pino-galdo',
       'charco-diablo', 'roque-bodegas', 'playa-rambla', 'playa-las-gaviotas', 'charco-laja',
-      'charco-verde-guancha', 'ruta-anaga-taganana', 'cumbre-dorsal', 'montana-taco', 'faro-anaga',
+      'charco-verde-guancha', 'ruta-anaga-taganana', 'montana-taco', 'faro-anaga',
       'faro-teno', 'faro-punta-hidalgo', 'faro-puerto-cruz', 'ciudad-icod', 'ciudad-tacoronte',
       'ciudad-tegueste', 'ciudad-realejos', 'ciudad-sauzal', 'ciudad-matanza', 'ciudad-victoria',
       'ciudad-santa-ursula', 'ciudad-san-juan-rambla', 'ciudad-guancha', 'ciudad-silos', 'ciudad-buenavista',
@@ -32396,7 +32392,7 @@ const DP_ZONA_LUGAR = {
     'ciudad-realejos ciudad-rosario ciudad-san-juan-rambla ciudad-santa-cruz ciudad-santa-ursula',
     'ciudad-sauzal ciudad-silos ciudad-tacoronte ciudad-tanque ciudad-tegueste ciudad-victoria',
     'convento-san-francisco-garachico corona-forestal cs-buenavista-norte cs-garachico cs-geneto',
-    'cs-icod cs-ofra cs-orotava cs-pcruz cs-realejos cs-tacoronte cueva-viento cumbre-dorsal',
+    'cs-icod cs-ofra cs-orotava cs-pcruz cs-realejos cs-tacoronte cueva-viento',
     'deporte-garcia-sanabria deporte-laguna-parque-avenidas deporte-orotava-parque',
     'deporte-parque-granja deporte-pista-multideporte-cabildo-realejos',
     'deporte-pista-multideporte-icod deporte-pista-multideporte-tacoronte',
