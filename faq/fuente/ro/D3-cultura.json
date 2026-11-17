@@ -1,0 +1,186 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque D3 · Pueblos, cultura y fiestas: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 10 del rumano (16-11-2026).",
+ "cul-01": {
+  "es": {
+   "l": "¿Qué pueblos bonitos hay?",
+   "a": "🏘️ Los que no fallan: La Orotava por sus casonas y balcones de tea, Garachico por el mar y la lava, La Laguna por el casco histórico, Masca y Taganana por el paisaje, Vilaflor por la altura y Candelaria por la basílica frente al Atlántico. Dígame su zona y se los ordeno por distancia."
+  },
+  "l": "Ce sate frumoase sunt?",
+  "k": [
+   "sate frumoase",
+   "ce sate sa vad",
+   "sat pitoresc",
+   "centru istoric",
+   "vilaflor",
+   "candelaria"
+  ],
+  "a": "🏘️ Cele care nu dau greș: La Orotava, pentru casele nobiliare și balcoanele din lemn de pin canarian (tea); Garachico, pentru mare și lavă; La Laguna, pentru centrul istoric; Masca și Taganana, pentru peisaj; Vilaflor, pentru altitudine, și Candelaria, pentru bazilica cu fața spre Atlantic. Spuneți-mi în ce zonă sunteți și vi le ordonez după distanță."
+ },
+ "cul-02": {
+  "es": {
+   "l": "¿Qué ver en La Laguna?",
+   "a": "🏛️ Es Patrimonio de la Humanidad: la primera ciudad colonial sin murallas, con un trazado que luego se copió en América. Piérdase a pie entre casonas con patio, suba a la torre de la Concepción y tapee por la calle Herradores y el mercado. Desde Santa Cruz llega en tranvía en veinte minutos."
+  },
+  "l": "Ce să văd în La Laguna?",
+  "k": [
+   "la laguna",
+   "san cristobal de la laguna",
+   "patrimoniul mondial",
+   "centrul din la laguna"
+  ],
+  "a": "🏛️ Este în Patrimoniul Mondial UNESCO: primul oraș colonial fără ziduri de apărare, cu un plan urbanistic copiat apoi în America. Plimbați-vă pe jos printre casele nobiliare cu curte interioară, urcați în turnul bisericii Concepción și mâncați tapas pe strada Herradores și la piață. Din Santa Cruz ajungeți cu tramvaiul în douăzeci de minute."
+ },
+ "cul-03": {
+  "es": {
+   "l": "¿Qué ver en La Orotava?",
+   "a": "🌺 El pueblo de las casonas con balcones de tea y los patios llenos de flores. No se pierda la Casa de los Balcones, la iglesia de la Concepción y las vistas del valle desde el mirador Humboldt. En Corpus Christi las calles se alfombran con flores y arena del Teide, y merece el viaje."
+  },
+  "l": "Ce să văd în La Orotava?",
+  "k": [
+   "la orotava",
+   "casa de los balcones",
+   "corpus christi",
+   "covoare de nisip",
+   "mirador humboldt",
+   "covoare",
+   "covoarele"
+  ],
+  "a": "🌺 Orașul caselor nobiliare cu balcoane din lemn de pin canarian (tea) și al curților pline de flori. Nu ratați „Casa de los Balcones”, biserica Concepción și priveliștea asupra văii de la punctul de belvedere Humboldt. De Corpus Christi, străzile se acoperă cu covoare de flori și de nisip de pe Teide, și merită drumul."
+ },
+ "cul-04": {
+  "es": {
+   "l": "¿Qué ver en Garachico?",
+   "a": "⚓ Fue el gran puerto de la isla hasta que la erupción de 1706 lo sepultó a medias; de aquella lava salieron las piscinas naturales de El Caletón. Hoy es un pueblo tranquilo con castillo de San Miguel, plazas con drago y buen baño cuando el mar acompaña. Medio día perfecto, mejor entre semana."
+  },
+  "l": "Ce să văd în Garachico?",
+  "k": [
+   "garachico",
+   "caleton",
+   "eruptia din 1706",
+   "castelul san miguel",
+   "piscine garachico"
+  ],
+  "a": "⚓ A fost marele port al insulei până când erupția din 1706 l-a îngropat pe jumătate; din acea lavă s-au format piscinele naturale de la El Caletón. Astăzi este un oraș liniștit, cu castelul San Miguel, piețe cu dragonieri și locuri bune de scăldat când marea permite. Perfect pentru o jumătate de zi, mai ales într-o zi lucrătoare."
+ },
+ "cul-05": {
+  "es": {
+   "l": "¿Qué ver en Santa Cruz?",
+   "a": "🏙️ La capital es mucho más viva de lo que espera el turista: el Auditorio de Calatrava, la plaza de España, el mercado de Nuestra Señora de África, el TEA, el Palmetum levantado sobre un antiguo vertedero y la playa de Las Teresitas a diez minutos. Y las mejores tiendas de la isla."
+  },
+  "l": "Ce să văd în Santa Cruz?",
+  "k": [
+   "santa cruz",
+   "capitala",
+   "auditorio",
+   "plaza de espana",
+   "palmetum",
+   "piata africa"
+  ],
+  "a": "🏙️ Capitala este mult mai vie decât se așteaptă turistul: Auditorio de Tenerife al lui Calatrava, Plaza de España, piața Nuestra Señora de África, centrul de artă TEA, Palmetum, amenajat pe o fostă groapă de gunoi, și plaja Las Teresitas, la zece minute. Și cele mai bune magazine de pe insulă."
+ },
+ "cul-06": {
+  "es": {
+   "l": "¿Cuándo es el Carnaval?",
+   "a": "🎭 El de Santa Cruz es de los mayores del mundo: gala de elección de la Reina, murgas, comparsas y noches enteras de baile en la calle. Cae en febrero o marzo según la Cuaresma, así que confirme la fecha del año. Termina con el Entierro de la Sardina, y Puerto de la Cruz tiene su propia versión. Si coincide, disfrácese: va todo el mundo."
+  },
+  "l": "Când este Carnavalul?",
+  "k": [
+   "carnaval",
+   "carnavalul",
+   "murgas",
+   "comparsas",
+   "inmormantarea sardinei",
+   "regina carnavalului"
+  ],
+  "a": "🎭 Cel din Santa Cruz este unul dintre cele mai mari din lume: gala în care se alege Regina, murgas (coruri satirice), comparsas (grupuri de dans) și nopți întregi de dans pe stradă. Cade în februarie sau în martie, în funcție de Postul Mare, așa că verificați data din anul respectiv. Se încheie cu Înmormântarea Sardinei, iar Puerto de la Cruz are propria versiune. Dacă sunteți pe insulă atunci, puneți-vă un costum: toată lumea o face."
+ },
+ "cul-07": {
+  "es": {
+   "l": "¿Qué fiestas hay este mes?",
+   "a": "🎉 Cada pueblo tiene su patrón y su romería, así que casi siempre hay algo. Las grandes del año son el Carnaval, el Corpus de La Orotava, la Virgen de Candelaria en agosto y San Andrés a finales de noviembre, cuando se estrena el vino nuevo. Mire la agenda del mes en la app, que cambia cada año."
+  },
+  "l": "Ce sărbători sunt luna aceasta?",
+  "k": [
+   "sarbatori",
+   "sarbatoare patronala",
+   "agenda",
+   "evenimente",
+   "san andres",
+   "candelaria august",
+   "sarbatoare",
+   "traditii",
+   "fiesta",
+   "fiestas"
+  ],
+  "a": "🎉 Fiecare localitate are sfântul ei ocrotitor și pelerinajul ei (romería), așa că aproape mereu se întâmplă ceva. Cele mai mari ale anului sunt Carnavalul, Corpus Christi din La Orotava, Fecioara din Candelaria în august și San Andrés la sfârșitul lui noiembrie, când se deschide vinul nou. Uitați-vă în aplicație la agenda lunii, care se schimbă în fiecare an."
+ },
+ "cul-08": {
+  "es": {
+   "l": "¿Qué es una romería?",
+   "a": "🐂 Es la fiesta de un pueblo en honor a su patrón: carretas tiradas por bueyes, traje típico, parrandas tocando y vecinos repartiendo vino, papas y carne a quien pase. No hay que pagar nada ni ir invitado. Se entra, se saluda y se acepta lo que le ofrezcan, que es media fiesta."
+  },
+  "l": "Ce este o romería?",
+  "k": [
+   "romeria",
+   "pelerinaj",
+   "care cu boi",
+   "costum traditional",
+   "parranda",
+   "sarbatoare traditionala"
+  ],
+  "a": "🐂 Este sărbătoarea unei localități în cinstea sfântului ei ocrotitor: căruțe trase de boi, costume tradiționale, formații de muzică populară (parrandas) și localnici care împart vin, cartofi și carne oricui trece pe acolo. Nu se plătește nimic și nu este nevoie de invitație. Intrați, salutați și acceptați ce vi se oferă: asta e jumătate din sărbătoare."
+ },
+ "cul-09": {
+  "es": {
+   "l": "¿Quiénes eran los guanches?",
+   "a": "🗿 Eran los habitantes de la isla antes de la conquista castellana: pastores de origen bereber que vivían en cuevas, se organizaban en menceyatos y momificaban a sus muertos. Tenerife fue la última isla en caer, en 1496. Para verlo de cerca, el Museo de la Naturaleza y Arqueología de Santa Cruz guarda las momias."
+  },
+  "l": "Cine erau guanșii?",
+  "k": [
+   "guansi",
+   "guansii",
+   "aborigeni",
+   "mumii",
+   "inainte de cucerire",
+   "berberi",
+   "mencey",
+   "guanche",
+   "guanches"
+  ],
+  "a": "🗿 Erau locuitorii insulei dinainte de cucerirea castiliană: păstori de origine berberă care trăiau în peșteri, se organizau în regate conduse de câte un mencey și își mumificau morții. Tenerife a fost ultima insulă cucerită, în 1496. Dacă vreți să-i cunoașteți mai de aproape, Muzeul Naturii și Arheologiei din Santa Cruz păstrează mumiile."
+ },
+ "cul-10": {
+  "es": {
+   "l": "¿Qué museos merecen la pena?",
+   "a": "🖼️ Los imprescindibles: el Museo de la Naturaleza y Arqueología por las momias guanches, el TEA para arte contemporáneo, la Casa del Vino en El Sauzal y el Museo de Historia en La Laguna. Los horarios y los días de entrada gratuita cambian a menudo, así que confírmelos antes de plantarse allí."
+  },
+  "l": "Ce muzee merită?",
+  "k": [
+   "muzeu",
+   "muzee",
+   "tea",
+   "muzeul naturii",
+   "casa del vino",
+   "ce muzeu sa vizitez"
+  ],
+  "a": "🖼️ Cele obligatorii: Muzeul Naturii și Arheologiei, pentru mumiile guanșilor, TEA, pentru arta contemporană, Casa del Vino din El Sauzal și Muzeul de Istorie din La Laguna. Programul și zilele cu intrare gratuită se schimbă des, așa că verificați-le înainte de a merge."
+ },
+ "cul-11": {
+  "es": {
+   "l": "¿Dónde hay mercadillos?",
+   "a": "🧺 Los mercados del agricultor son la mejor parada del fin de semana: Tacoronte, La Laguna, Güímar o el de Nuestra Señora de África en Santa Cruz, que abre a diario. Los días y las horas cambian según el municipio, así que confírmelo antes de salir. Vaya temprano y lleve efectivo."
+  },
+  "l": "Unde găsesc piețe locale?",
+  "k": [
+   "piata locala",
+   "piete locale",
+   "piata producatorilor",
+   "talcioc",
+   "produse locale",
+   "targ",
+   "piete",
+   "artizanat"
+  ],
+  "a": "🧺 Piețele producătorilor sunt cea mai bună oprire de weekend: Tacoronte, La Laguna, Güímar sau piața Nuestra Señora de África din Santa Cruz, deschisă zilnic. Zilele și orele diferă de la o municipalitate la alta, așa că verificați înainte de a pleca. Mergeți devreme și luați numerar."
+ }
+}

@@ -1,0 +1,176 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque E2 · Excursiones y actividades: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 10 del rumano (16-11-2026).",
+ "exc-01": {
+  "es": {
+   "l": "¿Dónde veo ballenas?",
+   "a": "🐬 Hay calderones tropicales y delfines mulares todo el año en la franja marina entre Teno y Rasca, una de las mejores del mundo para verlos. Salen barcos de Los Cristianos, Puerto Colón y Los Gigantes. Elija empresa con el distintivo Barco Azul, que certifica observación respetuosa, y no se meta al agua con ellos."
+  },
+  "l": "Unde pot vedea balene?",
+  "k": [
+   "balene",
+   "delfini",
+   "cetacee",
+   "balene pilot",
+   "observarea balenelor",
+   "vapor balene",
+   "delfin",
+   "delfinii",
+   "balena",
+   "balenele"
+  ],
+  "a": "🐬 Tot anul, în fâșia de mare dintre Teno și Rasca trăiesc balene-pilot tropicale și delfini cu bot gros (afalini): este unul dintre cele mai bune locuri din lume pentru a-i vedea. Vapoarele pleacă din Los Cristianos, Puerto Colón și Los Gigantes. Alegeți o companie cu certificatul Barco Azul, care garantează o observare respectuoasă, și nu intrați în apă lângă animale."
+ },
+ "exc-02": {
+  "es": {
+   "l": "¿Qué hago si tengo un día?",
+   "a": "🗓️ Yo subiría al Teide temprano por Vilaflor, comería en la zona de La Orotava y bajaría a Garachico o a Puerto de la Cruz al atardecer. Sale un día redondo y ve tres islas distintas en una: la cumbre volcánica, el valle verde y la costa norte. Puedo encadenarle las paradas en el planificador."
+  },
+  "l": "Ce fac dacă am o singură zi?",
+  "k": [
+   "o singura zi",
+   "am doar o zi",
+   "ce fac azi",
+   "planul de azi",
+   "o zi intreaga"
+  ],
+  "a": "🗓️ Eu aș urca devreme la Teide prin Vilaflor, aș mânca prin zona La Orotava și aș coborî la Garachico sau la Puerto de la Cruz la apus. Iese o zi completă și vedeți trei insule diferite într-una singură: vârful vulcanic, valea verde și coasta de nord. Vă pot înlănțui opririle în planificator."
+ },
+ "exc-03": {
+  "es": {
+   "l": "¿Y si tengo 3, 5 o 7 días?",
+   "a": "🗺️ Con tres días: Teide, Anaga y un día de costa sur. Con cinco, añada Teno con Masca y Garachico, y un día de playas del norte. Con siete, meta La Gomera en ferry y una jornada sin plan en La Laguna o Santa Cruz. Guarde los sitios en favoritos y se los ordeno por distancia para no cruzar la isla dos veces."
+  },
+  "l": "Și dacă am 3, 5 sau 7 zile?",
+  "k": [
+   "itinerar",
+   "trei zile",
+   "cinci zile",
+   "o saptamana",
+   "ce sa vad in mai multe zile"
+  ],
+  "a": "🗺️ În trei zile: Teide, Anaga și o zi pe coasta de sud. În cinci, adăugați Teno cu Masca și Garachico și o zi la plajele din nord. În șapte, includeți La Gomera cu feribotul și o zi fără plan la La Laguna sau la Santa Cruz. Salvați locurile la favorite și vi le ordonez după distanță, ca să nu traversați insula de două ori."
+ },
+ "exc-04": {
+  "es": {
+   "l": "¿Merece ir a La Gomera un día?",
+   "a": "⛴️ Merece la pena si madruga: en menos de una hora está en San Sebastián y da tiempo a subir al Parque Nacional de Garajonay, comer en un pueblo del norte y volver por la tarde. Reserve ida y vuelta el mismo día y cuente con que con mar movido se cancela: si eso le deja tirado, mejor dormir allí una noche."
+  },
+  "l": "Merită o zi pe La Gomera?",
+  "k": [
+   "la gomera intr o zi",
+   "excursie pe la gomera",
+   "garajonay",
+   "san sebastian de la gomera",
+   "excursie la gomera"
+  ],
+  "a": "⛴️ Merită dacă vă treziți devreme: în mai puțin de o oră sunteți în San Sebastián și aveți timp să urcați în Parcul Național Garajonay, să mâncați într-un sat din nord și să vă întoarceți după-amiaza. Rezervați dus-întors în aceeași zi și țineți cont că, pe mare agitată, cursele se anulează: dacă asta v-ar strica planurile, mai bine dormiți acolo o noapte."
+ },
+ "exc-05": {
+  "es": {
+   "l": "¿Dónde buceo o hago snorkel?",
+   "a": "🤿 El sur concentra los centros de buceo, con agua templada todo el año y buena visibilidad: la zona de Las Galletas, Los Cristianos y Radazul. Para snorkel sin botella, las piscinas naturales con marea baja y las calas resguardadas del sur. En el norte el mar manda mucho más de lo que parece desde la orilla."
+  },
+  "l": "Unde pot face scufundări sau snorkeling?",
+  "k": [
+   "scufundari",
+   "scufundare",
+   "snorkeling",
+   "snorkel",
+   "centru de scufundari",
+   "broaste testoase"
+  ],
+  "a": "🤿 Centrele de scufundări sunt mai ales în sud, cu apă caldă tot anul și vizibilitate bună: zona Las Galletas, Los Cristianos și Radazul. Pentru snorkeling fără butelie, piscinele naturale la maree joasă și golfulețele adăpostite din sud. În nord, marea face legea mult mai mult decât pare de pe mal."
+ },
+ "exc-06": {
+  "es": {
+   "l": "¿Dónde hago parapente?",
+   "a": "🪂 La isla es muy buena para volar, con despegues clásicos sobre el valle de La Orotava y en la zona de Adeje. Se vuela en biplaza con piloto, así que no hace falta experiencia. El vuelo depende del viento del día: reserve con margen y cuente con que le puedan cambiar la hora o la zona de despegue."
+  },
+  "l": "Unde pot zbura cu parapanta?",
+  "k": [
+   "parapanta",
+   "zbor cu parapanta",
+   "zbor in tandem",
+   "decolare"
+  ],
+  "a": "🪂 Insula este foarte bună pentru zbor, cu puncte de decolare clasice deasupra văii La Orotava și în zona Adeje. Se zboară în tandem, cu pilot, așa că nu este nevoie de experiență. Zborul depinde de vântul din ziua respectivă: rezervați din timp și țineți cont că vi se poate schimba ora sau locul de decolare."
+ },
+ "exc-07": {
+  "es": {
+   "l": "¿Dónde hago kayak o paddle?",
+   "a": "🛶 En el sur, que tiene el mar más calmado: Los Cristianos, Playa Paraíso, Los Gigantes y la costa de Adeje, donde es fácil cruzarse con tortugas. Alquila por horas o va con guía, que además le lleva a las cuevas de la costa. En el norte, solo con mar plano y sabiendo lo que hace."
+  },
+  "l": "Unde pot merge cu caiacul sau cu placa SUP?",
+  "k": [
+   "caiac",
+   "caiace",
+   "paddle surf",
+   "canoe",
+   "vaslit",
+   "sup"
+  ],
+  "a": "🛶 În sud, unde marea este cea mai calmă: Los Cristianos, Playa Paraíso, Los Gigantes și coasta din Adeje, unde întâlniți ușor broaște-țestoase. Închiriați cu ora sau mergeți cu un ghid, care vă duce și la peșterile de pe coastă. În nord, doar când marea este plată și doar dacă știți ce faceți."
+ },
+ "exc-08": {
+  "es": {
+   "l": "¿Hay vida nocturna?",
+   "a": "🌙 Depende de lo que busque. Las Américas y Costa Adeje concentran el ocio nocturno turístico, con discotecas y bares hasta tarde. Santa Cruz y La Laguna tienen el ambiente local, con la zona de copas del centro y terrazas llenas. Aquí se sale tarde: los fines de semana la cosa arranca a partir de medianoche."
+  },
+  "l": "Există viață de noapte?",
+  "k": [
+   "viata de noapte",
+   "iesit in oras",
+   "discoteca",
+   "cluburi",
+   "baruri noaptea",
+   "petrecere"
+  ],
+  "a": "🌙 Depinde ce căutați. Las Américas și Costa Adeje concentrează viața de noapte turistică, cu cluburi și baruri deschise până târziu. Santa Cruz și La Laguna au atmosfera localnicilor, cu zona de baruri din centru și terase pline. Aici se iese târziu: în weekend, distracția începe după miezul nopții."
+ },
+ "exc-09": {
+  "es": {
+   "l": "¿Dónde hay campos de golf?",
+   "a": "⛳ Hay una docena de campos, casi todos en el sur y algunos en el norte con vistas al Teide y al mar. Se juega todo el año, que es justo la gracia de venir aquí en invierno. En los meses de más calor conviene salida temprano. Los tiene en el mapa por categoría, con su ficha y cómo llegar."
+  },
+  "l": "Unde sunt terenuri de golf?",
+  "k": [
+   "golf",
+   "teren de golf",
+   "terenuri de golf",
+   "joc de golf",
+   "green fee"
+  ],
+  "a": "⛳ Există vreo douăsprezece terenuri, aproape toate în sud și câteva în nord, cu priveliști spre Teide și spre mare. Se joacă tot anul, și tocmai de aceea merită să veniți iarna. În lunile cele mai calde, e bine să începeți devreme. Le aveți pe hartă, în categoria lor, cu fișa fiecăruia și cum ajungeți."
+ },
+ "exc-10": {
+  "es": {
+   "l": "¿Qué hago un domingo?",
+   "a": "☀️ El domingo la isla se va al campo: áreas recreativas con barbacoa, guachinches llenos, romería si toca y mercados de agricultor por la mañana. Muchas tiendas cierran, pero restaurantes, playas y senderos están en su mejor momento. Es el mejor día para ver la isla en modo local, y el peor para ir de compras."
+  },
+  "l": "Ce fac duminica?",
+  "k": [
+   "duminica",
+   "ce fac duminica",
+   "weekend",
+   "inchis duminica"
+  ],
+  "a": "☀️ Duminica insula pleacă la țară: zone de agrement cu grătare, guachinches pline, un pelerinaj (romería) dacă se nimerește și piețele producătorilor dimineața. Multe magazine sunt închise, dar restaurantele, plajele și traseele sunt în cea mai bună formă. Este cea mai bună zi ca să vedeți insula ca un localnic și cea mai proastă pentru cumpărături."
+ },
+ "exc-11": {
+  "es": {
+   "l": "¿Hay excursiones sin coche?",
+   "a": "🚌 Se puede perfectamente. Las guaguas llegan al Teide, a Masca, a Anaga y a casi todos los pueblos, y desde el sur hay excursiones organizadas que le recogen en el hotel. Lo que cambia es el ritmo: va atado al horario de vuelta, así que mire el último regreso antes de salir y no lo apure."
+  },
+  "l": "Există excursii fără mașină?",
+  "k": [
+   "excursii fara masina",
+   "excursie organizata",
+   "tur ghidat",
+   "preluare de la hotel",
+   "excursie",
+   "excursii",
+   "excursie fara masina"
+  ],
+  "a": "🚌 Se poate perfect. Autobuzele ajung la Teide, la Masca, în Anaga și în aproape toate satele, iar din sud există excursii organizate care vă iau de la hotel. Se schimbă doar ritmul: depindeți de orarul de întoarcere, așa că verificați ultima cursă înainte de a pleca și nu lăsați totul pe ultima clipă."
+ }
+}

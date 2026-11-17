@@ -1,0 +1,233 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque F1 · Prácticos del viaje: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 10 del rumano (16-11-2026).",
+ "pra-01": {
+  "es": {
+   "l": "¿Qué moneda se usa?",
+   "a": "💶 El euro. Se paga con tarjeta prácticamente en todas partes, incluso importes pequeños. Lleve algo de efectivo igualmente para guachinches, mercadillos, aparcamientos de pueblo y algún taxi. Los cajeros son fáciles de encontrar, pero ojo con las comisiones de los que están en zonas turísticas."
+  },
+  "l": "Ce monedă se folosește?",
+  "k": [
+   "moneda",
+   "euro",
+   "plata cu cardul",
+   "numerar",
+   "bancomat",
+   "scot bani",
+   "bani",
+   "cash",
+   "plati cu cardul",
+   "platesc cu cardul",
+   "card bancar"
+  ],
+  "a": "💶 Euro. Se poate plăti cu cardul aproape peste tot, chiar și sume mici. Totuși, luați și niște numerar pentru guachinches, piețe locale, parcările din sate și câte un taxi. Bancomatele se găsesc ușor, dar atenție la comisioanele celor din zonele turistice."
+ },
+ "pra-02": {
+  "es": {
+   "l": "¿Se puede beber el agua del grifo?",
+   "a": "🚰 Es potable y está controlada, pero al ser en buena parte desalada o muy mineralizada, el sabor no convence y casi todo el mundo, locales incluidos, bebe embotellada. Para cocinar y lavarse va perfecta. En rutas, rellene solo en fuentes señalizadas como potables."
+  },
+  "l": "Se poate bea apa de la robinet?",
+  "k": [
+   "apa de la robinet",
+   "apa potabila",
+   "beau apa",
+   "apa imbuteliata",
+   "robinet",
+   "bea apa",
+   "apa de baut"
+  ],
+  "a": "🚰 Este potabilă și controlată, dar, fiind în mare parte desalinizată sau foarte mineralizată, gustul nu convinge, iar aproape toată lumea, inclusiv localnicii, bea apă îmbuteliată. Pentru gătit și spălat este perfectă. Pe trasee, umpleți sticla doar de la izvoarele semnalizate ca potabile."
+ },
+ "pra-03": {
+  "es": {
+   "l": "¿Qué enchufes hay?",
+   "a": "🔌 Los europeos de dos clavijas redondas, tipos C y F, a 230 voltios y 50 hercios. Si viene del Reino Unido, de Irlanda o de fuera de Europa, traiga adaptador: en el aeropuerto y en los súper se venden, pero más caros. Los cargadores modernos aguantan el voltaje sin transformador."
+  },
+  "l": "Ce prize sunt?",
+  "k": [
+   "priza",
+   "prize",
+   "adaptor",
+   "tensiune",
+   "curent electric",
+   "incarc telefonul"
+  ],
+  "a": "🔌 Cele europene, cu doi pini rotunzi, tipurile C și F, la 230 de volți și 50 de herți. Dacă veniți din Regatul Unit, din Irlanda sau din afara Europei, aduceți un adaptor: se vând la aeroport și în supermarketuri, dar mai scump. Încărcătoarele moderne suportă tensiunea fără transformator."
+ },
+ "pra-04": {
+  "es": {
+   "l": "¿Qué documentación necesito?",
+   "a": "🛂 Canarias es España y territorio Schengen: si viene de la Unión Europea basta con el documento de identidad o el pasaporte, y no hay control fronterizo. Desde fuera, pasaporte y, según su nacionalidad, visado o autorización previa. Los requisitos cambian, así que confírmelos con el consulado español antes de volar."
+  },
+  "l": "Ce documente îmi trebuie?",
+  "k": [
+   "documente",
+   "pasaport",
+   "buletin",
+   "carte de identitate",
+   "viza",
+   "intrarea in insulele canare",
+   "vama",
+   "acte",
+   "ce acte",
+   "acte de calatorie"
+  ],
+  "a": "🛂 Insulele Canare sunt Spania și fac parte din spațiul Schengen: dacă veniți din Uniunea Europeană ajunge cartea de identitate sau pașaportul și nu există control la frontieră. Din afara UE, pașaport și, în funcție de cetățenie, viză sau autorizație prealabilă. Cerințele se schimbă, așa că verificați-le la consulatul Spaniei înainte de zbor."
+ },
+ "pra-05": {
+  "es": {
+   "l": "¿Qué hora es aquí?",
+   "a": "🕐 Canarias va una hora por detrás de la península y de Europa central, y coincide con el Reino Unido y Portugal. El cambio de hora se hace a la vez que en el resto de la Unión Europea. Es el detalle que más despista al llegar: si ha volado desde Madrid, atrase el reloj."
+  },
+  "l": "Cât este ora aici?",
+  "k": [
+   "cat e ora",
+   "fus orar",
+   "diferenta de fus orar",
+   "schimbarea orei",
+   "ora canarelor",
+   "cat e ceasul",
+   "ce ora este",
+   "diferenta de ora",
+   "ora locala"
+  ],
+  "a": "🕐 Insulele Canare au o oră mai puțin decât Spania continentală și Europa Centrală și au aceeași oră ca Regatul Unit și Portugalia. Ora se schimbă în același timp ca în restul Uniunii Europene. Este detaliul care încurcă cel mai mult la sosire: dacă ați zburat din Madrid, dați ceasul înapoi."
+ },
+ "pra-06": {
+  "es": {
+   "l": "¿Me apaño sin hablar español?",
+   "a": "🗣️ Sin problema. El idioma es el español, pero en las zonas turísticas el inglés está muy extendido y en el norte también se oye bastante alemán. En los pueblos del interior la cosa baja, aunque con gestos y buena cara se resuelve todo. Aquí la gente ayuda sin que se lo pida."
+  },
+  "l": "Mă descurc fără să vorbesc spaniolă?",
+  "k": [
+   "se vorbeste engleza",
+   "vorbesc engleza",
+   "fara spaniola",
+   "bariera de limba",
+   "ma inteleg",
+   "engleza"
+  ],
+  "a": "🗣️ Fără probleme. Limba este spaniola, dar în zonele turistice engleza este foarte răspândită, iar în nord se aude și destul de multă germană. În satele din interior se vorbește mai puțin, însă cu gesturi și zâmbet se rezolvă totul. Aici oamenii ajută fără să le cereți."
+ },
+ "pra-07": {
+  "es": {
+   "l": "¿Qué palabras canarias debo saber?",
+   "a": "🗨️ Las que más le van a sonar: guagua es el autobús, papas son las patatas, cotufas son las palomitas, el millo es el maíz, un fisco es un poquito y guachinche ya lo sabe. Verá que aquí se usa «ustedes» donde en la península dirían «vosotros», y que nadie pronuncia la ese final."
+  },
+  "l": "Ce cuvinte canariene ar trebui să știu?",
+  "k": [
+   "cuvinte canariene",
+   "vocabular canarian",
+   "cum se spune aici",
+   "ce inseamna guagua",
+   "cotufas"
+  ],
+  "a": "🗨️ Cele pe care le veți auzi cel mai des: „guagua” este autobuzul, „papas” sunt cartofii, „cotufas” sunt floricelele, „millo” este porumbul, „un fisco” înseamnă un pic, iar „guachinche” știți deja ce este. Veți observa că aici se spune „ustedes” acolo unde în Spania continentală s-ar spune „vosotros” și că nimeni nu pronunță s-ul de la sfârșitul cuvintelor."
+ },
+ "pra-08": {
+  "es": {
+   "l": "¿Hay wifi? ¿Me compensa una eSIM?",
+   "a": "📶 Wifi hay en alojamientos, bares y muchos espacios públicos. La cobertura móvil es buena en toda la costa y en las ciudades, y nula en el fondo de los barrancos y en partes de Anaga y Teno. Si viene de la Unión Europea usa sus datos sin recargo; si no, una eSIM local compensa."
+  },
+  "l": "Există wifi? Merită un eSIM?",
+  "k": [
+   "wifi",
+   "internet",
+   "acoperire mobila",
+   "esim",
+   "cartela sim",
+   "date mobile",
+   "roaming",
+   "sim",
+   "acoperire"
+  ],
+  "a": "📶 Wifi găsiți în locurile de cazare, în baruri și în multe spații publice. Acoperirea mobilă este bună pe toată coasta și în orașe și lipsește complet în fundul defileelor și în unele părți din Anaga și Teno. Dacă veniți din Uniunea Europeană, folosiți datele mobile fără cost suplimentar; dacă nu, merită un eSIM local."
+ },
+ "pra-09": {
+  "es": {
+   "l": "¿Qué meto en la maleta?",
+   "a": "🧳 Ropa de verano para la costa, calzado cómodo que agarre, bañador y protección solar alta. Añada una chaqueta fina para las noches y algo de abrigo de verdad si va a subir al Teide, aunque venga en agosto. Si piensa caminar, calzado de montaña; las chanclas no valen en los senderos."
+  },
+  "l": "Ce pun în bagaj?",
+  "k": [
+   "ce pun in bagaj",
+   "ce haine aduc",
+   "bagaj",
+   "valiza",
+   "ce haine sa iau",
+   "ce sa imbrac",
+   "ce haine sa aduc"
+  ],
+  "a": "🧳 Haine de vară pentru coastă, încălțăminte comodă care să nu alunece, costum de baie și protecție solară ridicată. Adăugați o jachetă subțire pentru seri și ceva cu adevărat gros dacă urcați pe Teide, chiar dacă veniți în august. Dacă vreți să faceți drumeții, încălțăminte de munte: șlapii nu sunt buni pe trasee."
+ },
+ "pra-10": {
+  "es": {
+   "l": "¿Cuántos días necesito?",
+   "a": "📆 Una semana es lo ideal y le deja ver la isla sin correr. Con cinco días sale bien parado si no pierde tiempo cruzando de punta a punta. Con tres va justo: elija dos zonas y olvídese del resto. Menos de eso es una escala, no un viaje."
+  },
+  "l": "De câte zile am nevoie?",
+  "k": [
+   "cate zile",
+   "cat sa stau",
+   "durata calatoriei",
+   "ajunge o saptamana"
+  ],
+  "a": "📆 O săptămână este ideală și vă permite să vedeți insula fără grabă. În cinci zile vă descurcați bine dacă nu pierdeți timp traversând insula de la un capăt la altul. Cu trei zile e strâns: alegeți două zone și uitați de rest. Mai puțin de atât este o escală, nu o călătorie."
+ },
+ "pra-11": {
+  "es": {
+   "l": "¿Qué horario tienen las tiendas?",
+   "a": "🕙 El comercio pequeño suele abrir por la mañana, cerrar a mediodía y volver por la tarde; los centros comerciales y las grandes superficies siguen horario continuo. Muchas tiendas cierran el domingo, salvo en las zonas turísticas. Los horarios cambian por temporada y por municipio, así que confírmelo antes de cruzar la isla."
+  },
+  "l": "Ce program au magazinele?",
+  "k": [
+   "program magazine",
+   "deschis duminica",
+   "cand se deschide",
+   "pauza de pranz",
+   "program supermarket",
+   "siesta",
+   "deschise magazinele",
+   "magazine deschise",
+   "deschise duminica"
+  ],
+  "a": "🕙 Magazinele mici se deschid de obicei dimineața, se închid la prânz și se redeschid după-amiaza; centrele comerciale și marile magazine au program continuu. Multe magazine sunt închise duminica, cu excepția zonelor turistice. Programul diferă în funcție de sezon și de municipalitate, așa că verificați înainte de a traversa insula."
+ },
+ "pra-12": {
+  "es": {
+   "l": "¿Qué es el IGIC?",
+   "a": "🧾 Es el impuesto indirecto propio de Canarias, que sustituye al IVA y es bastante más bajo. Por eso la electrónica, el perfume, el tabaco y el alcohol salen más baratos que en el continente. Las condiciones de devolución para viajeros cambian, así que pregunte en la tienda al pagar y guarde la factura."
+  },
+  "l": "Ce este IGIC?",
+  "k": [
+   "igic",
+   "impozit",
+   "tva in insulele canare",
+   "tax free",
+   "rambursarea taxelor",
+   "cumparaturi ieftine",
+   "tva"
+  ],
+  "a": "🧾 Este impozitul indirect propriu al Insulelor Canare, care înlocuiește TVA-ul și este mult mai mic. De aceea electronicele, parfumurile, tutunul și băuturile alcoolice ies mai ieftin decât pe continent. Condițiile de rambursare pentru călători se schimbă, așa că întrebați în magazin când plătiți și păstrați factura."
+ },
+ "pra-13": {
+  "es": {
+   "l": "¿Es caro Tenerife?",
+   "a": "💰 Menos caro que la mayoría de destinos europeos de sol, en buena parte porque el IGIC es más bajo que el IVA. Lo que dispara el gasto es la zona: el paseo marítimo turístico y los parques temáticos. Fuera de eso, comer, moverse en guagua y la playa son baratos, y el paisaje no cuesta nada."
+  },
+  "l": "Este scump în Tenerife?",
+  "k": [
+   "este scump in tenerife",
+   "nivelul preturilor",
+   "buget",
+   "calatorie ieftina",
+   "cati bani sa iau",
+   "scump",
+   "scumpa",
+   "preturi",
+   "preturile",
+   "ieftin"
+  ],
+  "a": "💰 Este mai puțin scump decât în majoritatea destinațiilor europene cu soare, în bună parte pentru că IGIC este mai mic decât TVA-ul. Ce urcă cheltuielile este zona: promenada turistică și parcurile tematice. În rest, mâncarea, autobuzul și plaja sunt ieftine, iar peisajul nu costă nimic."
+ }
+}

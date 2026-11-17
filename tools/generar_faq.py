@@ -9,6 +9,9 @@ Entrada : faq/fuente/*.json             los bloques tal y como se redactaron
                                         «cerca de mi», «cuantos lugares»
           faq/fuente/claves/<idioma>.json claves de busqueda de mas para
                                         entradas que ya existen, por id
+          faq/fuente/ro/*.json          el rumano, por id y con el castellano que
+                                        traduce; solo se funde con «ro» en
+                                        SUPPORTED_LANGS (ver rumano())
           faq/fuente/nativo/respuestas.json la respuesta de la app de las tiendas
                                         (window.TGO_NATIVO), por id y por
                                         idioma, donde la de la web no seria
@@ -38,12 +41,72 @@ RAIZ   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FUENTE = os.path.join(RAIZ, 'faq', 'fuente')
 DESTINO= os.path.join(RAIZ, 'faq')
 
+def rumano(entradas, bloque_de):
+    """El rumano (ro), desde el bloque 10 del rumano: faq/fuente/ro/<bloque>.json, como el bulgaro, y cada entrada
+    con el castellano que traduce («es»: l y a). Devuelve True si «ro» esta en SUPPORTED_LANGS de index.html (y
+    entonces lo ha fundido en las entradas: se escribe faq/ro.json), False si no (solo se ha comprobado lo que hay:
+    faq/ro.json no se escribe hasta el interruptor) y None si algo esta mal."""
+    import re
+    m = re.search(r'SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]', open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read())
+    activo = bool(m) and 'ro' in [x.strip().strip('\'"') for x in m.group(1).split(',')]
+    carpeta = os.path.join(FUENTE, 'ro')
+    if not os.path.isdir(carpeta):
+        if activo: print('ro esta en SUPPORTED_LANGS y no hay faq/fuente/ro/'); return None
+        return False
+    porid = {e['id']: e for e in entradas}
+    cortos = set(bloque_de.values())
+    ro, fallos, cambiados, vistas = {}, [], [], {}
+    for f in sorted(glob.glob(os.path.join(carpeta, '*.json'))):
+        corto = os.path.basename(f)
+        if corto not in cortos: fallos.append(f'ro/{corto}: no hay ningun bloque que se llame asi'); continue
+        for id_, v in json.load(open(f, encoding='utf-8')).items():
+            if id_.startswith('_'): continue
+            if bloque_de.get(id_) != corto: fallos.append(f'ro/{corto}: {id_} no es una entrada de ese bloque'); continue
+            if not isinstance(v, dict) or set(v) != {'es', 'l', 'k', 'a'} or not isinstance(v['es'], dict): fallos.append(f'ro/{corto}: {id_} no trae es, l, k y a'); continue
+            if not str(v['l']).strip() or not str(v['a']).strip() or not v['k']: fallos.append(f'ro/{id_} vacio'); continue
+            for k in v['k']:
+                kn = str(k).strip().lower()
+                if k != kn: fallos.append(f'ro/{id_}: la clave «{k}» no esta normalizada')
+                if kn in vistas and vistas[kn] != id_: fallos.append(f'ro: la clave «{kn}» esta en {vistas[kn]} y en {id_}')
+                vistas[kn] = id_
+            e = porid[id_]
+            if v['es'].get('l') != e['label']['es'] or v['es'].get('a') != e['a']['es']: cambiados.append(id_)
+            ro[id_] = v
+    fc = os.path.join(FUENTE, 'claves', 'ro.json')
+    if os.path.exists(fc):
+        for id_, ks in json.load(open(fc, encoding='utf-8')).items():
+            if id_.startswith('_'): continue
+            if id_ not in porid: fallos.append(f'claves/ro.json: {id_} no es ninguna entrada'); continue
+            if id_ in ro and any(k in ro[id_]['k'] for k in ks): fallos.append(f'claves/ro.json: {id_} repite claves que la entrada ya tiene')
+    fi = os.path.join(FUENTE, 'intenciones', 'ro.json')
+    if os.path.exists(fi):
+        d = json.load(open(fi, encoding='utf-8'))
+        INTENCIONES = ('where', 'what', 'near', 'nearTok', 'count', 'favs', 'orden', 'ayuda')
+        if set(d) - set(INTENCIONES) - {'cats', 'zonas'}: fallos.append(f'intenciones/ro.json: claves que no existen: {sorted(set(d) - set(INTENCIONES) - {"cats", "zonas"})}')
+        fallos += [f'intenciones/ro.json: no trae «{c}»' for c in INTENCIONES if not d.get(c)]
+        if d.get('zonas') and set(d['zonas']) != {'norte', 'sur', 'este', 'oeste', 'centro'}: fallos.append('intenciones/ro.json: las zonas son norte, sur, este, oeste y centro')
+    if fallos:
+        print('\n'.join(fallos[:40])); print(f'({len(fallos)} fallos en el rumano)'); return None
+    if not activo:
+        print(f'  ro (sin encender): {len(ro)} de {len(entradas)} entradas en faq/fuente/ro/; faq/ro.json no se escribe hasta el interruptor')
+        if cambiados: print(f'  ro: {len(cambiados)} con el castellano cambiado desde que se tradujeron (se traducen otra vez): {" ".join(cambiados)}')
+        return False
+    faltan = [e['id'] for e in entradas if e['id'] not in ro]
+    if faltan: print(f'falta el rumano de {len(faltan)} entradas: {" ".join(faltan[:20])}'); return None
+    if cambiados: print(f'ro: el castellano de {" ".join(cambiados)} no es el que se tradujo: hay que traducirlo otra vez'); return None
+    if not os.path.exists(fi): print('falta faq/fuente/intenciones/ro.json'); return None
+    for e in entradas:
+        v = ro[e['id']]
+        e['label']['ro'], e['keys']['ro'], e['a']['ro'] = v['l'], v['k'], v['a']
+    return True
+
 def main():
     ficheros = sorted(glob.glob(os.path.join(FUENTE, '*.json')))
     if not ficheros:
         print('No hay bloques en faq/fuente/'); return 1
 
     entradas, indice, idiomas = [], {}, None
+    bloque_de = {}                    # id -> fichero del bloque, para el rumano
     for f in ficheros:
         d = json.load(open(f, encoding='utf-8'))
         meta = d['meta']
@@ -70,6 +133,7 @@ def main():
                 print(f'falta el bulgaro de {e["id"]}'); return 1
             e['label']['bg'], e['keys']['bg'], e['a']['bg'] = b['l'], b['k'], b['a']
             entradas.append(e)
+            bloque_de[e['id']] = corto
             indice[e['id']] = {'cat': e['cat'], 'volatil': bool(e['volatil']),
                                'bloque': meta['bloque'], 'version': meta['version']}
             # los rotulos de la app que cita la respuesta: los mira auditar_faq.js
@@ -77,6 +141,11 @@ def main():
             if e.get('contacto'): indice[e['id']]['contacto'] = True
 
     idiomas = idiomas + ['bg']
+
+    # el rumano: hasta el interruptor solo se comprueba; con «ro» en SUPPORTED_LANGS, se funde y sale faq/ro.json
+    ro_activo = rumano(entradas, bloque_de)
+    if ro_activo is None: return 1
+    if ro_activo: idiomas = idiomas + ['ro']
 
     # claves de mas, por idioma y por id; un id que no existe es un error
     porid = {e['id']: e for e in entradas}
@@ -105,7 +174,10 @@ def main():
             if id_ not in porid:
                 print(f'nativo/respuestas.json: {id_} no es ninguna entrada'); return 1
             faltan = [L for L in idiomas if not str(porL.get(L, '')).strip()]
-            sobran = sorted(set(porL) - set(idiomas))
+            # el rumano puede llegar antes del interruptor: se acepta y se comprueba, y sale con el
+            sobran = sorted(set(porL) - set(idiomas) - (set() if ro_activo else {'ro'}))
+            if not ro_activo and 'ro' in porL and not str(porL['ro']).strip():
+                print(f'nativo/respuestas.json: {id_} trae el rumano vacio'); return 1
             if faltan or sobran:
                 print(f'nativo/respuestas.json: {id_} sin {faltan} o con idiomas que la app no tiene {sobran}'); return 1
             nativo[id_] = porL

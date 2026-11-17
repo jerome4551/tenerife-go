@@ -1,0 +1,262 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque B1 · Teide y Parque Nacional: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 10 del rumano (16-11-2026).",
+ "tei-01": {
+  "es": {
+   "l": "¿Necesito permiso para el pico?",
+   "a": "⚠️ Desde el 1 de noviembre de 2026, por hielo y nieve, el Cabildo restringe el paso por siete senderos del Teide o tramos de ellos (PNT 07, 09, 10, 11, 12, 23 y 28): solo pueden ir personas expertas en alta montaña o con profesionales acreditados por el Parque, con autorización de Tenerife ON, la declaración responsable aceptada en su perfil, crampones y piolet. Aún no hay fecha de fin. 🌋 Sí. El último tramo, de La Rambleta al cráter (sendero PNT 10 Telesforo Bravo), solo se puede hacer con autorización previa, y subir sin ella puede acabar en sanción. El permiso vale únicamente para ese tramo, ese día y esa franja horaria. Los senderos PNT 07, PNT 09, PNT 23 y PNT 28 también piden su propia autorización."
+  },
+  "l": "Am nevoie de permis pentru vârf?",
+  "k": [
+   "permis teide",
+   "permis varf",
+   "autorizatie teide",
+   "telesforo bravo",
+   "urcare pe varf",
+   "pnt 10",
+   "am nevoie de permis"
+  ],
+  "a": "⚠️ Din 1 noiembrie 2026, din cauza gheții și a zăpezii, Cabildo (consiliul insular) restricționează accesul pe șapte trasee ale vulcanului Teide sau pe porțiuni din ele (PNT 07, 09, 10, 11, 12, 23 și 28): pot merge doar alpiniștii experimentați sau persoanele însoțite de profesioniști acreditați de Parcul Național, cu autorizație de la Tenerife ON, declarația pe propria răspundere acceptată în profil, colțari și piolet. Încă nu există o dată de încheiere. 🌋 Da. Ultimul tronson, de la La Rambleta până la crater (traseul PNT 10 Telesforo Bravo), se poate parcurge doar cu autorizație prealabilă, iar dacă urcați fără ea vă puteți alege cu o amendă. Permisul este valabil numai pentru acel tronson, în ziua și în intervalul orar alese. Și traseele PNT 07, PNT 09, PNT 23 și PNT 28 au nevoie de autorizație proprie."
+ },
+ "tei-02": {
+  "es": {
+   "l": "¿Dónde reservo el permiso?",
+   "a": "📅 En Tenerife ON (tenerifeon.es), la plataforma oficial del Cabildo. Hay que registrarse antes, es gratis. Las plazas se abren cada lunes a las 07:00 hora canaria para los 56 días siguientes, y solo se admite una reserva por persona cada 15 días. Vuelan: entre el lunes a primera hora."
+  },
+  "l": "Unde rezerv permisul?",
+  "k": [
+   "unde rezerv permisul",
+   "rezervare teide",
+   "tenerife on",
+   "cu cat timp inainte",
+   "nu mai sunt locuri",
+   "cand se deschid locurile",
+   "rezerv permisul",
+   "rezervare permis"
+  ],
+  "a": "📅 Pe Tenerife ON (tenerifeon.es), platforma oficială a Cabildo de Tenerife. Trebuie să vă înregistrați mai întâi; înregistrarea este gratuită. Locurile se deschid în fiecare luni, la 07:00 (ora Insulelor Canare), pentru următoarele 56 de zile, și se acceptă o singură rezervare de persoană la fiecare 15 zile. Se termină repede: intrați luni, la prima oră."
+ },
+ "tei-03": {
+  "es": {
+   "l": "¿El permiso es gratis?",
+   "a": "💶 Depende de la franja horaria. En las horas que coinciden con el teleférico (9:00 a 17:00) hay tarifa: los residentes en Tenerife y los menores de 14 años no pagan, y el resto sí, con un importe distinto para residentes en Canarias y para el resto de visitantes. Fuera de esa franja no hay tarifa, pero la reserva sigue siendo obligatoria. El importe exacto se lo muestra Tenerife ON al reservar."
+  },
+  "l": "Permisul este gratuit?",
+  "k": [
+   "permis gratuit",
+   "cat costa permisul",
+   "taxa teide",
+   "ecotaxa",
+   "pret autorizatie",
+   "trebuie platit permisul"
+  ],
+  "a": "💶 Depinde de intervalul orar. În intervalul în care funcționează telecabina (de la 9:00 la 17:00) se plătește un tarif: rezidenții din Tenerife și copiii sub 14 ani nu plătesc, iar ceilalți plătesc, cu o sumă diferită pentru rezidenții din Insulele Canare și pentru restul vizitatorilor. În afara acestui interval nu există tarif, dar rezervarea rămâne obligatorie. Suma exactă v-o arată Tenerife ON când rezervați."
+ },
+ "tei-04": {
+  "es": {
+   "l": "¿El teleférico llega al pico?",
+   "a": "❌ No, y es la confusión más cara del Teide. El billete le deja en La Rambleta, a unos 3.555 m; para seguir hasta el cráter necesita el permiso del PNT 10, que se tramita aparte y no va incluido. Son dos gestiones independientes: de hecho, el permiso vale para su franja aunque ese día el teleférico no funcione."
+  },
+  "l": "Telecabina ajunge până pe vârf?",
+  "k": [
+   "telecabina ajunge pe varf",
+   "telecabina include permisul",
+   "cu telecabina pana sus",
+   "la rambleta",
+   "pana unde urca telecabina"
+  ],
+  "a": "❌ Nu, și aceasta este cea mai costisitoare confuzie de pe Teide. Biletul vă lasă la La Rambleta, la circa 3.555 m; ca să continuați până la crater aveți nevoie de permisul pentru PNT 10, care se obține separat și nu este inclus. Sunt două demersuri independente: de fapt, permisul este valabil pentru intervalul său chiar dacă în ziua aceea telecabina nu funcționează."
+ },
+ "tei-05": {
+  "es": {
+   "l": "¿Cómo va el teleférico?",
+   "a": "🚡 Sube desde unos 2.356 m hasta La Rambleta, sobre 3.555 m, en unos ocho minutos. Conviene comprarlo con antelación porque se agota, y cierra sin previo aviso cuando hay viento fuerte o hielo. Mire el estado del día en volcanoteide.com antes de subir la carretera: se ahorra el viaje en balde."
+  },
+  "l": "Cum funcționează telecabina?",
+  "k": [
+   "telecabina",
+   "teleferic",
+   "telecabina teide",
+   "bilet telecabina",
+   "program telecabina",
+   "inchisa din cauza vantului"
+  ],
+  "a": "🚡 Urcă de la circa 2.356 m până la La Rambleta, la aproximativ 3.555 m, în vreo opt minute. Merită să cumpărați biletul din timp, pentru că se epuizează, iar telecabina se închide fără preaviz când bate vântul puternic sau când este gheață. Verificați starea zilei pe volcanoteide.com înainte de a urca pe drumul spre parc: vă scutiți de un drum făcut degeaba."
+ },
+ "tei-06": {
+  "es": {
+   "l": "¿Se puede subir andando?",
+   "a": "⚠️ Desde el 1 de noviembre de 2026, por hielo y nieve, el Cabildo restringe el paso por siete senderos del Teide o tramos de ellos (PNT 07, 09, 10, 11, 12, 23 y 28): solo pueden ir personas expertas en alta montaña o con profesionales acreditados por el Parque, con autorización de Tenerife ON, la declaración responsable aceptada en su perfil, crampones y piolet. Aún no hay fecha de fin. 🥾 Sí. A La Rambleta se llega a pie por Montaña Blanca (PNT 07), por Pico Viejo y Las Narices del Teide (PNT 09) o desde Los Roques de García; los senderos del estratovolcán también exigen autorización previa. Y desde allí, el tramo final al cráter sigue necesitando el permiso del PNT 10. Aquí no se improvisa: todo se reserva antes."
+  },
+  "l": "Se poate urca pe jos?",
+  "k": [
+   "urcare pe jos",
+   "urc pe jos",
+   "montana blanca",
+   "pnt 07",
+   "pnt 09",
+   "narices del teide",
+   "roques de garcia",
+   "urca pe jos",
+   "teide pe jos"
+  ],
+  "a": "⚠️ Din 1 noiembrie 2026, din cauza gheții și a zăpezii, Cabildo (consiliul insular) restricționează accesul pe șapte trasee ale vulcanului Teide sau pe porțiuni din ele (PNT 07, 09, 10, 11, 12, 23 și 28): pot merge doar alpiniștii experimentați sau persoanele însoțite de profesioniști acreditați de Parcul Național, cu autorizație de la Tenerife ON, declarația pe propria răspundere acceptată în profil, colțari și piolet. Încă nu există o dată de încheiere. 🥾 Da. Până la La Rambleta se ajunge pe jos pe Montaña Blanca (PNT 07), pe la Pico Viejo și Las Narices del Teide (PNT 09) sau de la Los Roques de García; și traseele stratovulcanului cer autorizație prealabilă. Iar de acolo, ultimul tronson până la crater necesită în continuare permisul pentru PNT 10. Aici nu se improvizează: totul se rezervă dinainte."
+ },
+ "tei-07": {
+  "es": {
+   "l": "¿Cuánto se tarda y qué dificultad?",
+   "a": "⏱️ El tramo final son apenas 0,66 km, pero se va cerca de una hora: empieza a unos 3.542 m, acaba en 3.714 m y tiene pendientes de hasta el 60 %. La dificultad oficial es media. No es apto si tiene problemas de corazón, respiratorios o de movilidad."
+  },
+  "l": "Cât durează și cât de greu este?",
+  "k": [
+   "cat dureaza urcarea pe varf",
+   "dificultate",
+   "este greu",
+   "diferenta de nivel",
+   "cat dureaza traseul",
+   "conditie fizica",
+   "cat dureaza urcarea"
+  ],
+  "a": "⏱️ Ultimul tronson are doar 0,66 km, dar durează aproape o oră: începe la circa 3.542 m, se termină la 3.714 m și are pante de până la 60 %. Dificultatea oficială este medie. Nu este potrivit dacă aveți probleme cardiace, respiratorii sau de mobilitate."
+ },
+ "tei-08": {
+  "es": {
+   "l": "¿Se paga entrada al parque?",
+   "a": "🎟️ No. El parque es abierto: puede recorrer la carretera, parar en los miradores y caminar por la mayoría de senderos sin pagar nada. Lo que se reserva son los senderos PNT 10, PNT 07, PNT 09, PNT 23 y PNT 28; el PNT 10 y el PNT 07, además, se pagan en algunas franjas. Y ojo, está prohibido fumar en los espacios abiertos del parque."
+  },
+  "l": "Se plătește intrarea în parc?",
+  "k": [
+   "intrare in parc",
+   "taxa de intrare in parcul national",
+   "parcul este gratuit",
+   "acces in parc"
+  ],
+  "a": "🎟️ Nu. Parcul este deschis: puteți parcurge drumul, opri la punctele de belvedere și merge pe majoritatea traseelor fără să plătiți nimic. Se rezervă traseele PNT 10, PNT 07, PNT 09, PNT 23 și PNT 28; PNT 10 și PNT 07 se și plătesc în anumite intervale orare. Și atenție: fumatul este interzis în spațiile deschise ale parcului."
+ },
+ "tei-09": {
+  "es": {
+   "l": "¿Qué ropa llevo? ¿Hace frío?",
+   "a": "🧥 Arriba hace muchísimo más frío que en la costa, y el sendero al pico tiene equipamiento obligatorio: calzado de montaña adecuado, pantalón largo (puesto o en la mochila) y forro polar o ropa de abrigo. Sin eso, el personal de control le impide subir. Añada gorro, gafas de sol, protección solar, agua y algo de comer."
+  },
+  "l": "Ce haine iau? Este frig?",
+  "k": [
+   "ce haine iau",
+   "este frig sus",
+   "haine groase",
+   "echipament obligatoriu",
+   "incaltaminte",
+   "ce iau pe teide",
+   "ce sa imbrac pe teide",
+   "cu ce ma imbrac pe teide"
+  ],
+  "a": "🧥 Sus este mult mai frig decât pe coastă, iar traseul spre vârf are echipament obligatoriu: încălțăminte de munte potrivită, pantaloni lungi (purtați sau în rucsac) și o bluză polar sau haine groase. Fără ele, personalul de control nu vă lasă să urcați. Adăugați o căciulă, ochelari de soare, protecție solară, apă și ceva de mâncare."
+ },
+ "tei-10": {
+  "es": {
+   "l": "¿Afecta el mal de altura?",
+   "a": "🫁 Puede. A 3.700 m hay alrededor de un tercio menos de oxígeno que al nivel del mar, y son normales la fatiga, el dolor de cabeza y el mareo, sobre todo si sube en teleférico y se pone a caminar al momento. Suba despacio, pare a menudo, beba agua y no vaya en ayunas ni con resaca. Si se encuentra mal de verdad, baje."
+  },
+  "l": "Se simte răul de altitudine?",
+  "k": [
+   "rau de altitudine",
+   "altitudine",
+   "ameteala",
+   "lipsa de oxigen",
+   "durere de cap la altitudine",
+   "rau de munte",
+   "rau de inaltime"
+  ],
+  "a": "🫁 Se poate. La 3.700 m există cu aproximativ o treime mai puțin oxigen decât la nivelul mării, iar oboseala, durerea de cap și amețeala sunt normale, mai ales dacă urcați cu telecabina și porniți imediat pe jos. Urcați încet, opriți-vă des, beți apă și nu mergeți pe stomacul gol sau cu mahmureală. Dacă vă simțiți cu adevărat rău, coborâți."
+ },
+ "tei-11": {
+  "es": {
+   "l": "¿Hay nieve? ¿Cierran la carretera?",
+   "a": "❄️ En invierno puede nevar, y el Cabildo corta las carreteras del parque cuando hay hielo: mire el estado de las vías antes de salir. Si hay nieve o hielo en el sendero al pico, la reserva exige además crampones y piolet y declarar experiencia en alta montaña. Consulte también la predicción de Alta Montaña de AEMET, que no es la del pueblo de abajo."
+  },
+  "l": "Este zăpadă? Se închid drumurile?",
+  "k": [
+   "zapada",
+   "ninsoare",
+   "gheata",
+   "se inchide drumul",
+   "drum inchis",
+   "coltari",
+   "iarna pe teide",
+   "drumurile inchise",
+   "drumuri inchise"
+  ],
+  "a": "❄️ Iarna poate ninge, iar Cabildo de Tenerife închide drumurile din parc când este gheață: verificați starea drumurilor înainte de plecare. Dacă pe traseul spre vârf este zăpadă sau gheață, rezervarea cere în plus colțari și piolet și declararea experienței pe munte înalt. Consultați și prognoza AEMET pentru munte înalt, care nu este cea pentru localitatea de mai jos."
+ },
+ "tei-12": {
+  "es": {
+   "l": "¿Se duerme en el refugio?",
+   "a": "🏔️ El refugio de Altavista, sobre los 3.260 m, es la opción clásica para dormir arriba y hacer cima temprano. Su apertura, sus precios y la forma de reservar cambian según la temporada, así que confírmelo en su web antes de montar el plan. Dormir por libre dentro del parque no está permitido."
+  },
+  "l": "Se poate dormi în refugiu?",
+  "k": [
+   "refugiu",
+   "refugiul altavista",
+   "altavista",
+   "dormit sus",
+   "rasarit pe teide",
+   "innoptare sus"
+  ],
+  "a": "🏔️ Refugiul Altavista, la circa 3.260 m, este varianta clasică pentru a dormi sus și a ajunge devreme pe vârf. Perioada în care este deschis, prețurile și modul de rezervare se schimbă în funcție de sezon, așa că verificați pe site-ul său înainte de a vă face planul. În interiorul parcului nu este permis să dormiți pe cont propriu."
+ },
+ "tei-13": {
+  "es": {
+   "l": "¿Dónde veo las estrellas?",
+   "a": "✨ Las Cañadas tiene uno de los mejores cielos de Europa. Para mirar estrellas por su cuenta no hace falta permiso: aparca en un mirador del parque, se abriga de verdad y espera a que se apaguen las luces del valle. Las observaciones guiadas y la visita al Observatorio del Teide sí se reservan aparte. En la app, el 🔭 de arriba le dice qué se ve cada noche y dónde ir a mirar."
+  },
+  "l": "Unde văd stelele?",
+  "k": [
+   "stele",
+   "observarea stelelor",
+   "calea lactee",
+   "astroturism",
+   "observator",
+   "cerul noptii",
+   "teide noaptea",
+   "astronomie",
+   "stelele",
+   "vedea stelele",
+   "cerul instelat",
+   "starlight"
+  ],
+  "a": "✨ Las Cañadas are unul dintre cele mai bune ceruri din Europa. Ca să priviți stelele pe cont propriu nu aveți nevoie de permis: parcați la un punct de belvedere din parc, îmbrăcați-vă bine de tot și așteptați să se stingă luminile din vale. Observațiile ghidate și vizita la Observatorul Teide se rezervă separat. În aplicație, butonul 🔭 de sus vă spune ce se vede în fiecare noapte și unde să mergeți ca să priviți."
+ },
+ "tei-14": {
+  "es": {
+   "l": "¿Puedo ir con niños?",
+   "a": "👨‍👩‍👧 Al parque sí, contando con el frío y la altura. Al teleférico no pueden subir los menores de 3 años, por el riesgo de la altura para su salud, y los menores de 16 tienen que ir siempre acompañados por un adulto. Con niños suelen ir mejor los miradores de La Rambleta y el paseo de Los Roques de García que la subida al pico."
+  },
+  "l": "Pot merge cu copiii?",
+  "k": [
+   "teide cu copii",
+   "copii pe teide",
+   "varsta minima",
+   "bebelusi",
+   "familie teide",
+   "teide cu copiii",
+   "cu copiii pe teide"
+  ],
+  "a": "👨‍👩‍👧 În parc, da, ținând cont de frig și de altitudine. Copiii sub 3 ani nu pot urca în telecabină, din cauza riscului pe care altitudinea îl reprezintă pentru sănătatea lor, iar cei sub 16 ani trebuie să fie însoțiți întotdeauna de un adult. Cu copiii, punctele de belvedere de la La Rambleta și plimbarea pe la Los Roques de García sunt de obicei o alegere mai bună decât urcarea pe vârf."
+ },
+ "tei-15": {
+  "es": {
+   "l": "¿Cuánto mide el Teide?",
+   "a": "📏 3.715 m: el punto más alto de España y el pico más alto del Atlántico. Medido desde el fondo del océano supera los 7.000 m, lo que lo coloca entre los volcanes más altos del mundo contando desde su base."
+  },
+  "l": "Cât de înalt este Teide?",
+  "k": [
+   "cat de inalt este teide",
+   "inaltimea teide",
+   "altitudinea teide",
+   "metri teide",
+   "cel mai inalt varf din spania",
+   "cat de inalt e teide",
+   "cati metri are teide",
+   "inaltime teide"
+  ],
+  "a": "📏 3.715 m: cel mai înalt punct din Spania și cel mai înalt vârf din Atlantic. Măsurat de pe fundul oceanului, depășește 7.000 m, ceea ce îl plasează printre cei mai înalți vulcani din lume, socotind de la bază."
+ }
+}

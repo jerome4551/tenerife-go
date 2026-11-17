@@ -1,0 +1,320 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque C1 · Llegar y moverse: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 10 del rumano (16-11-2026).",
+ "mov-01": {
+  "es": {
+   "l": "¿Cómo salgo del aeropuerto Sur?",
+   "a": "✈️ Del Aeropuerto Tenerife Sur (TFS) salen guaguas directas: la 10 a Santa Cruz, la 40 exprés a Los Cristianos y Costa Adeje, y la 343 hacia Puerto de la Cruz y el Aeropuerto Norte. La 111 también para allí, por la autopista, entre Santa Cruz y Los Cristianos, y de noche pasa la 711. También hay taxis en la puerta y traslados privados. Se paga al conductor en efectivo o con tarjeta bancaria; mire el horario del día en titsa.com."
+  },
+  "l": "Cum ajung de la aeroportul Sud?",
+  "k": [
+   "aeroportul sud",
+   "aeroport sud",
+   "tfs",
+   "reina sofia",
+   "de la aeroport la hotel",
+   "plec de la aeroport",
+   "transfer aeroport"
+  ],
+  "a": "✈️ De la Aeroportul Tenerife Sud (TFS) pleacă autobuze directe: linia 10, spre Santa Cruz; linia expres 40, spre Los Cristianos și Costa Adeje; și linia 343, spre Puerto de la Cruz și Aeroportul Nord. Linia 111 oprește și ea acolo, pe autostradă, între Santa Cruz și Los Cristianos, iar noaptea circulă linia 711. În fața terminalului găsiți și taxiuri, precum și transferuri private. Se plătește la șofer, în numerar sau cu cardul bancar; verificați orarul zilei pe titsa.com."
+ },
+ "mov-02": {
+  "es": {
+   "l": "¿Y desde el aeropuerto Norte?",
+   "a": "✈️ El Aeropuerto Tenerife Norte (TFN, Los Rodeos) queda a diez minutos de La Laguna. Salen dos aeroexprés: la línea 20, a La Laguna y Santa Cruz, y la 30, a Puerto de la Cruz. La 343 baja al sur y también va a Puerto de la Cruz. El tranvía no entra en la terminal, pero enlaza La Laguna con Santa Cruz cada pocos minutos."
+  },
+  "l": "Și de la aeroportul Nord?",
+  "k": [
+   "aeroportul nord",
+   "aeroport nord",
+   "tfn",
+   "los rodeos",
+   "aeroportul din la laguna"
+  ],
+  "a": "✈️ Aeroportul Tenerife Nord (TFN, Los Rodeos) se află la zece minute de La Laguna. De acolo pleacă două linii expres de aeroport: linia 20, spre La Laguna și Santa Cruz, și linia 30, spre Puerto de la Cruz. Linia 343 este cea care coboară spre sud și merge și la Puerto de la Cruz. Tramvaiul nu intră în terminal, dar leagă La Laguna de Santa Cruz la fiecare câteva minute."
+ },
+ "mov-03": {
+  "es": {
+   "l": "¿Cómo funcionan las guaguas?",
+   "a": "🚌 Las guaguas son de TITSA y llegan a casi toda la isla. Puede pagar en efectivo al conductor, con billetes pequeños, con tarjeta bancaria contactless en muchas líneas, o con la tarjeta ten+, que sale bastante más barata en los trayectos interurbanos. Yo le digo qué línea le sirve y dónde está la parada; el horario exacto del día, en titsa.com."
+  },
+  "l": "Cum funcționează autobuzele?",
+  "k": [
+   "autobuz",
+   "autobuze",
+   "autobuzele",
+   "guagua",
+   "guaguas",
+   "titsa",
+   "transport public",
+   "cum platesc autobuzul",
+   "bilet de autobuz"
+  ],
+  "a": "🚌 Autobuzele sunt ale companiei TITSA și ajung aproape în toată insula. Puteți plăti în numerar la șofer, cu bancnote mici, cu cardul bancar contactless pe multe linii sau cu cardul ten+, care iese mult mai ieftin pe traseele interurbane. Eu vă spun ce linie vă este de folos și unde este stația; orarul exact al zilei îl găsiți pe titsa.com."
+ },
+ "mov-04": {
+  "es": {
+   "l": "¿Me compensa la tarjeta ten+?",
+   "a": "💳 La ten+ es la tarjeta de transporte de la isla: se compra y se recarga en estaciones, quioscos y máquinas, y existe también en versión móvil. Compensa en cuanto haga unos cuantos trayectos interurbanos, porque el descuento frente al billete suelto es grande. Se valida al subir y, en los trayectos largos, también al bajar."
+  },
+  "l": "Merită cardul ten+?",
+  "k": [
+   "cardul ten",
+   "ten plus",
+   "card de transport",
+   "abonament",
+   "abonament autobuz",
+   "reincarcare card",
+   "card ten",
+   "ten"
+  ],
+  "a": "💳 Cardul de transport al insulei este ten+: se cumpără și se reîncarcă în stații, chioșcuri și automate și există și în versiune pentru telefonul mobil. Merită de îndată ce faceți câteva călătorii interurbane, pentru că reducerea față de biletul simplu este mare. Se validează la urcare și, pe traseele lungi, și la coborâre."
+ },
+ "mov-05": {
+  "es": {
+   "l": "¿Necesito coche de alquiler?",
+   "a": "🚗 Si se va a mover por la costa y las ciudades, la guagua cumple de sobra. Si quiere Anaga, Teno, los pueblos del interior o un mirador al amanecer, alquile: hay sitios donde el transporte público llega poco y a horas incómodas. Mucha gente combina: guagua la mayoría de días y coche dos o tres."
+  },
+  "l": "Am nevoie de o mașină închiriată?",
+  "k": [
+   "inchiriere masina",
+   "masina de inchiriat",
+   "am nevoie de masina",
+   "rent a car",
+   "fara masina",
+   "merita sa inchiriez",
+   "inchiriez masina",
+   "inchiriez o masina",
+   "inchiriere auto",
+   "inchirieri auto",
+   "masina inchiriata"
+  ],
+  "a": "🚗 Dacă vă deplasați pe coastă și prin orașe, autobuzul este mai mult decât suficient. Dacă vreți Anaga, Teno, satele din interior sau un punct de belvedere la răsărit, închiriați: sunt locuri unde transportul public ajunge rar și la ore incomode. Mulți combină: autobuzul în majoritatea zilelor și mașina în două sau trei."
+ },
+ "mov-06": {
+  "es": {
+   "l": "¿Se conduce bien en la isla?",
+   "a": "🛣️ Se conduce bien, pero la isla es vertical: autopistas rápidas en la costa, la TF-1 en el sur y la TF-5 en el norte, y carreteras de montaña llenas de curvas donde 40 km pueden ser una hora larga. Use marchas cortas en las bajadas, ojo con los ciclistas y con la niebla del norte, y no se fíe del tiempo que le dé el navegador."
+  },
+  "l": "Cum se conduce pe insulă?",
+  "k": [
+   "condus",
+   "drumuri",
+   "curbe",
+   "autostrada",
+   "e greu de condus",
+   "drum de munte",
+   "drumurile",
+   "cum sunt drumurile",
+   "sosele",
+   "soselele"
+  ],
+  "a": "🛣️ Se conduce bine, dar insula este verticală: autostrăzi rapide pe coastă, TF-1 în sud și TF-5 în nord, și drumuri de munte pline de curbe, unde 40 km pot însemna o oră bună. Folosiți trepte mici de viteză la coborâre, atenție la bicicliști și la ceața din nord și nu vă încredeți în timpul pe care vi-l dă aplicația de navigație."
+ },
+ "mov-07": {
+  "es": {
+   "l": "¿Dónde aparco?",
+   "a": "🅿️ En las ciudades hay zona azul de pago entre semana y aparcamientos públicos en el centro. En los pueblos y miradores famosos, llegue antes de las diez o vaya al atardecer: a media mañana no queda hueco. Nunca aparque en línea amarilla ni en las curvas de los miradores, que la grúa va rápido."
+  },
+  "l": "Unde parchez?",
+  "k": [
+   "parcare",
+   "parchez",
+   "zona albastra",
+   "masina ridicata",
+   "linie galbena",
+   "unde pot parca",
+   "unde sa parchez",
+   "parcari"
+  ],
+  "a": "🅿️ În orașe există zonă albastră cu plată în zilele lucrătoare și parcări publice în centru. În satele și la punctele de belvedere renumite, ajungeți înainte de ora zece sau mergeți la apus: la jumătatea dimineții nu mai găsiți loc. Nu parcați niciodată pe linia galbenă și nici în curbele de lângă punctele de belvedere: mașinile sunt ridicate repede."
+ },
+ "mov-08": {
+  "es": {
+   "l": "¿Cuánto se tarda de un sitio a otro?",
+   "a": "⏱️ De orientación, en coche: Costa Adeje a Santa Cruz, una hora larga por autopista; Costa Adeje al Teide, hora y media; Santa Cruz a Puerto de la Cruz, unos 45 minutos; Santa Cruz al fondo de Anaga, hora y media aunque en el mapa parezca al lado. Para la ruta real desde donde esté, toque «🚗 Cómo llegar en coche» en el globo de cualquier lugar: se abre en Google Maps o, si usa iPhone, en Mapas de Apple."
+  },
+  "l": "Cât durează drumul de la un loc la altul?",
+  "k": [
+   "cat dureaza drumul",
+   "distanta",
+   "cat e pana la",
+   "timp de calatorie",
+   "cat dureaza pana la teide"
+  ],
+  "a": "⏱️ Cu titlu orientativ, cu mașina: de la Costa Adeje la Santa Cruz, o oră bună pe autostradă; de la Costa Adeje la Teide, o oră și jumătate; de la Santa Cruz la Puerto de la Cruz, circa 45 de minute; de la Santa Cruz până în inima masivului Anaga, o oră și jumătate, deși pe hartă pare alături. Pentru traseul real de unde vă aflați, atingeți „🚗 Cum ajungeți cu mașina” în fereastra oricărui loc: se deschide în Google Maps sau, dacă folosiți iPhone, în aplicația Hărți de la Apple."
+ },
+ "mov-09": {
+  "es": {
+   "l": "¿Cómo funciona el tranvía?",
+   "a": "🚋 El tranvía une Santa Cruz con La Laguna, la línea 1, y tiene un segundo trazado hacia La Cuesta y Tíncer, la línea 2. Es la forma más cómoda de moverse entre las dos ciudades y le ahorra el atasco de la TF-5. Se paga con ten+ o con billete en la máquina del andén, antes de subir."
+  },
+  "l": "Cum funcționează tramvaiul?",
+  "k": [
+   "tramvai",
+   "tramvaiul",
+   "metropolitano",
+   "santa cruz la laguna",
+   "linia 1 de tramvai"
+  ],
+  "a": "🚋 Tramvaiul leagă Santa Cruz de La Laguna (linia 1) și are un al doilea traseu, spre La Cuesta și Tíncer (linia 2). Este cel mai comod mod de a circula între cele două orașe și vă scutește de ambuteiajul de pe TF-5. Se plătește cu ten+ sau cu un bilet de la automatul de pe peron, înainte de urcare."
+ },
+ "mov-10": {
+  "es": {
+   "l": "¿Hay taxis? ¿Y Uber?",
+   "a": "🚕 Los taxis son blancos, con taxímetro y suplementos de aeropuerto y nocturnos; se cogen en parada, por teléfono o desde el hotel, y en zonas turísticas hay paradas por todas partes. Las apps tipo VTC funcionan solo en algunas zonas y con poca flota, así que no cuente con ellas como plan A. Para una excursión, pida precio cerrado antes de subir."
+  },
+  "l": "Sunt taxiuri? Și Uber?",
+  "k": [
+   "taxi",
+   "taxiuri",
+   "uber",
+   "cabify",
+   "bolt",
+   "vtc",
+   "chem o masina"
+  ],
+  "a": "🚕 Taxiurile sunt albe, cu taximetru și cu suplimente pentru aeroport și pe timp de noapte; le luați din stația de taxi, la telefon sau prin hotel, iar în zonele turistice găsiți stații peste tot. Aplicațiile de ride-sharing, de tipul Uber sau Bolt, funcționează doar în unele zone și cu puține mașini, așa că nu vă bazați pe ele ca plan A. Pentru o excursie, stabiliți un preț fix înainte de a urca."
+ },
+ "mov-11": {
+  "es": {
+   "l": "¿Cómo voy a otra isla?",
+   "a": "⛴️ Desde Los Cristianos salen los ferris a La Gomera, que en el rápido queda en menos de una hora, y también a La Palma y El Hierro. A Gran Canaria se va desde Santa Cruz. Reserve online, y con más antelación todavía si embarca el coche. Con mar movido se cancelan travesías, así que confirme antes de salir de casa."
+  },
+  "l": "Cum ajung pe altă insulă?",
+  "k": [
+   "feribot",
+   "feribotul",
+   "ferry",
+   "vapor spre la gomera",
+   "la palma",
+   "el hierro",
+   "gran canaria",
+   "companie de feribot",
+   "gomera"
+  ],
+  "a": "⛴️ Din Los Cristianos pleacă feriboturile spre La Gomera, unde nava rapidă ajunge în mai puțin de o oră, precum și spre La Palma și El Hierro. Spre Gran Canaria se pleacă din Santa Cruz. Rezervați online, și cu atât mai din timp dacă îmbarcați mașina. Când marea este agitată, cursele se anulează, așa că verificați înainte de a pleca de acasă."
+ },
+ "mov-12": {
+  "es": {
+   "l": "¿Puedo ir al Teide sin coche?",
+   "a": "🚌🌋 Sí. Dos líneas turísticas suben al Parque Nacional: la 342 desde Costa Adeje y la 348 desde Puerto de la Cruz, con una salida por la mañana y regreso por la tarde. Dentro del parque, la 341 enlaza Portillo, Montaña Blanca, el teleférico y el Parador. En estas líneas no valen todos los bonos, y va atado al único regreso: confirme el horario del día en titsa.com."
+  },
+  "l": "Pot ajunge la Teide fără mașină?",
+  "k": [
+   "teide cu autobuzul",
+   "autobuz spre teide",
+   "teide fara masina",
+   "342",
+   "348",
+   "341"
+  ],
+  "a": "🚌🌋 Da. Două linii turistice urcă în Parcul Național: linia 342 din Costa Adeje și linia 348 din Puerto de la Cruz, cu o plecare dimineața și întoarcerea după-amiaza. În interiorul parcului, Portillo, Montaña Blanca, telecabina și Parador sunt legate de linia 341. Pe aceste linii nu sunt valabile toate abonamentele, iar pentru întoarcere există o singură cursă: verificați orarul zilei pe titsa.com."
+ },
+ "mov-13": {
+  "es": {
+   "l": "¿Cómo llego a Masca?",
+   "a": "🚌 Para ver el caserío, la línea 355 sube desde Santiago del Teide y desde Buenavista del Norte; arriba hay poquísimo aparcamiento, así que la guagua es la mejor idea de todas formas. Para bajar el barranco es obligatoria: solo se accede con el traslado en la 355 desde Santiago del Teide, dejando el coche en el aparcamiento del cementerio, y en vehículo privado no le dejan empezar."
+  },
+  "l": "Cum ajung la Masca?",
+  "k": [
+   "ajung la masca",
+   "masca cu autobuzul",
+   "parcare masca",
+   "355",
+   "satul masca",
+   "catunul masca"
+  ],
+  "a": "🚌 Ca să vedeți cătunul, urcă linia 355 din Santiago del Teide și din Buenavista del Norte; sus sunt foarte puține locuri de parcare, așa că autobuzul este oricum cea mai bună idee. Pentru coborârea prin defileu este obligatoriu: accesul se face doar cu transferul pe linia 355 din Santiago del Teide, lăsând mașina în parcarea cimitirului, iar cu vehiculul propriu nu vi se permite să începeți traseul."
+ },
+ "mov-14": {
+  "es": {
+   "l": "¿Hay tren o metro?",
+   "a": "🚆 No hay tren en Tenerife. Lo más parecido es el tranvía entre Santa Cruz y La Laguna. Para el resto de la isla, la red de guaguas es la columna vertebral, y para las zonas rurales y los horarios raros, el coche."
+  },
+  "l": "Există tren sau metrou?",
+  "k": [
+   "tren",
+   "metrou",
+   "cale ferata",
+   "exista tren in tenerife"
+  ],
+  "a": "🚆 În Tenerife nu există tren. Cel mai apropiat lucru este tramvaiul dintre Santa Cruz și La Laguna. Pentru restul insulei, rețeaua de autobuze este coloana vertebrală, iar pentru zonele rurale și pentru orele neobișnuite, mașina."
+ },
+ "mov-15": {
+  "es": {
+   "l": "¿Puedo alquilar bici o moto?",
+   "a": "🚲 Sí, hay alquiler de bicicleta, bici eléctrica y moto en las zonas turísticas y en los puertos. La isla es un destino serio de ciclismo de carretera, con subidas largas hacia el Teide; para moverse por el pueblo, la eléctrica compensa por las cuestas. Casco obligatorio en moto, y en bici fuera de ciudad también."
+  },
+  "l": "Pot închiria o bicicletă sau un scuter?",
+  "k": [
+   "inchiriere bicicleta",
+   "bicicleta",
+   "scuter",
+   "motocicleta",
+   "bicicleta electrica",
+   "ciclism"
+  ],
+  "a": "🚲 Da, în zonele turistice și în porturi se închiriază biciclete, biciclete electrice, scutere și motociclete. Insula este o destinație serioasă pentru ciclismul de șosea, cu urcări lungi spre Teide; pentru deplasările prin localitate, bicicleta electrică merită din cauza pantelor. Casca este obligatorie pe scuter și pe motocicletă, iar pe bicicletă, în afara localităților."
+ },
+ "mov-16": {
+  "es": {
+   "l": "¿Se ve la isla en un día?",
+   "a": "🗺️ Conducir la vuelta se puede, pero acaba viendo los miradores por la ventanilla. Con un día, elija un eje: Teide y Vilaflor, o Anaga y La Laguna, o la costa norte de Garachico a Icod. Use el planificador de la app para encadenar paradas sin pasarse de horas ni de curvas."
+  },
+  "l": "Se poate vedea insula într-o zi?",
+  "k": [
+   "insula intr o zi",
+   "turul insulei",
+   "tenerife intr o zi",
+   "traseu de o zi"
+  ],
+  "a": "🗺️ Turul insulei cu mașina se poate face, dar ajungeți să vedeți punctele de belvedere prin geam. Într-o singură zi, alegeți o axă: Teide și Vilaflor, sau Anaga și La Laguna, sau coasta de nord, de la Garachico la Icod. Folosiți planificatorul aplicației ca să înlănțuiți opririle fără să exagerați cu orele sau cu curbele."
+ },
+ "mov-17": {
+  "es": {
+   "l": "¿Hay peajes?",
+   "a": "🛣️ No hay peajes: las dos autopistas, la TF-1 en el sur y la TF-5 en el norte, son gratuitas. Lo que sí cuesta es aparcar en los centros urbanos. Y en temporada alta la TF-1 se colapsa a la altura del sur a media tarde, así que calcule margen si va al aeropuerto."
+  },
+  "l": "Există taxe de autostradă?",
+  "k": [
+   "taxa de autostrada",
+   "taxe de autostrada",
+   "autostrada cu plata",
+   "tf 1",
+   "tf 5",
+   "ambuteiaj"
+  ],
+  "a": "🛣️ Nu există taxe: cele două autostrăzi, TF-1 în sud și TF-5 în nord, sunt gratuite. Ce costă, în schimb, este parcarea în centrele orașelor. Iar în sezonul de vârf, TF-1 se blochează în zona de sud la mijlocul după-amiezii, așa că lăsați-vă timp de rezervă dacă mergeți la aeroport."
+ },
+ "mov-18": {
+  "es": {
+   "l": "¿Vale mi carné de conducir?",
+   "a": "🪪 Con carné de la Unión Europea conduce sin ningún trámite. Si su permiso es de fuera de la UE, lo normal es que la empresa de alquiler le pida el permiso internacional junto con el suyo, pero cada compañía aplica su criterio: confírmelo con ellos antes de volar, no al llegar al mostrador."
+  },
+  "l": "Este valabil permisul meu de conducere?",
+  "k": [
+   "permis de conducere",
+   "carnet de conducere",
+   "permis international",
+   "licenta de conducere"
+  ],
+  "a": "🪪 Cu un permis din Uniunea Europeană conduceți fără nicio formalitate. Dacă permisul dumneavoastră este din afara UE, de obicei compania de închirieri vă cere și permisul internațional, împreună cu al dumneavoastră, dar fiecare companie are propriile reguli: confirmați cu ea înainte de zbor, nu când ajungeți la ghișeu."
+ },
+ "mov-19": {
+  "es": {
+   "l": "¿Dónde reposto?",
+   "a": "⛽ El combustible es bastante más barato que en la península porque Canarias tiene fiscalidad propia. Hay gasolineras por toda la costa y en las medianías, pero dentro del Parque Nacional y en el interior de Anaga no hay ninguna: suba con el depósito hecho. Las tiene todas en el mapa por categoría, y arriba, ⛽ le enseña con su ubicación las más baratas a 5, 10 o 20 km: gasolina 95 y diésel, con el precio oficial del Ministerio."
+  },
+  "l": "Unde alimentez?",
+  "k": [
+   "benzinarie",
+   "benzinarii",
+   "alimentare",
+   "alimentez",
+   "benzina",
+   "motorina",
+   "carburant"
+  ],
+  "a": "⛽ Carburantul este mult mai ieftin decât în Spania continentală, pentru că Insulele Canare au un regim fiscal propriu. Găsiți benzinării pe toată coasta și în zona de altitudine medie, dar în Parcul Național și în interiorul masivului Anaga nu există niciuna: urcați cu rezervorul plin. Le aveți pe toate pe hartă, în categoria lor, iar sus, butonul ⛽ vă arată, după locația dumneavoastră, cele mai ieftine pe o rază de 5, 10 sau 20 km: benzină 95 și motorină, cu prețul oficial al ministerului spaniol."
+ }
+}
