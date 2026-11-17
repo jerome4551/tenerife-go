@@ -11437,7 +11437,7 @@ no la secundaria**.
 | Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **975** |
 | Ids de lugar que cumplen `[a-z0-9-]` | **975** |
 | Con calidad de agua, y su año | **46** · 46 |
-| Con alias de búsqueda, que los 3 filtros leen | **61** |
+| Con alias de búsqueda, que los 3 filtros leen | **62** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
 | De esos, `warn:"mar"` | **49** |
 | URLs de lugar sin cifrar | **0** de 28 |
@@ -11458,7 +11458,8 @@ con los de la Casa Salazar, la Playa Jardín, La Laguneta Chica y el MACEW; y
 las URLs, a 28, con la fuente del cierre del despegue de Izaña. Esa misma tarde,
 de 976 a 975: fuera la ficha «Cumbre Dorsal — Mirador La Jardina», que repetía el
 punto del Mirador La Jardina; con ella, su id en las sugerencias de la Ruta del día
-(162 a 161) y sus dos filas en cada idioma (5.869 a 5.867).
+(162 a 161) y sus dos filas en cada idioma (5.869 a 5.867). Y los alias, a 62, con
+los de la playa para perros de El Cabezo (su nombre de antes y el del Puertito).
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no
