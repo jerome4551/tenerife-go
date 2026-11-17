@@ -188,8 +188,13 @@ console.log('\n=== lugares ===');
    Jerome: «Cerrado permanentemente quítala».
    979 -> 980 el 8 de noviembre de 2026: la etapa 2 del GR-131, La Caldera - El
    Portillo (gr131-etapa2-caldera-portillo). Jerome: «La etapa 2 créala si los datos
-   son reales». */
-debe('lugares', PLACES.length, PLACES.length === 980);
+   son reales».
+   980 -> 977 el 17 de noviembre de 2026: tres fichas repetidas, juntadas con la
+   suya (palacio-episcopal-laguna con casa-salazar-laguna, playa-castillo-pcruz con
+   playa-jardin y playa-puertito-guimar con playa-cabezo). Jerome: «3 si».
+   977 -> 976 el 17 de noviembre de 2026: el Mirador del Pico de las Flores
+   (mir-pico-flores-anaga), abandonado y sin vistas. Jerome: «4 quítalo». */
+debe('lugares', PLACES.length, PLACES.length === 976);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {
