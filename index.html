@@ -27318,8 +27318,15 @@ var CHAT_TRAZO={'\u0142':'l','\u00f8':'o','\u0111':'d','\u00df':'ss','\u00e6':'a
    las claves chinas no les cambia nada. */
 var CHAT_CJK_ANTES=/([^\s\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])(?=[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g,
     CHAT_CJK_DESPUES=/([\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])(?=[^\s\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g;
+/* «ten+» es el nombre de la tarjeta de transporte, y el «+» es parte de él: al quitar la puntuación quedaba
+   «ten» a secas, que no era ninguna clave, y «tarjeta ten+» se iba a la respuesta del dinero (17/11/2026, lo
+   vio la sesión del rumano). Se escribe «ten plus», como dicen las claves de mov-04, aquí, para que la pregunta
+   y las claves («ten+ 卡» en chino) salgan iguales. Solo pegado a «ten» y a principio de palabra: «top ten
+   beaches» sigue siendo diez. */
+var CHAT_TEN_MAS=/(^|[^\p{L}\p{N}])ten\s*\+/gu;
 function chatNorm(s){
   return String(s||'').toLowerCase()
+    .replace(CHAT_TEN_MAS,'$1ten plus ')
     .replace(/[\u0142\u00f8\u0111\u00df\u00e6\u0153\u00fe\u0131]/g,function(c){return CHAT_TRAZO[c];})
     .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
     .replace(/[^\p{L}\p{N}\s]/gu,' ')

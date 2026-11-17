@@ -1,4 +1,6 @@
 {
- "_motivo": "Palabras de emergencia de mas para sal-01 (112), 12/10/2026. Jerome: «no borrar emergencia, no todos usan la misma palabra». «socorro» y «auxilio» van en los diez idiomas porque un turista en apuros puede escribir la palabra en castellano; las demas (policia, bomberos, accidente, herido) son las de cada idioma. El 112 atiende todas esas emergencias (Centro Coordinador 112 del Gobierno de Canarias, ver la nota de sal-01). Solo claves: ningun texto que lea el usuario.",
- "sal-01": ["socorro", "auxilio", "полиция", "пожарна", "катастрофа", "злополука", "ранен"]
+ "_motivo": "Palabras de emergencia de mas para sal-01 (112), 12/10/2026. Jerome: «no borrar emergencia, no todos usan la misma palabra». «socorro» y «auxilio» van en los diez idiomas porque un turista en apuros puede escribir la palabra en castellano; las demas (policia, bomberos, accidente, herido) son las de cada idioma. El 112 atiende todas esas emergencias (Centro Coordinador 112 del Gobierno de Canarias, ver la nota de sal-01). Solo claves: ningun texto que lea el usuario. · Cuatro preguntas que no llegaban a su respuesta (17/11/2026, las vio la sesión del rumano en castellano y pasaba lo mismo en los demás idiomas): «ten+» (chatNorm lo escribe «ten plus», que es la clave de mov-04 en los demás idiomas), el IVA (pra-12, el IGIC, «que sustituye al IVA»), «papeles» (pra-04, la documentación) y «guanche» en singular (cul-09). En chino, «古安切人», la otra forma de «关切人» que da la Wikipedia en chino («又译古安切人»). Solo claves: ningún texto que lea el usuario.",
+ "sal-01": ["socorro", "auxilio", "полиция", "пожарна", "катастрофа", "злополука", "ранен"],
+ "mov-04": ["ten plus"],
+ "pra-12": ["ддс"]
 }

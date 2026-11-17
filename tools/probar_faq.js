@@ -346,6 +346,37 @@ let malos = 0;
     console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + r.kind + (ks.length ? ' ' + ks.join(',') : ''));
   }
   mirados += SINGULAR.length;
+  /* Cuatro preguntas que no llegaban a su respuesta (17/11/2026; las vio la sesión del rumano en castellano, y
+     pasaba lo mismo en los demás idiomas): «ten+», porque chatNorm se comía el «+» y quedaba «ten» a secas;
+     «IVA», que solo estaba como «iva en canarias»; «papeles», y «guanche» en singular. */
+  console.log('');
+  const CLAVES = [
+    ['es', 'ten+', 'mov-04'], ['es', 'tarjeta ten+', 'mov-04'], ['es', 'ten más', 'mov-04'], ['en', 'ten+ card', 'mov-04'],
+    ['de', 'Ten+ Karte', 'mov-04'], ['fr', 'carte ten+', 'mov-04'], ['it', 'tessera ten+', 'mov-04'], ['nl', 'ten+ kaart', 'mov-04'],
+    ['pl', 'karta ten+', 'mov-04'], ['bg', 'карта ten+', 'mov-04'], ['zh', 'ten+卡', 'mov-04'], ['zht', 'ten+ 卡', 'mov-04'],
+    ['es', 'IVA', 'pra-12'], ['es', '¿Hay IVA en Canarias?', 'pra-12'], ['en', 'VAT', 'pra-12'], ['fr', 'TVA', 'pra-12'],
+    ['de', 'MwSt', 'pra-12'], ['de', 'Mehrwertsteuer', 'pra-12'], ['it', 'IVA', 'pra-12'], ['nl', 'btw', 'pra-12'],
+    ['pl', 'VAT', 'pra-12'], ['bg', 'ДДС', 'pra-12'],
+    ['es', '¿Qué papeles necesito?', 'pra-04'], ['es', '¿Qué documentos necesito?', 'pra-04'], ['en', 'what papers do I need', 'pra-04'],
+    ['fr', 'quels papiers faut-il', 'pra-04'], ['de', 'welche Papiere brauche ich', 'pra-04'], ['nl', 'welke papieren heb ik nodig', 'pra-04'],
+    ['es', 'guanche', 'cul-09'], ['en', 'guanche', 'cul-09'], ['fr', 'guanche', 'cul-09'], ['de', 'Guanche', 'cul-09'],
+    ['nl', 'guanche', 'cul-09'], ['zh', '古安切人', 'cul-09'], ['zht', '古安切人', 'cul-09'],
+  ];
+  for (const [lang, preg, esperada] of CLAVES) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    ctx.currentLang = lang;
+    const r = ctx.chatResolve(preg, null) || {}, id = r.item && r.item.id;
+    const ok = r.kind === 'kb' && id === esperada;
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + r.kind + (id ? ' ' + id : ''));
+  }
+  /* y «ten» sin «+» sigue siendo diez: «top ten beaches» son las playas */
+  await ctx.TG_FAQ.cambiarA('en');
+  ctx.currentLang = 'en';
+  { const r = ctx.chatResolve('top ten beaches', null) || {}, ok = r.kind === 'cat' && r.cats && r.cats.keys.indexOf('playa') >= 0;
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [en] top ten beaches   → ' + r.kind); }
+  mirados += CLAVES.length + 1;
   console.log('\n' + malos + ' fallos de ' + (CASOS.length + mirados)
     + (saltadas ? '   (' + saltadas + ' saltada(s) por idioma que la app no tiene)' : ''));
   process.exit(malos ? 1 : 0);
