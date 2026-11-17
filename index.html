@@ -9111,14 +9111,16 @@ const TG_LUGARES_I18N = (function () {
    Nunca se queda a medias ni revienta. */
 const TG_ETIQUETAS = (function () {
   'use strict';
-  let tabla = null, pedido = null;
+  /* version: sube cada vez que cambia la tabla. El buscador (etiquetasBuscables) guarda las etiquetas ya
+     plegadas de cada ficha y solo las rehace cuando sube, no en cada tecla. */
+  let tabla = null, pedido = null, version = 0;
   function bajar(lang) {
     /* Al pasar al castellano hay que olvidar TAMBIEN que idioma se habia
        pedido. Sin `pedido = null`, ingles -> castellano -> ingles se quedaba
        con la tabla vacia: «ya lo tengo pedido», no se volvia a bajar, y todas
        las etiquetas salian en castellano estando en ingles, en el mapa y en la
        ficha, hasta cambiar a un tercer idioma. */
-    if (!lang || lang === 'es') { tabla = null; pedido = null; return Promise.resolve(); }
+    if (!lang || lang === 'es') { if (tabla) version++; tabla = null; pedido = null; return Promise.resolve(); }
     if (pedido === lang) return Promise.resolve();
     pedido = lang;
     /* 'no-cache', no 'force-cache'. Con 'force-cache' el navegador sirve la
@@ -9131,17 +9133,18 @@ const TG_ETIQUETAS = (function () {
       .then(r => r.ok ? r.json() : null)
       .then(d => {
         if (pedido !== lang) return;          // llego tarde, ya cambiaron de idioma
-        tabla = d || null;
+        tabla = d || null; version++;
         /* Sin rehacer el mapa: las etiquetas solo salen en el globo, que se
            fabrica al abrirlo (htmlGlobo), y en la ficha, que se repinta aqui. */
         try { repintarHojaAbierta(); } catch (e) {}
       })
-      .catch(() => { if (pedido === lang) tabla = null; });
+      .catch(() => { if (pedido === lang) { tabla = null; version++; } });
   }
   return {
     arrancar: bajar,
     cambiarA: bajar,
-    de: function (t) { return (tabla && tabla[t]) || t; }
+    de: function (t) { return (tabla && tabla[t]) || t; },
+    version: function () { return version; }
   };
 })();
 
@@ -15859,6 +15862,31 @@ function sinTildes(s) {
   return String(s == null ? '' : s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
 
+/* El buscador también por las etiquetas de la ficha (nota 48, 4h; Jérôme: «sí»): en castellano, que es
+   como están escritas, y en el idioma de la app (idiomas/etiquetas/<idioma>.json, por TG_ETIQUETAS.de).
+   Las que no se traducen a propósito (cifras, siglas, nombres de sitio: idiomas/etiquetas-sin-traducir.json)
+   ya caen solas al castellano. Van separadas por un salto de línea, que no se puede teclear en la caja:
+   una búsqueda no casa pegando el final de una etiqueta con el principio de la siguiente. Lo plegado se
+   guarda por ficha (sin tocar la ficha) y se rehace solo cuando cambia la tabla de etiquetas (otro
+   idioma, o su fichero, que acaba de llegar: TG_ETIQUETAS.version()), no en cada tecla. Lo leen los tres
+   filtros del buscador: las sugerencias, los marcadores mientras se escribe y el Intro. */
+let _etiquetasVersion = -1, _etiquetasPlegadas = new WeakMap();
+function etiquetasBuscables(p) {
+  const tags = p && p.tags;
+  if (!Array.isArray(tags) || !tags.length) return '';
+  const v = TG_ETIQUETAS.version();
+  if (v !== _etiquetasVersion) { _etiquetasVersion = v; _etiquetasPlegadas = new WeakMap(); }
+  let plegado = _etiquetasPlegadas.get(p);
+  if (plegado === undefined) {
+    let crudo = tags.join('\n');
+    const vistas = tags.map(e => TG_ETIQUETAS.de(e)).join('\n');
+    if (vistas !== crudo) crudo += '\n' + vistas;
+    plegado = sinTildes(crudo);
+    _etiquetasPlegadas.set(p, plegado);
+  }
+  return plegado;
+}
+
 let searchQuery = '';
 let searchLocked = false; // true cuando el usuario pulsa Enter → solo muestra resultados + zoom
 let searchLockedIds = new Set(); // IDs de los lugares a mostrar cuando searchLocked=true
@@ -18310,7 +18338,8 @@ searchInput.addEventListener('keydown', (e) => {
   const filtered = places.filter(p =>
     sinTildes(p.name).includes(searchQuery) ||
     (p.alias && sinTildes(p.alias).includes(searchQuery)) ||
-    (p.cat && sinTildes(p.cat[currentLang] || p.cat.en || p.cat.es || '').includes(searchQuery))
+    (p.cat && sinTildes(p.cat[currentLang] || p.cat.en || p.cat.es || '').includes(searchQuery)) ||
+    etiquetasBuscables(p).includes(searchQuery)
   );
   if (filtered.length === 0) return;
 
@@ -18378,7 +18407,8 @@ function updateSearchSuggestions() {
   const filtered = places.filter(p =>
     sinTildes(p.name).includes(searchQuery) ||
     (p.alias && sinTildes(p.alias).includes(searchQuery)) ||
-    sinTildes(p.cat[currentLang] || p.cat.en || p.cat.es).includes(searchQuery)
+    sinTildes(p.cat[currentLang] || p.cat.en || p.cat.es).includes(searchQuery) ||
+    etiquetasBuscables(p).includes(searchQuery)
   );
 
   // Contador de resultados bajo la barra
@@ -19369,7 +19399,8 @@ function _updateMarkersImpl() {
       : (!searchQuery ||
           sinTildes(place.name).includes(searchQuery) ||
           (place.alias && sinTildes(place.alias).includes(searchQuery)) ||
-          sinTildes(localized(place.cat)).includes(searchQuery));
+          sinTildes(localized(place.cat)).includes(searchQuery) ||
+          etiquetasBuscables(place).includes(searchQuery));
     const matchesFav = !showOnlyFavorites || isFav;
     // Filtro bus: si está activo y no hay líneas dibujadas → mostrar aviso, no ocultar todo
     const matchesBusAccess = !showOnlyBusAccessible ||

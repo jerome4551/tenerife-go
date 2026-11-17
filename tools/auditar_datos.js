@@ -275,6 +275,11 @@ const fs_ = require('fs');
 const html = fs_.readFileSync(require('path').join(__dirname, '..', 'index.html'), 'utf8');
 const leenAlias = (html.match(/\.alias && sinTildes\([a-z]+\.alias\)\.includes\(searchQuery\)/g) || []).length;
 debe('filtros del buscador que leen alias', leenAlias, leenAlias >= 3);
+/* Y que esos mismos filtros lean tambien las etiquetas de la ficha (nota 48, 4h): en castellano y en el
+   idioma de la app, por una sola funcion, etiquetasBuscables(). Si se anade un cuarto filtro que lee el
+   alias y no las etiquetas, el buscador volveria a encontrar cosas distintas segun por donde se mire. */
+const leenEtiquetas = (html.match(/etiquetasBuscables\([a-z]+\)\.includes\(searchQuery\)/g) || []).length;
+debe('filtros del buscador que leen las etiquetas', leenEtiquetas + ' de ' + leenAlias, leenEtiquetas === leenAlias && leenAlias >= 3);
 
 /* Y que la busqueda pliegue los acentos en los DOS lados. Si se pliega solo
    lo tecleado, escribir CON tilde deja de encontrar: seria cambiar un fallo

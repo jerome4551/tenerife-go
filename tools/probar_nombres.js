@@ -164,8 +164,76 @@ const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
       '»; la playa y las piscinas, sin paréntesis (globo, hoja, buscador y asistente)');
     for (const f of r.mal) console.log('        ' + f);
   }
+  /* EL BUSCADOR TAMBIÉN POR ETIQUETAS (nota 48, 4h; Jérôme: «sí»). En cada idioma se busca de verdad, tecleando en
+     la caja, una etiqueta de una ficha que NO sale ni en su nombre, ni en su alias, ni en su categoría: así solo la
+     puede encontrar la etiqueta. Una vez traducida (la del fichero idiomas/etiquetas/<idioma>.json, la que se ve en
+     la ficha) y otra en castellano, que es como están escritas. Se escoge la que menos fichas saca (como mucho 8,
+     las sugerencias que se enseñan), y tiene que salir en los tres sitios: las sugerencias, los marcadores mientras
+     se escribe y el Intro. */
+  console.log('\n=== el buscador, también por las etiquetas: traducidas y en castellano ===');
+  for (const L of IDIOMAS) {
+    await pg.evaluate(l => setLang(l), L);
+    const r = await pg.evaluate(async l => {
+      const esperar = ms => new Promise(res => setTimeout(res, ms));
+      /* Hasta que llega idiomas/etiquetas/<idioma>.json, TG_ETIQUETAS sigue con la tabla del idioma de antes:
+         se espera a que de() devuelva, para todas las filas del fichero que sirve la web, lo que dice ESE fichero. */
+      if (l !== 'es') {
+        const tabla = await (await fetch('idiomas/etiquetas/' + l + '.json', { cache: 'no-cache' })).json();
+        const filas = Object.keys(tabla), t0 = Date.now();
+        while (!filas.every(k => TG_ETIQUETAS.de(k) === tabla[k])) {
+          if (Date.now() - t0 > 15000) return { error: 'no llega idiomas/etiquetas/' + l + '.json' };
+          await esperar(100);
+        }
+      }
+      const CJK = /[㐀-鿿]/;
+      const fuera = new Map(), dentro = new Map();
+      for (const p of places) {
+        fuera.set(p, [p.name, p.alias || '', p.cat ? (p.cat[currentLang] || p.cat.en || p.cat.es || '') : '', localized(p.cat)].map(sinTildes).join('\n'));
+        dentro.set(p, (p.tags || []).map(e => sinTildes(e) + '\n' + sinTildes(TG_ETIQUETAS.de(e))).join('\n'));
+      }
+      const total = q => { let n = 0; for (const p of places) if (fuera.get(p).includes(q) || dentro.get(p).includes(q)) n++; return n; };
+      const escoger = traducida => {
+        let mejor = null;
+        for (const p of places) for (const e of (p.tags || [])) {
+          const vista = traducida ? TG_ETIQUETAS.de(e) : e;
+          if (traducida && vista === e) continue;
+          const q = sinTildes(vista).trim();
+          if (q.length < (CJK.test(q) ? 2 : 4) || fuera.get(p).includes(q)) continue;
+          const n = total(q);
+          if (n <= 8 && (!mejor || n < mejor.n)) mejor = { id: p.id, etiqueta: vista, n: n };
+          if (mejor && mejor.n === 1) return mejor;
+        }
+        return mejor;
+      };
+      const probar = async c => {
+        const inp = document.getElementById('search-input');
+        inp.value = c.etiqueta; inp.dispatchEvent(new Event('input', { bubbles: true }));
+        await esperar(700);
+        const sug = [...document.querySelectorAll('#search-suggestions .suggestion')].some(d => (d.getAttribute('onclick') || '').indexOf("'" + c.id + "'") >= 0);
+        const marcador = !!markerMap[c.id];
+        inp.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await esperar(300);
+        const intro = searchLocked && searchLockedIds.has(c.id);
+        inp.value = ''; inp.dispatchEvent(new Event('input', { bubbles: true }));
+        await esperar(300);
+        return Object.assign({ sug: sug, marcador: marcador, intro: intro }, c);
+      };
+      const casos = [];
+      if (l !== 'es') { const c = escoger(true); if (!c) return { error: 'ninguna etiqueta traducida que solo la encuentre a ella' }; casos.push(Object.assign({ como: 'traducida' }, await probar(c))); }
+      const c2 = escoger(false); if (!c2) return { error: 'ninguna etiqueta en castellano que solo la encuentre a ella' };
+      casos.push(Object.assign({ como: 'en castellano' }, await probar(c2)));
+      return { casos: casos };
+    }, L);
+    if (r.error) { console.log('  MAL  [' + L + '] ' + r.error); mal++; continue; }
+    if (r.casos.some(c => !(c.sug && c.marcador && c.intro))) mal++;
+    for (const c of r.casos) {
+      const bien = c.sug && c.marcador && c.intro;
+      console.log((bien ? '  ok   ' : '  MAL  ') + ('[' + L + ']').padEnd(6) + ' ' + c.como + ': «' + c.etiqueta + '» → ' + c.id + ' (' + c.n + ' ficha' + (c.n === 1 ? '' : 's') +
+        ')   sugerencias ' + (c.sug ? 'sí' : 'NO') + ' · marcadores ' + (c.marcador ? 'sí' : 'NO') + ' · Intro ' + (c.intro ? 'sí' : 'NO'));
+    }
+  }
   await nav.close();
-  console.log(mal ? '\n*** ' + mal + ' idioma(s) donde el asistente no encuentra algun lugar por su nombre o alguna categoria por su rotulo, o un nombre repetido sale sin su paréntesis ***'
+  console.log(mal ? '\n*** ' + mal + ' idioma(s) donde el asistente no encuentra algun lugar por su nombre o alguna categoria por su rotulo, o un nombre repetido sale sin su paréntesis, o el buscador no encuentra por una etiqueta ***'
                   : '\nel asistente encuentra cada lugar por su nombre y cada categoria por su rotulo, en los diez idiomas');
   process.exit(mal ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(2); });
