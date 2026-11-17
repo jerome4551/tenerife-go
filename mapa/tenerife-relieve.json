@@ -1,45 +1,75 @@
 {
  "formato": 1,
  "fuente": {
-  "id": "copernicus-glo30",
+  "id": "ign-mdt05",
   "teselas": [
    {
-    "fichero": "Copernicus_DSM_COG_10_N27_00_W017_00_DEM.tif",
-    "sha256": "a669fadce0d6c3075b98c94568547a12842befc7dfa12dfc29faf7bae4c89e8d",
+    "fichero": "ign-mdt05-tenerife.tif",
+    "sha256": "afa25c0958d54f05751670f056730602635e710265946c6c342e9f6298a45347",
     "pixeles": [
-     3600,
-     3600
+     6364,
+     4662
     ],
     "caja": [
-     -17.000139,
-     27.000139,
-     -16.000139,
-     28.000139
-    ]
-   },
-   {
-    "fichero": "Copernicus_DSM_COG_10_N28_00_W017_00_DEM.tif",
-    "sha256": "80c5f2b4f202d87403251dfbcab241a66d7061e564242bda65d2577ab44b4e4b",
-    "pixeles": [
-     3600,
-     3600
-    ],
-    "caja": [
-     -17.000139,
-     28.000139,
-     -16.000139,
-     29.000139
+     -16.950045,
+     27.979968,
+     -16.089951,
+     28.610038
     ]
    }
   ],
-  "nombre": "Copernicus DEM GLO-30",
-  "registro": "https://registry.opendata.aws/copernicus-dem/",
+  "nombre": "Modelo Digital del Terreno con paso de malla de 5 metros (MDT05) de España, 1.ª cobertura (IGN)",
   "licencia": {
-   "nombre": "Licence for Copernicus DEM instance COP-DEM-GLO-30-F Global 30m Full, Free & Open",
-   "url": "https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/DEM/resources/license/License-COPDEM-30.pdf"
+   "nombre": "CC BY 4.0",
+   "url": "https://creativecommons.org/licenses/by/4.0/"
   },
-  "credito": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
-  "responsabilidad": "The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30"
+  "condiciones": "https://www.ign.es/resources/licencia/Condiciones_licenciaUso_IGN.pdf",
+  "metadato": "https://www.idee.es/csw-inspire-idee/srv/spa/csw?SERVICE=CSW&VERSION=2.0.2&REQUEST=GetRecordById&outputSchema=http://www.isotc211.org/2005/gmd&ElementSetName=full&ID=spaignMDT05",
+  "credito": "Obra derivada de MDT05-cob1 2008-2015 CC-BY 4.0 scne.es",
+  "responsabilidad": "",
+  "descarga": {
+   "servicio": "https://api-coverages.idee.es",
+   "coleccion": "EL.ElevationGridCoverage_4258_5_C",
+   "peticion": "https://api-coverages.idee.es/collections/EL.ElevationGridCoverage_4258_5_C/coverage?subset=Lat(s:n),Long(o:e)&f=COG",
+   "fecha": "2026-11-17T00:19:43Z",
+   "malla_origen": {
+    "lon_izquierda": -16.600006940174207,
+    "lat_arriba": 28.305004217572296,
+    "paso_lon": 4.505e-05,
+    "paso_lat": 4.5050000000000085e-05,
+    "epsg": 4258,
+    "sin_dato": -32767.0
+   },
+   "factor": 3,
+   "mosaico": {
+    "fichero": "ign-mdt05-tenerife.tif",
+    "sha256": "afa25c0958d54f05751670f056730602635e710265946c6c342e9f6298a45347",
+    "pixeles": [
+     6364,
+     4662
+    ],
+    "caja": [
+     -16.950045440174208,
+     27.979968467572295,
+     -16.089950840174208,
+     28.610037767572297
+    ]
+   },
+   "peticiones": 613,
+   "sin_datos": 0,
+   "partidos": 0,
+   "bytes": 394629105,
+   "cobertura_tierra": 0.99999,
+   "herramienta": "tools/relieve_ign.py"
+  },
+  "cotejo": {
+   "con": "Copernicus_DSM_COG_10_N27_00_W017_00_DEM.tif, Copernicus_DSM_COG_10_N28_00_W017_00_DEM.tif",
+   "celdas": 567931,
+   "mediana_m": -1.19,
+   "media_abs_m": 4.16,
+   "p05_m": -12.05,
+   "p95_m": 5.47
+  }
  },
  "costa": {
   "fuente": "OpenStreetMap: capa earth de mapa/tenerife-osm.pmtiles (z13)",
@@ -63,7 +93,7 @@
  },
  "altura": {
   "metros_por_unidad": 0.1,
-  "max_m": 3695.5,
+  "max_m": 3700.4,
   "max_celda": [
    502,
    626
@@ -81,21 +111,21 @@
  },
  "relleno": null,
  "control": {
-  "suma_dm": 673771133,
+  "suma_dm": 662990612,
   "suma_costa": 145108610,
-  "suma_ao": 400355417,
+  "suma_ao": 399784046,
   "muestras": [
    [
     502,
     626,
-    36955,
+    37004,
     255,
     255
    ],
    [
     617,
     1014,
-    1361,
+    1352,
     255,
     241
    ],
@@ -109,21 +139,21 @@
    [
     744,
     791,
-    4972,
+    5009,
     255,
-    198
+    203
    ],
    [
     554,
     613,
-    24381,
+    24384,
     255,
-    219
+    220
    ],
    [
     942,
     146,
-    1435,
+    1442,
     255,
     235
    ],
@@ -144,16 +174,16 @@
    [
     471,
     813,
-    17578,
+    17590,
     255,
-    229
+    231
    ],
    [
     1170,
     182,
-    2234,
+    2236,
     255,
-    208
+    203
    ],
    [
     1234,
@@ -179,16 +209,16 @@
    [
     568,
     482,
-    13692,
+    13585,
     255,
-    221
+    208
    ],
    [
     641,
     457,
-    7232,
+    7241,
     255,
-    218
+    215
    ],
    [
     1096,
@@ -214,9 +244,9 @@
    [
     1299,
     88,
-    4845,
+    4800,
     255,
-    189
+    186
    ],
    [
     348,
@@ -228,7 +258,7 @@
    [
     316,
     912,
-    1355,
+    1351,
     255,
     244
    ],
@@ -249,9 +279,9 @@
    [
     1083,
     155,
-    7497,
+    7451,
     255,
-    182
+    181
    ]
   ]
  },
@@ -4515,12 +4545,12 @@
  },
  "ficheros": {
   "tenerife-relieve.png": {
-   "bytes": 962652,
-   "sha256": "79d0e4930e2025bd2285bf854216c64da237f6ce690ac3cdcdbf19c6a23ee3c4"
+   "bytes": 967432,
+   "sha256": "d044e8052df630af5c58eb1298e43e999b0932c50f6705f0acc9e1290939fb6c"
   },
   "tenerife-relieve-ao.png": {
-   "bytes": 339356,
-   "sha256": "44cdcadaeb8672f5766a17827a2e284cb9718b9e018864bac950831c2f0df2f7"
+   "bytes": 352337,
+   "sha256": "380b20a7ed9c9b8adc918560c8d9cb5ad1e3932f9432ff098704990c96f01b6d"
   }
  }
 }
