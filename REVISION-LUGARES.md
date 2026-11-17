@@ -1,7 +1,7 @@
-# Revisión de los 980 lugares
+# Revisión de los 976 lugares
 
-**16 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 980, no una muestra. Lo que no se puede comprobar desde aquí sale
+**17 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
+Barre los 976, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 165 verificadas con su fuente · 815 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 163 verificadas con su fuente · 813 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -98,8 +98,8 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **165** |
-| Coordenada nunca comprobada por nadie | **815** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **163** |
+| Coordenada nunca comprobada por nadie | **813** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -201,7 +201,6 @@ De dónde viene cada una:
 | `playa-callao-arona` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `playa-camison` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `playa-candelaria` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
-| `playa-castillo-pcruz` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `playa-charcada` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
 | `playa-chimisay` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `playa-confital` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -228,7 +227,6 @@ De dónde viene cada una:
 | `playa-pinta` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
 | `playa-puertito` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `playa-puertito-adeje` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
-| `playa-puertito-guimar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `playa-puerto-santiago` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
 | `playa-punta-fraile` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `playa-punta-larga` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
@@ -307,7 +305,7 @@ deba estar ahí es otra cosa y no se afirma.
 
 ### Una cosa que conviene saber: las orientaciones de playa
 
-De las **100** filas de `PLAYAS_ORIENTACION`, **88 son deducidas**, no
+De las **99** filas de `PLAYAS_ORIENTACION`, **87 son deducidas**, no
 verificadas. Lo dice el propio fichero que las trajo,
 `orientaciones65.json`: *«las 65 las produjo un modelo de lenguaje
 (Gemini). 11 tienen respaldo publicado que verifiqué abriendo la fuente, 1
@@ -317,7 +315,7 @@ lo honesto.
 
 `ori` alimenta el cálculo de si una playa está resguardada del viento de
 hoy. **No es un dato decorativo.** Las 12 escritas a mano sí están
-comprobadas; de las otras 88, once tienen respaldo y el fichero no dice
+comprobadas; de las otras 87, once tienen respaldo y el fichero no dice
 cuáles, así que desde aquí no se pueden separar.
 
 ### Lo que SÍ tiene fuente oficial dentro de la propia ficha
@@ -327,19 +325,19 @@ cuáles, así que desde aquí no se pueden separar.
 | Calidad del agua del censo de zonas de baño, con su año | **46** |
 | Bandera Azul declarada | **11** |
 | Socorrista declarado (sí o no, no «se desconoce») | **39** |
-| Orientación de playa escrita a mano (las otras 88 son deducidas) | **12** |
+| Orientación de playa escrita a mano (las otras 87 son deducidas) | **12** |
 
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 980, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 976, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **29** |
-| 3 | ~110 m | **138** |
-| 4 | ~11 m | **551** |
+| 3 | ~110 m | **136** |
+| 4 | ~11 m | **549** |
 | 5 | ~1 m | **42** |
 | 6 | ~10 cm | **189** |
 | 7 | ~1 cm | **28** |
@@ -383,7 +381,7 @@ caigan a la vez por casualidad es una entre un millón.
 | `pesca-los-gigantes` | Pesca Deportiva Los Gigantes | 28.2440, -16.8400 | Santiago del Teide |
 | `pp-el-tanque` | Parapente — Despegue El Tanque (Noroeste) | 28.3450, -16.8100 | El Tanque |
 | `pp-guimar` | Parapente — Ladera de Güímar (Este) | 28.3100, -16.4050 | Güímar |
-| `sala-westerdahl` | Sala Eduardo Westerdahl (Puerto de la Cruz) | 28.418, -16.55 | Puerto de la Cruz |
+| `sala-westerdahl` | Museo de Arte Contemporáneo Eduardo Westerdahl (MACEW) | 28.418, -16.55 | Puerto de la Cruz |
 
 ### Las otras 11, con 3 decimales (~110 m)
 
@@ -403,7 +401,7 @@ caigan a la vez por casualidad es una entre un millón.
 
 ## 2 · Fichas que comparten coordenada exacta
 
-**65 grupos, 144 fichas.** La mayoría es a propósito: una playa y su
+**64 grupos, 142 fichas.** La mayoría es a propósito: una playa y su
 webcam, una playa y su ficha de accesibilidad, un área recreativa y su
 zona de acampada, un puerto y los tres negocios que salen de él.
 
@@ -456,7 +454,7 @@ Son pares o tríos donde las acompañantes llevan prefijo conocido (`wc-`,
 - `ciudad-orotava` = `wc-orotava`
 - `nucleo-los-gigantes` = `wc-gigantes`
 
-### 23 grupos que conviene mirar
+### 22 grupos que conviene mirar
 
 Aquí dos fichas distintas comparten punto sin que el prefijo lo explique.
 Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
@@ -475,7 +473,6 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 - `park-montillo` = `parque-el-montillo`  ·  `28.4454,-16.4542`
 - `mujer-san-miguel` = `ciudad-san-miguel`  ·  `28.0968,-16.616`
 - `playa-puertito` = `playa-cabezo`  ·  `28.2906,-16.3779`
-- `puerto-guimar` = `playa-puertito-guimar`  ·  `28.2951,-16.3758`
 - `puerto-mesa-del-mar` = `nucleo-mesa-mar`  ·  `28.5025,-16.4234`
 - `buceo-los-gigantes` = `kayak-los-gigantes` = `pesca-los-gigantes`  ·  `28.244,-16.84`
 - `buceo-los-cristianos` = `kayak-los-cristianos` = `pesca-deportiva-los-cristianos`  ·  `28.049,-16.7195`
@@ -487,8 +484,9 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 
 ## 3 · Pares a menos de 25 m que no comparten coordenada
 
-**19 pares.** A esa distancia los dos pines se solapan en el mapa.
+**20 pares.** A esa distancia los dos pines se solapan en el mapa.
 
+- 10 m · `pp-la-corona` y `mir-la-corona-guimar`
 - 11 m · `puertito-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `pesca-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `turismo-sct` y `pk-plaza-espana`
@@ -520,9 +518,9 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 980
-    que nombran un municipio.................... 512
-    de esos, comprobados contra el POLIGONO del Cabildo 502
+  lugares....................................... 976
+    que nombran un municipio.................... 508
+    de esos, comprobados contra el POLIGONO del Cabildo 498
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
   no declaran municipio......................... 453
@@ -574,16 +572,16 @@ tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 980
+## 6 · Lo que sí queda comprobado sobre los 976
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **980 de 980** |
-| Caen en tierra (capa `earth` de OSM) | **971** de 980; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
-| Ids únicos y con el formato `[a-z0-9-]` | **980** de 980 |
-| Tienen `desc` y `cat` en los diez idiomas | **980** de 980 |
+| Caen dentro de la caja de Tenerife | **976 de 976** |
+| Caen en tierra (capa `earth` de OSM) | **967** de 976; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **976** de 976 |
+| Tienen `desc` y `cat` en los diez idiomas | **976** de 976 |
 | Referencias huérfanas desde el planificador | **0** de 162 |
-| Zonas de baño sin orientación | **0** de 100 |
+| Zonas de baño sin orientación | **0** de 99 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |
 | Colores fuera de `#rrggbb` | **0** |
-| Avisos `warn` cuyo tipo no existe | **0** de 117 |
+| Avisos `warn` cuyo tipo no existe | **0** de 116 |
