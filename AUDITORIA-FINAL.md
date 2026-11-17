@@ -9093,6 +9093,96 @@ cual). Los bloques del primer tramo no dependen de ese commit, que solo cambia `
   controles del módulo, los 262 del panel en los diez idiomas y sin conexión y las pruebas de sus robots. Al final,
   «AUDITORIA EN VERDE».
 
+## El rumano, bloques 7, 8 y 9, con lo que vio en las fichas y en las etiquetas, y el MDT05 del IGN con trozos que caben (16 de noviembre)
+
+**Los bloques 7, 8 y 9 del rumano**, sin activar, sobre el `main` de la nota 48 y con un commit por apartado: los tres
+últimos trozos de las fichas (`idiomas/ro-fuente/lugares-3.json`, 386 textos; `lugares-4.json`, 499; `lugares-5.json`,
+los 633 de las 211 gasolineras), las 799 etiquetas (`idiomas/etiquetas/ro.json`, las mismas claves y en el mismo orden
+que los otros nueve idiomas) y la fila nueva de la interfaz (`ariaQuitarDeCesta`, el ✕ de la cesta, en
+`interfaz-2.json`). Con ellos, las 980 fichas tienen rumano: `lugares_traduccion.js ro --probar` da 2.283 de 2.284
+textos; el que falta es la descripción del despegue de Izaña, que cambia con la errata 13 (abajo) y vuelve a la sesión
+del rumano. También van las filas que cambiaron de castellano el 15-11 (las tres notas de guagua de `titsa.json`, que
+`poner_traduccion.js` lleva a `datos/titsa.js`, y las de `lugares-1.json` a `lugares-3.json`: farmacias, el Cabezo, la
+ruta en bici), cada una buscada por su castellano y su rumano de antes; y la nota 48 encima, con el aviso del Teide
+también en `mir-rambleta-teide`, que llega con el bloque 7. `revisar_rumano.py`: 0 errores, salvo uno que no lo es
+(«PR-TF 51 pornește»: 51 es el nombre del sendero, no una cantidad que pida «de»), que el montaje acepta letra por
+letra. Ningún fichero de la app cambia por el rumano: sigue sin activar.
+
+**Las erratas de las fichas que vio al traducir**, cada una con su fuente (las notas `ERRATAS-FICHAS.md` de sus bloques
+7 y 8), comprobada aquí el 15 y el 16 de noviembre, y cambiadas en los diez idiomas con los guiones de esa sesión, que
+no escriben nada si un texto no es el de antes. Tenerife ON pide desde hoy una verificación de seguridad al navegador,
+que no se salta: sus fichas se han leído en el buscador, que las tiene indexadas, y con otras fuentes oficiales (el Plan
+Especial del Paisaje Protegido de Las Lagunetas de 2009, el reglamento de áreas recreativas de 2012, el MDT05 del IGN).
+
+- Bloque 7, 50 fichas (596 textos en 655 sitios; 65 castellanos de 49 fichas, y la 50.ª solo en chino): áreas
+  recreativas cerradas o que no estaban donde decía la ficha (La Laguneta Chica, Hoya del Abade y Los Frailes,
+  cerradas; Chío, cerrada entre semana por obras; Las Raíces, «una de las mayores» y no la mayor: 675 plazas frente
+  a las 825 de La Caldera; Los Brezos, municipal de Candelaria y no de Anaga), faros (Teno, en servicio desde 1897 y
+  con la luz a unos 60 m; Abona, que no es el más alto de Canarias: torre de 39 m de 1976 y la luz a 54 m; Anaga, 1
+  h 40 min desde Chamorga y casi sin sombra), miradores que tenían el texto de otro sitio (Don Martín, en la TF-28 y
+  a unos 400 m: 425 m en el MDT05 del IGN en el punto de la ficha; Pico de las Flores, en el monte de El Rosario,
+  uno de los miradores del Plan Especial de Las Lagunetas, hoy abandonado y con la vista tapada por el pinar;
+  Chipeque, en la TF-24; La Jardina, a la entrada de Anaga; las Narices del Teide, en el km 3,5 de la TF-38, con la
+  cima a 2.752 m), mercadillos con sus días y calles, y pueblos y playas (Vilaflor, el pueblo más alto de Canarias y
+  no de España; El Callao, de piedras; Taganana, Reserva de la Biosfera y no Patrimonio de la Humanidad). Tres no
+  van: `faro-rasca`, `nucleo-guia-isora` y `ciudad-santiago-teide`, que main ya corrigió.
+- El despegue de Izaña: cerrado, según la Federación Canaria de Deportes Aéreos (14 y 16 de julio de 2026: quedó
+  fuera del nuevo Plan Rector del Parque Nacional). La errata decía «Desde agosto de 2026 se usa uno provisional
+  cerca de La Tarta»; su fuente, la página de una escuela actualizada el 12 de agosto, dice «Actualmente se utiliza
+  un despegue provisional cerca de La Tarta» y no desde cuándo, así que va «Actualmente», en los diez idiomas, con
+  «pregunte a la escuela antes de reservar».
+- Bloque 8, 30 fichas (370 textos en 407 sitios; 37 castellanos): mercadillos (Güímar, por su reglamento de julio de
+  2026; Costa Adeje, Arona y El Médano), campings en su espacio protegido (San José de los Llanos, en la Reserva
+  Natural Especial del Chinyero; Las Calderetas y Las Raíces, en el Paisaje Protegido de Las Lagunetas; Nauta, en
+  Cañada Blanca), iglesias y museos (la Concepción de La Laguna, primera parroquia de Tenerife; San Agustín, que
+  ardió en 1964; el Palacio de Nava y el Teatro Guimerá, cerrados por obras; el Castillo de Paso Alto, del
+  Ayuntamiento de Santa Cruz desde 2023), el horario del Telesforo Bravo (MITECO), supermercados y playas. Una no
+  va: `turismo-cv-masca`, que main ya corrigió.
+- `tools/auditar_cielo.js` busca la etiqueta búlgara de las Narices sin la altitud, que la errata quita (el parche
+  de esa sesión).
+
+**Las erratas de las etiquetas** (bloque 9, `ERRATAS-ETIQUETAS.md`): 76 cambios, las etiquetas de 28 fichas y las filas
+de los glosarios de los otros nueve idiomas que van con ellas, comprobados aquí el 16-11; lo que se declara y lo que se
+acepta en castellano, en `idiomas/castellano-aceptado.json`.
+
+**Las gasolineras en rumano**: con el parche del bloque 9, `tools/gasolinera_ficha.py` hace también el rumano de cada
+ficha, los dos avisos de «la última gasolinera antes del Teide» (`datos/gasolineras/avisos.json`) lo llevan, y
+`tools/gasolinera_alta.py` pone o quita las tres filas de cada gasolinera en `lugares-5.json`.
+
+**El MDT05 del IGN, con trozos que caben** (Jérôme, 16-11: sí). El relieve de «La isla en 3D» salió el 1 de noviembre
+del Copernicus DEM porque el paso del IGN del workflow se cortó a los 40 minutos. La razón, medida hoy con cajas
+sueltas: la API de coberturas de la IDEE no da cajas de más de 2.500 m de ancho o de alto en metros de Web Mercator (lo
+dice su HTTP 500: «Requested bbox height 2527.9 m is larger than allowed: 2500.0 m»). Con trozos de 0,04 grados, cada
+uno se rechazaba, se partía en 0,02, se volvía a rechazar y salía en 0,01: 1.867 trozos en 40 minutos, y con más tiempo
+se habría parado igual en el tope de 2.000 peticiones antes de acabar la isla. Ahora `tools/relieve_ign.py` pide trozos
+de 0,019 grados (al norte de la isla, con su margen, 2.141 × 2.439 m) y, antes de pedir uno, lo mide como la IDEE: si
+pasa del 98 % del tope, se parte sin pedirlo. El paso del IGN tiene 90 minutos y el job 120 (`generar-relieve.yml`, y
+`mapa/RELIEVE.md`). Probado contra un servidor de prueba que imita la IDEE (el tope, con su misma respuesta, y la malla
+del MDT05): la herramienta de antes, 679 peticiones rechazadas y «PARA: mas de 2000 peticiones» sin acabar; esta, 613
+peticiones, ninguna rechazada, toda la tierra con dato y «MDT05 EN VERDE». El relieve no cambia aquí: lo rehace el
+workflow, después.
+
+**La auditoría entera** (`auditar.sh`), sobre los bloques 7, 8 y 9 y el relieve, en tres tramos: el contenedor se
+reinició dos veces (a las 21:50 y a las 23:10) y la cortó; cada vez se siguió desde el bloque en que se había quedado,
+con un `auditar.sh` recortado (la misma cabecera y los mismos bloques, tal cual).
+
+- El primero, de «sintaxis» a «la app para las tiendas», con cuatro rojos y ninguno de estos bloques. Tres eran de
+  la nota 48, que va debajo: la tabla de este documento («URLs de lugar sin cifrar», 0 de 27 y no de 22), que pone
+  al día su sección, y el control de idiomas con el «5 h 05» del francés y el «Alta» del italiano, arreglado en su
+  commit. El cuarto, `informe_lugares.js`: `REVISION-LUGARES.md` no estaba al día con las erratas («que nombran un
+  municipio», 511 y no 512), y se rehízo en su commit.
+- El segundo, sobre el control de idiomas ya arreglado y con `REVISION-LUGARES.md` al día: «REVISION-LUGARES.md»
+  (980 lugares, cada cifra contada) y «cada idioma» otra vez (0 hallazgos en los diez), y desde los tours hasta el
+  perfil: los tours con Jérôme (los tres, en los diez idiomas y cuatro móviles), el cielo (311 controles) y el
+  perfil y los avatares (74 y 153), en verde.
+- El tercero, desde «Su cuerpo» hasta el final: «Su cuerpo», 64 bien y 0 mal y 741 controles, y el entrenador, 44;
+  la isla en 3D, el relieve y 58 controles; y emergencias, los 42 controles del módulo, los 262 del panel en los
+  diez idiomas y sin conexión y las pruebas de sus robots. Al final, «AUDITORIA EN VERDE».
+- Después, sobre el `main` con la nota 48 publicada: el rebase solo trae su documentación y cuatro ficheros de los
+  robots (los avisos de AEMET, el boletín de INVOLCAN, los terremotos del IGN y las alertas del Gobierno de
+  Canarias), y los controles que los leen, en verde; y otra vez los de los terremotos, que su robot cambió a
+  medianoche: en verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
