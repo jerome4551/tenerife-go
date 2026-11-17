@@ -46,6 +46,27 @@ print('  guion blando, ancho cero o BOM: %d%s' % (len(sueltos), '   <-- en rojo'
 for _x in sueltos[:10]:
     print('    <--  ' + _x)
 print('  mojibake (Ã©, Ã±, â€)         : %d' % sum(s.count(x) for x in ('Ã©','Ã±','â€','Ã¡','Ã³')))
+# Un atributo dos veces en la misma etiqueta (17 de noviembre de 2026): el buscador del mapa llevaba maxlength="100"
+# dos veces, desde no se sabe cuándo, y nada lo veía. El navegador se queda con el primero sin avisar, así que el día que
+# alguien cambie uno el otro manda sin que se note. Se mira cada página de la raíz (index.html y las demás). Este SI
+# tumba la auditoría.
+from html.parser import HTMLParser
+class _Repetidos(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True); self.hallados = []
+    def _mira(self, tag, attrs):
+        vistos = set()
+        for k, _v in attrs:
+            if k in vistos: self.hallados.append((self.getpos()[0], tag, k))
+            vistos.add(k)
+    handle_starttag = handle_startendtag = _mira
+repetidos = []
+for _f in sorted(glob.glob(os.path.join(RAIZ, '*.html'))):
+    _p = _Repetidos(); _p.feed(io.open(_f, encoding='utf8').read()); _p.close()
+    repetidos += ['%s, linea %d: <%s> lleva «%s» dos veces' % (os.path.basename(_f), _l, _t, _k) for _l, _t, _k in _p.hallados]
+print('  atributo repetido en una etiqueta: %d%s' % (len(repetidos), '   <-- en rojo' if repetidos else ''))
+for _x in repetidos[:10]:
+    print('    <--  ' + _x)
 
 print('\n=== inyeccion ===')
 for f in ('eval(', 'new Function(', 'document.write('):
@@ -225,7 +246,7 @@ for ln, t in fijos[:12]:
     print('    <--  linea %-6d %s' % (ln, t))
 # Este control SI tumba la auditoria. Un aviso que solo se imprime acaba
 # ignorandose, y esto es justo lo que se cuela sin que nadie lo vea.
-CON_FALLO = bool(fijos) or bool(sueltos)
+CON_FALLO = bool(fijos) or bool(sueltos) or bool(repetidos)
 
 print('\n=== marcas data-tx fuera de sitio ===')
 # El marcado masivo de data-tx busca un texto y le pega el atributo al
