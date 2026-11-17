@@ -9183,6 +9183,52 @@ con un `auditar.sh` recortado (la misma cabecera y los mismos bloques, tal cual)
   Canarias), y los controles que los leen, en verde; y otra vez los de los terremotos, que su robot cambió a
   medianoche: en verde.
 
+## Jérôme, el entrenador: lo que se apoya, toca, y la leyenda fuera del dibujo (nota 50, 16 y 17 de noviembre)
+
+**Lo que se apoya, toca.** La sesión del entrenador midió los 282 vídeos con lo que se dibuja (la zapatilla entera, la
+mano con sus dedos y su pulgar, el antebrazo, el muslo, la cabeza), no con puntos del esqueleto. En lo publicado había 7
+ejercicios con una zapatilla más de 1 cm bajo el suelo, 22 con una mano bajo el suelo, 6 con una mano dentro de una
+pared, 16 con una mano abierta delante del suelo o de una pared sin tocarlos, 69 con una mano dentro de un muslo en una
+postura que se mantiene y 89 al moverse, y 7 con la cabeza, un brazo o una pierna cruzando el suelo. Ahora, 0 en cada
+fila. El motor sabe ahora de una mano que se apoya de plano (en una flexión, al doblar los codos, la palma sigue en el
+suelo), el antebrazo doblado de perfil tiene su propio frente, y el Director aparta las manos de los muslos sin tirones.
+Se reescribieron 52 coreografías (posturas, tramos o clavos); en el puente de glúteos los hombros y la cabeza vuelven al
+suelo, como dice su ficha. **Ninguna ficha cambia**: ni un paso, ni un texto, en ningún idioma;
+`datos/cuerpo/con-video.json` sale idéntico.
+
+**La leyenda de músculos, fuera del dibujo.** Iba dentro del vídeo, abajo a la izquierda, y según el idioma tapaba a
+Jérôme (77 vídeos de 282 en un iPhone, 118 en un móvil pequeño). Ahora va en su fila, debajo del vídeo y encima de la
+tarjeta del paso, con las mismas píldoras y sus nombres de la app, y pasa a otra línea si hace falta.
+
+**Puesto y comprobado aquí.** El parche `0013` (un commit con sus propias líneas de autoría), encima del `main` del día
+con `git am -3`: 23 ficheros, todos del entrenador (`modulos/entrenador.js`, `tools/auditar_entrenador.js` y
+`tools/entrenador/`), los 23 idénticos a la carpeta `repo/` del zip y `construir.py --comprobar` en verde. No toca
+`index.html`, `sw.js`, `datos/` ni `modulos/cuerpo.js`. Sin APIs nuevas de riesgo: la leyenda se escribe con nodos de
+texto, `innerHTML` sigue en 12 usos como antes y `contactos.js` lee el módulo en una caja de `vm` sin escribir nada.
+Ningún texto nuevo que traducir. `auditar_entrenador.js` pasa de 44 a 52 controles: siete de los contactos (sin
+navegador) y uno de la leyenda en los diez idiomas y en los 282 vídeos (2.820 vistas a 320 px), y cada uno se pone en
+rojo con su fallo puesto a propósito. El módulo pesa 729.128 bytes (201.001 con `gzip -9`), 45 kB más que el publicado
+(14 comprimido). Al publicar, un commit aparte: la plantilla de la muestra, que la app no enlaza, dice ya que estos
+arreglos están en la app.
+
+**La auditoría entera** sobre `dd7d6ab` (árbol `650dd411`), el parche encima de `main` (`457a6c9`). El contenedor se
+reinició dos veces en el bloque de los tours; se siguió desde ese bloque, sobre el mismo árbol, con `auditar_tramo.py`:
+los tours solos, y después desde el cielo hasta el final. En `main` es el mismo parche, con la frase de la muestra,
+rebasado sobre cuatro commits de los robots (`27bedee`, satélites; `7b04b4e`, avisos de AEMET; `6b5653c`, alertas del
+Gobierno de Canarias, y `1286fd0`, terremotos), que solo cambian `datos/satelites.json`, `datos/avisos-aemet.json`,
+`datos/alertas-canarias.json` y `datos/sismos-ign.json`, y con los controles que leen esos ficheros, en verde tras el
+rebase. En los 61 bloques de `auditar.sh`, ningún rojo: `auditar_entrenador.js`, 52; `probar_figura.js`, 64;
+`probar_cuerpo.js`, 741; `auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted
+(138.167 textos); `castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.340 nombres propios en
+cirílico y ninguna variante sospechosa; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin
+traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la
+isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas
+y 3.730 filas; 5.877). Al acabar, el repositorio sin ningún cambio: `app_preparar.js` montó `app/www/` y lo cotejó.
+
+**Para Jérôme** (no bloquea): la ficha publicada del pino contra la pared es la de cuatro pasos (CrossFit y la hoja del
+Open 22.1); la sesión del entrenador tiene preparada otra con StrengthLog y Trainwell, por si la prefiere. Y si se parte
+el módulo por grupos musculares antes del bloque 9, como propone la revisión del 15.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
