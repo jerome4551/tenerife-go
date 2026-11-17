@@ -9294,6 +9294,109 @@ ocho menos: el texto y la categoría de las cuatro fichas). Al acabar, el reposi
 (`a994748`, avisos de AEMET, y `3f830b5`, alertas del Gobierno de Canarias), que solo cambian `datos/avisos-aemet.json`
 y `datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el rebase.
 
+## Cumbre Dorsal fuera, la playa para perros con su nombre, el vídeo del entrenador por grupos y el bloque 10 del rumano (17 de noviembre, tarde)
+
+**Las decisiones** (Jérôme, 17-11 por la tarde: «1 quítalos / 2 ponle su nombre reconocido / 5 la más correcta»), un
+commit por apartado:
+
+- **La ficha «Cumbre Dorsal — Mirador La Jardina», fuera.** Estaba en el punto exacto del Mirador La Jardina
+  (`mir-la-jardina`, que se queda) y su texto mezclaba la carretera TF-24 de la cumbre con ese mirador de Anaga. Era
+  la única ficha con ese nombre. Sale de la app, de los nueve idiomas, del polaco montado, de las zonas del
+  planificador y de las sugerencias de la Ruta del día del Norte; su id entra en `LUGARES_RETIRADOS`, así que un
+  favorito guardado se descarta al leerlo (`probar_retirados.js`, con 5 ids). **De 976 a 975 lugares**: el README
+  (también 37 de senderismo), el JSON-LD, las fichas de las dos tiendas en los diez idiomas, las notas a Apple,
+  `REVISION-LUGARES.md` y las tablas de este documento. La etiqueta «Panorámica», que solo llevaba esa ficha, sale
+  de los diez glosarios (771 filas por idioma). `probar_organiza.js` cuenta ahora 55 parejas con la misma
+  coordenada: la de esta ficha con el mirador era una.
+- **La playa para perros de El Cabezo, con su nombre reconocido**: «Playa para perros El Cabezo 🐾» (antes, «Playa El
+  Cabezo 🐾»). Así la nombran OpenStreetMap (vía 664708933, desde 2019, con `dog=yes`) y Diario de Avisos (17-6-2022:
+  «El Cabezo, playa para perros en el Puertito de Güímar»; «la playa de El Cabezo, más conocida como la playa del
+  Puertito de Güímar»). El Ayuntamiento llama a la playa «El Cabezo» en sus análisis de aguas de baño y «Playa del
+  Puertito de Güímar» en su web de turismo, que no habla de la zona para perros. Alias, solo para el buscador:
+  «Playa El Cabezo», su nombre de antes, y «Playa del Puertito de Güímar». Así sale también buscando «Puertito» o
+  «perros». Los alias pasan de 61 a 62.
+- **El pino contra la pared: se queda la ficha publicada, que es la más correcta.** Sus fuentes son las del propio
+  movimiento, releídas hoy: CrossFit, «The Wall Walk» («three points of contact on the floor, wall, or a combination
+  of the two throughout the entire movement»), y la hoja oficial de la prueba 22.1 del CrossFit Open (febrero de
+  2022), con sus normas del movimiento. Lleva en la subida y en la bajada la regla de los tres apoyos («moviendo una
+  mano o un pie cada vez»), y su vídeo está medido con esos textos. La otra, preparada el 14-11, salía de dos
+  páginas sin autor ni fecha (StrengthLog y Trainwell) y no tenía esa regla. En la app no cambia nada.
+
+**El vídeo del entrenador, por grupos** (nota 51, parche `0014`). `modulos/entrenador.js` llevaba el motor y las 282
+coreografías: 729.128 bytes (200.987 con `gzip -9`), y cada bloque nuevo lo hacía crecer. Ahora lleva el motor y las 40
+coreografías del bloque 1: 385.639 bytes (117.869). Las otras 242 van en siete trozos, uno por grupo, en
+`modulos/entrenador/` (pecho 35, dorsal 35, espalda alta 30, hombros 34, bíceps 36, tríceps 37, antebrazo y pantorrilla
+35; 369.996 bytes entre los siete, 100.642 comprimidos), y el de un ejercicio se pide al abrir su ficha. Ningún vídeo
+cambia: las 282 coreografías quedan en memoria idénticas, y sus medidas de contacto (`contactos.js`, cada tramo y el
+vídeo cuadro a cuadro), tomadas aquí con el motor y sus trozos, salen iguales byte a byte que las de la nota 50. Cada
+trozo lleva en el nombre la huella de su contenido (`pecho.9bf43e42.js`): un motor pide siempre los suyos, del propio
+dominio y con los nombres que trae escritos, y por eso `sw.js` no cambia (un fichero que no cambia va «cache primero»,
+como las mallas del 3D); el motor sigue en la precarga, «red primero». «Su cuerpo» pide el trozo antes de preguntar si
+hay vídeo; si no llega, la ficha queda con su nombre y sus pasos, sin vídeo ni botón, como si no hubiera llegado el
+motor. Para tenerlos sin conexión, la primera vez que se cargan los ejercicios con conexión guarda los siete en la cache
+de la app, de uno en uno, y quita los de un motor anterior; no guarda nada si el móvil pide ahorrar datos o va por 2g
+(eso solo lo dicen Chrome y Samsung Internet en Android; en un iPhone se guardan siempre que haya conexión), y nada de
+lo que le pase llega a la carga de los ejercicios. Los trozos van también en el paquete de las tiendas
+(`app_preparar.js`). Y con la pantalla baja (`max-height: 700px`), la leyenda de músculos pasa detrás de la tarjeta del
+paso: en un móvil de 320 × 568 dejaba fuera de la vista el texto del paso. El día que se publique, quien tenga «Su
+cuerpo» abierto de antes y abra una ficha antes de volver a abrir la app puede juntar el `cuerpo.js` de antes con el
+motor nuevo: las 40 del bloque 1 traen su vídeo y las demás salen sin vídeo ni botón, sin errores, hasta que se vuelve a
+abrir la app.
+
+**Los detalles de datos** (nota 51, parche `0015`), de la revisión del 15 de noviembre, sin cambiar ningún paso ni
+ningún vídeo (`con-video.json` sale igual): la toalla, en el material de las cuatro fichas que la piden en su nombre y
+en sus pasos (`paseo-granjero-toalla`, `dominada-con-toallas`, `cuadriceps-isometrico-toalla` y
+`estiramiento-pantorrilla-toalla`); el material «mochila» se llama ahora «Mochila o bolsas con peso», en los diez
+idiomas (ocho fichas son con bolsas de la compra; sin revisión nativa); y en chino, los remos Pendlay, Meadows y Helms
+en caracteres en el simplificado, como ya estaban en el tradicional, y en el tradicional «冰淇淋機（引體向上接前水平）», que estaba en
+inglés. `idiomas/castellano-aceptado.json` pierde las dos entradas que aceptaban «Ice cream maker».
+
+**Puesto y comprobado aquí.** Los dos parches, con `git am -3` y sus propias líneas de autoría, encima de las
+decisiones; en la plantilla de la muestra del entrenador (que la app no enlaza) chocaban dos frases, y se quedó la de
+`main`, puesta al día después en un commit aparte. Los dos tocaban ficheros construidos de «Su cuerpo»
+(`modulos/cuerpo.js` y `datos/cuerpo/`): se llevaron a sus fuentes, y con ellas `construir.py` da `cuerpo.js` y los 33
+ficheros de datos iguales byte a byte; esas fuentes vuelven a la sesión de «Su cuerpo». Sin APIs nuevas de riesgo: los
+trozos se cargan con una etiqueta `<script>` del propio dominio (la CSP no cambia) y no escriben en la página.
+
+**El rumano, bloque 10** (sigue apagado: nada de esto se ve en la app), con sus guiones leídos aquí antes de pasarlos y
+un commit por apartado:
+
+- Las dos filas de fichas que quedaban, sobre el castellano de hoy (`pp-izana` y el PR-TF 51).
+  `lugares_traduccion.js ro --probar` pasa de 19 filas que no valen a 18, que vuelven a su sesión: las 10 de las
+  cinco fichas quitadas y las 8 de castellano cambiado el 17 por la mañana.
+- Dos erratas del asistente que vio al traducirlo: en alemán, `pra-05` tuteaba en medio de la frase y ahora dice,
+  como el castellano, «wenn Sie aus Madrid geflogen sind, stellen Sie die Uhr zurück»; en polaco, el botón «Szlaki»
+  no llevaba a ninguna respuesta, y «szlaki», el plural, entra en las palabras de los senderos. `generar_faq.py`
+  cambia `faq/de.json` y `faq/pl.json`, y nada más.
+- 69 de las 129 entradas del asistente en rumano y su vocabulario (`faq/fuente/ro/` y
+  `faq/fuente/intenciones/ro.json`, con las sumas de su `SHA256SUMS.txt`), y `generar_faq.py`, que las comprueba sin
+  escribir `faq/ro.json` mientras el rumano no esté encendido («ro (sin encender): 69 de 129»).
+  `revisar_rumano.py --pares`: 138 filas, 0 errores y 0 avisos; ninguna ş ni ţ con cedilla.
+- Lo que dejó para Code sin parche (los saludos y las gracias en polaco, búlgaro y chino; las categorías polacas en
+  singular; cuatro preguntas en castellano que no encuentran respuesta: «tarjeta ten+», «inglés», «IVA» y
+  «guanche»), en la cola.
+
+**La auditoría entera** sobre `1efed0e` (árbol `baaf7d59`): las decisiones, la nota 51 y el bloque 10 del rumano encima
+de `main` (`e9b7f80`). En `main` es lo mismo, rebasado sobre tres commits de los robots (`4c0fee9`, terremotos;
+`da4ad6c`, avisos de AEMET, y `f61a0d2`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`,
+`datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el
+rebase. En los 61 bloques de `auditar.sh`, ningún rojo: los datos, 975 lugares en todas partes (también en el resumen de
+este documento) y ninguna cifra de lugares que no sea 975 en lo que se lee; `probar_retirados.js`, 6;
+`probar_organiza.js`, 626 de 626; `auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`, todo de
+usted (137.787 textos); `castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.340 nombres
+propios en cirílico y ninguna variante sospechosa; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos
+sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y
+153; `probar_figura.js`, 64; `probar_cuerpo.js`, 741; `auditar_entrenador.js`, 79, con el motor y sus siete trozos (y
+Samsung Internet, que pinta el vídeo en un canvas); la isla en 3D, 57; el panel SOS, 42 y 262, y sus cuatro robots; las
+cifras de idiomas del documento, las de ahora (52 tablas y 3.730 filas; 5.867). Al acabar, el repositorio sin ningún
+cambio: `app_preparar.js` montó `app/www/` (236 ficheros) y lo cotejó.
+
+**Lo que sigue.** Jérôme dijo sí, a la sesión del entrenador (17-11, por la mañana), a la toalla en el material de
+`curl-isquios-toalla` y a «o hasta donde le resulte cómodo» al final del paso 2 del pino contra la pared (Trainwell,
+«Wall Walk»: «or as far as you can comfortably go»). Los dos llegan con la nota 52, junto con el bloque 9 del
+entrenador, y van aparte. Y si la ficha de Google Play ya está copiada en Play Console, la cifra de lugares pasa a
+«975».
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
