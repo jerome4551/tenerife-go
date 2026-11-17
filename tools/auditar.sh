@@ -65,6 +65,9 @@ if reventado "$salida"; then printf '%s\n' "$salida" | tail -5; roto verificar_r
 else [ "$rc" = 0 ] || falla verificar_red.js; fi
 echo; echo "════════ datos ════════"
 control auditar_datos.js node tools/auditar_datos.js
+# Las fichas que se juntaron con otra o se quitaron (17 de noviembre de 2026): ninguna sigue siendo ficha, y
+# sus favoritos se descartan al leerlos, sin quedar a medias en los idiomas, lo verificado o las tablas.
+control probar_retirados.js node tools/probar_retirados.js
 echo; echo "════════ seguridad y codificacion ════════"
 control auditar_seguridad.py python3 tools/auditar_seguridad.py
 echo; echo "════════ regresion XSS ════════"
