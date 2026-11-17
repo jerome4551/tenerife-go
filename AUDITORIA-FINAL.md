@@ -9229,6 +9229,71 @@ y 3.730 filas; 5.877). Al acabar, el repositorio sin ningún cambio: `app_prepar
 Open 22.1); la sesión del entrenador tiene preparada otra con StrengthLog y Trainwell, por si la prefiere. Y si se parte
 el módulo por grupos musculares antes del bloque 9, como propone la revisión del 15.
 
+## Lo que decidió Jérôme sobre lo que dejó el rumano, y el relieve del IGN (17 de noviembre)
+
+**Las decisiones** (Jérôme, 16-11 noche: «Cámbialo si existe y que no lo tenemos ( el mirador ) / 2 verifica cuánto
+tiempo lleva cerrado… / 3 si / 4 quítalo / 5 se piensen ver en ocasiones… / Con fuente si»), un commit por apartado y
+cada dato con su fuente, abierta aquí:
+
+- **El Mirador de La Corona** no estaba en Güímar: es el de Los Realejos, sobre el Risco Blanco, a unos 760 m
+  (Webtenerife; Turismo de Los Realejos; la altura, del MDT05 del IGN). La ficha `mir-la-corona-guimar` cambia de
+  sitio, nombre, texto, categoría y etiquetas, en los diez idiomas; el id se queda.
+- **El despegue de Izaña** (`pp-izana`), cerrado: la Federación Canaria de Deportes Aéreos (actas del 14 y del 16 de
+  julio de 2026) dice que quedó fuera del Plan Rector del Parque Nacional. Lleva `estado:"cerrado"`, su fuente y su
+  fecha, y deja de sugerirse. Un aviso, el día 1 de cada mes, para mirar si reabre.
+- **Tres fichas repetidas, juntadas con la suya**: el Palacio Episcopal con la Casa Salazar (el mismo edificio), la
+  Playa del Castillo con la Playa Jardín (uno de sus tres tramos) y la playa para perros del Puertito de Güímar con
+  la de El Cabezo, que es la misma. Los nombres de las dos primeras quedan de alias, para el buscador. La tercera no
+  deja alias: «Puertito de Güímar» lo lleva en su nombre la ficha de la playa («Playa del Cabezo · Puertito de
+  Güímar»), y la de los perros sale buscando «Cabezo» o «Güímar». Un favorito guardado de una ficha que ya no está
+  se descarta al leerlo (`LUGARES_RETIRADOS`, en el móvil y en la nube) y no cuenta en el número de favoritos;
+  `tools/probar_retirados.js`, nuevo en `auditar.sh`, mira que ninguna vuelva ni quede en ningún fichero.
+- **El Mirador del Pico de las Flores**, abandonado y sin vistas, fuera. Con todo, **de 980 a 976 lugares**: el
+  JSON-LD, las fichas de las dos tiendas en los diez idiomas, las notas a Apple y las tablas de este documento.
+- **El kayak de La Caleta**: «Tortugas en ocasiones», en los diez idiomas.
+- **Cinco nombres, como sus fuentes**: Mirador de Chipeque (TF-24); Mirador Altos de Baracán (TF-436); Área
+  Recreativa La Laguneta Chica (Santa Úrsula); Museo de Arte Contemporáneo Eduardo Westerdahl (MACEW), como Turismo
+  de Canarias; Museo de la Historia de Granadilla de Abona, como la agenda cultural del Ayuntamiento. Los nombres de
+  antes que alguien puede buscar, de alias.
+- **La Tejita**, arena oscura (Webtenerife: «Black sand»), en los diez idiomas. **El Bosque de La Esperanza**, sin
+  el Mirador de La Jardina, que está a la entrada de Anaga (TF-12, km 25). **«Solárium»**, con tilde, en las dos
+  fichas que quedaban. **Los mercadillos** de Tegueste, Tacoronte y Arona, con sus dos días en las etiquetas (RTVC,
+  Webtenerife, Ayuntamiento de Arona).
+- **27 filas de etiquetas que no usaba ninguna ficha**, fuera de los diez glosarios (también del rumano, que sigue
+  con las mismas claves): 772 por idioma.
+- **Lo que no se ha tocado, y por qué**: la ficha «Cumbre Dorsal — Mirador La Jardina» tiene el punto del mirador de
+  Anaga y habla de la TF-24: quitarla o darle otro punto lo decide Jérôme. Las playas de Las Bajas y El Callao
+  (Arona) y el HiperDino de Valle San Lorenzo: no hay punto oficial, y no se mueven ni se juntan.
+
+**El relieve del IGN.** El workflow «Generar relieve 3D» (run 3, en la rama de trabajo) bajó el MDT05 del IGN en trozos
+que caben en el tope de la IDEE y lo construyó en celdas de 60 m con la costa del mapa: «RELIEVE EN VERDE», cotejado con
+el Copernicus DEM en 567.931 celdas de tierra (diferencia mediana −1,19 m, media absoluta 4,16 m), sin relleno, cota
+máxima 3.700,4 m. Su commit va encima, con su autor (el bot). «La isla en 3D» ya enseñaba el crédito de cada fuente; lo
+que no estaba hecho era «Cruce la isla» de «Su cuerpo»: su fondo se pintó otra vez con su herramienta, y «Las cifras»
+dice ahora, en los diez idiomas, que el relieve es el MDT05 del Instituto Geográfico Nacional, con la nota de su
+licencia palabra por palabra («Obra derivada de MDT05-cob1 2008-2015 CC-BY 4.0 scne.es»). Hecho en las fuentes de «Su
+cuerpo» y construido con `construir.py`: el módulo cambia solo en esas líneas.
+
+**La auditoría entera** sobre `1580ef7` (árbol `47ede333`), las decisiones y el relieve encima de `main` (`ac9788d`, la
+nota 50). En los 61 bloques de `auditar.sh`, un rojo, de esta rama: `probar_organiza.js`, 1 de 626, contaba 56 parejas
+de fichas del planificador con la misma coordenada exacta y esperaba 57. La que falta es la de la ficha del Puertito de
+Güímar (`puerto-guimar`) con la playa para perros que se ha juntado con la de El Cabezo, las dos en 28.2951, −16.3758;
+ninguna pareja nueva, y las 56 siguen siendo un sitio para la app. El control y su comentario pasan a 56 en un commit
+aparte (`9f335e4`; en `main`, `cee0f37`), y `probar_organiza.js`, otra vez sobre ese commit: 626 de 626. Lo demás, en
+verde: los datos, 976 lugares en todas partes (también en el resumen de este documento) y ninguna cifra de lugares que
+no sea 976 en lo que se lee; `probar_retirados.js`, 6; `auditar_idioma.js`, 0 hallazgos en los diez idiomas;
+`auditar_registro.js`, todo de usted (137.817 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_cirilico.py`, 2.342 nombres propios en cirílico y ninguna variante sospechosa; `barrido_pantallas.js`, 191
+pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el
+cielo, 311; el perfil y los avatares, 74 y 153; `probar_figura.js`, 64; `probar_cuerpo.js`, 741;
+`auditar_entrenador.js`, 52; la isla en 3D, 57 (uno menos que en la nota 50: el crédito del IGN se lee entero y ya no
+hay «ⓘ» que vuelva a abrir las dos notas del Copernicus DEM), con el relieve cotejado con el Copernicus DEM; el panel
+SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52 tablas y 3.730 filas; 5.869,
+ocho menos: el texto y la categoría de las cuatro fichas). Al acabar, el repositorio sin ningún cambio:
+`app_preparar.js` montó `app/www/` y lo cotejó. En `main` es el mismo parche, rebasado sobre dos commits de los robots
+(`a994748`, avisos de AEMET, y `3f830b5`, alertas del Gobierno de Canarias), que solo cambian `datos/avisos-aemet.json`
+y `datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el rebase.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
