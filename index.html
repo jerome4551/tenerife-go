@@ -37,7 +37,7 @@
 <meta name="author" content="Jérôme B">
 <meta name="copyright" content="Copyright (c) 2026 Jérôme B - Todos los derechos reservados">
 <meta name="rights" content="https://tenerifego.app">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- TGO-NATIVO: la misma app dentro de la aplicacion de las tiendas
      (Capacitor, 21 de octubre de 2026). tools/app_preparar.js copia este
      fichero a app/www/ y mete justo encima de este bloque
@@ -364,6 +364,11 @@ window.onunhandledrejection = function(e) {
     --border: rgba(212,175,55,0.2);
     --text: #f0ece4;            /* texto principal (crema cálida) */
     --muted: rgba(240,236,228,0.5);
+    /* La letra de las cajas donde se escribe (el buscador, la ruta, las paradas, el asistente, la cuenta, la
+       tienda y el panel del administrador). Desde el 17 de noviembre de 2026 la página deja ampliar con dos
+       dedos (nota 48, 4a; Jérôme: «A»), y en el iPhone, Safari y la app de la App Store amplían la página solos
+       al tocar una caja con la letra de menos de 16 px, y la dejan ampliada. Por eso ninguna baja de 16 px. */
+    --letra-caja: max(1rem, 16px);
 
     /* ── SISTEMA DE ANIMACIONES ──────────────────────────────────────
        4 duraciones + 4 curvas. Todas las transiciones de la app deberían
@@ -686,7 +691,7 @@ window.onunhandledrejection = function(e) {
     padding: 11px 14px;
     color: #fff;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem;
+    font-size: var(--letra-caja);
     margin-bottom: 10px;
     outline: none;
     transition: border-color 0.2s;
@@ -701,7 +706,7 @@ window.onunhandledrejection = function(e) {
     padding: 11px 14px;
     color: #fff;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem;
+    font-size: var(--letra-caja);
     margin-bottom: 10px;
     outline: none;
     appearance: none;
@@ -1505,7 +1510,7 @@ window.onunhandledrejection = function(e) {
     outline: none;
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
+    font-size: var(--letra-caja);
     padding: 0 0.5rem 0 0;
     opacity: 0;
     transition: opacity var(--t-normal) var(--ease-out) 100ms;
@@ -2780,9 +2785,11 @@ window.onunhandledrejection = function(e) {
   .route-btn-go:hover { background: rgba(74,222,128,0.25); border-color: #4ade80; }
   .route-btn-go:disabled { opacity: 0.35; cursor: not-allowed; }
 .route-addr-row { display:flex; gap:6px; align-items:center; padding:4px 0 2px 28px; }
-.route-addr-input { flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; color:#fff; font-size:0.78rem; outline:none; font-family:'DM Sans',sans-serif; }
+.route-addr-input { flex:1; min-width:0; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:6px 10px; color:#fff; font-size:var(--letra-caja); outline:none; font-family:'DM Sans',sans-serif; }
 .route-addr-input:focus { border-color:rgba(201,168,76,0.5); }
-.route-addr-input::placeholder { color:rgba(255,255,255,0.25); }
+/* el texto de ejemplo, con su tamaño de antes: lo que mira el iPhone para ampliar es la letra de lo que se
+   escribe, y a 16 px «Oppure scriva un indirizzo…» no cabía entero a 320 px (nota 48, 4a) */
+.route-addr-input::placeholder { color:rgba(255,255,255,0.25); font-size:0.78rem; }
 .route-addr-btn { background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:8px; color:#c9a84c; padding:6px 10px; cursor:pointer; font-size:0.8rem; flex-shrink:0; transition:all .2s; }
 .route-addr-btn:hover { background:rgba(201,168,76,0.25); }
 
@@ -3608,11 +3615,12 @@ window.onunhandledrejection = function(e) {
     outline: none;
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem;
+    font-size: var(--letra-caja);
     padding: 0.5rem 0;
     min-width: 0;
   }
-  .bus-search-input::placeholder { color: var(--muted); }
+  /* el ejemplo, con su tamaño de antes (a 16 px, el búlgaro no cabía a 320 px; nota 48, 4a) */
+  .bus-search-input::placeholder { color: var(--muted); font-size: 0.78rem; }
   .bus-search-clear {
     background: rgba(255,255,255,0.08);
     border: none;
@@ -4354,7 +4362,7 @@ window.onunhandledrejection = function(e) {
     color: var(--text);
     padding: 11px 14px;
     border-radius: 10px;
-    font-size: 0.95rem;
+    font-size: var(--letra-caja);
     font-family: inherit;
     transition: border-color var(--t-normal) var(--ease-out), background var(--t-normal) var(--ease-out);
     -webkit-appearance: none;
@@ -5123,7 +5131,7 @@ window.onunhandledrejection = function(e) {
     padding: 11px 14px;
     color: #fff;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem;
+    font-size: var(--letra-caja);
     margin-bottom: 10px;
     outline: none;
     transition: border-color 0.2s;
@@ -5138,7 +5146,7 @@ window.onunhandledrejection = function(e) {
     padding: 11px 14px;
     color: #fff;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem;
+    font-size: var(--letra-caja);
     margin-bottom: 10px;
     outline: none;
     appearance: none;
@@ -21145,6 +21153,7 @@ async function sharePlace(placeId) {
       // Fallback ultra-legacy (file://, navegadores antiguos)
       const ta = document.createElement('textarea');
       ta.value = fullText;
+      ta.style.fontSize = '16px';   // 16 px: en el iPhone, una caja más pequeña amplía la página al tocarla
       ta.style.position = 'fixed';
       ta.style.opacity = '0';
       document.body.appendChild(ta);
@@ -22304,6 +22313,7 @@ function copyShareUrl(url, L_) {
     try {
       const ta = document.createElement('textarea');
       ta.value = url;
+      ta.style.fontSize = '16px';   // 16 px: en el iPhone, una caja más pequeña amplía la página al tocarla
       ta.style.position = 'fixed';
       ta.style.opacity = '0';
       document.body.appendChild(ta);
@@ -24021,6 +24031,7 @@ window.addEventListener('hashchange', () => {
       try {
         var t = document.createElement('textarea');
         t.value = url;
+        t.style.fontSize = '16px';   // 16 px: en el iPhone, una caja más pequeña amplía la página al tocarla
         t.setAttribute('readonly', '');
         t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
         document.body.appendChild(t);
@@ -25679,7 +25690,7 @@ function updateRouteEditFloat() {
 .admin-input, .admin-select, .admin-textarea {
   width:100%; background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.12); border-radius:8px;
-  padding:10px 12px; color:#fff; font-size:0.88rem;
+  padding:10px 12px; color:#fff; font-size:var(--letra-caja);
   margin-bottom:8px; box-sizing:border-box; outline:none;
   font-family:'DM Sans',sans-serif;
 }
@@ -27234,11 +27245,20 @@ function dismissMultifilterToast() {
 .chat-input {
   flex:1; background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.12); border-radius:20px;
-  padding:10px 16px; color:#fff; font-size:0.88rem;
+  padding:10px 16px; color:#fff; font-size:var(--letra-caja);
   outline:none; resize:none; max-height:90px;
   font-family:'DM Sans',sans-serif; line-height:1.4;
 }
 .chat-input:focus { border-color:rgba(201,168,76,0.5); }
+/* el ejemplo, con su tamaño de antes (a 16 px, el francés, el alemán y el búlgaro no cabían; nota 48, 4a) */
+.chat-input::placeholder { font-size:0.88rem; }
+/* y en las pantallas más estrechas (320 px, el iPhone SE de primera generación), menos margen dentro de la caja y
+   el ejemplo como el de las direcciones de la ruta: «Posez-moi une question sur Tenerife...» partía la línea y
+   la segunda («Tenerife...») quedaba cortada por la mitad, ya antes de la nota 48. */
+@media (max-width: 340px) {
+  .chat-input { padding-left:10px; padding-right:10px; }
+  .chat-input::placeholder { font-size:0.78rem; }
+}
 .chat-send {
   width:40px; height:40px; border-radius:50%;
   background:linear-gradient(135deg,#c9a84c,#a07830);
@@ -35788,9 +35808,12 @@ setTimeout(renderBanoHoy, 1200);
 .cielo-fecha .cielo-hoy { font-size: 0.66rem; }
 .cielo-fecha .cielo-fecha-cal { padding: 5px 7px; }
 /* el campo de fecha nativo: escondido (el boton 📅 abre su selector); si el
-   navegador no sabe abrirlo (showPicker), se deja a la vista */
-.cielo-fecha .cielo-fecha-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-.cielo-fecha .cielo-fecha-input.visto { position: static; width: auto; height: auto; opacity: 1; pointer-events: auto; background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 4px 6px; font-size: 0.7rem; color-scheme: dark; }
+   navegador no sabe abrirlo (showPicker), se deja a la vista. Con la letra a
+   16 px, escondido o no: el iPhone amplia la pagina al abrir una caja con la
+   letra mas pequena (nota 48, 4a); y a la vista, en su propia linea, debajo */
+.cielo-fecha .cielo-fecha-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; font-size: var(--letra-caja); }
+.cielo-fecha .cielo-fecha-input.visto { position: static; width: auto; height: auto; opacity: 1; pointer-events: auto; background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 4px 6px; font-size: var(--letra-caja); color-scheme: dark; order: 9; flex: 1 1 100%; min-width: 0; }
+.cielo-fecha { flex-wrap: wrap; }
 .cielo-fecha { position: relative; }
 /* el indice de la noche */
 .cielo-indice { display: flex; gap: 14px; align-items: center; }
@@ -35847,8 +35870,10 @@ setTimeout(renderBanoHoy, 1200);
 .cielo-chips button[aria-pressed="true"] { background: rgba(212,175,55,0.16); border-color: rgba(212,175,55,0.45); color: #F5C76B; }
 .cielo-busca {
   width: 100%; box-sizing: border-box; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-  color: #fff; border-radius: 10px; padding: 8px 10px; font-size: 0.74rem; margin-bottom: 7px;
+  color: #fff; border-radius: 10px; padding: 8px 10px; font-size: var(--letra-caja); margin-bottom: 7px;
 }
+/* el ejemplo («Buscar: Orión, M42, Vega…»), con su tamaño de antes; lo que se escribe, a 16 px (nota 48, 4a) */
+.cielo-busca::placeholder { font-size: 0.74rem; }
 .cielo-cuenta { font-size: 0.6rem; color: rgba(255,255,255,0.45); margin: 2px 2px 6px; }
 .cielo-mes-cab { font-size: 0.66rem; font-weight: 800; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; margin: 12px 4px 4px; }
 .cielo-mapa-caja { position: relative; width: 100%; max-width: 520px; margin: 0 auto; touch-action: none; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.06); }
@@ -36005,8 +36030,10 @@ setTimeout(renderBanoHoy, 1200);
 #cielo-vista .cv-busqueda-cab { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
 #cielo-vista .cv-busqueda-cab input {
   flex: 1; min-width: 0; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); color: #fff;
-  border-radius: 10px; padding: 9px 11px; font-size: 0.8rem;
+  border-radius: 10px; padding: 9px 11px; font-size: var(--letra-caja);
 }
+/* el ejemplo, con su tamaño de antes; lo que se escribe, a 16 px (nota 48, 4a) */
+#cielo-vista .cv-busqueda-cab input::placeholder { font-size: 0.8rem; }
 #cielo-vista .cv-busqueda-lista { display: flex; flex-direction: column; }
 #cielo-vista .cv-busqueda-item {
   display: flex; align-items: center; gap: 10px; text-align: left; background: none; border: none; border-top: 1px solid rgba(255,255,255,0.06);
@@ -36091,9 +36118,10 @@ html.cielo-rojo body::before {
 /* 22 de octubre, octavo bloque: ningun texto del panel por debajo de 11 px. Apple: «Follow the
    recommended default and minimum text sizes for each platform», y para iOS «17 pt» por defecto
    y «11 pt» de minimo (Human Interface Guidelines, Typography). El 70 % del texto del panel iba a
-   9-10,6 px, y en la app de la App Store no se puede ampliar con los dedos: WKWebView respeta el
+   9-10,6 px, y en la app de la App Store no se podía ampliar con los dedos: WKWebView respeta el
    user-scalable=no («The default value is false, which means that WKWebView content will allow
-   the content to block zooming», WebKit, New Interaction Behaviors in iOS 10). Va al final, con
+   the content to block zooming», WebKit, New Interaction Behaviors in iOS 10). Desde el 17 de
+   noviembre de 2026 la página ya deja ampliar (nota 48, 4a), y el mínimo de 11 px se queda. Va al final, con
    #cielo-panel / #cielo-vista delante, para ganar a las reglas de arriba sin tocarlas. */
 #cielo-panel .cielo-pestanas button, #cielo-panel .cielo-nota, #cielo-panel .cielo-fecha .cielo-hoy,
 #cielo-panel .cielo-indice-num small, #cielo-panel .cielo-aviso-pronto, #cielo-panel .cielo-ejes, #cielo-panel .cielo-leyenda,

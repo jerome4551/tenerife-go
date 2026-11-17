@@ -19,10 +19,16 @@
  * aqui, en Chromium, si. Se mira la estructura que rompe Safari y se usa la
  * lista con el dedo (bloque 4).
  *
+ * Y LAS CAJAS DONDE SE ESCRIBE (bloque 6, nota 48, 4a): desde el 17 de noviembre de 2026
+ * la pagina se puede ampliar con dos dedos, y el iPhone amplia solo al tocar una caja con
+ * la letra de menos de 16 px: ninguna baja de 16, y a 320 px nada se corta ni se sale.
+ *
  *     node tools/auditar_desborde.js [puerto]
  */
 'use strict';
 const { chromium, devices } = require('/opt/node22/lib/node_modules/playwright');
+const fs = require('fs');
+const path = require('path');
 const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 const ANCHO = 360, ALTO = 740;           // un movil estrecho de los de verdad
 const MARGEN = 2;                        // px de tolerancia por redondeo
@@ -372,6 +378,174 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
     malMarca.slice(0, 10).forEach(x => console.log('           ' + x));
   } else {
     console.log('  ok   la marca de la barra, entera o solo el logo, nunca recortada: ' + IDIOMAS.map(L => L + ' ' + vistoMarca[L]).join(' · ') + '; cambiando el ancho en la misma pagina: ' + vistoMarca['cambiando el ancho']);
+  }
+
+  /* 6 · LAS CAJAS DONDE SE ESCRIBE, A 16 PX, Y LA PAGINA QUE SE PUEDE AMPLIAR.
+     Nota 48, 4a (Jerome, 17 de noviembre de 2026: «A»). Hasta ese dia la pagina no dejaba ampliar con dos
+     dedos (user-scalable=no). Sin eso, el iPhone (Safari y la app de la App Store, que usa WKWebView) amplia la
+     pagina solo al tocar una caja con la letra de menos de 16 px, y la deja ampliada: por eso ninguna baja de
+     16 px. Se mira:
+     a) en el disco, la etiqueta viewport de las cuatro paginas: ni user-scalable=no ni maximum-scale por
+        debajo de 2 (WCAG 2.2, 1.4.4); y que las cajas de copiar que se fabrican al vuelo lleven sus 16 px;
+     b) en una pagina con todo abierto (el buscador, la ruta, las paradas, el asistente, la cuenta, el perfil,
+        «Su cuerpo» con su «Evolucion», y el cielo con su catalogo, su fecha y «Apunta al cielo»): la letra de
+        TODAS las cajas, se vean o no;
+     c) en los diez idiomas a 320 px, en cada pantalla con cajas: la letra de las que se ven, que el ejemplo
+        (placeholder) quepa entero, que nada de su fila se salga, y que la fecha de «Su evolucion» quepa con el
+        formato del iPhone (dateStyle medium, el mismo CLDR), la mas ancha del año en los diez idiomas y en
+        ingles de EE. UU.; la fecha, tambien a 375 px, el primer ancho en que va al lado del peso. */
+  const malCaja = [], vistoCaja = [];
+  {
+    const RAIZ = path.join(__dirname, '..');
+    for (const f of ['index.html', '404.html', 'privacidad.html', 'borrar-cuenta.html']) {
+      const h = fs.readFileSync(path.join(RAIZ, f), 'utf8');
+      const vs = [...h.matchAll(/<meta\s+name="viewport"\s+content="([^"]*)"/gi)].map(m => m[1].toLowerCase().replace(/\s+/g, ''));
+      if (vs.length !== 1) { malCaja.push(f + ': ' + vs.length + ' etiquetas viewport (tiene que haber una)'); continue; }
+      if (/(^|,)user-scalable=(no|0)(,|$)/.test(vs[0])) malCaja.push(f + ': la etiqueta viewport no deja ampliar (user-scalable=no)');
+      const mx = vs[0].match(/(^|,)maximum-scale=([\d.]+)/);
+      if (mx && parseFloat(mx[2]) < 2) malCaja.push(f + ': maximum-scale=' + mx[2] + ', por debajo de 2');
+    }
+    const lineas = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8').split('\n');
+    let copiar = 0;
+    lineas.forEach((l, i) => {
+      if (!/createElement\(['"]textarea['"]\)/.test(l)) return;
+      copiar++;
+      if (!lineas.slice(i, i + 6).some(x => /\.style\.fontSize\s*=\s*['"]16px['"]/.test(x))) malCaja.push('index.html, linea ' + (i + 1) + ': una caja de copiar sin sus 16 px');
+    });
+    vistoCaja.push('viewport de las 4 paginas', copiar + ' cajas de copiar');
+  }
+  const cajasDe = (escondidas) => {
+    const NO = /^(hidden|checkbox|radio|range|file|button|submit|reset|color|image)$/i;
+    const cv = document.createElement('canvas').getContext('2d');
+    return [...document.querySelectorAll('input, select, textarea')].filter(e => !(e.tagName === 'INPUT' && NO.test(e.type)))
+      .filter(e => { if (escondidas) return true; const r = e.getBoundingClientRect(), cs = getComputedStyle(e); return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.opacity !== '0'; })
+      .map(e => {
+        const cs = getComputedStyle(e);
+        const nombre = e.tagName.toLowerCase() + (e.id ? '#' + e.id : '') + (typeof e.className === 'string' && e.className.trim() ? '.' + e.className.trim().split(/\s+/).join('.') : '');
+        if (escondidas) return { nombre, px: parseFloat(cs.fontSize) };
+        const hueco = e.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        let ejemplo = 0;
+        if (e.placeholder) { const ph = getComputedStyle(e, '::placeholder'); cv.font = [ph.fontStyle, ph.fontWeight, ph.fontSize, ph.fontFamily].join(' '); ejemplo = cv.measureText(e.placeholder).width; }
+        /* la fila: ni la caja ni sus hermanos (el boton →, enviar…) pasan el borde derecho de la fila, de sus
+           cuatro contenedores ni de la pantalla */
+        const pa = e.parentElement; let sale = 0;
+        for (let a = pa, k = 0; k < 5 && a && a !== document.body; k++, a = a.parentElement) {
+          const ra = a.getBoundingClientRect();
+          for (const h of pa.children) { const rh = h.getBoundingClientRect(); if (rh.width > 0) sale = Math.max(sale, rh.right - ra.right, rh.right - innerWidth); }
+        }
+        const o = { nombre, px: parseFloat(cs.fontSize), hueco: Math.round(hueco), ejemplo: Math.round(ejemplo), ph: e.placeholder || '', sale: Math.round(sale) };
+        if (e.type === 'date') {
+          cv.font = [cs.fontStyle, cs.fontWeight, cs.fontSize, cs.fontFamily].join(' ');
+          let ancha = { w: 0, t: '' };
+          for (const loc of ['es-ES', 'en-US', 'en-GB', 'fr-FR', 'de-DE', 'it-IT', 'nl-NL', 'zh-CN', 'zh-TW', 'bg-BG', 'pl-PL'])
+            for (let m = 0; m < 12; m++) { const t = new Intl.DateTimeFormat(loc, { dateStyle: 'medium' }).format(new Date(2026, m, 28, 12)); const w = cv.measureText(t).width; if (w > ancha.w) ancha = { w, t }; }
+          o.fecha = { w: Math.round(ancha.w), t: ancha.t };
+        }
+        return o;
+      });
+  };
+  /* las pantallas: cada una abre lo suyo en una pagina nueva; la de «Evolucion» y la del cielo pasan por
+     varios pasos y miden en cada uno */
+  const abrirEvolucion = async q => {
+    await q.evaluate(() => abrirPerfil());
+    await q.waitForFunction(() => window.TG_PERFIL && document.getElementById('perfil-panel') && !document.getElementById('perfil-panel').hidden, null, { timeout: 20000 });
+    await q.evaluate(() => TG_PERFIL.pestana('cuerpo'));
+    await q.waitForFunction(() => window.TG_CUERPO && document.querySelector('#tgp-cuerpo-mini svg'), null, { timeout: 30000 });
+    await q.evaluate(() => { if (!TG_CUERPO.abierto()) document.getElementById('tgp-cuerpo-abrir').click(); });
+    await q.waitForFunction(() => TG_CUERPO.abierto() && !document.getElementById('cuerpo-panel').hidden, null, { timeout: 20000 });
+    /* el boton «Evolucion», pulsado desde la pagina: en la pagina con todo abierto, otras ventanas lo tapan */
+    await q.evaluate(() => document.getElementById('tgc-modo-e').click());
+    await q.waitForFunction(() => !document.getElementById('tgc-vista-evolucion').hidden && document.getElementById('tgp-peso-fecha'), null, { timeout: 20000 });
+    await q.waitForTimeout(400);
+    await q.evaluate(() => { const f = document.getElementById('tgp-peso-fecha'); if (f) f.scrollIntoView({ block: 'center' }); });
+  };
+  const cieloPasos = async (q, mide) => {
+    await q.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); });
+    await q.evaluate(() => TG_CIELO.ver('catalogo')); await q.waitForTimeout(400); await mide('cielo, catalogo');
+    /* otra noche, para que salga tambien «Hoy»; y el campo de la fecha a la vista, como donde el navegador no
+       sabe abrir el calendario (showPicker) */
+    await q.evaluate(() => TG_CIELO.ver('noche', '2026-12-13')); await q.waitForTimeout(300); await mide('cielo, la fecha escondida');
+    await q.evaluate(() => document.querySelector('.cielo-fecha-input').classList.add('visto')); await q.waitForTimeout(150); await mide('cielo, la fecha a la vista');
+    await q.evaluate(() => document.querySelector('.cielo-fecha-input').classList.remove('visto'));   // que no se mida otra vez debajo de la vista
+    await q.evaluate(() => TG_CIELO.vista({})); await q.waitForTimeout(500);
+    await q.evaluate(() => { const bt = [...document.querySelectorAll('#cielo-vista button')].find(x => x.textContent.trim() === '🔍'); if (bt) bt.click(); });
+    await q.waitForTimeout(300); await mide('cielo, «Apunta al cielo»');
+  };
+  const PANTALLAS = {
+    mapa: q => q.evaluate(() => openSearch({ stopPropagation() {}, preventDefault() {}, target: document.getElementById('search-input-wrap') })),
+    ruta: q => q.evaluate(() => { openRoutePanel(); switchRouteTab('ab'); }),
+    guagua: q => q.evaluate(() => toggleBusPanel()),
+    asistente: q => q.evaluate(() => openChatPanel()),
+    cuenta: q => q.evaluate(() => (window.openAuthModal || openAuthModal)()),
+    evolucion: abrirEvolucion,
+  };
+  const paginaCaja = async (w, L, errC) => {
+    const ctx = await b.newContext({ viewport: { width: w, height: 780 }, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
+    await ctx.route('**/*', r => { let h = ''; try { h = new URL(r.request().url()).host; } catch (e) {} return h === '127.0.0.1:' + puerto ? r.continue() : r.abort(); });
+    await ctx.addInitScript(l => { try {
+      localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tenerife.welcome.seen', '1'); localStorage.setItem('tenerife.cuerpo.3d', 'no');
+      localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); localStorage.setItem('tg_lang', l);
+    } catch (e) {} window.TG_CUERPO_SIN_FIESTA = true; }, L);
+    const q = await ctx.newPage();
+    q.on('pageerror', e => errC.push(e.message));
+    await q.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'load', timeout: 60000 });
+    await q.waitForFunction(l => typeof setLang === 'function' && typeof places !== 'undefined' && places.length > 100 && currentLang === l, L, { timeout: 30000 });
+    await q.evaluate(() => document.querySelectorAll('.v19-tour, .v19-tour-prompt, .v19-tour-overlay, #v19-welcome').forEach(e => e.remove()));
+    return { ctx, q };
+  };
+  /* b) todas las cajas, se vean o no */
+  {
+    const errC = [], letra = new Map();
+    let pg = null;
+    try {
+      pg = await paginaCaja(390, 'es', errC);
+      const q = pg.q;
+      const anota = async () => { for (const c of await q.evaluate(cajasDe, true)) letra.set(c.nombre, Math.min(c.px, letra.has(c.nombre) ? letra.get(c.nombre) : 99)); };
+      for (const k of ['mapa', 'ruta', 'guagua', 'asistente', 'cuenta']) { await PANTALLAS[k](q); await q.waitForTimeout(250); await anota(); }
+      await abrirEvolucion(q); await anota();
+      await cieloPasos(q, anota);
+      const peq = [...letra].filter(([, px]) => px < 16);
+      peq.forEach(([n, px]) => malCaja.push('letra de ' + px + ' px: ' + n));
+      vistoCaja.push(letra.size + ' cajas, se vean o no');
+    } catch (e) { malCaja.push('todas las cajas: la prueba se cayo: ' + e.message.split('\n')[0]); }
+    finally { if (pg) await pg.ctx.close(); }
+    errC.forEach(x => malCaja.push('todas las cajas: error de pagina: ' + x));
+  }
+  /* c) en los diez idiomas a 320 px (y la fecha, tambien a 375) */
+  {
+    let medidas = 0;
+    const casos = [];
+    for (const L of IDIOMAS) for (const k of [...Object.keys(PANTALLAS), 'cielo']) casos.push([320, L, k]);
+    casos.push([375, 'es', 'evolucion']);
+    for (const [w, L, k] of casos) {
+      const errC = []; let pg = null;
+      try {
+        pg = await paginaCaja(w, L, errC);
+        const q = pg.q;
+        const mide = async donde => {
+          for (const c of await q.evaluate(cajasDe, false)) {
+            medidas++;
+            const d = L + ' a ' + w + ' px, ' + donde + ', ' + c.nombre + ': ';
+            if (c.px < 16) malCaja.push(d + 'letra de ' + c.px + ' px');
+            if (c.ph && c.ejemplo > c.hueco + 0.5) malCaja.push(d + 'el ejemplo «' + c.ph + '» no cabe (' + c.ejemplo + ' px en ' + c.hueco + ')');
+            if (c.sale > 1) malCaja.push(d + 'algo de su fila se sale ' + c.sale + ' px');
+            if (c.fecha && c.fecha.w > c.hueco + 0.5) malCaja.push(d + 'la fecha «' + c.fecha.t + '» no cabe (' + c.fecha.w + ' px en ' + c.hueco + ')');
+          }
+        };
+        if (k === 'cielo') await cieloPasos(q, mide);
+        else { await PANTALLAS[k](q); await q.waitForTimeout(k === 'evolucion' ? 100 : 700); await mide(k); }
+      } catch (e) { malCaja.push(L + ' a ' + w + ' px, ' + k + ': la prueba se cayo: ' + e.message.split('\n')[0]); }
+      finally { if (pg) await pg.ctx.close(); }
+      errC.forEach(x => malCaja.push(L + ' a ' + w + ' px, ' + k + ': error de pagina: ' + x));
+    }
+    vistoCaja.push(medidas + ' cajas a la vista en ' + casos.length + ' pantallas (diez idiomas a 320 px y la fecha a 375)');
+  }
+  if (malCaja.length) {
+    fallos++;
+    console.log('  MAL  las cajas donde se escribe (16 px) y el zoom: ' + malCaja.length + ' fallo(s)');
+    malCaja.slice(0, 14).forEach(x => console.log('           ' + x));
+  } else {
+    console.log('  ok   las cajas donde se escribe, a 16 px, y la pagina se puede ampliar: ' + vistoCaja.join(' · '));
   }
 
   /* El popup en castellano y el de los otros nueve no pueden decir lo MISMO:

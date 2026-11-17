@@ -2227,13 +2227,18 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-add { display: grid; grid-template-columns: 1.1fr 1fr auto; gap: 8px; margin-top: 12px; }
 @media (max-width: 480px) { .tgp-add { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .tgp-add .tgp-btn { grid-column: 1 / -1; } }
 .tgp-add > * { min-width: 0; }
+/* Por debajo de 375 px, la fecha y el peso, uno debajo del otro (nota 48, 4a). Con la letra a 16 px y el
+   formato del iPhone, la fecha más ancha del año, «2026年10月28日» en chino, ocupa 122 px, y al lado del peso le
+   quedaban 99 a 320 px y 119 a 360; desde 375, 127. */
+@media (max-width: 374px) { .tgp-add { grid-template-columns: minmax(0, 1fr); } }
 /* El campo de la fecha, sin el aspecto de serie (3 de noviembre de 2026, con una captura del
    iPhone). Con él, Safari le pone un ancho mínimo suyo, mayor que su columna, y se montaba
    encima del peso: WebKit, RenderThemeIOS::adjustMinimumIntrinsicSizeForAppearance, que con
    appearance: none no se aplica (RenderTheme::adjustStyle sale antes). Sigue abriendo el
    calendario del sistema. Y la fecha, a la izquierda, como el texto de las otras casillas (el
-   iPhone la centra). */
-.tgp-add input[type="date"] { padding-right: 10px; font-size: .92rem; -webkit-appearance: none; appearance: none; align-self: stretch; }
+   iPhone la centra). La letra, a 16 px por lo menos: el iPhone amplía la página al tocar una caja
+   con la letra más pequeña (nota 48, 4a). */
+.tgp-add input[type="date"] { padding-right: 10px; font-size: max(1rem, 16px); -webkit-appearance: none; appearance: none; align-self: stretch; }
 .tgp-add input[type="date"]::-webkit-date-and-time-value { text-align: start; }
 .tgp-log { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 4px; max-height: 150px; overflow: auto; }
 .tgp-log li { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px; font-size: .84rem; padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,0.03); font-variant-numeric: tabular-nums; }
@@ -2285,6 +2290,10 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 /* clases que sustituyen a los style="" del cuerpo */
 .tgp-objetivo-row { margin-top: 14px; }
 .tgp-objetivo-field { flex: 1 1 180px; }
+/* Por debajo de 360 px, el texto de ejemplo de las casillas, algo más pequeño (lo que se escribe sigue a 16,8 px).
+   A 320 px, el del peso objetivo no cabía en italiano ni en polaco («Waga docelowa (opcjonalnie)», 228 px en 200;
+   visto el 17 de noviembre de 2026 con la prueba de las cajas, nota 48, 4a) */
+@media (max-width: 359px) { .tgp-input::placeholder { font-size: .9rem; } }
 .tgp-sellos-titulo { margin-top: 14px; }
 /* borrar los datos del perfil de este dispositivo: confirmación en la propia pantalla (sin confirm()) */
 .tgp-confirm { border: 1px solid rgba(242,140,140,0.45); background: rgba(242,140,140,0.08); border-radius: 12px; padding: 12px; display: grid; gap: 10px; }

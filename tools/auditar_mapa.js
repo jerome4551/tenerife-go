@@ -1245,7 +1245,7 @@ function ok(cond, txt, detalle) {
       const ctx2 = await browser9.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
       const page2 = await ctx2.newPage();
       await page2.setContent(`
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
         <link rel="stylesheet" href="http://127.0.0.1:${PUERTO}/vendor/leaflet.css">
         <style>html,body{margin:0}#m{width:390px;height:788px;margin-top:56px}</style><div id="m"></div>
         <script src="http://127.0.0.1:${PUERTO}/vendor/leaflet.js"><\/script>`, { waitUntil: 'networkidle' });

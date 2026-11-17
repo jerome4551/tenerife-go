@@ -6562,10 +6562,14 @@
 .tgc-hoy-caja { border-radius: 22px; background: var(--oro-f); padding: 16px 18px 14px; display: grid; gap: 10px; }
 .tgc-hoy-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .tgc-hoy-cab h2 { margin: 0; font: 600 24px/1.1 var(--font-display); letter-spacing: -0.2px; }
-.tgc-hoy-zona { position: relative; display: inline-flex; align-items: center; flex: none; max-width: 52%; }
+/* 60 %, y no 52 %: con la letra a 16 px (abajo), a 360 y 390 px caben todas las zonas en los diez idiomas («Puerto de la
+   Cruz» incluida); a 320 px solo se acorta «Puerto de la Cruz», como ya pasaba a 13 px (nota 48, 4a). */
+.tgc-hoy-zona { position: relative; display: inline-flex; align-items: center; flex: none; max-width: 60%; }
+/* Los dos desplegables (la zona de «¿Qué entreno hoy?» y el deporte), a 16 px: desde el 17-11-2026 la app deja
+   ampliar con dos dedos (nota 48, 4a) y el iPhone amplía la página solo al tocar una caja de menos de 16 px. */
 .tgc-hoy-zona select {
   appearance: none; -webkit-appearance: none; max-width: 100%; min-height: 36px; padding: 0 28px 0 12px; border-radius: 999px; border: 1px solid var(--linea);
-  background: var(--tarjeta); color: var(--tinta); font: 600 13px/1 var(--font-body); text-overflow: ellipsis; cursor: pointer;
+  background: var(--tarjeta); color: var(--tinta); font: 600 16px/1 var(--font-body); text-overflow: ellipsis; cursor: pointer;
 }
 .tgc-hoy-zona svg { position: absolute; right: 10px; pointer-events: none; color: var(--tinta-2); }
 .tgc-hoy-chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -7199,7 +7203,7 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 .tgc-dep-sel { position: relative; display: inline-flex; align-items: center; min-width: 0; max-width: 100%; }
 .tgc-dep-sel select {
   -webkit-appearance: none; appearance: none; min-height: 44px; max-width: 100%; padding: 0 38px 0 14px; border-radius: 12px;
-  border: 1.5px solid var(--linea); background: var(--fondo); color: var(--tinta); font: 600 14px/1.2 var(--font-body);
+  border: 1.5px solid var(--linea); background: var(--fondo); color: var(--tinta); font: 600 16px/1.2 var(--font-body);
   cursor: pointer; text-overflow: ellipsis; transition: border-color var(--t-fast) var(--ease-out);
 }
 .tgc-dep-sel select:hover { border-color: var(--tinta); }

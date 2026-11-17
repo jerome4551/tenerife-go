@@ -4070,7 +4070,9 @@
     if (!si) { b.hidden = true; return; }
     b.textContent = '';
     var cab = el('div', 'cv-busqueda-cab');
-    var inp = el('input'); inp.type = 'search'; inp.placeholder = T('BuscarQue'); inp.setAttribute('aria-label', T('BuscarQue'));
+    /* el ejemplo, el corto del catálogo («Buscar: Orión, M42, Vega…»): el largo («¿Qué quiere encontrar? Júpiter, Vega,
+       Orión, M31…») no cabía en ningún idioma a 320 px (nota 48, 4a); el nombre para el lector de pantalla, el largo */
+    var inp = el('input'); inp.type = 'search'; inp.placeholder = T('Buscar'); inp.setAttribute('aria-label', T('BuscarQue'));
     cab.appendChild(inp);
     cab.appendChild(botonMapa('✕', null, function () { buscar(false); }, cerrarTxt(), 'cv-btn'));
     b.appendChild(cab);
