@@ -746,11 +746,33 @@
       }
     }, this);
   };
-  /* ── algo blando: una toalla doblada. o: { en: [x, y, z] (su centro), rumbo, cabeceo, med: [ancho, alto, largo] } ── */
-  MATERIAL.toalla = function (esc, o) { this.o = o || {}; this.c = new Caja(['#f4f1ea', '#e2ddd0', '#cfc8b6', '#cfc8b6']); this.antes = true; };
+  /* ── algo blando: una toalla doblada. o: { en: [x, y, z] (su centro), rumbo, cabeceo, med: [ancho, alto, largo] }
+     Con rollo: [largo, radio], enrollada: un rulo tumbado a lo ancho (con «rumbo»), para ponerlo bajo una rodilla. Sobre la arena una
+     toalla clara apenas se ve: el rulo lleva su contorno y una franja de color cerca de cada punta, como las toallas de playa ── */
+  MATERIAL.toalla = function (esc, o) {
+    this.o = o || {}; this.antes = true;
+    if (!this.o.rollo) { this.c = new Caja(['#f4f1ea', '#e2ddd0', '#cfc8b6', '#cfc8b6']); return; }
+    this.g = crear('g');
+    this.k = trazo('', '#a89f8a'); this.a = trazo('', TOALLA[0]);
+    this.f = [0, 1].map(function () { return crear('path', { fill: 'none', stroke: M_COL.agua, 'stroke-linecap': 'butt' }); });
+    this.b = trazo('', 'rgba(255,255,255,.6)');
+    [this.k, this.a].concat(this.f, [this.b]).forEach(function (e) { this.g.appendChild(e); }, this);
+  };
   MATERIAL.toalla.prototype.colocar = function () {};
   MATERIAL.toalla.prototype.pintar = function (E, cam, lista) {
     var o = this.o;
+    if (this.g) {
+      var R = o.rollo[1], L = o.rollo[0] / 2 - R, e = aplicar(giroY(o.rumbo || 0), [1, 0, 0]), en = function (x) { return cam.p(mas(o.en, por(e, x))); };
+      var p = en(-L), q = en(L), w = 2 * R * cam.esc;
+      ponLinea(this.k, p, q, w + 1.8); ponLinea(this.a, p, q, w);
+      this.f.forEach(function (f, i) { var sg = i ? 1 : -1; ponLinea(f, en(sg * (L - 1.2)), en(sg * (L - 4.6)), w); });
+      /* el brillo, corrido hacia arriba */
+      var dx = q[0] - p[0], dy = q[1] - p[1], l = Math.sqrt(dx * dx + dy * dy) || 1, nx = -dy / l, ny = dx / l;
+      if (ny > 0) { nx = -nx; ny = -ny; }
+      ponLinea(this.b, [p[0] + nx * w * 0.22, p[1] + ny * w * 0.22], [q[0] + nx * w * 0.22, q[1] + ny * w * 0.22], Math.max(0.6, w * 0.2));
+      lista.push({ z: (p[2] + q[2]) / 2 + (o.sesgo == null ? -13 : o.sesgo), el: this.g });
+      return;
+    }
     this.c.pon(cam, o.en, componer(giroY(o.rumbo || 0), giroX(o.cabeceo || 0)), o.med || [26, 3, 14], lista, o.sesgo == null ? -13 : o.sesgo, 'fondo');
   };
   /* ── la banda elástica: de un punto a la mano (o de un pie a su mano, o de una mano a la otra). o: { de: 'pies' | [x,y,z] | 'i', a: 'manos' | 'i' | 'd' } ── */

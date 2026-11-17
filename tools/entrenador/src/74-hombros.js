@@ -448,14 +448,7 @@
     })();
 
     /* ══════════ los rotadores ══════════ */
-    /* tumbado de lado, la pierna de abajo descansa en el suelo: si su zapatilla (que es más ancha que el tobillo) se hunde, el tobillo
-       sube lo justo; la rodilla sigue donde estaba */
-    function pieSobreSuelo(P, k) {
-      var E = resolver(P), bajo = bajoZapa(E[k], k), c = {};
-      if (bajo > -0.5) return P;
-      c['p' + k] = { a: [E[k].tob[0], E[k].tob[1] - bajo - 0.3, E[k].tob[2]], polo: menos(E[k].rod, E[k].cad) };
-      return sobre(P, c);
-    }
+    /* tumbado de lado, la pierna de abajo descansa en el suelo sin hundir la zapatilla: pieSobreSuelo, en 70-coreografias.js */
     /* tumbado de lado (sobre el derecho, de cara a la cámara), con una mancuerna ligera en la mano de arriba y el codo a 90 grados, pegado
        al costado: gira el hombro y la mano sube hacia arriba y hacia fuera, sin despegar el codo; y baja despacio. El paso 2 (una toalla
        entre el codo y el costado, «si lo desea») lo dice de cerca */

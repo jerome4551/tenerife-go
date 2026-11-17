@@ -193,6 +193,51 @@
     return { a: mas(C, por([dx, k * d[1] / l, k * d[2] / l], D.antebrazo)), polo: menos(C, resolver(P).i.hom) };
   }
 
+  /* ══════════ más ayudas para cualquier bloque (nacieron en el 8, con el antebrazo y la pantorrilla; el 9 las subió aquí) ══════════ */
+  /* ── la mano, dicha en el mundo ──
+     manoHacia(P, k, dir, palma, tipo): la mano del lado k ('i', 'd') de la postura P con los dedos hacia «dir» y la palma mirando a «palma»
+     (dos direcciones del mundo): devuelve el giro del antebrazo (prono), lo que se dobla la muñeca (mun) y lo que se ladea (lat) que
+     hacen falta con el brazo tal como queda en P. cerca: un prono de referencia, para que de una postura a otra no dé la vuelta entera */
+  function manoHacia(P, k, dir, palma, tipo, cerca) {
+    var E = resolver(P), L = E[k], s = k === 'i' ? 1 : -1, lw = L.lw, bis = cruz(L.uw, lw);
+    if (largo(bis) < 0.05) bis = cruz(L.uw, E.S.b[k].b ? aplicar(E.Bt, E.S.b[k].b) : [0, 0, 1]);
+    var palma0 = por(unidad(bis, [1, 0, 0]), s), pd = unidad(palma), dd = unidad(sinParte(dir, pd));
+    var sm = entre(-punto(pd, lw), -1, 1), m = Math.asin(sm), cm = Math.cos(m);
+    var d1 = cm > 0.05 ? unidad(mas(lw, por(pd, sm))) : dd;
+    var pp = unidad(mas(por(d1, sm), por(pd, cm)));                /* la palma, antes de doblar la muñeca */
+    var lat = Math.atan2(punto(cruz(d1, dd), pd), punto(d1, dd)) / RAD;
+    var pr = Math.atan2(punto(cruz(palma0, pp), lw), punto(palma0, pp)) / RAD * s;
+    if (cerca != null) { while (pr - cerca > 180) pr -= 360; while (pr - cerca < -180) pr += 360; }
+    return { tipo: tipo || 'abierta', prono: pr, mun: m / RAD, lat: lat };
+  }
+  /* de puntillas: el pie gira sobre su bola, el tobillo sube y se adelanta, y la cadera va con él (la pierna sigue como estaba).
+     deTalon(g): cuánto se adelanta el tobillo y cuánto sube con el talón levantado g grados (negativo: por debajo del apoyo) */
+  function deTalon(g) { var t = g * RAD; return [D.bola - D.bola * Math.cos(t) + D.tobillo * Math.sin(t), D.bola * Math.sin(t) + D.tobillo * Math.cos(t) - D.tobillo]; }
+  /* entre el pie en el suelo y el pie recogido: apoyado solo en la punta, con el talón ya arriba (así se despega y se posa por la punta);
+     y, a medio camino (enPunta(x, 28): el talón, a la mitad), para que el pie ruede sobre la punta en vez de atravesar el suelo */
+  function enPunta(x, talon) { return { suelo: [x, 0], abre: 5, talon: talon || 56 }; }
+  /* un punto sobre el muslo izquierdo de la postura P: a «s» cm de la cadera por su eje y «h» por encima de él */
+  function puntoEnMuslo(P, s, h, k) { var L = resolver(P)[k || 'i'], u = unidad(menos(L.rod, L.cad)), n = unidad(sinParte([0, 1, 0], u)); return mas(L.cad, mas(por(u, s), por(n, h))); }
+  /* enSuMuslo: la mano que descansa sobre el muslo de su lado (k: 'i' o 'd'), con la palma hacia abajo: la muñeca, a 21 cm de la cadera por el muslo
+     (pasado el bajo del pantalón) y 12 por encima de su eje, que es su cara de arriba más medio grueso de muñeca; la mano sigue la caída
+     del muslo hacia la rodilla (unos 11°). Se coloca sobre el muslo tal como queda en P: si la rodilla sube, la mano sube con ella */
+  function enSuMuslo(P, k) {
+    var L = resolver(P)[k], sg = k === 'i' ? 1 : -1, u = unidad(menos(L.rod, L.cad)), n = unidad(sinParte([0, 1, 0], u)), c = {};
+    c['b' + k] = { a: mas(L.cad, mas(por(u, 21), por(n, 12))), polo: [0.55 * sg, -0.1, -1] };
+    var Q = sobre(P, c), m = {};
+    m['m' + k] = manoHacia(Q, k, mas(mas(por(u, 0.94), por(n, -0.2)), [-0.27 * sg, 0, 0]), mas(mas(por(n, -0.95), por(u, -0.2)), [0.3 * sg, 0, 0]), 'plana');
+    return sobre(Q, m);
+  }
+  function enSusMuslos(P) { return enSuMuslo(enSuMuslo(P, 'i'), 'd'); }
+  /* tumbado de lado, la pierna de abajo descansa en el suelo: si su zapatilla (que es más ancha que el tobillo) se hunde, el tobillo
+     sube lo justo; la rodilla sigue donde estaba. (Nació en el bloque 5, con los rotadores del hombro; el 9 la subió aquí) */
+  function pieSobreSuelo(P, k) {
+    var E = resolver(P), bajo = bajoZapa(E[k], k), c = {};
+    if (bajo > -0.5) return P;
+    c['p' + k] = { a: [E[k].tob[0], E[k].tob[1] - bajo - 0.3, E[k].tob[2]], polo: menos(E[k].rod, E[k].cad) };
+    return sobre(P, c);
+  }
+
   /* ══════════ CUÁDRICEPS ══════════ */
   (function () {
     var pies = { suelo: [14, 0], abre: 14, polo: [0.32, 0.1, 1] };

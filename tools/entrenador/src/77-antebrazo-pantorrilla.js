@@ -10,22 +10,6 @@
      (talon) o, para el tibial, sobre el talón (enTalon). */
   (function () {
     var T2 = ['ti', 'td'];
-    /* ── la mano, dicha en el mundo ──
-       manoA(P, k, dir, palma, tipo): la mano del lado k ('i', 'd') de la postura P con los dedos hacia «dir» y la palma mirando a «palma»
-       (dos direcciones del mundo): devuelve el giro del antebrazo (prono), lo que se dobla la muñeca (mun) y lo que se ladea (lat) que
-       hacen falta con el brazo tal como queda en P. cerca: un prono de referencia, para que de una postura a otra no dé la vuelta entera */
-    function manoA(P, k, dir, palma, tipo, cerca) {
-      var E = resolver(P), L = E[k], s = k === 'i' ? 1 : -1, lw = L.lw, bis = cruz(L.uw, lw);
-      if (largo(bis) < 0.05) bis = cruz(L.uw, E.S.b[k].b ? aplicar(E.Bt, E.S.b[k].b) : [0, 0, 1]);
-      var palma0 = por(unidad(bis, [1, 0, 0]), s), pd = unidad(palma), dd = unidad(sinParte(dir, pd));
-      var sm = entre(-punto(pd, lw), -1, 1), m = Math.asin(sm), cm = Math.cos(m);
-      var d1 = cm > 0.05 ? unidad(mas(lw, por(pd, sm))) : dd;
-      var pp = unidad(mas(por(d1, sm), por(pd, cm)));                /* la palma, antes de doblar la muñeca */
-      var lat = Math.atan2(punto(cruz(d1, dd), pd), punto(d1, dd)) / RAD;
-      var pr = Math.atan2(punto(cruz(palma0, pp), lw), punto(palma0, pp)) / RAD * s;
-      if (cerca != null) { while (pr - cerca > 180) pr -= 360; while (pr - cerca < -180) pr += 360; }
-      return { tipo: tipo || 'abierta', prono: pr, mun: m / RAD, lat: lat };
-    }
     /* la misma mano, con otra muñeca */
     function con(m, cambios) { return une(m, cambios); }
 
@@ -309,13 +293,13 @@
        En plancha alta, con las manos bajo los hombros y los dedos bien separados; levanta las palmas poco a poco hasta apoyarse solo en las
        yemas y los pulgares (la mano, en tienda: la muñeca sube de 3 a 10 cm del suelo y el cuerpo con ella); y, con el cuerpo recto,
        baja el pecho doblando los codos y empuja para subir. Las manos no se mueven del suelo: en cada postura se les da el giro que haga
-       falta para que sigan igual (manoA) */
+       falta para que sigan igual (manoHacia) */
     COREO['flexiones-yemas-dedos'] = (function () {
       var polo = [0.55, 0.25, -1], W0 = [19, 3, 13.3], W1 = [19, 10, 12.4];
       var sen = function (g) { return Math.sin(g * RAD); }, cos = function (g) { return Math.cos(g * RAD); };
       var mano = function (P, tipo, cae) {
         var d = [0, -sen(cae), cos(cae)], q = [0, -cos(cae), -sen(cae)];
-        return sobre(P, { mi: manoA(P, 'i', d, q, tipo), md: manoA(P, 'd', d, q, tipo) });
+        return sobre(P, { mi: manoHacia(P, 'i', d, q, tipo), md: manoHacia(P, 'd', d, q, tipo) });
       };
       var tab = function (w, extra) { return function (x) { return tabla(x, sobre({ b: { a: w, polo: polo } }, extra || {})); }; };
       var p0 = mano(aUnBrazo(tab(W0), W0, 8, 34), 'separados', 0.5), a = mano(aUnBrazo(tab(W1), W1, 8, 34), 'yemas', 10);
@@ -350,7 +334,7 @@
              atravesarla y seguir su propio antebrazo */
           dirD = unidad(mas(dirD, por(unidad(sinParte(resolver(Pd).d.lw, palD)), 0.6)));
           Pd = sobre(P, { bd: { a: menos(g, por(dirD, D.mano)), polo: [-0.5, -1, 0.2] } });
-          return sobre(Pd, { md: manoA(Pd, 'd', dirD, palD, 'suelta') });
+          return sobre(Pd, { md: manoHacia(Pd, 'd', dirD, palD, 'suelta') });
         };
         return { a: sobre(brazo(libre), { mi: mano(0) }), c: coge(0), b: coge(o.mun) };
       };
@@ -387,7 +371,7 @@
         var C = [h[0] + fuera, h[1] - Math.sqrt(D.brazo * D.brazo - (ZM - h[2]) * (ZM - h[2]) - fuera * fuera), ZM], dx = C[0] - XM;
         var W = [XM, C[1] + sube * Math.sqrt(D.antebrazo * D.antebrazo - dx * dx), ZM];
         var P = sobre(DE_PIE_E, { b: { a: W, polo: menos(C, h) } }), arriba = [0, 1, 0];
-        return sobre(P, { mi: manoA(P, 'i', arriba, [-1, 0, 0], 'plana'), md: manoA(P, 'd', arriba, [1, 0, 0], 'plana') });
+        return sobre(P, { mi: manoHacia(P, 'i', arriba, [-1, 0, 0], 'plana'), md: manoHacia(P, 'd', arriba, [1, 0, 0], 'plana') });
       };
       return {
         vista: [[24, 12], [78, 12]], isometrico: 'b', clavos: T2,
@@ -399,18 +383,12 @@
 
     /* ══════════════════════════════ LA PANTORRILLA ══════════════════════════════ */
 
-    /* de puntillas: el pie gira sobre su bola, el tobillo sube y se adelanta, y la cadera va con él (la pierna sigue como estaba).
-       deTalon(g): cuánto se adelanta el tobillo y cuánto sube con el talón levantado g grados (negativo: por debajo del apoyo) */
-    function deTalon(g) { var t = g * RAD; return [D.bola - D.bola * Math.cos(t) + D.tobillo * Math.sin(t), D.bola * Math.sin(t) + D.tobillo * Math.cos(t) - D.tobillo]; }
     /* las manos en la pared de delante, a la altura del pecho, apoyadas de plano y con los dedos hacia arriba (70-coreografias.js,
        PLANA_PARED): la muñeca, en z = 43,5, y la cara de la pared, a ALTO_MUN de ella */
     var PARED = ['pared', { z: 43.5 + ALTO_MUN, normal: [0, 0, -1], ancho: 130 }], EN_PARED = { a: [17, 120, 43.5], polo: [0.7, -1, -0.5] }, M_PARED = PLANA_PARED;
     var MI_MD = ['mi', 'md'], K_I = ['mi', 'md', 'ti'], K_D = ['mi', 'md', 'td'], K_2 = ['mi', 'md', 'ti', 'td'];
     /* la pierna que no apoya: la rodilla doblada y el pie atrás, en el aire */
     var RECOGIDA = { e: 12, z: 0, c: 76 }, PIE_SUELTO = { tob: 22 };
-    /* entre el pie en el suelo y el pie recogido: apoyado solo en la punta, con el talón ya arriba (así se despega y se posa por la punta);
-       y, a medio camino (enPunta(x, 28): el talón, a la mitad), para que el pie ruede sobre la punta en vez de atravesar el suelo */
-    function enPunta(x, talon) { return { suelo: [x, 0], abre: 5, talon: talon || 56 }; }
 
     /* ══════════ de pie: elevaciones de talón ══════════ */
     var SUBE = 44;        /* «todo lo que pueda» */
@@ -527,26 +505,13 @@
     var BANCO_BAJO = ['banco', { en: [0, -20], largo: 96, alto: 35 }], Y_BAJO = D.tobillo + D.pierna;
     function sentadoBajo(inc, extra) { return sobre({ pel: [0, Y_BAJO, 0], giro: [0, inc, 0], cab: [-inc * 0.5, 0, 0] }, extra || {}); }
     function pieBajo(x, talon) { return { suelo: [x, D.muslo], abre: 5, talon: talon || 0, polo: [0.1, 1, 0.4] }; }
-    /* un punto sobre el muslo izquierdo de la postura P: a «s» cm de la cadera por su eje y «h» por encima de él */
-    function sobreMuslo(P, s, h, k) { var L = resolver(P)[k || 'i'], u = unidad(menos(L.rod, L.cad)), n = unidad(sinParte([0, 1, 0], u)); return mas(L.cad, mas(por(u, s), por(n, h))); }
-    /* la mano que descansa sobre el muslo de su lado (k: 'i' o 'd'), con la palma hacia abajo: la muñeca, a 21 cm de la cadera por el muslo
-       (pasado el bajo del pantalón) y 12 por encima de su eje, que es su cara de arriba más medio grueso de muñeca; la mano sigue la caída
-       del muslo hacia la rodilla (unos 11°). Se coloca sobre el muslo tal como queda en P: si la rodilla sube, la mano sube con ella */
-    function manoEnMuslo(P, k) {
-      var L = resolver(P)[k], sg = k === 'i' ? 1 : -1, u = unidad(menos(L.rod, L.cad)), n = unidad(sinParte([0, 1, 0], u)), c = {};
-      c['b' + k] = { a: mas(L.cad, mas(por(u, 21), por(n, 12))), polo: [0.55 * sg, -0.1, -1] };
-      var Q = sobre(P, c), m = {};
-      m['m' + k] = manoA(Q, k, mas(mas(por(u, 0.94), por(n, -0.2)), [-0.27 * sg, 0, 0]), mas(mas(por(n, -0.95), por(u, -0.2)), [0.3 * sg, 0, 0]), 'plana');
-      return sobre(Q, m);
-    }
-    function manosEnMuslos(P) { return manoEnMuslo(manoEnMuslo(P, 'i'), 'd'); }
 
     /* con barra: un bloque delante del banco y la barra apoyada sobre los muslos (las manos la sujetan encima); apoya la parte delantera de
        los pies en el bloque; y sube y baja los talones despacio todo lo que puede, sin que los pies se separen del bloque */
     COREO['elevacion-talones-sentado-barra'] = (function () {
       var G = 27, mano = { tipo: 'puno', barra: [1, 0, 0], palma: [0, -1, 0] };
       var con2 = function (piernas) {
-        var P = sentadoEn(10, sobre(piernas, { m: mano })), c = sobreMuslo(P, 31, 9.4);
+        var P = sentadoEn(10, sobre(piernas, { m: mano })), c = puntoEnMuslo(P, 31, 9.4);
         return conAgarre(P, [G, c[1], c[2]], [1, 0.2, -0.8]);
       };
       var s = con2({ p: pieEnSuelo(12, 28) }), f1 = con2({ pi: pieEnBloque(12, 0), pd: reflejo(pieEnSuelo(12, 28)) }), n = con2({ p: pieEnBloque(12, 0) });
@@ -562,9 +527,9 @@
     /* con mancuernas: la parte delantera de los pies, en el borde de un escalón bajo; coloca las mancuernas de pie sobre las rodillas (hasta
        entonces las lleva en las manos, a los lados) y sube los talones tanto como le resulte cómodo; una pausa, y baja despacio */
     var DE_PIE_EN_MANO = { tipo: 'puno', barra: [0, 1, 0], palma: [-1, 0, 0] };      /* la mano que sujeta una mancuerna puesta de pie */
-    function mancuernaEnRodilla(P, k, polo) { var c = sobreMuslo(P, 33, 7.2 + 13.2, k === 'bd' ? 'd' : 'i'); return conAgarre(P, c, polo || [k === 'bd' ? -1 : 1, -0.6, -0.8], k); }
+    function mancuernaEnRodilla(P, k, polo) { var c = puntoEnMuslo(P, 33, 7.2 + 13.2, k === 'bd' ? 'd' : 'i'); return conAgarre(P, c, polo || [k === 'bd' ? -1 : 1, -0.6, -0.8], k); }
     COREO['elevacion-talones-sentado-mancuernas'] = (function () {
-      var en = function (talon) { var P = sentadoEn(12, { p: pieEnBloque(12, talon), m: DE_PIE_EN_MANO }), c = sobreMuslo(P, 33, 7.2 + 13.2); return conAgarre(P, c, [1, -0.6, -0.8]); };
+      var en = function (talon) { var P = sentadoEn(12, { p: pieEnBloque(12, talon), m: DE_PIE_EN_MANO }), c = puntoEnMuslo(P, 33, 7.2 + 13.2); return conAgarre(P, c, [1, -0.6, -0.8]); };
       return {
         vista: [[66, 10], [24, 16]], rastro: 'tli', esfuerzo: [3], clavos: T2,
         material: [BANCO_DETRAS, ['escalon', { med: [80, BLOQUE, 30], en: [0, Z_TOB + 12 - 3 + 15] }], ['mancuernas']],
@@ -580,7 +545,7 @@
       /* la mano que no lleva la mancuerna descansa en su muslo; del otro lado se vuelve a colocar (no se refleja: el ladeo de la muñeca
          no es el mismo número en una mano que en la otra) */
       var con1 = function (talon) { return mancuernaEnRodilla(sentadoEn(10, { pi: pieEnBloque(12, talon), pd: reflejo(pieEnSuelo(13, 27)), mi: DE_PIE_EN_MANO }), 'bi'); };
-      var en = function (talon) { return manoEnMuslo(con1(talon), 'd'); }, alReves = function (talon) { return manoEnMuslo(refleja(con1(talon)), 'i'); };
+      var en = function (talon) { return enSuMuslo(con1(talon), 'd'); }, alReves = function (talon) { return enSuMuslo(refleja(con1(talon)), 'i'); };
       var s = en(0), a = en(-15), b = en(34);
       /* el cambio: los dos pies en el suelo y la mancuerna en el centro, por encima de los muslos; primero la tiene la izquierda (x) y, en
          el mismo sitio, la coge la derecha (x2) */
@@ -598,10 +563,10 @@
     /* sin peso: sentado, con las rodillas en ángulo recto y los pies en el suelo; sube los talones cargando el peso sobre la base de los
        dedos gordos y los baja, a un ritmo cómodo; para aumentar la carga, apoya los codos en las rodillas y empuja hacia abajo */
     COREO['elevacion-talones-sentado'] = (function () {
-      var en = function (talon) { return manosEnMuslos(sentadoBajo(4, { p: pieBajo(12, talon) })); };          /* las manos, sobre los muslos */
+      var en = function (talon) { return enSusMuslos(sentadoBajo(4, { p: pieBajo(12, talon) })); };          /* las manos, sobre los muslos */
       /* los codos, sobre los muslos junto a las rodillas (el codo, a 11,7 del eje del muslo): el tronco se inclina lo justo (se busca) */
       var conCodos = function (talon) {
-        var piernas = { p: pieBajo(12, talon), m: SUELTA }, C = sobreMuslo(sentadoBajo(0, piernas), 35, 11.7);
+        var piernas = { p: pieBajo(12, talon), m: SUELTA }, C = puntoEnMuslo(sentadoBajo(0, piernas), 35, 11.7);
         var inc = busca(function (g) { return largo(menos(resolver(sentadoBajo(g, piernas)).i.hom, C)); }, D.brazo, 10, 75), P = sentadoBajo(inc, sobre(piernas, { cab: [-inc * 0.6, 0, 0] }));
         return sobre(P, { b: flexion(P, C, 62, [-0.45, -0.25, 1]) });
       };
@@ -647,7 +612,7 @@
       return {
         vista: [[68, 10], [24, 16]], rastro: 'dpi', esfuerzo: [0], clavos: T2,
         material: [BANCO_BAJO],
-        posturas: { a: manosEnMuslos(sobre(base, { p: pieBajo(12) })), b: manosEnMuslos(sobre(base, piesEnTalon(12, D.muslo, 17, 5, polo))) },
+        posturas: { a: enSusMuslos(sobre(base, { p: pieBajo(12) })), b: enSusMuslos(sobre(base, piesEnTalon(12, D.muslo, 17, 5, polo))) },
         rep: [['b', 0.24, 'sale'], ['a', 0.24, 'entra'], ['a', 0.08]],
         pasos: ['a', 'rep']
       };

@@ -24,7 +24,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/50-material.js` | barra (y la barra Z), mancuernas, pesa rusa, banco, banco predicador, soporte, barra de dominadas, escalón, pared, polea, toallas… |
 | `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
 | `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los avisos, el encuadre; y los gestos del presentador |
-| `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos; y las de cualquier bloque: `conAgarre`, `estirado`, `inclinado`, `colgando`, `anteTronco`, `cuelga`/`activo`, `barraD`…) |
+| `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos; y las de cualquier bloque: `conAgarre`, `estirado`, `inclinado`, `colgando`, `anteTronco`, `cuelga`/`activo`, `barraD`, `manoHacia`, `deTalon`, `enPunta`, `enSuMuslo`, `pieSobreSuelo`…) |
 | `src/71-pecho.js` | las coreografías del bloque 2: **pecho** (35), por familias (tumbado en un banco, las poleas, las flexiones, los fondos, los estiramientos) |
 | `src/72-dorsal.js` | las coreografías del bloque 3: **dorsal** (35), por familias (colgado de la barra, el front lever, los jalones, los remos, la polea a una mano, los estiramientos) |
 | `src/73-espalda-alta.js` | las coreografías del bloque 4: **espalda alta** (30), por familias (los encogimientos, el remo sentado en polea, los remos libres, los omóplatos, tumbado boca abajo, los estiramientos del cuello) |
@@ -32,6 +32,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/75-biceps.js` | las coreografías del bloque 6: **bíceps** (36), por familias (de pie con barra, con mancuernas y con pesa rusa; en un banco; el banco predicador y la araña; las poleas; la barra fija; el estiramiento) |
 | `src/76-triceps.js` | las coreografías del bloque 7: **tríceps** (37), por familias (tumbado: el press francés y sus variantes; por encima de la cabeza; las patadas; las poleas; los press en banco; los fondos y las flexiones; el estiramiento) |
 | `src/77-antebrazo-pantorrilla.js` | las coreografías del bloque 8: **antebrazo** (16) y **pantorrilla** (19), por familias (los curls de muñeca; la muñeca, de pie; los paseos con carga; la dominada con toallas; las flexiones sobre las yemas; los estiramientos de la muñeca · las elevaciones de talón de pie, en escalón, con barra y sentado; el tibial; los saltos; los estiramientos) |
+| `src/78-cuadriceps.js` | las coreografías del bloque 9: **cuádriceps** (31), por familias (las sentadillas sobre los dos pies: con mancuernas, con barra, con apoyo, en la pared, la hindú; sentarse y levantarse; los escalones; a una pierna; de rodillas; en el suelo; los estiramientos de pie y tumbado de lado; los saltos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía (todas; al motor van las del bloque 1 y a cada trozo, las suyas) |
@@ -120,7 +121,7 @@ Con `bi`/`bd`, `mi`/`md`, `pi`/`pd`, `ti`/`td` se da cada lado por separado.
 | `m: { tipo, prono, mun, lat }` | la mano: `puno`, `abierta`, `plana`, `suelta`, `indice`, `pulgar`, `separados` (abierta, con los dedos bien separados) y `yemas` (esa misma en tienda: apoyada solo en las yemas y el pulgar, o en garra sobre algo ancho); un gesto pasa a otro poco a poco: los dedos se cierran, no saltan. `prono` 90 palma abajo o atrás, −90 arriba o adelante; `mun`, cuánto se dobla la muñeca (+ hacia la palma, − hacia el dorso); `lat`, cuánto se ladea (+ hacia el pulgar en la mano izquierda; no se refleja en la derecha) |
 | `m: { tipo, barra: [x, y, z], palma: [x, y, z] }` | la mano que **agarra algo**: se dice, en el mundo, a lo largo de qué va lo que agarra (`barra`) y hacia dónde mira la palma (`palma`; con `barra`, solo de qué lado queda), y el antebrazo gira lo que haga falta, esté el codo donde esté. `EN_BARRA` (la palma hacia delante: una dominada, un press tumbado), `EN_BARRA_SUP` (hacia él). Con `prono` solo, el puño gira con el codo y acaba atravesado en la barra |
 | `m: { tipo, palma: [x, y, z], dedos: [x, y, z] }` | la mano que **se apoya de plano** en algo: se dice, en el mundo, hacia dónde mira la palma y hacia dónde van los dedos, y la mano se queda así haga lo que haga el antebrazo (sin `dedos`, los dedos siguen la línea del antebrazo y la mano se inclina con él: las yemas se hunden o el talón de la mano se levanta). `apoyada(dedos, palma, tipo)` la escribe; `EN_SUELO` (la palma abajo, los dedos al frente) y `PLANA_PARED` (la palma hacia la pared de delante, los dedos arriba). La muñeca de una mano apoyada va a **`ALTO_MUN` (2,7 cm)** de su superficie; de canto (el meñique abajo), a `ALTO_CANTO` (5,1) |
-| `p: { suelo: [x, z], abre, talon, alto, polo }` | el pie plantado: dónde cae el tobillo, cuánto apunta hacia fuera, cuánto sube el talón, sobre qué altura pisa |
+| `p: { suelo: [x, z], abre, talon, alto, polo }` | el pie plantado: dónde cae el tobillo, cuánto apunta hacia fuera (`abre`, positivo hacia fuera **también en el pie derecho**: `pd: { suelo: [-10, 0], abre: 4 }`), cuánto sube el talón, sobre qué altura pisa |
 | `p: { a: [x, y, z], polo }` · `p: { e, z, g, c }` | la pierna por destino del tobillo, o por ángulos (colgado, tumbado) |
 | `t: { punta, arriba, flex }` · `t: { tob }` | el pie a mano (vectores del mundo; `flex`, cuánto se dobla la zapatilla por la bola del pie) o el ángulo del tobillo |
 
@@ -130,6 +131,11 @@ puntas), `aLosLados(codo)`, `PUNO`, `PRONO`, `SUPINO`, `SUELTA`, `PALMA_ABAJO`, 
 
 La rodilla de un pie plantado se dobla hacia delante de la pelvis; con el tronco muy inclinado (una bisagra de cadera:
 más de 50°) va hacia donde apunta el pie, que es por donde se dobla de verdad. Si hace falta otra cosa, `polo`.
+
+Una pierna dicha por ángulos se dobla hacia atrás de donde se levanta: con `z: 180` (el muslo hacia atrás) la rodilla
+se doblaría al revés. La pierna que queda atrás (el pie que acaba de dejar el suelo, la que se recoge en un salto) se
+dice por su tobillo (`a`), con `polo` hacia delante. Y tumbado de lado con la pierna casi recta, igual: por su tobillo
+y con `polo` hacia el frente del cuerpo; si no, el plano en que se dobla queda al azar y el pie apunta al suelo.
 
 ## Una coreografía
 
@@ -201,6 +207,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 6 | `75-biceps.js` | bíceps: 36 (con los 3 del bloque 1, 39 de 50; quedan 11: 4 con banda, 4 con cinta de suspensión, 1 en máquina, 1 con disco y 1 con fitball) |
 | 7 | `76-triceps.js` | tríceps: 37 (con los 3 del bloque 1, 40 de 47; quedan 7: 2 con cinta de suspensión, 2 con anillas, 1 en multipower, 1 en máquina y 1 con banda) |
 | 8 | `77-antebrazo-pantorrilla.js` | antebrazo: 16 (con el del bloque 1, 17 de 22; quedan 5: 4 con banda y 1 con disco) y pantorrilla: 19 (con los 4 del bloque 1, 23 de 30; quedan 7: 4 en máquina y 3 con banda) |
+| 9 | `78-cuadriceps.js` | cuádriceps: 31 (con los 6 del bloque 1, 37 de 50; quedan 13: 6 en máquina, 2 con disco, 2 con banda (uno, además, con polea), 1 con cinta de suspensión, 1 en multipower y 1 con balón medicinal) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -222,18 +229,23 @@ brazo casi estirado desde el hombro: devuelve el codo, que ya no se mueve, y el 
 cualquier banco: el brazo quieto y el antebrazo que baja hacia la cabeza), `dosManosArriba({…})` (una mancuerna entre las dos
 manos por encima de la cabeza: para subirla, rodea la cabeza), `patada(postura, brazo, antebrazo, lado)`, `empujon({…})` (ante
 la polea alta, con el codo en el costado), `pressCodos({…})` (los press con los codos pegados) y `plana(postura, dedos)` (la
-mano abierta, plana en el suelo o en el banco, llegue el antebrazo como llegue)…; en `77-antebrazo-pantorrilla.js`: `manoA(postura,
-lado, dedos, palma, tipo)` (la mano, dicha en el mundo: hacia dónde van los dedos y hacia dónde mira la palma; devuelve el `prono`, el
-`mun` y el `lat` que hacen falta con el brazo tal como queda), `enMuslos` + `curlMunecaBarra({…})` (sentado, con los antebrazos a lo
+mano abierta, plana en el suelo o en el banco, llegue el antebrazo como llegue)…; en `77-antebrazo-pantorrilla.js`: `enMuslos` + `curlMunecaBarra({…})` (sentado, con los antebrazos a lo
 largo de los muslos y las muñecas pasadas las rodillas), `arrodillado(atrás, cabeceo)` + `anteBanco` (de rodillas ante un banco
 atravesado, con los antebrazos encima y las manos por fuera del borde), `paseo(base)` (andar de verdad: `tramo`, las posturas y la
 secuencia de cuatro pasos; `vuelta`, la media vuelta; `enMarco`, del marco de quien anda al mundo), `aCoger(base, agarre)` (agacharse
-a por lo que espera en el suelo), `estiraMuneca({…})`, `deTalon(grados)` (cuánto se adelanta y sube el tobillo al ponerse de puntillas:
-la cadera va con él), `enPunta(x, talón)` (el pie apoyado solo en la punta: por ahí se despega y se posa), `enBorde(x, talón)` (en el
-borde de un escalón), `pieEnBloque` + `sentadoEn` / `pieBajo` + `sentadoBajo` (sentado con los pies en un bloque, o en un banco bajo con
-los pies en el suelo), `sobreMuslo(postura, s, h)` (un punto sobre el muslo tal como queda: lo que se lleva encima sube y baja con la
-rodilla), `manoEnMuslo(postura, lado)` + `manosEnMuslos` (la mano que descansa en el muslo, plana y sobre su cara de arriba, no
-dentro de él) y `enTalon(lado, [x, z], grados)` + `piesEnTalon` (el pie apoyado solo en el talón, con la punta levantada: el tibial)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+a por lo que espera en el suelo), `estiraMuneca({…})`, `enBorde(x, talón)` (el pie en el borde de un escalón), `pieEnBloque` +
+`sentadoEn` / `pieBajo` + `sentadoBajo` (sentado con los pies en un bloque, o en un banco bajo con los pies en el suelo) y
+`enTalon(lado, [x, z], grados)` + `piesEnTalon` (el pie apoyado solo en el talón, con la punta levantada: el tibial)…; en
+`78-cuadriceps.js`: `agachado(pies, y, z, inclinación, extra)` (en sentadilla sobre los dos pies: la cadera a esa altura y a esa
+distancia por detrás de los tobillos, el tronco inclinado eso y la cabeza mirando al frente), `altoCon(dx)` (lo más alto que puede
+ir la cadera con un tobillo a `dx` de su vertical: de pie con los pies muy abiertos), `abrirPies(posturas, prefijo, base, de, a, fin,
+segundos)` (abrir los pies de uno en uno y por el aire: añade sus posturas y devuelve los tramos), `alAire(grados, caída)` (un pie
+en el aire, girado y con la punta algo caída), `ESPALDA` + `A_LA_BARRA` + `enBarra(n)` (la barra sobre los hombros: el material,
+los brazos y los clavos), `subidaBanco(carga, clavos)` (subir a un banco y bajar, primero una pierna y después la otra, y la
+siguiente vez al revés: las posturas, la repetición y por dónde va el pie para no atravesar el canto), `DE_RODILLAS` + `K_ROD`
+(de rodillas: con `porArco`, la cadera gira sobre las rodillas) y, tumbado de lado con la cabeza en la mano, el codo que se
+apoya donde le toca (a un brazo del hombro y a un antebrazo y una mano de la cabeza) y `medio(lado)` (a medio rodar de un lado
+al otro sobre la espalda: la orientación se da por sus ejes, con `base: baseEjes(…)`)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
 si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
 
 Las ayudas que valen para cualquier bloque están en `70-coreografias.js` (nacieron en el bloque 3 y el 4 las subió
@@ -248,7 +260,16 @@ lo, hi)` (el valor con el que algo mide lo que tiene que medir: cuánto hay que 
 las subió allí); tumbado boca arriba, `bancoDe(grados)` + `tumbadoEn(grados, extra)` (0, plano; 45, inclinado; −15, declinado: las
 mismas medidas que las del bloque 2, que guarda las suyas); y, para el codo que no se mueve, `flexion(postura, codo, grados,
 hacia)` y `flexionG(postura, codo, grados, hacia, G)` (el antebrazo gira sobre un codo fijo; con G, el puño no cambia de sitio
-en su barra) con `dirFlex` y `abre` (nacieron en el bloque 6 y el 7 las subió allí). Lo que se
+en su barra) con `dirFlex` y `abre` (nacieron en el bloque 6 y el 7 las subió allí); la mano dicha en el mundo, `manoHacia(postura, lado,
+dedos, palma, tipo)` (hacia dónde van los dedos y hacia dónde mira la palma: devuelve el `prono`, el `mun` y el `lat` que hacen
+falta con el brazo tal como queda); de puntillas, `deTalon(grados)` (cuánto se adelanta y sube el tobillo: la cadera va con él) y
+`enPunta(x, talón)` (el pie apoyado solo en la punta: por ahí se despega y se posa); sobre un muslo, `puntoEnMuslo(postura, s, h,
+lado)` (un punto sobre el muslo tal como queda: lo que se lleva encima sube y baja con la rodilla) y `enSuMuslo(postura, lado)` +
+`enSusMuslos(postura)` (la mano que descansa en el muslo de su lado, plana y sobre su cara de arriba, no dentro de él) (nacieron en
+el bloque 8, donde se llamaban `manoA`, `sobreMuslo`, `manoEnMuslo` y `manosEnMuslos`, y el 9 las subió allí con nombres que no
+tiene ningún otro trozo: un nombre del motor que aparece en un trozo se importa en él, y su fichero cambia de nombre); y, tumbado
+de lado, `pieSobreSuelo(postura, lado)` (el tobillo de abajo sube lo justo para que la zapatilla, que es más ancha que él, no se
+hunda; nació en el bloque 5 y el 9 la subió allí). Lo que se
 coge más tarde (el agarre de la polea, la barra T en el suelo, unas mancuernas) espera en su sitio: `reposo` en el
 material y en la coreografía. Y si dos cosas se cogen en momentos distintos (el asa de una polea y después la de la
 otra), cada una trae su lista: `reposoEn: ['s', 'g1']`, en su material (espera mientras la postura de la que se sale
@@ -265,6 +286,13 @@ codo) no sabe hacia dónde mira. Por eso con una barra el codo va en la línea d
 el antebrazo tiene que ir hacia dentro (el codo en el costado y las manos juntas en la barra en V de la polea), o el brazo
 cuelga estirado, la mano se dice en el mundo (`palma: […]`, y `barra: […]` si agarra una barra).
 
+**Los saltos** (bloques 1, 8 y 9). En el aire no hay nada clavado (`[]` en ese tramo). Se despega por las puntas y se cae sobre
+la parte delantera del pie, que rueda hasta el talón mientras la cadera baja. Con el tobillo clavado, pasar de pisar de plano a
+estar de puntillas en un solo tramo hunde la zapatilla (el tobillo va en línea recta y el pie gira sobre su bola: 1,1 cm con 48°):
+entre agachado y despegando va una postura de **medio empuje**, con el talón a medio levantar y la cadera a medio camino. En un
+salto que cambia de sitio (el horizontal) las posturas de la vuelta son las de la ida giradas media vuelta, y la cámara encuadra
+todo el recorrido.
+
 ## El material (`50-material.js`)
 
 `barra` (con discos; `z: true`, la barra Z; `una: 'i'`, la lleva una mano por el centro), `mancuernas` (una en cada mano, en
@@ -276,8 +304,9 @@ manos se separan se queda con la de `lado`: la otra la suelta un momento y vuelv
 no por el asa: la mano, en garra sobre el disco de arriba, y la mancuerna a plomo bajo ella; `toalla: true`, una toalla en el asa: mientras
 espera, monta abierta sobre el asa, y se enrolla cuando la mano que llega a ella se cierra), `kettlebell` (`cuelga: true`,
 a plomo de su asa: en un curl), `banco`, `predicador` (el banco Scott), `soporte` (el de la barra), `barra_dominadas`,
-`paralelas`, `escalon`, `esterilla`, `pared`, `polea`, `landmine` (la barra T), `toalla` (algo blando) y `toallas` (una toalla cogida a
-lo largo, que hace de correa).
+`paralelas`, `escalon` (con `madera: true`, un cajón), `esterilla`, `pared`, `polea`, `landmine` (la barra T), `toalla` (algo blando: doblada o,
+con `rollo: [largo, radio]`, enrollada: un rulo tumbado, con su contorno y una franja de color cerca de cada punta, porque sobre la arena
+una toalla clara apenas se ve) y `toallas` (una toalla cogida a lo largo, que hace de correa).
 
 - `banco`: `respaldo: 45` lo inclina; `85`, casi vertical (una silla); **negativo, declinado**. Con el respaldo
   levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba). `tapa: true`: el

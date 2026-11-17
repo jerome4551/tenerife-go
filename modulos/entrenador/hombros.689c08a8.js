@@ -12,12 +12,12 @@
     var ALTO = N.ALTO, ALTO_MUN = N.ALTO_MUN, BANCO_DETRAS = N.BANCO_DETRAS, BRAZO = N.BRAZO, COREO = N.COREO, D = N.D, DE_PIE = N.DE_PIE,
         EN_SUELO = N.EN_SUELO, HOMBRO = N.HOMBRO, PIE = N.PIE, PIES_PUNTA = N.PIES_PUNTA, RAD = N.RAD, SUELTA = N.SUELTA, TOB_PUNTA = N.TOB_PUNTA,
         V = N.V, aLosLados = N.aLosLados, aUnBrazo = N.aUnBrazo, abre = N.abre, anteTronco = N.anteTronco, aplicar = N.aplicar, apoyada = N.apoyada,
-        arco = N.arco, bajaSube = N.bajaSube, bajoZapa = N.bajoZapa, busca = N.busca, cabezaAPlano = N.cabezaAPlano, colgando = N.colgando,
-        conAgarre = N.conAgarre, cruz = N.cruz, cuelga = N.cuelga, el = N.el, entre = N.entre, estirado = N.estirado, flexion = N.flexion,
-        girar = N.girar, inclinado = N.inclinado, largo = N.largo, lejos = N.lejos, mas = N.mas, menos = N.menos, miembroAPlano = N.miembroAPlano,
-        por = N.por, punto = N.punto, quieto = N.quieto, refleja = N.refleja, reflejo = N.reflejo, resolver = N.resolver,
-        sentadoAlBorde = N.sentadoAlBorde, sentadoEnRespaldo = N.sentadoEnRespaldo, silla5 = N.silla5, sobre = N.sobre, tabla = N.tabla,
-        troncoAPlano = N.troncoAPlano, une = N.une, unidad = N.unidad, zapaAPlano = N.zapaAPlano;
+        arco = N.arco, bajaSube = N.bajaSube, busca = N.busca, cabezaAPlano = N.cabezaAPlano, colgando = N.colgando, conAgarre = N.conAgarre,
+        cruz = N.cruz, cuelga = N.cuelga, el = N.el, entre = N.entre, estirado = N.estirado, flexion = N.flexion, girar = N.girar,
+        inclinado = N.inclinado, largo = N.largo, lejos = N.lejos, mas = N.mas, menos = N.menos, miembroAPlano = N.miembroAPlano,
+        pieSobreSuelo = N.pieSobreSuelo, por = N.por, punto = N.punto, quieto = N.quieto, refleja = N.refleja, reflejo = N.reflejo,
+        resolver = N.resolver, sentadoAlBorde = N.sentadoAlBorde, sentadoEnRespaldo = N.sentadoEnRespaldo, silla5 = N.silla5, sobre = N.sobre,
+        tabla = N.tabla, troncoAPlano = N.troncoAPlano, une = N.une, unidad = N.unidad, zapaAPlano = N.zapaAPlano;
   /* ───────────────────────── las coreografías: HOMBROS (bloque 5) ─────────────────────────
      Las mismas reglas que en 70-coreografias.js: cada una sale de los pasos verificados de su ficha y no añade técnica
      que la ficha no diga. Van por familias: los press, las elevaciones, el deltoides posterior (los pájaros, las aperturas
@@ -468,14 +468,7 @@
     })();
 
     /* ══════════ los rotadores ══════════ */
-    /* tumbado de lado, la pierna de abajo descansa en el suelo: si su zapatilla (que es más ancha que el tobillo) se hunde, el tobillo
-       sube lo justo; la rodilla sigue donde estaba */
-    function pieSobreSuelo(P, k) {
-      var E = resolver(P), bajo = bajoZapa(E[k], k), c = {};
-      if (bajo > -0.5) return P;
-      c['p' + k] = { a: [E[k].tob[0], E[k].tob[1] - bajo - 0.3, E[k].tob[2]], polo: menos(E[k].rod, E[k].cad) };
-      return sobre(P, c);
-    }
+    /* tumbado de lado, la pierna de abajo descansa en el suelo sin hundir la zapatilla: pieSobreSuelo, en 70-coreografias.js */
     /* tumbado de lado (sobre el derecho, de cara a la cámara), con una mancuerna ligera en la mano de arriba y el codo a 90 grados, pegado
        al costado: gira el hombro y la mano sube hacia arriba y hacia fuera, sin despegar el codo; y baja despacio. El paso 2 (una toalla
        entre el codo y el costado, «si lo desea») lo dice de cerca */
