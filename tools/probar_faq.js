@@ -277,6 +277,36 @@ let malos = 0;
     console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + k);
   }
   mirados += AYUDA.length;
+  /* Saludos y gracias en los diez idiomas (17/11/2026). La sesion del rumano
+     vio, al traducir el asistente, que «Dzień dobry» y «Dziękuję» daban el «no
+     tengo respuesta»; tambien el bulgaro, el chino, «buenos días» o «Guten
+     Tag». Lo que pregunta algo mas no es un saludo y sigue su camino.
+     «cześć» (hola) y «część» (parte) son lo mismo sin tildes, y en rumano
+     «bună» es «hola» y «buena»: solos saludan, con otra palabra no ('no':
+     ni saludo ni gracias). El rumano aun no se enciende y las listas son las
+     mismas en todos los idiomas: sus casos van con el castellano. */
+  console.log('');
+  const CORTESIA = [
+    ['es', 'hola', 'greet'], ['es', 'buenos días', 'greet'], ['es', 'hola Jérôme', 'greet'], ['es', 'muchas gracias', 'thanks'],
+    ['en', 'good morning', 'greet'], ['en', 'thank you', 'thanks'], ['fr', 'bonsoir', 'greet'], ['fr', 'salut', 'greet'],
+    ['fr', 'merci beaucoup', 'thanks'], ['de', 'Guten Tag', 'greet'], ['de', 'vielen Dank', 'thanks'], ['de', 'Dankeschön', 'thanks'],
+    ['it', 'buongiorno', 'greet'], ['it', 'grazie mille', 'thanks'], ['nl', 'goedemorgen', 'greet'], ['nl', 'dank u wel', 'thanks'],
+    ['pl', 'Dzień dobry', 'greet'], ['pl', 'Cześć!', 'greet'], ['pl', 'Dziękuję bardzo', 'thanks'], ['pl', 'Dzięki', 'thanks'],
+    ['bg', 'Здравейте', 'greet'], ['bg', 'Добър ден', 'greet'], ['bg', 'Благодаря ви', 'thanks'], ['bg', 'Мерси', 'thanks'],
+    ['zh', '你好', 'greet'], ['zh', '您好！', 'greet'], ['zh', '谢谢', 'thanks'], ['zht', '你好', 'greet'], ['zht', '謝謝您', 'thanks'],
+    ['zh', '你好，我想去海滩', 'cat'], ['pl', 'Dzień dobry, gdzie jest plaża', 'kb'], ['es', 'hola, ¿qué playas hay en el norte?', 'cat'],
+    ['pl', 'północna część', 'no'], ['pl', 'część wyspy', 'no'], ['pl', 'najlepsza część', 'no'],
+    ['es', 'Bună!', 'greet'], ['es', 'Bună ziua', 'greet'], ['es', 'plajă bună', 'no'],
+  ];
+  for (const [lang, preg, esperada] of CORTESIA) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    ctx.currentLang = lang;
+    const k = (ctx.chatResolve(preg, null) || {}).kind;
+    const ok = esperada === 'no' ? (k !== 'greet' && k !== 'thanks') : k === esperada;
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + k);
+  }
+  mirados += CORTESIA.length;
   console.log('\n' + malos + ' fallos de ' + (CASOS.length + mirados)
     + (saltadas ? '   (' + saltadas + ' saltada(s) por idioma que la app no tiene)' : ''));
   process.exit(malos ? 1 : 0);

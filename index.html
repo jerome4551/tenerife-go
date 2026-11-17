@@ -27772,6 +27772,44 @@ function chatEsFrase(qn,lista){
   for(var i=0;i<lista.length;i++){if(qn===chatNorm(String(lista[i])))return true;}
   return false;
 }
+/* SALUDOS Y GRACIAS, EN LOS DIEZ IDIOMAS (17/11/2026). Hasta hoy solo se
+   reconocian algunas palabras en castellano, ingles, frances, aleman,
+   italiano y neerlandes: «Dzień dobry», «Dziękuję», «Здравейте», «你好»,
+   «buenos días» o «Guten Tag» daban el «no tengo respuesta» (lo vio la sesion
+   del rumano al traducir el asistente, su bloque 10). La regla es la de
+   antes: un saludo con como mucho una palabra de mas («hola Jérôme»), unas
+   gracias con dos («gracias por todo»); lo que pregunta algo mas sigue su
+   camino. En chino no hay palabras sueltas, asi que vale solo la frase
+   entera: «你好，我想去海滩» pregunta por playas. Van sin tildes ni breves
+   porque chatNorm se las quita («dzien dobry», «здравеите»), y las del
+   rumano ya estan para cuando se encienda. */
+var CHAT_SALUDO=['hola','buenas','saludos','buenos dias','hello','hi','hey','good morning','good afternoon','good evening',
+  'bonjour','bonsoir','salut','coucou','hallo','guten morgen','guten tag','guten abend','servus','moin',
+  'ciao','salve','buongiorno','buonasera','hoi','goedemorgen','goedemiddag','goedenavond','goedendag',
+  'dzien dobry','dobry wieczor','czesc','witam','witaj','hej','здравеите','здравеи','здрасти','привет',
+  'добър ден','добро утро','добър вечер','buna','buna ziua','buna seara',
+  '你好','您好','你们好','你們好','大家好','早上好','下午好','晚上好','早安','午安','嗨','哈喽','哈囉'];
+var CHAT_GRACIAS=['gracias','thanks','thank','thank you','merci','danke','dankeschon','vielen dank','grazie','bedankt',
+  'dank je','dank u','dankjewel','dankuwel','genial','perfecto','dziekuje','dzieki','благодаря','мерси','multumesc','mersi',
+  '谢谢','谢谢你','谢谢您','多谢','感谢','非常感谢','謝謝','謝謝你','謝謝您','多謝','感謝','非常感謝'];
+/* Dos saludos que, sin tildes, son tambien otra palabra: «cześć» (hola) y
+   «część» (parte) quedan los dos en «czesc», y en rumano «bună» es «hola» y
+   «buena». Solos son un saludo; con otra palabra («północna część», «plajă
+   bună») no lo son, y la pregunta sigue su camino. */
+var CHAT_CORTESIA_SOLA={'czesc':1,'buna':1};
+function chatCortesia(qn,toks,lista,deMas){
+  var i;
+  if(CHAT_CJK.test(qn)){var qc=chatSinEsp(qn);for(i=0;i<lista.length;i++){if(qc===lista[i])return true;}return false;}
+  var pad=' '+qn+' ',suyas={},hay=false,solo=true;
+  for(i=0;i<lista.length;i++){
+    if(CHAT_CJK.test(lista[i])||pad.indexOf(' '+lista[i]+' ')<0)continue;
+    hay=true;if(!CHAT_CORTESIA_SOLA[lista[i]])solo=false;
+    var pw=lista[i].split(' ');for(var k=0;k<pw.length;k++)suyas[pw[k]]=1;
+  }
+  if(!hay)return false;
+  var mas=0;for(i=0;i<toks.length;i++){if(!suyas[toks[i]])mas++;}
+  return mas<=(solo?0:deMas);
+}
 function chatResolve(question,pos){
   var qn=chatNorm(question);
   if(!qn)return {kind:'fallback'};
@@ -27789,8 +27827,8 @@ function chatResolve(question,pos){
     for(var v0=0;v0<tv0.length;v0++)tokset[tv0[v0]]=1;
   }
 
-  if(/(^| )(hola|buenas|hello|hi|hey|bonjour|hallo|ciao|hoi|saludos)( |$)/.test(padded)&&toks.length<=2)return {kind:'greet'};
-  if(/(^| )(gracias|thanks|thank|merci|danke|grazie|bedankt|genial|perfecto)( |$)/.test(padded)&&toks.length<=3)return {kind:'thanks'};
+  if(chatCortesia(qn,toks,CHAT_SALUDO,1))return {kind:'greet'};
+  if(chatCortesia(qn,toks,CHAT_GRACIAS,2))return {kind:'thanks'};
   /* «AYUDA» A SECAS. Puede ser una emergencia o la ayuda de la app. Jerome
      (12/10/2026), como con «socorro»: que proponga y la gente elija. Primero
      el 112 y la emergencia, por si lo es. */
