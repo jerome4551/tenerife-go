@@ -193,8 +193,11 @@ console.log('\n=== lugares ===');
    suya (palacio-episcopal-laguna con casa-salazar-laguna, playa-castillo-pcruz con
    playa-jardin y playa-puertito-guimar con playa-cabezo). Jerome: «3 si».
    977 -> 976 el 17 de noviembre de 2026: el Mirador del Pico de las Flores
-   (mir-pico-flores-anaga), abandonado y sin vistas. Jerome: «4 quítalo». */
-debe('lugares', PLACES.length, PLACES.length === 976);
+   (mir-pico-flores-anaga), abandonado y sin vistas. Jerome: «4 quítalo».
+   976 -> 975 el 17 de noviembre de 2026: la «Cumbre Dorsal — Mirador La Jardina»
+   (cumbre-dorsal), con el punto del mirador de Anaga (mir-la-jardina) y un texto de
+   la TF-24. Jerome: «quítalos». */
+debe('lugares', PLACES.length, PLACES.length === 975);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {
