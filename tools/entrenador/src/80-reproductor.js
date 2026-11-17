@@ -59,8 +59,9 @@
 '.tgv-nombre { margin: 0; font: 600 30px/1.02 var(--tv-titulo); color: #fff; text-wrap: balance; overflow-wrap: anywhere; }',
 '.tgv-etiquetas { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }',
 '.tgv-etiquetas span { padding: 2px 9px; border-radius: 999px; border: 1px solid rgba(255,255,255,.5); color: #fff; font-size: 12px; }',
-/* los músculos que trabajan: la leyenda, sobre la escena */
-/* la leyenda de músculos: en su fila, debajo del vídeo (dentro del dibujo tapaba a Jérôme: los pies, las manos…) */
+/* la leyenda de músculos: en su fila, debajo del vídeo (dentro del dibujo tapaba a Jérôme: los pies, las manos…).
+   En una pantalla baja (un móvil pequeño, o tumbado) pasa detrás de la tarjeta del paso, más abajo: al pulsar «Ver el
+   vídeo» ya no cabía todo, y con tres líneas de píldoras el texto del paso se quedaba fuera de la vista (16-11-2026) */
 '.tgv-musc { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 6px; min-width: 0; min-height: 23px; margin: -2px 2px; transition: opacity .3s ease; }',
 '.tgv-musc span { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 1px 10px 1px 8px; border-radius: 999px; border: 1px solid var(--tv-linea); background: var(--tv-fondo); color: var(--tv-tinta); font-size: 11.5px; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }',
 '.tgv-musc i { width: 9px; height: 9px; border-radius: 50%; flex: none; background: #FFD24A; box-shadow: 0 0 0 2px rgba(255,150,60,.75); }',
@@ -98,6 +99,7 @@
 '.tgv-btn:disabled { opacity: .38; cursor: default; }',
 '.tgv-sep { flex: 1 1 0; min-width: 0; }',
 '.tgv .tgv-solo-lector { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }',
+'@media (max-height: 700px) { .tgv-musc { order: 1; } .tgv-mandos { order: 2; } }',
 '@media (prefers-reduced-motion: reduce) { .tgv-titulo, .tgv-musc, .tgv-paso-t .tgv-pal, .tgv-btn, .tgv-gran { transition: none; } }'
   ].join('\n');
   function ponerEstilosV() {
@@ -234,7 +236,8 @@
     this.gran.addEventListener('click', function () { if (yo.fin) yo.irA(0); yo.reproducir(); });
     escena.appendChild(this.gran);
     this.corte = el('div', 'tgv-corte'); escena.appendChild(this.corte);
-    /* debajo: la leyenda de músculos (en su fila: ya no va sobre el dibujo), el paso y los mandos */
+    /* debajo: la leyenda de músculos (en su fila: ya no va sobre el dibujo), el paso y los mandos; en una pantalla baja,
+       el paso, la leyenda y los mandos (el orden lo cambia la hoja de estilo, no esto) */
     var pie = el('div', 'tgv-pie');
     pie.appendChild(mus);
     var paso = el('div', 'tgv-paso'); paso.setAttribute('aria-live', 'polite');

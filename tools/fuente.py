@@ -13,7 +13,9 @@ datos/titsa.js: con las herramientas sin tocar, auditar_cirilico.py paso de
 
 Y los modulos de carga perezosa (17 de octubre de 2026), declarados en el
 fuente con «CARGA-PEREZOSA: <ruta>»: entran en html() detras de los otros;
-ficheros() sigue siendo solo lo que se carga al arrancar. Ver tools/fuente.js.
+ficheros() sigue siendo solo lo que se carga al arrancar. Y los que uno de
+ellos pide a su vez, declarados igual en su propio texto (16 de noviembre de
+2026). Ver tools/fuente.js.
 
 Y los textos que van un fichero por idioma (22 de octubre de 2026),
 declarados con «IDIOMAS-PEREZOSOS: <carpeta>»: los <carpeta>/<idioma>.json de
@@ -58,18 +60,28 @@ def perezosos(index=None):
     _, fs = ficheros()
     vistos = {r for r, _ in fs}
     out = []
-    for m in re.finditer(r'CARGA-PEREZOSA:\s*([\w./-]+\.js)\b', index):
-        ruta = re.sub(r'^\./', '', m.group(1))
-        if ruta in vistos:
-            continue
-        vistos.add(ruta)
-        abs_ = os.path.join(RAIZ, ruta)
-        if not os.path.exists(abs_):
-            raise SystemExit('index.html declara la carga perezosa de %s y no existe' % ruta)
-        texto = io.open(abs_, encoding='utf-8').read()
-        if re.search(r'</script', texto, re.I):
-            raise SystemExit('%s trae «</script»: no se puede pegar en linea' % ruta)
-        out.append((ruta, texto))
+
+    def declarados(donde, quien):
+        for m in re.finditer(r'CARGA-PEREZOSA:\s*([\w./-]+\.js)\b', donde):
+            ruta = re.sub(r'^\./', '', m.group(1))
+            if ruta in vistos:
+                continue
+            vistos.add(ruta)
+            abs_ = os.path.join(RAIZ, ruta)
+            if not os.path.exists(abs_):
+                raise SystemExit('%s declara la carga perezosa de %s y no existe' % (quien, ruta))
+            texto = io.open(abs_, encoding='utf-8').read()
+            if re.search(r'</script', texto, re.I):
+                raise SystemExit('%s trae «</script»: no se puede pegar en linea' % ruta)
+            out.append((ruta, texto))
+
+    declarados(index, 'index.html')
+    # y los que un modulo de carga perezosa pide a su vez (16 de noviembre de 2026: las coreografias de
+    # modulos/entrenador.js, por grupos), declarados en su propio texto. Ver tools/fuente.js.
+    i = 0
+    while i < len(out):
+        declarados(out[i][1], out[i][0])
+        i += 1
     return out
 
 

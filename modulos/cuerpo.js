@@ -2525,7 +2525,7 @@
       if (r[0]) EJ = indexar(r[0]);
       if (r[1]) EJ_TX.es = (r[1] && typeof r[1] === 'object') ? r[1] : {};
       if (r[2]) EJ_TX[l] = (r[2] && typeof r[2] === 'object') ? r[2] : {};
-      if (r[3]) VID = leerVid(r[3]);
+      if (r[3]) { VID = leerVid(r[3]); guardarVideos(null); }
     }, function (e) { ejError = true; throw e; });
     var fin = function () { ejCarga = null; };
     ejCarga.then(fin, fin);
@@ -4511,10 +4511,13 @@
   }
 
   /* ── el vídeo del ejercicio (11 de noviembre de 2026): Jérôme lo enseña paso a paso ──
-     El motor y las coreografías van en modulos/entrenador.js, que se pide al abrir la primera ficha
-     (el service worker lo precarga). Solo sale en los ejercicios que tienen coreografía, y solo si
-     la ficha trae los mismos pasos con los que se hizo; en los demás, y si el módulo no llega, la
-     ficha queda como estaba. No arranca solo: lo pone en marcha quien lo toca. */
+     El motor va en modulos/entrenador.js, que se pide al abrir la primera ficha (el service worker
+     lo precarga). Solo sale en los ejercicios que tienen coreografía, y solo si la ficha trae los
+     mismos pasos con los que se hizo; en los demás, y si el módulo no llega, la ficha queda como
+     estaba. No arranca solo: lo pone en marcha quien lo toca.
+     (16-11-2026) Las coreografías van por grupos: las del bloque 1, con el motor; las demás, en
+     modulos/entrenador/<grupo>.<huella>.js, que el motor pide al abrir la ficha de uno de sus
+     ejercicios (TG_ENTRENADOR.pedir). Si ese trozo no llega, la ficha queda como estaba. */
   var MODULO_ENT = typeof window.TG_CUERPO_ENTRENADOR === 'string' ? window.TG_CUERPO_ENTRENADOR : './modulos/entrenador.js';
   var cargaEnt = null, videoEjR = null, videoEjDe = '';
   function cargarEntrenador() {
@@ -4526,8 +4529,75 @@
       s.onload = function () { if (window.TG_ENTRENADOR) ok(); else mal(new Error('entrenador')); };
       s.onerror = function () { s.remove(); mal(new Error('entrenador')); };
       document.head.appendChild(s);
+    }).then(function () {
+      /* el motor que acaba de llegar es el que queda guardado: que sus trozos lo estén también
+         (guardarVideos no lanza nunca: guardarlos es aparte, y no se puede llevar el vídeo por delante) */
+      var E = window.TG_ENTRENADOR;
+      if (typeof E.trozos === 'function') guardarVideos(E.trozos());
     }).catch(function (e) { cargaEnt = null; throw e; });
     return cargaEnt;
+  }
+  /* (16-11-2026) LOS VÍDEOS, SIN CONEXIÓN. Donde se miran es en el gimnasio o en la calle. El motor va en la
+     precarga del service worker; los trozos de las coreografías no (son los de todos los grupos, y crecen con
+     cada bloque): se guardan aquí, de uno en uno y sin prisa, la primera vez que se abre «Su cuerpo» con
+     conexión, y otra vez cuando llega un motor nuevo. Como llevan la huella en el nombre, el service worker
+     los guarda con lo de por defecto («cache primero»): pedir uno que ya está no gasta red. Al acabar se
+     quitan de la cache los trozos de motores anteriores. Sin service worker (dentro de la app de las tiendas
+     todo viaja en el paquete) no hace nada. nombres: los trozos del motor recién cargado; null, se le
+     pregunta al motor (se pide su texto, que así se refresca en la cache, y se leen de su cabecera).
+     (17-11-2026) Se llama desde la carga de los ejercicios y desde la del motor, y no es de ninguna de las dos:
+     nada de lo que pase aquí sale hacia quien lo llama (hay sitios donde solo leer navigator.serviceWorker lanza un
+     error: una página metida en un marco aislado). Y tampoco guarda nada si el móvil pide ahorrar datos o va
+     por una conexión de las lentas (2g): se guardarán otro día. */
+  var RE_TROZO = new RegExp('CARGA-' + 'PEREZOSA: modulos/entrenador/([a-z0-9-]+\\.[0-9a-f]{8})\\.js', 'g'), videosGuardando = '';   /* en dos trozos: tools/fuente.js busca ese rótulo */
+  function trozosDe(texto) { var l = [], m; RE_TROZO.lastIndex = 0; while ((m = RE_TROZO.exec(String(texto)))) if (l.indexOf(m[1]) < 0) l.push(m[1]); return l; }
+  function guardarVideos(nombres) {
+    try {
+      var sw = navigator.serviceWorker && navigator.serviceWorker.controller, con = navigator.connection;
+      if (!sw || !window.caches || typeof fetch !== 'function' || navigator.onLine === false) return;
+      if (con && (con.saveData || /2g/.test(String(con.effectiveType || '')))) return;
+      var base = MODULO_ENT.replace(/\.js(?:[?#].*)?$/, '/');
+      if (base === MODULO_ENT) return;
+      var pedir = function (u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(u); return r; }); };
+      var espera = function (ms) { return new Promise(function (ok) { setTimeout(ok, ms); }); };
+      /* un momento después: que no le quite la red a la ficha que se está abriendo */
+      espera(2500).then(function () {
+        return nombres || pedir(MODULO_ENT).then(function (r) { return r.text(); }).then(trozosDe);
+      }).then(function (l) {
+        l = (Array.isArray(l) ? l : []).filter(function (n) { return /^[a-z0-9-]+\.[0-9a-f]{8}$/.test(n); });
+        var firma = l.join(' ');
+        if (!l.length || firma === videosGuardando) return null;
+        videosGuardando = firma;
+        var uno = function (i) {
+          if (i >= l.length) return limpiarVideos(sw, l);
+          return pedir(base + l[i] + '.js').then(function () { return espera(120); }).then(function () { return uno(i + 1); });
+        };
+        return uno(0).catch(function (e) { if (videosGuardando === firma) videosGuardando = ''; throw e; });
+      }).catch(function () {});
+    } catch (e) {}
+  }
+  /* quita de la cache de la app los trozos que el motor guardado ya no nombra (los de versiones anteriores).
+     Solo si el motor guardado nombra justo estos: si otro ya lo ha cambiado, no se toca nada */
+  function limpiarVideos(sw, vivos) {
+    return new Promise(function (ok) {
+      var canal = new MessageChannel(), fin = setTimeout(function () { ok(''); }, 3000);
+      canal.port1.onmessage = function (e) { clearTimeout(fin); ok(e.data && typeof e.data.version === 'string' ? e.data.version : ''); };
+      sw.postMessage({ type: 'GET_VERSION' }, [canal.port2]);
+    }).then(function (nombre) {
+      /* solo si esa cache existe: abrirla con un nombre que no fuera el suyo la crearía, vacía */
+      return nombre ? caches.has(nombre).then(function (hay) { return hay ? caches.open(nombre) : null; }) : null;
+    }).then(function (c) {
+      if (!c) return null;
+      return c.match(MODULO_ENT).then(function (r) { return r ? r.text() : ''; }).then(function (t) {
+        if (trozosDe(t).join(' ') !== vivos.join(' ')) return null;
+        return c.keys().then(function (ks) {
+          return Promise.all(ks.map(function (k) {
+            var m = /\/modulos\/entrenador\/([a-z0-9-]+\.[0-9a-f]{8})\.js$/.exec(String(k.url).split(/[?#]/)[0]);
+            return m && vivos.indexOf(m[1]) < 0 ? c.delete(k) : null;
+          }));
+        });
+      });
+    }).catch(function () {});
   }
   function quitarVideoEj() {
     if (videoEjR) { try { videoEjR.quitar(); } catch (e) {} videoEjR = null; }
@@ -4541,6 +4611,10 @@
     if (videoEjR && videoEjDe === clave) return Promise.resolve(videoEjR);
     quitarVideoEj();
     return cargarEntrenador().then(function () {
+      /* (16-11-2026) su coreografía, si va en un trozo que aún no ha llegado (un motor de antes no tiene pedir) */
+      var E0 = window.TG_ENTRENADOR;
+      return typeof E0.pedir === 'function' ? E0.pedir(x.id) : null;
+    }).then(function () {
       var E = window.TG_ENTRENADOR, c = $('tgc-ej-video');
       /* otra ficha u otro idioma mientras llegaba el módulo: esta llamada ya no vale */
       if (ejAbierto !== x.id || clave !== x.id + '|' + lengua() || !c) return null;
@@ -4556,7 +4630,7 @@
       if (videoEjR) videoEjDe = clave; else { c.hidden = true; $('tgc-ej-vervideo').hidden = true; }
       return videoEjR;
     }, function () {
-      /* sin el módulo no hay vídeo: el botón se va (la ficha siguiente lo vuelve a pedir) */
+      /* sin el módulo, o sin el trozo de este ejercicio, no hay vídeo: el botón se va (la ficha siguiente lo vuelve a pedir) */
       if (ejAbierto === x.id) $('tgc-ej-vervideo').hidden = true;
       return null;
     });

@@ -107,6 +107,11 @@ const CARPETAS = [
      y el 3D sale sin conexion desde el primer dia; el motor va con modulos/ */
   ['datos/cuerpo3d', f => f === 'indice.json' || /^[a-z0-9_-]+\.[0-9a-f]{8}\.(bin|webp|png)$/.test(f)],
   ['modulos', f => /\.js$/.test(f)],
+  /* y los trozos del video de los ejercicios (16 de noviembre de 2026): las coreografias van por grupos en
+     modulos/entrenador/<grupo>.<huella>.js y el motor (modulos/entrenador.js) las pide al abrir una ficha.
+     Dentro de la app no hay service worker ni otra manera de traerlas: van todas, y los videos salen sin
+     conexion desde el primer dia */
+  ['modulos/entrenador', f => /^[a-z0-9-]+\.[0-9a-f]{8}\.js$/.test(f)],
   ['vendor', f => /\.(js|css|txt)$/.test(f)],
   ['vendor/fuentes', f => /\.woff2$/.test(f)],
   ['vendor/images', f => /\.png$/.test(f)],
@@ -307,6 +312,11 @@ function comprobar(montado) {
   for (const l of IDIOMAS) {
     for (const f of ['ejercicios-' + l + '.json', 'asistente-' + l + '.json', 'deportes-' + l + '.json']) if (!enWww('datos/cuerpo/' + f)) faltan.add('datos/cuerpo/' + f);
   }
+  /* (16-11-2026) y cada trozo de coreografias que nombra el motor del video (en su cabecera, con el rotulo
+     de la carga perezosa): modulos/entrenador.js los pide con una ruta armada, que lo de arriba no ve */
+  const trozosVideo = [...lee('modulos/entrenador.js').matchAll(/CARGA-PEREZOSA: (modulos\/entrenador\/[a-z0-9-]+\.[0-9a-f]{8}\.js)/g)].map(m => m[1]);
+  if (!trozosVideo.length) faltan.add('modulos/entrenador/ (el motor no nombra ningun trozo)');
+  for (const f of trozosVideo) if (!enWww(f)) faltan.add(f);
   /* y los del personaje en 3D: el motor, el indice y cada fichero que el indice nombra */
   if (!enWww('modulos/cuerpo3d.js')) faltan.add('modulos/cuerpo3d.js');
   if (!enWww('datos/cuerpo3d/indice.json')) faltan.add('datos/cuerpo3d/indice.json');

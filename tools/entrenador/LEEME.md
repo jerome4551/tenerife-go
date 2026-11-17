@@ -2,10 +2,11 @@
 
 El vídeo de cada ejercicio de «Su cuerpo». No son archivos de vídeo: Jérôme es un dibujo
 vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app carga es
-`modulos/entrenador.js`, que sale de juntarlas.
+`modulos/entrenador.js` (el motor y las coreografías del bloque 1) y, al abrir una ficha, el trozo de
+`modulos/entrenador/` con las coreografías de su grupo. Todo sale de juntar estas fuentes (ver «Por trozos»).
 
-    python3 tools/entrenador/construir.py              # src/ → modulos/entrenador.js
-    python3 tools/entrenador/construir.py --comprobar  # ¿el módulo es el de sus fuentes?
+    python3 tools/entrenador/construir.py              # src/ → modulos/entrenador.js y modulos/entrenador/<grupo>.<huella>.js
+    python3 tools/entrenador/construir.py --comprobar  # ¿el módulo y sus trozos son los de sus fuentes?
     python3 tools/entrenador/muestra.py                # los datos para las páginas de prueba
     node tools/auditar_entrenador.js 8766              # con python3 -m http.server 8766 en la raíz (tarda unos minutos)
     node tools/auditar_entrenador.js 8766 74           # mientras se hace un bloque: cuadro a cuadro, solo los vídeos de src/74-*.js (pase parcial),
@@ -33,10 +34,56 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/77-antebrazo-pantorrilla.js` | las coreografías del bloque 8: **antebrazo** (16) y **pantorrilla** (19), por familias (los curls de muñeca; la muñeca, de pie; los paseos con carga; la dominada con toallas; las flexiones sobre las yemas; los estiramientos de la muñeca · las elevaciones de talón de pie, en escalón, con barra y sentado; el tibial; los saltos; los estiramientos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
-| `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía |
+| `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía (todas; al motor van las del bloque 1 y a cada trozo, las suyas) |
+| `src/95-trozos.js` | las coreografías, por trozos: qué fichero tiene cada ejercicio, y pedirlo cuando hace falta (`pedir`, `todo`, `_trozo`) |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
 | `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), el repaso paso a paso contra la ficha (`repaso.py`), las medidas de una postura (`mide.js`), el camino de una postura a otra (`camino.js`: dónde una zapatilla baja del suelo), los contactos (`contactos.js`: el suelo, las paredes, la mano que se apoya y las manos en los muslos, de todas o de una; lo usa la auditoría), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
 | `muestra/` | la página de muestra (un solo fichero, para enseñarla en el móvil) |
+
+## Por trozos (16 de noviembre de 2026)
+
+Hasta el bloque 8 todo iba en `modulos/entrenador.js`: 729 kB con 282 ejercicios, y a ese paso 2,2 MB con los 958.
+Ahora el módulo va partido:
+
+- **`modulos/entrenador.js`**: el motor (`00` a `60`, `80`, `85`, `95`, `99`) y `70-coreografias.js`, que son las ayudas
+  de todas las coreografías y las 40 del bloque 1. Es lo que el service worker precarga. Ya no crece con cada bloque
+  (solo la lista de qué ejercicio va en qué trozo: unos 25 bytes por ejercicio).
+- **`modulos/entrenador/<grupo>.<huella>.js`**: un fichero por cada fuente `src/7N-<grupo>.js` con N de 1 en adelante
+  (`71-pecho.js` → `pecho.<huella>.js`; después del `79`, `7a`, `7b`…). `<huella>` son los 8 primeros caracteres del sha256
+  del fichero: si cambia una coma, cambia el nombre, y los que ya no salen de ningún fuente se borran al construir.
+
+**Cómo se piden.** `TG_ENTRENADOR.pedir(id)` devuelve una promesa: trae el trozo de ese ejercicio si no está (una
+etiqueta `<script>` junto al motor) y dice si tiene coreografía; falla si el trozo no llega. Hasta entonces `tiene(id)`
+dice que no, y `montar` no monta. `ids()` los da todos, hayan llegado o no. `todo()` los trae todos. «Su cuerpo»
+(`modulos/cuerpo.js`, `videoEj`) llama a `pedir` antes de `tiene`; si falla, la ficha queda sin vídeo y sin botón, y la
+siguiente lo vuelve a intentar.
+
+**Por qué la huella en el nombre.** Un motor pide siempre los trozos con los que se construyó y se auditó: nunca se
+junta con otros. Y el service worker no necesita ninguna regla: un fichero que no cambia nunca se guarda con lo de por
+defecto («cache primero», como las mallas del 3D), así que **`sw.js` no se toca**.
+
+**Sin conexión.** El motor va en la precarga. Los trozos, no (crecen con cada bloque): los guarda «Su cuerpo»
+(`guardarVideos`, en `modulos/cuerpo.js`) de uno en uno y sin prisa, la primera vez que se cargan los ejercicios con
+conexión (al abrir la lista de un grupo, el plan o una sesión: es cuando se guardan también sus datos) y cada vez que
+llega un motor nuevo. Los nombres los lee de la cabecera del motor. Al acabar quita de la cache los trozos que el motor
+guardado ya no nombra. No lo hace si el móvil pide ahorrar datos (`saveData`), ni por una conexión 2g, ni sin service
+worker. Y es aparte: nada de lo que le pase llega a la carga de los ejercicios ni a la del motor (va entero en un
+`try`; la auditoría lo prueba con un navegador en el que leer `navigator.serviceWorker` lanza un error). Dentro de la
+app de las tiendas no hay service worker: `tools/app_preparar.js` mete todos los trozos en el paquete.
+
+**Qué es un trozo.** Una función que el motor llama una vez: recibe lo que usa de él (`N`), define sus `COREO` y
+devuelve las huellas de sus pasos. `construir.py` saca solo lo que cada trozo importa (todo nombre del nivel de arriba
+del motor que aparezca en su texto). Dos reglas para escribir un fuente `7N`:
+
+1. **Va encerrado en su función** (`(function () { … })();`), sin nada declarado fuera: lo que quiera compartir con
+   otros trozos va en `70-coreografias.js`.
+2. **Del motor solo usa lo que no cambia** después de declararse (funciones y constantes). `construir.py` se para si no.
+
+**Las herramientas.** En Node, `pruebas/motor.js` carga el motor y todos sus trozos (`contactos.js`, `camino.js`,
+`mide.js` y la auditoría lo usan). Las páginas de `pruebas/` llevan `todo.js` detrás del motor, que trae todos los
+trozos antes de seguir; `pruebas/trozos.html` es la única que carga el motor solo, y con ella la auditoría mira qué se
+pide y cuándo. La página de muestra los lleva todos pegados. `tools/fuente.js` y `.py` leen los trozos de la cabecera
+del motor (`CARGA-PEREZOSA`), así que las herramientas que barren el fuente los siguen viendo.
 
 ## La regla
 
@@ -138,8 +185,8 @@ cuando se llega a ese paso desde una postura o una secuencia (o saltando a él c
 
 ## Los bloques
 
-Los ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x` (`construir.py` junta todos los
-`src/7*.js` y apunta la huella de los pasos de cada ejercicio). Los bloques 1 a 15 reparten los 533 ejercicios que el
+Los ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x` (`construir.py` apunta la huella de los
+pasos de cada ejercicio y saca cada `7N`, de `71` en adelante, a su fichero de `modulos/entrenador/`: ver «Por trozos»). Los bloques 1 a 15 reparten los 533 ejercicios que el
 catálogo tenía hasta el 13-11-2026, y las cuentas de la tabla («quedan N») son sobre esos 533. Desde ese día el catálogo
 crece con ejercicios para casa y fuera (950 fichas el 13-11, 958 el 14-11): los que pasan de aquellas 533 (botellas, silla,
 mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques y ninguno tiene coreografía todavía.

@@ -2,6 +2,7 @@
 <style>html, body { margin: 0; } #caja { width: 100%; max-width: 430px; padding: 10px; box-sizing: border-box; }</style>
 <div id="caja"></div>
 <script src="../../../modulos/entrenador.js"></script>
+<script src="todo.js"></script>
 <script>
 /* La página de tools/auditar_entrenador.js: monta el vídeo de un ejercicio con los datos de verdad de la app
    (datos/cuerpo/) y lo pasa entero, cuadro a cuadro, apuntando lo que se lee en cada paso. */
@@ -33,7 +34,11 @@ window.leyenda = function () {
   var R = window.R, l = R.musc, esc = R.raiz.querySelector('.tgv-escena'), a = l.getBoundingClientRect(), b = esc.getBoundingClientRect(), c = R.raiz.getBoundingClientRect();
   var pisa = Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left)) * Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)), sale = 0, i, q;
   for (i = 0; i < l.children.length; i++) { q = l.children[i].getBoundingClientRect(); sale = Math.max(sale, q.right - c.right, c.left - q.left); }
-  return { dentro: esc.contains(l), pisa: Math.round(pisa), sale: Math.round(sale * 10) / 10, alto: Math.round(a.height), bajo: Math.round(a.top - b.bottom), n: l.children.length,
+  /* y contra la tarjeta del paso y los mandos: ni los pisa ni queda entre ellos a medias. tras: va detrás de la tarjeta del paso (en una pantalla baja) */
+  var paso = R.raiz.querySelector('.tgv-paso').getBoundingClientRect(), man = R.raiz.querySelector('.tgv-mandos').getBoundingClientRect();
+  var solapa = function (u, v) { return Math.max(0, Math.min(u.right, v.right) - Math.max(u.left, v.left)) * Math.max(0, Math.min(u.bottom, v.bottom) - Math.max(u.top, v.top)); };
+  return { dentro: esc.contains(l), pisa: Math.round(pisa), pisaPie: Math.round(solapa(a, paso) + solapa(a, man)), tras: a.top >= paso.bottom - 0.5, antesDeMandos: a.bottom <= man.top + 0.5 && paso.bottom <= man.top + 0.5,
+    sale: Math.round(sale * 10) / 10, alto: Math.round(a.height), bajo: Math.round(a.top - b.bottom), n: l.children.length,
     textos: Array.prototype.map.call(l.children, function (s) { return s.textContent; }), ancho: document.documentElement.scrollWidth, vista: document.documentElement.clientWidth };
 };
 /* la cabeza, vista desde todos los lados (cada 15° de rumbo, y desde arriba y desde abajo): que no salga ningún número

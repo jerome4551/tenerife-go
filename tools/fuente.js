@@ -32,7 +32,9 @@
  * Se declara junto a su cargador con un comentario «CARGA-PEREZOSA: <ruta>»
  * y entra aqui igual que los otros, detras de ellos. ficheros() sigue
  * devolviendo solo lo que se carga al arrancar (peso_descarga.py cuenta eso);
- * perezosos() devuelve estos.
+ * perezosos() devuelve estos. Un modulo de carga perezosa puede declarar igual,
+ * en su propio texto, los ficheros que el pide a su vez (16 de noviembre de
+ * 2026: las coreografias de modulos/entrenador.js, por grupos).
  *
  * Y LOS TEXTOS QUE VAN UN FICHERO POR IDIOMA (22 de octubre de 2026). Las
  * curiosidades de las 88 constelaciones salieron de modulos/cielo.js a
@@ -77,15 +79,25 @@ function cargar() {
   }
   /* los de carga perezosa, declarados en el fuente */
   const perezosos = [];
-  for (const m2 of index.matchAll(/CARGA-PEREZOSA:\s*([\w./-]+\.js)\b/g)) {
-    const ruta = m2[1].replace(/^\.\//, '');
-    if (perezosos.some(f => f.ruta === ruta) || ficheros.some(f => f.ruta === ruta)) continue;
-    const abs = path.join(RAIZ, ruta);
-    if (!fs.existsSync(abs)) throw new Error('index.html declara la carga perezosa de ' + ruta + ' y no existe');
-    const texto = fs.readFileSync(abs, 'utf8');
-    if (/<\/script/i.test(texto)) throw new Error(ruta + ' trae «</script»: no se puede pegar en linea');
-    perezosos.push({ ruta, texto, perezoso: true });
-  }
+  const declarados = (donde, quien) => {
+    for (const m2 of donde.matchAll(/CARGA-PEREZOSA:\s*([\w./-]+\.js)\b/g)) {
+      const ruta = m2[1].replace(/^\.\//, '');
+      if (perezosos.some(f => f.ruta === ruta) || ficheros.some(f => f.ruta === ruta)) continue;
+      const abs = path.join(RAIZ, ruta);
+      if (!fs.existsSync(abs)) throw new Error(quien + ' declara la carga perezosa de ' + ruta + ' y no existe');
+      const texto = fs.readFileSync(abs, 'utf8');
+      if (/<\/script/i.test(texto)) throw new Error(ruta + ' trae «</script»: no se puede pegar en linea');
+      perezosos.push({ ruta, texto, perezoso: true });
+    }
+  };
+  declarados(index, 'index.html');
+  /* Y LOS QUE UN MODULO DE CARGA PEREZOSA PIDE A SU VEZ (16 de noviembre de 2026). El video de los
+     ejercicios (modulos/entrenador.js) lleva el motor; sus coreografias van por grupos en
+     modulos/entrenador/<grupo>.<huella>.js y las pide el cuando hacen falta. Como el nombre de cada
+     una cambia con su contenido, no se declaran en index.html: las declara el propio modulo, en su
+     cabecera, con el mismo comentario. Entran detras de los declarados en index.html, en el orden
+     en que se van encontrando. */
+  for (let i = 0; i < perezosos.length; i++) declarados(perezosos[i].texto, perezosos[i].ruta);
   /* los de un fichero por idioma, declarados en el fuente: una tabla por carpeta */
   const langs = ((index.match(/SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]/) || [, ''])[1].match(/[a-z]+/g)) || [];
   const porIdioma = [];

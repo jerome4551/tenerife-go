@@ -21,13 +21,13 @@
    El suelo es y = 0; las paredes, las del material ('pared'); los bancos planos, su tapa. Lo demás (un escalón, un cajón, la silla)
    no se mide aquí. */
 'use strict';
-const vm = require('vm'), fs = require('fs'), path = require('path');
+const fs = require('fs'), path = require('path');
 const RAIZ = path.join(__dirname, '..', '..', '..');
 const nodo = () => ({ style: {}, childNodes: [], classList: { add() {}, remove() {}, toggle() {} }, setAttribute() {}, getAttribute() { return ''; }, appendChild(c) { return c; }, insertBefore(c) { return c; }, removeChild() {}, get firstChild() { return null; } });
 function carga(fichero) {
   const caja = { window: {}, document: { createElementNS: nodo, createElement: nodo }, Math, Object, Array, JSON, String, Number, RegExp, Error, console: { log() {} } };
-  vm.runInNewContext(fs.readFileSync(fichero || path.join(RAIZ, 'modulos', 'entrenador.js'), 'utf8'), caja, { filename: 'modulos/entrenador.js' });
-  return caja.window.TG_ENTRENADOR._;
+  /* el motor y, detrás, sus trozos (motor.js): todas las coreografías */
+  return require('./motor.js').carga(caja, fichero)._;
 }
 const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2], sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]], cruz = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
 const uni = a => { const l = Math.sqrt(dot(a, a)) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };

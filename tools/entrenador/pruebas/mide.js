@@ -9,11 +9,8 @@
      node tools/entrenador/pruebas/mide.js <id> a,b agarre,codo,palma  solo los campos que empiecen así
 
    Avisa si a una mano le falta alcance para llegar a su agarre (el vídeo arrimaría el cuerpo, hasta 3 cm). */
-const vm = require('vm'), fs = require('fs'), path = require('path');
-const RAIZ = path.resolve(__dirname, '..', '..', '..');
 const caja = { window: {}, document: {}, Math, Object, Array, JSON, String, Number, RegExp, Error, console: { log() {} } };
-vm.runInNewContext(fs.readFileSync(path.join(RAIZ, 'modulos', 'entrenador.js'), 'utf8'), caja, { filename: 'modulos/entrenador.js' });
-const T = caja.window.TG_ENTRENADOR._, id = process.argv[2], co = T.COREO[id];
+const T = require('./motor.js').carga(caja)._, id = process.argv[2], co = T.COREO[id];
 if (!co) { console.error(id ? 'no hay coreografía de «' + id + '»' : 'uso: node tools/entrenador/pruebas/mide.js <id> [posturas] [campos]'); process.exit(1); }
 const r1 = v => v.map(x => Math.round(x * 10) / 10), dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 const angulo = (a, b, c) => { const u = [a[0] - b[0], a[1] - b[1], a[2] - b[2]], w = [c[0] - b[0], c[1] - b[1], c[2] - b[2]]; return Math.round(Math.acos(Math.max(-1, Math.min(1, (u[0] * w[0] + u[1] * w[1] + u[2] * w[2]) / (Math.hypot(...u) * Math.hypot(...w))))) * 180 / Math.PI); };

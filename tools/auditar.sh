@@ -53,8 +53,9 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # octubre de 2026).
 # Y modulos/isla3d.js, «La isla en 3D» (31 de octubre de 2026).
 # Y modulos/guia.js, Jérôme y sus tours (10 de noviembre de 2026).
-# Y modulos/entrenador.js, el vídeo de cada ejercicio de «Su cuerpo» (12 de noviembre de 2026).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js modulos/entrenador.js; do
+# Y modulos/entrenador.js, el vídeo de cada ejercicio de «Su cuerpo» (12 de noviembre de 2026), y sus trozos, las
+# coreografías por grupos de modulos/entrenador/ (16 de noviembre de 2026; cada una lleva en el nombre la huella de su contenido).
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js modulos/entrenador.js modulos/entrenador/*.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis

@@ -9,7 +9,12 @@
  *     node tools/auditar_entrenador.js 8766 id1,id2      o solo esos ejercicios (mientras se hace un bloque; la entrega se audita entera)
  *
  * 1. Sin navegador:
- *    · el módulo es el que sale de sus fuentes (tools/entrenador/construir.py --comprobar);
+ *    · el módulo y sus trozos son los que salen de sus fuentes (tools/entrenador/construir.py --comprobar);
+ *    · POR TROZOS (16 de noviembre de 2026: el motor y las coreografías del bloque 1 van en modulos/entrenador.js y las
+ *      demás, por grupos, en modulos/entrenador/<grupo>.<huella>.js): lo que el motor trae él solo; pedir(id); que cada
+ *      trozo es el fichero que su nombre dice (la huella es la de su contenido) y no hay otros; que cada trozo recibe del
+ *      motor todo lo que usa de él (la lista de lo que el motor declara, contada de verdad); y que al llegar un trozo
+ *      aparecen sus coreografías y solo esas;
  *    · cada coreografía es de un ejercicio que existe, y tiene un tramo por cada paso de su ficha,
  *      en los diez idiomas;
  *    · LA FICHA NO HA CAMBIADO desde que se hizo la coreografía: la huella de sus pasos en
@@ -29,12 +34,17 @@
  *    · los textos propios (TG_ENTRENADOR.textos), en los diez idiomas y con sus {huecos};
  *    · el módulo: sin eval, sin console.log, y sin innerHTML que reciba un texto de la ficha;
  *    · los enganches: el CARGA-PEREZOSA y la ruta en index.html, el precache y «red primero» en
- *      sw.js, y la ficha de modulos/cuerpo.js (el hueco del vídeo, y que se quita al salir).
- * 2. En Chromium, móvil emulado (320 de ancho, el más estrecho): el vídeo de CADA ejercicio, entero,
+ *      sw.js, y la ficha de modulos/cuerpo.js (el hueco del vídeo, y que se quita al salir). Y los de los trozos: que
+ *      «Su cuerpo» pide la coreografía antes de preguntar por ella y guarda los trozos para verlos sin conexión, que
+ *      viajan en el paquete de las tiendas (tools/app_preparar.js), que tools/fuente.js los ve, y que sw.js, sin
+ *      tocarlo y con caches y red de mentira, los guarda al pedirlos y después los sirve sin red.
+ * 2. En Chromium. LOS TROZOS (pruebas/trozos.html: el motor solo, como lo carga la app): no se pide ninguno hasta que hace
+ *    falta; pedir(id) trae el suyo, una vez, y ningún otro; si no llega o llega vacío, falla, y al pedirlo otra vez, llega;
+ *    todo() trae los que faltan. Y móvil emulado (320 de ancho, el más estrecho): el vídeo de CADA ejercicio, entero,
  *    cuadro a cuadro, en castellano y en otro idioma (los nueve van rotando): acaba, dura lo que
  *    tiene que durar, lo que se lee en cada paso es el paso de la ficha, palabra por palabra, no
  *    hay ningún NaN en el dibujo y nada se sale de ancho; LA LEYENDA DE MÚSCULOS (16 de noviembre de 2026) va en su fila bajo el
- *    vídeo y, con los nombres de la app en los diez idiomas, no pisa el dibujo ni se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
+ *    vídeo (en una pantalla baja, detrás de la tarjeta del paso) y, con los nombres de la app en los diez idiomas, no pisa el dibujo, el paso ni los mandos, ni se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
  *    que el canvas de Samsung Internet sabe copiar (trazados, círculos, elipses y rectángulos). Y CADA SECUENCIA CABE EN SU PASO, en
  *    los diez idiomas: un paso dura lo que se tarda en leer su texto, no lo que dure su acción, y una secuencia más larga se
  *    quedaría a medias al entrar el paso siguiente (la cuenta se coteja con lo que dura cada paso en el reproductor). Y A CÁMARA LENTA
@@ -51,7 +61,15 @@
  *    (de frente, los dos ojos; de perfil, uno; de espaldas, ninguno y el nudo de la cinta).
  * 3. En la app de verdad: «Su cuerpo» → un grupo → una ficha con coreografía: el vídeo sale, no
  *    arranca solo, se pone en marcha al tocarlo, sigue al cambiar de tema, no se reinicia al
- *    guardar unas series y se quita al volver; en una ficha sin coreografía no sale nada.
+ *    guardar unas series y se quita al volver; en una ficha sin coreografía no sale nada. LOS TROZOS EN LA APP (16 de
+ *    noviembre de 2026): para una ficha del bloque 1 se pide el motor y ningún trozo; para una cuya coreografía va en un
+ *    trozo, ese y solo ese; si el trozo no llega, la ficha queda como estaba (sin vídeo y sin botón). Y CON EL SERVICE
+ *    WORKER DE VERDAD (lo demás va sin él), en un navegador aparte que no resuelve ningún nombre de fuera: al abrir con
+ *    conexión la lista de un grupo se guardan todos los trozos sin poner en marcha el motor, y el de un motor anterior se
+ *    quita de la cache; después, sin conexión, una ficha de un trozo que nunca se abrió trae su vídeo, y también
+ *    arrancando la app sin conexión. Y GUARDARLOS ES APARTE (17 de noviembre de 2026): con «ahorrar datos», o por una
+ *    conexión 2g, no se guarda ninguno; y donde el navegador no deja ni leer navigator.serviceWorker (lanza un error),
+ *    la lista de ejercicios y el vídeo salen igual.
  * 4. Con Samsung Internet (12 de noviembre de 2026): el vídeo en un canvas que copia su SVG (su modo oscuro
  *    repinta los SVG): el mismo dibujo, se repinta solo, el modo oscuro forzado no lo cambia; en otro navegador, nada.
  *    Entero, con tres ejercicios de muestra; en un pase parcial, con todos los que se piden.
@@ -79,19 +97,80 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   console.log('════ 1. el módulo, las coreografías y los enganches (sin navegador) ════');
   const mod = lee('modulos/entrenador.js');
   const cons = cp.spawnSync('python3', [path.join(RAIZ, 'tools', 'entrenador', 'construir.py'), '--comprobar'], { encoding: 'utf8' });
-  ok(cons.status === 0, 'modulos/entrenador.js es el que sale de tools/entrenador/src/ (construir.py --comprobar)', (cons.stdout || cons.stderr || '').trim().slice(0, 200));
-  /* el módulo, cargado sin navegador: solo define cosas */
+  ok(cons.status === 0, 'modulos/entrenador.js y sus trozos (modulos/entrenador/) son los que salen de tools/entrenador/src/ (construir.py --comprobar)', (cons.stdout || cons.stderr || '').trim().slice(0, 300));
+  /* el módulo, cargado sin navegador: solo define cosas. Primero el motor solo; sus trozos, más abajo y de uno en uno */
+  const MOTOR = require('./entrenador/pruebas/motor.js');
   const caja = { window: {}, document: {}, Math, Object, Array, JSON, String, Number, RegExp, Error, console: { log() {} } };
-  vm.runInNewContext(mod, caja, { filename: 'modulos/entrenador.js' });
-  const E = caja.window.TG_ENTRENADOR;
-  ok(E && typeof E.tiene === 'function' && typeof E.montar === 'function' && typeof E.ids === 'function', 'TG_ENTRENADOR: tiene, montar, ids');
+  const E = MOTOR.carga(caja, null, false);
+  ok(E && typeof E.tiene === 'function' && typeof E.montar === 'function' && typeof E.ids === 'function' && typeof E.pedir === 'function' && typeof E.trozos === 'function' && typeof E.todo === 'function',
+    'TG_ENTRENADOR: pedir, tiene, montar, ids, trozos, todo');
   const ids = E.ids(), T = E._;
   const EJ = {}; JSON.parse(lee('datos/cuerpo/ejercicios.json')).ejercicios.forEach(e => { EJ[e.id] = e; });
   const TX = {}; LANGS.forEach(l => { TX[l] = JSON.parse(lee('datos/cuerpo/ejercicios-' + l + '.json')); });
   info(ids.length + ' ejercicios con vídeo, de ' + Object.keys(EJ).length);
+  /* POR TROZOS (16 de noviembre de 2026). modulos/entrenador.js lleva el motor y las coreografías del bloque 1; las demás van por
+     grupos en modulos/entrenador/<grupo>.<huella>.js y en la app se piden al abrir una ficha (TG_ENTRENADOR.pedir). Aquí, sin
+     navegador: lo que el motor trae él solo; que cada trozo es el fichero que su nombre dice (la huella es la de su contenido) y
+     que en la carpeta no hay otros; que cada trozo recibe del motor todo lo que usa de él; y que al llegar un trozo aparecen sus
+     coreografías y solo esas. Lo que pasa en un navegador (qué se pide y cuándo, y si un trozo no llega), en la sección 2 */
+  const nucleoIds = Object.keys(T.COREO), deTrozo = ids.filter(id => nucleoIds.indexOf(id) < 0);
+  const TROZOS = E.trozos(), dirT = path.join(RAIZ, 'modulos', 'entrenador'), trozoDe = {};
+  {
+    ok(nucleoIds.length > 0 && deTrozo.length > 0 && new Set(ids).size === ids.length && ids.slice(0, nucleoIds.length).join() === nucleoIds.join()
+       && nucleoIds.every(id => E.tiene(id)) && deTrozo.every(id => !E.tiene(id) && E.montar({}, { id: id, pasos: (TX.es[id] || [0, []])[1] }) === null),
+      'el motor solo: trae las ' + nucleoIds.length + ' coreografías del bloque 1; de las otras ' + deTrozo.length + ' sabe cuáles son (ids), pero no las tiene ni las monta hasta que llega su trozo');
+    const p1 = await E.pedir(nucleoIds[0]), p2 = await E.pedir('no-existe'), p3 = await E.pedir('toString');
+    let p4 = 'llegó'; try { await E.pedir(deTrozo[0]); } catch (e) { p4 = 'falla'; }
+    ok(p1 === true && p2 === false && p3 === false && p4 === 'falla' && !E.tiene(deTrozo[0]),
+      'pedir(id): sí para una del motor, no para un ejercicio sin coreografía, y falla limpio si su trozo no se puede traer (aquí no hay de dónde)', [p1, p2, p3, p4]);
+    const enCarpeta = fs.existsSync(dirT) ? fs.readdirSync(dirT).sort() : [], sha8 = f => crypto.createHash('sha256').update(fs.readFileSync(path.join(dirT, f))).digest('hex').slice(0, 8);
+    const malNombre = TROZOS.filter(f => !/^[a-z0-9-]+\.[0-9a-f]{8}$/.test(f) || !fs.existsSync(path.join(dirT, f + '.js')) || sha8(f + '.js') !== f.split('.')[1]);
+    ok(TROZOS.length > 0 && !malNombre.length && enCarpeta.join() === TROZOS.map(f => f + '.js').sort().join(),
+      'los ' + TROZOS.length + ' trozos que nombra el motor están en modulos/entrenador/, cada uno con la huella de su contenido en el nombre, y en la carpeta no hay más',
+      { mal: malNombre, sobran: enCarpeta.filter(f => TROZOS.indexOf(f.replace(/\.js$/, '')) < 0) });
+    const declarados = (mod.match(/CARGA-PEREZOSA: modulos\/entrenador\/[a-z0-9-]+\.[0-9a-f]{8}\.js/g) || []).map(q => q.replace(/^.*\//, '').replace(/\.js$/, ''));
+    ok(declarados.join() === TROZOS.join(), 'el motor los declara en su cabecera (CARGA-PEREZOSA), los mismos y en el mismo orden: de ahí los leen tools/fuente.js, el paquete de las tiendas y «Su cuerpo» para guardarlos', declarados);
+    /* lo que el motor declara de verdad en su nivel de arriba: sus fuentes, sin la envoltura, corridos en el ámbito global de un
+       contexto nuevo (lo que se declara allí con var o function queda como propiedad del global). construir.py saca esa lista
+       leyendo el texto; si se le escapara un nombre, un trozo lo usaría sin recibirlo y fallaría al llegar o, peor, a mitad de un vídeo */
+    const esFuenteTrozo = n => /^7[1-9a-z][0-9a-z]*-[a-z0-9-]+\.js$/.test(n), fuentesSrc = fs.readdirSync(path.join(RAIZ, 'tools/entrenador/src')).filter(n => /\.js$/.test(n)).sort();
+    const nodoG = () => ({ style: {}, setAttribute() {}, appendChild(c) { return c; } });
+    const globalM = { window: {}, document: { createElementNS: nodoG, createElement: nodoG }, Math, Object, Array, JSON, String, Number, RegExp, Error, console: { log() {} } }, antesG = new Set(Object.keys(globalM));
+    vm.runInContext("'use strict';\n" + fuentesSrc.filter(n => !esFuenteTrozo(n)).map(n => lee('tools/entrenador/src/' + n)).join('\n'), vm.createContext(globalM), { filename: 'tools/entrenador/src (el motor)' });
+    const declara = Object.keys(globalM).filter(k => !antesG.has(k)), sinRecibir = [], idsDeFuente = {};
+    fuentesSrc.filter(esFuenteTrozo).forEach(n => {
+      const nombre = n.replace(/^7[0-9a-z]+-/, '').replace(/\.js$/, ''), f = TROZOS.filter(q => q.split('.')[0] === nombre)[0], fuente = lee('tools/entrenador/src/' + n);
+      if (!f) { sinRecibir.push(n + ': no tiene trozo'); return; }
+      const js = fs.readFileSync(path.join(dirT, f + '.js'), 'utf8'), corte = js.indexOf(fuente.slice(0, 80)), cab = corte > 0 ? js.slice(0, corte) : '';
+      const recibe = new Set(((/\n    var ([\s\S]*?);\n/.exec(cab) || [0, ''])[1]).split(',').map(q => q.trim().split(' = N.')[0])), usa = new Set(fuente.match(/[A-Za-z_$][\w$]*/g));
+      if (!cab) sinRecibir.push(f + ': no lleva dentro su fuente (' + n + ')');
+      declara.filter(k => usa.has(k) && !recibe.has(k)).forEach(k => sinRecibir.push(f + ': usa ' + k + ' y no lo recibe'));
+      idsDeFuente[f] = (fuente.match(/^\s*COREO(?:\['[a-z0-9-]+'\]|\.[a-z0-9_]+) = /gm) || []).map(q => (/\['([a-z0-9-]+)'\]/.exec(q) || /\.([a-z0-9_]+) = /.exec(q))[1]);
+    });
+    ok(declara.length > 200 && !sinRecibir.length && Object.keys(idsDeFuente).length === TROZOS.length,
+      'cada trozo recibe del motor todo lo que usa de él (el motor declara ' + declara.length + ' nombres, contados de verdad y no leyendo el texto)', sinRecibir.slice(0, 6));
+    /* y ahora llegan, de uno en uno */
+    const malLlega = []; let llevan = nucleoIds.slice();
+    TROZOS.forEach(f => {
+      const antes = Object.keys(T.COREO), hAntes = Object.keys(E.huellas).length, suyas = idsDeFuente[f] || [];
+      try { vm.runInContext(fs.readFileSync(path.join(dirT, f + '.js'), 'utf8'), caja, { filename: 'modulos/entrenador/' + f + '.js' }); } catch (e) { malLlega.push(f + ': ' + e.message); return; }
+      const nuevas = Object.keys(T.COREO).filter(id => antes.indexOf(id) < 0);
+      if (nuevas.join() !== suyas.join()) malLlega.push(f + ': trae ' + nuevas.length + ' coreografías y su fuente tiene ' + suyas.length);
+      if (!suyas.every(id => E.tiene(id) && typeof E.huellas[id] === 'string') || Object.keys(E.huellas).length !== hAntes + suyas.length) malLlega.push(f + ': tiene() o las huellas de sus pasos');
+      llevan = llevan.concat(suyas); suyas.forEach(id => { trozoDe[id] = f; });
+      if (!ids.filter(id => llevan.indexOf(id) < 0).every(id => !E.tiene(id))) malLlega.push(f + ': deja ver coreografías de un trozo que no ha llegado');
+    });
+    let otro = false;
+    E._trozo('no-es-de-este-motor', () => { otro = true; return {}; }); E._trozo(TROZOS[0].split('.')[0], () => { otro = true; return {}; });
+    ok(!malLlega.length && llevan.join() === ids.join() && Object.keys(T.COREO).join() === ids.join() && !otro && (await E.pedir(deTrozo[0])) === true,
+      'al llegar cada trozo aparecen sus coreografías y solo esas, en el orden de ids(); uno que no es de este motor, o que ya llegó, no hace nada', malLlega.slice(0, 6));
+  }
+  if (Object.keys(T.COREO).length !== ids.length) { console.log('\n  Faltan coreografías (un trozo no ha llegado entero): lo demás no se puede mirar.\n  ' + fallos + ' de ' + hechos + ' controles EN ROJO'); process.exit(1); }
+  /* el motor y sus trozos, juntos: lo que se mira en todo el texto del módulo */
+  const modTodo = [mod].concat(TROZOS.map(f => fs.readFileSync(path.join(dirT, f + '.js'), 'utf8'))).join('\n');
   /* un pase parcial: los vídeos que se pasan cuadro a cuadro (lo demás se comprueba igual, de todos) */
   let idsVideo = ids;
-  if (/^\d\d$/.test(SOLO)) {
+  if (/^\d[\da-z]$/.test(SOLO)) {
     const trozo = fs.readdirSync(path.join(RAIZ, 'tools/entrenador/src')).filter(n => n.indexOf(SOLO + '-') === 0)[0], fuente = trozo ? lee('tools/entrenador/src/' + trozo) : '';
     idsVideo = ids.filter(id => fuente.indexOf("COREO['" + id + "'] = ") >= 0 || fuente.indexOf('COREO.' + id + ' = ') >= 0);
   } else if (SOLO) idsVideo = SOLO.split(',').filter(id => ids.indexOf(id) >= 0);
@@ -263,7 +342,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     const malas = [];
     casos.forEach(c => { let r; try { r = con(c[1], c[2]).voces(c[3]); } catch (e) { malas.push(c[0] + ': ' + e.message); return; } if (r.elegida !== c[4] || r.sistema !== c[5]) malas.push(c[0] + ': elige ' + JSON.stringify(r.elegida) + (r.sistema ? ' (la del sistema)' : '')); });
     ok(!malas.length, 'la voz (' + casos.length + ' aparatos de prueba): nunca una robótica («Eloquence») ni una de red; si el iPhone no enseña otra, pone él la suya; si no hay ninguna que valga, no se ofrece', malas);
-    ok(!/TG_VOZ\.vozLocal/.test(mod), 'el vídeo ya no coge «la primera voz del idioma» (TG_VOZ.vozLocal): elige la suya');
+    ok(!/TG_VOZ\.vozLocal/.test(modTodo), 'el vídeo ya no coge «la primera voz del idioma» (TG_VOZ.vozLocal): elige la suya');
   }
   /* los textos propios */
   const filas = Object.keys(E.textos), cojos = [];
@@ -282,9 +361,9 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
      «Jérôme» en los de letra latina; en búlgaro y en chino, la suya y nunca la latina */
   const NOMBRE = { bg: 'Жером', zh: '热罗姆', zht: '熱羅姆' };
   ok(LANGS.every(l => E.textos.entCon[l].includes(NOMBRE[l] || 'Jérôme') && (!NOMBRE[l] || !/J[eé]r[oô]me/i.test(E.textos.entCon[l])))
-     && !/\bJero\b/.test(mod.replace(/\/\*[\s\S]*?\*\//g, '')), 'el personaje se llama Jérôme en los diez idiomas, en la forma de cada uno («Жером», «热罗姆», «熱羅姆»), y ya no «Jero»');
-  ok(!/\beval\s*\(|new Function|console\.log/.test(mod), 'el módulo: sin eval, sin new Function, sin console.log');
-  const conHtml = mod.split('\n').filter(l => /\.innerHTML\s*=/.test(l));
+     && !/\bJero\b/.test(modTodo.replace(/\/\*[\s\S]*?\*\//g, '')), 'el personaje se llama Jérôme en los diez idiomas, en la forma de cada uno («Жером», «热罗姆», «熱羅姆»), y ya no «Jero»');
+  ok(!/\beval\s*\(|new Function|console\.log|document\.write/.test(modTodo), 'el módulo y sus trozos: sin eval, sin new Function, sin console.log, sin document.write');
+  const conHtml = modTodo.split('\n').filter(l => /\.innerHTML\s*=/.test(l));
   ok(conHtml.length > 0 && conHtml.every(l => !/datos\.|\.texto|\bnombre\b|pasos|etiquetas|\btx\b/.test(l.replace(/\/\*.*?\*\//g, ''))), 'innerHTML (' + conHtml.length + ' veces) solo recibe dibujos e iconos del propio módulo, nunca un texto de la ficha',
     conHtml.filter(l => /datos\.|\.texto|\bnombre\b|pasos|etiquetas|\btx\b/.test(l)).map(l => l.trim().slice(0, 90)));
   /* los enganches */
@@ -297,6 +376,38 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   ok(/id="tgc-ej-video" hidden/.test(cuerpo) && /function videoEj\(/.test(cuerpo) && /E\.tiene\(x\.id, t\.pasos\.length\)/.test(cuerpo), 'modulos/cuerpo.js: el hueco del vídeo en la ficha, y solo con los pasos con los que se coreografió');
   ok((cuerpo.match(/quitarVideoEj\(\);/g) || []).length >= 3, 'modulos/cuerpo.js: el vídeo se quita al volver a la lista y al cerrar la hoja');
   ok(!/videoEjR\.reproducir\(|auto: true/.test(cuerpo), 'modulos/cuerpo.js: el vídeo no arranca solo');
+  /* (16-11-2026) por trozos */
+  ok(/typeof E0\.pedir === 'function' \? E0\.pedir\(x\.id\) : null/.test(cuerpo) && cuerpo.indexOf('E0.pedir(x.id)') < cuerpo.indexOf('E.tiene(x.id, t.pasos.length)'),
+    'modulos/cuerpo.js: antes de preguntar si lo tiene, pide la coreografía del ejercicio (y con un motor de una pieza sigue como estaba)');
+  ok(/function guardarVideos\(/.test(cuerpo) && /navigator\.serviceWorker && navigator\.serviceWorker\.controller/.test(cuerpo) && /con\.saveData \|\| \/2g\/\.test\(String\(con\.effectiveType/.test(cuerpo) && /navigator\.onLine === false/.test(cuerpo),
+    'modulos/cuerpo.js: con conexión y con service worker, guarda los trozos para verlos sin conexión; no, si el móvil pide ahorrar datos o va por una conexión 2g');
+  ok(/\['modulos\/entrenador', f => /.test(lee('tools/app_preparar.js')), 'tools/app_preparar.js: los trozos viajan en el paquete de las tiendas (allí no hay service worker que los guarde)');
+  { const vistos = require('./fuente').perezosos().map(f => f.ruta);
+    ok(TROZOS.every(f => vistos.indexOf('modulos/entrenador/' + f + '.js') >= 0), 'las herramientas que barren el fuente ven los trozos (tools/fuente.js los lee de la cabecera del motor)', vistos.filter(r => /entrenador/.test(r))); }
+  /* el service worker de verdad (sw.js), con caches y red de mentira. Los trozos no van en la precarga ni en la lista de «red
+     primero»: llevan la huella en el nombre, así que les vale lo de por defecto. Se guardan la primera vez que se piden y desde
+     entonces salen de la cache sin tocar la red; uno que nunca se pidió, sin red, falla limpio. El motor sigue como estaba */
+  {
+    class CacheM { constructor() { this.m = new Map(); } k(r) { return typeof r === 'string' ? r : r.url; } async put(r, x) { this.m.set(this.k(r), x); } async match(r) { const x = this.m.get(this.k(r)); return x ? x.clone() : undefined; }
+      async delete(r) { return this.m.delete(this.k(r)); } async keys() { return Array.from(this.m.keys()).map(u => new Request(u)); } async add() {} }
+    const cs = new Map(), cachesM = { open: async n => { if (!cs.has(n)) cs.set(n, new CacheM()); return cs.get(n); }, keys: async () => Array.from(cs.keys()), delete: async n => cs.delete(n),
+      match: async r => { for (const c of cs.values()) { const x = await c.match(r); if (x) return x; } return undefined; } };
+    let red = [], hayRed = true; const man = {}, WEB = 'https://tenerifego.app/', pausa = ms => new Promise(r => setTimeout(r, ms));
+    const fetchM = async r => { const u = typeof r === 'string' ? r : r.url; red.push(u); if (!hayRed) throw new TypeError('sin red'); const x = new Response('lo de ' + u, { status: 200 }); Object.defineProperty(x, 'type', { value: 'basic' }); return x; };
+    let cargado = true;
+    try { new Function('self', 'caches', 'fetch', 'Request', 'Response', 'URL', sw)({ addEventListener: (t, f) => { (man[t] = man[t] || []).push(f); }, skipWaiting() {}, clients: { claim: async () => {}, matchAll: async () => [] }, registration: { showNotification: async () => {} } },
+      cachesM, fetchM, Request, Response, URL); } catch (e) { cargado = false; }
+    const pide = async u => { let p = null; (man.fetch || []).forEach(f => f({ request: new Request(u), respondWith: x => { p = x; }, waitUntil() {} })); red = []; try { const r = p ? await p : null; await pausa(15); return { st: r && r.status === 200 ? 200 : 0, red: red.length }; } catch (e) { return { st: 0, red: red.length }; } };
+    const uT = WEB + 'modulos/entrenador/' + TROZOS[0] + '.js', uM = WEB + 'modulos/entrenador.js', pasos = [];
+    pasos.push(await pide(uT));                       /* la primera vez: de la red, y se guarda */
+    hayRed = false; pasos.push(await pide(uT));       /* sin red: de la cache */
+    hayRed = true; pasos.push(await pide(uT));        /* con red otra vez: de la cache, sin pedirlo */
+    hayRed = false; pasos.push(await pide(WEB + 'modulos/entrenador/' + TROZOS[TROZOS.length - 1] + '.js'));   /* uno que nunca se pidió, sin red */
+    hayRed = true; pasos.push(await pide(uM)); pasos.push(await pide(uM));   /* el motor: red primero, cada vez */
+    hayRed = false; pasos.push(await pide(uM));
+    ok(cargado && !/modulos\/entrenador\//.test(core) && JSON.stringify(pasos) === JSON.stringify([{ st: 200, red: 1 }, { st: 200, red: 0 }, { st: 200, red: 0 }, { st: 0, red: 1 }, { st: 200, red: 1 }, { st: 200, red: 1 }, { st: 200, red: 1 }]),
+      'sw.js (sin tocarlo): un trozo no va en la precarga; se guarda al pedirlo y después sale de la cache sin tocar la red, también sin conexión; uno que nunca se pidió, sin red, falla limpio; y el motor, «red primero» y con respaldo', pasos);
+  }
 
   let chromium;
   try { chromium = require('playwright').chromium; } catch (e) {
@@ -312,6 +423,36 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   const vigila = pg => { pg.on('pageerror', e => errores.push(String(e).slice(0, 200))); pg.on('console', m => { if (m.type() === 'error' && !/ERR_|Failed to load resource/.test(m.text())) errores.push('consola: ' + m.text().slice(0, 200)); }); };
 
   console.log('\n════ 2. el vídeo de cada ejercicio, entero (Chromium, 320 de ancho) ════');
+  /* LOS TROZOS, EN UN NAVEGADOR (16 de noviembre de 2026): el motor cargado como lo carga la app, con su etiqueta y nada más
+     (pruebas/trozos.html). Qué se pide y cuándo, y qué pasa si un trozo no llega */
+  {
+    const ctx = await nav.newContext({ viewport: { width: 390, height: 700 }, serviceWorkers: 'block' });
+    await soloLocal(ctx);
+    const pg = await ctx.newPage(); vigila(pg);
+    const pedidos = []; pg.on('request', r => { const m = /\/modulos\/entrenador\/([a-z0-9-]+\.[0-9a-f]{8})\.js$/.exec(r.url()); if (m) pedidos.push(m[1]); });
+    await pg.goto(SITIO + 'tools/entrenador/pruebas/trozos.html');
+    const fA = TROZOS[0], deA = deTrozo.filter(id => trozoDe[id] === fA), fB = TROZOS[1], deB = deTrozo.filter(id => trozoDe[id] === fB);
+    const t0 = await pg.evaluate(a => ({ n: window.TG_ENTRENADOR.ids().length, nucleo: window.TG_ENTRENADOR.tiene(a[0]), trozo: window.TG_ENTRENADOR.tiene(a[1]) }), [nucleoIds[0], deA[0]]);
+    ok(t0.n === ids.length && t0.nucleo && !t0.trozo && pedidos.length === 0, 'en el navegador, el motor solo: sabe de las ' + ids.length + ' y no pide ningún trozo mientras nadie pida una coreografía', [t0, pedidos]);
+    const tres = await pg.evaluate(a => Promise.all([window.TG_ENTRENADOR.pedir(a[0]), window.TG_ENTRENADOR.pedir(a[1]), window.TG_ENTRENADOR.pedir(a[0])])
+      .then(r => ({ r: r.join(), suyas: window.TG_ENTRENADOR.tiene(a[0]) && window.TG_ENTRENADOR.tiene(a[1]), otra: window.TG_ENTRENADOR.tiene(a[2]) })), [deA[0], deA[deA.length - 1], deB[0]]);
+    ok(tres.r === 'true,true,true' && tres.suyas && !tres.otra && pedidos.join() === fA, 'pedir(id) trae el trozo de ese ejercicio (una sola vez, aunque se pida tres) y ningún otro', [tres, pedidos]);
+    const datosDe = id => ({ id: id, nombre: TX.es[id][0], pasos: TX.es[id][1], pasosEs: TX.es[id][1], prim: EJ[id].g, sec: EJ[id].s, nombres: {}, etiquetas: [], entorno: EJ[id].e[0], nivel: EJ[id].n });
+    const monta = await pg.evaluate(d => { const r = window.TG_ENTRENADOR.montar(document.getElementById('caja'), d, { idioma: 'es' }), n = document.querySelectorAll('#caja .tgv').length; if (r) r.quitar(); return { r: !!r, n: n }; }, datosDe(deA[0]));
+    ok(monta.r && monta.n === 1, 'y con su trozo, el vídeo de «' + deA[0] + '» se monta', monta);
+    /* un trozo que no llega (sin red) y uno que llega vacío: pedir() falla y tiene() sigue diciendo que no; al pedirlo otra vez, llega */
+    const urlB = '**/modulos/entrenador/' + fB + '.js', intento = () => pg.evaluate(id => window.TG_ENTRENADOR.pedir(id).then(() => 'llega', () => 'falla').then(r => r + (window.TG_ENTRENADOR.tiene(id) ? ' y lo tiene' : ' y no lo tiene')), deB[0]);
+    await ctx.route(urlB, r => r.abort());
+    const f1 = await intento(); await ctx.unroute(urlB);
+    await ctx.route(urlB, r => r.fulfill({ status: 200, contentType: 'text/javascript', body: '/* vacío */' }));
+    const f2 = await intento(); await ctx.unroute(urlB);
+    const f3 = await intento();
+    ok(f1 === 'falla y no lo tiene' && f2 === 'falla y no lo tiene' && f3 === 'llega y lo tiene' && pedidos.filter(f => f === fB).length === 3,
+      'un trozo que no llega, o que llega vacío: pedir() falla y tiene() sigue diciendo que no; al pedirlo otra vez, llega', [f1, f2, f3, pedidos]);
+    const faltan = await pg.evaluate(l => window.TG_ENTRENADOR.todo().then(() => l.filter(id => !window.TG_ENTRENADOR.tiene(id)).length), ids);
+    ok(faltan === 0 && TROZOS.every(f => pedidos.filter(q => q === f).length === (f === fB ? 3 : 1)), 'todo() trae los que faltan, cada uno una vez, y entonces están las ' + ids.length, [faltan, pedidos]);
+    await ctx.close();
+  }
   {
     const ctx = await nav.newContext({ viewport: { width: 320, height: 640 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
     await soloLocal(ctx);
@@ -335,6 +476,8 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         if (!m) { leyMal.push(id + ' (' + l + '): no se monta'); continue; }
         const y = await pg.evaluate(() => window.leyenda()), q = []; leyVistas++;
         if (y.dentro || y.pisa) q.push('pisa el dibujo (' + y.pisa + ' px²)');
+        if (y.pisaPie || !y.antesDeMandos) q.push('pisa la tarjeta del paso o los mandos (' + y.pisaPie + ' px²)');
+        if (!y.tras) q.push('en una pantalla baja tiene que ir detrás de la tarjeta del paso');
         if (y.sale > 0.5) q.push('se sale ' + y.sale + ' px del ancho del reproductor');
         if (y.ancho > y.vista) q.push('la página se ensancha a ' + y.ancho + ' px');
         if (!y.n || y.textos.some(t => !t || grupos.indexOf(t) >= 0)) q.push('una píldora sin su nombre: ' + y.textos.join(' | '));
@@ -343,8 +486,19 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         if (q.length) leyMal.push(id + ' (' + l + '): ' + q.join('; '));
       }
     }
-    ok(Object.keys(GRUPOS).length === LANGS.length && !leyMal.length && leyVistas === idsVideo.length * LANGS.length,
-      'la leyenda de músculos, con los nombres de la app en los diez idiomas (' + leyVistas + ' vistas, a 320 px): en su fila bajo el vídeo, sin pisar el dibujo ni salirse de ancho', leyMal.slice(0, 6));
+    /* y en una pantalla alta (390 × 844, un iPhone), justo debajo del vídeo y delante de la tarjeta del paso: con unos cuantos, en dos idiomas */
+    await pg.setViewportSize({ width: 390, height: 844 });
+    const leyAltaP = []; let leyVistasP = 0;
+    for (const id of idsVideo.filter((x, i) => i % Math.max(1, Math.floor(idsVideo.length / 12)) === 0).slice(0, 12)) {
+      for (const l of ['es', 'pl']) {
+        if (!(await pg.evaluate(a => window.montar(a[0], a[1], 'dia'), [id, l]))) { leyAltaP.push(id + ' (' + l + '): no se monta'); continue; }
+        const y = await pg.evaluate(() => window.leyenda()); leyVistasP++;
+        if (y.dentro || y.pisa || y.pisaPie || !y.antesDeMandos || y.tras || y.sale > 0.5 || y.ancho > y.vista || y.bajo < 0 || y.bajo > 16) leyAltaP.push(id + ' (' + l + '): ' + JSON.stringify(y).slice(0, 160));
+      }
+    }
+    await pg.setViewportSize({ width: 320, height: 640 });
+    ok(Object.keys(GRUPOS).length === LANGS.length && !leyMal.length && leyVistas === idsVideo.length * LANGS.length && !leyAltaP.length && leyVistasP > 0,
+      'la leyenda de músculos, con los nombres de la app en los diez idiomas (' + leyVistas + ' vistas, a 320 × 640): en su fila, sin pisar el dibujo, la tarjeta del paso ni los mandos, ni salirse de ancho; en esa pantalla, que es baja, detrás de la tarjeta del paso, y en una alta (' + leyVistasP + ' vistas a 390 × 844), justo debajo del vídeo', leyMal.concat(leyAltaP).slice(0, 6));
     info('la leyenda más alta: ' + leyAlta[0] + ' px · ' + leyAlta[1]);
     const peros = [], gestos = {}, tope = {}, dibujo = [], plegados = [], salen = [], arrimados = [], piezas = {}, noCopia = [], otraDur = []; let pasados = 0, cuadros = 0, mirados = 0, girados = 0, borron = 99, encuadrados = 0, cotejados = 0;
     for (let n = 0; n < idsVideo.length; n++) {
@@ -483,22 +637,38 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     const ctx = await nav.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
     await soloLocal(ctx);
     const pg = await ctx.newPage(); vigila(pg);
+    /* (16-11-2026) lo que se pide del vídeo: el motor (modulos/entrenador.js) y sus trozos (modulos/entrenador/…) */
+    const pedidosApp = []; pg.on('request', r => { const u = r.url(); if (/\/modulos\/entrenador(\.js|\/)/.test(u)) pedidosApp.push(u.replace(SITIO, '')); });
+    const trozosApp = () => pedidosApp.filter(u => /^modulos\/entrenador\//.test(u));
     const Q = (f, a) => pg.evaluate(f, a), espera = ms => pg.waitForTimeout(ms);
-    await pg.goto(SITIO + 'index.html', { waitUntil: 'domcontentloaded' });
-    await espera(2500);
-    await Q(() => { const l = document.querySelector('.v19-w-lang[data-lang="es"]'); if (l) l.click(); }); await espera(300);
-    await Q(() => { const s = document.getElementById('v19-welcome-start'); if (s) s.click(); }); await espera(1500);
-    const abierto = await Q(() => window.abrirCuerpo().then(() => true, () => false)); await espera(2500);
-    ok(abierto, '«Su cuerpo» se abre');
+    /* la app, «Su cuerpo» y la lista de un grupo (en una página cualquiera) */
+    const hastaElGrupo = async (p, g) => {
+      await p.goto(SITIO + 'index.html', { waitUntil: 'domcontentloaded' });
+      await p.waitForTimeout(2500);
+      await p.evaluate(() => { const l = document.querySelector('.v19-w-lang[data-lang="es"]'); if (l) l.click(); }); await p.waitForTimeout(300);
+      await p.evaluate(() => { const b = document.getElementById('v19-welcome-start'); if (b) b.click(); }); await p.waitForTimeout(1500);
+      const abre = await p.evaluate(() => window.abrirCuerpo().then(() => true, () => false)); await p.waitForTimeout(2500);
+      if (g) { await p.evaluate(q => document.querySelector('#cuerpo-panel .tgc-fila[data-g="' + q + '"]').click(), g); await p.waitForTimeout(1800); }
+      return abre;
+    };
+    const fichaDe = (p, id) => p.evaluate(q => document.querySelector('#tgc-ej-lista .tgc-ej-fila[data-id="' + q + '"]').click(), id);
+    /* ¿se ha puesto en marcha? (el botón grande se va y la barra avanza). Se espera a que pase, con un tope: con una espera fija de
+       1,2 s, una máquina cargada daba un rojo que no era (16-11-2026) */
+    const enMarcha = p => p.waitForFunction(() => { const b = document.querySelector('#tgc-ej-video .tgv-gran'), w = document.querySelector('#tgc-ej-video .tgv-barras b'); return !!b && b.hidden && !!w && parseFloat(w.style.width) > 0; }, null, { timeout: 8000 }).then(() => true, () => false);
     const conVideo = (PARCIAL ? idsVideo[0] : ids.filter(id => EJ[id].g[0] === 'pecho')[0]) || ids[0], grupo = EJ[conVideo].g[0];
+    const abierto = await hastaElGrupo(pg, '');
+    ok(abierto, '«Su cuerpo» se abre');
     await Q(g => document.querySelector('#cuerpo-panel .tgc-fila[data-g="' + g + '"]').click(), grupo); await espera(1800);
-    ok(await Q(() => !window.TG_ENTRENADOR), 'el módulo no se pide hasta abrir una ficha');
-    await Q(id => document.querySelector('#tgc-ej-lista .tgc-ej-fila[data-id="' + id + '"]').click(), conVideo); await espera(1800);
+    ok(await Q(() => !window.TG_ENTRENADOR) && pedidosApp.length === 0, 'el módulo no se pide hasta abrir una ficha', pedidosApp);
+    await fichaDe(pg, conVideo);
+    await pg.waitForFunction(() => document.querySelector('#tgc-ej-video .tgv'), null, { timeout: 15000 }).catch(() => {}); await espera(600);
     const v = await Q(() => { const c = document.getElementById('tgc-ej-video'), r = c.getBoundingClientRect(), h = document.getElementById('tgc-hoja').getBoundingClientRect(); return { ve: !c.hidden, n: c.querySelectorAll('.tgv').length, ancho: r.width, dentro: r.left >= h.left - 1 && r.right <= h.right + 1, suena: !!c.querySelector('.tgv-gran') && !c.querySelector('.tgv-gran').hidden }; });
     ok(v.ve && v.n === 1 && v.ancho > 250 && v.dentro, 'la ficha de «' + conVideo + '» trae su vídeo, dentro de la hoja', v);
+    ok(pedidosApp.filter(u => u === 'modulos/entrenador.js').length === 1 && trozosApp().join() === (trozoDe[conVideo] ? 'modulos/entrenador/' + trozoDe[conVideo] + '.js' : ''),
+      trozoDe[conVideo] ? 'para ella se han pedido el motor y el trozo de ese ejercicio, y ningún otro' : 'es del bloque 1: para ella se ha pedido el motor, una vez, y ningún trozo', pedidosApp);
     ok(v.suena, 'no arranca solo: espera con su botón');
-    await Q(() => document.querySelector('#tgc-ej-video .tgv-gran').click()); await espera(1200);
-    ok(await Q(() => document.querySelector('#tgc-ej-video .tgv-gran').hidden && parseFloat(document.querySelector('#tgc-ej-video .tgv-barras b').style.width) > 0), 'al tocarlo, se pone en marcha');
+    await Q(() => document.querySelector('#tgc-ej-video .tgv-gran').click());
+    ok(await enMarcha(pg), 'al tocarlo, se pone en marcha'); await espera(600);
     const temaAntes = await Q(() => document.getElementById('cuerpo-panel').getAttribute('data-tema'));
     await Q(() => document.getElementById('tgc-tema').click()); await espera(600);
     const temas = await Q(() => [document.getElementById('cuerpo-panel').getAttribute('data-tema'), document.querySelector('#tgc-ej-video .tgv').getAttribute('data-tema')]);
@@ -507,9 +677,134 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     ok(await Q(() => { const r = document.querySelectorAll('#tgc-ej-video .tgv'); return r.length === 1 && r[0].getAttribute('data-marca') === '1'; }), 'guardar unas series no reinicia el vídeo');
     await Q(() => document.getElementById('tgc-ej-volver').click()); await espera(600);
     ok(await Q(() => document.getElementById('tgc-ej-video').hidden && !document.querySelector('.tgv')), 'al volver a la lista, el vídeo se quita');
-    const sin = await Q(() => { const f = Array.from(document.querySelectorAll('#tgc-ej-lista .tgc-ej-fila')).filter(b => !window.TG_ENTRENADOR.tiene(b.dataset.id))[0]; if (!f) return ''; f.click(); return f.dataset.id; }); await espera(900);
+    /* (16-11-2026) una ficha cuya coreografía va en un trozo: su trozo se pide al abrirla, y solo ese */
+    const enTrozo = await Q(l => l.filter(id => document.querySelector('#tgc-ej-lista .tgc-ej-fila[data-id="' + id + '"]'))[0] || '', deTrozo.filter(id => EJ[id].g[0] === grupo && id !== conVideo));
+    {
+      const unicos = l => l.filter((x, i) => l.indexOf(x) === i).sort().join(), deben = unicos([trozoDe[conVideo], trozoDe[enTrozo]].filter(Boolean).map(f => 'modulos/entrenador/' + f + '.js'));
+      if (enTrozo) { await fichaDe(pg, enTrozo); await pg.waitForFunction(() => document.querySelector('#tgc-ej-video .tgv'), null, { timeout: 15000 }).catch(() => {}); await espera(400); }
+      const vt = await Q(() => { const c = document.getElementById('tgc-ej-video'); return { ve: !c.hidden, n: c.querySelectorAll('.tgv').length, boton: !document.getElementById('tgc-ej-vervideo').hidden }; });
+      ok(!!enTrozo && vt.ve && vt.n === 1 && vt.boton && unicos(trozosApp()) === deben && trozosApp().length === deben.split(',').length && pedidosApp.filter(u => u === 'modulos/entrenador.js').length === 1,
+        'la ficha de «' + enTrozo + '», cuya coreografía va en un trozo, trae su vídeo: el trozo se pide al abrirla, y solo ese', [vt, pedidosApp]);
+      await Q(() => { const b = document.querySelector('#tgc-ej-video .tgv-gran'); if (b) b.click(); });
+      ok(await enMarcha(pg), 'y al tocarlo se pone en marcha');
+      await Q(() => document.getElementById('tgc-ej-volver').click()); await espera(600);
+    }
+    const sin = await Q(l => { const f = Array.from(document.querySelectorAll('#tgc-ej-lista .tgc-ej-fila')).filter(b => l.indexOf(b.dataset.id) < 0)[0]; if (!f) return ''; f.click(); return f.dataset.id; }, ids); await espera(900);
     ok(!sin || await Q(() => document.getElementById('tgc-ej-video').hidden && !document.querySelector('.tgv')), 'en una ficha sin coreografía («' + sin + '») no sale nada: queda como estaba');
     await ctx.close();
+    if (enTrozo) {
+      /* (16-11-2026) EL TROZO NO LLEGA (sin conexión y sin haberlo guardado): la ficha queda como estaba, sin vídeo y sin botón, con su
+         nombre y sus pasos; y una del bloque 1, a continuación, sí trae el suyo */
+      const ctxF = await nav.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
+      await soloLocal(ctxF); await ctxF.route('**/modulos/entrenador/*.js', r => r.abort());
+      const pf = await ctxF.newPage(); vigila(pf);
+      await hastaElGrupo(pf, grupo);
+      await fichaDe(pf, enTrozo); await pf.waitForTimeout(2500);
+      const kf = await pf.evaluate(() => ({ video: !document.getElementById('tgc-ej-video').hidden || !!document.querySelector('.tgv'), boton: !document.getElementById('tgc-ej-vervideo').hidden,
+        pasos: document.querySelectorAll('#tgc-ej-pasos li').length, nombre: document.getElementById('tgc-ej-nom').textContent }));
+      ok(!kf.video && !kf.boton && kf.pasos === TX.es[enTrozo][1].length && kf.nombre === TX.es[enTrozo][0], 'si el trozo no llega, la ficha de «' + enTrozo + '» queda como estaba: sin vídeo y sin botón, con su nombre y sus pasos', kf);
+      await pf.evaluate(() => document.getElementById('tgc-ej-volver').click()); await pf.waitForTimeout(600);
+      /* una del bloque 1 de esa misma lista (la de antes, si lo era: en un pase parcial puede no serlo) */
+      const delMotor = trozoDe[conVideo] ? await pf.evaluate(l => l.filter(id => document.querySelector('#tgc-ej-lista .tgc-ej-fila[data-id="' + id + '"]'))[0] || '', nucleoIds) : conVideo;
+      if (delMotor) { await fichaDe(pf, delMotor); await pf.waitForFunction(() => document.querySelector('#tgc-ej-video .tgv'), null, { timeout: 15000 }).catch(() => {}); }
+      ok(!delMotor || await pf.evaluate(() => !document.getElementById('tgc-ej-video').hidden && document.querySelectorAll('#tgc-ej-video .tgv').length === 1), delMotor ? 'y la de «' + delMotor + '», que va con el motor, trae su vídeo aunque no llegue ningún trozo' : 'en esa lista no hay ninguna del bloque 1 con la que probarlo');
+      await ctxF.close();
+      /* (17-11-2026) GUARDAR LOS TROZOS ES APARTE. Se hace al cargar los ejercicios y al llegar el motor, y nada de lo que le pase
+         puede salir hacia ellos. Aquí, lo peor: un navegador en el que solo leer navigator.serviceWorker lanza un error (pasa en una
+         página metida en un marco aislado). Desde que «Su cuerpo» está abierto, cada lectura lanza: la lista de ejercicios sale, y
+         el vídeo de una ficha (el motor y su trozo) también; y se ha leído las dos veces (si no, la prueba no probaría nada) */
+      {
+        const ctxR = await nav.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, serviceWorkers: 'block' });
+        await soloLocal(ctxR);
+        await ctxR.addInitScript(() => { try { const d = Object.getOwnPropertyDescriptor(Navigator.prototype, 'serviceWorker');
+          Object.defineProperty(Navigator.prototype, 'serviceWorker', { configurable: true, get() { if (window.__tgSinSW) { window.__tgSinSW++; throw new DOMException('The operation is insecure.', 'SecurityError'); } return d && d.get ? d.get.call(this) : undefined; } }); } catch (e) {} });
+        const pr = await ctxR.newPage(); vigila(pr);
+        const abreR = await hastaElGrupo(pr, '');
+        await pr.evaluate(() => { window.__tgSinSW = 1; });
+        await pr.evaluate(g => document.querySelector('#cuerpo-panel .tgc-fila[data-g="' + g + '"]').click(), grupo); await pr.waitForTimeout(1800);
+        const filasR = await pr.evaluate(() => document.querySelectorAll('#tgc-ej-lista .tgc-ej-fila').length);
+        if (filasR) { await fichaDe(pr, enTrozo); await pr.waitForFunction(() => document.querySelector('#tgc-ej-video .tgv'), null, { timeout: 15000 }).catch(() => {}); }
+        const kr = await pr.evaluate(() => ({ video: !document.getElementById('tgc-ej-video').hidden && document.querySelectorAll('#tgc-ej-video .tgv').length === 1, boton: !document.getElementById('tgc-ej-vervideo').hidden,
+          pasos: document.querySelectorAll('#tgc-ej-pasos li').length, leido: (window.__tgSinSW || 1) - 1 }));
+        ok(abreR && filasR > 0 && kr.video && kr.boton && kr.pasos === TX.es[enTrozo][1].length && kr.leido >= 2,
+          'guardar los trozos es aparte: en un navegador que no deja ni leer navigator.serviceWorker (lanza un error; leído ' + kr.leido + ' veces), la lista de ejercicios sale y la ficha de «' + enTrozo + '» trae su vídeo', { abreR, filasR, kr });
+        await ctxR.close();
+      }
+      /* (16-11-2026) CON EL SERVICE WORKER DE VERDAD, Y DESPUÉS SIN CONEXIÓN. Las demás pruebas van sin service worker; esta, con él,
+         en un navegador aparte que no resuelve ningún nombre de fuera ni usa el proxy del entorno (no sale nada a ninguna parte). Al abrir «Su cuerpo» con
+         conexión, los trozos se van guardando solos sin que el motor se ponga en marcha, y el de un motor anterior se quita; después,
+         sin conexión, una ficha de un trozo que nunca se abrió trae su vídeo, y también arrancando la app sin conexión */
+      const nav2 = await chromium.launch(Object.assign({}, opc, { args: opc.args.concat(['--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1', '--proxy-server=direct://']) }));
+      const ctxS = await nav2.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, serviceWorkers: 'allow' });
+      const ps = await ctxS.newPage(), errS = []; ps.on('pageerror', e => errS.push(String(e).slice(0, 200)));
+      await ps.goto(SITIO + 'index.html', { waitUntil: 'domcontentloaded' }); await ps.waitForTimeout(2500);
+      await ps.evaluate(() => { const l = document.querySelector('.v19-w-lang[data-lang="es"]'); if (l) l.click(); }); await ps.waitForTimeout(300);
+      await ps.evaluate(() => { const b = document.getElementById('v19-welcome-start'); if (b) b.click(); });
+      const manda = await ps.waitForFunction(() => !!(navigator.serviceWorker && navigator.serviceWorker.controller), null, { timeout: 120000 }).then(() => true, () => false);
+      const CACHE_APP = (/const CACHE = '([^']+)'/.exec(sw) || [])[1] || '';
+      await ps.evaluate(async n => { const c = await caches.open(n); await c.put('/modulos/entrenador/viejo.00000000.js', new Response('de un motor anterior')); await c.put('/modulos/entrenador/apuntes.js', new Response('no es un trozo')); await c.put('/modulos/otra/cosa.00000000.js', new Response('tampoco')); }, CACHE_APP).catch(() => {});
+      const enCache = () => ps.evaluate(async l => { const r = { trozos: 0, viejo: !!(await caches.match('/modulos/entrenador/viejo.00000000.js')) }; for (const f of l) if (await caches.match('/modulos/entrenador/' + f + '.js')) r.trozos++; return r; }, TROZOS).catch(() => ({ trozos: -1, viejo: true }));
+      const abreS = manda && await ps.evaluate(() => window.abrirCuerpo().then(() => true, () => false));
+      await ps.waitForTimeout(2500);
+      const antesS = await enCache();
+      /* los ejercicios se piden al abrir la lista de un grupo: con ellos llega el índice de los vídeos, y entonces se guardan los trozos */
+      if (abreS) await ps.evaluate(g => { const f = document.querySelector('#cuerpo-panel .tgc-fila[data-g="' + g + '"]'); if (f) f.click(); }, grupo);
+      let cacheS = antesS;
+      for (let i = 0; abreS && i < 120 && !(cacheS.trozos === TROZOS.length && !cacheS.viejo); i++) { await ps.waitForTimeout(500); cacheS = await enCache(); }
+      const queda = await ps.evaluate(async () => ({ motorParado: !window.TG_ENTRENADOR, apuntes: !!(await caches.match('/modulos/entrenador/apuntes.js')), cosa: !!(await caches.match('/modulos/otra/cosa.00000000.js')), motor: !!(await caches.match('/modulos/entrenador.js')) }));
+      ok(manda && abreS && antesS.trozos === 0 && antesS.viejo && cacheS.trozos === TROZOS.length && !cacheS.viejo && queda.motorParado && queda.apuntes && queda.cosa && queda.motor,
+        'con el service worker de verdad: al abrir con conexión la lista de un grupo de «Su cuerpo» se guardan los ' + TROZOS.length + ' trozos, sin poner en marcha el motor, y el trozo de un motor anterior se quita de la cache (y nada más)', { manda, abreS, antesS, cacheS, queda });
+      /* sin conexión: una ficha de un trozo que nunca se abrió */
+      await ctxS.setOffline(true);
+      const verSin = async (p, g) => {
+        const id = await p.evaluate(a => { const f = document.querySelector('#cuerpo-panel .tgc-fila[data-g="' + a[0] + '"]'); if (f) f.click(); return new Promise(ok => setTimeout(() => ok(a[1].filter(q => document.querySelector('#tgc-ej-lista .tgc-ej-fila[data-id="' + q + '"]'))[0] || ''), 1800)); }, [g, deTrozo.filter(q => EJ[q].g[0] === g)]);
+        if (!id) return { id: '', ve: false };
+        await fichaDe(p, id); await p.waitForFunction(() => document.querySelector('#tgc-ej-video .tgv'), null, { timeout: 15000 }).catch(() => {});
+        await p.evaluate(() => { const b = document.querySelector('#tgc-ej-video .tgv-gran'); if (b) b.click(); });
+        const anda = await enMarcha(p), ve = await p.evaluate(() => { const c = document.getElementById('tgc-ej-video'); return !c.hidden && c.querySelectorAll('.tgv').length === 1; });
+        return { id: id, ve: ve, anda: anda };
+      };
+      const s1 = manda ? await verSin(ps, 'hombros') : { id: '' };
+      ok(!!s1.id && s1.ve && s1.anda, 'después, sin conexión, la ficha de «' + s1.id + '» (de un trozo que nunca se abrió) trae su vídeo y se pone en marcha', s1);
+      /* y arrancando la app sin conexión */
+      let s2 = { id: '' };
+      if (manda) {
+        await ps.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await ps.waitForTimeout(3000);
+        await ps.evaluate(() => { const b = document.getElementById('v19-welcome-start'); if (b && b.offsetParent) b.click(); }).catch(() => {}); await ps.waitForTimeout(800);
+        const abre2 = await ps.evaluate(() => typeof window.abrirCuerpo === 'function' ? window.abrirCuerpo().then(() => true, () => false) : false).catch(() => false); await ps.waitForTimeout(2500);
+        s2 = abre2 ? await verSin(ps, 'biceps') : { id: '', abre: false };
+      }
+      ok(!!s2.id && s2.ve && s2.anda, 'y arrancando la app sin conexión, la de «' + s2.id + '» también', s2);
+      /* (17-11-2026) Y NO SE GUARDA NADA SI EL MÓVIL PIDE AHORRAR DATOS, NI POR UNA CONEXIÓN 2G. Otra vez con conexión y con la
+         cache sin ningún trozo. Con «ahorrar datos», al cargar los ejercicios (la lista de un grupo): pasados 5 s no se ha pedido
+         ni guardado ninguno. Y cambiando a una conexión 2g, al abrir una ficha del bloque 1 (llega el motor, que es la otra ocasión
+         en que se guardan): tampoco. Que sin eso sí se guardan lo dice el control de arriba, en este mismo navegador */
+      let s3 = { a: null, b: null };
+      if (manda) {
+        await ctxS.setOffline(false);
+        await ctxS.addInitScript(() => { try { Object.defineProperty(Navigator.prototype, 'connection', { configurable: true, get() { return window.__tgCon || { saveData: true, effectiveType: '4g' }; } }); } catch (e) {} });
+        await ps.evaluate(async n => { const c = await caches.open(n); for (const k of await c.keys()) if (/\/modulos\/entrenador\//.test(k.url)) await c.delete(k); }, CACHE_APP).catch(() => {});
+        await ps.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await ps.waitForTimeout(3000);
+        await ps.evaluate(() => { const b = document.getElementById('v19-welcome-start'); if (b && b.offsetParent) b.click(); }).catch(() => {}); await ps.waitForTimeout(800);
+        const abre3 = await ps.evaluate(() => typeof window.abrirCuerpo === 'function' ? window.abrirCuerpo().then(() => true, () => false) : false).catch(() => false); await ps.waitForTimeout(2500);
+        const pedS = []; ps.on('request', r => { const u = r.url(); if (/\/modulos\/entrenador\//.test(u)) pedS.push(u.replace(SITIO, '')); });
+        const estado = () => ps.evaluate(() => ({ manda: !!(navigator.serviceWorker && navigator.serviceWorker.controller), ahorro: !!(navigator.connection && navigator.connection.saveData), tipo: String(navigator.connection && navigator.connection.effectiveType),
+          filas: document.querySelectorAll('#tgc-ej-lista .tgc-ej-fila').length, motor: !!window.TG_ENTRENADOR, video: !document.getElementById('tgc-ej-video').hidden && document.querySelectorAll('#tgc-ej-video .tgv').length === 1 })).catch(() => ({}));
+        if (abre3) await ps.evaluate(g => { const f = document.querySelector('#cuerpo-panel .tgc-fila[data-g="' + g + '"]'); if (f) f.click(); }, grupo);
+        await ps.waitForTimeout(1800 + 5000);
+        s3.a = Object.assign(await estado(), { abre: abre3, enCache: (await enCache()).trozos, pedidos: pedS.length });
+        await ps.evaluate(() => { window.__tgCon = { saveData: false, effectiveType: '2g' }; });
+        const delMotorS = await ps.evaluate(l => l.filter(id => document.querySelector('#tgc-ej-lista .tgc-ej-fila[data-id="' + id + '"]'))[0] || '', nucleoIds);
+        if (delMotorS) { await fichaDe(ps, delMotorS); await ps.waitForFunction(() => document.querySelector('#tgc-ej-video .tgv'), null, { timeout: 15000 }).catch(() => {}); await ps.waitForTimeout(5000); }
+        s3.b = Object.assign(await estado(), { id: delMotorS, enCache: (await enCache()).trozos, pedidos: pedS.length });
+      }
+      const a3 = s3.a || {}, b3 = s3.b || {};
+      ok(a3.abre && a3.manda && a3.ahorro === true && a3.filas > 0 && a3.enCache === 0 && a3.pedidos === 0 && !a3.motor
+        && !!b3.id && b3.manda && b3.ahorro === false && b3.tipo === '2g' && b3.motor && b3.video && b3.enCache === 0 && b3.pedidos === 0,
+        'y no se guarda ninguno si el móvil pide ahorrar datos (al cargar los ejercicios) ni por una conexión 2g (al llegar el motor, con la ficha de «' + (b3.id || '') + '»)', s3);
+      ok(errS.length === 0, 'con el service worker y sin conexión: cero errores de página', errS.slice(0, 4));
+      await nav2.close();
+    }
   }
 
   console.log('\n════ 4. Samsung Internet: el vídeo en un canvas, con sus mismos colores ════');

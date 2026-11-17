@@ -12,11 +12,9 @@
 
    Desde el 16 de noviembre de 2026 esto mismo, y lo demás que se toca (las manos, las paredes, los muslos), lo mide
    pruebas/contactos.js con el dibujo entero, y lo pasa la auditoría. Esto queda para mirar un pie tramo a tramo. */
-const vm = require('vm'), fs = require('fs'), path = require('path');
 const nodo = () => ({ style: {}, childNodes: [], setAttribute() {}, getAttribute() { return ''; }, appendChild(c) { return c; }, insertBefore(c) { return c; }, removeChild() {}, get firstChild() { return null; } });
 const caja = { window: {}, document: { createElementNS: nodo, createElement: nodo }, Math, Object, Array, JSON, String, Number, RegExp, Error, console: { log() {} } };
-vm.runInNewContext(fs.readFileSync(path.join(__dirname, '..', '..', '..', 'modulos', 'entrenador.js'), 'utf8'), caja, { filename: 'modulos/entrenador.js' });
-const T = caja.window.TG_ENTRENADOR._, C = T.COREO, r1 = x => Math.round(x * 10) / 10;
+const T = require('./motor.js').carga(caja)._, C = T.COREO, r1 = x => Math.round(x * 10) / 10;
 const clavo = s => { const m = /^([mt][id])(?:@(\d+):(-?[\d.]+))?(?:=(-?[\d.]+),(-?[\d.]+),(-?[\d.]+))?$/.exec(s); return m ? { que: m[1], mat: m[2] == null ? null : Number(m[2]), x: Number(m[3] || 0), en: m[4] == null ? null : [Number(m[4]), Number(m[5]), Number(m[6])] } : null; };
 function recorre(id) {
   const co = C[id]; if (!co) { console.log(id + ': no tiene coreografía'); return; }
