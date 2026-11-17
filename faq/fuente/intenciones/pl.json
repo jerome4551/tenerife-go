@@ -3,7 +3,7 @@
  "near":["w pobliżu","niedaleko mnie","obok mnie","w okolicy"],
  "nearTok":["pobliżu","okolicy","niedaleko","blisko"],
  "count":["ile miejsc","ile jest miejsc"],
- "cats":{"playa":["kąpiel","kąpać się","piasek"],"senderismo":["wędrówka","szlak","szlaki","spacer"],"gastronomia":["jedzenie","gdzie zjeść","wino"],"piscinas":["naturalny basen","basen w skałach"]},
+ "cats":{"playa":["kąpiel","kąpać się","piasek"],"senderismo":["wędrówka","szlak","szlaki","spacer"],"gastronomia":["jedzenie","gdzie zjeść","wino"],"piscinas":["naturalny basen","basen w skałach"],"montana":["góra"],"municipio":["gmina","wieś","wioska"],"csalud":["przychodnia"],"veterinario":["weterynarz"],"gasolinera":["stacja paliw"],"faros":["latarnia morska"],"puerto_comercial":["port handlowy"],"puerto_ocio":["port jachtowy"],"mirador":["punkt widokowy"],"mercadillo":["targowisko"],"oficina_turismo":["informacja turystyczna"],"camping":["pole namiotowe"],"webcam":["kamera na żywo"]},
  "zonas":{"norte": ["polnoc", "polnocy", "na polnocy", "polnocna"], "sur": ["poludnie", "poludniu", "na poludniu", "poludniowa"], "este": ["wschod", "wschodzie", "na wschodzie", "wschodnia"], "oeste": ["zachod", "zachodzie", "na zachodzie", "zachodnia"], "centro": ["srodek wyspy", "centrum wyspy"]},
  "favs":["ulubione", "ulubionych", "moje ulubione"],
  "orden":["posortuj", "sortuj", "uporzadkuj", "kolejnosc", "wedlug odleglosci", "odleglosci", "odleglosc", "trasa", "najblizej"],

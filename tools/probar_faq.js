@@ -307,6 +307,45 @@ let malos = 0;
     console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + k);
   }
   mirados += CORTESIA.length;
+  /* Las categorías en singular (17/11/2026). En castellano e inglés «farmacia», «faro» o «mirador» sacan la
+     lista, porque CHAT_CATS trae el singular y el plural; en los otros idiomas solo estaba el rótulo del menú, que
+     va en plural, y «stacja paliw», «Tierarzt» o «belvédère» se quedaban sin respuesta (lo vio la sesión del
+     rumano en polaco). Van en faq/fuente/intenciones/<idioma>.json las que no tenían ninguna respuesta y no están
+     en una clave de la base: «Apotheke» o «plage» ya llevan a su respuesta, y «Leuchtturm» está en «leuchtturm
+     teno», que tiene la suya. */
+  console.log('');
+  const SINGULAR = [
+    ['fr', 'ville', 'ciudad'], ['fr', 'commune', 'municipio'], ['fr', 'vétérinaire', 'veterinario'],
+    ['fr', 'port commercial', 'puerto_comercial'], ['fr', 'port de plaisance', 'puerto_ocio'], ['fr', 'belvédère', 'mirador'],
+    ['fr', 'point de vue', 'mirador'], ['fr', 'office de tourisme', 'oficina_turismo'], ['fr', 'office du tourisme', 'oficina_turismo'],
+    ['de', 'Parkhaus', 'parking'], ['de', 'Stadt', 'ciudad'], ['de', 'Ortschaft', 'municipio'], ['de', 'Dorf', 'municipio'],
+    ['de', 'Gemeinde', 'municipio'], ['de', 'Tierarzt', 'veterinario'], ['de', 'Jachthafen', 'puerto_ocio'],
+    ['de', 'Yachthafen', 'puerto_ocio'], ['de', 'Hafen', 'puerto_ocio'], ['de', 'Aussichtspunkt', 'mirador'],
+    ['de', 'Wochenmarkt', 'mercadillo'], ['de', 'Touristinformation', 'oficina_turismo'],
+    ['de', 'Touristeninformation', 'oficina_turismo'], ['de', 'Campingplatz', 'camping'], ['it', 'comune', 'municipio'],
+    ['it', 'porto commerciale', 'puerto_comercial'], ['it', 'porto turistico', 'puerto_ocio'], ['it', 'punto panoramico', 'mirador'],
+    ['it', 'belvedere', 'mirador'], ['it', 'ufficio turistico', 'oficina_turismo'], ['nl', 'parkeergarage', 'parking'],
+    ['nl', 'naaktstrand', 'nudista'], ['nl', 'berg', 'montana'], ['nl', 'stad', 'ciudad'], ['nl', 'gemeente', 'municipio'],
+    ['nl', 'dorp', 'municipio'], ['nl', 'dierenarts', 'veterinario'], ['nl', 'benzinestation', 'gasolinera'],
+    ['nl', 'handelshaven', 'puerto_comercial'], ['nl', 'jachthaven', 'puerto_ocio'], ['nl', 'haven', 'puerto_ocio'],
+    ['nl', 'uitkijkpunt', 'mirador'], ['nl', 'vvv-kantoor', 'oficina_turismo'], ['nl', 'toeristenbureau', 'oficina_turismo'],
+    ['pl', 'góra', 'montana'], ['pl', 'gmina', 'municipio'], ['pl', 'wieś', 'municipio'], ['pl', 'wioska', 'municipio'],
+    ['pl', 'przychodnia', 'csalud'], ['pl', 'weterynarz', 'veterinario'], ['pl', 'stacja paliw', 'gasolinera'],
+    ['pl', 'latarnia morska', 'faros'], ['pl', 'port handlowy', 'puerto_comercial'], ['pl', 'port jachtowy', 'puerto_ocio'],
+    ['pl', 'punkt widokowy', 'mirador'], ['pl', 'targowisko', 'mercadillo'], ['pl', 'informacja turystyczna', 'oficina_turismo'],
+    ['pl', 'pole namiotowe', 'camping'], ['pl', 'kamera na żywo', 'webcam'], ['bg', 'град', 'ciudad'], ['bg', 'община', 'municipio'],
+    ['bg', 'ветеринар', 'veterinario'], ['bg', 'търговско пристанище', 'puerto_comercial'], ['bg', 'яхтено пристанище', 'puerto_ocio'],
+    ['bg', 'панорамно място', 'mirador'], ['bg', 'туристически офис', 'oficina_turismo'],
+  ];
+  for (const [lang, preg, esperada] of SINGULAR) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    ctx.currentLang = lang;
+    const r = ctx.chatResolve(preg, null) || {}, ks = (r.cats && r.cats.keys) || [];
+    const ok = r.kind === 'cat' && ks.indexOf(esperada) >= 0;
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + r.kind + (ks.length ? ' ' + ks.join(',') : ''));
+  }
+  mirados += SINGULAR.length;
   console.log('\n' + malos + ' fallos de ' + (CASOS.length + mirados)
     + (saltadas ? '   (' + saltadas + ' saltada(s) por idioma que la app no tiene)' : ''));
   process.exit(malos ? 1 : 0);
