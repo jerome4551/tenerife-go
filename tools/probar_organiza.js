@@ -52,7 +52,7 @@
  * mira aqui con su propio codigo, no con el de la app. Mismo sitio: la misma
  * coordenada exacta, el mismo nombre a menos de 1 km o el Teide (el volcan,
  * la cumbre y su ficha con perro). En castellano:
- *   · las 57 parejas con la misma coordenada, el Teide y «Mesa del Mar» son
+ *   · las 56 parejas con la misma coordenada, el Teide y «Mesa del Mar» son
  *     un sitio para la app; el Drago y la Casa del Drago, o Masca y su
  *     mirador, no;
  *   · 210 itinerarios (catorce tarjetas, Norte, Sur y toda la isla, cinco
@@ -700,7 +700,7 @@ const RECORRER = async () => {
       caso(`[es] los mismos ${d.zonas.azar.n}: ninguno con dos paradas del mismo sitio`, d.zonas.azar.dobles.length === 0, d.zonas.azar.dobles.slice(0, 8).join(' | '));
       caso(`[es] «Naturaleza» en el Sur con sesenta azares: el Teide, una vez como mucho, y nada repetido`, d.zonas.teide60.length === 0, d.zonas.teide60.slice(0, 4).join(' | '));
       const dt = d.zonas.datos;
-      caso(`[es] las ${dt.parejas} parejas con la misma coordenada exacta son un sitio para la app`, dt.parejas === 57 && dt.sueltas.length === 0, JSON.stringify([dt.parejas, dt.sueltas.slice(0, 6)]));
+      caso(`[es] las ${dt.parejas} parejas con la misma coordenada exacta son un sitio para la app`, dt.parejas === 56 && dt.sueltas.length === 0, JSON.stringify([dt.parejas, dt.sueltas.slice(0, 6)]));
       caso(`[es] el Teide (volcan, cumbre y su ficha con perro) y las dos «Mesa del Mar», un sitio cada uno`, dt.grupoExiste && dt.juntos.every(x => x[2]), JSON.stringify(dt.juntos));
       caso(`[es] lo cercano que es otra cosa sigue aparte (el Drago y su restaurante, Masca y su mirador, el Teide y su teleferico)`, dt.separados.every(x => x[2]), JSON.stringify(dt.separados));
       const kp = d.zonas.kayakPesca;
