@@ -34,6 +34,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/77-antebrazo-pantorrilla.js` | las coreografías del bloque 8: **antebrazo** (16) y **pantorrilla** (19), por familias (los curls de muñeca; la muñeca, de pie; los paseos con carga; la dominada con toallas; las flexiones sobre las yemas; los estiramientos de la muñeca · las elevaciones de talón de pie, en escalón, con barra y sentado; el tibial; los saltos; los estiramientos) |
 | `src/78-cuadriceps.js` | las coreografías del bloque 9: **cuádriceps** (31), por familias (las sentadillas sobre los dos pies: con mancuernas, con barra, con apoyo, en la pared, la hindú; sentarse y levantarse; los escalones; a una pierna; de rodillas; en el suelo; los estiramientos de pie y tumbado de lado; los saltos) |
 | `src/79-gluteos.js` | las coreografías del bloque 10: **glúteos** (43), por familias (tumbado de lado; de lado sobre el antebrazo y las planchas de Copenhague; a cuatro patas y boca abajo; de pie con las manos en la pared; el puente y el hip thrust; las poleas, con la tobillera y con la cuerda; la pesa rusa; las zancadas: en el sitio, al frente, atrás, andando, cruzada y de lado, sin peso, con mancuernas y con barra; la búlgara; el escalón de lado; el peso muerto sumo; los estiramientos; los saltos) |
+| `src/7a-isquiotibiales.js` | las coreografías del bloque 11: **isquiotibiales** (22), por familias (la bisagra de cadera sobre los dos pies: el peso muerto rumano en polea, los buenos días y los pesos muertos con las piernas rígidas y con apoyo escalonado; el peso muerto a una pierna: sin peso, con pesa rusa, con mancuerna, en polea y con salto; los curls: de pie, en polea, deslizando los talones sobre una toalla y el nórdico; boca abajo en el banco; el balanceo de pierna; los estiramientos y el isométrico sentado) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía (todas; al motor van las del bloque 1 y a cada trozo, las suyas) |
@@ -214,6 +215,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 8 | `77-antebrazo-pantorrilla.js` | antebrazo: 16 (con el del bloque 1, 17 de 22; quedan 5: 4 con banda y 1 con disco) y pantorrilla: 19 (con los 4 del bloque 1, 23 de 30; quedan 7: 4 en máquina y 3 con banda) |
 | 9 | `78-cuadriceps.js` | cuádriceps: 31 (con los 6 del bloque 1, 37 de 50; quedan 13: 6 en máquina, 2 con disco, 2 con banda (uno, además, con polea), 1 con cinta de suspensión, 1 en multipower y 1 con balón medicinal) |
 | 10 | `79-gluteos.js` | glúteos: 43 (con los 4 del bloque 1, 47 de 57; quedan 10: 6 con banda, 3 en máquina y 1 con fitball) |
+| 11 | `7a-isquiotibiales.js` | isquiotibiales: 22 (con los 4 del bloque 1, 26 de 35; quedan 9: 5 en máquina, 2 con banda y 2 con fitball) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -264,7 +266,7 @@ atrás, `atras` y `sube`; y andando, `alza` y `pasa`), `conMancuernas` y `conBar
 lado), `andando(x, carga, juntando)` (las zancadas caminando: ida, media vuelta y regreso, con `enMarco`, como los paseos del bloque 8),
 `lateral(carga, inclinación)` (el paso de lado y la bajada, con la espinilla a plomo: se busca hacia dónde va la rodilla), `bulgara(carga)`
 (el pie de atrás sube al banco por el aire, sin cortar su canto), `corre(f)` + `corriendo(izquierdo, derecho)` (los brazos, como al
-correr: los del bloque 9) y `abrirPies`, `altoCon` y `alAire` (las del bloque 9, que cada trozo guarda las suyas)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+correr: los del bloque 9) y `abrirPies`, `altoCon` y `alAire` (las del bloque 9, que cada trozo guarda las suyas); en `7a-isquiotibiales.js`: `dePie` + `despegado` + `enUna(grados, extra, tobillo)` (el peso muerto a una pierna, escrito con el apoyo en la izquierda: el pie libre se despega primero un poco, plano, y después va atrás en línea con el tronco; el otro lado, con `refleja`), `cuelgaD(postura, x, dz)` (el puño derecho colgando del hombro con el brazo estirado), `talonAlGluteo(postura, grados)` (el curl de pie, con el muslo a plomo), `enBanco()` + `colgada(postura, x, muslo, rodilla)` (boca abajo en el banco, con la cadera en su borde y las piernas colgando en diagonal), `sobreElTalon(caída, fuera)` (el pie apoyado en el talón con la punta hacia arriba: sus vectores y a qué altura queda el tobillo) y `DE_RODILLAS_F` (de rodillas para caer hacia delante: el tobillo, justo a una pierna de la rodilla)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
 si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
 
 Las ayudas que valen para cualquier bloque están en `70-coreografias.js` (nacieron en el bloque 3 y el 4 las subió
@@ -305,13 +307,20 @@ codo) no sabe hacia dónde mira. Por eso con una barra el codo va en la línea d
 el antebrazo tiene que ir hacia dentro (el codo en el costado y las manos juntas en la barra en V de la polea), o el brazo
 cuelga estirado, la mano se dice en el mundo (`palma: […]`, y `barra: […]` si agarra una barra).
 
-**Los saltos** (bloques 1, 8, 9 y 10). En el aire no hay nada clavado (`[]` en ese tramo). Se despega por las puntas y se cae sobre
+**Los saltos** (bloques 1, 8, 9, 10 y 11). En el aire no hay nada clavado (`[]` en ese tramo). Se despega por las puntas y se cae sobre
 la parte delantera del pie, que rueda hasta el talón mientras la cadera baja. Con el tobillo clavado, pasar de pisar de plano a
 estar de puntillas en un solo tramo hunde la zapatilla (el tobillo va en línea recta y el pie gira sobre su bola: 1,1 cm con 48°):
 entre agachado y despegando va una postura de **medio empuje**, con el talón a medio levantar y la cadera a medio camino. En un
 salto que cambia de sitio (el horizontal) las posturas de la vuelta son las de la ida giradas media vuelta, y la cámara encuadra
 todo el recorrido. Y un brazo que sube de golpe (del costado a por encima de la cabeza) también se reparte entre las posturas del
 impulso: en un solo tramo de una décima, la mano iría a más de medio metro por cuadro.
+
+**El pie libre que viaja lejos, clavado a su camino** (bloque 11). En el peso muerto a una pierna el pie libre va de estar despegado
+junto al otro a quedar atrás, con la pierna recta y en línea con el tronco. Suelto, de una postura a otra la rodilla se estira antes de
+que el muslo haya girado, y la zapatilla corta el suelo (hasta 6 cm). Con su tobillo en los clavos de esos tramos va en línea recta de
+una postura a la siguiente, y la pierna se dobla lo que haga falta. Mientras se mantiene la postura (`clavosEn`) solo se clava el pie
+de apoyo. Y **de rodillas, con la pierna casi recta** (el curl nórdico, al caer hacia delante), el tobillo tiene que quedar justo a
+una pierna (38 cm) de la rodilla: con medio centímetro de menos, la rodilla salía 3 cm por debajo de su sitio (`DE_RODILLAS_F`).
 
 ## El material (`50-material.js`)
 
@@ -327,7 +336,8 @@ espera, monta abierta sobre el asa, y se enrolla cuando la mano que llega a ella
 a plomo de su asa: en un curl), `banco`, `predicador` (el banco Scott), `soporte` (el de la barra), `barra_dominadas`,
 `paralelas`, `escalon` (con `madera: true`, un cajón), `esterilla`, `pared`, `polea`, `landmine` (la barra T), `toalla` (algo blando: doblada o,
 con `rollo: [largo, radio]`, enrollada: un rulo tumbado, con su contorno y una franja de color cerca de cada punta, porque sobre la arena
-una toalla clara apenas se ve) y `toallas` (una toalla cogida a lo largo, que hace de correa).
+una toalla clara apenas se ve; doblada, con `franjas: true` lleva dos franjas de color, una cerca de cada canto, y con `bajo: 'talones'`
+va con los pies, deslizándose por el suelo: el curl de isquios deslizando los talones) y `toallas` (una toalla cogida a lo largo, que hace de correa).
 
 - `banco`: `respaldo: 45` lo inclina; `85`, casi vertical (una silla); **negativo, declinado**. Con el respaldo
   levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba). `tapa: true`: el

@@ -763,10 +763,16 @@
   };
   /* ── algo blando: una toalla doblada. o: { en: [x, y, z] (su centro), rumbo, cabeceo, med: [ancho, alto, largo] }
      Con rollo: [largo, radio], enrollada: un rulo tumbado a lo ancho (con «rumbo»), para ponerlo bajo una rodilla. Sobre la arena una
-     toalla clara apenas se ve: el rulo lleva su contorno y una franja de color cerca de cada punta, como las toallas de playa ── */
+     toalla clara apenas se ve: el rulo lleva su contorno y una franja de color cerca de cada punta, como las toallas de playa.
+     Doblada, con franjas: true lleva esas dos franjas (una cerca de cada canto, a lo ancho); y con bajo: 'talones' va con los pies,
+     deslizándose por el suelo: su centro queda bajo los dos tobillos, «dz» cm más allá (el curl de isquios deslizando los talones) ── */
   MATERIAL.toalla = function (esc, o) {
     this.o = o || {}; this.antes = true;
-    if (!this.o.rollo) { this.c = new Caja(['#f4f1ea', '#e2ddd0', '#cfc8b6', '#cfc8b6']); return; }
+    if (!this.o.rollo) {
+      this.c = new Caja(['#f4f1ea', '#e2ddd0', '#cfc8b6', '#cfc8b6']);
+      if (this.o.franjas) this.fr = [0, 1].map(function () { return new Caja([M_COL.agua, '#0e8a7e', '#0e8a7e', '#0e8a7e']); });
+      return;
+    }
     this.g = crear('g');
     this.k = trazo('', '#a89f8a'); this.a = trazo('', TOALLA[0]);
     this.f = [0, 1].map(function () { return crear('path', { fill: 'none', stroke: M_COL.agua, 'stroke-linecap': 'butt' }); });
@@ -788,7 +794,10 @@
       lista.push({ z: (p[2] + q[2]) / 2 + (o.sesgo == null ? -13 : o.sesgo), el: this.g });
       return;
     }
-    this.c.pon(cam, o.en, componer(giroY(o.rumbo || 0), giroX(o.cabeceo || 0)), o.med || [26, 3, 14], lista, o.sesgo == null ? -13 : o.sesgo, 'fondo');
+    var en = o.en, med = o.med || [26, 3, 14], B = componer(giroY(o.rumbo || 0), giroX(o.cabeceo || 0)), sg = o.sesgo == null ? -13 : o.sesgo;
+    if (o.bajo === 'talones') en = [(E.i.tob[0] + E.d.tob[0]) / 2, med[1] / 2, (E.i.tob[2] + E.d.tob[2]) / 2 + (o.dz || 0)];
+    this.c.pon(cam, en, B, med, lista, sg, 'fondo');
+    if (this.fr) this.fr.forEach(function (f, i) { f.pon(cam, mas(en, aplicar(B, [0, 0.1, (i ? 1 : -1) * (med[2] / 2 - 4.5)])), B, [med[0] + 0.2, med[1] + 0.1, 3.2], lista, sg + 0.05, 'fondo'); });
   };
   /* ── la banda elástica: de un punto a la mano (o de un pie a su mano, o de una mano a la otra). o: { de: 'pies' | [x,y,z] | 'i', a: 'manos' | 'i' | 'd' } ── */
   MATERIAL.banda = function (esc, o) {
