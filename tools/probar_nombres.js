@@ -116,8 +116,56 @@ const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
     console.log('        categorias por su rotulo: ' + (r.cats - r.catsMal.length) + ' de ' + r.cats);
     for (const f of r.catsMal) console.log('        no la saca: ' + f);
   }
+  /* LOS DOS NOMBRES REPETIDOS (nota 48, 4f; Jérôme: «sí»). «Playa San Juan» es la playa y es el pueblo, en la misma
+     coordenada, y «Mesa del Mar» son las piscinas y el núcleo de casas de al lado. El del pueblo y el del núcleo llevan
+     su paréntesis en el idioma de la app donde se ENSEÑA el nombre: el globo, la hoja de detalle, las sugerencias del
+     buscador y la lista del asistente para elegir. La playa y las piscinas, sin paréntesis. Lo esperado va escrito
+     aquí, como lo trajo la nota (textos-48.json, «sufijos_nombre»): no se lee de la app, que es lo que se prueba. */
+  const SUFIJOS = {
+    es: ['pueblo', 'núcleo'], en: ['village', 'village'], fr: ['village', 'village'], de: ['Ort', 'Ort'],
+    it: ['paese', 'località'], nl: ['dorp', 'dorp'], zh: ['镇', '居民区'], zht: ['鎮', '居民區'],
+    bg: ['селище', 'селище'], pl: ['miejscowość', 'osiedle'] };
+  console.log('\n=== los dos nombres repetidos, con su paréntesis en cada idioma ===');
+  for (const L of IDIOMAS) {
+    await pg.evaluate(l => setLang(l), L);
+    const r = await pg.evaluate(([l, suf]) => {
+      const zh = l === 'zh' || l === 'zht';
+      const con = (n, s) => zh ? n + '（' + s + '）' : n + ' (' + s + ')';
+      const quiere = { 'nucleo-playa-san-juan': con('Playa San Juan', suf[0]), 'nucleo-mesa-mar': con('Mesa del Mar', suf[1]),
+                       'san-juan': 'Playa San Juan', 'mesa-mar': 'Mesa del Mar' };
+      const mal = [], limpio = s => String(s || '').replace(/\s+/g, ' ').trim();
+      for (const id of Object.keys(quiere)) {
+        const p = places.find(x => x.id === id);
+        if (!p) { mal.push(id + ': no está en places'); continue; }
+        const q = quiere[id], emoji = p.emoji || '';
+        const d = document.createElement('div'); d.innerHTML = htmlGlobo(p);
+        const globo = limpio((d.querySelector('.popup-name') || {}).textContent);
+        if (globo !== limpio(emoji + ' ' + q)) mal.push(id + ' en el globo: «' + globo + '»');
+        const lista = chatBuildReply({ kind: 'poiList', list: [p] }).pois || [];
+        if (!lista[0] || lista[0].name !== q) mal.push(id + ' en la lista del asistente: «' + (lista[0] && lista[0].name) + '»');
+      }
+      /* el buscador: «Playa San Juan» saca las dos, cada una con su nombre */
+      const inp = document.getElementById('search-input');
+      inp.value = 'Playa San Juan'; inp.dispatchEvent(new Event('input', { bubbles: true }));
+      const sug = [...document.querySelectorAll('#search-suggestions .suggestion .suggestion-name')].map(e => limpio(e.textContent));
+      for (const id of ['san-juan', 'nucleo-playa-san-juan'])
+        if (sug.indexOf(quiere[id]) < 0) mal.push(id + ' en el buscador: no sale «' + quiere[id] + '» (salen ' + JSON.stringify(sug.slice(0, 6)) + ')');
+      inp.value = ''; inp.dispatchEvent(new Event('input', { bubbles: true }));
+      return { mal, globo: quiere };
+    }, [L, SUFIJOS[L]]);
+    /* la hoja de detalle solo se abre en móvil: en un viewport estrecho, la del pueblo */
+    await pg.setViewportSize({ width: 390, height: 844 });
+    const hoja = await pg.evaluate(() => { openDetailSheet('nucleo-playa-san-juan'); return (document.getElementById('detail-sheet-name') || {}).textContent || ''; });
+    await pg.evaluate(() => { try { closeDetailSheet(); } catch (e) {} });
+    await pg.setViewportSize({ width: 1280, height: 800 });
+    if (String(hoja).replace(/\s+/g, ' ').trim().indexOf(r.globo['nucleo-playa-san-juan']) < 0) r.mal.push('nucleo-playa-san-juan en la hoja de detalle: «' + hoja + '»');
+    if (r.mal.length) mal++;
+    console.log((r.mal.length ? '  MAL  ' : '  ok   ') + ('[' + L + ']').padEnd(6) + ' «' + r.globo['nucleo-playa-san-juan'] + '» y «' + r.globo['nucleo-mesa-mar'] +
+      '»; la playa y las piscinas, sin paréntesis (globo, hoja, buscador y asistente)');
+    for (const f of r.mal) console.log('        ' + f);
+  }
   await nav.close();
-  console.log(mal ? '\n*** ' + mal + ' idioma(s) donde el asistente no encuentra algun lugar por su nombre o alguna categoria por su rotulo ***'
+  console.log(mal ? '\n*** ' + mal + ' idioma(s) donde el asistente no encuentra algun lugar por su nombre o alguna categoria por su rotulo, o un nombre repetido sale sin su paréntesis ***'
                   : '\nel asistente encuentra cada lugar por su nombre y cada categoria por su rotulo, en los diez idiomas');
   process.exit(mal ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(2); });

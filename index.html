@@ -9230,6 +9230,22 @@ const UI_TX = Object.assign({"parkingSpaces": {"es": "{n} plaza|{n} plazas", "en
    sin el, la app contestaba "no hay lineas que conecten estos dos
    puntos", que es falso y ademas empuja a alquilar un coche. */
 Object.assign(UI_TX, {"busPago": {"es": "Puede pagar acercando tarjeta bancaria, móvil o reloj al datáfono del conductor. Con la tarjeta Ten+ el billete sale más barato. En trayectos de más de 20 km, el billete de ida y vuelta lleva un 10 % de descuento.", "en": "You can pay by tapping a bank card, phone or watch on the driver's card reader. The Ten+ card makes the fare cheaper. On journeys over 20 km, the return ticket has a 10% discount.", "fr": "Vous pouvez payer en approchant une carte bancaire, un téléphone ou une montre du terminal du conducteur. La carte Ten+ réduit le prix. Sur les trajets de plus de 20 km, le billet aller-retour bénéficie de 10 % de réduction.", "de": "Sie können bezahlen, indem Sie Bankkarte, Handy oder Uhr an das Lesegerät des Fahrers halten. Mit der Ten+-Karte wird die Fahrt günstiger. Bei Fahrten über 20 km gibt es 10 % Rabatt auf die Hin- und Rückfahrkarte.", "it": "Può pagare avvicinando carta bancaria, telefono o orologio al lettore dell'autista. Con la carta Ten+ il biglietto costa meno. Sui percorsi di oltre 20 km, il biglietto di andata e ritorno ha uno sconto del 10 %.", "nl": "U kunt betalen door een bankpas, telefoon of horloge tegen de lezer van de chauffeur te houden. Met de Ten+-kaart is het ritje goedkoper. Bij ritten van meer dan 20 km krijgt u 10 % korting op het retourticket.", "zh": "可直接用银行卡、手机或手表在司机的读卡器上刷卡付款。使用 Ten+ 卡票价更便宜。超过 20 公里的行程，往返票享 9 折。", "zht": "可直接用銀行卡、手機或手錶在司機的讀卡機上感應付款。使用 Ten+ 卡票價更便宜。超過 20 公里的行程，來回票享 9 折。", "bg": "Може да платите, като допрете банкова карта, телефон или часовник до четеца на шофьора. С картата Ten+ билетът е по-евтин. При пътувания над 20 км билетът за отиване и връщане е с 10 % отстъпка.", pl: "Można zapłacić, zbliżając kartę bankową, telefon albo zegarek do terminala u kierowcy. Z kartą Ten+ bilet wychodzi taniej. Na trasach powyżej 20 km bilet w obie strony ma 10 % zniżki.", ro: "Puteți plăti apropiind cardul bancar, telefonul sau ceasul de terminalul de plată al șoferului. Cu cardul Ten+, biletul este mai ieftin. Pe trasee de peste 20 km, biletul dus-întors are o reducere de 10 %."}});
+
+/* Los dos nombres repetidos (nota 48, 4f, 16-11-2026; Jérôme: «sí»). «Playa San Juan» es la playa y
+   también el pueblo, en la misma coordenada, y «Mesa del Mar» son las piscinas y también el núcleo de
+   casas de al lado. Los nombres no se traducen; lo que va entre paréntesis sí, y la nota lo trajo en
+   once idiomas (textos-48.json, «sufijos_nombre»). Va solo donde se ENSEÑA el nombre (nombreLugar):
+   para buscar, comparar y preguntar al asistente sigue el name tal cual. En chino, con los paréntesis
+   de ancho completo, como en el resto de sus textos. */
+Object.assign(UI_TX, {"nomSufPlayaSanJuan": {"es": "pueblo", "en": "village", "fr": "village", "de": "Ort", "it": "paese", "nl": "dorp", "zh": "镇", "zht": "鎮", "bg": "селище", pl: "miejscowość", ro: "localitate"}, "nomSufMesaDelMar": {"es": "núcleo", "en": "village", "fr": "village", "de": "Ort", "it": "località", "nl": "dorp", "zh": "居民区", "zht": "居民區", "bg": "селище", pl: "osiedle", ro: "localitate"}});
+const NOMBRE_SUFIJO = { 'nucleo-playa-san-juan': 'nomSufPlayaSanJuan', 'nucleo-mesa-mar': 'nomSufMesaDelMar' };
+function nombreLugar(p) {
+  const n = (p && typeof p.name === 'string') ? p.name : '';
+  const clave = n && NOMBRE_SUFIJO[p.id];
+  const s = clave ? tx(clave) : '';
+  if (!s) return n;
+  return (currentLang === 'zh' || currentLang === 'zht') ? n + '（' + s + '）' : n + ' (' + s + ')';
+}
 Object.assign(UI_TX, {"busCaminataLarga": {"es": "Caminata larga hasta la parada ({km} km aprox. por calle).", "en": "Long walk to the stop (about {km} km by street).", "fr": "Longue marche jusqu'à l'arrêt (environ {km} km par la rue).", "de": "Langer Fußweg zur Haltestelle (ca. {km} km über die Straße).", "it": "Camminata lunga fino alla fermata (circa {km} km su strada).", "nl": "Lange wandeling naar de halte (ongeveer {km} km over straat).", "zh": "步行到车站较远（按街道约 {km} 公里）。", "zht": "步行到車站較遠（按街道約 {km} 公里）。", "bg": "Дълго пеша до спирката (около {km} км по улиците).", pl: "Długie dojście do przystanku ({km} km w przybliżeniu ulicami).", ro: "Drum lung pe jos până la stație (aprox. {km} km pe stradă)."}, "busAltTransbordo": {"es": "Alternativa con transbordo: {l1}+{l2}, ~{min} min.", "en": "Alternative with a transfer: {l1}+{l2}, ~{min} min.", "fr": "Alternative avec correspondance : {l1}+{l2}, ~{min} min.", "de": "Alternative mit Umstieg: {l1}+{l2}, ~{min} Min.", "it": "Alternativa con cambio: {l1}+{l2}, ~{min} min.", "nl": "Alternatief met overstap: {l1}+{l2}, ~{min} min.", "zh": "换乘方案：{l1}+{l2}，约 {min} 分钟。", "zht": "轉乘方案：{l1}+{l2}，約 {min} 分鐘。", "bg": "Вариант с прекачване: {l1}+{l2}, ~{min} мин.", pl: "Alternatywa z przesiadką: {l1}+{l2}, ~{min} min.", ro: "Variantă cu schimbare: {l1}+{l2}, ~{min} min."}, "busAltDirecta": {"es": "Alternativa directa: {l}, ~{min} min.", "en": "Direct alternative: {l}, ~{min} min.", "fr": "Alternative directe : {l}, ~{min} min.", "de": "Direkte Alternative: {l}, ~{min} Min.", "it": "Alternativa diretta: {l}, ~{min} min.", "nl": "Direct alternatief: {l}, ~{min} min.", "zh": "直达方案：{l}，约 {min} 分钟。", "zht": "直達方案：{l}，約 {min} 分鐘。", "bg": "Директен вариант: {l}, ~{min} мин.", pl: "Alternatywa bezpośrednia: {l}, ~{min} min.", ro: "Variantă directă: {l}, ~{min} min."}});
 Object.assign(UI_TX, {"dpSinGuagua": {"es": "Sin guagua directa ni con un transbordo", "en": "No direct bus or one-change connection", "fr": "Pas de bus direct ni avec une correspondance", "de": "Kein Bus, weder direkt noch mit einmal Umsteigen", "it": "Nessun autobus diretto né con un cambio", "nl": "Geen bus, direct noch met één overstap", "zh": "没有直达或一次换乘的公交", "zht": "沒有直達或一次轉乘的公車", "bg": "Няма автобус, нито директен, нито с едно прекачване", "pl": "Brak autobusu bezpośredniego ani z jedną przesiadką", "ro": "Fără autobuz direct sau cu o singură schimbare"}, "busSinConexion": {"es": "No hay líneas que conecten estos dos puntos.", "en": "No bus lines connect these two points.", "fr": "Aucune ligne ne relie ces deux points.", "de": "Keine Linie verbindet diese beiden Punkte.", "it": "Nessuna linea collega questi due punti.", "nl": "Geen enkele lijn verbindt deze twee punten.", "zh": "没有线路连接这两个地点。", "zht": "沒有路線連接這兩個地點。", "bg": "Няма линии, които свързват тези две точки.", pl: "Nie ma linii łączących te dwa punkty.", ro: "Nu există linii care să lege aceste două puncte."}, "busFueraHorario": {"es": "A esta hora no pasa ninguna guagua que una estos dos puntos. Horario de las líneas que los unen: {lineas}.", "en": "No bus links these two points at this time. Timetable of the lines that connect them: {lineas}.", "fr": "À cette heure, aucun bus ne relie ces deux points. Horaires des lignes qui les relient : {lineas}.", "de": "Zu dieser Uhrzeit verbindet kein Bus diese beiden Punkte. Betriebszeiten der Linien, die sie verbinden: {lineas}.", "it": "A quest'ora nessun autobus collega questi due punti. Orari delle linee che li collegano: {lineas}.", "nl": "Op dit uur rijdt er geen bus tussen deze twee punten. Dienstregeling van de lijnen die ze verbinden: {lineas}.", "zh": "此时没有公交连接这两个地点。连接两地的线路运营时间：{lineas}。", "zht": "此時沒有公車連接這兩個地點。連接兩地的路線營運時間：{lineas}。", "bg": "По това време няма автобус между тези две точки. Разписание на линиите, които ги свързват: {lineas}.", "pl": "O tej porze żaden autobus nie łączy tych dwóch punktów. Godziny kursowania linii, które je łączą: {lineas}.", "ro": "La această oră nu circulă niciun autobuz care să lege aceste două puncte. Orarul liniilor care le leagă: {lineas}."}, "busVuelta": {"es": "vuelta", "en": "return", "fr": "retour", "de": "Rückfahrt", "it": "ritorno", "nl": "terugrit", "zh": "返程", "zht": "返程", "bg": "връщане", "pl": "powrót", "ro": "întoarcere"}, "busSinParadaOrigen": {"es": "No hay ninguna parada de guagua a menos de {km} km a pie del origen.", "en": "There is no bus stop within {km} km on foot of the starting point.", "fr": "Aucun arrêt de bus à moins de {km} km à pied du départ.", "de": "Keine Bushaltestelle im Umkreis von {km} km zu Fuß vom Start.", "it": "Nessuna fermata dell'autobus a meno di {km} km a piedi dalla partenza.", "nl": "Er is geen bushalte binnen {km} km lopen van het vertrekpunt.", "zh": "起点步行{km}公里内没有公交站。", "zht": "起點步行{km}公里內沒有公車站。", "bg": "Няма автобусна спирка на по-малко от {km} км пеша от началната точка.", "pl": "W promieniu {km} km pieszo od początku trasy nie ma żadnego przystanku.", "ro": "Nu există nicio stație de autobuz la mai puțin de {km} km pe jos de punctul de plecare."}, "busSinParadaDestino": {"es": "No hay ninguna parada de guagua a menos de {km} km a pie del destino.", "en": "There is no bus stop within {km} km on foot of the destination.", "fr": "Aucun arrêt de bus à moins de {km} km à pied de l'arrivée.", "de": "Keine Bushaltestelle im Umkreis von {km} km zu Fuß vom Ziel.", "it": "Nessuna fermata dell'autobus a meno di {km} km a piedi dall'arrivo.", "nl": "Er is geen bushalte binnen {km} km lopen van de bestemming.", "zh": "终点步行{km}公里内没有公交站。", "zht": "終點步行{km}公里內沒有公車站。", "bg": "Няма автобусна спирка на по-малко от {km} км пеша от крайната точка.", "pl": "W promieniu {km} km pieszo od celu nie ma żadnego przystanku.", "ro": "Nu există nicio stație de autobuz la mai puțin de {km} km pe jos de destinație."}, "busTransbordo": {"es": "transbordo", "en": "change", "fr": "correspondance", "de": "Umstieg", "it": "cambio", "nl": "overstap", "zh": "换乘", "zht": "轉乘", "bg": "прекачване", "pl": "przesiadka", "ro": "schimbare"}, "routeToastOrigen": {"es": "Toque un marcador del mapa como *Origen*", "en": "Tap a marker on the map to set the *start*", "fr": "Touchez un marqueur de la carte pour le *départ*", "de": "Tippen Sie auf einen Marker auf der Karte als *Start*", "it": "Tocchi un marcatore sulla mappa come *partenza*", "nl": "Tik op een marker op de kaart als *vertrekpunt*", "zh": "点击地图上的标记作为*起点*", "zht": "點擊地圖上的標記作為*起點*", "bg": "Докоснете маркер на картата като *начална точка*", "pl": "Wystarczy dotknąć znacznika na mapie, aby wybrać *początek*", "ro": "Alegeți un loc de pe hartă ca *punct de plecare*"}, "routeToastDestino": {"es": "Toque un marcador del mapa como *Destino*", "en": "Tap a marker on the map to set the *destination*", "fr": "Touchez un marqueur de la carte pour l'*arrivée*", "de": "Tippen Sie auf einen Marker auf der Karte als *Ziel*", "it": "Tocchi un marcatore sulla mappa come *arrivo*", "nl": "Tik op een marker op de kaart als *bestemming*", "zh": "点击地图上的标记作为*终点*", "zht": "點擊地圖上的標記作為*終點*", "bg": "Докоснете маркер на картата като *крайна точка*", "pl": "Wystarczy dotknąć znacznika na mapie, aby wybrać *cel*", "ro": "Alegeți un loc de pe hartă ca *destinație*"}, "dpCompartirTitulo": {"es": "Mi día en Tenerife", "en": "My day in Tenerife", "fr": "Ma journée à Tenerife", "de": "Mein Tag auf Teneriffa", "it": "La mia giornata a Tenerife", "nl": "Mijn dag op Tenerife", "zh": "我的特内里费一日", "zht": "我的特內里費一日", "bg": "Моят ден на Тенерифе", "pl": "Mój dzień na Teneryfie", "ro": "Ziua mea în Tenerife"}, "dpCompartirPie": {"es": "Planificado con Tenerife GO", "en": "Planned with Tenerife GO", "fr": "Planifié avec Tenerife GO", "de": "Geplant mit Tenerife GO", "it": "Pianificato con Tenerife GO", "nl": "Gepland met Tenerife GO", "zh": "用 Tenerife GO 规划", "zht": "用 Tenerife GO 規劃", "bg": "Планирано с Tenerife GO", "pl": "Zaplanowane z Tenerife GO", "ro": "Planificat cu Tenerife GO"}, "dpZonaSinMas": {"es": "En esta zona no hay más lugares con lo que ha elegido.", "en": "There are no more places in this area for what you picked.", "fr": "Il n’y a pas d’autres lieux dans cette zone pour ce que vous avez choisi.", "de": "In diesem Teil der Insel gibt es keine weiteren Orte für Ihre Auswahl.", "it": "In questa zona non ci sono altri luoghi per ciò che ha scelto.", "nl": "In dit gebied zijn er geen andere plekken voor wat u heeft gekozen.", "zh": "按您的选择，这个区域没有更多地点了。", "zht": "按您的選擇，這個區域沒有更多地點了。", "bg": "В тази част на острова няма повече места според избора ви.", "pl": "W tej części wyspy nie ma więcej miejsc pasujących do wyboru.", "ro": "În această zonă nu mai sunt alte locuri pentru ce ați ales."}});
 Object.assign(UI_TX, {"busNoDisponible": {"es": "Sin conexión", "en": "No connection", "fr": "Pas de liaison", "de": "Keine Verbindung", "it": "Nessun collegamento", "nl": "Geen verbinding", "zh": "无直达", "zht": "無直達", "bg": "Няма връзка", pl: "Brak połączenia", ro: "Fără legătură"}, "busSinRuta": {"es": "No se encontró una ruta en guagua para este trayecto.", "en": "No bus route found for this journey.", "fr": "Aucun itinéraire en bus trouvé pour ce trajet.", "de": "Für diese Strecke wurde keine Busverbindung gefunden.", "it": "Nessun percorso in autobus trovato per questo tragitto.", "nl": "Geen busroute gevonden voor dit traject.", "zh": "没有找到这段行程的公交路线。", "zht": "沒有找到這段行程的公車路線。", "bg": "Не е намерен автобусен маршрут за това пътуване.", pl: "Nie znaleziono połączenia autobusowego na tej trasie.", ro: "Nu s-a găsit niciun traseu cu autobuzul pentru această călătorie."}});
@@ -17451,7 +17467,7 @@ function openDetailSheet(placeId) {
   const lang = currentLang || 'es';
   const desc = (place.desc && (place.desc[lang] || place.desc.es)) || '';
   const cat  = (place.cat  && (place.cat[lang]  || place.cat.es))  || '';
-  const name = place.name || '';
+  const name = nombreLugar(place);
   const tags = place.tags || [];
 
   // Rellenar contenido
@@ -18046,7 +18062,7 @@ function detailSheetHowto() {
   const marker = markerMap[_detailPlaceId];
   if (marker) {
     const place = places.find(p => p.id === _detailPlaceId);
-    if (place) openNearbyStopsFor(place.lat, place.lng, place.name);
+    if (place) openNearbyStopsFor(place.lat, place.lng, nombreLugar(place));
   }
 }
 
@@ -18396,7 +18412,7 @@ function updateSearchSuggestions() {
       `<div class="suggestions-header">${escapeHtml(plural('contadorResultados', filtered.length))}</div>` +
       shown.map(p => {
         const catLabel = (p.cat && (p.cat[currentLang] || p.cat.en || p.cat.es)) || '';
-        const nameHL = highlight(p.name, searchQuery);
+        const nameHL = highlight(nombreLugar(p), searchQuery);
         return `<div class="suggestion" onclick="selectPlaceFromSuggestion('${p.id}')">
           <span class="suggestion-emoji">${p.emoji}</span>
           <div class="suggestion-info">
@@ -18963,7 +18979,7 @@ function attachPhotoLoader(marker, place) {
       }
 
       photoEl.innerHTML = `
-        <img class="popup-photo-img" src="${escapeAttr(result.url)}" alt="${escapeAttr(place.name)}" loading="lazy"/>
+        <img class="popup-photo-img" src="${escapeAttr(result.url)}" alt="${escapeAttr(nombreLugar(place))}" loading="lazy"/>
         <a class="popup-photo-credit" href="${escapeAttr(result.pageUrl)}" target="_blank" rel="noopener noreferrer">Wikipedia</a>
       `;
       // Guardar en cache global para que el detail sheet pueda usarla
@@ -19031,7 +19047,7 @@ function attachPopupActions(marker, place) {
       howToBtn.addEventListener('click', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
-        openNearbyStopsFor(place.lat, place.lng, place.name);
+        openNearbyStopsFor(place.lat, place.lng, nombreLugar(place));
       });
     }
     // Hint "Ver descripción completa" → abre detail sheet en móvil
@@ -19264,7 +19280,7 @@ function htmlGlobo(place) {
   // Escapar TODO lo dinámico (defense-in-depth: aunque los datos sean
   // locales hoy, mañana podrían venir de un JSON externo y queremos que
   // un nombre con comillas, < o > nunca rompa el HTML del popup ni cree XSS).
-  const safeName     = escapeHtml(place.name);
+  const safeName     = escapeHtml(nombreLugar(place));
   const safeDesc     = escapeHtml(desc);
   const safeCat      = escapeHtml(cat);
   const safeEmoji    = escapeHtml(place.emoji);
@@ -19613,15 +19629,15 @@ function showPickToast(type) {
 // Interceptar clicks en marcadores del mapa para picking
 function onMarkerClickForRoute(place) {
   if (!pickingMode) return false;
-  const pt = { id: place.id, name: place.name, lat: place.lat, lng: place.lng, emoji: place.emoji };
+  const pt = { id: place.id, name: nombreLugar(place), lat: place.lat, lng: place.lng, emoji: place.emoji };
   if (pickingMode === 'origin') {
     routeOrigin = pt;
-    document.getElementById('stop-origin-name').textContent = place.emoji + ' ' + place.name;
+    document.getElementById('stop-origin-name').textContent = place.emoji + ' ' + nombreLugar(place);
     document.getElementById('stop-origin-name').classList.remove('placeholder');
     document.getElementById('stop-origin-clear').classList.add('visible');
   } else {
     routeDest = pt;
-    document.getElementById('stop-dest-name').textContent = place.emoji + ' ' + place.name;
+    document.getElementById('stop-dest-name').textContent = place.emoji + ' ' + nombreLugar(place);
     document.getElementById('stop-dest-name').classList.remove('placeholder');
     document.getElementById('stop-dest-clear').classList.add('visible');
   }
@@ -21045,7 +21061,7 @@ function showShareToast(msg, type = '') {
 
 function buildShareData(place) {
   const L = t();
-  const name = place.name;
+  const name = nombreLugar(place);
   const desc = localized(place.desc);
 
   // 1. Enlace de la app — usa la URL actual + hash con id
@@ -21272,7 +21288,7 @@ function renderDayTripCatalog() {
     item.innerHTML = `
       <span class="catalog-item-emoji">${place.emoji || '📍'}</span>
       <div class="catalog-item-body">
-        <div class="catalog-item-name">${escapeHtml(place.name)}</div>
+        <div class="catalog-item-name">${escapeHtml(nombreLugar(place))}</div>
         <div class="catalog-item-cat">${catLine}</div>
       </div>
       <button class="catalog-item-add ${isAdded ? 'added' : ''}"
@@ -21332,7 +21348,7 @@ function renderMyRoute() {
     row.innerHTML = `
       <div class="myroute-item-num">${idx + 1}</div>
       <span class="myroute-item-emoji">${place.emoji || '📍'}</span>
-      <div class="myroute-item-name">${escapeHtml(place.name)}</div>
+      <div class="myroute-item-name">${escapeHtml(nombreLugar(place))}</div>
       <div class="myroute-item-actions">
         <button class="myroute-item-btn" onclick="centerDayTripStop('${id}')" title="${L.daytripCenter}">📍</button>
         <button class="myroute-item-btn" onclick="openDayTripStop('${id}')" title="${L.daytripInfo}">ℹ️</button>
@@ -28026,7 +28042,7 @@ function chatResolve(question,pos){
       if(kn3&&(kp3.indexOf(best.f)>=0||best.f.indexOf(kp3)>=0)&&chatCoincide(kn3,padded,tokset,qnc))kbDelLugar=kbr.item;
     }
   }
-  if(whatWas&&bigName)return {kind:'what',anchor:{lat:best.p.lat,lng:best.p.lng,name:best.p.name,id:best.p.id}};
+  if(whatWas&&bigName)return {kind:'what',anchor:{lat:best.p.lat,lng:best.p.lng,name:nombreLugar(best.p),id:best.p.id}};
 
   var askIdent=padded.indexOf(' que es ')>=0||padded.indexOf(' que son ')>=0||padded.indexOf(' what is ')>=0;
   var kbGuard=!zone&&!(cats.keys.length&&sToks.length);
@@ -28049,10 +28065,10 @@ function chatResolve(question,pos){
   }
 
   var anchor=null;
-  if(best&&((best.strong&&best.s>=6)||(sToks.length===1&&best.s>=3)))anchor={lat:best.p.lat,lng:best.p.lng,name:best.p.name,id:best.p.id};
+  if(best&&((best.strong&&best.s>=6)||(sToks.length===1&&best.s>=3)))anchor={lat:best.p.lat,lng:best.p.lng,name:nombreLugar(best.p),id:best.p.id};
   if(!anchor&&nearHit&&chatLastPoiId){
     var lp=chatById(chatLastPoiId);
-    if(lp)anchor={lat:lp.lat,lng:lp.lng,name:lp.name,id:lp.id};
+    if(lp)anchor={lat:lp.lat,lng:lp.lng,name:nombreLugar(lp),id:lp.id};
   }
 
   if(whatHit){
@@ -28060,7 +28076,7 @@ function chatResolve(question,pos){
     if(pos&&nearHit)return {kind:'what',pos:pos};
     if(zone)return {kind:'what',zone:zone};
     if(kbr)return {kind:'kb',item:kbr.item};
-    if(nearHit&&best)return {kind:'what',anchor:{lat:best.p.lat,lng:best.p.lng,name:best.p.name,id:best.p.id}};
+    if(nearHit&&best)return {kind:'what',anchor:{lat:best.p.lat,lng:best.p.lng,name:nombreLugar(best.p),id:best.p.id}};
     if(nearHit)return {kind:'needGeo'};
     return {kind:'askZone'};
   }
@@ -28069,7 +28085,7 @@ function chatResolve(question,pos){
     /* «cerca de» un lugar que se nombra; si lo que casa es una palabra suelta
        que no dice ningun lugar («gasolineras mas baratas cerca de mi»: el
        «mas» de una etiqueta), cerca es de quien pregunta, no de ese sitio */
-    if(nearHit&&!anchor&&best&&(best.strong||best.s>=3))anchor={lat:best.p.lat,lng:best.p.lng,name:best.p.name,id:best.p.id};
+    if(nearHit&&!anchor&&best&&(best.strong||best.s>=3))anchor={lat:best.p.lat,lng:best.p.lng,name:nombreLugar(best.p),id:best.p.id};
     if(nearHit&&!anchor&&!pos)return {kind:'needGeo'};
     var usePos=(nearHit&&!anchor)?pos:null;
     // la respuesta de la base que casa por el nombre del lugar («garachico»)
@@ -28574,7 +28590,7 @@ function chatPoisPack(list,ref){
     var q=list[i],sub;
     if(ref)sub=chatKmTxt(chatDistKm(ref.lat,ref.lng,q.lat,q.lng))+' · '+chatTrim(localized(q.cat),24);
     else sub=chatTrim(localized(q.cat),34);
-    out.push({id:q.id,emoji:q.emoji,name:q.name,sub:sub});
+    out.push({id:q.id,emoji:q.emoji,name:nombreLugar(q),sub:sub});
   }
   return out;
 }
@@ -28590,7 +28606,7 @@ function chatBuildReply(r){
       out.answer=chatFmt(chatT('countAns'),{N:N,L:nIdiomasListos()});out.follow=chatT('qrHome');break;
     case 'poi':
       p=r.p;out.lastPoi=p.id;
-      out.answer=(p.emoji?p.emoji+' ':'')+p.name+'\n'+chatTrim(localized(p.cat),60)+'\n\n'+(localized(p.desc)||'');
+      out.answer=(p.emoji?p.emoji+' ':'')+nombreLugar(p)+'\n'+chatTrim(localized(p.cat),60)+'\n\n'+(localized(p.desc)||'');
       out.actions=[{label:chatT('viewMap'),run:chatMakeFly(p.id)}];
       out.follow=chatT('qrAfterPoi');
       if(r.kb&&r.kb.label)out.follow=[r.kb.label].concat(out.follow||[]);
@@ -28615,7 +28631,7 @@ function chatBuildReply(r){
           var q=orden[k],sub;
           if(k===0)sub=r.pos?chatFmt(chatT('favDeTi'),{d:chatKmTxt(chatDistKm(r.pos.lat,r.pos.lng,q.lat,q.lng))}):chatTrim(localized(q.cat),34);
           else sub=chatFmt(chatT('favDelAnterior'),{d:chatKmTxt(chatDistKm(orden[k-1].lat,orden[k-1].lng,q.lat,q.lng))});
-          pack.push({id:q.id,emoji:q.emoji,name:(k+1)+'. '+q.name,sub:sub});
+          pack.push({id:q.id,emoji:q.emoji,name:(k+1)+'. '+nombreLugar(q),sub:sub});
           idsF.push(q.id);
         }
         out.pois=pack;
@@ -28643,7 +28659,7 @@ function chatBuildReply(r){
         out.actions=[
           {label:chatT('llamar112'),run:function(){window.location.href='tel:112';}},
           {label:chatT('emergencia'),run:function(){chatEmit(chatBuildReply({kind:'kb',item:item}));}},
-          {label:(p0.emoji?p0.emoji+' ':'📍 ')+p0.name,
+          {label:(p0.emoji?p0.emoji+' ':'📍 ')+nombreLugar(p0),
            run:lista.length===1?chatMakeFly(p0.id):function(){chatEmit(chatBuildReply({kind:'poiList',list:lista}));}}
         ];
       })(r.item,r.list);
@@ -31223,7 +31239,7 @@ else { document.addEventListener('DOMContentLoaded', function () { pushInit(); p
     var stops = dpCurrentStops.filter(function(p) {
       return p && typeof p.lat === 'number' && typeof p.lng === 'number';
     }).map(function(p, i) {
-      return { name: (i + 1) + ' · ' + (p.name || 'Parada'), lat: p.lat, lng: p.lng };
+      return { name: (i + 1) + ' · ' + (nombreLugar(p) || 'Parada'), lat: p.lat, lng: p.lng };
     });
     if (stops.length === 0) { gpxToast(t.noDay); return; }
     var title = 'Tenerife Go · Ruta del día ' + gpxDateStr();
@@ -32985,7 +33001,7 @@ function renderStops() {
   const container = document.getElementById('dp-itinerary');
 
   container.innerHTML = dpCurrentStops.map((place, i) => {
-    const name  = escapeHtml(place.name);
+    const name  = escapeHtml(nombreLugar(place));
     const desc  = dpDesc(place, 110);
     const dur   = DP_DURATION[place.category] || 30;
     const emoji = escapeHtml(place.emoji || '📍');
@@ -33097,7 +33113,7 @@ function dpShare() {
   if (!stops.length) return;
   // como en pantalla: las visitas numeradas seguidas, y la comida con 🍽️
   let n = 0;
-  const list = stops.map(p => dpEsComida(p) ? `🍽️ ${p.name}` : `${++n}. ${p.emoji || '📍'} ${p.name}`).join('\n');
+  const list = stops.map(p => dpEsComida(p) ? `🍽️ ${nombreLugar(p)}` : `${++n}. ${p.emoji || '📍'} ${nombreLugar(p)}`).join('\n');
   const t0 = DP_TIMES.find(o => o.id === (dpiTime || dpTime));
   const dur = t0 ? (t0.tx[currentLang] || t0.tx.es)[0] : '';
   const titulo = tx('dpCompartirTitulo');
@@ -33598,7 +33614,7 @@ function dpiRenderResult(stops) {
   // las visitas, numeradas seguidas: la comida lleva 🍽️ y no se salta un numero
   let visita = 0;
   container.innerHTML = stops.map((place, i) => {
-    const name  = escapeHtml(place.name);
+    const name  = escapeHtml(nombreLugar(place));
     const desc  = dpDesc(place, 100);
     const dur   = dpDuracion(place);
     const emoji = escapeHtml(place.emoji || '📍');
@@ -33784,8 +33800,8 @@ function dpiNavigateTo(placeData) {
 
   const doNav = (originLat, originLng) => {
     // 1. Setear destino
-    routeDest = { id: place.id, name: place.name, lat: place.lat, lng: place.lng, emoji: place.emoji || '📍' };
-    document.getElementById('stop-dest-name').textContent = (place.emoji||'📍') + ' ' + place.name;
+    routeDest = { id: place.id, name: nombreLugar(place), lat: place.lat, lng: place.lng, emoji: place.emoji || '📍' };
+    document.getElementById('stop-dest-name').textContent = (place.emoji||'📍') + ' ' + nombreLugar(place);
     document.getElementById('stop-dest-name').classList.remove('placeholder');
     document.getElementById('stop-dest-clear').classList.add('visible');
 
@@ -33803,7 +33819,7 @@ function dpiNavigateTo(placeData) {
 
     // Si el transporte elegido es guagua → mostrar paradas de bus cercanas al destino
     if (dpiTransport === 'guagua' && typeof openNearbyStopsFor === 'function') {
-      setTimeout(() => openNearbyStopsFor(place.lat, place.lng, place.name), 400);
+      setTimeout(() => openNearbyStopsFor(place.lat, place.lng, nombreLugar(place)), 400);
     }
 
     // Cerrar el panel de rutas (que está encima) para que se vea la calculadora
@@ -33830,8 +33846,8 @@ function dpiNavigateTo(placeData) {
     () => {
       if (btn) { btn.textContent = tx('comoLlegarNav'); btn.style.pointerEvents = ''; }
       // Sin GPS: abrir calculadora con destino ya seteado, origen pendiente
-      routeDest = { id: place.id, name: place.name, lat: place.lat, lng: place.lng, emoji: place.emoji || '📍' };
-      document.getElementById('stop-dest-name').textContent = (place.emoji||'📍') + ' ' + place.name;
+      routeDest = { id: place.id, name: nombreLugar(place), lat: place.lat, lng: place.lng, emoji: place.emoji || '📍' };
+      document.getElementById('stop-dest-name').textContent = (place.emoji||'📍') + ' ' + nombreLugar(place);
       document.getElementById('stop-dest-name').classList.remove('placeholder');
       document.getElementById('stop-dest-clear').classList.add('visible');
       if (!routePanelOpen) toggleRoutePanel();
@@ -33934,7 +33950,7 @@ function setRouteBackPlace(place) {
   var btn = document.getElementById('route-back-place-btn');
   var lbl = document.getElementById('route-back-place-name');
   if (!btn || !lbl) return;
-  if (place) { lbl.textContent = (place.emoji||'📍') + ' ' + place.name; btn.classList.add('visible'); }
+  if (place) { lbl.textContent = (place.emoji||'📍') + ' ' + nombreLugar(place); btn.classList.add('visible'); }
   else { btn.classList.remove('visible'); }
 }
 
