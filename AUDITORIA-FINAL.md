@@ -27,7 +27,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **976**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
+| Lugares | **975**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -11135,7 +11135,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3730 filas (y 5.869 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3730 filas (y 5.867 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -11430,12 +11430,12 @@ no la secundaria**.
 | Ids de línea repetidos · números compartidos | **0 · 0** |
 | Ids de parada repetidos | **0** de 6.263 |
 | Referencias huérfanas al catálogo (paradas) | **0** |
-| Referencias huérfanas en `suggestionIds` (planificador de día) | **0** de 162 |
+| Referencias huérfanas en `suggestionIds` (planificador de día) | **0** de 161 |
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **976** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **976** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **975** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **975** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **61** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
@@ -11455,7 +11455,10 @@ El 17 de noviembre, de 980 a 976: tres fichas repetidas, juntadas con la suya,
 y el Mirador del Pico de las Flores, fuera. Con la Playa del Castillo se fueron
 un alias y un aviso `warn:"mar"` (117 a 116, y 50 a 49); los alias suben a 61
 con los de la Casa Salazar, la Playa Jardín, La Laguneta Chica y el MACEW; y
-las URLs, a 28, con la fuente del cierre del despegue de Izaña.
+las URLs, a 28, con la fuente del cierre del despegue de Izaña. Esa misma tarde,
+de 976 a 975: fuera la ficha «Cumbre Dorsal — Mirador La Jardina», que repetía el
+punto del Mirador La Jardina; con ella, su id en las sugerencias de la Ruta del día
+(162 a 161) y sus dos filas en cada idioma (5.869 a 5.867).
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no
