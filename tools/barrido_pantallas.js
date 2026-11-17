@@ -226,10 +226,12 @@ window.__estados = [
       __perfilDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('viaje'); await espera(300);
       const b = document.getElementById('tgp-paises-btn'); if (b && b.getAttribute('aria-expanded') !== 'true') b.click(); await espera(150);
       const p = document.querySelector('#tgp-paises-grid .tgp-pais[data-set="' + s + '"]'); if (p) p.click(); await espera(300); }]),
-  /* «Su cuerpo» (31 de octubre de 2026), encima del perfil: los musculos con las series de
-     __cuerpoDatos, el aspecto, la hoja del pecho con sus ejercicios y la ficha del primero. Sin
-     historial (TG_CUERPO_SIN_HISTORIA, abajo): aqui se miran los textos; el historial lo prueba
-     probar_cuerpo.js */
+  /* «Su cuerpo» (31 de octubre de 2026): del 1 al 6 de noviembre iba dentro de la pestaña Cuerpo
+     del perfil, y desde el 6 (el bloque 2 del rediseño) va encima del perfil, a pantalla completa
+     (abrirCuerpo abre el perfil en su pestaña y la pantalla encima, con op.modo en ese modo): los
+     musculos con las series de __cuerpoDatos, el aspecto, la hoja del pecho con sus ejercicios y
+     la ficha del primero. Sin historial (TG_CUERPO_SIN_HISTORIA, abajo): aqui se miran los textos;
+     el historial lo prueba probar_cuerpo.js */
   ['cuerpo', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo(); await espera(700); }],
   ['cuerpo:aspecto', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo({ modo: 'aspecto' }); await espera(700); }],
   ['cuerpo:hoja', async () => { __perfilDatos(); __cuerpoDatos(); await window.TG_PERFIL_CARGAR(); TG_PERFIL.abrir(); TG_PERFIL.pestana('cuerpo'); await window.abrirCuerpo({ modo: 'musculos' }); await espera(300);
@@ -271,8 +273,8 @@ window.__estados = [
         alertas: { consultado: iso(ahora - 1200000), alertas: [{ t: iso(ahora - 3 * 3600000), titulo: 'PRUEBA · El Gobierno de Canarias declara la prealerta por lluvias', enlace: 'https://www3.gobiernodecanarias.org/noticias/category/alertas/' }] } });
       TG_SOS.abrir(); await espera(300); }],
   ['leyenda', async () => { const b = document.getElementById('map-legend-toggle'); if (b) b.click(); }],
-  ['tour', async () => { window.v19StartTour(); await espera(500);
-      const t = []; for (let i = 0; i < 14; i++) { t.push(document.getElementById('v19-tour').innerText); const n = document.querySelector('#v19-tour .v19t-next'); if (!n || !document.getElementById('v19-tour').classList.contains('open')) break; n.click(); await espera(250); }
+  ['tour', async () => { await window.v19StartTour(); await espera(500);   // (10-11-2026) el tour llega con modulos/guia.js: se espera
+      const t = []; for (let i = 0; i < 60; i++) { t.push(document.getElementById('v19-tour').innerText); const n = document.querySelector('#v19-tour .v19t-next'); if (!n || !document.getElementById('v19-tour').classList.contains('open')) break; n.click(); await espera(250); }
       window.__extra = t; }],
 ];
 window.espera = ms => new Promise(r => setTimeout(r, ms));

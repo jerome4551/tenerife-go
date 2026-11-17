@@ -81,8 +81,23 @@ const FOTO = () => {
   if (!IDIOMAS.length) { console.log('no se encontro SUPPORTED_LANGS'); process.exit(1); }
   if (MEDIAS.length) console.log('  (a medias, no se miran: ' + MEDIAS.join(' ') + ')');
 
+  /* El tiempo y el mar los da Open-Meteo, en vivo, y cambian cada cuarto de hora. El 12 de noviembre de 2026, hacia
+     las 04:00, el viento cambió entre las dos cargas de un idioma («💨 N 8 km/h» al arrancar, «💨 NW 11 km/h» tras
+     setLang) y esto salió en rojo sin que nada se hubiera quedado en otro idioma. Ahora cada respuesta de Open-Meteo
+     se pide una vez y todas las cargas, de todos los idiomas, reciben la misma; si no llega, la misma falta para
+     todas. Lo que se compara es el idioma, no el tiempo que hace. */
+  const MEMO = new Map();
+  function memo(r) {
+    const k = r.request().url();
+    if (!MEMO.has(k)) MEMO.set(k, r.fetch().then(async rs => ({ status: rs.status(), body: await rs.body(),
+      headers: { 'content-type': rs.headers()['content-type'] || 'application/json', 'access-control-allow-origin': '*' } }),
+      () => ({ status: 503, body: '', headers: { 'access-control-allow-origin': '*' } })));
+    return MEMO.get(k).then(m => r.fulfill(m));
+  }
+
   async function pinta(lang, arrancando) {
     const ctx = await b.newContext({ viewport: { width: 390, height: 844 } });
+    await ctx.route(u => /(^|\.)open-meteo\.com$/.test(u.hostname), memo);
     await ctx.addInitScript(l => {
       try { localStorage.setItem('tg_lang', l); } catch (e) {}
     }, arrancando ? lang : 'es');

@@ -1,6 +1,6 @@
 {
  "casa-anchieta-laguna": {
-  "desc": "Dom rodzinny błogosławionego José de Anchieta (1534–1597), jednego z najważniejszych misjonarzy w historii Brazylii i Ameryki Południowej, zwanego „Apostołem Brazylii”. Budynek z XVI–XVII wieku na starówce La Laguna (UNESCO). Dobro Kultury od 1986 roku. W 2020 roku rozpoczęto renowację, która ma zamienić go w muzeum przybliżające życie i dzieło Anchiety; otwarcie planowane wkrótce.",
+  "desc": "Dom rodzinny świętego José de Anchieta (1534–1597), jednego z najważniejszych misjonarzy w historii Brazylii i Ameryki Południowej, zwanego „Apostołem Brazylii”. Budynek z XVI–XVII wieku na starówce La Laguna (UNESCO). Dobro Kultury od 1986 roku. Dom odnowiono w latach 2021–2024, a miasto przygotowuje w nim pierwsze na Wyspach Kanaryjskich centrum interpretacji życia i dzieła Anchiety.",
   "cat": "Dom rodzinny · La Laguna · Zabytek · Anchieta"
  },
  "cueva-santo-hermano-pedro": {
@@ -8,19 +8,19 @@
   "cat": "Sanktuarium · Granadilla de Abona · Południe"
  },
  "sala-westerdahl": {
-  "desc": "Sala Eduardo Westerdahl to najważniejsza przestrzeń muzealna sztuki współczesnej na północy Teneryfy, w Puerto de la Cruz. Upamiętnia Eduarda Westerdahla (1902-1983), krytyka sztuki, pisarza i animatora kultury, który wprowadził surrealizm i awangardy na Wyspy Kanaryjskie i korespondował z artystami takimi jak Dalí, Braque czy Miró. Mieści kolekcje stałe i wystawy czasowe sztuki współczesnej.",
+  "desc": "Muzeum Sztuki Współczesnej Eduardo Westerdahla (MACEW), założone w 1953 roku jako Sala Eduardo Westerdahl, to najważniejsza przestrzeń muzealna sztuki współczesnej na północy Teneryfy; mieści się w dawnym budynku komory celnej Casa de la Real Aduana w Puerto de la Cruz. Upamiętnia Eduarda Westerdahla (1902-1983), krytyka sztuki, pisarza i animatora kultury, który wprowadził surrealizm i awangardy na Wyspy Kanaryjskie i korespondował z artystami takimi jak Dalí, Braque czy Miró. Mieści kolekcje stałe i wystawy czasowe sztuki współczesnej.",
   "cat": "Sztuka współczesna · Westerdahl · Puerto de la Cruz"
  },
  "museo-etnografico-granadilla": {
-  "desc": "Muzeum Etnograficzne Granadilla de Abona w Casa de la Aduana, zabytkowym budynku w centrum. Gromadzi historię i tradycje gminy: narzędzia rolnicze, sprzęty domowe, stroje regionalne, lokalne rękodzieło i dawne prace polowe. Pokazuje codzienne życie południa wyspy sprzed ery turystyki. Wstęp bezpłatny lub bardzo tani.",
-  "cat": "Muzeum Etnograficzne · Granadilla de Abona · Południe · Bezpłatne"
+  "desc": "Muzeum Historii Granadilla de Abona przy calle Arquitecto Marrero, w historycznym centrum. Gromadzi historię i tradycje gminy: narzędzia rolnicze, sprzęty domowe, stroje regionalne, lokalne rękodzieło i dawne prace polowe. Pokazuje codzienne życie południa wyspy sprzed ery turystyki. Wstęp bezpłatny lub bardzo tani.",
+  "cat": "Muzeum Historii · Granadilla de Abona · Południe · Bezpłatne"
  },
  "playa-guios": {
   "desc": "Plaża z czarnego piasku i wulkanicznych otoczaków u stóp imponujących Klifów Los Gigantes. Jedna z najbardziej dramatycznych i fotogenicznych na Teneryfie. Krystaliczna woda do snorkelingu. Bez ratownika. Dojście z portu Los Gigantes (5 min pieszo) albo kajakiem. Bar w pobliżu.",
   "cat": "Plaża · Los Gigantes · Czarny piasek"
  },
  "playa-antequera": {
-  "desc": "Jedna z najbardziej odludnych i dziewiczych plaż Teneryfy. Dostępna wyłącznie pieszo wąwozem Antequera (~2 h z Taganany) albo łodzią z San Andrés. Czarny wulkaniczny piasek między zielonymi klifami Anagi. Bez żadnej infrastruktury. Krystaliczna woda. Koniecznie trzeba zabrać wodę, jedzenie i buty trekkingowe.",
+  "desc": "Jedna z najbardziej odludnych i dziewiczych plaż Teneryfy. Dostępna wyłącznie pieszo, z Igueste de San Andrés albo wąwozem Antequera w dół z Lomo de las Bodegas, lub łodzią z San Andrés. Czarny wulkaniczny piasek między zielonymi klifami Anagi. Bez żadnej infrastruktury. Krystaliczna woda. Koniecznie trzeba zabrać wodę, jedzenie i buty trekkingowe.",
   "cat": "Dzika plaża · Anaga · Tylko pieszo lub łodzią"
  },
  "playa-barqueros-buenavista": {
@@ -32,7 +32,7 @@
   "cat": "Plaża · La Caleta · Adeje · Autentyczna"
  },
  "playa-igueste-san-andres": {
-  "desc": "Mała plaża z otoczaków i czarnego piasku w wiosce Igueste de San Andrés, w Parku Wiejskim Anaga. Spokojny i bardzo lokalny zakątek, z dala od masowej turystyki. Dojazd drogą TF-127 z San Andrés. Woda czysta, ale występują prądy — pływać ostrożnie. Dobry punkt startowy tras po Anadze.",
+  "desc": "Mała plaża z otoczaków i czarnego piasku w wiosce Igueste de San Andrés, w Parku Wiejskim Anaga. Spokojny i bardzo lokalny zakątek, z dala od masowej turystyki. Dojazd drogą TF-121 z San Andrés. Woda czysta, ale występują prądy — pływać ostrożnie. Dobry punkt startowy tras po Anadze.",
   "cat": "Plaża · Igueste de San Andrés · Anaga"
  },
  "wc-teide-parque": {
@@ -125,7 +125,7 @@
  "pk-clubo-la-pinta": {
   "desc": "Prywatny podziemny parking godzinowy przy plaży La Pinta i głównym wejściu do Puerto Colón.",
   "cat": "Parking płatny",
-  "aviso": "Rezerwując z wyprzedzeniem, można dostać bilet całodniowy za około 15 €."
+  "aviso": "Rezerwując z wyprzedzeniem, można dostać bilet całodniowy."
  },
  "pk-oasis-americas": {
   "desc": "Parking podziemny centrum handlowego Oasis, pod handlową osią Avenida de las Américas.",
@@ -258,7 +258,7 @@
  "pk-playa-arena-santiago": {
   "desc": "Publiczne miejsca naziemne wyznaczone równolegle do Avenida Marítima, kilka metrów od zejścia na plażę z czarnym piaskiem.",
   "cat": "Parking bezpłatny",
-  "aviso": "Białe linie: bezpłatnie. Avenida Marítima, Calle Ana María i Calle El Lajial. Latem i w weekendy zapełnia się: najlepiej przed 10:00. Gdy brak miejsc, parkingi płatne w Balcón de Los Gigantes lub El Mirador, 1,50-2,50 €/h."
+  "aviso": "Białe linie: bezpłatnie. Avenida Marítima, Calle Ana María i Calle El Lajial. Latem i w weekendy zapełnia się: najlepiej przed 10:00. Gdy brak miejsc, parkingi płatne w Balcón de Los Gigantes lub El Mirador."
  },
  "pk-guia-isora": {
   "desc": "Otwarty plac miejski z tyłu kościoła parafialnego, dobra baza przed zwiedzaniem starówki lub wyjściem na szlak. Wjazd od Calle de San Sebastián.",
@@ -351,7 +351,7 @@
   "cat": "Plaża miejska · Candelaria"
  },
  "playa-castillo-pcruz": {
-  "desc": "Plaża z czarnym piaskiem zaprojektowana w 1990 roku przez Césara Manrique obok María Jiménez, z zieloną promenadą, kawiarniami i strefą dla dzieci. Ma prysznice, toalety i leżaki. Dno jest z dużych otoczaków, a fala silna: zalecane buty do wody.",
+  "desc": "Plaża z czarnym piaskiem obok Castillo de San Felipe, jeden z trzech odcinków Playa Jardín, zaprojektowanej przez Césara Manrique w latach dziewięćdziesiątych, z zieloną promenadą, kawiarniami i strefą dla dzieci. Ma prysznice, toalety i leżaki. Dno jest z dużych otoczaków, a fala silna: zalecane buty do wody.",
   "cat": "Plaża z czarnym piaskiem · Puerto de la Cruz"
  },
  "playa-charcada": {

@@ -94,9 +94,18 @@ const CARPETAS = [
   ['idiomas/etiquetas', f => /\.json$/.test(f)],
   ['idiomas/cielo', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
   ['faq', f => IDIOMAS.includes(f.replace(/\.json$/, '')) && /\.json$/.test(f)],
-  /* y los 533 ejercicios de «Su cuerpo» (31 de octubre de 2026): dentro de la app no hay
-     service worker que los guarde */
-  ['datos', f => DATOS.includes(f) || /^ejercicios(-[a-z]{2,3})?\.json$/.test(f)],
+  ['datos', f => DATOS.includes(f)],
+  /* y los datos de «Su cuerpo» (31 de octubre de 2026), todos: los ejercicios (uno comun y
+     uno por idioma) y, desde el 3 de noviembre, las respuestas del asistente y las guias de
+     los deportes (uno por idioma). Dentro de la app no hay service worker que los guarde, y
+     cambian con modulos/cuerpo.js, no a diario: van todos y salen sin conexion desde el
+     primer dia */
+  ['datos/cuerpo', f => /^[a-z0-9-]+\.json$/.test(f)],
+  /* y los del personaje en 3D (7 de noviembre de 2026, bloque 3): el indice y los 71 ficheros que
+     nombra (las mallas en .bin y las texturas), que tools/cuerpo3d/empaqueta3d.py escribe con la
+     huella de su contenido en el nombre. Dentro de la app no hay service worker: van todos (2,6 MB)
+     y el 3D sale sin conexion desde el primer dia; el motor va con modulos/ */
+  ['datos/cuerpo3d', f => f === 'indice.json' || /^[a-z0-9_-]+\.[0-9a-f]{8}\.(bin|webp|png)$/.test(f)],
   ['modulos', f => /\.js$/.test(f)],
   ['vendor', f => /\.(js|css|txt)$/.test(f)],
   ['vendor/fuentes', f => /\.woff2$/.test(f)],
@@ -289,6 +298,21 @@ function comprobar(montado) {
     if (l !== 'es' && !enWww('idiomas/etiquetas/' + l + '.json')) faltan.add('idiomas/etiquetas/' + l + '.json');
     if (!enWww('faq/' + l + '.json')) faltan.add('faq/' + l + '.json');
     if (!enWww('idiomas/cielo/' + l + '.json')) faltan.add('idiomas/cielo/' + l + '.json');
+  }
+  /* y los de «Su cuerpo» (31 de octubre de 2026): modulos/cuerpo.js los pide con una ruta
+     armada (TG_CUERPO_DATOS mas el fichero), que lo de arriba no ve */
+  if (!enWww('datos/cuerpo/ejercicios.json')) faltan.add('datos/cuerpo/ejercicios.json');
+  /* (15-11-2026) y el índice de los ejercicios con vídeo, con el que se pone 🎬 junto a su nombre */
+  if (!enWww('datos/cuerpo/con-video.json')) faltan.add('datos/cuerpo/con-video.json');
+  for (const l of IDIOMAS) {
+    for (const f of ['ejercicios-' + l + '.json', 'asistente-' + l + '.json', 'deportes-' + l + '.json']) if (!enWww('datos/cuerpo/' + f)) faltan.add('datos/cuerpo/' + f);
+  }
+  /* y los del personaje en 3D: el motor, el indice y cada fichero que el indice nombra */
+  if (!enWww('modulos/cuerpo3d.js')) faltan.add('modulos/cuerpo3d.js');
+  if (!enWww('datos/cuerpo3d/indice.json')) faltan.add('datos/cuerpo3d/indice.json');
+  else {
+    const I3 = JSON.parse(lee('datos/cuerpo3d/indice.json'));
+    for (const k of Object.keys(I3.ficheros || {})) if (!enWww('datos/cuerpo3d/' + I3.ficheros[k].f)) faltan.add('datos/cuerpo3d/' + I3.ficheros[k].f);
   }
   ok(faltan.size === 0, 'todo lo que la app pide en el movil esta en app/www/ (' + montado.copiados.length + ' ficheros, '
      + (montado.bytes / 1e6).toFixed(1) + ' MB)', [...faltan].join(', '));

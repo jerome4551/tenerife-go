@@ -14,10 +14,15 @@
  *    pantalla. El texto estaba bien traducido: lo que fallaba era que no
  *    cabia, y eso solo se ve midiendo, y midiendo EN CADA IDIOMA.
  *
+ * Y UN TERCERO, QUE SALIO DEL IPHONE DE JEROME: el desplegable del idioma de
+ * la barra no se veia en Safari (estaba dentro de una caja con scroll), y
+ * aqui, en Chromium, si. Se mira la estructura que rompe Safari y se usa la
+ * lista con el dedo (bloque 4).
+ *
  *     node tools/auditar_desborde.js [puerto]
  */
 'use strict';
-const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+const { chromium, devices } = require('/opt/node22/lib/node_modules/playwright');
 const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
 const ANCHO = 360, ALTO = 740;           // un movil estrecho de los de verdad
 const MARGEN = 2;                        // px de tolerancia por redondeo
@@ -177,6 +182,196 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
       console.log('  ok   ' + L.padEnd(4) + 'nada se sale por los lados');
     }
     if (r.popup !== null) { popups[L] = r.popup; console.log('       popup: «' + r.popup + '»'); }
+  }
+
+  /* 4 · EL DESPLEGABLE DEL IDIOMA DE LA BARRA, con el dedo.
+     Jerome, el 7 de noviembre de 2026: el boton de cambiar de idioma de
+     arriba, junto al mapa, «de momento no funciona». En el iPhone la lista
+     no se veia: vivia dentro de .topbar-right, que en el movil lleva
+     overflow-x:auto, y Safari recorta un position:fixed que este dentro de
+     una caja con scroll (fallo 160953 de WebKit, abierto en 2026). Chromium
+     si lo dejaba ver, y por eso aqui todo salia en verde. Asi que se mira la
+     estructura, que es lo que rompe Safari (ningun elemento fijo dentro de
+     una caja con scroll, ni dentro de una caja posicionada que recorte y
+     lleve z-index), y despues se usa la lista como una persona: en un
+     iPhone pequeno con el aviso de instalar a la vista (antes tapaba los
+     tres ultimos idiomas) y en un movil tumbado, donde los diez no caben y
+     la lista tiene que deslizarse sin cerrarse. */
+  const malIdioma = [];
+  const pasoIdioma = [];
+  for (const caso of [
+    { nombre: 'iPhone pequeno, 320 x 568', opc: { ...devices['iPhone SE'] }, aviso: true },
+    { nombre: 'movil tumbado, 740 x 330', opc: { viewport: { width: 740, height: 330 }, isMobile: true, hasTouch: true }, aviso: false },
+  ]) {
+    const ctx = await b.newContext({ ...caso.opc, locale: 'es-ES', serviceWorkers: 'block' });
+    const q = await ctx.newPage();
+    const errQ = [];
+    q.on('pageerror', e => errQ.push(e.message));
+    try {
+      await q.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'load', timeout: 60000 });
+      await q.waitForTimeout(1500);
+      /* la bienvenida y, la primera vez, la oferta del recorrido: como una persona */
+      if (await q.isVisible('#v19-welcome-start')) { await q.tap('#v19-welcome-start'); await q.waitForTimeout(1200); }
+      if (await q.$('.v19t-prompt .v19t-ghost')) { await q.tap('.v19t-prompt .v19t-ghost'); await q.waitForTimeout(600); }
+      const est = await q.evaluate(() => {
+        const nombre = e => e.id ? '#' + e.id : e.tagName.toLowerCase() + (e.classList.length ? '.' + [...e.classList].join('.') : '');
+        const mal = [];
+        for (const e of document.querySelectorAll('body *')) {
+          if (getComputedStyle(e).position !== 'fixed') continue;
+          for (let a = e.parentElement; a && a !== document.body; a = a.parentElement) {
+            const ca = getComputedStyle(a);
+            const scroll = /auto|scroll/.test(ca.overflowX + ca.overflowY);
+            const recortaConZ = /hidden|clip/.test(ca.overflowX + ca.overflowY) && ca.position !== 'static' && ca.zIndex !== 'auto';
+            if (scroll || recortaConZ) { mal.push(nombre(e) + ' dentro de ' + nombre(a) + ' (overflow ' + ca.overflowX + '/' + ca.overflowY + ')'); break; }
+          }
+        }
+        const dd = document.getElementById('lang-dropdown');
+        return { mal, padre: dd && dd.parentElement ? nombre(dd.parentElement) : null };
+      });
+      est.mal.forEach(x => malIdioma.push(caso.nombre + ': elemento fijo que Safari recorta: ' + x));
+      if (est.padre !== 'body') malIdioma.push(caso.nombre + ': el desplegable cuelga de ' + est.padre + ', no de <body>');
+      let aviso = '';
+      if (caso.aviso) {
+        try { await q.waitForSelector('.pwa-install-banner.show', { timeout: 8000 }); aviso = ', con el aviso de instalar a la vista'; }
+        catch (e) { aviso = ' (el aviso de instalar no salio)'; }
+      }
+      const bt = await q.evaluate(() => { const r = document.getElementById('lang-btn').getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; });
+      await q.touchscreen.tap(bt.x, bt.y);
+      await q.waitForTimeout(500);
+      const ab = await q.evaluate(() => {
+        const dd = document.getElementById('lang-dropdown'), r = dd.getBoundingClientRect();
+        return { abierto: dd.classList.contains('open') && getComputedStyle(dd).display !== 'none',
+                 dentro: r.left >= 0 && r.top >= 0 && r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1,
+                 desliza: dd.scrollHeight > dd.clientHeight + 1, r: [r.left, r.top, r.right, r.bottom].map(Math.round), vw: innerWidth, vh: innerHeight };
+      });
+      if (!ab.abierto) { malIdioma.push(caso.nombre + ': al tocar el boton la lista no se abre'); continue; }
+      if (!ab.dentro) malIdioma.push(caso.nombre + ': la lista se sale de la pantalla ' + JSON.stringify(ab.r) + ' en ' + ab.vw + ' x ' + ab.vh);
+      if (!caso.aviso && !ab.desliza) malIdioma.push(caso.nombre + ': los diez no caben y la lista no se desliza');
+      /* cada idioma, traido a la vista dentro de la lista: lo que hay bajo su centro tiene que ser el */
+      const tapados = await q.evaluate(async () => {
+        const dd = document.getElementById('lang-dropdown'), mal = [];
+        for (const o of dd.querySelectorAll('.lang-option')) {
+          o.scrollIntoView({ block: 'nearest' });
+          await new Promise(r => setTimeout(r, 60));
+          const r = o.getBoundingClientRect(), e = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+          if (!e || !dd.contains(e)) mal.push(o.textContent.replace(/\s+/g, ' ').trim() + ' tapado por ' + (e ? (e.id ? '#' + e.id : e.tagName.toLowerCase() + '.' + [...e.classList].join('.')) : 'nada'));
+        }
+        return { mal, sigue: dd.classList.contains('open') };
+      });
+      tapados.mal.forEach(x => malIdioma.push(caso.nombre + aviso + ': ' + x));
+      if (!tapados.sigue) malIdioma.push(caso.nombre + ': deslizar la lista la cierra');
+      /* y el ultimo, con el dedo: la app pasa al polaco y la lista se cierra */
+      const ult = await q.evaluate(() => { const o = [...document.querySelectorAll('#lang-dropdown .lang-option')].pop(); o.scrollIntoView({ block: 'nearest' }); const r = o.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+      await q.waitForTimeout(150);
+      await q.touchscreen.tap(ult.x, ult.y);
+      await q.waitForTimeout(600);
+      const tras = await q.evaluate(() => ({ lang: currentLang, html: document.documentElement.lang, abierto: document.getElementById('lang-dropdown').classList.contains('open') }));
+      if (tras.lang !== 'pl' || tras.html !== 'pl') malIdioma.push(caso.nombre + ': tocar «Polski» deja la app en ' + tras.lang + ' / ' + tras.html);
+      if (tras.abierto) malIdioma.push(caso.nombre + ': tras elegir, la lista sigue abierta');
+      errQ.forEach(x => malIdioma.push(caso.nombre + ': error de pagina: ' + x));
+      pasoIdioma.push(caso.nombre + aviso + (ab.desliza ? ', la lista se desliza' : ''));
+    } catch (e) {
+      malIdioma.push(caso.nombre + ': la prueba se cayo: ' + e.message.split('\n')[0]);
+    } finally {
+      await ctx.close();
+    }
+  }
+  if (malIdioma.length) {
+    fallos++;
+    console.log('  MAL  el desplegable del idioma de la barra: ' + malIdioma.length + ' fallo(s)');
+    malIdioma.slice(0, 8).forEach(x => console.log('           ' + x));
+  } else {
+    console.log('  ok   el desplegable del idioma, con el dedo, fuera de toda caja con scroll y sin nada encima: ' + pasoIdioma.join(' · '));
+  }
+
+  /* 5 · LA MARCA DE LA BARRA, ENTERA O SOLO EL LOGO. Decision del dueño, el
+     15 de noviembre de 2026: «TENERIFE GO» no se queda recortado con «…»
+     cuando no cabe al lado del logo; se queda solo el logo. Antes se
+     recortaba de 320 a 450 px y de 501 a 650 px. Se mira en muchos anchos:
+     o el nombre entero o el texto escondido (1 px), el eslogan nunca
+     recortado, el h1 siempre en la pagina para los lectores de pantalla, la
+     barra dentro de la pantalla; y en la misma pagina, al cambiar de ancho,
+     la marca va y vuelve sola. */
+  const malMarca = [], vistoMarca = {}, frescaEs = {};
+  const mideMarca = () => {
+    const m = document.querySelector('.topbar-brand'), h = m.querySelector('h1');
+    const s = m.querySelector('.topbar-brand-text span'), txt = m.querySelector('.topbar-brand-text');
+    const ve = e => !!e && e.getClientRects().length > 0 && getComputedStyle(e).display !== 'none';
+    const logo = m.classList.contains('solo-logo');
+    return { logo, ancho: Math.round(txt.getBoundingClientRect().width), quitado: getComputedStyle(txt).display === 'none',
+             nombre: h.textContent.trim(), corta: !logo && h.scrollWidth > h.clientWidth + 1,
+             esloganCorta: !logo && ve(s) && s.scrollWidth > s.clientWidth + 1,
+             fuera: Math.round(document.querySelector('.topbar-right').getBoundingClientRect().right) > innerWidth + 1 };
+  };
+  const anchosMarca = { es: [320, 360, 390, 430, 460, 480, 500, 501, 600, 650, 700, 768, 1280] };
+  for (const L of IDIOMAS) if (L !== 'es') anchosMarca[L] = [360, 600, 768];
+  for (const L of IDIOMAS) {
+    const fila = [];
+    for (const w of anchosMarca[L]) {
+      const ctx = await b.newContext({ viewport: { width: w, height: 800 }, serviceWorkers: 'block' });
+      const q = await ctx.newPage(), errM = [];
+      q.on('pageerror', e => errM.push(e.message));
+      try {
+        await q.addInitScript(l => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tg_lang', l); } catch (e) {} }, L);
+        await q.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'load', timeout: 60000 });
+        await q.waitForFunction(() => typeof setLang === 'function', null, { timeout: 30000 });
+        if (await q.isVisible('#v19-welcome-start')) { await q.click('#v19-welcome-start'); }
+        await q.evaluate(l => setLang(l), L);
+        await q.waitForTimeout(1200);
+        const r = await q.evaluate(mideMarca);
+        const ojo = [];
+        if (r.corta) ojo.push('«TENERIFE GO» recortado con «…»');
+        if (r.esloganCorta) ojo.push('el eslogan recortado');
+        if (r.logo && r.ancho > 1) ojo.push('solo el logo, pero el texto ocupa ' + r.ancho + ' px');
+        if (r.quitado || r.nombre !== 'TENERIFE GO') ojo.push('el h1 ya no esta en la pagina');
+        if (r.fuera) ojo.push('los botones se salen de la pantalla');
+        errM.forEach(x => ojo.push('error de pagina: ' + x));
+        ojo.forEach(x => malMarca.push(L + ' a ' + w + ' px: ' + x));
+        fila.push(w + (r.logo ? ' logo' : ' entera'));
+        if (L === 'es') frescaEs[w] = r.logo ? 'logo' : 'entera';
+      } catch (e) {
+        malMarca.push(L + ' a ' + w + ' px: la prueba se cayo: ' + e.message.split('\n')[0]);
+      } finally {
+        await ctx.close();
+      }
+    }
+    vistoMarca[L] = fila.join(', ');
+  }
+  {
+    const ctx = await b.newContext({ viewport: { width: 360, height: 800 }, serviceWorkers: 'block' });
+    const q = await ctx.newPage(), errM = [];
+    q.on('pageerror', e => errM.push(e.message));
+    try {
+      await q.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tg_lang', 'es'); } catch (e) {} });
+      await q.goto('http://127.0.0.1:' + puerto + '/index.html', { waitUntil: 'load', timeout: 60000 });
+      await q.waitForFunction(() => typeof setLang === 'function', null, { timeout: 30000 });
+      if (await q.isVisible('#v19-welcome-start')) { await q.click('#v19-welcome-start'); }
+      await q.waitForTimeout(1200);
+      const pasos = [];
+      /* lo que sale al cambiar de ancho tiene que ser lo mismo que al abrir
+         la pagina en ese ancho (arriba), en las dos direcciones */
+      for (const w of [360, 480, 600, 768, 390, 1280, 320]) {
+        await q.setViewportSize({ width: w, height: 800 });
+        await q.waitForTimeout(400);
+        const r = await q.evaluate(mideMarca);
+        pasos.push(w + (r.logo ? ' logo' : ' entera'));
+        if (r.corta || r.esloganCorta) malMarca.push('al pasar a ' + w + ' px en la misma pagina: queda recortada');
+        if (frescaEs[w] && frescaEs[w] !== (r.logo ? 'logo' : 'entera')) malMarca.push('al pasar a ' + w + ' px en la misma pagina queda ' + (r.logo ? 'solo el logo' : 'entera') + ', y abriendola en ese ancho, ' + (frescaEs[w] === 'logo' ? 'solo el logo' : 'entera'));
+      }
+      errM.forEach(x => malMarca.push('al cambiar de ancho: error de pagina: ' + x));
+      vistoMarca['cambiando el ancho'] = pasos.join(', ');
+    } catch (e) {
+      malMarca.push('al cambiar de ancho: la prueba se cayo: ' + e.message.split('\n')[0]);
+    } finally {
+      await ctx.close();
+    }
+  }
+  if (malMarca.length) {
+    fallos++;
+    console.log('  MAL  la marca de la barra: ' + malMarca.length + ' fallo(s)');
+    malMarca.slice(0, 10).forEach(x => console.log('           ' + x));
+  } else {
+    console.log('  ok   la marca de la barra, entera o solo el logo, nunca recortada: ' + IDIOMAS.map(L => L + ' ' + vistoMarca[L]).join(' · ') + '; cambiando el ancho en la misma pagina: ' + vistoMarca['cambiando el ancho']);
   }
 
   /* El popup en castellano y el de los otros nueve no pueden decir lo MISMO:

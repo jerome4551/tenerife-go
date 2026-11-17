@@ -108,6 +108,8 @@ MAIL_DIR = 'tenerife.go.app@gmail.com'
 # clave de lo que reciben.
 TERCEROS = [
     ('Supabase', 'https://supabase.com/privacy', 'ppTercSupabase'),
+    # Desde el 10/11/2026: al crear la cuenta, la comprobacion de contraseñas filtradas (k-anonimato).
+    ('Have I Been Pwned', 'https://haveibeenpwned.com/Privacy', 'ppTercHibp'),
     ('OpenStreetMap · ArcGIS', 'https://osmfoundation.org/wiki/Privacy_Policy', 'ppTercMapas'),
     ('OSRM', 'https://project-osrm.org/', 'ppTercOsrm'),
     ('Nominatim', 'https://osmfoundation.org/wiki/Privacy_Policy', 'ppTercNominatim'),

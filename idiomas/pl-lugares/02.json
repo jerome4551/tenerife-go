@@ -1,11 +1,11 @@
 {
  "montana-amarilla": {
-  "desc": "Stożek wulkaniczny o złocisto-siarkowej barwie, absolutnie wyjątkowy na Teneryfie. Położony na Costa del Silencio, jego żółte ściany kontrastują z intensywnym błękitem Atlantyku w spektakularny sposób. Rezerwat morski z wodami pełnymi kolorowych ryb. Zachód słońca z jego szczytu ma przejmujące piękno. Wstęp wolny, wejście zaledwie 20 minut.",
+  "desc": "Stożek wulkaniczny o złocisto-siarkowej barwie, absolutnie wyjątkowy na Teneryfie. Położony na Costa del Silencio, jego żółte ściany kontrastują z intensywnym błękitem Atlantyku w spektakularny sposób. To pomnik przyrody, a jego wody są pełne kolorowych ryb. Zachód słońca z jego szczytu ma przejmujące piękno. Wstęp wolny, wejście zaledwie 20 minut.",
   "cat": "Wulkan · Costa del Silencio"
  },
  "montana-guaza": {
-  "desc": "Wielki strażnik południa Teneryfy, 427 m. Specjalny Rezerwat Przyrody górujący nad Los Cristianos i Las Américas. Trasa pętlą na 2 godziny przez półpustynny krajobraz tabaib i wilczomleczy. Na szczycie panorama 360°, od Teide po La Gomerę, El Hierro i La Palmę w pogodne dni. Naturalny punkt widokowy, którego turyści się nie spodziewają.",
-  "cat": "Wulkan · Rezerwat przyrody Południe"
+  "desc": "Wielki strażnik południa Teneryfy, 427 m. Pomnik Przyrody górujący nad Los Cristianos i Las Américas. Trasa pętlą na 2 godziny przez półpustynny krajobraz tabaib i wilczomleczy. Na szczycie panorama 360°, od Teide po La Gomerę, El Hierro i La Palmę w pogodne dni. Naturalny punkt widokowy, którego turyści się nie spodziewają.",
+  "cat": "Wulkan · Pomnik przyrody · Południe"
  },
  "llano-ucanca": {
   "desc": "Najbardziej przejmująca równina Parku Narodowego Teide. Morze czarnego wulkanicznego piasku otoczone górami, z Teide w tle. O wschodzie słońca wypełnia się niemożliwymi pomarańczami i fioletami. Cisza jest tu absolutna, niemal święta. Ten sam krajobraz, który zachwycił Humboldta i pierwszych europejskich odkrywców. Dojazd samochodem, bez wysiłku.",
@@ -24,7 +24,7 @@
   "cat": "Wulkan i zbiornik · Buenavista del Norte"
  },
  "pico-teide-cumbre": {
-  "desc": "Szczyt Pico del Teide (3715 m) to najwyższy punkt Hiszpanii, najwyższy na jakiejkolwiek wyspie Atlantyku i trzeci najwyższy wulkan świata liczony od dna oceanu. Na szczyt wchodzi się pieszo z La Rambleta (górna stacja kolejki, 3555 m) szlakiem Telesforo Bravo (PNT 10): około 55 min, trudność średnia, nachylenie do 60 % i wysiłek z powodu wysokości. Potrzebne jest wcześniejsze pozwolenie z Tenerife ON (tenerifeon.es): między 9:00 a 17:00 jest płatne dla odwiedzających, a kwota pokazuje się przy rezerwacji. Miejsca są udostępniane w każdy poniedziałek o 07:00 (czasu kanaryjskiego) na kolejne osiem tygodni i szybko się wyczerpują. Obowiązkowe wyposażenie: buty górskie, długie spodnie i polar lub ciepłe ubranie. Na szczycie: fumarole siarkowe, w pogodne dni widok na La Gomerę, El Hierro, La Palmę i Gran Canarię oraz niepowtarzalne uczucie stania na dachu Hiszpanii. Temperatura może spaść poniżej 0 °C.",
+  "desc": "⚠️ Od 1 listopada 2026 r. z powodu lodu i śniegu Cabildo ogranicza wejście na siedem szlaków Teide lub ich odcinki (PNT 07, 09, 10, 11, 12, 23 i 28): mogą tam wchodzić tylko osoby z dużym doświadczeniem wysokogórskim albo w towarzystwie profesjonalistów akredytowanych przez Park Narodowy, z pozwoleniem Tenerife ON, oświadczeniem o odpowiedzialności zaakceptowanym w profilu, rakami i czekanem. Nie ma jeszcze daty zakończenia. Szczyt Pico del Teide (3715 m) to najwyższy punkt Hiszpanii, najwyższy na jakiejkolwiek wyspie Atlantyku i trzeci najwyższy wulkan świata liczony od dna oceanu. Na szczyt wchodzi się pieszo z La Rambleta (górna stacja kolejki, 3555 m) szlakiem Telesforo Bravo (PNT 10): około 55 min, trudność średnia, nachylenie do 60 % i wysiłek z powodu wysokości. Potrzebne jest wcześniejsze pozwolenie z Tenerife ON (tenerifeon.es): między 9:00 a 17:00 jest płatne dla odwiedzających, a kwota pokazuje się przy rezerwacji. Miejsca są udostępniane w każdy poniedziałek o 07:00 (czasu kanaryjskiego) na kolejne osiem tygodni i szybko się wyczerpują. Obowiązkowe wyposażenie: buty górskie, długie spodnie i polar lub ciepłe ubranie. Na szczycie: fumarole siarkowe, w pogodne dni widok na La Gomerę, El Hierro, La Palmę i Gran Canarię oraz niepowtarzalne uczucie stania na dachu Hiszpanii. Temperatura może spaść poniżej 0 °C.",
   "cat": "Szczyt · 3715 m · Hiszpania · Teide · Pozwolenie"
  },
  "piscinas-garachico": {
@@ -208,7 +208,7 @@
   "cat": "Guachinche · Santa Úrsula"
  },
  "guachinche-guayero": {
-  "desc": "Autentyczny guachinche w Tegueste. Tradycyjna kuchnia kanaryjska, dużo mięsa (świnie hodowane przez właściciela), wyróżniające się ziemniaki z mojo. Bardzo przytulna lokalna atmosfera, rzadko spotyka się turystów. 📍 C. Los Pobres 60, Tegueste · 🕐 Śr-So 12:00-23:00, Nd 12:00-18:00, zamknięte pn-wt · ☎ 822 61 44 32. Para: ~40€ z winem.",
+  "desc": "Autentyczny guachinche w Tegueste. Tradycyjna kuchnia kanaryjska, dużo mięsa (świnie hodowane przez właściciela), wyróżniające się ziemniaki z mojo. Bardzo przytulna lokalna atmosfera, rzadko spotyka się turystów. 📍 C. Los Pobres 60, Tegueste · 🕐 Śr-So 12:00-23:00, Nd 12:00-18:00, zamknięte pn-wt · ☎ 822 61 44 32.",
   "cat": "Guachinche · Tegueste"
  },
  "guachinche-cordero": {
@@ -240,7 +240,7 @@
   "cat": "Guachinche · La Matanza"
  },
  "guachinche-casa-yayi": {
-  "desc": "Mały i bardzo autentyczny guachinche w La Matanza. Ropa vieja, solona ryba z cebulą, soczewica, kasztany i dobre wino. Duże porcje w minimalnych cenach (~10€ od osoby). 📍 C. San José 10, La Matanza de Acentejo. Prawdziwa domowa kuchnia, rodzinna obsługa. Zalecana gotówka.",
+  "desc": "Mały i bardzo autentyczny guachinche w La Matanza. Ropa vieja, solona ryba z cebulą, soczewica, kasztany i dobre wino. Duże porcje. 📍 C. San José 10, La Matanza de Acentejo. Prawdziwa domowa kuchnia, rodzinna obsługa. Zalecana gotówka.",
   "cat": "Guachinche · La Matanza"
  },
  "bodega-insulares": {
@@ -252,7 +252,7 @@
   "cat": "Winiarnia · D.O. Tacoronte-Acentejo"
  },
  "bodega-linaje-pago": {
-  "desc": "Winiarnia z enoturystyką wysokiej klasy. Zwiedzanie winnic i winiarni plus degustacja 5 win z deską serów i kanaryjskich wędlin (15€ od osoby). Widoki na morze i Teide. 📍 C. Herrera 85, El Sauzal · 🕐 Pn-Pt 9:00-14:00 (w piątki do 17:00), So 13:00-17:00, zamknięte w niedziele · ☎ 640 37 95 64.",
+  "desc": "Winiarnia z enoturystyką wysokiej klasy. Zwiedzanie winnic i winiarni plus degustacja 5 win z deską serów i kanaryjskich wędlin. Widoki na morze i Teide. 📍 C. Herrera 85, El Sauzal · 🕐 Pn-Pt 9:00-14:00 (w piątki do 17:00), So 13:00-17:00, zamknięte w niedziele · ☎ 640 37 95 64.",
   "cat": "Winiarnia · D.O. Tacoronte-Acentejo"
  },
  "bodega-tajinaste": {
@@ -352,7 +352,7 @@
   "cat": "Minigolf · Puerto Colón · Costa Adeje · Widok na morze"
  },
  "minigolf-wakanda-adeje": {
-  "desc": "Prosty, ręcznie wykonany minigolf w Costa Adeje (Calle Roma, strefa Torviscas–Fañabé), prowadzony przez miłego właściciela. Spokojna i tania rozrywka dla rodziny, z widokiem na morze w pobliżu. Skromny obiekt: niektóre dołki mogą wymagać napraw, ale na chwilę zabawy w zupełności wystarcza. Przystępne ceny. Dobra opcja dla dzieci.",
+  "desc": "Prosty, ręcznie wykonany minigolf w Costa Adeje (Calle Roma, strefa Torviscas–Fañabé), prowadzony przez miłego właściciela. Spokojna rozrywka dla rodziny, z widokiem na morze w pobliżu. Skromny obiekt: niektóre dołki mogą wymagać napraw, ale na chwilę zabawy w zupełności wystarcza. Dobra opcja dla dzieci.",
   "cat": "Minigolf · Costa Adeje · Rodzina"
  },
  "aa-sin-fronteras-adeje": {

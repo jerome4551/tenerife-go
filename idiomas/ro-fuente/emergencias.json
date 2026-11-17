@@ -1,0 +1,4228 @@
+{
+ "_": "Rumano (ro) de las filas de EMERG_UI de modulos/emergencias.js (el panel 🆘 Emergencias). Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. No se edita a mano: sale de la entrega del bloque 3 del rumano.",
+ "idioma": "ro",
+ "fichero": "modulos/emergencias.js",
+ "filas": [
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSubtitulo",
+   "es": "Qué hacer ante una emergencia en Tenerife: volcán, terremoto, maremoto, incendio, temporal o un problema en el mar.",
+   "forma": "texto",
+   "ro": "Ce trebuie să faceți în caz de urgență în Tenerife: vulcan, cutremur, tsunami, incendiu, furtună sau o problemă pe mare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSoloEmerg",
+   "es": "Llame al 112 solo si necesita ayuda urgente. Para informarse, use los canales oficiales o el 012.",
+   "forma": "texto",
+   "ro": "Sunați la 112 doar dacă aveți nevoie de ajutor urgent. Pentru informații, folosiți canalele oficiale sau numărul 012."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInfo012",
+   "es": "012 · información del Gobierno de Canarias (+34 922 470 012)",
+   "forma": "texto",
+   "ro": "012 · informații de la Guvernul Insulelor Canare (+34 922 470 012)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInfo012Nota",
+   "es": "El 012 informa las 24 horas, en castellano y en 16 idiomas más. La llamada no es gratuita: paga lo que cobre su compañía.",
+   "forma": "texto",
+   "ro": "Numărul 012 oferă informații 24 de ore din 24, în spaniolă și în alte 16 limbi. Apelul nu este gratuit: plătiți cât percepe operatorul dumneavoastră."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCoordsBtn",
+   "es": "Ver mis coordenadas",
+   "forma": "texto",
+   "ro": "Coordonatele mele"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCoordsBuscando",
+   "es": "Buscando su posición…",
+   "forma": "texto",
+   "ro": "Se caută poziția dumneavoastră…"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCoordsTitulo",
+   "es": "Su posición ahora",
+   "forma": "texto",
+   "ro": "Poziția dumneavoastră acum"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCoordsPrecision",
+   "es": "precisión ±{m} m · medida a las {h}",
+   "forma": "texto",
+   "ro": "precizie ±{m} m · măsurată la ora {h}"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCoordsAyuda",
+   "es": "Si no sabe explicar dónde está, lea estas coordenadas al 112. Si llama con la App 112 Canarias, su posición se envía sola.",
+   "forma": "texto",
+   "ro": "Dacă nu știți să explicați unde sunteți, citiți aceste coordonate operatorului de la 112. Dacă sunați din aplicația 112 Canarias, poziția dumneavoastră se trimite automat."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCoordsCopiar",
+   "es": "Copiar",
+   "forma": "texto",
+   "ro": "Copiați"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCoordsCopiado",
+   "es": "Copiado",
+   "forma": "texto",
+   "ro": "Copiat"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCoordsError",
+   "es": "No se pudo saber su posición. Active la ubicación o diga dónde está: calle, sendero, playa o algo que vea cerca.",
+   "forma": "texto",
+   "ro": "Poziția dumneavoastră nu a putut fi stabilită. Activați localizarea sau spuneți unde sunteți: strada, traseul, plaja sau ceva ce vedeți în apropiere."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApp112",
+   "es": "La App 112 Canarias llama enviando su posición GPS y, si no puede hablar, permite un aviso sin voz con chat y fotos.",
+   "forma": "texto",
+   "ro": "Aplicația 112 Canarias sună trimițând poziția dumneavoastră GPS, iar dacă nu puteți vorbi, vă permite o alertă fără voce, prin chat și fotografii."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSomu",
+   "es": "Personas sordas: con el servicio SOMU se escribe al 112 por chat, pero hay que darse de alta antes. Sin alta, use el aviso sin voz de la App 112 Canarias.",
+   "forma": "texto",
+   "ro": "Persoane surde: prin serviciul SOMU se poate scrie la 112 prin chat, dar trebuie să vă înregistrați înainte. Fără înregistrare, folosiți alerta fără voce din aplicația 112 Canarias."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEstadoTitulo",
+   "es": "Qué pasa ahora",
+   "forma": "texto",
+   "ro": "Ce se întâmplă acum"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEstadoTxt",
+   "es": "Esta app no decide si hay peligro. Si hay una emergencia grave en su zona, las autoridades pueden enviarle un aviso ES-Alert al móvil (no llega si está apagado o en modo avión). La situación oficial, aquí:",
+   "forma": "texto",
+   "ro": "Această aplicație nu decide dacă există pericol. Dacă în zona dumneavoastră are loc o urgență gravă, autoritățile vă pot trimite pe telefon o alertă ES-Alert (nu ajunge dacă telefonul este închis sau în modul avion). Situația oficială, aici:"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEstadoSemaforo",
+   "es": "Semáforo volcánico de Tenerife · boletín semanal de INVOLCAN",
+   "forma": "texto",
+   "ro": "Semaforul vulcanic din Tenerife · buletinul săptămânal INVOLCAN"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEstadoSismos",
+   "es": "Terremotos en Canarias, últimos 10 días · IGN",
+   "forma": "texto",
+   "ro": "Cutremure în Insulele Canare, ultimele 10 zile · IGN"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEstadoAlertas",
+   "es": "Alertas declaradas · Gobierno de Canarias",
+   "forma": "texto",
+   "ro": "Alerte declarate · Guvernul Insulelor Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosQueHacer",
+   "es": "Qué hacer si…",
+   "forma": "texto",
+   "ro": "Ce faceți dacă…"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPrepararse",
+   "es": "Prepárese",
+   "forma": "texto",
+   "ro": "Pregătiți-vă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaSemaforo",
+   "es": "El semáforo volcánico",
+   "forma": "texto",
+   "ro": "Semaforul vulcanic"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaEvacuar",
+   "es": "Le piden evacuar",
+   "forma": "texto",
+   "ro": "Vi se cere să evacuați"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaConfinar",
+   "es": "Le piden no salir de casa",
+   "forma": "texto",
+   "ro": "Vi se cere să nu ieșiți din casă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaCeniza",
+   "es": "Cae ceniza",
+   "forma": "texto",
+   "ro": "Cade cenușă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaGases",
+   "es": "Hay gases volcánicos",
+   "forma": "texto",
+   "ro": "Sunt gaze vulcanice"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaSismo",
+   "es": "Tiembla la tierra",
+   "forma": "texto",
+   "ro": "Se cutremură pământul"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaMochila",
+   "es": "La mochila de emergencia",
+   "forma": "texto",
+   "ro": "Rucsacul de urgență"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaPlan",
+   "es": "El plan familiar",
+   "forma": "texto",
+   "ro": "Planul familiei"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaVisita",
+   "es": "Si está de visita",
+   "forma": "texto",
+   "ro": "Dacă sunteți în vizită"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaEsAlert",
+   "es": "Los avisos ES-Alert",
+   "forma": "texto",
+   "ro": "Alertele ES-Alert"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaCanales",
+   "es": "Canales oficiales",
+   "forma": "texto",
+   "ro": "Canale oficiale"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosHospitales",
+   "es": "Hospitales en el mapa",
+   "forma": "texto",
+   "ro": "Spitalele pe hartă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemIntro",
+   "es": "El plan de riesgo volcánico de Canarias (PEVOLCA) avisa a la población con un semáforo de cuatro colores. Lo fija la dirección del plan, con el consejo de su comité científico, y puede ser distinto en cada municipio.",
+   "forma": "texto",
+   "ro": "Planul pentru riscul vulcanic al Insulelor Canare (PEVOLCA) avertizează populația printr-un semafor cu patru culori. Culoarea o stabilește conducerea planului, la recomandarea comitetului său științific, și poate fi diferită în fiecare municipalitate."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemVerdeT",
+   "es": "Verde · actividad normal",
+   "forma": "texto",
+   "ro": "Verde · activitate normală"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemVerdeQ",
+   "es": "Haga vida normal.",
+   "forma": "texto",
+   "ro": "Duceți o viață normală."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemVerde1",
+   "es": "Es el momento de preparar la mochila y el plan familiar, y de saber por dónde saldría de su zona.",
+   "forma": "texto",
+   "ro": "Este momentul să pregătiți rucsacul de urgență și planul familiei și să aflați pe unde ați ieși din zona dumneavoastră."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemAmarilloT",
+   "es": "Amarillo · alerta",
+   "forma": "texto",
+   "ro": "Galben · alertă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemAmarilloQ",
+   "es": "Atención a lo que digan las autoridades.",
+   "forma": "texto",
+   "ro": "Urmăriți ce spun autoritățile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemAmarillo1",
+   "es": "Infórmese solo por los canales oficiales y no difunda rumores.",
+   "forma": "texto",
+   "ro": "Informați-vă doar din canalele oficiale și nu răspândiți zvonuri."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemAmarillo2",
+   "es": "Conozca las carreteras de su zona y cuánto tardaría en llegar a un punto de reunión o a casa de familiares fuera de la zona de riesgo.",
+   "forma": "texto",
+   "ro": "Cunoașteți drumurile din zona dumneavoastră și cât v-ar lua să ajungeți la un punct de adunare sau la rude care locuiesc în afara zonei de risc."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemAmarillo3",
+   "es": "Tenga lista una bolsa ligera: móvil y cargador, sus medicinas y los documentos importantes.",
+   "forma": "texto",
+   "ro": "Țineți pregătită o geantă ușoară: telefonul și încărcătorul, medicamentele dumneavoastră și documentele importante."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemAmarillo4",
+   "es": "Si nota algo raro, avise al 112: ruidos, gases, ceniza, cambios en el agua de los pozos o pequeños temblores.",
+   "forma": "texto",
+   "ro": "Dacă observați ceva neobișnuit, anunțați la 112: zgomote, gaze, cenușă, schimbări ale apei din fântâni sau mici cutremure."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemAmarillo5",
+   "es": "Si en casa hay alguien que necesitaría ambulancia para salir, comuníqueselo a los Servicios Sociales de su Ayuntamiento.",
+   "forma": "texto",
+   "ro": "Dacă în casă este cineva care ar avea nevoie de ambulanță ca să plece, anunțați serviciile sociale ale primăriei."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemAmarillo6",
+   "es": "Mantenga el depósito del coche lo más lleno posible: las gasolineras pueden cerrar.",
+   "forma": "texto",
+   "ro": "Țineți rezervorul mașinii cât mai plin: benzinăriile se pot închide."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemNaranjaT",
+   "es": "Naranja · alerta máxima",
+   "forma": "texto",
+   "ro": "Portocaliu · alertă maximă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemNaranjaQ",
+   "es": "Póngase a disposición de las autoridades.",
+   "forma": "texto",
+   "ro": "Fiți la dispoziția autorităților."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemNaranja1",
+   "es": "Puede haber evacuaciones preventivas en las zonas que podrían verse afectadas: tenga la mochila a mano y el móvil cargado.",
+   "forma": "texto",
+   "ro": "Pot avea loc evacuări preventive în zonele care ar putea fi afectate: țineți rucsacul la îndemână și telefonul încărcat."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemNaranja2",
+   "es": "En naranja, prepárese para una posible evacuación. Si hay que salir o confinarse, se le dirá para su zona: siga esas instrucciones.",
+   "forma": "texto",
+   "ro": "La portocaliu, pregătiți-vă pentru o posibilă evacuare. Dacă trebuie să plecați sau să rămâneți în casă, vi se va spune pentru zona dumneavoastră: urmați acele instrucțiuni."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemRojoT",
+   "es": "Rojo · emergencia",
+   "forma": "texto",
+   "ro": "Roșu · urgență"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemRojoQ",
+   "es": "Hay una erupción con riesgo para la población: se evacúa a la población afectada.",
+   "forma": "texto",
+   "ro": "Are loc o erupție care pune în pericol populația: populația afectată este evacuată."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemRojo1",
+   "es": "Siga las órdenes de su Ayuntamiento y de las autoridades, y salga cuando se lo digan, por la ruta indicada.",
+   "forma": "texto",
+   "ro": "Urmați ordinele primăriei și ale autorităților și plecați când vi se spune, pe ruta indicată."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemRojo2",
+   "es": "No se acerque a la zona de la erupción y respete las zonas cerradas por las autoridades.",
+   "forma": "texto",
+   "ro": "Nu vă apropiați de zona erupției și respectați zonele închise de autorități."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemRojo3",
+   "es": "Si se encuentra cerca, protéjase si puede con casco, gafas y una mascarilla que filtre partículas.",
+   "forma": "texto",
+   "ro": "Dacă vă aflați în apropiere, protejați-vă, dacă puteți, cu o cască, ochelari și o mască ce filtrează particulele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemFin",
+   "es": "Cuando una erupción termina, el semáforo no vuelve de golpe a verde: puede seguir en amarillo mientras queden peligros.",
+   "forma": "texto",
+   "ro": "Când o erupție se termină, semaforul nu revine brusc la verde: poate rămâne la galben cât timp mai există pericole."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEvaIntro",
+   "es": "Solo se evacúa cuando lo indican las autoridades. Su Ayuntamiento comunica las rutas de evacuación y el punto de reunión.",
+   "forma": "texto",
+   "ro": "Evacuarea se face doar când o cer autoritățile. Primăria comunică rutele de evacuare și punctul de adunare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEvaAvisos",
+   "es": "Los avisos llegan por ES-Alert al móvil, por megafonía, por la radio y la televisión y por las redes oficiales, como @112canarias.",
+   "forma": "texto",
+   "ro": "Avertizările vin prin ES-Alert pe telefon, prin megafoane, la radio și la televizor și pe rețelele de socializare oficiale, cum este @112canarias."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEva1",
+   "es": "Corte el agua, la luz y el gas.",
+   "forma": "texto",
+   "ro": "Închideți apa, curentul și gazul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEva2",
+   "es": "Coja la mochila: documentación, medicinas, móvil y cargador.",
+   "forma": "texto",
+   "ro": "Luați rucsacul: actele, medicamentele, telefonul și încărcătorul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEva3",
+   "es": "Diga a su persona de contacto adónde va.",
+   "forma": "texto",
+   "ro": "Spuneți persoanei de contact unde mergeți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEva4",
+   "es": "Vaya por la ruta que le indiquen. En coche, evite valles y barrancos: son el camino natural de la lava. La carretera puede estar dañada por la caída de material o por los temblores.",
+   "forma": "texto",
+   "ro": "Mergeți pe ruta care vi se indică. Cu mașina, evitați văile și râpele: sunt drumul natural al lavei. Drumul poate fi avariat de materialele căzute sau de cutremure."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEva5",
+   "es": "Si está en un hotel o apartamento, pregunte en recepción por el punto de encuentro y la ruta de evacuación. Si pasa algo, siga las indicaciones de los equipos de emergencia.",
+   "forma": "texto",
+   "ro": "Dacă sunteți la hotel sau într-un apartament, întrebați la recepție care sunt punctul de întâlnire și ruta de evacuare. Dacă se întâmplă ceva, urmați indicațiile echipelor de intervenție."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEvaMascotas",
+   "es": "Mascotas: mejor con familia o amigos fuera de la zona de riesgo. Si no tiene dónde dejarlas, las autoridades se hacen cargo.",
+   "forma": "texto",
+   "ro": "Animalele de companie: cel mai bine la rude sau la prieteni, în afara zonei de risc. Dacă nu aveți unde să le lăsați, se ocupă autoritățile de ele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosConIntro",
+   "es": "Si le piden no salir, quédese dentro y espere las instrucciones oficiales. No actúe por su cuenta.",
+   "forma": "texto",
+   "ro": "Dacă vi se cere să nu ieșiți, rămâneți înăuntru și așteptați instrucțiunile oficiale. Nu acționați pe cont propriu."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCon1",
+   "es": "Cierre puertas y ventanas.",
+   "forma": "texto",
+   "ro": "Închideți ușile și ferestrele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCon2",
+   "es": "Ponga toallas húmedas bajo las puertas que dan a la calle.",
+   "forma": "texto",
+   "ro": "Puneți prosoape umede sub ușile care dau spre exterior."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCon3",
+   "es": "Siga la radio, la televisión y los canales oficiales.",
+   "forma": "texto",
+   "ro": "Urmăriți radioul, televizorul și canalele oficiale."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCon4",
+   "es": "Si está en el coche, cierre las ventanillas y la entrada de aire.",
+   "forma": "texto",
+   "ro": "Dacă sunteți în mașină, închideți geamurile și admisia de aer."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCon5",
+   "es": "Apague el aire acondicionado y la calefacción, y cierre la ventilación.",
+   "forma": "texto",
+   "ro": "Opriți aerul condiționat și încălzirea și închideți ventilația."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCenIntro",
+   "es": "Con el viento, la ceniza puede llegar lejos del volcán. Irrita los ojos y los pulmones, raya y, mojada, pesa mucho.",
+   "forma": "texto",
+   "ro": "Purtată de vânt, cenușa poate ajunge departe de vulcan. Irită ochii și plămânii, zgârie, iar udă este foarte grea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCenDurante",
+   "es": "Mientras cae",
+   "forma": "texto",
+   "ro": "În timp ce cade"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen1",
+   "es": "Quédese dentro y con calma. Si está fuera, busque dónde resguardarse.",
+   "forma": "texto",
+   "ro": "Rămâneți înăuntru și păstrați-vă calmul. Dacă sunteți afară, căutați un adăpost."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen2",
+   "es": "Póngase una mascarilla FFP2 bien ajustada. Si no tiene, tápese la nariz y la boca con un paño, aunque protege menos.",
+   "forma": "texto",
+   "ro": "Puneți-vă o mască FFP2 bine fixată pe față. Dacă nu aveți, acoperiți-vă nasul și gura cu o bucată de pânză, deși protejează mai puțin."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen3",
+   "es": "Gafas cerradas y nada de lentillas: la ceniza raya la córnea.",
+   "forma": "texto",
+   "ro": "Ochelari de protecție etanși și fără lentile de contact: cenușa zgârie corneea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen4",
+   "es": "Niños y mascotas, dentro. Quien tenga asma, bronquitis o enfisema, que no salga.",
+   "forma": "texto",
+   "ro": "Copiii și animalele de companie, înăuntru. Cine are astm, bronșită sau emfizem să nu iasă din casă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen5",
+   "es": "Evite conducir. Si tiene que hacerlo, despacio, con las luces puestas y sin pasar el limpiaparabrisas en seco.",
+   "forma": "texto",
+   "ro": "Evitați să conduceți. Dacă trebuie, mergeți încet, cu luminile aprinse, și nu porniți ștergătoarele pe cenușa uscată."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen6",
+   "es": "Desconecte cuanto antes los depósitos que recogen agua de lluvia y lave con agua potable la fruta y la verdura.",
+   "forma": "texto",
+   "ro": "Deconectați cât mai repede rezervoarele care colectează apa de ploaie și spălați fructele și legumele cu apă potabilă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCenDespues",
+   "es": "Después",
+   "forma": "texto",
+   "ro": "După"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen7",
+   "es": "Humedezca la ceniza antes de barrerla o recogerla con pala. Nada de barrer en seco ni de aire a presión.",
+   "forma": "texto",
+   "ro": "Umeziți cenușa înainte de a o mătura sau de a o strânge cu lopata. Nu măturați pe uscat și nu folosiți aer comprimat."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen8",
+   "es": "Limpie el tejado antes de que se acumulen unos centímetros. Humedezca la ceniza sin empaparla: mojada pesa más y puede hundirlo. Cuidado, resbala.",
+   "forma": "texto",
+   "ro": "Curățați acoperișul înainte să se adune câțiva centimetri. Umeziți cenușa fără s-o îmbibați: udă cântărește mai mult și poate prăbuși acoperișul. Atenție, alunecă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCen9",
+   "es": "No la eche por desagües ni alcantarillas: en bolsas, y como diga su Ayuntamiento.",
+   "forma": "texto",
+   "ro": "Nu o aruncați în scurgeri sau în canalizare: puneți-o în saci și procedați cum spune primăria."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCenVuelos",
+   "es": "La ceniza puede cancelar o desviar vuelos: en 2021, la de La Palma llegó a afectar a Tenerife Norte. Consulte con su aerolínea.",
+   "forma": "texto",
+   "ro": "Cenușa poate duce la anularea sau la devierea zborurilor: în 2021, cea de pe La Palma a afectat chiar și aeroportul Tenerife Nord. Interesați-vă la compania aeriană."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGasIntro",
+   "es": "Cerca de una erupción salen gases peligrosos.",
+   "forma": "texto",
+   "ro": "În apropierea unei erupții se degajă gaze periculoase."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGas1",
+   "es": "El dióxido de carbono (CO₂) no se ve ni huele, pesa más que el aire y se acumula en zonas bajas y en lugares cerrados.",
+   "forma": "texto",
+   "ro": "Dioxidul de carbon (CO₂) nu se vede și nu miroase, este mai greu decât aerul și se adună în zonele joase și în spațiile închise."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGas2",
+   "es": "El olor no siempre avisa: el sulfuro de hidrógeno huele a huevos podridos en poca cantidad, pero en mucha deja de notarse.",
+   "forma": "texto",
+   "ro": "Mirosul nu avertizează întotdeauna: hidrogenul sulfurat miroase a ouă stricate în cantitate mică, dar în cantitate mare nu se mai simte."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGas3",
+   "es": "No entre en las zonas que cierren las autoridades.",
+   "forma": "texto",
+   "ro": "Nu intrați în zonele închise de autorități."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGas4",
+   "es": "Si le duele la cabeza, se marea o le cuesta respirar, suba a un sitio más alto y abierto y llame al 112.",
+   "forma": "texto",
+   "ro": "Dacă vă doare capul, amețiți sau respirați greu, urcați într-un loc mai înalt și deschis și sunați la 112."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGasAire",
+   "es": "Calidad del aire en Canarias",
+   "forma": "texto",
+   "ro": "Calitatea aerului în Insulele Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSisIntro",
+   "es": "Antes de una erupción suelen aumentar los terremotos, a veces durante mucho tiempo, y algunos se notan. Pero que haya más terremotos no significa que vaya a haber una erupción: mantenga la calma y siga la información oficial.",
+   "forma": "texto",
+   "ro": "Înaintea unei erupții, cutremurele devin de obicei mai dese, uneori timp îndelungat, iar unele se simt. Dar faptul că sunt mai multe cutremure nu înseamnă că va avea loc o erupție: păstrați-vă calmul și urmăriți informațiile oficiale."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSisAntes",
+   "es": "Antes",
+   "forma": "texto",
+   "ro": "Înainte"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis1",
+   "es": "Revise su casa y asegure lo que pueda caerse: muebles altos, cornisas, balcones.",
+   "forma": "texto",
+   "ro": "Verificați-vă locuința și fixați ce ar putea cădea: mobila înaltă, cornișele, balcoanele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSisDurante",
+   "es": "Mientras tiembla",
+   "forma": "texto",
+   "ro": "În timpul cutremurului"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis2",
+   "es": "Dentro, agáchese, cúbrase bajo una mesa sólida y agárrese a ella. Si no hay mesa, póngase junto a una pared interior y protéjase la cabeza con los brazos. Aléjese de ventanas, lámparas y muebles que puedan caer.",
+   "forma": "texto",
+   "ro": "În interior, lăsați-vă jos, adăpostiți-vă sub o masă solidă și țineți-vă de ea. Dacă nu aveți o masă, așezați-vă lângă un perete interior și protejați-vă capul cu brațele. Stați departe de ferestre, lămpi și mobila care poate cădea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis3",
+   "es": "No use el ascensor.",
+   "forma": "texto",
+   "ro": "Nu folosiți liftul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis4",
+   "es": "Fuera, aléjese de edificios altos, postes de luz y vallas publicitarias.",
+   "forma": "texto",
+   "ro": "Afară, îndepărtați-vă de clădirile înalte, de stâlpii electrici și de panourile publicitare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis5",
+   "es": "Cerca del mar, aléjese de la orilla todo lo que pueda: puede haber olas grandes.",
+   "forma": "texto",
+   "ro": "Lângă mare, îndepărtați-vă de țărm cât de mult puteți: pot veni valuri mari."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis10",
+   "es": "En un sitio con mucha gente, protéjase la cabeza con los brazos o resguárdese bajo los asientos.",
+   "forma": "texto",
+   "ro": "Într-un loc aglomerat, protejați-vă capul cu brațele sau adăpostiți-vă sub scaune."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis11",
+   "es": "Si va en silla de ruedas, frénela en un sitio seguro y protéjase la cabeza con los brazos.",
+   "forma": "texto",
+   "ro": "Dacă vă deplasați în scaun cu rotile, blocați-i roțile într-un loc sigur și protejați-vă capul cu brațele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis12",
+   "es": "Cuente con réplicas: puede volver a temblar.",
+   "forma": "texto",
+   "ro": "Așteptați-vă la replici: pământul se poate cutremura din nou."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis13",
+   "es": "Apague cualquier fuego y alúmbrese con una linterna, no con velas ni mecheros.",
+   "forma": "texto",
+   "ro": "Stingeți orice foc și luminați cu o lanternă, nu cu lumânări sau brichete."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis14",
+   "es": "No mueva a los heridos graves, salvo que corran un peligro inmediato.",
+   "forma": "texto",
+   "ro": "Nu mutați răniții grav decât dacă sunt în pericol imediat."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis15",
+   "es": "Aléjese de acantilados y laderas: los terremotos pueden provocar desprendimientos.",
+   "forma": "texto",
+   "ro": "Stați departe de faleze și de pante: cutremurele pot provoca căderi de pietre și alunecări de teren."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis16",
+   "es": "Al llegar a su alojamiento, localice las salidas de emergencia y los sitios seguros.",
+   "forma": "texto",
+   "ro": "Când ajungeți la locul de cazare, identificați ieșirile de urgență și locurile sigure."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSisDespues",
+   "es": "Después",
+   "forma": "texto",
+   "ro": "După"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis6",
+   "es": "Si tiene que salir de casa y hay tiempo, corte el agua, la luz y el gas.",
+   "forma": "texto",
+   "ro": "Dacă trebuie să plecați de acasă și aveți timp, închideți apa, curentul și gazul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis7",
+   "es": "Infórmese por las fuentes oficiales y por los medios, y no difunda rumores: colapsan los servicios de emergencia. Use el teléfono solo si es imprescindible.",
+   "forma": "texto",
+   "ro": "Informați-vă din sursele oficiale și din presă și nu răspândiți zvonuri: blochează serviciile de urgență. Folosiți telefonul doar dacă este absolut necesar."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSisIgn",
+   "es": "Terremotos recientes en Canarias · IGN",
+   "forma": "texto",
+   "ro": "Cutremure recente în Insulele Canare · IGN"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMocIntro",
+   "es": "Una mochila por familia (si son muchos, una principal y otras más pequeñas), lista antes de que haga falta y en un sitio que todos conozcan. Marque lo que ya tiene: se guarda solo en este móvil.",
+   "forma": "texto",
+   "ro": "Un rucsac pentru fiecare familie (dacă sunteți mulți, unul principal și altele mai mici), pregătit înainte să fie nevoie de el și ținut într-un loc pe care îl știu toți. Bifați ce aveți deja: se salvează doar pe acest telefon."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMocProgreso",
+   "es": "Listos: {n} de {t}",
+   "forma": "texto",
+   "ro": "Pregătite: {n} din {t}"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMocReiniciar",
+   "es": "Desmarcar todo",
+   "forma": "texto",
+   "ro": "Debifați tot"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_doc",
+   "es": "Documentación (DNI o pasaporte) de la familia y papeles de la vivienda, en una carpeta; mejor también copias en una funda impermeable",
+   "forma": "texto",
+   "ro": "Actele de identitate ale familiei (carte de identitate sau pașaport) și actele locuinței, într-un dosar; ideal și copii, într-o folie impermeabilă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_med",
+   "es": "Medicinas habituales, para varios días",
+   "forma": "texto",
+   "ro": "Medicamentele obișnuite, pentru câteva zile"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_movil",
+   "es": "Móvil cargado, su cargador y una batería externa",
+   "forma": "texto",
+   "ro": "Telefonul încărcat, încărcătorul lui și o baterie externă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_radio",
+   "es": "Radio de pilas y pilas de repuesto",
+   "forma": "texto",
+   "ro": "Un radio cu baterii și baterii de rezervă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_linterna",
+   "es": "Linterna",
+   "forma": "texto",
+   "ro": "Lanternă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_silbato",
+   "es": "Un silbato, para avisar si necesita ayuda",
+   "forma": "texto",
+   "ro": "Un fluier, ca să puteți cere ajutor"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_agua",
+   "es": "Agua: al menos 1,5 litros por persona y día, para 3 días",
+   "forma": "texto",
+   "ro": "Apă: cel puțin 1,5 litri de persoană pe zi, pentru 3 zile"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_comida",
+   "es": "Comida que no se estropee, para unos días",
+   "forma": "texto",
+   "ro": "Alimente neperisabile, pentru câteva zile"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_mascarilla",
+   "es": "Mascarillas y gafas cerradas",
+   "forma": "texto",
+   "ro": "Măști și ochelari de protecție etanși"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_botiquin",
+   "es": "Botiquín",
+   "forma": "texto",
+   "ro": "Trusă de prim ajutor"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_abrigo",
+   "es": "Ropa de abrigo y una manta",
+   "forma": "texto",
+   "ro": "Haine groase și o pătură"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_ropa",
+   "es": "Ropa cómoda de recambio, calcetines y calzado resistente",
+   "forma": "texto",
+   "ro": "Haine comode de schimb, șosete și încălțăminte rezistentă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_dinero",
+   "es": "Algo de dinero en efectivo, por si fallan los cajeros, y llaves de repuesto",
+   "forma": "texto",
+   "ro": "Niște bani în numerar, în caz că nu funcționează bancomatele, și chei de rezervă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_ninos",
+   "es": "Para los niños, algo que les dé seguridad, como un peluche",
+   "forma": "texto",
+   "ro": "Pentru copii, ceva care să le dea siguranță, cum ar fi o jucărie de pluș"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMoc_mascotas",
+   "es": "Lo de las mascotas: comida, agua, transportín y su documentación",
+   "forma": "texto",
+   "ro": "Pentru animalele de companie: hrană, apă, cușcă de transport și actele lor"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMocRevisar",
+   "es": "Revísela cada seis meses: las fechas de caducidad y el estado de todo.",
+   "forma": "texto",
+   "ro": "Verificați-l la fiecare șase luni: termenele de valabilitate și starea tuturor lucrurilor."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlanIntro",
+   "es": "Lo que se decide en casa antes se improvisa menos después.",
+   "forma": "texto",
+   "ro": "Ce se hotărăște acasă dinainte nu mai trebuie improvizat după aceea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlan1",
+   "es": "Un punto de encuentro por si se separan.",
+   "forma": "texto",
+   "ro": "Un punct de întâlnire, în caz că vă despărțiți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlan2",
+   "es": "Una persona de contacto a quien decir adónde van. Que toda la familia la conozca y tenga su teléfono.",
+   "forma": "texto",
+   "ro": "O persoană de contact căreia să-i spuneți unde mergeți. Toată familia trebuie s-o cunoască și să aibă numărul ei de telefon."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlan3",
+   "es": "Una casa de familiares o amigos fuera de las zonas de riesgo, por si hay que salir.",
+   "forma": "texto",
+   "ro": "O casă a unor rude sau prieteni, în afara zonelor de risc, în caz că trebuie să plecați."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlan4",
+   "es": "Que todos los adultos de la casa sepan cortar el agua, la luz y el gas.",
+   "forma": "texto",
+   "ro": "Toți adulții din casă să știe să închidă apa, curentul și gazul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlan5",
+   "es": "Si alguien necesitaría ambulancia para salir, avise ya a los Servicios Sociales de su Ayuntamiento.",
+   "forma": "texto",
+   "ro": "Dacă cineva ar avea nevoie de ambulanță ca să plece, anunțați de pe acum serviciile sociale ale primăriei."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlan6",
+   "es": "Pregunte en su Ayuntamiento por las rutas de evacuación y los puntos de reunión de su municipio.",
+   "forma": "texto",
+   "ro": "Întrebați la primărie care sunt rutele de evacuare și punctele de adunare din localitate."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlan7",
+   "es": "Si las llamadas no entran, usen mensajes de texto o de mensajería: gastan menos red. El 112, solo para emergencias.",
+   "forma": "texto",
+   "ro": "Dacă apelurile nu intră, folosiți SMS-uri sau mesaje în aplicațiile de mesagerie: încarcă mai puțin rețeaua. 112, doar pentru urgențe."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVis1",
+   "es": "En su hotel o apartamento, pregunte qué hacer en una emergencia: el punto de encuentro y las salidas. Si pasa algo, siga las indicaciones de los equipos de emergencia.",
+   "forma": "texto",
+   "ro": "La hotel sau în apartament, întrebați ce trebuie făcut în caz de urgență: punctul de întâlnire și ieșirile. Dacă se întâmplă ceva, urmați indicațiile echipelor de intervenție."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVis2",
+   "es": "Lleve siempre su pasaporte o su documento de identidad. Tenga a mano sus medicinas, el móvil y el cargador por si tiene que salir.",
+   "forma": "texto",
+   "ro": "Purtați mereu la dumneavoastră pașaportul sau actul de identitate. Țineți la îndemână medicamentele, telefonul și încărcătorul, în caz că trebuie să plecați."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVis3",
+   "es": "En el 112 le atienden en español, inglés, alemán, francés e italiano, y con traductor en más de 40 idiomas.",
+   "forma": "texto",
+   "ro": "La 112 vi se răspunde în spaniolă, engleză, germană, franceză și italiană, iar cu ajutorul unui interpret, în peste 40 de limbi."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVis4",
+   "es": "ES-Alert llega también a móviles extranjeros bien configurados. El mensaje va en castellano y puede traer otro idioma, que se ve según el idioma del móvil.",
+   "forma": "texto",
+   "ro": "ES-Alert ajunge și pe telefoanele străine configurate corect. Mesajul este în spaniolă și poate avea și o altă limbă, afișată în funcție de limba telefonului."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVis5",
+   "es": "Si hay ceniza, los vuelos pueden cambiar: consulte con su aerolínea y en la web de Aena.",
+   "forma": "texto",
+   "ro": "Dacă este cenușă, zborurile se pot modifica: interesați-vă la compania aeriană și pe site-ul Aena."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVis6",
+   "es": "Si necesita ayuda consular, contacte con su embajada o consulado.",
+   "forma": "texto",
+   "ro": "Dacă aveți nevoie de asistență consulară, contactați ambasada sau consulatul țării dumneavoastră."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVis7",
+   "es": "No se acerque a una erupción ni a las zonas cerradas, por espectacular que sea.",
+   "forma": "texto",
+   "ro": "Nu vă apropiați de o erupție și nici de zonele închise, oricât de spectaculoasă ar fi."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEsa1",
+   "es": "Es el sistema de alertas de Protección Civil. Llega a los móviles encendidos y con cobertura en la zona afectada, sin app ni registro, y suena aunque estén en silencio. En modo avión no llega.",
+   "forma": "texto",
+   "ro": "Este sistemul de alertă al Protecției Civile. Ajunge pe telefoanele pornite și cu semnal din zona afectată, fără aplicație și fără înregistrare, și sună chiar dacă sunt pe silențios. În modul avion nu ajunge."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEsa2",
+   "es": "Si dice SIMULACRO o PRUEBA, es un ensayo, no una emergencia real: léalo y no llame al 112. A veces piden colaborar con una encuesta.",
+   "forma": "texto",
+   "ro": "Dacă mesajul spune SIMULACRO sau PRUEBA (simulare sau test), este un exercițiu, nu o urgență reală: citiți-l și nu sunați la 112. Uneori vi se cere să completați un chestionar."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEsa3",
+   "es": "Si es real: mantenga la calma, léalo entero y siga sus instrucciones.",
+   "forma": "texto",
+   "ro": "Dacă alerta este reală: păstrați-vă calmul, citiți-o până la capăt și urmați-i instrucțiunile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEsa4",
+   "es": "Si va conduciendo, aparque en un sitio seguro antes de leerlo.",
+   "forma": "texto",
+   "ro": "Dacă sunteți la volan, opriți într-un loc sigur înainte de a o citi."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEsa5",
+   "es": "No llame al 112 para preguntar: infórmese en las redes del 112 Canarias, en la radio, en la televisión o en el 012.",
+   "forma": "texto",
+   "ro": "Nu sunați la 112 ca să întrebați: informați-vă de pe rețelele de socializare ale 112 Canarias, de la radio, de la televizor sau la 012."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEsa6",
+   "es": "Si lo cerró, en el iPhone queda en el Centro de notificaciones; en Android, en el historial de alertas de emergencia.",
+   "forma": "texto",
+   "ro": "Dacă ați închis-o: pe iPhone rămâne în centrul de notificări; pe Android, în istoricul alertelor de urgență."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEsa7",
+   "es": "Si no tenía cobertura, le llegará después, cuando la tenga. En el iPhone se puede desactivar, pero se recomienda no hacerlo.",
+   "forma": "texto",
+   "ro": "Dacă nu aveați semnal, o veți primi mai târziu, când veți avea. Pe iPhone poate fi dezactivată, dar se recomandă să nu o dezactivați."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEsa8",
+   "es": "ES-Alert nunca le pedirá datos personales.",
+   "forma": "texto",
+   "ro": "ES-Alert nu vă va cere niciodată date personale."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanIntro",
+   "es": "Fuentes oficiales para seguir una emergencia en Tenerife.",
+   "forma": "texto",
+   "ro": "Surse oficiale pentru a urmări o situație de urgență în Tenerife."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanWeb",
+   "es": "Web",
+   "forma": "texto",
+   "ro": "Site web"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanWhatsapp",
+   "es": "Canal de WhatsApp",
+   "forma": "texto",
+   "ro": "Canalul de WhatsApp"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanApp",
+   "es": "App 112 Canarias",
+   "forma": "texto",
+   "ro": "Aplicația 112 Canarias"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanSomu",
+   "es": "SOMU, chat para personas sordas",
+   "forma": "texto",
+   "ro": "SOMU, chat pentru persoane surde"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanGobVolcan",
+   "es": "Consejos por riesgo volcánico",
+   "forma": "texto",
+   "ro": "Recomandări pentru riscul vulcanic"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanGobAlertas",
+   "es": "Alertas declaradas",
+   "forma": "texto",
+   "ro": "Alerte declarate"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanCabildo",
+   "es": "Web del Cabildo",
+   "forma": "texto",
+   "ro": "Site-ul Cabildo de Tenerife"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanTenerifeOn",
+   "es": "Tenerife ON: alertas, riesgo de incendio y senderos",
+   "forma": "texto",
+   "ro": "Tenerife ON: alerte, risc de incendiu și trasee"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanInvolcan",
+   "es": "Boletín semanal de vigilancia volcánica de Tenerife",
+   "forma": "texto",
+   "ro": "Buletinul săptămânal de supraveghere vulcanică din Tenerife"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanIgn",
+   "es": "Terremotos en Canarias, últimos 10 días",
+   "forma": "texto",
+   "ro": "Cutremure în Insulele Canare, ultimele 10 zile"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanVisor",
+   "es": "Visor de riesgos de Canarias",
+   "forma": "texto",
+   "ro": "Harta riscurilor din Insulele Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanAire",
+   "es": "Calidad del aire",
+   "forma": "texto",
+   "ro": "Calitatea aerului"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanAena",
+   "es": "Vuelos y aeropuertos",
+   "forma": "texto",
+   "ro": "Zboruri și aeroporturi"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosNoOficial",
+   "es": "Tenerife Go no es un canal oficial. En una emergencia mandan el 112 y las autoridades.",
+   "forma": "texto",
+   "ro": "Tenerife Go nu este un canal oficial. În caz de urgență, deciziile le iau 112 și autoritățile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRevisado",
+   "es": "Revisado el {f} con fuentes oficiales.",
+   "forma": "texto",
+   "ro": "Verificat pe {f} cu surse oficiale."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosFuentes",
+   "es": "Fuentes",
+   "forma": "texto",
+   "ro": "Surse"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_pevolca",
+   "es": "Plan de riesgo volcánico de Canarias (PEVOLCA), Decreto 112/2018",
+   "forma": "texto",
+   "ro": "Planul pentru riscul vulcanic al Insulelor Canare (PEVOLCA), Decretul 112/2018"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_directriz",
+   "es": "Directriz Básica de Planificación de Protección Civil ante el riesgo volcánico (Orden INT/1071/2026)",
+   "forma": "texto",
+   "ro": "Directiva de bază pentru planificarea protecției civile în fața riscului vulcanic (Ordinul INT/1071/2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobAmarillo",
+   "es": "Recomendaciones a la población del PEVOLCA (La Palma, 18-9-2021)",
+   "forma": "texto",
+   "ro": "Recomandările PEVOLCA pentru populație (La Palma, 18-9-2021)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobVolcan",
+   "es": "Consejos por riesgo volcánico",
+   "forma": "texto",
+   "ro": "Recomandări pentru riscul vulcanic"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobSismo",
+   "es": "Consejos ante terremotos",
+   "forma": "texto",
+   "ro": "Recomandări în caz de cutremur"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobConfin",
+   "es": "Cómo confinarse o evacuar (consejos ante mercancías peligrosas)",
+   "forma": "texto",
+   "ro": "Cum să rămâneți în casă sau să evacuați (recomandări privind mărfurile periculoase)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_112EsAlert",
+   "es": "El sistema ES-Alert",
+   "forma": "texto",
+   "ro": "Sistemul ES-Alert"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_112App",
+   "es": "La App 112 Canarias",
+   "forma": "texto",
+   "ro": "Aplicația 112 Canarias"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_112Somu",
+   "es": "El servicio SOMU",
+   "forma": "texto",
+   "ro": "Serviciul SOMU"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_incibe",
+   "es": "Cómo funcionan las alertas de Protección Civil en el móvil",
+   "forma": "texto",
+   "ro": "Cum funcționează pe telefon alertele Protecției Civile"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_involcan",
+   "es": "Boletín semanal de vigilancia volcánica de Tenerife",
+   "forma": "texto",
+   "ro": "Buletinul săptămânal de supraveghere vulcanică din Tenerife"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_usgs",
+   "es": "Los gases volcánicos y la salud",
+   "forma": "texto",
+   "ro": "Gazele vulcanice și sănătatea"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_rtvc2021",
+   "es": "Recomendaciones a la población ante una erupción (2021)",
+   "forma": "texto",
+   "ro": "Recomandări pentru populație în caz de erupție (2021)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_rtvcCabildo",
+   "es": "Programa de autoprotección del Cabildo con Cruz Roja (2026)",
+   "forma": "texto",
+   "ro": "Programul de autoprotecție al Cabildo de Tenerife, împreună cu Crucea Roșie (2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_orden2022",
+   "es": "Orden que dejó el semáforo en amarillo tras la erupción de La Palma (2022)",
+   "forma": "texto",
+   "ro": "Ordinul care a lăsat semaforul la galben după erupția de pe La Palma (2022)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_volcanex",
+   "es": "El aviso ES-Alert del simulacro VOLCANEX (22 de octubre de 2026)",
+   "forma": "texto",
+   "ro": "Alerta ES-Alert din exercițiul VOLCANEX (22 octombrie 2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ceniza2021",
+   "es": "La ceniza de La Palma en Tenerife Norte (2021)",
+   "forma": "texto",
+   "ro": "Cenușa de pe La Palma la aeroportul Tenerife Nord (2021)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSismosTitulo",
+   "es": "Terremotos cerca de Tenerife · IGN",
+   "forma": "texto",
+   "ro": "Cutremure lângă Tenerife · IGN"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSismosCuantos",
+   "es": "{n} terremoto en {d} días|{n} terremotos en {d} días",
+   "forma": "texto",
+   "ro": "{n} cutremur în {d} zile|{n} cutremure în {d} zile|{n} de cutremure în {d} zile"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSismosNinguno",
+   "es": "El IGN no ha registrado terremotos cerca de Tenerife en los últimos 10 días.",
+   "forma": "texto",
+   "ro": "IGN nu a înregistrat cutremure lângă Tenerife în ultimele 10 zile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSismosViejo",
+   "es": "No se ha podido comprobar desde {f}. Consulte la web del IGN.",
+   "forma": "texto",
+   "ro": "Nu s-a mai putut verifica de la {f}. Consultați site-ul IGN."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSismosNota",
+   "es": "Datos del IGN: se revisan y pueden cambiar.",
+   "forma": "texto",
+   "ro": "Date IGN: sunt revizuite și se pot schimba."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSismosReciente",
+   "es": "Terremoto de magnitud {m} cerca de Tenerife, {cuando}.",
+   "forma": "texto",
+   "ro": "Cutremur cu magnitudinea {m} lângă Tenerife, {cuando}."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemaforoBoletin",
+   "es": "Boletín de INVOLCAN del {f}: semáforo {c} en Tenerife.",
+   "forma": "texto",
+   "ro": "Buletinul INVOLCAN din {f}: semafor {c} în Tenerife."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemaforoNota",
+   "es": "Si cambia entre dos boletines, lo anuncian antes el Gobierno de Canarias y el 112 Canarias por sus canales oficiales; también puede llegar un ES-Alert.",
+   "forma": "texto",
+   "ro": "Dacă se schimbă între două buletine, schimbarea o anunță mai întâi Guvernul Insulelor Canare și 112 Canarias, pe canalele lor oficiale; poate sosi și o alertă ES-Alert."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSemaforoViejo",
+   "es": "El último boletín que se pudo leer es del {f}: consulte el más reciente en la web de INVOLCAN.",
+   "forma": "texto",
+   "ro": "Ultimul buletin care a putut fi citit este din {f}: consultați-l pe cel mai recent pe site-ul INVOLCAN."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosColor_verde",
+   "es": "verde",
+   "forma": "texto",
+   "ro": "verde"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosColor_amarillo",
+   "es": "amarillo",
+   "forma": "texto",
+   "ro": "galben"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosColor_naranja",
+   "es": "naranja",
+   "forma": "texto",
+   "ro": "portocaliu"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosColor_rojo",
+   "es": "rojo",
+   "forma": "texto",
+   "ro": "roșu"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgGobierno",
+   "es": "Gobierno de Canarias",
+   "forma": "texto",
+   "ro": "Guvernul Insulelor Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgCabildo",
+   "es": "Cabildo de Tenerife",
+   "forma": "texto",
+   "ro": "Cabildo de Tenerife (consiliul insular)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgIgn",
+   "es": "Instituto Geográfico Nacional (IGN)",
+   "forma": "texto",
+   "ro": "Institutul Geografic Național al Spaniei (IGN)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgInvolcan",
+   "es": "Instituto Volcanológico de Canarias (INVOLCAN)",
+   "forma": "texto",
+   "ro": "Institutul Vulcanologic al Insulelor Canare (INVOLCAN)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgAena",
+   "es": "Aena (aeropuertos)",
+   "forma": "texto",
+   "ro": "Aena (aeroporturi)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGrupoOrdenes",
+   "es": "Si se lo piden las autoridades",
+   "forma": "texto",
+   "ro": "Dacă vă cer autoritățile"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGrupoSalud",
+   "es": "Si alguien se encuentra mal",
+   "forma": "texto",
+   "ro": "Dacă cineva se simte rău"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGrupoMar",
+   "es": "En el mar",
+   "forma": "texto",
+   "ro": "La mare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGrupoVolcan",
+   "es": "Volcán",
+   "forma": "texto",
+   "ro": "Vulcan"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGrupoTierra",
+   "es": "Terremoto y maremoto",
+   "forma": "texto",
+   "ro": "Cutremur și tsunami"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGrupoTiempo",
+   "es": "Incendio, tiempo y montaña",
+   "forma": "texto",
+   "ro": "Incendiu, vreme și munte"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGrupoCiudad",
+   "es": "En el edificio y en la calle",
+   "forma": "texto",
+   "ro": "În clădiri și pe stradă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVeaTambien",
+   "es": "Vea también",
+   "forma": "texto",
+   "ro": "Vedeți și"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAemetTitulo",
+   "es": "Avisos de AEMET para Tenerife",
+   "forma": "texto",
+   "ro": "Avertizări AEMET pentru Tenerife"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAemetCargando",
+   "es": "Comprobando los avisos de AEMET…",
+   "forma": "texto",
+   "ro": "Se verifică avertizările AEMET…"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAlertasTitulo",
+   "es": "Alertas del Gobierno de Canarias",
+   "forma": "texto",
+   "ro": "Alertele Guvernului Insulelor Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAlertasNota",
+   "es": "Titulares oficiales, en castellano: toque uno para leerlo entero.",
+   "forma": "texto",
+   "ro": "Titlurile oficiale, în spaniolă: atingeți unul ca să-l citiți integral."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAlertasNinguna",
+   "es": "Ninguna alerta nueva en los últimos {d} días.",
+   "forma": "texto",
+   "ro": "Nicio alertă nouă în ultimele {d} zile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAlertasViejo",
+   "es": "No se ha podido comprobar desde {f}. Consulte la web del Gobierno de Canarias.",
+   "forma": "texto",
+   "ro": "Nu s-a mai putut verifica de la {f}. Consultați site-ul Guvernului Insulelor Canare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEstadoAemet",
+   "es": "Avisos meteorológicos para Tenerife · AEMET",
+   "forma": "texto",
+   "ro": "Avertizări meteorologice pentru Tenerife · AEMET"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEstadoCabildo",
+   "es": "Avisos del Cabildo de Tenerife",
+   "forma": "texto",
+   "ro": "Anunțurile Cabildo de Tenerife"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosResumenSemaforo",
+   "es": "Semáforo volcánico {c} en Tenerife, según el último boletín de INVOLCAN",
+   "forma": "texto",
+   "ro": "Semafor vulcanic {c} în Tenerife, conform ultimului buletin INVOLCAN"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosResumenAlertas",
+   "es": "{n} alerta nueva del Gobierno de Canarias en las últimas {h} horas|{n} alertas nuevas del Gobierno de Canarias en las últimas {h} horas",
+   "forma": "texto",
+   "ro": "{n} alertă nouă de la Guvernul Insulelor Canare în ultimele {h} de ore|{n} alerte noi de la Guvernul Insulelor Canare în ultimele {h} de ore|{n} de alerte noi de la Guvernul Insulelor Canare în ultimele {h} de ore"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTelSalvamento",
+   "es": "Salvamento Marítimo · 900 202 202",
+   "forma": "texto",
+   "ro": "Salvare maritimă · 900 202 202"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTelToxico",
+   "es": "Información toxicológica · +34 91 562 04 20",
+   "forma": "texto",
+   "ro": "Informații toxicologice · +34 91 562 04 20"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosToxicoNota",
+   "es": "Dudas sobre intoxicaciones, las 24 horas, todos los días. Si la persona no responde o está grave, llame al 112.",
+   "forma": "texto",
+   "ro": "Întrebări despre intoxicații, 24 de ore din 24, în fiecare zi. Dacă persoana nu răspunde sau starea ei este gravă, sunați la 112."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaMaremoto",
+   "es": "Maremoto (tsunami)",
+   "forma": "texto",
+   "ro": "Tsunami"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaIncendio",
+   "es": "Incendio forestal",
+   "forma": "texto",
+   "ro": "Incendiu de pădure"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaLluvias",
+   "es": "Lluvias e inundaciones",
+   "forma": "texto",
+   "ro": "Ploi abundente și inundații"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaViento",
+   "es": "Viento fuerte y tormentas",
+   "forma": "texto",
+   "ro": "Vânt puternic și furtuni"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaCalor",
+   "es": "Calor y calima",
+   "forma": "texto",
+   "ro": "Căldură și praf din Sahara"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaMontana",
+   "es": "En la montaña",
+   "forma": "texto",
+   "ro": "Pe munte"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaRescate",
+   "es": "Alguien en apuros en el agua",
+   "forma": "texto",
+   "ro": "Cineva are probleme în apă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaPicaduras",
+   "es": "Picaduras en el mar",
+   "forma": "texto",
+   "ro": "Înțepături în mare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaPlaya",
+   "es": "Bañarse con seguridad",
+   "forma": "texto",
+   "ro": "Baie în siguranță"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaAuxilios",
+   "es": "Primeros auxilios",
+   "forma": "texto",
+   "ro": "Prim ajutor"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaEdificio",
+   "es": "Fuego en un edificio",
+   "forma": "texto",
+   "ro": "Incendiu într-o clădire"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaApagon",
+   "es": "Apagón",
+   "forma": "texto",
+   "ro": "Pană de curent"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaMultitud",
+   "es": "Fiestas y aglomeraciones",
+   "forma": "texto",
+   "ro": "Sărbători și aglomerări"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosGuiaPlanes",
+   "es": "Planes de emergencia oficiales",
+   "forma": "texto",
+   "ro": "Planuri oficiale de urgență"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis8",
+   "es": "Si va conduciendo, pare en un sitio seguro, ponga las luces de emergencia y quédese dentro del coche.",
+   "forma": "texto",
+   "ro": "Dacă sunteți la volan, opriți într-un loc sigur, porniți luminile de avarie și rămâneți în mașină."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosSis9",
+   "es": "Si queda atrapado, no grite por el polvo: tápese la nariz y la boca y dé golpes a algo para que le oigan.",
+   "forma": "texto",
+   "ro": "Dacă nu mai puteți ieși, nu strigați, din cauza prafului: acoperiți-vă nasul și gura și bateți în ceva ca să vă audă cineva."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuIntro",
+   "es": "Un maremoto o tsunami es una serie de olas que puede durar horas, y la primera no tiene por qué ser la mayor. Lo puede provocar un terremoto, una erupción volcánica o un deslizamiento submarino.",
+   "forma": "texto",
+   "ro": "Un tsunami este o serie de valuri care poate dura ore întregi, iar primul val nu este neapărat cel mai mare. Poate fi provocat de un cutremur, de o erupție vulcanică sau de o alunecare de teren submarină."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuSenales",
+   "es": "Aléjese de la costa enseguida si…",
+   "forma": "texto",
+   "ro": "Îndepărtați-vă imediat de coastă dacă…"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuSen1",
+   "es": "hay una alerta o un aviso oficial, como un ES-Alert en el móvil;",
+   "forma": "texto",
+   "ro": "există o alertă sau o avertizare oficială, cum ar fi o alertă ES-Alert pe telefon;"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuSen2",
+   "es": "está cerca del mar y nota un terremoto fuerte o largo;",
+   "forma": "texto",
+   "ro": "sunteți lângă mare și simțiți un cutremur puternic sau lung;"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuSen3",
+   "es": "el mar se retira de forma rápida y evidente;",
+   "forma": "texto",
+   "ro": "marea se retrage rapid și vizibil;"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuSen4",
+   "es": "oye un rugido parecido al de un tren.",
+   "forma": "texto",
+   "ro": "auziți un vuiet asemănător cu cel al unui tren."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuLejano",
+   "es": "Un terremoto lejano, que aquí no se nota, también puede provocarlo: por eso cuentan los avisos oficiales.",
+   "forma": "texto",
+   "ro": "Și un cutremur îndepărtat, care aici nu se simte, poate provoca un tsunami: de aceea contează avertizările oficiale."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuQue",
+   "es": "Qué hacer",
+   "forma": "texto",
+   "ro": "Ce trebuie să faceți"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsu1",
+   "es": "Váyase enseguida, a pie, hacia lo más alto y lo más lejos del mar que pueda.",
+   "forma": "texto",
+   "ro": "Plecați imediat, pe jos, cât mai sus și cât mai departe de mare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsu2",
+   "es": "Apártese de los cauces y de las desembocaduras.",
+   "forma": "texto",
+   "ro": "Stați departe de albiile râpelor și de gurile de vărsare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsu3",
+   "es": "Si no le da tiempo, suba por encima del tercer piso de un edificio sólido o a su azotea. Como último recurso, a un árbol.",
+   "forma": "texto",
+   "ro": "Dacă nu mai aveți timp, urcați mai sus de etajul al treilea al unei clădiri solide sau pe acoperișul ei. Ca ultimă soluție, într-un copac."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsu4",
+   "es": "Si el agua le arrastra, agárrese a algo que flote.",
+   "forma": "texto",
+   "ro": "Dacă apa vă ia pe sus, agățați-vă de ceva care plutește."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsu5",
+   "es": "No se quede a mirar la ola: si la ve llegar, ya no podrá escapar.",
+   "forma": "texto",
+   "ro": "Nu rămâneți să priviți valul: dacă îl vedeți venind, nu mai puteți scăpa."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsu6",
+   "es": "Si está en una embarcación, navegue mar adentro hasta que haya más de 100 metros de profundidad, y no vuelva a puerto.",
+   "forma": "texto",
+   "ro": "Dacă sunteți pe o ambarcațiune, navigați spre larg până unde adâncimea depășește 100 de metri și nu vă întoarceți în port."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsu7",
+   "es": "Vuelva solo cuando lo digan las autoridades: la ola mayor puede ser la siguiente, y pueden pasar días hasta que sea seguro.",
+   "forma": "texto",
+   "ro": "Întoarceți-vă doar când spun autoritățile: cel mai mare val poate fi următorul și pot trece zile până când va fi sigur."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuAntes",
+   "es": "Antes",
+   "forma": "texto",
+   "ro": "Înainte"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsu8",
+   "es": "Fíjese, desde donde se aloja, en qué zona alta puede alcanzar a pie en 15 minutos.",
+   "forma": "texto",
+   "ro": "Aflați ce zonă înaltă puteți atinge pe jos în 15 minute de la locul de cazare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosTsuQuien",
+   "es": "En España, el Instituto Geográfico Nacional vigila los terremotos que pueden causar un maremoto y avisa a Protección Civil. Las autoridades de protección civil, del Estado y de Canarias, son las que alertan a la población.",
+   "forma": "texto",
+   "ro": "În Spania, Institutul Geografic Național supraveghează cutremurele care pot provoca un tsunami și anunță Protecția Civilă. Autoritățile de protecție civilă, ale statului și ale Insulelor Canare, sunt cele care alertează populația."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncIntro",
+   "es": "Si ve fuego o humo en el monte, llame al 112. A partir de ahí, siga siempre las indicaciones de las autoridades.",
+   "forma": "texto",
+   "ro": "Dacă vedeți foc sau fum în pădure sau pe munte, sunați la 112. Din acel moment, urmați întotdeauna indicațiile autorităților."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncPrev",
+   "es": "Para que no empiece",
+   "forma": "texto",
+   "ro": "Ca să nu înceapă un incendiu"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncPrev1",
+   "es": "No tire colillas ni cerillas, ni caminando ni por la ventanilla del coche.",
+   "forma": "texto",
+   "ro": "Nu aruncați mucuri de țigară sau chibrituri, nici când mergeți pe jos, nici pe geamul mașinii."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncPrev2",
+   "es": "No lance cohetes, petardos ni nada con fuego en zonas de peligro.",
+   "forma": "texto",
+   "ro": "Nu lansați rachete, petarde sau orice altceva cu foc în zonele periculoase."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncPrev3",
+   "es": "No deje basura en el monte.",
+   "forma": "texto",
+   "ro": "Nu lăsați gunoaie în natură."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncPrev4",
+   "es": "No haga fuego en el monte salvo en los sitios habilitados. Con viento fuerte o calor, no encienda fuego al aire libre, ni siquiera en una barbacoa.",
+   "forma": "texto",
+   "ro": "Nu faceți foc în natură decât în locurile amenajate. Când bate vânt puternic sau e foarte cald, nu aprindeți foc în aer liber, nici măcar la grătar."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncPrev5",
+   "es": "Antes de ir al monte, mire en Tenerife ON, la web y la app del Cabildo, el nivel de riesgo de incendio: según el nivel, se prohíbe hacer fuego, fumar, la pirotecnia o incluso entrar en el monte.",
+   "forma": "texto",
+   "ro": "Înainte de a merge în natură, verificați în Tenerife ON, site-ul și aplicația Cabildo de Tenerife, nivelul de risc de incendiu: în funcție de nivel, este interzis să faceți foc, să fumați, să folosiți articole pirotehnice sau chiar să intrați în pădure."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncSorprende",
+   "es": "Si el fuego le sorprende fuera",
+   "forma": "texto",
+   "ro": "Dacă focul vă surprinde afară"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc1",
+   "es": "Mantenga la calma y no difunda rumores.",
+   "forma": "texto",
+   "ro": "Păstrați-vă calmul și nu răspândiți zvonuri."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc2",
+   "es": "Aléjese bajando por los lados del fuego y en sentido contrario al viento y, si puede, métase en una zona ya quemada. No huya ladera arriba ni hacia barrancos u hondonadas.",
+   "forma": "texto",
+   "ro": "Îndepărtați-vă coborând pe lângă flancurile focului și în sens opus vântului și, dacă puteți, intrați într-o zonă deja arsă. Nu fugiți în susul pantei și nici spre râpe sau adâncituri de teren."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc3",
+   "es": "Tápese la cara con un pañuelo mojado. No se refugie en pozos ni en cuevas.",
+   "forma": "texto",
+   "ro": "Acoperiți-vă fața cu o batistă udă. Nu vă adăpostiți în fântâni sau în peșteri."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc4",
+   "es": "Cerca del mar, baje a la orilla y, si hace falta, métase en el agua.",
+   "forma": "texto",
+   "ro": "Lângă mare, coborâți pe țărm și, dacă este nevoie, intrați în apă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc5",
+   "es": "En coche, pare en un sitio protegido, cierre puertas y ventanillas, apague la ventilación y deje los faros encendidos para que le vean entre el humo.",
+   "forma": "texto",
+   "ro": "Cu mașina, opriți într-un loc ferit, închideți ușile și geamurile, opriți ventilația și lăsați farurile aprinse ca să vă vadă ceilalți prin fum."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncCasa",
+   "es": "En casa o en el alojamiento",
+   "forma": "texto",
+   "ro": "Acasă sau la locul de cazare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc6",
+   "es": "Si hay que salir, baje los interruptores de la luz y del gas, coja lo imprescindible (documentación, dinero y medicinas) y vaya adonde le indiquen.",
+   "forma": "texto",
+   "ro": "Dacă trebuie să plecați, decuplați siguranțele și închideți gazul, luați doar strictul necesar (acte, bani și medicamente) și mergeți unde vi se indică."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc7",
+   "es": "Si el fuego rodea la casa, quédese dentro: cierre puertas y ventanas, tape las rendijas, llene la bañera y los fregaderos, moje puertas y ventanas y ponga toallas mojadas bajo las puertas.",
+   "forma": "texto",
+   "ro": "Dacă focul înconjoară casa, rămâneți înăuntru: închideți ușile și ferestrele, astupați crăpăturile, umpleți cada și chiuvetele, udați ușile și ferestrele și puneți prosoape ude sub uși."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc8",
+   "es": "Con mucho humo, deje las luces encendidas, vístase con ropa de algodón y respire cerca del suelo.",
+   "forma": "texto",
+   "ro": "Dacă e mult fum, lăsați luminile aprinse, îmbrăcați-vă cu haine din bumbac și respirați aproape de podea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosIncEvacuar",
+   "es": "Si le piden evacuar",
+   "forma": "texto",
+   "ro": "Dacă vi se cere să evacuați"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc9",
+   "es": "Salga con tiempo, en un solo coche para toda la familia y los animales.",
+   "forma": "texto",
+   "ro": "Plecați din timp, cu o singură mașină pentru toată familia și pentru animale."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc10",
+   "es": "Siga las rutas de evacuación indicadas, sin atajos, hasta el punto de reunión.",
+   "forma": "texto",
+   "ro": "Urmați rutele de evacuare indicate, fără scurtături, până la punctul de adunare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc11",
+   "es": "Si sale con su animal, déjelo dicho con una nota en la puerta de casa.",
+   "forma": "texto",
+   "ro": "Dacă plecați cu animalul dumneavoastră, lăsați un bilet pe ușa casei ca să se știe."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosInc12",
+   "es": "No intente cruzar zonas con fuego o humo, ni a pie ni en coche.",
+   "forma": "texto",
+   "ro": "Nu încercați să traversați zone cu foc sau fum, nici pe jos, nici cu mașina."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLluIntro",
+   "es": "No aparque ni acampe en los cauces de los barrancos, aunque el cielo esté despejado o sea verano: son zonas inundables.",
+   "forma": "texto",
+   "ro": "Nu parcați și nu campați în albiile râpelor, chiar dacă cerul este senin sau e vară: sunt zone inundabile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLluAntes",
+   "es": "Antes",
+   "forma": "texto",
+   "ro": "Înainte"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu1",
+   "es": "Si se anuncian lluvias fuertes, evite excursiones y acampadas y siga las instrucciones que den los medios de comunicación.",
+   "forma": "texto",
+   "ro": "Dacă se anunță ploi abundente, evitați excursiile și campingul și urmați instrucțiunile transmise prin mass-media."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu2",
+   "es": "Tenga a mano linterna, radio de pilas, agua potable y sus medicinas.",
+   "forma": "texto",
+   "ro": "Țineți la îndemână o lanternă, un radio cu baterii, apă potabilă și medicamentele dumneavoastră."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu3",
+   "es": "Si vive junto a un barranco obstruido, por ejemplo con escombros, avise a su Ayuntamiento.",
+   "forma": "texto",
+   "ro": "Dacă locuiți lângă o râpă a cărei albie este blocată, de exemplu cu moloz, anunțați primăria."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLluDurante",
+   "es": "Durante",
+   "forma": "texto",
+   "ro": "În timpul ploilor"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu4",
+   "es": "Si su casa no está en un cauce ni en una zona de riesgo, quédese en ella.",
+   "forma": "texto",
+   "ro": "Dacă locuința nu se află într-o albie sau într-o zonă de risc, rămâneți în ea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu5",
+   "es": "Evite conducir. Si no queda otra, vaya por las vías principales y despacio. No cruce zonas inundadas, ni a pie ni en coche, ni puentes con agua por encima: la corriente puede arrastrarle.",
+   "forma": "texto",
+   "ro": "Evitați să conduceți. Dacă nu aveți încotro, mergeți pe drumurile principale și încet. Nu traversați zone inundate, nici pe jos, nici cu mașina, și nici poduri peste care trece apa: curentul vă poate lua pe sus."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu6",
+   "es": "No se pare donde pueda bajar mucha agua. Si el coche empieza a llenarse de agua, salga de él.",
+   "forma": "texto",
+   "ro": "Nu opriți în locuri în care poate coborî multă apă. Dacă mașina începe să se umple cu apă, ieșiți din ea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu7",
+   "es": "En casa, no baje a garajes ni sótanos y no use el ascensor. Si entra agua, desconecte la luz.",
+   "forma": "texto",
+   "ro": "Acasă, nu coborâți în garaje sau în subsoluri și nu folosiți liftul. Dacă intră apă, decuplați curentul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu8",
+   "es": "Si hace falta, suba a un lugar más alto o vaya adonde digan las autoridades. Si el agua le aísla en lo alto de la casa, no salga a nado: espere la ayuda.",
+   "forma": "texto",
+   "ro": "Dacă e nevoie, urcați într-un loc mai înalt sau mergeți unde vă spun autoritățile. Dacă apa vă izolează în partea de sus a casei, nu încercați să ieșiți înot: așteptați ajutorul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLluDespues",
+   "es": "Después",
+   "forma": "texto",
+   "ro": "După"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu9",
+   "es": "No vuelva a casa hasta que los técnicos digan que es seguro.",
+   "forma": "texto",
+   "ro": "Nu vă întoarceți acasă până când specialiștii nu spun că este sigur."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu10",
+   "es": "Al entrar, no encienda cerillas ni nada que haga chispa, ni siquiera el interruptor de la luz.",
+   "forma": "texto",
+   "ro": "Când intrați, nu aprindeți chibrituri și nu folosiți nimic care face scântei, nici măcar întrerupătorul de lumină."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosLlu11",
+   "es": "Beba solo agua embotellada.",
+   "forma": "texto",
+   "ro": "Beți doar apă îmbuteliată."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVieIntro",
+   "es": "Con aviso de viento o de tormenta, evite salir si puede y aplace los viajes por carretera, las excursiones y las acampadas. Si tiene que desplazarse, mejor en transporte público.",
+   "forma": "texto",
+   "ro": "Când există o avertizare de vânt sau de furtună, evitați să ieșiți dacă puteți și amânați călătoriile cu mașina, excursiile și campingul. Dacă trebuie să vă deplasați, folosiți de preferință transportul public."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVieViento",
+   "es": "Con viento fuerte",
+   "forma": "texto",
+   "ro": "Când bate vânt puternic"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie1",
+   "es": "Cierre y asegure puertas, ventanas y toldos, y quite de balcones y azoteas lo que pueda caer a la calle.",
+   "forma": "texto",
+   "ro": "Închideți și asigurați ușile, ferestrele și copertinele și luați de pe balcoane și terase ce ar putea cădea în stradă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie2",
+   "es": "En la calle, aléjese de casas viejas, cornisas, muros y andamios, de árboles y zonas arboladas, de grúas y de tendidos eléctricos.",
+   "forma": "texto",
+   "ro": "Pe stradă, stați departe de casele vechi, de cornișe, ziduri și schele, de copaci și zone împădurite, de macarale și de liniile electrice."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie3",
+   "es": "En la montaña, no vaya a las cumbres, a los filos ni al borde de los acantilados, ni se quede al pie de ellos: pueden caer piedras.",
+   "forma": "texto",
+   "ro": "Pe munte, nu mergeți pe vârfuri, pe creste sau pe marginea falezelor și nu rămâneți la baza lor: pot cădea pietre."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie4",
+   "es": "En el mar, no navegue. Con temporal, no se acerque a espigones ni a paseos marítimos batidos por las olas.",
+   "forma": "texto",
+   "ro": "Pe mare, nu ieșiți cu ambarcațiunea. Pe vreme de furtună, nu vă apropiați de diguri sau de promenadele lovite de valuri."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVieTormenta",
+   "es": "Con tormenta eléctrica",
+   "forma": "texto",
+   "ro": "Când este furtună cu descărcări electrice"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie5",
+   "es": "Cierre puertas y ventanas: las corrientes de aire pueden atraer los rayos. Desenchufe los aparatos eléctricos.",
+   "forma": "texto",
+   "ro": "Închideți ușile și ferestrele: curenții de aer pot atrage trăsnetele. Scoateți din priză aparatele electrice."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie6",
+   "es": "No se refugie bajo los árboles y aléjese de torres, vallas y estructuras metálicas.",
+   "forma": "texto",
+   "ro": "Nu vă adăpostiți sub copaci și stați departe de turnuri, garduri și structuri metalice."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie7",
+   "es": "En la ciudad, los edificios protegen. En el campo, busque zonas bajas, pero no el fondo de valles profundos: las laderas son más seguras.",
+   "forma": "texto",
+   "ro": "În oraș, clădirile vă protejează. În câmp deschis, căutați zone joase, dar nu fundul văilor adânci: pantele sunt mai sigure."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie8",
+   "es": "No corra durante la tormenta ni se siente sobre nada mojado, y suelte lo metálico: herramientas, bastones, bicicletas.",
+   "forma": "texto",
+   "ro": "Nu alergați în timpul furtunii, nu vă așezați pe nimic ud și lăsați din mână obiectele metalice: unelte, bețe de drumeție, biciclete."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVie9",
+   "es": "Si le sorprende en el coche, cierre puertas y ventanillas y espere a que pase con el motor apagado, salvo si está en un cauce de agua.",
+   "forma": "texto",
+   "ro": "Dacă furtuna vă surprinde în mașină, închideți ușile și geamurile și așteptați să treacă, cu motorul oprit, cu excepția cazului în care vă aflați în albia unui curs de apă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCalCalor",
+   "es": "Con mucho calor",
+   "forma": "texto",
+   "ro": "Când este foarte cald"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCal1",
+   "es": "Busque la sombra y los sitios frescos, y evite salir y hacer ejercicio en las horas centrales del día, que son las de más calor.",
+   "forma": "texto",
+   "ro": "Căutați umbra și locurile răcoroase și evitați să ieșiți și să faceți efort fizic la orele din mijlocul zilei, când este cel mai cald."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCal2",
+   "es": "Beba agua a menudo, aunque no tenga sed. Coma ligero y no tome alcohol, cafeína ni bebidas muy azucaradas.",
+   "forma": "texto",
+   "ro": "Beți des apă, chiar dacă nu vă este sete. Mâncați ușor și nu consumați alcool, cafeină sau băuturi foarte îndulcite."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCal3",
+   "es": "Póngase gorra o sombrero y ropa ligera, holgada y de colores claros.",
+   "forma": "texto",
+   "ro": "Purtați șapcă sau pălărie și haine ușoare, largi și de culori deschise."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCal4",
+   "es": "Nunca deje a nadie dentro de un coche cerrado, y menos a niños, mayores o enfermos.",
+   "forma": "texto",
+   "ro": "Nu lăsați niciodată pe nimeni într-o mașină închisă, cu atât mai puțin copii, vârstnici sau bolnavi."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCal5",
+   "es": "Si toma medicinas, pregunte a su médico si pueden afectarle con el calor, y guárdelas en un lugar fresco.",
+   "forma": "texto",
+   "ro": "Dacă luați medicamente, întrebați-vă medicul dacă vă pot afecta pe căldură și păstrați-le într-un loc răcoros."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCalGolpe",
+   "es": "Golpe de calor: es una urgencia",
+   "forma": "texto",
+   "ro": "Șocul termic: este o urgență"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCalGolpeSig",
+   "es": "Piel caliente y roja (puede que no sude), fiebre de más de 40 °C, confusión, convulsiones o desmayo.",
+   "forma": "texto",
+   "ro": "Piele fierbinte și roșie (persoana poate să nu transpire), febră de peste 40 °C, confuzie, convulsii sau leșin."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCalG1",
+   "es": "Llame enseguida al 112.",
+   "forma": "texto",
+   "ro": "Sunați imediat la 112."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCalG2",
+   "es": "Mientras llega la ayuda, lleve a la persona a un sitio fresco y bájele la temperatura con paños fríos o un baño de agua fría.",
+   "forma": "texto",
+   "ro": "Până sosește ajutorul, duceți persoana într-un loc răcoros și scădeți-i temperatura cu comprese reci sau cu o baie în apă rece."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCalG3",
+   "es": "No le dé nada de beber.",
+   "forma": "texto",
+   "ro": "Nu-i dați nimic de băut."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCalAgot",
+   "es": "Dolor de cabeza, náuseas, mareo y piel fría y húmeda pueden ser agotamiento por calor: lugar fresco, agua a sorbitos, ropa suelta y paños húmedos. Si hay vómitos, si la persona tiene una enfermedad crónica o si empeora, busque atención médica enseguida; si sigue mal tras 30 minutos así, llame al 112.",
+   "forma": "texto",
+   "ro": "Durerea de cap, greața, amețeala și pielea rece și umedă pot fi semne de epuizare termică: loc răcoros, apă băută cu înghițituri mici, haine largi și comprese umede. Dacă apar vărsături, dacă persoana are o boală cronică sau dacă starea ei se agravează, cereți imediat asistență medicală; dacă după 30 de minute de astfel de îngrijiri tot nu se simte bine, sunați la 112."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCalCalima",
+   "es": "Con calima",
+   "forma": "texto",
+   "ro": "Când este praf din Sahara (calima)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCal6",
+   "es": "Mantenga puertas y ventanas cerradas. Si tiene una enfermedad respiratoria o del corazón, o va con niños o mayores, evite salir y tenga a mano la medicación.",
+   "forma": "texto",
+   "ro": "Țineți ușile și ferestrele închise. Dacă aveți o boală respiratorie sau de inimă ori sunteți cu copii sau cu vârstnici, evitați să ieșiți și țineți medicamentele la îndemână."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCal7",
+   "es": "Beba mucho líquido y no haga ejercicio físico intenso. Niños, mayores y personas con enfermedades respiratorias o del corazón: nada de ejercicio al aire libre. Si se encuentra mal, acuda al médico; si empeoran los síntomas respiratorios, llame al 112.",
+   "forma": "texto",
+   "ro": "Beți multe lichide și nu faceți efort fizic intens. Copiii, vârstnicii și persoanele cu boli respiratorii sau de inimă: deloc sport în aer liber. Dacă nu vă simțiți bine, mergeți la medic; dacă simptomele respiratorii se agravează, sunați la 112."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCal8",
+   "es": "Al volante, la visibilidad baja mucho: luces encendidas y menos velocidad.",
+   "forma": "texto",
+   "ro": "La volan, vizibilitatea scade mult: luminile aprinse și viteză redusă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMonAntes",
+   "es": "Antes de salir",
+   "forma": "texto",
+   "ro": "Înainte de plecare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon1",
+   "es": "Diga a alguien qué ruta va a hacer y no salga solo.",
+   "forma": "texto",
+   "ro": "Spuneți cuiva ce traseu veți face și nu plecați fără însoțitor."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon2",
+   "es": "Mire la previsión del tiempo y lleve un mapa de la zona.",
+   "forma": "texto",
+   "ro": "Consultați prognoza meteo și luați o hartă a zonei."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon3",
+   "es": "Conozca sus límites: el grupo va al ritmo del más lento.",
+   "forma": "texto",
+   "ro": "Cunoașteți-vă limitele: grupul merge în ritmul celui mai lent."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon4",
+   "es": "Lleve con qué avisar (el móvil o, al menos, un silbato), un botiquín y ropa y calzado adecuados.",
+   "forma": "texto",
+   "ro": "Luați ceva cu care să cereți ajutor (telefonul sau, cel puțin, un fluier), o trusă de prim ajutor și haine și încălțăminte potrivite."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon5",
+   "es": "No se salga de los caminos y senderos señalizados.",
+   "forma": "texto",
+   "ro": "Nu ieșiți de pe drumurile și traseele marcate."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMonRuta",
+   "es": "En la ruta",
+   "forma": "texto",
+   "ro": "Pe traseu"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon6",
+   "es": "No grite dentro de los barrancos: pueden caer piedras.",
+   "forma": "texto",
+   "ro": "Nu strigați în râpe: pot cădea pietre."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon7",
+   "es": "No pase la noche en el fondo de un barranco ni entre vegetación espesa.",
+   "forma": "texto",
+   "ro": "Nu înnoptați pe fundul unei râpe sau în vegetație deasă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon8",
+   "es": "Con mal tiempo, no pase por debajo de zonas escarpadas.",
+   "forma": "texto",
+   "ro": "Pe vreme rea, nu treceți pe sub zone abrupte de stâncă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon9",
+   "es": "Con niños, todas las precauciones: nunca solos, y menos en sitios peligrosos.",
+   "forma": "texto",
+   "ro": "Cu copiii, toate măsurile de precauție: niciodată singuri, cu atât mai puțin în locuri periculoase."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMonAccidente",
+   "es": "Si hay un accidente o se pierde",
+   "forma": "texto",
+   "ro": "Dacă are loc un accident sau vă rătăciți"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMonA1",
+   "es": "Si alguien se hace daño grave, no lo mueva: llame al 112 y espere a los equipos de rescate.",
+   "forma": "texto",
+   "ro": "Dacă cineva se rănește grav, nu-l mișcați: sunați la 112 și așteptați echipele de salvare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMonA2",
+   "es": "Abríguelo con lo que tenga y transmítale calma.",
+   "forma": "texto",
+   "ro": "Înveliți-l cu ce aveți la îndemână și liniștiți-l."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMonA3",
+   "es": "Ya avisado el 112, que alguien se ponga a la vista con una prenda de color llamativo para que les encuentren.",
+   "forma": "texto",
+   "ro": "După ce ați sunat la 112, cineva să stea la vedere, cu o haină de o culoare vie, ca salvatorii să vă găsească."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMonA4",
+   "es": "Si se desorienta, mantenga la calma, mire el mapa y suba a un punto alto desde donde se vea más.",
+   "forma": "texto",
+   "ro": "Dacă vă pierdeți orientarea, păstrați-vă calmul, uitați-vă pe hartă și urcați într-un punct înalt de unde se vede mai departe."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMonNieve",
+   "es": "Con nieve en las cumbres",
+   "forma": "texto",
+   "ro": "Când este zăpadă pe vârfuri"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon10",
+   "es": "No suba a la nieve sin mirar antes la previsión y el estado de las carreteras, y respete los cortes y las indicaciones de los agentes.",
+   "forma": "texto",
+   "ro": "Nu urcați la zăpadă fără să verificați înainte prognoza și starea drumurilor și respectați închiderile de drumuri și indicațiile agenților."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon11",
+   "es": "En coche: depósito lleno, cadenas, ropa de abrigo y el móvil cargado. Cuidado con el hielo, sobre todo en las zonas de sombra.",
+   "forma": "texto",
+   "ro": "Cu mașina: rezervorul plin, lanțuri, haine groase și telefonul încărcat. Atenție la polei, mai ales în zonele umbrite."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon12",
+   "es": "Si se queda atrapado por la nieve, no salga del coche: motor y calefacción encendidos, ventile de vez en cuando y no se duerma.",
+   "forma": "texto",
+   "ro": "Dacă zăpada vă blochează, nu ieșiți din mașină: motorul și încălzirea pornite, aerisiți din când în când și nu adormiți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMon13",
+   "es": "El mismo día de la excursión, mire en Tenerife ON, la web y la app del Cabildo, si hay alertas o senderos cerrados.",
+   "forma": "texto",
+   "ro": "Chiar în ziua excursiei, verificați în Tenerife ON, site-ul și aplicația Cabildo de Tenerife, dacă există alerte sau trasee închise."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosResIntro",
+   "es": "Actúe rápido, pero sin ponerse en peligro: si se tira al agua sin saber rescatar, puede ahogarse usted también.",
+   "forma": "texto",
+   "ro": "Acționați repede, dar fără să vă puneți în pericol: dacă săriți în apă fără să știți să faceți o salvare, vă puteți îneca și dumneavoastră."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosResCon",
+   "es": "Si hay socorrista",
+   "forma": "texto",
+   "ro": "Dacă există salvamar"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes1",
+   "es": "Avísele enseguida y siga sus indicaciones.",
+   "forma": "texto",
+   "ro": "Anunțați-l imediat și urmați-i indicațiile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosResSin",
+   "es": "Si no hay socorrista",
+   "forma": "texto",
+   "ro": "Dacă nu există salvamar"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes2",
+   "es": "Llame al 112 y diga qué pasa y dónde: el nombre de la playa o algo que se vea cerca.",
+   "forma": "texto",
+   "ro": "Sunați la 112 și spuneți ce se întâmplă și unde: numele plajei sau ceva ce se vede în apropiere."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes3",
+   "es": "No se tire al agua si no sabe hacer un rescate. Lance un flotador, un cabo o cualquier cosa que flote, o acérquele algo largo para que se agarre.",
+   "forma": "texto",
+   "ro": "Nu săriți în apă dacă nu știți să faceți o salvare. Aruncați un colac de salvare, o frânghie sau orice obiect care plutește, ori întindeți-i ceva lung de care să se apuce."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosResFuera",
+   "es": "Ya fuera del agua",
+   "forma": "texto",
+   "ro": "După scoaterea din apă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes4",
+   "es": "Si no responde y no respira con normalidad, llame al 112, ponga el altavoz y siga sus instrucciones.",
+   "forma": "texto",
+   "ro": "Dacă persoana nu răspunde și nu respiră normal, sunați la 112, puneți telefonul pe difuzor și urmați instrucțiunile primite."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes5",
+   "es": "Empiece con 5 insuflaciones (boca a boca) y siga con 30 compresiones en el centro del pecho y 2 insuflaciones, sin parar, hasta que llegue la ayuda.",
+   "forma": "texto",
+   "ro": "Începeți cu 5 insuflații (gură la gură) și continuați cu 30 de compresii în centrul pieptului și 2 insuflații, fără oprire, până sosește ajutorul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes6",
+   "es": "Si hay un desfibrilador (DEA), que alguien lo traiga: enciéndalo, séquele el pecho y siga lo que dice el aparato.",
+   "forma": "texto",
+   "ro": "Dacă există un defibrilator (DEA), cineva să-l aducă: porniți-l, uscați pieptul persoanei și urmați ce spune aparatul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes7",
+   "es": "No intente sacarle el agua ni hacerle vomitar: no sirve y retrasa la reanimación.",
+   "forma": "texto",
+   "ro": "Nu încercați să-i scoateți apa sau să o faceți să vomite: nu ajută și întârzie resuscitarea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes8",
+   "es": "Si respira con normalidad, póngala de lado, quítele la ropa mojada, abríguela y vigile su respiración hasta que llegue la ayuda. Si ha podido golpearse, por ejemplo al tirarse de cabeza, no la ponga de lado.",
+   "forma": "texto",
+   "ro": "Dacă respiră normal, așezați-o pe o parte, scoateți-i hainele ude, înveliți-o și urmăriți-i respirația până sosește ajutorul. Dacă s-ar fi putut lovi, de exemplu sărind în apă cu capul înainte, nu o așezați pe o parte."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosResBarco",
+   "es": "En una embarcación",
+   "forma": "texto",
+   "ro": "Pe o ambarcațiune"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes9",
+   "es": "Salvamento Marítimo atiende por el canal 16 de VHF (o el 70, con llamada selectiva digital). Por teléfono: 900 202 202 o 112.",
+   "forma": "texto",
+   "ro": "Serviciul spaniol de salvare maritimă răspunde pe canalul 16 VHF (sau pe 70, prin apel selectiv digital). La telefon: 900 202 202 sau 112."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes10",
+   "es": "Si no sabe o no puede hacer el boca a boca, haga solo compresiones, sin parar.",
+   "forma": "texto",
+   "ro": "Dacă nu știți sau nu puteți face respirație gură la gură, faceți doar compresii, fără oprire."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes11",
+   "es": "Si alguien que salió al mar tarda en volver, avise al 112.",
+   "forma": "texto",
+   "ro": "Dacă cineva care a ieșit pe mare întârzie să se întoarcă, anunțați la 112."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosRes12",
+   "es": "Si tiene problemas en el agua, no se separe de la embarcación: así le encontrarán antes.",
+   "forma": "texto",
+   "ro": "Dacă aveți probleme în apă, nu vă îndepărtați de ambarcațiune: așa vă vor găsi mai repede."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPicMedusa",
+   "es": "Medusa o carabela portuguesa",
+   "forma": "texto",
+   "ro": "Meduză sau caravelă portugheză"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPic1",
+   "es": "Salga del agua y avise al socorrista más cercano o vaya a su puesto para que le atiendan.",
+   "forma": "texto",
+   "ro": "Ieșiți din apă și anunțați cel mai apropiat salvamar sau mergeți la postul lui ca să primiți îngrijiri."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPic2",
+   "es": "Lave la zona sin frotar, con agua de mar o suero fisiológico. Nunca con agua dulce.",
+   "forma": "texto",
+   "ro": "Spălați zona fără să frecați, cu apă de mare sau cu ser fiziologic. Niciodată cu apă dulce."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPic3",
+   "es": "No la toque con las manos. Quite los restos de tentáculos con unas pinzas o, si no tiene, con dos tarjetas haciendo de pinza.",
+   "forma": "texto",
+   "ro": "Nu atingeți zona cu mâinile. Îndepărtați resturile de tentacule cu o pensetă sau, dacă nu aveți, cu două carduri folosite ca o pensetă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPic4",
+   "es": "Para el dolor, puede meter la zona en agua caliente que aguante sin quemarse (de 40 a 45 °C) o poner frío 20 minutos como mucho, con el hielo dentro de una bolsa: nunca directamente sobre la piel.",
+   "forma": "texto",
+   "ro": "Pentru durere, puteți ține zona în apă fierbinte pe care o suportați fără să vă ardeți (între 40 și 45 °C) sau puteți aplica rece cel mult 20 de minute, cu gheața într-o pungă: niciodată direct pe piele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPic5",
+   "es": "No se rasque y que no le dé el sol en la zona.",
+   "forma": "texto",
+   "ro": "Nu vă scărpinați și feriți zona de soare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPic6",
+   "es": "Si el dolor es muy fuerte o la persona empeora, avise otra vez al socorrista o vaya enseguida a un centro sanitario.",
+   "forma": "texto",
+   "ro": "Dacă durerea este foarte puternică sau starea persoanei se agravează, anunțați din nou salvamarul sau mergeți imediat la un centru medical."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPicCarabela",
+   "es": "La carabela portuguesa produce un dolor muy fuerte. Siga los mismos pasos que con una medusa, sin vinagre; además, Sanidad aconseja aplicar una solución de bicarbonato sódico.",
+   "forma": "texto",
+   "ro": "Caravela portugheză provoacă o durere foarte puternică. Urmați aceiași pași ca la o meduză, fără oțet; în plus, Ministerul Sănătății din Spania recomandă aplicarea unei soluții de bicarbonat de sodiu."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPicArana",
+   "es": "Pez araña",
+   "forma": "texto",
+   "ro": "Drac-de-mare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPicA1",
+   "es": "Meta la zona en agua muy caliente, la más caliente que aguante sin pasar de unos 45 °C, durante al menos 30 minutos.",
+   "forma": "texto",
+   "ro": "Țineți zona în apă foarte fierbinte, cât de fierbinte o suportați fără să depășească aproximativ 45 °C, cel puțin 30 de minute."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPicA2",
+   "es": "Que se la miren en el puesto de socorro o en un centro sanitario: pueden quedar restos de espinas.",
+   "forma": "texto",
+   "ro": "Cereți să fie examinată la postul de prim ajutor sau la un centru medical: pot rămâne bucăți de țepi."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPicErizo",
+   "es": "Erizos",
+   "forma": "texto",
+   "ro": "Arici de mare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPicE1",
+   "es": "Para andar por las rocas, use calzado adecuado.",
+   "forma": "texto",
+   "ro": "Ca să mergeți pe stânci, purtați încălțăminte potrivită."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPicIntro",
+   "es": "No toque medusas ni carabelas, aunque estén en la arena o parezcan muertas. Si hay medusas en el agua, no se bañe.",
+   "forma": "texto",
+   "ro": "Nu atingeți meduzele sau caravelele portugheze, chiar dacă sunt pe nisip sau par moarte. Dacă în apă sunt meduze, nu faceți baie."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPic7",
+   "es": "No use vinagre, amoniaco, alcohol ni orina.",
+   "forma": "texto",
+   "ro": "Nu folosiți oțet, amoniac, alcool sau urină."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPic8",
+   "es": "Si le cuesta respirar, se marea, vomita o se encuentra muy mal, llame al 112.",
+   "forma": "texto",
+   "ro": "Dacă respirați greu, amețiți, vărsați sau vă simțiți foarte rău, sunați la 112."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlaIntro",
+   "es": "Báñese en playas vigiladas, con socorrista, y mire siempre la bandera antes de entrar.",
+   "forma": "texto",
+   "ro": "Faceți baie pe plajele supravegheate, cu salvamar, și uitați-vă întotdeauna la steag înainte de a intra în apă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosBanVerde",
+   "es": "Verde: baño seguro.",
+   "forma": "texto",
+   "ro": "Verde: îmbăiere sigură."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosBanAmarilla",
+   "es": "Amarilla: baño con precaución.",
+   "forma": "texto",
+   "ro": "Galben: îmbăiere cu precauție."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosBanRoja",
+   "es": "Roja: prohibido el baño.",
+   "forma": "texto",
+   "ro": "Roșu: îmbăierea este interzisă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosBanNegra",
+   "es": "Negra: prohibido el baño por contaminación o riesgo para la salud.",
+   "forma": "texto",
+   "ro": "Negru: îmbăierea este interzisă din cauza poluării sau a unui risc pentru sănătate."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosBanNaranja",
+   "es": "Naranja: playa sin servicio de vigilancia.",
+   "forma": "texto",
+   "ro": "Portocaliu: plajă fără serviciu de supraveghere."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosBanMorada",
+   "es": "Morada, o blanca con una medusa: presencia de fauna marina.",
+   "forma": "texto",
+   "ro": "Mov sau alb cu o meduză: prezență de faună marină."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosBanCaso",
+   "es": "Haga caso a la bandera aunque el mar parezca tranquilo.",
+   "forma": "texto",
+   "ro": "Respectați steagul chiar dacă marea pare liniștită."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlaCorriente",
+   "es": "Si le arrastra una corriente",
+   "forma": "texto",
+   "ro": "Dacă vă trage un curent"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla1",
+   "es": "Mantenga la calma y no nade contra la corriente: déjese llevar hasta que pierda fuerza, o salga nadando en paralelo a la playa.",
+   "forma": "texto",
+   "ro": "Păstrați-vă calmul și nu înotați împotriva curentului: lăsați curentul să vă poarte până slăbește sau ieșiți din el înotând paralel cu plaja."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla2",
+   "es": "Apártese de donde rompen las olas, pida ayuda y espere a que le rescaten.",
+   "forma": "texto",
+   "ro": "Îndepărtați-vă de locul unde se sparg valurile, cereți ajutor și așteptați să vină cineva să vă salveze."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlaNadar",
+   "es": "Al bañarse",
+   "forma": "texto",
+   "ro": "Când faceți baie"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla3",
+   "es": "Si va a nadar, hágalo en paralelo a la orilla.",
+   "forma": "texto",
+   "ro": "Dacă înotați, înotați paralel cu țărmul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla4",
+   "es": "Respete las zonas balizadas: tablas y motos de agua pueden arrollar a quien nada.",
+   "forma": "texto",
+   "ro": "Respectați zonele delimitate cu geamanduri: plăcile de surf și scuterele de apă îi pot lovi pe înotători."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla5",
+   "es": "No se tire de cabeza sin saber la profundidad ni si hay rocas.",
+   "forma": "texto",
+   "ro": "Nu săriți în apă cu capul înainte fără să știți cât de adâncă este și dacă sunt stânci."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla6",
+   "es": "No se bañe en playas apartadas o que no conozca: puede haber remolinos.",
+   "forma": "texto",
+   "ro": "Nu faceți baie pe plaje izolate sau pe care nu le cunoașteți: pot exista vârtejuri."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlaOlas",
+   "es": "Olas y rocas",
+   "forma": "texto",
+   "ro": "Valuri și stânci"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla7",
+   "es": "Si el oleaje es fuera de lo normal, no se acerque al mar, aunque de repente parezca que se calma.",
+   "forma": "texto",
+   "ro": "Dacă valurile sunt neobișnuit de mari, nu vă apropiați de mare, chiar dacă dintr-odată pare să se liniștească."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla8",
+   "es": "No se ponga en la punta de muelles y espigones, ni haga fotos o vídeos cerca de donde rompen las olas.",
+   "forma": "texto",
+   "ro": "Nu stați la capătul cheiurilor și al digurilor și nu faceți fotografii sau filmări aproape de locul unde se sparg valurile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla9",
+   "es": "Cuidado con quedarse aislado cuando sube la marea.",
+   "forma": "texto",
+   "ro": "Atenție: când crește mareea, vă poate tăia drumul înapoi."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla10",
+   "es": "No pesque desde sitios peligrosos: un golpe de mar le puede arrastrar.",
+   "forma": "texto",
+   "ro": "Nu pescuiți din locuri periculoase: un val puternic vă poate lua pe sus."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlaNinos",
+   "es": "Niños y sol",
+   "forma": "texto",
+   "ro": "Copiii și soarele"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla11",
+   "es": "Vigile a los niños en todo momento: el socorrista no los vigila por usted.",
+   "forma": "texto",
+   "ro": "Supravegheați-i pe copii tot timpul: salvamarul nu îi supraveghează în locul dumneavoastră."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla12",
+   "es": "Cuidado con colchonetas y flotadores: la corriente puede llevárselos sin que se dé cuenta.",
+   "forma": "texto",
+   "ro": "Atenție la saltelele gonflabile și la colaci: curentul îi poate duce în larg fără să vă dați seama."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla13",
+   "es": "No esté mucho tiempo al sol y use crema protectora.",
+   "forma": "texto",
+   "ro": "Nu stați mult la soare și folosiți cremă de protecție solară."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlaBarco",
+   "es": "En barco, kayak, tabla o buceo",
+   "forma": "texto",
+   "ro": "Cu barca, caiacul, placa sau la scufundări"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla14",
+   "es": "Antes de salir, mire la previsión: el viento y el mar pueden cambiar de golpe en la costa. No salga al atardecer.",
+   "forma": "texto",
+   "ro": "Înainte de a ieși, consultați prognoza: vântul și marea se pot schimba brusc pe coastă. Nu ieșiți la apus."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla15",
+   "es": "No vaya solo y diga a alguien adónde va y cuándo piensa volver.",
+   "forma": "texto",
+   "ro": "Nu mergeți fără însoțitor și spuneți cuiva unde mergeți și când aveți de gând să vă întoarceți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla16",
+   "es": "Chaleco salvavidas y ropa de colores llamativos. Buceando, señale dónde está con una boya.",
+   "forma": "texto",
+   "ro": "Vestă de salvare și haine de culori vii. La scufundări, semnalați-vă poziția cu o geamandură."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla17",
+   "es": "Para no cansarse, nade de espaldas moviendo solo las piernas.",
+   "forma": "texto",
+   "ro": "Ca să nu obosiți, înotați pe spate mișcând doar picioarele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla18",
+   "es": "Báñese acompañado y nunca de noche. Salga del agua si nota cansancio o frío.",
+   "forma": "texto",
+   "ro": "Faceți baie împreună cu cineva și niciodată noaptea. Ieșiți din apă dacă simțiți oboseală sau frig."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla19",
+   "es": "No beba alcohol si va a bañarse o a hacer deporte en el agua.",
+   "forma": "texto",
+   "ro": "Nu beți alcool dacă urmează să faceți baie sau sporturi nautice."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla20",
+   "es": "En Canarias, las playas del norte suelen ser más peligrosas que las del sur, por el viento, el oleaje y las corrientes.",
+   "forma": "texto",
+   "ro": "În Insulele Canare, plajele din nord sunt de obicei mai periculoase decât cele din sud, din cauza vântului, a valurilor și a curenților."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPla21",
+   "es": "No haga deporte en el mar donde haya mar de fondo, ni acampe en la playa con alerta por temporal. Avise a quien vea en un sitio peligroso.",
+   "forma": "texto",
+   "ro": "Nu faceți sporturi pe mare când este hulă și nu campați pe plajă când este alertă de furtună. Avertizați pe oricine vedeți într-un loc periculos."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxIntro",
+   "es": "Llame al 112: le dirán qué hacer hasta que llegue la ayuda. Ponga el altavoz del móvil para tener las manos libres.",
+   "forma": "texto",
+   "ro": "Sunați la 112: vi se va spune ce să faceți până sosește ajutorul. Puneți telefonul pe difuzor ca să aveți mâinile libere."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxRcpT",
+   "es": "No responde y no respira con normalidad",
+   "forma": "texto",
+   "ro": "Nu răspunde și nu respiră normal"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux1",
+   "es": "Llame al 112. Si solo da boqueadas, no respira con normalidad; al principio también puede tener una breve convulsión. Ante la duda, empiece la reanimación.",
+   "forma": "texto",
+   "ro": "Sunați la 112. Dacă persoana doar trage aer rar și sacadat (respirație agonică), nu respiră normal; la început poate avea și o scurtă convulsie. Dacă aveți dubii, începeți resuscitarea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux2",
+   "es": "Ponga las manos en el centro del pecho y apriete fuerte y rápido: que el pecho baje de 5 a 6 cm, de 100 a 120 veces por minuto, y que vuelva a subir del todo cada vez.",
+   "forma": "texto",
+   "ro": "Puneți mâinile în centrul pieptului și apăsați tare și repede: pieptul trebuie să coboare între 5 și 6 cm, de 100 până la 120 de ori pe minut, și să revină complet de fiecare dată."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux3",
+   "es": "Si sabe hacerlo, haga 30 compresiones y 2 insuflaciones, y repita. Si no, solo compresiones, sin parar, hasta que llegue la ayuda.",
+   "forma": "texto",
+   "ro": "Dacă știți, faceți 30 de compresii și 2 insuflații și repetați. Dacă nu, faceți doar compresii, fără oprire, până sosește ajutorul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux4",
+   "es": "Si hay un desfibrilador (DEA), que alguien lo traiga. Enciéndalo y siga lo que dice; no deje las compresiones hasta que esté puesto.",
+   "forma": "texto",
+   "ro": "Dacă există un defibrilator (DEA), cineva să-l aducă. Porniți-l și urmați ce spune; nu întrerupeți compresiile până când nu este aplicat."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxCinco",
+   "es": "Si es un niño o una persona sacada del agua, empiece con 5 insuflaciones. El 112 le irá guiando.",
+   "forma": "texto",
+   "ro": "Dacă este un copil sau o persoană scoasă din apă, începeți cu 5 insuflații. La 112 vi se va explica pas cu pas."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxLadoT",
+   "es": "No responde pero respira con normalidad",
+   "forma": "texto",
+   "ro": "Nu răspunde, dar respiră normal"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux5",
+   "es": "Ponga a la persona de lado, con los brazos y las piernas doblados, y vigile que siga respirando.",
+   "forma": "texto",
+   "ro": "Așezați persoana pe o parte (poziția laterală de siguranță), cu brațele și picioarele îndoite, și verificați să respire în continuare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux14",
+   "es": "Si deja de respirar con normalidad, póngala boca arriba y empiece la reanimación.",
+   "forma": "texto",
+   "ro": "Dacă nu mai respiră normal, întoarceți-o pe spate și începeți resuscitarea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux6",
+   "es": "Si se ha caído desde altura, se ha tirado de cabeza, ha tenido un accidente o un golpe fuerte, no la ponga de lado ni la mueva, salvo que corra peligro donde está.",
+   "forma": "texto",
+   "ro": "Dacă a căzut de la înălțime, a sărit în apă cu capul înainte, a avut un accident sau a primit o lovitură puternică, nu o așezați pe o parte și nu o mișcați, decât dacă este în pericol acolo unde se află."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxAtragT",
+   "es": "Un adulto se atraganta",
+   "forma": "texto",
+   "ro": "Un adult se îneacă cu un corp străin"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux7",
+   "es": "Si puede toser, anímela a toser.",
+   "forma": "texto",
+   "ro": "Dacă persoana poate tuși, încurajați-o să tușească."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux8",
+   "es": "Si no puede toser, dele hasta 5 golpes en la espalda y, si no sale, hasta 5 compresiones en el abdomen. Si sigue sin salir, llame al 112 y siga alternando.",
+   "forma": "texto",
+   "ro": "Dacă nu poate tuși, dați-i până la 5 lovituri între omoplați și, dacă obiectul nu iese, până la 5 compresii abdominale. Dacă tot nu iese, sunați la 112 și continuați să le alternați."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux15",
+   "es": "No le meta los dedos en la boca a ciegas.",
+   "forma": "texto",
+   "ro": "Nu-i introduceți degetele în gură fără să vedeți ce faceți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux9",
+   "es": "Si deja de responder, llame al 112 y empiece la reanimación.",
+   "forma": "texto",
+   "ro": "Dacă nu mai răspunde, sunați la 112 și începeți resuscitarea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux16",
+   "es": "Si le ha dado compresiones en el abdomen, que la vea un médico aunque se recupere.",
+   "forma": "texto",
+   "ro": "Dacă i-ați făcut compresii abdominale, trebuie să o vadă un medic, chiar dacă își revine."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxAtragNinos",
+   "es": "Si es un bebé o un niño pequeño, llame enseguida al 112 y siga sus instrucciones.",
+   "forma": "texto",
+   "ro": "Dacă este un bebeluș sau un copil mic, sunați imediat la 112 și urmați instrucțiunile primite."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxAtragBebe",
+   "es": "Bebé de menos de 1 año: boca abajo sobre su antebrazo, hasta 5 golpes en la espalda; si no sale, hasta 5 compresiones en el pecho.",
+   "forma": "texto",
+   "ro": "Bebeluș sub 1 an: cu fața în jos pe antebrațul dumneavoastră, până la 5 lovituri între omoplați; dacă obiectul nu iese, până la 5 compresii toracice."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxAtragNino",
+   "es": "Niño de 1 a 12 años que no puede toser: hasta 5 golpes en la espalda y, si no sale, hasta 5 compresiones en el abdomen.",
+   "forma": "texto",
+   "ro": "Copil între 1 și 12 ani care nu poate tuși: până la 5 lovituri între omoplați și, dacă obiectul nu iese, până la 5 compresii abdominale."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxAtragRcp",
+   "es": "Si deja de responder, empiece la reanimación con 5 insuflaciones.",
+   "forma": "texto",
+   "ro": "Dacă nu mai răspunde, începeți resuscitarea cu 5 insuflații."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAuxOtrosT",
+   "es": "Otras urgencias",
+   "forma": "texto",
+   "ro": "Alte urgențe"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux10",
+   "es": "Sangra mucho: apriete fuerte y directamente sobre la herida.",
+   "forma": "texto",
+   "ro": "Sângerează mult: apăsați tare, direct pe rană."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux11",
+   "es": "Dolor u opresión en el pecho, que puede irse al cuello, la mandíbula o el brazo izquierdo: puede ser un infarto. Llame enseguida al 112, ayude a la persona a sentarse o tumbarse cómoda y no la deje sola.",
+   "forma": "texto",
+   "ro": "Durere sau apăsare în piept, care se poate extinde spre gât, maxilar sau brațul stâng: poate fi un infarct. Sunați imediat la 112, ajutați persoana să se așeze sau să se întindă comod și nu o lăsați singură."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux12",
+   "es": "Cara torcida, un brazo que no se levanta o habla rara: puede ser un ictus. Llame enseguida al 112: el tiempo cuenta.",
+   "forma": "texto",
+   "ro": "Fața strâmbă, un braț care nu se poate ridica sau vorbire ciudată: poate fi un accident vascular cerebral (AVC). Sunați imediat la 112: timpul contează."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux13",
+   "es": "Quemadura: póngala enseguida bajo agua corriente fresca durante 20 minutos. En niños pequeños, vigile que no se enfríen demasiado.",
+   "forma": "texto",
+   "ro": "Arsură: puneți-o imediat sub jet de apă curentă răcoroasă, timp de 20 de minute. La copiii mici, aveți grijă să nu se răcească prea tare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux18",
+   "es": "No ponga cremas, aceite ni mantequilla, y no reviente las ampollas.",
+   "forma": "texto",
+   "ro": "Nu puneți creme, ulei sau unt și nu spargeți bășicile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosAux17",
+   "es": "Llame al 112 o vaya a urgencias si la quemadura es grande o profunda, si está en la cara o en los genitales, o si la ha causado un producto químico o la electricidad.",
+   "forma": "texto",
+   "ro": "Sunați la 112 sau mergeți la urgențe dacă arsura este mare sau profundă, dacă este pe față sau pe organele genitale ori dacă a fost provocată de o substanță chimică sau de electricitate."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiIntro",
+   "es": "Si hay fuego o humo en el edificio, llame al 112 aunque crea que ya ha llamado otra persona.",
+   "forma": "texto",
+   "ro": "Dacă în clădire este foc sau fum, sunați la 112 chiar dacă credeți că a sunat deja altcineva."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiSalirT",
+   "es": "Si puede salir",
+   "forma": "texto",
+   "ro": "Dacă puteți ieși"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi1",
+   "es": "Salga enseguida, sin entretenerse en recoger cosas, y avise a los demás.",
+   "forma": "texto",
+   "ro": "Ieșiți imediat, fără să vă opriți să vă strângeți lucrurile, și anunțați-i pe ceilalți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi2",
+   "es": "Cierre puertas y ventanas al salir, sin echar la llave: así frena el fuego y el humo.",
+   "forma": "texto",
+   "ro": "Închideți ușile și ferestrele când ieșiți, fără să le încuiați: așa încetiniți focul și fumul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi12",
+   "es": "Abra las puertas con cuidado: puede haber humo al otro lado.",
+   "forma": "texto",
+   "ro": "Deschideți ușile cu grijă: poate fi fum de cealaltă parte."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi3",
+   "es": "Baje por la escalera. Nunca use el ascensor ni huya hacia arriba: el humo y el calor suben.",
+   "forma": "texto",
+   "ro": "Coborâți pe scări. Nu folosiți niciodată liftul și nu fugiți în sus: fumul și căldura urcă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi4",
+   "es": "Si hay mucho humo, avance a gatas, tapándose la nariz y la boca con un paño mojado.",
+   "forma": "texto",
+   "ro": "Dacă este mult fum, înaintați în patru labe, acoperindu-vă nasul și gura cu o cârpă udă."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi13",
+   "es": "Ya fuera, espere a los bomberos en la puerta del edificio y cuénteles lo que sepa.",
+   "forma": "texto",
+   "ro": "Când sunteți afară, așteptați pompierii la intrarea în clădire și spuneți-le ce știți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiNoSalirT",
+   "es": "Si no puede salir",
+   "forma": "texto",
+   "ro": "Dacă nu puteți ieși"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi5",
+   "es": "Si la escalera está llena de humo, no salga. Quédese en la habitación más alejada del fuego y cierre las puertas.",
+   "forma": "texto",
+   "ro": "Dacă scara este plină de fum, nu ieșiți. Rămâneți în camera cea mai îndepărtată de foc și închideți ușile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi6",
+   "es": "Tape las rendijas de las puertas con toallas o mantas mojadas.",
+   "forma": "texto",
+   "ro": "Astupați crăpăturile din jurul ușilor cu prosoape sau pături ude."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi7",
+   "es": "Hágase ver desde la ventana o el balcón y llame al 112 para decir dónde está.",
+   "forma": "texto",
+   "ro": "Faceți semne de la fereastră sau de pe balcon ca să vă vadă cineva și sunați la 112 ca să spuneți unde sunteți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiMasT",
+   "es": "Además",
+   "forma": "texto",
+   "ro": "În plus"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi8",
+   "es": "Si se le prende la ropa, no corra: tírese al suelo y ruede. Si le pasa a otra persona, tápela con una manta.",
+   "forma": "texto",
+   "ro": "Dacă vi se aprind hainele, nu alergați: aruncați-vă la pământ și rostogoliți-vă. Dacă i se întâmplă altcuiva, acoperiți persoana cu o pătură."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi9",
+   "es": "Si arde una sartén, tápela con una tapa. Nunca le eche agua.",
+   "forma": "texto",
+   "ro": "Dacă ia foc o tigaie, acoperiți-o cu un capac. Nu turnați niciodată apă peste ea."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi10",
+   "es": "Si huele mucho a gas, no toque interruptores ni encienda nada: abra puertas y ventanas y salga.",
+   "forma": "texto",
+   "ro": "Dacă miroase puternic a gaz, nu atingeți întrerupătoarele și nu aprindeți nimic: deschideți ușile și ferestrele și ieșiți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdi11",
+   "es": "Al llegar al alojamiento, fíjese en las salidas de emergencia y en cómo llegar a ellas.",
+   "forma": "texto",
+   "ro": "Când ajungeți la locul de cazare, observați ieșirile de urgență și cum se ajunge la ele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrevT",
+   "es": "Para evitar un incendio",
+   "forma": "texto",
+   "ro": "Ca să preveniți un incendiu"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrev1",
+   "es": "No sobrecargue los enchufes, y si usa alargadores, desenróllelos del todo para que no se calienten.",
+   "forma": "texto",
+   "ro": "Nu supraîncărcați prizele și, dacă folosiți prelungitoare, desfășurați-le complet ca să nu se încălzească."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrev2",
+   "es": "Tenga los enchufes en buen estado: si se calientan demasiado o no encajan bien, llame a un técnico.",
+   "forma": "texto",
+   "ro": "Țineți prizele în stare bună: dacă se încălzesc prea mult sau ștecherele nu intră bine, chemați un tehnician."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrev3",
+   "es": "Ponga radiadores y estufas lejos de lo que pueda arder, y nunca cubra lámparas o bombillas con telas: el calor puede hacer que ardan.",
+   "forma": "texto",
+   "ro": "Țineți radiatoarele și aparatele de încălzire departe de ce poate lua foc și nu acoperiți niciodată lămpile sau becurile cu materiale textile: căldura le poate aprinde."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrev4",
+   "es": "Fumar en la cama es muy peligroso. Al tirar una colilla, asegúrese de que queda bien apagada.",
+   "forma": "texto",
+   "ro": "Fumatul în pat este foarte periculos. Când aruncați un muc de țigară, asigurați-vă că este bine stins."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrev5",
+   "es": "Guarde fósforos y mecheros en un lugar seguro, nunca al alcance de los niños.",
+   "forma": "texto",
+   "ro": "Păstrați chibriturile și brichetele într-un loc sigur, niciodată la îndemâna copiilor."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrev6",
+   "es": "Si sale, aunque sea por poco tiempo, apague los aparatos de gas y no deje nada al fuego.",
+   "forma": "texto",
+   "ro": "Dacă plecați de acasă, chiar și pentru scurt timp, opriți aparatele pe gaz și nu lăsați nimic pe foc."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrev7",
+   "es": "No guarde productos inflamables cerca de fuentes de calor.",
+   "forma": "texto",
+   "ro": "Nu păstrați produse inflamabile lângă surse de căldură."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosEdiPrev8",
+   "es": "Si se va por mucho tiempo, desconecte siempre el gas y la electricidad.",
+   "forma": "texto",
+   "ro": "Dacă plecați pentru mult timp, închideți întotdeauna gazul și curentul."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApaIntro",
+   "es": "Si se va la luz en toda la zona, mantenga la calma e infórmese por los canales oficiales.",
+   "forma": "texto",
+   "ro": "Dacă se întrerupe curentul în toată zona, păstrați-vă calmul și informați-vă din canalele oficiale."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa1",
+   "es": "Use el teléfono lo menos posible y llame al 112 solo si es una emergencia.",
+   "forma": "texto",
+   "ro": "Folosiți telefonul cât mai puțin și sunați la 112 doar dacă este o urgență."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa2",
+   "es": "No use los ascensores.",
+   "forma": "texto",
+   "ro": "Nu folosiți lifturile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa3",
+   "es": "Evite los desplazamientos que no sean imprescindibles.",
+   "forma": "texto",
+   "ro": "Evitați deplasările care nu sunt absolut necesare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa4",
+   "es": "Desenchufe los aparatos eléctricos para evitar posibles sobrecargas.",
+   "forma": "texto",
+   "ro": "Scoateți din priză aparatele electrice, ca să evitați eventualele supraîncărcări."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa5",
+   "es": "Ahorre la batería del móvil y use el agua con moderación.",
+   "forma": "texto",
+   "ro": "Economisiți bateria telefonului și folosiți apa cu moderație."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApaComidaT",
+   "es": "La comida de la nevera",
+   "forma": "texto",
+   "ro": "Alimentele din frigider"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa6",
+   "es": "Mantenga cerrados la nevera y el congelador: los plazos de abajo solo valen si no se han abierto.",
+   "forma": "texto",
+   "ro": "Țineți închise frigiderul și congelatorul: termenele de mai jos sunt valabile doar dacă nu au fost deschise."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa7",
+   "es": "Si el corte dura más de 4 horas, tire la carne, el pescado, los huevos, la leche, el queso fresco, las sobras, la fruta o la verdura cortada y las ensaladas preparadas.",
+   "forma": "texto",
+   "ro": "Dacă pana durează mai mult de 4 ore, aruncați carnea, peștele, ouăle, laptele, brânza proaspătă, resturile de mâncare, fructele sau legumele tăiate și salatele preparate."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa8",
+   "es": "El congelador cerrado mantiene el frío de 24 a 48 horas.",
+   "forma": "texto",
+   "ro": "Congelatorul închis păstrează frigul între 24 și 48 de ore."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa10",
+   "es": "Lo congelado que aún tenga cristales de hielo se puede volver a congelar.",
+   "forma": "texto",
+   "ro": "Alimentele congelate care mai au cristale de gheață pot fi congelate din nou."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosApa9",
+   "es": "Nunca pruebe un alimento para saber si está bueno, ni se fíe de su aspecto o de su olor.",
+   "forma": "texto",
+   "ro": "Nu gustați niciodată un aliment ca să aflați dacă mai este bun și nu vă bazați pe aspectul sau pe mirosul lui."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMulIntro",
+   "es": "En conciertos, fiestas, el Carnaval, romerías o fuegos artificiales:",
+   "forma": "texto",
+   "ro": "La concerte, sărbători, Carnaval, pelerinaje sau focuri de artificii:"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul9",
+   "es": "Escriba en el brazo de los niños un nombre y un teléfono, o póngales una pulsera con esos datos.",
+   "forma": "texto",
+   "ro": "Scrieți pe brațul copiilor un nume și un număr de telefon sau puneți-le o brățară cu aceste date."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul10",
+   "es": "Si va en grupo, acuerden un punto de encuentro fuera de la multitud por si se separan.",
+   "forma": "texto",
+   "ro": "Dacă sunteți în grup, stabiliți un punct de întâlnire în afara mulțimii, în caz că vă despărțiți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul1",
+   "es": "Localice las salidas de emergencia y no las tape.",
+   "forma": "texto",
+   "ro": "Identificați ieșirile de urgență și nu le blocați."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul2",
+   "es": "Póngase en un sitio seguro, dentro de los límites que marque la organización.",
+   "forma": "texto",
+   "ro": "Așezați-vă într-un loc sigur, în limitele stabilite de organizatori."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul3",
+   "es": "Evite los sitios donde podría caer si le empujan: barandillas, muros o escaleras.",
+   "forma": "texto",
+   "ro": "Evitați locurile din care ați putea cădea dacă vă împinge cineva: balustrade, ziduri sau scări."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul4",
+   "es": "Con fuegos artificiales, cuidado con los restos que caen encendidos.",
+   "forma": "texto",
+   "ro": "La focurile de artificii, atenție la resturile care cad încă aprinse."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul11",
+   "es": "No se acerque a las carrozas ni intente subirse.",
+   "forma": "texto",
+   "ro": "Nu vă apropiați de carele alegorice și nu încercați să urcați pe ele."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul5",
+   "es": "En romerías, no se acerque a los animales ni se ponga detrás de los caballos. En los rallies, lejos de la carretera y en un sitio alto.",
+   "forma": "texto",
+   "ro": "La pelerinaje, nu vă apropiați de animale și nu stați în spatele cailor. La raliuri, stați departe de șosea, într-un loc înalt."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul12",
+   "es": "Si camina por el borde de una carretera, hágase ver y vaya por el lado en que vea venir los coches de frente.",
+   "forma": "texto",
+   "ro": "Dacă mergeți pe marginea unui drum, asigurați-vă că șoferii vă pot vedea și mergeți pe partea pe care vedeți mașinile venind din față."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMulPasaT",
+   "es": "Si pasa algo",
+   "forma": "texto",
+   "ro": "Dacă se întâmplă ceva"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul6",
+   "es": "Mantenga la calma, siga las indicaciones de la organización y no empuje.",
+   "forma": "texto",
+   "ro": "Păstrați-vă calmul, urmați indicațiile organizatorilor și nu împingeți."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul13",
+   "es": "No grite, no corra y no vuelva atrás.",
+   "forma": "texto",
+   "ro": "Nu strigați, nu alergați și nu vă întoarceți din drum."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul7",
+   "es": "Salga por las salidas señaladas y no use los ascensores.",
+   "forma": "texto",
+   "ro": "Ieșiți pe ieșirile marcate și nu folosiți lifturile."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul8",
+   "es": "Si no sabe primeros auxilios, no mueva a los heridos, salvo que corran peligro donde están.",
+   "forma": "texto",
+   "ro": "Dacă nu știți să acordați primul ajutor, nu mutați răniții, decât dacă sunt în pericol acolo unde se află."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul14",
+   "es": "Si encuentra a un niño perdido, llévelo a la policía o al personal de seguridad.",
+   "forma": "texto",
+   "ro": "Dacă găsiți un copil pierdut, duceți-l la poliție sau la personalul de securitate."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosMul15",
+   "es": "Si al llamar al 112 desde el móvil no da señal, puede que las líneas estén saturadas: llame desde un teléfono fijo.",
+   "forma": "texto",
+   "ro": "Dacă, atunci când sunați la 112 de pe mobil, nu se aude tonul, liniile pot fi supraîncărcate: sunați de pe un telefon fix."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnIntro",
+   "es": "Los planes oficiales dicen quién dirige cada emergencia y cómo se avisa a la población. Lo que le toca hacer a usted está resumido en las guías de esta sección.",
+   "forma": "texto",
+   "ro": "Planurile oficiale stabilesc cine conduce fiecare situație de urgență și cum este avertizată populația. Ce trebuie să faceți dumneavoastră este rezumat în ghidurile din această secțiune."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnCanarias",
+   "es": "Gobierno de Canarias",
+   "forma": "texto",
+   "ro": "Guvernul Insulelor Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnPlateca",
+   "es": "El plan general de Canarias. Se activa también ante lo que no tiene plan propio, como cortes de suministros, contaminación del mar o concentraciones de mucha gente.",
+   "forma": "texto",
+   "ro": "Planul general al Insulelor Canare. Se activează și pentru situațiile care nu au un plan propriu, cum ar fi întreruperile de utilități, poluarea mării sau aglomerările foarte mari de oameni."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnPevolca",
+   "es": "Erupciones volcánicas. Es el del semáforo de colores.",
+   "forma": "texto",
+   "ro": "Erupții vulcanice. Este planul cu semaforul în culori."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnPesican",
+   "es": "Terremotos.",
+   "forma": "texto",
+   "ro": "Cutremure."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnInfoca",
+   "es": "Incendios forestales.",
+   "forma": "texto",
+   "ro": "Incendii de pădure."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnPefma",
+   "es": "Fenómenos meteorológicos adversos: lluvias, viento, temporal en la costa, calor, calima o tormentas.",
+   "forma": "texto",
+   "ro": "Fenomene meteorologice adverse: ploi, vânt, mare agitată pe coastă, căldură, praf din Sahara sau furtuni."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnPeinca",
+   "es": "Inundaciones.",
+   "forma": "texto",
+   "ro": "Inundații."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnPemerca",
+   "es": "Accidentes en el transporte de mercancías peligrosas por carretera.",
+   "forma": "texto",
+   "ro": "Accidente în transportul rutier de mărfuri periculoase."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnRisqcan",
+   "es": "Accidentes graves en industrias con sustancias químicas peligrosas.",
+   "forma": "texto",
+   "ro": "Accidente grave în industriile care folosesc substanțe chimice periculoase."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnRadican",
+   "es": "Emergencias por riesgo radiológico.",
+   "forma": "texto",
+   "ro": "Urgențe cauzate de riscul radiologic."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnEstado",
+   "es": "Toda España",
+   "forma": "texto",
+   "ro": "Toată Spania"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnMaremotosN",
+   "es": "Plan estatal de maremotos (2021)",
+   "forma": "texto",
+   "ro": "Planul de stat pentru tsunami (2021)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnMaremotos",
+   "es": "Para los maremotos que puedan llegar a cualquier costa de España, también a la de Canarias.",
+   "forma": "texto",
+   "ro": "Pentru tsunamiurile care ar putea ajunge pe orice coastă a Spaniei, inclusiv pe cea a Insulelor Canare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnTenerife",
+   "es": "Tenerife",
+   "forma": "texto",
+   "ro": "Tenerife"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnInsular",
+   "es": "El Cabildo tiene su plan insular, el PEIN. Los Ayuntamientos tienen, o están terminando, su plan municipal, con sus puntos de encuentro. Pregunte en el suyo o, si está de visita, en su alojamiento.",
+   "forma": "texto",
+   "ro": "Cabildo are planul său insular, PEIN. Primăriile au planul lor municipal, cu punctele de întâlnire, sau sunt pe cale să-l termine. Întrebați la primărie sau, dacă sunteți în vizită, la locul de cazare."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnNuevos",
+   "es": "Los planes se revisan y pueden cambiar; las novedades se anuncian por los canales oficiales. En octubre de 2026 el Estado aprobó nuevas directrices de protección civil ante el riesgo volcánico y el de terremotos.",
+   "forma": "texto",
+   "ro": "Planurile sunt revizuite și se pot schimba; noutățile se anunță pe canalele oficiale. În octombrie 2026, statul spaniol a aprobat noi directive de protecție civilă pentru riscul vulcanic și pentru cel seismic."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosPlnVer",
+   "es": "Todos los planes de emergencias de Canarias",
+   "forma": "texto",
+   "ro": "Toate planurile de urgență ale Insulelor Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosVis8",
+   "es": "En la playa, mire la bandera y báñese donde haya socorrista.",
+   "forma": "texto",
+   "ro": "La plajă, uitați-vă la steag și faceți baie acolo unde este salvamar."
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosCanAemet",
+   "es": "Avisos meteorológicos para Tenerife",
+   "forma": "texto",
+   "ro": "Avertizări meteorologice pentru Tenerife"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgSanidad",
+   "es": "Ministerio de Sanidad",
+   "forma": "texto",
+   "ro": "Ministerul Sănătății din Spania"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgTransportes",
+   "es": "Ministerio de Transportes",
+   "forma": "texto",
+   "ro": "Ministerul Transporturilor din Spania"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgErc",
+   "es": "Consejo Europeo de Resucitación (ERC)",
+   "forma": "texto",
+   "ro": "Consiliul European de Resuscitare (ERC)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgAep",
+   "es": "Asociación Española de Pediatría",
+   "forma": "texto",
+   "ro": "Asociația Spaniolă de Pediatrie"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgMurcia",
+   "es": "Servicio Murciano de Salud",
+   "forma": "texto",
+   "ro": "Serviciul de Sănătate din Murcia"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgProteccionCivil",
+   "es": "Protección Civil (Ministerio del Interior)",
+   "forma": "texto",
+   "ro": "Protecția Civilă (Ministerul de Interne al Spaniei)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgSeup",
+   "es": "Sociedad Española de Urgencias de Pediatría (SEUP)",
+   "forma": "texto",
+   "ro": "Societatea Spaniolă de Urgențe Pediatrice (SEUP)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgNhs",
+   "es": "Servicio Nacional de Salud del Reino Unido (NHS)",
+   "forma": "texto",
+   "ro": "Serviciul Național de Sănătate al Regatului Unit (NHS)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgComision",
+   "es": "Comisión Europea",
+   "forma": "texto",
+   "ro": "Comisia Europeană"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgMadrid",
+   "es": "Comunidad de Madrid",
+   "forma": "texto",
+   "ro": "Comunitatea Madrid"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgAlicante",
+   "es": "Ayuntamiento de Alicante",
+   "forma": "texto",
+   "ro": "Primăria din Alicante"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgAesan",
+   "es": "Agencia Española de Seguridad Alimentaria y Nutrición (AESAN)",
+   "forma": "texto",
+   "ro": "Agenția Spaniolă pentru Siguranța Alimentară și Nutriție (AESAN)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgToxicologia",
+   "es": "Instituto Nacional de Toxicología y Ciencias Forenses",
+   "forma": "texto",
+   "ro": "Institutul Național de Toxicologie și Științe Medico-Legale (Spania)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "sosOrgBaleares",
+   "es": "Gobierno de las Illes Balears",
+   "forma": "texto",
+   "ro": "Guvernul Insulelor Baleare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ignTsunami",
+   "es": "Qué hacer en caso de tsunami (2020)",
+   "forma": "texto",
+   "ro": "Ce trebuie să faceți în caz de tsunami (2020)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_planMaremotos",
+   "es": "Plan Estatal de Protección Civil ante el Riesgo de Maremotos (2021)",
+   "forma": "texto",
+   "ro": "Planul de stat de protecție civilă pentru riscul de tsunami (2021)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_daTsunami",
+   "es": "Qué pasaría si suena una alerta de tsunami en Canarias (2026)",
+   "forma": "texto",
+   "ro": "Ce s-ar întâmpla dacă ar suna o alertă de tsunami în Insulele Canare (2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobIncendios",
+   "es": "Consejos ante incendios forestales",
+   "forma": "texto",
+   "ro": "Recomandări în caz de incendiu de pădure"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_infoca",
+   "es": "INFOCA, el plan de incendios forestales de Canarias (Decreto 60/2014)",
+   "forma": "texto",
+   "ro": "INFOCA, planul pentru incendiile de pădure al Insulelor Canare (Decretul 60/2014)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobLluvias",
+   "es": "Consejos ante lluvias",
+   "forma": "texto",
+   "ro": "Recomandări în caz de ploi abundente"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobInundaciones",
+   "es": "Consejos ante inundaciones",
+   "forma": "texto",
+   "ro": "Recomandări în caz de inundații"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobVientos",
+   "es": "Consejos ante vientos fuertes",
+   "forma": "texto",
+   "ro": "Recomandări în caz de vânt puternic"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobTormentas",
+   "es": "Consejos ante tormentas",
+   "forma": "texto",
+   "ro": "Recomandări în caz de furtună"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobTemperaturas",
+   "es": "Consejos ante temperaturas máximas",
+   "forma": "texto",
+   "ro": "Recomandări pentru temperaturi foarte ridicate"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_sanidadCalor",
+   "es": "Folleto para protegerse del calor en verano (2025)",
+   "forma": "texto",
+   "ro": "Pliant despre protecția împotriva căldurii pe timpul verii (2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobCalima",
+   "es": "Consejos ante la calima",
+   "forma": "texto",
+   "ro": "Recomandări în caz de praf din Sahara (calima)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobMontana",
+   "es": "Consejos para la montaña",
+   "forma": "texto",
+   "ro": "Recomandări pentru munte"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobNevadas",
+   "es": "Consejos ante nevadas",
+   "forma": "texto",
+   "ro": "Recomandări în caz de ninsoare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobMar",
+   "es": "Consejos para las actividades en el mar",
+   "forma": "texto",
+   "ro": "Recomandări pentru activitățile pe mare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobCosteros",
+   "es": "Consejos ante fenómenos costeros",
+   "forma": "texto",
+   "ro": "Recomandări în caz de fenomene costiere"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ercEspeciales",
+   "es": "La reanimación en circunstancias especiales, como el ahogamiento (2025)",
+   "forma": "texto",
+   "ro": "Resuscitarea în circumstanțe speciale, cum ar fi înecul (2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_aeped",
+   "es": "Ahogamiento (Protocolos de la AEP, 2021)",
+   "forma": "texto",
+   "ro": "Înecul (protocoalele AEP, 2021)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_transportes",
+   "es": "Cómo avisar a Salvamento Marítimo",
+   "forma": "texto",
+   "ro": "Cum alertați serviciul spaniol de salvare maritimă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_sanidadMedusas",
+   "es": "Precaución ante picaduras de medusas",
+   "forma": "texto",
+   "ro": "Precauții privind înțepăturile de meduză"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_preevid",
+   "es": "Picadura del pez araña (PreEvid, 2014)",
+   "forma": "texto",
+   "ro": "Înțepătura dracului-de-mare (PreEvid, 2014)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_banderasHoy",
+   "es": "Banderas en uso hoy en las playas de Canarias (Subdirección de Protección Civil y Emergencias · portal Infoplayas Canarias)",
+   "forma": "texto",
+   "ro": "Steagurile folosite astăzi pe plajele din Insulele Canare (Subdirección de Protección Civil y Emergencias · portalul Infoplayas Canarias)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_planes",
+   "es": "Planes de emergencias de Canarias",
+   "forma": "texto",
+   "ro": "Planurile de urgență ale Insulelor Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobPlateca",
+   "es": "Prealerta del PLATECA por cortes de suministros básicos (2026)",
+   "forma": "texto",
+   "ro": "Prealerta PLATECA din cauza întreruperilor de utilități de bază (2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_pevolca2021",
+   "es": "Recomendaciones a la población por riesgo volcánico (PEVOLCA, 2021)",
+   "forma": "texto",
+   "ro": "Recomandări pentru populație privind riscul vulcanic (PEVOLCA, 2021)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_pevolcaWeb",
+   "es": "El PEVOLCA y el semáforo volcánico",
+   "forma": "texto",
+   "ro": "PEVOLCA și semaforul vulcanic"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_esAlertTfe",
+   "es": "Así llega el ES-Alert: la prueba del 22 de octubre de 2026 en Tenerife",
+   "forma": "texto",
+   "ro": "Cum ajunge ES-Alert: testul din 22 octombrie 2026 din Tenerife"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_guiaFamilias",
+   "es": "Guía para las familias: prevención y autoprotección ante riesgos (con el Ministerio de Educación, 2025)",
+   "forma": "texto",
+   "ro": "Ghid pentru familii: prevenire și autoprotecție în fața riscurilor (împreună cu Ministerul Educației din Spania, 2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ivhhnPrep",
+   "es": "Cómo prepararse para una caída de ceniza",
+   "forma": "texto",
+   "ro": "Cum vă pregătiți pentru o cădere de cenușă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ivhhnSalud",
+   "es": "Los peligros de la ceniza volcánica para la salud",
+   "forma": "texto",
+   "ro": "Pericolele cenușii vulcanice pentru sănătate"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ivhhnGases",
+   "es": "Los gases volcánicos y la salud",
+   "forma": "texto",
+   "ro": "Gazele vulcanice și sănătatea"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ivhhnMascarilla",
+   "es": "Qué mascarilla protege de la ceniza (2018)",
+   "forma": "texto",
+   "ro": "Ce mască protejează împotriva cenușii (2018)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ignTerremoto",
+   "es": "Qué hacer en caso de terremoto (2020)",
+   "forma": "texto",
+   "ro": "Ce trebuie să faceți în caz de cutremur (2020)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ignTerremoto2",
+   "es": "Qué hacer en caso de terremoto, segunda hoja (2020)",
+   "forma": "texto",
+   "ro": "Ce trebuie să faceți în caz de cutremur, a doua fișă (2020)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_dgpceTsunami",
+   "es": "Riesgo de tsunamis: guía de información al ciudadano",
+   "forma": "texto",
+   "ro": "Riscul de tsunami: ghid de informare pentru cetățeni"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_planMaremotosIgn",
+   "es": "Plan Estatal de Maremotos, edición comentada (2021)",
+   "forma": "texto",
+   "ro": "Planul de stat pentru tsunami, ediție comentată (2021)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobTeide2025",
+   "es": "Los científicos del PEVOLCA, sobre la actividad del Teide (23-1-2025)",
+   "forma": "texto",
+   "ro": "Comitetul științific al PEVOLCA, despre activitatea vulcanului Teide (23-1-2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_infocaAnexoV",
+   "es": "Recomendaciones a la población por riesgo de incendio forestal (INFOCA, anexo V)",
+   "forma": "texto",
+   "ro": "Recomandări pentru populație privind riscul de incendiu de pădure (INFOCA, anexa V)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_decreto180",
+   "es": "Decreto 180/2025 de prevención y extinción de incendios forestales (BOC, 9-12-2025)",
+   "forma": "texto",
+   "ro": "Decretul 180/2025 privind prevenirea și stingerea incendiilor de pădure (BOC, 9-12-2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_tenerifeOn",
+   "es": "Tenerife ON: alertas, riesgo de incendio y senderos cerrados",
+   "forma": "texto",
+   "ro": "Tenerife ON: alerte, risc de incendiu și trasee închise"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_sanidadPlan2026",
+   "es": "Plan nacional de actuaciones preventivas por exceso de temperaturas (2026)",
+   "forma": "texto",
+   "ro": "Planul național de acțiuni preventive împotriva temperaturilor excesive (2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobCalimaSanidad",
+   "es": "Sanidad recomienda precauciones ante la calima (2025)",
+   "forma": "texto",
+   "ro": "Autoritățile sanitare recomandă precauții în caz de praf din Sahara (2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ercLego",
+   "es": "Guías 2025 de reanimación para todos (versión para el público)",
+   "forma": "texto",
+   "ro": "Ghidurile de resuscitare 2025 pentru toți (versiunea pentru public)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ercEsResumen",
+   "es": "Guías 2025: resumen ejecutivo, traducción oficial al castellano",
+   "forma": "texto",
+   "ro": "Ghidurile 2025: rezumat executiv, traducerea oficială în spaniolă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ircPrimeros",
+   "es": "Guías de primeros auxilios 2025 del ERC, traducción oficial al italiano (2026)",
+   "forma": "texto",
+   "ro": "Ghidurile ERC 2025 de prim ajutor, traducerea oficială în italiană (2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_rcukPrimeros",
+   "es": "Guías de primeros auxilios 2025 (adaptación británica de las del ERC)",
+   "forma": "texto",
+   "ro": "Ghidurile de prim ajutor 2025 (adaptarea britanică a ghidurilor ERC)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_rcukAtragNinos",
+   "es": "Atragantamiento en bebés y niños: algoritmo (2025)",
+   "forma": "texto",
+   "ro": "Înecarea cu un corp străin la bebeluși și copii: algoritm (2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_rcukPediatrico",
+   "es": "Soporte vital pediátrico, básico y avanzado (guías 2025)",
+   "forma": "texto",
+   "ro": "Suportul vital pediatric, de bază și avansat (ghidurile 2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_nhsQuemaduras",
+   "es": "Quemaduras y escaldaduras (revisado en 2026)",
+   "forma": "texto",
+   "ro": "Arsuri și opăriri (revizuit în 2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_nhsCalor",
+   "es": "Agotamiento por calor y golpe de calor (revisado en 2026)",
+   "forma": "texto",
+   "ro": "Epuizarea termică și șocul termic (revizuit în 2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_ilcorQuemaduras",
+   "es": "Cuánto enfriar con agua una quemadura (revisión de 2021, borrador)",
+   "forma": "texto",
+   "ro": "Cât timp trebuie răcită cu apă o arsură (evaluarea din 2021, versiune preliminară)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_seupInmersion",
+   "es": "Lesiones por inmersión (4.ª edición, 2024)",
+   "forma": "texto",
+   "ro": "Leziuni prin imersiune (ediția a 4-a, 2024)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_nhsPicaduras",
+   "es": "Picaduras de medusas y de otros animales marinos (2024)",
+   "forma": "texto",
+   "ro": "Înțepăturile de meduză și de alte animale marine (2024)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_aepMedusas",
+   "es": "Picaduras de medusas (En Familia, 2025)",
+   "forma": "texto",
+   "ro": "Înțepăturile de meduză (En Familia, 2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_preevidCarabela",
+   "es": "Picadura de la carabela portuguesa (PreEvid, 2018)",
+   "forma": "texto",
+   "ro": "Înțepătura caravelei portugheze (PreEvid, 2018)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_sanidadAcuatico",
+   "es": "Prevención de accidentes en el medio acuático",
+   "forma": "texto",
+   "ro": "Prevenirea accidentelor în mediul acvatic"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_goibEmergencias",
+   "es": "Emergencias: en la playa",
+   "forma": "texto",
+   "ro": "Urgențe: la plajă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_goibPlaya",
+   "es": "112: en la playa, seguros",
+   "forma": "texto",
+   "ro": "112: la plajă, în siguranță"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_servicio112",
+   "es": "El servicio de emergencias 1-1-2 (2025)",
+   "forma": "texto",
+   "ro": "Serviciul de urgență 1-1-2 (2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_como112",
+   "es": "Cómo funciona una llamada al 1-1-2",
+   "forma": "texto",
+   "ro": "Cum funcționează un apel la 1-1-2"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gob012",
+   "es": "El 012: información del Gobierno de Canarias",
+   "forma": "texto",
+   "ro": "012: informații de la Guvernul Insulelor Canare"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_manualApp112",
+   "es": "Manual de la App 112 Canarias (2023)",
+   "forma": "texto",
+   "ro": "Manualul aplicației 112 Canarias (2023)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_cartelaEsAlert",
+   "es": "ES-Alert: tarjeta para las personas mayores",
+   "forma": "texto",
+   "ro": "ES-Alert: fișă pentru persoanele în vârstă"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_tripticoEsAlert",
+   "es": "ES-Alert: folleto informativo",
+   "forma": "texto",
+   "ro": "ES-Alert: pliant informativ"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_planesTerritoriales",
+   "es": "Planes territoriales de emergencia de Canarias: insulares y municipales",
+   "forma": "texto",
+   "ro": "Planurile teritoriale de urgență ale Insulelor Canare: insulare și municipale"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_directrizSismos",
+   "es": "Directriz Básica de Planificación de Protección Civil ante el riesgo de terremotos (Orden INT/1069/2026)",
+   "forma": "texto",
+   "ro": "Directiva de bază pentru planificarea protecției civile în fața riscului seismic (Ordinul INT/1069/2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_tuEuropa",
+   "es": "Protección consular fuera de su país (portal de la Unión Europea)",
+   "forma": "texto",
+   "ro": "Protecția consulară în afara țării dumneavoastră (portalul Uniunii Europene)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_loSeguridad",
+   "es": "Ley Orgánica 4/2015 de protección de la seguridad ciudadana, art. 13: la documentación de los extranjeros",
+   "forma": "texto",
+   "ro": "Legea organică 4/2015 privind protecția securității cetățenilor, art. 13: actele de identitate ale străinilor"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_avisoCabildo",
+   "es": "Emergencia por erupción volcánica: avisos del Cabildo (simulacro VOLCANEX, 2026)",
+   "forma": "texto",
+   "ro": "Urgență din cauza unei erupții vulcanice: anunțurile Cabildo de Tenerife (exercițiul VOLCANEX, 2026)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_aenaVuelos",
+   "es": "Información de vuelos",
+   "forma": "texto",
+   "ro": "Informații despre zboruri"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobIncUrbanos",
+   "es": "Consejos ante incendios urbanos",
+   "forma": "texto",
+   "ro": "Recomandări în caz de incendii urbane"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_madridIncendio",
+   "es": "Incendios domésticos",
+   "forma": "texto",
+   "ro": "Incendii în locuințe"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobEspectaculos",
+   "es": "Consejos en espectáculos públicos y aglomeraciones",
+   "forma": "texto",
+   "ro": "Recomandări pentru spectacole publice și aglomerări"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_gobCarnaval",
+   "es": "Consejos para cabalgatas y el Carnaval",
+   "forma": "texto",
+   "ro": "Recomandări pentru parade și Carnaval"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_alicanteApagon",
+   "es": "Recomendaciones durante el apagón del 28 de abril de 2025",
+   "forma": "texto",
+   "ro": "Recomandări în timpul penei de curent din 28 aprilie 2025"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_aesanApagon",
+   "es": "Qué hacer con los alimentos de la nevera y del congelador tras un apagón (2025)",
+   "forma": "texto",
+   "ro": "Ce trebuie făcut cu alimentele din frigider și din congelator după o pană de curent (2025)"
+  },
+  {
+   "tabla": "EMERG_UI",
+   "clave": "fte_sit",
+   "es": "Servicio de Información Toxicológica",
+   "forma": "texto",
+   "ro": "Serviciul de Informare Toxicologică"
+  }
+ ]
+}

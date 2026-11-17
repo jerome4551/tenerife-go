@@ -98,7 +98,11 @@ const LISTA = process.argv.indexOf('--lista') !== -1;
   const propios = await p.evaluate(() => {
     const s = new Set();
     const meter = x => { if (typeof x === 'string' && x.trim()) s.add(x.replace(/\s+/g, ' ').trim()); };
-    try { places.forEach(pl => { meter(pl.nombre); meter(pl.municipio); }); } catch (e) {}
+    /* Las fichas llaman a su nombre `name`. Hasta el 6 de noviembre de 2026 aqui se leia
+       pl.nombre, que no existe en ninguna, y ningun nombre de lugar contaba como nombre
+       propio: la madrugada del 6, con el mar en calma, tres playas de «donde banarse»
+       salieron como texto sin traducir. */
+    try { places.forEach(pl => { meter(pl.name); meter(pl.municipio); }); } catch (e) {}
     try { TITSA_LINES.forEach(l => { meter(l.nombre); meter(String(l.numero)); }); } catch (e) {}
     try { Object.values(TITSA_PARADAS).forEach(q => meter(q.n)); } catch (e) {}
     /* Los municipios donde se celebra cada fiesta tambien son nombres propios,

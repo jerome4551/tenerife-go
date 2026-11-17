@@ -21,7 +21,7 @@
  *      tools/cielo_fuentes.sh); si no, que dice venir de esos commits.
  *   2. el observatorio: la misma coordenada en el modulo, en el catalogo, en
  *      tools/cielo_construir.js y en la ficha «observatorio» de places[].
- *   3. los textos: cada fila de CIELO_UI, de las siete del boton (UI_TX) y de
+ *   3. los textos: cada fila de CIELO_UI, de las ocho del armazon (UI_TX) y de
  *      las tablas de nombres, con los diez idiomas, los mismos {marcadores}
  *      en cada forma de plural, tres formas en polaco y una en chino, y el
  *      alfabeto de cada idioma. Que exista cada fila que pide el codigo, y
@@ -339,10 +339,13 @@ const cascaraSrc = index.includes(INI_M) ? index.slice(index.indexOf(INI_M), ind
 const TABLAS = ['CIELO_CON', 'CIELO_EST', 'CIELO_DOB', 'CIELO_CUERPO', 'CIELO_LLU', 'CIELO_TIPO', 'CIELO_OBJ', 'CIELO_DESC'];
 const T = {}; TABLAS.forEach(n => { T[n] = tablaModulo(n) || {}; });
 const tour = {};
-for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k + '": {');
+/* (10-11-2026) el tour vive en modulos/guia.js, con sus filas y sus pasos */
+const guiaSrc = lee('modulos/guia.js');
+for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(guiaSrc, '"' + k + '": {');
 {
   ok(Object.keys(CIELO_UI).length > 200, 'CIELO_UI se lee de modulos/cielo.js', Object.keys(CIELO_UI).length + ' filas');
-  ok(Object.keys(CASCARA).length === 7, 'las siete filas del boton y del «cargando» estan en index.html', Object.keys(CASCARA).join(', '));
+  /* (10-11-2026) la octava: el rotulo del boton de la visita guiada, que va en el armazon del panel */
+  ok(Object.keys(CASCARA).length === 8 && CASCARA.cieloTourBtn, 'las ocho filas del armazon (el boton, el «cargando» y el boton de la visita guiada) estan en index.html', Object.keys(CASCARA).join(', '));
   const HAN = /[㐀-鿿]/, CIR = /[Ѐ-ӿ]/;
   const marcas = s => (s.match(/\{[a-z]+\}/g) || []).sort().join(',');
   const mal = [];
@@ -378,7 +381,9 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(index, '"' + k +
   for (const n of TABLAS) for (const [k, f] of Object.entries(T[n])) revisar(n + '.' + k, f);
   const nFilas = Object.keys(CIELO_UI).length + Object.keys(CASCARA).length + 2 + TABLAS.reduce((a, n) => a + Object.keys(T[n]).length, 0);
   ok(!mal.length, nFilas + ' filas: diez idiomas, {marcadores} por forma de plural, alfabeto de cada uno', mal.slice(0, 8).join(' · ') + (mal.length > 8 ? ' · y ' + (mal.length - 8) + ' mas' : ''));
-  ok(tour.tourCieloT && tour.tourCieloP && /\{ sel: '#cielo-btn',[^}]*k: 'tourCielo'/.test(index), 'el tour tiene su paso (#cielo-btn) y sus dos filas');
+  ok(tour.tourCieloT && tour.tourCieloP && /\{ sel: '#cielo-btn',[^}]*k: 'tourCielo'/.test(guiaSrc), 'el tour tiene su paso (#cielo-btn) y sus dos filas');
+  ok(/id="cielo-tour-btn"/.test(index) && /TOURS\.cielo = \{/.test(guiaSrc) && /data-guia', 'planetas'/.test(modulo) && /data-guia', 'sitios'/.test(modulo),
+     'el panel tiene su propio tour: el boton de Jérôme (#cielo-tour-btn), TOURS.cielo y las dos tarjetas que señala (data-guia)');
   /* El calendario y los avisos dicen lo que hacen (22-10-2026). El .ics de un
      paso avisa media hora antes y el de lo demas, el dia antes: la nota de
      cada uno y la de «Mis avisos» tienen que decir eso. Y ninguna que
@@ -996,8 +1001,11 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
   const descEs = id => (index.match(new RegExp('\\{ id:"' + id + '",[^\\n]*\\n(?:\\s*(?:reserva|estado|fuente|verificado):[^\\n]*\\n)*\\s*desc:\\{ es:"((?:[^"\\\\]|\\\\.)*)" \\}')) || [, ''])[1];
   const MAL_ES = /Permiso gratuito|~\s?14\s?€|No requiere permiso|astroturismo nocturno|Mejor observatorio solar|Sendero 10 \(TF-6\)|mucho agua/;
   const malT = FT.filter(id => !descEs(id) || MAL_ES.test(descEs(id)) || (id !== 'observatorio' && !/Tenerife ON/.test(descEs(id))));
-  ok(!malT.length && /de noche no se visita/.test(descEs('observatorio')) && /desde 42 € no residente y desde 10,50 € residente/.test(descEs('mir-rambleta-teide')),
-     'las seis fichas del Teide, en castellano: la autorizacion en Tenerife ON (no «permiso gratuito»), el teleferico desde 42 € y desde 10,50 € (no «~14 €»; volcanoteide.com: «Price FROM»), Pico Viejo con reserva y el Observatorio de dia', malT.join(', '));
+  /* El teleferico, con los precios de volcanoteide.com (teleferico_del_teide/tarifas_y_horarios,
+     leida el 5 de noviembre de 2026: subida y bajada, «Precio DESDE», adulto no residente 43,00 €,
+     adulto residente 10,75 €). Hasta ese dia la ficha decia 42 € y 10,50 €, octubre de 2026. */
+  ok(!malT.length && /de noche no se visita/.test(descEs('observatorio')) && /desde 43,00 € no residente y desde 10,75 € residente; precios de volcanoteide\.com, noviembre de 2026/.test(descEs('mir-rambleta-teide')),
+     'las seis fichas del Teide, en castellano: la autorizacion en Tenerife ON (no «permiso gratuito»), el teleferico desde 43,00 € y desde 10,75 € (noviembre de 2026; no «~14 €»; volcanoteide.com: «Precio DESDE»), Pico Viejo con reserva y el Observatorio de dia', malT.join(', '));
   const MAL_OTRO = /~\s?14\s?€|€\s?14\b|14\s?€\s|14 ?欧元|14 ?歐元|TF-6/;
   const malTi = [];
   for (const l of IDI.filter(l => l !== 'es')) {
@@ -1005,6 +1013,11 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
     for (const id of FT) { const t = (J[id] || {}).desc || ''; if (!t || MAL_OTRO.test(t) || (id !== 'observatorio' && !/Tenerife ON/.test(t)) || (id === 'observatorio' && !/volcanoteide\.com/.test(t))) malTi.push(l + '.' + id); }
   }
   ok(!malTi.length, 'y en los otros nueve idiomas (idiomas/<l>.json): Tenerife ON, sin el teleferico a 14 € ni el «TF-6»', malTi.join(', '));
+  const malTel = IDI.filter(l => l !== 'es').filter(l => {
+    const t = (JSON.parse(lee('idiomas/' + l + '.json'))['mir-rambleta-teide'] || {}).desc || '';
+    return !/43[.,]00/.test(t) || !/10[.,]75/.test(t) || /(^|[^\d.,])42([^\d]|$)|10[.,]50/.test(t) || !/volcanoteide\.com/.test(t);
+  });
+  ok(!malTel.length, 'el teleferico en los otros nueve idiomas: desde 43,00 € y desde 10,75 €, sin los 42 € ni los 10,50 € de octubre', malTel.join(', '));
   /* 24 de octubre de 2026 (AUDITORIA-FINAL.md, noveno bloque): lo que las fuentes cambiaron en
      estas fichas y en la de Las Narices. Las siete islas no se ven a la vez (Volcano Teide nombra
      cuatro, y las del oeste, desde el mirador de Pico Viejo, PNT 12); el crater de Pico Viejo esta
@@ -1026,7 +1039,7 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
     if (!/3[., ]?100/.test(t['ruta-pico-viejo']) || !/800/.test(t['ruta-pico-viejo']) || !/3[., ]?100/.test(t['mir-narices-teide'])) mal24.push(l + ' sin el crater a unos 3.100 m');
   }
   ok(!mal24.length && /name:"Sendero del Sanatorio \(PNT 16\)", emoji:"[^"]*", color:"#6d4c41", lat:28\.253674, lng:-16\.625022,/.test(index)
-     && !/zie je/.test(textos.nl['mir-narices-teide']) && /Ноздрите на Тейде · 2661 м/.test(lee('idiomas/bg.json')),
+     && !/zie je/.test(textos.nl['mir-narices-teide']) && /Ноздрите на Тейде · TF-38/.test(lee('idiomas/bg.json')),
      'las fichas del Teide en los diez idiomas, con lo que dicen las fuentes del 24 de octubre: cuatro islas a la vista y no siete, el crater de Pico Viejo a unos 3.100 m, la reserva del PNT 07 y el Sanatorio, que es el PNT 16, con la salida de su mapa',
      mal24.slice(0, 8).join(' · '));
   /* las lluvias con la Luna arriba parte de la noche */
@@ -1630,7 +1643,8 @@ async function apunta(b) {
   pide('Betelgeuse', f.bet, 'Brilla como unos ' + num(dos(bet.lum), 0) + ' soles', mal);
   pide('Betelgeuse', f.bet, 'Su brillo varía entre mag. ' + num(bet.vr[1], 1) + ' y ' + num(bet.vr[2], 1), mal);
   pide('Betelgeuse', f.bet, 'Altura máxima desde Tenerife: ' + num(bet.alt, 0) + '°', mal);
-  pide('Betelgeuse', f.bet, 'Esta noche', mal); pide('Betelgeuse', f.bet, 'sale a las ', mal); pide('Betelgeuse', f.bet, 'se pone a las ', mal);
+  // «a la» vale para «a las 21:10» y para la una, «a la 01:10» (12-11-2026)
+  pide('Betelgeuse', f.bet, 'Esta noche', mal); pide('Betelgeuse', f.bet, 'sale a la', mal); pide('Betelgeuse', f.bet, 'se pone a la', mal);
   pide('Sirio', f.sir, 'Está a ' + num(sir.al, 1) + ' años luz: la luz que ve salió de ella en ' + (f.anio - Math.round(sir.al)), mal);
   pide('Sirio', f.sir, 'Brilla como unos ' + num(dos(sir.lum), 0) + ' soles', mal);
   pide('Sirio', f.sir, 'Clase: enana, como el Sol', mal);
@@ -1653,6 +1667,34 @@ async function apunta(b) {
   const roto = [f.bet, f.sir, f.luna, f.sol, f.jup, f.m42, f.ori, f.carta7].join('\n').match(/undefined|NaN|\[object|\{[a-z]+\}/g);
   if (roto) mal.push('texto roto: ' + roto.join(', '));
   ok(!mal.length, 'la ficha dice lo que dan el catalogo y el motor: Betelgeuse, Sirio, la Luna, el Sol, Jupiter y sus lunas, M42, Orion y una estrella de la carta (7 Cet)', mal.slice(0, 6).join(' · '));
+  /* La una (12-11-2026): en castellano y en italiano, con la una el artículo va en singular («Sale a la 01:10»,
+     «Sorge all’01:10»; tx, txLaUna). Todas las filas de UI_TX, ya con las del cielo, con la una en cada marca de hora
+     (y un 2 en {n}, que elige el plural): ninguna deja «las 01:10» ni «alle», «dalle» o «le 01:10»; y las demás
+     horas siguen con su «a las» y su «alle». */
+  const una = await p.evaluate(() => {
+    const antes = currentLang, mal = [];
+    let n = 0, bien = [];
+    try {
+      for (const l of ['es', 'it']) {
+        currentLang = l;
+        for (const k of Object.keys(UI_TX)) {
+          const s0 = UI_TX[k] && UI_TX[k][l];
+          if (typeof s0 !== 'string' || !/\{[A-Za-z0-9_]+\}/.test(s0)) continue;
+          const v = {};
+          for (const m of s0.match(/\{[A-Za-z0-9_]+\}/g)) v[m.slice(1, -1)] = m === '{n}' ? 2 : '01:10';
+          const s = tx(k, v); n++;
+          if (l === 'es' ? /(^|\s)[Ll]as 01:10/.test(s) : /(^|\s)([Aa]|[Dd]a|[Ss]u|[Dd]e|[Nn]e)lle 01:10|(^|\s)[Ll]e 01:10/.test(s)) mal.push(l + ' ' + k + ': «' + s.slice(0, 90) + '»');
+        }
+      }
+      currentLang = 'es'; bien.push(tx('cieloLunaSale', { h: '01:10' }), tx('cieloLunaSale', { h: '11:10' }));
+      currentLang = 'it'; bien.push(tx('cieloLunaSale', { h: '01:10' }), tx('cieloLunaSale', { h: '11:10' }), tx('cieloVisibleDeA', { a: '23:40', b: '01:10' }));
+    } finally { currentLang = antes; }
+    return { n, mal, bien };
+  });
+  // las del cielo son unas 180 por idioma: con menos de 350, es que no se leyeron
+  ok(!una.mal.length && una.n > 350 && JSON.stringify(una.bien) === JSON.stringify(['Sale a la 01:10', 'Sale a las 11:10', 'Sorge all’01:10', 'Sorge alle 11:10', 'Visibile dalle 23:40 all’01:10']),
+     'la una, en castellano y en italiano: «Sale a la 01:10», «Sorge all’01:10» (y «a las 11:10», «alle 11:10»), en las ' + una.n + ' filas con marcas de la app y del cielo',
+     JSON.stringify({ mal: una.mal.slice(0, 6), bien: una.bien, n: una.n }));
   /* en los diez idiomas: sin texto roto, y los mismos datos (mismo numero de lineas) */
   const porIdioma = await p.evaluate(IDI => {
     const D = TG_CIELO.estado.datos, t = new Date('2026-12-13T22:00:00Z'), out = {};
@@ -2214,12 +2256,17 @@ async function satelites(b) {
     if (x.crepFin && !(x.altFin >= 10 && Math.abs(x.solObsFin + 6) < 0.1)) malPaso.push(q + ': «se pierde en el amanecer» sin el Sol a −6° (' + x.solObsFin.toFixed(2) + ')');
     if (x.desdeSombra && !(x.altIni >= 10 && x.solIni)) malPaso.push(q + ': sale de la sombra pero no esta al Sol y arriba');
     if (x.aSombra && !(x.altFin >= 10 && x.solFin)) malPaso.push(q + ': entra en la sombra pero no esta al Sol y arriba');
+    /* y al Sol en la aparicion y en la desaparicion de todos, tambien de los que
+       aparecen o se pierden a 10 grados: entre la ultima muestra y los 10 grados
+       puede entrar en la sombra (Hubble, 6-11-2026: en la umbra desde las
+       19:33:17, y se daba hasta las 19:33:27, a 10 grados) */
+    if (!(x.solIni && x.solFin)) malPaso.push(q + ': en la aparicion o en la desaparicion no esta al Sol');
     if (!(x.solMax && x.sombraMax < 1)) malPaso.push(q + ': en el maximo no esta al Sol');
     if (!(x.solObsIni < -5.95 && x.solObsFin < -5.95 && x.solObsMax < -6)) malPaso.push(q + ': el Sol del observador no esta bajo −6°');
     if (i && x.max < r.pasos[i - 1].max) malPaso.push(q + ': desordenado');
     if (x.fin < r.ahora - 3600000) malPaso.push(q + ': ya pasado');
   });
-  ok(!malPaso.length, 'cada paso cumple la regla: aparece y se pierde a 10° (o en la sombra de la Tierra), el maximo es el mas alto, el satelite al Sol y el Sol del Teide bajo −6°, en orden y por venir', malPaso.slice(0, 4).join(' · '));
+  ok(!malPaso.length, 'cada paso cumple la regla: aparece y se pierde a 10° (o en la sombra de la Tierra), el maximo es el mas alto, el satelite al Sol en la aparicion, el maximo y la desaparicion, y el Sol del Teide bajo −6°, en orden y por venir', malPaso.slice(0, 4).join(' · '));
   /* la lista entera, recalculada aparte */
   const cruce = pasosAparte(T0, r.pasos);
   ok(!cruce.mal.length, 'recalculados aqui aparte (GMST y Sol de Astronomy Engine, ECEF y acimut/altura a mano, umbra cilindrica): los mismos ' + r.pasos.length + ' pasos a ±10 s y ±1,5° en el maximo (' + cruce.n + ' de los de aqui con mas de un minuto, todos en la app); acimut y altura en cada maximo a ' + cruce.peor.toFixed(3) + '°', cruce.mal.slice(0, 4).join(' · '));
@@ -2302,7 +2349,9 @@ async function satelites(b) {
     for (const k of ['iss', 'tiangong', 'hubble']) {
       const f = carta.fichas[k], pr = carta.proximos[k];
       if (!f.includes(nom[k]) || !/Satélite artificial/.test(f) || !/A \d[\d.]* km de altura, a \d,\d km\/s/.test(f) || !/Elementos orbitales del/.test(f) || /undefined|NaN|\{/.test(f)) malF.push(k + ': ' + f.slice(0, 120));
-      if (pr ? !(f.includes('Próximo paso visible') && f.includes('aparece a las ' + hora(pr.h)) && f.includes('sube hasta ' + pr.alt + '°')) : !/Sin pasos visibles/.test(f)) malF.push(k + ' proximo paso: ' + f.slice(0, 200));
+      // a la una, «aparece a la 01:10» (12-11-2026)
+      const aLas = h => (/^01:/.test(h) ? 'a la ' : 'a las ') + h;
+      if (pr ? !(f.includes('Próximo paso visible') && f.includes('aparece ' + aLas(hora(pr.h))) && f.includes('sube hasta ' + pr.alt + '°')) : !/Sin pasos visibles/.test(f)) malF.push(k + ' proximo paso: ' + f.slice(0, 200));
     }
     ok(!malF.length, 'la ficha de cada uno: nombre, «Satélite artificial», altura y velocidad, el proximo paso visible (o que no hay en siete noches) y la fecha de los elementos', malF.join(' | '));
     /* el .ics y el aviso del primer paso */
@@ -2376,6 +2425,23 @@ async function satelites(b) {
     if (!/TRIGGER:-PT30M/.test(t.ics)) malIdi.push(L + ': .ics sin la alarma de media hora');
   }
   ok(!malIdi.length, 'en los ' + IDI.length + ' idiomas: tarjeta, calendario, fichas y .ics sin texto roto, sin palabras repetidas (el rumbo lleva ya su preposicion) y cada uno en su idioma', malIdi.slice(0, 4).join(' · '));
+  /* «Esta noche» sigue al reloj (11-11-2026): el panel abierto una noche y vuelto a abrir al dia siguiente enseña la
+     noche de ese dia (hasta entonces se quedaba con la de ayer); una noche elegida con ‹ › o 📅 se respeta, y «Hoy»
+     la deja otra vez siguiendo al reloj. 20:00 UTC es la misma fecha en Canarias en invierno y en verano. */
+  const diaA = (n, h) => new Date(Date.UTC(T0.getUTCFullYear(), T0.getUTCMonth(), T0.getUTCDate() + n, h, 0, 0));
+  const fl = d => d.toISOString().slice(0, 10), elegida = fl(diaA(6, 20)), sig = {};
+  await p.clock.setFixedTime(diaA(0, 20));
+  sig.a = await p.evaluate(async () => { const S = TG_CIELO.estado; TG_CIELO.cerrar(); S.fecha = null; S.fechaElegida = false; await TG_CIELO.ver('noche'); return S.fecha; });
+  await p.clock.setFixedTime(diaA(1, 20));
+  sig.b = await p.evaluate(async () => { TG_CIELO.cerrar(); await TG_CIELO.ver('noche'); return TG_CIELO.estado.fecha; });
+  sig.eligio = await p.evaluate(f => { TG_CIELO.cambiarFecha(f); TG_CIELO.cerrar(); return TG_CIELO.estado.fechaElegida; }, elegida);
+  await p.clock.setFixedTime(diaA(2, 20));
+  sig.c = await p.evaluate(async () => { await TG_CIELO.ver('noche'); return TG_CIELO.estado.fecha; });
+  sig.hoy = await p.evaluate(f => { TG_CIELO.cambiarFecha(f); TG_CIELO.cerrar(); return TG_CIELO.estado.fechaElegida; }, fl(diaA(2, 20)));
+  await p.clock.setFixedTime(diaA(3, 20));
+  sig.d = await p.evaluate(async () => { await TG_CIELO.ver('noche'); return TG_CIELO.estado.fecha; });
+  ok(sig.a === fl(diaA(0, 20)) && sig.b === fl(diaA(1, 20)) && sig.eligio === true && sig.c === elegida && sig.hoy === false && sig.d === fl(diaA(3, 20)),
+     '«Esta noche» sigue al reloj: el panel vuelto a abrir al dia siguiente enseña la noche de ese dia; una noche elegida con ‹ › o 📅 se respeta, y «Hoy» la deja otra vez siguiendo al reloj', JSON.stringify(sig));
   ok(!err.filter(e => !/Failed to fetch|NetworkError|ERR_/i.test(e)).length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
   await ctx.close();
 }
@@ -3106,7 +3172,7 @@ async function vozAlta(b) {
   ok(r.antes.tg === 'object' && r.antes.dentro && r.antes.estado === 'parado' && /^🔊 Leer en voz alta Lo leen las voces instaladas en el dispositivo, sin red: así puede mirar al cielo y no a la pantalla\. Tras cada parada hay 30 segundos para buscarla/.test(r.antes.caja),
      'la tarjeta «Su noche guiada» lleva el boton «Leer en voz alta» y la nota (las voces del dispositivo, sin red, 30 segundos por parada)', r.antes.caja);
   const intro = r.dichos[0] || {};
-  ok(r.alTocar.dichos === 1 && intro.text === 'Noche guiada: ' + N + ' paradas, de lo más fácil a lo más fino. Hora de referencia: ' + r.tarjeta.ref + '. Tras cada una, una pausa para buscarla en el cielo.'
+  ok(r.alTocar.dichos === 1 && intro.text === 'Noche guiada: ' + N + ' paradas, de la más fácil de ver a la más difícil. Hora de referencia: ' + r.tarjeta.ref + '. Tras cada una, una pausa para buscarla en el cielo.'
      && intro.lang === 'es-ES' && intro.voz === 'Mónica' && intro.rate === 0.95,
      'al tocar, en el acto: «Noche guiada: ' + N + ' paradas… Hora de referencia: ' + r.tarjeta.ref + '…», en es-ES con la voz del dispositivo (Mónica) y no con la de red que va antes en la lista', JSON.stringify(intro));
   /* cada parada dice lo que pone la tarjeta, en orden */

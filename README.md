@@ -14,16 +14,19 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 979 lugares (980 hasta el 31 de octubre, cuando se quitó una bodega cerrada). Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS con sus robots encendidos: 35.785 líneas, 2,5 MB (763 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 980 lugares (979 entre el 31 de octubre, cuando se quitó una bodega cerrada, y el 8 de noviembre, cuando entró la etapa 2 del GR-131). Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS con sus robots encendidos: 35.785 líneas, 2,5 MB (763 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
-| `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre y, en tres pestañas, Viaje (el avatar y su isla con los logros), Cuerpo (la tarjeta de «Su cuerpo», los datos con el IMC y la evolución del peso y de los kilómetros que anota la persona) y Cuenta (con la nube solo con permiso). Su código, sus estilos y sus textos en los diez idiomas. Se pide la primera vez que alguien toca «Cuenta». |
+| `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre y, en tres pestañas, Viaje (el avatar y su isla con los logros), Cuerpo (la tarjeta que abre «Su cuerpo», con su personaje en pequeño; los datos con el IMC y la evolución del peso y de los kilómetros que anota la persona) y Cuenta (con la nube solo con permiso). Su código, sus estilos y sus textos en los diez idiomas. Se pide la primera vez que alguien toca «Cuenta». |
 | `modulos/avatares.js` | Los 235 avatares del perfil, dibujos SVG propios en 47 sets de cinco: uno por cada idioma de la app, el de Tenerife, que se abre con 10 visitas comprobadas, y uno por cada uno de 36 países de Europa. Y 49 de oro, uno por set y tres en Tenerife, que solo se cogen el día de su fiesta (la fecha la calcula el móvil, sin red) y se quedan. Todos se mueven un segundo al tocarlos. Se pide al abrir el perfil, o al arrancar si ya hay uno elegido, para el botón de la cuenta. |
-| `modulos/cuerpo.js` | La pantalla «Su cuerpo», que se abre desde la pestaña Cuerpo del perfil y va encima de él: un personaje en SVG propio, de frente y de espaldas a la vez, con el aspecto que elige cada persona; unos 35 músculos en 12 grupos, que se iluminan en oro con las series anotadas en los últimos 7 días; la semana, día a día; los 12 grupos en barras, con la marca de las 10 series por semana del ACSM para los adultos; y la biblioteca de 533 ejercicios, con sus pasos y sus fuentes. Lo anotado se queda en el dispositivo. Su código, sus estilos y sus textos en los diez idiomas; lo hace el `construir.py` de su entrega. Se pide al abrirlo. |
-| `datos/ejercicios.json`, `datos/ejercicios-<idioma>.json` | Los 533 ejercicios de «Su cuerpo»: sus grupos, su material, su nivel y sus fuentes, y su nombre y sus pasos en cada idioma. Se piden al abrir la biblioteca, el común y el del idioma, y el service worker los guarda al usarlos. |
+| `modulos/cuerpo.js` | «Su cuerpo», a pantalla completa encima del perfil, con su flecha de vuelta: arriba, la escena (el cielo que pasa del alba al día según se cumple la semana, un sol con un rayo por cada día activo (con series o con movimiento), el Teide, el mar de nubes y Las Cañadas con sus tajinastes; en dos temas, Día y Noche, que se eligen en la propia pantalla) y, dentro de ella, un personaje grande, en 3D si el navegador tiene WebGL 2 (`modulos/cuerpo3d.js`) y, si no o mientras llega, en SVG propio, con el aspecto que elige cada persona y «Girar» para verlo de espaldas; unos 35 músculos en 12 grupos, que se iluminan en rosa, naranja y amarillo con las series anotadas en los últimos 7 días, sobre un maniquí que lleva la cabeza de la persona: un toque en un músculo abre su hoja, y «+ 1 serie» anota una; las tres metas de la semana (los días con fuerza, los minutos de movimiento y los grupos trabajados, con las cifras de la OMS para adultos y de 5 a 17 años), la semana día a día y «Anotar movimiento», catorce deportes, cada uno con sus datos (los minutos y la intensidad, moderada o intensa, que para la meta de un adulto cuenta por dos, como dice la OMS; la distancia, en kilómetros o, a nado, en metros; el desnivel en el monte y corriendo), con la semana por deporte (las veces, el tiempo, la distancia, el ritmo o la velocidad, el desnivel y, tras bucear, lo que aconseja la DAN antes de volar); «Hoy en la isla», el tiempo de una de seis zonas de la isla que elige la persona (Open-Meteo: el índice UV con su categoría de la OMS, la temperatura, el mar, el viento, la lluvia o la nieve), los avisos de AEMET vigentes que la tocan y el consejo del día (lo que le falta a la semana y, desde un UV de 3, las horas de sombra alrededor del mediodía solar, calculadas para la zona); «Cruce la isla», el GR 131 de La Esperanza a Arona (85,55 km) con los kilómetros anotados a pie y, si la persona lo elige, en bici (por el agua la isla se rodea, no se cruza: el nado y el kayak suman a la semana, no a la travesía), sobre el mapa de la isla con su relieve y su suelo (`datos/cuerpo/isla-relieve-dia.webp` y `-noche.webp`, que pinta `tools/cuerpo_isla_relieve.py` con el relieve del 3D y la capa landuse del mapa OSM), las seis paradas en su sitio y una curva entre ellas (si llega el trazado oficial, `datos/cuerpo/gr131-trazado.json`, se dibuja ese), y un compañero que avanza con los kilómetros (a pie, senderista, presa canario o lagarto tizón; en bici, de carretera, de montaña o eléctrica), según lo último anotado; «Senderos de la isla», los senderos de la guía (las fichas de senderismo) por zonas, para marcar los que se hacen hasta el 100 %, con un punto por sendero en el mapa; los 12 grupos en una rejilla; «Sus sellos», once sellos que se consiguen una vez y se quedan con su fecha (el primer paso, los días de fuerza y los minutos de la semana, el sol entero, los 12 grupos, 10 km de travesía y las cinco paradas del GR 131), con una tarjeta que celebra cada uno; «Su postal», una imagen de la semana (la escena, el personaje y las tres cifras) para guardarla en el carrete o compartirla desde el móvil; «Las cifras», con la recomendación de su edad, la referencia de las 10 series por semana del ACSM para los adultos y las fuentes; la biblioteca de 533 ejercicios, con sus pasos y sus fuentes; «Su deporte», el entreno según el deporte que practica cada persona (ocho deportes y «Otro deporte»); «Comida», un diario por raciones, como las cuenta la AESAN, apagado hasta que la persona lo enciende; y «Preguntar», un asistente que responde sin conexión con 178 respuestas escritas de antemano, cada una con sus fuentes. Lo anotado se queda en el dispositivo. Su código, sus estilos y sus textos en los diez idiomas; lo hace el `construir.py` de su entrega. Lo abre la tarjeta de la pestaña Cuerpo del perfil (que lo pide al enseñarse, para dibujar el personaje en pequeño); si no llega, la tarjeta lo dice al tocar «Abrir». |
+| `modulos/cuerpo3d.js` | El personaje de «Su cuerpo» en 3D: un motor propio sobre WebGL 2, sin bibliotecas, que dibuja un cuerpo de MakeHuman (CC0) con su pelo, su ropa, su calzado, sus gafas, su audífono y su prótesis, y encima el mapa de los 35 músculos; respira, parpadea y sonríe al anotar una serie, y se gira con el dedo. Lo pide `modulos/cuerpo.js` al abrir «Su cuerpo», si el navegador tiene WebGL 2 (el iPhone, desde iOS 15); si no, o mientras llega, queda el dibujo en SVG. Todo se calcula en el dispositivo. 30 kB comprimidos. |
+| `datos/cuerpo3d/` | Los datos del personaje en 3D: los seis cuerpos (silueta × complexión), los seis peinados, las zapatillas, los ojos, las cejas y las pestañas, las texturas, el mapa de músculos y los gestos, en 71 ficheros sueltos (2,6 MB en total) con la huella de su contenido en el nombre, y `indice.json`, que los nombra. La pantalla pide solo los del aspecto elegido (unos 0,8 MB) y, al entrar en «Aspecto», el resto; el service worker los guarda al usarlos. Los hace `tools/cuerpo3d/construir3d.py` con los datos de MakeHuman (CC0; `tools/cuerpo3d/LEEME.md` dice de dónde sale cada pieza) y los empaqueta `tools/cuerpo3d/empaqueta3d.py`. |
+| `datos/cuerpo/` | Los datos de «Su cuerpo»: los 958 ejercicios (`ejercicios.json`, con sus grupos, su material, su nivel y sus fuentes, y `ejercicios-<idioma>.json`, con su nombre y sus pasos), las 178 respuestas del asistente (`asistente-<idioma>.json`) y las guías de los deportes (`deportes-<idioma>.json`), uno por idioma; y, en un fichero cada uno, con sus textos en los diez idiomas, las 68 sesiones de «¿Qué entreno hoy?» (`rutinas.json`) y las 26 listas de estiramientos (`estiramientos.json`). La pantalla pide solo los de su idioma, al abrir la biblioteca o la hoja de un grupo, «Preguntar» o un deporte; las rutinas, al elegir el sitio y el nivel en «¿Qué entreno hoy?», y los estiramientos, al elegirlos. El service worker los guarda al usarlos. |
 | `modulos/emergencias.js` | El panel «Emergencias» del botón SOS: qué hacer ante una erupción, un terremoto u otra emergencia en Tenerife y a quién llamar, con sus fuentes oficiales y sus textos en los diez idiomas. Se pide al abrirlo y el service worker lo guarda desde el primer día; la barra del 112 está en `index.html` y llama aunque el módulo no llegue. |
 | `modulos/isla3d.js` | «La isla en 3D», el botón «3D» del mapa: el relieve de verdad de la isla con el mapa encima, los nombres, la luz del sol de ahora con sus sombras (o la luna) y los gestos, en WebGL a mano y sin bibliotecas, con sus textos en los diez idiomas. Se pide al tocar el botón y el service worker lo guarda con el relieve, para que abra sin conexión. |
-| `mapa/tenerife-relieve*.png` y `.json` | El relieve de «La isla en 3D»: una celda de 60 m del MDT05 del IGN (el terreno de los vuelos LiDAR, 5 m) o, si ese no sale, del Copernicus DEM GLO-30 (ESA / Unión Europea), con la costa del mapa detallado. Lo hace `tools/relieve_construir.py` desde el workflow «Generar relieve 3D»; mientras no exista, el botón no sale. Qué es cada fichero, la licencia y cómo se rehace: `mapa/RELIEVE.md`. |
+| `modulos/guia.js` | Jérôme, el presentador de los tours: un dibujo SVG propio con el aspecto de Jerome, articulado (gira la cabeza, mira, parpadea, mueve la boca con lo que dice, saluda y señala con el brazo el botón que explica) y con sus atuendos; el motor de tours (el foco sobre la interfaz de verdad, el bocadillo, la voz opcional con las voces del móvil) y los tres tours, el de la app por capítulos, el del panel del cielo y el de «Su cuerpo», con sus textos en los diez idiomas. Se pide al ofrecer el tour a quien no lo ha visto, al tocar «Ver el tour» en la leyenda o el botón de Jérôme del panel del cielo o de «Su cuerpo», y la primera vez que se abre uno de los dos (para ofrecerse desde su botón); el service worker lo guarda desde el primer día. |
+| `mapa/tenerife-relieve*.png` y `.json` | El relieve de «La isla en 3D»: una celda de 60 m del MDT05 del IGN (el terreno de los vuelos LiDAR, 5 m) o, si ese no sale, del Copernicus DEM GLO-30 (ESA / Unión Europea), con la costa del mapa detallado. Lo hace `tools/relieve_construir.py` desde el workflow «Generar relieve 3D»; mientras no exista, el botón no sale. El de ahora, del 1 de noviembre de 2026, sale del Copernicus DEM: la API del IGN solo da trozos de 0,01° y no dio tiempo a bajar la isla entera (`AUDITORIA-FINAL.md`). Qué es cada fichero, la licencia y cómo se rehace: `mapa/RELIEVE.md`. |
 | `datos/cielo.json` | El catálogo del cielo: estrellas, constelaciones, cielo profundo, dobles, variables y lluvias de estrellas, solo números y designaciones. Lo hace `tools/cielo_construir.js`. |
 | `datos/satelites.json` | Los elementos orbitales (TLE) de la Estación Espacial Internacional, de Tiangong y del Hubble, de CelesTrak, con su época. Los renueva el robot `tools/satelites_traer.py` dos veces al día; el panel calcula con ellos los pasos visibles. |
 | `datos/planetas.json` | Las cifras de la NASA (NSSDCA) de los ocho planetas, la Luna y el Sol —diámetro, día, año sideral, lunas, temperatura, gravedad, anillos, masa, densidad—, con la fecha de cada tabla. El panel del cielo lleva una copia (`CIELO_PLANETAS`) para la ficha del planeta y las curiosidades. |
@@ -42,7 +45,7 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 
 Es un monolito a propósito, no un proyecto a medio modularizar. No hay
 build, ni dependencias que instalar, ni paso de compilación: se sirve
-`index.html` y funciona. Las piezas aparte son seis. La red de guaguas, que son
+`index.html` y funciona. Las piezas aparte son ocho. La red de guaguas, que son
 datos y no código: 1 MB que solo se usa con las guaguas y que dentro de la
 página había que leer y compilar en cada apertura. El panel del cielo
 (`modulos/cielo.js`, con su motor y su catálogo), que se pide solo cuando
@@ -52,11 +55,22 @@ sus avatares, `modulos/avatares.js`), que se pide la primera vez que alguien
 toca «Cuenta», por lo mismo. Y el panel de emergencias
 (`modulos/emergencias.js`, 236 kB comprimidos, con sus textos en los diez
 idiomas), que el service worker guarda desde el primer día para que abra sin
-conexión. Y «Su cuerpo» (`modulos/cuerpo.js`, 77 kB comprimidos, y sus
-ejercicios, el común y el de cada idioma, de 24 a 48 kB comprimidos cada uno),
-que se pide al abrirlo desde la pestaña Cuerpo del perfil. Y «La isla en 3D»
+conexión. Y «Su cuerpo» (`modulos/cuerpo.js`, 251 kB comprimidos, medido el
+14-11-2026), que se pide al abrir la pestaña Cuerpo del perfil, cuya tarjeta lo
+abre. Sus datos van aparte, en `datos/cuerpo/`, y cada fichero se pide al
+usarlo. Comprimidos (medido el 14-11-2026), los ejercicios pesan de 54 a 90 kB
+por fichero, las respuestas del asistente de 137 a 174 kB por idioma, los
+deportes de 10 a 12 kB, las rutinas 19 kB y los estiramientos 7 kB. Y el
+personaje de «Su cuerpo» en 3D
+(`modulos/cuerpo3d.js`, 30 kB comprimidos, y sus datos en `datos/cuerpo3d/`),
+que la pantalla pide al abrirse si el navegador tiene WebGL 2: el motor, el
+índice y solo las piezas del aspecto elegido, unos 0,8 MB de los 2,6 que hay.
+Y «La isla en 3D»
 (`modulos/isla3d.js`, con su relieve en `mapa/`), que se pide al tocar «3D» y
 que el service worker también guarda desde el primer día.
+Y Jérôme, el presentador de los tours (`modulos/guia.js`, con el motor, los tres
+tours y sus textos en los diez idiomas), que se pide al ofrecer el tour o al
+tocar «Ver el tour» y que el service worker guarda igual, desde el primer día.
 
 ### Probarlo en local
 
@@ -99,7 +113,7 @@ castellano. Cada uno es un objeto así:
 
 Reparto actual: 43 categorías en 11 pestañas de filtro. Las que más lugares
 tienen, contando solo la categoría principal de cada uno: gasolineras (211),
-playas (74), parkings (40), gastronomía (37), senderismo (37) y
+playas (74), parkings (40), senderismo (38), gastronomía (37) y
 supermercados (36). Todas estas cifras las coteja `tools/auditar_readme.js`
 contra los datos: si cambian y este fichero no, la auditoría se pone en rojo.
 
@@ -266,7 +280,9 @@ cada posición con los elementos keplerianos de la JPL
 **La luz roja** tiñe toda la pantalla (no solo el panel) y lleva un
 regulador de brillo, en el panel y en «Apunta al cielo»; la barra del
 sistema se pone en rojo oscuro; y si se abre el panel de noche con la luz
-blanca, una pista lo ofrece una vez. **Sin cobertura**, el panel sigue
+blanca, una pista lo ofrece una vez. Con la luz roja, en un móvil de menos
+de 390 px de ancho la cabecera va en dos renglones (el título y la ✕;
+debajo, Jérôme, «Luz roja» y el regulador). **Sin cobertura**, el panel sigue
 calculándolo todo: «Esta noche» dice qué falta sin red (las nubes y
 Wikipedia) y de cuándo son los elementos de los satélites, y «Dónde ir»
 comprueba antes de subir que los ficheros del panel están guardados en el
@@ -385,14 +401,87 @@ escribe a mano**: sale de su magnitud y de la altura máxima a la que llega
 desde Tenerife.
 
 **Los textos van en `modulos/cielo.js`** (`CIELO_UI` y las tablas `CIELO_*`),
-con la misma forma que `UI_TX`; solo las siete filas que hacen falta antes de
-cargarlo (el botón, el título, «cargando») están en `index.html`. Lo que dicen
+con la misma forma que `UI_TX`; solo las ocho filas que hacen falta antes de
+cargarlo (el botón, el título, «cargando» y el botón de la visita guiada) están
+en `index.html`. Lo que dicen
 de leyes, certificaciones y sitios lleva encima su fuente.
 `tools/auditar_cielo.js` comprueba los textos contra el código y el catálogo,
 abre las cinco pestañas en los diez idiomas, coteja los cálculos con el IMCCE,
 la IMO y otros, y abre el panel con el servidor apagado. Como el módulo no
 tiene etiqueta, se declara con un comentario `CARGA-PEREZOSA:` para que
 `tools/fuente.js` lo pegue al fuente y las herramientas de idiomas lo vean.
+
+### Los tours, con Jérôme de presentador
+
+Tres visitas guiadas, y las tres las hace **Jérôme**: un dibujo SVG propio con el
+aspecto de Jerome (`modulos/guia.js`, que no se pide al arrancar). Está
+articulado —gira la cabeza, mira, parpadea, respira, mueve la boca con lo que
+dice, saluda y señala con el brazo el botón que explica— y cambia de atuendo
+según el paso: gafas de sol para el tiempo y el mar, gorra y mochila para el
+mapa y las rutas, antifaz para las fiestas, gorro con frontal para el cielo,
+cinta en el pelo y toalla al cuello para «Su cuerpo».
+
+- **Las manos son manos.** La que señala es un índice: sale del lado del
+  pulgar, que se ve, y los otros tres dedos van doblados y marcados; nunca
+  pasa por delante de la cara. Un botón se señala con el índice; algo grande
+  (una tarjeta, un tramo de pantalla) se enseña con la mano abierta, de
+  presentador. La primera versión llevaba un dedo solo en el centro del puño
+  y parecía otro gesto: el control mira que no vuelva.
+- **Doce caras** (contento, risa, guiño, pícaro, asombro, ilusión, pensativo,
+  serio, cariño, apuro, frío y fiesta): cada paso lleva la suya. Los
+  párpados y las cejas se mueven por su cuenta, y con una exclamación
+  levanta las cejas.
+- **Algunos chistes**: dieciséis pasos acaban con un aparte de Jérôme, en
+  cursiva, que cuenta con otra cara («Aquí al autobús se le dice “guagua”.
+  Dígalo y ya parecerá de la isla»). Ninguno en los pasos serios: el mar,
+  las emergencias, la comida, lo que se guarda.
+
+- **El tour de la app**, por capítulos (el mapa, hoy en la isla, moverse, su
+  viaje y por si acaso). Se ofrece una vez al cerrar la bienvenida; quien vio
+  uno anterior lo ve ofrecido una vez, como novedades. Un botón que hoy no
+  existe (el 3D sin relieve, el «ⓘ» en la app de las tiendas) no se enseña.
+- **El tour del cielo**, por las pestañas del panel 🔭, con la luz roja
+  encendida un momento en su paso. No pregunta al abrir el panel: la primera
+  vez, el botón con la cara de Jérôme late y un globito lo dice, una sola vez.
+  De noche, la barra que ofrece la luz roja se aparta mientras dura la visita
+  y vuelve al acabar.
+- **El tour de «Su cuerpo»**, bajando por la pantalla: el personaje y sus
+  colores, el deporte, las metas de la semana, anotar movimiento, «Hoy en la
+  isla», «Cruce la isla» y su compañero, los senderos, los grupos, los
+  sellos, la postal, lo que se guarda (solo en el dispositivo) y, en la barra
+  de abajo, «Aspecto», «Comida», «Evolución» y «Preguntar». No anota nada, no
+  abre hojas y
+  no cambia de vista: entrar en «Aspecto» o en «Preguntar» pide sus datos a
+  la red, y eso no lo decide un tour. Se ofrece como el del cielo: el botón
+  con la cara de Jérôme, dentro de la escena (abajo a la izquierda, frente a
+  «Girar»), late la primera vez. Ese botón lo pone el cargador de
+  `index.html` cada vez que la pantalla se abre: `modulos/cuerpo.js` no se
+  toca. Escape cierra el tour y nada más; «atrás» cierra la pantalla y el
+  tour se va con ella.
+- **«Ver el tour»**, en la leyenda del mapa, abre el menú de visitas: la app
+  entera, un capítulo, el cielo o «Su cuerpo».
+- **La voz** es opcional (el altavoz del bocadillo): lee cada paso con las
+  voces instaladas en el móvil, las de la audioguía (`speechSynthesis`, solo
+  `localService`), y pasa sola al siguiente. No se guarda: cada tour empieza
+  callado.
+- Las cifras se cuentan, no se escriben (los lugares, los idiomas, las
+  costas, los pasos), y lo que se señala es la interfaz de verdad.
+- En un móvil pequeño, donde no cabe, el bocadillo se aprieta y Jérôme se queda
+  en miniatura; con el móvil tumbado, el bocadillo va al lado de lo que
+  señala; con «reducir movimiento» no se mueve nada.
+- Se guarda solo si ya se vio cada uno, o si el del cielo o el de «Su
+  cuerpo» ya se ofreció (`tenerife.tour.seen`, `tenerife.tour.cielo` y
+  `tenerife.tour.cuerpo`).
+
+`tools/auditar_tour.js` los recorre enteros en los diez idiomas y en cuatro
+tamaños de móvil, con la voz (una voz falsa que apunta lo que se lee), con
+movimiento, con el móvil lento (un cuadro cada 50 ms: los muelles de Jérôme no
+se desbocan) y sin el módulo. Antes de abrir el navegador mira que cada texto
+que el módulo pide exista, que cada frase que nombra «Su cuerpo» la llame
+como su pantalla, que lo que su tour señala siga estando en
+`modulos/cuerpo.js` con ese nombre, que los chistes sigan ahí (y no en los
+pasos serios), que cada cara que pide un paso exista y que la mano que
+señala siga siendo un índice.
 
 ### Emergencias (SOS)
 
@@ -516,7 +605,7 @@ recomendación inventada manda a alguien al agua.
 
 ## Supabase
 
-Diez tablas. El esquema y las políticas están en `supabase/`.
+Once tablas. El esquema y las políticas están en `supabase/`.
 
 | Tabla | Quién puede leer | Quién puede escribir |
 |---|---|---|
@@ -526,11 +615,13 @@ Diez tablas. El esquema y las políticas están en `supabase/`.
 | `favorites` | cada usuario los suyos | cada usuario los suyos |
 | `perfiles` | cada usuario el suyo | cada usuario el suyo; la fila es su permiso: la crea «Acepto» y retirarlo la borra (`perfil.sql`) |
 | `pesos`, `caminatas` | cada usuario los suyos | cada usuario los suyos, y solo con su fila de `perfiles`: caen con ella |
-| `push_subs` | **nadie desde el cliente** | alta mediante función |
+| `push_subs` | **nadie desde el cliente** | alta mediante función (`guardar_push_sub`) |
+| `push_sends` | **nadie desde el cliente** | solo el servidor (`enviar-notificacion.js`): un día, una fila, para no enviar dos veces |
 | `admins` | RLS activa sin políticas: nadie | nadie |
 
 «Admin» es la función `es_admin()`, que comprueba si el `auth.uid()`
-está en `admins`. Es `SECURITY DEFINER` con `search_path` fijo.
+está en `admins`. Es `SECURITY DEFINER` con `search_path` fijo, y solo la
+pueden ejecutar `authenticated` y `service_role`: sin sesión, no.
 
 **El panel de administración no es un control de seguridad.** Es una
 comodidad de interfaz; quien manda es la RLS del servidor. Si se añade

@@ -1,0 +1,5747 @@
+{
+ "_": "Rumano (ro) de las filas de idioma de modulos/cielo.js (CIELO_CON, CIELO_EST, CIELO_DOB, CIELO_CUERPO, CIELO_LLU, CIELO_TIPO, CIELO_OBJ, CIELO_DESC y CIELO_UI). Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. Las 88 curiosidades de las constelaciones van aparte, en idiomas/cielo/ro.json. No se edita a mano: sale de la entrega del bloque 2 del rumano.",
+ "idioma": "ro",
+ "fichero": "modulos/cielo.js",
+ "filas": [
+  {
+   "tabla": "CIELO_CON",
+   "clave": "And",
+   "es": "Andrómeda",
+   "forma": "texto",
+   "ro": "Andromeda"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Ant",
+   "es": "Máquina Neumática",
+   "forma": "texto",
+   "ro": "Mașina Pneumatică"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Aps",
+   "es": "Ave del Paraíso",
+   "forma": "texto",
+   "ro": "Pasărea Paradisului"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Aqr",
+   "es": "Acuario",
+   "forma": "texto",
+   "ro": "Vărsătorul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Aql",
+   "es": "Águila",
+   "forma": "texto",
+   "ro": "Vulturul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Ara",
+   "es": "Altar",
+   "forma": "texto",
+   "ro": "Altarul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Ari",
+   "es": "Aries",
+   "forma": "texto",
+   "ro": "Berbecul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Aur",
+   "es": "Cochero",
+   "forma": "texto",
+   "ro": "Vizitiul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Boo",
+   "es": "Boyero",
+   "forma": "texto",
+   "ro": "Boarul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cae",
+   "es": "Cincel",
+   "forma": "texto",
+   "ro": "Dalta"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cam",
+   "es": "Jirafa",
+   "forma": "texto",
+   "ro": "Girafa"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cnc",
+   "es": "Cáncer",
+   "forma": "texto",
+   "ro": "Racul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "CVn",
+   "es": "Perros de Caza",
+   "forma": "texto",
+   "ro": "Câinii de Vânătoare"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "CMa",
+   "es": "Can Mayor",
+   "forma": "texto",
+   "ro": "Câinele Mare"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "CMi",
+   "es": "Can Menor",
+   "forma": "texto",
+   "ro": "Câinele Mic"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cap",
+   "es": "Capricornio",
+   "forma": "texto",
+   "ro": "Capricornul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Car",
+   "es": "Quilla",
+   "forma": "texto",
+   "ro": "Carena"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cas",
+   "es": "Casiopea",
+   "forma": "texto",
+   "ro": "Cassiopeia"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cen",
+   "es": "Centauro",
+   "forma": "texto",
+   "ro": "Centaurul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cep",
+   "es": "Cefeo",
+   "forma": "texto",
+   "ro": "Cefeu"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cet",
+   "es": "Ballena",
+   "forma": "texto",
+   "ro": "Balena"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cha",
+   "es": "Camaleón",
+   "forma": "texto",
+   "ro": "Cameleonul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cir",
+   "es": "Compás",
+   "forma": "texto",
+   "ro": "Compasul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Col",
+   "es": "Paloma",
+   "forma": "texto",
+   "ro": "Porumbelul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Com",
+   "es": "Cabellera de Berenice",
+   "forma": "texto",
+   "ro": "Părul Berenicei"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "CrA",
+   "es": "Corona Austral",
+   "forma": "texto",
+   "ro": "Coroana Australă"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "CrB",
+   "es": "Corona Boreal",
+   "forma": "texto",
+   "ro": "Coroana Boreală"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Crv",
+   "es": "Cuervo",
+   "forma": "texto",
+   "ro": "Corbul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Crt",
+   "es": "Copa",
+   "forma": "texto",
+   "ro": "Cupa"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cru",
+   "es": "Cruz del Sur",
+   "forma": "texto",
+   "ro": "Crucea Sudului"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Cyg",
+   "es": "Cisne",
+   "forma": "texto",
+   "ro": "Lebăda"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Del",
+   "es": "Delfín",
+   "forma": "texto",
+   "ro": "Delfinul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Dor",
+   "es": "Dorado",
+   "forma": "texto",
+   "ro": "Peștele de Aur"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Dra",
+   "es": "Dragón",
+   "forma": "texto",
+   "ro": "Dragonul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Equ",
+   "es": "Caballito",
+   "forma": "texto",
+   "ro": "Calul Mic"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Eri",
+   "es": "Erídano",
+   "forma": "texto",
+   "ro": "Eridanul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "For",
+   "es": "Horno",
+   "forma": "texto",
+   "ro": "Cuptorul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Gem",
+   "es": "Géminis",
+   "forma": "texto",
+   "ro": "Gemenii"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Gru",
+   "es": "Grulla",
+   "forma": "texto",
+   "ro": "Cocorul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Her",
+   "es": "Hércules",
+   "forma": "texto",
+   "ro": "Hercule"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Hor",
+   "es": "Reloj",
+   "forma": "texto",
+   "ro": "Orologiul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Hya",
+   "es": "Hidra",
+   "forma": "texto",
+   "ro": "Hidra"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Hyi",
+   "es": "Hidra Macho",
+   "forma": "texto",
+   "ro": "Hidra Australă"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Ind",
+   "es": "Indio",
+   "forma": "texto",
+   "ro": "Indianul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Lac",
+   "es": "Lagarto",
+   "forma": "texto",
+   "ro": "Șopârla"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Leo",
+   "es": "Leo",
+   "forma": "texto",
+   "ro": "Leul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "LMi",
+   "es": "Leo Menor",
+   "forma": "texto",
+   "ro": "Leul Mic"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Lep",
+   "es": "Liebre",
+   "forma": "texto",
+   "ro": "Iepurele"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Lib",
+   "es": "Libra",
+   "forma": "texto",
+   "ro": "Balanța"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Lup",
+   "es": "Lobo",
+   "forma": "texto",
+   "ro": "Lupul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Lyn",
+   "es": "Lince",
+   "forma": "texto",
+   "ro": "Linxul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Lyr",
+   "es": "Lira",
+   "forma": "texto",
+   "ro": "Lira"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Men",
+   "es": "Mesa",
+   "forma": "texto",
+   "ro": "Platoul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Mic",
+   "es": "Microscopio",
+   "forma": "texto",
+   "ro": "Microscopul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Mon",
+   "es": "Unicornio",
+   "forma": "texto",
+   "ro": "Licornul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Mus",
+   "es": "Mosca",
+   "forma": "texto",
+   "ro": "Musca"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Nor",
+   "es": "Escuadra",
+   "forma": "texto",
+   "ro": "Echerul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Oct",
+   "es": "Octante",
+   "forma": "texto",
+   "ro": "Octantul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Oph",
+   "es": "Ofiuco",
+   "forma": "texto",
+   "ro": "Ofiucus"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Ori",
+   "es": "Orión",
+   "forma": "texto",
+   "ro": "Orion"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Pav",
+   "es": "Pavo",
+   "forma": "texto",
+   "ro": "Păunul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Peg",
+   "es": "Pegaso",
+   "forma": "texto",
+   "ro": "Pegas"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Per",
+   "es": "Perseo",
+   "forma": "texto",
+   "ro": "Perseu"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Phe",
+   "es": "Fénix",
+   "forma": "texto",
+   "ro": "Phoenix"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Pic",
+   "es": "Pintor",
+   "forma": "texto",
+   "ro": "Pictorul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Psc",
+   "es": "Piscis",
+   "forma": "texto",
+   "ro": "Peștii"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "PsA",
+   "es": "Pez Austral",
+   "forma": "texto",
+   "ro": "Peștele Austral"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Pup",
+   "es": "Popa",
+   "forma": "texto",
+   "ro": "Pupa"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Pyx",
+   "es": "Brújula",
+   "forma": "texto",
+   "ro": "Busola"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Ret",
+   "es": "Retículo",
+   "forma": "texto",
+   "ro": "Reticulul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Sge",
+   "es": "Flecha",
+   "forma": "texto",
+   "ro": "Săgeata"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Sgr",
+   "es": "Sagitario",
+   "forma": "texto",
+   "ro": "Săgetătorul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Sco",
+   "es": "Escorpio",
+   "forma": "texto",
+   "ro": "Scorpionul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Scl",
+   "es": "Escultor",
+   "forma": "texto",
+   "ro": "Sculptorul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Sct",
+   "es": "Escudo",
+   "forma": "texto",
+   "ro": "Scutul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Ser",
+   "es": "Serpiente",
+   "forma": "texto",
+   "ro": "Șarpele"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Sex",
+   "es": "Sextante",
+   "forma": "texto",
+   "ro": "Sextantul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Tau",
+   "es": "Tauro",
+   "forma": "texto",
+   "ro": "Taurul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Tel",
+   "es": "Telescopio",
+   "forma": "texto",
+   "ro": "Telescopul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Tri",
+   "es": "Triángulo",
+   "forma": "texto",
+   "ro": "Triunghiul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "TrA",
+   "es": "Triángulo Austral",
+   "forma": "texto",
+   "ro": "Triunghiul Austral"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Tuc",
+   "es": "Tucán",
+   "forma": "texto",
+   "ro": "Tucanul"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "UMa",
+   "es": "Osa Mayor",
+   "forma": "texto",
+   "ro": "Ursa Mare"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "UMi",
+   "es": "Osa Menor",
+   "forma": "texto",
+   "ro": "Ursa Mică"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Vel",
+   "es": "Vela",
+   "forma": "texto",
+   "ro": "Velele"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Vir",
+   "es": "Virgo",
+   "forma": "texto",
+   "ro": "Fecioara"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Vol",
+   "es": "Pez Volador",
+   "forma": "texto",
+   "ro": "Peștele Zburător"
+  },
+  {
+   "tabla": "CIELO_CON",
+   "clave": "Vul",
+   "es": "Zorra",
+   "forma": "texto",
+   "ro": "Vulpea"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "32349",
+   "es": "Sirio",
+   "forma": "texto",
+   "ro": "Sirius"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "30438",
+   "es": "Canopo",
+   "forma": "texto",
+   "ro": "Canopus"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "69673",
+   "es": "Arturo",
+   "forma": "texto",
+   "ro": "Arcturus"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "71683",
+   "es": "Alfa Centauri",
+   "forma": "texto",
+   "ro": "Alfa Centauri"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "91262",
+   "es": "Vega",
+   "forma": "texto",
+   "ro": "Vega"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "24608",
+   "es": "Capella",
+   "forma": "texto",
+   "ro": "Capella"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "24436",
+   "es": "Rigel",
+   "forma": "texto",
+   "ro": "Rigel"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "37279",
+   "es": "Proción",
+   "forma": "texto",
+   "ro": "Procyon"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "7588",
+   "es": "Achernar",
+   "forma": "texto",
+   "ro": "Achernar"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "27989",
+   "es": "Betelgeuse",
+   "forma": "texto",
+   "ro": "Betelgeuse"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "68702",
+   "es": "Hadar",
+   "forma": "texto",
+   "ro": "Hadar"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "97649",
+   "es": "Altair",
+   "forma": "texto",
+   "ro": "Altair"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "21421",
+   "es": "Aldebarán",
+   "forma": "texto",
+   "ro": "Aldebaran"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "65474",
+   "es": "Espiga",
+   "forma": "texto",
+   "ro": "Spica"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "80763",
+   "es": "Antares",
+   "forma": "texto",
+   "ro": "Antares"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "37826",
+   "es": "Pólux",
+   "forma": "texto",
+   "ro": "Pollux"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "113368",
+   "es": "Fomalhaut",
+   "forma": "texto",
+   "ro": "Fomalhaut"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "62434",
+   "es": "Mimosa",
+   "forma": "texto",
+   "ro": "Mimosa"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "102098",
+   "es": "Deneb",
+   "forma": "texto",
+   "ro": "Deneb"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "49669",
+   "es": "Régulo",
+   "forma": "texto",
+   "ro": "Regulus"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "33579",
+   "es": "Adhara",
+   "forma": "texto",
+   "ro": "Adhara"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "36850",
+   "es": "Cástor",
+   "forma": "texto",
+   "ro": "Castor"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "61084",
+   "es": "Gacrux",
+   "forma": "texto",
+   "ro": "Gacrux"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "85927",
+   "es": "Shaula",
+   "forma": "texto",
+   "ro": "Shaula"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "25336",
+   "es": "Bellatrix",
+   "forma": "texto",
+   "ro": "Bellatrix"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "25428",
+   "es": "Elnath",
+   "forma": "texto",
+   "ro": "Elnath"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "26311",
+   "es": "Alnilam",
+   "forma": "texto",
+   "ro": "Alnilam"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "109268",
+   "es": "Alnair",
+   "forma": "texto",
+   "ro": "Alnair"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "26727",
+   "es": "Alnitak",
+   "forma": "texto",
+   "ro": "Alnitak"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "62956",
+   "es": "Alioth",
+   "forma": "texto",
+   "ro": "Alioth"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "15863",
+   "es": "Mirfak",
+   "forma": "texto",
+   "ro": "Mirfak"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "90185",
+   "es": "Kaus Australis",
+   "forma": "texto",
+   "ro": "Kaus Australis"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "54061",
+   "es": "Dubhe",
+   "forma": "texto",
+   "ro": "Dubhe"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "34444",
+   "es": "Wezen",
+   "forma": "texto",
+   "ro": "Wezen"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "67301",
+   "es": "Alkaid",
+   "forma": "texto",
+   "ro": "Alkaid"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "41037",
+   "es": "Avior",
+   "forma": "texto",
+   "ro": "Avior"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "86228",
+   "es": "Sargas",
+   "forma": "texto",
+   "ro": "Sargas"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "28360",
+   "es": "Menkalinan",
+   "forma": "texto",
+   "ro": "Menkalinan"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "31681",
+   "es": "Alhena",
+   "forma": "texto",
+   "ro": "Alhena"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "42913",
+   "es": "Alsephina",
+   "forma": "texto",
+   "ro": "Alsephina"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "100751",
+   "es": "Peacock",
+   "forma": "texto",
+   "ro": "Peacock"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "11767",
+   "es": "Estrella Polar",
+   "forma": "texto",
+   "ro": "Steaua Polară"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "30324",
+   "es": "Mirzam",
+   "forma": "texto",
+   "ro": "Mirzam"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "46390",
+   "es": "Alphard",
+   "forma": "texto",
+   "ro": "Alphard"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "14576",
+   "es": "Algol",
+   "forma": "texto",
+   "ro": "Algol"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "65378",
+   "es": "Mizar",
+   "forma": "texto",
+   "ro": "Mizar"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "17702",
+   "es": "Alcíone",
+   "forma": "texto",
+   "ro": "Alcyone"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "95947",
+   "es": "Albireo",
+   "forma": "texto",
+   "ro": "Albireo"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "68756",
+   "es": "Thuban",
+   "forma": "texto",
+   "ro": "Thuban"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "65477",
+   "es": "Alcor",
+   "forma": "texto",
+   "ro": "Alcor"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "10826",
+   "es": "Mira",
+   "forma": "texto",
+   "ro": "Mira"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "92420",
+   "es": "Sheliak",
+   "forma": "texto",
+   "ro": "Sheliak"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "84345",
+   "es": "Rasalgethi",
+   "forma": "texto",
+   "ro": "Rasalgethi"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "9640",
+   "es": "Almach",
+   "forma": "texto",
+   "ro": "Almach"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "50583",
+   "es": "Algieba",
+   "forma": "texto",
+   "ro": "Algieba"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "72105",
+   "es": "Izar",
+   "forma": "texto",
+   "ro": "Izar"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "8832",
+   "es": "Mesarthim",
+   "forma": "texto",
+   "ro": "Mesarthim"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "100064",
+   "es": "Algedi",
+   "forma": "texto",
+   "ro": "Algedi"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "63125",
+   "es": "Cor Caroli",
+   "forma": "texto",
+   "ro": "Cor Caroli"
+  },
+  {
+   "tabla": "CIELO_EST",
+   "clave": "61941",
+   "es": "Porrima",
+   "forma": "texto",
+   "ro": "Porrima"
+  },
+  {
+   "tabla": "CIELO_DOB",
+   "clave": "mizar-alcor",
+   "es": "Mizar y Alcor",
+   "forma": "texto",
+   "ro": "Mizar și Alcor"
+  },
+  {
+   "tabla": "CIELO_DOB",
+   "clave": "mizar",
+   "es": "Mizar A y B",
+   "forma": "texto",
+   "ro": "Mizar A și B"
+  },
+  {
+   "tabla": "CIELO_DOB",
+   "clave": "eps-lyr",
+   "es": "La Doble Doble",
+   "forma": "texto",
+   "ro": "Dubla Dublă"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Sun",
+   "es": "Sol",
+   "forma": "texto",
+   "ro": "Soarele"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Moon",
+   "es": "Luna",
+   "forma": "texto",
+   "ro": "Luna"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Mercury",
+   "es": "Mercurio",
+   "forma": "texto",
+   "ro": "Mercur"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Venus",
+   "es": "Venus",
+   "forma": "texto",
+   "ro": "Venus"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Mars",
+   "es": "Marte",
+   "forma": "texto",
+   "ro": "Marte"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Jupiter",
+   "es": "Júpiter",
+   "forma": "texto",
+   "ro": "Jupiter"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Saturn",
+   "es": "Saturno",
+   "forma": "texto",
+   "ro": "Saturn"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Uranus",
+   "es": "Urano",
+   "forma": "texto",
+   "ro": "Uranus"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Neptune",
+   "es": "Neptuno",
+   "forma": "texto",
+   "ro": "Neptun"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Io",
+   "es": "Ío",
+   "forma": "texto",
+   "ro": "Io"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Europa",
+   "es": "Europa",
+   "forma": "texto",
+   "ro": "Europa"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Ganymede",
+   "es": "Ganimedes",
+   "forma": "texto",
+   "ro": "Ganymede"
+  },
+  {
+   "tabla": "CIELO_CUERPO",
+   "clave": "Callisto",
+   "es": "Calisto",
+   "forma": "texto",
+   "ro": "Callisto"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "QUA",
+   "es": "Cuadrántidas",
+   "forma": "texto",
+   "ro": "Quadrantidele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "LYR",
+   "es": "Líridas",
+   "forma": "texto",
+   "ro": "Liridele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "ETA",
+   "es": "Eta Acuáridas",
+   "forma": "texto",
+   "ro": "Eta Aquaridele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "SDA",
+   "es": "Delta Acuáridas del Sur",
+   "forma": "texto",
+   "ro": "Delta Aquaridele de Sud"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "CAP",
+   "es": "Alfa Capricórnidas",
+   "forma": "texto",
+   "ro": "Alfa Capricornidele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "PER",
+   "es": "Perseidas",
+   "forma": "texto",
+   "ro": "Perseidele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "DRA",
+   "es": "Dracónidas",
+   "forma": "texto",
+   "ro": "Draconidele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "ORI",
+   "es": "Oriónidas",
+   "forma": "texto",
+   "ro": "Orionidele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "LEO",
+   "es": "Leónidas",
+   "forma": "texto",
+   "ro": "Leonidele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "GEM",
+   "es": "Gemínidas",
+   "forma": "texto",
+   "ro": "Geminidele"
+  },
+  {
+   "tabla": "CIELO_LLU",
+   "clave": "URS",
+   "es": "Úrsidas",
+   "forma": "texto",
+   "ro": "Ursidele"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "abi",
+   "es": "Cúmulo abierto",
+   "forma": "texto",
+   "ro": "Roi deschis"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "aso",
+   "es": "Agrupación de estrellas",
+   "forma": "texto",
+   "ro": "Grup de stele"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "glo",
+   "es": "Cúmulo globular",
+   "forma": "texto",
+   "ro": "Roi globular"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "cne",
+   "es": "Cúmulo con nebulosa",
+   "forma": "texto",
+   "ro": "Roi cu nebuloasă"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "neb",
+   "es": "Nebulosa",
+   "forma": "texto",
+   "ro": "Nebuloasă"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "snr",
+   "es": "Resto de supernova",
+   "forma": "texto",
+   "ro": "Rămășiță de supernovă"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "pla",
+   "es": "Nebulosa planetaria",
+   "forma": "texto",
+   "ro": "Nebuloasă planetară"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "osc",
+   "es": "Nebulosa oscura",
+   "forma": "texto",
+   "ro": "Nebuloasă întunecată"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "gal",
+   "es": "Galaxia",
+   "forma": "texto",
+   "ro": "Galaxie"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "dob",
+   "es": "Estrella doble",
+   "forma": "texto",
+   "ro": "Stea dublă"
+  },
+  {
+   "tabla": "CIELO_TIPO",
+   "clave": "ast",
+   "es": "Asterismo",
+   "forma": "texto",
+   "ro": "Asterism"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M1",
+   "es": "Nebulosa del Cangrejo",
+   "forma": "texto",
+   "ro": "Nebuloasa Crabului"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M6",
+   "es": "Cúmulo de la Mariposa",
+   "forma": "texto",
+   "ro": "Roiul Fluture"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M7",
+   "es": "Cúmulo de Ptolomeo",
+   "forma": "texto",
+   "ro": "Roiul lui Ptolemeu"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M8",
+   "es": "Nebulosa de la Laguna",
+   "forma": "texto",
+   "ro": "Nebuloasa Lagună"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M11",
+   "es": "Cúmulo del Pato Salvaje",
+   "forma": "texto",
+   "ro": "Roiul Rața Sălbatică"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M13",
+   "es": "Gran Cúmulo de Hércules",
+   "forma": "texto",
+   "ro": "Marele Roi din Hercule"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M16",
+   "es": "Nebulosa del Águila",
+   "forma": "texto",
+   "ro": "Nebuloasa Vulturul"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M17",
+   "es": "Nebulosa Omega (del Cisne)",
+   "forma": "texto",
+   "ro": "Nebuloasa Omega"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M20",
+   "es": "Nebulosa Trífida",
+   "forma": "texto",
+   "ro": "Nebuloasa Trifidă"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M24",
+   "es": "Pequeña Nube Estelar de Sagitario",
+   "forma": "texto",
+   "ro": "Micul Nor Stelar din Săgetătorul"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M27",
+   "es": "Nebulosa Dumbbell",
+   "forma": "texto",
+   "ro": "Nebuloasa Haltera"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M31",
+   "es": "Galaxia de Andrómeda",
+   "forma": "texto",
+   "ro": "Galaxia Andromeda"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M33",
+   "es": "Galaxia del Triángulo",
+   "forma": "texto",
+   "ro": "Galaxia Triunghiului"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M42",
+   "es": "Gran Nebulosa de Orión",
+   "forma": "texto",
+   "ro": "Nebuloasa Orion"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M44",
+   "es": "Cúmulo del Pesebre",
+   "forma": "texto",
+   "ro": "Roiul Ieslea"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M45",
+   "es": "Pléyades",
+   "forma": "texto",
+   "ro": "Pleiadele"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M51",
+   "es": "Galaxia del Remolino",
+   "forma": "texto",
+   "ro": "Galaxia Vârtej"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M57",
+   "es": "Nebulosa del Anillo",
+   "forma": "texto",
+   "ro": "Nebuloasa Inelară"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M63",
+   "es": "Galaxia del Girasol",
+   "forma": "texto",
+   "ro": "Galaxia Floarea-Soarelui"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M64",
+   "es": "Galaxia del Ojo Negro",
+   "forma": "texto",
+   "ro": "Galaxia Ochiul Negru"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M76",
+   "es": "Pequeña Nebulosa Dumbbell",
+   "forma": "texto",
+   "ro": "Nebuloasa Haltera Mică"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M81",
+   "es": "Galaxia de Bode",
+   "forma": "texto",
+   "ro": "Galaxia lui Bode"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M82",
+   "es": "Galaxia del Cigarro",
+   "forma": "texto",
+   "ro": "Galaxia Trabuc"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M83",
+   "es": "Galaxia del Molinillo Austral",
+   "forma": "texto",
+   "ro": "Galaxia Morișca Australă"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M87",
+   "es": "Virgo A",
+   "forma": "texto",
+   "ro": "Virgo A"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M97",
+   "es": "Nebulosa del Búho",
+   "forma": "texto",
+   "ro": "Nebuloasa Bufnița"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M101",
+   "es": "Galaxia del Molinete",
+   "forma": "texto",
+   "ro": "Galaxia Morișca"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "M104",
+   "es": "Galaxia del Sombrero",
+   "forma": "texto",
+   "ro": "Galaxia Sombrero"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C4",
+   "es": "Nebulosa del Iris",
+   "forma": "texto",
+   "ro": "Nebuloasa Iris"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C6",
+   "es": "Nebulosa Ojo de Gato",
+   "forma": "texto",
+   "ro": "Nebuloasa Ochi de Pisică"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C9",
+   "es": "Nebulosa de la Cueva",
+   "forma": "texto",
+   "ro": "Nebuloasa Peștera"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C11",
+   "es": "Nebulosa de la Burbuja",
+   "forma": "texto",
+   "ro": "Nebuloasa Bula"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C12",
+   "es": "Galaxia de los Fuegos Artificiales",
+   "forma": "texto",
+   "ro": "Galaxia Artificiilor"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C13",
+   "es": "Cúmulo del Búho",
+   "forma": "texto",
+   "ro": "Roiul Bufnița"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C14",
+   "es": "Doble Cúmulo de Perseo",
+   "forma": "texto",
+   "ro": "Roiul Dublu din Perseu"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C19",
+   "es": "Nebulosa del Capullo",
+   "forma": "texto",
+   "ro": "Nebuloasa Coconul"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C20",
+   "es": "Nebulosa Norteamérica",
+   "forma": "texto",
+   "ro": "Nebuloasa America de Nord"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C22",
+   "es": "Bola de Nieve Azul",
+   "forma": "texto",
+   "ro": "Bulgărele Albastru"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C27",
+   "es": "Nebulosa Creciente",
+   "forma": "texto",
+   "ro": "Nebuloasa Semiluna"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C31",
+   "es": "Nebulosa de la Estrella Flameante",
+   "forma": "texto",
+   "ro": "Nebuloasa Steaua Arzătoare"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C33",
+   "es": "Velo del Cisne (este)",
+   "forma": "texto",
+   "ro": "Vălul Lebedei (est)"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C34",
+   "es": "Velo del Cisne (oeste)",
+   "forma": "texto",
+   "ro": "Vălul Lebedei (vest)"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C38",
+   "es": "Galaxia de la Aguja",
+   "forma": "texto",
+   "ro": "Galaxia Acul"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C39",
+   "es": "Nebulosa Esquimal",
+   "forma": "texto",
+   "ro": "Nebuloasa Eschimosul"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C41",
+   "es": "Híades",
+   "forma": "texto",
+   "ro": "Hiadele"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C46",
+   "es": "Nebulosa Variable de Hubble",
+   "forma": "texto",
+   "ro": "Nebuloasa Variabilă a lui Hubble"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C49",
+   "es": "Nebulosa Roseta",
+   "forma": "texto",
+   "ro": "Nebuloasa Rozeta"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C53",
+   "es": "Galaxia del Huso",
+   "forma": "texto",
+   "ro": "Galaxia Fusul"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C55",
+   "es": "Nebulosa de Saturno",
+   "forma": "texto",
+   "ro": "Nebuloasa Saturn"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C57",
+   "es": "Galaxia de Barnard",
+   "forma": "texto",
+   "ro": "Galaxia lui Barnard"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C58",
+   "es": "Cúmulo de Caroline",
+   "forma": "texto",
+   "ro": "Roiul lui Caroline"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C59",
+   "es": "Fantasma de Júpiter",
+   "forma": "texto",
+   "ro": "Fantoma lui Jupiter"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C63",
+   "es": "Nebulosa de la Hélice",
+   "forma": "texto",
+   "ro": "Nebuloasa Helix"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C65",
+   "es": "Galaxia del Escultor",
+   "forma": "texto",
+   "ro": "Galaxia Sculptorului"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C69",
+   "es": "Nebulosa del Insecto",
+   "forma": "texto",
+   "ro": "Nebuloasa Insecta"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C77",
+   "es": "Centauro A",
+   "forma": "texto",
+   "ro": "Centaurus A"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "C80",
+   "es": "ω Centauri",
+   "forma": "texto",
+   "ro": "ω Centauri"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "B33",
+   "es": "Nebulosa Cabeza de Caballo",
+   "forma": "texto",
+   "ro": "Nebuloasa Capul de Cal"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "Cl399",
+   "es": "La Percha (cúmulo de Brocchi)",
+   "forma": "texto",
+   "ro": "Umerașul (roiul lui Brocchi)"
+  },
+  {
+   "tabla": "CIELO_OBJ",
+   "clave": "Mel111",
+   "es": "Cúmulo de la Cabellera de Berenice",
+   "forma": "texto",
+   "ro": "Roiul din Părul Berenicei"
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "M31",
+   "es": "La gran galaxia más cercana a la nuestra, a unos 2,5 millones de años luz. Desde un cielo oscuro se ve a simple vista.",
+   "forma": "texto",
+   "ro": "Cea mai apropiată galaxie mare de a noastră, la aproximativ 2,5 milioane de ani-lumină. Sub un cer întunecat se vede cu ochiul liber."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "M42",
+   "es": "Una nube donde están naciendo estrellas, en la espada de Orión: a simple vista es una mancha difusa y con prismáticos ya se ve la nebulosa.",
+   "forma": "texto",
+   "ro": "Un nor în care se nasc stele, în sabia lui Orion: cu ochiul liber este o pată difuză, iar cu binoclul se vede deja nebuloasa."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "M45",
+   "es": "Estrellas jóvenes, de unos cien millones de años. A simple vista casi todo el mundo distingue seis, y con prismáticos se ve el cúmulo entero.",
+   "forma": "texto",
+   "ro": "Stele tinere, de aproximativ o sută de milioane de ani. Cu ochiul liber aproape oricine distinge șase, iar cu binoclul se vede tot roiul."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "C80",
+   "es": "El cúmulo globular más grande y brillante del cielo. Desde Tenerife pasa bajo, por el sur: hace falta el horizonte sur despejado.",
+   "forma": "texto",
+   "ro": "Cel mai mare și mai strălucitor roi globular de pe cer. Din Tenerife trece jos, prin sud: este nevoie de un orizont sudic degajat."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "d-mizar-alcor",
+   "es": "En el mango del Carro, la Osa Mayor: dos estrellas que se separan a simple vista, tradicionalmente una prueba de vista.",
+   "forma": "texto",
+   "ro": "În oiștea Carului Mare, din constelația Ursa Mare: două stele care se văd separat cu ochiul liber; în mod tradițional, un test al vederii."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "d-albireo",
+   "es": "Una estrella naranja dorada y otra azul, y los colores son de verdad, no un efecto del contraste. Un telescopio pequeño ya las separa.",
+   "forma": "texto",
+   "ro": "O stea portocaliu-aurie și una albastră, iar culorile sunt reale, nu un efect de contrast. Chiar și un telescop mic le separă."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "d-eps-lyr",
+   "es": "Con buena vista se separan dos estrellas a simple vista, y con prismáticos sin esfuerzo; con telescopio, cada una vuelve a partirse en dos.",
+   "forma": "texto",
+   "ro": "Cu o vedere bună se disting două stele cu ochiul liber, iar cu binoclul, fără efort; cu telescopul, fiecare dintre ele se desparte, la rândul ei, în două."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "h14576",
+   "es": "Cada 2 días y 21 horas pierde brillo durante unas horas: una de sus estrellas pasa por delante de la otra.",
+   "forma": "texto",
+   "ro": "La fiecare 2 zile și 21 de ore își pierde din strălucire timp de câteva ore: una dintre stelele sale trece prin fața celeilalte."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "h10826",
+   "es": "En unos once meses pasa de verse a simple vista a necesitar telescopio, y vuelve.",
+   "forma": "texto",
+   "ro": "În aproximativ unsprezece luni trece de la a se vedea cu ochiul liber la a fi vizibilă doar cu telescopul, apoi revine."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "h11767",
+   "es": "Marca el norte. Desde Tenerife está a unos 28° de altura, más o menos la latitud de la isla.",
+   "forma": "texto",
+   "ro": "Indică nordul. Din Tenerife se află la aproximativ 28° înălțime, cam cât latitudinea insulei."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "h32349",
+   "es": "La estrella más brillante del cielo nocturno, a 8,6 años luz.",
+   "forma": "texto",
+   "ro": "Cea mai strălucitoare stea de pe cerul nopții, la 8,6 ani-lumină."
+  },
+  {
+   "tabla": "CIELO_DESC",
+   "clave": "h30438",
+   "es": "La segunda estrella más brillante del cielo nocturno. Desde Tenerife pasa muy baja sobre el horizonte sur.",
+   "forma": "texto",
+   "ro": "A doua cea mai strălucitoare stea de pe cerul nopții. Din Tenerife trece foarte jos deasupra orizontului sudic."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPesNoche",
+   "es": "Esta noche",
+   "forma": "texto",
+   "ro": "Noaptea asta"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPesCalendario",
+   "es": "Calendario",
+   "forma": "texto",
+   "ro": "Calendar"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPesCatalogo",
+   "es": "Catálogo",
+   "forma": "texto",
+   "ro": "Catalog"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPesMapa",
+   "es": "Mapa",
+   "forma": "texto",
+   "ro": "Hartă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPesDonde",
+   "es": "Dónde ir",
+   "forma": "texto",
+   "ro": "Unde mergeți"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloErrorCalculo",
+   "es": "No se pudo calcular esta vista. Pruebe con otra noche.",
+   "forma": "texto",
+   "ro": "Nu s-a putut calcula această vizualizare. Încercați o altă noapte."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNocheAnterior",
+   "es": "Noche anterior",
+   "forma": "texto",
+   "ro": "Noaptea anterioară"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNocheSiguiente",
+   "es": "Noche siguiente",
+   "forma": "texto",
+   "ro": "Noaptea următoare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEstaNoche",
+   "es": "Esta noche",
+   "forma": "texto",
+   "ro": "Noaptea asta"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNocheDel",
+   "es": "Noche del {f}",
+   "forma": "texto",
+   "ro": "Noaptea de {f}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHoy",
+   "es": "Hoy",
+   "forma": "texto",
+   "ro": "Azi"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOscuridad",
+   "es": "Sol y oscuridad",
+   "forma": "texto",
+   "ro": "Soarele și întunericul"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPuestaSol",
+   "es": "Puesta de sol",
+   "forma": "texto",
+   "ro": "Apusul Soarelui"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNocheCerrada",
+   "es": "Noche cerrada (Sol a −18°)",
+   "forma": "texto",
+   "ro": "Noapte deplină (Soarele la −18°)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSalidaSol",
+   "es": "Salida del sol",
+   "forma": "texto",
+   "ro": "Răsăritul Soarelui"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSinLuna",
+   "es": "Noche cerrada sin Luna",
+   "forma": "texto",
+   "ro": "Noapte deplină fără Lună"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNinguna",
+   "es": "Ninguna",
+   "forma": "texto",
+   "ro": "Niciuna"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHorasMin",
+   "es": "{h} h {m} min",
+   "forma": "texto",
+   "ro": "{h} h {m} min"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSinLunaDe",
+   "es": "Tramos sin Luna",
+   "forma": "texto",
+   "ro": "Intervale fără Lună"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNotaLugar",
+   "es": "Horas de Canarias, calculadas para el Observatorio del Teide (Izaña) con el horizonte despejado: en otros puntos de la isla cambian unos minutos, y una montaña delante adelanta la puesta de sol.",
+   "forma": "texto",
+   "ro": "Ora Insulelor Canare, calculată pentru Observatorul Teide (Izaña), cu orizontul liber: în alte locuri de pe insulă orele diferă cu câteva minute, iar un munte aflat în față face ca Soarele să apună mai devreme."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLeyCrepusculo",
+   "es": "Crepúsculo",
+   "forma": "texto",
+   "ro": "Crepuscul"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLeyNoche",
+   "es": "Noche cerrada",
+   "forma": "texto",
+   "ro": "Noapte deplină"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLeyLuna",
+   "es": "Luna sobre el horizonte",
+   "forma": "texto",
+   "ro": "Luna deasupra orizontului"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLuna",
+   "es": "Luna",
+   "forma": "texto",
+   "ro": "Luna"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIluminada",
+   "es": "{p} % iluminada",
+   "forma": "texto",
+   "ro": "{p} % iluminată"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLunaSale",
+   "es": "Sale a las {h}",
+   "forma": "texto",
+   "ro": "Răsare la ora {h}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLunaPone",
+   "es": "Se pone a las {h}",
+   "forma": "texto",
+   "ro": "Apune la ora {h}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLunaToda",
+   "es": "Sobre el horizonte toda la noche",
+   "forma": "texto",
+   "ro": "Deasupra orizontului toată noaptea"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLunaNoSale",
+   "es": "No sale en toda la noche",
+   "forma": "texto",
+   "ro": "Nu răsare deloc în timpul nopții"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnConstelacion",
+   "es": "Constelación: {c}",
+   "forma": "texto",
+   "ro": "Constelația: {c}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloProxNueva",
+   "es": "Luna nueva: {f}",
+   "forma": "texto",
+   "ro": "Lună nouă: {f}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloProxLlena",
+   "es": "Luna llena: {f}",
+   "forma": "texto",
+   "ro": "Lună plină: {f}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseNueva",
+   "es": "Luna nueva",
+   "forma": "texto",
+   "ro": "Lună nouă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseCreciente",
+   "es": "Creciente",
+   "forma": "texto",
+   "ro": "Semilună în creștere"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseCuartoCreciente",
+   "es": "Cuarto creciente",
+   "forma": "texto",
+   "ro": "Primul pătrar"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseGibosaCreciente",
+   "es": "Gibosa creciente",
+   "forma": "texto",
+   "ro": "Lună giboasă în creștere"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseLlena",
+   "es": "Luna llena",
+   "forma": "texto",
+   "ro": "Lună plină"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseGibosaMenguante",
+   "es": "Gibosa menguante",
+   "forma": "texto",
+   "ro": "Lună giboasă în descreștere"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseCuartoMenguante",
+   "es": "Cuarto menguante",
+   "forma": "texto",
+   "ro": "Ultimul pătrar"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseMenguante",
+   "es": "Menguante",
+   "forma": "texto",
+   "ro": "Semilună în descreștere"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNubes",
+   "es": "Previsión de nubes",
+   "forma": "texto",
+   "ro": "Prognoza norilor"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNubesHora",
+   "es": "{h}: nubes medias y altas {a} %, bajas {b} %",
+   "forma": "texto",
+   "ro": "{h}: nori medii și înalți {a} %, nori joși {b} %"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNubesAltas",
+   "es": "Nubes medias y altas (media)",
+   "forma": "texto",
+   "ro": "Nori medii și înalți (medie)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNubesBajas",
+   "es": "Nubes bajas (media)",
+   "forma": "texto",
+   "ro": "Nori joși (medie)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNubesNota",
+   "es": "Previsión de Open-Meteo para Izaña en las horas de noche cerrada. Las nubes bajas, hasta 3 km, van aparte: suelen ser el mar de nubes, que normalmente se queda por debajo de las cumbres.",
+   "forma": "texto",
+   "ro": "Prognoza Open-Meteo pentru Izaña, în orele de noapte deplină. Norii joși, până la 3 km, apar separat: de obicei sunt marea de nori, care în mod normal rămâne sub vârfuri."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlanetas",
+   "es": "Planetas",
+   "forma": "texto",
+   "ro": "Planete"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSinPlanetas",
+   "es": "Ningún planeta a la vista: todos están demasiado cerca del Sol o bajo el horizonte.",
+   "forma": "texto",
+   "ro": "Nicio planetă vizibilă: toate sunt prea aproape de Soare sau sub orizont."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVisibleBreve",
+   "es": "Solo un rato hacia las {h}, muy bajo: a {alt}° {dir}",
+   "forma": "texto",
+   "ro": "Doar puțin timp, în jurul orei {h}, foarte jos: la {alt}° {dir}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVisibleDeA",
+   "es": "Visible de {a} a {b}",
+   "forma": "texto",
+   "ro": "Se vede de la {a} la {b}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMejorA",
+   "es": "Mejor a las {h}, a {alt}° {dir}",
+   "forma": "texto",
+   "ro": "Cel mai bine la ora {h}, la {alt}° {dir}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMagEn",
+   "es": "mag. {m} · {c}",
+   "forma": "texto",
+   "ro": "mag. {m} · {c}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMag",
+   "es": "mag. {m}",
+   "forma": "texto",
+   "ro": "mag. {m}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloViaLactea",
+   "es": "Vía Láctea",
+   "forma": "texto",
+   "ro": "Calea Lactee"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloViaLacteaSi",
+   "es": "Su parte más brillante, hacia el centro de la galaxia (Sagitario), se ve de {a} a {b}; lo más alto que sube es {alt}° {dir}.",
+   "forma": "texto",
+   "ro": "Partea sa cea mai strălucitoare, spre centrul galaxiei (Săgetătorul), se vede de la {a} la {b}; urcă cel mult până la {alt}° {dir}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloViaLacteaLuna",
+   "es": "El centro de la galaxia sube en plena noche, pero con la Luna arriba: su luz la borra.",
+   "forma": "texto",
+   "ro": "Centrul galaxiei urcă în plină noapte, dar și Luna este pe cer: lumina ei o face să dispară."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloViaLacteaNo",
+   "es": "En esta época el centro de la galaxia no está alto en plena noche: queda de día o bajo el horizonte.",
+   "forma": "texto",
+   "ro": "În această perioadă a anului, centrul galaxiei nu urcă sus în plină noapte: este pe cer ziua sau sub orizont."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloViaLacteaVuelve",
+   "es": "Vuelve a verse desde la noche del {f}.",
+   "forma": "texto",
+   "ro": "Se vede din nou începând cu noaptea de {f}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloViaLacteaNota",
+   "es": "Para verla: lejos de las luces, sin Luna y tras al menos 20 minutos de vista adaptada a la oscuridad. Desde las cumbres se ve a simple vista.",
+   "forma": "texto",
+   "ro": "Pentru a o vedea: departe de lumini, fără Lună și după cel puțin 20 de minute în care ochii se adaptează la întuneric. De pe vârfuri se vede cu ochiul liber."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMejores",
+   "es": "Lo mejor de la noche",
+   "forma": "texto",
+   "ro": "Ce e mai bun în noaptea asta"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLunaApaga",
+   "es": "Con la Luna brillante arriba casi toda la noche, las galaxias y nebulosas débiles no se distinguen: mejor cúmulos y estrellas dobles.",
+   "forma": "texto",
+   "ro": "Cu Luna strălucitoare pe cer aproape toată noaptea, galaxiile și nebuloasele slabe nu se disting: alegeți mai degrabă roiuri și stele duble."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTipoDoble",
+   "es": "Estrella doble",
+   "forma": "texto",
+   "ro": "Stea dublă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTipoEstrella",
+   "es": "Estrella",
+   "forma": "texto",
+   "ro": "Stea"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloProximo",
+   "es": "Lo próximo en el calendario",
+   "forma": "texto",
+   "ro": "Ce urmează în calendar"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVerCalendario",
+   "es": "Ver el calendario",
+   "forma": "texto",
+   "ro": "Vedeți calendarul"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRumboN",
+   "es": "N",
+   "forma": "texto",
+   "ro": "N"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHaciaN",
+   "es": "hacia el norte",
+   "forma": "texto",
+   "ro": "spre nord"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRumboNE",
+   "es": "NE",
+   "forma": "texto",
+   "ro": "NE"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHaciaNE",
+   "es": "hacia el noreste",
+   "forma": "texto",
+   "ro": "spre nord-est"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRumboE",
+   "es": "E",
+   "forma": "texto",
+   "ro": "E"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHaciaE",
+   "es": "hacia el este",
+   "forma": "texto",
+   "ro": "spre est"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRumboSE",
+   "es": "SE",
+   "forma": "texto",
+   "ro": "SE"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHaciaSE",
+   "es": "hacia el sureste",
+   "forma": "texto",
+   "ro": "spre sud-est"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRumboS",
+   "es": "S",
+   "forma": "texto",
+   "ro": "S"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHaciaS",
+   "es": "hacia el sur",
+   "forma": "texto",
+   "ro": "spre sud"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRumboSO",
+   "es": "SO",
+   "forma": "texto",
+   "ro": "SV"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHaciaSO",
+   "es": "hacia el suroeste",
+   "forma": "texto",
+   "ro": "spre sud-vest"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRumboO",
+   "es": "O",
+   "forma": "texto",
+   "ro": "V"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHaciaO",
+   "es": "hacia el oeste",
+   "forma": "texto",
+   "ro": "spre vest"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRumboNO",
+   "es": "NO",
+   "forma": "texto",
+   "ro": "NV"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloHaciaNO",
+   "es": "hacia el noroeste",
+   "forma": "texto",
+   "ro": "spre nord-vest"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCalTodo",
+   "es": "Todo",
+   "forma": "texto",
+   "ro": "Toate"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCalLluvias",
+   "es": "Lluvias de estrellas",
+   "forma": "texto",
+   "ro": "Ploi de meteori"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCalEclipses",
+   "es": "Eclipses",
+   "forma": "texto",
+   "ro": "Eclipse"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCalPlanetas",
+   "es": "Planetas",
+   "forma": "texto",
+   "ro": "Planete"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCalSolLuna",
+   "es": "Sol y Luna",
+   "forma": "texto",
+   "ro": "Soarele și Luna"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSinEventos",
+   "es": "No hay nada de este tipo en las fechas calculadas.",
+   "forma": "texto",
+   "ro": "Nu există nimic de acest tip în perioada calculată."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvLluvia",
+   "es": "Lluvia de estrellas: {n}",
+   "forma": "texto",
+   "ro": "Ploaie de meteori: {n}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvEclipseSolTotal",
+   "es": "Eclipse total de Sol",
+   "forma": "texto",
+   "ro": "Eclipsă totală de Soare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvEclipseSolAnular",
+   "es": "Eclipse anular de Sol",
+   "forma": "texto",
+   "ro": "Eclipsă inelară de Soare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvEclipseSolHibrido",
+   "es": "Eclipse híbrido de Sol",
+   "forma": "texto",
+   "ro": "Eclipsă hibridă de Soare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvEclipseSolParcial",
+   "es": "Eclipse parcial de Sol",
+   "forma": "texto",
+   "ro": "Eclipsă parțială de Soare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvEclipseLunaTotal",
+   "es": "Eclipse total de Luna",
+   "forma": "texto",
+   "ro": "Eclipsă totală de Lună"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvEclipseLunaParcial",
+   "es": "Eclipse parcial de Luna",
+   "forma": "texto",
+   "ro": "Eclipsă parțială de Lună"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvEclipseLunaPenumbral",
+   "es": "Eclipse penumbral de Luna",
+   "forma": "texto",
+   "ro": "Eclipsă penumbrală de Lună"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvOposicion",
+   "es": "{p} en oposición",
+   "forma": "texto",
+   "ro": "{p} la opoziție"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvElongTarde",
+   "es": "{p}: máxima elongación de tarde",
+   "forma": "texto",
+   "ro": "{p}: elongația maximă de seară"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvElongManana",
+   "es": "{p}: máxima elongación de madrugada",
+   "forma": "texto",
+   "ro": "{p}: elongația maximă de dimineață"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvConjuncion",
+   "es": "{a} y {b}, juntos en el cielo",
+   "forma": "texto",
+   "ro": "{a} și {b}, aproape pe cer"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvLunaCerca",
+   "es": "La Luna llena más cercana a la Tierra de los próximos 12 meses",
+   "forma": "texto",
+   "ro": "Luna plină cea mai apropiată de Pământ din următoarele 12 luni"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEquinoccioMarzo",
+   "es": "Equinoccio de marzo",
+   "forma": "texto",
+   "ro": "Echinocțiul din martie"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSolsticioJunio",
+   "es": "Solsticio de junio",
+   "forma": "texto",
+   "ro": "Solstițiul din iunie"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEquinoccioSeptiembre",
+   "es": "Equinoccio de septiembre",
+   "forma": "texto",
+   "ro": "Echinocțiul din septembrie"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSolsticioDiciembre",
+   "es": "Solsticio de diciembre",
+   "forma": "texto",
+   "ro": "Solstițiul din decembrie"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaMax",
+   "es": "Máximo: {f}, hacia las {h}",
+   "forma": "texto",
+   "ro": "Maximul: {f}, în jurul orei {h}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaThz",
+   "es": "Tasa teórica (THZ): {z} meteoros por hora con el radiante en el cenit y un cielo perfecto; en la práctica se ven menos.",
+   "forma": "texto",
+   "ro": "Rata orară zenitală (ZHR): {z} pe oră, cu radiantul la zenit și un cer perfect; în practică se văd mai puțini meteori."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaThzVar",
+   "es": "La tasa cambia mucho de un año a otro.",
+   "forma": "texto",
+   "ro": "Rata variază mult de la un an la altul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaMejor",
+   "es": "Mejor momento: {f}, {h}, con el radiante a {alt}° {dir}",
+   "forma": "texto",
+   "ro": "Cel mai bun moment: {f}, {h}, cu radiantul la {alt}° {dir}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaLuna",
+   "es": "Luna iluminada al {p} %",
+   "forma": "texto",
+   "ro": "Luna: {p} % iluminată"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaLunaAbajo",
+   "es": "(bajo el horizonte a esa hora)",
+   "forma": "texto",
+   "ro": "(sub orizont la ora aceea)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCondBuenas",
+   "es": "Buenas condiciones",
+   "forma": "texto",
+   "ro": "Condiții bune"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCondRegulares",
+   "es": "Condiciones regulares",
+   "forma": "texto",
+   "ro": "Condiții acceptabile"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCondMalas",
+   "es": "Malas condiciones: la luz de la Luna",
+   "forma": "texto",
+   "ro": "Condiții nefavorabile: lumina Lunii"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCondBuenasDesde",
+   "es": "Buenas condiciones desde que se pone la Luna ({h})",
+   "forma": "texto",
+   "ro": "Condiții bune după apusul Lunii ({h})"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCondBuenasHasta",
+   "es": "Buenas condiciones hasta que sale la Luna ({h})",
+   "forma": "texto",
+   "ro": "Condiții bune până la răsăritul Lunii ({h})"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclSolTenerife",
+   "es": "Desde Tenerife se ve parcial: en el máximo, la Luna cubre el {p} % del disco solar.",
+   "forma": "texto",
+   "ro": "Din Tenerife se vede parțială: la maxim, Luna acoperă {p} % din discul solar."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclSolLocalTotal",
+   "es": "Desde Tenerife se ve total.",
+   "forma": "texto",
+   "ro": "Din Tenerife se vede totală."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclSolLocalAnular",
+   "es": "Desde Tenerife se ve anular.",
+   "forma": "texto",
+   "ro": "Din Tenerife se vede inelară."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclSolHoras",
+   "es": "Empieza {a} · máximo {m} (Sol a {alt}°) · termina {b}",
+   "forma": "texto",
+   "ro": "Început: {a} · maxim: {m} (Soarele la {alt}°) · sfârșit: {b}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclSolSale",
+   "es": "Empieza con el Sol aún bajo el horizonte: amanece ya eclipsado.",
+   "forma": "texto",
+   "ro": "Începe când Soarele este încă sub orizont: răsare deja eclipsat."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclSolPone",
+   "es": "Termina con el Sol ya puesto: se pone eclipsado.",
+   "forma": "texto",
+   "ro": "Se termină după apusul Soarelui: apune eclipsat."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclSolAviso",
+   "es": "Nunca lo mire sin filtro: solo con gafas homologadas ISO 12312-2 o con un filtro solar delante del objetivo.",
+   "forma": "texto",
+   "ro": "Nu priviți niciodată fără filtru: doar cu ochelari omologați ISO 12312-2 sau cu un filtru solar în fața obiectivului."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclLunaSombra",
+   "es": "En la sombra: de {a} a {b}",
+   "forma": "texto",
+   "ro": "În umbră: de la {a} la {b}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclLunaTotalidad",
+   "es": "Totalidad: de {a} a {b}",
+   "forma": "texto",
+   "ro": "Faza totală: de la {a} la {b}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclLunaPenumbra",
+   "es": "En la penumbra: de {a} a {b}. Apenas se nota: la Luna solo se oscurece un poco.",
+   "forma": "texto",
+   "ro": "În penumbră: de la {a} la {b}. Abia se observă: Luna se întunecă doar puțin."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclLunaEntero",
+   "es": "Desde Tenerife se ve entero.",
+   "forma": "texto",
+   "ro": "Din Tenerife se vede în întregime."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclLunaSale",
+   "es": "Desde Tenerife, la Luna sale ya eclipsada: se ve el final.",
+   "forma": "texto",
+   "ro": "Din Tenerife, Luna răsare deja eclipsată: se vede sfârșitul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEclLunaPone",
+   "es": "Desde Tenerife, la Luna se pone antes del final: se ve el principio.",
+   "forma": "texto",
+   "ro": "Din Tenerife, Luna apune înainte de sfârșit: se vede începutul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOposicionDet",
+   "es": "Visible toda la noche y en su máximo brillo (mag. {m}) · {c}",
+   "forma": "texto",
+   "ro": "Se vede toată noaptea, la strălucirea maximă (mag. {m}) · {c}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloElongDet",
+   "es": "A {g}° del Sol · mag. {m}",
+   "forma": "texto",
+   "ro": "La {g}° de Soare · mag. {m}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConjDet",
+   "es": "Separados {s}° (el meñique a brazo extendido tapa cerca de 1°)",
+   "forma": "texto",
+   "ro": "Distanța dintre ele: {s}° (degetul mic, cu brațul întins, acoperă aproximativ 1°)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEstacionDet",
+   "es": "A las {h}, hora de Canarias",
+   "forma": "texto",
+   "ro": "La ora {h}, ora Insulelor Canare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLunaCercaDet",
+   "es": "A {km} km de la Tierra: algo más grande y brillante que una Luna llena media, aunque a simple vista apenas se nota.",
+   "forma": "texto",
+   "ro": "La {km} km de Pământ: puțin mai mare și mai strălucitoare decât o Lună plină obișnuită, deși cu ochiul liber abia se observă."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCometasSatelites",
+   "es": "Cometas y satélites",
+   "forma": "texto",
+   "ro": "Comete și sateliți"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCometasTxt",
+   "es": "Los cometas no se pueden poner en un calendario fijo: muchos se descubren solo meses antes y su brillo es difícil de prever. Para los que haya a la vista, consulte las fuentes de abajo.",
+   "forma": "texto",
+   "ro": "Cometele nu pot fi trecute într-un calendar fix: multe sunt descoperite cu doar câteva luni înainte, iar strălucirea lor este greu de prevăzut. Pentru cele vizibile, consultați sursele de mai jos."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatelitesTxt",
+   "es": "Los pasos visibles de la Estación Espacial Internacional, de la estación china Tiangong y del telescopio Hubble están en la tarjeta de esta noche y en el calendario, en «Satélites»: se calculan en el móvil con los elementos orbitales que un robot renueva cada día. Para contrastar, la NASA avisa de los de la Estación en su aplicación «Spot the Station».",
+   "forma": "texto",
+   "ro": "Trecerile vizibile ale Stației Spațiale Internaționale, ale stației chineze Tiangong și ale telescopului Hubble apar în cardul nopții și în calendar, la „Sateliți”: sunt calculate pe telefon cu elementele orbitale pe care un robot le actualizează zilnic. Pentru comparație, NASA anunță trecerile Stației în aplicația sa „Spot the Station”."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNotaCalendario",
+   "es": "Todo se calcula en el móvil para Izaña, en hora de Canarias: las lluvias con la longitud solar de su máximo (lista de la IMO), los eclipses y los planetas con Astronomy Engine. La referencia oficial son el IGN y el IAC.",
+   "forma": "texto",
+   "ro": "Totul se calculează pe telefon pentru Izaña, în ora Insulelor Canare: ploile de meteori după longitudinea solară a maximului lor (lista IMO), eclipsele și planetele cu Astronomy Engine. Referința oficială sunt IGN și IAC."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceIss",
+   "es": "La aplicación de la NASA para ver la Estación Espacial",
+   "forma": "texto",
+   "ro": "Aplicația NASA pentru a vedea Stația Spațială"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceIacCal",
+   "es": "Calendarios astronómicos del IAC",
+   "forma": "texto",
+   "ro": "Calendarele astronomice ale IAC"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloBuscar",
+   "es": "Buscar: Orión, M42, Vega…",
+   "forma": "texto",
+   "ro": "Căutați: Orion, M42, Vega…"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatTodo",
+   "es": "Todo",
+   "forma": "texto",
+   "ro": "Toate"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatEstrellas",
+   "es": "Estrellas",
+   "forma": "texto",
+   "ro": "Stele"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatSistemas",
+   "es": "Sistemas estelares",
+   "forma": "texto",
+   "ro": "Sisteme stelare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatVariables",
+   "es": "Variables",
+   "forma": "texto",
+   "ro": "Variabile"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatConstelaciones",
+   "es": "Constelaciones",
+   "forma": "texto",
+   "ro": "Constelații"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatCumulos",
+   "es": "Cúmulos",
+   "forma": "texto",
+   "ro": "Roiuri"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatNebulosas",
+   "es": "Nebulosas",
+   "forma": "texto",
+   "ro": "Nebuloase"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatGalaxias",
+   "es": "Galaxias",
+   "forma": "texto",
+   "ro": "Galaxii"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatCualquiera",
+   "es": "Cualquier instrumento",
+   "forma": "texto",
+   "ro": "Orice instrument"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNiv1",
+   "es": "A simple vista",
+   "forma": "texto",
+   "ro": "Cu ochiul liber"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNiv2",
+   "es": "Prismáticos",
+   "forma": "texto",
+   "ro": "Binoclu"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNiv3",
+   "es": "Telescopio",
+   "forma": "texto",
+   "ro": "Telescop"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNiv1Ayuda",
+   "es": "Se ve a simple vista desde un sitio oscuro",
+   "forma": "texto",
+   "ro": "Se vede cu ochiul liber dintr-un loc întunecat"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNiv2Ayuda",
+   "es": "Pide unos prismáticos (10×50 o parecidos)",
+   "forma": "texto",
+   "ro": "Necesită un binoclu (10×50 sau similar)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNiv3Ayuda",
+   "es": "Pide un telescopio",
+   "forma": "texto",
+   "ro": "Necesită un telescop"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatEstaNoche",
+   "es": "Altos esta noche",
+   "forma": "texto",
+   "ro": "Sus în noaptea asta"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatCuenta",
+   "es": "{n} resultado|{n} resultados",
+   "forma": "texto",
+   "ro": "{n} rezultat|{n} rezultate|{n} de rezultate"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCatMas",
+   "es": "Y {n} más: escriba para afinar la búsqueda.",
+   "forma": "texto",
+   "ro": "Și încă {n}: scrieți mai mult pentru a restrânge căutarea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNotaNiveles",
+   "es": "El instrumento sale del brillo de cada objeto, corregido por lo que lo apaga la atmósfera a la altura máxima que alcanza desde Tenerife, con umbrales prudentes para prismáticos 10×50 y un cielo oscuro. Con Luna o desde la costa, cuente con que muchos pidan un nivel más.",
+   "forma": "texto",
+   "ro": "Instrumentul rezultă din strălucirea fiecărui obiect, corectată cu cât o atenuează atmosfera la înălțimea maximă la care ajunge văzut din Tenerife, cu praguri prudente pentru un binoclu 10×50 și un cer întunecat. Cu Lună sau de pe coastă, multe obiecte vor necesita un nivel în plus."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNotaMessier",
+   "es": "Incluye {m} objetos Messier, {c} del catálogo Caldwell que asoman desde Tenerife, las estrellas con nombre más brillantes, {d} estrellas dobles y múltiples, {v} variables y las {k} constelaciones.",
+   "forma": "texto",
+   "ro": "Include: obiecte Messier ({m}), obiecte din catalogul Caldwell care se ridică deasupra orizontului din Tenerife ({c}), cele mai strălucitoare stele cu nume, stele duble și multiple ({d}), stele variabile ({v}) și toate constelațiile ({k})."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMesesAyuda",
+   "es": "Meses en que sube alto en plena noche",
+   "forma": "texto",
+   "ro": "Lunile în care urcă sus în plină noapte"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVerEnMapa",
+   "es": "Ver en el mapa del cielo",
+   "forma": "texto",
+   "ro": "Vedeți pe harta cerului"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRasante",
+   "es": "Muy bajo",
+   "forma": "texto",
+   "ro": "Foarte jos"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAltMax",
+   "es": "Altura máxima desde Tenerife: {alt}°",
+   "forma": "texto",
+   "ro": "Înălțimea maximă văzută din Tenerife: {alt}°"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloDistancia",
+   "es": "A unos {d} años luz",
+   "forma": "texto",
+   "ro": "Distanța în ani-lumină: aproximativ {d}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEspectro",
+   "es": "Tipo espectral: {s}",
+   "forma": "texto",
+   "ro": "Tip spectral: {s}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVariableRango",
+   "es": "Su brillo varía entre mag. {a} y {b}",
+   "forma": "texto",
+   "ro": "Strălucirea sa variază între mag. {a} și {b}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSeparacion",
+   "es": "Separación: {s}″ (segundos de arco)",
+   "forma": "texto",
+   "ro": "Separare: {s}″ (secunde de arc)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSeparacionMin",
+   "es": "Separación: {s}′ (minutos de arco)",
+   "forma": "texto",
+   "ro": "Separare: {s}′ (minute de arc)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOrbitaRapida",
+   "es": "La pareja gira en unos {a} años: la separación cambia y aquí no se da.",
+   "forma": "texto",
+   "ro": "Perioada orbitală a perechii, în ani: aproximativ {a}. Separarea se schimbă, așa că nu este indicată aici."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComponentes",
+   "es": "Componentes: mag. {a} y {b}",
+   "forma": "texto",
+   "ro": "Componente: mag. {a} și {b}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloDifMag",
+   "es": "Diferencia de brillo: {d} magnitudes",
+   "forma": "texto",
+   "ro": "Diferența de strălucire: {d} mag."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPeriodo",
+   "es": "Período: {d} días",
+   "forma": "texto",
+   "ro": "Perioada (în zile): {d}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConEstrellas",
+   "es": "Estrellas a simple vista (hasta mag. 6) que salen sobre el horizonte: {n}",
+   "forma": "texto",
+   "ro": "Stele vizibile cu ochiul liber (până la mag. 6) care urcă deasupra orizontului: {n}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConBrillante",
+   "es": "La más brillante: {e}",
+   "forma": "texto",
+   "ro": "Cea mai strălucitoare: {e}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConParcialDet",
+   "es": "Solo se ve la parte al norte de la declinación {d}°: lo demás nunca sale desde Tenerife.",
+   "forma": "texto",
+   "ro": "Se vede doar partea de la nord de declinația {d}°: restul nu se ridică niciodată deasupra orizontului din Tenerife."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConVisTotal",
+   "es": "Entera sobre el horizonte",
+   "forma": "texto",
+   "ro": "În întregime deasupra orizontului"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConVisParcial",
+   "es": "Visible en parte",
+   "forma": "texto",
+   "ro": "Vizibilă parțial"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConVisNo",
+   "es": "Nunca sale desde Tenerife",
+   "forma": "texto",
+   "ro": "Nu se vede niciodată din Tenerife"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTamano",
+   "es": "Tamaño aparente: {t} (la Luna llena mide unos 31′)",
+   "forma": "texto",
+   "ro": "Dimensiune aparentă: {t} (Luna plină măsoară circa 31′)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarEA",
+   "es": "Binaria eclipsante (tipo Algol)",
+   "forma": "texto",
+   "ro": "Binară cu eclipse (de tip Algol)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarEB",
+   "es": "Binaria eclipsante (tipo β Lyrae)",
+   "forma": "texto",
+   "ro": "Binară cu eclipse (de tip β Lyrae)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarDCEP",
+   "es": "Cefeida",
+   "forma": "texto",
+   "ro": "Cefeidă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarM",
+   "es": "Variable de largo período (tipo Mira)",
+   "forma": "texto",
+   "ro": "Variabilă cu perioadă lungă (de tip Mira)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarSR",
+   "es": "Variable semirregular",
+   "forma": "texto",
+   "ro": "Variabilă semiregulată"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarGCAS",
+   "es": "Variable eruptiva (tipo γ Cas)",
+   "forma": "texto",
+   "ro": "Variabilă eruptivă (de tip γ Cas)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarRCB",
+   "es": "Variable tipo R CrB",
+   "forma": "texto",
+   "ro": "Variabilă de tip R CrB"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarRV",
+   "es": "Variable tipo RV Tauri",
+   "forma": "texto",
+   "ro": "Variabilă de tip RV Tauri"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarNR",
+   "es": "Nova recurrente",
+   "forma": "texto",
+   "ro": "Novă recurentă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVarOtra",
+   "es": "Estrella variable",
+   "forma": "texto",
+   "ro": "Stea variabilă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaAria",
+   "es": "Mapa del cielo de Tenerife en el instante elegido",
+   "forma": "texto",
+   "ro": "Harta cerului deasupra insulei Tenerife la momentul ales"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaHora",
+   "es": "Hora",
+   "forma": "texto",
+   "ro": "Ora"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAhora",
+   "es": "Ahora",
+   "forma": "texto",
+   "ro": "Acum"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMirando",
+   "es": "Mirando hacia",
+   "forma": "texto",
+   "ro": "Privind spre"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAcercar",
+   "es": "Acercar",
+   "forma": "texto",
+   "ro": "Măriți"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAlejar",
+   "es": "Alejar",
+   "forma": "texto",
+   "ro": "Micșorați"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaLineas",
+   "es": "Figuras",
+   "forma": "texto",
+   "ro": "Linii"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaNombres",
+   "es": "Nombres",
+   "forma": "texto",
+   "ro": "Nume"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaProfundo",
+   "es": "Cielo profundo",
+   "forma": "texto",
+   "ro": "Cer profund"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaNota",
+   "es": "La carta mira hacia donde elija, como desde el suelo; ◎ enseña todo el cielo (el cenit en el centro, el horizonte en el borde). Arrastre para girar, pellizque para acercar, ▶ hace correr la noche, 📅 cambia de fecha y 📸 guarda la imagen. Toque un astro para ver qué es y, en su ficha, su recorrido de esa noche.",
+   "forma": "texto",
+   "ro": "Harta privește în direcția aleasă, ca de pe sol; ◎ arată tot cerul (zenitul în centru, orizontul pe margine). Glisați pentru a roti, depărtați două degete pentru a mări, ▶ derulează noaptea, 📅 schimbă data și 📸 salvează imaginea. Atingeți un astru pentru a vedea ce este și, în fișa lui, traseul lui din acea noapte."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaToca",
+   "es": "Toque una estrella, un planeta o un objeto para ver qué es.",
+   "forma": "texto",
+   "ro": "Atingeți o stea, o planetă sau un obiect pentru a vedea ce este."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaDeDia",
+   "es": "Es de día: el Sol está sobre el horizonte. Mueva la hora a la noche.",
+   "forma": "texto",
+   "ro": "Este zi: Soarele este deasupra orizontului. Mutați ora spre noapte."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaCrepusculo",
+   "es": "Crepúsculo: solo se ven las estrellas más brillantes y los planetas.",
+   "forma": "texto",
+   "ro": "Crepuscul: se văd doar cele mai strălucitoare stele și planetele."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloBajoHorizonte",
+   "es": "Bajo el horizonte en este momento",
+   "forma": "texto",
+   "ro": "Sub orizont în acest moment"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAvisoSol",
+   "es": "Nunca mire el Sol con prismáticos ni telescopio sin un filtro solar homologado: daña la vista al instante.",
+   "forma": "texto",
+   "ro": "Nu priviți niciodată Soarele prin binoclu sau telescop fără un filtru solar omologat: vă afectează vederea pe loc."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPorQue",
+   "es": "Por qué el cielo de Tenerife",
+   "forma": "texto",
+   "ro": "De ce cerul din Tenerife"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPorQueTxt",
+   "es": "La capa de inversión de los alisios, donde se forman las nubes bajas, queda por lo general muy por debajo de las cumbres de Tenerife, y el aire de arriba es estable, con poca turbulencia. En Izaña, a 2.390 m, está el Observatorio del Teide del Instituto de Astrofísica de Canarias (IAC).",
+   "forma": "texto",
+   "ro": "Stratul de inversiune al alizeelor, unde se formează norii joși, rămâne de regulă mult sub vârfurile din Tenerife, iar aerul de deasupra este stabil, cu puțină turbulență. La Izaña, la 2.390 m, se află Observatorul Teide al Institutului de Astrofizică al Insulelor Canare (IAC)."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloBrilloCielo",
+   "es": "Según el IAC, el fondo del cielo del Observatorio del Teide brilla 21,20 magnitudes por segundo de arco cuadrado en luz visible (banda V), y el del Roque de los Muchachos, en La Palma, 21,70: medido en noche despejada y sin Luna, lejos del plano de la Vía Láctea y de la eclíptica, y con el Sol en su mínimo de actividad. Cuanto mayor es la cifra, más oscuro es el cielo.",
+   "forma": "texto",
+   "ro": "Potrivit IAC, fondul cerului la Observatorul Teide are o strălucire de 21,20 magnitudini pe secundă de arc pătrată în lumină vizibilă (banda V), iar la Roque de los Muchachos, pe La Palma, de 21,70: valori măsurate într-o noapte senină și fără Lună, departe de planul Căii Lactee și de ecliptică, cu Soarele la minimul de activitate. Cu cât cifra este mai mare, cu atât cerul este mai întunecat."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLeyCielo",
+   "es": "La Ley del Cielo (Ley 31/1988) y su reglamento protegen los observatorios del IAC de la contaminación radioeléctrica y atmosférica y de las rutas aéreas. El alumbrado exterior solo se regula en La Palma y en la parte de Tenerife que se ve desde La Palma.",
+   "forma": "texto",
+   "ro": "Legea Cerului (Legea 31/1988) și regulamentul ei protejează observatoarele IAC de poluarea radioelectrică și atmosferică și de rutele aeriene. Iluminatul exterior este reglementat doar pe La Palma și în partea din Tenerife care se vede de pe La Palma."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloStarlight",
+   "es": "En 2013 la Fundación Starlight certificó las cumbres de Tenerife como Reserva Starlight y El Teide como Destino Turístico Starlight; Granadilla de Abona (2012) y La Matanza de Acentejo (2019) también son destinos Starlight.",
+   "forma": "texto",
+   "ro": "În 2013, Fundația Starlight a certificat vârfurile din Tenerife drept Rezervație Starlight și El Teide drept Destinație Turistică Starlight; Granadilla de Abona (2012) și La Matanza de Acentejo (2019) sunt și ele destinații Starlight."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitios",
+   "es": "Dónde mirar las estrellas",
+   "forma": "texto",
+   "ro": "Unde să priviți stelele"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioUcanca",
+   "es": "Mirador del Llano de Ucanca",
+   "forma": "texto",
+   "ro": "Punctul de belvedere Llano de Ucanca"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioUcancaTxt",
+   "es": "Junto a la TF-21, con el Teide al otro lado de una gran llanura. Se llega en coche.",
+   "forma": "texto",
+   "ro": "Lângă TF-21, cu Teide de cealaltă parte a unei câmpii întinse. Se ajunge cu mașina."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioRuleta",
+   "es": "Mirador de La Ruleta",
+   "forma": "texto",
+   "ro": "Punctul de belvedere La Ruleta"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioRuletaTxt",
+   "es": "Junto a los Roques de García, con sitio para montar un telescopio y vistas al Teide.",
+   "forma": "texto",
+   "ro": "Lângă Roques de García, cu loc pentru a instala un telescop și priveliște spre Teide."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioParador",
+   "es": "El Parador y sus alrededores",
+   "forma": "texto",
+   "ro": "Paradorul și împrejurimile sale"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioParadorTxt",
+   "es": "El Parador de Las Cañadas es buena base para la noche: aparcamiento amplio y cerca de La Ruleta y los Roques de García. Tiene acreditación Starlight desde 2015.",
+   "forma": "texto",
+   "ro": "Parador de Las Cañadas este o bază bună pentru noapte: parcare spațioasă, aproape de La Ruleta și Roques de García. Are acreditare Starlight din 2015."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioGuajara",
+   "es": "Montaña de Guajara",
+   "forma": "texto",
+   "ro": "Muntele Guajara"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioGuajaraTxt",
+   "es": "Cumbre de más de 2.700 m en el borde de Las Cañadas. En 1910 el astrónomo Jean Mascart observó desde aquí el cometa Halley; en la cima quedan restos de su refugio. Unas dos horas y media de subida a pie. Para pasar allí la noche hay que reservar antes la zona de vivac en Tenerife ON.",
+   "forma": "texto",
+   "ro": "Vârf de peste 2.700 m, la marginea zonei Las Cañadas. În 1910, astronomul Jean Mascart a observat de aici cometa Halley; pe vârf se mai păstrează resturi ale adăpostului său. Aproximativ două ore și jumătate de urcare pe jos. Pentru a înnopta acolo, trebuie să rezervați dinainte zona de bivuac pe Tenerife ON."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioTabonal",
+   "es": "Mirador del Tabonal Negro",
+   "forma": "texto",
+   "ro": "Punctul de belvedere Tabonal Negro"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioTabonalTxt",
+   "es": "En la TF-21, mirando a la montaña de Guajara y no al Teide. Aparcamiento pequeño; buen punto de encuentro al anochecer.",
+   "forma": "texto",
+   "ro": "Pe TF-21, cu fața spre muntele Guajara, nu spre Teide. Parcare mică; un loc bun de întâlnire la căderea serii."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioIzana",
+   "es": "Izaña y el Observatorio del Teide",
+   "forma": "texto",
+   "ro": "Izaña și Observatorul Teide"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioIzanaTxt",
+   "es": "A 2.390 m. El observatorio es una instalación científica: solo se entra en visitas guiadas con reserva previa (información en la web del IAC). Las visitas son de día; de noche no se visita, y no se admiten menores de 8 años.",
+   "forma": "texto",
+   "ro": "La 2.390 m. Observatorul este o instalație științifică: se poate intra doar în vizite ghidate, cu rezervare prealabilă (informații pe site-ul IAC). Vizitele au loc ziua; noaptea nu se vizitează, iar copiii sub 8 ani nu sunt admiși."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioMuseo",
+   "es": "Museo de la Ciencia y el Cosmos",
+   "forma": "texto",
+   "ro": "Muzeul Științei și al Cosmosului"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitioMuseoTxt",
+   "es": "En San Cristóbal de La Laguna, con planetario (las sesiones llevan entrada aparte); lo impulsó el IAC junto al Cabildo. Un plan para cuando el cielo está cubierto.",
+   "forma": "texto",
+   "ro": "În San Cristóbal de La Laguna, cu planetariu (sesiunile au bilet separat); a fost creat la inițiativa IAC, împreună cu Cabildo. O idee pentru când cerul este înnorat."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSitiosFuente",
+   "es": "Los cinco primeros son los que recomienda Turismo de Tenerife para observar las estrellas.",
+   "forma": "texto",
+   "ro": "Primele cinci sunt locurile recomandate de Turismo de Tenerife pentru observarea stelelor."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRutaPaneles",
+   "es": "Entre El Portillo y Chío, Turismo de Tenerife propone además una ruta autoguiada de siete paneles sobre el cielo y los planetas: dos en el mirador de Minas de San José y uno en el Tabonal Negro, los Roques de García, Los Azulejos, el Llano de Ucanca y el aparcamiento del Museo Juan Évora.",
+   "forma": "texto",
+   "ro": "Între El Portillo și Chío, Turismo de Tenerife propune și un traseu autoghidat cu șapte panouri despre cer și planete: două la punctul de belvedere Minas de San José și câte unul la Tabonal Negro, Roques de García, Los Azulejos, Llano de Ucanca și în parcarea Muzeului Juan Évora."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVerEnElMapa",
+   "es": "Ver en el mapa",
+   "forma": "texto",
+   "ro": "Vedeți pe hartă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConsejos",
+   "es": "Consejos para la noche",
+   "forma": "texto",
+   "ro": "Sfaturi pentru noapte"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConsejo1",
+   "es": "Antes de subir, mire la previsión de AEMET para el Teide (cielo, viento y temperatura en el Teide e Izaña) y el estado de las carreteras.",
+   "forma": "texto",
+   "ro": "Înainte de a urca, verificați prognoza AEMET pentru Teide (cerul, vântul și temperatura pe Teide și la Izaña) și starea drumurilor."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConsejo2",
+   "es": "En las cumbres refresca mucho de noche, también en verano: lleve abrigo y gorro.",
+   "forma": "texto",
+   "ro": "Pe vârfuri se face foarte frig noaptea, chiar și vara: luați haine groase și o căciulă."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConsejo3",
+   "es": "Apague las luces blancas y deje que la vista se adapte unos 20 minutos; use la luz roja de esta pantalla.",
+   "forma": "texto",
+   "ro": "Stingeți luminile albe și lăsați ochii să se adapteze circa 20 de minute; folosiți lumina roșie a acestui ecran."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConsejo4",
+   "es": "Aparque solo en zonas habilitadas y no salga de los senderos: es un Parque Nacional.",
+   "forma": "texto",
+   "ro": "Parcați doar în zonele amenajate și nu ieșiți de pe poteci: este un Parc Național."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConsejo5",
+   "es": "Baje despacio: son carreteras de montaña con muchas curvas, y de noche se conduce más cansado.",
+   "forma": "texto",
+   "ro": "Coborâți încet: sunt drumuri de munte cu multe curbe, iar noaptea oboseala se simte mai mult la volan."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConsejo6",
+   "es": "Para caminar de noche lleve frontal (mejor con luz roja), agua y ropa de abrigo, y diga a alguien adónde va.",
+   "forma": "texto",
+   "ro": "Pentru plimbări pe jos noaptea, luați o lanternă frontală (de preferință cu lumină roșie), apă și haine groase și spuneți cuiva unde mergeți."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNormas",
+   "es": "Normas del Parque Nacional para la noche",
+   "forma": "texto",
+   "ro": "Regulile Parcului Național pentru noapte"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNorma1",
+   "es": "El telescopio solo se puede montar en La Ruleta, junto al Parador y al centro de visitantes de Cañada Blanca, en los aparcamientos del teleférico (el de la TF-21 y el de la estación base), fuera del refugio de Altavista, en los aparcamientos de Minas de San José y en Portillo Alto.",
+   "forma": "texto",
+   "ro": "Telescopul poate fi instalat doar la La Ruleta, lângă Parador și centrul de vizitatori Cañada Blanca, în parcările telecabinei (cea de pe TF-21 și cea de la stația de bază), în exteriorul refugiului Altavista, în parcările de la Minas de San José și la Portillo Alto."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNorma2",
+   "es": "No se permiten más luces que las de los coches en marcha, las linternas de mano y los frontales. Los punteros láser, solo en las observaciones guiadas.",
+   "forma": "texto",
+   "ro": "Nu sunt permise alte lumini decât cele ale mașinilor în mers, lanternele de mână și cele frontale. Indicatoarele laser, doar în observațiile ghidate."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNorma3",
+   "es": "No se puede acampar ni dormir en el coche o la autocaravana. Para pasar la noche arriba hay zonas de vivac, con reserva previa en Tenerife ON, como la de Guajara.",
+   "forma": "texto",
+   "ro": "Nu este permisă camparea și nici dormitul în mașină sau în autorulotă. Pentru a înnopta sus există zone de bivuac, cu rezervare prealabilă pe Tenerife ON, cum este cea de pe Guajara."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNorma4",
+   "es": "Si contrata una excursión de estrellas al Parque, la norma pide grupos de 30 personas como máximo y guía acreditado.",
+   "forma": "texto",
+   "ro": "Dacă rezervați o excursie de observare a stelelor în Parc, regulile cer grupuri de cel mult 30 de persoane și un ghid acreditat."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloNormasFuente",
+   "es": "Del Plan Rector de Uso y Gestión del Parque Nacional del Teide (Decreto 182/2025, BOC n.º 240, de 3 de diciembre de 2025), apartados 6.2.1, 6.2.5, 6.3.2.5, 6.3.2.7 y 6.3.3; el vivac, en Tenerife ON.",
+   "forma": "texto",
+   "ro": "Din Planul director de utilizare și gestionare al Parcului Național Teide (Decretul 182/2025, BOC nr. 240, din 3 decembrie 2025), punctele 6.2.1, 6.2.5, 6.3.2.5, 6.3.2.7 și 6.3.3; bivuacul, pe Tenerife ON."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEquipo",
+   "es": "Qué llevar para mirar",
+   "forma": "texto",
+   "ro": "Ce să luați pentru observare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEquipoOjo",
+   "es": "Constelaciones, estrellas brillantes, planetas, la Vía Láctea, lluvias de estrellas y la Luna. Basta con un sitio oscuro y tiempo para que la vista se adapte.",
+   "forma": "texto",
+   "ro": "Constelații, stele strălucitoare, planete, Calea Lactee, ploi de meteori și Luna. Este suficient un loc întunecat și timp ca ochii să se adapteze."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEquipoPrismaticos",
+   "es": "Unos 7×50 o 10×50, apoyados o en trípode: las Pléyades, la galaxia de Andrómeda, el Doble Cúmulo de Perseo, cúmulos de la Vía Láctea y los satélites de Júpiter.",
+   "forma": "texto",
+   "ro": "Un binoclu 7×50 sau 10×50, sprijinit sau pe trepied: Pleiadele, Galaxia Andromeda, Roiul Dublu din Perseu, roiurile din Calea Lactee și sateliții lui Jupiter."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEquipoTelescopio",
+   "es": "Cráteres de la Luna, los anillos de Saturno, estrellas dobles cerradas, cúmulos globulares, nebulosas planetarias y galaxias. Pide carta celeste y paciencia. En el Parque Nacional, solo se monta donde dicen sus normas (más arriba).",
+   "forma": "texto",
+   "ro": "Craterele Lunii, inelele lui Saturn, stele duble apropiate, roiuri globulare, nebuloase planetare și galaxii. Necesită o hartă a cerului și răbdare. În Parcul Național, telescopul se instalează doar unde permit regulile (mai sus)."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOficiales",
+   "es": "Fuentes oficiales",
+   "forma": "texto",
+   "ro": "Surse oficiale"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceAtlas",
+   "es": "Atlas celeste para Canarias (IGN)",
+   "forma": "texto",
+   "ro": "Atlas ceresc pentru Insulele Canare (IGN)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceEclipsesIgn",
+   "es": "Eclipses de Sol y Luna (IGN)",
+   "forma": "texto",
+   "ro": "Eclipse de Soare și de Lună (IGN)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceIac",
+   "es": "Instituto de Astrofísica de Canarias",
+   "forma": "texto",
+   "ro": "Institutul de Astrofizică al Insulelor Canare (IAC)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceVisitas",
+   "es": "Visitas al Observatorio del Teide (IAC)",
+   "forma": "texto",
+   "ro": "Vizite la Observatorul Teide (IAC)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceLey",
+   "es": "Protección del cielo: la Ley del Cielo (IAC)",
+   "forma": "texto",
+   "ro": "Protecția cerului: Legea Cerului (IAC)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceStarlight",
+   "es": "Certificaciones Starlight (Fundación Starlight)",
+   "forma": "texto",
+   "ro": "Certificări Starlight (Fundația Starlight)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceImo",
+   "es": "Lluvias de meteoros: International Meteor Organization",
+   "forma": "texto",
+   "ro": "Ploi de meteori: International Meteor Organization"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlacePrug",
+   "es": "Normas del Parque Nacional del Teide (BOC)",
+   "forma": "texto",
+   "ro": "Regulile Parcului Național Teide (BOC)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceAemetTeide",
+   "es": "Predicción para el Teide (AEMET)",
+   "forma": "texto",
+   "ro": "Prognoza pentru Teide (AEMET)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnlaceBrillo",
+   "es": "Brillo del cielo en los observatorios (IAC)",
+   "forma": "texto",
+   "ro": "Strălucirea cerului la observatoare (IAC)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCreditos",
+   "es": "Datos y créditos",
+   "forma": "texto",
+   "ro": "Date și credite"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCreditosTxt",
+   "es": "Estrellas: HYG v4.1 (CC BY-SA 4.0) y el Yale Bright Star Catalogue. Cielo profundo: OpenNGC (CC BY-SA 4.0). Figuras y Vía Láctea: d3-celestial (BSD). Variables y lluvias: GCVS y lista de la IMO, a través de Stellarium (GPL). Cálculos: Astronomy Engine (MIT), en el propio móvil.",
+   "forma": "texto",
+   "ro": "Stele: HYG v4.1 (CC BY-SA 4.0) și Yale Bright Star Catalogue. Cer profund: OpenNGC (CC BY-SA 4.0). Figuri și Calea Lactee: d3-celestial (BSD). Variabile și ploi de meteori: GCVS și lista IMO, prin Stellarium (GPL). Calcule: Astronomy Engine (MIT), direct pe telefon."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCreditoHyg",
+   "es": "Base de estrellas HYG (Codeberg)",
+   "forma": "texto",
+   "ro": "Baza de date stelare HYG (Codeberg)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCreditoOpenngc",
+   "es": "Catálogo OpenNGC (GitHub)",
+   "forma": "texto",
+   "ro": "Catalogul OpenNGC (GitHub)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCreditoD3",
+   "es": "Figuras y Vía Láctea: d3-celestial (GitHub)",
+   "forma": "texto",
+   "ro": "Figuri și Calea Lactee: d3-celestial (GitHub)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCreditoMotor",
+   "es": "Motor de cálculo: Astronomy Engine (GitHub)",
+   "forma": "texto",
+   "ro": "Motor de calcul: Astronomy Engine (GitHub)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCreditoStellarium",
+   "es": "Stellarium: nombres, variables y lluvias (GitHub)",
+   "forma": "texto",
+   "ro": "Stellarium: nume, variabile și ploi de meteori (GitHub)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaTodo",
+   "es": "Todo el cielo",
+   "forma": "texto",
+   "ro": "Tot cerul"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaHorizonte",
+   "es": "Vista desde el suelo",
+   "forma": "texto",
+   "ro": "Vedere de pe sol"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMapaCorre",
+   "es": "Hacer correr la noche",
+   "forma": "texto",
+   "ro": "Derulați noaptea"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMinutos",
+   "es": "{n} min",
+   "forma": "texto",
+   "ro": "{n} min"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMinSeg",
+   "es": "{m} min {s} s",
+   "forma": "texto",
+   "ro": "{m} min {s} s"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTipoConstelacion",
+   "es": "Constelación",
+   "forma": "texto",
+   "ro": "Constelație"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTipoPlaneta",
+   "es": "Planeta",
+   "forma": "texto",
+   "ro": "Planetă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTipoLuna",
+   "es": "Nuestro satélite",
+   "forma": "texto",
+   "ro": "Satelitul nostru"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTipoSol",
+   "es": "Nuestra estrella",
+   "forma": "texto",
+   "ro": "Steaua noastră"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEnCon",
+   "es": "en {c}",
+   "forma": "texto",
+   "ro": "în constelația {c}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSinResultados",
+   "es": "Nada con ese nombre. Pruebe con «Orión», «M42» o «Júpiter».",
+   "forma": "texto",
+   "ro": "Nimic cu acest nume. Încercați „Orion”, „M42” sau „Jupiter”."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloApunta",
+   "es": "Apunte al cielo",
+   "forma": "texto",
+   "ro": "Îndreptați spre cer"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloApuntaSub",
+   "es": "Levante el móvil hacia una estrella y le dice cuál es, con su ficha. Con cámara si quiere.",
+   "forma": "texto",
+   "ro": "Ridicați telefonul spre o stea și vă spune care este, cu fișa ei. Cu camera, dacă doriți."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloApuntaAyuda",
+   "es": "Mueva el móvil: lo que quede en el círculo se nombra abajo. Toque un astro para ver su ficha, 🔍 para buscar uno.",
+   "forma": "texto",
+   "ro": "Mișcați telefonul: ce rămâne în cerc este numit mai jos. Atingeți un astru pentru fișa lui sau 🔍 pentru a căuta unul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloApuntaEstrella",
+   "es": "Apunte a una estrella para saber cuál es",
+   "forma": "texto",
+   "ro": "Îndreptați telefonul spre o stea pentru a afla care este"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSaberMas",
+   "es": "Toque para saber más",
+   "forma": "texto",
+   "ro": "Atingeți pentru a afla mai multe"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSensores",
+   "es": "Sensores",
+   "forma": "texto",
+   "ro": "Senzori"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAMano",
+   "es": "A mano",
+   "forma": "texto",
+   "ro": "Manual"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSensoresEspera",
+   "es": "Todavía no llega nada de los sensores. Mueva un poco el móvil.",
+   "forma": "texto",
+   "ro": "Încă nu sosesc date de la senzori. Mișcați puțin telefonul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSensoresNo",
+   "es": "Este dispositivo no da su orientación, así que el cielo se mueve con el dedo: arrastre para girar y pellizque para acercar.",
+   "forma": "texto",
+   "ro": "Acest dispozitiv nu își transmite orientarea, așa că cerul se mișcă cu degetul: glisați pentru a roti și depărtați două degete pentru a mări."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSensoresPermiso",
+   "es": "Sin permiso para los sensores de movimiento, el cielo se mueve con el dedo. Se puede dar en los ajustes del navegador.",
+   "forma": "texto",
+   "ro": "Fără permisiune pentru senzorii de mișcare, cerul se mișcă cu degetul. O puteți acorda din setările browserului."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSensoresPermisoApp",
+   "es": "Sin permiso para los sensores de movimiento, el cielo se mueve con el dedo.",
+   "forma": "texto",
+   "ro": "Fără permisiune pentru senzorii de mișcare, cerul se mișcă cu degetul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCalibraBrujula",
+   "es": "La brújula del móvil no está segura de dónde está el norte: haga un ocho en el aire con el móvil, o arrastre el cielo hasta que cuadre.",
+   "forma": "texto",
+   "ro": "Busola telefonului nu știe sigur unde este nordul: descrieți un opt în aer cu telefonul sau trageți cerul până când se potrivește."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAjusteQuitar",
+   "es": "Quitar el ajuste a mano",
+   "forma": "texto",
+   "ro": "Eliminați ajustarea manuală"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCamara",
+   "es": "Cámara",
+   "forma": "texto",
+   "ro": "Camera"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCamaraAyuda",
+   "es": "Las estrellas se pintan sobre la imagen. Si no caen encima de las de verdad, pellizque hasta que encajen: se recuerda en este móvil. Nada de la cámara se guarda ni sale del móvil.",
+   "forma": "texto",
+   "ro": "Stelele sunt desenate peste imagine. Dacă nu cad peste cele adevărate, apropiați sau depărtați degetele până se potrivesc: telefonul ține minte. Nimic din ce vede camera nu se salvează și nu iese de pe telefon."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCamaraSinSensores",
+   "es": "Sin sensores de orientación la cámara no puede seguir al cielo: la imagen sale, pero el cielo se mueve con el dedo.",
+   "forma": "texto",
+   "ro": "Fără senzori de orientare, camera nu poate urmări cerul: imaginea apare, dar cerul se mișcă cu degetul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCamaraPermiso",
+   "es": "Sin permiso para la cámara. Se puede dar en los ajustes del navegador; el cielo funciona igual sin ella.",
+   "forma": "texto",
+   "ro": "Fără permisiune pentru cameră. O puteți acorda din setările browserului; cerul funcționează la fel și fără ea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCamaraPermisoApp",
+   "es": "Sin permiso para la cámara; el cielo funciona igual sin ella.",
+   "forma": "texto",
+   "ro": "Fără permisiune pentru cameră; cerul funcționează la fel și fără ea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCamaraNo",
+   "es": "Aquí no hay cámara que usar. El cielo funciona igual sin ella.",
+   "forma": "texto",
+   "ro": "Aici nu există o cameră de folosit. Cerul funcționează la fel și fără ea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloBuscarCielo",
+   "es": "Buscar un astro",
+   "forma": "texto",
+   "ro": "Căutați un astru"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloBuscarQue",
+   "es": "¿Qué quiere encontrar? Júpiter, Vega, Orión, M31…",
+   "forma": "texto",
+   "ro": "Ce doriți să găsiți? Jupiter, Vega, Orion, M31…"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiame",
+   "es": "Llévame hasta él",
+   "forma": "texto",
+   "ro": "Du-mă acolo"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEncuentralo",
+   "es": "Encuéntrelo en el cielo",
+   "forma": "texto",
+   "ro": "Vedeți unde este pe cer"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAGrados",
+   "es": "a {g}°: siga la flecha",
+   "forma": "texto",
+   "ro": "la {g}°: urmați săgeata"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAhiEsta",
+   "es": "¡Ahí está!",
+   "forma": "texto",
+   "ro": "Acolo este!"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloObjetivoBajo",
+   "es": "{c} está ahora bajo el horizonte: la flecha señala hacia donde está, aunque no se pueda ver.",
+   "forma": "texto",
+   "ro": "{c} este acum sub orizont: săgeata arată unde se află, deși nu se poate vedea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAhoraMismo",
+   "es": "Ahora mismo",
+   "forma": "texto",
+   "ro": "Chiar acum"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaArriba",
+   "es": "{t}: a {alt}° de altura, {dir}",
+   "forma": "texto",
+   "ro": "{t}: la {alt}° înălțime, {dir}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaAbajo",
+   "es": "{t}: bajo el horizonte",
+   "forma": "texto",
+   "ro": "{t}: sub orizont"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaEstaNoche",
+   "es": "Esta noche",
+   "forma": "texto",
+   "ro": "Noaptea asta"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaSale",
+   "es": "sale a las {h} por el {r}",
+   "forma": "texto",
+   "ro": "răsare la ora {h}, spre {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaCulmina",
+   "es": "lo más alto a las {h} ({alt}°)",
+   "forma": "texto",
+   "ro": "cel mai sus la ora {h} ({alt}°)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaPone",
+   "es": "se pone a las {h} por el {r}",
+   "forma": "texto",
+   "ro": "apune la ora {h}, spre {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaNuncaSePone",
+   "es": "nunca se pone desde Tenerife: da vueltas alrededor de la Polar",
+   "forma": "texto",
+   "ro": "din Tenerife nu apune niciodată: se rotește în jurul Stelei Polare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaNoSale",
+   "es": "no sale sobre el horizonte esta noche",
+   "forma": "texto",
+   "ro": "nu răsare deasupra orizontului în noaptea asta"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaClase",
+   "es": "Clase: {c}",
+   "forma": "texto",
+   "ro": "Clasa: {c}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLumI",
+   "es": "supergigante",
+   "forma": "texto",
+   "ro": "supergigantă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLumII",
+   "es": "gigante luminosa",
+   "forma": "texto",
+   "ro": "gigantă luminoasă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLumIII",
+   "es": "gigante",
+   "forma": "texto",
+   "ro": "gigantă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLumIV",
+   "es": "subgigante",
+   "forma": "texto",
+   "ro": "subgigantă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLumV",
+   "es": "enana, como el Sol (secuencia principal)",
+   "forma": "texto",
+   "ro": "pitică, ca Soarele (secvența principală)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaColorK",
+   "es": "Color: {c}, con una temperatura de unos {k} K en la superficie",
+   "forma": "texto",
+   "ro": "Culoare: {c}, cu o temperatură de aproximativ {k} K la suprafață"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaColorCaliente",
+   "es": "Color: {c}, con más de {k} K en la superficie",
+   "forma": "texto",
+   "ro": "Culoare: {c}, cu peste {k} K la suprafață"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloColorO",
+   "es": "azul",
+   "forma": "texto",
+   "ro": "albastru"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloColorB",
+   "es": "blanco azulado",
+   "forma": "texto",
+   "ro": "alb-albăstrui"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloColorA",
+   "es": "blanco",
+   "forma": "texto",
+   "ro": "alb"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloColorF",
+   "es": "blanco amarillento",
+   "forma": "texto",
+   "ro": "alb-gălbui"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloColorG",
+   "es": "amarillo, como el Sol",
+   "forma": "texto",
+   "ro": "galben, ca Soarele"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloColorK",
+   "es": "naranja claro",
+   "forma": "texto",
+   "ro": "portocaliu deschis"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloColorM",
+   "es": "rojo anaranjado",
+   "forma": "texto",
+   "ro": "roșu-portocaliu"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaLuzAnio",
+   "es": "Está a {n} años luz: la luz que ve salió de ella en {y}",
+   "forma": "texto",
+   "ro": "Distanța în ani-lumină: {n}. Lumina pe care o vedeți a plecat de acolo în {y}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaLuzUnos",
+   "es": "Está a unos {n} años luz: la luz que ve salió de ella hace unos {n} años",
+   "forma": "texto",
+   "ro": "Distanța în ani-lumină: aproximativ {n}. Tot atâția ani (aproximativ {n}) i-au trebuit luminii pe care o vedeți ca să ajungă aici"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaLum",
+   "es": "Brilla como unos {n} soles (en luz visible)",
+   "forma": "texto",
+   "ro": "Luminozitate (în lumină vizibilă): aproximativ {n} × Soarele"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaLumSol",
+   "es": "Brilla más o menos como el Sol",
+   "forma": "texto",
+   "ro": "Strălucește aproximativ cât Soarele"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaLumMenos",
+   "es": "Brilla como un {p} % del Sol",
+   "forma": "texto",
+   "ro": "Strălucește cât aproximativ {p} % din Soare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaMasBrillante",
+   "es": "Es la estrella más brillante de {c}",
+   "forma": "texto",
+   "ro": "Este cea mai strălucitoare stea din constelația {c}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaDistSol",
+   "es": "A {d} millones de km: su luz tarda {t} en llegar",
+   "forma": "texto",
+   "ro": "La {d} milioane de km: lumina sa ajunge la noi în {t}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaDistLuna",
+   "es": "A {d} km: su luz tarda {s} segundos en llegar",
+   "forma": "texto",
+   "ro": "La {d} km: lumina sa ajunge la noi în {s} secunde"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaEdadLuna",
+   "es": "Edad de la Luna: {d} días desde la última luna nueva",
+   "forma": "texto",
+   "ro": "Vârsta Lunii, în zile de la ultima lună nouă: {d}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaDistPlaneta",
+   "es": "A {d} millones de km de la Tierra",
+   "forma": "texto",
+   "ro": "Distanța față de Pământ (în milioane de km): {d}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaLuzPlaneta",
+   "es": "Su luz tarda {t} en llegar",
+   "forma": "texto",
+   "ro": "Lumina sa ajunge la noi în {t}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaElongManana",
+   "es": "A {g}° del Sol: se ve antes del amanecer",
+   "forma": "texto",
+   "ro": "La {g}° de Soare: se vede înainte de zori"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaElongTarde",
+   "es": "A {g}° del Sol: se ve después del atardecer",
+   "forma": "texto",
+   "ro": "La {g}° de Soare: se vede după apus"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaFase",
+   "es": "Fase: {p} % iluminado, como una luna pequeña",
+   "forma": "texto",
+   "ro": "Fază: {p} % din disc iluminat, ca o lună în miniatură"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaAnillos",
+   "es": "Los anillos se ven inclinados {g}°: con un telescopio pequeño ya se distinguen",
+   "forma": "texto",
+   "ro": "Inelele se văd înclinate cu {g}°: cu un telescop mic se disting deja"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaLunasJ",
+   "es": "Sus cuatro lunas grandes ahora, como se ven con prismáticos (norte arriba, este a la izquierda)",
+   "forma": "texto",
+   "ro": "Cele patru luni mari ale sale în acest moment, așa cum se văd prin binoclu (nordul sus, estul în stânga)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaLunaDetras",
+   "es": "Ahora mismo no se ve: {l}, detrás del planeta",
+   "forma": "texto",
+   "ro": "Acum nu se vede: {l}, în spatele planetei"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloWiki",
+   "es": "De Wikipedia",
+   "forma": "texto",
+   "ro": "De pe Wikipedia"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloWikiNo",
+   "es": "No hay artículo en su idioma.",
+   "forma": "texto",
+   "ro": "Nu există articol în limba dumneavoastră."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloWikiLeer",
+   "es": "Leer el artículo entero",
+   "forma": "texto",
+   "ro": "Citiți articolul întreg"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloWikiLicencia",
+   "es": "Texto de Wikipedia, licencia CC BY-SA 4.0.",
+   "forma": "texto",
+   "ro": "Text de pe Wikipedia, licență CC BY-SA 4.0."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaTitulo",
+   "es": "Antes de apuntar: 20 segundos",
+   "forma": "texto",
+   "ro": "Înainte de a îndrepta telefonul: 20 de secunde"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaImanes",
+   "es": "Aleje el móvil de imanes y de metal: la funda con imán, el coche, una barandilla. Desvían la brújula.",
+   "forma": "texto",
+   "ro": "Țineți telefonul departe de magneți și de metal: husa cu magnet, mașina, o balustradă. Acestea deviază busola."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaOcho",
+   "es": "Mueva el móvil dibujando un ocho en el aire, dos o tres veces: así se calibra la brújula.",
+   "forma": "texto",
+   "ro": "Mișcați telefonul desenând un opt în aer, de două-trei ori: așa se calibrează busola."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaComprueba",
+   "es": "Luego apunte a la Luna, a un planeta o a la estrella más brillante y toque «Comprobar la brújula»: la app la corrige con ese astro.",
+   "forma": "texto",
+   "ro": "Apoi îndreptați telefonul spre Lună, spre o planetă sau spre cea mai strălucitoare stea și atingeți „Verificați busola”: aplicația o corectează cu ajutorul acelui astru."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaPorQue",
+   "es": "La brújula del móvil se descalibra sola y además marca el norte magnético, que en Tenerife queda {d}° al oeste del verdadero. Esa diferencia ya la corrige Tenerife Go.",
+   "forma": "texto",
+   "ro": "Busola telefonului se decalibrează singură și, în plus, arată nordul magnetic, care în Tenerife se află cu {d}° la vest de nordul geografic. Această diferență o corectează deja Tenerife Go."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaEntendido",
+   "es": "Entendido",
+   "forma": "texto",
+   "ro": "Am înțeles"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobar",
+   "es": "Comprobar la brújula",
+   "forma": "texto",
+   "ro": "Verificați busola"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobarCon",
+   "es": "Ponga {c} dentro del círculo y toque «Ya».",
+   "forma": "texto",
+   "ro": "Aduceți {c} în interiorul cercului și atingeți „Gata”."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobarYa",
+   "es": "Ya",
+   "forma": "texto",
+   "ro": "Gata"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobarLejos",
+   "es": "{c} queda a {g}° del círculo: acérquelo más y vuelva a tocar «Ya».",
+   "forma": "texto",
+   "ro": "{c} se află la {g}° de cerc: mutați cercul mai aproape și atingeți din nou „Gata”."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobarBien",
+   "es": "La brújula iba bien: solo {g}° de desvío.",
+   "forma": "texto",
+   "ro": "Busola era în regulă: o abatere de doar {g}°."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobarHecho",
+   "es": "Brújula corregida: iba {g}° desviada. Si cambia de sitio, vuelva a comprobarla.",
+   "forma": "texto",
+   "ro": "Busolă corectată: avea o abatere de {g}°. Dacă vă mutați în alt loc, verificați-o din nou."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobarAltura",
+   "es": "En altura hay {g}° de diferencia: el móvil no está bien nivelado. Dibuje un ocho en el aire y compruebe otra vez.",
+   "forma": "texto",
+   "ro": "Diferența de înălțime este de {g}°: telefonul nu este bine nivelat. Desenați un opt în aer și verificați din nou."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobarAbajo",
+   "es": "Ahora mismo no hay nada brillante sobre el horizonte con lo que comprobar.",
+   "forma": "texto",
+   "ro": "Acum nu există nimic strălucitor deasupra orizontului cu care să verificați."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloComprobada",
+   "es": "Brújula comprobada con un astro",
+   "forma": "texto",
+   "ro": "Busolă verificată cu un astru"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPrecision",
+   "es": "Precisión de la brújula: ±{g}°",
+   "forma": "texto",
+   "ro": "Precizia busolei: ±{g}°"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFechaElegir",
+   "es": "Elegir otra fecha",
+   "forma": "texto",
+   "ro": "Alegeți altă dată"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRecorrido",
+   "es": "Ver su recorrido esta noche",
+   "forma": "texto",
+   "ro": "Vedeți traseul din noaptea asta"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRecorridoQuitar",
+   "es": "Quitar el recorrido",
+   "forma": "texto",
+   "ro": "Ascundeți traseul"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRecorridoNota",
+   "es": "El recorrido de {c} de salida a puesta, con la hora en cada punto.",
+   "forma": "texto",
+   "ro": "{c}: traseul de la răsărit la apus, cu ora în fiecare punct."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCapturar",
+   "es": "Guardar o compartir la imagen",
+   "forma": "texto",
+   "ro": "Salvați sau distribuiți imaginea"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCapturaNo",
+   "es": "No se pudo crear la imagen.",
+   "forma": "texto",
+   "ro": "Imaginea nu a putut fi creată."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCapturaDesde",
+   "es": "desde el Observatorio del Teide, {f}",
+   "forma": "texto",
+   "ro": "de la Observatorul Teide, {f}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCapturaLista",
+   "es": "Imagen lista: se guarda o se comparte desde su móvil, nada pasa por ningún servidor.",
+   "forma": "texto",
+   "ro": "Imagine gata: se salvează sau se distribuie de pe telefonul dumneavoastră, fără să treacă prin vreun server."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloParaFotos",
+   "es": "Para fotos",
+   "forma": "texto",
+   "ro": "Pentru fotografii"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloDoradaTarde",
+   "es": "Hora dorada de la tarde",
+   "forma": "texto",
+   "ro": "Ora de aur de seară"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAzulTarde",
+   "es": "Hora azul de la tarde",
+   "forma": "texto",
+   "ro": "Ora albastră de seară"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAzulManana",
+   "es": "Hora azul de la mañana",
+   "forma": "texto",
+   "ro": "Ora albastră de dimineață"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloDoradaManana",
+   "es": "Hora dorada de la mañana",
+   "forma": "texto",
+   "ro": "Ora de aur de dimineață"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFotosNota",
+   "es": "Hora dorada: el Sol entre 6° sobre el horizonte y 4° por debajo; hora azul: entre 4° y 6° por debajo (definición de PhotoPills). La Vía Láctea tiene su tarjeta.",
+   "forma": "texto",
+   "ro": "Ora de aur: Soarele între 6° deasupra orizontului și 4° sub el; ora albastră: între 4° și 6° sub orizont (definiția PhotoPills). Calea Lactee are cardul ei."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCalLuna",
+   "es": "Fases de la Luna",
+   "forma": "texto",
+   "ro": "Fazele Lunii"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFaseDet",
+   "es": "A las {h}, hora de Canarias.",
+   "forma": "texto",
+   "ro": "La ora {h}, ora Insulelor Canare."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFasesNota",
+   "es": "La Luna nueva da las noches más oscuras, las mejores para el cielo profundo y la Vía Láctea; la llena, la mejor para mirarla a ella.",
+   "forma": "texto",
+   "ro": "Luna nouă aduce cele mai întunecate nopți, cele mai bune pentru cerul profund și Calea Lactee; Luna plină este cea mai bună pentru a privi Luna însăși."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvRetroIni",
+   "es": "{p} empieza a retrogradar",
+   "forma": "texto",
+   "ro": "{p} începe mișcarea retrogradă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvRetroFin",
+   "es": "{p} vuelve a ir hacia delante",
+   "forma": "texto",
+   "ro": "{p} își reia mișcarea directă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRetroDet",
+   "es": "Hasta el {f} parece ir hacia atrás entre las estrellas, en {c}. No pasa nada raro: es perspectiva, un planeta adelanta al otro en su órbita.",
+   "forma": "texto",
+   "ro": "Până pe {f} pare să meargă înapoi printre stele, în constelația {c}. Nu se întâmplă nimic neobișnuit: este un efect de perspectivă, o planetă o depășește pe cealaltă pe orbită."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRetroDetSinFin",
+   "es": "Parece ir hacia atrás entre las estrellas, en {c}. No pasa nada raro: es perspectiva, un planeta adelanta al otro en su órbita.",
+   "forma": "texto",
+   "ro": "Pare să meargă înapoi printre stele, în constelația {c}. Nu se întâmplă nimic neobișnuit: este un efect de perspectivă, o planetă o depășește pe cealaltă pe orbită."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRetroFinDet",
+   "es": "Retrogradaba desde el {f}.",
+   "forma": "texto",
+   "ro": "Din {f} avea mișcare retrogradă."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRetroFinDetSinIni",
+   "es": "Vuelve a avanzar entre las estrellas.",
+   "forma": "texto",
+   "ro": "Înaintează din nou printre stele."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndice",
+   "es": "Índice de la noche",
+   "forma": "texto",
+   "ro": "Indicele nopții"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceDe",
+   "es": "{n} de 10",
+   "forma": "texto",
+   "ro": "{n} din 10"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceExcelente",
+   "es": "Excelente",
+   "forma": "texto",
+   "ro": "Excelentă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceBuena",
+   "es": "Buena",
+   "forma": "texto",
+   "ro": "Bună"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceRegular",
+   "es": "Regular",
+   "forma": "texto",
+   "ro": "Acceptabilă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceFloja",
+   "es": "Floja",
+   "forma": "texto",
+   "ro": "Slabă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceMala",
+   "es": "Mala",
+   "forma": "texto",
+   "ro": "Proastă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceNoche",
+   "es": "Noche cerrada: {t}",
+   "forma": "texto",
+   "ro": "Noapte deplină: {t}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceSinLuna",
+   "es": "Sin Luna: {t} ({p} % de la noche)",
+   "forma": "texto",
+   "ro": "Fără Lună: {t} ({p} % din noapte)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceLunaIlum",
+   "es": "Luna iluminada al {p} %",
+   "forma": "texto",
+   "ro": "Luna: {p} % iluminată"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceNubes",
+   "es": "Nubes medias y altas previstas: {p} %",
+   "forma": "texto",
+   "ro": "Nori medii și înalți prognozați: {p} %"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceSinNubes",
+   "es": "Sin previsión de nubes para esa noche: el índice no las cuenta.",
+   "forma": "texto",
+   "ro": "Nu există prognoză de nori pentru noaptea aceea: indicele nu îi ia în calcul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIndiceComo",
+   "es": "Cómo se calcula: 10 es una noche oscura del todo, sin Luna y sin nubes. Baja con la Luna en el cielo (más cuanto más llena) y con las nubes previstas en las cumbres. No cuentan las nubes bajas, ni la luz de las ciudades, ni el viento.",
+   "forma": "texto",
+   "ro": "Cum se calculează: 10 înseamnă o noapte complet întunecată, fără Lună și fără nori. Scade cu Luna pe cer (cu atât mai mult cu cât este mai plină) și cu norii prognozați pe vârfuri. Nu se iau în calcul norii joși, luminile orașelor sau vântul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCompartir",
+   "es": "Compartir",
+   "forma": "texto",
+   "ro": "Distribuiți"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloImagenTitulo",
+   "es": "Esta noche en el Teide",
+   "forma": "texto",
+   "ro": "Noaptea asta pe Teide"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloImagenMejor",
+   "es": "Qué mirar: {l}",
+   "forma": "texto",
+   "ro": "Ce să priviți: {l}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAlCalendario",
+   "es": "Añadir a mi calendario",
+   "forma": "texto",
+   "ro": "Adăugați în calendarul meu"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAvisoAqui",
+   "es": "Recordármelo en la app",
+   "forma": "texto",
+   "ro": "Amintește-mi în aplicație"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAvisoPuesto",
+   "es": "Guardado. Al abrir la app los dos días de antes, lo verá arriba del todo.",
+   "forma": "texto",
+   "ro": "Salvat. Dacă deschideți aplicația în cele două zile dinainte, îl veți vedea chiar sus."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAvisoQuitar",
+   "es": "Quitar",
+   "forma": "texto",
+   "ro": "Eliminați"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAvisosQuitarTodos",
+   "es": "Quitar todos los avisos",
+   "forma": "texto",
+   "ro": "Eliminați toate mementourile"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloMisAvisos",
+   "es": "Mis avisos",
+   "forma": "texto",
+   "ro": "Mementourile mele"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAvisoHoy",
+   "es": "¡Esta noche!",
+   "forma": "texto",
+   "ro": "În noaptea asta!"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAvisoManana",
+   "es": "¡Mañana!",
+   "forma": "texto",
+   "ro": "Mâine!"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloAvisosNota",
+   "es": "Los avisos se guardan solo en este móvil y nada le despierta: al abrir la app los dos días de antes, los verá arriba del todo. Para un aviso de verdad, «Añadir a mi calendario»: su calendario le avisará el día antes, y en los pasos de satélites, media hora antes.",
+   "forma": "texto",
+   "ro": "Mementourile se salvează doar pe acest telefon și nimic nu vă trezește: dacă deschideți aplicația în cele două zile dinainte, le veți vedea chiar sus. Pentru o alertă adevărată, „Adăugați în calendarul meu”: calendarul vă va anunța cu o zi înainte, iar la trecerile sateliților, cu o jumătate de oră înainte."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIcsHora",
+   "es": "Hora de Canarias: {h}",
+   "forma": "texto",
+   "ro": "Ora Insulelor Canare: {h}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIcsListo",
+   "es": "Evento listo (.ics): ábralo y su calendario lo añade, con un aviso el día antes.",
+   "forma": "texto",
+   "ro": "Eveniment gata (.ics): deschideți-l, iar calendarul îl adaugă, cu o alertă cu o zi înainte."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIcsListoPaso",
+   "es": "Evento listo (.ics): ábralo y su calendario lo añade, con un aviso media hora antes.",
+   "forma": "texto",
+   "ro": "Eveniment gata (.ics): deschideți-l, iar calendarul îl adaugă, cu o alertă cu o jumătate de oră înainte."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIcsAviso",
+   "es": "Mañana: {e}",
+   "forma": "texto",
+   "ro": "Mâine: {e}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatTitulo",
+   "es": "La Estación Espacial y otros satélites",
+   "forma": "texto",
+   "ro": "Stația Spațială și alți sateliți"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatNombreIss",
+   "es": "Estación Espacial Internacional (ISS)",
+   "forma": "texto",
+   "ro": "Stația Spațială Internațională (ISS)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatNombreTiangong",
+   "es": "Estación espacial china Tiangong",
+   "forma": "texto",
+   "ro": "Stația spațială chineză Tiangong"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatNombreHubble",
+   "es": "Telescopio espacial Hubble",
+   "forma": "texto",
+   "ro": "Telescopul spațial Hubble"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTipoSatelite",
+   "es": "Satélite artificial",
+   "forma": "texto",
+   "ro": "Satelit artificial"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCalSatelites",
+   "es": "Satélites",
+   "forma": "texto",
+   "ro": "Sateliți"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloEvPaso",
+   "es": "{s}: paso visible",
+   "forma": "texto",
+   "ro": "{s}: trecere vizibilă"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatSale",
+   "es": "Aparece a las {h}, {r}",
+   "forma": "texto",
+   "ro": "Apare la ora {h}, {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatDesdeSombra",
+   "es": "Sale de la sombra de la Tierra a las {h}, {r}",
+   "forma": "texto",
+   "ro": "Iese din umbra Pământului la ora {h}, {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatMax",
+   "es": "Más alto a las {h}: {alt}°, {r}",
+   "forma": "texto",
+   "ro": "Cel mai sus la ora {h}: {alt}°, {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatFin",
+   "es": "Se pierde a las {h}, {r}",
+   "forma": "texto",
+   "ro": "Dispare la ora {h}, {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatSombra",
+   "es": "Entra en la sombra de la Tierra a las {h}, {r}",
+   "forma": "texto",
+   "ro": "Intră în umbra Pământului la ora {h}, {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatDura",
+   "es": "Dura {n} min",
+   "forma": "texto",
+   "ro": "Durează {n} min"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatBrilloIss",
+   "es": "Muy brillante: la NASA la describe como el tercer objeto más brillante del cielo. Un punto que cruza el cielo en unos minutos sin parpadear, como un avión muy alto.",
+   "forma": "texto",
+   "ro": "Foarte strălucitoare: NASA o descrie drept al treilea cel mai strălucitor obiect de pe cer. Un punct care traversează cerul în câteva minute fără să clipească, ca un avion foarte sus."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatBrilloTiangong",
+   "es": "Brillante, como una de las estrellas más brillantes del cielo; más pequeña que la ISS, pero se ve bien a simple vista.",
+   "forma": "texto",
+   "ro": "Strălucitoare, ca una dintre cele mai strălucitoare stele de pe cer; mai mică decât ISS, dar se vede bine cu ochiul liber."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatBrilloHubble",
+   "es": "Más débil, como una estrella corriente. Desde Tenerife puede pasar casi por el cenit: su órbita llega justo hasta esta latitud.",
+   "forma": "texto",
+   "ro": "Mai slab, ca o stea obișnuită. Din Tenerife poate trece aproape prin zenit: orbita lui ajunge exact până la această latitudine."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatNinguno",
+   "es": "Esta noche no pasa ninguno visible desde el Teide.",
+   "forma": "texto",
+   "ro": "În noaptea asta nu există nicio trecere vizibilă de pe Teide."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatNingunoSemana",
+   "es": "Ningún paso visible desde el Teide en las próximas siete noches.",
+   "forma": "texto",
+   "ro": "Nicio trecere vizibilă de pe Teide în următoarele șapte nopți."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatSinDatos",
+   "es": "Sin elementos orbitales: hace falta conexión la primera vez.",
+   "forma": "texto",
+   "ro": "Fără elemente orbitale: prima dată este nevoie de conexiune."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatFuera",
+   "es": "Los pasos solo se calculan hasta 7 días desde los elementos orbitales ({f}): más allá dejan de ser fiables. Se renuevan cada día.",
+   "forma": "texto",
+   "ro": "Trecerile se calculează doar până la 7 zile de la data elementelor orbitale ({f}): mai departe nu mai sunt fiabile. Elementele se actualizează zilnic."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatElementos",
+   "es": "Elementos orbitales del {f} (CelesTrak).",
+   "forma": "texto",
+   "ro": "Elemente orbitale din {f} (CelesTrak)."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatNota",
+   "es": "Pasos de más de 10° sobre el horizonte, con el satélite iluminado por el Sol y el cielo ya oscuro (Sol a más de 6° bajo el horizonte), calculados en el móvil con SGP4 a partir de los elementos que un robot renueva cada día; los horarios pueden moverse unos segundos. Starlink no está: son trenes de días.",
+   "forma": "texto",
+   "ro": "Treceri la peste 10° deasupra orizontului, cu satelitul luminat de Soare și cerul deja întunecat (Soarele la peste 6° sub orizont), calculate pe telefon cu SGP4 pe baza elementelor pe care un robot le actualizează zilnic; orele pot varia cu câteva secunde. Starlink nu este inclus: sunt trenuri de sateliți care durează zile."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatEnSombra",
+   "es": "Ahora está en la sombra de la Tierra: no se ve.",
+   "forma": "texto",
+   "ro": "Acum se află în umbra Pământului: nu se vede."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaOrbita",
+   "es": "A {h} km de altura, a {v} km/s",
+   "forma": "texto",
+   "ro": "La {h} km altitudine, cu {v} km/s"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaDistSat",
+   "es": "Ahora a {d} km de usted",
+   "forma": "texto",
+   "ro": "Acum la {d} km de dumneavoastră"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaProximoPaso",
+   "es": "Próximo paso visible: {f}, aparece a las {h} y sube hasta {alt}°",
+   "forma": "texto",
+   "ro": "Următoarea trecere vizibilă: {f}, apare la ora {h} și urcă până la {alt}°"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloFichaSinPaso",
+   "es": "Sin pasos visibles desde el Teide en las próximas siete noches.",
+   "forma": "texto",
+   "ro": "Nicio trecere vizibilă de pe Teide în următoarele șapte nopți."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloIcsAvisoPaso",
+   "es": "Dentro de media hora: {e}",
+   "forma": "texto",
+   "ro": "Peste o jumătate de oră: {e}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatYaArriba",
+   "es": "Ya arriba al oscurecer, a las {h}: {alt}°, {r}",
+   "forma": "texto",
+   "ro": "Deja sus când se întunecă, la ora {h}: {alt}°, {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSatAmanece",
+   "es": "Se pierde en el amanecer a las {h}, {r}",
+   "forma": "texto",
+   "ro": "Se pierde în lumina zorilor la ora {h}, {r}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaNoche",
+   "es": "Su noche guiada",
+   "forma": "texto",
+   "ro": "Noaptea dumneavoastră ghidată"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaIntro",
+   "es": "{n} paradas para esta noche, desde las {t}, de la más fácil de ver a la más difícil. Para encontrar una, toque «Llévame» y levante el móvil hacia el cielo: una flecha le indica hacia dónde moverlo hasta que salga «¡Ahí está!».",
+   "forma": "texto",
+   "ro": "Opriri pentru noaptea asta: {n}, de la ora {t}, de la cea mai ușor de văzut la cea mai greu de văzut. Pentru a găsi una, atingeți „Du-mă acolo” și ridicați telefonul spre cer: o săgeată vă arată în ce direcție să-l mișcați până apare „Acolo este!”."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaParada",
+   "es": "Parada {i} de {n}",
+   "forma": "texto",
+   "ro": "Oprirea {i} din {n}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaLlevame",
+   "es": "Llévame",
+   "forma": "texto",
+   "ro": "Du-mă acolo"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaLuna",
+   "es": "Con prismáticos se ven sus mares oscuros; los cráteres se marcan mejor junto a la línea que separa el día de la noche.",
+   "forma": "texto",
+   "ro": "Cu binoclul se văd mările ei întunecate; craterele se disting cel mai bine lângă linia care desparte ziua de noapte."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaPlanetaLuz",
+   "es": "Luz fija, sin el parpadeo de las estrellas.",
+   "forma": "texto",
+   "ro": "Lumină fixă, fără sclipirea stelelor."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaVenus",
+   "es": "Lo más brillante del cielo después de la Luna. Tiene fases, como ella.",
+   "forma": "texto",
+   "ro": "Cel mai strălucitor obiect de pe cer după Lună. Are faze, ca ea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaMarte",
+   "es": "Se reconoce por su color anaranjado.",
+   "forma": "texto",
+   "ro": "Se recunoaște după culoarea portocalie."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaJupiter",
+   "es": "Con unos prismáticos bien apoyados se ven sus cuatro lunas grandes, en fila.",
+   "forma": "texto",
+   "ro": "Cu un binoclu bine sprijinit se văd cele patru luni mari ale sale, în linie."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaSaturno",
+   "es": "Con un telescopio pequeño se ven los anillos.",
+   "forma": "texto",
+   "ro": "Cu un telescop mic se văd inelele."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaMercurio",
+   "es": "Bajo y poco tiempo: el más esquivo de los planetas.",
+   "forma": "texto",
+   "ro": "Jos și pentru puțin timp: cea mai greu de prins dintre planete."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaObjeto",
+   "es": "A simple vista es una manchita de luz; con prismáticos, mucho más.",
+   "forma": "texto",
+   "ro": "Cu ochiul liber este o mică pată de lumină; cu binoclul, mult mai mult."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaVia",
+   "es": "La banda de luz difusa que cruza el cielo es nuestra galaxia vista desde dentro; su centro queda {dir}. Lejos de las luces y tras 20 minutos a oscuras.",
+   "forma": "texto",
+   "ro": "Banda de lumină difuză care traversează cerul este galaxia noastră văzută din interior; centrul ei se află {dir}. Departe de lumini și după 20 de minute în întuneric."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaPaso",
+   "es": "{s} cruza el cielo de las {h1} ({r1}) a las {h2} ({r2}): un punto brillante que no parpadea.",
+   "forma": "texto",
+   "ro": "{s} traversează cerul de la {h1} ({r1}) la {h2} ({r2}): un punct strălucitor care nu clipește."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaLluvia",
+   "es": "Esta noche está activa la lluvia de las {n}: los meteoros parecen salir de {c}. Mire a un lado de ese punto, no justo a él, y espere: salen a rachas.",
+   "forma": "texto",
+   "ro": "În noaptea asta este activă ploaia de meteori {n}: meteorii par să vină din constelația {c}. Priviți puțin lateral față de acel punct, nu direct spre el, și așteptați: apar în valuri."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaNada",
+   "es": "Esta noche no sale ninguna parada: pruebe con otra noche.",
+   "forma": "texto",
+   "ro": "Nu există nicio oprire pentru noaptea asta: încercați altă noapte."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloGuiaNota",
+   "es": "Las paradas salen de lo que está arriba a esa hora, calculado aquí: la Luna si está, los planetas más brillantes, tres estrellas con nombre, lo mejor a simple vista, la Vía Láctea si no hay Luna, el paso de un satélite y la lluvia de estrellas activa. Cambie la noche con ‹ › o 📅.",
+   "forma": "texto",
+   "ro": "Opririle sunt alese dintre ce se află pe cer la ora aceea, calculat aici: Luna, dacă este pe cer, planetele cele mai strălucitoare, trei stele cu nume, ce se vede cel mai bine cu ochiul liber, Calea Lactee dacă nu e Lună, trecerea unui satelit și ploaia de meteori activă. Schimbați noaptea cu ‹ › sau 📅."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozLeer",
+   "es": "Leer en voz alta",
+   "forma": "texto",
+   "ro": "Citire cu voce tare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozPausa",
+   "es": "Pausa",
+   "forma": "texto",
+   "ro": "Pauză"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozSeguir",
+   "es": "Seguir",
+   "forma": "texto",
+   "ro": "Continuați"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozSiguiente",
+   "es": "Siguiente",
+   "forma": "texto",
+   "ro": "Următoarea"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozParar",
+   "es": "Parar",
+   "forma": "texto",
+   "ro": "Opriți"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozEspera",
+   "es": "Siguiente parada en {s} s",
+   "forma": "texto",
+   "ro": "Următoarea oprire în {s} s"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozEnPausa",
+   "es": "En pausa. «Seguir» vuelve a leer esta parada.",
+   "forma": "texto",
+   "ro": "În pauză. „Continuați” citește din nou această oprire."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozNota",
+   "es": "Lo leen las voces instaladas en el dispositivo, sin red: así puede mirar al cielo y no a la pantalla. Tras cada parada hay {s} segundos para buscarla; «Siguiente» pasa antes y «Pausa» detiene la lectura.",
+   "forma": "texto",
+   "ro": "Textul este citit de vocile instalate pe dispozitiv, fără rețea: așa puteți privi cerul, nu ecranul. După fiecare oprire urmează o pauză pentru a o căuta ({s} s); „Următoarea” trece mai departe mai repede, iar „Pauză” oprește citirea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozSinVoz",
+   "es": "Este dispositivo no tiene una voz para este idioma. Si instala una en sus ajustes, podrá escuchar aquí la noche guiada.",
+   "forma": "texto",
+   "ro": "Acest dispozitiv nu are o voce pentru această limbă. Dacă instalați una din setări, veți putea asculta aici noaptea ghidată."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozFallo",
+   "es": "La voz del dispositivo no ha podido leer el texto. Pruebe otra vez.",
+   "forma": "texto",
+   "ro": "Vocea dispozitivului nu a putut citi textul. Încercați din nou."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozIntro",
+   "es": "Noche guiada: {n} parada. Hora de referencia: {t}. Después, una pausa para buscarla en el cielo.|Noche guiada: {n} paradas, de la más fácil de ver a la más difícil. Hora de referencia: {t}. Tras cada una, una pausa para buscarla en el cielo.",
+   "forma": "texto",
+   "ro": "Noapte ghidată: {n} oprire. Ora de referință: {t}. Apoi, o pauză pentru a o căuta pe cer.|Noapte ghidată: {n} opriri, de la cea mai ușor de văzut la cea mai greu de văzut. Ora de referință: {t}. După fiecare, o pauză pentru a o căuta pe cer.|Noapte ghidată: {n} de opriri, de la cea mai ușor de văzut la cea mai greu de văzut. Ora de referință: {t}. După fiecare, o pauză pentru a o căuta pe cer."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozDonde",
+   "es": "Mire {r}, a {n} grado sobre el horizonte.|Mire {r}, a {n} grados sobre el horizonte.",
+   "forma": "texto",
+   "ro": "Priviți {r}, la {n} grad deasupra orizontului.|Priviți {r}, la {n} grade deasupra orizontului.|Priviți {r}, la {n} de grade deasupra orizontului."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozHoraParada",
+   "es": "Hora de esta parada: {t}.",
+   "forma": "texto",
+   "ro": "Ora acestei opriri: {t}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloVozFin",
+   "es": "Fin de la noche guiada.",
+   "forma": "texto",
+   "ro": "Sfârșitul nopții ghidate."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloTierra",
+   "es": "Tierra",
+   "forma": "texto",
+   "ro": "Pământul"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaTitulo",
+   "es": "El sistema solar hoy",
+   "forma": "texto",
+   "ro": "Sistemul solar azi"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaInterior",
+   "es": "Hasta Marte",
+   "forma": "texto",
+   "ro": "Până la Marte"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaExterior",
+   "es": "Hasta Neptuno",
+   "forma": "texto",
+   "ro": "Până la Neptun"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaMenos",
+   "es": "− 1 mes",
+   "forma": "texto",
+   "ro": "− 1 lună"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaMas",
+   "es": "+ 1 mes",
+   "forma": "texto",
+   "ro": "+ 1 lună"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaCorre",
+   "es": "Hacer correr el tiempo (un mes por segundo)",
+   "forma": "texto",
+   "ro": "Derulați timpul (o lună pe secundă)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaNota",
+   "es": "Las órbitas y las posiciones de hoy, vistas desde encima del polo norte del Sol y calculadas con Astronomy Engine; los tamaños no están a escala. La mitad oscura de la Tierra es su noche, y el punto, Tenerife. Toque un planeta.",
+   "forma": "texto",
+   "ro": "Orbitele și pozițiile de azi, văzute de deasupra polului nord al Soarelui și calculate cu Astronomy Engine; dimensiunile nu sunt la scară. Jumătatea întunecată a Pământului este noaptea lui, iar punctul este Tenerife. Atingeți o planetă."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaDeSol",
+   "es": "A {d} UA del Sol",
+   "forma": "texto",
+   "ro": "La {d} UA de Soare"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaDeTierra",
+   "es": "A {d} UA de la Tierra: su luz tarda {t} en llegar",
+   "forma": "texto",
+   "ro": "La {d} UA de Pământ: lumina sa ajunge la noi în {t}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSistemaElong",
+   "es": "A {e}° del Sol en nuestro cielo",
+   "forma": "texto",
+   "ro": "La {e}° de Soare pe cerul nostru"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRojoBrillo",
+   "es": "Brillo de la pantalla",
+   "forma": "texto",
+   "ro": "Luminozitatea ecranului"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRojoPista",
+   "es": "Es de noche: con la luz roja no se deslumbra y sigue viendo las estrellas.",
+   "forma": "texto",
+   "ro": "Este noapte: cu lumina roșie ecranul nu vă orbește și continuați să vedeți stelele."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRojoActivar",
+   "es": "Activar",
+   "forma": "texto",
+   "ro": "Activați"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloRojoNo",
+   "es": "No, gracias",
+   "forma": "texto",
+   "ro": "Nu, mulțumesc"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSinRed",
+   "es": "Sin conexión. El cielo se calcula igual en el móvil; lo que no hay sin red son las nubes y Wikipedia. Los satélites van con los elementos del {f}.",
+   "forma": "texto",
+   "ro": "Fără conexiune. Cerul se calculează la fel pe telefon; fără rețea lipsesc doar norii și Wikipedia. Sateliții folosesc elementele din {f}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSinRedSinSat",
+   "es": "Sin conexión. El cielo se calcula igual en el móvil; lo que no hay sin red son las nubes y Wikipedia.",
+   "forma": "texto",
+   "ro": "Fără conexiune. Cerul se calculează la fel pe telefon; fără rețea lipsesc doar norii și Wikipedia."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOfflineTitulo",
+   "es": "Antes de subir al Teide",
+   "forma": "texto",
+   "ro": "Înainte de a urca pe Teide"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOfflineListo",
+   "es": "Guardado en el móvil: arriba no hace falta cobertura. La carta, el calendario, el catálogo, «Apunte al cielo» y los satélites funcionan sin conexión.",
+   "forma": "texto",
+   "ro": "Salvat pe telefon: sus nu aveți nevoie de semnal. Harta, calendarul, catalogul, „Îndreptați spre cer” și sateliții funcționează fără conexiune."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOfflineFalta",
+   "es": "Aún no está guardado en el móvil: abra el panel una vez con conexión y se guarda solo.",
+   "forma": "texto",
+   "ro": "Încă nu este salvat pe telefon: deschideți panoul o dată cu conexiune și se salvează automat."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOfflineNo",
+   "es": "Este navegador no guarda la app para usarla sin conexión: arriba hará falta cobertura.",
+   "forma": "texto",
+   "ro": "Acest browser nu salvează aplicația pentru utilizare fără conexiune: sus veți avea nevoie de semnal."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOfflineWiki",
+   "es": "Las fichas de Wikipedia que abra con conexión se guardan 30 días; las nubes necesitan red.",
+   "forma": "texto",
+   "ro": "Fișele Wikipedia pe care le deschideți cu conexiune se păstrează 30 de zile; norii au nevoie de rețea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloOfflineComprobando",
+   "es": "Comprobando lo guardado…",
+   "forma": "texto",
+   "ro": "Se verifică ce este salvat…"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloDurDias",
+   "es": "{n} día|{n} días",
+   "forma": "texto",
+   "ro": "{n} zi|{n} zile|{n} de zile"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloDurDiasFrac",
+   "es": "{n} días",
+   "forma": "texto",
+   "ro": "{n} zile"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloDurAnios",
+   "es": "{n} años",
+   "forma": "texto",
+   "ro": "{n} ani"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloDurHoras",
+   "es": "{n} h",
+   "forma": "texto",
+   "ro": "{n} h"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlFicha",
+   "es": "Ficha del planeta",
+   "forma": "texto",
+   "ro": "Fișa planetei"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlDiametro",
+   "es": "Diámetro: {km} km, {x} veces el de la Tierra",
+   "forma": "texto",
+   "ro": "Diametru: {km} km, de {x} ori cel al Pământului"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlDia",
+   "es": "Un día (de mediodía a mediodía): {d}",
+   "forma": "texto",
+   "ro": "O zi (de la amiază la amiază): {d}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlAnio",
+   "es": "Un año (una vuelta al Sol): {a}",
+   "forma": "texto",
+   "ro": "Un an (o revoluție în jurul Soarelui): {a}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlLunas",
+   "es": "Lunas conocidas: {n}",
+   "forma": "texto",
+   "ro": "Luni cunoscute: {n}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlTemp",
+   "es": "Temperatura media: {t} °C",
+   "forma": "texto",
+   "ro": "Temperatura medie: {t} °C"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlGravedad",
+   "es": "Gravedad: {g} m/s², {x} veces la de la Tierra",
+   "forma": "texto",
+   "ro": "Gravitație: {g} m/s², de {x} ori cea a Pământului"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlAnillos",
+   "es": "Tiene anillos",
+   "forma": "texto",
+   "ro": "Are inele"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloPlFuente",
+   "es": "Cifras de la NASA (NSSDCA), {f}:",
+   "forma": "texto",
+   "ro": "Cifre de la NASA (NSSDCA), {f}:"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCuriosidad",
+   "es": "¿Sabía que…?",
+   "forma": "texto",
+   "ro": "Știați că…?"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurFuente",
+   "es": "Fuente: {f}",
+   "forma": "texto",
+   "ro": "Sursa: {f}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurFuentes",
+   "es": "Fuentes: {f}",
+   "forma": "texto",
+   "ro": "Surse: {f}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurMercury",
+   "es": "Es el planeta más pequeño y el más rápido: {v} km/s alrededor del Sol. Gira tan despacio que uno de sus días, de mediodía a mediodía, dura {d}: dos de sus años ({a}).",
+   "forma": "texto",
+   "ro": "Este cea mai mică planetă și cea mai rapidă: {v} km/s în jurul Soarelui. Se rotește atât de încet încât una dintre zilele sale, de la amiază la amiază, durează {d}: cât doi dintre anii săi ({a})."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurVenus",
+   "es": "Gira al revés, como Urano, y tan despacio que tarda {d} en dar una vuelta sobre sí mismo: más que en dar la vuelta al Sol ({a}). Es el planeta más caliente, {t} °C de media, más que Mercurio, bajo una atmósfera de {p} bares.",
+   "forma": "texto",
+   "ro": "Se rotește invers, ca Uranus, și atât de încet încât îi trebuie {d} pentru o rotație în jurul axei sale: mai mult decât pentru o revoluție în jurul Soarelui ({a}). Este cea mai fierbinte planetă, cu {t} °C în medie, mai mult decât Mercur, sub o atmosferă cu o presiune de {p} bar."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurEarth",
+   "es": "La Tierra va a {v} km/s alrededor del Sol, {kmh} km/h: mientras lee esta frase ha recorrido más de cien kilómetros.",
+   "forma": "texto",
+   "ro": "Pământul se deplasează cu {v} km/s în jurul Soarelui, {kmh} km/h: cât ați citit această frază, a parcurs peste o sută de kilometri."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurMars",
+   "es": "Su día dura casi como el nuestro ({d}), pero su año, {a}. Tiene dos lunas pequeñas, Fobos (26 km de largo) y Deimos (16 km), y una temperatura media de {t} °C.",
+   "forma": "texto",
+   "ro": "Ziua lui durează aproape cât a noastră ({d}), dar anul lui, {a}. Are două luni mici, Phobos (26 km lungime) și Deimos (16 km), și o temperatură medie de {t} °C."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurJupiter",
+   "es": "El mayor de todos: {x} veces el diámetro de la Tierra. Y el que más deprisa gira: un día suyo dura {d}. Tiene {n} lunas conocidas.",
+   "forma": "texto",
+   "ro": "Cea mai mare dintre toate: de {x} ori diametrul Pământului. Și cea care se rotește cel mai repede: o zi a sa durează {d}. Luni cunoscute: {n}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurSaturn",
+   "es": "Es menos denso que el agua ({den} kg/m³ frente a 1.000): flotaría en un mar lo bastante grande. Tiene {n} lunas conocidas, más que ningún otro planeta.",
+   "forma": "texto",
+   "ro": "Are o densitate mai mică decât a apei ({den} kg/m³, față de 1.000): ar pluti într-o mare suficient de mare. Are cele mai multe luni cunoscute dintre toate planetele: {n}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurUranus",
+   "es": "Gira tumbado: su eje está inclinado {o}° (el de la Tierra, 23°). Un año suyo dura {a}.",
+   "forma": "texto",
+   "ro": "Se rotește culcat: axa sa este înclinată cu {o}° (a Pământului, cu 23°). Un an al său durează {a}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurNeptune",
+   "es": "El más lejano: la luz del Sol tarda {t} en llegarle, y un año suyo dura {a}. Con {temp} °C de media, es el más frío.",
+   "forma": "texto",
+   "ro": "Cea mai îndepărtată: lumina Soarelui are nevoie de {t} ca să ajungă la ea, iar un an al său durează {a}. Cu {temp} °C în medie, este cea mai rece."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurSun",
+   "es": "Es una estrella: tiene {r} veces el radio de la Tierra y {m} veces su masa (más del 99 % de toda la masa del sistema solar), y unos {t} °C en la superficie. No gira de una pieza: a 16° del ecuador da una vuelta en {d}; en el ecuador, más deprisa, y cerca de los polos, más despacio.",
+   "forma": "texto",
+   "ro": "Este o stea: raza sa este de {r} ori cea a Pământului, iar masa sa, de {m} de ori (peste 99 % din toată masa sistemului solar), și are aproximativ {t} °C la suprafață. Nu se rotește dintr-o bucată: la 16° de ecuator face o rotație în {d}; la ecuator, mai repede, iar aproape de poli, mai încet."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurMoon",
+   "es": "Siempre nos enseña la misma cara: tarda lo mismo en girar sobre sí misma que en dar la vuelta a la Tierra ({d}). Se aleja de nosotros 3,8 cm al año. Y como casi no tiene atmósfera, las huellas de los astronautas del Apolo seguirán allí mucho tiempo.",
+   "forma": "texto",
+   "ro": "Ne arată mereu aceeași față: îi trebuie la fel de mult timp ca să se rotească în jurul axei sale cât și ca să înconjoare Pământul ({d}). Se îndepărtează de noi cu 3,8 cm pe an. Și pentru că aproape nu are atmosferă, urmele astronauților Apollo vor rămâne acolo multă vreme."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLunaPerigeo",
+   "es": "Lo más cerca (perigeo): {f}, a {km} km",
+   "forma": "texto",
+   "ro": "Cel mai aproape (perigeu): {f}, la {km} km"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLunaApogeo",
+   "es": "Lo más lejos (apogeo): {f}, a {km} km",
+   "forma": "texto",
+   "ro": "Cel mai departe (apogeu): {f}, la {km} km"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurSur",
+   "es": "Nunca sale al norte de los {lat}° de latitud (Madrid está a 40°; París, a 49°). Desde Tenerife ({t}°) sí: llega a {a}° sobre el horizonte sur.",
+   "forma": "texto",
+   "ro": "Nu răsare niciodată la nord de latitudinea de {lat}° (Madridul se află la 40°, Parisul la 49°). Din Tenerife ({t}°) da: urcă până la {a}° deasupra orizontului sudic."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurPolar",
+   "es": "Su altura sobre el horizonte, {a}°, es la latitud del lugar. Apenas se mueve en toda la noche.",
+   "forma": "texto",
+   "ro": "Înălțimea ei deasupra orizontului, {a}°, este egală cu latitudinea locului. Abia se mișcă toată noaptea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurIss",
+   "es": "Va a unos 8 km/s y da la vuelta a la Tierra cada 90 minutos: sus astronautas ven 16 amaneceres al día. Mide 109 m de punta a punta, como un campo de fútbol americano, y lleva gente a bordo sin interrupción desde noviembre de 2000.",
+   "forma": "texto",
+   "ro": "Se deplasează cu aproximativ 8 km/s și înconjoară Pământul la fiecare 90 de minute: astronauții de la bord văd 16 răsărituri pe zi. Măsoară 109 m de la un capăt la altul, cât un teren de fotbal american, și are oameni la bord fără întrerupere din noiembrie 2000."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurTiangong",
+   "es": "Tiangong significa «palacio celestial». Su primer módulo, Tianhe, subió el 29 de abril de 2021 y la estación se completó en 2022 con tres módulos; su volumen presurizado es poco más de un tercio del de la Estación Espacial Internacional. Suelen vivir en ella tres astronautas, en estancias de seis meses.",
+   "forma": "texto",
+   "ro": "Tiangong înseamnă „palatul ceresc”. Primul ei modul, Tianhe, a fost lansat pe 29 aprilie 2021, iar stația a fost finalizată în 2022, cu trei module; volumul ei presurizat este puțin peste o treime din cel al Stației Spațiale Internaționale. De obicei locuiesc la bord trei astronauți, pentru șederi de șase luni."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurHubble",
+   "es": "Lo lanzó el transbordador Discovery el 24 de abril de 1990 y lo soltó al día siguiente a unos 610 km de altura; desde entonces ha ido bajando (arriba tiene la altura de hoy). Mide 13 m de largo, como un autobús grande, y lleva hechas más de 1,2 millones de observaciones.",
+   "forma": "texto",
+   "ro": "A fost lansat de naveta Discovery pe 24 aprilie 1990 și eliberat a doua zi la aproximativ 610 km altitudine; de atunci a tot coborât (mai sus este altitudinea de azi). Are 13 m lungime, cât un autobuz mare, și a făcut peste 1,2 milioane de observații."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaPadreCometa",
+   "es": "Son restos del cometa {p}.",
+   "forma": "texto",
+   "ro": "Sunt resturi ale cometei {p}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaPadreCreeCometa",
+   "es": "Se cree que son restos del cometa {p}.",
+   "forma": "texto",
+   "ro": "Se crede că sunt resturi ale cometei {p}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloLluviaPadreAsteroide",
+   "es": "Son restos del asteroide {p}.",
+   "forma": "texto",
+   "ro": "Sunt resturi ale asteroidului {p}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloZodiacal",
+   "es": "Luz zodiacal",
+   "forma": "texto",
+   "ro": "Lumina zodiacală"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloZodiacalTarde",
+   "es": "Estas semanas, al acabar el crepúsculo, mire al oeste: una banda de luz tenue sube desde el horizonte siguiendo la eclíptica. Se cree que es luz del Sol reflejada en el polvo que dejan los cometas; hace falta un cielo oscuro y sin Luna, y el Teide lo tiene.",
+   "forma": "texto",
+   "ro": "În aceste săptămâni, după ce se încheie amurgul, priviți spre vest: o bandă de lumină slabă urcă de la orizont de-a lungul eclipticii. Se crede că este lumina Soarelui reflectată de praful lăsat de comete; este nevoie de un cer întunecat și fără Lună, iar Teide are unul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloZodiacalManana",
+   "es": "Estas semanas, antes de que empiece a clarear, mire al este: una banda de luz tenue sube desde el horizonte siguiendo la eclíptica. Se cree que es luz del Sol reflejada en el polvo que dejan los cometas; hace falta un cielo oscuro y sin Luna, y el Teide lo tiene.",
+   "forma": "texto",
+   "ro": "În aceste săptămâni, înainte să se lumineze de ziuă, priviți spre est: o bandă de lumină slabă urcă de la orizont de-a lungul eclipticii. Se crede că este lumina Soarelui reflectată de praful lăsat de comete; este nevoie de un cer întunecat și fără Lună, iar Teide are unul."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloZodiacalCuando",
+   "es": "En las latitudes medias del norte se ve mejor por la tarde en febrero y marzo y de madrugada en septiembre y octubre; en los trópicos, donde la eclíptica está casi vertical, se ve con facilidad (Tenerife está a 28°). Esta noche la Luna {l}.",
+   "forma": "texto",
+   "ro": "La latitudinile medii nordice se vede cel mai bine seara, în februarie și martie, și înainte de zori, în septembrie și octombrie; la tropice, unde ecliptica este aproape verticală, se vede ușor (Tenerife se află la 28°). În noaptea asta, Luna {l}."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloZodiacalLunaNo",
+   "es": "no molesta",
+   "forma": "texto",
+   "ro": "nu deranjează"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloZodiacalLunaSi",
+   "es": "la tapa con su luz",
+   "forma": "texto",
+   "ro": "o ascunde cu lumina ei"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSombraTeide",
+   "es": "Al amanecer y al atardecer (puesta de sol a las {h}), el Teide proyecta una sombra triangular que llega hasta el horizonte. El triángulo es un efecto de perspectiva, como las vías de un tren que parecen juntarse a lo lejos: desde las cumbres, mire al lado contrario del Sol.",
+   "forma": "texto",
+   "ro": "La răsărit și la apus (apusul Soarelui la ora {h}), Teide proiectează o umbră triunghiulară care ajunge până la orizont. Triunghiul este un efect de perspectivă, ca șinele de cale ferată care par să se unească în depărtare: de pe culmi, priviți în direcția opusă Soarelui."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloSombraTierra",
+   "es": "Y nada más ponerse el Sol, mire al este, al lado contrario: una banda oscura sube desde el horizonte —es la sombra de la Tierra sobre su propia atmósfera— con una franja rosada encima, el «cinturón de Venus». Hace falta un horizonte bajo y despejado, como el mar visto desde las cumbres.",
+   "forma": "texto",
+   "ro": "Și imediat după apusul Soarelui, priviți spre est, în direcția opusă: o bandă întunecată urcă de la orizont — este umbra Pământului proiectată pe propria atmosferă — cu o fâșie roz deasupra, „Centura lui Venus”. Este nevoie de un orizont jos și degajat, cum este marea văzută de pe culmi."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurQUA",
+   "es": "Llevan el nombre de una constelación que ya no existe, el Cuadrante Mural, que el astrónomo francés Jérôme Lalande dibujó en 1795. Se vieron por primera vez en 1825. Su máximo dura solo unas horas, pero en condiciones perfectas caen entre 60 y 200 por hora, con bólidos brillantes. El asteroide del que vienen, 2003 EH1, puede ser un cometa apagado.",
+   "forma": "texto",
+   "ro": "Poartă numele unei constelații care nu mai există, Quadrans Muralis (Cadranul Mural), pe care astronomul francez Jérôme Lalande a desenat-o în 1795. Au fost observate pentru prima dată în 1825. Maximul lor durează doar câteva ore, dar în condiții perfecte cad între 60 și 200 pe oră, cu bolizi strălucitori. Asteroidul din care provin, 2003 EH1, ar putea fi o cometă stinsă."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurLYR",
+   "es": "Se observan desde hace 2.700 años: la primera noticia la dejaron los chinos en el año 687 a. C. Lo normal son 10–20 por hora, pero de vez en cuando sorprenden con 100 (pasó en 1803, 1922, 1945 y 1982). Son rápidas, a {v} km/s, y brillantes, con algún bólido, aunque no suelen dejar estelas largas y luminosas. El cometa del que vienen, Thatcher, se descubrió en 1861.",
+   "forma": "texto",
+   "ro": "Sunt observate de 2.700 de ani: prima consemnare le aparține chinezilor, în anul 687 î.Hr. În mod normal sunt 10–20 pe oră, dar din când în când surprind cu 100 (s-a întâmplat în 1803, 1922, 1945 și 1982). Sunt rapide, cu {v} km/s, și strălucitoare, cu câte un bolid, deși de regulă nu lasă dâre lungi și luminoase. Cometa din care provin, Thatcher, a fost descoperită în 1861."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurETA",
+   "es": "Son polvo del cometa Halley, el mismo que aparece bordado en el tapiz de Bayeux, que cuenta la batalla de Hastings de 1066. Halley vuelve cada 76 años; la próxima vez, en 2061. Entran a {v} km/s, de las más rápidas, y dejan estelas que siguen brillando un momento. Se ven mejor desde el hemisferio sur; desde el norte, unas 10 por hora.",
+   "forma": "texto",
+   "ro": "Sunt praf din cometa Halley, aceeași care apare brodată pe Tapiseria de la Bayeux, ce povestește bătălia de la Hastings din 1066. Halley revine la fiecare 76 de ani; data viitoare, în 2061. Intră în atmosferă cu {v} km/s, printre cele mai rapide, și lasă dâre care mai strălucesc o clipă. Se văd mai bine din emisfera sudică; din cea nordică, aproximativ 10 pe oră."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurSDA",
+   "es": "Son meteoros débiles: con Luna en el cielo no se ven. El cometa del que se cree que vienen, 96P/Machholz, lo descubrió Donald Machholz en 1986 y da la vuelta al Sol cada cinco años. Se llaman así por Delta, la tercera estrella más brillante de Acuario, para distinguirlas de las Eta Acuáridas de mayo.",
+   "forma": "texto",
+   "ro": "Sunt meteori slabi: cu Luna pe cer nu se văd. Cometa din care se crede că provin, 96P/Machholz, a fost descoperită de Donald Machholz în 1986 și face o revoluție în jurul Soarelui la fiecare cinci ani. Se numesc așa după Delta, a treia cea mai strălucitoare stea din constelația Vărsătorul, pentru a le deosebi de Eta Aquaridele din mai."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurCAP",
+   "es": "Pocas, pero de las que se recuerdan: rara vez pasan de cinco por hora, y lo notable son sus bólidos brillantes. Entran a {v} km/s. Las descubrió el astrónomo húngaro Miklós Konkoly-Thege en 1871. Y van a más: el grueso del polvo de su cometa no cruzará el camino de la Tierra hasta el siglo XXIV.",
+   "forma": "texto",
+   "ro": "Puține, dar memorabile: rareori depășesc cinci pe oră, iar ce le face remarcabile sunt bolizii strălucitori. Intră în atmosferă cu {v} km/s. Le-a descoperit astronomul maghiar Miklós Konkoly-Thege în 1871. Și vor fi tot mai multe: cea mai mare parte a prafului cometei lor nu va ajunge în calea Pământului înainte de secolul al XXIV-lea."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurPER",
+   "es": "La lluvia más famosa del año: 50–100 por hora en las noches cálidas de agosto. También se las llama «lágrimas de San Lorenzo», por la fiesta del mártir, el 10 de agosto. Son polvo del cometa Swift-Tuttle, con un núcleo de 26 km, que pasa cada 133 años (la última vez, en 1992); Giovanni Schiaparelli descubrió en 1865 que era su origen. Rápidas ({v} km/s) y brillantes, suelen dejar largas estelas de luz y color.",
+   "forma": "texto",
+   "ro": "Cea mai cunoscută ploaie de meteori a anului: 50–100 pe oră în nopțile calde de august. Li se mai spune „Lacrimile Sfântului Laurențiu”, după sărbătoarea martirului, pe 10 august. Sunt praf din cometa Swift-Tuttle, cu un nucleu de 26 km, care revine la fiecare 133 de ani (ultima dată în 1992); Giovanni Schiaparelli a descoperit, în 1865, că ea este sursa lor. Rapide ({v} km/s) și strălucitoare, lasă adesea dâre lungi de lumină și culoare."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurDRA",
+   "es": "Casi todos los años son pocas, pero dos veces se convirtieron en tormenta: en 1933 y 1946 cayeron miles por hora (en 1933, en Europa, 500 por minuto). Entran a {v} km/s, las más lentas de esta lista, y se ven mejor después de la puesta de sol. Su otro nombre, Giacobínidas, viene del cometa Giacobini-Zinner.",
+   "forma": "texto",
+   "ro": "În majoritatea anilor sunt puține, dar de două ori s-au transformat în furtuni de meteori: în 1933 și în 1946 au căzut mii pe oră (în 1933, în Europa, 500 pe minut). Intră în atmosferă cu {v} km/s, cele mai lente din această listă, și se văd mai bine după apusul Soarelui. Celălalt nume al lor, Giacobinidele, vine de la cometa Giacobini-Zinner."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurORI",
+   "es": "Son polvo del cometa Halley, como las Eta Acuáridas de mayo: la Tierra cruza su rastro dos veces al año. De las más rápidas ({v} km/s) y brillantes, a veces con bólidos y estelas que siguen brillando. Un consejo de la NASA: no mire al radiante, sino a 45–90° de él. Halley no volverá hasta 2061.",
+   "forma": "texto",
+   "ro": "Sunt praf din cometa Halley, ca Eta Aquaridele din mai: Pământul traversează urma ei de două ori pe an. Printre cele mai rapide ({v} km/s) și mai strălucitoare, uneori cu bolizi și dâre care continuă să strălucească. Un sfat de la NASA: nu priviți spre radiant, ci la 45–90° de el. Halley nu va reveni înainte de 2061."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurLEO",
+   "es": "Su cometa, Tempel-Tuttle, tarda 33 años en dar la vuelta al Sol, y más o menos cada 33 años pueden convertirse en tormenta: en 1966 cayeron miles por minuto durante un cuarto de hora, y la última tormenta fue en 2002. Los demás años son pocas, unas 3 por hora, pero las más rápidas de esta lista ({v} km/s), brillantes, y pueden ser de colores.",
+   "forma": "texto",
+   "ro": "Cometei lor, Tempel-Tuttle, îi trebuie 33 de ani ca să facă o revoluție în jurul Soarelui, iar cam la fiecare 33 de ani se pot transforma în furtună de meteori: în 1966 au căzut mii pe minut timp de un sfert de oră, iar ultima furtună a avut loc în 2002. În ceilalți ani sunt puține, aproximativ 3 pe oră, dar sunt cele mai rapide din această listă ({v} km/s), strălucitoare, și pot fi colorate."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurGEM",
+   "es": "Una de las mejores y más fiables del año: hasta 120 por hora en condiciones perfectas, brillantes y a menudo amarillas. Y una rareza: no vienen de un cometa sino de un asteroide, Faetón, de 5 km, que da la vuelta al Sol cada 1,4 años; lo encontró el satélite IRAS en 1983 y Fred Whipple vio que era su origen. Cuando empezaron a verse, a mediados del siglo XIX, apenas daban 10–20 por hora.",
+   "forma": "texto",
+   "ro": "Una dintre cele mai bune și mai de încredere ploi de meteori ale anului: până la 120 pe oră în condiții perfecte, strălucitoare și adesea galbene. Și o raritate: nu provin dintr-o cometă, ci dintr-un asteroid, Phaethon, de 5 km, care face o revoluție în jurul Soarelui la fiecare 1,4 ani; l-a descoperit satelitul IRAS în 1983, iar Fred Whipple și-a dat seama că el este sursa lor. Când au început să fie văzute, la mijlocul secolului al XIX-lea, abia dădeau 10–20 pe oră."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloCurURS",
+   "es": "Llegan justo antes de Navidad y son discretas: 5–10 por hora, solo desde el hemisferio norte, saliendo de junto a Kochab, en la Osa Menor. De vez en cuando estallan: en 1945 el astrónomo A. Bečvář contó 169 por hora. Su corriente es tan estrecha que hay que estar a menos de 12 horas del máximo para ver muchas.",
+   "forma": "texto",
+   "ro": "Sosesc chiar înainte de Crăciun și sunt discrete: 5–10 pe oră, doar din emisfera nordică, părând să vină de lângă Kochab, în Ursa Mică. Din când în când au izbucniri: în 1945, astronomul A. Bečvář a numărat 169 pe oră. Curentul lor este atât de îngust încât trebuie să fiți la mai puțin de 12 ore de maxim ca să vedeți multe."
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConOrigen",
+   "es": "Origen: {o}",
+   "forma": "texto",
+   "ro": "Origine: {o}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConOrigenPtolomeo",
+   "es": "una de las 48 constelaciones de Ptolomeo (Almagesto, siglo II)",
+   "forma": "texto",
+   "ro": "una dintre cele 48 de constelații ale lui Ptolemeu (Almagest, secolul al II-lea)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConOrigenKeyser",
+   "es": "dibujada por los navegantes Keyser y De Houtman en el hemisferio sur; en el globo de Plancius ({a}) y en el atlas de Bayer (1603)",
+   "forma": "texto",
+   "ro": "trasată de navigatorii Keyser și De Houtman în emisfera sudică; pe globul lui Plancius ({a}) și în atlasul lui Bayer (1603)"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConOrigenPlancius",
+   "es": "introducida por Petrus Plancius en {a}",
+   "forma": "texto",
+   "ro": "introdusă de Petrus Plancius în {a}"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConOrigenHevelius",
+   "es": "introducida por Johannes Hevelius ({a})",
+   "forma": "texto",
+   "ro": "introdusă de Johannes Hevelius ({a})"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConOrigenLacaille",
+   "es": "introducida por Nicolas-Louis de Lacaille desde el cabo de Buena Esperanza ({a})",
+   "forma": "texto",
+   "ro": "introdusă de Nicolas-Louis de Lacaille de la Capul Bunei Speranțe ({a})"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConOrigenArgo",
+   "es": "parte de la antigua Argo Navis de Ptolomeo, el barco de los argonautas, que Lacaille dividió en tres ({a})",
+   "forma": "texto",
+   "ro": "parte a străvechii Argo Navis a lui Ptolemeu, corabia argonauților, pe care Lacaille a împărțit-o în trei ({a})"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConOrigenVopel",
+   "es": "un asterismo antiguo (Ptolomeo lo llama «el rizo», junto a la cola de Leo); constelación propia desde el globo de Caspar Vopel ({a})",
+   "forma": "texto",
+   "ro": "un asterism antic (Ptolemeu îl numește „bucla”, lângă coada Leului); constelație separată începând cu globul lui Caspar Vopel ({a})"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConArea",
+   "es": "Tamaño: {a} grados cuadrados, la n.º {r} de 88",
+   "forma": "texto",
+   "ro": "Suprafață (în grade pătrate): {a}; locul {r} din 88"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConFuenteOrigen",
+   "es": "Wikipedia: origen",
+   "forma": "texto",
+   "ro": "Wikipedia: origine"
+  },
+  {
+   "tabla": "CIELO_UI",
+   "clave": "cieloConFuenteArea",
+   "es": "Wikipedia: tamaño",
+   "forma": "texto",
+   "ro": "Wikipedia: suprafață"
+  }
+ ]
+}

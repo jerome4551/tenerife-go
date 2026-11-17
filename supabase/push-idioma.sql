@@ -43,6 +43,10 @@
 --
 --  Los cuerpos van entre comillas simples y no con $$, como en anuncios.sql
 --  y borrar-cuenta.sql: al copiar y pegar, los $$ llegan al editor como \$\$.
+--
+--  5 de noviembre de 2026: volcada de la base de datos, la funcion que hay
+--  es esta misma, y push_subs no tiene ninguna restriccion sobre lang. La
+--  definicion de push_subs esta ya en favorites.sql.
 -- ═══════════════════════════════════════════════════════════════════
 
 -- 1 · La restriccion de idioma, si hay una y se queda corta

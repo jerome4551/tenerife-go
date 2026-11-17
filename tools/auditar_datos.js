@@ -185,8 +185,11 @@ console.log('\n=== lugares ===');
    Esta cifra subio una vez por sesion de gasolineras hasta la ultima alta, y se
    cambia A MANO a proposito: asi ningun lugar entra sin que nadie lo vea.
    980 -> 979 el 31 de octubre de 2026: la bodega Cueva del Rey (Icod), cerrada.
-   Jerome: «Cerrado permanentemente quítala». */
-debe('lugares', PLACES.length, PLACES.length === 979);
+   Jerome: «Cerrado permanentemente quítala».
+   979 -> 980 el 8 de noviembre de 2026: la etapa 2 del GR-131, La Caldera - El
+   Portillo (gr131-etapa2-caldera-portillo). Jerome: «La etapa 2 créala si los datos
+   son reales». */
+debe('lugares', PLACES.length, PLACES.length === 980);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {
@@ -417,6 +420,29 @@ const incompl = (html.match(/IDIOMAS_INCOMPLETOS\s*=\s*\[([^\]]*)\]/) || [, ''])
 const terminados = sop.filter(l => !incompl.includes(l)).length;
 debe('idiomas declarados', sop.length + ' · a medias ' + incompl.length + ' · terminados ' + terminados,
      sop.length > 0 && terminados > 0);
+/* Las frecuencias de las tarjetas de linea («4 salidas/día») se traducen en
+   FREQ_I18N de index.html. Su clave es el castellano, asi que ninguna
+   herramienta de idiomas la veia, y al polaco le faltaban las 48: salian en
+   ingles, el respaldo de busFrecuenciaTexto(). Lo vio la sesion del rumano
+   (nota 41, 15 de noviembre de 2026). Cada frecuencia que usa una linea tiene
+   su fila, y cada fila lleva todos los idiomas de la app menos el castellano. */
+{
+  const ini = html.indexOf('const FREQ_I18N = {');
+  const fin = ini < 0 ? -1 : html.indexOf('\n};', ini);
+  const filas = {};
+  if (ini >= 0 && fin > ini) {
+    for (const m of html.slice(ini, fin).matchAll(/^\s*'([^'\n]+)'\s*:\s*\{(.*)\},?\s*$/gm)) {
+      filas[m[1]] = new Set([...m[2].matchAll(/(?:^|[{,])\s*([a-z]{2,3})\s*:\s*'/g)].map(x => x[1]));
+    }
+  }
+  const usadas = [...new Set(LINES.map(l => l.frecuencia).filter(Boolean))];
+  const sinFila = usadas.filter(f => !filas[f]);
+  const faltan = Object.entries(filas).flatMap(([f, ls]) => sop.filter(l => l !== 'es' && !ls.has(l)).map(l => l + ' «' + f + '»'));
+  debe('frecuencias de linea sin fila en FREQ_I18N', sinFila.length ? sinFila.join(' | ') : 0,
+       Object.keys(filas).length > 0 && sinFila.length === 0);
+  debe('filas de FREQ_I18N sin algun idioma de la app', faltan.length ? faltan.length + ': ' + faltan.slice(0, 3).join(', ') + '…' : 0,
+       Object.keys(filas).length > 0 && faltan.length === 0);
+}
 /* la cifra va pegada a la palabra "idioma/lengua" en los nueve idiomas.
    Se mira SOLO dentro de literales de texto: un comentario que diga "7
    idiomas" puede ser cierto (habla de otro momento) y haria fallar para

@@ -44,7 +44,9 @@
  *      excepcion de 2027 del Carnaval) las prueba tools/probar_fechas_oro.js.
  *
  * QUE MIRA (parte 2, la pantalla: modulos/perfil.js)
- *   6. las 459 filas de PERFIL_UI (100 de la pantalla, 47 de sets, 312 de
+ *   6. las 467 filas de PERFIL_UI (108 de la pantalla -ocho de ellas, las unidades
+ *      en la lengua de cada uno, del 6 de noviembre de 2026; la de los km se fue con
+ *      el formulario de km el 10 de noviembre, #99-, 47 de sets, 312 de
  *      avatares: 235, 49 de oro y 28 retirados), con lo que comprobaba validar_i18n.py del encargo: los diez
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
@@ -84,7 +86,7 @@
  * QUE MIRA (parte 3, la nube: supabase/perfil.sql)
  *  10. sin «$» (al pegarlo desde el movil llega con una barra delante y
  *      rompe el SQL); RLS en las tres tablas, cada policy solo para
- *      authenticated y con auth.uid() = user_id, ninguna para anon; y los
+ *      authenticated y con (select auth.uid()) = user_id, ninguna para anon; y los
  *      permisos justos: revoke all y grant de las cuatro operaciones (sin
  *      TRUNCATE, que no pasa por la RLS).
  *  11. las cascadas: perfiles cuelga de auth.users, pesos y caminatas de
@@ -327,10 +329,14 @@ console.log('\n=== el perfil: la pantalla (modulos/perfil.js) ===');
 let PUI = {};
 try { PUI = ROT.grab('var PERFIL_UI = {', 0, MOD); } catch (e) { PUI = {}; }
 const claves = Object.keys(PUI);
-ok(claves.length === 459, 'PERFIL_UI: 459 filas', claves.length);
+ok(claves.length === 467, 'PERFIL_UI: 467 filas', claves.length);
 ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 312 && !claves.includes('perfilAv_en_cabina'), '47 filas de sets y 312 de avatares: 235, 49 de oro y 28 retirados (y 100 de la pantalla, con las dos pestañas y las cuatro de la tarjeta «Su cuerpo»); ninguna de la cabina');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
 const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+/* los idiomas que se preparan por bloques (el rumano, 14-11-2026): sus filas ya estan en PERFIL_UI, pero no
+   entran en SUPPORTED_LANGS hasta el interruptor. Se miran como las demas, sin pedirlas; con el interruptor,
+   «ro» pasa a IDI y esta lista se queda vacia sola */
+const PREPARA = ['ro'].filter(l => !IDI.includes(l));
 ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));
 /* Parejas simplificado/tradicional que de verdad difieren (las de validar_i18n.py del encargo) */
 const PAREJAS = '们們这這个個为為说說时時国國会會对對来來发發东東车車长長门門问問间間关關开開头頭实實现現点點让讓过過还還进進没沒种種样樣' +
@@ -355,17 +361,17 @@ for (const k of claves) {
   const v = PUI[k];
   if (!/^[A-Za-z0-9_]+$/.test(k)) malFilas.push(k + ': clave rara');
   if (!v || typeof v !== 'object') { malFilas.push(k + ': no es una fila'); continue; }
-  const falta = IDI.filter(l => !String(v[l] || '').trim()), sobra = Object.keys(v).filter(l => !IDI.includes(l));
+  const falta = IDI.filter(l => !String(v[l] || '').trim()), sobra = Object.keys(v).filter(l => !IDI.includes(l) && !PREPARA.includes(l));
   if (falta.length) malFilas.push(k + ': faltan ' + falta.join(','));
   if (sobra.length) malFilas.push(k + ': idiomas de mas ' + sobra.join(','));
   const es = v.es || '', mEs = marcadores(es);
-  for (const l of IDI) {
+  for (const l of IDI.concat(PREPARA.filter(x => v[x] !== undefined))) {
     const t = String(v[l] || '');
     if (t.includes('"')) malFilas.push(k + '.' + l + ': comilla doble ASCII');
     if (/[\u00ad\u200b-\u200f\u2028\u2029\u2060\ufeff]/.test(t)) malFilas.push(k + '.' + l + ': guion blando u otro invisible');
     if (marcadores(t) !== mEs) malFilas.push(k + '.' + l + ': marcadores ' + marcadores(t) + ' y en es ' + mEs);
     if (es.includes('|') || t.includes('|')) {
-      const formas = t.split('|'), pide = l === 'pl' ? 3 : (l === 'zh' || l === 'zht' ? 1 : 2);
+      const formas = t.split('|'), pide = (l === 'pl' || l === 'ro') ? 3 : (l === 'zh' || l === 'zht' ? 1 : 2);
       if (formas.length !== pide) malFilas.push(k + '.' + l + ': ' + formas.length + ' formas de plural, pide ' + pide);
       if (es.includes('{n}') && formas.some(f => !f.includes('{n}'))) malFilas.push(k + '.' + l + ': una forma sin {n}');
     }
@@ -514,8 +520,8 @@ ok(!SQL.includes('$'), 'sin «$» en el SQL (al pegarlo desde el movil llega con
 const TABLAS = ['perfiles', 'pesos', 'caminatas'];
 ok(TABLAS.every(tb => new RegExp('alter table public\\.' + tb + '\\s+enable row level security;').test(SQL)), 'RLS en perfiles, pesos y caminatas');
 const policies = [...SQL.matchAll(/create policy (\w+) on public\.(\w+)\s+for (\w+) to (\w+)\s+((?:using|with check)[\s\S]*?);/g)];
-const polMal = policies.filter(m => m[4] !== 'authenticated' || !/auth\.uid\(\) = user_id/.test(m[5]) || ((m[3] === 'insert' || m[3] === 'update') && !/with check \(auth\.uid\(\) = user_id\)/.test(m[5])));
-ok(policies.length === 12 && !polMal.length && !/to anon|to public\b/i.test(SQL), '12 policies (4 por tabla), todas para authenticated con auth.uid() = user_id; ninguna para anon', policies.length + ' ' + polMal.map(m => m[1]).join(','));
+const polMal = policies.filter(m => m[4] !== 'authenticated' || !/\(select auth\.uid\(\)\) = user_id/.test(m[5]) || /(?<!\(select )auth\.uid\(\)/.test(m[5]) || ((m[3] === 'insert' || m[3] === 'update') && !/with check \(\(select auth\.uid\(\)\) = user_id\)/.test(m[5])));
+ok(policies.length === 12 && !polMal.length && !/to anon|to public\b/i.test(SQL), '12 policies (4 por tabla), todas para authenticated con (select auth.uid()) = user_id; ninguna para anon', policies.length + ' ' + polMal.map(m => m[1]).join(','));
 ok(/revoke all on public\.perfiles, public\.pesos, public\.caminatas from anon, authenticated;/.test(SQL)
    && /grant select, insert, update, delete on public\.perfiles, public\.pesos, public\.caminatas to authenticated;/.test(SQL)
    && !/grant[^;]*(truncate|all)[^;]*;/i.test(SQL), 'los permisos, justos: revoke all y solo select, insert, update y delete para authenticated (sin TRUNCATE)');
@@ -550,8 +556,10 @@ const topeApp = +((CODIGO.match(/var TOPE_REGISTROS = (\d+);/) || [])[1]);
 const topesSql = [...SQL.matchAll(/group by \w\.user_id having count\(\*\) > (\d+)\) then/g)].map(m => +m[1]);
 ok(topeApp === 2000 && topesSql.length === 2 && topesSql.every(n => n === topeApp) && (SQL.match(/raise exception ''[^']+'' using errcode = ''54000'';/g) || []).length === 2,
   'como mucho 2.000 pesos y 2.000 caminatas por cuenta: la misma cifra en perfil.sql (los dos disparadores, error 54000) y en el modulo (TOPE_REGISTROS)', topeApp + ' / ' + topesSql.join(','));
-ok(/function pesoNoCabe\(d\) \{ return st\.medidas\.length >= TOPE_REGISTROS && !st\.medidas\.some/.test(CODIGO) && /if \(st\.km\.length >= TOPE_REGISTROS\) \{ avisoTope\('tgp-km-nuevo-h'\); return; \}/.test(CODIGO),
-  'con el tope lleno, un peso de un dia nuevo o una caminata mas no se anotan (cambiar el peso de un dia que ya lo tiene, siempre)');
+/* (#99, 10-11-2026) aqui ya no se anota ninguna caminata: los km nuevos van a «Anotar movimiento» de «Su cuerpo»
+   (en el dispositivo); los de antes se ven, se borran y siguen en la cuenta. Ni formulario de km ni st.km.push */
+ok(/function pesoNoCabe\(d\) \{ return st\.medidas\.length >= TOPE_REGISTROS && !st\.medidas\.some/.test(CODIGO) && !/st\.km\.push\(/.test(CODIGO) && !/tgp-add-km|tgp-km-nuevo/.test(CODIGO),
+  'con el tope lleno, un peso de un dia nuevo no se anota (cambiar el peso de un dia que ya lo tiene, siempre); y aqui no se anota ninguna caminata (#99: van a «Anotar movimiento» de «Su cuerpo»)');
 
 console.log('\n  ' + cuenta + ' controles, ' + (fallos ? fallos + ' con fallo' : 'todos en verde'));
 process.exit(fallos ? 1 : 0);

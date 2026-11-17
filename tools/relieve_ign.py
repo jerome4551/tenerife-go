@@ -35,9 +35,17 @@ EL SERVICIO
       /collections/<coleccion>/coverage?subset=Lat(s:n),Long(o:e)&f=COG
   (la forma de los ejemplos del blog de la IDEE) y devuelve un GeoTIFF en el
   sistema de la coleccion. Su descripcion dice «El tamano maximo de descarga
-  esta limitado», sin cifra: se pide la isla a trozos (0,04 grados, unos
-  900 x 900 pixeles) y, si un trozo no sale, en cuatro mas pequenos. Solo los
-  trozos con tierra segun la costa del mapa (la capa earth de
+  esta limitado», sin cifra; la cifra la da su respuesta cuando una caja se
+  pasa (HTTP 500, visto el 1 y el 16 de noviembre de 2026): «Requested bbox
+  height 2527.9 m is larger than allowed: 2500.0 m», de ancho y de alto, en
+  metros de Web Mercator. Por eso se pide la isla a trozos de 0,019 grados
+  (unos 420 x 420 pixeles; al norte de la isla, con su margen, unos 2.140 x
+  2.440 m) y, antes de pedir uno, se mide: si pasa del 98 % del tope
+  (TOPE_M), se parte en cuatro sin preguntar. Si aun asi un trozo no sale,
+  tambien en cuatro. El 1 de noviembre, con trozos de 0,04 grados, cada uno
+  salia a la tercera (0,04 y 0,02 grados se pasan del tope), con mas de 2.000
+  peticiones para la isla, y el paso del workflow se acabo a los 40 minutos.
+  Solo los trozos con tierra segun la costa del mapa (la capa earth de
   mapa/tenerife-osm.pmtiles, la misma del relieve). Uno detras de otro, con
   reintentos y esperas si el servidor no da abasto.
 
@@ -49,12 +57,15 @@ LA LICENCIA
   completo esta en relieve_construir.py (FUENTES) y en modulos/isla3d.js, y
   lo coteja tools/auditar_isla3d.js.
 
-SIN RED AQUI
-  El contenedor donde se escribio no llega a la IDEE (el proxy lo para): lo
-  usa el workflow generar-relieve.yml, que tiene red. Aqui se probo de punta a
-  punta contra un servidor de prueba con --servicio. Si en el runner algo no
-  sale (el servicio no contesta, devuelve otra cosa, o falta tierra), sale con
-  un estado distinto de 0 y el workflow hace el relieve con Copernicus.
+DONDE CORRE
+  En el workflow generar-relieve.yml, que tiene red. El 31 de octubre el
+  contenedor donde se escribio no llegaba a la IDEE (el proxy lo paraba) y se
+  probo de punta a punta contra un servidor de prueba con --servicio; el 16 de
+  noviembre si llegaba, y alli se midio el tope con cajas sueltas (0,019 x
+  0,022 grados: un GeoTIFF; 0,019 x 0,03: «width 3339.6 m is larger than
+  allowed: 2500.0 m»). Si en el runner algo no sale (el servicio no contesta,
+  devuelve otra cosa, o falta tierra), sale con un estado distinto de 0 y el
+  workflow hace el relieve con Copernicus.
 """
 import argparse
 import datetime
@@ -82,6 +93,10 @@ LON_O, LON_E, LAT_S, LAT_N = rc.LON_O, rc.LON_E, rc.LAT_S, rc.LAT_N
 # Paso esperado de la coleccion de 5 m en grados (su domainset: «about 4.505e-05»).
 PASO_ESPERADO = 4.505e-05
 MARGEN_PX = 2               # pixeles de mas por cada lado de cada peticion
+# Lo mas que da la IDEE, de ancho y de alto, en metros de Web Mercator (su HTTP 500 lo dice: «is larger than allowed:
+# 2500.0 m»). Se pide hasta el 98 %: una caja que se pasa ni se pide, se parte antes.
+TOPE_M = 2500.0
+HOLGURA = 0.98
 COBERTURA_MIN = 0.995       # la parte de las celdas de tierra que tiene que tener dato
 
 
@@ -185,6 +200,11 @@ def leer_tiff(datos):
     return a, lon_izq, lat_arr, sx, sy, nodata, epsg
 
 
+def medida_3857(o, s, e, n):
+    """Ancho y alto de una caja en grados, en metros de Web Mercator: como los mide la IDEE."""
+    return rc.merc_x(e) - rc.merc_x(o), rc.merc_y(n) - rc.merc_y(s)
+
+
 def url_caja(servicio, coleccion, o, s, e, n):
     return '%s/collections/%s/coverage?subset=Lat(%.9f:%.9f),Long(%.9f:%.9f)&f=COG' % (
         servicio.rstrip('/'), coleccion, s, n, o, e)
@@ -216,7 +236,8 @@ def main():
     ap.add_argument('carpeta')
     ap.add_argument('--servicio', default=SERVICIO)
     ap.add_argument('--coleccion', default=COLECCION)
-    ap.add_argument('--trozo', type=float, default=0.04, help='lado de cada peticion, en grados')
+    ap.add_argument('--trozo', type=float, default=0.019,
+                    help='lado de cada peticion, en grados (con su margen, por debajo del tope de la IDEE)')
     ap.add_argument('--factor', type=int, default=3, help='pixeles del MDT05 por lado de cada bloque del mosaico')
     ap.add_argument('--max-peticiones', type=int, default=2000)
     args = ap.parse_args()
@@ -260,6 +281,10 @@ def main():
 
     M, tierra, ancha = mascara_tierra()
     K = max(8, int(round(args.trozo / dx / F)))     # bloques por lado de cada trozo
+    ancho_n, alto_n = medida_3857(LON_O - MARGEN_PX * dx, LAT_N - K * F * dy - MARGEN_PX * dy,
+                                  LON_O + K * F * dx + MARGEN_PX * dx, LAT_N + MARGEN_PX * dy)
+    print('  los trozos: %d x %d bloques (%.4f grados); al norte, con su margen, %.0f x %.0f m (tope %.0f m)' % (
+        K, K, K * F * dx, ancho_n, alto_n, TOPE_M), flush=True)
     pendientes = []
     for br in range(0, NB_R, K):
         for bc in range(0, NB_C, K):
@@ -305,6 +330,16 @@ def main():
             np.add.at(cuenta, (FF, CC), ok.astype(np.uint16))
         return int(ok.sum())
 
+    def partir(t, err=None):
+        """Los cuatro cuartos de un trozo (los que no quedan vacios); uno de 8 x 8 bloques o menos ya no se parte."""
+        br0, br1, bc0, bc1 = t
+        if br1 - br0 <= 8 and bc1 - bc0 <= 8:
+            raise SystemExit('  PARA: un trozo de %d x %d bloques no sale: %s' % (
+                bc1 - bc0, br1 - br0, err if err is not None else 'se pasa del tope de la IDEE'))
+        mr, mc = (br0 + br1) // 2, (bc0 + bc1) // 2
+        partes = [(br0, mr, bc0, mc), (br0, mr, mc, bc1), (mr, br1, bc0, mc), (mr, br1, mc, bc1)]
+        return [p for p in partes if p[1] > p[0] and p[3] > p[2]]
+
     registro = []
     hechos = vacios = saltados = partidos = 0
     total_bytes = 0
@@ -316,8 +351,17 @@ def main():
             continue
         if hechos + vacios >= args.max_peticiones:
             raise SystemExit('  PARA: mas de %d peticiones' % args.max_peticiones)
-        url = url_caja(args.servicio, args.coleccion, o - MARGEN_PX * dx, s - MARGEN_PX * dy,
-                       e + MARGEN_PX * dx, n + MARGEN_PX * dy)
+        po, ps, pe, pn = o - MARGEN_PX * dx, s - MARGEN_PX * dy, e + MARGEN_PX * dx, n + MARGEN_PX * dy
+        ancho_m, alto_m = medida_3857(po, ps, pe, pn)
+        if max(ancho_m, alto_m) > TOPE_M * HOLGURA:
+            # se pasaria del tope de la IDEE: se parte sin pedirla
+            partes = partir(t)
+            pendientes = partes + pendientes
+            partidos += 1
+            print('    ....  %.3f %.3f %.3f %.3f  %.0f x %.0f m, mas del %.0f %% del tope: en %d trozos' % (
+                o, s, e, n, ancho_m, alto_m, 100 * HOLGURA, len(partes)), flush=True)
+            continue
+        url = url_caja(args.servicio, args.coleccion, po, ps, pe, pn)
         try:
             datos = pedir(url)
             a, L, T, sx, sy, nd, _ = leer_tiff(datos)
@@ -334,12 +378,7 @@ def main():
             registro.append(dict(caja=[round(o, 7), round(s, 7), round(e, 7), round(n, 7)], vacio=str(err)))
             print('    ----  %.3f %.3f %.3f %.3f  sin datos (%s)' % (o, s, e, n, err), flush=True)
         except Rechazo as err:
-            br0, br1, bc0, bc1 = t
-            if br1 - br0 <= 8 and bc1 - bc0 <= 8:
-                raise SystemExit('  PARA: un trozo de %d x %d bloques no sale: %s' % (bc1 - bc0, br1 - br0, err))
-            mr, mc = (br0 + br1) // 2, (bc0 + bc1) // 2
-            partes = [(br0, mr, bc0, mc), (br0, mr, mc, bc1), (mr, br1, bc0, mc), (mr, br1, mc, bc1)]
-            partes = [p for p in partes if p[1] > p[0] and p[3] > p[2]]
+            partes = partir(t, err)
             pendientes = partes + pendientes
             partidos += 1
             print('    ....  %.3f %.3f %.3f %.3f  no sale (%s): en %d trozos' % (o, s, e, n, str(err)[:120], len(partes)), flush=True)

@@ -52,7 +52,9 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # panel SOS (22 de octubre de 2026), y modulos/cuerpo.js, «Su cuerpo» (31 de
 # octubre de 2026).
 # Y modulos/isla3d.js, «La isla en 3D» (31 de octubre de 2026).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js; do
+# Y modulos/guia.js, Jérôme y sus tours (10 de noviembre de 2026).
+# Y modulos/entrenador.js, el vídeo de cada ejercicio de «Su cuerpo» (12 de noviembre de 2026).
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js modulos/entrenador.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -113,6 +115,10 @@ echo; echo "════════ las fichas de gasolinera, en pantalla, en l
 control verificar_fichas_app.js node tools/verificar_fichas_app.js "$PUERTO"
 echo; echo "════════ texto de reserva en castellano ════════"
 control auditar_reservas.py python3 tools/auditar_reservas.py
+echo; echo "════════ el horario de los socorristas ════════"
+# (16 de noviembre de 2026) SOCORRISTAS de index.html: lo renovado con el visor oficial del Gobierno de
+# Canarias, su periodo (desde/hasta) y lo que caduca solo. Sin navegador.
+control probar_socorristas.js node tools/probar_socorristas.js
 echo; echo "════════ mapa sin conexion ════════"
 # El mapa base es un recorte del detallado (31 de octubre de 2026, tarde): tiene que ser el que
 # sale de mapa/tenerife-osm.pmtiles tal como esta, o los dos mapas dirian costas distintas.
@@ -210,6 +216,10 @@ echo "════════ lo que pide Google Play (LANZAMIENTO-PLAY.md, Fas
 # Desde el 16 de octubre de 2026: la tienda fuera de la vista y el boton de
 # administrador en la cuenta, y lo que vaya entrando de la Fase 1.
 control probar_play.js node tools/probar_play.js "$PUERTO"
+echo "════════ la contraseña al crear la cuenta: 8 caracteres y no filtrada (Have I Been Pwned) ════════"
+# Desde el 10 de noviembre de 2026 (Jerome, «B»): el plan gratuito de Supabase no trae la comprobación de
+# contraseñas filtradas, así que la hace la app, por k-anonimato: solo salen 5 caracteres de la huella.
+control probar_contrasena.js node tools/probar_contrasena.js "$PUERTO"
 echo "════════ borrar-cuenta.html, al dia con sus textos y con los botones de la app ════════"
 # La pagina que pide Google Play (1.2) cita los botones de la app en cada
 # idioma; si uno cambia de nombre y no se vuelve a generar, para aqui.
@@ -218,6 +228,8 @@ echo "════════ la politica de privacidad: el panel y privacidad.
 # 1.3: los dos salen de idiomas/privacidad y citan botones y etiquetas de la
 # app; si alguno cambia y no se vuelve a generar, para aqui.
 control generar_privacidad.py python3 tools/generar_privacidad.py --comprobar
+# 4b de la nota 48 (16-11-2026): la página de los enlaces rotos, desde idiomas/404
+control generar_404.py python3 tools/generar_404.py --comprobar
 
 echo "════════ la app para las tiendas (App Store): app/www/ montado, el modo nativo en un navegador y la ficha ════════"
 # Desde el 21 de octubre de 2026 («P4»): la misma PWA dentro de Capacitor.
@@ -245,11 +257,17 @@ echo; echo "════════ texto que se queda en el idioma de arranque
 control auditar_arranque.js node tools/auditar_arranque.js "$PUERTO"
 echo; echo "════════ texto que no cambia al cambiar de idioma ════════"
 control auditar_sin_traducir.js node tools/auditar_sin_traducir.js "$PUERTO"
+echo; echo "════════ texto de un idioma en el alfabeto de otro ════════"
+control auditar_escrituras.js node tools/auditar_escrituras.js "$PUERTO"
 echo; echo "════════ lo que se ve en pantalla, en los diez idiomas (paneles y fichas) ════════"
 control barrido_pantallas.js node tools/barrido_pantallas.js "$PUERTO"
-echo; echo "════════ el tour de bienvenida, entero, en los diez idiomas y cuatro moviles ════════"
+echo; echo "════════ los tours con Jérôme (el de la app, el del cielo y el de «Su cuerpo»), enteros, en los diez idiomas y cuatro moviles ════════"
 # Desde el 11 de octubre de 2026: el tour lo recorre de verdad, paso a paso.
 # Sus textos estuvieron un mes en listas que ningun control leia.
+# Desde el 10 de noviembre de 2026 son tres, con un presentador (modulos/guia.js):
+# el personaje, el menu de visitas, la voz, «reducir movimiento» y sin el modulo.
+# El de «Su cuerpo», ademas, no cambia de vista, no abre hojas, no pide datos y no
+# escribe en lo guardado; y sin navegador se mira que cada texto pedido exista.
 control auditar_tour.js node tools/auditar_tour.js "$PUERTO"
 echo; echo "════════ el cielo de Tenerife: textos, catalogo, calculos contra el IMCCE y la IMO, y sin conexion ════════"
 # Desde el 17 de octubre de 2026. El panel se carga al abrirlo
@@ -271,14 +289,25 @@ echo; echo "════════ el perfil y los avatares ══════
 control auditar_perfil.js node tools/auditar_perfil.js
 control probar_fechas_oro.js node tools/probar_fechas_oro.js modulos/avatares.js
 control probar_perfil.js node tools/probar_perfil.js "$PUERTO"
-echo; echo "════════ «Su cuerpo»: el dibujo y la pantalla, encima del perfil y en los diez idiomas ════════"
-# Desde el 31 de octubre de 2026 (modulos/cuerpo.js, que se abre desde la pestaña Cuerpo del
-# perfil). El dibujo, sin navegador: cada opcion del aspecto da un SVG sano y lo guardado se
-# valida. La pantalla, de verdad: los diez idiomas, anotar, el aspecto, lo guardado roto, los 533
-# ejercicios, el «atras» con el perfil debajo, sin el modulo, y un fichero de ejercicios
+echo; echo "════════ «Su cuerpo»: el dibujo y la pestaña Cuerpo del perfil, en los diez idiomas ════════"
+# Desde el 31 de octubre de 2026 (modulos/cuerpo.js), y desde el 1 de noviembre dentro de la
+# pestaña Cuerpo del perfil. El dibujo, sin navegador: cada opcion del aspecto da un SVG sano y lo
+# guardado se valida. La pestaña, de verdad: los diez idiomas, anotar, el aspecto y el personaje
+# en pequeño, lo guardado roto, los 533 ejercicios, las hojas con el perfil inerte, el «atras» y
+# el Escape del perfil, sin el modulo, con versiones de antes, y un fichero de ejercicios
 # manipulado que no ejecuta nada.
 control probar_figura.js node tools/probar_figura.js
 control probar_cuerpo.js node tools/probar_cuerpo.js "$PUERTO"
+# (8-11-2026, bloque 5) la costa del esquema de «Cruce la isla», contra los limites municipales, y el trazado del GR 131 si lo hay
+control cuerpo_isla.py python3 tools/cuerpo_isla.py --comprobar
+control gr131_trazado.py python3 tools/gr131_trazado.py --comprobar
+# (8-11-2026, bloque 8) el fondo del mapa de «Cruce la isla»: los dos WebP y su .json, pintados con el relieve,
+# el mapa OSM, la costa y la herramienta de hoy, y en la proyeccion del modulo (solo sumas sha256: no pinta nada)
+control cuerpo_isla_relieve.py python3 tools/cuerpo_isla_relieve.py --comprobar
+# (12-11-2026) el video de cada ejercicio (modulos/entrenador.js: Jérôme, el entrenador; notas 32 y 33): el modulo es el
+# de sus fuentes, cada coreografia con su ficha sin cambiar, cada video entero y cuadro a cuadro en dos idiomas y desde
+# sus dos vistas, la voz, y en la app la ficha con video y sin el
+control auditar_entrenador.js node tools/auditar_entrenador.js "$PUERTO"
 echo; echo "════════ la isla en 3D: el relieve, los textos y la vista de verdad en un movil emulado, sin conexion ════════"
 # Desde el 31 de octubre de 2026. El relieve (mapa/tenerife-relieve*.png y
 # .json) lo hace tools/relieve_construir.py desde el MDT05 del IGN

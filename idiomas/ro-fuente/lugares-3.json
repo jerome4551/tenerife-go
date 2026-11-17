@@ -1,0 +1,2709 @@
+{
+ "_": "Rumano (ro) de las fichas de los lugares, trozo 3 de 5 (bloque 7 del rumano): los 190 lugares entre el 571 y el 760 de index.html, de «bici-ruta-norte-buenavista» a «windsurf-la-tejita». Cada texto lleva el castellano que traduce, ya con las erratas de la entrega del bloque 7 (erratas/, que se ponen antes que este fichero). Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando esten los cinco trozos (R5-R9) y todos casen con index.html. No se edita a mano: sale de la entrega del bloque 7 del rumano.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "bici-ruta-norte-buenavista.desc",
+   "es": "75 km en carretera que cruza el norte de Tenerife de punta a punta: Buenavista del Norte (TF-42) hasta Punta del Hidalgo (TF-13). Terreno variado con pocas rampas extremas, paisajes del norte exuberante, verde y costero. Tiempo estimado: 3h 25 min. Una de las rutas más recomendadas para ciclistas de nivel medio-alto.",
+   "forma": "texto",
+   "ro": "75 km de șosea care traversează nordul insulei Tenerife de la un capăt la altul: din Buenavista del Norte (TF-42) până la Punta del Hidalgo (TF-13). Teren variat, cu puține pante foarte abrupte, prin peisajele luxuriante, verzi și de coastă ale nordului. Timp estimat: 3h 25 min. Unul dintre traseele cele mai recomandate pentru bicicliștii de nivel mediu spre ridicat."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-ruta-norte-buenavista.cat",
+   "es": "Carretera · Norte · Dificultad Media · 75 km",
+   "forma": "texto",
+   "ro": "Șosea · Nord · Dificultate medie · 75 km"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-circular-santa-cruz.desc",
+   "es": "Ruta circular de 52 km muy habitual entre los ciclistas de la capital. Sale de la Plaza de España (TF-11), rodea el área metropolitana con tramos costeros y de medianía, y regresa al punto de partida. Tiempo estimado: 2h 35 min. Buen nivel de asfalto y señalización. Ideal para ciclistas locales y cicloturistas que se alojan en Santa Cruz.",
+   "forma": "texto",
+   "ro": "Traseu circular de 52 km, foarte popular printre bicicliștii din capitală. Pleacă din Plaza de España (TF-11), ocolește zona metropolitană pe tronsoane de coastă și din zona de altitudine medie (medianías) și se întoarce la punctul de plecare. Timp estimat: 2h 35 min. Asfalt și semnalizare de bună calitate. Ideal pentru bicicliștii locali și pentru cicloturiștii cazați în Santa Cruz."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-circular-santa-cruz.cat",
+   "es": "Carretera · Santa Cruz · Dificultad Media · 52 km",
+   "forma": "texto",
+   "ro": "Șosea · Santa Cruz · Dificultate medie · 52 km"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-medano-bikepoint.desc",
+   "es": "Especialistas nº1 en alquiler de bicicletas de carretera, MTB, gravel y e-bikes en el sur de Tenerife. Ofrecen rutas descargables en Strava. Opción de compra: 100% del alquiler descontado del precio. Av. José Miguel Galván Bello 28, El Médano. Cerrado domingos.",
+   "forma": "texto",
+   "ro": "Specialiști nr. 1 în închirierea de biciclete de șosea, MTB, gravel și electrice în sudul insulei Tenerife. Oferă trasee care se pot descărca din Strava. Opțiune de cumpărare: 100% din costul închirierii se scade din prețul bicicletei. Av. José Miguel Galván Bello 28, El Médano. Închis duminica."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-medano-bikepoint.cat",
+   "es": "Alquiler Bicicletas · El Médano · Sur",
+   "forma": "texto",
+   "ro": "Închiriere biciclete · El Médano · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-triciclos-sc.desc",
+   "es": "Alquiler de bicicletas de alta gama en el norte de Tenerife: carretera, MTB, gravel y urbanas. Tienda en Santa Cruz (norte). Horario: L-V, cierra a las 13:00 y reabre a las 16:30. Cerrado sábados y domingos. Devoluciones de fin de semana los lunes a las 10:00h.",
+   "forma": "texto",
+   "ro": "Închiriere de biciclete de gamă superioară în nordul insulei Tenerife: de șosea, MTB, gravel și de oraș. Magazin în Santa Cruz (nord). Program: luni-vineri; se închide la ora 13:00 și se redeschide la 16:30. Închis sâmbăta și duminica. Bicicletele închiriate pentru weekend se returnează lunea, la ora 10:00."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-triciclos-sc.cat",
+   "es": "Alquiler Bicicletas · Santa Cruz · Norte",
+   "forma": "texto",
+   "ro": "Închiriere biciclete · Santa Cruz · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-triciclos-sursula.desc",
+   "es": "Segunda tienda de Triciclos Canarias en el norte de Tenerife, ubicada en Santa Úrsula. Bicicletas de carretera, MTB, gravel y urbanas de alta gama. Horario: L-V. Cerrado sábados y domingos. Buena base para ciclistas que se alojan en Puerto de la Cruz o La Orotava.",
+   "forma": "texto",
+   "ro": "Al doilea magazin Triciclos Canarias din nordul insulei Tenerife, în Santa Úrsula. Biciclete de gamă superioară: de șosea, MTB, gravel și de oraș. Program: luni-vineri. Închis sâmbăta și duminica. O bază bună pentru bicicliștii cazați în Puerto de la Cruz sau în La Orotava."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-alquiler-triciclos-sursula.cat",
+   "es": "Alquiler Bicicletas · Santa Úrsula · Norte",
+   "forma": "texto",
+   "ro": "Închiriere biciclete · Santa Úrsula · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-mtb-teno-erjos.desc",
+   "es": "Ruta MTB en el macizo de Teno, una de las más espectaculares de la isla. Sale del pequeño pueblo de Erjos siguiendo las características curvas y contracurvas del Teno Oeste. Siluetas oscuras de las Montañas Negras al este. Bosques densos y sendas técnicas. Solo para expertos en MTB.",
+   "forma": "texto",
+   "ro": "Traseu de MTB în masivul Teno, unul dintre cele mai spectaculoase de pe insulă. Pleacă din micul sat Erjos și urmează curbele și contracurbele caracteristice ale vestului masivului Teno. La est, siluetele întunecate ale munților Montañas Negras. Păduri dese și poteci tehnice. Doar pentru bicicliștii experți în MTB."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-mtb-teno-erjos.cat",
+   "es": "MTB Experto · Macizo Teno · Noroeste",
+   "forma": "texto",
+   "ro": "MTB pentru experți · Masivul Teno · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-mtb-arico-volcan.desc",
+   "es": "Ruta MTB desde Arico hacia Charco del Pino atravesando el anillo forestal cerca de los grandes cráteres. Paisaje volcánico espectacular con vistas a las faldas del Teide. Una de las rutas más emocionantes de la isla para sentir el lado salvaje y volcánico de Tenerife.",
+   "forma": "texto",
+   "ro": "Traseu de MTB din Arico spre Charco del Pino, care străbate centura de păduri aproape de marile cratere. Peisaj vulcanic spectaculos, cu priveliști spre poalele vulcanului Teide. Unul dintre cele mai palpitante trasee de pe insulă, pentru a simți latura sălbatică și vulcanică a insulei Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-mtb-arico-volcan.cat",
+   "es": "MTB · Arico · Paisaje Volcánico · Sur",
+   "forma": "texto",
+   "ro": "MTB · Arico · Peisaj vulcanic · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-puerto-bailadero.desc",
+   "es": "Uno de los puertos de montaña más conocidos y bellos de Tenerife. Subida de 11 km desde San Andrés (nivel del mar) hasta 677 m de altitud por la TF-12 y TF-123. Desnivel: 660 m. Pendiente media: 6% constante. Curvas de herradura con vistas espectaculares al Macizo de Anaga y al pueblo de Taganana. Flora que cambia dramáticamente: de zona costera a laurisilva. Aviso: no hay puntos de agua durante toda la subida — llevar suficiente. Cima junto al Mirador El Bailadero.",
+   "forma": "texto",
+   "ro": "Unul dintre cele mai cunoscute și mai frumoase pasuri montane din Tenerife. Urcare de 11 km din San Andrés (de la nivelul mării) până la 677 m altitudine, pe TF-12 și TF-123. Diferență de nivel: 660 m. Panta medie: 6%, constantă. Curbe în ac de păr, cu priveliști spectaculoase spre masivul Anaga și spre satul Taganana. Vegetația se schimbă radical: de la cea de coastă la pădurea de laur. Atenție: pe toată urcarea nu există puncte de apă — luați suficientă apă. Punctul cel mai înalt este lângă punctul de belvedere El Bailadero."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-puerto-bailadero.cat",
+   "es": "Puerto Montaña · Anaga · 11 km · 660 m ↑",
+   "forma": "texto",
+   "ro": "Pas montan · Anaga · 11 km · 660 m ↑"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-puerto-pico-ingles.desc",
+   "es": "Ascenso ciclista hasta el Pico del Inglés (980 m), una de las cimas más altas del municipio de Santa Cruz de Tenerife, en el Macizo de Anaga. Salida desde San Andrés por la TF-12, continuando por la TF-114 hasta el mirador. Carretera pequeña y sinuosa entre miles de árboles y sin apenas tráfico. Desde la cima: vistas de 360° — Santa Cruz, el Teide, Gran Canaria y La Palma en días despejados.",
+   "forma": "texto",
+   "ro": "Urcare cu bicicleta până la Pico del Inglés (980 m), unul dintre cele mai înalte vârfuri din municipalitatea Santa Cruz de Tenerife, în masivul Anaga. Plecare din San Andrés pe TF-12, apoi pe TF-114 până la punctul de belvedere. Drum mic și șerpuit, printre mii de copaci, aproape fără trafic. Din vârf, priveliște de 360° — Santa Cruz, Teide, Gran Canaria și La Palma, în zilele senine."
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-puerto-pico-ingles.cat",
+   "es": "Puerto Montaña · Anaga · 980 m altitud · TF-114",
+   "forma": "texto",
+   "ro": "Pas montan · Anaga · 980 m altitudine · TF-114"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-evento-vuelta-teide.desc",
+   "es": "Punto de salida de la Vuelta al Teide, la ciclodeportiva GranFondo de categoría UCI más importante de Tenerife. Celebrada anualmente en primavera (abril-mayo). Tres distancias: GranFondo 182 km con 4.600 m de desnivel, MedioFondo 86 km con 1.700 m, FondoCorto 64 km con 1.300 m. Salida y entrega de dorsales en la zona del Lago Martiánez, Puerto de la Cruz. Web oficial: vteide.com",
+   "forma": "texto",
+   "ro": "Punctul de plecare al cursei Vuelta al Teide, cel mai important GranFondo de categorie UCI din Tenerife, pentru bicicliștii amatori. Are loc în fiecare an primăvara (aprilie-mai). Trei distanțe: GranFondo, 182 km cu 4.600 m diferență de nivel; MedioFondo, 86 km cu 1.700 m; FondoCorto, 64 km cu 1.300 m. Plecarea și ridicarea numerelor de concurs, în zona Lago Martiánez, în Puerto de la Cruz. Site oficial: vteide.com"
+  },
+  {
+   "tabla": "places",
+   "clave": "bici-evento-vuelta-teide.cat",
+   "es": "Evento Ciclista · GranFondo UCI · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Eveniment ciclist · GranFondo UCI · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-la-caldera.desc",
+   "es": "Una de las más completas de Tenerife, en los altos de La Orotava (1.200 m) en un antiguo cráter volcánico. Pino canario y monteverde. Fogones gratuitos, mesas, bar-restaurante, parque infantil, aseos, zona de acampada (con permiso previo). Acceso: TF-21 km 16,2 o guagua 345/346. Carbón o leña: aportado por el usuario. Barbacoas portátiles: prohibidas. Fuego solo hasta las 20:00 en verano.",
+   "forma": "texto",
+   "ro": "Una dintre cele mai complete zone de agrement din Tenerife, în partea înaltă a municipalității La Orotava (1.200 m), într-un vechi crater vulcanic. Pin canarian și pădure veșnic verde. Grătare gratuite, mese, bar-restaurant, loc de joacă pentru copii, toalete, zonă de campare (cu permis prealabil). Acces: TF-21, km 16,2, sau autobuzul 345/346. Cărbunii sau lemnele le aduceți dumneavoastră. Grătarele portabile sunt interzise. Vara, focul este permis doar până la ora 20:00."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-la-caldera.cat",
+   "es": "Barbacoa Gratuita · La Orotava · 1.200 m",
+   "forma": "texto",
+   "ro": "Grătar gratuit · La Orotava · 1.200 m"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-fuente-fria.desc",
+   "es": "Área recreativa del Cabildo en los montes de El Sauzal, dentro del Paisaje Protegido de Las Lagunetas. Fogones, mesas, agua y aseos. Buen punto de partida para senderos. Reserva de grupos en Tenerife ON.",
+   "forma": "texto",
+   "ro": "Zonă de agrement a Cabildo (consiliul insular), în pădurile de pe înălțimile din El Sauzal, în peisajul protejat Las Lagunetas. Grătare, mese, apă și toalete. Un bun punct de plecare pentru trasee de drumeție. Rezervări pentru grupuri prin Tenerife ON."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-fuente-fria.cat",
+   "es": "Barbacoa Gratuita · El Sauzal · Cabildo",
+   "forma": "texto",
+   "ro": "Grătar gratuit · El Sauzal · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-lagunetas.desc",
+   "es": "⚠️ Cerrada desde el incendio forestal del verano de 2023, según Tenerife ON: está dentro de la zona restringida. Área recreativa a unos 1.200 m en el monte de Las Canales (Santa Úrsula), en el Paisaje Protegido de Las Lagunetas. Fayal-brezal con pino canario y vistas al Valle de La Orotava. Fogones, mesas, agua, aseos y zona de juegos. Acceso por pista de tierra (mejor 4x4) o a pie. Reserva de grupos en Tenerife ON.",
+   "forma": "texto",
+   "ro": "⚠️ Închisă de la incendiul de pădure din vara lui 2023, potrivit Tenerife ON: se află în zona cu acces restricționat. Zonă de agrement la circa 1.200 m, în pădurea Las Canales (Santa Úrsula), în peisajul protejat Las Lagunetas. Pădurici de faya și erica arborescentă (fayal-brezal), cu pin canarian, și priveliști spre Valle de La Orotava. Grătare, mese, apă, toalete și loc de joacă. Acces pe un drum de pământ (de preferat cu 4x4) sau pe jos. Rezervări pentru grupuri prin Tenerife ON."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-lagunetas.cat",
+   "es": "Barbacoa Gratuita · Santa Úrsula · 1.200 m",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Santa Úrsula · 1.200 m"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-ramon-caminero.desc",
+   "es": "Área recreativa a más de 1.500 m en la vertiente norte, con espectaculares vistas al mar de nubes. Pinar canario. Fogones gratuitos, mesas, aseos y aparcamiento. Acceso por TF-21. Carbón o leña: aportado por el usuario.",
+   "forma": "texto",
+   "ro": "Zonă de agrement la peste 1.500 m, pe versantul nordic, cu priveliști spectaculoase spre marea de nori. Pădure de pin canarian. Grătare gratuite, mese, toalete și parcare. Acces pe TF-21. Cărbunii sau lemnele le aduceți dumneavoastră."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-ramon-caminero.cat",
+   "es": "Barbacoa Gratuita · La Orotava · 1.500 m",
+   "forma": "texto",
+   "ro": "Grătar gratuit · La Orotava · 1.500 m"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-chanajiga.desc",
+   "es": "Popular área recreativa en Los Realejos, Parque Natural de la Corona Forestal. 400 plazas. Fogones gratuitos, mesas, aseos, aparcamiento y juegos infantiles. Punto de inicio de senderos y rutas en bici.",
+   "forma": "texto",
+   "ro": "Zonă de agrement foarte frecventată în Los Realejos, în Parcul Natural Corona Forestal. 400 de locuri. Grătare gratuite, mese, toalete, parcare și loc de joacă pentru copii. Punct de plecare pentru drumeții și pentru trasee cu bicicleta."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-chanajiga.cat",
+   "es": "Barbacoa Gratuita · Los Realejos · 400 plazas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Los Realejos · 400 de locuri"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-raices.desc",
+   "es": "Una de las mayores áreas recreativas de Tenerife, con 56 mesas, en El Rosario, Monte de La Esperanza. Famosa por ser el lugar del histórico Pacto de Las Raíces (1936). Pinar centenario. Fogones gratuitos, aseos y aparcamiento.",
+   "forma": "texto",
+   "ro": "Una dintre cele mai mari zone de agrement din Tenerife, cu 56 de mese, în El Rosario, în pădurea Monte de La Esperanza. Celebră pentru că aici a avut loc istoricul Pact de la Las Raíces (1936). Pădure de pini seculari. Grătare gratuite, toalete și parcare."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-raices.cat",
+   "es": "Barbacoa Gratuita · El Rosario · 56 mesas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · El Rosario · 56 de mese"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-lomo-la-jara.desc",
+   "es": "Área recreativa en Tacoronte, Paisaje Protegido de Las Lagunetas. 31 mesas. Fogones gratuitos, aseos y aparcamiento. Pinar y monteverde.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în Tacoronte, în peisajul protejat Las Lagunetas. 31 de mese. Grătare gratuite, toalete și parcare. Pădure de pini și pădure veșnic verde."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-lomo-la-jara.cat",
+   "es": "Barbacoa Gratuita · Tacoronte · 31 mesas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Tacoronte · 31 de mese"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-calderetas.desc",
+   "es": "Área recreativa en El Sauzal, Paisaje Protegido de Las Lagunetas. 31 mesas. Fogones gratuitos, aseos y aparcamiento. Pinar con vistas al norte de la isla.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în El Sauzal, în peisajul protejat Las Lagunetas. 31 de mese. Grătare gratuite, toalete și parcare. Pădure de pini, cu priveliști spre nordul insulei."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-calderetas.cat",
+   "es": "Barbacoa Gratuita · El Sauzal · 31 mesas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · El Sauzal · 31 de mese"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-la-tahona.desc",
+   "es": "Área recreativa en San Juan de la Rambla, Parque Natural de la Corona Forestal. 38 mesas. Fogones gratuitos, aseos y aparcamiento. Pinar canario.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în San Juan de la Rambla, în Parcul Natural Corona Forestal. 38 de mese. Grătare gratuite, toalete și parcare. Pădure de pin canarian."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-la-tahona.cat",
+   "es": "Barbacoa Gratuita · San Juan de la Rambla · 38 mesas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · San Juan de la Rambla · 38 de mese"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-arenas-negras.desc",
+   "es": "Espectacular área recreativa en Garachico sobre suelo volcánico negro — depósitos de la última erupción del volcán Trevejo (1706). El contraste entre los pinos centenarios y el picón oscuro es único. 400 plazas. Fogones gratuitos, aseos, aparcamiento e itinerarios de senderismo y bici. Acceso por pista forestal.",
+   "forma": "texto",
+   "ro": "Zonă de agrement spectaculoasă în Garachico, pe un sol vulcanic negru — depozitele ultimei erupții a vulcanului Trevejo (1706). Contrastul dintre pinii seculari și lapilii întunecați (picón) este unic. 400 de locuri. Grătare gratuite, toalete, parcare și trasee de drumeție și de ciclism. Acces pe un drum forestier."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-arenas-negras.cat",
+   "es": "Barbacoa Gratuita · Garachico · 400 plazas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Garachico · 400 de locuri"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-san-jose-llanos.desc",
+   "es": "Área recreativa en El Tanque, Reserva Natural Especial del Chinyero. 38 mesas. Fogones gratuitos, aseos y aparcamiento. Pinar con vistas al macizo de Teno. Zona muy tranquila en el noroeste.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în El Tanque, în Rezervația Naturală Specială Chinyero. 38 de mese. Grătare gratuite, toalete și parcare. Pădure de pini, cu priveliști spre masivul Teno. O zonă foarte liniștită în nord-vest."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-san-jose-llanos.cat",
+   "es": "Barbacoa Gratuita · El Tanque · Chinyero",
+   "forma": "texto",
+   "ro": "Grătar gratuit · El Tanque · Chinyero"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-el-lagar.desc",
+   "es": "Área recreativa en Icod de los Vinos, altos del municipio, Corona Forestal. 24 mesas. Fogones gratuitos, aseos y aparcamiento. Pinar próximo a las viñas históricas de Icod.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în Icod de los Vinos, în partea înaltă a municipalității, în Corona Forestal. 24 de mese. Grătare gratuite, toalete și parcare. Pădure de pini aproape de podgoriile istorice din Icod."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-el-lagar.cat",
+   "es": "Barbacoa Gratuita · Icod de los Vinos · 24 mesas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Icod de los Vinos · 24 de mese"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-hayas.desc",
+   "es": "⚠️ La zona de acampada de al lado está cerrada temporalmente por obras, según Tenerife ON. El área recreativa no tiene aviso propio: consulte tenerifeon.es antes de ir. Área recreativa en los altos de Icod de los Vinos, Corona Forestal. 20 mesas. Fogones gratuitos.",
+   "forma": "texto",
+   "ro": "⚠️ Zona de campare de alături este închisă temporar pentru lucrări, potrivit Tenerife ON. Zona de agrement nu are un anunț propriu: consultați tenerifeon.es înainte de a merge. Zonă de agrement în partea înaltă a municipalității Icod de los Vinos, în Corona Forestal. 20 de mese. Grătare gratuite."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-hayas.cat",
+   "es": "Barbacoa Gratuita · Icod de los Vinos · 20 mesas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Icod de los Vinos · 20 de mese"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-chio.desc",
+   "es": "⚠️ Cerrada entre semana por obras, según Tenerife ON: abre los fines de semana y festivos. Una de las más grandes de Tenerife con 650 plazas, en Guía de Isora bajo los pinares volcánicos de Chío. Fogones gratuitos, mesas, aseos y aparcamiento. Paisaje volcánico espectacular con vistas al mar y La Gomera.",
+   "forma": "texto",
+   "ro": "⚠️ Închisă în zilele lucrătoare din cauza unor lucrări, potrivit Tenerife ON: este deschisă în weekend și în zilele de sărbătoare. Una dintre cele mai mari zone de agrement din Tenerife, cu 650 de locuri, în Guía de Isora, sub pădurile de pini de pe solul vulcanic din Chío. Grătare gratuite, mese, toalete și parcare. Peisaj vulcanic spectaculos, cu priveliști spre mare și spre La Gomera."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-chio.cat",
+   "es": "Barbacoa Gratuita · Guía de Isora · 650 plazas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Guía de Isora · 650 de locuri"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-los-frailes.desc",
+   "es": "⚠️ Cerrada temporalmente por riesgo para la seguridad, según Tenerife ON: consulte tenerifeon.es antes de ir. Área recreativa en Arafo a 900 m, en la cabecera del Valle de Güímar. 38 mesas. Fogones gratuitos, aseos y aparcamiento. Pinar en la vertiente sureste. Muy tranquila y bien conservada.",
+   "forma": "texto",
+   "ro": "⚠️ Închisă temporar din cauza unui risc pentru siguranță, potrivit Tenerife ON: consultați tenerifeon.es înainte de a merge. Zonă de agrement în Arafo, la 900 m, în partea de sus a Valle de Güímar. 38 de mese. Grătare gratuite, toalete și parcare. Pădure de pini pe versantul de sud-est. Foarte liniștită și bine conservată."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-los-frailes.cat",
+   "es": "Barbacoa Gratuita · Arafo · 900 m · 38 mesas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Arafo · 900 m · 38 de mese"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-lajas.desc",
+   "es": "Área recreativa en Adeje, por encima de los 1.500 m, en el Parque Natural de la Corona Forestal. Aforo de 475 plazas, con mesas, fogones y área infantil. Los aseos abren sólo fines de semana y festivos, de 10:00 a 17:30. El agua de la fuente NO es potable: hay que llevarla. Estancia de sol a sol; los grupos y las entidades necesitan reserva. Al lado, el Cabildo tiene una zona de autocaravanas con 11 plazas. Pinar centenario de gran belleza. Base ideal para el Teide.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în Adeje, la peste 1.500 m altitudine, în Parcul Natural Corona Forestal. Capacitate de 475 de locuri, cu mese, grătare și loc de joacă pentru copii. Toaletele sunt deschise doar în weekend și în zilele de sărbătoare, între 10:00 și 17:30. Apa de la cișmea NU este potabilă: trebuie să vă aduceți apă. Șederea este permisă de la răsăritul până la apusul soarelui; grupurile și organizațiile au nevoie de rezervare. Alături, Cabildo (consiliul insular) are o zonă pentru autorulote, cu 11 locuri. Pădure de pini seculari, de o mare frumusețe. O bază ideală pentru excursiile spre Teide."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-las-lajas.cat",
+   "es": "Barbacoa Gratuita · Adeje · +1.500 m · 475 plazas",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Adeje · +1.500 m · 475 de locuri"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-los-pedregales.desc",
+   "es": "Área recreativa en Buenavista del Norte, Parque Rural de Teno. 20 mesas. Fogones gratuitos, aseos y aparcamiento. Noroeste de la isla con vistas al Atlántico.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în Buenavista del Norte, în Parcul Rural Teno. 20 de mese. Grătare gratuite, toalete și parcare. În nord-vestul insulei, cu priveliști spre Atlantic."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-los-pedregales.cat",
+   "es": "Barbacoa Gratuita · Buenavista del Norte · Parque Teno",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Buenavista del Norte · Parcul Teno"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-llano-viejos.desc",
+   "es": "Área recreativa en La Laguna, Parque Rural de Anaga. 15 mesas. Fogones gratuitos, aseos y aparcamiento. Laurisilva centenaria. Muy apreciada por los residentes de La Laguna.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în La Laguna, în Parcul Rural Anaga. 15 mese. Grătare gratuite, toalete și parcare. Pădure de laur seculară. Foarte apreciată de locuitorii din La Laguna."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-llano-viejos.cat",
+   "es": "Barbacoa Gratuita · La Laguna · Parque Anaga",
+   "forma": "texto",
+   "ro": "Grătar gratuit · La Laguna · Parcul Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-la-quebrada.desc",
+   "es": "Área recreativa en Tegueste, Parque Rural de Anaga. 18 mesas. Fogones gratuitos, aseos y aparcamiento. Laurisilva y pinar en los montes de Anaga.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în Tegueste, în Parcul Rural Anaga. 18 mese. Grătare gratuite, toalete și parcare. Pădure de laur și pădure de pini pe înălțimile din Anaga."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-la-quebrada.cat",
+   "es": "Barbacoa Gratuita · Tegueste · Parque Anaga",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Tegueste · Parcul Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-hoya-abade.desc",
+   "es": "⚠️ Cerrada desde el incendio forestal del verano de 2023, según Tenerife ON: está dentro de la zona restringida. Área recreativa en La Victoria de Acentejo, Paisaje Protegido de Las Lagunetas. 25 mesas. Fogones gratuitos y aparcamiento; no tiene aseos. Pinar en las medianías del norte.",
+   "forma": "texto",
+   "ro": "⚠️ Închisă de la incendiul de pădure din vara lui 2023, potrivit Tenerife ON: se află în zona cu acces restricționat. Zonă de agrement în La Victoria de Acentejo, în peisajul protejat Las Lagunetas. 25 de mese. Grătare gratuite și parcare; nu are toalete. Pădure de pini în zona de altitudine medie (medianías) din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-hoya-abade.cat",
+   "es": "Barbacoa Gratuita · La Victoria de Acentejo",
+   "forma": "texto",
+   "ro": "Grătar gratuit · La Victoria de Acentejo"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-el-contador.desc",
+   "es": "Área recreativa en Arico, Corona Forestal, vertiente sureste. 30 mesas. Fogones gratuitos, aseos y aparcamiento. Abre los fines de semana y festivos, de la salida a la puesta del sol, sin reserva.",
+   "forma": "texto",
+   "ro": "Zonă de agrement în Arico, în Corona Forestal, pe versantul de sud-est. 30 de mese. Grătare gratuite, toalete și parcare. Este deschisă în weekend și în zilele de sărbătoare, de la răsăritul până la apusul soarelui, fără rezervare."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-el-contador.cat",
+   "es": "Barbacoa Gratuita · Arico · Sureste",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Arico · Sud-est"
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-los-brezos.desc",
+   "es": "Área recreativa municipal de Candelaria. 20 mesas. Fogones gratuitos, aseos y aparcamiento. En las medianías altas del sureste de la isla, donde empieza el sendero SL-TF 294 Los Brezos.",
+   "forma": "texto",
+   "ro": "Zonă de agrement a municipalității Candelaria. 20 de mese. Grătare gratuite, toalete și parcare. În partea de sus a zonei de altitudine medie (medianías) din sud-estul insulei, de unde pornește traseul SL-TF 294 Los Brezos."
+  },
+  {
+   "tabla": "places",
+   "clave": "ar-los-brezos.cat",
+   "es": "Barbacoa Gratuita · Candelaria",
+   "forma": "texto",
+   "ro": "Grătar gratuit · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-taucho.desc",
+   "es": "El despegue de parapente más popular de Tenerife, a 760 m de altitud en el municipio de Adeje. Ideal para vuelos tándem de principiantes: viento alisio estable, buenas térmicas y vistas espectaculares al Barranco del Infierno y la costa de Costa Adeje. Aterrizaje habitual en la explanada Taucho-Armeñime o Playa La Caleta. Temporada óptima: septiembre a mayo. Vuelos tándem con piloto certificado disponibles todo el año.",
+   "forma": "texto",
+   "ro": "Cel mai popular punct de decolare pentru parapantă din Tenerife, la 760 m altitudine, în municipalitatea Adeje. Ideal pentru zborurile în tandem ale începătorilor: alizeu stabil, curenți termici buni și priveliști spectaculoase spre Barranco del Infierno și spre litoralul din Costa Adeje. Aterizarea se face de obicei pe esplanada Taucho-Armeñime sau pe Playa La Caleta. Sezonul optim: din septembrie până în mai. Zborurile în tandem cu pilot certificat sunt disponibile tot anul."
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-taucho.cat",
+   "es": "Parapente · Despegue Sur · 760 m · Tándem para todos",
+   "forma": "texto",
+   "ro": "Parapantă · Decolare în sud · 760 m · Tandem pentru toți"
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-ifonche.desc",
+   "es": "Despegue a 1.100 m de altitud en la zona entre Adeje y Vilaflor. Más alto y técnico que Taucho. Vuelos sobre los 'Dedos', Montaña El Conde y el Barranco del Infierno con vistas impresionantes a la costa de Adeje. Apto para nivel intermedio y vuelos de mayor duración. Aterrizaje en Playa de la Enramada (La Caleta). Empresas locales ofrecen tándem desde aquí.",
+   "forma": "texto",
+   "ro": "Punct de decolare la 1.100 m altitudine, în zona dintre Adeje și Vilaflor. Mai înalt și mai tehnic decât Taucho. Zboruri deasupra zonei „los Dedos”, a muntelui Montaña El Conde și a defileului Barranco del Infierno, cu priveliști impresionante spre coasta din Adeje. Potrivit pentru nivelul intermediar și pentru zboruri mai lungi. Aterizare pe Playa de la Enramada (La Caleta). Firmele locale oferă de aici zboruri în tandem."
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-ifonche.cat",
+   "es": "Parapente · Despegue Sur · 1.100 m · Nivel Intermedio",
+   "forma": "texto",
+   "ro": "Parapantă · Decolare în sud · 1.100 m · Nivel intermediar"
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-izana.desc",
+   "es": "⚠️ Cerrado: según la Federación Canaria de Deportes Aéreos (FECDA), este despegue quedó fuera del nuevo Plan Rector de Uso y Gestión del Parque Nacional del Teide. Desde agosto de 2026 se usa uno provisional cerca de La Tarta, junto a la TF-24 y fuera del parque: pregunte a la escuela antes de reservar. Era el despegue de parapente más espectacular de Tenerife: 2.200 m de altitud en el Parque Nacional del Teide, entre los km 33 y 34 de la TF-24. Uno de los vuelos biplaza con más desnivel de Europa — aterrizaje a nivel del mar en Puerto de la Cruz o la costa este. Vistas del Teide, la caldera y los valles de La Orotava y Güímar. Solo para pilotos con licencia o vuelos tándem con escuelas especializadas. Condiciones muy variables: informarse siempre antes de volar.",
+   "forma": "texto",
+   "ro": "⚠️ Închis: potrivit Federației Canariene de Sporturi Aeriene (FECDA), acest punct de decolare a rămas în afara noului plan de utilizare și gestionare al Parcului Național Teide. Din august 2026 se folosește unul provizoriu în apropiere de La Tarta, lângă TF-24, în afara parcului: întrebați școala înainte de a rezerva. A fost cel mai spectaculos punct de decolare pentru parapantă din Tenerife: 2.200 m altitudine, în Parcul Național Teide, între km 33 și 34 de pe TF-24. Unul dintre zborurile în tandem cu cea mai mare diferență de nivel din Europa, cu aterizare la nivelul mării, în Puerto de la Cruz sau pe coasta de est. Priveliști spre Teide, spre calderă și spre văile La Orotava și Güímar. Doar pentru piloții cu licență sau pentru zboruri în tandem cu școli specializate. Condiții foarte schimbătoare: informați-vă întotdeauna înainte de zbor."
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-izana.cat",
+   "es": "Parapente · Izaña · 2.200 m · Solo Expertos/Tándem Especializado",
+   "forma": "texto",
+   "ro": "Parapantă · Izaña · 2.200 m · Doar experți/tandem specializat"
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-la-corona.desc",
+   "es": "Despegue de parapente en el norte de Tenerife, a 765 m de altitud en Los Realejos. Utilizado cuando el viento proviene del Norte o del Este. Vistas al Valle de La Orotava, Puerto de la Cruz y el Atlántico norte. Aterrizaje en Finca Los Quintos o Playa del Socorro. Mejor temporada: otoño, primavera y verano. Viento alisio típico del norte. Nivel: principiante-intermedio a primera/última hora, intermedio-avanzado al mediodía.",
+   "forma": "texto",
+   "ro": "Punct de decolare pentru parapantă în nordul insulei Tenerife, la 765 m altitudine, în Los Realejos. Se folosește când vântul bate dinspre nord sau dinspre est. Priveliști spre Valle de La Orotava, spre Puerto de la Cruz și spre Atlanticul de nord. Aterizare la Finca Los Quintos sau pe Playa del Socorro. Cel mai bun sezon: toamna, primăvara și vara. Alizeul tipic nordului. Nivel: începător-intermediar dimineața devreme sau spre seară, intermediar-avansat la prânz."
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-la-corona.cat",
+   "es": "Parapente · Despegue Norte · 765 m · Los Realejos",
+   "forma": "texto",
+   "ro": "Parapantă · Decolare în nord · 765 m · Los Realejos"
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-el-tanque.desc",
+   "es": "Despegue de parapente en Tierra del Trigo, en el término de Los Silos, noroeste de Tenerife, a unos 600 m de altitud. Los pilotos lo llaman «El Tanque». Despegue renovado recientemente con mejoras de seguridad. Muy apreciado por los pilotos locales. Vistas al Macizo de Teno, el Atlántico y La Palma en días despejados. Viento del Oeste típico.",
+   "forma": "texto",
+   "ro": "Punct de decolare pentru parapantă în Tierra del Trigo, pe teritoriul municipalității Los Silos, în nord-vestul insulei Tenerife, la circa 600 m altitudine. Piloții îi spun „El Tanque”. Punctul de decolare a fost renovat recent, cu îmbunătățiri de siguranță. Foarte apreciat de piloții locali. Priveliști spre masivul Teno, spre Atlantic și, în zilele senine, spre La Palma. Vântul obișnuit bate dinspre vest."
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-el-tanque.cat",
+   "es": "Parapente · Despegue Noroeste · ~600 m · Los Silos",
+   "forma": "texto",
+   "ro": "Parapantă · Decolare în nord-vest · ~600 m · Los Silos"
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-guimar.desc",
+   "es": "Zona de vuelo de parapente en la ladera este de Tenerife, municipio de Güímar. Altitud aproximada 700 m. Utilizada cuando los vientos provienen del Este, Sur o Noroeste. Temporada: otoño a primavera, y frecuentemente en verano. Vistas al Valle de Güímar y el mar Atlántico. También se vuela desde Fasnia y el Volcán de Fasnia. Zona habitual para pilotos de nivel intermedio.",
+   "forma": "texto",
+   "ro": "Zonă de zbor cu parapanta pe versantul estic al insulei Tenerife, în municipalitatea Güímar. Altitudine aproximativă: 700 m. Se folosește când vântul bate dinspre est, sud sau nord-vest. Sezon: din toamnă până în primăvară și, adesea, și vara. Priveliști spre Valle de Güímar și spre Oceanul Atlantic. Se zboară și din Fasnia și de pe Volcán de Fasnia. O zonă folosită de obicei de piloții de nivel intermediar."
+  },
+  {
+   "tabla": "places",
+   "clave": "pp-guimar.cat",
+   "es": "Parapente · Despegue Este · ~700 m · Güímar",
+   "forma": "texto",
+   "ro": "Parapantă · Decolare în est · ~700 m · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-teno.desc",
+   "es": "⚠️ Sin acceso por carretera: la TF-445 a Punta de Teno está cortada por un desprendimiento desde el 29 de octubre de 2026, y aún no hay fecha de reapertura. El faro más icónico de Tenerife, en el extremo noroeste. En servicio desde 1897, se alza sobre los imponentes acantilados de Teno; su luz está a unos 60 m sobre el mar. Acceso por la espectacular y estrecha carretera TF-445 —reservada para residentes y transporte público— que serpentea entre montañas. Desde el faro, vistas épicas hacia La Gomera y los Gigantes. Ecosistema marino protegido con delfines y tortugas.",
+   "forma": "texto",
+   "ro": "⚠️ Fără acces rutier: drumul TF-445 spre Punta de Teno este închis din cauza unei căderi de pietre din 29 octombrie 2026 și încă nu există o dată de redeschidere. Cel mai emblematic far din Tenerife, în extremitatea de nord-vest a insulei. În funcțiune din 1897, se înalță deasupra falezelor impunătoare din Teno; lumina lui se află la circa 60 m deasupra mării. Acces pe șoseaua TF-445, spectaculoasă și îngustă (rezervată localnicilor și transportului public), care șerpuiește printre munți. De la far, priveliști grandioase spre La Gomera și spre Los Gigantes. Ecosistem marin protejat, cu delfini și broaște-țestoase."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-teno.cat",
+   "es": "Faro Histórico · Buenavista del Norte",
+   "forma": "texto",
+   "ro": "Far istoric · Buenavista del Norte"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-anaga.desc",
+   "es": "Situado en Punta de Anaga, el extremo nororiental de Tenerife. Construido en 1863, es uno de los faros más antiguos de Canarias. Rodeado de los acantilados verticales del Parque Rural de Anaga. Acceso solo a pie por sendero desde Chamorga (1 h 40 min). Vistas a Roque Bermejo, a los Roques de Anaga y a toda la costa este del macizo. El sendero casi no tiene sombra: lleve agua y protección solar.",
+   "forma": "texto",
+   "ro": "Situat la Punta de Anaga, extremitatea de nord-est a insulei Tenerife. Construit în 1863, este unul dintre cele mai vechi faruri din Insulele Canare. Înconjurat de falezele verticale ale Parcului Rural Anaga. Acces doar pe jos, pe o potecă din Chamorga (1 h 40 min). Priveliști spre Roque Bermejo, spre Roques de Anaga și spre toată coasta de est a masivului. Poteca nu are aproape deloc umbră: luați apă și protecție solară."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-anaga.cat",
+   "es": "Faro · Punta Anaga",
+   "forma": "texto",
+   "ro": "Far · Punta Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-rasca.desc",
+   "es": "Faro de la Punta de Rasca, en el extremo suroeste de Tenerife (Arona). Se llega andando desde Palm-Mar por el Malpaís de Rasca, Reserva Natural Especial. La torre actual, de 32 m, se encendió en 1978; delante sigue el primer faro, de 1895. Zona de especial interés marino: es uno de los mejores puntos de Tenerife para avistar cetáceos (calderones y delfines). Paisaje árido, volcánico y de gran belleza.",
+   "forma": "texto",
+   "ro": "Farul de la Punta de Rasca, în extremitatea de sud-vest a insulei Tenerife (Arona). Se ajunge pe jos din Palm-Mar, prin Malpaís de Rasca, rezervație naturală specială. Farul actual, un turn de 32 m, a fost aprins în 1978; în fața lui se află și azi primul far, din 1895. Zonă de interes marin deosebit: este unul dintre cele mai bune locuri din Tenerife pentru observarea cetaceelor (balene-pilot și delfini). Peisaj arid, vulcanic și de o mare frumusețe."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-rasca.cat",
+   "es": "Faro · Malpaís de Rasca",
+   "forma": "texto",
+   "ro": "Far · Malpaís de Rasca"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-abona.desc",
+   "es": "Faro del sureste de la isla, en el municipio de Arico, entre Abades y Poris de Abona. El primero se terminó en 1902; la torre actual funciona desde 1976. Torre de 39 m, blanca con franjas rojas, con la luz a 54 m sobre el mar, visible desde grandes distancias. Rodeado de malpaís volcánico negro y vistas al mar abierto. Zona de pesca submarina y surf. Acceso libre por pista desde la TF-1.",
+   "forma": "texto",
+   "ro": "Far în sud-estul insulei, în municipalitatea Arico, între Abades și Poris de Abona. Primul far a fost terminat în 1902; turnul actual funcționează din 1976. Turn de 39 m, alb cu dungi roșii, cu lumina la 54 m deasupra mării, vizibil de la mari distanțe. Înconjurat de un câmp de lavă neagră (malpaís), cu priveliști spre largul mării. Zonă de pescuit subacvatic și de surf. Acces liber pe un drum de pământ, din TF-1."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-abona.cat",
+   "es": "Faro · Arico · Sureste",
+   "forma": "texto",
+   "ro": "Far · Arico · Sud-est"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-punta-hidalgo.desc",
+   "es": "Faro de diseño vanguardista en el extremo noreste de Tenerife, junto a Punta del Hidalgo (La Laguna). Construido en 1992 y operativo desde 1994, es el más alto de la isla con 50 metros y uno de los más altos de Canarias. Diseño angular muy peculiar: columnas blancas irregulares de altura creciente sobre base triangular. Rodeado de invernaderos y al final de un sendero. Vistas al Roque de Dentro, Roque de Fuera y el macizo de Anaga. Junto a las piscinas naturales del pueblo.",
+   "forma": "texto",
+   "ro": "Far cu un design avangardist în extremitatea de nord-est a insulei Tenerife, lângă Punta del Hidalgo (La Laguna). Construit în 1992 și în funcțiune din 1994, are 50 de metri înălțime: este cel mai înalt de pe insulă și unul dintre cele mai înalte din Insulele Canare. Un design unghiular foarte neobișnuit: coloane albe neregulate, din ce în ce mai înalte, pe o bază triunghiulară. Înconjurat de sere, la capătul unei poteci. Priveliști spre Roque de Dentro, Roque de Fuera și masivul Anaga. Lângă piscinele naturale ale satului."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-punta-hidalgo.cat",
+   "es": "Faro Moderno · Punta del Hidalgo",
+   "forma": "texto",
+   "ro": "Far modern · Punta del Hidalgo"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-santa-cruz.desc",
+   "es": "Capital de Tenerife y de la provincia. Ciudad vibrante con el famoso Carnaval (2º del mundo), el Auditorio Calatrava, el Parque García Sanabria y la animada calle del Castillo. Puerto de cruceros más activo de Canarias.",
+   "forma": "texto",
+   "ro": "Capitala insulei Tenerife și a provinciei. Un oraș plin de viață, cu celebrul Carnaval (al 2-lea din lume), auditoriul lui Calatrava (Auditorio de Tenerife), parcul García Sanabria și Calle del Castillo, o stradă plină de animație. Cel mai activ port de croazieră din Insulele Canare."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-santa-cruz.cat",
+   "es": "Capital de Tenerife · 210.000 hab.",
+   "forma": "texto",
+   "ro": "Capitala insulei Tenerife · 210.000 de locuitori"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-laguna.desc",
+   "es": "Ciudad Patrimonio de la Humanidad UNESCO. Primera ciudad planificada del Atlántico, modelo de las ciudades coloniales americanas. Universidad, ambiente estudiantil, catedral, calles históricas y el mejor tapeo de la isla.",
+   "forma": "texto",
+   "ro": "Oraș inclus în Patrimoniul Mondial UNESCO. Primul oraș planificat din Atlantic, model pentru orașele coloniale din America. Universitate, atmosferă studențească, catedrală, străzi istorice și cele mai bune tapas de pe insulă."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-laguna.cat",
+   "es": "Patrimonio UNESCO · La Laguna",
+   "forma": "texto",
+   "ro": "Patrimoniu UNESCO · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-puerto-cruz.desc",
+   "es": "La ciudad turística del norte por excelencia. Playa Jardín de Manrique, Loro Parque, Lago Martiánez, calles coloniales y la mejor oferta cultural del norte. Microclima excelente todo el año.",
+   "forma": "texto",
+   "ro": "Orașul turistic prin excelență al nordului. Playa Jardín, proiectată de Manrique, Loro Parque, Lago Martiánez, străzi coloniale și cea mai bună ofertă culturală din nord. Microclimat excelent tot anul."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-puerto-cruz.cat",
+   "es": "Ciudad Turística · Norte",
+   "forma": "texto",
+   "ro": "Oraș turistic · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-orotava.desc",
+   "es": "Villa colonial con la arquitectura canaria más auténtica. Famosa por las alfombras de flores en Corpus Christi. Casa de los Balcones, jardines del Ayuntamiento y vistas panorámicas al Valle de La Orotava con el Teide al fondo.",
+   "forma": "texto",
+   "ro": "Orășel colonial, cu cea mai autentică arhitectură canariană. Celebru pentru covoarele de flori de Corpus Christi. Casa de los Balcones, grădinile primăriei și priveliști panoramice spre Valle de La Orotava, cu Teide în fundal."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-orotava.cat",
+   "es": "Villa Colonial · La Orotava",
+   "forma": "texto",
+   "ro": "Orășel colonial · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-adeje.desc",
+   "es": "Municipio que alberga la Costa Adeje y el sur turístico. La villa de Adeje tiene un encantador casco antiguo con la iglesia de Santa Úrsula y el Barranco del Infierno. El municipio más visitado de Tenerife.",
+   "forma": "texto",
+   "ro": "Municipalitatea în care se află Costa Adeje și sudul turistic. Orășelul Adeje are un centru vechi fermecător, cu biserica Santa Úrsula și cu Barranco del Infierno. Cea mai vizitată municipalitate din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-adeje.cat",
+   "es": "Municipio · Sur de Tenerife",
+   "forma": "texto",
+   "ro": "Municipalitate · Sudul insulei Tenerife"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-arona.desc",
+   "es": "Municipio que engloba Los Cristianos y Las Américas. La villa de Arona en las medianías conserva su esencia rural. Jungle Park y las mejores playas del sur hacen de este municipio uno de los más turísticos de la isla.",
+   "forma": "texto",
+   "ro": "Municipalitatea care cuprinde Los Cristianos și Las Américas. Orășelul Arona, din zona de altitudine medie (medianías), își păstrează caracterul rural. Jungle Park și cele mai bune plaje din sud fac din această municipalitate una dintre cele mai turistice de pe insulă."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-arona.cat",
+   "es": "Municipio · Los Cristianos · Las Américas",
+   "forma": "texto",
+   "ro": "Municipalitate · Los Cristianos · Las Américas"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-garachico.desc",
+   "es": "El pueblo más bonito de Tenerife. Antigua capital comercial arrasada por un volcán en 1706. Piscinas naturales El Caletón, Castillo de San Miguel, Convento de San Francisco e iglesia mudéjar. Atmósfera única e irrepetible.",
+   "forma": "texto",
+   "ro": "Cea mai frumoasă localitate din Tenerife. Fostă capitală comercială, distrusă de erupția vulcanică din 1706. Piscinele naturale El Caletón, Castillo de San Miguel, Convento de San Francisco și o biserică în stil mudejar. O atmosferă unică, de neegalat."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-garachico.cat",
+   "es": "Pueblo Histórico · Noroeste",
+   "forma": "texto",
+   "ro": "Localitate istorică · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-icod.desc",
+   "es": "Famoso por el Drago Milenario y sus bodegas de vino tinto. Arquitectura colonial bien conservada, el Mariposario del Drago y Cueva del Viento a 5 minutos. El mejor vino tinto artesanal de Tenerife.",
+   "forma": "texto",
+   "ro": "Celebru pentru Drago Milenario și pentru cramele sale de vin roșu. Arhitectură colonială bine păstrată, grădina de fluturi Mariposario del Drago și, la 5 minute, Cueva del Viento. Cel mai bun vin roșu artizanal din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-icod.cat",
+   "es": "Ciudad del Drago · Noroeste",
+   "forma": "texto",
+   "ro": "Orașul dragonierului · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-candelaria.desc",
+   "es": "Lugar de peregrinación más importante de Canarias. La Basílica de Nuestra Señora de Candelaria, patrona del archipiélago, recibe miles de peregrinos el 15 de agosto. Las estatuas de los Menceys guanches en el paseo son imprescindibles.",
+   "forma": "texto",
+   "ro": "Cel mai important loc de pelerinaj din Insulele Canare. Bazilica Fecioarei din Candelaria (Nuestra Señora de Candelaria), patroana arhipelagului, primește mii de pelerini pe 15 august. Statuile regilor guanși (mencey) de pe promenadă sunt de neratat."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-candelaria.cat",
+   "es": "Santuario · Este de Tenerife",
+   "forma": "texto",
+   "ro": "Sanctuar · Estul insulei Tenerife"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-guimar.desc",
+   "es": "Conocido por las Pirámides de Güímar, misteriosas construcciones estudiadas por Thor Heyerdahl. Valle fértil en la vertiente sureste de la Cumbre Dorsal. Artesanía local y productos agrícolas de gran calidad.",
+   "forma": "texto",
+   "ro": "Cunoscut pentru Piramidele din Güímar, construcții misterioase studiate de Thor Heyerdahl. Vale fertilă pe versantul de sud-est al crestei Cumbre Dorsal. Meșteșuguri locale și produse agricole de mare calitate."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-guimar.cat",
+   "es": "Valle del Sureste · Güímar",
+   "forma": "texto",
+   "ro": "Valea din sud-est · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-granadilla.desc",
+   "es": "Municipio del sureste con el casco histórico de Granadilla Villa muy bien conservado. El Médano y Playa La Tejita están en su término. Puerto de Los Abrigos con excelentes restaurantes de pescado y marisco.",
+   "forma": "texto",
+   "ro": "Municipalitate din sud-est, cu centrul istoric din Granadilla foarte bine păstrat. El Médano și Playa La Tejita se află pe teritoriul ei. Portul Los Abrigos, cu restaurante excelente de pește și fructe de mare."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-granadilla.cat",
+   "es": "Municipio · Sureste",
+   "forma": "texto",
+   "ro": "Municipalitate · Sud-est"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-costa-adeje.desc",
+   "es": "La zona de turismo de lujo de Tenerife. Hoteles 5 estrellas, Playa del Duque, Playa Fañabé, spa resorts y la mejor gastronomía. Siam Park está aquí. Tranquila y elegante en comparación con Las Américas.",
+   "forma": "texto",
+   "ro": "Zona de turism de lux din Tenerife. Hoteluri de 5 stele, Playa del Duque, Playa Fañabé, resorturi cu centre de relaxare și cea mai bună gastronomie. Aici se află Siam Park. Liniștită și elegantă în comparație cu Las Américas."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-costa-adeje.cat",
+   "es": "Zona de Lujo · Adeje",
+   "forma": "texto",
+   "ro": "Zonă de lux · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-los-gigantes.desc",
+   "es": "Pueblo enclavado bajo los acantilados más impresionantes de España (hasta 600 m). Puerto marinero con excursiones en barco para ver ballenas y delfines. Playa La Arena de arena negra. Ambiente muy tranquilo y local.",
+   "forma": "texto",
+   "ro": "Localitate așezată la poalele celor mai impresionante faleze din Spania (până la 600 m). Port marinăresc cu excursii cu barca pentru observarea balenelor și a delfinilor. Playa La Arena, cu nisip negru. Atmosferă foarte liniștită și locală."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-los-gigantes.cat",
+   "es": "Puerto · Oeste de Tenerife",
+   "forma": "texto",
+   "ro": "Port · Vestul insulei Tenerife"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-puerto-santiago.desc",
+   "es": "Pueblo pesquero tranquilo al pie de Los Gigantes. Ambiente muy local, restaurantes de pescado fresco y punto de partida para excursiones a los acantilados. Playa de arena negra con aguas limpias.",
+   "forma": "texto",
+   "ro": "Sat de pescari liniștit, la poalele falezelor Los Gigantes. Atmosferă foarte locală, restaurante cu pește proaspăt și punct de plecare pentru excursiile spre faleze. Plajă cu nisip negru și ape curate."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-puerto-santiago.cat",
+   "es": "Pueblo Pesquero · Oeste",
+   "forma": "texto",
+   "ro": "Sat de pescari · Vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-callao-salvaje.desc",
+   "es": "Urbanización residencial tranquila entre Adeje y Los Gigantes. Acceso a playas poco masificadas como Playa de la Jaquita. Zona tranquila con servicios para residentes. Buen punto base para explorar la costa oeste.",
+   "forma": "texto",
+   "ro": "Cartier rezidențial liniștit între Adeje și Los Gigantes. Acces la plaje puțin aglomerate, cum este Playa de la Jaquita. Zonă liniștită, cu servicii pentru rezidenți. O bază bună pentru explorarea coastei de vest."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-callao-salvaje.cat",
+   "es": "Núcleo Residencial · Oeste",
+   "forma": "texto",
+   "ro": "Zonă rezidențială · Vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-san-andres.desc",
+   "es": "Pequeño pueblo pesquero junto a Playa Las Teresitas, la mejor playa urbana de Tenerife. Excelentes restaurantes de pescado y marisco en el paseo. Ambiente 100% local a solo 10 minutos de Santa Cruz.",
+   "forma": "texto",
+   "ro": "Mic sat de pescari lângă Playa Las Teresitas, cea mai bună plajă urbană din Tenerife. Restaurante excelente de pește și fructe de mare pe promenadă. Atmosferă 100% locală, la doar 10 minute de Santa Cruz."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-san-andres.cat",
+   "es": "Pueblo Pesquero · Santa Cruz",
+   "forma": "texto",
+   "ro": "Sat de pescari · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-guia-isora.desc",
+   "es": "Municipio tranquilo en la costa oeste, entre Adeje y Los Gigantes. Playa Alcalá y San Juan con pescado fresco. Hotel Abama (5 estrellas GL). Paisaje árido y auténtico, sin masificación. El camino del Barranco de Masca empieza en el caserío de Masca (Buenavista del Norte), adonde va la guagua 355 de TITSA desde Santiago del Teide.",
+   "forma": "texto",
+   "ro": "Municipalitate liniștită pe coasta de vest, între Adeje și Los Gigantes. Playa Alcalá și San Juan, cu pește proaspăt. Hotel Abama (5 stele Gran Lujo). Peisaj arid și autentic, fără aglomerație. Traseul din Barranco de Masca începe în cătunul Masca (Buenavista del Norte), unde ajunge autobuzul 355 al TITSA din Santiago del Teide."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-guia-isora.cat",
+   "es": "Municipio · Costa Oeste",
+   "forma": "texto",
+   "ro": "Municipalitate · Coasta de vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-la-caleta.desc",
+   "es": "Pequeño pueblo pesquero en Costa Adeje famoso por sus restaurantes de alta gastronomía. Chefs reconocidos internacionalmente. Playa tranquila y auténtica a dos pasos de la zona hotelera de 5 estrellas. El secreto mejor guardado del sur.",
+   "forma": "texto",
+   "ro": "Mic sat de pescari în Costa Adeje, celebru pentru restaurantele sale de înaltă gastronomie. Bucătari-șefi recunoscuți la nivel internațional. Plajă liniștită și autentică, la doi pași de zona hotelurilor de 5 stele. Cel mai bine păstrat secret al sudului."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-la-caleta.cat",
+   "es": "Gastronomía · Costa Adeje",
+   "forma": "texto",
+   "ro": "Gastronomie · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-tacoronte.desc",
+   "es": "Capital del vino tinto de Tenerife. Denominación de Origen Tacoronte-Acentejo, la más antigua de Canarias. Iglesia de Santa Catalina, casco histórico colonial y los mejores guachinches de la isla en sus medianías.",
+   "forma": "texto",
+   "ro": "Capitala vinului roșu din Tenerife. Denumirea de origine Tacoronte-Acentejo, cea mai veche din Insulele Canare. Biserica Santa Catalina, centrul istoric colonial și cele mai bune guachinches (taverne tradiționale) de pe insulă, în zona de altitudine medie (medianías)."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-tacoronte.cat",
+   "es": "Vino & Tradición · Norte",
+   "forma": "texto",
+   "ro": "Vin și tradiție · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-tegueste.desc",
+   "es": "Municipio rural y vinícola entre La Laguna y Anaga. Conserva tradiciones canarias auténticas. Fiestas de San Marcos en abril con danzas y baile mago. Únicos vinos blancos de altitud. Sin costa pero con encanto rural intacto. Bien conectado con La Laguna en guagua.",
+   "forma": "texto",
+   "ro": "Municipalitate rurală și viticolă între La Laguna și Anaga. Aici se păstrează tradiții canariene autentice. Sărbătorile San Marcos, în aprilie, cu dansuri și baile mago (bal popular canarian, în port tradițional). Vinuri albe unice, de altitudine. Fără ieșire la mare, dar cu un farmec rural intact. Legături bune cu autobuzul spre La Laguna."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-tegueste.cat",
+   "es": "Pueblo Rural · Norte",
+   "forma": "texto",
+   "ro": "Localitate rurală · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-realejos.desc",
+   "es": "Municipio del norte famoso por las fiestas patronales más espectaculares de Canarias: fuegos artificiales del 3 de mayo. Cuna de las pirotecnias canarias. Rambla de Castro, paisajes verdes y vistas al Teide.",
+   "forma": "texto",
+   "ro": "Municipalitate din nord, celebră pentru cele mai spectaculoase sărbători patronale din Insulele Canare: focurile de artificii de pe 3 mai. Leagănul pirotehniei canariene. Rambla de Castro, peisaje verzi și priveliști spre Teide."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-realejos.cat",
+   "es": "Municipio · Norte",
+   "forma": "texto",
+   "ro": "Municipalitate · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-sauzal.desc",
+   "es": "Pueblo con uno de los miradores más bonitos hacia el océano. Casa del Vino de Tenerife, museo y restaurante con la mejor selección vinícola de la isla. Casco histórico cuidado y plaza colonial perfecta.",
+   "forma": "texto",
+   "ro": "Localitate cu unul dintre cele mai frumoase puncte de belvedere spre ocean. Casa del Vino de Tenerife, muzeu și restaurant cu cea mai bună selecție de vinuri de pe insulă. Centru istoric îngrijit și o piață colonială perfectă."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-sauzal.cat",
+   "es": "Pueblo del Vino · Norte",
+   "forma": "texto",
+   "ro": "Orășelul vinului · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-matanza.desc",
+   "es": "Lugar histórico donde los guanches derrotaron a los conquistadores en 1494. Comarca vinícola con guachinches tradicionales, papas arrugadas, queso ahumado y vino tinto del país. Vistas espectaculares al océano.",
+   "forma": "texto",
+   "ro": "Loc istoric în care guanșii i-au învins pe cuceritori în 1494. Ținut viticol, cu guachinches tradiționale, papas arrugadas (cartofi cu coaja încrețită), brânză afumată și vin roșu local. Priveliști spectaculoase spre ocean."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-matanza.cat",
+   "es": "Pueblo Vinícola · Norte",
+   "forma": "texto",
+   "ro": "Localitate viticolă · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-victoria.desc",
+   "es": "Pueblo donde los conquistadores se vengaron en 1495. Hoy es comarca tranquila de viñedos, frutales y guachinches familiares. Bosque de pino canario en las medianías. Cantera de tradiciones locales.",
+   "forma": "texto",
+   "ro": "Localitatea în care cuceritorii și-au luat revanșa în 1495. Astăzi este un ținut liniștit, cu podgorii, livezi și guachinches familiale. Pădure de pin canarian în zona de altitudine medie (medianías). Un izvor de tradiții locale."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-victoria.cat",
+   "es": "Pueblo Histórico · Norte",
+   "forma": "texto",
+   "ro": "Localitate istorică · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-santa-ursula.desc",
+   "es": "Municipio con uno de los miradores más famosos: el Mirador de Humboldt, desde donde Alexander von Humboldt admiró el Valle de La Orotava. Restaurantes con vistas espectaculares y la mejor carne asada de la isla.",
+   "forma": "texto",
+   "ro": "Municipalitate cu unul dintre cele mai faimoase puncte de belvedere: Mirador de Humboldt, de unde Alexander von Humboldt a admirat Valle de La Orotava. Restaurante cu priveliști spectaculoase și cea mai bună carne la grătar de pe insulă."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-santa-ursula.cat",
+   "es": "Mirador & Carne · Norte",
+   "forma": "texto",
+   "ro": "Belvedere și carne · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-san-juan-rambla.desc",
+   "es": "Pequeño pueblo costero del norte con casco histórico colonial y piscinas naturales. Charco de la Laja, una de las piscinas naturales más fotografiadas de Tenerife. Plátanos, vino y tranquilidad total.",
+   "forma": "texto",
+   "ro": "Mică localitate de pe coasta de nord, cu un centru istoric colonial și piscine naturale. Charco de la Laja, una dintre cele mai fotografiate piscine naturale din Tenerife. Banane, vin și liniște deplină."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-san-juan-rambla.cat",
+   "es": "Pueblo Costero · Norte",
+   "forma": "texto",
+   "ro": "Localitate de coastă · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-guancha.desc",
+   "es": "Municipio rural entre el Teide y el mar. Plataneras en la costa, viñedos y frutales en las medianías, pinares hasta el parque nacional. Casas señoriales, ambiente totalmente local y guachinches familiares auténticos.",
+   "forma": "texto",
+   "ro": "Municipalitate rurală între Teide și mare. Plantații de banane pe coastă, podgorii și livezi în zona de altitudine medie (medianías), păduri de pini până la parcul național. Case nobiliare, o atmosferă cu totul locală și guachinches familiale autentice."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-guancha.cat",
+   "es": "Pueblo Rural · Norte",
+   "forma": "texto",
+   "ro": "Localitate rurală · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-silos.desc",
+   "es": "Pueblo verde y húmedo de la Isla Baja. Plataneras, laurisilva y monte. Famoso Festival del Cuento Internacional en diciembre. Plaza colonial encantadora, iglesia barroca y muchas casas con balcones canarios.",
+   "forma": "texto",
+   "ro": "Localitate verde și umedă din Isla Baja. Plantații de banane, pădure de laur și dealuri împădurite. Celebrul Festival Internațional de Povești (Festival Internacional del Cuento), în decembrie. O piață colonială fermecătoare, o biserică în stil baroc și multe case cu balcoane canariene."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-silos.cat",
+   "es": "Pueblo · Isla Baja",
+   "forma": "texto",
+   "ro": "Localitate · Isla Baja"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-buenavista.desc",
+   "es": "Municipio del extremo noroeste, puerta al Parque Rural de Teno. Campo de golf de diseño, Faro de Teno, playa de Las Arenas y los paisajes más vírgenes y verdes de Tenerife. Acceso a Masca por el norte.",
+   "forma": "texto",
+   "ro": "Municipalitate din extremitatea de nord-vest a insulei, poarta de intrare în Parcul Rural Teno. Teren de golf de autor, Faro de Teno, plaja Las Arenas și cele mai sălbatice și mai verzi peisaje din Tenerife. Acces spre Masca dinspre nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-buenavista.cat",
+   "es": "Municipio · Isla Baja · Teno",
+   "forma": "texto",
+   "ro": "Municipalitate · Isla Baja · Teno"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-tanque.desc",
+   "es": "Pequeño municipio de medianías entre Garachico y Santiago del Teide. Pinares, viñedos y un mirador único hacia los acantilados de Los Gigantes y la Isla Baja. Comarca de queso de cabra artesanal premiado.",
+   "forma": "texto",
+   "ro": "Mică municipalitate din zona de altitudine medie (medianías), între Garachico și Santiago del Teide. Păduri de pini, podgorii și un punct de belvedere unic spre falezele Los Gigantes și spre Isla Baja. Ținut cu brânză de capră artizanală premiată."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-tanque.cat",
+   "es": "Pueblo de Medianías · Norte",
+   "forma": "texto",
+   "ro": "Localitate de altitudine medie · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-santiago-teide.desc",
+   "es": "Municipio que incluye Tamaimo, Puerto Santiago y Los Gigantes. Pueblo de montaña tranquilo a 925 m de altitud, ideal punto de partida para senderos. De aquí sale la guagua 355 de TITSA hacia el caserío de Masca (Buenavista del Norte), donde empieza el camino del barranco. Volcán Chinyero, última erupción de 1909. Mucho turismo rural.",
+   "forma": "texto",
+   "ro": "Municipalitate care cuprinde Tamaimo, Puerto Santiago și Los Gigantes. Localitate de munte liniștită, la 925 m altitudine, punct de plecare ideal pentru trasee de drumeție. De aici pleacă autobuzul 355 al TITSA spre cătunul Masca (Buenavista del Norte), unde începe traseul prin defileu. Vulcanul Chinyero, cu ultima erupție în 1909. Mult turism rural."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-santiago-teide.cat",
+   "es": "Pueblo de Montaña · Oeste",
+   "forma": "texto",
+   "ro": "Localitate de munte · Vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-vilaflor.desc",
+   "es": "El pueblo más alto de Canarias, a 1.400 m. Aire purísimo, pinares centenarios y vinos de altitud únicos. Puerta sur al Parque Nacional del Teide. Famoso por las castañas, almendros y los mejores pinos canarios.",
+   "forma": "texto",
+   "ro": "Cea mai înaltă localitate din Insulele Canare, la 1.400 m. Aer foarte curat, păduri de pini seculari și vinuri de altitudine unice. Poarta de sud spre Parcul Național Teide. Renumită pentru castane, migdali și cei mai frumoși pini canarieni."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-vilaflor.cat",
+   "es": "Pueblo más Alto de Canarias · Sur",
+   "forma": "texto",
+   "ro": "Cea mai înaltă localitate din Insulele Canare · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-san-miguel.desc",
+   "es": "Municipio del sur con casco histórico encantador y zona costera turística (Golf del Sur, Amarilla Golf). Mezcla auténtica de pueblo tradicional canario y urbanizaciones turísticas con campos de golf.",
+   "forma": "texto",
+   "ro": "Municipalitate din sud, cu un centru istoric fermecător și o zonă turistică de coastă (Golf del Sur, Amarilla Golf). Un amestec autentic de localitate tradițională canariană și complexe turistice cu terenuri de golf."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-san-miguel.cat",
+   "es": "Municipio · Sur",
+   "forma": "texto",
+   "ro": "Municipalitate · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-arico.desc",
+   "es": "Municipio del sureste, el segundo más extenso de Tenerife después de La Orotava. Paisaje árido, malpaís volcánico y la playa virgen de Los Abrigos. Faro de Punta de Abona. Reserva del cielo, ideal astronomía.",
+   "forma": "texto",
+   "ro": "Municipalitate din sud-est, a doua ca întindere din Tenerife, după La Orotava. Peisaj arid, câmpuri de lavă (malpaís) și plaja sălbatică Los Abrigos. Faro de Punta de Abona. Rezervație a cerului, ideală pentru astronomie."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-arico.cat",
+   "es": "Municipio · Sureste",
+   "forma": "texto",
+   "ro": "Municipalitate · Sud-est"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-fasnia.desc",
+   "es": "Pequeño municipio del sureste con paisaje volcánico negro. El Volcán de Fasnia (última erupción 1705) marca la zona. Playas de roca como Los Roques y agua templada todo el año. Muy local, sin turismo masivo.",
+   "forma": "texto",
+   "ro": "Mică municipalitate din sud-est, cu un peisaj vulcanic negru. Volcán de Fasnia (ultima erupție în 1705) definește zona. Plaje stâncoase, cum este Los Roques, și apă cu temperatură plăcută tot anul. Atmosferă foarte locală, fără turism de masă."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-fasnia.cat",
+   "es": "Pueblo Volcánico · Sureste",
+   "forma": "texto",
+   "ro": "Localitate vulcanică · Sud-est"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-arafo.desc",
+   "es": "Pueblo del Valle de Güímar conocido como 'Villa de la Música' por su tradición musical centenaria. Bandas, charangas y agrupaciones folclóricas. Almendros en flor en febrero, miel artesanal premiada y vino blanco de medianías.",
+   "forma": "texto",
+   "ro": "Localitate din Valle de Güímar, cunoscută drept „Villa de la Música” (Orășelul muzicii) datorită tradiției sale muzicale seculare. Fanfare, mici orchestre de petrecere (charangas) și grupuri folclorice. Migdali în floare în februarie, miere artizanală premiată și vin alb din zona de altitudine medie (medianías)."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-arafo.cat",
+   "es": "Villa de la Música · Sureste",
+   "forma": "texto",
+   "ro": "Orășelul muzicii · Sud-est"
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-rosario.desc",
+   "es": "Municipio de medianías entre Santa Cruz y La Laguna. Bosque de La Esperanza con pinares y laurisilva. Mirador de Las Raíces, donde Franco preparó el alzamiento de 1936. Aire fresco, niebla mística y senderos. En la costa está Radazul, con puerto deportivo y playa.",
+   "forma": "texto",
+   "ro": "Municipalitate din zona de altitudine medie (medianías), între Santa Cruz și La Laguna. Pădurea La Esperanza, cu păduri de pini și de laur. Mirador de Las Raíces, unde Franco a pregătit rebeliunea militară din 1936. Aer proaspăt, ceață mistică și trasee de drumeție. Pe coastă se află Radazul, cu un port de agrement și o plajă."
+  },
+  {
+   "tabla": "places",
+   "clave": "ciudad-rosario.cat",
+   "es": "Municipio · Cumbre Dorsal",
+   "forma": "texto",
+   "ro": "Municipalitate · Cumbre Dorsal"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-bajamar.desc",
+   "es": "Pueblo costero del norte famoso por sus enormes piscinas naturales de agua de mar (construidas en los 60). Ambiente tranquilo y muy local. Antigua zona de veraneo de los laguneros. Excelentes restaurantes de pescado en el paseo.",
+   "forma": "texto",
+   "ro": "Localitate de pe coasta de nord, celebră pentru piscinele sale naturale uriașe cu apă de mare (construite în anii ’60). Atmosferă liniștită și foarte locală. Fostă zonă de vacanță de vară a locuitorilor din La Laguna. Restaurante excelente de pește pe promenadă."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-bajamar.cat",
+   "es": "Pueblo Costero · La Laguna",
+   "forma": "texto",
+   "ro": "Localitate de coastă · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-punta-hidalgo.desc",
+   "es": "El último pueblo accesible en coche de la costa norte de Anaga. Faro icónico, piscinas naturales con olas, roques que sobresalen del mar y el inicio del sendero a Chinamada. Imprescindible para descubrir el Anaga más auténtico.",
+   "forma": "texto",
+   "ro": "Ultima localitate la care se poate ajunge cu mașina pe coasta de nord a masivului Anaga. Far emblematic, piscine naturale cu valuri, stânci care ies din mare și începutul traseului spre Chinamada. De neratat pentru a descoperi cel mai autentic Anaga."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-punta-hidalgo.cat",
+   "es": "Pueblo Anaga · La Laguna",
+   "forma": "texto",
+   "ro": "Localitate din Anaga · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-taganana.desc",
+   "es": "Pueblo del corazón verde de Anaga, accesible por una carretera serpenteante entre laurisilva. Casas tradicionales colgadas en la ladera, viñedos en bancales y dos playas cercanas: Almáciga y Benijo. Anaga es Reserva de la Biosfera de la UNESCO.",
+   "forma": "texto",
+   "ro": "Localitate din inima verde a masivului Anaga, la care se ajunge pe o șosea șerpuită prin pădurea de laur. Case tradiționale agățate de versant, podgorii în terase și două plaje în apropiere: Almáciga și Benijo. Anaga este rezervație a biosferei UNESCO."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-taganana.cat",
+   "es": "Pueblo · Anaga UNESCO",
+   "forma": "texto",
+   "ro": "Localitate · Anaga UNESCO"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-igueste-san-andres.desc",
+   "es": "Pueblo de Anaga al final de un valle profundo, cerca de Las Teresitas. Ambiente 100% local, tiempo detenido, terrazas con plataneras y palmeras. Punto de partida para senderos espectaculares a playas escondidas como Antequera.",
+   "forma": "texto",
+   "ro": "Localitate din Anaga, la capătul unei văi adânci, aproape de Las Teresitas. Atmosferă 100% locală, timp oprit în loc, terase cu plantații de banane și palmieri. Punct de plecare pentru trasee spectaculoase spre plaje ascunse, cum este Antequera."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-igueste-san-andres.cat",
+   "es": "Pueblo Aislado · Anaga",
+   "forma": "texto",
+   "ro": "Localitate izolată · Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-tejina.desc",
+   "es": "Pueblo rural agrícola en el norte de La Laguna. Famoso por la Fiesta de los Corazones de Tejina, que se celebra en agosto en honor a San Bartolomé y es Bien de Interés Cultural desde 2003. Vegas verdes y plataneras.",
+   "forma": "texto",
+   "ro": "Localitate rurală, agricolă, în nordul municipalității La Laguna. Celebră pentru Fiesta de los Corazones de Tejina, sărbătorită în august în cinstea Sfântului Bartolomeu; din 2003 este Bien de Interés Cultural (patrimoniu cultural protejat). Câmpii verzi și plantații de banane."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-tejina.cat",
+   "es": "Pueblo Rural · La Laguna",
+   "forma": "texto",
+   "ro": "Localitate rurală · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-valle-guerra.desc",
+   "es": "Pueblo rural entre Tegueste y Tacoronte. Vegas, plataneras, viñedos y la Casa de Carta, sede del Museo de Historia y Antropología de Tenerife. Ambiente totalmente agrícola, sin presencia turística. Producto local de huerta exquisito y los mejores aguacates de Tenerife.",
+   "forma": "texto",
+   "ro": "Localitate rurală între Tegueste și Tacoronte. Câmpii, plantații de banane, podgorii și Casa de Carta, sediul Muzeului de Istorie și Antropologie al insulei Tenerife. Atmosferă cu totul agricolă, fără turiști. Legume locale excelente și cei mai buni avocado din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-valle-guerra.cat",
+   "es": "Pueblo Rural · La Laguna",
+   "forma": "texto",
+   "ro": "Localitate rurală · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-mesa-mar.desc",
+   "es": "Pequeño núcleo costero de Tacoronte con piscinas naturales grandes excavadas en la roca volcánica. Ambiente residencial muy tranquilo y local. Las piscinas son refugio de los laguneros en verano. Sin servicios turísticos.",
+   "forma": "texto",
+   "ro": "Mică așezare de coastă din Tacoronte, cu piscine naturale mari, săpate în roca vulcanică. Atmosferă rezidențială foarte liniștită și locală. Vara, piscinele sunt refugiul locuitorilor din La Laguna. Fără servicii turistice."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-mesa-mar.cat",
+   "es": "Núcleo Costero · Tacoronte",
+   "forma": "texto",
+   "ro": "Așezare de coastă · Tacoronte"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-realejo-bajo.desc",
+   "es": "Casco histórico de Los Realejos, con la iglesia de la Concepción; la iglesia más antigua de Tenerife (Santiago Apóstol, 1496) está muy cerca, en el Realejo Alto. Ambiente tradicional canario, plaza con arboledas centenarias y casonas señoriales del siglo XVII. Patrimonio histórico-artístico.",
+   "forma": "texto",
+   "ro": "Centrul istoric din Los Realejos, cu biserica La Concepción; cea mai veche biserică din Tenerife (Santiago Apóstol, 1496) se află foarte aproape, în Realejo Alto. Atmosferă canariană tradițională, o piață cu arbori seculari și case nobiliare din secolul al XVII-lea. Patrimoniu istoric și artistic."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-realejo-bajo.cat",
+   "es": "Casco Histórico · Los Realejos",
+   "forma": "texto",
+   "ro": "Centru istoric · Los Realejos"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-la-ranilla.desc",
+   "es": "Barrio histórico pesquero de Puerto de la Cruz. Casas de colores, restaurantes tradicionales canarios, vida nocturna alternativa y la mejor zona para tapear pescado. Ambiente bohemio y artístico, sin masificación turística.",
+   "forma": "texto",
+   "ro": "Cartier istoric de pescari din Puerto de la Cruz. Case colorate, restaurante canariene tradiționale, viață de noapte alternativă și cea mai bună zonă pentru tapas cu pește. Atmosferă boemă și artistică, fără aglomerație turistică."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-la-ranilla.cat",
+   "es": "Barrio Pesquero · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Cartier de pescari · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-las-galletas.desc",
+   "es": "Pueblo pesquero del sur, integrado en Costa del Silencio. Mercadillo de los martes y sábados muy popular. Pequeño puerto deportivo, restaurantes de pescado fresco a buen precio. Ambiente residencial mixto local/extranjeros.",
+   "forma": "texto",
+   "ro": "Sat de pescari din sud, integrat în Costa del Silencio. O piață locală (mercadillo) foarte populară, marțea și sâmbăta. Mic port de agrement, restaurante cu pește proaspăt la prețuri bune. Atmosferă rezidențială mixtă, cu localnici și străini."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-las-galletas.cat",
+   "es": "Pueblo Pesquero · Arona",
+   "forma": "texto",
+   "ro": "Sat de pescari · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-costa-silencio.desc",
+   "es": "Urbanización tranquila del extremo sur. Sin masificación turística pese a su ubicación estratégica. Residencial de jubilados europeos y locales. Acceso fácil al aeropuerto y a Los Cristianos.",
+   "forma": "texto",
+   "ro": "Cartier rezidențial liniștit în extremitatea de sud a insulei. Fără aglomerație turistică, în ciuda poziției strategice. Zonă rezidențială pentru pensionari europeni și localnici. Acces ușor la aeroport și la Los Cristianos."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-costa-silencio.cat",
+   "es": "Urbanización · Arona",
+   "forma": "texto",
+   "ro": "Cartier rezidențial · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-golf-del-sur.desc",
+   "es": "Urbanización turística construida alrededor de un campo de golf de 27 hoyos. Playa Amarilla con tonos volcánicos únicos. Apartamentos, complejos hoteleros y restaurantes internacionales. Muy británico en estilo de vida.",
+   "forma": "texto",
+   "ro": "Zonă turistică construită în jurul unui teren de golf cu 27 de găuri. Playa Amarilla, cu nuanțe vulcanice unice. Apartamente, complexe hoteliere și restaurante internaționale. Un stil de viață foarte britanic."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-golf-del-sur.cat",
+   "es": "Resort de Golf · San Miguel",
+   "forma": "texto",
+   "ro": "Resort de golf · San Miguel"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-amarilla-golf.desc",
+   "es": "Urbanización con campo de golf de 18 hoyos diseñado por Donald Steel, junto al mar. Marina deportiva con club náutico. Resort residencial y de vacaciones tranquilo, sin discotecas ni ruido. Vistas a La Gomera.",
+   "forma": "texto",
+   "ro": "Zonă rezidențială cu un teren de golf cu 18 găuri, proiectat de Donald Steel, lângă mare. Port de agrement cu club nautic. Resort rezidențial și de vacanță liniștit, fără discoteci și fără zgomot. Priveliști spre La Gomera."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-amarilla-golf.cat",
+   "es": "Resort de Golf · San Miguel",
+   "forma": "texto",
+   "ro": "Resort de golf · San Miguel"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-playa-san-juan.desc",
+   "es": "Pueblo pesquero auténtico de la costa oeste. Mercadillo de los miércoles muy popular. Pequeña playa de arena negra y aguas tranquilas. Restaurantes de pescado fresco a precios locales. Ambiente 100% canario sin turismo masivo.",
+   "forma": "texto",
+   "ro": "Sat de pescari autentic pe coasta de vest. O piață locală (mercadillo) foarte populară, miercurea. Plajă mică, cu nisip negru și ape liniștite. Restaurante cu pește proaspăt la prețuri locale. Atmosferă 100% canariană, fără turism de masă."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-playa-san-juan.cat",
+   "es": "Pueblo Pesquero · Guía de Isora",
+   "forma": "texto",
+   "ro": "Sat de pescari · Guía de Isora"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-playa-paraiso.desc",
+   "es": "Pequeño núcleo turístico entre Costa Adeje y Los Gigantes. Hard Rock Hotel, complejos vacacionales y restaurantes. Cala natural protegida por acantilados y aguas cristalinas. Acceso a Playa Diego Hernández por sendero.",
+   "forma": "texto",
+   "ro": "Mică zonă turistică între Costa Adeje și Los Gigantes. Hard Rock Hotel, complexe de vacanță și restaurante. Un golfuleț natural, ferit de faleze, cu ape cristaline. Acces pe o potecă spre Playa Diego Hernández."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-playa-paraiso.cat",
+   "es": "Núcleo Turístico · Adeje",
+   "forma": "texto",
+   "ro": "Zonă turistică · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-torviscas.desc",
+   "es": "Núcleo integrado en Costa Adeje. Playa Torviscas Bajo con arena y servicios completos. Zona comercial muy activa con centros comerciales y restaurantes de todas las nacionalidades. Vida vibrante a cualquier hora.",
+   "forma": "texto",
+   "ro": "Zonă integrată în Costa Adeje. Playa Torviscas Bajo, cu nisip și toate serviciile. O zonă comercială foarte animată, cu centre comerciale și restaurante de toate naționalitățile. Viață intensă la orice oră."
+  },
+  {
+   "tabla": "places",
+   "clave": "nucleo-torviscas.cat",
+   "es": "Costa Adeje · Sur",
+   "forma": "texto",
+   "ro": "Costa Adeje · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-puerto-cruz.desc",
+   "es": "El faro más visitado de Tenerife al estar en pleno casco turístico de Puerto de la Cruz, al oeste del puerto pesquero. Construido en 1995 y operativo desde 1996. Diseño moderno cuadrangular de color negro con torre cilíndrica interior a bandas rojas y blancas. 27 metros de altura, foco a 31 m sobre el mar, alcance 16 millas náuticas. Accesible en coche, con aparcamiento al lado, aunque el interior está cerrado al público.",
+   "forma": "texto",
+   "ro": "Cel mai vizitat far din Tenerife, pentru că se află în plină zonă turistică a orașului Puerto de la Cruz, la vest de portul pescăresc. Construit în 1995 și în funcțiune din 1996. Design modern, pătrat, de culoare neagră, cu un turn cilindric interior în dungi roșii și albe. 27 de metri înălțime, lumina la 31 m deasupra mării, cu o bătaie de 16 mile marine. Se ajunge cu mașina și există parcare alături, dar interiorul nu este deschis publicului."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-puerto-cruz.cat",
+   "es": "Faro Moderno · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Far modern · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-abona-viejo.desc",
+   "es": "El faro original de Punta de Abona, construido en 1902, que funcionó hasta ser sustituido por el faro actual en 1976. El edificio blanco de una planta, con la linterna sobre la azotea, sigue en pie como elemento histórico junto al faro moderno. Uno de los rincones más solitarios y bellos de la costa sureste. Acceso por pista desde la carretera de Abades — recomendable vehículo alto.",
+   "forma": "texto",
+   "ro": "Farul original de la Punta de Abona, construit în 1902, care a funcționat până când a fost înlocuit de farul actual, în 1976. Clădirea albă, cu un singur nivel și cu lanterna farului pe acoperișul-terasă, este și azi în picioare, ca element istoric, lângă farul modern. Unul dintre cele mai singuratice și mai frumoase colțuri ale coastei de sud-est. Acces pe un drum de pământ din șoseaua spre Abades: este recomandat un vehicul înalt."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-abona-viejo.cat",
+   "es": "Faro Histórico · Punta de Abona",
+   "forma": "texto",
+   "ro": "Far istoric · Punta de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-santa-cruz-puerto.desc",
+   "es": "La Farola del Mar, construida por Henry Lepaute y llegada de París en 1862, se encendió por primera vez el 31 de diciembre de 1863 y fue el primer faro de orientación que funcionó en Canarias. Hoy es una pieza histórica que se conserva en el Muelle de Enlace del puerto, frente a la Plaza de España. Es uno de los símbolos más queridos de Santa Cruz y ha inspirado coplas, canciones y poemas del folclore canario.",
+   "forma": "texto",
+   "ro": "Farola del Mar, construită de Henry Lepaute și adusă de la Paris în 1862, a fost aprinsă pentru prima dată pe 31 decembrie 1863 și a fost primul far de orientare care a funcționat în Insulele Canare. Astăzi este o piesă istorică, păstrată pe Muelle de Enlace din port, în fața Plaza de España. Este unul dintre cele mai îndrăgite simboluri ale orașului Santa Cruz și a inspirat versuri populare, cântece și poezii din folclorul canarian."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-santa-cruz-puerto.cat",
+   "es": "Faro Histórico · Santa Cruz de Tenerife",
+   "forma": "texto",
+   "ro": "Far istoric · Santa Cruz de Tenerife"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-los-cristianos.desc",
+   "es": "Pequeño faro en el puerto de Los Cristianos, desde donde salen los ferrys a La Gomera y La Palma. Torre blanca compacta en el extremo del dique. Punto fotográfico con vistas a la bahía de Los Cristianos y al horizonte donde se perfila La Gomera en días claros. Paseo marítimo accesible y muy concurrido.",
+   "forma": "texto",
+   "ro": "Far mic în portul Los Cristianos, de unde pleacă feriboturile spre La Gomera și La Palma. Turn alb, compact, la capătul digului. Un loc bun pentru fotografii, cu priveliști spre golful Los Cristianos și spre orizontul pe care, în zilele senine, se conturează La Gomera. Promenadă accesibilă și foarte frecventată."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-los-cristianos.cat",
+   "es": "Faro Portuario · Los Cristianos",
+   "forma": "texto",
+   "ro": "Far portuar · Los Cristianos"
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-garachico.desc",
+   "es": "Pequeño faro histórico en el antiguo puerto de Garachico, la villa más hermosa del norte de Tenerife. La erupción volcánica de 1706 sepultó el puerto bajo la lava y destruyó gran parte de la villa. El faro actual marca la bocana de las piscinas naturales volcánicas que han convertido la zona en uno de los lugares más singulares de la isla.",
+   "forma": "texto",
+   "ro": "Mic far istoric în vechiul port din Garachico, cea mai frumoasă localitate din nordul insulei Tenerife. Erupția vulcanică din 1706 a îngropat portul sub lavă și a distrus o mare parte a localității. Farul de azi marchează intrarea în piscinele naturale vulcanice, care au făcut din această zonă unul dintre cele mai deosebite locuri de pe insulă."
+  },
+  {
+   "tabla": "places",
+   "clave": "faro-garachico.cat",
+   "es": "Faro Histórico · Garachico",
+   "forma": "texto",
+   "ro": "Far istoric · Garachico"
+  },
+  {
+   "tabla": "places",
+   "clave": "camel-park.desc",
+   "es": "Primer centro de cría de camellos de Tenerife, abierto desde 1988. Finca canaria entre Chayofa y La Camella con paseos en camello de 20 min por senderos volcánicos. Granja con burros, cabras, loros y otros animales rescatados. A 10 min de Los Cristianos.",
+   "forma": "texto",
+   "ro": "Primul centru de creștere a cămilelor din Tenerife, deschis din 1988. O fermă canariană între Chayofa și La Camella, cu plimbări de 20 de minute cu cămila pe poteci vulcanice. Fermă cu măgari, capre, papagali și alte animale salvate. La 10 minute de Los Cristianos."
+  },
+  {
+   "tabla": "places",
+   "clave": "camel-park.cat",
+   "es": "Granja de Camellos · Arona",
+   "forma": "texto",
+   "ro": "Fermă de cămile · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "mariposario-drago.desc",
+   "es": "Primer centro de España dedicado exclusivamente a mariposas, abierto en 1997. Invernadero tropical donde vuelan libres más de 800 mariposas exóticas de Malasia, Costa Rica, Australia y Papúa. Desde especies de 2 cm hasta gigantes de 30 cm. Laboratorio visible con crías de orugas y crisálidas. Junto al Drago Milenario de Icod.",
+   "forma": "texto",
+   "ro": "Primul centru din Spania dedicat exclusiv fluturilor, deschis în 1997. O seră tropicală în care zboară liberi peste 800 de fluturi exotici din Malaezia, Costa Rica, Australia și Papua. De la specii de 2 cm până la giganți de 30 cm. Un laborator la vedere, unde se cresc omizi și crisalide. Lângă Drago Milenario din Icod."
+  },
+  {
+   "tabla": "places",
+   "clave": "mariposario-drago.cat",
+   "es": "Mariposario · Icod de los Vinos",
+   "forma": "texto",
+   "ro": "Grădină de fluturi · Icod de los Vinos"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-medivet-sanantonio.desc",
+   "es": "Hospital veterinario del grupo Medivet, atención 24h los 365 días. Cirugía mínimamente invasiva, dermatología, cardiología, endoscopia, oncología. Centro de referencia en el área metropolitana de Santa Cruz.",
+   "forma": "texto",
+   "ro": "Spital veterinar al grupului Medivet, cu asistență 24h, 365 de zile pe an. Chirurgie minim invazivă, dermatologie, cardiologie, endoscopie, oncologie. Centru de referință în zona metropolitană Santa Cruz."
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-medivet-sanantonio.cat",
+   "es": "Hospital Veterinario 24h · Santa Cruz",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-medivet-sanantonio.hours",
+   "es": "Hospital veterinario 24h · 365 días",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-cruz-piedra.desc",
+   "es": "Hospital veterinario de referencia en La Laguna con urgencias 24h, quirófano, hospitalización presencial permanente, laboratorio propio y servicio a domicilio. Atención a pequeños animales y exóticos.",
+   "forma": "texto",
+   "ro": "Spital veterinar de referință în La Laguna, cu urgențe 24h, sală de operații, internare cu personal prezent permanent, laborator propriu și serviciu la domiciliu. Îngrijire pentru animale mici și exotice."
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-cruz-piedra.cat",
+   "es": "Hospital Veterinario 24h · La Laguna",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-cruz-piedra.hours",
+   "es": "Urgencias 24h · Hospitalización presencial permanente",
+   "forma": "texto",
+   "ro": "Urgențe 24h · Internare cu personal prezent permanent"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-hosvetnorte.desc",
+   "es": "El primer hospital veterinario de Tenerife, fundado en 1988. Atención 24h en La Orotava, cerca del C.C. Alcampo La Villa. Servicio integral, peluquería canina y tienda. Acceso adaptado.",
+   "forma": "texto",
+   "ro": "Primul spital veterinar din Tenerife, fondat în 1988. Asistență 24h în La Orotava, lângă centrul comercial Alcampo La Villa. Servicii complete, salon de cosmetică pentru câini și magazin. Acces adaptat."
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-hosvetnorte.cat",
+   "es": "Hospital Veterinario 24h · La Orotava",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-hosvetnorte.hours",
+   "es": "Urgencias 24h · Primer hospital veterinario de Tenerife (1988)",
+   "forma": "texto",
+   "ro": "Urgențe 24h · Primul spital veterinar din Tenerife (1988)"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-patas-colas.desc",
+   "es": "Hospital veterinario 24h de referencia en el sur de Tenerife. Fundado en 2007 como clínica y hospital 24h desde 2014. Especialistas en pequeños animales y exóticos. Cardiología, oncología, cirugía y financiación de tratamientos.",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h de referință în sudul insulei Tenerife. Fondat în 2007 ca clinică, este spital 24h din 2014. Specialiști în animale mici și exotice. Cardiologie, oncologie, chirurgie și finanțarea tratamentelor."
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-patas-colas.cat",
+   "es": "Hospital Veterinario 24h · El Médano",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h · El Médano"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-patas-colas.hours",
+   "es": "Urgencias 24h · 365 días",
+   "forma": "texto",
+   "ro": "Urgențe 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-hospital-santa-cruz.desc",
+   "es": "Hospital veterinario en Santa Cruz con servicio de urgencias y hospitalización abiertos las 24 horas. Quirófano, ecografía, oftalmología y laboratorio propio. Centro concertado con aseguradoras.",
+   "forma": "texto",
+   "ro": "Spital veterinar în Santa Cruz, cu urgențe și internare deschise 24 de ore pe zi. Sală de operații, ecografie, oftalmologie și laborator propriu. Centru cu contracte cu societăți de asigurări."
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-hospital-santa-cruz.cat",
+   "es": "Hospital Veterinario 24h · Santa Cruz",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-hospital-santa-cruz.hours",
+   "es": "Urgencias 24h · Hospitalización 24h",
+   "forma": "texto",
+   "ro": "Urgențe 24h · Internare 24h"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-masvet-chafiras.desc",
+   "es": "Hospital veterinario moderno en Las Chafiras (Tenerife sur) con atención 24h, zonas separadas para perros y gatos, sala de espera felina con feromonas. Consultas de especialidad, urgencias y prevención. Equipo joven y muy bien valorado.",
+   "forma": "texto",
+   "ro": "Spital veterinar modern în Las Chafiras (sudul insulei Tenerife), cu asistență 24h, zone separate pentru câini și pisici și o sală de așteptare pentru pisici, cu feromoni. Consultații de specialitate, urgențe și prevenție. Echipă tânără și foarte apreciată."
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-masvet-chafiras.cat",
+   "es": "Hospital Veterinario 24h · Las Chafiras",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h · Las Chafiras"
+  },
+  {
+   "tabla": "places",
+   "clave": "vet-masvet-chafiras.hours",
+   "es": "Hospital veterinario 24h · 365 días",
+   "forma": "texto",
+   "ro": "Spital veterinar 24h · 365 de zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-cabezo.desc",
+   "es": "Playa oficial para perros en Güímar, pionera en Tenerife. Arena volcánica oscura, zona canina delimitada de unos 200m con aguas tranquilas gracias a espigones naturales. Abierta 365 días sin restricción horaria. Dispone de aparcamiento, duchas y baños cercanos.",
+   "forma": "texto",
+   "ro": "Plajă oficială pentru câini în Güímar, prima de acest fel din Tenerife. Nisip vulcanic închis la culoare și o zonă delimitată pentru câini, de circa 200 m, cu ape liniștite datorită digurilor naturale. Deschisă 365 de zile pe an, fără restricții de orar. Are parcare, iar dușurile și toaletele sunt aproape."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-cabezo.cat",
+   "es": "Playa Pet Friendly · Güímar",
+   "forma": "texto",
+   "ro": "Plajă Pet Friendly · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-confital.desc",
+   "es": "Playa dog friendly en Granadilla de Abona, también conocida como Playa del Horno. Arena oscura volcánica y entorno natural semiurbano. Acceso permitido para mascotas todo el año sin restricciones horarias. Baño permitido para los peludos.",
+   "forma": "texto",
+   "ro": "Plajă dog friendly în Granadilla de Abona, cunoscută și ca Playa del Horno. Nisip vulcanic închis la culoare, într-un cadru natural, semiurban. Accesul animalelor de companie este permis tot anul, fără restricții de orar. Prietenii blănoși au voie la scăldat."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-confital.cat",
+   "es": "Playa Pet Friendly · Granadilla de Abona",
+   "forma": "texto",
+   "ro": "Plajă Pet Friendly · Granadilla de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-puertito-guimar.desc",
+   "es": "Playa urbana en el Puertito de Güímar con zona canina delimitada. Arena volcánica, aguas muy calmadas ideales para perros. Muy accesible incluso para personas con movilidad reducida. Una de las más cómodas y tranquilas para ir con mascotas.",
+   "forma": "texto",
+   "ro": "Plajă urbană în Puertito de Güímar, cu o zonă delimitată pentru câini. Nisip vulcanic, ape foarte liniștite, ideale pentru câini. Foarte accesibilă, chiar și pentru persoanele cu mobilitate redusă. Una dintre cele mai comode și mai liniștite plaje pentru a merge cu animalele de companie."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-puertito-guimar.cat",
+   "es": "Playa Pet Friendly · Güímar",
+   "forma": "texto",
+   "ro": "Plajă Pet Friendly · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-callao-arona.desc",
+   "es": "Playa de callaos (piedras) en Arona, también llamada Las Bajas, con zona habilitada para perros. Entorno natural poco masificado, ideal para mascotas que disfrutan de la naturaleza y el baño. Tranquila y con fácil acceso.",
+   "forma": "texto",
+   "ro": "Plajă cu bolovani rotunjiți (callaos) în Arona, numită și Las Bajas, cu o zonă amenajată pentru câini. Cadru natural, puțin aglomerat, ideal pentru animalele de companie cărora le plac natura și scăldatul. Liniștită și ușor accesibilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-callao-arona.cat",
+   "es": "Playa Pet Friendly · Arona",
+   "forma": "texto",
+   "ro": "Plajă Pet Friendly · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-garcia-sanabria-pet.desc",
+   "es": "El mayor parque urbano de Tenerife en Santa Cruz. Zona canina habilitada, jardines exuberantes, esculturas y fuentes. Perfecto para paseos con mascotas en la ciudad. Los perros deben ir con correa en las zonas generales.",
+   "forma": "texto",
+   "ro": "Cel mai mare parc urban din Tenerife, în Santa Cruz. Zonă amenajată pentru câini, grădini luxuriante, sculpturi și fântâni arteziene. Perfect pentru plimbări cu animalele de companie în oraș. În zonele comune, câinii trebuie ținuți în lesă."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-garcia-sanabria-pet.cat",
+   "es": "Parque Pet Friendly · Santa Cruz",
+   "forma": "texto",
+   "ro": "Parc Pet Friendly · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-anaga-petfriendly.desc",
+   "es": "⚠️ Se puede pasear con perro solo por los senderos oficiales y siempre con correa: espacio natural protegido con fauna endémica sensible; las infracciones se sancionan. El Parque Rural de Anaga permite el acceso de perros con correa en sus senderos. Bosque laurisilva milenario, Reserva de la Biosfera. Impresionantes paisajes de barrancos y acantilados. Una experiencia única para los amantes de la naturaleza y sus mascotas.",
+   "forma": "texto",
+   "ro": "⚠️ Cu câinele vă puteți plimba doar pe traseele oficiale și numai în lesă: este o zonă naturală protejată, cu o faună endemică sensibilă; încălcările se sancționează. Parcul Rural Anaga permite accesul câinilor în lesă pe traseele sale. Pădure de laur milenară, rezervație a biosferei. Peisaje impresionante, cu defilee și faleze. O experiență unică pentru iubitorii naturii și pentru animalele lor de companie."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-anaga-petfriendly.cat",
+   "es": "Parque Rural Pet Friendly · Anaga",
+   "forma": "texto",
+   "ro": "Parc rural Pet Friendly · Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-las-bajas.desc",
+   "es": "Playa con zona canina habilitada en Arona. También se llama El Callao: es una playa de piedras (callaos), de acceso fácil. Entorno tranquilo y poco masificado, ideal para perros que disfrutan del baño. Buena opción en el sur de la isla.",
+   "forma": "texto",
+   "ro": "Plajă cu zonă amenajată pentru câini, în Arona. Se mai numește El Callao: este o plajă cu bolovani rotunjiți (callaos), cu acces ușor. Loc liniștit și puțin aglomerat, ideal pentru câinii cărora le place scăldatul. O opțiune bună în sudul insulei."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-las-bajas.cat",
+   "es": "Playa Pet Friendly · Arona",
+   "forma": "texto",
+   "ro": "Plajă Pet Friendly · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-la-granja-sct.desc",
+   "es": "Parque canino en el centro de Santa Cruz de Tenerife con zona vallada en acero inoxidable, separada para perros grandes y pequeños. Incluye bebedores, zonas de juegos y accesos especiales para mascotas. Uno de los más completos de la isla.",
+   "forma": "texto",
+   "ro": "Parc pentru câini în centrul orașului Santa Cruz de Tenerife, cu o zonă împrejmuită cu gard din oțel inoxidabil, separată pentru câinii mari și pentru cei mici. Are puncte de apă, zone de joacă și intrări speciale pentru animale. Unul dintre cele mai complete de pe insulă."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-la-granja-sct.cat",
+   "es": "Parque Canino · Santa Cruz",
+   "forma": "texto",
+   "ro": "Parc pentru câini · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-el-montillo.desc",
+   "es": "Moderno parque canino en La Matanza, norte de Tenerife, inaugurado en 2019. Circuito deportivo canino con agility, slalom, túnel, escalera y rampa. Uno de los mejor equipados de la isla para ejercitar a su mascota.",
+   "forma": "texto",
+   "ro": "Parc modern pentru câini în La Matanza, în nordul insulei Tenerife, inaugurat în 2019. Circuit sportiv pentru câini, cu obstacole de agility, slalom, tunel, scară și rampă. Unul dintre cele mai bine dotate de pe insulă pentru ca animalul dumneavoastră de companie să facă mișcare."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-el-montillo.cat",
+   "es": "Parque Canino · La Matanza",
+   "forma": "texto",
+   "ro": "Parc pentru câini · La Matanza"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-tabaiba-baja.desc",
+   "es": "Parque canino en el barrio de Tabaiba Baja, El Rosario. Espacio pet-friendly con circuito de agilidad para perros. Ideal para que las mascotas corran y socialicen en un entorno seguro y vallado.",
+   "forma": "texto",
+   "ro": "Parc pentru câini în cartierul Tabaiba Baja, din El Rosario. Spațiu prietenos cu animalele, cu un circuit de agilitate pentru câini. Ideal pentru ca animalele să alerge și să socializeze într-un loc sigur și împrejmuit."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-tabaiba-baja.cat",
+   "es": "Parque Canino · El Rosario",
+   "forma": "texto",
+   "ro": "Parc pentru câini · El Rosario"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-las-vistas.desc",
+   "es": "La playa más accesible de Tenerife, en Los Cristianos. Rampas, pasarelas de madera hasta la orilla, zonas de sombra adaptadas, sillas anfibias, grúa de transferencia y servicio de apoyo al baño. Aseos y duchas adaptados. El baño asistido suele ofrecerse de 11:00 a 14:00 y de 15:00 a 18:00.",
+   "forma": "texto",
+   "ro": "Cea mai accesibilă plajă din Tenerife, în Los Cristianos. Rampe, pasarele de lemn până la apă, zone de umbră adaptate, scaune amfibii, macara de transfer și serviciu de asistență pentru intrarea în apă. Toalete și dușuri adaptate. Asistența se oferă de obicei între 11:00 și 14:00 și între 15:00 și 18:00."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-las-vistas.cat",
+   "es": "Playa Accesible · Arona",
+   "forma": "texto",
+   "ro": "Plajă accesibilă · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-los-cristianos.desc",
+   "es": "Playa urbana con aparcamiento reservado, acceso por rampa, pasarelas, duchas y aseos adaptados, zona de descanso y apoyo al baño. Los Cristianos es uno de los destinos más adaptados de Europa.",
+   "forma": "texto",
+   "ro": "Plajă urbană cu locuri de parcare rezervate, acces pe rampă, pasarele, dușuri și toalete adaptate, zonă de odihnă și asistență pentru intrarea în apă. Los Cristianos este una dintre cele mai bine adaptate destinații din Europa."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-los-cristianos.cat",
+   "es": "Playa Accesible · Arona",
+   "forma": "texto",
+   "ro": "Plajă accesibilă · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-troya.desc",
+   "es": "En Las Américas. Aparcamiento reservado, rampas, pasarelas, sillas y muletas anfibias, duchas y aseos adaptados, zona de descanso y servicio de apoyo al baño.",
+   "forma": "texto",
+   "ro": "În Las Américas. Locuri de parcare rezervate, rampe, pasarele, scaune și cârje amfibii, dușuri și toalete adaptate, zonă de odihnă și serviciu de asistență pentru intrarea în apă."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-troya.cat",
+   "es": "Playa Accesible · Adeje",
+   "forma": "texto",
+   "ro": "Plajă accesibilă · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-torviscas.desc",
+   "es": "Costa Adeje. Aparcamiento reservado, rampa, pasarelas, sillas y muletas anfibias, duchas y aseos adaptados, zona de descanso y apoyo al baño.",
+   "forma": "texto",
+   "ro": "Costa Adeje. Locuri de parcare rezervate, rampă, pasarele, scaune și cârje amfibii, dușuri și toalete adaptate, zonă de odihnă și asistență pentru intrarea în apă."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-torviscas.cat",
+   "es": "Playa Accesible · Adeje",
+   "forma": "texto",
+   "ro": "Plajă accesibilă · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-fanabe.desc",
+   "es": "Costa Adeje. Acceso por rampa, pasarelas, sillas y muletas anfibias, duchas y aseos adaptados, zona de descanso y servicio de apoyo al baño.",
+   "forma": "texto",
+   "ro": "Costa Adeje. Acces pe rampă, pasarele, scaune și cârje amfibii, dușuri și toalete adaptate, zonă de odihnă și serviciu de asistență pentru intrarea în apă."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-fanabe.cat",
+   "es": "Playa Accesible · Adeje",
+   "forma": "texto",
+   "ro": "Plajă accesibilă · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-duque.desc",
+   "es": "Costa Adeje. Aparcamiento reservado, rampa, pasarelas, sillas y muletas anfibias, duchas y aseos adaptados, zona de descanso y apoyo al baño.",
+   "forma": "texto",
+   "ro": "Costa Adeje. Locuri de parcare rezervate, rampă, pasarele, scaune și cârje amfibii, dușuri și toalete adaptate, zonă de odihnă și asistență pentru intrarea în apă."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-duque.cat",
+   "es": "Playa Accesible · Adeje",
+   "forma": "texto",
+   "ro": "Plajă accesibilă · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-teresitas.desc",
+   "es": "La gran playa dorada de Santa Cruz cuenta con accesos adaptados y servicio de baño asistido de Cruz Roja con sillas anfibias en temporada de verano.",
+   "forma": "texto",
+   "ro": "Marea plajă aurie din Santa Cruz are căi de acces adaptate și, în sezonul de vară, serviciul de baie asistată al Crucii Roșii, cu scaune amfibii."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-teresitas.cat",
+   "es": "Playa Accesible · Santa Cruz",
+   "forma": "texto",
+   "ro": "Plajă accesibilă · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-poris.desc",
+   "es": "En Porís de Abona (Arico). Aparcamiento reservado, rampa, pasarelas, sillas y muletas anfibias, duchas y aseos adaptados, zona de descanso y apoyo al baño. Tranquila y poco masificada.",
+   "forma": "texto",
+   "ro": "În Porís de Abona (Arico). Locuri de parcare rezervate, rampă, pasarele, scaune și cârje amfibii, dușuri și toalete adaptate, zonă de odihnă și asistență pentru intrarea în apă. Liniștită și puțin aglomerată."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-playa-poris.cat",
+   "es": "Playa Accesible · Arico",
+   "forma": "texto",
+   "ro": "Plajă accesibilă · Arico"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-sendero-sentidos.desc",
+   "es": "En la Cruz del Carmen (Anaga). Su primer tramo está adaptado para sillas de ruedas y personas con movilidad reducida: un paseo sensorial por la laurisilva de Anaga, Reserva de la Biosfera de la UNESCO desde 2015. Centro de visitantes accesible.",
+   "forma": "texto",
+   "ro": "Traseul se află la Cruz del Carmen (Anaga). Prima porțiune este adaptată pentru scaune cu rotile și pentru persoanele cu mobilitate redusă: o plimbare senzorială prin pădurea de laur din Anaga, rezervație a biosferei UNESCO din 2015. Centru de vizitatori accesibil."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-sendero-sentidos.cat",
+   "es": "Sendero Adaptado · Anaga",
+   "forma": "texto",
+   "ro": "Traseu adaptat · Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-adissur.desc",
+   "es": "Asociación de apoyo a personas con diversidad funcional y sus familias, en Tejina de Isora (Guía de Isora). Ocio inclusivo y tiempo libre, excursiones de sábado, deporte adaptado, logopedia, respiro y apoyo familiar. Tel: 699 00 55 26 · trabajosocialtenerife@adissur.com",
+   "forma": "texto",
+   "ro": "Asociație care sprijină persoanele cu dizabilități și familiile lor, în Tejina de Isora (Guía de Isora). Activități incluzive de recreere și de timp liber, excursii sâmbăta, sport adaptat, logopedie, servicii de tip respiro și de sprijin pentru familii. Tel.: 699 00 55 26 · trabajosocialtenerife@adissur.com"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-adissur.cat",
+   "es": "Asociación · Guía de Isora",
+   "forma": "texto",
+   "ro": "Asociație · Guía de Isora"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-loro-parque.desc",
+   "es": "El famoso parque de Puerto de la Cruz es totalmente accesible: rampas en todo el recinto, baños adaptados y personal capacitado. Una de las visitas más cómodas de la isla en silla de ruedas.",
+   "forma": "texto",
+   "ro": "Celebrul parc din Puerto de la Cruz este complet accesibil: rampe în tot complexul, toalete adaptate și personal pregătit. Una dintre cele mai comode vizite de pe insulă pentru cei care se deplasează în scaun cu rotile."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-loro-parque.cat",
+   "es": "Parque Accesible · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Parc accesibil · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-siam-park.desc",
+   "es": "Parque acuático con precios distintos según la entrada: hay entradas para residentes en Canarias, y las personas con una discapacidad reconocida oficialmente del 60% o más tienen una tarifa especial, que se compra en la oficina de información del parque con el certificado, la tarjeta o el informe médico y un documento con foto (siampark.net, noviembre de 2026). Instalaciones adaptadas.",
+   "forma": "texto",
+   "ro": "Parc acvatic cu prețuri diferite în funcție de bilet: există bilete pentru rezidenții din Insulele Canare, iar persoanele cu un grad de dizabilitate recunoscut oficial de 60% sau mai mult au un tarif special: biletul se cumpără de la biroul de informații al parcului, pe baza certificatului, a cardului sau a raportului medical și a unui act de identitate cu fotografie (siampark.net, noiembrie 2026). Instalații adaptate."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-siam-park.cat",
+   "es": "Parque Acuático Accesible · Adeje",
+   "forma": "texto",
+   "ro": "Parc acvatic accesibil · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-teide-portillo.desc",
+   "es": "El Parque Nacional del Teide en silla de ruedas: el Centro de Visitantes El Portillo es totalmente accesible (rampas, baños adaptados, exposiciones interactivas), con miradores adaptados y cortos senderos accesibles por el paisaje volcánico. El teleférico dispone de instalaciones adaptadas en la base; consulte condiciones antes de subir.",
+   "forma": "texto",
+   "ro": "Parcul Național Teide în scaun cu rotile: Centrul de vizitatori El Portillo este complet accesibil (rampe, toalete adaptate, expoziții interactive), cu puncte de belvedere adaptate și trasee scurte, accesibile, prin peisajul vulcanic. Telecabina are instalații adaptate la stația de bază; verificați condițiile înainte de a urca."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-teide-portillo.cat",
+   "es": "Naturaleza Accesible · Teide",
+   "forma": "texto",
+   "ro": "Natură accesibilă · Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-paseo-cristianos.desc",
+   "es": "Kilómetros de paseo marítimo llano y sin barreras que unen Los Cristianos, Las Américas y Costa Adeje. Ideal para silla de ruedas o movilidad reducida: terrazas, vistas a La Gomera y acceso a varias playas adaptadas por el camino.",
+   "forma": "texto",
+   "ro": "Kilometri de promenadă pe malul mării, plată și fără bariere, care leagă Los Cristianos, Las Américas și Costa Adeje. Ideală pentru persoanele în scaun cu rotile sau cu mobilitate redusă: terase, priveliști spre La Gomera și acces la mai multe plaje adaptate de pe traseu."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-paseo-cristianos.cat",
+   "es": "Paseo Accesible · Arona-Adeje",
+   "forma": "texto",
+   "ro": "Promenadă accesibilă · Arona și Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-piscina-jover.desc",
+   "es": "Piscina natural accesible para personas con movilidad reducida en la costa de Tejina (La Laguna). Rampa y escaleras de acceso al mar adaptadas, plazoleta y solárium llano, ducha de agua dulce natural. Lugar tranquilo y familiar. Vistas al Faro de Punta del Hidalgo y Bajamar. Parking público cercano.",
+   "forma": "texto",
+   "ro": "Piscină naturală accesibilă persoanelor cu mobilitate redusă, pe coasta din Tejina (La Laguna). Rampă și scări adaptate de acces în mare, o piațetă și un solariu plat, duș cu apă dulce naturală. Loc liniștit, pentru familii. Priveliști spre farul Punta del Hidalgo și spre Bajamar. Parcare publică în apropiere."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-piscina-jover.cat",
+   "es": "Piscina Accesible ♿ · Tejina · Norte",
+   "forma": "texto",
+   "ro": "Piscină accesibilă ♿ · Tejina · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-paseo-garachico.desc",
+   "es": "Paseo litoral accesible en Garachico junto a las piscinas naturales de El Caletón y el casco histórico. Pavimento liso, sin escaleras y con rampas adaptadas. Vistas al Roque de Garachico. Bancos cada 50 m. Las piscinas de El Caletón tienen también escaleras adaptadas.",
+   "forma": "texto",
+   "ro": "Promenadă accesibilă pe malul mării, în Garachico, lângă piscinele naturale El Caletón și centrul istoric. Pavaj neted, fără trepte și cu rampe adaptate. Priveliști spre stânca Roque de Garachico. Bănci la fiecare 50 m. Piscinele El Caletón au și ele scări adaptate."
+  },
+  {
+   "tabla": "places",
+   "clave": "acc-paseo-garachico.cat",
+   "es": "Paseo Accesible ♿ · Garachico · Norte",
+   "forma": "texto",
+   "ro": "Promenadă accesibilă ♿ · Garachico · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-cuchillitos-tristan.desc",
+   "es": "Zona canina acotada en el Parque Cuchillitos de Tristán, distrito Ofra-Costa Sur de Santa Cruz. Espacio vallado con grava donde los perros pueden soltarse con seguridad. Parte de la red de 15 parques caninos del municipio.",
+   "forma": "texto",
+   "ro": "Zonă delimitată pentru câini în parcul Cuchillitos de Tristán, în districtul Ofra-Costa Sur din Santa Cruz. Spațiu împrejmuit, cu pietriș, unde câinii pot fi lăsați liberi în siguranță. Face parte din rețeaua municipală de 15 parcuri pentru câini."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-cuchillitos-tristan.cat",
+   "es": "Parque Canino · Santa Cruz",
+   "forma": "texto",
+   "ro": "Parc pentru câini · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-don-quijote-sct.desc",
+   "es": "Zona canina en el Parque Don Quijote, distrito Salud-La Salle de Santa Cruz. Recinto acotado con superficie de grava o arena para el esparcimiento de mascotas. Buena ubicación en zona residencial con mucha sombra.",
+   "forma": "texto",
+   "ro": "Zonă pentru câini în parcul Don Quijote, în districtul Salud-La Salle din Santa Cruz. Spațiu delimitat, cu suprafață de pietriș sau de nisip, pentru recreerea animalelor de companie. Amplasare bună, într-o zonă rezidențială cu multă umbră."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-don-quijote-sct.cat",
+   "es": "Parque Canino · Santa Cruz",
+   "forma": "texto",
+   "ro": "Parc pentru câini · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-las-mantecas-laguna.desc",
+   "es": "Nuevo parque canino en Las Mantecas, La Laguna, con 900 m² de superficie. Zona vallada con valla tipo Hércules de 1,5 m de altura, dos corrales de acceso, bancos de madera y papeleras. Bajo la sombra de grandes árboles de ficus.",
+   "forma": "texto",
+   "ro": "Parc nou pentru câini în Las Mantecas, La Laguna, cu o suprafață de 900 m². Zonă împrejmuită cu un gard de tip Hércules, înalt de 1,5 m, cu două țarcuri de acces, bănci de lemn și coșuri de gunoi. La umbra unor ficuși mari."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-las-mantecas-laguna.cat",
+   "es": "Parque Canino · La Laguna",
+   "forma": "texto",
+   "ro": "Parc pentru câini · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "teide-petfriendly.desc",
+   "es": "⚠️ Se puede pasear con perro solo por los senderos oficiales y siempre con correa: espacio natural protegido con fauna endémica sensible; las infracciones se sancionan. El Parque Nacional del Teide permite perros con correa en las zonas de acceso libre y carreteras del parque. No están permitidos en los senderos protegidos ni en el interior del teleférico. Imprescindible llevar agua para la mascota por la altitud y el calor.",
+   "forma": "texto",
+   "ro": "⚠️ Cu câinele vă puteți plimba doar pe traseele oficiale și numai în lesă: este o zonă naturală protejată, cu o faună endemică sensibilă; încălcările se sancționează. Parcul Național Teide acceptă câinii în lesă în zonele cu acces liber și pe drumurile parcului. Nu sunt permiși pe traseele protejate și nici în telecabină. Este esențial să aveți apă pentru animal, din cauza altitudinii și a căldurii."
+  },
+  {
+   "tabla": "places",
+   "clave": "teide-petfriendly.cat",
+   "es": "Parque Nacional Pet Friendly · Teide",
+   "forma": "texto",
+   "ro": "Parc național Pet Friendly · Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-ana-bautista.desc",
+   "es": "Parque canino en el distrito Centro-Ifara de Santa Cruz, anexo al pabellón Ana Bautista. Zona acotada para el esparcimiento de perros. Forma parte de la red de 15 parques caninos de Santa Cruz.",
+   "forma": "texto",
+   "ro": "Parc pentru câini în districtul Centro-Ifara din Santa Cruz, lângă sala de sport Ana Bautista. Zonă delimitată pentru recreerea câinilor. Face parte din rețeaua de 15 parcuri pentru câini din Santa Cruz."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-ana-bautista.cat",
+   "es": "Parque Canino · Santa Cruz",
+   "forma": "texto",
+   "ro": "Parc pentru câini · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-el-medano.desc",
+   "es": "Zona canina acotada en El Médano, Granadilla de Abona. Espacio vallado donde los perros pueden correr libres. Cerca de la playa pet friendly de El Confital (en La Tejita los perros están prohibidos).",
+   "forma": "texto",
+   "ro": "Zonă delimitată pentru câini în El Médano, Granadilla de Abona. Spațiu împrejmuit, unde câinii pot alerga liberi. Aproape de plaja pet friendly El Confital (pe plaja La Tejita câinii sunt interziși)."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-el-medano.cat",
+   "es": "Parque Canino · El Médano",
+   "forma": "texto",
+   "ro": "Parc pentru câini · El Médano"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-callao-salvaje.desc",
+   "es": "Zona canina en Callao Salvaje, Adeje. Recinto acotado ideal para residentes y turistas con mascotas en la zona del suroeste.",
+   "forma": "texto",
+   "ro": "Zonă pentru câini în Callao Salvaje, Adeje. Spațiu delimitat, ideal pentru localnicii și turiștii cu animale de companie din zona de sud-vest."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-callao-salvaje.cat",
+   "es": "Parque Canino · Adeje",
+   "forma": "texto",
+   "ro": "Parc pentru câini · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-playa-san-juan.desc",
+   "es": "Parque canino en Playa San Juan, Guía de Isora, en el entorno de Fonsalía. Suroeste de Tenerife con vistas al mar y a La Gomera. Inaugurado en diciembre de 2018.",
+   "forma": "texto",
+   "ro": "Parc pentru câini în Playa San Juan, Guía de Isora, în zona Fonsalía. În sud-vestul insulei Tenerife, cu priveliști spre mare și spre La Gomera. Inaugurat în decembrie 2018."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-playa-san-juan.cat",
+   "es": "Parque Canino · Guía de Isora",
+   "forma": "texto",
+   "ro": "Parc pentru câini · Guía de Isora"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-taoro.desc",
+   "es": "Parque canino junto al famoso Parque Taoro en Puerto de la Cruz. Entorno verde y privilegiado en el norte de Tenerife. Ideal para pasear con perros rodeado de jardines con vistas al Atlántico.",
+   "forma": "texto",
+   "ro": "Parc pentru câini lângă celebrul parc Taoro din Puerto de la Cruz. Cadru verde și privilegiat, în nordul insulei Tenerife. Ideal pentru plimbări cu câinele, printre grădini cu priveliște spre Atlantic."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-taoro.cat",
+   "es": "Parque Canino · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Parc pentru câini · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "paseo-maritimo-costa-adeje.desc",
+   "es": "El paseo marítimo de Costa Adeje desde La Caleta hasta Puerto Colón permite perros con correa. Recorre las playas de La Enramada, El Duque, Fañabé y La Pinta. Perfecto para paseos largos al amanecer o atardecer.",
+   "forma": "texto",
+   "ro": "Pe promenada din Costa Adeje, între La Caleta și Puerto Colón, câinii sunt permiși în lesă. Trece pe lângă plajele La Enramada, El Duque, Fañabé și La Pinta. Perfectă pentru plimbări lungi la răsărit sau la apus."
+  },
+  {
+   "tabla": "places",
+   "clave": "paseo-maritimo-costa-adeje.cat",
+   "es": "Paseo Pet Friendly · Costa Adeje",
+   "forma": "texto",
+   "ro": "Promenadă Pet Friendly · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-puntalarga.desc",
+   "es": "Zona canina acotada en Puntalarga, Candelaria. Recinto donde los perros pueden soltarse y socializar en la costa este de Tenerife.",
+   "forma": "texto",
+   "ro": "Zonă delimitată pentru câini în Puntalarga, Candelaria. Spațiu unde câinii pot fi lăsați liberi și pot socializa, pe coasta de est a insulei Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-puntalarga.cat",
+   "es": "Parque Canino · Candelaria",
+   "forma": "texto",
+   "ro": "Parc pentru câini · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-san-benito.desc",
+   "es": "Zona canina en el barrio de San Benito, La Laguna. Recinto acotado en uno de los barrios históricos de la Ciudad Patrimonio de la Humanidad UNESCO.",
+   "forma": "texto",
+   "ro": "Zonă pentru câini în cartierul San Benito, La Laguna. Spațiu delimitat într-unul dintre cartierele istorice ale orașului înscris în Patrimoniul Mondial UNESCO."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-san-benito.cat",
+   "es": "Parque Canino · La Laguna",
+   "forma": "texto",
+   "ro": "Parc pentru câini · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-laguna-via-ronda.desc",
+   "es": "Parque canino vallado en la Vía de Ronda de San Cristóbal de La Laguna, uno de los más utilizados del municipio. Espacio amplio con zona de arena y grava, bebederos. Accesible desde el centro de La Laguna.",
+   "forma": "texto",
+   "ro": "Parc împrejmuit pentru câini pe Vía de Ronda din San Cristóbal de La Laguna, unul dintre cele mai folosite din municipalitate. Spațiu larg, cu o zonă de nisip și pietriș și puncte de apă. Accesibil din centrul orașului La Laguna."
+  },
+  {
+   "tabla": "places",
+   "clave": "parque-canino-laguna-via-ronda.cat",
+   "es": "Parque Canino · La Laguna · Vía Ronda",
+   "forma": "texto",
+   "ro": "Parc pentru câini · La Laguna · Vía Ronda"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-tajao.desc",
+   "es": "Mirador junto al pequeño pueblo pesquero de Tajao con vistas al mar y a la costa sur volcánica. Atardeceres espectaculares.",
+   "forma": "texto",
+   "ro": "Punct de belvedere lângă micul sat de pescari Tajao, cu priveliști spre mare și spre coasta vulcanică din sud. Apusuri spectaculoase."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-tajao.cat",
+   "es": "Mirador · Costa Sur",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Coasta de sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-guia-isora.desc",
+   "es": "Mirador en el casco histórico de Guía de Isora con panorámica al mar y vista de La Gomera y La Palma en días despejados.",
+   "forma": "texto",
+   "ro": "Punct de belvedere în centrul istoric din Guía de Isora, cu panoramă spre mare și, în zilele senine, cu vedere spre La Gomera și La Palma."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-guia-isora.cat",
+   "es": "Mirador · Oeste · Guía de Isora",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Vest · Guía de Isora"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-garachico.desc",
+   "es": "Mirador sobre el pueblo histórico de Garachico, con vista a las piscinas naturales del Caletón y el océano.",
+   "forma": "texto",
+   "ro": "Punct de belvedere deasupra localității istorice Garachico, cu vedere spre piscinele naturale El Caletón și spre ocean."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-garachico.cat",
+   "es": "Mirador · Norte · Garachico",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Nord · Garachico"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-baracan.desc",
+   "es": "Mirador en lo alto del macizo de Teno, junto a la carretera TF-436 entre Las Portelas y Masca. Muestra el contraste entre la vertiente norte, de valles suaves, y la sur, abrupta, que baja hacia Masca; en días claros se ve La Gomera. Aparcamiento junto a la carretera.",
+   "forma": "texto",
+   "ro": "Punct de belvedere pe culmea masivului Teno, lângă drumul TF-436, între Las Portelas și Masca. Arată contrastul dintre versantul nordic, cu văi line, și cel sudic, abrupt, care coboară spre Masca; în zilele senine se vede La Gomera. Parcare lângă drum."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-baracan.cat",
+   "es": "Mirador · Teno · Cumbre",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Teno · Vârf"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-bailadero.desc",
+   "es": "Uno de los miradores más espectaculares de Anaga, en la cresta del macizo, sobre el pueblo de Taganana. Vistas al norte y al Atlántico.",
+   "forma": "texto",
+   "ro": "Unul dintre cele mai spectaculoase puncte de belvedere din Anaga, pe creasta masivului, deasupra localității Taganana. Priveliști spre nord și spre Atlantic."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-bailadero.cat",
+   "es": "Mirador · Anaga · Cumbre",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Anaga · Vârf"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-ermita-palmar.desc",
+   "es": "Pequeño mirador junto a la ermita de El Palmar con vista al valle agrícola de Teno y los acantilados costeros del noroeste.",
+   "forma": "texto",
+   "ro": "Mic punct de belvedere lângă capela din El Palmar, cu vedere spre valea agricolă din Teno și spre falezele de pe coasta de nord-vest."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-ermita-palmar.cat",
+   "es": "Mirador · Teno · El Palmar",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Teno · El Palmar"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-rambla-castro.desc",
+   "es": "Mirador junto a la TF-5, a la altura del km 41, en Los Realejos. Se asoma a la costa norte y al Paisaje Protegido de la Rambla de Castro: palmeras, plataneras, la Hacienda de los Castro y la antigua estación elevadora de agua de La Gordejuela.",
+   "forma": "texto",
+   "ro": "Punct de belvedere lângă autostrada TF-5, în dreptul kilometrului 41, în Los Realejos. Privește spre coasta de nord și spre peisajul protejat Rambla de Castro: palmieri, plantații de bananieri, Hacienda de los Castro și vechea stație de pompare a apei La Gordejuela."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-rambla-castro.cat",
+   "es": "Mirador · Rambla de Castro · Los Realejos",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Rambla de Castro · Los Realejos"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-la-garanona.desc",
+   "es": "Parque y mirador sobre la costa de El Sauzal, con jardines, senderos y palmeras. No baje a la playa: el acceso a la orilla no está permitido y el antiguo camino de pescadores está impracticable, con desprendimientos.",
+   "forma": "texto",
+   "ro": "Parc și punct de belvedere deasupra coastei din El Sauzal, cu grădini, poteci și palmieri. Nu coborâți la plajă: accesul la țărm nu este permis, iar vechea potecă a pescarilor este impracticabilă, cu căderi de pietre."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-la-garanona.cat",
+   "es": "Mirador · Parque · El Sauzal",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Parc · El Sauzal"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-tegueste.desc",
+   "es": "Mercadillo del agricultor y artesano de Tegueste. Frutas, verduras locales, artesanía. Sábados y domingos por la mañana.",
+   "forma": "texto",
+   "ro": "Târgul producătorilor și meșteșugarilor din Tegueste. Fructe, legume locale, artizanat. Sâmbăta și duminica dimineața."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-tegueste.cat",
+   "es": "Mercadillo · Fin de semana · Norte",
+   "forma": "texto",
+   "ro": "Târg · Weekend · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-tacoronte.desc",
+   "es": "Mercadillo semanal en Tacoronte, zona vinícola del norte. Sábados y domingos por la mañana. Vinos locales, quesos, frutas y artesanía canaria.",
+   "forma": "texto",
+   "ro": "Târg săptămânal în Tacoronte, zonă viticolă din nord. Sâmbăta și duminica dimineața. Vinuri locale, brânzeturi, fructe și artizanat canarian."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-tacoronte.cat",
+   "es": "Mercadillo · Fin de semana · Tacoronte",
+   "forma": "texto",
+   "ro": "Târg · Weekend · Tacoronte"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-los-realejos.desc",
+   "es": "Mercadillo de productores locales en Los Realejos. Fines de semana. Flores, plantas, miel, queso artesanal y productos ecológicos.",
+   "forma": "texto",
+   "ro": "Târg al producătorilor locali în Los Realejos. În weekend. Flori, plante, miere, brânză artizanală și produse ecologice."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-los-realejos.cat",
+   "es": "Mercadillo · Fin de semana · Los Realejos",
+   "forma": "texto",
+   "ro": "Târg · Weekend · Los Realejos"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-puerto-cruz.desc",
+   "es": "Mercado del agricultor en Puerto de la Cruz. Miércoles y sábados. Papas, plátanos, tomates, miel y plantas directas del campo.",
+   "forma": "texto",
+   "ro": "Piața producătorilor din Puerto de la Cruz. Miercurea și sâmbăta. Cartofi, banane, roșii, miere și plante, direct de la câmp."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-puerto-cruz.cat",
+   "es": "Mercadillo · Mié/Sáb · Puerto Cruz",
+   "forma": "texto",
+   "ro": "Târg · Miercurea și sâmbăta · Puerto Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-san-isidro.desc",
+   "es": "Mercadillo tradicional en San Isidro (Granadilla de Abona). Domingos por la mañana. Popular entre la gente local del sur.",
+   "forma": "texto",
+   "ro": "Târg tradițional în San Isidro (Granadilla de Abona). Duminica dimineața. Popular printre localnicii din sud."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-san-isidro.cat",
+   "es": "Mercadillo · Domingos · Sur",
+   "forma": "texto",
+   "ro": "Târg · Duminica · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-orotava.desc",
+   "es": "Mercadillo de productos agrícolas, ganaderos y artesanos del Valle de La Orotava, en la calle Educadora Lucía Mesa. Sábados por la mañana. Cerámica, bordados canarios, miel y productos locales.",
+   "forma": "texto",
+   "ro": "Târg de produse agricole, zootehnice și meșteșugărești din valea La Orotava, pe strada Educadora Lucía Mesa. Sâmbăta dimineața. Ceramică, broderii canariene, miere și produse locale."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-orotava.cat",
+   "es": "Mercadillo · Sábados · La Orotava",
+   "forma": "texto",
+   "ro": "Târg · Sâmbăta · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-los-abrigos.desc",
+   "es": "Mercadillo junto al puerto pesquero de Los Abrigos. Martes por la tarde. Artesanía local, pescado fresco y ambiente marinero auténtico.",
+   "forma": "texto",
+   "ro": "Târg lângă portul pescăresc din Los Abrigos. Marțea, după-amiaza. Artizanat local, pește proaspăt și o atmosferă marinărească autentică."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-los-abrigos.cat",
+   "es": "Mercadillo · Martes · Los Abrigos",
+   "forma": "texto",
+   "ro": "Târg · Marțea · Los Abrigos"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-icod.desc",
+   "es": "Mercadillo semanal en Icod, junto al Drago Milenario. Viernes por la mañana. Frutas, vinos locales y artesanía del noroeste.",
+   "forma": "texto",
+   "ro": "Târg săptămânal în Icod, lângă Drago Milenario. Vinerea dimineața. Fructe, vinuri locale și artizanat din nord-vest."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-icod.cat",
+   "es": "Mercadillo · Viernes · Icod",
+   "forma": "texto",
+   "ro": "Târg · Vinerea · Icod"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-medano.desc",
+   "es": "Capital del windsurf y kitesurf en Tenerife. Viento alisio constante del NE. Sede del campeonato mundial PWA. Ideal para todos los niveles.",
+   "forma": "texto",
+   "ro": "Capitala windsurfingului și a kitesurfingului în Tenerife. Vânt alizeu constant dinspre nord-est. Gazda campionatului mondial PWA. Ideal pentru toate nivelurile."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-medano.cat",
+   "es": "Windsurf · Kitesurf · Campeonato Mundial",
+   "forma": "texto",
+   "ro": "Windsurfing · Kitesurfing · Campionat mondial"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-playa-socorro.desc",
+   "es": "La mejor ola de longboard del norte de Tenerife. Olas largas y consistentes. Escuelas de surf en temporada. Arena negra volcánica.",
+   "forma": "texto",
+   "ro": "Cel mai bun val pentru longboard din nordul insulei Tenerife. Valuri lungi și constante. Școli de surf în sezon. Nisip negru vulcanic."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-playa-socorro.cat",
+   "es": "Surf · Longboard · Norte",
+   "forma": "texto",
+   "ro": "Surf · Longboard · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-benijo.desc",
+   "es": "Ola de alto nivel en Benijo, macizo de Anaga. Solo para surfistas experimentados por las corrientes y la potencia. Paisaje salvaje incomparable.",
+   "forma": "texto",
+   "ro": "Val de nivel înalt la Benijo, în masivul Anaga. Doar pentru surferi experimentați, din cauza curenților și a forței valurilor. Peisaj sălbatic fără egal."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-benijo.cat",
+   "es": "Surf Avanzado · Anaga · Precaución",
+   "forma": "texto",
+   "ro": "Surf avansat · Anaga · Atenție"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-playa-jardin.desc",
+   "es": "El pico está en la parte de la playa junto al Castillo de San Felipe: picos variables sobre fondo de arena volcánica y roca, recorridos de 50 a 150 m. Funciona mejor con marea alta a media. ⚠️ Con mar grande la corriente se vuelve peligrosa. Playa volcánica de Puerto de la Cruz diseñada por César Manrique. Olas para principiantes e intermedio. Escuelas de surf. Arena negra.",
+   "forma": "texto",
+   "ro": "Valul se sparge în partea plajei de lângă Castillo de San Felipe, în puncte care variază, pe fund de nisip vulcanic și stâncă; parcursuri între 50 și 150 m. Funcționează cel mai bine cu mareea între înaltă și medie. ⚠️ La hulă puternică, curentul devine periculos. Plajă vulcanică din Puerto de la Cruz, proiectată de César Manrique. Valuri pentru începători și pentru nivelul intermediar. Școli de surf. Nisip negru."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-playa-jardin.cat",
+   "es": "Surf · Principiantes · Puerto Cruz",
+   "forma": "texto",
+   "ro": "Surf · Începători · Puerto Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-callao-salvaje.desc",
+   "es": "Spot de surf en la costa oeste con olas consistentes de invierno. Nivel intermedio-avanzado. Menos masificado que el sur turístico.",
+   "forma": "texto",
+   "ro": "Loc de surf pe coasta de vest, cu valuri constante iarna. Nivel intermediar spre avansat. Mai puțin aglomerat decât sudul turistic."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-callao-salvaje.cat",
+   "es": "Surf · Invierno · Costa Oeste",
+   "forma": "texto",
+   "ro": "Surf · Iarnă · Coasta de vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-don-martin.desc",
+   "es": "Mirador en la antigua carretera general del sur (TF-28), al borde de la Ladera de Güímar, a unos 400 m de altitud. Abre todo el Valle de Güímar con su costa: el Puertito, el Malpaís y, al norte, Candelaria.",
+   "forma": "texto",
+   "ro": "Punct de belvedere pe vechiul drum principal spre sud (TF-28), pe marginea pantei Ladera de Güímar, la o altitudine de circa 400 m. Cuprinde toată valea Güímar și coasta ei: Puertito, câmpul de lavă Malpaís și, la nord, Candelaria."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-don-martin.cat",
+   "es": "Mirador · Güímar · TF-28",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Güímar · TF-28"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-chipeque.desc",
+   "es": "Mirador en la carretera TF-24, que sube al Teide por La Esperanza, con espectaculares vistas sobre el Valle de La Orotava y el océano Atlántico. Muy fotografiado. Acceso en coche.",
+   "forma": "texto",
+   "ro": "Punct de belvedere pe drumul TF-24, care urcă spre Teide prin La Esperanza, cu priveliști spectaculoase asupra văii La Orotava și a Oceanului Atlantic. Foarte fotografiat. Acces cu mașina."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-chipeque.cat",
+   "es": "Mirador · TF-24 · Valle Orotava",
+   "forma": "texto",
+   "ro": "Punct de belvedere · TF-24 · Valea La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-la-jardina.desc",
+   "es": "Mirador a la entrada del Parque Rural de Anaga, en la carretera TF-12 de Las Mercedes, donde empieza el monteverde. Vistas panorámicas a la ciudad de La Laguna, a la vega con sus cultivos y, en días claros, al Teide. Accesible y con aparcamiento.",
+   "forma": "texto",
+   "ro": "Punct de belvedere la intrarea în Parcul Rural Anaga, pe drumul TF-12 din Las Mercedes, acolo unde începe pădurea veșnic verde (monteverde). Priveliști panoramice spre orașul La Laguna, spre câmpia cu culturi agricole și, în zilele senine, spre Teide. Accesibil, cu parcare."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-la-jardina.cat",
+   "es": "Mirador · Anaga · La Laguna",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Anaga · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-pico-flores-anaga.desc",
+   "es": "Antiguo mirador de piedra, de planta circular, en el monte de El Rosario (Paisaje Protegido de Las Lagunetas), a 10-15 minutos a pie de la carretera TF-24. Está abandonado y el pinar tapa casi toda la vista, que antes abarcaba Anaga y el área metropolitana.",
+   "forma": "texto",
+   "ro": "Vechi punct de belvedere din piatră, de formă circulară, în pădurea din El Rosario (peisajul protejat Las Lagunetas), la 10-15 minute de mers pe jos de drumul TF-24. Este abandonat, iar pădurea de pini ascunde aproape toată priveliștea, care cuprindea odinioară Anaga și zona metropolitană."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-pico-flores-anaga.cat",
+   "es": "Mirador · El Rosario · Abandonado",
+   "forma": "texto",
+   "ro": "Punct de belvedere · El Rosario · Abandonat"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-cruz-hilda.desc",
+   "es": "Mirador junto a la carretera TF-436, por encima del caserío de Masca. Ofrece una vista panorámica de Masca y de su barranco, con bancales de cultivo, palmeras y matorral de retamas y tabaibas.",
+   "forma": "texto",
+   "ro": "Punct de belvedere lângă drumul TF-436, deasupra cătunului Masca. Oferă o priveliște panoramică asupra satului Masca și a defileului său, cu terase agricole, palmieri și tufișuri de retama și tabaiba."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-cruz-hilda.cat",
+   "es": "Mirador · Buenavista del Norte · Oeste",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Buenavista del Norte · Vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-cherfe.desc",
+   "es": "Mirador en la TF-436, en el macizo de Teno, en la carretera de Masca.",
+   "forma": "texto",
+   "ro": "Punct de belvedere pe TF-436, în masivul Teno, pe drumul spre Masca."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-cherfe.cat",
+   "es": "Mirador · Teno · TF-436",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Teno · TF-436"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-la-corona-guimar.desc",
+   "es": "Mirador sobre el Valle de Güímar con vistas a las pirámides y la costa este. Acceso desde el casco de Güímar. Zona de tradición histórica guanche.",
+   "forma": "texto",
+   "ro": "Punct de belvedere deasupra văii Güímar, cu priveliști spre Piramidele din Güímar și spre coasta de est. Acces din centrul localității Güímar. Zonă cu o tradiție istorică legată de guanși."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-la-corona-guimar.cat",
+   "es": "Mirador · Güímar · Valle",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Güímar · Vale"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-archipenque.desc",
+   "es": "El mirador más impresionante para ver los Acantilados de Los Gigantes. Situado en la carretera TF-454 sobre Puerto de Santiago. Vistas directas a los acantilados de 300-600 m, la Punta de Teno, La Palma y La Gomera en días despejados. Pequeña cafetería y tienda de souvenirs. Parking gratuito. Atardecer espectacular.",
+   "forma": "texto",
+   "ro": "Cel mai impresionant punct de belvedere pentru a vedea falezele Los Gigantes. Se află pe drumul TF-454, deasupra localității Puerto de Santiago. Priveliște directă spre falezele înalte de 300-600 m, spre Punta de Teno și, în zilele senine, spre La Palma și La Gomera. O mică cafenea și un magazin de suveniruri. Parcare gratuită. Apus spectaculos."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-archipenque.cat",
+   "es": "Mirador · Los Gigantes · Acantilados",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Los Gigantes · Faleze"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-punta-hidalgo.desc",
+   "es": "Mirador costero en el extremo norte de Tenerife, en el municipio de La Laguna. Vistas espectaculares al faro de diseño único (1994), el Roque de los Dos Hermanos y la costa salvaje de Anaga. Ideal para ver el atardecer y las puestas de sol atlánticas. Piscinas naturales en roca a los pies. Accesible en coche por la TF-13 o en guagua desde La Laguna.",
+   "forma": "texto",
+   "ro": "Punct de belvedere pe coastă, în extremitatea de nord a insulei Tenerife, în municipalitatea La Laguna. Priveliști spectaculoase spre farul cu un design unic (1994), spre Roque de los Dos Hermanos și spre coasta sălbatică din Anaga. Ideal pentru a privi apusul de soare deasupra Atlanticului. Chiar dedesubt sunt piscine naturale în stâncă. Se ajunge cu mașina pe TF-13 sau cu autobuzul din La Laguna."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-punta-hidalgo.cat",
+   "es": "Mirador · Punta del Hidalgo · Norte",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Punta del Hidalgo · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-aguaide.desc",
+   "es": "Mirador espectacular en el Parque Rural de Anaga, accesible desde el caserío de Chinamada (10 min a pie). Vistas precipitadas al Atlántico y a Punta del Hidalgo. El borde está cercado por grietas en la roca que podrían desprenderse — admirar desde zona segura. Nota: senderistas con experiencia únicamente. El acceso desde Punta del Hidalgo son ~5 km a pie.",
+   "forma": "texto",
+   "ro": "Punct de belvedere spectaculos în Parcul Rural Anaga, la care se ajunge din cătunul Chinamada (10 minute pe jos). Priveliști amețitoare spre Atlantic și spre Punta del Hidalgo. Marginea este îngrădită: stânca are fisuri și s-ar putea desprinde. Admirați peisajul dintr-o zonă sigură. Notă: doar pentru drumeți cu experiență. Din Punta del Hidalgo sunt circa 5 km de mers pe jos."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-aguaide.cat",
+   "es": "Mirador · Anaga · Solo a pie · Expertos",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Anaga · Doar pe jos · Experți"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-chivisaya.desc",
+   "es": "Mirador en Candelaria, sobre el Valle de Güímar, con vistas al Malpaís de Güímar (espacio natural protegido de coladas volcánicas) y a la Costa Este de Tenerife. Rodeado de bosque de fayas y brezos. Acceso por la carretera TF-523, que sube desde Arafo. Tranquilo y poco conocido.",
+   "forma": "texto",
+   "ro": "Punct de belvedere în Candelaria, deasupra văii Güímar, cu priveliști spre Malpaís de Güímar (spațiu natural protejat, cu curgeri de lavă) și spre coasta de est a insulei Tenerife. Înconjurat de pădure de faya și erica arborescentă. Acces pe drumul TF-523, care urcă din Arafo. Liniștit și puțin cunoscut."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-chivisaya.cat",
+   "es": "Mirador · Candelaria · Valle · Este",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Candelaria · Vale · Est"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-los-campitos.desc",
+   "es": "Mirador urbano en el barrio de Los Campitos (Santa Cruz de Tenerife) con las mejores vistas de la capital: el Auditorio de Tenerife, el Muelle Norte, las Torres de Santa Cruz, el Palmetum y las cumbres de Anaga. Ideal al atardecer y de noche para fotografía urbana. Acceso en coche o a pie por el barrio.",
+   "forma": "texto",
+   "ro": "Punct de belvedere urban în cartierul Los Campitos (Santa Cruz de Tenerife), cu cele mai bune priveliști asupra capitalei: Auditorio de Tenerife, cheiul Muelle Norte, turnurile Torres de Santa Cruz, parcul Palmetum și culmile masivului Anaga. Ideal la apus și noaptea, pentru fotografie urbană. Acces cu mașina sau pe jos, prin cartier."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-los-campitos.cat",
+   "es": "Mirador Urbano · Santa Cruz · Auditorio",
+   "forma": "texto",
+   "ro": "Punct de belvedere urban · Santa Cruz · Auditorio"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-lomo-molino.desc",
+   "es": "Mirador panorámico en El Tanque, en el norte de Tenerife, con vistas al Roque de Garachico (islote volcánico), la Isla Baja, la costa de Buenavista y el majestuoso Teide al fondo. Rodeado de viñedos y bancales de plataneras. Uno de los miradores más fotogénicos del noroeste. Acceso por carretera local.",
+   "forma": "texto",
+   "ro": "Punct de belvedere panoramic în El Tanque, în nordul insulei Tenerife, cu priveliști spre Roque de Garachico (insuliță vulcanică), spre Isla Baja, spre coasta din Buenavista și, în fundal, spre maiestuosul Teide. Înconjurat de vii și de terase cu bananieri. Unul dintre cele mai fotogenice puncte de belvedere din nord-vestul insulei. Acces pe un drum local."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-lomo-molino.cat",
+   "es": "Mirador · Noroeste · El Tanque · Teide",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Nord-vest · El Tanque · Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-narices-teide.desc",
+   "es": "Uno de los miradores más impresionantes del Parque Nacional del Teide, en el km 3,5 de la carretera TF-38 (Guía de Isora). Vista directa al Pico Viejo (cráter a unos 3.100 m) y a los 5 km² de coladas de lava negra de la última gran erupción de 1798, que generó las 'bocas de fuego' conocidas como las Narices del Teide (cima a 2.752 m). En días despejados se ven La Gomera, La Palma y El Hierro. Parking gratuito. Ideal para amanecer y atardecer, especialmente en otoño e invierno. A unos 14 km del Teleférico del Teide por carretera.",
+   "forma": "texto",
+   "ro": "Unul dintre cele mai impresionante puncte de belvedere din Parcul Național Teide, la kilometrul 3,5 al drumului TF-38 (Guía de Isora). Priveliște directă spre Pico Viejo (cu craterul la circa 3.100 m) și spre cei 5 km² de curgeri de lavă neagră lăsate de ultima mare erupție, cea din 1798, care a format „gurile de foc” cunoscute drept Narices del Teide (cu vârful la 2.752 m). În zilele senine se văd La Gomera, La Palma și El Hierro. Parcare gratuită. Ideal la răsărit și la apus, mai ales toamna și iarna. Până la stația de bază a telecabinei de pe Teide sunt circa 14 km pe drum."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-narices-teide.cat",
+   "es": "Mirador · Narices del Teide · TF-38",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Narices del Teide · TF-38"
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-rambleta-teide.desc",
+   "es": "⚠️ Desde el 1 de noviembre de 2026, por hielo y nieve, el Cabildo restringe el paso por siete senderos del Teide o tramos de ellos (PNT 07, 09, 10, 11, 12, 23 y 28): solo pueden ir personas expertas en alta montaña o con profesionales acreditados por el Parque, con autorización de Tenerife ON, la declaración responsable aceptada en su perfil, crampones y piolet. Aún no hay fecha de fin. La Rambleta es la estación superior del Teleférico del Teide, a 3.555 metros de altitud — el mirador más alto de España accesible sin senderismo. Desde aquí se ve, hacia abajo, toda la Caldera de Las Cañadas, el sur de Tenerife y, a lo lejos, Gran Canaria. La Gomera, La Palma y El Hierro se ven en días claros desde el mirador de Pico Viejo, a 0,72 km por el sendero PNT 12, sin reserva. Acceso en teleférico desde la estación base, a 2.356 m (ida y vuelta, adulto: desde 43,00 € no residente y desde 10,75 € residente; precios de volcanoteide.com, noviembre de 2026). Desde aquí parte el sendero Telesforo Bravo (PNT 10) hacia la cumbre del Teide: unos 55 min, con autorización previa de Tenerife ON, que no va incluida en el billete. Entre la base del Teide y la cumbre puede haber más de 10 °C de diferencia: lleve siempre ropa de abrigo. El billete del teleférico solo se vende en línea: cómprelo con antelación.",
+   "forma": "texto",
+   "ro": "⚠️ Din 1 noiembrie 2026, din cauza gheții și a zăpezii, Cabildo (consiliul insular) restricționează accesul pe șapte trasee ale vulcanului Teide sau pe porțiuni din ele (PNT 07, 09, 10, 11, 12, 23 și 28): pot merge doar alpiniștii experimentați sau persoanele însoțite de profesioniști acreditați de Parcul Național, cu autorizație de la Tenerife ON, declarația pe propria răspundere acceptată în profil, colțari și piolet. Încă nu există o dată de încheiere. La Rambleta este stația superioară a telecabinei de pe Teide, la 3.555 de metri altitudine: cel mai înalt punct de belvedere din Spania la care se ajunge fără drumeție. De aici vedeți, în jos, toată caldera Las Cañadas, sudul insulei Tenerife și, în depărtare, Gran Canaria. În zilele senine, La Gomera, La Palma și El Hierro se văd de la punctul de belvedere Pico Viejo, la 0,72 km pe traseul PNT 12, fără rezervare. Se urcă cu telecabina din stația de la bază, aflată la 2.356 m (dus-întors, adult: de la 43,00 € pentru nerezidenți și de la 10,75 € pentru rezidenți; prețuri de pe volcanoteide.com, noiembrie 2026). De aici pornește traseul Telesforo Bravo (PNT 10) spre vârful vulcanului Teide: circa 55 de minute, cu autorizație prealabilă pe Tenerife ON, care nu este inclusă în bilet. Diferența de temperatură dintre baza vulcanului Teide și vârf poate depăși 10 °C: luați întotdeauna haine groase. Biletul de telecabină se vinde doar online: cumpărați-l din timp."
+  },
+  {
+   "tabla": "places",
+   "clave": "mir-rambleta-teide.cat",
+   "es": "Mirador · Teide · 3.555 m · Teleférico",
+   "forma": "texto",
+   "ro": "Punct de belvedere · Teide · 3.555 m · Telecabină"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-las-americas.desc",
+   "es": "Zona de escuelas de surf frente al Veril en Playa de las Américas. Nivel principiante e intermedio. Aguas controladas, instructores certificados. La opción más accesible del sur.",
+   "forma": "texto",
+   "ro": "Zonă cu școli de surf în fața locului numit El Veril, în Playa de las Américas. Nivel începător și intermediar. Ape supravegheate, instructori certificați. Cea mai accesibilă variantă din sud."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-las-americas.cat",
+   "es": "Surf · Escuelas · Las Américas",
+   "forma": "texto",
+   "ro": "Surf · Școli · Las Américas"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-bollullo.desc",
+   "es": "Playa volcánica de difícil acceso (bajada a pie 15 min) cerca de Puerto de la Cruz. Olas de calidad para surf intermedio. Arena negra y entorno virgen.",
+   "forma": "texto",
+   "ro": "Plajă vulcanică greu accesibilă (15 minute de coborâre pe jos), lângă Puerto de la Cruz. Valuri de calitate pentru surf de nivel intermediar. Nisip negru și natură neatinsă."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-bollullo.cat",
+   "es": "Surf · Intermedio · Norte",
+   "forma": "texto",
+   "ro": "Surf · Intermediar · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-punta-hidalgo.desc",
+   "es": "Extremo norte de Tenerife. Olas potentes en invierno. Solo para surfistas avanzados por la fuerza del mar y los fondos rocosos. Paisaje espectacular.",
+   "forma": "texto",
+   "ro": "În extremitatea de nord a insulei Tenerife. Valuri puternice iarna. Doar pentru surferi avansați, din cauza forței mării și a fundului stâncos. Peisaj spectaculos."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-punta-hidalgo.cat",
+   "es": "Surf Avanzado · Punta Hidalgo · Norte",
+   "forma": "texto",
+   "ro": "Surf avansat · Punta Hidalgo · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-almaciga.desc",
+   "es": "Playa Almáciga en el Parque Rural de Anaga es uno de los mejores spots de surf del norte de Tenerife para nivel intermedio-avanzado. Beach break con olas de izquierda y derecha. Funciona todo el año con mar del norte y noreste. Condiciones óptimas: mar noroeste + viento del sur. Fondo de arena y roca. Poco concurrido por lo remoto del acceso (carretera de Anaga). Paisaje espectacular de acantilados y laurisilva.",
+   "forma": "texto",
+   "ro": "Playa Almáciga, din Parcul Rural Anaga, este unul dintre cele mai bune locuri de surf din nordul insulei Tenerife pentru nivelul intermediar spre avansat. Beach break, cu valuri spre stânga și spre dreapta. Funcționează tot anul, cu hulă din nord și nord-est. Condiții optime: hulă din nord-vest și vânt din sud. Fund de nisip și stâncă. Puțin aglomerat, pentru că este retras (se ajunge pe drumul din Anaga). Peisaj spectaculos, cu faleze și pădure de laur."
+  },
+  {
+   "tabla": "places",
+   "clave": "surf-almaciga.cat",
+   "es": "Surf Intermedio-Avanzado · Anaga · Norte",
+   "forma": "texto",
+   "ro": "Surf intermediar-avansat · Anaga · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "windsurf-el-medano.desc",
+   "es": "El Médano, en la costa sureste de Tenerife (Granadilla de Abona), es la meca mundial del windsurf y el kitesurf. Los vientos alisios constantes del noreste (15-30 nudos, casi diario todo el año) la convierten en una de las mejores playas de viento de Europa. La Playa El Cabezo es la sede del PWA Grand Slam World Cup Tenerife, el campeonato mundial de windsurf — celebrado cada verano con 160+ windsurfistas de 20+ naciones (modalidades Ola y Slalom X). Wind Center Playa Surf (patrocinador oficial del PWA) ofrece alquiler de windsurf, kitesurf, wingfoil y SUP en primera línea. Clases para todos los niveles. El Médano es también la capital del kitesurf de la isla, con condiciones ideales en la Playa La Tejita y el Cabezo. 18.000 turistas deportivos al año.",
+   "forma": "texto",
+   "ro": "El Médano, pe coasta de sud-est a insulei Tenerife (Granadilla de Abona), este capitala mondială a windsurfingului și a kitesurfingului. Alizeele constante din nord-est (15-30 de noduri, aproape zilnic, tot anul) fac din El Médano una dintre cele mai bune plaje din Europa pentru sporturile cu vânt. Playa El Cabezo găzduiește PWA Grand Slam World Cup Tenerife, campionatul mondial de windsurfing, care are loc în fiecare vară, cu peste 160 de sportivi din peste 20 de țări (probele de valuri și Slalom X). Wind Center Playa Surf (sponsor oficial PWA) închiriază echipament de windsurfing, kitesurfing, wingfoil și SUP, chiar pe malul mării. Cursuri pentru toate nivelurile. El Médano este și capitala kitesurfingului de pe insulă, cu condiții ideale pe Playa La Tejita și la El Cabezo. 18.000 de turiști vin aici în fiecare an pentru sport."
+  },
+  {
+   "tabla": "places",
+   "clave": "windsurf-el-medano.cat",
+   "es": "Windsurf · Kitesurf · El Médano · PWA World Cup · Meca Mundial",
+   "forma": "texto",
+   "ro": "Windsurfing · Kitesurfing · El Médano · PWA World Cup · Capitală mondială"
+  },
+  {
+   "tabla": "places",
+   "clave": "windsurf-la-tejita.desc",
+   "es": "La Playa de La Tejita, al sur de El Médano, es la zona de kitesurf por excelencia del sureste de Tenerife. Playa de arena oscura de 1 km junto a la Montaña Roja (Reserva Natural Especial). Vientos alisios constantes y menos obstáculos que en El Cabezo. Aguas poco profundas junto a la orilla — ideal para aprender kitesurf. Zona señalizada para bañistas y kitesurfistas. Varios centros de kitesurf con clases y alquiler de material operan desde La Tejita. Acceso libre — aparcamiento gratuito. La Montaña Roja, al fondo, da un paisaje único.",
+   "forma": "texto",
+   "ro": "Playa de La Tejita, la sud de El Médano, este zona de kitesurfing prin excelență din sud-estul insulei Tenerife. Plajă cu nisip închis la culoare, lungă de 1 km, lângă Montaña Roja (rezervație naturală specială). Vânt alizeu constant și mai puține obstacole decât la El Cabezo. Apă puțin adâncă lângă mal, ideală pentru a învăța kitesurfing. Zonă semnalizată pentru cei care fac baie și pentru cei care practică kitesurfing. Mai multe centre de kitesurfing, cu cursuri și închirieri de echipament, își au baza pe plaja La Tejita. Acces liber și parcare gratuită. Montaña Roja, în fundal, oferă un peisaj unic."
+  },
+  {
+   "tabla": "places",
+   "clave": "windsurf-la-tejita.cat",
+   "es": "Kitesurf · La Tejita · El Médano · Sur · Aprendizaje",
+   "forma": "texto",
+   "ro": "Kitesurfing · La Tejita · El Médano · Sud · Învățare"
+  }
+ ]
+}

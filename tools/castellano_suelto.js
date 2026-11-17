@@ -23,9 +23,11 @@
  *
  * QUE MIRA, por idioma, en TODO lo que lee el usuario: las fichas
  * (idiomas/<L>.json), las etiquetas, el asistente (faq/<L>.json), la
- * privacidad, las paginas fijas (idiomas/borrar-cuenta, idiomas/paginas) y las
+ * privacidad, las paginas fijas (idiomas/borrar-cuenta, idiomas/paginas), las
  * filas de idioma de todo el fuente (index.html y lo que
- * carga: tools/fuente.js).
+ * carga: tools/fuente.js) y, desde el 3 de noviembre de 2026, los datos de
+ * «Su cuerpo» (datos/cuerpo/: las respuestas de su asistente, las guias de
+ * los deportes y el nombre y los pasos de los 533 ejercicios).
  *   PALABRAS (alfabeto latino)
  *     · letras que ese idioma no usa y el castellano si (á í ó ú ñ ¿ ¡);
  *     · palabras corrientes del castellano que no son de ese idioma
@@ -164,6 +166,33 @@ function filasDelFuente() {
   }
   return (_filas = out);
 }
+/* Los datos de «Su cuerpo» (datos/cuerpo/, 3 de noviembre de 2026): de las respuestas del
+   asistente y de las guias de los deportes, lo que lee quien usa la app, sin las variantes
+   («v», como lo escribe la gente), las palabras de busqueda («k»), los patrones de urgencia
+   («u»), las fuentes («f») ni las claves internas (como en tools/auditar_registro.js), y el
+   nombre y los pasos de los 533 ejercicios. Cada texto, con su castellano, el del mismo sitio
+   en el fichero «-es». Hasta ese dia este control solo veia de «Su cuerpo» las filas del
+   modulo: las respuestas, las guias y los ejercicios, en nueve idiomas, no los miraba nadie */
+const SALTA_CUERPO = new Set(['v', 'k', 'u', 'f', 'id', 'cat', 'tipo', 'edad', 'rel', 'links', 'cert', 'gg', 'ej', 'sos']);
+function planoCuerpo(o, ruta, dst) {
+  if (typeof o === 'string') dst[ruta] = o;
+  else if (Array.isArray(o)) o.forEach((x, i) => planoCuerpo(x, ruta + '[' + i + ']', dst));
+  else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!SALTA_CUERPO.has(k)) planoCuerpo(v, ruta + '.' + k, dst);
+  return dst;
+}
+function cuerpoPlano(l) {
+  const d = {};
+  for (const x of lee('datos/cuerpo/asistente-' + l + '.json').respuestas) planoCuerpo(x, 'cuerpo asistente ' + x.id, d);
+  for (const x of lee('datos/cuerpo/deportes-' + l + '.json').deportes)
+    planoCuerpo(Object.assign({}, x, { qs: (x.qs || []).map(q => q[1]) }), 'cuerpo deporte ' + x.id, d);
+  for (const [id, e] of Object.entries(lee('datos/cuerpo/ejercicios-' + l + '.json'))) planoCuerpo(e, 'cuerpo ejercicio ' + id, d);
+  return d;
+}
+let _cuerpoEs = null;
+const textosCuerpo = L => {
+  const es = _cuerpoEs || (_cuerpoEs = cuerpoPlano('es'));
+  return Object.entries(cuerpoPlano(L)).map(([donde, txt]) => ({ donde, es: es[donde], txt }));
+};
 const usadas = new Set();
 for (const p of PLACES) for (const t of (p.tags || [])) usadas.add(t);
 function textos(L) {
@@ -192,6 +221,7 @@ function textos(L) {
   const pf = lee('idiomas/paginas/' + L + '.json'), pfes = lee('idiomas/paginas/es.json');
   for (const [k, v] of Object.entries(pf)) if (typeof v === 'string') r.push({ donde: 'paginas ' + k, es: pfes[k], txt: v });
   for (const f of filasDelFuente()) if (typeof f.fila[L] === 'string') r.push({ donde: f.donde, es: f.fila.es, txt: f.fila[L] });
+  for (const x of textosCuerpo(L)) r.push(x);
   return r;
 }
 
@@ -283,8 +313,9 @@ const LATINA = /^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'’-]*$/;
    minuscula, y la regla del alfabeto latino en bulgaro y chino no salto nunca.
    Lo encontro la prueba de meter «mirador» a proposito en una ficha china. */
 const CODIGO = /^[A-Z0-9][A-Z0-9-]*$/;
-/* unidades y formatos de fichero (pdf, gpx; ics, el evento de calendario del panel del cielo, 21-10-2026): no son castellano */
-const UNIDAD = /^(?:km|min|cm|mm|kg|ml|ha|kw|kwh|cv|hp|uv|gps|wifi|wi-fi|pdf|gpx|ics|app|apps|bus|wc|lat|lng)$/i;
+/* unidades y formatos de fichero (pdf, gpx; ics, el evento de calendario del panel del cielo, 21-10-2026;
+   kcal, las kilocalorias del asistente de «Su cuerpo», 3-11-2026): no son castellano */
+const UNIDAD = /^(?:km|min|cm|mm|kg|kcal|ml|ha|kw|kwh|cv|hp|uv|gps|wifi|wi-fi|pdf|gpx|ics|app|apps|bus|wc|lat|lng)$/i;
 /* el castellano pasado tal cual al cirilico, como lo pasaria quien no lo
    traduce: «romería» -> «ромерия», «cardonal» -> «кардонал». */
 function aCirilico(w) {

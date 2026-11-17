@@ -32,7 +32,12 @@ function sacarConst(nombre) {
 }
 const LANGS = sacarConst('LANGS');
 LANGS.zht = Object.assign(JSON.parse(JSON.stringify(LANGS.zh)), sacarConst('ZHT_OVERRIDES'));
-const DELAPP = Object.keys(LANGS);
+/* La app «habla» los idiomas de SUPPORTED_LANGS. LANGS puede traer ya uno que
+   todavia no se ofrece: el rumano entra por bloques desde la nota 41 y el
+   interruptor (tools/activar_idioma.js) va el ultimo. A ese no se le pide su
+   faq/<idioma>.json hasta que este en SUPPORTED_LANGS; desde entonces, si. */
+const OFRECE = sacarConst('SUPPORTED_LANGS');
+const DELAPP = Object.keys(LANGS).filter(l => OFRECE.includes(l));
 
 console.log('=== base de conocimiento del asistente ===');
 

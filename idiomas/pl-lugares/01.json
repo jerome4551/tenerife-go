@@ -154,11 +154,11 @@
   "cat": "Wulkaniczny"
  },
  "montana-blanca": {
-  "desc": "Punkt startowy pieszego wejścia na Pico del Teide (3715 m): szlak PNT 07 Montaña Blanca–La Rambleta, który zaczyna się przy TF-21 (km 40,2), na wysokości około 2350 m. Szlak wymaga wcześniejszego pozwolenia z Tenerife ON, a bez rezerwacji grozi kara. Miejsca są udostępniane w każdy poniedziałek o 07:00 (czasu kanaryjskiego) na kolejne osiem tygodni. Między 09:00 a 17:00 jest płatny dla osób, które nie mieszkają na Teneryfie, a kwota pokazuje się przy rezerwacji. Ostatni odcinek, z La Rambleta do krateru, to PNT 10 i wymaga osobnego pozwolenia. Całe wejście trwa od 5 do 7 godzin. Przeżycie imponujące i wymagające.",
+  "desc": "⚠️ Od 1 listopada 2026 r. z powodu lodu i śniegu Cabildo ogranicza wejście na siedem szlaków Teide lub ich odcinki (PNT 07, 09, 10, 11, 12, 23 i 28): mogą tam wchodzić tylko osoby z dużym doświadczeniem wysokogórskim albo w towarzystwie profesjonalistów akredytowanych przez Park Narodowy, z pozwoleniem Tenerife ON, oświadczeniem o odpowiedzialności zaakceptowanym w profilu, rakami i czekanem. Nie ma jeszcze daty zakończenia. Punkt startowy pieszego wejścia na Pico del Teide (3715 m): szlak PNT 07 Montaña Blanca–La Rambleta, który zaczyna się przy TF-21 (km 40,2), na wysokości około 2350 m. Szlak wymaga wcześniejszego pozwolenia z Tenerife ON, a bez rezerwacji grozi kara. Miejsca są udostępniane w każdy poniedziałek o 07:00 (czasu kanaryjskiego) na kolejne osiem tygodni. Między 09:00 a 17:00 jest płatny dla osób, które nie mieszkają na Teneryfie, a kwota pokazuje się przy rezerwacji. Ostatni odcinek, z La Rambleta do krateru, to PNT 10 i wymaga osobnego pozwolenia. Całe wejście trwa od 5 do 7 godzin. Przeżycie imponujące i wymagające.",
   "cat": "Szlaki piesze · Szczyt Teide"
  },
  "ruta-pico-viejo": {
-  "desc": "Bliźniaczy krater Teide, na wysokości około 3100 m: 800 m średnicy i 200 m głębokości. Szlak PNT 09 (Teide–Pico Viejo–Mirador de Las Narices del Teide) obchodzi Pico Viejo od południa, poniżej krawędzi krateru. Rezerwacja w Tenerife ON jest obowiązkowa, także na PNT 23, który prowadzi na przełęcz Pico Viejo: bez rezerwacji grozi kara. Jedna z najlepszych tras Parku Narodowego.",
+  "desc": "⚠️ Od 1 listopada 2026 r. z powodu lodu i śniegu Cabildo ogranicza wejście na siedem szlaków Teide lub ich odcinki (PNT 07, 09, 10, 11, 12, 23 i 28): mogą tam wchodzić tylko osoby z dużym doświadczeniem wysokogórskim albo w towarzystwie profesjonalistów akredytowanych przez Park Narodowy, z pozwoleniem Tenerife ON, oświadczeniem o odpowiedzialności zaakceptowanym w profilu, rakami i czekanem. Nie ma jeszcze daty zakończenia. Bliźniaczy krater Teide, na wysokości około 3100 m: 800 m średnicy i 200 m głębokości. Szlak PNT 09 (Teide–Pico Viejo–Mirador de Las Narices del Teide) obchodzi Pico Viejo od południa, poniżej krawędzi krateru. Rezerwacja w Tenerife ON jest obowiązkowa, także na PNT 23, który prowadzi na przełęcz Pico Viejo: bez rezerwacji grozi kara. Jedna z najlepszych tras Parku Narodowego.",
   "cat": "Krater · Park narodowy"
  },
  "cumbre-dorsal": {
@@ -174,7 +174,7 @@
   "cat": "Szlaki piesze · Anaga"
  },
  "ruta-masca-playa": {
-  "desc": "⚠️ Wejście regulowane przez Cabildo: obowiązkowa wcześniejsza rezerwacja na oficjalnej stronie i atestowane buty górskie. Przystań jest zamknięta dla ruchu rekreacyjnego, więc szlakiem trzeba zejść i wrócić. Najsłynniejsza i najbardziej spektakularna trasa piesza Teneryfy. 3 godziny zejścia wąwozem do dziewiczej plaży Masca. Odbiór łodzią wliczony na koniec. Rezerwacja obowiązkowa. Tylko w zorganizowanej grupie.",
+  "desc": "⚠️ Wejście regulowane przez Cabildo: na jego oficjalnej stronie trzeba zarezerwować zarówno wejście na szlak, jak i łódź powrotną. Schodzi się pieszo z osady Masca do morza (około 5 km, około 4 godziny), a potem odpływa się łodzią z zatoki do Los Gigantes: z biletem na zejście nie można wrócić wąwozem pod górę, chyba że wyjście drogą morską zostanie zamknięte z powodu stanu morza — wtedy trzeba wrócić pieszo. Na start można dojechać tylko autobusem TITSA nr 355 z Santiago del Teide. Obowiązkowo: pełne obuwie górskie, kask wypożyczany przez obsługę szlaku, co najmniej 1,5 litra wody na osobę, coś energetycznego do jedzenia, naładowany telefon i dokument tożsamości. Dzieci poniżej 8 lat nie są wpuszczane. Najsłynniejsza i najbardziej spektakularna trasa piesza Teneryfy.",
   "cat": "Wąwóz · Masca"
  },
  "sendero-sentidos": {
@@ -258,16 +258,20 @@
   "cat": "Szlak · Teide (Łatwy · 5 km · 2h)"
  },
  "gr131-tramo1-esperanza-caldera": {
-  "desc": "Pierwszy odcinek szlaku dalekobieżnego GR-131, który przecina całą wyspę. 14 km, 5 godzin. Rusza z wioski La Esperanza (grzbiet, 850 m) i biegnie chronionym borem sosnowym do strefy rekreacyjnej La Caldera (Aguamansa). Lasy sosny kanaryjskiej, charakterystyczna mistyczna mgła. Szlak atestowany, biało-czerwony. Trudność średnia. Etapy jednodniowe. Dojazd autobusem do La Esperanza.",
-  "cat": "GR-131 odcinek 1 · Cumbre Dorsal (Średni · 14 km · 5h)"
+  "desc": "Pierwszy odcinek szlaku dalekobieżnego GR-131, który przecina całą wyspę. 29,8 km, 14 h 20 min, na wysokości od 915 do 1819 m n.p.m.; suma podejść 1853 m, suma zejść 1568 m. Rusza z wioski La Esperanza (grzbiet) i biegnie chronionym borem sosnowym do strefy rekreacyjnej La Caldera (Aguamansa). Lasy sosny kanaryjskiej, charakterystyczna mistyczna mgła. Szlak biało-czerwony, w trakcie oficjalnego zatwierdzania. Trudność bardzo wysoka. Etapy jednodniowe. Autobus: linia 41 przewoźnika Transportes La Esperanza, z dworca autobusowego w La Lagunie (Intercambiador) do Las Rosas w La Esperanza, codziennie.",
+  "cat": "GR-131 odcinek 1 · Cumbre Dorsal (Bardzo wysoka · 29,8 km · 14 h 20 min)"
+ },
+ "gr131-etapa2-caldera-portillo": {
+  "desc": "Odcinek 2 szlaku GR-131 Anaga-Chasna. Rusza ścieżką z parkingu strefy rekreacyjnej La Caldera (Aguamansa), w borze sosnowym przecina szlak SL-TF 81 Camino de La Orilla del Monte i mija krzyż Cruz del Dornajito. Ścieżkami i odcinkami duktu wspina się bez przerwy dawnym Traktem Królewskim Chasna aż do skrzyżowania El Portillo, przy Centrum dla Zwiedzających, już w Parku Narodowym Teide. 13,1 km, 5 h 40 min, do wysokości 2033 m n.p.m.; suma podejść 1188 m, suma zejść 347 m. Szlak w trakcie oficjalnego zatwierdzania. Trudność średnia.",
+  "cat": "GR-131 odcinek 2 · La Orotava (Średnia · 13,1 km · 5 h 40 min)"
  },
  "gr131-tramo5-vilaflor-arona": {
-  "desc": "Ostatni etap GR-131 na Teneryfie, dojście na turystyczne południe. 12 km, 4 godziny, praktycznie samo zejście. Rusza z Vilaflor (1400 m) do centrum Arony (610 m). Sosna kanaryjska na początku, dalej niski busz tabaib i wilczomleczy. Widoki na La Gomerę. Zamknięcie wyspiarskiej trasy, która zaczęła się w La Esperanza. Powrót autobusem 482/417 z Arony.",
-  "cat": "GR-131 odcinek 5 · Południe (Średni · 12 km · 4h)"
+  "desc": "Ostatni etap GR-131 na Teneryfie, dojście na turystyczne południe. 17,7 km, 7 h 20 min, na wysokości od 627 do 1610 m n.p.m.; suma podejść 597 m, suma zejść 1394 m. Rusza spod kościoła San Pedro w Vilaflor, mija kaplicę San Roque i przysiółek Ifonche i dochodzi do placu La Salud w historycznym centrum Arony. Sosna kanaryjska na początku, dalej niski busz tabaib i wilczomleczy. Widoki na La Gomerę. Zamknięcie wyspiarskiej trasy, która zaczęła się w La Esperanza. Trudność wysoka. Powrót autobusem 482/480 z Arony.",
+  "cat": "GR-131 odcinek 5 · Południe (Wysoka · 17,7 km · 7 h 20 min)"
  },
  "sendero-barranco-infierno": {
-  "desc": "⚠️ REZERWACJA OBOWIĄZKOWA na barrancodelinfierno.es (20 osób co 30 minut). Najczęściej odwiedzana trasa południa. 6,5 km w obie strony, 3,5 godziny. Wejście w centrum Adeje. Prowadzi „Gardzielą Piekieł” do najwyższego wodospadu Teneryfy (80 m). Kask obowiązkowy (zapewniony). Nie dla dzieci poniżej 5 lat. Jaskinie guanczów wzdłuż trasy. Jeśli trzeba ją zamknąć z powodu pogody lub ze względów bezpieczeństwa, organizator wysyła e-mail o 8:30 tego samego dnia. Trzeba zabrać wodę i buty trekkingowe.",
-  "cat": "Wąwóz · Adeje (Średni · 6,5 km · 3,5h · Rezerwacja)"
+  "desc": "⚠️ REZERWACJA OBOWIĄZKOWA na barrancodelinfierno.es (20 osób co 30 minut). Wstęp kosztuje 16 € dla dorosłego nierezydenta i 6 € dla rezydentów Wysp Kanaryjskich (barrancodelinfierno.es, listopad 2026). Najczęściej odwiedzana trasa południa. 6,5 km w obie strony, około 3 godzin. Wejście w centrum Adeje. Prowadzi „Gardzielą Piekieł” do najwyższego wodospadu Teneryfy (80 m). Kask obowiązkowy (zapewniony). Nie dla dzieci poniżej 5 lat. Jaskinie guanczów wzdłuż trasy. Jeśli trzeba ją zamknąć z powodu pogody lub ze względów bezpieczeństwa, organizator wysyła e-mail o 8:30 tego samego dnia. Trzeba zabrać wodę i buty trekkingowe.",
+  "cat": "Wąwóz · Adeje (Średnio łatwy · 6,5 km · 3h · Rezerwacja)"
  },
  "sendero-prtf-72-paisaje-lunar": {
   "desc": "Szlak do ikonicznego Księżycowego Krajobrazu, wyjątkowych formacji z białego pumeksu wyrzeźbionych przez erozję. 13,4 km pętlą, 4 godziny, przewyższenie +600 m. Start w Vilaflor. Przecina bór sosny kanaryjskiej i koryto wąwozu aż do spektakularnego krajobrazu. ⚠️ ZAMKNIĘCIA SEZONOWE z powodu akcji kontroli muflonów (kwiecień-czerwiec i październik-listopad, 7-16h). Przed wyjazdem należy sprawdzić tenerifeon.es. Obowiązkowy punkt.",
@@ -278,8 +282,8 @@
   "cat": "Szczyt · Arona (Średni · 3,7 km · 2h)"
  },
  "sendero-prtf-51-punta-teno": {
-  "desc": "Historyczny szlak do najbardziej odległej latarni wyspy. 11 km w jedną stronę, 4 godziny. Przechodzi przez tunel Teno (zalecana latarka) i schodzi drogą Camino del Risco w stronę Punta de Teno. ⚠️ Od 1 stycznia 2025: wjazd do Punta de Teno regulowany 10-19h (tylko autobusem). Szlak pozostaje otwarty, ale w tych godzinach nie można dojechać samochodem. Widoki na La Gomerę i La Palmę.",
-  "cat": "PR-TF 51 · Teno (Średni · 11 km · 4h)"
+  "desc": "⚠️ Brak dojazdu: droga TF-445 do Punta de Teno jest zamknięta z powodu osuwiska skalnego od 29 października 2026 r. i nie ma jeszcze daty ponownego otwarcia. Szlak PR-TF 51 zaczyna się na terenie rekreacyjnym San José de Los Llanos (El Tanque), prowadzi przez Los Bailaderos (Teno Alto) i schodzi do drogi na Punta de Teno, na 7. km TF-445: właśnie tej, która jest zamknięta. Liniowy, 22,6 km i około 5 godzin, według Cabildo o wysokim stopniu trudności; 933 m podejścia i 1939 m zejścia.",
+  "cat": "PR-TF 51 · Teno (Wysoka · 22,6 km · 5 h 5 min)"
  },
  "sendero-prtf-58-camino-risco": {
   "desc": "Dawna droga latarników z zawrotnym zejściem po klifach Teno. 10,5 km, 4,5-5 godzin, przewyższenie -684 m. Start na placu Los Bailaderos (Teno Alto) i zejście zygzakiem do Buenavista. Dawniej jedyny dostęp do Punta de Teno. Można połączyć z PR-TF 51 w pełną trasę. Dla piechurów z doświadczeniem. Zejście wymagające dla kolan. Powrót autobusem z Buenavista.",
@@ -290,23 +294,23 @@
   "cat": "Szlaki piesze · Chinamada · Domy w skale · Anaga"
  },
  "gr131-tramo2-portillo-guajara": {
-  "desc": "Odcinek 2 szlaku GR-131 Anaga-Chasna. Z Centrum dla Zwiedzających El Portillo (TF-21 km 32, 2030 m) biegnie dawnym Traktem Królewskim Chasna przez Las Siete Cañadas do przełęczy Degollada de Guajara (2715 m). Długość ~14 km. Trudność wysoka. Strefa chroniona Parku Narodowego Teide: nie wolno biwakować ani schodzić ze szlaku.",
-  "cat": "GR-131 · Odcinek 2 · Siete Cañadas · Teide · Wysoka"
+  "desc": "Odcinek 3 szlaku GR-131 Anaga-Chasna. Z Centrum dla Zwiedzających El Portillo (TF-21 km 32) biegnie dawnym Traktem Królewskim Chasna przez Las Siete Cañadas do przełęczy Degollada de Guajara. 13,1 km, 4 h, na wysokości od 2058 do 2389 m n.p.m.; suma podejść 494 m, suma zejść 140 m. Trudność średnia. Strefa chroniona Parku Narodowego Teide: nie wolno biwakować ani schodzić ze szlaku.",
+  "cat": "GR-131 · Odcinek 3 · Siete Cañadas · Teide · Średnia"
  },
  "gr131-tramo3-guajara-vilaflor": {
-  "desc": "Odcinek 3 szlaku GR-131. Z przełęczy Degollada de Guajara (2715 m) schodzi przez Księżycowy Krajobraz i bory Vilaflor do samej wioski (1400 m). Zejście 1300 m na ~12 km. Szlak przechodzi przy początku PR-TF 72 (Księżycowy Krajobraz). Vilaflor to najwyżej położona zamieszkana miejscowość Teneryfy. Trudność wysoka.",
-  "cat": "GR-131 · Odcinek 3 · Guajara → Vilaflor · Wysoka"
+  "desc": "Odcinek 4 szlaku GR-131. Z przełęczy Degollada de Guajara prowadzi przez obszary tufu wulkanicznego na trasie dawnego Traktu Królewskiego Chasna, wchodzi w bór sosnowy i schodzi do duktu Madre del Agua i wąwozu Las Mesas, a dalej do Vilaflor. 11,3 km, 5 h, na wysokości od 1390 do 2425 m n.p.m.; suma podejść 182 m, suma zejść 1141 m. W borze odbicie szlakiem PR-TF 72 (Vilaflor – Księżycowy Krajobraz – Vilaflor) prowadzi na punkt widokowy Los Escurriales. Vilaflor to najwyżej położona zamieszkana miejscowość Teneryfy. Trudność średnia.",
+  "cat": "GR-131 · Odcinek 4 · Guajara → Vilaflor · Średnia"
  },
  "pr-tf-52-monte-agua": {
   "desc": "PR-TF-52 Monte del Agua to jeden z najbardziej spektakularnych i najmniej uczęszczanych szlaków lasu wawrzynowego na Teneryfie, w Parku Wiejskim Teno. Zaczyna się w przysiółku Erjos (gmina Los Silos) i biegnie przez gęsty las wawrzynowy Monte del Agua do Las Portelas, z możliwością kontynuacji do El Palmar. Długość: 10,5 km. Trudność: niska (łagodne nachylenie niemal na całej trasie). Maksymalna wysokość: ~1100 m. Pierwotny las wawrzynowy z gołębiem turkusowym (endemitem) i gołębiem kanaryjskim, follao, viñátigo, lipą, ostrokrzewem i wielkimi wrzoścami. Spektakularny punkt widokowy w Mesita del Hurto nad lasem. Widoki na Teide z wyższych partii. Bardzo mały ruch w porównaniu ze szlakami Anagi.",
   "cat": "PR-TF-52 · Las wawrzynowy · Monte del Agua · Teno · Niska"
  },
  "golf-abama": {
-  "desc": "Jedno z najlepszych pól golfowych Europy według Golf Digest Editors Choice Award (pięć razy z rzędu). 18 dołków, par 72, 6271 m, projekt Dave'a Thomasa. Położone w Ritz-Carlton Abama Resort (Guía de Isora), z 23 jeziorami, wodospadami i 25 000 palm. Widoki na Atlantyk i La Gomerę. Meleksy z GPS w cenie. Nielimitowany driving range, putting green, akademia golfa. Handicap maks.: 28H/36M. Godziny: 7:30-19:30. Green fee w sezonie wysokim ~145€. Punkt odniesienia europejskiego golfa.",
+  "desc": "Jedno z najlepszych pól golfowych Europy według Golf Digest Editors Choice Award (pięć razy z rzędu). 18 dołków, par 72, 6271 m, projekt Dave'a Thomasa. Położone w Ritz-Carlton Abama Resort (Guía de Isora), z 23 jeziorami, wodospadami i 25 000 palm. Widoki na Atlantyk i La Gomerę. Meleksy z GPS w cenie. Nielimitowany driving range, putting green, akademia golfa. Handicap maks.: 28H/36M. Godziny: 7:30-19:30. Punkt odniesienia europejskiego golfa.",
   "cat": "Golf · 18 dołków · Par 72 · Guía de Isora · Luksus"
  },
  "golf-buenavista": {
-  "desc": "Pole golfowe zaprojektowane przez Severiana Ballesterosa, na północno-zachodnim krańcu Teneryfy. 18 dołków, par 72, 6150 m. Spektakularne naturalne otoczenie przy oceanie i Parku Przyrody Teno. Kilka dołków biegnie po krawędzi klifu, z wrażeniem uderzania prosto w morze. Jeziora przy dołkach 9 i 18. Akademia golfa. Zintegrowany hotel Meliá Hacienda del Conde 5*. Green fee w sezonie wysokim: 90-140€. Tel.: 922 129 034.",
+  "desc": "Pole golfowe zaprojektowane przez Severiana Ballesterosa, na północno-zachodnim krańcu Teneryfy. 18 dołków, par 72, 6150 m. Spektakularne naturalne otoczenie przy oceanie i Parku Wiejskim Teno. Kilka dołków biegnie po krawędzi klifu, z wrażeniem uderzania prosto w morze. Jeziora przy dołkach 9 i 18. Akademia golfa. Zintegrowany hotel Meliá Hacienda del Conde 5*. Tel.: 922 129 034.",
   "cat": "Golf · 18 dołków · Par 72 · Buenavista · Seve Ballesteros"
  },
  "golf-amarilla": {
@@ -374,8 +378,8 @@
   "cat": "Obszar przyrodniczy · Güímar · Wulkaniczny · Wschodnie wybrzeże"
  },
  "jardin-botanico-puerto-cruz": {
-  "desc": "Najstarszy ogród botaniczny Wysp Kanaryjskich i drugi najstarszy w Hiszpanii, założony w 1788 roku na rozkaz króla Karola III. Położony w Puerto de la Cruz (Calle Retama 2), mieści ponad 5000 gatunków tropikalnych i subtropikalnych oraz stuletnie drzewa o wysokości ponad 40 m. Dobro Kultury od 1994 roku. Godziny: 09:00–18:00 (zamknięte 1 stycznia, w Wielki Piątek i 25 grudnia). Wstęp: 3€. Dostępny pieszo z centrum Puerto de la Cruz.",
-  "cat": "Ogród botaniczny · Puerto de la Cruz · 1788 · 3€"
+  "desc": "Najstarszy ogród botaniczny Wysp Kanaryjskich i drugi najstarszy w Hiszpanii, założony w 1788 roku na rozkaz króla Karola III. Położony w Puerto de la Cruz (Calle Retama 2), mieści ponad 5000 gatunków tropikalnych i subtropikalnych oraz stuletnie drzewa o wysokości ponad 40 m. Dobro Kultury od 1994 roku. Godziny: 09:00–18:00 (zamknięte 1 stycznia, w Wielki Piątek i 25 grudnia). Dostępny pieszo z centrum Puerto de la Cruz.",
+  "cat": "Ogród botaniczny · Puerto de la Cruz · 1788"
  },
  "jardines-victoria-orotava": {
   "desc": "Tarasowe ogrody z XIX wieku w historycznym centrum La Orotava, przy placu Plaza de la Constitución. W stylu eklektycznym, z fontannami i kwiatami na kolejnych tarasach, zaprojektował je francuski artysta. Powstały jako mauzoleum markiza de la Quinta Roja, któremu biskupstwo odmawiało chrześcijańskiego pochówku; ostatecznie mu go przyznano i nigdy nie został tu pochowany. Z góry widać starówkę miasteczka.",
@@ -406,7 +410,7 @@
   "cat": "Punkt widokowy · Santa Cruz"
  },
  "montana-pelada": {
-  "desc": "Specjalny Rezerwat Przyrody przy El Médano i Montaña Roja. Kopalna wydma ze zlityfikowanego piasku, powstała tysiące lat temu. Wejście nagradza niepowtarzalnymi widokami na cieśninę La Bocayna i La Gomerę na horyzoncie. Kruchy ekosystem endemicznych roślin kanaryjskich. Krótkie i umiarkowane podejście, idealne o wschodzie słońca.",
-  "cat": "Wulkan · Rezerwat przyrody"
+  "desc": "Pomnik Przyrody nad morzem, na północny wschód od El Médano. To kaldera erupcji hydromagmatycznej w płytkiej wodzie: prawie 1,9 km średnicy i tylko 62 m wysokości, stąd druga nazwa Montaña Escachada. Zbudowana jest z hialoklastytów, mocno zbitych żółtawych piroklastów. Krawędzią krateru biegnie droga gruntowa. Wybrzeże to klif z plażami z wulkanicznego piasku, a w zatoce Ensenada de Pelada leży kopalna wydma. Roślinność typu cardonal-tabaibal, głównie słodka tabaiba. Krótkie i umiarkowane podejście, idealne o wschodzie słońca.",
+  "cat": "Wulkan · Pomnik przyrody"
  }
 }

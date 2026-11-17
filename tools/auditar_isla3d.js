@@ -174,6 +174,12 @@ function sinNavegador() {
      'sw.js: los cuatro, «red primero» (el .json y los PNG llegan juntos o no llegan)');
   ok(/tenerife-relieve\(-ao\)\?\\\.\(png\|json\)/.test(lee('tools/app_preparar.js')), 'la app de las tiendas lleva el relieve dentro (app_preparar.js)');
   ok(!/\beval\s*\(|console\.log|\.innerHTML\b|new Function/.test(mod), 'el modulo: sin eval, sin console.log, sin innerHTML');
+  /* el relieve se lee con <img>, no con createImageBitmap (1 de noviembre de 2026): en WebKit
+     (Safari, el iPhone), createImageBitmap cambiaba el PNG gris del cielo visible en +-2 y el 3D
+     no se dibujaba («El relieve no se ha leido bien»). Esta auditoria corre en Chromium, que no
+     lo ve, y por eso se mira en el codigo, sin sus comentarios, que lo explican y lo nombran. */
+  const sinComentarios = mod.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:])\/\/[^\n]*/g, '$1');
+  ok(!/createImageBitmap/.test(sinComentarios), 'el relieve se lee con <img>, no con createImageBitmap: en WebKit (Safari, el iPhone) cambia el PNG gris en +-2 y el 3D no se dibuja');
   /* las notas que pide la licencia del Copernicus DEM (articulo 6(b) y 6(c)):
      las mismas, palabra por palabra, en el modulo y en la herramienta, que
      las escribe en el .json (y --comprobar coteja el .json) */
@@ -243,18 +249,48 @@ async function navegador() {
   let b;
   try { b = await chromium.launch({ args }); }
   catch (e) { b = await chromium.launch({ args, executablePath: process.env.CHROME || '/usr/bin/google-chrome' }); }
-  const errores = [];
+  const errores = [], CARGAS = new WeakMap();
   const nueva = async (opc) => {
     const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'es-ES', serviceWorkers: 'block' }, opc || {}));
     const p = await ctx.newPage();
     p.on('pageerror', e => errores.push(e.message));
+    CARGAS.set(p, 0);
+    p.on('load', () => CARGAS.set(p, CARGAS.get(p) + 1));
     return { ctx, p };
   };
-  /* la bienvenida (idioma y «Empezar») y la pregunta del tour, si salen */
+  /* La bienvenida (idioma y «Empezar») y la pregunta del tour. La bienvenida
+     sale siempre que se abre la app: se espera a verla, y despues de
+     «Empezar», a que se haya ido de verdad. Antes se miraba una sola vez, y
+     si no se veia se seguia: el 3 de noviembre de 2026 una pasada siguio con
+     ella puesta, y tapo el boton «3D» treinta segundos. No se ha vuelto a ver
+     en 110 aperturas seguidas (80 con el procesador ocupado, 30 justo
+     despues de cerrar un 3D de noche), asi que si pasa, la prueba lo dice:
+     como estaba la pagina y cuantas veces se habia cargado. Si «Empezar» no
+     hizo nada, se toca otra vez, como haria cualquiera, y queda apuntado. */
   const bienvenida = async (p, L) => {
-    const w = await p.$('.v19-w-lang[data-lang="' + (L || 'es') + '"]'); if (w && await w.isVisible()) { await w.click(); await p.waitForTimeout(250); }
-    const s = await p.$('#v19-welcome-start'); if (s && await s.isVisible()) { await s.click(); await p.waitForTimeout(1800); }
-    const no = await p.$('.v19t-prompt button'); if (no && await no.isVisible()) { await no.click(); await p.waitForTimeout(300); }
+    const como = () => p.evaluate(() => { const v = document.getElementById('v19-welcome');
+      return { clase: v && v.className, display: v && v.style.display, idioma: document.documentElement.lang, estado: document.readyState, ms: Math.round(performance.now()) }; })
+      .then(pagina => JSON.stringify({ pagina, cargas: CARGAS.get(p) }), e => e.message);
+    const fallo = async que => { throw new Error(que + ': ' + await como()); };
+    const ida = ms => p.waitForFunction(() => document.getElementById('v19-welcome').classList.contains('hidden'), null, { timeout: ms }).then(() => true, () => false);
+    await p.waitForSelector('#v19-welcome-start', { state: 'visible', timeout: 15000 }).catch(() => fallo('la bienvenida no sale al abrir la app'));
+    await p.click('.v19-w-lang[data-lang="' + (L || 'es') + '"]');
+    await p.waitForTimeout(250);
+    await p.click('#v19-welcome-start');
+    if (!await ida(5000)) {
+      info('la bienvenida no se fue con el primer toque de «Empezar»: ' + await como());
+      await p.click('#v19-welcome-start');
+      if (!await ida(5000)) await fallo('la bienvenida no se va con «Empezar»');
+    }
+    await p.waitForFunction(() => document.getElementById('v19-welcome').style.display === 'none', null, { timeout: 10000 })
+      .catch(() => fallo('la bienvenida se va, pero no se quita'));
+    await p.waitForTimeout(1200);   // con los 600 ms de la bienvenida al irse, los 1800 de siempre
+    const no = await p.waitForSelector('.v19t-prompt .v19t-ghost', { state: 'visible', timeout: 5000 }).catch(() => null);
+    if (no) {
+      await no.click();
+      await p.waitForSelector('.v19t-prompt', { state: 'detached', timeout: 5000 }).catch(() => fallo('la pregunta del tour no se va con «Ahora no»'));
+      await p.waitForTimeout(300);
+    }
   };
   const arrancar = async (p, L) => {
     await p.goto(BASE, { waitUntil: 'networkidle' });
@@ -347,24 +383,50 @@ async function navegador() {
   /* con su hora: el navegador de prueba pinta por software y procesa tarde,
      pero el modulo mira la hora de cada toque */
   const toques = async (tipo, pts, ts) => cdp.send('Input.dispatchTouchEvent', Object.assign({ type: tipo, touchPoints: pts.map((q, i) => ({ x: q[0], y: q[1], id: i })) }, ts ? { timestamp: ts } : {}));
-  /* medir() corre con los dedos todavia puestos: despues de soltar, la
-     inercia sigue moviendo la vista (a proposito) */
-  const arrastre = async (pts0, pts1, pasos, medir) => {
+  /* Se mide dentro de la pagina, en el evento en que el ultimo dedo llega a
+     su sitio, despues del modulo (que escucha en el lienzo): con los dedos
+     todavia puestos, porque despues de soltar la inercia sigue moviendo la
+     vista (a proposito). Desde fuera no se puede: CDP manda un evento por
+     cada dedo que cambia y el navegador los entrega con los cuadros, asi que
+     al volver de toques() la pagina puede ir un paso atras, o haber visto un
+     dedo y no el otro. El 3 de noviembre de 2026 se midio asi, con un dedo en
+     su sitio y el otro un paso atras: el punto entre los dos, 2 px corrido,
+     eran 10,6 m, y «al soltar el pellizco» salio en rojo con la vista
+     quieta. */
+  await p.evaluate(() => {
+    const d = window.__tgDedos = {};
+    addEventListener('pointerdown', e => { d[e.pointerId] = [e.clientX, e.clientY]; }, true);
+    addEventListener('pointermove', e => { if (d[e.pointerId]) d[e.pointerId] = [e.clientX, e.clientY]; }, true);
+    const fuera = e => { delete d[e.pointerId]; };
+    addEventListener('pointerup', fuera, true);
+    addEventListener('pointercancel', fuera, true);
+    addEventListener('pointermove', () => {
+      const g = window.__tgGesto, v = Object.values(d);
+      if (!g || g.medida || v.length !== g.fin.length) return;
+      if (!g.fin.every(q => v.some(w => Math.abs(w[0] - q[0]) < 0.75 && Math.abs(w[1] - q[1]) < 0.75))) return;
+      g.medida = { suelo: g.punto ? TG_ISLA3D._prueba.suelo(g.punto[0], g.punto[1]) : null };
+    });
+  });
+  /* punto: donde se mide el suelo al final del gesto, con los dedos puestos */
+  const arrastre = async (pts0, pts1, pasos, punto) => {
+    await p.evaluate(([fin, punto]) => { window.__tgGesto = { fin, punto, medida: null }; }, [pts1, punto || null]);
     await toques('touchStart', pts0);
     for (let k = 1; k <= pasos; k++) {
       const f = k / pasos;
       await toques('touchMove', pts0.map((q, i) => [q[0] + (pts1[i][0] - q[0]) * f, q[1] + (pts1[i][1] - q[1]) * f]));
       await p.waitForTimeout(16);
     }
-    const r = medir ? await medir() : null;
     await toques('touchEnd', []);
+    /* y lo de despues, con el gesto ya entero en la pagina: medido y soltado */
+    const m = await p.waitForFunction(() => window.__tgGesto.medida && !Object.keys(window.__tgDedos).length && window.__tgGesto.medida, null, { timeout: 15000 })
+      .then(h => h.jsonValue(), () => { throw new Error('el gesto no llego entero a la pagina (' + JSON.stringify(pts0) + ' -> ' + JSON.stringify(pts1) + ')'); });
     await p.waitForTimeout(120);
-    return r;
+    return m.suelo;
   };
   const sinMover = async () => { for (let k = 0; k < 60; k++) { const e2 = await estado(p); if (!e2.animando) return; await p.waitForTimeout(200); } };
   /* arrastrar: el punto del suelo bajo el dedo se queda bajo el dedo */
   const g0 = await p.evaluate(() => TG_ISLA3D._prueba.suelo(200, 500));
-  const g1 = await arrastre([[200, 500]], [[150, 380]], 12, () => p.evaluate(() => TG_ISLA3D._prueba.suelo(150, 380)));
+  const g1 = await arrastre([[200, 500]], [[150, 380]], 12, [150, 380]);
   await sinMover();
   /* y al soltar, el punto de giro pasa al suelo del centro sin mover la vista */
   const g2 = await p.evaluate(() => TG_ISLA3D._prueba.suelo(150, 380));
@@ -392,7 +454,7 @@ async function navegador() {
   /* pellizcar: acerca y el punto entre los dedos no se mueve */
   const c0 = (await estado(p)).cam;
   const m0 = await p.evaluate(() => TG_ISLA3D._prueba.suelo(195, 450));
-  const m1 = await arrastre([[150, 450], [240, 450]], [[95, 450], [295, 450]], 14, () => p.evaluate(() => TG_ISLA3D._prueba.suelo(195, 450)));
+  const m1 = await arrastre([[150, 450], [240, 450]], [[95, 450], [295, 450]], 14, [195, 450]);
   await sinMover();
   await quieto(p);
   const c1 = (await estado(p)).cam;

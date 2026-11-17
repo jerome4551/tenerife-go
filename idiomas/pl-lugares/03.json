@@ -32,15 +32,15 @@
   "cat": "Pomoc kobietom · San Miguel"
  },
  "minigolf-oasis-cristianos": {
-  "desc": "Minigolf w Los Cristianos, najtańszy na południu Teneryfy (~4€ dorosły, ~3€ dziecko). Bardzo rodzinny i swobodny. Idealny na szybką partię. Spokojna atmosfera bez tłoku. Zalecana gotówka. Blisko promenady Los Cristianos.",
-  "cat": "Minigolf · Los Cristianos · Południe · Tanio"
+  "desc": "Minigolf w Los Cristianos. Bardzo rodzinny i swobodny. Idealny na szybką partię. Spokojna atmosfera bez tłoku. Zalecana gotówka. Blisko promenady Los Cristianos.",
+  "cat": "Minigolf · Los Cristianos · Południe"
  },
  "minigolf-parque-santiago": {
-  "desc": "Najbardziej osobliwy minigolf w Las Américas, w sercu kompleksu Parque Santiago (Av. Litoral b/n). Trzy pola: dwa po 18 dołków i jedno 9-dołkowe, zdobione ręcznie kolorowymi mozaikami ceramicznymi. Egzotyczny ogród z 580 gatunkami roślin, 60 odmianami kaktusów (niektóre mają ponad 80 lat) i wijącym się wzdłuż trasy strumykiem. Otwarte do północy. Nielimitowany czas gry. Sprzęt w cenie. Bar i napoje przy wejściu. ~7€ dorosły, ~6€ dziecko. Gotówka.",
+  "desc": "Najbardziej osobliwy minigolf w Las Américas, w sercu kompleksu Parque Santiago (Av. Litoral b/n). Trzy pola: dwa po 18 dołków i jedno 9-dołkowe, zdobione ręcznie kolorowymi mozaikami ceramicznymi. Egzotyczny ogród z 580 gatunkami roślin, 60 odmianami kaktusów (niektóre mają ponad 80 lat) i wijącym się wzdłuż trasy strumykiem. Otwarte do północy. Nielimitowany czas gry. Sprzęt w cenie. Bar i napoje przy wejściu. Płatność gotówką.",
   "cat": "Minigolf · Las Américas · 3 pola · Ogród kaktusów · Do północy"
  },
  "minigolf-la-pinta-adeje": {
-  "desc": "Minigolf o 18 dołkach w Costa Adeje, przy plaży La Pinta (C/ Roma 4). Z widokiem na morze. Cena: ~12€ dorośli i ~8€ dzieci (w cenie kije, piłki i karta). Bar i snack bar przy polu. Godziny: mniej więcej 12:00-22:00 (bywa różnie). To najbardziej wymagający z minigolfów Costa Adeje.",
+  "desc": "Minigolf o 18 dołkach w Costa Adeje, przy plaży La Pinta (C/ Roma 4). Z widokiem na morze. W cenie kije, piłki i karta. Bar i snack bar przy polu. Godziny: mniej więcej 12:00-22:00 (bywa różnie). To najbardziej wymagający z minigolfów Costa Adeje.",
   "cat": "Minigolf 18 dołków · La Pinta · Costa Adeje · Widok na morze"
  },
  "minigolf-precise-resort": {
@@ -57,7 +57,7 @@
  },
  "playa-puertito": {
   "desc": "Główna plaża Puertito de Güímar: czarny piasek i otoczaki w zatoczce łagodzącej falowanie, z promenadą i parkingiem. Lokalna, rodzinna atmosfera, klub żeglarski i restauracje przysiółka o krok stąd; horyzont zamyka rezerwat przyrody Malpaís de Güímar. Do wejścia do wody zalecane buty do wody.",
-  "cat": "Zatoczka · Żółwie morskie"
+  "cat": "Plaża · Güímar"
  },
  "playa-puertito-adeje": {
   "desc": "Mała zatoczka z ciemnym piaskiem i otoczakami w rybackim przysiółku Adeje, znana z żółwi, które odpoczywały w jej zatoce; dziś spotkania są okazjonalne i nie wolno ich dotykać ani karmić. Dobry snorkeling, dużo ryb. Bar na plaży przy samym piasku i nadmorski szlak z La Caleta. Bardzo ograniczony parking i budowa dużego kompleksu hotelowego w okolicy.",
@@ -264,7 +264,7 @@
  "farm-anchieta": {
   "desc": "Apteka z wydłużonymi godzinami w La Lagunie, przy Padre Anchieta. Dyżur nocny.",
   "cat": "Apteka dyżurna · La Laguna",
-  "hours": "Pn-Nd 8:00–22:00"
+  "hours": "Pn-Pt 8:00–22:00 · So-Nd 9:00–22:00"
  },
  "farm-blesa": {
   "desc": "Bardzo uczęszczana apteka w samym Los Cristianos. Dobra obsługa i konkurencyjne ceny.",
@@ -272,7 +272,7 @@
   "hours": "Pn-Pt 8:30–20:30 · So 9:00–20:00"
  },
  "farm-orotava": {
-  "desc": "Apteka otwarta 365 dni w roku przy ośrodku zdrowia Las Dehesas.",
+  "desc": "Apteka otwarta 365 dni w roku, naprzeciwko hali sportowej Quiquirá.",
   "cat": "Apteka · La Orotava",
   "hours": "Codziennie 9:00–21:00"
  },
@@ -292,19 +292,19 @@
   "hours": "Pn-Pt 9:00–21:00 · So 9:15–14:00"
  },
  "farm-hernandez-sct": {
-  "desc": "Apteka z całodobowym stałym dyżurem w Santa Cruz de Tenerife. Jedna z niewielu aptek pracujących bez przerwy w stolicy. Niezbędna przy nocnych nagłych wypadkach.",
-  "cat": "Apteka 24h · Santa Cruz",
-  "hours": "24h · Codziennie · Dyżur stały"
+  "desc": "Apteka przy ulicy José Hernández Alfonso, na rogu z ulicą Emilio López, w Santa Cruz de Tenerife. W nocy jest zamknięta: całodobową apteką dyżurną w Santa Cruz jest Farmacia Salamanca przy ulicy Horacio Nelson 21.",
+  "cat": "Apteka · Santa Cruz",
+  "hours": "Pn-Pt 8:00–21:00 · So 9:00–14:00"
  },
  "farm-islas-canarias-sct": {
-  "desc": "Apteka przy Av. Islas Canarias w Santa Cruz. Rotacyjny dyżur nocny. Długie godziny w dni powszednie. Dobrze położona w strefie centralnej.",
+  "desc": "Apteka przy Av. Islas Canarias w Santa Cruz. Otwarta codziennie przez cały rok od 8:00 do 24:00. Dobrze położona w strefie centralnej.",
   "cat": "Apteka · Centrum Santa Cruz",
-  "hours": "Pn-Pt 8:30–20:00 · So-Nd 9:00–14:00"
+  "hours": "Codziennie 8:00–24:00"
  },
  "farm-pozo-pcruz": {
-  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 9:00 do 22:00, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
+  "desc": "Apteka z długimi godzinami w Puerto de la Cruz. Otwarta codziennie przez cały rok od 8:30 do 21:00, także w święta. Jedna z najbardziej dostępnych dla turystów na północy wyspy.",
   "cat": "Apteka · Puerto de la Cruz",
-  "hours": "Codziennie 09:00–22:00"
+  "hours": "Codziennie 08:30–21:00"
  },
  "farm-bethencourt-pcruz": {
   "desc": "Apteka z wydłużonymi godzinami w Puerto de la Cruz. Otwarta 365 dni w roku od 8:30 do 22:00. Rotacyjny dyżur nocny. Dobrze położona w strefie turystycznej.",
@@ -314,12 +314,12 @@
  "farm-americas-arona": {
   "desc": "Apteka w Los Cristianos, w turystycznej strefie południa. Długie godziny i obsługa w kilku językach. Rotacyjny dyżur z innymi aptekami w okolicy.",
   "cat": "Apteka · Los Cristianos · Południe",
-  "hours": "Pn-Pt 9:00–21:00 · So 9:00–15:00 · Dyżur rotacyjny"
+  "hours": "Pn-Pt 9:00–20:30 · So 9:00–14:00 i 17:00–20:00 · Dyżur rotacyjny"
  },
  "farm-adeje-austria": {
-  "desc": "Apteka w Adeje, w centrum. Długie godziny w dni powszednie. Dyżur rotacyjny z innymi aptekami strefy Adeje i Costa Adeje.",
+  "desc": "Apteka w San Eugenio Alto (Costa Adeje). Długie godziny w dni powszednie. Dyżur rotacyjny z innymi aptekami strefy Adeje i Costa Adeje.",
   "cat": "Apteka · Adeje",
-  "hours": "Pn-Pt 9:00–21:00 · So 9:00–14:00 · Dyżur rotacyjny"
+  "hours": "Pn-Pt 9:00–20:30 · So 9:00–17:30 · Dyżur rotacyjny"
  },
  "gas-tf1-granadilla": {
   "desc": "Carretera TF-1 km 54, Granadilla de Abona. Paliwa: benzyna 95, benzyna 98, olej napędowy i odnawialny olej napędowy.",
@@ -392,7 +392,7 @@
   "hours": "Pn-Nd 06:00-22:00"
  },
  "puerto-santa-cruz": {
-  "desc": "⚠️ Port handlowy o ograniczonym dostępie. Największy port Wysp Kanaryjskich i jeden z najważniejszych na Atlantyku. Nabrzeża kontenerowe, wycieczkowce i ładunki ogólne. Wielkie transatlantyki cumują właśnie tutaj — imponujące widowisko z Parque Marítimo. Dostęp tylko dla pracowników i pasażerów rejsów z dokumentami. Zewnętrzna promenada nadmorska JEST publiczna.",
+  "desc": "⚠️ Port handlowy o ograniczonym dostępie. Główny port Teneryfy i jeden z najważniejszych na Atlantyku. Nabrzeża kontenerowe, wycieczkowce i ładunki ogólne. Wielkie transatlantyki cumują właśnie tutaj — imponujące widowisko z Parque Marítimo. Dostęp tylko dla pracowników i pasażerów rejsów z dokumentami. Zewnętrzna promenada nadmorska JEST publiczna.",
   "cat": "⚠️ Port handlowy · Tylko obserwacja"
  },
  "puerto-los-cristianos": {

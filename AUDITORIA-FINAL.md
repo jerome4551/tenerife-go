@@ -27,12 +27,12 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **979**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
+| Lugares | **980**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
 | Ficheros | **427** versionados el 17 de octubre: 112 en `tools/`, 111 en `idiomas/`, 65 en `datos/`, 47 en `faq/`, 41 en la raíz, 36 en `vendor/` —con las 21 tipografías—, 5 en `supabase/`, 5 en `.github/`, 3 en `mapa/`, 1 en `modulos/` y 1 en `registro/` |
-| Descarga | **1.081 kB** en castellano · **1.196 kB** en el peor caso (búlgaro) · 1.182 kB en polaco, el 1 de noviembre, con la cumbre del Teide en el mapa plano, que suma 1.105 bytes de `index.html` comprimido (`ponerCimas`, su regla y sus comentarios), con el mapa base recortado del detallado, que suma 114 bytes de `index.html` comprimido (los comentarios del estilo y del fondo de la isla, menos el estilo propio del base y dos filas de la tabla china) y por redondeo no se nota (el mapa base no cuenta: no se pide al arrancar), con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
+| Descarga | **1.084 kB** en castellano · **1.199 kB** en el peor caso (búlgaro) · 1.184 kB en polaco, el 3 de noviembre por la tarde, con la hora de las series en la política de «Su cuerpo», que suma 132 bytes de `index.html` comprimido y por redondeo solo se nota en búlgaro. Antes, 1.084, 1.198 y 1.184, con «Su cuerpo» de la segunda fase («Comida», el asistente y «Su deporte»), que suma 2,1 kB de `index.html` comprimido: su punto de la política de privacidad, más largo, en los diez idiomas (2,0 kB), y el cargador con la ruta de sus datos (164 bytes); el módulo y sus datos se piden al abrir la pestaña. Sin ella, 1.082, 1.196 y 1.182, con «Su cuerpo» dentro de la pestaña Cuerpo del perfil, que suma 220 bytes de `index.html` comprimido (su cargador, que ahora abre el perfil en esa pestaña, y su comentario) y por redondeo solo se nota en castellano, inglés, alemán y chino tradicional; con la cumbre del Teide en el mapa plano, que suma 1.105 bytes de `index.html` comprimido (`ponerCimas`, su regla y sus comentarios), con el mapa base recortado del detallado, que suma 114 bytes de `index.html` comprimido (los comentarios del estilo y del fondo de la isla, menos el estilo propio del base y dos filas de la tabla china) y por redondeo no se nota (el mapa base no cuenta: no se pide al arrancar), con la isla en 3D, «Su cuerpo», los bloques quinto a undécimo, el trato de usted, el perfil con los de oro, el botón SOS con sus avisos, el Carnaval de 2027 y lo que entró del 24 al 31 de octubre. La isla en 3D suma 2 kB (3 en polaco, por redondeo): el botón «3D», su estilo, su cargador con la huella del relieve y sus tres filas en los diez idiomas; el motor (`modulos/isla3d.js`) y el relieve se piden al tocarlo. Sin ella, con «Su cuerpo», 1.078, 1.193 y 1.178. «Su cuerpo» suma 2 kB en castellano y en polaco, y 3 en búlgaro: su cargador y su apartado de la política, en los diez idiomas, van en `index.html`; la pantalla y sus ejercicios se piden al abrirla. Sin él, con el perfil de las tres pestañas, 1.076, 1.190 y 1.176, como antes. El undécimo bloque, el dibujo del mapa y los gestos de zoom, suma 8 kB en los tres; la altitud de los picos y el chino del mismo día, 159 bytes de `index.html` comprimido, que por redondeo solo se notan en polaco; y los nombres de las fichas en el mapa en chino, 2,6 kB (3 en castellano, 2 en búlgaro y en polaco), porque su tabla va dentro de `index.html`. Sin ellos, el `main` del 31 da 1.065, 1.180 y 1.165, y el del 24 por la noche daba 1.060, 1.174 y 1.160. El noveno y el décimo bloque y el Carnaval suman 4 kB, también en búlgaro y en polaco: el fondo de la isla para el pellizco y el ajuste al soltarlo, con sus comentarios, las fichas del Teide, más largas en los diez idiomas, y la fecha del Carnaval de 2027 en el botón de fiestas (353 bytes). Los avisos suman 1 kB: la tarjeta del permiso de las notificaciones, que ahora dice también el consejo de los domingos y el aviso del semáforo, en los diez idiomas, y lo que abre su guía con la app ya abierta; y en el asistente, la respuesta que lo dice igual. Los de oro, 249 bytes de `index.html` comprimido (los nueve textos de la política del bloque 5, algo más largos, el botón búlgaro y los comentarios de los dos cargadores), que por redondeo solo se notan en castellano, francés y chino tradicional; su pantalla y sus dibujos se piden al tocar «Cuenta». El botón SOS suma 4 kB (5 en búlgaro y en polaco): el botón, el armazón del panel con la barra del 112 y su cargador, y sus ocho filas; las guías (`modulos/emergencias.js`) se piden al abrir el panel. El perfil suma 9 kB (8 en búlgaro): el cargador, las visitas comprobadas y los textos nuevos de la política y del asistente; la pantalla (`modulos/perfil.js`) se pide al tocar «Cuenta», y los avatares (`modulos/avatares.js`), al abrirla o si hay uno elegido. El octavo bloque suma 2 kB (3 en búlgaro): las fichas del Teide corregidas, más largas, la letra del panel a 11 px y sus comentarios. El panel del cielo suma 11 kB, con «Apunta al cielo», la ficha, lo que piden las reseñas, los satélites y la noche guiada, también en voz alta; el modo nativo de la App Store, 1 kB; lo demás, con las curiosidades de las constelaciones, lo pide al abrirlo. Sale de `python3 tools/peso_descarga.py`, no de la memoria |
 
 ## Qué lineas paran en cada marquesina
 
@@ -4092,10 +4092,24 @@ su texto, y si «ⓘ» tiene caja. Con el módulo de antes del arreglo, la misma
 medida da «ⓘ» a la vista (43 px); con el de ahora, dos líneas y sin «ⓘ»
 (32 px): sabe ponerse en rojo.
 
-**Lo que falta.** Lanzar el workflow con el bloque en `main`: la primera vez
-dirá si la API de la IDEE contesta como dice su documentación (el formato de
-`subset`, el tamaño máximo, el GeoTIFF que devuelve). Si no, el relieve sale de
-Copernicus y el resumen dice por qué.
+**El 1 de noviembre, de verdad.** Con el bloque en `main`, el workflow se lanzó
+primero de prueba (`solo_probar`, `fuente` = `ign`). La API de la IDEE
+contesta, con el `subset` y el GeoTIFF que dice su documentación, pero no
+acepta los trozos que pide la herramienta:
+
+- a los de 0,04° responde «HTTP 500 … Requested bbox width 4473.32»;
+- a los de 0,02°, «… Requested bbox height 2546.9»;
+- los de 0,01° sí salen: unos 1,1 × 1,0 km, 49.284 píxeles con dato y unos
+  210 kB cada uno.
+
+Partiendo cada trozo dos veces, a los 40 minutos del tope del paso llevaba
+1.867 trozos bajados y no había cubierto la isla. El paso se cortó y el
+relieve salió del Copernicus DEM, como está previsto, con el aviso en el
+resumen.
+
+Para que salga del IGN haría falta pedir desde el principio trozos de
+0,01° y darle al paso más tiempo. Es un cambio en `relieve_ign.py` y en el
+workflow, y lo decide Jerome.
 
 ## La isla en 3D, encima de «Su cuerpo» (1 de noviembre)
 
@@ -4178,10 +4192,16 @@ Y «Idiomas»: 49 tablas, 3183 filas y 5.330 (`auditar_web.js` y
   por variables de entorno. El YAML se lee y sus pasos pasan `bash -n`. Las
   expresiones que quedan en el workflow solo pueden valer lo que escriben el
   propio guion o GitHub.
-- Visto de paso y sin tocar: `generar-mapa.yml` pega igual «fecha_build» y
-  «maxzoom» en el shell desde antes de esta entrega. También lo lanza solo
-  quien tiene permiso de escritura. Se puede cerrar del mismo modo, en otro
-  commit, si Jerome quiere.
+- `generar-mapa.yml` pegaba igual «fecha_build» y «maxzoom» en el shell,
+  desde antes de esta entrega. Jerome, el 1 de noviembre: «si ciérralo».
+  Se cerró del mismo modo (`5056310`):
+  - «maxzoom» es una lista cerrada, 14 o 15 (lo que dice `mapa/LEEME.md`);
+  - «fecha_build» solo vale vacía o una fecha AAAAMMDD;
+  - la fecha, el zoom, el tamaño y la compatibilidad entran a los guiones
+    por variables de entorno, también en el mensaje del commit.
+
+  La validación deja pasar «», «20261031», «14» y «15». Para con «2026103»,
+  «$(touch x)», «20261031; touch x», «16» o «14 --x», sin ejecutar nada.
 
 **Antes de la auditoría entera**, sobre `ab623bd`, en verde:
 
@@ -4205,13 +4225,4963 @@ rojo ni sin ejecutar. Lo que pedía la nota 17: aquí `pmtiles` y
 `auditar_en_el_mar.py` e `informe_lugares.js` corren y salen en verde. El
 `tsc` de aquí es el 6.0.2, y `auditar_cielo.js` da 307 de 307.
 
-**Lo que falta, como dicen las notas, y todo cuando Jerome lo diga:**
+**El 1 de noviembre.** Jerome: «Súbelo todo. Con cuidado».
 
-1. Subirlo.
-2. Lanzar «Generar relieve 3D» (`fuente` = `ign`).
-3. Traer su commit y pasar otra vez la auditoría entera, ya con la vista de
-   verdad: la cumbre a su altura y la sombra del atardecer.
-4. Mirarlo en el móvil.
+1. **Subido.** La pila entera fue encima del `main` de ese momento
+   (`7e40233`), en avance rápido: 21 commits, hasta `d967aae`.
+   - Lleva el perfil, «Su cuerpo» y la isla en 3D.
+   - Lleva también el párrafo de la auditoría del perfil (el de `88749e9`),
+     que se había quedado fuera porque «Su cuerpo» empezó encima de
+     `3fac3da`.
+
+   Antes de subir se comprobó todo esto:
+   - lo único distinto de lo auditado eran los seis ficheros de los
+     robots, iguales que en `main`;
+   - el cambio de la pila era byte a byte el mismo;
+   - no había secretos, ni `CNAME`, ni `app/www/`.
+
+   Al ponerla encima de `main`, cada commit cambió de nombre. Este
+   documento los cita con el de la rama donde se auditaron, y en `main` son
+   estos:
+
+   | Auditado | En `main` | Qué |
+   |---|---|---|
+   | `8d0af93` | `34977c7` | Perfil: los 29 retirados, para quien ya llevaba uno |
+   | `b16d8a6` | `c64db95` | Perfil: tres pestañas, Viaje, Cuerpo y Cuenta |
+   | `3fac3da` | `b8598e7` | Perfil: fuera la cabina roja británica, que no es libre de derechos |
+   | `38b7eca` | `c4f652a` | «Su cuerpo», bloque 1: el módulo y los 533 ejercicios, tal cual |
+   | `6712ba5` | `3065ba0` | «Su cuerpo», bloque 2: se abre desde la pestaña Cuerpo del perfil |
+   | `7bce404` | `1dbf8a3` | «Su cuerpo», bloque 3: los botones como el resto de la app, y la IA dicha |
+   | `83b0d56` | `ca314f3` | «Su cuerpo», bloque 4: la política de privacidad lo dice |
+   | `25f88bc` | `361b2be` | «Su cuerpo», bloque 5: las fuentes de los ejercicios, en cada idioma |
+   | `98d2121` | `379103d` | «Su cuerpo», bloque 6: las pruebas, dentro de la app |
+   | `6e3b86d` | `100e033` | «Su cuerpo»: la auditoría y el README |
+   | `a4e7d92` | `62fbf77` | «Su cuerpo», bloque 7: el diseño nuevo |
+   | `a5d543f` | `71cd0ac` | «Su cuerpo», bloque 8: la línea del día, con los dos puntos de cada idioma |
+   | `96f68e5` | `8a54657` | «Su cuerpo», bloque 9: dos controles de la auditoría entera |
+   | `f47de06` | `18b0afb` | «Su cuerpo»: la auditoría, con el diseño nuevo y la auditoría entera |
+   | `b04be7c` | `1c3807e` | La isla en 3D, sin conexion: el relieve oficial con el mapa encima |
+   | `18ab6ad` | `0ea1d57` | El mapa de la isla, rincon por rincon: el mapa base, recortado del detallado |
+   | `ba6e98a` | `2c63d65` | La cumbre del Teide en el mapa plano, con su triangulo y sus 3.715 m |
+   | `6dc1034` | `a1d5578` | El relieve del 3D, del MDT05 del IGN (y si no sale, del Copernicus DEM) |
+   | `ab623bd` | `4543527` | El relieve del 3D: lo que se elige al lanzar el workflow no entra en el shell |
+   | `f46306c` | `c286a4a` | La isla en 3D, encima de «Su cuerpo»: la auditoría |
+   | `0a0e64a` | `d967aae` | Perfil: la auditoría entera de los retirados, las pestañas y la cabina |
+
+   GitHub Pages lo publicó, y «Comprobar el dominio» salió en verde:
+   `tenerifego.app` y la dirección vieja, la web de ese commit y el aviso de
+   instalar en Safari y en el navegador de Instagram.
+2. **El relieve, primero de prueba** (`solo_probar`, `fuente` = `ign`):
+   - El del IGN no salió: lo explica arriba «El relieve del 3D, del MDT05 del
+     IGN».
+   - El de Copernicus pasó `--comprobar` en verde. Su cota máxima, 3.695,5 m,
+     cae a 38 m de la cumbre de la ficha.
+3. **El relieve de verdad, sin tocar `main`.** El fichero de la prueba no se
+   puede bajar a esta sesión: el proxy no llega al almacén de GitHub donde
+   se guardan los artefactos. Para no publicar un 3D sin auditar, el
+   workflow se lanzó en la rama de trabajo de la sesión
+   (`claude/tenerife-go-security-review-7r5ayk`):
+   - Esa rama solo tenía las pruebas del 12 de octubre, ya quitadas, con el
+     contenido de `a7d4b53`. Se le puso `main` encima con un merge, sin
+     forzar.
+   - Se lanzó con `fuente` = `copernicus`, que da lo mismo sin los 40
+     minutos del IGN.
+   - Su commit, de github-actions (`4a7d7a4` en la rama de trabajo; en
+     `main`, `f2dce4d`), lleva los tres ficheros y la huella
+     `9631a6319dc1b1cd` en `sw.js` y en `index.html`, y nada más.
+   - Es el mismo relieve que la prueba, byte a byte: la misma huella y los
+     mismos tamaños.
+   - Ninguno de los 638 textos de su `.json` lleva `<`, `>` ni
+     `javascript:`.
+4. **La auditoría con el 3D de verdad**, con el relieve encima de `main`:
+   - `relieve_construir.py --comprobar`: «RELIEVE EN VERDE».
+   - `auditar_isla3d.js` abre la vista de verdad en un móvil emulado: 57
+     controles, ninguno en rojo. En el arrastre con la CPU ×4 y WebGL por
+     software, el fotograma va a 17 ms de mediana, y el peor llegó a 2,6 s.
+   - La auditoría entera, sobre `37fa759` (en `main`, `5056310`, encima de un
+     commit más del robot de los satélites): «AUDITORIA EN VERDE», ningún
+     control en rojo ni sin ejecutar.
+
+**Lo que queda:**
+
+- Mirarlo en el móvil: el botón «3D», los gestos, la luz y las sombras, en
+  modo avión y en un móvil viejo, por ese fotograma de 2,6 s.
+- Decidir si el relieve tiene que salir del IGN (lo explica arriba «El
+  relieve del 3D, del MDT05 del IGN»).
+
+## El 3D y la cabecera de «Su cuerpo», en el iPhone (1 de noviembre)
+
+Jerome, el 1 de noviembre, con tres capturas de su iPhone: «La 3D no funciona .
+El cuerpo los botones de arriba se tapan . Y no veo porque no ponerlo directo en
+la sección cuerpo . Y si puedes poner el personaje». Aquí van las dos primeras
+cosas. Las otras dos, «Su cuerpo» dentro de la pestaña Cuerpo y con el
+personaje, van aparte.
+
+**El 3D** (`6a54a3d`; en `main`, `ff0c75f`). En el iPhone decía «El relieve no
+se ha leído bien en este navegador y no se dibuja». Se probó en una máquina Mac
+de GitHub, con WebKit 26, el motor de Safari y de todos los navegadores del
+iPhone. La prueba fue un workflow de la rama de trabajo de la sesión, solo de
+lectura:
+
+- el PNG del relieve, el de color, se leía exacto;
+- el PNG gris del cielo visible, leído con `createImageBitmap`
+  (`colorSpaceConversion: 'none'`), cambiaba 272.733 de sus 1.642.445
+  valores, en ±2 (255 pasaba a 254). Las sumas del `.json` no cuadraban, y el
+  módulo, como debe, no dibujaba alturas falsas;
+- el mismo PNG, leído con `<img>`, salía exacto, como en Chromium.
+
+`modulos/isla3d.js` lee ahora los dos PNG con `<img>`, y en WebKit el 3D se
+abre: listo, sin aviso y sin errores de página. El relieve no cambia. Esta
+auditoría corre en Chromium, que no lo ve, así que `auditar_isla3d.js` mira el
+código: el relieve se lee sin `createImageBitmap`. Con el módulo de antes, ese
+control sale en rojo.
+
+**La cabecera** (`a663515`; en `main`, `cd8c87a`). En «Su cuerpo», la cabecera
+tapaba «Músculos | Aspecto», con una franja vacía encima. En el iPhone, la isla
+dinámica deja 59 px arriba. `#cuerpo-panel` y `#perfil-panel` ya los dejan con
+su `padding-top`, y lo pegado (`position: sticky`) se mide desde ahí. Pero la
+cabecera tenía además `top: env(safe-area-inset-top)`, y bajaba 59 px de más.
+Con la isla simulada en Chromium (`Emulation.setSafeAreaInsetsOverride`):
+
+- En «Su cuerpo», la cabecera iba de 118 a 190, y «Músculos | Aspecto»
+  (149–199) quedaba debajo. Ahora va de 59 a 131, y los botones se ven.
+- En el perfil, la cabecera estaba en 118, y no en 59. Al cambiar de pestaña
+  desde abajo, lo primero de la pestaña nueva quedaba en 127, detrás de la
+  barra (174–232). Ahora la barra va en 115–173, y la pestaña en 186.
+
+Lo que cambia:
+
+- `modulos/cuerpo.js`, desde sus fuentes, con `construir.py`: la cabecera con
+  `top: 0`, y la escena de «Aspecto» con `top: 64px`. Nada más. Su huella pasa
+  de `bb774cf7…7f49` a `c706ef9a…0ed6`, y sigue en 254 kB (77 kB comprimido).
+- `modulos/perfil.js`: la cabecera con `top: 0` y la barra con
+  `top: var(--tgp-cab)`. Al bajar, `irAPestana` resta el margen.
+- `probar_cuerpo.js` (17) y `probar_perfil.js` (p6e) prueban lo mismo con la
+  isla simulada. Con el CSS de antes, salen en rojo.
+
+**La auditoría entera**, sobre `a663515` (en `main`, `cd8c87a`, encima de dos
+commits más de los robots: los avisos de AEMET y los precios de las
+gasolineras): «AUDITORIA EN VERDE», ningún control en rojo ni sin ejecutar.
+`auditar_isla3d.js` da 58 de 58, `probar_cuerpo.js` 192 de 192 y
+`probar_perfil.js` 142 de 142.
+
+**Lo que queda:** mirarlo en el iPhone. Por un lado, el 3D. Por otro, la parte
+de arriba de «Su cuerpo» y del perfil, con la isla dinámica.
+
+## «Su cuerpo», dentro de la pestaña Cuerpo y con su personaje (1 de noviembre)
+
+Jerome, el 1 de noviembre, con las capturas de su iPhone: «Y no veo porque no
+ponerlo directo en la sección cuerpo . Y si puedes poner el personaje».
+
+**Cómo se ve.** Al abrir la pestaña Cuerpo del perfil, «Su cuerpo» ya está ahí,
+encima de «Sus datos», sin tocar nada. Al lado de su título va el personaje en
+pequeño: el de «Aspecto», de frente y de medio cuerpo, como el maniquí de la
+tarjeta del prototipo. Lo dibuja el propio módulo, con el aspecto elegido, y
+cambia con él. El resto es lo de antes: «Músculos | Aspecto», la lámina, la
+semana, los 12 grupos y los ejercicios.
+
+- Al bajar, la cabecera y la barra de las pestañas del perfil se quedan
+  arriba. En «Aspecto», el personaje grande se pega justo debajo de la barra.
+- La hoja de un grupo y la ficha de un ejercicio siguen yendo encima, con su
+  «atrás» y su Escape. Mientras están abiertas, lo demás del perfil queda
+  inerte y no se desplaza.
+- Sin hoja abierta, «atrás» y Escape son los del perfil, y lo cierran entero.
+  «Su cuerpo» no añade ninguna entrada al historial.
+- La tarjeta «Su cuerpo» solo se ve mientras llega el módulo, o si no llega
+  (sin red y sin haberlo guardado nunca). Entonces dice «No se pudo abrir.
+  Compruebe la conexión e inténtelo de nuevo», y su «Abrir» lo vuelve a
+  intentar.
+- El año de nacimiento se escribe en «Sus datos», en la misma pestaña. Al
+  guardarlo, «Su cuerpo» se repinta en el acto, con la recomendación de su
+  edad y la marca de las 10 series.
+
+En los diez idiomas, el personaje, el título y el lema caben uno al lado del
+otro. En francés y en búlgaro, el lema va en dos líneas, y nada se sale de la
+pantalla: lo mira `probar_cuerpo.js`, y se vio en las capturas de los diez.
+
+**Lo que se arregló de paso:**
+
+- **El «atrás» de varios pasos de golpe** (en el navegador, manteniéndolo
+  pulsado). Antes cerraba un solo nivel. Desde la ficha de un ejercicio, al
+  saltar hasta antes del perfil, la hoja se quedaba abierta en el perfil ya
+  cerrado, y al volver a abrirlo lo dejaba inerte. Ahora el módulo mira adónde
+  se vuelve y cierra de una vez todo lo que quedaba encima.
+- **El Escape con una hoja abierta, si «Su cuerpo» se carga antes que el
+  perfil.** El Escape de una hoja ya no lo oye nadie más
+  (`stopImmediatePropagation`). Antes, el del perfil, enganchado después, ya
+  no veía la hoja y cerraba también el perfil. En la app, el perfil se carga
+  siempre antes, y `abrirCuerpo` también lo pide primero.
+- **Versiones mezcladas, guardadas sin conexión.** Con un módulo de antes, que
+  no sabe ir dentro, la tarjeta se queda, y su «Abrir» abre la pantalla
+  encima, como entonces. Con un perfil de antes, `abrirCuerpo` también la abre
+  encima.
+- **La franja de la hora en el iPhone**, en un commit aparte. Con la barra de
+  estado translúcida, lo que sube al desplazar el perfil se veía pasar por
+  detrás de la hora y la batería (en las capturas, las piernas del dibujo).
+  Ahora lo tapa una franja del color de la cabecera, del alto de ese margen.
+  Sin isla ni muesca mide 0, y no se ve.
+
+**Los commits:**
+
+| Commit | Qué |
+|---|---|
+| `8602d66` (en `main`, `73e9ea2`) | «Su cuerpo» dentro de la pestaña, con su personaje, y lo arreglado de paso |
+| `39b728c` (en `main`, `4084aa3`) | la franja de la hora en el iPhone |
+
+- `modulos/cuerpo.js`, desde sus fuentes, con `construir.py`:
+  - `incrustar()`, el modo «dentro»;
+  - el personaje en pequeño;
+  - lo demás del perfil, inerte con una hoja abierta;
+  - `encima()` y `dentro()`, para el perfil;
+  - el «atrás» por marcas y el Escape solo para la hoja.
+
+  Huella `14ade100…88f7`, 260 kB (79 kB comprimido).
+- `modulos/perfil.js`:
+  - el sitio de «Su cuerpo» en la pestaña (`cuerpoDentro`);
+  - su alto pegado (`--tgp-pegado`), que se mide también al cambiar la barra;
+  - `fichaEncima`, con `encima()`;
+  - el repintado al cambiar el año de nacimiento;
+  - la franja.
+- `index.html`: el cargador, porque `abrirCuerpo` abre el perfil en su pestaña
+  (primero el perfil), y su comentario.
+- `sw.js`, `README.md` y los comentarios de las herramientas, al día.
+- El paquete de fuentes para la sesión del cuerpo, con un apartado nuevo para
+  esto. Con sus seis ficheros, el `construir.py` de la entrega da este módulo
+  byte a byte.
+
+**Las pruebas.** `probar_cuerpo.js` da 209 de 209:
+
+- dentro de la pestaña, sin tocar nada;
+- el personaje en pequeño y su aspecto;
+- la hoja con el perfil desplazado e inerte;
+- Escape y «atrás» del perfil, y el cambio de pestaña;
+- sin el módulo, y con versiones de antes;
+- «Su cuerpo» cargado antes que el perfil;
+- el «atrás» de dos y de tres pasos;
+- los menores, repintados en el acto;
+- la isla dinámica, con la franja.
+
+Al revés, cada arreglo quitado en una copia pone su control en rojo:
+
+| Arreglo quitado | Control en rojo |
+|---|---|
+| el «atrás» de antes | el de dos pasos |
+| `stopPropagation` | el de «cargado antes» |
+| sin repintar | el de los 15 años |
+| sin la franja | el de la franja |
+
+La p6 de `probar_perfil.js` mide ahora lo primero que se ve de la pestaña
+Cuerpo: «Su cuerpo», o su tarjeta mientras llega. `probar_perfil.js` da 142 de
+142.
+
+**Lo que pesa.** `index.html` crece 220 bytes comprimido, por el cargador y su
+comentario. Por redondeo solo se nota en castellano, inglés, alemán y chino
+tradicional: la primera descarga pasa de 1.081 a 1.082 kB en castellano, y sigue
+en 1.196 en búlgaro y en 1.182 en polaco (`tools/peso_descarga.py`). El módulo
+no cuenta en la primera descarga: se pide al abrir la pestaña Cuerpo.
+
+**La auditoría entera**, sobre `39b728c` (en `main`, `4084aa3`, encima de cinco
+commits más de los robots: las alertas del Gobierno de Canarias (dos), los
+avisos de AEMET, los terremotos del IGN y el boletín del INVOLCAN): «AUDITORIA
+EN VERDE», ningún control en rojo ni sin ejecutar.
+
+**Lo que queda:** mirarlo en el iPhone. Hay que abrir la pestaña Cuerpo y ver el
+personaje, una hoja, el «atrás» y la parte de arriba con la isla dinámica.
+
+## Ocho decisiones sobre lo que ya se publica: el panel SOS y el Teide (1 de noviembre)
+
+La investigación de «Su cuerpo» (la otra sesión, en «“Su cuerpo”: lo que decides
+tú», del 31 de octubre) encontró ocho cosas que revisar en textos que la app ya
+publica: cinco del panel SOS y tres respuestas del Teide. Jerome las decidió el
+1 de noviembre, una a una, con el texto de ahora, la propuesta en los diez
+idiomas y lo comprobado de cada fuente.
+
+| # | Qué | Decisión | Commit |
+|---|---|---|---|
+| 12 | Corriente de resaca (`sosPla2`): «Apártese de donde rompen las olas…» | Dejarlo como está | — |
+| 13 | Calima (`sosCal7`) | Las dos cosas: «no haga ejercicio al aire libre y evite el ejercicio intenso» | `cb2b0e6` |
+| 14 | El Decreto 116/2018, anulado, en las fuentes de dos guías del mar | Quitarlo | `0f1833d` |
+| 15 | Agotamiento por calor (`sosCalAgot`): «más de una hora» | Dejarlo como está | — |
+| 16 | Oxígeno a 3.700 m (`tei-10`): «cerca de la mitad» | «alrededor de un tercio menos» | `d78f519` |
+| 17 | «A esa altura el cuerpo rinde la mitad» (`tei-07`) | Quitarlo | `c6c6406` |
+| 18 | Niños en el teleférico (`tei-14`) | Las normas, donde son: en el teleférico | `6692db4` |
+| 20 | Convulsiones en alemán (`sosCalGolpeSig`, `sosAux1`) | «Krampfanfälle» y «krampfanfallartige Bewegungen» | `239a8b0` |
+
+**Cómo se comprobaron las fuentes.** La red de esta sesión no deja abrir las
+webs de las fuentes: `www.gobiernodecanarias.org`, `www.sanidad.gob.es`,
+`www.weather.gov`, `rnli.org`… Por eso hay dos clases de comprobación:
+
+- **Letra a letra**: las páginas del Gobierno de Canarias que guarda el vigía
+  (`tools/datos/vigia-sos.json`, del 24 de octubre). Son «Consejos para las
+  actividades en el mar», «Consejos ante fenómenos costeros» y «Consejos ante
+  la calima».
+- **En el buscador**: lo demás, que se da como leído allí y no como comprobado
+  en la página:
+  - Sanidad de Canarias, sobre la calima;
+  - el Ministerio de Sanidad, sobre el agotamiento por calor y el baño;
+  - el NHS;
+  - la ILS y la RNLI;
+  - las normas del Teleférico del Teide;
+  - la tabla de altitud del Family Practice Notebook;
+  - las fuentes alemanas del golpe de calor.
+
+  El cálculo de la atmósfera estándar (ISO 2533) es propio.
+
+Se pensó en leerlas con un workflow de GitHub, que sí tiene red, en la rama de
+trabajo de la sesión. No se hizo: habría sido saltarse la configuración de red
+que eligió Jerome. Para leerlas aquí letra a letra, Jerome tiene que añadir esos
+dominios en la red del entorno.
+
+**La 14, línea a línea.** Antes de quitar el decreto se cotejaron todas las
+líneas de «Alguien en apuros en el agua» y «Bañarse con seguridad»:
+
+- casi todas están en el texto literal de las dos páginas del mar y la costa;
+- las de reanimación, en las guías del ERC que también se citan;
+- en las notas y el decálogo del Ministerio de Sanidad, leídos en el
+  buscador:
+  - nadar de espaldas moviendo solo las piernas;
+  - el alcohol;
+  - bañarse acompañado y nunca de noche;
+  - que vigilar a los niños es cosa de los adultos y no del socorrista.
+- Solo «Avísele enseguida y siga sus indicaciones» (al socorrista) no se ha
+  encontrado en ninguna fuente que se pueda leer desde aquí.
+
+Ninguna línea cambia: solo la lista de fuentes. El decreto se queda en
+`SOS_FUENTES`, con su motivo, para que el vigía siga mirando su página. La Orden
+de 22 de julio de 2022, la de las banderas, solo modifica los anexos de ese
+decreto; se le dijo a Jerome, y se queda (eligió quitar solo el decreto).
+
+**El Teide.** Las tres respuestas van en el bloque
+`faq/fuente/faq-kb-bloque-B1-teide.json` (nueve idiomas) y en su suplemento
+búlgaro, y `tools/generar_faq.py` rehace los diez ficheros. Antes de tocarlos se
+comprobó que el generador reproducía byte a byte lo publicado. Si la otra sesión
+vuelve a mandar el bloque B1, tiene que llevar estos tres cambios.
+
+**La fecha del panel.** `SOS_REVISADO` sigue en el 22 de octubre, la revisión
+entera del panel. Lo de hoy son correcciones sueltas y queda aquí, con su
+fuente.
+
+**Los controles rápidos**, antes de la auditoría entera, en verde:
+`castellano_suelto.js`, `auditar_letras.js`, `auditar_frases.js`,
+`auditar_claves_tx.js`, `auditar_faq.js`, `auditar_cirilico.py` (2.307 nombres
+propios en cirílico, ninguna variante sospechosa) y `auditar_emergencias.js` (37
+controles).
+
+**La auditoría entera**, sobre `6692db4`, el mismo commit que va a `main`, sin
+ningún robot en medio: «AUDITORIA EN VERDE», ningún control en rojo ni sin
+ejecutar.
+
+**Lo que queda:**
+
+- Leer letra a letra lo que solo se leyó en el buscador, cuando la red del
+  entorno lo permita.
+- La fuente de «Avísele enseguida y siga sus indicaciones».
+- La Orden de 2022 de las banderas, si Jerome quiere cambiarla por la fuente
+  de la leyenda del mapa (Protección Civil · Infoplayas), con su enlace
+  comprobado.
+
+## Nada del Decreto 116/2018 ni de la Orden de 2022: las banderas del panel SOS, las del mapa (1 de noviembre)
+
+Del apartado anterior quedaba la Orden de 22 de julio de 2022, la de las
+banderas, entre las fuentes del panel SOS. Esa Orden modificaba los anexos del
+Decreto 116/2018, que anuló el Tribunal Supremo (27-9-2023, BOC 82 de
+25-4-2024). Jerome, el 1 de noviembre: «no debemos tener nada de él».
+
+Es la lección 21 de este documento («Una norma anulada no deja de citarse
+sola»), otra vez. La leyenda de banderas del mapa se rehízo sin esa norma el 12
+de agosto (`261fb94`), con las seis banderas que la Subdirección de Protección
+Civil y Emergencias del Gobierno de Canarias confirmó por escrito. Pero el panel
+SOS, hecho en octubre, volvió a sacar sus banderas de la Orden.
+
+**Lo que tenía el panel**, sacado de la Orden:
+
+- **«Bañarse con seguridad»:** siete banderas, las del anexo III: verde,
+  amarilla, roja, púrpura, cuadros blancos y negros, dos rojas y la bicolor
+  roja y amarilla. Con textos como «Amarilla: precaución, el baño tiene
+  limitaciones».
+- **Las picaduras:** «la bandera púrpura avisa de peligro por fauna marina
+  […]. Siempre va junto a una bandera amarilla o roja».
+- **Las fuentes de las dos guías:** la Orden.
+- **«Fuentes», al pie del inicio, que enseña todo `SOS_FUENTES`:** la Orden y
+  también el decreto, que desde `0f1833d` ninguna guía citaba (se había
+  quedado para que el vigía siguiera mirando su página).
+
+**Lo que tiene ahora** (`fc333f1`, en `main` `7664baf`), con el texto de la
+leyenda del mapa, letra a letra, en los diez idiomas:
+
+| Bandera | Antes (de la Orden) | Ahora (como en el mapa) |
+|---|---|---|
+| Verde | buenas condiciones para el baño | baño seguro |
+| Amarilla | precaución, el baño tiene limitaciones | baño con precaución |
+| Roja | prohibido bañarse | prohibido el baño |
+| Negra | — | prohibido el baño por contaminación o riesgo para la salud |
+| Naranja | — | playa sin servicio de vigilancia |
+| Morada, o blanca con una medusa | púrpura: peligro por fauna marina; siempre con la amarilla o la roja | presencia de fauna marina |
+| Cuadros, dos rojas y bicolor | estaban | fuera: solo salían de la Orden |
+
+- **Las fuentes de cada línea:**
+  - Las seis banderas: la Subdirección de Protección Civil y Emergencias, por
+    escrito (agosto).
+  - La verde, la amarilla y la roja, además, en los «Consejos para las
+    actividades en el mar» del Gobierno de Canarias, que el vigía guarda
+    palabra por palabra: «la bandera roja indica prohibición del baño, la
+    amarilla precaución y la verde que las condiciones para el baño son
+    buenas».
+  - «Haga caso a la bandera aunque el mar parezca tranquilo» se queda: esa
+    misma página dice «Aunque no veas motivo aparente para la prohibición del
+    baño, respeta las normas».
+- **Las picaduras** acaban con la fila de la morada, en vez de la nota de la
+  púrpura.
+- **La fuente nueva** (`banderasHoy`), en las dos guías y en lugar de la Orden,
+  se lee «Gobierno de Canarias · Banderas en uso hoy en las playas de Canarias
+  (Subdirección de Protección Civil y Emergencias · portal Infoplayas
+  Canarias)». En cada idioma lleva las palabras de la nota de la leyenda.
+  Enlaza al visor de Infoplayas (`https://webmap.infoplayascanarias.es/`), el
+  mismo al que ya lleva el globo de cada playa:
+  - el dominio entra en la lista de `auditar_emergencias.js`;
+  - el vigía no lo mira, porque el visor cambia cada día.
+
+**Fuera de las fuentes** (`79c2667`, en `main` `9557573`): el decreto y la
+Orden, con sus títulos en los diez idiomas. Ya no salen tampoco en «Fuentes» del
+inicio. El vigía guarda solo las fuentes que siguen en `SOS_FUENTES`, así que en
+su próxima pasada las quita de `tools/datos/vigia-sos.json`. No se ha tocado a
+mano.
+
+**Lo que no cambia:**
+
+- La leyenda del mapa y su nota. La nota dice que el decreto fue anulado, pero
+  no usa nada de él.
+- La respuesta de la FAQ sobre las banderas (`sal-02`), que ya era la del
+  mapa.
+- `SOS_REVISADO`.
+
+**Los controles nuevos**, en `tools/auditar_emergencias.js`:
+
+- **Las banderas del panel dicen lo mismo que la leyenda del mapa**, letra a
+  letra y en los diez idiomas. Además, «Bañarse con seguridad» tiene que llevar
+  las seis. Probado al revés, sale en rojo:
+  - con una letra cambiada en alemán;
+  - sin la naranja;
+  - con el texto del mapa cambiado en chino tradicional.
+- **Nada del decreto ni de la Orden**, ni en las fuentes ni en ninguna fila.
+  Probado al revés: con el módulo de antes sale en rojo, con `decretoPlayas`,
+  `ordenPlayas` y `fte_decretoPlayas`.
+
+**Visto en el navegador**, a 390 px: «Bañarse con seguridad» y las picaduras, en
+castellano, alemán, chino y búlgaro. La negra se ve sobre el fondo oscuro,
+porque lleva un borde claro, y nada se sale.
+
+**Las cifras:**
+
+- `auditar_emergencias.js`, 39 de 39.
+- `probar_emergencias.js`, 261 de 261.
+- `vigia_sos.py --probar`, en verde (89 fuentes).
+- Los controles rápidos, en verde: `castellano_suelto.js`,
+  `auditar_letras.js`, `auditar_frases.js`, `auditar_claves_tx.js` y
+  `auditar_cirilico.py`, con 2.308 nombres propios en cirílico y ninguna
+  variante sospechosa.
+- `modulos/emergencias.js` pasa de 634.778 a 629.928 bytes. No cuenta en la
+  primera descarga, porque se pide al abrir el panel.
+- Las filas de idiomas, tres menos, en el título de «Idiomas»: 3182 y 5.329
+  con el primer commit y 3180 y 5.327 con el segundo.
+
+**Una primera vuelta de la auditoría**, sobre los dos commits sin ese título al
+día, salió en rojo en `auditar_web.js` y `barrido_idiomas.js`. Los dos cotejan
+el título de «Idiomas» de este documento con lo que miden: decía 3183 y 5.330, y
+había 3180 y 5.327. Se paró a los 14 minutos. Ahora cada commit lleva su cifra,
+comprobada en los dos con `barrido_idiomas.js`.
+
+**La auditoría entera**, sobre `79c2667` (en `main`, `9557573`, encima del robot
+de los avisos de AEMET, `baddc78`, que solo cambia `datos/avisos-aemet.json`):
+«AUDITORIA EN VERDE», ningún control en rojo ni sin ejecutar.
+
+**Lo que queda fuera, y se dice:** la bandera de cuadros, las dos rojas y la
+bicolor roja y amarilla. No tienen más fuente que la Orden. Vuelven solo si
+aparece una fuente vigente, y se busca si Jerome quiere.
+
+## El panel SOS, con la verificación de la sesión de «Su cuerpo»: calima, calor, DEA y atragantamiento (2 de noviembre)
+
+La sesión de «Su cuerpo» mandó el 1 de noviembre su entrega
+(`su-cuerpo-01-11.zip`). Trae un parche sobre `a1e83e9`, el `main` del 31 a las
+17:54. Ese parche no se aplica tal cual: desharía lo que entró después, como «Su
+cuerpo» dentro de la pestaña Cuerpo, el 3D, los arreglos del iPhone, las ocho
+decisiones y las banderas.
+
+Esa sesión pudo abrir las fuentes oficiales y sacó su cita literal. Sus notas
+`G5-sos-teide.md` y `G2-salud-urgencias.md` las traen, y un revisor
+independiente volvió a abrir las de los cambios de seguridad. Jerome había
+decidido allí algunos puntos de forma distinta que aquí. El 2 de noviembre
+eligió:
+
+- **Calor:** «30 minutos y 112».
+- **Calima:** «Su redacción».
+- **Banderas:** «Las seis, como el mapa».
+- **«Su cuerpo»:** «Lo uno yo aquí». Eso es la fase siguiente.
+
+Aquí va el panel SOS, con las traducciones de esa sesión, en los diez idiomas:
+
+| Qué | Antes | Ahora | Fuente | Commit |
+|---|---|---|---|---|
+| Calima (`sosCal7`) | «no haga ejercicio al aire libre y evite el ejercicio intenso» (a todos) | «no haga ejercicio físico intenso. Niños, mayores y personas con enfermedades respiratorias o del corazón: nada de ejercicio al aire libre» | Gobierno de Canarias («No realice ejercicio físico severo», a todos) y Sanidad de Canarias, 21-11-2025 («No realizar ejercicios físicos en el exterior», a las personas sensibles) | `49f8382` (en `main`, `3220f14`) |
+| Agotamiento por calor (`sosCalAgot`) | «si empeora o dura más de una hora, busque atención médica enseguida» | «si empeora, busque atención médica enseguida; si sigue mal tras 30 minutos así, llame al 112» | NHS, «Heat exhaustion and heatstroke» (revisado en 2026), fuente nueva `nhsCalor` | `a78b9a5` (en `main`, `3849497`) |
+| Reanimación | el DEA, el último paso | el DEA, justo detrás de la llamada | RCUK y ERC 2025 | `2326bc8` (en `main`, `ffd9b1b`) |
+| Atragantamiento de bebés y niños | solo «llame enseguida al 112» | más tres líneas: bebé, niño y reanimación con 5 insuflaciones | RCUK 2025, dos fuentes nuevas (`rcukAtragNinos`, `rcukPediatrico`) | `85c8cf5` (en `main`, `af1115b`) |
+| «Revisado el…» (`SOS_REVISADO`) | 22 de octubre | 1 de noviembre | lo pide el vigía cuando cambia una fila con su fuente | `6d954f5` (en `main`, `e6a5ab3`) |
+
+**Cómo se comprobó:**
+
+- Desde aquí solo se pudo cotejar palabra por palabra la página de la calima
+  del Gobierno de Canarias, porque la guarda el vigía. Dice «No realice
+  ejercicio físico severo mientras dure esta situación», para todos.
+- Lo demás va con las citas literales de esa sesión. Su revisión
+  independiente confirma la frase de Sanidad sobre las personas sensibles,
+  «como niños, ancianos y personas con enfermedades respiratorias o
+  cardiovasculares crónicas».
+- La red de esta sesión no deja abrir esas webs.
+
+**Lo que no cambia:**
+
+- Las banderas, que siguen siendo las seis de la leyenda del mapa. Esa
+  sesión dejaba tres y «Amarilla: precaución», porque no conocía la
+  leyenda.
+- El alemán, con «Krampfanfälle», como se publicó el 1 de noviembre.
+- La FAQ del Teide, publicada el 1 de noviembre con otras palabras pero lo
+  mismo. Esa sesión ponía «ya a unos 3.000 m, casi un tercio menos» (CDC) y
+  «se rinde menos que abajo».
+- La corriente de resaca (`sosPla2`), como decidió Jerome en las dos
+  sesiones.
+
+**Una corrección a lo de ayer.** En el apartado de las ocho decisiones se dejó
+`SOS_REVISADO` en el 22 de octubre, «por ser correcciones sueltas». No era lo
+que pide el vigía. Ahora lleva el 1 de noviembre, y la cabecera del módulo lo
+cuenta en un párrafo «REVISADO».
+
+**Las cifras:**
+
+- `auditar_emergencias.js`, 39 de 39.
+- `probar_emergencias.js`, 261 de 261.
+- `vigia_sos.py --probar`, en verde.
+- Los controles rápidos, en verde: `castellano_suelto.js`,
+  `auditar_letras.js`, `auditar_frases.js`, `auditar_claves_tx.js` y
+  `auditar_cirilico.py` (2.309 nombres propios, ninguna variante
+  sospechosa).
+- Las filas de idiomas, seis más: 3186 y 5.333, en el título de «Idiomas».
+  Cada commit lleva la suya, comprobada con `barrido_idiomas.js`.
+- Mirado en el navegador, a 390 px, en castellano y alemán: «Primeros
+  auxilios» y «Calor y calima».
+
+**La auditoría entera**, sobre `6d954f5` (en `main`, `e6a5ab3`, encima de diez
+commits de los robots, que solo cambian sus ficheros de datos: los avisos de
+AEMET, las alertas, los terremotos, las gasolineras y el vigía, que en su pasada
+de las 16:37 ya quitó de su fichero el decreto y la Orden), sale en verde salvo
+un bloque: `auditar_cielo.js`, con 1 control en rojo de 307. Ese rojo ya estaba
+en `main` y no es de estos commits.
+
+- **Qué falla.** El control recalcula aparte los pases de satélites y los
+  compara con los de la app. En el del Hubble del 6 de noviembre, el final
+  sale a las 19:33:11 en el recálculo y a las 19:33:27 en la app: 16 segundos,
+  y el margen es de 10.
+- **De dónde viene.** El control pone el reloj de la página a las 18:00 UTC
+  del día siguiente a la época más nueva de `datos/satelites.json`, así que
+  solo depende de esos datos. Los bajó el robot el 2 de noviembre
+  (`4ef5cc4`, época 03:46 UTC).
+- **Comprobado.** `auditar_cielo.js` sobre `4ef5cc4`, sin estos commits, da el
+  mismo rojo, con el mismo paso y los mismos segundos. Estos commits solo
+  tocan `modulos/emergencias.js` y este documento.
+- **Ningún otro control en rojo ni sin ejecutar.**
+- **Jerome, el 2 de noviembre:** «Publicar ya».
+
+**Lo que queda:**
+
+- El paso del Hubble del 6 de noviembre: averiguar quién tiene razón en esos 16
+  segundos, la app o el recálculo del control.
+- «Su cuerpo», la segunda fase: su módulo nuevo con lo publicado.
+- Las copias de estas frases en las respuestas del asistente de «Su cuerpo»
+  van con su módulo.
+
+## Los pases de satélites: el final, al entrar en la sombra, aunque sea cerca de los 10° (3 de noviembre)
+
+Es el rojo que dejó apuntado el apartado anterior (`378ac7c`, en `main`
+`ccccb49`). Ya no está: tenía razón el control, y lo que fallaba era la app.
+
+**Qué pasaba.**
+
+- La app busca los pases con una muestra cada 20 segundos y afina los
+  bordes.
+- Los dos extremos, de los 10 grados a la primera muestra y de la última
+  muestra a los 10 grados, los afinaba solo con la altura.
+- Si el satélite salía de la sombra o entraba en ella dentro de esos 20
+  segundos, no se veía. El paso empezaba o acababa a 10 grados con el
+  satélite en la sombra.
+
+**El caso.** El Hubble, el 6 de noviembre de 2026, con los elementos del robot
+del 2 de noviembre (`4ef5cc4`). Fuera de la app, con Astronomy Engine y SGP4, se
+calculó cuándo entra en cada sombra:
+
+| Sombra | Entra | Altura |
+|---|---|---|
+| Penumbra (el Sol empieza a taparse) | 19:33:06,8 | 11,8° |
+| Cilindro del radio de la Tierra (el recálculo del control) | 19:33:11,9 | 11,4° |
+| Umbra en cono (la de la app, `satellite.shadowFraction`) | 19:33:17,0 | 10,9° |
+| Baja de 10 grados | 19:33:27 | 10,0° |
+
+La app daba las 19:33:27, «se pierde a 10°», con 10 segundos en la sombra. El
+control, que recalcula aparte con el cilindro, sacaba las 19:33:11: 16 segundos,
+con un margen de 10. Con el arreglo, la app da las 19:33:16 y «Entra en la
+sombra de la Tierra», a 10,9°, a 5 segundos del cilindro.
+
+**El arreglo**, en `modulos/cielo.js`:
+
+- Los dos bordes se afinan siempre con «se ve», es decir, arriba y al Sol.
+- Si junto al borde el satélite sigue arriba pero en la sombra, el paso sale
+  o entra en la sombra ahí.
+
+**El control**, en `tools/auditar_cielo.js` (parte 11), tiene una regla nueva.
+El satélite tiene que estar al Sol en la aparición y en la desaparición de todos
+los pases, y no solo de los que salen o entran en la sombra. La regla no depende
+del margen del cruce, así que lo pilla siempre.
+
+**Probado:**
+
+- Al revés: con la app de antes, la regla nueva y el cruce salen en rojo en
+  ese paso.
+- Con el arreglo, `auditar_cielo.js` da 307 de 307.
+
+**La auditoría entera**, sobre `378ac7c` (en `main`, `ccccb49`, encima de cinco
+commits de los robots, que solo cambian sus ficheros de datos; uno trae
+elementos nuevos de los satélites (`d7b16b6`), y con ellos `auditar_cielo.js`
+sobre `ccccb49` vuelve a dar 307 de 307): «AUDITORIA EN VERDE», ningún control
+en rojo ni sin ejecutar. Se pasó en dos trozos, sobre el mismo árbol
+(`ee618552`).
+
+- **Por qué en dos trozos.** El contenedor de la sesión se reinició tres
+  veces a mitad de la auditoría, el 3 de noviembre hacia las 01:05, las 02:14
+  y las 04:15 UTC, y se llevó la vuelta en curso.
+- **No era la auditoría.** Un registro de la memoria cada 20 segundos daba
+  15 GB libres hasta el último momento, y el contenedor no tiene límite de
+  memoria. Además, el barrido de pantallas, pasado solo, terminó bien.
+- **El primer trozo** es la tercera vuelta, hasta `probar_fechas_oro.js`. Lleva
+  el barrido de pantallas (0 fallos y 0 errores de página), el tour, el cielo
+  (307 de 307) y `auditar_perfil.js` (74).
+- **El segundo** va de `probar_perfil.js` al final. Se pasó con una copia de
+  `tools/auditar.sh` que solo quita lo ya pasado (`diff` igual al original
+  desde esa línea). Da `probar_perfil.js` 142, `probar_cuerpo.js` 209, la isla
+  en 3D, el SOS (39 y 261) y los robots, todo en verde.
+
+## «Su cuerpo», la segunda fase: «Comida», el asistente y «Su deporte», dentro de la pestaña Cuerpo (3 de noviembre)
+
+La entrega del 1 de noviembre de la sesión de «Su cuerpo»
+(`su-cuerpo-01-11.zip`) trae su módulo nuevo. Tiene «Comida», un diario por
+raciones como las cuenta la AESAN, apagado hasta que la persona lo enciende.
+Tiene «Preguntar», un asistente sin conexión con 178 respuestas escritas de
+antemano y sus fuentes. Y tiene «Su deporte», con las guías de ocho deportes y
+la de «Otro deporte». Su parche iba sobre `a1e83e9` y abría «Su cuerpo» como
+pantalla aparte, desde una tarjeta del perfil. Aplicado tal cual, habría
+deshecho «Su cuerpo» dentro de la pestaña Cuerpo y los arreglos de después.
+Jerome, el 2 de noviembre: «Lo uno yo aquí».
+
+**Cómo se unió:**
+
+- **El fuente, a tres bandas.** La base es el fuente del diseño del 31 de
+  octubre; un lado, el que está publicado; el otro, el del 1 de noviembre. Los
+  choques de `src/ui.js` estaban en el «atrás» y el Escape, y se resolvieron
+  con «Su cuerpo» dentro de la pestaña.
+- **Las correcciones publicadas se quedan.** En `src/correcciones.json`: los
+  botones en imperativo en italiano y en búlgaro, y «紀錄» como sustantivo en
+  chino tradicional.
+- **El pie**, con la frase que decidió Jerome el 1 de noviembre
+  (`cuerpoAsisRevisado`): «Redactado con ayuda de IA y comprobado con las
+  fuentes citadas. Sin revisión profesional.». Sale la fila `cuerpoIA`.
+- **Construido con su `construir.py`:** `modulos/cuerpo.js` pasa de 259.593 a
+  394.930 bytes (de 79 a 120 kB comprimidos), y `CUERPO_UI`, de 256 a 378
+  filas.
+
+**Los datos**, en `datos/cuerpo/` (`TG_CUERPO_DATOS`):
+
+- **31 ficheros.** Los 11 de los ejercicios se mueven ahí. Son nuevos los 10
+  de las respuestas (`asistente-<idioma>.json`) y los 10 de las guías
+  (`deportes-<idioma>.json`).
+- **El service worker** los pide «red primero» y los guarda al usarlos, sin
+  precargarlos.
+- **La app de las tiendas** los lleva todos, y `app_preparar.js --comprobar`
+  mira los 31.
+- **En los ejercicios cambian dos cosas**, de la verificación de esa sesión:
+  - El enlace del NHS de «Knee exercises for runners», en 5 ejercicios. Su
+    revisión independiente abrió la página nueva («Page last reviewed: 20
+    September 2024»).
+  - En italiano, «Evitare di scendere» por «Non scendere» (paso 3 de
+    `fondos-entre-bancos`). Su excepción en `auditar_registro.js` ya no hace
+    falta y sale.
+
+**Tres fallos de la unión.** Los vieron las pruebas nuevas, y cada arreglo
+se probó también al revés:
+
+1. **Dentro de la pestaña, `incrustar()` solo aceptaba «Músculos» y
+   «Aspecto».** Ahora acepta los cuatro modos y una pregunta, como `abrir()`.
+   El cargador de `index.html` pasa también la pregunta: `abrirCuerpo({
+   pregunta })` no hacía nada.
+2. **Escape, con el panel SOS abierto desde una respuesta, cerraba también el
+   perfil de debajo.** Se perdía la conversación. `fichaEncima()`, en
+   `modulos/perfil.js`, cuenta ahora el panel SOS. Probado al revés: sin esa
+   línea, el perfil se cierra.
+3. **«Atrás», con una guía SOS abierta, cerraba el perfil y «Su cuerpo».** El
+   panel pone dos entradas en el historial. El primer «atrás» volvía a la de
+   su inicio, que no lleva `tgPerfil`, y el perfil se cerraba. Ahora el perfil
+   y «Su cuerpo» dejan las entradas `tgSos` al panel. El panel SOS no se ha
+   tocado.
+
+**Un fallo que ya estaba publicado** (`da60edb`). Al bajar por la pestaña
+Cuerpo, la cabecera de «Su cuerpo» (el personaje en pequeño, el título y el
+lema) se pintaba encima de la cabecera fija del perfil y de sus pestañas. Se vio
+en las capturas de esta fase, y pasaba igual en `main`. `.tgc-top` guardaba el
+`z-index: 6` de la pantalla aparte. Como elemento de una rejilla, ese z-index
+vale aunque no esté posicionado, y quedaba por encima de la cabecera (5) y de la
+barra (4). Dentro de la pestaña lleva ahora `z-index: auto`. La prueba nueva
+(20) baja por la pestaña en los cuatro modos: con el módulo de antes sale en
+rojo.
+
+**La política de privacidad** (`8d09738`):
+
+- El punto «Su cuerpo (opcional)» lleva el texto de esa sesión, que Jerome
+  aprobó tal cual el 1 de noviembre, en los diez idiomas. Dice lo que se
+  guarda: las series, el aspecto, el deporte elegido y, si se enciende el
+  diario, las raciones de cada día. Dice también qué lee del perfil, que lo
+  que se escribe al asistente no se guarda ni se envía, y con qué botón se
+  borra todo.
+- **Un cambio sobre su texto.** En búlgaro citaba el botón de su módulo de
+  antes, «Изтриване на данните…». La pantalla dice «Изтрий данните…», y ahora
+  la política lo cita igual. `probar_cuerpo.js` (19) lo mira en los diez
+  idiomas; con el búlgaro de la entrega sale en rojo.
+
+**Los controles, ampliados:**
+
+- **`probar_cuerpo.js`**, de 209 a 234 controles:
+  - «Preguntar» con sus respuestas: lo que se escribe sale como texto (un
+    `<img onerror>` ni se pinta ni se ejecuta), y una urgencia lleva el 112.
+  - El panel SOS encima, con su «atrás» y su Escape.
+  - «Comida», «Su deporte», `abrirCuerpo()` con un modo o una pregunta, y el
+    idioma con «Preguntar» abierto.
+  - Sin las respuestas, su aviso y «Reintentar».
+  - Las 31 citas de la pantalla en las respuestas, tal cual en los diez
+    idiomas, y la cabecera al bajar.
+- **`auditar_sw.js`**, bloque 9f: «Su cuerpo» sin cobertura, 16 controles. Con
+  el `sw.js` de antes para en rojo.
+- **`auditar_registro.js`** lee también `datos/cuerpo/`: las respuestas y las
+  guías, y los ejercicios en su carpeta nueva. Si falta un fichero, para; antes
+  lo saltaba sin decir nada. Suma los botones de «Preguntar» y «Comida» en
+  italiano, búlgaro y polaco, y siete excepciones con su motivo. Mira 116.546
+  textos. Probado al revés: un «tu» puesto en francés sale en rojo.
+- **`castellano_suelto.js`** lee también `datos/cuerpo/`: 3.592 textos más por
+  idioma. Dio 103 avisos, mirados uno a uno, y ninguno era castellano sin
+  traducir:
+  - «diabetes», «kilos» o «graves», que en ese idioma se escriben igual;
+  - «millo» y «calima», que el texto explica entre paréntesis;
+  - VO2max, y el nombre de la Academy of Nutrition and Dietetics;
+  - el nombre inglés de cinco ejercicios, que el castellano también lleva.
+  - Van en `castellano-aceptado.json`, cada uno con su motivo. Sale «libres»
+    del francés, que ya no hacía falta, y «kcal» cuenta como unidad.
+  - Probado al revés: «sesiones» en francés y «romería» en búlgaro salen en
+    rojo.
+- **`auditar_idioma.js`**: un texto hecho solo de marcadores («{g}：{n}», lo
+  que dice el lector de pantalla en «Comida») no pide letras de su alfabeto.
+  Lo trajo esa sesión.
+
+**Lo que se corrigió en sus datos**, en su fuente y reconstruido: en chino
+tradicional, dos respuestas citaban el apartado «最近記錄», y la pantalla dice
+«最近紀錄». En `asistente-zht.json` solo cambian esas dos frases.
+
+**Comprobado aparte:** lo que el asistente dice como el panel SOS.
+
+- Cuadran el agotamiento por calor (30 minutos y el 112), el DEA justo detrás
+  de la llamada, las 5 insuflaciones a un niño, el atragantamiento de bebés y
+  niños y «Krampfanfall» en alemán.
+- No cuadra la calima. El panel dice, como decidió Jerome el 2 de noviembre,
+  «no haga ejercicio físico intenso» a todos, y «nada de ejercicio al aire
+  libre» a los sensibles.
+- Cuatro textos de «Su cuerpo» dicen a todos que Sanidad de Canarias pide no
+  hacer ejercicio en el exterior. Sanidad lo dice para los sensibles. Son
+  `calima-y-deporte`, `correr-en-tenerife`, `asma` y la línea de la calima de
+  cinco guías de deporte.
+- Es más prudente, no menos. Jerome, el 3 de noviembre: «Publicar; lo alinea
+  la otra sesión».
+
+**Las cifras:**
+
+- Las filas de idiomas, en el título de «Idiomas»: 3308 y 5.456.
+- La descarga, 2 kB más: 1.084, 1.198 y 1.184.
+- El README, con «Su cuerpo», sus datos en `datos/cuerpo/` y sus pesos.
+
+**La auditoría entera**, sobre `420d490` (árbol `1d453a0a`), sale «AUDITORIA EN
+VERDE», ningún control en rojo ni sin ejecutar. En `main` van `4b6bbea`,
+`8d09738` y `da60edb`, encima de 12 commits de los robots.
+
+- **Las cifras de esa vuelta:**
+  - `probar_cuerpo.js`, 234; `auditar_sw.js`, 67; `probar_perfil.js`, 142;
+    `auditar_perfil.js`, 74.
+  - El barrido de pantallas, 0 fallos y 0 errores de página.
+  - El cielo, 307; la isla en 3D, 58.
+  - El SOS, 39 y 261; y los robots, en verde.
+- **Los robots solo tocan datos.** Entre el árbol auditado y lo que va a `main`
+  cambian sus cinco ficheros, y los parches son los mismos (`git patch-id`).
+  Uno es `datos/satelites.json`, del que dependen los pases. Por eso, sobre
+  lo que va a `main` se pasaron otra vez `auditar_cielo.js` (307 de 307),
+  `auditar_precios_gasolineras.py` y `auditar_datos.js`, en verde.
+
+**Lo que queda:**
+
+- **Para la sesión de «Su cuerpo»**, con el fuente unido para que su próxima
+  entrega salga de él:
+  - los cuatro textos de la calima;
+  - «Ice cream maker», traducido en chino simplificado («冰淇淋机») y en inglés
+    en el tradicional;
+  - tres nombres de deporte sin guía todavía (escalada, lucha canaria y
+    windsurf), que el montaje avisa.
+- **Para Jerome:**
+  - La política dice «el día» de cada serie. El módulo guarda también el
+    instante en que se anota, para ordenarlas y deshacer. ¿Se dice?
+  - La revisión nativa y la profesional siguen sin hacer: las hojas están
+    en blanco y el campo `revisado` de las respuestas, vacío.
+  - Mirarlo en el iPhone, también con VoiceOver.
+  - Una esquina de las pestañas del perfil deja ver lo que pasa por debajo
+    al bajar, en las tres pestañas. Viene de antes y está en la cola.
+
+## La hora en la política de «Su cuerpo» y las esquinas de la barra del perfil (3 de noviembre, tarde)
+
+Después de publicar la segunda fase, Jerome contestó a dos de sus puntos: «Si
+añádalo» (la hora) y «Arregla la esquina de la barra».
+
+**La hora** (`c79545d`; en `main`, `e28ab2b`). De cada serie, la política decía
+«el día». El módulo guarda también el momento en que se anota (`t`), que sirve
+para ordenarlas y para deshacer. Es aparte del día que se elige al anotarla,
+«Hoy» o «Ayer». Ahora dice «el día, la hora en que las anota», en los diez
+idiomas:
+
+- «the time you log them», «l’heure à laquelle vous les notez», «Uhrzeit des
+  Eintrags», «l’ora in cui le annota», «het tijdstip waarop u ze noteert»;
+- «记录的时间» y «記錄的時間». En chino tradicional va con «記», porque es verbo,
+  como pide la regla de la app.
+- «часът на записване» y «godzina zapisu».
+- En verde: el castellano suelto, las letras, las frases, las claves, el trato
+  de usted, `auditar_idioma.js` en los diez idiomas y `probar_cuerpo.js` (19).
+
+**Las esquinas** (`9d146ca`; en `main`, `1c8b888`). La barra de pestañas del
+perfil es redondeada, de 16 px. Con ella pegada bajo la cabecera, por fuera de
+la curva de sus dos esquinas de arriba se veía pasar lo de debajo: en la pestaña
+Cuerpo, el borde del personaje en pequeño. Pasaba en las tres pestañas. Ahora,
+con la barra pegada, la cabecera tapa esas esquinas con dos cuadrados de su
+fondo, recortados por la misma curva. Esos cuadrados no reciben toques. La barra
+no cambia, y abajo, donde sigue lo de debajo, se queda como estaba.
+
+- **La prueba nueva**, en `probar_cuerpo.js` (20), mira los píxeles de una
+  captura. Por fuera de la curva tiene que verse el fondo de la cabecera
+  (`#0F1117`).
+- Sin el arreglo sale en rojo, con el gris azulado del cuadro del personaje
+  (26,33,43). Con él, en verde.
+- También se miró en la pestaña Viaje.
+
+**Las cifras:**
+
+- La descarga: 1.084, 1.199 y 1.184. La hora suma 132 bytes de `index.html`
+  comprimido y, por redondeo, solo se nota en búlgaro.
+- `probar_cuerpo.js` pasa de 234 a 235 controles.
+
+**La auditoría entera**, sobre `9d146ca` (en `main`, `1c8b888`, con 2 commits de
+los robots debajo), sale en verde salvo un control: `auditar_isla3d.js`, con 1
+en rojo de 58. Al soltar el pellizco, el punto del centro se movió 10,6 m, y el
+límite es 8.
+
+- **Falla a ratos.** Se pasó otra vez tres veces sobre el mismo árbol. Dos
+  dieron 58 de 58, con 0,0 m. La otra se cayó en otro sitio: la pantalla de
+  bienvenida tapó el botón «3D».
+- **Antes, siempre en verde.** En las diez auditorías anteriores, el pellizco
+  dio 0,0 m.
+- **Estos commits no lo tocan.** No tocan el 3D ni la bienvenida: son el texto
+  de la política y el estilo de la cabecera del perfil.
+- **Ningún otro control en rojo ni sin ejecutar.** Los demás, como en el
+  apartado anterior: `probar_cuerpo.js`, 235; `probar_perfil.js`, 142; el
+  cielo, 307; el SOS, 39 y 261.
+- **Jerome, el 3 de noviembre:** «Publicar y mirar el 3D aparte».
+
+**Lo que queda:**
+
+- El 3D, aparte: si es la prueba, hacerla fiable; si es la app (un pellizco
+  que salta al soltarlo en un móvil lento), arreglarla.
+- Mirarlo en el iPhone con VoiceOver. Jerome preguntó qué es, y se le
+  explicó cómo encenderlo y qué mirar en «Su cuerpo».
+- Para la sesión de «Su cuerpo», lo del apartado anterior: la calima,
+  «Ice cream maker» y los tres nombres de deporte.
+
+## La prueba del 3D, que fallaba a ratos: el pellizco y la bienvenida (3 de noviembre, noche)
+
+Jerome, el 3 de noviembre: «Publicar y mirar el 3D aparte». Era
+`auditar_isla3d.js`, que a veces salía en rojo, de dos maneras. La del pellizco
+era de la prueba. La de la bienvenida no se ha podido repetir. Las dos se
+arreglan en la prueba, y la app no cambia.
+
+**El pellizco** (`b69e999`; en `main`, `03cc5ff`). «Al soltar el pellizco, la
+vista no se mueve» dio 10,6 m, y el límite es 8.
+
+- La prueba medía desde fuera el suelo bajo el punto entre los dedos, 16 ms
+  después del último toque.
+- Pero CDP, el protocolo con el que la prueba mueve los dedos, manda un evento
+  por cada dedo que cambia, y Chromium los entrega con los cuadros. A veces la
+  página iba un paso atrás, o había visto un dedo y no el otro.
+- Con un dedo en su sitio y el otro un paso atrás, el punto entre los dos está
+  2 px corrido. Con la cámara a unos 6.300 m, son 10,6 m: el número de la
+  auditoría.
+- Ahora se mide dentro de la página, en el evento en que el último dedo llega a
+  su sitio, después del módulo. Antes de seguir, la prueba espera a que el
+  gesto haya llegado entero: medido y soltado. Si no llega, lo dice.
+- **Al revés.** El último paso del pellizco, dedo a dedo. Medido entre los dos,
+  como antes, da 10,6 m las cuatro veces; medido como ahora, 0,0 m. Sin
+  forzarlo, en 2 de 11 pellizcos la medida de antes se tomó con los dos dedos
+  un paso atrás.
+- Es la prueba y no la app: medido dentro de la página, el punto no se mueve
+  al soltar (0,0 m).
+
+**La bienvenida** (`9d16f7e`; en `main`, `0298161`). En una de las tres pasadas
+de después, la bienvenida tapó el botón «3D» durante 30 s, y la prueba se cayó.
+
+- `bienvenida()` miraba una sola vez si se veía la bienvenida y, si no,
+  seguía.
+- No se ha vuelto a ver en 110 aperturas: 80 con el procesador ocupado y 30
+  justo después de cerrar un 3D de noche, como en la pasada que falló. No se
+  sabe por qué pasó.
+- Ahora se espera a que salga y, después de «Empezar», a que se vaya de
+  verdad. Si «Empezar» no hizo nada, se toca otra vez, como haría cualquiera,
+  y queda apuntado cómo estaba la página y cuántas veces se había cargado. Si
+  tampoco se va, la prueba se para ahí y lo dice.
+- La pregunta del tour se espera, y se comprueba que «Ahora no» la quita.
+- **Al revés**, con la de antes y la de ahora:
+  - normal: las dos, bien;
+  - la página se recarga al abrir: la de antes se cae; la de ahora sigue;
+  - el primer «Empezar» no hace nada: la de antes deja la bienvenida tapando
+    el botón «3D», como el 3 de noviembre; la de ahora lo apunta y sigue;
+  - «Empezar» no hace nada nunca: la de antes, lo mismo; la de ahora se para
+    y dice cómo estaba la página.
+
+**Las pasadas.** `auditar_isla3d.js`, con los dos cambios, cuatro veces
+seguidas: 58 de 58 cada vez, con el pellizco a 0,0 m y sin ningún aviso de la
+bienvenida.
+
+**La auditoría entera**, sobre `9d16f7e` (árbol `13bf4455`): «AUDITORIA EN
+VERDE», sin ningún control en rojo ni sin ejecutar.
+
+- El 3D, 58 de 58, con el pellizco a 0,0 m.
+- Los demás, como antes: el cielo, 307; el perfil, 74 y 142; «Su cuerpo», 235;
+  el SOS, 39 y 261.
+- En `main` van `03cc5ff` y `0298161`, con los mismos parches, encima de dos
+  commits más de los robots (el boletín del INVOLCAN y las alertas del Gobierno
+  de Canarias), que solo cambian sus dos ficheros de datos.
+
+**Lo que queda:** del 3D, nada. Si la prueba vuelve a apuntar que la
+bienvenida no se fue con el primer toque, mirar cómo estaba la página.
+
+## En el iPhone: la fecha y las casillas del perfil, y la barra de la pregunta de «Su cuerpo» (3 de noviembre, noche)
+
+Jerome mandó dos capturas del iPhone: «En la parte donde poner su peso y su
+edad se superponen mira la foto» y «El otro enviar pregunta cuando sube la
+página por arriba sigue subiendo con la persona».
+
+**La fecha y las casillas del perfil** (`358618b`; en `main`, `2fb7be4`).
+
+- En «Su evolución», la fecha se montaba en la casilla de al lado, en peso y
+  en kilómetros. Con su aspecto de serie, Safari en el iPhone le pone un ancho
+  mínimo suyo, mayor que su columna. Está en el código de WebKit:
+  `RenderThemeIOS::adjustMinimumIntrinsicSizeForAppearance`.
+- Con `appearance: none` ese ancho no se aplica, porque
+  `RenderTheme::adjustStyle` sale antes. La fecha sigue abriendo el calendario
+  del sistema, y va a la izquierda, como el texto de las otras casillas.
+- En «Sus datos», «Año de nacimiento» ocupa dos líneas, y su casilla quedaba
+  11 px más baja que las otras dos. Ahora las casillas toman las mismas filas
+  de la rejilla (subgrid), y el rótulo corto baja junto a su casilla. En
+  Safari antes del 16, como antes.
+- **Aquí no hay un iPhone.** Chromium no le pone ese ancho mínimo a la fecha,
+  así que aquí no se ve montarse. Lo que respalda el arreglo es el código de
+  WebKit, y la prueba mira que la fecha va sin el aspecto de serie. Falta
+  verlo en el iPhone.
+- **`probar_perfil.js`**, p10 y p11, a 360, 390 y 430 px y en los diez
+  idiomas: las casillas de una misma fila, a la misma altura; y la fecha, sin
+  el aspecto de serie y sin montarse en la de al lado. Pasa de 142 a 148
+  controles.
+- **Al revés**, con el perfil de antes, 5 en rojo:
+  - p10, a 390 px (castellano, francés, italiano y búlgaro) y a 430
+    (castellano, francés y búlgaro): la casilla del año, 11 px más baja. A
+    360 px sale en verde también al revés, porque ahí el año va solo en su
+    fila.
+  - p11, a los tres anchos: la fecha, con el aspecto `auto`.
+
+**La barra de la pregunta** (`e996332`; en `main`, `8b29226`).
+
+- Iba pegada abajo (`position: sticky`), y lo pegado se mide desde dentro del
+  margen de abajo del panel que se desplaza. En el perfil son 24 px más la
+  barra de inicio del iPhone. Con sus 8 px y la barra de inicio otra vez,
+  flotaba 100 px por encima del borde, encima de las respuestas, y las seguía
+  al subir.
+- Simulado aquí con los márgenes del iPhone (59 px arriba y 34 abajo), la
+  barra sale a 100 px justos del borde, como en la captura.
+- Ahora se queda al final de la charla. Para preguntar otra cosa, se baja
+  hasta ella o se toca una de las preguntas de debajo de cada respuesta. Si se
+  prefiere fija abajo del todo, como en una app de mensajes, es otra regla.
+- **En el fuente de «Su cuerpo»** (`src/estilos.css`), rehecho con su
+  `construir.py`. El módulo cambia solo en esa regla, y los 31 ficheros de
+  `datos/cuerpo/` salen iguales. Sin el cambio, `construir.py` da byte a byte
+  el módulo publicado.
+- **`probar_cuerpo.js`**, un control nuevo (pasa de 235 a 236). Con el final
+  de la charla a media pantalla y con la charla vista desde arriba, la barra
+  no se separa de la charla y, desde arriba, no tapa nada. Al revés, con el
+  módulo publicado, en rojo: vista desde arriba, la barra se queda pegada a
+  750 px, encima de las respuestas.
+- **El paquete para la sesión de «Su cuerpo»**, rehecho:
+  `su-cuerpo-unido-03-11-noche.zip`. Sustituye al de la tarde.
+  - Sus 7 ficheros, con su parche y sus 32 huellas.
+  - En una copia limpia de su entrega del 1 de noviembre, con los ficheros y
+    también con el parche, da el módulo y los 31 de datos publicados, byte a
+    byte.
+
+**La hoja de un grupo, en la prueba** (`967e31c`; en `main`, `9e3c863`).
+
+- `probar_cuerpo.js` miraba la hoja a los 300 ms de tocar el grupo. Su
+  animación dura 320 ms y la trae desde 28 px más abajo.
+- A los 300 ms le faltaban hasta 0,8 px, y el límite es 1. Con el procesador
+  ocupado, hasta 17,6 px. «La hoja sale abajo de la pantalla» salió en rojo
+  una vez, con dos pruebas a la vez.
+- Ahora se espera a que acabe la animación. La app no cambia.
+- **Al revés**, con el procesador seis veces más lento: a los 300 ms, de 0 a
+  17,6 px (cuatro de cinco veces, en rojo); al acabar la animación, 0 las
+  cinco veces.
+
+**La auditoría entera**, sobre `967e31c` (árbol `4bf1addc`): «AUDITORIA EN
+VERDE», sin ningún control en rojo ni sin ejecutar.
+
+- El perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58, con el pellizco a 0,0 m;
+  el cielo, 307; el SOS, 39 y 261.
+- En `main` van `2fb7be4`, `8b29226` y `9e3c863`, con los mismos parches,
+  encima de cuatro commits más de los robots: los satélites, las alertas del
+  Gobierno de Canarias, los avisos de AEMET y los terremotos del IGN. Solo
+  cambian sus ficheros de datos.
+- Con los datos nuevos de los robots, sobre ese árbol, otra vez:
+  el cielo, 307; el SOS, 39; los avisos, 156 y 32. En verde.
+
+**Lo que queda:**
+
+- Mirar en el iPhone la fecha de «Su evolución» y la barra de la pregunta.
+- Para la sesión de «Su cuerpo», el paquete nuevo. Su próxima entrega tiene
+  que salir de él.
+
+## El análisis del 4 de noviembre: cada hallazgo, contra el código y las fuentes
+
+Jerome pasó un análisis de la app hecho en otra sesión de Claude (PDF de 15
+páginas, «Tenerife Go — Análisis completo de tenerifego.app»). Pidió
+«Aporta los cambios a lo que puedes y hazme una lista con el ayuda que
+necesitas». Cada hallazgo se ha mirado en el código y, si es un dato, en su
+fuente. La red de esta sesión no abre las webs oficiales: se han leído con el
+buscador, limitado a sus dominios.
+
+**Lo que se ha cambiado**, en cuatro commits:
+
+- **El Corpus de La Orotava** (`9d5dd9c`; en `main`, `8787e44`): las
+  alfombras, el jueves de la Infraoctava (Pascua + 67), y no el del Corpus
+  (+ 60). El programa oficial del Ayuntamiento de 2026 la pone el jueves 11
+  de junio; la app decía el 4.
+- **Hospiten Rambla** (`8c5aea7`; en `main`, `3a51f6a`): «Rambla de Santa
+  Cruz, 115», como su web. Decía «C/ Rambla General Franco, 115».
+- **Las guaguas del aeropuerto** (`750a5f8`; en `main`, `52caf5e`):
+  - la línea 20 se llama «Aeroexpress · Santa Cruz — La Laguna — Aeropuerto
+    Norte (TFN)». Decía «Aerobús · La Laguna — Aeropuerto Norte», sin Santa
+    Cruz, aunque sus paradas ya llegaban al Intercambiador;
+  - en el asistente, la 30 va a Puerto de la Cruz (decía Santa Cruz y La
+    Laguna);
+  - y del aeropuerto Sur salen también la 111 y, de noche, la 711, que paran
+    en él según el GTFS de TITSA (parada 7571).
+- **El Teide en el asistente** (`0131399`; en `main`, `50def03`): el PNT 23
+  y el PNT 28 también piden reserva (resolución del Cabildo de octubre de
+  2026), y solo el PNT 10 y el PNT 07 se pagan en algunas franjas.
+
+Todo en los diez idiomas. En francés, el control del trato de usted leyó «et
+va» como tuteo: se dice «dessert aussi».
+
+**Lo que no se ha cambiado, porque el análisis no tenía razón:**
+
+- **Vithas**, «urgencias 24 h»: el análisis leyó una página de Vithas de
+  2022. El hospital tiene urgencias 24 horas desde el 1 de noviembre de 2025
+  (anuncio del hospital, Canarias7). La ficha estaba bien.
+- **La 102 y la 108 en el aeropuerto Norte**: en el GTFS de TITSA, en esa
+  parada (4537) solo paran la 012, 020, 030, 104 y 343.
+- **El precio del teleférico**: no está demostrado que haya cambiado. La
+  página de 43 € y 10,75 € es antigua según el propio buscador, y la de la
+  app (42 € y 10,50 €, «desde») lleva su fecha, octubre de 2026, como pidió
+  Jerome («Con el precio y su fecha»).
+- **Las respuestas del Teide tei-02, tei-03, tei-06 y tei-12**: ya decían lo
+  vigente. Los importes de la ecotasa, del refugio y de los bonos no se
+  ponen: el asistente no da importes, a propósito.
+
+**Lo que espera a Jerome:**
+
+- Abrir dominios en la red de la sesión para leer las fuentes oficiales.
+- El teléfono de Vithas: su web da el 922 534 730 y la app el 922 534 733.
+- El precio del teleférico, y los precios de otras once fichas: quitarlos
+  (su regla) o dejarlos con fecha.
+- El aviso del PR-TF 51: con la TF-445 cortada no se puede volver por
+  carretera, ni a pie ni en guagua (Tenerife ON). El sendero se queda como
+  está hasta que Jerome diga (31 de octubre).
+- Los socorristas: caducan del 17 al 19 de noviembre, a propósito, y la
+  ficha vuelve sola al enlace del visor. Se renuevan si se confirman.
+- Supabase (protección contra contraseñas filtradas, `push-idioma.sql`, las
+  políticas) y las mejoras técnicas (zoom, robots.txt, sitemap, 404, una
+  descripción, el mapa «Calles», Cloudflare) y de producto.
+
+**La auditoría entera**, sobre `0131399` (árbol `8ff48653`), en dos partes:
+«AUDITORIA EN VERDE», sin ningún control en rojo ni sin ejecutar.
+
+- La primera pasada se cortó en el límite de tiempo que se le pone, 7.000
+  segundos, justo después de `auditar_emergencias.js` (39, en verde). Todo lo
+  de antes, en verde: el asistente, 1.290 respuestas, todas alcanzables, y
+  122 preguntas de prueba sin un fallo; el trato de usted, en los diez
+  idiomas; las rutas en guagua; el cielo, 307; el perfil, 74 y 148; «Su
+  cuerpo», 236; el 3D, 58, con el pellizco a 0,0 m.
+- La segunda, sobre el mismo árbol, con los cinco controles que faltaban: el
+  panel del SOS, 261, y sus cuatro robots. En verde.
+- En `main` van `8787e44`, `3a51f6a`, `52caf5e` y `50def03`, con los mismos
+  parches, encima de seis commits más de los robots: el boletín del
+  INVOLCAN, los satélites, los terremotos del IGN, los avisos de AEMET, las
+  alertas del Gobierno de Canarias y los precios de las gasolineras. Solo
+  cambian sus ficheros de datos.
+- Con los datos nuevos de los cinco primeros, otra vez los doce controles que
+  los leen (árbol `76aef3b6`): los avisos, 32 y 156; la app de las tiendas,
+  montada y abierta, en verde; lo que se ve en pantalla, 191 pantallas y
+  fichas por idioma, sin nada sin traducir; el cielo, 307; el SOS, 39 y 261;
+  y sus cuatro robots. En verde.
+- Y con los precios nuevos, los cinco que leen ese fichero (árbol
+  `d0e85b28`): los precios, sin un fallo; la gasolinera más barata cerca,
+  en los diez idiomas, sin un fallo; la app de las tiendas, en verde; y lo que
+  se ve en pantalla, otra vez 191 pantallas y fichas por idioma, sin nada sin
+  traducir. En verde.
+
+**Una errata en el mensaje del commit** `6ceec80` (esta documentación): da
+los hashes de `main` de antes del segundo rebase, `9dba405`, `f429eaf`,
+`20f2cd7` y `9020b9d`, que no llegaron a subir. Los de `main` son los de
+aquí arriba: `8787e44`, `3a51f6a`, `52caf5e` y `50def03`.
+
+## El teléfono de Vithas y los precios de las fichas (5 de noviembre)
+
+Dos puntos de la lista del análisis del 4 de noviembre, ya con la red de la
+sesión abierta para leer las webs oficiales.
+
+### El teléfono de Vithas Tenerife
+
+La app decía 922 534 733. La página del hospital en la web de Vithas
+(vithas.es/centro/vithas-hospital-tenerife/), leída la noche del 4 y otra vez
+la mañana del 5 de noviembre de 2026, da el 922 534 730, el mismo para el
+hospital y para Urgencias, abiertas 24 horas de lunes a domingo. El 733 no
+sale en ella. Jerome: «Si cámbialo».
+
+- **El cambio** (`ebbf3e4`; en `main`, `7947422`): `phone:"922 534 730"` en la
+  ficha `hosp-vithas-sct`, con la fuente y la fecha en un comentario. El
+  número es el mismo en los diez idiomas.
+- **Dónde se ve:** en el globo de la ficha, con su enlace `tel:922534730`, y
+  desde el panel SOS: su botón de hospitales abre el mapa en la categoría de
+  hospitales. El módulo del SOS no cambia.
+- El número no sale en ningún otro fichero del repositorio. Las otras
+  coincidencias de «53473» son coordenadas del contorno de los municipios.
+
+### Los precios
+
+Jerome pidió buscarlos con la red abierta («verifica con tu acceso si
+encuentras los precios»). De los doce precios de las descripciones, solo
+uno sale en una fuente oficial.
+
+**El teleférico, en La Rambleta** (`74b77f9`; en `main`, `1eded4b`). La página
+de precios de volcanoteide.com (teleferico_del_teide/tarifas_y_horarios,
+leída el 5 de noviembre de 2026) da, subida y bajada, «Precio DESDE»: adulto
+no residente 43,00 €, adulto residente 10,75 € (menor no residente 21,50 €,
+menor residente 5,38 €; menor, de 3 a 13 años). La ficha decía 42 € y
+10,50 €, octubre de 2026. Ahora dice 43,00 € y 10,75 €, noviembre de 2026, en
+los diez idiomas.
+
+- **Una corrección:** el 4 de noviembre, más arriba, se escribió que no
+  estaba demostrado que el precio hubiera cambiado. La página oficial de
+  precios da hoy 43,00 € y 10,75 €: el análisis tenía razón en este punto.
+- `auditar_cielo.js` pedía el texto de octubre. Ahora pide el de noviembre
+  en castellano, y un control nuevo pide 43,00 y 10,75 en los otros nueve
+  idiomas, sin los 42 ni los 10,50. Al revés, con los textos de antes: los
+  dos en rojo.
+
+**Once fichas, sin su precio** (`fa5f9f5`; en `main`, `41671dd`). Ninguno de
+esos precios sale en una fuente oficial, y la regla de Jerome es no poner
+precios en la app:
+
+- Abama Golf (~145 €) y Buenavista Golf (90-140 €): sus webs no publican el
+  green fee; se reserva en su motor de reservas, con precio por fecha.
+- Jardín Botánico (3 €): el ICIA da el horario (9:00 a 18:00, última entrada
+  17:30), no el precio. La web del jardín, mundojardin.icia.es, está caída:
+  su certificado caducó el 10 de octubre de 2026 y la cuenta del alojamiento
+  está suspendida.
+- Bodegas Linaje del Pago (15 €): sin web oficial.
+- Guachinches El Guayero (~40 € la pareja) y Casa Yayi (~10 €): sin web.
+- Minigolfs Oasis, Parque Santiago y La Pinta: Parque Santiago describe el
+  suyo en su web, sin precio; los otros dos no tienen web oficial.
+- Pesca deportiva en Los Cristianos (50-80 €) y parapente en Taucho
+  (90-130 €): actividades de muchas empresas, sin un precio oficial.
+
+Jerome: «Si hazlo así». Se quita solo la frase o el paréntesis del precio,
+en los diez idiomas; el resto de cada ficha no cambia. En el Jardín
+Botánico, también el «· 3 €» de su categoría. Son 120 textos, y cada uno se
+cambió solo dentro de su ficha: tenía que salir una vez justa en ella. El
+polaco, en su fuente (idiomas/pl-lugares/) y montado con
+`lugares_idioma.js`.
+
+**Lo que se ha visto de paso:**
+
+- «El Guayero», en Tegueste, no sale en ninguna parte; un agregador de
+  restaurantes tiene allí un «El Buayero». Puede ser una errata del nombre.
+  Sin fuente oficial, se queda.
+- En dos fichas, sin la cifra, queda una frase sobre el precio: «a precios
+  mínimos» (Casa Yayi) y «el más económico del sur de Tenerife» (Oasis). Las
+  decide Jerome.
+- Quedaban otros precios fuera de las descripciones: la etiqueta «11€» del
+  Barranco del Infierno, la frase «bonos de día completo por unos 15 €» del
+  aparcamiento de La Pinta y la de «1,50-2,50 €/h» del de Playa de la Arena.
+  Jerome: «Si quítalo o verifica online y no olvida Tenerife On». Van en un
+  commit aparte, con su propia auditoría. Los precios por hora o por día de
+  17 aparcamientos, que llevan su fecha, se quedan, como dijo Jerome.
+
+### La red de la sesión
+
+El 5 de noviembre, el entorno está «sin restricciones». Se leen bien
+vithas.es, volcanoteide.com, tenerife.es, laorotava.es, icia.es,
+gobiernodecanarias.org, hospiten.com, rtvc.es y las webs de Arona, Adeje,
+Buenavista, Garachico y La Victoria. Tres siguen sin dejar leer, por su
+propia protección:
+
+- tenerifeon.es: Cloudflare pide una verificación de seguridad, también a un
+  navegador de verdad;
+- titsa.com: su servidor manda el certificado sin el intermedio. Con el de
+  Sectigo, bajado de la dirección que da el propio certificado y comprobado
+  contra las raíces del sistema, la conexión se verifica, y entonces su
+  cortafuegos responde con un 403;
+- aytolalaguna.es: corta la conexión.
+
+No se intenta saltar esas protecciones. Para esas tres, el buscador limitado
+a su dominio, como hasta ahora.
+
+### La auditoría entera
+
+Sobre `fa5f9f5` (árbol `4906708f`), con los tres commits: «AUDITORIA EN
+VERDE» en una sola pasada, sin ningún control en rojo ni sin ejecutar. La de
+solo Vithas, sobre `ebbf3e4`, se paró a la cuarta parte, sin nada en rojo,
+para pasar una sola por los tres.
+
+- El cielo, 308: uno más que antes, el del teleférico en los otros nueve
+  idiomas. El perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58; el SOS, 39 y
+  261, y sus cuatro robots.
+- En `main` van `7947422`, `1eded4b` y `41671dd`, con los mismos parches,
+  encima de tres commits más de los robots: los avisos de AEMET, los
+  terremotos del IGN y las alertas del Gobierno de Canarias. Solo cambian
+  sus ficheros de datos.
+- Con esos datos nuevos, sobre ese árbol (`d8fd2b52`), otra vez los siete
+  controles que los leen: los avisos, 32 y 156; la app de las tiendas,
+  montada y abierta, en verde; el SOS, 39 y 261; y el robot de los
+  terremotos. En verde.
+- Y con las alertas, que llegaron después, los cuatro que las leen: la app
+  de las tiendas, el SOS, 39 y 261, y el robot de las alertas. En verde.
+
+## Tres precios más: el Barranco del Infierno y dos aparcamientos (5 de noviembre)
+
+Al repasar toda la app quedaban tres precios fuera de las descripciones.
+Jerome: «Si quítalo o verifica online y no olvida Tenerife On».
+
+- **El Barranco del Infierno** (`29f2996`; en `main`, `738342d`): la etiqueta
+  «11€» estaba vieja. La web oficial (barrancodelinfierno.es, leída el 5 de
+  noviembre de 2026 con un navegador, porque ese texto lo pinta la página)
+  dice: «La entrada al Barranco del Infierno cuesta 16 € por adulto no
+  residente y 6 € para residentes en Canarias». Tenerife ON manda reservar
+  allí y no da la cifra. Una etiqueta no lleva fecha: se quita, y también su
+  declaración en `idiomas/etiquetas-sin-traducir.json`.
+- **El parking CLÜBO de La Pinta:** «bonos de día completo por unos 15 €».
+  Sin precio oficial: solo una web de reservas, que lo da al reservar. Se
+  queda la frase sin la cifra. Su precio por hora, con su fecha (julio de
+  2026), se queda.
+- **Playa de la Arena:** «parkings de pago en Balcón de Los Gigantes o El
+  Mirador, 1,50-2,50 €/h». Sin fuente. Se queda la frase sin la cifra.
+
+En los diez idiomas: 22 cambios, cada uno una vez justa dentro de su ficha.
+El polaco, en su fuente y montado con `lugares_idioma.js`. Con esto, en el
+texto de las fichas solo queda un precio, el del teleférico, con su fecha.
+
+**Visto de paso:** la misma web del Barranco dice «unas 3 horas ida y
+vuelta», 6,5 km, unos 250 metros de desnivel y «dificultad media-baja». La
+ficha dice 3,5 horas y «Medio». Lo decide Jerome, como el precio del
+Barranco en la descripción y las dos frases de Casa Yayi y de Oasis.
+
+**La auditoría entera**, sobre `29f2996` (árbol `2c6e91b8`): «AUDITORIA EN
+VERDE» en una sola pasada, sin ningún control en rojo ni sin ejecutar. El
+cielo, 308; el perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58, con el
+pellizco a 0,0 m; el SOS, 39 y 261, y sus cuatro robots.
+
+- En `main` va `738342d`, con el mismo parche, encima de tres commits más de
+  los robots: los satélites, las alertas del Gobierno de Canarias y los
+  terremotos del IGN. Solo cambian sus ficheros de datos.
+- Con esos datos, sobre ese árbol (`831ed846`), otra vez los siete
+  controles que los leen: la app de las tiendas; lo que se ve en pantalla,
+  191 pantallas y fichas por idioma, sin nada sin traducir; el cielo, 308;
+  el SOS, 39 y 261, y el robot de las alertas. En verde.
+- **Un rojo que no era de la app.** `probar_app.js` salió en rojo la primera
+  vez. Sirve la copia de la app en el puerto siguiente al de la prueba
+  (8797), y allí seguía abierto un servidor de una comprobación anterior,
+  que servía la web normal: la prueba abrió la web y no la copia de la app.
+  Pasó por lanzarlo con `cd … && python3 -m http.server … &`: el `&` manda
+  a segundo plano toda la orden, con el `cd`, y matar ese proceso no mata
+  al servidor. Cerrado el servidor, otra vez sobre el mismo árbol: 48
+  comprobaciones bien, ninguna mal. En la auditoría entera, las pruebas
+  usaron otros puertos (8796 y 8802): ese servidor no pudo tocarla.
+- Y con los terremotos, que llegaron después, los cuatro controles que los
+  leen: la app de las tiendas, el SOS, 39 y 261, y el robot de los
+  terremotos. En verde.
+
+## El Barranco del Infierno, de su web, y dos frases sobre el precio (5 de noviembre)
+
+Jerome, a las tres preguntas: «1 si 2 si 3 si».
+
+- **El precio de la entrada** (`a404e75`; en `main`, `c6c2da8`): «La entrada
+  cuesta 16 € por adulto no residente y 6 € para residentes en Canarias
+  (barrancodelinfierno.es, noviembre de 2026)», detrás de la frase de la
+  reserva. Es la frase de la web oficial, leída el 5 de noviembre con un
+  navegador; en inglés, alemán y francés, la de sus versiones en esos
+  idiomas.
+- **La duración y la dificultad** (`f466667`; en `main`, `8c57535`): la web dice
+  «unas 3 horas ida y vuelta, sobre un trazado de 6,5 km y unos 250 metros
+  de desnivel, con una dificultad media-baja». La ficha decía 3,5 horas y
+  «Medio». Ahora, en la descripción, «unas 3 horas»; en la categoría,
+  «Media-baja · 6,5 km · 3h». En inglés, alemán y francés, con las palabras
+  de la web («low to medium», «mittleren bis geringen», «moyen à faible»);
+  en los otros, con el vocabulario que la app ya usa para «Fácil» y «Medio».
+- **Dos frases sobre el precio, fuera** (`c26e50d`; en `main`, `8b5e475`): «a
+  precios mínimos» (Casa Yayi) y «el más económico del sur de Tenerife»
+  (minigolf Oasis).
+
+En los diez idiomas: 40 textos, cada uno una vez justa dentro de su ficha.
+El polaco, en su fuente y montado con `lugares_idioma.js`.
+
+**Un rojo, arreglado en el texto y no en el control.** La primera auditoría
+se paró en `castellano_suelto.js`: en el italiano, «16 € per adulto non
+residente», la palabra «residente» se escribe igual en castellano. Es
+italiano correcto, pero el control no puede saberlo. Se escribió en plural,
+como en el teleférico: «per gli adulti non residenti». El control no se
+tocó, y los tres commits se rehicieron con ese texto.
+
+**Queda para Jerome:** las etiquetas que también valoran el precio:
+«Económico» (3 fichas: Casa Yayi, Oasis y el minigolf Wakanda), «Barato» (7
+supermercados), «Lujo» (7) y «Premium» (2).
+
+**La auditoría entera**, sobre `c26e50d` (árbol `4875108f`): «AUDITORIA EN
+VERDE» en una sola pasada, sin ningún control en rojo ni sin ejecutar. El
+cielo, 308; el perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58, con el
+pellizco a 0,0 m; el SOS, 39 y 261, y sus cuatro robots.
+
+- En `main` van `c6c2da8`, `8c57535` y `8b5e475`, con los mismos parches,
+  encima de dos commits más de los robots: los precios de las gasolineras y
+  las alertas del Gobierno de Canarias. Solo cambian sus ficheros de datos.
+- Con esos datos, sobre ese árbol (`10b8b271`), otra vez los siete
+  controles que los leen: los precios y la gasolinera más barata cerca, sin
+  un fallo; la app de las tiendas, montada y abierta; el SOS, 39 y 261, y
+  el robot de las alertas. En verde. (El barrido de pantallas fabrica sus
+  precios desde el registro del repositorio, no desde ese fichero: no hacía
+  falta repetirlo.)
+
+## Lo que valoraba el precio, y lo que no (5 de noviembre)
+
+Jerome, a la pregunta de las etiquetas, primero: «Quítalos todo pero
+verifica que la leyenda sigue con sentido que quitar palabras quita
+contexto». Después, viendo el cambio: «Playa de lujo es playa de alta gama
+no es que pagas . Si no es un precio déjalo». La primera versión, con
+«Lujo» y «Premium» fuera de 19 fichas, no se publicó: se rehízo desde
+`main` con solo lo que habla de lo que se paga.
+
+**Diez fichas** (`3505292`):
+
+- Fuera las etiquetas «Barato» (7) y «Económico» (3). El código no las usa
+  para filtrar ni para buscar. También salen de `idiomas/etiquetas/<l>.json`:
+  si alguien vuelve a ponerlas, `auditar_etiquetas.js` las cantará como sin
+  traducir.
+- En esas fichas, la misma valoración salía en la leyenda o en la
+  descripción. Fuera, en los diez idiomas, con la frase rehecha para que
+  siga diciendo algo: fuera «· Económico» (Oasis); «tranquila y económica»
+  → «tranquila», y fuera «Precios asequibles» (Wakanda); en los
+  supermercados, «por su precio y amplitud» → «por su amplitud»,
+  «precios competitivos y gran variedad» → «con gran variedad», «Precios de
+  referencia para residentes de…» → «Para residentes de…», y fuera «Uno de
+  los supermercados más baratos de la isla», «Buenos precios», «Precios de
+  referencia» y «Precios muy competitivos».
+- Cada ficha se leyó entera, antes y después, en los diez idiomas.
+- De paso, la leyenda del Oasis en neerlandés decía «Betaalbaar ·
+  Voordelig» donde el castellano dice «Sur · Económico». Ahora «Zuid», como
+  en 39 de las 41 leyendas neerlandesas que traducen «Sur».
+
+**Se quedan como estaban:** «Lujo» (7 fichas) y «Premium» (2), con sus
+leyendas y descripciones («Playa de Lujo», «Zona de Lujo», «la zona de
+turismo de lujo», «· Lujo» en Abama Golf, «zona sur premium»), y las otras
+valoraciones que no son de precio: «Exclusiva», «restaurantes selectos»,
+«elegante», «la mejor gastronomía», «Top Mundial».
+
+**El contexto que se fue con los precios** (`b95c916`):
+
+- Parque Santiago: «Efectivo.», suelto, ya no se entendía → «Pago en
+  efectivo.» (en inglés, alemán y chino ya se entendía).
+- La Pinta: vuelve «Incluye palos, bolas y tarjeta».
+- Pesca en Los Cristianos: «Barcos privados también disponibles» → «Hay
+  salidas compartidas y barcos privados».
+
+Las palabras salen de los textos de antes en cada idioma. En total, 100
+cambios en 90 textos y 10 listas de etiquetas, más 26 textos de contexto,
+cada uno dentro de su ficha. El polaco, en su fuente y montado con
+`lugares_idioma.js`.
+
+**Queda para Jerome:** frases que valoran el precio en otras 16 fichas, que
+no llevaban esas etiquetas. Guachinches y restaurantes: El Talegazo
+(«precios bajos»), Bodega Sursula («precios muy buenos»), El Patio
+(«Excelente relación calidad-precio»), El Jable («Precios justos»); Las
+Galletas («pescado fresco a buen precio»), Playa San Juan («a precios
+locales»), la zona de mariscos de Los Abrigos («más asequibles que en zonas
+turísticas»), el bar del minigolf Kapital («a precio razonable») y la Casa
+del Vino («a precio reducido»). Tiendas: la Farmacia Blesa («precios
+competitivos»), los Mercadona de Puerto de la Cruz y de La Orotava
+(«Precios asequibles») y tres Lidl («precio(s) competitivo(s)»). Y el Museo
+Etnográfico de Granadilla («Entrada gratuita o de bajo coste»).
+
+Se proponen dejar, porque no valoran el precio sino que dan una condición:
+el aviso del parking P1 del aeropuerto Norte («Reservando antes en la web
+de AENA sale bastante más barato»), que AENA dice en su web («RESERVAR ES
+AHORRAR»; con reserva, «direct discounts on your stay»); el precio especial
+por jugar los dos campos del Kapital; la compra de la bici de Bike Point
+con el alquiler descontado; y los tramos gratis del parking de Martiánez
+validando en el Mercadona.
+
+**En cola, aparte:** la ficha de accesibilidad de Siam Park dice «50% de
+descuento con discapacidad del 60% o más, y entrada gratuita con
+discapacidad total». Lo que el buscador cita de sus condiciones
+(siampark.net, que no se deja leer directamente: Cloudflare) es una «tarifa
+especial» con discapacidad reconocida de más del 60 %, sin cifra y sin
+entrada gratis. No se toca hasta tener la fuente oficial leída.
+
+**La auditoría entera**, sobre `b95c916` (árbol `aaf86075`): «AUDITORIA EN
+VERDE» en una sola pasada, sin ningún control en rojo ni sin ejecutar. Las
+etiquetas, ninguna sin traducir ni sin declarar, y las 135 filas sin usar de
+siempre; ninguna palabra en castellano dentro de las traducciones. El cielo,
+308; el perfil, 74 y 148; «Su cuerpo», 236; el 3D, 58, con el pellizco a
+0,0 m; el SOS, 39 y 261, y sus cuatro robots. `main` no se movió mientras
+tanto: los dos commits van tal cual, encima de `4637f3f`, en el árbol
+auditado.
+
+## Supabase: el registro del linter, la tienda, borrar la cuenta y push_subs (5 de noviembre)
+
+Jerome, el 5 de noviembre, con la migración del 4 ya aplicada
+(`linter_es_admin_sin_public_y_politicas_select_auth_uid`): «el SQL que hay
+que guardar en supabase/ como registro». Después: «Sí ponlas al día», «Nada
+para más adelante hazlo ya», «Sí, léelas» (la base de datos, con el
+conector), «Prepáralo y aplícalo tú» (la tienda), «si créalo y haz las
+pruebas. Verifica de no hacer errores de seguridad» (`borrar_mi_cuenta`) y
+«protege las claves. Y quítalo si no hace falta» (`push_subs`).
+
+**El registro del 4 de noviembre** (`b700194`):
+`supabase/linter_es_admin_sin_public_y_politicas_select_auth_uid.sql`.
+`es_admin()` sin EXECUTE para PUBLIC (solo `authenticated` y
+`service_role`), y las 16 políticas de `favorites`, `perfiles`, `pesos` y
+`caminatas` con `(select auth.uid()) = user_id`. Las doce que Jerome
+resumía con «y las mismas cuatro», escritas enteras con los nombres de
+`perfil.sql`. Cotejado después con lo que guarda Supabase (versión
+`20261104223753`): las mismas 18 sentencias.
+
+**Los ficheros de base, como la base de datos** (`256d986`):
+`anuncios.sql`, `favorites.sql` y `perfil.sql`, que rehacen el proyecto
+desde cero y, si se volvían a ejecutar, deshacían la migración. Para que
+no vuelva atrás sin que salte: `auditar_perfil.js` exige la forma nueva, y
+`auditar_seguridad.py` tiene una sección «supabase/» (cada función
+SECURITY DEFINER con su revoke de PUBLIC; ninguna política con `auth.uid()`
+a secas). Con los ficheros de antes, en rojo justo en lo que decía el
+linter.
+
+**Leyendo la base de datos.** Con el conector de Supabase y solo consultas
+al catálogo: definiciones, ningún dato de nadie, salvo contar las filas de
+`push_subs`. Salieron dos cosas que no se sabían:
+
+- `borrar_mi_cuenta()` no existía: `borrar-cuenta.sql` no se había
+  ejecutado nunca (estaba «en manos de Jerome»), y el botón «Eliminar
+  cuenta» acababa siempre en el mensaje de error.
+- `push_subs` tenía una política del principio, «push_subs alta anon»
+  (insert para `anon` y `authenticated`, `with check (true)`): con la clave
+  pública de la app se podían meter filas directas, sin las comprobaciones
+  ni el tope de 50.000 de `guardar_push_sub()`. La app no la usa. Nadie la
+  había usado: 5 suscripciones, todas válidas.
+
+Y lo que faltaba por volcar: `push_subs` (`id` identity, `endpoint`
+único, `p256dh`, `auth`, `lang` con `'es'` por defecto, `created_at`) y
+`push_sends` (`sent_date date` como clave, de ahí el 409 que impide enviar
+dos veces, y `created_at`), las dos con RLS.
+
+**Tres cambios en la base de datos**, probados antes en un Postgres 16
+local con lo que trae Supabase (`anon`, `authenticated`, `service_role`,
+`auth.uid()` y sus permisos por defecto). El conector pidió tres veces una
+confirmación que a Jerome no le llegaba; los pegó él en el SQL Editor:
+
+1. **La tienda** (`1f1e72c`): una política por rol y por acción en
+   `anuncios`, `souvenirs` y `excursiones` (el lint 0006, «Multiple
+   Permissive Policies»). Lo que cada uno ve y toca no cambia: 18
+   comprobaciones, iguales antes y después; el orden nunca deja menos
+   permisos.
+2. **`borrar_mi_cuenta()`** (`7a210fa`), la de `borrar-cuenta.sql`
+   tal cual. En la base, `postgres` (su dueño) puede borrar en
+   `auth.users`, y todo lo que apunta a `auth.users` borra en cascada (una
+   tabla interna de Supabase pone null): nada da 23503. En local, 13
+   pruebas: sin sesión no se puede llamar; una cuenta de admin no se borra;
+   quien llama se va con sus favoritos, su perfil, sus pesos y sus
+   caminatas, y otra cuenta queda intacta.
+3. **`push_subs`** (`bae8dce`): fuera la política y fuera los
+   permisos de `anon` y `authenticated`. Las altas, solo por
+   `guardar_push_sub()`; las claves de cada suscripción ya no se pueden
+   leer desde el cliente. En local, la fila directa entraba antes y no
+   después (14 comprobaciones). `favorites.sql` tiene ya las dos tablas
+   volcadas de la base; el README, `push_sends` (once tablas); y
+   `auditar_seguridad.py`, una tercera comprobación: ninguna política que
+   deje escribir a `anon` sin condición.
+
+**Comprobado después:**
+
+- El linter: ningún aviso de rendimiento. De seguridad, solo lo esperado:
+  `admins`, `push_sends` y `push_subs` con RLS y sin políticas (nadie entra
+  directo); `guardar_push_sub()` se puede llamar sin sesión (así se dan de
+  alta los avisos); `es_admin()` y `borrar_mi_cuenta()`, con sesión (es su
+  uso); y la protección de contraseñas filtradas, que es del plan Pro.
+- La base de datos y una hecha solo con los ficheros de `supabase/` dan las
+  mismas 49 líneas de políticas, permisos de tabla y de funciones (la misma
+  huella md5, `4c9ae737…`).
+- Desde fuera, con la clave pública de la app, como un visitante: la tienda
+  se ve igual que antes (0 anuncios, 1 souvenir y 1 excursión);
+  `borrar_mi_cuenta()` sin sesión, «permission denied» (401); leer
+  `push_subs` y meter una fila directa, «permission denied» (401);
+  `guardar_push_sub()` sigue respondiendo (un endpoint que no vale: 22023,
+  sin guardar nada); y siguen las 5 suscripciones.
+- Las claves: en el repositorio solo está la `anon`, que es pública a
+  propósito; la `service_role` y la VAPID privada, solo en los secretos del
+  servidor.
+
+**Un rojo que no era de estos commits.** La primera auditoría dio un rojo en
+`auditar_sin_traducir.js`: la madrugada del 6, con el mar en calma, la
+lista «dónde bañarse» enseñaba tres playas y, tres veces, «🌊 0,3 m · 💨 W
+3 km/h», igual en castellano que en búlgaro. Estos commits no tocan la app,
+y en `main` salía lo mismo, según los datos del mar del momento. Dos causas:
+el control buscaba los nombres de las fichas en `pl.nombre`, y se llaman
+`name`; y el código escribe las unidades y los rumbos del viento igual en
+todos los idiomas. Se paró la publicación y se le contó a Jerome. Su
+respuesta: «arréglalo ya» (el control) y la opción B, las unidades y los
+rumbos en cada idioma («así cada uno entiende que pensamos en todos»). Va
+aparte.
+
+**Lo que queda:** la prueba entera de «Eliminar cuenta» con una cuenta de
+prueba (Jerome: «Haz tu una cuenta de prueba y bórrala»). Va aparte.
+
+**La auditoría entera**, otra vez, sobre `76b9675` (árbol `5b2e83e0`):
+«AUDITORIA EN VERDE», sin ningún control en rojo ni sin ejecutar. La
+sección «supabase/» de `auditar_seguridad.py`, 0, 0 y 0; el perfil, 74 y
+148; el cielo, 308; «Su cuerpo», 236; el 3D, 58, con el pellizco a 0,0 m;
+el SOS, 39 y 261, y sus cuatro robots. Esa vez la lista de playas no tenía
+chips, y el texto sin traducir salió a cero.
+
+- En `main` van `b700194`, `256d986`, `1f1e72c`, `7a210fa` y `bae8dce`, con
+  los mismos parches, encima de siete commits más de los robots (los
+  precios de las gasolineras, las alertas, los avisos de AEMET y los
+  terremotos): solo cambian sus ficheros de datos.
+- Con esos datos, otra vez los diez controles que los leen: los precios y
+  la gasolinera más barata cerca; los avisos de AEMET, en el robot y en la
+  app; la app de las tiendas, montada y abierta; el SOS, 39 y 261; y los
+  robots de los terremotos y de las alertas. En verde.
+
+## Las unidades y los rumbos en la lengua de cada uno, el control sin traducir, Siam Park y la cuenta de prueba (6 de noviembre)
+
+Jerome, el 6 de noviembre: «1 arréglalo ya», «2 B, así cada uno entiende
+que pensamos en todos. Y si por publicar», «Siam park si ponlo que tienen
+diferente precio por diferente entradas, como residente, válidos» y «Haz tu
+una cuenta de prueba y bórrala».
+
+**El control que salió en rojo de madrugada** (`dbab8b7`).
+`auditar_sin_traducir.js` saca de `places[]` los nombres propios para no
+contarlos como texto sin traducir, pero leía `pl.nombre`, que no existe:
+las fichas lo llaman `name`. Con el mar en calma, «dónde bañarse» enseñó
+tres playas y el control las dio por castellano suelto. Leyendo `name`,
+3.331 nombres propios en vez de 2.398. Lo otro que salió, «🌊 0,3 m · 💨 W 3
+km/h» en búlgaro, no era del control: era la opción B.
+
+**Siam Park** (`8613233`). La ficha de accesibilidad decía cosas que
+siampark.net no dice («50% de descuento», «entrada gratuita con
+discapacidad total», «pulseras Fast Pass para personas con autismo»). Ahora,
+en los diez idiomas y sin cifras: hay entradas para residentes en Canarias,
+y las personas con una discapacidad reconocida del 60% o más tienen una
+tarifa especial, que se compra en la oficina de información del parque con
+el certificado y un documento con foto (siampark.net, noviembre de 2026).
+Fuera la etiqueta «Autismo».
+
+**Las unidades y los rumbos** (`1498434`). La altura de las olas, el viento, la
+marea, el periodo de las olas, la precisión del GPS, la distancia a una
+parada, a una gasolinera y la del asistente, y el radio del filtro
+«Accesible en bus» se escribían «m», «km», «km/h», «s» y «NE» en los diez
+idiomas. Ahora salen de `UI_TX` (`medidaM`, `medidaKm`, `medidaKmh`,
+`medidaSeg` y los ocho rumbos) con `conUnidad()` y `rumboVisible()`:
+
+| | es | en | fr | de | it | nl | zh | zht | bg | pl |
+|---|---|---|---|---|---|---|---|---|---|---|
+| olas | 0,6 m | 0.6 m | 0,6 m | 0,6 m | 0,6 m | 0,6 m | 0.6米 | 0.6公尺 | 0,6 м | 0,6 m |
+| viento | 12 km/h | 12 km/h | 12 km/h | 12 km/h | 12 km/h | 12 km/u | 12公里/小时 | 12公里/小時 | 12 км/ч | 12 km/h |
+| rumbos | N NE E SE S SO O NO | N NE E SE S SW W NW | N NE E SE S SO O NO | N NO O SO S SW W NW | N NE E SE S SO O NO | N NO O ZO Z ZW W NW | 北 东北 东 东南 南 西南 西 西北 | 北 東北 東 東南 南 西南 西 西北 | С СИ И ЮИ Ю ЮЗ З СЗ | N NE E SE S SW W NW |
+
+De dónde sale cada cosa, sin inventar ninguna:
+
+- Los rumbos son los que ya tenía la carta del cielo (`cieloRumbo*`), y los
+  mismos de las etiquetas (NNE: NNO en alemán y neerlandés, ССИ, 东北偏北).
+  Los internos (N, NE … NW) no cambian: `scorePlaya` y
+  `PLAYAS_ORIENTACION` los comparan.
+- Búlgaro en cirílico, como el resto de la app (las fichas escriben «км» 87
+  veces y «м» 138; el asistente de «Su cuerpo», «70 кг») y como el Instituto
+  de la Lengua Búlgara de la Academia (БАН), en su columna «Пиши правилно»
+  de Аз-буки: «мерни единици: 5 т, 2 лв., 100 км/ч». Las dos formas son
+  búlgaro correcto: la norma de metrología (Наредба за единиците за
+  измерване, ПМС 275/2002, art. 26) pide los símbolos internacionales, en
+  latín, para expresar medidas, y así escribe el instituto meteorológico
+  (НИМХ) sus boletines («15-20 m/s», «25 cm»). La app ya había elegido:
+  `auditar_idioma.js` pide cirílico en cada texto búlgaro.
+- Chino: 米 y 公尺, 公里, 公里/小时 y 公里/小時 (este, el de Unicode CLDR para
+  zh-TW), 秒; pegados a la cifra, como las fichas (91 de 91 «公里» sin
+  espacio).
+- Neerlandés «km/u»: CLDR y la carta del cielo.
+- Los decimales, como en cada idioma: punto en inglés y en chino, coma en
+  los demás. Antes el mar y el GPS escribían punto en todos («1.2 m» en
+  castellano) y las paradas, coma en todos («1,2 km» en inglés).
+
+En el perfil, las unidades de los campos y de su evolución: кг y см en
+búlgaro; 公斤, 厘米 y 公分 en chino, como el asistente y los ejercicios; las
+imperiales, las de CLDR (磅, 英寸, 吋, 英石). En búlgaro, la primera vez
+dejé lb, in y st, la forma corta de CLDR, que es latina; la auditoría
+entera lo paró (`auditar_idioma.js` pide cirílico en búlgaro). Van sus
+palabras de CLDR, con su plural: «11 стоуна 1 фунт», «3 фунта», инча (el
+peso va de 3 a 63 stone, nunca uno solo). `auditar_perfil.js` cuenta ahora
+468 filas.
+
+En la carta del cielo, el búlgaro mezclaba 27 unidades en latín y 6 en
+cirílico. Ahora todas en cirílico (км, км/с, км/ч, м, см, м/с², кг/м³), y el
+m/s² del chino, 米/秒² y 公尺/秒². El panel SOS (`emergencias.js`) no se ha
+tocado: ya escribía «м», «米» y «公尺».
+
+**El aviso del filtro de guaguas** (`abdffaf`). Con «Accesible en bus»
+encendido y ninguna línea, decía «Activa una línea de bus» en los diez
+idiomas, y de tú. Ahora «Active al menos una línea», la frase de
+`busShareNothing`, ya traducida, sin el «para compartir».
+
+**Los avisos de AEMET** (`8c90ccc`). AEMET da el valor con su unidad («20 mm»,
+«70 km/h»), y la tarjeta lo enseñaba así en los diez idiomas. Ahora, con
+`conUnidad()`: 20毫米, 20公釐, 20 мм; los grados, como los escribe AEMET.
+Dos filas nuevas, `medidaMm` y `medidaCm` (毫米 y 厘米, 公釐 y 公分, como
+CLDR). `probar_avisos.js` pide ya la unidad de cada idioma: 156 de 156.
+
+Con todo, 24 filas nuevas: 3332 en el título de «Idiomas» y 5.480 en total.
+
+**La cuenta de prueba.** Una cuenta de usar y tirar, con un correo de
+`example.com`, que no es de nadie, y con un favorito, su perfil, un peso y
+una caminata. Con su sesión llamó a `borrar_mi_cuenta()`, que devolvió
+`true`. Después, su sesión ya no valía (`refresh_token_not_found`), su
+contraseña tampoco (`invalid_credentials`), y en la base de datos no quedó
+nada suyo: de una fila en cada una a 0 en `auth.users`, sus identidades,
+sesiones y tokens, `favorites`, `perfiles`, `pesos` y `caminatas`. Quedan
+las 6 cuentas de antes. La copia local de la clave y de la contraseña de
+prueba, borrada.
+
+**La auditoría entera**, sobre `4bfc758` (árbol `f2c5265f`): «AUDITORIA EN
+VERDE», sin ningún control en rojo ni sin ejecutar. El texto sin traducir,
+0 en la interfaz; las pantallas en los diez idiomas, 0; los avisos de
+AEMET, 156; el perfil, 74 y 148; el cielo, 308; «Su cuerpo», 236; el 3D,
+58, con el pellizco a 0,0 m; el SOS, 39 y 261.
+
+- La vuelta anterior, sobre `459620a`, se paró en rojo en
+  `auditar_idioma.js bg`: las lb, in y st del búlgaro (arriba). Arreglado
+  dentro del commit de las unidades, y otra vuelta entera.
+- En `main` van `dbab8b7`, `8613233`, `1498434`, `abdffaf` y `8c90ccc`, con
+  los mismos parches, encima de cuatro commits más de los robots (las
+  alertas del Gobierno de Canarias, los satélites, el semáforo del INVOLCAN
+  y los terremotos): solo cambian sus ficheros de datos.
+- Con esos datos, otra vez los controles que los leen: la app de las
+  tiendas, montada y abierta; las pantallas en los diez idiomas, 0; el
+  cielo, 308; el SOS, 39 y 261; y los robots del semáforo del INVOLCAN, de
+  las alertas y de los terremotos. En verde.
+
+## «Su cuerpo»: el bloque 1 del rediseño, la bandera de la playa, «最深» y el pecho en naranja (6 y 7 de noviembre)
+
+La sesión de «Su cuerpo» manda la nota 20 con un parche
+(`0001-su-cuerpo-bloque-1`): el primero de los siete bloques del rediseño
+«Amanecer», «Color y figura». Jerome había aprobado el plan ese día («Leído el
+plan y me gusta, vamos a preparar el bloque 1 para Claude Code») y, al
+pasarlo: «Como siempre verifica todo». El commit va tal como llegó (`c1f548f`).
+
+**Lo que cambia en la pantalla:**
+
+- **Los niveles del mapa de músculos.** De tres oros (`#B58531`, `#E0B44C`,
+  `#FFE79E`) a rosa, naranja y amarillo (`#EE5F7E`, `#FFA04A`, `#FFE48A`),
+  sobre el mismo grafito (`#333E4D`). Los mismos colores van en la leyenda y en
+  las barras de los 12 grupos, y el contorno del grupo abierto pasa a blanco.
+  - Contraste con «sin trabajar»: 3,39, 5,36 y 8,63. Con los oros era 3,29,
+    5,58 y 8,87; WCAG 1.4.11 pide 3:1.
+  - Los niveles vecinos se distinguen mejor: la distancia OKLab pasa de 0,144
+    y 0,146 a 0,179 y 0,159. La claridad sigue subiendo en cada nivel (0,36 ·
+    0,68 · 0,79 · 0,92).
+- **La cabeza de la persona** sobre el maniquí de «Músculos», de frente y de
+  espaldas. Lleva la piel, la cara, el pelo, la barba, la gorra o el pañuelo,
+  las gafas y el audífono elegidos en «Aspecto».
+  - No recibe toques: tocar el pelo largo abre la hoja del músculo de debajo.
+  - El pelo que cae por debajo del mentón va al 30 %.
+  - La hoja de un grupo, la ficha de un ejercicio y «Aspecto» siguen sin ella.
+- **La cinturilla del pantalón**, recta: ya no asoma por los lados de la
+  camiseta.
+- **La barra de «Comida»** sigue en oro.
+- **`TG_FIGURA.AMB`**: la luz de detrás, el brillo y la sombra del suelo,
+  apartados para el tema claro del bloque 2.
+
+**El asistente, en el parche.** Cuatro frases decían que los niveles son «tres
+tonos de oro» (una de ellas va en dos respuestas). En chino, una quinta
+llamaba al nivel más alto «el color más oscuro», y el amarillo es el más
+claro. Van corregidas en los diez idiomas, junto con las variantes y las
+palabras clave del buscador que nombraban el oro: 123 cambios, y 178
+respuestas antes y después. Las frases de los nueve idiomas que no son el
+castellano las escribió la IA sobre la frase que ya había. No las ha revisado
+ningún nativo, como el resto de «Su cuerpo».
+
+**Lo comprobado del parche:**
+
+- **El parche** tiene el sha256 de la nota. Con `git am` deja los dos árboles
+  que dice la nota: `5c5a4fa2` sobre `b59d5bb` y `1324d728` sobre `6f3e332`.
+  Sobre el `main` de hoy, los 14 ficheros tienen sus sha256.
+- **`aplicar_bloque1.py`** llegó en PDF, con las líneas largas cortadas. No
+  hizo falta: el parche entró limpio.
+- **El código.** La cabeza se dibuja con el aspecto ya pasado por
+  `normaliza()`, que solo deja opciones de su lista y colores de su paleta, y
+  con el id limpio. Nada de lo guardado entra tal cual en el dibujo.
+  `probar_cuerpo.js` mete un `<img onerror>` en el aspecto guardado, y no se
+  ejecuta.
+- **Las cifras de la nota**:
+  - el contraste y las distancias OKLab;
+  - el módulo: de 395.280 a 400.577 bytes, y de 119.941 a 121.002 con
+    `gzip -9`;
+  - la primera descarga, sin cambios: 1.086 / 1.201 kB.
+- **Las frases nuevas**, una a una, en los diez idiomas.
+- **El buscador**, con el del propio módulo, `main` contra el parche:
+  - la pregunta y las variantes de las 178 respuestas que no cambian, en los
+    diez idiomas, con 30 años, con 15 y sin edad: 68.106 consultas, y
+    ninguna cambia de respuesta ni de grado;
+  - las 53 variantes nuevas encuentran su respuesta con las tres edades;
+  - son las mismas cifras de la nota.
+- **El banco de preguntas de prueba.** La nota decía no tener el banco con
+  que se afinó el buscador el 31 de octubre. Está en las fuentes de «Su
+  cuerpo» (`asistente/pruebas/`, 4.286 preguntas, con su
+  `probar_asistente.js`). Con él, del fuente del 3 de noviembre al del bloque
+  1, cambian tres preguntas, y las tres nombran el oro de antes:
+  - «wat betekenen de gouden kleuren» y «身體圖上的金色和灰色代表什麼» siguen
+    dando su respuesta;
+  - «защо мускулите светят в златно» pasa a dudar, con la respuesta de los
+    colores la primera.
+- **En Chromium, a 390 px, antes y después:**
+  - los tres colores en el dibujo, la leyenda y las barras;
+  - la cabeza, con pelo largo y gafas;
+  - la hoja y la ficha, sin cabeza;
+  - la cinturilla, y «Comida» en oro;
+  - «¿qué significa el rosa?» y «what does pink mean?» dan la respuesta de
+    los colores; antes daban «¿Quería preguntar esto?»;
+  - 0 errores de página.
+
+**La bandera de la playa** (`a68f618`). Es el primero de los cuatro puntos que la
+nota vio de paso. Jerome: «hazlo».
+
+- **Lo que pasaba.** «¿Qué significa la bandera amarilla?» llevaba, en
+  inglés, francés, polaco y chino, a la respuesta de los colores del personaje
+  o a la del nivel de un ejercicio. En alemán, neerlandés y búlgaro el
+  asistente dudaba.
+- **Por qué.** «Amarillo» es palabra clave de «colores-del-mapa». Solo el
+  castellano tenía en «nadar-en-el-mar» las variantes «¿qué significan la
+  bandera roja y la amarilla?» y «¿qué significan las banderas en las playas
+  de Tenerife?», y la clave «colores de la bandera».
+- **El arreglo.** Ahora las tienen los otros nueve idiomas, con la palabra de
+  la bandera que ya usa esa respuesta en cada uno.
+- **Lo medido**, frente al bloque 1:
+  - 50 preguntas de la bandera, con las tres edades: de 201 a 270 de 270
+    llevan al mar;
+  - otra tanda de 40, que no se usó para elegir las variantes: 84 de 120
+    consultas van directas al mar; antes, 39;
+  - de 68.265 consultas de la regresión cambian 6, de cuatro frases, todas
+    justo en un umbral del buscador:
+    - «is fietsen of de sportschool beter?» da ahora su propia respuesta;
+    - con 15 años, «我很重，可以做什麼運動» deja de contestar con la de la
+      discapacidad;
+    - con 15 años, «are carbohydrates necessary?» pasa de nada a
+      sugerencias;
+    - con 15 años, «mangiare dopo un'escursione lunga» pasa de sugerencias a
+      la respuesta de preparar una excursión;
+  - en las preguntas por el color de un grupo, en chino, una por idioma
+    («腹部和下背部变成橙色是什么意思», el abdomen en naranja) pasa de
+    respuesta directa a duda, con los colores como primera sugerencia;
+  - en el banco cambian dos. Hay un acierto más en chino simplificado, y una
+    pregunta polaca que ya fallaba pasa de sugerencias a nada. Ninguna cambia
+    de urgencia.
+- **La prueba.** `probar_cuerpo.js`, 19c: las 50 preguntas en los diez
+  idiomas. Con los datos del bloque 1 sale en rojo.
+
+**Fuera «最深»** (`1b20158`). Es el tercero de los puntos que la nota vio de paso.
+Jerome: «quítalas».
+
+- **Lo que había.** En chino, la respuesta de las 10 series guardaba para
+  buscar «最深» («el más oscuro»), de cuando el nivel más alto era el oro más
+  oscuro.
+- **Lo que sale.** Dos claves en simplificado, y una variante y una clave en
+  tradicional.
+- **Lo medido:**
+  - en la regresión no cambia ninguna de 68.316 consultas;
+  - en el banco cambia «为什么10组就是最深的颜色», que va ahora a la respuesta
+    de los colores. Es la que dice que 10 o más es el amarillo. Con la
+    bandera daba la suya; el chino simplificado vuelve a 410 aciertos, los
+    del bloque 1.
+- **La prueba.** `probar_cuerpo.js` 19b busca ya «最深» en las seis
+  respuestas del mapa; antes miraba solo «最深的颜色».
+
+**El pecho en naranja** (`aa6ebfb`). Es el segundo de los puntos que la nota vio
+de paso. Jerome: «Si arréglalo es importante».
+
+- **Lo que pasaba.** Solo en castellano. «¿Por qué mi pecho está en
+  naranja?», preguntado por el color del dibujo, contestaba con la urgencia
+  del dolor en el pecho: «Llame enseguida al 112 y deje el ejercicio». Pasaba
+  con los cuatro colores, porque «pecho» pesa mucho en `urg-pecho` y nada en
+  `colores-del-mapa`.
+- **El arreglo.** Una variante más en `colores-del-mapa`, la propia frase:
+  «¿por qué mi pecho está en naranja?».
+  - Con «sale» en vez de «está», el amarillo quedaba casi empatado con la
+    urgencia (1,000 contra 0,985).
+  - El filtro de urgencias, sus patrones, no se toca.
+- **Lo medido:**
+  - Por qué un grupo del dibujo está en un color, en los diez idiomas: tres
+    maneras de preguntarlo, los 12 grupos, los 4 colores y tres edades, en
+    total 4.320 consultas. Las que llevaban a una urgencia pasan de 15 a 0.
+  - En castellano, las que van directas a los colores pasan de 30 a 132 de
+    432. Otras 210 dudan, con los colores como primera sugerencia.
+  - Las 150 frases de dolor de pecho, en los diez idiomas, dan la misma
+    urgencia y la misma respuesta que antes.
+  - En la regresión no cambia ninguna de 68.316 consultas.
+  - El banco da los mismos aciertos, con todas las urgencias.
+  - En la app de verdad (Chromium), antes «Llame enseguida al 112…» y ahora
+    «Cada músculo toma el color de su grupo…».
+- **La prueba.** `probar_cuerpo.js` 19d tiene dos pruebas: las 4.320
+  consultas sin urgencia, con los cuatro colores del pecho a los colores, y
+  14 frases de dolor de pecho con su urgencia. Con el castellano de antes,
+  la primera sale en rojo.
+
+**Cómo se hicieron los tres.** Los tres cambios se hicieron en las fuentes de
+«Su cuerpo», con un script de todo o nada que cambia el texto y comprueba lo
+que queda. Los datos salen de `construir.py`, y no hay ninguno tocado a mano.
+
+**Las fuentes de «Su cuerpo».** Las fuentes llevan ya los cambios del parche:
+- 24 trozos del módulo, en `construir.py`, `figura-svg.js`, `src/ui.js` y
+  `src/estilos.css`;
+- las piezas del asistente;
+- y los tres cambios de arriba.
+
+Con ellas, `construir.py` da, byte a byte, el módulo y los 31 ficheros de
+`datos/cuerpo/` de la rama. El paquete (`su-cuerpo-fuentes-06-11-final.zip`)
+va a Jerome para la sesión de «Su cuerpo», y su próxima entrega tiene que
+salir de él.
+
+**Las pruebas:** `probar_figura.js`, de 45 a 64; `probar_cuerpo.js`, de 236 a
+253.
+
+**`probar_perfil.js`, en un mismo día** (`a70e0cc`). La auditoría del parche
+llegó a esta prueba a las 23:48 UTC del día 6, y la medianoche pasó a mitad.
+La prueba fija «hoy» al empezar, y la app lo lee del reloj al anotar, así
+que salieron en rojo dos pruebas que están bien:
+- n5 buscaba el peso nuevo con la fecha del día 6;
+- n35 escribía en el campo la fecha del día 6.
+
+Las otras 146, en verde. Ahora, si quedan menos de 45 minutos para la
+medianoche, la prueba espera a que pase y lo dice. Jerome: «Si». Se probó
+con el reloj del proceso puesto a mano: a las 23:59:30 espera 35 s y empieza
+el día siguiente; a las 22:00, no espera.
+
+**La auditoría del parche solo**, sobre `7cd2d1d`, acabó con «FIN 1». El
+único bloque con fallo fue `probar_perfil.js`, el de la medianoche de arriba,
+con 146 de 148. Todo lo demás, en verde:
+- también lo que la otra sesión no pudo pasar: la ubicación (0 errores
+  groseros) y los lugares en el mar (0 fuera de tierra);
+- y la isla en 3D, 58 de 58.
+
+Las cifras de esa vuelta:
+- `probar_figura.js` 64 y `probar_cuerpo.js` 250;
+- `auditar_sw.js` 67 y el mapa 137;
+- el cielo 308, y el SOS 39 y 261;
+- el barrido de pantallas, 191 por idioma, con 0 fallos y 0 errores de
+  página.
+
+**La auditoría entera**, sobre `4730af1` (árbol `e73770bc`), con los cinco
+commits, sale «AUDITORIA EN VERDE»: ningún control en rojo ni sin ejecutar.
+- `probar_perfil.js`, 148 de 148. Ya lleva la guarda, pero empezó a la 01:32
+  y no tuvo que esperar.
+- `probar_cuerpo.js` 253 y `probar_figura.js` 64.
+- La isla en 3D, 58 de 58; el cielo, 308.
+- El SOS, 39 y 261; `auditar_sw.js`, 67.
+- El barrido de pantallas, 0 fallos y 0 errores de página.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian sus cinco ficheros (las alertas, los avisos de AEMET, los
+  precios de las gasolineras, el semáforo del INVOLCAN y los sismos), y los
+  parches son los mismos (`git patch-id`). Sobre lo que va a `main` se
+  volvieron a pasar los controles que leen esos ficheros, todos en verde:
+  - los precios y «la más barata cerca de mí», 0 fallos;
+  - los avisos de AEMET, 32 y 156;
+  - la app de las tiendas;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos, el INVOLCAN y las alertas.
+
+**Lo que se vio de paso, lo último:**
+
+- **`auditar_isla3d.js`**, el doble toque, falló en el contenedor de esa
+  sesión. Aquí, en las dos auditorías, 58 de 58: el doble toque acerca, de
+  9000 a 4500 m.
+- **«mi pecho está apretado y me mareo»**, en castellano, no dispara la
+  urgencia por sí solo. Los patrones piden «pecho apretado» junto. El
+  asistente duda y pone la urgencia del pecho como primera sugerencia. Ya
+  estaba en `main`. Jerome, el 7 de noviembre: «sí amplía los patrones
+  de urgencia». Va en un cambio aparte, después de esta subida.
+- **La respuesta del mar**, que ahora sale para la bandera amarilla, dice que
+  se mire la bandera y se le haga caso, pero no explica cada color. Para eso
+  haría falta una fuente oficial.
+
+**Lo que queda para Jerome:**
+
+- la revisión nativa de las frases en nueve idiomas;
+- mirarlo en su iPhone, también con VoiceOver.
+
+## Las urgencias del pecho, dichas de otra manera (7 de noviembre)
+
+Jerome, el 7 de noviembre: «Súbelo y sí amplía los patrones de urgencia» (`3b97a8e`).
+
+**Lo que pasaba.** El asistente de «Su cuerpo» tiene un filtro de urgencias:
+patrones por idioma que, si el texto describe una urgencia, ponen su respuesta
+primero, con el 112.
+- El del pecho cogía «tengo el pecho apretado», pero no «mi pecho está
+  apretado y me mareo». El asistente dudaba y ponía la urgencia del pecho
+  como primera sugerencia, sin darla como urgencia.
+- La causa: sus patrones piden las palabras juntas. Con el verbo o un «muy»
+  en medio, o con el orden al revés, no saltaban.
+- Pasaba en nueve de los diez idiomas; el inglés ya lo cogía:
+  - «el pecho me duele mucho»;
+  - «ma poitrine est serrée et j'ai la tête qui tourne»;
+  - «meine Brust fühlt sich eng an»;
+  - «il petto mi fa male»;
+  - «mijn borst voelt beklemd»;
+  - «胸口很紧而且头晕»;
+  - «гърдите ми са стегнати и ми се вие свят»;
+  - «mam ściśniętą klatkę piersiową».
+
+**El arreglo.** `urg-pecho` lleva 21 patrones nuevos en esos nueve idiomas,
+al final de los suyos. Los de siempre no se tocan.
+
+Lo que se escribe igual y no es una urgencia queda fuera:
+- en francés, la ropa: «poitrine serrée» con sujetador, brassière o maillot;
+- en italiano, el tórax estrecho: «petto stretto», solo con «sento» o con
+  mareo;
+- en chino, el pecho firme: 胸部紧致, 紧实;
+- en búlgaro, «стегнати гърди», solo con mareo o falta de aire, o con
+  «усещам/чувствам … си», y con las exclusiones que ya llevaban sus patrones
+  (masaje, RCP, regla, lactancia, sujetador).
+
+Se hizo en las fuentes de «Su cuerpo», con un script de todo o nada que
+comprueba que cada patrón compila, y los datos salen de `construir.py`.
+
+**Lo medido**, con el buscador del propio módulo:
+- **47 frases** de pecho apretado o dolor de pecho dichas así, en los diez
+  idiomas, y **otras 31** que no se usaron para escribir los patrones. Dan
+  la urgencia 47 de 47 y 31 de 31; antes, 27 y 2.
+- **46 frases normales** con las mismas palabras no dan ninguna urgencia,
+  ni antes ni ahora:
+  - el gimnasio: «aprieta el pecho al final del press»;
+  - la estética: «怎么让胸部紧致», «как да имам стегнати гърди»;
+  - la ropa: «ma poitrine est serrée dans ma brassière»;
+  - los colores del dibujo.
+- **Los textos del asistente**: la pregunta, las variantes y las claves de
+  las 178 respuestas en los diez idiomas, 35.379 textos. Solo uno dispara
+  ahora una urgencia, y es una variante de la propia urgencia del pecho
+  («胸口很緊很痛»). Ninguna se pierde.
+- **El banco** de 4.286 preguntas de las fuentes: ninguna cambia, con todas
+  las urgencias y ninguna falsa.
+- **Las preguntas por el color de un grupo**: ninguna de las 4.320 lleva a
+  una urgencia.
+- **150 frases de dolor de pecho**: con la urgencia, de 144 a 147. Las tres
+  que faltan son «siento el pecho raro», con tres edades: el asistente
+  duda, con la urgencia entre sus sugerencias.
+- **Las respuestas** no cambian (68.319 consultas): los patrones no cuentan
+  para buscar.
+
+**La prueba.** `probar_cuerpo.js` 19e tiene dos pruebas:
+- las 78 frases dan la urgencia del pecho; con los datos de antes sale en
+  rojo;
+- las 46 frases normales no dan ninguna urgencia.
+
+`probar_cuerpo.js` pasa de 253 a 255.
+
+**Las fuentes**: `su-cuerpo-fuentes-07-11.zip`, para la sesión de «Su
+cuerpo». Sustituye a los paquetes anteriores, y `construir.py` da byte a
+byte lo de `main`.
+
+**La auditoría entera**, sobre `3a1faa6` (árbol `24d09ec4`): sin ningún
+control en rojo.
+- Uno no llegó al final: `auditar_isla3d.js`. Iba por su control 50, el
+  de los diez idiomas, cuando la página tardó más de 30 segundos en cargar
+  (`page.goto: Timeout 30000ms exceeded`) y la prueba se cayó. Los 49 de
+  antes, en verde, con el doble toque (de 9000 a 4500 m). Pasada otra vez
+  sola, sobre el mismo árbol: 58 de 58.
+- `probar_cuerpo.js` 255 y `probar_figura.js` 64.
+- `probar_perfil.js`, 148 de 148.
+- El cielo, 308; el SOS, 39 y 261; `auditar_sw.js`, 67.
+- El barrido de pantallas, 0 fallos y 0 errores de página.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian cuatro ficheros suyos (las alertas, los avisos de AEMET,
+  los satélites y los sismos), y el parche es el mismo (`git patch-id`).
+  Sobre lo que va a `main` se volvieron a pasar los controles que leen esos
+  ficheros, todos en verde:
+  - los avisos de AEMET, 32 y 156;
+  - la app de las tiendas;
+  - el cielo, 308, y el barrido de pantallas, 0 fallos y 0 errores de página;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos y de las alertas.
+
+**Lo que queda para Jerome:** la revisión nativa de las frases de prueba y
+de los patrones en nueve idiomas, que ha escrito la IA.
+
+## El botón de idioma de la barra de arriba, en el iPhone (7 de noviembre)
+
+Jerome, el 7 de noviembre: «Si eligen a la página de inicio el idioma para
+que guarda el botón de cambiar idioma cerca de la mapa? De momento no
+funciona! O lo quitas o lo resuelve!» (`e3dffd3`).
+
+**Lo que pasaba.** En el iPhone, al tocar la bandera de la barra de arriba
+no salía la lista de idiomas.
+- La lista (`#lang-dropdown`) vivía dentro de `.topbar-right`. En el móvil
+  esa barra lleva `overflow-x: auto`, para poder deslizarla si no cabe.
+- Safari recorta un elemento `position: fixed` que esté dentro de una caja
+  con scroll. Es el fallo [160953 de WebKit](https://bugs.webkit.org/show_bug.cgi?id=160953),
+  abierto desde 2016; en 2026 todavía se reproduce con `overflow: auto`.
+- En Chrome sí salía. Por eso ninguna prueba lo veía: todas corren en
+  Chromium.
+
+Y dos fallos más, que se ven también en Chromium:
+- En un iPhone pequeño (320 × 568), el aviso de instalar tapaba 繁體中文,
+  Български y Polski, y tocar «Polski» no hacía nada. La barra es su propio
+  contexto de apilamiento (`z-index` 1000), así que la lista, dentro de
+  ella, no podía ponerse encima del aviso (9999).
+- En un móvil tumbado (740 × 330), la lista se salía por abajo y los
+  últimos idiomas no se podían tocar.
+
+**Por qué se arregla y no se quita.** La pantalla de bienvenida sale la
+primera vez y al tocar «Inicio». El botón de la barra deja cambiar de idioma
+desde el mapa en cualquier momento, que es donde se busca. Si Jerome prefiere
+quitarlo, es un cambio pequeño.
+
+**El arreglo**, en `index.html`; el botón sigue en la barra:
+- la lista, con sus diez opciones tal cual, pasa a ser hija directa de
+  `<body>`, como los demás paneles fijos de la app;
+- va encima del aviso de instalar (`z-index` 10000);
+- si no cabe, se desliza dentro, con su alto máximo calculado al abrirla, y
+  deslizarla no la cierra;
+- se alinea con el borde derecho del botón con su ancho medido. Antes se
+  suponía de 180 px y, con 140, quedaba 40 px a la izquierda.
+
+No hay textos nuevos: nada que traducir.
+
+**La prueba.** `auditar_desborde.js` lleva un bloque 4:
+- ningún elemento fijo dentro de una caja con scroll, ni dentro de una caja
+  posicionada que recorte y lleve `z-index` (es lo que rompe Safari);
+- la lista cuelga de `<body>`;
+- la lista, usada con el dedo en un iPhone pequeño con el aviso de instalar
+  a la vista y en un móvil tumbado: cada idioma, sin nada encima; el
+  último, tocado, cambia la app al polaco y cierra la lista.
+
+Con la app de `main` sale en rojo, con 14 fallos; con el arreglo, en verde.
+
+**Lo que no se ha podido comprobar aquí:** Safari mismo. En este contenedor
+no hay WebKit. El arreglo quita lo que necesita el fallo de WebKit, y la
+prueba de la estructura lo vigila. Queda que Jerome lo mire en su iPhone.
+
+**De paso, la subida de las urgencias del pecho.** `331e8a9` estuvo en
+`main` desde las 12:48, pero GitHub Pages canceló por tiempo sus cinco
+despliegues. La compilación salía bien; el paso que activa la web se quedaba
+parado, y GitHub daba Pages por operativo. Lo publicó el siguiente commit de
+un robot (`564bcca`, a las 14:09, en 43 s). En la web, los 11 ficheros que
+cambiaban, iguales a los de `main`; la comprobación del dominio, en verde.
+
+**La auditoría entera**, sobre `65b37f8` (árbol `ce6515bc`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar.
+- `auditar_desborde.js`, con el bloque nuevo: «nada se sale y el popup
+  habla en su idioma».
+- El barrido de pantallas, 0 fallos y 0 errores de página.
+- `probar_cuerpo.js` 255, `probar_figura.js` 64 y `probar_perfil.js` 148.
+- La isla en 3D, 58 de 58; el cielo, 308.
+- El SOS, 39 y 261; `auditar_sw.js`, 67.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian tres ficheros suyos (las alertas, los avisos de AEMET y
+  los sismos), y el parche es el mismo (`git patch-id`). Sobre lo que va a
+  `main` se volvieron a pasar los controles que leen esos ficheros, todos
+  en verde:
+  - los avisos de AEMET, 32 y 156;
+  - la app de las tiendas;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos y de las alertas.
+
+**Lo que queda para Jerome:** mirarlo en su iPhone. Tocar la bandera de
+arriba, ver los diez idiomas y elegir uno; también con el móvil tumbado.
+
+## «Su cuerpo»: el bloque 2 del rediseño, la pantalla (7 de noviembre)
+
+Jerome, el 6 de noviembre: «A las 3 voy a seguir las recomendaciones. Prepara
+el bloque 2». Y el 7, con el parche: «Revisa bien todo»; con la auditoría en
+marcha: «Si sigue en rojo cuando termine publica ✌️». Se entendió así:
+publicarlo si terminaba sin ningún rojo nuevo, y terminó sin ninguno. La nota
+de la sesión de «Su cuerpo» es `PARA-CLAUDE-CODE-21.md`; el parche es su
+commit tal cual (`d73b8f4`), y encima va un retoque (`2c2de7f`).
+
+**Lo que cambia**, en la nota con su detalle:
+- «Su cuerpo» va encima del perfil, a pantalla completa, con su flecha de
+  vuelta al pasaporte. La pestaña Cuerpo lleva una tarjeta con el personaje
+  en pequeño, el título, el lema y «Abrir».
+- Arriba, la escena: el cielo pasa del alba al día según se cumple la
+  semana, y el sol lleva un rayo por cada día de los últimos 7 con series.
+  Detrás, el Teide, el mar de nubes y Las Cañadas con sus tajinastes. Dentro,
+  el personaje grande, en una sola vista; «Girar» enseña la otra.
+- Un toque en un músculo abre su hoja: las series de 7 días con diez puntos,
+  «+ 1 serie», «+3» y «−» con «Deshacer», Hoy y Ayer.
+- Los 12 grupos, en una rejilla. «Las cifras», una hoja con la recomendación
+  de su edad, la referencia del ACSM (solo adultos) y las fuentes.
+- La barra de los cuatro modos, abajo. Dos temas, Día (por defecto) y Noche;
+  el tema se recuerda en el dispositivo, en su propia clave
+  (`tenerife.cuerpo.tema`), y «Borrar los datos» no lo toca.
+- 10 filas nuevas de `CUERPO_UI` (de 378 a 388), en los diez idiomas.
+  `datos/cuerpo/` no cambia.
+
+**Lo comprobado al recibirlo:**
+- El parche, el guion, la hoja de estilos y la plantilla llegaron primero en
+  PDF, que corta las líneas largas y pierde los emojis; después, en un .zip.
+  Los cuatro ficheros del .zip dan las huellas de la nota.
+- Sobre el bloque 1 (`c1f548f`), el parche entra limpio y los ocho ficheros
+  dan las huellas de la nota. Las ocho huellas de partida del parche son las
+  de `c1f548f`.
+- Sobre `main`, con `git am -3`, un conflicto en `tools/probar_cuerpo.js`,
+  el que preveía la nota: nuestras secciones 19c, 19d y 19e y, detrás, el
+  comentario nuevo de la 20. Comprobado con los tres algoritmos de git: lo
+  mezclado es el parche más nuestros cambios, y nada más (660 y 147 líneas).
+  `index.html` (con el botón de idioma del 7) y `AUDITORIA-FINAL.md` se
+  juntan solos.
+- Los cinco ficheros que no tocan los nuestros, byte a byte los de la nota.
+
+**La revisión:**
+- Seguridad: lo que viene de la persona va por `textContent`. Los cuatro
+  `innerHTML` nuevos pintan SVG del propio código: la escena, con números y
+  colores fijos; el personaje, con el aspecto pasado por `normaliza()`, que
+  solo deja opciones de su lista e índices de colores; la etiqueta, con sus
+  caracteres escapados. El tema guardado solo vale «dia» o «noche». El
+  historial lleva objetos fijos. La hoja de estilos no carga nada de fuera.
+- Codificación: los cuatro ficheros, UTF-8 sin caracteres de control, sin
+  `\r`, sin BOM y sin U+FFFD.
+- Los textos: las 10 filas en los diez idiomas, con las palabras de las
+  filas que ya había (set, Satz, serie, série, 组, серия, seria) y su trato:
+  de usted; el infinitivo en las instrucciones en italiano; el impersonal en
+  polaco.
+- La lógica de «−» y «Deshacer», también cuando no se puede guardar.
+
+**Las fuentes de «Su cuerpo».** El guion de la nota encaja 46 de los 48
+trozos. Los dos que no: las 10 filas, que en las fuentes se escriben en
+`src/textos.py`, y uno de la plantilla, que sale también en `prototipo.py`,
+que no forma parte del módulo. Se pusieron los 48 con un guion propio, todo
+o nada, solo en los ficheros del módulo (`src/` y la figura), y las filas
+tal cual las lleva el módulo del parche. `construir.py` da entonces el
+módulo con una sola diferencia: el comentario de la tabla, que en el parche
+seguía diciendo «378 filas» (el parche se hizo sobre el fichero construido, y
+la cifra la escribe `construir.py` contando). Se corrigió en el módulo
+(`2c2de7f`) y, con eso, el módulo es byte a byte el de las fuentes; los 31
+ficheros de `datos/cuerpo/`, los mismos.
+
+**Las pruebas.** `probar_cuerpo.js` pasa de 255 a 272 (las 267 del bloque y
+nuestras cinco) y `probar_figura.js` sigue en 64.
+
+**La auditoría entera**, sobre `5548810` (árbol `d9108d7d`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar.
+- Lo que se ve en pantalla en los diez idiomas (191 pantallas y fichas por
+  idioma): ningún texto sin traducir y ningún error de página.
+- `probar_cuerpo.js` 272, `probar_figura.js` 64 y `probar_perfil.js` 148.
+- La isla en 3D, 58 de 58; el cielo, 309.
+- El SOS, 39 y 261; `auditar_sw.js`, 67.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian tres ficheros suyos (las alertas, los avisos de AEMET y
+  los sismos), y el parche es el mismo (`git patch-id`). Sobre lo que va a
+  `main` se volvieron a pasar los controles que leen esos ficheros, todos
+  en verde:
+  - los avisos de AEMET, 32 y 156;
+  - la app de las tiendas;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos y de las alertas.
+
+**Lo que queda para Jerome:**
+- mirarlo en su iPhone, ya publicado: la lista de la nota («En el móvil,
+  antes de subir»). Y además, que al bajar por la pantalla la barra de
+  abajo se quede quieta abajo, y que la hoja de un grupo se abra entera;
+- la revisión nativa de las 10 filas en nueve idiomas;
+- las decisiones 1 a 8 de la nota, si quiere otra cosa.
+
+El bloque 3, el personaje en 3D, no va con este: espera a sus pruebas y a
+que Jerome lo mire en su iPhone.
+
+## «Su cuerpo»: el bloque 3 del rediseño, el personaje en 3D (7 de noviembre)
+
+Jerome, el 7 de noviembre: «Empieza el bloque 3»; con el parche: «Te pongo
+lo que falta del 2 y el 3 el mismo tiempo. Revisa bien todo»; y con la
+auditoría en marcha: «Si sale en verde puedes publicar». La nota de la
+sesión de «Su cuerpo» es `PARA-CLAUDE-CODE-22.md`. El parche es su commit tal
+cual (`03b3f43`), encima del bloque 2, y sobre él van cinco commits más:
+- la cifra de filas del comentario de `CUERPO_UI` (`ca0cb8a`);
+- en el LEEME, lo comprobado de las licencias (`eb38032`);
+- el cargador del 3D (`15c21d9`);
+- el mapa de músculos, por el camino que WebKit lee exacto (`8cbac5e`);
+- en el LEEME, `matplotlib`, que faltaba, y los datos vueltos a construir (`a24b732`).
+
+**Lo que cambia**, en la nota con su detalle:
+- El personaje grande de la escena pasa a 3D. Es el motor de la maqueta «Su
+  cuerpo Amanecer» (`modulos/cuerpo3d.js`), propio, sobre WebGL 2, sin
+  bibliotecas ni servicios de fuera. Dibuja un cuerpo de MakeHuman con su pelo,
+  su ropa, su calzado, sus gafas, el audífono y la prótesis, y el mapa de los 35
+  músculos en sus 12 grupos. Respira, parpadea y sonríe al anotar una serie; se
+  gira con el dedo y con «Girar».
+- Se pide al abrir «Su cuerpo», si el navegador tiene WebGL 2: el motor, el
+  índice y solo las piezas del aspecto elegido (16 peticiones, unos 0,8 MB de
+  2,6); el resto, al entrar en «Aspecto». Mientras llega, si no llega o sin
+  WebGL 2, queda el dibujo de siempre, que sigue en las miniaturas.
+- Los datos, en `datos/cuerpo3d/`: 71 ficheros con la huella de su contenido en
+  el nombre, y `indice.json`. El service worker pide el motor y el índice «red
+  primero», guarda lo demás al usarlo y no precarga nada.
+- Una fila nueva de `CUERPO_UI` (de 388 a 389), `cuerpoAviso3D`, en los diez
+  idiomas: lo que el 3D aún no tiene (rizado y moño, barba, gorra y pañuelo,
+  botas) sale con lo más parecido, y la hoja «Aspecto» lo dice.
+
+**Lo comprobado al recibirlo:**
+- Los cuatro ficheros del .zip dan las huellas de la nota.
+- Sobre el bloque 2 tal cual (encima de `c1f548f`), el parche entra limpio, y
+  los once ficheros de la nota dan sus huellas.
+- Sobre nuestra rama del bloque 2, con `git am -3`, un conflicto en el
+  comentario de cabecera de `tools/probar_cuerpo.js`, el que preveía la nota:
+  nuestra frase y, detrás, su punto sobre el 3D. El fichero resuelto es, byte a
+  byte, el `probar_cuerpo-sobre-main.js` que mandaba la nota. Publicado el
+  bloque 2 (`3321c4f`), los commits del 3 pasan encima sin conflictos y con el
+  mismo parche (`git patch-id`).
+- De los once ficheros de la nota, siete dan su huella. Los otros cuatro
+  difieren solo en lo nuestro de `main`:
+  - `modulos/cuerpo.js`: solo el comentario de la tabla, que corrigió el
+    bloque 2 (`2c2de7f`);
+  - `tools/probar_cuerpo.js`: nuestras secciones 19c a 19e;
+  - `index.html`: el botón de idioma;
+  - `AUDITORIA-FINAL.md`: nuestras secciones.
+- Los 71 ficheros de `datos/cuerpo3d/`: los bytes, el sha256 y la huella del
+  nombre son los del índice.
+
+**La revisión:**
+- Seguridad:
+  - el motor no usa `innerHTML` ni `eval`, no guarda nada en el dispositivo y
+    solo pide al propio origen, por rutas fijas de `index.html`;
+  - cada `.bin` se comprueba por sus bytes y por su sha256 antes de leerlo;
+  - lo que el cargador leía de los nombres de las secciones, ahora con las
+    reglas de `15c21d9` (abajo).
+- Codificación: los ficheros de texto, UTF-8, sin caracteres de control, sin
+  `\r`, sin BOM y sin U+FFFD.
+- La fila nueva, en los diez idiomas, usa las mismas palabras que las opciones
+  de «Aspecto» que nombra (rizado, moño, afro, coleta, barba, gorra, pañuelo,
+  botas, zapatillas), y no se dirige a la persona.
+
+**Las fuentes de «Su cuerpo».** Con los 21 trozos del módulo puestos en las
+fuentes (todo o nada), `construir.py` da el módulo del parche con una sola
+diferencia: otra vez el comentario de la tabla, «388 filas» por «389».
+Corregido en el módulo (`ca0cb8a`), el módulo es byte a byte el de las fuentes
+(443.185 bytes); los 31 ficheros de `datos/cuerpo/`, los mismos.
+
+**Las licencias de MakeHuman** (`eb38032`). La nota pedía bajar el paquete oficial y
+comparar con él las piezas que se leen de una copia de 2017 (`makehuman-js/
+makehuman-data`, que aún las etiquetaba AGPL3).
+- `makehuman_system_assets_cc0.zip`, de `files.makehumancommunity.org`:
+  - 280.737.770 bytes, sha256 `b542127a…0107`;
+  - cada pieza y piel lleva en su cabecera «explicitly released as CC0 in
+    september 2020».
+- Las diez piezas: las nueve de la nota y `short04`, de la que sale la máscara
+  del cuero cabelludo.
+  - Tienen los mismos vértices, las mismas caras, las mismas UV y el mismo
+    ajuste a la malla base.
+  - En `eyelashes02` cambia solo la manera de escribirlo.
+- Las texturas:
+  - las de las cejas y las pestañas son las mismas, píxel a píxel;
+  - las demás y las cuatro pieles son las del paquete reducidas a 512 px:
+    reducidas aquí con Lanczos, coinciden salvo entre el 0,002 % y el 0,03 % de
+    los valores.
+- El repositorio oficial (`a8bc2d54`), de donde salen la malla base, las
+  formas, el esqueleto, los ojos y los gestos:
+  - el apartado C de su `LICENSE.md` pone esos «assets» en CC0;
+  - llevan la cabecera `base.obj`, los ojos y los 678 `.target` que se leen;
+  - el esqueleto y sus pesos dicen `"license": "CC0"`.
+- Las citas de las páginas de MakeHuman que da el LEEME, comprobadas en ellas,
+  palabra por palabra.
+- Los datos de hoy ya son los del paquete oficial: no hace falta otro lector ni
+  volver a construir. No es una opinión jurídica.
+
+**Los datos, vueltos a construir aquí** (`a24b732`). Con el repositorio oficial
+(`a8bc2d54`), la copia de 2017 (`e5d1a42c`) y los guiones del parche, en un
+entorno con otras versiones (numpy 2.4.6, scipy 1.17.1, OpenCV 5.0.0,
+Pillow 13.0.0 y matplotlib 3.11.2), en 31 s:
+- 70 de los 72 ficheros, iguales byte a byte: las 56 mallas y las 14
+  texturas WebP;
+- `tex-mus_id.png`, con los mismos píxeles y otra compresión, y por eso su
+  línea de `indice.json` (ningún número del índice cambia).
+
+Los datos del parche salen, pues, de esas fuentes y de esos guiones, y de
+nada más. El LEEME no nombraba `matplotlib`, que `musculos.py` usa: sin él,
+`construir3d.py` se para en el mapa de músculos. Ya lo nombra.
+
+**El cargador** (`15c21d9`). Cada `.bin` lleva una cabecera con el nombre de sus
+secciones («cuerpo.tri», «gestos.cejas.parp.i»…), y el cargador las ponía en el
+objeto de datos siguiendo ese nombre. Un nombre como «__proto__.tri» habría
+escrito en `Object.prototype` de toda la página. No pasa con estos datos: la
+suma sha256 los ata al índice. Pero un fichero cambiado o roto no debe llegar
+tan lejos. Ahora solo entran los nombres que escribe `empaqueta3d.py`, de las
+mallas, gestos y partes que el índice conoce, y lo demás se deja.
+`probar_cuerpo.js` lo prueba con un índice y dos `.bin` hechos a propósito, con
+su suma bien puesta: con el cargador de antes sale en rojo, y con el de ahora,
+en verde. Con el cargador de
+antes salen 304 en verde y la nueva en rojo: `Object.prototype` y `Object`
+tocados, y el fichero a medias por un error. Con el de ahora, las 305 en
+verde.
+
+**El mapa de músculos en el iPhone** (`8cbac5e`). Es un PNG gris con el número de
+cada músculo (del 0 al 35). El toque lo lee con `<img>` y un lienzo, el camino
+que el 1 de noviembre se comprobó exacto en WebKit (la lección del relieve).
+Pero a la tarjeta gráfica iba por otro camino, la imagen misma, que nadie ha
+probado en WebKit. Con `createImageBitmap`, un PNG gris cambiaba allí en ±2, y
+un 20 que llegue como 22 pinta otro músculo. Ahora van los mismos bytes que lee
+el toque. En Chromium no cambia nada:
+- con el 3D quieto, un nivel distinto en cada grupo y a escala 3, las
+  capturas de frente y de espaldas (492 × 1200) salen iguales píxel a píxel;
+- el toque da lo mismo en 462 puntos;
+- con los números movidos +2 a propósito, cambian 80.291 y 131.790 píxeles:
+  la comparación lo ve.
+
+`probar_cuerpo.js` lleva un control del código, como el del relieve en
+`auditar_isla3d.js`: la textura sale de los bytes del toque, su lienzo es de
+lectura y el motor no llama a `createImageBitmap`. Con el motor de antes,
+en rojo.
+
+**Las pruebas**, sobre la rama al día:
+- `probar_cuerpo.js`: 306 de 306. Son los 299 de la nota, nuestros cinco
+  (19c a 19e) y los dos nuevos.
+- `probar_figura.js` 64, `probar_perfil.js` 148 y la app de las tiendas
+  (221 ficheros cotejados), en verde.
+- `auditar_sw.js`: 77, los 67 de antes y diez del 3D. La nota decía 74; el
+  fichero es el suyo, byte a byte.
+
+**La auditoría entera**, sobre `4bbb2b8` (árbol `64f67ff7`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar.
+- Lo que se ve en pantalla en los diez idiomas (191 pantallas y fichas por
+  idioma): ningún texto sin traducir y ningún error de página.
+- `probar_cuerpo.js` 306, `probar_figura.js` 64 y `probar_perfil.js` 148.
+- La isla en 3D, 58 de 58; el cielo, 308.
+- El SOS, 39 y 261; `auditar_sw.js`, 77.
+- La ubicación y los lugares en el mar, en verde.
+- Los robots solo tocan datos. Entre el árbol auditado y lo que va a
+  `main` cambian cuatro ficheros suyos (las alertas, los avisos de AEMET,
+  los satélites y los sismos), y el parche es el mismo (`git patch-id`).
+  Sobre lo que va a `main` se volvieron a pasar los controles que leen esos
+  ficheros, todos en verde:
+  - los avisos de AEMET, 32 y 156;
+  - el cielo, 308, y lo que se ve en pantalla, sin un fallo ni un error de
+    página;
+  - la app de las tiendas;
+  - el SOS, 39 y 261;
+  - y los robots de los sismos y de las alertas.
+
+**Lo que queda para Jerome:**
+- el 3D en su iPhone, ya publicado (la decisión 8): la lista de la nota, «En
+  el móvil, antes de subir». Y además, en «Músculos», con series anotadas:
+  que cada grupo se pinte en su sitio, sin manchas de otro color en los
+  bordes. Si va a tirones o calienta el móvil, la nota dice qué se puede
+  bajar (la resolución, la sombra, la respiración) o cómo apagarlo;
+- la revisión nativa de la fila nueva en nueve idiomas;
+- las decisiones 1 a 10 de la nota, si quiere otra cosa.
+
+## «Su cuerpo»: el 3D que no salía en el iPhone (8 de noviembre)
+
+Jerome, el 7 de noviembre a las 23:35, con una captura de su iPhone en la que
+«Su cuerpo» sale con el dibujo y no con el 3D: «Cuando entro en el link no veo
+la misma cosas que en el app […] primero mira porque no aparece online». El
+enlace es la página de prueba del 3D, con el motor y los datos publicados.
+
+**Lo comprobado:**
+- La página de prueba lleva el motor publicado, byte a byte (sha256
+  `9e9f27fc…`), y los mismos datos: si allí sale el 3D, el iPhone lo dibuja.
+- El bloque 3 llegó a la web a las 22:29 (hora UTC, la de Canarias en
+  noviembre; Pages, `be8b61f`), una hora antes de la captura.
+- La web publicada, en Chromium como un iPhone 15 Pro y de noche, como en la
+  captura: el 3D sale a los 6,3 s la primera vez y a los 3,4 s al volver, ya
+  con el service worker. Las 16 piezas del aspecto llegan con un 200.
+- La app solo preguntaba por una versión nueva al arrancar. El iPhone deja la
+  app instalada dormida y, al volver, sigue la misma página. Si «Su cuerpo»
+  ya se había abierto antes de las 22:29, seguía el módulo del bloque 2, que
+  no tiene 3D. Jerome lo confirmó al cerrar la app del todo y abrirla otra
+  vez: «A hora si está. Lo tengo y todo funciona».
+
+**El arreglo de la app** (`26ee402`). `index.html` pregunta también al volver a la
+app, si hace 5 minutos o más de la última vez. Si hay versión nueva, sale el
+aviso de siempre, con «Recargar»; la app no se recarga sola. `auditar_sw.js`
+lo prueba en Chromium con la app de verdad, servida por un servidor propio
+que cambia `sw.js` cuando se le pide (sección 11, cinco controles):
+- al abrir, se pregunta, sin aviso;
+- antes de 5 minutos no se vuelve a preguntar, ni con la página oculta;
+- pasados 5 minutos, al volver, se pregunta y sale el aviso con «Recargar»;
+- otra vuelta enseguida no pregunta otra vez.
+
+Con el `index.html` publicado, el control de la vuelta sale en rojo: no se
+pregunta y no sale el aviso. La primera versión de la prueba no lo distinguía.
+La pregunta del arranque va en cola detrás de la instalación y a veces llegaba
+después del cambio de `sw.js`. Ahora la prueba espera a que `sw.js` lleve 3 s
+sin pedirse.
+
+**Dos fallos del motor, vistos de paso** (`b8caa26`):
+- **El primer cuadro.** Daba tres llamadas de dibujo rechazadas por WebGL
+  («Mismatch between texture format and sampler type»), también en la web
+  publicada. Pasa cuando el cuerpo llega antes que el pelo y las zapatillas,
+  como por la red de un móvil. Las dos causas:
+  - la textura de la sombra se quedaba en la unidad 0, la que lee `uTex`;
+  - una textura nueva se creaba en la unidad activa, la 7, y pisaba la
+    sombra.
+
+  Ahora la sombra vive en la 7 desde el principio, y las texturas se crean y
+  se cargan en la 6, que ningún sombreador lee. Contado con `getError()`
+  tras cada llamada: 3 rechazadas en la web publicada, y las mismas 3 en local
+  con el pelo y las zapatillas retrasados; ninguna con el motor nuevo.
+- **Una textura que no llega.** Dejaba el 3D «cargando» toda la sesión:
+  `listo()` no avisaba nunca, y al abrir otra vez no se intentaba de nuevo.
+  Ahora cuenta como hecha, y `preparado()` no da por bueno un cuerpo al que le
+  falta una. Queda el dibujo, y se vuelve a intentar al abrir.
+
+`probar_cuerpo.js` (22) lo prueba con tres controles: «sin una textura (la
+del ojo no llega)», con su segundo intento, y «ninguna llamada de dibujo del
+3D rechazada por WebGL». En local todo llega a la vez, así que la prueba
+retrasa 1,5 s el pelo y las zapatillas; sin el retraso, el motor publicado
+también salía en verde. Con el motor publicado, los tres salen en rojo (309
+controles, 3 en rojo); con el nuevo, en verde (349 de 349, ya con el bloque 4
+encima). Sin la textura, el
+motor publicado enseñaba el 3D igualmente, con el ojo sin textura.
+
+**WebKit.** La prueba en una máquina Mac de GitHub (el motor de Safari), como
+la del 1 de noviembre, no se lanzó: subir la prueba a la rama de trabajo de la
+sesión necesitaba un permiso que no había. Lo vio el iPhone de Jerome.
+
+**Las pruebas y la auditoría entera** son las del bloque 4, que va encima (la
+sección siguiente).
+
+**Para la sesión de «Su cuerpo»:** el motor (`modulos/cuerpo3d.js`) cambia.
+La próxima entrega tiene que salir de este, o vuelven los dos fallos.
+
+## «Su cuerpo»: el bloque 4 del rediseño, la semana (8 de noviembre)
+
+Jerome, el 8 de noviembre, ya con el 3D en su iPhone: «Empieza con el 4 y
+publícalo si todo está en verde». La nota de la sesión de «Su cuerpo» es
+`PARA-CLAUDE-CODE-23.md`. El parche es su commit tal cual (`c3d02c4`), encima de los
+dos arreglos del 3D de la sección anterior, y sobre él van tres commits más:
+- el módulo, el que dan las fuentes (`80c6d0c`);
+- «{min} min» en el movimiento del asistente (`0f93693`);
+- la prueba del banner de instalar, que lo medía a medio subir (`e0f8ad2`).
+
+**Lo que cambia**, en la nota con su detalle:
+- Las tres metas de la semana, cada una con su raya y su ✓ al cumplirse:
+  - días con fuerza: 2, o 3 de 5 a 17 años;
+  - minutos de movimiento: 150, o 420 de 5 a 17 años;
+  - grupos trabajados: 12.
+- «Anotar movimiento»:
+  - caminar, senderismo, correr, nadar o bici, hoy o ayer;
+  - los minutos, y los kilómetros solo a pie (al caminar, en senderismo y al
+    correr);
+  - «Lo último anotado», con × y «Deshacer».
+- La fila de los 7 días lleva un punto en los días con movimiento. Cada día
+  activo enciende un rayo del sol, y el cielo avanza a tercios con las tres
+  metas.
+- La recomendación del movimiento de la OMS (2020), en la caja de la semana y
+  en «Las cifras».
+- El asistente cuenta el movimiento en «¿Cómo voy esta semana?».
+- El movimiento se guarda solo en el dispositivo, en `tenerife.cuerpo`, y se
+  comprueba campo a campo al leerlo. La política de privacidad lo dice en los
+  diez idiomas.
+- `CUERPO_UI` gana 28 filas (de 389 a 417), y `cuerpoBorrarSeguro` cambia.
+
+**Lo comprobado al recibirlo:**
+- Los ficheros del .zip dan las huellas de la nota.
+- `aplicar_bloque4.py`, leído entero antes de usarlo: solo lee y escribe
+  dentro de la carpeta que se le pasa.
+- `git am -3` choca donde decía la nota y en un sitio más:
+  - los diez `datos/cuerpo/asistente-*.json`. Se toman los de `main` y el
+    guion pone el párrafo del movimiento: en cada uno, dos párrafos nuevos y
+    nada más;
+  - la cifra del comentario de `CUERPO_UI` (389 en `main`, 417 en el parche).
+    Resuelto, el módulo da la huella de la nota (`b78c0401…`).
+- En cada fichero, el commit cambia las mismas líneas que el parche.
+- Las cifras de la OMS, en el artículo de sus directrices (Bull et al., 2020):
+  - adultos, «at least 150–300 min of moderate-intensity aerobic physical
+    activity» a la semana;
+  - de 5 a 17 años, «an average of 60 min/day» de actividad moderada o
+    intensa, a lo largo de la semana.
+- Las 28 filas nuevas en los diez idiomas:
+  - los mismos marcadores en todos, sin espacios de más y sin letras latinas
+    en chino ni en búlgaro;
+  - de usted (`auditar_registro.js` en verde);
+  - los botones, como los de antes: «Annota», «Zapisz» y «Запиши», igual que
+    «Salva», «Zapisz» y «Запази».
+
+**Las fuentes de «Su cuerpo»** (`80c6d0c`). De los 37 trozos del módulo, 34 entran
+en las fuentes tal cual. Los otros tres no son de ellas:
+- la cifra de filas, que cuenta `construir.py`;
+- las filas de textos, que en las fuentes son llamadas `t(…)` de
+  `src/textos.py`. Allí van las 28 nuevas, en su orden, y la cambiada.
+
+El párrafo del movimiento va también en las respuestas fuente del asistente.
+Con eso, `construir.py` da el módulo del parche menos una línea. Esa línea es
+un comentario dentro de `CUERPO_UI`, que `construir.py` no escribe; la nota lo
+había comprobado con unas fuentes de pega. El módulo del repositorio es ya el
+de las fuentes (478.002 bytes), y los 31 ficheros de `datos/cuerpo/` salen
+iguales.
+
+**Los plurales del asistente** (`0f93693`). El párrafo nuevo decía «{min} minutos»:
+con un minuto, «1 minutos», y en polaco «32 minut» (es «32 minuty»). Ahora
+dice «{min} min», como la pantalla, y el chino, que no tiene plural, se queda
+igual.
+
+**La prueba del banner de instalar** (`e0f8ad2`). La primera auditoría entera
+sobre este árbol salió con un rojo: `probar_instalar.js`, en neerlandés,
+«el banner sale … por encima de la barra de abajo». El banner estaba a 797 px
+y la barra, a 772, pero el banner estaba bien:
+- la app lo crea y, en el cuadro siguiente, le pone `.show`;
+- si nadie lee la maqueta entre medias, la subida (480 ms) ni se ve, y sale
+  ya en su sitio, a 724 px. Por eso la prueba pasaba;
+- si algo la lee, la subida corre. La prueba medía en cuanto aparecía `.show`
+  y lo cogía a medio camino.
+
+Ahora la prueba espera a que el banner acabe de subir. Con la subida forzada
+en todos los idiomas, la prueba de antes da 19 de 65 en rojo, en los diez; la
+nueva, 65 de 65. Se paró aquella auditoría y se volvió a pasar entera.
+
+**Las pruebas**, sobre la rama al día:
+- `probar_cuerpo.js`: 349 de 349: los 339 de la nota y los diez nuestros (19c
+  a 19e, el cargador, el mapa de músculos y los tres del 3D de la sección
+  anterior);
+- `auditar_sw.js`: 82 de 82;
+- `probar_figura.js`: 64 bien;
+- `probar_instalar.js`: 65 de 65, tres veces seguidas;
+- en verde: `generar_privacidad.py --comprobar`, `auditar_registro.js`,
+  `auditar_datos.js`, `auditar_readme.js`, `app_preparar.js --comprobar`,
+  `castellano_suelto.js` y `auditar_claves_tx.js`.
+
+**La auditoría entera**, sobre `46abe6a` (árbol `fbd301a6…`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar (4.703 líneas, 1 h 51 min).
+Puesta la rama al día con `main` (tres commits de los robots: las alertas del
+Gobierno de Canarias, los avisos de AEMET y los terremotos del IGN), solo
+cambian esos tres ficheros, y los controles que los leen salen en verde («TRAS
+EL REBASE, EN VERDE»).
+
+**Lo que queda para Jerome:**
+- las decisiones 1 a 14 de la nota, si quiere otra cosa;
+- la revisión nativa de las 28 filas y de las dos frases nuevas (la de la
+  privacidad y la del asistente) en nueve idiomas;
+- en el iPhone, la lista de la nota («En el móvil»).
+
+## «Su cuerpo»: nadar y bici también suman kilómetros, al metro (8 de noviembre)
+
+Jerome, el 8 de noviembre, a las decisiones del bloque 4:
+- a la 4 («Kilómetros solo a pie: al caminar, en senderismo y al correr.
+  Nadar y bici suman minutos, pero no kilómetros»): «Cuentan también»;
+- a la 9 (los límites): «necesitamos mucha precisión. Si no calcula bien la
+  gente no lo usará», y después «quiero lo más preciso posible»; al tope de
+  60 km por anotación: «200 mejor».
+
+Son cinco commits:
+- el primer toque tras escribir una cifra, que se perdía (`3e73437`);
+- los kilómetros de nadar y bici (`07d3706`);
+- los km al metro y un tope por tipo (`91fc855`);
+- la política de privacidad, que lo dice (`cd64ee7`);
+- la fecha de la política, «noviembre de 2026» (`ec6f49a`).
+
+**Los kilómetros** (`07d3706`), en las fuentes de «Su cuerpo» y en lo que dan con
+`construir.py`:
+- `MOV`: `pie: true` también en nadar y bici. La hoja pide los km en los
+  cinco tipos; a nado y en bici empieza en 0 km. Los km de nadar y bici ya
+  no se descartan al leer lo guardado;
+- dos filas de `CUERPO_UI`, en los diez idiomas:
+  - `cuerpoMovKm`, el rótulo del campo: «Kilómetros», «Kilometres»,
+    «Kilomètres», «Kilometer», «Chilometri», «Kilometers», «公里数»,
+    «公里數», «Километри» y «Kilometry» (antes, «Kilómetros a pie» y los
+    suyos);
+  - `cuerpoMovNota`, la nota de la hoja: «Todo suma minutos y kilómetros a
+    su semana.» (antes, «… Los kilómetros, solo a pie.»), y lo mismo en los
+    otros nueve;
+- el asistente, en «¿Cómo voy esta semana?»: «Movimiento anotado en 7 días:
+  {min} min y {km} km.», sin «a pie», en las diez respuestas fuente y en los
+  diez `datos/cuerpo/asistente-*.json`;
+- los comentarios siguen diciendo que, en el bloque 5, los km avanzarán por
+  el GR 131;
+- el README: «los minutos y los kilómetros».
+
+**La precisión** (`91fc855`), en las fuentes (`src/ui.js`, `src/asistente.js`) y
+en el módulo:
+- los km, al metro: tres decimales (antes, uno: 4,25 se guardaba 4,3).
+  `km1()` pasa a `km3()`, que redondea con el número escrito en decimal y no
+  por × 1000: 0,5005 × 1000 da 500,49999…, que daba 0,5; así da 0,501.
+  Comprobado con los 2.000.000 valores de 4 decimales de 0 a 200;
+- el tope de una anotación, por tipo: 200 km en bici, como dijo Jerome, y
+  100 en los otros cuatro, lo que se le propuso (antes, 60 en todos). Solo
+  frena un error al escribir, como 425 por 4,25. Vale al escribir, con «+»,
+  al anotar y al leer lo guardado;
+- donde salen los km (la hoja, el día, lo último anotado, el aviso y el
+  asistente), con tres decimales como mucho.
+
+`CUERPO_UI` sigue con 417 filas, y el módulo es el que dan las fuentes
+(479.836 bytes).
+
+**El toque que se perdía** (`3e73437`). Lo sacó la prueba nueva de la bici: tras
+escribir los km, el toque en «Senderismo» no hacía nada. Ya pasaba en lo
+publicado, con los minutos y con los km, en Chromium con ratón y con el dedo
+(cinco casos, los cinco perdidos). Las dos causas:
+- al salir del campo, el «change» volvía a dibujar la hoja entera, y el botón
+  que se estaba tocando desaparecía entre el «mousedown» y el «click»;
+- lo escrito solo se tomaba con ese «change». Si el navegador no saca del
+  campo al tocar «Anotar», se guardaba la cifra de antes.
+
+Ahora, en las fuentes (`src/ui.js`) y en el módulo:
+- `renderValores()` pinta solo las cifras: los dos campos (menos el que se
+  escribe), sus −/+ y el botón;
+- «input» toma lo escrito en cuanto vale;
+- «change» pinta solo las cifras, no la hoja entera.
+
+Con el módulo final, los cinco casos entran.
+
+**La política de privacidad** (`cd64ee7` y `ec6f49a`). Jerome, a la frase nueva y a la
+fecha: «1 si», «2 si».
+- `ppDatosCuerpoTxt`: «el movimiento que anote (qué hizo, los minutos, los
+  kilómetros y el día)», sin «a pie», en los diez idiomas;
+- «Última actualización: noviembre de 2026». Decía «octubre de 2026», y la
+  política ha cambiado el 3, el 7 y el 8 de noviembre.
+
+`index.html` y `privacidad.html` salen de `tools/generar_privacidad.py`.
+
+**Las pruebas:**
+- `probar_cuerpo.js`: 357 de 357 (eran 349):
+  - cuatro del toque:
+    - tras escribir los minutos, el toque en «Correr» entra;
+    - tras escribir los km, el de «Caminar»;
+    - escritos 50 min y 3,5 km sin «change», «Anotar» los guarda;
+    - y su «Deshacer».
+
+    Con el módulo publicado, los tres primeros salen en rojo: se queda en
+    Senderismo y guarda 45 min y 6,5 km;
+  - tres de los km:
+    - Nadar y Bici, con su campo;
+    - en bici se guardan 60 min y 42,5 km, y el día suma «95 min y 45,5 km»;
+    - y su «Deshacer».
+
+    El ejemplo lleva además 1 km a nado: lo último anotado lo dice, y el
+    asistente cuenta «215 min y 13,5 km». Con el módulo sin los km, 7 en
+    rojo;
+  - uno del tope: en bici, «250» se queda en 200, con «+» apagado; caminando,
+    «150», en 100. Además, «4,25» se queda en 4,25, «4,2567» da 4,257, y lo
+    guardado roto respeta los topes y el metro. Con el módulo sin la
+    precisión, 5 en rojo;
+- en verde: `generar_privacidad.py --comprobar`, `auditar_registro.js`,
+  `castellano_suelto.js`, `auditar_datos.js`, `auditar_readme.js`,
+  `app_preparar.js --comprobar` y `auditar_claves_tx.js`.
+
+**La auditoría entera**, sobre `ea5044d` (árbol `e8167c9f…`): «AUDITORIA EN
+VERDE»: ningún control en rojo ni sin ejecutar (4.711 líneas, 1 h 49 min).
+Puesta la rama al día con `main`, solo entran commits de los robots (los
+avisos de AEMET, las alertas del Gobierno de Canarias, los satélites de
+CelesTrak, el boletín de INVOLCAN, los terremotos del IGN y los precios de las
+gasolineras): solo cambian sus ficheros de datos, y los controles que los leen
+salen en verde cada vez que `main` se movió antes de subir. La primera vez fue
+en dos tandas: la primera se cortó por el límite de tiempo de la tarea, ya
+pasado el barrido de pantallas (0 en los diez idiomas), y el resto (el cielo,
+308 controles; las emergencias, 39 y 261; los terremotos, INVOLCAN y las
+alertas) se pasó después, también en verde.
+
+**Lo que queda:**
+- que la app calcule sola. La web no puede leer los pasos que ya cuenta el
+  teléfono; la app del App Store sí, de Salud (HealthKit). Jerome, a
+  prepararlo: «Y el resto sí». Hace falta:
+  - activar HealthKit en su cuenta de Apple Developer;
+  - el permiso de cada persona;
+  - una frase nueva en la política, con su sí;
+  - la revisión de Apple;
+- las decisiones 1, 4 y 6 del bloque 4 (compartir, el gimnasio, los pasos y la
+  cinta): para la sesión de «Su cuerpo», con la nota del paquete de fuentes;
+- en el bloque 5, la nota de la maqueta («Los kilómetros a pie avanzan su
+  travesía del GR 131») pierde «a pie»;
+- WebKit: aquí no hay, y el toque se vio en Chromium. La prueba mira las dos
+  maneras de tocar «Anotar», con «change» y sin él;
+- la revisión nativa de los textos nuevos en nueve idiomas.
+
+## El GR-131: las cinco etapas, con los datos oficiales (8 de noviembre)
+
+Jerome, el 8 de noviembre, a la corrección de las fichas del GR-131: «4 si ,
+si son datos verificadas !»; a la etapa que faltaba: «La etapa 2 créala si
+lo datos son reales»; a Vilaflor en chino: «Vilaflor en chino si igualó los
+demás»; y a fijar la versión de Ubuntu de los flujos de GitHub: «2 ,
+aguantará a largo plazo ubuntu». Cinco commits:
+- `03ed8ff`, las cuatro fichas que había, con los datos oficiales;
+- `f839ad1`, los tres flujos con Playwright, en `ubuntu-24.04`;
+- `e3a8f7e`, Vilaflor en chino, igual en todas las fichas;
+- `9cdc1af`, la guagua de La Esperanza, la línea 41;
+- `eb8c37b`, la ficha nueva de la etapa 2 (980 lugares).
+
+**De dónde sale cada dato**
+- Distancia, duración, dificultad, alturas, desniveles, homologación y
+  recorrido: la página de cada tramo en Webtenerife (Turismo de Tenerife), en
+  castellano, consultadas el 8 de noviembre de 2026.
+- La numeración: el Camino Natural Anaga-Chasna del Ministerio de Agricultura
+  (MAPA), que parte el GR-131 de Tenerife en cinco etapas: 1 La Esperanza –
+  La Caldera, 2 La Caldera – El Portillo, 3 El Portillo – Degollada de
+  Guajara, 4 Degollada de Guajara – Vilaflor y 5 Vilaflor – Arona.
+- Las guaguas de Arona: `datos/titsa.js`, del GTFS de TITSA. La parada
+  «Arona» la sirven la 480 (Arona – Los Cristianos) y la 482 (Vilaflor – La
+  Escalona – Arona – Los Cristianos). La 417 que decía la ficha no pasa por
+  Arona (es Costa Adeje – Guía de Isora).
+- La guagua de La Esperanza: no es de TITSA (en `datos/titsa.js` no hay
+  ninguna parada a menos de 2,2 km del pueblo). Jerome mandó lo que encontró,
+  la línea 041 de Transportes La Esperanza, y se comprobó en la web de la
+  empresa (transporteslaesperanza.com, «Transporte regular y urbano»): «La
+  línea 41, (intercambiador La Laguna - Las Rosas en La Esperanza) servicio
+  interurbano, con servicio continuo todos los días de la semana.» Sin
+  horarios: la empresa no los publica y caducan.
+- Los desniveles se redondean al metro (1.140,52 m → 1.141 m).
+
+**Las fichas**
+
+| Ficha (el `id` no cambia) | Decía | Dice ahora |
+|---|---|---|
+| `gr131-tramo1-esperanza-caldera` | 14 km, 5 horas, media, 850 m, «sendero homologado», «Conexión con bus desde La Esperanza» | 29,8 km, 14 h 20 min, muy alta, entre 915 y 1.819 m, sube 1.853 m y baja 1.568 m, «en trámites de homologación»; la línea 41 de Transportes La Esperanza, del intercambiador de La Laguna a Las Rosas, todos los días |
+| `gr131-etapa2-caldera-portillo` | (no estaba) | «Tramo 2», 13,1 km, 5 h 40 min, media, hasta 2.033 m, sube 1.188 m y baja 347 m, «en trámites de homologación»; del aparcamiento del área recreativa de La Caldera, por el SL-TF 81 y la Cruz del Dornajito, al cruce de El Portillo |
+| `gr131-tramo2-portillo-guajara` | «Tramo 2», ~14 km, alta, 2.030 m y 2.715 m | «Tramo 3», 13,1 km, 4 h, media, entre 2.058 y 2.389 m, sube 494 m y baja 140 m |
+| `gr131-tramo3-guajara-vilaflor` | «Tramo 3», ~12 km, alta, 2.715 m, bajada de 1.300 m, «desciende por el Paisaje Lunar» | «Tramo 4», 11,3 km, 5 h, media, entre 1.390 y 2.425 m, sube 182 m y baja 1.141 m; el Paisaje Lunar es un desvío por el PR-TF 72, al mirador de Los Escurriales |
+| `gr131-tramo5-vilaflor-arona` | 12 km, 4 horas, media, «prácticamente todo descenso», 610 m, guagua 482/417 | 17,7 km, 7 h 20 min, alta, entre 627 y 1.610 m, sube 597 m y baja 1.394 m, de la iglesia de San Pedro a la plaza de La Salud; guagua 482/480 |
+
+- Los ids se quedan: favoritos y visitados siguen apuntando a la misma
+  ficha. Los nombres de los tramos 3 y 4 cambian de número.
+- La etiqueta «1300m» del tramo 4 pasa a «1141m», también en
+  `idiomas/etiquetas-sin-traducir.json` (es una cifra: no se traduce).
+- La ficha nueva lleva el aviso «sendero», que es lo que recomienda su
+  propia página (consultar el estado, calzado y ropa, agua). Su punto es el
+  primero del track oficial (el GPX de esa página), 28.357870, -16.502259, a
+  4 decimales, apuntado con su fuente en `datos/verificado.json` con
+  `tools/fijar_coordenada.py` (cae en tierra). Su municipio, La Orotava, el
+  del punto; su zona del planificador, Norte (`tools/zonas_lugares.py`).
+- Fuera, a propósito: la «altura mínima 944 m» de la página de la etapa 2.
+  No cuadra con sus propios datos: el tramo 1 llega a La Caldera a unos
+  1.200 m (915 m y 285 m netos de subida) y la ficha de La Caldera dice
+  1.200 m. El GPX no trae alturas con que comprobarla.
+
+**De 979 a 980 lugares**, como el 31 de octubre: `tools/auditar_datos.js`
+(la cifra, a mano y con su historia), el JSON-LD de `index.html`, la ficha
+de la App Store (los diez idiomas y en-US), la de Google Play (rehecha con
+`tools/google_play_ficha.js --escribir`), las notas a Apple
+(`LANZAMIENTO-APP-STORE.md`), el README (senderismo, de 37 a 38),
+`REVISION-LUGARES.md` (rehecho con `tools/informe_lugares.js`) y las tablas
+de este documento (lugares, avisos `warn` de 116 a 117, y las filas de
+idiomas de 5.519 a 5.521). Si la ficha de Google Play ya está copiada en
+Play Console, hay que cambiar «979» por «980»; la de la App Store se sube con
+su flujo.
+
+**Vilaflor en chino** (`e3a8f7e`): seis fichas decían 维拉弗洛尔 (en
+tradicional, 維拉弗洛爾): `paisaje-lunar` (dos veces), `pino-gordo-vilaflor`,
+`bici-bc5-vilaflor`, `bici-agua-vilaflor`, `pp-ifonche` y
+`cueva-santo-hermano-pedro`. Pasan a 比拉弗洛尔 (比拉弗洛爾), lo que ya decían
+las demás, las del GR-131 y el glosario de categorías, y como el chino
+transcribe la «v» castellana (Valencia, 巴伦西亚). En los mapas no cambia
+nada: en el plano, Vilaflor sale en castellano, porque ninguna categoría
+acaba en «Vilaflor» (`tools/nombres_chinos_mapa.py --comprobar`, al día); el
+3D pinta el nombre de OpenStreetMap (比拉夫洛尔).
+
+**De paso, en los textos que ya se tocaban**: el italiano decía «Tronco» en
+dos etiquetas y pasa a «Tratto», como las otras; y el «环岛» («alrededor de
+la isla») del tramo 5 pasa a «全岛穿越», porque el GR cruza la isla.
+
+**Lo que se queda como estaba**, porque no tiene fuente y no es sospechoso:
+el pinar y la niebla del tramo 1, las tabaibas, euforbias y vistas a La
+Gomera del tramo 5, el km 32 de la TF-21 y «Vilaflor es la localidad
+habitada más alta de Tenerife».
+
+**Los flujos con Playwright** (`f839ad1`). Desde el 19 de octubre de 2026
+GitHub pasa `ubuntu-latest` a Ubuntu 26.04, poco a poco hasta el 19 de
+noviembre, y Playwright no admite 26.04 hasta la 1.61. El 8 de noviembre
+`comprobar-dominio` falló al instalar Chromium («Playwright does not support
+chromium on ubuntu26.04-x64»); la web estaba bien, el control no llegó a
+mirarla. `ubuntu-24.04`, fijo, solo en los tres trabajos con Playwright:
+`comprobar-dominio.yml` («instalar», Playwright 1.56.1), `app-store.yml`
+(«ficha», las capturas de la tienda, 1.56.1) y `generar-mapa.yml`
+(«generar», la prueba de estilo, 1.49.1). Los demás siguen en
+`ubuntu-latest`: los robots ya corren en 26.04 sin problema. GitHub mantiene
+dos versiones estables a la vez y anuncia con fecha la retirada de la más
+vieja; cuando le toque a 24.04, el paso es `ubuntu-26.04` con Playwright
+1.61 o posterior, mirando antes que las capturas y la prueba de estilo salen
+igual.
+
+**Controles**, sobre el árbol con los cinco commits: `auditar_idioma.js` en
+los nueve idiomas, 0 hallazgos; `castellano_suelto.js`, `auditar_fuente_pl.js`
+y `auditar_etiquetas.js`, OK; `auditar_datos.js`, `auditar_readme.js`,
+`auditar_app_store.js`, `google_play_ficha.js`, `auditar_municipio.js`,
+`zonas_lugares.py --comprobar`, `nombres_chinos_mapa.py --comprobar` e
+`informe_lugares.js --comprobar`, en verde.
+
+**La auditoría entera**, sobre `472891d` (árbol `10515685…`), que en `main` es
+`eb8c37b`: «AUDITORIA EN VERDE»: ningún control en rojo ni sin ejecutar (4.711
+líneas, 1 h 50 min). Puesta la rama al día con `main`, solo entran commits de
+los robots (las alertas del Gobierno de Canarias, los avisos de AEMET y los
+terremotos del IGN): solo cambian sus ficheros de datos, y los controles que
+los leen salen en verde.
+
+**Lo que queda:**
+- si la ficha de Google Play ya está copiada en Play Console, «979» pasa a
+  «980» (Jerome);
+- Webtenerife publica el GPX oficial de cada tramo: puede ser el trazado de
+  «Cruce la isla» (`tools/gr131_trazado.py`), mirando antes su licencia;
+- la revisión nativa de los textos nuevos en nueve idiomas.
+
+## «Su cuerpo», bloques 5, 6 y 7: el tiempo de la isla, el GR 131, los sellos, la postal y cada deporte con sus datos (8 de noviembre)
+
+Las notas 26 y 27 de la sesión de «Su cuerpo»: tres parches (`0005`, `0006` y `0007`) hechos sobre el `main`
+de las 21:13 (`7ab40b0`), que entran con `git am`, sin `-3`, y dan los tres árboles de la nota (comprobado). Se
+publican tal cual (`8c7111d`, `76774bc` y `483e62d`) y, encima, tres commits: `e3eff8e` (lo de encima), `943d3e9` (la
+política) y `4b17df3` (el chino). Sustituyen a la integración del bloque 5 que había preparado Claude Code (con
+un selector «a pie / en bici / a nado»), que no se publica.
+
+**Lo que traen.** El bloque 5: «Hoy en la isla» (el tiempo de una de las seis zonas del panel del sol, de
+Open-Meteo, sin la posición de nadie; los avisos de AEMET de la zona; el consejo del día con el sol de la OMS)
+y «Cruce la isla» (el GR 131 de La Esperanza a Arona sobre un esquema de la isla). El 6: «Sus sellos» (once,
+con su fecha, solo en el dispositivo), las celebraciones y «Su postal» (una imagen de 1080 × 1350 que se
+comparte con el menú del móvil o se descarga; no sube a ningún servidor). El 7: catorce deportes en «Anotar
+movimiento», cada uno con sus datos (la distancia en km o, a nado, en metros; el desnivel en el monte y
+corriendo), la intensidad de cada anotación (moderada o intensa, con la prueba del habla de los CDC; la que se
+propone, del Compendio de Actividades Físicas de 2024: desde 6 MET, intensa), la meta de un adulto con cada
+minuto intenso por dos (la OMS, 2020: de 150 a 300 minutos moderados o de 75 a 150 intensos), «Por deporte»,
+y el buceo y el avión (la DAN, taller de 2002).
+
+**Lo que decidió Jerome.** El GR 131, «A pie y bici»: a pie cuenta siempre y la bici, si la persona la elige; el
+nado y el kayak suman a la semana, nunca a la travesía («como cruza la isla nadando? La puede rodear pero cruzar
+no»), y la hoja lo dice al elegirlos. Los sellos, «Primero el móvil»: la opción de guardarlos también en la
+cuenta irá después, con su propio permiso y su frase. Y la frase de privacidad entera de «Su cuerpo»: «Si por la
+política».
+
+**Lo de encima** (`e3eff8e`): el crédito de Open-Meteo junto a sus datos, el de los paneles de la app (la entrega
+solo decía «Open-Meteo, a las HH:MM»); «Las cifras», con las paradas a los km acumulados de los tramos de
+Webtenerife y Arona, el final, a 85,55 (las fichas suman 85,0), y con la fuente de la costa: el recurso de
+polígonos de «Límites Municipales de Tenerife» del Cabildo de Tenerife (CC BY; el zip del repositorio pesa los
+970,8 KiB del portal y tiene su proyección); el aria-label del mapa en chino («已走», andado, no vale en bici) y
+la coma del chino en «Para {deporte}, aún sin anotar»; los km de la travesía, de los sellos y de la postal, al
+metro, y la cifra con su unidad sin partirse; y un comentario que atribuía a los CDC el «por dos», que es de la
+OMS.
+
+**Las fuentes.** La entrega cambiaba el módulo construido. Sus cambios están ahora en las fuentes de «Su
+cuerpo» (`textos.py`, `ui.js`, `cuerpo.html`, `estilos.css`, `textos-fijos.js`, `asistente.js`, `deporte.js` y
+el asistente), y `construir.py` da su módulo byte a byte, salvo un comentario suelto dentro de `CUERPO_UI`, que
+pasa a `textos.py`; los datos, iguales. El módulo publicado sale de esas fuentes. `CUERPO_UI`: 534 filas.
+
+**Comprobado, dato a dato.** Los trece códigos y MET del Compendio de 2024 (pacompendium.com, página a página;
+el pádel, que no está en el Compendio, con el del tenis de dobles, 15685; «Otro deporte», sin código, moderada),
+la DAN de 2002 (12 h tras una inmersión sin descompresión, 18 tras varias en un día o en varios días,
+bastante más con paradas de descompresión), la prueba del habla de los CDC, la OMS de 2020 (actividad física) y
+la del índice UV (sus cinco categorías, sus consejos y el máximo «en las cuatro horas alrededor del mediodía
+solar»). Las seis zonas, las de `MC_ZONES`; las seis paradas, cada una sobre su elemento del extracto de
+OpenStreetMap del repositorio (a 0,0 m); el Teide, el de la ficha «Pico del Teide — Cumbre». Nada inventado.
+
+**Las traducciones.** Las 121 filas nuevas o cambiadas, leídas en los diez idiomas (el sentido, el trato de
+usted, el polaco impersonal, el «Вие» del búlgaro, los marcadores y los plurales). Un arreglo (`4b17df3`): en
+«Cuentan para su travesía», el chino decía «横穿之旅» y el tradicional «橫越之旅»; las demás filas, «穿越之旅».
+
+**La seguridad.** Lo que viene de la persona o de lo guardado va por `textContent`; `innerHTML`, solo con iconos
+fijos y dibujos del propio código; la fecha de los sellos, escapada; lo guardado, validado campo a campo al
+leerlo. La única petición nueva es a Open-Meteo, con las coordenadas fijas de cada zona; la CSP ya la permitía,
+y también las imágenes `blob:` y `data:` de la postal.
+
+**Controles.** `probar_cuerpo.js`, 485 controles, todos en verde (las pruebas de la entrega, al día: la bici
+sola en la travesía, la nota del agua, el crédito, «Las cifras» y la cifra sin partir); `probar_figura.js`,
+`cuerpo_isla.py --comprobar`, `gr131_trazado.py --comprobar`, `auditar_sw.js`, `auditar_xss.js`,
+`auditar_registro.js`, `auditar_claves_tx.js`, `castellano_suelto.js`, `generar_privacidad.py --comprobar`,
+`app_preparar.js --comprobar`, `auditar_readme.js`, `barrido_idiomas.js` (5.638) y `auditar_web.js` (3488), en
+verde, antes y después del arreglo del chino.
+
+**La auditoría entera**, sobre `d7f82fa` (árbol `396d8d9d…`), que en `main` es `943d3e9`, la rama sin el arreglo del
+chino, que solo cambia esas dos filas: «AUDITORIA EN VERDE»: ningún control en rojo ni sin ejecutar (4.841 líneas,
+1 h 50 min). Puesta la rama al día con `main`, solo entran commits de los robots (los avisos de AEMET y los terremotos
+del IGN): solo cambian sus ficheros de datos, y los controles que los leen salen en verde.
+
+**Pendiente.** La opción de guardar los sellos también en la cuenta (con el permiso del perfil y su frase, que
+verá Jerome antes); probar «Compartir» la postal en un iPhone; y que un nativo de cada idioma lea los textos
+nuevos, como dice la nota 27.
+
+## El panel de reservas que nada abría, fuera (9 de noviembre)
+
+Jerome, el 9 de noviembre, al bloque viejo de reservas de `index.html` («nadie lo ve ni lo puede abrir; tiene
+tres excursiones de ejemplo con precio y cuatro recuerdos con precio. ¿Lo quito?»): «quítalo».
+
+**Lo que había.** Un panel de reservas de excursiones (`#booking-panel`) que ningún botón abría: a
+`openBookingFromCard()` no la llamaba nadie y a `openBookingPanel()`, solo ella. Llevaba datos de ejemplo con
+precio que la app nunca enseñaba: `EXCURSIONS_DATA` («Teide al Amanecer», 89 €; «Avistamiento de Ballenas»,
+45 €; «Anaga Bosque Primario», 55 €; con sus horas, sus plazas y lo que incluían) y `SOUVENIRS_DATA` (cuatro
+recuerdos con precio, que nada leía). La tienda de verdad sale de las tablas de Supabase y no cambia.
+
+**Lo que se quita** (`e12af5d`): el HTML del panel, las dos tablas de ejemplo, las siete funciones del panel
+(`openBookingPanel`, `closeBookingPanel`, `changePeople`, `updateBookingTotal`, `updateBookingCTA`,
+`handleBookingCTA` y `openBookingFromCard`), sus estilos (estaban dos veces, iguales) y los 20 textos que solo
+usaba él, en los diez idiomas. Se quedan la cesta (`addToCart`), la tienda (`addSouvenirToCart`) y
+`showBookingSoon()`, la de «Pagar» en la cesta. En `tools/auditar_web.js`, el botón de la reserva sale de los
+rótulos que se reescriben al tocar (ahora, cinco). Las cifras de «Idiomas»: 3468 y 5.618.
+
+**Comprobado.** Antes de quitar nada, cada nombre se buscó en todo el repositorio: el panel solo se nombraba a sí
+mismo y en esa prueba de `auditar_web.js`. El guion que lo quita para si un trozo no sale las veces que toca, y
+mira que las dos copias de los estilos sean iguales y que no se lleve nada de la cesta ni de la tienda. Después,
+los 37 scripts de la página compilan, y salen en verde:
+- `auditar_claves_tx.js`: ninguna clave pedida que no exista;
+- `barrido_idiomas.js`;
+- `auditar_web.js`, sin errores de página;
+- `castellano_suelto.js`, `auditar_frases.js` y `auditar_letras.js`;
+- `auditar_seguridad.py`, con lo mismo marcado que antes;
+- `auditar_xss.js`;
+- `probar_play.js`, 249 de 249;
+- `auditar_sin_traducir.js`.
+
+**La auditoría entera**, sobre `958775c` (árbol `058f7b30…`), que en `main` es `e12af5d`: «AUDITORIA EN VERDE»: ningún
+control en rojo ni sin ejecutar (4.840 líneas, 1 h 55 min). Puesta la rama al día con `main`, solo entran commits de los
+robots (los satélites de CelesTrak, los terremotos del IGN y las alertas del Gobierno de Canarias): solo cambian sus
+ficheros de datos, y los controles que los leen salen en verde.
+
+## «Su cuerpo», bloque 8: el mapa de «Cruce la isla» con relieve, el compañero de travesía y «Senderos de la isla» (9 de noviembre)
+
+La nota 28 de la sesión de «Su cuerpo»: un parche (`0008`) hecho encima de su `0007`. Comprobado aquí: sobre el `main`
+de la noche del 8 (`9752889`), sus `0005`, `0006` y `0007` dan el árbol `84ee304e…` y, con el `0008`, el `c2d31b02…`,
+los dos de la nota. Sobre `main`, que ya tiene los bloques 5-7 con lo de encima, entra con `git am -3` (`b73e25a`), con
+los choques resueltos y contados en su mensaje. Encima, dos commits: lo de encima (`5b0c15f`) y la etiqueta que el
+compañero tiene encima (`bc81640`).
+
+**Lo que pidió Jerome** (8 de noviembre, a la sesión de «Su cuerpo»): «Quiero que la dibujes mucho mejor. Que parece
+un dibujo infantil», y después: «No me gusta la línea. Quiero algo interactivo que adelante con la gente […] Un bici si
+en bici […] Caminando puedes hacer diferentes personajes, como un perro canario (presa canario), un lagarto, una
+persona. ¿La mapa puedes poner diferentes rutas? Para que la gente pueda intentar lograr un 100 %».
+
+**Lo que trae.** El mapa de «Cruce la isla» con su relieve y su suelo de fondo (dos WebP de 1074 × 906, de día y de
+noche, que pinta `tools/cuerpo_isla_relieve.py`), la ruta (lo hecho, del color del movimiento; lo que falta, a puntos
+rojos, porque sigue siendo el esquema), el Teide con su altitud, la escala y el norte. El compañero de travesía, en vez
+del punto: senderista, presa canario o lagarto tizón a pie, y una de tres bicis, con los colores de «Aspecto», que
+anda o pedalea mientras avanza. «Su compañero de travesía», para elegirlo. «Senderos de la isla»: los 38 senderos de
+la guía (las fichas de senderismo) por zonas (Anaga 18, Teno 5, Teide 7, Norte 4 y Sur 4), para marcarlos hechos con su
+fecha hasta el 100 %, con un punto en el mapa por sendero y tres celebraciones. Lo marca la persona y se queda en el
+aparato; no es un registro verificado, y «Las cifras» lo dice.
+
+**Lo de encima** (`5b0c15f`), con lo que decidió Jerome para la travesía, «A pie y bici»:
+- el nado y el kayak no cuentan nunca para la travesía, así que no cambian el compañero: fuera el nadador y el kayak
+  (sus dibujos, sus tamaños, sus animaciones y sus ramas en `compActual()`), que con lo publicado no se veían nunca;
+- la ayuda del compañero, sin el agua, en los diez idiomas;
+- el perro, con el nombre oficial de la raza: «Presa Canario» (FCI, estándar 346, desde el 1 de enero de 2019; su ficha
+  lo pone igual en sus cuatro idiomas) en inglés, francés, alemán, italiano, neerlandés y polaco; en chino, el de la
+  China Kennel Union, miembro de la FCI (su aviso del 20 de diciembre de 2018), «普雷萨加纳利犬», y en chino tradicional, el
+  mismo con sus caracteres, «普雷薩加納利犬»; en búlgaro, el de la FCI en cirílico, «Преса Канарио», como la Wikipedia búlgara
+  escribe «Кане Корсо Италиано» (no hay nombre búlgaro propio en ninguna fuente oficial). La entrega llevaba nombres de
+  uso o antiguos;
+- la política, en alemán: sin una coma de delante de «und» que ya estaba en lo publicado.
+
+**La etiqueta que el compañero tiene encima** (`bc81640`). Visto en las capturas del bloque 8: a pie a 29,2 km, el
+senderista pisaba «La Caldera»; en bici a 53,2 km, la de montaña tapaba la «m» de «3715 m». Ahora, la etiqueta que le
+queda debajo (una parada, el Teide o su altitud) se aclara mientras él está ahí y vuelve al irse. Las cuentas van en las
+unidades del mapa (el compañero, por donde lo pone `ponerKm`, su tamaño y hacia dónde mira; cada texto, por su caja),
+no en lo ya pintado: con «reducir movimiento», la app hace de cada cambio una transición de 0,01 ms, y lo leído en el
+momento es lo de antes. Una primera versión, que medía en pantalla, iba por eso un paso por detrás. No cambia ningún
+texto, en ningún idioma. Jerome, el 10 de noviembre: «si».
+
+**Comprobado.**
+- **El fondo del mapa:** vuelto a pintar aquí con su herramienta, sobre su árbol, sale **byte a byte** el de la
+  entrega. Sale del relieve de «La isla en 3D» (Copernicus GLO-30), de la capa landuse del mapa OSM del repositorio y
+  de la costa de los límites municipales. La herramienta solo lee esos ficheros y no pide nada a nadie, y su
+  `--comprobar` va en `auditar.sh`.
+- **Las dos notas de Copernicus:** son, letra a letra, las de `mapa/tenerife-relieve.json`.
+- **Los 38 senderos y sus zonas:** cuadran con su punto de salida.
+- **El Teide:** 3715 m, los de su ficha.
+- **La seguridad:** los nombres y las líneas de los senderos van como texto; los dibujos, solo con colores de la paleta
+  fija; lo guardado se valida al leerlo (el compañero, de la lista; cada sendero, un id con forma de id y una fecha que
+  no sea futura).
+- **Las traducciones:** las 25 filas nuevas, leídas en los diez idiomas.
+
+**La política.** Se añade, tras los sellos, «los senderos que marque como hechos (con su fecha), el compañero que elija
+para la travesía», en los diez idiomas, con `generar_privacidad.py`. Jerome, el 10 de noviembre: «si».
+
+**Controles.** `probar_cuerpo.js`, 529 controles, todos en verde: sus 521, los dos de lo publicado (lo último a nado o
+en kayak deja el compañero de a pie) y seis de la etiqueta (a pie, en bici, sin nada debajo y con «reducir
+movimiento»; con el módulo del bloque 8, cuatro de ellos en rojo, y con la primera versión, dos). También en verde:
+- `probar_figura.js`;
+- `cuerpo_isla.py`, `gr131_trazado.py` y `cuerpo_isla_relieve.py`, con `--comprobar`;
+- `auditar_registro.js`, `auditar_sw.js` (82), `auditar_xss.js`, `auditar_web.js` (3493) y `auditar_sin_traducir.js`;
+- `auditar_claves_tx.js`, `castellano_suelto.js` y `generar_privacidad.py --comprobar`;
+- `auditar_idioma.js`, en los diez idiomas;
+- `barrido_idiomas.js` (5.643), `auditar_readme.js` y `app_preparar.js --comprobar`.
+
+**La auditoría entera**, sobre `f402bcb` (árbol `6f6b6f1e…`), que en `main` es `bc81640`: «AUDITORIA EN VERDE»: ningún
+control en rojo ni sin ejecutar (4.885 líneas, 1 h 54 min). Antes, sin la etiqueta, sobre `b193846` (árbol `daefbee8…`),
+que en `main` es `5b0c15f`: también en verde (4.879 líneas, 1 h 55 min). Una primera pasada de esa se paró en cuanto
+salió en rojo `auditar_idioma.js`, en chino, chino tradicional y búlgaro: «Presa Canario» iba en letras latinas, y en
+esos tres idiomas cada texto lleva su alfabeto. El fallo venía del commit de encima: se arregló con los nombres de
+arriba y la auditoría se pasó otra vez entera. Puesta la rama al día con `main`, solo entran commits de los robots (los
+avisos de AEMET, las alertas del Gobierno de Canarias, los satélites de CelesTrak, el boletín de INVOLCAN, los
+terremotos del IGN, los precios de las gasolineras y las huellas del vigía SOS): solo cambian sus ficheros de datos, y
+los controles que los leen salen en verde.
+
+**Pendiente.** Probarlo en un iPhone (el mapa, el compañero, los senderos y VoiceOver); el trazado oficial del GR 131,
+cuando llegue el GPX de Tenerife ON; y que un nativo lea los textos nuevos.
+
+## SOS: la fuente de «Avísele enseguida», la App 112 sin el SMS y las medusas en su dirección nueva (10 de noviembre)
+
+En la guía «Rescate», con socorrista, «Avísele enseguida y siga sus indicaciones.» (`sosRes1`) era la única línea del
+panel sin fuente leída: lo que quedaba de la sección del 1 de noviembre. La dicen dos páginas de emergencias del Govern
+de les Illes Balears, leídas el 10 de noviembre (ninguna lleva fecha):
+- «Emergencias» (`https://www.caib.es/webgoib/es/w/emergencias`), en «En la playa»: «Si observas a alguna persona con
+  problemas dentro del agua, avisa inmediatamente al socorrista o llama al 112.»;
+- 112 Islas Baleares, «En la playa, seguros» (`https://www.caib.es/sites/112/es/en_la_playa_seguros-7008/`): «Sigue las
+  indicaciones de los socorristas y lee las indicaciones de los paneles informativos de las playas.».
+
+Se le propuso a Jerome el 9 de noviembre añadirlas sin cambiar ningún texto; el 10: «si».
+
+**Lo que cambia** (`04dbd82`): solo las fuentes de la guía. En `SOS_FUENTES`, las dos páginas (`goibEmergencias` y
+`goibPlaya`), con el Govern como organismo; en `EMERG_UI`, tres filas nuevas en los diez idiomas: el nombre del Govern
+(«Gobierno de las Illes Balears», «Government of the Balearic Islands»…) y el título de cada página («Emergencias: en
+la playa», «112: en la playa, seguros»…). Ninguna fila de la guía cambia, y `SOS_REVISADO` sigue en el 1 de noviembre:
+es una fuente más para una línea que ya estaba, no una revisión del panel.
+
+**La App 112 Canarias** (`2db0c7b`). Al leer las páginas que el vigía dio por cambiadas el 9 de noviembre: la nota de la
+App 112 Canarias (`sosApp112`) acababa con «Al instalarla hay que validar el móvil con un SMS.». Su página oficial
+(`https://www.112canarias.com/112/app-112-canarias/`, actualizada el 30 de noviembre de 2023) no lo dice: solo que la
+app puede «Avisar mediante mensaje SMS al contacto que indiques». Tampoco se encontró en otra fuente. Jerome, el 10 de
+noviembre: «quítalo». Fuera esa frase, en los diez idiomas; el resto de la nota es lo que dice la página.
+
+**El vigía.** Las dos páginas responden y su `robots.txt` deja leerlas, así que el vigía también las mira desde ahora
+(`www.caib.es`, entre las webs que mira, con un control en su `--probar`). El 9 de noviembre dio por rota «Incendios
+domésticos», de la Comunidad de Madrid (tres 404 seguidos). Comprobado el 10: la página está y responde a un navegador;
+la web de la Comunidad contesta 404 solo cuando quien pide se presenta como el vigía (`TenerifeGo/1.0`). No se cambia
+nada, y el vigía no se hace pasar por un navegador. Las otras páginas que dio por cambiadas (las del 112 de Canarias,
+ES-Alert, SOMU, el 012, la revisión del ILCOR sobre las quemaduras y Tu Europa) dicen lo mismo que el panel: lo que
+cambió es la cabecera de noticias o el menú. La de las medusas de la Asociación Española de Pediatría se ha mudado: su
+dirección vieja (`https://enfamilia.aeped.es/printpdf/temas-salud/picaduras-medusas`) lleva a la portada de En Familia.
+
+**Las medusas** (`1c1eeab`). El artículo está ahora en
+`https://www.aeped.es/enfamilia/salud-en-familia/picaduras-medusas` y dice lo que cita la guía: enjuagar con agua de mar
+y no con agua dulce; no rascar ni frotar; ni vinagre ni amoniaco diluidos, ni orina; al centro médico o al 112 si hay
+síntomas. Jerome, el 10 de noviembre: «Medusa también». Solo cambia la dirección de `aepMedusas`; ninguna fila. El vigía
+mira desde ahora `www.aeped.es` en vez de `enfamilia.aeped.es` (con eso mira también el PDF de la AEP sobre el
+ahogamiento, de la guía del rescate, que ya estaba allí).
+
+**Controles.** `auditar_emergencias.js`: `caib.es` entre los dominios oficiales, y tres controles nuevos: que la guía
+del rescate cite las dos páginas con el Govern como organismo, que la nota de la App 112 no lleve el SMS en ningún
+idioma y que la fuente de las medusas esté en su dirección nueva; cada uno en rojo antes de su cambio y en verde después
+(42 controles). `vigia_sos.py --probar`: dos controles nuevos, `www.caib.es` y `www.aeped.es` entre las webs que mira.
+`auditar_idioma.js` en los diez idiomas, sin ningún hallazgo; `probar_emergencias.js`, 261 controles, en verde.
+
+**La auditoría entera**, sobre `abb162c` (árbol `17a223a8…`), que en `main` es `1c1eeab`: ningún control sin ejecutar y
+solo dos en rojo, `auditar_web.js` y `barrido_idiomas.js`, que cotejan las cifras de «Idiomas» de esta página (3493 y
+5.643; con las tres filas nuevas, 3496 y 5.646): las pone al día este commit, y los dos, pasados otra vez, salen en
+verde (4.892 líneas, 1 h 56 min). Puesta la rama al día con `main`, solo entran commits de los robots (las alertas del
+Gobierno de Canarias, los avisos de AEMET, los terremotos del IGN, el boletín de INVOLCAN y los satélites de CelesTrak):
+solo cambian sus ficheros de datos, y los controles que los leen salen en verde.
+
+## La cuenta: contraseñas de 8 caracteres, comprobadas contra las filtradas (Have I Been Pwned) (10 de noviembre)
+
+**Por qué.** El asesor de seguridad de Supabase avisa de que la protección contra contraseñas filtradas está apagada.
+Jerome: «lo puedes hacer tú tiene conector». Pero esa opción de Supabase «está disponible en el plan Pro y superiores»
+(su documentación), y el proyecto está en el gratuito: no se puede encender desde el conector. El 10 de noviembre Jerome
+eligió la otra salida, que lo haga la app («B»).
+
+**Lo que cambia** (`0d2e78e`), solo al crear la cuenta, que es la única vez que se pone una contraseña (la app no tiene
+«cambiar contraseña»):
+- 8 caracteres como mínimo (Supabase: «Anything less than 8 characters is not recommended»; antes, 6), en el campo, en
+  su ayuda y en el aviso. Entrar en una cuenta que ya existe no cambia: una de 6 sigue valiendo.
+- La contraseña se convierte en el dispositivo en su huella SHA-1, y a Pwned Passwords solo salen sus 5 primeros
+  caracteres, con `Add-Padding`: devuelve entre 800 y 1000 huellas que empiezan igual, y la comparación final la hace
+  el dispositivo. Nunca salen la contraseña ni el correo, ni cookies ni `Referer`. Si ha salido en filtraciones, un
+  aviso y no se crea la cuenta; si el servicio no contesta en 6 s, no se impide crearla.
+- Los tres textos nuevos (la ayuda de los 8, su aviso y el de la contraseña filtrada), en los diez idiomas.
+- La CSP deja pedir a `https://api.pwnedpasswords.com`, y el service worker no guarda su respuesta (`EN_VIVO`), que
+  dejaría en el móvil el principio de la huella.
+
+Comprobado con la documentación de la API (sin clave, sin límite, con `Add-Padding` y sin exigir atribución) y con su
+CORS (`Access-Control-Allow-Origin: *` y `Add-Padding` entre las cabeceras permitidas).
+
+**La política** (`e732e63`): Have I Been Pwned, entre los terceros que reciben datos, con su política
+(`https://haveibeenpwned.com/Privacy`) y la frase que aprobó Jerome el 10: «al crear la cuenta, la app comprueba si la
+contraseña que eligió está en las listas de contraseñas robadas en ataques a otras webs. Solo envía un trozo pequeño de
+un código hecho a partir de la contraseña, nunca la contraseña ni su correo. La comparación final la hace su
+dispositivo.», en los diez idiomas.
+
+**Controles.** `probar_contrasena.js`, nuevo, en `auditar.sh`: 20 controles, 15 en rojo antes del cambio y todos en
+verde después. `auditar_sw.js`: la respuesta de `api.pwnedpasswords.com` no se guarda (en rojo antes, en verde después).
+
+**Supabase.** El asesor de seguridad, mirado el 10 de noviembre (lo que cambia es de la app, no de Supabase), da:
+`admins`, `push_sends` y `push_subs` con RLS y sin políticas (nadie entra directo); `guardar_push_sub()`, que se puede
+llamar sin sesión y con ella; `es_admin()` y `borrar_mi_cuenta()`, solo con sesión; y la protección de contraseñas
+filtradas apagada (`auth_leaked_password_protection`), que en Supabase es del plan Pro («Leaked password protection is
+available on the Pro Plan and above»): ahora la hace la app, al crear la cuenta.
+
+**La auditoría entera**, una sola para esto y para la pestaña «Evolución»: en la sección siguiente.
+
+## «Su cuerpo»: «Sus datos» y «Su evolución», en su pestaña «Evolución»; los kilómetros, un solo registro (10 de noviembre)
+
+**Lo que pidió Jerome** (9 de noviembre): «Que todo sea juntos». En la pestaña Cuerpo del perfil había tres tarjetas,
+«Su cuerpo», «Sus datos» (altura, peso, año de nacimiento, el IMC y las unidades) y «Su evolución» (el peso y los
+kilómetros), y dos registros de kilómetros: el del perfil y el de «Anotar movimiento» de «Su cuerpo». El plan, el 9;
+su «si», el 10, y a las dos frases de la política, el mismo día.
+
+**Cómo** (`57ee2d6`). Las dos tarjetas no se rehacen: el perfil las presta (`TG_PERFIL.prestar`) a una pestaña nueva de
+«Su cuerpo», «Evolución», en la barra de abajo entre «Comida» y «Preguntar», y las recupera al cerrar «Su cuerpo»
+(`devolver`). Son las mismas, con sus eventos, sus datos y su cuenta: lo que se cambia allí se guarda igual que en el
+perfil, y sube a la cuenta solo con su permiso. Sus avisos («Guardado ✓») salen en los de «Su cuerpo», y sus colores
+son los de Día y de Noche de «Su cuerpo» (sus variables y lo poco que el perfil escribe con un color fijo). Al salir de
+«Evolución», «Músculos» y «Su deporte» se vuelven a pintar: el año de nacimiento decide las metas de la OMS. En la
+pestaña Cuerpo del perfil queda la tarjeta de «Su cuerpo»; las dos solo se ven allí si su módulo no llega (sin red y sin
+haberlo guardado nunca). Sin `TG_PERFIL.prestar` (el prototipo de la sesión de «Su cuerpo»), la pestaña no sale.
+
+**La barra, de cinco.** «Evolución» es, en cada idioma, el título de la tarjeta sin el posesivo: «Progress»,
+«Évolution», «Verlauf», «Progressi», «Voortgang», «进展», «進展», «Напредък», «Postępy». A 390 y a 360 px ningún rótulo
+se corta, en los diez idiomas; en búlgaro, «Външен вид» va en dos líneas, entero.
+
+**Los kilómetros, un solo registro**: los de «Anotar movimiento» (todo deporte con distancia: a pie, corriendo, en bici,
+a nado y en kayak) y, con ellos, los que se anotaron antes en el perfil, que siguen ahí, se pueden borrar y van a la
+cuenta con permiso. El formulario de km del perfil se va; en su lugar, «Anotar movimiento», que abre la hoja de «Su
+cuerpo». «Total caminado» pasa a «Total»: con la bici y el agua ya no es solo caminar. La lista lleva el nombre del
+deporte en lo de «Su cuerpo» (que se borra en su hoja, con su ×) y «Borrar», subrayado, en lo de antes. Lo de «Su
+cuerpo» se lee tal como él mismo lo valida (`TG_CUERPO.kmMov`); sin su módulo, de `tenerife.cuerpo` con sus mismas
+reglas (una fecha de verdad, de hace como mucho 3 × 366 días a mañana; de 1 a 600 minutos; de más de 0 a 200 km). Las
+cuentas, en metros enteros: con los decimales de la máquina, 4,2 + 24 + 29,2 + 0,05 daba 57,4499… y salía «57,4 km»;
+ahora, «57,5 km», y 50 m a nado, «0,05 km».
+
+**La política** (`1ca8576`): en «Sus datos» (`ppDatosPerfilTxt`), «los pesos y kilómetros que anote (con su fecha)» pasa
+a «los pesos que anote y los kilómetros que anotó antes en el perfil (con su fecha)»: los nuevos se anotan en «Su
+cuerpo». En «Su cuerpo» (`ppDatosCuerpoTxt`), fuera «Del perfil, esta pantalla lee el año de nacimiento y el último
+peso, sin cambiarlos.», y en su lugar: «En su pestaña «Evolución» están también sus datos del perfil (altura, peso y año
+de nacimiento) y su evolución: lo que cambie ahí se guarda igual que en el perfil, y en su cuenta solo si lo tiene
+activado. Los kilómetros que anote en «Su cuerpo» se quedan en su dispositivo.». En los diez idiomas, con los nombres
+que ya usa la app para la pestaña y para «Su cuerpo»; la fecha de la política sigue siendo «noviembre de 2026».
+
+**Controles.**
+- `probar_cuerpo.js`: la parte 28, nueva: la tarjeta sola en el perfil; la barra de cinco, en orden; las dos tarjetas
+  dentro, las mismas y sin copia; los colores de Día y de Noche; los km juntos y su lista; «Anotar movimiento», que
+  abre la hoja y lo anotado suma, con el foco de vuelta al botón; el aviso del peso; los diez idiomas a 390 y 360 px;
+  la vuelta al cerrar; otra vez en «Evolución» al abrir; un tipo de deporte con HTML que no entra; y sin
+  `TG_PERFIL.prestar`. La 15 escribe ahora el año de nacimiento en «Evolución». En total, 543 controles, en verde.
+- `probar_perfil.js`: la parte 1e, nueva: sin el módulo de «Su cuerpo», las dos tarjetas en el perfil, los km juntos y
+  validados (fuera los que no valen) y «Anotar movimiento», que dice que no se pudo abrir. Las partes que tocan esas dos
+  tarjetas (1, 2, 2b, 2c y 4) corren sin `modulos/cuerpo.js`, que es cuando se ven en el perfil; la 9 borra un km de
+  antes (ya no se anotan aquí); la 11, un campo de fecha; la n37, ninguna caminata nueva; la p2 y la p4, la tarjeta sola
+  en la pestaña Cuerpo; y la p6 y la p6e (el iPhone), con esa pestaña corta: empieza justo debajo de la barra, entera
+  (la barra pegada se prueba en Viaje: p6b, p6c y p6e). En total, 153 controles, en verde.
+- `auditar_perfil.js`: 467 filas (fuera `perfilUKm`, `perfilDistancia` y `perfilTotalCaminado`; dentro `perfilTotal` y
+  `perfilAnotarMov`), y el tope: con 2.000 pesos, uno de un día nuevo no se anota, y aquí no se anota ninguna caminata.
+
+**Las fuentes de «Su cuerpo»** (`src/ui.js`, `cuerpo.html`, `estilos.css`, `textos.py` y `textos-fijos.js`):
+`construir.py` da el `modulos/cuerpo.js` del commit, byte a byte. Van a su sesión en su paquete, con su LEEME.
+
+**La auditoría entera**, sobre `53e643f` (árbol `8a88f69d…`), que en `main` es `1ca8576`, con la contraseña de la
+sección anterior debajo: ningún control sin ejecutar y solo dos en rojo, `auditar_web.js` y `barrido_idiomas.js`, que
+cotejan las cifras de «Idiomas» de esta página (3496 y 5.646; con las filas nuevas, 3500 y 5.647): las pone al día este
+commit, y los dos, pasados otra vez, salen en verde (4.941 líneas, 1 h 57 min). Puesta la rama al día con `main`, solo
+entran commits de los robots (las alertas del Gobierno de Canarias, los avisos de AEMET, los precios de las gasolineras
+y los terremotos del IGN): solo cambian sus ficheros de datos, y los controles que los leen salen en verde.
+
+## El presentador se llama Jérôme, y los tours de la nota 29, traídos y repasados (11 de noviembre)
+
+**Por qué.** Los tours de la nota 29 (la sección «Jérôme, el presentador: el tour de la app por capítulos, el del cielo
+y el de «Su cuerpo»», más abajo) llegaron con el presentador llamado «Jero». Jérôme, el 11 de noviembre, al recibirlos:
+«Lllamalo Jérôme no jero».
+
+**El nombre** (`b979482`):
+- Las cinco filas de `modulos/guia.js` que lo nombran (`guiaHolaT`, `guiaNovP`, `guiaVozOn`, `guiaCiPestanasP` y
+  `guiaCuPersonajeP`), en los diez idiomas:
+  - en castellano, inglés, francés, alemán, italiano, neerlandés y polaco, «Jérôme». En polaco, el botón de la voz es
+    «Głos Jérôme’a»: los nombres que acaban en -e muda llevan la terminación detrás de un apóstrofo. Lo dice la
+    Poradnia Językowa PWN («Końcówki gramatyczne po imionach i nazwiskach zakończonych na -e nieme […] zapisujemy
+    po apostrofie», con «George’em»), la regla 244 de sus normas («Nazwiska zakończone na -e nieme»: «Cage’a»,
+    «Verne’a») y su diccionario ortográfico, en el francés Pierre: «Pier•re’a»;
+  - en búlgaro, «Жером»; en chino, «热罗姆»; en chino tradicional, «熱羅姆». Así escribe el nombre francés Jérôme la
+    Wikipedia de cada idioma: Жером Боатенг y Жером Бонапарт; 热罗姆·博阿滕, 热罗姆·罗滕 y 热罗姆·波拿巴;
+    熱羅姆·博阿滕 y 熱羅姆·凱維埃爾. En su alfabeto, para que se lea y para que la voz del móvil lo diga, y sin los
+    espacios que separaban el nombre latino de los caracteres chinos: «您好！我是热罗姆», «Здравейте! Аз съм Жером».
+- En lo demás que traía la entrega, la palabra suelta «Jero» pasa a «Jérôme»: los comentarios, los mensajes de los
+  controles, `README.md`, este documento y el motivo de dos excepciones (`idiomas/castellano-aceptado.json` e
+  `idiomas/pantalla-aceptado.json`). Los nombres internos (`crearJero`, `D.jero`, `.tgg-jero`…) no se ven y se
+  quedan.
+- Lo hizo un guion que para si algo no cuadra: cada fila, con sus diez idiomas y «Jero» una sola vez en cada uno; lo
+  que da en chino, en búlgaro y el polaco de la voz, exactamente lo de arriba; y al final, ni un «Jero» suelto en los
+  once ficheros. En `modulos/guia.js` había 82: 50 en las cinco filas y 32 en los comentarios. Quedan 67 «Jérôme»
+  (35 en las filas, en los siete idiomas de letra latina, y 32 en los comentarios) y 15 en su alfabeto.
+
+**La nota 29, traída** (`2c280b2`): con `git am`, sobre el `main` del 11 de noviembre. Entró limpia, y los 22 ficheros
+que toca quedan byte a byte como dice la nota (sus sha256). `aplicar_guia.py`, que hace lo mismo trozo a trozo, no hizo
+falta y no se ejecutó. `modulos/cuerpo.js`, `modulos/perfil.js` y `tools/probar_cuerpo.js` no cambian.
+
+**Repasada antes de traerla:**
+- **Seguridad.** El módulo no pide nada a la red (ni `fetch`, ni `XMLHttpRequest`, ni `import()`) y no evalúa código
+  (ni `eval` ni `new Function`). Sus dos `innerHTML` son dibujos fijos del propio fichero (el de Jérôme, con un
+  contador para sus `id`, y los iconos de los botones), nunca texto de fuera. Solo guarda si ya se vio cada tour
+  (`tenerife.tour.seen`, `tenerife.tour.cielo` y `tenerife.tour.cuerpo`), dentro de un `try`. La voz va con
+  `TG_VOZ`, como la noche guiada del cielo: elige solo voces instaladas en el dispositivo (`localService`).
+- **Los textos.** De usted en todas las filas (en polaco, impersonal; en búlgaro, «Вие»). Cada frase, cotejada con
+  lo que hace la app: el 3D sin conexión, los favoritos en la nube solo con cuenta, el asistente en los diez
+  idiomas, el 112 del panel de emergencias, cada pestaña del cielo y, en «Su cuerpo», los colores, la comida y la
+  evolución.
+
+**La política** (`ppDatosPrefTxt`, en `2c280b2`): «si ya vio el tour» pasa a «si ya vio los tours» en los ocho idiomas
+que marcan el plural (el chino no lo marca). Es texto legal: Jérôme dio su sí el 11 de noviembre («Sí y publica si está
+todo verde»).
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre estos dos commits antes de ponerlos encima de lo último de los
+robots: en verde, sin un solo rojo. También `auditar_isla3d.js`, que en el entorno de la nota daba un rojo que no era de
+ella («doble toque»: aquí, de 9000 a 4500 m), y los tres que allí no se pudieron ejecutar por falta de `pmtiles`. Los
+tours (`auditar_tour.js`): sin navegador, 163 textos pedidos y 57 pasos, 16 con chiste; en el navegador, la app (25
+pasos), el cielo (13) y «Su cuerpo» (19), en los diez idiomas y en cuatro móviles, y además con el móvil tumbado, con la
+voz, con movimiento y sin los módulos. `probar_play.js`, 249 de 249; `probar_cuerpo.js`, 543 controles;
+`auditar_web.js`, 50 tablas y 3590 filas, y `barrido_idiomas.js`, 5.737: las cifras de «Idiomas» que pone la nota (el
+nombre no cambia ninguna). Encima de lo último de `main` (`17c607f`) solo cambian tres ficheros de los robots
+(`datos/alertas-canarias.json`, `datos/avisos-aemet.json` y `datos/sismos-ign.json`), y los controles que los leen salen
+otra vez en verde.
+
+**Lo que queda:**
+- Probarlo en un iPhone: la lista «En el móvil» de la nota 29 (el dibujo y la mano que señala, las caras, los
+  chistes, la voz de iOS, VoiceOver, «reducir movimiento», el móvil tumbado, el cielo de noche con la luz roja y «Su
+  cuerpo» con el gesto de volver).
+- Que un nativo de cada idioma lea los textos nuevos y, lo primero, los dieciséis chistes.
+- En el resto de la app, el nombre de Jérôme va con letras latinas en los diez idiomas («Говори с Jérôme»,
+  «Jérôme 推荐»); en el tour, en búlgaro y en chino, va en su alfabeto. Si se quiere igual en todas partes, lo decide
+  Jérôme.
+
+## El nombre de Jérôme en la forma de cada idioma, el búlgaro que corrigió una nativa y «Esta noche» del cielo (11 de noviembre)
+
+**El nombre: por qué.** Con los tours publicados, el nombre iba en el tour en el alfabeto de cada idioma («Жером»,
+«热罗姆», «熱羅姆») y en el resto de la app con letras latinas también en búlgaro y en chino («Говори с Jérôme», «Jérôme 推荐»),
+y en varias frases sin acentos («Jerome»). Jérôme, el 11 de noviembre, a cuál de las dos formas: «En la forma correcta
+de la traducción». Es la del tour: la de la Wikipedia de cada idioma para el nombre francés Jérôme (la sección anterior,
+con sus fuentes), y «Jérôme», con sus acentos, en los idiomas de letra latina. El autor y el copyright de la página se
+le preguntaron aparte, porque el copyright es texto legal; su respuesta: «Si».
+
+**Lo que cambia** (`b1bdd11`), solo el nombre:
+- El asistente (`CHAT_STR`, en `index.html`): las dos frases que lo nombran (`thanks`, al dar las gracias, y
+  `fallback`, cuando no encuentra la respuesta), en castellano, inglés, francés, alemán, italiano, neerlandés,
+  chino, chino tradicional y búlgaro; y el título del contacto (`contactTitle`) en chino, chino tradicional y
+  búlgaro. El polaco ya decía «Jérôme», declinado («Jérôme'a», «Jérôme'em»).
+- La administración: «Recomendaciones de Jérôme» (`admRecomendaciones` y `admCatRecomendacion`), en chino y chino
+  tradicional. El búlgaro ya decía «Жером».
+- La respuesta de «¿Qué hago si algo falla?» (`app-21`), en los diez idiomas, en sus fuentes
+  (`faq/fuente/faq-kb-bloque-G1-app.json` y `faq/fuente/bg/G1-app.json`), y `faq/<idioma>.json` rehechos con
+  `python3 tools/generar_faq.py`. Antes de tocar nada, rehacerlos no cambiaba ni un byte; después, en cada uno
+  cambia el nombre y nada más.
+
+**El autor y el copyright** (`54e18a2`): «Jérôme B» donde decía «Jerome B», en tres líneas de `index.html`:
+`<meta name="author">`, `<meta name="copyright">` y el copyright de la cabecera del código. Ya lo escribían así el autor
+del JSON-LD, el de los GPX y la firma «By Jérôme B». No queda ningún «Jerome B».
+
+**Lo que no cambia:**
+- «Jérôme Bourgeois», el nombre completo, que ya llevaba sus acentos: en la política de privacidad (el responsable
+  de los datos, en los diez idiomas) y en el copyright de la ficha del App Store.
+- La firma «By Jérôme B» (marcada como sin traducir) y el mensaje en castellano que se le manda por WhatsApp
+  («¡Hola Jérôme!…»).
+- El resto de cada frase. El título del contacto va en imperativo en italiano, búlgaro y polaco («Parla con…»,
+  «Говори с…», «Napisz do…»), y es a propósito: desde el 22 de octubre los botones de esos idiomas van en
+  imperativo, como en sus apps (`ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL` de `tools/auditar_registro.js`).
+- Las notas internas que lo citan («Jerome: «…»»): los comentarios del código, el registro de fuentes
+  (`datos/verificado.json`) y los motivos de las excepciones de la auditoría. No se ven.
+- Las cifras de «Idiomas»: cambian valores, no filas.
+
+**Controles del nombre.** Antes de la auditoría entera, `node tools/auditar_faq.js` (la base de conocimiento, en verde)
+y `node tools/barrido_idiomas.js bg` (5.737 filas, completas en búlgaro). En todos los ficheros de la app, ninguna fila
+de búlgaro, chino o chino tradicional con el nombre en letra latina; y en `index.html` y los módulos, todos los «Jerome»
+que quedan están dentro de un comentario.
+
+**El búlgaro: lo que corrigió una nativa en el tour** (`9d2e75e`). Jérôme, el 11 de noviembre, con capturas del tour
+comentadas por una hablante nativa de búlgaro. Lo que dijo, y dónde:
+- «Es mejor poner "спрете"», en el saludo: «можете да го спрете по всяко време» (decía «пропуснете», el «skip»
+  del inglés).
+- «"от този момент" es mejor dicho "в този момент"» y «debe ser "Работи без интернет връзка."», en «La isla en 3D».
+- «Corregirlo a "каталог за просто око"», en «El cielo de Tenerife».
+- De «И места, подходящи за домашни любимци, или достъпни»: «tiene que pararse a "за домашни любимци."». Esas dos
+  palabras son el filtro «Достъпно ♿» de la app, y solas no se entienden: en vez de quitarlas, la frase dice para
+  quién, «…или достъпни за хора с увреждания», a falta de que ella lo confirme.
+
+Y «без връзка» pasa a «без интернет връзка» en las otras siete frases que dicen lo mismo: tres del tour (emergencias,
+sin cobertura y el cielo), el mapa detallado (`index.html`), dos del panel del cielo (`modulos/cielo.js`) y la respuesta
+`app-24` del asistente (`faq/fuente/bg/G1-app.json`, con `faq/bg.json` rehecho por `tools/generar_faq.py`: solo cambia
+esa respuesta). Las palabras clave del asistente («без връзка» entre ellas) no se tocan: así escribe la gente.
+
+**El búlgaro: los calcos que quedaban** (`f36ac6e`). La lista de dudas que salió al repasar el búlgaro de los tres tours
+después de las correcciones de la nativa; Jérôme, el 11 de noviembre: «Si».
+- «Търсете всяко място» (cada lugar) → «Потърсете което и да е място».
+- «по официалната цена на министерството» → «с официалните цени на министерството» (el ministerio publica los
+  precios, no los fija).
+- «Ще ви ги покажа едно по едно» → «един по един» (los instrumentos).
+- «по времето на Канарските острови» → «по канарско време».
+- «колко струва нощта» («cuánto cuesta la noche») → «колко добра е нощта».
+- «от най-лесното към най-финото» → «към най-трудното», y lo mismo en dos frases del panel del cielo.
+- «за да отворите картона му» → «за да видите информацията за него».
+- «с картината от камерата отзад» → «с образа от камерата на заден план».
+- «с дните сила» → «с дните със силови упражнения», en el tour y en «Su cuerpo».
+- «от La Esperanza до Arona» → «от Ла Есперанса до Арона», en cirílico como «Пуерто де ла Крус» en el resto del
+  búlgaro (el tour y tres frases de «Su cuerpo»). La nota de las fuentes del GR 131, que cita las etapas con los
+  nombres de Webtenerife, se queda como está.
+
+«Su cuerpo» cambia por sus fuentes: cuatro entradas búlgaras en `src/correcciones.json`, cada una con su motivo, y
+`construir.py`. El `modulos/cuerpo.js` que sale es el publicado con esas cuatro frases y nada más. Controles de los dos
+commits del búlgaro: `node tools/auditar_faq.js` y `node tools/auditar_letras.js`, en verde, y
+`node tools/barrido_idiomas.js bg`, 5.737 filas, completas en búlgaro.
+
+**El cielo: «Esta noche» sigue al reloj** (`7d4688e`). Lo encontró la auditoría del 11 de noviembre (`auditar_cielo.js`,
+parte 11): con los elementos de los satélites de ese día, el primer paso de la Estación cae la noche siguiente a la de
+abrir el panel, y «Esta noche» seguía siendo la noche en que se abrió; «Ver en el mapa del cielo» no tenía paso que
+enseñar y la prueba se rompía. Hasta entonces el primer paso caía la misma noche y no se veía. En la app, quien dejaba
+la app abierta y volvía otro día veía la noche de ayer. Ahora el panel recuerda si la noche la eligió quien mira (‹ ›, 📅
+o la app al abrir una noche concreta: `fechaElegida`). Al abrir el panel, si no la eligió y ya no es la de hoy, pasa a
+la de hoy y la carta vuelve a su hora de siempre; «Hoy» y «Ahora» la dejan otra vez siguiendo al reloj. La regla de las
+7 de la mañana (`nocheDeHoy`) no cambia. `auditar_cielo.js` lo comprueba al final de la parte 11, con el reloj de la
+página: el panel vuelto a abrir al día siguiente enseña la noche de ese día, una noche elegida se respeta y, con «Hoy»,
+sigue otra vez al reloj.
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre los cinco commits antes de ponerlos encima de lo último de los
+robots: en verde, sin un solo rojo. Entre otros, `auditar_cielo.js` (310 controles, con la comprobación nueva de la
+parte 11), los tours (`auditar_tour.js`: la app, 25 pasos; el cielo, 13; «Su cuerpo», 19; en los diez idiomas y en
+cuatro móviles), `probar_cuerpo.js` (543 controles) y `barrido_idiomas.js` (5.737 filas, completas en búlgaro). Encima
+de lo último de `main` (`0dbe56d`) solo cambian cinco ficheros de los robots (`datos/alertas-canarias.json`,
+`datos/avisos-aemet.json`, `datos/precios-gasolineras.json`, `datos/semaforo-involcan.json` y `datos/sismos-ign.json`),
+y los controles que los leen salen otra vez en verde.
+
+**Lo que queda:**
+- Que la hablante nativa confirme «достъпни за хора с увреждания».
+- El repaso del resto del búlgaro (las descripciones de los lugares, la FAQ, el panel SOS, la política) va aparte,
+  con sus propias propuestas y su propia auditoría.
+
+## El búlgaro, leído entero; el chino tradicional; la Casa del Vino de Tenerife; y Jérôme en Samsung Internet (11 de noviembre)
+
+**Por qué.** Jérôme, con las correcciones de una hablante nativa: «Y revisa todo el resto también más problema en
+búlgaro». Se leyó todo el búlgaro de la app: la interfaz (992 textos), el panel SOS (604), el perfil (467), «Su cuerpo»
+(561), el cielo (821 y 88 curiosidades), las preguntas frecuentes (129), las etiquetas (799) y las 980 fichas de lugares
+(descripción, categoría, horario y aviso), y un programa miró los 7.900 textos: ni letras latinas dentro de palabras
+cirílicas, ni letras rusas o ucranianas, ni espacios mal puestos. La lista, en tres apartados, se le mandó a Jérôme: A,
+los errores, se arreglan; B, los calcos, se arreglan si no dice que no; C, el panel SOS y la política de privacidad,
+solo con su sí (no entra aquí).
+
+**A. Lo que decía algo que no es, y las erratas** (`f130987`):
+- Peces y cetáceos mal traducidos (el castellano estaba bien; los nombres, de la Wikipedia búlgara): en el buceo de
+  Tabaiba, «едри есетри» (esturiones) donde dice «grandes medregales» → «едри кехлибарени риби», y «караси»
+  (carpín, de río) donde dice «sargos» → «морски каракуди»; en Las Galletas, «лаврак, зъбани» → «групери,
+  зъбари»; en la pesca de Los Abrigos, Los Cristianos y Los Gigantes, el sargo, el mero, la chopa, el patudo y
+  la cherna; en las marisquerías de Los Abrigos, «черна риба» → «американски бибан»; en el kayak de Los Gigantes,
+  «сиви гринди» → «големи сиви делфини». Se quedan «морска жаба» (pez rana) y «морски фунийки» (lapas): no hay
+  nombre búlgaro con fuente.
+- «МТВ» (siete fichas de bici), que en cirílico se lee «MTV» → «MTB»; «6а» con una «а» cirílica → «6a».
+- «гуачинче» es neutro: las ocho fichas que lo hacían masculino, con lo que concuerda, y el plural castellano
+  «гуачинчес» → «гуачинчета» (fichas, asistente, tour y FAQ; las palabras clave del asistente no se tocan).
+- «със» solo delante de [с] o [з]; erratas («минголф», «барков», «Амария», «полугородска», «Наъгълник»); la frase
+  de los filtros de la FAQ, como la corrigió la nativa en el tour; la fase de un planeta («осветеност»); y en «Su
+  cuerpo», por sus fuentes, «Нито един», «Мината на {fecha}» y «вашия» / «вие».
+
+**B. Los calcos y los nombres escritos de dos maneras** (`856f10f`):
+- Lo que corrigió la nativa, donde se repite («дни сила» → «силови дни», «по официалната цена» → «с официалните
+  цени», «картината» → «образа от камерата», «любимци» → «домашни любимци»).
+- Palabras que no se dicen así: «Зареждане…», «Изчисляване…»; las rutas, «Откъде» / «Докъде» (el «Начало» se
+  confundía con el del menú) y, en la leyenda, «Начална точка (A)» / «Крайна точка (B)»; «Декрет» por «Указ»;
+  «Без спасители» / «Със спасители»; «Водещ» por «Референтен» (17); «най-добре оборудвани» por «най-пълноценни»;
+  «с или без»; el aviso de zona forestal; los rótulos del mapa; en el cielo, «Тянгун», «Уикипедия», «НАСА» y las
+  constelaciones como las llama la app.
+- Lo escrito de dos maneras, a la forma que más usa la app: «Лос Кристианос», «Вале Сан Лоренсо», «Лас Гайетас»,
+  «Анчиета», «Корона Форестал», «аква обувки»; «на Тенерифе» (una isla va con «на»), fuera del panel SOS; y los
+  miles sin el punto del castellano («1400 м», «821 700»).
+- «Su cuerpo», por sus fuentes (`src/correcciones.json`, cada entrada con su motivo, y `construir.py`): el
+  `modulos/cuerpo.js` que sale es el publicado con esas frases y nada más.
+
+**El chino tradicional** (`655807c`): en `ZHT_OVERRIDES.categories`, la categoría de las mascotas decía «Зона за любимци
+🐾», en búlgaro, y en chino tradicional salía así en la lista de categorías, los filtros y las fichas. Ahora «寵物友善區 🐾».
+No lo veía ningún control: `auditar_sin_traducir.js` busca lo que no cambia al cambiar de idioma, y esta fila sí
+cambiaba, pero al idioma equivocado. `tools/auditar_escrituras.js`, nuevo y en `tools/auditar.sh`: recorre `LANGS`,
+`UI_TX` y las demás tablas de `index.html` con las diez lenguas (13 tablas, 9268 textos) y marca cirílico fuera del
+búlgaro y caracteres chinos fuera de zh y zht. Antes del arreglo, en rojo con esta fila y solo esta; después, en verde.
+
+**La Casa del Vino** (`0e3e074`): la ficha de El Sauzal decía «Casa del Vino de Canarias» en los diez idiomas. Se llama
+«La Casa del Vino de Tenerife» (su web, casadelvinotenerife.com, y Webtenerife, del Cabildo, que es su dueño); la propia
+ficha de la Casa del Vino ya la llamaba «el museo del vino de Tenerife». El polaco, también en su fuente por bloques
+(`idiomas/pl-lugares/05.json`), que es de donde se monta `idiomas/pl.json`.
+
+**Jérôme en Samsung Internet** (`0279760`). Un usuario búlgaro mandó una captura de Samsung Internet con Jérôme casi
+negro. Es el modo oscuro de ese navegador: repinta los SVG a su manera y no hace caso de `color-scheme`. Probado en un
+móvil con Samsung Internet 30 el mismo dibujo de ocho maneras, solo el canvas salía idéntico. En `modulos/guia.js`, solo
+con Samsung Internet, el SVG sigue en su sitio y se anima igual, pero invisible, y un canvas encima lo copia pieza a
+pieza; vuelve a pintarse cuando cambia el SVG, el tamaño o corre una animación CSS (30 veces por segundo como mucho), en
+píxeles enteros de la pantalla, y si algo fallara al pintar, el SVG vuelve a verse. En los demás navegadores no cambia
+nada. `tools/auditar_tour.js` lo comprueba con el user-agent de ese móvil: la pregunta del principio, 37 estados de
+Jérôme (escenas, caras, atuendos, posturas y bocas), el fundido de la noche al día y el tour de la app entero; en cada
+uno, el canvas frente al SVG (64 comparaciones; la mayor diferencia, 2,07 de 255 de media, en la pregunta), y con el
+modo oscuro forzado de Chromium el SVG cambia y el canvas no.
+
+**La plantilla de los avisos de las gasolineras** (`b1e872f`): `datos/gasolineras/avisos.json` decía en neerlandés
+«voordat je» en los dos avisos de «última gasolinera antes del Teide», y la app dice «voordat u» desde que el neerlandés
+pasó a usted (`74c30f8`). No se ve en la app, pero `tools/verificar_bloques.py` daba esos dos fallos y una ficha rehecha
+desde la plantilla habría salido de tú. Ahora, de usted; `verificar_bloques.py` sin fallos y `revisar_gasolineras.py`
+sin hallazgos.
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre los seis commits antes de ponerlos encima de lo último de los
+robots. La primera pasada dio un rojo, `auditar_fuente_pl.js`: el bloque del polaco de El Sauzal
+(`idiomas/pl-lugares/05.json`) seguía diciendo «de Canarias»; se arregló en su commit y se pasó entera otra vez. Esa dio
+otro, `probar_cuerpo.js`: la respuesta del asistente de «Su cuerpo» sobre borrar los datos citaba el botón de pausa con
+su nombre de antes («Спрете дневника»); se arregló, desde su fuente, en el commit de los calcos, y `probar_cuerpo.js`
+(543 controles) y `auditar_registro.js` se pasaron otra vez sobre el árbol arreglado: los dos en verde (543 controles, y
+117.622 textos). Todo lo demás, en verde: entre otros, `auditar_escrituras.js` (13 tablas, 9268 textos), los tours con
+el user-agent de Samsung (`auditar_tour.js`: 64 comparaciones del canvas con el SVG, la mayor diferencia 2,07 de 255 de
+media), `barrido_idiomas.js` (5.737 filas, completas en búlgaro) y `auditar_fuente_pl.js` (1960 textos). Encima de lo
+último de `main` (`f9fec4f`) solo cambian los ficheros de cuatro robots (`datos/alertas-canarias.json`,
+`datos/avisos-aemet.json`, `datos/satelites.json` y `datos/sismos-ign.json`), y los controles que los leen salen otra
+vez en verde.
+
+**Lo que queda:**
+- C, el panel SOS (siete frases, «на Тенерифе» entre ellas) y la política (tres), espera el sí de Jérôme.
+- Que la persona del Samsung abra la app en Samsung Internet con el modo oscuro y mire a Jérôme.
+- Que un hablante nativo de búlgaro lea las fichas cambiadas.
+
+## El búlgaro del SOS y de la privacidad, lo que vio una nativa, la hora de los avisos y el cielo dicho claro (12 de noviembre)
+
+**Por qué.** Tres cosas de Jérôme, el 12 de noviembre por la noche. «Si el búlgaro»: el apartado C de la revisión
+del búlgaro, el panel SOS y la política de privacidad, que no se tocan sin su sí (la sección anterior). Las capturas de
+una hablante nativa de búlgaro con lo que vio en la app. Y, del panel del cielo: «Cómo se calcula no se entiende nada.
+En plan lo leí 20 veces y sigo sin entender cómo lo calculan», «Su noche guiada igual. Botón llévame y después flecha no
+sé qué. No es muy friendly user», y al ver la primera versión nueva, «lo de la iluminación sigue largo».
+
+**El panel SOS y la privacidad, en búlgaro** (`3e0f0ea`). El panel (`modulos/emergencias.js`), 12 frases, sin cambiar lo
+que dicen: «Ако сте на посещение» → «Ако сте турист» (2); en el coche, «…и спрете притока на въздух отвън»; con la
+ceniza, «Разкачете» («desconecte») los depósitos de agua de lluvia, no «Изключете» («apague»); la nota de la mascota en
+la puerta, «…че сте го взели със себе си»; con las lluvias, «не включвайте нищо, което може да даде искра»; la fuente
+del NHS, «преразгледано», como la otra; y «на Тенерифе» (5): una isla va con «на». La política
+(`idiomas/privacidad/bg.json`, con `index.html` y `privacidad.html` rehechos por `tools/generar_privacidad.py`: cambian
+tres filas, solo en búlgaro): «легитимен интерес», la palabra del artículo 6.1.f del RGPD en búlgaro (EUR-Lex); la
+cámara, «образа от камерата»; y «ние не я виждаме», sin el «никога» que el castellano no dice.
+
+**Lo que vio la nativa** (`634d211`):
+- El último paso del tour: «…а небето и „Вашето тяло“ имат всяко своя», sin sentido. Ella lo dejó en «имат свое
+  собствено меню»; lo que tienen es su propio tour («tienen el suyo dentro»), así que va su frase con «обиколки»:
+  «…имат свои собствени обиколки. Приятно изкарване на острова!».
+- «Báñese hoy aquí»: «бурните брегове отпадат» («las costas bravas se caen») → «без бреговете с бурно море»; y el
+  mismo calco en la nota de los avisos de AEMET de esa tarjeta: «…отпадат» → «…не са включени».
+
+**La hora de los avisos de AEMET, en los diez idiomas** (`bc2355a`). La nativa, sobre «От 10:00 до чт, 12, 07:59»: «es
+mejor dicho “de hoy a las 10:00 hasta jueves a las 07:59”». Era la fecha corta del navegador, y salía así en todos los
+idiomas («jue 12, 07:59», «Fr., 13., 07:59», «13日周五 07:59»). Ahora (`wxCuandoTxt`, en las líneas de los paneles del
+tiempo y del mar, en el globo de una playa y en la tarjeta), si el aviso empieza y acaba hoy, como siempre («De 10:00 a
+23:59»); si es de un solo día que no es hoy, «Mañana, de 00:00 a 23:59» o «El sábado, de 00:00 a 23:59»; si no, cada
+extremo con el día dicho como se dice, hoy, ayer, mañana o el día de la semana, y la hora: «Desde hoy a las 10:00 hasta
+el sábado a las 07:59», «From today at 10:00 to Saturday at 07:59», «Aujourd’hui à 10:00 – samedi à 07:59», «Von heute
+um 10:00 bis Samstag um 07:59», «Da oggi alle 10:00 a sabato alle 07:59», «Van vandaag om 10:00 tot zaterdag om 07:59»,
+«今天 10:00 至 星期六 07:59», «今天 上午10:00 至 星期六 上午07:59», «От днес в 10:00 до събота в 07:59» y «Dziś, godz. 10:00 – sobota,
+godz. 07:59». En francés y en polaco, con un guion, porque «Du…au» y «Od…do» piden otra forma de «aujourd’hui» y del día
+de la semana. «Mañana» es el día siguiente del calendario de Canarias, no «dentro de 24 horas», que el día del cambio de
+hora no lo es.
+
+El pie del panel tenía la misma fecha corta, y cada noche, de las 00:00 a la siguiente vuelta del robot, decía
+«Comprobado: mié 11, 23:03». Ahora «Comprobado: ayer a las 23:03» (de hoy, la hora sola), «…desde hoy a las 07:05…»
+cuando no se ha podido comprobar y «Sin avisos de AEMET para Tenerife hasta el sábado a las 23:59». En polaco, «do» pide
+genitivo («do jutra», «do soboty»; el navegador da «sobota»): una tabla de los siete días. En francés, «jusqu’à», que
+con «demain» no vale «jusqu’au». Y dos horas mal dichas: el francés de «De 10:00 a 23:59» decía «Du 10:00 au 23:59», que
+es para fechas, y ahora «De 10:00 à 23:59»; el italiano, «Da 10:00 a 23:59», sin el artículo de las horas, y ahora
+«Dalle 10:00 alle 23:59».
+
+Siete filas nuevas de `UI_TX`, con los diez idiomas. `tools/probar_avisos.js` coteja la hora de cada línea con
+`wxCuandoTxt` y, con el reloj parado (jueves 12 a las 09:00), pide la frase exacta en los diez idiomas para seis avisos
+(hoy, hoy-mañana, hoy-sábado, mañana entero, el sábado entero y ayer-hoy) y para el pie; lo que mira que no haya
+castellano fuera del castellano ya no confunde «De 10:00 à 23:59» con «De 10:00 a 23:59».
+
+**A la una** (`a0f94e5`). Con la una, el artículo va en singular: «a la una», «all’una». Las filas dicen «a las {h}» y
+«alle {h}», como para las demás horas, y salía «Sale a las 01:10», «Sorge alle 01:10», «Open-Meteo, a las 01:35»,
+«Visibile dalle 23:40 alle 01:10»: la Luna sale o se pone entre la una y las dos cada mes, y AEMET ha puesto avisos que
+empiezan a la 01:00. En `tx()`, por donde pasan las filas con marcas (la app, el cielo, «Su cuerpo», los avisos), si lo
+que entra en una marca es la una, `txLaUna` cambia el artículo que va justo delante, y nada más: «a la», «hacia la»,
+«desde la»; «all’», «dall’», «verso l’». `auditar_cielo.js` pasa la una por todas las filas con marcas de la app y del
+cielo, en castellano y en italiano, y ninguna deja «las 01:10» ni «alle 01:10»; `probar_avisos.js` y `probar_cuerpo.js`,
+lo mismo en lo suyo. El panel SOS no pasa por `tx()`: su «medida a las {h}» queda como está, que el panel no se toca sin
+el sí de Jérôme.
+
+**El cielo, para que se entienda** (`caba6b8`). El índice de la noche, en tres frases, diciendo lo que hace
+`indiceNoche()` sin la fórmula: «10 es una noche oscura del todo, sin Luna y sin nubes. Baja con la Luna en el cielo
+(más cuanto más llena) y con las nubes previstas en las cumbres. No cuentan las nubes bajas, ni la luz de las ciudades,
+ni el viento.» «Su noche guiada» dice qué hacer con «Llévame»: «toque «Llévame» y levante el móvil hacia el cielo: una
+flecha le indica hacia dónde moverlo hasta que salga «¡Ahí está!»», que es lo que hace «Apunte al cielo» con un
+objetivo. Y «de lo más fácil a lo más fino» («fino» no se entendía) pasa a «de la más fácil de ver a la más difícil»
+también en la frase que se oye al leer la noche y en el paso del tour del cielo. Los diez idiomas; `auditar_cielo.js`
+espera la frase nueva de la voz.
+
+**Las cifras de «Idiomas»**: 7 filas más (de 3590 a 3597 filas en las tablas de `index.html`, y de 5.737 a 5.744 dentro
+y fuera del fuente).
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre estos commits antes de ponerlos encima de lo último de los
+robots: un rojo, `auditar_arranque.js`, que no era de la app. Carga la página dos veces por idioma y compara los textos,
+y el tiempo lo da Open-Meteo en vivo: hacia las 04:00 el viento cambió entre una carga y otra («💨 N 8 km/h» y «💨 NW 11
+km/h», en alemán y en polaco). Ahora todas las cargas reciben la misma respuesta de Open-Meteo (`53262cb`), y en verde:
+16.119 textos comparados, ninguno distinto. Y la auditoría rehízo con `app_preparar.js` el permiso de la cámara de la
+app de iOS en búlgaro (`app/ios/plantillas/bg.lproj/InfoPlist.strings`), que sale de la frase de la política: le faltaba
+al commit del panel SOS y la política, y va en él (`app_preparar.js --comprobar`, en verde en ese commit). Todo lo
+demás, en verde: entre otros, `probar_avisos.js` (187 de 187), `auditar_cielo.js` (con la una en 470 filas),
+`auditar_registro.js` (117.762 textos), `auditar_escrituras.js` (13 tablas, 9338 textos), `barrido_idiomas.js` (5.744
+filas), `auditar_web.js` (50 tablas, 3597 filas), `probar_cuerpo.js` (543 controles) y los tours con el user-agent de
+Samsung (64 comparaciones). Encima de lo último de `main` (`6a5ed01`) solo cambian los ficheros de dos robots
+(`datos/alertas-canarias.json` y `datos/sismos-ign.json`), y los controles que los leen salen otra vez en verde.
+
+**Lo que queda:**
+- Que la nativa lea el SOS y la política en búlgaro, ya cambiados.
+- Que alguien de cada idioma lea la hora nueva de los avisos y los dos textos del cielo.
+- El panel SOS dice «medida a las {h}» y «rilevata alle {h}» (la hora del GPS): a la una, «a las 01:10». Espera el sí
+  de Jérôme.
+
+## Jérôme, el entrenador: el vídeo de 75 ejercicios de «Su cuerpo» (notas 32 y 33), traído y repasado (12 de noviembre)
+
+**Por qué.** Jérôme, el 11 de noviembre, al ver la cabeza nueva del personaje: «recuerda que es para todos los
+ejercicios del cuerpo presentes en la app, y si faltan hazlos. Bloque por bloque». La sesión del entrenador entregó ese
+día los dos primeros bloques en un zip (`jerome-entrenador-bloques-1-2.zip`, con sus notas 32 y 33): el vídeo de 75 de
+los 533 ejercicios (238 de sus 1.667 pasos). No son archivos de vídeo: es Jérôme, dibujado, que hace lo que dice cada
+paso de la ficha; arriba se ve el paso y abajo se lee, en el idioma de la app. Un módulo perezoso,
+`modulos/entrenador.js`, que `modulos/cuerpo.js` pide al abrir la ficha de un ejercicio; en las fichas sin coreografía
+no sale nada. La regla de la nota: cada coreografía sale de los pasos verificados de su ficha y no añade técnica que la
+ficha no diga; si un paso cambia, la auditoría se pone en rojo y ese vídeo deja de salir. Jérôme lo vio y dijo «sube»
+(el 12 de noviembre, hacia las 10:30).
+
+**Lo que llega** (`9b79c11`…`9b48c34`, los cinco commits de la entrega, tal cual): las sumas sha256 de los cinco parches
+y de los ficheros son las de la nota; sobre su base (`17c607f`) los cinco dan el árbol que dice
+(`0303cd3426ee4a8ed21361c59fdac89157b20eba`), y encima de lo nuestro entran sin un conflicto: los 33 ficheros nuevos,
+idénticos, y en `index.html`, `sw.js` y `modulos/cuerpo.js` las mismas líneas. `modulos/cuerpo.js` solo se cambia desde
+sus fuentes: sus siete trozos van a `src/ui.js`, `src/estilos.css` y `src/cuerpo.html` de «Su cuerpo», y `construir.py`
+da byte a byte el `modulos/cuerpo.js` del parche. `modulos/entrenador.js` sale igual de sus fuentes
+(`tools/entrenador/construir.py --comprobar`). Revisado a mano: sin red (ni `fetch`, ni nada guardado en el teléfono),
+`innerHTML` solo con dibujos del propio módulo y un contador como prefijo de los ids, los textos de la ficha con
+`textContent`, y la voz solo con voces del aparato (`localService`).
+
+**El nombre, como en el resto de la app** (`17a6448`): los textos propios del vídeo traían «Jérôme» en letra latina en
+búlgaro y en chino («Jérôme ще ви покаже», «听 Jérôme 讲解»…). Ahora «Жером», «热罗姆» y «熱羅姆», como el tour. Y los
+dos botones de la voz, «Escuchar a Jérôme» y «Parar la voz», que son el mismo botón que el del tour con el mismo
+castellano, dicen lo mismo que `guiaVozOn` y `guiaVozOff` en los diez idiomas. 13 textos en tres filas. Y la prueba
+del propio vídeo, que pedía «Jérôme» en letra latina en los diez idiomas, pide ahora la forma de cada uno.
+
+**Controles nuevos o ampliados:**
+- `auditar_escrituras.js` (`c4fc866`): además de lo que la página tiene al cargar, sin navegador, las 2745 filas de diez
+  idiomas de todo el fuente, con los módulos perezosos, y 156.765 textos de 88 ficheros de un idioma; y el nombre: en
+  búlgaro y en chino, nunca en letra latina. En rojo con los seis textos del vídeo tal como llegaron; en verde con el
+  arreglo.
+- `auditar_entrenador.js` (`de25419`): llegó sin cortar la red y, al abrir la app de verdad, la página pedía lo de fuera
+  desde la máquina que audita. Ahora solo el sitio de prueba, como las demás. Y entra en `tools/auditar.sh`, y
+  `modulos/entrenador.js` en la lista de los módulos que se comprueban con `node --check`.
+- `auditar_registro.js` (`30dd7f1`): el trato de usted no miraba el tour (`modulos/guia.js`, 1330 textos, publicado el
+  11) ni el vídeo. Ahora los dos. Lo que marcan, mirado uno a uno, no es tuteo: los botones del vídeo en imperativo
+  (como todos los de italiano, búlgaro y polaco: `ROTULOS_*`), «Tocca a Lei!» (le toca a usted) y «Marche» (la
+  marcha, en una lista de deportes), estos dos a `EXENTOS` con su motivo.
+
+**El apóstrofo del nombre** (`dab4556`): en polaco, «Jérôme'a» y «Jérôme’a», según la pantalla; ahora todos con el
+tipográfico, como la PWN y el resto. En inglés, los dos rótulos de la administración, «Jérôme’s». No queda ningún
+«Jérôme'».
+
+**Las tablas de idioma** (`1ee04b6`): `VOZ_LOCALE` (`{es: 'es-ES', …}`, los códigos de las voces del aparato) tiene la
+forma de una fila de diez idiomas; lleva ahora su declaración `SIN-TRADUCIR`, como `TTS_LOCALE` en el tour, para que
+ningún control la tome por texto sin traducir. Y las cifras de «Idiomas»: el vídeo suma dos tablas (`ENT_UI`, 21 filas,
+y `VOZ_LOCALE`) y 22 filas: de 50 a 52 tablas y de 3597 a 3619 filas en lo que alcanza `auditar_web.js`, y de 5.744 a
+5.766 dentro y fuera del fuente.
+
+**Samsung Internet** (`d7426d2`): el vídeo dibuja a Jérôme en SVG, como el tour, y el modo oscuro de Samsung Internet le
+habría puesto la cara oscura. El mismo arreglo que el del tour (`lienzo`, de `modulos/guia.js`), en su propio trozo
+(`tools/entrenador/src/85-lienzo.js`): solo con Samsung Internet, el SVG sigue animándose invisible y un canvas encima
+lo copia; aquí, además, el borde antes que el relleno (`paint-order`, el tronco y los miembros) y los degradados del
+ambiente, que cambian con el tema. Fuera del navegador (la auditoría carga el módulo para leer sus coreografías) no es
+Samsung: la primera prueba se rompió ahí, sin `navigator`, y ahora no. `auditar_entrenador.js` lo comprueba con el
+user-agent de ese móvil: en 28 momentos de tres ejercicios (la sentadilla, el press de banca y el estiramiento del
+pecho), de día y de noche, el canvas es el mismo dibujo que el SVG (la mayor diferencia media, 0,24 de 255); se repinta
+solo con el vídeo en marcha; con el modo oscuro forzado de Chromium, el canvas no cambia y el SVG sí; y en otro
+navegador no hay canvas. Pintar un cuadro, 5,7 ms (30,4 con la CPU frenada ×4). Y `sw.js` decía «unos 230 kB», el tamaño
+del primer bloque: con los 75 ejercicios y esto, unos 320 kB.
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre los doce commits antes de ponerlos encima de lo último de los
+robots: todo en verde. Entre otros, `auditar_entrenador.js` (39 controles: el módulo de sus fuentes, cada vídeo entero y
+cuadro a cuadro, la ficha en la app y Samsung Internet), `probar_cuerpo.js` (543), `auditar_escrituras.js` (sin
+navegador, 2745 filas de diez idiomas en todo el fuente y 156.765 textos en 88 ficheros; en la página, 13 tablas y 9338
+textos), `auditar_registro.js` (119.302 textos, con el tour y el vídeo), `barrido_idiomas.js` (5.766 filas) y
+`auditar_web.js` (52 tablas, 3619 filas). Antes, la prueba propia del vídeo dio dos rojos que eran de la prueba y no del
+vídeo: pedía «Jérôme» en letra latina en los diez idiomas (ahora la forma de cada uno, en el commit del nombre) y, con
+el modo oscuro forzado, comparaba el canvas con el SVG que ese modo oscurece a propósito (ahora compara cada uno con el
+mismo momento sin ese modo, como la del tour); y una primera vez se rompió al cargar el módulo fuera del navegador, sin
+`navigator` (arreglado en el commit de Samsung). Encima de lo último de `main` (`5aff4ba`) solo cambian los ficheros de
+cuatro robots (`datos/alertas-canarias.json`, `datos/avisos-aemet.json`, `datos/precios-gasolineras.json` y
+`datos/sismos-ign.json`), y los controles que los leen salen otra vez en verde.
+
+**Lo que queda:**
+- La persona del Samsung: primero el tour, ya publicado; si ahí sale bien, el vídeo usa el mismo arreglo.
+- En un iPhone de verdad, el vídeo no se ha probado (todo es Chromium).
+- Los 21 textos propios del vídeo, en nueve idiomas, esperan revisión nativa.
+- El peso: el módulo va en el precache de todos (unos 320 kB); con los 533 ejercicios, unos 730 kB. La nota propone
+  partirlo por grupos más adelante.
+- La página de muestra de la sesión del entrenador (`tools/entrenador/muestra/plantilla.html`) pide las letras a
+  Google Fonts; la app no (las lleva en `vendor/fuentes/`). No está enlazada desde la app.
+- Los bloques 3 a 15: la sesión del entrenador tiene que hacerlos sobre este `main`, con estos cambios.
+
+## El panel SOS, a la una: «medida a la 01:10» (12 de noviembre)
+
+**Por qué.** El lote anterior dejó la hora con el artículo en singular a la una en toda la app («a la 01:10»,
+«all’01:10»), menos en el panel SOS, que tiene su propia función de textos y no se toca sin el sí de Jérôme. Su sí, el
+12 de noviembre: «Panel sos si cámbialo».
+
+**Lo que cambia** (`52ff4c8`): la hora en que se midieron las coordenadas, en «Mis coordenadas» («precisión ±8 m ·
+medida a las {h}»), decía «medida a las 01:10» a la una, y en italiano «rilevata alle 01:10». En `t()` de
+`modulos/emergencias.js`, si lo que entra en una marca es la una, `txLaUna` (la de `index.html`) cambia el artículo que
+va justo delante, y nada más: «medida a la 01:10», «rilevata all’01:10». Fuera de la página
+(`tools/auditar_emergencias.js` carga el módulo solo), sin `txLaUna`, como estaba. Es la única fila del panel con una
+hora así; la otra con `{h}`, «en las últimas {h} horas», es un número de horas. `tools/probar_emergencias.js` lo pide en
+castellano y en italiano (y «a las 11:10», «alle 11:10»), y el polaco, como estaba: 262 controles, en verde.
+
+**La auditoría entera** (`bash tools/auditar.sh`), sobre el commit antes de ponerlo encima de lo último de los robots:
+«AUDITORIA EN VERDE», ningún control en rojo ni roto. Entre otros, `probar_emergencias.js` (262 controles, con la hora a
+la una en castellano, en italiano y en polaco, en el panel de verdad), `auditar_emergencias.js` (42), `probar_cuerpo.js`
+(543), `auditar_escrituras.js` (sin navegador, 2745 filas de diez idiomas en todo el fuente y 156.765 textos en 88
+ficheros; en la página, 13 tablas y 9338 textos), `barrido_idiomas.js` (5.766 filas) y `auditar_web.js` (52 tablas, 3619
+filas). Encima de lo último de `main` (`b6d1a10`) solo cambian los ficheros de seis robots (`datos/satelites.json`,
+`datos/semaforo-involcan.json`, `datos/alertas-canarias.json`, `datos/avisos-aemet.json`,
+`datos/precios-gasolineras.json` y `datos/sismos-ign.json`), y los controles que los leen salen otra vez en verde.
+
+## «Su cuerpo»: «¿Qué entreno hoy?», las repeticiones y el peso, y «Su fuerza» (12 de noviembre)
+
+**Por qué.** Jérôme, el 12 de noviembre: «Como la gente encuentra sus ejercicios?», «si lunes hago pecho y después
+miércoles pregunto y me dice pecho no sirve», «guarda los kilos y las repeticiones para ver mejor los datos de
+mejoramiento de cada uno» y «todo debe entrar en la evolución de cada uno». A las dos preguntas (A: cada grupo dos veces
+por semana, la segunda cuando ya están todos y nunca antes de 48 horas; B: guardar los kilos y las repeticiones, con la
+política de privacidad en los diez idiomas), «A y B si».
+
+**Lo que cambia**, un commit por apartado:
+
+- `04a82bd`: las repeticiones (de 1 a 200) y el peso (hasta 500 kg, con dos decimales) en la ficha de un ejercicio, con
+  las series, y «La última vez». Lo guardado que no vale se quita al leerlo.
+- `4f717fb`: «¿Qué entreno hoy?» en «Músculos». Dónde entrena hoy (gimnasio, en casa, fuera o calistenia) y, en casa, el
+  material que tiene. Los grupos que tocan, con lo anotado en 7 días: primero los que no tienen series, con los
+  prioritarios del deporte delante; con todos trabajados, la segunda vez de la semana; lo de hoy o de ayer descansa (las
+  48 horas del ACSM, 2011). El primer día, cuerpo completo de nivel inicial. Las frases, copiadas de las respuestas
+  revisadas del asistente; ninguna serie ni repetición recomendada, que eso llega con el bloque de Jérôme.
+- `eb6f528`: la misma respuesta en «Preguntar», con dos casos nuevos en los diez idiomas (la segunda vez de la semana
+  y el descanso), la fuente de las 48 horas (Garber et al., ACSM 2011) y los grupos como botones.
+- `688e94e`: «Su fuerza», en «Evolución»: por ejercicio, la primera vez, la última y la mejor marca, con una línea
+  pequeña de su progreso.
+- `724d783`: la política de privacidad, en los diez idiomas: las repeticiones y el peso, y el sitio donde entrena con el
+  material de casa.
+- `790b185`: en italiano, «3 × 10 con 50 kg» y «3 serie con 50 kg» se escriben igual que en castellano («con» es la
+  misma preposición): declaradas en `IGUAL_UI` de `tools/auditar_idioma.js`, como «+ 1 serie».
+- `5e437e0`: el asistente. La respuesta «progresar» decía «La app guarda cuántas series hace, no el peso», que con
+  `04a82bd` deja de ser verdad: ahora manda a «Su fuerza», en la pestaña «Evolución», con sus nombres tal cual, en los
+  diez idiomas. Y en búlgaro, «borrar-datos» citaba el botón de antes, «Изтриване на данните…», y el botón dice
+  «Изтрий данните…» desde el 23 de octubre. La prueba de las citas de `tools/probar_cuerpo.js` no lo veía porque la
+  cita lleva comillas dentro («Изтрий данните от „Вашето тяло“»): ahora compara sin mirar de qué tipo son, y una
+  prueba más pide lo de «progresar»; las dos, en rojo con lo de antes y en verde con esto.
+- `0399dfc`: `tools/auditar_registro.js` declara esa cita búlgara, con las comillas de dentro a la búlgara, como la
+  del polaco («Usuń dane z sekcji „Ciało”»): la leía como tuteo. En rojo antes, todo de usted después.
+
+**Las pruebas.** `tools/probar_cuerpo.js`, con las secciones 29 a 32 nuevas: 632 controles, en verde. Los
+validadores del asistente dan los mismos avisos que antes, ninguno nuevo, y su buscador acierta lo mismo en los diez
+idiomas, con las urgencias al 100 % y ninguna falsa. `tools/auditar_registro.js`: todo de usted en los diez idiomas.
+
+**La auditoría entera** sobre `4e9f55c` (árbol `0481e884`), que en `main` es `5e437e0`: allí va encima de siete commits
+de los robots (de `fad28a4` a `548d4b3`), que solo cambian `datos/alertas-canarias.json`, `datos/avisos-aemet.json`,
+`datos/satelites.json` y `datos/sismos-ign.json`, y los controles que leen esos ficheros, otra vez sobre el árbol de
+`main`, salieron en verde (los avisos de AEMET, 32 y 187; `app_preparar.js` y `probar_app.js`; `barrido_pantallas.js`, 0
+textos sin traducir; el cielo, 311; el panel SOS, 42 y 262; los robots de sismos y de alertas). La primera pasada se
+cortó en el bloque 68 de 70 («Su cuerpo») porque el contenedor se reinició, y los tres bloques que faltaban se pasaron
+después sobre el mismo árbol, en verde (`probar_cuerpo.js`, 632; `auditar_entrenador.js`, 39; la isla en 3D, 58; el
+panel SOS, 42 y 262, y sus cuatro robots). En los 67 de antes, tres rojos, los tres arreglados: las dos cifras de
+idiomas de este documento (`auditar_web.js`, 52 tablas y 3.655 filas, antes 3.619; `barrido_idiomas.js`, 5.802 filas,
+antes 5.766), que pone al día este commit, y la cita búlgara de «borrar-datos», que declara `0399dfc`
+(`auditar_registro.js`, vuelto a pasar: todo de usted en los diez idiomas). Lo demás, en verde: `barrido_pantallas.js`,
+191 pantallas y fichas por idioma y 0 textos sin traducir; `auditar_idioma.js`, 0 hallazgos en los diez; los tours,
+enteros en los diez idiomas y cuatro móviles; el perfil, 153.
+
+## «Su cuerpo»: las rutinas de la nota 34, la regla para subir el peso y las citas de las fuentes (13 de noviembre)
+
+**Por qué.** La nota 34 trajo 68 sesiones de entrenamiento con los ejercicios de la app: 4 sitios (gimnasio, en casa,
+fuera y calistenia) y 4 niveles (Inicial, Intermedio, Avanzado y «A tope»), con la pauta de cada ejercicio (series,
+repeticiones o segundos y descanso), hasta 3 alternativas y la fuente de cada cifra con lo leído. Jérôme, el 12 de
+noviembre: «Busca otras fuentes , no las inventes» (las cifras que solo tenían la NSCA, cuyas páginas piden iniciar
+sesión o dan error 403), «2 si cámbialo» (la regla para subir el peso), «3 si» (guardar el nivel), «4 si»
+(fuera sin banda elástica, la sesión de calistenia) y «Si todo en verde sube».
+
+**Lo que cambia**, un commit por apartado:
+
+- `0fcc2f6`: en «Preguntar», lo que dice cada fuente sale entre comillas una sola vez. 163 citas de cada idioma ya
+  traían las suyas («…» […] «…») y la app les ponía otras: salían dobles, «« … »».
+- `759dd00`: la respuesta «progresar» da la regla del ACSM de 2009 (Ratamess et al.), leída en su PDF: subir el peso un
+  2–10 % cuando, con el mismo peso, salen 1 o 2 repeticiones más de las marcadas en dos sesiones seguidas, menos en los
+  ejercicios de músculos pequeños y más en los de los grandes. Antes decía que las fuentes no daban una regla con
+  cifras. La frase no lleva categoría de evidencia propia (la «B» que hay justo antes es de la frase anterior), así que
+  no se da ninguna; la certeza pasa a moderada (una postura de consenso). Su fuente sustituye a la infografía del ACSM
+  de 2026 (el validador del asistente admite tres): la de 2026 no da ningún porcentaje. En los diez idiomas.
+- `84fe554`: las rutinas en «¿Qué entreno hoy?». Después del sitio, «¿A qué nivel entrena?»: el nivel se guarda. «A
+  tope» no se ofrece a menores de 18 años (por el año de nacimiento del perfil); a ellos, una nota lleva a la respuesta
+  de la NSCA sobre jóvenes y, desde los 65, otra a la de mayores (no llegar al fallo). «Su sesión de hoy»: la siguiente
+  a la última hecha, en el orden de las letras (la misma si hoy ya hizo algo de ella). Cada ejercicio con su pauta («2–3
+  × 8–12 · Descanso: 1–2 min», «2–3 × 10–30 s»), la frase de esfuerzo y sus alternativas; debajo de la lista, las
+  fuentes de esas cifras con lo leído. Lo que se trabajó hoy o ayer lleva «Hoy no» (las 48 horas del ACSM, 2011); si no
+  queda nada, «Hoy, descanso». Tras 6 días seguidos con fuerza anotada, el séptimo es de descanso total (el consenso
+  ECSS/ACSM de 2013, que la app ya cita; la nota 34 lo pone en domingo para «A tope», y la app lo cuenta por días
+  seguidos, empiece cuando empiece la semana). En casa, cada ejercicio el de la sesión o su primera alternativa que se
+  pueda hacer con lo marcado, y qué usar sin mancuernas, disco o banco; fuera, si la sesión pide banda elástica, un
+  botón lleva a la de calistenia del mismo nivel. «Antes de empezar: cómo calentar» abre su respuesta. Los datos,
+  `datos/cuerpo/rutinas.json` (95.472 bytes), se piden al usarlos y se comprueban al leerlos. Quince rótulos nuevos, en
+  los diez idiomas.
+- `a3f5b6c`: la política de privacidad, en los diez idiomas: «Su cuerpo» guarda también el nivel que elija.
+
+**Las cifras de la nota 34 que cambian.** Las que solo tenían la NSCA salen ahora de fuentes que se abren (la
+Colorado State University, 2023; más frases del ACSM de 2009; Garber et al., ACSM 2011; Acıbadem, 2026), y con ellas
+cambian: el descanso de las pautas de resistencia, de hasta 30 s a 30–60 s en Inicial e Intermedio y a 30–120 s en
+Avanzado y «A tope»; el de músculo de «A tope», de 30–90 s a 60–90 s; las series de las dos pautas de Intermedio y de
+las de resistencia de Avanzado y «A tope», de 3–4 a 2–4; el paseo del granjero, de 30 s a 20–40 s. El empuje
+isométrico de hombro lleva sus 5 repeticiones por serie (la hoja de la NHS). Y el ACSM de 2026 va entre las fuentes de
+cada pauta con la frase de esfuerzo.
+
+**Lo que no está**, y por qué:
+
+- el cubo de arroz (antebrazos en casa): entonces no tenía ficha en el catálogo ni el sí de Jérôme (sus fichas llegaron
+  con el bloque 35, y con la nota 37 va en las rutinas de casa: Inicial B, Intermedio C y Avanzado D);
+- los grupos de «Su deporte» delante dentro de la sesión: está propuesto y sin decidir;
+- la revisión nativa de los textos nuevos y la revisión profesional, que la app ya dice que no tiene.
+
+**Las pruebas.** `tools/probar_cuerpo.js`, con las secciones 33 a 35 nuevas y la 32 al día: 672 controles, en verde. Con
+lo de antes, la 32, la 33 y la 34 salen en rojo, y la 35 no llega a empezar (no hay `datos/cuerpo/rutinas.json`). Los
+validadores del asistente dan lo mismo que antes, nada nuevo; su comprobador de citas, 472 citas, todas en sus notas. El
+de las rutinas, 0 errores y 8 avisos: el paseo del granjero va por segundos en 6 sesiones (así lo da su fuente) y, en
+calistenia Inicial, la «Flexión en pica» y la «Flexión hindú» son de nivel 2 en el catálogo.
+
+**La auditoría entera** sobre `2d8be1a` (árbol `4ebdc0ed`), que en `main` es `a3f5b6c`: allí va encima de tres commits
+de los robots (de `ca2da03` a `4a1ba89`), que solo cambian `datos/alertas-canarias.json`, `datos/avisos-aemet.json` y
+`datos/semaforo-involcan.json`, y los controles que leen esos ficheros, otra vez sobre el árbol de `main`, salieron en
+verde (los avisos de AEMET, 32 y 187; `app_preparar.js` y `probar_app.js`; el panel SOS, 42 y 262; los robots del
+semáforo del INVOLCAN y de las alertas). La primera pasada se cortó en el bloque 64 de 70 (el barrido de pantallas)
+porque el contenedor se reinició, y los siete bloques que faltaban se pasaron después sobre el mismo árbol, en verde
+(`barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; `probar_cuerpo.js`, 672;
+`auditar_entrenador.js`, 39; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots). En los 63 de antes, dos
+rojos, los dos de este documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.670 filas, antes 3.655;
+`barrido_idiomas.js`, 5.817 filas, antes 5.802), que pone al día este commit. Lo demás, en verde: `auditar_idioma.js`, 0
+hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted.
+
+## «Su cuerpo»: 417 ejercicios nuevos para casa y fuera, el sitio «casa» y las notas de las fuentes (bloque 35, 13 de noviembre)
+
+**Por qué.** Jérôme pidió ejercicios nuevos: «Unos 250 especialmente por casa. 250 por fuera. (Son números de
+referencia; si son más, mejor.) No repite los que tenemos.» La sesión de «Su cuerpo» trajo 464 fichas en los diez
+idiomas, cada una con sus fuentes y lo leído en ellas, con una revisión independiente que comprobó las citas palabra por
+palabra (nota 35, versión 2 del 13 de noviembre: con dos fichas de antebrazos con un cubo de arroz).
+
+**Lo que cambia**, un commit por apartado:
+
+- `ae74579`: el catálogo pasa de 533 a 950 fichas: las 533 de antes, iguales y delante (la prueba 36 lleva su huella), y
+  417 nuevas, con su nombre y sus pasos en los diez idiomas. El sitio «casa» entra en el catálogo: lo que solo lleva
+  «casa» no sale en gimnasio, fuera ni calistenia. La regla de casa sigue siendo la de siempre (todo el material sin
+  nada, la pared o marcado) y añade una condición: nada de correr ni desplazarse (patrón «locomocion»); las 533 salen
+  igual que antes. Seis materiales nuevos en «¿Qué tiene en casa?» (de 16 a 22): botellas o garrafas, silla, toalla,
+  mochila con peso, mesa o encimera y cubo con arroz o arena; el aparato biosaludable, como las máquinas, no se marca.
+  Cada ficha enseña todas sus fuentes, hasta 6 (antes 4: doce traen 5, dos de ellas de las 533). Las notas que la
+  entrega escribió en castellano dentro de los títulos de las fuentes («revisado por fisioterapeutas», «Gobierno de
+  Queensland», «extracto …, Guardia Nacional de Colorado»…) salen traducidas, 41 notas nuevas en los diez idiomas; el
+  título de un documento en castellano (Ministerio de Sanidad, ayuntamientos) es su nombre y se queda. En
+  `idiomas/castellano-aceptado.json`, «mountain climber» en búlgaro, como «dead hang».
+- `665ce04`: el asistente, con el catálogo nuevo: «Hay 950 ejercicios con fuente»; 125 de los 950 traen el nivel de su
+  fuente (81 de antes y 44 nuevos) y los otros 825 son una estimación; 502 de nivel inicial, 343 intermedios y 105
+  avanzados; y el filtro «Dónde» con sus cuatro sitios (Gimnasio, Fuera, Calistenia o En casa; «En casa» ya estaba en
+  la hoja). En los diez idiomas, con la forma de cada cifra en polaco («950 ćwiczeń», «Są 502 ćwiczenia»).
+- `7ed3a4c`: el control del trato de usted (`tools/auditar_registro.js`) tomaba por tuteo una frase francesa nueva,
+  «Pliez les coudes pour que le bout des doigts pointe vers le plafond et touche le mur derrière vous» (paso 2 de
+  «estiramiento-hombros-pared-brazos-en-cruz»): «touche» es el subjuntivo, en tercera persona. Va a `EXENTOS` con su
+  motivo, como «que le tronc tienne». El trato, repasado a mano en las 417 fichas nuevas, en los idiomas que lo
+  distinguen (francés, alemán, italiano, neerlandés, búlgaro, polaco y los dos chinos): ningún tuteo.
+- `58e4407`: la prueba del tiempo de «Hoy en la isla» (`tools/probar_cuerpo.js`) contaba todas las peticiones de la
+  página a Open-Meteo. La app hace las suyas (el panel del mar, «Báñese hoy aquí», el cielo…) y, en la auditoría de
+  este bloque, una cayó en la espera al cambiar al Teide: 2 en vez de 1 (al repetirla, 1). Ahora cuenta las del módulo,
+  que se reconocen por sus campos; si el módulo pidiera de más, se sigue viendo.
+- `e4a125e`: las fuentes de la ficha, plegadas, como pidió Jérôme al aceptar las 6 («si pero entonce con un link con las
+  fuentes que si aparecen 6 es demasiado»): «› Fuentes» y su número en una pastilla, como en «Preguntar» y en las
+  rutinas. Al tocarlo se abren; otra ficha, o la misma al volver a abrirla, salen plegadas. Sin textos nuevos: «Fuentes»
+  ya estaba en los diez idiomas. La prueba 36 lleva un control nuevo, en rojo con el módulo de antes.
+
+**Lo comprobado de las fuentes.** Las 417 fichas citan 765 veces 225 páginas. Claude Code leyó palabra por palabra lo
+citado de 202: 143 bajadas (1.714 trozos) y 59 de ACE con WebFetch (422 trozos, todos están; una frase inventada de
+control sale «no»). Las otras 23 responden 403 a los robots, también a WebFetch, y no se fuerzan. Tres de ellas son
+hojas del ATP 7-22.02 del Ejército de EE. UU. que aloja la Guardia Nacional de Colorado: lo citado de ellas se buscó en
+el manual entero, en armypubs.army.mil (octubre de 2020, con su cambio 1 de septiembre de 2025), y de 283 trozos, 274
+están palabra por palabra. De los 9 que no, 8 son la redacción de 2020 que el cambio 1 reescribió sin cambiar el
+ejercicio («Runner’s position», «pulling», «initiate a backwards fall»…), y uno es de la «Salida por caída», que
+respaldan también dos fuentes leídas aquí (Australian Athletics y Wesleyan). Lo citado de las otras 20 (Mayo Clinic, el
+Ayuntamiento de Madrid, dos hospitales del NHS…; 238 trozos) lo comprobó la revisión de la entrega; 31 fichas no
+tienen otra fuente que esas 20 páginas (una, además, el ATP). El nivel que dan las páginas de ACE coincide con el de
+cada ficha que dice traerlo.
+
+**Lo que no está**, y por qué:
+
+- 47 de las 464 fichas. 13 no tienen ninguna fuente que abra (6 con todas caídas o con el texto cambiado y 7 con solo
+  fuentes del Uruguay, que no responden); 8 tienen pasos que solo respaldaba una que ya no abre; y 22 tienen pasos que
+  dependen en parte de seis sitios que hoy no responden (la Secretaría Nacional del Deporte del Uruguay, el Municipio B
+  de Montevideo, el Ayuntamiento de Pinto, dos; Triathlon Australia y UF Health): vuelven cuando se puedan leer. Siete
+  variantes de esas 22 entran sueltas, sin «variante de»; dos fichas que esos sitios solo repetían entran sin su enlace.
+  Y 4 son ejercicios que el cambio 1 quitó del ATP 7-22.02 («De caminar a correr», «Correr en el sitio y arrancar
+  dejándose caer», «Salida de sprint desde plancha» y «Saltos con las puntas hacia fuera y hacia dentro»): sus fichas
+  solo citaban las hojas de 2020, y el manual de hoy ya no los trae.
+- La revisión nativa de los textos nuevos y la revisión profesional, que la app ya dice que no tiene.
+
+**Las pruebas.** `tools/probar_cuerpo.js`, con la 36 nueva y la 14 y la 29 al día: 687 controles, en verde. Con
+lo publicado, la 36 da 11 rojos de 15, y la 29 y la de las notas de las fuentes, rojo. Los validadores del asistente dan
+lo mismo que antes, nada nuevo; el del catálogo, sin errores; `castellano_suelto.js`, en verde.
+
+**La auditoría entera** sobre `ee40aea` (árbol `7f76ed4e`), los cinco commits de arriba encima de `main` (`9cb0695`); en
+`main` son los mismos, rebasados sobre tres commits de los robots (`19f041a`, terremotos; `1b88773`, avisos de AEMET, y
+`70d12e1`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`, `datos/avisos-aemet.json` y
+`datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el rebase. En sus 70 bloques,
+dos rojos, los dos de este documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.718 filas, antes 3.670;
+`barrido_idiomas.js`, 5.865 filas, antes 5.817: las 41 notas y los 7 materiales nuevos), que pone al día este commit. Lo
+demás, en verde: `probar_cuerpo.js`, 687; `auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`,
+todo de usted (137.392 textos); `castellano_suelto.js`; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0
+textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares,
+74 y 153; `auditar_entrenador.js`, 39; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots. Dos pasadas
+antes: una, sobre las 954 fichas de antes de quitar las cuatro del ATP, encontró el tuteo que no era (`7ed3a4c`); la
+otra, sobre los tres primeros commits, la prueba del tiempo que fallaba a veces (`58e4407`).
+
+## Jérôme, el entrenador: los bloques 3 y 4, el dorsal y la espalda alta (65 vídeos más; 140 de 533) (notas 36 y 38, 13 de noviembre)
+
+**Por qué.** El encargo de Jérôme, del 11 de noviembre: «es para todos los ejercicios del cuerpo presentes en la app, y
+si faltan hazlos. Bloque por bloque». La sesión del entrenador entregó el bloque 3 (nota 36, el dorsal: 35 vídeos) y el
+4 (nota 38, la espalda alta: 30); los dos, en la cola de Jérôme, con su «Revisa siempre todo y si auditoría en verde
+publica». Van juntos porque el parche del 4 arregla ocho movimientos que se quedaban a medias, cuatro del bloque 3 (y
+cuatro de los bloques 1 y 2, ya publicados): publicar el 3 solo habría sido publicar esos cuatro cortados.
+
+**Lo que llega** (`9012cf3` y `8d4ced2`, los dos commits de la entrega, tal cual): las sumas sha256 de los dos parches
+son las de las notas (el `0006` es el mismo fichero en las dos entregas); sobre lo publicado (`0e9f6b6`) entran con
+`git am` sin un conflicto, y sus 17 ficheros quedan idénticos a las copias de `repo/` de la nota 38.
+`modulos/entrenador.js` sale de sus fuentes (`tools/entrenador/construir.py --comprobar`), y las huellas de los pasos de
+los 140 son las de las fichas: el bloque 35 dejó las 533 iguales. Solo tocan ficheros del entrenador: ni `index.html`,
+ni `sw.js`, ni `modulos/cuerpo.js`, ni `datos/`; ningún texto nuevo (los pasos son los de las fichas, ya en los diez
+idiomas). Revisado a mano: sin red, sin nada guardado en el teléfono, sin `eval` ni temporizadores en las coreografías;
+el material nuevo (la máquina de jalón con su asiento y su rodillo, el agarre en V, los agarres paralelos, la torre de
+dominadas, la barra T, la toalla, la chapa del remo sentado) es trazados, cilindros y cajas, lo que el canvas de Samsung
+Internet copia. Dos herramientas nuevas para hacer los bloques, que la app no usa: `pruebas/mide.js` (corre el módulo en
+una caja de `vm`, sin red ni ficheros) y `pruebas/repaso.py` (la hoja de repaso paso a paso, con Playwright y páginas
+locales).
+
+**Lo que cambia:**
+- `9012cf3`: los 35 vídeos del dorsal (las dominadas, el front lever, los jalones, los remos libres y en polea y dos
+  estiramientos). En los vídeos publicados, la mano agarra la barra a lo largo y con la palma hacia donde dice la
+  ficha (antes el puño giraba con el codo y acababa atravesado), y en las bisagras de cadera las rodillas se doblan
+  hacia donde apunta el pie. La auditoría del vídeo, de 39 a 41 controles: Jérôme no se sale del cuadro, y el dibujo
+  está hecho solo de lo que el canvas de Samsung Internet copia.
+- `8d4ced2`: los 30 vídeos de la espalda alta (encogimientos, remo sentado en polea, omóplatos, boca abajo y cuello). Y
+  ocho secuencias más largas que su paso en algún idioma, que se quedaban a medias al entrar el siguiente (un paso
+  dura lo que se tarda en leerlo): el estiramiento de gemelo en la pared y la plancha sobre antebrazos (bloque 1),
+  los dos estiramientos de pecho en la puerta y en la pared (bloque 2), y la dominada isométrica, las parciales, la
+  máquina de escribir y el front lever agrupado (bloque 3). Se acorta un tiempo (casi siempre una espera); ninguna
+  postura cambia. La auditoría, 42 controles: cada secuencia cabe en su paso, en los diez idiomas.
+- `23c3b11`: la página de muestra (`tools/entrenador/muestra/plantilla.html`, que la app no enlaza) decía «El 3 y el 4
+  están preparados y sin subir a GitHub»; ahora, «Los bloques 1 a 4 ya están en la app».
+
+**Las pruebas.** `tools/auditar_entrenador.js`, sobre el catálogo de 950: 42 controles, en verde. Los 140 vídeos
+enteros, dos veces (280 pases, 251.196 cuadros); 106 secuencias de 76 ejercicios caben en su paso, la más justa con 0,10
+s (el estiramiento de gemelo, en inglés), y la cuenta, cotejada con el reproductor en 902 pasos; 23.528 momentos dentro
+del cuadro (el que más se arrima, a 8,3 px de 400); Samsung Internet, 28 momentos, con una diferencia media de 0,24 de
+255.
+
+**Lo que no está:** un iPhone o un Samsung de verdad (todo es Chromium); que a Jérôme le valgan estos 65 (los tiene en
+la muestra); el «½×», que con media velocidad deja las secuencias a medias desde el bloque 1 (está en
+`80-reproductor.js`, que no se toca: lo decide Jérôme); y el comentario de `sw.js` («unos 320 kB»), que se queda viejo:
+cambiar `sw.js` hace que cada móvil rehaga su precache entero, y el módulo nuevo llega igual con conexión («red
+primero»).
+
+**La auditoría entera** sobre `18dffe5` (árbol `6bf92515`), los tres commits de arriba encima de `main` (`0e9f6b6`); en
+`main` son los mismos, rebasados sobre cuatro commits de los robots (`6203614`, los satélites; `da9a086`, avisos de
+AEMET; `0025717`, terremotos, y `c9ec977`, alertas del Gobierno de Canarias), que solo cambian `datos/satelites.json`,
+`datos/avisos-aemet.json`, `datos/sismos-ign.json` y `datos/alertas-canarias.json`, y con los controles que leen esos
+ficheros, en verde tras el rebase. En sus 70 bloques, ningún rojo: `auditar_entrenador.js`, 42; `probar_cuerpo.js`, 687;
+`auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted (137.392 textos);
+`castellano_suelto.js`; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours,
+enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el
+panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas y 3.718 filas;
+5.865): los bloques no traen ningún texto. Un reinicio del contenedor la cortó durante `auditar_entrenador.js`, que se
+había pasado antes, entero, sobre el mismo árbol (42 en verde); los bloques que faltaban (la isla en 3D y el SOS) se
+pasaron después, también sobre él, en verde.
+
+## «Su cuerpo»: las rutinas de casa con objetos de casa, botellas, silla, toalla y mesa marcadas de entrada, y la búlgara en una silla (nota 37, 14 de noviembre)
+
+**Por qué.** Las rutinas de casa de la nota 34 usaban mancuernas, y el bloque 35 trajo ejercicios con botellas,
+garrafas, mochila, silla, mesa y el cubo de arroz. La sesión de las rutinas lo propuso («Las rutinas de casa todavía
+usan «remo con mancuerna» haciéndolo con botellas; puedo cambiarlas por los remos con garrafa y con mochila del bloque
+35 y añadir el cubo de arroz») y Jérôme respondió: «Prepara el arreglo y si tiene más ejercicio para completarlo hazlo».
+Y sobre marcar de entrada botellas, silla, toalla y mesa: «Déjalas auto seleccionadas y la gente quita lo que no tiene».
+Llegó en la nota 37 (versión 2, `rutinas-casa-37-v2.zip`).
+
+**No cuadraba con lo publicado, y se dijo.** La nota se hizo con las 464 fichas del bloque 35 (997 en el catálogo), y
+entraron 417 (950). Diez de los ejercicios que usa son de las 47 que se quedaron fuera: nueve solo como alternativa (32
+usos, casi todos aparatos biosaludables, fuera) y uno como ejercicio de la sesión (en A tope J, el remo inclinado a una
+pierna con botellas, de las 13 sin ninguna fuente que abra). Se le preguntó a Jérôme si se publicaba así, sin esas nueve
+alternativas y, en A tope J, con el remo inclinado con mancuernas de antes (sus otras dos alternativas, las de la nota),
+y respondió (14-11): «Si sale en verde puedes publicar». Cuatro de los diez vuelven con la nota 43, que va detrás en la
+cola.
+
+**Lo que cambia**, un commit por apartado:
+
+- `466b14c`: la ficha 951, «Sentadilla búlgara con el pie de atrás en una silla», en los diez idiomas, detrás de las
+  950 (iguales y en su orden). Su fuente, Scheurer Health (la explica Ben Zaleski, entrenador personal; 6 de agosto
+  de 2026): las 12 citas están palabra por palabra en la página (con WebFetch: a los robots responde 403; dos frases
+  de control inventadas salen «no»). Casa, con silla; cuádriceps y glúteos; nivel 2 estimado, como la búlgara del
+  catálogo.
+- `9318b47`: el asistente con 951 ejercicios: 125 con el nivel de su fuente (los mismos) y 826 estimados; 502 de
+  nivel inicial, 344 intermedios y 105 avanzados. En búlgaro, «от общо 951 упражнения», sin el artículo sobre un
+  número que acaba en 1.
+- `34da4c4`: las rutinas. En casa, 55 de los 118 ejercicios pasan a su versión con objetos de casa (30 cambios
+  distintos), con hasta tres alternativas en cascada (con material de gimnasio, con otro objeto de casa y sin nada);
+  el cubo de arroz va en los antebrazos de Inicial B, Intermedio C y Avanzado D. Fuera, los mismos ejercicios y
+  pautas; las alternativas de 104 de los 110. Gimnasio y calistenia, las fuentes, las pautas y los sustitutos,
+  iguales; la semana, la misma. En las fuentes de «Su cuerpo», `construir.py` lee lo que se marca en casa de
+  `src/ui.js` (22), en lugar de una copia de las 16 de antes; el `datos/cuerpo/rutinas.json` que sale es, byte a
+  byte, el de la nota con la adaptación.
+- `0219eb7`: lo marcado de entrada. La primera vez, botellas, silla, toalla y mesa salen marcadas y la lista
+  abierta, con su texto en los diez idiomas; queda revisada (`matRev`, solo vale el 1) en cuanto la persona marca o
+  quita algo, o la cierra, y desde entonces vale lo que deje, también otro día. A lo guardado antes se le suman las
+  cuatro, con la lista abierta. Lo que pide lo quitado pasa a su alternativa, como ya hacía la app. Los siete trozos
+  del parche de la nota, en las fuentes (`src/ui.js`, `src/textos.py` y `src/cuerpo.html`); el módulo solo cambia en
+  ellos. `matRev` se queda en el dispositivo; la política de privacidad ya dice «el material que marque para casa».
+
+**Lo comprobado.** El comprobador de las rutinas de la nota (leído antes de usarlo; solo lee): con la nota tal cual, se
+para en los ejercicios que no están; con la adaptación, 0 errores y los 2 avisos de siempre (la flexión en pica y la
+hindú, de nivel 2 en calistenia Inicial). Con lo marcado de entrada, 11 ejercicios de casa pasan a su alternativa; sin
+nada marcado, 15 se quedan como están porque no tienen otra forma sin algo de peso (los curl y el paseo del granjero con
+botellas o garrafas), con «¿Sin mancuernas, disco o banco?» debajo, como decidió la nota 34. El validador del catálogo,
+sin errores; los del asistente dan lo mismo que antes.
+
+**Lo que no está:** la revisión nativa de la ficha nueva y del texto nuevo de «¿Qué tiene en casa?», en los nueve
+idiomas; la revisión profesional, que la app ya dice que no tiene.
+
+**Las pruebas.** `tools/probar_cuerpo.js`: la 37, nueva (10 controles); la 35, con lo que pide la sesión A de casa
+(botellas y silla) tal cual y, con mancuernas y banco, sus alternativas; la 29 y la 36 empiezan sus escenas de casa con
+la lista ya revisada; la 36, con 951 fichas y la huella de las 950 de antes: 698 controles, en verde. Con el módulo y
+los datos de antes, 9 en rojo: la de las 951 fichas y 8 de la 37.
+
+**La auditoría entera** sobre `c875203` (árbol `b5a4c723`), los cuatro commits de arriba encima de `main` (`129d542`);
+en `main` son los mismos, rebasados sobre diez commits de los robots (los terremotos, los avisos de AEMET, las alertas
+del Gobierno de Canarias, el semáforo de INVOLCAN y los precios de las gasolineras), que solo cambian
+`datos/sismos-ign.json`, `datos/avisos-aemet.json`, `datos/alertas-canarias.json`, `datos/semaforo-involcan.json` y
+`datos/precios-gasolineras.json`, y con los controles que leen esos ficheros, en verde tras el rebase. En sus 70
+bloques, ningún rojo: `probar_cuerpo.js`, 698; `auditar_entrenador.js`, 42; `auditar_idioma.js`, 0 hallazgos en los diez
+idiomas; `auditar_registro.js`, todo de usted (137.442 textos); `castellano_suelto.js`; `barrido_pantallas.js`, 191
+pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el
+cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las
+cifras de idiomas del documento, las mismas (52 tablas y 3.718 filas; 5.865). Un reinicio del contenedor cortó la
+primera pasada en su bloque 16; esta es la segunda, entera, sobre el mismo árbol.
+
+## «Su cuerpo»: 7 de las 13 fichas del bloque 35 que se quedaron fuera, ya comprobadas en sus fuentes (nota 43, 14 de noviembre)
+
+**Por qué.** Del bloque 35 se quedaron fuera 13 fichas «sin ninguna fuente que abra». Jérôme pidió la lista para que la
+revisara la sesión de «Su cuerpo» («Envíamela para que revise») y volvió con la nota 43 (`fuentes-13-43.zip`): las cinco
+fuentes existen y son de quien decía la ficha; 12 fichas vuelven (7 corregidas, en los diez idiomas) y una se queda
+fuera (el press de hombros de pie en el aparato: su manual no dice qué músculos trabaja). Dos revisiones independientes.
+
+**Lo comprobado aquí, antes de meter nada.** El programa de la nota (`fuentes_13.py`, leído entero antes de usarlo: solo
+lee y escribe en una carpeta nueva) sobre el bloque 35 tal como llegó: las 13 estaban como se esperaba; pasado otra vez
+sobre su salida, no cambia nada. Y cada fuente, abierta aquí y cotejada palabra por palabra con lo leído el 13-11 (lo de
+la nota, más completo que lo del bloque 35):
+
+- el manual de la Secretaría Nacional del Deporte de Uruguay, en gub.uy (PDF de 2022): las 9 frases, en su texto;
+- el folleto de 2026 del Nutrition Education Program de la Universidad de Nebraska-Lincoln (PDF): las 10;
+- el artículo del Mayo Clinic: las 18 (su servidor responde con un error 500, pero la página trae el artículo
+  entero);
+- la copia de Middlesex Health responde 403 a los robots: sus 7 frases están en el artículo del Mayo Clinic.
+
+**Entran 7**: «Press de pecho de pie en el aparato, solo con los brazos» (corregida), «Remo inclinado a una pierna con
+botellas» (corregida, con la fuente de Nebraska), «Curl de bíceps sentado en el aparato biosaludable», «Encogimiento
+abdominal sentado en la silla de abdominales» (corregida), «Abdominal mantenido en la silla de abdominales», «Paso del
+cangrejo bajando escaleras» y «Salto hacia delante desde el primer escalón» (las dos, corregidas, con el aviso de la
+fuente: si no aguanta 45 segundos sobre una pierna sin agarrarse, quizá no pueda hacerlo con seguridad; pregunte a su
+médico). **Se quedan fuera, hasta que se puedan leer, 5**: las 3 de la Universitat de València (su PDF responde 404
+desde aquí, con curl y con WebFetch, aunque el buscador lo tiene) y las 2 del Municipio B de Montevideo (no responde). Y
+la del press de hombros de pie, que la nota deja fuera.
+
+**Lo que cambia**, un commit por apartado:
+
+- `90b12eb`: las 7 fichas, en `ejercicios/bloque-43.json` de las fuentes de «Su cuerpo», detrás de las 951 (iguales y
+  en su orden: 958). La nota «(Uruguay)» del título del manual, en los diez idiomas (`cuerpoNF_uruguay`).
+  `tools/probar_cuerpo.js`, la prueba 36: 958 fichas, con la huella de las 951 de antes y las 7 detrás, en su orden.
+- `bd061ab`: el asistente con 958 ejercicios: 125 con el nivel de su fuente (los mismos) y 833 estimados; 506 de nivel
+  inicial, 347 intermedios y 105 avanzados. En polaco, «pozostałe 833 mają» y «Jest 506 ćwiczeń».
+- `c9f79bb`: las rutinas de la nota 37, con lo que vuelve: en A tope J, el remo inclinado a una pierna con botellas,
+  como la pensó la nota 37; y 3 alternativas en 10 usos. Siguen fuera 6, de fichas que no han entrado (22 usos). El
+  comprobador de la nota 37: 0 errores y los 2 avisos de siempre; con lo marcado de entrada, 10 ejercicios de casa
+  salen con su alternativa (como dice la nota 37); sin nada marcado, 45 con su alternativa y 15 que piden botellas y
+  no tienen otra forma (con la nota 42, esos 15 ya no salen).
+
+**Lo que decide Jérôme (no bloquea; no se ha tocado):** el nombre de la 9 («Encogimiento abdominal sentado en la silla
+de abdominales» suena a crunch; la nota propone «Abdominal en la silla de abdominales») y el nivel o los grupos de la 2
+(con la fuente nueva lleva además un peso muerto a una pierna).
+
+## «Su cuerpo»: los estiramientos, junto a las rutinas (nota 40, 14 de noviembre)
+
+**Por qué.** Jérôme, el 13-11: «Hazme un plan completo de estiramiento. Cuerpo completo. Zona individuales. Fuera y
+adentro. Con y sin material. Verifica las fuentes busca los más fiables posibles»; para la app, «Junto a las rutinas».
+Llegó en la nota 40 (`estiramientos-40.zip`), hecha sobre el catálogo de 998 fichas; aquí son 958 y los 79 estiramientos
+de sus listas están todos (su comprobador: 0 errores y el aviso de las 958 fichas, esperado).
+
+**Lo que cambia**, un commit por apartado:
+
+- `0fb19e0`: en «¿Qué entreno hoy?», tras el sitio, «¿Qué quiere hacer hoy?»: «Fuerza» (las rutinas) o «Estiramientos»
+  (no se guarda). Con «Estiramientos», el cuerpo completo o uno de los 12 grupos, dentro (casa y gimnasio) o fuera
+  (fuera y calistenia): 26 listas, con hasta 3 alternativas cada fila; en casa, con lo marcado, y lo que no se puede
+  con nada, no sale. La pauta del ACSM («2–4 × 10–30 s»; desde los 65, «2 × 30–60 s»), el texto de para qué y cuándo
+  y sus 5 fuentes con lo leído; «¿Tengo que estirar antes o después de entrenar?» abre la respuesta del asistente.
+  Al final de cada sesión de fuerza, «Después: estire lo que ha trabajado». 7 textos nuevos, en los diez idiomas.
+  Los 13 trozos del parche, en las fuentes de «Su cuerpo» (`src/ui.js`, `src/cuerpo.html`, `src/textos-fijos.js` y
+  `src/textos.py`): el módulo que sale es, byte a byte, el del parche sobre el de la nota 43.
+  `datos/cuerpo/estiramientos.json` sale de `estiramientos/estiramientos.json` con `construir.py`, que lo coteja con
+  el catálogo.
+- `ed80f33`: el README, con los datos de «Su cuerpo» al día (decía 533 ejercicios) y los pesos medidos.
+
+**Las fuentes, comprobadas aquí palabra por palabra**: el ACSM de 2011 (Garber et al.; las 7 frases, en la copia de la
+Universidad de Ankara, la que ya citan las respuestas del asistente: el enlace de la revista responde 402 a los robots y
+la nota 40 prevé este cambio), el NHS (las 2; revisada el 16-3-2026) y la Cochrane (las 2; Herbert et al., 2022). Las
+dos páginas de la Mayo Clinic responden 403 a los robots, como en el bloque 35: sus frases son las que leyó la sesión de
+«Su cuerpo». Con dos frases inventadas de control en cada página, que salen «no».
+
+**Un cambio de traducción**: en polaco, el texto de para qué y cuándo decía «może być trzeba zmienić niektóre
+ćwiczenia», coloquial; ahora, «może być konieczna zmiana niektórych ćwiczeń».
+
+**Lo que no está:** la revisión nativa de los textos nuevos en los nueve idiomas y una revisión profesional
+(fisioterapia) de la selección.
+
+## «Su cuerpo»: en casa, lo que no se puede hacer con lo marcado no sale (nota 42, 14 de noviembre)
+
+**Por qué.** Jérôme, a la pregunta de si en las rutinas de fuerza también tenían que desaparecer los ejercicios que
+piden botellas cuando se quitan, como en los estiramientos: «Sí claro si uno no tiene botella como hace ejercicio con
+botella». Llegó en la nota 42 (`rutinas-sin-material-42.zip`).
+
+**Lo que cambia** (`14f5eb7`): en casa, cada ejercicio de la sesión es el de la sesión o su primera alternativa que se
+pueda con lo marcado; si no se puede ninguno, no sale. Si no quedara ninguno en la sesión, la sesión tal cual (con las
+rutinas de hoy no pasa: quedan 4 como poco). Fuera de casa, nada cambia; ningún texto nuevo. Solo deja de salir algo al
+quitar las botellas o sin nada marcado: 15 ejercicios de 9 de las 17 sesiones de casa (7 distintos: los curls con
+botellas, el paseo del granjero con garrafas y la extensión de tríceps con una botella), contados aquí sobre las rutinas
+con lo de la nota 43. Quitar la silla, la toalla o la mesa no quita ninguno. Los dos trozos del parche, en `src/ui.js`:
+el módulo que sale es, byte a byte, el del parche sobre el de la nota 40. `tools/probar_cuerpo.js`: las pruebas 35 y 37
+cuentan lo que sale en casa como la app, y la 42, nueva (6 controles).
+
+**Para decidir más adelante (no bloquea):** sin botellas, el bíceps se queda sin ejercicio en 8 sesiones de casa (no hay
+ninguno sin material en el catálogo); para el antebrazo y el tríceps sí hay formas sin peso, que podrían ser la última
+alternativa. Lo decide Jérôme.
+
+## Jérôme, el entrenador: los bloques 5 y 6, los hombros y los bíceps (70 vídeos más; 210 con vídeo) (notas 39 y 44, 14 de noviembre)
+
+**Por qué.** El encargo de Jérôme, del 11 de noviembre: «es para todos los ejercicios del cuerpo presentes en la app, y
+si faltan hazlos. Bloque por bloque». La sesión del entrenador entregó el bloque 5 (nota 39, los hombros: 34 vídeos) y
+el 6 (nota 44, los bíceps: 36); Jérôme los puso en la cola («Después de estiramientos bloque 5»; «Recuerda ponerlo en
+cola después del bloque 5») con su «Si sale en verde puedes publicar».
+
+**Lo que llega.** Las sumas sha256 de los parches son las de las notas; el `0008` es el mismo fichero en las dos
+entregas, y el `0006` y el `0007` de la nota 44, los ya publicados. Revisado a mano: sin red, sin nada guardado en el
+teléfono, sin `eval`, sin caracteres invisibles; solo tocan ficheros del entrenador (ni `index.html`, ni `sw.js`, ni
+`modulos/cuerpo.js`, ni `datos/`) y ningún texto nuevo: los pasos son los de las fichas, ya en los diez idiomas.
+`modulos/entrenador.js` sale de sus fuentes (`tools/entrenador/construir.py --comprobar`) y las huellas de los pasos de
+los 210 son las de las fichas. **Las coreografías publicadas no cambian**, comparadas aquí módulo contra módulo (sus
+datos y sus posturas resueltas, número a número): las 140 de los bloques 1 a 4 con el bloque 5 (395 posturas, 108.002
+números) y las 174 con el bloque 6 (530 posturas, 145.114 números), sin una diferencia. `modulos/entrenador.js`: 547.548
+bytes (150.537 con `gzip -9`).
+
+**Lo que cambia:**
+- `7bbd7f9`: los 34 vídeos de los hombros (siete press, las elevaciones, el deltoides posterior, los rotadores, la
+  calistenia con la pica, los pinos, la pseudoplancha y la flexión hindú, los círculos con los brazos y dos
+  estiramientos): 174 de los 533 de antes. Entró con `git am -3`, como dice su nota: la plantilla de la muestra
+  chocaba en su frase de estado, la que se cambió al publicar los bloques 3 y 4; lo demás es, byte a byte, lo de su
+  carpeta `repo/`.
+- `6932699`: la plantilla de la muestra (no la enlaza la app): «Los bloques 1 a 5 ya están en la app».
+- `73e59ad`: los 36 vídeos de los bíceps: los curls de pie con barra (la barra Z, recta, con agarre ancho y estrecho,
+  invertida y a una mano), con mancuernas y con pesa rusa; en un banco; en el banco predicador; en polea; en la
+  barra fija (el remo invertido supino, el curl con el peso del cuerpo y el muscle-up) y un estiramiento en la
+  pared. Con los 3 del bloque 1, 39 de los 50 de bíceps de los 533 de antes. Material nuevo en el dibujo: la barra Z
+  y el banco predicador, cuyo cojín tapa de verdad lo que queda detrás. Las 36 son de fichas de bíceps del catálogo
+  (32 de gimnasio, 3 de calistenia y 1 de fuera) y ninguna repite otra. También con `git am -3`, por la misma frase:
+  de los 19 ficheros de su `repo/`, 18 quedan byte a byte y el otro es esa plantilla.
+- `8688214`: la plantilla y el LEEME del entrenador: «Los bloques 1 a 6 ya están en la app», y el catálogo de 958. El
+  parche se hizo sobre el de 950; con las notas 37 y 43 son 958, y los nuevos sin coreografía, 425 (417 + 1 + 7). La
+  cifra «210 de 958» de la muestra sale del catálogo.
+
+**Las pruebas.** `tools/auditar_entrenador.js`, sobre el catálogo de 958: 42 controles, en verde. Los 210 vídeos
+enteros, dos veces (420 pases, 372.248 cuadros); 169 secuencias de 125 ejercicios caben en su paso, la más justa con
+0,10 s (el estiramiento de gemelo, en inglés), y la cuenta, cotejada con el reproductor en 1.324 pasos; 34.721 momentos
+dentro del cuadro (el que más se arrima, a 8,3 px); el dibujo, hecho solo de lo que copia el canvas de Samsung Internet,
+y en Samsung Internet, 28 momentos, con una diferencia media de 0,24 de 255; en la app, la ficha con vídeo y la ficha
+sin vídeo, como estaban.
+
+**Lo que no está:** un iPhone o un Samsung de verdad (todo es Chromium); que a Jérôme le valgan estos 70 (los tiene en
+la muestra). **Para decidir más adelante (no bloquea):** cómo se reparten en bloques los 425 nuevos (245 piden material,
+y su nota dice que lo que piden, botellas y garrafas, una silla, una mochila, una toalla, una mesa o los aparatos
+biosaludables, Jérôme aún no lo tiene dibujado; 51 son de desplazarse); el peso del módulo (partir las coreografías por
+grupo dejaría en el precache solo el motor); el «½×» (con media velocidad, las secuencias no llegan a acabar; es del
+reproductor), subir al pino por la pared, y los rótulos de los músculos, que tapan la esquina de abajo a la izquierda.
+
+## El lote del 14 de noviembre (notas 43, 40 y 42 y los bloques 5 y 6 del entrenador): las pruebas y la auditoría entera
+
+**Por qué juntos.** Es la cola de Jérôme, en su orden («En la cola después del último que te envié»; «Después de
+estiramientos bloque 5»; «Recuerda ponerlo en cola después del bloque 5») y con su «Si sale en verde puedes publicar».
+Cada nota va en sus commits, y cada una sobre la anterior: la 40 se llevó a las fuentes de «Su cuerpo» sobre la 43, y la
+42 sobre la 40; en cada paso, lo que sale de las fuentes es, byte a byte, lo de los parches. Y con las fuentes de la
+punta, `construir.py` da el `modulos/cuerpo.js` del lote (853.593 bytes, 667 filas de `CUERPO_UI`) y sus 33 ficheros
+de `datos/cuerpo/`.
+
+**Las pruebas.** `tools/probar_cuerpo.js`: 725 controles, en verde: la 40, nueva (21 controles: la pregunta, las 26
+listas, lo que no se puede en casa, la pauta de los mayores, «Después: estire lo que ha trabajado», que no se guarda,
+los diez idiomas y un `estiramientos.json` que no vale); la 42, nueva (6); la 36, con 958 fichas y la huella de las 951
+de antes; y la 35 y la 37 cuentan lo que sale en casa como la app. `tools/auditar_entrenador.js`: 42 controles, en verde
+(arriba, en la sección del entrenador).
+
+**La auditoría entera** sobre `36a6f8d` (árbol `40f64a94`), los diez commits de arriba encima de `main` (`60d8725`); en
+`main` son los mismos, rebasados sobre cuatro commits de los robots (`c342dfd`, terremotos; `16a69f0`, avisos de AEMET;
+`6cdfa0f`, alertas del Gobierno de Canarias, y `14af6fd`, precios de las gasolineras), que solo cambian
+`datos/sismos-ign.json`, `datos/avisos-aemet.json`, `datos/alertas-canarias.json` y `datos/precios-gasolineras.json`, y
+con los controles que leen esos ficheros, en verde tras el rebase. En sus 70 bloques, dos rojos, los dos de este
+documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.726 filas, antes 3.718; `barrido_idiomas.js`, 5.873
+filas, antes 5.865: los 7 textos de la nota 40 y la nota «(Uruguay)» de la 43), que pone al día este commit. Lo demás,
+en verde: `probar_cuerpo.js`, 725; `auditar_entrenador.js`, 42; `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos
+en los diez idiomas; `auditar_registro.js`, todo de usted (137.802 textos); `castellano_suelto.js`, ninguna palabra en
+castellano; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los
+diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y
+262, y sus cuatro robots. `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
+
+## «Su cuerpo»: lo que decidió Jérôme de la nota 43 (14 de noviembre, tarde)
+
+**Por qué.** La nota 43 dejó dos cosas para Jérôme. El nombre de la ficha 9 («Encogimiento abdominal sentado en la silla
+de abdominales» suena a crunch, que dobla la espalda, y su paso 2 dice «Con la espalda recta, lleve el tronco hacia las
+rodillas»): «Nota 43 si cámbialo». Y el nivel del remo inclinado a una pierna con botellas, que con la fuente nueva
+lleva además un peso muerto a una pierna: «el nivel de remo un pierna intermedio».
+
+**Lo que cambia** (`78d9323`): la 9 se llama «Abdominal en la silla de abdominales», a juego con la 10 («Abdominal
+mantenido en la silla de abdominales»), como proponía la nota. En los nueve idiomas, las dos se llamaban «crunch»
+(«Seated crunch», «Crunch hold», 卷腹, «Коремни преси», «Brzuszki»…), y las dos son el mismo movimiento con la espalda
+recta: pasan a un ejercicio de abdominales y, la 10, con su «mantenido» («Ab exercise» y «Ab hold on the outdoor ab
+chair», «Bauchübung» y «Gehaltene Bauchübung am Bauchtrainer», 健腹椅腹肌练习 y 健腹椅腹肌静态练习…). El nombre de la 10 en castellano
+no cambia. En las fuentes de «Su cuerpo», `ejercicios/bloque-43.json` y sus nueve traducciones; con `construir.py`
+cambian solo los diez `datos/cuerpo/ejercicios-<idioma>.json` (dos nombres en cada uno), y ningún nombre se repite en
+ningún idioma.
+
+**Lo que no cambia:** el remo a una pierna ya es de nivel intermedio (nivel 2), como quiere Jérôme. Sus grupos, los de
+siempre: la fuente no nombra músculos. Y las 5 fichas que siguen fuera (sus fuentes no se abren desde aquí) se le
+mandaron a Jérôme, con sus pasos, sus fuentes y lo que leyó la revisión, para la sesión de «Su cuerpo».
+
+## Jérôme, el entrenador: el bloque 7, los tríceps (37 vídeos más; 247 con vídeo) (nota 45, 14 de noviembre)
+
+**Por qué.** El encargo de Jérôme, del 11 de noviembre («es para todos los ejercicios del cuerpo presentes en la app, y
+si faltan hazlos. Bloque por bloque»), y su «Verde sube» del 14 con el bloque 7 (nota 45,
+`jerome-entrenador-bloque-7.zip`).
+
+**Lo que llega.** Tres parches: el `0008r` y el `0009r` (los bloques 5 y 6 rehechos sobre el `main` de las 12:49, que
+solo cambian la frase de estado de la página de muestra: comparados aquí con el `0008` y el `0009`) y el `0010`, el
+bloque 7. Los bloques 5 y 6 ya estaban publicados con los de antes, así que solo entra el `0010`. Revisado a mano: sin
+red, sin nada guardado en el teléfono, sin `eval`, sin caracteres invisibles; solo ficheros del entrenador y ningún
+texto nuevo. Su LEEME y su plantilla de la muestra ya no casaban con lo publicado (`git am -3` no tenía de dónde
+partir): se pusieron los de su carpeta `repo/`, como dice su nota. **Las 210 coreografías publicadas no cambian**,
+comparadas aquí módulo contra módulo (641 posturas, 175.133 números). `modulos/entrenador.js`: 601.014 bytes (163.907
+con `gzip -9`).
+
+**Lo que cambia:**
+- `9d45454`: los 37 vídeos de los tríceps: tumbado (el press francés con barra Z, con barra recta y con mancuernas, en
+  banco plano, inclinado y declinado y en el suelo, y las extensiones con una mancuerna), por encima de la cabeza,
+  las patadas, las poleas (con la barra en V, material nuevo), los press en banco (agarre cerrado, inverso, JM, Tate
+  y con mancuernas), los fondos, el soporte en paralelas, dos flexiones y el estiramiento. Con los 3 del bloque 1,
+  40 de los 47 de tríceps de los 533 de antes. Las 37 son de fichas de tríceps del catálogo (29 de gimnasio, 6 de
+  fuera y 2 de calistenia) y ninguna repite otra. De los 11 ficheros de su `repo/`, 10 quedan byte a byte y el otro
+  es la plantilla, por su frase de estado. `construir.py --comprobar`, en verde.
+- `3f20df8`: la plantilla de la muestra (no la enlaza la app): «Los bloques 1 a 7 ya están en la app»; y en el LEEME,
+  «950 fichas el 13-11, 958 el 14-11» (decía 951: el parche no traía la nota 43).
+
+**Las pruebas.** `tools/auditar_entrenador.js`, sobre el catálogo de 958: 42 controles, en verde. Los 247 vídeos
+enteros, dos veces (494 pases, 436.264 cuadros); 215 secuencias de 162 ejercicios caben en su paso, la más justa con
+0,10 s (el estiramiento de gemelo, en inglés), y la cuenta, cotejada con el reproductor en 1.546 pasos; 40.689 momentos
+dentro del cuadro (el que más se arrima, a 8,3 px); el dibujo, hecho solo de lo que copia el canvas de Samsung Internet,
+y en Samsung Internet, 28 momentos (ahora con el estiramiento de tríceps), con una diferencia media de 0,24 de 255; en
+la app, la ficha con vídeo y la ficha sin vídeo, como estaban.
+
+**Lo que no está:** un iPhone o un Samsung de verdad; que a Jérôme le valgan estos 37 (los tiene en la muestra); y tres
+sitios donde, según su nota, el cuerpo de Jérôme no da (la extensión tumbado con una mancuerna no llega detrás de la
+cabeza, en el press Tate el brazo se mueve y, para subir una mancuerna con las dos manos, la rodea por un lado). **Para
+decidir más adelante (no bloquea):** el «½×», subir al pino por la pared, los rótulos de los músculos, el peso del
+módulo (601 kB) y la extensión en polea con cuerda del bloque 1, que acaba con las manos algo metidas en los muslos (de
+un bloque publicado; su nota propone arreglarla aparte).
+
+## El lote del 14 de noviembre, tarde (la nota 43 y el bloque 7 del entrenador): la auditoría entera
+
+**La auditoría entera** sobre `b075edd` (árbol `c403e7e2`), los tres commits de arriba encima de `main` (`f882ba1`); en
+`main` son los mismos, rebasados sobre cuatro commits de los robots (`fd2de7a`, el semáforo de INVOLCAN; `1195960`,
+terremotos; `4ba52bd`, avisos de AEMET, y `1a62532`, alertas del Gobierno de Canarias), que solo cambian
+`datos/semaforo-involcan.json`, `datos/sismos-ign.json`, `datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y
+con los controles que leen esos ficheros, en verde tras el rebase. En sus 70 bloques, ningún rojo: `probar_cuerpo.js`,
+725; `auditar_entrenador.js`, 42; `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los diez idiomas;
+`auditar_registro.js`, todo de usted (137.802 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262,
+y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas y 3.726 filas; 5.873). `app_preparar.js`
+no cambió ningún fichero del repositorio, ni antes ni después.
+
+## Jérôme, el entrenador: el bloque 8, el antebrazo y la pantorrilla (35 vídeos más; 282 con vídeo) (nota 46, 14 de noviembre)
+
+**Por qué.** El encargo de Jérôme, del 11 de noviembre («es para todos los ejercicios del cuerpo presentes en la app, y
+si faltan hazlos. Bloque por bloque»), y su «si» del 14 por la noche a «si la auditoría sale en verde, ¿lo subo como el
+7?» (nota 46, `jerome-entrenador-bloque-8.zip`).
+
+**Lo que llega.** Dos parches: el `0010r` (el bloque 7 rehecho sobre el `main` de las 15:46, que solo cambia la frase
+del catálogo del LEEME y la de estado de la página de muestra) y el `0011`, el bloque 8. El 7 ya estaba publicado con el
+`0010`, así que solo entra el `0011`: sus fuentes del bloque 7 y su módulo de partida son, blob a blob, los publicados.
+Revisado a mano: sin red, sin nada guardado en el teléfono, sin `eval`, sin caracteres invisibles nuevos; solo ficheros
+del entrenador y ningún texto nuevo. `pruebas/camino.js`, nuevo, es una herramienta: lee `modulos/entrenador.js` en una
+caja de `vm` y no escribe nada. Para su LEEME y su plantilla de la muestra, `git am -3` no tenía de dónde partir: los
+dos ficheros de partida se rehicieron aplicando el parche al revés sobre los de su `repo/`, y sus huellas son las del
+parche (`815e873`, `f3102c9`). Así la fusión fue de verdad y solo chocó la frase de estado. De los 14 ficheros de su
+`repo/`, 12 quedan byte a byte; en el LEEME se queda la frase del catálogo publicada (958 fichas), que su parche no
+cambia, y en la plantilla, la frase de estado. `construir.py --comprobar`, en verde. `modulos/entrenador.js`: 678.625
+bytes (184.701 con `gzip -9`; con el bloque 7, 601.014).
+
+**Esta vez el parche toca el motor** (el esqueleto, la figura, la vida y el director: dos gestos de la mano, `separados`
+y `yemas`, y de qué postura sale lo que se hace, para el material). **Las 247 coreografías publicadas no cambian**,
+comparadas aquí módulo contra módulo: sus datos; sus 759 posturas resueltas (207.122 números); y lo que pasa entre
+postura y postura, con el `Director` de cada módulo, en cada tramo de la repetición y de los pasos (35.500 instantes,
+9.704.308 números). Diferencia: 0. Lo único nuevo en cada postura es el número del pulgar que se apoya (`ap`), que en
+las 247 vale 0 y que el dibujo solo usa cuando pasa de 0.
+
+**Lo que cambia:**
+- `3888ab5`: los 35 vídeos: el antebrazo (16: los curls de muñeca con barra, con mancuernas, inversos y en polea; la
+  flexión y extensión, la pronación y supinación y la desviación radial y cubital; los paseos con carga, andando de
+  verdad; la dominada con toallas; las flexiones sobre las yemas y tres estiramientos de la muñeca) y la pantorrilla
+  (19: las elevaciones de talón de pie y sentado, el tibial, tres saltos y cinco estiramientos). Material nuevo: las
+  toallas, la mancuerna con toalla y cogida por un extremo, y el soporte con los ganchos hacia atrás. Con los del
+  bloque 1, 17 de los 22 de antebrazo y 23 de los 30 de pantorrilla de los 533 de antes.
+- `ebad4a1`: la plantilla de la muestra (no la enlaza la app): «Los bloques 1 a 8 ya están en la app».
+
+**Lo que pasa entre dos posturas.** Con `pruebas/camino.js`, aquí: en los 35, ninguna zapatilla baja más de 1,0 cm del
+suelo. En los 247 publicados, 9 bajan más de 0,8 cm en algún tramo, los mismos que dice su nota: la zancada atrás
+(10,7), la sentadilla isométrica en la pared (6,7), los estiramientos de pecho y de bíceps en la pared (6,5), el de
+gemelo en la pared (6,2), la plancha de antebrazos (2,2) y tres que no llegan a 1 cm. Son de bloques publicados y no se
+tocan aquí.
+
+**Las pruebas.** `tools/auditar_entrenador.js`, sobre el catálogo de 958: 42 controles, en verde. Los 282 vídeos
+enteros, dos veces (564 pases, 493.046 cuadros); 264 secuencias de 194 ejercicios caben en su paso, la más justa con
+0,10 s (el estiramiento de gemelo, en inglés); 45.864 momentos dentro del cuadro (el que más se arrima, a 8,3 px); el
+dibujo, hecho solo de lo que copia el canvas de Samsung Internet, y en Samsung Internet, 28 momentos, con una diferencia
+media de 0,24 de 255; en la app, la ficha con vídeo y la ficha sin vídeo, como estaban.
+
+**Lo que no está:** un iPhone o un Samsung de verdad; que a Jérôme le valgan estos 35 (los tiene en la muestra); los
+contactos que no son un agarre (la mano en la pared, en el muslo o en el suelo), que no mide ningún control; y los dos
+sitios donde, según su nota, el cuerpo de Jérôme no da (sentado con «las rodillas en ángulo recto», en un banco bajo; y
+el brazo estirado que coge la otra mano, algo hacia dentro). **Para decidir más adelante (no bloquea):** arreglar los 9
+publicados que pasan por debajo del suelo y las manos del estiramiento de gemelo, que se quedan a 6 o 7 cm de la pared
+(una entrega aparte); llevar `camino.js` a la auditoría; el «½×», subir al pino por la pared, los rótulos de los
+músculos, el peso del módulo (679 kB) y los 425 nuevos sin vídeo.
+
+## El lote del 14 de noviembre, noche (el bloque 8 del entrenador): la auditoría entera
+
+**La auditoría entera** sobre `cef8efb` (árbol `cdc7bbeb`), los dos commits de arriba encima de `main` (`573d84b`); en
+`main` son los mismos, rebasados sobre cuatro commits de los robots (`d0b36e5`, terremotos; `4121c88`, avisos de AEMET;
+`33eba2d`, satélites, y `cf393f6`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`,
+`datos/avisos-aemet.json`, `datos/satelites.json` y `datos/alertas-canarias.json`, y con los controles que leen esos
+ficheros, en verde tras el rebase. En sus 70 bloques, ningún rojo: `probar_cuerpo.js`, 725; `auditar_entrenador.js`, 42;
+`probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted
+(137.802 textos); `castellano_suelto.js`, ninguna palabra en castellano; `barrido_pantallas.js`, 191 pantallas y fichas
+por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y
+los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del
+documento, las mismas (52 tablas y 3.726 filas; 5.873). `app_preparar.js` no cambió ningún fichero del repositorio, ni
+antes ni después.
+
+## Lo que vio de paso la sesión del rumano: cinco fichas con datos falsos, el polaco de las guaguas y el tuteo de sus notas (15 de noviembre)
+
+La sesión que prepara el rumano (nota 41 y la nota de su bloque 5) dejó una lista de cosas que no eran de su trabajo y
+que «decide Jérôme». Se comprobó cada una en `main` y, donde era un dato, contra su fuente oficial. Todo lo que era
+cierto se ha arreglado en los diez idiomas, un commit por apartado; lo que no se pudo confirmar se dice.
+
+**Las frecuencias de las guaguas no tenían polaco.** `FREQ_I18N` («4 salidas/día», «~1 h», «Madrugada»…) traducía las 48
+a ocho idiomas, y un usuario polaco las leía en inglés en las 183 tarjetas de línea: es el respaldo de
+`busFrecuenciaTexto()`. Ninguna herramienta lo veía porque la clave de la tabla es el castellano. Ahora llevan su
+polaco, con su plural («2 kursy», «5 kursów») y las abreviaturas de la app («Pn-Pt», «godz.»). Y
+`tools/auditar_datos.js` tiene un control nuevo: cada frecuencia que usa una línea tiene su fila, y cada fila, todos los
+idiomas de la app menos el castellano. En `main`, rojo con 48 filas sin polaco; con el arreglo, verde. Cuando entre el
+rumano, pedirá también el suyo.
+
+**Tres notas de línea tuteaban.** En `datos/titsa.js`, la del 343 («Si solo vas de Puerto de la Cruz…») y las dos del
+Parador, 342 y 348 («Si la pierdes no hay otra»), en castellano, italiano, neerlandés y polaco. Ahora «Si solo va», «Si
+la pierde», «Se la perde», «Mist u hem» y el impersonal polaco. `tools/auditar_registro.js` no leía ese fichero: ahora
+lo lee, y conoce *perdi*, *jedziesz* y *przegapisz*. En `main`, rojo (castellano 3, italiano 2, neerlandés 2, polaco 3);
+con el arreglo, todo de usted. La fuente del polaco de esas notas (`idiomas/pl-fuente/TITSA_LINES.json`) dice ya lo
+mismo que la app.
+
+**Masca** (`ruta-masca-playa`) se contradecía: el embarcadero cerrado y el sendero obligatorio de bajada y de subida, y
+unas frases después «Recogida en barco incluida al final», «3 horas» y «Solo en grupo organizado». La web oficial del
+Camino del Barranco de Masca, del Cabildo, dice hoy otra cosa: se reservan en ella la entrada y, aparte, el barco de
+vuelta; se baja a pie del caserío al mar, unos 5 km en unas 4 horas, y se sale en barco de la ensenada a Los Gigantes;
+con la entrada de bajada no se puede volver subiendo, salvo si la salida por mar se cierra por el estado del mar; al
+inicio solo se llega en la 355 desde Santiago del Teide; casco (lo presta el personal), calzado de montaña cerrado, al
+menos 1,5 litros de agua, comida, el móvil cargado y un documento; no se admiten menores de 8 años. La ficha se ha
+reescrito con eso; la 355 ya la decía el asistente (`mov-13`).
+
+**Montaña Pelada** decía «Reserva Natural Especial», «duna fósil de arena consolidada» y «vistas sobre el Estrecho de La
+Bocayna», que está entre Lanzarote y Fuerteventura. Sus Normas de Conservación (Gobierno de Canarias) dicen que es
+**Monumento Natural**, una caldera de explosión de una erupción hidromagmática en aguas someras, de 1.900 m de diámetro
+y 62 m de altitud, por eso también Montaña Escachada, hecha de hialoclastitas; la duna fósil está en la Ensenada de
+Pelada. Descripción y categoría reescritas.
+
+**La Montaña de Guaza** también decía «Reserva Natural Especial» y es **Monumento Natural** (Tenerife ON y sus Normas de
+Conservación, BOC 2008/208): cambian esa frase y la categoría.
+
+**El Faro de Rasca** estaba «dentro de la Reserva Natural Especial de Montaña Roja», «construido en 1972», con «acceso
+andando desde El Médano o Playa Diego Hernández»: Montaña Roja está a 14,8 km, en El Médano, y Diego Hernández en Adeje.
+El faro está en la Punta de Rasca (Arona) y se llega desde Palm-Mar por el Malpaís de Rasca, que es Reserva Natural
+Especial (Webtenerife); la torre actual, de 32 m, se encendió en 1978 y delante sigue el primer faro, de 1895 (The
+Lighthouse Directory y Wikipedia: **no se encontró la página de la Autoridad Portuaria**). Y «ballenas piloto,
+calderones» era el mismo animal dos veces.
+
+**El golf de Buenavista** estaba junto al «Parque Natural de Teno»: es Parque Rural, como ya decía la ficha del sendero
+de Teno. El alemán ya ponía «Naturpark Teno», como el resto de la app.
+
+**La etiqueta «Reserva»** quiere decir reserva de plaza en las fichas que la llevan (Masca, El Pijaral, el Barranco del
+Infierno, la Cueva del Viento) y así la traducen ocho idiomas; el polaco decía *Rezerwat*, reserva natural, porque dos
+fichas la usaban en ese sentido. Esas dos, Montaña Pelada y Guaza, llevan ahora «Monumento Natural», y el polaco dice
+*Rezerwacja*.
+
+**La piña del guachinche La Corujera** es la de millo: el inglés, el francés y el alemán decían piña tropical. El
+castellano no cambia.
+
+**Dos textos que no cabían a 360 px.** En el panel de guaguas, el botón «ℹ️ Cómo moverse» salía cortado con «…» en
+búlgaro («ℹ️ Как да се придвижвам» pedía 133 px y tenía 97) y en polaco («ℹ️ Jak się poruszać», 100 en 97). Y en polaco,
+el aviso «Toque un marcador del mapa como *Origen*» («Wystarczy dotknąć znacznika na mapie, aby wybrać *początek*») se
+salía de la pantalla por los dos lados, de −3 a 363 px. Los dos eran del CSS, que no dejaba partir la línea
+(`white-space: nowrap`). Ahora el botón pasa a una segunda línea solo cuando no cabe: en esos dos idiomas la fila de
+botones mide 38 px de alto en vez de 27. Y el aviso mide lo que su texto, sin pasar del ancho de la pantalla menos 32
+px: el primer arreglo, sin eso, lo partía en dos o tres líneas en ocho de los diez idiomas, porque centrado a la mitad
+de la pantalla solo tenía la mitad del ancho. Medido en los diez idiomas, antes y después: a 360 px el aviso va en una
+línea en nueve idiomas y en dos, equilibradas, en polaco, y en los otros ocho idiomas nada cambia de tamaño; a 390 px,
+también todo cabe.
+
+**Tres cosas que cantaron los controles de idioma, las tres en las fichas nuevas de este lote.** La primera auditoría
+entera se cortó en su sección 50 por un reinicio de la máquina; hasta allí, `castellano_suelto.js` vio dos, y
+`auditar_cirilico.py`, pasado a mano antes de volver a lanzarla, la tercera:
+
+- El chino y el chino tradicional de Montaña Pelada llevaban entre paréntesis «cardonal-tabaibal» y «tabaiba dulce»
+  en letra latina. Ahora sin ellas: «植被为大戟灌丛，以甜胶大戟为主», con el nombre chino de *Euphorbia balsamifera* (甜胶大戟 / 甜膠大戟,
+  el de la Wikipedia en chino), y el arbusto como lo dice ya la ficha de Guaza.
+- «Il casco» del italiano de Masca es italiano (el casco que presta el personal), como en el panel SOS y en «Su
+  cuerpo»: va a `idiomas/castellano-aceptado.json` solo para esa ficha (`casco@lugar ruta-masca-playa.desc`).
+- Con el faro de Rasca, «Раска» pasó de dos a cinco veces y «Райска» (la constelación del Ave del Paraíso, «Райска
+  птица», en el cielo) se le parecía. Es otra palabra: va a `CIRILICO-OK` con su motivo, como las demás.
+
+Después, la auditoría entera, desde el principio.
+
+**Lo que no era nada:** `auditar_isla3d.js` da 58 de 58 aquí (allí falló una vez por la máquina), y dos auditorías a la
+vez solo se pisan si comparten puertos: aquí van siempre separadas diez.
+
+**Para el rumano:** seis filas de su bloque 5 (`ruta-masca-playa`, `golf-buenavista`, `montana-pelada` y
+`montana-guaza`, descripción y categoría) y tres de su bloque 1 (las tres notas de línea) cambian de castellano; se le
+devuelven con el castellano de antes y el de ahora. El Faro de Rasca es de un bloque suyo que aún no ha llegado.
+
+## Lo visto de paso por la sesión del rumano (15 de noviembre): la auditoría entera
+
+**La auditoría entera** sobre `3e71537` (árbol `d0d0d3e8`), los doce commits de arriba encima de `main` (`640450c`); en
+`main` son los mismos, rebasados sobre siete commits de los robots (`9b46637` y `97f3b6e`, terremotos; `68de3c8` y
+`da745d5`, alertas del Gobierno de Canarias; `dc37a48` y `e9d8693`, avisos de AEMET, y `7b5a7cb`, precios de las
+gasolineras), que solo cambian `datos/sismos-ign.json`, `datos/alertas-canarias.json`, `datos/avisos-aemet.json` y
+`datos/precios-gasolineras.json`, y con los controles que leen esos ficheros, en verde tras el rebase. En sus 70
+bloques, ningún rojo, y los dos controles nuevos en verde: `auditar_datos.js`, las 48 frecuencias de línea con su fila y
+cada fila con los nueve idiomas que no son el castellano; `auditar_registro.js`, todo de usted (137.900 textos, ahora
+con los de `datos/titsa.js` y las 48 frecuencias en polaco). Lo demás, como siempre: `probar_cuerpo.js`, 725;
+`auditar_entrenador.js`, 42; `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los diez idiomas;
+`castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.324 nombres propios en cirílico y
+ninguna variante sospechosa; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los
+tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D,
+58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (52 tablas y 3.726
+filas; 5.873). `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
+
+## El rumano, dormido: sus bloques 1 a 5 y la marca de la barra (15 de noviembre)
+
+El rumano será el idioma once. Lo prepara otra sesión, por bloques, y aquí cada bloque entra **sin activar**: sus textos
+se meten en los ficheros de la app, pero el rumano no se ofrece ni se ve hasta el último bloque, el interruptor
+(`tools/activar_idioma.js`, que se niega mientras falte algún fichero suyo). Jérôme dijo que subieran los cinco
+primeros, el del panel SOS incluido. Cada texto entra por su castellano, con `tools/poner_traduccion.js`: si el
+castellano de la fila no está tal cual en la app, no escribe nada de ese fichero.
+
+- **Bloque 1, la interfaz:** 771 textos en `index.html` (688 filas de idioma, las 48 frecuencias de las guaguas y 35
+  rótulos), rehechos encima de lo visto de paso; las líneas son las mismas que escribía antes, una a una, y las
+  frecuencias llevan además el polaco nuevo. Las cinco notas de línea de `datos/titsa.js` no entran todavía: tres
+  cambiaron de castellano el mismo día (pasaron de tú a usted) y la herramienta no encuentra su castellano de antes.
+  Su rumano ya era de usted; se le mandó a la sesión del rumano el castellano nuevo.
+- **Bloque 2, el cielo:** las 820 filas de idioma de `modulos/cielo.js` y las 88 curiosidades de las constelaciones
+  (`idiomas/cielo/ro.json`). Los nombres de las constelaciones, cotejados por la sesión del rumano con seis fuentes
+  rumanas.
+- **Bloque 3, el panel SOS:** las 603 filas de `modulos/emergencias.js`, de usted, con cada término técnico de una
+  fuente rumana (ERC en rumano, DSU, fiipregatit.ro, el Ministerio de Sanidad rumano, Apple y Android para
+  ES-Alert). Lo autorizó Jérôme el 15-11.
+- **Bloque 4:** los tours de Jérôme (`modulos/guia.js`, 133 filas), el perfil (`modulos/perfil.js`, 467) y la isla
+  en 3D (`modulos/isla3d.js`, 19).
+- **Bloque 5:** el primero de los cinco trozos de las fichas de los lugares (`idiomas/ro-fuente/lugares-1.json`, 408
+  textos de las 203 primeras fichas). No toca la app: `tools/lugares_traduccion.js` montará `idiomas/ro.json` cuando
+  estén los cinco. Hoy casan 402; las otras 6 son las de las fichas corregidas en lo visto de paso, y la herramienta
+  lo dice («CAMBIO EL CASTELLANO») y no las da por buenas.
+
+`tools/revisar_rumano.py` mira cada texto contra su castellano (la forma, los marcadores y las etiquetas, la ș y la ț
+con coma y no con cedilla, las comillas rumanas, los plurales, palabras castellanas sueltas y el tuteo): 0 errores en
+los cinco bloques.
+
+**La marca de la barra.** «TENERIFE GO» se recortaba con «…» al lado del logo cuando no cabía: de 320 a 450 px y de 501
+a 650 px, en los diez idiomas, porque lo que falta es sitio, por los botones de la derecha. Jérôme decidió el 15-11 que,
+cuando no cabe entera, se quede solo el logo («el logo solo entonces»). Lo mide un script pequeño detrás del HTML de la
+barra, antes de pintar, y lo vuelve a medir al cambiar el ancho, al cargar las fuentes y cuando cambian los botones; el
+nombre se esconde a la vista pero no a los lectores de pantalla. Si cabe el nombre y no el eslogan, se quita solo el
+eslogan. `tools/auditar_desborde.js` lo mira en 13 anchos en castellano y en tres en los otros nueve idiomas, y que al
+estrechar y ensanchar la misma página quede igual que al abrirla en ese ancho: en `main`, 43 fallos; con el cambio, en
+verde.
+
+## El rumano, bloques 1 a 5, y la marca de la barra (15 de noviembre): la auditoría entera
+
+**La auditoría entera** sobre `7450d67` (árbol `b7fd3241`), los seis commits de arriba encima de `main` (`1f5e016`); en
+`main` son los mismos, rebasados sobre cinco commits de los robots (`3b0aca1`, terremotos; `214a699`, avisos de AEMET;
+`ce8d7e3`, alertas del Gobierno de Canarias; `13c6e24`, el boletín de INVOLCAN, y `f9a8592`, los satélites), que solo
+cambian `datos/sismos-ign.json`, `datos/avisos-aemet.json`, `datos/alertas-canarias.json`,
+`datos/semaforo-involcan.json` y `datos/satelites.json`, y con los controles que leen esos ficheros, en verde tras el
+rebase. En sus 70 bloques, ningún rojo. La marca de la barra, en `auditar_desborde.js`: entera o solo el logo en los 13
+anchos en castellano y en los tres de cada uno de los otros nueve idiomas, y nada se sale por los lados. El rumano no se
+ve todavía: no está en `SUPPORTED_LANGS`; lo pondrá el interruptor, en el último bloque. `auditar_registro.js`, todo de
+usted (138.109 textos); `auditar_datos.js`, las 48 frecuencias con su fila y cada fila con todos los idiomas de la app;
+`probar_cuerpo.js`, 725; `auditar_entrenador.js`, 42; `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los
+diez idiomas; `castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.324 nombres propios en
+cirílico y ninguna variante sospechosa; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin
+traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la
+isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (5.873
+filas). `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
+
+## La cámara lenta entera y el pino contra la pared (nota 47 del entrenador, 15 de noviembre)
+
+**La cámara lenta («½×») dejaba los movimientos a medias.** El Director iba a 0,45, pero cada paso duraba lo mismo que a
+velocidad normal: medido en el reproductor con los 282 vídeos, en 61 no acababa una secuencia y en 105 no llegaba a
+verse una repetición entera. Ahora el reloj del reproductor va a la velocidad de lo que se ve: cada paso dura lo suyo
+dividido por 0,45, y a cámara lenta se ve lo mismo que a velocidad normal, más despacio. El texto y la voz van a su
+ritmo; de cerca, el presentador va a su velocidad. A velocidad normal no cambia nada. `auditar_entrenador.js` pasa de 42
+a 43 controles: el nuevo mira, con el botón de verdad, que cada secuencia acaba en su paso y cada tramo dura lo que
+debe, y se pone en rojo con el reproductor de antes.
+
+**El pino contra la pared** (Jérôme, 14-11: que se vea la subida, con su fuente). El vídeo nuevo sube andando por la
+pared y baja por donde subió, siempre con tres apoyos, una mano o un pie cada vez, y la ficha pasa de tres pasos a
+cuatro, que son los del vídeo: boca abajo, con las manos en el suelo, se apoyan los pies en la pared; se suben los pies
+y se acercan las manos; se mantiene; y se sale bajando. En los diez idiomas, de usted. Fuentes: la que ya tenía, wger,
+«Wall Handstand», y dos más, abiertas el 15-11: CrossFit, «The Wall Walk» («three points of contact on the floor, wall,
+or a combination of the two throughout the entire movement»), y la hoja oficial de la prueba 22.1 del CrossFit Open.
+Hecho en las fuentes de «Su cuerpo» y construido con `construir.py`: cambian solo los once ficheros de ejercicios y solo
+esa ficha, byte a byte lo que da el guion de la nota. Las otras 281 coreografías no cambian.
+
+## El rumano, bloque 6, y lo que vio en las fichas: siete erratas, tres etiquetas, Masca y la Rambla (15 de noviembre)
+
+**El bloque 6 del rumano**, sin activar: el segundo de los cinco trozos de las fichas
+(`idiomas/ro-fuente/lugares-2.json`, 358 textos de 156 fichas, sin las gasolineras). No toca la app;
+`tools/revisar_rumano.py`, 0 errores, y casan los 358.
+
+**Siete erratas que vio al traducir**, cada una con su fuente, abierta aquí, y cambiadas en los diez idiomas (71 textos
+en 78 sitios, con el guion de esa sesión, que no cambia nada si un texto no es el de antes):
+
+- El puerto de Santa Cruz no es «el mayor puerto de Canarias», sino el principal de Tenerife: el de Las Palmas movió
+  31,8 millones de toneladas en 2025 (RTVC).
+- La Jaca es de Arico, no de San Miguel de Abona (INVOLCAN, ficha 21, y su código del INE).
+- Los acantilados de Los Gigantes son «algunos de» los más altos de Europa, no los más altos (dos fichas).
+- El kayak de La Caleta: las calas de la costa de Adeje y la playa de Diego Hernández, de arena dorada (Turismo de
+  Canarias).
+- El kayak de Los Cristianos y Montaña Amarilla no son reserva marina: en Canarias hay tres, ninguna en Tenerife
+  (Ministerio de Agricultura, Pesca y Alimentación); Montaña Amarilla es Monumento Natural (INVOLCAN, ficha 17).
+
+**Y lo que quedaba para Jérôme**, que dijo que sí el 15-11:
+
+- Tres etiquetas: Montaña Amarilla, «Monumento Natural»; el kayak de Los Cristianos, «Playa Las Vistas»; La Jaca,
+  «Arico».
+- Masca es de Buenavista del Norte: el caserío, el centro de visitantes y el camino caen en Buenavista en el
+  shapefile municipal del Cabildo, a 1,3-1,4 km de la raya de Santiago del Teide, y las tres paradas de TITSA de
+  Masca son de Buenavista. Santiago del Teide ya no «incluye Masca» (dice que de allí sale la 355 hacia el caserío),
+  el centro de visitantes dice «(Buenavista del Norte)» y Guía de Isora ya no es el «punto de partida» del camino.
+  En los diez idiomas; de paso, el chino del centro de visitantes con los nombres que usa la app, y el alemán de
+  Guía de Isora, «Aride und authentische Landschaft».
+- La ficha de running de la Rambla se llamaba «Rambla del General Gutiérrez», que es otra calle: ahora «Rambla de
+  Santa Cruz — Running».
+
+**Las tres dudas que quedaban** (las farmacias, contra las listas de guardias del Colegio de Farmacéuticos; la playa del
+Puertito de Güímar con «Tortugas Marinas», sin fuente, y los «más de 4.400 m de desnivel» de la ruta en bici de El
+Médano al Teide) las decidió Jérôme el mismo día: van en la sección siguiente.
+
+## Las 13 farmacias, la playa del Cabezo y la ruta de El Médano al Teide, con sus fuentes (15 de noviembre)
+
+Las tres dudas que dejó el bloque 6 del rumano las decidió Jérôme el 15-11: «A, B y C. Revisa las fuentes y puede hacer
+los cambios adecuados pero verifica las fuentes […] Lo que arreglas debe estar arreglado y no a mitad». Un commit por
+apartado, en los diez idiomas, y en cada uno se miró si el mismo error estaba en otras fichas.
+
+**A. Las 13 farmacias**, una por una, contra el buscador del Colegio Oficial de Farmacéuticos de Tenerife, abierto el
+15-11 en un navegador, como lo abre cualquiera (a una petición suelta contesta «no encontrado»), y contra sus listas de
+guardias y horarios ampliados de noviembre de 2026, las de su página de guardias
+(`https://www.coftenerife.es/ciudadanos/farmacias-de-guardia/`), que abre el PDF de cada zona en el visor del propio
+Colegio. Primero se leyeron en la copia que publica farmaten.com; cotejadas el 15-11 con las 18 zonas de Tenerife de la
+página del Colegio, abierta en un navegador, el texto es el mismo en las 16 zonas que estaban en las dos (solo cambia el
+pie «Powered by TCPDF» de la copia); la de Güímar–Arafo de la copia era de octubre y no se usó, y la de Icod de los
+Vinos no estaba. Lo que no cuadraba, cambiado por el dato oficial:
+
+- **Hernández** (José Hernández Alfonso, 47) decía «24 h, guardia permanente», «imprescindible para emergencias
+  nocturnas», y llevaba el distintivo «Farmacia 24 h». Abre de lunes a viernes de 8:00 a 21:00 y el sábado de 9:00 a
+  14:00. En Santa Cruz la de guardia de 24 horas es la de la calle Horacio Nelson, 21, que es nuestra Farmacia
+  Salamanca, y ahora la ficha lo dice. Fuera el distintivo y las etiquetas «24h», «Guardia», «Urgencias» y
+  «Nocturno»; el teléfono es el 922 23 61 79 y el punto estaba a casi 800 m, en la calle del Castillo.
+- **Av. Islas Canarias, 38** abre todos los días del año de 8:00 a 24:00, no «L-V 8:30–20:00», y en Santa Cruz no
+  hay guardia rotativa: fuera esa frase y la etiqueta. El punto estaba a 900 m, en el número 125, que es otra
+  farmacia.
+- **Av. Juan Carlos I, 16** se llamaba «Farmacia Playa de las Américas» y está en Los Cristianos: ahora «Farmacia
+  Av. Juan Carlos I (Los Cristianos)», con su teléfono, 922 79 50 25 (el de la ficha no sale en ninguna fuente), el
+  punto (estaba a 2 km, en Las Américas), el local (Edif. Simón, bloque 4, local 7) y su horario: de lunes a viernes
+  de 9:00 a 20:30, el sábado de 9:00 a 14:00 y de 17:00 a 20:00, y guardia rotativa.
+- **Av. Austria, 40**: teléfono 922 89 27 64, la dirección entera (Apartamentos Malibu Park, local 2, San Eugenio
+  Alto) y su horario (de lunes a viernes de 9:00 a 20:30, el sábado de 9:00 a 17:30). No está en el centro de Adeje,
+  sino en San Eugenio Alto (Costa Adeje).
+- **El Pozo** (Puerto de la Cruz) abre todos los días del año de 8:30 a 21:00, no de 9 a 22.
+- **Anchieta** (La Laguna): el fin de semana abre a las 9:00, no a las 8:00, y la dirección es la del Colegio:
+  Polígono Padre Anchieta, bloque 126, frente a la antigua estación de guaguas.
+- **La Orotava** (Las Araucarias, 6): el Colegio la sitúa frente al pabellón Quiquirá; que esté «junto al Centro de
+  Salud Las Dehesas» no tiene fuente.
+- **Bethencourt** (Puerto de la Cruz): el punto estaba a casi 800 m, a 200 m de otra farmacia.
+- **Blesa** (Los Cristianos): el teléfono es el 922 75 21 64, no un móvil.
+- **Pharmadeje**: la avenida Europa no tiene número allí («S/N», en la lista de guardias); es el local 1-2 del
+  Complejo Oasis, en San Eugenio Alto.
+
+Salamanca, Anaga y Las Galletas estaban bien. Lo que la ficha dice y el Colegio no (los idiomas de Pharmadeje y de la de
+Juan Carlos I, el aparcamiento cerca de la Salamanca, los «precios competitivos» de la Blesa) no se ha podido comprobar
+y se queda como estaba; también el nombre «Pharmadeje», que el Colegio no registra. Esta semana el jueves de la de Juan
+Carlos I es día de guardia, así que el Colegio no da su horario normal de ese día: va con el de lunes a viernes, como
+los otros cuatro días.
+
+**El asistente decía** que la farmacia de guardia cambia «cada día» en todas partes. En Santa Cruz es siempre la misma,
+la de Horacio Nelson, 21, de 24 horas; en La Laguna, el Puerto de la Cruz y Adeje y Arona sí cambia cada día. Ahora lo
+dice así (`sal-06`, diez idiomas, con `tools/generar_faq.py`); lo demás del asistente no cambia.
+
+**El enlace «💊 Ver farmacia de guardia hoy (oficial)»**, que lleva el globo de cada farmacia en los diez idiomas, iba a
+una página de farmaten.com: no es del Colegio, sino la tienda en línea de una farmacia, y esa página ya no existía (404
+el 15-11; la portada del mismo sitio, 200). Ahora va al buscador del Colegio, `https://www.coftenerife.es/farmacias/`,
+que abre con las farmacias abiertas en ese momento: de noche, las de guardia. El rótulo no cambia, y su «(oficial)»
+ahora es verdad.
+
+**B. La playa del Cabezo** (Puertito de Güímar) tenía la categoría «Cala · Tortugas Marinas» y el icono 🐢, copiados de
+El Puertito de Adeje, la ficha siguiente. Ninguna fuente pone tortugas allí: Webtenerife la da como playa de callaos y
+arena negra, y el informe sanitario de su zona de baño (Ayuntamiento de Güímar), tampoco. Ahora «Playa · Güímar», como
+las otras dos playas de Güímar, y 🏖️; de paso, en chino y chino tradicional la misma ficha escribía Güímar de dos
+maneras, y ahora va como las otras 45 veces. Las otras 73 playas de la app, revisadas: ninguna más lleva la categoría o
+el icono de otra ficha.
+
+**C. La ruta en bici El Médano–Arafo–Teide** decía que la subida acumulaba «más de 4.400 m de desnivel». No hay fuente,
+y de ida no cabe: la vuelta entera desde El Médano, 177 km, da 3.977 m (Epic Road Rides), y dentro del Parque Nacional
+la carretera va de unos 1.900 a 2.330 m. Ahora dice que sale al nivel del mar y sube hasta el Parque Nacional del Teide,
+a más de 2.000 m de altitud. Las carreteras eran la TF-28 y la TF-21; por Arafo se sube por la TF-523 hasta la TF-24, en
+el cruce de Los Loros (RTVC, 26-2-2026), y por la TF-24 hasta la TF-21, y así lo dicen la ficha y sus etiquetas. «Mejor
+en invierno o primavera» deja sitio al aviso de que en invierno el Cabildo cierra a veces la TF-24 y la TF-21 por hielo
+o nieve (RTVC, 2024-2026). La etiqueta «4400m» pasa a «2000m», que ya existía; la TF-523 se declara como código de
+carretera y «4400m» sale de las declaradas. Las otras 22 fichas de ciclismo, revisadas: ninguna da un desnivel que no
+cuadre con sus alturas.
+
+**Para el rumano:** 14 filas de su bloque 6 cambian de castellano (12 de las farmacias, la categoría de la playa del
+Cabezo y la descripción de la ruta en bici). Se le devuelven con el castellano de antes y el de ahora; hasta que lleguen
+traducidas, `lugares_traduccion.js` las deja fuera.
+
+## Las farmacias, el Cabezo, la ruta en bici, el bloque 6 del rumano y la nota 47 (15 de noviembre): la auditoría entera
+
+**La auditoría entera** sobre `f7c9e16` (árbol `8b3377f7`), los doce commits de las tres secciones de arriba encima de
+`main` (`4680479`); en `main` son los mismos, rebasados sobre tres commits de los robots (`78a4fda`, los precios de las
+gasolineras; `441cf78`, los avisos de AEMET, y `91fd902`, las alertas del Gobierno de Canarias), que solo cambian
+`datos/precios-gasolineras.json`, `datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y con los controles que
+leen esos ficheros, en verde tras el rebase. En sus 70 bloques, un rojo: `informe_lugares.js`, porque
+`REVISION-LUGARES.md` no estaba al día: las 13 farmacias corregidas cambian la cuenta de decimales de las coordenadas y
+una ficha más nombra su municipio. Se rehízo con `node tools/informe_lugares.js > REVISION-LUGARES.md`, en su commit, y
+su control y el de las cifras del README pasan a verde.
+
+Lo demás, en verde: `auditar_registro.js`, todo de usted (138.120 textos); `auditar_idioma.js`, 0 hallazgos en los diez
+idiomas; `castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.331 nombres propios en cirílico
+y ninguna variante sospechosa; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los
+tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153;
+`probar_figura.js`, 64; `probar_cuerpo.js`, 725; `auditar_entrenador.js`, 43, uno más que antes (el de la cámara lenta);
+la isla en 3D, 58; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las mismas (5.873
+filas). `app_preparar.js` no cambió ningún fichero del repositorio.
+
+**Y antes de subir**, las listas de guardias que se habían leído en la copia de farmaten.com se cotejaron con las de la
+página oficial del Colegio, abierta en un navegador: en las 16 zonas que estaban en las dos, el mismo texto. Lo que usan
+las fichas y el asistente (la guardia de 24 horas de Horacio Nelson, 21; Av. Islas Canarias, 38, de 8:00 a 24:00 todos
+los días del año; El Pozo, de 8:30 a 21:00 todos los días del año; la avenida Europa sin número en San Eugenio Alto, y
+las guardias que cambian cada día en La Laguna, el Puerto de la Cruz y Adeje y Arona) está tal cual en los PDF del
+Colegio de noviembre.
+
+## Los vídeos de los ejercicios, fáciles de encontrar: 🎬, «Solo con vídeo» y «Ver el vídeo» (15 de noviembre)
+
+Jérôme, 15-11: «los vídeo que acompaña los ejercicios son un poco complicada de encontrar. Cuando pone el nombre de los
+ejercicios un emoji vídeo y un botón cuando celeciona el ejercicio más fácil encontrar que a hora».
+
+**Lo que pasaba.** 282 de los 958 ejercicios de «Su cuerpo» tienen vídeo (Jérôme lo enseña paso a paso,
+`modulos/entrenador.js`), pero ninguna lista lo decía: había que abrir cada ficha para saberlo. Y el módulo del vídeo
+pesa (684 kB), así que no se puede pedir solo para saber cuáles lo tienen.
+
+**Un índice pequeño** (`58e5e99`). `datos/cuerpo/con-video.json` (282 filas, 9 kB): el id de cada ejercicio con vídeo y
+los pasos de su ficha en castellano. Lo escribe `tools/entrenador/construir.py` con el módulo, de las mismas
+coreografías (nadie lo escribe a mano), y su `--comprobar` dice si está al día. `tools/auditar_entrenador.js` comprueba
+que están los 282, con los pasos de su ficha, y que con esos pasos `TG_ENTRENADOR.tiene()` dice que sí. La app lo pide
+junto a los ejercicios; va también en la app de las tiendas (`tools/app_preparar.js`).
+
+**🎬 detrás del nombre** (`b276114`), en todas las listas que abren la ficha de un ejercicio: la del grupo, la de un
+deporte, la sesión del día y sus alternativas, los estiramientos, las variantes y «Variante de …». Solo si la ficha en
+el idioma de la app tiene tantos pasos como la coreografía: lo mismo que mira el módulo antes de enseñar el vídeo, así
+que no sale un 🎬 sin vídeo detrás (en los diez idiomas casan los 282). El lector de pantalla dice «con vídeo». Va pegado
+a la última palabra: si el nombre no cabe en una línea, baja con ella y no se queda solo.
+
+**«🎬 Solo con vídeo»**, en los filtros de la lista del grupo, con el sitio, el nivel y la búsqueda: en el pecho, 45 de
+80; en el core, 5 de 134. Solo sale si el grupo tiene alguno con vídeo. Abrir un grupo desde «¿Qué entreno hoy?», la
+sesión, los estiramientos o el asistente lo apaga, como el nivel.
+
+**«🎬 Ver el vídeo»**, dorado, en la ficha, entre las etiquetas y el vídeo: lleva al vídeo si no se ve entero y lo pone
+en marcha; si el módulo aún no ha llegado, cuando llegue. Sin el módulo, el botón se va y la ficha queda como estaba.
+
+**En los diez idiomas**, tres textos nuevos: «vídeo» como lo dice el reproductor («film» en polaco), el botón como «Ver
+el ejercicio» y el filtro como «Ver solo favoritos» de la app. «Vedi il video», «Виж видеото» y «Zobacz film», rótulos
+de botón en imperativo como los demás, van a las listas de `tools/auditar_registro.js`.
+
+**Comprobado.** `tools/probar_cuerpo.js`, sección 43: 17 controles, 13 en rojo con el módulo de antes y todos en verde
+con el nuevo (el 🎬 en las 45 del pecho y en ninguna más, el nombre igual, el filtro con el nivel, el botón, el vídeo que
+se pone en marcha con la ficha bajada, las variantes, la sesión del día, los diez idiomas, sin el índice, sin el módulo
+y con un índice con basura). Capturas a 390 px en los diez idiomas (y de noche, en castellano).
+
+**La auditoría entera** (`auditar.sh`, sus 70 bloques), sobre los dos commits antes del rebase: dos rojos, los dos de
+este documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.729 filas, antes 3.726; `barrido_idiomas.js`,
+5.876 filas, antes 5.873: los tres textos nuevos), que pone al día este commit. Lo demás, en verde: `probar_cuerpo.js`,
+741; `auditar_entrenador.js`, 44 (con el índice); `probar_figura.js`, 64; `auditar_idioma.js`, 0 hallazgos en los diez
+idiomas; `auditar_registro.js`, todo de usted (138.150 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; la isla en 3D, 58; el panel SOS, 42 y 262,
+y sus cuatro robots. `app_preparar.js` no cambió ningún fichero del repositorio, ni antes ni después.
+
+En `main`, los dos commits van encima de cinco de los robots (`8d3e9a7` y `588b61e`, avisos de AEMET; `4097b6d`, alertas
+del Gobierno de Canarias; `ad6b301`, terremotos, y `9e4b274`, satélites), que solo cambian `datos/avisos-aemet.json`,
+`datos/alertas-canarias.json`, `datos/sismos-ign.json` y `datos/satelites.json`; los controles que leen esos ficheros,
+en verde tras el rebase.
+
+## La cesta y la tienda, de usted y en los diez idiomas (16 de noviembre)
+
+Jérôme, 16-11: «Lo de la cesta arréglalo».
+
+**Lo que pasaba.** La tienda y la cesta siguen apagadas (`TIENDA_ACTIVA = false`: ni el botón de la barra de abajo ni la
+cesta se ven, y nada las abre), pero sus textos estaban mal y saldrían así el día que se enciendan. La cesta vacía
+tuteaba en alemán («Stöbere in Touren und Souvenirs.»). La pestaña «Anúnciese» tuteaba en italiano («Pubblicizzati», con
+su «ti»). La frase de «Souvenirs» que manda a esa pestaña citaba una que no existe en francés («Promouvoir»), búlgaro
+(«Реклама») y chino («推广», «推廣»). Y el ✕ de cada artículo de la cesta decía «Eliminar» en castellano en todos los
+idiomas: era un `aria-label` fijo en el código.
+
+**Lo que cambia** (`index.html`, `UI_TX`):
+- `cartEmptyHint`, en alemán: «Stöbern Sie in Touren und Souvenirs.»
+- `shopAd`, en italiano: «Pubblicità», un nombre, como «Reklama» en polaco o «Werben» en alemán; y `shopProntoSub`
+  la cita igual.
+- `shopProntoSub` cita la pestaña de la app: «Annoncez-vous», «Рекламирайте се», «投放广告», «投放廣告».
+- Una fila nueva, `ariaQuitarDeCesta`, en los diez idiomas («Quitar de la cesta», como «Quitar del itinerario»),
+  para el ✕ de cada artículo. El rumano, sin la fila: va a la sesión del rumano.
+
+**El control** (`tools/auditar_registro.js`). «Stöbere» y «Pubblicizzati» no estaban entre sus marcas y por eso no
+salían. Ahora sí, y con ellas los verbos de los botones de la tienda en italiano («Prenota», «Acquista», «Contatta») y
+en búlgaro («Резервирай», «Купи», «Изпрати»): en una frase, son de tú. Los botones, que en italiano, búlgaro y polaco
+van en imperativo, pasan a `ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL`, con «Изпрати», el botón de enviar del asistente y
+de «Su cuerpo», que salió al poner la marca. Con el `index.html` de antes, rojo en alemán, italiano y búlgaro; con este,
+todo de usted en los diez idiomas.
+
+**Comprobado en el navegador**, con la tienda encendida solo en la prueba (la respuesta de `index.html` se cambia en el
+navegador; el repositorio no se toca), a 390 px y en los diez idiomas: las cuatro pestañas, la frase que cita la pestaña
+que existe, la cesta vacía con sus dos textos, la cesta con dos artículos (el ✕ con el texto de su idioma, «Total» y
+«Pagar»), ningún texto de la tienda o la cesta en castellano fuera del castellano y ningún error de página.
+
+**La auditoría entera** (`auditar.sh`, sus 70 bloques), sobre el commit de la cesta: dos rojos, los dos de este
+documento: sus cifras de idiomas (`auditar_web.js`, 52 tablas y 3.730 filas, antes 3.729; `barrido_idiomas.js`, 5.877
+filas, antes 5.876: la fila nueva del ✕), que pone al día este commit. Lo demás, en verde: `auditar_registro.js`, todo
+de usted (138.170 textos); `auditar_idioma.js`, 0 hallazgos en los diez idiomas; `castellano_suelto.js`, ninguna palabra
+en castellano; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; `probar_cuerpo.js`,
+741; `auditar_entrenador.js`, 44; el cielo, 311; el perfil y los avatares, 74 y 153; el panel SOS y sus robots.
+`app_preparar.js` no cambió ningún fichero del repositorio.
+
+En `main`, el commit va encima de tres de los robots (alertas del Gobierno de Canarias, avisos de AEMET y terremotos),
+que solo cambian `datos/alertas-canarias.json`, `datos/avisos-aemet.json` y `datos/sismos-ign.json`; los controles que
+leen esos ficheros, en verde tras el rebase.
+
+## Los socorristas de las playas, renovados con el visor oficial y con su periodo (16 de noviembre)
+
+**Lo que pasaba.** Los horarios de socorristas de las fichas se leyeron en agosto y, a propósito, dejan de decirse a los
+100 días de su revisión (`SOC_VIDA_DIAS`): el servicio se contrata por trimestres. Iban a dejar de salir entre el 17 y
+el 19 de noviembre.
+
+**La fuente.** El Visor de Playas y Zonas de Baño Marítimas de Canarias, del Gobierno de Canarias, leído el 16 de
+noviembre en la ficha de cada playa y en hora canaria: del 16/09/2026 al 31/12/2026, de lunes a domingo, de 10:00 a
+18:00, en Las Vistas y El Camisón (Arona) y en El Duque, Fañabé, Torviscas, Callao Salvaje (la playa de Ajabo del visor)
+y la Playa Honda, donde está la ficha de «Playa de las Américas» (Adeje). La hora se comprobó con el mismo código del
+visor en hora canaria: sus horas de inicio y fin (09:00 y 18:00 en UTC) son las 10:00 y las 18:00 en Canarias.
+
+**Lo que cambia** (`index.html`, tabla `SOCORRISTAS`):
+- Esas siete fichas, con el horario del visor, su periodo (`desde` 2026-09-16, `hasta` 2026-12-31) y la revisión del
+  16 de noviembre.
+- `estadoSocorristas()` mira ahora `desde` y `hasta` (AAAA-MM-DD): fuera del periodo de la fuente no se dice nada,
+  aunque la revisión sea reciente; y si están mal escritos, tampoco. Sin esto, con la revisión de hoy, el horario se
+  habría seguido diciendo hasta febrero, después de que acabe el periodo del visor.
+- No se renuevan, y dejan de decirse solas como estaba previsto: La Caleta de Adeje (en el punto de su ficha el
+  visor tiene El Varadero y El Muelle, sin socorristas) y las piscinas de Bajamar, Punta del Hidalgo y Jover (el
+  visor no da ahora ningún periodo). Sus fichas vuelven a lo de siempre: «Servicio de socorristas», sin horario (y
+  en La Caleta, como en todas las playas, el enlace al visor).
+- Ningún texto nuevo: los horarios salen con las frases de siempre, en los diez idiomas.
+
+**El control** (`tools/probar_socorristas.js`, nuevo, en `tools/auditar.sh`): lee de `index.html` la tabla y las
+funciones que deciden qué se enseña y las corre con el reloj puesto, sin navegador. 52 controles: las siete fichas
+renovadas dicen su horario dentro del periodo y nada a partir del 1 de enero; el verano de Arona no se cuela en
+noviembre; un `desde` o un `hasta` fuera de fecha o mal escrito no deja decir nada; y las cuatro sin renovar ya no se
+dicen el 20 de noviembre. Con el `index.html` de antes, 32 en rojo; con este, todos en verde.
+
+**La auditoría entera** (`auditar.sh`, sus 71 bloques), sobre el commit de los socorristas: en verde, ningún control en
+rojo. Entre ellos, `probar_socorristas.js`, 52 de 52; `auditar_registro.js`, todo de usted en los diez idiomas;
+`castellano_suelto.js`, ninguna palabra en castellano; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0
+textos sin traducir; el mapa, 137; «Su cuerpo», 741; el entrenador, 44; el cielo, 311; el perfil y los avatares, 74 y
+153; la isla en 3D y el panel SOS con sus robots, en verde. Al acabar, el árbol seguía limpio: `app_preparar.js` no
+cambió ningún fichero del repositorio.
+
+En `main`, el commit va encima de siete de los robots (terremotos, el vigía SOS, las alertas del Gobierno de Canarias,
+los avisos de AEMET, los precios de las gasolineras y los satélites), que solo cambian sus ficheros de datos; los
+controles que leen esos ficheros, en verde tras el rebase.
+
+## El Teide con hielo y nieve, Masca cerrado y el PR-TF 51 entero (nota 48, 16 de noviembre)
+
+Jérôme, 16-11, con la nota 48: «desde el 1-11 el Cabildo restringe por hielo y nieve siete senderos del Teide (PNT 07,
+09, 10, 11, 12, 23 y 28). Solo pueden ir expertos en alta montaña o personas con un guía acreditado por el Parque.
+Necesitan autorización de Tenerife ON, crampones y piolet, y no hay fecha de fin. La app no lo dice y sigue proponiendo
+esas rutas. Además, el Barranco de Masca seguía cerrado el 12-11 y la app también lo propone.» Los textos de los once
+idiomas son los de la nota 48, revisada por dos revisores independientes; cada dato se ha vuelto a mirar en su fuente
+oficial el mismo día.
+
+**El Teide.** La resolución del Cabildo, en Tenerife ON («Restricted access to the trails of the Teide stratovolcano due
+to ice and snow»), la que leyó la nota 48. Hoy esa web pide una verificación de seguridad, que no se salta, así que no
+se ha podido volver a leer aquí; la prensa la da por vigente y sin fecha de fin (Diario de Avisos, 1 y 4 de noviembre) y
+no hay noticia de que se haya levantado (un «reabre Montaña Blanca» de RTVC que sale al buscar es de enero de 2025). Lo
+que cambia:
+- El aviso de la nota (`aviso_teide`), delante de la descripción de `montana-blanca`, `ruta-pico-viejo`,
+  `pico-teide-cumbre` y `mir-rambleta-teide`, en los diez idiomas y en las tres filas rumanas que hay.
+- Las tres primeras, con un `estado` nuevo, «restringido», con su fuente y su fecha. No es «cerrado»: los senderos
+  siguen abiertos para quien cumple las condiciones, y nada lo enseña como cerrado. Pero mientras dure no se propone
+  (`lugarSugerible`): ni en «Organice su día», ni en «Ruta del día», ni en lo que sugiere el asistente. La Rambleta
+  se sigue proponiendo: es el mirador del teleférico, no un sendero; lleva el aviso porque manda al PNT 12 y al PNT
+  10.
+- El asistente: `tei-01` (los permisos) y `tei-06` (cómo se llega a La Rambleta a pie) llevan delante el mismo
+  aviso, en los diez idiomas (`faq/fuente/` y `generar_faq.py`).
+- Ninguna otra ficha del Teide lo lleva: el Sanatorio (PNT 16), Samara (PNT 13), Guajara, el GR-131, el teleférico y
+  los miradores no están en la resolución.
+
+**Masca** (`ruta-masca-playa`). El 12-11, al desactivar el plan de emergencias por la borrasca Charles, el Cabildo dejó
+cerrado el Barranco de Masca «hasta que se confirme que las condiciones permiten su apertura». Su web oficial, «Masca
+today», actualizada hoy a las 13:46: «Camino del barranco de Masca y puntos de control: Closed». La ficha lleva
+`estado:"cerrado"` con esa página y la fecha de hoy, como `faro-teno`: sigue en el mapa con su aviso y su enlace, y no
+se propone.
+
+**El PR-TF 51** (`sendero-prtf-51-punta-teno`). La ficha decía 11 km y 4 horas, dificultad media, el túnel de Teno y una
+regulación de 2025 sin fuente. Su página oficial en Tenerife ON, leída por la nota 48: lineal, 22,60 km, 5 h 5 min,
+dificultad alta (MIDE), sube 932,81 m y baja 1.938,61 m, del área recreativa de San José de Los Llanos al km 7 de la
+TF-445. Hoy no se ha podido volver a leer (la verificación de seguridad); la distancia casa con OpenStreetMap (22,1 km)
+y Walkaholic (22,75 km). Ahora:
+- la descripción y la categoría de la nota 48, en los diez idiomas y en su fila rumana, empezando por el aviso de la
+  TF-445 de `faro-teno`, letra por letra;
+- `estado:"cerrado"`: acaba en la carretera cortada desde el 29 de octubre, y la vuelta es la guagua 369 desde Punta
+  de Teno, que no puede llegar;
+- fuera las etiquetas «Túnel», «Regulación» y «Faro».
+
+**La cabecera** (punto 4c: «la B»). Una sola descripción, la del «mapa interactivo gratuito»: «premium» podía hacer
+pensar que se paga. Y el título al compartir, «Su guía interactiva de la isla»: tuteaba.
+
+**Los controles.** `tools/probar_estado.js` conoce el estado «restringido» y mira el Teide: las tres fichas,
+restringidas y fuera de todas las sugerencias; La Rambleta, sugerible; las cuatro con el aviso en los diez idiomas. Con
+el `index.html` publicado, 2 de 29 en rojo (las tres fichas sin estado y las cuatro sin aviso); con este, 29 de 29.
+`auditar_faq.js`, en verde.
+
+**Lo que queda**, y se dice: la coordenada del PR-TF 51 (el primer punto del track oficial) y las tres fichas nuevas (el
+refugio de Altavista, el PNT 23 y el PNT 28), que esperan su coordenada oficial; quitar los avisos cuando el Cabildo
+levante la restricción y abra la TF-445. El 1 de enero de 2027 se vuelve a mirar el estado de todas las rutas.
+
+**La auditoría entera**: la de toda la nota 48, al final de la sección siguiente.
+
+## Lo que dura cada ruta en «Organice su día», la página de los enlaces rotos, robots.txt y sitemap.xml (nota 48, 16 de noviembre)
+
+**Las rutas, con su duración oficial** (punto 2; Jérôme: «Como siempre solo lo que tiene fuente el resto lo pones en la
+nota y lo buscamos o quitamos»). El planificador daba dos horas a todas las rutas de senderismo
+(`DP_DURATION.senderismo`): a Montaña Blanca, que su propia ficha da de cinco a siete, y al primer tramo del GR-131, de
+14 h 20 min. Ahora (`index.html`, tabla `DP_MIN_RUTA`, junto a `DP_DURATION`):
+- 15 rutas llevan los minutos de su fuente oficial, con la dirección de la fuente al lado; si la fuente da un
+  intervalo, la cifra alta. Son 14 de las 15 de la nota 48 que ya tienen ficha y el Barranco del Infierno, cuya web
+  oficial dice «unas 3 horas ida y vuelta» (la nota lo daba sin fuente; ya estaba comprobado el 5 de noviembre).
+  Leídas hoy: la guía del visitante del Teide del MITECO (el Sanatorio, 1 h 45 min; Samara, 2 h 45 min; Pico Viejo,
+  «4-6 horas»), Webtenerife (los cinco tramos del GR-131), la web del Camino del Barranco de Masca («unas 4 horas en
+  descenso») y la del Barranco del Infierno. Las cinco de Tenerife ON (el PNT 07 y los PR-TF 04, 06.1, 51 y 52) son
+  las que leyó la nota 48: hoy su web pide una verificación de seguridad, que no se salta.
+- Fuera, el Roque del Conde. Su página del Ayuntamiento de Adeje ya no está (lleva a la portada) y, según el
+  buscador, daba a la vez 3,7 y 4,2 km, «unas 2 horas» y 1 h 44 min. Su ficha sigue diciendo lo que dice; el
+  planificador no la propone hasta tener una cifra oficial clara.
+- Una ruta sin fuente no se propone hasta tenerla, ni al hacer el itinerario ni con «🔄 Otro». Son 23, en la lista de
+  abajo: se buscan o se quitan, ficha a ficha.
+- Una ruta que no cabe en el tiempo elegido, con la comida si la hay, tampoco: el tramo de 14 h 20 min no cabe
+  nunca, y el de 7 h 20 min no cabe en un día con comida (8 horas).
+- La parada dice su duración de verdad (el Barranco del Infierno, «~180 min»), y el itinerario la suma para caber en
+  su tiempo, como hasta ahora.
+- Lo que no es senderismo sigue como estaba. No hay ningún texto nuevo.
+
+Las rutas sin fuente (23): `cumbre-dorsal`, `sendero-la-orotava`, `ruta-anaga-taganana`, `sendero-sentidos`,
+`sendero-pijaral`, `sendero-afur-taganana`, `sendero-guajara`, `sendero-teno-baracan`, `sendero-chinyero`,
+`prtf-1-mercedes-cruz-carmen`, `prtf-2-taborno-pico-ingles`, `prtf-5-chamorga-igueste`, `prtf-6-3-benijo-draguillo`,
+`prtf-10-cruz-carmen-chinamada`, `sendero-bosque-enigmas`, `sendero-roque-bodegas`, `prtf-6-chamorga-roque-bermejo`,
+`prtf-9-afur-carboneras`, `prtf-11-cruz-carmen-batan`, `sendero-prtf-72-paisaje-lunar`, `sendero-prtf-58-camino-risco`,
+`pr-tf-3-chinamada` y `sendero-roque-conde`. Por qué no tiene fuente cada una lo dice la nota 48: no es un sendero
+oficial con ficha, Tenerife ON no da la cifra, o la ficha es un tramo o una circular de varios senderos.
+
+Las cifras oficiales de los senderos lineales son de ida (el Sanatorio, «4,58 km de ida, 1 h 45 min»): el planificador
+las suma tal cual y la parada siguiente sale del punto de la ficha, que es el inicio. Queda dicho para el bloque de las
+fichas de senderismo.
+
+Las fichas que no casan con su fuente (la nota 48 las lista): `sendero-samara` (dice 5 km y 2 h; el MITECO, 4,6 km y 2 h
+45 min), `prtf-4-bailadero-taganana` (5 km y 2 h; Tenerife ON, 3,05 km y 1 h 40 min), `prtf-6-1-chamorga-faro-anaga`
+(3,2 km; Tenerife ON, 2,78 km) y `pr-tf-52-monte-agua` (10,5 km, dificultad baja; Tenerife ON, 10,69 km, 4 h 25 min,
+alta). El planificador ya usa la cifra oficial; lo que enseñan las fichas se corrige en el bloque de las 38 fichas de
+senderismo, con los textos en los once idiomas.
+
+**El control** (`tools/probar_organiza.js`), con su propia lista de minutos, no la de la app: la tabla de la app es esa
+lista, cada ruta con su fuente y en una ficha de senderismo; en los 1.344 itinerarios, ninguna ruta sin fuente, cada una
+con sus minutos en pantalla y cabiendo en su tiempo con la comida; y «🔄 Otro», en «Deporte», no trae ninguna sin fuente
+ni que no quepa. Con el `index.html` de antes, 3 en rojo: proponía, por ejemplo, `cumbre-dorsal` (sin fuente), el tramo
+5 del GR-131 (7 h 20 min) en una mañana de 3 horas, y el Barranco del Infierno salía con «~120 min». Con este, 626 de
+626 en los diez idiomas: 25 rutas en los 1.344 itinerarios y 11 con «Otro», todas con fuente y cabiendo.
+
+**La página de los enlaces rotos** (punto 4b: «sí»). Quien llegaba por un enlace roto veía la página genérica de GitHub.
+Ahora `404.html`, que GitHub Pages enseña en cualquier dirección que no existe: sale de `idiomas/404/<idioma>.json` (los
+textos de la nota 48) con `tools/generar_404.py`, con el armazón de las otras páginas fijas (`tools/pagina_fija.py`):
+diez idiomas, el de la app o el del navegador, y un botón que lleva a la app. El icono y el botón van con ruta absoluta,
+porque la página se sirve en la dirección rota, sea cual sea. `auditar.sh` comprueba que está al día, como las otras dos
+páginas.
+
+**robots.txt y sitemap.xml.** No existían. `robots.txt` lo permite todo y da la dirección del mapa del sitio;
+`sitemap.xml` lista las tres páginas públicas (la app, la privacidad y borrar la cuenta), sin fecha de cambio, que
+caduca.
+
+**La auditoría entera** (`auditar.sh`), sobre la nota 48 entera, en dos tramos: el contenedor se reinició a las 21:50 y
+la cortó en «el perfil y los avatares»; se siguió desde ese bloque hasta el final, y otra vez «cada idioma, uno por
+uno», sobre el commit del control (abajo), con un `auditar.sh` recortado (la misma cabecera y los mismos bloques, tal
+cual). Los bloques del primer tramo no dependen de ese commit, que solo cambia `tools/auditar_idioma.js`.
+
+- Tres rojos en el primer tramo, ninguno de la app: el de este documento (`auditar_datos.js`: «URLs de lugar sin
+  cifrar», 0 de 27, antes 22, por las cinco fuentes de los estados nuevos), que pone al día este commit; y dos del
+  control de idiomas en la categoría del PR-TF 51 («PR-TF 51 · Teno (Alta · 22,6 km · 5 h 5 min)»): en francés leía
+  como cifra de más el «05» de «5 h 05», la forma francesa (como «7 h 20» o «1 h 45» en las demás fichas), y en
+  italiano «Alta», la dificultad, que se escribe igual que en castellano y no estaba declarada con las demás
+  («Medio», «Farmacia», «Faro»). Arreglado el control en su commit (`auditar_idioma.js`): de 1 y 1 hallazgos a 0 en
+  los diez idiomas; «5 h 50» sigue sin casar con «5 h 5 min». Los textos no cambian.
+- Lo demás, en verde: `probar_organiza.js`, 626 de 626; `probar_estado.js`, 29 de 29; `auditar_registro.js`, 138.170
+  textos, todo de usted; `castellano_suelto.js`, ninguna palabra en castellano; `barrido_pantallas.js`, 191
+  pantallas y fichas por idioma y 0 textos sin traducir; el asistente, 0 fallos de 122; y, en el segundo tramo, cada
+  idioma uno por uno, 0 hallazgos en los diez; el perfil, 74 controles, y los avatares, 153; «Su cuerpo», 64 bien y
+  0 mal y 741 controles, y el entrenador, 44; la isla en 3D, el relieve y 58 controles; y emergencias, los 42
+  controles del módulo, los 262 del panel en los diez idiomas y sin conexión y las pruebas de sus robots. Al final,
+  «AUDITORIA EN VERDE».
+
+## El rumano, bloques 7, 8 y 9, con lo que vio en las fichas y en las etiquetas, y el MDT05 del IGN con trozos que caben (16 de noviembre)
+
+**Los bloques 7, 8 y 9 del rumano**, sin activar, sobre el `main` de la nota 48 y con un commit por apartado: los tres
+últimos trozos de las fichas (`idiomas/ro-fuente/lugares-3.json`, 386 textos; `lugares-4.json`, 499; `lugares-5.json`,
+los 633 de las 211 gasolineras), las 799 etiquetas (`idiomas/etiquetas/ro.json`, las mismas claves y en el mismo orden
+que los otros nueve idiomas) y la fila nueva de la interfaz (`ariaQuitarDeCesta`, el ✕ de la cesta, en
+`interfaz-2.json`). Con ellos, las 980 fichas tienen rumano: `lugares_traduccion.js ro --probar` da 2.283 de 2.284
+textos; el que falta es la descripción del despegue de Izaña, que cambia con la errata 13 (abajo) y vuelve a la sesión
+del rumano. También van las filas que cambiaron de castellano el 15-11 (las tres notas de guagua de `titsa.json`, que
+`poner_traduccion.js` lleva a `datos/titsa.js`, y las de `lugares-1.json` a `lugares-3.json`: farmacias, el Cabezo, la
+ruta en bici), cada una buscada por su castellano y su rumano de antes; y la nota 48 encima, con el aviso del Teide
+también en `mir-rambleta-teide`, que llega con el bloque 7. `revisar_rumano.py`: 0 errores, salvo uno que no lo es
+(«PR-TF 51 pornește»: 51 es el nombre del sendero, no una cantidad que pida «de»), que el montaje acepta letra por
+letra. Ningún fichero de la app cambia por el rumano: sigue sin activar.
+
+**Las erratas de las fichas que vio al traducir**, cada una con su fuente (las notas `ERRATAS-FICHAS.md` de sus bloques
+7 y 8), comprobada aquí el 15 y el 16 de noviembre, y cambiadas en los diez idiomas con los guiones de esa sesión, que
+no escriben nada si un texto no es el de antes. Tenerife ON pide desde hoy una verificación de seguridad al navegador,
+que no se salta: sus fichas se han leído en el buscador, que las tiene indexadas, y con otras fuentes oficiales (el Plan
+Especial del Paisaje Protegido de Las Lagunetas de 2009, el reglamento de áreas recreativas de 2012, el MDT05 del IGN).
+
+- Bloque 7, 50 fichas (596 textos en 655 sitios; 65 castellanos de 49 fichas, y la 50.ª solo en chino): áreas
+  recreativas cerradas o que no estaban donde decía la ficha (La Laguneta Chica, Hoya del Abade y Los Frailes,
+  cerradas; Chío, cerrada entre semana por obras; Las Raíces, «una de las mayores» y no la mayor: 675 plazas frente
+  a las 825 de La Caldera; Los Brezos, municipal de Candelaria y no de Anaga), faros (Teno, en servicio desde 1897 y
+  con la luz a unos 60 m; Abona, que no es el más alto de Canarias: torre de 39 m de 1976 y la luz a 54 m; Anaga, 1
+  h 40 min desde Chamorga y casi sin sombra), miradores que tenían el texto de otro sitio (Don Martín, en la TF-28 y
+  a unos 400 m: 425 m en el MDT05 del IGN en el punto de la ficha; Pico de las Flores, en el monte de El Rosario,
+  uno de los miradores del Plan Especial de Las Lagunetas, hoy abandonado y con la vista tapada por el pinar;
+  Chipeque, en la TF-24; La Jardina, a la entrada de Anaga; las Narices del Teide, en el km 3,5 de la TF-38, con la
+  cima a 2.752 m), mercadillos con sus días y calles, y pueblos y playas (Vilaflor, el pueblo más alto de Canarias y
+  no de España; El Callao, de piedras; Taganana, Reserva de la Biosfera y no Patrimonio de la Humanidad). Tres no
+  van: `faro-rasca`, `nucleo-guia-isora` y `ciudad-santiago-teide`, que main ya corrigió.
+- El despegue de Izaña: cerrado, según la Federación Canaria de Deportes Aéreos (14 y 16 de julio de 2026: quedó
+  fuera del nuevo Plan Rector del Parque Nacional). La errata decía «Desde agosto de 2026 se usa uno provisional
+  cerca de La Tarta»; su fuente, la página de una escuela actualizada el 12 de agosto, dice «Actualmente se utiliza
+  un despegue provisional cerca de La Tarta» y no desde cuándo, así que va «Actualmente», en los diez idiomas, con
+  «pregunte a la escuela antes de reservar».
+- Bloque 8, 30 fichas (370 textos en 407 sitios; 37 castellanos): mercadillos (Güímar, por su reglamento de julio de
+  2026; Costa Adeje, Arona y El Médano), campings en su espacio protegido (San José de los Llanos, en la Reserva
+  Natural Especial del Chinyero; Las Calderetas y Las Raíces, en el Paisaje Protegido de Las Lagunetas; Nauta, en
+  Cañada Blanca), iglesias y museos (la Concepción de La Laguna, primera parroquia de Tenerife; San Agustín, que
+  ardió en 1964; el Palacio de Nava y el Teatro Guimerá, cerrados por obras; el Castillo de Paso Alto, del
+  Ayuntamiento de Santa Cruz desde 2023), el horario del Telesforo Bravo (MITECO), supermercados y playas. Una no
+  va: `turismo-cv-masca`, que main ya corrigió.
+- `tools/auditar_cielo.js` busca la etiqueta búlgara de las Narices sin la altitud, que la errata quita (el parche
+  de esa sesión).
+
+**Las erratas de las etiquetas** (bloque 9, `ERRATAS-ETIQUETAS.md`): 76 cambios, las etiquetas de 28 fichas y las filas
+de los glosarios de los otros nueve idiomas que van con ellas, comprobados aquí el 16-11; lo que se declara y lo que se
+acepta en castellano, en `idiomas/castellano-aceptado.json`.
+
+**Las gasolineras en rumano**: con el parche del bloque 9, `tools/gasolinera_ficha.py` hace también el rumano de cada
+ficha, los dos avisos de «la última gasolinera antes del Teide» (`datos/gasolineras/avisos.json`) lo llevan, y
+`tools/gasolinera_alta.py` pone o quita las tres filas de cada gasolinera en `lugares-5.json`.
+
+**El MDT05 del IGN, con trozos que caben** (Jérôme, 16-11: sí). El relieve de «La isla en 3D» salió el 1 de noviembre
+del Copernicus DEM porque el paso del IGN del workflow se cortó a los 40 minutos. La razón, medida hoy con cajas
+sueltas: la API de coberturas de la IDEE no da cajas de más de 2.500 m de ancho o de alto en metros de Web Mercator (lo
+dice su HTTP 500: «Requested bbox height 2527.9 m is larger than allowed: 2500.0 m»). Con trozos de 0,04 grados, cada
+uno se rechazaba, se partía en 0,02, se volvía a rechazar y salía en 0,01: 1.867 trozos en 40 minutos, y con más tiempo
+se habría parado igual en el tope de 2.000 peticiones antes de acabar la isla. Ahora `tools/relieve_ign.py` pide trozos
+de 0,019 grados (al norte de la isla, con su margen, 2.141 × 2.439 m) y, antes de pedir uno, lo mide como la IDEE: si
+pasa del 98 % del tope, se parte sin pedirlo. El paso del IGN tiene 90 minutos y el job 120 (`generar-relieve.yml`, y
+`mapa/RELIEVE.md`). Probado contra un servidor de prueba que imita la IDEE (el tope, con su misma respuesta, y la malla
+del MDT05): la herramienta de antes, 679 peticiones rechazadas y «PARA: mas de 2000 peticiones» sin acabar; esta, 613
+peticiones, ninguna rechazada, toda la tierra con dato y «MDT05 EN VERDE». El relieve no cambia aquí: lo rehace el
+workflow, después.
+
+**La auditoría entera** (`auditar.sh`), sobre los bloques 7, 8 y 9 y el relieve, en tres tramos: el contenedor se
+reinició dos veces (a las 21:50 y a las 23:10) y la cortó; cada vez se siguió desde el bloque en que se había quedado,
+con un `auditar.sh` recortado (la misma cabecera y los mismos bloques, tal cual).
+
+- El primero, de «sintaxis» a «la app para las tiendas», con cuatro rojos y ninguno de estos bloques. Tres eran de
+  la nota 48, que va debajo: la tabla de este documento («URLs de lugar sin cifrar», 0 de 27 y no de 22), que pone
+  al día su sección, y el control de idiomas con el «5 h 05» del francés y el «Alta» del italiano, arreglado en su
+  commit. El cuarto, `informe_lugares.js`: `REVISION-LUGARES.md` no estaba al día con las erratas («que nombran un
+  municipio», 511 y no 512), y se rehízo en su commit.
+- El segundo, sobre el control de idiomas ya arreglado y con `REVISION-LUGARES.md` al día: «REVISION-LUGARES.md»
+  (980 lugares, cada cifra contada) y «cada idioma» otra vez (0 hallazgos en los diez), y desde los tours hasta el
+  perfil: los tours con Jérôme (los tres, en los diez idiomas y cuatro móviles), el cielo (311 controles) y el
+  perfil y los avatares (74 y 153), en verde.
+- El tercero, desde «Su cuerpo» hasta el final: «Su cuerpo», 64 bien y 0 mal y 741 controles, y el entrenador, 44;
+  la isla en 3D, el relieve y 58 controles; y emergencias, los 42 controles del módulo, los 262 del panel en los
+  diez idiomas y sin conexión y las pruebas de sus robots. Al final, «AUDITORIA EN VERDE».
+- Después, sobre el `main` con la nota 48 publicada: el rebase solo trae su documentación y cuatro ficheros de los
+  robots (los avisos de AEMET, el boletín de INVOLCAN, los terremotos del IGN y las alertas del Gobierno de
+  Canarias), y los controles que los leen, en verde; y otra vez los de los terremotos, que su robot cambió a
+  medianoche: en verde.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
@@ -6054,7 +11024,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 49 tablas, 3183 filas (y 5.330 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3730 filas (y 5.877 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -6151,7 +11121,67 @@ y las notas de las fuentes de sus ejercicios, 24 más en `CUERPO_UI` (256):
 `ISLA3D_UI` con 19 y las dos de una fila que no se traducen (`ISLA3D_LOCALE` e
 `ISLA3D_NOMBRE`) en `modulos/isla3d.js`, que `tools/fuente.js` pega al fuente,
 y en `UI_TX` las tres que hacen falta antes de cargarlo (el botón, «preparando
-el relieve» y el error): 49 tablas, 3183 filas y 5.330. El
+el relieve» y el error): 49 tablas, 3183 filas y 5.330. El 1 de noviembre, las
+banderas del panel SOS pasan a ser las de la leyenda del mapa: entran cuatro
+filas en `EMERG_UI` (la negra, la naranja, la morada y su fuente) y salen cinco
+(la púrpura, la de cuadros, las dos rojas, la bicolor y la nota de la púrpura
+de las picaduras): 3182 filas y 5.329. Y salen los títulos de las dos fuentes
+de la norma anulada, el Decreto 116/2018 y la Orden de 2022: 3180 filas y
+5.327. El 2 de noviembre, el título de la fuente nueva del agotamiento por
+calor (el NHS), una más en `EMERG_UI`: 3181 filas y 5.328. Y el
+atragantamiento de bebés y niños, cinco más: sus tres líneas y los títulos de
+sus dos fuentes del RCUK: 3186 filas y 5.333. El 3 de noviembre, «Su cuerpo»
+con «Comida», el asistente y «Su deporte»: 122 filas más en `CUERPO_UI` (de
+256 a 378), 3308. El barrido suma una más, 123: la tabla de las palabras vacías
+del buscador del asistente (`STOP`), que se declara sin traducir y cuenta en
+su total sin mirarse: 5.456. El 6 de noviembre, las unidades y los rumbos en la
+lengua de cada uno: 12 filas de `UI_TX` (cuatro unidades y los ocho rumbos) y 9
+de `PERFIL_UI` (468): 3329 y 5.477. Y una más, el aviso del filtro «Accesible en
+bus» sin líneas: 3330 y 5.478. Y dos más, los milímetros y los centímetros de los
+avisos de AEMET: 3332 y 5.480. Y esa noche, el bloque 2 del rediseño de «Su cuerpo»
+(la pantalla): 10 filas más en `CUERPO_UI` (de 378 a 388): la flecha de vuelta al
+perfil, los dos temas, «Las cifras» y su título, la pista de la escena, «+ 1 serie»,
+«+3», «una serie menos» y la referencia corta del ACSM: 3342 y 5.490. Y el 7 de
+noviembre, el bloque 3 (el personaje en 3D): una fila más en `CUERPO_UI` (389), el
+aviso de la hoja «Aspecto» con lo que el 3D aún no tiene: 3343 y 5.491. Y el mismo 7 de
+noviembre, el bloque 4 (la semana): 28 filas más en `CUERPO_UI` (417): las tres metas, «Anotar
+movimiento» con su hoja (los cinco tipos, los minutos, los kilómetros a pie, su nota y su aviso)
+y la recomendación del movimiento de la OMS para adultos y de 5 a 17 años: 3371 y 5.519. El 8 de
+noviembre, la ficha de la etapa 2 del GR-131: dos filas más fuera del fuente, 3371 y 5.521. Y el
+bloque 5 (la isla): 35 filas más en `CUERPO_UI` (452): «Hoy en la isla» (la zona del
+tiempo, los chips, las cinco categorías del índice UV de la OMS, el estado, la fuente con su hora, el
+consejo del día y las dos frases del sol), «Cruce la isla» (el título, el subtítulo, la cuenta, la
+siguiente parada, la travesía hecha, «Esquema», la etiqueta del mapa y sus fuentes) y las dos notas de
+la hoja del movimiento (a pie y a nado o en bici) en vez de una: 3406 y 5.556. Y esa tarde, el
+bloque 6 (los sellos y la postal): 42 filas más en `CUERPO_UI` (494): «Sus sellos» (el título, el
+subtítulo, la cuenta, lo conseguido y lo pendiente, los once nombres y sus condiciones, el aviso de
+la hoja, la tarjeta de la celebración con sus frases y «Seguir») y «Su postal» (el título, el texto,
+«Crear mi postal», «Preparando…», el lema y los tres pies de la imagen, su texto alternativo, cómo
+guardarla, «Compartir», «Guardar la imagen», «Cerrar» y el fallo): 3448 y 5.598. Y esa noche,
+el bloque 7 (el movimiento, deporte a deporte): 42 filas más en `CUERPO_UI` y una menos (535): los
+nueve deportes nuevos de «Anotar movimiento», los metros a nado, el desnivel, la intensidad (sus dos
+nombres, la prueba del habla y el «por dos» de la OMS), la tarjeta de la meta de un adulto, las notas
+de la hoja según el deporte, «Por deporte» (las veces, las inmersiones, el tiempo, el ritmo y el
+desnivel), lo que aconseja la DAN antes de volar, lo que cuenta para la travesía (a pie, en bici, a
+nado, en kayak) y dos párrafos de «Las cifras»; fuera, la nota de a nado o en bici del bloque 5:
+3489 y 5.639. Y encima, con Jerome («A pie y bici»: por el agua la isla se rodea, no se cruza),
+fuera «A nado» y «En kayak» de la travesía y una nota más en la hoja, la del nado y el kayak (534):
+3488 y 5.638. El 9 de noviembre, fuera el panel de reservas que nada abría (Jerome: «quítalo»), con sus 20
+textos: 3468 y 5.618. Y encima, el bloque 8, hecho la madrugada del 9 (el mapa de la travesía, su compañero
+y los senderos): 25 filas más en `CUERPO_UI` (559): el compañero (el título, la ayuda y los seis que
+se eligen: senderista, presa canario, lagarto tizón y las tres bicis), el norte del mapa, «Senderos de
+la isla» (el título, el subtítulo, las dos cuentas, el norte y el sur, «Hecho el…», las tres
+celebraciones con su texto y el aviso de cuando la lista no llega) y dos párrafos de «Las cifras» (el
+fondo del mapa, con las dos notas de la licencia del relieve, y los senderos): 3493 y 5.643. El 10 de noviembre, las
+dos fuentes del Govern de les Illes Balears para la guía del rescate: 3 filas más en `EMERG_UI` (603), el nombre del
+Govern y el título de cada página: 3496 y 5.646. Y ese día, la contraseña de la cuenta: 3 filas más en `AUTH_STRINGS`
+(la ayuda de los 8 caracteres, su aviso y el de la contraseña filtrada; esa tabla va por idioma y no entra en la cuenta
+de `barrido_idiomas.js`) y una en la política, la de Have I Been Pwned; y la pestaña «Evolución» de «Su cuerpo»: una
+fila menos en `PERFIL_UI` (467: fuera `perfilUKm`, `perfilDistancia` y `perfilTotalCaminado`; dentro `perfilTotal` y
+`perfilAnotarMov`) y una más en `CUERPO_UI` (560), el nombre de la pestaña: 3500 y 5.647.
+Y ese mismo día, Jérôme y sus tours: una tabla más, `GUIA_UI` (`modulos/guia.js`), con 133 filas (40 de las 47
+del tour de antes y 93 nuevas: 51 de la app y del cielo, 25 de «Su cuerpo», el botón de cerrar del menú y los 16
+chistes de Jérôme), y en `index.html` quedan cuatro (`tourVer`, de antes, y tres nuevas): 50 tablas, 3590 y 5.737. El
 11 de octubre el tour dejó de ser una
 tabla propia y sus textos son 37 filas de `UI_TX`. `auditar_web.js` coteja las
 dos primeras. La tercera es el «total mirado, dentro y fuera» de
@@ -6293,13 +11323,13 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **979** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **979** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **980** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **980** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **58** |
-| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
+| Con aviso `warn`, y su tipo existe en `WARN_I18N` | **117** · 0 huérfanos |
 | De esos, `warn:"mar"` | **50** |
-| URLs de lugar sin cifrar | **0** de 22 |
+| URLs de lugar sin cifrar | **0** de 27 |
 
 Cada cifra de esta tabla, y las dos del texto de abajo (los filtros del alias
 y las líneas con más de dos terminales), las coteja `auditar_datos.js`: si una
@@ -6308,6 +11338,8 @@ y «786» con 162 y 980. Las URLs pasaron de 16 a 18 el 30 de octubre: las dos
 fuentes del estado (Los Patos y la Bodega Frontos). Y los lugares, de 980 a
 979 el 31 de octubre: la bodega Cueva del Rey, cerrada. Ese día, las URLs, a
 22: las fuentes de los cuatro cerrados nuevos (Punta de Teno y Las Hayas).
+Los lugares, de 979 a 980 el 8 de noviembre: la etapa 2 del GR-131, La
+Caldera – El Portillo; y con ella, los avisos `warn`, de 116 a 117 («sendero»).
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no
@@ -8487,6 +13519,206 @@ saldría «🐾 Con mascotas 🐾». El rótulo es el texto y en pantalla sale
   con las dos de hoy: 157.
 - Las etiquetas «Teide» y «Fañabé» de Golf Costa Adeje no salen en el texto
   oficial nuevo. No se han tocado: lo decide Jerome.
+
+## Jérôme, el presentador: el tour de la app por capítulos, el del cielo y el de «Su cuerpo» (10 de noviembre)
+
+Jerome, el 10 de noviembre de 2026, con dos fotos suyas: «Necesito que tenemos un tour de explicación
+como el que tenemos pero mucho más completo y necesito uno nuevo por la zona de estrella», y «lo que
+yo quiero con los tours explicativos es un personaje animado de mí. Como un presentador de la isla».
+Y «lo mismo por el cuerpo (espera que sube el bloque 8)»: el bloque 8 subió ese mismo día, así que el
+tour de «Su cuerpo» va aquí también, hecho sobre el `main` que ya lo lleva.
+
+**Qué hay** (`modulos/guia.js`, carga perezosa, 103 kB comprimidos; en `index.html` queda el cargador):
+
+- **Jérôme**: un dibujo SVG hecho a mano en el propio módulo, con el pelo, las gafas, la sonrisa y la
+  camiseta de las fotos (el estampado es un Teide a brochazos, no la marca de la camiseta), dentro de
+  un aro dorado como el del logotipo. Articulado con muelles: cabeza, mirada, cejas, párpados, boca
+  (siete bocas, según la letra que se escribe) y dos brazos de dos huesos con cuatro manos. Saluda,
+  celebra, levanta el pulgar y señala el punto de la pantalla que se le pide, con el brazo del lado
+  que toca. Seis atuendos (el último, de deporte: cinta en el pelo y toalla al cuello) y seis cielos dentro del aro. Sin filtros de CSS: Safari recorta lo que
+  se sale de la caja de un elemento con `filter`, y los brazos se salen.
+- **El motor**: el foco sobre la interfaz de verdad, Jérôme siempre entre su bocadillo y lo que señala
+  (encima o debajo), la estela del dedo al foco, el texto que se escribe solo, los capítulos en la
+  barra, deslizar el bocadillo, Escape, las flechas, y la voz, opcional, con las voces del móvil
+  (`TG_VOZ`, solo `localService`), que pasa sola al paso siguiente. Para los lectores de pantalla,
+  el paso entero de una vez. Con «reducir movimiento», nada se mueve. Con el móvil tumbado (apaisado y
+  de 500 px de alto o menos), el bocadillo va al lado de lo que señala.
+- **El tour de la app**, versión 3: de 18 a 25 pasos, en cinco capítulos. Nuevos: la isla en 3D, la
+  leyenda, los favoritos, el asistente, el perfil, las emergencias y sin cobertura; el de los
+  marcadores señala un marcador de verdad y explica los grupos. Los textos de antes se quedan como
+  estaban (solo «se las enseñamos» pasa a «se las enseño»: habla Jérôme).
+- **El tour del cielo**: 13 pasos por las cinco pestañas, dentro del panel. La luz roja se enciende
+  en su paso y se apaga al salir, si no estaba puesta. No pregunta al abrir el panel: el botón de
+  Jérôme late y un globito lo dice, una sola vez por dispositivo. De noche, la primera vez, el panel
+  ofrece la luz roja en una barra encima de su cuerpo (`#cielo-pista`): mientras dura la visita se
+  aparta, y al acabar vuelve tal cual, sin darla por vista.
+- **El tour de «Su cuerpo»**: 19 pasos bajando por la pantalla (el personaje, los colores, el deporte,
+  las metas de la semana, anotar movimiento, «Hoy en la isla», el mapa de «Cruce la isla» y su
+  compañero, los senderos, los grupos, los sellos, la postal, lo que se guarda y los dos botones de
+  arriba) y, al final, «Aspecto», «Comida», «Evolución» y «Preguntar» en su botón de la barra de abajo
+  («Evolución», las dos tarjetas del perfil, llegó a `main` ese mismo día, con este tour ya hecho: lleva
+  su paso, con las palabras de la política de privacidad). **No anota
+  nada, no abre hojas y no cambia de vista**: entrar en «Aspecto» pide el resto del 3D y entrar en
+  «Preguntar», las respuestas del asistente, y eso no lo decide un tour. Jérôme va de deporte, se pone
+  las gafas de sol en «Hoy en la isla» y la gorra y la mochila en la travesía y los senderos. Se
+  ofrece como el del cielo, una vez por dispositivo (`tenerife.tour.cuerpo`); el globito sale encima del
+  botón (debajo taparía la leyenda) y, si al abrir hay una celebración encima (un sello recién
+  conseguido), espera a la vez siguiente: no se gasta donde nadie lo ve.
+- **`modulos/cuerpo.js` no se toca** (lo hace su propia entrega, bloque a bloque). El botón de Jérôme se
+  lo pone el cargador de `index.html`: ve llegar el panel a `<body>` y abrirse, y lo cuelga de la
+  escena, abajo a la izquierda, frente a «Girar», con el mismo dibujo que el del cielo. Lo que el tour
+  señala son los `id` de esa pantalla, y el control mira, sin navegador, que sigan en el módulo.
+- **«Ver el tour»** abre el menú de visitas (la app, un capítulo, el cielo o «Su cuerpo»); el panel del
+  cielo y «Su cuerpo» llevan el botón con la cara de Jérôme.
+
+**Dos cosas que solo se vieron midiendo.** Con «reducir movimiento», `index.html` le pone a todo una
+transición de 0,01 ms: lo que se mide en el mismo instante de cambiar una clase es todavía lo de
+antes, y el bocadillo se colocaba con la altura del paso anterior (se salía de la pantalla en un
+móvil de 360 × 640). Dentro del tour no hay transiciones con esa preferencia, y el gesto se hace dos
+cuadros después. Y al cerrar el panel de rutas la barra de abajo tarda en volver a su sitio: el paso
+siguiente espera 260 ms antes de medir.
+
+**Seis cosas que salieron al hacer el de «Su cuerpo».** (1) **Escape cerraba «Su cuerpo» y no el
+tour**: esa pantalla oye su Escape en la captura de `window` y corta ahí; el del tour, que estaba en
+la captura de `document`, no llegaba a oírlo. Ahora el cargador de `index.html` engancha el suyo al
+arrancar, también en la captura de `window`, y va por delante de todos los módulos: con un tour
+abierto, Escape cierra el tour y nada más. (2) **El botón de cerrar del menú de visitas salía vacío**:
+el motor pedía `guiaMenuCerrar` y la fila no existía. Estaba así desde la mañana y ningún control lo
+veía (los de idioma miran las filas que hay, no las que se piden con `T()`); lo cazó una captura de
+pantalla. Ahora `auditar_tour.js` mira, sin navegador, que cada texto que el módulo pide exista, y
+con él, que ningún botón salga sin texto. (3) **El menú decía «12 pasos» para el cielo y el tour tiene
+13**: el botón de la luz roja lo destapa `modulos/cielo.js` al llegar, y con el panel sin abrir el
+paso no se contaba. (4) **«Atrás» cierra «Su cuerpo» y el tour se quedaba encima**: ahora un tour se
+va con la pantalla que enseña. Y una quinta, del control de «Su cuerpo» (`tools/probar_cuerpo.js`):
+cuenta los nodos con texto traducido de su pantalla, y el botón de Jérôme con `data-tx` le sumaba uno;
+el rótulo del botón sigue al idioma por su cuenta y esa cuenta vuelve a ser la suya. Y una sexta: **con
+tres visitas, el menú no cabía en un móvil de 320 × 568**, y centrado con `align-items` la cabeza de
+Jérôme quedaba cortada arriba, sin forma de llegar a ella. Ahora se centra con márgenes (lo que no cabe
+se recorre desde su principio) y, donde no cabe a su tamaño, se aprieta: cabe entero en los diez idiomas.
+
+**El repaso del personaje (el mismo 10 de noviembre, por la tarde).** Jerome, al ver los tours: «Me
+gusta muchísimo el concepto y todo el tour. Lo único: el yo dibujado tiene que hacer mejor las manos.
+Cuando muestra algo parece que está haciendo 🖕. […] Trabaja más los brazos, la cara más trabajada
+también. […] El personaje necesita ser más detallista. Más emoción también. Algunos chistes».
+
+- **La mano que señala** era un puño con un solo dedo recto en el centro, y así se lee como otro
+  gesto. Ahora es un índice: sale del borde de la mano que da al pulgar, el pulgar se ve, abierto, y
+  los otros tres dedos van doblados y marcados uno a uno. Hacia arriba, la mano sube por su lado de la
+  cabeza y nunca pasa por delante de la cara (un dedo en la frente es otro gesto); la estela une la
+  yema con lo que se señala. Las cuatro manos son nuevas, con sus dedos, su contorno y sus pliegues:
+  la abierta (saluda, celebra), la de presentador (los dedos juntos hacia lo que enseña: para una
+  tarjeta o un tramo de pantalla; el índice se queda para los botones), la que señala y el pulgar
+  arriba.
+- **Los brazos** tienen forma (el bíceps, el antebrazo que se estrecha, el codo, la muñeca) y la manga
+  lleva su dobladillo y su pespunte. **La cara**: los párpados son dos curvas que se mueven (abrir,
+  entornar, guiñar, reír), el iris tiene su borde y sus brillos, cada ceja tiene su forma y se mueve
+  por su cuenta, el pelo va por mechones, las gafas llevan remaches y plaquetas, y la camiseta, su
+  canalé y sus costuras. Se probó una barba de puntitos y se quitó: a media distancia parecían pecas.
+- **Doce caras** (`EMO`): contento, risa, guiño, pícaro, asombro, ilusión, pensativo, serio, cariño,
+  apuro, frío y fiesta, con lo que le sale al lado (unos destellos, una duda, la gota del apuro, el
+  vaho del frío, unas notas, un corazón) y lo que hace el cuerpo (la risa sacude los hombros, el frío
+  hace tiritar). Cada paso lleva la suya, y con una exclamación levanta las cejas.
+- **Dieciséis chistes**: un aparte de Jérôme al final de algunos pasos (la fila `kC`), en cursiva, que
+  cuenta con otra cara. Siete en la app, cuatro en el cielo y cinco en «Su cuerpo»; ninguno en los
+  pasos serios (el mar, las emergencias, «Hoy en la isla», la comida, lo que se guarda). Hablan de él
+  o de la isla, y nada que la app no haga: que aquí al autobús se le dice «guagua»; que con el gorro
+  del frontal parece minero; que subió a la cumbre en camiseta (el paso dice «Abríguese», y Jérôme
+  tirita).
+  «Guagua» se queda en castellano en los nueve idiomas, entre comillas: es lo que ese aparte enseña.
+  Va aceptada, con su motivo, en las dos listas que lo miran: `idiomas/castellano-aceptado.json` (zh,
+  zht y bg, donde la veía `castellano_suelto.js`) y `idiomas/pantalla-aceptado.json` (la frase exacta
+  en los nueve, que es lo que ve `barrido_pantallas.js` en el bocadillo y en el texto del paso para
+  los lectores de pantalla).
+- **Lo que salió al mirarlo**: en las capturas del tour de «Su cuerpo», de las gafas de Jérôme salían dos
+  barras blancas hasta arriba de la pantalla. Eran los ojos: los muelles de los párpados, nuevos y más
+  rígidos que los demás, se desbocaban cuando el móvil va lento (un cuadro cada 50 ms, que es lo que
+  da el navegador de las pruebas). Los muelles se integran ahora a pasos de 12 ms como mucho, vaya el
+  móvil como vaya, y la abertura del ojo tiene tope. El control lo prueba a 20 cuadros por segundo: sin
+  el arreglo da «ojos de 23×830».
+- **Lo que salió al pasar la auditoría entera de noche**: `auditar_tour.js` pasaba por la tarde y a las
+  21 h salió en rojo. De noche, la primera vez que se abre, el panel del cielo ofrece la luz roja en una
+  barra de unos 80 px encima de su cuerpo, y esa barra le quitaba el sitio a la visita justo cuando más
+  se va a ver: en un móvil de 320×568 el bocadillo tapaba lo que señalaba en dos pasos (los planetas y
+  «Apunte al cielo»), y Jérôme se quedaba en miniatura en diez de los trece. Ahora la visita aparta la
+  barra mientras dura (una clase en el panel y una regla en los estilos del módulo) y la devuelve al
+  acabar. Y el control ya no depende de la hora: recorre el cielo con el reloj de la página a las 23:30
+  UTC, mira que la barra esté, que la visita la aparte y que vuelva sin darse por vista. Sin el arreglo
+  da los mismos rojos que dio esa noche.
+- **Y lo que salió al repasar el panel con la luz roja puesta**, que ningún control miraba: en rojo la
+  cabecera lleva también el regulador de brillo, y con el botón de Jérôme ya no cabía en un renglón en
+  un móvil estrecho. El título se quedaba sin sitio y el botón lo pisaba: a 320 px en francés,
+  neerlandés, búlgaro y polaco, y en búlgaro hasta 381 px (en `main`, sin el botón, solo se pisaban
+  8 px en búlgaro a 320). Por debajo de 390 px, con la luz roja, la cabecera va ahora en dos renglones:
+  arriba el título y la ✕; debajo, Jérôme, «Luz roja» y el regulador, que coge el ancho que queda.
+  Medido en ocho anchos (de 320 a 412 px) y los diez idiomas: nada pisa a nada. Mientras dura la visita
+  de Jérôme, no: ese renglón de más le quitaba el sitio (con la luz roja ya puesta al empezar, a 320×568
+  Jérôme salía en miniatura en nueve o diez pasos de trece, y en tres idiomas el bocadillo tapaba la
+  carta), así que el regulador, que con la visita encima no se puede tocar, se aparta y la cabecera es
+  la de siempre. `auditar_tour.js` mira las dos cosas en los diez idiomas y los cuatro móviles: en el
+  paso de la luz roja, que el regulador no esté; y al acabar la visita, con la luz puesta a mano, que
+  estén los cinco y nada pise a nada. Sin el arreglo, en búlgaro da «se pisan cielo-titulo y
+  cielo-tour-btn» a 320 y a 360 px.
+- **Y con el móvil tumbado**, que el control tampoco recorría (sus cuatro móviles van de pie): a
+  844×390 casi nunca cabe nada ni encima ni debajo de lo que se señala, así que Jérôme salía en
+  miniatura en casi todos los pasos, el bocadillo tapaba lo señalado en varios (cinco de la app, casi
+  todos los del cielo) y el último paso se salía por abajo, con su botón a medias. El tour de antes,
+  sin personaje, cabía mejor (un paso tapado, el de «Organice su día»). Ahora, apaisado y bajo, el
+  bocadillo va **al lado** de lo que señala, a la altura de la mano de Jérôme; de una tarjeta ancha se
+  enseña su lado izquierdo; y el saludo y la despedida se aprietan hasta caber. A 844×390, los tres
+  tours sin tapar nada y sin salirse, y el de la app con Jérôme a su tamaño. `auditar_tour.js` los
+  recorre así en castellano; sin el arreglo da 35 fallos. En pantallas tumbadas más pequeñas no cabe
+  todo: a 667×375 quedan tapados un paso de la app («Organice su día»; con el tour de antes eran ese
+  y «Ruta del día») y el primero de «Su cuerpo»; a 568×320, tres de la app («Organice su día», «Ruta
+  del día» y «El asistente») y ese mismo de «Su cuerpo». Ahí nada se sale de la pantalla y el botón
+  de seguir queda siempre a mano.
+- **El globito, encima de la visita**: quien tocara el botón de Jérôme antes de que saliera su globito
+  (sale a los 0,9 s de abrir el panel) lo veía aparecer después, encima del primer paso. Al empezar
+  una visita se quitan los globitos, y con una abierta no se ofrece otro.
+
+**Lo que dicen los textos**, cotejado con la app: el relieve y los gestos del 3D (los de su ayuda), los
+favoritos con y sin cuenta y el perfil opcional (la política de privacidad), el 112 del panel SOS
+(está en el armazón), el mapa detallado (el aviso del panel «ⓘ») y, del cielo, lo que dice cada
+tarjeta. Tres frases se afinaron al cotejarlas: lo que se calcula en el móvil son las horas y las
+posiciones (las nubes y Wikipedia piden red); la fecha cambia «Esta noche» y la carta, no el panel
+entero; y la carta es el cielo de Tenerife (se calcula para Izaña), no «desde aquí». Los de «Su
+cuerpo» dicen lo que dice su pantalla (sus propias filas, que el tour usa de título en quince
+pasos: catorce de `modulos/cuerpo.js` y, en el de «Evolución», el de su tarjeta, que vive en
+`modulos/perfil.js`): los tres colores por su orden, los días de fuerza y los minutos que recomienda la OMS para
+la edad, los
+datos de cada deporte (minutos e intensidad en todos; distancia y desnivel donde los pide la hoja),
+la travesía a pie y, si se elige, en bici, el diario de comidas apagado hasta que se enciende y las
+respuestas escritas de antemano que se buscan en el móvil. No llevan cifras que puedan cambiar (ni
+los senderos, ni los sellos, ni los ejercicios): solo los pasos, que se cuentan.
+Dos se afinaron en el repaso final, cotejando otra vez con `modulos/cuerpo.js`: las metas que siguen a
+la OMS por la edad son dos (`metaDias()` y `metaMin()`), no las tres (los grupos son siempre 12); y
+no todos los senderos tienen punto en el mapa (las etapas del GR 131 son la propia ruta, y empiezan
+en sus paradas): el texto dice que los puntos marcan dónde empiezan, no que cada sendero tenga el
+suyo. Y la leyenda, que decía «la app o el cielo», nombra ahora las tres visitas.
+
+**La política de privacidad** dice ahora «si ya vio los tours» (son tres), en los ocho idiomas que
+marcan el plural; el chino no lo marca.
+
+**Controles**: `tools/auditar_tour.js`, rehecho: los tres tours enteros en los diez idiomas y cuatro
+móviles (que nada tape lo que se señala, que quepa, que Jérôme esté y señale, las cifras, el panel de
+rutas, la luz roja, lo guardado; cada tour se acaba pulsando su último botón, y si no se puede
+pulsar es un fallo), el menú con sus tres visitas y los pasos que de verdad tiene cada
+una (y entero también en 320 × 568), las novedades, con movimiento (la mano que señala tal como queda dibujada, y el
+chiste, que llega después del texto y con su cara), con el móvil lento, la voz en tres idiomas con una voz falsa (lee
+también el chiste) y sin el módulo. En cada paso: el chiste, si lo hay, entero para los lectores de pantalla y con otra
+cara; el índice para los botones y la mano abierta para lo grande. En
+«Su cuerpo», además: que el tour no cambie de vista, no abra hojas, no pida datos a la red y no
+escriba en lo guardado; y, en castellano, por el camino de verdad (Cuenta, la pestaña Cuerpo y
+«Abrir»): el globito una vez (y que espere si hay una celebración encima), Escape, «atrás», el botón
+(uno, también en «Aspecto»), el tema Noche y sin el módulo de la pantalla. Y antes de abrir el navegador: cada texto pedido existe, el nombre de
+«Su cuerpo» del menú, y el de cada frase que la nombra, es el de su módulo en los diez idiomas, lo que el tour señala sigue allí,
+los chistes siguen (y ninguno en un paso serio), cada cara que pide un paso existe y la mano que señala es un índice. En 320 × 568 Jérôme sale en miniatura en algunos pasos, por falta de
+sitio (y en 360 × 640, en un paso del cielo en algunos idiomas, desde que llevan chiste); en 390 × 844 y 412 × 915, nunca. `auditar_cielo.js` busca el paso del cielo en el módulo,
+`auditar_sw.js` mira que el módulo esté sin conexión y llegue nuevo, y `barrido_pantallas.js`
+espera al módulo y recorre los 25 pasos.
+
+**Lo que no se ha comprobado aquí**: un iPhone de verdad (el dibujo, la voz de iOS y VoiceOver) y
+las nueve lenguas con un nativo. El nombre del personaje, «Jérôme», y la frase «Vivo en Tenerife y he
+hecho esta guía de la isla» los decide Jerome.
 
 ## El tour de bienvenida, rehecho (11 de octubre)
 
@@ -12033,7 +17265,10 @@ cuerpo» (el título y el lema son los del módulo) y su botón «Abrir». La
 pantalla va encima del perfil, que queda inerte debajo; «atrás» y Escape la
 cierran y dejan el perfil abierto, en su pestaña. Si el módulo no llega (sin
 red y sin haberlo guardado nunca), la tarjeta lo dice: «No se pudo abrir.
-Compruebe la conexión e inténtelo de nuevo», como el cielo.
+Compruebe la conexión e inténtelo de nuevo», como el cielo. Desde el 1 de
+noviembre va dentro de la pestaña, sin tarjeta ni «Abrir», y con el personaje
+en pequeño (más arriba, «Su cuerpo», dentro de la pestaña Cuerpo y con su
+personaje).
 
 Con el diseño nuevo, «Músculos» es una lámina de atlas de anatomía, con las
 dos vistas a la vez y el pie de cada una. Lo trabajado se ve en tres niveles
@@ -12186,10 +17421,13 @@ La segunda pasada, sobre `96f68e5`, con el bloque 9: «AUDITORIA EN VERDE»,
 ningún control en rojo ni sin ejecutar.
 
 **Lo que pesa.** `modulos/cuerpo.js`, 254 kB (77 kB comprimido; huella
-`bb774cf7…7f49`); los
+`bb774cf7…7f49`, y desde el arreglo del iPhone del 1 de noviembre,
+`c706ef9a…0ed6`); desde que va dentro de la pestaña, 260 kB (79 kB
+comprimido; `14ade100…88f7`). Los
 ejercicios, de 148 a 312 kB cada uno (de 24 a 48 kB comprimidos). Nada de eso
-cuenta en la primera descarga: el módulo se pide al abrirlo y los ejercicios
-al abrir la biblioteca, el común y el del idioma. `index.html` crece con el
+cuenta en la primera descarga: el módulo se pide al abrir la pestaña Cuerpo (al
+abrirlo, hasta el 1 de noviembre) y los ejercicios al abrir la biblioteca, el
+común y el del idioma. `index.html` crece con el
 cargador y con el apartado de la política, en los diez idiomas: la primera
 descarga pasa de 1.076 a 1.078 kB en castellano, de 1.190 a 1.193 en búlgaro
 y de 1.176 a 1.178 en polaco (`tools/peso_descarga.py`). En polaco eran
@@ -12758,7 +17996,7 @@ Y cada bloque por separado, si hace falta:
 | `tools/capturas_app_store.js` | las capturas de la tienda (iPhone 1206×2622, iPad 2064×2752), de `app/www/` servido aparte; para si la página no lleva la marca o un estado no llega a lo que dice |
 | `tools/app_store_metadata.js` | la ficha y las capturas en el formato de `fastlane deliver` (`app/fastlane/metadata/`, `…/screenshots/`); con `--comprobar`, las diez localizaciones, los límites y los tamaños |
 | `tools/cielo_uai.js` | los nombres de la UAI de la carta del cielo en chino, chino tradicional y búlgaro (`CIELO_UAI`, en `modulos/cielo.js`), de las traducciones de Stellarium que baja `cielo_fuentes.sh`; los coteja con la cultura celeste china y entre sí; con `--comprobar`, para si lo escrito no es lo que sale de las fuentes (lo pasa `auditar_cielo.js`) |
-| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 425 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app); y que el martes de Carnaval del botón de fiestas sea el último día del avatar de oro del Carnaval, cada año de 2026 a 2045 |
+| `tools/auditar_perfil.js` | el perfil sin navegador: el catálogo de los 235 avatares en 47 sets y sus 49 de oro (SVG sin nada que se ejecute, solo con etiquetas de dibujo y 2.200 bytes como mucho, «class» solo en las piezas que se mueven y nunca con `transform`, ids con la forma que pide `perfil.sql`, los 36 países de Europa ni uno más ni uno menos, la bandera de cada set, cada avatar con una de las nueve animaciones; los de oro, uno por set y tres en Tenerife, detrás de los cinco, con la regla de su fiesta y una ventana cada año de 2026 a 2045), las 468 filas de `PERFIL_UI` en los diez idiomas, lo que la pantalla nunca hace, sus enganches con la app, que cada animación tenga su regla y nada se mueva con «reducir movimiento», que «Sorpréndeme» nunca dé uno de oro y que la lista de los de oro conseguidos no suba a la nube, que la tendencia del peso dé lo mismo que la cuenta de siempre y lea cada fecha una vez (con tres años de pesos abría en segundos), y `perfil.sql` contra el módulo (RLS, policies, permisos, cascadas, columnas, rangos, fechas de 1900 a 2100 y el tope de 2.000 pesos y 2.000 caminatas, la misma cifra que la app); y que el martes de Carnaval del botón de fiestas sea el último día del avatar de oro del Carnaval, cada año de 2026 a 2045 |
 | `tools/probar_perfil.js` | el perfil usado de verdad, en Chromium y con la app entera: las regresiones, la nube con permiso contra `tools/perfil_nube_de_prueba.js` (una nube de mentira que se porta como `perfil.sql`, con sus fechas y su tope de 2.000, y, como Supabase, da como mucho 1.000 filas por consulta), la nube con más filas de las que caben en una consulta, el tope lleno, las visitas comprobadas en el mapa, el selector de los 47 sets (el país del navegador primero, «Todos los países» y su buscador), los de oro con la fecha cambiada en el reloj del navegador (fuera de su día, en su fiesta, después, «De oro», «Sorpréndeme» y la descarga) y el movimiento al tocar, nada con «reducir movimiento», los 284 avatares y sus nombres sin cortar, y los diez idiomas a 360, 390 y 430 px, también los de oro en cinco estados (150 pantallas) |
 | `tools/probar_fechas_oro.js` | las fechas de los de oro, sin navegador: el motor de `modulos/avatares.js` con una regla de ejemplo de cada tipo (la Pascua y la ortodoxa, un día fijo que se adelanta si cae en domingo, un día de la semana entre dos fechas, el enésimo día de la semana de un mes y el último, una tabla de fechas, una fiesta de dos días que cruza el año, el Carnaval de sábado a martes y una excepción, como la de Santa Cruz en 2027): 51 casos, con sus Pascuas y sus días de la semana comprobados aparte |
 | `tools/auditar_emergencias.js` | el panel de emergencias (SOS) en Node: cada fila en los diez idiomas y pedida por el código, las ocho del armazón en `UI_TX`, las fuentes de cada guía, los grupos y los «Vea también», las banderas y los teléfonos, los enlaces (https y de los dominios oficiales), el armazón con el 112 y el rótulo «SOS», el service worker (en `CORE`, con su rama y fuera de «red primero»), el atajo del manifiesto, que cada fichero de `window.SOS_DATOS` tenga su robot encendido, y ninguno encendido sin él, y que lo que escriben los robots vaya en «red primero» |

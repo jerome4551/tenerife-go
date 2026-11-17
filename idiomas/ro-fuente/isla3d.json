@@ -1,0 +1,140 @@
+{
+ "_": "Rumano (ro) de las filas de ISLA3D_UI de modulos/isla3d.js (la isla en 3D). Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. No se edita a mano: sale de la entrega del bloque 4 del rumano.",
+ "idioma": "ro",
+ "fichero": "modulos/isla3d.js",
+ "filas": [
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dTitulo",
+   "es": "La isla en 3D",
+   "forma": "texto",
+   "ro": "Insula în 3D"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dVolver",
+   "es": "Volver al mapa",
+   "forma": "texto",
+   "ro": "Înapoi la hartă"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dNorte",
+   "es": "Poner el norte arriba",
+   "forma": "texto",
+   "ro": "Puneți nordul sus"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dLuzMapa",
+   "es": "Luz de mapa",
+   "forma": "texto",
+   "ro": "Lumina hărții"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dLuzSol",
+   "es": "Sol de ahora",
+   "forma": "texto",
+   "ro": "Soarele de acum"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dLuzAyuda",
+   "es": "Cambiar la luz: la de los mapas de relieve o la del sol a esta hora",
+   "forma": "texto",
+   "ro": "Schimbați lumina: cea a hărților de relief sau cea a soarelui la ora aceasta"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dNoche",
+   "es": "Es de noche: la isla, a la luz de la luna",
+   "forma": "texto",
+   "ro": "Este noapte: insula, în lumina lunii"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dNocheSinLuna",
+   "es": "Es de noche y no hay luna: el relieve, con la luz de mapa atenuada",
+   "forma": "texto",
+   "ro": "Este noapte și Luna nu este pe cer: relieful, cu lumina hărții atenuată"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dAyuda",
+   "es": "Un dedo: mover · Dos dedos: acercar, girar e inclinar",
+   "forma": "texto",
+   "ro": "Un deget: mutați · Două degete: apropiați, rotiți și înclinați"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dDibujando",
+   "es": "Dibujando el mapa sobre el relieve…",
+   "forma": "texto",
+   "ro": "Se desenează harta peste relief…"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dMalLeido",
+   "es": "El relieve no se ha leído bien en este navegador y no se dibuja: así no enseña alturas falsas.",
+   "forma": "texto",
+   "ro": "Relieful nu a putut fi citit corect în acest browser și nu se desenează: astfel nu arată altitudini false."
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dPerdido",
+   "es": "El móvil ha liberado la memoria del 3D. Vuelva a abrirlo.",
+   "forma": "texto",
+   "ro": "Telefonul a eliberat memoria vizualizării 3D. Deschideți-o din nou."
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dUbicacion",
+   "es": "Su ubicación",
+   "forma": "texto",
+   "ro": "Locația dumneavoastră"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dRelieve",
+   "es": "Relieve",
+   "forma": "texto",
+   "ro": "Relief"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dMapa",
+   "es": "Mapa",
+   "forma": "texto",
+   "ro": "Hartă"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dCreditos",
+   "es": "Créditos del relieve y del mapa",
+   "forma": "texto",
+   "ro": "Credite pentru relief și hartă"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dMetros",
+   "es": "{n} m",
+   "forma": "texto",
+   "ro": "{n} m"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dTeide",
+   "es": "Teide",
+   "forma": "texto",
+   "ro": "Teide"
+  },
+  {
+   "tabla": "ISLA3D_UI",
+   "clave": "isla3dSinWebGL",
+   "es": "Este móvil no puede dibujar en 3D (no tiene WebGL). El mapa plano funciona igual.",
+   "forma": "texto",
+   "ro": "Acest telefon nu poate desena în 3D (nu are WebGL). Harta plană funcționează la fel."
+  }
+ ]
+}

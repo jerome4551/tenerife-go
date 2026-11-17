@@ -77,8 +77,8 @@ Safari, vale igual.
 
 | campo | |
 |---|---|
-| `maxzoom` | `14` por defecto; `15` da más detalle de sendero |
-| `fecha_build` | vacío = busca el build más reciente que responda, hasta 12 días atrás |
+| `maxzoom` | `14` por defecto; `15` da más detalle de sendero. Se elige de una lista: no vale otro |
+| `fecha_build` | vacío = busca el build más reciente que responda, hasta 12 días atrás; o una fecha `AAAAMMDD`. Con otra cosa, el workflow para antes de bajar nada |
 | `solo_probar` | `true` = genera y verifica pero **no** hace commit |
 
 El runner tiene la salida a red que hace falta para leer por rangos un fichero

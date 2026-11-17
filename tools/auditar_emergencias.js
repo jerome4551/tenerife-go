@@ -45,7 +45,13 @@ const DOMINIOS = ['gobiernodecanarias.org', '112canarias.com', 'boe.es', 'involc
      Consejo Europeo de Resucitacion y sus traducciones oficiales, el NHS, la
      SEUP, la AESAN, el Servicio de Informacion Toxicologica...) */
   'ivhhn.org', 'educacionfpydeportes.gob.es', 'interior.gob.es', 'tenerifeon.es', 'europa.eu', 'erc.edu', 'ircouncil.it',
-  'resus.org.uk', 'ilcor.org', 'nhs.uk', 'seup.org', 'comunidad.madrid', 'alicante.es', 'aesan.gob.es', 'mjusticia.gob.es'];
+  'resus.org.uk', 'ilcor.org', 'nhs.uk', 'seup.org', 'comunidad.madrid', 'alicante.es', 'aesan.gob.es', 'mjusticia.gob.es',
+  /* 1 de noviembre: el portal Infoplayas Canarias, el origen de las banderas
+     que se usan hoy (el mismo visor al que lleva el globo de cada playa) */
+  'infoplayascanarias.es',
+  /* 10 de noviembre: el Govern de les Illes Balears, la fuente de «Avísele
+     enseguida» (sosRes1) en la guia del rescate */
+  'caib.es'];
 /* Los robots que dan datos al panel: su fichero y su flujo */
 const ROBOTS = { 'sismos-ign.json': 'sismos-ign.yml', 'semaforo-involcan.json': 'semaforo-involcan.yml', 'alertas-canarias.json': 'alertas-canarias.yml' };
 const SHELL = ['sosNavAria', 'sosTitulo', 'sosLlamar', 'sosLlamarSub', 'sosCargando', 'sosErrorCarga', 'sosReintentar', 'sosVolver'];
@@ -171,10 +177,10 @@ const vacios = SUBS.filter(s => !SOS.guias.some(g => g.grupo === 'hacer' && g.su
 ok(!vacios.length, 'ningun grupo vacio', vacios.join(', '));
 const idsGuias = new Set(SOS.guias.map(g => g.id));
 ok(idsGuias.size === SOS.guias.length && [...idsGuias].every(id => /^[a-z]+$/.test(id)), 'los ids de las guias, unicos y en minusculas (#sos-<guia>)');
-/* las banderas del Decreto 116/2018 y de la Orden de 22 de julio de 2022
-   (anexo III): las cuatro de colores, la de cuadros de los deportes
-   nauticos, dos rojas a los lados de un peligro y la bicolor de zona segura */
-const BANDERAS = ['verde', 'amarilla', 'roja', 'purpura', 'ajedrez', 'dosrojas', 'segura'];
+/* las banderas: las seis que se usan hoy en las playas de Canarias, las de la
+   leyenda del mapa. Nada del Decreto 116/2018, anulado, ni de la Orden de 22
+   de julio de 2022, que modificaba sus anexos (1 de noviembre de 2026) */
+const BANDERAS = ['verde', 'amarilla', 'roja', 'negra', 'naranja', 'morada'];
 const irMal = [], banMal = [], telMal = [];
 SOS.guias.forEach(g => g.b.forEach(b => {
   if (b.ir && (!idsGuias.has(b.ir) || b.ir === g.id)) irMal.push(g.id + '→' + b.ir);
@@ -183,6 +189,35 @@ SOS.guias.forEach(g => g.b.forEach(b => {
 }));
 ok(!irMal.length, 'cada «Vea también» lleva a otra guia que existe', irMal.join(', '));
 ok(!banMal.length, 'las banderas son las de las playas de Canarias (' + BANDERAS.join(', ') + ')', banMal.join(', '));
+/* y dicen lo mismo que la leyenda de banderas del mapa (index.html,
+   LANGS.banderas*), letra a letra y en los diez idiomas: la misma fuente y el
+   mismo texto. «Bañarse con seguridad» lleva las seis, en su orden. El chino
+   tradicional es el simplificado con ZHT_OVERRIDES encima, como en la app */
+const LEYENDA = { verde: 'banderasVerde', amarilla: 'banderasAmarilla', roja: 'banderasRoja',
+  negra: 'banderasNegra', naranja: 'banderasNaranja', morada: 'banderasMorada' };
+/* «ro» entra en la lista con el primer bloque del rumano (nota 41): su bloque de
+   LANGS va detras del polaco y, sin el, sus rotulos se le daban al polaco. */
+const cabLangs = [...idx.matchAll(/^ {2}["']?(es|en|fr|de|it|nl|zh|bg|pl|ro)["']?\s*:\s*\{\s*$|^const ZHT_OVERRIDES = \{\s*$/gm)]
+  .map(m => [m.index, m[1] || 'zht']);
+const leyenda = {};
+Object.values(LEYENDA).forEach(k => {
+  const re = new RegExp('^[ \\t]*["\']?' + k + '["\']?\\s*:\\s*(["\'])((?:\\\\.|(?!\\1).)*)\\1', 'gm');
+  for (const m of idx.matchAll(re)) {
+    const cab = cabLangs.filter(c => c[0] < m.index).pop();
+    if (!cab) continue;
+    const v = m[1] === '"' ? JSON.parse('"' + m[2] + '"') : JSON.parse('"' + m[2].replace(/\\'/g, "'").replace(/"/g, '\\"') + '"');
+    (leyenda[cab[1]] = leyenda[cab[1]] || {})[k] = v;
+  }
+});
+if (leyenda.zh) leyenda.zht = Object.assign({}, leyenda.zh, leyenda.zht || {});
+const leyMal = [];
+SOS.guias.forEach(g => g.b.forEach(b => (b.banderas || []).forEach(x => LANGS.forEach(l => {
+  const quiero = (leyenda[l] || {})[LEYENDA[x[0]]];
+  if (!quiero || (UI[x[1]] || {})[l] !== quiero) leyMal.push(g.id + ':' + x[0] + '.' + l);
+}))));
+const playaBan = ((SOS.guias.find(g => g.id === 'playa') || { b: [] }).b.find(b => b.banderas) || { banderas: [] }).banderas.map(x => x[0]).join();
+ok(!leyMal.length && playaBan === BANDERAS.join(), 'las banderas dicen lo mismo que la leyenda del mapa, en los diez idiomas, y «Bañarse con seguridad» lleva las seis',
+  leyMal.slice(0, 4).join(' · ') + (playaBan === BANDERAS.join() ? '' : ' · playa: ' + playaBan));
 ok(!telMal.length && /^\d{9}$/.test(SOS.telSalvamento || ''), 'los telefonos que se marcan, solo cifras (Salvamento Maritimo, ' + SOS.telSalvamento + ')', telMal.join(', '));
 /* los de la tarjeta del 112: el 012 por su numero largo (el corto no vale
    desde un movil extranjero) y el Servicio de Informacion Toxicologica */
@@ -194,6 +229,37 @@ const urlMal = urls.filter(u => {
   return !DOMINIOS.some(d => h === d || h.endsWith('.' + d));
 });
 ok(!urlMal.length, 'los ' + urls.length + ' enlaces son https y de dominios oficiales o de la lista', urlMal.join(' '));
+/* nada del Decreto 116/2018, que anulo el Tribunal Supremo (27-9-2023, BOC 82
+   de 25-4-2024), ni de la Orden de 22 de julio de 2022, que modificaba sus
+   anexos: ni entre las fuentes (tampoco en las «Fuentes» del inicio, que las
+   ensenan todas) ni en ninguna fila (Jerome, 1 de noviembre de 2026: «no
+   debemos tener nada de él»). Una norma anulada no deja de citarse sola */
+const ANULADA = /116\/2018|\/boc\/2018\/152\/|\/boc\/2022\/148\//;
+const anuladaMal = Object.entries(SOS.fuentes).filter(([, f]) => ANULADA.test(f.url || '')).map(([id]) => id)
+  .concat(Object.keys(UI).filter(k => ANULADA.test(JSON.stringify(UI[k]))));
+ok(!anuladaMal.length, 'nada del Decreto 116/2018, anulado, ni de la Orden de 2022 que modificaba sus anexos: ni en las fuentes ni en las filas', anuladaMal.join(', '));
+
+/* sosRes1, «Avísele enseguida y siga sus indicaciones» (el socorrista), la
+   ultima linea sin fuente leida: la dicen las dos paginas de emergencias del
+   Govern de les Illes Balears (10 de noviembre de 2026; Jerome: «si») */
+const rescate = SOS.guias.find(g => g.id === 'rescate') || { f: [], b: [] };
+const conRes1 = rescate.b.some(b => (b.lista || []).includes('sosRes1'));
+ok(conRes1 && ['goibEmergencias', 'goibPlaya'].every(id => (rescate.f || []).includes(id) &&
+    /^https:\/\/www\.caib\.es\//.test((SOS.fuentes[id] || {}).url || '') && (SOS.fuentes[id] || {}).org === 'sosOrgBaleares'),
+  'la guia del rescate cita las dos paginas del Govern de les Illes Balears, la fuente de «Avísele enseguida» (sosRes1)',
+  (rescate.f || []).join(', '));
+
+/* la nota de la App 112 Canarias no dice que haya que validar el movil con un
+   SMS al instalarla: no esta en su pagina oficial ni en otra fuente encontrada
+   (10 de noviembre de 2026; Jerome: «quítalo») */
+const app112 = UI.sosApp112 || {};
+ok(LANGS.every(l => app112[l] && !/SMS/.test(app112[l])), 'la nota de la App 112 Canarias, sin el SMS al instalarla, en los diez idiomas',
+  LANGS.filter(l => /SMS/.test(app112[l] || '')).join(', '));
+
+/* la fuente de las medusas de la Asociacion Espanola de Pediatria, en su direccion nueva: la vieja
+   (enfamilia.aeped.es) lleva a la portada de En Familia (10 de noviembre de 2026; Jerome: «Medusa también») */
+ok((SOS.fuentes.aepMedusas || {}).url === 'https://www.aeped.es/enfamilia/salud-en-familia/picaduras-medusas',
+  'la fuente de las medusas lleva al articulo, en su direccion nueva', (SOS.fuentes.aepMedusas || {}).url);
 
 /* ── 4. index.html, sw.js, manifiesto ── */
 console.log('— index.html, sw.js y el manifiesto');

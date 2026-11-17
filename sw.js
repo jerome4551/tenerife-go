@@ -63,11 +63,22 @@ const CORE = [
      nombre de la cache, el service worker nuevo los precarga al instalarse
      con cache: 'reload'. */
   './modulos/avatares.js', './modulos/perfil.js',
-  /* «Su cuerpo» (31 de octubre de 2026), que se abre desde el perfil: el modulo, aqui y
-     «red primero» abajo, como el perfil. Sus 533 ejercicios (datos/ejercicios*.json: el
-     comun y uno por idioma, unos 200 kB cada uno) no se precargan: se guardan al usarlos,
-     tambien «red primero», y asi sin conexion sale lo ultimo que se abrio. */
+  /* «Su cuerpo» (31 de octubre de 2026), que va dentro de la pestaña Cuerpo del perfil desde el
+     1 de noviembre: el modulo, aqui y «red primero» abajo, como el perfil. Sus datos
+     (datos/cuerpo/*.json: los 533 ejercicios, uno comun y uno por idioma, y desde el 3 de
+     noviembre las respuestas del asistente y las guias de los deportes, uno por idioma) no se
+     precargan: son los diez idiomas y cada persona lee uno. Se guardan al usarlos, tambien
+     «red primero», y asi sin conexion sale lo ultimo que se abrio. Lo mismo el fondo del mapa
+     de «Cruce la isla» (9 de noviembre de 2026, bloque 8: datos/cuerpo/isla-relieve-dia.webp y
+     -noche.webp, unos 41 y 28 kB, de tools/cuerpo_isla_relieve.py): se guarda la primera vez que
+     se ve con red; si no hay, el mapa sale con la costa que el modulo dibuja debajo. */
   './modulos/cuerpo.js',
+  /* Jérôme, el entrenador (11 de noviembre de 2026): el vídeo de cada ejercicio de «Su cuerpo»
+     (el motor y las coreografías, unos 320 kB con los 75 ejercicios del bloque 2; no hay archivos
+     de vídeo). Lo pide modulos/cuerpo.js al abrir la ficha de un ejercicio, y donde se mira es en
+     el gimnasio o en la calle: tiene que estar sin conexión desde el primer día. Aquí y «red
+     primero» abajo, como el módulo de «Su cuerpo». */
+  './modulos/entrenador.js',
   /* El panel de EMERGENCIAS (22 de octubre de 2026): tiene que estar sin
      conexion desde el primer dia, y no esperar a la red: va abajo con su
      propia estrategia (cache al instante, red por detras). */
@@ -79,6 +90,10 @@ const CORE = [
      las sumas con las que el modulo comprueba los dos PNG, asi que uno nuevo
      con los PNG de antes no se dibuja (lo dice, en vez de pintar mal). */
   './modulos/isla3d.js', './mapa/tenerife-relieve.json', './mapa/tenerife-relieve.png', './mapa/tenerife-relieve-ao.png',
+  /* Jérôme y sus tours (10 de noviembre de 2026): el presentador, el motor y los tours de la
+     app, del cielo y de «Su cuerpo». No se pide al arrancar, pero tiene que estar sin conexion:
+     el tour del cielo se abre donde se mira el cielo. Va tambien «red primero» abajo, como los demas. */
+  './modulos/guia.js',
   /* Los satelites (21 de octubre de 2026): el motor SGP4 y los elementos
      orbitales que renueva el robot cada dia. Los elementos van tambien «red
      primero» abajo: cambian a diario. */
@@ -307,7 +322,9 @@ self.addEventListener('fetch', e => {
      Wikipedia: eso es contenido, no un dato vivo, y ahi ayuda sin mentir. */
   /* Los precios de las gasolineras, desde el 7 de octubre, se piden en vivo al
      Ministerio como el tiempo a Open-Meteo: tampoco se cachean aqui. */
-  const EN_VIVO = ['open-meteo.com', 'project-osrm.org', 'serviciosmin.gob.es', 'minetur.gob.es'];
+  /* Y desde el 10 de noviembre, la comprobación de las contraseñas filtradas (api.pwnedpasswords.com): ni se guarda
+     ni se sirve de la cache, que dejaría en el móvil el principio de la huella. */
+  const EN_VIVO = ['open-meteo.com', 'project-osrm.org', 'serviciosmin.gob.es', 'minetur.gob.es', 'pwnedpasswords.com'];
   if (url.hostname.includes('supabase.co') || url.hostname.includes('nominatim') ||
       EN_VIVO.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) {
     return; // no cachear apis, tiempo ni rutas - siempre fresco
@@ -370,6 +387,17 @@ self.addEventListener('fetch', e => {
          LANZAMIENTO-PLAY.md 1.2 y 1.3): borrar-cuenta.html y privacidad.html.
          Son texto legal; con `cached || fetch` el primer texto que entrase
          se quedaria para siempre aunque la politica cambiara. */
+      /* Y «Su cuerpo» (31 de octubre de 2026): el modulo, como el perfil, y
+         sus datos (datos/cuerpo/*.json). Cambian con el modulo, y con
+         `cached || fetch` unas respuestas nuevas del asistente no llegarian
+         nunca a quien ya tuviera las viejas. */
+      /* Y el personaje en 3D (7 de noviembre de 2026, bloque 3): su motor
+         (modulos/cuerpo3d.js) y el indice de sus datos (datos/cuerpo3d/indice.json),
+         red primero por lo mismo. Los demas ficheros de datos/cuerpo3d/ (las mallas en
+         .bin y las texturas) llevan en el nombre la huella de su contenido: un dato
+         nuevo es un fichero nuevo, que nombra un indice nuevo, asi que esos se guardan
+         con lo de por defecto (cache primero) y no se piden dos veces. Ni el motor ni
+         los datos se precargan: se piden al abrir «Su cuerpo», si hay WebGL 2. */
       if (req.url.endsWith('index.html') || req.url.endsWith('/') ||
           url.pathname.endsWith('/borrar-cuenta.html') ||
           url.pathname.endsWith('/privacidad.html') ||
@@ -378,8 +406,12 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/avatares.js') ||
           url.pathname.endsWith('/modulos/perfil.js') ||
           url.pathname.endsWith('/modulos/cuerpo.js') ||
-          /\/datos\/ejercicios(-[a-z]{2,3})?\.json$/.test(url.pathname) ||
+          /\/datos\/cuerpo\/[a-z0-9-]+\.(json|webp)$/.test(url.pathname) ||
+          url.pathname.endsWith('/modulos/entrenador.js') ||
+          url.pathname.endsWith('/modulos/cuerpo3d.js') ||
+          url.pathname.endsWith('/datos/cuerpo3d/indice.json') ||
           url.pathname.endsWith('/modulos/isla3d.js') ||
+          url.pathname.endsWith('/modulos/guia.js') ||
           /\/mapa\/tenerife-relieve(-ao)?\.(png|json)$/.test(url.pathname) ||
           url.pathname.endsWith('/datos/cielo.json') ||
           url.pathname.endsWith('/datos/satelites.json') ||

@@ -1,0 +1,303 @@
+<title>Jérôme, el entrenador</title>
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap">
+<style>
+  /* El vídeo manda: arriba en el móvil y fijo a la izquierda en pantalla ancha; al lado, la lista para elegir. */
+  :root {
+    --fondo: #EEF3F8; --tarjeta: #FFFFFF; --tinta: #12233A; --tinta-2: #51627A; --linea: #D5DFEA;
+    --oro: #8A6A12; --oro-vivo: #D4AF37; --oro-suave: #FBF3D9; --n3: #FFE48A; --n2: #FFA04A; --n1: #EE5F7E;
+    --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --fondo: #0F1117; --tarjeta: #1B2330; --tinta: #F0ECE4; --tinta-2: #A8B3C4; --linea: #2D3A4A; --oro: #F5C76B; --oro-suave: #2A2618; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --fondo: #0F1117; --tarjeta: #1B2330; --tinta: #F0ECE4; --tinta-2: #A8B3C4; --linea: #2D3A4A; --oro: #F5C76B; --oro-suave: #2A2618; color-scheme: dark; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  body { background: var(--fondo); color: var(--tinta); font: 400 16px/1.55 var(--font-body); -webkit-text-size-adjust: 100%; }
+  .pagina { max-width: 1040px; margin: 0 auto; padding-block: 22px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 22px; }
+
+  .cabeza { display: flex; flex-wrap: wrap; align-items: end; gap: 12px 20px; }
+  .cabeza-t { flex: 1 1 250px; min-width: 0; display: grid; gap: 2px; }
+  .antetitulo { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--oro); }
+  h1 { margin: 0; font: 600 clamp(34px, 8.6vw, 46px)/1 var(--font-display); letter-spacing: -.01em; text-wrap: balance; }
+  .entrada { margin: 6px 0 0; color: var(--tinta-2); max-width: 46ch; }
+  .idioma { display: grid; gap: 4px; font-size: 12px; font-weight: 600; color: var(--tinta-2); }
+  .idioma select { appearance: none; -webkit-appearance: none; min-height: 44px; padding: 0 38px 0 14px; border-radius: 14px; border: 1.5px solid var(--linea); background-color: var(--tarjeta); color: var(--tinta); font: 600 15px/1 var(--font-body);
+    background-image: linear-gradient(45deg, transparent 50%, var(--tinta-2) 50%), linear-gradient(135deg, var(--tinta-2) 50%, transparent 50%); background-position: calc(100% - 19px) 19px, calc(100% - 14px) 19px; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; }
+  .idioma select:focus-visible, .ej:focus-visible { outline: 3px solid var(--oro-vivo); outline-offset: 2px; }
+
+  .dos { display: grid; gap: 26px; align-items: start; }
+  .escenario { min-width: 0; }
+  .marco { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 30px; padding: 10px; max-width: 440px; margin: 0 auto; }
+  .lado { min-width: 0; display: grid; gap: 30px; }
+
+  h2 { margin: 0 0 4px; font: 600 27px/1.1 var(--font-display); text-wrap: balance; }
+  .sub { margin: 0; color: var(--tinta-2); font-size: 14.5px; }
+  .grupos { display: grid; gap: 18px; margin-top: 16px; }
+  .grupo { display: grid; gap: 8px; }
+  .grupo h3 { margin: 0; display: flex; align-items: center; gap: 8px; font: 700 12px/1.3 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--tinta-2); }
+  .grupo h3 i { width: 10px; height: 10px; border-radius: 50%; background: var(--n3); box-shadow: 0 0 0 2.5px var(--n2); flex: none; }
+  .fila { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ej { flex: 1 1 158px; display: grid; gap: 3px; align-content: start; text-align: left; min-height: 62px; padding: 10px 12px; border-radius: 16px; border: 1.5px solid var(--linea); background: var(--tarjeta); color: var(--tinta); font: inherit; cursor: pointer; min-width: 0; transition: border-color .15s ease, background .15s ease, transform .12s ease; }
+  .ej b { font-weight: 600; font-size: 14.5px; line-height: 1.25; overflow-wrap: anywhere; }
+  .ej span { font-size: 12px; color: var(--tinta-2); line-height: 1.3; }
+  .ej:hover { border-color: var(--oro-vivo); }
+  .ej:active { transform: scale(.98); }
+  .ej[aria-pressed="true"] { border-color: var(--oro-vivo); background: var(--oro-suave); }
+  .ej[aria-pressed="true"] span { color: var(--oro); font-weight: 600; }
+
+  .estado { display: grid; gap: 12px; padding-top: 26px; border-top: 1px solid var(--linea); }
+  .medida { display: grid; gap: 7px; }
+  .medida-n { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .medida-n strong { font: 600 40px/1 var(--font-display); font-variant-numeric: tabular-nums; }
+  .medida-n > span { color: var(--tinta-2); font-size: 14.5px; }
+  .barra { height: 8px; border-radius: 8px; background: var(--linea); overflow: hidden; }
+  .barra i { display: block; height: 100%; border-radius: 8px; background: linear-gradient(90deg, var(--n2), var(--oro-vivo)); }
+  .estado p { margin: 0; max-width: 62ch; font-size: 15px; }
+  .estado p + p { margin-top: -2px; }
+  .mandos { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; max-width: 62ch; }
+  .mandos li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+  .mandos kbd { justify-self: start; min-width: 44px; text-align: center; padding: 3px 8px; border-radius: 9px; border: 1.5px solid var(--linea); background: var(--tarjeta); font: 700 12.5px/1.5 var(--font-body); color: var(--tinta); }
+
+  .nuevo { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; max-width: 62ch; }
+  .nuevo li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+  .nuevo li::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--oro-vivo); transform: translateY(-1px); justify-self: center; }
+  .nuevo b { font-weight: 600; }
+  .voz-caja { display: grid; gap: 10px; padding: 14px 16px; border-radius: 18px; border: 1.5px solid var(--linea); background: var(--tarjeta); max-width: 62ch; }
+  .voz-caja strong { font-weight: 600; overflow-wrap: anywhere; }
+  .voz-caja p { font-size: 14.5px; color: var(--tinta-2); }
+  .boton { justify-self: start; min-height: 44px; padding: 0 18px; border-radius: 14px; border: 1.5px solid var(--oro-vivo); background: var(--oro-suave); color: var(--tinta); font: 600 15px/1 var(--font-body); cursor: pointer; }
+  .boton:focus-visible { outline: 3px solid var(--oro-vivo); outline-offset: 2px; }
+  .boton[disabled] { opacity: .5; cursor: default; }
+  details.voces { max-width: 62ch; font-size: 14px; }
+  details.voces summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; color: var(--tinta-2); }
+  .voces ul { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+  .voces li { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; padding: 7px 10px; border-radius: 10px; border: 1px solid var(--linea); overflow-wrap: anywhere; }
+  .voces li span { color: var(--tinta-2); font-size: 12.5px; }
+  .voces li em { font-style: normal; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 1px 7px; border-radius: 8px; border: 1px solid var(--linea); color: var(--tinta-2); }
+  .voces li.elegida { border-color: var(--oro-vivo); background: var(--oro-suave); }
+  .voces li.elegida em { border-color: var(--oro-vivo); color: var(--oro); }
+
+  @media (min-width: 900px) {
+    .pagina { padding-block: 34px 72px; gap: 30px; }
+    .dos { grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 44px; }
+    .escenario { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 18px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ej { transition: none; } }
+</style>
+
+<div class="pagina">
+  <header class="cabeza">
+    <div class="cabeza-t">
+      <span class="antetitulo">Tenerife Go · Su cuerpo</span>
+      <h1>Jérôme, el entrenador</h1>
+      <p class="entrada">Cada ejercicio, explicado paso a paso por Jérôme. Estos son los <span data-n="hechos">40</span> que ya tienen vídeo.</p>
+    </div>
+    <label class="idioma" for="idioma">Idioma del vídeo
+      <select id="idioma"></select>
+    </label>
+  </header>
+
+  <div class="dos">
+    <section class="escenario" aria-label="Vídeo del ejercicio">
+      <div class="marco" id="marco"></div>
+    </section>
+
+    <div class="lado">
+      <section aria-labelledby="t-elegir">
+        <h2 id="t-elegir">Elija un ejercicio</h2>
+        <p class="sub">Al tocarlo, Jérôme lo enseña arriba.</p>
+        <div class="grupos" id="grupos"></div>
+      </section>
+
+      <section class="estado" aria-labelledby="t-nuevo">
+        <h2 id="t-nuevo">Lo que cambia en esta versión</h2>
+        <ul class="nuevo">
+          <li><span><b>La cámara lenta ya no deja nada a medias.</b> Con «½×», cada paso dura lo que tarda su movimiento: se ve lo mismo que a velocidad normal, más despacio. Antes el paso duraba lo mismo y, en más de la mitad de los vídeos, el movimiento se quedaba a medias. El saludo, los consejos y el cierre van a su velocidad.</span></li>
+          <li><span><b>Al pino se sube andando por la pared.</b> El «Pino contra la pared» ya no empieza cabeza abajo. Boca abajo, con las manos en el suelo, Jérôme apoya los pies en la pared; después los sube por ella mientras acerca las manos, una mano o un pie cada vez; y para salir baja igual. Su ficha tiene ahora cuatro pasos y lo cuenta, con su fuente.</span></li>
+          <li><span><b>Bloque 8: el antebrazo y la pantorrilla.</b> 35 ejercicios nuevos. El antebrazo (16): los curls de muñeca (con barra y con mancuernas, normales e inversos, y en polea), la flexión y extensión de pie, la pronación y supinación, la desviación radial y cubital, tres paseos con carga (el del granjero, con toalla y agarrando las mancuernas por un extremo), la dominada con toallas, las flexiones sobre las yemas de los dedos y tres estiramientos de la muñeca. La pantorrilla (19): las elevaciones de talón de pie (a una pierna, con bajada a una pierna, en escalón a una pierna y con mancuerna, y con barra) y sentado (con barra, con mancuernas, a una pierna y sin peso), el tibial (de pie y los toques de puntas sentado), tres saltos (pogo altos, pogo laterales y laterales a una pierna) y cinco estiramientos (el sóleo en la pared y en escalón, con toalla sentado, el tibial de rodillas y el tobillo sentado).</span></li>
+          <li><span><b>Anda de verdad.</b> En los paseos con carga Jérôme sale de su sitio, recorre el tramo, da media vuelta y regresa al punto de partida: en cada paso el pie de delante pisa plano, el de atrás despega por la punta y el que pisa no resbala.</span></li>
+          <li><span><b>Solo se mueve lo que la ficha dice.</b> En los curls de muñeca el antebrazo descansa en los muslos o en el banco y lo único que se mueve es la muñeca. En las elevaciones de talón el pie gira sobre su parte delantera y el cuerpo sube con él; y en el tibial, sobre el talón.</span></li>
+          <li><span><b>Material nuevo: las toallas.</b> Colgadas de la barra de dominadas; en el asa de las mancuernas, donde se enrollan cuando la mano se cierra sobre ellas; y por la planta del pie, con un extremo en cada mano. Y la mancuerna cogida por un extremo, con la mano en garra.</span></li>
+          <li><span><b>Bloque 7: los tríceps.</b> 37 ejercicios nuevos: tumbado, el press francés (con barra Z, con barra recta y con mancuernas; en banco plano, inclinado y declinado, y en el suelo) y las extensiones con una mancuerna (a dos manos y a una); por encima de la cabeza (con mancuerna de pie y sentado, a una mano y con barra); las patadas (con una mancuerna, con dos, en polea y con el pecho apoyado en un banco inclinado); las poleas (con barra recta, con barra en V, con agarre inverso, a una mano, sobre la cabeza con cuerda, en polea baja a una mano y tumbado); los press en banco (con agarre cerrado, con agarre inverso, JM, Tate y con mancuernas y los codos pegados); los fondos (entre dos bancos, en banco con rotación, en el suelo y en paralelas), el soporte en paralelas, dos flexiones (con los codos pegados y de rodillas desde la postura del niño) y un estiramiento.</span></li>
+          <li><span><b>La carga pasa junto a la cabeza, medida.</b> Donde la ficha lleva la barra a la frente o la mancuerna por detrás de la cabeza, se mide por dónde pasa en todo el recorrido: la barra para a un par de centímetros de la frente, las mancuernas bajan a los lados de la cabeza y, para subir una mancuerna con las dos manos por encima de ella, Jérôme la rodea por un lado.</span></li>
+          <li><span><b>Material nuevo: la barra en V de la polea.</b> Con sus dos mangos, que bajan hacia fuera. Y donde la ficha manda coger el agarre de la polea en un paso, espera colgando de ella hasta ese paso.</span></li>
+          <li><span><b>Bloque 6: los bíceps.</b> 36 ejercicios nuevos: los curls de pie con barra (la barra Z por fuera y por dentro, el agarre ancho y el estrecho, el invertido y el de una mano), con mancuernas (alterno, martillo alterno y cruzado, de arrastre, Zottman e invertido) y con pesa rusa; en un banco (sentado, inclinado, tumbado, la araña, los dos concentrados y el de pie apoyado en un banco inclinado); el banco predicador (con barra, con mancuerna, martillo, Zottman y en polea, y la araña con barra por el otro lado); las poleas (baja, con cuerda, a una mano, entre dos poleas altas y tumbado); la barra fija (el remo invertido supino, el curl con el peso del cuerpo y el muscle-up, en sus tres tiempos) y un estiramiento.</span></li>
+          <li><span><b>El codo no se mueve.</b> Donde la ficha dice «sin mover los codos» o «sin despegar el brazo», el codo se queda clavado en su sitio y solo gira el antebrazo: medido, 0 cm en toda la repetición.</span></li>
+          <li><span><b>Material nuevo: la barra Z y el banco predicador.</b> La barra Z tiene su W y se agarra por las rampas de fuera o por las de dentro. El banco predicador tiene su cojín, su asiento y los ganchos donde espera la barra; y el cojín tapa de verdad: los brazos van por encima y el cuerpo queda detrás.</span></li>
+          <li><span><b>Bloque 5: los hombros.</b> 34 ejercicios nuevos: siete press (con barra sentado, con mancuernas, a una mano, Arnold, en banco inclinado, con rotación del tronco y el push press), las elevaciones laterales y frontales (sentado, con barra y en polea), el deltoides posterior (los pájaros sentado, tumbado, a una mano y en polea; las aperturas inversas en una polea y entre dos; los remos con mancuernas y con barra), los rotadores (tumbado de lado, en polea y contra la pared), la calistenia (la flexión en pica y con los pies elevados, el pino libre y contra la pared, la flexión en pino, la pseudoplancha y la flexión hindú), los círculos con los brazos y dos estiramientos.</span></li>
+          <li><span><b>Cabeza abajo.</b> En el pino contra la pared, Jérôme sale como dice la ficha, con control: las manos se alejan andando y los pies bajan por la pared, una mano o un pie cada vez, hasta quedar en plancha. Y en la pica, de la plancha a la V invertida solo sube la cadera: las manos y los pies no se mueven.</span></li>
+          <li><span><b>Lo que se coge, espera en su sitio.</b> Entre dos poleas coge primero un asa y después la otra, cada una con la mano contraria; y las mancuernas esperan en el suelo hasta el paso que dice cogerlas.</span></li>
+          <li><span><b>Bloque 4: la espalda alta.</b> 30 ejercicios nuevos: los encogimientos (con barra, en polea, entre dos poleas, el silverback y sin peso), el remo sentado en polea (agarre estrecho, ancho y supino), el remo alto en polea y con mancuernas, el landmine perpendicular, el remo con el pecho apoyado, los omóplatos (de pie, en un banco, en la pared, a cuatro patas, colgado de la barra y tumbado boca abajo en Y, T, W e I) y cuatro estiramientos del cuello.</span></li>
+          <li><span><b>Cada movimiento cabe en su paso.</b> Un paso dura lo que se tarda en leer su texto. Ocho movimientos de los bloques anteriores eran más largos que su paso en algún idioma y se quedaban a medias; están corregidos, y ahora se comprueba en los diez idiomas.</span></li>
+          <li><span><b>Bloque 3: el dorsal.</b> 35 ejercicios nuevos: nueve dominadas (con agarre ancho, neutro y estrecho, negativas, isométrica, parciales, de arquero, máquina de escribir y comando), el front lever y sus variantes, ocho jalones, los remos (con barra, con mancuernas, en barra T, Meadows, Helms, renegado y en polea a una mano) y dos estiramientos.</span></li>
+          <li><span><b>Material nuevo.</b> La máquina de remo sentado, con la chapa de los pies; la máquina de jalón con su asiento y su rodillo, el agarre en V, los agarres paralelos, la torre de dominadas y la barra T.</span></li>
+          <li><span><b>Las manos agarran la barra.</b> El puño va a lo largo de la barra y la palma mira hacia donde dice la ficha (hacia delante, hacia usted o enfrentadas), esté el codo donde esté. También en las dominadas y los press de los bloques anteriores.</span></li>
+          <li><span><b>Bloque 2: el pecho.</b> 35 ejercicios nuevos: los press con mancuernas y con barra (plano, inclinado y declinado), las aperturas, los cruces de poleas, los pullover, nueve flexiones, los fondos en paralelas y tres estiramientos.</span></li>
+          <li><span><b>El hombro del press de banca.</b> Ya no se ve hueco: lo que parecía transparente eran dos aros que marcaban los hombros y se quedaban encima, y la mano tapando la manga. Ahora el aviso es una onda que se apaga, el músculo que trabaja brilla sobre la manga y el press se mira desde los pies, por arriba: se ven el pecho y los dos hombros.</span></li>
+          <li><span><b>El tronco, de cualquier lado.</b> Tumbado y visto de pies a cabeza ya no pierde el pecho ni los hombros, y el dibujo de la camiseta no se queda a medio borrar.</span></li>
+          <li><span><b>La cabeza, rehecha.</b> Antes eran tres dibujos planos (de frente, de perfil y de espaldas) y se saltaba de uno a otro. Ahora tiene volumen y gira de verdad: la nariz, las orejas, las gafas y el tupé están en su sitio desde cualquier lado.</span></li>
+          <li><span><b>El cuerpo, rehecho.</b> Contorno, sombras planas, manos con dedos, zapatillas con cordones que se doblan al pisar, muñequera. Antes eran tubos con degradado.</span></li>
+          <li><span><b>Se mueve como alguien, no como un muñeco.</b> Respira, la cabeza y el tupé llegan un instante después que el cuerpo, los brazos sueltos se balancean, reparte el peso y mira a lo que el paso nombra.</span></li>
+          <li><span><b>Gestos nuevos.</b> Se asoma por un lado y entra; saluda con la mano, con la visera o subiendo el puño; da los consejos con el índice o con la palma; y cierra con un pulgar, con los dos o sacando bíceps. Cada ejercicio tiene los suyos.</span></li>
+          <li><span><b>La voz ya no coge la robótica.</b> Abajo se ve cuál usa este teléfono.</span></li>
+        </ul>
+      </section>
+
+      <section class="estado" aria-labelledby="t-estado">
+        <h2 id="t-estado">Lo que hay y lo que falta</h2>
+        <div class="medida">
+          <div class="medida-n"><strong><span data-n="hechos">40</span> de <span data-n="total">533</span></strong><span>ejercicios de la app tienen vídeo</span></div>
+          <div class="barra" role="img" aria-label="Parte de los ejercicios que ya tiene vídeo"><i id="barra"></i></div>
+        </div>
+        <p>Están los más habituales de los 12 grupos musculares y, de los 533 ejercicios que la app tenía hasta el 13 de noviembre, casi todo el pecho (bloque 2), casi todo el dorsal (bloque 3), casi toda la espalda alta (bloque 4), casi todos los hombros (bloque 5), casi todos los bíceps (bloque 6), casi todos los tríceps (bloque 7) y casi todo el antebrazo y la pantorrilla (bloque 8). Desde ese día la app ha crecido hasta <span data-n="total">951</span> ejercicios: los <span data-n="nuevos">418</span> nuevos, para hacer en casa y fuera, todavía no tienen vídeo. De aquellos 533 quedan <span data-n="quedan">286</span>, que llegan por bloques; mientras tanto, su ficha sigue como hoy.</p>
+        <p>Jérôme hace lo que dice cada paso de la ficha y el texto que se lee es el de la ficha, sin técnica añadida. Sale en los 10 idiomas de la app; los 9 que no son español esperan revisión nativa.</p>
+        <p>No hay archivos de vídeo. Jérôme es un dibujo que se mueve dentro de la app, así que funciona sin conexión y los <span data-n="hechos">40</span> ejercicios juntos pesan <span data-n="peso">224</span> KB.</p>
+        <p>Los bloques 1 a 8 ya están en la app. La cámara lenta arreglada y la subida al pino están preparadas y sin subir a GitHub.</p>
+      </section>
+
+      <section class="estado" aria-labelledby="t-mandos">
+        <h2 id="t-mandos">Los mandos</h2>
+        <ul class="mandos">
+          <li><kbd>‹ ›</kbd><span>Pasan de un paso a otro. También vale tocar el lado izquierdo o el derecho del vídeo; el centro lo pausa.</span></li>
+          <li><kbd>½×</kbd><span>Lo pone a cámara lenta: cada paso dura entonces lo que tarda su movimiento.</span></li>
+          <li><kbd>↻</kbd><span>Lo enseña desde otro lado.</span></li>
+          <li><kbd>Voz</kbd><span>Lee cada paso con la mejor voz que el teléfono deje usar en ese idioma; las robóticas, nunca.</span></li>
+        </ul>
+      </section>
+
+      <section class="estado" aria-labelledby="t-voz">
+        <h2 id="t-voz">La voz de este teléfono</h2>
+        <div class="voz-caja">
+          <div>El vídeo usará: <strong id="voz-cual">…</strong></div>
+          <p id="voz-por"></p>
+          <button class="boton" type="button" id="voz-probar">Probar esta voz</button>
+        </div>
+        <details class="voces">
+          <summary id="voz-n">Las voces que este teléfono enseña</summary>
+          <ul id="voz-lista"></ul>
+        </details>
+        <p>La voz la pone el teléfono, no la app. Un iPhone solo deja a las páginas web usar unas pocas de las suyas, y entre ellas van unas robóticas, de un sintetizador de hace más de veinte años; las voces buenas que se descargan en Ajustes no se las enseña. Para que Jérôme tenga una voz propia y natural haría falta grabarla o generarla una vez y llevar el audio dentro de la app: eso está sin decidir.</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>/*__MOTOR__*/</script>
+<script>/*__DATOS__*/</script>
+<script>
+(function () {
+  var M = window.TG_MUESTRA, ENT = window.TG_ENTRENADOR;
+  var ORDEN = ['cuadriceps', 'gluteos', 'isquios', 'pantorrilla', 'pecho', 'dorsal', 'espalda_alta', 'hombros', 'biceps', 'triceps', 'antebrazo', 'core'];
+  var IDIOMAS = [['es', 'Español'], ['en', 'English'], ['fr', 'Français'], ['de', 'Deutsch'], ['it', 'Italiano'], ['nl', 'Nederlands'], ['zh', '简体中文'], ['zht', '繁體中文'], ['bg', 'Български'], ['pl', 'Polski']];
+  var ids = Object.keys(M.ej).filter(function (id) { return ENT.tiene(id); });
+  var lang = 'es', actual = 'sentadilla-peso-corporal', R = null;
+  try { var g = localStorage.getItem('jerome-idioma'); if (g && IDIOMAS.some(function (q) { return q[0] === g; })) lang = g; } catch (e) {}
+  var h0 = (location.hash || '').slice(1); if (ids.indexOf(h0) >= 0) actual = h0;
+
+  function tr(k) { return (M.ui[k] && (M.ui[k][lang] || M.ui[k].es)) || ''; }
+  function nombre(id) { var x = M.ej[id]; return (x.tx[lang] || x.tx.es)[0]; }
+  function tema() {
+    var a = document.documentElement.getAttribute('data-theme');
+    if (a === 'dark') return 'noche'; if (a === 'light') return 'dia';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'noche' : 'dia';
+  }
+  function etiquetas(x) {
+    return [tr('cuerpoEnt_' + x.e[0]), tr('cuerpoNivel_' + x.n)].concat(x.m.filter(function (m) { return m !== 'ninguno'; }).map(function (m) { return tr('cuerpoMat_' + m); })).filter(Boolean);
+  }
+  function montar(auto) {
+    var x = M.ej[actual], t = x.tx[lang] || x.tx.es, nombres = {};
+    x.g.concat(x.s).forEach(function (q) { nombres[q] = tr('cuerpoG_' + q); });
+    if (R) R.quitar();
+    R = ENT.montar(document.getElementById('marco'), { id: actual, nombre: t[0], pasos: t[1], pasosEs: x.tx.es[1], prim: x.g, sec: x.s, nombres: nombres, nivel: x.n, entorno: x.e[0], etiquetas: etiquetas(x) }, { idioma: lang, tema: tema(), auto: !!auto });
+  }
+  function lista() {
+    var caja = document.getElementById('grupos'); caja.textContent = '';
+    ORDEN.forEach(function (gr) {
+      var suyos = ids.filter(function (id) { return M.ej[id].g[0] === gr; });
+      if (!suyos.length) return;
+      var s = document.createElement('div'); s.className = 'grupo';
+      var h = document.createElement('h3'); h.appendChild(document.createElement('i')); h.appendChild(document.createTextNode(tr('cuerpoG_' + gr))); s.appendChild(h);
+      var f = document.createElement('div'); f.className = 'fila';
+      suyos.forEach(function (id) {
+        var x = M.ej[id], b = document.createElement('button'); b.type = 'button'; b.className = 'ej'; b.id = 'ej-' + id; b.setAttribute('aria-pressed', id === actual ? 'true' : 'false');
+        var n = document.createElement('b'); n.textContent = nombre(id); b.appendChild(n);
+        var m = document.createElement('span'); m.textContent = [tr('cuerpoEnt_' + x.e[0]), tr('cuerpoNivel_' + x.n)].filter(Boolean).join(' · '); b.appendChild(m);
+        b.addEventListener('click', function () { elegir(id, true); });
+        f.appendChild(b);
+      });
+      s.appendChild(f); caja.appendChild(s);
+    });
+  }
+  function marcar() {
+    ids.forEach(function (id) { var b = document.getElementById('ej-' + id); if (b) b.setAttribute('aria-pressed', id === actual ? 'true' : 'false'); });
+  }
+  function elegir(id, tocado) {
+    if (ids.indexOf(id) < 0) return;
+    actual = id; marcar(); montar(tocado);
+    if (tocado) {
+      try { if ((location.hash || '').slice(1) !== id) location.hash = id; } catch (e) {}
+      var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var m = document.getElementById('marco'), r = m.getBoundingClientRect();
+      if (r.top < 0 || r.top > window.innerHeight * 0.35) m.scrollIntoView({ block: 'start', behavior: quieto ? 'auto' : 'smooth' });
+    }
+  }
+
+  var sel = document.getElementById('idioma');
+  IDIOMAS.forEach(function (q) { var o = document.createElement('option'); o.value = q[0]; o.textContent = q[1]; sel.appendChild(o); });
+  sel.value = lang;
+  sel.addEventListener('change', function () {
+    lang = sel.value; try { localStorage.setItem('jerome-idioma', lang); } catch (e) {}
+    lista(); montar(false);
+  });
+  window.addEventListener('hashchange', function () { var id = (location.hash || '').slice(1); if (id !== actual && ids.indexOf(id) >= 0) elegir(id, false); });
+  /* el decorado, de día o de noche, como el tema de quien mira */
+  var alTema = function () { if (R) R.tema(tema()); };
+  if (window.matchMedia) { var mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', alTema); else if (mq.addListener) mq.addListener(alTema); }
+  if (window.MutationObserver) new MutationObserver(alTema).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  /* las cifras, de los datos */
+  var cifras = { hechos: ids.length, total: M.total, quedan: 533 - ids.length, nuevos: M.total - 533, peso: /*__PESO__*/0 };      /* todos los que tienen vídeo son de los 533 que había hasta el 13-11-2026 */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-n]'), function (n) { var v = cifras[n.getAttribute('data-n')]; if (v) n.textContent = v; });
+  document.getElementById('barra').style.width = (100 * ids.length / M.total).toFixed(1) + '%';
+
+  /* la voz de este teléfono: cuál elige el vídeo y cuáles enseña el navegador */
+  var FRASE = { es: 'Hola, soy Jérôme. Vamos paso a paso.', en: 'Hello, I am Jérôme. Let us take it step by step.', fr: 'Bonjour, je suis Jérôme. Allons-y étape par étape.', de: 'Hallo, ich bin Jérôme. Gehen wir Schritt für Schritt vor.', it: 'Ciao, sono Jérôme. Andiamo passo dopo passo.', nl: 'Hallo, ik ben Jérôme. We gaan stap voor stap.', zh: '你好，我是 Jérôme。我们一步一步来。', zht: '你好，我是 Jérôme。我們一步一步來。', bg: 'Здравейте, аз съм Jérôme. Да вървим стъпка по стъпка.', pl: 'Dzień dobry, jestem Jérôme. Zróbmy to krok po kroku.' };
+  function voz() {
+    var cual = document.getElementById('voz-cual'), por = document.getElementById('voz-por'), ul = document.getElementById('voz-lista'), bot = document.getElementById('voz-probar'), v;
+    try { v = ENT.voces(lang); } catch (e) { v = null; }
+    var hay = !!v && 'speechSynthesis' in window && typeof window.SpeechSynthesisUtterance === 'function';
+    var delIdioma = hay ? v.lista.filter(function (q) { return String(q.lang).replace('_', '-').toLowerCase().slice(0, 2) === v.locale.slice(0, 2).toLowerCase(); }) : [];
+    ul.textContent = '';
+    if (!hay) { cual.textContent = 'ninguna'; por.textContent = 'Este navegador no deja leer en voz alta.'; bot.disabled = true; document.getElementById('voz-n').textContent = 'Este navegador no enseña voces'; return; }
+    if (v.elegida) { cual.textContent = v.elegida; por.textContent = 'Es la mejor de las ' + delIdioma.length + ' que el teléfono enseña en este idioma.'; }
+    else if (v.sistema) { cual.textContent = 'la que ponga el teléfono'; por.textContent = v.lista.length ? 'En este idioma el teléfono solo enseña voces robóticas (' + delIdioma.length + '). El vídeo no elige ninguna: le da el idioma y deja que ponga la suya.' : 'El teléfono aún no ha dicho qué voces tiene. El vídeo le da el idioma y deja que ponga la suya.'; }
+    else { cual.textContent = 'ninguna'; por.textContent = 'No hay ninguna voz del aparato que valga en este idioma: el botón de voz no sale.'; }
+    bot.disabled = !(v.elegida || v.sistema);
+    document.getElementById('voz-n').textContent = 'Las voces que este teléfono enseña en este idioma (' + delIdioma.length + ' de ' + v.lista.length + ')';
+    delIdioma.forEach(function (q) {
+      var li = document.createElement('li'), b = document.createElement('b'), s2 = document.createElement('span'), em = document.createElement('em');
+      b.textContent = q.nombre; s2.textContent = q.lang + ' · ' + q.uri;
+      em.textContent = q.nombre === v.elegida ? 'la elegida' : !q.local ? 'de red: no' : q.nota < 0 ? 'robótica: no' : 'vale';
+      if (q.nombre === v.elegida) li.className = 'elegida';
+      li.appendChild(b); li.appendChild(em); li.appendChild(s2); ul.appendChild(li);
+    });
+  }
+  document.getElementById('voz-probar').addEventListener('click', function () {
+    try {
+      var v = ENT.voces(lang), u = new SpeechSynthesisUtterance(FRASE[lang] || FRASE.es), todas = window.speechSynthesis.getVoices() || [];
+      window.speechSynthesis.cancel();
+      u.lang = v.locale; u.rate = 0.97;
+      if (v.elegida) for (var i = 0; i < todas.length; i++) if (todas[i].name === v.elegida && String(todas[i].lang).replace('_', '-').toLowerCase().slice(0, 2) === v.locale.slice(0, 2).toLowerCase()) { u.voice = todas[i]; break; }
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  });
+  try { if (window.speechSynthesis && window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged', voz); } catch (e) {}
+  sel.addEventListener('change', voz);
+
+  lista(); montar(false); voz();
+})();
+</script>

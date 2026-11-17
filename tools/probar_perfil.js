@@ -29,6 +29,13 @@
  *      el reloj del navegador (clock.setFixedTime): la app no tiene otra. Y la 47
  *      (31 de octubre): quien llevaba uno de los 28 retirados lo conserva; la 47b,
  *      la cabina roja britanica, que ya no esta, se descarta;
+ *   1e. sin «Su cuerpo» (10 de noviembre de 2026, #99): «Sus datos» y «Su evolucion»
+ *      viven en «Su cuerpo» (su pestaña «Evolucion»); si su modulo no llega, se ven en
+ *      la pestaña Cuerpo de aqui. Sus km, los de antes y los de «Anotar movimiento»
+ *      (tenerife.cuerpo), juntos y validados al leerlos; y «Anotar movimiento», sin el
+ *      modulo, dice que no se pudo abrir. El prestamo a «Su cuerpo» lo prueba
+ *      tools/probar_cuerpo.js. Por eso, las partes que tocan esas dos tarjetas (1, 2,
+ *      2b, 2c y 4) corren sin modulos/cuerpo.js (sinCuerpo), que es cuando se ven aqui;
  *   2. la nube con permiso (pruebas/nube.py, 33), contra una nube de mentira que
  *      se porta como supabase/perfil.sql (RLS, 23503, cascade, check, columnas):
  *      tools/perfil_nube_de_prueba.js, la demo-nube.js del encargo, que solo en
@@ -79,6 +86,24 @@ function ok(cond, que, detalle) {
   else { fallos++; console.log('  MAL ' + que + (detalle !== undefined ? '   -> ' + JSON.stringify(detalle).slice(0, 500) : '')); }
 }
 const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+/* (7-11-2026) Toda la prueba, en un mismo día. «Hoy» se fija aquí, al empezar (HOY; dia() y los datos de
+   ejemplo cuentan desde el mismo día), y la app lo lee del reloj del navegador cada vez que anota. Si la
+   medianoche llega a mitad de la prueba, la app anota ya con el día siguiente y salen en rojo pruebas que
+   están bien: n5 (busca en la nube el peso nuevo con la fecha de ayer) y n35 (escribe en el campo la fecha
+   de ayer, que ya no es un día nuevo). Le pasó a la auditoría del 6 de noviembre de 2026, que llegó aquí a
+   las 23:48. La prueba dura unos 20 minutos: si quedan menos de MARGEN para la medianoche, espera a que pase
+   y empieza en el día nuevo. Es la hora local, la misma de dia() y la del navegador (los contextos de
+   Atlantic/Canary son los de los de oro, con la fecha fija, y los de la pantalla, que no anotan) */
+const MARGEN_MIN = 45;
+(function esperarMedianoche() {
+  const ahora = new Date(), luego = new Date(ahora);
+  luego.setHours(24, 0, 5, 0);                       // las 00:00:05 del día siguiente
+  const falta = luego - ahora;
+  if (falta < MARGEN_MIN * 60000) {
+    console.log('  (faltan ' + Math.ceil(falta / 60000) + ' min para la medianoche: la prueba espera a que pase, para no cambiar de día a mitad)');
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, falta);
+  }
+})();
 const dia = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
 const HOY = dia(0);
 const mismoInstante = (a, b) => Math.abs(Date.parse(String(a).replace(/(\.\d{3})\d+/, '$1')) - Date.parse(String(b).replace(/(\.\d{3})\d+/, '$1'))) < 2;
@@ -119,9 +144,11 @@ function conPestanas(pg) {
   }
   return pg;
 }
+/* (#99) con { sinCuerpo: true }, modulos/cuerpo.js no llega: «Sus datos» y «Su evolución» se ven en el perfil */
 async function contexto(b, opc) {
-  const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', locale: 'es-ES', acceptDownloads: true }, opc || {}));
-  await ctx.route('**/*', r => r.request().url().startsWith('http://127.0.0.1') ? r.continue() : r.abort());
+  const o = Object.assign({}, opc || {}), sinCuerpo = !!o.sinCuerpo; delete o.sinCuerpo;
+  const ctx = await b.newContext(Object.assign({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', locale: 'es-ES', acceptDownloads: true }, o));
+  await ctx.route('**/*', r => { const u = r.request().url(); return u.startsWith('http://127.0.0.1') && !(sinCuerpo && /\/modulos\/cuerpo\.js(\?|$)/.test(u)) ? r.continue() : r.abort(); });
   await ctx.addInitScript(() => {
     try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {}
   });
@@ -155,7 +182,7 @@ const errores = pg => { const e = []; pg.on('pageerror', x => e.push(String(x)))
 /* ── 1. las regresiones ───────────────────────────────────────────────── */
 async function regresiones(b) {
   console.log('\n=== 1. las regresiones de la verificacion (regresiones.py) ===');
-  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  const ctx = await contexto(b, { sinCuerpo: true }), pg = await ctx.newPage(), errs = errores(pg);
   await abrirApp(pg, 'es');
   /* 12 lugares marcados y 3 de ellos comprobados (los del prototipo) */
   await pg.evaluate(hoy => {
@@ -193,8 +220,10 @@ async function regresiones(b) {
   await E(`setLang('pl')`); await pg.waitForTimeout(200);
   ok((await pg.innerText('#tgp-progress-txt')).includes('miejsc do osiągnięcia'), '8b plural pl 13', await pg.innerText('#tgp-progress-txt'));
   await E(`setLang('es')`); await pg.waitForTimeout(200);
+  /* (#99) aquí ya no se anotan km (van a «Anotar movimiento» de «Su cuerpo»): los de antes, como estarían
+     guardados, con su id; y se borra el pulsado */
+  await E(`(() => { const s = TG_PERFIL.estado(); s.km.push({ id: 'prueba-km-1-a1b2c3d4e5', d: '${HOY}', km: 1.1 }, { id: 'prueba-km-2-f6a7b8c9d0', d: '${HOY}', km: 9.9 }); TG_PERFIL.repintar(); })()`);
   await pg.click('#tgp-evo-tabs button[data-tab="km"]'); await pg.waitForTimeout(120);
-  for (const v of ['1,1', '9,9']) { await pg.fill('#tgp-km-nuevo', v); await pg.click('#tgp-add-km button[type=submit]'); await pg.waitForTimeout(120); }
   const antes = await E(`TG_PERFIL.estado().km.filter(k => k.d === '${HOY}').map(k => k.km)`);
   const filas = pg.locator('#tgp-km-log li'); let idx = -1;
   for (let i = 0; i < await filas.count(); i++) if ((await filas.nth(i).innerText()).includes('9,9')) { idx = i; break; }
@@ -211,7 +240,7 @@ async function regresiones(b) {
     '18 la descarga es tenerife-go-perfil.json, con v:1 y el id de cada caminata', { nombre: descarga.suggestedFilename(), v: exp.v });
   await E(`setLang('en')`); await pg.waitForTimeout(150);
   const fechas = await E(`[...document.querySelectorAll('#perfil-panel input[type=date]')].map(e => e.getAttribute('aria-label'))`);
-  ok(fechas.length === 2 && fechas.every(t => t === 'Date'), '11 en ingles, los campos de fecha no dicen «Fecha»', fechas);
+  ok(fechas.length === 1 && fechas.every(t => t === 'Date'), '11 en ingles, el campo de fecha (el del peso: el de los km se fue con su formulario, #99) no dice «Fecha»', fechas);
   await E(`setLang('es')`); await pg.waitForTimeout(150);
   ok(await E(`getComputedStyle(document.getElementById('tgp-borrar-confirm')).display`) === 'none', '14 la confirmacion de borrar empieza cerrada (se ve de verdad, no solo el atributo)');
   await pg.click('#tgp-borrar-local'); await pg.waitForTimeout(100);
@@ -571,7 +600,7 @@ async function pestanas(b) {
       sel: tabs.filter(t => t.getAttribute('aria-selected') === 'true').map(t => t.dataset.pestana),
       tabindex: tabs.map(t => t.tabIndex),
       foco: document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.pestana || '' : '',
-      ver: ['tgp-avatares', 'tgp-isla', 'tgp-datos', 'tgp-evo', 'tgp-cuenta'].filter(vis),
+      ver: ['tgp-avatares', 'tgp-isla', 'tgp-cuerpo', 'tgp-datos', 'tgp-evo', 'tgp-cuenta'].filter(vis),
       guardada: JSON.parse(localStorage.getItem('tenerife.perfil') || '{}').pestana
     };
   });
@@ -589,9 +618,9 @@ async function pestanas(b) {
   const v1 = await ver();
   await pg.click('#tgp-tab-cuenta'); await pg.waitForTimeout(150);
   const v2 = await ver();
-  ok(v1.sel.join() === 'cuerpo' && v1.ver.join() === 'tgp-datos,tgp-evo' && v1.tabindex.join() === '-1,0,-1' && v1.guardada === 'cuerpo'
+  ok(v1.sel.join() === 'cuerpo' && v1.ver.join() === 'tgp-cuerpo' && v1.tabindex.join() === '-1,0,-1' && v1.guardada === 'cuerpo'
     && v2.sel.join() === 'cuenta' && v2.ver.join() === 'tgp-cuenta' && v2.guardada === 'cuenta',
-    'p2 tocar Cuerpo enseña sus datos y su evolucion; tocar Cuenta, la cuenta; cada vez, solo esa, y se guarda', [v1, v2]);
+    'p2 tocar Cuerpo enseña la tarjeta de «Su cuerpo» (sus datos y su evolucion van dentro de «Su cuerpo» desde el 10-11-2026, #99); tocar Cuenta, la cuenta; cada vez, solo esa, y se guarda', [v1, v2]);
   /* el teclado: con el foco en la pestaña abierta */
   await pg.focus('#tgp-tab-cuenta');
   const teclas = [];
@@ -609,7 +638,7 @@ async function pestanas(b) {
   await pg.evaluate(() => { const s = JSON.parse(localStorage.getItem('tenerife.perfil')); s.pestana = '<b>x</b>'; localStorage.setItem('tenerife.perfil', JSON.stringify(s)); });
   await pg.reload({ waitUntil: 'load' }); await abrirApp(pg, 'es'); await abrirPerfilYa(pg);
   const v5 = await ver();
-  ok(v3.sel.join() === 'cuerpo' && v4.sel.join() === 'cuerpo' && v4.ver.join() === 'tgp-datos,tgp-evo' && v5.sel.join() === 'viaje',
+  ok(v3.sel.join() === 'cuerpo' && v4.sel.join() === 'cuerpo' && v4.ver.join() === 'tgp-cuerpo' && v5.sel.join() === 'viaje',
     'p4 la ultima pestaña se recuerda al cerrar el perfil y al volver a abrir la app; un valor raro guardado vuelve a Viaje', [v3.sel, v4.sel, v5.sel]);
   /* sus nombres, en los diez idiomas */
   const nombres = {};
@@ -627,16 +656,22 @@ async function pestanas(b) {
   await pg.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 99999; }); await pg.waitForTimeout(150);
   await pg.click('#tgp-tab-cuerpo'); await pg.waitForTimeout(200);
   const pos = await pg.evaluate(() => {
-    /* lo primero de la pestaña nueva: desde «Su cuerpo» (31 de octubre de 2026) es su tarjeta,
-       encima de «Sus datos» */
-    const primera = document.getElementById('tgp-p-cuerpo').firstElementChild;
+    /* lo primero que se ve de la pestaña nueva: desde el 1 de noviembre de 2026, «Su cuerpo»
+       (o su tarjeta, mientras llega el modulo), encima de «Sus datos» */
+    const p = document.getElementById('perfil-panel');
+    const primera = [...document.getElementById('tgp-p-cuerpo').children].find(e => e.getClientRects().length > 0);
     const cab = document.querySelector('.tgp-top').getBoundingClientRect(), barra = document.getElementById('tgp-tabs').getBoundingClientRect(), datos = primera.getBoundingClientRect();
-    return { cab: Math.round(cab.bottom), barra: [Math.round(barra.top), Math.round(barra.bottom)], primera: primera.id, datos: Math.round(datos.top) };
+    return { cab: Math.round(cab.bottom), barra: [Math.round(barra.top), Math.round(barra.bottom)], primera: primera.id, datos: Math.round(datos.top), fin: Math.round(datos.bottom), alto: innerHeight,
+      alFinal: Math.abs(p.scrollTop - (p.scrollHeight - p.clientHeight)) <= 1 };
   });
-  ok(Math.abs(pos.barra[0] - pos.cab) <= 2 && pos.datos >= pos.barra[1] && pos.datos <= pos.barra[1] + 30,
-    'p6 al cambiar de pestaña desde abajo, la barra queda bajo la cabecera y la pestaña nueva empieza justo debajo', pos);
+  /* (#99) la pestaña Cuerpo lleva ahora solo la tarjeta de «Su cuerpo» y es corta: la pagina no baja tanto como para que
+     la barra se pegue arriba. Entonces queda en su final, con la tarjeta entera justo debajo de la barra */
+  ok((Math.abs(pos.barra[0] - pos.cab) <= 2 || pos.alFinal) && pos.datos >= pos.barra[1] && pos.datos <= pos.barra[1] + 30 && pos.fin <= pos.alto,
+    'p6 al cambiar de pestaña desde abajo, la pestaña nueva empieza justo debajo de la barra y entera: la barra, bajo la cabecera o, si la pestaña es corta (Cuerpo, desde el #99), donde la pagina llega', pos);
   /* con la letra grande del movil (aqui, al doble) la cabecera crece, y en bulgaro su titulo
-     pasa a dos lineas: la barra, pegada arriba, sigue justo debajo, sin que la tape */
+     pasa a dos lineas: la barra, pegada arriba, sigue justo debajo, sin que la tape. En Viaje, la pestaña larga: la de
+     Cuerpo, desde el #99, no baja tanto como para que la barra se pegue (p6); p6c sigue en Viaje */
+  await pg.evaluate(() => TG_PERFIL.pestana('viaje')); await pg.waitForTimeout(150);
   const tapa = {}; let altoBg = 0;
   for (const esc of [1, 2]) for (const L of LENG) {
     await pg.evaluate(([l, e]) => { setLang(l); document.documentElement.style.fontSize = (16 * e) + 'px'; }, [L, esc]); await pg.waitForTimeout(120);
@@ -677,14 +712,78 @@ async function pestanas(b) {
   await pg.evaluate(() => { document.documentElement.style.fontSize = ''; setLang('es'); });
   await pg.setViewportSize({ width: 390, height: 844 }); await pg.waitForTimeout(200);
   ok(!Object.keys(partidos).length, 'p6d los nombres de las pestañas, enteros y dentro de su pestaña, a 320 y a 360 px con la letra del móvil a 1,3: en los diez idiomas', partidos);
+  /* el iPhone con isla dinamica (1 de noviembre de 2026): 59 px arriba, que el panel ya deja con su
+     padding-top. La cabecera se queda en ellos, sin sumarlos otra vez (antes bajaba a 118, y al
+     cambiar de pestaña desde abajo lo primero de la pestaña nueva quedaba escondido detras de la
+     barra). Chromium simula el margen (Emulation.setSafeAreaInsetsOverride). */
+  {
+    const c2 = await contexto(b, { viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }), p2 = await c2.newPage(), e2 = errores(p2);
+    const cdp = await c2.newCDPSession(p2);
+    let simula = true;
+    try { await cdp.send('Emulation.setSafeAreaInsetsOverride', { insets: { top: 59, topMax: 59, bottom: 34, bottomMax: 34, left: 0, leftMax: 0, right: 0, rightMax: 0 } }); } catch (e) { simula = false; }
+    if (simula) {
+      await abrirApp(p2, 'es'); await abrirPerfilYa(p2);
+      /* (#99) la pestaña Cuerpo es corta (solo la tarjeta de «Su cuerpo»): se baja en Viaje, la larga (la barra se pega
+         justo debajo de la cabecera), y desde ahi se pasa a Cuerpo: empieza justo debajo de la barra, entera */
+      await p2.evaluate(() => TG_PERFIL.pestana('viaje')); await p2.waitForTimeout(200);
+      const r = s => p2.evaluate(s => { const x = document.querySelector(s).getBoundingClientRect(); return [Math.round(x.top), Math.round(x.bottom)]; }, s);
+      const arribaCab = await r('.tgp-top');
+      await p2.evaluate(() => { document.getElementById('perfil-panel').scrollTop = 99999; }); await p2.waitForTimeout(200);
+      const abajoCab = await r('.tgp-top'), abajoBarra = await r('#tgp-tabs');
+      await p2.click('#tgp-tab-cuerpo'); await p2.waitForTimeout(250);
+      const cab = await r('.tgp-top'), barra = await r('#tgp-tabs');
+      const pc = await p2.evaluate(() => { const pp = document.getElementById('perfil-panel'), e = [...document.getElementById('tgp-p-cuerpo').children].find(x => x.getClientRects().length > 0), q = e.getBoundingClientRect();
+        return { primera: Math.round(q.top), fin: Math.round(q.bottom), alto: innerHeight, alFinal: Math.abs(pp.scrollTop - (pp.scrollHeight - pp.clientHeight)) <= 1 }; });
+      ok(Math.abs(arribaCab[0] - 59) <= 1 && Math.abs(abajoCab[0] - 59) <= 1 && Math.abs(abajoBarra[0] - abajoCab[1]) <= 2 && Math.abs(cab[0] - 59) <= 1
+         && (Math.abs(barra[0] - cab[1]) <= 2 || pc.alFinal) && pc.primera >= barra[1] && pc.primera <= barra[1] + 30 && pc.fin <= pc.alto && !e2.length,
+        'p6e en un iPhone con isla dinamica (59 px arriba): la cabecera justo debajo del margen, arriba y al bajar (con la barra pegada justo debajo); y al cambiar de pestaña desde abajo, la pestaña nueva justo debajo de la barra y entera', { arribaCab, abajoCab, abajoBarra, cab, barra, pc, errores: e2.slice(0, 2) });
+    } else ok(false, 'p6e Chromium simula el margen del iPhone (Emulation.setSafeAreaInsetsOverride)');
+    await c2.close();
+  }
   ok(!errs.length, 'p7 las pestañas, sin errores de pagina', errs.slice(0, 3));
+  await ctx.close();
+}
+
+/* ── 1e. sin «Su cuerpo» (#99, 10 de noviembre de 2026) ───────────────────
+   «Sus datos» y «Su evolución» viven en «Su cuerpo»; si su modulo no llega (sin red y sin haberlo guardado nunca),
+   se ven en la pestaña Cuerpo del perfil. Sus km: los de antes del perfil y los de «Anotar movimiento» (guardados en
+   tenerife.cuerpo), juntos y validados al leerlos (fecha de verdad, de hace como mucho 3 × 366 dias a mañana; de mas
+   de 0 a 200 km); y «Anotar movimiento», sin el modulo, dice que no se pudo abrir */
+async function sinSuCuerpo(b) {
+  console.log('\n=== 1e. sin «Su cuerpo» (no llega su modulo): «Sus datos» y «Su evolución», en el perfil ===');
+  const ctx = await contexto(b, { sinCuerpo: true }), pg = await ctx.newPage(), errs = errores(pg);
+  const antes = [{ id: 'antes-1-a1b2c3d4e5f6', d: dia(1), km: 4.2 }, { id: 'antes-2-a1b2c3d4e5f6', d: dia(9), km: 10 }];
+  const T0 = Date.now() - 3600e3;
+  /* de «Su cuerpo»: tres que valen (la bici de 250 km cuenta 200, su tope) y cinco que no (sin km, km que no es un
+     numero, de hace 1.200 dias, de dentro de 3 dias, una fecha que no existe) */
+  const mov = [[dia(0), 'bici', 24.5], [dia(2), 'nadar', 0.05], [dia(4), 'bici', 250], [dia(3), 'surf', 0], [dia(5), 'caminar', 'x'],
+    [dia(1200), 'caminar', 3], [dia(-3), 'caminar', 3], ['2026-02-31', 'caminar', 3]].map((x, i) => ({ d: x[0], tipo: x[1], min: 30, km: x[2], int: 'm', t: T0 + i }));
+  await ctx.addInitScript(([p, c]) => { try { localStorage.setItem('tenerife.perfil', p); localStorage.setItem('tenerife.cuerpo', c); } catch (e) {} },
+    [JSON.stringify(Object.assign(ejemplo(), { km: antes, pestana: 'cuerpo' })), JSON.stringify({ v: 1, mov })]);
+  await abrirApp(pg, 'es'); await abrirPerfilYa(pg);
+  const visibles = await pg.waitForFunction(() => { const d = document.getElementById('tgp-datos'), e = document.getElementById('tgp-evo');
+    return !d.hidden && !e.hidden && d.parentNode.id === 'tgp-p-cuerpo' && e.parentNode.id === 'tgp-p-cuerpo' && !window.TG_CUERPO; }, null, { timeout: 20000 }).then(() => true, () => false);
+  ok(visibles, 'f1 sin el modulo de «Su cuerpo», «Sus datos» y «Su evolución» se ven en la pestaña Cuerpo del perfil, bajo su tarjeta');
+  await pg.click('#tgp-evo-tabs button[data-tab="km"]'); await pg.waitForTimeout(200);
+  const km = await pg.evaluate(() => ({ v: [...document.querySelectorAll('#tgp-km-tiles .tgp-tile .v')].map(t => t.textContent), k: [...document.querySelectorAll('#tgp-km-tiles .tgp-tile .k')].map(t => t.textContent),
+    filas: [...document.querySelectorAll('#tgp-km-log li')].map(li => ({ t: li.querySelector('span:nth-child(2)').textContent, x: !!li.querySelector('.x') })), barras: document.querySelectorAll('#tgp-km-chart svg rect.bar').length }));
+  /* lo que tiene que salir: 7 dias = 4,2 + 24,5 + 0,05 + 200; hoy = 24,5; total = eso + 10 */
+  const f = n => new Intl.NumberFormat('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(n) + ' km';
+  ok(JSON.stringify(km.v) === JSON.stringify([f(228.75), f(24.5), f(238.75)]) && km.k[2] === 'Total',
+    'f2 los km juntos: los dos de antes y los tres de «Anotar movimiento» que valen (la bici de 250 km, con su tope de 200); fuera los cinco que no; el tercero se llama «Total»', km);
+  ok(km.filas.length === 5 && km.filas.filter(x => x.x).length === 2 && km.filas.map(x => x.t).join(' | ') === ['24,5 km', '4,2 km', '0,05 km', '200,0 km', '10,0 km'].join(' | '),
+    'f3 la lista: lo ultimo primero, con «Borrar» solo en los de antes (los de «Su cuerpo» se borran en su hoja); 50 m a nado, «0,05 km»', km.filas);
+  await pg.click('#tgp-km-anotar'); await pg.waitForTimeout(600);
+  const aviso = await pg.evaluate(() => { const a = document.getElementById('tgp-km-anotar-error'); return { ver: !a.hidden, t: a.textContent, esp: tx('perfilCuerpoError') }; });
+  ok(aviso.ver && aviso.t === aviso.esp && aviso.t.length > 10, 'f4 «Anotar movimiento» sin el modulo: «No se pudo abrir…», debajo del boton', aviso);
+  ok(!errs.filter(e => !/cuerpo\.js/.test(e)).length, 'f5 sin errores de pagina', errs.slice(0, 3));
   await ctx.close();
 }
 
 /* ── 2. la nube con permiso ───────────────────────────────────────────── */
 async function nube(b) {
   console.log('\n=== 2. la nube con permiso (nube.py), contra una nube que se porta como perfil.sql ===');
-  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  const ctx = await contexto(b, { sinCuerpo: true }), pg = await ctx.newPage(), errs = errores(pg);
   const datos = ejemplo();
   await ctx.addInitScript(d => { try { if (!sessionStorage.getItem('perfil-sembrado')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('perfil-sembrado', '1'); } } catch (e) {} }, JSON.stringify(datos));
   await abrirApp(pg, 'es');
@@ -853,7 +952,7 @@ async function nube(b) {
 /* ── 2b. la nube con mucho dato ───────────────────────────────────────── */
 async function volumen(b) {
   console.log('\n=== 2b. la nube con mucho dato: mas filas de las que Supabase da en una consulta ===');
-  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  const ctx = await contexto(b, { sinCuerpo: true }), pg = await ctx.newPage(), errs = errores(pg);
   const vacio = Object.assign(ejemplo(), { medidas: [], km: [] });
   await ctx.addInitScript(d => { try { if (!sessionStorage.getItem('perfil-sembrado')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('perfil-sembrado', '1'); } } catch (e) {} }, JSON.stringify(vacio));
   await abrirApp(pg, 'es');
@@ -897,7 +996,7 @@ async function volumen(b) {
 /* ── 2c. el tope: 2.000 pesos y 2.000 caminatas (nube.py, 34-37) ─────────── */
 async function tope(b) {
   console.log('\n=== 2c. el tope: 2.000 pesos y 2.000 caminatas por cuenta, como perfil.sql ===');
-  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  const ctx = await contexto(b, { sinCuerpo: true }), pg = await ctx.newPage(), errs = errores(pg);
   const vacio = Object.assign(ejemplo(), { medidas: [], km: [] });
   await ctx.addInitScript(d => { try { if (!sessionStorage.getItem('perfil-sembrado')) { localStorage.setItem('tenerife.perfil', d); sessionStorage.setItem('perfil-sembrado', '1'); } } catch (e) {} }, JSON.stringify(vacio));
   await abrirApp(pg, 'es');
@@ -929,11 +1028,12 @@ async function tope(b) {
   const p5 = (await enNube('pesos')).filter(f => f.fecha === dia(5)).map(f => f.kg);
   ok(JSON.stringify(p5) === '[68.8]' && (await enNube('pesos')).length === 2000 && (await st()).medidas.length === 2000,
     'n36 en el tope, cambiar el peso de un dia que ya lo tiene si se puede, y sube (upsert: no suma filas)', p5);
+  /* (#99) aquí ya no se anota ninguna caminata: los km nuevos van a «Anotar movimiento» de «Su cuerpo», que se
+     quedan en el dispositivo; las 2.000 de la cuenta se ven, y no cambian */
   await pg.click('#tgp-evo-tabs button[data-tab="km"]'); await pg.waitForTimeout(100);
-  await pg.fill('#tgp-km-fecha', HOY); await pg.fill('#tgp-km-nuevo', '3'); await pg.click('#tgp-add-km button[type=submit]'); await pg.waitForTimeout(400);
-  const ayudaK = await pg.innerText('#tgp-km-nuevo-h'), s3 = await st();
-  ok(s3.km.length === 2000 && ayudaK.includes('el máximo') && (await enNube('caminatas')).length === 2000 && !Object.keys(s3.colas).length,
-    'n37 con 2.000 caminatas no se anota otra: lo dice debajo del campo y no sube nada', ayudaK);
+  const s3 = await st(), formKm = await E(`!!document.getElementById('tgp-km-nuevo') || !!document.getElementById('tgp-add-km')`), boton = await E(`!!document.getElementById('tgp-km-anotar')`);
+  ok(s3.km.length === 2000 && !formKm && boton && (await enNube('caminatas')).length === 2000 && !Object.keys(s3.colas).length,
+    'n37 con 2.000 caminatas: aqui no se anota ninguna (sin formulario; «Anotar movimiento» lleva a «Su cuerpo»), y en la cuenta siguen las 2.000', { km: s3.km.length, formKm, boton });
   ok(!errs.length, 'n37b sin errores JS ni de consola', errs);
   await ctx.close();
 }
@@ -979,7 +1079,7 @@ async function visitas(b) {
 /* ── 4. lo de la nota: avatares, botones, diez idiomas y tres anchos ──── */
 async function pantalla(b) {
   console.log('\n=== 4. los avatares, los botones y los diez idiomas a 360, 390 y 430 px ===');
-  const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
+  const ctx = await contexto(b, { sinCuerpo: true }), pg = await ctx.newPage(), errs = errores(pg);
   await abrirApp(pg, 'es');
   await pg.evaluate(hoy => {
     const ids = places.slice(0, 10).map(p => p.id);
@@ -1026,14 +1126,14 @@ async function pantalla(b) {
   /* los diez idiomas, a tres anchos, con datos en cada parte */
   const ROTULOS = '.tgp-tab .txt, .tgp-tile .k, .tgp-tile .v, .tgp-stamp .nm, .tgp-stamp .th, .tgp-set, .tgp-mas, .tgp-pais .name, .tgp-btn, .tgp-chip, .tgp-card h2, .tgp-top h1, .tgp-field label, .tgp-seg button, .tgp-ranges button, .tgp-legend span, .tgp-lema, .tgp-eyebrow';
   for (const ancho of [360, 390, 430]) {
-    const c2 = await contexto(b, { viewport: { width: ancho, height: 900 } }), p2 = await c2.newPage(), e2 = errores(p2);
+    const c2 = await contexto(b, { viewport: { width: ancho, height: 900 }, sinCuerpo: true }), p2 = await c2.newPage(), e2 = errores(p2);
     await c2.addInitScript(d => { try { localStorage.setItem('tenerife.perfil', d); } catch (e) {} }, JSON.stringify(ejemplo()));
     await abrirApp(p2, 'es');
     await p2.evaluate(hoy => { const ids = places.slice(0, 12).map(p => p.id); localStorage.setItem('tenerife.visited', JSON.stringify(ids)); localStorage.setItem('tenerife.visitas', JSON.stringify(ids.slice(0, 3).map(id => ({ id, d: hoy })))); localStorage.setItem('tenerife.badges', JSON.stringify(['primer', 'explorador'])); }, HOY);
     await abrirPerfilYa(p2);
     /* con «Todos los paises» abierto: sus 47 nombres, en cada idioma, tambien se miran */
     await p2.click('#tgp-paises-btn'); await p2.waitForTimeout(200);
-    let es = null; const partidas = [], fuera = [], vacios = [], castellano = [];
+    let es = null; const partidas = [], fuera = [], vacios = [], castellano = [], casillas = [], fecha = [];
     for (const L of LENG) {
       await p2.evaluate(l => setLang(l), L); await p2.waitForTimeout(450);
       /* las tres pestañas (31 de octubre de 2026): lo que no se ve no se mide, asi que se
@@ -1072,6 +1172,32 @@ async function pantalla(b) {
       r.partidas.forEach(x => partidas.push(L + ':' + x)); r.fuera.forEach(x => fuera.push(L + ':' + x)); r.vacios.forEach(x => vacios.push(L + ':' + x));
       if (L === 'es') { es = es || new Set(); r.textos.forEach(x => es.add(x)); }
       else r.textos.forEach(x => { if (es.has(x) && /[áéíóúñ¿¡]/i.test(x)) castellano.push(L + ':' + x); });
+      /* «Sus datos» y la fecha de «Su evolución» (3 de noviembre de 2026, con dos capturas del
+         iPhone de Jerome): las casillas de una misma fila, a la misma altura aunque un rotulo ocupe
+         dos lineas; y la fecha, sin montarse en la casilla de al lado y sin el aspecto de serie, que
+         en el iPhone le da un ancho minimo mayor que su columna (Chromium no lo hace: por eso se
+         mira tambien el aspecto) */
+      if (P === 'cuerpo') {
+        const g = await p2.evaluate(() => {
+          const filas = {}, mal = [], q = e => e.getBoundingClientRect();
+          document.querySelectorAll('#perfil-panel .tgp-fields > .tgp-field').forEach(fl => {
+            const i = fl.querySelector('input'); if (!i) return;
+            (filas[Math.round(q(fl).top)] = filas[Math.round(q(fl).top)] || []).push({ id: i.id, top: q(i).top });
+          });
+          Object.values(filas).forEach(fs => { const t = fs.map(x => x.top); if (Math.max(...t) - Math.min(...t) > 1) mal.push('casillas ' + fs.map(x => x.id + '@' + x.top.toFixed(1)).join(' ')); });
+          const fx = [];
+          ['tgp-add-peso'].forEach(id => {   /* (#99) el de los km se fue con su formulario */
+            const fo = document.getElementById(id), d = fo && fo.querySelector('input[type="date"]'), sig = d && d.nextElementSibling;
+            if (!d) { fx.push(id + ': sin campo de fecha'); return; }
+            const cs = getComputedStyle(d);
+            if ((cs.appearance || cs.webkitAppearance) !== 'none') fx.push(id + ': aspecto ' + (cs.appearance || cs.webkitAppearance));
+            if (d.getClientRects().length && sig && q(d).right > q(sig).left + 0.5) fx.push(id + ': la fecha llega a ' + q(d).right.toFixed(1) + ' y lo de al lado empieza en ' + q(sig).left.toFixed(1));
+          });
+          return { mal, fx, n: Object.keys(filas).length };
+        });
+        if (!g.n) casillas.push(L + ': no hay casillas');
+        g.mal.forEach(x => casillas.push(L + ': ' + x)); g.fx.forEach(x => fecha.push(L + ': ' + x));
+      }
       }
       await p2.evaluate(() => TG_PERFIL.pestana('viaje'));
     }
@@ -1080,6 +1206,8 @@ async function pantalla(b) {
     ok(!vacios.length, 'p7 a ' + ancho + ' px: ningun texto vacio', vacios.slice(0, 12));
     ok(!castellano.length, 'p8 a ' + ancho + ' px: nada en castellano fuera del castellano', [...new Set(castellano)].slice(0, 12));
     ok(!e2.length, 'p9 a ' + ancho + ' px: sin errores', e2);
+    ok(!casillas.length, 'p10 a ' + ancho + ' px, en los diez idiomas: las casillas de «Sus datos» de una misma fila, a la misma altura, aunque un rotulo ocupe dos lineas', casillas.slice(0, 12));
+    ok(!fecha.length, 'p11 a ' + ancho + ' px, en los diez idiomas: la fecha de «Su evolucion» (peso y kilometros), sin el aspecto de serie y sin montarse en la casilla de al lado', fecha.slice(0, 12));
     await c2.close();
   }
 }
@@ -1174,6 +1302,7 @@ async function barridoOro(b) {
     await selector(b);
     await oro(b);
     await pestanas(b);
+    await sinSuCuerpo(b);
     await nube(b);
     await volumen(b);
     await tope(b);

@@ -166,7 +166,8 @@ function opaca() {
     for (const u of ['https://nominatim.openstreetmap.org/search?q=x',
                      'https://api.open-meteo.com/v1/forecast?latitude=28',
                      'https://xyz.supabase.co/rest/v1/perfiles',
-                     'https://router.project-osrm.org/route/v1/driving/1,2;3,4']) {
+                     'https://router.project-osrm.org/route/v1/driving/1,2;3,4',
+                     'https://api.pwnedpasswords.com/range/5BAA6']) {
       const r = await pedir(sw, u);
       ok(r === null, 'no se toca: ' + new URL(u).hostname);
     }
@@ -360,6 +361,140 @@ function opaca() {
     ok(con.relieve === 3 && con.modulo, 'con relieve, la instalacion guarda los tres con el modulo (sin conexion desde el primer dia)', JSON.stringify(con));
   }
 
+  /* ── 9f. «Su cuerpo», sin cobertura (3 de noviembre de 2026; lo trajo la sesion de «Su cuerpo») ──
+
+     La pantalla (modulos/cuerpo.js) se pide al abrir la pestaña Cuerpo del
+     perfil, y sus datos (datos/cuerpo/: los ejercicios, uno comun y uno por
+     idioma, las respuestas del asistente y las guias de los deportes, una por
+     idioma), al abrir la biblioteca o la hoja de un grupo, «Preguntar» o un
+     deporte. Asi que:
+       · el modulo entra en el precache al INSTALAR, como el perfil, y sin red
+         sale del cache; red primero (cambia con la app);
+       · los datos NO entran al instalar (son los diez idiomas y cada persona
+         lee uno): se guardan la primera vez que se piden con red, y desde
+         ahi salen tambien sin ella; red primero, para que unas respuestas
+         nuevas lleguen a quien ya tiene las viejas;
+       · un fichero de datos que nunca se pidio, sin red, falla limpio: la
+         pantalla lo dice y deja volver a intentarlo. */
+  {
+    const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
+    const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1].replace(/\/\*[\s\S]*?\*\//g, '');
+    ok(core.includes("'./modulos/cuerpo.js'"), '«Su cuerpo»: modulos/cuerpo.js esta en el precache (CORE)');
+    /* (10-11-2026) Jérôme y sus tours: sin conexion desde el primer dia (el tour del cielo se abre
+       donde se mira el cielo), y «red primero», abajo, con los demas modulos */
+    ok(core.includes("'./modulos/guia.js'"), 'los tours: modulos/guia.js esta en el precache (CORE)');
+    ok(!/datos\/cuerpo/.test(core), '«Su cuerpo»: y sus datos no, se guardan al usarlos');
+    const SITIO = 'https://tenerifego.app/';
+    class Peticion extends Request {
+      constructor(u, o) { super(typeof u === 'string' ? new URL(u, SITIO).href : u, o); }
+    }
+    const basica = txt => { const r = new Response(txt, { status: 200 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
+    const espera = () => new Promise(r => setTimeout(r, 20));
+    let version = 'red-1', hayRed = true;
+    const sw = cargarSW(async () => { if (!hayRed) throw new Error('sin red'); return basica(version); }, Peticion);
+    const esperas = [];
+    for (const f of sw.manejadores.install) f({ waitUntil: p => esperas.push(p) });
+    await Promise.all(esperas);
+    const app = await sw.cachesFalso.open((src.match(/const CACHE = '([^']+)'/) || [])[1]);
+    ok(!!(await app.match(new Request(SITIO + 'modulos/cuerpo.js'))), '«Su cuerpo»: al instalar la app, modulos/cuerpo.js entra en el cache sin abrir la pestaña');
+    ok(!(await app.match(new Request(SITIO + 'datos/cuerpo/asistente-es.json'))) && !(await app.match(new Request(SITIO + 'datos/cuerpo/ejercicios.json')))
+      && !(await app.match(new Request(SITIO + 'datos/cuerpo/deportes-es.json'))), '«Su cuerpo»: y ningun fichero de datos/cuerpo/');
+    hayRed = false;
+    const r0 = await pedir(sw, SITIO + 'modulos/cuerpo.js');
+    ok(r0 && r0.status === 200, '«Su cuerpo»: sin red, modulos/cuerpo.js sale del cache', r0 && r0.status);
+    const nunca = await pedir(sw, SITIO + 'datos/cuerpo/asistente-de.json');
+    ok(!nunca, '«Su cuerpo»: sin red, un fichero de datos que nunca se pidio falla limpio (no cuelga) y la pantalla lo dice', nunca && nunca.status);
+    hayRed = true;
+    ok(!!(await app.match(new Request(SITIO + 'modulos/guia.js'))), 'los tours: al instalar la app, modulos/guia.js entra en el cache sin abrir ningun tour');
+    hayRed = false;
+    const rg = await pedir(sw, SITIO + 'modulos/guia.js');
+    ok(rg && rg.status === 200, 'los tours: sin red, modulos/guia.js sale del cache', rg && rg.status);
+    hayRed = true;
+    for (const f of ['modulos/guia.js', 'modulos/cuerpo.js', 'datos/cuerpo/ejercicios.json', 'datos/cuerpo/ejercicios-bg.json', 'datos/cuerpo/asistente-zht.json', 'datos/cuerpo/deportes-pl.json']) {
+      version = 'red-1';
+      const r1 = await pedir(sw, SITIO + f); await espera();
+      const t1 = r1 && await r1.text();
+      version = 'red-2';
+      const r2 = await pedir(sw, SITIO + f); await espera();
+      const t2 = r2 && await r2.text();
+      ok(t1 === 'red-1' && t2 === 'red-2', f + ': red primero, una version nueva llega aunque ya haya otra guardada', t1 + ' / ' + t2);
+      hayRed = false;
+      const r3 = await pedir(sw, SITIO + f);
+      const t3 = r3 && await r3.text();
+      ok(t3 === 'red-2', f + ': sin red, sale la ultima guardada', t3);
+      hayRed = true;
+    }
+  }
+
+  /* ── 9g. El personaje en 3D, sin cobertura (7 de noviembre de 2026, bloque 3 del rediseño) ──
+
+     El motor (modulos/cuerpo3d.js) y los datos (datos/cuerpo3d/) se piden al
+     abrir «Su cuerpo», si hay WebGL 2 (decision 9 de Jerome: el 3D se baja al
+     abrir «Su cuerpo» por primera vez, no con la app). Asi que:
+       · ni el motor ni los datos entran en el precache;
+       · el motor y el indice (datos/cuerpo3d/indice.json), red primero: cambian
+         con la app, y con `cached || fetch` un indice nuevo no llegaria nunca;
+       · los demas ficheros de datos/cuerpo3d/ llevan la huella de su contenido en
+         el nombre (un dato nuevo es un fichero nuevo, que nombra un indice nuevo):
+         con lo de por defecto, cache primero, se piden una sola vez y sin red salen;
+       · sin red y sin haber abierto nunca «Su cuerpo», el motor falla limpio y la
+         pantalla deja el dibujo. */
+  {
+    const src = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
+    const core = (src.match(/const CORE = \[([\s\S]*?)\];/) || [, ''])[1].replace(/\/\*[\s\S]*?\*\//g, '');
+    ok(!/cuerpo3d/.test(core), 'el 3D: ni modulos/cuerpo3d.js ni datos/cuerpo3d/ estan en el precache (se piden al abrir «Su cuerpo»)');
+    const I3 = JSON.parse(fs.readFileSync(path.join(RAIZ, 'datos', 'cuerpo3d', 'indice.json'), 'utf8'));
+    const nombres = Object.keys(I3.ficheros).map(k => I3.ficheros[k].f);
+    ok(nombres.length === 71 && nombres.every(n => /^[a-z0-9_-]+\.[0-9a-f]{8}\.(bin|webp|png)$/.test(n)) && nombres.every(n => fs.existsSync(path.join(RAIZ, 'datos', 'cuerpo3d', n))),
+      'el 3D: el indice nombra 71 ficheros, todos con su huella en el nombre y todos en datos/cuerpo3d/', nombres.length);
+    const SITIO = 'https://tenerifego.app/';
+    class Peticion extends Request {
+      constructor(u, o) { super(typeof u === 'string' ? new URL(u, SITIO).href : u, o); }
+    }
+    const basica = txt => { const r = new Response(txt, { status: 200 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
+    const espera = () => new Promise(r => setTimeout(r, 20));
+    let version = 'red-1', hayRed = true, pedidas = 0;
+    const sw = cargarSW(async () => { pedidas++; if (!hayRed) throw new Error('sin red'); return basica(version); }, Peticion);
+    const esperas = [];
+    for (const f of sw.manejadores.install) f({ waitUntil: p => esperas.push(p) });
+    await Promise.all(esperas);
+    const app = await sw.cachesFalso.open((src.match(/const CACHE = '([^']+)'/) || [])[1]);
+    ok(!(await app.match(new Request(SITIO + 'modulos/cuerpo3d.js'))) && !(await app.match(new Request(SITIO + 'datos/cuerpo3d/indice.json'))), 'el 3D: al instalar la app no entra nada suyo en el cache');
+    hayRed = false;
+    const r0 = await pedir(sw, SITIO + 'modulos/cuerpo3d.js');
+    ok(!r0, 'el 3D: sin red y sin haberlo abierto nunca, el motor falla limpio (la pantalla deja el dibujo)', r0 && r0.status);
+    hayRed = true;
+    for (const f of ['modulos/cuerpo3d.js', 'datos/cuerpo3d/indice.json']) {
+      version = 'red-1';
+      const r1 = await pedir(sw, SITIO + f); await espera();
+      const t1 = r1 && await r1.text();
+      version = 'red-2';
+      const r2 = await pedir(sw, SITIO + f); await espera();
+      const t2 = r2 && await r2.text();
+      ok(t1 === 'red-1' && t2 === 'red-2', f + ': red primero, una version nueva llega aunque ya haya otra guardada', t1 + ' / ' + t2);
+      hayRed = false;
+      const r3 = await pedir(sw, SITIO + f);
+      const t3 = r3 && await r3.text();
+      ok(t3 === 'red-2', f + ': sin red, sale la ultima guardada', t3);
+      hayRed = true;
+    }
+    /* un fichero con huella: la primera vez va a la red y se guarda; la segunda, del cache, sin pedirla */
+    const fh = 'datos/cuerpo3d/' + I3.ficheros.cuerpo.f;
+    version = 'huella-1'; pedidas = 0;
+    /* (del cache sale el mismo objeto cada vez: se lee una copia) */
+    const texto = async r => r && await r.clone().text();
+    const h1 = await pedir(sw, SITIO + fh); await espera();
+    const th1 = await texto(h1), p1 = pedidas;
+    version = 'huella-2';
+    const h2 = await pedir(sw, SITIO + fh); await espera();
+    const th2 = await texto(h2), p2 = pedidas;
+    ok(th1 === 'huella-1' && th2 === 'huella-1' && p1 === 1 && p2 === 1, fh + ': cache primero, se pide a la red una sola vez', th1 + ' / ' + th2 + ' / ' + p1 + ',' + p2);
+    hayRed = false;
+    const h3 = await pedir(sw, SITIO + fh);
+    ok(await texto(h3) === 'huella-1', fh + ': sin red, sale del cache');
+    hayRed = true;
+  }
+
   /* ── 10. la unica suposicion que el ambito falso no puede comprobar ──
 
      Todo lo de arriba prueba el flujo, no el navegador. Lo que el arreglo da
@@ -410,6 +545,95 @@ function opaca() {
     } catch (err) {
       fallos++; hechos++;
       console.log('  MAL no se pudo comprobar en Chromium   -> ' + err.message);
+    } finally {
+      if (browser) await browser.close();
+      srv.close();
+    }
+  }
+
+  /* ── 11. al volver a la app, se busca version nueva (8 de noviembre de 2026) ──
+
+     El iPhone deja la app instalada dormida y, al volver, sigue la misma
+     pagina. index.html solo preguntaba por una version nueva al arrancar: una
+     hora despues de publicar el 3D de «Su cuerpo», Jerome seguia con la de
+     antes. Ahora pregunta tambien al volver a la vista, si hace 5 minutos o mas
+     de la ultima vez, y si la hay sale el aviso de siempre, con «Recargar».
+
+     Se prueba en Chromium con la app de verdad (index.html y sw.js), servida
+     por un servidor propio en otro puerto que cambia sw.js cuando se le pide
+     (un comentario al final, como cualquier publicacion) y cuenta las veces
+     que se pide. «Volver a la vista» es el evento visibilitychange con la
+     pagina visible; los 5 minutos se adelantan con Date.now. */
+  if (PUERTO) {
+    const http = require('http');
+    const P3 = Number(PUERTO) + 2;
+    let versionSW = 1, pedidasSW = 0;
+    const TIPOS = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.css': 'text/css; charset=utf-8',
+      '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json' };
+    const srv = http.createServer((req, res) => {
+      let p;
+      try { p = decodeURIComponent(new URL(req.url, 'http://127.0.0.1').pathname); } catch (e) { res.writeHead(400); return res.end(); }
+      if (p.endsWith('/')) p += 'index.html';
+      if (p === '/sw.js') {
+        pedidasSW++;
+        res.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-cache' });
+        return res.end(fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8') + '\n// prueba de la version ' + versionSW + '\n');
+      }
+      const f = path.resolve(RAIZ, '.' + p);
+      if (!f.startsWith(RAIZ + path.sep) || !fs.existsSync(f) || !fs.statSync(f).isFile()) { res.writeHead(404); return res.end(); }
+      res.writeHead(200, { 'Content-Type': TIPOS[path.extname(f)] || 'application/octet-stream' });
+      fs.createReadStream(f).pipe(res);
+    });
+    await new Promise(r => srv.listen(P3, '127.0.0.1', r));
+    let browser;
+    try {
+      const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+      browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-proxy-server', '--no-sandbox'] });
+      const ctx = await browser.newContext({ serviceWorkers: 'allow', locale: 'es-ES' });
+      await ctx.route('**/*', r => r.request().url().startsWith('http://127.0.0.1:' + P3 + '/') ? r.continue() : r.abort());
+      await ctx.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+      const page = await ctx.newPage();
+      await page.goto('http://127.0.0.1:' + P3 + '/index.html', { waitUntil: 'load', timeout: 60000 });
+      await page.waitForFunction(() => !!(navigator.serviceWorker.controller && window.__pwaRegistration), null, { timeout: 90000 });
+      const volver = () => page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+      const aviso = () => page.evaluate(() => !!document.querySelector('.pwa-toast.show'));
+      /* la pregunta del arranque (reg.update() justo despues de registrar) va en cola detras de la instalacion y
+         puede llegar segundos despues: se espera a que sw.js lleve 3 s sin pedirse, con la instalacion acabada,
+         antes de cambiarlo (si no, esa pregunta tardia veria la version nueva y la prueba no distinguiria nada) */
+      for (let ultimo = -1, quieto = 0; quieto < 6;) {
+        await page.waitForTimeout(500);
+        const libre = await page.evaluate(() => { const r = window.__pwaRegistration; return !r.installing && !r.waiting && !!r.active; });
+        if (pedidasSW === ultimo && libre) quieto++; else { ultimo = pedidasSW; quieto = 0; }
+      }
+      const arranque = { pedidas: pedidasSW, aviso: await aviso() };
+      ok(arranque.pedidas >= 1 && !arranque.aviso, 'al abrir la app se pregunta por la version (sin aviso: es la misma)', JSON.stringify(arranque));
+      const antes = pedidasSW;
+      versionSW = 2;
+      /* a los pocos segundos de abrir: no se vuelve a preguntar */
+      await volver(); await page.waitForTimeout(2500);
+      const pronto = { pedidas: pedidasSW - antes, aviso: await aviso() };
+      ok(pronto.pedidas === 0 && !pronto.aviso, 'al volver a la app antes de 5 minutos no se pregunta otra vez por una version nueva', JSON.stringify(pronto));
+      /* oculta: tampoco */
+      await page.evaluate(() => { const real = Date.now.bind(Date); Date.now = () => real() + 6 * 60000; });
+      await page.evaluate(() => { Object.defineProperty(document, 'visibilityState', { configurable: true, get: () => 'hidden' }); document.dispatchEvent(new Event('visibilitychange')); });
+      await page.waitForTimeout(1500);
+      const oculta = { pedidas: pedidasSW - antes, aviso: await aviso() };
+      ok(oculta.pedidas === 0 && !oculta.aviso, 'al irse de la app (pagina oculta) no se pregunta', JSON.stringify(oculta));
+      /* pasados 5 minutos, al volver a la vista: se pregunta y, con un sw.js nuevo, sale el aviso con «Recargar» */
+      await page.evaluate(() => { delete document.visibilityState; });
+      await volver();
+      const salio = await page.waitForFunction(() => !!document.querySelector('.pwa-toast.show'), null, { timeout: 60000 }).then(() => true).catch(() => false);
+      const luego = await page.evaluate(() => { const t = document.querySelector('.pwa-toast'), b = t && t.querySelector('.pwa-toast-reload');
+        return { visible: document.visibilityState, boton: b ? b.textContent.trim() : null }; });
+      ok(salio && pedidasSW - antes === 1 && !!luego.boton,
+        'al volver a la app pasados 5 minutos se pregunta, y con una version nueva sale el aviso con «' + luego.boton + '»', JSON.stringify({ salio, pedidas: pedidasSW - antes, ...luego }));
+      /* y otra vuelta enseguida no vuelve a preguntar */
+      const tras = pedidasSW;
+      await volver(); await page.waitForTimeout(1500);
+      ok(pedidasSW === tras, 'una vuelta mas, enseguida, no pregunta otra vez', pedidasSW - tras);
+    } catch (err) {
+      fallos++; hechos++;
+      console.log('  MAL no se pudo comprobar la busqueda de version al volver   -> ' + err.message);
     } finally {
       if (browser) await browser.close();
       srv.close();

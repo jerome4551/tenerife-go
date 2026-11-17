@@ -1,0 +1,3500 @@
+{
+ "_": "Rumano (ro) de las fichas de los lugares, trozo 4 de 5 (bloque 8 del rumano): los 220 lugares entre el 761 y el 980 de index.html, de «windsurf-el-poris» a «playa-tabaiba». Cada texto lleva el castellano que traduce, ya con las erratas de la entrega del bloque 8 (erratas/, que se ponen antes que este fichero). Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando esten los cinco trozos (R5-R9) y todos casen con index.html. No se edita a mano: sale de la entrega del bloque 8 del rumano.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "windsurf-el-poris.desc",
+   "es": "El Porís de Abona, en la costa sureste de Tenerife (municipio de Arico), es un spot de kitesurf para kitesurfistas avanzados y expertos. Viento NNE (nornoreste) fuerte y racheado — ideal para freestyle y saltos de altura. No tiene infraestructura de escuelas permanente — se recomienda venir con equipo propio y experiencia. Las condiciones son variables y más técnicas que en El Médano. El pequeño puerto y los charcos volcánicos del entorno lo hacen visualmente muy atractivo. A 20 minutos de El Médano por la TF-1.",
+   "forma": "texto",
+   "ro": "El Porís de Abona, pe coasta de sud-est a insulei Tenerife (municipalitatea Arico), este un loc de kitesurfing pentru practicanți avansați și experți. Vânt puternic și în rafale din NNE (nord-nord-est), ideal pentru figuri acrobatice (freestyle) și sărituri înalte. Nu există școli permanente: se recomandă să veniți cu echipament propriu și cu experiență. Condițiile sunt variabile și mai tehnice decât la El Médano. Micul port și bazinele vulcanice din jur îl fac foarte atrăgător vizual. La 20 de minute de El Médano, pe TF-1."
+  },
+  {
+   "tabla": "places",
+   "clave": "windsurf-el-poris.cat",
+   "es": "Kitesurf · El Porís · Avanzado · Arico · Sureste",
+   "forma": "texto",
+   "ro": "Kitesurfing · El Porís · Avansat · Arico · Sud-est"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-santa-cruz.desc",
+   "es": "El Rastro de Santa Cruz, el gran mercadillo dominical de la capital desde 1979, con más de 400 puestos de segunda mano, antigüedades, ropa y artesanía. Desde marzo de 2025 se celebra en la Avenida Marítima (parking junto a la Avenida de la Constitución, cerca del Auditorio), tras dejar su emplazamiento histórico junto al Mercado de África. Domingos por la mañana, hasta primera hora de la tarde.",
+   "forma": "texto",
+   "ro": "El Rastro de Santa Cruz, marele târg de duminică al capitalei, din 1979, cu peste 400 de tarabe cu obiecte second-hand, antichități, îmbrăcăminte și artizanat. Din martie 2025 se ține pe Avenida Marítima (în parcarea de lângă Avenida de la Constitución, aproape de Auditorio de Tenerife), după ce și-a părăsit locul istoric de lângă Mercado de África. Duminica dimineața, până la primele ore ale după-amiezii."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-santa-cruz.cat",
+   "es": "Mercadillo · Domingos · Santa Cruz",
+   "forma": "texto",
+   "ro": "Târg · Duminica · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-la-laguna.desc",
+   "es": "Mercadillo exterior de artesanía y productos locales junto al Mercado Municipal de La Laguna. Sábados por la mañana. Ciudad Patrimonio UNESCO.",
+   "forma": "texto",
+   "ro": "Târg în aer liber, cu artizanat și produse locale, lângă piața municipală din La Laguna. Sâmbăta dimineața. Oraș inclus în Patrimoniul Mondial UNESCO."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-la-laguna.cat",
+   "es": "Mercadillo · Sábados · La Laguna",
+   "forma": "texto",
+   "ro": "Târg · Sâmbăta · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-candelaria.desc",
+   "es": "Mercadillo de artesanía canaria frente a la Basílica de Candelaria. Fines de semana. Productos locales, tejidos y artesanía guanche junto al símbolo de Tenerife.",
+   "forma": "texto",
+   "ro": "Târg de artizanat canarian în fața Bazilicii din Candelaria. În weekend. Produse locale, țesături și artizanat inspirat de guanși, lângă simbolul insulei Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-candelaria.cat",
+   "es": "Mercadillo · Fin de semana · Candelaria",
+   "forma": "texto",
+   "ro": "Târg · Weekend · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-medano.desc",
+   "es": "Mercadillo de segunda mano y artesanía en El Médano. Sábados por la mañana en la plaza del pueblo. Ambiente relajado de la comunidad surfera y local.",
+   "forma": "texto",
+   "ro": "Târg de obiecte second-hand și de artizanat în El Médano. Sâmbăta dimineața, în piața din centrul localității. Atmosfera relaxată a comunității de surferi și a localnicilor."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-medano.cat",
+   "es": "Mercadillo · Sábados · El Médano",
+   "forma": "texto",
+   "ro": "Târg · Sâmbăta · El Médano"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-guimar.desc",
+   "es": "Mercado del Agricultor de Güímar: domingos por la mañana en la plaza de San Pedro, y jueves por la tarde en El Puertito de Güímar. Frutas y verduras locales, plantas, flores y productos del campo del este de Tenerife.",
+   "forma": "texto",
+   "ro": "Piața producătorilor din Güímar: duminica dimineața în piața San Pedro, iar joia după-amiaza în El Puertito de Güímar. Fructe și legume locale, plante, flori și produse agricole din estul insulei Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-guimar.cat",
+   "es": "Mercadillo · Domingos · Güímar",
+   "forma": "texto",
+   "ro": "Târg · Duminica · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-los-cristianos.desc",
+   "es": "Mercadillo popular en Los Cristianos. Domingos por la mañana junto al puerto. Segunda mano, artesanía, ropa y souvenirs. Muy animado en temporada alta.",
+   "forma": "texto",
+   "ro": "Târg popular în Los Cristianos. Duminica dimineața, lângă port. Obiecte second-hand, artizanat, îmbrăcăminte și suveniruri. Foarte animat în sezonul de vârf."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-los-cristianos.cat",
+   "es": "Mercadillo · Domingos · Los Cristianos",
+   "forma": "texto",
+   "ro": "Târg · Duminica · Los Cristianos"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-las-americas.desc",
+   "es": "Mercadillo turístico en Playa de las Américas. Miércoles y sábados. Artesanía canaria, bisutería, ropa y productos locales en zona turística del sur.",
+   "forma": "texto",
+   "ro": "Târg pentru turiști în Playa de las Américas. Miercurea și sâmbăta. Artizanat canarian, bijuterii fantezie, îmbrăcăminte și produse locale, în zona turistică din sud."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-las-americas.cat",
+   "es": "Mercadillo · Mié/Sáb · Las Américas",
+   "forma": "texto",
+   "ro": "Târg · Miercurea și sâmbăta · Las Américas"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-costa-adeje.desc",
+   "es": "Mercadillo en el paseo de Costa Adeje. Jueves y sábados. Artesanía, aloe vera, productos canarios y bisutería. Ambiente relajado frente al mar.",
+   "forma": "texto",
+   "ro": "Târg pe promenada din Costa Adeje. Joia și sâmbăta. Artizanat, aloe vera, produse canariene și bijuterii fantezie. Atmosferă relaxată, la malul mării."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-costa-adeje.cat",
+   "es": "Mercadillo · Jue/Sáb · Costa Adeje",
+   "forma": "texto",
+   "ro": "Târg · Joia și sâmbăta · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-arona.desc",
+   "es": "Mercado del Agricultor de Arona, en Valle San Lorenzo. Viernes y sábados por la mañana. Frutas, verduras y productos locales del municipio. Ambiente muy local.",
+   "forma": "texto",
+   "ro": "Piața producătorilor din Arona, în Valle San Lorenzo. Vinerea și sâmbăta dimineața. Fructe, legume și produse locale din municipalitate. Atmosferă foarte locală."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-arona.cat",
+   "es": "Mercadillo · Vie/Sáb · Arona",
+   "forma": "texto",
+   "ro": "Târg · Vinerea și sâmbăta · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-granadilla-sur.desc",
+   "es": "Mercadillo tradicional en el casco histórico de Granadilla. Martes por la mañana. Productos del campo del sur: papas, tomates, millo y artesanía local.",
+   "forma": "texto",
+   "ro": "Târg tradițional în centrul istoric din Granadilla. Marțea dimineața. Produse agricole din sud: cartofi, roșii, porumb și artizanat local."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-granadilla-sur.cat",
+   "es": "Mercadillo · Martes · Granadilla",
+   "forma": "texto",
+   "ro": "Târg · Marțea · Granadilla"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-buenavista.desc",
+   "es": "Mercadillo semanal en Buenavista del Norte, municipio del extremo noroeste de Tenerife. Productos locales de temporada: frutas, verduras, legumbres, quesos artesanales y artesanía canaria. Ambiente muy local y auténtico. Ideal para conocer el norte más alejado de la isla.",
+   "forma": "texto",
+   "ro": "Târg săptămânal în Buenavista del Norte, municipalitate din extremitatea de nord-vest a insulei Tenerife. Produse locale de sezon: fructe, legume, leguminoase, brânzeturi artizanale și artizanat canarian. Atmosferă foarte locală și autentică. Ideal pentru a cunoaște partea cea mai îndepărtată a nordului insulei."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-buenavista.cat",
+   "es": "Mercadillo · Buenavista del Norte · Noroeste",
+   "forma": "texto",
+   "ro": "Târg · Buenavista del Norte · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-garachico.desc",
+   "es": "Mercadillo en el histórico municipio de Garachico, considerado uno de los pueblos más bonitos de Canarias. Productos agrícolas y artesanía local junto a la zona monumental. Garachico es conocido por sus piscinas naturales El Caletón, el Convento de San Francisco y sus calles empedradas. El mercadillo da una razón más para visitar este encantador pueblo del norte.",
+   "forma": "texto",
+   "ro": "Târg în istorica municipalitate Garachico, considerată una dintre cele mai frumoase localități din Insulele Canare. Produse agricole și artizanat local, lângă zona monumentală. Garachico este cunoscut pentru piscinele naturale El Caletón, pentru Convento de San Francisco și pentru străzile pavate cu piatră. Târgul vă oferă încă un motiv să vizitați această localitate fermecătoare din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-garachico.cat",
+   "es": "Mercadillo · Garachico · Norte · Histórico",
+   "forma": "texto",
+   "ro": "Târg · Garachico · Nord · Istoric"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-san-miguel-abona.desc",
+   "es": "Mercado del Agricultor en San Miguel de Abona (Av. Modesto Hernández González 42). Productos frescos de temporada, quesos, miel, pan y artesanía local del sur de Tenerife. Ambiente muy local y familiar. Horario: miércoles, sábados y domingos de 8:00 a 14:00h.",
+   "forma": "texto",
+   "ro": "Piața producătorilor din San Miguel de Abona (Av. Modesto Hernández González 42). Produse proaspete de sezon, brânzeturi, miere, pâine și artizanat local din sudul insulei Tenerife. Atmosferă foarte locală și familială. Program: miercurea, sâmbăta și duminica, de la 8:00 la 14:00."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-san-miguel-abona.cat",
+   "es": "Mercadillo Agricultor · San Miguel de Abona · Sur",
+   "forma": "texto",
+   "ro": "Târgul producătorilor · San Miguel de Abona · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-arico-pueblo.desc",
+   "es": "Mercado del Agricultor en Arico, municipio del este de Tenerife. Productos frescos del campo local, frutas y verduras de temporada, quesos artesanales y miel. Ambiente tranquilo y auténtico. Horario: sábados de 7:00 a 13:00h. Domingos de 7:00 a 13:00 en El Porís de Abona (Avenida Villa de Arico).",
+   "forma": "texto",
+   "ro": "Piața producătorilor din Arico, municipalitate din estul insulei Tenerife. Produse proaspete din agricultura locală, fructe și legume de sezon, brânzeturi artizanale și miere. Atmosferă liniștită și autentică. Program: sâmbăta, de la 7:00 la 13:00. Duminica, de la 7:00 la 13:00, în El Porís de Abona (Avenida Villa de Arico)."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-arico-pueblo.cat",
+   "es": "Mercadillo Agricultor · Arico · Este",
+   "forma": "texto",
+   "ro": "Târgul producătorilor · Arico · Est"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-los-silos.desc",
+   "es": "Mercado del Agricultor en Los Silos (Plaza Nuestra Sra. de la Luz 9), municipio del noroeste de Tenerife. Productos frescos, artesanía local y vinos de la zona Ycoden-Daute-Isora. Ambiente muy local y auténtico. Horario: domingos de 8:00 a 14:00h.",
+   "forma": "texto",
+   "ro": "Piața producătorilor din Los Silos (Plaza Nuestra Sra. de la Luz 9), municipalitate din nord-vestul insulei Tenerife. Produse proaspete, artizanat local și vinuri din zona Ycoden-Daute-Isora. Atmosferă foarte locală și autentică. Program: duminica, de la 8:00 la 14:00."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-los-silos.cat",
+   "es": "Mercadillo Agricultor · Los Silos · Noroeste",
+   "forma": "texto",
+   "ro": "Târgul producătorilor · Los Silos · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-la-victoria.desc",
+   "es": "Mercadillo de La Victoria de Acentejo, municipio del norte de Tenerife en la comarca del Acentejo. Productos agrícolas locales, vinos de la DO Tacoronte-Acentejo, quesos y artesanía. Ambiente rural tranquilo.",
+   "forma": "texto",
+   "ro": "Târgul din La Victoria de Acentejo, municipalitate din nordul insulei Tenerife, în ținutul Acentejo. Produse agricole locale, vinuri cu denumirea de origine Tacoronte-Acentejo, brânzeturi și artizanat. Atmosferă rurală liniștită."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadillo-la-victoria.cat",
+   "es": "Mercadillo · La Victoria de Acentejo · Norte",
+   "forma": "texto",
+   "ro": "Târg · La Victoria de Acentejo · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "guachinche-vilaflor.desc",
+   "es": "Guachinche tradicional en Vilaflor, el pueblo más alto de Canarias (1.400 m). Comida casera, vino del país, raciones generosas y mojos excelentes. Muy popular entre senderistas del GR-131.",
+   "forma": "texto",
+   "ro": "Guachinche tradițional în Vilaflor, cea mai înaltă localitate din Insulele Canare (1.400 m). Mâncare de casă, vin local, porții generoase și sosuri mojo excelente. Foarte popular printre drumeții de pe GR-131."
+  },
+  {
+   "tabla": "places",
+   "clave": "guachinche-vilaflor.cat",
+   "es": "Guachinche · Vilaflor · 1.400 m",
+   "forma": "texto",
+   "ro": "Guachinche · Vilaflor · 1.400 m"
+  },
+  {
+   "tabla": "places",
+   "clave": "rest-tipico-el-jable.desc",
+   "es": "Marisquería sencilla junto al puerto de Las Galletas, siempre llena de gente local. Pescado y marisco fresquísimo del día: pulpo frito, chipirones, sardinas y papas arrugadas. Precios justos.",
+   "forma": "texto",
+   "ro": "Restaurant simplu cu fructe de mare, lângă portul din Las Galletas, mereu plin de localnici. Peștele și fructele de mare ale zilei, foarte proaspete: caracatiță prăjită, calmari mici, sardine și papas arrugadas. Prețuri corecte."
+  },
+  {
+   "tabla": "places",
+   "clave": "rest-tipico-el-jable.cat",
+   "es": "Marisquería · Sur · Puerto",
+   "forma": "texto",
+   "ro": "Restaurant cu fructe de mare · Sud · Port"
+  },
+  {
+   "tabla": "places",
+   "clave": "rest-tipico-mirador-abona.desc",
+   "es": "Café-restaurante acogedor al borde del mar en Poris de Abona, junto a la playa y el faro de Punta de Abona. Tapas frescas, pescado y producto local con las mejores vistas de la bahía.",
+   "forma": "texto",
+   "ro": "Cafenea-restaurant primitoare, chiar la malul mării, în Poris de Abona, lângă plajă și lângă farul Punta de Abona. Tapas proaspete, pește și produse locale, cu cele mai frumoase priveliști spre golf."
+  },
+  {
+   "tabla": "places",
+   "clave": "rest-tipico-mirador-abona.cat",
+   "es": "Café-Restaurante · Poris de Abona · Mar",
+   "forma": "texto",
+   "ro": "Cafenea-restaurant · Poris de Abona · Mare"
+  },
+  {
+   "tabla": "places",
+   "clave": "guachinche-los-silos.desc",
+   "es": "Guachinche familiar en las medianías de Los Silos, en el extremo noroeste. Cocina canaria casera y muy cuidada: carne fiesta, escaldón, almogrote. Considerado de los mejores de la isla. Abre de jueves a domingo.",
+   "forma": "texto",
+   "ro": "Guachinche de familie în zona de altitudine medie din Los Silos, în extremitatea de nord-vest. Bucătărie canariană de casă, foarte îngrijită: carne fiesta, escaldón, almogrote. Considerat unul dintre cele mai bune de pe insulă. Deschis de joi până duminică."
+  },
+  {
+   "tabla": "places",
+   "clave": "guachinche-los-silos.cat",
+   "es": "Guachinche · Los Silos · Noroeste",
+   "forma": "texto",
+   "ro": "Guachinche · Los Silos · Nord-vest"
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-del-vino-sauzal.desc",
+   "es": "Museo del Vino de Tenerife en una casa rural del siglo XVII en El Sauzal. Cubre todas las denominaciones de origen de la isla: Tacoronte-Acentejo, Valle de La Orotava, Ycoden-Daute-Isora, Abona y Valle de Güímar. Cata de vinos y quesos locales a precio reducido. Restaurante con vistas al Teide. Conciertos clásicos en el patio en verano (julio-agosto, martes alternos 20:30h). Adyacente Casa de la Miel. Acceso: bien señalizado desde la salida El Sauzal de la TF-5. Guaguas 101 y 104 desde Puerto de la Cruz y Santa Cruz.",
+   "forma": "texto",
+   "ro": "Muzeul vinului din Tenerife, într-o casă rurală din secolul al XVII-lea, în El Sauzal. Cuprinde toate denumirile de origine ale insulei: Tacoronte-Acentejo, Valle de La Orotava, Ycoden-Daute-Isora, Abona și Valle de Güímar. Degustare de vinuri și brânzeturi locale, la preț redus. Restaurant cu priveliște spre Teide. Concerte de muzică clasică în curtea interioară, vara (iulie-august, o dată la două marți, la 20:30). Alături se află Casa de la Miel („Casa mierii”). Acces: bine semnalizat de la ieșirea El Sauzal de pe TF-5. Autobuzele 101 și 104, din Puerto de la Cruz și din Santa Cruz."
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-del-vino-sauzal.cat",
+   "es": "Museo del Vino · El Sauzal · Norte · Enoturismo",
+   "forma": "texto",
+   "ro": "Muzeul vinului · El Sauzal · Nord · Turism viticol"
+  },
+  {
+   "tabla": "places",
+   "clave": "bodega-frontos-granadilla.desc",
+   "es": "⚠️ Solo con reserva: visitas privadas, para un mínimo de 4 adultos, y eventos. Bodega Frontos, situada en Los Blanquitos (Granadilla de Abona), es más que una bodega: un parque temático dedicado al vino en plena DO Abona. Más de 540.000 m² de finca en las medianías del sur, a 600 m de altitud. Producción ecológica premiada internacionalmente. Visitas guiadas a bodega y viñedo, catas y Casa Tasca para eventos. El complejo incluye arquitectura excavada en la tosca volcánica. Familia Luengo desde 1949.",
+   "forma": "texto",
+   "ro": "⚠️ Doar cu rezervare: vizite private, pentru cel puțin 4 adulți, și evenimente. Bodega Frontos, situată în Los Blanquitos (Granadilla de Abona), este mai mult decât o cramă: un parc tematic dedicat vinului, în inima zonei cu denumirea de origine Abona. O proprietate de peste 540.000 m² în zona de altitudine medie din sud, la 600 m altitudine. Producție ecologică premiată internațional. Vizite ghidate în cramă și în podgorie, degustări și Casa Tasca, pentru evenimente. Complexul include construcții săpate în tuful vulcanic. Familia Luengo, din 1949."
+  },
+  {
+   "tabla": "places",
+   "clave": "bodega-frontos-granadilla.cat",
+   "es": "Bodega · DO Abona · Granadilla · Enoturismo",
+   "forma": "texto",
+   "ro": "Cramă · DO Abona · Granadilla · Turism viticol"
+  },
+  {
+   "tabla": "places",
+   "clave": "zona-mariscos-los-abrigos.desc",
+   "es": "Los Abrigos, pequeño pueblo pesquero en el sur de Tenerife (Granadilla de Abona), alberga la zona de restaurantes de marisco y pescado fresco más reconocida de toda la isla. Una hilera de restaurantes frente al puerto: langosta, burgado, lapas, sancocho canario, vieja a la sal, pulpo, calamares y cherne. Algunos llevan más de 40 años. Los favoritos de los locales: El Jablito, El Roque. Precios más asequibles que en zonas turísticas. Ambiente 100% local. Reserve el fin de semana.",
+   "forma": "texto",
+   "ro": "Los Abrigos, mic sat de pescari din sudul insulei Tenerife (Granadilla de Abona), are cea mai cunoscută zonă de restaurante cu fructe de mare și pește proaspăt de pe toată insula. Un șir de restaurante în fața portului: langustă, burgado (melc de mare), patele, sancocho canario, vieja (pește-papagal canarian) la sare, caracatiță, calmari și cherne. Unele există de peste 40 de ani. Preferatele localnicilor: El Jablito, El Roque. Prețuri mai accesibile decât în zonele turistice. Atmosferă 100% locală. În weekend, rezervați."
+  },
+  {
+   "tabla": "places",
+   "clave": "zona-mariscos-los-abrigos.cat",
+   "es": "Mariscos · Los Abrigos · Sur · Auténtico",
+   "forma": "texto",
+   "ro": "Fructe de mare · Los Abrigos · Sud · Autentic"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-sct.desc",
+   "es": "Mercadona en Santa Cruz de Tenerife. Amplia selección de productos canarios. Parking disponible.",
+   "forma": "texto",
+   "ro": "Mercadona în Santa Cruz de Tenerife. Selecție largă de produse canariene. Parcare disponibilă."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-sct.cat",
+   "es": "Supermercado · Mercadona · Santa Cruz",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-sct.desc",
+   "es": "HiperDino en Santa Cruz. Cadena canaria de referencia, con gran variedad de productos locales de las islas. Frutas y verduras frescas canarias.",
+   "forma": "texto",
+   "ro": "HiperDino în Santa Cruz. Lanț canarian de referință, cu o mare varietate de produse locale din insule. Fructe și legume proaspete din Insulele Canare."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-sct.cat",
+   "es": "Supermercado · HiperDino · Santa Cruz",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-laguna.desc",
+   "es": "Mercadona en La Laguna, ciudad Patrimonio UNESCO. Amplia selección. Ideal para residentes y turistas que se alojan en el norte.",
+   "forma": "texto",
+   "ro": "Mercadona în La Laguna, oraș inclus în Patrimoniul Mondial UNESCO. Selecție largă. Ideal pentru localnici și pentru turiștii cazați în nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-laguna.cat",
+   "es": "Supermercado · Mercadona · La Laguna",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-laguna.desc",
+   "es": "HiperDino en La Laguna. Productos canarios de primera, carnicería local, frutería con género de la isla. Muy frecuentado por residentes del norte.",
+   "forma": "texto",
+   "ro": "HiperDino în La Laguna. Produse canariene de primă calitate, măcelărie locală, raion de fructe și legume cu produse de pe insulă. Foarte frecventat de localnicii din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-laguna.cat",
+   "es": "Supermercado · HiperDino · La Laguna",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-pcruz.desc",
+   "es": "Mercadona en Puerto de la Cruz. Precios asequibles para turistas y residentes del norte. Cercanía a la zona hotelera. Aparcamiento.",
+   "forma": "texto",
+   "ro": "Mercadona în Puerto de la Cruz. Prețuri accesibile pentru turiști și pentru localnicii din nord. Aproape de zona hotelieră. Parcare."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-pcruz.cat",
+   "es": "Supermercado · Mercadona · Puerto Cruz",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · Puerto Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-pcruz.desc",
+   "es": "HiperDino en Puerto de la Cruz. Supermercado de referencia para los residentes del norte. Productos locales de temporada y frescos canarios.",
+   "forma": "texto",
+   "ro": "HiperDino în Puerto de la Cruz. Supermarket de referință pentru localnicii din nord. Produse locale de sezon și produse proaspete canariene."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-pcruz.cat",
+   "es": "Supermercado · HiperDino · Puerto Cruz",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Puerto Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-adeje.desc",
+   "es": "Mercadona en Adeje, uno de los supermercados más visitados del sur por su amplitud. Muy bien surtido para turistas de larga estancia.",
+   "forma": "texto",
+   "ro": "Mercadona în Adeje, unul dintre cele mai vizitate supermarketuri din sud, datorită mărimii sale. Foarte bine aprovizionat pentru turiștii cu sejururi lungi."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-adeje.cat",
+   "es": "Supermercado · Mercadona · Adeje",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-adeje.desc",
+   "es": "HiperDino en Costa Adeje. Productos canarios frescos, carnicería, charcutería y panadería artesanal. Ideal para turistas alojados en la zona de Adeje y Fañabé.",
+   "forma": "texto",
+   "ro": "HiperDino în Costa Adeje. Produse canariene proaspete, măcelărie, mezeluri și brutărie artizanală. Ideal pentru turiștii cazați în zona Adeje și Fañabé."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-adeje.cat",
+   "es": "Supermercado · HiperDino · Costa Adeje",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-arona.desc",
+   "es": "Mercadona en Los Cristianos. Uno de los supermercados más concurridos del sur turístico. Aparcamiento.",
+   "forma": "texto",
+   "ro": "Mercadona în Los Cristianos. Unul dintre cele mai aglomerate supermarketuri din sudul turistic. Parcare."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-arona.cat",
+   "es": "Supermercado · Mercadona · Los Cristianos",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · Los Cristianos"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-arona.desc",
+   "es": "HiperDino en Los Cristianos. Productos canarios de temporada, quesos locales, vinos de la isla y fruta fresca.",
+   "forma": "texto",
+   "ro": "HiperDino în Los Cristianos. Produse canariene de sezon, brânzeturi locale, vinuri de pe insulă și fructe proaspete."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-arona.cat",
+   "es": "Supermercado · HiperDino · Los Cristianos",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Los Cristianos"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-orotava.desc",
+   "es": "Mercadona en La Orotava. Bien situado para el Valle de la Orotava. Precios asequibles para residentes y turistas del norte.",
+   "forma": "texto",
+   "ro": "Mercadona în La Orotava. Bine amplasat pentru valea La Orotava. Prețuri accesibile pentru localnicii și turiștii din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-orotava.cat",
+   "es": "Supermercado · Mercadona · La Orotava",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-icod.desc",
+   "es": "HiperDino en Icod de los Vinos. Referencia para los municipios del noroeste. Productos locales de la zona vinícola de Ycoden-Daute-Isora.",
+   "forma": "texto",
+   "ro": "HiperDino în Icod de los Vinos. Un reper pentru municipalitățile din nord-vest. Produse locale din zona viticolă Ycoden-Daute-Isora."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-icod.cat",
+   "es": "Supermercado · HiperDino · Icod",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Icod"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-guimar.desc",
+   "es": "HiperDino en Güímar. Supermercado de referencia para la comarca del este. Frescos locales y productos de temporada del valle de Güímar.",
+   "forma": "texto",
+   "ro": "HiperDino în Güímar. Supermarket de referință pentru ținutul din est. Produse proaspete locale și produse de sezon din valea Güímar."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-guimar.cat",
+   "es": "Supermercado · HiperDino · Güímar",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-granadilla.desc",
+   "es": "HiperDino en Granadilla de Abona. Referencia para el sur interior. Zona de paso entre el sur turístico y el aeropuerto Tenerife Sur.",
+   "forma": "texto",
+   "ro": "HiperDino în Granadilla de Abona. Un reper pentru sudul din interiorul insulei. Zonă de trecere între sudul turistic și aeroportul Tenerife Sur."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-granadilla.cat",
+   "es": "Supermercado · HiperDino · Granadilla",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Granadilla"
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-sct.desc",
+   "es": "Minimarket abierto 24 horas en el centro de Santa Cruz. Productos básicos, bebidas, snacks y artículos de primera necesidad. Ideal para emergencias nocturnas.",
+   "forma": "texto",
+   "ro": "Magazin deschis 24 de ore în centrul orașului Santa Cruz. Produse de bază, băuturi, gustări și articole de primă necesitate. Ideal pentru urgențele de noapte."
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-sct.cat",
+   "es": "Minimarket 24h · Santa Cruz",
+   "forma": "texto",
+   "ro": "Magazin 24h · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-laguna.desc",
+   "es": "Minimarket 24 horas en La Laguna, cerca de la zona universitaria. Bebidas, snacks, básicos y productos de higiene. Muy frecuentado por estudiantes.",
+   "forma": "texto",
+   "ro": "Magazin deschis 24 de ore în La Laguna, aproape de zona universitară. Băuturi, gustări, produse de bază și produse de igienă. Foarte frecventat de studenți."
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-laguna.cat",
+   "es": "Minimarket 24h · La Laguna",
+   "forma": "texto",
+   "ro": "Magazin 24h · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-pcruz.desc",
+   "es": "Minimarket abierto 24 horas en el centro de Puerto de la Cruz. Bebidas, snacks y básicos. Imprescindible para turistas en la zona norte.",
+   "forma": "texto",
+   "ro": "Magazin deschis 24 de ore în centrul orașului Puerto de la Cruz. Băuturi, gustări și produse de bază. Indispensabil pentru turiștii din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-pcruz.cat",
+   "es": "Minimarket 24h · Puerto Cruz",
+   "forma": "texto",
+   "ro": "Magazin 24h · Puerto Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-las-americas.desc",
+   "es": "Minimarket 24 horas en Playa de las Américas. Bebidas, snacks, protector solar y artículos de playa. Muy frecuentado en verano y fines de semana.",
+   "forma": "texto",
+   "ro": "Magazin deschis 24 de ore în Playa de las Américas. Băuturi, gustări, cremă de protecție solară și articole de plajă. Foarte frecventat vara și în weekend."
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-las-americas.cat",
+   "es": "Minimarket 24h · Las Américas",
+   "forma": "texto",
+   "ro": "Magazin 24h · Las Américas"
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-adeje.desc",
+   "es": "Minimarket 24 horas en Costa Adeje. Bebidas frías, snacks y artículos de conveniencia para turistas de la zona sur premium.",
+   "forma": "texto",
+   "ro": "Magazin deschis 24 de ore în Costa Adeje. Băuturi reci, gustări și articole de uz curent pentru turiștii din zona premium a sudului."
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-adeje.cat",
+   "es": "Minimarket 24h · Costa Adeje",
+   "forma": "texto",
+   "ro": "Magazin 24h · Costa Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-sct.desc",
+   "es": "Oficina oficial de turismo de Santa Cruz de Tenerife. Mapas, folletos, información sobre eventos. Personal en español e inglés. Junto a la Plaza de España.",
+   "forma": "texto",
+   "ro": "Biroul oficial de informații turistice din Santa Cruz de Tenerife. Hărți, broșuri, informații despre evenimente. Personal care vorbește spaniolă și engleză. Lângă Plaza de España."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-sct.cat",
+   "es": "Oficina Turismo · Santa Cruz",
+   "forma": "texto",
+   "ro": "Informații turistice · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-sct.hours",
+   "es": "L-V 9:00–18:00 · Sáb 10:00–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–18:00 · Sâmbătă 10:00–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-portillo.desc",
+   "es": "Centro de visitantes principal del Parque Nacional del Teide, en el cruce de El Portillo (~2.000 m). Exposiciones sobre el volcán, la geología y la flora, jardín botánico y punto de partida de senderos. Entrada gratuita.",
+   "forma": "texto",
+   "ro": "Principalul centru de vizitare al Parcului Național Teide, la intersecția El Portillo (~2.000 m). Expoziții despre vulcan, geologie și floră, grădină botanică și punct de plecare al unor trasee. Intrare gratuită."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-portillo.cat",
+   "es": "Centro de Visitantes · P.N. del Teide",
+   "forma": "texto",
+   "ro": "Centru de vizitare · Parcul Național Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-portillo.hours",
+   "es": "A diario 9:00–16:00",
+   "forma": "texto",
+   "ro": "Zilnic 9:00–16:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-telesforo.desc",
+   "es": "Centro de visitantes del Parque Nacional del Teide en el casco de La Orotava. Museo multimedia en tres plantas sobre el Teide, los volcanes y la historia de la isla. Entrada gratuita.",
+   "forma": "texto",
+   "ro": "Centrul de vizitare al Parcului Național Teide din centrul localității La Orotava. Muzeu multimedia pe trei niveluri despre Teide, vulcani și istoria insulei. Intrare gratuită."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-telesforo.cat",
+   "es": "Centro de Visitantes · P.N. del Teide · La Orotava",
+   "forma": "texto",
+   "ro": "Centru de vizitare · Parcul Național Teide · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-telesforo.hours",
+   "es": "Mar-Dom 9:00–14:00 y 15:30–18:00",
+   "forma": "texto",
+   "ro": "Marți-duminică 9:00–14:00 și 15:30–18:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-canada-blanca.desc",
+   "es": "Centro de visitantes del Parque Nacional del Teide, junto al Parador (~2.100 m). Exposición sobre el volcán y el parque, sala de cine, tienda y cafetería con terraza y vistas al Teide. Entrada gratuita.",
+   "forma": "texto",
+   "ro": "Centru de vizitare al Parcului Național Teide, lângă Parador (~2.100 m). Expoziție despre vulcan și despre parc, sală de proiecție, magazin și cafenea cu terasă și priveliște spre Teide. Intrare gratuită."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-canada-blanca.cat",
+   "es": "Centro de Visitantes · P.N. del Teide",
+   "forma": "texto",
+   "ro": "Centru de vizitare · Parcul Național Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-canada-blanca.hours",
+   "es": "A diario 9:00–16:00",
+   "forma": "texto",
+   "ro": "Zilnic 9:00–16:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-pedregales.desc",
+   "es": "Centro de visitantes del Parque Rural de Teno, en Los Pedregales (Buenavista del Norte). Información y mapas de la red de senderos del parque, con atención personalizada.",
+   "forma": "texto",
+   "ro": "Centrul de vizitare al Parcului Rural Teno, în Los Pedregales (Buenavista del Norte). Informații și hărți ale rețelei de trasee din parc, cu asistență personalizată."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-pedregales.cat",
+   "es": "Centro de Visitantes · P. Rural de Teno",
+   "forma": "texto",
+   "ro": "Centru de vizitare · Parcul Rural Teno"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-pedregales.hours",
+   "es": "A diario 9:00–17:00",
+   "forma": "texto",
+   "ro": "Zilnic 9:00–17:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-cruz-carmen.desc",
+   "es": "Centro de visitantes del Parque Rural de Anaga, en Cruz del Carmen (Las Mercedes). Exposición sobre la laurisilva y la cultura de Anaga, información de senderos y mapas. Junto al mirador y al inicio de varias rutas.",
+   "forma": "texto",
+   "ro": "Centrul de vizitare al Parcului Rural Anaga, la Cruz del Carmen (Las Mercedes). Expoziție despre pădurea de laur și despre cultura din Anaga, informații despre trasee și hărți. Lângă punctul de belvedere și la începutul mai multor trasee."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-cruz-carmen.cat",
+   "es": "Centro de Visitantes · P. Rural de Anaga",
+   "forma": "texto",
+   "ro": "Centru de vizitare · Parcul Rural Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-cruz-carmen.hours",
+   "es": "A diario 9:30–16:00",
+   "forma": "texto",
+   "ro": "Zilnic 9:30–16:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-masca.desc",
+   "es": "Centro de visitantes del Camino del Barranco de Masca (Buenavista del Norte). Gestiona el acceso y los permisos del sendero del barranco, con información y una terraza con vistas. Reserva obligatoria para bajar el barranco.",
+   "forma": "texto",
+   "ro": "Centrul de vizitare al traseului Camino del Barranco de Masca (Buenavista del Norte). Gestionează accesul și permisele pentru traseul prin defileu, oferă informații și are o terasă cu priveliște. Rezervarea este obligatorie pentru coborârea prin defileu."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-masca.cat",
+   "es": "Centro de Visitantes · Barranco de Masca",
+   "forma": "texto",
+   "ro": "Centru de vizitare · Barranco de Masca"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-cv-masca.hours",
+   "es": "A diario 9:00–17:00",
+   "forma": "texto",
+   "ro": "Zilnic 9:00–17:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-laguna.desc",
+   "es": "Oficina de turismo de La Laguna UNESCO. Rutas por el casco histórico, información cultural. Personal multilingüe.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din La Laguna, oraș UNESCO. Trasee prin centrul istoric, informații culturale. Personal care vorbește mai multe limbi."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-laguna.cat",
+   "es": "Oficina Turismo · La Laguna · UNESCO",
+   "forma": "texto",
+   "ro": "Informații turistice · La Laguna · UNESCO"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-laguna.hours",
+   "es": "L-V 9:00–17:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–17:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-pcruz.desc",
+   "es": "Oficina de turismo de Puerto de la Cruz. Información sobre playas, excursiones al Teide y actividades del norte. Personal en varios idiomas.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Puerto de la Cruz. Informații despre plaje, excursii la Teide și activități în nord. Personal care vorbește mai multe limbi."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-pcruz.cat",
+   "es": "Oficina Turismo · Puerto Cruz",
+   "forma": "texto",
+   "ro": "Informații turistice · Puerto Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-pcruz.hours",
+   "es": "L-V 9:00–18:00 · Sáb 10:00–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–18:00 · Sâmbătă 10:00–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-adeje.desc",
+   "es": "Oficina de turismo de Adeje. Información para turistas del sur: Costa Adeje, Playa del Duque. Excursiones, transporte y actividades.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Adeje. Informații pentru turiștii din sud: Costa Adeje, Playa del Duque. Excursii, transport și activități."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-adeje.cat",
+   "es": "Oficina Turismo · Adeje · Sur",
+   "forma": "texto",
+   "ro": "Informații turistice · Adeje · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-adeje.hours",
+   "es": "L-V 9:00–18:00 · Sáb 10:00–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–18:00 · Sâmbătă 10:00–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-los-cristianos.desc",
+   "es": "Oficina de turismo de Los Cristianos, junto al puerto de ferries. Información sobre ferries a las islas y actividades del sur turístico.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Los Cristianos, lângă portul feriboturilor. Informații despre feriboturile spre celelalte insule și despre activitățile din sudul turistic."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-los-cristianos.cat",
+   "es": "Oficina Turismo · Los Cristianos · Ferry",
+   "forma": "texto",
+   "ro": "Informații turistice · Los Cristianos · Feribot"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-los-cristianos.hours",
+   "es": "L-V 9:00–17:00 · Sáb 10:00–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–17:00 · Sâmbătă 10:00–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-candelaria.desc",
+   "es": "Oficina de turismo junto a la Basílica de Candelaria. Información sobre la patrona de Canarias, las Pirámides de Güímar y el este de Tenerife.",
+   "forma": "texto",
+   "ro": "Birou de informații turistice lângă Bazilica din Candelaria. Informații despre patroana Insulelor Canare, despre Piramidele din Güímar și despre estul insulei Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-candelaria.cat",
+   "es": "Oficina Turismo · Candelaria",
+   "forma": "texto",
+   "ro": "Informații turistice · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-candelaria.hours",
+   "es": "L-V 9:00–16:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–16:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-icod.desc",
+   "es": "Oficina de turismo de Icod junto al Drago Milenario. Información sobre el árbol más antiguo de Tenerife, la Cueva del Viento y el noroeste.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Icod, lângă Drago Milenario. Informații despre cel mai vechi copac din Tenerife, despre Cueva del Viento și despre nord-vest."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-icod.cat",
+   "es": "Oficina Turismo · Icod · Drago",
+   "forma": "texto",
+   "ro": "Informații turistice · Icod · Dragonier"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-icod.hours",
+   "es": "L-V 9:00–16:00 · Sáb 10:00–13:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–16:00 · Sâmbătă 10:00–13:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-garachico.desc",
+   "es": "Oficina de turismo de Garachico. Información sobre las piscinas del Caletón, el convento y la historia del pueblo más bonito del norte.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Garachico. Informații despre piscinele El Caletón, despre mănăstire și despre istoria celei mai frumoase localități din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-garachico.cat",
+   "es": "Oficina Turismo · Garachico",
+   "forma": "texto",
+   "ro": "Informații turistice · Garachico"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-garachico.hours",
+   "es": "L-V 9:00–15:00 · Sáb 10:00–13:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–15:00 · Sâmbătă 10:00–13:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-nauta.desc",
+   "es": "Único camping privado abierto todo el año en Tenerife. En Cañada Blanca, junto a Las Galletas (Arona), en la carretera TF-653. Parcelas para tiendas, bungalows y autocaravanas. Piscina y restaurante.",
+   "forma": "texto",
+   "ro": "Singurul camping privat din Tenerife deschis tot anul. În Cañada Blanca, lângă Las Galletas (Arona), pe drumul TF-653. Parcele pentru corturi, bungalouri și autorulote. Piscină și restaurant."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-nauta.cat",
+   "es": "Camping · Privado · Sur",
+   "forma": "texto",
+   "ro": "Camping · Privat · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-nauta.hours",
+   "es": "Abierto todo el año",
+   "forma": "texto",
+   "ro": "Deschis tot anul"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-madre-agua.desc",
+   "es": "Campamento oficial del Cabildo de Tenerife en Granadilla de Abona, en el Parque Natural de la Corona Forestal. Enclave remoto y tranquilo en el pinar del sur. Para campamentos de grupos (colegios, asociaciones) con autorización previa (se solicita en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Tabăra oficială a Cabildo de Tenerife (consiliul insular) din Granadilla de Abona, în Parcul Natural Corona Forestal. Un loc izolat și liniștit, în pădurea de pini din sud. Pentru tabere de grup (școli, asociații), cu autorizație prealabilă (se solicită pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-madre-agua.cat",
+   "es": "Campamento · Granadilla de Abona · Cabildo",
+   "forma": "texto",
+   "ro": "Tabără · Granadilla de Abona · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-madre-agua.hours",
+   "es": "Reserva de grupos · Tenerife ON",
+   "forma": "texto",
+   "ro": "Rezervare pentru grupuri · Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-barranco-arena.desc",
+   "es": "Campamento oficial del Cabildo de Tenerife en La Guancha, en el Parque Natural de la Corona Forestal. Comparte instalaciones con el Aula en la Naturaleza, cerca de El Lagar. Para campamentos de grupos (colegios, asociaciones) con autorización previa (se solicita en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Tabăra oficială a Cabildo de Tenerife (consiliul insular) din La Guancha, în Parcul Natural Corona Forestal. Împarte instalațiile cu Aula en la Naturaleza (sala de clasă în natură), aproape de El Lagar. Pentru tabere de grup (școli, asociații), cu autorizație prealabilă (se solicită pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-barranco-arena.cat",
+   "es": "Campamento · La Guancha · Cabildo",
+   "forma": "texto",
+   "ro": "Tabără · La Guancha · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-barranco-arena.hours",
+   "es": "Reserva de grupos · Tenerife ON",
+   "forma": "texto",
+   "ro": "Rezervare pentru grupuri · Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-la-caldera.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en La Orotava. Está en el Parque Natural de la Corona Forestal. Punto de partida de varios senderos por el bosque. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din La Orotava. Se află în Parcul Natural Corona Forestal. Punct de plecare pentru mai multe trasee prin pădure. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-la-caldera.cat",
+   "es": "Zona Acampada · La Orotava · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · La Orotava · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-la-caldera.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-ramon-caminero.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en La Orotava. Está en el Parque Natural de la Corona Forestal. Con vistas sobre el mar de nubes. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din La Orotava. Se află în Parcul Natural Corona Forestal. Cu priveliște asupra mării de nori. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-ramon-caminero.cat",
+   "es": "Zona Acampada · La Orotava · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · La Orotava · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-ramon-caminero.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-lajas.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en Adeje. Está en el Parque Natural de la Corona Forestal. En alta montaña, junto al Parque Nacional del Teide; hábitat del pinzón azul. Aforo de 30 plazas. Reserva obligatoria para todos en Tenerife ON, de 12:00 a 12:00 y un máximo de 7 días. Junto a un área recreativa con aseos y fogones. El agua NO es potable: hay que llevarla.",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din Adeje. Se află în Parcul Natural Corona Forestal. La munte, la mare altitudine, lângă Parcul Național Teide; habitatul cintezei albastre (Fringilla teydea). Capacitate: 30 de locuri. Rezervarea pe Tenerife ON este obligatorie pentru toată lumea, de la 12:00 la 12:00, pentru cel mult 7 zile. Lângă o zonă de agrement cu toalete și grătare. Apa NU este potabilă: trebuie să o aduceți."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-lajas.cat",
+   "es": "Zona Acampada · Adeje · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · Adeje · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-lajas.hours",
+   "es": "Reserva obligatoria en Tenerife ON · de 12:00 a 12:00 · máximo 7 días",
+   "forma": "texto",
+   "ro": "Rezervare obligatorie pe Tenerife ON · de la 12:00 la 12:00 · maximum 7 zile"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-arenas-negras.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en Garachico. Está en el Parque Natural de la Corona Forestal. Contraste de arena volcánica negra, pinos y mar al fondo. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din Garachico. Se află în Parcul Natural Corona Forestal. Contrast între nisipul vulcanic negru, pini și marea din fundal. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-arenas-negras.cat",
+   "es": "Zona Acampada · Garachico · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · Garachico · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-arenas-negras.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-san-jose-llanos.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en El Tanque. Está en la Reserva Natural Especial del Chinyero. Con zona de juegos y restaurante cercano. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din El Tanque. Se află în rezervația naturală specială Chinyero. Cu loc de joacă și un restaurant în apropiere. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-san-jose-llanos.cat",
+   "es": "Zona Acampada · El Tanque · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · El Tanque · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-san-jose-llanos.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-hayas.desc",
+   "es": "⚠️ Cerrada temporalmente por obras, según Tenerife ON. Zona de acampada oficial del Cabildo de Tenerife en Icod de los Vinos. Está en el Parque Natural de la Corona Forestal. Acceso por pista de tierra: mejor con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "⚠️ Închisă temporar pentru lucrări, potrivit Tenerife ON. Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din Icod de los Vinos. Se află în Parcul Natural Corona Forestal. Acces pe un drum de pământ: mai bine cu un 4x4. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-hayas.cat",
+   "es": "Zona Acampada · Icod de los Vinos · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · Icod de los Vinos · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-hayas.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-calderetas.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en El Sauzal. Está en el Paisaje Protegido de Las Lagunetas. Con senderos señalizados y zona de juegos. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din El Sauzal. Se află în peisajul protejat Las Lagunetas. Cu trasee marcate și loc de joacă. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-calderetas.cat",
+   "es": "Zona Acampada · El Sauzal · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · El Sauzal · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-calderetas.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-la-tahona.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en San Juan de la Rambla. Está en el Parque Natural de la Corona Forestal. Acceso por carretera estrecha y empinada. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din San Juan de la Rambla. Se află în Parcul Natural Corona Forestal. Acces pe un drum îngust și abrupt. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-la-tahona.cat",
+   "es": "Zona Acampada · San Juan de la Rambla · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · San Juan de la Rambla · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-la-tahona.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-el-contador.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en Arico. Está en el Parque Natural de la Corona Forestal. Acceso por pista de tierra: mejor con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din Arico. Se află în Parcul Natural Corona Forestal. Acces pe un drum de pământ: mai bine cu un 4x4. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-el-contador.cat",
+   "es": "Zona Acampada · Arico · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · Arico · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-el-contador.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-los-pedregales.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en Buenavista del Norte. Está en el Parque Rural de Teno. Entre palmeras del macizo de Teno; solo tiendas, sin autocaravanas. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din Buenavista del Norte. Se află în Parcul Rural Teno. Printre palmierii masivului Teno; doar corturi, fără autorulote. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-los-pedregales.cat",
+   "es": "Zona Acampada · Buenavista del Norte · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · Buenavista del Norte · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-los-pedregales.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-fuente-pedro.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en San Juan de la Rambla. Está en el Parque Natural de la Corona Forestal. Acceso por pista de tierra: mejor con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din San Juan de la Rambla. Se află în Parcul Natural Corona Forestal. Acces pe un drum de pământ: mai bine cu un 4x4. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-fuente-pedro.cat",
+   "es": "Zona Acampada · San Juan de la Rambla · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · San Juan de la Rambla · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-fuente-pedro.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-fuente-llano.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en Arico. Está en el Parque Natural de la Corona Forestal. Cielo excelente para ver las estrellas; acceso con 4x4. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din Arico. Se află în Parcul Natural Corona Forestal. Cer excelent pentru observarea stelelor; acces cu un 4x4. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-fuente-llano.cat",
+   "es": "Zona Acampada · Arico · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · Arico · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-fuente-llano.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-chio.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en Guía de Isora. Está en el Parque Natural de la Corona Forestal. En el pinar de Chío, cerca del acceso al Teide y con zona de juegos. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din Guía de Isora. Se află în Parcul Natural Corona Forestal. În pădurea de pini de la Chío, aproape de drumul spre Teide, cu loc de joacă. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-chio.cat",
+   "es": "Zona Acampada · Guía de Isora · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · Guía de Isora · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-chio.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-el-lagar.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en Icod de los Vinos. Está en el Parque Natural de la Corona Forestal. Con vistas al Teide y senderos por el bosque. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din Icod de los Vinos. Se află în Parcul Natural Corona Forestal. Cu priveliște spre Teide și trasee prin pădure. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-el-lagar.cat",
+   "es": "Zona Acampada · Icod de los Vinos · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · Icod de los Vinos · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-el-lagar.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-raices.desc",
+   "es": "Zona de acampada oficial del Cabildo de Tenerife en La Esperanza. Está en el Paisaje Protegido de Las Lagunetas. Punto de partida de varios senderos por el bosque. Junto a un área recreativa con baños, fogones y agua. Acampada gratuita con permiso previo (se reserva en Tenerife ON).",
+   "forma": "texto",
+   "ro": "Zona de campare oficială a Cabildo de Tenerife (consiliul insular) din La Esperanza. Se află în peisajul protejat Las Lagunetas. Punct de plecare pentru mai multe trasee prin pădure. Lângă o zonă de agrement cu toalete, grătare și apă. Campare gratuită, cu permis prealabil (se rezervă pe Tenerife ON)."
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-raices.cat",
+   "es": "Zona Acampada · La Esperanza · Cabildo",
+   "forma": "texto",
+   "ro": "Zonă de campare · La Esperanza · Cabildo"
+  },
+  {
+   "tabla": "places",
+   "clave": "camping-las-raices.hours",
+   "es": "Permiso previo obligatorio · reserva en Tenerife ON",
+   "forma": "texto",
+   "ro": "Permis prealabil obligatoriu · rezervare pe Tenerife ON"
+  },
+  {
+   "tabla": "places",
+   "clave": "museo-carnaval-sct.desc",
+   "es": "Museo dedicado al Carnaval de Santa Cruz, declarado de Interés Turístico Internacional. Historia, trajes y fotografías del segundo carnaval más famoso del mundo tras el de Río.",
+   "forma": "texto",
+   "ro": "Muzeu dedicat Carnavalului din Santa Cruz, declarat de interes turistic internațional. Istorie, costume și fotografii ale celui de-al doilea cel mai faimos carnaval din lume, după cel de la Rio."
+  },
+  {
+   "tabla": "places",
+   "clave": "museo-carnaval-sct.cat",
+   "es": "Museo · Carnaval · Santa Cruz",
+   "forma": "texto",
+   "ro": "Muzeu · Carnaval · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-carta-valle-guerra.desc",
+   "es": "Casa señorial del siglo XVII, hoy una de las dos sedes del Museo de Historia y Antropología de Tenerife. Arquitectura colonial canaria única. Colecciones de vida rural, trajes y utensilios históricos.",
+   "forma": "texto",
+   "ro": "Conac din secolul al XVII-lea, astăzi unul dintre cele două sedii ale Muzeului de Istorie și Antropologie din Tenerife. Arhitectură colonială canariană unică. Colecții despre viața rurală, costume și ustensile istorice."
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-carta-valle-guerra.cat",
+   "es": "Museo Etnografía · Valle de Guerra",
+   "forma": "texto",
+   "ro": "Muzeu de etnografie · Valle de Guerra"
+  },
+  {
+   "tabla": "places",
+   "clave": "iglesia-concepcion-laguna.desc",
+   "es": "La primera parroquia de Tenerife, fundada en 1511. Su torre de piedra, de finales del siglo XVII, es el símbolo de La Laguna; en el interior, techos de madera de estilo mudéjar. Patrimonio de la Humanidad junto a la ciudad.",
+   "forma": "texto",
+   "ro": "Prima biserică parohială din Tenerife, fondată în 1511. Turnul ei de piatră, de la sfârșitul secolului al XVII-lea, este simbolul orașului La Laguna; în interior, tavane de lemn în stil mudejar. Inclusă, împreună cu orașul, în Patrimoniul Mondial UNESCO."
+  },
+  {
+   "tabla": "places",
+   "clave": "iglesia-concepcion-laguna.cat",
+   "es": "Iglesia · La Laguna · UNESCO",
+   "forma": "texto",
+   "ro": "Biserică · La Laguna · UNESCO"
+  },
+  {
+   "tabla": "places",
+   "clave": "palacio-nava-laguna.desc",
+   "es": "⚠️ Cerrado al público mientras duran las obras de restauración; solo abre en visitas guiadas puntuales. Palacio barroco del siglo XVIII, uno de los más representativos de la arquitectura civil canaria. Fachada de piedra de 1776, con elementos manieristas, barrocos y neoclásicos. Ubicado en el centro histórico UNESCO de La Laguna.",
+   "forma": "texto",
+   "ro": "⚠️ Închis pentru public cât timp durează lucrările de restaurare; se deschide doar ocazional, pentru vizite ghidate. Palat baroc din secolul al XVIII-lea, unul dintre cele mai reprezentative pentru arhitectura civilă canariană. Fațadă de piatră din 1776, cu elemente manieriste, baroce și neoclasice. Se află în centrul istoric din La Laguna, inclus în Patrimoniul Mondial UNESCO."
+  },
+  {
+   "tabla": "places",
+   "clave": "palacio-nava-laguna.cat",
+   "es": "Palacio · La Laguna · UNESCO",
+   "forma": "texto",
+   "ro": "Palat · La Laguna · UNESCO"
+  },
+  {
+   "tabla": "places",
+   "clave": "iglesia-san-agustin-laguna.desc",
+   "es": "Convento e iglesia agustina del siglo XVI. El antiguo convento es hoy el instituto Canarias Cabrera Pinto; la iglesia ardió en 1964 y de ella quedan en pie los muros y los arcos. Parte del conjunto histórico Patrimonio de la Humanidad de La Laguna.",
+   "forma": "texto",
+   "ro": "Mănăstire și biserică din secolul al XVI-lea, ale ordinului Sfântului Augustin. Fosta mănăstire găzduiește astăzi liceul Canarias Cabrera Pinto; biserica a ars în 1964, iar din ea au rămas în picioare zidurile și arcadele. Face parte din ansamblul istoric din La Laguna inclus în Patrimoniul Mondial UNESCO."
+  },
+  {
+   "tabla": "places",
+   "clave": "iglesia-san-agustin-laguna.cat",
+   "es": "Iglesia · Convento · La Laguna",
+   "forma": "texto",
+   "ro": "Biserică · Mănăstire · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "iglesia-san-marcos-icod.desc",
+   "es": "Iglesia parroquial del siglo XVI junto al famoso Drago Milenario. Destacan sus retablos barrocos y una pila bautismal de piedra volcánica. La torre es punto de referencia del municipio. Muy fotogénica con el Drago al fondo.",
+   "forma": "texto",
+   "ro": "Biserică parohială din secolul al XVI-lea, lângă celebrul Drago Milenario. Se remarcă retablurile baroce și o cristelniță din piatră vulcanică. Turnul este un punct de reper al municipalității. Foarte fotogenică, cu dragonierul în fundal."
+  },
+  {
+   "tabla": "places",
+   "clave": "iglesia-san-marcos-icod.cat",
+   "es": "Iglesia · Icod de los Vinos",
+   "forma": "texto",
+   "ro": "Biserică · Icod de los Vinos"
+  },
+  {
+   "tabla": "places",
+   "clave": "iglesia-san-juan-orotava.desc",
+   "es": "Iglesia barroca del siglo XVIII en el corazón histórico de La Orotava. Una de las más bellas de Canarias con su fachada neoclásica de piedra volcánica. Interior con retablos dorados y el Cristo atado a la Columna, de Pedro Roldán (1689), que sale en procesión la noche del Jueves Santo. La Orotava es una de las ciudades históricas más bonitas de Tenerife.",
+   "forma": "texto",
+   "ro": "Biserică barocă din secolul al XVIII-lea, în inima istorică a orașului La Orotava. Una dintre cele mai frumoase din Insulele Canare, cu fațada ei neoclasică din piatră vulcanică. În interior, retabluri aurite și statuia lui Hristos legat de coloană, realizată de Pedro Roldán (1689), care este purtată în procesiune în noaptea de Joia Mare. La Orotava este unul dintre cele mai frumoase orașe istorice din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "iglesia-san-juan-orotava.cat",
+   "es": "Iglesia · La Orotava · Barroco",
+   "forma": "texto",
+   "ro": "Biserică · La Orotava · Baroc"
+  },
+  {
+   "tabla": "places",
+   "clave": "palacio-episcopal-laguna.desc",
+   "es": "Sede del Obispado de Tenerife en el centro histórico de La Laguna UNESCO. Edificio del siglo XVII con una bella fachada barroca de piedra. Frente a la Catedral, forma parte del conjunto monumental más importante de las Islas.",
+   "forma": "texto",
+   "ro": "Sediul episcopiei din Tenerife, în centrul istoric din La Laguna, inclus în Patrimoniul Mondial UNESCO. Clădire din secolul al XVII-lea, cu o frumoasă fațadă barocă din piatră. Aflată în fața Catedralei, face parte din cel mai important ansamblu monumental din Insulele Canare."
+  },
+  {
+   "tabla": "places",
+   "clave": "palacio-episcopal-laguna.cat",
+   "es": "Palacio · La Laguna · UNESCO",
+   "forma": "texto",
+   "ro": "Palat · La Laguna · UNESCO"
+  },
+  {
+   "tabla": "places",
+   "clave": "teatro-guimera.desc",
+   "es": "⚠️ Cerrado por obras de rehabilitación desde 2025; está previsto que reabra en 2028. El teatro más antiguo e importante de Canarias, inaugurado en 1851. Arquitectura neoclásica. Declarado Bien de Interés Cultural.",
+   "forma": "texto",
+   "ro": "⚠️ Închis pentru lucrări de reabilitare din 2025; redeschiderea este prevăzută pentru 2028. Cel mai vechi și mai important teatru din Insulele Canare, inaugurat în 1851. Arhitectură neoclasică. Declarat Bun de interes cultural."
+  },
+  {
+   "tabla": "places",
+   "clave": "teatro-guimera.cat",
+   "es": "Teatro · Santa Cruz · Histórico",
+   "forma": "texto",
+   "ro": "Teatru · Santa Cruz · Istoric"
+  },
+  {
+   "tabla": "places",
+   "clave": "teatro-leal-laguna.desc",
+   "es": "Teatro histórico modernista de 1915 en el casco antiguo de La Laguna. Fachada modernista única en Canarias, con relieves decorativos y letras originales. Restaurado y activo. Programa variado de teatro, danza y música durante todo el año.",
+   "forma": "texto",
+   "ro": "Teatru istoric modernist din 1915, în centrul vechi din La Laguna. Fațadă modernistă unică în Insulele Canare, cu reliefuri decorative și literele originale. Restaurat și activ. Program variat de teatru, dans și muzică pe tot parcursul anului."
+  },
+  {
+   "tabla": "places",
+   "clave": "teatro-leal-laguna.cat",
+   "es": "Teatro · La Laguna · Modernista",
+   "forma": "texto",
+   "ro": "Teatru · La Laguna · Modernist"
+  },
+  {
+   "tabla": "places",
+   "clave": "parroquia-san-pedro-daute.desc",
+   "es": "Iglesia parroquial del siglo XVI en Garachico, una de las más antiguas del norte. Sobrevivió a la erupción volcánica de 1706 que sepultó la ciudad. Interior con retablos barrocos. Junto a la costa volcánica más espectacular del norte.",
+   "forma": "texto",
+   "ro": "Biserică parohială din secolul al XVI-lea, în Garachico, una dintre cele mai vechi din nord. A supraviețuit erupției vulcanice din 1706, care a îngropat orașul. În interior, retabluri baroce. Lângă cea mai spectaculoasă coastă vulcanică din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "parroquia-san-pedro-daute.cat",
+   "es": "Iglesia · Garachico · Histórica",
+   "forma": "texto",
+   "ro": "Biserică · Garachico · Istorică"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-tacoronte.desc",
+   "es": "Mercadona en Tacoronte, zona vinícola. Para residentes de Tacoronte, El Sauzal y La Matanza. Bien surtido.",
+   "forma": "texto",
+   "ro": "Mercadona în Tacoronte, zonă viticolă. Pentru localnicii din Tacoronte, El Sauzal și La Matanza. Bine aprovizionat."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-mercadona-tacoronte.cat",
+   "es": "Supermercado · Mercadona · Tacoronte",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · Tacoronte"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-tacoronte.desc",
+   "es": "HiperDino en Tacoronte. Productos canarios de la zona vinícola. Referencia para El Sauzal, La Matanza y La Victoria de Acentejo.",
+   "forma": "texto",
+   "ro": "HiperDino în Tacoronte. Produse canariene din zona viticolă. Un reper pentru El Sauzal, La Matanza și La Victoria de Acentejo."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-tacoronte.cat",
+   "es": "Supermercado · HiperDino · Tacoronte",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Tacoronte"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-candelaria.desc",
+   "es": "HiperDino en Candelaria. Referencia para el este medio de Tenerife. Junto a la zona comercial de Candelaria.",
+   "forma": "texto",
+   "ro": "HiperDino în Candelaria. Un reper pentru partea de mijloc a estului insulei Tenerife. Lângă zona comercială din Candelaria."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-candelaria.cat",
+   "es": "Supermercado · HiperDino · Candelaria",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-sauzal.desc",
+   "es": "HiperDino en El Sauzal. Sirve también La Matanza y La Victoria de Acentejo. Productos DO Tacoronte-Acentejo.",
+   "forma": "texto",
+   "ro": "HiperDino în El Sauzal. Deservește și La Matanza și La Victoria de Acentejo. Produse cu denumirea de origine Tacoronte-Acentejo."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-sauzal.cat",
+   "es": "Supermercado · HiperDino · El Sauzal",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · El Sauzal"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-santiago-teide.desc",
+   "es": "HiperDino en Santiago del Teide. Sirve también El Tanque, Los Silos y Buenavista del Norte.",
+   "forma": "texto",
+   "ro": "HiperDino în Santiago del Teide. Deservește și El Tanque, Los Silos și Buenavista del Norte."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-santiago-teide.cat",
+   "es": "Supermercado · HiperDino · Santiago del Teide",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Santiago del Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-arona-pueblo.desc",
+   "es": "HiperDino en el pueblo de Arona. Referencia para los residentes del interior del municipio, lejos del litoral turístico.",
+   "forma": "texto",
+   "ro": "HiperDino în localitatea Arona. Un reper pentru localnicii din interiorul municipalității, departe de litoralul turistic."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-arona-pueblo.cat",
+   "es": "Supermercado · HiperDino · Arona Pueblo",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Localitatea Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-san-miguel.desc",
+   "es": "HiperDino en San Miguel de Abona. Referencia para el sur interior entre Arona y Granadilla. Arico y Fasnia también lo usan.",
+   "forma": "texto",
+   "ro": "HiperDino în San Miguel de Abona. Un reper pentru sudul din interior, între Arona și Granadilla. Îl folosesc și localnicii din Arico și Fasnia."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-san-miguel.cat",
+   "es": "Supermercado · HiperDino · San Miguel",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · San Miguel"
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-buenavista.desc",
+   "es": "HiperDino en Buenavista del Norte, el municipio más al noroeste. Sirve también Los Silos.",
+   "forma": "texto",
+   "ro": "HiperDino în Buenavista del Norte, cea mai nord-vestică municipalitate. Deservește și Los Silos."
+  },
+  {
+   "tabla": "places",
+   "clave": "super-hiperdino-buenavista.cat",
+   "es": "Supermercado · HiperDino · Buenavista",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Buenavista"
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-arona.desc",
+   "es": "Minimarket 24 horas en Los Cristianos (Arona). Productos básicos, bebidas y snacks.",
+   "forma": "texto",
+   "ro": "Magazin deschis 24 de ore în Los Cristianos (Arona). Produse de bază, băuturi și gustări."
+  },
+  {
+   "tabla": "places",
+   "clave": "minimarket-24h-arona.cat",
+   "es": "Minimarket 24h · Arona",
+   "forma": "texto",
+   "ro": "Magazin 24h · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "hiperdino-los-realejos.desc",
+   "es": "SuperDino en la Plaza Mencey Bencomo, Los Realejos, municipio del norte de Tenerife entre Puerto de la Cruz y Icod de los Vinos. Supermercado de cercanía, referencia de compra para residentes del municipio y visitantes de la zona costera norte.",
+   "forma": "texto",
+   "ro": "SuperDino în piața Mencey Bencomo, în Los Realejos, municipalitate din nordul insulei Tenerife, între Puerto de la Cruz și Icod de los Vinos. Supermarket de cartier, un reper pentru cumpărăturile localnicilor și ale vizitatorilor coastei de nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "hiperdino-los-realejos.cat",
+   "es": "Supermercado · SuperDino · Los Realejos · Norte",
+   "forma": "texto",
+   "ro": "Supermarket · SuperDino · Los Realejos · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "lidl-santa-cruz.desc",
+   "es": "Supermercado Lidl en Santa Cruz de Tenerife. Cadena de descuento alemana con gran variedad, marcas propias y precios competitivos. Panadería, frutas y verduras, bazar semanal. Parking gratuito.",
+   "forma": "texto",
+   "ro": "Supermarket Lidl în Santa Cruz de Tenerife. Lanț german de discount, cu o gamă largă, mărci proprii și prețuri competitive. Brutărie, fructe și legume, oferte săptămânale de produse nealimentare. Parcare gratuită."
+  },
+  {
+   "tabla": "places",
+   "clave": "lidl-santa-cruz.cat",
+   "es": "Supermercado · Lidl · Santa Cruz",
+   "forma": "texto",
+   "ro": "Supermarket · Lidl · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadona-candelaria.desc",
+   "es": "Mercadona en Candelaria, municipio del este de Tenerife. Referencia para residentes de Candelaria e Igueste. Amplio aparcamiento, productos frescos, pescadería y panadería.",
+   "forma": "texto",
+   "ro": "Mercadona în Candelaria, municipalitate din estul insulei Tenerife. Un reper pentru localnicii din Candelaria și Igueste. Parcare spațioasă, produse proaspete, pescărie și brutărie."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadona-candelaria.cat",
+   "es": "Supermercado · Mercadona · Candelaria · Este",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · Candelaria · Est"
+  },
+  {
+   "tabla": "places",
+   "clave": "lidl-la-laguna.desc",
+   "es": "Supermercado Lidl en Taco (San Cristóbal de La Laguna), calle Nuestra Señora de la Ternura 1. Panadería, frutas y verduras, bazar semanal y productos propios de calidad a precio competitivo. Parking gratuito. L-S 9:00-21:30.",
+   "forma": "texto",
+   "ro": "Supermarket Lidl în Taco (San Cristóbal de La Laguna), pe strada Nuestra Señora de la Ternura nr. 1. Brutărie, fructe și legume, oferte săptămânale de produse nealimentare și produse proprii de calitate la prețuri competitive. Parcare gratuită. Luni-sâmbătă 9:00-21:30."
+  },
+  {
+   "tabla": "places",
+   "clave": "lidl-la-laguna.cat",
+   "es": "Supermercado · Lidl · La Laguna",
+   "forma": "texto",
+   "ro": "Supermarket · Lidl · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "lidl-puerto-cruz.desc",
+   "es": "Supermercado Lidl en Puerto de la Cruz, en la Carretera General Icod-Santa Cruz. Panadería, frutas y verduras, bazar semanal y productos de marca propia a precio competitivo. Parking gratuito. L-S 9:00-21:30.",
+   "forma": "texto",
+   "ro": "Supermarket Lidl în Puerto de la Cruz, pe Carretera General Icod-Santa Cruz. Brutărie, fructe și legume, oferte săptămânale de produse nealimentare și produse cu marcă proprie la prețuri competitive. Parcare gratuită. Luni-sâmbătă 9:00-21:30."
+  },
+  {
+   "tabla": "places",
+   "clave": "lidl-puerto-cruz.cat",
+   "es": "Supermercado · Lidl · Puerto de la Cruz · Norte",
+   "forma": "texto",
+   "ro": "Supermarket · Lidl · Puerto de la Cruz · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "lidl-granadilla.desc",
+   "es": "Supermercado Lidl en San Isidro (Granadilla de Abona), Avenida de la Democracia. Cerca del Aeropuerto Sur y de El Médano. Panadería, frutas y verduras, bazar semanal. Parking gratuito. L-S 9:00-21:30.",
+   "forma": "texto",
+   "ro": "Supermarket Lidl în San Isidro (Granadilla de Abona), pe Avenida de la Democracia. Aproape de Aeroportul Sud și de El Médano. Brutărie, fructe și legume, oferte săptămânale de produse nealimentare. Parcare gratuită. Luni-sâmbătă 9:00-21:30."
+  },
+  {
+   "tabla": "places",
+   "clave": "lidl-granadilla.cat",
+   "es": "Supermercado · Lidl · Granadilla · Sur",
+   "forma": "texto",
+   "ro": "Supermarket · Lidl · Granadilla · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadona-granadilla.desc",
+   "es": "Mercadona en Granadilla de Abona pueblo, sur de Tenerife. Referencia para residentes del municipio. Amplio aparcamiento, productos frescos, pescadería y panadería. Horario habitual: L-S 9:00-21:30.",
+   "forma": "texto",
+   "ro": "Mercadona în localitatea Granadilla de Abona, în sudul insulei Tenerife. Un reper pentru localnicii din municipalitate. Parcare spațioasă, produse proaspete, pescărie și brutărie. Program obișnuit: luni-sâmbătă 9:00-21:30."
+  },
+  {
+   "tabla": "places",
+   "clave": "mercadona-granadilla.cat",
+   "es": "Supermercado · Mercadona · Granadilla · Sur",
+   "forma": "texto",
+   "ro": "Supermarket · Mercadona · Granadilla · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "hiperdino-arona-montaneta.desc",
+   "es": "HiperDino en la Avenida Valle San Lorenzo 131 (TF-28), en Valle de San Lorenzo, municipio de Arona. Referencia de compra para residentes de Arona fuera de las zonas turísticas. Amplia selección de productos canarios.",
+   "forma": "texto",
+   "ro": "HiperDino pe Avenida Valle San Lorenzo nr. 131 (TF-28), în Valle de San Lorenzo, municipalitatea Arona. Un reper pentru cumpărăturile localnicilor din Arona care locuiesc în afara zonelor turistice. Selecție largă de produse canariene."
+  },
+  {
+   "tabla": "places",
+   "clave": "hiperdino-arona-montaneta.cat",
+   "es": "Supermercado · HiperDino · Valle San Lorenzo · Arona",
+   "forma": "texto",
+   "ro": "Supermarket · HiperDino · Valle San Lorenzo · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-guimar.desc",
+   "es": "Oficina de turismo de Güímar. Información sobre las Pirámides de Güímar, el barranco y rutas de senderismo del este.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Güímar. Informații despre Piramidele din Güímar, defileul și traseele de drumeție din est."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-guimar.cat",
+   "es": "Oficina Turismo · Güímar",
+   "forma": "texto",
+   "ro": "Informații turistice · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-guimar.hours",
+   "es": "L-V 9:00–15:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–15:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-orotava.desc",
+   "es": "Oficina de turismo en el casco histórico de La Orotava. Información sobre casas coloniales, jardines y las alfombras de Corpus Christi.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din centrul istoric din La Orotava. Informații despre casele coloniale, grădini și covoarele de flori de Corpus Christi."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-orotava.cat",
+   "es": "Oficina Turismo · La Orotava",
+   "forma": "texto",
+   "ro": "Informații turistice · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-orotava.hours",
+   "es": "L-V 9:00–17:00 · Sáb 10:00–14:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–17:00 · Sâmbătă 10:00–14:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-arona.desc",
+   "es": "Oficina de turismo del municipio de Arona en Las Galletas. Información sobre La Tejita, Montaña Roja, Los Abrigos y las playas del sur.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice al municipalității Arona, în Las Galletas. Informații despre La Tejita, Montaña Roja, Los Abrigos și plajele din sud."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-arona.cat",
+   "es": "Oficina Turismo · Arona · Las Galletas",
+   "forma": "texto",
+   "ro": "Informații turistice · Arona · Las Galletas"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-arona.hours",
+   "es": "L-V 9:00–16:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–16:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-santiago-teide.desc",
+   "es": "Oficina de turismo de Santiago del Teide. Información sobre Los Gigantes, Masca y Punta de Teno. Punto de inicio para rutas espectaculares.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Santiago del Teide. Informații despre Los Gigantes, Masca și Punta de Teno. Punct de plecare pentru trasee spectaculoase."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-santiago-teide.cat",
+   "es": "Oficina Turismo · Santiago del Teide",
+   "forma": "texto",
+   "ro": "Informații turistice · Santiago del Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-santiago-teide.hours",
+   "es": "L-V 9:00–15:00",
+   "forma": "texto",
+   "ro": "Luni-vineri 9:00–15:00"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-buenavista.desc",
+   "es": "Oficina de información turística de Buenavista del Norte. Información sobre el Macizo de Teno, Punta de Teno, rutas de senderismo del noroeste, El Palmar y los miradores de la zona.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Buenavista del Norte. Informații despre masivul Teno, Punta de Teno, traseele de drumeție din nord-vest, El Palmar și punctele de belvedere din zonă."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-buenavista.cat",
+   "es": "Turismo · Buenavista del Norte · Teno",
+   "forma": "texto",
+   "ro": "Informații turistice · Buenavista del Norte · Teno"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-medano.desc",
+   "es": "Oficina de información turística en El Médano (Granadilla de Abona). Zona conocida por el windsurf y kitesurf de élite, Playa La Tejita, Montaña Roja y la costa volcánica del sur.",
+   "forma": "texto",
+   "ro": "Birou de informații turistice în El Médano (Granadilla de Abona). Zonă cunoscută pentru windsurfingul și kitesurfingul de elită, pentru plaja La Tejita, Montaña Roja și coasta vulcanică din sud."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-medano.cat",
+   "es": "Turismo · El Médano · Granadilla · Windsurf",
+   "forma": "texto",
+   "ro": "Informații turistice · El Médano · Granadilla · Windsurfing"
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-tacoronte.desc",
+   "es": "Oficina de información turística de Tacoronte. La denominación de origen vitivinícola más antigua de Canarias — Tacoronte-Acentejo. Información sobre bodegas, guachinches, fiestas del municipio (Cristo de los Dolores, en septiembre), ermitas y rutas del norte de Tenerife.",
+   "forma": "texto",
+   "ro": "Biroul de informații turistice din Tacoronte. Cea mai veche denumire de origine pentru vinuri din Insulele Canare — Tacoronte-Acentejo. Informații despre crame, guachinches, sărbătorile municipalității (Cristo de los Dolores, în septembrie), capele și traseele din nordul insulei Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "turismo-tacoronte.cat",
+   "es": "Turismo · Tacoronte · DO Vinos · Norte",
+   "forma": "texto",
+   "ro": "Informații turistice · Tacoronte · Vinuri DO · Nord"
+  },
+  {
+   "tabla": "places",
+   "clave": "castillo-paso-alto.desc",
+   "es": "Fortaleza del siglo XVII en el Paseo Marítimo de Santa Cruz, construida para defender la ciudad de ataques piratas y navales. Fue uno de los puntos de defensa durante el famoso ataque del almirante Nelson en 1797. Desde 2023 el castillo es del Ayuntamiento de Santa Cruz, que quiere convertirlo en un museo sobre su historia. Vistas al puerto y la bahía.",
+   "forma": "texto",
+   "ro": "Fortăreață din secolul al XVII-lea pe promenada de pe malul mării din Santa Cruz, construită pentru a apăra orașul de atacuri piratești și navale. A fost unul dintre punctele de apărare în timpul celebrului atac al amiralului Nelson din 1797. Din 2023, castelul aparține primăriei din Santa Cruz, care vrea să-l transforme într-un muzeu despre istoria lui. Priveliște spre port și golf."
+  },
+  {
+   "tabla": "places",
+   "clave": "castillo-paso-alto.cat",
+   "es": "Castillo · Santa Cruz · Histórico",
+   "forma": "texto",
+   "ro": "Castel · Santa Cruz · Istoric"
+  },
+  {
+   "tabla": "places",
+   "clave": "ermita-san-telmo.desc",
+   "es": "Pequeña ermita del siglo XVIII en Puerto de la Cruz, dedicada a San Telmo, patrono de los marineros. Situada junto al mar, al comienzo del paseo de San Telmo, es una de las capillas más antiguas y pintorescas de la ciudad. La plaza frente a ella tiene vistas directas al Atlántico y las rocas volcánicas — uno de los rincones más fotogénicos del norte.",
+   "forma": "texto",
+   "ro": "Mică capelă din secolul al XVIII-lea în Puerto de la Cruz, închinată lui San Telmo, ocrotitorul marinarilor. Situată lângă mare, la începutul promenadei San Telmo, este una dintre cele mai vechi și mai pitorești capele ale orașului. Piața din fața ei are priveliște directă spre Atlantic și spre stâncile vulcanice — unul dintre cele mai fotogenice colțuri din nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "ermita-san-telmo.cat",
+   "es": "Ermita · Puerto de la Cruz · Marineros · Fotogénica",
+   "forma": "texto",
+   "ro": "Capelă · Puerto de la Cruz · Marinari · Fotogenică"
+  },
+  {
+   "tabla": "places",
+   "clave": "plaza-adelantado-laguna.desc",
+   "es": "El corazón histórico de San Cristóbal de La Laguna (Ciudad Patrimonio de la Humanidad UNESCO). Plaza rodeada por los edificios más emblemáticos del centro histórico: el Ayuntamiento, el Convento de Santa Catalina, el Palacio de Nava, la ermita de San Miguel y la Casa del Corregidor. Fuente de mármol francesa (1870) en el centro. Primer trazado con losas en 1798, zona ajardinada desde 1843. Escenario de los principales actos culturales de la ciudad. Ambiente muy local y animado.",
+   "forma": "texto",
+   "ro": "Inima istorică a orașului San Cristóbal de La Laguna (oraș inclus în Patrimoniul Mondial UNESCO). Piață înconjurată de cele mai emblematice clădiri din centrul istoric: primăria, mănăstirea Santa Catalina, Palacio de Nava, capela San Miguel și Casa del Corregidor. În centru, o fântână din marmură franceză (1870). Pavată pentru prima dată cu dale în 1798, cu grădini din 1843. Aici au loc principalele evenimente culturale ale orașului. Atmosferă foarte locală și animată."
+  },
+  {
+   "tabla": "places",
+   "clave": "plaza-adelantado-laguna.cat",
+   "es": "Plaza Histórica · La Laguna · Patrimonio UNESCO",
+   "forma": "texto",
+   "ro": "Piață istorică · La Laguna · Patrimoniu UNESCO"
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-salazar-laguna.desc",
+   "es": "Palacio barroco del siglo XVII en la Calle San Agustín 28, La Laguna. Construido en 1664 por el Conde de Salazar. Ejemplo sobresaliente del Barroco canario con elementos manieristas y neoclásicos. Fachada considerada la mejor conservada de Canarias, con dos escudos de la familia Salazar y gárgolas de formas zoomórficas. Bien de Interés Cultural desde 1983. Tras un incendio en 2006, sólo quedó en pie la fachada, siendo restaurado a continuación. Sede actual del Obispado de la Diócesis Nivariense.",
+   "forma": "texto",
+   "ro": "Palat baroc din secolul al XVII-lea, pe Calle San Agustín nr. 28, în La Laguna. Construit în 1664 de contele de Salazar. Exemplu remarcabil de baroc canarian, cu elemente manieriste și neoclasice. Fațada este considerată cea mai bine păstrată din Insulele Canare, cu două blazoane ale familiei Salazar și garguiuri zoomorfe. Bun de interes cultural din 1983. După un incendiu din 2006 a rămas în picioare doar fațada, iar clădirea a fost apoi restaurată. Astăzi este sediul episcopiei Diecezei Nivariense."
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-salazar-laguna.cat",
+   "es": "Palacio Barroco · La Laguna · BIC · Obispado",
+   "forma": "texto",
+   "ro": "Palat baroc · La Laguna · Bun de interes cultural · Episcopie"
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-capitanes-generales.desc",
+   "es": "Casa de Alvarado-Bracamonte, conocida como de los Capitanes Generales porque seis Capitanes Generales de Canarias vivieron en ella entre 1705 y 1723. La construyó en la primera mitad del siglo XVII Diego de Alvarado-Bracamonte, gobernador, corregidor y capitán de guerra de Tenerife y La Palma. Su fachada principal da a la Plaza del Adelantado, en el casco histórico de La Laguna, Patrimonio de la Humanidad. Hoy acoge la Alcaldía. Bien de Interés Cultural desde 1981.",
+   "forma": "texto",
+   "ro": "Casa Alvarado-Bracamonte, cunoscută drept Casa Căpitanilor Generali pentru că între 1705 și 1723 au locuit aici șase căpitani generali, cei care conduceau atunci Insulele Canare. A construit-o în prima jumătate a secolului al XVII-lea Diego de Alvarado-Bracamonte, guvernator, corregidor (magistrat numit de rege) și căpitan de război al insulelor Tenerife și La Palma. Fațada principală dă spre Plaza del Adelantado, în centrul istoric din La Laguna, inclus în Patrimoniul Mondial UNESCO. Astăzi aici se află biroul primarului. Bun de interes cultural din 1981."
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-capitanes-generales.cat",
+   "es": "Casa Capitanes · La Laguna · Siglo XVII · BIC · Alcaldía",
+   "forma": "texto",
+   "ro": "Casa Căpitanilor · La Laguna · Secolul al XVII-lea · Bun de interes cultural · Primărie"
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-anchieta-laguna.desc",
+   "es": "Casa natal de san José de Anchieta (1534–1597), uno de los misioneros más importantes de la historia de Brasil y Sudamérica, conocido como el 'Apóstol del Brasil'. Edificio del siglo XVI–XVII en el casco histórico de La Laguna (UNESCO). Bien de Interés Cultural desde 1986. Se rehabilitó entre 2021 y 2024 y el Ayuntamiento prepara su conversión en el primer centro de interpretación de Canarias sobre la vida y obra de Anchieta.",
+   "forma": "texto",
+   "ro": "Casa natală a sfântului José de Anchieta (1534–1597), unul dintre cei mai importanți misionari din istoria Braziliei și a Americii de Sud, cunoscut drept „Apostolul Braziliei”. Clădire din secolele al XVI-lea și al XVII-lea, în centrul istoric din La Laguna (UNESCO). Bun de interes cultural din 1986. A fost restaurată între 2021 și 2024, iar primăria pregătește transformarea ei în primul centru de interpretare din Insulele Canare dedicat vieții și operei lui Anchieta."
+  },
+  {
+   "tabla": "places",
+   "clave": "casa-anchieta-laguna.cat",
+   "es": "Casa Natal · La Laguna · BIC · Anchieta",
+   "forma": "texto",
+   "ro": "Casă natală · La Laguna · Bun de interes cultural · Anchieta"
+  },
+  {
+   "tabla": "places",
+   "clave": "cueva-santo-hermano-pedro.desc",
+   "es": "Santuario en una cueva cerca del aeropuerto Tenerife Sur, en Granadilla de Abona. Aquí descansaba de niño Pedro de San José Betancur, el Santo Hermano Pedro, mientras cuidaba el ganado de su familia. Nacido en Tenerife, en Guatemala se dedicó a cuidar a enfermos y pobres, y es el primer santo canario. Dentro hay una estructura de madera rodeada de ofrendas y de papeles con las peticiones de los devotos. Cada abril sale de Vilaflor una peregrinación hacia esta zona de El Médano.",
+   "forma": "texto",
+   "ro": "Sanctuar într-o peșteră aproape de aeroportul Tenerife Sur, în Granadilla de Abona. Aici se odihnea în copilărie Pedro de San José Betancur, Santo Hermano Pedro („Sfântul Frate Pedro”), în timp ce păzea vitele familiei. Născut în Tenerife, s-a dedicat în Guatemala îngrijirii bolnavilor și săracilor și este primul sfânt canarian. Înăuntru se află o structură de lemn înconjurată de ofrande și de bilețele cu rugămințile credincioșilor. În fiecare aprilie, din Vilaflor pornește un pelerinaj spre această zonă din El Médano."
+  },
+  {
+   "tabla": "places",
+   "clave": "cueva-santo-hermano-pedro.cat",
+   "es": "Santuario · Granadilla de Abona · Sur",
+   "forma": "texto",
+   "ro": "Sanctuar · Granadilla de Abona · Sud"
+  },
+  {
+   "tabla": "places",
+   "clave": "sala-westerdahl.desc",
+   "es": "El Museo de Arte Contemporáneo Eduardo Westerdahl (MACEW), nacido en 1953 como Sala Eduardo Westerdahl, es el espacio museístico de arte contemporáneo más importante del norte de Tenerife; está en la antigua Casa de la Real Aduana de Puerto de la Cruz. Homenajea a Eduardo Westerdahl (1902-1983), crítico de arte, escritor y promotor cultural que impulsó el surrealismo y las vanguardias en Canarias y mantuvo correspondencia con artistas como Dalí, Braque y Miró. Alberga colecciones permanentes y exposiciones temporales de arte contemporáneo.",
+   "forma": "texto",
+   "ro": "Muzeul de Artă Contemporană Eduardo Westerdahl (MACEW), înființat în 1953 ca Sala Eduardo Westerdahl, este cel mai important spațiu muzeal de artă contemporană din nordul insulei Tenerife; se află în vechea Casa de la Real Aduana („Casa Vămii Regale”) din Puerto de la Cruz. Îl omagiază pe Eduardo Westerdahl (1902-1983), critic de artă, scriitor și promotor cultural care a susținut suprarealismul și avangardele în Insulele Canare și a întreținut corespondență cu artiști precum Dalí, Braque și Miró. Găzduiește colecții permanente și expoziții temporare de artă contemporană."
+  },
+  {
+   "tabla": "places",
+   "clave": "sala-westerdahl.cat",
+   "es": "Arte Contemporáneo · Westerdahl · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Artă contemporană · Westerdahl · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "museo-etnografico-granadilla.desc",
+   "es": "Museo de Historia de Granadilla de Abona, en la calle Arquitecto Marrero, en el casco histórico. Recoge la historia y tradiciones del municipio: aperos de labranza, útiles domésticos, trajes regionales, artesanía local y actividades agrícolas tradicionales. Muestra la vida cotidiana del sur antes del turismo. Entrada gratuita o de bajo coste.",
+   "forma": "texto",
+   "ro": "Muzeul de Istorie din Granadilla de Abona, pe strada Arquitecto Marrero, în centrul istoric. Prezintă istoria și tradițiile municipalității: unelte agricole, obiecte de uz casnic, costume populare, artizanat local și activități agricole tradiționale. Arată viața de zi cu zi din sud dinainte de turism. Intrare gratuită sau cu preț mic."
+  },
+  {
+   "tabla": "places",
+   "clave": "museo-etnografico-granadilla.cat",
+   "es": "Museo de Historia · Granadilla de Abona · Sur · Gratuito",
+   "forma": "texto",
+   "ro": "Muzeu de istorie · Granadilla de Abona · Sud · Gratuit"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-guios.desc",
+   "es": "Playa de arena negra y guijarros volcánicos bajo los impresionantes Acantilados de Los Gigantes. Una de las más dramáticas y fotogénicas de Tenerife. Aguas cristalinas para snorkel. Sin socorrista. Acceso desde el puerto de Los Gigantes (5 min a pie) o en kayak. Bar cercano.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru și pietriș vulcanic sub impresionantele faleze Los Gigantes. Una dintre cele mai spectaculoase și fotogenice din Tenerife. Ape cristaline pentru snorkeling. Fără salvamar. Acces din portul Los Gigantes (5 min pe jos) sau cu caiacul. Bar în apropiere."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-guios.cat",
+   "es": "Playa · Los Gigantes · Arena Negra",
+   "forma": "texto",
+   "ro": "Plajă · Los Gigantes · Nisip negru"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-antequera.desc",
+   "es": "Una de las playas más aisladas y vírgenes de Tenerife. Solo accesible a pie, desde Igueste de San Andrés o bajando por el barranco de Antequera desde Lomo de las Bodegas, o en barco desde San Andrés. Arena negra volcánica entre acantilados verdes de Anaga. Sin ningún servicio. Aguas cristalinas. Imprescindible llevar agua, comida y calzado de senderismo.",
+   "forma": "texto",
+   "ro": "Una dintre cele mai izolate și mai neatinse plaje din Tenerife. Accesibilă doar pe jos, din Igueste de San Andrés sau coborând prin defileul Antequera de la Lomo de las Bodegas, ori cu barca din San Andrés. Nisip negru vulcanic între falezele verzi din Anaga. Fără niciun fel de servicii. Ape cristaline. Este indispensabil să luați apă, mâncare și încălțăminte de drumeție."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-antequera.cat",
+   "es": "Playa Virgen · Anaga · Solo a pie o barco",
+   "forma": "texto",
+   "ro": "Plajă virgină · Anaga · Doar pe jos sau cu barca"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-barqueros-buenavista.desc",
+   "es": "Playa de arena negra volcánica en Buenavista del Norte, a 16 min a pie desde el centro del pueblo. Pequeña y recogida, con ambiente totalmente local y pocas masas. Rodeada de acantilados y palmeras. Sin servicios. Aguas a veces revueltas — nadar con precaución. Un rincón auténtico del noroeste de Tenerife.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru vulcanic în Buenavista del Norte, la 16 min de mers pe jos din centrul localității. Mică și ferită, cu o atmosferă complet locală și puțină aglomerație. Înconjurată de faleze și palmieri. Fără servicii. Apele sunt uneori agitate — înotați cu prudență. Un colț autentic din nord-vestul insulei Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-barqueros-buenavista.cat",
+   "es": "Playa · Buenavista del Norte · Arena Negra · Local",
+   "forma": "texto",
+   "ro": "Plajă · Buenavista del Norte · Nisip negru · Locală"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-la-caleta-adeje.desc",
+   "es": "Pequeña playa de arena oscura en La Caleta, Adeje. Pueblo pescador auténtico en medio de la zona turística del sur. Ambiente 100% local: terrazas de pescadores, barcos en el puerto, restaurantes de marisco fresquísimo. A 10 min en coche de Costa Adeje. Mucho más auténtica que las playas turísticas vecinas. Vigilada en temporada alta.",
+   "forma": "texto",
+   "ro": "Plajă mică cu nisip închis la culoare în La Caleta, Adeje. Un sat pescăresc autentic în mijlocul zonei turistice din sud. Atmosferă 100% locală: terase ale pescarilor, bărci în port, restaurante cu fructe de mare foarte proaspete. La 10 min cu mașina de Costa Adeje. Mult mai autentică decât plajele turistice vecine. Cu salvamari în sezonul de vârf."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-la-caleta-adeje.cat",
+   "es": "Playa · La Caleta · Adeje · Auténtica",
+   "forma": "texto",
+   "ro": "Plajă · La Caleta · Adeje · Autentică"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-igueste-san-andres.desc",
+   "es": "Pequeña playa de guijarros y arena negra en el pueblo de Igueste de San Andrés, en el Parque Rural de Anaga. Un rincón tranquilo y muy local, lejos del turismo masivo. Acceso por la TF-121 desde San Andrés. Aguas limpias pero con presencia de corrientes — nadar con cuidado. Buen punto de inicio para rutas de Anaga.",
+   "forma": "texto",
+   "ro": "Plajă mică cu pietriș și nisip negru în satul Igueste de San Andrés, în Parcul Rural Anaga. Un colț liniștit și foarte local, departe de turismul de masă. Acces pe drumul TF-121 din San Andrés. Ape curate, dar cu curenți — înotați cu grijă. Punct bun de plecare pentru traseele din Anaga."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-igueste-san-andres.cat",
+   "es": "Playa · Igueste de San Andrés · Anaga",
+   "forma": "texto",
+   "ro": "Plajă · Igueste de San Andrés · Anaga"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-teide-parque.desc",
+   "es": "Cámaras oficiales del Parque Nacional en directo, con vistas desde las estaciones del Teleférico.",
+   "forma": "texto",
+   "ro": "Camerele oficiale ale Parcului Național, în direct, cu imagini de la stațiile telecabinei."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-teide-parque.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-teide-hoy.desc",
+   "es": "Webcams y estado del Teleférico en tiempo real: tiempo, senderos y accesos al Teide hoy.",
+   "forma": "texto",
+   "ro": "Camere web și starea telecabinei în timp real: vremea, traseele și accesul spre Teide astăzi."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-teide-hoy.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-los-cristianos.desc",
+   "es": "La playa y la bahía de Los Cristianos en directo.",
+   "forma": "texto",
+   "ro": "Plaja și golful din Los Cristianos, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-los-cristianos.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-las-vistas.desc",
+   "es": "La gran playa de arena dorada de Las Vistas en directo.",
+   "forma": "texto",
+   "ro": "Marea plajă cu nisip auriu Las Vistas, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-las-vistas.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-troya.desc",
+   "es": "Playa de Troya y el ambiente de Las Américas en directo.",
+   "forma": "texto",
+   "ro": "Plaja Troya și atmosfera din Las Américas, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-troya.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-duque.desc",
+   "es": "La elegante Playa del Duque, en Costa Adeje, en directo.",
+   "forma": "texto",
+   "ro": "Eleganta Playa del Duque, din Costa Adeje, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-duque.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-medano.desc",
+   "es": "Viento, olas y cometas: El Médano en directo, meca del windsurf.",
+   "forma": "texto",
+   "ro": "Vânt, valuri și zmeie: El Médano în direct, Mecca windsurfingului."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-medano.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-gigantes.desc",
+   "es": "El puerto y los acantilados de Los Gigantes en directo.",
+   "forma": "texto",
+   "ro": "Portul și falezele Los Gigantes, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-gigantes.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-san-juan.desc",
+   "es": "Playa San Juan, en Guía de Isora, en directo.",
+   "forma": "texto",
+   "ro": "Playa San Juan, în Guía de Isora, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-san-juan.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-martianez.desc",
+   "es": "El Lago Martiánez y la costa de Puerto de la Cruz en directo.",
+   "forma": "texto",
+   "ro": "Lago Martiánez și litoralul din Puerto de la Cruz, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-martianez.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-garachico.desc",
+   "es": "Las piscinas naturales de El Caletón, en Garachico, en directo.",
+   "forma": "texto",
+   "ro": "Piscinele naturale El Caletón, din Garachico, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-garachico.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-punta-hidalgo.desc",
+   "es": "La piscina natural de Punta del Hidalgo, con Bajamar y el Teide al fondo.",
+   "forma": "texto",
+   "ro": "Piscina naturală din Punta del Hidalgo, cu Bajamar și Teide în fundal."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-punta-hidalgo.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-teresitas.desc",
+   "es": "La playa dorada de Las Teresitas y San Andrés en directo.",
+   "forma": "texto",
+   "ro": "Plaja aurie Las Teresitas și San Andrés, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-teresitas.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-benijo.desc",
+   "es": "Los roques y el mar bravo de Benijo, en Anaga, en directo.",
+   "forma": "texto",
+   "ro": "Stâncile și marea dezlănțuită de la Benijo, în Anaga, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-benijo.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-orotava.desc",
+   "es": "La Plaza del Ayuntamiento de La Orotava en directo.",
+   "forma": "texto",
+   "ro": "Piața Primăriei din La Orotava, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-orotava.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-plaza-espana.desc",
+   "es": "La Plaza de España de Santa Cruz en directo.",
+   "forma": "texto",
+   "ro": "Plaza de España din Santa Cruz, în direct."
+  },
+  {
+   "tabla": "places",
+   "clave": "wc-plaza-espana.cat",
+   "es": "Webcam en directo",
+   "forma": "texto",
+   "ro": "Cameră web în direct"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-espana.desc",
+   "es": "Parking subterráneo vigilado de varias plantas, en pleno centro junto a la Plaza de España y el Cabildo. Acceso directo desde el túnel de la Avenida Marítima.",
+   "forma": "texto",
+   "ro": "Parcare subterană păzită, pe mai multe niveluri, în plin centru, lângă Plaza de España și sediul Cabildo. Acces direct din tunelul de pe Avenida Marítima."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-espana.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-espana.aviso",
+   "es": "Las plazas de rotación son estrechas.",
+   "forma": "texto",
+   "ro": "Locurile pentru parcarea de scurtă durată sunt înguste."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-ramon-cajal.desc",
+   "es": "Aparcamiento cubierto de cuatro plantas con control automatizado, junto a la Plaza de la Concordia. Tiene pantallas en la entrada que indican las plazas libres.",
+   "forma": "texto",
+   "ro": "Parcare acoperită pe patru niveluri, cu control automatizat, lângă Plaza de la Concordia. La intrare, niște ecrane arată locurile libere."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-ramon-cajal.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-intercambiador-sc.desc",
+   "es": "Parking subterráneo de la estación central de guaguas y tranvía, gestionado por TITSA. Accesos desde la TF-1 y la Avenida Tres de Mayo.",
+   "forma": "texto",
+   "ro": "Parcarea subterană a stației centrale de autobuze și tramvai, administrată de TITSA. Acces de pe TF-1 și de pe Avenida Tres de Mayo."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-intercambiador-sc.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-intercambiador-sc.aviso",
+   "es": "Gratis hasta 4 h si valida con la tarjeta ten+ un viaje de ida y vuelta en guagua o tranvía.",
+   "forma": "texto",
+   "ro": "Gratuită până la 4 ore dacă validați cu cardul ten+ o călătorie dus-întors cu autobuzul sau cu tramvaiul."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-palmetum.desc",
+   "es": "Gran explanada exterior gratuita junto al mar, compartida por el Parque Marítimo César Manrique y el Palmetum. Se entra desde la rotonda de la Avenida de la Constitución.",
+   "forma": "texto",
+   "ro": "Un teren mare, deschis și gratuit, lângă mare, folosit în comun de Parque Marítimo César Manrique și de Palmetum. Se intră din sensul giratoriu de pe Avenida de la Constitución."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-palmetum.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-palmetum.aviso",
+   "es": "Suelen operar gorrillas pidiendo propina: no es un servicio oficial ni hay obligación de pagar.",
+   "forma": "texto",
+   "ro": "Adesea apar parcagii neoficiali care cer bacșiș: nu este un serviciu oficial și nimeni nu este obligat să plătească."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-quinteras-laguna.desc",
+   "es": "Aparcamiento municipal vallado en superficie, a un paso del casco histórico de La Laguna. Gestionado por la empresa municipal MUVISA.",
+   "forma": "texto",
+   "ro": "Parcare municipală împrejmuită, la suprafață, la doi pași de centrul istoric din La Laguna. Este administrată de compania municipală MUVISA."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-quinteras-laguna.cat",
+   "es": "Aparcamiento municipal",
+   "forma": "texto",
+   "ro": "Parcare municipală"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-clubo-la-pinta.desc",
+   "es": "Parking subterráneo privado de rotación junto a la playa de La Pinta y la entrada principal de Puerto Colón.",
+   "forma": "texto",
+   "ro": "Parcare subterană privată, pentru staționare de scurtă durată, lângă plaja La Pinta și intrarea principală în Puerto Colón."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-clubo-la-pinta.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-clubo-la-pinta.aviso",
+   "es": "Reservando con antelación se consiguen bonos de día completo.",
+   "forma": "texto",
+   "ro": "Dacă rezervați din timp, puteți obține abonamente pentru o zi întreagă."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-oasis-americas.desc",
+   "es": "Aparcamiento subterráneo del Centro Comercial Oasis, bajo el eje comercial de la Avenida de las Américas.",
+   "forma": "texto",
+   "ro": "Parcarea subterană a centrului comercial Oasis, sub zona comercială de pe Avenida de las Américas."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-oasis-americas.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-puerto-cristianos.desc",
+   "es": "Aparcamiento en superficie vallado y automatizado de la Autoridad Portuaria, justo enfrente de la terminal de ferris.",
+   "forma": "texto",
+   "ro": "Parcare la suprafață, împrejmuită și automatizată, a Autorității Portuare, chiar în fața terminalului de feriboturi."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-puerto-cristianos.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-puerto-cristianos.aviso",
+   "es": "Pensado sobre todo para quien viaja en ferry a otra isla y deja el coche aquí.",
+   "forma": "texto",
+   "ro": "Este gândită mai ales pentru cei care pleacă cu feribotul pe altă insulă și își lasă mașina aici."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-tfn-p1.desc",
+   "es": "Aparcamiento general público P1 de AENA, edificio cubierto de varias plantas justo frente a la terminal del Aeropuerto Tenerife Norte.",
+   "forma": "texto",
+   "ro": "Parcarea publică generală P1 a AENA, o clădire acoperită cu mai multe niveluri, chiar în fața terminalului Aeroportului Tenerife Norte."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-tfn-p1.cat",
+   "es": "Aparcamiento de aeropuerto",
+   "forma": "texto",
+   "ro": "Parcare la aeroport"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-tfn-p1.aviso",
+   "es": "Reservando antes en la web de AENA sale bastante más barato que pagar en la barrera.",
+   "forma": "texto",
+   "ro": "Dacă rezervați din timp pe site-ul AENA, vă costă mult mai puțin decât dacă plătiți la barieră."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-muelle-puerto-cruz.desc",
+   "es": "Enorme explanada pública pavimentada en primera línea de costa. Acceso desde la Avenida Blas Pérez González o la Calle Mequinez.",
+   "forma": "texto",
+   "ro": "Un teren public foarte mare, pavat, chiar pe malul mării. Acces de pe Avenida Blas Pérez González sau de pe Calle Mequinez."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-muelle-puerto-cruz.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-muelle-puerto-cruz.aviso",
+   "es": "Suelen operar gorrillas pidiendo propina: no es un servicio oficial ni hay obligación de pagar.",
+   "forma": "texto",
+   "ro": "Adesea apar parcagii neoficiali care cer bacșiș: nu este un serviciu oficial și nimeni nu este obligat să plătească."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-europa-pc.desc",
+   "es": "Aparcamiento subterráneo en pleno centro monumental, junto al Ayuntamiento y la Plaza del Charco. Entrada por la Calle Santo Domingo.",
+   "forma": "texto",
+   "ro": "Parcare subterană în plin centru monumental, lângă primărie și Plaza del Charco. Intrarea este pe Calle Santo Domingo."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-europa-pc.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-martianez-pc.desc",
+   "es": "Parking subterráneo amplio e iluminado bajo el centro comercial Martiánez. Entrada por la Avenida Aguilar y Quesada.",
+   "forma": "texto",
+   "ro": "Parcare subterană spațioasă și bine luminată, sub centrul comercial Martiánez. Intrarea este de pe Avenida Aguilar y Quesada."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-martianez-pc.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-martianez-pc.aviso",
+   "es": "Validando compras en el Mercadona de dentro se consiguen descuentos y tramos gratuitos. Es la mejor opción techada si el litoral está lleno.",
+   "forma": "texto",
+   "ro": "Dacă validați cumpărăturile făcute la Mercadona din interior, primiți reduceri și intervale gratuite. Este cea mai bună variantă acoperită când parcările de pe litoral sunt pline."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-casco-botanico-pc.desc",
+   "es": "Bolsa de aparcamiento público en superficie con plazas amplias, en la zona alta de la ciudad junto al Jardín Botánico (Carretera de las Dehesas).",
+   "forma": "texto",
+   "ro": "Parcare publică la suprafață, cu locuri largi, în partea de sus a orașului, lângă Grădina Botanică (Carretera de las Dehesas)."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-casco-botanico-pc.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-parque-taoro-pc.desc",
+   "es": "Estacionamiento público en superficie en un entorno ajardinado, junto al histórico Parque Taoro. Entrada por el Camino de la Sortija.",
+   "forma": "texto",
+   "ro": "Parcare publică la suprafață, într-un cadru cu grădini, lângă istoricul Parque Taoro. Intrarea este de pe Camino de la Sortija."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-parque-taoro-pc.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-san-agustin-orotava.desc",
+   "es": "Pequeño parking subterráneo privado de 137 plazas en el centro urbano, a pocos metros de la Plaza del Quinto Centenario y la Casa de los Balcones.",
+   "forma": "texto",
+   "ro": "Parcare subterană privată, mică, cu 137 de locuri, în centrul orașului, la câțiva metri de Plaza del Quinto Centenario și de Casa de los Balcones."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-san-agustin-orotava.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-san-agustin-orotava.aviso",
+   "es": "La entrada por la Calle Cantos Canarios es estrecha.",
+   "forma": "texto",
+   "ro": "Intrarea de pe Calle Cantos Canarios este îngustă."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-la-torrita-orotava.desc",
+   "es": "Gran solar público acondicionado por el ayuntamiento, en superficie y abierto las 24 horas. Acceso por la Avenida la Torrita.",
+   "forma": "texto",
+   "ro": "Un teren public mare, amenajat de primărie, la suprafață și deschis 24 de ore pe zi. Acces de pe Avenida la Torrita."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-la-torrita-orotava.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-la-torrita-orotava.aviso",
+   "es": "Está arriba: hay que bajar unos minutos en cuesta hasta el casco histórico, y luego subirla de vuelta.",
+   "forma": "texto",
+   "ro": "Este în partea de sus: trebuie să coborâți câteva minute pe o pantă până la centrul istoric și apoi s-o urcați la întoarcere."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-orotava-centro.desc",
+   "es": "Parking cubierto privado en el casco de La Orotava. Entrada directa por la Calle Inocencio García.",
+   "forma": "texto",
+   "ro": "Parcare acoperită privată în centrul vechi din La Orotava. Intrare directă de pe Calle Inocencio García."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-orotava-centro.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-orotava-centro.aviso",
+   "es": "Los accesos interiores y las plazas son estrechos.",
+   "forma": "texto",
+   "ro": "Căile de acces din interior și locurile de parcare sunt înguste."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-los-realejos.desc",
+   "es": "Gran zona de estacionamiento municipal en superficie, asfaltada, llana y señalizada. Acceso por la Calle San Agustín.",
+   "forma": "texto",
+   "ro": "O zonă mare de parcare municipală, la suprafață, asfaltată, plană și semnalizată. Acces de pe Calle San Agustín."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-los-realejos.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-los-realejos.aviso",
+   "es": "Ahorra dar vueltas buscando sitio por el centro comercial abierto.",
+   "forma": "texto",
+   "ro": "Vă scutește de ocoluri în căutarea unui loc în zona comercială din centru."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-tacoronte-estacion.desc",
+   "es": "Aparcamiento público exterior de rotación junto a la plaza principal, punto de partida para el casco y el Mercado del Agricultor. Entrada por la Calle Sebastián Machado.",
+   "forma": "texto",
+   "ro": "Parcare publică în aer liber, pentru staționare de scurtă durată, lângă piața principală, punct de plecare spre centrul vechi și spre Piața producătorilor. Intrarea este pe Calle Sebastián Machado."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-tacoronte-estacion.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-drago-icod.desc",
+   "es": "Edificio de aparcamiento cubierto de seis plantas con salida peatonal directa junto a las taquillas del Drago Milenario. Acceso por la Avenida de Canarias.",
+   "forma": "texto",
+   "ro": "Clădire de parcare acoperită, cu șase niveluri, cu ieșire pietonală direct lângă casele de bilete de la Drago Milenario. Acces de pe Avenida de Canarias."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-drago-icod.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-alvarez-icod.desc",
+   "es": "Garaje subterráneo privado en el centro del pueblo, pegado a las dependencias del Ayuntamiento. Entrada por la Calle Emeterio Gutiérrez Albelo.",
+   "forma": "texto",
+   "ro": "Garaj subteran privat în centrul localității, lipit de clădirile primăriei. Intrarea este pe Calle Emeterio Gutiérrez Albelo."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-alvarez-icod.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-magalona-icod.desc",
+   "es": "Aparcamiento subterráneo amplio con ascensor directo, bajo el centro comercial La Magalona. Entrada desde la conexión con la autopista.",
+   "forma": "texto",
+   "ro": "Parcare subterană spațioasă, cu lift direct, sub centrul comercial La Magalona. Intrarea este dinspre legătura cu autostrada."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-magalona-icod.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-magalona-icod.aviso",
+   "es": "Gratis para clientes que consuman en los establecimientos del centro comercial.",
+   "forma": "texto",
+   "ro": "Gratuită pentru clienții care consumă în localurile din centrul comercial."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-campo-futbol-garachico.desc",
+   "es": "Enorme explanada pública en superficie paralela al mar, junto al campo de fútbol. A cinco minutos a pie del casco. Entrada por la Avenida Adolfo Suárez.",
+   "forma": "texto",
+   "ro": "Un teren public foarte mare, la suprafață, paralel cu marea, lângă terenul de fotbal. La cinci minute de mers pe jos de centrul vechi. Intrarea este de pe Avenida Adolfo Suárez."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-campo-futbol-garachico.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-garachico-casco.desc",
+   "es": "Pequeño recinto público al aire libre junto al consistorio, en la Calle Esteban de Ponte.",
+   "forma": "texto",
+   "ro": "Mic spațiu public în aer liber, lângă primărie, pe Calle Esteban de Ponte."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-garachico-casco.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-garachico-casco.aviso",
+   "es": "Se llena rápido los fines de semana.",
+   "forma": "texto",
+   "ro": "Se umple repede în weekend."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-los-silos.desc",
+   "es": "Zona pública en superficie delimitada con líneas blancas, a escasos metros de la plaza de la Iglesia. Entrada por la Calle de la Estrella.",
+   "forma": "texto",
+   "ro": "Zonă publică la suprafață, delimitată cu linii albe, la câțiva metri de piața bisericii. Intrarea este pe Calle de la Estrella."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-los-silos.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-buenavista-casco.desc",
+   "es": "Aparcamiento público en superficie pensado para descongestionar el núcleo histórico protegido. Entrada por la Calle Los Claveles.",
+   "forma": "texto",
+   "ro": "Parcare publică la suprafață, gândită pentru a degaja centrul istoric protejat. Intrarea este pe Calle Los Claveles."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-buenavista-casco.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-buenavista-casco.aviso",
+   "es": "Se usa como punto de parada antes de coger la guagua que sube a Punta de Teno.",
+   "forma": "texto",
+   "ro": "Este folosită ca loc de oprire înainte de a lua autobuzul care urcă spre Punta de Teno."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-cruz-carmen-anaga.desc",
+   "es": "Aparcamiento exterior oficial en pleno bosque de laurisilva, junto al Centro de Visitantes. Acceso por la carretera dorsal de Anaga (TF-12).",
+   "forma": "texto",
+   "ro": "Parcare oficială în aer liber, în plină pădure de laur, lângă Centrul de vizitare. Acces de pe drumul de pe creasta masivului Anaga (TF-12)."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-cruz-carmen-anaga.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-cruz-carmen-anaga.aviso",
+   "es": "Se llena antes de las 10:00. Si llega más tarde, prepárese para dar vueltas o aparcar lejos.",
+   "forma": "texto",
+   "ro": "Se umple înainte de ora 10:00. Dacă ajungeți mai târziu, pregătiți-vă să dați ocoale sau să parcați departe."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-tegueste.desc",
+   "es": "Explanada urbana en superficie gestionada por el municipio, de apoyo al mercadillo y al casco histórico. Entrada por la Calle Preste Juan, junto a la Plaza de San Marcos.",
+   "forma": "texto",
+   "ro": "Teren urban la suprafață, administrat de municipalitate, care deservește târgul și centrul istoric. Intrarea este pe Calle Preste Juan, lângă Plaza de San Marcos."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-tegueste.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-bajamar-piscinas.desc",
+   "es": "Bolsas de estacionamiento en batería y cordón repartidas por las calles del litoral, bajando por la Avenida Gran Poder hasta el paseo marítimo.",
+   "forma": "texto",
+   "ro": "Locuri de parcare în spic și longitudinale, pe străzile de pe litoral, coborând pe Avenida Gran Poder până la promenadă."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-bajamar-piscinas.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-bajamar-piscinas.aviso",
+   "es": "Muy masificado en verano: a mediodía es difícil encontrar sitio cerca de las piscinas.",
+   "forma": "texto",
+   "ro": "Foarte aglomerat vara: la prânz este greu să găsiți loc aproape de piscine."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-juan-carlos-cristianos.desc",
+   "es": "Gran explanada pública en superficie junto al intercambiador de guaguas, la opción principal para dejar el coche sin coste y no entrar al núcleo peatonal. Entrada por la Avenida Juan Carlos I.",
+   "forma": "texto",
+   "ro": "Un teren public mare, la suprafață, lângă autogară; principala variantă pentru a lăsa mașina fără costuri și a nu intra în zona pietonală. Intrarea este de pe Avenida Juan Carlos I."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-juan-carlos-cristianos.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-medano-publico.desc",
+   "es": "Gran bolsa municipal en superficie de tierra acondicionada, en la entrada principal del pueblo por la Avenida José Miguel Galván Bello.",
+   "forma": "texto",
+   "ro": "Un mare spațiu municipal de parcare, la suprafață, pe un teren de pământ amenajat, la intrarea principală în localitate, pe Avenida José Miguel Galván Bello."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-medano-publico.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-medano-publico.aviso",
+   "es": "Se llena muy rápido por las mañanas: surfistas y bañistas llegan temprano.",
+   "forma": "texto",
+   "ro": "Se umple foarte repede dimineața: surferii și cei care vin la plajă ajung devreme."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-san-miguel-golf.desc",
+   "es": "Estacionamiento exterior asfaltado con plazas delimitadas, para el acceso a las urbanizaciones costeras y los campos de golf. Entrada por el Paseo J. M. Galván Bello.",
+   "forma": "texto",
+   "ro": "Parcare în aer liber, asfaltată, cu locuri delimitate, pentru accesul la complexele rezidențiale de pe coastă și la terenurile de golf. Intrarea este de pe Paseo J. M. Galván Bello."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-san-miguel-golf.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-duque-adeje.desc",
+   "es": "Parking subterráneo privado con plazas anchas bajo el centro comercial Plaza del Duque. Acceso por la rampa de la Calle Londres.",
+   "forma": "texto",
+   "ro": "Parcare subterană privată, cu locuri largi, sub centrul comercial Plaza del Duque. Acces pe rampa de pe Calle Londres."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-duque-adeje.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-duque-adeje.aviso",
+   "es": "Suele dar la primera hora gratis si compra en el supermercado o las tiendas de dentro.",
+   "forma": "texto",
+   "ro": "De obicei, prima oră este gratuită dacă faceți cumpărături la supermarketul sau la magazinele din interior."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-los-gigantes.desc",
+   "es": "Aparcamiento subterráneo privado de rotación muy cerca del puerto deportivo. Acceso bajando por la Calle Flor de Pascua.",
+   "forma": "texto",
+   "ro": "Parcare subterană privată, pentru staționare de scurtă durată, foarte aproape de portul de agrement. Acces coborând pe Calle Flor de Pascua."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-los-gigantes.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-los-gigantes.aviso",
+   "es": "Casi no hay sitio en las calles empinadas del acantilado: contar con este parking ahorra mucho tiempo.",
+   "forma": "texto",
+   "ro": "Pe străzile abrupte de pe faleză aproape că nu găsiți loc: dacă vă bazați pe această parcare, economisiți mult timp."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-playa-arena-santiago.desc",
+   "es": "Bolsa pública en superficie delimitada en paralelo a la Avenida Marítima, a unos metros del acceso a la playa de arena negra.",
+   "forma": "texto",
+   "ro": "Parcare publică la suprafață, delimitată, paralelă cu Avenida Marítima, la câțiva metri de accesul spre plaja cu nisip negru."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-playa-arena-santiago.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-playa-arena-santiago.aviso",
+   "es": "Líneas blancas: gratis. Avenida Marítima, Calle Ana María y Calle El Lajial. En verano y fines de semana se llena: mejor antes de las 10:00. Si no hay sitio, parkings de pago en Balcón de Los Gigantes o El Mirador.",
+   "forma": "texto",
+   "ro": "Linii albe: gratuit. Avenida Marítima, Calle Ana María și Calle El Lajial. Vara și în weekend se umple: mai bine înainte de 10:00. Dacă nu găsiți loc, există parcări cu plată la Balcón de Los Gigantes sau la El Mirador."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-guia-isora.desc",
+   "es": "Explanada municipal abierta en la parte trasera de la iglesia matriz, buena base antes de recorrer el casco o salir a caminar. Entrada por la Calle de San Sebastián.",
+   "forma": "texto",
+   "ro": "Teren municipal deschis, în spatele bisericii principale, un bun punct de plecare înainte de a vizita centrul vechi sau de a pleca la drumeție. Intrarea este pe Calle de San Sebastián."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-guia-isora.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-patrona-candelaria.desc",
+   "es": "Gran explanada asfaltada en pleno frente marítimo, justo al lado de la Basílica de Candelaria. Se accede al final de la Calle de la Arena.",
+   "forma": "texto",
+   "ro": "Un teren mare, asfaltat, chiar pe malul mării, alături de Bazilica din Candelaria. Se intră pe la capătul Calle de la Arena."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-patrona-candelaria.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-plaza-patrona-candelaria.aviso",
+   "es": "Muy concurrido los fines de semana y en fiestas religiosas.",
+   "forma": "texto",
+   "ro": "Foarte aglomerată în weekend și la sărbătorile religioase."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-candelaria-centro.desc",
+   "es": "Aparcamiento subterráneo privado vigilado en el eje comercial del municipio. Entrada por la Calle de los Príncipes.",
+   "forma": "texto",
+   "ro": "Parcare subterană privată, păzită, în zona comercială a municipalității. Intrarea este pe Calle de los Príncipes."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-candelaria-centro.cat",
+   "es": "Aparcamiento de pago",
+   "forma": "texto",
+   "ro": "Parcare cu plată"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-candelaria-centro.aviso",
+   "es": "La alternativa cuando llueve o el frente marítimo está lleno por las fiestas.",
+   "forma": "texto",
+   "ro": "Alternativa când plouă sau când parcarea de pe malul mării este plină, în zilele de sărbătoare."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-guimar.desc",
+   "es": "Zona asfaltada habilitada por el ayuntamiento para descargar el casco histórico, muy cerca del consistorio y la plaza central. Acceso por la Avenida Obispo Pérez Cáceres.",
+   "forma": "texto",
+   "ro": "Zonă asfaltată, amenajată de municipalitate pentru a degaja centrul istoric, foarte aproape de primărie și de piața centrală. Acces de pe Avenida Obispo Pérez Cáceres."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-guimar.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-poris-abona.desc",
+   "es": "Línea de estacionamiento público en superficie y batería frente al mar y las zonas de baño del núcleo pesquero. Acceso desde la bajada de la autopista por la Calle Real.",
+   "forma": "texto",
+   "ro": "Un șir de locuri de parcare publice la suprafață și în spic, în fața mării și a zonelor de baie din satul de pescari. Acces dinspre ieșirea de pe autostradă, pe Calle Real."
+  },
+  {
+   "tabla": "places",
+   "clave": "pk-poris-abona.cat",
+   "es": "Aparcamiento gratuito",
+   "forma": "texto",
+   "ro": "Parcare gratuită"
+  },
+  {
+   "tabla": "places",
+   "clave": "bano-valleseco-bloque.desc",
+   "es": "Solárium de hormigón contiguo a Valleseco, con escaleras de bajada al mar y ducha. Es uno de los puntos de baño más cercanos al centro de Santa Cruz. No hay rampa de acceso adaptado.",
+   "forma": "texto",
+   "ro": "Solariu din beton lângă Valleseco, cu scări de coborâre în mare și duș. Este unul dintre locurile de baie cele mai apropiate de centrul orașului Santa Cruz. Nu există rampă de acces adaptată."
+  },
+  {
+   "tabla": "places",
+   "clave": "bano-valleseco-bloque.cat",
+   "es": "Zona de Baño · Santa Cruz",
+   "forma": "texto",
+   "ro": "Zonă de baie · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-archile.desc",
+   "es": "Desembocadura de un barranco seco que forma una laguna separada del mar, de agua turquesa y muy tranquila. Se baja por sendero y escaleras. El fondo es de piedra: hacen falta escarpines.",
+   "forma": "texto",
+   "ro": "La gura unui defileu uscat se formează o lagună despărțită de mare, cu apă turcoaz și foarte liniștită. Se coboară pe o potecă și pe scări. Fundul este de piatră: aveți nevoie de încălțăminte de apă."
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-archile.cat",
+   "es": "Charco Natural · San Miguel",
+   "forma": "texto",
+   "ro": "Bazin natural · San Miguel"
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-don-gabino.desc",
+   "es": "Piscina natural junto al Puertito de Los Silos, menos concurrida que los charcos principales. La entrada y la salida son incómodas y con marea fuerte se complica. Conviene calzado de agua.",
+   "forma": "texto",
+   "ro": "Piscină naturală lângă Puertito de Los Silos, mai puțin aglomerată decât bazinele principale. Intrarea și ieșirea sunt incomode, iar când mareea e puternică devin complicate. Este bine să aveți încălțăminte de apă."
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-don-gabino.cat",
+   "es": "Piscina Natural · Los Silos",
+   "forma": "texto",
+   "ro": "Piscină naturală · Los Silos"
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-golete.desc",
+   "es": "Charco pequeño en La Caleta de Güímar, justo bajo la autopista. Suele estar vacío y tiene aparcamiento libre, pero las calles de bajada son muy empinadas. No hay duchas ni ningún servicio. Solo con viento y mar en calma.",
+   "forma": "texto",
+   "ro": "Bazin mic în La Caleta de Güímar, chiar sub autostradă. De obicei nu e nimeni și are parcare gratuită, dar străzile pe care coborâți sunt foarte abrupte. Nu există dușuri și niciun fel de servicii. Doar când vântul și marea sunt calme."
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-golete.cat",
+   "es": "Piscina Natural · Güímar",
+   "forma": "texto",
+   "ro": "Piscină naturală · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-gomero.desc",
+   "es": "Charcos naturales sobre roca al oeste de Garachico, sin acondicionar ni señalizar. Apenas van turistas. Como el resto de charcos del municipio, no es sitio para entrar con mar movido.",
+   "forma": "texto",
+   "ro": "Bazine naturale pe stâncă, la vest de Garachico, neamenajate și fără semnalizare. Aproape că nu vin turiști. Ca toate celelalte bazine din municipalitate, nu este un loc în care să intrați când marea e agitată."
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-gomero.cat",
+   "es": "Charcos Naturales · Garachico",
+   "forma": "texto",
+   "ro": "Bazine naturale · Garachico"
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-laja-bajamar.desc",
+   "es": "Charco en el acantilado de Bajamar, distinto del Charco de La Laja de San Juan de la Rambla, a más de 40 km. El acceso es muy difícil, no hay socorristas ni vía para evacuar a nadie herido, y ha habido ahogamientos en los últimos años. El mar rompe fuerte contra la roca.",
+   "forma": "texto",
+   "ro": "Bazin pe faleza din Bajamar, diferit de Charco de La Laja din San Juan de la Rambla, aflat la peste 40 km. Accesul este foarte dificil, nu există salvamari și nici vreo cale de a evacua un rănit, iar în ultimii ani au avut loc înecuri. Marea se sparge cu putere de stâncă."
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-laja-bajamar.cat",
+   "es": "Charco · La Laguna",
+   "forma": "texto",
+   "ro": "Bazin · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-roque.desc",
+   "es": "Charco natural poco conocido en la costa de Buenavista del Norte. Es pequeño: cuando se junta gente queda poco sitio donde ponerse. Sin servicios de ningún tipo.",
+   "forma": "texto",
+   "ro": "Bazin natural puțin cunoscut pe coasta din Buenavista del Norte. Este mic: când se adună lume, rămâne puțin loc unde să vă așezați. Fără niciun fel de servicii."
+  },
+  {
+   "tabla": "places",
+   "clave": "charco-roque.cat",
+   "es": "Charco Natural · Buenavista",
+   "forma": "texto",
+   "ro": "Bazin natural · Buenavista"
+  },
+  {
+   "tabla": "places",
+   "clave": "piscina-gigantes.desc",
+   "es": "Charco de agua de mar al pie de Los Gigantes, protegido por un muro de hormigón. Es un sitio peligroso: la roca del borde es muy resbaladiza y las olas han arrastrado bañistas al mar abierto, con fallecidos en los últimos años. No sentarse ni caminar por el borde del muro. Consultar siempre el estado del mar y los avisos del ayuntamiento antes de ir.",
+   "forma": "texto",
+   "ro": "Bazin cu apă de mare la poalele falezelor Los Gigantes, protejat de un zid de beton. Este un loc periculos: piatra de pe margine este foarte alunecoasă, iar valurile au târât înotători în larg, cu morți în ultimii ani. Nu vă așezați și nu mergeți pe marginea zidului. Verificați întotdeauna starea mării și avertizările primăriei înainte de a merge."
+  },
+  {
+   "tabla": "places",
+   "clave": "piscina-gigantes.cat",
+   "es": "Piscina Natural · Santiago del Teide",
+   "forma": "texto",
+   "ro": "Piscină naturală · Santiago del Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "piscina-guimar.desc",
+   "es": "Piscina natural en la costa de Güímar. A menudo baja de agua o directamente seca, y sin servicios de ningún tipo. Conviene comprobar el estado antes de ir; los charcos del norte suelen estar mejor.",
+   "forma": "texto",
+   "ro": "Piscină naturală pe coasta din Güímar. Adesea are puțină apă sau este chiar secată și nu are niciun fel de servicii. Este bine să verificați starea ei înainte de a merge; bazinele din nord sunt de obicei în stare mai bună."
+  },
+  {
+   "tabla": "places",
+   "clave": "piscina-guimar.cat",
+   "es": "Charco Natural · Güímar",
+   "forma": "texto",
+   "ro": "Bazin natural · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "piscina-hidalgo-norte.desc",
+   "es": "Segundo charco de Punta del Hidalgo, unos 500 m al norte del principal. Tiene una parte poco profunda y otra más honda, con escaleras de metal y piedra. Buen snorkel y vistas al Teide. Roca cortante: escarpines.",
+   "forma": "texto",
+   "ro": "Al doilea bazin din Punta del Hidalgo, la circa 500 m nord de cel principal. Are o parte puțin adâncă și alta mai adâncă, cu scări de metal și de piatră. Snorkeling bun și priveliște spre Teide. Piatră tăioasă: încălțăminte de apă."
+  },
+  {
+   "tabla": "places",
+   "clave": "piscina-hidalgo-norte.cat",
+   "es": "Charco Natural · Punta del Hidalgo",
+   "forma": "texto",
+   "ro": "Bazin natural · Punta del Hidalgo"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-abriguitos.desc",
+   "es": "Bahía resguardada junto a Abades, de arena clara y entrada gradual sin piedras. Agua muy transparente y con peces cerca de la orilla: es uno de los sitios de snorkel del sureste.",
+   "forma": "texto",
+   "ro": "Golf adăpostit lângă Abades, cu nisip deschis la culoare și intrare treptată în apă, fără pietre. Apă foarte limpede, cu pești aproape de mal: este unul dintre locurile de snorkeling din sud-est."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-abriguitos.cat",
+   "es": "Playa de Snorkel · Arico",
+   "forma": "texto",
+   "ro": "Plajă pentru snorkeling · Arico"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-agua-dulce.desc",
+   "es": "Playa de callao en la costa de Los Silos, con montaña detrás y mar delante. Zona ventosa y de oleaje grande. El acceso desde el sur es por curvas muy cerradas y empinadas.",
+   "forma": "texto",
+   "ro": "Plajă cu bolovani pe coasta din Los Silos, cu muntele în spate și marea în față. Zonă cu vânt și valuri mari. Accesul dinspre sud se face pe curbe foarte strânse și abrupte."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-agua-dulce.cat",
+   "es": "Playa de Callao · Los Silos",
+   "forma": "texto",
+   "ro": "Plajă cu bolovani · Los Silos"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-beril.desc",
+   "es": "Playa de arena negra de unos 500 m, más tranquila que las vecinas y con buen acceso al agua. El fondo tiene roca y peces, así que funciona bien para snorkel y para nadar largo. Hamacas de pago y sin aseos públicos.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru de circa 500 m, mai liniștită decât cele vecine și cu acces bun în apă. Fundul are stânci și pești, așa că este bună pentru snorkeling și pentru înot pe distanțe lungi. Șezlonguri cu plată și fără toalete publice."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-beril.cat",
+   "es": "Playa de Snorkel · Adeje",
+   "forma": "texto",
+   "ro": "Plajă pentru snorkeling · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-bobo.desc",
+   "es": "Playa pequeña y resguardada en Costa Adeje. Sin apenas oleaje y con cantos rodados: el agua queda como una piscina natural. Muy usada por familias con niños pequeños.",
+   "forma": "texto",
+   "ro": "Plajă mică și adăpostită în Costa Adeje. Aproape fără valuri și cu pietre rotunjite: apa rămâne ca într-o piscină naturală. Foarte frecventată de familiile cu copii mici."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-bobo.cat",
+   "es": "Playa Familiar · Adeje",
+   "forma": "texto",
+   "ro": "Plajă pentru familii · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-cabezo-medano.desc",
+   "es": "Playa abierta al este de El Médano, uno de los puntos de windsurf y kitesurf de referencia de la isla por la constancia del viento. Baño expuesto los días de mar movida.",
+   "forma": "texto",
+   "ro": "Plajă deschisă la est de El Médano, unul dintre locurile de referință ale insulei pentru windsurfing și kitesurfing, datorită vântului constant. Scăldatul este expus în zilele cu mare agitată."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-cabezo-medano.cat",
+   "es": "Playa de Viento · Granadilla",
+   "forma": "texto",
+   "ro": "Plajă cu vânt · Granadilla"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-caleton-sauzal.desc",
+   "es": "Antiguo caserío pesquero de La Matanza de Acentejo, con casas cueva y un pequeño muelle. Sin servicios salvo un bar de temporada. Se baja por carretera estrecha y en curvas sin quitamiedos, y al agua se entra sobre roca. Con mar movido hay que ser buen nadador.",
+   "forma": "texto",
+   "ro": "Vechi cătun de pescari din La Matanza de Acentejo, cu case-peșteră și un mic debarcader. Fără servicii, în afară de un bar deschis în sezon. Se coboară pe un drum îngust și cu curbe, fără parapete, iar în apă se intră de pe stâncă. Când marea e agitată, trebuie să fiți un bun înotător."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-caleton-sauzal.cat",
+   "es": "Caserío y Baño · La Matanza",
+   "forma": "texto",
+   "ro": "Cătun și zonă de baie · La Matanza"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-candelaria.desc",
+   "es": "Playa de arena volcánica y callaos junto a la Basílica de Candelaria. Es la única del municipio sin espigones, así que recibe el oleaje de frente y mengua con la marea alta.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip vulcanic și bolovani, lângă Bazilica din Candelaria. Este singura din municipalitate fără diguri, așa că primește valurile din față și se micșorează la flux."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-candelaria.cat",
+   "es": "Playa Urbana · Candelaria",
+   "forma": "texto",
+   "ro": "Plajă urbană · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-castillo-pcruz.desc",
+   "es": "Playa de arena negra junto al Castillo de San Felipe, uno de los tres tramos de la Playa Jardín, diseñada por César Manrique en los años noventa, con paseo ajardinado, cafeterías y zona infantil. Tiene duchas, aseos y hamacas. El fondo es de cantos grandes y el oleaje fuerte: se recomienda calzado de agua.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru lângă Castillo de San Felipe, unul dintre cele trei tronsoane ale Playa Jardín, proiectată de César Manrique în anii nouăzeci, cu promenadă cu grădini, cafenele și zonă pentru copii. Are dușuri, toalete și șezlonguri. Fundul este din bolovani mari, iar valurile sunt puternice: se recomandă încălțăminte de apă."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-castillo-pcruz.cat",
+   "es": "Playa de Arena Negra · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-charcada.desc",
+   "es": "Playa del Puertito de Güímar, junto al muelle pesquero. Agua clara y ambiente tranquilo, con restaurantes y zona infantil. Hay otra playita menor al otro lado del pueblo.",
+   "forma": "texto",
+   "ro": "Plaja din Puertito de Güímar, lângă debarcaderul pescăresc. Apă limpede și atmosferă liniștită, cu restaurante și zonă pentru copii. Există și o plajă mai mică în cealaltă parte a satului."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-charcada.cat",
+   "es": "Playa · Güímar",
+   "forma": "texto",
+   "ro": "Plajă · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-chimisay.desc",
+   "es": "Playa sin urbanizar en El Socorro de Güímar, junto al polígono industrial. Hay roca bajo el agua y poco fondo cerca de la orilla; el tramo bueno para entrar está resguardado, casi sin olas. Aparcamiento amplio y restaurante al pie.",
+   "forma": "texto",
+   "ro": "Plajă neamenajată în El Socorro de Güímar, lângă zona industrială. Sub apă sunt stânci, iar lângă mal apa e puțin adâncă; porțiunea bună pentru a intra în apă este adăpostită, aproape fără valuri. Parcare spațioasă și restaurant chiar lângă."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-chimisay.cat",
+   "es": "Playa · Güímar",
+   "forma": "texto",
+   "ro": "Plajă · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-enramada.desc",
+   "es": "Playa de arena negra volcánica junto a La Caleta. Zonas de roca en la entrada al agua. Es el punto de aterrizaje de los parapentes que bajan de la montaña.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru vulcanic lângă La Caleta. La intrarea în apă sunt zone cu stânci. Aici aterizează parapantele care coboară de pe munte."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-enramada.cat",
+   "es": "Playa de Arena Negra · Adeje",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-galletas.desc",
+   "es": "Playa de callaos junto al puerto de Las Galletas. Ambiente local, poco turístico, con restaurantes y parque infantil en el paseo. Hay un tramo de arena a la derecha del muelle.",
+   "forma": "texto",
+   "ro": "Plajă cu bolovani lângă portul din Las Galletas. Atmosferă locală, puțin turistică, cu restaurante și loc de joacă pe promenadă. În dreapta debarcaderului există o porțiune cu nisip."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-galletas.cat",
+   "es": "Playa · Arona",
+   "forma": "texto",
+   "ro": "Plajă · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-grande-abades.desc",
+   "es": "Playa de arena clara y entrada gradual, poco conocida por el turismo y usada sobre todo por familias locales. Suele haber viento y olas pequeñas, y a veces vienen escuelas de surf. Aparcamiento para una decena de coches y sin aseos.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip deschis la culoare și intrare treptată în apă, puțin cunoscută de turiști și folosită mai ales de familiile din zonă. De obicei bate vântul și valurile sunt mici, iar uneori vin școli de surf. Parcare pentru vreo zece mașini și fără toalete."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-grande-abades.cat",
+   "es": "Playa Familiar · Arico",
+   "forma": "texto",
+   "ro": "Plajă pentru familii · Arico"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-guincho.desc",
+   "es": "Arena negra fina con grandes piedras y olas grandes: la usan surfistas. El acceso confunde a mucha gente porque parece pasar por platanera. La forma clara es bajar por la carretera de la iglesia moderna, aparcar ahí y seguir el sendero. Aparcamiento muy pequeño.",
+   "forma": "texto",
+   "ro": "Nisip negru fin, cu pietre mari și valuri mari: o folosesc surferii. Accesul îi încurcă pe mulți, pentru că pare să treacă printr-o plantație de banane. Ca să nu vă încurcați, coborâți pe drumul bisericii moderne, parcați acolo și continuați pe potecă. Parcare foarte mică."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-guincho.cat",
+   "es": "Playa de Surf · Garachico",
+   "forma": "texto",
+   "ro": "Plajă pentru surf · Garachico"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-jaca.desc",
+   "es": "Playa pequeña y muy tranquila, con varios charcos entre la roca y escaleras de acero para bajar al agua. Zona ventosa y poco turística, con pescadores. Buen sitio para ver amanecer.",
+   "forma": "texto",
+   "ro": "Plajă mică și foarte liniștită, cu mai multe bazine printre stânci și scări de oțel pentru coborârea în apă. Zonă cu vânt și puțin turistică, cu pescari. Loc bun pentru a privi răsăritul."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-jaca.cat",
+   "es": "Playa y Charcos · Arico",
+   "forma": "texto",
+   "ro": "Plajă și bazine · Arico"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-jaquita-medano.desc",
+   "es": "Conjunto de calas y charcos frente a Montaña Roja, cerca de El Médano. Fondo de roca, entrada resbaladiza y rompiente irregular. Zona muy ventosa, usada para surf.",
+   "forma": "texto",
+   "ro": "Un grup de golfulețe și bazine în fața muntelui Montaña Roja, aproape de El Médano. Fund stâncos, intrare alunecoasă și valuri care se sparg neregulat. Zonă cu mult vânt, folosită pentru surf."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-jaquita-medano.cat",
+   "es": "Playa y Calas · Granadilla",
+   "forma": "texto",
+   "ro": "Plajă și golfulețe · Granadilla"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-las-aguas.desc",
+   "es": "Playa reformada al pie del acantilado, de callao grueso y no de arena: caminar cuesta. Buen baño en verano, ambiente local, dos restaurantes al lado y pocas plazas de aparcamiento.",
+   "forma": "texto",
+   "ro": "Plajă renovată la poalele falezei, cu bolovani mari, nu cu nisip: se merge greu. Scăldat bun vara, atmosferă locală, două restaurante alături și puține locuri de parcare."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-las-aguas.cat",
+   "es": "Playa de Callao · San Juan de la Rambla",
+   "forma": "texto",
+   "ro": "Plajă cu bolovani · San Juan de la Rambla"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-martianez.desc",
+   "es": "Playa de arena negra y grandes cantos en Puerto de la Cruz, con oleaje constante del norte. Muy usada por surfistas. El baño es expuesto: hay que respetar las banderas.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru și bolovani mari în Puerto de la Cruz, cu valuri constante dinspre nord. Foarte frecventată de surferi. Scăldatul este expus: respectați steagurile."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-martianez.cat",
+   "es": "Playa de Surf · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Plajă pentru surf · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-muelle-garachico.desc",
+   "es": "Playa de arena negra junto al muelle viejo de Garachico, sobre la colada de la última erupción. Escaleras de piedra bajan al agua desde el murete. Aparcamiento y parque infantil al lado.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru lângă vechiul debarcader din Garachico, pe lava ultimei erupții. Scări de piatră coboară în apă de pe zidul scund. Parcare și loc de joacă alături."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-muelle-garachico.cat",
+   "es": "Playa de Arena Negra · Garachico",
+   "forma": "texto",
+   "ro": "Plajă cu nisip negru · Garachico"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-nea.desc",
+   "es": "Playa de unos 300 m en Radazul, de arena oscura gruesa con callao. Un espigón la protege del oleaje, así que la entrada es gradual y sin rocas. Tiene ducha, parque infantil y aparcamiento.",
+   "forma": "texto",
+   "ro": "Plajă de circa 300 m în Radazul, cu nisip închis la culoare, grosier, și bolovani. Un dig o protejează de valuri, așa că intrarea în apă este treptată și fără stânci. Are duș, loc de joacă și parcare."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-nea.cat",
+   "es": "Playa Familiar · El Rosario",
+   "forma": "texto",
+   "ro": "Plajă pentru familii · El Rosario"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-pinta.desc",
+   "es": "Bahía pequeña de arena fina junto a Puerto Colón. Agua clara y tranquila, con peces a pocos metros de la orilla. Rodeada de restaurantes y comercios.",
+   "forma": "texto",
+   "ro": "Golf mic cu nisip fin lângă Puerto Colón. Apă limpede și liniștită, cu pești la câțiva metri de mal. Înconjurat de restaurante și magazine."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-pinta.cat",
+   "es": "Playa · Adeje",
+   "forma": "texto",
+   "ro": "Plajă · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-punta-fraile.desc",
+   "es": "Punta de roca negra sin arena, en el extremo noroeste. Mar abierto y bravo, poco apta para el baño o el snorkel. Sitio tranquilo para pasar el rato y ver la puesta de sol.",
+   "forma": "texto",
+   "ro": "Promontoriu de rocă neagră, fără nisip, în extremitatea de nord-vest. Mare deschisă și dezlănțuită, puțin potrivită pentru scăldat sau snorkeling. Un loc liniștit pentru a petrece timpul și a privi apusul."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-punta-fraile.cat",
+   "es": "Costa Rocosa · Buenavista",
+   "forma": "texto",
+   "ro": "Coastă stâncoasă · Buenavista"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-punta-larga.desc",
+   "es": "Playa pequeña de callao negro con plataformas de madera para tumbarse. Resguardada del oleaje y muy transparente: hay roca al sur donde se hace snorkel. Frecuentada sobre todo por gente local.",
+   "forma": "texto",
+   "ro": "Plajă mică cu bolovani negri și platforme de lemn pe care vă puteți întinde. Ferită de valuri și cu apă foarte limpede: la sud sunt stânci unde se face snorkeling. Frecventată mai ales de localnici."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-punta-larga.cat",
+   "es": "Playa · Candelaria",
+   "forma": "texto",
+   "ro": "Plajă · Candelaria"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-radazul.desc",
+   "es": "Uno de los mejores sitios de snorkel del área metropolitana. Dos entradas laterales resguardadas del oleaje y una escalera central que da directamente a zona profunda. Aparcamiento en la calle. No hay aseos y las duchas suelen estar averiadas.",
+   "forma": "texto",
+   "ro": "Unul dintre cele mai bune locuri de snorkeling din zona metropolitană. Două intrări laterale, ferite de valuri, și o scară centrală care dă direct în apă adâncă. Parcare pe stradă. Nu există toalete, iar dușurile sunt adesea defecte."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-radazul.cat",
+   "es": "Playa de Snorkel · El Rosario",
+   "forma": "texto",
+   "ro": "Plajă pentru snorkeling · El Rosario"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-rincon.desc",
+   "es": "Cala aislada de unos 400 m por 15 de ancho, de callao, grava y arena negra. Se llega por pista de tierra y luego a pie. No hay ningún servicio y las condiciones de mar no la hacen recomendable para el baño.",
+   "forma": "texto",
+   "ro": "Golfuleț izolat, de circa 400 m lungime și 15 m lățime, cu bolovani, pietriș și nisip negru. Se ajunge pe un drum de pământ și apoi pe jos. Nu există niciun fel de servicii, iar condițiile mării nu îl fac recomandabil pentru scăldat."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-rincon.cat",
+   "es": "Playa Aislada · La Orotava",
+   "forma": "texto",
+   "ro": "Plajă izolată · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-rojas.desc",
+   "es": "Costa de roca con una plataforma de arena de lava y escaleras que bajan a los charcos. Hay ducha. El oleaje es fuerte: sirve para bañarse en los charcos, no para nadar mar adentro. La bajada en coche es muy estrecha y empinada.",
+   "forma": "texto",
+   "ro": "Coastă stâncoasă, cu o platformă de nisip de lavă și scări care coboară spre bazine. Există duș. Valurile sunt puternice: este bună pentru scăldat în bazine, nu pentru înot în larg. Drumul pe care coborâți cu mașina este foarte îngust și abrupt."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-rojas.cat",
+   "es": "Playa y Charcos · El Sauzal",
+   "forma": "texto",
+   "ro": "Plajă și bazine · El Sauzal"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-roques-rambla.desc",
+   "es": "Cala salvaje de roca y callao entre acantilados volcánicos. El mar entra con fuerza y no es sitio para bañarse ni para ir con niños. Se baja por un sendero y cierra cuando hay marejada.",
+   "forma": "texto",
+   "ro": "Golfuleț sălbatic, cu stânci și bolovani, între faleze vulcanice. Marea intră cu putere și nu este un loc pentru scăldat sau pentru a veni cu copii. Se coboară pe o potecă, iar accesul se închide când marea este agitată."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-roques-rambla.cat",
+   "es": "Cala Salvaje · San Juan de la Rambla",
+   "forma": "texto",
+   "ro": "Golfuleț sălbatic · San Juan de la Rambla"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-san-telmo.desc",
+   "es": "Cala pequeña en pleno centro de Puerto de la Cruz, con muelle y charco natural al que se baja por escalera. Poca arena y mucha roca: bueno para snorkel, con cangrejos y peces. Tiene duchas.",
+   "forma": "texto",
+   "ro": "Golfuleț mic în plin centru al orașului Puerto de la Cruz, cu debarcader și un bazin natural în care se coboară pe o scară. Puțin nisip și multă stâncă: bun pentru snorkeling, cu crabi și pești. Are dușuri."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-san-telmo.cat",
+   "es": "Playa y Charco · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Plajă și bazin · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-socorro-guimar.desc",
+   "es": "Playa de arena y callao en Güímar, limpia y poco concurrida, con agua muy transparente y zonas de sombra. Es distinta de la Playa El Socorro de Los Realejos, en la costa norte.",
+   "forma": "texto",
+   "ro": "Plajă cu nisip și bolovani în Güímar, curată și puțin aglomerată, cu apă foarte limpede și zone de umbră. Este diferită de Playa El Socorro din Los Realejos, de pe coasta de nord."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-socorro-guimar.cat",
+   "es": "Playa Familiar · Güímar",
+   "forma": "texto",
+   "ro": "Plajă pentru familii · Güímar"
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-tabaiba.desc",
+   "es": "Playa urbana de Tabaiba con una piscina de agua de mar al lado, buena para niños. Es punto de buceo desde tierra y hay varios centros en la zona. Aparcamiento escaso a mediodía.",
+   "forma": "texto",
+   "ro": "Plaja urbană din Tabaiba, cu o piscină cu apă de mare alături, bună pentru copii. Este un punct pentru scufundări de pe mal și în zonă există mai multe centre de scufundare. Parcare puțină la prânz."
+  },
+  {
+   "tabla": "places",
+   "clave": "playa-tabaiba.cat",
+   "es": "Playa y Buceo · El Rosario",
+   "forma": "texto",
+   "ro": "Plajă și scufundări · El Rosario"
+  }
+ ]
+}

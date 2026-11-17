@@ -1,0 +1,188 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>auditoría del entrenador</title>
+<style>html, body { margin: 0; } #caja { width: 100%; max-width: 430px; padding: 10px; box-sizing: border-box; }</style>
+<div id="caja"></div>
+<script src="../../../modulos/entrenador.js"></script>
+<script>
+/* La página de tools/auditar_entrenador.js: monta el vídeo de un ejercicio con los datos de verdad de la app
+   (datos/cuerpo/) y lo pasa entero, cuadro a cuadro, apuntando lo que se lee en cada paso. */
+var DATOS = '../../../datos/cuerpo/', EJ = null, TXS = {};
+function pedir(f) { return fetch(DATOS + f).then(function (r) { if (!r.ok) throw new Error(f + ' ' + r.status); return r.json(); }); }
+window.preparar = function (idiomas) {
+  return Promise.all([pedir('ejercicios.json')].concat(idiomas.map(function (l) { return pedir('ejercicios-' + l + '.json'); }))).then(function (r) {
+    EJ = {}; r[0].ejercicios.forEach(function (e) { EJ[e.id] = e; });
+    idiomas.forEach(function (l, i) { TXS[l] = r[i + 1]; });
+    return Object.keys(EJ).length;
+  });
+};
+window.R = null;
+window.montar = function (id, lang, tema) {
+  if (window.R) { window.R.quitar(); window.R = null; }
+  var x = EJ[id], t = (TXS[lang] || {})[id] || TXS.es[id], nombres = {};
+  x.g.concat(x.s).forEach(function (g) { nombres[g] = g; });
+  window.R = TG_ENTRENADOR.montar(document.getElementById('caja'), { id: id, nombre: t[0], pasos: t[1], pasosEs: TXS.es[id][1], prim: x.g, sec: x.s.filter(function (g) { return x.g.indexOf(g) < 0; }),
+    nombres: nombres, etiquetas: [x.e[0]], entorno: x.e[0], nivel: x.n }, { idioma: lang, tema: tema || 'dia' });
+  return window.R ? { pasos: t[1], nombre: t[0], dur: window.R.tramos.reduce(function (a, q) { return a + q.dur; }, 0),
+    durs: window.R.tramos.filter(function (q) { return q.tipo === 'paso'; }).map(function (q) { return q.dur; }) } : null;
+};
+/* la cabeza, vista desde todos los lados (cada 15° de rumbo, y desde arriba y desde abajo): que no salga ningún número
+   imposible y que los rasgos se escondan cuando toca */
+window.cabezaGira = function () {
+  var R = window.R, d = R.dir, cab = R.esc.cab, cam = R.esc.cam, out = { raros: 0, vistas: 0, frente: null, perfil: null, espalda: null };
+  var ve = function (g) { return g.style.display !== 'none'; };
+  d.aBusto(true); d.aPostura('listo', 0);
+  [-25, 9, 40].forEach(function (pic) {
+    for (var r = 0; r < 360; r += 15) {
+      d.cuadro(0.0001, true); cam.rumbo = r; cam.picado = pic; R.esc.pintar(d.E, d.ctx); out.vistas++;
+      if (/NaN|Infinity|undefined/.test(new XMLSerializer().serializeToString(cab.g))) out.raros++;
+      if (pic === 9 && (r === 0 || r === 90 || r === 180)) out[r === 0 ? 'frente' : r === 90 ? 'perfil' : 'espalda'] = {
+        ojos: (ve(cab.ojo[0].g) ? 1 : 0) + (ve(cab.ojo[1].g) ? 1 : 0), bocas: (ve(cab.boca[0].g) ? 1 : 0) + (ve(cab.boca[1].g) ? 1 : 0), gafas: ve(cab.gafas),
+        nudo: !!cab.nudo.getAttribute('d'), nuca: !!cab.nuca[0].getAttribute('d'), cinta: !!cab.cinta.getAttribute('d'), pelo: !!cab.pelo[0].getAttribute('d'), piel: !!cab.piel[0].getAttribute('d'),
+        nodos: cab.g.querySelectorAll('*').length
+      };
+    }
+  });
+  return out;
+};
+/* vista: 1, para pasarlo entero desde la otra vista (la de «Girar») */
+window.entero = function (vista) {
+  var R = window.R, d = R.dir, leido = [], raros = 0, cuadros = 0, nodos = 0, modos = {}, gestos = {}, tipos = {}, ajenos = 0;
+  if (vista && d.vistas.length > vista) { d.vista = vista; d.salto = true; }
+  /* el dibujo, medido: el estampado no se queda a medio borrar; el aviso de lo que nombra el paso dura lo que una mirada;
+     un músculo encendido no se queda en un borrón; el tronco entero cabe en su silueta (también visto de pies a cabeza);
+     y el brazo de este lado no se pasa la repetición plegado sobre sí mismo, tapándose el hombro con su propia mano */
+  var T = TG_ENTRENADOR._, dib = { estampa: 0, estampaSeguidos: 0, marca: 0, borron: 99, fuera: 0, fueraEn: '', mirados: 0, pleg: 0, plegN: 0, sale: -999, saleEn: '', salidos: 0 };
+  var svgD = R.raiz.querySelector('svg'), pt = svgD.createSVGPoint(), fig = R.esc.fig, gc = fig.P.camiseta, gp = fig.P.pantalon, seguidos = 0;
+  /* y Jérôme no se sale del cuadro (salvo de cerca, que ese plano lo corta a propósito): la caja de todo lo que se dibuja de su
+     cuerpo (cada pieza y la cabeza; lo que está apagado o lleva su propio transform, los rasgos de la cara, no cuenta), contra
+     lo que de verdad se ve del dibujo (el svg recorta lo que no cabe en su caja) */
+  var piezas = [R.esc.cab.g], qn; for (qn in fig.P) piezas.push(fig.P[qn]);
+  var hojasDe = piezas.map(function (g) { return g.querySelectorAll('path,ellipse,circle,rect,polygon,line'); });
+  var seVe = function (h, tope) { for (var x = h; x && x !== tope.parentNode; x = x.parentNode) if (x.getAttribute && (x.getAttribute('opacity') === '0' || x.getAttribute('transform') || (x.style && x.style.display === 'none'))) return false; return true; };
+  var marco = (function () { var r = svgD.getBoundingClientRect(), k = Math.max(r.width / 400, r.height / 460), w = r.width / k, h = r.height / k; return [(400 - w) / 2, (460 - h) / 2, (400 + w) / 2, (460 + h) / 2]; })();
+  var medirMarco = function () {
+    var a = [1e9, 1e9], b = [-1e9, -1e9], i, j, hs, r, CERCA = 14;
+    var suma = function (r) { if (r.x < a[0]) a[0] = r.x; if (r.y < a[1]) a[1] = r.y; if (r.x + r.width > b[0]) b[0] = r.x + r.width; if (r.y + r.height > b[1]) b[1] = r.y + r.height; };
+    for (i = 0; i < piezas.length; i++) {
+      if (!piezas[i].parentNode) continue;
+      /* la caja de la pieza entera, de una vez; solo si se arrima al borde se miran sus trazos uno a uno, sin lo apagado
+         (el estampado de la camiseta, cuando no se ve, espera en la esquina del dibujo) */
+      try { r = piezas[i].getBBox(); } catch (x) { continue; }
+      if (!r.width && !r.height) continue;
+      if (r.x >= marco[0] + CERCA && r.y >= marco[1] + CERCA && r.x + r.width <= marco[2] - CERCA && r.y + r.height <= marco[3] - CERCA) { suma(r); continue; }
+      for (hs = hojasDe[i], j = 0; j < hs.length; j++) {
+        if (!seVe(hs[j], piezas[i])) continue;
+        try { r = hs[j].getBBox(); } catch (x) { continue; }
+        if (r.width || r.height) suma(r);
+      }
+    }
+    if (a[0] > b[0]) return;
+    var lados = [['izquierda', marco[0] - a[0]], ['derecha', b[0] - marco[2]], ['arriba', marco[1] - a[1]], ['abajo', b[1] - marco[3]]];
+    dib.salidos++;
+    lados.forEach(function (l) { if (l[1] > dib.sale) { dib.sale = l[1]; dib.saleEn = 'por ' + l[0] + ', tramo ' + R.n + ' (' + R.tt.toFixed(2) + ' s)'; } });
+  };
+  var dentro = function (q) { pt.x = q[0]; pt.y = q[1]; return gc.f.isPointInFill(pt) || gp.f.isPointInFill(pt); };
+  var aSeg = function (p, a, b) { var vx = b[0] - a[0], vy = b[1] - a[1], l2 = vx * vx + vy * vy, u = l2 ? Math.max(0, Math.min(1, ((p[0] - a[0]) * vx + (p[1] - a[1]) * vy) / l2)) : 0; return [Math.hypot(p[0] - a[0] - vx * u, p[1] - a[1] - vy * u), a[2] + (b[2] - a[2]) * u]; };
+  var medirDibujo = function (E) {
+    var cam = R.esc.cam, esc = cam.esc, oe = Number(gc.estampa.getAttribute('opacity'));
+    if (oe > 0.04 && oe < 0.96) { dib.estampa++; seguidos++; dib.estampaSeguidos = Math.max(dib.estampaSeguidos, seguidos); } else seguidos = 0;
+    d.cMarcas.forEach(function (g) { if (Number(g.getAttribute('opacity')) > 0) dib.marca = Math.max(dib.marca, d.t - d.tMarca); });
+    fig.parches.forEach(function (pa) { if (pa.g._nivel && Number(pa.g.getAttribute('opacity')) > 0.25) dib.borron = Math.min(dib.borron, Math.min(Number(pa.g.getAttribute('rx')), Number(pa.g.getAttribute('ry'))) / esc); });
+    if (cuadros % 3 === 0) {
+      var bases = { p: [E.Bp, E.pel], l: [E.Bl, E.lum], t: [E.Bt, E.tor] };
+      T.SECC.forEach(function (q, i) {
+        /* la primera y la última son las tapas (la entrepierna y el cuello): vistas de canto son una raya, y un punto suyo cae justo en el borde */
+        if (i === 0 || i === T.SECC.length - 1) return;
+        var B = bases[q[0]][0], O = bases[q[0]][1];
+        [[0.88 * q[2], 0], [-0.88 * q[2], 0], [0, 0.88 * q[3]], [0, -0.88 * q[3]]].forEach(function (w) {
+          var l = [w[0], q[1], q[4] + w[1]], p3 = [O[0] + B[0][0] * l[0] + B[1][0] * l[1] + B[2][0] * l[2], O[1] + B[0][1] * l[0] + B[1][1] * l[1] + B[2][1] * l[2], O[2] + B[0][2] * l[0] + B[1][2] * l[1] + B[2][2] * l[2]];
+          dib.mirados++;
+          if (!dentro(cam.p(p3))) { dib.fuera++; if (!dib.fueraEn) dib.fueraEn = 'sección ' + i + ', tramo ' + R.n + ' (' + R.tt.toFixed(2) + ' s)'; }
+        });
+      });
+    }
+    if (!d.busto && d.modo === 'rep' && d.w >= 1) {
+      var k = cam.p(E.i.hom)[2] >= cam.p(E.d.hom)[2] ? 'i' : 'd', L = E[k], S = cam.p(L.hom), C = cam.p(L.cod), W = cam.p(L.mun), M = cam.p(L.agarre), cub = 0, N = 6;
+      var u1 = [L.cod[0] - L.hom[0], L.cod[1] - L.hom[1], L.cod[2] - L.hom[2]], u2 = [L.mun[0] - L.cod[0], L.mun[1] - L.cod[1], L.mun[2] - L.cod[2]];
+      var doblado = Math.acos(Math.max(-1, Math.min(1, (u1[0] * u2[0] + u1[1] * u2[1] + u1[2] * u2[2]) / (Math.hypot(u1[0], u1[1], u1[2]) * Math.hypot(u2[0], u2[1], u2[2]) || 1)))) * 180 / Math.PI;
+      for (var j = 0; j < N; j++) { var u = 0.15 + 0.75 * j / (N - 1), p = [S[0] + (C[0] - S[0]) * u, S[1] + (C[1] - S[1]) * u, S[2] + (C[2] - S[2]) * u], q = aSeg(p, C, W); if (q[0] / esc < 4.2 && q[1] > p[2] + 1) cub++; }
+      var qs = aSeg(S, C, M);
+      dib.plegN++; if (doblado > 50 && cub >= N - 1 && qs[0] / esc < 6.2 && qs[1] > S[2] + 2) dib.pleg++;
+    }
+  };
+  /* el movimiento, medido: lo clavado no se mueve, nada se teletransporta, y Jérôme respira y no se pasa de vueltas */
+  var mov = { clavo: 0, clavoEn: '', salto: 0, saltoEn: '', saltoM: 0, saltoMEn: '', aireMin: 9, aireMax: -9, cabRep: 0, cabBusto: 0, pelo: 0, brazo: 0, fuera: 0 };
+  var antes = null, cortesAntes = -1, tramoAntes = -1, dist = function (a, b) { return Math.sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2])); };
+  R.suena = true; R.gran.hidden = true;
+  while (!R.fin && cuadros < 30 * 300) {
+    R.avanzar(1 / 30); cuadros++;
+    var t = R.tramos[R.n], E = d.E, v = d.vida, cab = R.esc.cab;
+    if (t.tipo === 'paso' && R.tt > t.dur * 0.9 && leido[t.i] == null) leido[t.i] = R.pasoL.textContent;
+    modos[d.busto ? 'busto' : d.modo] = 1;
+    if (d.busto && d.gestoN && !R.pendiente && (t.tipo !== 'paso' || t.accion === 'nota')) gestos[(t.tipo === 'paso' ? 'consejo' : t.tipo) + ':' + d.gestoN] = 1;
+    /* lo clavado: el tobillo o la muñeca, donde se le dijo (sin contar mientras pasa de una postura a otra) */
+    if (!d.busto && d.w >= 1) d.metas.forEach(function (m) {
+      var L = E[m[0].charAt(1)], e = dist(m[0].charAt(0) === 't' ? L.tob : L.mun, m[1]);
+      if (e > mov.clavo) { mov.clavo = e; mov.clavoEn = m[0] + ' en el tramo ' + R.n; }
+    });
+    /* de un cuadro al siguiente, nada da un salto (salvo en un corte de plano o al cambiar de postura de golpe) */
+    /* el cuerpo (la cadera, la cabeza) y las manos y los pies se miden aparte: una mano que se suelta de la barra cae deprisa */
+    var ahora = [E.pel, E.cab, E.i.mun, E.d.mun, E.i.tob, E.d.tob];
+    if (antes && d.cortes === cortesAntes) ahora.forEach(function (p, i) { var e = dist(p, antes[i]), q = i < 2 ? 'salto' : 'saltoM'; if (e > mov[q]) { mov[q] = e; mov[q + 'En'] = ['cadera', 'cabeza', 'mano i', 'mano d', 'pie i', 'pie d'][i] + ', tramo ' + R.n + ' (' + R.tt.toFixed(2) + ' s)'; } });
+    antes = ahora; cortesAntes = d.cortes;
+    mov.aireMin = Math.min(mov.aireMin, v.aire); mov.aireMax = Math.max(mov.aireMax, v.aire);
+    var c0 = Math.max(Math.abs(v.cabP.x), Math.abs(v.cabR.x));
+    if (d.busto) mov.cabBusto = Math.max(mov.cabBusto, c0); else if (d.modo === 'rep' && d.w >= 1) mov.cabRep = Math.max(mov.cabRep, c0);
+    mov.pelo = Math.max(mov.pelo, Math.abs(cab.peloA.x));
+    ['i', 'd'].forEach(function (k) { mov.brazo = Math.max(mov.brazo, Math.abs(v.bz[k][0].x), Math.abs(v.bz[k][1].x)); });
+    /* de cerca, una mano levantada no se sale del cuadro (pasados los primeros instantes, cuando entra por un lado) */
+    if (d.busto && R.esc.cam.k && R.tt > 0.75 && R.corteT == null) ['i', 'd'].forEach(function (k) {
+      if (E[k].mun[1] < 104) return;
+      /* hasta donde llega la mano: la punta de los dedos, o los nudillos si es un puño */
+      var L = E[k], al = E.S.m[k].c > 0.6 ? 9 : 16, q = R.esc.cam.p([L.mun[0] + L.mano.dir[0] * al, L.mun[1] + L.mano.dir[1] * al, L.mun[2] + L.mano.dir[2] * al]);
+      if (q[0] < 2 || q[0] > 398 || q[1] < 50) mov.fuera++;
+    });
+    medirDibujo(E);
+    if (!d.busto && cuadros % 8 === 0) medirMarco();
+    if (cuadros % 15 === 0) {
+      var s = R.raiz.querySelector('svg'), todos = s.querySelectorAll('*'), ni; nodos = Math.max(nodos, todos.length);
+      if (/NaN|Infinity|undefined/.test(new XMLSerializer().serializeToString(s))) raros++;
+      /* de qué está hecho el dibujo: con Samsung Internet lo copia un canvas (src/85-lienzo.js), que solo sabe de trazados,
+         círculos, elipses y rectángulos, sin máscaras ni filtros; lo que no sea eso, allí no se vería */
+      for (ni = 0; ni < todos.length; ni++) { tipos[todos[ni].localName] = 1; if (todos[ni].hasAttribute('mask') || todos[ni].hasAttribute('filter')) ajenos++; }
+    }
+  }
+  ['clavo', 'salto', 'saltoM', 'aireMin', 'aireMax', 'cabRep', 'cabBusto', 'pelo', 'brazo'].forEach(function (k) { mov[k] = Math.round(mov[k] * 1000) / 1000; });
+  return { fin: R.fin, cuadros: cuadros, leido: leido, raros: raros, nodos: nodos, modos: Object.keys(modos), ancho: document.documentElement.scrollWidth, vista: document.documentElement.clientWidth,
+           titulo: R.nombre.textContent, voz: R.bVoz.hidden ? 'sin' : 'con', mov: mov, gestos: Object.keys(gestos), tipos: Object.keys(tipos), ajenos: ajenos,
+           dib: { estampa: dib.estampa, estampaSeguidos: dib.estampaSeguidos, marca: Math.round(dib.marca * 100) / 100, borron: Math.round(dib.borron * 100) / 100, fuera: dib.fuera, fueraEn: dib.fueraEn, mirados: dib.mirados, sale: Math.round(dib.sale * 10) / 10, saleEn: dib.saleEn, salidos: dib.salidos,
+                  pleg: dib.plegN ? Math.round(100 * dib.pleg / dib.plegN) : 0 }, vistas: d.vistas.length, vistaN: d.vista };
+};
+/* el vídeo entero, sin medir el dibujo, a velocidad normal o a cámara lenta (con su botón, «½×»): cuánto dura de verdad cada tramo,
+   cuánto le falta a cada secuencia para acabar cuando entra el tramo siguiente (lo que sobra tras la última postura, si es quedarse
+   quieto en ella, no cuenta), por dónde va la repetición al acabar cada paso y al acabar cada tanda (en segundos del ejercicio: una
+   cuenta entera de repeticiones cambia con un cuadro de diferencia; esto, no) y, de cerca, por dónde va el gesto del presentador */
+window.pase = function (lento) {
+  var R = window.R, d = R.dir, tramos = [], tandas = [], viva = null, antes = null, t = 0, t0 = 0, cuadros = 0, modo0 = d.modo, base = d.reps, k = 0;
+  if (lento) R.bLento.click();
+  R.suena = true; R.gran.hidden = true;
+  while (!R.fin && cuadros < 30 * 900) {
+    var tr = R.tramos[R.n];
+    antes = { n: R.n, tipo: tr.tipo, nota: tr.accion === 'nota', sec: !!(tr.accion && tr.accion.sec), dur: tr.dur, modo: d.modo, tau: d.tau, secT: d.secT, u: d.modo === 'sec' && d.sec ? d.sec[d.sec.length - 1] : null, busto: d.busto, gesto: d.busto && d.gestoDe ? d.tGesto : null, reps: d.reps };
+    R.avanzar(1 / 30); cuadros++; t += 1 / 30;
+    /* una tanda de repeticiones empieza cuando el Director entra en «rep» (dos pasos seguidos de repetición son la misma tanda) y
+       sigue, debajo de la cortinilla, hasta que el plano cambia */
+    if (d.modo === 'rep' && modo0 !== 'rep') { base = d.reps; k = 0; viva = { va: 0, k: 0 }; tandas.push(viva); }
+    if (d.modo === 'rep' && viva) viva.va = Math.round(((d.reps - base) * d.T + d.tau) * 1000) / 1000;
+    modo0 = d.modo;
+    if (R.n !== antes.n || R.fin) {
+      var falta = 0, rep = null;
+      if (antes.sec && antes.modo === 'sec' && !antes.busto) falta = Math.max(0, (antes.u.de === antes.u.a ? antes.u.t0 : antes.secT) - antes.tau);
+      /* por dónde va la tanda de repeticiones al acabar un paso (en segundos del ejercicio), y cuántos pasos lleva la tanda */
+      if (antes.tipo === 'paso' && !antes.nota && antes.modo === 'rep' && !antes.busto) { k++; if (viva) viva.k = k; rep = { va: Math.round(((antes.reps - base) * d.T + antes.tau) * 1000) / 1000, k: k }; }
+      tramos.push({ tipo: antes.tipo, nota: antes.nota, sec: antes.sec, dur: antes.dur, real: Math.round((t - t0) * 1000) / 1000, falta: Math.round(falta * 1000) / 1000, gesto: antes.gesto == null ? null : Math.round(antes.gesto * 1000) / 1000, rep: rep });
+      t0 = t;
+    }
+  }
+  return { fin: R.fin, lento: !!R.lento, vel: d.vel, pulsado: R.bLento.getAttribute('aria-pressed'), reps: d.reps, T: d.T, tramos: tramos, tandas: tandas, cuadros: cuadros };
+};
+</script>

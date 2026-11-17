@@ -2,6 +2,7 @@
 --  TENERIFE GO · Borrar la propia cuenta desde la app
 --  ───────────────────────────────────────────────────────────────────
 --  Ejecutar UNA VEZ en Supabase → SQL Editor → New query → Run.
+--  Ejecutado el 5 de noviembre de 2026: lo pegó Jerome en el SQL Editor.
 --
 --  Que resuelve: Google Play exige que, si la app deja crear cuenta, se
 --  pueda borrar desde la app (LANZAMIENTO-PLAY.md 1.2). La app llama a
@@ -46,10 +47,19 @@ grant  execute on function public.borrar_mi_cuenta() to authenticated;
 
 
 -- ── LA PRUEBA, ANTES DE DARLO POR BUENO ────────────────────────────
--- No esta comprobado que una funcion security definer creada en el SQL
--- Editor pueda borrar de auth.users: la documentacion de Supabase borra
--- usuarios con auth.admin.deleteUser(), desde un servidor y con la
--- service_role. Por eso:
+-- Lo comprobado el 5 de noviembre de 2026:
+--   · en la base de datos, postgres (el dueño de la funcion) puede borrar en
+--     auth.users, y todo lo que apunta a auth.users borra en cascada (o, en
+--     una tabla interna de Supabase, pone null): ninguna da el 23503 de abajo;
+--   · en un Postgres local, 13 pruebas: sin sesion no se puede llamar; una
+--     cuenta de admin no se borra (false); quien llama se va con sus
+--     favoritos, su perfil, sus pesos y sus caminatas, y otra cuenta queda
+--     intacta; una sesion de una cuenta que ya no existe, false;
+--   · en la base de datos, solo la ejecutan authenticated y service_role;
+--     desde fuera y sin sesion: «permission denied» (401).
+-- Lo que no se puede comprobar sin una sesion de verdad es el paso entero
+-- desde la app. La documentacion de Supabase borra usuarios con
+-- auth.admin.deleteUser(), desde un servidor y con la service_role. Por eso:
 --   1. Crear una cuenta de usar y tirar en la app y entrar con ella.
 --   2. Cuenta → «Eliminar cuenta» → «Sí, eliminar mi cuenta».
 --   3. Comprobar en Authentication → Users que ya no esta.

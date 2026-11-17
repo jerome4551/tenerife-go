@@ -1,0 +1,43 @@
+<!doctype html><meta charset="utf-8"><title>hoja de contacto</title>
+<style>
+  body { margin: 0; background: #1b2330; font: 12px sans-serif; color: #fff; }
+  h2 { margin: 6px 8px 2px; font-size: 14px; }
+  .fila { display: flex; flex-wrap: wrap; }
+  .celda { width: 300px; height: 345px; position: relative; margin: 2px; overflow: hidden; background: #334; }
+  .celda svg { width: 100%; height: 100%; display: block; }
+  .celda span { position: absolute; left: 4px; top: 3px; color: #12233A; background: rgba(255,255,255,.8); padding: 1px 5px; border-radius: 6px; }
+</style>
+<div id="f"></div>
+<script src="../../../modulos/entrenador.js"></script>
+<script>
+var T = TG_ENTRENADOR._, Q = new URLSearchParams(location.search);
+var TAM = Number(Q.get('tam')) || 1; if (TAM !== 1) { var st = document.createElement('style'); st.textContent = '.celda{width:' + Math.round(300*TAM) + 'px;height:' + Math.round(345*TAM) + 'px}'; document.head.appendChild(st); }
+var solo = (Q.get('id') || '').split(',').filter(Boolean), amb = Q.get('amb') || 'fuera', tema = Q.get('tema') || 'dia';
+var EJ = { g: {}, s: {} };
+Object.keys(T.COREO).forEach(function (id) {
+  if (solo.length && solo.indexOf(id) < 0) return;
+  var co = T.COREO[id];
+  var h = document.createElement('h2'); h.textContent = id; document.getElementById('f').appendChild(h);
+  var fila = document.createElement('div'); fila.className = 'fila'; document.getElementById('f').appendChild(fila);
+  /* las posturas que se ven: las de los pasos y las de la repetición, y la mitad de cada tramo */
+  var nombres = [];
+  var mete = function (n) { if (typeof n === 'string' && co.posturas[n] && nombres.indexOf(n) < 0) nombres.push(n); };
+  (co.pasos || []).forEach(function (p) { if (typeof p === 'string') mete(p); else if (p && p.sec) { mete(p.desde); p.sec.forEach(function (s) { mete(s[0]); }); } });
+  mete(co.inicio || 'a'); (co.rep || []).forEach(function (s) { mete(s[0]); });
+  var vistas = (Q.get('v') === '1') ? [0] : [0, 1];
+  vistas.forEach(function (vi) {
+    var tomas = nombres.map(function (n) { return { n: n }; });
+    if (co.rep && Q.get('medio') !== '0') tomas.push({ n: 'mitad', tau: co.rep[0][1] * 0.5 });
+    tomas.forEach(function (tm) {
+      var c = document.createElement('div'); c.className = 'celda'; fila.appendChild(c);
+      var e = new T.Escenario(c), d = new T.Director(e);
+      e.ambiente(Q.get('amb') || (co.ambiente || amb), tema);
+      d.cargar(co); d.vista = Math.min(vi, d.vistas.length - 1); d.salto = true;
+      if (Q.get('mus')) e.fig.musculos(Q.get('mus').split(','), (Q.get('sec') || '').split(','));
+      if (tm.tau != null) { d.modo = 'rep'; d.tau = tm.tau; d.vel = 0; d.cuadro(0.016); }
+      else { d.aPostura(tm.n, 0); d.cuadro(0.016); }
+      var s = document.createElement('span'); s.textContent = tm.n + ' · ' + d.vistas[d.vista].rumbo + '°'; c.appendChild(s);
+    });
+  });
+});
+</script>

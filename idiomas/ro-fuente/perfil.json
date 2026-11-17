@@ -1,0 +1,3276 @@
+{
+ "_": "Rumano (ro) de las filas de PERFIL_UI de modulos/perfil.js (la pantalla «Su perfil», sus 47 sets y los nombres de los avatares). Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. No se edita a mano: sale de la entrega del bloque 4 del rumano.",
+ "idioma": "ro",
+ "fichero": "modulos/perfil.js",
+ "filas": [
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilTitulo",
+   "es": "Su perfil",
+   "forma": "texto",
+   "ro": "Profilul dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilLema",
+   "es": "Su pasaporte de viajero",
+   "forma": "texto",
+   "ro": "Pașaportul dumneavoastră de călător"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNombrePlaceholder",
+   "es": "Su nombre o apodo",
+   "forma": "texto",
+   "ro": "Numele sau porecla dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBienvenida",
+   "es": "¡Hola, {nombre}!",
+   "forma": "texto",
+   "ro": "Bună ziua, {nombre}!"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilViajeroDesde",
+   "es": "Viajero desde {fecha}",
+   "forma": "texto",
+   "ro": "Călător din {fecha}"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilEditarNombre",
+   "es": "Editar nombre",
+   "forma": "texto",
+   "ro": "Editați numele"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilElegirAvatar",
+   "es": "Elija su avatar",
+   "forma": "texto",
+   "ro": "Alegeți-vă avatarul"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSorprendeme",
+   "es": "Sorpréndeme",
+   "forma": "texto",
+   "ro": "Surprinde-mă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilTodosPaises",
+   "es": "Todos los países",
+   "forma": "texto",
+   "ro": "Toate țările"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBuscarPais",
+   "es": "Buscar un país",
+   "forma": "texto",
+   "ro": "Căutați o țară"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilPaisNinguno",
+   "es": "Ningún país con ese nombre.",
+   "forma": "texto",
+   "ro": "Nicio țară cu acest nume."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroSet",
+   "es": "De oro",
+   "forma": "texto",
+   "ro": "De aur"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroHoy",
+   "es": "Hoy",
+   "forma": "texto",
+   "ro": "Azi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAvatarOro",
+   "es": "avatar de oro",
+   "forma": "texto",
+   "ro": "avatar de aur"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroEl",
+   "es": "el {fecha}",
+   "forma": "texto",
+   "ro": "pe {fecha}"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroDelAl",
+   "es": "del {desde} al {hasta}",
+   "forma": "texto",
+   "ro": "între {desde} și {hasta}"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroNota",
+   "es": "Avatar de oro: {fiesta}, {cuando}.",
+   "forma": "texto",
+   "ro": "Avatar de aur: {fiesta}, {cuando}."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroNotaHoy",
+   "es": "{fiesta}: ¡es hoy! Toque el avatar de oro y será suyo.",
+   "forma": "texto",
+   "ro": "{fiesta}: este azi! Atingeți avatarul de aur și va fi al dumneavoastră."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroTuyo",
+   "es": "{fiesta}: avatar de oro conseguido.",
+   "forma": "texto",
+   "ro": "{fiesta}: avatar de aur obținut."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroConseguido",
+   "es": "¡Avatar de oro conseguido! Es suyo para siempre.",
+   "forma": "texto",
+   "ro": "Avatar de aur obținut! Este al dumneavoastră pentru totdeauna."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroBloqueado",
+   "es": "{fiesta}: este avatar de oro solo se consigue {cuando}.",
+   "forma": "texto",
+   "ro": "{fiesta}: acest avatar de aur se poate obține doar {cuando}."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroCuenta",
+   "es": "Avatares de oro: {n} de {total}.",
+   "forma": "texto",
+   "ro": "Avataruri de aur: {n} din {total}."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilOroRegla",
+   "es": "Cada uno se consigue solo el día de su fiesta, y es suyo para siempre.",
+   "forma": "texto",
+   "ro": "Fiecare se poate obține doar în ziua sărbătorii lui și rămâne al dumneavoastră pentru totdeauna."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAvatarGuardado",
+   "es": "Avatar guardado",
+   "forma": "texto",
+   "ro": "Avatar salvat"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBloqueado",
+   "es": "Se desbloquea con {n} visita comprobada ({v} de {n})|Se desbloquea con {n} visitas comprobadas ({v} de {n})",
+   "forma": "texto",
+   "ro": "Se deblochează după {n} vizită verificată ({v} din {n})|Se deblochează după {n} vizite verificate ({v} din {n})|Se deblochează după {n} de vizite verificate ({v} din {n})"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilDatos",
+   "es": "Sus datos",
+   "forma": "texto",
+   "ro": "Datele dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilDatosNota",
+   "es": "Se guardan en este dispositivo y, solo si usted activa la opción en «Cuenta», también en su cuenta.",
+   "forma": "texto",
+   "ro": "Se salvează pe acest dispozitiv și, doar dacă activați opțiunea din «Cont», și în contul dumneavoastră."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAltura",
+   "es": "Altura",
+   "forma": "texto",
+   "ro": "Înălțime"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilPeso",
+   "es": "Peso",
+   "forma": "texto",
+   "ro": "Greutate"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNacimiento",
+   "es": "Año de nacimiento",
+   "forma": "texto",
+   "ro": "Anul nașterii"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAnios",
+   "es": "{n} año|{n} años",
+   "forma": "texto",
+   "ro": "{n} an|{n} ani|{n} de ani"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilUnidades",
+   "es": "Unidades",
+   "forma": "texto",
+   "ro": "Unități de măsură"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilUKg",
+   "es": "kg",
+   "forma": "texto",
+   "ro": "kg"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilUCm",
+   "es": "cm",
+   "forma": "texto",
+   "ro": "cm"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilULb",
+   "es": "lb",
+   "forma": "texto",
+   "ro": "lb"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilUIn",
+   "es": "in",
+   "forma": "texto",
+   "ro": "in"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilMedKg",
+   "es": "{n} kg",
+   "forma": "texto",
+   "ro": "{n} kg"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilMedCm",
+   "es": "{n} cm",
+   "forma": "texto",
+   "ro": "{n} cm"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilMedLb",
+   "es": "{n} lb|{n} lb",
+   "forma": "texto",
+   "ro": "{n} lb|{n} lb|{n} lb"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilMedStLb",
+   "es": "{st} st {lb}",
+   "forma": "texto",
+   "ro": "{st} st {lb}"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilGuardar",
+   "es": "Guardar",
+   "forma": "texto",
+   "ro": "Salvați"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilGuardado",
+   "es": "Guardado ✓",
+   "forma": "texto",
+   "ro": "Salvat ✓"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilImc",
+   "es": "IMC",
+   "forma": "texto",
+   "ro": "IMC"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilImcNota",
+   "es": "Orientativo. Categorías de la OMS para adultos",
+   "forma": "texto",
+   "ro": "Orientativ. Categoriile OMS pentru adulți"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilImcBajo",
+   "es": "Bajo peso",
+   "forma": "texto",
+   "ro": "Subponderalitate"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilImcNormal",
+   "es": "Peso normal",
+   "forma": "texto",
+   "ro": "Greutate normală"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilImcSobre",
+   "es": "Sobrepeso",
+   "forma": "texto",
+   "ro": "Supraponderalitate"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilImcObes",
+   "es": "Obesidad",
+   "forma": "texto",
+   "ro": "Obezitate"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilEvolucion",
+   "es": "Su evolución",
+   "forma": "texto",
+   "ro": "Evoluția dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilKm",
+   "es": "Kilómetros",
+   "forma": "texto",
+   "ro": "Kilometri"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilActual",
+   "es": "Actual",
+   "forma": "texto",
+   "ro": "Acum"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilDesdeInicio",
+   "es": "Desde el inicio",
+   "forma": "texto",
+   "ro": "De la început"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilTendencia",
+   "es": "Tendencia de 7 días",
+   "forma": "texto",
+   "ro": "Tendința pe 7 zile"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilObjetivo",
+   "es": "Objetivo",
+   "forma": "texto",
+   "ro": "Obiectiv"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilObjetivoPlaceholder",
+   "es": "Peso objetivo (opcional)",
+   "forma": "texto",
+   "ro": "Greutate țintă (opțional)"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSinDatos",
+   "es": "Aún no hay registros. Añada el primero.",
+   "forma": "texto",
+   "ro": "Încă nu există înregistrări. Adăugați-o pe prima."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilRango30",
+   "es": "30 días",
+   "forma": "texto",
+   "ro": "30 de zile"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilRango90",
+   "es": "90 días",
+   "forma": "texto",
+   "ro": "90 de zile"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilRangoAnio",
+   "es": "1 año",
+   "forma": "texto",
+   "ro": "1 an"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilTotal",
+   "es": "Total",
+   "forma": "texto",
+   "ro": "Total"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilHoy",
+   "es": "Hoy",
+   "forma": "texto",
+   "ro": "Azi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBorrarRegistro",
+   "es": "Borrar",
+   "forma": "texto",
+   "ro": "Ștergeți"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilIsla",
+   "es": "Su isla",
+   "forma": "texto",
+   "ro": "Insula dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilFavoritos",
+   "es": "Favoritos",
+   "forma": "texto",
+   "ro": "Favorite"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilVisitados",
+   "es": "Visitados",
+   "forma": "texto",
+   "ro": "Vizitate"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilLogros",
+   "es": "Logros",
+   "forma": "texto",
+   "ro": "Realizări"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSellos",
+   "es": "Sus sellos",
+   "forma": "texto",
+   "ro": "Ștampilele dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSiguienteLogro",
+   "es": "{n} lugar más para «{logro}»|{n} lugares más para «{logro}»",
+   "forma": "texto",
+   "ro": "Încă {n} loc pentru „{logro}”|Încă {n} locuri pentru „{logro}”|Încă {n} de locuri pentru „{logro}”"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilLugares",
+   "es": "{n} lugar|{n} lugares",
+   "forma": "texto",
+   "ro": "{n} loc|{n} locuri|{n} de locuri"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilCuenta",
+   "es": "Cuenta",
+   "forma": "texto",
+   "ro": "Cont"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilPestanaViaje",
+   "es": "Viaje",
+   "forma": "texto",
+   "ro": "Călătorie"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilPestanaCuerpo",
+   "es": "Cuerpo",
+   "forma": "texto",
+   "ro": "Corp"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilCuerpoTitulo",
+   "es": "Su cuerpo",
+   "forma": "texto",
+   "ro": "Corpul dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilCuerpoTexto",
+   "es": "Sus músculos, su semana y su personaje",
+   "forma": "texto",
+   "ro": "Mușchii, săptămâna și personajul dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilCuerpoAbrir",
+   "es": "Abrir",
+   "forma": "texto",
+   "ro": "Deschideți"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilCuerpoError",
+   "es": "No se pudo abrir. Compruebe la conexión e inténtelo de nuevo.",
+   "forma": "texto",
+   "ro": "Nu s-a putut deschide. Verificați conexiunea și încercați din nou."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNube",
+   "es": "Sus favoritos se guardan en su cuenta; su perfil y sus medidas, solo en este dispositivo.",
+   "forma": "texto",
+   "ro": "Favoritele dumneavoastră se salvează în cont; profilul și măsurătorile, doar pe acest dispozitiv."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSoloDispositivo",
+   "es": "Sin cuenta: todo se guarda solo en este dispositivo",
+   "forma": "texto",
+   "ro": "Fără cont: totul se salvează doar pe acest dispozitiv"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilCrearCuenta",
+   "es": "Crear cuenta o entrar",
+   "forma": "texto",
+   "ro": "Creați un cont sau conectați-vă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilInvitado",
+   "es": "Invitado",
+   "forma": "texto",
+   "ro": "Invitat"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilExportar",
+   "es": "Descargar datos del perfil",
+   "forma": "texto",
+   "ro": "Descărcați datele profilului"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAnadir",
+   "es": "Añadir",
+   "forma": "texto",
+   "ro": "Adăugați"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAnotarMov",
+   "es": "Anotar movimiento",
+   "forma": "texto",
+   "ro": "Notați mișcarea"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilUltimos7",
+   "es": "Últimos 7 días",
+   "forma": "texto",
+   "ro": "Ultimele 7 zile"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilFecha",
+   "es": "Fecha",
+   "forma": "texto",
+   "ro": "Data"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilRango",
+   "es": "Entre {min} y {max}",
+   "forma": "texto",
+   "ro": "Între {min} și {max}"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilFechaFutura",
+   "es": "La fecha no puede ser posterior a hoy",
+   "forma": "texto",
+   "ro": "Data nu poate fi ulterioară zilei de azi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilTope",
+   "es": "Ya tiene {n} registros, el máximo. Borre uno para añadir otro.",
+   "forma": "texto",
+   "ro": "Aveți deja {n} de înregistrări, numărul maxim. Ștergeți una ca să adăugați alta."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilImcJoven",
+   "es": "Por debajo de 20 años, la OMS usa tablas por edad y sexo",
+   "forma": "texto",
+   "ro": "Sub 20 de ani, OMS folosește tabele în funcție de vârstă și sex"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBorrarLocal",
+   "es": "Borrar los datos del perfil de este dispositivo",
+   "forma": "texto",
+   "ro": "Ștergeți datele profilului de pe acest dispozitiv"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBorrarLocalAviso",
+   "es": "Se borrarán de este dispositivo su nombre, su avatar, sus medidas y sus kilómetros. Los favoritos no se tocan. No se puede deshacer.",
+   "forma": "texto",
+   "ro": "Se vor șterge de pe acest dispozitiv numele, avatarul, măsurătorile și kilometrii dumneavoastră. Favoritele nu sunt afectate. Acțiunea nu poate fi anulată."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBorrarLocalSi",
+   "es": "Sí, borrar",
+   "forma": "texto",
+   "ro": "Da, ștergeți"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBorrado",
+   "es": "Datos del perfil borrados de este dispositivo",
+   "forma": "texto",
+   "ro": "Datele profilului au fost șterse de pe acest dispozitiv"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilVisitaVerdad",
+   "es": "Una visita queda comprobada si marca el lugar como visitado estando allí. Lo comprueba el móvil con su ubicación, que para ello no se envía a ningún sitio.",
+   "forma": "texto",
+   "ro": "O vizită este verificată dacă marcați locul ca vizitat când vă aflați acolo. Verificarea o face telefonul, cu ajutorul locației, care pentru asta nu este trimisă nicăieri."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeInterruptor",
+   "es": "Guardar el perfil y los progresos en su cuenta",
+   "forma": "texto",
+   "ro": "Salvați profilul și progresele în contul dumneavoastră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeExplica",
+   "es": "Para no perderlos al cambiar de móvil. Solo con su permiso, que puede retirar cuando quiera.",
+   "forma": "texto",
+   "ro": "Ca să nu le pierdeți când schimbați telefonul. Doar cu permisiunea dumneavoastră, pe care o puteți retrage oricând."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeConsentimiento",
+   "es": "Se guardarán en su cuenta su nombre o apodo, su avatar, sus unidades, su altura, su año de nacimiento, la fecha de alta del perfil, su peso objetivo y los pesos y kilómetros que anote, con la fecha de cada uno. El peso y la altura son datos de salud: al tocar «Acepto» da su permiso expreso para guardarlos. Las visitas comprobadas no se suben: se quedan solo en este dispositivo. Puede retirar el permiso cuando quiera con este interruptor: se borra la copia guardada en su cuenta y todo sigue en este dispositivo.",
+   "forma": "texto",
+   "ro": "În contul dumneavoastră se vor salva numele sau porecla, avatarul, unitățile de măsură, înălțimea, anul nașterii, data creării profilului, greutatea țintă, precum și greutățile și kilometrii pe care îi notați, fiecare cu data lui. Greutatea și înălțimea sunt date privind sănătatea: atingând «Accept», vă dați consimțământul explicit pentru salvarea lor. Vizitele verificate nu se încarcă: rămân doar pe acest dispozitiv. Puteți retrage consimțământul oricând, cu acest comutator: copia salvată în cont se șterge, iar totul rămâne pe acest dispozitiv."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeAcepto",
+   "es": "Acepto",
+   "forma": "texto",
+   "ro": "Accept"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeQuitarAviso",
+   "es": "Se borrará la copia guardada en su cuenta. En este dispositivo se queda todo.",
+   "forma": "texto",
+   "ro": "Copia salvată în contul dumneavoastră va fi ștearsă. Pe acest dispozitiv rămâne tot."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeQuitarSi",
+   "es": "Borrar de la nube",
+   "forma": "texto",
+   "ro": "Ștergeți din cloud"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeSi",
+   "es": "Sus favoritos, su perfil y sus progresos se guardan en su cuenta.",
+   "forma": "texto",
+   "ro": "Favoritele, profilul și progresele dumneavoastră se salvează în cont."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeGuardado",
+   "es": "Guardado en su cuenta ✓",
+   "forma": "texto",
+   "ro": "Salvat în contul dumneavoastră ✓"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeQuitado",
+   "es": "Borrado de la nube. En este dispositivo sigue todo.",
+   "forma": "texto",
+   "ro": "Șters din cloud. Pe acest dispozitiv rămâne tot."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeError",
+   "es": "No se ha podido guardar en la nube. Todo sigue en este dispositivo y la app lo volverá a intentar.",
+   "forma": "texto",
+   "ro": "Nu s-a putut salva în cloud. Totul rămâne pe acest dispozitiv, iar aplicația va încerca din nou."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBorrarLocalAvisoNube",
+   "es": "Se borrarán su nombre, su avatar, sus medidas y sus kilómetros de este dispositivo y de su cuenta. Los favoritos no se tocan. No se puede deshacer.",
+   "forma": "texto",
+   "ro": "Se vor șterge numele, avatarul, măsurătorile și kilometrii dumneavoastră de pe acest dispozitiv și din cont. Favoritele nu sunt afectate. Acțiunea nu poate fi anulată."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeQuitarPendiente",
+   "es": "La copia guardada en su cuenta se borrará en cuanto haya conexión.",
+   "forma": "texto",
+   "ro": "Copia salvată în contul dumneavoastră se va șterge de îndată ce aveți conexiune."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilBorradoNube",
+   "es": "Datos del perfil borrados de este dispositivo y de su cuenta",
+   "forma": "texto",
+   "ro": "Datele profilului au fost șterse de pe acest dispozitiv și din cont"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilNubeEdad",
+   "es": "Disponible a partir de los {n} años.",
+   "forma": "texto",
+   "ro": "Disponibil de la vârsta de {n} ani."
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_es",
+   "es": "España",
+   "forma": "texto",
+   "ro": "Spania"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_en",
+   "es": "Reino Unido",
+   "forma": "texto",
+   "ro": "Regatul Unit"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_de",
+   "es": "Alemania",
+   "forma": "texto",
+   "ro": "Germania"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_fr",
+   "es": "Francia",
+   "forma": "texto",
+   "ro": "Franța"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_it",
+   "es": "Italia",
+   "forma": "texto",
+   "ro": "Italia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_nl",
+   "es": "Países Bajos",
+   "forma": "texto",
+   "ro": "Țările de Jos"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_pl",
+   "es": "Polonia",
+   "forma": "texto",
+   "ro": "Polonia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_bg",
+   "es": "Bulgaria",
+   "forma": "texto",
+   "ro": "Bulgaria"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_zh",
+   "es": "China",
+   "forma": "texto",
+   "ro": "China"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_zht",
+   "es": "Chino tradicional",
+   "forma": "texto",
+   "ro": "Chineză tradițională"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_tf",
+   "es": "Tenerife",
+   "forma": "texto",
+   "ro": "Tenerife"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_ie",
+   "es": "Irlanda",
+   "forma": "texto",
+   "ro": "Irlanda"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_dk",
+   "es": "Dinamarca",
+   "forma": "texto",
+   "ro": "Danemarca"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_se",
+   "es": "Suecia",
+   "forma": "texto",
+   "ro": "Suedia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_no",
+   "es": "Noruega",
+   "forma": "texto",
+   "ro": "Norvegia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_fi",
+   "es": "Finlandia",
+   "forma": "texto",
+   "ro": "Finlanda"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_is",
+   "es": "Islandia",
+   "forma": "texto",
+   "ro": "Islanda"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_ee",
+   "es": "Estonia",
+   "forma": "texto",
+   "ro": "Estonia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_lv",
+   "es": "Letonia",
+   "forma": "texto",
+   "ro": "Letonia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_lt",
+   "es": "Lituania",
+   "forma": "texto",
+   "ro": "Lituania"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_at",
+   "es": "Austria",
+   "forma": "texto",
+   "ro": "Austria"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_be",
+   "es": "Bélgica",
+   "forma": "texto",
+   "ro": "Belgia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_ch",
+   "es": "Suiza",
+   "forma": "texto",
+   "ro": "Elveția"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_lu",
+   "es": "Luxemburgo",
+   "forma": "texto",
+   "ro": "Luxemburg"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_li",
+   "es": "Liechtenstein",
+   "forma": "texto",
+   "ro": "Liechtenstein"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_mc",
+   "es": "Mónaco",
+   "forma": "texto",
+   "ro": "Monaco"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_pt",
+   "es": "Portugal",
+   "forma": "texto",
+   "ro": "Portugalia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_gr",
+   "es": "Grecia",
+   "forma": "texto",
+   "ro": "Grecia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_mt",
+   "es": "Malta",
+   "forma": "texto",
+   "ro": "Malta"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_hr",
+   "es": "Croacia",
+   "forma": "texto",
+   "ro": "Croația"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_si",
+   "es": "Eslovenia",
+   "forma": "texto",
+   "ro": "Slovenia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_ba",
+   "es": "Bosnia y Herzegovina",
+   "forma": "texto",
+   "ro": "Bosnia și Herțegovina"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_rs",
+   "es": "Serbia",
+   "forma": "texto",
+   "ro": "Serbia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_me",
+   "es": "Montenegro",
+   "forma": "texto",
+   "ro": "Muntenegru"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_mk",
+   "es": "Macedonia del Norte",
+   "forma": "texto",
+   "ro": "Macedonia de Nord"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_al",
+   "es": "Albania",
+   "forma": "texto",
+   "ro": "Albania"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_ad",
+   "es": "Andorra",
+   "forma": "texto",
+   "ro": "Andorra"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_sm",
+   "es": "San Marino",
+   "forma": "texto",
+   "ro": "San Marino"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_cy",
+   "es": "Chipre",
+   "forma": "texto",
+   "ro": "Cipru"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_cz",
+   "es": "Chequia",
+   "forma": "texto",
+   "ro": "Cehia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_sk",
+   "es": "Eslovaquia",
+   "forma": "texto",
+   "ro": "Slovacia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_hu",
+   "es": "Hungría",
+   "forma": "texto",
+   "ro": "Ungaria"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_ro",
+   "es": "Rumanía",
+   "forma": "texto",
+   "ro": "România"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_md",
+   "es": "Moldavia",
+   "forma": "texto",
+   "ro": "Republica Moldova"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_ua",
+   "es": "Ucrania",
+   "forma": "texto",
+   "ro": "Ucraina"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_by",
+   "es": "Bielorrusia",
+   "forma": "texto",
+   "ro": "Belarus"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilSet_ru",
+   "es": "Rusia",
+   "forma": "texto",
+   "ro": "Rusia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_es_sol",
+   "es": "Sol",
+   "forma": "texto",
+   "ro": "Soare"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_es_guitarra",
+   "es": "Guitarra",
+   "forma": "texto",
+   "ro": "Chitară"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_es_molino",
+   "es": "Molino manchego",
+   "forma": "texto",
+   "ro": "Moară de vânt din La Mancha"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_es_abanico",
+   "es": "Abanico",
+   "forma": "texto",
+   "ro": "Evantai"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_es_paella",
+   "es": "Paella",
+   "forma": "texto",
+   "ro": "Paella"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_es_oro_uvas",
+   "es": "Nochevieja",
+   "forma": "texto",
+   "ro": "Revelionul"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_en_bigben",
+   "es": "Big Ben",
+   "forma": "texto",
+   "ro": "Big Ben"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_en_bus",
+   "es": "Autobús de dos pisos",
+   "forma": "texto",
+   "ro": "Autobuz etajat"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_en_te",
+   "es": "Taza de té",
+   "forma": "texto",
+   "ro": "Ceașcă de ceai"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_en_corgi",
+   "es": "Corgi",
+   "forma": "texto",
+   "ro": "Corgi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_en_fish_chips",
+   "es": "Fish and chips",
+   "forma": "texto",
+   "ro": "Fish and chips"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_en_oro_tortitas",
+   "es": "Día de las Tortitas",
+   "forma": "texto",
+   "ro": "Ziua Clătitelor"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_de_brezel",
+   "es": "Pretzel",
+   "forma": "texto",
+   "ro": "Covrig bavarez"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_de_oso",
+   "es": "Oso de Berlín",
+   "forma": "texto",
+   "ro": "Ursul din Berlin"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_de_cuco",
+   "es": "Reloj de cuco",
+   "forma": "texto",
+   "ro": "Ceas cu cuc"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_de_castillo",
+   "es": "Castillo",
+   "forma": "texto",
+   "ro": "Castel"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_de_gnomo",
+   "es": "Gnomo de jardín",
+   "forma": "texto",
+   "ro": "Pitic de grădină"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_de_oro_unidad",
+   "es": "Día de la Unidad Alemana",
+   "forma": "texto",
+   "ro": "Ziua Unității Germane"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fr_torre",
+   "es": "Torre Eiffel",
+   "forma": "texto",
+   "ro": "Turnul Eiffel"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fr_croissant",
+   "es": "Croissant",
+   "forma": "texto",
+   "ro": "Croissant"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fr_gallo",
+   "es": "Gallo",
+   "forma": "texto",
+   "ro": "Cocoș"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fr_lavanda",
+   "es": "Lavanda",
+   "forma": "texto",
+   "ro": "Lavandă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fr_macaron",
+   "es": "Macarons",
+   "forma": "texto",
+   "ro": "Macarons"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fr_oro_julio",
+   "es": "Día de la Bastilla",
+   "forma": "texto",
+   "ro": "Ziua Bastiliei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_it_coliseo",
+   "es": "Coliseo",
+   "forma": "texto",
+   "ro": "Colosseumul"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_it_pizza",
+   "es": "Pizza",
+   "forma": "texto",
+   "ro": "Pizza"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_it_gondola",
+   "es": "Góndola",
+   "forma": "texto",
+   "ro": "Gondolă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_it_pisa",
+   "es": "Torre de Pisa",
+   "forma": "texto",
+   "ro": "Turnul din Pisa"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_it_helado",
+   "es": "Helado italiano",
+   "forma": "texto",
+   "ro": "Înghețată italiană"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_it_oro_republica",
+   "es": "Fiesta de la República",
+   "forma": "texto",
+   "ro": "Ziua Republicii"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_nl_tulipan",
+   "es": "Tulipán",
+   "forma": "texto",
+   "ro": "Lalea"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_nl_molino",
+   "es": "Molino holandés",
+   "forma": "texto",
+   "ro": "Moară de vânt olandeză"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_nl_bici",
+   "es": "Bicicleta",
+   "forma": "texto",
+   "ro": "Bicicletă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_nl_zuecos",
+   "es": "Zueco con tulipán",
+   "forma": "texto",
+   "ro": "Sabot cu lalea"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_nl_queso",
+   "es": "Queso",
+   "forma": "texto",
+   "ro": "Brânză"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_nl_oro_rey",
+   "es": "Día del Rey",
+   "forma": "texto",
+   "ro": "Ziua Regelui"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pl_pierogi",
+   "es": "Pierogi",
+   "forma": "texto",
+   "ro": "Pierogi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pl_zubr",
+   "es": "Bisonte europeo",
+   "forma": "texto",
+   "ro": "Zimbru"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pl_ciguena",
+   "es": "Cigüeña",
+   "forma": "texto",
+   "ro": "Barză"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pl_ambar",
+   "es": "Ámbar",
+   "forma": "texto",
+   "ro": "Chihlimbar"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pl_wawel",
+   "es": "Castillo de Wawel",
+   "forma": "texto",
+   "ro": "Castelul Wawel"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pl_oro_mayo",
+   "es": "Fiesta del 3 de Mayo",
+   "forma": "texto",
+   "ro": "Ziua Constituției de 3 Mai"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_bg_rosa",
+   "es": "Rosa",
+   "forma": "texto",
+   "ro": "Trandafir"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_bg_martenitsa",
+   "es": "Martenitsa",
+   "forma": "texto",
+   "ro": "Martenița"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_bg_shopska",
+   "es": "Ensalada shopska",
+   "forma": "texto",
+   "ro": "Salată șopska"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_bg_rila",
+   "es": "Monasterio de Rila",
+   "forma": "texto",
+   "ro": "Mănăstirea Rila"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_bg_yogur",
+   "es": "Yogur",
+   "forma": "texto",
+   "ro": "Iaurt"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_bg_oro_marta",
+   "es": "Baba Marta",
+   "forma": "texto",
+   "ro": "Baba Marta"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zh_panda",
+   "es": "Panda",
+   "forma": "texto",
+   "ro": "Panda"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zh_farol",
+   "es": "Farolillo",
+   "forma": "texto",
+   "ro": "Lampion"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zh_jiaozi",
+   "es": "Empanadilla china",
+   "forma": "texto",
+   "ro": "Colțunaș chinezesc"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zh_muralla",
+   "es": "Gran Muralla",
+   "forma": "texto",
+   "ro": "Marele Zid"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zh_tetera",
+   "es": "Tetera",
+   "forma": "texto",
+   "ro": "Ceainic"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zh_oro_chunjie",
+   "es": "Año Nuevo chino",
+   "forma": "texto",
+   "ro": "Anul Nou Chinezesc"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zht_bubble",
+   "es": "Bubble tea",
+   "forma": "texto",
+   "ro": "Bubble tea"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zht_dimsum",
+   "es": "Dim sum",
+   "forma": "texto",
+   "ro": "Dim sum"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zht_junco",
+   "es": "Junco chino",
+   "forma": "texto",
+   "ro": "Joncă chinezească"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zht_oso",
+   "es": "Oso negro asiático",
+   "forma": "texto",
+   "ro": "Urs negru asiatic"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zht_farol_cielo",
+   "es": "Farolillo volador",
+   "forma": "texto",
+   "ro": "Lampion zburător"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_zht_oro_zhongqiu",
+   "es": "Fiesta del Medio Otoño",
+   "forma": "texto",
+   "ro": "Festivalul de la Mijlocul Toamnei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_tf_teide",
+   "es": "Teide",
+   "forma": "texto",
+   "ro": "Teide"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_tf_lagarto",
+   "es": "Lagarto tizón",
+   "forma": "texto",
+   "ro": "Șopârla de Tenerife"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_tf_guagua",
+   "es": "Guagua",
+   "forma": "texto",
+   "ro": "Guagua (autobuz)"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_tf_drago",
+   "es": "Drago",
+   "forma": "texto",
+   "ro": "Dragonier"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_tf_calderon",
+   "es": "Calderón",
+   "forma": "texto",
+   "ro": "Balenă-pilot"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_tf_oro_carnaval",
+   "es": "Carnaval de Santa Cruz",
+   "forma": "texto",
+   "ro": "Carnavalul din Santa Cruz"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_tf_oro_canarias",
+   "es": "Día de Canarias",
+   "forma": "texto",
+   "ro": "Ziua Insulelor Canare"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_tf_oro_sanjuan",
+   "es": "Noche de San Juan",
+   "forma": "texto",
+   "ro": "Noaptea Sfântului Ioan"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ie_trebol",
+   "es": "Trébol",
+   "forma": "texto",
+   "ro": "Trifoi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ie_arpa",
+   "es": "Arpa irlandesa",
+   "forma": "texto",
+   "ro": "Harpă irlandeză"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ie_moher",
+   "es": "Acantilados de Moher",
+   "forma": "texto",
+   "ro": "Stâncile din Moher"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ie_lobero",
+   "es": "Lebrel irlandés",
+   "forma": "texto",
+   "ro": "Ogar irlandez"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ie_pan_soda",
+   "es": "Pan de soda",
+   "forma": "texto",
+   "ro": "Pâine cu bicarbonat"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ie_oro_patricio",
+   "es": "San Patricio",
+   "forma": "texto",
+   "ro": "Ziua Sfântului Patrick"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_dk_nyhavn",
+   "es": "Nyhavn",
+   "forma": "texto",
+   "ro": "Nyhavn"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_dk_wienerbrod",
+   "es": "Pastel danés",
+   "forma": "texto",
+   "ro": "Foietaj danez"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_dk_smorrebrod",
+   "es": "Smørrebrød",
+   "forma": "texto",
+   "ro": "Smørrebrød"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_dk_kronborg",
+   "es": "Castillo de Kronborg",
+   "forma": "texto",
+   "ro": "Castelul Kronborg"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_dk_polse",
+   "es": "Perrito caliente danés",
+   "forma": "texto",
+   "ro": "Hot dog danez"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_dk_oro_fastelavn",
+   "es": "Carnaval danés",
+   "forma": "texto",
+   "ro": "Carnavalul danez"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_se_caballito",
+   "es": "Caballito de Dalarna",
+   "forma": "texto",
+   "ro": "Căluțul din Dalarna"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_se_alce",
+   "es": "Alce",
+   "forma": "texto",
+   "ro": "Elan"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_se_casita",
+   "es": "Casita roja",
+   "forma": "texto",
+   "ro": "Căsuță roșie"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_se_albondigas",
+   "es": "Albóndigas suecas",
+   "forma": "texto",
+   "ro": "Chiftele suedeze"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_se_canela",
+   "es": "Bollo de canela",
+   "forma": "texto",
+   "ro": "Rulou cu scorțișoară"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_se_oro_midsommar",
+   "es": "Midsommar",
+   "forma": "texto",
+   "ro": "Midsommar"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_no_fiordo",
+   "es": "Fiordo",
+   "forma": "texto",
+   "ro": "Fiord"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_no_vikingo",
+   "es": "Barco vikingo",
+   "forma": "texto",
+   "ro": "Corabie vikingă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_no_stavkirke",
+   "es": "Iglesia de madera",
+   "forma": "texto",
+   "ro": "Biserică de lemn"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_no_brunost",
+   "es": "Queso marrón",
+   "forma": "texto",
+   "ro": "Brânză maro"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_no_esquis",
+   "es": "Esquís",
+   "forma": "texto",
+   "ro": "Schiuri"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_no_oro_syttende",
+   "es": "Día de Noruega",
+   "forma": "texto",
+   "ro": "Ziua Norvegiei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fi_sauna",
+   "es": "Sauna",
+   "forma": "texto",
+   "ro": "Saună"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fi_reno",
+   "es": "Reno",
+   "forma": "texto",
+   "ro": "Ren"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fi_aurora",
+   "es": "Aurora boreal",
+   "forma": "texto",
+   "ro": "Aurora boreală"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fi_catedral",
+   "es": "Catedral de Helsinki",
+   "forma": "texto",
+   "ro": "Catedrala din Helsinki"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fi_carelia",
+   "es": "Pastel de Carelia",
+   "forma": "texto",
+   "ro": "Plăcintă din Karelia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fi_oro_independencia",
+   "es": "Día de Finlandia",
+   "forma": "texto",
+   "ro": "Ziua Finlandei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_is_frailecillo",
+   "es": "Frailecillo",
+   "forma": "texto",
+   "ro": "Papagal de mare"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_is_geiser",
+   "es": "Géiser",
+   "forma": "texto",
+   "ro": "Gheizer"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_is_hallgrimskirkja",
+   "es": "Hallgrímskirkja",
+   "forma": "texto",
+   "ro": "Hallgrímskirkja"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_is_caballo",
+   "es": "Caballo islandés",
+   "forma": "texto",
+   "ro": "Cal islandez"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_is_glaciar",
+   "es": "Glaciar Vatnajökull",
+   "forma": "texto",
+   "ro": "Ghețarul Vatnajökull"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_is_oro_thjodhatid",
+   "es": "Día de Islandia",
+   "forma": "texto",
+   "ro": "Ziua Islandei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ee_tallin",
+   "es": "Murallas de Tallin",
+   "forma": "texto",
+   "ro": "Zidurile din Tallinn"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ee_golondrina",
+   "es": "Golondrina",
+   "forma": "texto",
+   "ro": "Rândunică"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ee_aciano",
+   "es": "Aciano",
+   "forma": "texto",
+   "ro": "Albăstrea"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ee_pan",
+   "es": "Pan negro",
+   "forma": "texto",
+   "ro": "Pâine neagră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ee_raba",
+   "es": "Turbera",
+   "forma": "texto",
+   "ro": "Turbărie"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ee_oro_jaanipaev",
+   "es": "San Juan estonio",
+   "forma": "texto",
+   "ro": "Jaanipäev (Sfântul Ioan)"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lv_silueta",
+   "es": "Torres de Riga",
+   "forma": "texto",
+   "ro": "Turnurile din Riga"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lv_modernismo",
+   "es": "Art nouveau de Riga",
+   "forma": "texto",
+   "ro": "Art nouveau din Riga"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lv_espadines",
+   "es": "Espadines de Riga",
+   "forma": "texto",
+   "ro": "Șprot de Riga"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lv_turaida",
+   "es": "Castillo de Turaida",
+   "forma": "texto",
+   "ro": "Castelul Turaida"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lv_corona",
+   "es": "Corona de roble",
+   "forma": "texto",
+   "ro": "Coroană de stejar"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lv_oro_jani",
+   "es": "San Juan letón",
+   "forma": "texto",
+   "ro": "Jāņi (Sfântul Ioan)"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lt_trakai",
+   "es": "Castillo de Trakai",
+   "forma": "texto",
+   "ro": "Castelul Trakai"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lt_cepelinai",
+   "es": "Cepelinai",
+   "forma": "texto",
+   "ro": "Cepelinai"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lt_baloncesto",
+   "es": "Baloncesto",
+   "forma": "texto",
+   "ro": "Baschet"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lt_sakotis",
+   "es": "Šakotis",
+   "forma": "texto",
+   "ro": "Šakotis"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lt_dunas",
+   "es": "Istmo de Curlandia",
+   "forma": "texto",
+   "ro": "Cordonul litoral al Curlandei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lt_oro_uzgavenes",
+   "es": "Carnaval lituano",
+   "forma": "texto",
+   "ro": "Carnavalul lituanian"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_at_escalope",
+   "es": "Escalope vienés",
+   "forma": "texto",
+   "ro": "Șnițel vienez"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_at_noria",
+   "es": "Noria del Prater",
+   "forma": "texto",
+   "ro": "Roata uriașă din Prater"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_at_schonbrunn",
+   "es": "Palacio de Schönbrunn",
+   "forma": "texto",
+   "ro": "Palatul Schönbrunn"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_at_strudel",
+   "es": "Strudel de manzana",
+   "forma": "texto",
+   "ro": "Ștrudel cu mere"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_at_cafe",
+   "es": "Café vienés",
+   "forma": "texto",
+   "ro": "Cafea vieneză"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_at_oro_neujahr",
+   "es": "Concierto de Año Nuevo",
+   "forma": "texto",
+   "ro": "Concertul de Anul Nou"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_be_gofre",
+   "es": "Gofre",
+   "forma": "texto",
+   "ro": "Gofră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_be_patatas",
+   "es": "Patatas fritas",
+   "forma": "texto",
+   "ro": "Cartofi prăjiți"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_be_bombones",
+   "es": "Bombones",
+   "forma": "texto",
+   "ro": "Praline"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_be_grand_place",
+   "es": "Grand-Place",
+   "forma": "texto",
+   "ro": "Grand-Place"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_be_belfort",
+   "es": "Campanario de Brujas",
+   "forma": "texto",
+   "ro": "Clopotnița din Bruges"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_be_oro_binche",
+   "es": "Carnaval de Binche",
+   "forma": "texto",
+   "ro": "Carnavalul de la Binche"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ch_cervino",
+   "es": "Cervino",
+   "forma": "texto",
+   "ro": "Matterhorn"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ch_fondue",
+   "es": "Fondue",
+   "forma": "texto",
+   "ro": "Fondue"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ch_sanbernardo",
+   "es": "San bernardo",
+   "forma": "texto",
+   "ro": "Saint Bernard"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ch_vaca",
+   "es": "Vaca con cencerro",
+   "forma": "texto",
+   "ro": "Vacă cu talangă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ch_trompa",
+   "es": "Trompa alpina",
+   "forma": "texto",
+   "ro": "Bucium alpin"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ch_oro_agosto",
+   "es": "Día de Suiza",
+   "forma": "texto",
+   "ro": "Ziua Elveției"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lu_puente",
+   "es": "Puente Adolfo",
+   "forma": "texto",
+   "ro": "Podul Adolphe"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lu_vianden",
+   "es": "Castillo de Vianden",
+   "forma": "texto",
+   "ro": "Castelul Vianden"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lu_casamatas",
+   "es": "Casamatas del Bock",
+   "forma": "texto",
+   "ro": "Cazematele Bock"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lu_tarta",
+   "es": "Tarta de ciruelas",
+   "forma": "texto",
+   "ro": "Tartă cu prune"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lu_peckvillchen",
+   "es": "Péckvillchen",
+   "forma": "texto",
+   "ro": "Péckvillchen"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lu_oro_nacional",
+   "es": "Día de Luxemburgo",
+   "forma": "texto",
+   "ro": "Ziua Luxemburgului"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_li_vaduz",
+   "es": "Castillo de Vaduz",
+   "forma": "texto",
+   "ro": "Castelul Vaduz"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_li_sello",
+   "es": "Sello de correos",
+   "forma": "texto",
+   "ro": "Timbru poștal"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_li_knopfle",
+   "es": "Käsknöpfle",
+   "forma": "texto",
+   "ro": "Käsknöpfle"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_li_casa_roja",
+   "es": "Casa Roja",
+   "forma": "texto",
+   "ro": "Casa Roșie"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_li_puente_rin",
+   "es": "Puente viejo del Rin",
+   "forma": "texto",
+   "ro": "Podul vechi peste Rin"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_li_oro_nacional",
+   "es": "Día de Liechtenstein",
+   "forma": "texto",
+   "ro": "Ziua Liechtensteinului"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mc_coche",
+   "es": "Coche de carreras",
+   "forma": "texto",
+   "ro": "Mașină de curse"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mc_oceanografico",
+   "es": "Museo Oceanográfico",
+   "forma": "texto",
+   "ro": "Muzeul Oceanografic"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mc_palacio",
+   "es": "Palacio del Príncipe",
+   "forma": "texto",
+   "ro": "Palatul Princiar"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mc_barbagiuan",
+   "es": "Barbagiuan",
+   "forma": "texto",
+   "ro": "Barbagiuan"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mc_jardin",
+   "es": "Jardín Exótico",
+   "forma": "texto",
+   "ro": "Grădina Exotică"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mc_oro_nacional",
+   "es": "Día de Mónaco",
+   "forma": "texto",
+   "ro": "Ziua Principatului Monaco"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pt_nata",
+   "es": "Pastel de nata",
+   "forma": "texto",
+   "ro": "Pastel de nata"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pt_azulejo",
+   "es": "Azulejo",
+   "forma": "texto",
+   "ro": "Azulejo"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pt_tranvia",
+   "es": "Tranvía de Lisboa",
+   "forma": "texto",
+   "ro": "Tramvaiul din Lisabona"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pt_gallo",
+   "es": "Gallo de Barcelos",
+   "forma": "texto",
+   "ro": "Cocoșul din Barcelos"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pt_sardinas",
+   "es": "Sardinas",
+   "forma": "texto",
+   "ro": "Sardine"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pt_oro_antonio",
+   "es": "Noche de San Antonio",
+   "forma": "texto",
+   "ro": "Noaptea Sfântului Anton"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_gr_partenon",
+   "es": "Partenón",
+   "forma": "texto",
+   "ro": "Partenonul"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_gr_cicladas",
+   "es": "Casas de las Cícladas",
+   "forma": "texto",
+   "ro": "Case din Ciclade"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_gr_gyros",
+   "es": "Gyros",
+   "forma": "texto",
+   "ro": "Gyros"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_gr_olivo",
+   "es": "Rama de olivo",
+   "forma": "texto",
+   "ro": "Ramură de măslin"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_gr_mochuelo",
+   "es": "Mochuelo",
+   "forma": "texto",
+   "ro": "Cucuvea"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_gr_oro_kathara",
+   "es": "Lunes Limpio",
+   "forma": "texto",
+   "ro": "Lunea Curată"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mt_luzzu",
+   "es": "Luzzu",
+   "forma": "texto",
+   "ro": "Luzzu"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mt_cruz",
+   "es": "Cruz de Malta",
+   "forma": "texto",
+   "ro": "Crucea malteză"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mt_balcones",
+   "es": "Balcones de La Valeta",
+   "forma": "texto",
+   "ro": "Balcoanele din Valletta"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mt_pastizzi",
+   "es": "Pastizzi",
+   "forma": "texto",
+   "ro": "Pastizzi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mt_templo",
+   "es": "Templo megalítico",
+   "forma": "texto",
+   "ro": "Templu megalitic"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mt_oro_carnaval",
+   "es": "Carnaval de Malta",
+   "forma": "texto",
+   "ro": "Carnavalul din Malta"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hr_dubrovnik",
+   "es": "Dubrovnik",
+   "forma": "texto",
+   "ro": "Dubrovnik"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hr_dalmata",
+   "es": "Dálmata",
+   "forma": "texto",
+   "ro": "Dalmațian"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hr_plitvice",
+   "es": "Lagos de Plitvice",
+   "forma": "texto",
+   "ro": "Lacurile Plitvice"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hr_licitar",
+   "es": "Corazón de licitar",
+   "forma": "texto",
+   "ro": "Inimă de licitar"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hr_corbata",
+   "es": "Corbata",
+   "forma": "texto",
+   "ro": "Cravată"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hr_oro_carnaval",
+   "es": "Carnaval de Rijeka",
+   "forma": "texto",
+   "ro": "Carnavalul din Rijeka"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_si_bled",
+   "es": "Lago de Bled",
+   "forma": "texto",
+   "ro": "Lacul Bled"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_si_triglav",
+   "es": "Triglav",
+   "forma": "texto",
+   "ro": "Triglav"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_si_potica",
+   "es": "Potica",
+   "forma": "texto",
+   "ro": "Potica"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_si_proteo",
+   "es": "Proteo",
+   "forma": "texto",
+   "ro": "Proteu de peșteră"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_si_colmena",
+   "es": "Colmena pintada",
+   "forma": "texto",
+   "ro": "Stup pictat"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_si_oro_estado",
+   "es": "Día de Eslovenia",
+   "forma": "texto",
+   "ro": "Ziua Sloveniei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ba_mostar",
+   "es": "Puente de Mostar",
+   "forma": "texto",
+   "ro": "Podul din Mostar"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ba_cevapi",
+   "es": "Ćevapi",
+   "forma": "texto",
+   "ro": "Ćevapi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ba_cafe",
+   "es": "Café bosnio",
+   "forma": "texto",
+   "ro": "Cafea bosniacă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ba_sebilj",
+   "es": "Sebilj",
+   "forma": "texto",
+   "ro": "Sebilj"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ba_jajce",
+   "es": "Cascada de Jajce",
+   "forma": "texto",
+   "ro": "Cascada din Jajce"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ba_oro_mayo",
+   "es": "Primero de Mayo",
+   "forma": "texto",
+   "ro": "Ziua Muncii"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_rs_golubac",
+   "es": "Fortaleza de Golubac",
+   "forma": "texto",
+   "ro": "Cetatea Golubăț"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_rs_pljeskavica",
+   "es": "Pljeskavica",
+   "forma": "texto",
+   "ro": "Pljeskavica"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_rs_frambuesas",
+   "es": "Frambuesas",
+   "forma": "texto",
+   "ro": "Zmeură"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_rs_petrovaradin",
+   "es": "Reloj de Petrovaradin",
+   "forma": "texto",
+   "ro": "Ceasul din Petrovaradin"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_rs_opanci",
+   "es": "Opanci",
+   "forma": "texto",
+   "ro": "Opinci"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_rs_oro_djurdjevdan",
+   "es": "San Jorge",
+   "forma": "texto",
+   "ro": "Sfântul Gheorghe"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_me_kotor",
+   "es": "Bahía de Kotor",
+   "forma": "texto",
+   "ro": "Golful Kotor"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_me_sveti_stefan",
+   "es": "Sveti Stefan",
+   "forma": "texto",
+   "ro": "Sveti Stefan"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_me_durmitor",
+   "es": "Durmitor",
+   "forma": "texto",
+   "ro": "Durmitor"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_me_mimosa",
+   "es": "Mimosa",
+   "forma": "texto",
+   "ro": "Mimoză"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_me_prsut",
+   "es": "Jamón de Njeguši",
+   "forma": "texto",
+   "ro": "Șuncă de Njeguši"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_me_oro_estado",
+   "es": "Día de Montenegro",
+   "forma": "texto",
+   "ro": "Ziua Muntenegrului"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mk_ohrid",
+   "es": "Lago de Ohrid",
+   "forma": "texto",
+   "ro": "Lacul Ohrid"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mk_perlas",
+   "es": "Perlas de Ohrid",
+   "forma": "texto",
+   "ro": "Perle de Ohrid"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mk_tavce",
+   "es": "Tavče gravče",
+   "forma": "texto",
+   "ro": "Tavče gravče"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mk_puente",
+   "es": "Puente de Skopje",
+   "forma": "texto",
+   "ro": "Podul din Skopje"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mk_lince",
+   "es": "Lince balcánico",
+   "forma": "texto",
+   "ro": "Râs balcanic"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mk_oro_independencia",
+   "es": "Día de la Independencia",
+   "forma": "texto",
+   "ro": "Ziua Independenței"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_al_aguila_bicefala",
+   "es": "Águila bicéfala",
+   "forma": "texto",
+   "ro": "Acvilă bicefală"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_al_berat",
+   "es": "Berat",
+   "forma": "texto",
+   "ro": "Berat"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_al_byrek",
+   "es": "Byrek",
+   "forma": "texto",
+   "ro": "Byrek"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_al_ksamil",
+   "es": "Islas de Ksamil",
+   "forma": "texto",
+   "ro": "Insulele Ksamil"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_al_cifteli",
+   "es": "Çifteli",
+   "forma": "texto",
+   "ro": "Çifteli"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_al_oro_verano",
+   "es": "Día del Verano",
+   "forma": "texto",
+   "ro": "Ziua Verii"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ad_santa_coloma",
+   "es": "Iglesia de Santa Coloma",
+   "forma": "texto",
+   "ro": "Biserica Santa Coloma"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ad_casa_vall",
+   "es": "Casa de la Vall",
+   "forma": "texto",
+   "ro": "Casa de la Vall"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ad_sarrio",
+   "es": "Sarrio",
+   "forma": "texto",
+   "ro": "Capră neagră din Pirinei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ad_trinxat",
+   "es": "Trinxat",
+   "forma": "texto",
+   "ro": "Trinxat"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ad_madriu",
+   "es": "Valle del Madriu",
+   "forma": "texto",
+   "ro": "Valea Madriu"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ad_oro_falles",
+   "es": "Falles de Sant Joan",
+   "forma": "texto",
+   "ro": "Falles de Sant Joan"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sm_torres",
+   "es": "Tres Torres",
+   "forma": "texto",
+   "ro": "Cele Trei Turnuri"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sm_palacio",
+   "es": "Palacio Público",
+   "forma": "texto",
+   "ro": "Palazzo Pubblico"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sm_piadina",
+   "es": "Piadina",
+   "forma": "texto",
+   "ro": "Piadina"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sm_teleferico",
+   "es": "Teleférico",
+   "forma": "texto",
+   "ro": "Telecabină"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sm_bustrengo",
+   "es": "Bustrengo",
+   "forma": "texto",
+   "ro": "Bustrengo"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sm_oro_fundacion",
+   "es": "Fiesta de San Marino",
+   "forma": "texto",
+   "ro": "Sărbătoarea Sfântului Marin"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cy_halloumi",
+   "es": "Halloumi",
+   "forma": "texto",
+   "ro": "Halloumi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cy_afrodita",
+   "es": "Roca de Afrodita",
+   "forma": "texto",
+   "ro": "Stânca Afroditei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cy_muflon",
+   "es": "Muflón",
+   "forma": "texto",
+   "ro": "Muflon"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cy_loukoumi_geroskipou",
+   "es": "Loukoumi",
+   "forma": "texto",
+   "ro": "Loukoumi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cy_encaje",
+   "es": "Encaje de Lefkara",
+   "forma": "texto",
+   "ro": "Dantelă de Lefkara"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cy_oro_kataklysmos",
+   "es": "Fiesta del Diluvio",
+   "forma": "texto",
+   "ro": "Sărbătoarea Potopului"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cz_reloj",
+   "es": "Reloj astronómico",
+   "forma": "texto",
+   "ro": "Orologiul astronomic"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cz_puente_carlos",
+   "es": "Puente de Carlos",
+   "forma": "texto",
+   "ro": "Podul Carol"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cz_krumlov",
+   "es": "Český Krumlov",
+   "forma": "texto",
+   "ro": "Český Krumlov"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cz_svickova",
+   "es": "Svíčková",
+   "forma": "texto",
+   "ro": "Svíčková"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cz_cristal",
+   "es": "Cristal de Bohemia",
+   "forma": "texto",
+   "ro": "Cristal de Boemia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cz_oro_walpurgis",
+   "es": "Noche de Walpurgis",
+   "forma": "texto",
+   "ro": "Noaptea Walpurgiei"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sk_bratislava",
+   "es": "Castillo de Bratislava",
+   "forma": "texto",
+   "ro": "Castelul din Bratislava"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sk_krivan",
+   "es": "Kriváň",
+   "forma": "texto",
+   "ro": "Kriváň"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sk_halusky",
+   "es": "Halušky",
+   "forma": "texto",
+   "ro": "Halušky"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sk_cicmany",
+   "es": "Casas de Čičmany",
+   "forma": "texto",
+   "ro": "Casele din Čičmany"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sk_fujara",
+   "es": "Fujara",
+   "forma": "texto",
+   "ro": "Fujara"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_sk_oro_fasiangy",
+   "es": "Carnaval eslovaco",
+   "forma": "texto",
+   "ro": "Carnavalul slovac"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hu_parlamento",
+   "es": "Parlamento",
+   "forma": "texto",
+   "ro": "Parlamentul"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hu_paprika",
+   "es": "Pimentón",
+   "forma": "texto",
+   "ro": "Boia"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hu_gulash",
+   "es": "Goulash",
+   "forma": "texto",
+   "ro": "Gulaș"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hu_puli",
+   "es": "Puli",
+   "forma": "texto",
+   "ro": "Puli"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hu_termas",
+   "es": "Baños termales",
+   "forma": "texto",
+   "ro": "Băi termale"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_hu_oro_esteban",
+   "es": "San Esteban",
+   "forma": "texto",
+   "ro": "Ziua Sfântului Ștefan"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ro_peles",
+   "es": "Castillo de Peleș",
+   "forma": "texto",
+   "ro": "Castelul Peleș"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ro_sarmale",
+   "es": "Sarmale",
+   "forma": "texto",
+   "ro": "Sarmale"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ro_maramures",
+   "es": "Iglesia de Maramureș",
+   "forma": "texto",
+   "ro": "Biserică de lemn din Maramureș"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ro_horezu",
+   "es": "Cerámica de Horezu",
+   "forma": "texto",
+   "ro": "Ceramică de Horezu"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ro_papanasi",
+   "es": "Papanași",
+   "forma": "texto",
+   "ro": "Papanași"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ro_oro_martisor",
+   "es": "Mărțișor",
+   "forma": "texto",
+   "ro": "Mărțișor"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_md_orheiul_vechi",
+   "es": "Orheiul Vechi",
+   "forma": "texto",
+   "ro": "Orheiul Vechi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_md_mamaliga",
+   "es": "Mămăligă",
+   "forma": "texto",
+   "ro": "Mămăligă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_md_placinta",
+   "es": "Plăcintă",
+   "forma": "texto",
+   "ro": "Plăcintă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_md_soroca",
+   "es": "Fortaleza de Soroca",
+   "forma": "texto",
+   "ro": "Cetatea Soroca"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_md_alfombra",
+   "es": "Alfombra moldava",
+   "forma": "texto",
+   "ro": "Covor moldovenesc"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_md_oro_martisor",
+   "es": "Mărțișor",
+   "forma": "texto",
+   "ro": "Mărțișor"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ua_girasol",
+   "es": "Girasol",
+   "forma": "texto",
+   "ro": "Floarea-soarelui"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ua_borshch",
+   "es": "Borsch",
+   "forma": "texto",
+   "ro": "Borș ucrainean"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ua_kamianets",
+   "es": "Castillo de Kamianets",
+   "forma": "texto",
+   "ro": "Cetatea Camenița"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ua_petrykivka",
+   "es": "Pintura de Petrykivka",
+   "forma": "texto",
+   "ro": "Pictură de Petrîkivka"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ua_bandura",
+   "es": "Bandura",
+   "forma": "texto",
+   "ro": "Bandura"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ua_oro_vyshyvanka",
+   "es": "Día de la Vyshyvanka",
+   "forma": "texto",
+   "ro": "Ziua Vîșîvankăi"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_by_mir",
+   "es": "Castillo de Mir",
+   "forma": "texto",
+   "ro": "Castelul Mir"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_by_draniki",
+   "es": "Draniki",
+   "forma": "texto",
+   "ro": "Draniki"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_by_lino",
+   "es": "Flor de lino",
+   "forma": "texto",
+   "ro": "Floare de in"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_by_paja",
+   "es": "Muñeca de paja",
+   "forma": "texto",
+   "ro": "Păpușă de paie"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_by_machanka",
+   "es": "Machanka",
+   "forma": "texto",
+   "ro": "Machanka"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_by_oro_kupalle",
+   "es": "Noche de Kupala",
+   "forma": "texto",
+   "ro": "Noaptea de Kupala"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ru_matrioska",
+   "es": "Matrioska",
+   "forma": "texto",
+   "ro": "Matrioșka"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ru_san_basilio",
+   "es": "San Basilio",
+   "forma": "texto",
+   "ro": "Catedrala Sfântul Vasile"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ru_samovar",
+   "es": "Samovar",
+   "forma": "texto",
+   "ro": "Samovar"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ru_balalaika",
+   "es": "Balalaica",
+   "forma": "texto",
+   "ro": "Balalaică"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ru_blinis",
+   "es": "Blinis",
+   "forma": "texto",
+   "ro": "Blini"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ru_oro_maslenitsa",
+   "es": "Máslenitsa",
+   "forma": "texto",
+   "ro": "Maslenița"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_en_paraguas",
+   "es": "Paraguas",
+   "forma": "texto",
+   "ro": "Umbrelă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_pl_flor",
+   "es": "Flor recortada",
+   "forma": "texto",
+   "ro": "Floare decupată"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_bg_shevitsa",
+   "es": "Bordado",
+   "forma": "texto",
+   "ro": "Broderie"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ie_hurling",
+   "es": "Hurling",
+   "forma": "texto",
+   "ro": "Hurling"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_dk_cisne",
+   "es": "Cisne",
+   "forma": "texto",
+   "ro": "Lebădă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_no_salmon",
+   "es": "Salmón",
+   "forma": "texto",
+   "ro": "Somon"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_fi_kantele",
+   "es": "Kantele",
+   "forma": "texto",
+   "ro": "Kantele"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_is_basalto",
+   "es": "Columnas de basalto",
+   "forma": "texto",
+   "ro": "Coloane de bazalt"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ee_lobo",
+   "es": "Lobo",
+   "forma": "texto",
+   "ro": "Lup"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lv_lavandera",
+   "es": "Lavandera blanca",
+   "forma": "texto",
+   "ro": "Codobatură albă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lv_sklandrausis",
+   "es": "Sklandrausis",
+   "forma": "texto",
+   "ro": "Sklandrausis"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_be_saxofon",
+   "es": "Saxofón",
+   "forma": "texto",
+   "ro": "Saxofon"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_lu_mullerthal",
+   "es": "Cascada del Mullerthal",
+   "forma": "texto",
+   "ro": "Cascada din Mullerthal"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mc_fougasse",
+   "es": "Fougasse monegasca",
+   "forma": "texto",
+   "ro": "Fougasse monegască"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_mt_kelb_tal_fenek",
+   "es": "Kelb tal-Fenek",
+   "forma": "texto",
+   "ro": "Kelb tal-Fenek"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ba_lonac",
+   "es": "Bosanski lonac",
+   "forma": "texto",
+   "ro": "Bosanski lonac"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ba_molinos",
+   "es": "Molinos del Pliva",
+   "forma": "texto",
+   "ro": "Morile de pe Pliva"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_rs_uvac",
+   "es": "Meandros del Uvac",
+   "forma": "texto",
+   "ro": "Meandrele râului Uvac"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_rs_sargan",
+   "es": "Tren de Šargan",
+   "forma": "texto",
+   "ro": "Trenul de Šargan"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_me_tara",
+   "es": "Cañón del Tara",
+   "forma": "texto",
+   "ro": "Canionul Tara"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_al_aguila",
+   "es": "Águila real",
+   "forma": "texto",
+   "ro": "Acvilă de munte"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ad_telesilla",
+   "es": "Telesilla",
+   "forma": "texto",
+   "ro": "Telescaun"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cy_ciclamen",
+   "es": "Ciclamen de Chipre",
+   "forma": "texto",
+   "ro": "Ciclamă cipriotă"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_cz_pravcice",
+   "es": "Puerta de Pravčice",
+   "forma": "texto",
+   "ro": "Poarta Pravčice"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ro_pelicano",
+   "es": "Pelícano",
+   "forma": "texto",
+   "ro": "Pelican"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_md_uvas",
+   "es": "Uvas",
+   "forma": "texto",
+   "ro": "Struguri"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ua_kalyna",
+   "es": "Viburno",
+   "forma": "texto",
+   "ro": "Călin"
+  },
+  {
+   "tabla": "PERFIL_UI",
+   "clave": "perfilAv_ru_pajaro_fuego",
+   "es": "Pájaro de fuego",
+   "forma": "texto",
+   "ro": "Pasărea de foc"
+  }
+ ]
+}

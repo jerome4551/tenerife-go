@@ -17,7 +17,7 @@
   "cat": "Plaża pet friendly · Güímar"
  },
  "playa-callao-arona": {
-  "desc": "Plaża z piaskiem wulkanicznym w Aronie ze strefą przystosowaną dla psów. Naturalne otoczenie bez tłoku, idealne dla zwierząt lubiących przyrodę i kąpiel. Spokojna i z łatwym dojściem.",
+  "desc": "Kamienista plaża w Aronie, zwana też Las Bajas, ze strefą przystosowaną dla psów. Naturalne otoczenie bez tłoku, idealne dla zwierząt lubiących przyrodę i kąpiel. Spokojna i z łatwym dojściem.",
   "cat": "Plaża pet friendly · Arona"
  },
  "parque-garcia-sanabria-pet": {
@@ -26,10 +26,10 @@
  },
  "parque-anaga-petfriendly": {
   "desc": "⚠️ Z psem można chodzić tylko po oficjalnych szlakach i zawsze na smyczy: to chroniony obszar przyrodniczy z wrażliwą endemiczną fauną; naruszenia są karane. Park Wiejski Anaga pozwala na wstęp psów na smyczy na swoje szlaki. Tysiącletni las wawrzynowy, Rezerwat Biosfery. Imponujące krajobrazy wąwozów i klifów. Niepowtarzalne przeżycie dla miłośników przyrody i ich zwierząt.",
-  "cat": "Park przyrody pet friendly · Anaga"
+  "cat": "Park wiejski pet friendly · Anaga"
  },
  "playa-las-bajas": {
-  "desc": "Plaża z wydzieloną strefą dla psów w Aronie. Ciemny piasek wulkaniczny i łatwe dojście. Spokojne otoczenie bez tłoku, idealne dla psów lubiących kąpiel. Dobra opcja na południu wyspy.",
+  "desc": "Plaża z wydzieloną strefą dla psów w Aronie. Zwana też El Callao: kamienista plaża z łatwym dojściem. Spokojne otoczenie bez tłoku, idealne dla psów lubiących kąpiel. Dobra opcja na południu wyspy.",
   "cat": "Plaża pet friendly · Arona"
  },
  "parque-la-granja-sct": {
@@ -89,7 +89,7 @@
   "cat": "Park dostępny · Puerto de la Cruz"
  },
  "acc-siam-park": {
-  "desc": "Park wodny z realnym zobowiązaniem do włączania: opaski Fast Pass dla osób z autyzmem albo zespołem Downa, 50% zniżki przy niepełnosprawności od 60%, i wstęp bezpłatny przy niepełnosprawności całkowitej. Przystosowane obiekty.",
+  "desc": "Park wodny z różnymi cenami w zależności od biletu: są bilety dla rezydentów Wysp Kanaryjskich, a osoby z urzędowo uznaną niepełnosprawnością w stopniu 60% lub wyższym mają specjalną taryfę, którą kupuje się w punkcie informacyjnym parku po okazaniu zaświadczenia, legitymacji lub dokumentacji medycznej oraz dokumentu ze zdjęciem (siampark.net, listopad 2026). Przystosowane obiekty.",
   "cat": "Park wodny dostępny · Adeje"
  },
  "acc-teide-portillo": {
@@ -129,7 +129,7 @@
   "cat": "Wybieg dla psów · Santa Cruz"
  },
  "parque-canino-el-medano": {
-  "desc": "Wydzielona strefa dla psów w El Médano, Granadilla de Abona. Ogrodzona przestrzeń, w której psy mogą biegać bez smyczy. Blisko plaż pet friendly La Tejita i El Confital.",
+  "desc": "Wydzielona strefa dla psów w El Médano, Granadilla de Abona. Ogrodzona przestrzeń, w której psy mogą biegać bez smyczy. Blisko plaży pet friendly El Confital (na plaży La Tejita psy są zakazane).",
   "cat": "Wybieg dla psów · El Médano"
  },
  "parque-canino-callao-salvaje": {
@@ -173,11 +173,11 @@
   "cat": "Punkt widokowy · Północ · Garachico"
  },
  "mir-baracan": {
-  "desc": "Punkt widokowy w masywie Teno z widokiem na klify Los Gigantes od góry. Dojazd drogą górską.",
-  "cat": "Punkt widokowy · Teno · Klify"
+  "desc": "Punkt widokowy wysoko w masywie Teno, przy drodze TF-436 między Las Portelas a wioską Masca. Widać stąd kontrast między północnym zboczem o łagodnych dolinach a stromym południowym, opadającym w stronę wioski Masca; w pogodne dni widać La Gomerę. Parking przy drodze.",
+  "cat": "Punkt widokowy · Teno · Grzbiet"
  },
  "mir-bailadero": {
-  "desc": "Jeden z najbardziej spektakularnych punktów widokowych Anagi, w najwyższym miejscu masywu. Widoki na północ i na Atlantyk.",
+  "desc": "Jeden z najbardziej spektakularnych punktów widokowych Anagi, na grzbiecie masywu, nad wioską Taganana. Widoki na północ i na Atlantyk.",
   "cat": "Punkt widokowy · Anaga · Grzbiet"
  },
  "mir-ermita-palmar": {
@@ -193,32 +193,32 @@
   "cat": "Punkt widokowy · Park · El Sauzal"
  },
  "mercadillo-tegueste": {
-  "desc": "Tradycyjny niedzielny targ na placu w Tegueste. Owoce, lokalne warzywa, rękodzieło. Niedziele rano.",
-  "cat": "Targ · Niedziele · Północ"
+  "desc": "Targ rolników i rękodzieła w Tegueste. Owoce, lokalne warzywa, rękodzieło. Soboty i niedziele rano.",
+  "cat": "Targ · Weekend · Północ"
  },
  "mercadillo-tacoronte": {
-  "desc": "Cotygodniowy targ w Tacoronte, winiarskiej strefie północy. Soboty rano. Lokalne wina, sery, owoce i kanaryjskie rękodzieło.",
-  "cat": "Targ · Soboty · Tacoronte"
+  "desc": "Cotygodniowy targ w Tacoronte, winiarskiej strefie północy. Soboty i niedziele rano. Lokalne wina, sery, owoce i kanaryjskie rękodzieło.",
+  "cat": "Targ · Weekend · Tacoronte"
  },
  "mercadillo-los-realejos": {
   "desc": "Targ lokalnych producentów w Los Realejos. W weekendy. Kwiaty, rośliny, miód, rzemieślniczy ser i produkty ekologiczne.",
   "cat": "Targ · Weekend · Los Realejos"
  },
  "mercadillo-puerto-cruz": {
-  "desc": "Targ rolniczy w Puerto de la Cruz. Wtorki i soboty. Ziemniaki, banany, pomidory, miód i rośliny prosto z pola.",
-  "cat": "Targ · Wt/So · Puerto Cruz"
+  "desc": "Targ rolniczy w Puerto de la Cruz. Środy i soboty. Ziemniaki, banany, pomidory, miód i rośliny prosto z pola.",
+  "cat": "Targ · Śr/So · Puerto Cruz"
  },
  "mercadillo-san-isidro": {
   "desc": "Tradycyjny targ w San Isidro (Granadilla de Abona). Niedziele rano. Popularny wśród miejscowych z południa.",
   "cat": "Targ · Niedziele · Południe"
  },
  "mercadillo-orotava": {
-  "desc": "Targ rękodzieła w starym mieście La Orotava. Środy i soboty. Ceramika, kanaryjskie hafty, miód i produkty lokalne.",
-  "cat": "Targ · Śr/So · La Orotava"
+  "desc": "Targ produktów rolnych, hodowlanych i rękodzieła z Doliny La Orotava, przy ulicy Educadora Lucía Mesa. Soboty rano. Ceramika, kanaryjskie hafty, miód i produkty lokalne.",
+  "cat": "Targ · Soboty · La Orotava"
  },
  "mercadillo-los-abrigos": {
-  "desc": "Targ przy porcie rybackim Los Abrigos. Niedziele. Lokalne rękodzieło, świeża ryba i autentyczna marynarska atmosfera.",
-  "cat": "Targ · Niedziele · Los Abrigos"
+  "desc": "Targ przy porcie rybackim Los Abrigos. Wtorki po południu. Lokalne rękodzieło, świeża ryba i autentyczna marynarska atmosfera.",
+  "cat": "Targ · Wtorki · Los Abrigos"
  },
  "mercadillo-icod": {
   "desc": "Cotygodniowy targ w Icod, przy Tysiącletnim Smoczym Drzewie. Piątki rano. Owoce, lokalne wina i rękodzieło północnego zachodu.",
@@ -245,20 +245,20 @@
   "cat": "Surfing · Zima · Zachodnie wybrzeże"
  },
  "mir-don-martin": {
-  "desc": "Najsłynniejszy punkt widokowy Anagi, na 1024 m nad doliną Tahodio. Widoki 360° na masyw i Atlantyk. Dojazd drogą TF-12.",
-  "cat": "Punkt widokowy · Anaga · 1024 m"
+  "desc": "Punkt widokowy przy TF-28, starej głównej drodze na południe, na skraju zbocza Ladera de Güímar, na wysokości ok. 400 m. Obejmuje całą dolinę Güímar z jej wybrzeżem: El Puertito, Malpaís i, na północy, Candelarię.",
+  "cat": "Punkt widokowy · Güímar · TF-28"
  },
  "mir-chipeque": {
-  "desc": "Punkt widokowy przy drodze na Teide TF-21, ze spektakularnym widokiem na Dolinę La Orotava i Ocean Atlantycki. Bardzo często fotografowany. Dojazd samochodem.",
-  "cat": "Punkt widokowy · TF-21 · Dolina Orotava"
+  "desc": "Punkt widokowy przy drodze TF-24, która przez La Esperanzę prowadzi na Teide, ze spektakularnym widokiem na Dolinę La Orotava i Ocean Atlantycki. Bardzo często fotografowany. Dojazd samochodem.",
+  "cat": "Punkt widokowy · TF-24 · Dolina Orotava"
  },
  "mir-la-jardina": {
-  "desc": "Leśny punkt widokowy w La Esperanza, przy drodze w stronę Las Cañadas. Panoramiczne widoki na Santa Cruz, morze i północny wschód wyspy. Miejsce piknikowe.",
-  "cat": "Punkt widokowy · La Esperanza · Leśny"
+  "desc": "Punkt widokowy przy wjeździe do Parku Wiejskiego Anaga, przy drodze TF-12 przez Las Mercedes, gdzie zaczyna się wiecznie zielony las. Panoramiczne widoki na miasto La Laguna, okoliczne pola i, w pogodne dni, na Teide. Dostępny dla osób z niepełnosprawnościami, z parkingiem.",
+  "cat": "Punkt widokowy · Anaga · La Laguna"
  },
  "mir-pico-flores-anaga": {
-  "desc": "Punkt widokowy na szczycie masywu Anagi, z jednoczesnym widokiem na północ (otwarty ocean) i na południe (Santa Cruz). Punkt przejściowy między Tagananą a Chamorgą.",
-  "cat": "Punkt widokowy · Anaga · Szczyt"
+  "desc": "Dawny okrągły kamienny punkt widokowy w lesie El Rosario (obszar chronionego krajobrazu Las Lagunetas), 10-15 minut pieszo od drogi TF-24. Jest opuszczony, a sosnowy las zasłania dziś prawie cały widok, który kiedyś obejmował Anagę i obszar metropolitalny.",
+  "cat": "Punkt widokowy · El Rosario · Opuszczony"
  },
  "mir-cruz-hilda": {
   "desc": "Punkt widokowy przy drodze TF-436, powyżej wioski Masca. Oferuje panoramiczny widok na Mascę i jej wąwóz, z tarasami uprawnymi, palmami oraz zaroślami retamy i tabaiby.",
@@ -273,11 +273,11 @@
   "cat": "Punkt widokowy · Güímar · Dolina"
  },
  "mir-archipenque": {
-  "desc": "Najbardziej imponujący punkt widokowy na klify Los Gigantes. Położony przy drodze TF-454 nad Puerto de Santiago. Bezpośrednie widoki na klify o wysokości 300-800 m, Punta de Teno, La Palmę i La Gomerę w pogodne dni. Mała kawiarnia i sklep z pamiątkami. Bezpłatny parking. Spektakularny zachód słońca.",
+  "desc": "Najbardziej imponujący punkt widokowy na klify Los Gigantes. Położony przy drodze TF-454 nad Puerto de Santiago. Bezpośrednie widoki na klify o wysokości 300-600 m, Punta de Teno, La Palmę i La Gomerę w pogodne dni. Mała kawiarnia i sklep z pamiątkami. Bezpłatny parking. Spektakularny zachód słońca.",
   "cat": "Punkt widokowy · Los Gigantes · Klify"
  },
  "mir-punta-hidalgo": {
-  "desc": "Nadmorski punkt widokowy na najbardziej wysuniętym na północ krańcu Teneryfy, w gminie La Laguna. Spektakularne widoki na latarnię o niepowtarzalnym projekcie (1994), Roque de los Dos Hermanos i dzikie wybrzeże Anagi. Idealny na zachód słońca i atlantyckie zmierzchy. Naturalne baseny w skale u stóp. Dojazd samochodem drogą TF-13 albo autobusem z La Laguny.",
+  "desc": "Nadmorski punkt widokowy na północnym krańcu Teneryfy, w gminie La Laguna. Spektakularne widoki na latarnię o niepowtarzalnym projekcie (1994), Roque de los Dos Hermanos i dzikie wybrzeże Anagi. Idealny na zachód słońca i atlantyckie zmierzchy. Naturalne baseny w skale u stóp. Dojazd samochodem drogą TF-13 albo autobusem z La Laguny.",
   "cat": "Punkt widokowy · Punta del Hidalgo · Północ"
  },
  "mir-aguaide": {
@@ -285,7 +285,7 @@
   "cat": "Punkt widokowy · Anaga · Tylko pieszo · Dla doświadczonych"
  },
  "mir-chivisaya": {
-  "desc": "Punkt widokowy w Candelarii, nad Doliną Güímar, z widokiem na Malpaís de Güímar (chroniony obszar przyrodniczy z potokami lawy) i wschodnie wybrzeże Teneryfy. Otoczony lasem woskownic i wrzośców. Dojazd lokalną drogą z Güímar. Spokojny i mało znany.",
+  "desc": "Punkt widokowy w Candelarii, nad Doliną Güímar, z widokiem na Malpaís de Güímar (chroniony obszar przyrodniczy z potokami lawy) i wschodnie wybrzeże Teneryfy. Otoczony lasem woskownic i wrzośców. Dojazd drogą TF-523, która pnie się z Arafo. Spokojny i mało znany.",
   "cat": "Punkt widokowy · Candelaria · Dolina · Wschód"
  },
  "mir-los-campitos": {
@@ -297,11 +297,11 @@
   "cat": "Punkt widokowy · Północny zachód · El Tanque · Teide"
  },
  "mir-narices-teide": {
-  "desc": "Jeden z najbardziej imponujących punktów widokowych Parku Narodowego Teide, przy drodze TF-38 (strefa Los Escanillos, Guía de Isora). Bezpośredni widok na Pico Viejo (krater na wysokości około 3100 m) i na 5 km² potoków czarnej lawy z ostatniej wielkiej erupcji z 1798 roku, która otworzyła „paszcze ognia” znane jako Nosy Teide (2661 m). W pogodne dni widać La Gomerę, La Palmę i El Hierro. Bezpłatny parking. Idealny o wschodzie i zachodzie słońca, zwłaszcza jesienią i zimą. 8,4 km od kolejki linowej na Teide.",
-  "cat": "Punkt widokowy · Nosy Teide · 2661 m · TF-38"
+  "desc": "Jeden z najbardziej imponujących punktów widokowych Parku Narodowego Teide, na 3,5 km drogi TF-38 (Guía de Isora). Bezpośredni widok na Pico Viejo (krater na wysokości około 3100 m) i na 5 km² potoków czarnej lawy z ostatniej wielkiej erupcji z 1798 roku, która otworzyła „paszcze ognia” znane jako Nosy Teide (szczyt na wysokości 2752 m). W pogodne dni widać La Gomerę, La Palmę i El Hierro. Bezpłatny parking. Idealny o wschodzie i zachodzie słońca, zwłaszcza jesienią i zimą. Około 14 km drogą od kolejki linowej na Teide.",
+  "cat": "Punkt widokowy · Nosy Teide · TF-38"
  },
  "mir-rambleta-teide": {
-  "desc": "La Rambleta to górna stacja kolejki linowej na Teide, na 3555 metrach n.p.m. — najwyżej położony punkt widokowy Hiszpanii dostępny bez wędrówki. Stąd widać w dole całą kalderę Las Cañadas, południe Teneryfy, a w oddali Gran Canarię. La Gomerę, La Palmę i El Hierro widać w pogodne dni z punktu widokowego Pico Viejo, 0,72 km szlakiem PNT 12, bez rezerwacji. Dojazd kolejką ze stacji dolnej na 2356 m (w obie strony, dorosły: od 42 € dla nierezydentów i od 10,50 € dla rezydentów; ceny z volcanoteide.com, październik 2026). Stąd prowadzi szlak Telesforo Bravo (PNT 10) na szczyt Teide: około 55 min, z wcześniejszym pozwoleniem z Tenerife ON, które nie jest wliczone w bilet. Między podnóżem Teide a szczytem różnica temperatur może przekraczać 10 °C: zawsze warto zabrać ciepłe ubranie. Bilety na kolejkę są sprzedawane wyłącznie online: lepiej kupić je z wyprzedzeniem.",
+  "desc": "⚠️ Od 1 listopada 2026 r. z powodu lodu i śniegu Cabildo ogranicza wejście na siedem szlaków Teide lub ich odcinki (PNT 07, 09, 10, 11, 12, 23 i 28): mogą tam wchodzić tylko osoby z dużym doświadczeniem wysokogórskim albo w towarzystwie profesjonalistów akredytowanych przez Park Narodowy, z pozwoleniem Tenerife ON, oświadczeniem o odpowiedzialności zaakceptowanym w profilu, rakami i czekanem. Nie ma jeszcze daty zakończenia. La Rambleta to górna stacja kolejki linowej na Teide, na 3555 metrach n.p.m. — najwyżej położony punkt widokowy Hiszpanii dostępny bez wędrówki. Stąd widać w dole całą kalderę Las Cañadas, południe Teneryfy, a w oddali Gran Canarię. La Gomerę, La Palmę i El Hierro widać w pogodne dni z punktu widokowego Pico Viejo, 0,72 km szlakiem PNT 12, bez rezerwacji. Dojazd kolejką ze stacji dolnej na 2356 m (w obie strony, dorosły: od 43,00 € dla nierezydentów i od 10,75 € dla rezydentów; ceny z volcanoteide.com, listopad 2026). Stąd prowadzi szlak Telesforo Bravo (PNT 10) na szczyt Teide: około 55 min, z wcześniejszym pozwoleniem z Tenerife ON, które nie jest wliczone w bilet. Między podnóżem Teide a szczytem różnica temperatur może przekraczać 10 °C: zawsze warto zabrać ciepłe ubranie. Bilety na kolejkę są sprzedawane wyłącznie online: lepiej kupić je z wyprzedzeniem.",
   "cat": "Punkt widokowy · Teide · 3555 m · Kolejka"
  },
  "surf-las-americas": {
@@ -325,7 +325,7 @@
   "cat": "Windsurfing · Kitesurfing · El Médano · PWA World Cup · Światowa mekka"
  },
  "windsurf-la-tejita": {
-  "desc": "Playa de La Tejita, na południe od El Médano, to par excellence strefa kitesurfingu południowego wschodu Teneryfy. Plaża z ciemnym piaskiem o długości 1,5 km przy Montaña Roja (Specjalny Rezerwat Przyrody). Stałe pasaty i mniej przeszkód niż w El Cabezo. Płytka woda przy brzegu — idealna do nauki kitesurfingu. Strefa oznakowana dla kąpiących się i kitesurferów. Z La Tejity działa kilka centrów kitesurfingu z zajęciami i wypożyczeniem sprzętu. Wstęp wolny — bezpłatny parking. Montaña Roja w tle daje niepowtarzalny krajobraz.",
+  "desc": "Playa de La Tejita, na południe od El Médano, to par excellence strefa kitesurfingu południowego wschodu Teneryfy. Plaża z ciemnym piaskiem o długości 1 km przy Montaña Roja (Specjalny Rezerwat Przyrody). Stałe pasaty i mniej przeszkód niż w El Cabezo. Płytka woda przy brzegu — idealna do nauki kitesurfingu. Strefa oznakowana dla kąpiących się i kitesurferów. Z La Tejity działa kilka centrów kitesurfingu z zajęciami i wypożyczeniem sprzętu. Wstęp wolny — bezpłatny parking. Montaña Roja w tle daje niepowtarzalny krajobraz.",
   "cat": "Kitesurfing · La Tejita · El Médano · Południe · Nauka"
  },
  "windsurf-el-poris": {
@@ -345,12 +345,12 @@
   "cat": "Targ · Weekend · Candelaria"
  },
  "mercadillo-medano": {
-  "desc": "Targ rzeczy używanych i rękodzieła w El Médano. Niedziele rano na placu miejscowości. Swobodna atmosfera społeczności surferów i miejscowych.",
-  "cat": "Targ · Niedziele · El Médano"
+  "desc": "Targ rzeczy używanych i rękodzieła w El Médano. Soboty rano na placu miejscowości. Swobodna atmosfera społeczności surferów i miejscowych.",
+  "cat": "Targ · Soboty · El Médano"
  },
  "mercadillo-guimar": {
-  "desc": "Cotygodniowy targ w Güímar. Czwartki rano na głównym placu. Lokalne owoce i warzywa, rośliny, kwiaty i produkty rolne ze wschodu Teneryfy.",
-  "cat": "Targ · Czwartki · Güímar"
+  "desc": "Targ rolników w Güímar: w niedziele rano na Plaza de San Pedro, a w czwartki po południu w El Puertito de Güímar. Lokalne owoce i warzywa, rośliny, kwiaty i produkty rolne ze wschodu Teneryfy.",
+  "cat": "Targ · Niedziele · Güímar"
  },
  "mercadillo-los-cristianos": {
   "desc": "Popularny targ w Los Cristianos. Niedziele rano przy porcie. Rzeczy używane, rękodzieło, ubrania i pamiątki. Bardzo gwarny w sezonie wysokim.",
@@ -361,12 +361,12 @@
   "cat": "Targ · Śr/So · Las Américas"
  },
  "mercadillo-costa-adeje": {
-  "desc": "Targ na promenadzie Costa Adeje. Czwartki i niedziele. Rękodzieło, aloes, produkty kanaryjskie i biżuteria. Swobodna atmosfera nad morzem.",
-  "cat": "Targ · Czw/Nd · Costa Adeje"
+  "desc": "Targ na promenadzie Costa Adeje. Czwartki i soboty. Rękodzieło, aloes, produkty kanaryjskie i biżuteria. Swobodna atmosfera nad morzem.",
+  "cat": "Targ · Czw/So · Costa Adeje"
  },
  "mercadillo-arona": {
-  "desc": "Cotygodniowy targ w miejscowości Arona. Soboty rano na placu. Owoce, warzywa i produkty lokalne z gminy. Bardzo lokalna atmosfera, bez turystów.",
-  "cat": "Targ · Soboty · Arona"
+  "desc": "Targ rolników gminy Arona, w Valle San Lorenzo. Piątki i soboty rano. Owoce, warzywa i produkty lokalne z gminy. Bardzo lokalna atmosfera.",
+  "cat": "Targ · Pt/So · Arona"
  },
  "mercadillo-granadilla-sur": {
   "desc": "Tradycyjny targ w starym mieście Granadilli. Wtorki rano. Produkty rolne południa: ziemniaki, pomidory, kukurydza i lokalne rękodzieło.",
@@ -397,7 +397,7 @@
   "cat": "Targ · La Victoria de Acentejo · Północ"
  },
  "guachinche-vilaflor": {
-  "desc": "Tradycyjny guachinche w Vilaflor, najwyżej położonej wiosce Hiszpanii (1400 m). Domowa kuchnia, miejscowe wino, obfite porcje i znakomite sosy mojo. Bardzo popularny wśród piechurów z GR-131.",
+  "desc": "Tradycyjny guachinche w Vilaflor, najwyżej położonej wiosce Wysp Kanaryjskich (1400 m). Domowa kuchnia, miejscowe wino, obfite porcje i znakomite sosy mojo. Bardzo popularny wśród piechurów z GR-131.",
   "cat": "Guachinche · Vilaflor · 1400 m"
  },
  "rest-tipico-el-jable": {

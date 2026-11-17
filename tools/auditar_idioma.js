@@ -325,6 +325,10 @@ function sinMiriadas(t) {
 }
 const cifras = s => {
   s = sinMiriadas(sinRomanos(String(s)));
+  /* El frances escribe las duraciones con los minutos en dos cifras, «5 h 05», como manda su
+     tipografia, y el castellano «5 h 5 min»: ese cero no es una cifra que sobre. Solo detras de
+     «N h»: «5 h 50» sigue siendo 50 y no casa con «5 h 5 min» (el PR-TF 51, nota 48, 16-11-2026). */
+  s = s.replace(/(\d\s*h\s*)0(\d)(?!\d)/g, '$1$2');
   /* El separador de millares cambia con el idioma: 1.024 en castellano,
      1,024 en ingles y 1 024 -con espacio- en frances y bulgaro. Se quitan
      los tres, o "1 024" se leia como el numero 024 y no casaba con nada. */
@@ -393,7 +397,9 @@ const IGUAL_OK = {
        'Farmacia', 'Farmacia 24h', 'Museo', 'Museo del Vino', 'Faro',
        'Faro Moderno', 'Teatro', 'Piscina', 'Patrimonio', 'Patrimonio UNESCO',
        'Convento', 'Santuario', 'Ambulatorio', 'Turismo', 'Cala', 'Centro',
-       'Calistenia', 'Calistenia Kenguru Pro', 'D.O.', 'Noroeste', 'Medio'],
+       'Calistenia', 'Calistenia Kenguru Pro', 'D.O.', 'Noroeste', 'Medio',
+       /* la dificultad de un sendero (MIDE): «Alta», como en castellano (el PR-TF 51, nota 48) */
+       'Alta'],
   nl: ['Guachinche', 'Golf', 'Minigolf', 'Kayak', 'Fitness', 'Marina',
        'Street Workout', 'Skatepark', 'Windsurf', 'Caldera', 'Camping',
        'Modernista', 'Real Club Náutico', 'D.O.'],
@@ -472,6 +478,13 @@ IGUAL_UI.pl.push('Bosanski lonac');
 /* «SU CUERPO» (modulos/cuerpo.js; 31 de octubre de 2026): en frances, «Variante de
    {nombre}» se escribe igual que en castellano */
 IGUAL_UI.fr.push('Variante de {nombre}');
+/* y en italiano, «+ 1 serie» (el boton de la hoja de un grupo, 6 de noviembre de 2026, bloque 2):
+   «serie» es la misma palabra en las dos lenguas */
+IGUAL_UI.it.push('+ 1 serie');
+/* y en italiano, las series con su peso, en «La última vez» de la ficha y en «Su fuerza» (12 de noviembre de
+   2026, #120): «3 × 10 con 50 kg» y «3 serie con 50 kg». «con» es la misma preposición en las dos lenguas, y
+   las marcas las rellena la app con cifras y con «serie», que ya es italiano */
+IGUAL_UI.it.push('{series} × {reps} con {kg} kg', '{series} con {kg} kg');
 
 /* Los nombres de sitio no se declaran a mano: se sacan del propio catalogo.
    El ultimo trozo de cada `cat` en castellano es siempre el municipio o el
@@ -810,7 +823,12 @@ function mirar(es, tr, donde, campo) {
   if (etiquetas(es) !== etiquetas(tr)) apunta('ETIQUETAS', donde, etiquetas(es) + ' vs ' + etiquetas(tr));
   if (LANG !== 'es') {
     const esc = ESCRITURA[LANG];
-    if (esc.debe && !esc.debe.test(tr)) apunta('SIN-SU-ALFABETO', donde, tr.slice(0, 50));
+    /* Un texto que solo lleva marcadores y signos («{g}：{n}», lo que dice el lector de
+       pantalla al anotar una racion en «Comida» de «Su cuerpo», 3 de noviembre de 2026) no
+       tiene letras que mirar: las ponen los marcadores, que ya van en su idioma. Con una sola
+       letra, se mira. Lo trajo la sesion de «Su cuerpo» (1 de noviembre) */
+    const soloMarcas = !tr.replace(/\{[a-z]+\}/gi, '').replace(/[\s\p{P}\p{S}\p{N}]/gu, '');
+    if (esc.debe && !soloMarcas && !esc.debe.test(tr)) apunta('SIN-SU-ALFABETO', donde, tr.slice(0, 50));
     if (esc.prohibe && esc.prohibe.test(tr)) apunta('ALFABETO-AJENO', donde, tr.slice(0, 50));
     if (igual(es, tr) && es.replace(/[^A-Za-zÀ-ÿ]/g, '').length >= 12
         && !trozos(es).every(t => trozoLegitimo(t, LANG))) {

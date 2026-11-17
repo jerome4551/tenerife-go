@@ -1,0 +1,45 @@
+-- ═══════════════════════════════════════════════════════════════════
+--  TENERIFE GO · Migración push_subs_solo_por_guardar_push_sub
+--  ───────────────────────────────────────────────────────────────────
+--  5 de noviembre de 2026. YA ESTÁ APLICADA en la base de datos: la
+--  pegó Jerome en el SQL Editor de Supabase (al conector le hacía falta una
+--  confirmación que no le llegaba). Este fichero es su registro.
+--  Se puede volver a ejecutar sin errores, pero no hace falta.
+--
+--  Lo que arregla: la policy "push_subs alta anon" (insert para anon y
+--  authenticated, with check (true)), del principio, dejaba a cualquiera
+--  con la clave pública de la app meter filas en push_subs directamente,
+--  sin pasar por guardar_push_sub(): sin sus comprobaciones (endpoint
+--  https, largos) y sin su tope de 50.000, que es lo que impide llenar la
+--  base de datos del proyecto. La app no la usa: da de alta con
+--  guardar_push_sub() (index.html), que es security definer y no necesita
+--  ni policy ni permisos de tabla.
+--
+--  Ahora, sin sesión y con sesión, nada directo sobre push_subs: ni leer
+--  las claves de las suscripciones (p256dh, auth), ni meter, ni cambiar, ni
+--  borrar. El servidor (service_role, enviar-notificacion.js), igual que
+--  antes.
+--
+--  Antes de cerrarlo (5 de noviembre, solo contando filas): 5
+--  suscripciones, todas pasan la validación de guardar_push_sub(); nadie
+--  había usado el agujero.
+--
+--  Probado antes en un Postgres 16 local: con push_subs como estaba, sin
+--  sesión entraba una fila directa sin validar; después, 14 comprobaciones
+--  (guardar_push_sub() da de alta, pone el idioma nuevo y sigue rechazando
+--  lo que no vale, con sesión y sin ella; nada directo para anon ni para
+--  authenticated; el servidor lee y borra).
+--
+--  Comprobado después, desde fuera y con la clave pública de la app: leer
+--  push_subs y meter una fila directa dan «permission denied» (401);
+--  guardar_push_sub() sigue respondiendo (un endpoint que no vale: 22023,
+--  «suscripcion no valida», sin guardar nada); siguen las 5 suscripciones.
+--  El linter cuenta ahora push_subs, con admins y push_sends, como «RLS
+--  Enabled No Policy»: es justo lo que se busca, nadie entra directo.
+--
+--  Lo mismo está ya en favorites.sql, con la definición de push_subs y
+--  push_sends volcada de la base de datos.
+-- ═══════════════════════════════════════════════════════════════════
+
+drop policy if exists "push_subs alta anon" on public.push_subs;
+revoke all on public.push_subs from anon, authenticated;

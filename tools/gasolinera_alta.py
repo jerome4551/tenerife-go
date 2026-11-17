@@ -15,6 +15,9 @@ QUE TOCA, Y EN ESTE ORDEN
   idiomas/pl-lugares/10-gasolineras.json    el polaco, que es FUENTE: el
                                             idiomas/pl.json se monta despues con
                                             tools/lugares_idioma.js montar pl
+  idiomas/ro-fuente/lugares-5.json          el rumano, FUENTE: cada texto con el castellano
+                                            que traduce; idiomas/ro.json se monta despues con
+                                            tools/lugares_traduccion.js ro
   idiomas/etiquetas-sin-traducir.json       las etiquetas nuevas, declaradas
   datos/gasolineras/sesiones.json           la sesion, a «hecha»
 
@@ -40,7 +43,39 @@ import gasolinera_ficha as F   # noqa: E402
 
 OTROS = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg']
 PL_FUENTE = 'idiomas/pl-lugares/10-gasolineras.json'
+# El rumano (bloque 9 del rumano): cada texto va, con el castellano que traduce, a un trozo FUENTE.
+# idiomas/ro.json lo monta tools/lugares_traduccion.js ro, que compara cada fila con el castellano de
+# index.html y no escribe nada si alguna no casa.
+RO_FUENTE = 'idiomas/ro-fuente/lugares-5.json'
+CAMPOS_RO = ('desc', 'cat', 'hours')
 ANCLA = '  { id:"gas-tf5-los-realejos"'   # las gasolineras van juntas, detras de esta
+
+
+def ro_cargar():
+    return json.load(open(os.path.join(RAIZ, RO_FUENTE), encoding='utf-8'))
+
+
+def ro_poner(d, fid, textos):
+    """Las tres filas del rumano de una ficha, con su castellano. Si ya estaban se
+       cambian en su sitio; si no, van al final (el orden lo pone index.html)."""
+    for c in CAMPOS_RO:
+        fila = {'tabla': 'places', 'clave': '%s.%s' % (fid, c), 'es': textos['es'][c],
+                'forma': 'texto', 'ro': textos['ro'][c]}
+        i = next((k for k, r in enumerate(d['filas']) if r['clave'] == fila['clave']), None)
+        if i is None:
+            d['filas'].append(fila)
+        else:
+            d['filas'][i] = fila
+
+
+def ro_quitar(d, fid):
+    d['filas'] = [r for r in d['filas'] if not re.match(r'^%s\.(desc|cat|hours|aviso)$' % re.escape(fid),
+                                                        r['clave'])]
+
+
+def ro_escribir(d):
+    open(os.path.join(RAIZ, RO_FUENTE), 'w', encoding='utf-8').write(
+        json.dumps(d, ensure_ascii=False, indent=1) + '\n')
 
 
 def una_linea(d):
@@ -111,8 +146,12 @@ def retirar(ideess):
     d = json.load(open(p, encoding='utf-8'))
     d.pop(fid, None)
     open(p, 'w', encoding='utf-8').write(json.dumps(d, ensure_ascii=False, indent=1) + '\n')
-    print('retirada %s de index.html, de los nueve idiomas y del polaco fuente' % fid)
+    d = ro_cargar()
+    ro_quitar(d, fid)
+    ro_escribir(d)
+    print('retirada %s de index.html, de los nueve idiomas, del polaco fuente y del rumano fuente' % fid)
     print('ahora: node tools/lugares_idioma.js montar pl')
+    print('y:     node tools/lugares_traduccion.js ro --probar')
 
 
 def horas_antiguas(ver=False):
@@ -133,6 +172,7 @@ def horas_antiguas(ver=False):
     plf = {}
     for f in sorted(os.listdir(os.path.join(RAIZ, 'idiomas', 'pl-lugares'))):
         plf[f] = json.load(open(os.path.join(RAIZ, 'idiomas', 'pl-lugares', f), encoding='utf-8'))
+    rod = ro_cargar()
     for fid, ide in viejas:
         h = {L: F.horario(F.horario_del_registro(porid[ide]), L)[0] for L in F.IDIOMAS}
         i = src.index('  { id:"%s"' % fid)
@@ -170,6 +210,10 @@ def horas_antiguas(ver=False):
         if len(donde) != 1:
             sys.exit('PARO: el polaco de %s esta en %d ficheros' % (fid, len(donde)))
         plf[donde[0]][fid]['hours'] = h['pl']
+        fr = next((r for r in rod['filas'] if r['clave'] == fid + '.hours'), None)
+        if fr is None:
+            sys.exit('PARO: %s no tiene horario en el rumano fuente' % fid)
+        fr['es'], fr['ro'] = h['es'], h['ro']
     if ver:
         return 0
     open(os.path.join(RAIZ, 'index.html'), 'w', encoding='utf-8').write(src)
@@ -181,7 +225,10 @@ def horas_antiguas(ver=False):
         viejo = open(p, encoding='utf-8').read()
         if json.loads(viejo) != d:          # solo se escribe el que cambia
             open(p, 'w', encoding='utf-8').write(nuevo)
+    if ro_cargar() != rod:
+        ro_escribir(rod)
     print('hecho. Ahora: node tools/lugares_idioma.js montar pl')
+    print('y:     node tools/lugares_traduccion.js ro --probar')
     return 0
 
 
@@ -241,6 +288,7 @@ def antiguas_91(ver=False):
            for L in OTROS}
     plf = {f: json.load(open(os.path.join(RAIZ, 'idiomas', 'pl-lugares', f), encoding='utf-8'))
            for f in sorted(os.listdir(os.path.join(RAIZ, 'idiomas', 'pl-lugares')))}
+    rod = ro_cargar()
     fichas = []
     for fid, ide in viejas:
         i = src.index('  { id:"%s"' % fid)
@@ -263,13 +311,14 @@ def antiguas_91(ver=False):
         if len(donde) != 1:
             sys.exit('PARO: el polaco de %s esta en %d ficheros' % (fid, len(donde)))
         plf[donde[0]][fid] = f['idiomas']['pl']
+        ro_poner(rod, fid, f['idiomas'])
         fichas.append(f)
     if len(fichas) != 14:
         sys.exit('PARO: esperaba 14 antiguas y hay %d' % len(fichas))
     etq = json.load(open(os.path.join(RAIZ, 'idiomas/etiquetas-sin-traducir.json'), encoding='utf-8'))
     clave_sitio = next(k for k in etq if 'nombre de sitio' in k)
     glos = [json.load(open(os.path.join(RAIZ, 'idiomas', 'etiquetas', '%s.json' % L), encoding='utf-8'))
-            for L in OTROS + ['pl']]
+            for L in OTROS + ['pl', 'ro']]
     traducida = lambda t: all(t in g for g in glos) or bool(re.match(r'^TF-\d+$', t))
     faltan = sorted({t for f in fichas for t in f['tags'][1:] if not traducida(t)}
                     - {x for v in etq.values() for x in v})
@@ -283,11 +332,14 @@ def antiguas_91(ver=False):
         p = os.path.join(RAIZ, 'idiomas', 'pl-lugares', k)
         if json.load(open(p, encoding='utf-8')) != d:
             open(p, 'w', encoding='utf-8').write(json.dumps(d, ensure_ascii=False, indent=1) + '\n')
+    if ro_cargar() != rod:
+        ro_escribir(rod)
     if faltan:
         etq[clave_sitio] = sorted(set(etq[clave_sitio]) | set(faltan))
         open(os.path.join(RAIZ, 'idiomas/etiquetas-sin-traducir.json'), 'w', encoding='utf-8').write(
             json.dumps(etq, ensure_ascii=False, indent=1) + '\n')
-    print('hecho. Ahora: node tools/lugares_idioma.js montar pl, y la auditoria')
+    print('hecho. Ahora: node tools/lugares_idioma.js montar pl, node tools/lugares_traduccion.js ro --probar'
+          ', y la auditoria')
     return 0
 
 
@@ -400,14 +452,14 @@ def main():
     # «Última», que SI estan traducidas: una declaracion falsa que habria tapado
     # el dia que faltara su traduccion.
     glos = [json.load(open(os.path.join(RAIZ, 'idiomas', 'etiquetas', '%s.json' % L),
-                           encoding='utf-8')) for L in OTROS + ['pl']]
+                           encoding='utf-8')) for L in OTROS + ['pl', 'ro']]
     traducida = lambda t: all(t in g for g in glos) or bool(re.match(r'^TF-\d+$', t))  # un codigo no se declara como sitio
     faltan = sorted({t for f in fichas for t in f['tags'][1:] if not traducida(t)}
                     - {x for v in etq.values() for x in v})
     if ver:
         print('\n-- index.html, lo que se mete:\n%s' % ''.join(bloque(f) for f in nuevas))
         print('-- etiquetas nuevas a declarar: %s' % (', '.join(faltan) or 'ninguna'))
-        for L in OTROS + ['pl']:
+        for L in OTROS + ['pl', 'ro']:
             f = fichas[0]
             print('-- %-3s %s' % (L, json.dumps(f['idiomas'][L], ensure_ascii=False)))
         return 0
@@ -435,6 +487,13 @@ def main():
         for f in fichas:
             d[f['id']] = f['idiomas']['pl']
         open(p, 'w', encoding='utf-8').write(json.dumps(d, ensure_ascii=False, indent=1) + '\n')
+        p = os.path.join(RAIZ, RO_FUENTE)
+        copias[p] = p + '.antes'
+        shutil.copy2(p, copias[p])
+        d = ro_cargar()
+        for f in fichas:
+            ro_poner(d, f['id'], f['idiomas'])
+        ro_escribir(d)
         if faltan:
             p = os.path.join(RAIZ, 'idiomas/etiquetas-sin-traducir.json')
             copias[p] = p + '.antes'
@@ -452,6 +511,7 @@ def main():
     fijar(corregir)
     print('\nhecho. Ahora, a mano y mirando lo que sale:')
     print('   node tools/lugares_idioma.js montar pl')
+    print('   node tools/lugares_traduccion.js ro --probar   (el rumano: «todo lo que hay casa»)')
     print('   bash tools/auditar.sh')
     print('y cuando este en verde, marcar la sesion de %s como hecha.' % muni)
     return 0
