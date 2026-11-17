@@ -9397,6 +9397,71 @@ cambio: `app_preparar.js` montó `app/www/` (236 ficheros) y lo cotejó.
 entrenador, y van aparte. Y si la ficha de Google Play ya está copiada en Play Console, la cifra de lugares pasa a
 «975».
 
+## Jérôme, el bloque 9 (los cuádriceps), la toalla y el pino «hasta donde le resulte cómodo», y el buscador (nota 52, 17 de noviembre, noche)
+
+**Lo que decidió Jérôme** (17-11 por la mañana, a la sesión del entrenador, sobre lo que la nota 51 dejaba para
+decidir): «2 si ponla que todo tenemos toalla en casas es un eramiento más · 3 si · Ponlos con el próximo bloque y
+empieza el próximo bloque que debería ser el 9 o 10». La nota 52 trae los dos cambios de ficha y el bloque 9, un parche
+cada uno, encima de lo publicado esta tarde (la nota 51 ya estaba en `main`; su `0014` y su `0015`, rehechos en este
+zip, son los mismos cambios salvo una línea de la muestra).
+
+**El bloque 9: los cuádriceps** (parche `0016`). 31 coreografías nuevas en su fuente
+(`tools/entrenador/src/78-cuadriceps.js`) y en su trozo (`modulos/entrenador/cuadriceps.0e6985be.js`, 76.844 bytes): las
+sentadillas sobre los dos pies (doce), sentarse y levantarse (tres), los escalones (tres), a una pierna (tres), de
+rodillas (dos), en el suelo (tres), de pie (una) y los saltos (cuatro). **313 ejercicios con vídeo**; de los 50 de
+cuádriceps, 37 (quedan 13 con máquina, disco, banda, cinta de suspensión, multipower o balón medicinal). El motor recibe
+siete ayudas que nacieron en los bloques 5 y 8 (la mano dicha en el mundo, de puntillas, la mano sobre el muslo, el pie
+de abajo tumbado de lado), con nombres nuevos para que los trozos de bíceps y tríceps salgan iguales byte a byte; los de
+hombros y de antebrazo y pantorrilla cambian de nombre porque ya no las llevan dentro, y sus vídeos son los mismos: las
+282 coreografías de antes, volcadas antes y después, idénticas una a una, y sus medidas de contacto, tomadas aquí con
+`contactos.js`, iguales a las de la nota 51 salvo en el pino, que dura 58 cuadros más (1.073; su paso 2 es más largo)
+con los mismos contactos. Medido por la sesión del entrenador con `contactos.js`: ninguna zapatilla se hunde más de 1 cm
+(la que más, 0,8), ningún brazo o pierna más de 2,5 cm, tumbado el tronco y la cabeza menos de 4; de un cuadro al
+siguiente, el cuerpo 10,6 cm como mucho (tope 14) y una mano 31,3 (tope 36); y cada secuencia cabe en su paso en los
+diez idiomas. Lo que la ficha no dice (la altura del banco, del escalón o del cajón, cuánto se salta) lo decidió esa
+sesión sin añadir técnica, y está en su nota.
+
+**La toalla y el pino** (parche `0017`). `curl-isquios-toalla` («Curl de isquios deslizando los talones»), cuyo paso 1
+ya decía «apoyados sobre una toalla», lleva ahora la toalla en el material (antes «ninguno»): deja de salir con el
+filtro «Sin material», y en casa sale donde salía para casi todos, porque la toalla va marcada de entrada en «¿Qué tiene
+en casa?» (quien la haya quitado ve la primera alternativa que pueda hacer). Y el paso 2 del pino contra la pared acaba
+«…hasta quedar en pino con el pecho mirando hacia la pared, o hasta donde le resulte cómodo», en los diez idiomas (los
+nueve que no son castellano, sin revisión nativa), con Trainwell, «Wall Walk», de cuarta fuente: «Continue until your
+body is nearly vertical, or as far as you can comfortably go» (leído aquí el 17-11). El vídeo del pino es el mismo;
+cambia la huella de sus pasos, que va en el trozo de hombros.
+
+**Puesto y comprobado aquí.** Los dos parches, con `git am -3` y sus propias líneas de autoría, sin su trozo de la
+muestra del entrenador (`tools/entrenador/muestra/plantilla.html`, que la app no enlaza): el parche partía de su versión
+de una línea, la del estado, y aquí esa línea ya decía que el vídeo por grupos estaba en la app. El resto de la muestra
+es el del parche, y la línea dice lo que habrá al publicar. Con eso, los 56 ficheros del zip, iguales a los de la rama
+salvo esa línea. `construir.py --comprobar` (el motor, los 8 trozos y `con-video.json`, los de sus fuentes) y
+`app_preparar.js --comprobar`, en verde. El `0017` toca ficheros construidos de «Su cuerpo»: los dos cambios, llevados a
+sus fuentes, dan con `construir.py` el `cuerpo.js` y los 33 ficheros de datos iguales byte a byte, y esas fuentes
+vuelven a la sesión de «Su cuerpo». Sin APIs nuevas de riesgo: el trozo nuevo se carga como los otros siete, del propio
+dominio, y no escribe en la página.
+
+**El buscador del mapa.** El campo de búsqueda llevaba `maxlength="100"` dos veces en la misma etiqueta; el navegador se
+queda con el primero y no avisa. Queda uno, con el mismo valor, y `auditar_seguridad.py` mira ahora cada página de la
+raíz y se pone en rojo con una etiqueta que repite un atributo (en rojo antes de quitarlo, en verde después).
+
+**La auditoría entera** sobre `eb2cdaf` (árbol `a50e7fc2`): la nota 52 y el buscador encima de `main` (`f132008`). En
+`main` es lo mismo, rebasado sobre seis commits de los robots (`2065290`, el boletín de INVOLCAN; `6f98b9e`, satélites;
+`064518e`, terremotos; `3a85322`, gasolineras; `0f4105e`, avisos de AEMET, y `53e3387`, alertas del Gobierno de
+Canarias), que solo cambian `datos/semaforo-involcan.json`, `datos/satelites.json`, `datos/sismos-ign.json`,
+`datos/precios-gasolineras.json`, `datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y con los controles que
+leen esos ficheros, en verde tras el rebase. En los 61 bloques de `auditar.sh`, ningún rojo: los datos, 975 lugares en
+todas partes (también en el resumen de este documento) y ninguna cifra de lugares que no sea 975 en lo que se lee;
+`probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626; `auditar_idioma.js`, 0 hallazgos en los diez idiomas;
+`auditar_registro.js`, todo de usted (137.787 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_cirilico.py`, 2.340 nombres propios en cirílico y ninguna variante sospechosa; `auditar_seguridad.py`, con su
+control nuevo: ningún atributo repetido en una etiqueta; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0
+textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares,
+74 y 153; `probar_figura.js`, 64; `probar_cuerpo.js`, 741; `auditar_entrenador.js`, 79, con el motor y sus ocho trozos
+(313 ejercicios con vídeo, de 958; y Samsung Internet, que pinta el vídeo en un canvas); la isla en 3D, 57; el panel
+SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52 tablas y 3.730 filas; 5.867).
+Al acabar, el repositorio sin ningún cambio: `app_preparar.js` montó `app/www/` (237 ficheros, uno más: el trozo de los
+cuádriceps) y lo cotejó.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
