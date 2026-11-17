@@ -14483,11 +14483,6 @@ const places = [
     cat:{ es:"Mirador · Anaga · La Laguna" },
     tags:["Mirador","Anaga","Forestal","La Laguna"] },
 
-  { id:"mir-pico-flores-anaga", category:"mirador", name:"Mirador Pico de las Flores (La Esperanza)", emoji:"🔭", color:"#2e7d32", lat:28.4312, lng:-16.391,
-    desc:{ es:"Antiguo mirador de piedra, de planta circular, en el monte de El Rosario (Paisaje Protegido de Las Lagunetas), a 10-15 minutos a pie de la carretera TF-24. Está abandonado y el pinar tapa casi toda la vista, que antes abarcaba Anaga y el área metropolitana." },
-    cat:{ es:"Mirador · El Rosario · Abandonado" },
-    tags:["Mirador","El Rosario","Pico","Pinar"] },
-
   { id:"mir-cruz-hilda", warn:"vertigo", category:"mirador", name:"Mirador Cruz de Hilda (Masca)", emoji:"🔭", color:"#bf360c", lat:28.3129, lng:-16.8457,
     desc:{ es:"Mirador junto a la carretera TF-436, por encima del caserío de Masca. Ofrece una vista panorámica de Masca y de su barranco, con bancales de cultivo, palmeras y matorral de retamas y tabaibas." },
     cat:{ es:"Mirador · Buenavista del Norte · Oeste" },
@@ -15910,7 +15905,8 @@ const FAV_KEY = 'tenerife-map-favorites';
 const LUGARES_RETIRADOS = new Set([
   'palacio-episcopal-laguna',   // la Casa Salazar (casa-salazar-laguna), sede del Obispado: el mismo edificio
   'playa-castillo-pcruz',       // uno de los tres tramos de la Playa Jardín (playa-jardin)
-  'playa-puertito-guimar'       // la playa para perros de El Cabezo, en el Puertito de Güímar (playa-cabezo)
+  'playa-puertito-guimar',      // la playa para perros de El Cabezo, en el Puertito de Güímar (playa-cabezo)
+  'mir-pico-flores-anaga'       // quitada: el mirador abandonado del Pico de las Flores, sin vistas por el pinar
 ]);
 let favorites = new Set();
 let showOnlyFavorites = false;
@@ -32473,15 +32469,15 @@ const DP_ZONA_LUGAR = {
     'minigolf-precise-resort minimarket-24h-laguna minimarket-24h-pcruz minimarket-24h-sct',
     'mir-aguaide mir-bailadero mir-baracan mir-cherfe mir-chipeque mir-cruz-hilda',
     'mir-ermita-palmar mir-garachico mir-la-corona-guimar mir-la-garanona mir-la-jardina',
-    'mir-lomo-molino mir-los-campitos mir-pico-flores-anaga mir-punta-hidalgo mir-rambla-castro',
-    'mir-rambleta-teide mirador-humboldt mirador-la-ruleta mirador-maska mirador-pico-ingles',
-    'mirador-pino-galdo mirador-punta-homem mirador-ruleta-canadas mirador-teide',
-    'mirador-teresitas montana-blanca montana-taco museo-bellas-artes museo-carnaval-sct',
-    'museo-ciencia-cosmos museo-militar-almeyda museo-naturaleza na-grupo2006-santacruz',
-    'nucleo-bajamar nucleo-igueste-san-andres nucleo-la-ranilla nucleo-mesa-mar',
-    'nucleo-punta-hidalgo nucleo-realejo-bajo nucleo-san-andres nucleo-taganana nucleo-tejina',
-    'nucleo-valle-guerra palacio-carta palacio-nava-laguna palmetum park-la-gesta park-la-vega',
-    'park-montillo park-taoro parkinson-tf-realejos parkinson-tf-sede-laguna parkinson-tf-silos',
+    'mir-lomo-molino mir-los-campitos mir-punta-hidalgo mir-rambla-castro mir-rambleta-teide',
+    'mirador-humboldt mirador-la-ruleta mirador-maska mirador-pico-ingles mirador-pino-galdo',
+    'mirador-punta-homem mirador-ruleta-canadas mirador-teide mirador-teresitas montana-blanca',
+    'montana-taco museo-bellas-artes museo-carnaval-sct museo-ciencia-cosmos',
+    'museo-militar-almeyda museo-naturaleza na-grupo2006-santacruz nucleo-bajamar',
+    'nucleo-igueste-san-andres nucleo-la-ranilla nucleo-mesa-mar nucleo-punta-hidalgo',
+    'nucleo-realejo-bajo nucleo-san-andres nucleo-taganana nucleo-tejina nucleo-valle-guerra',
+    'palacio-carta palacio-nava-laguna palmetum park-la-gesta park-la-vega park-montillo',
+    'park-taoro parkinson-tf-realejos parkinson-tf-sede-laguna parkinson-tf-silos',
     'parque-anaga-petfriendly parque-canino-ana-bautista parque-canino-laguna-via-ronda',
     'parque-canino-san-benito parque-canino-taoro parque-cesar-manrique',
     'parque-cuchillitos-tristan parque-don-quijote-sct parque-el-montillo parque-garcia-sanabria',
