@@ -5791,12 +5791,15 @@ window.onunhandledrejection = function(e) {
   }
   .v19-nav-badge.hidden { display: none; }
 
-  /* Reservar espacio inferior para que la bottom-nav no tape nada */
-  #map { margin-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+  /* Reservar espacio inferior para que la bottom-nav no tape nada.
+     El mapa acaba donde empieza la barra (18 de noviembre de 2026). Antes medía el 100 % de .main (el
+     margen de abajo no lo acortaba) y seguía por debajo de la barra: el centro del mapa quedaba unos
+     50 px más abajo que el de lo que se ve, y al abrir la isla salía baja; los controles de Leaflet
+     había que subirlos a mano. Ahora los controles quedan en el mismo sitio de la pantalla sin eso. */
+  #map { height: calc(100% - 72px - env(safe-area-inset-bottom, 0px)); }
   .route-panel,
   .bus-panel,
   .fav-panel { bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
-  .leaflet-bottom { bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important; }
 
   /* Accesibilidad: foco visible para navegación por teclado */
   button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
@@ -16150,6 +16153,14 @@ function toggleFavoritesView() {
 // ══════════════════════════════════════════════════════════
 // Bounds para navegación — más amplios que la isla para ver el océano alrededor
 const tenerifeBounds = L.latLngBounds(L.latLng(27.90, -16.98), L.latLng(28.65, -16.08));
+/* Al abrir, la isla y no el mar de alrededor (18 de noviembre de 2026). Jérôme: «Cuando abro la app no
+   hace zoom en la isla». Se encuadraba tenerifeBounds, que lleva mar de margen para moverse. Ahora se
+   encuadra la costa: el rectángulo de tools/datos/costa_tenerife.json (GSHHG v2.3.7, polígono 206:
+   latitud de 27,996193 a 28,587082 y longitud de -16,91964 a -16,117889), redondeado hacia fuera, con
+   8 px de margen. El zoom sigue en medios niveles (zoomSnap 0.5): es el mayor en el que cabe la isla
+   entera. A 9,5 la isla mide 413 px de ancho: entra en los móviles de 430 px (el de Jérôme); en los de
+   390 a 412 px se queda en 9, también entera. */
+const islaBounds = L.latLngBounds(L.latLng(27.996, -16.920), L.latLng(28.588, -16.117));
 
 /* ── AL SOLTAR EL PELLIZCO (24 de octubre de 2026, tarde) ──────────────────────────────────
    Jerome: «El zoom se puede hacer mejor todavía, trabájalo más y preciso». Medido con un
@@ -16327,7 +16338,7 @@ try {
     if (b) { b.title = tx('tZoomOut'); b.setAttribute('aria-label', tx('tZoomOut')); }
   });
 } catch (e) {}
-map.fitBounds(tenerifeBounds, { padding: [20, 20] });
+map.fitBounds(islaBounds, { padding: [8, 8] });
 map.setMinZoom(8);  // permite alejar un poco para ver el contexto
 map.on('drag', () => map.panInsideBounds(tenerifeBounds, { animate: false }));
 
