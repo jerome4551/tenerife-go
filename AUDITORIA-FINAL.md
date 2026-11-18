@@ -9754,6 +9754,113 @@ cielo, 311; el perfil y los avatares, 74 y 153; el panel SOS, 42 y 262, y sus cu
 documento, las de ahora (52 tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/` (239 ficheros: los dos
 trozos nuevos, dentro) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
 
+## El asistente: la nieve del Teide y el helado; instalar con Chrome en Android; el rumano, bloque 11 (18 de noviembre)
+
+**Lo que pasaba.** Lo vio la sesión del rumano al probar su bloque 11: «¿Hay nieve en el Teide?», «¿Nieva en el Teide?»,
+«¿Hay hielo en el Teide?», «¿Está cortada la carretera del Teide?» y sus parecidas no llegaban a tei-11 («¿Hay nieve?
+¿Cierran la carretera?», la respuesta de la nieve, el hielo, el estado de las carreteras y la predicción de Alta Montaña
+de AEMET), sino a pla-13 («¿Qué tengo que saber del Teide?»), que no lleva el aviso del Teide de la nota 48. Y no solo
+en castellano: preguntadas aquí en los diez idiomas, 70 de 70 iban a pla-13. La causa está en cómo puntúa el asistente:
+pla-13 suma su clave «teide» y, si está, la de su artículo («el teide», «le teide», «de teide», «il teide», «mount
+teide»), y tei-11 solo su palabra («nieve», «snow»…); y cuando empatan gana pla-13, que va antes por prioridad.
+
+**Lo que se ha hecho**, en las fuentes del asistente (`faq/fuente/`, el búlgaro en `faq/fuente/bg/`) y con
+`tools/generar_faq.py`:
+
+- **tei-11, claves nuevas en los diez idiomas**: la nieve, el hielo y lo cortado junto al Teide («nieve en el
+  teide», «nieva en el teide», «cortada teide», «snow on the teide», «teide closed», «neige sur le teide», «schnee
+  auf dem teide», «teide gesperrt», «neve sul teide», «sneeuw op de teide», «pada snieg», «сняг на тейде», «泰德峰有雪»,
+  «路封了»…). Lo que pregunta por el Teide sin nieve ni carretera cortada («¿Cuál es la mejor carretera al Teide?»,
+  «Which road to Teide is best?») sigue en pla-13, como antes.
+- **«ice», «glace», «Eis» e «ijs» dejan de ser claves de tei-11.** También son el helado, y «Where can I get ice
+  cream?», «meilleure glace à Tenerife», «Wo gibt es Eis?» o «lekker ijs» contestaban la nieve del Teide (estaba así
+  en la app publicada). Ahora ya no dan la nieve del Teide: el asistente dice que no tiene respuesta (con «near me»,
+  pide la ubicación), como ya hacía en castellano con «¿Dónde hay helado?». El hielo del Teide sigue llegando por
+  sus frases («ice on the teide», «glace sur le teide», «eis auf dem teide», «ijs op de teide») y por las palabras
+  que solo son el hielo de la carretera (icy, black ice, verglas, Glatteis, vereist, ijzel, gladheid).
+- **pla-13 lleva delante el aviso del Teide de la nota 48** (desde el 1 de noviembre de 2026, por hielo y nieve,
+  siete senderos del Teide o tramos de ellos solo para personas expertas en alta montaña o con profesionales
+  acreditados, con autorización de Tenerife ON, crampones y piolet), el mismo que ya llevan tei-01 y tei-06 y tal
+  cual está en cada idioma: no se ha escrito ni traducido nada nuevo. Así lo ve también quien pregunta por el Teide
+  sin más. Y pasa a «volátil», como ellas. **Cuando el Cabildo levante la restricción, el aviso se quita también de
+  pla-13** (la prueba de abajo lo pide: pla-13 lleva el aviso si y solo si lo llevan tei-01 y tei-06).
+- **El rumano no se toca** (`faq/fuente/ro/` es de su sesión): su pla-13, que llega con su bloque 11, se traducirá
+  otra vez con el aviso, y `generar_faq.py` lo dice mientras tanto («con el castellano cambiado desde que se
+  tradujeron»).
+
+**Comprobado.** `tools/probar_faq.js` lleva 21 preguntas de nieve y carretera cortada (dos por idioma, tres en
+castellano), 6 que no tienen que llegar a tei-11 (la mejor carretera al Teide y el helado, en cuatro idiomas) y, en los
+diez idiomas, que pla-13 lleva el aviso de tei-01 y tei-06: sobre la app publicada, 35 fallos; con el arreglo, 0 de 298.
+De las 70 preguntas de prueba, 68 llegan ahora a tei-11; las dos que no («泰德峰 雪», con un espacio y el carácter de la
+nieve solo, en los dos chinos) siguen en pla-13, que ya lleva el aviso: «雪» sola no se ha puesto como clave porque
+también está en «雪糕» (un helado). Las 8.576 preguntas, rótulos y claves de la base, en los diez idiomas, pasadas antes y
+después: solo cambian las cuatro palabras del helado, que pasan de tei-11 a «no tengo respuesta». De las 107 claves
+nuevas, 103 llevan solas a tei-11; las otras cuatro («strada per il teide», «weg naar de teide» y sus plurales) empatan
+con pla-13 a propósito y solo deciden cuando la pregunta dice además que está cerrada («chiusa», «afgesloten»).
+`auditar_faq.js`: 1290 de 1290 y ningún rótulo que lleve a otra respuesta. `castellano_suelto.js`, `auditar_letras.js`,
+`auditar_claves_tx.js` y `auditar_cirilico.py`, en verde.
+
+**Instalar en Android: la opción de Chrome tiene otro nombre.** También lo apuntó la sesión del rumano, al traducir
+app-07 («¿Cómo instalo la app?»). Los pasos de instalar que enseña la app en Android (`PWA_TX.instAnd`: en la ventana de
+«Ver cómo», cuando se abre desde otra app, y cuando el navegador no ofrece instalar por sí mismo) y app-07 decían que en
+Chrome se abre el menú ⋮ y se elige «Instalar aplicación». La ayuda oficial de Google para Android ([«Usar aplicaciones
+web progresivas»](https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid), leída el 18 de
+noviembre de 2026 en cada idioma) dice ahora: Más ⋮ → «Instalar y crear acceso directo» → «Instalar». Se han puesto esos
+dos nombres tal cual los escribe esa página en cada idioma («Install and create shortcut», «Installer et créer un
+raccourci», «Installieren und Verknüpfung erstellen», «Installa e crea scorciatoia», «Installeren en snelkoppeling
+maken», «Zainstaluj i utwórz skrót», «Инсталиране и създаване на пряк път», «安装并创建快捷方式», «安裝並建立捷徑», y luego «Install»,
+«Installer»…), con el resto de cada frase como estaba, de usted; también en la fuente polaca de la interfaz
+(`idiomas/pl-fuente/TX.json`). `auditar_registro.js` cuenta «Installa e crea scorciatoia» y «Zainstaluj i utwórz skrót»
+entre los rótulos del sistema que la app cita tal cual, en el lugar de «Installa app», que ya no se cita. El rumano no
+se toca: su frase no cita el nombre de la opción («alegeți opțiunea de instalare a aplicației»); la ayuda en rumano la
+llama «Instalează și creează o comandă rapidă», y se le dice a su sesión. `auditar_faq.js` (los rótulos citados, en cada
+idioma) y `probar_faq.js`, en verde; `probar_instalar.js` compara los pasos con `PWA_TX`, así que ya mira los nuevos.
+
+**El rumano, bloque 11** (sigue apagado: nada de esto se ve en la app). Sus guiones no se han ejecutado: la herramienta
+de seguridad de esta sesión no deja ejecutar programas que llegan en un zip, y no se ha buscado otra manera. Sus datos
+se han puesto con un aplicador propio que sigue sus mismas reglas de todo o nada (cada texto, solo si su castellano es
+el de `main`), y los ficheros finales son los que dice su nota:
+
+- `faq/fuente/ro/`: las 60 entradas del asistente que faltaban (usar la app, 29; seguridad y salud, 8; comer y
+  beber, 7; planes, naturaleza y clima, 16), con su rótulo, sus claves, su respuesta y el castellano que traducen;
+  con las del bloque 10, 129 de 129. `faq/fuente/claves/ro.json`: las claves de más de la emergencia (sal-01) y de
+  la nieve del Teide (tei-11). `faq/fuente/intenciones/ro.json`: el vocabulario del bloque 10 con cuatro palabras
+  más para «cerca».
+- `faq/fuente/nativo/respuestas.json`: el rumano de las cuatro respuestas de la app de las tiendas (app-06, app-07,
+  app-27 y app-29).
+- `idiomas/ro-fuente/lugares-1.json` a `lugares-4.json`: las 18 filas de las fichas que cambiaron el 17-11 (ocho con
+  el castellano nuevo y las diez de las cinco fichas que se fueron).
+
+Comprobado aquí: las huellas de su `SHA256SUMS.txt`; `lugares_traduccion.js ro`, casan 2274 de 2274 (975 lugares);
+`generar_faq.py`, «ro (sin encender): 129 de 129», ningún fichero de `faq/` cambia y `faq/ro.json` no se escribe;
+`revisar_rumano.py --pares` con los rótulos y las respuestas de las 129 y las cuatro de la app de las tiendas, 262
+filas, 0 errores y 0 avisos; ni una ş ni una ţ con cedilla. Con los dos arreglos de arriba, `generar_faq.py` dice además
+que el castellano de pla-13 y de app-07 ha cambiado desde que se tradujeron: los vuelve a traducir su sesión, y se le
+dice. Lo que su sesión vio en el código del asistente para el rumano («este», que es el verbo «es» y no el este; «ce
+este» / «ce e» / «ce sunt»; sus saludos y sus gracias) lo trae hecho y probado su sesión, en su parche del interruptor,
+y se aplica el día que se encienda el rumano, no ahora. El bloque 12 (la frase de cada mañana, la política de
+privacidad, borrar la cuenta y las páginas, también apagado) espera al sí de Jérôme: la política y borrar la cuenta son
+texto legal.
+
+**La auditoría entera** sobre `67ba501` (árbol `3222dddf`): los tres commits de este lote (el bloque 11 del rumano, la
+nieve del Teide y la opción de Chrome) encima de `main` (`739a2c8`). En `main` es lo mismo, rebasado sobre cinco commits
+de los robots (`dc71167`, satélites; `f69ae0e`, terremotos; `84e1d37`, gasolineras; `dacf844`, avisos de AEMET, y
+`fcb3505`, alertas del Gobierno de Canarias), que solo cambian `datos/satelites.json`, `datos/sismos-ign.json`,
+`datos/precios-gasolineras.json`, `datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y con los controles que
+leen esos ficheros, en verde tras el rebase. En los 61 bloques de `auditar.sh`, ningún rojo: las preguntas de prueba al
+asistente, 0 fallos de 298; `auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65 (con el navegador de Instagram en
+Android, sus dos pasos, el segundo ya con los nombres nuevos de Chrome); lo que pide Google Play, 249 de 249;
+`auditar_registro.js`, todo de usted (137.827 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_cirilico.py`, 2.340 nombres propios en cirílico y ninguna
+variante sospechosa; los datos, 975 lugares en todas partes (también en el resumen de este documento) y ninguna cifra de
+lugares que no sea 975 en lo que se lee; `probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626;
+`auditar_desborde.js`: la etiqueta viewport de las cuatro páginas, las tres cajas de copiar, las 60 cajas y 186 a la
+vista en 81 pantallas, ninguna por debajo de 16 px; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos
+sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y
+153; «Su cuerpo», 800 y 64; el entrenador, 79 (los 378 vídeos, enteros); la isla en 3D, 57 y ninguno en rojo; el panel
+SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.869).
+`app_preparar.js` montó `app/www/` (239 ficheros) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
