@@ -1,0 +1,1471 @@
+{
+ "_": "Rumano (ro) de frases.json: el título de la notificación de cada mañana y las 365 frases, cada una con el castellano que traduce, por su posición. Lo mete en frases.json poner_r12_ro.py (del zip del bloque 12 del rumano), que no escribe nada si un castellano de frases.json no es el de aquí. No se edita a mano: sale de la entrega del bloque 12 del rumano (17-11-2026).",
+ "idioma": "ro",
+ "fichero": "frases.json",
+ "titulo": {
+  "es": "Buenos días ☀️",
+  "ro": "Bună dimineața ☀️"
+ },
+ "filas": [
+  {
+   "es": "Hoy solo tiene que dar un paso. Con eso basta.",
+   "ro": "Azi trebuie să faceți doar un pas. E de ajuns."
+  },
+  {
+   "es": "Respire. Este momento es suyo y no hay prisa.",
+   "ro": "Respirați. Clipa aceasta este a dumneavoastră și nu e nicio grabă."
+  },
+  {
+   "es": "El mar sigue ahí, paciente. Vaya a saludarlo cuando pueda.",
+   "ro": "Marea e tot acolo, răbdătoare. Mergeți s-o salutați când puteți."
+  },
+  {
+   "es": "Sea amable consigo: lo está haciendo mejor de lo que cree.",
+   "ro": "Arătați-vă puțină blândețe: vă descurcați mai bine decât credeți."
+  },
+  {
+   "es": "Un paseo corto también cuenta como cuidarse.",
+   "ro": "Și o plimbare scurtă înseamnă să aveți grijă de dumneavoastră."
+  },
+  {
+   "es": "No hace falta que hoy sea perfecto. Basta con que sea suyo.",
+   "ro": "Nu e nevoie ca ziua de azi să fie perfectă. Ajunge să fie a dumneavoastră."
+  },
+  {
+   "es": "Mire el cielo un momento. Sigue siendo enorme y gratis.",
+   "ro": "Priviți cerul o clipă. E tot uriaș și gratuit."
+  },
+  {
+   "es": "Los días difíciles también pasan. Hoy, vaya despacio.",
+   "ro": "Și zilele grele trec. Azi, luați-o încet."
+  },
+  {
+   "es": "Beba agua, estírese, mire lejos. Su cuerpo se lo agradece.",
+   "ro": "Beți apă, întindeți-vă, priviți în depărtare. Corpul vă mulțumește."
+  },
+  {
+   "es": "Descubrir algo nuevo empieza con salir por la puerta.",
+   "ro": "Ca să descoperiți ceva nou, începeți prin a ieși pe ușă."
+  },
+  {
+   "es": "Lo pequeño cuenta: una sonrisa, un café, un rato al sol.",
+   "ro": "Lucrurile mici contează: un zâmbet, o cafea, câteva clipe la soare."
+  },
+  {
+   "es": "Hoy permítase descansar sin sentirse culpable.",
+   "ro": "Azi permiteți-vă odihna, fără vinovăție."
+  },
+  {
+   "es": "La isla huele a mar. Salga a llenarse los pulmones.",
+   "ro": "Insula miroase a mare. Ieșiți să vă umpleți plămânii."
+  },
+  {
+   "es": "Un buen día no es un día sin problemas, es uno bien vivido.",
+   "ro": "O zi bună nu e o zi fără probleme, ci una trăită din plin."
+  },
+  {
+   "es": "Camine sin rumbo diez minutos. A veces ahí aparece lo mejor.",
+   "ro": "Plimbați-vă fără țintă zece minute. Uneori, tocmai atunci apar cele mai bune lucruri."
+  },
+  {
+   "es": "Dese las gracias por seguir adelante.",
+   "ro": "Spuneți-vă un „mulțumesc” pentru că mergeți mai departe."
+  },
+  {
+   "es": "El Teide lleva millones de años ahí. Usted puede con hoy.",
+   "ro": "Teide stă acolo de milioane de ani. Dumneavoastră puteți face față zilei de azi."
+  },
+  {
+   "es": "Suelte lo que no depende de usted. Pesa menos así.",
+   "ro": "Renunțați la ce nu depinde de dumneavoastră. Așa e mai ușor."
+  },
+  {
+   "es": "Hoy busque una vista nueva. Merece la pena el rodeo.",
+   "ro": "Azi căutați o priveliște nouă. Merită ocolul."
+  },
+  {
+   "es": "Su ritmo está bien. No tiene que ir al ritmo de nadie.",
+   "ro": "Ritmul dumneavoastră e bun. Nu trebuie să țineți pasul cu nimeni."
+  },
+  {
+   "es": "Escuche el mar aunque sea un minuto. Ordena la cabeza.",
+   "ro": "Ascultați marea, fie și un minut. Vă limpezește gândurile."
+  },
+  {
+   "es": "Hágase hoy una pregunta amable: ¿qué necesito de verdad?",
+   "ro": "Puneți-vă azi o întrebare blândă: de ce am nevoie cu adevărat?"
+  },
+  {
+   "es": "Moverse un poco cambia el día más de lo que parece.",
+   "ro": "Puțină mișcare schimbă ziua mai mult decât pare."
+  },
+  {
+   "es": "No todo se arregla hoy, y no pasa nada.",
+   "ro": "Nu totul se rezolvă azi și nu e nimic rău în asta."
+  },
+  {
+   "es": "Salga a que le dé el aire. El resto puede esperar un rato.",
+   "ro": "Ieșiți să luați o gură de aer. Restul mai poate aștepta puțin."
+  },
+  {
+   "es": "Celebre lo que sí hizo, aunque parezca poco.",
+   "ro": "Sărbătoriți ce ați reușit să faceți, chiar dacă pare puțin."
+  },
+  {
+   "es": "Un sendero nuevo, una calma vieja. Elija caminar.",
+   "ro": "Un traseu nou, o liniște veche. Alegeți să mergeți pe jos."
+  },
+  {
+   "es": "Hoy trátese como trataría a un buen amigo.",
+   "ro": "Azi tratați-vă cum ați trata un prieten bun."
+  },
+  {
+   "es": "El sol de aquí es un lujo diario. Aprovéchelo cinco minutos.",
+   "ro": "Soarele de aici e un lux de zi cu zi. Bucurați-vă de el cinci minute."
+  },
+  {
+   "es": "Parar también es avanzar. Descanse sin culpa.",
+   "ro": "Și să vă opriți înseamnă să înaintați. Odihniți-vă fără vinovăție."
+  },
+  {
+   "es": "Pruebe algo distinto hoy: otra calle, otro café, otra playa.",
+   "ro": "Încercați azi ceva diferit: altă stradă, altă cafenea, altă plajă."
+  },
+  {
+   "es": "Está justo donde tiene que estar para dar el siguiente paso.",
+   "ro": "Sunteți exact acolo unde trebuie ca să faceți următorul pas."
+  },
+  {
+   "es": "Respire hondo tres veces. Ya está mejor que hace un minuto.",
+   "ro": "Respirați adânc de trei ori. Deja vă e mai bine decât acum un minut."
+  },
+  {
+   "es": "La naturaleza no juzga. Vaya a estar en ella un rato.",
+   "ro": "Natura nu judecă. Mergeți să petreceți puțin timp în mijlocul ei."
+  },
+  {
+   "es": "Hoy haga una cosa que le ilusione, aunque sea pequeña.",
+   "ro": "Azi faceți ceva care vă bucură, fie și ceva mic."
+  },
+  {
+   "es": "Merece descanso, no solo cuando lo termina todo.",
+   "ro": "Meritați odihnă, nu doar când terminați totul."
+  },
+  {
+   "es": "Un atardecer le espera. Gánese el momento saliendo.",
+   "ro": "Vă așteaptă un apus. Ieșiți din casă și faceți-l al dumneavoastră."
+  },
+  {
+   "es": "Sea paciente consigo: crecer lleva su tiempo.",
+   "ro": "Aveți răbdare cu dumneavoastră: a crește cere timp."
+  },
+  {
+   "es": "Mueva el cuerpo a su manera. No hay forma incorrecta.",
+   "ro": "Mișcați-vă corpul în felul dumneavoastră. Nu există un mod greșit."
+  },
+  {
+   "es": "Lo bonito de hoy quizá aún no ha pasado. Quédese a verlo.",
+   "ro": "Poate că partea frumoasă a zilei încă n-a venit. Rămâneți s-o vedeți."
+  },
+  {
+   "es": "Deje el móvil un rato y mire lo que tiene delante.",
+   "ro": "Lăsați telefonul puțin deoparte și priviți ce aveți în față."
+  },
+  {
+   "es": "Si hoy pesa, pida ayuda. No está solo en esto.",
+   "ro": "Dacă azi e greu, cereți ajutor. Sunt oameni alături de dumneavoastră."
+  },
+  {
+   "es": "Un rincón nuevo de la isla le está esperando.",
+   "ro": "Un colț nou al insulei vă așteaptă."
+  },
+  {
+   "es": "Hoy basta con estar. No tiene que rendir en todo.",
+   "ro": "Azi e de ajuns să fiți aici. Nu trebuie să excelați la toate."
+  },
+  {
+   "es": "El aire fresco es medicina gratis. Salga a por su dosis.",
+   "ro": "Aerul proaspăt e un medicament gratuit. Ieșiți să vă luați doza."
+  },
+  {
+   "es": "Sus pequeños avances suman más de lo que ve.",
+   "ro": "Micile progrese se adună și cântăresc mai mult decât vedeți."
+  },
+  {
+   "es": "Camine hacia el mar. Casi siempre es buena idea.",
+   "ro": "Mergeți spre mare. Aproape întotdeauna e o idee bună."
+  },
+  {
+   "es": "Cuídese hoy como si importara, porque importa.",
+   "ro": "Azi aveți grijă de dumneavoastră ca și cum ar conta, pentru că chiar contează."
+  },
+  {
+   "es": "Hoy elija curiosidad en vez de prisa.",
+   "ro": "Azi alegeți curiozitatea în loc de grabă."
+  },
+  {
+   "es": "Un día gris también tiene su belleza. Búsquela.",
+   "ro": "Și o zi cenușie își are frumusețea ei. Căutați-o."
+  },
+  {
+   "es": "Respire con el mar de fondo y deje que baje el ruido.",
+   "ro": "Respirați cu marea în fundal și lăsați zgomotul să se potolească."
+  },
+  {
+   "es": "No tiene que poder con todo hoy. Solo con lo de hoy.",
+   "ro": "Nu trebuie să faceți față la toate azi. Doar la ce ține de azi."
+  },
+  {
+   "es": "Salga a caminar y deje que las ideas se ordenen solas.",
+   "ro": "Ieșiți la o plimbare și lăsați gândurile să se așeze singure."
+  },
+  {
+   "es": "Lo que agradece crece. Nombre tres cosas buenas de hoy.",
+   "ro": "Recunoștința înmulțește binele. Numiți trei lucruri bune de azi."
+  },
+  {
+   "es": "La montaña se sube paso a paso. Su día también.",
+   "ro": "Pe munte se urcă pas cu pas. La fel și ziua dumneavoastră."
+  },
+  {
+   "es": "Sea suave consigo en los días flojos. Ya volverá la fuerza.",
+   "ro": "În zilele mai slabe, tratați-vă cu blândețe. Puterea va reveni."
+  },
+  {
+   "es": "Hoy descubra un mirador que no conocía.",
+   "ro": "Azi descoperiți un punct de belvedere pe care nu-l știați."
+  },
+  {
+   "es": "Estar presente es un regalo que se hace a sí mismo.",
+   "ro": "A trăi clipa de față este un dar pe care vi-l faceți."
+  },
+  {
+   "es": "Muévase un poco al sol. El cuerpo y el ánimo lo notan.",
+   "ro": "Mișcați-vă puțin la soare. Corpul și starea de spirit simt diferența."
+  },
+  {
+   "es": "No compare su camino con el de nadie. Es solo suyo.",
+   "ro": "Nu vă comparați drumul cu al nimănui. E doar al dumneavoastră."
+  },
+  {
+   "es": "El mar le calma sin pedir nada a cambio. Vaya a verlo.",
+   "ro": "Marea vă liniștește fără să ceară nimic în schimb. Mergeți s-o vedeți."
+  },
+  {
+   "es": "Hoy permítase ir despacio. La vida no es una carrera.",
+   "ro": "Azi permiteți-vă să mergeți încet. Viața nu e o cursă."
+  },
+  {
+   "es": "Un paso hacia fuera es un paso hacia uno mismo.",
+   "ro": "Un pas în afară e un pas spre sine."
+  },
+  {
+   "es": "Dé las gracias a su cuerpo por lo que hace cada día.",
+   "ro": "Mulțumiți-i corpului pentru tot ce face în fiecare zi."
+  },
+  {
+   "es": "Explore sin plan. Los mejores días no se programan.",
+   "ro": "Explorați fără un plan. Cele mai bune zile nu se programează."
+  },
+  {
+   "es": "Si hoy solo puede respirar y seguir, es suficiente.",
+   "ro": "Dacă azi puteți doar să respirați și să mergeți mai departe, e suficient."
+  },
+  {
+   "es": "La isla es grande. Hoy conquiste un trocito con calma.",
+   "ro": "Insula e mare. Azi cuceriți o bucățică, fără grabă."
+  },
+  {
+   "es": "Descansar es productivo. Su mente también necesita pausa.",
+   "ro": "Odihna e productivă. Și mintea dumneavoastră are nevoie de pauză."
+  },
+  {
+   "es": "Salga a buscar el verde. A los ojos y a la cabeza les gusta.",
+   "ro": "Ieșiți să căutați verdele. Ochilor și minții le place."
+  },
+  {
+   "es": "Hoy sea amable, empezando por usted.",
+   "ro": "Azi arătați bunătate, începând cu dumneavoastră."
+  },
+  {
+   "es": "El sol saliendo es un recordatorio: otra oportunidad.",
+   "ro": "Răsăritul soarelui e un memento: încă o șansă."
+  },
+  {
+   "es": "Camine, mire, respire. No hace falta más para un buen rato.",
+   "ro": "Mergeți, priviți, respirați. Nu e nevoie de mai mult pentru câteva clipe bune."
+  },
+  {
+   "es": "Lo difícil de hoy le hace más fuerte, aunque no lo vea.",
+   "ro": "Greul de azi vă întărește, chiar dacă nu vedeți asta."
+  },
+  {
+   "es": "Vaya a un sitio con vistas y quédese un momento en silencio.",
+   "ro": "Mergeți într-un loc cu priveliște și rămâneți o clipă în liniște."
+  },
+  {
+   "es": "Su valor no depende de lo mucho que produzca.",
+   "ro": "Valoarea dumneavoastră nu depinde de cât produceți."
+  },
+  {
+   "es": "Un poco de movimiento espanta muchos nubarrones.",
+   "ro": "Puțină mișcare alungă mulți nori negri."
+  },
+  {
+   "es": "Hoy pruebe a decir que sí a algo que le apetezca.",
+   "ro": "Azi încercați să spuneți da unui lucru care vă face plăcere."
+  },
+  {
+   "es": "El mar cambia cada día y aun así siempre es el mar. Como usted.",
+   "ro": "Marea se schimbă în fiecare zi și totuși rămâne mereu marea. Ca și dumneavoastră."
+  },
+  {
+   "es": "Perdónese los tropiezos. Forman parte de caminar.",
+   "ro": "Iertați-vă pașii greșiți. Fac parte din drum."
+  },
+  {
+   "es": "Salga a que el viento le despeje. Funciona más que una pantalla.",
+   "ro": "Ieșiți și lăsați vântul să vă limpezească gândurile. Funcționează mai bine decât un ecran."
+  },
+  {
+   "es": "Hoy cuide una cosa pequeña: su descanso, su agua, su paso.",
+   "ro": "Azi aveți grijă de un lucru mic: odihna, apa, pasul dumneavoastră."
+  },
+  {
+   "es": "La belleza está cerca. Solo hay que mirar despacio.",
+   "ro": "Frumusețea e aproape. Trebuie doar să priviți fără grabă."
+  },
+  {
+   "es": "No tiene que sentirse bien todo el rato. Solo seguir.",
+   "ro": "Nu trebuie să vă simțiți bine tot timpul. Doar să mergeți mai departe."
+  },
+  {
+   "es": "Un sendero, una playa, un pueblo: elija uno y vaya.",
+   "ro": "Un traseu, o plajă, un sat: alegeți unul și porniți."
+  },
+  {
+   "es": "Respire. Está vivo, y eso ya es mucho.",
+   "ro": "Respirați. Sunteți în viață, iar asta e deja mult."
+  },
+  {
+   "es": "Hoy hágase un plan que le ilusione, aunque sea sencillo.",
+   "ro": "Azi faceți-vă un plan care vă bucură, fie și unul simplu."
+  },
+  {
+   "es": "El Teide le mira desde lejos. Devuélvale la mirada.",
+   "ro": "Teide vă privește de departe. Întoarceți-i privirea."
+  },
+  {
+   "es": "Ir a su ritmo no es ir lento, es ir sostenible.",
+   "ro": "Să mergeți în ritmul dumneavoastră nu e încet: e un ritm pe care îl puteți susține."
+  },
+  {
+   "es": "Salga a caminar sin destino. Deje que le sorprenda el camino.",
+   "ro": "Ieșiți la o plimbare fără destinație. Lăsați drumul să vă surprindă."
+  },
+  {
+   "es": "Sea paciente. Las cosas buenas tardan lo que tardan.",
+   "ro": "Aveți răbdare. Lucrurile bune durează cât durează."
+  },
+  {
+   "es": "El aire de mar limpia por dentro. Vaya a respirarlo.",
+   "ro": "Aerul mării curăță pe dinăuntru. Mergeți să-l respirați."
+  },
+  {
+   "es": "Hoy suelte la exigencia. Hágalo lo mejor que pueda y ya.",
+   "ro": "Azi lăsați deoparte exigența. Faceți cât de bine puteți și gata."
+  },
+  {
+   "es": "Una vista bonita reordena el día. Búsquela.",
+   "ro": "O priveliște frumoasă pune ziua în ordine. Căutați-o."
+  },
+  {
+   "es": "Cuídese hoy con la ternura con la que cuida a los demás.",
+   "ro": "Azi aveți grijă de dumneavoastră cu tandrețea cu care aveți grijă de ceilalți."
+  },
+  {
+   "es": "Muévase un rato. No por deber, por gusto.",
+   "ro": "Mișcați-vă puțin. Nu din datorie, ci din plăcere."
+  },
+  {
+   "es": "Hoy mire el horizonte. Hay mundo más allá de lo urgente.",
+   "ro": "Azi priviți orizontul. Există o lume dincolo de ce e urgent."
+  },
+  {
+   "es": "Sus días valen aunque no pasen grandes cosas.",
+   "ro": "Zilele dumneavoastră contează chiar dacă nu se întâmplă lucruri mari."
+  },
+  {
+   "es": "Salga, aunque sea a la esquina. El aire ya cambia algo.",
+   "ro": "Ieșiți, fie și până la colț. Aerul schimbă deja ceva."
+  },
+  {
+   "es": "Dé un paso pequeño hacia algo que le importe.",
+   "ro": "Faceți un pas mic spre ceva care contează pentru dumneavoastră."
+  },
+  {
+   "es": "La calma también se entrena. Empiece respirando.",
+   "ro": "Și calmul se exersează. Începeți prin a respira."
+  },
+  {
+   "es": "El mar no tiene prisa y siempre llega. Usted también llegará.",
+   "ro": "Marea nu se grăbește și ajunge mereu. Și dumneavoastră veți ajunge."
+  },
+  {
+   "es": "Hoy elija una cosa que le haga bien y hágala.",
+   "ro": "Azi alegeți un lucru care vă face bine și faceți-l."
+  },
+  {
+   "es": "Camine despacio: la isla se disfruta sin correr.",
+   "ro": "Mergeți încet: insula se savurează fără grabă."
+  },
+  {
+   "es": "No está atrás. Está en su momento.",
+   "ro": "Nu ați rămas în urmă. Sunteți exact în momentul potrivit pentru dumneavoastră."
+  },
+  {
+   "es": "Respire hondo y suelte lo de ayer.",
+   "ro": "Respirați adânc și lăsați în urmă ziua de ieri."
+  },
+  {
+   "es": "Vaya a ver el atardecer aunque sea desde la ventana.",
+   "ro": "Priviți apusul, fie și de la fereastră."
+  },
+  {
+   "es": "Sea amable con su mente hoy. Ella también se cansa.",
+   "ro": "Azi purtați-vă cu blândețe cu mintea dumneavoastră. Și ea obosește."
+  },
+  {
+   "es": "Un rincón verde le espera. Regálese ese paseo.",
+   "ro": "Vă așteaptă un colț verde. Dăruiți-vă această plimbare."
+  },
+  {
+   "es": "Hoy basta con intentarlo. El resultado ya vendrá.",
+   "ro": "Azi e de ajuns să încercați. Rezultatul va veni."
+  },
+  {
+   "es": "El sol calienta gratis. Deje que le toque un rato.",
+   "ro": "Soarele încălzește gratuit. Lăsați-l să vă atingă puțin."
+  },
+  {
+   "es": "Descanse cuando lo necesite, no solo cuando lo merezca.",
+   "ro": "Odihniți-vă când aveți nevoie, nu doar când meritați."
+  },
+  {
+   "es": "Explore un poco hoy. La curiosidad cura el aburrimiento.",
+   "ro": "Explorați puțin azi. Curiozitatea vindecă plictiseala."
+  },
+  {
+   "es": "Lo pequeño bien hecho también es un logro.",
+   "ro": "Și un lucru mic, bine făcut, e o reușită."
+  },
+  {
+   "es": "Salga a caminar y verá cómo pesa menos la cabeza.",
+   "ro": "Ieșiți la o plimbare și veți vedea cum vi se ușurează mintea."
+  },
+  {
+   "es": "Hoy trátese con paciencia. Mañana lo agradecerá.",
+   "ro": "Azi tratați-vă cu răbdare. Mâine vă va prinde bine."
+  },
+  {
+   "es": "Mire el mar y respire a su ritmo. Baja las pulsaciones.",
+   "ro": "Priviți marea și respirați în ritmul dumneavoastră. Vă scade pulsul."
+  },
+  {
+   "es": "No tiene que tenerlo todo claro hoy. Da igual.",
+   "ro": "Nu trebuie să aveți totul clar azi. Nu contează."
+  },
+  {
+   "es": "Un paseo con vistas vale más que mil pantallas.",
+   "ro": "O plimbare cu priveliște face cât o mie de ecrane."
+  },
+  {
+   "es": "Cuide su descanso como cuida sus planes.",
+   "ro": "Aveți grijă de odihnă la fel ca de planurile dumneavoastră."
+  },
+  {
+   "es": "Hoy haga algo por usted, sin pedir permiso.",
+   "ro": "Azi faceți ceva pentru dumneavoastră, fără să cereți voie."
+  },
+  {
+   "es": "La naturaleza siempre tiene sitio para usted. Vaya a buscarlo.",
+   "ro": "Natura are mereu loc pentru dumneavoastră. Mergeți să-l căutați."
+  },
+  {
+   "es": "Sea constante y suave. Así llegan los cambios.",
+   "ro": "Perseverați cu blândețe. Așa vin schimbările."
+  },
+  {
+   "es": "El aire fresco despeja lo que la prisa enreda.",
+   "ro": "Aerul proaspăt limpezește ce încurcă graba."
+  },
+  {
+   "es": "Hoy celebre seguir de pie. Ya es motivo.",
+   "ro": "Azi sărbătoriți că sunteți încă în picioare. E deja un motiv."
+  },
+  {
+   "es": "Camine hacia la luz, literalmente. Busque un sitio soleado.",
+   "ro": "Mergeți spre lumină, la propriu. Căutați un loc însorit."
+  },
+  {
+   "es": "No se exija más de lo que hoy puede dar.",
+   "ro": "Nu vă cereți mai mult decât puteți da azi."
+  },
+  {
+   "es": "Un sendero nuevo, una cabeza más ligera.",
+   "ro": "Un traseu nou, o minte mai ușoară."
+  },
+  {
+   "es": "Respire y recuerde: esto también es parte del camino.",
+   "ro": "Respirați și amintiți-vă: și asta face parte din drum."
+  },
+  {
+   "es": "Salga a que le dé el sol y verá cómo cambia el ánimo.",
+   "ro": "Ieșiți la soare și veți vedea cum se schimbă starea de spirit."
+  },
+  {
+   "es": "Hoy hágase una pregunta amable y escúchese la respuesta.",
+   "ro": "Azi puneți-vă o întrebare blândă și ascultați-vă răspunsul."
+  },
+  {
+   "es": "El mar le recuerda que todo fluye. Deje que fluya.",
+   "ro": "Marea vă amintește că totul curge. Lăsați lucrurile să curgă."
+  },
+  {
+   "es": "Muévase a su aire. Su cuerpo sabe lo que necesita.",
+   "ro": "Mișcați-vă cum vă place. Corpul știe de ce are nevoie."
+  },
+  {
+   "es": "Lo importante no es ir rápido, sino no dejar de caminar.",
+   "ro": "Important nu e să mergeți repede, ci să nu vă opriți din mers."
+  },
+  {
+   "es": "Hoy dese un respiro de verdad, sin culpa.",
+   "ro": "Azi acordați-vă un răgaz adevărat, fără vinovăție."
+  },
+  {
+   "es": "Vaya a un mirador y respire hondo tres veces.",
+   "ro": "Mergeți la un punct de belvedere și respirați adânc de trei ori."
+  },
+  {
+   "es": "Usted es suficiente tal y como está hoy.",
+   "ro": "Sunteți de ajuns așa cum sunteți azi."
+  },
+  {
+   "es": "Un paseo corto puede salvar un día largo.",
+   "ro": "O plimbare scurtă poate salva o zi lungă."
+  },
+  {
+   "es": "Sea curioso hoy: pruebe, mire, pregunte.",
+   "ro": "Azi dați frâu liber curiozității: încercați, priviți, întrebați."
+  },
+  {
+   "es": "El sol de la isla es un lujo. No lo deje pasar entero.",
+   "ro": "Soarele insulei e un lux. Nu-l lăsați să treacă degeaba."
+  },
+  {
+   "es": "Descansar la mente también es avanzar.",
+   "ro": "Să vă odihniți mintea e tot un pas înainte."
+  },
+  {
+   "es": "Camine hacia el mar y deje que el ruido se quede atrás.",
+   "ro": "Mergeți spre mare și lăsați zgomotul în urmă."
+  },
+  {
+   "es": "Hoy sea su propio aliado, no su juez.",
+   "ro": "Azi sprijiniți-vă, nu vă judecați."
+  },
+  {
+   "es": "Un rincón nuevo le espera. Salga a encontrarlo.",
+   "ro": "Vă așteaptă un colț nou. Ieșiți să-l găsiți."
+  },
+  {
+   "es": "No hace falta hacerlo todo. Hace falta tratarse bien.",
+   "ro": "Nu trebuie să faceți totul. Trebuie doar să vă tratați bine."
+  },
+  {
+   "es": "Respire. La calma empieza en el próximo aliento.",
+   "ro": "Respirați. Liniștea începe cu următoarea respirație."
+  },
+  {
+   "es": "Vaya a estar entre árboles un rato. Es más sano de lo que parece.",
+   "ro": "Petreceți puțin timp printre copaci. E mai sănătos decât pare."
+  },
+  {
+   "es": "Hoy sume una pequeña alegría a su día.",
+   "ro": "Azi adăugați o mică bucurie zilei dumneavoastră."
+  },
+  {
+   "es": "El horizonte siempre está ahí, recordándole que hay más.",
+   "ro": "Orizontul e mereu acolo și vă amintește că mai e mult de văzut."
+  },
+  {
+   "es": "Muévase un poco: el ánimo se contagia del cuerpo.",
+   "ro": "Mișcați-vă puțin: corpul trage după el și starea de spirit."
+  },
+  {
+   "es": "Sea paciente consigo. Está aprendiendo, siempre.",
+   "ro": "Aveți răbdare cu dumneavoastră. Învățați mereu."
+  },
+  {
+   "es": "El mar limpia la mirada. Vaya a mirarlo un momento.",
+   "ro": "Marea limpezește privirea. Mergeți s-o priviți o clipă."
+  },
+  {
+   "es": "Hoy elija descansar bien antes que rendir mucho.",
+   "ro": "Azi alegeți să vă odihniți bine, nu să faceți cât mai mult."
+  },
+  {
+   "es": "Un paseo al sol vale como pequeña terapia.",
+   "ro": "O plimbare la soare e ca o mică terapie."
+  },
+  {
+   "es": "No está roto por tener un mal día.",
+   "ro": "O zi proastă nu înseamnă că ceva e stricat în dumneavoastră."
+  },
+  {
+   "es": "Respire hondo: ya ha superado muchos días antes.",
+   "ro": "Respirați adânc: ați trecut deja prin multe zile înainte."
+  },
+  {
+   "es": "Salga a caminar y deje que el paisaje le ponga en orden.",
+   "ro": "Ieșiți la o plimbare și lăsați peisajul să vă pună gândurile în ordine."
+  },
+  {
+   "es": "Cuídese en lo pequeño y lo grande vendrá solo.",
+   "ro": "Aveți grijă de lucrurile mici, iar cele mari vor veni de la sine."
+  },
+  {
+   "es": "La isla tiene un rincón para su calma. Búsquelo.",
+   "ro": "Insula are un colț pentru liniștea dumneavoastră. Căutați-l."
+  },
+  {
+   "es": "Hoy basta con estar presente. Nada más.",
+   "ro": "Azi e de ajuns să trăiți clipa. Nimic mai mult."
+  },
+  {
+   "es": "El sol sale para todos, también para usted hoy.",
+   "ro": "Soarele răsare pentru toată lumea. Azi, și pentru dumneavoastră."
+  },
+  {
+   "es": "Descanse sin pedir permiso. Lo necesita y punto.",
+   "ro": "Odihniți-vă fără să cereți voie. Aveți nevoie, punct."
+  },
+  {
+   "es": "Explore con calma. Lo bonito no se ve corriendo.",
+   "ro": "Explorați fără grabă. Frumusețea nu se vede din fugă."
+  },
+  {
+   "es": "Un pequeño paso hoy es un gran cambio con el tiempo.",
+   "ro": "Un pas mic azi devine, cu timpul, o mare schimbare."
+  },
+  {
+   "es": "Salga a que el viento se lleve lo que sobra en la cabeza.",
+   "ro": "Ieșiți și lăsați vântul să ia cu el ce vă prisosește în minte."
+  },
+  {
+   "es": "Hoy sea amable con sus límites. Están para cuidarle.",
+   "ro": "Azi respectați-vă limitele cu blândețe. Sunt acolo ca să vă protejeze."
+  },
+  {
+   "es": "Mire el mar y respire. Se le ordena algo por dentro.",
+   "ro": "Priviți marea și respirați. Ceva se așază înăuntrul dumneavoastră."
+  },
+  {
+   "es": "No tiene que ser el más rápido. Solo el que no se rinde.",
+   "ro": "Nu contează viteza. Contează să nu renunțați."
+  },
+  {
+   "es": "Un paseo con vistas cura más que muchas prisas.",
+   "ro": "O plimbare cu priveliște vindecă mai mult decât multă grabă."
+  },
+  {
+   "es": "Cuide su sueño como cuida sus proyectos.",
+   "ro": "Aveți grijă de somn la fel ca de proiectele dumneavoastră."
+  },
+  {
+   "es": "Hoy regálese un momento solo para usted.",
+   "ro": "Azi dăruiți-vă o clipă doar pentru dumneavoastră."
+  },
+  {
+   "es": "La naturaleza le acepta como está. Vaya a sentirlo.",
+   "ro": "Natura vă acceptă așa cum sunteți. Mergeți să simțiți asta."
+  },
+  {
+   "es": "Sea constante y amable. Así se construye lo bueno.",
+   "ro": "Perseverați și purtați-vă cu bunătate. Așa se construiește binele."
+  },
+  {
+   "es": "El aire fresco reinicia la cabeza. Salga a por él.",
+   "ro": "Aerul proaspăt vă repornește mintea. Ieșiți să-l căutați."
+  },
+  {
+   "es": "Hoy celebre lo que sí consiguió, por pequeño que sea.",
+   "ro": "Azi sărbătoriți ce ați reușit, oricât de puțin ar fi."
+  },
+  {
+   "es": "Camine hacia un sitio bonito y quédese un rato.",
+   "ro": "Mergeți spre un loc frumos și rămâneți acolo puțin."
+  },
+  {
+   "es": "No se mida por sus peores días.",
+   "ro": "Nu vă măsurați după zilele cele mai grele."
+  },
+  {
+   "es": "Un sendero nuevo despeja un ánimo cansado.",
+   "ro": "Un traseu nou înviorează un spirit obosit."
+  },
+  {
+   "es": "Respire y recuerde: no hace falta correr para llegar.",
+   "ro": "Respirați și amintiți-vă: nu trebuie să alergați ca să ajungeți."
+  },
+  {
+   "es": "Salga a que le dé el sol. Es medicina barata y buena.",
+   "ro": "Ieșiți la soare. E un medicament ieftin și bun."
+  },
+  {
+   "es": "Hoy escúchese: ¿qué le haría bien ahora mismo?",
+   "ro": "Azi ascultați-vă: ce v-ar face bine chiar acum?"
+  },
+  {
+   "es": "El mar sigue su ritmo sin prisa. Aprenda de él hoy.",
+   "ro": "Marea își urmează ritmul fără grabă. Învățați azi de la ea."
+  },
+  {
+   "es": "Muévase un poco por gusto, no por obligación.",
+   "ro": "Mișcați-vă puțin de plăcere, nu din obligație."
+  },
+  {
+   "es": "Lo importante es el paso de hoy, no la meta lejana.",
+   "ro": "Contează pasul de azi, nu ținta îndepărtată."
+  },
+  {
+   "es": "Hoy dese el permiso de ir despacio.",
+   "ro": "Azi dați-vă voie să mergeți încet."
+  },
+  {
+   "es": "Vaya a un mirador, respire, y deje que baje todo.",
+   "ro": "Mergeți la un punct de belvedere, respirați și lăsați totul să se liniștească."
+  },
+  {
+   "es": "Está haciendo suficiente. De verdad.",
+   "ro": "Faceți destul. Chiar așa."
+  },
+  {
+   "es": "Un paseo corto puede cambiarle el día entero.",
+   "ro": "O plimbare scurtă vă poate schimba toată ziua."
+  },
+  {
+   "es": "Pruebe algo nuevo hoy: un camino, un sabor, una idea.",
+   "ro": "Încercați azi ceva nou: un drum, un gust, o idee."
+  },
+  {
+   "es": "El sol de aquí es un regalo. Acéptelo unos minutos.",
+   "ro": "Soarele de aici e un dar. Primiți-l câteva minute."
+  },
+  {
+   "es": "Parar a tiempo también es cuidarse.",
+   "ro": "Și să vă opriți la timp înseamnă să aveți grijă de dumneavoastră."
+  },
+  {
+   "es": "Camine hacia el mar. Casi nunca se arrepiente.",
+   "ro": "Mergeți spre mare. Aproape niciodată nu veți regreta."
+  },
+  {
+   "es": "Hoy sea su propio refugio.",
+   "ro": "Azi fiți propriul dumneavoastră refugiu."
+  },
+  {
+   "es": "Un rincón por descubrir le espera. Salga a por él.",
+   "ro": "Vă așteaptă un colț nedescoperit. Ieșiți să-l căutați."
+  },
+  {
+   "es": "No hace falta poder con todo. Solo con este momento.",
+   "ro": "Nu trebuie să faceți față la toate. Doar clipei de acum."
+  },
+  {
+   "es": "Respire. La calma cabe en un solo aliento.",
+   "ro": "Respirați. Liniștea încape într-o singură respirație."
+  },
+  {
+   "es": "Vaya a estar en la naturaleza. Ella no le pide nada.",
+   "ro": "Petreceți timp în natură. Ea nu vă cere nimic."
+  },
+  {
+   "es": "Hoy añada una cosa buena, aunque sea diminuta.",
+   "ro": "Azi adăugați un lucru bun, fie și unul mărunt."
+  },
+  {
+   "es": "El horizonte le recuerda que siempre hay un más allá.",
+   "ro": "Orizontul vă amintește că există mereu ceva dincolo."
+  },
+  {
+   "es": "Muévase un rato y verá cómo se aligera el ánimo.",
+   "ro": "Mișcați-vă puțin și veți vedea cum vi se luminează starea de spirit."
+  },
+  {
+   "es": "Tenga paciencia consigo. Va bien.",
+   "ro": "Aveți răbdare cu dumneavoastră. Sunteți pe drumul cel bun."
+  },
+  {
+   "es": "El mar le espera, tranquilo. Vaya a saludarlo hoy.",
+   "ro": "Marea vă așteaptă, liniștită. Mergeți s-o salutați azi."
+  },
+  {
+   "es": "Descanse hoy sin sentir que pierde el tiempo.",
+   "ro": "Odihniți-vă azi fără să simțiți că pierdeți timpul."
+  },
+  {
+   "es": "Un paseo al sol es más útil que mil vueltas en la cabeza.",
+   "ro": "O plimbare la soare e mai utilă decât o mie de gânduri care se învârt în cap."
+  },
+  {
+   "es": "Un mal día no borra todo lo bueno que hay en usted.",
+   "ro": "O zi proastă nu șterge tot binele din dumneavoastră."
+  },
+  {
+   "es": "Respire hondo. Ya está dando lo que puede.",
+   "ro": "Respirați adânc. Dați deja tot ce puteți."
+  },
+  {
+   "es": "Salga a caminar y deje que el camino le calme.",
+   "ro": "Ieșiți la o plimbare și lăsați drumul să vă liniștească."
+  },
+  {
+   "es": "Cuídese en lo pequeño hoy. Ahí empieza todo.",
+   "ro": "Azi aveți grijă de dumneavoastră în lucrurile mici. Acolo începe totul."
+  },
+  {
+   "es": "La isla guarda un rincón para su paz. Búsquelo con calma.",
+   "ro": "Insula vă păstrează un colț de pace. Căutați-l fără grabă."
+  },
+  {
+   "es": "Hoy basta con respirar y seguir. Es suficiente.",
+   "ro": "Azi ajunge să respirați și să mergeți mai departe. E suficient."
+  },
+  {
+   "es": "El sol sale otra vez, y con él, otra oportunidad.",
+   "ro": "Soarele răsare din nou și, odată cu el, încă o șansă."
+  },
+  {
+   "es": "Descansar es parte del plan, no una falta.",
+   "ro": "Odihna face parte din plan, nu e o greșeală."
+  },
+  {
+   "es": "Explore despacio. La belleza pide tiempo.",
+   "ro": "Explorați încet. Frumusețea cere timp."
+  },
+  {
+   "es": "Un paso hoy, otro mañana. Así se llega lejos.",
+   "ro": "Un pas azi, altul mâine. Așa se ajunge departe."
+  },
+  {
+   "es": "Salga a que el aire le despeje lo enredado.",
+   "ro": "Ieșiți și lăsați aerul să descurce ce s-a încâlcit."
+  },
+  {
+   "es": "Hoy respete sus límites. Son sabiduría, no debilidad.",
+   "ro": "Azi respectați-vă limitele. Sunt un semn de înțelepciune, nu de slăbiciune."
+  },
+  {
+   "es": "Mire el mar y respire despacio. Todo se ordena.",
+   "ro": "Priviți marea și respirați încet. Totul se așază."
+  },
+  {
+   "es": "No tiene que ganar. Solo seguir caminando.",
+   "ro": "Nu trebuie să câștigați. Doar să mergeți mai departe."
+  },
+  {
+   "es": "Un paseo con vistas pesa menos que un día encerrado.",
+   "ro": "O plimbare cu priveliște e mai ușoară decât o zi între patru pereți."
+  },
+  {
+   "es": "Cuide su descanso: es la base de todo lo demás.",
+   "ro": "Aveți grijă de odihnă: e baza pentru tot restul."
+  },
+  {
+   "es": "Hoy regálese diez minutos que sean solo suyos.",
+   "ro": "Azi dăruiți-vă zece minute doar ale dumneavoastră."
+  },
+  {
+   "es": "La naturaleza le recibe sin condiciones. Vaya a sentirlo.",
+   "ro": "Natura vă primește fără condiții. Mergeți să simțiți asta."
+  },
+  {
+   "es": "Sea suave y constante. Los cambios buenos son así.",
+   "ro": "Mergeți înainte cu blândețe și consecvență. Așa se produc schimbările bune."
+  },
+  {
+   "es": "El aire fresco reordena lo que la prisa desordena.",
+   "ro": "Aerul proaspăt pune în ordine ce strică graba."
+  },
+  {
+   "es": "Hoy reconozca lo que hizo bien, aunque parezca poco.",
+   "ro": "Azi recunoașteți ce ați făcut bine, chiar dacă pare puțin."
+  },
+  {
+   "es": "Camine hacia algo bello y quédese a disfrutarlo.",
+   "ro": "Mergeți spre ceva frumos și rămâneți să vă bucurați de el."
+  },
+  {
+   "es": "No se juzgue por un día flojo.",
+   "ro": "Nu vă judecați după o zi mai slabă."
+  },
+  {
+   "es": "Un sendero nuevo alivia una cabeza cansada.",
+   "ro": "Un traseu nou alină o minte obosită."
+  },
+  {
+   "es": "Respire. No corra: llegará igual, y mejor.",
+   "ro": "Respirați. Nu alergați: veți ajunge oricum, și mai bine."
+  },
+  {
+   "es": "Salga a que le dé el sol. Cambia el día por dentro.",
+   "ro": "Ieșiți la soare. Soarele schimbă ziua din interior."
+  },
+  {
+   "es": "Hoy pregúntese qué necesita, y hágase caso.",
+   "ro": "Azi întrebați-vă de ce aveți nevoie și ascultați-vă."
+  },
+  {
+   "es": "El mar fluye sin resistirse. Pruebe a fluir usted también.",
+   "ro": "Marea curge fără să se împotrivească. Încercați și dumneavoastră să mergeți cu valul."
+  },
+  {
+   "es": "Muévase a su manera, sin exigencias.",
+   "ro": "Mișcați-vă în felul dumneavoastră, fără pretenții."
+  },
+  {
+   "es": "Cuente el paso de hoy, no la distancia que falta.",
+   "ro": "Socotiți pasul de azi, nu distanța care mai rămâne."
+  },
+  {
+   "es": "Permítase hoy la lentitud. Es un derecho, no un lujo.",
+   "ro": "Permiteți-vă azi încetineala. E un drept, nu un lux."
+  },
+  {
+   "es": "Vaya a un mirador y respire hondo. Ordene el día.",
+   "ro": "Mergeți la un punct de belvedere și respirați adânc. Puneți ziua în ordine."
+  },
+  {
+   "es": "Tal como está hoy, ya vale.",
+   "ro": "Așa cum sunteți azi, e deja bine."
+  },
+  {
+   "es": "Un paseo corto puede rescatar una tarde entera.",
+   "ro": "O plimbare scurtă poate salva o după-amiază întreagă."
+  },
+  {
+   "es": "Haga hoy algo distinto. Sorpréndase un poco.",
+   "ro": "Faceți azi ceva diferit. Surprindeți-vă puțin."
+  },
+  {
+   "es": "El sol de la isla es un regalo diario. Recoja su parte.",
+   "ro": "Soarele insulei e un dar de zi cu zi. Luați-vă partea."
+  },
+  {
+   "es": "Saber descansar es una forma de fuerza.",
+   "ro": "Să știți să vă odihniți e o formă de putere."
+  },
+  {
+   "es": "Camine hacia el mar y deje el ruido en la orilla de atrás.",
+   "ro": "Mergeți spre mare și lăsați zgomotul pe malul din urmă."
+  },
+  {
+   "es": "Hoy sea para usted mismo el amigo que necesita.",
+   "ro": "Azi oferiți-vă sprijinul pe care l-ați căuta la un prieten."
+  },
+  {
+   "es": "Un rincón por descubrir le llama. Vaya hacia él.",
+   "ro": "Un colț nedescoperit vă cheamă. Mergeți spre el."
+  },
+  {
+   "es": "No con todo a la vez. Paso a paso, con calma.",
+   "ro": "Nu totul deodată. Pas cu pas, fără grabă."
+  },
+  {
+   "es": "Respire. La calma vive en el próximo aliento.",
+   "ro": "Respirați. Liniștea se află în următoarea respirație."
+  },
+  {
+   "es": "Salga a la naturaleza un rato. Es medicina silenciosa.",
+   "ro": "Ieșiți puțin în natură. E un medicament tăcut."
+  },
+  {
+   "es": "Añada hoy una alegría pequeña a lo cotidiano.",
+   "ro": "Adăugați azi o mică bucurie vieții de zi cu zi."
+  },
+  {
+   "es": "El horizonte le recuerda que hay mucho por vivir.",
+   "ro": "Orizontul vă amintește că mai sunt multe de trăit."
+  },
+  {
+   "es": "Muévase un poco y sienta cómo se despeja el ánimo.",
+   "ro": "Mișcați-vă puțin și simțiți cum vi se înseninează sufletul."
+  },
+  {
+   "es": "Tenga paciencia. Nada bueno se apura.",
+   "ro": "Aveți răbdare. Nimic bun nu se face în grabă."
+  },
+  {
+   "es": "El mar le espera sin reloj. Vaya cuando pueda.",
+   "ro": "Marea vă așteaptă fără ceas. Mergeți când puteți."
+  },
+  {
+   "es": "Descanse hoy, y hágalo de verdad.",
+   "ro": "Odihniți-vă azi, dar cu adevărat."
+  },
+  {
+   "es": "Un rato al sol despeja lo que la mente enreda.",
+   "ro": "Câteva clipe la soare limpezesc ce încurcă mintea."
+  },
+  {
+   "es": "Un día gris no apaga su luz.",
+   "ro": "O zi cenușie nu vă stinge lumina."
+  },
+  {
+   "es": "Respire hondo: ha llegado hasta aquí, y eso es mucho.",
+   "ro": "Respirați adânc: ați ajuns până aici, iar asta e mult."
+  },
+  {
+   "es": "Salga a caminar y deje que el aire ordene sus ideas.",
+   "ro": "Ieșiți la o plimbare și lăsați aerul să vă pună ideile în ordine."
+  },
+  {
+   "es": "Cuídese hoy, empezando por lo más simple.",
+   "ro": "Azi aveți grijă de dumneavoastră, începând cu lucrurile cele mai simple."
+  },
+  {
+   "es": "La isla guarda un rincón para su calma. Vaya a por él.",
+   "ro": "Insula vă păstrează un colț de liniște. Mergeți să-l găsiți."
+  },
+  {
+   "es": "Basta con estar hoy. No tiene que rendir en todo.",
+   "ro": "E destul să fiți aici azi. Nu trebuie să reușiți totul."
+  },
+  {
+   "es": "El sol sale otra vez. Otra página en blanco.",
+   "ro": "Soarele răsare din nou. Încă o pagină albă."
+  },
+  {
+   "es": "Descansar es cuidar la máquina, no pararla.",
+   "ro": "Odihna înseamnă să îngrijiți mașinăria, nu s-o opriți."
+  },
+  {
+   "es": "Explore con calma: la prisa se pierde lo mejor.",
+   "ro": "Explorați în tihnă: cine se grăbește ratează ce e mai bun."
+  },
+  {
+   "es": "Un paso pequeño hoy, un gran camino con el tiempo.",
+   "ro": "Un pas mic azi, un drum lung cu timpul."
+  },
+  {
+   "es": "Salga a que el viento se lleve el ruido de dentro.",
+   "ro": "Ieșiți și lăsați vântul să vă ia zgomotul dinăuntru."
+  },
+  {
+   "es": "Hoy respete su cansancio. También le habla.",
+   "ro": "Azi respectați-vă oboseala. Și ea vă spune ceva."
+  },
+  {
+   "es": "Mire el mar y respire. Se calma algo en el pecho.",
+   "ro": "Priviți marea și respirați. Ceva se liniștește în piept."
+  },
+  {
+   "es": "No hace falta ganar a nadie. Solo caminar su tramo.",
+   "ro": "Nu trebuie să întreceți pe nimeni. Doar să vă parcurgeți porțiunea de drum."
+  },
+  {
+   "es": "Un paseo con vistas alivia más que una hora de pantalla.",
+   "ro": "O plimbare cu priveliște alină mai mult decât o oră în fața ecranului."
+  },
+  {
+   "es": "Cuide su descanso: sostiene todo lo demás.",
+   "ro": "Aveți grijă de odihnă: pe ea se sprijină tot restul."
+  },
+  {
+   "es": "Regálese hoy un momento sin pantallas ni prisas.",
+   "ro": "Dăruiți-vă azi o clipă fără ecrane și fără grabă."
+  },
+  {
+   "es": "La naturaleza le recibe tal cual es. Vaya a sentirlo.",
+   "ro": "Natura vă primește exact așa cum sunteți. Mergeți s-o simțiți."
+  },
+  {
+   "es": "Sea amable y constante consigo. Es el mejor plan.",
+   "ro": "Purtați-vă cu bunătate și consecvență față de dumneavoastră. E cel mai bun plan."
+  },
+  {
+   "es": "El aire fresco reinicia lo que se atasca. Salga a por él.",
+   "ro": "Aerul proaspăt repornește ce s-a blocat. Ieșiți să-l luați."
+  },
+  {
+   "es": "Hoy note un pequeño logro y dese las gracias.",
+   "ro": "Azi remarcați o mică reușită și spuneți-vă bravo."
+  },
+  {
+   "es": "Camine hacia algo bonito y quédese ahí un rato.",
+   "ro": "Mergeți spre ceva frumos și zăboviți acolo o vreme."
+  },
+  {
+   "es": "No se defina por un día difícil.",
+   "ro": "Nu lăsați o zi grea să vă definească."
+  },
+  {
+   "es": "Un sendero nuevo airea una cabeza cargada.",
+   "ro": "Un traseu nou aerisește o minte încărcată."
+  },
+  {
+   "es": "Respire. Sin prisa se llega, y se disfruta más.",
+   "ro": "Respirați. Fără grabă ajungeți oricum și vă bucurați mai mult."
+  },
+  {
+   "es": "Salga a que le dé el sol. Cambia el ánimo por dentro.",
+   "ro": "Ieșiți la soare. Vă schimbă starea de spirit din interior."
+  },
+  {
+   "es": "Hoy pregúntese con cariño qué necesita de verdad.",
+   "ro": "Azi întrebați-vă cu blândețe de ce aveți nevoie cu adevărat."
+  },
+  {
+   "es": "El mar fluye sin forzar. Pruebe a soltarse usted también.",
+   "ro": "Marea curge fără să forțeze. Încercați și dumneavoastră să vă relaxați."
+  },
+  {
+   "es": "Muévase a su ritmo y a su manera. Vale igual.",
+   "ro": "Mișcați-vă în ritmul și în felul dumneavoastră. Contează la fel."
+  },
+  {
+   "es": "Cuente el paso de hoy. Lo demás ya llegará.",
+   "ro": "Socotiți pasul de azi. Restul va veni."
+  },
+  {
+   "es": "Dese hoy permiso para ir despacio y sin culpa.",
+   "ro": "Dați-vă azi voie să mergeți încet și fără vinovăție."
+  },
+  {
+   "es": "Vaya a un mirador, respire hondo, y deje bajar el día.",
+   "ro": "Mergeți la un punct de belvedere, respirați adânc și lăsați ziua să se așeze."
+  },
+  {
+   "es": "Está bien así, hoy, tal como está.",
+   "ro": "E bine așa, azi, așa cum sunteți."
+  },
+  {
+   "es": "Un paseo corto puede darle la vuelta a todo.",
+   "ro": "O plimbare scurtă poate schimba totul în bine."
+  },
+  {
+   "es": "Pruebe algo nuevo hoy. La rutina agradece el cambio.",
+   "ro": "Încercați azi ceva nou. Rutinei îi prinde bine o schimbare."
+  },
+  {
+   "es": "El sol de la isla es un lujo. Salga a recoger su parte.",
+   "ro": "Soarele insulei e un lux. Ieșiți să vă luați partea."
+  },
+  {
+   "es": "Parar a tiempo es una forma de quererse.",
+   "ro": "Să vă opriți la timp e o formă de iubire de sine."
+  },
+  {
+   "es": "Camine hacia el mar y suelte lo que sobra al andar.",
+   "ro": "Mergeți spre mare și lăsați pe drum ce vă prisosește."
+  },
+  {
+   "es": "Hoy sea su propio refugio y su propia calma.",
+   "ro": "Azi fiți propriul dumneavoastră refugiu și propria dumneavoastră liniște."
+  },
+  {
+   "es": "Un rincón nuevo le espera. Regálese ese descubrimiento.",
+   "ro": "Vă așteaptă un colț nou. Dăruiți-vă această descoperire."
+  },
+  {
+   "es": "No con todo. Con lo de hoy, y con calma, basta.",
+   "ro": "Nu cu toate. Ce ține de azi, făcut fără grabă, e de ajuns."
+  },
+  {
+   "es": "Respire. La paz empieza en el aliento que viene ahora.",
+   "ro": "Respirați. Pacea începe cu respirația care vine acum."
+  },
+  {
+   "es": "Salga a la naturaleza. No pide nada y lo da todo.",
+   "ro": "Ieșiți în natură. Nu cere nimic și dă totul."
+  },
+  {
+   "es": "Sume hoy una pequeña luz a su día.",
+   "ro": "Adăugați azi o mică lumină zilei dumneavoastră."
+  },
+  {
+   "es": "El horizonte le recuerda: hay mundo, hay tiempo, hay sitio para usted.",
+   "ro": "Orizontul vă amintește: există lume, există timp, există loc pentru dumneavoastră."
+  },
+  {
+   "es": "Muévase un rato y sienta cómo se aligera todo.",
+   "ro": "Mișcați-vă puțin și simțiți cum totul devine mai ușor."
+  },
+  {
+   "es": "Tenga paciencia. Va a su paso, y su paso está bien.",
+   "ro": "Aveți răbdare. Mergeți în pasul dumneavoastră, iar pasul acesta e bun."
+  },
+  {
+   "es": "El mar sigue llegando a la orilla. Usted también está llegando.",
+   "ro": "Marea continuă să ajungă la țărm. Și dumneavoastră sunteți pe drum."
+  },
+  {
+   "es": "Descanse hoy sin dar explicaciones.",
+   "ro": "Odihniți-vă azi fără să dați explicații."
+  },
+  {
+   "es": "Un rato al sol es un pequeño respiro para la mente.",
+   "ro": "Câteva clipe la soare sunt un mic răgaz pentru minte."
+  },
+  {
+   "es": "Un mal día es solo eso: un día.",
+   "ro": "O zi proastă e doar atât: o zi."
+  },
+  {
+   "es": "Respire hondo. Lo hace mejor de lo que siente.",
+   "ro": "Respirați adânc. Vă descurcați mai bine decât simțiți."
+  },
+  {
+   "es": "Salga a caminar y deje que el paisaje le acompañe.",
+   "ro": "Ieșiți la o plimbare și lăsați peisajul să vă țină companie."
+  },
+  {
+   "es": "Cuídese hoy en lo pequeño; es donde vive lo grande.",
+   "ro": "Azi aveți grijă de dumneavoastră în lucrurile mici: acolo locuiesc cele mari."
+  },
+  {
+   "es": "La isla tiene un rincón para su paz. Búsquelo con calma.",
+   "ro": "Insula are un colț pentru pacea dumneavoastră. Căutați-l în tihnă."
+  },
+  {
+   "es": "Basta con estar presente hoy. Eso ya es mucho.",
+   "ro": "Ajunge să trăiți clipa de azi. Asta e deja mult."
+  },
+  {
+   "es": "El sol vuelve a salir, y tiene un día por delante.",
+   "ro": "Soarele răsare iar și aveți o zi întreagă în față."
+  },
+  {
+   "es": "Descansar también es avanzar hacia uno mismo.",
+   "ro": "Odihna e tot un drum spre sine."
+  },
+  {
+   "es": "Explore con calma y deje que la isla le sorprenda.",
+   "ro": "Explorați fără grabă și lăsați insula să vă surprindă."
+  },
+  {
+   "es": "Un pequeño paso hoy le acerca a lo que quiere.",
+   "ro": "Un pas mic azi vă apropie de ce vă doriți."
+  },
+  {
+   "es": "Salga a que el aire limpie lo que la prisa ensucia.",
+   "ro": "Ieșiți și lăsați aerul să curețe ce murdărește graba."
+  },
+  {
+   "es": "Sea constante consigo, con cariño. Ahí está la clave.",
+   "ro": "Dați dovadă de consecvență și de căldură față de dumneavoastră. Aici e cheia."
+  },
+  {
+   "es": "Hoy mire algo bonito sin prisa. Solo mirar ya cura.",
+   "ro": "Azi priviți fără grabă ceva frumos. Doar privitul vindecă deja."
+  },
+  {
+   "es": "El mar le enseña a soltar. Deje marchar lo de hoy.",
+   "ro": "Marea vă învață să dați drumul. Lăsați să plece ce a adus ziua de azi."
+  },
+  {
+   "es": "Un paso, una respiración, una sonrisa. Empiece por ahí.",
+   "ro": "Un pas, o respirație, un zâmbet. Începeți cu atât."
+  },
+  {
+   "es": "No tiene que llegar el primero. Solo llegar entero.",
+   "ro": "Nu e o cursă. Contează doar să ajungeți cu bine."
+  },
+  {
+   "es": "Regálese hoy silencio un momento. La cabeza lo agradece.",
+   "ro": "Dăruiți-vă azi o clipă de liniște. Mintea vă mulțumește."
+  },
+  {
+   "es": "Camine hacia el sol y deje atrás las nubes de dentro.",
+   "ro": "Mergeți spre soare și lăsați în urmă norii dinăuntru."
+  },
+  {
+   "es": "Hoy hágase caso. Nadie le conoce mejor que usted.",
+   "ro": "Azi ascultați-vă. Nimeni nu vă cunoaște mai bine decât dumneavoastră."
+  },
+  {
+   "es": "Un rincón de la isla le espera con calma. Vaya a por él.",
+   "ro": "Un colț al insulei vă așteaptă, fără grabă. Mergeți să-l găsiți."
+  },
+  {
+   "es": "Sea paciente: los buenos días también vuelven.",
+   "ro": "Aveți răbdare: și zilele bune revin."
+  },
+  {
+   "es": "El aire de mar reordena lo que la vida enreda.",
+   "ro": "Aerul mării pune în ordine ce încurcă viața."
+  },
+  {
+   "es": "Hoy trátese con dulzura. Se lo ha ganado.",
+   "ro": "Azi tratați-vă cu duioșie. Meritați asta."
+  },
+  {
+   "es": "Muévase un rato, respire hondo, y mire el horizonte.",
+   "ro": "Mișcați-vă puțin, respirați adânc și priviți orizontul."
+  },
+  {
+   "es": "Lo pequeño de hoy sostiene lo grande de mañana.",
+   "ro": "Lucrurile mici de azi le susțin pe cele mari de mâine."
+  },
+  {
+   "es": "Descanse sin remordimiento. Es parte de crecer.",
+   "ro": "Odihniți-vă fără remușcări. Face parte din a crește."
+  },
+  {
+   "es": "Salga a caminar y deje que se calme el ruido de dentro.",
+   "ro": "Ieșiți la o plimbare și lăsați zgomotul dinăuntru să se potolească."
+  },
+  {
+   "es": "Está justo a tiempo. No va tarde a su vida.",
+   "ro": "Sunteți exact la timp. Nu ați întârziat în propria viață."
+  },
+  {
+   "es": "Un paseo con el mar de fondo cura casi cualquier prisa.",
+   "ro": "O plimbare cu marea în fundal vindecă aproape orice grabă."
+  },
+  {
+   "es": "Hoy cuide su paz como lo más valioso que tiene.",
+   "ro": "Azi aveți grijă de liniștea dumneavoastră ca de cel mai de preț lucru pe care îl aveți."
+  },
+  {
+   "es": "Vaya a ver el cielo un momento. Sigue siendo inmenso.",
+   "ro": "Ieșiți să vedeți cerul o clipă. E la fel de imens."
+  },
+  {
+   "es": "No hace falta que hoy brille. Basta con que siga.",
+   "ro": "Nu e nevoie să străluciți azi. E de ajuns să mergeți mai departe."
+  },
+  {
+   "es": "Respire. Ya está haciendo bastante por hoy.",
+   "ro": "Respirați. Faceți deja destul pentru azi."
+  },
+  {
+   "es": "Camine hacia el mar y respire su calma un rato.",
+   "ro": "Mergeți spre mare și respirați-i liniștea o vreme."
+  },
+  {
+   "es": "Hoy escuche a su cuerpo. Casi siempre tiene razón.",
+   "ro": "Azi ascultați-vă corpul. Aproape mereu are dreptate."
+  },
+  {
+   "es": "Un rincón nuevo, una alegría pequeña. Salga a buscarla.",
+   "ro": "Un colț nou, o bucurie mică. Ieșiți s-o căutați."
+  },
+  {
+   "es": "Sea amable consigo en lo difícil. Ahí más que nunca.",
+   "ro": "În momentele grele, tratați-vă cu bunătate. Atunci mai mult ca oricând."
+  },
+  {
+   "es": "El sol sale para acompañarle también hoy.",
+   "ro": "Soarele răsare ca să vă țină companie și azi."
+  },
+  {
+   "es": "Descanse hoy. Mañana también habrá camino.",
+   "ro": "Odihniți-vă azi. Și mâine va fi drum de mers."
+  },
+  {
+   "es": "Explore sin prisa: lo mejor no se ve corriendo.",
+   "ro": "Explorați în ritmul dumneavoastră: ce e mai bun nu se vede alergând."
+  },
+  {
+   "es": "Un paso hacia fuera despeja mil vueltas de dentro.",
+   "ro": "Un pas afară risipește o mie de frământări."
+  },
+  {
+   "es": "Salga a que el viento le ordene lo que la mente enreda.",
+   "ro": "Ieșiți și lăsați vântul să pună în ordine ce încurcă mintea."
+  },
+  {
+   "es": "Hoy honre su ritmo. Es el correcto para usted.",
+   "ro": "Azi respectați-vă ritmul. E cel potrivit pentru dumneavoastră."
+  },
+  {
+   "es": "Mire el mar y respire. Se aligera algo por dentro.",
+   "ro": "Priviți marea și respirați. Ceva devine mai ușor înăuntru."
+  },
+  {
+   "es": "No compite con nadie. Camina su propio tramo.",
+   "ro": "Nu vă întreceți cu nimeni. Vă parcurgeți propria porțiune de drum."
+  },
+  {
+   "es": "Un paseo con vistas le devuelve al presente.",
+   "ro": "O plimbare cu priveliște vă aduce înapoi în prezent."
+  },
+  {
+   "es": "Cuide su descanso hoy como cuida lo que ama.",
+   "ro": "Azi aveți grijă de odihnă așa cum aveți grijă de ce iubiți."
+  },
+  {
+   "es": "Regálese un rato tranquilo, sin culpa, solo para usted.",
+   "ro": "Dăruiți-vă puțin timp liniștit, fără vinovăție, doar pentru dumneavoastră."
+  },
+  {
+   "es": "La naturaleza le acepta entero. Vaya a estar en ella.",
+   "ro": "Natura vă acceptă cu totul. Mergeți și petreceți timp în ea."
+  },
+  {
+   "es": "Sea suave, sea constante, y siga. Así se llega.",
+   "ro": "Cu blândețe, cu perseverență, mergeți mai departe. Așa se ajunge."
+  },
+  {
+   "es": "El aire fresco le reinicia por dentro. Salga a por él.",
+   "ro": "Aerul proaspăt vă repornește pe dinăuntru. Ieșiți după el."
+  },
+  {
+   "es": "Hoy note lo bueno, aunque sea pequeño, y agradézcalo.",
+   "ro": "Azi observați binele, fie și mic, și mulțumiți pentru el."
+  },
+  {
+   "es": "Camine hacia algo bello y quédese a mirarlo un rato.",
+   "ro": "Mergeți spre ceva frumos și rămâneți să-l priviți o vreme."
+  },
+  {
+   "es": "No se mida por el día más duro. No es su medida.",
+   "ro": "Nu vă măsurați după ziua cea mai grea. Nu e măsura dumneavoastră."
+  },
+  {
+   "es": "Un sendero nuevo alivia el peso de la rutina.",
+   "ro": "Un traseu nou ușurează povara rutinei."
+  },
+  {
+   "es": "Respire. Se llega mejor sin prisa que con agobio.",
+   "ro": "Respirați. Se ajunge mai bine fără grabă decât cu sufletul la gură."
+  },
+  {
+   "es": "Salga a que el sol le toque. Es de lo más sencillo y sano.",
+   "ro": "Ieșiți să vă atingă soarele. E unul dintre cele mai simple și sănătoase lucruri."
+  },
+  {
+   "es": "Hoy pregúntese qué le haría bien, y déselo.",
+   "ro": "Azi întrebați-vă ce v-ar face bine și oferiți-vă asta."
+  },
+  {
+   "es": "El mar no se apura y siempre llega. Tenga su paciencia.",
+   "ro": "Marea nu se zorește, dar ajunge mereu. Aveți și dumneavoastră răbdarea ei."
+  },
+  {
+   "es": "Muévase a su aire. Cada cuerpo tiene su camino.",
+   "ro": "Mișcați-vă cum vă place. Fiecare corp are drumul lui."
+  },
+  {
+   "es": "Vale el paso de hoy. La meta ya se acercará sola.",
+   "ro": "Contează pasul de azi. Ținta se va apropia singură."
+  },
+  {
+   "es": "Gracias por llegar hasta aquí. Cuídese, y mañana seguimos. 🌙",
+   "ro": "Vă mulțumim că ați ajuns până aici. Aveți grijă de dumneavoastră, iar mâine continuăm. 🌙"
+  }
+ ]
+}

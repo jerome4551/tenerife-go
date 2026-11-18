@@ -1,0 +1,322 @@
+{
+ "_": "Rumano (ro) de las páginas fijas y de la política: idiomas/privacidad (el panel de la app y privacidad.html, que escribe tools/generar_privacidad.py), idiomas/borrar-cuenta (borrar-cuenta.html), idiomas/paginas (lo común de las páginas fijas) e idiomas/404 (404.html). Cada clave con el castellano que traduce. Lo escribe en idiomas/<carpeta>/ro.json poner_r12_ro.py (del zip del bloque 12 del rumano), que no escribe nada si un castellano no es el de aquí; los generadores no leen el rumano hasta el interruptor (su lista LANGS). No se edita a mano: sale de la entrega del bloque 12 del rumano (17-11-2026).",
+ "idioma": "ro",
+ "carpetas": {
+  "privacidad": {
+   "fichero": "idiomas/privacidad/ro.json",
+   "filas": {
+    "ppEnlace": {
+     "es": "Privacidad · RGPD",
+     "ro": "Confidențialitate · RGPD"
+    },
+    "ppEnlaceWeb": {
+     "es": "Versión web",
+     "ro": "Versiunea web"
+    },
+    "ppCerrar": {
+     "es": "✕ Cerrar",
+     "ro": "✕ Închideți"
+    },
+    "ppTitulo": {
+     "es": "🔒 Política de Privacidad",
+     "ro": "🔒 Politica de confidențialitate"
+    },
+    "ppActualizado": {
+     "es": "— Última actualización: noviembre de 2026",
+     "ro": "— Ultima actualizare: noiembrie 2026"
+    },
+    "ppRespTitulo": {
+     "es": "Responsable del tratamiento",
+     "ro": "Operatorul de date"
+    },
+    "ppRespDir": {
+     "es": "· Tenerife, Islas Canarias, España.",
+     "ro": "· Tenerife, Insulele Canare, Spania."
+    },
+    "ppDatosTitulo": {
+     "es": "Qué datos se tratan",
+     "ro": "Ce date se prelucrează"
+    },
+    "ppDatosGeo": {
+     "es": "Geolocalización:",
+     "ro": "Geolocalizare:"
+    },
+    "ppDatosGeoTxt": {
+     "es": "solo cuando la activa, para enseñarle dónde está en el mapa, lo que tiene cerca y la ruta hasta un lugar, y para comprobar que está en los lugares que marca como visitados. No se guarda en ningún servidor. Si pide una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.",
+     "ro": "doar când o activați, pentru a vă arăta unde vă aflați pe hartă, ce aveți în apropiere și traseul până la un loc, precum și pentru a verifica dacă vă aflați în locurile pe care le marcați ca vizitate. Nu se păstrează pe niciun server. Dacă cereți un traseu cu mașina, coordonatele punctului de plecare și ale destinației se trimit serviciului de trasee pentru a-l calcula."
+    },
+    "ppDatosCuenta": {
+     "es": "Cuenta (opcional):",
+     "ro": "Cont (opțional):"
+    },
+    "ppDatosCuentaTxt": {
+     "es": "correo electrónico y contraseña. Los gestiona",
+     "ro": "adresa de e-mail și parola. Sunt gestionate de"
+    },
+    "ppDatosRls": {
+     "es": ", que guarda la contraseña cifrada; nosotros no la vemos.",
+     "ro": ", care păstrează parola criptată; noi nu o vedem."
+    },
+    "ppDatosFav": {
+     "es": "Favoritos:",
+     "ro": "Favorite:"
+    },
+    "ppDatosFavTxt": {
+     "es": "los identificadores de los lugares que guarda. Con cuenta se sincronizan; sin cuenta se quedan en su dispositivo.",
+     "ro": "identificatorii locurilor pe care le salvați. Cu un cont, se sincronizează; fără cont, rămân pe dispozitivul dumneavoastră."
+    },
+    "ppDatosPerfil": {
+     "es": "Perfil (opcional):",
+     "ro": "Profil (opțional):"
+    },
+    "ppDatosPerfilTxt": {
+     "es": "nombre o apodo, avatar, unidades, altura, año de nacimiento, fecha de alta del perfil, peso objetivo, los pesos que anote y los kilómetros que anotó antes en el perfil (con su fecha) y las visitas comprobadas (solo el lugar y el día). Se guardan en su dispositivo y se pueden borrar desde el propio perfil, salvo las visitas comprobadas, que se borran al desmarcar el lugar. Si tiene cuenta, ha cumplido 14 años y da su consentimiento expreso, todo salvo las visitas se guarda también en su cuenta, para no perderlo al cambiar de móvil, y se registra la fecha de ese consentimiento; el peso y la altura son datos de salud. Puede retirar ese consentimiento en el perfil cuando quiera: entonces se borra la copia guardada en su cuenta y los datos siguen en su dispositivo.",
+     "ro": "numele sau porecla, avatarul, unitățile de măsură, înălțimea, anul nașterii, data creării profilului, greutatea țintă, greutățile pe care le notați și kilometrii pe care i-ați notat anterior în profil (cu data lor), precum și vizitele verificate (doar locul și ziua). Se păstrează pe dispozitivul dumneavoastră și pot fi șterse din profil, cu excepția vizitelor verificate, care se șterg când debifați locul. Dacă aveți un cont, ați împlinit 14 ani și vă dați consimțământul explicit, toate acestea, cu excepția vizitelor, se salvează și în contul dumneavoastră, ca să nu le pierdeți dacă schimbați telefonul, și se înregistrează data acelui consimțământ; greutatea și înălțimea sunt date privind sănătatea. Puteți retrage oricând acest consimțământ din profil: atunci se șterge copia salvată în cont, iar datele rămân pe dispozitivul dumneavoastră."
+    },
+    "ppDatosCuerpo": {
+     "es": "Su cuerpo (opcional):",
+     "ro": "Corpul dumneavoastră (opțional):"
+    },
+    "ppDatosCuerpoTxt": {
+     "es": "las series de fuerza que anote (el grupo muscular, cuántas, el día, la hora en que las anota y, si las anota desde la ficha de un ejercicio, cuál y, si los escribe, las repeticiones y el peso), el movimiento que anote (qué deporte, los minutos, la intensidad, la distancia, el desnivel, el día y si elige contar la bici para el GR 131), el aspecto que elija para su personaje, el deporte que elija, el sitio donde entrena, el material que marque para casa y el nivel que elija (en «¿Qué entreno hoy?»), la zona de la isla que elija para el tiempo de «Hoy en la isla» (una de seis zonas fijas, no su posición), los sellos que consiga (con su fecha), los senderos que marque como hechos (con su fecha), el compañero que elija para la travesía y, si enciende el diario de comidas, las raciones de cada grupo de alimentos por día. Son datos de salud y se guardan solo en su dispositivo: no se envían a ningún servidor. En su pestaña «Evolución» están también sus datos del perfil (altura, peso y año de nacimiento) y su evolución: lo que cambie ahí se guarda igual que en el perfil, y en su cuenta solo si lo tiene activado. Los kilómetros que anote en «Su cuerpo» se quedan en su dispositivo. Lo que escribe al asistente no se guarda ni se envía. Todo se borra con «Borrar los datos de «Su cuerpo»».",
+     "ro": "seriile de forță pe care le notați (grupa musculară, câte, ziua, ora la care le notați și, dacă le notați din fișa unui exercițiu, care anume și, dacă le scrieți, repetările și greutatea), mișcarea pe care o notați (ce sport, minutele, intensitatea, distanța, diferența de nivel, ziua și dacă alegeți să luați în calcul bicicleta pentru GR 131), aspectul pe care îl alegeți pentru personaj, sportul pe care îl alegeți, locul unde vă antrenați, echipamentul pe care îl bifați pentru acasă și nivelul pe care îl alegeți (în «Ce antrenez azi?»), zona insulei pe care o alegeți pentru vremea din «Azi pe insulă» (una dintre cele șase zone fixe, nu poziția dumneavoastră), ștampilele pe care le obțineți (cu data lor), traseele pe care le marcați ca parcurse (cu data lor), însoțitorul pe care îl alegeți pentru traversare și, dacă porniți jurnalul alimentar, porțiile din fiecare grupă de alimente pe zi. Sunt date privind sănătatea și se păstrează doar pe dispozitivul dumneavoastră: nu se trimit niciunui server. În fila «Evoluție» se află și datele din profil (înălțimea, greutatea și anul nașterii) și evoluția dumneavoastră: ce modificați acolo se salvează la fel ca în profil, iar în cont doar dacă ați activat această opțiune. Kilometrii pe care îi notați în «Corpul dumneavoastră» rămân pe dispozitivul dumneavoastră. Ce scrieți asistentului nu se păstrează și nu se trimite. Totul se șterge cu «Ștergeți datele din „Corpul dumneavoastră”»."
+    },
+    "ppDatosPref": {
+     "es": "Preferencias y uso:",
+     "ro": "Preferințe și utilizare:"
+    },
+    "ppDatosPrefTxt": {
+     "es": "idioma, filtros, líneas de guagua activas, caché del tiempo y del estado del mar, si ya vio los tours, un contador de visitas y, del cielo, la luz roja, el ajuste de la brújula y los resúmenes de Wikipedia de los astros que ya ha abierto, los avisos del calendario que marca y si ya vio la guía de la brújula. Los eventos que añade a su calendario (.ics) y las imágenes que guarda o comparte se crean en el móvil y van directos a su calendario o a la hoja de compartir del sistema. Todo esto se guarda en su dispositivo y no se envía a ningún sitio.",
+     "ro": "limba, filtrele, liniile de autobuz active, memoria cache pentru vreme și starea mării, dacă ați văzut deja tururile, un contor de vizite și, pentru cer, lumina roșie, reglajul busolei și rezumatele Wikipedia ale aștrilor pe care i-ați deschis deja, mementourile din calendar pe care le bifați și dacă ați văzut deja ghidul busolei. Evenimentele pe care le adăugați în calendar (.ics) și imaginile pe care le salvați sau le distribuiți se creează pe telefon și ajung direct în calendarul dumneavoastră sau în meniul de distribuire al sistemului. Toate acestea se păstrează pe dispozitivul dumneavoastră și nu se trimit nicăieri."
+    },
+    "ppDatosPush": {
+     "es": "Notificaciones (opcional):",
+     "ro": "Notificări (opțional):"
+    },
+    "ppDatosPushTxt": {
+     "es": "si las activa, la suscripción que crea su navegador —una dirección de envío y dos claves— se guarda, junto con el idioma de la app, para poder mandarle el aviso en su idioma. Al desactivarlas en el navegador, deja de usarse.",
+     "ro": "dacă le activați, abonamentul creat de browserul dumneavoastră — o adresă de trimitere și două chei — se păstrează, împreună cu limba aplicației, pentru a vă putea trimite alerta în limba dumneavoastră. Dacă le dezactivați din browser, abonamentul nu mai este folosit."
+    },
+    "ppDatosSensores": {
+     "es": "Orientación del móvil (opcional):",
+     "ro": "Orientarea telefonului (opțional):"
+    },
+    "ppDatosSensoresTxt": {
+     "es": "solo mientras usa «Apunte al cielo»: la brújula, el giroscopio y el acelerómetro dicen hacia dónde apunta, para nombrar lo que tiene delante. Se usa en el dispositivo y no se guarda ni se envía.",
+     "ro": "doar cât timp folosiți «Îndreptați spre cer»: busola, giroscopul și accelerometrul indică încotro îndreptați telefonul, pentru a numi ce aveți în față. Aceste date se folosesc pe dispozitiv și nu se păstrează și nici nu se trimit."
+    },
+    "ppDatosCamara": {
+     "es": "Cámara (opcional):",
+     "ro": "Camera foto (opțional):"
+    },
+    "ppDatosCamaraTxt": {
+     "es": "solo si la activa en «Apunte al cielo», para pintar las estrellas sobre la imagen. La imagen no se guarda, no se analiza y no sale del móvil; solo si toca 📸 se compone una captura con las estrellas encima, que se guarda o se comparte desde su móvil sin pasar por ningún servidor.",
+     "ro": "doar dacă o activați în «Îndreptați spre cer», pentru a desena stelele peste imagine. Imaginea nu se păstrează, nu se analizează și nu iese din telefon; doar dacă atingeți 📸 se compune o captură cu stelele deasupra, care se salvează sau se distribuie de pe telefonul dumneavoastră fără a trece prin vreun server."
+    },
+    "ppStatsTitulo": {
+     "es": "Estadísticas y cookies",
+     "ro": "Statistici și cookie-uri"
+    },
+    "ppStatsNo": {
+     "es": "La app no usa Google Analytics ni ninguna otra herramienta de estadísticas, y no pone cookies: no hay aviso de cookies porque no hay nada que aceptar.",
+     "ro": "Aplicația nu folosește Google Analytics sau alt instrument de statistici și nu plasează cookie-uri: nu există un banner de cookie-uri pentru că nu este nimic de acceptat."
+    },
+    "ppPubTitulo": {
+     "es": "Publicidad y contenidos promocionados",
+     "ro": "Publicitate și conținut promovat"
+    },
+    "ppPubQue": {
+     "es": "El mapa muestra negocios que pagan un plan de promoción mensual. Van marcados con la etiqueta «{patrocinado}» y no alteran el resto del contenido.",
+     "ro": "Harta arată afaceri care plătesc un plan lunar de promovare. Sunt marcate cu eticheta «{patrocinado}» și nu modifică restul conținutului."
+    },
+    "ppPubNoDatos": {
+     "es": "Esa promoción no usa sus datos: se enseñan a todo el mundo por igual, sin segmentación, sin perfilado y sin cookies publicitarias. En la app no hay ninguna red publicitaria de terceros en funcionamiento.",
+     "ro": "Această promovare nu folosește datele dumneavoastră: afacerile sunt afișate tuturor la fel, fără segmentare, fără profilare și fără cookie-uri publicitare. În aplicație nu funcționează nicio rețea publicitară terță."
+    },
+    "ppTercTitulo": {
+     "es": "Terceros que reciben datos",
+     "ro": "Terți care primesc date"
+    },
+    "ppTercIntro": {
+     "es": "Para funcionar, la app pide datos a servicios externos. Todos reciben su dirección IP y, además:",
+     "ro": "Pentru a funcționa, aplicația cere date de la servicii externe. Toate primesc adresa dumneavoastră IP și, în plus:"
+    },
+    "ppTercSupabase": {
+     "es": "cuenta, favoritos, suscripción de notificaciones y, con su permiso, el perfil y los progresos.",
+     "ro": "contul, favoritele, abonamentul la notificări și, cu permisiunea dumneavoastră, profilul și progresele."
+    },
+    "ppTercHibp": {
+     "es": "al crear la cuenta, la app comprueba si la contraseña que eligió está en las listas de contraseñas robadas en ataques a otras webs. Solo envía un trozo pequeño de un código hecho a partir de la contraseña, nunca la contraseña ni su correo. La comparación final la hace su dispositivo.",
+     "ro": "la crearea contului, aplicația verifică dacă parola aleasă se află pe listele de parole furate în atacuri asupra altor site-uri. Aplicația trimite doar o mică parte dintr-un cod generat din parolă, niciodată parola sau adresa de e-mail. Comparația finală o face dispozitivul dumneavoastră."
+    },
+    "ppTercMapas": {
+     "es": "las teselas del mapa, o sea qué zona está mirando.",
+     "ro": "dalele hărții, adică zona pe care o priviți."
+    },
+    "ppTercOsrm": {
+     "es": "origen y destino cuando calcula una ruta en coche.",
+     "ro": "punctul de plecare și destinația când calculați un traseu cu mașina."
+    },
+    "ppTercNominatim": {
+     "es": "el texto que escribe al buscar una dirección.",
+     "ro": "textul pe care îl scrieți când căutați o adresă."
+    },
+    "ppTercMeteo": {
+     "es": "las coordenadas del lugar o de la zona cuya previsión consulta.",
+     "ro": "coordonatele locului sau ale zonei a cărei prognoză o consultați."
+    },
+    "ppTercCarburantes": {
+     "es": "los precios oficiales de las gasolineras de la provincia, cuando los mira; no se le manda nada suyo.",
+     "ro": "prețurile oficiale ale benzinăriilor din provincie, când le consultați; nu i se trimite nimic de-al dumneavoastră."
+    },
+    "ppTercWiki": {
+     "es": "el título del artículo del lugar o del astro que abre.",
+     "ro": "titlul articolului despre locul sau astrul pe care îl deschideți."
+    },
+    "ppTercNoVenta": {
+     "es": "Ninguno de estos datos se vende ni se cede con fines comerciales.",
+     "ro": "Niciuna dintre aceste date nu se vinde și nu se cedează în scopuri comerciale."
+    },
+    "ppBaseTitulo": {
+     "es": "Finalidad y base legal",
+     "ro": "Scopul și temeiul juridic"
+    },
+    "ppBaseLi1": {
+     "es": "Prestar el servicio de guía turística interactiva ({interes} / {contrato}).",
+     "ro": "Furnizarea serviciului de ghid turistic interactiv ({interes} / {contrato})."
+    },
+    "ppBaseInteres": {
+     "es": "interés legítimo",
+     "ro": "interes legitim"
+    },
+    "ppBaseContrato": {
+     "es": "ejecución de contrato",
+     "ro": "executarea unui contract"
+    },
+    "ppBaseLi2": {
+     "es": "Geolocalización, notificaciones y el perfil en la nube: consentimiento (para el peso y la altura, expreso), que puede retirar cuando quiera.",
+     "ro": "Geolocalizarea, notificările și profilul în cloud: consimțământ (explicit pentru greutate și înălțime), pe care îl puteți retrage oricând."
+    },
+    "ppConsTitulo": {
+     "es": "Conservación",
+     "ro": "Păstrarea datelor"
+    },
+    "ppConsCuenta": {
+     "es": "Los datos de la cuenta se conservan mientras la cuenta exista. Puede borrarla cuando quiera, junto con sus favoritos y, si los guardó en ella, su perfil y sus progresos, desde la app («{cuenta}» → «{eliminar}») o por correo. Cómo hacerlo:",
+     "ro": "Datele contului se păstrează cât timp există contul. Îl puteți șterge oricând, împreună cu favoritele și, dacă le-ați salvat în el, profilul și progresele, din aplicație («{cuenta}» → «{eliminar}») sau prin e-mail. Cum se face:"
+    },
+    "ppConsDispositivo": {
+     "es": "Lo guardado en su dispositivo desaparece al borrar los datos del sitio o desinstalar la app.",
+     "ro": "Ce este salvat pe dispozitivul dumneavoastră dispare când ștergeți datele site-ului sau dezinstalați aplicația."
+    },
+    "ppDerTitulo": {
+     "es": "Derechos",
+     "ro": "Drepturile dumneavoastră"
+    },
+    "ppDerTxt": {
+     "es": "Tiene derecho de acceso, rectificación, supresión, portabilidad, limitación y oposición. Ejérzalos escribiendo a",
+     "ro": "Aveți dreptul de acces, la rectificare, la ștergere, la portabilitate, la restricționarea prelucrării și la opoziție. Le puteți exercita scriind la"
+    },
+    "ppDerReclamar": {
+     "es": ". También puede reclamar ante la {aepd}.",
+     "ro": ". De asemenea, puteți depune o plângere la {aepd}."
+    },
+    "ppSegTitulo": {
+     "es": "Seguridad",
+     "ro": "Securitate"
+    },
+    "ppSegTxt": {
+     "es": "Toda la comunicación va por HTTPS. Supabase guarda las contraseñas cifradas y el acceso a las tablas está limitado por RLS; no tenemos acceso a su contraseña.",
+     "ro": "Toată comunicarea se face prin HTTPS. Supabase păstrează parolele criptate, iar accesul la tabele este limitat prin RLS; nu avem acces la parola dumneavoastră."
+    },
+    "ppContTitulo": {
+     "es": "Contacto",
+     "ro": "Contact"
+    }
+   }
+  },
+  "borrar-cuenta": {
+   "fichero": "idiomas/borrar-cuenta/ro.json",
+   "filas": {
+    "intro": {
+     "es": "Si creó una cuenta en Tenerife Go, puede borrarla cuando quiera: desde la app o por correo.",
+     "ro": "Dacă v-ați creat un cont în Tenerife Go, îl puteți șterge oricând: din aplicație sau prin e-mail."
+    },
+    "appTitulo": {
+     "es": "Desde la app",
+     "ro": "Din aplicație"
+    },
+    "appTxt": {
+     "es": "Toque «{cuenta}» (inicie sesión si se lo pide) y, debajo de «{cerrar}», toque «{eliminar}». La app le pide que lo confirme con «{confirmar}», y la cuenta se borra en ese momento.",
+     "ro": "Atingeți «{cuenta}» (conectați-vă dacă vi se cere) și, sub «{cerrar}», atingeți «{eliminar}». Aplicația vă cere să confirmați cu «{confirmar}», iar contul se șterge în acel moment."
+    },
+    "correoTitulo": {
+     "es": "Sin la app",
+     "ro": "Fără aplicație"
+    },
+    "correoTxt": {
+     "es": "Escríbanos a {correo} desde el correo de su cuenta, con el asunto «{asunto}». La borramos en un mes como máximo desde que nos llega el correo (RGPD, artículo 12.3).",
+     "ro": "Scrieți-ne la {correo} de pe adresa de e-mail a contului dumneavoastră, cu subiectul «{asunto}». Îl ștergem în cel mult o lună de la primirea e-mailului (articolul 12 alineatul 3 din RGPD)."
+    },
+    "asunto": {
+     "es": "Borrar mi cuenta",
+     "ro": "Ștergerea contului meu"
+    },
+    "borraTitulo": {
+     "es": "Qué se borra",
+     "ro": "Ce se șterge"
+    },
+    "borraTxt": {
+     "es": "Su correo, su contraseña (que se guarda cifrada), los favoritos que tenga guardados en la nube y, si los guardó en su cuenta, su perfil y sus progresos.",
+     "ro": "Adresa de e-mail, parola (care se păstrează criptată), favoritele salvate în cloud și, dacă le-ați salvat în cont, profilul și progresele dumneavoastră."
+    },
+    "noTitulo": {
+     "es": "Lo que no se borra con la cuenta",
+     "ro": "Ce nu se șterge odată cu contul"
+    },
+    "noPush": {
+     "es": "Las notificaciones: se apagan en el navegador o en los ajustes del móvil.",
+     "ro": "Notificările: se dezactivează din browser sau din setările telefonului."
+    },
+    "noDispositivo": {
+     "es": "Lo guardado en su dispositivo, como el idioma o sus favoritos: desaparece al borrar los datos del sitio en el navegador o al desinstalar la app.",
+     "ro": "Ce este salvat pe dispozitivul dumneavoastră, de exemplu limba sau favoritele: dispare când ștergeți datele site-ului din browser sau dezinstalați aplicația."
+    }
+   }
+  },
+  "paginas": {
+   "fichero": "idiomas/paginas/ro.json",
+   "filas": {
+    "idioma": {
+     "es": "Idioma",
+     "ro": "Limbă"
+    },
+    "volver": {
+     "es": "Volver a Tenerife Go",
+     "ro": "Înapoi la Tenerife Go"
+    }
+   }
+  },
+  "404": {
+   "fichero": "idiomas/404/ro.json",
+   "filas": {
+    "titulo": {
+     "es": "Página no encontrada · Tenerife Go",
+     "ro": "Pagina nu a fost găsită · Tenerife Go"
+    },
+    "h1": {
+     "es": "Esta página no existe",
+     "ro": "Această pagină nu există"
+    },
+    "texto": {
+     "es": "Puede que el enlace esté mal escrito o que la página ya no esté aquí.",
+     "ro": "Poate că linkul este scris greșit sau pagina nu mai este aici."
+    },
+    "boton": {
+     "es": "Abrir Tenerife Go",
+     "ro": "Deschideți Tenerife Go"
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "intro": "Dacă v-ați creat un cont în Tenerife Go, îl puteți șterge oricând: din aplicație sau prin e-mail.",
+ "appTitulo": "Din aplicație",
+ "appTxt": "Atingeți «{cuenta}» (conectați-vă dacă vi se cere) și, sub «{cerrar}», atingeți «{eliminar}». Aplicația vă cere să confirmați cu «{confirmar}», iar contul se șterge în acel moment.",
+ "correoTitulo": "Fără aplicație",
+ "correoTxt": "Scrieți-ne la {correo} de pe adresa de e-mail a contului dumneavoastră, cu subiectul «{asunto}». Îl ștergem în cel mult o lună de la primirea e-mailului (articolul 12 alineatul 3 din RGPD).",
+ "asunto": "Ștergerea contului meu",
+ "borraTitulo": "Ce se șterge",
+ "borraTxt": "Adresa de e-mail, parola (care se păstrează criptată), favoritele salvate în cloud și, dacă le-ați salvat în cont, profilul și progresele dumneavoastră.",
+ "noTitulo": "Ce nu se șterge odată cu contul",
+ "noPush": "Notificările: se dezactivează din browser sau din setările telefonului.",
+ "noDispositivo": "Ce este salvat pe dispozitivul dumneavoastră, de exemplu limba sau favoritele: dispare când ștergeți datele site-ului din browser sau dezinstalați aplicația."
+}
