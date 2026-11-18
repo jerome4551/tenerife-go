@@ -182,6 +182,12 @@ tras la última postura, si es quedarse quieto en ella, no cuenta: mantener sí 
 el primero, o el que sigue a un consejo, su acción arranca 0,25 s después (la cortinilla del cambio de plano).
 `auditar_entrenador.js` lo mira en los diez idiomas y dice cuál va más justa.
 
+**Cuando lo que hay que enseñar no cabe en lo que se tarda en leerlo** (nota 55): el paso lo dice con `dura`
+(`{ sec: […], desde: 'b', dura: 9 }`) y dura eso como poco, en todos los idiomas; el texto se queda en pantalla
+mientras tanto. Es para lo que no se puede abreviar sin dejar de entenderse: en la patada de glúteo en polea, «al
+terminar, cambie de pierna» se lee en 4,4 s, y volver, agacharse, pasar la tobillera al otro tobillo, levantarse y dar
+la patada con la otra pierna son 8,7. La auditoría hace la misma cuenta (`durPaso`) y la coteja con el reproductor.
+
 **A cámara lenta («½×»)** el Director va a 0,45 mientras se ve un ejercicio, y el reloj del reproductor va a la
 velocidad de lo que se está viendo (`tm`, en `80-reproductor.js`): el paso de un ejercicio dura 1/0,45 veces lo suyo
 y se ve lo mismo que a velocidad normal, más despacio (la secuencia entera y, al acabar el paso, la repetición por el
@@ -353,7 +359,9 @@ va con los pies, deslizándose por el suelo: el curl de isquios deslizando los t
 - `polea`: `rumbo` gira la columna (`180`, detrás de Jérôme; `90` y `−90`, una a cada lado mirando al centro: el
   cruce de poleas); `a`, a qué va el cable (`'manos'`, `'i'`, `'d'`…; `'tobillo-i'` y `'tobillo-d'`, a un tobillo: con
   `tobillera: true` se ve la tobillera, una banda justo encima del tobillo, y el cable se engancha en el lado de ella que mira a la
-  polea); `encuadre`, hasta qué altura cuenta para el encuadre (tumbado entre dos poleas, lo que importa está abajo).
+  polea; y con `pasa: { manos: ['g'], 'tobillo-d': ['g2', 'a2', …] }` la tobillera **cambia de tobillo a la vista**: en los tramos
+  que salen de esas posturas el cable va a donde diga la clave. En `manos` viaja entre los dos puños, así que en la postura de
+  salida y en la de llegada tienen que estar uno a cada lado de la tobillera de ese tobillo, o daría un salto); `encuadre`, hasta qué altura cuenta para el encuadre (tumbado entre dos poleas, lo que importa está abajo).
   La **máquina de jalón** es la polea con `brazo` (cuánto sale de la columna el brazo de arriba: la polea va en su
   punta), `asiento: [a cuánto de la columna, alto]` y `rodillo: [a cuánto, alto]`. `agarre`: `'barra'`, `'cuerda'`,
   `'asa'` (a una mano), `'v'` (el triángulo) o `'barra_v'` (la barra en V de los tríceps: dos mangos que bajan del centro

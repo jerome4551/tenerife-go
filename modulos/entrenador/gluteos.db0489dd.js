@@ -529,7 +529,11 @@
 
     /* la patada de glúteo: de cara a la máquina, con la tobillera en un tobillo (el izquierdo); se agarra a la columna con las dos manos (a
        la altura del pecho), dobla un poco las rodillas y, con el tronco erguido, lleva la pierna hacia atrás y hacia arriba (32°, recta); y
-       vuelve despacio. El pie se despega primero un poco, plano (m): girando desde el suelo con la pierna recta, la punta lo cortaría */
+       vuelve despacio. El pie se despega primero un poco, plano (m): girando desde el suelo con la pierna recta, la punta lo cortaría.
+       «Al terminar, cambie de pierna»: suelta la columna, se agacha con las rodillas abiertas y, con un puño a cada lado de la tobillera,
+       la pasa al otro tobillo (g → g2, que es g reflejada: el cuerpo se va hacia el tobillo que toca); se levanta, se agarra y da la
+       patada con la otra pierna. La tobillera va con las manos en el tramo que sale de g, y en el tobillo derecho desde g2 (polea,
+       «pasa»). Ese paso se lee en 4,4 s y el cambio entero no cabe: dura lo que su secuencia («dura») */
     COREO['patada-gluteo-polea'] = (function () {
       var ZC = 52, YP = PIE - 3, pies = { suelo: [9, 0], abre: 5 }, MANO_COL = { tipo: 'puno', barra: [0, 1, 0], palma: [-1, 0, 0] };
       var agarrado = function (P) { return conAgarre(sobre(P, { m: MANO_COL }), [6.6, 112, ZC - 1.5], [0.7, -1, -0.4]); };
@@ -537,13 +541,19 @@
       var B = { pel: [-2.5, YP, 0], pd: reflejo(pies) };
       var m = agarrado(sobre(B, { pel: [-1.5, YP, 0], pi: { a: [9, 13, -8], polo: [0, 0, 1] }, ti: { punta: [0, -0.1, 0.995], arriba: [0, 0.995, 0.1] } }));
       var b = agarrado(sobre(B, { pi: piernaRecta(B, 0, 32), ti: { punta: [0, -0.34, 0.94], arriba: [0, 0.94, 0.34] } }));
-      var KD = ['mi', 'md', 'td'];
+      /* en cuclillas, hacia el tobillo izquierdo; c: el centro de su tobillera (a 5,5 cm del tobillo, pierna arriba) */
+      var G = { pel: [3.5, 30, -18], giro: [0, 40, 0], cab: [14, 0, 0], p: { suelo: [9, 0], abre: 5, polo: [0.32, 0, 1] }, m: MANO_COL };
+      var c = (function () { var L = resolver(G).i; return menos(L.tob, por(L.ql, 5.5)); })();
+      var g = conAgarre(conAgarre(G, [c[0] + 5.8, c[1], c[2]], [1, 0.1, -0.2], 'bi'), [c[0] - 5.8, c[1], c[2]], [-0.2, -0.4, 1], 'bd');
+      var KD = ['mi', 'md', 'td'], KI = ['mi', 'md', 'ti'];
       return {
         vista: [[104, 10], [150, 12]], rastro: 'ti', esfuerzo: [0, 1], clavos: K4, clavosEn: { s: T2 },
-        material: [['polea', { en: [0, ZC], alto: 16, a: 'tobillo-i', tobillera: true, encuadre: 150 }]],
-        posturas: { s: s, a: a, m: m, b: b }, inicio: 'a', encuadra: ['s', 'b'],
+        material: [['polea', { en: [0, ZC], alto: 16, a: 'tobillo-i', tobillera: true, encuadre: 150, pasa: { manos: ['g'], 'tobillo-d': ['g2', 'a2', 'm2', 'b2'] } }]],
+        posturas: { s: s, a: a, m: m, b: b, g: g, g2: refleja(g), a2: sobre(a, {}), m2: refleja(m), b2: refleja(b) }, inicio: 'a', encuadra: ['s', 'b', 'b2'],
         rep: [['m', 0.4, 'entra', KD], ['b', 1.2, 'sale', KD], ['b', 0.5, null, KD], ['m', 1.5, 'entra', KD], ['a', 0.4, 'sale', KD], ['a', 0.3, null, K4]],
-        pasos: ['s', { sec: [['a', 1.3, 'suave', T2]], desde: 's' }, { sec: [['m', 0.45, 'entra', KD], ['b', 1.25, 'sale', KD]], desde: 'a' }, { rep: 1.6 }]
+        pasos: ['s', { sec: [['a', 1.3, 'suave', T2]], desde: 's' }, { sec: [['m', 0.45, 'entra', KD], ['b', 1.25, 'sale', KD]], desde: 'a' },
+          { sec: [['m', 1.3, 'entra', KD], ['a', 0.35, 'sale', KD], ['g', 0.95, 'suave', T2], ['g', 0.3, null, K4], ['g2', 0.6, 'suave', T2], ['g2', 0.3, null, K4],
+            ['a2', 1.05, 'suave', T2], ['m2', 0.45, 'entra', KI], ['b2', 1.25, 'sale', KI], ['b2', 0.5, null, KI], ['m2', 1.3, 'entra', KI], ['a2', 0.35, 'sale', KI]], desde: 'b', dura: 9 }]
       };
     })();
 

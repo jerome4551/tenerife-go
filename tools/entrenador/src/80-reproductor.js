@@ -202,7 +202,8 @@
     this.tramos = [{ tipo: 'cabecera', dur: 3.1 }];
     pasos.forEach(function (tx, i) {
       var a = acc[i] != null ? acc[i] : (i === 0 ? (co.inicio || 'a') : 'rep');
-      yo.tramos.push({ tipo: 'paso', i: i, texto: tx, es: (datos.pasosEs || pasos)[i], accion: a, dur: Math.max(4.4, 1.9 + tx.length * (/^zh/.test(yo.idioma) ? 0.16 : 0.058)) });
+      /* un paso dura lo que se tarda en leerlo; o lo que diga su acción (dura), si lo que hay que enseñar no cabe en ese tiempo */
+      yo.tramos.push({ tipo: 'paso', i: i, texto: tx, es: (datos.pasosEs || pasos)[i], accion: a, dur: Math.max(4.4, 1.9 + tx.length * (/^zh/.test(yo.idioma) ? 0.16 : 0.058), (a && a.dura) || 0) });
     });
     this.tramos.push({ tipo: 'cierre', dur: 4.2 });
     this.barras = el('div', 'tgv-barras');

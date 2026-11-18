@@ -551,6 +551,9 @@
      La máquina de jalón es esta misma con: brazo (cuánto sale de la columna el brazo de arriba hacia quien tira; la polea va en su
      punta), asiento: [a cuánto de la columna, alto] y rodillo: [a cuánto de la columna, alto] (el que sujeta los muslos).
      reposo: [x, y, z], dónde cuelga el agarre mientras nadie lo ha cogido (en las posturas que la coreografía diga en «reposo»).
+     pasa: { manos: [posturas], 'tobillo-d': [posturas] }, para cambiar la tobillera de tobillo a la vista: en los tramos que SALEN de
+     esas posturas el cable va a donde diga su clave y no a «a». En «manos» la tobillera viaja entre los dos puños (que en la postura
+     de salida y en la de llegada tienen que estar uno a cada lado de la tobillera de ese tobillo, para que no dé un salto).
      El remo sentado es esta misma, baja, con apoyo: [a cuánto de la columna, alto, grados], la chapa inclinada donde se apoyan
      los pies (el asiento es un banco aparte) ── */
   MATERIAL.polea = function (esc, o) {
@@ -600,7 +603,8 @@
       this.patChapa.pon(cam, this.al(0, (hc - 8) / 2, zc + 7), B, [30, hc - 8, 6], lista, -19, 'fondo');
     }
     /* a qué va el cable */
-    var a = o.a || 'manos', fin, yo = this, suelto = enReposo(o, ctx);
+    var a = o.a || 'manos', fin, yo = this, suelto = enReposo(o, ctx), kp;
+    if (o.pasa && ctx && ctx.de) for (kp in o.pasa) if (o.pasa[kp].indexOf(ctx.de) >= 0) a = kp;
     var ag = o.agarre || (a === 'manos' ? 'barra' : 'asa'), ver = { asa: false, cuerda: false, uve: false };
     /* el agarre: en las manos, o colgando del cable si aún no se ha cogido */
     var gi, gd, eje;
@@ -610,7 +614,17 @@
       gi = mas(fin, por(lat, w)); gd = mas(fin, por(lat, -w)); eje = ag === 'v' ? B[2] : lat;
       if (ag === 'cuerda') { fin = mas(fin, por(cae, -29.8)); gi = mas(fin, mas(por(cae, 29.8), por(lat, 3))); gd = mas(fin, mas(por(cae, 29.8), por(lat, -3))); }
     } else {
-      if (a === 'manos') fin = mezcla(E.i.agarre, E.d.agarre, 0.5);
+      if (a === 'manos' && this.cinta) {
+        /* la tobillera, en las manos (de un tobillo al otro): entre los dos puños, con la inclinación y la profundidad de la pierna
+           que tenga más cerca; en cada tobillo queda justo donde la pinta ese tobillo */
+        var cI = menos(E.i.tob, por(E.i.ql, 5.5)), cD = menos(E.d.tob, por(E.d.ql, 5.5)), cm = mezcla(E.i.agarre, E.d.agarre, 0.5);
+        var dI = largo(menos(cm, cI)), dD = largo(menos(cm, cD)), wq = dI + dD > 0.01 ? dI / (dI + dD) : 0, qm = unidad(mezcla(E.i.ql, E.d.ql, wq), [0, -1, 0]);
+        var zI = (cam.p(E.i.rod)[2] + cam.p(E.i.tob)[2]) / 2, zD = (cam.p(E.d.rod)[2] + cam.p(E.d.tob)[2]) / 2;
+        this.cinta.pon(cam, menos(cm, por(qm, 3.5)), mas(cm, por(qm, 3.5)), 4.9);
+        lista.push({ z: zI + (zD - zI) * wq + 0.1, el: this.cinta.g });
+        fin = mas(cm, por(unidad(sinParte(menos(pp, cm), qm), [0, 0, 1]), 4.9)); ag = 'nada';
+      }
+      else if (a === 'manos') fin = mezcla(E.i.agarre, E.d.agarre, 0.5);
       else if (a === 'i' || a === 'd') fin = E[a].agarre;
       else if (a === 'tobillo-i' || a === 'tobillo-d') {
         fin = E[a.slice(-1)].tob;

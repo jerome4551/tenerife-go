@@ -256,13 +256,14 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     deC('mano-muslo', 'mano-muslo-quieta', 'mano-muslo-vida', 'mano-muslo-quieta-vida').slice(0, 6));
   ok(!deC('tiron').length, 'lo que el Director aparta una mano de un muslo no da tirones (cambia a menos de ' + CT.LIMITES.tiron + ' cm/s)', deC('tiron').slice(0, 6));
   /* cada secuencia cabe en su paso. Un paso dura lo que se tarda en leer su texto (80-reproductor.js: 4,4 s como poco, y 0,058 s por
-     letra, o 0,16 por carácter en chino), no lo que dure su acción; cuando entra el paso siguiente, la secuencia que no ha acabado se
-     queda a medias (y «vuelve despacio» no llega a verse). Se mira en los diez idiomas: manda el texto más corto. Lo que sobra tras la
-     última postura, si es quedarse quieto en ella (mantener), no cuenta: eso sí puede pasar de largo. Y si el paso viene de un plano
-     de cerca (el primero, tras la cabecera; o el que sigue a un consejo), su acción arranca cuando la cortinilla tapa: 0,25 s después.
+     letra, o 0,16 por carácter en chino), no lo que dure su acción (salvo que el paso lo diga con «dura»: entonces, eso como poco);
+     cuando entra el paso siguiente, la secuencia que no ha acabado se queda a medias (y «vuelve despacio» no llega a verse). Se mira
+     en los diez idiomas: manda el texto más corto. Lo que sobra tras la última postura, si es quedarse quieto en ella (mantener), no
+     cuenta: eso sí puede pasar de largo. Y si el paso viene de un plano de cerca (el primero, tras la cabecera; o el que sigue a un
+     consejo), su acción arranca cuando la cortinilla tapa: 0,25 s después.
      Se da por bueno en la sección 2, con la cuenta cotejada con lo que dura cada paso en el reproductor de verdad. */
   const CORTINILLA = 0.25;
-  const durPaso = (l, tx) => Math.max(4.4, 1.9 + tx.length * (/^zh/.test(l) ? 0.16 : 0.058));
+  const durPaso = (l, tx, p) => Math.max(4.4, 1.9 + tx.length * (/^zh/.test(l) ? 0.16 : 0.058), (p && p.dura) || 0);
   const noCaben = []; let secuencias = 0, conSec = 0, justa = [99, ''];
   ids.forEach(id => {
     const co = T.COREO[id]; let alguna = false;
@@ -271,7 +272,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
       const sec = p.sec, n = sec.length, total = sec.reduce((a, q) => a + q[1], 0);
       const antes = n > 1 ? sec[n - 2][0] : (p.desde || co.inicio || 'a'), util = total - (sec[n - 1][0] === antes ? sec[n - 1][1] : 0);
       let corto = null;
-      LANGS.forEach(l => { const t = TX[l][id]; if (!t || !Array.isArray(t[1]) || typeof t[1][k] !== 'string') return; const d = durPaso(l, t[1][k]); if (!corto || d < corto[1]) corto = [l, d]; });
+      LANGS.forEach(l => { const t = TX[l][id]; if (!t || !Array.isArray(t[1]) || typeof t[1][k] !== 'string') return; const d = durPaso(l, t[1][k], p); if (!corto || d < corto[1]) corto = [l, d]; });
       if (!corto) return;
       const hay = corto[1] - (k === 0 || co.pasos[k - 1] === 'nota' ? CORTINILLA : 0);
       secuencias++; alguna = true;
@@ -526,7 +527,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
         if (raras.length || r.ajenos || !(r.tipos || []).length) noCopia.push(id + ': ' + (raras.length ? '<' + raras.join('>, <') + '>' : r.ajenos ? r.ajenos + ' piezas con máscara o filtro' : 'sin medir'));
         /* lo que dura cada paso en el reproductor es lo que dice la cuenta de arriba (con la que se mira que cada secuencia quepa) */
         if (!Array.isArray(m.durs) || m.durs.length !== m.pasos.length) otraDur.push(id + ' (' + l + '): sin las duraciones de sus pasos');
-        else m.durs.forEach((d, k) => { cotejados++; if (Math.abs(d - durPaso(l, m.pasos[k])) > 1e-9) otraDur.push(id + ' (' + l + '), paso ' + (k + 1) + ': dura ' + d + ' s y la cuenta da ' + durPaso(l, m.pasos[k])); });
+        else m.durs.forEach((d, k) => { const pk = (T.COREO[id].pasos || [])[k]; cotejados++; if (Math.abs(d - durPaso(l, m.pasos[k], pk)) > 1e-9) otraDur.push(id + ' (' + l + '), paso ' + (k + 1) + ': dura ' + d + ' s y la cuenta da ' + durPaso(l, m.pasos[k], pk)); });
         const esperados = Math.round(m.dur * 30), q = [];
         if (!r.fin) q.push('no acaba');
         /* cada tramo acaba en el primer cuadro que pasa de su duración: uno de más por tramo, como mucho */
