@@ -16,7 +16,7 @@
         conAgarre = N.conAgarre, curva = N.curva, el = N.el, entre = N.entre, estirado = N.estirado, flexion = N.flexion, girar = N.girar,
         giroY = N.giroY, inclinado = N.inclinado, largo = N.largo, linea = N.linea, mas = N.mas, menos = N.menos, mezcla = N.mezcla, plano = N.plano,
         por = N.por, punto = N.punto, refleja = N.refleja, reflejo = N.reflejo, resolver = N.resolver, signo = N.signo, sinParte = N.sinParte,
-        sobre = N.sobre, tabla = N.tabla, tablaAlta = N.tablaAlta, unidad = N.unidad;
+        sobre = N.sobre, tabla = N.tabla, tablaAlta = N.tablaAlta, troncoAPlano = N.troncoAPlano, unidad = N.unidad;
   /* ───────────────────────── las coreografías: ABDOMEN Y LUMBARES (bloque 12) ─────────────────────────
      Las mismas reglas que en 70-coreografias.js: cada una sale de los pasos verificados de su ficha y no añade técnica
      que la ficha no diga. Van por familias: las planchas sobre las manos (alta, con toque de hombro, arriba y abajo y con
@@ -616,19 +616,21 @@
       };
     })();
 
-    /* LOS L-SIT, en el suelo: las manos, de plano a los lados de la cadera; los brazos, estirados y a plomo bajo los hombros, que van
-       hacia abajo (hom); el tronco, algo inclinado hacia delante y redondeado: es lo que deja sitio para despegar la cadera (con el
-       tronco a plomo, los brazos de Jérôme no levantan la cadera del suelo). sentadoL busca la altura de la cadera que estira los brazos
-       y devuelve la postura levantada (b), la de sentado (s) y dónde van las muñecas (w) */
+    /* LOS L-SIT, en el suelo: las manos, de plano a los lados de la cadera; los brazos, estirados, bloqueados y a plomo bajo los hombros;
+       el tronco, derecho. Lo que despega la cadera es empujar los hombros hacia abajo (hom): sentado derecho, el hombro de Jérôme queda
+       justo a un brazo estirado del suelo (con la palma plana), y cada centímetro que bajan los hombros es uno que sube la cadera.
+       Con ellos 6 cm abajo sube casi 6. Es poco, como en el ejercicio de verdad con las palmas en el suelo (las piernas quedan justo por
+       encima de él). Lo que no vale es inclinar el tronco hacia delante y redondearlo para ganar sitio (así iba antes: 13° y la espalda
+       curva): no es una L, y sentado así la pelvis apoya 2 cm más arriba, con lo que la cadera aún subía menos (4 cm).
+       sentadoL busca la altura a la que la pelvis derecha toca el suelo (sentado: s, con los hombros donde dejan las palmas en el
+       suelo), la altura de la cadera que estira los brazos con los hombros abajo (levantado: b) y dónde van las muñecas (w) */
     function sentadoL(inc, col, piernasB, piernasS) {
-      var ZP = -4, L = D.brazo + D.antebrazo - 0.35, X = 27;
-      var P = function (w) { return function (y) { return { pel: [0, y, ZP], giro: [0, inc, 0], col: [col, 0, 0], cab: [-(inc + col * 0.55), 0, 0], hom: [-3, 0], b: { a: w, polo: [0.3, 0, -1] }, m: EN_SUELO }; }; };
-      var alza = function (w) { return P(w)(busca(function (y) { return largo(menos(resolver(P(w)(y)).i.hom, w)); }, L, 8, 32)); };
-      var w = [X, ALTO_MUN, resolver(alza([X, ALTO_MUN, ZP + 14])).i.hom[2]], b0 = alza(w);
-      /* sentado: el tronco, algo más redondo (con la espalda a plomo, las manos no llegan al suelo): lo justo (se busca) para que los
-         brazos queden estirados con la cadera en el suelo y los hombros sin bajar */
-      var S = function (c) { return { pel: [0, YS, ZP - 0.5], giro: [0, inc, 0], col: [c, 0, 0], cab: [-(inc + c * 0.55), 0, 0], hom: [0, 0], b: { a: w, polo: [0.3, 0, -1] }, m: EN_SUELO }; };
-      var s0 = S(busca(function (c) { return largo(menos(resolver(S(c)).i.hom, w)); }, L, -15, col + 50));
+      var ZP = -4, L = D.brazo + D.antebrazo - 0.1, X = 28, BAJA = -6;
+      var P = function (y, h) { return function (w) { return { pel: [0, y, ZP], giro: [0, inc, 0], col: [col, 0, 0], cab: [-(inc + col * 0.55), 0, 0], hom: [h, 0], b: { a: w, polo: [0.3, 0, -1] }, m: EN_SUELO }; }; };
+      var alza = function (w) { return P(busca(function (y) { return largo(menos(resolver(P(y, BAJA)(w)).i.hom, w)); }, L, 8, 32), BAJA)(w); };
+      var w = [X, ALTO_MUN, resolver(alza([X, ALTO_MUN, ZP + 2])).i.hom[2]], b0 = alza(w);
+      var ys = busca(function (y) { return troncoAPlano(resolver(P(y, 0)(w)), [0, 0, 0], [0, 1, 0]); }, -0.3, 7, 14);
+      var s0 = P(ys, busca(function (h) { return largo(menos(resolver(P(ys, h)(w)).i.hom, w)); }, L, -9, 5))(w);
       return { w: w, b: piernasB(b0), s: piernasS(s0) };
     }
     /* las piernas, juntas y estiradas, con los talones en el suelo: el tobillo, a una pierna de la cadera y a la altura que deja la
@@ -641,7 +643,7 @@
     /* el L-sit: sentado, con las piernas juntas y estiradas y las manos a los lados de la cadera; empuja con los brazos estirados hasta
        despegar del suelo la cadera y los pies, con las piernas rectas en forma de L; y mantiene */
     COREO['l-sit'] = (function () {
-      var Q = sentadoL(13, 18, function (P) { var c = resolver(P).i.cad; return sobre(P, { p: { a: [5, c[1] + 0.5, c[2] + 77.78], polo: [0, 1, 0] }, t: { tob: 0 } }); }, tendidas);
+      var Q = sentadoL(0, 4, function (P) { var c = resolver(P).i.cad; return sobre(P, { p: { a: [5, c[1] + 0.5, c[2] + 77.78], polo: [0, 1, 0] }, t: { tob: 0 } }); }, tendidas);
       return {
         vista: [[64, 12], [28, 24]], rastro: 'pel', isometrico: 'b', clavos: ['mi', 'md'],
         posturas: { s: Q.s, b: Q.b }, inicio: 's', encuadra: ['s', 'b'],
@@ -650,7 +652,10 @@
     })();
     /* con los pies apoyados: lo mismo, pero solo despega la cadera: los talones se quedan en el suelo y descargan parte del peso */
     COREO['l-sit-pies-apoyados'] = (function () {
-      var Q = sentadoL(13, 18, function (P) { return P; }, tendidas), b = tendidas(Q.b, resolver(Q.s).i.tob);
+      var Q = sentadoL(0, 4, function (P) { return P; }, tendidas), tob = resolver(Q.s).i.tob;
+      /* al subir la cadera la pierna gira sobre el talón: el tobillo no se mueve y el pie se dobla lo justo (se busca) para seguir posado */
+      var con = function (g) { return sobre(Q.b, { p: { a: [5, tob[1], tob[2]], polo: [0, 1, 0] }, t: { tob: g } }); };
+      var b = con(busca(function (g) { return bajoZapa(resolver(con(g)).i, 'i'); }, -0.2, -20, 20));
       return {
         vista: [[64, 12], [28, 24]], rastro: 'pel', isometrico: 'b', clavos: K4,
         posturas: { s: Q.s, b: b }, inicio: 's', encuadra: ['s', 'b'],
@@ -660,7 +665,7 @@
     /* con las rodillas encogidas: las manos en el suelo junto a la cadera, con los brazos estirados; despega el cuerpo y lleva las rodillas
        hacia el pecho, con los pies en el aire y la espalda erguida; y mantiene, con los hombros hacia abajo */
     COREO['l-sit-encogido'] = (function () {
-      var Q = sentadoL(9, 13, function (P) { return sobre(P, { p: { e: 166, z: 0, c: 150 }, t: { tob: 8 } }); }, function (P) { return sobre(P, { p: { suelo: [9, resolver(P).i.cad[2] + 44], abre: 3, polo: [0, 1, 0.15] } }); });
+      var Q = sentadoL(0, 6, function (P) { return sobre(P, { p: { e: 150, z: 0, c: 140 }, t: { tob: 8 } }); }, function (P) { return sobre(P, { p: { suelo: [9, resolver(P).i.cad[2] + 44], abre: 3, polo: [0, 1, 0.15] } }); });
       return {
         vista: [[64, 12], [28, 24]], rastro: 'pel', isometrico: 'b', clavos: ['mi', 'md'],
         posturas: { s: Q.s, b: Q.b }, inicio: 's', encuadra: ['s', 'b'],

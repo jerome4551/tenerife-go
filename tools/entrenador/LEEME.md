@@ -342,9 +342,11 @@ una pierna (38 cm) de la rodilla: con medio centímetro de menos, la rodilla sal
   cadera queda 4 cm más cerca del hombro. Si se dejan fijos el hombro y el tobillo de tumbado, la cadera se queda baja (148° en
   vez de recta). Se hace al revés: primero la plancha recta (de ahí sale el tobillo) y después el recostado que deja la cadera a
   una pierna de ese tobillo (`recostadoEn`).
-- **Los L-sit en el suelo**: con el tronco a plomo, los brazos de Jérôme (51 cm hasta la muñeca) no levantan la cadera: sentado, el
-  hombro queda a 55 cm. Con el tronco inclinado 13° y redondeado y los hombros hacia abajo (`hom: [−3, 0]`) la cadera sube 4 cm y los
-  talones quedan a 10 del suelo. Es lo que da el cuerpo del dibujo.
+- **Los L-sit en el suelo, con el tronco derecho** (rehechos el 18-11: Jerome vio que 4 cm con el tronco inclinado era poco). La
+  pelvis no es una bola: derecha, toca el suelo con su centro a 9,7 cm; inclinada 13°, a 11,8. Sentado derecho, el hombro queda justo
+  a un brazo estirado del suelo (con la palma plana), así que lo que despega la cadera es bajar los hombros (`hom`): con −6 sube
+  5,6 cm y los talones quedan a 9 del suelo. Inclinar y redondear el tronco para «ganar sitio», como iba antes, no es una L (67° entre
+  tronco y piernas) y encima sube menos (4,3 cm). La altura de sentado se busca con `troncoAPlano`; no se da por sabida.
 - **Las manos detrás de la cabeza no bajan los codos**: con la muñeca en la nuca el codo queda siempre a la altura de la cabeza.
   En el abdominal completo los codos se quedan a 17 cm de las rodillas; más cerca no llegan sin doblar el tronco más de lo que da.
 - **Un paso que no cabe en su lectura** (el cambio de lado de las planchas laterales, el cambio de mano del paseo de maleta) lleva
