@@ -89,10 +89,14 @@ const FOTO = () => {
   const MEMO = new Map();
   function memo(r) {
     const k = r.request().url();
+    /* 18-11-2026: si la carga que la pidió se cierra antes de leer la respuesta, Playwright la descarta
+       («Response has been disposed») y la promesa fallaba sin que nadie la recogiera: la prueba se caía entera
+       (la auditoría r12n55). Ahora un fallo al leerla cuenta como uno al pedirla: la misma falta para todas las
+       cargas; y si la página ya no está cuando llega, no hay nada que contestar. */
     if (!MEMO.has(k)) MEMO.set(k, r.fetch().then(async rs => ({ status: rs.status(), body: await rs.body(),
-      headers: { 'content-type': rs.headers()['content-type'] || 'application/json', 'access-control-allow-origin': '*' } }),
-      () => ({ status: 503, body: '', headers: { 'access-control-allow-origin': '*' } })));
-    return MEMO.get(k).then(m => r.fulfill(m));
+      headers: { 'content-type': rs.headers()['content-type'] || 'application/json', 'access-control-allow-origin': '*' } }))
+      .catch(() => ({ status: 503, body: '', headers: { 'access-control-allow-origin': '*' } })));
+    return MEMO.get(k).then(m => r.fulfill(m)).catch(() => {});
   }
 
   async function pinta(lang, arrancando) {
