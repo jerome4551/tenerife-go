@@ -9648,6 +9648,112 @@ px en los diez idiomas); `auditar_entrenador.js`, 79 (313 ejercicios con vídeo,
 SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.869).
 Al acabar, el repositorio sin ningún cambio: `app_preparar.js` montó `app/www/` (237 ficheros) y lo cotejó.
 
+## Jérôme, los bloques 10 y 11: los glúteos y los isquiotibiales, 65 vídeos más y 378 en total (notas 53 y 54, 18 de noviembre)
+
+**El bloque 10: los glúteos** (nota 53; parche `0018`, de la sesión del entrenador, el 17-11 por la tarde, detrás de los
+cuatro de la nota 52, ya publicados). 43 coreografías nuevas en su fuente (`tools/entrenador/src/79-gluteos.js`) y en su
+trozo (`modulos/entrenador/gluteos.468f027a.js`, 110.253 bytes, el más grande de los diez; el de cuádriceps, 76.844):
+tumbado de lado (la abducción, la aducción y la almeja), de lado sobre el antebrazo (la almeja en plancha lateral y las
+dos aducciones Copenhague, con su banco), a cuatro patas y boca abajo (con el estiramiento de la rana), de pie con las
+manos en la pared, el puente y el hip thrust, las poleas (con la tobillera y con la cuerda), la pesa rusa, trece
+zancadas (en el sitio, al frente, atrás, caminando, cruzada y de lado; sin peso, con mancuernas y con barra; dos con
+salto), las búlgaras, la subida lateral al escalón, el peso muerto sumo, el salto lateral y dos estiramientos más (el
+del glúteo tumbado y la mariposa). Con él, 356 ejercicios con vídeo, de 958; 47 fichas de glúteos con vídeo (con los 4
+del bloque 1: el puente, el hip thrust en banco, la zancada hacia atrás y la búlgara). Según la cuenta de la sesión del
+entrenador sobre las 533 fichas que reparten los bloques 1 a 15, son 47 de 57, y los 10 que quedan piden banda, máquina
+o fitball (bloques 13 a 15).
+
+**El material nuevo del bloque 10** (`50-material.js`): la barra con almohadilla (un rulo en el centro, para el hip
+thrust) y la polea con tobillera (el cable va a una banda justo encima del tobillo). Sin esas dos opciones se pinta como
+antes, y ningún vídeo de antes las usa: las 313 coreografías de la nota 52, volcadas antes y después por la sesión del
+entrenador, idénticas una a una, y los otros ocho trozos salen byte a byte con el mismo nombre. Medido por esa sesión
+con `contactos.js`, en los 43: ninguna zapatilla se hunde más de 1 cm (la que más, 0,9), ningún brazo o pierna más de
+2,5 (un antebrazo, 1,7), tumbado el tronco y la cabeza menos de 4 (3,4 y 3,7); de un cuadro al siguiente, el cuerpo 9,9
+cm como mucho (tope 14) y una mano 29,9 (tope 36); y cada secuencia cabe en su paso en los diez idiomas (la más justa,
+el cambio de pierna de la búlgara con barra: 4,05 s de 4,40). Lo que la ficha no dice (la altura del banco, cuánto se
+salta, por dónde pasan las manos) lo decidió esa sesión sin añadir técnica, y está en su nota.
+
+**`construir.py`, una línea** (nota 53). Cada trozo importa del motor los nombres que aparecen en su texto, y la
+auditoría comprueba que no le falte ninguno. `construir.py` cortaba los nombres con el `\w` de Python, que cuenta una
+letra con tilde como letra de nombre, y la auditoría los corta como JavaScript, que no: un comentario con «cruzándose»
+era para la auditoría el nombre `cruz`, que el motor tiene, y el trozo no lo importaba. Ahora corta igual que ella
+(`[A-Za-z_$][A-Za-z0-9_$]*`), y los ocho trozos de antes salen con los mismos nombres de fichero.
+
+**El bloque 11: los isquiotibiales** (nota 54; parche `0019`, de la misma sesión, el 17-11 por la noche, detrás del
+`0018`, cuando Jérôme pidió seguir con el bloque 11). 22 coreografías nuevas en su fuente
+(`tools/entrenador/src/7a-isquiotibiales.js`) y en su trozo (`modulos/entrenador/isquiotibiales.6b6dff41.js`, 50.471
+bytes): la bisagra de cadera sobre los dos pies (el peso muerto rumano en polea, los buenos días con barra y con las
+piernas abiertas, el peso muerto con las piernas rígidas y el rumano con un pie atrás), cinco pesos muertos a una pierna
+(sin peso, con pesa rusa, con mancuerna, en polea y con salto), cuatro curls (de pie sin peso y en polea, deslizando los
+talones sobre una toalla y el nórdico), dos boca abajo en el banco (las patadas alternas y la hiperextensión inversa),
+el balanceo de la pierna junto a una pared, el isométrico sentado y cuatro estiramientos (con el talón en un escalón,
+sentado en el suelo, en el borde de un banco y tumbado). **378 ejercicios con vídeo**, de 958; 26 fichas de
+isquiotibiales con vídeo, de las 57 del catálogo que los tienen como primer grupo (con los 4 del bloque 1: los dos pesos
+muertos rumanos, el peso muerto con barra y los buenos días sin peso). Según la cuenta de la sesión del entrenador sobre
+las 533 fichas de los bloques 1 a 15, son 26 de 35, y los 9 que quedan piden máquina, banda o fitball (bloques 13 a 15).
+
+**Lo que cambia con el bloque 11 fuera de su trozo** (`50-material.js`): la toalla doblada puede llevar dos franjas de
+color, una cerca de cada canto (sobre la arena una toalla clara apenas se ve), y deslizarse con los pies
+(`bajo: 'talones'`); la usa el curl deslizando los talones. Sin esas opciones se pinta como antes, y ningún vídeo de
+antes las usa: las 356 coreografías de la nota 53, volcadas antes y después por la sesión del entrenador, idénticas una
+a una; aquí, el parche no toca ninguno de los nueve trozos de antes. El trozo nuevo se llama `7a`: después del `79` van
+letras, como ya preveían `construir.py` y la auditoría. Medido por esa sesión con `contactos.js`, en los 22: la
+zapatilla que más se hunde, 0,5 cm (tope 1); el cuerpo, 2,1 (tope 2,5: la espinilla en la esterilla, al caer en el
+nórdico); tumbado, el tronco 2,7 y la cabeza 3,4 (tope 4); de un cuadro al siguiente, el cuerpo 7 cm como mucho (tope
+14) y una mano 27,3 (tope 36); y cada secuencia cabe en su paso en los diez idiomas (la más justa, el cambio de pierna
+del peso muerto con un pie atrás: 4,15 s de 4,40, en chino tradicional). Lo que la ficha da con números se midió en el
+vídeo (por ejemplo, «pare a unos 5 centímetros» en el nórdico: el pecho, a 4 cm del suelo), y lo que no dice (dónde
+están las poleas, cuánto cuelgan las piernas del banco, con qué se sujetan los tobillos en el nórdico) lo decidió esa
+sesión sin añadir técnica, y está en su nota.
+
+**Puesto y comprobado aquí.** Los dos parches, con `git am` y sus propias líneas de autoría. En los dos, la línea del
+estado de la muestra del entrenador (`tools/entrenador/muestra/plantilla.html`, que la app no enlaza) no entraba como
+venía: el `0018` dice que el vídeo por grupos y los bloques 9 y 10 están «sin subir a GitHub» (el 9 y el vídeo por
+grupos se publicaron con la nota 52), y el `0019`, escrito encima de esa línea, ya no casaba con la de aquí. El resto de
+la muestra es el de los parches, y esa línea dice lo que habrá al publicar: «Los bloques 1 a 11, la cámara lenta
+arreglada, la subida al pino, los arreglos del suelo, las paredes, los muslos y la leyenda, y el vídeo partido por
+grupos ya están en la app.» Con eso, los ficheros de cada zip (`repo/`: nueve en el de la 53 y ocho en el de la 54),
+iguales byte a byte a los de su commit en la rama, y los dos parches, con la huella que dicen sus notas.
+`construir.py --comprobar` (el motor, los diez trozos y `con-video.json`, los de sus fuentes) y
+`app_preparar.js --comprobar`, en verde. `con-video.json`: 378 filas; la nota 53 añade 43 y la 54, 22, ninguna quitada
+ni cambiada, y las 65 con su ficha en `datos/cuerpo/ejercicios.json` (las 43 de la 53, con los glúteos como primer
+grupo; las 22 de la 54, con los isquiotibiales). Ningún texto nuevo a la vista: entre comillas, los dos trozos solo
+llevan los nombres de sus ejercicios, las huellas de sus pasos (12 cifras hexadecimales) y claves internas del dibujo
+(piezas, material, ritmos): 211 cadenas distintas en el de glúteos y 129 en el de isquiotibiales, ninguna con letras
+fuera del ASCII y ninguna con espacios, salvo el `'use strict'` del principio. Lo que se lee, el nombre y los pasos,
+sale de las fichas ya publicadas en los diez idiomas. Sin APIs nuevas de riesgo: los dos trozos se cargan como los otros
+ocho, del propio dominio, solo leen `window.TG_ENTRENADOR` y no escriben en la página; en el motor solo cambian la
+barra, la polea y la toalla, la lista de trozos y la de los nombres que les pasa.
+
+**Lo que no está comprobado**, como en las notas 51 y 52: nada en un iPhone ni en un Samsung de verdad (en las pruebas,
+Samsung Internet es Chromium con su `User-Agent`), y lo que tarda el primer vídeo de cada grupo en un teléfono: el de
+glúteos es el trozo más grande, y el primero de ese grupo lo descarga. Tampoco que los ejercicios se vean como los haría
+un entrenador: están cotejados con su ficha y medidos, no revisados por un profesional.
+
+**Para decidir (Jérôme).** El apoyo del curl nórdico: la ficha dice «pida a alguien que le sujete los tobillos o
+engánchelos bajo un apoyo fijo» y como material solo marca la esterilla; el vídeo pone una barra cargada sobre los
+tobillos. Si prefiere otra cosa, o nada, es una línea de la fuente.
+
+**La auditoría entera** sobre `77dd42e` (árbol `2fb93398`): los dos commits de las notas 53 y 54 encima de `main`
+(`54b6cf6`). Se pasó una sola vez para las dos: la de la nota 53 sola, que iba por la mitad sin un rojo, se paró a
+propósito al llegar la 54. En `main` es lo mismo, rebasado sobre tres commits de los robots (`fa9af43`, terremotos;
+`d44eb83`, avisos de AEMET, y `71ef3d1`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`,
+`datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el
+rebase. En los 61 bloques de `auditar.sh`, ningún rojo: `auditar_entrenador.js`, 79 (378 ejercicios con vídeo, de 958:
+los 378 vídeos enteros, en castellano y en otro idioma, 756 pases y 671.779 cuadros; el motor solo, sin pedir ningún
+trozo hasta que se pide una coreografía, y los diez trozos, los de sus fuentes según `construir.py --comprobar`);
+`probar_cuerpo.js`, 800; `probar_figura.js`, 64; la isla en 3D, 57 y ninguno en rojo; las preguntas de prueba al
+asistente, 0 fallos de 261; los datos, 975 lugares en todas partes (también en el resumen de este documento) y ninguna
+cifra de lugares que no sea 975 en lo que se lee; `probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626;
+`auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted (137.827 textos);
+`castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.340 nombres propios en cirílico y
+ninguna variante sospechosa; `auditar_desborde.js`: la etiqueta viewport de las cuatro páginas, las tres cajas de
+copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16 px; `barrido_pantallas.js`, 191
+pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el
+cielo, 311; el perfil y los avatares, 74 y 153; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del
+documento, las de ahora (52 tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/` (239 ficheros: los dos
+trozos nuevos, dentro) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
