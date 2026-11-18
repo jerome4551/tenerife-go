@@ -224,6 +224,9 @@
      une: true, si las manos se separan se queda con la de «lado» (la otra la suelta un momento y vuelve a cogerla).
      extremo: true (o [a cuánto de la muñeca, cuánto hacia la palma]): no se coge por el asa sino por un extremo; la mano, en garra sobre
      el disco de arriba (su centro queda donde llegan las yemas), y la mancuerna cuelga a plomo de ella.
+     cambia: { i: [posturas] } (con lado: 'd'), para pasarla de una mano a la otra a la vista: en los tramos que SALEN de esas
+     posturas la lleva la otra mano. Con las manos juntas (a menos de 11 cm) va entre las dos, y se va con la que la lleva según se
+     separan: el cambio de mano se hace en una postura con los dos puños juntos en el asa, y no da un salto.
      toalla: true, una toalla en el asa, que la engorda: mientras espera, monta abierta sobre el asa y cae a los dos lados hasta el suelo; se
      enrolla cuando la mano que llega a ella se cierra, y enrollada sigue, con una punta colgando ── */
   var TOALLA = ['#f4f1ea', '#e2ddd0', '#cfc8b6'];
@@ -240,11 +243,16 @@
       }
     }, this);
   };
-  MATERIAL.mancuernas.prototype.colocar = function (E, ctx) { this.suelta = enReposo(this.o, ctx); };
+  MATERIAL.mancuernas.prototype.colocar = function (E, ctx) {
+    var q = this.o.cambia, k;
+    this.suelta = enReposo(this.o, ctx); this.lleva = null;
+    if (q && ctx && ctx.de) for (k in q) if (q[k].indexOf(ctx.de) >= 0) this.lleva = k;
+  };
   MATERIAL.mancuernas.prototype.pintar = function (E, cam, lista) {
     var o = this.o, R = o.radio || 6.6, suelta = this.suelta;
     this.lados.forEach(function (k) {
-      var L = E[k], c = L.agarre, e = o.vertical ? L.mano.dir : L.mano.eje, p = this.p[k];
+      var L = E[this.lleva || k], c = L.agarre, e = o.vertical ? L.mano.dir : L.mano.eje, p = this.p[k];
+      if (o.cambia) { var sc = entre((largo(menos(E.i.agarre, E.d.agarre)) - 11) / 16, 0, 1); c = mezcla(mezcla(E.i.agarre, E.d.agarre, 0.5), L.agarre, sc * sc * (3 - 2 * sc)); }
       if (o.dos) {
         c = mezcla(E.i.agarre, E.d.agarre, 0.5); e = o.ejeDos ? aplicar(E.Bt, o.ejeDos) : o.medio ? unidad(mas(E.i.mano.dir, E.d.mano.dir), L.mano.dir) : L.mano.dir;
         if (o.une) { var su = entre((largo(menos(E.i.agarre, E.d.agarre)) - 11) / 16, 0, 1); c = mezcla(c, L.agarre, su * su * (3 - 2 * su)); }
@@ -309,7 +317,9 @@
   /* ── el banco: el asiento y, si se pide, el respaldo inclinado. o: { en: [x, z], rumbo, largo, alto, ancho, respaldo: grados, asiento: largo del asiento,
      tapa: true (el respaldo tapa de verdad lo que tiene detrás: para quien se pone de pie al otro lado) }
      El respaldo sale del asiento hacia +Z (con rumbo 180, hacia −Z: así se tumba Jérôme, que mira a +Z, con la cabeza hacia −Z).
-     respaldo: 45, inclinado; 85, casi vertical (una silla); negativo, declinado (la cabeza más baja que la cadera) ── */
+     respaldo: 45, inclinado; 85, casi vertical (una silla); negativo, declinado (la cabeza más baja que la cadera).
+     rodillos: [[z, y, sesgo], …], en el marco del banco: los rulos tapizados que sujetan los pies o las rodillas (el banco declinado, el
+     de hiperextensiones), cada uno a lo ancho y sobre su poste ── */
   MATERIAL.banco = function (esc, o) {
     o = o || {};
     this.o = o;
@@ -317,6 +327,7 @@
     this.asiento = new Caja(tap); this.resp = o.respaldo != null ? new Caja(tap) : null;
     this.patas = [new Caja(hie), new Caja(hie)]; this.puntal = new Cilindro(M_COL.hierro); this.pies = [new Cilindro(M_COL.hierroS), new Cilindro(M_COL.hierroS)];
     this.riel = this.resp ? new Cilindro(M_COL.hierroS) : null;
+    this.rod = o.rodillos ? o.rodillos.map(function () { return [new Cilindro(M_COL.tapiz, 'rgba(255,255,255,.2)'), new Cilindro(M_COL.hierro)]; }) : null;
     this.antes = true;
   };
   MATERIAL.banco.prototype.colocar = function () {};
@@ -349,11 +360,17 @@
     this.pies[0].pon(cam, al(-ancho * 0.62, 1.6, -lar / 2 + 14), al(ancho * 0.62, 1.6, -lar / 2 + 14), 2, lista, sg - 3);
     this.pies[1].pon(cam, al(-ancho * 0.62, 1.6, zf), al(ancho * 0.62, 1.6, zf), 2, lista, sg - 3);
     if (this.riel) this.riel.pon(cam, al(0, 2, -lar / 2 + 14), al(0, 2, zf), 1.7, lista, sg - 4);
+    if (this.rod) this.rod.forEach(function (r, i) {
+      var q = o.rodillos[i];
+      r[0].pon(cam, al(-(ancho / 2 + 6), q[1], q[0]), al(ancho / 2 + 6, q[1], q[0]), 4.6, lista, q[2] == null ? 2 : q[2]);
+      r[1].pon(cam, al(0, 2, q[0]), al(0, q[1], q[0]), 2, lista, sg - 3);
+    });
   };
   MATERIAL.banco.prototype.extremos = function () {
     var o = this.o, B = giroY(o.rumbo || 0), c = [o.en ? o.en[0] : 0, 0, o.en ? o.en[1] : 0], w = (o.ancho || 28) / 2, l = (o.largo || 120) / 2, h = o.alto || 44, r = [];
     [[-w, -l], [w, -l], [w, l], [-w, l]].forEach(function (q) { r.push(mas(c, aplicar(B, [q[0], 0, q[1]])), mas(c, aplicar(B, [q[0], h, q[1]]))); });
     if (o.respaldo != null) { var la = o.asiento || 38, lr = (o.largo || 120) - la; r.push(mas(c, aplicar(B, [0, h + Math.sin(o.respaldo * RAD) * lr, -l + la + Math.cos(o.respaldo * RAD) * lr]))); }
+    (o.rodillos || []).forEach(function (q) { r.push(mas(c, aplicar(B, [-w - 6, q[1] + 5, q[0]])), mas(c, aplicar(B, [w + 6, q[1] + 5, q[0]])), mas(c, aplicar(B, [0, 0, q[0]]))); });
     return r;
   };
   /* dónde queda la superficie del banco (para tumbarse o sentarse): un punto a z del centro, y el respaldo */
