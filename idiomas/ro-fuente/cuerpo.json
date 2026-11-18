@@ -1,0 +1,4697 @@
+{
+ "_": "Rumano (ro) de las filas de CUERPO_UI de modulos/cuerpo.js (la pantalla «Su cuerpo»). Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. No se edita a mano: sale de la entrega del bloque 13 del rumano.",
+ "idioma": "ro",
+ "fichero": "modulos/cuerpo.js",
+ "filas": [
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoTitulo",
+   "es": "Su cuerpo",
+   "forma": "texto",
+   "ro": "Corp"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoLema",
+   "es": "Sus músculos, su semana y su personaje",
+   "forma": "texto",
+   "ro": "Mușchii, săptămâna și personajul dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoModos",
+   "es": "Qué ver",
+   "forma": "texto",
+   "ro": "Afișare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoModoMusculos",
+   "es": "Músculos",
+   "forma": "texto",
+   "ro": "Mușchi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoModoAspecto",
+   "es": "Aspecto",
+   "forma": "texto",
+   "ro": "Aspect"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGirar",
+   "es": "Girar",
+   "forma": "texto",
+   "ro": "Întoarceți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVerEspalda",
+   "es": "Ver de espaldas",
+   "forma": "texto",
+   "ro": "Vedeți din spate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVerFrente",
+   "es": "Ver de frente",
+   "forma": "texto",
+   "ro": "Vedeți din față"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVistaFrente",
+   "es": "de frente",
+   "forma": "texto",
+   "ro": "din față"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVistaEspalda",
+   "es": "de espaldas",
+   "forma": "texto",
+   "ro": "din spate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFiguraAlt",
+   "es": "Su personaje, {vista}",
+   "forma": "texto",
+   "ro": "Personajul dumneavoastră, {vista}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFiguraAltMusculos",
+   "es": "Sus músculos, {vista}. {trabajados}",
+   "forma": "texto",
+   "ro": "Mușchii dumneavoastră, {vista}. {trabajados}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoTrabajados",
+   "es": "Trabajados en los últimos 7 días: {lista}.",
+   "forma": "texto",
+   "ro": "Grupe lucrate în ultimele 7 zile: {lista}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNingunTrabajado",
+   "es": "Ningún grupo trabajado en los últimos 7 días.",
+   "forma": "texto",
+   "ro": "Nicio grupă lucrată în ultimele 7 zile."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoLeyenda",
+   "es": "Series en los últimos 7 días",
+   "forma": "texto",
+   "ro": "Serii în ultimele 7 zile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivel0",
+   "es": "Ninguna",
+   "forma": "texto",
+   "ro": "Niciuna"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivel1",
+   "es": "De 1 a 4",
+   "forma": "texto",
+   "ro": "De la 1 la 4"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivel2",
+   "es": "De 5 a 9",
+   "forma": "texto",
+   "ro": "De la 5 la 9"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivel3",
+   "es": "10 o más",
+   "forma": "texto",
+   "ro": "10 sau mai multe"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoResumenTitulo",
+   "es": "Sus últimos 7 días",
+   "forma": "texto",
+   "ro": "Ultimele 7 zile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoStatSeries",
+   "es": "Series",
+   "forma": "texto",
+   "ro": "Serii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoStatGrupos",
+   "es": "Grupos trabajados",
+   "forma": "texto",
+   "ro": "Grupe lucrate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoStatDias",
+   "es": "Días con fuerza",
+   "forma": "texto",
+   "ro": "Zile de forță"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRecoAdulto",
+   "es": "La OMS (2020) y el ACSM (2026) recomiendan a los adultos ejercicios de fuerza al menos 2 días por semana, con todos los grupos musculares principales.",
+   "forma": "texto",
+   "ro": "OMS (2020) și ACSM (2026) recomandă adulților exerciții de forță cel puțin 2 zile pe săptămână, pentru toate grupele musculare principale."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRecoJoven",
+   "es": "La OMS (2020) recomienda de 5 a 17 años actividades que fortalezcan los músculos y los huesos al menos 3 días por semana.",
+   "forma": "texto",
+   "ro": "Între 5 și 17 ani, OMS (2020) recomandă activități care întăresc mușchii și oasele cel puțin 3 zile pe săptămână."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRefSeries",
+   "es": "Para ganar músculo, el ACSM (2026) indica a los adultos sanos al menos 10 series por grupo muscular y semana; pasadas unas 18–20, lo que se gana es cada vez menos.",
+   "forma": "texto",
+   "ro": "Pentru a câștiga masă musculară, ACSM (2026) le indică adulților sănătoși cel puțin 10 serii pe grupă musculară pe săptămână; după vreo 18–20, câștigul este tot mai mic."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFuentes",
+   "es": "Fuentes: OMS, directrices sobre actividad física y hábitos sedentarios (2020); ACSM, declaración de posición sobre el entrenamiento de fuerza (2026).",
+   "forma": "texto",
+   "ro": "Surse: OMS, ghidurile privind activitatea fizică și comportamentul sedentar (2020); ACSM, declarația de poziție privind antrenamentul de forță (2026)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGruposTitulo",
+   "es": "Los 12 grupos musculares",
+   "forma": "texto",
+   "ro": "Cele 12 grupe musculare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGruposAyuda",
+   "es": "Toque un músculo del dibujo o de la lista para anotar series.",
+   "forma": "texto",
+   "ro": "Atingeți un mușchi din desen sau din listă ca să notați serii."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoy",
+   "es": "hoy",
+   "forma": "texto",
+   "ro": "azi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAyer",
+   "es": "ayer",
+   "forma": "texto",
+   "ro": "ieri"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHaceDias",
+   "es": "hace {n} día|hace {n} días",
+   "forma": "texto",
+   "ro": "acum {n} zi|acum {n} zile|acum {n} de zile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSinAnotar",
+   "es": "sin anotar",
+   "forma": "texto",
+   "ro": "nimic notat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNSeries",
+   "es": "{n} serie|{n} series",
+   "forma": "texto",
+   "ro": "{n} serie|{n} serii|{n} de serii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_pecho",
+   "es": "Pecho",
+   "forma": "texto",
+   "ro": "Piept"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_dorsal",
+   "es": "Dorsales",
+   "forma": "texto",
+   "ro": "Dorsali"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_espalda_alta",
+   "es": "Espalda alta y trapecio",
+   "forma": "texto",
+   "ro": "Spate superior și trapez"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_hombros",
+   "es": "Hombros",
+   "forma": "texto",
+   "ro": "Umeri"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_biceps",
+   "es": "Bíceps",
+   "forma": "texto",
+   "ro": "Biceps"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_triceps",
+   "es": "Tríceps",
+   "forma": "texto",
+   "ro": "Triceps"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_antebrazo",
+   "es": "Antebrazos",
+   "forma": "texto",
+   "ro": "Antebrațe"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_core",
+   "es": "Abdomen y lumbares",
+   "forma": "texto",
+   "ro": "Abdomen și zona lombară"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_gluteos",
+   "es": "Glúteos y cadera",
+   "forma": "texto",
+   "ro": "Fesieri și șold"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_cuadriceps",
+   "es": "Cuádriceps",
+   "forma": "texto",
+   "ro": "Cvadriceps"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_isquios",
+   "es": "Isquiotibiales",
+   "forma": "texto",
+   "ro": "Femurali"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoG_pantorrilla",
+   "es": "Pantorrillas y espinillas",
+   "forma": "texto",
+   "ro": "Gambe și tibii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_pecho",
+   "es": "Pectorales. Empujan los brazos hacia delante, como en las flexiones.",
+   "forma": "texto",
+   "ro": "Pectoralii împing brațele înainte, ca la flotări."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_dorsal",
+   "es": "Dorsal ancho y redondo mayor. Tiran de los brazos hacia abajo y atrás, como en las dominadas.",
+   "forma": "texto",
+   "ro": "Marele dorsal și rotundul mare trag brațele în jos și înapoi, ca la tracțiuni."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_espalda_alta",
+   "es": "Trapecio, romboides y serrato anterior. Mueven y sujetan el omóplato: lo llevan hacia atrás y hacia arriba, y el serrato lo pega a las costillas.",
+   "forma": "texto",
+   "ro": "Trapezul, romboizii și dințatul anterior mișcă și stabilizează omoplatul: îl duc înapoi și în sus, iar dințatul îl lipește de coaste."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_hombros",
+   "es": "Deltoides y manguito rotador. El deltoides levanta el brazo hacia delante, hacia el lado y hacia atrás; el manguito lo gira y mantiene el hombro en su sitio.",
+   "forma": "texto",
+   "ro": "Deltoidul și coafa rotatorilor. Deltoidul ridică brațul înainte, lateral și înapoi; coafa îl rotește și ține umărul la locul lui."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_biceps",
+   "es": "Bíceps y braquial. Doblan el codo.",
+   "forma": "texto",
+   "ro": "Bicepsul și brahialul îndoaie cotul."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_triceps",
+   "es": "Tríceps. Estira el codo.",
+   "forma": "texto",
+   "ro": "Tricepsul întinde cotul."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_antebrazo",
+   "es": "Braquiorradial y flexores y extensores de la muñeca y los dedos. Dan fuerza al agarre, y el braquiorradial ayuda a doblar el codo.",
+   "forma": "texto",
+   "ro": "Brahioradialul și mușchii care flectează și extind încheietura mâinii și degetele dau forță strânsorii, iar brahioradialul ajută la îndoirea cotului."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_core",
+   "es": "Recto del abdomen, oblicuos y lumbares. Doblan, giran y sostienen el tronco.",
+   "forma": "texto",
+   "ro": "Dreptul abdominal, oblicii și mușchii lombari îndoaie, rotesc și susțin trunchiul."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_gluteos",
+   "es": "Glúteos y aductores. Extienden la cadera, separan la pierna y la acercan.",
+   "forma": "texto",
+   "ro": "Fesierii și adductorii extind șoldul, depărtează piciorul și îl apropie."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_cuadriceps",
+   "es": "Cara delantera del muslo: cuádriceps y sartorio. El cuádriceps estira la rodilla.",
+   "forma": "texto",
+   "ro": "Partea din față a coapsei: cvadricepsul și croitorul. Cvadricepsul întinde genunchiul."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_isquios",
+   "es": "Cara trasera del muslo. Doblan la rodilla y extienden la cadera.",
+   "forma": "texto",
+   "ro": "Partea din spate a coapsei. Femuralii îndoaie genunchiul și extind șoldul."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoD_pantorrilla",
+   "es": "Gastrocnemio, sóleo, tibial anterior y peroneos. Mueven y sujetan el tobillo: ponerse de puntillas, levantar la punta del pie y girar la planta hacia fuera (los peroneos).",
+   "forma": "texto",
+   "ro": "Gastrocnemianul, solearul, tibialul anterior și peronierii mișcă și stabilizează glezna: ridicarea pe vârfuri, ridicarea vârfului piciorului și rotirea tălpii spre exterior (peronierii)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoStatSeries7",
+   "es": "Series, 7 días",
+   "forma": "texto",
+   "ro": "Serii, 7 zile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoStatDias7",
+   "es": "Días, 7 días",
+   "forma": "texto",
+   "ro": "Zile, 7 zile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoStatUltima",
+   "es": "Última vez",
+   "forma": "texto",
+   "ro": "Ultima dată"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAnotar",
+   "es": "Anotar series",
+   "forma": "texto",
+   "ro": "Notați serii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCuantas",
+   "es": "Series",
+   "forma": "texto",
+   "ro": "Serii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMenos",
+   "es": "Una serie menos",
+   "forma": "texto",
+   "ro": "O serie mai puțin"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMas",
+   "es": "Una serie más",
+   "forma": "texto",
+   "ro": "Încă o serie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCuando",
+   "es": "Cuándo",
+   "forma": "texto",
+   "ro": "Când"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyB",
+   "es": "Hoy",
+   "forma": "texto",
+   "ro": "Azi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAyerB",
+   "es": "Ayer",
+   "forma": "texto",
+   "ro": "Ieri"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGuardar",
+   "es": "Guardar",
+   "forma": "texto",
+   "ro": "Salvați"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAnotado",
+   "es": "{grupo}: {n} serie anotada|{grupo}: {n} series anotadas",
+   "forma": "texto",
+   "ro": "{grupo}: {n} serie notată|{grupo}: {n} serii notate|{grupo}: {n} de serii notate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHistorial",
+   "es": "Lo último anotado",
+   "forma": "texto",
+   "ro": "Ultimele înregistrări"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSinHistorial",
+   "es": "Aún no hay nada anotado en este grupo.",
+   "forma": "texto",
+   "ro": "Încă nu este nimic notat la această grupă."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBorrarEntrada",
+   "es": "Borrar: {series}, {fecha}",
+   "forma": "texto",
+   "ro": "Ștergeți: {series}, {fecha}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEntradaBorrada",
+   "es": "Anotación borrada",
+   "forma": "texto",
+   "ro": "Înregistrarea a fost ștearsă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDeshacer",
+   "es": "Deshacer",
+   "forma": "texto",
+   "ro": "Anulați"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVolverPerfil",
+   "es": "Volver a su perfil",
+   "forma": "texto",
+   "ro": "Înapoi la profil"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoTemaNoche",
+   "es": "Cambiar al tema Noche",
+   "forma": "texto",
+   "ro": "Treceți la tema Noapte"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoTemaDia",
+   "es": "Cambiar al tema Día",
+   "forma": "texto",
+   "ro": "Treceți la tema Zi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCifras",
+   "es": "Las cifras",
+   "forma": "texto",
+   "ro": "Cifrele"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCifrasDe",
+   "es": "De dónde salen las cifras",
+   "forma": "texto",
+   "ro": "De unde provin cifrele"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPistaToque",
+   "es": "Toque su cuerpo para anotar una serie",
+   "forma": "texto",
+   "ro": "Atingeți corpul ca să notați o serie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMasUna",
+   "es": "+ 1 serie",
+   "forma": "texto",
+   "ro": "+ 1 serie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMasTres",
+   "es": "Tres series más",
+   "forma": "texto",
+   "ro": "Încă trei serii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSerieQuitada",
+   "es": "{grupo}: una serie menos",
+   "forma": "texto",
+   "ro": "{grupo}: o serie mai puțin"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRefCorta",
+   "es": "Referencia: 10 series (ACSM)",
+   "forma": "texto",
+   "ro": "Referință: 10 serii (ACSM)"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAspectoTitulo",
+   "es": "Su aspecto",
+   "forma": "texto",
+   "ro": "Aspectul dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAspectoLema",
+   "es": "Elija lo que más se le parezca. Solo cambia el dibujo.",
+   "forma": "texto",
+   "ro": "Alegeți ce seamănă cel mai mult cu dumneavoastră. Se schimbă doar desenul."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAviso3D",
+   "es": "En 3D todavía no están el pelo rizado ni el moño (salen como afro y coleta), la barba, la gorra y el pañuelo, ni las botas de montaña (salen como zapatillas). En el dibujo pequeño, sí.",
+   "forma": "texto",
+   "ro": "În 3D încă lipsesc părul creț și cocul (apar ca afro și coadă de cal), barba, șapca și baticul, precum și bocancii de munte (apar ca pantofi sport). În desenul mic apar."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoStatMin",
+   "es": "Minutos de movimiento",
+   "forma": "texto",
+   "ro": "Minute de mișcare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMetaHecha",
+   "es": "Meta cumplida",
+   "forma": "texto",
+   "ro": "Obiectiv atins"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMetaFuerzaDe",
+   "es": "de {n} días con fuerza",
+   "forma": "texto",
+   "ro": "din {n} zile de forță"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMetaMovDe",
+   "es": "de {n} min de movimiento",
+   "forma": "texto",
+   "ro": "din {n} min de mișcare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMetaMovDeEq",
+   "es": "de {n} min (intensos ×2)",
+   "forma": "texto",
+   "ro": "din {n} min (cele intense ×2)"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMetaGruposDe",
+   "es": "de {n} grupos trabajados",
+   "forma": "texto",
+   "ro": "din {n} grupe lucrate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMin",
+   "es": "{n} min",
+   "forma": "texto",
+   "ro": "{n} min"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMinKm",
+   "es": "{min} min y {km} km",
+   "forma": "texto",
+   "ro": "{min} min și {km} km"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSemanaLeyenda",
+   "es": "Sus últimos 7 días: las series y el movimiento de cada día",
+   "forma": "texto",
+   "ro": "Ultimele 7 zile: seriile și mișcarea din fiecare zi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovAnotar",
+   "es": "Anotar movimiento",
+   "forma": "texto",
+   "ro": "Notați mișcarea"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovLema",
+   "es": "Cada deporte, con sus datos: lo que haga en la isla cuenta.",
+   "forma": "texto",
+   "ro": "Fiecare sport, cu datele lui: tot ce faceți pe insulă contează."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovQue",
+   "es": "Qué ha hecho",
+   "forma": "texto",
+   "ro": "Ce ați făcut"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovMinutos",
+   "es": "Minutos",
+   "forma": "texto",
+   "ro": "Minute"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovMenos5",
+   "es": "5 minutos menos",
+   "forma": "texto",
+   "ro": "Cu 5 minute mai puțin"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovMas5",
+   "es": "5 minutos más",
+   "forma": "texto",
+   "ro": "Cu 5 minute mai mult"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovKm",
+   "es": "Kilómetros",
+   "forma": "texto",
+   "ro": "Kilometri"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovMenosKm",
+   "es": "Medio kilómetro menos",
+   "forma": "texto",
+   "ro": "Cu jumătate de kilometru mai puțin"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovMasKm",
+   "es": "Medio kilómetro más",
+   "forma": "texto",
+   "ro": "Cu jumătate de kilometru mai mult"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovBoton",
+   "es": "Anotar {que}",
+   "forma": "texto",
+   "ro": "Notați {que}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovAnotado",
+   "es": "{tipo}: {que} anotados",
+   "forma": "texto",
+   "ro": "{tipo}: s-au notat {que}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovSinHistorial",
+   "es": "Aún no hay movimiento anotado.",
+   "forma": "texto",
+   "ro": "Încă nu este notată nicio mișcare."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_caminar",
+   "es": "Caminar",
+   "forma": "texto",
+   "ro": "Mers pe jos"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_senderismo",
+   "es": "Senderismo",
+   "forma": "texto",
+   "ro": "Drumeții"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_correr",
+   "es": "Correr",
+   "forma": "texto",
+   "ro": "Alergare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_nadar",
+   "es": "Nadar",
+   "forma": "texto",
+   "ro": "Înot"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_bici",
+   "es": "Bici",
+   "forma": "texto",
+   "ro": "Bicicletă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRecoMovAdulto",
+   "es": "La OMS (2020) recomienda a los adultos de 150 a 300 minutos de actividad moderada a la semana, como caminar a buen paso, o de 75 a 150 de actividad intensa, como correr: cada minuto intenso cuenta por dos.",
+   "forma": "texto",
+   "ro": "OMS (2020) recomandă adulților între 150 și 300 de minute de activitate moderată pe săptămână, cum ar fi mersul în pas alert, sau între 75 și 150 de minute de activitate intensă, cum ar fi alergarea: fiecare minut intens contează dublu."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRecoMovJoven",
+   "es": "De 5 a 17 años, la OMS (2020) recomienda una media de 60 minutos al día de actividad moderada o intensa: 420 a la semana.",
+   "forma": "texto",
+   "ro": "Între 5 și 17 ani, OMS (2020) recomandă în medie 60 de minute pe zi de activitate moderată sau intensă: 420 de minute pe săptămână."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyTitulo",
+   "es": "Hoy en la isla",
+   "forma": "texto",
+   "ro": "Azi pe insulă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyZona",
+   "es": "Zona del tiempo",
+   "forma": "texto",
+   "ro": "Zona pentru vreme"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyUv",
+   "es": "UV {n} · {cat}",
+   "forma": "texto",
+   "ro": "UV {n} · {cat}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyUvMax",
+   "es": "UV máx. hoy {n}",
+   "forma": "texto",
+   "ro": "UV max. azi {n}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoUvBajo",
+   "es": "bajo",
+   "forma": "texto",
+   "ro": "scăzut"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoUvModerado",
+   "es": "moderado",
+   "forma": "texto",
+   "ro": "moderat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoUvAlto",
+   "es": "alto",
+   "forma": "texto",
+   "ro": "ridicat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoUvMuyAlto",
+   "es": "muy alto",
+   "forma": "texto",
+   "ro": "foarte ridicat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoUvExtremo",
+   "es": "extremo",
+   "forma": "texto",
+   "ro": "extrem"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyMar",
+   "es": "Mar {n}°",
+   "forma": "texto",
+   "ro": "Marea {n}°"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyLluvia",
+   "es": "Lluvia",
+   "forma": "texto",
+   "ro": "Ploaie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyNieve",
+   "es": "Nieve",
+   "forma": "texto",
+   "ro": "Ninsoare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyCargando",
+   "es": "Consultando el tiempo…",
+   "forma": "texto",
+   "ro": "Se consultă vremea…"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoySinDatos",
+   "es": "Sin datos del tiempo ahora. Compruebe la conexión.",
+   "forma": "texto",
+   "ro": "Momentan nu există date despre vreme. Verificați conexiunea."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyFuente",
+   "es": "Open-Meteo, a las {h}",
+   "forma": "texto",
+   "ro": "Open-Meteo, la ora {h}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyFuenteVieja",
+   "es": "Open-Meteo, de hace {n} h (sin conexión ahora)",
+   "forma": "texto",
+   "ro": "Open-Meteo, de acum {n} h (momentan fără conexiune)"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyPrimero",
+   "es": "Un buen primer paso: toque una zona de su cuerpo y anote lo que haga hoy.",
+   "forma": "texto",
+   "ro": "Un prim pas bun: atingeți o zonă a corpului și notați ce faceți azi."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyFaltaFuerza",
+   "es": "Le falta {n} día de fuerza para cerrar la semana.|Le faltan {n} días de fuerza para cerrar la semana.",
+   "forma": "texto",
+   "ro": "Vă mai lipsește {n} zi de forță ca să încheiați săptămâna.|Vă mai lipsesc {n} zile de forță ca să încheiați săptămâna.|Vă mai lipsesc {n} de zile de forță ca să încheiați săptămâna."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoySinAnotar",
+   "es": "Aún sin anotar: {lista}.",
+   "forma": "texto",
+   "ro": "Încă nenotate: {lista}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyParaDeporte",
+   "es": "Para {deporte}, aún sin anotar: {lista}.",
+   "forma": "texto",
+   "ro": "Pentru {deporte}, încă nenotate: {lista}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyFaltaMin",
+   "es": "Le falta {n} minuto de movimiento para cerrar la semana.|Le faltan {n} minutos de movimiento para cerrar la semana.",
+   "forma": "texto",
+   "ro": "Vă mai lipsește {n} minut de mișcare ca să încheiați săptămâna.|Vă mai lipsesc {n} minute de mișcare ca să încheiați săptămâna.|Vă mai lipsesc {n} de minute de mișcare ca să încheiați săptămâna."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoyCumplida",
+   "es": "Semana cumplida: fuerza y movimiento. Lo que haga hoy es de regalo.",
+   "forma": "texto",
+   "ro": "Săptămână încheiată: forță și mișcare. Ce faceți azi e un bonus."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoySol8",
+   "es": "Con un UV máximo de {n} hoy, la OMS pide evitar el sol del mediodía (aquí, de {a} a {b}): sombra, camiseta, crema y sombrero.",
+   "forma": "texto",
+   "ro": "Cu un indice UV maxim de {n} azi, OMS recomandă să evitați soarele de la prânz (aici, între {a} și {b}): umbră, tricou, cremă și pălărie."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoHoySol3",
+   "es": "Con un UV máximo de {n} hoy, la OMS pide sombra al mediodía (aquí, de {a} a {b}), camiseta, crema y sombrero.",
+   "forma": "texto",
+   "ro": "Cu un indice UV maxim de {n} azi, OMS recomandă umbră la prânz (aici, între {a} și {b}), tricou, cremă și pălărie."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaTitulo",
+   "es": "Cruce la isla",
+   "forma": "texto",
+   "ro": "Traversați insula"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaSub",
+   "es": "El GR 131, de La Esperanza a Arona, con los kilómetros que anote aquí.",
+   "forma": "texto",
+   "ro": "Traseul GR 131, între La Esperanza și Arona, cu kilometrii pe care îi notați aici."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaDe",
+   "es": "de {n} km",
+   "forma": "texto",
+   "ro": "din {n} km"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaSiguiente",
+   "es": "Siguiente parada: {parada}, a {km}.",
+   "forma": "texto",
+   "ro": "Următoarea oprire: {parada}, la {km}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaCruzada",
+   "es": "Ha cruzado la isla: de La Esperanza a Arona.",
+   "forma": "texto",
+   "ro": "Ați traversat insula: din La Esperanza până la Arona."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaEsquema",
+   "es": "Esquema",
+   "forma": "texto",
+   "ro": "Schemă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaMapaAria",
+   "es": "Esquema de Tenerife con el GR 131, de La Esperanza a Arona. Lleva {km} km.",
+   "forma": "texto",
+   "ro": "Schema insulei Tenerife cu traseul GR 131, între La Esperanza și Arona. Ați parcurs {km} km."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaFuente",
+   "es": "El GR 131 Anaga–Chasna mide 85,55 km (Tenerife ON, Cabildo de Tenerife). Las paradas están a los kilómetros acumulados de los tramos de Webtenerife (La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3), y Arona, el final, a 85,55. En el mapa, la costa sale de los límites municipales del Cabildo de Tenerife (2015, CC BY) y las paradas, de OpenStreetMap (© colaboradores de OpenStreetMap, ODbL).",
+   "forma": "texto",
+   "ro": "Traseul GR 131 Anaga–Chasna are 85,55 km (Tenerife ON, Cabildo de Tenerife). Opririle sunt la kilometrajul cumulat al tronsoanelor de pe Webtenerife (La Caldera 29,8 · El Portillo 42,9 · Degollada de Guajara 56,0 · Vilaflor 67,3), iar Arona, capătul, la 85,55. Pe hartă, coasta provine din limitele municipale publicate de Cabildo de Tenerife (2015, CC BY), iar opririle, din OpenStreetMap (© contribuitorii OpenStreetMap, ODbL)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaEsquemaNota",
+   "es": "El trazado entre paradas es un esquema, no el sendero.",
+   "forma": "texto",
+   "ro": "Linia dintre opriri este o schemă, nu traseul propriu-zis."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaTrazadoDe",
+   "es": "El trazado del GR 131 del mapa es el oficial: {fuente}.",
+   "forma": "texto",
+   "ro": "Traseul GR 131 de pe hartă este cel oficial: {fuente}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovNotaPie",
+   "es": "Los kilómetros a pie avanzan su travesía del GR 131.",
+   "forma": "texto",
+   "ro": "Kilometrii parcurși pe jos se adaugă la traversarea dumneavoastră pe GR 131."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_kayak",
+   "es": "Kayak",
+   "forma": "texto",
+   "ro": "Caiac"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_sup",
+   "es": "Pádel surf",
+   "forma": "texto",
+   "ro": "Stand-up paddle"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_surf",
+   "es": "Surf",
+   "forma": "texto",
+   "ro": "Surf"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_windsurf",
+   "es": "Windsurf y kitesurf",
+   "forma": "texto",
+   "ro": "Windsurfing și kitesurfing"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_buceo",
+   "es": "Buceo",
+   "forma": "texto",
+   "ro": "Scufundări"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_golf",
+   "es": "Golf",
+   "forma": "texto",
+   "ro": "Golf"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_padel",
+   "es": "Pádel",
+   "forma": "texto",
+   "ro": "Padel"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_escalada",
+   "es": "Escalada",
+   "forma": "texto",
+   "ro": "Escaladă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_otro",
+   "es": "Otro deporte",
+   "forma": "texto",
+   "ro": "Alt sport"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovMetros",
+   "es": "Metros",
+   "forma": "texto",
+   "ro": "Metri"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovMenosM",
+   "es": "50 metros menos",
+   "forma": "texto",
+   "ro": "Cu 50 de metri mai puțin"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovMasM",
+   "es": "50 metros más",
+   "forma": "texto",
+   "ro": "Cu 50 de metri mai mult"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovDes",
+   "es": "Desnivel positivo (m)",
+   "forma": "texto",
+   "ro": "Diferență de nivel pozitivă (m)"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovInt",
+   "es": "Intensidad",
+   "forma": "texto",
+   "ro": "Intensitate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIntM",
+   "es": "Moderada",
+   "forma": "texto",
+   "ro": "Moderată"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIntV",
+   "es": "Intensa",
+   "forma": "texto",
+   "ro": "Intensă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIntAyuda",
+   "es": "Moderada: puede hablar, pero no cantar. Intensa: no puede decir más de unas palabras sin parar a respirar.",
+   "forma": "texto",
+   "ro": "Moderată: puteți vorbi, dar nu și cânta. Intensă: nu puteți spune mai mult de câteva cuvinte fără să vă opriți să respirați."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIntDoble",
+   "es": "Para su meta, cada minuto intenso cuenta por dos (OMS).",
+   "forma": "texto",
+   "ro": "Pentru obiectivul dumneavoastră, fiecare minut intens contează dublu (OMS)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMinM",
+   "es": "{min} min y {m} m",
+   "forma": "texto",
+   "ro": "{min} min și {m} m"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovNotaElige",
+   "es": "Su distancia no cuenta para el GR 131, salvo que lo elija en «{seccion}».",
+   "forma": "texto",
+   "ro": "Distanța nu contează pentru GR 131, decât dacă alegeți asta în „{seccion}”."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovNotaElegido",
+   "es": "Su distancia también cuenta para su travesía del GR 131: lo eligió en «{seccion}».",
+   "forma": "texto",
+   "ro": "Distanța contează și pentru traversarea dumneavoastră pe GR 131: ați ales asta în „{seccion}”."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovNotaAgua",
+   "es": "Suma minutos y distancia a su semana. Por el agua se rodea la isla, no se cruza: su distancia no cuenta para el GR 131.",
+   "forma": "texto",
+   "ro": "Minutele și distanța se adaugă la săptămâna dumneavoastră. Pe apă insula se înconjoară, nu se traversează: distanța nu contează pentru GR 131."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovNotaMin",
+   "es": "Suma minutos a su semana.",
+   "forma": "texto",
+   "ro": "Minutele se adaugă la săptămâna dumneavoastră."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMovNotaBuceo",
+   "es": "Antes de volar, la DAN aconseja esperar al menos 12 horas tras una inmersión, y 18 tras varias en un día o en varios días de buceo.",
+   "forma": "texto",
+   "ro": "Înainte de zbor, DAN recomandă să așteptați cel puțin 12 ore după o scufundare și 18 ore după mai multe scufundări într-o zi sau în mai multe zile de scufundări."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepsTit",
+   "es": "Por deporte",
+   "forma": "texto",
+   "ro": "Pe sporturi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVeces",
+   "es": "{n} vez|{n} veces",
+   "forma": "texto",
+   "ro": "{n} dată|de {n} ori|de {n} de ori"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoInmersiones",
+   "es": "{n} inmersión|{n} inmersiones",
+   "forma": "texto",
+   "ro": "{n} scufundare|{n} scufundări|{n} de scufundări"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDurHM",
+   "es": "{h} h {m} min",
+   "forma": "texto",
+   "ro": "{h} h {m} min"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDurH",
+   "es": "{h} h",
+   "forma": "texto",
+   "ro": "{h} h"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRitmoKm",
+   "es": "{t} min/km",
+   "forma": "texto",
+   "ro": "{t} min/km"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRitmo100",
+   "es": "{t} min/100 m",
+   "forma": "texto",
+   "ro": "{t} min/100 m"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDesnivel",
+   "es": "{n} m de desnivel",
+   "forma": "texto",
+   "ro": "{n} m diferență de nivel"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDan12",
+   "es": "Si va a volar: la DAN aconseja esperar al menos 12 horas desde la última inmersión. Si nota cualquier síntoma, pida atención médica antes de volar.",
+   "forma": "texto",
+   "ro": "Dacă urmează să zburați: DAN recomandă să așteptați cel puțin 12 ore de la ultima scufundare. Dacă observați orice simptom, solicitați asistență medicală înainte de zbor."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDan18",
+   "es": "Si va a volar: tras varias inmersiones en un día o en varios días de buceo, la DAN aconseja esperar al menos 18 horas desde la última. Si nota cualquier síntoma, pida atención médica antes de volar.",
+   "forma": "texto",
+   "ro": "Dacă urmează să zburați: după mai multe scufundări într-o zi sau în mai multe zile de scufundări, DAN recomandă să așteptați cel puțin 18 ore de la ultima. Dacă observați orice simptom, solicitați asistență medicală înainte de zbor."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGrCuentan",
+   "es": "Cuentan para su travesía",
+   "forma": "texto",
+   "ro": "Contează pentru traversarea dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGrPie",
+   "es": "A pie",
+   "forma": "texto",
+   "ro": "Pe jos"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGrSiempre",
+   "es": "siempre",
+   "forma": "texto",
+   "ro": "mereu"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGrBici",
+   "es": "En bici",
+   "forma": "texto",
+   "ro": "Cu bicicleta"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCifrasInt",
+   "es": "La intensidad de cada anotación la elige usted: moderada si puede hablar pero no cantar; intensa si no puede decir más de unas palabras sin parar a respirar (CDC). La que propone cada deporte sale del Compendio de Actividades Físicas de 2024 (Herrmann y cols.): desde 6 MET, intensa. Para los adultos, la OMS (2020) pide de 150 a 300 minutos moderados a la semana o de 75 a 150 intensos: por eso un minuto intenso cuenta por dos. De 5 a 17 años, la OMS cuenta igual los minutos moderados y los intensos.",
+   "forma": "texto",
+   "ro": "Intensitatea fiecărei înregistrări o alegeți dumneavoastră: moderată dacă puteți vorbi, dar nu și cânta; intensă dacă nu puteți spune mai mult de câteva cuvinte fără să vă opriți să respirați (CDC). Cea pe care o propune fiecare sport provine din Compendiul activităților fizice din 2024 (Herrmann și colab.): de la 6 MET în sus, intensă. Pentru adulți, OMS (2020) cere între 150 și 300 de minute moderate pe săptămână sau între 75 și 150 de minute intense: de aceea un minut intens contează dublu. Între 5 și 17 ani, OMS socotește la fel minutele moderate și pe cele intense."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCifrasDan",
+   "es": "Volar después de bucear: al menos 12 horas tras una inmersión sin descompresión y 18 tras varias en un día o en varios días de buceo; con paradas de descompresión, bastante más (DAN, taller de 2002).",
+   "forma": "texto",
+   "ro": "Zborul după scufundare: cel puțin 12 ore după o scufundare fără decompresie și 18 ore după mai multe într-o zi sau în mai multe zile de scufundări; cu opriri de decompresie, mult mai mult (DAN, atelierul din 2002)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCompTit",
+   "es": "Su compañero de travesía",
+   "forma": "texto",
+   "ro": "Însoțitorul dumneavoastră de traversare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCompAyuda",
+   "es": "Avanza por el mapa con sus kilómetros y cambia con lo último que cuente para su travesía: a pie, el que elija aquí; en bici, su bici.",
+   "forma": "texto",
+   "ro": "Însoțitorul înaintează pe hartă cu kilometrii dumneavoastră și se schimbă după ultima înregistrare care contează pentru traversare: pe jos, cel pe care îl alegeți aici; cu bicicleta, bicicleta dumneavoastră."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_persona",
+   "es": "Senderista",
+   "forma": "texto",
+   "ro": "Drumeț"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_perro",
+   "es": "Presa canario",
+   "forma": "texto",
+   "ro": "Presa Canario"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_lagarto",
+   "es": "Lagarto tizón",
+   "forma": "texto",
+   "ro": "Șopârla de Tenerife"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_carretera",
+   "es": "De carretera",
+   "forma": "texto",
+   "ro": "De șosea"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_montana",
+   "es": "De montaña",
+   "forma": "texto",
+   "ro": "De munte"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_electrica",
+   "es": "Eléctrica",
+   "forma": "texto",
+   "ro": "Electrică"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoIslaNorte",
+   "es": "N",
+   "forma": "texto",
+   "ro": "N"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendTit",
+   "es": "Senderos de la isla",
+   "forma": "texto",
+   "ro": "Traseele insulei"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendSub",
+   "es": "Los {n} senderos de la guía. Márquelos cuando los haga y llegue al 100 %.",
+   "forma": "texto",
+   "ro": "Traseele din ghid: {n}. Bifați-le când le parcurgeți și ajungeți la 100 %."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendDe",
+   "es": "{h} de {n} senderos",
+   "forma": "texto",
+   "ro": "Trasee: {h} din {n}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendNorte",
+   "es": "Norte",
+   "forma": "texto",
+   "ro": "Nord"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendSur",
+   "es": "Sur",
+   "forma": "texto",
+   "ro": "Sud"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendZonaDe",
+   "es": "{h} de {n}",
+   "forma": "texto",
+   "ro": "{h} din {n}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendHecho",
+   "es": "Hecho el {fecha}",
+   "forma": "texto",
+   "ro": "Parcurs pe {fecha}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendPrimero",
+   "es": "Su primer sendero",
+   "forma": "texto",
+   "ro": "Primul dumneavoastră traseu"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendPrimeroT",
+   "es": "{nombre}: el primero de los {n} senderos de la guía.",
+   "forma": "texto",
+   "ro": "{nombre}: primul dintre traseele din ghid ({n} în total)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendHito",
+   "es": "El {pc} de los senderos",
+   "forma": "texto",
+   "ro": "{pc} din trasee"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendHitoT",
+   "es": "Lleva {h} de {n}. Cada sendero, una parte nueva de la isla.",
+   "forma": "texto",
+   "ro": "Ați parcurs {h} din {n}. Fiecare traseu, o parte nouă a insulei."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendTodo",
+   "es": "Todos los senderos",
+   "forma": "texto",
+   "ro": "Toate traseele"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendTodoT",
+   "es": "Ha hecho los {n} senderos de la guía: el {pc}.",
+   "forma": "texto",
+   "ro": "Ați parcurs toate traseele din ghid ({n}): {pc}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSendNoHay",
+   "es": "La lista de senderos no está disponible ahora.",
+   "forma": "texto",
+   "ro": "Lista traseelor nu este disponibilă acum."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCifrasMapa",
+   "es": "El fondo del mapa lo pinta la app con datos que ya lleva: el relieve, del modelo digital del terreno MDT05 del Instituto Geográfico Nacional (el mismo del mapa en 3D), y el suelo (bosque, matorral, roca, cultivos y pueblos), de OpenStreetMap (© colaboradores de OpenStreetMap, ODbL). Las líneas del mar son dibujo, no profundidades. Del relieve, la nota que pide su licencia:",
+   "forma": "texto",
+   "ro": "Fundalul hărții îl desenează aplicația cu date pe care le are deja: relieful, din modelul digital al terenului MDT05 al Institutului Geografic Național (același ca la harta în 3D), și solul (pădure, tufărișuri, rocă, culturi și localități), din OpenStreetMap (© contribuitorii OpenStreetMap, ODbL). Liniile mării sunt desen, nu adâncimi. Pentru relief, nota cerută de licența sa:"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCifrasSend",
+   "es": "Los senderos son los {n} de la guía, con el nombre, el punto de salida y los datos de su ficha. Lo que marca como hecho lo apunta usted y se queda solo en este aparato.",
+   "forma": "texto",
+   "ro": "Traseele sunt cele {n} din ghid, cu numele, punctul de plecare și datele din fișa lor. Faptul că un traseu e parcurs îl notați dumneavoastră și rămâne doar pe acest dispozitiv."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSellosTitulo",
+   "es": "Sus sellos",
+   "forma": "texto",
+   "ro": "Ștampilele dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSellosSub",
+   "es": "Los que consiga se quedan, aunque pase la semana.",
+   "forma": "texto",
+   "ro": "Cele pe care le obțineți rămân, chiar dacă trece săptămâna."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSellosDe",
+   "es": "{n} de {total}",
+   "forma": "texto",
+   "ro": "{n} din {total}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloConseguido",
+   "es": "Conseguido el {fecha}.",
+   "forma": "texto",
+   "ro": "Obținută pe {fecha}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloPendiente",
+   "es": "Pendiente.",
+   "forma": "texto",
+   "ro": "Încă neobținută."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloN_primer",
+   "es": "Primer paso",
+   "forma": "texto",
+   "ro": "Primul pas"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloN_fuerza",
+   "es": "{n} día de fuerza|{n} días de fuerza",
+   "forma": "texto",
+   "ro": "{n} zi de forță|{n} zile de forță|{n} de zile de forță"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloN_mov",
+   "es": "{n} minuto|{n} minutos",
+   "forma": "texto",
+   "ro": "{n} minut|{n} minute|{n} de minute"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloN_sol",
+   "es": "Sol entero",
+   "forma": "texto",
+   "ro": "Soarele întreg"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloN_doce",
+   "es": "Doce de doce",
+   "forma": "texto",
+   "ro": "Douăsprezece din douăsprezece"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloN_km10",
+   "es": "10 km de travesía",
+   "forma": "texto",
+   "ro": "10 km de traversare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloC_primer",
+   "es": "Su primera anotación",
+   "forma": "texto",
+   "ro": "Prima înregistrare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloC_fuerza",
+   "es": "En 7 días",
+   "forma": "texto",
+   "ro": "În 7 zile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloC_mov",
+   "es": "De movimiento en 7 días",
+   "forma": "texto",
+   "ro": "De mișcare în 7 zile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloC_sol",
+   "es": "Fuerza y movimiento",
+   "forma": "texto",
+   "ro": "Forță și mișcare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloC_doce",
+   "es": "Los 12 grupos en 7 días",
+   "forma": "texto",
+   "ro": "Cele 12 grupe în 7 zile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloC_km10",
+   "es": "Camino del GR 131",
+   "forma": "texto",
+   "ro": "Pe traseul GR 131"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloCEtapa",
+   "es": "GR 131 · km {km}",
+   "forma": "texto",
+   "ro": "GR 131 · km {km}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloNuevoDe",
+   "es": "Sello nuevo: {nombre}",
+   "forma": "texto",
+   "ro": "Ștampilă nouă: {nombre}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSellosNuevos",
+   "es": "{n} sello nuevo|{n} sellos nuevos",
+   "forma": "texto",
+   "ro": "{n} ștampilă nouă|{n} ștampile noi|{n} de ștampile noi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloT_primer",
+   "es": "Su primera anotación. El sol de su semana ya tiene un rayo.",
+   "forma": "texto",
+   "ro": "Prima dumneavoastră înregistrare. Soarele săptămânii are deja o rază."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloT_fuerza",
+   "es": "Fuerza {n} día en 7: la recomendación de la OMS para su edad, cumplida.|Fuerza {n} días en 7: la recomendación de la OMS para su edad, cumplida.",
+   "forma": "texto",
+   "ro": "Forță în {n} zi din 7: recomandarea OMS pentru vârsta dumneavoastră, îndeplinită.|Forță în {n} zile din 7: recomandarea OMS pentru vârsta dumneavoastră, îndeplinită.|Forță în {n} de zile din 7: recomandarea OMS pentru vârsta dumneavoastră, îndeplinită."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloT_mov",
+   "es": "Ha llegado a los {n} minutos de movimiento en 7 días que recomienda la OMS para su edad.",
+   "forma": "texto",
+   "ro": "Ați ajuns la {n} min de mișcare în 7 zile, cât recomandă OMS pentru vârsta dumneavoastră."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloT_sol",
+   "es": "Fuerza y movimiento cumplidos. El sol de su semana está arriba.",
+   "forma": "texto",
+   "ro": "Forță și mișcare îndeplinite. Soarele săptămânii dumneavoastră e sus."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloT_doce",
+   "es": "Ha trabajado los 12 grupos musculares en 7 días.",
+   "forma": "texto",
+   "ro": "Ați lucrat toate cele 12 grupe musculare în 7 zile."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloT_km10",
+   "es": "Diez kilómetros de travesía por la isla. La Caldera está a {km}.",
+   "forma": "texto",
+   "ro": "Zece kilometri de traversare pe insulă. La Caldera e la {km}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSelloTEtapa",
+   "es": "Etapa {n} del GR 131 cumplida. Lleva {km} de travesía.",
+   "forma": "texto",
+   "ro": "Etapa {n} a traseului GR 131, încheiată. Ați parcurs {km} din traversare."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSeguir",
+   "es": "Seguir",
+   "forma": "texto",
+   "ro": "Continuați"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalTitulo",
+   "es": "Su postal",
+   "forma": "texto",
+   "ro": "Cartea dumneavoastră poștală"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalTexto",
+   "es": "Su semana en una imagen, para guardarla o enviarla.",
+   "forma": "texto",
+   "ro": "Săptămâna dumneavoastră într-o imagine, ca s-o salvați sau s-o trimiteți."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalCrear",
+   "es": "Crear mi postal",
+   "forma": "texto",
+   "ro": "Creați cartea poștală"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalPreparando",
+   "es": "Preparando…",
+   "forma": "texto",
+   "ro": "Se pregătește…"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalLema",
+   "es": "Mi semana en Tenerife",
+   "forma": "texto",
+   "ro": "Săptămâna mea în Tenerife"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalLDias",
+   "es": "día con fuerza|días con fuerza",
+   "forma": "texto",
+   "ro": "zi de forță|zile de forță|de zile de forță"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalLMin",
+   "es": "min de movimiento",
+   "forma": "texto",
+   "ro": "min de mișcare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalLKm",
+   "es": "km del GR 131",
+   "forma": "texto",
+   "ro": "km pe GR 131"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalAlt",
+   "es": "Postal: su personaje ante el Teide, con sus días de fuerza, sus minutos y sus kilómetros.",
+   "forma": "texto",
+   "ro": "Carte poștală: personajul dumneavoastră în fața muntelui Teide, cu zilele de forță, minutele și kilometrii dumneavoastră."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalGuardar",
+   "es": "Mantenga el dedo sobre la imagen para guardarla.",
+   "forma": "texto",
+   "ro": "Țineți degetul apăsat pe imagine ca s-o salvați."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCompartir",
+   "es": "Compartir",
+   "forma": "texto",
+   "ro": "Distribuiți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGuardarImagen",
+   "es": "Guardar la imagen",
+   "forma": "texto",
+   "ro": "Salvați imaginea"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCerrarB",
+   "es": "Cerrar",
+   "forma": "texto",
+   "ro": "Închideți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPostalError",
+   "es": "No se ha podido crear la imagen en este navegador.",
+   "forma": "texto",
+   "ro": "Imaginea nu a putut fi creată în acest browser."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSecCuerpo",
+   "es": "Cuerpo",
+   "forma": "texto",
+   "ro": "Corp"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSecCara",
+   "es": "Pelo y cara",
+   "forma": "texto",
+   "ro": "Păr și față"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSecRopa",
+   "es": "Ropa",
+   "forma": "texto",
+   "ro": "Haine"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSecAyudas",
+   "es": "Gafas y ayudas",
+   "forma": "texto",
+   "ro": "Ochelari și proteze"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_fig",
+   "es": "Silueta",
+   "forma": "texto",
+   "ro": "Siluetă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_comp",
+   "es": "Complexión",
+   "forma": "texto",
+   "ro": "Constituție"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_piel",
+   "es": "Tono de piel",
+   "forma": "texto",
+   "ro": "Nuanța pielii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_pelo",
+   "es": "Peinado",
+   "forma": "texto",
+   "ro": "Coafură"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_peloColor",
+   "es": "Color del pelo",
+   "forma": "texto",
+   "ro": "Culoarea părului"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_barba",
+   "es": "Barba",
+   "forma": "texto",
+   "ro": "Barbă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_cabeza",
+   "es": "En la cabeza",
+   "forma": "texto",
+   "ro": "Pe cap"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_gafas",
+   "es": "Gafas",
+   "forma": "texto",
+   "ro": "Ochelari"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_audifono",
+   "es": "Audífono",
+   "forma": "texto",
+   "ro": "Proteză auditivă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_protesis",
+   "es": "Prótesis",
+   "forma": "texto",
+   "ro": "Proteză"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_arriba",
+   "es": "Parte de arriba",
+   "forma": "texto",
+   "ro": "Partea de sus"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_arribaColor",
+   "es": "Color de arriba",
+   "forma": "texto",
+   "ro": "Culoarea părții de sus"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_abajo",
+   "es": "Parte de abajo",
+   "forma": "texto",
+   "ro": "Partea de jos"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_abajoColor",
+   "es": "Color de abajo",
+   "forma": "texto",
+   "ro": "Culoarea părții de jos"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_calzado",
+   "es": "Calzado",
+   "forma": "texto",
+   "ro": "Încălțăminte"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoOp_calzadoColor",
+   "es": "Color del calzado",
+   "forma": "texto",
+   "ro": "Culoarea încălțămintei"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFig_a",
+   "es": "Hombros más anchos",
+   "forma": "texto",
+   "ro": "Umeri mai lați"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFig_b",
+   "es": "Caderas más anchas",
+   "forma": "texto",
+   "ro": "Șolduri mai late"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_0",
+   "es": "Delgada",
+   "forma": "texto",
+   "ro": "Suplă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_1",
+   "es": "Media",
+   "forma": "texto",
+   "ro": "Medie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComp_2",
+   "es": "Ancha",
+   "forma": "texto",
+   "ro": "Robustă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_calvo",
+   "es": "Sin pelo",
+   "forma": "texto",
+   "ro": "Fără păr"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_rapado",
+   "es": "Rapado",
+   "forma": "texto",
+   "ro": "Tuns foarte scurt"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_corto",
+   "es": "Corto",
+   "forma": "texto",
+   "ro": "Scurt"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_medio",
+   "es": "Media melena",
+   "forma": "texto",
+   "ro": "Lungime medie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_largo",
+   "es": "Largo",
+   "forma": "texto",
+   "ro": "Lung"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_rizado",
+   "es": "Rizado",
+   "forma": "texto",
+   "ro": "Creț"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_afro",
+   "es": "Afro",
+   "forma": "texto",
+   "ro": "Afro"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_mono",
+   "es": "Moño",
+   "forma": "texto",
+   "ro": "Coc"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_coleta",
+   "es": "Coleta",
+   "forma": "texto",
+   "ro": "Coadă de cal"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPelo_trenzas",
+   "es": "Trenzas",
+   "forma": "texto",
+   "ro": "Codițe"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBarba_no",
+   "es": "Sin barba",
+   "forma": "texto",
+   "ro": "Fără barbă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBarba_bigote",
+   "es": "Bigote",
+   "forma": "texto",
+   "ro": "Mustață"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBarba_perilla",
+   "es": "Perilla",
+   "forma": "texto",
+   "ro": "Barbișon"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBarba_corta",
+   "es": "Barba corta",
+   "forma": "texto",
+   "ro": "Barbă scurtă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBarba_larga",
+   "es": "Barba larga",
+   "forma": "texto",
+   "ro": "Barbă lungă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCabeza_no",
+   "es": "Nada",
+   "forma": "texto",
+   "ro": "Nimic"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCabeza_gorra",
+   "es": "Gorra",
+   "forma": "texto",
+   "ro": "Șapcă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCabeza_panuelo",
+   "es": "Pañuelo",
+   "forma": "texto",
+   "ro": "Batic"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGafas_no",
+   "es": "Sin gafas",
+   "forma": "texto",
+   "ro": "Fără ochelari"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGafas_gafas",
+   "es": "Gafas",
+   "forma": "texto",
+   "ro": "Ochelari"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoGafas_sol",
+   "es": "Gafas de sol",
+   "forma": "texto",
+   "ro": "Ochelari de soare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAudif_no",
+   "es": "Sin audífono",
+   "forma": "texto",
+   "ro": "Fără proteză auditivă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAudif_izq",
+   "es": "Oído izquierdo",
+   "forma": "texto",
+   "ro": "Urechea stângă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAudif_der",
+   "es": "Oído derecho",
+   "forma": "texto",
+   "ro": "Urechea dreaptă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAudif_ambos",
+   "es": "Los dos oídos",
+   "forma": "texto",
+   "ro": "Ambele urechi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoProt_no",
+   "es": "Sin prótesis",
+   "forma": "texto",
+   "ro": "Fără proteză"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoProt_pierna_izq",
+   "es": "Pierna izquierda",
+   "forma": "texto",
+   "ro": "Piciorul stâng"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoProt_pierna_der",
+   "es": "Pierna derecha",
+   "forma": "texto",
+   "ro": "Piciorul drept"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoProt_brazo_izq",
+   "es": "Brazo izquierdo",
+   "forma": "texto",
+   "ro": "Brațul stâng"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoProt_brazo_der",
+   "es": "Brazo derecho",
+   "forma": "texto",
+   "ro": "Brațul drept"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoArriba_camiseta",
+   "es": "Camiseta",
+   "forma": "texto",
+   "ro": "Tricou"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoArriba_tirantes",
+   "es": "Camiseta de tirantes",
+   "forma": "texto",
+   "ro": "Maiou"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoArriba_top",
+   "es": "Top deportivo",
+   "forma": "texto",
+   "ro": "Bustieră sport"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoArriba_manga_larga",
+   "es": "Manga larga",
+   "forma": "texto",
+   "ro": "Mânecă lungă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoArriba_sin",
+   "es": "Sin camiseta",
+   "forma": "texto",
+   "ro": "Fără tricou"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAbajo_corto",
+   "es": "Pantalón corto",
+   "forma": "texto",
+   "ro": "Pantaloni scurți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAbajo_mallas_cortas",
+   "es": "Mallas cortas",
+   "forma": "texto",
+   "ro": "Colanți scurți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAbajo_mallas",
+   "es": "Mallas largas",
+   "forma": "texto",
+   "ro": "Colanți lungi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAbajo_largo",
+   "es": "Pantalón largo",
+   "forma": "texto",
+   "ro": "Pantaloni lungi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCalzado_zapatillas",
+   "es": "Zapatillas",
+   "forma": "texto",
+   "ro": "Pantofi sport"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCalzado_botas",
+   "es": "Botas de montaña",
+   "forma": "texto",
+   "ro": "Bocanci de munte"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCalzado_descalzo",
+   "es": "Sin calzado",
+   "forma": "texto",
+   "ro": "Fără încălțăminte"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_0",
+   "es": "Negro",
+   "forma": "texto",
+   "ro": "Negru"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_1",
+   "es": "Castaño oscuro",
+   "forma": "texto",
+   "ro": "Șaten închis"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_2",
+   "es": "Castaño",
+   "forma": "texto",
+   "ro": "Șaten"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_3",
+   "es": "Rubio oscuro",
+   "forma": "texto",
+   "ro": "Blond închis"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_4",
+   "es": "Rubio",
+   "forma": "texto",
+   "ro": "Blond"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_5",
+   "es": "Pelirrojo",
+   "forma": "texto",
+   "ro": "Roșcat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_6",
+   "es": "Gris",
+   "forma": "texto",
+   "ro": "Cărunt"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_7",
+   "es": "Blanco",
+   "forma": "texto",
+   "ro": "Alb"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_8",
+   "es": "Azul",
+   "forma": "texto",
+   "ro": "Albastru"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPeloC_9",
+   "es": "Rosa",
+   "forma": "texto",
+   "ro": "Roz"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_0",
+   "es": "Negro",
+   "forma": "texto",
+   "ro": "Negru"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_1",
+   "es": "Gris",
+   "forma": "texto",
+   "ro": "Gri"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_2",
+   "es": "Blanco",
+   "forma": "texto",
+   "ro": "Alb"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_3",
+   "es": "Azul marino",
+   "forma": "texto",
+   "ro": "Bleumarin"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_4",
+   "es": "Azul",
+   "forma": "texto",
+   "ro": "Albastru"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_5",
+   "es": "Turquesa",
+   "forma": "texto",
+   "ro": "Turcoaz"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_6",
+   "es": "Verde",
+   "forma": "texto",
+   "ro": "Verde"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_7",
+   "es": "Dorado",
+   "forma": "texto",
+   "ro": "Auriu"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_8",
+   "es": "Rojo",
+   "forma": "texto",
+   "ro": "Roșu"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoColor_9",
+   "es": "Rosa",
+   "forma": "texto",
+   "ro": "Roz"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPielTono",
+   "es": "Tono {n} de 10",
+   "forma": "texto",
+   "ro": "Nuanța {n} din 10"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPielNoRealista",
+   "es": "Tono no realista",
+   "forma": "texto",
+   "ro": "Nuanță nerealistă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPielAyuda",
+   "es": "Del más claro (1) al más oscuro (10).",
+   "forma": "texto",
+   "ro": "De la cea mai deschisă (1) la cea mai închisă (10)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAlAzar",
+   "es": "Al azar",
+   "forma": "texto",
+   "ro": "La întâmplare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoListo",
+   "es": "Listo",
+   "forma": "texto",
+   "ro": "Gata"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPrivacidad",
+   "es": "Todo se guarda solo en este dispositivo. No se sube a ninguna parte.",
+   "forma": "texto",
+   "ro": "Totul se salvează doar pe acest dispozitiv. Nu se încarcă nicăieri."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAviso",
+   "es": "Información general para personas sanas. No sustituye el consejo de un profesional sanitario.",
+   "forma": "texto",
+   "ro": "Informații generale pentru persoane sănătoase. Nu înlocuiesc sfatul unui profesionist din domeniul sănătății."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBorrar",
+   "es": "Borrar los datos de «Su cuerpo»",
+   "forma": "texto",
+   "ro": "Ștergeți datele din „Corp”"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBorrarSeguro",
+   "es": "¿Borrar su aspecto, todas las series y el movimiento anotados, el deporte elegido, el diario de comidas y sus sellos? No se puede deshacer.",
+   "forma": "texto",
+   "ro": "Ștergeți aspectul, toate seriile și mișcarea notate, sportul ales, jurnalul alimentar și ștampilele? Acțiunea nu poate fi anulată."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBorrarSi",
+   "es": "Sí, borrar",
+   "forma": "texto",
+   "ro": "Da, ștergeți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBorrado",
+   "es": "Datos borrados",
+   "forma": "texto",
+   "ro": "Datele au fost șterse"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNoGuardado",
+   "es": "No se ha podido guardar en este dispositivo.",
+   "forma": "texto",
+   "ro": "Nu s-a putut salva pe acest dispozitiv."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjercicios",
+   "es": "Ejercicios",
+   "forma": "texto",
+   "ro": "Exerciții"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNEjercicios",
+   "es": "{n} ejercicio|{n} ejercicios",
+   "forma": "texto",
+   "ro": "{n} exercițiu|{n} exerciții|{n} de exerciții"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEntorno",
+   "es": "Dónde",
+   "forma": "texto",
+   "ro": "Unde"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEntTodos",
+   "es": "Todos",
+   "forma": "texto",
+   "ro": "Toate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEnt_gimnasio",
+   "es": "Gimnasio",
+   "forma": "texto",
+   "ro": "Sală de sport"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEnt_fuera",
+   "es": "Fuera",
+   "forma": "texto",
+   "ro": "În aer liber"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEnt_calistenia",
+   "es": "Calistenia",
+   "forma": "texto",
+   "ro": "Calistenie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBuscarEj",
+   "es": "Buscar en los ejercicios de este grupo",
+   "forma": "texto",
+   "ro": "Căutați în exercițiile acestei grupe"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoBuscarEjPh",
+   "es": "Buscar un ejercicio…",
+   "forma": "texto",
+   "ro": "Căutați un exercițiu…"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivelFiltro",
+   "es": "Nivel",
+   "forma": "texto",
+   "ro": "Nivel"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivelTodos",
+   "es": "Todos los niveles",
+   "forma": "texto",
+   "ro": "Toate nivelurile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivel_1",
+   "es": "Inicial",
+   "forma": "texto",
+   "ro": "Începător"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivel_2",
+   "es": "Intermedio",
+   "forma": "texto",
+   "ro": "Intermediar"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivel_3",
+   "es": "Avanzado",
+   "forma": "texto",
+   "ro": "Avansat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoTipo_fuerza",
+   "es": "Fuerza",
+   "forma": "texto",
+   "ro": "Forță"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoTipo_isometrico",
+   "es": "Isométrico",
+   "forma": "texto",
+   "ro": "Izometric"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoTipo_pliometria",
+   "es": "Pliometría",
+   "forma": "texto",
+   "ro": "Pliometrie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoTipo_estiramiento",
+   "es": "Estiramiento",
+   "forma": "texto",
+   "ro": "Întindere"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_ninguno",
+   "es": "Sin material",
+   "forma": "texto",
+   "ro": "Fără echipament"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_barra",
+   "es": "Barra",
+   "forma": "texto",
+   "ro": "Bară"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_barra_z",
+   "es": "Barra Z",
+   "forma": "texto",
+   "ro": "Bară EZ"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_mancuernas",
+   "es": "Mancuernas",
+   "forma": "texto",
+   "ro": "Gantere"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_kettlebell",
+   "es": "Kettlebell",
+   "forma": "texto",
+   "ro": "Kettlebell"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_disco",
+   "es": "Disco",
+   "forma": "texto",
+   "ro": "Disc"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_maquina",
+   "es": "Máquina",
+   "forma": "texto",
+   "ro": "Aparat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_polea",
+   "es": "Polea",
+   "forma": "texto",
+   "ro": "Scripete"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_multipower",
+   "es": "Multipower",
+   "forma": "texto",
+   "ro": "Aparat Smith"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_banco",
+   "es": "Banco",
+   "forma": "texto",
+   "ro": "Bancă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_barra_dominadas",
+   "es": "Barra de dominadas",
+   "forma": "texto",
+   "ro": "Bară de tracțiuni"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_paralelas",
+   "es": "Paralelas",
+   "forma": "texto",
+   "ro": "Paralele"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_anillas",
+   "es": "Anillas",
+   "forma": "texto",
+   "ro": "Inele"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_cinta_suspension",
+   "es": "Cintas de suspensión",
+   "forma": "texto",
+   "ro": "Chingi de suspensie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_banda",
+   "es": "Banda elástica",
+   "forma": "texto",
+   "ro": "Bandă elastică"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_balon_medicinal",
+   "es": "Balón medicinal",
+   "forma": "texto",
+   "ro": "Minge medicinală"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_fitball",
+   "es": "Fitball",
+   "forma": "texto",
+   "ro": "Minge de fitness"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_rueda_abdominal",
+   "es": "Rueda abdominal",
+   "forma": "texto",
+   "ro": "Roată abdominală"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_esterilla",
+   "es": "Esterilla",
+   "forma": "texto",
+   "ro": "Saltea"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_escalon",
+   "es": "Escalón",
+   "forma": "texto",
+   "ro": "Treaptă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_pared",
+   "es": "Pared",
+   "forma": "texto",
+   "ro": "Perete"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_botella",
+   "es": "Botellas o garrafas",
+   "forma": "texto",
+   "ro": "Sticle sau bidoane"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_silla",
+   "es": "Silla",
+   "forma": "texto",
+   "ro": "Scaun"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_toalla",
+   "es": "Toalla",
+   "forma": "texto",
+   "ro": "Prosop"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_mochila",
+   "es": "Mochila o bolsas con peso",
+   "forma": "texto",
+   "ro": "Rucsac sau sacoșe cu greutăți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_mesa",
+   "es": "Mesa o encimera",
+   "forma": "texto",
+   "ro": "Masă sau blat de bucătărie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_cubo",
+   "es": "Cubo con arroz o arena",
+   "forma": "texto",
+   "ro": "Găleată cu orez sau nisip"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMat_biosaludable",
+   "es": "Aparato biosaludable",
+   "forma": "texto",
+   "ro": "Aparat de fitness în aer liber"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVolverGrupo",
+   "es": "Volver a {grupo}",
+   "forma": "texto",
+   "ro": "Înapoi la {grupo}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComoSeHace",
+   "es": "Cómo se hace",
+   "forma": "texto",
+   "ro": "Cum se execută"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMusculosEj",
+   "es": "Músculos",
+   "forma": "texto",
+   "ro": "Mușchi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPrincipal",
+   "es": "Principal",
+   "forma": "texto",
+   "ro": "Principal"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSecundario",
+   "es": "Secundario",
+   "forma": "texto",
+   "ro": "Secundar"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAnotarEj",
+   "es": "Anotar series de este ejercicio",
+   "forma": "texto",
+   "ro": "Notați serii la acest exercițiu"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAnotadoEj",
+   "es": "{ejercicio}: {n} serie anotada|{ejercicio}: {n} series anotadas",
+   "forma": "texto",
+   "ro": "{ejercicio}: {n} serie notată|{ejercicio}: {n} serii notate|{ejercicio}: {n} de serii notate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjReps",
+   "es": "Repeticiones",
+   "forma": "texto",
+   "ro": "Repetări"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjKg",
+   "es": "Peso (kg)",
+   "forma": "texto",
+   "ro": "Greutate (kg)"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjCargaAyuda",
+   "es": "Las repeticiones y el peso son opcionales: con ellos verá cómo progresa, en «{seccion}».",
+   "forma": "texto",
+   "ro": "Repetările și greutatea sunt opționale: cu ele veți vedea cum progresați, în „{seccion}”."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjCargaMal",
+   "es": "Revise las repeticiones (un número entero de 1 a 200) y el peso en kilos (por ejemplo, 12,5).",
+   "forma": "texto",
+   "ro": "Verificați repetările (un număr întreg de la 1 la 200) și greutatea în kilograme (de exemplu, 12,5)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjUltima",
+   "es": "La última vez, {cuando}: {que}",
+   "forma": "texto",
+   "ro": "Ultima dată, {cuando}: {que}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCargaSR",
+   "es": "{series} × {reps}",
+   "forma": "texto",
+   "ro": "{series} × {reps}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCargaSRK",
+   "es": "{series} × {reps} con {kg} kg",
+   "forma": "texto",
+   "ro": "{series} × {reps} cu {kg} kg"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCargaSK",
+   "es": "{series} con {kg} kg",
+   "forma": "texto",
+   "ro": "{series} cu {kg} kg"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanBtn",
+   "es": "¿Qué entreno hoy?",
+   "forma": "texto",
+   "ro": "Ce antrenez azi?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanDonde",
+   "es": "¿Dónde entrena hoy?",
+   "forma": "texto",
+   "ro": "Unde vă antrenați azi?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSitio_casa",
+   "es": "En casa",
+   "forma": "texto",
+   "ro": "Acasă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanMat",
+   "es": "¿Qué tiene en casa?",
+   "forma": "texto",
+   "ro": "Ce aveți acasă?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanMatAyuda",
+   "es": "De entrada van marcadas botellas, silla, toalla y mesa: quite lo que no tenga y marque lo demás que tenga. Sin nada marcado, salen los ejercicios sin material.",
+   "forma": "texto",
+   "ro": "La început sunt bifate sticlele, scaunul, prosopul și masa: debifați ce nu aveți și bifați restul echipamentului pe care îl aveți. Fără nimic bifat, apar exercițiile fără echipament."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanPara",
+   "es": "Para hoy: {lista}.",
+   "forma": "texto",
+   "ro": "Pentru azi: {lista}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanResDescanso",
+   "es": "Hoy, descanso o actividad suave.",
+   "forma": "texto",
+   "ro": "Azi, odihnă sau activitate ușoară."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanLeTocan",
+   "es": "Hoy le tocan",
+   "forma": "texto",
+   "ro": "Azi sunt la rând"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanDescansoTit",
+   "es": "Hoy, descanso",
+   "forma": "texto",
+   "ro": "Azi, odihnă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanTxtFaltan",
+   "es": "Los grupos sin series en los últimos 7 días.",
+   "forma": "texto",
+   "ro": "Grupele fără serii în ultimele 7 zile."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanTxtDeporte",
+   "es": "Delante, los prioritarios para su deporte.",
+   "forma": "texto",
+   "ro": "Primele sunt cele prioritare pentru sportul dumneavoastră."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanTxtSegunda",
+   "es": "Ya ha trabajado los 12 grupos en los últimos 7 días; estos, un solo día.",
+   "forma": "texto",
+   "ro": "Ați lucrat deja toate cele 12 grupe în ultimele 7 zile; acestea, într-o singură zi."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanOms",
+   "es": "La OMS recomienda a los adultos ejercicios de fuerza al menos 2 días por semana, con todos los grupos musculares principales, y de 5 a 17 años, al menos 3 días.",
+   "forma": "texto",
+   "ro": "OMS recomandă adulților exerciții de forță cel puțin 2 zile pe săptămână, pentru toate grupele musculare principale, iar între 5 și 17 ani, cel puțin 3 zile."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanTxtDescanso",
+   "es": "Lo que le queda lo trabajó ayer u hoy.",
+   "forma": "texto",
+   "ro": "Grupele care vă mai rămân le-ați lucrat ieri sau azi."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanTxtTodos",
+   "es": "Ha trabajado los 12 grupos al menos 2 días en los últimos 7.",
+   "forma": "texto",
+   "ro": "Ați lucrat toate cele 12 grupe cel puțin 2 zile în ultimele 7."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanSuave",
+   "es": "Descansar no es estar quieto: caminar o moverse suave en los días libres también suma para la salud.",
+   "forma": "texto",
+   "ro": "Odihna nu înseamnă inactivitate: mersul pe jos sau mișcarea ușoară în zilele libere contează și ele pentru sănătate."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanTxtNada",
+   "es": "Todavía no tiene nada anotado. Para empezar, un día de cuerpo completo con ejercicios de nivel inicial:",
+   "forma": "texto",
+   "ro": "Încă nu aveți nimic notat. Pentru început, o zi pentru tot corpul, cu exerciții de nivel începător:"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanDescansan",
+   "es": "Descansan hoy (los trabajó ayer u hoy): {lista}.",
+   "forma": "texto",
+   "ro": "Azi se odihnesc (le-ați lucrat ieri sau azi): {lista}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlan48",
+   "es": "Para un mismo grupo, el ACSM (2011) aconsejaba al menos 48 horas entre sesiones.",
+   "forma": "texto",
+   "ro": "Pentru aceeași grupă, ACSM (2011) recomanda cel puțin 48 de ore între sesiuni."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanSinEj",
+   "es": "ningún ejercicio con lo que tiene",
+   "forma": "texto",
+   "ro": "niciun exercițiu cu ce aveți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanPorQue",
+   "es": "¿Por qué?",
+   "forma": "texto",
+   "ro": "De ce?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjCasaAyuda",
+   "es": "En casa: los ejercicios con el material que marcó en «{seccion}».",
+   "forma": "texto",
+   "ro": "Acasă: exercițiile cu echipamentul pe care l-ați bifat în „{seccion}”."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFuerzaTit",
+   "es": "Su fuerza",
+   "forma": "texto",
+   "ro": "Forța dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFuerzaAyuda",
+   "es": "Cuando anote un ejercicio con sus repeticiones o su peso, aquí verá cómo progresa: la primera vez, la última y la mejor.",
+   "forma": "texto",
+   "ro": "Când notați un exercițiu cu repetările sau greutatea, aici veți vedea cum progresați: prima dată, ultima și cea mai bună."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFuerzaUltima",
+   "es": "Última vez: {que} ({fecha})",
+   "forma": "texto",
+   "ro": "Ultima dată: {que} ({fecha})"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFuerzaMejor",
+   "es": "Mejor marca: {que} ({fecha})",
+   "forma": "texto",
+   "ro": "Cel mai bun rezultat: {que} ({fecha})"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFuerzaPrimera",
+   "es": "Primera vez: {que} ({fecha})",
+   "forma": "texto",
+   "ro": "Prima dată: {que} ({fecha})"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFuerzaVeces",
+   "es": "{n} vez|{n} veces",
+   "forma": "texto",
+   "ro": "{n} dată|de {n} ori|de {n} de ori"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanNivel",
+   "es": "¿A qué nivel entrena?",
+   "forma": "texto",
+   "ro": "La ce nivel vă antrenați?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNivelTope",
+   "es": "A tope",
+   "forma": "texto",
+   "ro": "La maximum"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutHoy",
+   "es": "Su sesión de hoy",
+   "forma": "texto",
+   "ro": "Sesiunea dumneavoastră de azi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanQue",
+   "es": "¿Qué quiere hacer hoy?",
+   "forma": "texto",
+   "ro": "Ce doriți să faceți azi?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoPlanQue_estirar",
+   "es": "Estiramientos",
+   "forma": "texto",
+   "ro": "Întinderi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEstTit",
+   "es": "Sus estiramientos",
+   "forma": "texto",
+   "ro": "Întinderile dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEstCuerpo",
+   "es": "Cuerpo completo",
+   "forma": "texto",
+   "ro": "Tot corpul"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEstSesion",
+   "es": "Sesión de hoy",
+   "forma": "texto",
+   "ro": "Sesiunea de azi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEstAntes",
+   "es": "¿Tengo que estirar antes o después de entrenar?",
+   "forma": "texto",
+   "ro": "Trebuie să fac întinderi înainte sau după antrenament?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSesEstirar",
+   "es": "Después: estire lo que ha trabajado",
+   "forma": "texto",
+   "ro": "După: faceți întinderi pentru ce ați lucrat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutSesion",
+   "es": "Sesión {letra} · {nivel}",
+   "forma": "texto",
+   "ro": "Sesiunea {letra} · {nivel}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutSeg",
+   "es": "{series} × {seg} s",
+   "forma": "texto",
+   "ro": "{series} × {seg} s"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSegN",
+   "es": "{n} s",
+   "forma": "texto",
+   "ro": "{n} s"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutDesc",
+   "es": "Descanso: {t}",
+   "forma": "texto",
+   "ro": "Pauză: {t}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutAlt",
+   "es": "Alternativas",
+   "forma": "texto",
+   "ro": "Alternative"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutDescansa",
+   "es": "Hoy no: este grupo se trabajó ayer u hoy (48 horas).",
+   "forma": "texto",
+   "ro": "Azi nu: această grupă a fost lucrată ieri sau azi (48 de ore)."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutCalentar",
+   "es": "Antes de empezar: cómo calentar",
+   "forma": "texto",
+   "ro": "Înainte de a începe: cum să vă încălziți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutSinBanda",
+   "es": "¿Sin banda elástica? Haga la sesión de calistenia del mismo nivel, en un parque con barras.",
+   "forma": "texto",
+   "ro": "Nu aveți bandă elastică? Faceți sesiunea de calistenie de același nivel, într-un parc cu bare."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutMayores",
+   "es": "Tiene 65 años o más: antes de «{tope}», lea esto.",
+   "forma": "texto",
+   "ro": "Aveți 65 de ani sau mai mult: înainte de „{tope}”, citiți asta."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutMenores",
+   "es": "Tiene menos de 18 años: antes de entrenar, lea esto.",
+   "forma": "texto",
+   "ro": "Aveți sub 18 ani: înainte de a vă antrena, citiți asta."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutSemana",
+   "es": "Lleva 6 días seguidos entrenando: hoy, descanso total. El consenso sobre sobreentrenamiento (ECSS/ACSM, 2013) aconseja a los deportistas al menos un día de descanso total a la semana.",
+   "forma": "texto",
+   "ro": "V-ați antrenat 6 zile la rând: azi, odihnă totală. Consensul privind supraantrenamentul (ECSS/ACSM, 2013) le recomandă sportivilor cel puțin o zi de odihnă totală pe săptămână."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoRutSust",
+   "es": "¿Sin mancuernas, disco o banco?",
+   "forma": "texto",
+   "ro": "Nu aveți gantere, disc sau bancă?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_datos",
+   "es": "conjunto de datos",
+   "forma": "texto",
+   "ro": "set de date"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_articulo",
+   "es": "artículo para profesionales",
+   "forma": "texto",
+   "ro": "articol pentru profesioniști"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_estudioACE",
+   "es": "estudio patrocinado por ACE",
+   "forma": "texto",
+   "ro": "studiu sponsorizat de ACE"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_hojaPacientes",
+   "es": "hoja para pacientes",
+   "forma": "texto",
+   "ro": "fișă pentru pacienți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_videoTexto",
+   "es": "vídeo y texto",
+   "forma": "texto",
+   "ro": "video și text"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_maquina",
+   "es": "máquina",
+   "forma": "texto",
+   "ro": "aparat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_ejercicios",
+   "es": "ejercicios",
+   "forma": "texto",
+   "ro": "exerciții"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_folleto",
+   "es": "folleto",
+   "forma": "texto",
+   "ro": "broșură"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_comunitaria",
+   "es": "fuente comunitaria",
+   "forma": "texto",
+   "ro": "sursă comunitară"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_barra",
+   "es": "barra",
+   "forma": "texto",
+   "ro": "bară"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_mancuernas",
+   "es": "mancuernas",
+   "forma": "texto",
+   "ro": "gantere"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_banda",
+   "es": "banda",
+   "forma": "texto",
+   "ro": "bandă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_bandasPoleas",
+   "es": "bandas o poleas",
+   "forma": "texto",
+   "ro": "benzi sau scripeți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_poleaBanco",
+   "es": "polea y banco",
+   "forma": "texto",
+   "ro": "scripete și bancă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_fitball",
+   "es": "con fitball",
+   "forma": "texto",
+   "ro": "cu minge de fitness"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_fondosMaquina",
+   "es": "Fondos en máquina",
+   "forma": "texto",
+   "ro": "Flotări la paralele pe aparat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_biblioteca",
+   "es": "biblioteca de salud",
+   "forma": "texto",
+   "ro": "bibliotecă de sănătate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_extractoHK",
+   "es": "extracto en Human Kinetics",
+   "forma": "texto",
+   "ro": "extras de pe Human Kinetics"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_mccall",
+   "es": "Pete McCall, septiembre de 2015",
+   "forma": "texto",
+   "ro": "Pete McCall, septembrie 2015"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_ucsf",
+   "es": "Universidad de California, San Francisco",
+   "forma": "texto",
+   "ro": "Universitatea din California, San Francisco"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_sussex",
+   "es": "Universidad de Sussex",
+   "forma": "texto",
+   "ro": "Universitatea din Sussex"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_programaCasa",
+   "es": "Programa de ejercicio en casa",
+   "forma": "texto",
+   "ro": "Program de exerciții acasă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_copiaRutina",
+   "es": "copia de la Recommended Routine de r/bodyweightfitness",
+   "forma": "texto",
+   "ro": "copie a Recommended Routine de pe r/bodyweightfitness"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_hojaEjercicio",
+   "es": "hoja de ejercicio",
+   "forma": "texto",
+   "ro": "fișă de exerciții"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_balonMedicinal",
+   "es": "balón medicinal",
+   "forma": "texto",
+   "ro": "minge medicinală"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_kettlebell",
+   "es": "kettlebell",
+   "forma": "texto",
+   "ro": "kettlebell"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_cartel",
+   "es": "cartel de ejercicios",
+   "forma": "texto",
+   "ro": "afiș cu exerciții"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_extractoMuta",
+   "es": "extracto MUTA 6 Drill, Guardia Nacional de Colorado",
+   "forma": "texto",
+   "ro": "extras din MUTA 6 Drill, Garda Națională din Colorado"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_extractoPmcs",
+   "es": "extracto Preparation, Recovery & PMCS Drills, Guardia Nacional de Colorado",
+   "forma": "texto",
+   "ro": "extras din Preparation, Recovery & PMCS Drills, Garda Națională din Colorado"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_extractoWorkouts",
+   "es": "extracto Workouts, Guardia Nacional de Colorado",
+   "forma": "texto",
+   "ro": "extras din Workouts, Garda Națională din Colorado"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_ayuntamiento",
+   "es": "ayuntamiento",
+   "forma": "texto",
+   "ro": "primărie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_copiaSuny",
+   "es": "copia en un curso de SUNY, Lumen Learning",
+   "forma": "texto",
+   "ro": "copie într-un curs SUNY, Lumen Learning"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_adams",
+   "es": "Jessica B. Adams, PhD, y otros",
+   "forma": "texto",
+   "ro": "Jessica B. Adams, PhD, și alții"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_victoria",
+   "es": "Gobierno de Victoria, Australia",
+   "forma": "texto",
+   "ro": "Guvernul statului Victoria, Australia"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_usu",
+   "es": "Uniformed Services University, EE. UU.",
+   "forma": "texto",
+   "ro": "Uniformed Services University, SUA"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_hse",
+   "es": "servicio de salud de Irlanda",
+   "forma": "texto",
+   "ro": "serviciul de sănătate al Irlandei"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_folletoCasa",
+   "es": "folleto de ejercicios en casa",
+   "forma": "texto",
+   "ro": "broșură de exerciții acasă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_folletoOxford",
+   "es": "folleto PDF, alojado por Oxford Health NHS FT",
+   "forma": "texto",
+   "ro": "broșură PDF, găzduită de Oxford Health NHS FT"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_vhi",
+   "es": "ficha de Visual Health Information",
+   "forma": "texto",
+   "ro": "fișă de la Visual Health Information"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_queensland",
+   "es": "Gobierno de Queensland",
+   "forma": "texto",
+   "ro": "Guvernul statului Queensland"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_bc",
+   "es": "Ministerio de Salud de Columbia Británica",
+   "forma": "texto",
+   "ro": "Ministerul Sănătății din Columbia Britanică"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_revFisio",
+   "es": "revisado por fisioterapeutas",
+   "forma": "texto",
+   "ro": "revizuit de fizioterapeuți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_revFisioCir",
+   "es": "revisado por fisioterapeutas y un cirujano ortopédico",
+   "forma": "texto",
+   "ro": "revizuit de fizioterapeuți și de un chirurg ortoped"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_revFisioMed",
+   "es": "revisado por fisioterapeutas y un médico",
+   "forma": "texto",
+   "ro": "revizuit de fizioterapeuți și de un medic"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_revPeterson",
+   "es": "revisado por Dylan Peterson, PT, DPT",
+   "forma": "texto",
+   "ro": "revizuit de Dylan Peterson, PT, DPT"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_fisioDePermentier",
+   "es": "fisioterapeuta Justin DePermentier, PT, DPT",
+   "forma": "texto",
+   "ro": "fizioterapeutul Justin DePermentier, PT, DPT"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_fisioStewart",
+   "es": "fisioterapeuta Samantha Stewart, PT, DPT",
+   "forma": "texto",
+   "ro": "fizioterapeuta Samantha Stewart, PT, DPT"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_fisioMatos",
+   "es": "fisioterapeuta Vanessa Matos, PT, DPT",
+   "forma": "texto",
+   "ro": "fizioterapeuta Vanessa Matos, PT, DPT"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_chitra",
+   "es": "Chitra D/O Chandran, fisioterapeuta",
+   "forma": "texto",
+   "ro": "Chitra D/O Chandran, fizioterapeută"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_whitten",
+   "es": "Cheryl Whitten; revisión médica de Melinda Ratini, DO",
+   "forma": "texto",
+   "ro": "Cheryl Whitten; revizuire medicală de Melinda Ratini, DO"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_ndsu",
+   "es": "D. Terbizan, PhD, y J. Garden-Robinson, PhD, RD",
+   "forma": "texto",
+   "ro": "D. Terbizan, PhD, și J. Garden-Robinson, PhD, RD"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_webmd",
+   "es": "contenido de WebMD Ignite",
+   "forma": "texto",
+   "ro": "conținut WebMD Ignite"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_webmdComite",
+   "es": "contenido de WebMD Ignite revisado por su comité clínico",
+   "forma": "texto",
+   "ro": "conținut WebMD Ignite revizuit de comitetul său clinic"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_liveup",
+   "es": "iniciativa del Gobierno de Australia",
+   "forma": "texto",
+   "ro": "inițiativă a Guvernului Australiei"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_liveupFlexion",
+   "es": "PDF; flexión con las manos en la encimera",
+   "forma": "texto",
+   "ro": "PDF; flotare cu mâinile pe blat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_livewell",
+   "es": "NHS, servicio de podología de Plymouth",
+   "forma": "texto",
+   "ro": "NHS, serviciul de podologie din Plymouth"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_wolves",
+   "es": "Health Services at Wolves, fisioterapia musculoesquelética",
+   "forma": "texto",
+   "ro": "Health Services at Wolves, fizioterapie musculo-scheletică"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_newham",
+   "es": "PDF publicado por el ayuntamiento de Newham",
+   "forma": "texto",
+   "ro": "PDF publicat de primăria din Newham"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_uruguay",
+   "es": "Uruguay",
+   "forma": "texto",
+   "ro": "Uruguay"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_va",
+   "es": "Departamento de Asuntos de Veteranos de EE. UU., programa MOVE!",
+   "forma": "texto",
+   "ro": "Departamentul Afacerilor Veteranilor din SUA, programul MOVE!"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_guiaColorado",
+   "es": "guía completa de ejercicios publicada por la Guardia Nacional de Colorado",
+   "forma": "texto",
+   "ro": "ghid complet de exerciții publicat de Garda Națională din Colorado"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_ejercitoEEUU",
+   "es": "Ejército de EE. UU.",
+   "forma": "texto",
+   "ro": "Armata SUA"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_misuri",
+   "es": "PDF alojado por la Universidad de Misuri",
+   "forma": "texto",
+   "ro": "PDF găzduit de Universitatea din Missouri"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_clinicaFisio",
+   "es": "clínica de fisioterapia",
+   "forma": "texto",
+   "ro": "clinică de fizioterapie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_bibliotecaPacientes",
+   "es": "biblioteca para pacientes",
+   "forma": "texto",
+   "ro": "bibliotecă pentru pacienți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNF_hojaConsejos",
+   "es": "hoja de consejos",
+   "forma": "texto",
+   "ro": "fișă cu sfaturi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFuentesEj",
+   "es": "Fuentes",
+   "forma": "texto",
+   "ro": "Surse"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoNotaFuentesEj",
+   "es": "Los pasos están escritos con palabras propias a partir de estas fuentes. El nivel es orientativo: es el de la fuente cuando esta lo da y, si no, una estimación.",
+   "forma": "texto",
+   "ro": "Pașii sunt scriși cu cuvinte proprii pornind de la aceste surse. Nivelul este orientativ: este cel al sursei, când aceasta îl indică, iar altfel, o estimare."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoCargandoEj",
+   "es": "Cargando los ejercicios…",
+   "forma": "texto",
+   "ro": "Se încarcă exercițiile…"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoErrorEj",
+   "es": "No se han podido cargar los ejercicios.",
+   "forma": "texto",
+   "ro": "Exercițiile nu au putut fi încărcate."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoReintentar",
+   "es": "Reintentar",
+   "forma": "texto",
+   "ro": "Încercați din nou"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoSinEjFiltro",
+   "es": "Ningún ejercicio con estos filtros.",
+   "forma": "texto",
+   "ro": "Niciun exercițiu cu aceste filtre."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVarianteDe",
+   "es": "Variante de {nombre}",
+   "forma": "texto",
+   "ro": "Variantă a exercițiului {nombre}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoVariantes",
+   "es": "Variantes",
+   "forma": "texto",
+   "ro": "Variante"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjConVideo",
+   "es": "con vídeo",
+   "forma": "texto",
+   "ro": "cu video"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjSoloVideo",
+   "es": "Solo con vídeo",
+   "forma": "texto",
+   "ro": "Doar cu video"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoEjVerVideo",
+   "es": "Ver el vídeo",
+   "forma": "texto",
+   "ro": "Vedeți videoclipul"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoFichasPropias",
+   "es": "Fichas propias de Tenerife Go, comprobadas en las fuentes de cada ejercicio.",
+   "forma": "texto",
+   "ro": "Fișe proprii Tenerife Go, verificate în sursele fiecărui exercițiu."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoModoPreguntar",
+   "es": "Preguntar",
+   "forma": "texto",
+   "ro": "Întrebați"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisTitulo",
+   "es": "Pregunte lo que quiera",
+   "forma": "texto",
+   "ro": "Întrebați ce doriți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisLema",
+   "es": "Sobre entrenar, comer, descansar y hacer deporte en Tenerife. Respuestas escritas de antemano, con sus fuentes; no sustituyen a un profesional.",
+   "forma": "texto",
+   "ro": "Despre antrenament, alimentație, odihnă și sport în Tenerife. Răspunsuri scrise dinainte, cu sursele lor; nu înlocuiesc un profesionist."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisSugeridas",
+   "es": "Preguntas sugeridas",
+   "forma": "texto",
+   "ro": "Întrebări sugerate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisPregunta",
+   "es": "Su pregunta",
+   "forma": "texto",
+   "ro": "Întrebarea dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisEscriba",
+   "es": "Escriba su pregunta…",
+   "forma": "texto",
+   "ro": "Scrieți întrebarea…"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisEnviar",
+   "es": "Enviar",
+   "forma": "texto",
+   "ro": "Trimiteți"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisPie",
+   "es": "Lo que escribe no se guarda ni se envía a ningún sitio: la respuesta se busca en este dispositivo.",
+   "forma": "texto",
+   "ro": "Ce scrieți nu se salvează și nu se trimite nicăieri: răspunsul se caută pe acest dispozitiv."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisCargando",
+   "es": "Preparando las respuestas…",
+   "forma": "texto",
+   "ro": "Se pregătesc răspunsurile…"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisError",
+   "es": "No se han podido cargar las respuestas. Hace falta conexión la primera vez.",
+   "forma": "texto",
+   "ro": "Răspunsurile nu au putut fi încărcate. Prima dată este nevoie de conexiune."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisNoSe",
+   "es": "No tengo una respuesta para eso. Puedo responder sobre entrenar, comer, descansar, el deporte en Tenerife y cuándo consultar.",
+   "forma": "texto",
+   "ro": "Nu am un răspuns pentru asta. Pot răspunde despre antrenament, alimentație, odihnă, sport în Tenerife și când e cazul să consultați un specialist."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisQuiza",
+   "es": "¿Quería preguntar esto?",
+   "forma": "texto",
+   "ro": "Ați vrut să întrebați asta?"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisTambien",
+   "es": "También le puede interesar",
+   "forma": "texto",
+   "ro": "V-ar putea interesa și"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisFuentes",
+   "es": "{n} fuente|{n} fuentes",
+   "forma": "texto",
+   "ro": "{n} sursă|{n} surse|{n} de surse"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisLeido",
+   "es": "Lo que dice la fuente",
+   "forma": "texto",
+   "ro": "Ce spune sursa"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisCert_alta",
+   "es": "Certeza alta",
+   "forma": "texto",
+   "ro": "Certitudine ridicată"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisCert_moderada",
+   "es": "Certeza moderada",
+   "forma": "texto",
+   "ro": "Certitudine moderată"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisCert_baja",
+   "es": "Certeza baja",
+   "forma": "texto",
+   "ro": "Certitudine scăzută"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisCertAyuda",
+   "es": "Alta: guía oficial o metaanálisis. Moderada: consenso de expertos o pocos estudios. Baja: un estudio o evidencia indirecta.",
+   "forma": "texto",
+   "ro": "Ridicată: ghid oficial sau metaanaliză. Moderată: consens al experților sau puține studii. Scăzută: un singur studiu sau dovezi indirecte."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisConsultar",
+   "es": "Cuándo consultar",
+   "forma": "texto",
+   "ro": "Când să consultați un specialist"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisUrgencia",
+   "es": "Esto puede ser una urgencia",
+   "forma": "texto",
+   "ro": "Aceasta poate fi o urgență"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisLlamar",
+   "es": "Llamar al {n}",
+   "forma": "texto",
+   "ro": "Sunați la {n}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisSos",
+   "es": "Abrir la guía SOS",
+   "forma": "texto",
+   "ro": "Deschideți ghidul SOS"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisVerGrupo",
+   "es": "Ver {grupo}",
+   "forma": "texto",
+   "ro": "Vedeți {grupo}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisVerEj",
+   "es": "Ver el ejercicio",
+   "forma": "texto",
+   "ro": "Vedeți exercițiul"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisVerAspecto",
+   "es": "Cambiar el aspecto",
+   "forma": "texto",
+   "ro": "Schimbați aspectul"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisVerMusculos",
+   "es": "Ver los músculos",
+   "forma": "texto",
+   "ro": "Vedeți mușchii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisRevisado",
+   "es": "Redactado con ayuda de IA y comprobado con las fuentes citadas. Sin revisión profesional.",
+   "forma": "texto",
+   "ro": "Redactat cu ajutorul IA și verificat cu sursele citate. Fără revizuire profesională."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisVaciar",
+   "es": "Borrar la conversación",
+   "forma": "texto",
+   "ro": "Ștergeți conversația"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisHola",
+   "es": "Hola. ¿En qué puedo ayudarle? Pruebe con una de estas preguntas o escriba la suya.",
+   "forma": "texto",
+   "ro": "Bună ziua. Cu ce vă pot ajuta? Încercați una dintre aceste întrebări sau scrieți-o pe a dumneavoastră."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisPregChip",
+   "es": "Preguntar: {q}",
+   "forma": "texto",
+   "ro": "Întrebați: {q}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoAsisResumen",
+   "es": "Fuente leída en la investigación del 24 de octubre de 2026; no se guardó una cita literal.",
+   "forma": "texto",
+   "ro": "Sursă citită în cercetarea din 24 octombrie 2026; nu s-a păstrat un citat literal."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepTitulo",
+   "es": "Su deporte",
+   "forma": "texto",
+   "ro": "Sportul dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepLema",
+   "es": "Elija el que practica: el personaje marcará los grupos que más le sirven y verá qué dicen los estudios.",
+   "forma": "texto",
+   "ro": "Alegeți-l pe cel pe care îl practicați: personajul va marca grupele care vă ajută cel mai mult și veți vedea ce spun studiile."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepNinguno",
+   "es": "Ninguno",
+   "forma": "texto",
+   "ro": "Niciunul"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_senderismo",
+   "es": "Senderismo y caminar",
+   "forma": "texto",
+   "ro": "Drumeții și mers pe jos"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_mar",
+   "es": "Natación y mar",
+   "forma": "texto",
+   "ro": "Înot și mare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_carrera",
+   "es": "Carrera y trail",
+   "forma": "texto",
+   "ro": "Alergare și trail"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_ciclismo",
+   "es": "Ciclismo de carretera",
+   "forma": "texto",
+   "ro": "Ciclism pe șosea"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_surf",
+   "es": "Surf y pádel surf",
+   "forma": "texto",
+   "ro": "Surf și stand-up paddle"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_buceo",
+   "es": "Buceo",
+   "forma": "texto",
+   "ro": "Scufundări"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_golf",
+   "es": "Golf",
+   "forma": "texto",
+   "ro": "Golf"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_windsurf",
+   "es": "Windsurf y kitesurf",
+   "forma": "texto",
+   "ro": "Windsurfing și kitesurfing"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_padel",
+   "es": "Pádel",
+   "forma": "texto",
+   "ro": "Padel"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_escalada",
+   "es": "Escalada",
+   "forma": "texto",
+   "ro": "Escaladă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_lucha",
+   "es": "Lucha canaria",
+   "forma": "texto",
+   "ro": "Lupte canariene"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_otro",
+   "es": "Otro deporte",
+   "forma": "texto",
+   "ro": "Alt sport"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepCargando",
+   "es": "Cargando la ficha del deporte…",
+   "forma": "texto",
+   "ro": "Se încarcă fișa sportului…"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepError",
+   "es": "No se ha podido cargar la ficha. Compruebe la conexión e inténtelo de nuevo.",
+   "forma": "texto",
+   "ro": "Fișa nu a putut fi încărcată. Verificați conexiunea și încercați din nou."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepPrio",
+   "es": "Grupos prioritarios",
+   "forma": "texto",
+   "ro": "Grupe prioritare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepSec",
+   "es": "Grupos secundarios",
+   "forma": "texto",
+   "ro": "Grupe secundare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrado_D",
+   "es": "Los grupos salen de los ejercicios que usaron los estudios.",
+   "forma": "texto",
+   "ro": "Grupele provin din exercițiile folosite în studii."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrado_I",
+   "es": "Los grupos se deducen de cómo se mueve el cuerpo en este deporte, no de estudios hechos en él.",
+   "forma": "texto",
+   "ro": "Grupele se deduc din felul în care se mișcă corpul în acest sport, nu din studii făcute pe el."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepEstudios",
+   "es": "Lo que dicen los estudios",
+   "forma": "texto",
+   "ro": "Ce spun studiile"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepDosis",
+   "es": "En los estudios:",
+   "forma": "texto",
+   "ro": "În studii:"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepMenores",
+   "es": "Estos estudios se hicieron con adultos. Por debajo de 18 años, siga la recomendación de la OMS para su edad.",
+   "forma": "texto",
+   "ro": "Aceste studii s-au făcut cu adulți. Sub 18 ani, urmați recomandarea OMS pentru vârsta dumneavoastră."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepEjercicios",
+   "es": "Ejercicios de la biblioteca",
+   "forma": "texto",
+   "ro": "Exerciții din bibliotecă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepEj_D",
+   "es": "De los estudios",
+   "forma": "texto",
+   "ro": "Din studii"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepEj_I",
+   "es": "Indirecto",
+   "forma": "texto",
+   "ro": "Indirect"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepEncajar",
+   "es": "Cómo encajarlo en su semana",
+   "forma": "texto",
+   "ro": "Cum îl încadrați în săptămână"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepLesiones",
+   "es": "Lo que más se lesiona",
+   "forma": "texto",
+   "ro": "Cele mai frecvente accidentări"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepLesionesNota",
+   "es": "Indican qué zonas conviene proteger, no su riesgo personal.",
+   "forma": "texto",
+   "ro": "Datele arată ce zone e bine să protejați, nu riscul dumneavoastră personal."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepIsla",
+   "es": "En Tenerife",
+   "forma": "texto",
+   "ro": "În Tenerife"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepNo",
+   "es": "Lo que no le prometemos",
+   "forma": "texto",
+   "ro": "Ce nu vă promitem"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepPreguntas",
+   "es": "Preguntas sobre este deporte",
+   "forma": "texto",
+   "ro": "Întrebări despre acest sport"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepCert_indirecta",
+   "es": "Evidencia indirecta",
+   "forma": "texto",
+   "ro": "Dovezi indirecte"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepCert_ninguna",
+   "es": "Sin estudios de fuerza",
+   "forma": "texto",
+   "ro": "Fără studii de forță"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepPrioLeyenda",
+   "es": "Prioridad de su deporte",
+   "forma": "texto",
+   "ro": "Prioritate pentru sportul dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepPrioTag",
+   "es": "Prioridad",
+   "forma": "texto",
+   "ro": "Prioritate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepFiguraPrio",
+   "es": "Grupos prioritarios para {deporte}: {lista}.",
+   "forma": "texto",
+   "ro": "Grupe prioritare pentru {deporte}: {lista}."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoModoComida",
+   "es": "Comida",
+   "forma": "texto",
+   "ro": "Mâncare"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoModoEvolucion",
+   "es": "Evolución",
+   "forma": "texto",
+   "ro": "Evoluție"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComTitulo",
+   "es": "Su comida",
+   "forma": "texto",
+   "ro": "Mâncarea dumneavoastră"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComLema",
+   "es": "Anote lo que come por raciones, como las cuenta la Agencia Española de Seguridad Alimentaria y Nutrición (AESAN). No cuenta calorías ni le pone objetivos: le enseña su semana al lado de la guía.",
+   "forma": "texto",
+   "ro": "Notați ce mâncați pe porții, așa cum le numără Agenția Spaniolă pentru Siguranța Alimentară și Nutriție (AESAN). Nu numără calorii și nu vă impune obiective: vă arată săptămâna dumneavoastră alături de ghid."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComEmpezar",
+   "es": "Empezar a anotar",
+   "forma": "texto",
+   "ro": "Începeți să notați"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComPrivado",
+   "es": "Lo que anote se guarda solo en este dispositivo.",
+   "forma": "texto",
+   "ro": "Ce notați se salvează doar pe acest dispozitiv."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComDia",
+   "es": "Cada día",
+   "forma": "texto",
+   "ro": "Zilnic"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComSemana",
+   "es": "Cada semana",
+   "forma": "texto",
+   "ro": "Săptămânal"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComCuando",
+   "es": "Anotar en",
+   "forma": "texto",
+   "ro": "Notați pentru"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComHoyN",
+   "es": "Hoy: {n}",
+   "forma": "texto",
+   "ro": "Azi: {n}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComAyerN",
+   "es": "Ayer: {n}",
+   "forma": "texto",
+   "ro": "Ieri: {n}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComSemanaN",
+   "es": "Últimos 7 días: {n}",
+   "forma": "texto",
+   "ro": "Ultimele 7 zile: {n}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComMas",
+   "es": "Añadir una ración de {g}",
+   "forma": "texto",
+   "ro": "Adăugați o porție: {g}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComMenos",
+   "es": "Quitar una ración de {g}",
+   "forma": "texto",
+   "ro": "Scoateți o porție: {g}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComVivo",
+   "es": "{g}: {n}",
+   "forma": "texto",
+   "ro": "{g}: {n}"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_hortalizas",
+   "es": "Hortalizas",
+   "forma": "texto",
+   "ro": "Legume"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_frutas",
+   "es": "Frutas",
+   "forma": "texto",
+   "ro": "Fructe"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_cereales",
+   "es": "Cereales",
+   "forma": "texto",
+   "ro": "Cereale"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_lacteos",
+   "es": "Lácteos",
+   "forma": "texto",
+   "ro": "Lactate"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_legumbres",
+   "es": "Legumbres",
+   "forma": "texto",
+   "ro": "Leguminoase"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_pescado",
+   "es": "Pescado",
+   "forma": "texto",
+   "ro": "Pește"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_frutos_secos",
+   "es": "Frutos secos",
+   "forma": "texto",
+   "ro": "Fructe oleaginoase"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_huevos",
+   "es": "Huevos",
+   "forma": "texto",
+   "ro": "Ouă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComG_carne",
+   "es": "Carne",
+   "forma": "texto",
+   "ro": "Carne"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_hortalizas",
+   "es": "Una ración: 150–200 g",
+   "forma": "texto",
+   "ro": "O porție: 150–200 g"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_frutas",
+   "es": "Una ración: 120–200 g de fruta fresca",
+   "forma": "texto",
+   "ro": "O porție: 120–200 g de fructe proaspete"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_cereales",
+   "es": "Una ración: 40–60 g de pan, o 60–80 g en seco de pasta o arroz",
+   "forma": "texto",
+   "ro": "O porție: 40–60 g de pâine sau 60–80 g de paste sau orez (cântărite crude)"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_lacteos",
+   "es": "Una ración: un vaso de leche (200–250 ml), un yogur (125 g), 85–125 g de queso fresco o 40–60 g de queso curado",
+   "forma": "texto",
+   "ro": "O porție: un pahar de lapte (200–250 ml), un iaurt (125 g), 85–125 g de brânză proaspătă sau 40–60 g de brânză maturată"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_legumbres",
+   "es": "Una ración: 50–60 g en seco o unos 170 g ya cocinadas",
+   "forma": "texto",
+   "ro": "O porție: 50–60 g uscate sau circa 170 g deja gătite"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_pescado",
+   "es": "Una ración: 125–150 g (un filete)",
+   "forma": "texto",
+   "ro": "O porție: 125–150 g (un file)"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_frutos_secos",
+   "es": "Una ración: 20–30 g, un puñado que le quepa en la mano cerrada",
+   "forma": "texto",
+   "ro": "O porție: 20–30 g, cât încape în pumnul închis"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_huevos",
+   "es": "Un huevo mediano pesa entre 53 y 63 g",
+   "forma": "texto",
+   "ro": "Un ou mediu cântărește între 53 și 63 g"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComRac_carne",
+   "es": "Una ración: 100–125 g (un filete mediano o ¼ de pollo)",
+   "forma": "texto",
+   "ro": "O porție: 100–125 g (o bucată medie sau ¼ de pui)"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_hortalizas",
+   "es": "La guía: al menos 3 al día",
+   "forma": "texto",
+   "ro": "Ghidul: cel puțin 3 pe zi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_frutas",
+   "es": "La guía: de 2 a 3 al día",
+   "forma": "texto",
+   "ro": "Ghidul: între 2 și 3 pe zi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_cereales",
+   "es": "La guía: de 3 a 6 al día",
+   "forma": "texto",
+   "ro": "Ghidul: între 3 și 6 pe zi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_lacteos",
+   "es": "La guía: hasta 3 al día",
+   "forma": "texto",
+   "ro": "Ghidul: până la 3 pe zi"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_legumbres",
+   "es": "La guía: al menos 4 a la semana",
+   "forma": "texto",
+   "ro": "Ghidul: cel puțin 4 pe săptămână"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_pescado",
+   "es": "La guía: al menos 3 a la semana",
+   "forma": "texto",
+   "ro": "Ghidul: cel puțin 3 pe săptămână"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_frutos_secos",
+   "es": "La guía: 3 o más a la semana",
+   "forma": "texto",
+   "ro": "Ghidul: 3 sau mai multe pe săptămână"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_huevos",
+   "es": "La guía: hasta 4 a la semana",
+   "forma": "texto",
+   "ro": "Ghidul: până la 4 pe săptămână"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFrec_carne",
+   "es": "La guía: de 0 a 3 a la semana",
+   "forma": "texto",
+   "ro": "Ghidul: între 0 și 3 pe săptămână"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComAceite",
+   "es": "Aceite de oliva: en todas las comidas; una ración son 10 ml, una cucharada sopera.",
+   "forma": "texto",
+   "ro": "Ulei de măsline: la toate mesele; o porție înseamnă 10 ml, adică o lingură."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComAgua",
+   "es": "Agua: siempre que tenga sed. Sal: no más de 5 g al día.",
+   "forma": "texto",
+   "ro": "Apă: ori de câte ori vă este sete. Sare: cel mult 5 g pe zi."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFuente",
+   "es": "Raciones y frecuencias: AESAN, «Recomendaciones dietéticas saludables y sostenibles complementadas con recomendaciones de actividad física para la población española», diciembre de 2022.",
+   "forma": "texto",
+   "ro": "Porții și frecvențe: AESAN, „Recomandări alimentare sănătoase și sustenabile, completate cu recomandări de activitate fizică pentru populația Spaniei”, decembrie 2022."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComFuenteVer",
+   "es": "Ver la guía",
+   "forma": "texto",
+   "ro": "Vedeți ghidul"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComAyuda",
+   "es": "Si la comida o el peso le preocupan, hable con su médico o con un dietista-nutricionista. En Tenerife, ALABENTE (asociación contra la anorexia y la bulimia) atiende en el 922 64 12 06.",
+   "forma": "texto",
+   "ro": "Dacă alimentația sau greutatea vă îngrijorează, vorbiți cu medicul dumneavoastră sau cu un dietetician-nutriționist. În Tenerife, ALABENTE (asociația împotriva anorexiei și bulimiei) răspunde la 922 64 12 06."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComLlamar",
+   "es": "Llamar a ALABENTE",
+   "forma": "texto",
+   "ro": "Sunați la ALABENTE"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComPausar",
+   "es": "Pausar el diario",
+   "forma": "texto",
+   "ro": "Puneți jurnalul pe pauză"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComSeguir",
+   "es": "Seguir anotando",
+   "forma": "texto",
+   "ro": "Continuați să notați"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComPausado",
+   "es": "El diario está en pausa: lo anotado se guarda en este dispositivo, pero no se enseña.",
+   "forma": "texto",
+   "ro": "Jurnalul este pe pauză: ce ați notat se păstrează pe acest dispozitiv, dar nu se afișează."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComBorrar",
+   "es": "Borrar lo anotado",
+   "forma": "texto",
+   "ro": "Ștergeți ce ați notat"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComBorrarSeguro",
+   "es": "¿Borrar todas las raciones anotadas? No se puede deshacer.",
+   "forma": "texto",
+   "ro": "Ștergeți toate porțiile notate? Acțiunea nu poate fi anulată."
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoComBorrado",
+   "es": "Raciones borradas",
+   "forma": "texto",
+   "ro": "Porțiile au fost șterse"
+  }
+ ]
+}

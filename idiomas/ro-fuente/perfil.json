@@ -512,7 +512,7 @@
    "clave": "perfilCuerpoTitulo",
    "es": "Su cuerpo",
    "forma": "texto",
-   "ro": "Corpul dumneavoastră"
+   "ro": "Corp"
   },
   {
    "tabla": "PERFIL_UI",

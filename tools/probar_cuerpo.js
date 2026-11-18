@@ -3998,7 +3998,7 @@ async function ejemplo(pg, mas) {
       if (!AY[l] || t !== AY[l] || t === AY.es || t.indexOf('{') >= 0) mal37.push(l + ': ' + t);
     }
     await idioma(p37, 'es');
-    prueba('37: el texto de «¿Qué tiene en casa?» en los diez idiomas', !mal37.length && Object.keys(AY).length === 10, mal37.join(' | '));
+    prueba('37: el texto de «¿Qué tiene en casa?» en los diez idiomas', !mal37.length && ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'].every(l => typeof AY[l] === 'string' && AY[l]), mal37.join(' | '));
     prueba('37: sin errores de página', e37.length === 0, e37.join(' | '));
     await c37.close();
   }

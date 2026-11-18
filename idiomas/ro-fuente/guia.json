@@ -428,7 +428,7 @@
    "clave": "tourLeyendaP",
    "es": "Qué significa cada símbolo del mapa. Y dentro me tiene siempre: con «{ver}» vuelvo a enseñarle la app, el cielo o «Su cuerpo».",
    "forma": "texto",
-   "ro": "Ce înseamnă fiecare simbol de pe hartă. Și acolo mă găsiți mereu: cu „{ver}” vă arăt din nou aplicația, cerul sau „Corpul dumneavoastră”."
+   "ro": "Ce înseamnă fiecare simbol de pe hartă. Și acolo mă găsiți mereu: cu „{ver}” vă arăt din nou aplicația, cerul sau secțiunea „Corp”."
   },
   {
    "tabla": "GUIA_UI",
@@ -512,7 +512,7 @@
    "clave": "tourFinP",
    "es": "Toque cualquier marcador para empezar. Este tour está siempre en la leyenda del mapa, y el cielo y «Su cuerpo» tienen el suyo dentro. ¡Que la disfrute!",
    "forma": "texto",
-   "ro": "Atingeți orice marcaj pentru a începe. Acest tur se află mereu în legenda hărții, iar cerul și „Corpul dumneavoastră” își au fiecare propriul tur. Bucurați-vă de insulă!"
+   "ro": "Atingeți orice marcaj pentru a începe. Acest tur se află mereu în legenda hărții, iar cerul și secțiunea „Corp” își au fiecare propriul tur. Bucurați-vă de insulă!"
   },
   {
    "tabla": "GUIA_UI",
@@ -652,7 +652,7 @@
    "clave": "guiaCuTitulo",
    "es": "Su cuerpo",
    "forma": "texto",
-   "ro": "Corpul dumneavoastră"
+   "ro": "Corp"
   },
   {
    "tabla": "GUIA_UI",
@@ -673,7 +673,7 @@
    "clave": "guiaCuPersonajeP",
    "es": "Soy Jérôme y le enseño «Su cuerpo» en {S} pasos. Este es su personaje: toque uno de sus músculos y podrá anotar una serie. «{girar}» lo enseña de espaldas.",
    "forma": "texto",
-   "ro": "Sunt Jérôme și vă arăt „Corpul dumneavoastră” în {S} pași. Acesta este personajul dumneavoastră: atingeți unul dintre mușchii lui și veți putea nota o serie. „{girar}” îl arată din spate."
+   "ro": "Sunt Jérôme și vă arăt secțiunea „Corp” în {S} pași. Acesta este personajul dumneavoastră: atingeți unul dintre mușchii lui și veți putea nota o serie. „{girar}” îl arată din spate."
   },
   {
    "tabla": "GUIA_UI",
@@ -764,7 +764,7 @@
    "clave": "guiaCuPrivadoP",
    "es": "Las series, el movimiento y la comida que anota en «Su cuerpo» se guardan solo en este dispositivo: no se suben a ninguna parte. Y el botón de borrar lo quita todo.",
    "forma": "texto",
-   "ro": "Seriile, mișcarea și mâncarea pe care le notați în „Corpul dumneavoastră” se salvează doar pe acest dispozitiv: nu se încarcă nicăieri. Iar butonul de ștergere elimină tot."
+   "ro": "Seriile, mișcarea și mâncarea pe care le notați în secțiunea „Corp” se salvează doar pe acest dispozitiv: nu se încarcă nicăieri. Iar butonul de ștergere elimină tot."
   },
   {
    "tabla": "GUIA_UI",

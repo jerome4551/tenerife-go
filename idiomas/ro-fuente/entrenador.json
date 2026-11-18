@@ -1,0 +1,154 @@
+{
+ "_": "Rumano (ro) de las filas de ENT_UI del entrenador, en su fuente tools/entrenador/src/80-reproductor.js (modulos/entrenador.js sale de ahí con tools/entrenador/construir.py). Lo mete tools/poner_traduccion.js, que localiza cada fila por tabla + clave + castellano. No se edita a mano: sale de la entrega del bloque 13 del rumano.",
+ "idioma": "ro",
+ "fichero": "tools/entrenador/src/80-reproductor.js",
+ "filas": [
+  {
+   "tabla": "ENT_UI",
+   "clave": "entCon",
+   "es": "Jérôme se lo enseña",
+   "forma": "texto",
+   "ro": "Jérôme vă arată"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entVideo",
+   "es": "Vídeo del ejercicio",
+   "forma": "texto",
+   "ro": "Videoclipul exercițiului"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entPaso",
+   "es": "Paso {n} de {N}",
+   "forma": "texto",
+   "ro": "Pasul {n} din {N}"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entPlay",
+   "es": "Reproducir",
+   "forma": "texto",
+   "ro": "Redați"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entPausa",
+   "es": "Pausa",
+   "forma": "texto",
+   "ro": "Pauză"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entAnt",
+   "es": "Paso anterior",
+   "forma": "texto",
+   "ro": "Pasul anterior"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entSig",
+   "es": "Paso siguiente",
+   "forma": "texto",
+   "ro": "Pasul următor"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entLento",
+   "es": "A cámara lenta",
+   "forma": "texto",
+   "ro": "Cu încetinitorul"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entGirar",
+   "es": "Girar",
+   "forma": "texto",
+   "ro": "Întoarceți"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entVozOn",
+   "es": "Escuchar a Jérôme",
+   "forma": "texto",
+   "ro": "Ascultați-l pe Jérôme"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entVozOff",
+   "es": "Parar la voz",
+   "forma": "texto",
+   "ro": "Opriți vocea"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entOtraVez",
+   "es": "Ver otra vez",
+   "forma": "texto",
+   "ro": "Vedeți din nou"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entConsejo",
+   "es": "Un consejo",
+   "forma": "texto",
+   "ro": "Un sfat"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entTurno",
+   "es": "¡Su turno!",
+   "forma": "texto",
+   "ro": "E rândul dumneavoastră!"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entTrabaja",
+   "es": "Trabaja",
+   "forma": "texto",
+   "ro": "Mușchi lucrați"
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entFin1",
+   "es": "Yo ya he hecho las mías. Bueno, casi.",
+   "forma": "texto",
+   "ro": "Eu le-am făcut deja pe ale mele. Ei, aproape."
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entFin2",
+   "es": "Hoy lo enseño yo. Mañana me lo enseña usted.",
+   "forma": "texto",
+   "ro": "Azi vă arăt eu. Mâine îmi arătați dumneavoastră."
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entFin3",
+   "es": "Con calma: la isla no se va a ninguna parte.",
+   "forma": "texto",
+   "ro": "Cu calm: insula nu pleacă nicăieri."
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entFin4",
+   "es": "Yo me quedo aquí, por si quiere verlo otra vez.",
+   "forma": "texto",
+   "ro": "Eu rămân aici, dacă doriți să-l mai vedeți o dată."
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entFin5",
+   "es": "A mí también me costó la primera.",
+   "forma": "texto",
+   "ro": "Și mie mi-a fost greu la prima."
+  },
+  {
+   "tabla": "ENT_UI",
+   "clave": "entFin6",
+   "es": "Sin prisa. Yo no tengo otra cosa que hacer.",
+   "forma": "texto",
+   "ro": "Fără grabă. Eu n-am altceva de făcut."
+  }
+ ]
+}

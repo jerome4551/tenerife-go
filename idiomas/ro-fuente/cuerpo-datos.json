@@ -1,0 +1,2265 @@
+{
+ "_": "Rumano (ro) de los datos de «Su cuerpo»: las guías de los deportes (datos/cuerpo/deportes-ro.json, con la forma de deportes-es.json: lo que no se traduce, ids, grados, enlaces y fechas, sale de él), los textos de rutinas.json y los de estiramientos.json (el «ro» de cada uno va detrás del «pl»). Cada texto lleva su ruta y el castellano que traduce. Lo mete poner_r13_ro.py (del zip del bloque 13 del rumano), que no escribe nada si un castellano cambió. No se edita a mano.",
+ "idioma": "ro",
+ "deportes": {
+  "fichero": "datos/cuerpo/deportes-ro.json",
+  "desde": "datos/cuerpo/deportes-es.json",
+  "guias": [
+   {
+    "id": "senderismo",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "No hemos encontrado ningún ensayo de fuerza con senderistas. Bajar carga mucho la rodilla y en los Alpes tres de cada cuatro caídas fueron bajando: unas piernas fuertes para frenar podrían ayudar, pero es una deducción.",
+      "ro": "Nu am găsit niciun studiu cu antrenament de forță la drumeți. Coborârea solicită mult genunchiul, iar în Alpi trei din patru căderi s-au produs la coborâre: niște picioare puternice, care să frâneze, ar putea ajuta, dar este o deducție."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "En 12 personas sanas, bajar andando cargó la rodilla con 8 veces el peso corporal, frente a 3,9 en llano; el 80 % lo ponían los músculos (Kuster 1997).",
+      "ro": "La 12 persoane sănătoase, coborârea pe jos a încărcat genunchiul cu de 8 ori greutatea corporală, față de 3,9 ori pe teren plat; 80 % din încărcare venea de la mușchi (Kuster 1997)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "Una revisión de 2020: los bastones reducen la carga de las piernas, pero aumentan el esfuerzo cardiovascular; con mochila pesada pueden ayudar también al equilibrio.",
+      "ro": "O analiză a studiilor, publicată în 2020: bețele reduc încărcarea picioarelor, dar cresc efortul cardiovascular; cu un rucsac greu pot ajuta și la echilibru."
+     },
+     {
+      "ruta": [
+       "p",
+       2
+      ],
+      "es": "Los autores del estudio de los Alpes recomiendan actividad física regular con trabajo excéntrico (el del músculo que frena), pero es su opinión, no un resultado.",
+      "ro": "Autorii studiului din Alpi recomandă activitate fizică regulată cu lucru excentric (cel al mușchiului care frânează), dar este opinia lor, nu un rezultat."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "Descanse lo suficiente antes de empezar a bajar y haga pausas durante la bajada: lo recomiendan los autores del estudio de los Alpes.",
+      "ro": "Odihniți-vă suficient înainte de a începe coborârea și faceți pauze în timpul ei: așa recomandă autorii studiului din Alpi."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Sin ensayos propios, la pauta de fuerza es la general, la de «Otro deporte».",
+      "ro": "Fără studii proprii, recomandarea de forță este cea generală, cea de la „Alt sport”."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En senderistas de los Alpes austriacos (datos de la policía alpina), cerca del 75 % de las caídas ocurrió bajando y casi el 60 % fue por un resbalón.",
+      "ro": "În rândul drumeților din Alpii austrieci (date ale poliției alpine), aproximativ 75 % dintre căderi s-au produs la coborâre și aproape 60 % din cauza unei alunecări."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Tobillo: cerca del 40 % de las zonas lesionadas",
+      "ro": "Glezna: aproximativ 40 % dintre zonele accidentate"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Subir a pie a La Rambleta, en el Teide, exige reserva en Tenerife ON, y los senderos pueden cerrarse por hielo, nieve, viento o heladas aunque la tenga.",
+      "ro": "Urcarea pe jos la La Rambleta, pe Teide, necesită rezervare în Tenerife ON, iar traseele se pot închide din cauza gheții, a zăpezii, a vântului sau a înghețului, chiar dacă aveți rezervare."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "En el Teide, el mal de altura suele dar dolor de cabeza a las 2–12 horas; con confusión, somnolencia, torpeza al andar o falta de aire en reposo, avise al 112 y baje acompañado.",
+      "ro": "Pe Teide, răul de altitudine dă de obicei dureri de cap după 2–12 ore; dacă apar confuzie, somnolență, mers nesigur sau lipsă de aer în repaus, sunați la 112 și coborâți împreună cu cineva."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "El sol es más intenso en altura: en agosto de 2024, Izaña (2.371 m) marcó un índice UV de 13,7, el máximo que registró AEMET ese mes. Protéjase aunque haga fresco.",
+      "ro": "Soarele este mai puternic la altitudine: în august 2024, Izaña (2.371 m) a înregistrat un indice UV de 13,7, maximul înregistrat de AEMET în acea lună. Protejați-vă chiar dacă e răcoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Con calor, evite caminar en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați să mergeți pe jos în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       4,
+       "t"
+      ],
+      "es": "El mismo día de la excursión, mire en Tenerife ON si hay alertas o senderos cerrados; diga a alguien su ruta y no salga solo.",
+      "ro": "În ziua excursiei, verificați în Tenerife ON dacă există alerte sau trasee închise; spuneți cuiva pe ce traseu mergeți și nu plecați fără companie."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que la fuerza evite caídas o lesiones en la montaña: no hemos encontrado ningún ensayo que lo compruebe en senderistas.",
+      "ro": "Că forța previne căderile sau accidentările pe munte: nu am găsit niciun studiu care să confirme asta la drumeți."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que los bastones compensen siempre: caminando sin carga, la revisión de 2020 aconseja sopesar ventajas e inconvenientes.",
+      "ro": "Că bețele compensează întotdeauna: la mersul fără încărcătură, analiza (2020) recomandă să cântăriți avantajele și dezavantajele."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿Qué músculos me conviene fortalecer para el senderismo?",
+      "ro": "Ce mușchi e bine să întăresc pentru drumeții?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cómo me preparo para una ruta de senderismo?",
+      "ro": "Cum mă pregătesc pentru o drumeție?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "Me duelen las rodillas al bajar de la montaña: ¿qué hago?",
+      "ro": "Mă dor genunchii la coborârea de pe munte: ce fac?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Puedo tener mal de altura en el Teide?",
+      "ro": "Pot face rău de altitudine pe Teide?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "Me he torcido el tobillo: ¿qué hago?",
+      "ro": "Mi-am sucit glezna: ce fac?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Accidentes en senderismo de montaña y esquí alpino: datos de los Alpes austriacos (Faulhaber et al., Dtsch Z Sportmed 2020)",
+      "ro": "Accidente în drumețiile montane și la schiul alpin: date din Alpii austrieci (Faulhaber et al., Dtsch Z Sportmed 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Consideraciones sobre la carga articular en la prótesis total de rodilla: carga de la rodilla al andar en llano y cuesta abajo (Kuster et al., J Bone Joint Surg Br 1997)",
+      "ro": "Considerații privind încărcarea articulară în proteza totală de genunchi: încărcarea genunchiului la mersul pe teren plat și la coborâre (Kuster et al., J Bone Joint Surg Br 1997)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "¿Ayudan o estorban los bastones en el senderismo? Una revisión (Wilderness Environ Med 2020)",
+      "ro": "Ajută sau încurcă bețele la drumeții? O analiză a studiilor (Wilderness Environ Med 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Viajes a gran altitud y mal de altura (CDC Yellow Book 2026)",
+      "ro": "Călătoriile la mare altitudine și răul de altitudine (CDC Yellow Book 2026)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Resumen mensual de la radiación ultravioleta y la capa de ozono, agosto de 2024 (AEMET)",
+      "ro": "Rezumatul lunar al radiației ultraviolete și al stratului de ozon, august 2024 (AEMET)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Resolución del Cabildo de Tenerife sobre el acceso a pie a La Rambleta, de 27-11-2024 (Tenerife ON)",
+      "ro": "Rezoluția Cabildo de Tenerife privind accesul pe jos la La Rambleta, din 27-11-2024 (Tenerife ON)"
+     }
+    ]
+   },
+   {
+    "id": "mar",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "La evidencia apunta a que, fuera del agua, la fuerza máxima es lo que más mejora el rendimiento en natación, aunque 7 de 16 estudios no hallaron efecto alguno.",
+      "ro": "Dovezile indică faptul că, în afara apei, forța maximă este cea care îmbunătățește cel mai mult performanța la înot, deși 7 din 16 studii nu au găsit niciun efect."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Una revisión de 16 estudios (Amaro et al. 2019): la fuerza máxima en seco fue el método más eficaz para el rendimiento; 7 estudios no hallaron ni mejora ni empeoramiento.",
+      "ro": "O analiză a 16 studii (Amaro et al. 2019): forța maximă pe uscat a fost metoda cea mai eficientă pentru performanță; 7 studii nu au găsit nici îmbunătățire, nici înrăutățire."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "La misma revisión propone la pliometría (saltos) como el método más eficaz para las salidas y los virajes.",
+      "ro": "Aceeași analiză propune pliometria (sărituri) ca metoda cea mai eficientă pentru starturi și întoarceri."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "La revisión habla de 6 a 12 semanas, con 2–4 sesiones semanales (unas 24 en total), y sus autores proponen 2–3 series de 3–5 repeticiones al 80–90 % del máximo que se levanta una vez.",
+      "ro": "Analiza vorbește de 6–12 săptămâni, cu 2–4 sesiuni pe săptămână (circa 24 în total), iar autorii ei propun 2–3 serii de 3–5 repetări la 80–90 % din maximul care se poate ridica o dată."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La revisión habla de programas de 6 a 12 semanas, así que en 1–2 semanas de vacaciones no espere nadar mejor por la fuerza: tómela como mantenimiento (deducción).",
+      "ro": "Analiza vorbește de programe de 6–12 săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați să înotați mai bine datorită forței: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Para combinar fuerza y natación el mismo día no tenemos datos; en carrera y bici, con 3 horas o más entre ambas no hubo pérdida significativa de fuerza explosiva.",
+      "ro": "Pentru combinarea forței cu înotul în aceeași zi nu avem date; la alergare și bicicletă, cu 3 ore sau mai mult între ele, nu s-a pierdut semnificativ din forța explozivă."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Báñese en playas vigiladas y mire siempre la bandera antes de entrar. Con oleaje fuera de lo normal, no se acerque al mar; con mar de fondo, no haga deporte en el agua.",
+      "ro": "Faceți baie pe plaje supravegheate și uitați-vă mereu la steag înainte de a intra în apă. Cu valuri neobișnuit de mari, nu vă apropiați de mare; cu hulă, nu faceți sport în apă."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si le arrastra una corriente, no nade contra ella: flote para no cansarse, agite el brazo y grite pidiendo ayuda, o salga nadando en paralelo a la orilla.",
+      "ro": "Dacă vă trage un curent, nu înotați împotriva lui: plutiți ca să nu obosiți, fluturați brațul și strigați după ajutor sau ieșiți înotând paralel cu țărmul."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Según la asociación Canarias, 1500 Km de Costa, de los 69 ahogados en Canarias en 2025, el 74 % eran hombres y el 46 % había ido al mar con prealerta o alerta.",
+      "ro": "Potrivit asociației Canarias, 1500 Km de Costa, dintre cele 69 de persoane înecate în Insulele Canare în 2025, 74 % erau bărbați și 46 % intraseră în mare în timpul unei prealerte sau al unei alerte."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Nade en paralelo a la orilla, acompañado y nunca de noche; salga si nota cansancio o frío, y no beba alcohol si va a bañarse.",
+      "ro": "Înotați paralel cu țărmul, împreună cu cineva și niciodată noaptea; ieșiți dacă simțiți oboseală sau frig și nu beți alcool dacă urmează să faceți baie."
+     },
+     {
+      "ruta": [
+       "isla",
+       4,
+       "t"
+      ],
+      "es": "Para el deporte con calor, la OMS pide crema de factor 30 o más, sombrero y gafas de sol; el Gobierno de Canarias aconseja factor 50+, también en días nublados.",
+      "ro": "Pentru sportul pe căldură, OMS indică o cremă cu factor de protecție 30 sau mai mare, pălărie și ochelari de soare; Guvernul Insulelor Canare recomandă factor 50+, și în zilele înnorate."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que la fuerza le haga nadar más rápido: casi la mitad de los estudios revisados no halló ningún efecto.",
+      "ro": "Că forța vă face să înotați mai repede: aproape jumătate dintre studiile analizate nu au găsit niciun efect."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que los saltos mejoren todo su nado: la revisión los propone solo para las salidas y los virajes.",
+      "ro": "Că săriturile vă îmbunătățesc tot înotul: analiza le propune doar pentru starturi și întoarceri."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿Qué fuerza ayuda a nadar mejor?",
+      "ro": "Ce fel de forță ajută la un înot mai bun?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Es seguro nadar en el mar en Tenerife?",
+      "ro": "E sigur să înot în mare în Tenerife?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Qué hago si me arrastra una corriente?",
+      "ro": "Ce fac dacă mă trage un curent?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Cómo trabajo el manguito rotador?",
+      "ro": "Cum lucrez coafa rotatorilor?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Fuerza y acondicionamiento fuera del agua y rendimiento en natación: revisión sistemática (Amaro et al., Science & Sports 2019)",
+      "ro": "Forța și condiționarea fizică în afara apei și performanța la înot: analiză sistematică (Amaro et al., Science & Sports 2019)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Compatibilidad del entrenamiento aeróbico y de fuerza: revisión sistemática y metaanálisis actualizados (Schumann et al., Sports Med 2022)",
+      "ro": "Compatibilitatea antrenamentului aerob și a celui de forță: analiză sistematică și metaanaliză actualizate (Schumann et al., Sports Med 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Seguridad ante las corrientes de resaca (NOAA, JetStream)",
+      "ro": "Siguranța în fața curenților de retur (NOAA, JetStream)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Canarias cierra 2025 con 69 personas muertas por ahogamiento (RTVC, con el recuento de la asociación Canarias, 1500 Km de Costa)",
+      "ro": "Insulele Canare încheie anul 2025 cu 69 de persoane moarte prin înec (RTVC, cu numărătoarea asociației Canarias, 1500 Km de Costa)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Sanidad advierte de riesgos para la salud por radiación ultravioleta extrema (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare avertizează asupra riscurilor pentru sănătate ale radiației ultraviolete extreme (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "carrera",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "La evidencia apunta a que la fuerza con cargas pesadas mejora un poco la economía de carrera, es decir, gastar menos energía al mismo ritmo. Combinar métodos podría ayudar algo más, con certeza baja.",
+      "ro": "Dovezile indică faptul că forța cu încărcături mari îmbunătățește puțin economia de alergare, adică un consum mai mic de energie la același ritm. Combinarea metodelor ar putea ajuta ceva mai mult, cu certitudine scăzută."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Un metaanálisis de 31 estudios con 652 corredores de medio fondo y fondo (Llanos-Lagos et al. 2024): la carga pesada mejoró la economía con un efecto pequeño y certeza moderada.",
+      "ro": "O metaanaliză a 31 de studii cu 652 de alergători de semifond și fond (Llanos-Lagos et al. 2024): încărcătura mare a îmbunătățit economia, cu un efect mic și certitudine moderată."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "Combinar métodos, como cargas medias y saltos, tuvo un efecto moderado, pero con certeza baja; las cargas medias solas y los isométricos (sin movimiento) no mostraron efecto.",
+      "ro": "Combinarea metodelor, de exemplu încărcături medii și sărituri, a avut un efect moderat, dar cu certitudine scăzută; încărcăturile medii singure și exercițiile izometrice (fără mișcare) nu au arătat niciun efect."
+     },
+     {
+      "ruta": [
+       "p",
+       2
+      ],
+      "es": "Los saltos (pliometría) solo mejoraron la economía a 12 km/h o menos, es decir, a 5:00 min/km o más despacio; en el análisis principal no tuvieron efecto.",
+      "ro": "Săriturile (pliometria) au îmbunătățit economia doar la 12 km/h sau mai puțin, adică la 5:00 min/km sau mai încet; în analiza principală nu au avut efect."
+     },
+     {
+      "ruta": [
+       "p",
+       3
+      ],
+      "es": "La carga pesada podría rendir más en corredores con VO2max alto (mucha capacidad aeróbica) y a velocidades altas.",
+      "ro": "Încărcătura mare ar putea aduce mai mult la alergătorii cu VO2max ridicat (capacitate aerobă mare) și la viteze mari."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "Carga pesada, de al menos el 80 % del peso máximo que se levanta una vez, 2–4 días por semana durante 6–14 semanas; por ejemplo, media sentadilla, prensa y peso muerto.",
+      "ro": "Încărcătură mare, de cel puțin 80 % din greutatea maximă care se poate ridica o dată, 2–4 zile pe săptămână timp de 6–14 săptămâni; de exemplu, semigenuflexiuni, presa pentru picioare și îndreptări."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "En 43 estudios, combinar fuerza y carrera o bici no restó fuerza máxima ni músculo; la fuerza explosiva sí se resintió, sobre todo en la misma sesión (Schumann 2022).",
+      "ro": "În 43 de studii, combinarea forței cu alergarea sau bicicleta nu a redus forța maximă și nici masa musculară; în schimb, forța explozivă a avut de suferit, mai ales în aceeași sesiune (Schumann 2022)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Si las hace el mismo día, deje al menos 3 horas entre la carrera y la fuerza: con esa separación no hubo una pérdida significativa de fuerza explosiva.",
+      "ro": "Dacă le faceți în aceeași zi, lăsați cel puțin 3 ore între alergare și forță: cu această pauză nu s-a pierdut semnificativ din forța explozivă."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Los programas duraron de 6 a 24 semanas, así que en 1–2 semanas de vacaciones no espere correr mejor por la fuerza: tómela como mantenimiento (deducción).",
+      "ro": "Programele au durat între 6 și 24 de săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați să alergați mai bine datorită forței: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite correr en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați să alergați în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Aclimatarse al calor lleva de 1 a 2 semanas de sesiones con calor (Racinais 2015): los primeros días, corra menos tiempo, más suave y en las horas frescas.",
+      "ro": "Aclimatizarea la căldură durează 1–2 săptămâni de sesiuni pe căldură (Racinais 2015): în primele zile, alergați mai puțin timp, mai ușor și în orele răcoroase."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "El sol es más intenso en altura: en agosto de 2024, Izaña (2.371 m) marcó un índice UV de 13,7, el máximo que registró AEMET ese mes. Protéjase aunque haga fresco.",
+      "ro": "Soarele este mai puternic la altitudine: în august 2024, Izaña (2.371 m) a înregistrat un indice UV de 13,7, maximul înregistrat de AEMET în acea lună. Protejați-vă chiar dacă e răcoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Una subida de un día al Teide no aclimata a la altura: la aclimatación parcial lleva de 5 a 7 días, según el consenso del COI para deportistas.",
+      "ro": "O urcare de o zi pe Teide nu vă aclimatizează la altitudine: aclimatizarea parțială durează între 5 și 7 zile, potrivit consensului CIO pentru sportivi."
+     },
+     {
+      "ruta": [
+       "isla",
+       4,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que baje sus marcas: el metaanálisis midió la economía de carrera, que no es lo mismo que el tiempo final.",
+      "ro": "Că vă îmbunătățește timpii: metaanaliza a măsurat economia de alergare, care nu este același lucru cu timpul final."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que cualquier fuerza sirva: las cargas medias y los isométricos no mejoraron la economía de carrera.",
+      "ro": "Că orice fel de forță ajută: încărcăturile medii și exercițiile izometrice nu au îmbunătățit economia de alergare."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que haya tantos datos en mujeres: solo 180 de los 652 corredores estudiados lo eran.",
+      "ro": "Că există la fel de multe date despre femei: doar 180 dintre cei 652 de alergători studiați erau femei."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿La fuerza me hará correr mejor?",
+      "ro": "Forța mă va face să alerg mai bine?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Qué tengo en cuenta para correr en Tenerife?",
+      "ro": "Ce trebuie să am în vedere ca să alerg în Tenerife?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Puedo hacer fuerza y cardio el mismo día?",
+      "ro": "Pot face forță și cardio în aceeași zi?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Cuánta agua bebo si hago deporte con calor?",
+      "ro": "Câtă apă beau dacă fac sport pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Fuerza y economía de carrera en corredores de medio fondo y fondo a distintas velocidades: revisión sistemática y metaanálisis (Llanos-Lagos et al., Sports Med 2024)",
+      "ro": "Forța și economia de alergare la alergătorii de semifond și fond, la diferite viteze: analiză sistematică și metaanaliză (Llanos-Lagos et al., Sports Med 2024)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Compatibilidad del entrenamiento aeróbico y de fuerza: revisión sistemática y metaanálisis actualizados (Schumann et al., Sports Med 2022)",
+      "ro": "Compatibilitatea antrenamentului aerob și a celui de forță: analiză sistematică și metaanaliză actualizate (Schumann et al., Sports Med 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Resumen mensual de la radiación ultravioleta y la capa de ozono, agosto de 2024 (AEMET)",
+      "ro": "Rezumatul lunar al radiației ultraviolete și al stratului de ozon, august 2024 (AEMET)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Consenso del COI sobre el calor y la altitud en deportistas de alto nivel (Bergeron et al., Br J Sports Med 2012)",
+      "ro": "Consensul CIO privind căldura și altitudinea la sportivii de performanță (Bergeron et al., Br J Sports Med 2012)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "ciclismo",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "Con certeza baja, los estudios sugieren que la fuerza pesada de piernas podría mejorar la eficiencia del pedaleo, la potencia máxima y el rendimiento, sin cambiar la capacidad aeróbica máxima (VO2max).",
+      "ro": "Cu certitudine scăzută, studiile sugerează că forța cu încărcături mari pentru picioare ar putea îmbunătăți eficiența pedalării, puterea maximă și performanța, fără să schimbe capacitatea aerobă maximă (VO2max)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Un metaanálisis de 17 estudios con 262 ciclistas (Llanos-Lagos et al. 2026): la fuerza pesada mejoró la eficiencia, la potencia pico y el rendimiento; el VO2max no cambió.",
+      "ro": "O metaanaliză a 17 studii cu 262 de cicliști (Llanos-Lagos et al. 2026): forța cu încărcături mari a îmbunătățit eficiența, puterea de vârf și performanța; VO2max nu s-a schimbat."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "Solo dos estudios reclutaron únicamente mujeres; en total, 60 de los 262 participantes eran mujeres.",
+      "ro": "Doar două studii au recrutat exclusiv femei; în total, 60 dintre cei 262 de participanți erau femei."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "Mejoras probables a partir de unas 8 semanas o con 2 sesiones por semana, con cargas pesadas y 3–4 series por ejercicio, en 4 ejercicios de pierna.",
+      "ro": "Îmbunătățiri probabile de la circa 8 săptămâni sau cu 2 sesiuni pe săptămână, cu încărcături mari și 3–4 serii pe exercițiu, la 4 exerciții pentru picioare."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "En temporada, 1 sesión semanal mantuvo lo ganado 13 semanas en un estudio con ciclistas; la OMS pide, para la salud, al menos 2 días a los adultos.",
+      "ro": "În sezon, 1 sesiune pe săptămână a menținut câștigurile timp de 13 săptămâni într-un studiu cu cicliști; pentru sănătate, OMS cere adulților cel puțin 2 zile."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Si hace fuerza y bici el mismo día, deje al menos 3 horas entre ambas: con 20 minutos o menos, la fuerza explosiva se resintió (Schumann 2022).",
+      "ro": "Dacă faceți forță și bicicletă în aceeași zi, lăsați cel puțin 3 ore între ele: cu 20 de minute sau mai puțin, forța explozivă a avut de suferit (Schumann 2022)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Las mejoras parecen probables a partir de unas 8 semanas, así que en 1–2 semanas de vacaciones no espere pedalear mejor por la fuerza: tómela como mantenimiento (deducción).",
+      "ro": "Îmbunătățirile par probabile de la circa 8 săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați să pedalați mai bine datorită forței: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite salir en bici en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați să ieșiți cu bicicleta în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Aclimatarse al calor lleva de 1 a 2 semanas de sesiones con calor (Racinais 2015): los primeros días, salidas más cortas, más suaves y en las horas frescas.",
+      "ro": "Aclimatizarea la căldură durează 1–2 săptămâni de sesiuni pe căldură (Racinais 2015): în primele zile, ture mai scurte, mai ușoare și în orele răcoroase."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Subiendo al Teide, el sol es más intenso: en agosto de 2024, Izaña (2.371 m) marcó un índice UV de 13,7, el máximo que registró AEMET ese mes.",
+      "ro": "Pe drumul spre Teide, soarele este mai puternic: în august 2024, Izaña (2.371 m) a înregistrat un indice UV de 13,7, maximul înregistrat de AEMET în acea lună."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que la fuerza aumente su capacidad aeróbica: el VO2max no cambió en estos estudios.",
+      "ro": "Că forța vă crește capacitatea aerobă: VO2max nu s-a schimbat în aceste studii."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que el resultado sea seguro: los propios autores califican la evidencia de certeza baja.",
+      "ro": "Că rezultatul este sigur: chiar autorii consideră dovezile de certitudine scăzută."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿La fuerza me hará ir mejor en bici?",
+      "ro": "Forța mă va face să merg mai bine pe bicicletă?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "Voy a subir en bici al Teide: ¿qué tengo en cuenta?",
+      "ro": "Urc cu bicicleta pe Teide: ce trebuie să am în vedere?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Puedo hacer fuerza y cardio el mismo día?",
+      "ro": "Pot face forță și cardio în aceeași zi?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Puedo hacer deporte con calima?",
+      "ro": "Pot face sport când e praf din Sahara?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Efectos de la fuerza pesada en los determinantes fisiológicos del rendimiento de ciclistas de resistencia: revisión sistemática y metaanálisis (Llanos-Lagos et al., Eur J Appl Physiol 2026)",
+      "ro": "Efectele forței cu încărcături mari asupra factorilor fiziologici care determină performanța cicliștilor de anduranță: analiză sistematică și metaanaliză (Llanos-Lagos et al., Eur J Appl Physiol 2026)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Compatibilidad del entrenamiento aeróbico y de fuerza: revisión sistemática y metaanálisis actualizados (Schumann et al., Sports Med 2022)",
+      "ro": "Compatibilitatea antrenamentului aerob și a celui de forță: analiză sistematică și metaanaliză actualizate (Schumann et al., Sports Med 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (Bull et al., BJSM 2020)",
+      "ro": "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., BJSM 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Resumen mensual de la radiación ultravioleta y la capa de ozono, agosto de 2024 (AEMET)",
+      "ro": "Rezumatul lunar al radiației ultraviolete și al stratului de ozon, august 2024 (AEMET)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "surf",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "Hay pocos estudios: en uno, entrenar la fuerza máxima con dominadas y fondos hizo más rápida la remada de los surfistas, pero ningún estudio ha mostrado que mejore el surf en la ola.",
+      "ro": "Există puține studii: într-unul, antrenamentul forței maxime cu tracțiuni și flotări la paralele a făcut mai rapidă vâslirea surferilor, dar niciun studiu nu a arătat că îmbunătățește surful pe val."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Un ensayo con surfistas de competición y aficionados (Coyne 2017): tras entrenar dominadas y fondos, remaron más rápido en esprines de 5 a 15 m y en 400 m.",
+      "ro": "Un studiu cu surferi de competiție și amatori (Coyne 2017): după antrenamentul cu tracțiuni și flotări la paralele, au vâslit mai repede în sprinturi de 5–15 m și pe 400 m."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "La mejora pareció depender de la fuerza de partida y fue mayor en los surfistas más débiles (tesis de Coyne, 2015).",
+      "ro": "Îmbunătățirea a părut să depindă de forța de la început și a fost mai mare la surferii mai slabi (teza lui Coyne, 2015)."
+     },
+     {
+      "ruta": [
+       "p",
+       2
+      ],
+      "es": "Una revisión de 8 estudios (Donaldson 2022): la fuerza máxima del tren superior mejoró la remada, y entrenar sobre superficies inestables no sirvió.",
+      "ro": "O analiză a 8 studii (Donaldson 2022): forța maximă a părții superioare a corpului a îmbunătățit vâslirea, iar antrenamentul pe suprafețe instabile nu a ajutat."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "Dominadas y fondos de fuerza máxima, 3 veces por semana durante 5 semanas; el resumen y la tesis no dan las cargas.",
+      "ro": "Tracțiuni și flotări la paralele pentru forța maximă, de 3 ori pe săptămână timp de 5 săptămâni; rezumatul și teza nu dau încărcăturile."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "El ensayo duró 5 semanas, así que en 1–2 semanas de vacaciones no espere remar más rápido por la fuerza: tómela como mantenimiento (deducción).",
+      "ro": "Studiul a durat 5 săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați să vâsliți mai repede datorită forței: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "En pádel surf, remar más de 4,8 horas por semana fue un factor de riesgo de lesión, como competir o tener más de 46 años (Furness 2017).",
+      "ro": "La stand-up paddle, vâslitul mai mult de 4,8 ore pe săptămână a fost un factor de risc de accidentare, ca și participarea la competiții sau vârsta de peste 46 de ani (Furness 2017)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En 240 practicantes de pádel surf, más de la mitad en competición, hubo 3,63 lesiones por cada 1.000 horas de práctica (Furness 2017); del surf no tenemos datos verificados.",
+      "ro": "La 240 de practicanți de stand-up paddle, peste jumătate în competiție, au fost 3,63 accidentări la 1.000 de ore de practică (Furness 2017); despre surf nu avem date verificate."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Hombro y parte alta del brazo: 32,9 %",
+      "ro": "Umărul și partea de sus a brațului: 32,9 %"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Zona lumbar: 14,3 %",
+      "ro": "Zona lombară: 14,3 %"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Codo y antebrazo: 11,8 %",
+      "ro": "Cotul și antebrațul: 11,8 %"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "En Canarias, las playas del norte suelen ser más peligrosas que las del sur, por el viento, el oleaje y las corrientes.",
+      "ro": "În Insulele Canare, plajele din nord sunt de obicei mai periculoase decât cele din sud, din cauza vântului, a valurilor și a curenților."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Antes de salir, mire la previsión: el viento y el mar pueden cambiar de golpe en la costa. No salga al atardecer ni con mar de fondo, y nunca solo.",
+      "ro": "Înainte de a ieși, consultați prognoza: vântul și marea se pot schimba brusc pe coastă. Nu ieșiți la apus sau când e hulă și niciodată fără companie."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Si le arrastra una corriente, no reme contra ella: quédese con la tabla, que le mantiene a flote (RNLI), pida ayuda agitando el brazo y salga en paralelo a la orilla.",
+      "ro": "Dacă vă trage un curent, nu vâsliți împotriva lui: nu vă despărțiți de placă, care vă ține la suprafață (RNLI), cereți ajutor fluturând brațul și ieșiți paralel cu țărmul."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Use protección solar de factor 50+ y manténgala también en días nublados, como pide el Gobierno de Canarias.",
+      "ro": "Folosiți protecție solară cu factor 50+ și aplicați-o și în zilele înnorate, așa cum cere Guvernul Insulelor Canare."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que la fuerza mejore su surf en la ola: ningún estudio de la revisión lo mostró.",
+      "ro": "Că forța vă îmbunătățește surful pe val: niciun studiu din analiză nu a arătat asta."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que entrenar sobre superficies inestables le ayude: en la revisión, no funcionó.",
+      "ro": "Că antrenamentul pe suprafețe instabile vă ajută: în analiză, nu a funcționat."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que valga igual para el pádel surf: el ensayo se hizo con surfistas, y del pádel surf solo tenemos datos de lesiones.",
+      "ro": "Că se aplică la fel și la stand-up paddle: studiul s-a făcut cu surferi, iar despre stand-up paddle avem doar date despre accidentări."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Quiero probar el surf: ¿qué debo saber?",
+      "ro": "Vreau să încerc surful: ce trebuie să știu?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Qué hago si me arrastra una corriente?",
+      "ro": "Ce fac dacă mă trage un curent?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Es seguro nadar en el mar en Tenerife?",
+      "ro": "E sigur să înot în mare în Tenerife?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Cómo trabajo el manguito rotador?",
+      "ro": "Cum lucrez coafa rotatorilor?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "La fuerza máxima mejora la remada de esprín y de resistencia en surfistas de competición y aficionados (Coyne et al., J Strength Cond Res 2017)",
+      "ro": "Forța maximă îmbunătățește vâslirea în sprint și de anduranță la surferii de competiție și amatori (Coyne et al., J Strength Cond Res 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Influencia de la antropometría y de la fuerza del tren superior en la remada sobre la tabla (Coyne, tesis de máster, Edith Cowan University 2015)",
+      "ro": "Influența antropometriei și a forței părții superioare a corpului asupra vâslirii pe placă (Coyne, teză de master, Edith Cowan University 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Métodos de entrenamiento en el surf: revisión de alcance (Donaldson et al., Strength Cond J 2022)",
+      "ro": "Metode de antrenament în surf: analiză exploratorie (Donaldson et al., Strength Cond J 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Epidemiología de las lesiones en el pádel surf (Furness et al., Orthop J Sports Med 2017)",
+      "ro": "Epidemiologia accidentărilor la stand-up paddle (Furness et al., Orthop J Sports Med 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Corrientes de resaca (RNLI)",
+      "ro": "Curenții de retur (RNLI)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Sanidad advierte de riesgos para la salud por radiación ultravioleta extrema (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare avertizează asupra riscurilor pentru sănătate ale radiației ultraviolete extreme (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "buceo",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "No conocemos estudios de fuerza en buceo, pero la Divers Alert Network (DAN) pide fuerza, salud cardiovascular y, sobre todo, capacidad aeróbica suficientes para lo que exige el medio.",
+      "ro": "Nu cunoaștem studii de forță în scufundări, dar Divers Alert Network (DAN) cere un nivel suficient de forță, de sănătate cardiovasculară și, mai ales, de capacitate aerobă pentru ce impune mediul."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Según DAN, el buceo recreativo puede exigir un nivel aeróbico de moderado a alto, y la apnea se considera ejercicio vigoroso.",
+      "ro": "Potrivit DAN, scufundările recreative pot cere un nivel aerob de la moderat la ridicat, iar apneea este considerată exercițiu intens."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "DAN considera esencial la actividad física regular, aeróbica y de fuerza, como nadar largos, entrenar la fuerza y hacer ejercicios de flexibilidad y equilibrio.",
+      "ro": "DAN consideră esențială activitatea fizică regulată, aerobă și de forță, cum ar fi înotul pe lungimi de bazin, antrenamentul de forță și exercițiile de flexibilitate și de echilibru."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "Al menos 6 semanas antes de un viaje de buceo, aumente poco a poco su actividad física, como aconseja DAN.",
+      "ro": "Cu cel puțin 6 săptămâni înainte de o călătorie de scufundări, creșteți treptat activitatea fizică, așa cum recomandă DAN."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Si tiene más de 40 años y no hace ejercicio con regularidad, DAN aconseja consultar al médico antes de empezar a entrenar.",
+      "ro": "Dacă aveți peste 40 de ani și nu faceți exerciții în mod regulat, DAN recomandă să consultați medicul înainte de a începe să vă antrenați."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "No bucee si está enfermo (DAN).",
+      "ro": "Nu vă scufundați când aveți o boală (DAN)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Antes de volar, DAN pide al menos 12 horas tras una inmersión sin descompresión, 18 tras varias en un día o en varios días, y bastante más si hizo paradas de descompresión.",
+      "ro": "Înainte de zbor, DAN cere cel puțin 12 ore după o scufundare fără decompresie, 18 după mai multe într-o zi sau în mai multe zile și mult mai mult dacă ați făcut opriri de decompresie."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Tras bucear, subir al Teide en coche o en teleférico (hasta 3.555 m) tiene el mismo riesgo que volar y pide los mismos plazos, según DAN Europa, desde unos 700 m de subida.",
+      "ro": "După scufundări, urcarea pe Teide cu mașina sau cu telecabina (până la 3.555 m) are același risc ca zborul și cere aceleași intervale de așteptare, potrivit DAN Europe, de la o urcare de circa 700 m."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "No bucee solo y señale dónde está con una boya, como pide el Gobierno de Canarias.",
+      "ro": "Nu vă scufundați fără companie și semnalați-vă poziția cu o geamandură, așa cum cere Guvernul Insulelor Canare."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Antes de salir, mire la previsión: el viento y el mar pueden cambiar de golpe en la costa. No salga al atardecer.",
+      "ro": "Înainte de a ieși, consultați prognoza: vântul și marea se pot schimba brusc pe coastă. Nu ieșiți la apus."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que la fuerza le haga mejor buceador: no conocemos estudios que lo midan; DAN la incluye en la forma física general.",
+      "ro": "Că forța vă face un scafandru mai bun: nu cunoaștem studii care să măsoare asta; DAN o include în condiția fizică generală."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que los plazos para volar eviten del todo la enfermedad descompresiva: DAN dice que no lo garantizan, y esperar más reduce el riesgo.",
+      "ro": "Că intervalele de așteptare pentru zbor evită complet boala de decompresie: DAN spune că nu o garantează, iar o așteptare mai lungă reduce riscul."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que los plazos valgan si tiene síntomas: DAN los da para buceadores sin síntomas; si los tiene, pida atención médica.",
+      "ro": "Că intervalele sunt valabile dacă aveți simptome: DAN le dă pentru scafandrii fără simptome; dacă aveți simptome, solicitați asistență medicală."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "He buceado: ¿cuándo puedo coger el avión?",
+      "ro": "M-am scufundat: când pot lua avionul?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Puedo tener mal de altura en el Teide?",
+      "ro": "Pot face rău de altitudine pe Teide?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Es seguro nadar en el mar en Tenerife?",
+      "ro": "E sigur să înot în mare în Tenerife?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Tengo que ir al médico antes de empezar a hacer ejercicio?",
+      "ro": "Trebuie să merg la medic înainte de a începe să fac exerciții?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Qué hago si me arrastra una corriente?",
+      "ro": "Ce fac dacă mă trage un curent?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Aptitud física para bucear (DAN, Travelers Medical Guide)",
+      "ro": "Condiția fizică pentru scufundări (DAN, Travelers Medical Guide)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Error n.º 1 de los buceadores: descuidar la salud y la forma física (DAN)",
+      "ro": "Greșeala nr. 1 a scafandrilor: neglijarea sănătății și a condiției fizice (DAN)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Volar después de bucear (DAN)",
+      "ro": "Zborul după scufundări (DAN)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "El teleférico del Teide (página del operador)",
+      "ro": "Telecabina de pe Teide (pagina operatorului)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Consejos para las actividades en el mar (Gobierno de Canarias)",
+      "ro": "Sfaturi pentru activitățile pe mare (Guvernul Insulelor Canare)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Preguntas médicas frecuentes: subir en altura después de bucear (DAN Europe)",
+      "ro": "Întrebări medicale frecvente: urcarea la altitudine după scufundări (DAN Europe)"
+     }
+    ]
+   },
+   {
+    "id": "golf",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "Un metaanálisis de 20 estudios asocia más potencia de salto y más fuerza explosiva del tren superior con más velocidad de palo; es una asociación: entrenarlas podría ayudar, pero no tenemos ensayos que lo prueben.",
+      "ro": "O metaanaliză a 20 de studii asociază o putere de săritură mai mare și o forță explozivă mai mare a părții superioare a corpului cu o viteză mai mare a crosei; este o asociere: antrenarea lor ar putea ajuta, dar nu avem studii care să o dovedească."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Brennan 2024: la velocidad de palo se asoció con el impulso del salto (correlación zr 0,82), la fuerza explosiva del tren superior (0,67) y la potencia de salto (0,66).",
+      "ro": "Brennan 2024: viteza crosei s-a asociat cu impulsul săriturii (corelație zr 0,82), cu forța explozivă a părții superioare a corpului (0,67) și cu puterea săriturii (0,66)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En cambio, la flexibilidad y el equilibrio no se asociaron con la velocidad de palo (−0,04 y −0,06).",
+      "ro": "În schimb, flexibilitatea și echilibrul nu s-au asociat cu viteza crosei (−0,04 și −0,06)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "Sin ensayos verificados del golf, la base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Fără studii verificate în golf, baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite jugar en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați să jucați în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Para el deporte con calor, la OMS pide crema de factor 30 o más, sombrero, gafas de sol y ropa holgada de color claro; el Gobierno de Canarias aconseja factor 50+.",
+      "ro": "Pentru sportul pe căldură, OMS indică o cremă cu factor de protecție 30 sau mai mare, pălărie, ochelari de soare și haine largi, de culoare deschisă; Guvernul Insulelor Canare recomandă factor 50+."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que estirar o entrenar el equilibrio le dé más velocidad de palo: no se asociaron con ella.",
+      "ro": "Că întinderile sau antrenamentul echilibrului vă dau o viteză mai mare a crosei: nu s-au asociat cu ea."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Más velocidad de palo por entrenar la fuerza: lo que tenemos son asociaciones, no ensayos.",
+      "ro": "O viteză mai mare a crosei datorită antrenamentului de forță: ce avem sunt asocieri, nu studii experimentale."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿Cuántos días a la semana debo hacer fuerza?",
+      "ro": "Câte zile pe săptămână ar trebui să fac forță?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Puedo hacer deporte con calima?",
+      "ro": "Pot face sport când e praf din Sahara?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Características físicas y velocidad de la cabeza del palo en golf: revisión sistemática y metaanálisis (Brennan et al., Sports Med 2024)",
+      "ro": "Caracteristicile fizice și viteza capului crosei în golf: analiză sistematică și metaanaliză (Brennan et al., Sports Med 2024)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Sanidad advierte de riesgos para la salud por radiación ultravioleta extrema (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare avertizează asupra riscurilor pentru sănătate ale radiației ultraviolete extreme (Guvernul Insulelor Canare)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "padel",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "No conocemos estudios de fuerza en pádel. En tenis, la fuerza y los programas combinados aumentaron la velocidad del saque, y el trabajo aislado de abdomen y lumbares no (Deng 2025); en pádel solo cabe extrapolarlo a los remates (deducción).",
+      "ro": "Nu cunoaștem studii de forță la padel. La tenis, forța și programele combinate au crescut viteza serviciului, iar lucrul izolat pentru abdomen și zona lombară nu (Deng 2025); la padel, se poate extrapola doar la smeciuri (deducție)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Un metaanálisis de 16 estudios con tenistas (Deng et al. 2025): la fuerza tuvo un efecto pequeño en la velocidad del saque y los programas combinados, uno moderado.",
+      "ro": "O metaanaliză a 16 studii cu tenismeni (Deng et al. 2025): forța a avut un efect mic asupra vitezei serviciului, iar programele combinate, unul moderat."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En los programas combinados hubo sesgo de publicación (pueden faltar estudios sin efecto): los autores piden más estudios de calidad.",
+      "ro": "La programele combinate a existat un bias de publicare (pot lipsi studiile fără efect): autorii cer mai multe studii de calitate."
+     },
+     {
+      "ruta": [
+       "p",
+       2
+      ],
+      "es": "El metaanálisis midió solo la velocidad del saque, en tenistas de unos 11 a 42 años, y no menciona el pádel.",
+      "ro": "Metaanaliza a măsurat doar viteza serviciului, la tenismeni cu vârste între circa 11 și 42 de ani, și nu menționează padelul."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "Con tenistas, fuerza 2–3 veces por semana durante 4–36 semanas; programas combinados, 3 veces por semana durante 6–8 semanas (8–36 sesiones).",
+      "ro": "La tenismeni, forță de 2–3 ori pe săptămână timp de 4–36 de săptămâni; programe combinate, de 3 ori pe săptămână timp de 6–8 săptămâni (8–36 de sesiuni)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "Los programas de tenis duraron de 4 a 36 semanas, así que en 1–2 semanas de vacaciones no espere cambios en su golpe: tómelo como mantenimiento (deducción).",
+      "ro": "Programele de tenis au durat între 4 și 36 de săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați la schimbări în lovitura dumneavoastră: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En 8 estudios, la mayoría hechos en España, con 2.022 jugadores: 3 lesiones por 1.000 horas de entrenamiento y 8 por 1.000 partidos, sobre todo de tendones y músculos (Dahmen 2023).",
+      "ro": "În 8 studii, majoritatea făcute în Spania, cu 2.022 de jucători: 3 accidentări la 1.000 de ore de antrenament și 8 la 1.000 de meciuri, mai ales la tendoane și mușchi (Dahmen 2023)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Codo: la más frecuente, sobre todo el codo de tenista",
+      "ro": "Cotul: zona cea mai frecventă, mai ales cotul tenismenului"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Rodilla",
+      "ro": "Genunchiul"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Hombro",
+      "ro": "Umărul"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       3
+      ],
+      "es": "Zona lumbar",
+      "ro": "Zona lombară"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite jugar en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați să jucați în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, partidos más cortos y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, meciuri mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que el trabajo aislado de abdomen y lumbares mejore su golpe: en tenis no aumentó la velocidad del saque.",
+      "ro": "Că lucrul izolat pentru abdomen și zona lombară vă îmbunătățește lovitura: la tenis nu a crescut viteza serviciului."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que lo del tenis valga para su saque: en pádel la pelota se golpea a la altura de la cintura o por debajo.",
+      "ro": "Că ce e valabil la tenis se aplică și serviciului dumneavoastră: la padel mingea se lovește la înălțimea taliei sau mai jos."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Cifras de lesión exactas: los estudios eran de calidad baja a moderada y la literatura, limitada.",
+      "ro": "Cifre exacte ale accidentărilor: studiile erau de calitate scăzută spre moderată, iar literatura, limitată."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Puedo hacer deporte con calima?",
+      "ro": "Pot face sport când e praf din Sahara?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Qué es el «core» y por qué importa?",
+      "ro": "Ce înseamnă „core” și de ce contează?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cómo trabajo el manguito rotador?",
+      "ro": "Cum lucrez coafa rotatorilor?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Cuántos días a la semana debo hacer fuerza?",
+      "ro": "Câte zile pe săptămână ar trebui să fac forță?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Efecto de la fuerza y el acondicionamiento en la velocidad del saque en tenistas: revisión sistemática y metaanálisis (Deng et al., Front Physiol 2025)",
+      "ro": "Efectul forței și al condiționării fizice asupra vitezei serviciului la tenismeni: analiză sistematică și metaanaliză (Deng et al., Front Physiol 2025)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Incidencia, prevalencia y tipo de lesiones en el pádel: revisión sistemática (Dahmen et al., BMJ Open Sport Exerc Med 2023), resumen",
+      "ro": "Incidența, prevalența și tipul accidentărilor la padel: analiză sistematică (Dahmen et al., BMJ Open Sport Exerc Med 2023), rezumat"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Incidencia, prevalencia y tipo de lesiones en el pádel: revisión sistemática (Dahmen et al., BMJ Open Sport Exerc Med 2023), discusión",
+      "ro": "Incidența, prevalența și tipul accidentărilor la padel: analiză sistematică (Dahmen et al., BMJ Open Sport Exerc Med 2023), discuție"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Federación Internacional de Pádel (FIP): reglas del pádel, regla 6 (el saque), punto 4",
+      "ro": "Federația Internațională de Padel (FIP): regulile padelului, regula 6 (serviciul), punctul 4"
+     }
+    ]
+   },
+   {
+    "id": "otro",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "Para un deporte sin ficha propia, la base es la general: la OMS recomienda a los adultos fuerza al menos 2 días por semana con todos los grupos musculares principales; de 5 a 17 años, al menos 3.",
+      "ro": "Pentru un sport fără fișă proprie, baza este cea generală: OMS recomandă adulților forță cel puțin 2 zile pe săptămână, pentru toate grupele musculare principale; între 5 și 17 ani, cel puțin 3."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "OMS 2020: adultos, 150–300 minutos semanales de actividad moderada o 75–150 de intensa; de 5 a 17 años, una media de 60 minutos al día, de moderada a intensa.",
+      "ro": "OMS 2020: adulți, 150–300 de minute pe săptămână de activitate moderată sau 75–150 de minute de activitate intensă; între 5 și 17 ani, în medie 60 de minute pe zi, de activitate moderată până la intensă."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "Según la OMS, para todas las edades algo de actividad física es mejor que nada.",
+      "ro": "Potrivit OMS, la orice vârstă, puțină activitate fizică este mai bună decât deloc."
+     },
+     {
+      "ruta": [
+       "p",
+       2
+      ],
+      "es": "Desde los 65 años, la OMS añade actividad variada que insista en el equilibrio y la fuerza, 3 o más días por semana.",
+      "ro": "De la 65 de ani, OMS adaugă activitate variată, axată pe echilibru și forță, 3 sau mai multe zile pe săptămână."
+     },
+     {
+      "ruta": [
+       "p",
+       3
+      ],
+      "es": "ACSM 2026, en adultos sanos: llegar al fallo muscular, elegir máquinas o peso libre y la periodización compleja (variación sistemática) no cambiaron los resultados de forma consistente.",
+      "ro": "ACSM 2026, la adulții sănătoși: lucrul până la eșec muscular, alegerea între aparate și greutăți libere și periodizarea complexă (variație sistematică) nu au schimbat rezultatele în mod consecvent."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "El ACSM 2026 propone, para fuerza, cargas del 80 % del máximo que se levanta una vez y 2–3 series por ejercicio; para ganar músculo, unas 10 series por grupo y semana.",
+      "ro": "Pentru forță, ACSM (2026) propune încărcături de 80 % din maximul care se poate ridica o dată și 2–3 serii pe exercițiu; pentru a câștiga masă musculară, circa 10 serii pe grupă pe săptămână."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "Entrene todos los grandes grupos al menos 2 días por semana y vaya subiendo poco a poco: importa más que buscar un plan «perfecto» (ACSM 2026, en adultos).",
+      "ro": "Antrenați toate grupele mari cel puțin 2 zile pe săptămână și creșteți treptat: contează mai mult decât căutarea unui plan „perfect” (ACSM 2026, la adulți)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Si combina fuerza con carrera o bici el mismo día, deje al menos 3 horas entre ambas: con 20 minutos o menos, la fuerza explosiva se resintió (Schumann 2022).",
+      "ro": "Dacă combinați forța cu alergarea sau bicicleta în aceeași zi, lăsați cel puțin 3 ore între ele: cu 20 de minute sau mai puțin, forța explozivă a avut de suferit (Schumann 2022)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "",
+      "ro": ""
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "El sol es más intenso en altura: en agosto de 2024, Izaña (2.371 m) marcó un índice UV de 13,7, el máximo que registró AEMET ese mes.",
+      "ro": "Soarele este mai puternic la altitudine: în august 2024, Izaña (2.371 m) a înregistrat un indice UV de 13,7, maximul înregistrat de AEMET în acea lună."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Si su deporte es en el mar, báñese en playas vigiladas y mire siempre la bandera antes de entrar.",
+      "ro": "Dacă sportul dumneavoastră se practică pe mare, faceți baie pe plaje supravegheate și uitați-vă mereu la steag înainte de a intra în apă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que la fuerza general mejore su deporte concreto: sin estudios de ese deporte, no podemos decirlo.",
+      "ro": "Că forța în general vă îmbunătățește sportul anume: fără studii despre acel sport, nu putem spune asta."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que llegar al fallo o un plan complejo den más resultado: el ACSM no vio diferencias consistentes en adultos sanos.",
+      "ro": "Că lucrul până la eșec sau un plan complex dau rezultate mai bune: ACSM nu a văzut diferențe consecvente la adulții sănătoși."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿Cuánto ejercicio necesito a la semana?",
+      "ro": "De cât exercițiu fizic am nevoie pe săptămână?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cuántos días a la semana debo hacer fuerza?",
+      "ro": "Câte zile pe săptămână ar trebui să fac forță?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Cuántas series hago por músculo a la semana?",
+      "ro": "Câte serii fac pe mușchi pe săptămână?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Puedo hacer fuerza y cardio el mismo día?",
+      "ro": "Pot face forță și cardio în aceeași zi?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Tengo que llegar al fallo muscular?",
+      "ro": "Trebuie să ajung până la eșec muscular?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (Bull et al., BJSM 2020)",
+      "ro": "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., BJSM 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "El ACSM presenta sus pautas de entrenamiento de fuerza de 2026 (nota del ACSM)",
+      "ro": "ACSM își prezintă recomandările pentru antrenamentul de forță din 2026 (comunicat ACSM)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Compatibilidad del entrenamiento aeróbico y de fuerza: revisión sistemática y metaanálisis actualizados (Schumann et al., Sports Med 2022)",
+      "ro": "Compatibilitatea antrenamentului aerob și a celui de forță: analiză sistematică și metaanaliză actualizate (Schumann et al., Sports Med 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Resumen mensual de la radiación ultravioleta y la capa de ozono, agosto de 2024 (AEMET)",
+      "ro": "Rezumatul lunar al radiației ultraviolete și al stratului de ozon, august 2024 (AEMET)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   }
+  ]
+ },
+ "rutinas": {
+  "fichero": "datos/cuerpo/rutinas.json",
+  "textos": [
+   {
+    "ruta": [
+     "p",
+     "n1-general",
+     "x"
+    ],
+    "es": "Pare cada serie cuando aún le queden 2 o 3 repeticiones con buena técnica.",
+    "ro": "Opriți fiecare serie când vă mai rămân 2 sau 3 repetări cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "p",
+     "n1-resistencia",
+     "x"
+    ],
+    "es": "Pare cada serie cuando aún le queden 2 o 3 repeticiones con buena técnica.",
+    "ro": "Opriți fiecare serie când vă mai rămân 2 sau 3 repetări cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "p",
+     "n2-musculo",
+     "x"
+    ],
+    "es": "Pare cada serie cuando aún le queden 2 o 3 repeticiones con buena técnica.",
+    "ro": "Opriți fiecare serie când vă mai rămân 2 sau 3 repetări cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "p",
+     "n2-resistencia",
+     "x"
+    ],
+    "es": "Pare cada serie cuando aún le queden 2 o 3 repeticiones con buena técnica.",
+    "ro": "Opriți fiecare serie când vă mai rămân 2 sau 3 repetări cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "p",
+     "n3-fuerza",
+     "x"
+    ],
+    "es": "Pare cada serie cuando aún le queden 2 o 3 repeticiones con buena técnica.",
+    "ro": "Opriți fiecare serie când vă mai rămân 2 sau 3 repetări cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "p",
+     "n3-musculo",
+     "x"
+    ],
+    "es": "Pare cada serie cuando aún le queden 2 o 3 repeticiones con buena técnica.",
+    "ro": "Opriți fiecare serie când vă mai rămân 2 sau 3 repetări cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "p",
+     "n3-resistencia",
+     "x"
+    ],
+    "es": "Pare cada serie cuando aún le queden 2 o 3 repeticiones con buena técnica.",
+    "ro": "Opriți fiecare serie când vă mai rămân 2 sau 3 repetări cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "p",
+     "tope-musculo",
+     "x"
+    ],
+    "es": "A tope: lleve cada serie cerca del fallo, sin llegar; pare cuando la siguiente repetición ya no saldría con buena técnica.",
+    "ro": "La maximum: duceți fiecare serie aproape de eșecul muscular, fără să ajungeți la el; opriți-vă când următoarea repetare n-ar mai ieși cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "p",
+     "tope-resistencia",
+     "x"
+    ],
+    "es": "A tope: lleve cada serie cerca del fallo, sin llegar; pare cuando la siguiente repetición ya no saldría con buena técnica.",
+    "ro": "La maximum: duceți fiecare serie aproape de eșecul muscular, fără să ajungeți la el; opriți-vă când următoarea repetare n-ar mai ieși cu tehnică bună."
+   },
+   {
+    "ruta": [
+     "h",
+     "mancuernas",
+     "t"
+    ],
+    "es": "¿Sin mancuernas? Sirven botellas o garrafas llenas de agua o de arena, latas de conserva sin abrir o una bolsa con libros. Un litro de agua pesa más o menos 1 kg: llénelas más o menos para ajustar el peso. Con estos pesos caseros, en los ejercicios de hombro no pase de 6 kg.",
+    "ro": "Nu aveți gantere? Merg sticle sau bidoane umplute cu apă sau cu nisip, conserve nedeschise sau o sacoșă cu cărți. Un litru de apă cântărește cam 1 kg: umpleți-le mai mult sau mai puțin ca să ajustați greutatea. Cu aceste greutăți improvizate, la exercițiile pentru umeri nu depășiți 6 kg."
+   },
+   {
+    "ruta": [
+     "h",
+     "disco",
+     "t"
+    ],
+    "es": "¿Sin disco? Una mochila bien cargada, por ejemplo con bolsas de arena de 1 kg o con libros, hace de lastre.",
+    "ro": "Nu aveți disc? Un rucsac bine încărcat, de exemplu cu pungi de nisip de 1 kg sau cu cărți, ține loc de greutate suplimentară."
+   },
+   {
+    "ruta": [
+     "h",
+     "banco",
+     "t"
+    ],
+    "es": "¿Sin banco? Use una silla firme y estable, como una de comedor, sin ruedas ni brazos; para los fondos, mejor apoyada contra la pared.",
+    "ro": "Nu aveți bancă? Folosiți un scaun solid și stabil, ca unul de sufragerie, fără roți și fără brațe; pentru flotările pe scaun, de preferat sprijinit de perete."
+   },
+   {
+    "ruta": [
+     "h",
+     "general",
+     "t"
+    ],
+    "es": "Con pesos caseros valen las mismas reglas: buena técnica y subir poco a poco.",
+    "ro": "Cu greutăți improvizate se aplică aceleași reguli: tehnică bună și creștere treptată."
+   }
+  ]
+ },
+ "estiramientos": {
+  "fichero": "datos/cuerpo/estiramientos.json",
+  "textos": [
+   {
+    "ruta": [
+     "i",
+     "t"
+    ],
+    "es": "Estirar mejora la movilidad de las articulaciones; no evita las agujetas. Hágalo al menos 2 o 3 días por semana (a diario se gana más), con el músculo caliente: después de entrenar o tras 5–10 minutos de actividad suave. Si tiene una lesión, una enfermedad o está embarazada, puede que tenga que adaptar algún estiramiento: pregunte a un fisioterapeuta o a otro profesional sanitario.",
+    "ro": "Întinderile îmbunătățesc mobilitatea articulațiilor; nu previn febra musculară. Faceți-le cel puțin 2 sau 3 zile pe săptămână (zilnic câștigați mai mult), cu mușchiul încălzit: după antrenament sau după 5–10 minute de activitate ușoară. În caz de accidentare, boală sau sarcină, s-ar putea să fie nevoie să adaptați unele întinderi: întrebați un fizioterapeut sau alt profesionist din domeniul sănătății."
+   },
+   {
+    "ruta": [
+     "p",
+     "adulto",
+     "x"
+    ],
+    "es": "Mantenga cada estiramiento hasta notar tensión o una ligera molestia, nunca dolor, sin rebotes y respirando con normalidad. Si es de un lado, haga también el otro. Unos 60 segundos en total por estiramiento. Si la ficha de un estiramiento da otro tiempo, siga esta pauta.",
+    "ro": "Mențineți fiecare întindere până simțiți tensiune sau un ușor disconfort, niciodată durere, fără arcuiri și respirând normal. Dacă se face pe o parte, faceți-o și pe cealaltă. În total, circa 60 de secunde pentru fiecare întindere. Dacă fișa unei întinderi indică alt timp, urmați această recomandare."
+   },
+   {
+    "ruta": [
+     "p",
+     "mayor",
+     "x"
+    ],
+    "es": "Desde los 65 años, mantener cada estiramiento 30–60 segundos puede dar más beneficio. Llegue hasta notar tensión o una ligera molestia, nunca dolor, sin rebotes y respirando con normalidad. Si es de un lado, haga también el otro. Si la ficha de un estiramiento da otro tiempo, siga esta pauta.",
+    "ro": "De la 65 de ani, menținerea fiecărei întinderi 30–60 de secunde poate aduce mai multe beneficii. Mergeți până simțiți tensiune sau un ușor disconfort, niciodată durere, fără arcuiri și respirând normal. Dacă se face pe o parte, faceți-o și pe cealaltă. Dacă fișa unei întinderi indică alt timp, urmați această recomandare."
+   }
+  ]
+ }
+}
