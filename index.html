@@ -3219,7 +3219,10 @@ window.onunhandledrejection = function(e) {
   .leaflet-control-zoom { border: 1px solid var(--border) !important; border-radius: 10px !important; overflow: hidden; box-shadow: var(--shadow-md) !important; backdrop-filter: blur(10px); }
   .leaflet-control-zoom a { width: 28px !important; height: 28px !important; line-height: 28px !important; font-size: 14px !important; background: rgba(27,35,48,0.88) !important; border-color: var(--border) !important; color: var(--gold) !important; }
   .leaflet-control-zoom a:hover { background: rgba(212,175,55,0.15) !important; }
-  .leaflet-bottom.leaflet-left { margin-bottom: 14px; margin-left: 14px; }
+  /* Los botones del zoom, encima de la píldora «Leyenda» (18 de noviembre de 2026): con 14 px, la píldora
+     (fija 10 px por encima de la barra de abajo, de 26 a 28 px de alto) tapaba la mitad del «−» (captura
+     del iPhone de Jérôme). Con 36 px quedan unos 10 px por encima de ella. */
+  .leaflet-bottom.leaflet-left { margin-bottom: 36px; margin-left: 14px; }
   .leaflet-control-attribution { background: rgba(27,35,48,0.7) !important; color: var(--muted) !important; font-size: 9px !important; }
   .leaflet-control-attribution a { color: var(--gold-light) !important; }
 
