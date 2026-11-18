@@ -9861,6 +9861,98 @@ sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo
 SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.869).
 `app_preparar.js` montó `app/www/` (239 ficheros) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
 
+## Jérôme, la nota 55: el cambio de pierna y el bloque 12 (418 con vídeo); y el rumano, bloque 12 (18 de noviembre)
+
+**El arreglo: la patada de glúteo en polea enseña el cambio de pierna** (nota 55, parche `0020`, de la sesión del
+entrenador). Lo pidió Jérôme el 18-11 por la mañana: en el vídeo del bloque 10 no se veía el cambio de pierna del paso 4
+(«Vuelva despacio y, al terminar, cambie de pierna»), porque la tobillera habría tenido que pasar sola al otro tobillo.
+Ahora ese paso es una sola secuencia de 8,7 s: vuelve y apoya el pie, se agacha, pasa la tobillera al tobillo derecho
+con las dos manos (el cable va con ella), se levanta, se agarra a la columna y da la patada con la otra pierna. El paso
+dura 9 s en los diez idiomas. Para eso, el motor aprende dos cosas: la polea, `pasa` (en los tramos que salen de las
+posturas que se le dicen, el cable va a las manos o al otro tobillo), y el reproductor, `dura` (un paso puede durar más
+de lo que se tarda en leerlo); y `tools/auditar_entrenador.js` cuenta con `dura` en sus dos sitios, con los mismos 79
+controles. El trozo de glúteos cambia de nombre porque lleva su huella: `gluteos.468f027a.js` pasa a
+`gluteos.db0489dd.js`. Según esa sesión, las otras 377 coreografías salen idénticas una a una.
+
+**El bloque 12: el abdomen y las lumbares** (parche `0021`). 40 coreografías nuevas en su fuente
+(`tools/entrenador/src/7b-abdomen.js`) y en su trozo (`modulos/entrenador/abdomen.029ee03d.js`, 81.495 bytes): las
+planchas sobre las manos y el gateo del oso, a cuatro patas (el perro-pájaro, el gato-vaca y la postura del niño), las
+tres planchas laterales, boca abajo (el superman y la cobra), once boca arriba, sentado (el giro ruso y tres L-sit),
+colgado de la barra (tres), en banco con rodillos (el crunch declinado y la hiperextensión lumbar), de pie (tres) y con
+polea o barra anclada (cuatro). **418 ejercicios con vídeo**, de 958; de los 56 de abdomen y lumbares de las 533 fichas
+de antes, 44 (con los 4 del bloque 1), y los 12 que quedan piden banda, máquina, fitball, balón medicinal, barra o rueda
+(bloques 13 a 15). Fuera del trozo, en `50-material.js`, el banco lleva rodillos y la mancuerna cambia de mano a la
+vista; sin esas opciones se pinta como antes, y ningún vídeo de antes las usa. Cinco pasos llevan `dura`, porque su
+cambio de lado o de mano no cabe en lo que se tarda en leerlos (las tres planchas laterales, la flexión lateral con
+mancuerna y el paseo de maleta). Medido por esa sesión con `contactos.js`, en los 40: ninguna zapatilla se hunde más de
+1 cm (la que más, 0,9), ninguna mano más de 1 (0,8), el cuerpo 1,9 (tope 2,5), tumbado el tronco 3,4 y la cabeza 3,7
+(tope 4); de un cuadro al siguiente, el cuerpo 6,6 cm como mucho (tope 14) y una mano o un pie 14,7 (tope 36); y cada
+secuencia cabe en su paso en los diez idiomas. Lo que la ficha no dice (qué banco es el de hiperextensiones, cuánto gira
+el limpiaparabrisas, dónde está la polea) lo decidió esa sesión sin añadir técnica, y está en su nota.
+
+**Puesto y comprobado aquí.** Los dos parches con `git am` y sus propias líneas de autoría, con la huella que dice su
+nota. El `0020` entra limpio. En el `0021`, la línea del estado de la muestra del entrenador
+(`tools/entrenador/muestra/plantilla.html`, que la app no enlaza) no casaba con la de aquí (con las notas 53 y 54 ya
+decía «Los bloques 1 a 11… ya están en la app»): ese fichero se ha puesto el del zip, y solo esa línea dice lo que habrá
+al publicar («Los bloques 1 a 12, la cámara lenta arreglada, la subida al pino, los arreglos del suelo, las paredes, los
+muslos y la leyenda, el vídeo partido por grupos y el cambio de pierna de la patada de glúteo en polea ya están en la
+app.»). Los otros 11 ficheros del zip (`repo/`), iguales byte a byte a los de la rama. `construir.py --comprobar` (el
+motor, los 11 trozos y `con-video.json`, los de sus fuentes) y `app_preparar.js --comprobar`, en verde.
+`con-video.json`: 418 filas; 40 nuevas, ninguna quitada ni cambiada, las 40 con su ficha en
+`datos/cuerpo/ejercicios.json`, el abdomen y las lumbares como primer grupo, y el número de pasos de cada una igual al
+de su ficha en los diez idiomas. Ningún texto nuevo a la vista: entre comillas, el trozo de abdomen lleva 167 cadenas
+distintas y el de glúteos 211, ninguna con letras fuera del ASCII y ninguna con espacios, salvo el `'use strict'` del
+principio; lo que se lee sale de las fichas ya publicadas. Sin APIs de riesgo: en los dos trozos, ni red, ni
+almacenamiento, ni `innerHTML`, ni `eval`, ni `document`; solo leen `window.TG_ENTRENADOR`; y en el motor no entra
+ninguna de esas.
+
+**Lo que no está comprobado**, como en las notas anteriores: nada en un iPhone ni en un Samsung de verdad (en las
+pruebas, Samsung Internet es Chromium con su `User-Agent`), y lo que tarda el primer vídeo de cada grupo en un teléfono.
+Tampoco que los ejercicios se vean como los haría un entrenador: están cotejados con su ficha y medidos, no revisados
+por un profesional; los que más interpretación llevan, según esa sesión, son los tres L-sit, el abdominal completo, la
+hiperextensión lumbar, el paseo de maleta y el limpiaparabrisas.
+
+**Para decidir, en la sesión del entrenador** (Jérôme, 18-11: «Curl lo hace fable»). Los L-sit, en el suelo: la cadera
+se despega 4 cm y el tronco va inclinado (con los brazos del dibujo no da para más); sobre unos apoyos, la cadera
+subiría de verdad y el tronco iría derecho, pero las fichas no llevan material. El apoyo de los pies del abdominal
+completo: el vídeo pone una barra cargada sobre los empeines, como en el curl nórdico; la ficha dice «los pies sujetos
+bajo un apoyo firme o por un compañero». Y lo que va después: por la lista, el bloque 13, con banda elástica.
+
+**El rumano, bloque 12** (sigue apagado: nada de esto se ve en la app). Jérôme dijo que sí el 18-11 («Si a la política y
+el resto»): la frase de cada mañana (`frases.json`: el rumano detrás del polaco en el título y en las 365 frases), la
+política de privacidad, la página de borrar la cuenta, la 404 y las páginas (`idiomas/privacidad/`,
+`idiomas/borrar-cuenta/`, `idiomas/404/` e `idiomas/paginas/`, cada `ro.json` con las claves y el orden de su
+`es.json`), y sus fuentes (`idiomas/ro-fuente/frases.json` y `paginas.json`). Sus guiones no se han ejecutado: se han
+puesto sus datos con el mismo aplicador propio del bloque 11, que sigue sus reglas de todo o nada (cada texto, solo si
+su castellano es el de `main`). Comprobado aquí: con sus datos, todo «ya hecho», lo del 12 y lo del 11;
+`revisar_rumano.py --pares`, 440 filas, 0 errores y 12 avisos, leídos: once frases más largas que en castellano (el
+«dumneavoastră» y el orden del rumano; ninguna dice algo más) y la cita del RGPD, que en rumano se escribe «articolul 12
+alineatul 3» y no «12.3»; `privacidad.html`, `borrar-cuenta.html` y `404.html` salen idénticas, porque el rumano sigue
+apagado. El bloque 13 («Su cuerpo» en rumano) ya tiene el sí de Jérôme a sus dos nombres, «Corp» y «Femurali» (18-11 por
+la noche: «Rumano si»), y va en el lote siguiente, con su auditoría.
+
+**La auditoría entera** sobre `ed90d03` (árbol `702422e7`): los tres commits de este lote (el bloque 12 del rumano y los
+dos parches de la nota 55) encima de `main` (`1b72722`). En `main` es lo mismo, rebasado sobre cuatro commits de los
+robots (`9defd7e`, terremotos; `be1a4b6`, avisos de AEMET; `68cf0a7`, alertas del Gobierno de Canarias, y `40f125d`, el
+semáforo del INVOLCAN), que solo cambian `datos/sismos-ign.json`, `datos/avisos-aemet.json`,
+`datos/alertas-canarias.json` y `datos/semaforo-involcan.json`, y con los controles que leen esos ficheros, en verde
+tras el rebase. En los 61 bloques de `auditar.sh`, ningún rojo: las preguntas de prueba al asistente, 0 fallos de 298;
+`auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65; lo que pide Google Play, 249 de 249; `auditar_registro.js`,
+todo de usted (137.827 textos); `castellano_suelto.js`, ninguna palabra en castellano; `auditar_idioma.js`, 0 hallazgos
+en los diez idiomas; `auditar_cirilico.py`, 2.340 nombres propios en cirílico y ninguna variante sospechosa; los datos,
+975 lugares en todas partes (también en el resumen de este documento) y ninguna cifra de lugares que no sea 975 en lo
+que se lee; `probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626; `auditar_desborde.js`: la etiqueta viewport de
+las cuatro páginas, las tres cajas de copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16
+px; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; «Su cuerpo», 800 y 64; el entrenador, 79
+(los 418 vídeos, enteros, en castellano y en otro idioma: 836 pases y 741.820 cuadros; los 11 trozos, cada uno con la
+huella de su contenido en el nombre); la isla en 3D, 57 y ninguno en rojo; el panel SOS, 42 y 262, y sus cuatro robots;
+las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.869). Un control no llegó a ejecutarse:
+`auditar_arranque.js` se cayó al leer una respuesta de Open-Meteo que ya se había descartado («Response has been
+disposed», un fallo de la propia prueba, no de la app); pasado solo después sobre el mismo commit, en verde y con las
+cifras de la auditoría anterior (16.036 textos comparados en los nueve idiomas, 0 distintos y 0 errores de página).
+`app_preparar.js` montó `app/www/` (240 ficheros) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
