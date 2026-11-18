@@ -322,8 +322,9 @@ const ROTULOS_IT = new Set([
   'Aggiungi al percorso', 'Aggiungi escursione', '⭐ I consigli di Jérôme — Aggiungi attività', 'Apri in Google Maps', 'Apri la legenda',
   /* los del perfil (modulos/perfil.js, 23 de octubre de 2026) */
   'Aggiungi', 'Cerca un paese', 'Crea account o accedi', 'Salva', 'Scarica i dati del profilo',
-  /* los del sistema, que la app cita tal cual: el menu de Safari y el de Chrome */
-  'Aggiungi a Home', 'Installa app',
+  /* los del sistema, que la app cita tal cual: el menu de Safari y el de Chrome (el de Chrome, tal como lo escribe
+     la ayuda de Google, leida el 18-11-2026: «Installa e crea scorciatoia» y luego «Installa») */
+  'Aggiungi a Home', 'Installa e crea scorciatoia',
   /* los de «Su cuerpo» (modulos/cuerpo.js) y el de su tarjeta en el perfil, «Apri» (31 de octubre de 2026) */
   'Apri', 'Gira', 'Vedi da dietro', 'Vedi di fronte', 'Elimina i dati di «Corpo»', 'Sì, elimina', 'Elimina: {series}, {fecha}', 'Torna a {grupo}', 'Cerca tra gli esercizi di questo gruppo', 'Cerca un esercizio…', 'Annulla',
   /* y los de «Preguntar» y «Comida» (3 de noviembre de 2026; los trajo la sesion de «Su cuerpo») */
@@ -395,6 +396,8 @@ const ROTULOS_PL = new Set([
   'Wybierz inną datę', 'Wyceluj w niebo', 'Wyczyść', 'Wyczyść pamięć podręczną mapy', 'Wyczyść trasę', 'Wyczyść wyszukiwanie',
   'Wygeneruj nowy plan', 'Wygeneruj ponownie', 'Wyloguj się', 'Wyznacz trasę', 'Wyłącz filtry kategorii', 'Wyślij', 'Wyślij do chmury',
   'Wyślij zgłoszenie', 'Wyśrodkuj na mapie', 'Włącz', 'Włącz powiadomienia', '📞 Zadzwoń pod 112', 'Zainstaluj', 'Zainstaluj aplikację',
+  /* el menu de Chrome, como lo escribe la ayuda de Google (18-11-2026): «Zainstaluj i utwórz skrót» y luego «Zainstaluj» */
+  'Zainstaluj i utwórz skrót',
   'Zainstaluj Tenerife Go', 'Zaloguj się', 'Zamknij', '✕ Zamknij', 'Zamknij administrację', 'Zamknij asystenta', 'Zamknij komunikat', 'Zamknij koszyk',
   'Zamknij legendę', 'Zamknij ostrzeżenia pogodowe', 'Zamknij panel transportu', 'Zamknij panel tras', 'Zamknij planer',
   'Zamknij przystanki w pobliżu', 'Zamknij sklep', 'Zapisz lub udostępnij obraz', 'Zapisz w Trasie dnia', 'Zapisz w Ulubionych',
