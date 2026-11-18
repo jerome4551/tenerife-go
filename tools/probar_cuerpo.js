@@ -2929,8 +2929,10 @@ async function ejemplo(pg, mas) {
        búlgaro y polaco, y solo la vista de entrada; con las cajas a 16 px (nota 48, 4a), la zona del tiempo de «Hoy en
        la isla» se salía a 320 px en francés y el deporte en búlgaro. Ahora, en los diez idiomas, «Cruce la isla» y
        «Senderos de la isla» como antes, y el panel entero en las cinco vistas, diciendo qué se sale (lo que va en una
-       tira que se desliza de lado, como los sellos, aparte: no se sale, se desliza) */
-    const ANCHOS27 = [320];
+       tira que se desliza de lado, como los sellos, aparte: no se sale, se desliza). Y también a 360 y 375 px (los
+       anchos de muchos Android y del iPhone SE): ahí el botón de la postal se salía hasta 28 px en francés, alemán,
+       neerlandés y búlgaro, y ya pasaba en la app publicada */
+    const ANCHOS27 = [320, 360, 375];
     for (const w of ANCHOS27) {
       const c27b = await contexto(b, { contexto: { viewport: { width: w, height: 568 } } }), p27b = await c27b.newPage(), e27b = []; vigilar(p27b, e27b);
       await abrirApp(p27b); await abrirPerfilCuerpo(p27b); await suCuerpo(p27b);
@@ -2953,7 +2955,7 @@ async function ejemplo(pg, mas) {
           if (m === 'm') prueba('a ' + w + ' px, de noche, en ' + l + ': «Cruce la isla» (con las dos filas del compañero) y «Senderos de la isla» (todas las zonas abiertas) sin desborde', r.anchos.length === 0, r.anchos.join(','));
           if (r.psw > r.pcw || r.otros.length) malVista.push(m + ': ' + r.psw + '>' + r.pcw + ' ' + r.otros.join(','));
         }
-        prueba('a ' + w + ' px, de noche, en ' + l + ': nada de «Su cuerpo» pasa del borde, en sus cinco vistas (la zona del tiempo y el deporte, a 16 px)', malVista.length === 0, malVista.join(' | '));
+        prueba('a ' + w + ' px, de noche, en ' + l + ': nada de «Su cuerpo» pasa del borde, en sus cinco vistas (con las cajas a 16 px, y la postal)', malVista.length === 0, malVista.join(' | '));
       }
       prueba('a ' + w + ' px: sin errores de página', e27b.length === 0, e27b.join(' | '));
       await c27b.close();

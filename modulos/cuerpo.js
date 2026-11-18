@@ -6738,7 +6738,14 @@ img.tgc-postal-mini-fig { object-fit: contain; }
 .tgc-postal-txt { display: grid; gap: 6px; min-width: 0; justify-items: start; }
 .tgc-postal-txt h2 { margin: 0; font: 600 28px/1.1 var(--font-display); color: var(--tinta); letter-spacing: .1px; text-wrap: balance; }
 .tgc-postal-txt p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--tinta-2); }
-.tgc-postal-txt .tgc-btn { margin-top: 6px; }
+/* El botón puede partir su texto en dos líneas a cualquier ancho (hasta el 18-11-2026, solo por debajo de 360 px): a 360
+   y 375 px, «Créer ma carte postale», «Meine Postkarte erstellen», «Mijn ansichtkaart maken» y «Създай картичката ми»
+   no cabían en una, y el botón ensanchaba su columna hasta 28 px fuera de la pantalla (ya pasaba en la app publicada).
+   Donde cabe, sigue en una línea y con la misma altura. De 360 px en adelante, el icono se queda en sus 18 px aunque
+   el texto vaya en dos líneas; por debajo de 360, como estaba (el icono algo más pequeño y el texto en dos líneas: con
+   el icono entero, el alemán pasaba a tres). */
+.tgc-postal-txt .tgc-btn { margin-top: 6px; white-space: normal; text-align: left; max-width: 100%; padding-block: 8px; }
+@media (min-width: 360px) { .tgc-postal-txt .tgc-btn svg { flex: none; } }
 .tgc-fiesta { position: fixed; inset: 0; z-index: 12; display: grid; place-items: center; background: var(--velo); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); padding: 24px; opacity: 0; transition: opacity var(--t-normal) var(--ease-out); }
 .tgc-fiesta.dentro { opacity: 1; }
 .tgc-fiesta-tarj { position: relative; width: min(100%, 340px); max-height: calc(100vh - 48px); max-height: calc(100svh - 48px); overflow: auto; border-radius: 28px; background: var(--hoja); color: var(--tinta); padding: 26px 22px 20px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.35); transform: translateY(16px) scale(.96); transition: transform var(--t-slow) var(--ease-bounce); }
