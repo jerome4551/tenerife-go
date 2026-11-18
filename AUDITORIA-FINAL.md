@@ -9519,6 +9519,135 @@ en 3D, 57; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas de
 3.730 filas; 5.867). Al acabar, el repositorio sin ningún cambio: `app_preparar.js` montó `app/www/` (237 ficheros) y lo
 cotejó.
 
+## Nota 48: los nombres repetidos con su paréntesis, Guía de Isora en chino, el buscador por etiquetas y el zoom con dos dedos (17 y 18 de noviembre)
+
+**De dónde viene.** La nota 48 (16 de noviembre) traía tres apartados que Jérôme aprobó y que quedaban por hacer: 4a, el
+zoom con dos dedos; 4f, los nombres repetidos; y 4h, el buscador también por etiquetas. Aquí van los tres, con un commit
+cada uno, y Guía de Isora en chino, que la nota pedía de paso en 4f; y dos commits más: el arreglo de lo que la primera
+auditoría entera vio en el 4a, y la postal de «Su cuerpo», que ya se salía en la app publicada. Para 4a, Jérôme eligió
+entre tres caminos el primero («A»): quitar `user-scalable=no` y subir a 16 px las cajas donde se escribe, comprobando
+que nada se corta en los diez idiomas a 320, 360 y 390 px, con capturas antes y después.
+
+**Los nombres repetidos** (`index.html`). De las 975 fichas, dos nombres salen dos veces: «Playa San Juan», la playa y
+el pueblo, en la misma coordenada, y «Mesa del Mar», las piscinas y el núcleo de casas de al lado. Los nombres no se
+traducen; lo que va entre paréntesis sí, y la nota lo trajo en once idiomas (`textos-48.json`, «sufijos_nombre»):
+«pueblo» y «núcleo»; «village»; «Ort»; «paese» y «località»; «dorp»; «镇» y «居民区»; «鎮» y «居民區»; «селище»; «miejscowość» y
+«osiedle»; y «localitate» para el rumano, cuando se encienda. Son dos filas de `UI_TX` y una función, `nombreLugar()`,
+en los 31 sitios que enseñan el nombre: el globo, la hoja de detalle, las sugerencias del buscador, el catálogo, «Mi
+ruta», la ruta en coche o en guagua, las paradas cercanas, la lista y la frase «cerca de …» del asistente, «Organice su
+día» (las tarjetas, la lista para compartir y el GPX) y el texto alternativo de la foto. Para buscar, comparar y
+preguntar al asistente sigue el nombre tal cual, así que lo que se encuentra no cambia. En chino, con los paréntesis de
+ancho completo, como en el resto de sus textos: «Playa San Juan（镇）».
+
+**Guía de Isora en chino** (`idiomas/zh.json` e `idiomas/zht.json`). Se escribía de dos maneras: siete textos decían
+吉亚德伊索拉 (la playa de San Juan, el mirador de Guía de Isora, la webcam de San Juan, Alcalá, los Riscos de Chío y el área
+recreativa de Chío) y el resto 圭亚德伊索拉, que es también el rótulo del mapa (`MAPA_NOMBRES_ZH`). La nota pedía dejar uno
+solo, el del mapa o el que más fichas usen, y los dos son 圭亚德伊索拉: ahora, 25 de 25, y en tradicional 圭亞德伊索拉, 25 de 25.
+
+**El buscador, también por etiquetas** (`index.html`). Miraba el nombre, el alias y la categoría; ahora también las
+etiquetas de la ficha, en castellano, que es como están escritas, y en el idioma de la app, las de
+`idiomas/etiquetas/<idioma>.json` que ya se ven en la ficha. Las que no se traducen a propósito
+(`etiquetas-sin-traducir.json`) caen solas al castellano. No hay textos nuevos. Es una función, `etiquetasBuscables()`,
+en los tres filtros del buscador (las sugerencias, los marcadores mientras se escribe y el Intro). Las etiquetas van
+separadas por un salto de línea, que no se puede teclear, para que una búsqueda no case pegando el final de una con el
+principio de la siguiente. Lo plegado se guarda por ficha y solo se rehace cuando cambia la tabla de etiquetas
+(`TG_ETIQUETAS` lleva ahora una versión): en un móvil lento emulado (la CPU cuatro veces más lenta), cada tecla tarda lo
+mismo que antes, de 6 a 10 ms, y la primera tras cambiar de idioma, de 20 a 30.
+
+**El zoom con dos dedos (4a)** (`index.html`, `modulos/perfil.js`, `modulos/cielo.js` y «Su cuerpo», desde sus fuentes).
+La página ya se puede ampliar: la etiqueta viewport de `index.html` pierde `user-scalable=no`, sin `maximum-scale`; las
+otras tres páginas ya dejaban. El mapa, el 3D, el cielo y el lienzo de «Su cuerpo» siguen con su propio pellizco
+(`touch-action`). Sin `user-scalable=no`, el iPhone (Safari y la app de la App Store, que usa WKWebView) amplía la
+página solo al tocar una caja con la letra de menos de 16 px, y la deja ampliada; por eso ninguna baja ya de 16 px. Una
+variable, `--letra-caja`, para el buscador del mapa (antes 13,6 px), el asistente (14), las direcciones de la ruta y el
+buscador de paradas (12,5), entrar o crear la cuenta (15,2), la tienda y el panel del administrador (14,1); y, aparte,
+las tres cajas de copiar que se fabrican al vuelo, la fecha de «Su evolución» (14,7), los dos desplegables de «Su
+cuerpo» (13 y 14) y las tres cajas del cielo: el buscador del catálogo (11,8), el de «Apunta al cielo» (12,8) y la fecha
+(13,3; 11,2 a la vista). El texto de ejemplo, que el iPhone no mira, se queda con su tamaño donde a 16 px no cabía
+(«Oppure scriva un indirizzo…» en la ruta, el búlgaro en las paradas, y en el asistente por debajo de 340 px, donde el
+francés ya no cabía antes). Y lo que con la letra más grande ya no cabía: la fila de la ruta deja encoger su caja
+(`min-width: 0`; a 320 px el botón «→» se salía); en «Su cuerpo», la zona del tiempo de «Hoy en la isla» llega al 60 %
+de la fila y no al 52 %, y por debajo de 360 px va debajo del título, con todo el ancho, y se lee entera (también
+«Puerto de la Cruz», que con 13 px se acortaba a 320 y 340 px en los diez idiomas); la columna de «Su deporte» no pasa
+del ancho de su tarjeta (a 320 y 340 px, el desplegable cerrado acorta con «…» el nombre de deporte más largo en alemán,
+italiano, neerlandés y búlgaro, y abierto lo enseña entero); la fecha y el peso de «Su evolución» van uno debajo del
+otro por debajo de 375 px (con el formato de fecha del iPhone, la más ancha del año, «2026年10月28日» en chino, ocupa 122
+px, y al lado del peso le quedaban 99 a 320 px y 119 a 360); la fecha del cielo, cuando el navegador no sabe abrir su
+calendario y la deja a la vista, va en su propia línea (en `main` ya se salía de 17 a 42 px a 320 px en ocho idiomas); y
+el buscador de «Apunta al cielo» lleva de ejemplo el corto del catálogo («Buscar: Orión, M42, Vega…», ya traducido en
+los once idiomas): el largo («¿Qué quiere encontrar? Júpiter, Vega, Orión, M31…») ya no cabía en ningún idioma a 320 px,
+ni en seis a 360 ni en cinco a 390; el lector de pantalla sigue leyendo el largo. Y en «Sus datos», por debajo de 360
+px, el texto de ejemplo de las casillas va algo más pequeño (lo que se escribe sigue a 16,8 px): a 320 px, el del peso
+objetivo no cabía en italiano ni en polaco («Waga docelowa (opcjonalnie)», 228 px en 200), y también pasaba en `main`.
+No hay textos nuevos.
+
+**Medido antes y después**, en un móvil emulado, en los diez idiomas a 320, 360 y 390 px. En el mapa, la ruta, las
+paradas, el asistente y la cuenta: 210 cajas vistas; en `main`, las 210 con la letra por debajo de 16 px y un ejemplo
+cortado; aquí, ninguna y ninguno, y nada se sale de su fila. En el cielo: 120 cajas; en `main`, las 120 por debajo de 16
+px, 21 ejemplos cortados y 9 filas que se salían; aquí, ninguna. La fila de la fecha, donde se ve, en «Su cuerpo», de
+280 a 390 px: la fecha más ancha cabe en todos los anchos y nada se monta. Las capturas, en castellano y en alemán, a
+390 y 320 px, se le mandaron a Jérôme. Y de aquí en adelante lo mira la auditoría: `auditar_desborde.js` lleva un bloque
+6 con la etiqueta viewport de las cuatro páginas, las cajas de copiar, la letra de las 60 cajas de la app (se vean o no)
+y, en los diez idiomas a 320 px, en 81 pantallas, «Músculos» de «Su cuerpo» incluida (y la fecha también a 375), que
+nada baje de 16 px, que el ejemplo quepa, que nada de su fila se salga y que la fecha quepa con el formato del iPhone.
+En `main`, 212 fallos: la viewport, las tres cajas de copiar, 46 de las 60 cajas, 131 a la vista (20 de ellas, los dos
+desplegables de «Músculos»), 13 ejemplos cortados, la fecha en los diez idiomas y la fila de la fecha del cielo en ocho;
+aquí, ninguno.
+
+**Lo que vio la primera auditoría entera, y su arreglo.** La primera vuelta entera sobre el 4a (el 18 de noviembre, de
+00:05 a 02:56 UTC) dio dos rojos, los dos de este apartado y ninguno más: en `probar_cuerpo.js`, a 320 px en búlgaro, el
+panel de «Su cuerpo» medía 323 px; y en `probar_perfil.js` (p11), la prueba daba por hecho que la fecha y el peso de «Su
+evolución» van uno al lado del otro, y desde el 4a, por debajo de 375 px, van uno debajo del otro. Mirado entero (diez
+idiomas, cinco vistas y seis anchos, de 320 a 430 px), lo de «Su cuerpo» eran sus dos desplegables de «Músculos», que
+con la letra a 16 px ensanchaban la columna de su tarjeta: a 320 px, la zona del tiempo de «Hoy en la isla» se salía 9
+px en francés y 3 en búlgaro, y el deporte 3 en búlgaro. Se arregla en las fuentes de «Su cuerpo», como se cuenta arriba
+(de 360 px en adelante, todo como estaba), y con controles más fuertes: `probar_cuerpo.js` (27b) mira ahora los diez
+idiomas (antes, alemán, búlgaro y polaco) y el panel entero en sus cinco vistas, diciendo qué se sale, y el bloque 6 de
+`auditar_desborde.js` abre también «Músculos»; los dos, en rojo sobre el 4a sin el arreglo (la zona en francés; el
+deporte en búlgaro y, en el bloque 6, también en alemán) y en verde con él. La prueba del perfil mira que las dos cajas
+no se pisen, en ancho y en alto, y que vayan al lado desde 375 px y una debajo de otra por debajo.
+
+**La postal de «Su cuerpo» (visto de paso, ya en `main`).** Mirando «Su cuerpo» a 360 y 375 px, los anchos de muchos
+Android y del iPhone SE, salió algo que ya pasaba en la app publicada: en francés, alemán, neerlandés y búlgaro, el
+botón «Crear mi postal» no cabía en una línea y ensanchaba su columna; el panel medía hasta 388 px a 360 (en alemán,
+«Meine Postkarte erstellen»). Ahora el botón puede partir su texto a cualquier ancho (antes, solo por debajo de 360 px);
+donde cabe, sigue en una línea y con la misma altura (48 px a 390, como antes), y de 360 px en adelante su icono se
+queda en 18 px aunque el texto vaya en dos líneas (por debajo de 360, como estaba). `probar_cuerpo.js` mira ya a 320,
+360 y 375 px: siete rojos antes, a 360 y 375, y ninguno después, con 800 controles en verde.
+
+**Comprobado aquí.** `probar_nombres.js` mira los nombres repetidos en los diez idiomas (el globo, la hoja, el buscador
+y la lista del asistente; la playa y las piscinas, sin paréntesis), en rojo en `main` y en verde aquí; y busca de
+verdad, tecleando en la caja, una etiqueta que no sale ni en el nombre, ni en el alias, ni en la categoría de su ficha:
+traducida («Lava flows», «Coulées de lave», «Lavaströme», «Colate laviche», «Lavastromen», «熔岩流», «Лавови потоци»,
+«Piasek z Sahary») y en castellano («Lavas», «Arena Sahara»), en las sugerencias, en los marcadores y con el Intro: 19
+de 19 aquí y ninguna en `main`. `auditar_datos.js` cuenta que los tres filtros que leen el alias lean también las
+etiquetas (0 de 3 en `main`, 3 de 3 aquí). Y en verde `auditar_claves_tx.js`, `castellano_suelto.js`, `probar_faq.js`,
+`auditar_faq.js`, `auditar_seguridad.py`, `auditar_cirilico.py`, `auditar_etiquetas.js` y
+`nombres_chinos_mapa.py --comprobar`. Las cifras de idiomas del documento, con las dos filas nuevas: 52 tablas y 3.732
+filas, y 5.869.
+
+**La auditoría entera** sobre `3b9835b` (árbol `099c4891`): los siete commits de la nota 48 encima de `main`
+(`c3fdd67`). La vuelta anterior, sobre lo mismo, la cortó a medias un reinicio de la máquina, sin un rojo hasta allí;
+esta se lanzó entera otra vez. En `main` es lo mismo, rebasado sobre doce commits de los robots (`4ae5c4a`, `0bbdda8` y
+`47c0273`, terremotos; `6f9664d`, `b8b39bf` y `3100b52`, avisos de AEMET; `5590291`, `6aa3e00` y `0988a4f`, alertas del
+Gobierno de Canarias; `66c02ed`, satélites; `df1a4ff`, el boletín de INVOLCAN, y `fdac8df`, gasolineras), que solo
+cambian `datos/sismos-ign.json`, `datos/avisos-aemet.json`, `datos/alertas-canarias.json`, `datos/satelites.json`,
+`datos/semaforo-involcan.json` y `datos/precios-gasolineras.json`, y con los controles que leen esos ficheros, en verde
+tras el rebase. En los 61 bloques de `auditar.sh`, ningún rojo: los dos nombres repetidos, con su paréntesis en los diez
+idiomas, y el buscador por etiquetas, traducidas y en castellano, 19 de 19; las preguntas de prueba al asistente, 0
+fallos de 261; los datos, 975 lugares en todas partes (también en el resumen de este documento) y ninguna cifra de
+lugares que no sea 975 en lo que se lee; `probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626;
+`auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_registro.js`, todo de usted (137.827 textos);
+`castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.340 nombres propios en cirílico y
+ninguna variante sospechosa; `auditar_seguridad.py`, ningún atributo repetido en una etiqueta; `auditar_desborde.js`,
+con su bloque 6: la etiqueta viewport de las cuatro páginas, las tres cajas de copiar, las 60 cajas y 186 a la vista en
+81 pantallas, ninguna por debajo de 16 px; `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin
+traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153;
+`probar_figura.js`, 64; `probar_cuerpo.js`, 800 (eran 741: ahora mira las cinco vistas de «Su cuerpo» a 320, 360 y 375
+px en los diez idiomas); `auditar_entrenador.js`, 79 (313 ejercicios con vídeo, de 958); la isla en 3D, 57; el panel
+SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.869).
+Al acabar, el repositorio sin ningún cambio: `app_preparar.js` montó `app/www/` (237 ficheros) y lo cotejó.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
