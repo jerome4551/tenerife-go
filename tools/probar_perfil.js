@@ -1191,7 +1191,15 @@ async function pantalla(b) {
             if (!d) { fx.push(id + ': sin campo de fecha'); return; }
             const cs = getComputedStyle(d);
             if ((cs.appearance || cs.webkitAppearance) !== 'none') fx.push(id + ': aspecto ' + (cs.appearance || cs.webkitAppearance));
-            if (d.getClientRects().length && sig && q(d).right > q(sig).left + 0.5) fx.push(id + ': la fecha llega a ' + q(d).right.toFixed(1) + ' y lo de al lado empieza en ' + q(sig).left.toFixed(1));
+            /* desde el 17-11-2026 (nota 48, 4a), con la letra de las cajas a 16 px, por debajo de 375 px la fecha va
+               encima del peso, y por encima, al lado: se mira que las dos cajas no se pisen (en ancho y en alto) y que
+               cada una vaya donde le toca */
+            if (d.getClientRects().length && sig) {
+              const a = q(d), s = q(sig), pisa = a.right > s.left + 0.5 && s.right > a.left + 0.5 && a.bottom > s.top + 0.5 && s.bottom > a.top + 0.5;
+              if (pisa) fx.push(id + ': la fecha (' + a.left.toFixed(1) + '-' + a.right.toFixed(1) + ', ' + a.top.toFixed(1) + '-' + a.bottom.toFixed(1) + ') pisa lo de al lado (' + s.left.toFixed(1) + '-' + s.right.toFixed(1) + ', ' + s.top.toFixed(1) + '-' + s.bottom.toFixed(1) + ')');
+              else if (innerWidth >= 375 && Math.abs(a.top - s.top) > 1) fx.push(id + ': a ' + innerWidth + ' px la fecha no va al lado del peso');
+              else if (innerWidth < 375 && s.top < a.bottom - 0.5) fx.push(id + ': a ' + innerWidth + ' px el peso no va debajo de la fecha');
+            }
           });
           return { mal, fx, n: Object.keys(filas).length };
         });
@@ -1207,7 +1215,7 @@ async function pantalla(b) {
     ok(!castellano.length, 'p8 a ' + ancho + ' px: nada en castellano fuera del castellano', [...new Set(castellano)].slice(0, 12));
     ok(!e2.length, 'p9 a ' + ancho + ' px: sin errores', e2);
     ok(!casillas.length, 'p10 a ' + ancho + ' px, en los diez idiomas: las casillas de «Sus datos» de una misma fila, a la misma altura, aunque un rotulo ocupe dos lineas', casillas.slice(0, 12));
-    ok(!fecha.length, 'p11 a ' + ancho + ' px, en los diez idiomas: la fecha de «Su evolucion» (peso y kilometros), sin el aspecto de serie y sin montarse en la casilla de al lado', fecha.slice(0, 12));
+    ok(!fecha.length, 'p11 a ' + ancho + ' px, en los diez idiomas: la fecha de «Su evolucion» (peso y kilometros), sin el aspecto de serie y sin montarse en la casilla de al lado (por debajo de 375 px, la de debajo)', fecha.slice(0, 12));
     await c2.close();
   }
 }

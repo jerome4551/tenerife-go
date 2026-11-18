@@ -2925,23 +2925,39 @@ async function ejemplo(pg, mas) {
     prueba('las celebraciones: sin errores de página', e27f.length === 0, e27f.join(' | '));
     await c27f.close();
 
-    /* a 320 px, de noche y en alemán (los textos más largos): nada pasa del borde */
-    const c27b = await contexto(b, { contexto: { viewport: { width: 320, height: 568 } } }), p27b = await c27b.newPage(), e27b = []; vigilar(p27b, e27b);
-    await abrirApp(p27b); await abrirPerfilCuerpo(p27b); await suCuerpo(p27b);
-    await p27b.click('#tgc-tema'); await p27b.waitForTimeout(150);
-    await ejemplo(p27b, { mov: [[1, 'caminar', 60, 5], [0, 'bici', 60, 20]], gr: ['bici'], comp: { pie: 'perro', bici: 'montana' }, senderos: { 'montana-blanca': '2026-11-01' } });
-    for (const l of ['de', 'bg', 'pl']) {
-      await idioma(p27b, l); await p27b.waitForTimeout(150);
-      await p27b.evaluate(() => document.querySelectorAll('#tgc-send-lista details').forEach(d => { d.open = true; }));
-      const r = await p27b.evaluate(() => {
-        const p = document.getElementById('cuerpo-panel'), b = p.getBoundingClientRect();
-        const anchos = [...p.querySelectorAll('#tgc-isla *, #tgc-send *')].filter(n => { if (!n.getClientRects().length || n.closest('svg')) return false; const x = n.getBoundingClientRect(); return x.right > b.right + 0.5 || x.left < b.left - 0.5; }).map(n => n.id || (typeof n.className === 'string' ? n.className : '') || n.tagName).slice(0, 5);
-        return { anchos, psw: p.scrollWidth, pcw: p.clientWidth };
-      });
-      prueba('a 320 px, de noche, en ' + l + ': «Cruce la isla» (con las dos filas del compañero) y «Senderos de la isla» (todas las zonas abiertas) sin desborde', r.psw <= r.pcw && r.anchos.length === 0, `${r.psw}>${r.pcw} ${r.anchos.join(',')}`);
+    /* a 320 px, de noche y en los diez idiomas: nada pasa del borde. Hasta el 18-11-2026 se miraba solo en alemán,
+       búlgaro y polaco, y solo la vista de entrada; con las cajas a 16 px (nota 48, 4a), la zona del tiempo de «Hoy en
+       la isla» se salía a 320 px en francés y el deporte en búlgaro. Ahora, en los diez idiomas, «Cruce la isla» y
+       «Senderos de la isla» como antes, y el panel entero en las cinco vistas, diciendo qué se sale (lo que va en una
+       tira que se desliza de lado, como los sellos, aparte: no se sale, se desliza) */
+    const ANCHOS27 = [320];
+    for (const w of ANCHOS27) {
+      const c27b = await contexto(b, { contexto: { viewport: { width: w, height: 568 } } }), p27b = await c27b.newPage(), e27b = []; vigilar(p27b, e27b);
+      await abrirApp(p27b); await abrirPerfilCuerpo(p27b); await suCuerpo(p27b);
+      await p27b.click('#tgc-tema'); await p27b.waitForTimeout(150);
+      await ejemplo(p27b, { mov: [[1, 'caminar', 60, 5], [0, 'bici', 60, 20]], gr: ['bici'], comp: { pie: 'perro', bici: 'montana' }, senderos: { 'montana-blanca': '2026-11-01' } });
+      for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+        await idioma(p27b, l); await p27b.waitForTimeout(150);
+        const malVista = [];
+        for (const m of ['m', 'a', 'c', 'e', 'p']) {
+          await p27b.evaluate(m => document.getElementById('tgc-modo-' + m).click(), m); await p27b.waitForTimeout(150);
+          await p27b.evaluate(() => document.querySelectorAll('#tgc-send-lista details').forEach(d => { d.open = true; }));
+          const r = await p27b.evaluate(() => {
+            const p = document.getElementById('cuerpo-panel'), b = p.getBoundingClientRect();
+            const sale = n => { if (!n.getClientRects().length || n.closest('svg')) return false; const x = n.getBoundingClientRect(); return x.right > b.right + 0.5 || x.left < b.left - 0.5; };
+            const enTira = n => { for (let a = n.parentElement; a && a !== p; a = a.parentElement) if (getComputedStyle(a).overflowX !== 'visible') return true; return false; };
+            const nombre = n => n.id || (typeof n.className === 'string' ? n.className : '') || n.tagName;
+            return { anchos: [...p.querySelectorAll('#tgc-isla *, #tgc-send *')].filter(sale).map(nombre).slice(0, 5),
+              otros: [...p.querySelectorAll('*')].filter(n => sale(n) && !enTira(n)).map(nombre).slice(0, 5), psw: p.scrollWidth, pcw: p.clientWidth };
+          });
+          if (m === 'm') prueba('a ' + w + ' px, de noche, en ' + l + ': «Cruce la isla» (con las dos filas del compañero) y «Senderos de la isla» (todas las zonas abiertas) sin desborde', r.anchos.length === 0, r.anchos.join(','));
+          if (r.psw > r.pcw || r.otros.length) malVista.push(m + ': ' + r.psw + '>' + r.pcw + ' ' + r.otros.join(','));
+        }
+        prueba('a ' + w + ' px, de noche, en ' + l + ': nada de «Su cuerpo» pasa del borde, en sus cinco vistas (la zona del tiempo y el deporte, a 16 px)', malVista.length === 0, malVista.join(' | '));
+      }
+      prueba('a ' + w + ' px: sin errores de página', e27b.length === 0, e27b.join(' | '));
+      await c27b.close();
     }
-    prueba('a 320 px: sin errores de página', e27b.length === 0, e27b.join(' | '));
-    await c27b.close();
   }
 
   // 28. (10-11-2026, #99; Jerome: «Que todo sea juntos») la pestaña «Evolución»: «Sus datos» y «Su evolución» del perfil,

@@ -390,7 +390,8 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
      b) en una pagina con todo abierto (el buscador, la ruta, las paradas, el asistente, la cuenta, el perfil,
         «Su cuerpo» con su «Evolucion», y el cielo con su catalogo, su fecha y «Apunta al cielo»): la letra de
         TODAS las cajas, se vean o no;
-     c) en los diez idiomas a 320 px, en cada pantalla con cajas: la letra de las que se ven, que el ejemplo
+     c) en los diez idiomas a 320 px, en cada pantalla con cajas (desde el 18-11-2026, tambien «Musculos» de «Su
+        cuerpo», con la zona del tiempo y el deporte): la letra de las que se ven, que el ejemplo
         (placeholder) quepa entero, que nada de su fila se salga, y que la fecha de «Su evolucion» quepa con el
         formato del iPhone (dateStyle medium, el mismo CLDR), la mas ancha del año en los diez idiomas y en
         ingles de EE. UU.; la fecha, tambien a 375 px, el primer ancho en que va al lado del peso. */
@@ -446,13 +447,24 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
   };
   /* las pantallas: cada una abre lo suyo en una pagina nueva; la de «Evolucion» y la del cielo pasan por
      varios pasos y miden en cada uno */
-  const abrirEvolucion = async q => {
+  const abrirSuCuerpo = async q => {
     await q.evaluate(() => abrirPerfil());
     await q.waitForFunction(() => window.TG_PERFIL && document.getElementById('perfil-panel') && !document.getElementById('perfil-panel').hidden, null, { timeout: 20000 });
     await q.evaluate(() => TG_PERFIL.pestana('cuerpo'));
     await q.waitForFunction(() => window.TG_CUERPO && document.querySelector('#tgp-cuerpo-mini svg'), null, { timeout: 30000 });
     await q.evaluate(() => { if (!TG_CUERPO.abierto()) document.getElementById('tgp-cuerpo-abrir').click(); });
     await q.waitForFunction(() => TG_CUERPO.abierto() && !document.getElementById('cuerpo-panel').hidden, null, { timeout: 20000 });
+  };
+  /* «Musculos», la vista de entrada de «Su cuerpo», con la zona del tiempo de «Hoy en la isla» y el deporte (18-11-2026:
+     con la letra a 16 px, a 320 px la zona se salia en frances y el deporte en bulgaro; lo vio probar_cuerpo.js) */
+  const abrirMusculos = async q => {
+    await abrirSuCuerpo(q);
+    await q.evaluate(() => document.getElementById('tgc-modo-m').click());
+    await q.waitForFunction(() => !document.getElementById('tgc-vista-musculos').hidden && document.getElementById('tgc-hoy-zona') && document.getElementById('tgc-dep-sel'), null, { timeout: 20000 });
+    await q.waitForTimeout(400);
+  };
+  const abrirEvolucion = async q => {
+    await abrirSuCuerpo(q);
     /* el boton «Evolucion», pulsado desde la pagina: en la pagina con todo abierto, otras ventanas lo tapan */
     await q.evaluate(() => document.getElementById('tgc-modo-e').click());
     await q.waitForFunction(() => !document.getElementById('tgc-vista-evolucion').hidden && document.getElementById('tgp-peso-fecha'), null, { timeout: 20000 });
@@ -477,6 +489,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
     guagua: q => q.evaluate(() => toggleBusPanel()),
     asistente: q => q.evaluate(() => openChatPanel()),
     cuenta: q => q.evaluate(() => (window.openAuthModal || openAuthModal)()),
+    musculos: abrirMusculos,
     evolucion: abrirEvolucion,
   };
   const paginaCaja = async (w, L, errC) => {

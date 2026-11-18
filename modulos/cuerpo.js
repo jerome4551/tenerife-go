@@ -6560,18 +6560,27 @@
    de AEMET si lo hay, el consejo y la fuente */
 .tgc-hoy-isla { min-width: 0; }
 .tgc-hoy-caja { border-radius: 22px; background: var(--oro-f); padding: 16px 18px 14px; display: grid; gap: 10px; }
-.tgc-hoy-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+/* min-width: 0, para que la fila no ensanche la tarjeta con el ancho del desplegable (nota 48, 4a) */
+.tgc-hoy-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
 .tgc-hoy-cab h2 { margin: 0; font: 600 24px/1.1 var(--font-display); letter-spacing: -0.2px; }
-/* 60 %, y no 52 %: con la letra a 16 px (abajo), a 360 y 390 px caben todas las zonas en los diez idiomas («Puerto de la
-   Cruz» incluida); a 320 px solo se acorta «Puerto de la Cruz», como ya pasaba a 13 px (nota 48, 4a). */
+/* 60 %, y no 52 %: con la letra a 16 px (abajo), de 360 px en adelante caben todas las zonas en los diez idiomas
+   («Puerto de la Cruz» incluida); por debajo de 360, la zona va debajo del título (más abajo) (nota 48, 4a). */
 .tgc-hoy-zona { position: relative; display: inline-flex; align-items: center; flex: none; max-width: 60%; }
-/* Los dos desplegables (la zona de «¿Qué entreno hoy?» y el deporte), a 16 px: desde el 17-11-2026 la app deja
-   ampliar con dos dedos (nota 48, 4a) y el iPhone amplía la página solo al tocar una caja de menos de 16 px. */
+/* Los dos desplegables (la zona del tiempo de «Hoy en la isla» y el deporte), a 16 px: desde el 17-11-2026 la app
+   deja ampliar con dos dedos (nota 48, 4a) y el iPhone amplía la página solo al tocar una caja de menos de 16 px. */
 .tgc-hoy-zona select {
   appearance: none; -webkit-appearance: none; max-width: 100%; min-height: 36px; padding: 0 28px 0 12px; border-radius: 999px; border: 1px solid var(--linea);
   background: var(--tarjeta); color: var(--tinta); font: 600 16px/1 var(--font-body); text-overflow: ellipsis; cursor: pointer;
 }
 .tgc-hoy-zona svg { position: absolute; right: 10px; pointer-events: none; color: var(--tinta-2); }
+/* Por debajo de 360 px, la zona va debajo del título y con todo el ancho: con la letra a 16 px, al lado del título se
+   salía de la tarjeta a 320 px en francés (9 px) y en búlgaro (3 px). Así se lee entera, también «Puerto de la Cruz»,
+   que con 13 px se acortaba a 320 y 340 px en los diez idiomas (medido el 18-11-2026 a 320, 340, 360, 375, 390 y
+   430 px; de 360 en adelante, todo como estaba). */
+@media (max-width: 359px) {
+  .tgc-hoy-cab { flex-wrap: wrap; }
+  .tgc-hoy-zona { max-width: 100%; }
+}
 .tgc-hoy-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .tgc-hoy-chips:empty { display: none; }
 .tgc-hoy-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 10px; border-radius: 10px; background: var(--tarjeta); color: var(--tinta); }
@@ -7199,6 +7208,10 @@ img.tgc-postal-img { width: 100%; height: auto; border-radius: 14px; display: bl
 @media (min-width: 420px) { .tgc-preg .tgc-btn span { display: inline; } }
 
 /* ── su deporte (parte 4): el selector, la ficha y la marca de los prioritarios ── */
+/* La columna de la tarjeta, no más ancha que ella: con la letra a 16 px, el nombre de deporte más largo ensanchaba la
+   tarjeta y se salía 3 px a 320 px en búlgaro (nota 48, 4a). Ahora, a 320 y 340 px, el desplegable cerrado acorta
+   con «…» el nombre más largo en alemán, italiano, neerlandés y búlgaro; al abrirlo, la lista lo enseña entero. */
+.tgc-deporte { grid-template-columns: minmax(0, 1fr); }
 .tgc-dep-top { display: flex; align-items: center; justify-content: space-between; gap: 10px 14px; flex-wrap: wrap; }
 .tgc-dep-sel { position: relative; display: inline-flex; align-items: center; min-width: 0; max-width: 100%; }
 .tgc-dep-sel select {
