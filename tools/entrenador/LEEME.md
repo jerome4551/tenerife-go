@@ -21,7 +21,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/20-figura.js` | la cámara y el cuerpo, dibujado por masas a tres tintas: torso, brazos y piernas, manos con dedos, zapatillas que se doblan, el brillo de los músculos |
 | `src/30-cabeza.js` | la cabeza, con volumen: gira de verdad (ya no son tres dibujos). Las caras, la mirada y el tupé, que va un instante detrás |
 | `src/40-escenario.js` | la escena: el orden de pintado, la sombra, los tres decorados (fuera, calistenia, gimnasio; día y noche) |
-| `src/50-material.js` | barra (y la barra Z), mancuernas, pesa rusa, banco, banco predicador, soporte, barra de dominadas, escalón, pared, polea, toallas… |
+| `src/50-material.js` | barra (y la barra Z), mancuernas, pesa rusa, banco, banco predicador, soporte, barra de dominadas, escalón, pared, polea, toallas, banda elástica, poste… |
 | `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
 | `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los avisos, el encuadre; y los gestos del presentador |
 | `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos; y las de cualquier bloque: `conAgarre`, `estirado`, `inclinado`, `colgando`, `anteTronco`, `cuelga`/`activo`, `barraD`, `manoHacia`, `deTalon`, `enPunta`, `enSuMuslo`, `pieSobreSuelo`…) |
@@ -36,6 +36,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/79-gluteos.js` | las coreografías del bloque 10: **glúteos** (43), por familias (tumbado de lado; de lado sobre el antebrazo y las planchas de Copenhague; a cuatro patas y boca abajo; de pie con las manos en la pared; el puente y el hip thrust; las poleas, con la tobillera y con la cuerda; la pesa rusa; las zancadas: en el sitio, al frente, atrás, andando, cruzada y de lado, sin peso, con mancuernas y con barra; la búlgara; el escalón de lado; el peso muerto sumo; los estiramientos; los saltos) |
 | `src/7a-isquiotibiales.js` | las coreografías del bloque 11: **isquiotibiales** (22), por familias (la bisagra de cadera sobre los dos pies: el peso muerto rumano en polea, los buenos días y los pesos muertos con las piernas rígidas y con apoyo escalonado; el peso muerto a una pierna: sin peso, con pesa rusa, con mancuerna, en polea y con salto; los curls: de pie, en polea, deslizando los talones sobre una toalla y el nórdico; boca abajo en el banco; el balanceo de pierna; los estiramientos y el isométrico sentado) |
 | `src/7b-abdomen.js` | las coreografías del bloque 12: **abdomen y lumbares** (40), por familias (las planchas sobre las manos: alta, con toque de hombro, arriba y abajo y con rotación; el gateo del oso; a cuatro patas: el perro-pájaro, el gato-vaca y la postura del niño; las planchas laterales; boca arriba: los toques de talón, el abdominal completo, la bicicleta, el crunch inverso, las patadas alternas, la elevación de piernas en banco, la retracción, la posición hueca y los estiramientos; boca abajo: el superman y la cobra; sentado: el giro ruso y los tres L-sit; en banco con rodillos: el crunch declinado y la hiperextensión lumbar; colgado: las piernas rectas, los pies a la barra y el limpiaparabrisas; de pie: el crunch lateral, la flexión lateral con mancuerna y el paseo de maleta; y con polea o barra anclada: el press Pallof, el leñador, el crunch de rodillas y la rotación con landmine) |
+| `src/7c-banda.js` | las coreografías del bloque 13: **con banda elástica** (38, de todos los grupos), por cómo se lleva la banda (de pie, pisándola: la sentadilla, la elevación de talones, los cuatro curls, la elevación lateral y las aperturas de abajo arriba; atada a un poste: el curl femoral, las aperturas, el face pull, el remo, los pájaros, la rotación externa, la retracción escapular, el peso muerto a una pierna, la extensión de rodilla y el leñador inverso; por la espalda: el press de pecho; de rodillas: el press Pallof y la apertura inversa; en el suelo y con la minibanda: la abducción sentado, el puente, la almeja, la patada de glúteo y los pasos lateral y de monstruo; sentado: el remo y las flexiones dorsal y plantar del tobillo; colgado: las dominadas asistidas; entre las manos: la separación, la rotación externa y la extensión de tríceps; y con el antebrazo en el banco: la extensión y la flexión de muñeca, la desviación radial y cubital y la pronación y supinación) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía (todas; al motor van las del bloque 1 y a cada trozo, las suyas) |
@@ -224,6 +225,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 10 | `79-gluteos.js` | glúteos: 43 (con los 4 del bloque 1, 47 de 57; quedan 10: 6 con banda, 3 en máquina y 1 con fitball) |
 | 11 | `7a-isquiotibiales.js` | isquiotibiales: 22 (con los 4 del bloque 1, 26 de 35; quedan 9: 5 en máquina, 2 con banda y 2 con fitball) |
 | 12 | `7b-abdomen.js` | abdomen y lumbares: 40 (con los 4 del bloque 1, 44 de 56; quedan 12: 2 con banda, 2 en máquina y 8 con fitball, balón medicinal, barra o rueda) |
+| 13 | `7c-banda.js` | con banda elástica, de todos los grupos: 38 (los 37 que quedaban «con banda» en las filas de arriba y la rotación externa con bufanda, que es de las fichas nuevas). Con él, 456 con vídeo; de las 533 primeras quedan 78: las 41 de máquina y multipower (bloque 14) y las 37 de cinta de suspensión, fitball, disco, balón, anillas y rueda (bloque 15) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -274,7 +276,7 @@ atrás, `atras` y `sube`; y andando, `alza` y `pasa`), `conMancuernas` y `conBar
 lado), `andando(x, carga, juntando)` (las zancadas caminando: ida, media vuelta y regreso, con `enMarco`, como los paseos del bloque 8),
 `lateral(carga, inclinación)` (el paso de lado y la bajada, con la espinilla a plomo: se busca hacia dónde va la rodilla), `bulgara(carga)`
 (el pie de atrás sube al banco por el aire, sin cortar su canto), `corre(f)` + `corriendo(izquierdo, derecho)` (los brazos, como al
-correr: los del bloque 9) y `abrirPies`, `altoCon` y `alAire` (las del bloque 9, que cada trozo guarda las suyas); en `7a-isquiotibiales.js`: `dePie` + `despegado` + `enUna(grados, extra, tobillo)` (el peso muerto a una pierna, escrito con el apoyo en la izquierda: el pie libre se despega primero un poco, plano, y después va atrás en línea con el tronco; el otro lado, con `refleja`), `cuelgaD(postura, x, dz)` (el puño derecho colgando del hombro con el brazo estirado), `talonAlGluteo(postura, grados)` (el curl de pie, con el muslo a plomo), `enBanco()` + `colgada(postura, x, muslo, rodilla)` (boca abajo en el banco, con la cadera en su borde y las piernas colgando en diagonal), `sobreElTalon(caída, fuera)` (el pie apoyado en el talón con la punta hacia arriba: sus vectores y a qué altura queda el tobillo) y `DE_RODILLAS_F` (de rodillas para caer hacia delante: el tobillo, justo a una pierna de la rodilla); en `7b-abdomen.js`: `tablaR(grados, giro)` (la tabla girada sobre su eje largo, con `base`) y `espejo(postura)` (la del otro lado cuando lleva `base`), `aCuatroEn(muñecas)` (a cuatro patas con las manos donde ya estaban: para doblar la espalda sin moverlas), `recostadoEn(hombro, cadera)` + `plancha(baja)` + `vueltaRecta` (de lado sobre el antebrazo: el hombro y el tobillo de abajo no se mueven al subir la cadera), `enrollado(postura, grados)` (boca arriba, la pelvis gira hacia las costillas y los hombros se quedan en el suelo), `sentadoL(inclinación, curva, …)` + `tendidas` (los L-sit), `plegado` + `aLaBarra` (colgado, con las piernas arriba), `tramo` + `alReves` (andar hacia delante y hacia atrás), `aPlomo` (el brazo que cuelga con peso) y `enMarco` + `vuelta` (la media vuelta, del bloque 8)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
+correr: los del bloque 9) y `abrirPies`, `altoCon` y `alAire` (las del bloque 9, que cada trozo guarda las suyas); en `7a-isquiotibiales.js`: `dePie` + `despegado` + `enUna(grados, extra, tobillo)` (el peso muerto a una pierna, escrito con el apoyo en la izquierda: el pie libre se despega primero un poco, plano, y después va atrás en línea con el tronco; el otro lado, con `refleja`), `cuelgaD(postura, x, dz)` (el puño derecho colgando del hombro con el brazo estirado), `talonAlGluteo(postura, grados)` (el curl de pie, con el muslo a plomo), `enBanco()` + `colgada(postura, x, muslo, rodilla)` (boca abajo en el banco, con la cadera en su borde y las piernas colgando en diagonal), `sobreElTalon(caída, fuera)` (el pie apoyado en el talón con la punta hacia arriba: sus vectores y a qué altura queda el tobillo) y `DE_RODILLAS_F` (de rodillas para caer hacia delante: el tobillo, justo a una pierna de la rodilla); en `7b-abdomen.js`: `tablaR(grados, giro)` (la tabla girada sobre su eje largo, con `base`) y `espejo(postura)` (la del otro lado cuando lleva `base`), `aCuatroEn(muñecas)` (a cuatro patas con las manos donde ya estaban: para doblar la espalda sin moverlas), `recostadoEn(hombro, cadera)` + `plancha(baja)` + `vueltaRecta` (de lado sobre el antebrazo: el hombro y el tobillo de abajo no se mueven al subir la cadera), `enrollado(postura, grados)` (boca arriba, la pelvis gira hacia las costillas y los hombros se quedan en el suelo), `sentadoL(inclinación, curva, …)` + `tendidas` (los L-sit), `plegado` + `aLaBarra` (colgado, con las piernas arriba), `tramo` + `alReves` (andar hacia delante y hacia atrás), `aPlomo` (el brazo que cuelga con peso) y `enMarco` + `vuelta` (la media vuelta, del bloque 8); en `7c-banda.js`: `atada(dónde, alto, tiras)` (la banda con su lazo en el poste), `alAire(pie, x, z, alto)` (el pie a medio paso), `arrodillado(rumbo, extra)` (de rodillas y derecho, mirando hacia donde se diga: la media vuelta del press Pallof), `agachado(alto, inclinación, x, z, pie izquierdo, pie derecho)` + `enSuelo(x, z, abre)` (la media sentadilla y el cuarto de sentadilla de los pasos con minibanda, con cada pie donde se diga), `ASIENTO(postura)` (a qué altura queda la cadera sentado en el suelo), `pieA(grados)` + `sentadoUna(inclinación, grados, extra)` (sentado con una pierna estirada y el talón descansando en el suelo sea cual sea el ángulo del tobillo) y `enElBanco(mano, dónde)` (de rodillas, con el antebrazo en el banco y la otra mano con la banda por debajo, por encima o al lado)…) y cada ejercicio es esa función con sus números. **Cada ejercicio se coteja con su ficha paso a paso**:
 si el paso 2 dice «suba las mancuernas», en el paso 2 suben; si dice «las palmas enfrentadas», se miran.
 
 Las ayudas que valen para cualquier bloque están en `70-coreografias.js` (nacieron en el bloque 3 y el 4 las subió
@@ -358,6 +360,28 @@ una pierna (38 cm) de la rodilla: con medio centímetro de menos, la rodilla sal
   desde una pelvis sin girar). Los dos hombros no se mueven y la pelvis gira casi sobre sí misma. Y la barra, más ancha (`ancho: 84`):
   los pies barren 72 cm a cada lado.
 
+**Lo que enseñó el bloque 13.**
+- **`rumbo` positivo es la cámara hacia SU izquierda** (+X): de frente, su izquierda cae a la derecha de la imagen. Con el signo
+  cambiado, el brazo o la pierna que trabaja queda del lado de lejos y el lazo de la banda no se ve. La primera vista, del lado
+  de lo que trabaja (o de frente, si son los dos).
+- **Lo clavado de un tramo es lo de la coreografía (`clavos`) o lo que diga el tramo; `clavosEn` solo vale mientras mantiene la
+  postura.** Un pie que va por el aire y está clavado (`T2`) hace el camino en línea recta; sin clavar, lo hace girando las
+  articulaciones (un arco) y, si la cadera baja a la vez, corta el suelo (el pie libre del peso muerto a una pierna: −2,9 cm). Se
+  deja sin clavar solo lo que tiene que hacer un arco de verdad (la pierna que se estira desde la rodilla: el muslo no se mueve).
+- **Con la punta del pie hacia arriba, lo más bajo de la zapatilla es el contrafuerte del talón**, y `bajoZapa` (la suela) no lo
+  ve: el talón apoyado se busca con `zapaAPlano`, que es lo que mide `contactos.js`. Y la altura del tobillo cambia con el ángulo
+  del pie (de 9,9 cm con la punta estirada 40° a 6 con los dedos hacia la espinilla): se busca en cada postura.
+- **`{ e, z, g, c }`: con `g: 0` el codo se dobla hacia arriba**; para doblarlo en horizontal (los brazos en cruz que se abren),
+  `g: 90`. Un codo «un poco flexionado» con `g: 0` sube el puño 6 cm.
+- **Una tira que va de un lado a otro del cuerpo lo atraviesa** si no se le dice por dónde pasa: `rodea` (la elipse del tronco:
+  solo la rodea si en línea recta la cruza; con `siempre`, también cuando no: la que va por la espalda), o un punto `por` (la
+  banda de la patada de glúteo pasa por dentro de la rodilla de apoyo). Y una tira es un trazo por tramo, con una sola
+  profundidad: larga y pegada al cuerpo, se parte con `por` o con `rodea` para que cada trozo quede delante o detrás de lo suyo.
+- **La banda que cuelga de la barra no pasa por delante de la cara**: en las dominadas asistidas va entre la cabeza y la mano.
+- **El banco, a un lado.** Con las muñecas por fuera del borde de delante del banco, la otra mano no llega a ponerse debajo de
+  la que trabaja (65 cm desde el hombro, y el banco en medio). El banco termina a 8 cm del antebrazo que se apoya y el otro
+  brazo pasa por ese hueco. Y se mira desde su derecha y desde arriba: desde la izquierda el banco tapa las manos.
+
 ## El material (`50-material.js`)
 
 `barra` (con discos; `z: true`, la barra Z; `una: 'i'`, la lleva una mano por el centro; `almohadilla: true`, con un rulo de goma
@@ -373,7 +397,7 @@ a plomo de su asa: en un curl), `banco`, `predicador` (el banco Scott), `soporte
 `paralelas`, `escalon` (con `madera: true`, un cajón), `esterilla`, `pared`, `polea`, `landmine` (la barra T), `toalla` (algo blando: doblada o,
 con `rollo: [largo, radio]`, enrollada: un rulo tumbado, con su contorno y una franja de color cerca de cada punta, porque sobre la arena
 una toalla clara apenas se ve; doblada, con `franjas: true` lleva dos franjas de color, una cerca de cada canto, y con `bajo: 'talones'`
-va con los pies, deslizándose por el suelo: el curl de isquios deslizando los talones) y `toallas` (una toalla cogida a lo largo, que hace de correa).
+va con los pies, deslizándose por el suelo: el curl de isquios deslizando los talones), `toallas` (una toalla cogida a lo largo, que hace de correa), `banda` (la banda elástica: tiras y lazos) y `poste` (un poste de hierro clavado en la arena: donde se ata la banda).
 
 - `banco`: `respaldo: 45` lo inclina; `85`, casi vertical (una silla); **negativo, declinado**. Con el respaldo
   levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba). `tapa: true`: el
@@ -422,16 +446,31 @@ va con los pies, deslizándose por el suelo: el curl de isquios deslizando los t
   se pinta por encima); `en: [posturas]`, solo se ve en los tramos que salen de una de esas posturas (así una toalla pasa
   de un pie al otro). Con `agarreY` (y `agarreZ`) tiene `agarre`: `'mi@1:22'` clava la mano a ella.
 
+- `poste`: `{ en: [x, z], alto, r }`. Un tubo con su pie; no tiene agarre: la mano que se sujeta a él va con su postura.
+- `banda`: `{ tiras: [...], lazos: [...], color }`. Una **tira** va de un punto a otro (`de`, `a`) pasando por los que se digan
+  (`por`), y es más fina cuanto más se estira (`largo0`, lo que mide sin estirar). Un punto es: del mundo (`[x, y, z]`); una mano
+  (`'mano-i'`, o `'manos'`, entre las dos); un pie que la pisa (`'pie-i'`, bajo el arco; `'bola-i'`, bajo la parte de delante: sale
+  por el canto que mira al punto siguiente, o por el que se diga, `'pie-i:fuera'`; lo que va bajo la zapatilla se pinta detrás
+  de ella); la planta de un pie en el aire (`'arco-i'`, `'planta-i'`, y sus cantos, `'canto-i:fuera'`, `'canto-i:dentro:planta'`,
+  por donde la tira dobla hacia la planta: se pinta delante o detrás de la zapatilla según mire la suela); `'empeine-i'`; un punto
+  pegado al cuerpo (`{ en: 'torax' | 'pelvis', a: [...] }`) o a una articulación (`{ de: 'i', p: 'rod', mas: [...] }`); o el
+  enganche de un lazo (`'lazo:0'`, por el lado que mira al otro punto). Con `asas`, un mango en la mano; con `ve: [posturas]`,
+  solo se ve en los tramos que salen de ellas (la banda que cambia de mano o de pie); con `rodea: { en, c, a, b, sentido,
+  siempre }` no atraviesa el tronco: lo rodea por el lado que se diga. Un **lazo** es la banda rodeando algo: las dos piernas
+  (`'muslos'`, `'pantorrillas'`, `'tobillos'`: la minibanda, con sus dos tramos entre ellas), un miembro (`'muslo-i'`,
+  `'pantorrilla-i'`, `'tobillo-i'`, `'brazo-i'`, `'mano-i'`, `'pie-i'`; con `a`, a cuántos cm de la articulación) o un punto del
+  mundo con su `eje` y su radio (el poste, la barra). No tiene agarre: las manos van con su postura y la banda las sigue.
+
 El material sabe **de qué postura sale** lo que Jérôme está haciendo (`ctx.de`, que le da `60-director.js`): con eso las
-`toallas` saben en qué pie van. Y `ctx.reposo` / `ctx.enLista([...])`, si lo que espera sigue esperando.
+`toallas` saben en qué pie van y la `banda`, qué tiras y qué lazos se ven (`ve`). Y `ctx.reposo` / `ctx.enLista([...])`, si lo que espera sigue esperando.
 
 **De qué se dibuja.** El material, como todo lo demás, solo con `path`, `circle`, `ellipse` y `rect` (en grupos `g`,
 con sus degradados y sus recortes): es lo que `src/85-lienzo.js` sabe copiar al canvas con Samsung Internet. Un
 `line`, un `polygon`, un `text`, un `use`, una máscara o un filtro, en ese navegador no se verían, y en Chromium nadie
 lo notaría: `auditar_entrenador.js` lo mira en cada vídeo y se pone en rojo.
 
-Material que falta (lo piden 115 ejercicios): máquinas, multipower, cinta de suspensión, anillas y rueda abdominal,
-sin dibujar; y `banda`, `fitball`, `disco` y `balon_medicinal`, que tienen un primer dibujo en `50-material.js` pero
+Material que falta (lo piden 78 ejercicios): máquinas, multipower, cinta de suspensión, anillas y rueda abdominal,
+sin dibujar; y `fitball`, `disco` y `balon_medicinal`, que tienen un primer dibujo en `50-material.js` pero
 ninguna coreografía los usa todavía: están sin probar.
 
 ## Cómo se hace una
