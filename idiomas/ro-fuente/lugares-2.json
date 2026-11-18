@@ -1406,7 +1406,7 @@
   {
    "tabla": "places",
    "clave": "puerto-guimar.desc",
-   "es": "Núcleo costero y de baño del Puertito de Güímar, costa este, con un pequeño club náutico. Playa canina oficial adyacente. Solarium y zona de baño junto a la bocana. Ambiente local auténtico muy diferente al turismo masivo del sur. Aguas tranquilas protegidas por espigones.",
+   "es": "Núcleo costero y de baño del Puertito de Güímar, costa este, con un pequeño club náutico. Playa canina oficial adyacente. Solárium y zona de baño junto a la bocana. Ambiente local auténtico muy diferente al turismo masivo del sur. Aguas tranquilas protegidas por espigones.",
    "forma": "texto",
    "ro": "Puertito de Güímar este o localitate de coastă cu zonă de baie, pe coasta de est, și are un mic club nautic. Chiar alături, o plajă oficială pentru câini. Solariu și zonă de baie lângă intrarea în port. Atmosferă locală autentică, foarte diferită de turismul de masă din sud. Ape liniștite, protejate de diguri."
   },
@@ -1833,9 +1833,9 @@
   {
    "tabla": "places",
    "clave": "kayak-la-caleta.cat",
-   "es": "Kayak · La Caleta · Calas Ocultas · Tortugas · Sur",
+   "es": "Kayak · La Caleta · Calas Ocultas · Tortugas en ocasiones · Sur",
    "forma": "texto",
-   "ro": "Caiac · La Caleta · Golfulețe ascunse · Broaște-țestoase · Sud"
+   "ro": "Caiac · La Caleta · Golfulețe ascunse · Uneori broaște-țestoase · Sud"
   },
   {
    "tabla": "places",

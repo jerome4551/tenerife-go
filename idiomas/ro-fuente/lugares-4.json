@@ -1377,20 +1377,6 @@
   },
   {
    "tabla": "places",
-   "clave": "palacio-episcopal-laguna.desc",
-   "es": "Sede del Obispado de Tenerife en el centro histórico de La Laguna UNESCO. Edificio del siglo XVII con una bella fachada barroca de piedra. Frente a la Catedral, forma parte del conjunto monumental más importante de las Islas.",
-   "forma": "texto",
-   "ro": "Sediul episcopiei din Tenerife, în centrul istoric din La Laguna, inclus în Patrimoniul Mondial UNESCO. Clădire din secolul al XVII-lea, cu o frumoasă fațadă barocă din piatră. Aflată în fața Catedralei, face parte din cel mai important ansamblu monumental din Insulele Canare."
-  },
-  {
-   "tabla": "places",
-   "clave": "palacio-episcopal-laguna.cat",
-   "es": "Palacio · La Laguna · UNESCO",
-   "forma": "texto",
-   "ro": "Palat · La Laguna · UNESCO"
-  },
-  {
-   "tabla": "places",
    "clave": "teatro-guimera.desc",
    "es": "⚠️ Cerrado por obras de rehabilitación desde 2025; está previsto que reabra en 2028. El teatro más antiguo e importante de Canarias, inaugurado en 1851. Arquitectura neoclásica. Declarado Bien de Interés Cultural.",
    "forma": "texto",
@@ -1910,7 +1896,7 @@
   {
    "tabla": "places",
    "clave": "museo-etnografico-granadilla.desc",
-   "es": "Museo de Historia de Granadilla de Abona, en la calle Arquitecto Marrero, en el casco histórico. Recoge la historia y tradiciones del municipio: aperos de labranza, útiles domésticos, trajes regionales, artesanía local y actividades agrícolas tradicionales. Muestra la vida cotidiana del sur antes del turismo. Entrada gratuita o de bajo coste.",
+   "es": "Museo de la Historia de Granadilla de Abona, en la calle Arquitecto Marrero, en el casco histórico. Recoge la historia y tradiciones del municipio: aperos de labranza, útiles domésticos, trajes regionales, artesanía local y actividades agrícolas tradicionales. Muestra la vida cotidiana del sur antes del turismo. Entrada gratuita o de bajo coste.",
    "forma": "texto",
    "ro": "Muzeul de Istorie din Granadilla de Abona, pe strada Arquitecto Marrero, în centrul istoric. Prezintă istoria și tradițiile municipalității: unelte agricole, obiecte de uz casnic, costume populare, artizanat local și activități agricole tradiționale. Arată viața de zi cu zi din sud dinainte de turism. Intrare gratuită sau cu preț mic."
   },
@@ -3173,20 +3159,6 @@
    "es": "Playa Urbana · Candelaria",
    "forma": "texto",
    "ro": "Plajă urbană · Candelaria"
-  },
-  {
-   "tabla": "places",
-   "clave": "playa-castillo-pcruz.desc",
-   "es": "Playa de arena negra junto al Castillo de San Felipe, uno de los tres tramos de la Playa Jardín, diseñada por César Manrique en los años noventa, con paseo ajardinado, cafeterías y zona infantil. Tiene duchas, aseos y hamacas. El fondo es de cantos grandes y el oleaje fuerte: se recomienda calzado de agua.",
-   "forma": "texto",
-   "ro": "Plajă cu nisip negru lângă Castillo de San Felipe, unul dintre cele trei tronsoane ale Playa Jardín, proiectată de César Manrique în anii nouăzeci, cu promenadă cu grădini, cafenele și zonă pentru copii. Are dușuri, toalete și șezlonguri. Fundul este din bolovani mari, iar valurile sunt puternice: se recomandă încălțăminte de apă."
-  },
-  {
-   "tabla": "places",
-   "clave": "playa-castillo-pcruz.cat",
-   "es": "Playa de Arena Negra · Puerto de la Cruz",
-   "forma": "texto",
-   "ro": "Plajă cu nisip negru · Puerto de la Cruz"
   },
   {
    "tabla": "places",

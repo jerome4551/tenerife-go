@@ -1,0 +1,582 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque G1 · Usar la app: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 11 del rumano (17-11-2026).",
+ "app-01": {
+  "es": {
+   "l": "¿Cómo funciona la app?",
+   "a": "ℹ️ Tenerife GO, en pocas palabras:\n• El mapa: toque un pin y verá qué es, su horario si lo tiene y cómo llegar en coche o en guagua; en la costa, también el estado del mar\n• Arriba: el dado 🎲, la gasolinera más barata cerca de usted ⛽, las capas del mapa, el tiempo por zonas, el mar, las fiestas, el cielo 🔭, las guaguas y el idioma\n• A los lados: el buscador 🔍 y las categorías\n• Abajo: Favoritos, Rutas, este Asistente y su Cuenta\n• El tour de la app está siempre en la leyenda del mapa: «Ver el tour»\nPregúnteme por cualquier función y se la explico."
+  },
+  "l": "Cum funcționează aplicația?",
+  "k": [
+   "ajutor",
+   "cum functioneaza",
+   "cum functioneaza aplicatia",
+   "manual",
+   "instructiuni",
+   "tutorial",
+   "ce stiti sa faceti",
+   "ce stii sa faci",
+   "ghidul aplicatiei",
+   "cum se foloseste",
+   "cum folosesc aplicatia"
+  ],
+  "a": "ℹ️ Tenerife GO, pe scurt:\n• Harta: atingeți un marcaj și veți vedea ce este, programul, dacă are, și cum ajungeți cu mașina sau cu autobuzul; pe coastă, și starea mării\n• Sus: zarul 🎲, cea mai ieftină benzinărie din apropiere ⛽, straturile hărții, vremea pe zone, marea, sărbătorile, cerul 🔭, autobuzele și limba\n• Pe laterale: căutarea 🔍 și categoriile\n• Jos: Favorite, Trasee, acest Asistent și Contul dumneavoastră\n• Turul aplicației este mereu în legenda hărții: „Faceți turul”\nÎntrebați-mă despre orice funcție și v-o explic."
+ },
+ "app-02": {
+  "es": {
+   "l": "¿Cómo guardo un lugar en favoritos?",
+   "a": "⭐ En el globo de cualquier lugar, toque «Añadir a favoritos». Abajo, Favoritos le enseña en el mapa solo los que ha guardado, con un contador. Sin cuenta se quedan en este móvil; si inicia sesión, se guardan también en la nube y los tiene en cualquier dispositivo."
+  },
+  "l": "Cum salvez un loc la favorite?",
+  "k": [
+   "favorit",
+   "favorite",
+   "salvez la favorite",
+   "salvez un loc",
+   "salvare la favorite",
+   "imi place",
+   "lista de locuri",
+   "favoritele mele",
+   "inima",
+   "salvez",
+   "locuri salvate"
+  ],
+  "a": "⭐ În fereastra oricărui loc, atingeți „Adăugați la favorite”. Jos, Favorite vă arată pe hartă doar locurile pe care le-ați salvat, cu un contor. Fără cont, rămân pe acest telefon; dacă vă conectați, se salvează și în cloud și le aveți pe orice dispozitiv."
+ },
+ "app-03": {
+  "es": {
+   "l": "¿Cómo marco un lugar como visitado?",
+   "a": "✅ En el globo de cada lugar tiene «○ Marcar visitado»: tóquelo y queda «✓ Visitado». Cuenta para sus logros 🏆 y se guarda en este móvil."
+  },
+  "l": "Cum marchez un loc ca vizitat?",
+  "k": [
+   "vizitat",
+   "vizitate",
+   "marcati ca vizitat",
+   "marcare ca vizitat",
+   "marchez ca vizitat",
+   "am fost acolo",
+   "locuri vizitate",
+   "loc vizitat"
+  ],
+  "a": "✅ În fereastra fiecărui loc aveți „○ Marcați ca vizitat”: atingeți-l și devine „✓ Vizitat”. Contează pentru realizările dumneavoastră 🏆 și se salvează pe acest telefon."
+ },
+ "app-04": {
+  "es": {
+   "l": "¿Cómo funcionan los logros?",
+   "a": "🏆 Los logros se desbloquean marcando lugares como visitados: cuantos más marque, más gana, y hay uno especial por la cumbre del Teide. Toque el trofeo 🏆, a la derecha del mapa, para ver los que lleva y cuántos lugares ha visitado."
+  },
+  "l": "Cum funcționează realizările?",
+  "k": [
+   "realizare",
+   "realizari",
+   "realizarile",
+   "trofeu",
+   "trofee",
+   "medalie",
+   "medalii",
+   "achievements",
+   "insigne"
+  ],
+  "a": "🏆 Realizările se deblochează marcând locurile ca vizitate: cu cât marcați mai multe, cu atât câștigați mai multe, și există una specială pentru vârful Teide. Atingeți trofeul 🏆, în dreapta hărții, ca să le vedeți pe cele obținute și câte locuri ați vizitat."
+ },
+ "app-05": {
+  "es": {
+   "l": "¿Puedo escuchar la descripción de un lugar?",
+   "a": "🔊 Sí. En el globo de cada lugar, «▶ Escuchar» lee en voz alta el nombre y la descripción, en el idioma que tenga puesto y con la voz de su móvil. Si su móvil no tiene voz para ese idioma, el botón no aparece; si no oye nada, suba el volumen."
+  },
+  "l": "Pot asculta descrierea unui loc?",
+  "k": [
+   "audio",
+   "ghid audio",
+   "ascultati",
+   "ascult",
+   "citire cu voce tare",
+   "cititi mi",
+   "narare",
+   "sa mi citeasca",
+   "voce",
+   "citire",
+   "audioghid"
+  ],
+  "a": "🔊 Da. În fereastra fiecărui loc, „▶ Ascultați” citește cu voce tare numele și descrierea, în limba pe care ați ales-o și cu vocea telefonului dumneavoastră. Dacă telefonul nu are voce pentru acea limbă, butonul nu apare; dacă nu auziți nimic, măriți volumul."
+ },
+ "app-06": {
+  "es": {
+   "l": "¿Funciona sin conexión?",
+   "a": "📴 Sí, una vez que la haya abierto con conexión. Sin red siguen funcionando los lugares y sus fichas, el buscador, las categorías, las guaguas con sus paradas, el cielo 🔭 y este asistente. En las capas del mapa tiene «Isla offline», un mapa de toda la isla que va dentro de la app; «Satélite» y «Topo» guardan además las zonas que ya ha mirado. Lo que llega en directo sí necesita conexión: el tiempo, el estado del mar, la previsión de nubes del cielo, la ruta en coche y las webcams."
+  },
+  "l": "Funcționează fără conexiune?",
+  "k": [
+   "offline",
+   "fara internet",
+   "fara conexiune",
+   "fara semnal",
+   "mod avion",
+   "nu am date",
+   "functioneaza fara internet",
+   "fara retea"
+  ],
+  "a": "📴 Da, după ce ați deschis-o o dată cu conexiune. Fără rețea continuă să funcționeze locurile și fișele lor, căutarea, categoriile, autobuzele cu stațiile lor, cerul 🔭 și acest asistent. În straturile hărții aveți „Insula offline”, o hartă a întregii insule care vine inclusă în aplicație; „Satelit” și „Topo” păstrează în plus zonele pe care le-ați văzut deja. Ce vine în direct are nevoie de conexiune: vremea, starea mării, prognoza norilor pentru cer, traseul cu mașina și camerele web."
+ },
+ "app-07": {
+  "es": {
+   "l": "¿Cómo instalo la app?",
+   "a": "📲 No está en las tiendas: se instala desde el navegador.\n• iPhone: en Safari, toque el botón Compartir (cuadrado con flecha) y elija «Añadir a pantalla de inicio»\n• Android: en Chrome, abra el menú ⋮ y elija «Instalar aplicación»\nQueda como una app más en su pantalla de inicio."
+  },
+  "l": "Cum instalez aplicația?",
+  "k": [
+   "instalare",
+   "instalez",
+   "instalez aplicatia",
+   "instalarea aplicatiei",
+   "ecranul principal",
+   "adaugati la ecranul principal",
+   "pwa",
+   "descarc aplicatia",
+   "descarcare aplicatie",
+   "app store",
+   "play store",
+   "iphone",
+   "android"
+  ],
+  "a": "📲 Nu este în magazinele de aplicații: se instalează din browser.\n• iPhone: în Safari, atingeți butonul Partajați (pătratul cu săgeată) și alegeți „Adăugați la ecranul principal”\n• Android: în Chrome, deschideți meniul ⋮ și alegeți opțiunea de instalare a aplicației\nApare pe ecranul principal, ca orice altă aplicație."
+ },
+ "app-08": {
+  "es": {
+   "l": "¿Cómo cambio el idioma?",
+   "a": "🌐 Toque la bandera, la última de la barra de arriba, y elija su idioma: la app está en {L} idiomas. Cambian la interfaz, las fichas de los {N} lugares, la voz de «Escuchar» y mis respuestas."
+  },
+  "l": "Cum schimb limba?",
+  "k": [
+   "limba",
+   "limbi",
+   "schimb limba",
+   "schimbarea limbii",
+   "alta limba",
+   "english",
+   "francais",
+   "deutsch",
+   "italiano",
+   "nederlands",
+   "polski",
+   "language",
+   "limba romana",
+   "in romana"
+  ],
+  "a": "🌐 Atingeți steagul, ultimul din bara de sus, și alegeți limba: aplicația este în {L} limbi. Se schimbă interfața, fișele tuturor locurilor de pe hartă ({N}), vocea de la „Ascultați” și răspunsurile mele."
+ },
+ "app-09": {
+  "es": {
+   "l": "¿Cómo busco un lugar?",
+   "a": "🔍 Toque la lupa, a la izquierda del mapa, y escriba el nombre del lugar o una categoría, con tildes o sin ellas. Mientras escribe salen sugerencias y el mapa se queda solo con lo que coincide; si pulsa Intro y hay un único resultado, le lleva a él y abre su globo. La ✕ lo borra. También me lo puede preguntar a mí: «¿dónde está el Drago Milenario?»."
+  },
+  "l": "Cum caut un loc?",
+  "k": [
+   "cautare",
+   "cautarea",
+   "lupa",
+   "cum caut",
+   "caut un loc",
+   "cautarea unui loc",
+   "gasesc un loc",
+   "gasirea unui loc"
+  ],
+  "a": "🔍 Atingeți lupa, în stânga hărții, și scrieți numele locului sau o categorie, cu diacritice sau fără. Pe măsură ce scrieți apar sugestii, iar pe hartă rămâne doar ce se potrivește; dacă apăsați Enter și există un singur rezultat, vă duce la el și îi deschide fereastra. Butonul ✕ șterge căutarea. Mă puteți întreba și pe mine: „unde este Drago Milenario?”."
+ },
+ "app-10": {
+  "es": {
+   "l": "¿Cómo filtro por categorías?",
+   "a": "🗂️ El botón de categorías, a la derecha del mapa, abre los filtros por pestañas: naturaleza y playas, cultura, deporte, miradores, mercadillos… y también lugares con mascotas o accesibles. Cada categoría dice cuántos lugares tiene. Toque varias y el mapa enseña solo esas; mantenga pulsada una para quedarse solo con ella. «Mostrar todos» lo quita. También me lo puede pedir a mí: «miradores»."
+  },
+  "l": "Cum filtrez după categorii?",
+  "k": [
+   "filtru",
+   "filtre",
+   "filtrare",
+   "filtrez",
+   "categorii",
+   "filtrare dupa categorii",
+   "pictogramele de pe harta"
+  ],
+  "a": "🗂️ Butonul categoriilor, în dreapta hărții, deschide filtrele pe file: natură și plaje, cultură, sport, puncte de belvedere, piețe locale… și, de asemenea, locuri unde puteți merge cu animalele de companie sau locuri accesibile. Fiecare categorie arată câte locuri are. Atingeți mai multe, iar harta le arată doar pe acelea; țineți apăsat pe una ca să rămâneți doar cu ea. „Afișați tot” anulează filtrarea. Îmi puteți cere și mie: „puncte de belvedere”."
+ },
+ "app-11": {
+  "es": {
+   "l": "¿Qué hace el dado?",
+   "a": "🎲 Le lleva a un lugar al azar y abre su globo. Si tiene categorías elegidas, la sorpresa sale de ellas: con «Miradores» puesto, le toca un mirador."
+  },
+  "l": "Ce face zarul?",
+  "k": [
+   "surprinde ma",
+   "zar",
+   "zarul",
+   "aleatoriu",
+   "la intamplare",
+   "loc la intamplare",
+   "random"
+  ],
+  "a": "🎲 Vă duce la un loc ales la întâmplare și îi deschide fereastra. Dacă aveți categorii alese, surpriza vine din ele: cu „Puncte de belvedere” activat, vă iese un punct de belvedere."
+ },
+ "app-12": {
+  "es": {
+   "l": "¿Qué sale al tocar un lugar?",
+   "a": "📍 Al tocar un pin se abre su globo: qué es y su descripción en su idioma, el horario y el teléfono si los tiene, los avisos ⚠️ si los hay y, en la costa, el estado del mar. Debajo tiene «Añadir a favoritos», «Compartir», «▶ Escuchar», «○ Marcar visitado», «🚏 Cómo llegar en bus» y «🚗 Cómo llegar en coche». «Ver descripción completa» abre la ficha entera."
+  },
+  "l": "Ce apare când ating un loc?",
+  "k": [
+   "fisa",
+   "fisa locului",
+   "fereastra",
+   "fereastra locului",
+   "fereastra unui loc",
+   "popup",
+   "pin",
+   "marcaj",
+   "informatii despre loc",
+   "detaliile locului"
+  ],
+  "a": "📍 Când atingeți un marcaj, i se deschide fereastra: ce este și descrierea în limba dumneavoastră, programul și telefonul, dacă le are, avertismentele ⚠️, dacă există, și, pe coastă, starea mării. Dedesubt aveți „Adăugați la favorite”, „Distribuiți”, „▶ Ascultați”, „○ Marcați ca vizitat”, „🚏 Cum ajungeți cu autobuzul” și „🚗 Cum ajungeți cu mașina”. „Vedeți descrierea completă” deschide fișa întreagă."
+ },
+ "app-13": {
+  "es": {
+   "l": "¿Dónde veo el tiempo de hoy?",
+   "a": "🌡️ Arriba, el termómetro le da el tiempo en directo, zona por zona: aquí puede llover en un pueblo y hacer sol en el de al lado. La ola 🌊 le enseña el estado del mar por costas y, en «Báñese hoy aquí», hasta tres playas según el mar y el viento de ahora; en el globo de cada lugar de costa tiene el mar allí mismo. Si AEMET tiene avisos en vigor para Tenerife, la ola lleva un punto amarillo, naranja o rojo y, al abrirla, son lo primero; en el termómetro los tiene abajo. Toque uno para leerlo entero. Si el aviso es por fenómenos costeros, «Báñese hoy aquí» deja fuera las playas de esa costa y, en el globo de cada lugar de esa costa, «El mar aquí» lleva «⚠️ AEMET»: al abrirlo, el aviso va primero. Necesita conexión."
+  },
+  "l": "Unde văd vremea de azi?",
+  "k": [
+   "vremea de azi",
+   "vremea acum",
+   "ce vreme este azi",
+   "cum e vremea azi",
+   "prognoza",
+   "prognoza meteo",
+   "vremea pe zone",
+   "starea marii",
+   "cum e marea",
+   "aemet",
+   "avertizari aemet",
+   "avertizare meteo",
+   "avertizari meteo",
+   "cod galben",
+   "cod portocaliu",
+   "cod rosu",
+   "unde fac baie azi",
+   "faceti baie azi aici"
+  ],
+  "a": "🌡️ Sus, termometrul vă dă vremea în direct, zonă cu zonă: aici poate ploua într-un sat și poate fi soare în cel de alături. Valul 🌊 vă arată starea mării pe coaste și, la „Faceți baie azi aici”, până la trei plaje, după marea și vântul de acum; în fereastra fiecărui loc de pe coastă aveți marea chiar acolo. Dacă AEMET are avertizări în vigoare pentru Tenerife, valul are un punct galben, portocaliu sau roșu și, când îl deschideți, ele apar primele; în termometru le aveți jos. Atingeți una ca s-o citiți întreagă. Dacă avertizarea este pentru fenomene costiere, „Faceți baie azi aici” lasă deoparte plajele de pe acea coastă și, în fereastra fiecărui loc de pe acea coastă, „Marea aici” are „⚠️ AEMET”: când îl deschideți, avertizarea apare prima. Are nevoie de conexiune."
+ },
+ "app-14": {
+  "es": {
+   "l": "¿Qué son los avisos ⚠️ de algunos lugares?",
+   "a": "⚠️ Algunos lugares llevan en su globo un aviso de seguridad propio: mar con oleaje y corrientes, alta montaña, ruta exigente, bordes sin vallar, zona forestal con riesgo de incendio o carretera de montaña estrecha. Léalo antes de ir."
+  },
+  "l": "Ce sunt avertismentele ⚠️ de la unele locuri?",
+  "k": [
+   "avertisment",
+   "avertismente",
+   "avertizare",
+   "avertizari",
+   "avertisment de siguranta",
+   "avertismente de siguranta"
+  ],
+  "a": "⚠️ Unele locuri au în fereastra lor un avertisment de siguranță propriu: mare cu valuri și curenți, munte înalt, traseu solicitant, margini fără balustradă, zonă împădurită cu risc de incendiu sau drum de munte îngust. Citiți-l înainte de a merge."
+ },
+ "app-15": {
+  "es": {
+   "l": "¿Cómo calculo una ruta de A a B?",
+   "a": "🧭 En Rutas, abajo, pestaña «A→B»: elija el origen y el destino tocando el mapa, escribiendo una dirección o con el GPS, y pulse «Calcular ruta». Le da los minutos y los kilómetros en coche y las opciones en guagua. Para ir en coche a un lugar concreto, en su globo tiene «🚗 Cómo llegar en coche»."
+  },
+  "l": "Cum calculez un traseu de la A la B?",
+  "k": [
+   "traseu a b",
+   "de la a la b",
+   "traseu cu masina",
+   "calculati traseul",
+   "calculez traseul",
+   "calculare traseu",
+   "navigatie",
+   "navigare",
+   "cum merg dintr un loc in altul",
+   "indicatii",
+   "dintr un loc in altul"
+  ],
+  "a": "🧭 În Trasee, jos, fila „A→B”: alegeți punctul de plecare și destinația atingând harta, scriind o adresă sau cu GPS-ul și apăsați „Calculați traseul”. Vă dă minutele și kilometrii cu mașina și variantele cu autobuzul. Ca să mergeți cu mașina la un anumit loc, în fereastra lui aveți „🚗 Cum ajungeți cu mașina”."
+ },
+ "app-16": {
+  "es": {
+   "l": "¿Me ayudas a organizar el día?",
+   "a": "✨ En Rutas, abajo, pestaña «Organice su día»: dice cuánto tiempo tiene, qué le apetece (naturaleza, playa, cultura, gastronomía… uno o varios), si prefiere el norte o el sur (o le da igual) y cómo se mueve (coche, guagua, a pie o bici), y le prepara un itinerario. Puede rehacerlo, guardarlo en «Ruta del día» o en Favoritos y compartirlo."
+  },
+  "l": "Mă ajuți să-mi organizez ziua?",
+  "k": [
+   "planificator",
+   "planific",
+   "planificare",
+   "planificarea zilei",
+   "organizarea zilei",
+   "organizez ziua",
+   "organizati va ziua",
+   "planul zilei",
+   "traseul zilei",
+   "organizeaza mi ziua"
+  ],
+  "a": "✨ În Trasee, jos, fila „Organizați-vă ziua”: spuneți cât timp aveți, ce vă face plăcere (natură, plajă, cultură, gastronomie… una sau mai multe), dacă preferați nordul sau sudul (sau vă este indiferent) și cum vă deplasați (cu mașina, cu autobuzul, pe jos sau cu bicicleta), iar planificatorul vă pregătește un itinerar. Îl puteți reface, salva în „Traseul zilei” sau la Favorite și distribui."
+ },
+ "app-17": {
+  "es": {
+   "l": "¿Qué guagua me deja en un lugar?",
+   "a": "🚏 En el globo de cada lugar, «🚏 Cómo llegar en bus» le enseña las paradas más cercanas a ese sitio y las líneas que paran en cada una. Toque una parada y verá su línea en el mapa. El horario del día, en titsa.com."
+  },
+  "l": "Ce autobuz mă duce la un loc?",
+  "k": [
+   "cum ajung cu autobuzul",
+   "cum ajungeti cu autobuzul",
+   "ce autobuz ma duce",
+   "ce linie ma duce",
+   "statii apropiate",
+   "cea mai apropiata statie",
+   "statia cea mai apropiata"
+  ],
+  "a": "🚏 În fereastra fiecărui loc, „🚏 Cum ajungeți cu autobuzul” vă arată stațiile cele mai apropiate de acel loc și liniile care opresc în fiecare. Atingeți o stație și veți vedea linia ei pe hartă. Orarul zilei îl găsiți pe titsa.com."
+ },
+ "app-18": {
+  "es": {
+   "l": "¿Necesito crear una cuenta?",
+   "a": "👤 No: la app es igual sin cuenta. En Cuenta, abajo, puede «Continuar como invitado». Si se registra con email y contraseña, sus favoritos se guardan también en la nube y los recupera en otro dispositivo; sin cuenta, se quedan en este móvil."
+  },
+  "l": "Trebuie să-mi fac cont?",
+  "k": [
+   "cont",
+   "creare cont",
+   "creez un cont",
+   "inregistrare",
+   "ma inregistrez",
+   "conectare",
+   "login",
+   "invitat",
+   "sincronizare",
+   "profil",
+   "sesiune",
+   "autentificare"
+  ],
+  "a": "👤 Nu: aplicația este la fel și fără cont. În Cont, jos, puteți alege „Continuați ca invitat”. Dacă vă înregistrați cu e-mail și parolă, favoritele se salvează și în cloud și le recuperați pe alt dispozitiv; fără cont, rămân pe acest telefon."
+ },
+ "app-19": {
+  "es": {
+   "l": "¿Cómo comparto un lugar?",
+   "a": "📤 En el globo de cada lugar, toque «Compartir»: se abre el menú de compartir de su móvil (WhatsApp, correo…). Si su móvil no lo tiene, el texto con el enlace se copia y le avisa."
+  },
+  "l": "Cum distribui un loc?",
+  "k": [
+   "distribuire",
+   "distribui",
+   "distribuiti",
+   "partajare",
+   "trimit un loc",
+   "whatsapp",
+   "trimit locul",
+   "linkul locului",
+   "link catre loc"
+  ],
+  "a": "📤 În fereastra fiecărui loc, atingeți „Distribuiți”: se deschide meniul de partajare al telefonului (WhatsApp, e-mail…). Dacă telefonul nu îl are, textul cu linkul se copiază, iar aplicația vă anunță."
+ },
+ "app-20": {
+  "es": {
+   "l": "¿Dónde está el glosario canario?",
+   "a": "📖 En el panel de las fiestas 🎉, arriba, el botón «📚 Hable como un canario» despliega palabras de aquí con su significado: guagua, chacho, ños, papas arrugadas, mojo, guachinche…"
+  },
+  "l": "Unde este glosarul canarian?",
+  "k": [
+   "glosar",
+   "glosar canarian",
+   "glosarul canarian",
+   "dictionar canarian",
+   "vorbiti ca un canarian",
+   "cuvintele aplicatiei"
+  ],
+  "a": "📖 În panoul sărbătorilor 🎉, sus, butonul „📚 Vorbiți ca un canarian” afișează cuvinte de aici, cu înțelesul lor: guagua, chacho, ños, papas arrugadas, mojo, guachinche…"
+ },
+ "app-21": {
+  "es": {
+   "l": "¿Qué hago si algo falla?",
+   "a": "🔧 Pruebe esto:\n1. Cierre la app y vuelva a abrirla, o recargue la página\n2. Si era algo en directo (el tiempo, el mar, una ruta), mire que tenga conexión\n3. Si le sale «Nueva versión disponible», toque «Recargar»\n¿Sigue igual? Escríbale a Jérôme con el botón de abajo y cuéntele qué pasó."
+  },
+  "l": "Ce fac dacă ceva nu funcționează?",
+  "k": [
+   "nu functioneaza",
+   "nu merge",
+   "eroare",
+   "bug",
+   "se blocheaza",
+   "nu se incarca",
+   "ecran alb",
+   "s a blocat",
+   "problema cu aplicatia",
+   "probleme cu aplicatia"
+  ],
+  "a": "🔧 Încercați asta:\n1. Închideți aplicația și deschideți-o din nou sau reîncărcați pagina\n2. Dacă era ceva în direct (vremea, marea, un traseu), verificați dacă aveți conexiune\n3. Dacă vedeți „Versiune nouă disponibilă”, atingeți „Reîncărcați”\nTot nu merge? Scrieți-i lui Jérôme cu butonul de mai jos și spuneți-i ce s-a întâmplat."
+ },
+ "app-22": {
+  "es": {
+   "l": "¿Qué hay en la tienda?",
+   "a": "🛍️ La tienda no está disponible por ahora. Si tiene un negocio en Tenerife y quiere aparecer en la app, escriba a tenerife.go.app@gmail.com."
+  },
+  "l": "Ce găsesc în magazin?",
+  "k": [
+   "magazin",
+   "magazinul",
+   "suvenir",
+   "suveniruri",
+   "cadou",
+   "rezervare excursie",
+   "imi fac reclama",
+   "reclama pentru afacerea mea",
+   "cumpar din magazin"
+  ],
+  "a": "🛍️ Magazinul nu este disponibil deocamdată. Dacă aveți o afacere în Tenerife și vreți să apăreți în aplicație, scrieți la tenerife.go.app@gmail.com."
+ },
+ "app-23": {
+  "es": {
+   "l": "Ordena mis favoritos por distancia",
+   "a": "📍 Pídamelo así: «ordena mis favoritos por distancia». Se los pongo en orden desde donde está y sin idas y vueltas, para no cruzar la isla dos veces. Si no me deja saber dónde está, empiezo por el de un extremo. Las distancias son en línea recta, no por carretera."
+  },
+  "l": "Ordonează-mi favoritele după distanță",
+  "k": [
+   "ordonare favorite",
+   "ordonati favoritele",
+   "ordoneaza mi favoritele",
+   "favorite dupa distanta",
+   "ordinea favoritelor",
+   "favorite aproape de mine",
+   "traseu prin favorite",
+   "ordonati mi favoritele"
+  ],
+  "a": "📍 Cereți-mi așa: „ordonează-mi favoritele după distanță”. Vi le pun în ordine de unde vă aflați și fără drumuri dus-întors, ca să nu traversați insula de două ori. Dacă nu-mi dați acces la locația dumneavoastră, încep cu locul aflat la un capăt. Distanțele sunt în linie dreaptă, nu pe drum."
+ },
+ "app-24": {
+  "es": {
+   "l": "¿Qué se ve esta noche en el cielo?",
+   "a": "🔭 Arriba, el telescopio abre «Cielo de Tenerife». En «Esta noche» tiene a qué hora se hace noche cerrada, la Luna, los planetas que se ven y si sube la Vía Láctea, con la previsión de nubes; en «Calendario», las lluvias de estrellas y los eclipses que vienen; en «Catálogo», estrellas, cúmulos y galaxias según se vean a simple vista, con prismáticos o con telescopio; en «Mapa», el cielo a la hora que elija, y en «Dónde ir», los sitios para mirar. Se calcula en el móvil y funciona sin conexión, menos las nubes. «Luz roja» tiñe la pantalla para no deslumbrarle."
+  },
+  "l": "Ce se vede pe cer în noaptea asta?",
+  "k": [
+   "telescop",
+   "cerul din tenerife",
+   "ce se vede in noaptea asta",
+   "ce se vede diseara",
+   "cerul in noaptea asta",
+   "planete",
+   "faza lunii",
+   "luna plina",
+   "harta cerului",
+   "constelatii",
+   "lumina rosie",
+   "noapte deplina"
+  ],
+  "a": "🔭 Sus, telescopul deschide „Cerul din Tenerife”. În „Noaptea asta” aveți ora la care se lasă noaptea deplină, Luna, planetele vizibile și dacă răsare Calea Lactee, cu prognoza norilor; în „Calendar”, ploile de meteori și eclipsele care urmează; în „Catalog”, stele, roiuri și galaxii, după cum se văd: cu ochiul liber, cu binoclul sau cu telescopul; în „Hartă”, cerul la ora pe care o alegeți, iar în „Unde mergeți”, locurile de unde puteți privi. Se calculează pe telefon și funcționează fără conexiune, cu excepția norilor. „Lumină roșie” colorează ecranul în roșu, ca să nu vă orbească."
+ },
+ "app-25": {
+  "es": {
+   "l": "¿Cuándo hay lluvias de estrellas o eclipses?",
+   "a": "📅 En el 🔭 de arriba, pestaña «Calendario»: las lluvias de estrellas con la noche de su máximo y cómo estará la Luna, y los eclipses de Sol y de Luna con lo que se verá desde Tenerife y a qué hora. Está calculado para Izaña, en hora de Canarias. A un eclipse de Sol, nunca sin gafas homologadas ISO 12312-2 o un filtro solar delante del objetivo."
+  },
+  "l": "Când sunt ploi de meteori sau eclipse?",
+  "k": [
+   "eclipsa",
+   "eclipse",
+   "urmatoarea eclipsa",
+   "eclipsa de soare",
+   "eclipsa de luna",
+   "ploaie de meteori",
+   "ploi de meteori",
+   "stele cazatoare",
+   "perseide",
+   "geminide",
+   "meteori"
+  ],
+  "a": "📅 La butonul 🔭 de sus, fila „Calendar”: ploile de meteori, cu noaptea în care ating maximul și cum va fi Luna, și eclipsele de Soare și de Lună, cu ce se va vedea din Tenerife și la ce oră. Este calculat pentru Izaña, la ora Insulelor Canare. La o eclipsă de Soare, niciodată fără ochelari omologați ISO 12312-2 sau fără un filtru solar în fața obiectivului."
+ },
+ "app-26": {
+  "es": {
+   "l": "¿Cómo borro mi cuenta?",
+   "a": "🗑️ En «Cuenta», abajo, con la sesión iniciada: debajo de «Cerrar sesión», toque «Eliminar cuenta» y confírmelo con «Sí, eliminar mi cuenta». Se borran su correo, su contraseña y los favoritos guardados en la nube, y no se puede deshacer. Si no puede desde la app, escriba a tenerife.go.app@gmail.com desde el correo de su cuenta con el asunto «Borrar mi cuenta»: se borra en un mes como máximo. Las notificaciones no van con la cuenta: se apagan en el navegador o en los ajustes del móvil."
+  },
+  "l": "Cum îmi șterg contul?",
+  "k": [
+   "stergere cont",
+   "sterg contul",
+   "stergeti contul",
+   "sterge mi contul",
+   "stergerea contului meu",
+   "dezabonare",
+   "ma dezabonez",
+   "sterg datele mele",
+   "inchid contul",
+   "inchiderea contului"
+  ],
+  "a": "🗑️ În „Cont”, jos, după ce v-ați conectat: sub „Deconectare”, atingeți „Ștergeți contul” și confirmați cu „Da, ștergeți-mi contul”. Se șterg adresa de e-mail, parola și favoritele salvate în cloud, iar acțiunea nu poate fi anulată. Dacă nu puteți din aplicație, scrieți la tenerife.go.app@gmail.com de pe adresa de e-mail a contului, cu subiectul „Ștergerea contului meu”: contul se șterge în cel mult o lună. Notificările nu țin de cont: le dezactivați din browser sau din setările telefonului."
+ },
+ "app-27": {
+  "es": {
+   "l": "¿Qué datos guarda la app?",
+   "a": "🔒 Está todo en «Privacidad · RGPD», abajo en el mapa, y en la web, en «Versión web». Su ubicación, solo cuando la activa, y no se guarda en ningún servidor; su correo y su contraseña, si crea cuenta; sus favoritos, en la nube solo con cuenta; su perfil y sus progresos, en su cuenta solo si usted lo activa; y si activa las notificaciones, la suscripción de su navegador, con el idioma de la app. No hay estadísticas de uso ni cookies. Para borrar la cuenta, «Borrar su cuenta», al lado."
+  },
+  "l": "Ce date păstrează aplicația?",
+  "k": [
+   "confidentialitate",
+   "politica de confidentialitate",
+   "rgpd",
+   "gdpr",
+   "datele mele",
+   "date personale",
+   "protectia datelor",
+   "cookie",
+   "cookies",
+   "cookie uri",
+   "ce date pastrati"
+  ],
+  "a": "🔒 Totul este în „Confidențialitate · RGPD”, jos pe hartă, și pe web, în „Versiunea web”. Locația dumneavoastră, doar când o activați, și nu se păstrează pe niciun server; adresa de e-mail și parola, dacă vă faceți cont; favoritele, în cloud doar dacă aveți cont; profilul și progresele, în cont doar dacă activați dumneavoastră această opțiune; iar dacă activați notificările, abonamentul browserului, cu limba aplicației. Nu există statistici de utilizare și nici cookie-uri. Pentru ștergerea contului, „Ștergerea contului”, alături."
+ },
+ "app-28": {
+  "es": {
+   "l": "¿Qué significa «Patrocinado»?",
+   "a": "💼 Son negocios que pagan un plan de promoción mensual para salir en el mapa: lo pone en su globo, «Patrocinado». Se enseñan igual a todo el mundo, sin usar sus datos ni cookies publicitarias, y no cambian el resto del contenido."
+  },
+  "l": "Ce înseamnă „Sponsorizat”?",
+  "k": [
+   "sponsorizat",
+   "sponsorizate",
+   "sponsorizare",
+   "publicitate",
+   "reclama",
+   "reclame",
+   "anunt",
+   "anunturi",
+   "promovat",
+   "afaceri promovate"
+  ],
+  "a": "💼 Sunt afaceri care plătesc un plan lunar de promovare ca să apară pe hartă: în fereastra lor scrie „Sponsorizat”. Sunt afișate la fel pentru toată lumea, fără să vă folosească datele sau cookie-uri publicitare, și nu schimbă restul conținutului."
+ },
+ "app-29": {
+  "es": {
+   "l": "¿Puedo recibir una frase cada mañana?",
+   "a": "🔔 Sí, con la app instalada en la pantalla de inicio: a la tercera vez que la abre le pregunta «¿Un empujón cada mañana?», una frase para empezar el día, sin publicidad. Los domingos, en vez de la frase, un consejo del panel SOS para saber qué hacer en una emergencia; y si cambia el semáforo volcánico de Tenerife, un aviso con el boletín de INVOLCAN. Si contestó «Ahora no», ya no vuelve a preguntar, pero la activa cuando quiera en «Cuenta», con «Activar notificaciones»: con la sesión iniciada, ahí mismo; sin cuenta, en «Continuar como invitado». En iPhone, primero añádala a la pantalla de inicio desde Safari. Para quitarlas, en los ajustes de notificaciones del móvil."
+  },
+  "l": "Pot primi o frază în fiecare dimineață?",
+  "k": [
+   "notificari",
+   "notificare",
+   "notificarile",
+   "activati notificarile",
+   "activez notificarile",
+   "activare notificari",
+   "fraza zilei",
+   "mesaj zilnic",
+   "fraza in fiecare dimineata",
+   "dezactivare notificari",
+   "opresc notificarile",
+   "dezactivati notificarile"
+  ],
+  "a": "🔔 Da, cu aplicația instalată pe ecranul principal: a treia oară când o deschideți, vă întreabă „Un mic imbold în fiecare dimineață?”, o frază cu care să începeți ziua, fără reclame. Duminica, în locul frazei, un sfat din panoul SOS, ca să știți ce să faceți într-o urgență; iar dacă se schimbă semaforul vulcanic al insulei Tenerife, o alertă cu buletinul INVOLCAN. Dacă ați răspuns „Nu acum”, nu vă mai întreabă, dar le puteți activa oricând în „Cont”, cu „Activați notificările”: dacă v-ați conectat, chiar acolo; fără cont, la „Continuați ca invitat”. Pe iPhone, adăugați-o mai întâi pe ecranul principal din Safari. Ca să le opriți, mergeți la setările de notificări ale telefonului."
+ }
+}

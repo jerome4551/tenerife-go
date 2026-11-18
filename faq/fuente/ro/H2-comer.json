@@ -1,0 +1,123 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque H2 · Comer y beber: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 11 del rumano (17-11-2026).",
+ "com-01": {
+  "es": {
+   "l": "¿Qué es lo típico de comer?",
+   "a": "🍽️ Lo que no se puede ir sin probar: papas arrugadas con mojo rojo y verde, gofio, queso de la isla, pescado fresco, carne de cabra y conejo en salmorejo, y de postre bienmesabe o quesillo. Para beber, vino de la tierra o un barraquito. En el mapa, la categoría Gastronomía."
+  },
+  "l": "Care sunt mâncărurile tipice?",
+  "k": [
+   "mancare tipica",
+   "mancaruri tipice",
+   "mancare canariana",
+   "bucataria canariana",
+   "ce sa mananc",
+   "ce sa gust",
+   "ce merita gustat",
+   "feluri tipice",
+   "fel tipic",
+   "preparate tipice",
+   "gastronomie canariana",
+   "preparate canariene"
+  ],
+  "a": "🍽️ Nu plecați fără să gustați: papas arrugadas (cartofi cu coaja încrețită) cu mojo roșu și verde, gofio, brânză din insulă, pește proaspăt, carne de capră și conejo en salmorejo (iepure într-un marinat picant), iar la desert, bienmesabe sau quesillo. De băut, vin local sau un barraquito. Pe hartă, categoria Gastronomie."
+ },
+ "com-02": {
+  "es": {
+   "l": "¿Qué es un guachinche?",
+   "a": "🍷 Un guachinche es un local donde el viticultor vende el vino de su propia cosecha, acompañado de unos pocos platos tradicionales. Lo regula el Gobierno de Canarias: solo puede abrir unos meses al año y cierra cuando se acaba el vino, así que el que le gustó puede no estar abierto. En el mapa están en Gastronomía, y la mayoría, en el norte."
+  },
+  "l": "Ce este un guachinche?",
+  "k": [
+   "guachinche",
+   "guachinches",
+   "ce este un guachinche",
+   "vin de casa",
+   "vin din productie proprie"
+  ],
+  "a": "🍷 Un guachinche este un local în care viticultorul vinde vinul din propria recoltă, alături de câteva feluri tradiționale. Guvernul Insulelor Canare îl reglementează: poate fi deschis doar câteva luni pe an și se închide când se termină vinul, așa că cel care v-a plăcut s-ar putea să nu fie deschis. Pe hartă sunt la Gastronomie, iar cele mai multe, în nord."
+ },
+ "com-03": {
+  "es": {
+   "l": "¿Qué son las papas arrugadas con mojo?",
+   "a": "🥔 Papas pequeñas cocidas con mucha sal hasta que la piel se arruga; se comen con piel, mojadas en mojo: el rojo, o picón, con pimienta, y el verde, con cilantro. Es el plato canario por excelencia."
+  },
+  "l": "Ce sunt papas arrugadas cu mojo?",
+  "k": [
+   "papas arrugadas",
+   "mojo",
+   "mojo picon",
+   "mojo rosu",
+   "mojo verde",
+   "papas",
+   "cartofi incretiti",
+   "cartofi cu mojo"
+  ],
+  "a": "🥔 Cartofi mici fierți cu multă sare, până când li se încrețește coaja; se mănâncă cu tot cu coajă, înmuiați în mojo: cel roșu, sau picón, cu ardei, și cel verde, cu coriandru. Este felul de mâncare canarian prin excelență."
+ },
+ "com-04": {
+  "es": {
+   "l": "¿Qué es el gofio?",
+   "a": "🌾 El gofio es harina de cereales tostados, y ya lo comían los antiguos canarios. Se toma salado, en escaldón (amasado con caldo), y dulce, en la leche o en postres."
+  },
+  "l": "Ce este gofio?",
+  "k": [
+   "gofio",
+   "escaldon",
+   "ce este gofio"
+  ],
+  "a": "🌾 Gofio este făină din cereale prăjite și îl mâncau deja vechii locuitori din Insulele Canare. Se mănâncă sărat, în escaldón (frământat cu supă), și dulce, în lapte sau în deserturi."
+ },
+ "com-05": {
+  "es": {
+   "l": "¿Qué es un barraquito?",
+   "a": "☕ El café de la isla, servido en vaso y por capas: leche condensada, licor, café, leche espumada, canela y corteza de limón. Si no quiere alcohol, pídalo sin licor."
+  },
+  "l": "Ce este un barraquito?",
+  "k": [
+   "barraquito",
+   "cafea canariana",
+   "cafea barraquito",
+   "cafea cu lapte condensat"
+  ],
+  "a": "☕ Cafeaua insulei, servită în pahar, în straturi: lapte condensat, lichior, cafea, spumă de lapte, scorțișoară și coajă de lămâie. Dacă nu vreți alcool, cereți-l fără lichior."
+ },
+ "com-06": {
+  "es": {
+   "l": "¿Qué vino se hace en Tenerife?",
+   "a": "🍇 Tenerife tiene cinco denominaciones de origen propias: Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava e Ycoden-Daute-Isora. La Casa del Vino, en El Sauzal, las reúne todas y es un buen sitio para empezar. Y por San Andrés, a finales de noviembre, se estrena el vino nuevo."
+  },
+  "l": "Ce vin se face în Tenerife?",
+  "k": [
+   "vin",
+   "vinuri",
+   "vin din tenerife",
+   "crama",
+   "crame",
+   "denumire de origine",
+   "denumiri de origine",
+   "degustare de vinuri",
+   "malvasia",
+   "listan",
+   "denumire"
+  ],
+  "a": "🍇 Tenerife are cinci denumiri de origine proprii: Abona, Tacoronte-Acentejo, Valle de Güímar, Valle de La Orotava și Ycoden-Daute-Isora. Casa del Vino, în El Sauzal, le reunește pe toate și este un loc bun de început. Iar de San Andrés, la sfârșitul lui noiembrie, se deschide vinul nou."
+ },
+ "com-07": {
+  "es": {
+   "l": "¿Qué queso es típico?",
+   "a": "🧀 En la isla manda el queso de cabra: fresco, semicurado, curado o ahumado. Lo verá asado con mojo o con miel de palma. Los quesos de aquí se encuentran en los mercados del agricultor."
+  },
+  "l": "Ce brânză este tipică?",
+  "k": [
+   "branza",
+   "branzeturi",
+   "branza canariana",
+   "branzeturi canariene",
+   "branza la gratar",
+   "branza de capra",
+   "fabrica de branza"
+  ],
+  "a": "🧀 Pe insulă domnește brânza de capră: proaspătă, semimaturată, maturată sau afumată. O veți vedea la grătar, cu mojo sau cu miere de palmier. Brânzeturile de aici se găsesc în piețele producătorilor."
+ }
+}

@@ -76,9 +76,9 @@
   {
    "tabla": "places",
    "clave": "bosque-esperanza.desc",
-   "es": "Pinar y laurisilva en la Cumbre Dorsal. Niebla mística, senderos entre pinos canarios y el Mirador de La Jardina. Zona de avistamiento de aves endémicas.",
+   "es": "Pinar y laurisilva en la Cumbre Dorsal. Niebla mística y senderos entre pinos canarios. Zona de avistamiento de aves endémicas.",
    "forma": "texto",
-   "ro": "Pădure de pini și pădure de laur pe creasta Cumbre Dorsal. Ceață mistică, trasee printre pini canarieni și punctul de belvedere La Jardina. Zonă de observare a păsărilor endemice."
+   "ro": "Pădure de pini și pădure de laur pe creasta Cumbre Dorsal. Ceață mistică și trasee printre pini canarieni. Zonă de observare a păsărilor endemice."
   },
   {
    "tabla": "places",
@@ -321,9 +321,9 @@
   {
    "tabla": "places",
    "clave": "tejita.desc",
-   "es": "⚠️ Perros prohibidos por ordenanza municipal, bajo sanción. Playa natural más grande de Tenerife junto a la Montaña Roja. Arena dorada y zona nudista.",
+   "es": "⚠️ Perros prohibidos por ordenanza municipal, bajo sanción. Playa natural más grande de Tenerife junto a la Montaña Roja. Arena oscura y zona nudista.",
    "forma": "texto",
-   "ro": "⚠️ Câinii sunt interziși prin ordonanța municipală, iar încălcarea se sancționează. Cea mai mare plajă naturală din Tenerife, lângă Montaña Roja. Nisip auriu și zonă de nudism."
+   "ro": "⚠️ Câinii sunt interziși prin ordonanța municipală, iar încălcarea se sancționează. Cea mai mare plajă naturală din Tenerife, lângă Montaña Roja. Nisip închis la culoare și zonă de nudism."
   },
   {
    "tabla": "places",
@@ -576,20 +576,6 @@
    "es": "Cráter · Parque Nacional",
    "forma": "texto",
    "ro": "Crater · Parc național"
-  },
-  {
-   "tabla": "places",
-   "clave": "cumbre-dorsal.desc",
-   "es": "La columna vertebral de Tenerife a más de 1.000 m. Carretera TF-24 entre bosques de pino canario con niebla mística. Mirador de La Jardina con vistas al Teide y a ambas costas.",
-   "forma": "texto",
-   "ro": "Coloana vertebrală a insulei Tenerife, la peste 1.000 m. Drumul TF-24 trece prin păduri de pin canarian, cu ceață mistică. Punctul de belvedere La Jardina, cu priveliști spre Teide și spre ambele coaste."
-  },
-  {
-   "tabla": "places",
-   "clave": "cumbre-dorsal.cat",
-   "es": "Ruta Panorámica · Interior",
-   "forma": "texto",
-   "ro": "Traseu panoramic · Interior"
   },
   {
    "tabla": "places",
@@ -1644,7 +1630,7 @@
   {
    "tabla": "places",
    "clave": "piscina-jover-tejina.desc",
-   "es": "Piscina natural en la costa de Tejina (municipio de La Laguna), a 20 km de Santa Cruz. Lugar tranquilo y familiar con vistas al Faro de Punta del Hidalgo, Bajamar y la Mesa de Tejina. Formada por coladas de lava volcánica. Piscina rectangular de ~33 m de largo. Escaleras de acceso al mar, ducha de agua dulce natural canalizada desde la montaña, plazoleta y solarium. Accesible para personas con movilidad reducida. Parking público y Club Náutico de Tejina cerca. Acceso por TF-154 desde TF-5 salida 11.",
+   "es": "Piscina natural en la costa de Tejina (municipio de La Laguna), a 20 km de Santa Cruz. Lugar tranquilo y familiar con vistas al Faro de Punta del Hidalgo, Bajamar y la Mesa de Tejina. Formada por coladas de lava volcánica. Piscina rectangular de ~33 m de largo. Escaleras de acceso al mar, ducha de agua dulce natural canalizada desde la montaña, plazoleta y solárium. Accesible para personas con movilidad reducida. Parking público y Club Náutico de Tejina cerca. Acceso por TF-154 desde TF-5 salida 11.",
    "forma": "texto",
    "ro": "Piscină naturală pe coasta din Tejina (municipalitatea La Laguna), la 20 km de Santa Cruz. Loc liniștit, pentru familii, cu priveliști spre farul Punta del Hidalgo, spre Bajamar și spre Mesa de Tejina. Formată din curgeri de lavă vulcanică. Piscină dreptunghiulară, lungă de ~33 m. Scări de acces în mare, duș cu apă dulce naturală adusă de pe munte printr-un canal, o piațetă și un solariu. Accesibilă pentru persoanele cu mobilitate redusă. Parcare publică și Club Náutico de Tejina în apropiere. Acces pe TF-154, de pe TF-5, ieșirea 11."
   },

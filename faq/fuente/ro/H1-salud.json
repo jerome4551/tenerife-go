@@ -1,0 +1,178 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque H1 · Seguridad y salud: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 11 del rumano (17-11-2026).",
+ "sal-01": {
+  "es": {
+   "l": "¿A qué número llamo en una emergencia?",
+   "a": "🚨 Para cualquier emergencia, llame al 112: es gratis, funciona las 24 horas y le atienden en español, inglés y alemán. Si está en el monte o en la costa, diga dónde está con la mayor precisión posible: el nombre del sendero o de la playa y algo que vea cerca."
+  },
+  "l": "La ce număr sun în caz de urgență?",
+  "k": [
+   "urgenta",
+   "situatie de urgenta",
+   "112",
+   "salvarea",
+   "chem salvarea",
+   "salvamont",
+   "ambulanta",
+   "cer ajutor",
+   "chem ajutor",
+   "numarul de urgenta",
+   "numar de urgenta",
+   "help",
+   "hilfe",
+   "aiuto",
+   "pomoc",
+   "hulp",
+   "sos",
+   "urgent"
+  ],
+  "a": "🚨 Pentru orice urgență, sunați la 112: este gratuit, funcționează 24 de ore din 24 și vă răspund în spaniolă, engleză și germană. Dacă sunteți pe munte sau pe coastă, spuneți unde vă aflați cât mai precis: numele traseului sau al plajei și ceva ce vedeți în apropiere."
+ },
+ "sal-02": {
+  "es": {
+   "l": "¿Es peligroso el mar?",
+   "a": "🌊 Aquí el Atlántico manda. Mire siempre la bandera: verde, baño seguro; amarilla, baño con precaución; roja, prohibido el baño. Las demás las tiene en el globo de cada playa, en «¿Qué significa cada bandera?». Donde no hay socorrista, extreme el cuidado, y con mar movido no se acerque al borde de las rocas ni de los charcos. Si le arrastra una corriente, no nade contra ella: nade en paralelo a la orilla o flote, y pida ayuda agitando los brazos. Emergencias: 112."
+  },
+  "l": "Marea este periculoasă?",
+  "k": [
+   "mare periculoasa",
+   "marea e periculoasa",
+   "curenti",
+   "curent de rupere",
+   "steag rosu",
+   "steag galben",
+   "steaguri",
+   "inec",
+   "inecare",
+   "siguranta pe mare",
+   "siguranta pe plaja",
+   "valuri mari",
+   "curent marin",
+   "marea",
+   "steag",
+   "maree"
+  ],
+  "a": "🌊 Aici Atlanticul face legea. Uitați-vă mereu la steag: verde, îmbăiere sigură; galben, îmbăiere cu precauție; roșu, îmbăierea este interzisă. Pe celelalte le găsiți în fereastra fiecărei plaje, la „Ce înseamnă fiecare steag?”. Acolo unde nu există salvamar, aveți și mai multă grijă, iar când marea este agitată nu vă apropiați de marginea stâncilor sau a bazinelor. Dacă vă trage un curent, nu înotați împotriva lui: înotați paralel cu țărmul sau plutiți și cereți ajutor fluturând brațele. Urgențe: 112."
+ },
+ "sal-03": {
+  "es": {
+   "l": "¿Qué es la calima?",
+   "a": "🌫️ La calima es polvo del Sáhara en suspensión: el cielo se vuelve amarillento y empeora la calidad del aire. La Consejería de Sanidad del Gobierno de Canarias recomienda beber agua, no hacer esfuerzos al aire libre, no pasar mucho tiempo fuera y cerrar las ventanas; si tiene asma u otra enfermedad respiratoria o del corazón, y con niños y mayores, extreme las precauciones. Si AEMET da aviso por polvo en suspensión, lo ve en la app: un punto de color en la ola 🌊 y el aviso arriba del todo al abrirla. También en la web de AEMET."
+  },
+  "l": "Ce este calima?",
+  "k": [
+   "calima",
+   "praf",
+   "praf din sahara",
+   "pacla",
+   "aer din sahara",
+   "praf in suspensie",
+   "nisip din sahara"
+  ],
+  "a": "🌫️ Calima este praf din Sahara aflat în suspensie în aer: cerul devine gălbui, iar calitatea aerului se înrăutățește. Departamentul de Sănătate al Guvernului Insulelor Canare recomandă să beți apă, să nu faceți efort în aer liber, să nu stați mult afară și să închideți ferestrele; dacă aveți astm sau altă boală respiratorie ori de inimă, precum și cu copiii și cu persoanele în vârstă, luați măsuri de precauție suplimentare. Dacă AEMET emite o avertizare pentru praf în suspensie, o vedeți în aplicație: un punct colorat pe valul 🌊 și avertizarea chiar sus când îl deschideți. Și pe site-ul AEMET."
+ },
+ "sal-04": {
+  "es": {
+   "l": "¿Qué precauciones tomo en el monte?",
+   "a": "🥾 En el monte el tiempo cambia rápido con la altura. Lleve agua de sobra, gorra, protección solar y algo de abrigo; diga a alguien su ruta y a qué hora piensa volver; no se salga del sendero marcado y no se meta en un barranco si llueve o va a llover. Antes de salir, lea el aviso ⚠️ del globo si lo tiene y mire cierres y reservas en tenerifeon.es. Si pasa algo: 112."
+  },
+  "l": "Ce precauții trebuie să iau în zonele montane?",
+  "k": [
+   "siguranta pe munte",
+   "precautii",
+   "precautii in zonele montane",
+   "sfaturi pentru drumetii",
+   "siguranta pe trasee",
+   "m am pierdut",
+   "m am ratacit",
+   "ma pierd",
+   "precautii pe traseu",
+   "siguranta",
+   "sfaturi"
+  ],
+  "a": "🥾 Pe munte, vremea se schimbă repede odată cu altitudinea. Luați apă din belșug, o șapcă, protecție solară și haine groase; spuneți cuiva ce traseu faceți și la ce oră credeți că vă întoarceți; nu ieșiți de pe traseul marcat și nu intrați într-un defileu dacă plouă sau urmează să plouă. Înainte de plecare, citiți avertismentul ⚠️ din fereastra locului, dacă are, și verificați închiderile și rezervările pe tenerifeon.es. Dacă se întâmplă ceva: 112."
+ },
+ "sal-05": {
+  "es": {
+   "l": "¿Cómo me protejo del sol?",
+   "a": "☀️ Canarias tiene los índices de radiación ultravioleta más altos de España todo el año, y las nubes no la paran. Salud Pública del Gobierno de Canarias recomienda protector de factor 30 o más (50 o más cuando el índice es muy alto), sombra, sombrero, ropa que cubra y gafas de sol. En el Teide, con la altura, el sol pega todavía más. Si alguien se encuentra mal por el calor, llévelo a la sombra y dele agua; si es grave, 112. La previsión del índice UV de cada isla, en la web de AEMET."
+  },
+  "l": "Cum mă protejez de soare?",
+  "k": [
+   "protectie solara",
+   "crema de soare",
+   "crema cu protectie solara",
+   "arsura",
+   "arsuri",
+   "arsuri solare",
+   "indice uv",
+   "uv",
+   "insolatie",
+   "soc termic",
+   "ma protejez de soare",
+   "deshidratare"
+  ],
+  "a": "☀️ Insulele Canare au tot anul cei mai ridicați indici de radiație ultravioletă din Spania, iar norii nu o opresc. Serviciul de Sănătate Publică al Guvernului Insulelor Canare recomandă o cremă cu factor de protecție 30 sau mai mare (50 sau mai mare când indicele este foarte ridicat), umbră, pălărie, haine care acoperă pielea și ochelari de soare. Pe Teide, din cauza altitudinii, soarele arde și mai tare. Dacă cineva se simte rău din cauza căldurii, duceți-l la umbră și dați-i apă; dacă este grav, 112. Prognoza indicelui UV pentru fiecare insulă, pe site-ul AEMET."
+ },
+ "sal-06": {
+  "es": {
+   "l": "¿Dónde hay una farmacia de guardia?",
+   "a": "💊 Las farmacias se reconocen por la cruz verde, y en cada zona hay siempre alguna de guardia. En Santa Cruz es siempre la misma, la de la calle Horacio Nelson, 21, abierta las 24 horas; en otras zonas, como La Laguna, el Puerto de la Cruz o Adeje y Arona, cambia cada día. En el mapa están en la categoría Farmacias, y en el globo de cada una tiene el enlace «💊 Ver farmacia de guardia hoy». Para una urgencia, 112."
+  },
+  "l": "Unde găsesc o farmacie de gardă?",
+  "k": [
+   "farmacie",
+   "farmacii",
+   "farmacie de garda",
+   "farmacii de garda",
+   "farmacia de garda",
+   "de garda",
+   "medicament",
+   "medicamente",
+   "reteta"
+  ],
+  "a": "💊 Farmaciile se recunosc după crucea verde și în fiecare zonă există mereu una de gardă. În Santa Cruz este mereu aceeași, cea de pe strada Horacio Nelson, nr. 21, deschisă 24 de ore din 24; în alte zone, cum ar fi La Laguna, Puerto de la Cruz sau Adeje și Arona, se schimbă în fiecare zi. Pe hartă sunt în categoria Farmacii, iar în fereastra fiecăreia aveți linkul „💊 Farmacia de gardă de azi”. Pentru o urgență, 112."
+ },
+ "sal-07": {
+  "es": {
+   "l": "¿Y si necesito un médico?",
+   "a": "🏥 Si viene de la UE, de Islandia, Liechtenstein, Noruega, Suiza o el Reino Unido, la Tarjeta Sanitaria Europea le da la atención médica necesaria en la sanidad pública, en las mismas condiciones que a los residentes. No cubre la privada ni la repatriación, así que un seguro de viaje sigue siendo buena idea; si viene de otro país, contrátelo. En el mapa tiene los hospitales con urgencias 24 horas y los centros de salud. Si es grave, 112."
+  },
+  "l": "Și dacă am nevoie de un medic?",
+  "k": [
+   "medic",
+   "doctor",
+   "spital",
+   "spitale",
+   "urgente",
+   "centru de sanatate",
+   "sanatate",
+   "card de sanatate",
+   "card european de sanatate",
+   "cardul european",
+   "ceass",
+   "asigurare de calatorie",
+   "asigurare medicala"
+  ],
+  "a": "🏥 Dacă veniți din UE, din Islanda, Liechtenstein, Norvegia, Elveția sau Regatul Unit, cardul european de asigurări sociale de sănătate (CEASS) vă dă dreptul la asistența medicală necesară în sistemul public de sănătate, în aceleași condiții ca rezidenții. Nu acoperă asistența privată și nici repatrierea, așa că o asigurare de călătorie rămâne o idee bună; dacă veniți din altă țară, încheiați una. Pe hartă aveți spitalele cu urgențe deschise 24 de ore din 24 și centrele de sănătate. Dacă este grav, 112."
+ },
+ "sal-08": {
+  "es": {
+   "l": "¿Dónde pido ayuda si sufro violencia?",
+   "a": "🆘 Si está en peligro, llame al 112. El 016 atiende a mujeres las 24 horas. En Tenerife, el Centro de Crisis 24h para víctimas de violencia sexual atiende gratis y de forma confidencial a mujeres mayores de 16 años, también sin denunciar, y el SIAM del Cabildo da apoyo psicológico, jurídico y social a mujeres víctimas de violencia de género, con cita previa. Los tiene en el mapa, en la categoría «Ayuda & Apoyo»."
+  },
+  "l": "Unde cer ajutor dacă sunt victimă a violenței?",
+  "k": [
+   "violenta de gen",
+   "violenta domestica",
+   "violenta sexuala",
+   "agresiune sexuala",
+   "abuz",
+   "maltratare",
+   "ma maltrateaza",
+   "hartuire sexuala",
+   "016"
+  ],
+  "a": "🆘 Dacă sunteți în pericol, sunați la 112. Numărul 016 oferă sprijin femeilor 24 de ore din 24. În Tenerife, Centrul de Criză 24h pentru victimele violenței sexuale oferă asistență gratuită și confidențială femeilor de peste 16 ani, chiar dacă nu au depus plângere, iar SIAM, serviciul consiliului insular (Cabildo), oferă sprijin psihologic, juridic și social femeilor victime ale violenței de gen, cu programare. Le aveți pe hartă, în categoria „Ajutor și sprijin”."
+ }
+}

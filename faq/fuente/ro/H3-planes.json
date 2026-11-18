@@ -1,0 +1,282 @@
+{
+ "_": "Rumano (ro) de la base de conocimiento del asistente, bloque H3 · Planes, naturaleza y clima: por entrada, el rótulo (l), las claves de búsqueda (k) y la respuesta (a), y el castellano que traduce (es: l y a), para que generar_faq.py diga si ha cambiado. Va aparte, como el búlgaro de faq/fuente/bg/. Lo funde tools/generar_faq.py cuando «ro» está en SUPPORTED_LANGS (el interruptor); hasta entonces solo lo comprueba y faq/ro.json no se escribe. No se edita a mano: sale de la entrega del bloque 11 del rumano (17-11-2026).",
+ "pla-01": {
+  "es": {
+   "l": "¿Qué clima tiene Tenerife?",
+   "a": "🌤️ Una isla de microclimas: los vientos alisios dejan en el norte más nubes y más verde, y el sur y el oeste son más secos y soleados. En verano son típicas por la mañana, en el norte, las nubes bajas de la «panza de burro»; en la cumbre hace frío de verdad y en invierno puede nevar. Si está nublado donde se encuentra, cruzar la isla suele cambiarlo. Para el tiempo de hoy, zona por zona, el termómetro 🌡️ de arriba."
+  },
+  "l": "Ce climă are Tenerife?",
+  "k": [
+   "clima",
+   "climat",
+   "vremea",
+   "vreme",
+   "temperatura",
+   "temperaturi",
+   "microclimate",
+   "panza de burro",
+   "mare de nori",
+   "innorat",
+   "caldura",
+   "vant",
+   "frig"
+  ],
+  "a": "🌤️ O insulă cu microclimate: alizeele lasă în nord mai mulți nori și mai multă verdeață, iar sudul și vestul sunt mai uscate și mai însorite. Vara, dimineața, în nord sunt frecvenți norii joși numiți „panza de burro”; pe vârf este frig de-a binelea, iar iarna poate ninge. Dacă este înnorat unde vă aflați, traversarea insulei schimbă de obicei situația. Pentru vremea de azi, zonă cu zonă, termometrul 🌡️ de sus."
+ },
+ "pla-02": {
+  "es": {
+   "l": "¿Cuál es la mejor época para venir?",
+   "a": "📅 Cualquiera: en la costa el clima es suave todo el año. Lo que cambia es el plan: en verano, más calor y el mar más templado; en invierno, posible nieve en el Teide; en febrero o marzo, el Carnaval. Si quiere subir al pico del Teide, mire con tiempo que haya plazas del permiso."
+  },
+  "l": "Care este cea mai bună perioadă pentru a veni?",
+  "k": [
+   "cea mai buna perioada",
+   "cand sa vin",
+   "cand sa merg",
+   "sezon",
+   "ce luna",
+   "cea mai buna luna",
+   "sezonul de varf",
+   "cand e bine sa vin"
+  ],
+  "a": "📅 Oricare: pe coastă, clima este blândă tot anul. Ce se schimbă este planul: vara, căldură mai mare și marea mai caldă; iarna, poate ninge pe Teide; în februarie sau în martie, Carnavalul. Dacă vreți să urcați pe vârful Teide, verificați din timp dacă mai sunt locuri pentru permis."
+ },
+ "pla-03": {
+  "es": {
+   "l": "¿Me alojo en el norte o en el sur?",
+   "a": "🧭 Depende de lo que busque. El sur (Costa Adeje, Los Cristianos, El Médano) tiene el sol más seguro y las playas más cómodas. El norte (Puerto de la Cruz, La Orotava, Garachico) es más verde y más canario, con los guachinches cerca. La isla no es grande: duerma donde duerma, el otro lado queda a una excursión de un día."
+  },
+  "l": "Mă cazez în nord sau în sud?",
+  "k": [
+   "nord sau sud",
+   "nord vs sud",
+   "unde sa ma cazez",
+   "unde ma cazez",
+   "cazare",
+   "hotel",
+   "hoteluri",
+   "unde sa dorm",
+   "apartament",
+   "ce zona sa aleg",
+   "ma cazez"
+  ],
+  "a": "🧭 Depinde ce căutați. Sudul (Costa Adeje, Los Cristianos, El Médano) are soarele cel mai sigur și plajele cele mai comode. Nordul (Puerto de la Cruz, La Orotava, Garachico) este mai verde și mai canarian, cu guachinches în apropiere. Insula nu este mare: oriunde ați dormi, cealaltă parte este la o excursie de o zi."
+ },
+ "pla-04": {
+  "es": {
+   "l": "¿Qué playas hay?",
+   "a": "🏖️ Las hay de arena negra volcánica, de arena dorada y de callaos, y muy distintas según la costa: en el sur, más resguardadas y con servicios; en el norte y en Anaga, más salvajes y con más oleaje. Antes de bañarse, mire en el globo de cada playa su aviso ⚠️ si lo lleva, la bandera y el estado del mar."
+  },
+  "l": "Ce plaje sunt?",
+  "k": [
+   "plaja",
+   "plaje",
+   "plajele",
+   "cea mai buna plaja",
+   "cele mai bune plaje",
+   "baie in mare",
+   "nisip negru",
+   "nisip auriu"
+  ],
+  "a": "🏖️ Sunt plaje cu nisip negru vulcanic, cu nisip auriu și cu bolovani, foarte diferite de la o coastă la alta: în sud, mai adăpostite și cu servicii; în nord și în Anaga, mai sălbatice și cu valuri mai mari. Înainte de a intra în apă, verificați în fereastra fiecărei plaje avertismentul ⚠️, dacă are, steagul și starea mării."
+ },
+ "pla-05": {
+  "es": {
+   "l": "¿Dónde hay piscinas naturales?",
+   "a": "💧 Son charcos de agua de mar entre la lava, casi todos en la costa norte. Báñese solo con el mar en calma, entre por las escaleras y lleve escarpines, que la roca corta. Con oleaje, no se acerque al borde. En el globo de cada una tiene su aviso y el estado del mar."
+  },
+  "l": "Unde sunt piscine naturale?",
+  "k": [
+   "piscina naturala",
+   "piscine naturale",
+   "bazin",
+   "bazine",
+   "piscine cu apa de mare"
+  ],
+  "a": "💧 Sunt bazine cu apă de mare printre rocile de lavă, aproape toate pe coasta de nord. Faceți baie doar când marea este calmă, intrați pe scări și purtați încălțăminte de apă, pentru că roca taie. Când sunt valuri, nu vă apropiați de margine. În fereastra fiecăreia aveți avertismentul ei și starea mării."
+ },
+ "pla-06": {
+  "es": {
+   "l": "¿Qué hago con niños?",
+   "a": "👨‍👩‍👧 En el mapa tiene las categorías Familia y Animales: parques acuáticos y de animales, museos para tocar y experimentar, playas de aguas tranquilas… Al Teide pueden subir en teleférico, contando con el frío y la altura. Y en Rutas, «Organice su día», elija Familia y la app le prepara el plan."
+  },
+  "l": "Ce fac cu copiii?",
+  "k": [
+   "copii",
+   "familie",
+   "in familie",
+   "plan pentru familie",
+   "cu bebelusul",
+   "activitati pentru copii",
+   "cu copiii"
+  ],
+  "a": "👨‍👩‍👧 Pe hartă aveți categoriile Familie și Animale: parcuri acvatice și parcuri cu animale, muzee în care copiii pot atinge și experimenta, plaje cu ape liniștite… Pe Teide pot urca cu telecabina, ținând cont de frig și de altitudine. Iar în Trasee, la „Organizați-vă ziua”, alegeți Familie, și aplicația vă pregătește planul."
+ },
+ "pla-07": {
+  "es": {
+   "l": "¿Qué hago si llueve?",
+   "a": "🌧️ Lo primero, cruce la isla: si llueve en el norte, en el sur suele hacer sol. Si prefiere techo, tire de museos: el de Naturaleza y Arqueología, en Santa Cruz, o el de la Ciencia y el Cosmos, en La Laguna. La Cueva del Viento, en Icod, se visita con reserva. En el mapa, la categoría Museos."
+  },
+  "l": "Ce fac dacă plouă?",
+  "k": [
+   "ploaie",
+   "ploua",
+   "daca ploua",
+   "ploua acum",
+   "vreme rea",
+   "zi mohorata",
+   "activitati in interior",
+   "ce fac daca ploua"
+  ],
+  "a": "🌧️ Mai întâi, traversați insula: dacă plouă în nord, în sud este de obicei soare. Dacă preferați să stați la adăpost, mergeți la muzee: Muzeul Naturii și Arheologiei, din Santa Cruz, sau Muzeul Științei și Cosmosului, din La Laguna. Tubul de lavă Cueva del Viento, din Icod, se vizitează cu rezervare. Pe hartă, categoria Muzee."
+ },
+ "pla-08": {
+  "es": {
+   "l": "¿Qué se puede hacer gratis?",
+   "a": "🆓 Mucho: las playas, los miradores, los cascos históricos de La Laguna, La Orotava o Garachico, los mercadillos y la mayoría de los senderos, también en el Parque Nacional del Teide, donde no se paga entrada. Algunos senderos piden reserva previa aunque sean gratis, como el Bosque Encantado de Anaga; el del pico del Teide, además, necesita autorización."
+  },
+  "l": "Ce se poate face gratuit?",
+  "k": [
+   "gratis",
+   "gratuit",
+   "fara bani",
+   "ce pot face gratis",
+   "lucruri gratuite",
+   "activitati gratuite",
+   "low cost",
+   "free"
+  ],
+  "a": "🆓 Multe: plajele, punctele de belvedere, centrele istorice din La Laguna, La Orotava sau Garachico, piețele locale și majoritatea traseelor, inclusiv în Parcul Național Teide, unde intrarea nu se plătește. Unele trasee cer rezervare prealabilă, chiar dacă sunt gratuite, cum este Bosque Encantado din Anaga; cel spre vârful Teide are nevoie, în plus, de autorizație."
+ },
+ "pla-09": {
+  "es": {
+   "l": "¿Qué senderos fáciles hay?",
+   "a": "🥾 Para empezar: el Sendero de los Sentidos, en Cruz del Carmen (Anaga), con tramos cortos y uno adaptado a sillas de ruedas; la ruta circular de los Roques de García, en el Parque Nacional del Teide; y el paseo costero de Almáciga al Roque de las Bodegas, también en Anaga. Toque cada uno en el mapa para ver su ficha."
+  },
+  "l": "Ce trasee ușoare există?",
+  "k": [
+   "trasee usoare",
+   "traseu usor",
+   "drumetii usoare",
+   "drumetie usoara",
+   "drumetii cu copii",
+   "plimbare usoara",
+   "plimbari usoare"
+  ],
+  "a": "🥾 Pentru început: „Sendero de los Sentidos”, la Cruz del Carmen (Anaga), cu tronsoane scurte și unul adaptat pentru scaune cu rotile; traseul circular de la Roques de García, în Parcul Național Teide; și plimbarea de-a lungul coastei, de la Almáciga la „Roque de las Bodegas”, tot în Anaga. Atingeți fiecare traseu pe hartă ca să-i vedeți fișa."
+ },
+ "pla-10": {
+  "es": {
+   "l": "¿Puedo volar un dron?",
+   "a": "🚁 Con mucho cuidado: en el Parque Nacional del Teide y en los demás espacios naturales protegidos no se puede volar un dron por ocio sin autorización, y la Guardia Civil denuncia. Para todo lo demás, mire antes de despegar las normas de AESA (aesa.gob.es): registro, seguro y zonas donde no se puede volar, como cerca de los aeropuertos."
+  },
+  "l": "Pot zbura cu o dronă?",
+  "k": [
+   "drona",
+   "drone",
+   "dronuri",
+   "zbor cu drona",
+   "pot zbura cu drona",
+   "drona mea"
+  ],
+  "a": "🚁 Cu mare grijă: în Parcul Național Teide și în celelalte spații naturale protejate nu puteți zbura cu o dronă în scop recreativ fără autorizație, iar Guardia Civil aplică amenzi. Pentru tot restul, înainte de decolare, verificați regulile AESA, autoritatea spaniolă pentru siguranța aviației (aesa.gob.es): înregistrare, asigurare și zone în care zborul este interzis, cum ar fi în apropierea aeroporturilor."
+ },
+ "pla-11": {
+  "es": {
+   "l": "¿Dónde puedo acampar?",
+   "a": "🏕️ Solo en zonas autorizadas: acampar fuera de ellas está prohibido y se denuncia. El Cabildo tiene zonas de acampada en el monte, gratis con autorización previa. En el mapa están en la categoría Campings. En época de riesgo de incendio pueden cerrarse, así que mire su estado antes de ir."
+  },
+  "l": "Unde pot face camping?",
+  "k": [
+   "campare",
+   "campez",
+   "camping",
+   "campare libera",
+   "camping salbatic",
+   "cort",
+   "dorm in cort",
+   "unde pot campa",
+   "unde pot face camping"
+  ],
+  "a": "🏕️ Doar în zonele autorizate: campatul în afara lor este interzis și se amendează. Cabildo (consiliul insular) are zone de campare pe munte, gratuite, cu autorizație prealabilă. Pe hartă sunt în categoria Campinguri. În perioadele cu risc de incendiu pot fi închise, așa că verificați-le starea înainte de a merge."
+ },
+ "pla-12": {
+  "es": {
+   "l": "¿Por dónde va la guagua 111?",
+   "a": "🚌 La 111 une el Intercambiador de Santa Cruz con la Estación de Costa Adeje, pasando por Los Cristianos. Arriba, en el botón de guaguas 🚌, búsquela por su número y tóquela: se dibuja en el mapa con todas sus paradas. El horario del día, en titsa.com."
+  },
+  "l": "Pe unde trece autobuzul 111?",
+  "k": [
+   "111",
+   "linia 111",
+   "autobuzul 111",
+   "guagua 111",
+   "bus 111"
+  ],
+  "a": "🚌 Linia 111 leagă autogara din Santa Cruz (Intercambiador) de autogara din Costa Adeje, trecând prin Los Cristianos. Sus, la butonul autobuzelor 🚌, căutați-o după număr și atingeți-o: se desenează pe hartă cu toate stațiile ei. Orarul zilei, pe titsa.com."
+ },
+ "pla-13": {
+  "es": {
+   "l": "¿Qué tengo que saber del Teide?",
+   "a": "🌋 El Teide, con 3.715 m, es el punto más alto de España, y al Parque Nacional se entra gratis. El teleférico sube hasta La Rambleta, a unos 3.555 m, sin permiso; el último tramo hasta el cráter necesita una autorización previa que se reserva en Tenerife ON y no va incluida en el billete. Arriba hace frío y hay menos oxígeno: abríguese y suba despacio. Sin coche, llegan las guaguas 342 y 348."
+  },
+  "l": "Ce trebuie să știu despre Teide?",
+  "k": [
+   "teide",
+   "vulcanul teide",
+   "urcarea pe teide",
+   "urc pe teide",
+   "parcul national teide",
+   "muntele teide"
+  ],
+  "a": "🌋 Teide, de 3.715 m, este cel mai înalt punct din Spania, iar intrarea în Parcul Național este gratuită. Telecabina urcă până la La Rambleta, la circa 3.555 m, fără permis; ultimul tronson până la crater necesită o autorizație prealabilă, care se rezervă pe Tenerife ON și nu este inclusă în bilet. Sus este frig și există mai puțin oxigen: îmbrăcați-vă gros și urcați încet. Fără mașină, ajungeți cu autobuzele 342 și 348."
+ },
+ "pla-14": {
+  "es": {
+   "l": "¿Qué ver en Anaga?",
+   "a": "🌿 El Parque Rural de Anaga, al noreste, es Reserva de la Biosfera y está cubierto de laurisilva. Para empezar, el Centro de Visitantes de Cruz del Carmen y el Sendero de los Sentidos; luego, los caseríos y las playas salvajes de Taganana, Benijo y Almáciga. El Bosque Encantado (El Pijaral) solo se visita con permiso previo gratuito: los detalles, en su ficha. Suele haber niebla y el suelo resbala: buen calzado."
+  },
+  "l": "Ce să văd în Anaga?",
+  "k": [
+   "anaga",
+   "masivul anaga",
+   "parcul rural anaga",
+   "padure de laur",
+   "laurisilva",
+   "bosque encantado",
+   "el pijaral"
+  ],
+  "a": "🌿 Parcul Rural Anaga, în nord-est, este rezervație a biosferei și este acoperit de pădure de laur. Pentru început, centrul de vizitare de la Cruz del Carmen și „Sendero de los Sentidos”; apoi, cătunele și plajele sălbatice din Taganana, Benijo și Almáciga. Bosque Encantado (El Pijaral) se vizitează doar cu permis prealabil gratuit: detaliile, în fișa lui. De obicei este ceață, iar solul alunecă: încălțăminte bună."
+ },
+ "pla-15": {
+  "es": {
+   "l": "¿Cómo voy a Punta de Teno?",
+   "a": "🌅 Punta de Teno es el extremo noroeste de la isla, con su faro y vistas a La Gomera. La carretera del final está regulada: en las horas de regulación no se puede subir en coche particular y se va en la guagua lanzadera desde Buenavista del Norte. Antes de ir, mire el horario vigente."
+  },
+  "l": "Cum ajung la Punta de Teno?",
+  "k": [
+   "teno",
+   "punta de teno",
+   "farul teno",
+   "farul de la punta de teno",
+   "parcul rural teno"
+  ],
+  "a": "🌅 Punta de Teno este capătul de nord-vest al insulei, cu farul său și priveliști spre La Gomera. Ultima porțiune de drum este reglementată: în orele de restricție nu se poate urca cu mașina personală și se merge cu autobuzul-navetă din Buenavista del Norte. Înainte de a merge, verificați programul în vigoare."
+ },
+ "pla-16": {
+  "es": {
+   "l": "¿Cómo es el Barranco del Infierno?",
+   "a": "💦 Es un sendero de Adeje que remonta el barranco hasta una cascada, en un espacio protegido con aforo diario limitado. La reserva es obligatoria en barrancodelinfierno.es; el casco también, y se lo dan allí. Cierra los días de lluvia o viento. Lleve agua y calzado de senderismo."
+  },
+  "l": "Cum este Barranco del Infierno?",
+  "k": [
+   "barranco del infierno",
+   "infierno",
+   "cascada din adeje",
+   "cascada adeje",
+   "cum este barranco del infierno",
+   "cum e barranco del infierno"
+  ],
+  "a": "💦 Este un traseu din Adeje care urcă de-a lungul defileului până la o cascadă, într-un spațiu protejat, cu un număr limitat de vizitatori pe zi. Rezervarea este obligatorie pe barrancodelinfierno.es; casca la fel, și o primiți acolo. Se închide în zilele cu ploaie sau vânt. Luați apă și încălțăminte de drumeție."
+ }
+}

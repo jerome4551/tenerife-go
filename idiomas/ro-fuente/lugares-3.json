@@ -1601,20 +1601,6 @@
   },
   {
    "tabla": "places",
-   "clave": "playa-puertito-guimar.desc",
-   "es": "Playa urbana en el Puertito de Güímar con zona canina delimitada. Arena volcánica, aguas muy calmadas ideales para perros. Muy accesible incluso para personas con movilidad reducida. Una de las más cómodas y tranquilas para ir con mascotas.",
-   "forma": "texto",
-   "ro": "Plajă urbană în Puertito de Güímar, cu o zonă delimitată pentru câini. Nisip vulcanic, ape foarte liniștite, ideale pentru câini. Foarte accesibilă, chiar și pentru persoanele cu mobilitate redusă. Una dintre cele mai comode și mai liniștite plaje pentru a merge cu animalele de companie."
-  },
-  {
-   "tabla": "places",
-   "clave": "playa-puertito-guimar.cat",
-   "es": "Playa Pet Friendly · Güímar",
-   "forma": "texto",
-   "ro": "Plajă Pet Friendly · Güímar"
-  },
-  {
-   "tabla": "places",
    "clave": "playa-callao-arona.desc",
    "es": "Playa de callaos (piedras) en Arona, también llamada Las Bajas, con zona habilitada para perros. Entorno natural poco masificado, ideal para mascotas que disfrutan de la naturaleza y el baño. Tranquila y con fácil acceso.",
    "forma": "texto",
@@ -2455,20 +2441,6 @@
   },
   {
    "tabla": "places",
-   "clave": "mir-pico-flores-anaga.desc",
-   "es": "Antiguo mirador de piedra, de planta circular, en el monte de El Rosario (Paisaje Protegido de Las Lagunetas), a 10-15 minutos a pie de la carretera TF-24. Está abandonado y el pinar tapa casi toda la vista, que antes abarcaba Anaga y el área metropolitana.",
-   "forma": "texto",
-   "ro": "Vechi punct de belvedere din piatră, de formă circulară, în pădurea din El Rosario (peisajul protejat Las Lagunetas), la 10-15 minute de mers pe jos de drumul TF-24. Este abandonat, iar pădurea de pini ascunde aproape toată priveliștea, care cuprindea odinioară Anaga și zona metropolitană."
-  },
-  {
-   "tabla": "places",
-   "clave": "mir-pico-flores-anaga.cat",
-   "es": "Mirador · El Rosario · Abandonado",
-   "forma": "texto",
-   "ro": "Punct de belvedere · El Rosario · Abandonat"
-  },
-  {
-   "tabla": "places",
    "clave": "mir-cruz-hilda.desc",
    "es": "Mirador junto a la carretera TF-436, por encima del caserío de Masca. Ofrece una vista panorámica de Masca y de su barranco, con bancales de cultivo, palmeras y matorral de retamas y tabaibas.",
    "forma": "texto",
@@ -2498,16 +2470,16 @@
   {
    "tabla": "places",
    "clave": "mir-la-corona-guimar.desc",
-   "es": "Mirador sobre el Valle de Güímar con vistas a las pirámides y la costa este. Acceso desde el casco de Güímar. Zona de tradición histórica guanche.",
+   "es": "Mirador sobre el Risco Blanco, en Los Realejos, a unos 760 m de altitud: se ve todo el valle de La Orotava y el norte de la isla. Es también uno de los despegues de parapente preferidos. Tiene aparcamiento; no hay parada de guagua. Acceso para personas con movilidad reducida, con dificultad.",
    "forma": "texto",
-   "ro": "Punct de belvedere deasupra văii Güímar, cu priveliști spre Piramidele din Güímar și spre coasta de est. Acces din centrul localității Güímar. Zonă cu o tradiție istorică legată de guanși."
+   "ro": "Punct de belvedere deasupra stâncii Risco Blanco, în Los Realejos, la circa 760 m altitudine: se vede toată valea La Orotava și nordul insulei. Este și unul dintre punctele de decolare preferate pentru parapantă. Are parcare; nu există stație de autobuz. Acces pentru persoanele cu mobilitate redusă, cu dificultate."
   },
   {
    "tabla": "places",
    "clave": "mir-la-corona-guimar.cat",
-   "es": "Mirador · Güímar · Valle",
+   "es": "Mirador · Los Realejos · Valle de La Orotava",
    "forma": "texto",
-   "ro": "Punct de belvedere · Güímar · Vale"
+   "ro": "Punct de belvedere · Los Realejos · Valea La Orotava"
   },
   {
    "tabla": "places",
