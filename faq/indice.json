@@ -871,7 +871,7 @@
   },
   "pla-13": {
    "cat": "teide",
-   "volatil": false,
+   "volatil": true,
    "bloque": "H3 · Planes, naturaleza y clima",
    "version": "1.0"
   },

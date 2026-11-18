@@ -377,6 +377,58 @@ let malos = 0;
     if (!ok) malos++;
     console.log((ok ? '  ok  ' : ' FALLA') + ' [en] top ten beaches   → ' + r.kind); }
   mirados += CLAVES.length + 1;
+  /* LA NIEVE, EL HIELO Y LAS CARRETERAS DEL TEIDE (18/11/2026, lo vio la sesion del rumano). Con el Teide en la
+     pregunta, la nieve o la carretera cortada se iban a pla-13 («¿Qué tengo que saber del Teide?»), en los diez
+     idiomas: pla-13 suma «teide» y, si esta, «el teide» («le teide», «de teide»…), y tei-11 solo su palabra; y
+     cuando empatan gana pla-13, que va antes por prioridad. tei-11 tiene ahora sus claves con el Teide. Lo que no
+     es nieve ni carretera cortada («la mejor carretera al Teide») sigue en pla-13. Y «ice», «glace», «Eis» e
+     «ijs», que tambien son el helado, ya no son claves de tei-11: «Wo gibt es Eis?» daba la nieve del Teide. */
+  const NIEVE = [
+    ['es', '¿Hay nieve en el Teide?'], ['es', '¿Nieva en el Teide?'], ['es', '¿Está cortada la carretera del Teide?'],
+    ['en', 'Is there snow on the Teide?'], ['en', 'Is the road to the Teide closed?'],
+    ['fr', 'Y a-t-il de la neige sur le Teide ?'], ['fr', 'La route du Teide est-elle fermée ?'],
+    ['de', 'Liegt Schnee auf dem Teide?'], ['de', 'Ist die Straße zum Teide gesperrt?'],
+    ['it', 'C’è neve sul Teide?'], ['it', 'Le strade per il Teide sono chiuse?'],
+    ['nl', 'Ligt er sneeuw op de Teide?'], ['nl', 'Is de weg naar de Teide afgesloten?'],
+    ['pl', 'Czy na Teide pada śnieg?'], ['pl', 'Czy droga na Teide jest zamknięta?'],
+    ['bg', 'Има ли сняг на Тейде?'], ['bg', 'Затворен ли е пътят за Тейде?'],
+    ['zh', '泰德峰有雪吗？'], ['zh', '泰德峰的路封了吗？'], ['zht', '泰德峰有雪嗎？'], ['zht', '泰德峰的路封了嗎？'],
+  ];
+  for (const [lang, preg] of NIEVE) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    ctx.currentLang = lang;
+    const r = ctx.chatResolve(preg, null) || {}, id = r.item && r.item.id;
+    const ok = r.kind === 'kb' && id === 'tei-11';
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + r.kind + (id ? ' ' + id : ''));
+  }
+  const NO_NIEVE = [
+    ['es', '¿Cuál es la mejor carretera al Teide?'], ['en', 'Which road to Teide is best?'],
+    ['en', 'Where can I get ice cream?'], ['fr', 'meilleure glace à Tenerife'], ['de', 'Wo gibt es Eis?'], ['nl', 'lekker ijs'],
+  ];
+  for (const [lang, preg] of NO_NIEVE) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    ctx.currentLang = lang;
+    const r = ctx.chatResolve(preg, null) || {}, id = r.item && r.item.id;
+    const ok = id !== 'tei-11';
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + r.kind + (id ? ' ' + id : '') + ' (no tei-11)');
+  }
+  /* Y la respuesta general del Teide lleva el aviso de la nota 48 (hielo y nieve) mientras lo lleven tei-01 y
+     tei-06, el mismo y en cada idioma: lo que tienen las dos al principio. Cuando se les quite a ellas, tambien a
+     pla-13. */
+  const IDIOMAS_TEIDE = ['es', 'en', 'fr', 'de', 'it', 'nl', 'pl', 'bg', 'zh', 'zht'];
+  for (const lang of IDIOMAS_TEIDE) {
+    await ctx.TG_FAQ.cambiarA(lang);
+    const a1 = ctx.chatEntradaPorId('tei-01').answer, a6 = ctx.chatEntradaPorId('tei-06').answer;
+    const g = ctx.chatEntradaPorId('pla-13').answer;
+    let n = 0; while (n < a1.length && a1[n] === a6[n]) n++;
+    const aviso = a1.slice(0, n), hay = aviso.indexOf('⚠️') === 0;
+    const ok = hay ? g.indexOf(aviso) === 0 : g.indexOf('⚠️') !== 0;
+    if (!ok) malos++;
+    console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] pla-13 ' + (hay ? 'lleva el aviso de tei-01 y tei-06' : 'sin aviso, como tei-01 y tei-06'));
+  }
+  mirados += NIEVE.length + NO_NIEVE.length + IDIOMAS_TEIDE.length;
   console.log('\n' + malos + ' fallos de ' + (CASOS.length + mirados)
     + (saltadas ? '   (' + saltadas + ' saltada(s) por idioma que la app no tiene)' : ''));
   process.exit(malos ? 1 : 0);
