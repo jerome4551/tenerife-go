@@ -1118,6 +1118,13 @@
   },
   {
    "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_combate",
+   "es": "Deportes de combate",
+   "forma": "texto",
+   "ro": "Sporturi de luptă"
+  },
+  {
+   "tabla": "CUERPO_UI",
    "clave": "cuerpoMov_otro",
    "es": "Otro deporte",
    "forma": "texto",
@@ -4160,6 +4167,27 @@
    "es": "Calistenia",
    "forma": "texto",
    "ro": "Calistenie"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_boxeo",
+   "es": "Boxeo y kickboxing",
+   "forma": "texto",
+   "ro": "Box și kickbox"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_jiujitsu",
+   "es": "Jiu-jitsu, judo y lucha",
+   "forma": "texto",
+   "ro": "Jiu-jitsu, judo și lupte"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_karate",
+   "es": "Karate y taekwondo",
+   "forma": "texto",
+   "ro": "Karate și taekwondo"
   },
   {
    "tabla": "CUERPO_UI",

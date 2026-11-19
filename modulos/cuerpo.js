@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (672 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (676 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało", "ro": "Corp"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać", "ro": "Mușchii, săptămâna și personajul dumneavoastră"},
@@ -200,6 +200,7 @@
     "cuerpoMov_golf": {"es": "Golf", "en": "Golf", "fr": "Golf", "de": "Golf", "it": "Golf", "nl": "Golf", "zh": "高尔夫", "zht": "高爾夫", "bg": "Голф", "pl": "Golf", "ro": "Golf"},
     "cuerpoMov_padel": {"es": "Pádel", "en": "Padel", "fr": "Padel", "de": "Padel", "it": "Padel", "nl": "Padel", "zh": "板式网球", "zht": "板式網球", "bg": "Падел", "pl": "Padel", "ro": "Padel"},
     "cuerpoMov_escalada": {"es": "Escalada", "en": "Climbing", "fr": "Escalade", "de": "Klettern", "it": "Arrampicata", "nl": "Klimmen", "zh": "攀岩", "zht": "攀岩", "bg": "Катерене", "pl": "Wspinaczka", "ro": "Escaladă"},
+    "cuerpoMov_combate": {"es": "Deportes de combate", "en": "Combat sports", "fr": "Sports de combat", "de": "Kampfsport", "it": "Sport da combattimento", "nl": "Vechtsporten", "zh": "格斗运动", "zht": "格鬥運動", "bg": "Бойни спортове", "pl": "Sporty walki", "ro": "Sporturi de luptă"},
     "cuerpoMov_otro": {"es": "Otro deporte", "en": "Another sport", "fr": "Autre sport", "de": "Andere Sportart", "it": "Altro sport", "nl": "Andere sport", "zh": "其他运动", "zht": "其他運動", "bg": "Друг спорт", "pl": "Inny sport", "ro": "Alt sport"},
     "cuerpoMovMetros": {"es": "Metros", "en": "Metres", "fr": "Mètres", "de": "Meter", "it": "Metri", "nl": "Meter", "zh": "米数", "zht": "公尺數", "bg": "Метри", "pl": "Metry", "ro": "Metri"},
     "cuerpoMovMenosM": {"es": "50 metros menos", "en": "50 metres less", "fr": "50 mètres de moins", "de": "50 Meter weniger", "it": "50 metri in meno", "nl": "50 meter minder", "zh": "减少 50 米", "zht": "減少 50 公尺", "bg": "50 метра по-малко", "pl": "50 metrów mniej", "ro": "Cu 50 de metri mai puțin"},
@@ -635,6 +636,9 @@
     "cuerpoDep_lucha": {"es": "Lucha canaria", "en": "Canarian wrestling", "fr": "Lutte canarienne", "de": "Kanarisches Ringen", "it": "Lotta canaria", "nl": "Canarisch worstelen", "zh": "加那利摔跤", "zht": "加那利摔跤", "bg": "Канарска борба", "pl": "Zapasy kanaryjskie", "ro": "Lupte canariene"},
     "cuerpoDep_gimnasio": {"es": "Gimnasio", "en": "Gym", "fr": "Musculation en salle", "de": "Fitnessstudio", "it": "Palestra", "nl": "Fitness", "zh": "健身房训练", "zht": "健身房訓練", "bg": "Фитнес", "pl": "Siłownia", "ro": "Antrenament la sală"},
     "cuerpoDep_calistenia": {"es": "Calistenia", "en": "Calisthenics", "fr": "Callisthénie", "de": "Calisthenics", "it": "Calisthenics", "nl": "Calisthenics", "zh": "自重训练", "zht": "自重訓練", "bg": "Калистеника", "pl": "Kalistenika", "ro": "Calistenie"},
+    "cuerpoDep_boxeo": {"es": "Boxeo y kickboxing", "en": "Boxing and kickboxing", "fr": "Boxe et kickboxing", "de": "Boxen und Kickboxen", "it": "Boxe e kickboxing", "nl": "Boksen en kickboksen", "zh": "拳击和踢拳", "zht": "拳擊和踢拳", "bg": "Бокс и кикбокс", "pl": "Boks i kickboxing", "ro": "Box și kickbox"},
+    "cuerpoDep_jiujitsu": {"es": "Jiu-jitsu, judo y lucha", "en": "Jiu-jitsu, judo and wrestling", "fr": "Jiu-jitsu, judo et lutte", "de": "Jiu-Jitsu, Judo und Ringen", "it": "Jiu-jitsu, judo e lotta", "nl": "Jiujitsu, judo en worstelen", "zh": "柔术、柔道和摔跤", "zht": "柔術、柔道和摔跤", "bg": "Джиу-джицу, джудо и борба", "pl": "Jiu-jitsu, judo i zapasy", "ro": "Jiu-jitsu, judo și lupte"},
+    "cuerpoDep_karate": {"es": "Karate y taekwondo", "en": "Karate and taekwondo", "fr": "Karaté et taekwondo", "de": "Karate und Taekwondo", "it": "Karate e taekwondo", "nl": "Karate en taekwondo", "zh": "空手道和跆拳道", "zht": "空手道和跆拳道", "bg": "Карате и таекуондо", "pl": "Karate i taekwondo", "ro": "Karate și taekwondo"},
     "cuerpoDep_otro": {"es": "Otro deporte", "en": "Another sport", "fr": "Autre sport", "de": "Andere Sportart", "it": "Altro sport", "nl": "Andere sport", "zh": "其他运动", "zht": "其他運動", "bg": "Друг спорт", "pl": "Inny sport", "ro": "Alt sport"},
     "cuerpoDepCargando": {"es": "Cargando la ficha del deporte…", "en": "Loading the sport guide…", "fr": "Chargement de la fiche du sport…", "de": "Sportinformationen werden geladen …", "it": "Caricamento della scheda dello sport…", "nl": "Sportinformatie laden…", "zh": "正在加载运动说明…", "zht": "正在載入運動說明…", "bg": "Зареждане на информацията за спорта…", "pl": "Wczytywanie informacji o sporcie…", "ro": "Se încarcă fișa sportului…"},
     "cuerpoDepError": {"es": "No se ha podido cargar la ficha. Compruebe la conexión e inténtelo de nuevo.", "en": "The guide could not be loaded. Check your connection and try again.", "fr": "Impossible de charger la fiche. Vérifiez la connexion et réessayez.", "de": "Die Informationen konnten nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "it": "Impossibile caricare la scheda. Controlli la connessione e riprovi.", "nl": "De informatie kon niet worden geladen. Controleer de verbinding en probeer het opnieuw.", "zh": "无法加载说明。请检查网络连接后重试。", "zht": "無法載入說明。請檢查網路連線後重試。", "bg": "Информацията не можа да се зареди. Проверете връзката и опитайте отново.", "pl": "Nie udało się wczytać informacji. Proszę sprawdzić połączenie i spróbować ponownie.", "ro": "Fișa nu a putut fi încărcată. Verificați conexiunea și încercați din nou."},
@@ -2010,7 +2014,11 @@
      Compendio de Actividades Físicas de 2024 (Herrmann y cols., J Sport Health Sci 2024;13:6-12;
      pacompendium.com) del que sale la intensidad que se propone: desde 6 MET, intensa (la frontera de la OMS y
      de los CDC). El pádel no está en el Compendio: el tenis de dobles (15685, 4,5). «Otro deporte», moderada. La
-     persona la cambia en cada anotación (la prueba del habla, de los CDC) */
+     persona la cambia en cada anotación (la prueba del habla, de los CDC). (19-11-2026, bloque 2) «Deportes de
+     combate», para los tres de «Su deporte»: las artes marciales a ritmo moderado del Compendio (15430: judo,
+     jiu-jitsu, karate, kickboxing, taekwondo, muay thai; 10,3 MET), intensa. A ritmo lento o de principiante (15425,
+     5,3) y en el saco de boxeo (15110, 5,8), moderada; el sparring (15120, 7,8) y el boxeo en el ring (15100, 12,3),
+     intensos: la persona la cambia */
   var MOV = [
     { id: 'caminar', min: 30, dist: 'km', km: 2.5, max: 100, gr: true, met: 3.5, cod: '17160' },
     { id: 'senderismo', min: 120, dist: 'km', km: 8, max: 100, gr: true, des: true, met: 6.0, cod: '17080' },
@@ -2025,6 +2033,7 @@
     { id: 'golf', min: 240, met: 4.5, cod: '15255' },
     { id: 'padel', min: 90, met: 4.5, cod: '15685' },
     { id: 'escalada', min: 120, met: 8.0, cod: '15533' },
+    { id: 'combate', min: 60, met: 10.3, cod: '15430' },
     { id: 'otro', min: 30, met: 3.0, cod: '' }
   ];
   var MOV_IDS = MOV.map(function (m) { return m.id; });
@@ -2034,9 +2043,11 @@
   function intDe(m) { return m.met >= 6 ? 'v' : 'm'; }
   /* el deporte que la hoja propone la primera vez, según «Su deporte». (19-11-2026, bloque 1) «Gimnasio» y «Calistenia» no
      están: lo suyo se anota en series, por grupo muscular (Jerome, 8-11: «incluido el gimnasio deben coger datos
-     diferentes»; nota 27), y con ellos la hoja propone caminar, como sin deporte */
-  var DEP_MOV = { senderismo: 'senderismo', mar: 'nadar', carrera: 'correr', ciclismo: 'bici', surf: 'surf', buceo: 'buceo', golf: 'golf', padel: 'padel', otro: 'otro' };
-  /* los iconos de los catorce deportes (los cinco de la maqueta y nueve propios, de trazo, como ellos):
+     diferentes»; nota 27), y con ellos la hoja propone caminar, como sin deporte. (19-11-2026, bloque 2) Los tres de
+     combate proponen «Deportes de combate» */
+  var DEP_MOV = { senderismo: 'senderismo', mar: 'nadar', carrera: 'correr', ciclismo: 'bici', surf: 'surf', buceo: 'buceo', golf: 'golf', padel: 'padel', boxeo: 'combate', jiujitsu: 'combate', karate: 'combate', otro: 'otro' };
+  /* los iconos de los quince deportes (los cinco de la maqueta y diez propios, de trazo, como ellos; el guante de
+     «Deportes de combate», del 19-11-2026, bloque 2):
      constantes, van con innerHTML en los botones de la hoja y en la semana por deporte */
   function icoMov(d) { return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; }
   var ICONOS_MOV = {
@@ -2053,6 +2064,7 @@
     golf: icoMov('<path d="M8.5 21V3l8 3.4-8 3.4"/><circle cx="15.5" cy="18" r="2.2"/><path d="M4.5 21h8"/>'),
     padel: icoMov('<path d="M14.2 3.6a5.8 5.8 0 0 1 4.1 9.9l-3.5 3.5a5.8 5.8 0 1 1-8.2-8.2l3.5-3.5a5.8 5.8 0 0 1 4.1-1.7z"/><path d="M7 17l-3.5 3.5"/><path d="M12 8.5h.01M15 8.8h.01M11.5 11.6h.01M14.6 11.9h.01"/><circle cx="19.5" cy="19.5" r="1.6"/>'),
     escalada: icoMov('<rect x="6.5" y="2.8" width="11" height="18.4" rx="5.5"/><path d="M6.5 9.5l5-1.5"/><path d="M12.5 15.5h5"/>'),
+    combate: icoMov('<path d="M8.5 15.5V8A5 5 0 0 1 13.5 3h.5a5 5 0 0 1 5 5v3.5a4 4 0 0 1-4 4z"/><path d="M8.5 9H7a2.5 2.5 0 0 0-2.5 2.5v.5A3.5 3.5 0 0 0 8 15.5h.5"/><path d="M9 15.5v5h7v-5"/><path d="M12.6 3.3c.3 1.9 1.7 3.4 3.6 3.7"/>'),
     otro: icoMov('<circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/>')
   };
   /* ── «Hoy en la isla» y «Cruce la isla» (8-11-2026, bloque 5) ──
@@ -6016,8 +6028,13 @@
      (19-11-2026, bloque 1 de los deportes de interior; Jerome: «Aquí sigue sin poder poner gimnasio o calisteña»)
      «Gimnasio» y «Calistenia», delante de «Otro deporte». Son entrenamiento de fuerza: su pauta es la de todos los
      grandes grupos (OMS, ACSM 2026), así que no marcan grupos prioritarios en el personaje (prio y sec vacíos, como
-     «Otro deporte»); su ficha dice lo que dicen los estudios de cada uno. */
-  var DEPORTES = [{"id":"senderismo","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core","espalda_alta"]},{"id":"mar","prio":["dorsal","hombros","triceps"],"sec":["pecho","espalda_alta","core"]},{"id":"carrera","prio":["cuadriceps","gluteos"],"sec":["isquios","pantorrilla","core"]},{"id":"ciclismo","prio":["cuadriceps","gluteos"],"sec":["isquios"]},{"id":"surf","prio":["dorsal","triceps","pecho","hombros"],"sec":["biceps","espalda_alta"]},{"id":"buceo","prio":[],"sec":[]},{"id":"golf","prio":["gluteos","cuadriceps","core"],"sec":["hombros","espalda_alta"]},{"id":"padel","prio":["antebrazo","cuadriceps","hombros"],"sec":["core","pecho","triceps"]},{"id":"gimnasio","prio":[],"sec":[]},{"id":"calistenia","prio":[],"sec":[]},{"id":"otro","prio":[],"sec":[]}];
+     «Otro deporte»); su ficha dice lo que dicen los estudios de cada uno.
+     (19-11-2026, bloque 2; Jerome: «deporte de combate en general aquí en la isla está full») Los deportes de combate,
+     por familias y delante de «Otro deporte»: «Boxeo y kickboxing» (el golpeo), «Jiu-jitsu, judo y lucha» (el agarre;
+     la lucha canaria, en «En Tenerife») y «Karate y taekwondo». Sus grupos: los del jiu-jitsu salen de los tres
+     ejercicios del ensayo (Øvretveit y Tøien 2018: sentadilla, press de banca y dominadas; gg 'D'); los del boxeo (las
+     piernas, por Beattie y Ruddock 2022) y los del karate (los saltos), deducidos (gg 'I'). */
+  var DEPORTES = [{"id":"senderismo","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core","espalda_alta"]},{"id":"mar","prio":["dorsal","hombros","triceps"],"sec":["pecho","espalda_alta","core"]},{"id":"carrera","prio":["cuadriceps","gluteos"],"sec":["isquios","pantorrilla","core"]},{"id":"ciclismo","prio":["cuadriceps","gluteos"],"sec":["isquios"]},{"id":"surf","prio":["dorsal","triceps","pecho","hombros"],"sec":["biceps","espalda_alta"]},{"id":"buceo","prio":[],"sec":[]},{"id":"golf","prio":["gluteos","cuadriceps","core"],"sec":["hombros","espalda_alta"]},{"id":"padel","prio":["antebrazo","cuadriceps","hombros"],"sec":["core","pecho","triceps"]},{"id":"gimnasio","prio":[],"sec":[]},{"id":"calistenia","prio":[],"sec":[]},{"id":"boxeo","prio":["cuadriceps","gluteos"],"sec":["hombros","triceps","core"]},{"id":"jiujitsu","prio":["cuadriceps","gluteos","pecho","dorsal"],"sec":["triceps","biceps"]},{"id":"karate","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core"]},{"id":"otro","prio":[],"sec":[]}];
   var DEP = null, DEP_IDIOMA = null, depCarga = null, depError = false, depOpcIdioma = null;
   var CERTS_DEP = ['alta', 'moderada', 'baja', 'indirecta', 'ninguna'];
   var SOS_DEP = ['inicio', 'auxilios', 'rescate', 'picaduras', 'playa', 'calor', 'montana'];

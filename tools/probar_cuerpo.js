@@ -78,6 +78,9 @@
  *     ejercicios con vídeo en las listas que abren su ficha, «Solo con vídeo» y «Ver el vídeo», en los diez idiomas.
  *   - y, desde el 19 de noviembre de 2026 (bloque 1 de los deportes de interior), «Gimnasio» y «Calistenia» en «Su
  *     deporte»: sus fichas en los 11 idiomas (sin navegador) y en la pantalla, en cinco idiomas y a 320 px (44).
+ *   - y, desde ese mismo día (bloque 2), los deportes de combate en «Su deporte» («Boxeo y kickboxing», «Jiu-jitsu, judo
+ *     y lucha» y «Karate y taekwondo») y «Deportes de combate» en la hoja del movimiento: en los 11 idiomas (sin
+ *     navegador) y en la pantalla, en cuatro idiomas y a 320 px (45).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -1806,8 +1809,8 @@ async function ejemplo(pg, mas) {
       estado: JSON.stringify(history.state)
     }));
     prueba('«Anotar movimiento» abre su página de la hoja, con el foco en el título y su entrada en el historial', h23.abierta && h23.etiqueta === 'tgc-mov-tit' && h23.foco === 'tgc-mov-tit' && h23.inerte && h23.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1,"tgCuerpoMov":1}', JSON.stringify(h23));
-    prueba('la hoja: el título, la frase, los catorce deportes con su icono (Caminar elegido; desde el bloque 7, la bici con los de tierra y los del mar juntos), 30 min, 2,5 km, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
-      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,bici:false:Bici:1,nadar:false:Nadar:1,kayak:false:Kayak:1,sup:false:Pádel surf:1,surf:false:Surf:1,windsurf:false:Windsurf y kitesurf:1,buceo:false:Buceo:1,golf:false:Golf:1,padel:false:Pádel:1,escalada:false:Escalada:1,otro:false:Otro deporte:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.kmL === 'Kilómetros' && h23.hoy === 'true'
+    prueba('la hoja: el título, la frase, los quince deportes con su icono (Caminar elegido; desde el bloque 7, la bici con los de tierra y los del mar juntos), 30 min, 2,5 km, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
+      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,bici:false:Bici:1,nadar:false:Nadar:1,kayak:false:Kayak:1,sup:false:Pádel surf:1,surf:false:Surf:1,windsurf:false:Windsurf y kitesurf:1,buceo:false:Buceo:1,golf:false:Golf:1,padel:false:Pádel:1,escalada:false:Escalada:1,combate:false:Deportes de combate:1,otro:false:Otro deporte:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.kmL === 'Kilómetros' && h23.hoy === 'true'
       && h23.boton === 'Anotar 30 min y 2,5 km' && /GR 131/.test(h23.nota), JSON.stringify(h23));   /* desde el bloque 5, la nota de a pie habla del GR 131 */
     prueba('lo último anotado: las tres, de hoy hacia atrás, con el tipo, los minutos y la distancia (a nado, en metros desde el bloque 7)', h23.hist === 'Caminar · 35 min y 3 km | Senderismo · 150 min y 9,5 km | Nadar · 30 min y 1000 m', h23.hist);
     await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p23.waitForTimeout(60);
@@ -2537,18 +2540,18 @@ async function ejemplo(pg, mas) {
     /* la hoja: «Su deporte» (buceo) propone el buceo; cada deporte, sus campos y su intensidad */
     await p26.click('#tgc-mov-btn'); await p26.waitForTimeout(350);
     const hb = await hoja26(p26);
-    prueba('la hoja: catorce deportes con su icono; con «Su deporte» en el buceo, propone el buceo: 45 min, intensa, sin distancia ni desnivel, la nota de la DAN y «Anotar 45 min»', hb.n === 14 && hb.iconos && hb.sel === 'buceo' && hb.min === '45' && hb.km === null && hb.des === null && hb.int === 'v'
+    prueba('la hoja: quince deportes con su icono; con «Su deporte» en el buceo, propone el buceo: 45 min, intensa, sin distancia ni desnivel, la nota de la DAN y «Anotar 45 min»', hb.n === 15 && hb.iconos && hb.sel === 'buceo' && hb.min === '45' && hb.km === null && hb.des === null && hb.int === 'v'
       && hb.nota === 'Antes de volar, la DAN aconseja esperar al menos 12 horas tras una inmersión, y 18 tras varias en un día o en varios días de buceo.' && hb.boton === 'Anotar 45 min', JSON.stringify(hb));
     prueba('la intensidad: «Moderada» e «Intensa», con la prueba del habla y, para un adulto, que cada minuto intenso cuenta por dos (OMS)', hb.intL === 'Intensidad' && hb.intM === 'Moderada' && hb.intV === 'Intensa'
       && hb.ayuda === 'Moderada: puede hablar, pero no cantar. Intensa: no puede decir más de unas palabras sin parar a respirar. Para su meta, cada minuto intenso cuenta por dos (OMS).', JSON.stringify([hb.intL, hb.intM, hb.intV, hb.ayuda]));
     const cada = [];
-    for (const t of ['caminar', 'senderismo', 'correr', 'bici', 'nadar', 'kayak', 'sup', 'surf', 'windsurf', 'buceo', 'golf', 'padel', 'escalada', 'otro']) {
+    for (const t of ['caminar', 'senderismo', 'correr', 'bici', 'nadar', 'kayak', 'sup', 'surf', 'windsurf', 'buceo', 'golf', 'padel', 'escalada', 'combate', 'otro']) {
       await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="' + t + '"]'); await p26.waitForTimeout(40);
       const h = await hoja26(p26); cada.push([h.sel, h.min, h.km === null ? '-' : h.kmL + ' ' + h.km, h.des === null ? '-' : h.des, h.int, h.nota].join(':'));
     }
     const PIE = 'Los kilómetros a pie avanzan su travesía del GR 131.', ELIGE = 'Su distancia no cuenta para el GR 131, salvo que lo elija en «Cruce la isla».', AGUA = 'Suma minutos y distancia a su semana. Por el agua se rodea la isla, no se cruza: su distancia no cuenta para el GR 131.', MIN = 'Suma minutos a su semana.', DAN = hb.nota;
     const ESPERADO = ['caminar:30:Kilómetros 2,5:-:m:' + PIE, 'senderismo:120:Kilómetros 8:0:v:' + PIE, 'correr:30:Kilómetros 5:0:v:' + PIE, 'bici:60:Kilómetros 0:-:v:' + ELIGE, 'nadar:30:Metros 0:-:v:' + AGUA,
-      'kayak:60:Kilómetros 0:-:m:' + AGUA, 'sup:60:-:-:v:' + MIN, 'surf:90:-:-:m:' + MIN, 'windsurf:90:-:-:m:' + MIN, 'buceo:45:-:-:v:' + DAN, 'golf:240:-:-:m:' + MIN, 'padel:90:-:-:m:' + MIN, 'escalada:120:-:-:v:' + MIN, 'otro:30:-:-:m:' + MIN];
+      'kayak:60:Kilómetros 0:-:m:' + AGUA, 'sup:60:-:-:v:' + MIN, 'surf:90:-:-:m:' + MIN, 'windsurf:90:-:-:m:' + MIN, 'buceo:45:-:-:v:' + DAN, 'golf:240:-:-:m:' + MIN, 'padel:90:-:-:m:' + MIN, 'escalada:120:-:-:v:' + MIN, 'combate:60:-:-:v:' + MIN, 'otro:30:-:-:m:' + MIN];
     const malos26 = ESPERADO.filter((x, i) => cada[i] !== x);
     prueba('cada deporte, lo suyo: los minutos que propone; la distancia en km (caminar, senderismo, correr, bici, kayak) o en metros (nadar); el desnivel (senderismo y correr); la intensidad del Compendio (desde 6 MET, intensa); y su nota (a pie, el GR 131; la bici, «salvo que lo elija»; el nado y el kayak, que por el agua la isla se rodea; el buceo, la DAN; los demás, los minutos)',
       !malos26.length, malos26.map(x => cada[ESPERADO.indexOf(x)]).join(' || '));
@@ -4465,7 +4468,8 @@ async function ejemplo(pg, mas) {
     const DEPS = JSON.parse(s.match(/var DEPORTES = (\[.*?\]);/)[1]), ids = DEPS.map(d => d.id);
     const L11 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
     const lee = f => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', f), 'utf8'));
-    prueba('44: «Gimnasio» y «Calistenia» en DEPORTES, delante de «Otro deporte» y sin grupos prioritarios', ids.slice(-3).join() === 'gimnasio,calistenia,otro'
+    /* (bloque 2) entre «Calistenia» y «Otro deporte» van ahora los deportes de combate (prueba 45) */
+    prueba('44: «Gimnasio» y «Calistenia» en DEPORTES, delante de «Otro deporte» y sin grupos prioritarios', ids.join().includes('gimnasio,calistenia,') && ids[ids.length - 1] === 'otro'
       && DEPS.filter(d => d.id === 'gimnasio' || d.id === 'calistenia').every(d => !d.prio.length && !d.sec.length), ids.join());
     const malNom = []; for (const id of ids) for (const l of L11) if (!UI['cuerpoDep_' + id] || !String(UI['cuerpoDep_' + id][l] || '').trim()) malNom.push(id + ' ' + l);
     prueba('44: cada deporte de la lista, con su nombre en los 11 idiomas', !malNom.length, malNom.join(' '));
@@ -4510,7 +4514,7 @@ async function ejemplo(pg, mas) {
     await abrirApp(p44); await abrirPerfilCuerpo(p44); await suCuerpo(p44); await vacio(p44);
     await p44.click('#tgc-modo-m'); await p44.waitForTimeout(150);
     const opts = await p44.evaluate(() => [...document.querySelectorAll('#tgc-dep-sel option')].map(o => o.value + ':' + o.textContent));
-    prueba('44: el desplegable, con «Gimnasio» y «Calistenia» delante de «Otro deporte»', opts.slice(-3).join('|') === 'gimnasio:Gimnasio|calistenia:Calistenia|otro:Otro deporte', opts.join('|'));
+    prueba('44: el desplegable, con «Gimnasio» y «Calistenia» delante de «Otro deporte»', opts.join('|').includes('gimnasio:Gimnasio|calistenia:Calistenia|') && opts[opts.length - 1] === 'otro:Otro deporte', opts.join('|'));
     const ficha44 = async () => {
       await p44.waitForFunction(() => !document.getElementById('tgc-dep-ficha').hidden, null, { timeout: 15000 }).catch(() => {});
       return p44.evaluate(() => {
@@ -4559,7 +4563,7 @@ async function ejemplo(pg, mas) {
       if (!(await p44.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p44);
       await p44.selectOption('#tgc-dep-sel', 'calistenia');
       await p44.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G[l].calistenia.t, { timeout: 15000 }).catch(() => {});
-      const r = await p44.evaluate(() => ({ op: [...document.querySelectorAll('#tgc-dep-sel option')].slice(-3).map(o => o.textContent).join('|'), t: (document.querySelector('#tgc-dep-ficha .tgc-dep-t') || {}).textContent || '' }));
+      const r = await p44.evaluate(() => ({ op: [...document.querySelectorAll('#tgc-dep-sel option')].filter(o => ['gimnasio', 'calistenia', 'otro'].includes(o.value)).map(o => o.textContent).join('|'), t: (document.querySelector('#tgc-dep-ficha .tgc-dep-t') || {}).textContent || '' }));
       if (r.op !== [UI.cuerpoDep_gimnasio[l], UI.cuerpoDep_calistenia[l], UI.cuerpoDep_otro[l]].join('|') || r.t !== G[l].calistenia.t) enIdiomas.push(l + ': ' + JSON.stringify(r));
     }
     prueba('44: en inglés, chino y búlgaro, los nombres y la ficha de calistenia en su idioma', !enIdiomas.length, enIdiomas.join(' | '));
@@ -4583,6 +4587,172 @@ async function ejemplo(pg, mas) {
     prueba('44: a 320 px, en alemán y en búlgaro, ni el desplegable ni las dos fichas (abiertas) se salen', !desb.length, desb.join(' | '));
     prueba('44: sin errores de página', e44.length === 0, e44.join(' | '));
     await c44.close();
+  }
+
+  // 45. (19-11-2026, bloque 2 de los deportes de interior; Jerome: «deporte adentro también como boxeo , deporte de combate en
+  //     general aquí en la isla está full») Los deportes de combate en «Su deporte», por familias: «Boxeo y kickboxing»,
+  //     «Jiu-jitsu, judo y lucha» y «Karate y taekwondo», delante de «Otro deporte»; y en la hoja del movimiento, «Deportes de
+  //     combate» (Compendio 2024, 15430: 10,3 MET, intensa). Sin navegador: el orden y los grupos de DEPORTES, los nombres en
+  //     los 11 idiomas, las tres fichas en los 11 (las cifras del castellano, 11, 10 y 11 fuentes en https, sus ejercicios en
+  //     el catálogo, las preguntas del asistente de cada idioma), y MOV, DEP_MOV e ICONOS_MOV. En la pantalla: el desplegable,
+  //     las tres fichas (certeza baja, los grupos del personaje con su nota, los ejercicios con su marca, las fuentes en otra
+  //     pestaña y sin opener, la lucha canaria en «En Tenerife»), la hoja que propone «Deportes de combate» y lo anota, en
+  //     inglés, chino y búlgaro, y a 320 px, en alemán y en búlgaro, nada se sale (ni las fichas ni la hoja de 15 deportes).
+  {
+    const fs = require('fs'), path = require('path');
+    const s = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s.indexOf('var CUERPO_UI = {'), j = s.indexOf('\n  };', i);
+      for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    const DEPS = JSON.parse(s.match(/var DEPORTES = (\[.*?\]);/)[1]), ids = DEPS.map(d => d.id), D = {}; DEPS.forEach(d => { D[d.id] = d; });
+    const L11 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'], NUEVAS = ['boxeo', 'jiujitsu', 'karate'];
+    const GRUPOS = { boxeo: ['cuadriceps,gluteos', 'hombros,triceps,core'], jiujitsu: ['cuadriceps,gluteos,pecho,dorsal', 'triceps,biceps'], karate: ['cuadriceps,gluteos,pantorrilla', 'isquios,core'] };
+    prueba('45: los deportes de combate en DEPORTES, tras «Calistenia» y delante de «Otro deporte», con sus grupos prioritarios y secundarios',
+      ids.slice(-6).join() === 'gimnasio,calistenia,boxeo,jiujitsu,karate,otro' && NUEVAS.every(id => D[id].prio.join() === GRUPOS[id][0] && D[id].sec.join() === GRUPOS[id][1]),
+      ids.join() + ' ' + JSON.stringify(NUEVAS.map(id => D[id])));
+    const malNom = []; for (const k of NUEVAS.map(id => 'cuerpoDep_' + id).concat(['cuerpoMov_combate'])) for (const l of L11) if (!UI[k] || !String(UI[k][l] || '').trim()) malNom.push(k + ' ' + l);
+    prueba('45: sus tres nombres y el de la hoja («Deportes de combate»), en los 11 idiomas', !malNom.length && UI.cuerpoDep_jiujitsu.es === 'Jiu-jitsu, judo y lucha' && UI.cuerpoMov_combate.es === 'Deportes de combate', malNom.join(' '));
+    const lee = f => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', f), 'utf8'));
+    const G = {}, malOrden = [];
+    for (const l of L11) {
+      const d = lee('deportes-' + l + '.json'); G[l] = {};
+      if (d.deportes.map(x => x.id).join() !== ids.join()) malOrden.push(l + ': ' + d.deportes.map(x => x.id).join());
+      for (const x of d.deportes) G[l][x.id] = x;
+    }
+    prueba('45: las guías de los 11 idiomas, con las tres fichas nuevas y en el orden de la lista', !malOrden.length, malOrden.join(' | '));
+    const cifras = t => (String(t).replace(/[\u00a0\u202f]/g, '').replace(/(\d)[.,](?=\d{3}(?!\d))/g, '$1').replace(/,/g, '.').match(/\d+(?:\.\d+)?/g) || []).sort().join();
+    const plano = (o, r, d) => {
+      if (typeof o === 'string') d[r] = o;
+      else if (Array.isArray(o)) o.forEach((x, i) => plano(x, r + '[' + i + ']', d));
+      else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!['url', 'fecha', 'id', 'grado', 'cert', 'gg', 'sos', 'qs'].includes(k)) plano(v, r + '.' + k, d);
+      return d;
+    };
+    const NF = { boxeo: 11, jiujitsu: 10, karate: 11 }, NEJ = { boxeo: 4, jiujitsu: 5, karate: 4 }, GG = { boxeo: 'I', jiujitsu: 'D', karate: 'I' };
+    const EJS = new Set(lee('ejercicios.json').ejercicios.map(x => x.id)), malNuevas = [];
+    for (const id of NUEVAS) {
+      const es = plano(G.es[id] || {}, id, {});
+      for (const l of L11) {
+        const x = G[l][id]; if (!x) { malNuevas.push(l + ' ' + id + ': no está'); continue; }
+        const t = plano(x, id, {});
+        for (const [r, v] of Object.entries(es)) if (cifras(v) !== cifras(t[r])) malNuevas.push(l + ' ' + r + ': cifras');
+        if (x.cert !== 'baja' || x.gg !== GG[id]) malNuevas.push(l + ' ' + id + ': certeza o grupos');
+        if (x.f.length !== NF[id] || !x.f.every(f => /^https:\/\//.test(f.url) && f.titulo.trim())) malNuevas.push(l + ' ' + id + ': fuentes');
+        if (x.ej.length !== NEJ[id] || x.ej.some(e => !EJS.has(e.id)) || x.ej.filter(e => e.grado === 'D').length !== (id === 'jiujitsu' ? 3 : 0)) malNuevas.push(l + ' ' + id + ': ejercicios');
+        /* las preguntas, las del asistente de su idioma, letra a letra; el rumano, desde que tenga el suyo (R17–R20): sus
+           cuatro preguntas nuevas esperan en la nota 58 */
+        if (fs.existsSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'))) {
+          const A = {}; for (const r of lee('asistente-' + l + '.json').respuestas) A[r.id] = r;
+          for (const q of x.qs) if (!A[q[0]] || A[q[0]].q !== q[1] || A[q[0]].edad !== q[2]) malNuevas.push(l + ' ' + id + ': la pregunta ' + q[0]);
+        } else if (l !== 'ro') malNuevas.push(l + ': sin asistente-' + l + '.json');
+        if (l !== 'es' && x.t === G.es[id].t) malNuevas.push(l + ' ' + id + ': en castellano');
+      }
+    }
+    prueba('45: las tres fichas en los 11 idiomas: las cifras del castellano en cada texto, certeza baja, 11, 10 y 11 fuentes en https, sus ejercicios en el catálogo (3 «De los estudios» en el jiu-jitsu) y las preguntas del asistente de cada idioma',
+      !malNuevas.length, malNuevas.slice(0, 6).join(' · '));
+    /* la hoja: «combate» delante de «otro», 60 min, 10,3 MET (intensa), el código del Compendio, su icono, y los tres deportes la proponen */
+    const mov = s.match(/\{ id: 'combate', min: (\d+), met: ([\d.]+), cod: '(\d+)' \},\n\s*\{ id: 'otro'/), dm = s.match(/var DEP_MOV = (\{[^}]*\});/);
+    const depMov = dm ? JSON.parse(dm[1].replace(/(\w+):/g, '"$1":').replace(/'/g, '"')) : {};
+    prueba('45: en MOV, «combate» delante de «otro» (60 min, 10,3 MET del código 15430: intensa), con su icono, y los tres deportes de combate la proponen (DEP_MOV)',
+      !!mov && mov[1] === '60' && mov[2] === '10.3' && mov[3] === '15430' && /\n {4}combate: icoMov\('/.test(s) && NUEVAS.every(id => depMov[id] === 'combate'), JSON.stringify([mov && mov.slice(1), depMov]));
+
+    /* en la pantalla */
+    const c45 = await contexto(b), p45 = await c45.newPage(), e45 = []; vigilar(p45, e45);
+    await abrirApp(p45); await abrirPerfilCuerpo(p45); await suCuerpo(p45); await vacio(p45);
+    await p45.click('#tgc-modo-m'); await p45.waitForTimeout(150);
+    const opts = await p45.evaluate(() => [...document.querySelectorAll('#tgc-dep-sel option')].map(o => o.value + ':' + o.textContent));
+    prueba('45: el desplegable, con los tres deportes de combate delante de «Otro deporte»', opts.slice(-4).join('|') === 'boxeo:Boxeo y kickboxing|jiujitsu:Jiu-jitsu, judo y lucha|karate:Karate y taekwondo|otro:Otro deporte', opts.join('|'));
+    const ficha45 = async () => {
+      await p45.waitForFunction(() => !document.getElementById('tgc-dep-ficha').hidden, null, { timeout: 15000 }).catch(() => {});
+      return p45.evaluate(() => {
+        const f = document.getElementById('tgc-dep-ficha');
+        return { visto: !f.hidden, cert: (f.querySelector('.tgc-cert') || {}).textContent || '', t: (f.querySelector('.tgc-dep-t') || {}).textContent || '',
+          secs: [...f.querySelectorAll('.tgc-dep-sec > summary')].map(x => x.textContent),
+          prio: [...f.querySelectorAll('.tgc-dep-gs .tgc-dep-g:not(.sec)')].map(x => x.dataset.g).join(), sec: [...f.querySelectorAll('.tgc-dep-gs .tgc-dep-g.sec')].map(x => x.dataset.g).join(),
+          grado: (f.querySelector('.tgc-dep-grado') || {}).textContent || '', figura: document.querySelectorAll('#cuerpo-panel .tgf-prio').length,
+          isla: [...f.querySelectorAll('.tgc-dep-sec')].map(d => d.textContent).join(' '),
+          fuentes: [...f.querySelectorAll('.tgc-dep-f a')].map(a => [a.href, a.target, a.rel]), guardado: JSON.parse(localStorage.getItem('tenerife.cuerpo')).deporte };
+      });
+    };
+    const fichas = {};
+    for (const id of NUEVAS) {
+      await p45.selectOption('#tgc-dep-sel', id);
+      await p45.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G.es[id].t, { timeout: 15000 }).catch(() => {});
+      fichas[id] = await ficha45();
+    }
+    const malF = NUEVAS.filter(id => { const x = fichas[id]; return !(x.visto && x.cert === 'Certeza baja' && x.t === G.es[id].t && x.secs.length === 8 && x.secs.includes('Ejercicios de la biblioteca')
+      && x.secs[x.secs.length - 1] === NF[id] + ' fuentes' && x.prio === GRUPOS[id][0] && x.sec === GRUPOS[id][1] && x.figura > 0 && x.guardado === id
+      && x.fuentes.length === NF[id] && x.fuentes.every(f => /^https:\/\//.test(f[0]) && f[1] === '_blank' && /noopener/.test(f[2]))); });
+    prueba('45: las tres fichas: certeza baja, 8 secciones, sus fuentes en otra pestaña y sin opener, el personaje con sus grupos prioritarios y secundarios, y se guarda',
+      !malF.length, JSON.stringify(malF.map(id => [id, fichas[id]])));
+    prueba('45: la nota de los grupos: del ensayo en el jiu-jitsu («De los estudios»), deducidos en el boxeo y el karate',
+      fichas.jiujitsu.grado === UI.cuerpoDepGrado_D.es && fichas.boxeo.grado === UI.cuerpoDepGrado_I.es && fichas.karate.grado === UI.cuerpoDepGrado_I.es,
+      JSON.stringify(NUEVAS.map(id => fichas[id].grado)));
+    prueba('45: «En Tenerife» del jiu-jitsu, con la lucha canaria (Bien de Interés Cultural, Decreto 82/2018)', /La lucha canaria, Bien de Interés Cultural desde 2018/.test(fichas.jiujitsu.isla) && /Decreto 82\/2018/.test(fichas.jiujitsu.isla));
+    /* los ejercicios del jiu-jitsu: los tres del ensayo primero, con su marca */
+    await p45.selectOption('#tgc-dep-sel', 'jiujitsu'); await p45.waitForTimeout(150);
+    await p45.evaluate(() => { const d = [...document.querySelectorAll('#tgc-dep-ficha .tgc-dep-sec')].find(x => x.querySelector('.tgc-dep-ej')); if (d) d.open = true; });
+    await p45.waitForFunction(() => document.querySelectorAll('#tgc-dep-ficha .tgc-dep-ej li button').length >= 5, null, { timeout: 15000 }).catch(() => {});
+    const ej45 = await p45.evaluate(() => [...document.querySelectorAll('#tgc-dep-ficha .tgc-dep-ej li button')].map(x => x.dataset.ej + ':' + (x.querySelector('.tgc-dep-tag') || {}).textContent));
+    prueba('45: los 5 ejercicios del jiu-jitsu, los 3 del ensayo («De los estudios»: sentadilla, press de banca y dominadas) primero', ej45.join() === 'sentadilla-trasera-barra:De los estudios,press-banca-barra:De los estudios,dominadas:De los estudios,dominada-con-toallas:Indirecto,suspension-barra:Indirecto', ej45.join());
+    /* la hoja del movimiento: con cada deporte de combate propone «Deportes de combate», 60 min, intensa, sin distancia */
+    const hoja45 = () => p45.evaluate(() => {
+      const g = id => document.getElementById(id), pul = document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]');
+      return { sel: pul && pul.dataset.tipo, nom: pul && pul.textContent.trim(), icono: !!(pul && pul.querySelector('svg')), min: g('tgc-mov-min').value, km: g('tgc-mov-km-fila').hidden ? null : g('tgc-mov-km').value,
+        int: g('tgc-mov-int-v').getAttribute('aria-pressed') === 'true' ? 'v' : 'm', nota: g('tgc-mov-nota').textContent, boton: g('tgc-mov-guardar-txt').textContent,
+        n: document.querySelectorAll('#tgc-mov-tipos .tgc-tipo').length, orden: [...document.querySelectorAll('#tgc-mov-tipos .tgc-tipo')].map(x => x.dataset.tipo).slice(-2).join(),
+        desborde: g('tgc-hoja').scrollWidth > g('tgc-hoja').clientWidth + 1 };
+    });
+    const propone = [];
+    for (const dep of NUEVAS) {
+      if (!(await p45.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p45);
+      await p45.selectOption('#tgc-dep-sel', dep); await p45.waitForTimeout(150);
+      await p45.click('#tgc-mov-btn'); await p45.waitForTimeout(300);
+      const h = await hoja45(); propone.push(dep + '→' + [h.sel, h.nom, h.icono, h.min, h.km, h.int, h.nota, h.boton, h.n, h.orden].join(':'));
+      if (dep !== 'karate') { await p45.keyboard.press('Escape'); await p45.waitForTimeout(150); }
+    }
+    const P = 'combate:Deportes de combate:true:60::v:Suma minutos a su semana.:Anotar 60 min:15:combate,otro';
+    prueba('45: con los tres deportes de combate, la hoja (15 deportes) propone «Deportes de combate», con su icono: 60 min, intensa, sin distancia, y «Anotar 60 min»',
+      propone.join('|') === NUEVAS.map(d => d + '→' + P).join('|'), propone.join(' | '));
+    await p45.click('#tgc-mov-guardar'); await p45.waitForTimeout(450);
+    const g45 = await p45.evaluate(() => { const m = TG_CUERPO.estado().mov, u = m[m.length - 1]; return { u: u && [u.tipo, u.min, u.km, u.int].join(','), toast: document.getElementById('tgc-toast-txt').textContent }; });
+    prueba('45: «Anotar» guarda «combate», 60 min, intensos, y avisa «Deportes de combate: 60 min anotados»', g45.u === 'combate,60,0,v' && g45.toast === 'Deportes de combate: 60 min anotados', JSON.stringify(g45));
+    /* en otros idiomas: los nombres, la ficha del karate y el nombre de la hoja, en el suyo */
+    const enIdiomas = [];
+    for (const l of ['en', 'zh', 'bg']) {
+      await idioma(p45, l);
+      if (!(await p45.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p45);
+      await p45.selectOption('#tgc-dep-sel', 'karate');
+      await p45.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G[l].karate.t, { timeout: 15000 }).catch(() => {});
+      const r = await p45.evaluate(() => ({ op: [...document.querySelectorAll('#tgc-dep-sel option')].slice(-4).map(o => o.textContent).join('|'), t: (document.querySelector('#tgc-dep-ficha .tgc-dep-t') || {}).textContent || '' }));
+      await p45.click('#tgc-mov-btn'); await p45.waitForTimeout(300);
+      const h = await hoja45(); await p45.keyboard.press('Escape'); await p45.waitForTimeout(150);
+      if (r.op !== [UI.cuerpoDep_boxeo[l], UI.cuerpoDep_jiujitsu[l], UI.cuerpoDep_karate[l], UI.cuerpoDep_otro[l]].join('|') || r.t !== G[l].karate.t || h.sel !== 'combate' || h.nom !== UI.cuerpoMov_combate[l])
+        enIdiomas.push(l + ': ' + JSON.stringify([r, h.sel, h.nom]));
+    }
+    prueba('45: en inglés, chino y búlgaro, los tres nombres, la ficha del karate y «Deportes de combate» en la hoja, en su idioma', !enIdiomas.length, enIdiomas.join(' | '));
+    /* a 320 px, en alemán y en búlgaro: ni el desplegable ni las tres fichas (abiertas) ni la hoja de 15 deportes se salen */
+    await p45.setViewportSize({ width: 320, height: 700 }); await p45.waitForTimeout(200);
+    const desb = [];
+    for (const l of ['de', 'bg']) {
+      await idioma(p45, l);
+      if (!(await p45.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p45);
+      for (const dep of NUEVAS) {
+        await p45.selectOption('#tgc-dep-sel', dep);
+        await p45.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G[l][dep].t, { timeout: 15000 }).catch(() => {});
+        await p45.evaluate(() => document.querySelectorAll('#tgc-dep-ficha details').forEach(d => { d.open = true; })); await p45.waitForTimeout(300);
+        const d = await p45.evaluate(() => {
+          const c = document.getElementById('tgc-deporte'), r = c.getBoundingClientRect(), fuera = [];
+          c.querySelectorAll('*').forEach(e => { const q = e.getBoundingClientRect(); if (q.width && (q.right > r.right + 1 || q.left < r.left - 1)) fuera.push(e.tagName + '.' + e.className); });
+          return { ancho: document.documentElement.scrollWidth, fuera: fuera.slice(0, 3) };
+        });
+        if (d.ancho > 320 || d.fuera.length) desb.push(l + ' ' + dep + ': ' + JSON.stringify(d));
+      }
+      await p45.click('#tgc-mov-btn'); await p45.waitForTimeout(300);
+      const h = await hoja45(); if (h.desborde || h.n !== 15) desb.push(l + ' hoja: ' + JSON.stringify(h));
+      await p45.keyboard.press('Escape'); await p45.waitForTimeout(150);
+    }
+    prueba('45: a 320 px, en alemán y en búlgaro, ni el desplegable ni las tres fichas (abiertas) ni la hoja de 15 deportes se salen', !desb.length, desb.join(' | '));
+    prueba('45: sin errores de página', e45.length === 0, e45.join(' | '));
+    await c45.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

@@ -2484,6 +2484,916 @@
     ]
    },
    {
+    "id": "boxeo",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "En los deportes de combate, el entrenamiento de fuerza mejoró la fuerza y la potencia y, en boxeo, la potencia y la velocidad del golpe, aunque los estudios eran de calidad baja (Cid-Calfucura 2023). En el boxeo amateur de élite, quienes golpean más fuerte tienen más fuerza máxima y explosiva en las piernas (Beattie y Ruddock 2022).",
+      "ro": "În sporturile de luptă, antrenamentul de forță a îmbunătățit forța și puterea, iar la box, puterea și viteza loviturii, deși studiile au fost de calitate scăzută (Cid-Calfucura 2023). În boxul amator de elită, cei care lovesc cel mai puternic au mai multă forță maximă și explozivă în picioare (Beattie și Ruddock 2022)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Una revisión de 20 estudios (5 de boxeo) con 504 deportistas de combate olímpicos: el entrenamiento de fuerza mejoró la fuerza máxima, la potencia, la flexibilidad y el equilibrio y, en boxeo, la potencia y la velocidad del golpe (Cid-Calfucura 2023).",
+      "ro": "O analiză a 20 de studii (5 despre box) cu 504 sportivi din sporturi olimpice de luptă: antrenamentul de forță a îmbunătățit forța maximă, puterea, flexibilitatea și echilibrul, iar la box, puterea și viteza loviturii (Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En 15 boxeadores de la selección brasileña (9 hombres y 6 mujeres), la fuerza y la potencia se relacionaron estrechamente con el impacto del golpe, con correlaciones de 0,67 a 0,85 (Loturco 2016).",
+      "ro": "La 15 boxeri din lotul național al Braziliei (9 bărbați și 6 femei), forța și puterea au fost strâns legate de impactul loviturii, cu corelații de la 0,67 la 0,85 (Loturco 2016)."
+     },
+     {
+      "ruta": [
+       "p",
+       2
+      ],
+      "es": "Según una revisión, en el boxeo amateur de élite el impacto del golpe se asocia a la fuerza máxima de las piernas y a la fuerza explosiva de piernas y brazos; a la fuerza máxima de los brazos, no (Beattie y Ruddock 2022).",
+      "ro": "Potrivit unei analize, în boxul amator de elită impactul loviturii este asociat cu forța maximă a picioarelor și cu forța explozivă a picioarelor și a brațelor; cu forța maximă a brațelor, nu (Beattie și Ruddock 2022)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "Con deportistas de combate, de 2 a 6 sesiones por semana durante 4 a 20 semanas; la mitad de los programas duró de 4 a 8 semanas (Cid-Calfucura 2023).",
+      "ro": "La sportivii din sporturile de luptă, între 2 și 6 ședințe pe săptămână timp de 4–20 de săptămâni; jumătate dintre programe au durat 4–8 săptămâni (Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "En las piernas, trabaje la fuerza máxima y la explosiva; en los brazos, solo la explosiva: es lo que aconseja la revisión para golpear más fuerte, aunque aún faltan ensayos que lo confirmen (Beattie y Ruddock 2022).",
+      "ro": "La picioare, lucrați forța maximă și pe cea explozivă; la brațe, doar pe cea explozivă: asta recomandă analiza pentru a lovi mai puternic, deși încă lipsesc studiile care să o confirme (Beattie și Ruddock 2022)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Los programas duraron de 4 a 20 semanas, así que en 1–2 semanas de vacaciones no espere cambios en su golpe: tómelo como mantenimiento (deducción).",
+      "ro": "Programele au durat între 4 și 20 de săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați la schimbări în lovitura dumneavoastră: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En 66 boxeadores del equipo británico (2005–2009), la mano fue la zona más lesionada, en los entrenamientos y en la competición, y las conmociones fueron comparativamente pocas (Loosemore 2015). En 152 practicantes de muay thai, lo más lesionado fueron las piernas y, en amateurs y profesionales, después la cabeza (Gartland 2001).",
+      "ro": "La 66 de boxeri din echipa britanică (2005–2009), mâna a fost zona cea mai accidentată, la antrenamente și în competiții, iar comoțiile au fost relativ puține (Loosemore 2015). La 152 de practicanți de muay thai, cel mai des s-au accidentat picioarele, iar la amatori și profesioniști, imediat după, capul (Gartland 2001)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Mano: la más lesionada en el equipo británico; el estudio pide proteger manos y muñecas",
+      "ro": "Mâna: cea mai accidentată în echipa britanică; studiul cere protejarea mâinilor și a încheieturilor"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Cabeza, cuello y cara: el 52,5 % de las lesiones en kickboxing profesional",
+      "ro": "Capul, gâtul și fața: 52,5 % din accidentări în kickboxul profesionist"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Piernas: las más lesionadas en el muay thai, y el 39,8 % en kickboxing profesional",
+      "ro": "Picioarele: cele mai accidentate la muay thai și 39,8 % din accidentări în kickboxul profesionist"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, sesiones más cortas y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, ședințe mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que la fuerza máxima de los brazos sea la clave del golpe: en el boxeo de élite no se asoció a su impacto (Beattie y Ruddock 2022).",
+      "ro": "Că forța maximă a brațelor este cheia loviturii: în boxul de elită nu a fost asociată cu impactul ei (Beattie și Ruddock 2022)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que los golpes repetidos en la cabeza no dejen huella: en 224 luchadores profesionales de boxeo y MMA, más combates y más años de carrera se asociaron a menos volumen cerebral y a un procesamiento más lento (Bernick 2015).",
+      "ro": "Că loviturile repetate în cap nu lasă urme: la 224 de luptători profesioniști de box și MMA, mai multe meciuri și mai mulți ani de carieră s-au asociat cu un volum cerebral mai mic și cu o procesare mai lentă a informațiilor (Bernick 2015)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Pruebas firmes: faltan ensayos en boxeo, y aún más con mujeres; en la revisión, 428 de los 504 deportistas eran hombres (Beattie y Ruddock 2022; Cid-Calfucura 2023).",
+      "ro": "Dovezi solide: lipsesc studiile experimentale la box, și cu atât mai mult cu femei; în analiză, 428 dintre cei 504 sportivi erau bărbați (Beattie și Ruddock 2022; Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Nunca he entrenado: ¿por dónde empiezo?",
+      "ro": "Nu m-am antrenat niciodată: de unde încep?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cómo caliento antes de entrenar?",
+      "ro": "Cum mă încălzesc înainte de antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "Me he dado un golpe fuerte en la cabeza",
+      "ro": "M-am lovit puternic la cap"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cuántos días a la semana debo hacer fuerza?",
+      "ro": "Câte zile pe săptămână ar trebui să fac forță?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Cuánta agua bebo si hago deporte con calor?",
+      "ro": "Câtă apă beau dacă fac sport pe căldură?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Efectos del entrenamiento de fuerza en la condición física de los deportistas de combate olímpicos: revisión sistemática (Cid-Calfucura et al., Int J Environ Res Public Health 2023)",
+      "ro": "Efectele antrenamentului de forță asupra condiției fizice a sportivilor din sporturile olimpice de luptă: analiză sistematică (Cid-Calfucura et al., Int J Environ Res Public Health 2023)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "La fuerza y la potencia se asocian estrechamente al impacto del golpe en boxeadores amateurs de élite (Loturco et al., J Strength Cond Res 2016)",
+      "ro": "Forța și puterea sunt strâns asociate cu impactul loviturii la boxerii amatori de elită (Loturco et al., J Strength Cond Res 2016)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "El papel de la fuerza en el impacto del golpe en el boxeo (Beattie y Ruddock, J Strength Cond Res 2022)",
+      "ro": "Rolul forței în impactul loviturii la box (Beattie și Ruddock, J Strength Cond Res 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Epidemiología de las lesiones en el equipo de boxeo de Gran Bretaña: 5 años de vigilancia (Loosemore et al., Br J Sports Med 2015)",
+      "ro": "Epidemiologia accidentărilor în echipa de box a Marii Britanii: 5 ani de monitorizare (Loosemore et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Lesiones y tasas de lesión en el muay thai (Gartland et al., Br J Sports Med 2001)",
+      "ro": "Accidentări și rate de accidentare la muay thai (Gartland et al., Br J Sports Med 2001)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Estudio de 16 años de las lesiones de los kickboxers profesionales del estado de Victoria, Australia (Zazryn et al., Br J Sports Med 2003)",
+      "ro": "Studiu pe 16 ani al accidentărilor kickboxerilor profesioniști din statul Victoria, Australia (Zazryn et al., Br J Sports Med 2003)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Los golpes repetidos en la cabeza se asocian a un tálamo más pequeño y a un procesamiento más lento (Bernick et al., Br J Sports Med 2015)",
+      "ro": "Traumatismele repetate ale capului se asociază cu un talamus mai mic și cu o procesare mai lentă (Bernick et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       10,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "jiujitsu",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "En un ensayo con 14 competidores de jiu-jitsu brasileño, añadir trabajo de fuerza máxima 3 veces por semana subió la sentadilla un 15 % y el press de banca un 11 %; quienes solo hicieron jiu-jitsu no mejoraron (Øvretveit y Tøien 2018). En judo, el entrenamiento de fuerza mejoró los lanzamientos (Cid-Calfucura 2023).",
+      "ro": "Într-un studiu cu 14 sportivi de competiție la jiu-jitsu brazilian, adăugarea antrenamentului de forță maximă de 3 ori pe săptămână a crescut genuflexiunea cu 15 % și împinsul din culcat cu 11 %; cei care au făcut doar jiu-jitsu nu au progresat (Øvretveit și Tøien 2018). La judo, antrenamentul de forță a îmbunătățit aruncările (Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "En ese ensayo, quienes añadieron ese trabajo de fuerza también saltaron un 9 % más e hicieron más repeticiones: un 33 % más de dominadas, un 32 % más de flexiones y un 13 % más de abdominales (Øvretveit y Tøien 2018).",
+      "ro": "În acel studiu, cei care au adăugat antrenamentul de forță au sărit și cu 9 % mai sus și au făcut mai multe repetări: cu 33 % mai multe tracțiuni, cu 32 % mai multe flotări și cu 13 % mai multe abdomene (Øvretveit și Tøien 2018)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "Una revisión de 20 estudios de deportes de combate olímpicos (7 de judo y 2 de lucha) halló que el entrenamiento de fuerza mejoró la fuerza máxima, la potencia, la flexibilidad y el equilibrio y, en judo, las técnicas de lanzamiento (Cid-Calfucura 2023).",
+      "ro": "O analiză a 20 de studii despre sporturile olimpice de luptă (7 despre judo și 2 despre lupte) a constatat că antrenamentul de forță a îmbunătățit forța maximă, puterea, flexibilitatea și echilibrul, iar la judo, tehnicile de aruncare (Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "Con competidores de jiu-jitsu, 3 sesiones por semana: 4 series de 4 repeticiones con el 85 % o más del máximo en sentadilla y press de banca, y 4 series de dominadas hasta no poder más (Øvretveit y Tøien 2018).",
+      "ro": "La sportivii de competiție la jiu-jitsu, 3 ședințe pe săptămână: 4 serii a câte 4 repetări cu 85 % sau mai mult din maxim la genuflexiuni și la împins din culcat și 4 serii de tracțiuni până la epuizare (Øvretveit și Tøien 2018)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Sume la fuerza a su deporte, sin quitarle entrenamientos: en el ensayo, los dos grupos siguieron con su jiu-jitsu de siempre (Øvretveit y Tøien 2018).",
+      "ro": "Adăugați lucrul de forță la sportul dumneavoastră, fără să renunțați la antrenamentele lui: în studiu, ambele grupuri și-au continuat jiu-jitsu-ul obișnuit (Øvretveit și Tøien 2018)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Tras cada sesión en el tapiz, dúchese con jabón antimicrobiano, lave la ropa cada día y no comparta toallas ni material: lo pide la NATA para evitar infecciones de piel (Zinder 2010).",
+      "ro": "După fiecare ședință pe saltea, faceți duș cu săpun antimicrobian, spălați-vă hainele de antrenament în fiecare zi și nu împărțiți prosoapele sau echipamentul: asta cere NATA pentru a preveni infecțiile pielii (Zinder 2010)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       3
+      ],
+      "es": "En 1–2 semanas de vacaciones, tómelo como mantenimiento: en la revisión, los programas duraron de 4 a 20 semanas (deducción).",
+      "ro": "Într-o vacanță de 1–2 săptămâni, considerați-o întreținere: în analiză, programele au durat între 4 și 20 de săptămâni (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En la competición de jiu-jitsu brasileño hubo 9,2 lesiones por cada 1.000 participaciones en combate; el 78 %, ortopédicas, y la más frecuente, en el codo, por la palanca de brazo (Scoggin 2014). En los Juegos Olímpicos de 2008 y 2012 se lesionó, de media, en torno al 11–12 % de los judocas, y la causa más común fue ser lanzado (Pocecco 2013).",
+      "ro": "În competițiile de jiu-jitsu brazilian au fost 9,2 accidentări la 1.000 de participări la meci; 78 % au fost ortopedice, iar cea mai frecventă a fost la cot, din cauza cheii la braț (Scoggin 2014). La Jocurile Olimpice din 2008 și 2012 s-au accidentat în medie în jur de 11–12 % dintre judoka, iar cauza cea mai frecventă a fost faptul de a fi aruncat (Pocecco 2013)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Codo: la lesión más frecuente en la competición de jiu-jitsu, por la palanca de brazo",
+      "ro": "Cotul: accidentarea cea mai frecventă în competițiile de jiu-jitsu, din cauza cheii la braț"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Rodilla, hombro y dedos: los esguinces, distensiones y contusiones más citados en judo",
+      "ro": "Genunchiul, umărul și degetele: entorsele, întinderile și contuziile cele mai citate la judo"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Piel: infecciones contagiosas en los deportes de tapiz, por virus, hongos o bacterias",
+      "ro": "Pielea: infecții contagioase în sporturile pe saltea, cauzate de virusuri, ciuperci sau bacterii"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, sesiones más cortas y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, ședințe mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "La lucha canaria, Bien de Interés Cultural desde 2018, es la lucha propia de las islas: se lucha de pie en un terrero de arena, y gana quien hace que el otro toque el suelo con algo que no sea la planta de los pies; no hay lucha en el suelo, ni luxaciones ni estrangulaciones (Decreto 82/2018).",
+      "ro": "Lupta canariană, Bun de Interes Cultural din 2018, este lupta proprie a insulelor: se luptă în picioare, într-un cerc de nisip, și câștigă cel care îl face pe celălalt să atingă pământul cu altceva decât tălpile; nu există luptă la sol, chei sau strangulări (Decretul 82/2018)."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que a quien ya compite le baste su deporte para ganar fuerza: en el ensayo, quienes solo hicieron jiu-jitsu no mejoraron en ninguna prueba (Øvretveit y Tøien 2018).",
+      "ro": "Că, dacă participați deja la competiții, sportul dumneavoastră vă ajunge ca să câștigați forță: în studiu, cei care au făcut doar jiu-jitsu nu au progresat la niciun test (Øvretveit și Tøien 2018)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que el ensayo valga para todos: fueron solo 14 hombres que ya competían, y midió efectos a corto plazo.",
+      "ro": "Că studiul este valabil pentru toți: au participat doar 14 bărbați care concurau deja, iar efectele măsurate au fost pe termen scurt."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Pruebas firmes: en la revisión, la calidad de los estudios fue baja, y 428 de los 504 deportistas eran hombres (Cid-Calfucura 2023).",
+      "ro": "Dovezi solide: în analiză, calitatea studiilor a fost scăzută, iar 428 dintre cei 504 sportivi erau bărbați (Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Nunca he entrenado: ¿por dónde empiezo?",
+      "ro": "Nu m-am antrenat niciodată: de unde încep?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cómo caliento antes de entrenar?",
+      "ro": "Cum mă încălzesc înainte de antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "Me he lesionado: ¿cuándo puedo volver a entrenar?",
+      "ro": "M-am accidentat: când pot reveni la antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cuántos días a la semana debo hacer fuerza?",
+      "ro": "Câte zile pe săptămână ar trebui să fac forță?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "Estoy de vacaciones una o dos semanas: ¿cómo mantengo lo ganado?",
+      "ro": "Sunt în vacanță una sau două săptămâni: cum păstrez ce am câștigat?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "El entrenamiento de fuerza máxima mejora la fuerza de los luchadores de agarre (Øvretveit y Tøien, J Strength Cond Res 2018)",
+      "ro": "Antrenamentul de forță maximă îmbunătățește forța luptătorilor (Øvretveit și Tøien, J Strength Cond Res 2018)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Efectos del entrenamiento de fuerza en la condición física de los deportistas de combate olímpicos: revisión sistemática (Cid-Calfucura et al., Int J Environ Res Public Health 2023)",
+      "ro": "Efectele antrenamentului de forță asupra condiției fizice a sportivilor din sporturile olimpice de luptă: analiză sistematică (Cid-Calfucura et al., Int J Environ Res Public Health 2023)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Lesiones en la competición de jiu-jitsu brasileño (Scoggin et al., Orthop J Sports Med 2014)",
+      "ro": "Accidentările în competițiile de jiu-jitsu brazilian (Scoggin et al., Orthop J Sports Med 2014)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Lesiones en judo: revisión sistemática con propuestas de prevención (Pocecco et al., Br J Sports Med 2013)",
+      "ro": "Accidentările la judo: analiză sistematică a literaturii, cu propuneri de prevenire (Pocecco et al., Br J Sports Med 2013)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Postura de la NATA sobre las enfermedades de la piel (Zinder et al., J Athl Train 2010)",
+      "ro": "Declarația de poziție a NATA privind bolile de piele (Zinder et al., J Athl Train 2010)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Decreto 82/2018 por el que se declara Bien de Interés Cultural la Lucha Canaria (BOC n.º 104, 2018)",
+      "ro": "Decretul 82/2018 prin care lupta canariană este declarată Bun de Interes Cultural (BOC nr. 104, 2018)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "karate",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "Según una revisión, en karate el entrenamiento de fuerza mejoró la puntuación del kata, aunque los estudios eran pocos y de calidad baja, y de taekwondo no encontró ninguno que cumpliera sus criterios (Cid-Calfucura 2023). En personas mayores, los deportes de combate olímpicos mejoraron la prueba de levantarse de la silla (Valdés-Badilla 2021).",
+      "ro": "Potrivit unei analize, la karate antrenamentul de forță a îmbunătățit nota la kata, deși studiile au fost puține și de calitate scăzută, iar la taekwondo nu a găsit niciunul care să-i îndeplinească criteriile (Cid-Calfucura 2023). La persoanele vârstnice, sporturile olimpice de luptă au îmbunătățit testul ridicării de pe scaun (Valdés-Badilla 2021)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Una revisión de 20 estudios (5 de karate) con 504 deportistas de combate olímpicos: el entrenamiento de fuerza mejoró la fuerza máxima, la potencia, la flexibilidad y el equilibrio y, en karate, la puntuación del kata Gankaku (Cid-Calfucura 2023).",
+      "ro": "O analiză a 20 de studii (5 despre karate) cu 504 sportivi din sporturi olimpice de luptă: antrenamentul de forță a îmbunătățit forța maximă, puterea, flexibilitatea și echilibrul, iar la karate, nota la kata Gankaku (Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En personas mayores, 12 ensayos con 735 participantes de 69,6 años de media: los deportes de combate olímpicos (boxeo, judo, karate y taekwondo) mejoraron la prueba de levantarse de la silla, y más del 80 % siguió los programas (Valdés-Badilla 2021).",
+      "ro": "La persoanele vârstnice, 12 studii cu 735 de participanți cu vârsta medie de 69,6 ani: sporturile olimpice de luptă (box, judo, karate și taekwondo) au îmbunătățit testul ridicării de pe scaun, iar peste 80 % au urmat programele până la capăt (Valdés-Badilla 2021)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "Con deportistas de combate, de 2 a 6 sesiones por semana durante 4 a 20 semanas; la mitad de los programas duró de 4 a 8 semanas (Cid-Calfucura 2023).",
+      "ro": "La sportivii din sporturile de luptă, între 2 și 6 ședințe pe săptămână timp de 4–20 de săptămâni; jumătate dintre programe au durat 4–8 săptămâni (Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Si combina fuerza con carrera o bici el mismo día, deje al menos 3 horas entre ambas: con 20 minutos o menos, la fuerza explosiva se resintió (Schumann 2022).",
+      "ro": "Dacă combinați forța cu alergarea sau bicicleta în aceeași zi, lăsați cel puțin 3 ore între ele: cu 20 de minute sau mai puțin, forța explozivă a avut de suferit (Schumann 2022)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Los programas duraron de 4 a 20 semanas, así que en 1–2 semanas de vacaciones no espere cambios: tómelo como mantenimiento (deducción).",
+      "ro": "Programele au durat între 4 și 20 de săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați la schimbări: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En el karate de competición (28 estudios) hubo, de media, 1 lesión cada 11 combates, unos 25 minutos de combate, y la gran mayoría fue leve, sobre todo contusiones (Lystad 2020). En el taekwondo de competición, la patada circular causó el 56,9 % de las lesiones en hombres y el 49,8 % en mujeres, y no saber bloquear fue una de las causas principales (Pieter 2012).",
+      "ro": "În karateul de competiție (28 de studii) a fost, în medie, 1 accidentare la fiecare 11 meciuri, cam la 25 de minute de luptă, iar marea majoritate au fost ușoare, mai ales contuzii (Lystad 2020). În taekwondo-ul de competiție, lovitura circulară cu piciorul a provocat 56,9 % din accidentări la bărbați și 49,8 % la femei, iar lipsa abilității de a bloca a fost una dintre cauzele principale (Pieter 2012)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Cabeza y cuello: las más lesionadas en karate, con una mediana del 57,9 % de las lesiones",
+      "ro": "Capul și gâtul: cele mai accidentate la karate, cu o mediană de 57,9 % din accidentări"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Piernas: el 44,5 % de las lesiones en el taekwondo de competición en hombres y el 53,1 % en mujeres",
+      "ro": "Picioarele: 44,5 % din accidentări în taekwondo-ul de competiție la bărbați și 53,1 % la femei"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Cabeza y cuello en taekwondo: el 29,6 % de las lesiones en hombres y el 15,2 % en mujeres",
+      "ro": "Capul și gâtul la taekwondo: 29,6 % din accidentări la bărbați și 15,2 % la femei"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, sesiones más cortas y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, ședințe mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que los saltos mejoren por sí solos su karate o su taekwondo: en un metaanálisis con deportistas de combate, sobre todo menores de 18 años, mejoraron el salto y la fuerza de las piernas, pero no de forma clara el rendimiento propio de cada deporte (Ojeda-Aravena 2023).",
+      "ro": "Că săriturile vă îmbunătățesc singure karateul sau taekwondo-ul: într-o metaanaliză cu sportivi din sporturile de luptă, în mare parte sub 18 ani, s-au îmbunătățit săritura și forța picioarelor, dar nu clar performanța specifică fiecărui sport (Ojeda-Aravena 2023)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que el karate o el taekwondo eviten caídas en los mayores: en 8 estudios con 322 mayores, no hubo diferencias en el riesgo de caídas ni en las caídas (Valdés-Badilla 2022).",
+      "ro": "Că karateul sau taekwondo-ul previn căderile la vârstnici: în 8 studii cu 322 de vârstnici, nu au existat diferențe în riscul de cădere sau în numărul de căderi (Valdés-Badilla 2022)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Pruebas firmes: en la revisión, la calidad de los estudios fue baja, y 428 de los 504 deportistas eran hombres (Cid-Calfucura 2023).",
+      "ro": "Dovezi solide: în analiză, calitatea studiilor a fost scăzută, iar 428 dintre cei 504 sportivi erau bărbați (Cid-Calfucura 2023)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Nunca he entrenado: ¿por dónde empiezo?",
+      "ro": "Nu m-am antrenat niciodată: de unde încep?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cómo caliento antes de entrenar?",
+      "ro": "Cum mă încălzesc înainte de antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "Me he dado un golpe fuerte en la cabeza",
+      "ro": "M-am lovit puternic la cap"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "Me he lesionado: ¿cuándo puedo volver a entrenar?",
+      "ro": "M-am accidentat: când pot reveni la antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Puedo hacer fuerza y cardio el mismo día?",
+      "ro": "Pot face forță și cardio în aceeași zi?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Efectos del entrenamiento de fuerza en la condición física de los deportistas de combate olímpicos: revisión sistemática (Cid-Calfucura et al., Int J Environ Res Public Health 2023)",
+      "ro": "Efectele antrenamentului de forță asupra condiției fizice a sportivilor din sporturile olimpice de luptă: analiză sistematică (Cid-Calfucura et al., Int J Environ Res Public Health 2023)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Efectos de los deportes de combate olímpicos en la salud de las personas mayores: revisión sistemática (Valdés-Badilla et al., Int J Environ Res Public Health 2021)",
+      "ro": "Efectele sporturilor olimpice de luptă asupra stării de sănătate a vârstnicilor: analiză sistematică (Valdés-Badilla et al., Int J Environ Res Public Health 2021)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Eficacia de los deportes de combate olímpicos en el equilibrio, el riesgo de caídas y las caídas de las personas mayores: revisión sistemática (Valdés-Badilla et al., Biology 2022)",
+      "ro": "Eficacitatea sporturilor olimpice de luptă asupra echilibrului, a riscului de cădere și a căderilor la vârstnici: analiză sistematică (Valdés-Badilla et al., Biology 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Revisión sistemática y metaanálisis de los efectos del entrenamiento pliométrico de saltos en la condición física de los deportistas de combate (Ojeda-Aravena et al., Sports 2023)",
+      "ro": "Analiză sistematică și metaanaliză a efectelor antrenamentului pliometric cu sărituri asupra condiției fizice a sportivilor din sporturile de luptă (Ojeda-Aravena et al., Sports 2023)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Epidemiología de las lesiones en las competiciones de karate de estilo olímpico: revisión sistemática y metaanálisis (Lystad et al., Br J Sports Med 2020)",
+      "ro": "Epidemiologia accidentărilor în competițiile de karate de stil olimpic: analiză sistematică și metaanaliză (Lystad et al., Br J Sports Med 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Lesiones en la competición de taekwondo: revisión de la literatura y propuestas de prevención y vigilancia (Pieter et al., Br J Sports Med 2012)",
+      "ro": "Accidentările în competițiile de taekwondo: analiză a literaturii și propuneri de prevenire și monitorizare (Pieter et al., Br J Sports Med 2012)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Compatibilidad del entrenamiento aeróbico y de fuerza: revisión sistemática y metaanálisis actualizados (Schumann et al., Sports Med 2022)",
+      "ro": "Compatibilitatea antrenamentului aerob și a celui de forță: analiză sistematică și metaanaliză actualizate (Schumann et al., Sports Med 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       10,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
     "id": "otro",
     "textos": [
      {
