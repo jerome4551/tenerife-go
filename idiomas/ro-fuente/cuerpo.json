@@ -1125,6 +1125,13 @@
   },
   {
    "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_funcional",
+   "es": "Entrenamiento funcional",
+   "forma": "texto",
+   "ro": "Antrenament funcțional"
+  },
+  {
+   "tabla": "CUERPO_UI",
    "clave": "cuerpoMov_otro",
    "es": "Otro deporte",
    "forma": "texto",
@@ -4188,6 +4195,62 @@
    "es": "Karate y taekwondo",
    "forma": "texto",
    "ro": "Karate și taekwondo"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_yoga",
+   "es": "Yoga y Pilates",
+   "forma": "texto",
+   "ro": "Yoga și Pilates"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_funcional",
+   "es": "Entrenamiento funcional",
+   "forma": "texto",
+   "ro": "Antrenament funcțional"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrupo_aire",
+   "es": "Al aire libre",
+   "forma": "texto",
+   "ro": "În aer liber"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrupo_agua",
+   "es": "En el agua",
+   "forma": "texto",
+   "ro": "În apă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrupo_raqueta",
+   "es": "Deportes de raqueta",
+   "forma": "texto",
+   "ro": "Sporturi cu rachetă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrupo_fuerza",
+   "es": "Fuerza",
+   "forma": "texto",
+   "ro": "Forță"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrupo_combate",
+   "es": "Deportes de combate",
+   "forma": "texto",
+   "ro": "Sporturi de luptă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrupo_sala",
+   "es": "Clases en sala",
+   "forma": "texto",
+   "ro": "Cursuri în sală"
   },
   {
    "tabla": "CUERPO_UI",

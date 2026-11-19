@@ -3394,6 +3394,862 @@
     ]
    },
    {
+    "id": "escalada",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "En escaladores, escalar y además entrenar la fuerza mejoró más que solo escalar las pruebas propias de la escalada, como colgarse de los dedos; y entrenar los flexores de los dedos mejoró su fuerza y la resistencia del antebrazo. Los estudios son pocos y cortos, y la mayoría de sus escaladores eran hombres (Stien 2022).",
+      "ro": "La cățărători, escalada însoțită de antrenament de forță a îmbunătățit mai mult decât escalada singură testele specifice escaladei, cum ar fi atârnatul în degete; iar antrenarea flexorilor degetelor le-a crescut forța și rezistența antebrațului. Studiile sunt puține și scurte, iar majoritatea cățărătorilor din ele erau bărbați (Stien 2022)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Una revisión de 11 estudios con 225 escaladores: en su metaanálisis (5 estudios, 110 escaladores), el entrenamiento de fuerza mejoró más que solo escalar las pruebas propias de la escalada, como colgarse de los dedos o la fuerza de los dedos (Stien 2022).",
+      "ro": "O analiză a 11 studii cu 225 de cățărători: în metaanaliza ei (5 studii, 110 cățărători), antrenamentul de forță a îmbunătățit mai mult decât escalada singură testele specifice escaladei, cum ar fi atârnatul în degete sau forța degetelor (Stien 2022)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "Entrenar los flexores de los dedos mejoró, frente a solo escalar, la fuerza de los dedos, la rapidez para aplicarla y, sobre todo, la resistencia del antebrazo (Stien 2022).",
+      "ro": "Față de escalada singură, antrenarea flexorilor degetelor a îmbunătățit forța degetelor, rapiditatea cu care este aplicată și, mai ales, rezistența antebrațului (Stien 2022)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "En los estudios, de 2 a 4 sesiones por semana (lo más habitual, 3) durante 4 a 10 semanas; el ejercicio más usado fue colgarse de los dedos en una tabla multipresa (Stien 2022).",
+      "ro": "În studii, între 2 și 4 ședințe pe săptămână (cel mai des 3) timp de 4–10 săptămâni; exercițiul cel mai folosit a fost atârnatul în degete pe o placă de antrenament pentru degete (Stien 2022)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Sume la fuerza a la escalada, sin dejar de escalar: en los estudios se comparó escalar y además entrenar la fuerza con solo escalar (Stien 2022).",
+      "ro": "Adăugați forța la escaladă, fără să vă cățărați mai puțin: studiile au comparat escalada plus antrenamentul de forță cu escalada singură (Stien 2022)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Según una revisión, un programa de fuerza para prevenir lesiones redujo las de hombro y las de codo en escaladores (Quarmby 2023).",
+      "ro": "Potrivit unei analize, un program de forță pentru prevenirea accidentărilor a redus accidentările de umăr și de cot la cățărători (Quarmby 2023)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       3
+      ],
+      "es": "Suba las horas y las cargas de escalada poco a poco, y vigile las señales de sobrecarga: lo piden los autores del estudio sueco (Backe 2009).",
+      "ro": "Creșteți treptat orele și încărcarea la escaladă și urmăriți semnele de suprasolicitare: asta cer autorii studiului suedez (Backe 2009)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       4
+      ],
+      "es": "Los programas duraron de 4 a 10 semanas, así que en 1–2 semanas de vacaciones no espere cambios: tómelo como mantenimiento (deducción).",
+      "ro": "Programele au durat 4–10 săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați la schimbări: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En una muestra de la Federación Sueca de Escalada hubo 4,2 lesiones por cada 1.000 horas de escalada, el 93 % por sobrecarga, y las más comunes fueron inflamaciones de dedos y muñecas (Backe 2009). Según una revisión de 34 estudios, escalar a más intensidad, el búlder, tener menos fuerza de agarre, el agarre en arqueo y una lesión previa se asociaron a más lesiones por sobrecarga (Quarmby 2023).",
+      "ro": "Într-un eșantion din Federația Suedeză de Escaladă au fost 4,2 accidentări la 1.000 de ore de escaladă, 93 % din suprasolicitare, iar cele mai frecvente au fost inflamațiile degetelor și ale încheieturilor mâinii (Backe 2009). Potrivit unei analize a 34 de studii, escalada la intensitate mai mare, boulderingul, o forță de prindere mai mică, priza cu degetele arcuite și o accidentare anterioară s-au asociat cu mai multe accidentări din suprasolicitare (Quarmby 2023)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Dedos y muñecas: las lesiones más comunes, casi todas por sobrecarga",
+      "ro": "Degetele și încheieturile mâinii: accidentările cele mai frecvente, aproape toate din suprasolicitare"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Hombros: con los dedos, donde más lesiones por sobrecarga hay en los adultos",
+      "ro": "Umerii: alături de degete, locul cu cele mai multe accidentări din suprasolicitare la adulți"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "En el Parque Nacional del Teide, la escalada hay que comunicarla antes por la aplicación electrónica del parque, con reserva y cupos, y solo se permite en zonas fijadas, como los Roques de García o La Catedral. No se pueden tallar agarres, el magnesio ha de ser del color de la roca y puede prohibirse en lugares y épocas para proteger las aves (Decreto 182/2025).",
+      "ro": "În Parcul Național Teide, escalada trebuie anunțată dinainte prin aplicația electronică a parcului, cu rezervare și locuri limitate, și este permisă doar în zone stabilite, precum Roques de García sau La Catedral. Este interzisă cioplirea prizelor, magneziul trebuie să aibă culoarea stâncii, iar escalada poate fi interzisă în anumite locuri și perioade pentru protejarea păsărilor (Decretul 182/2025)."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "El sol es más intenso en altura: en agosto de 2024, Izaña (2.371 m) marcó un índice UV de 13,7, el máximo que registró AEMET ese mes.",
+      "ro": "Soarele este mai puternic la altitudine: în august 2024, Izaña (2.371 m) a înregistrat un indice UV de 13,7, maximul înregistrat de AEMET în acea lună."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que suba su grado de escalada: la revisión dice que puede mejorar, pero sus estudios no se pudieron combinar y los resultados fueron dispares (Stien 2022).",
+      "ro": "Că vă va crește gradul de dificultate la escaladă: analiza spune că se poate îmbunătăți, dar studiile ei nu au putut fi combinate, iar rezultatele au fost contradictorii (Stien 2022)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que baste el trabajo de brazos en el gimnasio: en uno de los estudios, no mejoró de forma significativa el grado de los escaladores (Stien 2022).",
+      "ro": "Că ajunge lucrul brațelor la sală: într-unul dintre studii, nu a îmbunătățit semnificativ gradul cățărătorilor (Stien 2022)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Pruebas firmes: son pocos estudios, de 10 semanas como mucho, y ninguno solo con mujeres (Stien 2022).",
+      "ro": "Dovezi solide: studiile sunt puține, de cel mult 10 săptămâni, și niciunul doar cu femei (Stien 2022)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Nunca he entrenado: ¿por dónde empiezo?",
+      "ro": "Nu m-am antrenat niciodată: de unde încep?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cómo caliento antes de entrenar?",
+      "ro": "Cum mă încălzesc înainte de antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "Me he lesionado: ¿cuándo puedo volver a entrenar?",
+      "ro": "M-am accidentat: când pot reveni la antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cuántos días a la semana debo hacer fuerza?",
+      "ro": "Câte zile pe săptămână ar trebui să fac forță?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Puedo tener mal de altura en el Teide?",
+      "ro": "Pot face rău de altitudine pe Teide?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Efectos del entrenamiento de escalada y de fuerza en el rendimiento propio de la escalada: revisión sistemática y metaanálisis (Stien et al., Biol Sport 2023)",
+      "ro": "Efectele antrenamentului de escaladă și de forță asupra performanței specifice escaladei: analiză sistematică și metaanaliză (Stien et al., Biol Sport 2023)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Tasas de lesión en la escalada en roca y sus factores de riesgo en una población general de escaladores (Backe et al., Scand J Med Sci Sports 2009)",
+      "ro": "Ratele de accidentare la escalada pe stâncă și factorii de risc asociați într-o populație generală de cățărători (Backe et al., Scand J Med Sci Sports 2009)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Factores de riesgo y estrategias de prevención de las lesiones por sobrecarga en escaladores adultos: revisión sistemática (Quarmby et al., Front Sports Act Living 2023)",
+      "ro": "Factori de risc și prevenirea accidentărilor din suprasolicitare la cățărătorii adulți: analiză sistematică (Quarmby et al., Front Sports Act Living 2023)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Epidemiología de las lesiones musculoesqueléticas en escaladores: revisión sistemática (Zieliński et al., J Funct Morphol Kinesiol 2026)",
+      "ro": "Epidemiologia leziunilor musculo-scheletice la cățărători: analiză sistematică (Zieliński et al., J Funct Morphol Kinesiol 2026)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Decreto 182/2025, por el que se aprueba el Plan Rector de Uso y Gestión del Parque Nacional del Teide (BOC n.º 240, 2025)",
+      "ro": "Decretul 182/2025 de aprobare a Planului director de utilizare și gestionare a Parcului Național Teide (BOC nr. 240, 2025)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Resumen mensual de la radiación ultravioleta y la capa de ozono, agosto de 2024 (AEMET)",
+      "ro": "Rezumatul lunar al radiației ultraviolete și al stratului de ozon, august 2024 (AEMET)"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "yoga",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "En mayores de 60 años, el yoga mejoró la fuerza de las piernas y la flexibilidad, también frente a otras actividades, y el equilibrio frente a no hacer nada (Sivaramakrishnan 2019). En mayores, el Pilates mejoró la fuerza, con certeza moderada, y el equilibrio y la flexibilidad, con certeza baja (Fernández-Rodríguez 2021).",
+      "ro": "La persoanele de peste 60 de ani, yoga a îmbunătățit forța picioarelor și flexibilitatea, inclusiv față de alte activități, și echilibrul față de lipsa oricărei activități (Sivaramakrishnan 2019). La vârstnici, Pilatesul a îmbunătățit forța, cu certitudine moderată, și echilibrul și flexibilitatea, cu certitudine scăzută (Fernández-Rodríguez 2021)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "En 17 ensayos con 967 mayores de 60 años sin una enfermedad concreta, el yoga mejoró la fuerza de las piernas (al levantarse de la silla) y la flexibilidad de la parte baja del cuerpo, frente a no hacer nada y frente a otras actividades, como caminar (Sivaramakrishnan 2019).",
+      "ro": "În 17 studii cu 967 de persoane de peste 60 de ani fără o boală anume, yoga a îmbunătățit forța picioarelor (ridicarea de pe scaun) și flexibilitatea părții de jos a corpului, față de lipsa oricărei activități și față de alte activități, cum ar fi mersul pe jos (Sivaramakrishnan 2019)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "Una revisión de 39 estudios con mayores de 60 años: frente a no hacer ejercicio o a la vida de siempre, el Pilates mejoró la fuerza y redujo el riesgo de caídas (certeza moderada), y mejoró el equilibrio, la flexibilidad y la capacidad funcional (certeza baja) (Fernández-Rodríguez 2021).",
+      "ro": "O analiză a 39 de studii cu persoane de peste 60 de ani: față de lipsa exercițiilor sau de viața obișnuită, Pilatesul a îmbunătățit forța și a redus riscul de cădere (certitudine moderată) și a îmbunătățit echilibrul, flexibilitatea și capacitatea funcțională (certitudine scăzută) (Fernández-Rodríguez 2021)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "En los ensayos de yoga con mayores, lo más habitual fueron 2 sesiones por semana (si no, 3), de 60 minutos, durante 4 a 28 semanas (Sivaramakrishnan 2019).",
+      "ro": "În studiile de yoga cu vârstnici, cel mai des au fost 2 ședințe pe săptămână (altfel 3), de 60 de minute, timp de 4–28 de săptămâni (Sivaramakrishnan 2019)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Según el Compendio de 2024, el yoga en general (2,3 MET) y el Pilates (2,8 MET) son actividades ligeras, por debajo de 3 MET: para la actividad aeróbica moderada que pide la OMS, súmeles caminar, nadar o la bici (deducción).",
+      "ro": "Potrivit Compendiului din 2024, yoga în general (2,3 MET) și Pilatesul (2,8 MET) sunt activități ușoare, sub 3 MET: pentru activitatea aerobică moderată pe care o cere OMS, adăugați mersul pe jos, înotul sau bicicleta (deducție)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "En 1–2 semanas de vacaciones, tómelo como mantenimiento: los programas de los ensayos duraron de 4 a 28 semanas (deducción).",
+      "ro": "Într-o vacanță de 1–2 săptămâni, considerați-o întreținere: programele din studii au durat 4–28 de săptămâni (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En 94 ensayos con 8.430 participantes, el yoga no dio más efectos adversos que la atención habitual u otro ejercicio (Cramer 2015). En las urgencias de EE. UU., en 2014, hubo 57,9 lesiones de yoga por cada 100.000 practicantes de 65 años o más, frente a 11,9 entre los de 18 a 44 (Swain y McGwin 2016).",
+      "ro": "În 94 de studii cu 8.430 de participanți, yoga nu a provocat mai multe efecte adverse decât îngrijirea obișnuită sau alt exercițiu (Cramer 2015). La urgențele din SUA, în 2014, au fost 57,9 accidentări de yoga la 100.000 de practicanți de 65 de ani sau mai mult, față de 11,9 la cei între 18 și 44 de ani (Swain și McGwin 2016)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Tronco: el 46,6 % de las lesiones de yoga atendidas en urgencias en EE. UU. (2001–2014)",
+      "ro": "Trunchiul: 46,6 % din accidentările de yoga tratate la urgențele din SUA (2001–2014)"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Piernas: el 21,9 %",
+      "ro": "Picioarele: 21,9 %"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Cabeza y cuello: el 16,9 %",
+      "ro": "Capul și gâtul: 16,9 %"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Para el deporte con calor, la OMS pide crema de factor 30 o más, sombrero y gafas de sol; el Gobierno de Canarias aconseja factor 50+, también en días nublados.",
+      "ro": "Pentru sportul pe căldură, OMS indică o cremă cu factor de protecție 30 sau mai mare, pălărie și ochelari de soare; Guvernul Insulelor Canare recomandă factor 50+, și în zilele înnorate."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que sustituya al entrenamiento de fuerza: en los ensayos, la fuerza se midió solo al levantarse de la silla, y ninguno usó un dinamómetro (Sivaramakrishnan 2019).",
+      "ro": "Că înlocuiește antrenamentul de forță: în studii, forța a fost măsurată doar la ridicarea de pe scaun și niciunul nu a folosit un dinamometru (Sivaramakrishnan 2019)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que mejore el equilibrio más que otras actividades: frente a ellas, la diferencia no fue significativa (Sivaramakrishnan 2019).",
+      "ro": "Că îmbunătățește echilibrul mai mult decât alte activități: față de ele, diferența nu a fost semnificativă (Sivaramakrishnan 2019)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que valga igual para jóvenes: los estudios de estas dos revisiones son con mayores de 60 años.",
+      "ro": "Că este valabil la fel pentru tineri: studiile din aceste două analize sunt cu persoane de peste 60 de ani."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Nunca he entrenado: ¿por dónde empiezo?",
+      "ro": "Nu m-am antrenat niciodată: de unde încep?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "Tengo más de 65 años: ¿qué ejercicio me conviene?",
+      "ro": "Am peste 65 de ani: ce exerciții mi se potrivesc?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿El ejercicio ayuda a prevenir caídas?",
+      "ro": "Exercițiile fizice ajută la prevenirea căderilor?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "Tengo dolor de espalda: ¿puedo entrenar?",
+      "ro": "Mă doare spatele: pot să mă antrenez?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Tengo que estirar antes o después de entrenar?",
+      "ro": "Trebuie să fac exerciții de întindere înainte sau după antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Cuántos días a la semana debo hacer fuerza?",
+      "ro": "Câte zile pe săptămână ar trebui să fac forță?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "El yoga frente a controles activos e inactivos, en la función física y la calidad de vida de los mayores: revisión y metaanálisis (Sivaramakrishnan et al., Int J Behav Nutr Phys Act 2019)",
+      "ro": "Yoga față de grupuri de control active și inactive: funcția fizică și calitatea vieții la vârstnici, analiză și metaanaliză (Sivaramakrishnan et al., Int J Behav Nutr Phys Act 2019)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "El Pilates mejora el rendimiento físico y reduce el riesgo de caídas en los mayores: revisión sistemática y metaanálisis (Fernández-Rodríguez et al., Physiotherapy 2021)",
+      "ro": "Pilatesul îmbunătățește performanța fizică și scade riscul de cădere la vârstnici: analiză sistematică și metaanaliză (Fernández-Rodríguez et al., Physiotherapy 2021)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "La seguridad del yoga: revisión sistemática y metaanálisis de ensayos aleatorizados (Cramer et al., Am J Epidemiol 2015)",
+      "ro": "Siguranța yoga: analiză sistematică și metaanaliză a studiilor randomizate (Cramer et al., Am J Epidemiol 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Lesiones relacionadas con el yoga en EE. UU. de 2001 a 2014 (Swain y McGwin, Orthop J Sports Med 2016)",
+      "ro": "Accidentările legate de yoga în Statele Unite între 2001 și 2014 (Swain și McGwin, Orthop J Sports Med 2016)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Compendio de actividades físicas de 2024: ejercicio de acondicionamiento (yoga, Pilates y circuitos)",
+      "ro": "Compendiul activităților fizice din 2024: exerciții de condiție fizică (yoga, Pilates și circuite)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Compendio de actividades físicas para adultos de 2024: tercera actualización del gasto energético (Herrmann et al., J Sport Health Sci 2024)",
+      "ro": "Compendiul activităților fizice pentru adulți din 2024: a treia actualizare a consumului energetic (Herrmann et al., J Sport Health Sci 2024)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (Bull et al., BJSM 2020)",
+      "ro": "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., BJSM 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Sanidad advierte de riesgos para la salud por radiación ultravioleta extrema (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare avertizează asupra riscurilor pentru sănătate ale radiației ultraviolete extreme (Guvernul Insulelor Canare)"
+     },
+     {
+      "ruta": [
+       "f",
+       10,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "funcional",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "Frente a no hacer ejercicio, el entrenamiento funcional de alta intensidad, como el CrossFit, mejoró la fuerza y la resistencia; en la resistencia no fue ni mejor ni peor que el entrenamiento clásico de resistencia, y con el de fuerza aún no se ha comparado (Wilke y Mohr 2020).",
+      "ro": "Față de lipsa exercițiilor, antrenamentul funcțional de intensitate mare, precum CrossFit, a îmbunătățit forța și rezistența; la rezistență nu a fost nici mai bun, nici mai slab decât antrenamentul clasic de rezistență, iar cu antrenamentul de forță nu a fost încă comparat (Wilke și Mohr 2020)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "En 16 estudios con 864 personas, de 11,7 a 72,8 años de media, el entrenamiento funcional de alta intensidad mejoró la fuerza y la resistencia frente a no hacer ejercicio, pero no el equilibrio (Wilke y Mohr 2020).",
+      "ro": "În 16 studii cu 864 de persoane, cu vârste medii între 11,7 și 72,8 ani, antrenamentul funcțional de intensitate mare a îmbunătățit forța și rezistența față de lipsa exercițiilor, dar nu și echilibrul (Wilke și Mohr 2020)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "Frente al entrenamiento de resistencia clásico, continuo o a intervalos, mejoró la resistencia lo mismo, ni más ni menos (Wilke y Mohr 2020).",
+      "ro": "Față de antrenamentul clasic de rezistență, continuu sau pe intervale, a îmbunătățit rezistența la fel, nici mai mult, nici mai puțin (Wilke și Mohr 2020)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "En los estudios, de 2 a 4 sesiones por semana, de 6 a 40 minutos, durante 4 a 18 semanas (Wilke y Mohr 2020).",
+      "ro": "În studii, între 2 și 4 ședințe pe săptămână, de 6–40 de minute, timp de 4–18 săptămâni (Wilke și Mohr 2020)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Entrene con un entrenador que le supervise: en los estudios, la falta de supervisión se asoció a más lesiones, aunque su calidad no permite conclusiones firmes (Rodríguez 2022).",
+      "ro": "Antrenați-vă cu un antrenor care să vă supravegheze: în studii, lipsa supravegherii s-a asociat cu mai multe accidentări, deși calitatea lor nu permite concluzii ferme (Rodríguez 2022)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Los programas duraron de 4 a 18 semanas, así que en 1–2 semanas de vacaciones no espere cambios: tómelo como mantenimiento (deducción).",
+      "ro": "Programele au durat 4–18 săptămâni, așa că într-o vacanță de 1–2 săptămâni nu vă așteptați la schimbări: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En el CrossFit, los estudios dan entre 0,2 y 18,9 lesiones por cada 1.000 horas de entrenamiento, una tasa parecida a la de la halterofilia y el powerlifting. Se asociaron a más lesiones, entre otros factores, haberse lesionado antes y entrenar sin la supervisión de un entrenador (Rodríguez 2022).",
+      "ro": "La CrossFit, studiile raportează între 0,2 și 18,9 accidentări la 1.000 de ore de antrenament, o rată asemănătoare cu cea de la haltere și powerlifting. Printre alți factori, o accidentare anterioară și antrenamentul fără supravegherea unui antrenor s-au asociat cu mai multe accidentări (Rodríguez 2022)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Hombro: el 26 % de las lesiones",
+      "ro": "Umărul: 26 % din accidentări"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Columna: el 24 %",
+      "ro": "Coloana vertebrală: 24 %"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Rodilla: el 18 %",
+      "ro": "Genunchiul: 18 %"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, sesiones más cortas y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, ședințe mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que esté bien estudiado: en una revisión de 31 artículos sobre CrossFit, solo 2 estudios tenían un nivel de evidencia alto y un riesgo de sesgo bajo, y su metaanálisis no halló ningún efecto significativo (Claudino 2018).",
+      "ro": "Că este bine studiat: într-o analiză a 31 de articole despre CrossFit, doar 2 studii aveau un nivel de dovezi ridicat și un risc de eroare sistematică scăzut, iar metaanaliza ei nu a găsit niciun efect semnificativ (Claudino 2018)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que mejore el equilibrio: frente a no hacer ejercicio, no lo mejoró (Wilke y Mohr 2020).",
+      "ro": "Că îmbunătățește echilibrul: față de lipsa exercițiilor, nu l-a îmbunătățit (Wilke și Mohr 2020)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que gane más fuerza que con las pesas: no hay estudios que los comparen (Wilke y Mohr 2020).",
+      "ro": "Că veți câștiga mai multă forță decât cu greutățile: nu există studii care să le compare (Wilke și Mohr 2020)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Nunca he entrenado: ¿por dónde empiezo?",
+      "ro": "Nu m-am antrenat niciodată: de unde încep?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cómo caliento antes de entrenar?",
+      "ro": "Cum mă încălzesc înainte de antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Cómo distingo unas agujetas de una lesión?",
+      "ro": "Cum deosebesc febra musculară de o accidentare?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cómo sé si estoy entrenando demasiado?",
+      "ro": "Cum îmi dau seama că mă antrenez prea mult?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Cuándo tengo que parar el ejercicio de inmediato?",
+      "ro": "Când trebuie să mă opresc imediat din efort?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Efectos a largo plazo del entrenamiento funcional de alta intensidad en la función motora: revisión sistemática con metaanálisis multinivel (Wilke y Mohr, Sci Rep 2020)",
+      "ro": "Efectele pe termen lung ale antrenamentului funcțional de intensitate mare asupra funcției motorii: analiză sistematică cu metaanaliză pe mai multe niveluri (Wilke și Mohr, Sci Rep 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Panorama del CrossFit: revisión sistemática y metaanálisis (Claudino et al., Sports Med Open 2018)",
+      "ro": "CrossFit pe scurt: analiză sistematică și metaanaliză (Claudino et al., Sports Med Open 2018)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Lesiones en el CrossFit: revisión sistemática de su epidemiología y sus factores de riesgo (Rodríguez et al., Phys Sportsmed 2022)",
+      "ro": "Accidentările la CrossFit: analiză sistematică a epidemiologiei și a factorilor de risc (Rodríguez et al., Phys Sportsmed 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
     "id": "otro",
     "textos": [
      {
