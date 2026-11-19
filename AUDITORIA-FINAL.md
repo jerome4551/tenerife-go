@@ -9953,6 +9953,83 @@ disposed», un fallo de la propia prueba, no de la app); pasado solo después so
 cifras de la auditoría anterior (16.036 textos comparados en los nueve idiomas, 0 distintos y 0 errores de página).
 `app_preparar.js` montó `app/www/` (240 ficheros) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
 
+## El mapa al abrir: la isla entera y centrada; y el rumano, bloque 13 («Su cuerpo» y «Corp») (18 y 19 de noviembre)
+
+**El mapa al abrir: la isla entera, centrada en lo que se ve y con el mayor zoom en que cabe.** Lo pidió Jérôme el
+18-11, con dos capturas de su iPhone (430 px de ancho): «Cuando abro la app no hace zoom en la isla» y «cuando abro la
+app así se ve», con la isla pequeña y baja; al tocar un grupo de puntos, sí se acerca. Dos causas. Una: el mapa medía
+todo `.main` y seguía por debajo de la barra de abajo, y `maxBounds` centra `tenerifeBounds` en el mapa entero, así que
+la isla salía unos 30 px más baja que el centro de lo que se ve en un móvil sin zona segura, y unos 50 en el iPhone.
+Ahora `#map` acaba donde empieza la barra, y sobra la regla que subía a mano 72 px los controles de Leaflet (quedan en
+el mismo sitio de la pantalla). Dos: al abrir se encuadraba `tenerifeBounds`, que lleva mar de margen para moverse.
+Ahora se encuadra la costa: `islaBounds`, el rectángulo de `tools/datos/costa_tenerife.json` (GSHHG v2.3.7, polígono
+206) redondeado hacia fuera, con 8 px de margen; `tenerifeBounds` sigue siendo el límite para moverse. El zoom sigue en
+medios niveles (`zoomSnap: 0.5`, como piden las notas del mapa). Medido en Chromium con la ventana de cada móvil: a 430
+px (el de Jérôme), 9,5, con la isla de 8 a 421 px; a 390, 360 y 320 px, 9, con la isla entera (292 px); en todos, el
+centro de la isla a 10 px o menos del centro de lo que se ve, y sin errores de página. **Los botones del zoom, encima de
+la píldora «Leyenda».** En su captura, la píldora tapaba la mitad del «−»; con 36 px de margen abajo, el «−» queda
+entero, 10 px por encima de ella, en los cuatro anchos. `auditar_mapa.js`, 137 controles en verde; `probar_play.js`, 249
+de 249 (nada pisa los enlaces ni los botones de alrededor).
+
+**El rumano, bloque 13** (sigue apagado: nada de esto se ve en la app). Jérôme dijo que sí el 18-11 («Rumano si»), con
+los dos nombres que esperaban su sí: «Corp» para «Su cuerpo» (antes «Corpul dumneavoastră») y «Femurali» para los
+isquiotibiales. Sus guiones no se han ejecutado: un aplicador propio hace lo mismo que los suyos (leídos uno a uno), con
+las reglas de todo o nada (cada texto, solo si su castellano es el de `main`), `tools/poner_traduccion.js --estricto` y
+`construir.py`. Las tres fuentes (`idiomas/ro-fuente/cuerpo.json`, `entrenador.json` y `cuerpo-datos.json`, nueva);
+`modulos/cuerpo.js`, con «ro» detrás de «pl» en 670 filas; el reproductor del entrenador
+(`tools/entrenador/src/80-reproductor.js` y `modulos/entrenador.js`, construido), en 21, y los trozos y `con-video.json`
+no cambian; `datos/cuerpo/deportes-ro.json`, nuevo: 241 textos de 9 guías, con la forma de los de castellano y polaco;
+`rutinas.json` y `estiramientos.json`, en 13 y 3 textos; y la prueba 37 de `tools/probar_cuerpo.js`, que pide los diez
+idiomas y no exactamente diez claves. «Corp» y «Femurali» cambian 18 textos en rumano en 8 ficheros: la política de
+privacidad en rumano (tres sitios, y su fuente), la guía, el perfil, la visita guiada y sus fuentes; ningún otro idioma
+cambia. Comprobado aquí: cada fila cambiada es la de antes con su «ro» detrás del «pl» y nada más (670, 21 y 21);
+`revisar_rumano.py`, 670 filas, 0 errores y los 4 avisos de su nota; 21, 0 y 0; y las guías, las rutinas y los
+estiramientos frente a su castellano, 248, 0 y 0; una segunda pasada del aplicador dice «ya estaba» en todo;
+`construir.py`, `app_preparar.js` y los generadores de la privacidad, de borrar la cuenta, de la 404 y del asistente,
+con `--comprobar`, al día. Los parches del interruptor no se aplican.
+
+**Dos pruebas que se caían por la prueba, no por la app.** `tools/auditar_arranque.js`: en la auditoría del 18-11 por la
+tarde se cayó con «Response has been disposed»: una carga se cerró antes de leer la respuesta de Open-Meteo que la
+prueba guarda para todas, y esa promesa fallaba sin que nadie la recogiera. Ahora un fallo al leerla cuenta como uno al
+pedirla, y si la página ya no está, no se contesta. Pasada sola: los nueve idiomas iguales tras `setLang`, 16.036 textos
+comparados, 0 distintos y 0 errores de página. `tools/auditar_desborde.js`: la primera auditoría entera de este lote
+(desde las 21:37 UTC del 18) dio un rojo, el popup del Teide, que no se abría en castellano. Medido: con el mapa nuevo,
+a 360 px se abre a 9 (antes 8,5), el salto al grupo del Teide (zoom 13) queda en 4 niveles y Leaflet lo anima
+(`zoomAnimationThreshold: 4`); con la cola de markercluster, el popup sale a los 611, 620 y 619 ms (antes, sin animar, a
+los 349, 359 y 375), y la prueba miraba a los 500 ms justos. Ahora cierra el popup que hubiera abierto, espera hasta 5 s
+a que el del Teide esté abierto y lee dentro de él. La prueba de antes, en rojo en la rama y en verde en `main`; la de
+ahora, en verde en la rama y con la misma salida en `main`; y con el texto del popup quitado, en rojo en los diez
+idiomas. Esa primera auditoría, además, se cortó al 89 % porque se reinició el contenedor (00:27 UTC del 19); la
+segunda, ya con los dos arreglos, iba sin ningún rojo cuando otro reinicio la cortó al 74 % (su registro se para a las
+03:05 UTC); la de abajo es la tercera, entera, de las 04:14 a las 07:20 UTC.
+
+**Lo que no está comprobado.** Nada en un iPhone ni en un Android de verdad: las medidas son de Chromium con la ventana
+de cada móvil, y falta verlo en el iPhone de Jérôme. Visto de paso: en Chromium, a los zooms de medio nivel (como el 9,5
+al abrir a 430 px), entre algunos mosaicos de OpenStreetMap se ve a veces una raya clara de 1 px; pasa igual en la app
+publicada al acercarse a un medio nivel, depende de dónde caigan los bordes, y en las capturas del iPhone de Jérôme no
+se ve. No se toca: `zoomSnap: 0.5` se queda, como piden las notas del mapa.
+
+**La auditoría entera** sobre `8b2774a` (árbol `5141ab5b`): los cinco commits de este lote (el bloque 13 del rumano, los
+dos del mapa y los dos arreglos de pruebas) encima de `main` (`9002ecd`). En `main` es lo mismo, rebasado sobre dos
+commits de los robots (`402e8d8`, terremotos, y `69276cc`, alertas del Gobierno de Canarias), que solo cambian
+`datos/sismos-ign.json` y `datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el
+rebase. En los 61 bloques de `auditar.sh`, ningún rojo: las preguntas de prueba al asistente, 0 fallos de 298;
+`auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65; lo que pide Google Play, 249 de 249; `auditar_registro.js`,
+todo de usted (137.827 textos); `castellano_suelto.js`, ninguna palabra en castellano; `auditar_idioma.js`, 0 hallazgos
+en los diez idiomas; `auditar_cirilico.py`, 2.340 nombres propios en cirílico y ninguna variante sospechosa; los datos,
+975 lugares en todas partes (también en el resumen de este documento) y ninguna cifra de lugares que no sea 975 en lo
+que se lee; `probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626; `auditar_desborde.js`: el popup en su idioma en
+los diez, la etiqueta viewport de las cuatro páginas, las tres cajas de copiar, las 60 cajas y 186 a la vista en 81
+pantallas, ninguna por debajo de 16 px; `auditar_mapa.js`, 137; `auditar_arranque.js`, los nueve idiomas iguales tras
+`setLang` (16.036 textos comparados, 0 distintos y 0 errores de página); `barrido_pantallas.js`, 191 pantallas y fichas
+por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y
+los avatares, 74 y 153; «Su cuerpo», 800 y 64; el entrenador, 79 (los 418 vídeos, enteros, en castellano y en otro
+idioma: 836 pases y 741.820 cuadros; los 11 trozos, cada uno con la huella de su contenido en el nombre); la isla en 3D,
+57 y ninguno en rojo; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52
+tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/` (241 ficheros: uno más,
+`datos/cuerpo/deportes-ro.json`; las fuentes del rumano no viajan) y lo cotejó; y al acabar, el repositorio, sin ningún
+cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
