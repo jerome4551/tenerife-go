@@ -121,7 +121,7 @@
  "app-07": {
   "es": {
    "l": "¿Cómo instalo la app?",
-   "a": "📲 No está en las tiendas: se instala desde el navegador.\n• iPhone: en Safari, toque el botón Compartir (cuadrado con flecha) y elija «Añadir a pantalla de inicio»\n• Android: en Chrome, abra el menú ⋮ y elija «Instalar aplicación»\nQueda como una app más en su pantalla de inicio."
+   "a": "📲 No está en las tiendas: se instala desde el navegador.\n• iPhone: en Safari, toque el botón Compartir (cuadrado con flecha) y elija «Añadir a pantalla de inicio»\n• Android: en Chrome, abra el menú ⋮, elija «Instalar y crear acceso directo» y luego «Instalar»\nQueda como una app más en su pantalla de inicio."
   },
   "l": "Cum instalez aplicația?",
   "k": [
@@ -139,7 +139,7 @@
    "iphone",
    "android"
   ],
-  "a": "📲 Nu este în magazinele de aplicații: se instalează din browser.\n• iPhone: în Safari, atingeți butonul Partajați (pătratul cu săgeată) și alegeți „Adăugați la ecranul principal”\n• Android: în Chrome, deschideți meniul ⋮ și alegeți opțiunea de instalare a aplicației\nApare pe ecranul principal, ca orice altă aplicație."
+  "a": "📲 Nu este în magazinele de aplicații: se instalează din browser.\n• iPhone: în Safari, atingeți butonul Partajați (pătratul cu săgeată) și alegeți „Adăugați la ecranul principal”\n• Android: în Chrome, deschideți meniul ⋮, alegeți „Instalează și creează o comandă rapidă” și apoi „Instalează”\nApare pe ecranul principal, ca orice altă aplicație."
  },
  "app-08": {
   "es": {

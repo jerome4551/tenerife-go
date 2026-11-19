@@ -3849,8 +3849,8 @@
    "tabla": "PWA_TX",
    "clave": "instAnd",
    "forma": "texto",
-   "es": "En <b>Chrome</b>, abra el menú <b>⋮</b> y elija <b>Instalar aplicación</b>.",
-   "ro": "În <b>Chrome</b>, deschideți meniul <b>⋮</b> și alegeți opțiunea de <b>instalare a aplicației</b>."
+   "es": "En <b>Chrome</b>, abra el menú <b>⋮</b>, elija <b>Instalar y crear acceso directo</b> y luego <b>Instalar</b>.",
+   "ro": "În <b>Chrome</b>, deschideți meniul <b>⋮</b>, alegeți <b>Instalează și creează o comandă rapidă</b> și apoi <b>Instalează</b>."
   },
   {
    "tabla": "PWA_TX",
