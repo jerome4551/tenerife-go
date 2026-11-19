@@ -4149,6 +4149,20 @@
   },
   {
    "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_gimnasio",
+   "es": "Gimnasio",
+   "forma": "texto",
+   "ro": "Antrenament la sală"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_calistenia",
+   "es": "Calistenia",
+   "forma": "texto",
+   "ro": "Calistenie"
+  },
+  {
+   "tabla": "CUERPO_UI",
    "clave": "cuerpoDep_otro",
    "es": "Otro deporte",
    "forma": "texto",

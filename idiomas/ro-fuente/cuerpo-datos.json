@@ -1873,6 +1873,617 @@
     ]
    },
    {
+    "id": "gimnasio",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "El gimnasio es entrenamiento de fuerza, con evidencia sólida: según el ACSM (2026, 137 revisiones sistemáticas), frente a no entrenar mejora la fuerza, el músculo, la potencia y la función física. Lo que más cuenta es trabajar todos los grandes grupos al menos 2 días por semana y no dejarlo.",
+      "ro": "Sala de sport înseamnă antrenament de forță, iar dovezile sunt solide: potrivit ACSM (2026, 137 de analize sistematice), față de lipsa antrenamentului, îmbunătățește forța, masa musculară, puterea și funcția fizică. Cel mai mult contează să lucrați toate grupele mari cel puțin 2 zile pe săptămână și să nu renunțați."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "El ACSM (2026) reunió 137 revisiones sistemáticas con más de 30.000 adultos sanos: frente a no entrenar, el entrenamiento de fuerza mejoró la fuerza, el tamaño del músculo, la potencia, la velocidad al andar y el equilibrio.",
+      "ro": "ACSM (2026) a reunit 137 de analize sistematice, cu peste 30.000 de adulți sănătoși: față de lipsa antrenamentului, antrenamentul de forță a îmbunătățit forța, volumul mușchilor, puterea, viteza de mers și echilibrul."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "ACSM 2026, en adultos sanos: llegar al fallo muscular, elegir máquinas o peso libre y la periodización compleja (variación sistemática) no cambiaron los resultados de forma consistente.",
+      "ro": "ACSM 2026, la adulții sănătoși: lucrul până la eșec muscular, alegerea între aparate și greutăți libere și periodizarea complexă (variație sistematică) nu au schimbat rezultatele în mod consecvent."
+     },
+     {
+      "ruta": [
+       "p",
+       2
+      ],
+      "es": "Para el músculo sirvieron cargas desde el 30 % hasta el 100 % del máximo que se levanta una vez; para la fuerza máxima rindieron más las pesadas, del 80 % o más.",
+      "ro": "Pentru masa musculară au funcționat încărcături de la 30 % la 100 % din maximul care se poate ridica o dată; pentru forța maximă au dat rezultate mai bune cele grele, de 80 % sau mai mult."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "El ACSM 2026 propone, para la fuerza, cargas del 80 % del máximo que se levanta una vez y 2–3 series por ejercicio; para ganar músculo, unas 10 series por grupo y semana; y para la potencia, cargas moderadas (30–70 %) movidas lo más rápido posible al subir.",
+      "ro": "Pentru forță, ACSM (2026) propune încărcături de 80 % din maximul care se poate ridica o dată și 2–3 serii pe exercițiu; pentru a câștiga masă musculară, circa 10 serii pe grupă pe săptămână; iar pentru putere, încărcături moderate (30–70 %), ridicate cât mai repede."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "Entrene todos los grandes grupos al menos 2 días por semana y vaya subiendo poco a poco: importa más que buscar un plan «perfecto» (ACSM 2026, en adultos).",
+      "ro": "Antrenați toate grupele mari cel puțin 2 zile pe săptămână și creșteți treptat: contează mai mult decât căutarea unui plan „perfect” (ACSM 2026, la adulți)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Elija un plan que pueda mantener: según el ACSM, el mejor es el que se sigue, y uno demasiado exigente para sostenerlo pierde su eficacia.",
+      "ro": "Alegeți un plan pe care îl puteți menține: potrivit ACSM, cel mai bun plan este cel pe care îl urmați, iar unul prea solicitant ca să-l mențineți își pierde eficacitatea."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Si combina fuerza con carrera o bici el mismo día, deje al menos 3 horas entre ambas: con 20 minutos o menos, la fuerza explosiva se resintió (Schumann 2022).",
+      "ro": "Dacă combinați forța cu alergarea sau bicicleta în aceeași zi, lăsați cel puțin 3 ore între ele: cu 20 de minute sau mai puțin, forța explozivă a avut de suferit (Schumann 2022)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "Según el ACSM, el entrenamiento de fuerza es seguro en adultos sanos de todas las edades. En 28 estudios, el entrenamiento de fuerza tradicional fue el que menos lesiones dio y el strongman, el que más (Serafim 2023). En los deportes de pesas, el culturismo tuvo la tasa más baja, de 0,24 a 1 lesión por cada 1.000 horas, y las lesiones más comunes fueron distensiones, tendinitis y esguinces (Keogh 2017).",
+      "ro": "Potrivit ACSM, antrenamentul de forță este sigur pentru adulții sănătoși de toate vârstele. În 28 de studii, antrenamentul de forță tradițional a produs cele mai puține accidentări, iar strongmanul cele mai multe (Serafim 2023). Dintre sporturile cu greutăți, culturismul a avut rata cea mai mică, între 0,24 și 1 accidentare la 1.000 de ore, iar cele mai frecvente au fost elongațiile musculare, tendinitele și entorsele (Keogh 2017)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Hombro: la zona más lesionada en culturismo y powerlifting",
+      "ro": "Umărul: zona cu cele mai multe accidentări în culturism și powerlifting"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Zona lumbar",
+      "ro": "Zona lombară"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Rodilla",
+      "ro": "Genunchiul"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       3
+      ],
+      "es": "Codo",
+      "ro": "Cotul"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       4
+      ],
+      "es": "Muñeca y mano",
+      "ro": "Încheietura mâinii și mâna"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que llegar al fallo o un plan complejo den más resultado: el ACSM no vio diferencias consistentes en adultos sanos.",
+      "ro": "Că lucrul până la eșec sau un plan complex dau rezultate mai bune: ACSM nu a văzut diferențe consecvente la adulții sănătoși."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que más series den siempre más: pasadas unas 18–20 por grupo y semana, el músculo gana cada vez menos (ACSM 2026).",
+      "ro": "Că mai multe serii aduc întotdeauna mai mult: peste circa 18–20 pe grupă pe săptămână, mușchiul câștigă tot mai puțin (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que estas pautas basten si compite: según el ACSM, los deportistas y quienes entrenan a fondo necesitan planes propios de su deporte y de sus objetivos.",
+      "ro": "Că aceste recomandări vă ajung dacă participați la competiții: potrivit ACSM, sportivii și cei care se antrenează intens au nevoie de planuri potrivite sportului și obiectivelor lor."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿Qué entreno hoy?",
+      "ro": "Ce antrenez azi?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cuántas series hago por músculo a la semana?",
+      "ro": "Câte serii fac pe mușchi pe săptămână?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Cuánto peso tengo que levantar?",
+      "ro": "Ce greutate trebuie să ridic?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Tengo que llegar al fallo muscular?",
+      "ro": "Trebuie să ajung până la eșec muscular?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "Me molesta el hombro al hacer press: ¿qué hago?",
+      "ro": "Mă deranjează umărul la exercițiile de împins: ce fac?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "Estoy de vacaciones una o dos semanas: ¿cómo mantengo lo ganado?",
+      "ro": "Sunt în vacanță una sau două săptămâni: cum păstrez ce am câștigat?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Postura del ACSM de 2026 sobre la prescripción del entrenamiento de fuerza en adultos sanos (Currier et al., Med Sci Sports Exerc 2026)",
+      "ro": "Poziția ACSM din 2026 privind prescrierea antrenamentului de forță la adulții sănătoși (Currier et al., Med Sci Sports Exerc 2026)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "El ACSM presenta sus pautas de entrenamiento de fuerza de 2026 (nota del ACSM)",
+      "ro": "ACSM își prezintă recomandările pentru antrenamentul de forță din 2026 (comunicat ACSM)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "¿Qué entrenamiento de fuerza es más seguro? Revisión sistemática (Serafim et al., J Orthop Surg Res 2023)",
+      "ro": "Ce antrenament de forță este cel mai sigur? Analiză sistematică (Serafim et al., J Orthop Surg Res 2023)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Epidemiología de las lesiones en los deportes de pesas: revisión sistemática (Keogh y Winwood, Sports Med 2017)",
+      "ro": "Epidemiologia accidentărilor în sporturile cu greutăți: analiză sistematică (Keogh și Winwood, Sports Med 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Compatibilidad del entrenamiento aeróbico y de fuerza: revisión sistemática y metaanálisis actualizados (Schumann et al., Sports Med 2022)",
+      "ro": "Compatibilitatea antrenamentului aerob și a celui de forță: analiză sistematică și metaanaliză actualizate (Schumann et al., Sports Med 2022)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "calistenia",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "La calistenia es entrenamiento de fuerza con el peso del cuerpo, y sirve: según el ACSM (2026), el peso del cuerpo, las bandas elásticas y entrenar en casa dan mejoras claras de fuerza, músculo y función física. En ensayos pequeños, las flexiones dieron tanta fuerza como el press de banca con una carga parecida.",
+      "ro": "Calistenia este antrenament de forță cu greutatea propriului corp și funcționează: potrivit ACSM (2026), greutatea corpului, benzile elastice și antrenamentul acasă aduc îmbunătățiri clare ale forței, masei musculare și funcției fizice. În studii mici, flotările au dat la fel de multă forță ca împinsul din culcat, la o încărcătură asemănătoare."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Con la carga igualada, las flexiones dieron una ganancia de fuerza parecida a la del press de banca: en 30 universitarios con experiencia en pesas, con bandas elásticas y en 5 semanas (Calatayud 2015), y en 18 hombres jóvenes en 8 semanas, que además ganaron tanto músculo como los del press (Kikuchi 2017).",
+      "ro": "La încărcătură egală, flotările au dat creșteri de forță asemănătoare cu împinsul din culcat: la 30 de studenți cu experiență la sală, cu benzi elastice, în 5 săptămâni (Calatayud 2015), și la 18 bărbați tineri, în 8 săptămâni, care au câștigat și la fel de multă masă musculară ca grupul de la împins (Kikuchi 2017)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En 4 semanas, flexiones cada vez más difíciles mejoraron el press de banca máximo de 23 hombres moderadamente entrenados, como lo mejoró el propio press de banca; el grosor del músculo no cambió en ninguno de los dos grupos (Kotarsky 2018).",
+      "ro": "În 4 săptămâni, flotări din ce în ce mai grele au îmbunătățit împinsul din culcat maxim la 23 de bărbați antrenați moderat, la fel ca împinsul însuși; grosimea mușchilor nu s-a schimbat în niciunul dintre cele două grupuri (Kotarsky 2018)."
+     },
+     {
+      "ruta": [
+       "p",
+       2
+      ],
+      "es": "En 28 hombres sin entrenar, 8 semanas de calistenia subieron un 16,4 % el test de flexiones y un 39,2 % el de dominadas, mejoraron la postura y bajaron la masa grasa; el grupo control no cambió (Thomas 2017).",
+      "ro": "La 28 de bărbați neantrenați, 8 săptămâni de calistenie au crescut cu 16,4 % testul de flotări și cu 39,2 % pe cel de tracțiuni, au îmbunătățit postura și au redus masa de grăsime; grupul de control nu s-a schimbat (Thomas 2017)."
+     },
+     {
+      "ruta": [
+       "p",
+       3
+      ],
+      "es": "Para el músculo sirvieron cargas desde el 30 % del máximo; para la fuerza máxima, del 80 % o más (ACSM 2026). Con el peso del cuerpo, eso pide variantes difíciles, bandas o lastre, como en el ensayo de Calatayud (deducción).",
+      "ro": "Pentru masa musculară au funcționat încărcături de la 30 % din maxim; pentru forța maximă, de la 80 % în sus (ACSM 2026). Cu greutatea corpului, asta cere variante grele, benzi sau greutăți adăugate, ca în studiul lui Calatayud (deducție)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "En los ensayos, de 2 a 3 sesiones por semana durante 4 a 8 semanas; con bandas, 5 series de 6 repeticiones, con una banda que solo dejaba hacer 6 (Calatayud 2015).",
+      "ro": "În studii, 2–3 ședințe pe săptămână, timp de 4–8 săptămâni; cu benzi, 5 serii de câte 6 repetări, cu o bandă care permitea doar 6 (Calatayud 2015)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "Trabaje también las piernas y el tronco: el ACSM pide todos los grandes grupos al menos 2 días por semana.",
+      "ro": "Lucrați și picioarele, și trunchiul: ACSM cere toate grupele mari cel puțin 2 zile pe săptămână."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Cuando una variante le resulte fácil, pase a otra más difícil: así se mantuvo la exigencia en el ensayo de las flexiones (Kotarsky 2018).",
+      "ro": "Când o variantă vi se pare ușoară, treceți la una mai grea: așa s-a menținut efortul în studiul cu flotările (Kotarsky 2018)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "No hace falta llegar al fallo, pero sí que cada serie cueste: es lo que pide el ACSM (2026).",
+      "ro": "Nu e nevoie să ajungeți până la eșec, dar fiecare serie trebuie să vă solicite: asta cere ACSM (2026)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En 184 practicantes de calistenia hubo 1,3 lesiones por cada 1.000 horas de entrenamiento, más del 70 % del hombro a la mano y sobre todo de músculo o tendón (Kaiser 2018). En 93 de street workout, el 62,4 % se había lesionado en el último año; la tendinopatía fue el diagnóstico más frecuente, y las lesiones previas y más actividad intensa se asociaron a más lesiones (Ngo 2021).",
+      "ro": "La 184 de practicanți de calistenie au fost 1,3 accidentări la 1.000 de ore de antrenament, peste 70 % de la umăr la mână și mai ales la mușchi sau tendoane (Kaiser 2018). Dintre 93 de practicanți de street workout, 62,4 % se accidentaseră în ultimul an; tendinopatia a fost diagnosticul cel mai frecvent, iar accidentările anterioare și mai multă activitate intensă s-au asociat cu mai multe accidentări (Ngo 2021)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Hombro: el 23,0 % de las lesiones en street workout",
+      "ro": "Umărul: 23,0 % din accidentări la street workout"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Espalda alta y media: el 18,4 %",
+      "ro": "Partea de sus și de mijloc a spatelui: 18,4 %"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Muñeca y mano",
+      "ro": "Încheietura mâinii și mâna"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Para el deporte con calor, la OMS pide crema de factor 30 o más, sombrero y gafas de sol; el Gobierno de Canarias aconseja factor 50+, también en días nublados.",
+      "ro": "Pentru sportul pe căldură, OMS indică o cremă cu factor de protecție 30 sau mai mare, pălărie și ochelari de soare; Guvernul Insulelor Canare recomandă factor 50+, și în zilele înnorate."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, sesiones más cortas y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, ședințe mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que cualquier serie de flexiones valga como el press de banca: en los ensayos, la carga era comparable, con bandas o adaptando la postura.",
+      "ro": "Că orice serie de flotări valorează cât împinsul din culcat: în studii, încărcătura era comparabilă, cu benzi sau prin adaptarea poziției."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que los ensayos valgan para todo el cuerpo: midieron sobre todo flexiones y press de banca, con pocos participantes.",
+      "ro": "Că studiile sunt valabile pentru tot corpul: au măsurat mai ales flotările și împinsul din culcat, cu puțini participanți."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que la calistenia lesione menos que el gimnasio: no hemos encontrado estudios que lo comparen directamente.",
+      "ro": "Că la calistenie apar mai puține accidentări decât la sală: nu am găsit studii care să le compare direct."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿Se puede ganar músculo en casa sin material?",
+      "ro": "Se poate câștiga masă musculară acasă, fără echipament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "Estoy en un hotel sin gimnasio: ¿qué hago?",
+      "ro": "Sunt la un hotel fără sală de sport: ce fac?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Tengo que llegar al fallo muscular?",
+      "ro": "Trebuie să ajung până la eșec muscular?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cómo trabajo el manguito rotador?",
+      "ro": "Cum lucrez coafa rotatorilor?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "El ACSM presenta sus pautas de entrenamiento de fuerza de 2026 (nota del ACSM)",
+      "ro": "ACSM își prezintă recomandările pentru antrenamentul de forță din 2026 (comunicat ACSM)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Postura del ACSM de 2026 sobre la prescripción del entrenamiento de fuerza en adultos sanos (Currier et al., Med Sci Sports Exerc 2026)",
+      "ro": "Poziția ACSM din 2026 privind prescrierea antrenamentului de forță la adulții sănătoși (Currier et al., Med Sci Sports Exerc 2026)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Press de banca y flexiones con una actividad muscular comparable dan ganancias de fuerza parecidas (Calatayud et al., J Strength Cond Res 2015)",
+      "ro": "Împinsul din culcat și flotările, cu o activitate musculară comparabilă, dau creșteri de forță asemănătoare (Calatayud et al., J Strength Cond Res 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Press de banca y flexiones con poca carga dan un aumento parecido de músculo y de fuerza (Kikuchi y Nakazato, J Exerc Sci Fit 2017)",
+      "ro": "Împinsul din culcat și flotările cu încărcătură mică dau o hipertrofie și o creștere a forței asemănătoare (Kikuchi și Nakazato, J Exerc Sci Fit 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Efecto de un entrenamiento progresivo de flexiones sobre la fuerza y el grosor del músculo (Kotarsky et al., J Strength Cond Res 2018)",
+      "ro": "Efectul unui antrenament progresiv cu flotări asupra forței și grosimii mușchilor (Kotarsky et al., J Strength Cond Res 2018)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Efectos de un programa de calistenia sobre la postura, la fuerza y la composición corporal (Thomas et al., Isokinetics Exerc Sci 2017)",
+      "ro": "Efectele unui program de calistenie asupra posturii, forței și compoziției corporale (Thomas et al., Isokinetics Exerc Sci 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "El perfil epidemiológico de los practicantes de calistenia (Kaiser et al., Dtsch Z Sportmed 2018)",
+      "ro": "Profilul epidemiologic al practicanților de calistenie (Kaiser et al., Dtsch Z Sportmed 2018)"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Perfil de lesiones de los practicantes de street workout (Ngo et al., Orthop J Sports Med 2021)",
+      "ro": "Profilul accidentărilor la practicanții de street workout (Ngo et al., Orthop J Sports Med 2021)"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Sanidad advierte de riesgos para la salud por radiación ultravioleta extrema (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare avertizează asupra riscurilor pentru sănătate ale radiației ultraviolete extreme (Guvernul Insulelor Canare)"
+     },
+     {
+      "ruta": [
+       "f",
+       10,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       11,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
     "id": "otro",
     "textos": [
      {

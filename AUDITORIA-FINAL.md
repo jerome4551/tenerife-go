@@ -12086,7 +12086,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3732 filas (y 5.869 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3734 filas (y 5.871 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -12413,6 +12413,8 @@ punto del Mirador La Jardina; con ella, su id en las sugerencias de la Ruta del 
 los de la playa para perros de El Cabezo (su nombre de antes y el del Puertito).
 Esa noche, dos filas más en `UI_TX`: el paréntesis de los dos nombres repetidos («pueblo» y «núcleo»,
 en los once idiomas; nota 48): 3.732 filas y 5.869.
+El 19 de noviembre, «Su deporte» con «Gimnasio» y «Calistenia» (nota 57): dos filas más en `CUERPO_UI` (672), sus
+nombres en los once idiomas: 3.734 filas y 5.871.
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no

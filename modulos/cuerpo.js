@@ -633,6 +633,8 @@
     "cuerpoDep_padel": {"es": "Pádel", "en": "Padel", "fr": "Padel", "de": "Padel", "it": "Padel", "nl": "Padel", "zh": "板式网球", "zht": "板式網球", "bg": "Падел", "pl": "Padel", "ro": "Padel"},
     "cuerpoDep_escalada": {"es": "Escalada", "en": "Climbing", "fr": "Escalade", "de": "Klettern", "it": "Arrampicata", "nl": "Klimmen", "zh": "攀岩", "zht": "攀岩", "bg": "Катерене", "pl": "Wspinaczka", "ro": "Escaladă"},
     "cuerpoDep_lucha": {"es": "Lucha canaria", "en": "Canarian wrestling", "fr": "Lutte canarienne", "de": "Kanarisches Ringen", "it": "Lotta canaria", "nl": "Canarisch worstelen", "zh": "加那利摔跤", "zht": "加那利摔跤", "bg": "Канарска борба", "pl": "Zapasy kanaryjskie", "ro": "Lupte canariene"},
+    "cuerpoDep_gimnasio": {"es": "Gimnasio", "en": "Gym", "fr": "Musculation en salle", "de": "Fitnessstudio", "it": "Palestra", "nl": "Fitness", "zh": "健身房训练", "zht": "健身房訓練", "bg": "Фитнес", "pl": "Siłownia", "ro": "Antrenament la sală"},
+    "cuerpoDep_calistenia": {"es": "Calistenia", "en": "Calisthenics", "fr": "Callisthénie", "de": "Calisthenics", "it": "Calisthenics", "nl": "Calisthenics", "zh": "自重训练", "zht": "自重訓練", "bg": "Калистеника", "pl": "Kalistenika", "ro": "Calistenie"},
     "cuerpoDep_otro": {"es": "Otro deporte", "en": "Another sport", "fr": "Autre sport", "de": "Andere Sportart", "it": "Altro sport", "nl": "Andere sport", "zh": "其他运动", "zht": "其他運動", "bg": "Друг спорт", "pl": "Inny sport", "ro": "Alt sport"},
     "cuerpoDepCargando": {"es": "Cargando la ficha del deporte…", "en": "Loading the sport guide…", "fr": "Chargement de la fiche du sport…", "de": "Sportinformationen werden geladen …", "it": "Caricamento della scheda dello sport…", "nl": "Sportinformatie laden…", "zh": "正在加载运动说明…", "zht": "正在載入運動說明…", "bg": "Зареждане на информацията за спорта…", "pl": "Wczytywanie informacji o sporcie…", "ro": "Se încarcă fișa sportului…"},
     "cuerpoDepError": {"es": "No se ha podido cargar la ficha. Compruebe la conexión e inténtelo de nuevo.", "en": "The guide could not be loaded. Check your connection and try again.", "fr": "Impossible de charger la fiche. Vérifiez la connexion et réessayez.", "de": "Die Informationen konnten nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "it": "Impossibile caricare la scheda. Controlli la connessione e riprovi.", "nl": "De informatie kon niet worden geladen. Controleer de verbinding en probeer het opnieuw.", "zh": "无法加载说明。请检查网络连接后重试。", "zht": "無法載入說明。請檢查網路連線後重試。", "bg": "Информацията не можа да се зареди. Проверете връзката и опитайте отново.", "pl": "Nie udało się wczytać informacji. Proszę sprawdzić połączenie i spróbować ponownie.", "ro": "Fișa nu a putut fi încărcată. Verificați conexiunea și încercați din nou."},
@@ -2029,7 +2031,9 @@
   var MIN_MAX = 600, MAX_MOV = 2000, DES_MAX = 4000;
   /* la intensidad que propone cada deporte: desde 6 MET, intensa ('v'); si no, moderada ('m') */
   function intDe(m) { return m.met >= 6 ? 'v' : 'm'; }
-  /* el deporte que la hoja propone la primera vez, según «Su deporte» */
+  /* el deporte que la hoja propone la primera vez, según «Su deporte». (19-11-2026, bloque 1) «Gimnasio» y «Calistenia» no
+     están: lo suyo se anota en series, por grupo muscular (Jerome, 8-11: «incluido el gimnasio deben coger datos
+     diferentes»; nota 27), y con ellos la hoja propone caminar, como sin deporte */
   var DEP_MOV = { senderismo: 'senderismo', mar: 'nadar', carrera: 'correr', ciclismo: 'bici', surf: 'surf', buceo: 'buceo', golf: 'golf', padel: 'padel', otro: 'otro' };
   /* los iconos de los catorce deportes (los cinco de la maqueta y nueve propios, de trazo, como ellos):
      constantes, van con innerHTML en los botones de la hoja y en la semana por deporte */
@@ -6007,8 +6011,12 @@
      en la lista de los 12 aunque no haya red. La ficha -lo que dicen los estudios y con qué certeza, cómo
      encajarlo, lo que más se lesiona, Tenerife, lo que no se promete y las fuentes- viene de
      datos/deportes-<idioma>.json, que se pide la primera vez que hace falta (si falta el idioma, el
-     castellano). Cada campo se comprueba al leerlo y va por textContent. */
-  var DEPORTES = [{"id":"senderismo","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core","espalda_alta"]},{"id":"mar","prio":["dorsal","hombros","triceps"],"sec":["pecho","espalda_alta","core"]},{"id":"carrera","prio":["cuadriceps","gluteos"],"sec":["isquios","pantorrilla","core"]},{"id":"ciclismo","prio":["cuadriceps","gluteos"],"sec":["isquios"]},{"id":"surf","prio":["dorsal","triceps","pecho","hombros"],"sec":["biceps","espalda_alta"]},{"id":"buceo","prio":[],"sec":[]},{"id":"golf","prio":["gluteos","cuadriceps","core"],"sec":["hombros","espalda_alta"]},{"id":"padel","prio":["antebrazo","cuadriceps","hombros"],"sec":["core","pecho","triceps"]},{"id":"otro","prio":[],"sec":[]}];
+     castellano). Cada campo se comprueba al leerlo y va por textContent.
+     (19-11-2026, bloque 1 de los deportes de interior; Jerome: «Aquí sigue sin poder poner gimnasio o calisteña»)
+     «Gimnasio» y «Calistenia», delante de «Otro deporte». Son entrenamiento de fuerza: su pauta es la de todos los
+     grandes grupos (OMS, ACSM 2026), así que no marcan grupos prioritarios en el personaje (prio y sec vacíos, como
+     «Otro deporte»); su ficha dice lo que dicen los estudios de cada uno. */
+  var DEPORTES = [{"id":"senderismo","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core","espalda_alta"]},{"id":"mar","prio":["dorsal","hombros","triceps"],"sec":["pecho","espalda_alta","core"]},{"id":"carrera","prio":["cuadriceps","gluteos"],"sec":["isquios","pantorrilla","core"]},{"id":"ciclismo","prio":["cuadriceps","gluteos"],"sec":["isquios"]},{"id":"surf","prio":["dorsal","triceps","pecho","hombros"],"sec":["biceps","espalda_alta"]},{"id":"buceo","prio":[],"sec":[]},{"id":"golf","prio":["gluteos","cuadriceps","core"],"sec":["hombros","espalda_alta"]},{"id":"padel","prio":["antebrazo","cuadriceps","hombros"],"sec":["core","pecho","triceps"]},{"id":"gimnasio","prio":[],"sec":[]},{"id":"calistenia","prio":[],"sec":[]},{"id":"otro","prio":[],"sec":[]}];
   var DEP = null, DEP_IDIOMA = null, depCarga = null, depError = false, depOpcIdioma = null;
   var CERTS_DEP = ['alta', 'moderada', 'baja', 'indirecta', 'ninguna'];
   var SOS_DEP = ['inicio', 'auxilios', 'rescate', 'picaduras', 'playa', 'calor', 'montana'];
@@ -6051,7 +6059,9 @@
           .map(function (q) { return [q[0], txt(q[1], 200), ['todos', 'adultos', 'menores'].indexOf(q[2]) >= 0 ? q[2] : 'todos']; }).slice(0, 6),
         f: []
       };
-      (Array.isArray(x.f) ? x.f : []).slice(0, 7).forEach(function (q) {
+      /* (19-11-2026, bloque 1) hasta 12 fuentes: la de calistenia lleva 12 (cuatro ensayos, dos estudios de lesiones,
+         el ACSM y las de Tenerife); antes, 7 */
+      (Array.isArray(x.f) ? x.f : []).slice(0, 12).forEach(function (q) {
         if (q && typeof q.titulo === 'string' && typeof q.url === 'string' && /^https:\/\//.test(q.url)) r.f.push({ titulo: txt(q.titulo, 200), url: q.url, fecha: txt(q.fecha, 10) });
       });
       if (!r.cert || !r.t || !r.f.length) return;

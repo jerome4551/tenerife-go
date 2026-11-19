@@ -76,6 +76,8 @@
  *     buceo y el avión, y lo que cada persona elige contar para el GR 131, 26).
  *   - y, desde el 15 de noviembre de 2026, los vídeos fáciles de encontrar (43): 🎬 detrás del nombre de los
  *     ejercicios con vídeo en las listas que abren su ficha, «Solo con vídeo» y «Ver el vídeo», en los diez idiomas.
+ *   - y, desde el 19 de noviembre de 2026 (bloque 1 de los deportes de interior), «Gimnasio» y «Calistenia» en «Su
+ *     deporte»: sus fichas en los 11 idiomas (sin navegador) y en la pantalla, en cinco idiomas y a 320 px (44).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -4445,6 +4447,142 @@ async function ejemplo(pg, mas) {
     prueba('43: un índice con basura (HTML, __proto__, pasos en texto, de más o con decimales): solo el 🎬 de la fila buena; nada se ejecuta; sin errores',
       Ld.filter(f => f.n).map(f => f.id).join() === EJ1 && malo && e43d.length === 0, JSON.stringify([Ld.filter(f => f.n).map(f => f.id), malo, e43d]));
     await c43d.close();
+  }
+
+  // 44. (19-11-2026, bloque 1 de los deportes de interior; Jerome: «Aquí sigue sin poder poner gimnasio o calisteña»)
+  //     «Su deporte» con «Gimnasio» y «Calistenia», delante de «Otro deporte». Sin navegador: los 11 ficheros de las guías
+  //     tienen las mismas fichas y en el orden de DEPORTES; cada deporte, su nombre en los 11 idiomas; las dos fichas
+  //     nuevas, con las cifras del castellano en cada idioma, las preguntas del asistente de cada idioma, sus ejercicios en
+  //     el catálogo, sus fuentes en https (7 y 12) y sin grupos prioritarios. En la pantalla: el desplegable; las dos
+  //     fichas (la certeza, las secciones, los ejercicios con su marca, las 12 fuentes en otra pestaña y sin opener); un
+  //     ejercicio de la ficha abre su ficha; el personaje sin marcas; la hoja del movimiento propone caminar (lo suyo son
+  //     las series); en inglés, chino y búlgaro; y a 320 px, en alemán y en búlgaro, nada se sale.
+  {
+    const fs = require('fs'), path = require('path');
+    const s = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s.indexOf('var CUERPO_UI = {'), j = s.indexOf('\n  };', i);
+      for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    const DEPS = JSON.parse(s.match(/var DEPORTES = (\[.*?\]);/)[1]), ids = DEPS.map(d => d.id);
+    const L11 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
+    const lee = f => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', f), 'utf8'));
+    prueba('44: «Gimnasio» y «Calistenia» en DEPORTES, delante de «Otro deporte» y sin grupos prioritarios', ids.slice(-3).join() === 'gimnasio,calistenia,otro'
+      && DEPS.filter(d => d.id === 'gimnasio' || d.id === 'calistenia').every(d => !d.prio.length && !d.sec.length), ids.join());
+    const malNom = []; for (const id of ids) for (const l of L11) if (!UI['cuerpoDep_' + id] || !String(UI['cuerpoDep_' + id][l] || '').trim()) malNom.push(id + ' ' + l);
+    prueba('44: cada deporte de la lista, con su nombre en los 11 idiomas', !malNom.length, malNom.join(' '));
+    const G = {}, malOrden = [];
+    for (const l of L11) {
+      const d = lee('deportes-' + l + '.json'); G[l] = {};
+      if (d.deportes.map(x => x.id).join() !== ids.join()) malOrden.push(l + ': ' + d.deportes.map(x => x.id).join());
+      for (const x of d.deportes) G[l][x.id] = x;
+    }
+    prueba('44: las guías de los 11 idiomas tienen las mismas fichas, en el orden de la lista', !malOrden.length, malOrden.join(' | '));
+    /* las cifras de cada texto, las del castellano (sin separadores de millares) */
+    const cifras = t => (String(t).replace(/[  ]/g, '').replace(/(\d)[.,](?=\d{3}(?!\d))/g, '$1').replace(/,/g, '.').match(/\d+(?:\.\d+)?/g) || []).sort().join();
+    const plano = (o, r, d) => {
+      if (typeof o === 'string') d[r] = o;
+      else if (Array.isArray(o)) o.forEach((x, i) => plano(x, r + '[' + i + ']', d));
+      else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!['url', 'fecha', 'id', 'grado', 'cert', 'gg', 'sos', 'qs'].includes(k)) plano(v, r + '.' + k, d);
+      return d;
+    };
+    const EJS = new Set(lee('ejercicios.json').ejercicios.map(x => x.id)), malNuevas = [];
+    for (const id of ['gimnasio', 'calistenia']) {
+      const es = plano(G.es[id] || {}, id, {});
+      for (const l of L11) {
+        const x = G[l][id]; if (!x) { malNuevas.push(l + ' ' + id + ': no está'); continue; }
+        const t = plano(x, id, {});
+        for (const [r, v] of Object.entries(es)) if (cifras(v) !== cifras(t[r])) malNuevas.push(l + ' ' + r + ': cifras');
+        if (x.f.length !== (id === 'gimnasio' ? 7 : 12) || !x.f.every(f => /^https:\/\//.test(f.url) && f.titulo.trim())) malNuevas.push(l + ' ' + id + ': fuentes');
+        if (x.ej.length !== (id === 'gimnasio' ? 0 : 10) || x.ej.some(e => !EJS.has(e.id))) malNuevas.push(l + ' ' + id + ': ejercicios');
+        /* las preguntas, las del asistente de su idioma, letra a letra; el rumano, desde que tenga el suyo (R17–R20):
+           hoy no existe datos/cuerpo/asistente-ro.json y sus seis preguntas nuevas esperan en su nota (la 57) */
+        if (fs.existsSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'))) {
+          const A = {}; for (const r of lee('asistente-' + l + '.json').respuestas) A[r.id] = r;
+          for (const q of x.qs) if (!A[q[0]] || A[q[0]].q !== q[1] || A[q[0]].edad !== q[2]) malNuevas.push(l + ' ' + id + ': la pregunta ' + q[0]);
+        } else if (l !== 'ro') malNuevas.push(l + ': sin asistente-' + l + '.json');
+        if (l !== 'es' && x.t === G.es[id].t) malNuevas.push(l + ' ' + id + ': en castellano');
+      }
+    }
+    prueba('44: las dos fichas nuevas en los 11 idiomas: las cifras del castellano en cada texto, 7 y 12 fuentes en https, los 10 ejercicios de calistenia en el catálogo y las preguntas del asistente de cada idioma',
+      !malNuevas.length, malNuevas.slice(0, 6).join(' · '));
+
+    /* en la pantalla */
+    const c44 = await contexto(b), p44 = await c44.newPage(), e44 = []; vigilar(p44, e44);
+    await abrirApp(p44); await abrirPerfilCuerpo(p44); await suCuerpo(p44); await vacio(p44);
+    await p44.click('#tgc-modo-m'); await p44.waitForTimeout(150);
+    const opts = await p44.evaluate(() => [...document.querySelectorAll('#tgc-dep-sel option')].map(o => o.value + ':' + o.textContent));
+    prueba('44: el desplegable, con «Gimnasio» y «Calistenia» delante de «Otro deporte»', opts.slice(-3).join('|') === 'gimnasio:Gimnasio|calistenia:Calistenia|otro:Otro deporte', opts.join('|'));
+    const ficha44 = async () => {
+      await p44.waitForFunction(() => !document.getElementById('tgc-dep-ficha').hidden, null, { timeout: 15000 }).catch(() => {});
+      return p44.evaluate(() => {
+        const f = document.getElementById('tgc-dep-ficha');
+        return { visto: !f.hidden, cert: (f.querySelector('.tgc-cert') || {}).textContent || '', t: (f.querySelector('.tgc-dep-t') || {}).textContent || '',
+          secs: [...f.querySelectorAll('.tgc-dep-sec > summary')].map(x => x.textContent), prio: document.querySelectorAll('#cuerpo-panel .tgf-prio').length,
+          gs: f.querySelectorAll('.tgc-dep-gs').length, fuentes: [...f.querySelectorAll('.tgc-dep-f a')].map(a => [a.href, a.target, a.rel]),
+          guardado: JSON.parse(localStorage.getItem('tenerife.cuerpo')).deporte };
+      });
+    };
+    await p44.selectOption('#tgc-dep-sel', 'gimnasio');
+    const g1 = await ficha44();
+    prueba('44: «Gimnasio»: su ficha (certeza alta, sin «Ejercicios de la biblioteca», 7 fuentes), guardado, y el personaje sin grupos prioritarios',
+      g1.visto && g1.cert === 'Certeza alta' && /^El gimnasio es entrenamiento de fuerza/.test(g1.t) && g1.secs.length === 7 && !g1.secs.includes('Ejercicios de la biblioteca')
+      && g1.secs[g1.secs.length - 1] === '7 fuentes' && g1.prio === 0 && g1.gs === 0 && g1.guardado === 'gimnasio', JSON.stringify(g1));
+    await p44.selectOption('#tgc-dep-sel', 'calistenia');
+    const c1 = await ficha44();
+    await p44.evaluate(() => { const d = [...document.querySelectorAll('#tgc-dep-ficha .tgc-dep-sec')].find(x => x.querySelector('.tgc-dep-ej')); if (d) d.open = true; });
+    await p44.waitForFunction(() => document.querySelectorAll('#tgc-dep-ficha .tgc-dep-ej li button').length >= 10, null, { timeout: 15000 }).catch(() => {});
+    const c2 = await p44.evaluate(() => [...document.querySelectorAll('#tgc-dep-ficha .tgc-dep-ej li button')].map(x => x.dataset.ej + ':' + (x.querySelector('.tgc-dep-tag') || {}).textContent));
+    prueba('44: «Calistenia»: su ficha (certeza moderada, 8 secciones), sus 10 ejercicios con su marca (2 «De los estudios») y sus 12 fuentes en otra pestaña y sin opener',
+      c1.visto && c1.cert === 'Certeza moderada' && /^La calistenia es entrenamiento de fuerza/.test(c1.t) && c1.secs.length === 8 && c1.secs.includes('Ejercicios de la biblioteca')
+      && c2.length === 10 && c2.filter(x => /:De los estudios$/.test(x)).length === 2 && c2[0] === 'flexion:De los estudios'
+      && c1.fuentes.length === 12 && c1.fuentes.every(f => /^https:\/\//.test(f[0]) && f[1] === '_blank' && /noopener/.test(f[2])) && c1.prio === 0 && c1.guardado === 'calistenia',
+      JSON.stringify([c1, c2]));
+    /* un ejercicio de la ficha abre su ficha, en «Músculos» */
+    await p44.click('#tgc-dep-ficha .tgc-dep-ej button[data-ej="dominadas"]');
+    await p44.waitForFunction(() => !document.getElementById('tgc-pag-ej').hidden, null, { timeout: 15000 }).catch(() => {});
+    const abre = await p44.evaluate(() => ({ ej: !document.getElementById('tgc-pag-ej').hidden, nom: document.getElementById('tgc-ej-nom').textContent }));
+    prueba('44: un ejercicio de la ficha de calistenia abre su ficha', abre.ej && /^Dominadas/.test(abre.nom), JSON.stringify(abre));
+    await p44.keyboard.press('Escape'); await p44.waitForTimeout(150); await p44.keyboard.press('Escape'); await p44.waitForTimeout(200);
+    /* la hoja del movimiento: con gimnasio o calistenia propone caminar (lo suyo se anota en series) */
+    const propone = [];
+    for (const dep of ['gimnasio', 'calistenia']) {
+      if (!(await p44.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p44);
+      await p44.selectOption('#tgc-dep-sel', dep); await p44.waitForTimeout(150);
+      await p44.click('#tgc-mov-btn'); await p44.waitForTimeout(300);
+      propone.push(dep + '→' + await p44.evaluate(() => { const x = document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]'); return x ? x.dataset.tipo : '?'; }));
+      await p44.keyboard.press('Escape'); await p44.waitForTimeout(150);
+    }
+    prueba('44: con «Gimnasio» o «Calistenia», la hoja del movimiento propone caminar (se anotan en series)', propone.join() === 'gimnasio→caminar,calistenia→caminar', propone.join());
+    /* en otros idiomas: el nombre y la ficha, en el suyo */
+    const enIdiomas = [];
+    for (const l of ['en', 'zh', 'bg']) {
+      await idioma(p44, l);
+      if (!(await p44.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p44);
+      await p44.selectOption('#tgc-dep-sel', 'calistenia');
+      await p44.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G[l].calistenia.t, { timeout: 15000 }).catch(() => {});
+      const r = await p44.evaluate(() => ({ op: [...document.querySelectorAll('#tgc-dep-sel option')].slice(-3).map(o => o.textContent).join('|'), t: (document.querySelector('#tgc-dep-ficha .tgc-dep-t') || {}).textContent || '' }));
+      if (r.op !== [UI.cuerpoDep_gimnasio[l], UI.cuerpoDep_calistenia[l], UI.cuerpoDep_otro[l]].join('|') || r.t !== G[l].calistenia.t) enIdiomas.push(l + ': ' + JSON.stringify(r));
+    }
+    prueba('44: en inglés, chino y búlgaro, los nombres y la ficha de calistenia en su idioma', !enIdiomas.length, enIdiomas.join(' | '));
+    /* a 320 px, en alemán y en búlgaro (las palabras más largas): ni el desplegable ni las fichas se salen */
+    await p44.setViewportSize({ width: 320, height: 700 }); await p44.waitForTimeout(200);
+    const desb = [];
+    for (const l of ['de', 'bg']) {
+      await idioma(p44, l);
+      for (const dep of ['gimnasio', 'calistenia']) {
+        await p44.selectOption('#tgc-dep-sel', dep);
+        await p44.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G[l][dep].t, { timeout: 15000 }).catch(() => {});
+        await p44.evaluate(() => document.querySelectorAll('#tgc-dep-ficha details').forEach(d => { d.open = true; })); await p44.waitForTimeout(300);
+        const d = await p44.evaluate(() => {
+          const c = document.getElementById('tgc-deporte'), r = c.getBoundingClientRect(), fuera = [];
+          c.querySelectorAll('*').forEach(e => { const q = e.getBoundingClientRect(); if (q.width && (q.right > r.right + 1 || q.left < r.left - 1)) fuera.push(e.tagName + '.' + e.className); });
+          return { ancho: document.documentElement.scrollWidth, fuera: fuera.slice(0, 3) };
+        });
+        if (d.ancho > 320 || d.fuera.length) desb.push(l + ' ' + dep + ': ' + JSON.stringify(d));
+      }
+    }
+    prueba('44: a 320 px, en alemán y en búlgaro, ni el desplegable ni las dos fichas (abiertas) se salen', !desb.length, desb.join(' | '));
+    prueba('44: sin errores de página', e44.length === 0, e44.join(' | '));
+    await c44.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));
