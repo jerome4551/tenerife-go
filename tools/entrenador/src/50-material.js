@@ -1017,6 +1017,122 @@
       });
     });
   };
+  /* ── las máquinas y el multipower (bloque 14) ──
+     Una máquina se dice por piezas, en centímetros y en su marco (el del mundo, salvo que lleve «en: [x, z]» y «rumbo»).
+     o: { fijo: [pieza, …], mec: [mecanismo, …], agarres: { i: [x, y, z], d: […] } (las asas que no se mueven), en, rumbo, sesgo,
+          encuadre: [puntos] (lo que tiene que caber en el cuadro, si no es todo), reposo: true (ver «quieto») }
+     pieza: ['tubo', A, B, radio, color, sesgo, 'A' | 'B'] (con 'A' o 'B', en un mecanismo: ese extremo no se mueve, sigue en el bastidor)
+          · ['rulo', A, B, radio, sesgo] (un rodillo tapizado) · ['asa', A, B, radio, sesgo]
+          · ['cojin', centro, [ancho, grueso, largo], a lo largo de qué va, hacia dónde mira, sesgo, 'centro'] (se ordena por su fondo;
+            con 'centro', por su centro: lo que va encima del cuerpo) · ['placa', …] (lo mismo, de chapa)
+          · ['disco', centro, eje, radio, grosor, color, sesgo]
+          · ['pila', [x, y, z], alto, { mec, gana, cero, ancho, eje }] (la torre de placas: las de arriba suben «gana» cm por cada
+            grado o centímetro que el mecanismo «mec» pasa de «cero»)
+     mecanismo: lo que se mueve, y con qué parte del cuerpo va.
+          { gira: [un punto del eje, su dirección] | corre: dirección | lleva: true (se traslada con el punto, sin girar),
+            ref: [x, y, z] (dónde está, con la máquina en reposo, el punto que va con el cuerpo), sigue: punto del cuerpo,
+            max: 1 | -1 (con un par —'bolas', 'tobillos'—: manda el pie que más empuja, o el que menos), lim: [de, a] (grados o cm),
+            quieto: valor mientras nadie la ha cogido (las posturas de «reposo» de la coreografía), piezas: […],
+            agarres: { i, d } (sus asas: la mano va clavada a ellas con 'mi@N:1' y 'md@N:-1'; el segundo juego de asas de la máquina
+            es el 2, y así), barra: [centro, eje] (un agarre corrido: 'mi@N:25', a 25 cm del centro) }
+     punto del cuerpo: 'manos' · 'mano-i' · 'tobillos' · 'tobillo-i' · 'bolas' · 'bola-i' (bajo la parte delantera del pie) · 'rodillas' ·
+          'hombros' · 'codos' · 'muneca-i' · { en: 'torax' | 'pelvis', a: [x, y, z] } · { de: 'i', p: 'rod', mas: [x, y, z] } · [varios: su media]
+     Una palanca gira sobre su eje hasta donde está la mano o la pierna que la mueve, y el asa queda siempre a la misma distancia del
+     eje: la mano se clava a ella, y es la mano la que sigue el arco de la máquina, no la máquina la que se estira. ── */
+  function maqPunto(E, p) {
+    if (Array.isArray(p)) { if (typeof p[0] === 'number') return p; var s = [0, 0, 0]; p.forEach(function (q) { s = mas(s, por(maqPunto(E, q), 1 / p.length)); }); return s; }
+    if (typeof p === 'object') return p.en ? mas(p.en === 'torax' ? E.tor : E.pel, aplicar(p.en === 'torax' ? E.Bt : E.Bp, p.a)) : (p.mas ? mas(E[p.de][p.p], p.mas) : E[p.de][p.p]);
+    if (MAQ_PAR[p]) return mezcla(maqPunto(E, MAQ_PAR[p] + '-i'), maqPunto(E, MAQ_PAR[p] + '-d'), 0.5);
+    var L = E[p.slice(-1)], que = p.slice(0, -2);
+    return que === 'mano' ? L.agarre : que === 'tobillo' ? L.tob : que === 'rodilla' ? L.rod : que === 'hombro' ? L.hom : que === 'codo' ? L.cod : que === 'muneca' ? L.mun : mas(L.suela, por(L.punta, D.bola));
+  }
+  var MAQ_PAR = { manos: 'mano', tobillos: 'tobillo', bolas: 'bola', rodillas: 'rodilla', hombros: 'hombro', codos: 'codo' };
+  function maqValor(m, f) {
+    if (m.lleva) return menos(f, m.ref);
+    if (m.gira) { var P = m.gira[0], u = unidad(m.gira[1]), a = sinParte(menos(m.ref, P), u), b = sinParte(menos(f, P), u); return Math.atan2(punto(cruz(a, b), u), punto(a, b)) / RAD; }
+    return punto(menos(f, m.ref), unidad(m.corre));
+  }
+  function maqMueve(x, p) { var m = x.m; return m.lleva ? mas(p, x.v) : m.gira ? mas(m.gira[0], girar(menos(p, m.gira[0]), unidad(m.gira[1]), x.v)) : mas(p, por(unidad(m.corre), x.v)); }
+  function maqGira(x, d) { return x.m.gira ? girar(d, unidad(x.m.gira[1]), x.v) : d; }
+  MATERIAL.maquina = function (esc, o) {
+    o = o || {}; this.o = o; this.antes = true;
+    var tap = [M_COL.tapizL, M_COL.tapiz, M_COL.tapizS, M_COL.tapizS], hie = ['#566072', M_COL.hierro, M_COL.hierroS, M_COL.hierroS], pl = ['#3a414d', '#2b313c', M_COL.hierroS, M_COL.hierroS];
+    var haz = function (q) {
+      var t = q[0];
+      return { q: q, f: t === 'tubo' ? new Cilindro(M_COL[q[4] || 'hierro']) : t === 'rulo' ? new Cilindro(M_COL.tapiz, 'rgba(255,255,255,.2)') : t === 'asa' ? new Cilindro(M_COL.goma, 'rgba(255,255,255,.18)') :
+        t === 'cojin' ? new Caja(tap) : t === 'placa' ? new Caja(hie) : t === 'disco' ? new Disco(q[5] || M_COL.goma, M_COL.hierroS, M_COL.cromo) :
+        { v: [new Cilindro(M_COL.cromoS), new Cilindro(M_COL.cromoS)], t: new Cilindro(M_COL.hierro), a: new Caja(pl), b: new Caja(pl) } };
+    };
+    this.fijo = (o.fijo || []).map(haz);
+    this.mec = (o.mec || []).map(function (m) { return { m: m, v: m.lleva ? [0, 0, 0] : 0, piezas: (m.piezas || []).map(haz) }; });
+    this.B0 = giroY(o.rumbo || 0); this.c0 = [o.en ? o.en[0] : 0, 0, o.en ? o.en[1] : 0];
+  };
+  MATERIAL.maquina.prototype.colocar = function (E, ctx) {
+    var yo = this, rep = enReposo(this.o, ctx);
+    var loc = function (p) { return aLocal(yo.B0, menos(maqPunto(E, p), yo.c0)); };
+    this.mec.forEach(function (x) {
+      var m = x.m, v;
+      if (!m.sigue || (rep && m.quieto != null)) { x.v = m.quieto != null ? m.quieto : m.lleva ? [0, 0, 0] : 0; return; }
+      if (m.max && MAQ_PAR[m.sigue]) { var a = maqValor(m, loc(MAQ_PAR[m.sigue] + '-i')), b = maqValor(m, loc(MAQ_PAR[m.sigue] + '-d')); v = m.max > 0 ? Math.max(a, b) : Math.min(a, b); }
+      else v = maqValor(m, loc(m.sigue));
+      if (m.lim && !m.lleva) v = entre(v, m.lim[0], m.lim[1]);
+      x.v = v;
+    });
+  };
+  /* dónde se agarra: |x| dice qué juego de asas (1, el primero: los de los mecanismos, por orden, y después los fijos) y su signo, qué
+     mano (+, la izquierda). Con una barra corrida, x es a cuántos centímetros de su centro */
+  MATERIAL.maquina.prototype.agarre = function (x) {
+    var k = x >= 0 ? 'i' : 'd', n = Math.max(1, Math.round(Math.abs(x))), i, m, p = null;
+    for (i = 0; i < this.mec.length && !p; i++) {
+      m = this.mec[i].m;
+      if (m.barra) p = maqMueve(this.mec[i], mas(m.barra[0], por(unidad(m.barra[1]), x)));
+      else if (m.agarres && m.agarres[k] && --n === 0) p = maqMueve(this.mec[i], m.agarres[k]);
+    }
+    if (!p && this.o.agarres) p = this.o.agarres[k];
+    return mas(this.c0, aplicar(this.B0, p || [0, 100, 0]));
+  };
+  MATERIAL.maquina.prototype.cada = function (f) {
+    var yo = this, id = function (p) { return p; };
+    this.fijo.forEach(function (z) { f(z, id, id, id); });
+    this.mec.forEach(function (x) { var T = function (p) { return maqMueve(x, p); }, Td = function (d) { return maqGira(x, d); }; x.piezas.forEach(function (z) { f(z, T, Td, id); }); });
+  };
+  MATERIAL.maquina.prototype.extremos = function () {
+    var yo = this, o = this.o, r = [];
+    var W = function (p) { return mas(yo.c0, aplicar(yo.B0, p)); };
+    if (o.encuadre) return o.encuadre.map(W);
+    this.cada(function (z, T, Td) {
+      var q = z.q, t = q[0];
+      if (t === 'tubo' || t === 'rulo' || t === 'asa') r.push(W(q[6] === 'A' ? q[1] : T(q[1])), W(q[6] === 'B' ? q[2] : T(q[2])));
+      else if (t === 'pila') r.push(W(q[1]), W([q[1][0], q[1][1] + q[2], q[1][2]]));
+      else if (t === 'disco') { var c = T(q[1]), R = q[3] || 20; r.push(W(mas(c, [0, R, 0])), W(mas(c, [0, -R, 0])), W(mas(c, [0, 0, R])), W(mas(c, [0, 0, -R]))); }
+      else { var dz = por(unidad(Td(q[3] || [0, 0, 1])), q[2][2] / 2); r.push(W(mas(T(q[1]), dz)), W(menos(T(q[1]), dz))); }
+    });
+    return r;
+  };
+  MATERIAL.maquina.prototype.pintar = function (E, cam, lista) {
+    var yo = this, o = this.o, sg0 = o.sesgo == null ? -6 : o.sesgo;
+    var W = function (p) { return mas(yo.c0, aplicar(yo.B0, p)); }, Wd = function (d) { return aplicar(yo.B0, d); };
+    this.cada(function (z, T, Td) {
+      var q = z.q, t = q[0], f = z.f;
+      if (t === 'tubo') f.pon(cam, W(q[6] === 'A' ? q[1] : T(q[1])), W(q[6] === 'B' ? q[2] : T(q[2])), q[3] || 2.4, lista, q[5] == null ? sg0 : q[5]);
+      else if (t === 'rulo') f.pon(cam, W(T(q[1])), W(T(q[2])), q[3] || 5, lista, q[4] == null ? 1 : q[4]);
+      else if (t === 'asa') f.pon(cam, W(T(q[1])), W(T(q[2])), q[3] || 1.7, lista, q[4] == null ? 2.2 : q[4]);
+      else if (t === 'cojin' || t === 'placa') {
+        var dz = unidad(Wd(Td(q[3] || [0, 0, 1]))), dy = unidad(sinParte(Wd(Td(q[4] || [0, 1, 0])), dz), [0, 1, 0]);
+        f.pon(cam, W(T(q[1])), [cruz(dy, dz), dy, dz], q[2], lista, q[5] == null ? sg0 - 8 : q[5], q[6] === 'centro' ? null : 'fondo');
+      }
+      else if (t === 'disco') f.pon(cam, W(T(q[1])), unidad(Wd(Td(q[2] || [1, 0, 0]))), q[3] || 20, q[4] || 4, lista, q[6] == null ? 0 : q[6]);
+      else {
+        /* la torre de placas: dos guías, su puente y las placas; las de arriba (las que se han elegido) suben con el mecanismo */
+        var op = q[3] || {}, c = q[1], h = q[2], w = op.ancho || 24, e = op.eje === 'z' ? [0, 0, 1] : [1, 0, 0], hp = h * 0.5, hl = hp * 0.3, hr = hp - hl, B = [e, [0, 1, 0], cruz(e, [0, 1, 0])];
+        var x = op.mec != null ? yo.mec[op.mec] : null, sube = x && !x.m.lleva ? entre(Math.abs(x.v - (op.cero || 0)) * (op.gana || 0), 0, h - hp - 5) : 0, sg = op.sesgo == null ? sg0 - 2 : op.sesgo;
+        [1, -1].forEach(function (s, i) { f.v[i].pon(cam, W(mas(c, por(e, s * w * 0.3))), W(mas(c, mas(por(e, s * w * 0.3), [0, h, 0]))), 0.9, lista, sg - 0.5); });
+        f.t.pon(cam, W(mas(c, mas(por(e, -w * 0.42), [0, h, 0]))), W(mas(c, mas(por(e, w * 0.42), [0, h, 0]))), 2, lista, sg);
+        f.a.pon(cam, W(mas(c, [0, hr / 2, 0])), [Wd(B[0]), B[1], Wd(B[2])], [w, hr, 8], lista, sg, 'fondo');
+        f.b.pon(cam, W(mas(c, [0, hr + 0.8 + sube + hl / 2, 0])), [Wd(B[0]), B[1], Wd(B[2])], [w, hl, 8], lista, sg + 0.3, 'fondo');
+      }
+    });
+  };
   /* ── el fitball ── */
   MATERIAL.fitball = function (esc, o) { this.o = o || {}; this.e = new Esfera(esc.defs, 'tgm' + (++N_MAT), '#5B4FCF', '#9B8CFF', '#3a3190'); this.antes = true; };
   MATERIAL.fitball.prototype.colocar = function () {};
