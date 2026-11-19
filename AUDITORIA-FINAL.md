@@ -10090,6 +10090,108 @@ idioma: 836 pases y 741.820 cuadros; los 11 trozos, cada uno con la huella de su
 tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/` (241 ficheros; las fuentes del rumano no viajan) y lo
 cotejó; y al acabar, el repositorio, sin ningún cambio.
 
+## Jérôme, la nota 56: los L-sit con el tronco derecho y el bloque 13, con banda elástica (456 con vídeo); el nombre de las tijeras de brazos; y el rumano, bloque 15 (19 de noviembre)
+
+**Los L-sit, con el tronco derecho** (nota 56, parche `0022`, de la sesión del entrenador). Lo pidió Jérôme el 18-11, al
+recibir el bloque 12: «4 cm con troncos inclinado ? Me parece poco ? Verifícalo». Esa sesión lo midió y tenía razón:
+inclinar el tronco no levanta la cadera, la baja (sentado derecho, la pelvis del dibujo toca el suelo con su centro a
+9,7 cm; inclinada 13°, a 11,8), y lo que la despega es bajar los hombros, empujando el suelo con los brazos estirados.
+Ahora los tres L-sit empiezan sentados y derechos, con las manos de plano junto a la cadera y los brazos a plomo bajo
+los hombros: el tronco, a 2,4° de la vertical (antes, 24°); entre el tronco y las piernas, 88° (antes, 67°); y la cadera
+sube 5,6 cm (antes, 4,3; con las rodillas encogidas, 5,7). Es lo que da el cuerpo en el suelo y sin apoyos. El trozo de
+abdomen cambia de nombre porque lleva su huella: `abdomen.029ee03d.js` pasa a `abdomen.66a08da3.js`. Según esa sesión,
+las otras 415 coreografías salen idénticas una a una.
+
+**El bloque 13: con banda elástica** (parche `0023`). 38 coreografías nuevas, todas de fuerza, en su fuente
+(`tools/entrenador/src/7c-banda.js`) y en su trozo (`modulos/entrenador/banda.365d46a0.js`, 71.195 bytes): los 37
+ejercicios con banda que quedaban de las 533 fichas de antes y la rotación externa con una bufanda o una banda entre las
+manos. Por su primer grupo: glúteos 6, hombros 5, espalda alta 5, bíceps 4, antebrazo 4, pecho 3, pantorrilla 3,
+isquiotibiales 2, cuádriceps 2, core 2, dorsal 1 y tríceps 1. **456 ejercicios con vídeo**, de 958. Fuera del trozo, en
+`50-material.js`, la banda, rehecha (tiras que se afinan al estirarse, lazos y la minibanda; no atraviesa el cuerpo, y
+cambia de mano a la vista), y un poste donde atarla; sin ellos se pinta como antes, y ningún vídeo de antes los usa.
+Once pasos llevan `dura`, porque lo que enseñan no cabe en lo que se tarda en leerlos. Medido por esa sesión con
+`contactos.js`, en los 38: ninguna zapatilla se hunde más de 1 cm (la que más, 0,6), ninguna mano más de 1 (0,2), el
+cuerpo 1,2 (tope 2,5), tumbado el tronco 2,7 y la cabeza 3,4 (tope 4); de un cuadro al siguiente, el cuerpo 3,9 cm como
+mucho (tope 14) y una mano o un pie 9,2 (tope 36); lo clavado no se mueve (0,000 cm); y cada secuencia cabe en su paso
+en los diez idiomas. Lo que la ficha no dice (dónde se ata la banda, con qué mano o pie, a qué altura) lo decidió esa
+sesión sin añadir técnica, y está en su nota.
+
+**Puesto y comprobado aquí.** Los dos parches con `git am` y sus propias líneas de autoría, con la huella que dice su
+nota. El `0022` entra limpio. En el `0023`, la línea del estado de la muestra del entrenador
+(`tools/entrenador/muestra/plantilla.html`, que la app no enlaza) no casaba con la de aquí: se ha puesto lo suyo, y esa
+línea dice lo que habrá al publicar («Los bloques 1 a 13, la cámara lenta arreglada, la subida al pino, los arreglos del
+suelo, las paredes, los muslos y la leyenda, el vídeo partido por grupos, el cambio de pierna de la patada de glúteo en
+polea y los L-sit con el tronco derecho ya están en la app.»). Los ficheros del zip (`repo/`), iguales byte a byte a los
+de la rama, salvo esa muestra y el motor (`modulos/entrenador.js`), que aquí lleva además las 21 filas del rumano del
+reproductor (el bloque 13 del rumano, ya publicado; el zip se hizo sin él). `construir.py --comprobar` (el motor, los 12
+trozos y `con-video.json`, los de sus fuentes) y `app_preparar.js --comprobar`, en verde. `con-video.json`: 456 filas;
+38 nuevas, ninguna quitada ni cambiada, las 38 con su ficha en `datos/cuerpo/ejercicios.json` y la banda en su material,
+y el número de pasos de cada una igual al de su ficha en los diez idiomas. Ningún texto nuevo a la vista: entre
+comillas, el trozo de banda lleva 179 cadenas distintas y el de abdomen 167, ninguna con letras fuera del ASCII y
+ninguna con espacios, salvo el `'use strict'` del principio; el motor, 55 cadenas nuevas (los ids de los 38, los nombres
+de los dos trozos, un color y nombres internos de la banda), tampoco; lo que se lee sale de las fichas ya publicadas.
+Sin APIs de riesgo: en los dos trozos, ni red, ni almacenamiento, ni `innerHTML`, ni `eval`, ni `document`; solo leen
+`window.TG_ENTRENADOR`; y en lo que añade el motor no entra ninguna de esas. Las pruebas del navegador (los 456 vídeos y
+«Su cuerpo») van en la auditoría entera, abajo.
+
+**Lo que no está comprobado**, como en las notas anteriores: nada en un iPhone ni en un Samsung de verdad (en las
+pruebas, Samsung Internet es Chromium con su `User-Agent`), y lo que tarda el primer vídeo de cada grupo en un teléfono.
+Tampoco que los ejercicios se vean como los haría un entrenador: están cotejados con su ficha y medidos, no revisados
+por un profesional; los que más interpretación llevan, según esa sesión, son los cuatro del antebrazo, los dos cambios
+de brazo (la retracción escapular y la extensión de tríceps) y los dos pasos con minibanda. La banda es una cinta recta
+entre dos puntos: no cuelga ni se comba cuando va floja.
+
+**Para decidir, en la sesión del entrenador** (Jérôme, 18-11: «Curl lo hace fable»). Los L-sit, en el suelo: la cadera
+sube 5,6 cm, que es lo que da el cuerpo sin apoyos; sobre dos bloques o unas paralelas bajas subiría más, pero las
+fichas no llevan material. Los cuatro del antebrazo van de rodillas, con el antebrazo en un banco que queda a un lado
+(con el banco delante, la otra mano no llega a sujetar la banda por debajo); la ficha dice «en una mesa o un banco». Y
+lo que va después: por la lista, el bloque 14, en máquina y en multipower (41), que pide dibujar las máquinas.
+
+**El nombre de las tijeras de brazos, con lo que hace su paso.** La ficha `tijeras-brazos-omoplatos` (espalda alta,
+estiramiento, sin vídeo) se llamaba «Tijeras de brazos con apertura de omóplatos», y su paso 2 dice, en los diez
+idiomas, «apriete los omóplatos», como su fuente (WebMD, «How to Stretch Your Shoulders», «Scissor stretches»: «squeeze
+your shoulder blades», releída el 19-11). Lo vio la sesión del rumano al traducir el bloque 14, y Jérôme dijo «cámbialo»
+(19-11). Ahora se llama «Tijeras de brazos con apriete de omóplatos», y lo mismo en francés («avec serrage des
+omoplates»), italiano («e stretta delle scapole»), neerlandés («met samenknijpen van de schouderbladen») y búlgaro («със
+стискане на лопатките»), cada uno con el verbo de su paso 2; el inglés, el alemán y el polaco ya lo decían, y el chino
+(«肩胛开合», abrir y cerrar) no dice lo contrario. Hecho en las fuentes de «Su cuerpo» y construido con su `construir.py`:
+de todo lo que construye cambian solo esos cinco ficheros, cada uno solo en ese nombre y byte a byte lo que da la errata
+de la sesión del rumano; los pasos no cambian, y en cada idioma el nombre nuevo no lo lleva ninguna otra ficha. Y en
+`idiomas/ro-fuente/ejercicios-1.json` (bloque 14), el castellano que traduce esa ficha, para que siga casando; su rumano
+no cambia.
+
+**El rumano, bloque 15** (sigue apagado: nada de esto se ve en la app). Las 293 fichas de bíceps (68), tríceps (57),
+antebrazo (44) y core (124), con 894 pasos, en `idiomas/ro-fuente/ejercicios-2.json`, ancladas en el castellano como las
+del 14: con las dos, casan 596 de 958 con el castellano de hoy, y las 362 que faltan llegan con el 16. Sus guiones no se
+han ejecutado. Comprobado aquí con herramientas propias: las 293 son justo las del catálogo con esos cuatro grupos; su
+castellano es, letra a letra, el de `main`; el rumano tiene los mismos pasos, nombres únicos (también frente a los del
+14), las mismas cifras en cada paso, ș y ț con coma, NFC, y ni comillas ASCII, ni espacios de más, ni caracteres
+invisibles. `revisar_rumano.py --pares`: 1187 filas, 0 errores y 0 avisos. Con la nota 56, 151 de estas fichas tienen
+vídeo (y 159 de las del 14), y en todas el rumano tiene los pasos que sigue el vídeo.
+
+**La auditoría entera** sobre `193c403` (árbol `462195ed`): los cuatro commits de este lote (los dos parches de la nota
+56, el nombre de las tijeras de brazos y el bloque 15 del rumano) encima de `main` (`71cca60`). En `main` es lo mismo,
+rebasado sobre seis commits de los robots (`e825368`, el semáforo del INVOLCAN; `d033287`, satélites; `30dc8ad`,
+terremotos; `b3435fb`, precios de las gasolineras; `9d89830`, avisos de AEMET, y `d2f84ba`, alertas del Gobierno de
+Canarias), que solo cambian `datos/semaforo-involcan.json`, `datos/satelites.json`, `datos/sismos-ign.json`,
+`datos/precios-gasolineras.json`, `datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y con los controles que
+leen esos ficheros, en verde tras el rebase. En los 61 bloques de `auditar.sh`, ningún rojo: las preguntas de prueba al
+asistente, 0 fallos de 298; `auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65; lo que pide Google Play, 249 de
+249; `auditar_registro.js`, todo de usted (137.827 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_cirilico.py`, 2.340 nombres propios en cirílico y ninguna
+variante sospechosa; los datos, 975 lugares en todas partes (también en el resumen de este documento) y ninguna cifra de
+lugares que no sea 975 en lo que se lee; `probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626;
+`auditar_desborde.js`: el popup en su idioma en los diez, la etiqueta viewport de las cuatro páginas, las tres cajas de
+copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16 px; `auditar_mapa.js`, 137;
+`auditar_arranque.js`, los nueve idiomas iguales tras `setLang` (16.036 textos comparados, 0 distintos y 0 errores de
+página); `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los
+diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; «Su cuerpo», 800 y 64; el entrenador,
+79 (los 456 vídeos, enteros, en castellano y en otro idioma: 912 pases y 810.541 cuadros; los 12 trozos, cada uno con la
+huella de su contenido en el nombre); la isla en 3D, 57 y ninguno en rojo; el panel SOS, 42 y 262, y sus cuatro robots;
+las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/`
+(242 ficheros: uno más, el trozo de banda; las fuentes del rumano no viajan) y lo cotejó; y al acabar, el repositorio,
+sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
