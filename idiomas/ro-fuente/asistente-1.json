@@ -1,0 +1,4578 @@
+{
+ "_": "Rumano (ro) del asistente de «Su cuerpo», bloque 17: las respuestas de las categorías app, cuerpos y dieta, 52 de las 178 de datos/cuerpo/asistente-es.json. Cada respuesta lleva su id, el castellano que traduce (q, r, los títulos de las fuentes, v, k y u, como en datos/cuerpo/asistente-es.json) y el rumano, con la misma forma. tools/asistente_traduccion.js ro las junta con las de los bloques 18 a 20 y escribe datos/cuerpo/asistente-ro.json cuando estén todas y todas casen con el castellano de ese día. No se edita a mano: sale de las fuentes del zip del bloque 17 (construir_r17.py).",
+ "idioma": "ro",
+ "respuestas": [
+  {
+   "id": "datos-privacidad",
+   "es": {
+    "q": "¿Se suben mis datos a algún sitio?",
+    "r": {
+     "t": "No. Lo que anota en «Su cuerpo» se guarda solo en este dispositivo, y lo que escribe al asistente no se guarda ni se envía a ningún sitio.",
+     "p": [
+      "Las series, su aspecto, el deporte que elija y, si enciende el diario, las raciones anotadas están en este dispositivo; nadie más los ve.",
+      "El asistente busca la respuesta entre las que lleva dentro: no hay ningún servidor ni ninguna inteligencia artificial leyendo su pregunta.",
+      "Del perfil solo toma el año de nacimiento, para elegir la recomendación que le corresponde, y el peso, si pregunta por su proteína.",
+      "Lo de «Su cuerpo» no tiene copia en la nube: si borra la app o sus datos, se pierde."
+     ],
+     "n": "Las series y lo que come son datos de salud. Subirlos exigiría pedirle un permiso expreso aparte; hoy no se hace."
+    },
+    "f": [],
+    "v": [
+     "¿se suben mis datos?",
+     "¿dónde se guardan mis datos?",
+     "privacidad",
+     "¿mis datos están seguros?",
+     "¿quién ve lo que anoto?",
+     "¿se envía lo que escribo?",
+     "¿guardáis mis preguntas?",
+     "mis datos de entrenamiento se guardan en la nube",
+     "esto es privado",
+     "proteccion de datos",
+     "¿se comparten mis datos con alguien?",
+     "¿la app sube lo que hago a internet?"
+    ],
+    "k": [
+     "privacidad",
+     "datos",
+     "nube",
+     "guardar",
+     "enviar",
+     "seguridad",
+     "servidor",
+     "info",
+     "información personal",
+     "datos personales"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Datele mele sunt încărcate undeva?",
+    "r": {
+     "t": "Nu. Ce notați în „Corp” se salvează doar pe acest dispozitiv, iar ce îi scrieți asistentului nu se salvează și nu se trimite nicăieri.",
+     "p": [
+      "Seriile, aspectul personajului, sportul pe care îl alegeți și, dacă porniți jurnalul, porțiile notate sunt pe acest dispozitiv; nimeni altcineva nu le vede.",
+      "Asistentul caută răspunsul printre cele pe care le conține: nu există niciun server și nicio inteligență artificială care să vă citească întrebarea.",
+      "Din profil ia doar anul nașterii, ca să aleagă recomandarea potrivită pentru dumneavoastră, și greutatea, dacă întrebați de câte proteine aveți nevoie.",
+      "Datele din „Corp” nu au o copie în cloud: dacă ștergeți aplicația sau datele acesteia, se pierd."
+     ],
+     "n": "Seriile și ce mâncați sunt date privind sănătatea. Pentru a le încărca, ar trebui să vi se ceară separat un consimțământ explicit; în prezent nu se face asta."
+    },
+    "f": [],
+    "v": [
+     "datele mele sunt încărcate undeva?",
+     "unde se salvează datele mele?",
+     "confidențialitate",
+     "datele mele sunt în siguranță?",
+     "cine vede ce notez?",
+     "se trimite ce scriu?",
+     "îmi salvați întrebările?",
+     "datele mele de antrenament se salvează în cloud?",
+     "e privat ce notez?",
+     "protecția datelor",
+     "datele mele sunt partajate cu cineva?",
+     "aplicația trimite pe internet ce fac?"
+    ],
+    "k": [
+     "confidențialitate",
+     "date",
+     "cloud",
+     "salvare",
+     "trimitere",
+     "siguranță",
+     "server",
+     "informații",
+     "informații personale",
+     "date personale"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "borrar-datos",
+   "es": {
+    "q": "¿Cómo borro mis datos?",
+    "r": {
+     "t": "Al final de la pantalla «Su cuerpo», el botón «Borrar los datos de “Su cuerpo”» borra todo lo de esta pantalla; le pide confirmación y no se puede deshacer.",
+     "p": [
+      "Se borran las series, el historial, el aspecto del personaje, el deporte elegido y el diario de comidas de este dispositivo.",
+      "Una sola anotación se borra desde la hoja de su grupo, en «Lo último anotado», con la X; ahí sí puede deshacerlo unos segundos.",
+      "En «Comida», «Borrar lo anotado» quita solo las raciones, y «Pausar el diario» las esconde sin borrarlas.",
+      "El asistente no guarda nada: al cerrar la pantalla, la conversación desaparece.",
+      "El año de nacimiento y el peso son del perfil: se borran allí, con «Borrar los datos del perfil de este dispositivo»."
+     ]
+    },
+    "f": [],
+    "v": [
+     "cómo borro mis datos",
+     "borrar todo",
+     "quiero eliminar mis datos",
+     "¿cómo elimino una anotación?",
+     "borrar una serie que anoté mal",
+     "resetear la pantalla",
+     "empezar de cero",
+     "eliminar historial",
+     "borrar lo anotado",
+     "¿cómo quito un registro equivocado?",
+     "¿se puede deshacer lo que anoté sin querer?"
+    ],
+    "k": [
+     "borrar",
+     "eliminar",
+     "quitar",
+     "deshacer",
+     "reset",
+     "apuntado",
+     "corregir",
+     "equivocado",
+     "meter mal"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum îmi șterg datele?",
+    "r": {
+     "t": "În partea de jos a ecranului „Corp”, butonul „Ștergeți datele din «Corp»” șterge tot ce ține de acest ecran; vă cere să confirmați, iar acțiunea nu poate fi anulată.",
+     "p": [
+      "Se șterg de pe acest dispozitiv seriile, istoricul, aspectul personajului, sportul ales și jurnalul alimentar.",
+      "O singură înregistrare se șterge din panoul grupei ei, la „Ultimele înregistrări”, cu X; acolo puteți anula ștergerea timp de câteva secunde.",
+      "În „Mâncare”, „Ștergeți ce ați notat” șterge doar porțiile, iar „Puneți jurnalul pe pauză” le ascunde fără să le șteargă.",
+      "Asistentul nu salvează nimic: când închideți ecranul, conversația dispare.",
+      "Anul nașterii și greutatea țin de profil: se șterg acolo, cu „Ștergeți datele profilului de pe acest dispozitiv”."
+     ]
+    },
+    "f": [],
+    "v": [
+     "cum îmi șterg datele",
+     "șterg tot",
+     "vreau să-mi șterg datele",
+     "cum șterg o înregistrare?",
+     "șterg o serie notată greșit",
+     "resetez ecranul",
+     "o iau de la capăt",
+     "ștergerea istoricului",
+     "șterg ce am notat",
+     "cum scot o înregistrare greșită?",
+     "pot anula ce am notat din greșeală?"
+    ],
+    "k": [
+     "ștergere",
+     "șterg",
+     "eliminare",
+     "anulare",
+     "resetare",
+     "notat",
+     "corectare",
+     "greșit",
+     "notat greșit"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "quien-responde",
+   "es": {
+    "q": "¿Quién escribe estas respuestas? ¿Es una IA?",
+    "r": {
+     "t": "Las respuestas están escritas de antemano con ayuda de inteligencia artificial a partir de las fuentes que cada una cita, y el asistente solo busca la que corresponde a su pregunta: no genera texto nuevo.",
+     "p": [
+      "Las respuestas de salud enseñan sus fuentes y su grado de certeza; lo que no tiene fuente leída no se dice.",
+      "Según una revisión de 2026 sobre consejos de ejercicio, la IA que escribe texto no puede sustituir con seguridad la decisión y la supervisión de los expertos.",
+      "La revisión por un profesional sanitario está pendiente; en cualquier caso, estas respuestas son información general, no consejo profesional."
+     ],
+     "c": "Con una enfermedad, una lesión, medicación, embarazo o una relación difícil con la comida, consulte a su médico, fisioterapeuta o dietista-nutricionista: el asistente no diagnostica ni trata."
+    },
+    "f": [
+     "He et al., revisión sistemática de las recomendaciones de ejercicio de los modelos de lenguaje (Biology of Sport, 2026)"
+    ],
+    "v": [
+     "¿quién escribe esto?",
+     "¿es una inteligencia artificial?",
+     "¿esto lo responde una IA?",
+     "¿hablo con un robot?",
+     "¿eres chatgpt?",
+     "¿quién hay detrás del asistente?",
+     "¿lo ha revisado un médico?",
+     "¿puedo fiarme de estas respuestas?",
+     "es fiable este asistente",
+     "¿quién responde a mis preguntas?",
+     "¿esto lo escribe un humano?"
+    ],
+    "k": [
+     "IA",
+     "inteligencia artificial",
+     "robot",
+     "chatgpt",
+     "fiable",
+     "médico",
+     "revisado"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cine scrie aceste răspunsuri? Este o IA?",
+    "r": {
+     "t": "Răspunsurile sunt scrise dinainte, cu ajutorul inteligenței artificiale, pornind de la sursele pe care le citează fiecare, iar asistentul doar îl caută pe cel care corespunde întrebării dumneavoastră: nu generează text nou.",
+     "p": [
+      "Răspunsurile despre sănătate își arată sursele și gradul de certitudine; ce nu are o sursă citită nu se spune.",
+      "Potrivit unei analize din 2026 privind recomandările de exerciții fizice, IA care scrie text nu poate înlocui în siguranță decizia și supravegherea experților.",
+      "Revizuirea de către un profesionist din domeniul sănătății este încă în așteptare; în orice caz, aceste răspunsuri sunt informații generale, nu sfaturi profesionale."
+     ],
+     "c": "În caz de boală, accidentare, tratament medicamentos, sarcină sau o relație dificilă cu mâncarea, consultați-vă medicul, fizioterapeutul sau un dietetician-nutriționist: asistentul nu pune diagnostice și nu tratează."
+    },
+    "f": [
+     "He et al., analiză sistematică a recomandărilor de exerciții fizice date de modelele lingvistice (Biology of Sport, 2026)"
+    ],
+    "v": [
+     "cine scrie asta?",
+     "e o inteligență artificială?",
+     "răspunde o IA?",
+     "vorbesc cu un robot?",
+     "ești ChatGPT?",
+     "cine e în spatele asistentului?",
+     "a verificat un medic răspunsurile?",
+     "pot avea încredere în aceste răspunsuri?",
+     "e de încredere asistentul?",
+     "cine îmi răspunde la întrebări?",
+     "scrie un om răspunsurile?"
+    ],
+    "k": [
+     "IA",
+     "inteligență artificială",
+     "robot",
+     "ChatGPT",
+     "de încredere",
+     "medic",
+     "verificat"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "de-donde-sale",
+   "es": {
+    "q": "¿De dónde sale esta información?",
+    "r": {
+     "t": "De guías oficiales y estudios publicados: la Organización Mundial de la Salud, el Colegio Americano de Medicina del Deporte, la Autoridad Europea de Seguridad Alimentaria, el NICE británico y revisiones y ensayos científicos.",
+     "p": [
+      "Las respuestas de salud llevan sus fuentes al pie, con el enlace y, si las hay, la fecha y la frase leída en la que se apoyan.",
+      "El grado de certeza dice cuánto peso tiene la evidencia: alta, moderada o baja.",
+      "No hay consejos de famosos, de marcas ni de tiendas: solo instituciones y publicaciones científicas."
+     ]
+    },
+    "f": [],
+    "v": [
+     "¿de dónde sale esta información?",
+     "fuentes",
+     "¿cuáles son las fuentes?",
+     "¿en qué se basan las respuestas?",
+     "¿qué estudios usáis?",
+     "de donde viene la informacion",
+     "¿esto está comprobado?",
+     "¿qué significa certeza alta?",
+     "qué es la certeza de una respuesta",
+     "¿quién dice eso?",
+     "¿de dónde sacan la información?"
+    ],
+    "k": [
+     "fuentes",
+     "estudios",
+     "OMS",
+     "certeza",
+     "evidencia",
+     "comprobado",
+     "base científica",
+     "ciencia",
+     "consejos",
+     "datos"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De unde provin aceste informații?",
+    "r": {
+     "t": "Din ghiduri oficiale și studii publicate: Organizația Mondială a Sănătății, Colegiul American de Medicină Sportivă, Autoritatea Europeană pentru Siguranța Alimentară, institutul britanic NICE, precum și analize și studii științifice.",
+     "p": [
+      "Răspunsurile despre sănătate au sursele la final, cu linkul și, dacă există, data și fraza citită pe care se sprijină.",
+      "Gradul de certitudine arată cât de solide sunt dovezile: certitudine ridicată, moderată sau scăzută.",
+      "Nu există sfaturi de la vedete, mărci sau magazine: doar instituții și publicații științifice."
+     ]
+    },
+    "f": [],
+    "v": [
+     "de unde provin aceste informații?",
+     "surse",
+     "care sunt sursele?",
+     "pe ce se bazează răspunsurile?",
+     "ce studii folosiți?",
+     "de unde vin informațiile",
+     "e verificat?",
+     "ce înseamnă certitudine ridicată?",
+     "ce este certitudinea unui răspuns",
+     "cine spune asta?",
+     "de unde luați informațiile?"
+    ],
+    "k": [
+     "surse",
+     "studii",
+     "OMS",
+     "certitudine",
+     "dovezi",
+     "verificat",
+     "bază științifică",
+     "știință",
+     "sfaturi",
+     "date"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "como-anotar",
+   "es": {
+    "q": "¿Cómo anoto lo que he entrenado?",
+    "r": {
+     "t": "Toque un músculo del personaje o un grupo de la lista, elija el número de series y si fue hoy o ayer, y pulse «Guardar».",
+     "p": [
+      "Desde la ficha de un ejercicio también puede anotar: se apunta una anotación por cada grupo principal del ejercicio, con el nombre del ejercicio.",
+      "El mapa se ilumina con las series de los últimos 7 días: gris sin series, y rosa, naranja y amarillo para 1–4, 5–9 y 10 o más.",
+      "Si se equivoca, bórrelo desde «Lo último anotado»; durante unos segundos puede deshacer el borrado."
+     ]
+    },
+    "f": [],
+    "v": [
+     "cómo anoto",
+     "¿cómo registro un entrenamiento?",
+     "apuntar series",
+     "¿cómo apunto lo que hice?",
+     "registrar mis series",
+     "cómo se guarda un entrenamiento",
+     "¿puedo anotar lo de ayer?",
+     "anotar ejercicio",
+     "como guardo las series",
+     "cómo funciona la anotación",
+     "añadir un entrenamiento nuevo en la app",
+     "¿dónde apunto lo que he hecho hoy?"
+    ],
+    "k": [
+     "anotar",
+     "apuntar",
+     "registrar",
+     "guardar",
+     "series",
+     "agregar",
+     "añadir",
+     "gym",
+     "introducir",
+     "entreno"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum notez ce am antrenat?",
+    "r": {
+     "t": "Atingeți un mușchi al personajului sau o grupă din listă, alegeți numărul de serii și dacă a fost azi sau ieri, apoi apăsați „Salvați”.",
+     "p": [
+      "Puteți nota și din fișa unui exercițiu: se adaugă câte o înregistrare pentru fiecare grupă principală a exercițiului, cu numele exercițiului.",
+      "Harta mușchilor se luminează cu seriile din ultimele 7 zile: gri fără serii, iar roz, portocaliu și galben pentru 1–4, 5–9 și 10 sau mai multe.",
+      "Dacă greșiți, ștergeți înregistrarea din „Ultimele înregistrări”; timp de câteva secunde puteți anula ștergerea."
+     ]
+    },
+    "f": [],
+    "v": [
+     "cum notez",
+     "cum înregistrez un antrenament?",
+     "notez serii",
+     "cum notez ce am făcut?",
+     "înregistrez seriile",
+     "cum se salvează un antrenament",
+     "pot nota ce am făcut ieri?",
+     "notez un exercițiu",
+     "cum salvez seriile",
+     "cum funcționează notarea",
+     "adaug un antrenament nou în aplicație",
+     "unde notez ce am făcut azi?"
+    ],
+    "k": [
+     "notare",
+     "notez",
+     "înregistrare",
+     "salvare",
+     "serii",
+     "adăugare",
+     "adaug",
+     "sală",
+     "introducere",
+     "antrenament"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cambiar-aspecto",
+   "es": {
+    "q": "¿Cómo cambio el aspecto del personaje?",
+    "r": {
+     "t": "En el modo «Aspecto» elige la silueta, la complexión, la piel, el pelo, la cara, la ropa, el calzado, las gafas, el audífono y la prótesis; «Al azar» prueba combinaciones.",
+     "p": [
+      "El aspecto solo cambia el dibujo: no influye en ninguna recomendación ni en las series.",
+      "El personaje no cambia de forma con el peso: su forma la elige usted, y lo que entrena solo ilumina sus músculos.",
+      "Las gafas, el audífono y la prótesis son suyos: «Al azar» no los toca."
+     ]
+    },
+    "f": [],
+    "v": [
+     "cómo cambio el aspecto",
+     "cambiar el personaje",
+     "¿cómo cambio el pelo del muñeco?",
+     "quiero que el personaje se parezca a mí",
+     "cambiar la ropa del personaje",
+     "poner gafas al personaje",
+     "¿cómo pongo una prótesis?",
+     "cambiar el color de piel",
+     "personalizar el avatar",
+     "editar mi personaje",
+     "¿puedo ponerle gafas y otra ropa al personaje?"
+    ],
+    "k": [
+     "aspecto",
+     "personaje",
+     "avatar",
+     "muñeco",
+     "pelo",
+     "ropa",
+     "piel",
+     "peinado",
+     "camiseta",
+     "monigote"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum schimb aspectul personajului?",
+    "r": {
+     "t": "În modul „Aspect” alegeți silueta, constituția, pielea, părul, fața, hainele, încălțămintea, ochelarii, proteza auditivă și proteza; „La întâmplare” încearcă diverse combinații.",
+     "p": [
+      "Aspectul schimbă doar desenul: nu influențează nicio recomandare și nici seriile.",
+      "Personajul nu își schimbă forma în funcție de greutate: forma o alegeți dumneavoastră, iar ce antrenați doar îi luminează mușchii.",
+      "„La întâmplare” nu schimbă ochelarii, proteza auditivă sau proteza: sunt alegerea dumneavoastră."
+     ]
+    },
+    "f": [],
+    "v": [
+     "cum schimb aspectul",
+     "schimb personajul",
+     "cum îi schimb părul omulețului?",
+     "vreau ca personajul să semene cu mine",
+     "schimb hainele personajului",
+     "îi pun ochelari personajului",
+     "cum pun o proteză?",
+     "schimb culoarea pielii",
+     "personalizez avatarul",
+     "editez personajul",
+     "pot să-i pun personajului ochelari și alte haine?",
+     "aleg cum arată personajul"
+    ],
+    "k": [
+     "aspect",
+     "personaj",
+     "avatar",
+     "omuleț",
+     "păr",
+     "haine",
+     "piele",
+     "coafură",
+     "tricou",
+     "figurină",
+     "cum arată"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "sin-internet",
+   "es": {
+    "q": "¿Funciona sin internet?",
+    "r": {
+     "t": "Sí. Las respuestas y los ejercicios se guardan en el dispositivo: la primera vez que abre cada parte hace falta conexión para descargarlos; después, no.",
+     "p": [
+      "Anotar, ver el mapa y cambiar el aspecto funcionan siempre sin conexión.",
+      "Nada de lo que anota o escribe aquí se envía: la respuesta se busca en este dispositivo.",
+      "Los enlaces a las fuentes, al pie de cada respuesta, sí abren páginas de fuera y necesitan conexión."
+     ]
+    },
+    "f": [],
+    "v": [
+     "¿funciona sin internet?",
+     "sin conexión",
+     "¿necesito datos móviles?",
+     "¿va sin wifi?",
+     "funciona offline",
+     "no tengo cobertura",
+     "¿puedo usarlo en el avión?",
+     "sin red",
+     "funciona sin datos",
+     "¿hace falta internet?",
+     "¿se puede usar en la montaña sin cobertura?",
+     "¿el asistente sigue respondiendo sin red?"
+    ],
+    "k": [
+     "internet",
+     "conexión",
+     "offline",
+     "wifi",
+     "cobertura",
+     "datos",
+     "modo avión",
+     "sin señal"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Funcționează fără internet?",
+    "r": {
+     "t": "Da. Răspunsurile și exercițiile se salvează pe dispozitiv: prima dată când deschideți fiecare parte este nevoie de conexiune ca să fie descărcate; după aceea, nu.",
+     "p": [
+      "Notarea, harta mușchilor și schimbarea aspectului funcționează întotdeauna fără conexiune.",
+      "Nimic din ce notați sau scrieți aici nu se trimite: răspunsul se caută pe acest dispozitiv.",
+      "Linkurile către surse, de la finalul fiecărui răspuns, deschid în schimb pagini externe și au nevoie de conexiune."
+     ]
+    },
+    "f": [],
+    "v": [
+     "funcționează fără internet?",
+     "fără conexiune",
+     "am nevoie de date mobile?",
+     "merge fără wifi?",
+     "funcționează offline",
+     "nu am semnal",
+     "pot să-l folosesc în avion?",
+     "fără rețea",
+     "funcționează fără date",
+     "e nevoie de internet?",
+     "se poate folosi pe munte fără semnal?",
+     "asistentul mai răspunde fără rețea?"
+    ],
+    "k": [
+     "internet",
+     "conexiune",
+     "offline",
+     "wifi",
+     "semnal",
+     "date mobile",
+     "mod avion",
+     "fără semnal"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "que-puedo-preguntar",
+   "es": {
+    "q": "¿Qué le puedo preguntar al asistente?",
+    "r": {
+     "t": "Sobre entrenar, los músculos, comer, descansar, hacer deporte en Tenerife y cuándo conviene consultar a un profesional.",
+     "p": [
+      "Entiende la pregunta por sus palabras: escriba como hable, con o sin tildes, y, si no está seguro de qué quiere decir, le propondrá preguntas parecidas.",
+      "Algunas respuestas las calcula con lo que tiene anotado: «¿Cómo voy esta semana?» o «¿Qué entreno hoy?».",
+      "No hace diagnósticos ni da dosis de medicamentos. Tampoco responde de turismo: para eso están las demás pantallas de Tenerife Go."
+     ],
+     "c": "Si describe una urgencia (dolor en el pecho, alguien que no respira, un golpe de calor), lo primero que verá es el 112."
+    },
+    "f": [],
+    "v": [
+     "¿qué puedo preguntar?",
+     "qué sabes hacer",
+     "¿para qué sirve el asistente?",
+     "ayuda",
+     "¿qué temas conoces?",
+     "¿me puedes recomendar una playa?",
+     "¿qué puedes responder?",
+     "cómo funciona el asistente",
+     "¿me entiendes?",
+     "que preguntas puedo hacer",
+     "sobre qué sabes",
+     "¿qué tipo de cosas sabes?"
+    ],
+    "k": [
+     "ayuda",
+     "temas",
+     "preguntar",
+     "asistente",
+     "sirve",
+     "ayudar",
+     "contestar",
+     "responder"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce îl pot întreba pe asistent?",
+    "r": {
+     "t": "Despre antrenament, mușchi, alimentație, odihnă, sport în Tenerife și despre când e bine să consultați un specialist.",
+     "p": [
+      "Înțelege întrebarea după cuvintele ei: scrieți cum vorbiți, cu sau fără diacritice, iar dacă nu e sigur ce ați vrut să spuneți, vă va propune întrebări asemănătoare.",
+      "Unele răspunsuri le calculează pornind de la ce ați notat: „Cum stau săptămâna asta?” sau „Ce antrenez azi?”.",
+      "Nu pune diagnostice și nu dă doze de medicamente. Nici nu răspunde la întrebări despre turism: pentru asta sunt celelalte ecrane din Tenerife Go."
+     ],
+     "c": "Dacă descrieți o urgență (durere în piept, cineva care nu respiră, un șoc termic), primul lucru pe care îl veți vedea este 112."
+    },
+    "f": [],
+    "v": [
+     "ce pot întreba?",
+     "ce știi să faci",
+     "la ce folosește asistentul?",
+     "ajutor",
+     "ce subiecte cunoști?",
+     "îmi poți recomanda o plajă?",
+     "la ce poți răspunde?",
+     "cum funcționează asistentul",
+     "mă înțelegi?",
+     "ce întrebări pot pune",
+     "despre ce știi",
+     "ce fel de lucruri știi?"
+    ],
+    "k": [
+     "ajutor",
+     "subiecte",
+     "întreba",
+     "asistent",
+     "folosește",
+     "ajuta",
+     "răspunde",
+     "răspunsuri"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "avisar-error",
+   "es": {
+    "q": "He visto un error en una respuesta: ¿cómo aviso?",
+    "r": {
+     "t": "Escriba a tenerife.go.app@gmail.com con la pregunta, lo que dice la respuesta y, si puede, la fuente que lo contradice.",
+     "p": [
+      "Las respuestas de salud enseñan sus fuentes: si una fuente dice otra cosa, ese es el mejor aviso.",
+      "Los errores se corrigen con una nueva versión de la app; no hay cambios automáticos."
+     ]
+    },
+    "f": [],
+    "v": [
+     "he visto un error",
+     "esto está mal",
+     "¿cómo aviso de un error?",
+     "quiero corregir una respuesta",
+     "contacto",
+     "¿dónde escribo para avisar de un fallo?",
+     "reportar un error",
+     "la respuesta es incorrecta",
+     "informar de un fallo",
+     "correo de contacto",
+     "¿a qué correo mando una corrección?",
+     "creo que hay un error, ¿a quién aviso?",
+     "un dato de una respuesta está mal, ¿se lo digo a alguien?"
+    ],
+    "k": [
+     "error",
+     "fallo",
+     "contacto",
+     "correo",
+     "avisar",
+     "incorrecto",
+     "email",
+     "sugerencias",
+     "fallos",
+     "equivocado"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Am văzut o greșeală într-un răspuns: cum o semnalez?",
+    "r": {
+     "t": "Scrieți la tenerife.go.app@gmail.com cu întrebarea, ce spune răspunsul și, dacă puteți, sursa care îl contrazice.",
+     "p": [
+      "Răspunsurile despre sănătate își arată sursele: dacă o sursă spune altceva, aceasta este cea mai bună semnalare.",
+      "Greșelile se corectează într-o versiune nouă a aplicației; nu există modificări automate."
+     ]
+    },
+    "f": [],
+    "v": [
+     "am văzut o greșeală",
+     "asta e greșit",
+     "cum semnalez o greșeală?",
+     "vreau să corectez un răspuns",
+     "contact",
+     "unde scriu ca să semnalez o eroare?",
+     "raportez o eroare",
+     "răspunsul e greșit",
+     "semnalez o problemă",
+     "e-mail de contact",
+     "la ce adresă trimit o corectură?",
+     "cred că e o greșeală, pe cine anunț?",
+     "o informație dintr-un răspuns e greșită, îi spun cuiva?"
+    ],
+    "k": [
+     "greșeală",
+     "eroare",
+     "contact",
+     "e-mail",
+     "semnalare",
+     "incorect",
+     "email",
+     "sugestii",
+     "erori",
+     "greșit"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "mujeres-distinto",
+   "es": {
+    "q": "¿Las mujeres deben entrenar distinto que los hombres?",
+    "r": {
+     "t": "No hace falta: con el mismo entrenamiento, la evidencia apunta a que mujeres y hombres ganan músculo en una proporción parecida, así que el programa puede ser el mismo. Cambia el punto de partida, no la respuesta al entrenamiento.",
+     "p": [
+      "Al juntar 29 estudios con adultos de 18 a 45 años, la ganancia relativa de músculo fue prácticamente igual en mujeres y hombres.",
+      "Los hombres ganan algo más en términos absolutos, en la parte superior del cuerpo y no en la inferior, probablemente porque parten de más masa muscular.",
+      "En mayores de 50 años, en 30 estudios, las mujeres incluso ganaron algo más de fuerza relativa en las piernas.",
+      "Para seguir su progreso, compárese con usted, en porcentaje de mejora, no con otras personas."
+     ],
+     "n": "Lo que sí cambia la pauta es la edad o una situación como el embarazo, no el sexo; los datos son de adultos."
+    },
+    "f": [
+     "Refalo et al., metaanálisis sobre las diferencias entre sexos en la ganancia de músculo (PeerJ 2025)",
+     "Jones et al., diferencias entre sexos en las adaptaciones al entrenamiento de fuerza en mayores de 50 años (Sports Med 2021)"
+    ],
+    "v": [
+     "¿las mujeres tienen que entrenar diferente?",
+     "entrenamiento para mujeres",
+     "¿una mujer puede hacer la misma rutina que un hombre?",
+     "¿las pesas ponen a las mujeres muy musculosas?",
+     "rutina para chicas",
+     "soy mujer, ¿me voy a poner enorme con pesas?",
+     "diferencias entre hombres y mujeres al entrenar",
+     "¿las mujeres ganan musculo igual que los hombres?",
+     "¿hay ejercicios solo para mujeres?",
+     "entreno femenino",
+     "¿las mujeres entrenan de otra manera?",
+     "tengo miedo de quedarme demasiado musculosa",
+     "siendo mujer, ¿me pondré enorme con las pesas?",
+     "¿debo hacer otra rutina por ser chica?"
+    ],
+    "k": [
+     "sexo",
+     "género",
+     "masculino",
+     "hipertrofia",
+     "testosterona",
+     "ellas",
+     "cuadrada",
+     "musculosa",
+     "chica",
+     "forma de entrenar"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Femeile trebuie să se antreneze altfel decât bărbații?",
+    "r": {
+     "t": "Nu este nevoie: la același antrenament, dovezile indică faptul că femeile și bărbații câștigă masă musculară într-o proporție asemănătoare, așa că programul poate fi același. Diferă punctul de plecare, nu răspunsul la antrenament.",
+     "p": [
+      "Într-o analiză care a reunit 29 de studii cu adulți între 18 și 45 de ani, câștigul relativ de masă musculară a fost practic același la femei și la bărbați.",
+      "Bărbații câștigă ceva mai mult în termeni absoluți, în partea superioară a corpului, nu și în cea inferioară, probabil pentru că pornesc de la o masă musculară mai mare.",
+      "La persoanele de peste 50 de ani, în 30 de studii, femeile au câștigat chiar ceva mai multă forță relativă la picioare.",
+      "Ca să vă urmăriți progresul, comparați-vă cu propriile rezultate, în procente de îmbunătățire, nu cu alte persoane."
+     ],
+     "n": "Ce schimbă cu adevărat programul este vârsta sau o situație precum sarcina, nu sexul; datele sunt de la adulți."
+    },
+    "f": [
+     "Refalo et al., metaanaliză privind diferențele dintre sexe în câștigul de masă musculară (PeerJ 2025)",
+     "Jones et al., diferențele dintre sexe în adaptările la antrenamentul de forță la persoanele de peste 50 de ani (Sports Med 2021)"
+    ],
+    "v": [
+     "femeile trebuie să se antreneze altfel?",
+     "antrenament pentru femei",
+     "o femeie poate face aceeași rutină ca un bărbat?",
+     "greutățile le fac pe femei foarte musculoase?",
+     "rutină pentru fete",
+     "sunt femeie, o să devin enormă de la greutăți?",
+     "diferențe între bărbați și femei la antrenament",
+     "femeile câștigă masă musculară la fel ca bărbații?",
+     "există exerciții doar pentru femei?",
+     "antrenament feminin",
+     "femeile se antrenează altfel?",
+     "mi-e teamă să nu devin prea musculoasă",
+     "ca femeie, o să mă umflu prea tare de la greutăți?",
+     "trebuie să fac altă rutină pentru că sunt fată?",
+     "antrenamentul de forță la femei"
+    ],
+    "k": [
+     "sex",
+     "gen",
+     "masculin",
+     "hipertrofie",
+     "testosteron",
+     "femei",
+     "umflată",
+     "musculoasă",
+     "fată",
+     "mod de antrenament",
+     "diferit"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "ciclo-menstrual",
+   "es": {
+    "q": "¿Debo adaptar el entrenamiento a mi ciclo menstrual?",
+    "r": {
+     "t": "No hace falta un calendario por fases: el ciclo parece cambiar poco el rendimiento y no hay base para reglas generales. Ajuste cada sesión a cómo se encuentre ese día.",
+     "p": [
+      "Un análisis conjunto de estudios encontró un efecto trivial sobre el rendimiento al principio del ciclo (fase folicular temprana), con evidencia de baja calidad.",
+      "Una revisión de revisiones considera prematuro concluir que las hormonas del ciclo cambien lo que se gana en fuerza o en músculo.",
+      "Con anticonceptivos orales, el rendimiento podría ser, de media, algo menor que con el ciclo natural, pero la diferencia es, muy probablemente, trivial.",
+      "Si la regla le causa dolor o cansancio, ese día baje la intensidad o cambie de ejercicio: es una decisión suya, no una norma."
+     ],
+     "c": "Si entrena mucho y la regla se le retira varios ciclos seguidos, no lo dé por normal: consulte al médico.",
+     "n": "Muchos estudios sobre el ciclo son de baja calidad y dispares: la conclusión podría cambiar con estudios mejores."
+    },
+    "f": [
+     "McNulty et al., metaanálisis sobre el ciclo menstrual y el rendimiento deportivo (Sports Med 2020)",
+     "Colenso-Semple et al., revisión paraguas sobre el ciclo menstrual y las adaptaciones al entrenamiento de fuerza (Front Sports Act Living 2023)",
+     "Elliott-Sale et al., metaanálisis sobre los anticonceptivos orales y el rendimiento (Sports Med 2020)"
+    ],
+    "v": [
+     "¿tengo que entrenar según mi ciclo?",
+     "entrenar con la regla",
+     "¿puedo hacer pesas con la menstruación?",
+     "fase folicular entrenamiento",
+     "fase lútea rendimiento",
+     "¿rindo menos cuando tengo el periodo?",
+     "¿los anticonceptivos afectan al entrenamiento?",
+     "entreno según la fase del ciclo menstrual",
+     "¿es malo hacer deporte con la regla?",
+     "ciclo menstrual y fuerza",
+     "estoy con el periodo y no rindo nada, ¿cambio algo?"
+    ],
+    "k": [
+     "ovulación",
+     "hormonas",
+     "píldora",
+     "estrógenos",
+     "cycle syncing",
+     "período",
+     "adaptar la rutina",
+     "gym",
+     "adapto el entreno"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Trebuie să-mi adaptez antrenamentul la ciclul menstrual?",
+    "r": {
+     "t": "Nu e nevoie de un calendar pe faze: ciclul pare să schimbe puțin performanța și nu există o bază pentru reguli generale. Adaptați fiecare sesiune la cum vă simțiți în ziua respectivă.",
+     "p": [
+      "O analiză care a reunit mai multe studii a găsit un efect neglijabil asupra performanței la începutul ciclului (faza foliculară timpurie), pe baza unor dovezi de calitate scăzută.",
+      "O analiză care a reunit mai multe analize sistematice consideră prematur să se tragă concluzia că hormonii ciclului schimbă câștigul de forță sau de masă musculară.",
+      "Cu anticoncepționale orale, performanța ar putea fi, în medie, ceva mai scăzută decât cu ciclul natural, dar diferența este, foarte probabil, neglijabilă.",
+      "Dacă menstruația vă provoacă dureri sau oboseală, în ziua aceea reduceți intensitatea sau schimbați exercițiul: este decizia dumneavoastră, nu o regulă."
+     ],
+     "c": "Dacă vă antrenați mult și menstruația vă dispare mai multe cicluri la rând, nu considerați că e normal: consultați medicul.",
+     "n": "Multe studii despre ciclu sunt de calitate scăzută și diferă mult între ele: concluzia s-ar putea schimba cu studii mai bune."
+    },
+    "f": [
+     "McNulty et al., metaanaliză privind ciclul menstrual și performanța sportivă (Sports Med 2020)",
+     "Colenso-Semple et al., analiză de tip umbrelă privind ciclul menstrual și adaptările la antrenamentul de forță (Front Sports Act Living 2023)",
+     "Elliott-Sale et al., metaanaliză privind anticoncepționalele orale și performanța (Sports Med 2020)"
+    ],
+    "v": [
+     "trebuie să mă antrenez după ciclu?",
+     "antrenament în timpul menstruației",
+     "pot face greutăți la menstruație?",
+     "pot face sport când am menstruație?",
+     "faza foliculară și antrenamentul",
+     "faza luteală și performanța",
+     "am randament mai mic când am ciclul?",
+     "anticoncepționalele afectează antrenamentul?",
+     "mă antrenez după faza ciclului menstrual",
+     "e rău să fac sport la menstruație?",
+     "ciclul menstrual și forța",
+     "am menstruație și nu am deloc randament, schimb ceva?"
+    ],
+    "k": [
+     "ovulație",
+     "hormoni",
+     "pilulă",
+     "estrogen",
+     "cycle syncing",
+     "perioadă",
+     "adaptez rutina",
+     "sală",
+     "adaptez antrenamentul"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "regla-desaparece",
+   "es": {
+    "q": "Entreno mucho y se me ha retirado la regla: ¿es normal?",
+    "r": {
+     "t": "No conviene darlo por normal: perder la regla varios ciclos seguidos puede ser una señal de deficiencia energética relativa en el deporte (REDs), es decir, de energía insuficiente para lo que entrena.",
+     "p": [
+      "Para el consenso del Comité Olímpico Internacional (COI), no tener la regla durante 3 o más ciclos seguidos es un indicador de REDs.",
+      "Solo cuenta si no hay otra causa, como un embarazo o problemas de tiroides.",
+      "El servicio de salud británico (NHS) incluye no tener la regla entre las señales físicas de un trastorno de la conducta alimentaria.",
+      "No intente medirlo con cuentas de comida: el COI advierte de que su umbral de energía es una guía, no un diagnóstico."
+     ],
+     "c": "Pida cita con su médico para buscar la causa. Si le angustian la comida o el peso, llame también a ALABENTE, asociación de Tenerife contra la anorexia y la bulimia (922 64 12 06).",
+     "n": "Con anticonceptivos hormonales, el COI advierte de que la regla no puede valorarse con exactitud."
+    },
+    "f": [
+     "Consenso del COI sobre la deficiencia energética relativa en el deporte, REDs (Mountjoy et al., BJSM 2023)",
+     "NHS: trastornos de la conducta alimentaria",
+     "ACAB: Libro de recursos 2026 (trastornos de la conducta alimentaria)"
+    ],
+    "v": [
+     "se me ha ido la regla por entrenar",
+     "no me baja la regla y hago mucho deporte",
+     "amenorrea por ejercicio",
+     "¿es normal no tener la regla si entreno mucho?",
+     "hace meses que no tengo la regla y corro mucho",
+     "perdí la menstruación entrenando",
+     "¿el deporte puede quitar la regla?",
+     "deficiencia energética relativa en el deporte",
+     "REDs síntomas",
+     "tengo retraso de la regla por el gimnasio",
+     "me ha desaparecido el periodo",
+     "¿por qué no me viene el periodo si corro tanto?"
+    ],
+    "k": [
+     "RED-S",
+     "disponibilidad energética",
+     "tríada de la atleta",
+     "fractura por estrés",
+     "oligomenorrea",
+     "se corta la regla",
+     "corredoras",
+     "maratón",
+     "sin regla"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Mă antrenez mult și mi-a dispărut menstruația: e normal?",
+    "r": {
+     "t": "Nu e bine să considerați că e normal: lipsa menstruației mai multe cicluri la rând poate fi un semn de deficit energetic relativ în sport (REDs), adică de energie insuficientă pentru cât vă antrenați.",
+     "p": [
+      "Potrivit consensului Comitetului Internațional Olimpic (CIO), lipsa menstruației timp de 3 sau mai multe cicluri la rând este un indicator de REDs.",
+      "Contează doar dacă nu există o altă cauză, cum ar fi o sarcină sau probleme cu tiroida.",
+      "Serviciul de sănătate britanic (NHS) include lipsa menstruației printre semnele fizice ale unei tulburări de comportament alimentar.",
+      "Nu încercați să măsurați deficitul calculând ce mâncați: CIO avertizează că pragul său de energie este un reper, nu un diagnostic."
+     ],
+     "c": "Programați-vă la medic ca să găsiți cauza. Dacă mâncarea sau greutatea vă provoacă neliniște, sunați și la ALABENTE, asociația din Tenerife împotriva anorexiei și bulimiei (922 64 12 06).",
+     "n": "În cazul anticoncepționalelor hormonale, CIO avertizează că menstruația nu poate fi evaluată cu exactitate."
+    },
+    "f": [
+     "Consensul CIO privind deficitul energetic relativ în sport, REDs (Mountjoy et al., BJSM 2023)",
+     "NHS: tulburările de comportament alimentar",
+     "ACAB: Cartea de resurse 2026 (tulburări de comportament alimentar)"
+    ],
+    "v": [
+     "mi-a dispărut menstruația din cauza antrenamentului",
+     "nu-mi vine menstruația și fac mult sport",
+     "amenoree din cauza efortului",
+     "e normal să nu am menstruație dacă mă antrenez mult?",
+     "de luni de zile nu am menstruație și alerg mult",
+     "am pierdut menstruația antrenându-mă",
+     "sportul poate opri menstruația?",
+     "deficit energetic relativ în sport",
+     "REDs simptome",
+     "îmi întârzie menstruația din cauza sălii",
+     "mi-a dispărut ciclul",
+     "de ce nu-mi vine ciclul dacă alerg atât de mult?"
+    ],
+    "k": [
+     "RED-S",
+     "disponibilitate energetică",
+     "triada atletei",
+     "fractură de stres",
+     "oligomenoree",
+     "se oprește menstruația",
+     "alergătoare",
+     "maraton",
+     "fără menstruație"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "embarazo-ejercicio",
+   "es": {
+    "q": "Estoy embarazada: ¿puedo hacer ejercicio?",
+    "r": {
+     "t": "Sí, y se recomienda: si no hay contraindicación médica, la OMS aconseja actividad física regular durante el embarazo y el posparto, al menos 150 minutos a la semana de intensidad moderada, con ejercicios aeróbicos y de fuerza.",
+     "p": [
+      "Añadir estiramientos suaves también puede ayudar, según la OMS.",
+      "En una escala de esfuerzo de 0 a 10, moderada suele ser un 5 o un 6.",
+      "Si piensa competir o hacer bastante más de lo recomendado, hágalo con la supervisión de un profesional sanitario especializado.",
+      "En Tenerife, tenga en cuenta el calor: la OMS pide evitar la actividad con calor excesivo, sobre todo con humedad alta."
+     ],
+     "c": "Pare y consulte enseguida si tiene sangrado vaginal, pérdida continua de líquido por la vagina, contracciones regulares y dolorosas, o falta de aire o mareo que no ceden al descansar. Con dolor fuerte en el pecho, llame al 112.",
+     "n": "Las contraindicaciones no se enumeran aquí: las valora el profesional que la atiende."
+    },
+    "f": [
+     "Bull et al., directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (BJSM 2020)",
+     "OMS/Europa: ficha «Physical activity»",
+     "Guía canadiense de 2019 sobre la actividad física en el embarazo (Mottola et al., BJSM)"
+    ],
+    "v": [
+     "¿puedo hacer deporte embarazada?",
+     "ejercicio en el embarazo",
+     "¿es seguro entrenar estando embarazada?",
+     "embarazada puedo ir al gimnasio",
+     "¿cuánto ejercicio en el embarazo?",
+     "estoy de tres meses, ¿puedo hacer pesas?",
+     "pesas durante el embarazo",
+     "deporte para embarazadas",
+     "¿es malo para el bebé que haga ejercicio?",
+     "estoy embarazada y quiero seguir entrenando",
+     "¿puedo seguir corriendo embarazada?",
+     "¿es mejor el reposo en el embarazo?",
+     "embarazada, ¿es bueno seguir moviéndome?"
+    ],
+    "k": [
+     "gestación",
+     "encinta",
+     "prenatal",
+     "trimestre",
+     "gestante",
+     "OMS",
+     "esperando un bebé",
+     "gym",
+     "reposo",
+     "semanas de embarazo"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Sunt însărcinată: pot face exerciții fizice?",
+    "r": {
+     "t": "Da, și este recomandat: dacă nu există o contraindicație medicală, OMS recomandă activitate fizică regulată în timpul sarcinii și în perioada postpartum, cel puțin 150 de minute pe săptămână de intensitate moderată, cu exerciții aerobe și de forță.",
+     "p": [
+      "Potrivit OMS, pot ajuta și întinderile ușoare.",
+      "Pe o scară a efortului de la 0 la 10, intensitatea moderată înseamnă de obicei 5 sau 6.",
+      "Dacă vă gândiți să concurați sau să faceți mult mai mult decât se recomandă, antrenați-vă sub supravegherea unui profesionist specializat din domeniul sănătății.",
+      "În Tenerife, țineți cont de căldură: OMS recomandă evitarea activității fizice pe căldură excesivă, mai ales când umiditatea este ridicată."
+     ],
+     "c": "Opriți-vă și consultați imediat un medic dacă aveți sângerare vaginală, pierdere continuă de lichid prin vagin, contracții regulate și dureroase sau lipsă de aer ori amețeală care nu trec la odihnă. Dacă aveți o durere puternică în piept, sunați la 112.",
+     "n": "Contraindicațiile nu sunt enumerate aici: le evaluează specialistul care vă urmărește sarcina."
+    },
+    "f": [
+     "Bull et al., ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (BJSM 2020)",
+     "OMS/Europa: fișa „Physical activity”",
+     "Ghidul canadian din 2019 privind activitatea fizică în timpul sarcinii (Mottola et al., BJSM)"
+    ],
+    "v": [
+     "pot face sport însărcinată?",
+     "exerciții în sarcină",
+     "e sigur să mă antrenez când sunt însărcinată?",
+     "însărcinată pot merge la sală?",
+     "cât exercițiu în sarcină?",
+     "sunt în luna a treia, pot face greutăți?",
+     "greutăți în timpul sarcinii",
+     "sport pentru gravide",
+     "e rău pentru bebeluș dacă fac exerciții?",
+     "sunt însărcinată și vreau să continui să mă antrenez",
+     "pot continua să alerg însărcinată?",
+     "e mai bine repausul în sarcină?",
+     "însărcinată, e bine să mă mișc în continuare?"
+    ],
+    "k": [
+     "sarcină",
+     "gravidă",
+     "prenatal",
+     "trimestru",
+     "gravide",
+     "OMS",
+     "aștept un copil",
+     "sală",
+     "repaus",
+     "săptămâni de sarcină",
+     "minute pe săptămână"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "embarazo-evitar",
+   "es": {
+    "q": "¿Qué debo evitar si hago ejercicio embarazada?",
+    "r": {
+     "t": "Según la OMS: el calor excesivo, el contacto físico, el riesgo alto de caída, la altitud si no vive en ella y, tras el primer trimestre, los ejercicios tumbada boca arriba.",
+     "p": [
+      "Evite la actividad física con calor excesivo, sobre todo con humedad alta, y beba agua antes, durante y después.",
+      "Evite las actividades con contacto físico, con riesgo alto de caída o que puedan limitar el oxígeno, como las de altitud si no vive en ella.",
+      "Después del primer trimestre, evite los ejercicios tumbada boca arriba, como el press de banca o los abdominales en el suelo.",
+      "Si quiere competir o hacer bastante más de lo recomendado, busque la supervisión de un profesional sanitario especializado."
+     ],
+     "c": "Pare y consulte enseguida si tiene sangrado vaginal, pérdida continua de líquido por la vagina, contracciones regulares y dolorosas, o falta de aire o mareo que no ceden al descansar. Con dolor fuerte en el pecho, llame al 112."
+    },
+    "f": [
+     "Bull et al., directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (BJSM 2020)",
+     "Guía canadiense de 2019 sobre la actividad física en el embarazo (Mottola et al., BJSM)"
+    ],
+    "v": [
+     "¿qué ejercicios no puedo hacer embarazada?",
+     "ejercicios prohibidos en el embarazo",
+     "¿qué deportes evitar en el embarazo?",
+     "embarazada, ¿puedo hacer abdominales?",
+     "¿puedo tumbarme boca arriba para entrenar estando embarazada?",
+     "precauciones al hacer deporte embarazada",
+     "¿es peligroso el calor en el embarazo al hacer ejercicio?",
+     "¿puedo hacer press de banca embarazada?",
+     "deportes de contacto embarazo",
+     "señales para parar el ejercicio en el embarazo",
+     "que no hacer en el gimnasio embarazada",
+     "¿hay ejercicios que no deba hacer estando embarazada?"
+    ],
+    "k": [
+     "contraindicado",
+     "supino",
+     "caídas",
+     "altitud",
+     "hidratación",
+     "riesgo",
+     "montar a caballo",
+     "esquí",
+     "posturas",
+     "movimientos"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce trebuie să evit dacă fac exerciții când sunt însărcinată?",
+    "r": {
+     "t": "Potrivit OMS: căldura excesivă, contactul fizic, riscul mare de cădere, altitudinea, dacă nu locuiți acolo, și, după primul trimestru, exercițiile din culcat pe spate.",
+     "p": [
+      "Evitați activitatea fizică pe căldură excesivă, mai ales când umiditatea e ridicată, și beți apă înainte, în timpul efortului și după.",
+      "Evitați activitățile cu contact fizic, cu risc mare de cădere sau care pot limita oxigenul, cum sunt cele la altitudine, dacă nu locuiți acolo.",
+      "După primul trimestru, evitați exercițiile din culcat pe spate, cum ar fi împinsul din culcat sau exercițiile pentru abdomen pe sol.",
+      "Dacă vreți să concurați sau să faceți mult mai mult decât se recomandă, cereți supravegherea unui profesionist specializat din domeniul sănătății."
+     ],
+     "c": "Opriți-vă și consultați imediat un medic dacă aveți sângerare vaginală, pierdere continuă de lichid prin vagin, contracții regulate și dureroase sau lipsă de aer ori amețeală care nu trec la odihnă. Dacă aveți o durere puternică în piept, sunați la 112."
+    },
+    "f": [
+     "Bull et al., ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (BJSM 2020)",
+     "Ghidul canadian din 2019 privind activitatea fizică în timpul sarcinii (Mottola et al., BJSM)"
+    ],
+    "v": [
+     "ce exerciții nu pot face însărcinată?",
+     "exerciții interzise în sarcină",
+     "ce sporturi să evit în sarcină?",
+     "însărcinată, pot face abdomene?",
+     "pot să mă întind pe spate la antrenament când sunt însărcinată?",
+     "precauții când fac sport însărcinată",
+     "e periculoasă căldura în sarcină când fac exerciții?",
+     "pot face împins din culcat însărcinată?",
+     "sporturi de contact în sarcină",
+     "semne că trebuie să opresc efortul în sarcină",
+     "ce să nu fac la sală când sunt însărcinată",
+     "există exerciții pe care nu ar trebui să le fac însărcinată?"
+    ],
+    "k": [
+     "contraindicat",
+     "culcat pe spate",
+     "căderi",
+     "altitudine",
+     "hidratare",
+     "risc",
+     "călărie",
+     "schi",
+     "poziții",
+     "mișcări",
+     "gravidă",
+     "nu am voie"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "embarazo-teide",
+   "es": {
+    "q": "Estoy embarazada: ¿puedo subir al Teide?",
+    "r": {
+     "t": "En teleférico, no: el operador no admite a embarazadas. Subir andando tampoco se aconseja: la OMS pide a las embarazadas evitar las actividades en altitud si no viven en ella.",
+     "p": [
+      "El motivo, según el operador: la subida supone un cambio brusco de presión y de oxígeno, hasta los 3.555 m de la estación de arriba.",
+      "Tampoco duerma en el refugio de Altavista (3.260 m, según el Cabildo): el CDC estadounidense considera que podría ser prudente no hacerlo por encima de 3.050 m.",
+      "Si quiere ir en coche al parque nacional, pregunte antes a su matrona o a su médico: la OMS no dice a partir de qué altura."
+     ],
+     "c": "Si estando en altura nota dolor de cabeza, mareo, náuseas o falta de aire, baje y consulte; si es grave, llame al 112."
+    },
+    "f": [
+     "Teleférico del Teide: página del teleférico",
+     "Bull et al., directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (BJSM 2020)",
+     "CDC Yellow Book 2026: viajes a gran altitud y mal de altura (Hackett y Shlim)"
+    ],
+    "v": [
+     "¿puedo subir al Teide estando embarazada?",
+     "embarazada teleférico Teide",
+     "¿una embarazada puede ir al Teide en coche?",
+     "subir a la montaña embarazada",
+     "altura y embarazo",
+     "¿es peligrosa la altitud en el embarazo?",
+     "estoy embarazada, ¿puedo hacer la ruta del Teide?",
+     "¿dejan subir a embarazadas en el teleferico?",
+     "dormir en Altavista embarazada",
+     "¿afecta la altura al bebé?",
+     "voy de seis meses, ¿puedo subir a la montaña?"
+    ],
+    "k": [
+     "gestante",
+     "presión",
+     "Rambleta",
+     "Cañadas",
+     "cumbre",
+     "volcán",
+     "en estado",
+     "cima",
+     "pareja",
+     "peligroso"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Sunt însărcinată: pot urca pe Teide?",
+    "r": {
+     "t": "Cu telecabina, nu: operatorul nu permite accesul femeilor însărcinate. Nici urcarea pe jos nu este recomandată: OMS le cere gravidelor să evite activitățile la altitudine dacă nu locuiesc acolo.",
+     "p": [
+      "Motivul, potrivit operatorului: urcarea presupune o schimbare bruscă a presiunii și a oxigenului, până la stația de sus, la 3.555 m.",
+      "Nu dormiți nici la refugiul Altavista (3.260 m, potrivit Cabildo de Tenerife): CDC din Statele Unite consideră că ar putea fi prudent să nu dormiți la peste 3.050 m.",
+      "Dacă vreți să mergeți cu mașina în parcul național, întrebați mai întâi moașa sau medicul: OMS nu spune de la ce altitudine."
+     ],
+     "c": "Dacă la altitudine simțiți durere de cap, amețeală, greață sau lipsă de aer, coborâți și consultați un medic; dacă e grav, sunați la 112."
+    },
+    "f": [
+     "Teleférico del Teide: pagina telecabinei",
+     "Bull et al., ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (BJSM 2020)",
+     "CDC Yellow Book 2026: călătoriile la mare altitudine și răul de altitudine (Hackett și Shlim)"
+    ],
+    "v": [
+     "pot urca pe Teide când sunt însărcinată?",
+     "însărcinată telecabina Teide",
+     "o gravidă poate merge cu mașina pe Teide?",
+     "urc pe munte însărcinată",
+     "altitudinea și sarcina",
+     "e periculoasă altitudinea în sarcină?",
+     "sunt însărcinată, pot face traseul spre Teide?",
+     "lasă gravidele să urce cu telecabina?",
+     "dorm la Altavista însărcinată",
+     "altitudinea îi face rău bebelușului?",
+     "sunt în luna a șasea, pot urca pe munte?"
+    ],
+    "k": [
+     "gravidă",
+     "presiune",
+     "Rambleta",
+     "Cañadas",
+     "vârf",
+     "vulcan",
+     "însărcinată",
+     "culme",
+     "partenera",
+     "periculos"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "posparto",
+   "es": {
+    "q": "Acabo de dar a luz: ¿cuándo puedo volver a entrenar?",
+    "r": {
+     "t": "Poco a poco: la OMS recomienda retomar la actividad física de forma gradual después del parto y, si fue por cesárea, hacerlo de acuerdo con un profesional sanitario.",
+     "p": [
+      "La meta, si no hay contraindicación, es llegar, como en el embarazo, al menos a 150 minutos semanales de actividad moderada, con ejercicios aeróbicos y de fuerza.",
+      "Algo de actividad es mejor que nada, y los estiramientos suaves también pueden ayudar.",
+      "Moverse a diario cuenta: cambiar tiempo sentado por actividad ligera ya aporta beneficios.",
+      "Tras un parto sin complicaciones, puede empezar con ejercicio suave en cuanto se sienta con fuerzas, como caminar o los ejercicios de suelo pélvico.",
+      "Antes de correr o hacer ejercicio de impacto, suele ser buena idea pedir consejo en la revisión de las 6 semanas, según el servicio de salud británico."
+     ],
+     "c": "Consulte a su matrona o a su médico antes de retomar si fue cesárea, y en cualquier caso si al aumentar la actividad nota síntomas nuevos."
+    },
+    "f": [
+     "Bull et al., directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (BJSM 2020): embarazo y posparto",
+     "OMS/Europa: ficha «Physical activity»",
+     "NHS: hacer ejercicio después de tener un bebé"
+    ],
+    "v": [
+     "¿cuándo puedo volver al gimnasio después del parto?",
+     "ejercicio después de dar a luz",
+     "volver a entrenar tras una cesárea",
+     "deporte en el posparto",
+     "¿cuánto tiempo esperar para hacer ejercicio después de parir?",
+     "postparto ejercicio",
+     "recuperar la forma después del embarazo",
+     "acabo de tener un bebé, ¿puedo correr?",
+     "¿cuándo empiezo a hacer abdominales tras el parto?",
+     "cuarentena y ejercicio",
+     "¿cuándo puedo volver a correr tras el parto?",
+     "hace un mes que di a luz, ¿puedo entrenar?"
+    ],
+    "k": [
+     "puerperio",
+     "puérpera",
+     "matrona",
+     "lactancia",
+     "alumbramiento",
+     "bebé",
+     "semanas",
+     "dos meses después del parto",
+     "gym"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Tocmai am născut: când pot să mă antrenez din nou?",
+    "r": {
+     "t": "Pas cu pas: OMS recomandă reluarea treptată a activității fizice după naștere, iar dacă ați născut prin cezariană, de comun acord cu un profesionist din domeniul sănătății.",
+     "p": [
+      "Obiectivul, dacă nu există contraindicații, este să ajungeți, ca în sarcină, la cel puțin 150 de minute pe săptămână de activitate moderată, cu exerciții aerobe și de forță.",
+      "Puțină activitate e mai bună decât niciuna, iar întinderile ușoare pot ajuta și ele.",
+      "Contează să vă mișcați zilnic: înlocuirea timpului petrecut stând jos cu activitate ușoară aduce deja beneficii.",
+      "După o naștere fără complicații, puteți începe cu exerciții ușoare de îndată ce vă simțiți în putere, cum ar fi mersul pe jos sau exercițiile pentru planșeul pelvin.",
+      "Înainte să alergați sau să faceți exerciții cu impact, e de obicei o idee bună să cereți sfatul la controlul de la 6 săptămâni, potrivit serviciului de sănătate britanic."
+     ],
+     "c": "Consultați moașa sau medicul înainte de a relua activitatea dacă ați născut prin cezariană și, în orice caz, dacă apar simptome noi când creșteți activitatea."
+    },
+    "f": [
+     "Bull et al., ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (BJSM 2020): sarcina și perioada postpartum",
+     "OMS/Europa: fișa „Physical activity”",
+     "NHS: exercițiile fizice după nașterea unui copil"
+    ],
+    "v": [
+     "când pot să mă întorc la sală după naștere?",
+     "exerciții după naștere",
+     "reiau antrenamentul după cezariană",
+     "sport în perioada postpartum",
+     "cât trebuie să aștept ca să fac exerciții după ce am născut?",
+     "exerciții postpartum",
+     "îmi revin în formă după sarcină",
+     "tocmai am avut un copil, pot alerga?",
+     "când încep să fac abdomene după naștere?",
+     "lăuzia și exercițiile",
+     "când pot alerga din nou după naștere?",
+     "am născut acum o lună, pot să mă antrenez?"
+    ],
+    "k": [
+     "lăuzie",
+     "lăuză",
+     "moașă",
+     "alăptare",
+     "naștere",
+     "bebeluș",
+     "săptămâni",
+     "la două luni după naștere",
+     "sală"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "mayores-ejercicio",
+   "es": {
+    "q": "Tengo más de 65 años: ¿qué ejercicio me conviene?",
+    "r": {
+     "t": "Lo mismo que a los adultos, con más atención al equilibrio y la fuerza: la OMS pide a partir de los 65 actividad variada que los combine, al menos 3 días por semana.",
+     "p": [
+      "Ejemplos de nivel inicial en la app: sentarse y levantarse de una silla, o subir un escalón con apoyo.",
+      "El Colegio Americano de Medicina del Deporte (ACSM) considera la fuerza segura en adultos sanos de todas las edades.",
+      "No llegue al fallo (no poder hacer otra repetición): no hace falta y, en mayores, podría desaconsejarse por el riesgo para los vasos sanguíneos y de lesión.",
+      "Algo es mejor que nada: si ahora no hace ejercicio, empiece con poco y aumente poco a poco."
+     ],
+     "c": "Si al aumentar la actividad aparecen síntomas nuevos, consulte a su médico."
+    },
+    "f": [
+     "OMS/Europa: «Everyday actions for better health», recomendaciones de la OMS",
+     "Bull et al., directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (BJSM 2020)",
+     "Currier et al., postura del ACSM 2026 sobre el entrenamiento de fuerza (Med Sci Sports Exerc 2026; copia del PDF alojada por un tercero)"
+    ],
+    "v": [
+     "ejercicio para personas mayores",
+     "tengo 70 años, ¿qué deporte puedo hacer?",
+     "¿qué ejercicios son buenos para los mayores?",
+     "ejercicios para la tercera edad",
+     "¿puedo hacer pesas con 75 años?",
+     "deporte para jubilados",
+     "soy mayor, ¿cuánto ejercicio necesito?",
+     "fuerza en personas mayores",
+     "ejercicio a partir de los 65",
+     "mi madre tiene 80 años, ¿qué ejercicio le conviene?",
+     "rutina para mayores de 60",
+     "¿qué actividad física le va bien a una persona jubilada?",
+     "¿qué tipo de ejercicio me recomiendas con más de 70?"
+    ],
+    "k": [
+     "ancianos",
+     "envejecimiento",
+     "sénior",
+     "abuelos",
+     "equilibrio",
+     "sarcopenia",
+     "abuelo",
+     "anciano",
+     "recomendar",
+     "recomienda"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Am peste 65 de ani: ce exerciții mi se potrivesc?",
+    "r": {
+     "t": "Aceleași ca pentru orice adult, cu mai multă atenție la echilibru și la forță: OMS recomandă, de la 65 de ani, activitate variată care să le combine, cel puțin 3 zile pe săptămână.",
+     "p": [
+      "Exemple de nivel începător în aplicație: așezarea pe scaun și ridicarea de pe el sau urcarea pe o treaptă cu sprijin.",
+      "Colegiul American de Medicină Sportivă (ACSM) consideră antrenamentul de forță sigur pentru adulții sănătoși de toate vârstele.",
+      "Nu mergeți până la eșec (când nu mai puteți face nicio repetare): nu este necesar și, la vârstnici, ar putea fi nerecomandat din cauza riscului pentru vasele de sânge și a riscului de accidentare.",
+      "Puțin e mai bine decât deloc: dacă acum nu faceți mișcare, începeți cu puțin și creșteți treptat."
+     ],
+     "c": "Dacă apar simptome noi când creșteți activitatea, consultați-vă medicul."
+    },
+    "f": [
+     "OMS/Europa: „Everyday actions for better health”, recomandări ale OMS",
+     "Bull et al., ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (BJSM 2020)",
+     "Currier et al., declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Med Sci Sports Exerc 2026; copie a PDF-ului găzduită de un terț)"
+    ],
+    "v": [
+     "exerciții pentru persoanele în vârstă",
+     "am 70 de ani, ce sport pot face?",
+     "ce exerciții sunt bune pentru vârstnici?",
+     "exerciții pentru vârsta a treia",
+     "pot face greutăți la 75 de ani?",
+     "sport pentru pensionari",
+     "antrenament pentru vârstnici",
+     "sunt în vârstă, de cât exercițiu am nevoie?",
+     "forța la persoanele în vârstă",
+     "exerciții după 65 de ani",
+     "mama are 80 de ani, ce exerciții i se potrivesc?",
+     "rutină pentru cei de peste 60 de ani",
+     "ce activitate fizică i se potrivește unui pensionar?",
+     "ce fel de exerciții îmi recomanzi la peste 70 de ani?"
+    ],
+    "k": [
+     "vârstnici",
+     "îmbătrânire",
+     "senior",
+     "seniori",
+     "bunici",
+     "echilibru",
+     "sarcopenie",
+     "bunic",
+     "bătrân",
+     "recomandă"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "prevenir-caidas",
+   "es": {
+    "q": "¿El ejercicio ayuda a prevenir caídas?",
+    "r": {
+     "t": "Sí: en personas mayores que viven en su casa, el ejercicio reduce las caídas alrededor de una cuarta parte (un 23 %), según una revisión Cochrane de 108 ensayos, con certeza alta.",
+     "p": [
+      "Lo que más claramente funciona son los ejercicios de equilibrio y los funcionales (movimientos del día a día); combinar varios tipos probablemente también, y el taichí podría ayudar.",
+      "Funciona tanto en quien tiene más riesgo de caerse como en quien no.",
+      "Para la fuerza sola, el baile o caminar, no hay pruebas suficientes para saber si reducen las caídas.",
+      "La OMS pide a los mayores de 65 actividad variada con equilibrio y fuerza al menos 3 días por semana, también para prevenir caídas."
+     ],
+     "c": "Si ya se ha caído o teme caerse, pida a su médico o fisioterapeuta un programa adaptado.",
+     "n": "Sobre las fracturas, el ejercicio podría reducirlas, pero esa evidencia es menos firme y hacen falta más estudios."
+    },
+    "f": [
+     "Revisión Cochrane: ejercicio para prevenir caídas en mayores que viven en la comunidad (Sherrington et al., 2019)",
+     "OMS/Europa: ficha «Physical activity»"
+    ],
+    "v": [
+     "ejercicios para no caerse",
+     "¿cómo evito caerme siendo mayor?",
+     "equilibrio en personas mayores",
+     "¿el ejercicio previene las caídas en ancianos?",
+     "ejercicios de equilibrio para mi madre",
+     "mi padre se cae a menudo, ¿qué ejercicio puede hacer?",
+     "¿sirve el taichí para el equilibrio?",
+     "prevenir caidas en mayores",
+     "tengo miedo a caerme",
+     "¿caminar evita las caídas?"
+    ],
+    "k": [
+     "tropiezos",
+     "fracturas",
+     "tai chi",
+     "estabilidad",
+     "Cochrane",
+     "inestabilidad",
+     "riesgo de caídas",
+     "gente mayor",
+     "reducir"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Exercițiile fizice ajută la prevenirea căderilor?",
+    "r": {
+     "t": "Da: la persoanele în vârstă care locuiesc acasă, exercițiile reduc căderile cu aproximativ un sfert (23 %), potrivit unei analize Cochrane a 108 studii, cu certitudine ridicată.",
+     "p": [
+      "Cel mai clar funcționează exercițiile de echilibru și cele funcționale (mișcări din viața de zi cu zi); probabil funcționează și combinarea mai multor tipuri, iar tai chi ar putea ajuta.",
+      "Funcționează atât la cei cu risc mai mare de cădere, cât și la ceilalți.",
+      "În cazul antrenamentului de forță luat separat, al dansului sau al mersului pe jos, nu există suficiente dovezi ca să se știe dacă reduc căderile.",
+      "OMS le recomandă celor de peste 65 de ani activitate variată, cu echilibru și forță, cel puțin 3 zile pe săptămână, inclusiv pentru prevenirea căderilor."
+     ],
+     "c": "Dacă ați căzut deja sau vă temeți că veți cădea, cereți-i medicului sau fizioterapeutului un program adaptat.",
+     "n": "În privința fracturilor, exercițiile le-ar putea reduce, dar aceste dovezi sunt mai puțin solide și e nevoie de mai multe studii."
+    },
+    "f": [
+     "Analiză Cochrane: exerciții fizice pentru prevenirea căderilor la vârstnicii care trăiesc în comunitate (Sherrington et al., 2019)",
+     "OMS/Europa: fișa „Physical activity”"
+    ],
+    "v": [
+     "exerciții ca să nu cad",
+     "cum evit căderile la bătrânețe?",
+     "echilibrul la persoanele în vârstă",
+     "exercițiile previn căderile la vârstnici?",
+     "exerciții de echilibru pentru mama",
+     "tatăl meu cade des, ce exerciții poate face?",
+     "tai chi e bun pentru echilibru?",
+     "prevenirea căderilor la vârstnici",
+     "mi-e frică să nu cad",
+     "mersul pe jos previne căderile?"
+    ],
+    "k": [
+     "împiedicări",
+     "fracturi",
+     "tai chi",
+     "stabilitate",
+     "Cochrane",
+     "instabilitate",
+     "risc de cădere",
+     "persoane în vârstă",
+     "reducere"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "adolescentes-ejercicio",
+   "es": {
+    "q": "¿Cuánto ejercicio necesita un adolescente?",
+    "r": {
+     "t": "La OMS recomienda, de 5 a 17 años, una media de al menos 60 minutos diarios de actividad moderada a intensa, y actividad intensa y de fortalecimiento al menos 3 días por semana.",
+     "p": [
+      "Es una media de la semana, no un mínimo diario, y debe ser sobre todo actividad aeróbica.",
+      "El fortalecimiento incluye músculos y huesos; la fuerza con pesas es relativamente segura con un programa bien diseñado y supervisado.",
+      "Algo es mejor que nada: si ahora hace poco, empiece poco a poco y vaya aumentando.",
+      "Pase menos tiempo sentado: la OMS lo pide a todas las edades.",
+      "En Tenerife, con calor, mire antes la guía «Calor y calima»."
+     ]
+    },
+    "f": [
+     "Bull et al., directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (BJSM 2020)",
+     "OMS: ficha «Physical activity» (2024)",
+     "Postura de la NSCA sobre el entrenamiento de fuerza en jóvenes (Faigenbaum et al., 2009)"
+    ],
+    "v": [
+     "¿cuánto deporte tiene que hacer un adolescente?",
+     "ejercicio para jóvenes de 15 años",
+     "tengo 16 años, ¿cuánto ejercicio debo hacer?",
+     "actividad física recomendada a mi edad",
+     "¿60 minutos de ejercicio al día?",
+     "cuanto ejercicio hago si soy menor",
+     "¿basta con la educación física del instituto?",
+     "soy adolescente, ¿cuántos días hago fuerza?",
+     "minutos de deporte al dia para adolescentes",
+     "¿cuánto tengo que moverme con 14 años?",
+     "¿cuántas horas de ejercicio necesita un chaval de instituto?",
+     "¿cuánto deporte debería hacer un chico de 14?"
+    ],
+    "k": [
+     "adolescencia",
+     "chavales",
+     "niños",
+     "OMS",
+     "menores",
+     "recomendación",
+     "hija",
+     "hijo",
+     "instituto",
+     "de 13 a 17 años"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De cât exercițiu fizic are nevoie un adolescent?",
+    "r": {
+     "t": "OMS recomandă, între 5 și 17 ani, în medie cel puțin 60 de minute pe zi de activitate moderată până la intensă, precum și activitate intensă și de întărire cel puțin 3 zile pe săptămână.",
+     "p": [
+      "Este o medie pe săptămână, nu un minim zilnic, și trebuie să fie mai ales activitate aerobă.",
+      "Întărirea se referă la mușchi și la oase; antrenamentul de forță cu greutăți este relativ sigur cu un program bine conceput și supravegheat.",
+      "Puțin e mai bine decât deloc: dacă acum faceți puțină mișcare, începeți treptat și creșteți pe parcurs.",
+      "Petreceți mai puțin timp stând jos: OMS recomandă asta la toate vârstele.",
+      "În Tenerife, când e cald, citiți mai întâi ghidul „Căldură și praf din Sahara”."
+     ]
+    },
+    "f": [
+     "Bull et al., ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (BJSM 2020)",
+     "OMS: fișa „Physical activity” (2024)",
+     "Declarația de poziție a NSCA privind antrenamentul de forță la tineri (Faigenbaum et al., 2009)"
+    ],
+    "v": [
+     "cât sport trebuie să facă un adolescent?",
+     "exerciții pentru tinerii de 15 ani",
+     "am 16 ani, cât exercițiu trebuie să fac?",
+     "activitatea fizică recomandată la vârsta mea",
+     "60 de minute de exerciții pe zi?",
+     "cât exercițiu fac dacă sunt minor",
+     "ajunge ora de sport de la școală?",
+     "sunt adolescent, câte zile fac forță?",
+     "minute de sport pe zi pentru adolescenți",
+     "cât trebuie să mă mișc la 14 ani?",
+     "câte ore de mișcare îi trebuie unui licean?",
+     "cât sport ar trebui să facă un băiat de 14 ani?",
+     "face copilul meu destulă mișcare?"
+    ],
+    "k": [
+     "adolescență",
+     "tineri",
+     "copii",
+     "OMS",
+     "minori",
+     "recomandare",
+     "fiică",
+     "fiu",
+     "liceu",
+     "între 13 și 17 ani",
+     "fiul"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "adolescentes-pesas",
+   "es": {
+    "q": "¿Pueden los adolescentes hacer pesas?",
+    "r": {
+     "t": "Sí. Según la asociación estadounidense de fuerza y acondicionamiento (NSCA), un programa de fuerza bien diseñado y supervisado es relativamente seguro para los jóvenes y puede mejorar su fuerza y su potencia.",
+     "p": [
+      "No hay una edad mínima: hace falta poder seguir las instrucciones del entrenador; en general, si un niño ya puede hacer deporte, hacia los 7 u 8 años.",
+      "Debe supervisar un adulto cualificado, y se empieza con cargas ligeras y atención a la técnica.",
+      "La NSCA propone empezar con 1 o 2 series de 10 a 15 repeticiones, 2 o 3 días no seguidos por semana, tras calentar 5 a 10 minutos.",
+      "No frena el crecimiento: los estudios no han descrito lesiones del cartílago de crecimiento, y el riesgo de lesión no es mayor que en muchos otros deportes."
+     ],
+     "n": "La postura de la NSCA es de 2009 y no se ha comprobado si hay otra más reciente."
+    },
+    "f": [
+     "Postura de la NSCA sobre el entrenamiento de fuerza en jóvenes (Faigenbaum et al., J Strength Cond Res 2009)"
+    ],
+    "v": [
+     "¿un adolescente puede ir al gimnasio?",
+     "pesas a los 14 años",
+     "¿las pesas frenan el crecimiento?",
+     "¿a qué edad se puede empezar a levantar pesas?",
+     "mi hijo de 13 años quiere hacer pesas",
+     "¿es peligroso el gimnasio para un menor?",
+     "entrenamiento de fuerza en niños",
+     "¿hacer pesas te deja bajito?",
+     "musculacion para adolescentes",
+     "tengo 15 años, ¿puedo hacer pesas?",
+     "¿las pesas dañan los cartílagos de crecimiento?",
+     "¿es verdad que levantar pesas de joven es malo?",
+     "¿si eres menor puedes ir al gimnasio?"
+    ],
+    "k": [
+     "estatura",
+     "NSCA",
+     "edad mínima",
+     "supervisión",
+     "juvenil",
+     "monitor",
+     "chaval",
+     "chaparro",
+     "no crecer",
+     "gym"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot adolescenții să ridice greutăți?",
+    "r": {
+     "t": "Da. Potrivit asociației americane de forță și condiționare fizică (NSCA), un program de forță bine conceput și supravegheat este relativ sigur pentru tineri și le poate îmbunătăți forța și puterea.",
+     "p": [
+      "Nu există o vârstă minimă: copilul trebuie să poată urma instrucțiunile antrenorului; în general, dacă poate deja să facă sport, pe la 7 sau 8 ani.",
+      "Trebuie să supravegheze un adult calificat, iar la început se lucrează cu greutăți ușoare și cu atenție la tehnică.",
+      "NSCA propune să se înceapă cu 1 sau 2 serii de 10–15 repetări, în 2 sau 3 zile pe săptămână, nu consecutive, după 5–10 minute de încălzire.",
+      "Nu oprește creșterea: studiile nu au descris leziuni ale cartilajului de creștere, iar riscul de accidentare nu este mai mare decât în multe alte sporturi."
+     ],
+     "n": "Declarația de poziție a NSCA este din 2009 și nu s-a verificat dacă există una mai recentă."
+    },
+    "f": [
+     "Declarația de poziție a NSCA privind antrenamentul de forță la tineri (Faigenbaum et al., J Strength Cond Res 2009)"
+    ],
+    "v": [
+     "un adolescent poate merge la sală?",
+     "greutăți la 14 ani",
+     "greutățile opresc creșterea?",
+     "de la ce vârstă se poate începe cu greutăți?",
+     "fiul meu de 13 ani vrea să ridice greutăți",
+     "e periculoasă sala pentru un minor?",
+     "antrenamentul de forță la copii",
+     "dacă ridici greutăți rămâi mic?",
+     "culturism pentru adolescenți",
+     "am 15 ani, pot ridica greutăți?",
+     "greutățile afectează cartilajele de creștere?",
+     "e adevărat că e rău să ridici greutăți de tânăr?",
+     "dacă ești minor poți merge la sală?"
+    ],
+    "k": [
+     "înălțime",
+     "NSCA",
+     "vârstă minimă",
+     "supraveghere",
+     "juniori",
+     "instructor",
+     "puști",
+     "scund",
+     "nu mai crești",
+     "sală",
+     "copiii",
+     "haltere"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "discapacidad",
+   "es": {
+    "q": "Tengo una discapacidad: ¿qué ejercicio puedo hacer?",
+    "r": {
+     "t": "Si es adulto, la OMS le recomienda lo mismo que a cualquier adulto: de 150 a 300 minutos semanales de actividad aeróbica moderada a intensa. Sin contraindicaciones y ajustado a su nivel y salud, se considera seguro y beneficioso.",
+     "p": [
+      "Un profesional sanitario o un especialista en actividad física y discapacidad puede ayudarle a elegir el tipo y la cantidad.",
+      "La OMS ve con certeza alta que puede mejorar la función en la esclerosis múltiple, la lesión medular y tras un ictus.",
+      "Si usa silla de ruedas o se mueve poco, rompa el tiempo sentado con actividades, ligeras o intensas, que no usen las piernas.",
+      "Algo es mejor que nada: empiece con poco y aumente poco a poco."
+     ],
+     "c": "Si al aumentar la actividad aparecen síntomas nuevos, consulte a su médico o a su equipo de rehabilitación.",
+     "n": "La OMS estudió unas pocas condiciones y extendió sus recomendaciones a la discapacidad en general."
+    },
+    "f": [
+     "OMS: nota de prensa «Every move counts towards better health» (25-11-2020)",
+     "Bull et al., directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (BJSM 2020)"
+    ],
+    "v": [
+     "ejercicio para personas con discapacidad",
+     "voy en silla de ruedas, ¿qué ejercicio hago?",
+     "deporte adaptado",
+     "¿puedo hacer ejercicio con movilidad reducida?",
+     "tengo esclerosis múltiple, ¿puedo entrenar?",
+     "ejercicio después de un ictus",
+     "tengo una lesión medular, ¿qué deporte puedo hacer?",
+     "actividad física y discapacidad intelectual",
+     "¿es seguro el ejercicio si tengo una discapacidad?",
+     "no puedo usar las piernas, ¿cómo hago ejercicio?",
+     "ejercicios para hacer sentado en una silla",
+     "soy tetrapléjico, ¿qué entrenamiento me sirve?"
+    ],
+    "k": [
+     "diversidad funcional",
+     "paralímpico",
+     "rehabilitación",
+     "parálisis",
+     "Parkinson",
+     "dependencia",
+     "paraplejia",
+     "parapléjico",
+     "tetrapléjico"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Am o dizabilitate: ce exerciții pot face?",
+    "r": {
+     "t": "La vârsta adultă, OMS vă recomandă același lucru ca oricărui adult: între 150 și 300 de minute pe săptămână de activitate aerobă moderată până la intensă. Fără contraindicații și adaptată nivelului și sănătății dumneavoastră, este considerată sigură și benefică.",
+     "p": [
+      "Un profesionist din domeniul sănătății sau un specialist în activitate fizică pentru persoanele cu dizabilități vă poate ajuta să alegeți tipul și cantitatea.",
+      "OMS consideră, cu certitudine ridicată, că poate îmbunătăți funcționarea în scleroza multiplă, în leziunile măduvei spinării și după un accident vascular cerebral.",
+      "Dacă folosiți un scaun cu rotile sau vă mișcați puțin, întrerupeți timpul petrecut stând jos cu activități, ușoare sau intense, care nu folosesc picioarele.",
+      "Puțin e mai bine decât deloc: începeți cu puțin și creșteți treptat."
+     ],
+     "c": "Dacă apar simptome noi când creșteți activitatea, consultați-vă medicul sau echipa de recuperare.",
+     "n": "OMS a studiat doar câteva afecțiuni și și-a extins recomandările la dizabilitate în general."
+    },
+    "f": [
+     "OMS: comunicatul de presă „Every move counts towards better health” (25-11-2020)",
+     "Bull et al., ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (BJSM 2020)"
+    ],
+    "v": [
+     "exerciții pentru persoanele cu dizabilități",
+     "folosesc scaun cu rotile, ce exerciții fac?",
+     "sport adaptat",
+     "pot face exerciții cu mobilitate redusă?",
+     "am scleroză multiplă, pot să mă antrenez?",
+     "exerciții după un AVC",
+     "am o leziune a măduvei spinării, ce sport pot face?",
+     "activitate fizică și dizabilitate intelectuală",
+     "e sigur să fac exerciții dacă am o dizabilitate?",
+     "nu îmi pot folosi picioarele, cum fac exerciții?",
+     "exerciții de făcut stând pe scaun",
+     "sunt tetraplegic, ce antrenament mi se potrivește?"
+    ],
+    "k": [
+     "diversitate funcțională",
+     "paralimpic",
+     "recuperare",
+     "paralizie",
+     "Parkinson",
+     "dependență",
+     "paraplegie",
+     "paraplegic",
+     "tetraplegic",
+     "handicap"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "protesis",
+   "es": {
+    "q": "Llevo una prótesis: ¿la app me sirve?",
+    "r": {
+     "t": "Sí. En el modo «Aspecto» puede poner al personaje una prótesis de pierna o de brazo, en el lado izquierdo o el derecho; en «Músculos», ese lado muestra el muñón y la prótesis.",
+     "p": [
+      "Los músculos que pasan del corte no se dibujan, para que el mapa se parezca a su cuerpo.",
+      "La prótesis es suya: «Al azar» no la cambia.",
+      "Las series se anotan igual, en los 12 grupos, y el aspecto no cambia ninguna recomendación.",
+      "Los ejercicios de la biblioteca no están adaptados a cada prótesis: elija y adapte los suyos con su equipo de rehabilitación."
+     ],
+     "c": "Si al entrenar nota dolor o rozaduras en el muñón, pare antes de que salgan ampollas. Si la piel se daña, no use la prótesis hasta que su técnico ortoprotésico revise el encaje."
+    },
+    "f": [
+     "Loughborough University (Centre for Para and Disability Sport Innovation), «Fit for Life»: seguridad al entrenar con una amputación",
+     "NRH (nrh.ie): cuidar el muñón, hoja para pacientes"
+    ],
+    "v": [
+     "tengo una prótesis de pierna",
+     "me falta un brazo, ¿puedo usar la app?",
+     "¿el personaje puede llevar prótesis?",
+     "soy amputado, ¿me sirve la app?",
+     "prótesis en el avatar",
+     "llevo una pierna ortopédica",
+     "amputación y entrenamiento",
+     "tengo un muñón, ¿qué ejercicios hago?",
+     "app para personas amputadas",
+     "¿se puede quitar un brazo al muñeco?"
+    ],
+    "k": [
+     "miembro",
+     "ortopedia",
+     "aspecto",
+     "músculos",
+     "rehabilitación",
+     "pierna artificial",
+     "brazo artificial",
+     "amputada"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Am o proteză: aplicația mi se potrivește?",
+    "r": {
+     "t": "Da. În modul „Aspect” îi puteți pune personajului o proteză de picior sau de braț, pe partea stângă sau pe cea dreaptă; în „Mușchi”, partea aceea arată bontul și proteza.",
+     "p": [
+      "Mușchii de dincolo de locul amputației nu sunt desenați, ca harta să semene cu corpul dumneavoastră.",
+      "Proteza vă aparține: „La întâmplare” nu o schimbă.",
+      "Seriile se notează la fel, la toate cele 12 grupe, iar aspectul nu schimbă nicio recomandare.",
+      "Exercițiile din bibliotecă nu sunt adaptate fiecărei proteze: alegeți-le și adaptați-le pe ale dumneavoastră împreună cu echipa de recuperare."
+     ],
+     "c": "Dacă în timpul antrenamentului simțiți durere sau iritații la bont, opriți-vă înainte să apară bășici. Dacă pielea se lezează, nu folosiți proteza până când tehnicianul ortopedic nu verifică cupa protezei."
+    },
+    "f": [
+     "Loughborough University (Centre for Para and Disability Sport Innovation), „Fit for Life”: siguranța la antrenament după o amputație",
+     "NRH (nrh.ie): îngrijirea bontului, fișă pentru pacienți"
+    ],
+    "v": [
+     "am o proteză de picior",
+     "îmi lipsește un braț, pot folosi aplicația?",
+     "personajul poate avea proteză?",
+     "sunt amputat, aplicația e bună pentru mine?",
+     "proteză la avatar",
+     "am un picior ortopedic",
+     "amputație și antrenament",
+     "am un bont, ce exerciții fac?",
+     "aplicație pentru persoane amputate",
+     "se poate scoate un braț omulețului?"
+    ],
+    "k": [
+     "membru",
+     "ortopedie",
+     "aspect",
+     "mușchi",
+     "recuperare",
+     "picior artificial",
+     "braț artificial",
+     "amputată"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "sobrepeso-empezar",
+   "es": {
+    "q": "Tengo bastante sobrepeso: ¿cómo empiezo sin hacerme daño?",
+    "r": {
+     "t": "Empiece con poco y aumente poco a poco: según la OMS, algo de actividad es mejor que nada. La actividad suave puede empezarla sin revisión médica; para la intensa, si lleva tiempo sin moverse, consulte antes.",
+     "p": [
+      "Cualquier movimiento cuenta: cambiar tiempo sentado por actividad, aunque sea ligera, ya aporta beneficios.",
+      "Para la fuerza, empiece con ejercicios de nivel inicial y con apoyo, como sentarse y levantarse de una silla o la flexión en la pared.",
+      "Si le duelen las rodillas o la cadera por artrosis, el ejercicio no daña la articulación: al empezar puede doler algo más, pero hacerlo con regularidad la beneficia."
+     ],
+     "c": "Si tiene una enfermedad del corazón o diabetes con medicación, hable antes con su médico; y pare y consulte si aparecen síntomas nuevos al aumentar la actividad.",
+     "n": "No se ha revisado una pauta específica para personas con obesidad: son las recomendaciones generales para adultos."
+    },
+    "f": [
+     "Bull et al., directrices de la OMS 2020 sobre actividad física y hábitos sedentarios (BJSM 2020)",
+     "Guía ESC 2020 de cardiología del deporte y el ejercicio (Pelliccia et al., Eur Heart J 2021)",
+     "NICE NG226: artrosis en mayores de 16 años, diagnóstico y tratamiento (2022)"
+    ],
+    "v": [
+     "tengo obesidad, ¿cómo empiezo a hacer ejercicio?",
+     "peso mucho, ¿qué ejercicio puedo hacer?",
+     "ejercicio para personas con sobrepeso",
+     "¿cómo empiezo a moverme si peso más de 100 kilos?",
+     "me sobran muchos kilos y no sé por dónde empezar",
+     "¿qué deporte hago si tengo mucho peso?",
+     "me duelen las rodillas por el peso, ¿qué ejercicio hago?",
+     "empezar a entrenar con sobrepeso sin lesionarme",
+     "¿puedo hacer ejercicio con obesidad mórbida?",
+     "obesidad y deporte",
+     "estoy muy pasado de peso, ¿qué deporte hago?",
+     "soy obesa y me canso mucho, ¿por dónde empiezo?",
+     "me ahogo enseguida por el peso, ¿qué ejercicio hago?"
+    ],
+    "k": [
+     "IMC",
+     "principiante",
+     "sedentario",
+     "articulaciones",
+     "artrosis",
+     "intensidad",
+     "gordo",
+     "obeso",
+     "panza",
+     "lastimarse"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Am destule kilograme în plus: cum încep fără să mă accidentez?",
+    "r": {
+     "t": "Începeți cu puțin și creșteți treptat: potrivit OMS, puțină activitate e mai bună decât niciuna. Activitatea ușoară o puteți începe fără control medical; pentru cea intensă, dacă de mult timp nu ați mai făcut mișcare, consultați mai întâi un medic.",
+     "p": [
+      "Orice mișcare contează: înlocuirea timpului petrecut stând jos cu activitate, chiar și ușoară, aduce deja beneficii.",
+      "Pentru forță, începeți cu exerciții de nivel începător și cu sprijin, cum ar fi așezarea pe scaun și ridicarea de pe el sau flotările la perete.",
+      "Dacă vă dor genunchii sau șoldul din cauza artrozei, exercițiile nu strică articulația: la început poate durea ceva mai mult, dar, făcute cu regularitate, îi fac bine."
+     ],
+     "c": "Dacă aveți o boală de inimă sau diabet tratat cu medicamente, vorbiți mai întâi cu medicul; iar dacă apar simptome noi când creșteți activitatea, opriți-vă și consultați un medic.",
+     "n": "Nu s-a analizat un program specific pentru persoanele cu obezitate: acestea sunt recomandările generale pentru adulți."
+    },
+    "f": [
+     "Bull et al., ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (BJSM 2020)",
+     "Ghidul ESC 2020 privind cardiologia sportivă și exercițiul fizic (Pelliccia et al., Eur Heart J 2021)",
+     "NICE NG226: artroza la persoanele de peste 16 ani, diagnostic și tratament (2022)"
+    ],
+    "v": [
+     "am obezitate, cum încep să fac exerciții?",
+     "sunt foarte greu, ce exerciții pot face?",
+     "exerciții pentru persoane supraponderale",
+     "cum încep să mă mișc dacă am peste 100 de kilograme?",
+     "am multe kilograme în plus și nu știu de unde să încep",
+     "ce sport fac dacă am greutate mare?",
+     "mă dor genunchii din cauza greutății, ce exerciții fac?",
+     "încep să mă antrenez cu kilograme în plus fără să mă accidentez",
+     "pot face exerciții cu obezitate morbidă?",
+     "obezitate și sport",
+     "am mult prea multe kilograme, ce sport fac?",
+     "sunt obeză și obosesc repede, de unde încep?",
+     "mă sufoc repede din cauza greutății, ce exerciții fac?"
+    ],
+    "k": [
+     "IMC",
+     "începător",
+     "sedentar",
+     "articulații",
+     "artroză",
+     "intensitate",
+     "gras",
+     "obez",
+     "burtă",
+     "accidentare"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "menopausia",
+   "es": {
+    "q": "¿Qué ejercicio conviene en la menopausia?",
+    "r": {
+     "t": "El servicio de salud británico (NHS) aconseja ejercicio regular, con prioridad para la fuerza y los ejercicios de carga (pies y piernas sostienen el cuerpo), por músculos y huesos.",
+     "p": [
+      "Para los huesos, propone también ejercicios de resistencia, por ejemplo con pesas, y que le dé algo el sol, que ayuda a fabricar vitamina D.",
+      "Para la ansiedad o el bajo ánimo, el ejercicio regular y las actividades relajantes, como el yoga o el taichí, también pueden ayudar.",
+      "Para los sofocos, el NHS también incluye el ejercicio regular entre las medidas que ayudan.",
+      "La OMS recomienda a toda persona adulta fuerza al menos 2 días por semana con todos los grupos principales."
+     ],
+     "n": "Es un consejo general del NHS, sin cifras ni grado de evidencia."
+    },
+    "f": [
+     "NHS: qué puede hacer en la menopausia y la perimenopausia",
+     "OMS/Europa: ficha «Physical activity»"
+    ],
+    "v": [
+     "ejercicio en la menopausia",
+     "¿qué deporte es bueno en la menopausia?",
+     "menopausia y pesas",
+     "¿el ejercicio ayuda con los sofocos?",
+     "ejercicio para los huesos en la menopausia",
+     "osteoporosis y menopausia, ¿qué ejercicio hago?",
+     "estoy en la perimenopausia, ¿cómo entreno?",
+     "climaterio ejercicio",
+     "¿hacer fuerza en la menopausia?",
+     "menopausia y masa muscular",
+     "¿es bueno levantar pesas en la menopausia?",
+     "he entrado en la menopausia, ¿qué entrenamiento me conviene?",
+     "tengo 55 años y la menopausia, ¿hago fuerza?",
+     "con sofocos, ¿me vienen bien las pesas?"
+    ],
+    "k": [
+     "estrógenos",
+     "densidad ósea",
+     "osteopenia",
+     "THS",
+     "carga",
+     "climatérica",
+     "engordar",
+     "aumento de peso",
+     "sofocos",
+     "pesas en la menopausia"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce exerciții sunt potrivite la menopauză?",
+    "r": {
+     "t": "Serviciul de sănătate britanic (NHS) recomandă exerciții regulate, cu prioritate pentru forță și pentru exercițiile cu încărcare (în care tălpile și picioarele susțin greutatea corpului), pentru mușchi și oase.",
+     "p": [
+      "Pentru oase, propune și exerciții de rezistență, de exemplu cu greutăți, și puțin soare, care ajută la producerea vitaminei D.",
+      "În caz de anxietate sau de dispoziție scăzută, pot ajuta și exercițiile regulate și activitățile relaxante, cum ar fi yoga sau tai chi.",
+      "Pentru bufeuri, NHS include și exercițiile regulate printre măsurile care ajută.",
+      "OMS recomandă oricărui adult exerciții de forță cel puțin 2 zile pe săptămână, pentru toate grupele principale."
+     ],
+     "n": "Este un sfat general al NHS, fără cifre și fără grad de certitudine a dovezilor."
+    },
+    "f": [
+     "NHS: ce puteți face la menopauză și în perimenopauză",
+     "OMS/Europa: fișa „Physical activity”"
+    ],
+    "v": [
+     "exerciții la menopauză",
+     "ce sport e bun la menopauză?",
+     "menopauza și greutățile",
+     "exercițiile ajută la bufeuri?",
+     "exerciții pentru oase la menopauză",
+     "osteoporoză și menopauză, ce exerciții fac?",
+     "sunt în perimenopauză, cum mă antrenez?",
+     "climacteriu și exerciții",
+     "să fac forță la menopauză?",
+     "menopauza și masa musculară",
+     "e bine să ridic greutăți la menopauză?",
+     "am intrat la menopauză, ce antrenament mi se potrivește?",
+     "am 55 de ani și sunt la menopauză, fac forță?",
+     "cu bufeuri, îmi fac bine greutățile?"
+    ],
+    "k": [
+     "estrogen",
+     "densitate osoasă",
+     "osteopenie",
+     "terapie hormonală",
+     "încărcare",
+     "climacterică",
+     "mă îngraș",
+     "creștere în greutate",
+     "bufeuri",
+     "greutăți la menopauză"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cuanta-proteina",
+   "es": {
+    "q": "¿Cuánta proteína necesito al día?",
+    "r": {
+     "t": "Como referencia, la EFSA da 0,83 g por kilo de peso y día a los adultos sanos; si entrena fuerza o resistencia, la posición conjunta de 2016 propone de 1,2 a 2,0 g por kilo.",
+     "p": [
+      "Con 70 kg, son unos 58 g al día, o de 84 a 140 g si entrena; para su peso, pregunte «¿Cuánta proteína necesito yo?».",
+      "Desde los 65 años, el grupo PROT-AGE recomienda al menos 1,0–1,2 g por kilo, y 1,2–1,5 g con una enfermedad aguda o crónica."
+     ],
+     "c": "Con una enfermedad del riñón, consulte a su médico antes de aumentar la proteína: con enfermedad renal grave, la pauta cambia.",
+     "n": "En el embarazo y la lactancia, la EFSA suma proteína: 1, 9 y 28 g más al día por trimestre, y 19 g más los 6 primeros meses de lactancia."
+    },
+    "f": [
+     "EFSA: valores dietéticos de referencia para la proteína (nota de prensa)",
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "PROT-AGE: recomendaciones de proteína para personas mayores (Bauer et al., J Am Med Dir Assoc 2013)"
+    ],
+    "v": [
+     "cuanta proteina hay que comer al dia",
+     "proteína diaria recomendada",
+     "¿cuántos gramos de proteína al día?",
+     "proteína por kilo de peso",
+     "cuánta proteína necesita un adulto",
+     "¿cuánta proteína si hago pesas?",
+     "recomendación de proteína para adultos",
+     "proteína para mayores de 65",
+     "¿cuánta proteína debo tomar si entreno?",
+     "cuanta proteina para deportistas",
+     "¿como suficiente proteína?"
+    ],
+    "k": [
+     "proteínas",
+     "prote",
+     "g/kg",
+     "EFSA",
+     "requerimiento",
+     "aminoácidos",
+     "gramo",
+     "por kilo"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De câte proteine am nevoie pe zi?",
+    "r": {
+     "t": "Ca reper, EFSA indică 0,83 g pe kilogram de greutate corporală pe zi pentru adulții sănătoși; dacă faceți antrenament de forță sau de rezistență, declarația de poziție comună din 2016 propune între 1,2 și 2,0 g pe kilogram.",
+     "p": [
+      "La 70 kg, înseamnă circa 58 g pe zi sau între 84 și 140 g dacă vă antrenați; pentru greutatea dumneavoastră, întrebați „De câte proteine am nevoie eu?”.",
+      "De la 65 de ani, grupul PROT-AGE recomandă cel puțin 1,0–1,2 g pe kilogram, iar 1,2–1,5 g în caz de boală acută sau cronică."
+     ],
+     "c": "Dacă aveți o boală de rinichi, consultați-vă medicul înainte de a crește cantitatea de proteine: în boala renală gravă, recomandările sunt altele.",
+     "n": "În timpul sarcinii și al alăptării, EFSA adaugă proteine: 1, 9 și 28 g în plus pe zi, în funcție de trimestru, și 19 g în plus în primele 6 luni de alăptare."
+    },
+    "f": [
+     "EFSA: valorile de referință alimentare pentru proteine (comunicat de presă)",
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "PROT-AGE: recomandări privind aportul de proteine la vârstnici (Bauer et al., J Am Med Dir Assoc 2013)"
+    ],
+    "v": [
+     "câte proteine trebuie să mănânc pe zi",
+     "aportul zilnic de proteine recomandat",
+     "câte grame de proteine pe zi?",
+     "proteine pe kilogram de greutate",
+     "de câte proteine are nevoie un adult",
+     "câte proteine dacă fac greutăți?",
+     "recomandarea de proteine pentru adulți",
+     "proteine pentru cei de peste 65 de ani",
+     "câte proteine trebuie să iau dacă mă antrenez?",
+     "câte proteine pentru sportivi",
+     "mănânc suficiente proteine?",
+     "câte proteine trebuie să consum dacă fac sport?"
+    ],
+    "k": [
+     "proteine",
+     "proteină",
+     "g/kg",
+     "EFSA",
+     "necesar",
+     "aminoacizi",
+     "gram",
+     "pe kilogram",
+     "sportiv"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "proteina-cuando",
+   "es": {
+    "q": "¿Cuándo es mejor tomar la proteína?",
+    "r": {
+     "t": "Repartida a lo largo del día: la posición conjunta de 2016 propone unos 0,3 g por kilo después de las sesiones importantes y cada 3 a 5 horas, en varias comidas, para aprovechar mejor el entrenamiento.",
+     "p": [
+      "Con 70 kg, son unos 21 g por toma, en varias comidas y después de entrenar.",
+      "La ISSN, una sociedad científica, da una pauta parecida: de 20 a 40 g, o 0,25 g por kilo, cada 3 o 4 horas.",
+      "Puede venir de la comida: según el NIH, el deportista que necesita más proteína puede obtenerla comiendo más alimentos que la contienen."
+     ]
+    },
+    "f": [
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "Jäger et al., posición de la ISSN «Protein and exercise» (2017)",
+     "NIH, Office of Dietary Supplements: suplementos para el ejercicio y el rendimiento deportivo (hoja para profesionales)"
+    ],
+    "v": [
+     "¿cuándo tomo la proteína?",
+     "mejor momento para la proteína",
+     "proteína antes o después de entrenar",
+     "¿cada cuántas horas tomar proteína?",
+     "repartir la proteína en el día",
+     "cuanta proteina por comida",
+     "¿la proteína hay que tomarla nada más entrenar?",
+     "ventana anabólica",
+     "cuando tomar proteina",
+     "¿cuántos gramos de proteína por toma?",
+     "horario de la proteína"
+    ],
+    "k": [
+     "momento",
+     "reparto",
+     "toma",
+     "horas",
+     "anabólica",
+     "ISSN",
+     "hora del día",
+     "importancia del momento",
+     "importa el momento"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Când e mai bine să iau proteinele?",
+    "r": {
+     "t": "Împărțite pe parcursul zilei: declarația de poziție comună din 2016 propune circa 0,3 g pe kilogram după sesiunile importante și la fiecare 3–5 ore, în mai multe mese, ca antrenamentul să fie mai eficient.",
+     "p": [
+      "La 70 kg, înseamnă circa 21 g de fiecare dată, în mai multe mese și după antrenament.",
+      "ISSN, o societate științifică, dă o recomandare asemănătoare: între 20 și 40 g sau 0,25 g pe kilogram, la fiecare 3 sau 4 ore.",
+      "Proteinele pot proveni din mâncare: potrivit NIH, sportivul care are nevoie de mai multe proteine le poate obține mâncând mai multe alimente care le conțin."
+     ]
+    },
+    "f": [
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "Jäger et al., declarația de poziție a ISSN „Protein and exercise” (2017)",
+     "NIH, Office of Dietary Supplements: suplimentele pentru efort fizic și performanță sportivă (fișă pentru profesioniști)"
+    ],
+    "v": [
+     "când iau proteinele?",
+     "cel mai bun moment pentru proteine",
+     "proteine înainte sau după antrenament",
+     "la câte ore să iau proteine?",
+     "împart proteinele pe parcursul zilei",
+     "câte proteine pe masă",
+     "proteinele trebuie luate imediat după antrenament?",
+     "fereastra anabolică",
+     "când să iau proteine",
+     "câte grame de proteine o dată?",
+     "programul pentru proteine"
+    ],
+    "k": [
+     "moment",
+     "împărțire",
+     "priză",
+     "ore",
+     "anabolică",
+     "ISSN",
+     "ora din zi",
+     "importanța momentului",
+     "contează momentul"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "mucha-proteina",
+   "es": {
+    "q": "¿Es malo tomar mucha proteína?",
+    "r": {
+     "t": "En adultos sanos, la evidencia apunta a que no: la EFSA ve seguro el doble de su referencia, y una revisión de 28 estudios no vio daño en el riñón.",
+     "p": [
+      "El doble de la referencia son unos 1,66 g por kilo y día. Por encima, la EFSA no fija un límite: dice que faltan datos para hacerlo.",
+      "La revisión llamó «alta» a 1,5 g por kilo o más, o 100 g al día o más, y solo incluyó adultos sin enfermedad renal.",
+      "Según el NIH, el riesgo con la proteína de la comida es muy bajo; aconseja cautela con cantidades altas que sumen comida y suplementos."
+     ],
+     "c": "Si tiene una enfermedad del riñón, no aumente la proteína sin hablar antes con su médico: los estudios tranquilizadores son de personas sanas.",
+     "n": "Los ensayos de la revisión fueron de duración limitada: sobre muchos años de dieta muy alta en proteína hay menos datos."
+    },
+    "f": [
+     "EFSA: resumen de los valores dietéticos de referencia (informe técnico, 2017)",
+     "Devries et al., metaanálisis sobre dietas altas en proteína y función renal (J Nutr 2018)",
+     "NIH, Office of Dietary Supplements: suplementos para el ejercicio y el rendimiento deportivo (hoja para profesionales)"
+    ],
+    "v": [
+     "demasiada proteína es mala",
+     "¿la proteína daña el riñón?",
+     "proteína y riñones",
+     "exceso de proteínas efectos",
+     "¿tomar mucha proteína es peligroso?",
+     "cuanta proteina es demasiado",
+     "¿se puede tomar demasiada proteína?",
+     "la proteina es mala para los riñones",
+     "límite máximo de proteína",
+     "¿pasa algo si como mucha proteína?",
+     "¿es bueno tomar mucha proteína?",
+     "¿3 gramos de proteína por kilo son demasiados?",
+     "¿la proteína en exceso perjudica al riñón?"
+    ],
+    "k": [
+     "riñón",
+     "renal",
+     "exceso",
+     "máximo",
+     "peligro",
+     "seguridad",
+     "pasarse",
+     "tanta proteína",
+     "mito",
+     "kilo de peso"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "E rău să iau multe proteine?",
+    "r": {
+     "t": "La adulții sănătoși, dovezile indică faptul că nu: EFSA consideră sigur dublul valorii sale de referință, iar o analiză a 28 de studii nu a găsit efecte negative asupra rinichilor.",
+     "p": [
+      "Dublul valorii de referință înseamnă circa 1,66 g pe kilogram pe zi. Peste această valoare, EFSA nu stabilește o limită: spune că lipsesc datele necesare.",
+      "Analiza a numit „ridicat” un aport de 1,5 g pe kilogram sau mai mult ori de 100 g pe zi sau mai mult și a inclus doar adulți fără boli de rinichi.",
+      "Potrivit NIH, riscul în cazul proteinelor din mâncare este foarte mic; recomandă prudență la cantitățile mari obținute din mâncare și suplimente împreună."
+     ],
+     "c": "Dacă aveți o boală de rinichi, nu creșteți cantitatea de proteine fără să vorbiți mai întâi cu medicul: studiile liniștitoare sunt făcute pe persoane sănătoase.",
+     "n": "Studiile din analiză au avut o durată limitată: despre o dietă foarte bogată în proteine timp de mulți ani există mai puține date."
+    },
+    "f": [
+     "EFSA: rezumatul valorilor de referință alimentare (raport tehnic, 2017)",
+     "Devries et al., metaanaliză privind dietele bogate în proteine și funcția renală (J Nutr 2018)",
+     "NIH, Office of Dietary Supplements: suplimentele pentru efort fizic și performanță sportivă (fișă pentru profesioniști)"
+    ],
+    "v": [
+     "prea multe proteine fac rău",
+     "proteinele afectează rinichii?",
+     "proteine și rinichi",
+     "efectele excesului de proteine",
+     "e periculos să iau multe proteine?",
+     "câte proteine sunt prea multe",
+     "se pot lua prea multe proteine?",
+     "proteinele sunt rele pentru rinichi",
+     "limita maximă de proteine",
+     "se întâmplă ceva dacă mănânc multe proteine?",
+     "e bine să iau multe proteine?",
+     "3 grame de proteine pe kilogram sunt prea multe?",
+     "excesul de proteine dăunează rinichilor?",
+     "prea multe proteine pe zi"
+    ],
+    "k": [
+     "rinichi",
+     "renal",
+     "exces",
+     "maxim",
+     "pericol",
+     "siguranță",
+     "exagerez",
+     "atâtea proteine",
+     "mit",
+     "kilogram",
+     "multă proteină",
+     "periculos"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cuanta-agua",
+   "es": {
+    "q": "¿Cuánta agua tengo que beber al día?",
+    "r": {
+     "t": "Para adultos, la EFSA considera adecuados 2,0 L al día de agua total en las mujeres y 2,5 L en los hombres, contando la de bebidas y alimentos; solo valen con temperatura y actividad moderadas.",
+     "p": [
+      "Incluyen el agua de los alimentos: no son litros que haya que beber enteros.",
+      "Con calor, Sanidad pide beber agua a menudo, aunque no tenga sed, y evitar el alcohol, la cafeína y las bebidas muy azucaradas.",
+      "En el embarazo, la EFSA suma unos 300 ml al día, y en la lactancia, unos 700 ml."
+     ],
+     "n": "Las cifras de la EFSA son para adultos: no se aplican tal cual a niños ni adolescentes."
+    },
+    "f": [
+     "EFSA: valores dietéticos de referencia de agua, hidratos, fibra y grasas (nota de prensa)",
+     "EFSA: resumen de los valores dietéticos de referencia (informe técnico, 2017)",
+     "Ministerio de Sanidad: Plan nacional de actuaciones preventivas de los efectos del exceso de temperaturas 2026"
+    ],
+    "v": [
+     "cuántos litros de agua al día",
+     "¿cuánta agua hay que beber?",
+     "litros de agua recomendados",
+     "¿son necesarios 2 litros de agua?",
+     "cuanta agua beber al dia",
+     "¿bebo suficiente agua?",
+     "¿cuántos vasos de agua al día?",
+     "agua diaria recomendada",
+     "hidratación diaria",
+     "¿hay que beber 8 vasos de agua?",
+     "cuánta agua necesita una persona"
+    ],
+    "k": [
+     "litros",
+     "hidratarse",
+     "líquidos",
+     "beber",
+     "EFSA",
+     "lactancia",
+     "cantidad de agua",
+     "adulto",
+     "dos litros",
+     "tomar agua"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câtă apă trebuie să beau pe zi?",
+    "r": {
+     "t": "Pentru adulți, EFSA consideră adecvați 2,0 L de apă totală pe zi la femei și 2,5 L la bărbați, inclusiv apa din băuturi și din alimente; valorile sunt valabile doar la temperatură și activitate moderate.",
+     "p": [
+      "Includ apa din alimente: nu sunt litri care trebuie băuți în întregime.",
+      "Pe căldură, Ministerul Sănătății din Spania recomandă să beți apă des, chiar dacă nu vă e sete, și să evitați alcoolul, cafeina și băuturile foarte îndulcite.",
+      "În sarcină, EFSA adaugă circa 300 ml pe zi, iar în perioada de alăptare, circa 700 ml."
+     ],
+     "n": "Cifrele EFSA sunt pentru adulți: nu se aplică ca atare copiilor și adolescenților."
+    },
+    "f": [
+     "EFSA: valorile de referință alimentare pentru apă, carbohidrați, fibre și grăsimi (comunicat de presă)",
+     "EFSA: rezumatul valorilor de referință alimentare (raport tehnic, 2017)",
+     "Ministerul Sănătății din Spania: Planul național de acțiuni preventive privind efectele temperaturilor excesive, 2026"
+    ],
+    "v": [
+     "câți litri de apă pe zi",
+     "câtă apă trebuie băută?",
+     "litri de apă recomandați",
+     "sunt necesari 2 litri de apă?",
+     "câtă apă să beau pe zi",
+     "beau suficientă apă?",
+     "câte pahare de apă pe zi?",
+     "apa recomandată zilnic",
+     "hidratarea zilnică",
+     "trebuie să beau 8 pahare de apă?",
+     "de câtă apă are nevoie o persoană"
+    ],
+    "k": [
+     "litri",
+     "hidratare",
+     "lichide",
+     "a bea",
+     "EFSA",
+     "alăptare",
+     "cantitate de apă",
+     "adult",
+     "doi litri",
+     "beau apă",
+     "lichid",
+     "zilnic"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "comer-antes-de-entrenar",
+   "es": {
+    "q": "¿Qué como antes de entrenar?",
+    "r": {
+     "t": "Depende de la duración: en esfuerzos aeróbicos de más de una hora, haber comido mejora el rendimiento; en los más cortos, una revisión de 46 estudios no vio diferencia.",
+     "p": [
+      "Para esos esfuerzos largos, la posición conjunta de 2016 propone de 1 a 4 g de hidratos por kilo entre 1 y 4 horas antes.",
+      "Beba también: de 5 a 10 ml por kilo entre 2 y 4 horas antes; con 70 kg, de 350 a 700 ml.",
+      "Para una ruta larga, por ejemplo en Anaga o el Teide, salga habiendo comido."
+     ],
+     "c": "Si tiene diabetes y usa insulina o pastillas que aumentan la insulina, mida la glucosa antes de entrenar y pregunte a su equipo cómo ajustar la comida.",
+     "n": "Las cantidades de la posición de 2016 son para deportistas: no se ha comprobado que valgan para menores."
+    },
+    "f": [
+     "Aird, Davies y Carson, metaanálisis sobre ejercicio en ayunas frente a haber comido (Scand J Med Sci Sports 2018)",
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "American Diabetes Association: glucosa en sangre y ejercicio (página para el público)"
+    ],
+    "v": [
+     "qué comer antes de entrenar",
+     "¿qué desayuno antes del gimnasio?",
+     "comida antes de hacer deporte",
+     "¿cuánto tiempo antes de entrenar hay que comer?",
+     "que comer antes de correr",
+     "merienda antes de entrenar",
+     "¿como algo antes de una ruta larga?",
+     "pre entreno comida",
+     "qué tomar antes del ejercicio",
+     "¿cuántas horas antes de entrenar debo comer?",
+     "antes de un partido qué como"
+    ],
+    "k": [
+     "preentreno",
+     "antes",
+     "hidratos",
+     "energía",
+     "rendimiento",
+     "plátano",
+     "gym",
+     "una hora antes"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce mănânc înainte de antrenament?",
+    "r": {
+     "t": "Depinde de durată: la eforturile aerobe de peste o oră, faptul că ați mâncat înainte îmbunătățește performanța; la cele mai scurte, o analiză a 46 de studii nu a găsit nicio diferență.",
+     "p": [
+      "Pentru aceste eforturi lungi, declarația de poziție comună din 2016 propune între 1 și 4 g de carbohidrați pe kilogram, cu 1–4 ore înainte.",
+      "Beți și lichide: între 5 și 10 ml pe kilogram, cu 2–4 ore înainte; la 70 kg, între 350 și 700 ml.",
+      "Pentru o drumeție lungă, de exemplu în Anaga sau pe Teide, plecați după ce ați mâncat."
+     ],
+     "c": "Dacă aveți diabet și folosiți insulină sau pastile care cresc insulina, măsurați-vă glicemia înainte de antrenament și întrebați echipa medicală cum să vă adaptați mesele.",
+     "n": "Cantitățile din declarația de poziție din 2016 sunt pentru sportivi: nu s-a verificat dacă sunt valabile și pentru minori."
+    },
+    "f": [
+     "Aird, Davies și Carson, metaanaliză privind efortul fizic pe nemâncate față de efortul după masă (Scand J Med Sci Sports 2018)",
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "American Diabetes Association: glicemia și exercițiile fizice (pagină pentru public)"
+    ],
+    "v": [
+     "ce să mănânc înainte de antrenament",
+     "ce mănânc dimineața înainte de sală?",
+     "mâncare înainte de sport",
+     "cu cât timp înainte de antrenament trebuie să mănânc?",
+     "ce să mănânc înainte să alerg",
+     "gustare înainte de antrenament",
+     "mănânc ceva înainte de o drumeție lungă?",
+     "mâncare pre-antrenament",
+     "ce iau înainte de efort",
+     "cu câte ore înainte de antrenament trebuie să mănânc?",
+     "ce mănânc înainte de un meci"
+    ],
+    "k": [
+     "preantrenament",
+     "înainte",
+     "carbohidrați",
+     "energie",
+     "performanță",
+     "banană",
+     "sală",
+     "cu o oră înainte"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "comer-despues-de-entrenar",
+   "es": {
+    "q": "¿Qué como después de entrenar?",
+    "r": {
+     "t": "Algo con proteína: la posición conjunta de 2016 propone unos 0,3 g por kilo después de las sesiones importantes; los hidratos cuentan más si vuelve a entrenar en pocas horas.",
+     "p": [
+      "Con 70 kg son unos 21 g, que se cubren con comida normal: carne, pescado, huevos, lácteos, legumbres o frutos secos llevan proteína.",
+      "Si vuelve a entrenar en menos de 8 horas, la posición propone de 1 a 1,2 g de hidratos por kilo y hora las primeras 4 horas.",
+      "Reponga líquidos: la posición de 2016 calcula de 1,25 a 1,5 L por cada kilo perdido al sudar."
+     ],
+     "n": "Las cantidades por kilo de la posición de 2016 son para deportistas: no se ha comprobado que valgan para menores."
+    },
+    "f": [
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016): proteína después del ejercicio",
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016): recarga de hidratos y líquidos",
+     "NIH, Office of Dietary Supplements: suplementos para el ejercicio y el rendimiento deportivo (hoja para profesionales)"
+    ],
+    "v": [
+     "qué comer después de entrenar",
+     "¿qué ceno después del gimnasio?",
+     "comida para recuperar después del ejercicio",
+     "post entreno comida",
+     "¿qué tomo al acabar de entrenar?",
+     "recuperar después de correr",
+     "¿hay que comer nada más entrenar?",
+     "qué comer despues del deporte",
+     "comer tras una ruta larga",
+     "¿cómo me recupero comiendo?",
+     "recuperar energía después del ejercicio",
+     "acabo la sesión en el gimnasio, ¿qué ceno?",
+     "al salir de entrenar, ¿qué como?"
+    ],
+    "k": [
+     "recuperación",
+     "postentreno",
+     "reponer",
+     "después",
+     "glucógeno",
+     "al terminar",
+     "gym",
+     "acabo de entrenar",
+     "rutina",
+     "al salir del gimnasio"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce mănânc după antrenament?",
+    "r": {
+     "t": "Ceva cu proteine: declarația de poziție comună din 2016 propune circa 0,3 g pe kilogram după sesiunile importante; carbohidrații contează mai mult dacă vă antrenați din nou peste câteva ore.",
+     "p": [
+      "La 70 kg, înseamnă circa 21 g, care se pot obține din mâncarea obișnuită: carnea, peștele, ouăle, lactatele, leguminoasele sau fructele oleaginoase au proteine.",
+      "Dacă vă antrenați din nou în mai puțin de 8 ore, declarația propune între 1 și 1,2 g de carbohidrați pe kilogram pe oră în primele 4 ore.",
+      "Recuperați lichidele: declarația din 2016 calculează între 1,25 și 1,5 L pentru fiecare kilogram pierdut prin transpirație."
+     ],
+     "n": "Cantitățile pe kilogram din declarația de poziție din 2016 sunt pentru sportivi: nu s-a verificat dacă sunt valabile și pentru minori."
+    },
+    "f": [
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016): proteinele după efort",
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016): refacerea rezervelor de carbohidrați și de lichide",
+     "NIH, Office of Dietary Supplements: suplimentele pentru efort fizic și performanță sportivă (fișă pentru profesioniști)"
+    ],
+    "v": [
+     "ce să mănânc după antrenament",
+     "ce mănânc seara după sală?",
+     "mâncare pentru refacere după efort",
+     "mâncare după antrenament",
+     "ce iau când termin antrenamentul?",
+     "refacerea după alergare",
+     "trebuie să mănânc imediat după antrenament?",
+     "ce să mănânc după sport",
+     "mâncare după o drumeție lungă",
+     "cum mă refac mâncând?",
+     "îmi refac energia după efort",
+     "termin sesiunea la sală, ce mănânc seara?",
+     "când ies de la antrenament, ce mănânc?"
+    ],
+    "k": [
+     "refacere",
+     "postantrenament",
+     "refac",
+     "după",
+     "glicogen",
+     "la final",
+     "sală",
+     "tocmai m-am antrenat",
+     "rutină",
+     "după sală",
+     "masa de după"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "hidratos",
+   "es": {
+    "q": "¿Necesito hidratos de carbono si hago deporte?",
+    "r": {
+     "t": "Sí, sobre todo en deportes de resistencia: la posición conjunta de 2016 propone de 3 a 12 g por kilo y día según la carga, y la ISSN advierte de que restringirlos puede empeorar el rendimiento.",
+     "p": [
+      "Actividad ligera o de técnica: 3–5 g por kilo; programa moderado, de 1 hora al día: 5–7; resistencia de 1 a 3 horas diarias: 6–10.",
+      "Con más de 4 o 5 horas diarias de entrenamiento, de 8 a 12 g por kilo.",
+      "En marchadores de élite, 3 semanas con muy pocos hidratos anularon la mejora en 10 km que sí lograron quienes los comían."
+     ],
+     "n": "Son cifras para deportistas: no se ha comprobado que valgan para menores."
+    },
+    "f": [
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "Aragon et al., posición de la ISSN sobre dietas y composición corporal (2017)",
+     "Burke et al., dieta baja en hidratos y alta en grasa en marchadores de élite (J Physiol 2017)"
+    ],
+    "v": [
+     "¿necesito hidratos para entrenar?",
+     "carbohidratos y deporte",
+     "¿cuántos hidratos debo comer si entreno?",
+     "hidratos de carbono para deportistas",
+     "¿son malos los carbohidratos?",
+     "cuantos carbohidratos al dia",
+     "¿puedo entrenar sin hidratos?",
+     "pasta antes de una carrera",
+     "hidratos para correr",
+     "¿los hidratos son necesarios?",
+     "gramos de hidratos por kilo",
+     "¿engordan los hidratos de carbono?",
+     "¿hay que comer mucho hidrato si entreno?"
+    ],
+    "k": [
+     "carbohidratos",
+     "glucógeno",
+     "arroz",
+     "pan",
+     "energía",
+     "carbs",
+     "deportistas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Am nevoie de carbohidrați dacă fac sport?",
+    "r": {
+     "t": "Da, mai ales în sporturile de rezistență: declarația de poziție comună din 2016 propune între 3 și 12 g pe kilogram pe zi, în funcție de încărcarea antrenamentului, iar ISSN avertizează că restrângerea lor poate înrăutăți performanța.",
+     "p": [
+      "Activitate ușoară sau de tehnică: 3–5 g pe kilogram; program moderat, de 1 oră pe zi: 5–7; rezistență, între 1 și 3 ore pe zi: 6–10.",
+      "La peste 4 sau 5 ore de antrenament pe zi, între 8 și 12 g pe kilogram.",
+      "La mărșăluitorii de elită, 3 săptămâni cu foarte puțini carbohidrați au anulat îmbunătățirea pe 10 km pe care au obținut-o cei care îi consumau."
+     ],
+     "n": "Sunt cifre pentru sportivi: nu s-a verificat dacă sunt valabile și pentru minori."
+    },
+    "f": [
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "Aragon et al., declarația de poziție a ISSN privind dietele și compoziția corporală (2017)",
+     "Burke et al., dieta săracă în carbohidrați și bogată în grăsimi la mărșăluitorii de elită (J Physiol 2017)"
+    ],
+    "v": [
+     "am nevoie de carbohidrați ca să mă antrenez?",
+     "carbohidrații și sportul",
+     "câți carbohidrați trebuie să mănânc dacă mă antrenez?",
+     "carbohidrați pentru sportivi",
+     "carbohidrații sunt răi?",
+     "câți carbohidrați pe zi",
+     "pot să mă antrenez fără carbohidrați?",
+     "paste înainte de o cursă",
+     "carbohidrați pentru alergare",
+     "carbohidrații sunt necesari?",
+     "grame de carbohidrați pe kilogram",
+     "carbohidrații îngrașă?",
+     "trebuie să mănânc mulți carbohidrați dacă mă antrenez?"
+    ],
+    "k": [
+     "carbohidrați",
+     "glicogen",
+     "orez",
+     "pâine",
+     "energie",
+     "carbs",
+     "sportivi"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "azucar",
+   "es": {
+    "q": "¿Cuánto azúcar puedo tomar?",
+    "r": {
+     "t": "La OMS pide que los azúcares libres sean menos del 10 % de la energía diaria; bajar al 5 % o menos puede aportar más beneficios. Con unas 2.000 kcal, el 10 % son unos 50 g.",
+     "p": [
+      "Unos 50 g son unas 12 cucharaditas rasas; la OMS pide limitar estos azúcares durante toda la vida, también en la infancia.",
+      "Un paso sencillo: que el agua sea su bebida principal, como propone la guía española de 2022.",
+      "La OMS habla de limitarlos, no de eliminarlos."
+     ]
+    },
+    "f": [
+     "OMS: hoja informativa «Healthy diet» (alimentación sana)",
+     "AESAN: nota de prensa sobre las recomendaciones dietéticas sostenibles para la población española (2022)"
+    ],
+    "v": [
+     "cuánto azúcar al día",
+     "¿cuántos gramos de azúcar puedo tomar?",
+     "límite de azúcar diario",
+     "¿es malo el azúcar?",
+     "azúcar recomendado por la OMS",
+     "cuantas cucharadas de azucar al dia",
+     "¿cuánto azúcar es demasiado?",
+     "azúcares añadidos",
+     "dulces y refrescos cuánto",
+     "¿puedo tomar postre todos los días?",
+     "consumo maximo de azucar"
+    ],
+    "k": [
+     "azúcares",
+     "sacarosa",
+     "golosinas",
+     "bollería",
+     "cucharaditas",
+     "coca cola",
+     "goloso",
+     "dulce"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cât zahăr pot consuma?",
+    "r": {
+     "t": "OMS recomandă ca zaharurile libere să reprezinte mai puțin de 10 % din energia zilnică; o reducere la 5 % sau mai puțin poate aduce beneficii suplimentare. La circa 2.000 kcal, 10 % înseamnă aproximativ 50 g.",
+     "p": [
+      "Cele circa 50 g înseamnă aproximativ 12 lingurițe rase; OMS recomandă limitarea acestor zaharuri pe tot parcursul vieții, inclusiv în copilărie.",
+      "Un pas simplu: apa să fie băutura dumneavoastră principală, cum propune ghidul spaniol din 2022.",
+      "OMS vorbește despre limitarea lor, nu despre eliminarea lor."
+     ]
+    },
+    "f": [
+     "OMS: fișa informativă „Healthy diet” (alimentația sănătoasă)",
+     "AESAN: comunicat de presă despre recomandările alimentare sustenabile pentru populația Spaniei (2022)"
+    ],
+    "v": [
+     "cât zahăr pe zi",
+     "câte grame de zahăr pot consuma?",
+     "limita zilnică de zahăr",
+     "zahărul e rău?",
+     "zahărul recomandat de OMS",
+     "câte linguri de zahăr pe zi",
+     "cât zahăr e prea mult?",
+     "zaharuri adăugate",
+     "dulciuri și răcoritoare, cât?",
+     "pot mânca desert în fiecare zi?",
+     "consumul maxim de zahăr"
+    ],
+    "k": [
+     "zaharuri",
+     "zaharoză",
+     "dulciuri",
+     "produse de patiserie",
+     "lingurițe",
+     "cola",
+     "pofticios",
+     "dulce"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "sal",
+   "es": {
+    "q": "¿Cuánta sal es demasiada?",
+    "r": {
+     "t": "En adultos, la OMS pide menos de 5 g de sal al día, que equivalen a 2 g de sodio; en niños, el máximo es menor y se calcula según la energía que toman.",
+     "p": [
+      "Para leer etiquetas: si dan el sodio, multiplíquelo por 2,5 para saber la sal; 2 g de sodio son 5 g de sal.",
+      "Quien suda mucho o hace esfuerzos de más de 2 horas puede necesitar reponer sodio, según la posición conjunta de 2016 para deportistas.",
+      "Con calor, Sanidad propone comidas ligeras que ayuden a reponer las sales del sudor, como ensaladas, frutas y verduras."
+     ]
+    },
+    "f": [
+     "OMS: hoja informativa «Healthy diet» (alimentación sana)",
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "Ministerio de Sanidad: Plan nacional de actuaciones preventivas de los efectos del exceso de temperaturas 2026"
+    ],
+    "v": [
+     "cuánta sal al día",
+     "¿cuántos gramos de sal puedo tomar?",
+     "límite de sal recomendado",
+     "¿es mala la sal?",
+     "sal y sodio diferencia",
+     "cuanta sal recomienda la OMS",
+     "¿tomo demasiada sal?",
+     "sodio en las etiquetas",
+     "¿hay que quitar la sal si hago deporte?",
+     "consumo de sal maximo",
+     "sal en la comida cuánta",
+     "¿pasa algo por comer salado?",
+     "¿mucha sal es mala para la tensión?"
+    ],
+    "k": [
+     "salado",
+     "tensión",
+     "hipertensión",
+     "sudor",
+     "embutidos",
+     "sodio",
+     "echar sal",
+     "salar"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câtă sare e prea multă?",
+    "r": {
+     "t": "Pentru adulți, OMS recomandă mai puțin de 5 g de sare pe zi, echivalentul a 2 g de sodiu; la copii, limita maximă este mai mică și se calculează în funcție de energia pe care o consumă.",
+     "p": [
+      "Când citiți etichetele: dacă este indicat sodiul, înmulțiți-l cu 2,5 ca să aflați cantitatea de sare; 2 g de sodiu înseamnă 5 g de sare.",
+      "Cine transpiră mult sau face eforturi de peste 2 ore poate avea nevoie să refacă sodiul pierdut, potrivit declarației de poziție comune din 2016 pentru sportivi.",
+      "Pe căldură, Ministerul Sănătății din Spania propune mese ușoare care ajută la refacerea sărurilor pierdute prin transpirație, cum ar fi salatele, fructele și legumele."
+     ]
+    },
+    "f": [
+     "OMS: fișa informativă „Healthy diet” (alimentația sănătoasă)",
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "Ministerul Sănătății din Spania: Planul național de acțiuni preventive privind efectele temperaturilor excesive, 2026"
+    ],
+    "v": [
+     "câtă sare pe zi",
+     "câte grame de sare pot consuma?",
+     "limita de sare recomandată",
+     "sarea e rea?",
+     "diferența dintre sare și sodiu",
+     "câtă sare recomandă OMS",
+     "consum prea multă sare?",
+     "sodiul de pe etichete",
+     "trebuie să renunț la sare dacă fac sport?",
+     "consumul maxim de sare",
+     "câtă sare în mâncare",
+     "se întâmplă ceva dacă mănânc sărat?",
+     "multă sare e rea pentru tensiune?"
+    ],
+    "k": [
+     "sărat",
+     "tensiune",
+     "hipertensiune",
+     "transpirație",
+     "mezeluri",
+     "sodiu",
+     "pun sare",
+     "a săra"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "fruta-y-verdura",
+   "es": {
+    "q": "¿Cuánta fruta y verdura tengo que comer?",
+    "r": {
+     "t": "La OMS recomienda al menos 400 g al día de fruta y verdura a los mayores de 10 años; de 2 a 5 años, al menos 250 g, y de 6 a 9 años, al menos 350 g.",
+     "p": [
+      "La guía española de 2022 habla de raciones: al menos 3 de hortalizas y de 2 a 3 de fruta al día.",
+      "En esa guía, una ración de hortalizas es de 150 a 200 g, y una de fruta fresca, de 120 a 200 g."
+     ]
+    },
+    "f": [
+     "OMS: hoja informativa «Healthy diet» (alimentación sana)",
+     "AESAN: recomendaciones dietéticas saludables y sostenibles complementadas con recomendaciones de actividad física para la población española (guía de diciembre de 2022)"
+    ],
+    "v": [
+     "cuánta fruta al día",
+     "¿cuántas piezas de fruta tengo que comer?",
+     "raciones de verdura al día",
+     "¿cuántas frutas y verduras al día?",
+     "5 al día",
+     "cuanta verdura hay que comer",
+     "¿cuántos gramos de fruta y verdura?",
+     "fruta y verdura recomendada OMS",
+     "¿como suficiente verdura?",
+     "cuánta fruta debe comer un niño",
+     "raciones de fruta para niños"
+    ],
+    "k": [
+     "frutas",
+     "verduras",
+     "hortalizas",
+     "ensalada",
+     "vegetales"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câte fructe și legume trebuie să mănânc?",
+    "r": {
+     "t": "OMS recomandă cel puțin 400 g de fructe și legume pe zi pentru cei de peste 10 ani; între 2 și 5 ani, cel puțin 250 g, iar între 6 și 9 ani, cel puțin 350 g.",
+     "p": [
+      "În ghidul spaniol din 2022 e vorba de porții: cel puțin 3 de legume și între 2 și 3 de fructe pe zi.",
+      "În acest ghid, o porție de legume înseamnă între 150 și 200 g, iar una de fructe proaspete, între 120 și 200 g."
+     ]
+    },
+    "f": [
+     "OMS: fișa informativă „Healthy diet” (alimentația sănătoasă)",
+     "AESAN: recomandări alimentare sănătoase și sustenabile, completate cu recomandări de activitate fizică pentru populația Spaniei (ghidul din decembrie 2022)"
+    ],
+    "v": [
+     "câte fructe pe zi",
+     "câte fructe trebuie să mănânc?",
+     "porții de legume pe zi",
+     "câte fructe și legume pe zi?",
+     "5 pe zi",
+     "câte legume trebuie mâncate",
+     "câte grame de fructe și legume?",
+     "fructe și legume recomandate de OMS",
+     "mănânc suficiente legume?",
+     "câte fructe trebuie să mănânce un copil",
+     "porții de fructe pentru copii"
+    ],
+    "k": [
+     "fructe",
+     "legume",
+     "zarzavaturi",
+     "salată",
+     "vegetale"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "fibra",
+   "es": {
+    "q": "¿Cuánta fibra necesito?",
+    "r": {
+     "t": "La OMS recomienda al menos 25 g al día de fibra presente de forma natural en los alimentos a los mayores de 10 años; de 2 a 5 años, al menos 15 g, y de 6 a 9, 21 g.",
+     "p": [
+      "Cuenta la fibra que traen los propios alimentos, según la OMS.",
+      "La guía española de 2022 propone legumbres al menos 4 veces por semana, cereales mejor integrales y frutos secos 3 o más veces por semana.",
+      "En adultos, la EFSA da la misma cifra: 25 g al día."
+     ]
+    },
+    "f": [
+     "OMS: hoja informativa «Healthy diet» (alimentación sana)",
+     "AESAN: recomendaciones dietéticas sostenibles y de actividad física para la población española (informe AESAN-2022-007)",
+     "EFSA: resumen de los valores dietéticos de referencia (informe técnico, 2017)"
+    ],
+    "v": [
+     "cuánta fibra al día",
+     "¿cuántos gramos de fibra necesito?",
+     "fibra recomendada",
+     "¿como suficiente fibra?",
+     "alimentos con fibra",
+     "cuanta fibra hay que tomar",
+     "¿necesito tomar fibra?",
+     "fibra diaria OMS",
+     "cuánta fibra necesita un niño",
+     "¿la fibra es importante?",
+     "fibra dietética cantidad"
+    ],
+    "k": [
+     "integral",
+     "legumbres",
+     "cereales",
+     "avena",
+     "salvado",
+     "estreñimiento",
+     "ir al baño",
+     "adultos",
+     "adulto",
+     "recomienda"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De câte fibre am nevoie?",
+    "r": {
+     "t": "OMS recomandă cel puțin 25 g pe zi de fibre prezente în mod natural în alimente pentru cei de peste 10 ani; între 2 și 5 ani, cel puțin 15 g, iar între 6 și 9 ani, 21 g.",
+     "p": [
+      "Potrivit OMS, contează fibrele pe care le conțin alimentele în sine.",
+      "În ghidul spaniol din 2022 se propun leguminoase de cel puțin 4 ori pe săptămână, cereale, de preferință integrale, și fructe oleaginoase de 3 sau mai multe ori pe săptămână.",
+      "Pentru adulți, EFSA indică aceeași cifră: 25 g pe zi."
+     ]
+    },
+    "f": [
+     "OMS: fișa informativă „Healthy diet” (alimentația sănătoasă)",
+     "AESAN: recomandări alimentare sustenabile și de activitate fizică pentru populația Spaniei (raportul AESAN-2022-007)",
+     "EFSA: rezumatul valorilor de referință alimentare (raport tehnic, 2017)"
+    ],
+    "v": [
+     "câte fibre pe zi",
+     "câte grame de fibre îmi trebuie?",
+     "fibre recomandate",
+     "mănânc suficiente fibre?",
+     "alimente cu fibre",
+     "câte fibre trebuie consumate",
+     "trebuie să iau fibre?",
+     "fibrele zilnice după OMS",
+     "de câte fibre are nevoie un copil",
+     "fibrele sunt importante?",
+     "cantitatea de fibre alimentare"
+    ],
+    "k": [
+     "integral",
+     "leguminoase",
+     "cereale",
+     "ovăz",
+     "tărâțe",
+     "constipație",
+     "merg la toaletă",
+     "adulți",
+     "adult",
+     "recomandă"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "grasas",
+   "es": {
+    "q": "¿Qué grasas son mejores?",
+    "r": {
+     "t": "La OMS pide limitar las grasas saturadas a no más del 10 % de la energía y las trans a no más del 1 %; para cocinar, la guía española propone el aceite de oliva como grasa de elección.",
+     "p": [
+      "Esa guía incluye además pescado al menos 3 veces por semana, sobre todo azul, y frutos secos 3 o más veces.",
+      "No se trata de quitarla: en adultos, la OMS sitúa la grasa total entre el 15 % y el 30 % de la energía.",
+      "En niños, la OMS acepta una grasa total más alta."
+     ]
+    },
+    "f": [
+     "OMS: hoja informativa «Healthy diet» (alimentación sana)",
+     "AESAN: nota de prensa sobre las recomendaciones dietéticas sostenibles para la población española (2022)"
+    ],
+    "v": [
+     "¿qué grasas son buenas?",
+     "grasas saturadas cuánto",
+     "¿es mala la grasa?",
+     "grasas trans",
+     "aceite de oliva o mantequilla",
+     "¿qué aceite es mejor para cocinar?",
+     "cuanta grasa puedo comer",
+     "grasas saludables",
+     "¿los frutos secos tienen grasa buena?",
+     "omega 3 pescado azul",
+     "tipos de grasa en la dieta"
+    ],
+    "k": [
+     "lípidos",
+     "colesterol",
+     "insaturadas",
+     "aguacate",
+     "fritos",
+     "tipo de grasa",
+     "evitar",
+     "grasa buena"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce grăsimi sunt mai bune?",
+    "r": {
+     "t": "OMS recomandă limitarea grăsimilor saturate la cel mult 10 % din energie, iar a celor trans la cel mult 1 %; pentru gătit, ghidul spaniol propune uleiul de măsline ca grăsime preferată.",
+     "p": [
+      "Acest ghid include, în plus, pește de cel puțin 3 ori pe săptămână, mai ales pește gras, și fructe oleaginoase de 3 sau mai multe ori.",
+      "Nu e vorba să le eliminați: la adulți, OMS situează totalul grăsimilor între 15 % și 30 % din energie.",
+      "La copii, OMS acceptă un total al grăsimilor mai mare."
+     ]
+    },
+    "f": [
+     "OMS: fișa informativă „Healthy diet” (alimentația sănătoasă)",
+     "AESAN: comunicat de presă despre recomandările alimentare sustenabile pentru populația Spaniei (2022)"
+    ],
+    "v": [
+     "ce grăsimi sunt bune?",
+     "grăsimi saturate, cât?",
+     "grăsimea e rea?",
+     "grăsimi trans",
+     "ulei de măsline sau unt",
+     "ce ulei e mai bun pentru gătit?",
+     "câtă grăsime pot mânca",
+     "grăsimi sănătoase",
+     "fructele oleaginoase au grăsimi bune?",
+     "omega 3 pește gras",
+     "tipuri de grăsimi în alimentație"
+    ],
+    "k": [
+     "lipide",
+     "colesterol",
+     "nesaturate",
+     "avocado",
+     "prăjeli",
+     "tip de grăsime",
+     "evitare",
+     "grăsime bună",
+     "untul"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "dieta-mediterranea",
+   "es": {
+    "q": "¿Es buena la dieta mediterránea?",
+    "r": {
+     "t": "Sí: la guía española de 2022 se enmarca en ella, y en el ensayo PREDIMED, con personas de alto riesgo cardiovascular, hubo cerca de un 30 % menos de enfermedad cardiovascular con ella.",
+     "p": [
+      "En la guía: hortalizas y fruta a diario, legumbres al menos 4 veces por semana, pescado al menos 3, carne como mucho 3, y aceite de oliva.",
+      "Propone además frutos secos 3 o más veces por semana y cereales, mejor integrales."
+     ],
+     "n": "PREDIMED se retiró en 2018 por fallos en el sorteo de los grupos; al repetir los análisis, también sin 1.588 de sus 7.447 participantes, el resultado no cambió de forma significativa."
+    },
+    "f": [
+     "AESAN: nota de prensa sobre las recomendaciones dietéticas sostenibles para la población española (2022)",
+     "Harvard T.H. Chan School of Public Health, The Nutrition Source: retirada y nueva publicación de PREDIMED"
+    ],
+    "v": [
+     "¿es sana la dieta mediterránea?",
+     "dieta mediterranea beneficios",
+     "¿qué es la dieta mediterránea?",
+     "comer mediterráneo",
+     "¿la dieta mediterránea es la mejor?",
+     "dieta mediterránea y corazón",
+     "aceite de oliva y salud",
+     "que se come en la dieta mediterranea",
+     "¿sirve la dieta mediterránea para deportistas?",
+     "dieta atlántica",
+     "guía alimentaria española"
+    ],
+    "k": [
+     "mediterráneo",
+     "PREDIMED",
+     "AESAN",
+     "legumbres",
+     "patrón",
+     "cardiovascular",
+     "pescado",
+     "beneficios",
+     "colesterol"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Este bună dieta mediteraneeană?",
+    "r": {
+     "t": "Da: ghidul spaniol din 2022 se încadrează în ea, iar în studiul PREDIMED, efectuat pe persoane cu risc cardiovascular ridicat, au fost cu aproape 30 % mai puține boli cardiovasculare la cei care au urmat-o.",
+     "p": [
+      "În ghid: legume și fructe zilnic, leguminoase de cel puțin 4 ori pe săptămână, pește de cel puțin 3 ori, carne de cel mult 3 ori și ulei de măsline.",
+      "Propune, în plus, fructe oleaginoase de 3 sau mai multe ori pe săptămână și cereale, de preferință integrale."
+     ],
+     "n": "PREDIMED a fost retras în 2018 din cauza unor erori la repartizarea aleatorie în grupuri; la repetarea analizelor, inclusiv fără 1.588 dintre cei 7.447 de participanți, rezultatul nu s-a schimbat semnificativ."
+    },
+    "f": [
+     "AESAN: comunicat de presă despre recomandările alimentare sustenabile pentru populația Spaniei (2022)",
+     "Harvard T.H. Chan School of Public Health, The Nutrition Source: retragerea și republicarea studiului PREDIMED"
+    ],
+    "v": [
+     "dieta mediteraneeană e sănătoasă?",
+     "beneficiile dietei mediteraneene",
+     "ce este dieta mediteraneeană?",
+     "mănânc mediteraneean",
+     "dieta mediteraneeană e cea mai bună?",
+     "dieta mediteraneeană și inima",
+     "uleiul de măsline și sănătatea",
+     "ce se mănâncă în dieta mediteraneeană",
+     "e bună dieta mediteraneeană pentru sportivi?",
+     "dieta atlantică",
+     "ghidul alimentar spaniol"
+    ],
+    "k": [
+     "mediteraneean",
+     "PREDIMED",
+     "AESAN",
+     "leguminoase",
+     "model",
+     "cardiovascular",
+     "pește",
+     "beneficii",
+     "colesterol"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "comida-canaria",
+   "es": {
+    "q": "¿Qué tiene de bueno la comida canaria para el deporte?",
+    "r": {
+     "t": "No se han encontrado estudios sólidos que la relacionen con el rendimiento deportivo, así que no se le pueden atribuir beneficios propios; sus platos encajan, como los de cualquier cocina, por los grupos de alimentos que llevan.",
+     "p": [
+      "El gofio se hace con trigo, millo, una mezcla de ambos u otros cereales o legumbres; el «Gofio Canario» es Indicación Geográfica Protegida de la UE desde 2014.",
+      "Por grupos: un plato de lentejas o garbanzos cuenta como legumbre, y el pescado de la isla, como pescado, en la guía española.",
+      "Para el deporte cuenta el conjunto: hidratos según el esfuerzo, proteína suficiente y líquidos, con platos canarios o de cualquier otra cocina."
+     ],
+     "n": "No se ha podido comprobar ningún valor nutricional oficial del gofio ni de otros platos canarios: por eso no se da ninguna cifra."
+    },
+    "f": [
+     "Reglamento de Ejecución (UE) n.º 128/2014: inscripción de «Gofio Canario» (IGP)",
+     "Gobierno de Canarias (ICCA): Concurso Oficial de Gofios Agrocanarias 2025",
+     "AESAN: nota de prensa sobre las recomendaciones dietéticas sostenibles para la población española (2022)"
+    ],
+    "v": [
+     "comida canaria y deporte",
+     "¿el gofio es bueno para entrenar?",
+     "gofio para deportistas",
+     "¿es sana la comida canaria?",
+     "papas arrugadas y deporte",
+     "que comer en canarias si entreno",
+     "gastronomía canaria saludable",
+     "¿el gofio da energía?",
+     "gofio proteína",
+     "platos típicos canarios para deportistas",
+     "¿qué como en Tenerife para entrenar?",
+     "¿es buena la comida de aquí si entreno?",
+     "para alguien que entrena, ¿qué platos canarios van bien?"
+    ],
+    "k": [
+     "millo",
+     "potaje",
+     "mojo",
+     "almogrote",
+     "cherne",
+     "tradicional",
+     "gofio con leche",
+     "tinerfeña",
+     "comida típica"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce are bun mâncarea canariană pentru sport?",
+    "r": {
+     "t": "Nu s-au găsit studii solide care să o lege de performanța sportivă, așa că nu i se pot atribui beneficii proprii; preparatele ei se potrivesc, ca ale oricărei bucătării, prin grupele de alimente pe care le conțin.",
+     "p": [
+      "Pentru gofio se folosește grâu, porumb (millo), un amestec al celor două sau alte cereale ori leguminoase; „Gofio Canario” este indicație geografică protejată a UE din 2014.",
+      "Pe grupe: în ghidul spaniol, o farfurie de linte sau de năut se numără la leguminoase, iar peștele din insulă, la pește.",
+      "Pentru sport contează ansamblul: carbohidrați în funcție de efort, proteine suficiente și lichide, cu preparate canariene sau din orice altă bucătărie."
+     ],
+     "n": "Nu s-a putut verifica nicio valoare nutrițională oficială pentru gofio sau pentru alte preparate canariene: de aceea nu se dă nicio cifră."
+    },
+    "f": [
+     "Regulamentul de punere în aplicare (UE) nr. 128/2014: înregistrarea denumirii „Gofio Canario” (IGP)",
+     "Guvernul Insulelor Canare (ICCA): Concursul oficial de gofio Agrocanarias 2025",
+     "AESAN: comunicat de presă despre recomandările alimentare sustenabile pentru populația Spaniei (2022)"
+    ],
+    "v": [
+     "mâncarea canariană și sportul",
+     "gofio e bun pentru antrenament?",
+     "gofio pentru sportivi",
+     "mâncarea canariană e sănătoasă?",
+     "papas arrugadas și sportul",
+     "ce să mănânc în Insulele Canare dacă mă antrenez",
+     "gastronomie canariană sănătoasă",
+     "gofio dă energie?",
+     "gofio proteine",
+     "preparate tipice canariene pentru sportivi",
+     "ce mănânc în Tenerife ca să mă antrenez?",
+     "e bună mâncarea de aici dacă mă antrenez?",
+     "pentru cineva care se antrenează, ce preparate canariene sunt potrivite?"
+    ],
+    "k": [
+     "millo",
+     "potaje",
+     "mojo",
+     "almogrote",
+     "cherne",
+     "tradițional",
+     "gofio cu lapte",
+     "din Tenerife",
+     "mâncare tipică"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "comer-por-la-noche",
+   "es": {
+    "q": "¿Engorda comer por la noche?",
+    "r": {
+     "t": "No hay pruebas claras de que cenar tarde, por sí solo, haga engordar: en una revisión de 29 ensayos, el horario de las comidas cambió el peso poco y con evidencia de certeza baja.",
+     "p": [
+      "Solo dos de esos ensayos compararon cenar pronto con cenar tarde: sobre la cena en concreto hay muy pocos datos.",
+      "Si entrena por la tarde, la cena le sirve para recuperarse: incluya proteína, como propone la posición conjunta de 2016 tras las sesiones importantes.",
+      "Las reglas tajantes de horario, como no comer a partir de cierta hora, no tienen un respaldo sólido."
+     ],
+     "n": "Los ensayos variaban mucho entre sí y tenían riesgo de sesgo: con mejores estudios, la conclusión podría cambiar."
+    },
+    "f": [
+     "Liu et al., metaanálisis sobre el horario de las comidas y el peso (JAMA Netw Open 2024)",
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)"
+    ],
+    "v": [
+     "¿engorda cenar tarde?",
+     "comer de noche engorda",
+     "¿es malo cenar tarde?",
+     "cenar después de las diez",
+     "¿puedo comer antes de dormir?",
+     "cena tardía y peso",
+     "¿engorda comer antes de acostarse?",
+     "comer por la noche es malo",
+     "hora de cenar recomendada",
+     "¿se puede cenar después de entrenar por la noche?",
+     "picar por la noche",
+     "si ceno muy tarde, ¿engordo?",
+     "¿pasa algo por picar algo antes de dormir?"
+    ],
+    "k": [
+     "cenas",
+     "nocturno",
+     "medianoche",
+     "crononutrición",
+     "horarios",
+     "irse a la cama",
+     "engordar",
+     "cena",
+     "justo antes de dormir"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Mâncatul seara îngrașă?",
+    "r": {
+     "t": "Nu există dovezi clare că masa de seară luată târziu, în sine, îngrașă: într-o analiză a 29 de studii, programul meselor a schimbat puțin greutatea, iar dovezile au un grad de certitudine scăzut.",
+     "p": [
+      "Doar două dintre aceste studii au comparat cina devreme cu cina târzie: despre cină în mod special există foarte puține date.",
+      "Dacă vă antrenați după-amiaza, cina vă ajută să vă refaceți: includeți proteine, cum propune declarația de poziție comună din 2016 după sesiunile importante.",
+      "Regulile stricte de program, cum ar fi să nu mai mâncați după o anumită oră, nu au o bază solidă."
+     ],
+     "n": "Studiile difereau mult între ele și aveau risc de erori sistematice: cu studii mai bune, concluzia s-ar putea schimba."
+    },
+    "f": [
+     "Liu et al., metaanaliză privind programul meselor și greutatea (JAMA Netw Open 2024)",
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)"
+    ],
+    "v": [
+     "îngrașă cina târzie?",
+     "mâncatul noaptea îngrașă",
+     "e rău să iau cina târziu?",
+     "cina după ora zece",
+     "pot mânca înainte de culcare?",
+     "cina târzie și greutatea",
+     "îngrașă dacă mănânci înainte de culcare?",
+     "e rău să mănânci noaptea",
+     "ora recomandată pentru cină",
+     "pot lua cina după antrenamentul de seară?",
+     "ronțăit noaptea",
+     "dacă iau cina foarte târziu, mă îngraș?",
+     "se întâmplă ceva dacă ronțăi ceva înainte de culcare?"
+    ],
+    "k": [
+     "cine",
+     "nocturn",
+     "miezul nopții",
+     "crononutriție",
+     "program",
+     "merg la culcare",
+     "îngrășare",
+     "cină",
+     "chiar înainte de culcare"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "entrenar-en-ayunas",
+   "es": {
+    "q": "¿Es mejor entrenar en ayunas?",
+    "r": {
+     "t": "No para perder más grasa: una revisión de 5 estudios no vio diferencias de peso ni de grasa. Y en esfuerzos aeróbicos de más de una hora, haber comido mejora el rendimiento.",
+     "p": [
+      "En sesiones cortas, una revisión de 46 estudios no vio diferencias de rendimiento entre entrenar en ayunas o habiendo comido.",
+      "Si va a hacer una ruta larga o una salida en bici de varias horas, por ejemplo hacia el Teide, coma antes de salir.",
+      "Para una sesión corta, puede elegir lo que le siente mejor."
+     ],
+     "c": "Si tiene diabetes y usa insulina o pastillas que aumentan la insulina, hable con su equipo antes de entrenar en ayunas: hay riesgo de bajada de azúcar.",
+     "n": "La revisión sobre el peso reunió solo 5 estudios y 96 personas, de 4 a 6 semanas: sus autores piden cautela."
+    },
+    "f": [
+     "Hackett y Hagstrom, revisión sobre ejercicio en ayunas y pérdida de peso (J Funct Morphol Kinesiol 2017)",
+     "Aird, Davies y Carson, metaanálisis sobre ejercicio en ayunas frente a haber comido (Scand J Med Sci Sports 2018)",
+     "American Diabetes Association: glucosa en sangre y ejercicio (página para el público)"
+    ],
+    "v": [
+     "entrenar en ayunas",
+     "¿es bueno hacer cardio en ayunas?",
+     "correr sin desayunar",
+     "¿se pierde más grasa en ayunas?",
+     "gimnasio en ayunas",
+     "¿puedo entrenar sin comer?",
+     "ayuno y ejercicio",
+     "entrenar por la mañana sin comer",
+     "cardio en ayunas para adelgazar",
+     "¿es malo hacer deporte en ayunas?",
+     "salir a correr en ayunas",
+     "sin desayunar nada, ¿está bien hacer pesas?"
+    ],
+    "k": [
+     "estómago vacío",
+     "madrugar",
+     "glucemia",
+     "rendimiento",
+     "hipoglucemia",
+     "gym",
+     "recién levantado",
+     "al levantarme"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "E mai bine să mă antrenez pe nemâncate?",
+    "r": {
+     "t": "Nu pentru a pierde mai multă grăsime: o analiză a 5 studii nu a găsit diferențe de greutate sau de grăsime. Iar la eforturile aerobe de peste o oră, faptul că ați mâncat înainte îmbunătățește performanța.",
+     "p": [
+      "La sesiunile scurte, o analiză a 46 de studii nu a găsit diferențe de performanță între antrenamentul pe nemâncate și cel după masă.",
+      "Dacă urmează să faceți o drumeție lungă sau o tură cu bicicleta de câteva ore, de exemplu spre Teide, mâncați înainte de plecare.",
+      "Pentru o sesiune scurtă, puteți alege ce vă priește mai bine."
+     ],
+     "c": "Dacă aveți diabet și folosiți insulină sau pastile care cresc insulina, vorbiți cu echipa medicală înainte să vă antrenați pe nemâncate: există riscul de scădere a glicemiei.",
+     "n": "Analiza despre greutate a reunit doar 5 studii și 96 de persoane, pe perioade de 4–6 săptămâni: autorii ei recomandă prudență."
+    },
+    "f": [
+     "Hackett și Hagstrom, analiză privind efortul fizic pe nemâncate și pierderea în greutate (J Funct Morphol Kinesiol 2017)",
+     "Aird, Davies și Carson, metaanaliză privind efortul fizic pe nemâncate față de efortul după masă (Scand J Med Sci Sports 2018)",
+     "American Diabetes Association: glicemia și exercițiile fizice (pagină pentru public)"
+    ],
+    "v": [
+     "antrenament pe nemâncate",
+     "e bine să fac cardio pe nemâncate?",
+     "alerg fără micul dejun",
+     "se pierde mai multă grăsime pe nemâncate?",
+     "sală pe nemâncate",
+     "pot să mă antrenez fără să mănânc?",
+     "postul și exercițiile",
+     "mă antrenez dimineața fără să mănânc",
+     "cardio pe nemâncate ca să slăbesc",
+     "e rău să fac sport pe nemâncate?",
+     "ies la alergat pe nemâncate",
+     "fără să mănânc nimic la micul dejun, pot ridica greutăți?"
+    ],
+    "k": [
+     "stomacul gol",
+     "trezit devreme",
+     "glicemie",
+     "performanță",
+     "hipoglicemie",
+     "sală",
+     "proaspăt trezit",
+     "când mă trezesc"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "ayuno-intermitente",
+   "es": {
+    "q": "¿Funciona el ayuno intermitente?",
+    "r": {
+     "t": "Para adelgazar, la evidencia apunta a que funciona más o menos igual que comer menos cada día: en 99 ensayos (BMJ 2025), solo el ayuno en días alternos dio algo más: 1,29 kg de media.",
+     "p": [
+      "Una revisión Cochrane de 2026, con 22 ensayos, no vio un efecto clínicamente relevante frente al consejo dietético habitual o a no intervenir.",
+      "Para algunas personas puede ser una opción razonable, según los autores de Cochrane, pero, en general, no supera a otras formas de comer menos.",
+      "Los autores del BMJ piden ensayos más largos para confirmarlo."
+     ],
+     "c": "No lo intente si está embarazada, da el pecho o ha tenido un trastorno de la conducta alimentaria (NHS); si toma medicación, sobre todo para la diabetes, hable antes con su médico."
+    },
+    "f": [
+     "Semnani-Azad et al., metaanálisis en red del ayuno intermitente frente a la restricción continua (BMJ 2025)",
+     "Cochrane: «Evidence behind intermittent fasting for weight loss fails to match hype» (noticia sobre la revisión CD015610)",
+     "NHS (MyHealth London): ayuno intermitente"
+    ],
+    "v": [
+     "ayuno intermitente",
+     "¿sirve el ayuno intermitente para adelgazar?",
+     "ayuno 16/8",
+     "dieta 5:2",
+     "¿es bueno hacer ayuno?",
+     "ayunar para perder peso",
+     "ayuno en días alternos",
+     "¿el ayuno intermitente es peligroso?",
+     "comer en 8 horas",
+     "ayuno intermitente y musculo",
+     "¿funciona el 16 8?"
+    ],
+    "k": [
+     "horario restringido",
+     "ventana de comida",
+     "restricción",
+     "Cochrane",
+     "TCA",
+     "saltarse comidas",
+     "18/6",
+     "20/4"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Funcționează postul intermitent?",
+    "r": {
+     "t": "Pentru slăbit, dovezile indică faptul că funcționează cam la fel ca mâncatul mai puțin în fiecare zi: în 99 de studii (BMJ 2025), doar postul în zile alternative a dat ceva mai mult: 1,29 kg în medie.",
+     "p": [
+      "O analiză Cochrane din 2026, cu 22 de studii, nu a găsit un efect relevant din punct de vedere clinic față de sfatul alimentar obișnuit sau față de lipsa oricărei intervenții.",
+      "Pentru unele persoane poate fi o opțiune rezonabilă, potrivit autorilor Cochrane, dar, în general, nu este mai bun decât alte moduri de a mânca mai puțin.",
+      "Autorii studiului din BMJ cer studii mai lungi pentru confirmare."
+     ],
+     "c": "Nu-l încercați în caz de sarcină, alăptare sau dacă ați avut o tulburare de comportament alimentar (NHS); dacă luați medicamente, mai ales pentru diabet, vorbiți mai întâi cu medicul."
+    },
+    "f": [
+     "Semnani-Azad et al., metaanaliză în rețea a postului intermitent față de restricția continuă (BMJ 2025)",
+     "Cochrane: „Evidence behind intermittent fasting for weight loss fails to match hype” (știre despre analiza CD015610)",
+     "NHS (MyHealth London): postul intermitent"
+    ],
+    "v": [
+     "post intermitent",
+     "postul intermitent ajută la slăbit?",
+     "post 16/8",
+     "dieta 5:2",
+     "e bine să țin post?",
+     "postesc ca să slăbesc",
+     "post în zile alternative",
+     "postul intermitent e periculos?",
+     "mănânc în 8 ore",
+     "postul intermitent și masa musculară",
+     "funcționează 16 8?"
+    ],
+    "k": [
+     "alimentație restricționată în timp",
+     "fereastră de mâncat",
+     "restricție",
+     "Cochrane",
+     "TCA",
+     "sar peste mese",
+     "18/6",
+     "20/4"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "dieta-cetogenica",
+   "es": {
+    "q": "¿La dieta cetogénica es buena si hago deporte?",
+    "r": {
+     "t": "Para la composición corporal (la proporción de grasa y músculo), puede funcionar como otras dietas, pero no mejor; para el rendimiento, sobre todo en resistencia, restringir los hidratos puede empeorarlo.",
+     "p": [
+      "En marchadores de élite, 3 semanas de dieta muy baja en hidratos aumentaron el uso de grasa, pero gastaron más oxígeno y no mejoraron en 10 km.",
+      "Antes de una ruta larga o una subida en bici al Teide, no es momento de empezar una dieta baja en hidratos.",
+      "La ISSN recuerda que el éxito de una dieta a largo plazo depende de poder seguirla."
+     ],
+     "c": "Si toma medicación, avise a su médico antes de cambiar mucho de dieta, como recomienda el NHS.",
+     "n": "El ensayo es de deportistas de élite durante 3 semanas; los efectos de esta dieta a largo plazo sobre la salud no se han revisado aquí."
+    },
+    "f": [
+     "Aragon et al., posición de la ISSN sobre dietas y composición corporal (2017)",
+     "Burke et al., dieta baja en hidratos y alta en grasa en marchadores de élite (J Physiol 2017)",
+     "NHS (MyHealth London): ayuno intermitente"
+    ],
+    "v": [
+     "dieta keto y deporte",
+     "¿es buena la dieta cetogénica?",
+     "keto para entrenar",
+     "dieta sin hidratos para deportistas",
+     "¿puedo hacer keto y correr?",
+     "cetosis y rendimiento",
+     "dieta baja en carbohidratos y gimnasio",
+     "¿la keto ayuda a perder grasa?",
+     "dieta cetogenica para adelgazar",
+     "keto antes de una carrera",
+     "low carb y ejercicio",
+     "¿va bien la keto para hacer deporte?"
+    ],
+    "k": [
+     "cuerpos cetónicos",
+     "LCHF",
+     "grasas",
+     "resistencia",
+     "composición corporal",
+     "sin carbohidratos",
+     "perder fuerza"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Dieta cetogenă e bună dacă fac sport?",
+    "r": {
+     "t": "Pentru compoziția corporală (proporția de grăsime și mușchi), poate funcționa ca alte diete, dar nu mai bine; pentru performanță, mai ales la rezistență, restrângerea carbohidraților o poate înrăutăți.",
+     "p": [
+      "La mărșăluitorii de elită, 3 săptămâni de dietă foarte săracă în carbohidrați au crescut folosirea grăsimilor, dar sportivii au consumat mai mult oxigen și nu și-au îmbunătățit performanța pe 10 km.",
+      "Înainte de o drumeție lungă sau de o urcare cu bicicleta pe Teide nu e momentul să începeți o dietă săracă în carbohidrați.",
+      "ISSN amintește că succesul unei diete pe termen lung depinde de posibilitatea de a o urma."
+     ],
+     "c": "Dacă luați medicamente, anunțați-vă medicul înainte să vă schimbați mult dieta, cum recomandă NHS.",
+     "n": "Studiul a fost făcut pe sportivi de elită, timp de 3 săptămâni; efectele acestei diete asupra sănătății pe termen lung nu au fost analizate aici."
+    },
+    "f": [
+     "Aragon et al., declarația de poziție a ISSN privind dietele și compoziția corporală (2017)",
+     "Burke et al., dieta săracă în carbohidrați și bogată în grăsimi la mărșăluitorii de elită (J Physiol 2017)",
+     "NHS (MyHealth London): postul intermitent"
+    ],
+    "v": [
+     "dieta keto și sportul",
+     "e bună dieta cetogenă?",
+     "keto pentru antrenament",
+     "dietă fără carbohidrați pentru sportivi",
+     "pot ține keto și alerga?",
+     "cetoza și performanța",
+     "dietă săracă în carbohidrați și sală",
+     "keto ajută la pierderea grăsimii?",
+     "dieta cetogenă pentru slăbit",
+     "keto înainte de o cursă",
+     "low carb și efort fizic",
+     "keto e potrivită pentru sport?"
+    ],
+    "k": [
+     "corpi cetonici",
+     "LCHF",
+     "grăsimi",
+     "rezistență",
+     "compoziție corporală",
+     "fără carbohidrați",
+     "pierd forță",
+     "ketogenică",
+     "keto"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "vegetariano-musculo",
+   "es": {
+    "q": "¿Puedo ganar músculo siendo vegetariano o vegano?",
+    "r": {
+     "t": "Sí, en adultos: según la Academy of Nutrition and Dietetics (2025), con proteína vegetal suficiente no parece que se gane menos músculo ni fuerza, y así lo vio un ensayo.",
+     "p": [
+      "El ensayo: 19 veganos y 19 omnívoros, hombres jóvenes, 12 semanas de pesas con 1,6 g de proteína por kilo; sin diferencias en músculo ni en fuerza.",
+      "Lo importante es llegar a la proteína que necesita, como cualquier persona que entrena.",
+      "Si es vegano, necesita una fuente fiable de vitamina B12, que los vegetales no tienen de forma natural; en adultos, sirven alimentos enriquecidos o un suplemento."
+     ],
+     "c": "En menores, embarazo o lactancia hace falta una pauta propia: pídala al médico, al pediatra o a la matrona; en el bebé, la carencia de B12 puede dañar los nervios.",
+     "n": "El ensayo es de hombres jóvenes sin experiencia, con suplemento de soja o suero: no se ha comprobado igual en mujeres ni mayores."
+    },
+    "f": [
+     "Academy of Nutrition and Dietetics: «Vegetarian Dietary Patterns for Adults» (Raj et al., J Acad Nutr Diet 2025)",
+     "Hevia-Larraín et al., dieta vegana frente a omnívora con entrenamiento de fuerza (Sports Med 2021)",
+     "NIH, Office of Dietary Supplements: vitamina B12 (hoja para profesionales)"
+    ],
+    "v": [
+     "ganar músculo siendo vegano",
+     "¿se puede ganar masa muscular sin comer carne?",
+     "vegetariano y gimnasio",
+     "proteína vegetal para músculo",
+     "¿los veganos ganan menos músculo?",
+     "dieta vegana y pesas",
+     "musculación vegetariana",
+     "¿necesito carne para ganar músculo?",
+     "ser vegano y hacer deporte",
+     "proteina vegetal es suficiente",
+     "dieta basada en plantas y fuerza",
+     "¿se puede estar fuerte sin comer carne ni pescado?",
+     "¿puedo ponerme fuerte siendo vegetariano?"
+    ],
+    "k": [
+     "veganismo",
+     "vegetarianismo",
+     "soja",
+     "tofu",
+     "omnívoro",
+     "B12",
+     "hipertrofia",
+     "legumbres"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot câștiga masă musculară cu o alimentație vegetariană sau vegană?",
+    "r": {
+     "t": "Da, la adulți: potrivit Academy of Nutrition and Dietetics (2025), cu suficiente proteine vegetale nu pare să se câștige mai puțină masă musculară sau forță, iar un studiu a constatat același lucru.",
+     "p": [
+      "Studiul: 19 vegani și 19 omnivori, bărbați tineri, 12 săptămâni de antrenament cu greutăți, cu 1,6 g de proteine pe kilogram; fără diferențe de masă musculară sau de forță.",
+      "Important este să ajungeți la cantitatea de proteine de care aveți nevoie, ca orice persoană care se antrenează.",
+      "Dacă aveți o alimentație vegană, aveți nevoie de o sursă sigură de vitamina B12, pe care plantele nu o au în mod natural; la adulți, sunt potrivite alimentele îmbogățite sau un supliment."
+     ],
+     "c": "La minori, în sarcină sau în perioada de alăptare este nevoie de recomandări proprii: cereți-le medicului, pediatrului sau moașei; la bebeluș, carența de B12 poate afecta nervii.",
+     "n": "Studiul a fost făcut pe bărbați tineri fără experiență, cu supliment de soia sau de zer: nu s-a verificat la fel la femei sau la vârstnici."
+    },
+    "f": [
+     "Academy of Nutrition and Dietetics: „Vegetarian Dietary Patterns for Adults” (Raj et al., J Acad Nutr Diet 2025)",
+     "Hevia-Larraín et al., dieta vegană față de cea omnivoră, cu antrenament de forță (Sports Med 2021)",
+     "NIH, Office of Dietary Supplements: vitamina B12 (fișă pentru profesioniști)"
+    ],
+    "v": [
+     "câștig masă musculară ca vegan",
+     "se poate câștiga masă musculară fără să mănânci carne?",
+     "vegetarian și sală",
+     "proteine vegetale pentru mușchi",
+     "veganii câștigă mai puțină masă musculară?",
+     "dietă vegană și greutăți",
+     "culturism vegetarian",
+     "am nevoie de carne ca să câștig mușchi?",
+     "să fii vegan și să faci sport",
+     "proteinele vegetale sunt suficiente",
+     "alimentație pe bază de plante și forță",
+     "se poate fi puternic fără carne și pește?",
+     "pot deveni puternic dacă sunt vegetarian?"
+    ],
+    "k": [
+     "veganism",
+     "vegetarianism",
+     "soia",
+     "tofu",
+     "omnivor",
+     "B12",
+     "hipertrofie",
+     "leguminoase"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "alcohol",
+   "es": {
+    "q": "¿El alcohol afecta al entrenamiento?",
+    "r": {
+     "t": "Puede afectarlo: en un estudio, beber mucho después de una sesión dura frenó la reconstrucción del músculo, incluso tomando proteína. Y la OMS recuerda que ningún consumo de alcohol está libre de riesgo.",
+     "p": [
+      "En ese estudio, 8 hombres activos bebieron unas 12 consumiciones tras entrenar: la síntesis muscular bajó un 24 % con proteína y un 37 % con hidratos.",
+      "Si va a bañarse o a hacer deporte en el agua, no beba alcohol: lo recoge la guía de playa del panel SOS.",
+      "Con calor, Sanidad pide evitar el alcohol, porque puede favorecer la deshidratación."
+     ],
+     "n": "El estudio probó una dosis alta en 8 hombres: no dice qué pasa con poca cantidad."
+    },
+    "f": [
+     "Parr et al., el alcohol frena la síntesis de proteína muscular tras el entrenamiento (PLoS ONE 2014)",
+     "OMS: hoja informativa «Alcohol»",
+     "Ministerio de Sanidad: Plan nacional de actuaciones preventivas de los efectos del exceso de temperaturas 2026"
+    ],
+    "v": [
+     "¿el alcohol afecta al músculo?",
+     "beber cerveza después de entrenar",
+     "alcohol y gimnasio",
+     "¿puedo beber alcohol si entreno?",
+     "una cerveza después del partido",
+     "alcohol y recuperación muscular",
+     "¿el alcohol quita músculo?",
+     "resaca y entrenar",
+     "vino y deporte",
+     "salir de fiesta y entrenar al día siguiente",
+     "¿cuánto alcohol puedo beber si hago deporte?",
+     "si salgo de copas el finde, ¿pierdo lo ganado en el gym?",
+     "con resaca, ¿mejor descanso?"
+    ],
+    "k": [
+     "copas",
+     "bebidas alcohólicas",
+     "etanol",
+     "chupitos",
+     "botellón",
+     "cervezas",
+     "guayabo",
+     "cruda",
+     "fin de semana"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Alcoolul afectează antrenamentul?",
+    "r": {
+     "t": "Îl poate afecta: într-un studiu, consumul mare de alcool după o sesiune grea a încetinit refacerea mușchilor, chiar și cu proteine. Iar OMS amintește că niciun consum de alcool nu este lipsit de risc.",
+     "p": [
+      "În acest studiu, 8 bărbați activi au băut circa 12 băuturi alcoolice după antrenament: sinteza musculară a scăzut cu 24 % în varianta cu proteine și cu 37 % în cea cu carbohidrați.",
+      "Dacă urmează să faceți baie sau sport în apă, nu beți alcool: o spune ghidul despre plajă din panoul SOS.",
+      "Pe căldură, Ministerul Sănătății din Spania recomandă evitarea alcoolului, pentru că poate favoriza deshidratarea."
+     ],
+     "n": "Studiul a testat o doză mare la 8 bărbați: nu spune ce se întâmplă la o cantitate mică."
+    },
+    "f": [
+     "Parr et al., alcoolul încetinește sinteza proteinelor musculare după antrenament (PLoS ONE 2014)",
+     "OMS: fișa informativă „Alcohol”",
+     "Ministerul Sănătății din Spania: Planul național de acțiuni preventive privind efectele temperaturilor excesive, 2026"
+    ],
+    "v": [
+     "alcoolul afectează mușchii?",
+     "bere după antrenament",
+     "alcool și sală",
+     "pot bea alcool dacă mă antrenez?",
+     "o bere după meci",
+     "alcoolul și refacerea musculară",
+     "alcoolul îmi topește mușchii?",
+     "mahmureala și antrenamentul",
+     "vin și sport",
+     "ies la petrecere și mă antrenez a doua zi",
+     "cât alcool pot bea dacă fac sport?",
+     "dacă ies în weekend la băut, pierd ce am câștigat la sală?",
+     "cu mahmureală, e mai bine să mă odihnesc?"
+    ],
+    "k": [
+     "pahare",
+     "băuturi alcoolice",
+     "etanol",
+     "shoturi",
+     "chef",
+     "beri",
+     "mahmureală",
+     "băut",
+     "weekend"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "perder-peso",
+   "es": {
+    "q": "Quiero perder peso: ¿cómo lo hago sin riesgos?",
+    "r": {
+     "t": "Poco a poco: el NHS aconseja perder de 0,5 a 1 kg a la semana, con más actividad, una forma de comer que pueda mantener y ayuda profesional si la necesita.",
+     "p": [
+      "Es una referencia para quien tiene sobrepeso, no una meta; el NHS desaconseja adelgazar de golpe con dietas.",
+      "Muévase: la OMS recomienda a los adultos de 150 a 300 minutos de actividad moderada a la semana y fuerza al menos 2 días.",
+      "Según la ISSN, el éxito depende de poder mantener la dieta, y lo prioritario es proteína suficiente, fuerza y un ritmo adecuado.",
+      "No se salte comidas: según el NHS, con hambre puede acabar picando más."
+     ],
+     "c": "Si su peso es normal o bajo, tiene una enfermedad, toma medicación o está embarazada, consulte antes al médico o dietista-nutricionista. Si el peso o la comida le angustian, pida ayuda: vea la pregunta enlazada."
+    },
+    "f": [
+     "NHS: «Tips to help you lose weight»",
+     "Directrices de la OMS sobre actividad física y hábitos sedentarios (2020)",
+     "Aragon et al., posición de la ISSN sobre dietas y composición corporal (2017)"
+    ],
+    "v": [
+     "quiero adelgazar",
+     "¿cómo bajo de peso sin hacerme daño?",
+     "perder kilos de forma sana",
+     "adelgazar de forma segura",
+     "¿cuántos kilos puedo perder a la semana?",
+     "dieta para adelgazar",
+     "como perder peso rapido",
+     "bajar de peso sin pasar hambre",
+     "¿cuál es la mejor forma de adelgazar?",
+     "perder peso haciendo ejercicio",
+     "plan para adelgazar",
+     "estoy pasado de kilos, ¿cómo adelgazo sin hacer dietas raras?"
+    ],
+    "k": [
+     "pérdida de peso",
+     "ritmo",
+     "dietista-nutricionista",
+     "nutricionista",
+     "NHS",
+     "perder grasa",
+     "gordito",
+     "bajar kilos",
+     "manera sana"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Vreau să slăbesc: cum fac asta fără riscuri?",
+    "r": {
+     "t": "Treptat: NHS recomandă să pierdeți între 0,5 și 1 kg pe săptămână, cu mai multă activitate, un mod de a mânca pe care îl puteți menține și ajutor de specialitate dacă aveți nevoie.",
+     "p": [
+      "Este un reper pentru cei care au kilograme în plus, nu un obiectiv; NHS nu recomandă slăbitul brusc prin diete.",
+      "Mișcați-vă: OMS le recomandă adulților între 150 și 300 de minute de activitate moderată pe săptămână și forță cel puțin 2 zile.",
+      "Potrivit ISSN, succesul depinde de posibilitatea de a menține dieta, iar prioritățile sunt: suficiente proteine, antrenament de forță și un ritm potrivit.",
+      "Nu săriți peste mese: potrivit NHS, de foame puteți ajunge să mâncați mai mult între mese."
+     ],
+     "c": "Dacă greutatea dumneavoastră este normală sau mică, dacă aveți o boală, luați medicamente sau în caz de sarcină, consultați mai întâi medicul sau un dietetician-nutriționist. Dacă greutatea sau mâncarea vă provoacă neliniște, cereți ajutor: vedeți întrebarea asociată."
+    },
+    "f": [
+     "NHS: „Tips to help you lose weight”",
+     "Ghidurile OMS privind activitatea fizică și comportamentul sedentar (2020)",
+     "Aragon et al., declarația de poziție a ISSN privind dietele și compoziția corporală (2017)"
+    ],
+    "v": [
+     "vreau să slăbesc",
+     "cum slăbesc fără să-mi fac rău?",
+     "slăbesc sănătos",
+     "slăbit în siguranță",
+     "câte kilograme pot pierde pe săptămână?",
+     "dietă de slăbit",
+     "cum slăbesc repede",
+     "slăbesc fără să rabd de foame",
+     "care e cea mai bună metodă de slăbit?",
+     "slăbesc făcând exerciții",
+     "plan de slăbire",
+     "am kilograme în plus, cum slăbesc fără diete ciudate?"
+    ],
+    "k": [
+     "pierdere în greutate",
+     "ritm",
+     "dietetician-nutriționist",
+     "nutriționist",
+     "NHS",
+     "pierd grăsime",
+     "plinuț",
+     "scap de kilograme",
+     "mod sănătos",
+     "kg",
+     "dau jos kilograme",
+     "a slăbi",
+     "mod de a slăbi"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "ganar-musculo-comer",
+   "es": {
+    "q": "Quiero ganar músculo: ¿qué tengo que comer?",
+    "r": {
+     "t": "Entrene la fuerza y coma lo suficiente: la posición conjunta de 2016 propone de 1,2 a 2,0 g de proteína por kilo y día, y la ISSN recuerda que ganar masa exige comer más de lo que se gasta.",
+     "p": [
+      "En un metaanálisis de 2018, por encima de unos 1,6 g por kilo ya no se ganaba más masa magra (sin grasa), con un margen amplio: 1,0–2,2.",
+      "Reparta la proteína en varias comidas: unos 0,3 g por kilo después de entrenar y cada 3 a 5 horas."
+     ],
+     "n": "El rango de 1,2 a 2,0 g es para deportistas adultos sanos; con una enfermedad del riñón, consulte antes a su médico."
+    },
+    "f": [
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "Morton et al., metaanálisis sobre proteína y entrenamiento de fuerza (BJSM 2018)",
+     "Aragon et al., posición de la ISSN sobre dietas y composición corporal (2017)"
+    ],
+    "v": [
+     "quiero ganar músculo qué como",
+     "dieta para ganar masa muscular",
+     "¿qué comer para ganar músculo?",
+     "alimentación para hipertrofia",
+     "comida para coger volumen",
+     "¿qué como para ponerme fuerte?",
+     "dieta de volumen",
+     "como ganar musculo comiendo",
+     "¿tengo que comer más para ganar músculo?",
+     "nutrición para ganar masa",
+     "¿cuántos gramos de proteína para ganar músculo?"
+    ],
+    "k": [
+     "hipertrofia",
+     "volumen",
+     "masa muscular",
+     "superávit",
+     "musculación",
+     "definición"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Vreau să câștig masă musculară: ce trebuie să mănânc?",
+    "r": {
+     "t": "Antrenați forța și mâncați suficient: declarația de poziție comună din 2016 propune între 1,2 și 2,0 g de proteine pe kilogram pe zi, iar ISSN amintește că pentru a câștiga masă trebuie să mâncați mai mult decât consumați.",
+     "p": [
+      "Într-o metaanaliză din 2018, peste circa 1,6 g pe kilogram nu se mai câștiga masă slabă (fără grăsime) în plus, cu o marjă largă: 1,0–2,2.",
+      "Împărțiți proteinele în mai multe mese: circa 0,3 g pe kilogram după antrenament și la fiecare 3–5 ore."
+     ],
+     "n": "Intervalul de 1,2–2,0 g este pentru sportivii adulți sănătoși; dacă aveți o boală de rinichi, consultați mai întâi medicul."
+    },
+    "f": [
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "Morton et al., metaanaliză privind proteinele și antrenamentul de forță (BJSM 2018)",
+     "Aragon et al., declarația de poziție a ISSN privind dietele și compoziția corporală (2017)"
+    ],
+    "v": [
+     "vreau să câștig masă musculară, ce mănânc",
+     "dietă pentru masă musculară",
+     "ce să mănânc ca să câștig mușchi?",
+     "alimentație pentru hipertrofie",
+     "mâncare pentru masă",
+     "ce mănânc ca să devin puternic?",
+     "dietă de masă",
+     "cum câștig mușchi mâncând",
+     "trebuie să mănânc mai mult ca să câștig mușchi?",
+     "nutriție pentru masă musculară",
+     "câte grame de proteine ca să câștig mușchi?"
+    ],
+    "k": [
+     "hipertrofie",
+     "masă",
+     "masă musculară",
+     "surplus caloric",
+     "culturism",
+     "definire"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "calorias-necesito",
+   "es": {
+    "q": "¿Cuántas calorías necesito al día?",
+    "r": {
+     "t": "Depende de su tamaño, su edad, su sexo, su composición corporal y de cuánto se mueve; cualquier cifra es una estimación con margen de error, y esta app no fija objetivos de calorías.",
+     "p": [
+      "La FAO multiplica el metabolismo basal (el gasto en reposo) por un factor de actividad: 1,40–1,69 en una vida sedentaria o ligera, 1,70–1,99 activa y 2,00–2,40 vigorosa.",
+      "Las fórmulas son aproximadas: la de Mifflin-St Jeor, la más fiable en una revisión, tiene aún errores notables a nivel individual.",
+      "Si entrena mucho y duda de si come lo suficiente, un dietista-nutricionista puede valorarlo con usted."
+     ],
+     "n": "Las tablas de la FAO se basan en medias de población: aplicadas a una persona, son solo una aproximación."
+    },
+    "f": [
+     "FAO/OMS/UNU: Human energy requirements (2004), capítulo 5",
+     "Frankenfield et al., revisión de las ecuaciones del gasto en reposo (J Am Diet Assoc 2005)"
+    ],
+    "v": [
+     "¿cuántas calorías al día necesito?",
+     "calorías diarias recomendadas",
+     "cuántas kcal debo comer",
+     "¿cuál es mi gasto calórico?",
+     "cuantas calorias necesita un hombre",
+     "cuántas calorías necesita una mujer",
+     "calcular calorías diarias",
+     "¿cuánta energía necesito al día?",
+     "metabolismo basal",
+     "¿cuántas calorías gasto al día?",
+     "mantenimiento calórico"
+    ],
+    "k": [
+     "kilocalorías",
+     "FAO",
+     "requerimientos",
+     "actividad física",
+     "PAL",
+     "mantener el peso",
+     "gasto en reposo",
+     "quema",
+     "mantenerme"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De câte calorii am nevoie pe zi?",
+    "r": {
+     "t": "Depinde de dimensiunile corpului, de vârstă, de sex, de compoziția corporală și de cât vă mișcați; orice cifră este o estimare cu o marjă de eroare, iar această aplicație nu stabilește obiective de calorii.",
+     "p": [
+      "FAO înmulțește metabolismul bazal (consumul de energie în repaus) cu un factor de activitate: 1,40–1,69 pentru o viață sedentară sau ușor activă, 1,70–1,99 pentru una activă și 2,00–2,40 pentru una foarte activă.",
+      "Formulele sunt aproximative: formula Mifflin-St Jeor, cea mai fiabilă într-o analiză, are totuși erori importante la nivel individual.",
+      "Dacă vă antrenați mult și aveți îndoieli că mâncați suficient, un dietetician-nutriționist poate evalua asta împreună cu dumneavoastră."
+     ],
+     "n": "Tabelele FAO se bazează pe medii ale populației: aplicate unei singure persoane, sunt doar o aproximare."
+    },
+    "f": [
+     "FAO/OMS/UNU: Human energy requirements (2004), capitolul 5",
+     "Frankenfield et al., analiză a ecuațiilor pentru consumul de energie în repaus (J Am Diet Assoc 2005)"
+    ],
+    "v": [
+     "de câte calorii am nevoie pe zi?",
+     "caloriile zilnice recomandate",
+     "câte kcal trebuie să mănânc",
+     "care e consumul meu caloric?",
+     "de câte calorii are nevoie un bărbat",
+     "de câte calorii are nevoie o femeie",
+     "calculez caloriile zilnice",
+     "de câtă energie am nevoie pe zi?",
+     "metabolismul bazal",
+     "câte calorii ard pe zi?",
+     "caloriile de menținere"
+    ],
+    "k": [
+     "kilocalorii",
+     "FAO",
+     "necesar",
+     "activitate fizică",
+     "PAL",
+     "menținerea greutății",
+     "consum în repaus",
+     "ard",
+     "mă mențin"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "calorias-con-foto",
+   "es": {
+    "q": "¿Puedo contar calorías con una foto del plato?",
+    "r": {
+     "t": "No de forma fiable: en los estudios, la inteligencia artificial se equivocó entre un 30 y un 40 % por plato al calcular las calorías solo con la foto, también los modelos más capaces.",
+     "p": [
+      "En 195 platos, un modelo de uso general falló un 30,5 % con la imagen sola y un 13,9 % si además tenía los ingredientes y sus cantidades.",
+      "En otro estudio, con los dos mejores modelos, los errores medianos en platos fueron del 33–36 % en calorías y del 38–39 % en proteína; en envasados, del 14–19 % en calorías.",
+      "De 105 pacientes con trastorno de la conducta alimentaria, el 74 % había usado una app de calorías, y casi tres de cada cuatro de ellos creían que contribuyó a su trastorno."
+     ],
+     "c": "Si contar calorías o pesar la comida le genera angustia o culpa, pida ayuda: vea la pregunta enlazada."
+    },
+    "f": [
+     "Rodríguez-Jiménez et al., estimación de calorías con inteligencia artificial a partir de fotos (Nutrients 2025)",
+     "Nakagawa y Yamamoto, precisión de modelos de lenguaje con fotos de comidas (Nutrients 2026)",
+     "Levinson et al., apps de recuento de calorías y trastornos de la conducta alimentaria (Eating Behaviors 2017)"
+    ],
+    "v": [
+     "contar calorías con una foto",
+     "¿funcionan las apps que cuentan calorías por foto?",
+     "calcular calorías de una foto",
+     "foto de la comida calorías",
+     "¿la IA puede contar mis calorías?",
+     "app para contar calorías con el móvil",
+     "¿es fiable contar calorías con inteligencia artificial?",
+     "escanear el plato",
+     "calorias con foto chatgpt",
+     "estimar calorías con una imagen",
+     "hacer foto al plato para saber las calorías",
+     "¿existe alguna aplicación que mire el plato?"
+    ],
+    "k": [
+     "fotografía",
+     "cámara",
+     "contador",
+     "escáner",
+     "precisión",
+     "apps",
+     "kcal",
+     "estimar"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot număra caloriile cu o fotografie a farfuriei?",
+    "r": {
+     "t": "Nu în mod fiabil: în studii, inteligența artificială a greșit cu 30–40 % la fiecare farfurie când a calculat caloriile doar din fotografie, chiar și în cazul celor mai performante modele.",
+     "p": [
+      "La 195 de preparate, un model de uz general a greșit cu 30,5 % doar cu imaginea și cu 13,9 % când avea și ingredientele și cantitățile lor.",
+      "Într-un alt studiu, cu cele mai bune două modele, erorile mediane la preparate au fost de 33–36 % la calorii și de 38–39 % la proteine; la produsele ambalate, de 14–19 % la calorii.",
+      "Dintre 105 pacienți cu tulburări de comportament alimentar, 74 % folosiseră o aplicație de numărat calorii, iar aproape trei din patru dintre ei credeau că aceasta a contribuit la tulburarea lor."
+     ],
+     "c": "Dacă numărarea caloriilor sau cântărirea mâncării vă provoacă neliniște sau vinovăție, cereți ajutor: vedeți întrebarea asociată."
+    },
+    "f": [
+     "Rodríguez-Jiménez et al., estimarea caloriilor cu inteligență artificială pornind de la fotografii (Nutrients 2025)",
+     "Nakagawa și Yamamoto, precizia modelelor lingvistice cu fotografii ale meselor (Nutrients 2026)",
+     "Levinson et al., aplicațiile de numărat calorii și tulburările de comportament alimentar (Eating Behaviors 2017)"
+    ],
+    "v": [
+     "număr caloriile cu o fotografie",
+     "funcționează aplicațiile care numără caloriile din poze?",
+     "calculez caloriile dintr-o poză",
+     "poza mâncării, calorii",
+     "IA îmi poate număra caloriile?",
+     "aplicație de numărat calorii cu telefonul",
+     "e fiabil să număr caloriile cu inteligența artificială?",
+     "scanez farfuria",
+     "calorii din poză ChatGPT",
+     "estimez caloriile dintr-o imagine",
+     "fac o poză la farfurie ca să aflu caloriile",
+     "există vreo aplicație care se uită la farfurie?"
+    ],
+    "k": [
+     "fotografie",
+     "cameră",
+     "contor",
+     "scaner",
+     "precizie",
+     "aplicații",
+     "kcal",
+     "estimare"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "bebidas-isotonicas",
+   "es": {
+    "q": "¿Necesito bebidas isotónicas?",
+    "r": {
+     "t": "Para sesiones de menos de 45 minutos, no: la posición conjunta de 2016 dice que entonces no hacen falta hidratos. Los reserva a esfuerzos más largos: de 30 a 60 g por hora entre 1 y 2,5 horas.",
+     "p": [
+      "Entre 45 y 75 minutos, bastan pequeñas cantidades o enjuagarse la boca; pasadas 2,5–3 horas, hasta 90 g por hora.",
+      "En la UE, si cumplen una composición fijada, pueden declarar que mantienen el rendimiento en esfuerzos de resistencia prolongados y mejoran la absorción de agua al hacer ejercicio.",
+      "No protegen de beber de más: en esfuerzos largos, beberlas en exceso también puede bajar el sodio de la sangre."
+     ]
+    },
+    "f": [
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "Reglamento (UE) 432/2012: lista de declaraciones de propiedades saludables autorizadas",
+     "Hew-Butler et al., declaración de la 3.ª conferencia internacional de consenso sobre hiponatremia asociada al ejercicio (BJSM 2015)"
+    ],
+    "v": [
+     "¿hacen falta bebidas isotónicas?",
+     "bebida isotonica o agua",
+     "¿sirven las bebidas deportivas?",
+     "¿qué bebo durante el ejercicio?",
+     "isotónicos para correr",
+     "bebidas para deportistas",
+     "¿agua o bebida deportiva en el gimnasio?",
+     "geles y bebidas en una ruta larga",
+     "¿cuándo tomar bebida isotónica?",
+     "sales minerales al hacer deporte",
+     "bebidas con electrolitos",
+     "¿qué es mejor para hidratarme cuando corro, agua o isotónica?",
+     "¿qué bebo si hago deporte una hora?"
+    ],
+    "k": [
+     "isotónico",
+     "glucosa",
+     "carbohidratos",
+     "rendimiento",
+     "resistencia",
+     "Gatorade",
+     "Aquarius",
+     "Powerade",
+     "agua o isotónica",
+     "mejor que el agua"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Am nevoie de băuturi izotonice?",
+    "r": {
+     "t": "Pentru sesiunile de sub 45 de minute, nu: declarația de poziție comună din 2016 spune că atunci nu este nevoie de carbohidrați. Îi rezervă eforturilor mai lungi: între 30 și 60 g pe oră pentru eforturile de 1–2,5 ore.",
+     "p": [
+      "Între 45 și 75 de minute ajung cantități mici sau clătirea gurii; după 2,5–3 ore, până la 90 g pe oră.",
+      "În UE, dacă au o compoziție stabilită, pot declara că mențin performanța în eforturile de rezistență prelungite și că îmbunătățesc absorbția apei în timpul exercițiilor fizice.",
+      "Nu protejează de consumul excesiv de lichide: în eforturile lungi, băute în exces, pot și ele să scadă sodiul din sânge."
+     ]
+    },
+    "f": [
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "Regulamentul (UE) 432/2012: lista mențiunilor de sănătate permise",
+     "Hew-Butler et al., declarația celei de-a 3-a conferințe internaționale de consens privind hiponatremia asociată efortului fizic (BJSM 2015)"
+    ],
+    "v": [
+     "e nevoie de băuturi izotonice?",
+     "băutură izotonică sau apă",
+     "băuturile sportive ajută?",
+     "ce beau în timpul efortului?",
+     "izotonice pentru alergare",
+     "băuturi pentru sportivi",
+     "apă sau băutură sportivă la sală?",
+     "geluri și băuturi pe o drumeție lungă",
+     "când să iau băutură izotonică?",
+     "săruri minerale la sport",
+     "băuturi cu electroliți",
+     "ce e mai bun ca să mă hidratez când alerg, apă sau izotonic?",
+     "ce beau dacă fac sport o oră?"
+    ],
+    "k": [
+     "izotonic",
+     "glucoză",
+     "carbohidrați",
+     "performanță",
+     "rezistență",
+     "Gatorade",
+     "Aquarius",
+     "Powerade",
+     "apă sau izotonic",
+     "mai bun decât apa"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "demasiada-agua",
+   "es": {
+    "q": "¿Se puede beber demasiada agua?",
+    "r": {
+     "t": "Sí. En esfuerzos largos, beber más de lo que se pierde puede bajar el sodio de la sangre (hiponatremia), que en casos graves es peligroso; el consenso de 2015 aconseja guiarse por la sed.",
+     "p": [
+      "La causa principal es beber de más; el riesgo sube en esfuerzos de más de 4 horas, a ritmo lento y si se gana peso durante el ejercicio.",
+      "Las bebidas deportivas con sal no la evitan si se bebe de más.",
+      "Con calor, Sanidad pide beber a menudo aunque no haya sed; en una prueba larga, no se fuerce a beber más de lo que pide la sed."
+     ],
+     "c": "Llame al 112 si, tras un esfuerzo largo en el que ha bebido mucho, hay dolor de cabeza con vómitos o confusión: se trata en el hospital.",
+     "n": "Según el consenso de 2015, la sed también avisa con calor."
+    },
+    "f": [
+     "Hew-Butler et al., declaración de la 3.ª conferencia internacional de consenso sobre hiponatremia asociada al ejercicio (BJSM 2015)",
+     "Ministerio de Sanidad: Plan nacional de actuaciones preventivas de los efectos del exceso de temperaturas 2026"
+    ],
+    "v": [
+     "beber mucha agua es malo",
+     "intoxicación por agua",
+     "hiponatremia",
+     "¿beber agua de más es peligroso?",
+     "demasiada agua en una maratón",
+     "cuanta agua es demasiado",
+     "beber sin tener sed",
+     "¿hay que beber antes de tener sed?",
+     "¿es malo beber muchos litros al día?",
+     "exceso de agua al correr",
+     "me paso bebiendo agua",
+     "¿es peligroso beber tantos litros al día?",
+     "¿cuántos litros de agua al día son demasiados?",
+     "¿es peligroso pasarse con el agua?"
+    ],
+    "k": [
+     "sodio",
+     "sed",
+     "sobrehidratación",
+     "maratón",
+     "ultra",
+     "sal",
+     "tomar mucha agua",
+     "litros de más",
+     "litros al día",
+     "tomar demasiada agua"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Se poate bea prea multă apă?",
+    "r": {
+     "t": "Da. În eforturile lungi, dacă beți mai mult decât pierdeți, sodiul din sânge poate scădea (hiponatremie), ceea ce în cazurile grave este periculos; consensul din 2015 recomandă să vă ghidați după sete.",
+     "p": [
+      "Cauza principală este consumul excesiv de lichide; riscul crește la eforturile de peste 4 ore, în ritm lent, și dacă se câștigă în greutate în timpul efortului.",
+      "Băuturile sportive cu sare nu o previn dacă se bea prea mult.",
+      "Pe căldură, Ministerul Sănătății din Spania recomandă să beți des, chiar dacă nu vă e sete; într-o probă lungă, nu vă forțați să beți mai mult decât vă cere setea."
+     ],
+     "c": "Sunați la 112 dacă, după un efort lung în care ați băut mult, apar durere de cap cu vărsături sau confuzie: se tratează la spital.",
+     "n": "Potrivit consensului din 2015, setea dă semnalul și pe căldură."
+    },
+    "f": [
+     "Hew-Butler et al., declarația celei de-a 3-a conferințe internaționale de consens privind hiponatremia asociată efortului fizic (BJSM 2015)",
+     "Ministerul Sănătății din Spania: Planul național de acțiuni preventive privind efectele temperaturilor excesive, 2026"
+    ],
+    "v": [
+     "să bei multă apă e rău",
+     "intoxicație cu apă",
+     "hiponatremie",
+     "e periculos să bei apă în exces?",
+     "prea multă apă la maraton",
+     "câtă apă e prea multă",
+     "beau fără să-mi fie sete",
+     "trebuie să beau înainte să-mi fie sete?",
+     "e rău să bei mulți litri pe zi?",
+     "exces de apă la alergare",
+     "beau prea multă apă",
+     "e periculos să bei atâția litri pe zi?",
+     "câți litri de apă pe zi sunt prea mulți?",
+     "e periculos să exagerezi cu apa?"
+    ],
+    "k": [
+     "sodiu",
+     "sete",
+     "suprahidratare",
+     "maraton",
+     "ultra",
+     "sare",
+     "beau multă apă",
+     "litri în plus",
+     "litri pe zi",
+     "beau prea multă apă",
+     "hiponatremia"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cafe",
+   "es": {
+    "q": "¿Cuánto café puedo tomar?",
+    "r": {
+     "t": "Según la EFSA, en adultos sanos no plantean problemas de seguridad hasta 400 mg de cafeína al día y 200 mg de una vez; embarazadas, 200 mg al día; menores, 3 mg por kilo al día.",
+     "p": [
+      "No se puede traducir en tazas: en cafés de tiendas parecidas, la cafeína varió hasta 8 o 9 veces.",
+      "Cuenta la cafeína de todas las fuentes, no solo la del café.",
+      "Para dormir bien, tómela lejos de la hora de acostarse: según la EFSA, 100 mg pueden alterar el sueño en algunos adultos.",
+      "Las bebidas energéticas no tienen sitio en la dieta de niños y adolescentes, según la Academia Americana de Pediatría."
+     ],
+     "c": "Si nota palpitaciones o le cuesta dormir, tome menos; con una enfermedad del corazón, pregunte a su médico.",
+     "n": "La EFSA no da en sus páginas una cifra propia para la lactancia: pregunte a su médico o matrona."
+    },
+    "f": [
+     "EFSA: página temática «Caffeine»",
+     "Guest et al., posición de la ISSN sobre cafeína y rendimiento (2021)",
+     "NIH, Office of Dietary Supplements: suplementos para el ejercicio y el rendimiento deportivo (hoja para profesionales)"
+    ],
+    "v": [
+     "¿cuántos cafés al día puedo tomar?",
+     "límite de cafeína al día",
+     "¿es malo tomar mucho café?",
+     "café en el embarazo",
+     "cuanta cafeina es segura",
+     "¿cuánta cafeína puede tomar un adolescente?",
+     "bebidas energéticas cuántas",
+     "café y sueño",
+     "máximo de cafeína diaria",
+     "¿tres cafés al día son muchos?",
+     "cafeina maxima recomendada"
+    ],
+    "k": [
+     "té",
+     "refrescos de cola",
+     "espresso",
+     "miligramos",
+     "excitantes",
+     "tazas",
+     "Red Bull",
+     "energéticas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câtă cafea pot bea?",
+    "r": {
+     "t": "Potrivit EFSA, la adulții sănătoși, dozele de până la 400 mg de cafeină pe zi și de 200 mg o dată nu ridică probleme de siguranță; în sarcină, 200 mg pe zi; la minori, 3 mg pe kilogram pe zi.",
+     "p": [
+      "Nu se poate traduce în cești: la cafelele cumpărate din localuri asemănătoare, cafeina a variat de până la 8 sau 9 ori.",
+      "Contează cafeina din toate sursele, nu doar cea din cafea.",
+      "Ca să dormiți bine, luați-o departe de ora de culcare: potrivit EFSA, 100 mg pot afecta somnul unor adulți.",
+      "Băuturile energizante nu au ce căuta în alimentația copiilor și adolescenților, potrivit Academiei Americane de Pediatrie."
+     ],
+     "c": "Dacă aveți palpitații sau dormiți greu, reduceți cantitatea; dacă aveți o boală de inimă, întrebați medicul.",
+     "n": "EFSA nu dă pe paginile sale o cifră separată pentru perioada de alăptare: întrebați medicul sau moașa."
+    },
+    "f": [
+     "EFSA: pagina tematică „Caffeine”",
+     "Guest et al., declarația de poziție a ISSN privind cafeina și performanța (2021)",
+     "NIH, Office of Dietary Supplements: suplimentele pentru efort fizic și performanță sportivă (fișă pentru profesioniști)"
+    ],
+    "v": [
+     "câte cafele pe zi pot bea?",
+     "limita de cafeină pe zi",
+     "e rău să beau multă cafea?",
+     "cafeaua în sarcină",
+     "câtă cafeină e sigură",
+     "câtă cafeină poate consuma un adolescent?",
+     "câte băuturi energizante",
+     "cafeaua și somnul",
+     "cafeina maximă pe zi",
+     "trei cafele pe zi sunt multe?",
+     "cafeina maximă recomandată"
+    ],
+    "k": [
+     "ceai",
+     "cola",
+     "espresso",
+     "miligrame",
+     "stimulente",
+     "cești",
+     "Red Bull",
+     "energizante",
+     "cafeaua"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "desayunar",
+   "es": {
+    "q": "¿Es importante desayunar?",
+    "r": {
+     "t": "Para el peso, menos de lo que se dice: en 13 ensayos con adultos, desayunar no ayudó a adelgazar. Pero antes de un esfuerzo largo, conviene haber comido.",
+     "p": [
+      "Quienes desayunaban comieron algo más en el total del día; los ensayos eran cortos y de baja calidad.",
+      "Para una ruta o una salida de más de una hora por la mañana, desayune: en esos esfuerzos rinde más quien ha comido.",
+      "En adolescentes, la Academia Americana de Pediatría desaconseja saltarse comidas o hacer dieta para adelgazar."
+     ],
+     "n": "Los ensayos solo midieron el peso y la energía comida, durante pocas semanas; de otros efectos del desayuno no dicen nada."
+    },
+    "f": [
+     "Sievert et al., revisión sobre el desayuno y el peso (BMJ 2019)",
+     "Aird, Davies y Carson, metaanálisis sobre ejercicio en ayunas frente a haber comido (Scand J Med Sci Sports 2018)",
+     "Academia Americana de Pediatría: prevenir la obesidad y los trastornos de la conducta alimentaria en adolescentes (AAP News 2016)"
+    ],
+    "v": [
+     "¿hay que desayunar?",
+     "saltarse el desayuno",
+     "¿es malo no desayunar?",
+     "desayunar adelgaza",
+     "¿el desayuno es la comida más importante?",
+     "no tengo hambre por la mañana",
+     "¿qué pasa si no desayuno?",
+     "desayuno y peso",
+     "¿desayuno antes de hacer deporte?",
+     "es obligatorio desayunar",
+     "no desayunar para perder peso",
+     "¿desayunar es sano o es un mito?",
+     "¿es necesario un desayuno fuerte?"
+    ],
+    "k": [
+     "mañanas",
+     "matutino",
+     "primera comida",
+     "almuerzo",
+     "tostadas",
+     "por la mañana",
+     "solo café"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Este important să iau micul dejun?",
+    "r": {
+     "t": "Pentru greutate, mai puțin decât se spune: în 13 studii cu adulți, micul dejun nu a ajutat la slăbit. Dar înainte de un efort lung, e bine să fi mâncat.",
+     "p": [
+      "Cei care luau micul dejun au mâncat ceva mai mult în total pe zi; studiile au fost scurte și de calitate scăzută.",
+      "Pentru o drumeție sau o ieșire de peste o oră dimineața, luați micul dejun: la aceste eforturi are o performanță mai bună cine a mâncat.",
+      "La adolescenți, Academia Americană de Pediatrie nu recomandă să se sară peste mese sau să se țină diete de slăbit."
+     ],
+     "n": "Studiile au măsurat doar greutatea și energia consumată, timp de câteva săptămâni; despre alte efecte ale micului dejun nu spun nimic."
+    },
+    "f": [
+     "Sievert et al., analiză privind micul dejun și greutatea (BMJ 2019)",
+     "Aird, Davies și Carson, metaanaliză privind efortul fizic pe nemâncate față de efortul după masă (Scand J Med Sci Sports 2018)",
+     "Academia Americană de Pediatrie: prevenirea obezității și a tulburărilor de comportament alimentar la adolescenți (AAP News 2016)"
+    ],
+    "v": [
+     "trebuie să iau micul dejun?",
+     "sar peste micul dejun",
+     "e rău să nu iau micul dejun?",
+     "micul dejun te ajută să slăbești",
+     "micul dejun e cea mai importantă masă?",
+     "nu mi-e foame dimineața",
+     "ce se întâmplă dacă nu iau micul dejun?",
+     "micul dejun și greutatea",
+     "iau micul dejun înainte de sport?",
+     "e obligatoriu micul dejun",
+     "nu iau micul dejun ca să slăbesc",
+     "micul dejun e sănătos sau e un mit?",
+     "e nevoie de un mic dejun consistent?",
+     "e bine să mănânc dimineața?"
+    ],
+    "k": [
+     "dimineți",
+     "matinal",
+     "prima masă",
+     "gustare",
+     "pâine prăjită",
+     "dimineața",
+     "doar cafea"
+    ],
+    "u": []
+   }
+  }
+ ]
+}
