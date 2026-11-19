@@ -1,0 +1,4395 @@
+{
+ "_": "Rumano (ro) del asistente de «Su cuerpo», bloque 18: las respuestas de las categorías empezar, fuerza, habitos y musculos, 50 de las 178 de datos/cuerpo/asistente-es.json. Cada respuesta lleva su id, el castellano que traduce (q, r, los títulos de las fuentes, v, k y u, como en datos/cuerpo/asistente-es.json) y el rumano, con la misma forma. tools/asistente_traduccion.js ro las junta con las de los bloques 17, 19 y 20 y escribe datos/cuerpo/asistente-ro.json cuando estén todas y todas casen con el castellano de ese día. No se edita a mano: sale de las fuentes del zip del bloque 18 (construir_r18.py).",
+ "idioma": "ro",
+ "respuestas": [
+  {
+   "id": "cuanto-ejercicio",
+   "es": {
+    "q": "¿Cuánto ejercicio necesito a la semana?",
+    "r": {
+     "t": "La OMS recomienda a los adultos de 150 a 300 minutos semanales de actividad aeróbica moderada, o de 75 a 150 de intensa (o una combinación), y ejercicios de fuerza al menos 2 días.",
+     "p": [
+      "La fuerza debe trabajar todos los grupos musculares principales, con una intensidad moderada o mayor.",
+      "Algo es mejor que nada: si ahora no hace nada, empiece con poco y vaya aumentando.",
+      "Pase menos tiempo sentado: sustituirlo por actividad de cualquier intensidad, incluso ligera, ya aporta beneficios para la salud.",
+      "Desde los 65 años, añada 3 días o más de actividad variada que trabaje el equilibrio y la fuerza."
+     ],
+     "n": "La OMS recomienda los 150 a 300 minutos a todos los adultos, también a quienes viven con una enfermedad crónica o una discapacidad."
+    },
+    "f": [
+     "Ficha de la OMS/Europa «Physical activity» (resume las directrices de la OMS de 2020)",
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "OMS, nota de prensa «Every move counts towards better health»"
+    ],
+    "v": [
+     "¿cuánto deporte hay que hacer a la semana?",
+     "cuantos minutos de ejercicio a la semana",
+     "¿cuánta actividad física recomienda la OMS?",
+     "¿cuánto tengo que moverme para estar sano?",
+     "minutos de actividad física recomendados",
+     "¿cuántas horas de ejercicio a la semana son buenas?",
+     "¿150 minutos a la semana de qué?",
+     "cuanto ejercicio es recomendable para un adulto",
+     "¿cuánto ejercicio necesitas a la semana?",
+     "recomendacion oms ejercicio semanal"
+    ],
+    "k": [
+     "aeróbico",
+     "pauta",
+     "dosis",
+     "intensa",
+     "vigorosa",
+     "sedentarismo",
+     "saludable",
+     "horas semanales",
+     "suficiente",
+     "horas a la semana"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De cât exercițiu fizic am nevoie pe săptămână?",
+    "r": {
+     "t": "OMS le recomandă adulților între 150 și 300 de minute pe săptămână de activitate aerobă moderată sau între 75 și 150 de minute de activitate intensă (ori o combinație a lor), plus exerciții de forță cel puțin 2 zile pe săptămână.",
+     "p": [
+      "Antrenamentul de forță trebuie să lucreze toate grupele musculare principale, cu intensitate moderată sau mai mare.",
+      "Puțin e mai bine decât deloc: dacă acum nu faceți nimic, începeți cu puțin și creșteți treptat.",
+      "Stați mai puțin pe scaun: înlocuirea acestui timp cu activitate de orice intensitate, chiar și ușoară, aduce deja beneficii pentru sănătate.",
+      "De la 65 de ani, adăugați 3 zile sau mai multe de activitate variată, care să antreneze echilibrul și forța."
+     ],
+     "n": "OMS recomandă cele 150–300 de minute tuturor adulților, inclusiv celor care trăiesc cu o boală cronică sau cu o dizabilitate."
+    },
+    "f": [
+     "Fișa OMS/Europa „Physical activity” (rezumă ghidurile OMS din 2020)",
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "OMS, comunicatul de presă „Every move counts towards better health”"
+    ],
+    "v": [
+     "cât sport trebuie să fac pe săptămână?",
+     "câte minute de exerciții pe săptămână",
+     "câtă activitate fizică recomandă OMS?",
+     "cât trebuie să mă mișc ca să fiu sănătos?",
+     "minute de activitate fizică recomandate",
+     "câte ore de exerciții pe săptămână sunt bune?",
+     "150 de minute pe săptămână de ce?",
+     "cât exercițiu e recomandat pentru un adult",
+     "de cât exercițiu ai nevoie pe săptămână?",
+     "recomandarea OMS pentru exercițiile din fiecare săptămână",
+     "cât exercițiu ar trebui să fac?"
+    ],
+    "k": [
+     "aerob",
+     "recomandare",
+     "doză",
+     "intensă",
+     "viguroasă",
+     "sedentarism",
+     "sănătos",
+     "ore săptămânal",
+     "suficient",
+     "ore pe săptămână",
+     "câtă mișcare"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cuantos-dias-fuerza",
+   "es": {
+    "q": "¿Cuántos días a la semana debo hacer fuerza?",
+    "r": {
+     "t": "La OMS recomienda a los adultos ejercicios de fuerza al menos 2 días por semana, con todos los grupos musculares principales, y de 5 a 17 años, al menos 3 días.",
+     "p": [
+      "De 5 a 17 años, esos 3 días incluyen actividad intensa y actividades que fortalezcan los músculos y los huesos.",
+      "Desde los 65, la OMS pide 3 días o más de actividad variada que trabaje el equilibrio y la fuerza, para prevenir caídas.",
+      "El ACSM (2026) coincide en los adultos: todos los grupos principales al menos 2 días por semana, y progresar poco a poco."
+     ],
+     "n": "Son mínimos de salud: no dicen cuántas series hacer; eso lo trata «¿Cuántas series hago por músculo a la semana?»."
+    },
+    "f": [
+     "Ficha de la OMS/Europa «Physical activity» (resume las directrices de la OMS de 2020)",
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "ACSM: infografía de su postura de 2026 sobre el entrenamiento de fuerza"
+    ],
+    "v": [
+     "¿cuántos días de pesas a la semana?",
+     "cuantas veces a la semana hacer fuerza",
+     "¿cuántos días de gimnasio a la semana?",
+     "días de musculación por semana",
+     "¿con 2 días de fuerza basta?",
+     "¿cuántos días entreno fuerza si tengo 15 años?",
+     "dias de fuerza para mayores de 65",
+     "¿cuántas veces por semana tengo que levantar pesas?",
+     "frecuencia de entrenamiento de fuerza recomendada",
+     "¿cuántos días debes hacer pesas?",
+     "¿qué recomiendan los expertos sobre días de fuerza?"
+    ],
+    "k": [
+     "OMS",
+     "ACSM",
+     "adolescentes",
+     "jubilados",
+     "tonificar",
+     "sesiones",
+     "lo recomendado",
+     "veces por semana"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câte zile pe săptămână ar trebui să fac forță?",
+    "r": {
+     "t": "OMS le recomandă adulților exerciții de forță cel puțin 2 zile pe săptămână, pentru toate grupele musculare principale, iar între 5 și 17 ani, cel puțin 3 zile.",
+     "p": [
+      "Între 5 și 17 ani, cele 3 zile includ activitate intensă și activități care întăresc mușchii și oasele.",
+      "De la 65 de ani, OMS recomandă 3 zile sau mai multe de activitate variată, care să antreneze echilibrul și forța, pentru prevenirea căderilor.",
+      "ACSM (2026) spune același lucru pentru adulți: toate grupele principale, cel puțin 2 zile pe săptămână, cu progres treptat."
+     ],
+     "n": "Sunt minime pentru sănătate: nu spun câte serii să faceți; despre asta vorbește întrebarea „Câte serii fac pe mușchi pe săptămână?”."
+    },
+    "f": [
+     "Fișa OMS/Europa „Physical activity” (rezumă ghidurile OMS din 2020)",
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "ACSM: infograficul declarației sale de poziție din 2026 privind antrenamentul de forță"
+    ],
+    "v": [
+     "câte zile de greutăți pe săptămână?",
+     "de câte ori pe săptămână să fac forță",
+     "câte zile de sală pe săptămână?",
+     "zile de culturism pe săptămână",
+     "ajung 2 zile de forță?",
+     "câte zile fac forță dacă am 15 ani?",
+     "zile de forță pentru cei de peste 65 de ani",
+     "de câte ori pe săptămână trebuie să ridic greutăți?",
+     "frecvența recomandată pentru antrenamentul de forță",
+     "câte zile ar trebui să faci greutăți?",
+     "ce recomandă experții despre zilele de forță?"
+    ],
+    "k": [
+     "OMS",
+     "ACSM",
+     "adolescenți",
+     "pensionari",
+     "tonifiere",
+     "sesiuni",
+     "ce se recomandă",
+     "ori pe săptămână",
+     "antrenamente de forță",
+     "zi de forță"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "principiante",
+   "es": {
+    "q": "Nunca he entrenado: ¿por dónde empiezo?",
+    "r": {
+     "t": "Empiece con poco y aumente poco a poco. Si es adulto, haga fuerza al menos 2 días por semana con todos los grupos principales, eligiendo ejercicios de nivel «Inicial».",
+     "p": [
+      "La OMS lo resume así: algo de actividad, como caminar, es mejor que nada, y conviene empezar con poco e ir aumentando.",
+      "El ACSM (2026) pide trabajar todos los grupos principales al menos 2 días por semana e ir progresando con el tiempo.",
+      "En la app, toque un grupo y filtre por nivel «Inicial»; en «Dónde» elija gimnasio, fuera o calistenia.",
+      "Si tiene menos de 18 años, la pauta cambia: vea «¿Cuántos días a la semana debo hacer fuerza?»."
+     ],
+     "c": "Antes de empezar, consulte si tiene una enfermedad cardiovascular, metabólica (como la diabetes) o del riñón, o síntomas que puedan deberse a ellas."
+    },
+    "f": [
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "ACSM: infografía de su postura de 2026 sobre el entrenamiento de fuerza",
+     "Riebe et al., nuevas recomendaciones del ACSM para la revisión previa al ejercicio (Med Sci Sports Exerc 2015)"
+    ],
+    "v": [
+     "nunca he hecho ejercicio, ¿cómo empiezo?",
+     "soy principiante en el gimnasio",
+     "¿por dónde empiezo a entrenar?",
+     "quiero empezar a hacer deporte",
+     "empezar desde cero",
+     "¿qué hago el primer día de gimnasio?",
+     "rutina para principiantes",
+     "llevo años sin hacer nada de ejercicio",
+     "como empezar a entrenar fuerza",
+     "¿por dónde empiezas si nunca has entrenado?",
+     "me da miedo empezar a entrenar",
+     "soy nuevo y quiero ponerme en forma, ¿por dónde empiezo?"
+    ],
+    "k": [
+     "novato",
+     "iniciación",
+     "comenzar",
+     "primera vez",
+     "sedentario",
+     "nivel inicial",
+     "nuevo",
+     "gym",
+     "arrancar",
+     "jamás"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Nu m-am antrenat niciodată: de unde încep?",
+    "r": {
+     "t": "Începeți cu puțin și creșteți treptat. La vârsta adultă, faceți forță cel puțin 2 zile pe săptămână, pentru toate grupele principale, cu exerciții de nivel „Începător”.",
+     "p": [
+      "OMS rezumă așa: puțină activitate, cum ar fi mersul pe jos, e mai bună decât niciuna, iar la început e bine să faceți puțin și să creșteți treptat.",
+      "ACSM (2026) recomandă să lucrați toate grupele principale cel puțin 2 zile pe săptămână și să progresați în timp.",
+      "În aplicație, atingeți o grupă și filtrați după nivelul „Începător”; la „Unde”, alegeți sală de sport, în aer liber sau calistenie.",
+      "Dacă aveți sub 18 ani, recomandarea este alta: vedeți „Câte zile pe săptămână ar trebui să fac forță?”."
+     ],
+     "c": "Înainte să începeți, consultați un medic dacă aveți o boală cardiovasculară, metabolică (cum ar fi diabetul) sau de rinichi ori simptome care ar putea fi cauzate de ele."
+    },
+    "f": [
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "ACSM: infograficul declarației sale de poziție din 2026 privind antrenamentul de forță",
+     "Riebe et al., noile recomandări ale ACSM pentru evaluarea dinaintea exercițiilor fizice (Med Sci Sports Exerc 2015)"
+    ],
+    "v": [
+     "n-am făcut niciodată sport, cum încep?",
+     "sunt începător la sală",
+     "de unde încep să mă antrenez?",
+     "vreau să încep să fac sport",
+     "să încep de la zero",
+     "ce fac în prima zi la sală?",
+     "rutină pentru începători",
+     "de ani de zile nu fac deloc mișcare",
+     "cum încep antrenamentul de forță",
+     "de unde începi dacă nu te-ai antrenat niciodată?",
+     "mi-e frică să încep să mă antrenez",
+     "sunt nou și vreau să-mi intru în formă, de unde încep?"
+    ],
+    "k": [
+     "novice",
+     "inițiere",
+     "a începe",
+     "prima dată",
+     "sedentar",
+     "nivel începător",
+     "nou",
+     "sală",
+     "start",
+     "niciodată",
+     "mă apuc de sport",
+     "primul antrenament"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "revision-medica",
+   "es": {
+    "q": "¿Tengo que ir al médico antes de empezar a hacer ejercicio?",
+    "r": {
+     "t": "No siempre. El ACSM (2015) basa la decisión en tres cosas: su actividad actual, si tiene una enfermedad cardiovascular, metabólica o renal (o síntomas) y la intensidad prevista.",
+     "p": [
+      "Según el ACSM, si ya entrena con regularidad y tiene una de esas enfermedades sin síntomas, consulte solo antes del ejercicio intenso; con síntomas, pare y consulte.",
+      "La guía europea de cardiología del deporte (2020) admite ejercicio suave sin más pruebas, incluso si es sedentario o de riesgo alto.",
+      "Para ejercicio intenso, la misma guía pide antes exploración, electrocardiograma y prueba de esfuerzo a sedentarios y personas de riesgo alto.",
+      "Según la OMS, en el embarazo su profesional sanitario debe explicarle las señales para parar; si aparecen, consulte enseguida.",
+      "Existe un cuestionario para decidirlo, el PAR-Q+; úselo completo, en su versión oficial."
+     ],
+     "c": "Llame al 112 si al hacer ejercicio nota dolor u opresión en el pecho. Consulte antes de empezar si tiene alguna de esas enfermedades o síntomas, o si está embarazada."
+    },
+    "f": [
+     "ACSM: mesa redonda científica sobre el nuevo cribado previo al ejercicio de 2015 (diapositivas; copia alojada por la University of the West Indies)",
+     "Guía de la Sociedad Europea de Cardiología de 2020 sobre cardiología del deporte y ejercicio (Pelliccia et al.)",
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)"
+    ],
+    "v": [
+     "¿necesito un chequeo médico para hacer deporte?",
+     "¿hace falta revisión médica para ir al gimnasio?",
+     "reconocimiento medico antes de entrenar",
+     "¿tengo que pedir permiso al médico para hacer ejercicio?",
+     "prueba de esfuerzo antes de empezar",
+     "¿necesito un certificado médico para entrenar?",
+     "tengo 60 años, ¿voy al médico antes de empezar?",
+     "¿es peligroso empezar a hacer deporte sin ir al médico?",
+     "par-q",
+     "¿debes hacerte un chequeo antes de entrenar?",
+     "cuestionario antes de hacer ejercicio",
+     "¿debería hacerme una revisión antes de entrenar?"
+    ],
+    "k": [
+     "cribado",
+     "electrocardiograma",
+     "cardiólogo",
+     "apto",
+     "contraindicaciones",
+     "riesgo",
+     "electro",
+     "doctor",
+     "apuntarse"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Trebuie să merg la medic înainte de a începe să fac exerciții?",
+    "r": {
+     "t": "Nu întotdeauna. Potrivit ACSM (2015), decizia depinde de trei lucruri: activitatea dumneavoastră de acum, dacă aveți o boală cardiovasculară, metabolică sau renală (ori simptome) și intensitatea pe care o plănuiți.",
+     "p": [
+      "Potrivit ACSM, dacă vă antrenați deja regulat și aveți una dintre aceste boli fără simptome, consultați un medic doar înainte de efortul intens; dacă aveți simptome, opriți-vă și consultați un medic.",
+      "Ghidul european de cardiologie sportivă (2020) admite exercițiile ușoare fără alte analize, chiar și pentru persoanele sedentare sau cu risc ridicat.",
+      "Pentru efortul intens, același ghid le cere persoanelor sedentare și celor cu risc ridicat, mai întâi, un consult, o electrocardiogramă și un test de efort.",
+      "Potrivit OMS, în sarcină, specialistul care vă urmărește trebuie să vă explice semnele care arată că e momentul să vă opriți; dacă apar, consultați imediat un medic.",
+      "Există un chestionar care vă ajută să decideți, PAR-Q+; folosiți-l complet, în versiunea oficială."
+     ],
+     "c": "Sunați la 112 dacă simțiți durere sau apăsare în piept în timpul efortului. Consultați un medic înainte să începeți dacă aveți una dintre aceste boli sau simptome ori în caz de sarcină."
+    },
+    "f": [
+     "ACSM: masă rotundă științifică privind noul screening dinaintea exercițiilor fizice, din 2015 (diapozitive; copie găzduită de University of the West Indies)",
+     "Ghidul Societății Europene de Cardiologie din 2020 privind cardiologia sportivă și exercițiul fizic (Pelliccia et al.)",
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)"
+    ],
+    "v": [
+     "am nevoie de un control medical ca să fac sport?",
+     "e nevoie de o evaluare medicală ca să merg la sală?",
+     "control medical înainte de antrenament",
+     "trebuie să cer voie medicului ca să fac exerciții?",
+     "test de efort înainte să încep",
+     "am nevoie de o adeverință medicală ca să mă antrenez?",
+     "am 60 de ani, merg la medic înainte să încep?",
+     "e periculos să încep să fac sport fără să merg la medic?",
+     "trebuie să-ți faci un control înainte să te antrenezi?",
+     "chestionar înainte de exerciții",
+     "ar trebui să-mi fac un control înainte să mă antrenez?",
+     "chestionarul par-q"
+    ],
+    "k": [
+     "screening",
+     "electrocardiogramă",
+     "cardiolog",
+     "apt",
+     "contraindicații",
+     "risc",
+     "EKG",
+     "doctor",
+     "abonament"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cuando-resultados",
+   "es": {
+    "q": "¿Cuándo voy a notar los resultados?",
+    "r": {
+     "t": "Según un ensayo pequeño, la fuerza sube mucho más deprisa que el músculo: en 7 personas, la fuerza aumentó un 38,9 % en 35 días y el músculo, un 6,5–7,4 %.",
+     "p": [
+      "En ese ensayo, el aumento del músculo ya se pudo medir con resonancia a las 3 semanas.",
+      "Medible con resonancia no es lo mismo que visible en el espejo; el estudio no midió cuándo se nota a simple vista.",
+      "Para ver su progreso, fíjese en si mueve más peso o hace más repeticiones con buena técnica que al principio."
+     ],
+     "n": "Es un solo ensayo, con 7 jóvenes que entrenaron solo las piernas en una máquina especial: sus cifras no valen para todos."
+    },
+    "f": [
+     "Seynnes et al., hipertrofia temprana con entrenamiento de fuerza intenso (J Appl Physiol 2007)"
+    ],
+    "v": [
+     "¿cuánto tardo en ver resultados?",
+     "en cuanto tiempo se nota el gimnasio",
+     "¿cuándo se empiezan a ver los músculos?",
+     "¿cuántas semanas para ganar músculo?",
+     "llevo un mes entrenando y no noto nada",
+     "¿cuánto tiempo tarda en crecer el músculo?",
+     "cuando notare cambios",
+     "¿en cuánto tiempo ganaré fuerza?",
+     "¿cuándo verás resultados si entrenas fuerza?",
+     "resultados del entrenamiento cuánto tardan",
+     "¿en cuántos meses se nota el cambio?",
+     "¿cuánto tiempo hace falta para ver mis músculos?",
+     "¿cuánto se tarda en que se note el gimnasio?"
+    ],
+    "k": [
+     "plazo",
+     "efectos",
+     "mejoras",
+     "hipertrofia",
+     "paciencia",
+     "espejo",
+     "meses",
+     "notar",
+     "cambios",
+     "gym"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Când o să văd rezultatele?",
+    "r": {
+     "t": "Potrivit unui studiu mic, forța crește mult mai repede decât mușchiul: la 7 persoane, forța a crescut cu 38,9 % în 35 de zile, iar mușchiul, cu 6,5–7,4 %.",
+     "p": [
+      "În acel studiu, creșterea mușchiului s-a putut măsura prin rezonanță magnetică încă de la 3 săptămâni.",
+      "Ce se poate măsura prin rezonanță magnetică nu e același lucru cu ce se vede în oglindă; studiul nu a măsurat când se observă cu ochiul liber.",
+      "Ca să vă vedeți progresul, urmăriți dacă ridicați mai multă greutate sau faceți mai multe repetări cu tehnică bună decât la început."
+     ],
+     "n": "Este un singur studiu, cu 7 tineri care și-au antrenat doar picioarele la un aparat special: cifrele lui nu sunt valabile pentru toată lumea."
+    },
+    "f": [
+     "Seynnes et al., hipertrofia timpurie la antrenamentul de forță intens (J Appl Physiol 2007)"
+    ],
+    "v": [
+     "în cât timp văd rezultate?",
+     "în cât timp se vede sala",
+     "când încep să se vadă mușchii?",
+     "câte săptămâni ca să câștig masă musculară?",
+     "mă antrenez de o lună și nu văd nimic",
+     "cât durează până crește mușchiul?",
+     "când o să văd schimbări",
+     "în cât timp o să câștig forță?",
+     "când vezi rezultate dacă faci forță?",
+     "rezultatele antrenamentului, cât durează",
+     "în câte luni se vede schimbarea?",
+     "cât timp trebuie ca să-mi văd mușchii?",
+     "cât durează până se vede sala?"
+    ],
+    "k": [
+     "termen",
+     "efecte",
+     "progrese",
+     "hipertrofie",
+     "răbdare",
+     "oglindă",
+     "luni",
+     "a observa",
+     "schimbări",
+     "sală"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "entrenar-cada-dia",
+   "es": {
+    "q": "¿Puedo entrenar todos los días?",
+    "r": {
+     "t": "Moverse a diario, sí: es lo recomendable. La fuerza puede repartirse como le venga mejor: con las mismas series semanales, entrenar 1 día o más de 5 dio un crecimiento muscular parecido.",
+     "p": [
+      "El NHS británico pide a los adultos algo de actividad cada día, y repartir el ejercicio en 4 o 5 días, o a diario.",
+      "Si hace fuerza todos los días, alterne los grupos para no cargar siempre los mismos.",
+      "Señales de que se pasa: rinde menos, duerme peor, está cansado o irritable sin motivo, o tiene más infecciones.",
+      "Si aparecen, descanse unos días; si duran semanas, consulte a un médico."
+     ],
+     "n": "La comparación de días se midió en el tamaño del músculo de adultos sanos; para la fuerza, el texto leído no lo dice."
+    },
+    "f": [
+     "NHS: recomendaciones de actividad física para adultos de 19 a 64 años",
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "Meeusen et al., consenso ECSS/ACSM sobre el síndrome de sobreentrenamiento (Med Sci Sports Exerc 2013), copia en sportgeneeskunde.com"
+    ],
+    "v": [
+     "¿es malo entrenar todos los días?",
+     "entrenar 7 dias a la semana",
+     "¿puedo ir al gimnasio todos los días?",
+     "¿puedo hacer pesas a diario?",
+     "¿es bueno hacer ejercicio cada día?",
+     "entrenar diario sin parar",
+     "¿pasa algo si entreno a diario?",
+     "quiero entrenar cada dia, ¿es buena idea?",
+     "¿puedes entrenar todos los días?",
+     "hacer deporte todos los dias es malo",
+     "¿es mucho entrenar todos los días, incluido el domingo?",
+     "si corro todos los días, ¿mi cuerpo lo aguanta?"
+    ],
+    "k": [
+     "siempre",
+     "sobreentrenamiento",
+     "exceso",
+     "frecuencia",
+     "constancia",
+     "toda la semana",
+     "siete días",
+     "gym"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot să mă antrenez în fiecare zi?",
+    "r": {
+     "t": "Să vă mișcați zilnic, da: asta se recomandă. Forța o puteți împărți cum vă convine: cu același număr de serii pe săptămână, antrenamentul în 1 zi sau în mai mult de 5 a dus la o creștere musculară asemănătoare.",
+     "p": [
+      "Serviciul de sănătate britanic (NHS) le recomandă adulților puțină activitate în fiecare zi și împărțirea exercițiilor în 4 sau 5 zile ori zilnic.",
+      "Dacă faceți forță în fiecare zi, alternați grupele, ca să nu le solicitați mereu pe aceleași.",
+      "Semne că exagerați: randament mai mic, somn mai prost, oboseală sau iritabilitate fără motiv ori infecții mai dese.",
+      "Dacă apar, odihniți-vă câteva zile; dacă durează săptămâni, consultați un medic."
+     ],
+     "n": "Comparația dintre zile a măsurat dimensiunea mușchilor la adulți sănătoși; pentru forță, textul citit nu precizează."
+    },
+    "f": [
+     "NHS: recomandări de activitate fizică pentru adulții între 19 și 64 de ani",
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "Meeusen et al., consensul ECSS/ACSM privind sindromul de supraantrenament (Med Sci Sports Exerc 2013), copie pe sportgeneeskunde.com"
+    ],
+    "v": [
+     "e rău să mă antrenez în fiecare zi?",
+     "antrenament 7 zile pe săptămână",
+     "pot merge la sală în fiecare zi?",
+     "pot face greutăți zilnic?",
+     "e bine să fac exerciții în fiecare zi?",
+     "antrenament zilnic fără pauză",
+     "se întâmplă ceva dacă mă antrenez zilnic?",
+     "vreau să mă antrenez în fiecare zi, e o idee bună?",
+     "te poți antrena în fiecare zi?",
+     "e rău să faci sport în fiecare zi",
+     "e prea mult să mă antrenez în fiecare zi, inclusiv duminica?",
+     "dacă alerg în fiecare zi, corpul meu rezistă?"
+    ],
+    "k": [
+     "mereu",
+     "supraantrenament",
+     "exces",
+     "frecvență",
+     "consecvență",
+     "toată săptămâna",
+     "șapte zile",
+     "sală",
+     "zilnic",
+     "merg la sală",
+     "periculos"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "dias-descanso",
+   "es": {
+    "q": "¿Cuántos días de descanso necesito?",
+    "r": {
+     "t": "No hay una cifra que valga para todos. Para un mismo grupo, el ACSM (2011) aconsejaba al menos 48 horas entre sesiones, y el consenso sobre sobreentrenamiento, al menos un día de descanso total a la semana en deportistas.",
+     "p": [
+      "La postura del ACSM de 2026 no fija días de descanso.",
+      "Puede entrenar días seguidos si alterna grupos: por ejemplo, piernas un día y tronco el siguiente.",
+      "Descanse más si rinde menos, duerme peor o está más cansado o irritable de lo normal.",
+      "Descansar no es estar quieto: caminar o moverse suave en los días libres también suma para la salud."
+     ],
+     "n": "El día de descanso semanal se recomendó a deportistas con mucha carga; para los demás es una referencia prudente."
+    },
+    "f": [
+     "Garber et al., postura del ACSM sobre cantidad y calidad del ejercicio (Med Sci Sports Exerc 2011), copia de la Universidad de Ankara",
+     "Meeusen et al., consenso ECSS/ACSM sobre el síndrome de sobreentrenamiento (Med Sci Sports Exerc 2013), copia en sportgeneeskunde.com",
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)"
+    ],
+    "v": [
+     "¿cuántos días descanso a la semana?",
+     "dias de descanso entre entrenamientos",
+     "¿cuánto descanso necesita un músculo?",
+     "¿cuántas horas hay que descansar un músculo?",
+     "¿es necesario descansar?",
+     "¿cada cuánto descanso del gimnasio?",
+     "48 horas de descanso",
+     "¿descanso un día sí y otro no?",
+     "cuanto descansar entre sesiones de pesas",
+     "¿cuántos días tienes que descansar?",
+     "¿cuánto descanso semanal necesito?"
+    ],
+    "k": [
+     "recuperación",
+     "reposo",
+     "días libres",
+     "pausa",
+     "sobreentrenamiento",
+     "parar de entrenar",
+     "descansar",
+     "debo descansar",
+     "dos días",
+     "descanso a la semana"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De câte zile de odihnă am nevoie?",
+    "r": {
+     "t": "Nu există o cifră valabilă pentru toată lumea. Pentru aceeași grupă, ACSM (2011) recomanda cel puțin 48 de ore între sesiuni, iar consensul privind supraantrenamentul, cel puțin o zi de odihnă completă pe săptămână pentru sportivi.",
+     "p": [
+      "Declarația de poziție a ACSM din 2026 nu stabilește zile de odihnă.",
+      "Vă puteți antrena zile la rând dacă alternați grupele: de exemplu, picioarele într-o zi și trunchiul a doua zi.",
+      "Odihniți-vă mai mult dacă randamentul scade, dormiți mai prost sau simțiți mai multă oboseală ori iritabilitate decât de obicei.",
+      "Odihna nu înseamnă nemișcare: mersul pe jos sau mișcarea ușoară în zilele libere contează și ele pentru sănătate."
+     ],
+     "n": "Ziua de odihnă pe săptămână a fost recomandată sportivilor cu încărcătură mare de antrenament; pentru ceilalți, este un reper prudent."
+    },
+    "f": [
+     "Garber et al., declarația de poziție a ACSM privind cantitatea și calitatea exercițiului fizic (Med Sci Sports Exerc 2011), copie de la Universitatea din Ankara",
+     "Meeusen et al., consensul ECSS/ACSM privind sindromul de supraantrenament (Med Sci Sports Exerc 2013), copie pe sportgeneeskunde.com",
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)"
+    ],
+    "v": [
+     "câte zile mă odihnesc pe săptămână?",
+     "zile de odihnă între antrenamente",
+     "de câtă odihnă are nevoie un mușchi?",
+     "câte ore trebuie să se odihnească un mușchi?",
+     "e necesar să mă odihnesc?",
+     "cât de des iau pauză de la sală?",
+     "48 de ore de odihnă",
+     "mă odihnesc o zi da, una nu?",
+     "cât să mă odihnesc între sesiunile de greutăți",
+     "câte zile trebuie să te odihnești?",
+     "de câtă odihnă am nevoie pe săptămână?"
+    ],
+    "k": [
+     "recuperare",
+     "repaus",
+     "zile libere",
+     "pauză",
+     "supraantrenament",
+     "oprire",
+     "a mă odihni",
+     "trebuie să mă odihnesc",
+     "două zile",
+     "odihnă pe săptămână",
+     "zile fără antrenament",
+     "zilele de odihnă",
+     "necesare"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "poco-tiempo",
+   "es": {
+    "q": "Tengo muy poco tiempo: ¿qué es lo mínimo que sirve?",
+    "r": {
+     "t": "Algo es mejor que nada, y cualquier rato de actividad moderada o intensa cuenta, por corto que sea. Para la fuerza, si es adulto, lo esencial es trabajar todos los grupos principales 2 días por semana.",
+     "p": [
+      "La OMS quitó la exigencia de hacer bloques de al menos 10 minutos: ahora suma cualquier rato.",
+      "Según el ACSM, entrenar todos los grupos al menos 2 veces por semana importa mucho más que buscar el plan perfecto.",
+      "Un ejemplo: 2 sesiones cortas de cuerpo completo, con al menos 2 series exigentes por ejercicio, como pide el ACSM."
+     ],
+     "n": "Hacer menos sigue siendo útil, pero las fuentes leídas no dicen cuánto se gana por debajo de esas pautas."
+    },
+    "f": [
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "ACSM: nota sobre su postura de 2026 sobre el entrenamiento de fuerza",
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "no tengo tiempo para entrenar",
+     "¿qué hago si solo tengo 20 minutos?",
+     "entrenamiento minimo eficaz",
+     "¿cuánto es lo mínimo de ejercicio?",
+     "¿sirve entrenar solo 10 minutos?",
+     "rutina rápida para gente ocupada",
+     "¿vale la pena entrenar poco?",
+     "tengo poco tiempo, ¿qué hago?",
+     "ejercicio corto ¿sirve de algo?",
+     "¿cuál es la dosis mínima de ejercicio?",
+     "¿qué haces si tienes poco tiempo para entrenar?",
+     "voy siempre a tope de trabajo, ¿algo rápido que sirva?",
+     "¿alcanza con entrenar un rato libre?"
+    ],
+    "k": [
+     "prisa",
+     "ocupado",
+     "express",
+     "breve",
+     "trabajo",
+     "agenda",
+     "prisas",
+     "media hora",
+     "laburo"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Am foarte puțin timp: care e minimul care ajută?",
+    "r": {
+     "t": "Puțin e mai bine decât deloc, iar orice interval de activitate moderată sau intensă contează, oricât de scurt ar fi. Pentru forță, la vârsta adultă, esențial este să lucrați toate grupele principale 2 zile pe săptămână.",
+     "p": [
+      "OMS a renunțat la cerința ca activitatea să se facă în reprize de cel puțin 10 minute: acum contează orice interval.",
+      "Potrivit ACSM, să lucrați toate grupele de cel puțin 2 ori pe săptămână contează mult mai mult decât să căutați planul perfect.",
+      "Un exemplu: 2 sesiuni scurte pentru tot corpul, cu cel puțin 2 serii solicitante la fiecare exercițiu, cum recomandă ACSM."
+     ],
+     "n": "Și mai puțin rămâne util, dar sursele citite nu spun cât se câștigă sub aceste recomandări."
+    },
+    "f": [
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "ACSM: notă despre declarația sa de poziție din 2026 privind antrenamentul de forță",
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "nu am timp să mă antrenez",
+     "ce fac dacă am doar 20 de minute?",
+     "antrenament minim eficient",
+     "cât e minimul de exerciții?",
+     "ajută să mă antrenez doar 10 minute?",
+     "rutină rapidă pentru oameni ocupați",
+     "merită să mă antrenez puțin?",
+     "am puțin timp, ce fac?",
+     "exercițiile scurte ajută la ceva?",
+     "care e doza minimă de exerciții?",
+     "ce faci dacă ai puțin timp de antrenament?",
+     "sunt mereu prins cu munca, ceva rapid care să ajute?",
+     "e suficient să mă antrenez într-un moment liber?"
+    ],
+    "k": [
+     "grabă",
+     "ocupat",
+     "expres",
+     "scurt",
+     "serviciu",
+     "program",
+     "fugă",
+     "jumătate de oră",
+     "job",
+     "cel mai scurt",
+     "efect",
+     "timp pentru sport"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "sentado-todo-el-dia",
+   "es": {
+    "q": "Paso todo el día sentado: ¿qué puedo hacer?",
+    "r": {
+     "t": "Levántese y muévase a menudo. La OMS pide limitar el tiempo sentado, y cambiarlo por actividad de cualquier intensidad, incluso ligera, ya aporta beneficios para la salud.",
+     "p": [
+      "Corte los ratos largos sin moverse con algo de actividad, como aconseja el NHS británico.",
+      "Ideas: hable por teléfono de pie o caminando, use las escaleras y vaya a pie a los recados cercanos.",
+      "Si es adulto, sume además los 150 a 300 minutos semanales de actividad moderada que recomienda la OMS.",
+      "Cualquier pausa activa cuenta: no hace falta cambiarse de ropa ni sudar."
+     ],
+     "n": "La OMS no fija cuántas horas sentado son demasiadas: pide limitarlas a todas las edades."
+    },
+    "f": [
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "NHS: recomendaciones de actividad física para adultos de 19 a 64 años",
+     "OMS, hoja informativa «Physical activity»"
+    ],
+    "v": [
+     "trabajo sentado todo el día",
+     "paso muchas horas sentado en la oficina",
+     "¿es malo estar sentado mucho tiempo?",
+     "sedentarismo que hacer",
+     "cómo combatir el sedentarismo",
+     "estoy todo el dia en el sofa",
+     "¿cada cuánto me levanto si trabajo con ordenador?",
+     "teletrabajo y poco movimiento",
+     "¿estar sentado tantas horas es peligroso?",
+     "si pasas el día sentado, ¿qué puedes hacer?"
+    ],
+    "k": [
+     "sedentario",
+     "silla",
+     "escritorio",
+     "pantallas",
+     "inactividad",
+     "levantarse",
+     "jornada",
+     "camionero",
+     "conductor"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Stau toată ziua pe scaun: ce pot face?",
+    "r": {
+     "t": "Ridicați-vă și mișcați-vă des. OMS recomandă limitarea timpului petrecut stând jos, iar înlocuirea lui cu activitate de orice intensitate, chiar și ușoară, aduce deja beneficii pentru sănătate.",
+     "p": [
+      "Întrerupeți perioadele lungi fără mișcare cu puțină activitate, cum recomandă Serviciul de sănătate britanic (NHS).",
+      "Idei: vorbiți la telefon în picioare sau mergând, folosiți scările și mergeți pe jos la cumpărăturile și treburile din apropiere.",
+      "La vârsta adultă, adăugați și cele 150–300 de minute pe săptămână de activitate moderată pe care le recomandă OMS.",
+      "Orice pauză activă contează: nu e nevoie să vă schimbați hainele sau să transpirați."
+     ],
+     "n": "OMS nu stabilește câte ore de stat jos sunt prea multe: recomandă limitarea lor la toate vârstele."
+    },
+    "f": [
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "NHS: recomandări de activitate fizică pentru adulții între 19 și 64 de ani",
+     "OMS, fișa informativă „Physical activity”"
+    ],
+    "v": [
+     "lucrez pe scaun toată ziua",
+     "stau multe ore pe scaun la birou",
+     "e rău să stau mult timp pe scaun?",
+     "sedentarism, ce să fac",
+     "cum combat sedentarismul",
+     "stau toată ziua pe canapea",
+     "cât de des mă ridic dacă lucrez la calculator?",
+     "lucru de acasă și puțină mișcare",
+     "e periculos să stau atâtea ore pe scaun?",
+     "dacă stai toată ziua pe scaun, ce poți face?"
+    ],
+    "k": [
+     "sedentar",
+     "scaun",
+     "birou",
+     "ecrane",
+     "inactivitate",
+     "a mă ridica",
+     "program de lucru",
+     "șofer de camion",
+     "șofer",
+     "job de birou",
+     "statul pe scaun",
+     "a compensa"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "moderado-o-intenso",
+   "es": {
+    "q": "¿Cómo sé si un ejercicio es moderado o intenso?",
+    "r": {
+     "t": "Puntúe su esfuerzo de 0 a 10 según su propia capacidad: para la OMS, la actividad moderada suele ser un 5 o un 6, la intensa un 7 o un 8 y la ligera, de 2 a 4.",
+     "p": [
+      "La prueba del habla, de las guías de EE. UU. (2018): a ritmo moderado puede hablar, pero no cantar.",
+      "A ritmo intenso no puede decir más que unas pocas palabras sin parar a respirar.",
+      "Es una escala relativa: el mismo paseo puede ser moderado para una persona e intenso para otra.",
+      "También hay una escala absoluta en MET (veces la energía del reposo): moderada de 3 a menos de 6, intensa desde 6."
+     ]
+    },
+    "f": [
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "Physical Activity Guidelines for Americans, 2.ª ed. (Departamento de Salud de EE. UU., 2018)"
+    ],
+    "v": [
+     "¿cómo sé si voy a ritmo moderado?",
+     "qué es actividad moderada",
+     "¿qué es ejercicio vigoroso?",
+     "intensidad del ejercicio cómo medirla",
+     "prueba del habla",
+     "escala de esfuerzo de 0 a 10",
+     "¿cuándo es intenso un ejercicio?",
+     "como se si estoy entrenando suave o fuerte",
+     "¿cómo mides la intensidad?",
+     "moderado vs vigoroso",
+     "¿si puedo charlar mientras hago ejercicio voy suave?"
+    ],
+    "k": [
+     "RPE",
+     "percepción",
+     "hablar",
+     "cantar",
+     "MET",
+     "ligero",
+     "jadeo"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum știu dacă un exercițiu e moderat sau intens?",
+    "r": {
+     "t": "Evaluați-vă efortul pe o scală de la 0 la 10, după propria capacitate: pentru OMS, activitatea moderată înseamnă de obicei 5 sau 6, cea intensă 7 sau 8, iar cea ușoară, între 2 și 4.",
+     "p": [
+      "Testul vorbirii, din ghidurile americane (2018): în ritm moderat puteți vorbi, dar nu puteți cânta.",
+      "În ritm intens nu puteți spune decât câteva cuvinte fără să vă opriți să respirați.",
+      "Este o scală relativă: aceeași plimbare poate fi moderată pentru o persoană și intensă pentru alta.",
+      "Există și o scală absolută, în MET (multipli ai consumului de energie din repaus): moderată de la 3 până sub 6, intensă de la 6 în sus."
+     ]
+    },
+    "f": [
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "Physical Activity Guidelines for Americans, ediția a 2-a (Departamentul Sănătății din SUA, 2018)"
+    ],
+    "v": [
+     "cum știu dacă merg în ritm moderat?",
+     "ce e activitatea moderată",
+     "ce e exercițiul viguros?",
+     "intensitatea efortului, cum o măsor",
+     "testul vorbirii",
+     "scara efortului de la 0 la 10",
+     "când e intens un exercițiu?",
+     "cum știu dacă mă antrenez ușor sau tare",
+     "cum măsori intensitatea?",
+     "moderat vs viguros",
+     "dacă pot vorbi în timp ce fac exerciții, înseamnă că e ușor?",
+     "cum îmi dau seama dacă exercițiul e moderat?"
+    ],
+    "k": [
+     "RPE",
+     "percepție",
+     "a vorbi",
+     "a cânta",
+     "MET",
+     "ușor",
+     "gâfâit",
+     "intensitate moderată",
+     "activitate viguroasă",
+     "efortul"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "diez-mil-pasos",
+   "es": {
+    "q": "¿Tengo que dar 10.000 pasos al día?",
+    "r": {
+     "t": "No. Los 10.000 pasos no son una recomendación oficial: un metaanálisis de 2025 los llama un objetivo «no oficial» sin una base clara. Más pasos se asocian a menos riesgo, hasta cierto punto.",
+     "p": [
+      "Frente a 2.000 pasos al día, 7.000 se asociaron a un 47 % menos de mortalidad y a menos demencia, síntomas depresivos y caídas.",
+      "En otro metaanálisis, el riesgo de morir bajó hasta unos 6.000–8.000 pasos en mayores de 60 años y 8.000–10.000 en menores de 60.",
+      "La OMS no da cifras de pasos: recomienda minutos de actividad a la semana.",
+      "Si ahora camina poco, sume pasos poco a poco: en ese tramo, más pasos se asociaron a menos riesgo."
+     ],
+     "n": "Son estudios observacionales (comparan personas sin asignarles nada): muestran una asociación, no prueban que los pasos sean la causa."
+    },
+    "f": [
+     "Ding et al., pasos diarios y salud en adultos: revisión sistemática y metaanálisis dosis-respuesta (Lancet Public Health 2025)",
+     "Paluch et al., pasos diarios y mortalidad: metaanálisis de 15 cohortes (Lancet Public Health 2022)"
+    ],
+    "v": [
+     "¿cuántos pasos al día hay que dar?",
+     "10000 pasos es necesario",
+     "¿son buenos 10.000 pasos?",
+     "cuantos pasos diarios recomienda la oms",
+     "¿con 7.000 pasos es suficiente?",
+     "pasos diarios para estar sano",
+     "¿de dónde sale lo de los diez mil pasos?",
+     "mínimo de pasos al día",
+     "¿tienes que andar 10.000 pasos?",
+     "contar pasos sirve"
+    ],
+    "k": [
+     "podómetro",
+     "reloj",
+     "pulsera",
+     "contador",
+     "caminata",
+     "objetivo"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Trebuie să fac 10.000 de pași pe zi?",
+    "r": {
+     "t": "Nu. Cei 10.000 de pași nu sunt o recomandare oficială: pentru o metaanaliză din 2025, sunt un obiectiv „neoficial”, fără o bază clară. Mai mulți pași se asociază cu un risc mai mic, până la un punct.",
+     "p": [
+      "Față de 2.000 de pași pe zi, 7.000 s-au asociat cu o mortalitate cu 47 % mai mică și cu mai puține cazuri de demență, simptome depresive și căderi.",
+      "Într-o altă metaanaliză, riscul de deces a scăzut până la circa 6.000–8.000 de pași la cei de peste 60 de ani și 8.000–10.000 la cei sub 60.",
+      "OMS nu dă un număr de pași: recomandă minute de activitate pe săptămână.",
+      "Dacă acum mergeți puțin pe jos, adăugați pași treptat: în acest interval, mai mulți pași s-au asociat cu un risc mai mic."
+     ],
+     "n": "Sunt studii observaționale (compară persoane fără să le atribuie ceva): arată o asociere, nu dovedesc că pașii sunt cauza."
+    },
+    "f": [
+     "Ding et al., pașii zilnici și sănătatea adulților: analiză sistematică și metaanaliză doză-răspuns (Lancet Public Health 2025)",
+     "Paluch et al., pașii zilnici și mortalitatea: metaanaliză a 15 cohorte (Lancet Public Health 2022)"
+    ],
+    "v": [
+     "câți pași pe zi trebuie să fac?",
+     "10000 de pași e necesar",
+     "sunt buni 10.000 de pași?",
+     "câți pași pe zi recomandă oms",
+     "ajung 7.000 de pași?",
+     "pași zilnici ca să fiu sănătos",
+     "de unde vine povestea cu cei zece mii de pași?",
+     "minimul de pași pe zi",
+     "trebuie să mergi 10.000 de pași?",
+     "ajută să număr pașii"
+    ],
+    "k": [
+     "pedometru",
+     "ceas",
+     "brățară",
+     "contor",
+     "plimbare",
+     "obiectiv"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cardio-o-pesas",
+   "es": {
+    "q": "¿Qué es mejor, cardio o pesas?",
+    "r": {
+     "t": "Las dos: la OMS recomienda actividad aeróbica y, además, ejercicios de fuerza (en adultos, al menos 2 días por semana). Hacen cosas distintas y se complementan.",
+     "p": [
+      "En adultos, la parte aeróbica son de 150 a 300 minutos semanales de actividad moderada.",
+      "La fuerza, además de músculo, puede bajar la tensión arterial en reposo, según la Asociación Americana del Corazón (AHA).",
+      "Combinarlas no resta fuerza máxima ni músculo, según un metaanálisis de 43 estudios.",
+      "Desde los 65, la OMS añade actividad que trabaje el equilibrio y la fuerza."
+     ],
+     "n": "La bajada de tensión fue mayor en personas con hipertensión: unos 6 mmHg de máxima y 5 de mínima."
+    },
+    "f": [
+     "Ficha de la OMS/Europa «Physical activity» (resume las directrices de la OMS de 2020)",
+     "AHA, entrenamiento de fuerza con y sin enfermedad cardiovascular: actualización de 2023 (Paluch et al., Circulation 2024), copia en fisiologiadelejercicio.com",
+     "Schumann et al., compatibilidad del entrenamiento aeróbico y de fuerza: revisión sistemática y metaanálisis (Sports Med 2022)"
+    ],
+    "v": [
+     "¿cardio o pesas para estar sano?",
+     "que es mejor correr o hacer pesas",
+     "¿es mejor la bici o el gimnasio?",
+     "aeróbico o fuerza",
+     "¿hago cardio o musculación?",
+     "¿solo cardio es suficiente?",
+     "¿puedo hacer solo pesas sin cardio?",
+     "cardio vs pesas",
+     "¿qué es mejor para la salud, correr o levantar peso?",
+     "nadar o pesas ¿qué es mejor?",
+     "¿qué te conviene más, cardio o fuerza?",
+     "¿hace falta también la fuerza si ya hago cardio?"
+    ],
+    "k": [
+     "resistencia",
+     "aeróbica",
+     "elegir",
+     "beneficios",
+     "tensión",
+     "complementar",
+     "spinning",
+     "elíptica",
+     "bici estática"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce e mai bine, cardio sau greutăți?",
+    "r": {
+     "t": "Amândouă: OMS recomandă activitate aerobă și, în plus, exerciții de forță (la adulți, cel puțin 2 zile pe săptămână). Au efecte diferite și se completează.",
+     "p": [
+      "La adulți, partea aerobă înseamnă între 150 și 300 de minute pe săptămână de activitate moderată.",
+      "Pe lângă masa musculară, forța poate scădea tensiunea arterială în repaus, potrivit Asociației Americane a Inimii (AHA).",
+      "Combinarea lor nu reduce forța maximă și nici masa musculară, potrivit unei metaanalize a 43 de studii.",
+      "De la 65 de ani, OMS adaugă activitate care să antreneze echilibrul și forța."
+     ],
+     "n": "Scăderea tensiunii a fost mai mare la persoanele cu hipertensiune: circa 6 mmHg la maximă și 5 la minimă."
+    },
+    "f": [
+     "Fișa OMS/Europa „Physical activity” (rezumă ghidurile OMS din 2020)",
+     "AHA, antrenamentul de forță cu și fără boli cardiovasculare: actualizarea din 2023 (Paluch et al., Circulation 2024), copie pe fisiologiadelejercicio.com",
+     "Schumann et al., compatibilitatea antrenamentului aerob cu cel de forță: analiză sistematică și metaanaliză (Sports Med 2022)"
+    ],
+    "v": [
+     "cardio sau greutăți ca să fiu sănătos?",
+     "ce e mai bine, să alerg sau să ridic greutăți",
+     "e mai bună bicicleta sau sala?",
+     "aerob sau forță",
+     "fac cardio sau culturism?",
+     "e suficient doar cardio?",
+     "pot face doar greutăți, fără cardio?",
+     "cardio vs greutăți",
+     "ce e mai bine pentru sănătate, alergatul sau ridicatul de greutăți?",
+     "înot sau greutăți, ce e mai bine?",
+     "ce ți se potrivește mai mult, cardio sau forță?",
+     "e nevoie și de forță dacă fac deja cardio?"
+    ],
+    "k": [
+     "rezistență",
+     "aerobă",
+     "a alege",
+     "beneficii",
+     "tensiune",
+     "a completa",
+     "spinning",
+     "eliptică",
+     "bicicletă staționară",
+     "alergare",
+     "forță"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "caminar-cuenta",
+   "es": {
+    "q": "¿Caminar cuenta como ejercicio?",
+    "r": {
+     "t": "Sí: caminar a buen ritmo es actividad aeróbica moderada y suma a los minutos semanales que pide la OMS (de 150 a 300 en adultos). La fuerza va aparte.",
+     "p": [
+      "Caminar a ritmo moderado gasta 3,8 MET (veces la energía del reposo), y a paso rápido, 4,8: la OMS llama moderado de 3 a menos de 6.",
+      "Cuesta arriba cuenta todavía más: subir cuestas del 6 al 10 % equivale a 7 MET, ya en el tramo intenso (6 o más).",
+      "Caminar no sustituye a la fuerza: la OMS pide aparte ejercicios para todos los grupos principales, al menos 2 días por semana si es adulto.",
+      "Con calor, camine en las horas frescas: Sanidad aconseja evitar el deporte al aire libre en las horas centrales del día."
+     ],
+     "n": "Los MET son valores medios de adultos: no miden el gasto real de cada persona."
+    },
+    "f": [
+     "Compendio de actividades físicas para adultos de 2024 (Herrmann et al.), página «Walking»",
+     "Directrices de la OMS de 2020 sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "Ministerio de Sanidad, Plan Nacional de actuaciones preventivas de los efectos del exceso de temperaturas 2026"
+    ],
+    "v": [
+     "¿andar es hacer deporte?",
+     "caminar sirve como ejercicio",
+     "¿pasear cuenta?",
+     "¿caminar es suficiente para estar en forma?",
+     "¿cuenta el senderismo como ejercicio?",
+     "andar rapido es ejercicio moderado",
+     "¿caminar 30 minutos al día sirve?",
+     "¿es bueno caminar todos los días?",
+     "¿es suficiente con caminar?",
+     "¿caminar vale como cardio?",
+     "¿salir a andar te cuenta como ejercicio?"
+    ],
+    "k": [
+     "paseo",
+     "marcha",
+     "ritmo",
+     "cuestas",
+     "aeróbica",
+     "MET"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Mersul pe jos contează ca exercițiu?",
+    "r": {
+     "t": "Da: mersul în ritm susținut este activitate aerobă moderată și se adună la minutele pe săptămână pe care le recomandă OMS (între 150 și 300 la adulți). Forța se face separat.",
+     "p": [
+      "Mersul în ritm moderat înseamnă 3,8 MET (multipli ai consumului de energie din repaus), iar în pas rapid, 4,8: OMS numește moderat intervalul de la 3 până sub 6.",
+      "La deal contează și mai mult: urcarea pantelor de 6–10 % echivalează cu 7 MET, deja în zona intensă (6 sau mai mult).",
+      "Mersul pe jos nu înlocuiește forța: OMS recomandă separat exerciții pentru toate grupele principale, cel puțin 2 zile pe săptămână la vârsta adultă.",
+      "Pe căldură, mergeți la orele răcoroase: Ministerul Sănătății din Spania recomandă evitarea sportului în aer liber la orele de la mijlocul zilei."
+     ],
+     "n": "Valorile MET sunt medii pentru adulți: nu măsoară consumul real de energie al fiecărei persoane."
+    },
+    "f": [
+     "Compendiul activităților fizice pentru adulți din 2024 (Herrmann et al.), pagina „Walking”",
+     "Ghidurile OMS din 2020 privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "Ministerul Sănătății din Spania, Planul național de acțiuni preventive privind efectele temperaturilor excesive, 2026"
+    ],
+    "v": [
+     "mersul e sport?",
+     "mersul pe jos e exercițiu",
+     "plimbarea contează?",
+     "e suficient să merg pe jos ca să fiu în formă?",
+     "drumețiile contează ca exercițiu?",
+     "mersul rapid e exercițiu moderat",
+     "ajută să merg pe jos 30 de minute pe zi?",
+     "e bine să merg pe jos în fiecare zi?",
+     "e suficient să merg pe jos?",
+     "mersul pe jos contează ca cardio?",
+     "dacă ieși la plimbare, se pune ca exercițiu?"
+    ],
+    "k": [
+     "plimbare",
+     "marș",
+     "ritm",
+     "pante",
+     "aerobă",
+     "MET",
+     "plimbarea câinelui",
+     "mers alert",
+     "mișcare",
+     "plimbările zilnice"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cuantas-series",
+   "es": {
+    "q": "¿Cuántas series hago por músculo a la semana?",
+    "r": {
+     "t": "Para ganar músculo, el ACSM (2026) indica a los adultos sanos al menos 10 series por grupo muscular y semana; pasadas unas 18–20, lo que se gana es cada vez menos.",
+     "p": [
+      "Es una relación dosis-respuesta (más series, más resultado), hasta que la mejora se va frenando.",
+      "Para la fuerza, el ACSM aconseja al menos 2 series por ejercicio; más allá de 2 o 3, la ganancia es cada vez menor.",
+      "Para la salud, la OMS pide trabajar todos los grupos al menos 2 días por semana; las 10 series son para ganar músculo.",
+      "En el mapa, 10 o más series en 7 días es el nivel más alto, el amarillo: no es un tope."
+     ],
+     "n": "Es una cifra general: las revisiones en que se basa no compararon grupos musculares concretos."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "ACSM: nota sobre su postura de 2026 sobre el entrenamiento de fuerza",
+     "Ficha de la OMS/Europa «Physical activity» (resume las directrices de la OMS de 2020)"
+    ],
+    "v": [
+     "¿cuántas series por semana para ganar músculo?",
+     "series semanales por grupo muscular",
+     "¿cuánto volumen de entrenamiento necesito?",
+     "cuantas series a la semana de pecho",
+     "¿10 series a la semana son suficientes?",
+     "¿hacer más series es mejor?",
+     "¿cuántas series de piernas a la semana?",
+     "volumen semanal hipertrofia",
+     "¿cuántas series tienes que hacer por músculo?",
+     "cuantas series por ejercicio",
+     "¿se puede hacer demasiado volumen?",
+     "¿me quedo corto con pocas series a la semana?",
+     "¿cuántas series hacen falta para el bíceps?"
+    ],
+    "k": [
+     "sets",
+     "ACSM",
+     "masa muscular",
+     "dosis-respuesta",
+     "tope",
+     "rendimiento decreciente"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câte serii fac pe mușchi pe săptămână?",
+    "r": {
+     "t": "Pentru a câștiga masă musculară, ACSM (2026) le recomandă adulților sănătoși cel puțin 10 serii pe grupă musculară pe săptămână; peste circa 18–20, câștigul e tot mai mic.",
+     "p": [
+      "Este o relație doză-răspuns (mai multe serii, rezultate mai mari), până când progresul începe să încetinească.",
+      "Pentru forță, ACSM recomandă cel puțin 2 serii la fiecare exercițiu; peste 2 sau 3, câștigul e tot mai mic.",
+      "Pentru sănătate, OMS recomandă lucrul tuturor grupelor cel puțin 2 zile pe săptămână; cele 10 serii sunt pentru câștigul de masă musculară.",
+      "Pe hartă, 10 serii sau mai multe în 7 zile reprezintă nivelul cel mai înalt, galbenul: nu este o limită."
+     ],
+     "n": "Este o cifră generală: analizele pe care se bazează nu au comparat anumite grupe musculare între ele."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "ACSM: notă despre declarația sa de poziție din 2026 privind antrenamentul de forță",
+     "Fișa OMS/Europa „Physical activity” (rezumă ghidurile OMS din 2020)"
+    ],
+    "v": [
+     "câte serii pe săptămână ca să câștig masă musculară?",
+     "serii pe săptămână pentru fiecare grupă musculară",
+     "de cât volum de antrenament am nevoie?",
+     "câte serii de piept pe săptămână",
+     "10 serii pe săptămână sunt suficiente?",
+     "e mai bine să fac mai multe serii?",
+     "câte serii de picioare pe săptămână?",
+     "volum săptămânal pentru hipertrofie",
+     "câte serii trebuie să faci pe mușchi?",
+     "câte serii pe exercițiu",
+     "se poate face prea mult volum?",
+     "fac prea puține serii pe săptămână?",
+     "câte serii sunt necesare pentru biceps?"
+    ],
+    "k": [
+     "seturi",
+     "ACSM",
+     "masă musculară",
+     "doză-răspuns",
+     "limită",
+     "randament descrescător"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cuantas-repeticiones",
+   "es": {
+    "q": "¿Cuántas repeticiones hago en cada serie?",
+    "r": {
+     "t": "El ACSM (2026) no fija un número de repeticiones. Para ganar músculo funcionaron cargas desde ligeras hasta muy pesadas si la serie es exigente; para la fuerza máxima, cargas del 80 % del máximo o más.",
+     "p": [
+      "El máximo (1RM) es el peso que puede levantar una sola vez; no necesita conocerlo: elija un peso que haga exigente la serie.",
+      "Con poco peso harán falta más repeticiones; con mucho, menos: lo que cuenta es acabar la serie con esfuerzo.",
+      "Las posturas anteriores del ACSM daban de 8 a 20 repeticiones; la de 2026 dice que pueden ser menos pertinentes para la mayoría.",
+      "Si tiene menos de 18 años, la NSCA propone empezar con 1 o 2 series de 10 a 15 repeticiones y cargas ligeras."
+     ]
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "NSCA, postura sobre el entrenamiento de fuerza en jóvenes (Faigenbaum et al., 2009)"
+    ],
+    "v": [
+     "¿cuántas repeticiones por serie?",
+     "cuantas reps hago",
+     "¿8 o 12 repeticiones?",
+     "repeticiones para ganar músculo",
+     "repeticiones para ganar fuerza",
+     "¿es mejor hacer muchas repeticiones con poco peso?",
+     "rango de repeticiones hipertrofia",
+     "¿cuántas veces repito cada ejercicio?",
+     "¿cuántas repes tienes que hacer?",
+     "repeticiones por serie recomendadas",
+     "¿pocas repeticiones con mucho peso o muchas con poco?"
+    ],
+    "k": [
+     "1RM",
+     "carga",
+     "intensidad",
+     "porcentaje",
+     "máximo",
+     "kilos",
+     "tonificar",
+     "número de repeticiones"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câte repetări fac la fiecare serie?",
+    "r": {
+     "t": "ACSM (2026) nu stabilește un număr de repetări. Pentru masă musculară au funcționat greutăți de la ușoare până la foarte grele, dacă seria este solicitantă; pentru forța maximă, greutăți de 80 % din maximum sau mai mult.",
+     "p": [
+      "Maximumul (1RM) este greutatea pe care o puteți ridica o singură dată; nu e nevoie să-l cunoașteți: alegeți o greutate care face seria solicitantă.",
+      "Cu greutate mică veți avea nevoie de mai multe repetări; cu greutate mare, de mai puține: important este să terminați seria cu efort.",
+      "Declarațiile de poziție anterioare ale ACSM recomandau 8–20 de repetări; potrivit celei din 2026, acestea pot fi mai puțin relevante pentru majoritatea oamenilor.",
+      "Dacă aveți sub 18 ani, NSCA propune să începeți cu 1 sau 2 serii de 10–15 repetări, cu greutăți ușoare."
+     ]
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "NSCA, declarația de poziție privind antrenamentul de forță la tineri (Faigenbaum et al., 2009)"
+    ],
+    "v": [
+     "câte repetări pe serie?",
+     "câte repetări fac",
+     "8 sau 12 repetări?",
+     "repetări pentru masă musculară",
+     "repetări pentru forță",
+     "e mai bine să fac multe repetări cu greutate mică?",
+     "intervalul de repetări pentru hipertrofie",
+     "de câte ori repet fiecare exercițiu?",
+     "câte repetări trebuie să faci?",
+     "repetări pe serie recomandate",
+     "puține repetări cu greutate mare sau multe cu greutate mică?"
+    ],
+    "k": [
+     "1RM",
+     "greutate",
+     "intensitate",
+     "procent",
+     "maximum",
+     "kilograme",
+     "tonifiere",
+     "număr de repetări"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "cuanto-peso",
+   "es": {
+    "q": "¿Cuánto peso tengo que levantar?",
+    "r": {
+     "t": "El que le permita hacer las repeticiones con buena técnica y con esfuerzo alto. Para el músculo sirvieron del 30 % al 100 % de su máximo; para la fuerza máxima, del 80 % o más.",
+     "p": [
+      "Su máximo (1RM) es el peso que puede levantar una sola vez; no necesita medirlo para entrenar.",
+      "Empiece ligero y suba poco a poco: el ACSM pide progresar con el tiempo.",
+      "En personas mayores, mejor no llegar al fallo: puede ser desaconsejable por el riesgo para los vasos sanguíneos y de lesión al perder la técnica.",
+      "Si tiene menos de 18 años, empiece con cargas ligeras, cuidando la técnica y con la supervisión de un adulto cualificado."
+     ],
+     "n": "Las fuentes no dan un peso en kilos: depende de cada persona y de cada ejercicio."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "ACSM: infografía de su postura de 2026 sobre el entrenamiento de fuerza",
+     "NSCA, postura sobre el entrenamiento de fuerza en jóvenes (Faigenbaum et al., 2009)"
+    ],
+    "v": [
+     "¿cuántos kilos levanto?",
+     "qué peso tengo que coger",
+     "¿cómo elijo el peso de las mancuernas?",
+     "¿mucho peso o poco peso?",
+     "peso adecuado para entrenar",
+     "¿con cuánto peso empiezo?",
+     "¿levantar mucho peso es mejor?",
+     "cuanto peso es el correcto",
+     "¿qué carga uso en el gimnasio?",
+     "¿cuánto peso debes poner en la barra?",
+     "porcentaje de 1rm"
+    ],
+    "k": [
+     "kg",
+     "lastre",
+     "intensidad",
+     "esfuerzo",
+     "pesado",
+     "ligero",
+     "novato",
+     "máquina",
+     "sentadilla"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce greutate trebuie să ridic?",
+    "r": {
+     "t": "Una care vă permite să faceți repetările cu tehnică bună și cu efort mare. Pentru masă musculară au funcționat greutăți între 30 % și 100 % din maximum; pentru forța maximă, de 80 % sau mai mult.",
+     "p": [
+      "Maximumul dumneavoastră (1RM) este greutatea pe care o puteți ridica o singură dată; nu e nevoie să-l măsurați ca să vă antrenați.",
+      "Începeți cu greutăți ușoare și creșteți treptat: ACSM recomandă progresul în timp.",
+      "La vârstnici, e mai bine să nu se meargă până la eșec: poate fi nerecomandat din cauza riscului pentru vasele de sânge și a riscului de accidentare când se pierde tehnica.",
+      "Dacă aveți sub 18 ani, începeți cu greutăți ușoare, cu atenție la tehnică și sub supravegherea unui adult calificat."
+     ],
+     "n": "Sursele nu dau o greutate în kilograme: depinde de fiecare persoană și de fiecare exercițiu."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "ACSM: infograficul declarației sale de poziție din 2026 privind antrenamentul de forță",
+     "NSCA, declarația de poziție privind antrenamentul de forță la tineri (Faigenbaum et al., 2009)"
+    ],
+    "v": [
+     "câte kilograme ridic?",
+     "ce greutate trebuie să iau",
+     "cum aleg greutatea ganterelor?",
+     "greutate mare sau mică?",
+     "greutatea potrivită pentru antrenament",
+     "cu câtă greutate încep?",
+     "e mai bine să ridic greutăți mari?",
+     "câtă greutate e corectă",
+     "ce greutăți folosesc la sală?",
+     "câtă greutate trebuie să pui pe bară?",
+     "procent din 1rm"
+    ],
+    "k": [
+     "kg",
+     "lest",
+     "intensitate",
+     "efort",
+     "greu",
+     "ușor",
+     "începător",
+     "aparat",
+     "genuflexiuni",
+     "kilogramele",
+     "ganterele",
+     "grele"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "descanso-series",
+   "es": {
+    "q": "¿Cuánto descanso entre series?",
+    "r": {
+     "t": "El ACSM (2026) no fija un descanso: descansar menos o más de 1 minuto no cambió la fuerza, y no hubo datos suficientes para el músculo. Descanse lo que necesite para que la siguiente serie sea exigente.",
+     "p": [
+      "Las pautas anteriores del ACSM daban 2–3 minutos; el ACSM 2026 dice que pueden ser menos pertinentes para la mayoría de los adultos.",
+      "Si la siguiente serie le sale mucho peor o pierde la técnica, alargue el descanso.",
+      "Con poco tiempo, puede alternar dos ejercicios de grupos distintos y descansar uno mientras trabaja el otro."
+     ],
+     "n": "«Descanse lo que necesite» y alternar ejercicios son orientaciones prácticas: el ACSM de 2026 no da una cifra."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "descanso entre series cuanto tiempo",
+     "¿cuántos minutos descanso entre serie y serie?",
+     "¿1 minuto o 3 minutos de descanso?",
+     "tiempo de descanso entre series para ganar músculo",
+     "¿cuánto espero entre series?",
+     "descanso entre series fuerza",
+     "¿es malo descansar poco entre series?",
+     "¿cuánto tienes que descansar entre series?",
+     "pausa entre series",
+     "descansos cortos o largos en el gimnasio"
+    ],
+    "k": [
+     "temporizador",
+     "recuperar",
+     "reposo",
+     "cronómetro",
+     "segundos"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câtă pauză fac între serii?",
+    "r": {
+     "t": "ACSM (2026) nu stabilește o pauză: o pauză mai scurtă sau mai lungă de 1 minut nu a schimbat forța, iar pentru masa musculară nu au existat date suficiente. Faceți pauza de care aveți nevoie, ca seria următoare să fie solicitantă.",
+     "p": [
+      "Recomandările anterioare ale ACSM indicau 2–3 minute; potrivit ACSM 2026, acestea pot fi mai puțin relevante pentru majoritatea adulților.",
+      "Dacă seria următoare vă iese mult mai prost sau pierdeți tehnica, prelungiți pauza.",
+      "Dacă aveți puțin timp, puteți alterna două exerciții pentru grupe diferite: una se odihnește în timp ce o lucrați pe cealaltă."
+     ],
+     "n": "„Faceți pauza de care aveți nevoie” și alternarea exercițiilor sunt sfaturi practice: ACSM din 2026 nu dă o cifră."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "pauza dintre serii, cât timp",
+     "câte minute pauză între serii?",
+     "1 minut sau 3 minute de pauză?",
+     "timp de pauză între serii pentru masă musculară",
+     "cât aștept între serii?",
+     "pauza dintre serii pentru forță",
+     "e rău să iau pauze scurte între serii?",
+     "câtă pauză trebuie să faci între serii?",
+     "pauză între serii",
+     "pauze scurte sau lungi la sală"
+    ],
+    "k": [
+     "temporizator",
+     "recuperare",
+     "repaus",
+     "cronometru",
+     "secunde",
+     "odihnă între serii",
+     "mă odihnesc",
+     "între două serii"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "llegar-al-fallo",
+   "es": {
+    "q": "¿Tengo que llegar al fallo muscular?",
+    "r": {
+     "t": "No. El ACSM (2026) concluye que llegar al fallo (no poder hacer ni una repetición más) no aumenta lo que se gana en fuerza, músculo ni potencia, así que no es necesario.",
+     "p": [
+      "Lo que sí pide es esfuerzo alto: que cada serie le cueste de verdad.",
+      "En personas mayores, llegar al fallo puede ser desaconsejable, por el riesgo para los vasos sanguíneos y de lesionarse al perder la técnica.",
+      "Pare la serie cuando ya no pueda hacer la siguiente repetición con buena técnica."
+     ],
+     "n": "La pauta general de la AHA (2023) sí incluye llegar a la fatiga; el ACSM concluye que no hace falta para obtener beneficios."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "ACSM: nota sobre su postura de 2026 sobre el entrenamiento de fuerza",
+     "AHA, entrenamiento de fuerza con y sin enfermedad cardiovascular: actualización de 2023 (Paluch et al., Circulation 2024), copia en fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "¿hay que llegar al fallo?",
+     "entrenar al fallo sí o no",
+     "¿tengo que hacer repeticiones hasta no poder más?",
+     "¿es necesario acabar reventado?",
+     "fallo muscular es bueno",
+     "¿hay que llegar al límite en cada serie?",
+     "¿hasta cuándo hago repeticiones?",
+     "¿tienes que llegar al fallo en todas las series?",
+     "¿al fallo en personas mayores?",
+     "series al fallo para crecer",
+     "¿sin dolor no hay ganancia?"
+    ],
+    "k": [
+     "agotamiento",
+     "extenuación",
+     "RIR",
+     "reserva",
+     "intensidad",
+     "esfuerzo",
+     "repeticiones en reserva",
+     "destrozado",
+     "reventarse"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Trebuie să ajung până la eșec muscular?",
+    "r": {
+     "t": "Nu. ACSM (2026) concluzionează că eșecul (momentul în care nu mai puteți face nicio repetare) nu mărește câștigul de forță, de masă musculară sau de putere, așa că nu este necesar.",
+     "p": [
+      "Ce recomandă este un efort mare: fiecare serie să vă solicite cu adevărat.",
+      "La vârstnici, mersul până la eșec poate fi nerecomandat, din cauza riscului pentru vasele de sânge și a riscului de accidentare când se pierde tehnica.",
+      "Opriți seria când nu mai puteți face următoarea repetare cu tehnică bună."
+     ],
+     "n": "Recomandarea generală a AHA (2023) include mersul până la oboseală; ACSM concluzionează că nu e necesar pentru a obține beneficii."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "ACSM: notă despre declarația sa de poziție din 2026 privind antrenamentul de forță",
+     "AHA, antrenamentul de forță cu și fără boli cardiovasculare: actualizarea din 2023 (Paluch et al., Circulation 2024), copie pe fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "trebuie să ajung la eșec?",
+     "antrenament până la eșec, da sau nu",
+     "trebuie să fac repetări până nu mai pot?",
+     "e necesar să termin epuizat?",
+     "eșecul muscular e bun",
+     "trebuie să ajung la limită la fiecare serie?",
+     "până când fac repetări?",
+     "trebuie să ajungi la eșec la toate seriile?",
+     "până la eșec la vârstnici?",
+     "serii până la eșec ca să cresc",
+     "fără durere nu e progres?"
+    ],
+    "k": [
+     "epuizare",
+     "extenuare",
+     "RIR",
+     "rezervă",
+     "intensitate",
+     "efort",
+     "repetări în rezervă",
+     "terminat",
+     "a mă epuiza"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "frecuencia-musculo",
+   "es": {
+    "q": "¿Cuántas veces por semana trabajo cada músculo?",
+    "r": {
+     "t": "Si es adulto, al menos 2 días por semana cada grupo principal, como piden la OMS y el ACSM. Para el músculo, con las mismas series semanales, repartirlas en 1 día o en más de 5 dio un crecimiento parecido.",
+     "p": [
+      "Lo que más pesa es el total de series de la semana: 10 o más por grupo si busca ganar músculo.",
+      "Elija la frecuencia que le permita hacer esas series con buena calidad; 2 sesiones por grupo es una forma sencilla.",
+      "De 5 a 17 años, la OMS pide actividades que fortalezcan músculos y huesos al menos 3 días por semana."
+     ],
+     "n": "La comparación de frecuencias midió el tamaño del músculo en adultos sanos; para la fuerza, el texto leído no lo dice."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "ACSM: infografía de su postura de 2026 sobre el entrenamiento de fuerza",
+     "Ficha de la OMS/Europa «Physical activity» (resume las directrices de la OMS de 2020)"
+    ],
+    "v": [
+     "¿cuántas veces a la semana entreno cada músculo?",
+     "frecuencia por grupo muscular",
+     "¿una o dos veces por semana cada músculo?",
+     "¿es mejor entrenar cada músculo dos veces a la semana?",
+     "cuantas veces entreno pecho a la semana",
+     "¿puedo entrenar piernas una vez a la semana?",
+     "frecuencia de entrenamiento hipertrofia",
+     "¿cada cuánto trabajo el mismo músculo?",
+     "¿cuántos días por semana tocas cada grupo?",
+     "repetir musculo varios dias",
+     "¿cuántos días dejo entre dos sesiones del mismo músculo?",
+     "¿basta con una sesión por grupo a la semana?"
+    ],
+    "k": [
+     "sesiones",
+     "repartir",
+     "semanal",
+     "split",
+     "microciclo",
+     "espalda",
+     "pecho",
+     "una vez por semana"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De câte ori pe săptămână lucrez fiecare mușchi?",
+    "r": {
+     "t": "La vârsta adultă, fiecare grupă principală cel puțin 2 zile pe săptămână, cum recomandă OMS și ACSM. Pentru masa musculară, cu același număr de serii pe săptămână, împărțirea lor în 1 zi sau în mai mult de 5 a dus la o creștere asemănătoare.",
+     "p": [
+      "Cel mai mult contează totalul de serii din săptămână: 10 sau mai multe pe grupă, dacă vreți să câștigați masă musculară.",
+      "Alegeți frecvența care vă permite să faceți aceste serii bine; 2 sesiuni pe grupă reprezintă o variantă simplă.",
+      "Între 5 și 17 ani, OMS recomandă activități care întăresc mușchii și oasele cel puțin 3 zile pe săptămână."
+     ],
+     "n": "Comparația frecvențelor a măsurat dimensiunea mușchilor la adulți sănătoși; pentru forță, textul citit nu precizează."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "ACSM: infograficul declarației sale de poziție din 2026 privind antrenamentul de forță",
+     "Fișa OMS/Europa „Physical activity” (rezumă ghidurile OMS din 2020)"
+    ],
+    "v": [
+     "de câte ori pe săptămână antrenez fiecare mușchi?",
+     "frecvența pe grupă musculară",
+     "o dată sau de două ori pe săptămână fiecare mușchi?",
+     "e mai bine să antrenez fiecare mușchi de două ori pe săptămână?",
+     "de câte ori antrenez pieptul pe săptămână",
+     "pot antrena picioarele o dată pe săptămână?",
+     "frecvența antrenamentului pentru hipertrofie",
+     "cât de des lucrez același mușchi?",
+     "câte zile pe săptămână lucrezi fiecare grupă?",
+     "să repet mușchiul în mai multe zile",
+     "câte zile las între două sesiuni pentru același mușchi?",
+     "ajunge o sesiune pe grupă pe săptămână?"
+    ],
+    "k": [
+     "sesiuni",
+     "a împărți",
+     "săptămânal",
+     "split",
+     "microciclu",
+     "spate",
+     "piept",
+     "o dată pe săptămână"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "progresar",
+   "es": {
+    "q": "¿Cómo sé cuándo subir el peso?",
+    "r": {
+     "t": "El ACSM (2009) da una regla: cuando, con el mismo peso, pueda hacer 1 o 2 repeticiones más de las que se ha marcado en dos sesiones seguidas, suba el peso entre un 2 y un 10 %.",
+     "p": [
+      "Suba menos en los ejercicios de músculos pequeños y más en los de músculos grandes; compruebe que mantiene la técnica y, si la pierde, vuelva al peso anterior.",
+      "También progresa haciendo más repeticiones o más series con el mismo peso.",
+      "Subir de golpe favorece las agujetas: el daño muscular se reduce si la intensidad y el volumen aumentan poco a poco.",
+      "Si al anotar un ejercicio escribe las repeticiones y el peso, verá su progreso en «Su fuerza», en la pestaña «Evolución»."
+     ],
+     "n": "La regla es de la postura del ACSM de 2009; la de 2026 no da ningún porcentaje para subir el peso."
+    },
+    "f": [
+     "Postura del ACSM de 2009 sobre los modelos de progresión del entrenamiento de fuerza en adultos sanos (Ratamess et al., Med Sci Sports Exerc 2009), copia en sfu.ca",
+     "ACSM: contracciones excéntricas y daño muscular (Ruas y Nosaka, acsm.org)",
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "¿cuándo subo de peso?",
+     "cuando aumentar la carga",
+     "¿cada cuánto subo los kilos?",
+     "sobrecarga progresiva",
+     "¿cómo progreso en el gimnasio?",
+     "estancado con el mismo peso",
+     "¿cuánto peso subo cada semana?",
+     "¿cuándo tienes que subir de peso?",
+     "me resulta fácil el peso, ¿lo subo?",
+     "como mejorar mis marcas",
+     "progresion de cargas",
+     "llevo semanas con los mismos kilos, ¿cómo subo?",
+     "llevo un tiempo levantando igual, ¿subo?"
+    ],
+    "k": [
+     "estancamiento",
+     "avanzar",
+     "incremento",
+     "subida",
+     "evolución",
+     "más kilos",
+     "barra",
+     "progreso"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum știu când să cresc greutatea?",
+    "r": {
+     "t": "ACSM (2009) dă o regulă: când, cu aceeași greutate, puteți face cu 1 sau 2 repetări mai mult decât v-ați propus, la două sesiuni la rând, creșteți greutatea cu 2–10 %.",
+     "p": [
+      "Creșteți mai puțin la exercițiile pentru mușchii mici și mai mult la cele pentru mușchii mari; verificați dacă vă păstrați tehnica și, dacă o pierdeți, reveniți la greutatea anterioară.",
+      "Progresați și dacă faceți mai multe repetări sau mai multe serii cu aceeași greutate.",
+      "Creșterile bruște favorizează febra musculară: afectarea mușchilor e mai mică dacă intensitatea și volumul cresc treptat.",
+      "Dacă, atunci când notați un exercițiu, scrieți repetările și greutatea, vă veți vedea progresul în „Forța dumneavoastră”, în fila „Evoluție”."
+     ],
+     "n": "Regula vine din declarația de poziție a ACSM din 2009; cea din 2026 nu dă niciun procent pentru creșterea greutății."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2009 privind modelele de progresie în antrenamentul de forță la adulții sănătoși (Ratamess et al., Med Sci Sports Exerc 2009), copie pe sfu.ca",
+     "ACSM: contracțiile excentrice și afectarea musculară (Ruas și Nosaka, acsm.org)",
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "când cresc greutatea?",
+     "când măresc încărcătura",
+     "cât de des adaug kilograme?",
+     "suprasarcină progresivă",
+     "cum progresez la sală?",
+     "blocat la aceeași greutate",
+     "câtă greutate adaug în fiecare săptămână?",
+     "când trebuie să crești greutatea?",
+     "greutatea mi se pare ușoară, o cresc?",
+     "cum îmi îmbunătățesc recordurile",
+     "progresia greutăților",
+     "de săptămâni întregi ridic aceleași kilograme, cum cresc?",
+     "de ceva timp ridic la fel, cresc greutatea?"
+    ],
+    "k": [
+     "stagnare",
+     "a avansa",
+     "creștere",
+     "mărire",
+     "evoluție",
+     "mai multe kilograme",
+     "bară",
+     "progres",
+     "kilograme mai mari"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "rutina-completa-o-dividida",
+   "es": {
+    "q": "¿Rutina de cuerpo completo o dividida por días?",
+    "r": {
+     "t": "Las dos funcionan. Con las mismas series a la semana, trabajar un grupo 1 día o más de 5 dio un crecimiento parecido: elija la que encaje con los días que tiene.",
+     "p": [
+      "Con solo 2 días por semana, el cuerpo completo en las dos sesiones es la manera de trabajar cada grupo 2 veces.",
+      "Con 4 días o más, puede dividir, por ejemplo, en tren superior un día e inferior el siguiente.",
+      "Según el ACSM, trabajar todos los grupos al menos 2 veces por semana importa mucho más que buscar el plan perfecto.",
+      "Lo que cuenta es el total semanal: 10 series o más por grupo si busca ganar músculo."
+     ],
+     "n": "La comparación de días se midió en el tamaño del músculo de adultos sanos; la fuerza no se comparó en el texto leído."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "ACSM: nota sobre su postura de 2026 sobre el entrenamiento de fuerza"
+    ],
+    "v": [
+     "¿full body o rutina dividida?",
+     "rutina weider o fullbody",
+     "¿es mejor entrenar todo el cuerpo en cada sesión?",
+     "¿divido por grupos musculares?",
+     "torso pierna o cuerpo completo",
+     "¿qué rutina es mejor para ganar músculo?",
+     "rutina por dias o completa",
+     "¿hago una rutina de cuerpo entero?",
+     "¿cómo organizas la semana de gimnasio?",
+     "split o full body",
+     "¿un músculo por día?"
+    ],
+    "k": [
+     "organización",
+     "planificación",
+     "programa",
+     "superior",
+     "inferior",
+     "frecuencia",
+     "pecho y tríceps",
+     "espalda y bíceps",
+     "separar músculos"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Rutină pentru tot corpul sau împărțită pe zile?",
+    "r": {
+     "t": "Amândouă funcționează. Cu același număr de serii pe săptămână, lucrul unei grupe în 1 zi sau în mai mult de 5 a dus la o creștere asemănătoare: alegeți varianta care se potrivește cu zilele pe care le aveți.",
+     "p": [
+      "Cu doar 2 zile pe săptămână, tot corpul la ambele sesiuni este modul de a lucra fiecare grupă de 2 ori.",
+      "Cu 4 zile sau mai multe, puteți împărți, de exemplu, partea superioară a corpului într-o zi și cea inferioară a doua zi.",
+      "Potrivit ACSM, să lucrați toate grupele de cel puțin 2 ori pe săptămână contează mult mai mult decât să căutați planul perfect.",
+      "Ce contează este totalul săptămânal: 10 serii sau mai multe pe grupă, dacă vreți să câștigați masă musculară."
+     ],
+     "n": "Comparația dintre zile a măsurat dimensiunea mușchilor la adulți sănătoși; forța nu a fost comparată în textul citit."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "ACSM: notă despre declarația sa de poziție din 2026 privind antrenamentul de forță"
+    ],
+    "v": [
+     "full body sau rutină împărțită?",
+     "rutină split sau full body",
+     "e mai bine să antrenez tot corpul la fiecare sesiune?",
+     "împart pe grupe musculare?",
+     "trunchi-picioare sau tot corpul",
+     "ce rutină e mai bună pentru masă musculară?",
+     "rutină pe zile sau completă",
+     "fac o rutină pentru tot corpul?",
+     "cum îți organizezi săptămâna la sală?",
+     "split sau full body",
+     "un mușchi pe zi?"
+    ],
+    "k": [
+     "organizare",
+     "planificare",
+     "program",
+     "superior",
+     "inferior",
+     "frecvență",
+     "piept și triceps",
+     "spate și biceps",
+     "mușchi separați"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "compuestos-o-aislados",
+   "es": {
+    "q": "¿Ejercicios compuestos o aislados?",
+    "r": {
+     "t": "Los dos sirven. El ACSM (2026) no encontró datos suficientes para decir si los ejercicios de varias articulaciones (compuestos) o de una sola (aislados) hacen crecer más el músculo.",
+     "p": [
+      "Los compuestos, como la sentadilla o el remo, trabajan varios grupos a la vez y ahorran tiempo.",
+      "Los aislados se centran en un músculo: en un ensayo con principiantes, el curl hizo crecer los flexores del codo más del doble que el remo.",
+      "Una combinación práctica: una base de compuestos y algo de trabajo directo para los músculos que quiera destacar, como el bíceps."
+     ],
+     "n": "El ensayo del curl es uno solo, con 10 hombres principiantes durante 8 semanas: no basta para decir que el aislado sea siempre mejor."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "Mannarino et al., curl de bíceps frente a remo en principiantes (J Strength Cond Res 2021)"
+    ],
+    "v": [
+     "¿multiarticulares o monoarticulares?",
+     "ejercicios compuestos o de aislamiento",
+     "¿qué diferencia hay entre un ejercicio compuesto y uno aislado?",
+     "¿con sentadilla y press basta?",
+     "¿sirven los ejercicios de aislamiento?",
+     "básicos o aislados",
+     "¿es mejor hacer solo ejercicios básicos?",
+     "ejercicios multiarticulares mejores",
+     "¿necesitas ejercicios aislados?",
+     "aislar un musculo sirve"
+    ],
+    "k": [
+     "articulación",
+     "multiarticular",
+     "monoarticular",
+     "bíceps",
+     "combinar",
+     "accesorios",
+     "varios músculos a la vez",
+     "básicos"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Exerciții compuse sau izolate?",
+    "r": {
+     "t": "Amândouă sunt utile. ACSM (2026) nu a găsit date suficiente ca să spună dacă exercițiile cu mai multe articulații (compuse) sau cu una singură (izolate) cresc mai mult mușchiul.",
+     "p": [
+      "Exercițiile compuse, cum sunt genuflexiunile sau ramatul, lucrează mai multe grupe deodată și economisesc timp.",
+      "Cele izolate se concentrează pe un mușchi: într-un studiu cu începători, flexiile pentru biceps au crescut flexorii cotului de peste două ori mai mult decât ramatul.",
+      "O combinație practică: o bază de exerciții compuse și puțin lucru direct pentru mușchii pe care vreți să-i evidențiați, cum ar fi bicepsul."
+     ],
+     "n": "Studiul cu flexiile pentru biceps e unul singur, cu 10 bărbați începători, timp de 8 săptămâni: nu ajunge ca să spunem că exercițiul izolat e întotdeauna mai bun."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "Mannarino et al., flexiile pentru biceps față de ramat la începători (J Strength Cond Res 2021)"
+    ],
+    "v": [
+     "exerciții multiarticulare sau monoarticulare?",
+     "exerciții compuse sau de izolare",
+     "ce diferență e între un exercițiu compus și unul izolat?",
+     "ajung genuflexiunile și împinsul?",
+     "sunt utile exercițiile de izolare?",
+     "exerciții de bază sau izolate",
+     "e mai bine să fac doar exerciții de bază?",
+     "exercițiile multiarticulare sunt mai bune",
+     "ai nevoie de exerciții izolate?",
+     "ajută să izolezi un mușchi"
+    ],
+    "k": [
+     "articulație",
+     "multiarticular",
+     "monoarticular",
+     "biceps",
+     "a combina",
+     "accesorii",
+     "mai mulți mușchi deodată",
+     "de bază"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "maquinas-o-peso-libre",
+   "es": {
+    "q": "¿Es mejor usar máquinas o peso libre?",
+    "r": {
+     "t": "Las dos sirven. Según el ACSM (2026), entrenar con máquinas o con peso libre no cambió la fuerza, y para el tamaño del músculo no hay datos suficientes para elegir.",
+     "p": [
+      "Elija lo que tenga a mano y le resulte cómodo y seguro: lo que cuenta es el esfuerzo y las series de la semana.",
+      "En la app, cada grupo tiene ejercicios de gimnasio, de fuera y de calistenia: use el filtro «Dónde».",
+      "Según el ACSM, ni el tipo de material ni los planes complejos cambiaron los resultados de forma consistente en el adulto sano medio."
+     ],
+     "n": "Son conclusiones para adultos sanos de 18 años o más, sin enfermedad."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com",
+     "ACSM: nota sobre su postura de 2026 sobre el entrenamiento de fuerza"
+    ],
+    "v": [
+     "¿máquinas o pesas libres?",
+     "mancuernas o maquinas que es mejor",
+     "¿las máquinas del gimnasio sirven?",
+     "¿es peor entrenar con máquinas?",
+     "peso libre vs máquinas",
+     "¿barra o máquina para ganar fuerza?",
+     "¿con máquinas se gana músculo?",
+     "multipower o barra libre",
+     "¿qué usas, máquinas o mancuernas?",
+     "las maquinas son para principiantes"
+    ],
+    "k": [
+     "poleas",
+     "guiado",
+     "equipamiento",
+     "aparatos",
+     "material",
+     "Smith",
+     "crecer",
+     "mala"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "E mai bine să folosesc aparate sau greutăți libere?",
+    "r": {
+     "t": "Amândouă sunt utile. Potrivit ACSM (2026), antrenamentul la aparate sau cu greutăți libere nu a schimbat forța, iar pentru dimensiunea mușchiului nu există date suficiente ca să alegeți.",
+     "p": [
+      "Alegeți ce aveți la îndemână și vi se pare comod și sigur: contează efortul și seriile din săptămână.",
+      "În aplicație, fiecare grupă are exerciții pentru sală, în aer liber și de calistenie: folosiți filtrul „Unde”.",
+      "Potrivit ACSM, nici tipul de echipament, nici planurile complexe nu au schimbat constant rezultatele la adultul sănătos obișnuit."
+     ],
+     "n": "Sunt concluzii pentru adulți sănătoși de 18 ani sau mai mult, fără boli."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com",
+     "ACSM: notă despre declarația sa de poziție din 2026 privind antrenamentul de forță"
+    ],
+    "v": [
+     "aparate sau greutăți libere?",
+     "gantere sau aparate, ce e mai bine",
+     "aparatele de la sală sunt utile?",
+     "e mai rău să mă antrenez la aparate?",
+     "greutăți libere vs aparate",
+     "bară sau aparat ca să câștig forță?",
+     "se câștigă masă musculară la aparate?",
+     "aparat Smith sau bară liberă",
+     "ce folosești, aparate sau gantere?",
+     "aparatele sunt pentru începători"
+    ],
+    "k": [
+     "scripeți",
+     "ghidat",
+     "echipament",
+     "aparatură",
+     "dotări",
+     "Smith",
+     "a crește",
+     "rău",
+     "ganterele",
+     "mai bune"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "en-casa-sin-material",
+   "es": {
+    "q": "¿Se puede ganar músculo en casa sin material?",
+    "r": {
+     "t": "Probablemente sí: según el ACSM (2026), la fuerza mejora también entrenando en casa o con bandas elásticas, y para ganar músculo sirvieron cargas desde el 30 % del máximo si la serie es exigente.",
+     "p": [
+      "Con el peso del cuerpo, suba la dificultad con más repeticiones o con una variante más difícil: de flexiones en la pared a flexiones en el suelo.",
+      "En la app, filtre por «Fuera» o «Calistenia» en cada grupo; el nivel le indica qué variante es más fácil. En Dorsales y Bíceps, todos necesitan material.",
+      "Lo difícil sin material es la fuerza máxima: para ella, el ACSM indica cargas altas, del 80 % del máximo o más."
+     ],
+     "n": "La evidencia es indirecta: la frase del ACSM sobre casa y bandas habla de fuerza; para el músculo, el apoyo es que funcionaron cargas ligeras."
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "¿se puede ganar músculo sin pesas?",
+     "entrenar en casa sin nada",
+     "¿sirve el entrenamiento con el peso corporal?",
+     "ejercicios sin material para ganar masa",
+     "¿se gana músculo con calistenia?",
+     "¿puedo ponerme fuerte entrenando en casa?",
+     "no tengo pesas en casa",
+     "musculacion en casa sin gimnasio",
+     "¿con flexiones y sentadillas basta?",
+     "¿puedes ganar músculo sin ir al gimnasio?",
+     "¿gano músculo con mi propio peso?"
+    ],
+    "k": [
+     "autocarga",
+     "bodyweight",
+     "domicilio",
+     "salón",
+     "equipamiento",
+     "cachas",
+     "sin equipo",
+     "ganar masa"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Se poate câștiga masă musculară acasă, fără echipament?",
+    "r": {
+     "t": "Probabil că da: potrivit ACSM (2026), forța crește și cu antrenamentul acasă sau cu benzi elastice, iar pentru masă musculară au funcționat greutăți de la 30 % din maximum, dacă seria este solicitantă.",
+     "p": [
+      "Cu greutatea corpului, creșteți dificultatea prin mai multe repetări sau printr-o variantă mai grea: de la flotări la perete la flotări pe sol.",
+      "În aplicație, filtrați după „În aer liber” sau „Calistenie” la fiecare grupă; nivelul vă arată ce variantă e mai ușoară. La Dorsali și Biceps, toate exercițiile au nevoie de echipament.",
+      "Fără echipament, greu de obținut este forța maximă: pentru ea, ACSM recomandă greutăți mari, de 80 % din maximum sau mai mult."
+     ],
+     "n": "Dovezile sunt indirecte: fraza ACSM despre antrenamentul acasă și cu benzi vorbește despre forță; pentru masa musculară, argumentul este că au funcționat greutățile ușoare."
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "se poate câștiga masă musculară fără greutăți?",
+     "antrenament acasă fără nimic",
+     "e util antrenamentul cu greutatea corpului?",
+     "exerciții fără echipament pentru masă musculară",
+     "se câștigă masă musculară cu calistenie?",
+     "pot deveni puternic antrenându-mă acasă?",
+     "nu am greutăți acasă",
+     "culturism acasă, fără sală",
+     "ajung flotările și genuflexiunile?",
+     "poți câștiga masă musculară fără să mergi la sală?",
+     "câștig masă musculară cu propria greutate?"
+    ],
+    "k": [
+     "greutatea corpului",
+     "bodyweight",
+     "domiciliu",
+     "sufragerie",
+     "echipament",
+     "musculos",
+     "fără echipament",
+     "masă musculară",
+     "flotări și genuflexiuni"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "que-cuenta-como-serie",
+   "es": {
+    "q": "¿Qué cuenta como una serie en la app?",
+    "r": {
+     "t": "Una serie es un bloque de repeticiones seguidas de un mismo ejercicio. Anote las series de trabajo, las que le cuestan; las de calentamiento muy ligeras, mejor no.",
+     "p": [
+      "Por ejemplo, 10 sentadillas, una pausa y otras 10 sentadillas son 2 series.",
+      "El mapa se ilumina con las series de los últimos 7 días: gris sin series, y rosa, naranja y amarillo para 1–4, 5–9 y 10 o más.",
+      "Si anota desde la ficha de un ejercicio, las series se suman a cada uno de sus grupos principales.",
+      "El tono más alto, 10 o más, coincide con las series semanales que el ACSM (2026) indica para ganar músculo."
+     ]
+    },
+    "f": [
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "¿qué es una serie?",
+     "qué cuenta como serie",
+     "¿cuento el calentamiento como serie?",
+     "diferencia entre serie y repetición",
+     "¿qué anoto como serie?",
+     "¿las series de calentamiento cuentan?",
+     "que es una serie en el gimnasio",
+     "¿cómo cuento las series?",
+     "series y repeticiones qué son",
+     "¿cuentan las series ligeras?"
+    ],
+    "k": [
+     "bloque",
+     "aproximación",
+     "registro",
+     "anotación",
+     "mapa",
+     "series de aproximación"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce se consideră o serie în aplicație?",
+    "r": {
+     "t": "O serie este un bloc de repetări la rând din același exercițiu. Notați seriile de lucru, cele care vă solicită; seriile de încălzire foarte ușoare, mai bine nu.",
+     "p": [
+      "De exemplu, 10 genuflexiuni, o pauză și încă 10 genuflexiuni înseamnă 2 serii.",
+      "Harta se colorează după seriile din ultimele 7 zile: gri fără serii, iar roz, portocaliu și galben pentru 1–4, 5–9 și 10 sau mai multe.",
+      "Dacă notați din fișa unui exercițiu, seriile se adună la fiecare dintre grupele lui principale.",
+      "Nuanța cea mai înaltă, 10 sau mai multe, corespunde seriilor pe săptămână pe care ACSM (2026) le recomandă pentru masă musculară."
+     ]
+    },
+    "f": [
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "ce e o serie?",
+     "ce se consideră serie",
+     "număr încălzirea ca serie?",
+     "diferența dintre serie și repetare",
+     "ce notez ca serie?",
+     "seriile de încălzire contează?",
+     "ce e o serie la sală",
+     "cum număr seriile?",
+     "serii și repetări, ce sunt",
+     "seriile ușoare contează?"
+    ],
+    "k": [
+     "bloc",
+     "încălzire",
+     "înregistrare",
+     "notare",
+     "hartă",
+     "serii de încălzire",
+     "aplicația",
+     "numără"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "compuesto-cuenta-otros",
+   "es": {
+    "q": "Si hago sentadilla, ¿cuenta también para los glúteos?",
+    "r": {
+     "t": "En la mayoría de sentadillas, sí: Glúteos y cadera es uno de sus grupos principales, y al anotarlas desde la ficha las series se suman a Cuádriceps y a Glúteos y cadera.",
+     "p": [
+      "En algunas variantes, como la frontal con barra o la hack en máquina, el glúteo figura como secundario: mírelo en la ficha.",
+      "Los grupos secundarios no se suman, aunque también trabajan: en la sentadilla trasera, Isquiotibiales y Abdomen y lumbares.",
+      "En un análisis de 67 estudios, aún sin revisar por pares, contar cada serie indirecta como media serie directa fue lo que mejor encajó con los datos.",
+      "Si quiere trabajo directo para un secundario, añada un ejercicio donde sea principal, como el peso muerto rumano para Isquiotibiales."
+     ],
+     "n": "La regla de la media serie sale de un preprint (estudio aún sin revisión por pares): tómela como orientación."
+    },
+    "f": [
+     "Pelland et al., metarregresión sobre volumen y frecuencia del entrenamiento de fuerza (SportRxiv, preprint, 2024)"
+    ],
+    "v": [
+     "¿la sentadilla trabaja glúteo?",
+     "¿cuenta la sentadilla para el culo?",
+     "¿el press de banca cuenta para tríceps?",
+     "series indirectas cuentan",
+     "¿un ejercicio compuesto cuenta para varios músculos?",
+     "¿las dominadas cuentan para el bíceps?",
+     "grupos secundarios cuentan en la app",
+     "¿por qué no se suma a los isquios?",
+     "¿la sentadilla vale para gluteos?",
+     "si haces sentadillas, ¿trabajas también el glúteo?",
+     "¿el press de banca suma también para el hombro?",
+     "¿qué músculos suman series con un ejercicio?"
+    ],
+    "k": [
+     "indirecta",
+     "secundario",
+     "principal",
+     "sumar",
+     "doble",
+     "mitad",
+     "press banca",
+     "peso muerto",
+     "hombro",
+     "isquios"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Dacă fac genuflexiuni, contează și pentru fesieri?",
+    "r": {
+     "t": "La majoritatea genuflexiunilor, da: Fesieri și șold este una dintre grupele lor principale, iar când le notați din fișă, seriile se adună la Cvadriceps și la Fesieri și șold.",
+     "p": [
+      "La unele variante, cum sunt genuflexiunile frontale cu bara sau genuflexiunile hack la aparat, fesierii apar ca grupă secundară: verificați în fișă.",
+      "Grupele secundare nu se adună, deși lucrează și ele: la genuflexiunile cu bara pe spate, Femurali și Abdomen și zona lombară.",
+      "Într-o analiză a 67 de studii, încă neevaluată inter pares, numărarea fiecărei serii indirecte ca jumătate de serie directă s-a potrivit cel mai bine cu datele.",
+      "Dacă vreți lucru direct pentru o grupă secundară, adăugați un exercițiu în care ea e principală, cum sunt îndreptările românești pentru Femurali."
+     ],
+     "n": "Regula jumătății de serie vine dintr-un preprint (studiu încă neevaluat inter pares): luați-o ca orientare."
+    },
+    "f": [
+     "Pelland et al., metaregresie privind volumul și frecvența antrenamentului de forță (SportRxiv, preprint, 2024)"
+    ],
+    "v": [
+     "genuflexiunile lucrează fesierii?",
+     "genuflexiunile contează pentru fund?",
+     "împinsul din culcat contează pentru triceps?",
+     "seriile indirecte contează",
+     "un exercițiu compus contează pentru mai mulți mușchi?",
+     "tracțiunile contează pentru biceps?",
+     "grupele secundare contează în aplicație",
+     "de ce nu se adună la femurali?",
+     "genuflexiunile sunt bune pentru fesieri?",
+     "dacă faci genuflexiuni, lucrezi și fesierii?",
+     "împinsul din culcat se adună și la umeri?",
+     "ce mușchi adună serii cu un exercițiu?"
+    ],
+    "k": [
+     "indirectă",
+     "secundar",
+     "principal",
+     "a aduna",
+     "dublu",
+     "jumătate",
+     "împins din culcat",
+     "îndreptări",
+     "umăr",
+     "femurali"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "respirar-al-levantar",
+   "es": {
+    "q": "¿Cómo tengo que respirar al levantar peso?",
+    "r": {
+     "t": "Respire de forma regular y no aguante el aire durante el esfuerzo: aguantarlo al contraer el músculo (maniobra de Valsalva) se asocia a una subida mayor de la tensión arterial.",
+     "p": [
+      "Una pauta sencilla: respire de forma regular durante todo el movimiento.",
+      "Con cargas moderadas o altas, los ejercicios estáticos, sin movimiento, invitan a aguantar el aire: respire a propósito mientras los mantiene.",
+      "Con la tensión alta controlada, la fuerza de intensidad baja a moderada es segura con una buena técnica de respiración, según la AHA."
+     ],
+     "c": "Si se marea al hacer fuerza, pare: si no se le pasa en unos minutos, pida ayuda médica, y si se le pasa, otro día entrene más suave. Con la tensión alta mal controlada, consulte antes de entrenar fuerte.",
+     "n": "Lo de soltar el aire al empujar y tomarlo al bajar es una pauta habitual, pero ninguna fuente leída la da."
+    },
+    "f": [
+     "Guía de la Sociedad Europea de Cardiología de 2020 sobre cardiología del deporte y ejercicio (Pelliccia et al.)",
+     "British Heart Foundation: hacer ejercicio con problemas de salud",
+     "AHA, entrenamiento de fuerza con y sin enfermedad cardiovascular: actualización de 2023 (Paluch et al., Circulation 2024), copia en fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "¿cuándo cojo aire al levantar pesas?",
+     "como respirar en el gimnasio",
+     "¿se puede aguantar la respiración al hacer fuerza?",
+     "maniobra de valsalva",
+     "respiración en sentadilla",
+     "¿expulso el aire al subir o al bajar?",
+     "¿hay que soltar el aire al empujar?",
+     "¿cómo respiras en la plancha?",
+     "respiracion correcta levantando peso",
+     "¿cómo respiro haciendo pesas si tengo la tensión alta?",
+     "¿suelto el aire al empujar o al bajar la barra?",
+     "¿cómo respiro con cargas pesadas?"
+    ],
+    "k": [
+     "apnea",
+     "inspirar",
+     "espirar",
+     "exhalar",
+     "pulmones",
+     "bloqueo",
+     "aguantar el aire",
+     "press de banca"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum trebuie să respir când ridic greutăți?",
+    "r": {
+     "t": "Respirați regulat și nu vă țineți respirația în timpul efortului: ținerea respirației când contractați mușchiul (manevra Valsalva) se asociază cu o creștere mai mare a tensiunii arteriale.",
+     "p": [
+      "O regulă simplă: respirați regulat pe toată durata mișcării.",
+      "Cu greutăți moderate sau mari, exercițiile statice, fără mișcare, vă îndeamnă să vă țineți respirația: respirați în mod conștient cât timp le mențineți.",
+      "Când tensiunea mare este controlată, forța de intensitate scăzută până la moderată este sigură cu o tehnică bună de respirație, potrivit AHA."
+     ],
+     "c": "Dacă amețiți când faceți forță, opriți-vă: dacă nu vă trece în câteva minute, cereți ajutor medical, iar dacă vă trece, altă dată antrenați-vă mai ușor. Dacă aveți tensiune mare slab controlată, consultați un medic înainte de antrenamentele intense.",
+     "n": "Expirația la împingere și inspirația la coborâre sunt un sfat obișnuit, dar nicio sursă citită nu îl dă."
+    },
+    "f": [
+     "Ghidul Societății Europene de Cardiologie din 2020 privind cardiologia sportivă și exercițiul fizic (Pelliccia et al.)",
+     "British Heart Foundation: exercițiile fizice când aveți probleme de sănătate",
+     "AHA, antrenamentul de forță cu și fără boli cardiovasculare: actualizarea din 2023 (Paluch et al., Circulation 2024), copie pe fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "când trag aer când ridic greutăți?",
+     "cum să respir la sală",
+     "se poate ține respirația când faci forță?",
+     "manevra valsalva",
+     "respirația la genuflexiuni",
+     "scot aerul la urcare sau la coborâre?",
+     "trebuie să scot aerul când împing?",
+     "cum respiri la planșă?",
+     "respirația corectă când ridici greutăți",
+     "cum respir când ridic greutăți dacă am tensiunea mare?",
+     "scot aerul când împing sau când cobor bara?",
+     "cum respir cu greutăți mari?"
+    ],
+    "k": [
+     "apnee",
+     "inspirație",
+     "expirație",
+     "a expira",
+     "plămâni",
+     "blocare",
+     "a ține aerul",
+     "împins din culcat",
+     "efort",
+     "expir"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "fuerza-y-cardio",
+   "es": {
+    "q": "¿Puedo hacer fuerza y cardio el mismo día?",
+    "r": {
+     "t": "Sí. Un metaanálisis de 43 estudios encontró que combinarlos no resta fuerza máxima ni músculo; solo se resintió la fuerza explosiva (la de saltar o esprintar), sobre todo con 20 minutos o menos entre uno y otro.",
+     "p": [
+      "Con 3 horas o más de separación, no hubo pérdida significativa ni siquiera en la fuerza explosiva.",
+      "No pareció depender de si el cardio era correr o bici, ni de la edad o el nivel de entrenamiento.",
+      "Si le importa saltar o esprintar, sepárelos al menos 3 horas o hágalos en días distintos."
+     ],
+     "n": "Solo entraron programas de 4 semanas o más, y el ACSM (2026) considera insuficientes los datos sobre el músculo con entrenamiento combinado."
+    },
+    "f": [
+     "Schumann et al., compatibilidad del entrenamiento aeróbico y de fuerza: revisión sistemática y metaanálisis (Sports Med 2022)",
+     "Postura del ACSM de 2026 sobre el entrenamiento de fuerza (Currier et al., Med Sci Sports Exerc 2026), copia íntegra en fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "¿hago cardio antes o después de pesas?",
+     "pesas y correr el mismo dia",
+     "¿el cardio quita músculo?",
+     "¿correr me hace perder fuerza?",
+     "entrenamiento concurrente",
+     "¿puedo hacer bici y gimnasio el mismo día?",
+     "cuanto tiempo entre cardio y pesas",
+     "¿el cardio interfiere con la fuerza?",
+     "¿puedes combinar pesas y cardio?",
+     "nadar y pesas el mismo día"
+    ],
+    "k": [
+     "interferencia",
+     "mezclar",
+     "separar",
+     "horas",
+     "explosiva",
+     "mañana y tarde",
+     "ganancias",
+     "cinta"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot face forță și cardio în aceeași zi?",
+    "r": {
+     "t": "Da. O metaanaliză a 43 de studii a constatat că, dacă le combinați, nu pierdeți forță maximă sau masă musculară; a avut de suferit doar forța explozivă (cea de la sărituri sau sprinturi), mai ales cu 20 de minute sau mai puțin între ele.",
+     "p": [
+      "Cu 3 ore sau mai mult între ele, nu a existat o pierdere semnificativă nici măcar la forța explozivă.",
+      "Nu părea să conteze dacă cardio însemna alergare sau bicicletă, nici vârsta ori nivelul de antrenament.",
+      "Dacă vă interesează săriturile sau sprinturile, despărțiți-le prin cel puțin 3 ore sau faceți-le în zile diferite."
+     ],
+     "n": "Au fost incluse doar programe de 4 săptămâni sau mai mult, iar ACSM (2026) consideră insuficiente datele despre masa musculară la antrenamentul combinat."
+    },
+    "f": [
+     "Schumann et al., compatibilitatea antrenamentului aerob cu cel de forță: analiză sistematică și metaanaliză (Sports Med 2022)",
+     "Declarația de poziție a ACSM din 2026 privind antrenamentul de forță (Currier et al., Med Sci Sports Exerc 2026), copie integrală pe fisiologiadelejercicio.com"
+    ],
+    "v": [
+     "fac cardio înainte sau după greutăți?",
+     "greutăți și alergare în aceeași zi",
+     "cardio îmi ia din masa musculară?",
+     "alergatul mă face să pierd forță?",
+     "antrenament concurent",
+     "pot face bicicletă și sală în aceeași zi?",
+     "cât timp între cardio și greutăți",
+     "cardio interferează cu forța?",
+     "poți combina greutățile cu cardio?",
+     "înot și greutăți în aceeași zi"
+    ],
+    "k": [
+     "interferență",
+     "a amesteca",
+     "a separa",
+     "ore",
+     "explozivă",
+     "dimineața și seara",
+     "câștiguri",
+     "bandă de alergare",
+     "întâi",
+     "a alerga",
+     "antrenamentul de forță"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "no-abandonar",
+   "es": {
+    "q": "¿Cómo hago para no abandonar?",
+    "r": {
+     "t": "Póngase un objetivo concreto que pueda cumplir, apunte lo que hace y decida de antemano qué días entrenará. Empiece con poco y suba poco a poco: si un día falla, siga al siguiente.",
+     "p": [
+      "En un metaanálisis, las apps y pulseras de actividad sumaron unos 1.850 pasos al día de media, y más cuando incluían objetivos y planificación.",
+      "La OMS pide empezar con poca actividad e ir aumentando: para quien no llega a la recomendación, algo es mejor que nada.",
+      "Al presentar su postura de 2026, el ACSM insistió en que entrenar todos los grupos principales dos veces por semana importa más que buscar el plan perfecto.",
+      "En «Su cuerpo», anotar sus series le deja ver la semana de un vistazo en el mapa."
+     ]
+    },
+    "f": [
+     "Laranjo et al., metaanálisis sobre apps y pulseras de actividad (Br J Sports Med, 2021)",
+     "Directrices de la OMS sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "ACSM: nueva postura de 2026 sobre el entrenamiento de fuerza (nota de prensa)"
+    ],
+    "v": [
+     "¿cómo hago para no abandonar el ejercicio?",
+     "siempre lo dejo a las pocas semanas",
+     "¿cómo ser constante entrenando?",
+     "no consigo mantener la rutina",
+     "motivación para seguir entrenando",
+     "¿cómo creo el hábito de hacer deporte?",
+     "empiezo con ganas y luego lo dejo",
+     "constancia en el gimnasio",
+     "como no rendirse con el deporte",
+     "¿qué hago para no dejar de entrenar?",
+     "trucos para ser constante"
+    ],
+    "k": [
+     "adherencia",
+     "disciplina",
+     "perseverar",
+     "compromiso",
+     "planificar",
+     "objetivo",
+     "año nuevo",
+     "enero",
+     "motivado",
+     "gym"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum fac să nu renunț?",
+    "r": {
+     "t": "Stabiliți-vă un obiectiv concret pe care îl puteți atinge, notați ce faceți și hotărâți dinainte în ce zile vă veți antrena. Începeți cu puțin și creșteți treptat: dacă într-o zi nu reușiți, continuați a doua zi.",
+     "p": [
+      "Într-o metaanaliză, aplicațiile și brățările de activitate au adăugat în medie circa 1.850 de pași pe zi, și mai mulți când includeau obiective și planificare.",
+      "OMS recomandă să începeți cu puțină activitate și să creșteți treptat: pentru cine nu atinge recomandarea, puțin e mai bine decât deloc.",
+      "Când și-a prezentat declarația de poziție din 2026, ACSM a insistat că antrenarea tuturor grupelor principale de două ori pe săptămână contează mai mult decât căutarea planului perfect.",
+      "În „Corp”, dacă vă notați seriile, vedeți săptămâna dintr-o privire pe hartă."
+     ]
+    },
+    "f": [
+     "Laranjo et al., metaanaliză privind aplicațiile și brățările de activitate (Br J Sports Med, 2021)",
+     "Ghidurile OMS privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "ACSM: noua declarație de poziție din 2026 privind antrenamentul de forță (comunicat de presă)"
+    ],
+    "v": [
+     "cum fac să nu renunț la exerciții?",
+     "mereu renunț după câteva săptămâni",
+     "cum să fiu constant cu antrenamentul?",
+     "nu reușesc să-mi păstrez rutina",
+     "motivație ca să continui să mă antrenez",
+     "cum îmi fac obiceiul de a face sport?",
+     "încep cu chef și apoi renunț",
+     "constanța la sală",
+     "cum să nu renunț la sport",
+     "ce fac ca să nu mă las de antrenament?",
+     "trucuri ca să fiu constant"
+    ],
+    "k": [
+     "aderență",
+     "disciplină",
+     "perseverență",
+     "angajament",
+     "a planifica",
+     "obiectiv",
+     "anul nou",
+     "ianuarie",
+     "motivat",
+     "sală",
+     "mă țin de program"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "objetivo-realista",
+   "es": {
+    "q": "¿Cómo me pongo un objetivo realista?",
+    "r": {
+     "t": "Elija algo que dependa de usted, que se pueda contar y que hoy le parezca fácil de cumplir, por ejemplo «2 días de fuerza a la semana», y súbalo poco a poco.",
+     "p": [
+      "La OMS recomienda a los adultos fuerza al menos 2 días por semana con todos los grupos principales, y de 5 a 17 años, 3 días.",
+      "Si ahora no hace nada, empiece por debajo: un solo día o unas pocas series ya cuentan, y el ACSM pide ir subiendo con el tiempo.",
+      "Para ganar músculo, la referencia es de unas 10 series por grupo y semana: es el nivel más alto del mapa, una meta para más adelante.",
+      "Mejor metas de lo que hace (días, series) que de kilos en la báscula: dependen de usted y el mapa las cuenta.",
+      "Revíselo cada semana: los programas con objetivos y planificación aumentaron más la actividad que los que no los tenían."
+     ]
+    },
+    "f": [
+     "Directrices de la OMS sobre actividad física y hábitos sedentarios (Bull et al., Br J Sports Med 2020)",
+     "ACSM: infografía de la postura de 2026 sobre el entrenamiento de fuerza",
+     "Laranjo et al., metaanálisis sobre apps y pulseras de actividad (Br J Sports Med, 2021)"
+    ],
+    "v": [
+     "¿cómo me pongo un objetivo de entrenamiento?",
+     "objetivos realistas para el gimnasio",
+     "¿qué meta me pongo si empiezo?",
+     "metas de ejercicio alcanzables",
+     "quiero ponerme un reto de entrenamiento",
+     "plan de objetivos para entrenar",
+     "como fijar objetivos en el deporte",
+     "¿es mejor un objetivo de kilos o de días?",
+     "me pongo metas y no las cumplo",
+     "objetivo semanal de fuerza",
+     "¿qué objetivo me pongo estas vacaciones?",
+     "¿qué me propongo este mes?"
+    ],
+    "k": [
+     "propósito",
+     "planificación",
+     "medible",
+     "progresión",
+     "semana",
+     "SMART",
+     "frustrarse",
+     "plantear",
+     "gym"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum îmi stabilesc un obiectiv realist?",
+    "r": {
+     "t": "Alegeți ceva care depinde de dumneavoastră, care se poate număra și care azi vi se pare ușor de îndeplinit, de exemplu „2 zile de forță pe săptămână”, și creșteți-l treptat.",
+     "p": [
+      "OMS le recomandă adulților forță cel puțin 2 zile pe săptămână, pentru toate grupele principale, iar între 5 și 17 ani, 3 zile.",
+      "Dacă acum nu faceți nimic, începeți de mai jos: o singură zi sau câteva serii contează deja, iar ACSM recomandă să creșteți în timp.",
+      "Pentru masă musculară, reperul este de circa 10 serii pe grupă pe săptămână: este nivelul cel mai înalt al hărții, un obiectiv pentru mai târziu.",
+      "Sunt mai bune obiectivele legate de ce faceți (zile, serii) decât de kilogramele de pe cântar: depind de dumneavoastră, iar harta le numără.",
+      "Revedeți-vă obiectivul în fiecare săptămână: programele cu obiective și planificare au crescut activitatea mai mult decât cele fără."
+     ]
+    },
+    "f": [
+     "Ghidurile OMS privind activitatea fizică și comportamentul sedentar (Bull et al., Br J Sports Med 2020)",
+     "ACSM: infograficul declarației de poziție din 2026 privind antrenamentul de forță",
+     "Laranjo et al., metaanaliză privind aplicațiile și brățările de activitate (Br J Sports Med, 2021)"
+    ],
+    "v": [
+     "cum îmi stabilesc un obiectiv de antrenament?",
+     "obiective realiste pentru sală",
+     "ce obiectiv îmi propun dacă abia încep?",
+     "obiective de exerciții care se pot atinge",
+     "vreau să-mi propun o provocare de antrenament",
+     "plan de obiective pentru antrenament",
+     "cum îmi stabilesc obiectivele în sport",
+     "e mai bun un obiectiv de kilograme sau de zile?",
+     "îmi propun obiective și nu le îndeplinesc",
+     "obiectiv săptămânal de forță",
+     "ce obiectiv îmi propun în vacanța asta?",
+     "ce îmi propun luna asta?"
+    ],
+    "k": [
+     "propunere",
+     "planificare",
+     "măsurabil",
+     "progresie",
+     "săptămână",
+     "SMART",
+     "frustrare",
+     "a-mi propune",
+     "sală",
+     "scop",
+     "țintă realistă"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "perdi-la-racha",
+   "es": {
+    "q": "He perdido mi racha: ¿qué hago?",
+    "r": {
+     "t": "Nada grave: vuelva hoy o mañana con algo pequeño. Una pausa corta no borra lo ganado, y en «Su cuerpo» no hay rachas que romper: el mapa solo mira los últimos 7 días.",
+     "p": [
+      "En un ensayo con 70 adultos, la fuerza ganada en 16 semanas se conservó en gran parte durante 32 semanas sin entrenar.",
+      "Lo que se pierde crece cuanto más larga es la pausa, y más en mayores de 65 años: lo importante es volver.",
+      "Romper una racha desanima mucho; por eso conviene medirse por semanas, no por días seguidos, y no castigarse por un día sin entrenar.",
+      "Para volver, basta una sesión corta y suave; ya irá subiendo."
+     ],
+     "n": "Lo de las rachas sale de estudios de comportamiento leídos en una noticia de su universidad; lo de la fuerza, de un ensayo y un metaanálisis."
+    },
+    "f": [
+     "Bickel et al., dosis de ejercicio para mantener lo ganado con la fuerza (Med Sci Sports Exerc, 2011)",
+     "Bosquet et al., metaanálisis sobre los efectos de dejar de entrenar la fuerza (Scand J Med Sci Sports, 2013)",
+     "Universidad de Delaware: el poder de las rachas (estudios de Silverman y Barasch, 2024)"
+    ],
+    "v": [
+     "perdí mi racha",
+     "he roto mi racha de entrenamientos",
+     "llevaba muchos días seguidos y lo he dejado",
+     "¿qué pasa si dejo de entrenar unos días?",
+     "falté al gimnasio una semana",
+     "rompí la racha y no tengo ganas de volver",
+     "me salté varios días de entrenamiento",
+     "¿un día sin entrenar es grave?",
+     "se me cortó la racha",
+     "volver a entrenar después de unos días sin hacerlo",
+     "ayer no entrené y se fue la racha"
+    ],
+    "k": [
+     "pausa",
+     "retomar",
+     "interrupción",
+     "recaída",
+     "constancia",
+     "seguido",
+     "fallé un día",
+     "se acabó la racha"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Mi-am rupt șirul de zile de antrenament: ce fac?",
+    "r": {
+     "t": "Nu e nimic grav: reveniți azi sau mâine cu ceva mic. O pauză scurtă nu șterge ce ați câștigat, iar în „Corp” nu există șiruri de zile care să se rupă: harta se uită doar la ultimele 7 zile.",
+     "p": [
+      "Într-un studiu cu 70 de adulți, forța câștigată în 16 săptămâni s-a păstrat în mare parte timp de 32 de săptămâni fără antrenament.",
+      "Pierderea crește cu cât pauza e mai lungă, și mai mult la cei de peste 65 de ani: important este să reveniți.",
+      "Ruperea unui șir de zile descurajează mult; de aceea e bine să vă măsurați pe săptămâni, nu pe zile la rând, și să nu vă pedepsiți pentru o zi fără antrenament.",
+      "Ca să reveniți, ajunge o sesiune scurtă și ușoară; veți crește apoi treptat."
+     ],
+     "n": "Ce se spune despre șirurile de zile vine din studii de comportament citite într-o știre a universității lor; ce se spune despre forță, dintr-un studiu și o metaanaliză."
+    },
+    "f": [
+     "Bickel et al., doza de exercițiu pentru menținerea câștigurilor de forță (Med Sci Sports Exerc, 2011)",
+     "Bosquet et al., metaanaliză privind efectele întreruperii antrenamentului de forță (Scand J Med Sci Sports, 2013)",
+     "Universitatea din Delaware: puterea șirurilor de zile consecutive (studiile lui Silverman și Barasch, 2024)"
+    ],
+    "v": [
+     "mi-am pierdut șirul de zile",
+     "am rupt seria de antrenamente",
+     "mă antrenam de multe zile la rând și m-am oprit",
+     "ce se întâmplă dacă nu mă antrenez câteva zile?",
+     "am lipsit o săptămână de la sală",
+     "am rupt șirul și nu am chef să revin",
+     "am sărit câteva zile de antrenament",
+     "o zi fără antrenament e gravă?",
+     "mi s-a întrerupt șirul",
+     "să revin la antrenament după câteva zile fără",
+     "ieri nu m-am antrenat și s-a dus șirul",
+     "cum reiau antrenamentul după o pauză?"
+    ],
+    "k": [
+     "pauză",
+     "a relua",
+     "întrerupere",
+     "recădere",
+     "constanță",
+     "la rând",
+     "am ratat o zi",
+     "s-a terminat șirul",
+     "reiau"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "sin-ganas",
+   "es": {
+    "q": "Hoy no tengo ganas de entrenar",
+    "r": {
+     "t": "Es normal. Haga algo corto o suave, como un paseo o unas pocas series: para la OMS, toda actividad cuenta y cualquier cantidad es mejor que nada. Si está enfermo o agotado, descanse.",
+     "p": [
+      "No hace falta llegar al fallo ni seguir un plan perfecto: entrenar todos los grupos principales dos veces por semana importa mucho más.",
+      "Moverse suele sentar bien: la OMS dice que la actividad física reduce los síntomas de depresión y ansiedad y puede mejorar el bienestar.",
+      "Si lleva semanas cansado aunque descanse, irritable, durmiendo mal o rindiendo menos, puede estar entrenando de más: descanse; recuperarse puede llevar semanas o meses."
+     ],
+     "c": "Si el cansancio o el bajón de ánimo duran semanas o no mejoran al descansar, coméntelo con su médico."
+    },
+    "f": [
+     "OMS: hoja informativa sobre la actividad física (2024)",
+     "ACSM: nueva postura de 2026 sobre el entrenamiento de fuerza (nota de prensa)",
+     "Meeusen et al., consenso ECSS/ACSM sobre el sobreentrenamiento (Med Sci Sports Exerc, 2013)"
+    ],
+    "v": [
+     "no me apetece ir al gimnasio",
+     "sin motivación para hacer ejercicio",
+     "¿entreno aunque no tenga ganas?",
+     "estoy cansado, ¿me salto el entrenamiento?",
+     "hoy me da pereza hacer deporte",
+     "no tengo energía para entrenar",
+     "que hago si no me apetece entrenar",
+     "¿es malo saltarse un entrenamiento?",
+     "desmotivado con el ejercicio",
+     "hoy no quiero hacer nada de deporte",
+     "no tengo ganas de entrenar hoy"
+    ],
+    "k": [
+     "apatía",
+     "desgana",
+     "flojera",
+     "agotamiento",
+     "ánimo",
+     "descanso activo",
+     "cansancio",
+     "gym"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Azi nu am chef să mă antrenez",
+    "r": {
+     "t": "E normal. Faceți ceva scurt sau ușor, cum ar fi o plimbare sau câteva serii: pentru OMS, orice activitate contează și orice cantitate e mai bună decât niciuna. În caz de boală sau epuizare, odihniți-vă.",
+     "p": [
+      "Nu e nevoie să mergeți până la eșec sau să urmați un plan perfect: antrenarea tuturor grupelor principale de două ori pe săptămână contează mult mai mult.",
+      "Mișcarea face de obicei bine: OMS spune că activitatea fizică reduce simptomele de depresie și anxietate și poate îmbunătăți starea de bine.",
+      "Dacă de săptămâni întregi simțiți oboseală chiar dacă vă odihniți, iritabilitate, dormiți prost sau aveți randament mai mic, s-ar putea să vă antrenați prea mult: odihniți-vă; refacerea poate dura săptămâni sau luni."
+     ],
+     "c": "Dacă oboseala sau starea proastă durează săptămâni ori nu se ameliorează cu odihnă, vorbiți cu medicul dumneavoastră."
+    },
+    "f": [
+     "OMS: fișa informativă despre activitatea fizică (2024)",
+     "ACSM: noua declarație de poziție din 2026 privind antrenamentul de forță (comunicat de presă)",
+     "Meeusen et al., consensul ECSS/ACSM privind supraantrenamentul (Med Sci Sports Exerc, 2013)"
+    ],
+    "v": [
+     "nu am chef să merg la sală",
+     "fără motivație să fac exerciții",
+     "mă antrenez chiar dacă nu am chef?",
+     "sunt obosit, sar peste antrenament?",
+     "azi mi-e lene să fac sport",
+     "nu am energie să mă antrenez",
+     "ce fac dacă nu am chef să mă antrenez",
+     "e rău să sar peste un antrenament?",
+     "demotivat cu exercițiile",
+     "azi nu vreau să fac deloc sport",
+     "nu am chef de antrenament azi"
+    ],
+    "k": [
+     "apatie",
+     "lipsă de chef",
+     "lene",
+     "epuizare",
+     "stare",
+     "odihnă activă",
+     "oboseală",
+     "sală"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "progreso-sin-bascula",
+   "es": {
+    "q": "¿Cómo mido mi progreso sin pesarme?",
+    "r": {
+     "t": "Mire lo que hace y cómo se siente: las series que anota, si levanta más peso o hace más repeticiones, si la misma ruta le resulta más fácil y cómo se encuentra a diario.",
+     "p": [
+      "En un ensayo pequeño, la fuerza subió mucho más deprisa que el músculo: un 38,9 % en 35 días, frente a un 6,5–7,4 %.",
+      "El mapa de «Su cuerpo» le enseña cuántas series lleva por grupo en los últimos 7 días: es un progreso que depende de usted.",
+      "En adultos jóvenes, cuanto más usan apps de dieta y actividad, más síntomas de trastornos de la conducta alimentaria tienen, aunque no se ha probado que sean la causa."
+     ],
+     "c": "Si se pesa muchas veces, el número le angustia o decide lo que come o cuánto entrena, hable con su médico cuanto antes."
+    },
+    "f": [
+     "Seynnes et al., cambios tempranos del músculo con el entrenamiento de fuerza (J Appl Physiol, 2007)",
+     "Anderberg, Kemps y Prichard, revisión sistemática de 38 estudios sobre apps de dieta y actividad, imagen corporal y síntomas de trastorno alimentario (Body Image, 2025)",
+     "NHS: trastornos de la conducta alimentaria (señales y qué hacer)"
+    ],
+    "v": [
+     "¿cómo sé si progreso sin báscula?",
+     "medir mi progreso sin pesarme",
+     "no quiero pesarme, ¿cómo veo si mejoro?",
+     "formas de ver el progreso en el gimnasio",
+     "¿cómo sé si estoy mejorando?",
+     "progreso sin mirar el peso",
+     "la bascula no baja, ¿estoy progresando?",
+     "¿qué otras medidas de progreso hay?",
+     "llevo semanas entrenando y peso lo mismo",
+     "como medir la evolucion al entrenar"
+    ],
+    "k": [
+     "rendimiento",
+     "registro",
+     "repeticiones",
+     "marcas",
+     "bienestar",
+     "series",
+     "pesa",
+     "avances",
+     "sin pesarme"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum îmi măsor progresul fără să mă cântăresc?",
+    "r": {
+     "t": "Uitați-vă la ce faceți și la cum vă simțiți: seriile pe care le notați, dacă ridicați mai multă greutate sau faceți mai multe repetări, dacă același traseu vi se pare mai ușor și starea dumneavoastră de zi cu zi.",
+     "p": [
+      "Într-un studiu mic, forța a crescut mult mai repede decât mușchiul: cu 38,9 % în 35 de zile, față de 6,5–7,4 %.",
+      "Harta din „Corp” vă arată câte serii ați făcut pe grupă în ultimele 7 zile: este un progres care depinde de dumneavoastră.",
+      "La adulții tineri, cu cât folosesc mai mult aplicații de dietă și de activitate, cu atât au mai multe simptome de tulburări de comportament alimentar, deși nu s-a dovedit că aplicațiile sunt cauza."
+     ],
+     "c": "Dacă vă cântăriți foarte des, cifra vă provoacă neliniște sau hotărăște ce mâncați ori cât vă antrenați, vorbiți cât mai curând cu medicul dumneavoastră."
+    },
+    "f": [
+     "Seynnes et al., schimbările timpurii ale mușchiului la antrenamentul de forță (J Appl Physiol, 2007)",
+     "Anderberg, Kemps și Prichard, analiză sistematică a 38 de studii privind aplicațiile de dietă și de activitate, imaginea corporală și simptomele de tulburare alimentară (Body Image, 2025)",
+     "NHS: tulburările de comportament alimentar (semne și ce e de făcut)"
+    ],
+    "v": [
+     "cum știu dacă progresez fără cântar?",
+     "să-mi măsor progresul fără să mă cântăresc",
+     "nu vreau să mă cântăresc, cum văd dacă mă îmbunătățesc?",
+     "moduri de a vedea progresul la sală",
+     "cum știu dacă mă îmbunătățesc?",
+     "progres fără să mă uit la greutate",
+     "cântarul nu scade, progresez?",
+     "ce alte măsuri ale progresului există?",
+     "mă antrenez de săptămâni și am aceeași greutate",
+     "cum măsor evoluția la antrenament"
+    ],
+    "k": [
+     "randament",
+     "înregistrare",
+     "repetări",
+     "recorduri",
+     "stare de bine",
+     "serii",
+     "cântar",
+     "progrese",
+     "fără cântar",
+     "măsurători",
+     "centimetru",
+     "poze"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "pesarme-cada-dia",
+   "es": {
+    "q": "¿Debo pesarme todos los días?",
+    "r": {
+     "t": "No hace falta. El peso de un día a otro cambia sobre todo por el agua del cuerpo: la cifra diaria dice poco de la grasa o del músculo.",
+     "p": [
+      "Si quiere vigilar su peso, la guía británica NICE pone como ejemplo pesarse una vez a la semana.",
+      "Preocuparse mucho por el peso y la figura es una de las señales de un trastorno de la conducta alimentaria (TCA).",
+      "NICE avisa del riesgo de vigilar el peso si hay o puede haber un TCA: si el número le cambia el humor o lo que come, déjelo."
+     ],
+     "c": "Si se pesa varias veces al día, el número le angustia o decide lo que come o cuánto entrena, hable con su médico cuanto antes.",
+     "n": "No se ha leído ningún estudio sobre cada cuánto conviene pesarse; la semana es un ejemplo de NICE, no una regla."
+    },
+    "f": [
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "NHS: trastornos de la conducta alimentaria (señales y qué hacer)",
+     "NICE NG246: prevención y manejo del sobrepeso y la obesidad (guía, 2025)"
+    ],
+    "v": [
+     "¿debo pesarme todos los días?",
+     "pesarse a diario es bueno",
+     "¿cada cuánto me peso?",
+     "me peso todos los días y me agobio",
+     "¿por qué mi peso cambia tanto de un día a otro?",
+     "peso diario sube y baja",
+     "¿es malo pesarse cada día?",
+     "cuantas veces a la semana pesarse",
+     "¿cuándo es mejor pesarse?",
+     "la bascula me dice cosas distintas cada mañana",
+     "¿pesarme me ayuda a controlar el peso?",
+     "¿es normal subir un kilo de golpe?"
+    ],
+    "k": [
+     "pesaje",
+     "kilos",
+     "fluctuación",
+     "retención de líquidos",
+     "balanza",
+     "frecuencia",
+     "subirse a la báscula"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Trebuie să mă cântăresc în fiecare zi?",
+    "r": {
+     "t": "Nu e nevoie. Greutatea se schimbă de la o zi la alta mai ales din cauza apei din corp: cifra zilnică spune puțin despre grăsime sau despre mușchi.",
+     "p": [
+      "Dacă vreți să vă urmăriți greutatea, ghidul britanic NICE dă ca exemplu cântărirea o dată pe săptămână.",
+      "Preocuparea excesivă pentru greutate și siluetă este unul dintre semnele unei tulburări de comportament alimentar (TCA).",
+      "NICE atrage atenția asupra riscului de a urmări greutatea când există sau poate exista o TCA: dacă cifra vă schimbă dispoziția sau ce mâncați, renunțați la cântărire."
+     ],
+     "c": "Dacă vă cântăriți de mai multe ori pe zi, cifra vă provoacă neliniște sau hotărăște ce mâncați ori cât vă antrenați, vorbiți cât mai curând cu medicul dumneavoastră.",
+     "n": "Nu s-a citit niciun studiu despre cât de des e bine să vă cântăriți; săptămâna este un exemplu al NICE, nu o regulă."
+    },
+    "f": [
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "NHS: tulburările de comportament alimentar (semne și ce e de făcut)",
+     "NICE NG246: prevenirea și gestionarea supraponderalității și a obezității (ghid, 2025)"
+    ],
+    "v": [
+     "trebuie să mă cântăresc zilnic?",
+     "e bine să te cântărești zilnic",
+     "cât de des mă cântăresc?",
+     "mă cântăresc în fiecare zi și mă stresez",
+     "de ce greutatea mi se schimbă atât de la o zi la alta?",
+     "greutatea zilnică urcă și coboară",
+     "e rău să te cântărești în fiecare zi?",
+     "de câte ori pe săptămână să mă cântăresc",
+     "când e mai bine să mă cântăresc?",
+     "cântarul îmi arată altceva în fiecare dimineață",
+     "cântărirea mă ajută să-mi controlez greutatea?",
+     "e normal să iau un kilogram dintr-odată?"
+    ],
+    "k": [
+     "cântărire",
+     "kilograme",
+     "fluctuație",
+     "retenție de lichide",
+     "cântar",
+     "frecvență",
+     "a mă urca pe cântar"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "consejos-de-famosos",
+   "es": {
+    "q": "¿Puedo fiarme de los consejos de los famosos del fitness?",
+    "r": {
+     "t": "Fíjese en lo que dicen y en su fuente, no en cuántos seguidores tienen, y desconfíe de las promesas rápidas, de quitar grasa de una zona y de quien vende lo que recomienda.",
+     "p": [
+      "Compare con lo que dicen las instituciones: lo básico con más respaldo es sencillo, como entrenar todos los grupos principales al menos dos veces por semana.",
+      "Entrenar una zona no quita la grasa de esa zona: en un ensayo, trabajar una pierna redujo la del tronco y los brazos, no la de esa pierna.",
+      "En España está prohibida la publicidad de métodos para adelgazar o cambiar el físico que aseguren resultados o pretendan sustituir a los profesionales sanitarios."
+     ],
+     "n": "No se ha leído ningún estudio que mida la calidad de los consejos de los famosos del fitness: esto se apoya en una revisión propia hecha para la app."
+    },
+    "f": [
+     "ACSM: nueva postura de 2026 sobre el entrenamiento de fuerza (nota de prensa)",
+     "Ramírez-Campillo et al., cambios de grasa por zonas con entrenamiento localizado (J Strength Cond Res, 2013)",
+     "Real Decreto 1907/1996 sobre publicidad de productos con pretendida finalidad sanitaria (BOE)"
+    ],
+    "v": [
+     "¿me fío de los influencers de fitness?",
+     "¿son fiables los youtubers de gimnasio?",
+     "consejos de instagram sobre ejercicio",
+     "¿hago caso a los famosos que entrenan?",
+     "rutinas de famosos, ¿funcionan?",
+     "¿puedo seguir la rutina de un influencer?",
+     "tiktok fitness es fiable",
+     "¿quién sabe más, un influencer o un médico?",
+     "retos de abdominales en pocos días, ¿funcionan?",
+     "un famoso vende un suplemento, ¿lo compro?"
+    ],
+    "k": [
+     "redes sociales",
+     "celebridad",
+     "evidencia",
+     "bulo",
+     "desinformación",
+     "publicidad",
+     "futbolistas",
+     "rutina de un famoso",
+     "gym"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot avea încredere în sfaturile vedetelor din fitness?",
+    "r": {
+     "t": "Uitați-vă la ce spun și la sursa lor, nu la câți urmăritori au, și nu vă încredeți în promisiunile rapide, în eliminarea grăsimii dintr-o anumită zonă și în cei care vând ce recomandă.",
+     "p": [
+      "Comparați cu ce spun instituțiile: elementele de bază cu cele mai solide dovezi sunt simple, cum ar fi antrenarea tuturor grupelor principale de cel puțin două ori pe săptămână.",
+      "Antrenarea unei zone nu elimină grăsimea din acea zonă: într-un studiu, lucrul cu un picior a redus grăsimea de pe trunchi și de pe brațe, nu pe cea a piciorului respectiv.",
+      "În Spania este interzisă publicitatea metodelor de slăbit sau de schimbare a fizicului care garantează rezultate ori pretind că îi înlocuiesc pe profesioniștii din sănătate."
+     ],
+     "n": "Nu s-a citit niciun studiu care să măsoare calitatea sfaturilor vedetelor din fitness: aceasta se bazează pe o analiză proprie, făcută pentru aplicație."
+    },
+    "f": [
+     "ACSM: noua declarație de poziție din 2026 privind antrenamentul de forță (comunicat de presă)",
+     "Ramírez-Campillo et al., modificările grăsimii pe zone la antrenamentul localizat (J Strength Cond Res, 2013)",
+     "Decretul regal 1907/1996 privind publicitatea produselor cu pretinsă finalitate sanitară (BOE)"
+    ],
+    "v": [
+     "am încredere în influencerii de fitness?",
+     "sunt de încredere youtuberii de sală?",
+     "sfaturi de pe instagram despre exerciții",
+     "ascult de vedetele care se antrenează?",
+     "rutinele vedetelor funcționează?",
+     "pot urma rutina unui influencer?",
+     "fitnessul de pe tiktok e de încredere",
+     "cine știe mai mult, un influencer sau un medic?",
+     "provocările pentru abdomen în câteva zile funcționează?",
+     "o vedetă vinde un supliment, să-l cumpăr?"
+    ],
+    "k": [
+     "rețele sociale",
+     "celebritate",
+     "dovezi",
+     "fals",
+     "dezinformare",
+     "publicitate",
+     "fotbaliști",
+     "rutina unei vedete",
+     "sală",
+     "influenceri",
+     "un sfat",
+     "diete-minune"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "colores-del-mapa",
+   "es": {
+    "q": "¿Qué significan los colores del personaje?",
+    "r": {
+     "t": "Cada músculo toma el color de su grupo según las series de los últimos 7 días: gris, ninguna; rosa, de 1 a 4; naranja, de 5 a 9; y amarillo, 10 o más.",
+     "p": [
+      "El color va por grupo: los 35 músculos del dibujo forman 12 grupos, y cada grupo se ilumina entero.",
+      "Cuentan hoy y los 6 días anteriores; lo anotado antes ya no da color.",
+      "Toque un músculo del dibujo, o su grupo en la lista, para ver sus ejercicios y anotar series.",
+      "En la lista, cada grupo tiene una barra del mismo color; en adultos, una marca señala las 10 series, la referencia del ACSM para ganar músculo.",
+      "Si ha elegido un deporte, sus grupos prioritarios llevan además un contorno discontinuo."
+     ],
+     "n": "El color solo refleja lo que anota: si entrena y no lo apunta, el personaje no lo sabe."
+    },
+    "f": [],
+    "v": [
+     "qué significan los colores",
+     "¿por qué el muñeco sale rosa?",
+     "que quiere decir el gris del personaje",
+     "¿por qué unos músculos están en naranja y otros no?",
+     "colores del mapa muscular",
+     "¿qué indica el naranja más claro?",
+     "explícame la leyenda de colores",
+     "por qué mi brazo sale en gris",
+     "¿me dice qué significa cada tono de naranja?",
+     "no entiendo los colores del cuerpo",
+     "¿por qué se ilumina un músculo?",
+     "qué quiere decir el color de los músculos",
+     "¿por qué mi pecho está en naranja?"
+    ],
+    "k": [
+     "amarillo",
+     "brillo",
+     "rosa",
+     "iluminación",
+     "contorno discontinuo",
+     "nivel de color",
+     "dibujo",
+     "color"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce înseamnă culorile personajului?",
+    "r": {
+     "t": "Fiecare mușchi ia culoarea grupei sale, după seriile din ultimele 7 zile: gri, niciuna; roz, între 1 și 4; portocaliu, între 5 și 9; galben, 10 sau mai multe.",
+     "p": [
+      "Culoarea se dă pe grupă: cei 35 de mușchi din desen formează 12 grupe, iar fiecare grupă se colorează în întregime.",
+      "Contează ziua de azi și cele 6 zile anterioare; ce ați notat înainte nu mai dă culoare.",
+      "Atingeți un mușchi din desen sau grupa lui din listă ca să-i vedeți exercițiile și să notați serii.",
+      "În listă, fiecare grupă are o bară de aceeași culoare; la adulți, un semn arată cele 10 serii, reperul ACSM pentru masă musculară.",
+      "Dacă ați ales un sport, grupele lui prioritare au în plus un contur cu linie întreruptă."
+     ],
+     "n": "Culoarea arată doar ce notați: dacă vă antrenați și nu notați, personajul nu știe."
+    },
+    "f": [],
+    "v": [
+     "ce înseamnă culorile",
+     "de ce omulețul e roz?",
+     "ce înseamnă griul de pe personaj",
+     "de ce unii mușchi sunt portocalii și alții nu?",
+     "culorile hărții musculare",
+     "ce arată portocaliul mai deschis?",
+     "explică-mi legenda culorilor",
+     "de ce brațul meu e gri",
+     "îmi spui ce înseamnă fiecare nuanță de portocaliu?",
+     "nu înțeleg culorile corpului",
+     "de ce se colorează un mușchi?",
+     "ce înseamnă culoarea mușchilor",
+     "de ce pieptul meu e portocaliu?"
+    ],
+    "k": [
+     "galben",
+     "luminozitate",
+     "roz",
+     "colorare",
+     "contur întrerupt",
+     "nivel de culoare",
+     "desen",
+     "culoare",
+     "personajul",
+     "culori diferite"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "por-que-diez-series",
+   "es": {
+    "q": "¿Por qué 10 series es el nivel más alto del mapa?",
+    "r": {
+     "t": "Porque el ACSM (2026) sitúa en unas 10 series por grupo y semana, o más, el volumen para ganar músculo en adultos sanos. Es una referencia, no un tope: por encima se sigue ganando, hasta cierto punto.",
+     "p": [
+      "Según un análisis de estudios que cita el ACSM, la ganancia crece con las series hasta estancarse, con rendimientos decrecientes pasadas unas 18–20 semanales.",
+      "Para la salud basta menos: la OMS recomienda fuerza al menos 2 días por semana con todos los grupos principales, sin fijar series.",
+      "Es para adultos: a los menores de 18 años la lista no les marca las 10 series; la OMS les pide fuerza al menos 3 días por semana."
+     ],
+     "n": "Las revisiones no compararon músculos concretos: 10 es una referencia general, no una cifra exacta para cada grupo."
+    },
+    "f": [
+     "ACSM: nota sobre su postura de 2026 sobre el entrenamiento de fuerza",
+     "Currier et al., postura del ACSM sobre la prescripción del entrenamiento de fuerza (Med Sci Sports Exerc, 2026; copia íntegra alojada por un tercero)",
+     "OMS/Europa: hoja informativa sobre la actividad física (directrices de 2020)"
+    ],
+    "v": [
+     "por qué el máximo son 10 series",
+     "¿qué pasa si hago más de 10 series?",
+     "10 series a la semana es el límite",
+     "¿de dónde sale lo de las 10 series?",
+     "por que diez series por musculo",
+     "¿tengo que llegar a 10 series por grupo?",
+     "¿es malo pasar de 10 series?",
+     "nivel máximo del mapa",
+     "¿qué significa la marca de las 10 series?",
+     "¿por qué el tono más claro empieza en 10?",
+     "explícame por qué 10 y no 20",
+     "¿20 series dan el doble que 10?"
+    ],
+    "k": [
+     "volumen semanal",
+     "hipertrofia",
+     "ACSM",
+     "18–20",
+     "tono claro",
+     "raya",
+     "límite del mapa",
+     "subir de nivel"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De ce 10 serii sunt nivelul cel mai înalt al hărții?",
+    "r": {
+     "t": "Pentru că ACSM (2026) stabilește la circa 10 serii pe grupă pe săptămână, sau mai mult, volumul pentru câștigul de masă musculară la adulții sănătoși. Este un reper, nu o limită: peste el se câștigă în continuare, până la un punct.",
+     "p": [
+      "Potrivit unei analize de studii citate de ACSM, câștigul crește odată cu seriile până stagnează, cu randament descrescător după circa 18–20 de serii pe săptămână.",
+      "Pentru sănătate ajunge mai puțin: OMS recomandă forță cel puțin 2 zile pe săptămână, pentru toate grupele principale, fără un număr de serii.",
+      "Este pentru adulți: pentru cei sub 18 ani, lista nu marchează cele 10 serii; OMS le recomandă forță cel puțin 3 zile pe săptămână."
+     ],
+     "n": "Analizele nu au comparat anumiți mușchi: 10 este un reper general, nu o cifră exactă pentru fiecare grupă."
+    },
+    "f": [
+     "ACSM: notă despre declarația sa de poziție din 2026 privind antrenamentul de forță",
+     "Currier et al., declarația de poziție a ACSM privind prescrierea antrenamentului de forță (Med Sci Sports Exerc, 2026; copie integrală găzduită de un terț)",
+     "OMS/Europa: fișa informativă despre activitatea fizică (ghidurile din 2020)"
+    ],
+    "v": [
+     "de ce maximul e 10 serii",
+     "ce se întâmplă dacă fac mai mult de 10 serii?",
+     "10 serii pe săptămână e limita",
+     "de unde vin cele 10 serii?",
+     "de ce zece serii pe mușchi",
+     "trebuie să ajung la 10 serii pe grupă?",
+     "e rău să trec de 10 serii?",
+     "nivelul maxim al hărții",
+     "ce înseamnă semnul de la 10 serii?",
+     "de ce nuanța cea mai deschisă începe la 10?",
+     "explică-mi de ce 10 și nu 20",
+     "20 de serii dau dublul față de 10?"
+    ],
+    "k": [
+     "volum săptămânal",
+     "hipertrofie",
+     "ACSM",
+     "18–20",
+     "nuanță deschisă",
+     "linie",
+     "limita hărții",
+     "a crește nivelul"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "musculos-pequenos",
+   "es": {
+    "q": "¿Hace falta entrenar aparte los músculos pequeños?",
+    "r": {
+     "t": "Los ejercicios compuestos ya los trabajan, pero menos que uno directo, y la variante cambia qué parte crece. Si un músculo pequeño le importa, la evidencia apunta a darle algo de trabajo directo.",
+     "p": [
+      "Un análisis de 67 estudios (en su versión previa de 2024) encontró que lo que mejor encaja es contar una serie de un compuesto como media serie para los músculos secundarios.",
+      "En principiantes, el curl de bíceps hizo crecer los flexores del codo el doble que el remo con mancuerna: un 11 % frente a un 5 %.",
+      "La variante cuenta: la extensión de tríceps por encima de la cabeza hizo crecer su cabeza larga 1,5 veces más que hacia abajo.",
+      "En la app, anotar desde una ficha suma series a los grupos principales del ejercicio, no a los secundarios."
+     ],
+     "n": "Son ensayos con principiantes, tres de cuatro pequeños y del mismo grupo, y del análisis se leyó la versión previa de 2024: tómelo como provisional."
+    },
+    "f": [
+     "Pelland et al., metarregresión sobre volumen y frecuencia del entrenamiento de fuerza (SportRxiv, versión 2 de 2024; preprint)",
+     "Mannarino et al., curl de bíceps frente a remo en principiantes (J Strength Cond Res, 2021)",
+     "Maeo et al., extensión de tríceps por encima de la cabeza frente a hacia abajo (Eur J Sport Sci, 2023)"
+    ],
+    "v": [
+     "¿tengo que hacer ejercicios aislados para los músculos pequeños?",
+     "con los compuestos ya trabajo el bíceps",
+     "hace falta hacer curl de biceps si ya hago dominadas",
+     "¿los músculos pequeños crecen solo con ejercicios grandes?",
+     "trabajo directo de brazos sí o no",
+     "¿basta con press y remo para los brazos?",
+     "musculos pequeños entrenar aparte",
+     "¿entreno el antebrazo o ya trabaja solo?",
+     "¿el remo trabaja el bíceps lo suficiente?",
+     "aislamiento para gemelos y hombros, ¿merece la pena?",
+     "¿me recomiendas entrenar los brazos por separado?"
+    ],
+    "k": [
+     "Pelland",
+     "media serie",
+     "músculos chicos",
+     "accesorios del brazo",
+     "variante del ejercicio",
+     "cabeza larga",
+     "ejercicios específicos",
+     "antebrazos",
+     "brazos"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Trebuie să antrenez separat mușchii mici?",
+    "r": {
+     "t": "Exercițiile compuse lucrează deja mușchii mici, dar mai puțin decât unul direct, iar varianta schimbă partea care crește. Dacă un mușchi mic contează pentru dumneavoastră, dovezile arată că e bine să-i dați puțin lucru direct.",
+     "p": [
+      "O analiză a 67 de studii (în versiunea preliminară din 2024) a constatat că cel mai bine se potrivește numărarea unei serii dintr-un exercițiu compus ca jumătate de serie pentru mușchii secundari.",
+      "La începători, flexiile pentru biceps au crescut flexorii cotului de două ori mai mult decât ramatul cu gantera: 11 % față de 5 %.",
+      "Varianta contează: extensiile pentru triceps deasupra capului i-au crescut capul lung de 1,5 ori mai mult decât cele în jos.",
+      "În aplicație, dacă notați dintr-o fișă, seriile se adună la grupele principale ale exercițiului, nu la cele secundare."
+     ],
+     "n": "Sunt studii cu începători, trei din patru mici și ale aceluiași grup de cercetători, iar din analiză s-a citit versiunea preliminară din 2024: luați aceste rezultate ca provizorii."
+    },
+    "f": [
+     "Pelland et al., metaregresie privind volumul și frecvența antrenamentului de forță (SportRxiv, versiunea 2 din 2024; preprint)",
+     "Mannarino et al., flexiile pentru biceps față de ramat la începători (J Strength Cond Res, 2021)",
+     "Maeo et al., extensiile pentru triceps deasupra capului față de cele în jos (Eur J Sport Sci, 2023)"
+    ],
+    "v": [
+     "trebuie să fac exerciții izolate pentru mușchii mici?",
+     "cu exercițiile compuse lucrez deja bicepsul",
+     "e nevoie de flexii pentru biceps dacă fac deja tracțiuni",
+     "mușchii mici cresc doar cu exerciții mari?",
+     "lucru direct pentru brațe, da sau nu",
+     "ajung împinsul și ramatul pentru brațe?",
+     "mușchii mici trebuie antrenați separat",
+     "antrenez antebrațul sau lucrează singur?",
+     "ramatul lucrează destul bicepsul?",
+     "izolare pentru gambe și umeri, merită?",
+     "îmi recomanzi să antrenez brațele separat?"
+    ],
+    "k": [
+     "Pelland",
+     "jumătate de serie",
+     "mușchi mici",
+     "accesorii pentru brațe",
+     "varianta exercițiului",
+     "capul lung",
+     "exerciții specifice",
+     "antebrațe",
+     "brațe",
+     "exerciții separate"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "manguito-rotador",
+   "es": {
+    "q": "¿Cómo trabajo el manguito rotador?",
+    "r": {
+     "t": "Son cuatro músculos pequeños que giran el brazo y sujetan el hombro. Se trabajan con rotaciones: codo pegado al costado, gire el antebrazo hacia fuera y hacia dentro contra una banda, polea o mancuerna ligera.",
+     "p": [
+      "Son el supraespinoso, el infraespinoso, el redondo menor y el subescapular.",
+      "En balonmano de élite, un programa de hombro de unos 10 minutos, 3 veces por semana al calentar, bajó los problemas de hombro del 23 al 17 %.",
+      "No redujo de forma clara los problemas importantes, y sus ejercicios exactos no se han podido verificar.",
+      "En la biblioteca, en Hombros: rotaciones con banda, polea o mancuerna, y un empuje isométrico contra la pared."
+     ],
+     "c": "Si el hombro le duele mucho, el dolor va a más o le cuesta moverlo, consulte a un médico o fisioterapeuta antes de cargarlo.",
+     "n": "Se probó en deportistas de élite que lanzan: en otras personas es evidencia indirecta."
+    },
+    "f": [
+     "Andersson et al., programa de hombro del OSTRC en balonmano de élite (Br J Sports Med, 2017)",
+     "NHS: esguinces y distensiones"
+    ],
+    "v": [
+     "ejercicios para el manguito rotador",
+     "como fortalezco el manguito de los rotadores",
+     "rotación externa de hombro para qué sirve",
+     "¿cómo cuido los rotadores del hombro?",
+     "manguito rotador débil qué hago",
+     "ejercicios de hombro con goma para los rotadores",
+     "prevenir lesiones de hombro",
+     "¿qué es el manguito rotador?",
+     "supraespinoso ejercicios",
+     "rutina para los rotadores del hombro",
+     "¿me explicas cómo se entrena el manguito?",
+     "reforzar el manguito rotador"
+    ],
+    "k": [
+     "infraespinoso",
+     "subescapular",
+     "redondo menor",
+     "OSTRC",
+     "rotaciones",
+     "balonmano",
+     "refuerzo",
+     "pádel",
+     "tenis",
+     "proteger"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum lucrez coafa rotatorilor?",
+    "r": {
+     "t": "Sunt patru mușchi mici care rotesc brațul și stabilizează umărul. Se lucrează cu rotații: cu cotul lipit de corp, rotiți antebrațul spre exterior și spre interior, cu o bandă elastică, la scripete sau cu o ganteră ușoară.",
+     "p": [
+      "Aceștia sunt supraspinosul, infraspinosul, rotundul mic și subscapularul.",
+      "La handbaliștii de elită, un program pentru umăr de circa 10 minute, de 3 ori pe săptămână, la încălzire, a redus problemele de umăr de la 23 % la 17 %.",
+      "Nu a redus clar problemele importante, iar exercițiile exacte ale programului nu au putut fi verificate.",
+      "În bibliotecă, la Umeri: rotații cu bandă elastică, la scripete sau cu ganteră și o împingere izometrică în perete."
+     ],
+     "c": "Dacă umărul vă doare tare, durerea crește sau vă e greu să-l mișcați, consultați un medic ori un fizioterapeut înainte să-l solicitați.",
+     "n": "A fost testat la sportivi de elită care aruncă: pentru alte persoane, dovezile sunt indirecte."
+    },
+    "f": [
+     "Andersson et al., programul OSTRC pentru umăr în handbalul de elită (Br J Sports Med, 2017)",
+     "NHS: entorse și întinderi"
+    ],
+    "v": [
+     "exerciții pentru coafa rotatorilor",
+     "cum întăresc coafa rotatorilor",
+     "la ce folosește rotația externă a umărului",
+     "cum am grijă de rotatorii umărului?",
+     "coafa rotatorilor slabă, ce fac",
+     "exerciții de umăr cu elastic pentru rotatori",
+     "prevenirea accidentărilor la umăr",
+     "ce e coafa rotatorilor?",
+     "exerciții pentru supraspinos",
+     "rutină pentru rotatorii umărului",
+     "îmi explici cum se antrenează coafa?",
+     "întărirea coafei rotatorilor"
+    ],
+    "k": [
+     "infraspinos",
+     "subscapular",
+     "rotund mic",
+     "OSTRC",
+     "rotații",
+     "handbal",
+     "întărire",
+     "padel",
+     "tenis",
+     "protecție"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "serrato-anterior",
+   "es": {
+    "q": "¿Para qué sirve el serrato anterior y cómo se trabaja?",
+    "r": {
+     "t": "El serrato anterior pega el omóplato a las costillas. En un estudio, lo que más lo activó fue elevar el brazo en el plano del omóplato, hacia delante y algo hacia fuera, por encima de los 120°, y un ejercicio en diagonal.",
+     "p": [
+      "Fue un estudio de electromiografía (mide cuánto se activa el músculo, no cuánto crece) con 30 personas sanas (Ekstrom 2003).",
+      "El ejercicio en diagonal combinaba subir el brazo hacia delante, cruzarlo por delante del cuerpo y girarlo hacia fuera.",
+      "En el estudio se pasó de 120°, más arriba del hombro; la ficha de elevación en el plano de la escápula llega solo a la altura del hombro.",
+      "En Espalda alta y trapecio tiene también la flexión escapular en la pared o a cuatro patas, que separa y junta los omóplatos.",
+      "En la app, el serrato forma parte del grupo Espalda alta y trapecio."
+     ],
+     "n": "Es un solo estudio pequeño que mide activación: no prueba que el músculo crezca más ni que prevenga lesiones."
+    },
+    "f": [
+     "Ekstrom et al., actividad eléctrica del trapecio y del serrato anterior en distintos ejercicios (J Orthop Sports Phys Ther, 2003)"
+    ],
+    "v": [
+     "serrato anterior ejercicios",
+     "para que sirve el serrato",
+     "¿qué ejercicios trabajan el serrato?",
+     "músculo serrato cómo se entrena",
+     "¿el serrato está en el pecho o en la espalda?",
+     "¿qué es el dentado anterior?",
+     "ejercicios para el músculo de las costillas",
+     "serrato con mancuernas",
+     "como activo el serrato anterior",
+     "¿me dices dónde está el serrato en la app?",
+     "¿cuál es el músculo de debajo de la axila?"
+    ],
+    "k": [
+     "escápula",
+     "protracción",
+     "120 grados",
+     "Ekstrom",
+     "omoplato",
+     "tórax",
+     "serratos",
+     "marcar",
+     "sobaco",
+     "axila"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "La ce folosește dințatul anterior și cum se lucrează?",
+    "r": {
+     "t": "Dințatul anterior ține omoplatul lipit de coaste. Într-un studiu, cel mai mult l-au activat ridicarea brațului în planul omoplatului, înainte și puțin spre exterior, peste 120°, și un exercițiu în diagonală.",
+     "p": [
+      "A fost un studiu de electromiografie (măsoară cât se activează mușchiul, nu cât crește), cu 30 de persoane sănătoase (Ekstrom 2003).",
+      "Exercițiul în diagonală combina ridicarea brațului înainte, trecerea lui prin fața corpului și rotirea lui spre exterior.",
+      "În studiu s-a trecut de 120°, deasupra umărului; fișa ridicărilor în planul omoplatului merge doar până la înălțimea umărului.",
+      "La Spate superior și trapez aveți și flotările scapulare la perete sau în patru labe, care depărtează și apropie omoplații.",
+      "În aplicație, dințatul face parte din grupa Spate superior și trapez."
+     ],
+     "n": "Este un singur studiu mic, care măsoară activarea: nu dovedește că mușchiul crește mai mult sau că previne accidentările."
+    },
+    "f": [
+     "Ekstrom et al., activitatea electrică a trapezului și a dințatului anterior în diferite exerciții (J Orthop Sports Phys Ther, 2003)"
+    ],
+    "v": [
+     "exerciții pentru dințatul anterior",
+     "la ce folosește dințatul",
+     "ce exerciții lucrează dințatul?",
+     "mușchiul dințat, cum se antrenează",
+     "dințatul e pe piept sau pe spate?",
+     "ce e serratus anterior?",
+     "exerciții pentru mușchiul de pe coaste",
+     "dințatul cu gantere",
+     "cum activez dințatul anterior",
+     "îmi spui unde e dințatul în aplicație?",
+     "care e mușchiul de sub axilă?",
+     "cum lucrez dințatul anterior?"
+    ],
+    "k": [
+     "scapulă",
+     "protracție",
+     "120 de grade",
+     "Ekstrom",
+     "omoplat",
+     "torace",
+     "dințați",
+     "definit",
+     "subsuoară",
+     "axilă",
+     "omoplați ieșiți în afară",
+     "omoplații",
+     "mușchiul dințat"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "trapecio-medio-y-bajo",
+   "es": {
+    "q": "¿Cómo trabajo la parte media y baja del trapecio?",
+    "r": {
+     "t": "Según un estudio, con la «Y» boca abajo, brazos por encima de la cabeza, para la parte baja y la media, y con la «T», brazos en cruz, para la media. El encogimiento a una mano fue el que más activó la parte alta.",
+     "p": [
+      "Lo midió un estudio de electromiografía con 30 personas sanas (Ekstrom 2003); la «T» se hizo con el brazo girado hacia fuera.",
+      "Suba los brazos sobre todo con los hombros, no con la zona lumbar, y mantenga arriba de 5 a 10 segundos, como indican las fichas.",
+      "No necesitan material: están en Espalda alta y trapecio, junto con la elevación trap-3 y los encogimientos con mancuernas."
+     ],
+     "n": "Un solo estudio pequeño que mide activación, no crecimiento: sirve para elegir ejercicios, no para prometer resultados."
+    },
+    "f": [
+     "Ekstrom et al., actividad eléctrica del trapecio y del serrato anterior en distintos ejercicios (J Orthop Sports Phys Ther, 2003)"
+    ],
+    "v": [
+     "ejercicios para el trapecio medio",
+     "trapecio inferior como se entrena",
+     "¿cómo fortalezco la parte baja del trapecio?",
+     "elevaciones en Y y en T para qué sirven",
+     "ejercicios para la mitad de la espalda",
+     "omoplatos hacia atras ejercicios",
+     "trapecio bajo sin material",
+     "¿los encogimientos trabajan todo el trapecio?",
+     "espalda alta ejercicios en el suelo",
+     "¿me explica cómo se hace la Y tumbado?",
+     "ejercicios boca abajo para la espalda alta",
+     "¿qué ejercicio mejora la postura de la espalda alta?"
+    ],
+    "k": [
+     "romboides",
+     "prono",
+     "Ekstrom",
+     "escápulas",
+     "retracción",
+     "trap-3",
+     "tumbado de bruces",
+     "juntar las escápulas",
+     "postura",
+     "mancuernas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum lucrez partea mijlocie și cea inferioară a trapezului?",
+    "r": {
+     "t": "Potrivit unui studiu, cu „Y” cu fața în jos, cu brațele deasupra capului, pentru partea inferioară și cea mijlocie, și cu „T”, cu brațele în cruce, pentru cea mijlocie. Ridicarea umărului cu o singură mână a activat cel mai mult partea superioară.",
+     "p": [
+      "L-a măsurat un studiu de electromiografie cu 30 de persoane sănătoase (Ekstrom 2003); „T” s-a făcut cu brațul rotit spre exterior.",
+      "Ridicați brațele mai ales din umeri, nu din zona lombară, și mențineți-le sus 5–10 secunde, cum arată fișele.",
+      "Nu e nevoie de echipament: sunt la Spate superior și trapez, împreună cu ridicarea trap-3 și ridicările de umeri cu gantere."
+     ],
+     "n": "Un singur studiu mic, care măsoară activarea, nu creșterea: ajută la alegerea exercițiilor, nu la promisiuni de rezultate."
+    },
+    "f": [
+     "Ekstrom et al., activitatea electrică a trapezului și a dințatului anterior în diferite exerciții (J Orthop Sports Phys Ther, 2003)"
+    ],
+    "v": [
+     "exerciții pentru trapezul mijlociu",
+     "trapezul inferior, cum se antrenează",
+     "cum întăresc partea de jos a trapezului?",
+     "ridicările în Y și în T, la ce folosesc",
+     "exerciții pentru mijlocul spatelui",
+     "exerciții cu omoplații trași înapoi",
+     "trapezul inferior fără echipament",
+     "ridicările de umeri lucrează tot trapezul?",
+     "exerciții pe sol pentru spatele superior",
+     "îmi explicați cum se face Y-ul din culcat?",
+     "exerciții cu fața în jos pentru spatele superior",
+     "ce exercițiu îmbunătățește postura spatelui superior?"
+    ],
+    "k": [
+     "romboizi",
+     "decubit ventral",
+     "Ekstrom",
+     "scapule",
+     "retracție",
+     "trap-3",
+     "culcat pe burtă",
+     "apropierea omoplaților",
+     "postură",
+     "gantere",
+     "umerii căzuți"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "partes-del-hombro",
+   "es": {
+    "q": "¿Cómo trabajo cada parte del hombro?",
+    "r": {
+     "t": "El deltoides tiene tres partes. En un estudio, la elevación frontal activó sobre todo la anterior; la lateral con el brazo sin girar, la del medio; y la lateral con el pulgar hacia abajo, la posterior y el trapecio alto.",
+     "p": [
+      "Fue un estudio de electromiografía en culturistas (Coratella 2020): mide cuánto se activa el músculo, no cuánto crece.",
+      "Para la parte del medio, la lateral sin girar superó a la girada hacia fuera, a la de codo doblado y a la frontal, pero no a la del pulgar abajo.",
+      "Para la parte posterior, en la biblioteca tiene los pájaros, que suben los brazos hacia los lados con el tronco inclinado.",
+      "La ficha de la elevación lateral gira el brazo algo hacia fuera al subir, por seguridad del hombro."
+     ],
+     "n": "Un solo estudio, con culturistas y midiendo activación: orienta para elegir la variante, no promete crecimiento."
+    },
+    "f": [
+     "Coratella et al., electromiografía del deltoides en variantes de elevación (Int J Environ Res Public Health, 2020)"
+    ],
+    "v": [
+     "ejercicios para el deltoides lateral",
+     "como trabajo el hombro posterior",
+     "deltoides anterior medio y posterior",
+     "¿qué ejercicio para la parte de atrás del hombro?",
+     "elevaciones laterales con el pulgar hacia abajo",
+     "hombros más anchos qué ejercicio",
+     "¿qué trabaja la elevación frontal?",
+     "pajaros para que sirven",
+     "deltoides posterior ejercicios",
+     "como se entrena el deltoides",
+     "¿me dices qué ejercicio para cada parte del hombro?"
+    ],
+    "k": [
+     "porciones del deltoides",
+     "Coratella",
+     "rotación interna",
+     "electromiografía",
+     "deltoide trasero",
+     "hombro delantero",
+     "hombro trasero",
+     "elevaciones laterales"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum lucrez fiecare parte a umărului?",
+    "r": {
+     "t": "Deltoidul are trei părți. Într-un studiu, ridicările frontale au activat mai ales partea anterioară; ridicările laterale cu brațul nerotit, partea mijlocie; iar ridicările laterale cu degetul mare în jos, partea posterioară și trapezul superior.",
+     "p": [
+      "A fost un studiu de electromiografie la culturiști (Coratella 2020): măsoară cât se activează mușchiul, nu cât crește.",
+      "Pentru partea mijlocie, ridicările laterale fără rotire au depășit varianta rotită spre exterior, pe cea cu cotul îndoit și ridicările frontale, dar nu și varianta cu degetul mare în jos.",
+      "Pentru partea posterioară, în bibliotecă aveți fluturările inverse, în care ridicați brațele lateral cu trunchiul aplecat.",
+      "Fișa ridicărilor laterale rotește brațul puțin spre exterior la urcare, pentru siguranța umărului."
+     ],
+     "n": "Un singur studiu, cu culturiști, care măsoară activarea: ajută la alegerea variantei, nu promite creștere."
+    },
+    "f": [
+     "Coratella et al., electromiografia deltoidului în variante de ridicări (Int J Environ Res Public Health, 2020)"
+    ],
+    "v": [
+     "exerciții pentru deltoidul lateral",
+     "cum lucrez umărul posterior",
+     "deltoid anterior, mijlociu și posterior",
+     "ce exercițiu pentru partea din spate a umărului?",
+     "ridicări laterale cu degetul mare în jos",
+     "umeri mai lați, ce exercițiu",
+     "ce lucrează ridicările frontale?",
+     "fluturările inverse, la ce folosesc",
+     "exerciții pentru deltoidul posterior",
+     "cum se antrenează deltoidul",
+     "îmi spui ce exercițiu pentru fiecare parte a umărului?"
+    ],
+    "k": [
+     "fasciculele deltoidului",
+     "Coratella",
+     "rotație internă",
+     "electromiografie",
+     "deltoid posterior",
+     "umărul din față",
+     "umărul din spate",
+     "ridicări laterale",
+     "părțile umărului"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "triceps-mejor-ejercicio",
+   "es": {
+    "q": "¿Qué ejercicio de tríceps funciona mejor?",
+    "r": {
+     "t": "En un ensayo, la extensión por encima de la cabeza hizo crecer más el tríceps que la extensión hacia abajo en polea: 1,4 veces más el músculo entero y 1,5 veces más su cabeza larga.",
+     "p": [
+      "Fueron 12 semanas en polea, un brazo con cada variante: por encima de la cabeza, la cabeza larga creció un 28,5 %, frente al 19,6 %.",
+      "Y lo consiguió moviendo entre un 34 y un 39 % menos de peso: no compare su progreso por los kilos entre variantes.",
+      "No hace falta abandonar la extensión hacia abajo: el error es hacer solo esa.",
+      "En la biblioteca (Tríceps): extensión sobre la cabeza en polea con cuerda o con mancuerna, de pie o sentado."
+     ],
+     "n": "Es un ensayo pequeño; tres de los cuatro de este tipo que hemos leído son de un mismo grupo y con principiantes: provisional hasta que otros lo repitan."
+    },
+    "f": [
+     "Maeo et al., extensión de tríceps por encima de la cabeza frente a hacia abajo (Eur J Sport Sci, 2023)"
+    ],
+    "v": [
+     "mejor ejercicio para el triceps",
+     "¿qué ejercicio hace crecer más el tríceps?",
+     "extensión de tríceps por encima de la cabeza o en polea",
+     "triceps polea o press frances",
+     "como agrando el triceps",
+     "brazos más grandes tríceps ejercicio",
+     "¿sirve hacer solo jalones de tríceps?",
+     "cabeza larga del triceps como se trabaja",
+     "pushdown o extension sobre la cabeza",
+     "¿cuál es el rey de los ejercicios de tríceps?",
+     "dime el mejor ejercicio de tríceps"
+    ],
+    "k": [
+     "Maeo",
+     "hipertrofia",
+     "brazo",
+     "cuerda",
+     "overhead",
+     "mancuerna",
+     "brazos gruesos",
+     "el mejor"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce exercițiu pentru triceps funcționează cel mai bine?",
+    "r": {
+     "t": "Într-un studiu, extensiile deasupra capului au crescut tricepsul mai mult decât extensiile în jos la scripete: de 1,4 ori mai mult întregul mușchi și de 1,5 ori mai mult capul lung.",
+     "p": [
+      "Au fost 12 săptămâni la scripete, câte un braț pentru fiecare variantă: deasupra capului, capul lung a crescut cu 28,5 %, față de 19,6 %.",
+      "Și varianta deasupra capului a reușit asta cu o greutate cu 34–39 % mai mică: nu vă comparați progresul după kilogramele de la o variantă la alta.",
+      "Nu e nevoie să renunțați la extensiile în jos: greșeala este să le faceți doar pe ele.",
+      "În bibliotecă (Triceps): extensii deasupra capului la scripete, cu frânghie, sau cu ganteră, din picioare sau din șezut."
+     ],
+     "n": "Este un studiu mic; trei din cele patru studii de acest tip pe care le-am citit sunt ale aceluiași grup și cu începători: luați-l ca provizoriu, până când îl repetă și alții."
+    },
+    "f": [
+     "Maeo et al., extensiile pentru triceps deasupra capului față de cele în jos (Eur J Sport Sci, 2023)"
+    ],
+    "v": [
+     "cel mai bun exercițiu pentru triceps",
+     "ce exercițiu crește cel mai mult tricepsul?",
+     "extensii pentru triceps deasupra capului sau la scripete",
+     "triceps la scripete sau presă franceză",
+     "cum îmi măresc tricepsul",
+     "brațe mai mari, exercițiu pentru triceps",
+     "ajută să fac doar extensii la scripete?",
+     "capul lung al tricepsului, cum se lucrează",
+     "pushdown sau extensii deasupra capului",
+     "care e regele exercițiilor pentru triceps?",
+     "spune-mi cel mai bun exercițiu pentru triceps",
+     "vreau să cresc tricepsul, ce exercițiu fac?"
+    ],
+    "k": [
+     "Maeo",
+     "hipertrofie",
+     "braț",
+     "frânghie",
+     "overhead",
+     "ganteră",
+     "brațe groase",
+     "tricepsul"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "curl-femoral",
+   "es": {
+    "q": "¿Curl femoral sentado o tumbado?",
+    "r": {
+     "t": "Sentado, según un ensayo: el curl femoral sentado hizo crecer los isquiotibiales un 14 %, frente al 9 % del tumbado.",
+     "p": [
+      "La ventaja se vio en los músculos que cruzan la cadera y la rodilla; en la cabeza corta del bíceps femoral, que solo cruza la rodilla, no.",
+      "Si solo tiene una de las dos máquinas, úsela: el tumbado también hizo crecer los isquiotibiales.",
+      "En la biblioteca tiene los dos en máquina, en Isquiotibiales; sin máquina, el curl deslizando los talones o el curl nórdico, más difícil."
+     ],
+     "n": "Es un solo ensayo pequeño, de un grupo que firma otros estudios parecidos: tómelo como provisional."
+    },
+    "f": [
+     "Maeo et al., curl femoral sentado frente a tumbado (Med Sci Sports Exerc, 2021)"
+    ],
+    "v": [
+     "curl femoral sentado o tumbado cual es mejor",
+     "¿qué máquina de femoral es mejor?",
+     "leg curl sentado vs tumbado",
+     "curl de isquios tumbado sirve",
+     "mejor ejercicio para los isquiotibiales en maquina",
+     "femoral sentado",
+     "¿curl de piernas acostado o sentado?",
+     "isquios crecer más ejercicio",
+     "curl femoral boca abajo o sentado",
+     "¿qué máquina de femoral me recomienda?"
+    ],
+    "k": [
+     "femorales",
+     "Maeo",
+     "bíceps femoral",
+     "semitendinoso",
+     "hamstring",
+     "rodilla"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Flexii pentru femurali din șezut sau din culcat?",
+    "r": {
+     "t": "Din șezut, potrivit unui studiu: flexiile pentru femurali din șezut au crescut femuralii cu 14 %, față de 9 % la cele din culcat.",
+     "p": [
+      "Avantajul s-a văzut la mușchii care trec peste șold și peste genunchi; la capul scurt al bicepsului femural, care trece doar peste genunchi, nu.",
+      "Dacă aveți doar unul dintre cele două aparate, folosiți-l: și flexiile din culcat au crescut femuralii.",
+      "În bibliotecă le aveți pe amândouă la aparat, la Femurali; fără aparat, flexiile cu alunecarea călcâielor sau flexiile nordice, mai grele."
+     ],
+     "n": "Este un singur studiu mic, al unui grup care semnează și alte studii asemănătoare: luați-l ca provizoriu."
+    },
+    "f": [
+     "Maeo et al., flexiile pentru femurali din șezut față de cele din culcat (Med Sci Sports Exerc, 2021)"
+    ],
+    "v": [
+     "flexii pentru femurali din șezut sau din culcat, care e mai bun",
+     "ce aparat pentru femurali e mai bun?",
+     "leg curl din șezut vs din culcat",
+     "flexiile din culcat pentru femurali ajută",
+     "cel mai bun exercițiu pentru femurali la aparat",
+     "femurali din șezut",
+     "flexii pentru picioare din culcat sau din șezut?",
+     "exercițiu ca să crească femuralii",
+     "flexii pentru femurali cu fața în jos sau din șezut",
+     "ce aparat pentru femurali îmi recomandați?"
+    ],
+    "k": [
+     "femural",
+     "Maeo",
+     "biceps femural",
+     "semitendinos",
+     "hamstring",
+     "genunchi",
+     "leg curl",
+     "întins",
+     "bicepsul femural",
+     "partea din spate a coapsei"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "gemelos-de-pie-o-sentado",
+   "es": {
+    "q": "¿Elevación de talones de pie o sentado?",
+    "r": {
+     "t": "De pie, si quiere que crezca el gemelo: en un ensayo creció un 9–12 % con la elevación de pie y menos de un 2 % sentado. El sóleo, también de la pantorrilla, creció parecido con las dos.",
+     "p": [
+      "Cifras del ensayo (Kinoshita 2023): gemelo interno +9,2 % y externo +12,4 % de pie, frente a +0,6 % y +1,7 % sentado.",
+      "De pie se hace con la rodilla estirada, y sentado, doblada.",
+      "No necesita la elevación sentada para el sóleo: también creció haciéndola de pie.",
+      "Sin máquina, la biblioteca tiene la elevación de talones de pie, en un escalón o a una pierna."
+     ],
+     "n": "Es un solo ensayo, y tres de los cuatro de este tipo que hemos leído son pequeños y de un mismo grupo: tómelo como provisional."
+    },
+    "f": [
+     "Kinoshita et al., elevación de talones de pie frente a sentado (Front Physiol, 2023)"
+    ],
+    "v": [
+     "gemelos de pie o sentado",
+     "¿qué es mejor para la pantorrilla, de pie o sentado?",
+     "elevacion de talones sentado sirve",
+     "como crecer los gemelos",
+     "pantorrillas que no crecen",
+     "¿la máquina de gemelos sentado vale para algo?",
+     "soleo ejercicio sentado",
+     "ponerse de puntillas para los gemelos",
+     "calf raise de pie",
+     "gemelo y sóleo diferencia",
+     "¿me recomiendas gemelos de pie o sentado?",
+     "tengo los gemelos muy finos, ¿cómo los hago crecer?"
+    ],
+    "k": [
+     "gastrocnemio",
+     "Kinoshita",
+     "rodilla estirada",
+     "tríceps sural",
+     "hipertrofia",
+     "pierna baja",
+     "pantorrillas delgadas",
+     "flacas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ridicări pe vârfuri din picioare sau din șezut?",
+    "r": {
+     "t": "Din picioare, dacă vreți să crească gastrocnemianul: într-un studiu, a crescut cu 9–12 % la ridicările din picioare și cu mai puțin de 2 % la cele din șezut. Solearul, tot din gambă, a crescut asemănător cu ambele.",
+     "p": [
+      "Cifrele studiului (Kinoshita 2023): gastrocnemianul medial +9,2 % și cel lateral +12,4 % din picioare, față de +0,6 % și +1,7 % din șezut.",
+      "Din picioare se face cu genunchiul întins, iar din șezut, cu genunchiul îndoit.",
+      "Nu aveți nevoie de ridicările din șezut pentru solear: a crescut și cu cele din picioare.",
+      "Fără aparat, biblioteca are ridicările pe vârfuri din picioare, pe treaptă sau pe un picior."
+     ],
+     "n": "Este un singur studiu, iar trei din cele patru studii de acest tip pe care le-am citit sunt mici și ale aceluiași grup: luați-l ca provizoriu."
+    },
+    "f": [
+     "Kinoshita et al., ridicările pe vârfuri din picioare față de cele din șezut (Front Physiol, 2023)"
+    ],
+    "v": [
+     "gambe din picioare sau din șezut",
+     "ce e mai bine pentru gambă, din picioare sau din șezut?",
+     "ridicările pe vârfuri din șezut ajută",
+     "cum cresc gambele",
+     "gambele nu cresc",
+     "aparatul de gambe din șezut e bun la ceva?",
+     "exercițiu pentru solear din șezut",
+     "ridicarea pe vârfuri pentru gambe",
+     "calf raise din picioare",
+     "diferența dintre gastrocnemian și solear",
+     "îmi recomanzi gambe din picioare sau din șezut?",
+     "am gambele foarte subțiri, cum le fac să crească?"
+    ],
+    "k": [
+     "gastrocnemian",
+     "Kinoshita",
+     "genunchi întins",
+     "triceps sural",
+     "hipertrofie",
+     "partea de jos a piciorului",
+     "gambe subțiri",
+     "slabe",
+     "exerciții"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "tibial-anterior",
+   "es": {
+    "q": "¿Hay que entrenar el tibial anterior?",
+    "r": {
+     "t": "No hemos leído estudios que demuestren que haga falta entrenarlo aparte. Es el músculo de la espinilla que levanta la punta del pie; si quiere trabajarlo, la biblioteca tiene ejercicios sencillos y sin material.",
+     "p": [
+      "No hay ensayos leídos que midan si entrenarlo directamente aporta algo.",
+      "Lo que sí está probado: en un metaanálisis de 25 ensayos, el entrenamiento de fuerza en general redujo las lesiones deportivas a menos de un tercio.",
+      "En Pantorrillas y espinillas tiene la elevación de tibial de pie, los toques de puntas sentado y la flexión del tobillo con banda."
+     ],
+     "n": "Esta respuesta puede cambiar cuando se lean ensayos que entrenen el tibial anterior."
+    },
+    "f": [
+     "Lauersen et al., metaanálisis del ejercicio para prevenir lesiones deportivas (Br J Sports Med, 2014)"
+    ],
+    "v": [
+     "tibial anterior ejercicios",
+     "¿para qué sirve el tibial anterior?",
+     "fortalecer la espinilla",
+     "músculo de delante de la pierna",
+     "levantar la punta del pie ejercicio",
+     "tibialis raises sirven",
+     "hay que entrenar la espinilla",
+     "elevacion de punta de pies",
+     "tibial con banda",
+     "flexion dorsal tobillo fuerza",
+     "¿me merece la pena trabajar el tibial?"
+    ],
+    "k": [
+     "dorsiflexión",
+     "dorsiflexores",
+     "Lauersen",
+     "shin",
+     "caña",
+     "puntera",
+     "periostitis",
+     "dolor de espinilla",
+     "correr"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Trebuie antrenat tibialul anterior?",
+    "r": {
+     "t": "Nu am citit studii care să arate că trebuie antrenat separat. Este mușchiul din fața tibiei care ridică vârful piciorului; dacă vreți să-l lucrați, biblioteca are exerciții simple și fără echipament.",
+     "p": [
+      "Nu există studii citite care să măsoare dacă antrenarea lui directă aduce ceva.",
+      "Ce este dovedit: într-o metaanaliză a 25 de studii, antrenamentul de forță în general a redus accidentările sportive la mai puțin de o treime.",
+      "La Gambe și tibii aveți ridicările pentru tibial din picioare, bătăile cu vârfurile picioarelor din șezut și flexia dorsală a gleznei cu bandă elastică."
+     ],
+     "n": "Acest răspuns se poate schimba când vor fi citite studii care antrenează tibialul anterior."
+    },
+    "f": [
+     "Lauersen et al., metaanaliză privind exercițiile pentru prevenirea accidentărilor sportive (Br J Sports Med, 2014)"
+    ],
+    "v": [
+     "exerciții pentru tibialul anterior",
+     "la ce folosește tibialul anterior?",
+     "întărirea tibiei",
+     "mușchiul din fața piciorului",
+     "exercițiu pentru ridicarea vârfului piciorului",
+     "tibialis raises ajută",
+     "trebuie antrenată tibia",
+     "ridicarea vârfurilor picioarelor",
+     "tibial cu bandă",
+     "forța pentru flexia dorsală a gleznei",
+     "merită să lucrez tibialul?"
+    ],
+    "k": [
+     "flexie dorsală",
+     "flexori dorsali",
+     "Lauersen",
+     "shin",
+     "fluierul piciorului",
+     "vârful piciorului",
+     "periostită",
+     "durere de tibie",
+     "alergare",
+     "stând pe călcâie"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "aductores",
+   "es": {
+    "q": "¿Por qué trabajar los aductores?",
+    "r": {
+     "t": "Porque son los músculos que juntan las piernas, y porque en fútbol un solo ejercicio para ellos, la aducción de Copenhague, redujo los problemas de ingle del 21,3 al 13,5 %.",
+     "p": [
+      "Fue un ensayo con 35 equipos de fútbol semiprofesional: un 41 % menos de riesgo de problemas de ingle (Harøy 2019).",
+      "Se pautó 3 veces por semana en pretemporada y 1 en temporada, con tres niveles; en la biblioteca, empiece por la más fácil, con la rodilla apoyada.",
+      "En la biblioteca (Glúteos y cadera) tiene las dos versiones de Copenhague y la aducción tumbado de lado, sin material, o en máquina.",
+      "En la app, los aductores cuentan en el grupo Glúteos y cadera."
+     ],
+     "n": "Se probó en futbolistas y sobre problemas que declaraban ellos mismos; en otros deportes es evidencia indirecta."
+    },
+    "f": [
+     "Harøy et al., programa de aducción de Copenhague en fútbol (Br J Sports Med, 2019)"
+    ],
+    "v": [
+     "para que sirven los aductores",
+     "ejercicios para la ingle",
+     "aductor de copenhague",
+     "fortalecer aductores futbol",
+     "¿cómo evito las lesiones de ingle?",
+     "parte interna del muslo ejercicios",
+     "copenhague plank",
+     "maquina de aductores sirve",
+     "aductores débiles",
+     "pubalgia prevenir",
+     "¿me explicas el ejercicio de Copenhague?"
+    ],
+    "k": [
+     "aducción",
+     "Harøy",
+     "inguinal",
+     "pubis",
+     "cara interna",
+     "Haroy",
+     "lesión de ingle",
+     "futbolistas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "De ce să lucrez aductorii?",
+    "r": {
+     "t": "Pentru că sunt mușchii care apropie picioarele și pentru că, în fotbal, un singur exercițiu pentru ei, aducția Copenhaga, a redus problemele în zona inghinală de la 21,3 % la 13,5 %.",
+     "p": [
+      "A fost un studiu cu 35 de echipe de fotbal semiprofesionist: un risc cu 41 % mai mic de probleme în zona inghinală (Harøy 2019).",
+      "S-au recomandat 3 sesiuni pe săptămână în perioada de pregătire și 1 în sezon, cu trei niveluri; în bibliotecă, începeți cu varianta cea mai ușoară, cu genunchiul sprijinit.",
+      "În bibliotecă (Fesieri și șold) aveți cele două variante ale aducției Copenhaga și aducția șoldului din culcat pe o parte, fără echipament, sau la aparat.",
+      "În aplicație, aductorii se numără la grupa Fesieri și șold."
+     ],
+     "n": "A fost testat la fotbaliști și pe probleme raportate chiar de ei; pentru alte sporturi, dovezile sunt indirecte."
+    },
+    "f": [
+     "Harøy et al., programul cu aducția Copenhaga în fotbal (Br J Sports Med, 2019)"
+    ],
+    "v": [
+     "la ce folosesc aductorii",
+     "exerciții pentru zona inghinală",
+     "aducția copenhaga",
+     "întărirea aductorilor la fotbal",
+     "cum evit accidentările în zona inghinală?",
+     "exerciții pentru partea interioară a coapsei",
+     "copenhagen plank",
+     "aparatul pentru aductori e bun",
+     "aductori slabi",
+     "prevenirea pubalgiei",
+     "îmi explici exercițiul Copenhaga?"
+    ],
+    "k": [
+     "aducție",
+     "Harøy",
+     "inghinal",
+     "pubis",
+     "partea interioară",
+     "Haroy",
+     "accidentare inghinală",
+     "fotbaliști",
+     "interiorul coapsei",
+     "coapselor"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "suelo-pelvico",
+   "es": {
+    "q": "¿Qué es el suelo pélvico y cómo se trabaja?",
+    "r": {
+     "t": "Son músculos profundos de la base de la pelvis. La guía británica NICE anima a todas las mujeres a entrenarlos, también en el embarazo y tras el parto, y pide un programa supervisado ante pérdidas de orina con los esfuerzos.",
+     "p": [
+      "Para las pérdidas al hacer esfuerzos (también si se mezclan con otras), ese programa dura al menos 3 meses.",
+      "Ese programa debe supervisarlo un fisioterapeuta u otro profesional sanitario con experiencia en el entrenamiento del suelo pélvico.",
+      "La app no tiene ejercicios de suelo pélvico.",
+      "Entrenarlo puede beneficiar a cualquier persona con pérdidas de orina. En hombres, NICE lo recomienda supervisado, al menos 3 meses, si hay pérdidas con los esfuerzos tras operarse de la próstata."
+     ],
+     "c": "Consulte a su médico, matrona o a un fisioterapeuta especializado si tiene pérdidas de orina, también durante el embarazo o tras el parto.",
+     "n": "NICE es la guía oficial británica; no hemos leído una guía española equivalente."
+    },
+    "f": [
+     "NICE NG210: disfunción del suelo pélvico, prevención y tratamiento no quirúrgico (Reino Unido)",
+     "NICE CG97: síntomas urinarios bajos en hombres, tratamiento (Reino Unido)",
+     "NHS: incontinencia urinaria, tratamiento"
+    ],
+    "v": [
+     "que es el suelo pelvico",
+     "ejercicios de suelo pélvico",
+     "kegel como se hacen",
+     "se me escapa el pis al saltar",
+     "pérdidas de orina al correr",
+     "suelo pelvico despues del parto",
+     "¿cómo fortalezco el suelo pélvico?",
+     "incontinencia al toser",
+     "suelo pélvico en el embarazo",
+     "suelo pelvico hombres",
+     "periné ejercicios",
+     "se me escapa la orina al toser o estornudar",
+     "cuando salto se me sale el pis",
+     "¿para qué sirven los ejercicios del suelo pélvico?"
+    ],
+    "k": [
+     "vejiga",
+     "NICE",
+     "matrona",
+     "fisioterapia",
+     "uroginecología",
+     "pelvis",
+     "escapes",
+     "toso",
+     "saltos",
+     "ejercicios de Kegel"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce este planșeul pelvin și cum se lucrează?",
+    "r": {
+     "t": "Sunt mușchi profunzi de la baza pelvisului. Ghidul britanic NICE încurajează toate femeile să-i antreneze, inclusiv în sarcină și după naștere, și recomandă un program supravegheat în caz de pierderi de urină la efort.",
+     "p": [
+      "Pentru pierderile de urină la efort (inclusiv când se combină cu alte tipuri), programul durează cel puțin 3 luni.",
+      "Programul trebuie supravegheat de un fizioterapeut sau de alt profesionist din domeniul sănătății cu experiență în antrenamentul planșeului pelvin.",
+      "Aplicația nu are exerciții pentru planșeul pelvin.",
+      "Antrenarea lui poate ajuta orice persoană cu pierderi de urină. La bărbați, NICE recomandă antrenamentul supravegheat, cel puțin 3 luni, dacă apar pierderi la efort după o operație de prostată."
+     ],
+     "c": "Consultați-vă medicul, moașa sau un fizioterapeut specializat dacă aveți pierderi de urină, inclusiv în timpul sarcinii sau după naștere.",
+     "n": "NICE emite ghidurile oficiale britanice; nu am citit un ghid spaniol echivalent."
+    },
+    "f": [
+     "NICE NG210: disfuncția planșeului pelvin, prevenire și tratament nechirurgical (Regatul Unit)",
+     "NICE CG97: simptomele tractului urinar inferior la bărbați, tratament (Regatul Unit)",
+     "NHS: incontinența urinară, tratament"
+    ],
+    "v": [
+     "ce e planșeul pelvin",
+     "exerciții pentru planșeul pelvin",
+     "exercițiile kegel, cum se fac",
+     "îmi scapă pipi când sar",
+     "pierderi de urină când alerg",
+     "planșeul pelvin după naștere",
+     "cum întăresc planșeul pelvin?",
+     "incontinență la tuse",
+     "planșeul pelvin în sarcină",
+     "planșeul pelvin la bărbați",
+     "exerciții pentru perineu",
+     "îmi scapă urina când tușesc sau strănut",
+     "când sar îmi scapă pipi",
+     "la ce folosesc exercițiile pentru planșeul pelvin?"
+    ],
+    "k": [
+     "vezică",
+     "NICE",
+     "moașă",
+     "fizioterapie",
+     "uroginecologie",
+     "pelvis",
+     "scăpări",
+     "tușesc",
+     "sărituri",
+     "exerciții Kegel"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "abdominales-y-barriga",
+   "es": {
+    "q": "¿Los abdominales quitan la grasa de la barriga?",
+    "r": {
+     "t": "La evidencia apunta a que no: entrenar una zona no quita la grasa de esa zona. En un ensayo, 12 semanas trabajando una sola pierna redujeron la grasa de los brazos y del tronco, pero no la de esa pierna.",
+     "p": [
+      "En otro ensayo, 6 semanas de abdominales no redujeron la grasa de la barriga, aunque sí mejoró la resistencia abdominal, según una ficha de Kino-Québec.",
+      "Lo que sí hacen los abdominales: fortalecer los músculos que doblan, giran y sostienen el tronco.",
+      "La grasa del cuerpo cambia con el conjunto de la actividad física y la alimentación, no con un ejercicio concreto.",
+      "Sudar más tampoco la quita: el peso que se pierde sudando es agua, cerca de 1 kg por cada litro de sudor, y se recupera al beber."
+     ],
+     "n": "Son ensayos pequeños, de 11 y 24 personas; el segundo se leyó en una ficha de Kino-Québec, no en el artículo."
+    },
+    "f": [
+     "Ramírez-Campillo et al., cambios de grasa regional con entrenamiento localizado (J Strength Cond Res, 2013)",
+     "Kino-Québec, ficha científica n.º 299 sobre Vispute et al. (J Strength Cond Res, 2011)",
+     "Nutrición y rendimiento deportivo: posición conjunta AND, Dietitians of Canada y ACSM (2016)"
+    ],
+    "v": [
+     "hacer abdominales quema la tripa",
+     "¿cuántos abdominales para perder barriga?",
+     "quitar grasa abdominal con ejercicios",
+     "reducir grasa localizada",
+     "abdominales para adelgazar la cintura",
+     "¿se puede perder grasa solo de la barriga?",
+     "sudar con faja quema grasa",
+     "mito grasa localizada",
+     "quiero marcar abdominales y tengo barriga",
+     "abdominales queman grasa",
+     "¿me sirven los abdominales para la tripa?",
+     "¿haciendo abdominales se adelgaza la cintura?"
+    ],
+    "k": [
+     "michelines",
+     "vientre",
+     "reducción localizada",
+     "spot reduction",
+     "sudor",
+     "Ramírez-Campillo",
+     "panza",
+     "lonjas",
+     "rollitos",
+     "guata"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Abdomenele elimină grăsimea de pe burtă?",
+    "r": {
+     "t": "Dovezile arată că nu: antrenarea unei zone nu elimină grăsimea din acea zonă. Într-un studiu, 12 săptămâni de lucru cu un singur picior au redus grăsimea de pe brațe și de pe trunchi, dar nu pe cea a piciorului respectiv.",
+     "p": [
+      "Într-un alt studiu, 6 săptămâni de abdomene nu au redus grăsimea de pe burtă, deși rezistența abdominală s-a îmbunătățit, potrivit unei fișe Kino-Québec.",
+      "Ce fac abdomenele: întăresc mușchii care îndoaie, rotesc și susțin trunchiul.",
+      "Grăsimea corporală se schimbă în funcție de ansamblul activității fizice și al alimentației, nu de un anumit exercițiu.",
+      "Nici transpirația nu o elimină: greutatea pierdută prin transpirație este apă, circa 1 kg pentru fiecare litru de transpirație, și se recuperează când beți."
+     ],
+     "n": "Sunt studii mici, cu 11 și 24 de persoane; al doilea a fost citit într-o fișă Kino-Québec, nu în articol."
+    },
+    "f": [
+     "Ramírez-Campillo et al., modificările grăsimii regionale la antrenamentul localizat (J Strength Cond Res, 2013)",
+     "Kino-Québec, fișa științifică nr. 299, despre Vispute et al. (J Strength Cond Res, 2011)",
+     "Nutriția și performanța sportivă: declarația de poziție comună AND, Dietitians of Canada și ACSM (2016)"
+    ],
+    "v": [
+     "abdomenele ard burta",
+     "câte abdomene ca să scap de burtă?",
+     "eliminarea grăsimii abdominale cu exerciții",
+     "reducerea grăsimii localizate",
+     "abdomene pentru talie mai subțire",
+     "se poate pierde grăsime doar de pe burtă?",
+     "transpiratul cu centura de slăbit arde grăsimea",
+     "mitul grăsimii localizate",
+     "vreau să-mi definesc abdomenul și am burtă",
+     "abdomenele ard grăsime",
+     "mă ajută abdomenele pentru burtă?",
+     "făcând abdomene se subțiază talia?"
+    ],
+    "k": [
+     "colăcei",
+     "pântece",
+     "reducere localizată",
+     "spot reduction",
+     "transpirație",
+     "Ramírez-Campillo",
+     "burtică",
+     "slănină",
+     "grăsime pe burtă",
+     "talie",
+     "slăbire localizată",
+     "abdomenul plat",
+     "crunch-uri"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "core-que-es",
+   "es": {
+    "q": "¿Qué es el «core» y por qué importa?",
+    "r": {
+     "t": "«Core» no es un término anatómico: se usa para los músculos del tronco. En la app corresponde al grupo Abdomen y lumbares: recto del abdomen, oblicuos y erectores de la columna, que doblan, giran y sostienen el tronco.",
+     "p": [
+      "Importa porque es de los grupos principales: el NHS incluye abdomen y espalda entre los que los adultos deben fortalecer al menos 2 días por semana.",
+      "Se trabaja doblando el tronco (crunch), girándolo o aguantando sin moverse, como en la plancha; muchos ejercicios de pie, como la sentadilla, lo usan además.",
+      "Los músculos profundos, como el transverso del abdomen, no se dibujan en el personaje: quedan debajo."
+     ],
+     "n": "No hemos leído pruebas de que entrenarlo aparte prevenga el dolor de espalda o mejore el rendimiento: no se lo prometemos."
+    },
+    "f": [
+     "NHS: guía de actividad física para adultos de 19 a 64 años"
+    ],
+    "v": [
+     "que es el core",
+     "¿para qué sirve entrenar el core?",
+     "core músculos cuáles son",
+     "zona media del cuerpo ejercicios",
+     "faja abdominal muscular",
+     "¿el core es lo mismo que los abdominales?",
+     "musculos del tronco",
+     "core fuerte para que",
+     "core estabilidad que es",
+     "abdomen y lumbares qué músculos son",
+     "¿me explicas qué es el core?",
+     "¿qué quiere decir entrenar el core?",
+     "¿qué significa tener un core fuerte?"
+    ],
+    "k": [
+     "transverso",
+     "oblicuos",
+     "erectores",
+     "recto abdominal",
+     "núcleo",
+     "centro del cuerpo",
+     "tableta",
+     "abdominales marcados"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce înseamnă „core” și de ce contează?",
+    "r": {
+     "t": "„Core” nu este un termen anatomic: se folosește pentru mușchii trunchiului. În aplicație corespunde grupei Abdomen și zona lombară: dreptul abdominal, oblicii și erectorii coloanei, care îndoaie, rotesc și susțin trunchiul.",
+     "p": [
+      "Contează pentru că este una dintre grupele principale: NHS include abdomenul și spatele printre cele pe care adulții ar trebui să le întărească cel puțin 2 zile pe săptămână.",
+      "Se lucrează prin îndoirea trunchiului (crunch), prin rotirea lui sau prin menținerea poziției fără mișcare, ca la planșă; multe exerciții din picioare, cum sunt genuflexiunile, folosesc și ele acești mușchi.",
+      "Mușchii profunzi, cum este transversul abdominal, nu sunt desenați pe personaj: se află dedesubt."
+     ],
+     "n": "Nu am citit dovezi că antrenarea lui separată previne durerea de spate sau îmbunătățește performanța: nu vă promitem asta."
+    },
+    "f": [
+     "NHS: ghidul de activitate fizică pentru adulții între 19 și 64 de ani"
+    ],
+    "v": [
+     "ce e core-ul",
+     "la ce folosește antrenamentul pentru core?",
+     "mușchii core-ului, care sunt",
+     "exerciții pentru zona de mijloc a corpului",
+     "centura abdominală musculară",
+     "core-ul e același lucru cu abdomenul?",
+     "mușchii trunchiului",
+     "un core puternic, la ce folosește",
+     "stabilitatea core-ului, ce e",
+     "abdomen și zona lombară, ce mușchi sunt",
+     "îmi explici ce e core-ul?",
+     "ce înseamnă să antrenezi core-ul?",
+     "ce înseamnă să ai un core puternic?"
+    ],
+    "k": [
+     "transvers",
+     "oblici",
+     "erectori",
+     "drept abdominal",
+     "nucleu",
+     "centrul corpului",
+     "pătrățele",
+     "abdomen definit",
+     "trunchiul",
+     "important"
+    ],
+    "u": []
+   }
+  }
+ ]
+}
