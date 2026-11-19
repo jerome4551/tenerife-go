@@ -95,18 +95,28 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
       try { if (typeof closeRoutePanel === 'function') closeRoutePanel(); } catch (e) {}
       await new Promise(r2 => setTimeout(r2, 200));
 
-      /* 2 · abrir un pin y leer lo que dice su popup */
+      /* 2 · abrir un pin y leer lo que dice su popup.
+         Se espera a que ESE popup este abierto, hasta 5 s, y se lee dentro de el (19 de noviembre de 2026). Antes se
+         miraba a los 500 ms justos, en todo el documento. Desde que el mapa abre con la isla entera (a 360 px, zoom 9;
+         antes 8,5), el salto al grupo del Teide (zoom 13) es de 4 niveles y Leaflet lo anima (zoomAnimationThreshold:
+         4): con la cola de markercluster, el popup sale a los 0,6 s (antes, sin animar, a los 0,35 s), y a los 500 ms
+         la prueba no lo encontraba. Lo que se mira es lo que dice, no lo rapido que sale. Y antes se cierra el que
+         hubiera abierto, para no leer el del idioma anterior mientras se apaga. */
       const pl = places.find(x => x.id === 'teide') || places[0];
       const mk = (typeof markerMap !== 'undefined') ? markerMap[pl.id] : null;
       if (mk && mk.openPopup) {
         try {
+          map.closePopup();
           if (typeof clusterGroup !== 'undefined' && clusterGroup.hasLayer(mk))
             clusterGroup.zoomToShowLayer(mk, () => mk.openPopup());
           else mk.openPopup();
         } catch (e) {}
+        const tP = Date.now();
+        while (!mk.isPopupOpen() && Date.now() - tP < 5000)
+          await new Promise(r2 => setTimeout(r2, 100));
       }
-      await new Promise(r2 => setTimeout(r2, 500));
-      const hint = document.querySelector('.popup-tap-hint');
+      const caja = (mk && mk.isPopupOpen && mk.isPopupOpen()) ? mk.getPopup().getElement() : null;
+      const hint = caja ? caja.querySelector('.popup-tap-hint') : null;
       o.popup = hint ? hint.textContent.trim() : null;
 
       /* 3 · LA HOJA DE DETALLE. Tampoco la miraba nadie: las etiquetas salian
