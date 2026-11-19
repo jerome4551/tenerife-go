@@ -4318,9 +4318,9 @@
   {
    "tabla": "CUERPO_UI",
    "clave": "cuerpoDepMenores",
-   "es": "Estos estudios se hicieron con adultos. Por debajo de 18 años, siga la recomendación de la OMS para su edad.",
+   "es": "Estos estudios se hicieron sobre todo con adultos. Por debajo de 18 años, siga la recomendación de la OMS para su edad.",
    "forma": "texto",
-   "ro": "Aceste studii s-au făcut cu adulți. Sub 18 ani, urmați recomandarea OMS pentru vârsta dumneavoastră."
+   "ro": "Aceste studii s-au făcut mai ales cu adulți. Sub 18 ani, urmați recomandarea OMS pentru vârsta dumneavoastră."
   },
   {
    "tabla": "CUERPO_UI",
