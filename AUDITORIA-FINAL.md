@@ -10192,6 +10192,59 @@ las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.86
 (242 ficheros: uno más, el trozo de banda; las fuentes del rumano no viajan) y lo cotejó; y al acabar, el repositorio,
 sin ningún cambio.
 
+## El rumano, bloque 16: los ejercicios de «Su cuerpo», última parte (con él, las 958), y «aductorii» con una d (19 de noviembre)
+
+**El rumano, bloque 16** (sigue apagado: nada de esto se ve en la app). Llegó el 19-11 en un zip de la sesión del
+rumano. Sus guiones no se han ejecutado: lo que trae se ha puesto con un aplicador propio y se ha comprobado con
+herramientas propias.
+
+**Las 362 fichas de los ejercicios de los cuatro grupos que faltaban** (por el primero de sus grupos): glúteos 127,
+cuádriceps 119, isquiotibiales 57 y pantorrilla 59, con 1.111 pasos. `idiomas/ro-fuente/ejercicios-3.json`, nuevo, con
+la forma de los del 14 y el 15: cada ficha con su id, el castellano que traduce (nombre y pasos) y el rumano, con los
+mismos pasos. Idéntico al del zip (su huella). Las 362 son justo las del catálogo con esos cuatro grupos, sin ids
+repetidos; el castellano de cada una es, letra a letra, el de `datos/cuerpo/ejercicios-es.json` de `main`; el rumano
+tiene los mismos pasos, nombres únicos (también frente a los del 14 y el 15), las mismas cifras en cada paso, ș y ț con
+coma, NFC, y ni comillas ASCII, ni espacios de más, ni caracteres invisibles. `revisar_rumano.py --pares`, cada texto
+contra su castellano: 1.473 filas, 0 errores y 4 avisos (cuatro nombres de más de 1,7 veces el largo del castellano: los
+tres curl femorales de pie y el medio salto de tijera, los que explica la nota del bloque). 146 de estas fichas tienen
+vídeo, y en todas el rumano tiene los pasos que sigue el vídeo.
+
+**Con los bloques 14 y 15, las 958 fichas del catálogo**, y casan todas con el castellano de hoy (lo que mira el
+`--probar` de `tools/ejercicios_traduccion.js`, comprobado con un verificador propio). `datos/cuerpo/ejercicios-ro.json`
+no se escribe ahora: lo escribe esa herramienta con el interruptor del rumano.
+
+**Una errata en el rumano del bloque 13.** La descripción del grupo «Glúteos y cadera» (`CUERPO_UI`, `cuerpoD_gluteos`)
+decía «adductorii». El DEX y el DOOM escriben «aductor, aductori», con una d (dexonline, leído el 19-11), como las
+fichas de este bloque («Aducția șoldului», «aductori»). Cambia solo el «ro» de esa fila, en sus dos sitios
+(`idiomas/ro-fuente/cuerpo.json` y la tabla de `modulos/cuerpo.js`); el castellano y los otros idiomas no cambian.
+`poner_traduccion.js idiomas/ro-fuente/cuerpo.json --probar`: todo casa.
+
+**Lo que espera al interruptor** (no se toca ahora): `datos/cuerpo/ejercicios-ro.json` y el rumano en
+`tools/auditar_entrenador.js`.
+
+**Lo que no está comprobado.** Con el rumano apagado, ni las fichas ni los vídeos en rumano se ven en la app, así que no
+se han probado en un navegador.
+
+**La auditoría entera** sobre `c435171` (árbol `feed7ff5`): los dos commits del bloque 16 del rumano encima de `main`
+(`cfb13c0`). En `main` es lo mismo, rebasado sobre tres commits de los robots (`8608a9c`, terremotos; `8652724`, avisos
+de AEMET, y `dc5d707`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`,
+`datos/avisos-aemet.json` y `datos/alertas-canarias.json`, con la misma huella de parche, y con los controles que leen
+esos ficheros, en verde tras el rebase. En los 61 bloques de `auditar.sh`, ningún rojo: las preguntas de prueba al
+asistente, 0 fallos de 298; `auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65; lo que pide Google Play, 249 de
+249; `auditar_registro.js`, todo de usted (137.827 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_idioma.js`, 0 hallazgos en los diez idiomas; `auditar_cirilico.py`, 2.340 nombres propios en cirílico y ninguna
+variante sospechosa; los datos, 975 lugares en todas partes (también en el resumen de este documento) y ninguna cifra de
+lugares que no sea 975 en lo que se lee; `probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626;
+`auditar_desborde.js`: el popup en su idioma en los diez, la etiqueta viewport de las cuatro páginas, las tres cajas de
+copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16 px; `auditar_mapa.js`, 137;
+`auditar_arranque.js`, los nueve idiomas iguales tras `setLang` (16.036 textos comparados, 0 distintos y 0 errores de
+página); `barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los
+diez idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; «Su cuerpo», 800 y 64; el entrenador,
+79 (los 456 vídeos, enteros, en castellano y en otro idioma: 912 pases y 810.541 cuadros; los 12 trozos, cada uno con la
+huella de su contenido en el nombre); la isla en 3D, 57 y ninguno en rojo; el panel SOS, 42 y 262, y sus cuatro robots;
+las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/`
+(242 ficheros; las fuentes del rumano no viajan) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
