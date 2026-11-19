@@ -10030,6 +10030,66 @@ tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/` (241 ficheros:
 `datos/cuerpo/deportes-ro.json`; las fuentes del rumano no viajan) y lo cotejó; y al acabar, el repositorio, sin ningún
 cambio.
 
+## El rumano, bloque 14: los ejercicios de «Su cuerpo», primera parte, y tres filas al día (19 de noviembre)
+
+**El rumano, bloque 14** (sigue apagado: nada de esto se ve en la app). Llegó el 19-11 en un zip de la sesión del
+rumano. Sus guiones no se han ejecutado: lo que trae se ha puesto con un aplicador propio y se ha comprobado con
+herramientas propias.
+
+**Las 303 fichas de los ejercicios de cuatro grupos** (por el primero de sus grupos): pecho 70, dorsal 62, espalda alta
+78 y hombros 93, con 974 pasos. `idiomas/ro-fuente/ejercicios-1.json`, nuevo: cada ficha con su id, el castellano que
+traduce (nombre y pasos) y el rumano, con los mismos pasos. Va **anclado en el castellano**, como las fichas de los
+lugares: `tools/ejercicios_traduccion.js`, nuevo, junta los trozos del rumano (bloques 14 a 16) y solo escribirá
+`datos/cuerpo/ejercicios-ro.json` cuando estén las 958 fichas y todas casen con el castellano de ese día; hasta entonces
+no escribe nada. Los dos ficheros, idénticos a los del zip (sus huellas). La herramienta se ha leído línea a línea (solo
+usa `fs` y `path`, y solo escribe ese fichero), pero no se ha ejecutado aquí: lo que mira su `--probar` lo mira un
+verificador propio. Las 303 son justo las del catálogo con esos cuatro grupos, sin ids repetidos; el castellano de cada
+una es, letra a letra, el de `datos/cuerpo/ejercicios-es.json` de `main`; el rumano tiene los mismos pasos, ningún
+nombre repetido, las mismas cifras en cada paso, ș y ț con coma, NFC, y ni comillas ASCII ni espacios de más.
+`revisar_rumano.py --pares`, cada texto contra su castellano (los 303 nombres, los 974 pasos y los tres textos del «al
+día»): 1280 filas, 0 errores y 0 avisos. 145 de estas fichas tienen vídeo (159 con el bloque 13 del entrenador, que va
+detrás), y en todas el rumano tiene los pasos que sigue el vídeo.
+
+**Al día: las tres filas cuyo castellano cambió el 18-11.** `PWA_TX.instAnd` (la ventana de instalar en Android:
+`index.html` e `idiomas/ro-fuente/interfaz.json`) y las respuestas app-07 y pla-13 del asistente
+(`faq/fuente/ro/G1-app.json` y `H3-planes.json`), traducidas otra vez por la sesión del rumano: siete cambios en cuatro
+ficheros, puestos todo o nada, cada uno solo si en su sitio estaba el texto de antes. Los rótulos de Chrome, tal cual
+los escribe Google en rumano (la ayuda de Chrome para Android, `support.google.com/chrome/answer/9658361`, leída otra
+vez el 19-11): «Instalează și creează o comandă rapidă» e «Instalează». El aviso del Teide de pla-13, letra a letra el
+de tei-01 y tei-06. `generar_faq.py`: «ro (sin encender): 129 de 129», y ya no sale «ro: 2 con el castellano cambiado».
+`revisar_rumano.py` sobre la interfaz: 688 filas, 0 errores y los mismos 6 avisos que en `main`.
+
+**Lo que espera al interruptor** (no se toca ahora): `datos/cuerpo/ejercicios-ro.json`, con el bloque 16; el rumano en
+`tools/auditar_entrenador.js`; y en `tools/auditar_registro.js`, los dos rótulos de Chrome entre los que la app cita tal
+cual (son imperativos de tú, como «Installa e crea scorciatoia» y «Zainstaluj i utwórz skrót»).
+
+**Una errata en el castellano**, vista por la sesión del rumano: el nombre «Tijeras de brazos con apertura de omóplatos»
+dice «apertura», y su paso, «apriete los omóplatos», como su fuente. El rumano sigue al paso. Jérôme dijo que se cambie
+(«cámbialo», 19-11): el cambio llega con el bloque 15 y va en el lote siguiente; aquí no se ha tocado.
+
+**Lo que no está comprobado.** Con el rumano apagado, ni las fichas ni los vídeos en rumano se ven en la app, así que no
+se han probado en un navegador: su prueba con el rumano encendido (la de la sesión del rumano) no va a `main`.
+
+**La auditoría entera** sobre `a6a696a` (árbol `e92886aa`): los dos commits del bloque 14 del rumano encima de `main`
+(`69b3ae2`). En `main` es lo mismo, rebasado sobre tres commits de los robots (`00398fe`, terremotos; `f8ff046`, avisos
+de AEMET, y `be9c7fe`, alertas del Gobierno de Canarias), que solo cambian `datos/sismos-ign.json`,
+`datos/avisos-aemet.json` y `datos/alertas-canarias.json`, y con los controles que leen esos ficheros, en verde tras el
+rebase. En los 61 bloques de `auditar.sh`, ningún rojo: las preguntas de prueba al asistente, 0 fallos de 298;
+`auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65; lo que pide Google Play, 249 de 249; `auditar_registro.js`,
+todo de usted (137.827 textos); `castellano_suelto.js`, ninguna palabra en castellano; `auditar_idioma.js`, 0 hallazgos
+en los diez idiomas; `auditar_cirilico.py`, 2.340 nombres propios en cirílico y ninguna variante sospechosa; los datos,
+975 lugares en todas partes (también en el resumen de este documento) y ninguna cifra de lugares que no sea 975 en lo
+que se lee; `probar_retirados.js`, 6; `probar_organiza.js`, 626 de 626; `auditar_desborde.js`: el popup en su idioma en
+los diez, la etiqueta viewport de las cuatro páginas, las tres cajas de copiar, las 60 cajas y 186 a la vista en 81
+pantallas, ninguna por debajo de 16 px; `auditar_mapa.js`, 137; `auditar_arranque.js`, los nueve idiomas iguales tras
+`setLang` (16.036 textos comparados, 0 distintos y 0 errores de página); `barrido_pantallas.js`, 191 pantallas y fichas
+por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el cielo, 311; el perfil y
+los avatares, 74 y 153; «Su cuerpo», 800 y 64; el entrenador, 79 (los 418 vídeos, enteros, en castellano y en otro
+idioma: 836 pases y 741.820 cuadros; los 11 trozos, cada uno con la huella de su contenido en el nombre); la isla en 3D,
+57 y ninguno en rojo; el panel SOS, 42 y 262, y sus cuatro robots; las cifras de idiomas del documento, las de ahora (52
+tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/` (241 ficheros; las fuentes del rumano no viajan) y lo
+cotejó; y al acabar, el repositorio, sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
