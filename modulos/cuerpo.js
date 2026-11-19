@@ -1716,7 +1716,8 @@
     it: 'il lo la i gli le di da a in con su per e è che un una del della dei delle mi il mio mia o',
     nl: 'de het een van en in op voor met is ik mijn te of aan bij dat die',
     bg: 'и в на с за да е се от по ли не ми ме си са или а',
-    pl: 'i w na z do się jest czy to o a dla od po że nie moje mój jak'
+    pl: 'i w na z do się jest czy to o a dla od po że nie moje mój jak',
+    ro: 'de în și să un unui unei al ai ale lui le meu mea mei mele'
   };
   var MAPA = { 'ł': 'l', 'ß': 'ss', 'ø': 'o', 'đ': 'd', 'æ': 'ae', 'œ': 'oe' };
 
