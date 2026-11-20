@@ -368,5 +368,31 @@ for _x in _anon_sin_condicion:
 if _definer_sin_revoke or _uid_a_secas or _anon_sin_condicion:
     CON_FALLO = True
 
+print('\n=== flujos de GitHub ===')
+# Desde el 20 de noviembre de 2026 (prueba de los dos moviles, bloque 8): app-store.yml usaba ruby/setup-ruby@v1, una
+# accion de fuera, por su etiqueta, en el flujo que maneja la firma de Apple. Una etiqueta se puede mover y lo que
+# corre cambiaria sin que nadie lo vea; un commit no. Las de fuera van fijadas por su commit de 40 cifras (con la
+# version en un comentario); las de GitHub (actions/*), las locales (./) y las de docker:// pueden ir por etiqueta.
+_sin_fijar = []
+for _f in sorted(glob.glob(os.path.join(RAIZ, '.github', 'workflows', '*.yml')) +
+                 glob.glob(os.path.join(RAIZ, '.github', 'workflows', '*.yaml'))):
+    for _i, _l in enumerate(io.open(_f, encoding='utf8').read().split('\n'), 1):
+        _m = re.match(r'\s*(?:-\s*)?uses:\s*([^\s#]+)', _l)
+        if not _m:
+            continue
+        _u = _m.group(1).strip('\'"')
+        if _u.startswith('./') or _u.startswith('docker://'):
+            continue
+        _quien, _, _ref = _u.partition('@')
+        if _quien.split('/')[0] == 'actions':
+            continue
+        if not re.fullmatch(r'[0-9a-f]{40}', _ref):
+            _sin_fijar.append('%s:%d: %s' % (os.path.relpath(_f, RAIZ), _i, _u))
+print('  acciones de fuera sin fijar por su commit: %d%s' % (len(_sin_fijar), '   <-- en rojo' if _sin_fijar else ''))
+for _x in _sin_fijar:
+    print('    <--  ' + _x)
+if _sin_fijar:
+    CON_FALLO = True
+
 import sys
 sys.exit(1 if CON_FALLO else 0)
