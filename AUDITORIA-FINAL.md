@@ -10377,6 +10377,228 @@ nombre); la isla en 3D, 57 y ninguno en rojo; el panel SOS, 42 y 262; las cifras
 (52 tablas y 3.747 filas; 5.884). `app_preparar.js` montó `app/www/` (242 ficheros) y lo cotejó; y al acabar, el
 repositorio, sin ningún cambio.
 
+## «Su deporte», bloques 2 y 3a: combate, escalada, yoga y pilates y entrenamiento funcional, en los once idiomas (notas 58 y 59); y el rumano, bloque 18 (20 de noviembre)
+
+**Lo que pidió Jérôme** (19-11): «… deporte adentro también como boxeo, deporte de combate en general aquí en la isla
+está full». Es el bloque 2 de los siete que ha planteado la sesión de «Su cuerpo» (nota 58). Llegó en un zip con un
+parche que va detrás del del bloque 1: en su base entra con `git am` y da el árbol que dice su nota, con sus 16 ficheros
+idénticos a los del zip. Aquí se ha puesto encima del bloque 1 publicado, que ya llevaba la pauta de calistenia
+corregida: cinco ficheros con `git apply --3way`, sin choques, y los once `deportes-<idioma>.json` del zip con esa
+pauta. Nada del zip se ha ejecutado.
+
+**Lo que se ve.** En «Su deporte», tres deportes más, delante de «Otro deporte»: «Boxeo y kickboxing», «Jiu-jitsu, judo
+y lucha» y «Karate y taekwondo», cada uno con su ficha en los diez idiomas (y en rumano, que sigue apagado), las tres
+con certeza baja. Con ellos, el personaje sí marca grupos: los del jiu-jitsu salen de los tres ejercicios de su ensayo
+(sentadilla, press de banca y dominadas, «De los estudios»); los del boxeo y el karate se deducen de cómo se mueve el
+cuerpo. La hoja «Anotar movimiento» tiene un deporte más, «Deportes de combate», con su icono, un guante de trazo como
+los demás: con cualquiera de los tres, la propone con 60 minutos e intensa (Compendio 2024, código 15430, artes
+marciales a ritmo moderado, 10,3 MET), y se puede cambiar a moderada.
+
+**Las fuentes, comprobadas aquí una a una** (18), además de la tabla frase a frase que trae la sesión de «Su cuerpo»:
+- **Cid-Calfucura 2023**, el texto entero (Europe PMC): 20 estudios con 504 deportistas (428 hombres y 76 mujeres):
+  7 de judo, 5 de karate, 5 de boxeo, 2 de lucha y 1 de esgrima; mejoras en la fuerza máxima dinámica e isométrica,
+  la potencia, la flexibilidad y el equilibrio; en boxeo, la potencia y la velocidad del golpe; en judo, los
+  lanzamientos (los del Special Judo Fitness Test, y el Morote Seoi Nage y el Osoto-gari); en karate, la puntuación
+  del kata Gankaku; de taekwondo, ningún estudio que cumpliera sus criterios; la calidad (TESTEX), el 45 % de la
+  escala; de 4 a 20 semanas (10 programas de 4 a 8) y de 2 a 6 sesiones por semana.
+- **Loturco 2016** (resumen): 15 boxeadores de la selección brasileña (9 hombres y 6 mujeres); correlaciones de 0,67
+  a 0,85.
+- **Beattie y Ruddock 2022** (resumen): en las piernas, la fuerza máxima y la explosiva; en los brazos, la
+  explosiva; la máxima de los brazos, «not associated with punch impact force»; faltan ensayos, y más aún con
+  mujeres.
+- **Loosemore 2015** (resumen): 66 boxeadores del equipo británico, de 2005 a 2009; la mano, la más lesionada, en
+  entrenamientos y en competición; las conmociones, comparativamente pocas; proteger manos y muñecas.
+- **Gartland 2001** y **Zazryn 2003** (resúmenes): 152 de muay thai (19 principiantes, 82 amateurs y 51
+  profesionales), con las piernas, lo más lesionado, y la cabeza, lo segundo en amateurs y profesionales; en el
+  kickboxing profesional de Victoria, la cabeza, el cuello y la cara, el 52,5 %, y las piernas, el 39,8 %.
+- **Bernick 2015**, el texto entero: 224 luchadores (131 de MMA y 93 boxeadores); más combates, más años o más
+  puntuación de exposición, menos volumen cerebral, sobre todo en el tálamo y el caudado, y un procesamiento más
+  lento.
+- **Øvretveit y Tøien 2018** (resumen): 14 hombres que competían en jiu-jitsu brasileño; 4 series de 4 al 85 % o más
+  en sentadilla y press de banca y 4 series de dominadas al fallo, 3 veces por semana; sentadilla +15 %, press de
+  banca +11 %, salto +9 %, dominadas +33 %, flexiones +32 % y abdominales +13 %; con solo jiu-jitsu, ninguna mejora;
+  efectos «a corto plazo».
+- **Scoggin 2014**, el texto entero: 46 lesiones en 5.022 participaciones (9,2 por 1.000); el 78 %, ortopédicas; el
+  codo, el que más, por la palanca de brazo.
+- **Pocecco 2013** (resumen): en los Juegos de 2008 y 2012, un riesgo del 11–12 %; esguinces, distensiones y
+  contusiones de rodilla, hombro y dedos; ser lanzado, la causa más común.
+- **NATA 2010** (Zinder), el texto entero, en la web de la revista (Europe PMC no lo da): ducharse tras cada
+  entrenamiento con jabón antimicrobiano, lavar la ropa a diario y no compartir toallas ni material; las infecciones
+  de piel, por hongos, virus y bacterias, en los deportes de contacto.
+- **Decreto 82/2018** (BOC n.º 104, de 31-5-2018, con su anexo): la lucha canaria, Bien de Interés Cultural; gana
+  quien hace que el otro toque el suelo con algo que no sea la planta del pie; el terrero, «delimitado por dos
+  círculos concéntricos»; «No se permite la lucha en el suelo ni ninguna clase de llaves o estrangulaciones».
+- **Valdés-Badilla 2021**, el texto entero: 12 estudios con 735 mayores (392 mujeres y 343 hombres, 69,6 años de
+  media), de boxeo, judo, karate y taekwondo; la prueba de levantarse de la silla mejoró frente al control; la
+  adherencia, de más del 80 %, como dice la revisión (dos estudios, cerca del 50 %).
+- **Valdés-Badilla 2022**, el texto entero: 8 estudios con 322 mayores; 2 de 6 mejoraron el equilibrio; en el riesgo
+  de caídas y en las caídas, sin diferencias.
+- **Ojeda-Aravena 2023**, el texto entero: 12 estudios con 292 deportistas (225 hombres; la mayoría, con menos de 18
+  años de media); fuerza máxima (1RM en sentadilla) g = 0,77, salto con contramovimiento 0,69 y cambio de dirección
+  0,72; el rendimiento propio de cada deporte, 0,35 (p = 0,206), y 0,72 solo al quitar un estudio. La ficha dice «no
+  de forma clara»; los autores lo cuentan como mejora.
+- **Lystad 2020** (resumen): 28 estudios; una lesión cada 11 combates, unos 25 minutos; la cabeza y el cuello,
+  mediana del 57,9 %; casi todas, leves; la contusión, mediana del 68,3 %.
+- **Pieter 2012** (resumen): la patada circular, el 56,9 % de las lesiones en hombres y el 49,8 % en mujeres; las
+  piernas, el 44,5 % y el 53,1 %; la cabeza y el cuello, el 29,6 % y el 15,2 %; no saber bloquear, una de las
+  causas.
+- **Compendio 2024** (pacompendium.com, la tabla de deportes): 15430, 10,3 MET; 15425, 5,3; el boxeo en el ring
+  (15100), 12,3; el saco (15110), 5,8; el sparring (15120), 7,8.
+
+Las frases que ya decían otras fichas (la base del ACSM, el calor, la aclimatación, la calima y Schumann), 13, son letra
+a letra las publicadas, en los once idiomas. Las cifras del castellano están en cada idioma, y las preguntas de cada
+ficha son, letra a letra, las del asistente de su idioma (180 de 180; las del rumano esperan a su asistente).
+
+**Lo que se cambió al comprobarlo.** La lucha canaria, en «En Tenerife» del jiu-jitsu, decía «se lucha de pie en un
+terrero de arena» (lo mismo en los otros idiomas) y, en castellano, «ni luxaciones ni estrangulaciones». El decreto dice
+que el terrero «está delimitado por dos círculos concéntricos», que su superficie es de tierra, de arena fina o también
+de hierba cortada o tapiz, y que no se permite «ninguna clase de llaves o estrangulaciones»; y «luxaciones» también se
+lee como la lesión. Ahora dice «en un terrero circular» (en los otros idiomas, en un círculo) y «ni llaves ni
+estrangulaciones», en los once idiomas, en su propio commit.
+
+**Las fuentes de «Su cuerpo»** (fuera del repo) ya llevan el bloque, con la lucha canaria corregida: las tres fichas en
+`deportes/deportes.json` (con sus grupos) y en sus traducciones, los cuatro nombres en `src/textos.py`, y `MOV`,
+`DEP_MOV`, el icono y los comentarios en `src/ui.js` y `src/deporte.js`. `construir.py` da el módulo (sin el rumano, que
+va aparte) y los diez `datos/cuerpo/deportes-*.json` byte a byte; y `deportes-ro.json` es el castellano con los 415
+textos de `idiomas/ro-fuente/cuerpo-datos.json` puestos en su sitio, byte a byte.
+
+**El rumano** (apagado): las tres fichas y los cuatro nombres, 108 textos, cada uno contra su castellano con
+`revisar_rumano.py --pares`: 0 errores y 0 avisos. Hay cuatro preguntas nuevas en las fichas (`principiante`,
+`calentar`, `urg-golpe-cabeza` y `volver-tras-lesion`) que el asistente en rumano tendrá que decir igual, letra a letra,
+cuando exista.
+
+**Seguridad.** En el código solo cambian los tres deportes (con sus grupos), sus nombres y el de la hoja, una entrada de
+`MOV` (`combate`, 60 minutos, 10,3 MET, 15430), tres de `DEP_MOV`, el icono del guante (un SVG constante, solo `path`,
+como los demás) y los comentarios. Cada fuente sigue teniendo que empezar por `https://` y cada texto va por
+`textContent`. Los 2.739 textos de las tres fichas en los once idiomas, sin `<`, `>`, `javascript:`, caracteres de
+control ni dobles espacios; sus 32 fuentes (22 direcciones distintas), todas https, de la web de cada fuente e iguales
+en los once idiomas. La prueba 45 no escribe nada: lee los ficheros y abre la app en el navegador.
+
+**Las pruebas.** `probar_cuerpo.js` lleva dos pruebas nuevas: la 45 (bloque 2, 15 controles: los tres deportes de
+combate y sus grupos, sus nombres y sus fichas en los once idiomas, la lucha canaria, «Deportes de combate» en la hoja,
+a 320 px en alemán y en búlgaro, sin errores) y la 46 (bloque 3a, 15 controles: `GRUPOS_DEP`, con cada deporte en un
+grupo y solo en uno; el desplegable por grupos; las tres fichas en los once idiomas; la escalada en el Teide;
+«Entrenamiento funcional» en la hoja, que se anota; los seis grupos en inglés, chino y búlgaro; a 320 px; sin errores).
+Con los dos lotes juntos, el 20-11, antes de la auditoría entera: 842 controles, todos en verde.
+
+**Lo que no está comprobado.** En un iPhone de verdad, nada. Los nueve idiomas, sin un nativo: los controles miran la
+forma (las cifras, el usted, el alfabeto, el castellano suelto). Las fichas no las ha revisado un profesional, como dice
+su pie.
+
+**«Su deporte», bloque 3a (nota 59).** Lo que pidió Jérôme (19-11): «y todo los deportes interiores posibles». Llegó en
+otro zip, con un parche que va detrás de los de los bloques 1 y 2: en su base entra con `git am`. Aquí se ha puesto
+encima del bloque 2 ya montado: `modulos/cuerpo.js`, los dos ficheros del rumano, la prueba 46 y este documento entran
+con `git apply --3way`, sin choques; los once `deportes-<idioma>.json` son los del zip con la pauta de calistenia y la
+lucha canaria corregidas (las catorce fichas de antes, iguales; las tres nuevas, las del zip). Nada del zip se ha
+ejecutado.
+
+**Lo que se ve.** Tres deportes más en «Su deporte», delante de «Otro deporte»: «Escalada» (certeza baja), «Yoga y
+Pilates» (moderada) y «Entrenamiento funcional» (baja), con su ficha en los diez idiomas (y en rumano, que sigue
+apagado). Con 17 deportes, el desplegable va por grupos: «Al aire libre» (senderismo, carrera, ciclismo, golf y
+escalada), «En el agua» (natación y mar, surf y buceo), «Deportes de raqueta» (pádel), «Fuerza» (gimnasio, calistenia y
+entrenamiento funcional), «Deportes de combate» (los tres del bloque 2) y «Clases en sala» (yoga y pilates); «Otro
+deporte», suelto y el último. La escalada marca grupos en el personaje, de los ejercicios de los estudios de Stien 2022
+(el antebrazo; el dorsal, el bíceps y el core); el yoga y el funcional, ninguno, como el gimnasio. La hoja «Anotar
+movimiento» tiene un deporte más, «Entrenamiento funcional», con su icono, una pesa rusa de trazo: la propone con 60
+minutos e intensa (Compendio 2024, 02040: el circuito con pesas rusas, algo de aeróbico y poco descanso, 7,5 MET), y se
+puede cambiar a moderada. Con la escalada propone la escalada, que ya estaba; con el yoga y el pilates, que son ligeros
+(2,3 y 2,8 MET), caminar.
+
+**Las fuentes, comprobadas aquí una a una** (14), además de la tabla frase a frase que trae la sesión de «Su cuerpo»:
+- **Stien 2022**, el texto entero: 11 estudios con 225 escaladores; el metaanálisis, 5 estudios con 110; la fuerza,
+  mejor que solo escalar en las pruebas propias de la escalada (colgarse, la fuerza de los dedos); ningún estudio de
+  intervención solo con mujeres.
+- **Backe 2009** (resumen): 606 socios de la federación sueca, al azar (respondió el 63 %); 4,2 lesiones por 1.000
+  horas, el 93 % por sobrecarga, sobre todo inflamaciones de dedos y muñecas; subir horas y cargas poco a poco y
+  vigilar la sobrecarga.
+- **Quarmby 2023**, el texto entero: 34 estudios; más intensidad, el búlder, menos fuerza de agarre, el agarre en
+  arqueo y una lesión previa, con más lesiones por sobrecarga; un programa de fuerza previno las de hombro y codo.
+- **Zieliński 2026**, el texto entero (en línea desde el 30-12-2025): en adultos, más lesiones por sobrecarga que
+  agudas, sobre todo en los dedos y los hombros.
+- **Decreto 182/2025**, el Plan Rector de Uso y Gestión del Parque Nacional del Teide (su PDF, apartado 6.3.2.8): la
+  escalada, con comunicación previa por la aplicación electrónica del parque, con reserva y cupos; solo en los
+  enclaves que cita (entre ellos, los Roques de García y La Catedral); prohibido tallar agarres; magnesio
+  mimetizado; y se puede prohibir en lugares y épocas para proteger las aves.
+- **Sivaramakrishnan 2019**, el texto entero: 17 ensayos con 967 mayores (de 60 años o más de media, sin una
+  enfermedad concreta) midieron la función física; lo más habitual, 2 sesiones por semana (9 estudios; 3, en 6), de
+  60 minutos (9), durante 4 a 28 semanas.
+- **Fernández-Rodríguez 2021** (resumen): 39 estudios con mayores de 60 años; certeza moderada para la fuerza y el
+  riesgo de caídas, y baja para el equilibrio, la flexibilidad y la capacidad funcional.
+- **Cramer 2015** (resumen): 94 ensayos con 8.430 participantes; frente a la atención habitual o el ejercicio,
+  ninguna diferencia en los efectos adversos.
+- **Swain y McGwin 2016**, el texto entero: en las urgencias de EE. UU., en 2014, 57,9 lesiones de yoga por 100.000
+  practicantes de 65 años o más y 11,9 de 18 a 44; el tronco, el 46,6 %; las piernas, el 21,9 %; la cabeza (con el
+  cuello, como la cuentan ellos), el 16,9 %.
+- **Compendio 2024** (pacompendium.com, la tabla de acondicionamiento) y **Herrmann 2024**, el texto entero: el yoga
+  en general, 2,3 MET (02175), y el pilates, 2,8 (02105); ligero es de 1,6 a 2,9 MET; el circuito con pesas rusas,
+  7,5 (02040), y el circuito moderado, 5,0 (02035).
+- **Wilke y Mohr 2020**, el texto entero: 16 estudios con 864 personas, de 11,7 a 72,8 años de media; frente a no
+  hacer ejercicio, más fuerza y más resistencia, pero no más equilibrio; frente al entrenamiento clásico de
+  resistencia, la misma resistencia; frente al de fuerza, ningún estudio.
+- **Claudino 2018**, el texto entero: 31 artículos sobre CrossFit, 4 en el metaanálisis; solo 2 con un nivel de
+  evidencia alto y un riesgo de sesgo bajo; ningún efecto significativo.
+- **Rodríguez 2022** (resumen): 25 estudios con 12.079 practicantes de CrossFit; de 0,2 a 18,9 lesiones por 1.000
+  horas, una tasa parecida a la de la halterofilia y el powerlifting; el hombro, el 26 %; la columna, el 24 %; la
+  rodilla, el 18 %; entre los factores, una lesión previa y entrenar sin supervisión.
+
+Lo que ya estaba en otras fichas, 36 textos (12 frases: la base del ACSM, el sol, el calor, la crema, la aclimatación y
+la calima; 13 títulos de fuentes y 11 preguntas), es letra a letra lo publicado, en los once idiomas. Las cifras del
+castellano están en cada idioma (1.530 textos comparados), y las preguntas de cada ficha son, letra a letra, las del
+asistente de su idioma (180 de 180; las del rumano esperan a su asistente). Sus 27 fuentes (21 direcciones distintas),
+todas https e iguales en los once idiomas.
+
+**Lo que se cambió al comprobarlo.** La pauta del entrenamiento funcional decía «En los estudios, de 2 a 4 sesiones por
+semana, de 6 a 40 minutos, durante 4 a 18 semanas (Wilke y Mohr 2020)». En la tabla 1 de la revisión hay sesiones de 8 ×
+20 s (McRae y los dos de Schaun) y de 4 × 20 s (Islam), y de hasta 35–40 minutos (Garcia-Pinillos); y la frecuencia no
+es siempre de 2 a 4 por semana: una o dos veces al día (Sperlich), variable (Greenlee) o sin decir (Menz). Ahora dice
+«En casi todos los estudios, de 2 a 4 sesiones por semana, de unos pocos minutos a 40 cada una, durante 4 a 18 semanas
+(Wilke y Mohr 2020).», en los once idiomas, en su propio commit.
+
+**Las fuentes de «Su cuerpo»** (fuera del repo) ya llevan el bloque 3a, con la pauta corregida: las tres fichas en
+`deportes/deportes.json` (con sus grupos) y en sus traducciones; los nueve nombres en `src/textos.py`; `MOV`, `DEP_MOV`,
+el icono y los comentarios en `src/ui.js`; `GRUPOS_DEP` y el desplegable por grupos en `src/deporte.js`; y el estilo del
+`optgroup` en `src/estilos.css`. `construir.py` da el módulo (sin el rumano, que va aparte; con la cabecera de 685
+filas) y los diez `datos/cuerpo/deportes-*.json`, byte a byte; y `deportes-ro.json` es el castellano con los 513 textos
+de `idiomas/ro-fuente/cuerpo-datos.json` puestos en su sitio, byte a byte.
+
+**El rumano del bloque 3a** (apagado): las tres fichas y los nueve nombres (con el de la escalada, que ya estaba), 108
+textos, cada uno contra su castellano con `revisar_rumano.py --pares`: 0 errores y 0 avisos. Hay siete preguntas nuevas
+en las fichas (`mayores-ejercicio`, `prevenir-caidas`, `dolor-de-espalda`, `estirar`, `agujetas-o-lesion`,
+`entreno-demasiado` y `parar-de-inmediato`) que el asistente en rumano tendrá que decir igual, letra a letra, cuando
+exista.
+
+**Seguridad.** En el código del 3a solo cambian los tres deportes (con los grupos de la escalada), sus nombres, los seis
+de los grupos y el de la hoja, una entrada de `MOV` (`funcional`, 60 minutos, 7,5 MET, 02040), dos de `DEP_MOV`, el
+icono de la pesa rusa (un SVG constante, solo `path`, como los demás), `GRUPOS_DEP` (una constante) y `opcionesDeporte`:
+cada `optgroup` lleva su nombre en `label`, como propiedad, y cada opción va por `textContent`, como antes. Los 2.673
+textos de las tres fichas en los once idiomas, sin `<`, `>`, `javascript:`, caracteres de control ni dobles espacios. La
+prueba 46 no escribe nada: lee los ficheros y abre la app en el navegador.
+
+**Lo que no está comprobado**, como en el bloque 2: en un iPhone de verdad, nada; los nueve idiomas, sin un nativo; y
+las fichas no las ha revisado un profesional, como dice su pie.
+
+**El aviso a los menores.** A una persona de menos de 18 años, «Lo que dicen los estudios» de cada deporte le decía
+«Estos estudios se hicieron con adultos». No es así en tres fichas: el pádel cita un metaanálisis con tenistas de unos
+11 a 42 años; el entrenamiento funcional, 16 estudios de 11,7 a 72,8 años de media (Wilke y Mohr 2020: uno, con
+escolares de 11,7); y «Otro deporte», la recomendación de la OMS de 5 a 17 años. Ahora dice «Estos estudios se hicieron
+sobre todo con adultos», en los once idiomas, en su propio commit (en `CUERPO_UI`, en `src/textos.py` de las fuentes y
+en `idiomas/ro-fuente/cuerpo.json`, con su castellano).
+
+**El rumano, bloque 18** (sigue apagado: nada de esto se ve en la app). Llegó el 19-11 en un zip de la sesión del
+rumano: un fichero nuevo, `idiomas/ro-fuente/asistente-2.json`, idéntico al del zip (su huella), con 50 respuestas más
+del asistente de «Su cuerpo»: empezar (13), la fuerza (15), los hábitos (7) y los músculos (15). Sus guiones no se han
+ejecutado: lo que mira `tools/asistente_traduccion.js --probar` lo mira el verificador propio del bloque 17. Casan las
+50, y con las 52 del 17, 102 de 178 (faltan 76, las de los bloques 19 y 20); entre los dos ficheros, ningún id, ninguna
+pregunta y ninguna variante repetidos; la forma y las marcas del castellano, los topes que lee la app, ș y ț con coma,
+NFC, y ni comillas ASCII ni caracteres invisibles. `revisar_rumano.py --pares` (las 50 preguntas, los 283 textos de las
+respuestas y los 111 títulos): 444 filas, 0 errores y 0 avisos. Las 11 preguntas que las fichas de «Su deporte» ya
+enseñan en rumano son, letra a letra, las de sus respuestas. Las citas entre „…”: las de la pantalla, letra a letra el
+rumano de la app; dos son de la propia respuesta («2 zile de forță pe săptămână», un ejemplo, y «Faceți pauza de care
+aveți nevoie», que la nota repite de su texto), como en castellano. **Lo que espera al interruptor**:
+`datos/cuerpo/asistente-ro.json`, con las 178 (bloque 20).
+
+**La auditoría entera**: la del apartado anterior, la de los dos lotes juntos, sobre `d984ce6`.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -12547,7 +12769,7 @@ Esa noche, dos filas más en `UI_TX`: el paréntesis de los dos nombres repetido
 en los once idiomas; nota 48): 3.732 filas y 5.869.
 El 20 de noviembre, «Su deporte» con «Gimnasio» y «Calistenia» (nota 57): dos filas más en `CUERPO_UI` (672), sus
 nombres en los once idiomas: 3.734 filas y 5.871.
-Esa tarde, los deportes de combate (nota 58): tres filas más en `CUERPO_UI` para sus nombres y una para «Deportes de
+Con él, los deportes de combate (nota 58): tres filas más en `CUERPO_UI` para sus nombres y una para «Deportes de
 combate» en la hoja del movimiento (676), en los once idiomas: 3.738 filas y 5.875.
 Y el bloque 3a (nota 59): nueve filas más en `CUERPO_UI`, los nombres de «Yoga y Pilates» y «Entrenamiento
 funcional», los seis grupos del desplegable y «Entrenamiento funcional» en la hoja (685), en los once idiomas:
