@@ -10679,6 +10679,308 @@ idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; «
 rojo; las cifras de idiomas del documento, las de ahora (52 tablas y 3.747 filas; 5.884). `app_preparar.js` montó
 `app/www/` (242 ficheros) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
 
+## «Su deporte», bloque 3b: baloncesto y voleibol, fútbol sala y balonmano, squash, bádminton y tenis de mesa, y baile y Zumba, en los once idiomas (nota 60); el rumano, bloques 19 y 20; y el filtro de urgencias del asistente (20 de noviembre)
+
+**Lo que pidió Jérôme** (19-11): «… y todo los deportes interiores posibles». Es el bloque 3b de los siete que ha
+planteado la sesión de «Su cuerpo» (nota 60). Su parche se hizo sin las correcciones ya publicadas de la calistenia, el
+funcional y la lucha canaria: aquí, cinco ficheros entran con `git apply --3way`, sin choques, y los once
+`deportes-<idioma>.json` son los publicados con las cuatro fichas del zip delante de «otro» (comprobado: en las fichas
+de antes, el zip solo difiere de lo publicado en esas tres correcciones). Nada del zip se ha ejecutado. La versión 2 del
+zip (20-11 por la mañana), rehecha por la sesión de «Su cuerpo» sobre el `main` de hoy, entra con `git am` y da el mismo
+árbol, byte a byte, que este commit.
+
+**Lo que se ve.** En «Su deporte», cuatro fichas más, delante de «Otro deporte»: «Baloncesto y voleibol», «Fútbol sala y
+balonmano», «Squash, bádminton y tenis de mesa» y «Baile y Zumba», en los diez idiomas (y en rumano, que sigue apagado),
+las cuatro con certeza baja. El desplegable tiene un grupo más, «Deportes de equipo» (el baloncesto y el fútbol sala),
+entre «En el agua» y «Deportes de raqueta»; el squash va con el pádel y el baile, con el yoga. El personaje marca
+grupos: los del fútbol sala salen de los ejercicios de sus estudios (el FIFA 11+ y el programa de hombro), y los de las
+otras tres se deducen de cómo se mueve el cuerpo. La hoja «Anotar movimiento» tiene 20 deportes: cada ficha propone la
+suya, con su icono, 60 minutos e intensa (Compendio 2024: 15055, 7,5 MET; 15195, 7,8; 15652, 7,3; 02310, 6,5), y se
+puede cambiar a moderada.
+
+**Las fuentes, comprobadas aquí una a una** (19 estudios y el Compendio), además de la tabla frase a frase que trae la
+sesión de «Su cuerpo»:
+- **Randers 2018**, el texto entero: hombres sin entrenar de 20 a 42 años; unas 2 sesiones por semana de unos 75
+  minutos (10 de calentamiento y 4 partidos de 12 de 3 contra 3) durante 3 meses; en pista entera, el consumo máximo
+  de oxígeno de 44,7 a 47,1 ml/kg/min, la tensión arterial media de 94,9 a 89,3 mmHg y la grasa corporal, −1,6
+  puntos; en media pista, efectos menores.
+- **Gouttebarge 2020** (resumen) y **su protocolo** (Gouttebarge 2017, BMC Musculoskelet Disord, el texto entero):
+  672 aficionados adultos al voleibol de los Países Bajos, la temporada 2017-2018; lesiones agudas, 8,9 frente a
+  11,3 por 1.000 horas, y al ajustar, sin diferencia significativa (HR 0,85; 0,71–1,02); por sobrecarga, 4,8 %
+  frente a 4,2 %; el calentamiento, de 15 minutos (cardio, tronco, rodilla y hombro, con el tobillo dentro), antes
+  de entrenar o de jugar. El artículo entero no se ha podido leer (sus copias rechazan la descarga automática).
+- **Verhagen 2004** (resumen): 116 equipos de voleibol; la tabla de equilibrio redujo los esguinces de tobillo solo
+  en quien ya había tenido uno; con una lesión de rodilla previa, más lesiones de rodilla por sobrecarga, «may be a
+  contraindication».
+- **Andreoli 2018**, el texto entero: 11 estudios; el 63,7 % de las lesiones, en las piernas; en los profesionales,
+  tobillo y pie, el 24,8 %, lo primero.
+- **Lian 2005** (resumen): deportistas noruegos de élite; la rodilla del saltador, el 44,6 % de los jugadores de
+  voleibol y el 31,9 % de los de baloncesto. Su definición (dolor de los tendones del cuádriceps o rotuliano en su
+  unión con la rótula, al entrenar o competir), en la tesis de Visnes (NIH, 2014), con los criterios de Lian.
+- **Taylor 2015** (resumen): 10 estudios de baloncesto; los programas de prevención redujeron las lesiones de pierna
+  y los esguinces de tobillo, no las del ligamento cruzado.
+- **Lopes 2020** (resumen): 71 hombres aficionados al fútbol sala (de 26 y 27 años de media); el FIFA 11+ 2 veces
+  por semana durante 20 semanas: 6,5 lesiones por 1.000 horas frente a 11,6, y 10,5 días de baja frente a 20,4.
+- **Hornstrup 2019** (resumen de la editorial): 26 hombres de 20 a 30 años sin entrenar; 1,9 sesiones por semana
+  durante 12 semanas; consumo máximo de oxígeno +11 %, densidad del fémur proximal +2 %, masa grasa −7 %; sin
+  cambios en la tensión, el pulso en reposo ni los lípidos.
+- **Andersson 2017** (manuscrito del archivo noruego): 660 jugadores de balonmano de élite de 16 a 47 años; el
+  programa de hombro, 3 veces por semana en el calentamiento; problemas de hombro, 17 % frente a 23 %; los graves, 5
+  % frente a 8 %, sin diferencia significativa.
+- **Ruiz-Pérez 2021** (manuscrito de la Universidad de Gloucestershire): 6 estudios de fútbol sala de élite; 6,8
+  lesiones por 1.000 horas en hombres y 5,3 en mujeres; en los partidos de ellos, 44,9; sobre todo esguinces de
+  tobillo y rodilla y lesiones musculares del muslo (isquiotibiales, aductores y cuádriceps).
+- **Sadigursky 2017**, el texto entero: el FIFA 11+, al menos 2 veces por semana: carrera, la plancha y la lateral,
+  isquiotibiales, equilibrio sobre una pierna, sentadillas y saltos.
+- **Oja 2017** (manuscrito de Loughborough): 80.306 adultos de 30 a 98 años de Inglaterra y Escocia, 9,2 años de
+  seguimiento; «deportes de raqueta», el bádminton, el tenis y el squash, en las 4 semanas anteriores y al menos 15
+  minutos; mortalidad −47 % (HR 0,53) y cardiovascular −56 % (HR 0,44); «we cannot discount the possibility of
+  residual confounding».
+- **Naderi 2021** (manuscrito de la Metropolitana de Mánchester): 40 hombres de 65 años o más; de 3 a 5 sesiones de
+  1,5 horas por semana, 6 meses; masa grasa −17,6 %, densidad ósea +8,7 %; la marcha y el equilibrio, mejores; el
+  control siguió con su rutina.
+- **Stepper 2025**, el texto entero: 19 estudios de bádminton; de 1 a 4 lesiones por 1.000 horas; las piernas, del
+  41 al 92 %; por sobrecarga, del 25 al 74 %; leves o moderadas, del 73 al 100 %; la rotura del tendón de Aquiles,
+  entre las comunes en tres estudios.
+- **Mazarelo 2024** (resumen y su apéndice de datos): 29 estudios; la mediana de las lesiones de ojo «when no
+  eyewear was worn», el 93 %; las gafas graduadas, las lentillas y las industriales agravaron algunas; en el squash,
+  las protecciones sin cristal no sirvieron; solo las gafas con la norma ASTM (o similar), ninguna lesión; en el
+  apéndice, la pelota, el volante y la raqueta como lo que golpea el ojo.
+- **Northcote 1986** (resumen): 60 muertes súbitas asociadas al squash; 45 con síntomas antes, sobre todo dolor en
+  el pecho.
+- **Vendramin 2016** (resumen): 11 estudios con 586 adultos de 18 a 65 años; la Zumba mejora la capacidad aeróbica;
+  pruebas escasas en la fuerza y la flexibilidad; beneficios pequeños en el peso.
+- **Mattle 2020**, el texto entero (la versión corregida): 29 ensayos con mayores sanos de 65 años o más; el riesgo
+  de caer, −37 % (RR 0,63), y el número de caídas, −31 % (IRR 0,69); mejoran el equilibrio, la movilidad y la fuerza
+  de las piernas; 16 ensayos de tai chi y 13 de bailes (de salón, folclóricos, aeróbic suave…); de 1 a 4 sesiones
+  por semana, de 35 a 120 minutos, de 6 semanas a 12 meses.
+- **Domene 2017** (su ficha en Coventry): 138 mujeres de 18 a 64 años en clases de Zumba; 3,9 lesiones por 1.000
+  horas en las alumnas y 5,7 en las monitoras; «a low risk of injury».
+- **Inouye 2013** (resumen y el texto en PMC): 49 alumnos de 5 clases en Hawái; 14 se habían lesionado (21
+  lesiones): rodilla 42 %, tobillo y pie 14 %, hombro 14 %; los lesionados, 3,8 clases por semana de media, frente a
+  2,7.
+- **Compendio 2024** (pacompendium.com, las tablas de deportes, de acondicionamiento y de baile): 15055, 7,5; 15710,
+  4,0; 15711, 6,0; 15720, 3,0; 15725, 8,0 (estimado); 15195, 7,8; 15320, 12,0; 15330, 8,0 (estimado); 15652, 7,3;
+  15030, 5,5; 15020, 7,0; 15660, 4,0; 02310, 6,5; 03090, 4,8; 03040, 3,0.
+
+Las frases que ya decían otras fichas (la base del ACSM, el calor, la aclimatación, la protección solar y la calima) son
+letra a letra las publicadas, en los once idiomas. Las cifras del castellano están en cada idioma, y las preguntas de
+cada ficha son, letra a letra, las del asistente de su idioma (las del rumano esperan a su asistente).
+
+**Lo que se cambió al comprobarlo** (en su propio commit, en los once idiomas):
+- «de 73 equipos» y «de septiembre a abril» (el voleibol) no se han podido comprobar: ni el resumen ni el protocolo
+  dicen cuántos equipos acabaron ni en qué mes terminó (el protocolo preveía hasta junio). Ahora: «de los Países
+  Bajos», «durante la temporada 2017-2018» y «Los estudios duraron de 3 meses a una temporada» (no «de 3 a 8
+  meses»).
+- La rodilla del saltador era «una lesión del tendón de la rótula»; con los criterios de Lian, es «un dolor de los
+  tendones donde se unen a la rótula».
+- El 93 % de las lesiones de ojo fue «sin gafas protectoras»; la revisión dice «sin llevar gafas».
+- En la Zumba, «cada clase semanal más se asoció a 3,6 veces más probabilidades de haberse lesionado»: el artículo
+  no dice la unidad de su odds ratio, y una odds ratio no es una probabilidad. Ahora, las medias: los lesionados
+  iban a 3,8 clases por semana, y los demás, a 2,7.
+
+**Y una pregunta en rumano.** La ficha del baile pregunta «Cum îmi dau seama dacă un exercițiu este moderat sau
+intens?», y la misma respuesta del asistente rumano, publicada con el bloque 18, decía «Cum știu dacă un exercițiu e
+moderat sau intens?». Las preguntas de las fichas tienen que ser, letra a letra, las del asistente de su idioma: lo
+arregla la errata del bloque 20 (abajo), que pone en el asistente la de la ficha y deja la otra como variante. Las otras
+preguntas de las fichas que ya tienen respuesta en rumano casan.
+
+**El rumano, bloque 19** (sin activar): `idiomas/ro-fuente/asistente-3.json`, nuevo e idéntico al del zip (su huella),
+con 46 respuestas más del asistente de «Su cuerpo» (lo personal, la recuperación, la salud, los suplementos y la
+técnica), cada una con el castellano que traduce y su rumano. Con el verificador propio del bloque 17, casan las 46, y
+con las de los bloques 17 y 18, 148 de 178; `revisar_rumano.py --pares`, 467 filas, 0 errores (un aviso de largo, el
+título de la calima). Leído entero, frase a frase, contra el castellano: de dumneavoastră, y lo que cita de la pantalla,
+letra a letra el rumano de la app. Nada cambia en la app: `asistente-ro.json` espera a las 178 y al interruptor.
+
+**El rumano, bloque 20** (sin activar; Jérôme, 20-11: «Sigue con el 20»), en dos commits. Las erratas
+(`erratas-r20.json`, 19 cambios, con un aplicador propio, todo o nada): la pregunta de `moderado-o-intenso`, la de la
+ficha del baile (arriba); fuera una variante de `parar-de-inmediato` que era una frase de urgencia; 17 variantes y
+claves de más en 14 respuestas, del afinado del buscador; y en la guía de la app, «Fiecare grupă își deschide panoul»
+(antes, «fișa», que es la de un ejercicio), en `modulos/guia.js` y en su fuente. Y `idiomas/ro-fuente/asistente-4.json`,
+nuevo e idéntico al del zip (su huella): las 30 últimas respuestas (Tenerife y el deporte al aire libre, y las
+urgencias), con los patrones rumanos del filtro de urgencias. `tools/asistente_traduccion.js ro --probar`: casan 178 de
+178; `--comprobar`, que `asistente-ro.json` no existe, como debe hasta el interruptor; `poner_traduccion.js` con la
+guía, todo casa. Con el verificador propio, las 30; `revisar_rumano.py --pares`, 279 filas, 0 errores, 0 avisos. Leído
+entero, frase a frase, contra el castellano: nada que cambiar; lo que repite el panel SOS, letra a letra su rumano (20
+textos enteros y 4 frases). El filtro de urgencias rumano, con el motor de la app: las 11 preguntas de urgencia, cada
+una a la suya; ninguna de las 1.944 variantes de las demás da urgencia. Lo que no coge (una frase del atragantamiento y
+7 de 11 frases de ideas suicidas, las mismas que faltaban en los otros idiomas, abajo) va a la sesión del rumano: tiene
+que estar antes del interruptor. El parche del interruptor no entra.
+
+**El filtro de urgencias del asistente de «Su cuerpo», más fuerte** (dos commits). Probándolo con frases propias, el
+filtro dejaba pasar formas frecuentes de decir que se quiere morir, y el buscador las llevaba a otra respuesta: en
+inglés, «I can't go on living» iba a entrenar en casa sin material; en neerlandés, «Ik wil verdwijnen», a la grasa de la
+barriga; en castellano, «No vale la pena vivir» o «Me voy a tirar por la ventana» no sacaban el 024 ni el 112. Ahora los
+patrones de `urg-hacerse-dano` reconocen, con las formas de cada idioma, que la vida no tiene sentido o no vale la pena,
+dejar de existir o desaparecer, no volver a despertar, que nadie le echaría de menos, tirarse desde un sitio alto y
+acabar con todo. Por las fuentes de «Su cuerpo» y su `construir.py`: cambian solo esos patrones de los diez
+`asistente-<idioma>.json`, dentro de lo que pide su `validar.py` (12 patrones de 1.200 caracteres como mucho). Con el
+motor de la app: frases de crisis, de 12 a 80 de 80; frases normales que se parecen («quiero no despertarme más tarde de
+las 8», «ik wil mijn buikvet laten verdwijnen», «nikt nie zauważył, że schudłem»…), 58 de 58 sin urgencia; las 178
+preguntas y sus variantes en los diez idiomas, ninguna falsa alarma. Y, visto de paso, en alemán la pregunta de la
+corriente («…wenn mich eine Strömung abtreibt?») no la cogía su propio filtro: un patrón más para ese orden (las 11
+urgencias, cada una a la suya, también en alemán). Como cambió el castellano de `urg-hacerse-dano`,
+`tools/asistente_traduccion.js ro --probar` dice ahora 177 de 178 y pide traducir otra vez sus patrones: es lo que va a
+la sesión del rumano, con las frases que faltan; el rumano sigue apagado.
+
+**Comprobado aquí**: las cuatro fichas en los once idiomas (3.828 textos; las cifras de 2.200; 264 preguntas; 55 frases
+copiadas; 42 fuentes, todas https); las fuentes de «Su cuerpo» (con el filtro de urgencias) construyen, en una copia, el
+mismo módulo y los mismos datos de «Su deporte», de los ejercicios y del asistente de los diez idiomas que la rama, byte
+a byte; el rumano, 150 textos sin errores, su `deportes-ro.json` byte a byte y las 694 filas de `CUERPO_UI`;
+`tools/probar_cuerpo.js`, con su prueba 47 (la del bloque 3b: las cuatro fichas en los once idiomas, con sus cifras, sus
+fuentes en https, sus ejercicios en el catálogo y las preguntas del asistente de cada idioma; el desplegable de siete
+grupos; la hoja del movimiento con su entrada por ficha; y a 320 px en alemán y en búlgaro nada se sale), sobre la rama
+ya rebasada encima de los móviles: 856 de 856 (en `main`, 842); y, también tras el rebase, el filtro de urgencias con
+las frases de prueba (las de crisis, 80 de 80; las normales, 58 de 58; las 178 preguntas y sus variantes en los diez
+idiomas, ninguna falsa alarma). **La auditoría entera**, la misma para todo este lote: al final del apartado de la nota
+61, abajo.
+
+## La prueba de los dos móviles, bloques 5 y 6: los avisos, solo a los servicios de los navegadores, y los números de los grupos del mapa (20 de noviembre)
+
+**De dónde sale.** Los dos bloques de la prueba de los dos móviles que esperaban a Jérôme (arriba, en su apartado). El
+5, con su explicación: «5 si». El 6, con las dos capturas (el círculo de ahora y uno oscuro): «Con el negro se nota más
+los números». Como en los otros bloques, nada de la entrega se ha ejecutado, y cada prueba es propia, en rojo con lo de
+antes y en verde con lo nuevo. Un commit por bloque.
+
+**Bloque 5 · cualquiera podía dar de alta direcciones inventadas para los avisos.** `guardar_push_sub()` la puede llamar
+cualquiera, también sin cuenta (la clave anon va en la app), y aceptaba cualquier dirección que empezara por https://,
+hasta el tope de 50.000 suscripciones: con direcciones inventadas se podía llenar el tope, y las de verdad dejarían de
+entrar; y `enviar-notificacion.js` intentaba enviar a todas, una a una y sin plazo, alargando el envío de cada mañana.
+Ahora la dirección tiene que ser de un servicio de avisos de los navegadores, con su barra «/» justo detrás del nombre
+(ni puerto, ni usuario, ni otro dominio que lo contenga), y si no, 22023, «servicio de avisos no reconocido», y no se
+guarda nada:
+- `fcm.googleapis.com`: Chrome, Opera para Android y Samsung Internet (Chrome for Developers: los tres usan FCM);
+- `updates.push.services.mozilla.com`: Firefox (autopush, el servidor de avisos de Mozilla);
+- cualquier subdominio de `push.apple.com`: Safari, también el del iPhone (Apple: «allow URLs from any subdomain of
+  push.apple.com»; no solo `web.push.apple.com`);
+- cualquier subdominio de `notify.windows.com`: Edge en Windows (WNS; Microsoft: el canal es de ese dominio).
+
+Lo demás, igual que en `push-idioma.sql`: el idioma nuevo en la suscripción que ya estaba, las diez lenguas de la app y
+el tope. Antes de cambiarla, solo contando filas: había 5 suscripciones, las 5 de esos servicios; nadie se queda sin
+avisos. Probada antes en un PostgreSQL 16 local, con las tablas, las funciones y los permisos de los ficheros de
+`supabase/` y lo justo de Supabase (los roles anon y authenticated): con la función de antes, 10 en rojo, las 10
+direcciones de otro sitio o con trampa, que entraban (una inventada; el nombre de un servicio dentro de otro dominio o
+en la ruta de otro; con usuario; con puerto; sin la barra; con un punto al final del nombre; `push.apple.com` o
+`notify.windows.com` sin subdominio; un subdominio de Apple dentro de otro dominio); con la nueva, 21 de 21 (siguen
+entrando las de los cuatro servicios, también en mayúsculas; sin https, como antes, no entra; el tope de 50.000 y el
+cambio de idioma, como antes). **Aplicada en Supabase el 20-11, con el conector** (migración
+`guardar_push_sub_solo_servicios_de_avisos`; su registro, `supabase/push-servicios.sql`), y comprobada después: la
+función tiene la regla, sigue siendo `security definer` con `search_path = public` y con los mismos permisos; una
+dirección inventada da 22023 y no se guarda (siguen las 5 suscripciones), también desde fuera, con la clave pública de
+la app (HTTP 400, «servicio de avisos no reconocido»).
+
+Y el envío de cada mañana, con la misma regla: `enviar-notificacion.js` no envía a una fila de otro sitio (el resumen
+dice cuántas había) y cada envío lleva un plazo de 10 s (`timeout`, la opción de web-push 3.6.7: corta la conexión que
+se queda 10 s callada). `tools/probar_push_servicios.js`, con Supabase y web-push de mentira, sin salir de la máquina:
+con el envío de antes, 14 en rojo; con el nuevo, 24 de 24 (a las de los servicios les llega su aviso una vez; a las 11
+de otro sitio o con trampa, nada; TTL y plazo en cada envío; ninguna dirección en lo que escribe). Entra en
+`auditar.sh`. `tools/probar_notificacion_idioma.js`, con direcciones de FCM: 96 de 96.
+
+**Bloque 6 · los números de los grupos del mapa no se leían.** La cifra de cada grupo (`--gold-light`, #F5C76B) iba
+sobre un círculo dorado casi transparente, `rgba(212, 175, 55, 0.18)`: con el mapa de OSM debajo, 1,24:1 sobre tierra y
+1,07:1 sobre el mar, y lo mínimo para un texto así es 4,5:1. Ahora el círculo es oscuro, `rgba(15, 17, 23, 0.85)`, con
+el mismo borde dorado de 2 px y la cifra en su color. `tools/probar_contraste_grupos.js`, en la app, con un grupo de
+verdad y los tres tamaños: el contraste de la cifra sobre el círculo con blanco debajo (lo peor para un círculo oscuro)
+y con negro; con el `index.html` de antes, 4 en rojo (1,40:1 con blanco debajo); con el nuevo, 18 de 18 (7,78:1 con
+blanco y 12,15:1 con negro). Entra en `auditar.sh`.
+
+**La auditoría entera**, la misma para todo este lote: al final del apartado de la nota 61, abajo.
+
+## Jérôme, la nota 61: el bloque 14, en máquina y en multipower (497 con vídeo) (20 de noviembre)
+
+**El bloque 14** (nota 61, parche `0024`, de la sesión del entrenador; Jérôme, 19-11, al recibir el 13: «Sigue con el
+próximo bloque»). 41 coreografías nuevas, todas de fuerza: los ejercicios «en máquina» (35) y «en multipower» (6) que
+quedaban de las 533 fichas de antes, en su fuente (`tools/entrenador/src/7d-maquinas.js`) y en su trozo
+(`modulos/entrenador/maquinas.b83b336d.js`, 88.557 bytes). Por su primer grupo: cuádriceps 7, pecho 6, hombros 5,
+isquiotibiales 5, pantorrilla 4, espalda alta 4, glúteos 3, core 2, dorsal 2, tríceps 2 y bíceps 1. **497 ejercicios con
+vídeo**, de 958. Fuera del trozo, en `50-material.js`, un material nuevo, la máquina (`maquina`), que se dice por piezas
+(tubos, cojines, rodillos, asas, chapas, discos y la torre de placas) y por lo que se mueve en ella (una palanca que
+gira, un carro que corre por sus guías o lo que va con un punto del cuerpo); cada mecanismo va con la parte del cuerpo
+que lo mueve, la mano clavada a su asa, y donde la ficha pide el eje de la máquina en una articulación (la rodilla, el
+codo, el hombro, la cadera), la palanca y el miembro giran juntos. El multipower es una máquina con una barra que solo
+sube y baja. 116 líneas añadidas y ninguna quitada; sin ese material un vídeo se pinta como antes, y ninguno de los 456
+de antes lo usa. Las máquinas son esquemas, no las de ninguna marca.
+
+**Medido por esa sesión**, en los 41: ninguna zapatilla se hunde más de 0,1 cm (tope 1) y ninguna mano llega al suelo;
+de un cuadro al siguiente, el cuerpo 4,2 cm como mucho (tope 14) y una mano o un pie 9,8 (tope 36); lo clavado no se
+mueve (0,000 cm); cada secuencia cabe en su paso en los diez idiomas, y cinco pasos (los cambios de pierna o de brazo)
+llevan `dura`; lo que la ficha dice con números (los ángulos, las alturas de las asas, las anchuras), medido uno a uno.
+Además midió, con herramientas suyas que no son controles del repositorio, el cuerpo contra la máquina, la cabeza contra
+las barras, lo quieto que no va clavado y los topes de las máquinas, y con ellas encontró y corrigió, con su auditoría
+ya en verde, tres fallos que ningún control ve: en las dos dominadas asistidas la barra le cruzaba la cara; en la hack,
+los pies se iban 4 cm a media repetición; y en dos elevaciones de talones la puntera se metía 2,2 cm en la plataforma.
+Según esa sesión, las 456 coreografías de antes salen idénticas una a una, y los doce trozos de antes, byte a byte y con
+el mismo nombre. Lo que la ficha no dice (la prensa inclinada a 45° en las cuatro fichas de prensa, que no se enseñe el
+ajuste del asiento ni soltar los seguros, con qué pie o mano empieza, a qué altura van las asas) lo decidió esa sesión
+sin añadir técnica, y está en su nota.
+
+**Puesto y comprobado aquí.** El parche con `git am` y sus propias líneas de autoría, con la huella que dice su nota (y
+las 33 huellas de su `SHA256SUMS.txt`, bien). Como en la nota 56, la línea del estado de la muestra del entrenador
+(`tools/entrenador/muestra/plantilla.html`, que la app no enlaza) no casaba con la de aquí: el resto del parche entra
+tal cual, lo nuevo de la muestra también, y esa línea dice lo que habrá al publicar («Los bloques 1 a 14, la cámara
+lenta arreglada, la subida al pino, los arreglos del suelo, las paredes, los muslos y la leyenda, el vídeo partido por
+grupos, el cambio de pierna de la patada de glúteo en polea y los L-sit con el tronco derecho ya están en la app.»). Los
+ficheros del zip (`repo/`), iguales byte a byte a los de la rama, salvo esa muestra y el motor
+(`modulos/entrenador.js`), que aquí lleva además las 21 filas del rumano del reproductor (el bloque 13 del rumano, ya
+publicado; el zip se hizo sin él): las 21 líneas distintas son, cada una, la del zip con su `"ro"`.
+`construir.py --comprobar` (el motor, los 13 trozos y `con-video.json`, los de sus fuentes) y
+`app_preparar.js --comprobar`, en verde; la sintaxis del motor y de los 13 trozos, bien; y los doce trozos de antes, sin
+tocar (ni su nombre ni un byte). `con-video.json`: 497 filas; 41 nuevas, ninguna quitada ni cambiada, las 41 con su
+ficha en `datos/cuerpo/ejercicios.json` (las 35 con la máquina en su material y las 6 con el multipower; las 41, de
+gimnasio y de fuerza), y el número de pasos de cada una igual al de su ficha en los diez idiomas. Ningún texto nuevo a
+la vista: entre comillas, el trozo de máquinas lleva 167 cadenas distintas, ninguna con letras fuera del ASCII y ninguna
+con espacios, salvo el `'use strict'` del principio; en lo que añade el motor, tampoco (los ids de los 41, el nombre del
+trozo y nombres internos de la máquina); lo que se lee sale de las fichas ya publicadas. Sin APIs de riesgo: en el trozo
+y en su fuente, ni red, ni almacenamiento, ni `innerHTML`, ni `eval`, ni `document`; solo lee `window.TG_ENTRENADOR`; y
+la máquina, en el motor y en `50-material.js`, solo hace cuentas con sus piezas (sin tocar la página). Las herramientas
+de medir de esa sesión (`barras.js`, `cojines.js`, `deriva.js`, `topes.js` y `caja.js`) se han leído (solo leen el
+repositorio y escriben en la pantalla) y no se han ejecutado; no van al repositorio. Las pruebas del navegador (los 497
+vídeos y «Su cuerpo») van en la auditoría entera, abajo.
+
+**Lo que no está comprobado**, como en las notas anteriores: nada en un iPhone ni en un Samsung de verdad (en las
+pruebas, Samsung Internet es Chromium con su `User-Agent`), y lo que tarda el primer vídeo de cada grupo en un teléfono.
+Tampoco que las máquinas se parezcan a las de un gimnasio y los ejercicios a como los haría un entrenador: están
+cotejados con su ficha y medidos, no revisados por un profesional; los que más interpretación llevan, según esa sesión,
+son la elevación glúteo-isquio, el hip thrust con su cinturón, la sentadilla con cinturón, las dominadas asistidas y los
+press. Las piezas de la máquina se ordenan por distancia, no se tapan de verdad: en un cuadro intermedio una pieza larga
+puede quedar un instante delante de un brazo o una pierna. Y la palanca gira con la mano, sin peso ni inercia.
+
+**Para decidir, en la sesión del entrenador** (Jérôme, 18-11: «Curl lo hace fable»). Esa sesión midió lo mismo (la
+cabeza contra las barras) en los 497 y encontró nueve vídeos de bloques ya publicados en los que una barra o un cable
+entra más de 3 cm en la cabeza; en dos se ve claramente (`dominadas-negativas`, de pie en el cajón, y `push-press`, al
+bajar la barra a los hombros). No van en este parche: propone arreglarlos en el próximo zip, antes del bloque 15, con un
+control nuevo en `auditar_entrenador.js`. Y además: la prensa, inclinada a 45° en las cuatro fichas (o la sentada en
+alguna); si se enseñan los gestos de ajustar el asiento, soltar los seguros o colocar el banco; y lo que va después, el
+bloque 15 (cinta de suspensión, fitball, disco, balón medicinal, anillas y rueda: 37), que cierra las 533 fichas de
+antes.
+
+**La auditoría entera**, para todo este lote, sobre `c66c33d` (árbol `d905788a`): los diez commits del lote (los dos del
+bloque 3b de «Su deporte», los tres del rumano, los dos del filtro de urgencias, los bloques 5 y 6 de la prueba de los
+dos móviles y el parche de la nota 61) encima de `main` (`bd1858f`). En `main` es lo mismo, rebasado sobre cinco commits
+de los robots (de `1163ee2` a `b456e8e`: los avisos de AEMET, las alertas del Gobierno de Canarias y los terremotos del
+IGN), que solo cambian `datos/avisos-aemet.json`, `datos/alertas-canarias.json` y `datos/sismos-ign.json`, con la misma
+huella de parche en los diez, y con los controles que leen esos ficheros, en verde tras el rebase. Antes hubo dos
+auditorías que no cuentan: la del bloque 3b solo (`dep3ba`), que cortó un reinicio de la máquina en el bloque 57, y la
+del 3b con los bloques 5 y 6 (`lote56a`), parada a mano en el bloque 16 para juntarla con la nota 61; ninguna de las dos
+había dado un rojo. **«AUDITORIA EN VERDE»**: los 67 bloques de `auditar.sh` (65 y los dos nuevos de este lote), ningún
+control en rojo ni roto. Las pruebas de este lote: `probar_push_servicios.js`, 24 de 24; `probar_contraste_grupos.js`,
+18 de 18; `probar_notificacion_idioma.js`, 96 de 96; `tools/probar_cuerpo.js`, 856 de 856, con la prueba 47 del bloque
+3b; y el entrenador, 79 (los 497 vídeos, enteros, en castellano y en otro idioma: 994 pases y 886.089 cuadros; los 13
+trozos, cada uno con la huella de su contenido en el nombre). Lo demás, en verde: las preguntas de prueba al asistente,
+0 fallos de 298; `auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65; lo que pide Google Play, 249 de 249;
+`auditar_registro.js`, todo de usted (140.997 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_cirilico.py`, 2.348 nombres propios en cirílico y ninguna variante sospechosa; los datos, 975 lugares en todas
+partes (también en el resumen de este documento) y ninguna cifra de lugares que no sea 975 en lo que se lee;
+`probar_organiza.js`, 626 de 626; `auditar_desborde.js`: la etiqueta viewport de las cuatro páginas, las tres cajas de
+copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16 px; `auditar_arranque.js`, los nueve
+idiomas iguales tras `setLang` (16.045 nodos comparados, 0 textos distintos y 0 errores de página);
+`barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; «Su cuerpo», 856 y 64; `auditar_sw.js`, 104
+de 104; `probar_atras.js`, 26 de 26; `probar_superposiciones.js`, 25 de 25; `probar_sin_teselas.js`, 4 de 4;
+`probar_detalles_movil.js`, 17 de 17; `auditar_mapa.js`, 137 de 137; la isla en 3D, 57 y ninguno en rojo; el panel SOS,
+42 y 262; las cifras de idiomas del documento, las de ahora (52 tablas y 3.756 filas; 5.893). `app_preparar.js` montó
+`app/www/` (243 ficheros: uno más, el trozo de máquinas) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
