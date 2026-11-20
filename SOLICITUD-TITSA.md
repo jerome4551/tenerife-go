@@ -84,14 +84,14 @@ cuerpo hasta «Para poder usarlo bien» incluido y dejar el último párrafo.
   `https://www.titsa.com/Google_transit.zip`. `tools/gtfs_red.py` lo
   convierte en `datos/titsa.js`.
 
-## Una cosa que hay que hacer ANTES de enviarla
+## Lo que había que hacer antes de enviarla (hecho el 20 de noviembre)
 
-**La app no cita todavía el GTFS como pide su licencia.** Enlaza a
-titsa.com («horarios oficiales»), pero la licencia CC BY pide reconocer la
-fuente: algo como «Datos de guaguas: TITSA · datos.tenerife.es · CC BY», con
-el enlace a la licencia, en el panel de guaguas. Es el bloque 4 de la nota
-para Claude Code (mirar antes en la ficha del conjunto qué versión de CC BY
-es). Mejor tenerlo puesto cuando TITSA mire la app.
+**La app cita ya el GTFS como pide su licencia.** Al pie del panel de
+guaguas, debajo de «titsa.com · metrotenerife.com — horarios oficiales»:
+«TITSA · datos.tenerife.es», que lleva a la ficha del conjunto, y «CC BY»,
+que lleva al enlace de la licencia que da esa ficha. La ficha (y la API del
+portal) dice «Creative Commons Attribution», sin versión. Igual en los once
+idiomas, como el crédito de Open-Meteo.
 
 ## Si responden
 
