@@ -105,9 +105,11 @@
   /* Los estados que se ensenan y su orden: lo cerrado primero */
   var ESTADOS = { cerrado: 0, restringido: 1, solo_reserva: 2 };
   /* Fichas con estado cuyo texto no explica ese estado (20-11-2026): la de
-     Masca esta «cerrado» (verificado el 16-11 con caminobarrancodemasca.com)
-     pero su primera frase habla de la reserva. Se ensena el estado sin frase
-     hasta que la ficha diga por que esta cerrada; entonces se quita de aqui. */
+     Masca estuvo «cerrado» (del 12-11, tras la borrasca, al 20-11, segun
+     caminobarrancodemasca.com) y su primera frase habla de la reserva. El
+     20-11 esa web la da abierta (estado «abierto», que aqui no sale), pero se
+     queda en la lista: si vuelve a cerrar, se ensena el estado sin una frase
+     que no explica el cierre. */
   var SIN_FRASE = { 'ruta-masca-playa': 1 };
 
   /* «Reservas»: las fichas con reserva:true, menos estas categorias */
