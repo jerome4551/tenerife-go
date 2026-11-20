@@ -18177,12 +18177,16 @@ function detailSheetShare() {
 }
 
 function detailSheetHowto() {
-  if (!_detailPlaceId) return;
+  /* El id se guarda ANTES de cerrar: closeDetailSheet() lo pone a null, y el boton «Como llegar en guagua» de la
+     ficha la cerraba sin abrir «Paradas cerca» (visto el 20 de noviembre de 2026, con la prueba de los dos moviles;
+     lo vigila tools/probar_atras.js con el boton de verdad). */
+  const id = _detailPlaceId;
+  if (!id) return;
   // Cerrar el sheet y activar howto igual que el popup
   closeDetailSheet();
-  const marker = markerMap[_detailPlaceId];
+  const marker = markerMap[id];
   if (marker) {
-    const place = places.find(p => p.id === _detailPlaceId);
+    const place = places.find(p => p.id === id);
     if (place) openNearbyStopsFor(place.lat, place.lng, nombreLugar(place));
   }
 }

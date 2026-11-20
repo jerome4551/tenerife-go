@@ -143,16 +143,17 @@ const PANELES = [
     ok(c0.perfil && c0.cuenta && c1 && c1.perfil && !c1.cuenta && c2 && !c2.perfil && !c2.cuenta, 'la cuenta encima del perfil: el primer «atras» cierra la cuenta y deja el perfil; el segundo, el perfil', { c0, c1, c2 });
   } catch (e) { ok(false, 'la cuenta encima del perfil: la prueba no pudo', e.message.split('\n')[0]); }
   try {
-    /* se cierra uno y se abre otro a la vez: la ficha da paso a «Paradas cerca» */
+    /* se cierra uno y se abre otro a la vez: la ficha da paso a «Paradas cerca» con su boton «Como llegar en
+       guagua», el de verdad (hasta el 20 de noviembre de 2026 solo cerraba la ficha) */
     await entrar();
     await p.evaluate(() => { closeDetailSheet(); openDetailSheet('teide'); }); await p.waitForTimeout(600);
-    await p.evaluate(() => { closeDetailSheet(); openNearbyStopsFor(28.27, -16.64, 'Teide'); }); await p.waitForTimeout(700);
+    await p.click('#detail-sheet-howto'); await p.waitForTimeout(900);
     const s0 = await p.evaluate(() => ({ ficha: document.getElementById('detail-sheet').classList.contains('open'), paradas: document.getElementById('nearby-stops-panel').classList.contains('open') }));
     await atras();
     const s1 = enApp() ? await p.evaluate(() => ({ ficha: document.getElementById('detail-sheet').classList.contains('open'), paradas: document.getElementById('nearby-stops-panel').classList.contains('open') })) : null;
     await atras();
     ok(!s0.ficha && s0.paradas && s1 && !s1.ficha && !s1.paradas && p.url().startsWith(ANTES),
-      'la ficha que da paso a «Paradas cerca»: un «atras» cierra las paradas, y el siguiente sale de la app (sin entrada muerta)', { s0, s1, url: p.url() });
+      'la ficha da paso a «Paradas cerca» con su boton «Como llegar»; un «atras» las cierra, y el siguiente sale de la app (sin entrada muerta)', { s0, s1, url: p.url() });
   } catch (e) { ok(false, 'el paso de un panel a otro: la prueba no pudo', e.message.split('\n')[0]); }
   try {
     /* un modulo que se cierra con su propio «atras» (history.go(-1)) y abre a la vez un panel de aqui: en el SOS, tocar
