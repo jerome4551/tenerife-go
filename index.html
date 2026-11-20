@@ -3915,6 +3915,12 @@ window.onunhandledrejection = function(e) {
     transition: all var(--t-fast) var(--ease-out);
   }
   .bus-titsa-link:hover { color: #60a5fa; background: rgba(59,130,246,0.08); }
+  /* El credito del GTFS de TITSA (20 de noviembre de 2026). Su ficha en datos.tenerife.es («Información sobre el
+     sistema de transporte de TITSA en Tenerife») da la licencia «Creative Commons Attribution» (CC BY, sin
+     version, con el enlace de opendefinition.org), que pide reconocer la fuente. Nombres propios y la formula de la
+     licencia, iguales en los once idiomas, como el de Open-Meteo (data-sin-traducir). */
+  .bus-credito { margin-top: 2px; text-align: center; font-size: 11px; line-height: 1.4; color: rgba(255,255,255,0.6); overflow-wrap: anywhere; }
+  .bus-credito a { color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.35); text-underline-offset: 2px; }
 
   /* ── MARCADORES DE PARADA BUS ────────────────────────── */
   .bus-stop-marker {
@@ -6500,6 +6506,7 @@ window.onunhandledrejection = function(e) {
       <a href="https://www.titsa.com" target="_blank" rel="noopener noreferrer" class="bus-titsa-link" id="bus-official-link" data-tx="busOficial">
         🔗 titsa.com · metrotenerife.com — horarios oficiales
       </a>
+      <div class="bus-credito" id="bus-credito" data-sin-traducir="credito de la fuente de datos"><a href="https://datos.tenerife.es/es/datos/conjuntos-de-datos/informacion-sobre-el-sistema-de-transporte-de-titsa-en-tenerife" target="_blank" rel="noopener noreferrer">TITSA · datos.tenerife.es</a> · <a href="https://opendefinition.org/licenses/cc-by/" target="_blank" rel="noopener noreferrer">CC BY</a></div>
     </div>
   </div>
 </div>
