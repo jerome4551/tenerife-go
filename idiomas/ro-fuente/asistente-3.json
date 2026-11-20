@@ -961,7 +961,6 @@
      "îmi lipsește foarte mult aerul când fac exerciții",
      "când trebuie să te oprești din alergat",
      "semne de alarmă când faci sport",
-     "mă doare pieptul când fac efort",
      "ce simptome înseamnă pericol la antrenament?",
      "mă simt ciudat când fac exerciții",
      "amețeală și greață la sală",
@@ -1428,7 +1427,8 @@
      "exces",
      "exagerez",
      "terminat",
-     "mai mult decât trebuie"
+     "mai mult decât trebuie",
+     "epuizat"
     ],
     "u": []
    }
@@ -2042,7 +2042,8 @@
      "defibrilator",
      "fibrilație atrială",
      "infarct",
-     "a alerga"
+     "a alerga",
+     "cardiopat"
     ],
     "u": []
    }
@@ -2562,7 +2563,8 @@
      "cred că fiica mea are bulimie",
      "fac prea multe exerciții ca să compensez mâncarea",
      "ajutor pentru tulburările de alimentație în Tenerife",
-     "număr tot ce mănânc și mă copleșește"
+     "număr tot ce mănânc și mă copleșește",
+     "prietena mea mănâncă foarte puțin"
     ],
     "k": [
      "TCA",
@@ -3459,7 +3461,8 @@
      "stretching",
      "finalul antrenamentului",
      "începutul antrenamentului",
-     "a pierde forță"
+     "a pierde forță",
+     "flexibilitate"
     ],
     "u": []
    }

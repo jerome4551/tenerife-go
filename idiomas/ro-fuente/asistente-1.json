@@ -390,7 +390,8 @@
      "cum salvez seriile",
      "cum funcționează notarea",
      "adaug un antrenament nou în aplicație",
-     "unde notez ce am făcut azi?"
+     "unde notez ce am făcut azi?",
+     "cum marchez exercițiile făcute"
     ],
     "k": [
      "notare",
@@ -629,7 +630,9 @@
      "mă înțelegi?",
      "ce întrebări pot pune",
      "despre ce știi",
-     "ce fel de lucruri știi?"
+     "ce fel de lucruri știi?",
+     "cum se folosește asistentul",
+     "cum folosesc asistentul?"
     ],
     "k": [
      "ajutor",
@@ -1459,7 +1462,8 @@
      "mama are 80 de ani, ce exerciții i se potrivesc?",
      "rutină pentru cei de peste 60 de ani",
      "ce activitate fizică i se potrivește unui pensionar?",
-     "ce fel de exerciții îmi recomanzi la peste 70 de ani?"
+     "ce fel de exerciții îmi recomanzi la peste 70 de ani?",
+     "ce sport poate face o persoană în vârstă?"
     ],
     "k": [
      "vârstnici",
@@ -2272,7 +2276,8 @@
      "fereastra anabolică",
      "când să iau proteine",
      "câte grame de proteine o dată?",
-     "programul pentru proteine"
+     "programul pentru proteine",
+     "proteine la fiecare masă"
     ],
     "k": [
      "moment",
@@ -2981,7 +2986,9 @@
      "legume",
      "zarzavaturi",
      "salată",
-     "vegetale"
+     "vegetale",
+     "măr",
+     "mere"
     ],
     "u": []
    }

@@ -256,7 +256,8 @@
      "cum încep antrenamentul de forță",
      "de unde începi dacă nu te-ai antrenat niciodată?",
      "mi-e frică să încep să mă antrenez",
-     "sunt nou și vreau să-mi intru în formă, de unde încep?"
+     "sunt nou și vreau să-mi intru în formă, de unde încep?",
+     "primele antrenamente la sală"
     ],
     "k": [
      "novice",
@@ -869,7 +870,7 @@
     "u": []
    },
    "ro": {
-    "q": "Cum știu dacă un exercițiu e moderat sau intens?",
+    "q": "Cum îmi dau seama dacă un exercițiu este moderat sau intens?",
     "r": {
      "t": "Evaluați-vă efortul pe o scală de la 0 la 10, după propria capacitate: pentru OMS, activitatea moderată înseamnă de obicei 5 sau 6, cea intensă 7 sau 8, iar cea ușoară, între 2 și 4.",
      "p": [
@@ -895,7 +896,7 @@
      "cum măsori intensitatea?",
      "moderat vs viguros",
      "dacă pot vorbi în timp ce fac exerciții, înseamnă că e ușor?",
-     "cum îmi dau seama dacă exercițiul e moderat?"
+     "cum știu dacă un exercițiu e moderat sau intens?"
     ],
     "k": [
      "RPE",
@@ -1414,7 +1415,9 @@
      "câtă greutate e corectă",
      "ce greutăți folosesc la sală?",
      "câtă greutate trebuie să pui pe bară?",
-     "procent din 1rm"
+     "procent din 1rm",
+     "ce greutate mi se potrivește",
+     "cum știu ce greutate să folosesc?"
     ],
     "k": [
      "kg",
@@ -3139,7 +3142,8 @@
      "nu înțeleg culorile corpului",
      "de ce se colorează un mușchi?",
      "ce înseamnă culoarea mușchilor",
-     "de ce pieptul meu e portocaliu?"
+     "de ce pieptul meu e portocaliu?",
+     "ce înseamnă culoarea de la piept pe desen?"
     ],
     "k": [
      "galben",
@@ -3935,7 +3939,8 @@
      "partea de jos a piciorului",
      "gambe subțiri",
      "slabe",
-     "exerciții"
+     "exerciții",
+     "solear"
     ],
     "u": []
    }
@@ -4007,7 +4012,8 @@
      "ridicarea vârfurilor picioarelor",
      "tibial cu bandă",
      "forța pentru flexia dorsală a gleznei",
-     "merită să lucrez tibialul?"
+     "merită să lucrez tibialul?",
+     "mușchii din fața gambei"
     ],
     "k": [
      "flexie dorsală",
