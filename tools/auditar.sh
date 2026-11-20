@@ -185,6 +185,11 @@ if reventado "$salida"; then roto probar_faq.js
 else [ "$rc" = 0 ] || falla probar_faq.js; fi
 echo; echo "════════ el asistente en un movil de verdad, en su idioma ════════"
 control probar_movil.js node tools/probar_movil.js "$PUERTO"
+echo; echo "════════ el «atras» del movil en los paneles del mapa ════════"
+# Desde el 20 de noviembre de 2026 (prueba de los dos moviles, bloque 2): con la ficha, las categorias, las guaguas,
+# el asistente… abiertos, «atras» sacaba de la app (en la de Android, la cerraba). Cada panel del mapa pone su entrada
+# en el historial y «atras» cierra el de arriba, tambien con el perfil o la cuenta encima o debajo.
+control probar_atras.js node tools/probar_atras.js "$PUERTO"
 echo; echo "════════ cada lugar por su nombre y cada categoria por su rotulo, preguntados al asistente en los diez idiomas ════════"
 # Desde el 20 de octubre de 2026: en castellano no encontraba 170 de los 980
 # lugares por su nombre, y en chino 638. Ningun control se lo preguntaba.

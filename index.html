@@ -34188,6 +34188,178 @@ function openPrivacyPanel() {
 function closePrivacyPanel() {
   document.getElementById('privacy-panel').classList.remove('open');
 }
+
+/* ── «ATRÁS» EN LOS PANELES DEL MAPA (20 de noviembre de 2026, prueba de los dos móviles, bloque 2) ──────────────
+   En Android, el botón o el gesto «atrás» con un panel abierto (la ficha, las categorías, las guaguas, el asistente…)
+   sacaba de la app; en la de Google Play, la cerraba. Solo el SOS, el perfil, la isla en 3D y «Su cuerpo» ponían su
+   entrada en el historial. Ahora cada panel del mapa pone la suya al abrirse, y «atrás» cierra el de arriba.
+   · Los paneles se miran por su estado (la clase, el display de su elemento) con un MutationObserver: da igual por
+     dónde se abran o se cierren (su botón, su ✕, tocar fuera, Escape, el tour, otro panel).
+   · Al abrirse uno: pushState({ tgPanel, tgN, tgI }) (tgN crece con cada entrada; tgI es esta carga de la página).
+     Si a la vez se cierra el de la entrada de arriba (la ficha que da paso a «Paradas cerca»), se usa su misma
+     entrada (replaceState) en vez de quitar una y poner otra.
+   · Al cerrarse sin «atrás» (su ✕, tocar fuera…): si su entrada es la de arriba, history.back(); si hay algo encima,
+     su entrada se queda, y el «atrás» que llegue a ella se la salta.
+   · «Atrás»: el popstate que deja la entrada de un panel abierto lo cierra con su propia función. Los history.back()
+     de aquí no son un «atrás» de la persona y no llegan a los módulos (stopImmediatePropagation: este escuchador va
+     antes que los suyos, que se cargan después, al usarlos).
+   · Para saber de qué entrada se viene hay que saber cuál es la de arriba: pushState y replaceState se envuelven para
+     apuntarla, también cuando la ponen los módulos.
+   · Los módulos que se cierran con su propio «atrás» (el SOS, con history.go(-1)) pueden abrir a la vez un panel de
+     aquí: en el SOS, tocar un aviso de la AEMET abre el panel de los avisos y cierra el SOS. Por eso el historial se
+     ordena al acabar lo que esté pasando (setTimeout 0) y no en medio, y mientras un módulo espera su popstate no se
+     toca: el popstate que pidió no es un «atrás» de la persona, no cierra nada de aquí, y después va la entrada del
+     panel que se abrió. history.back y history.go se envuelven para saber cuándo lo pide un módulo.
+   Comprobado en tools/probar_atras.js (también lo del SOS y los avisos) y en tools/probar_emergencias.js. */
+(function () {
+  'use strict';
+  var INSTANCIA = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  var contador = 0, vivas = {}, atrasNuestros = 0, reloj = null, ajenos = 0, relojAjeno = null, pendiente = null;
+  var actual = history.state;
+  function $(id) { return document.getElementById(id); }
+  function clase(id, c) { var e = $(id); return !!(e && e.classList.contains(c)); }
+  function visible(id) { var e = $(id); return !!(e && e.style.display && e.style.display !== 'none'); }
+  function ocultar(id) { var e = $(id); if (e) e.style.display = 'none'; }
+  /* [el panel, el elemento que se mira, si está abierto, cómo se cierra]. Si se abren dos a la vez, el de más abajo
+     en la lista queda encima. */
+  var PANELES = [
+    ['ficha', 'detail-sheet', function () { return clase('detail-sheet', 'open'); }, function () { closeDetailSheet(); }],
+    ['buscador', 'search-suggestions', function () { return clase('search-suggestions', 'open'); }, function () {
+      var s = $('search-suggestions'); if (s) s.classList.remove('open');
+      var i = $('search-input'); if (i) i.blur();
+      if (typeof closeSearch === 'function') closeSearch();
+    }],
+    ['categorias', 'cat-sheet', function () { return clase('cat-sheet', 'open'); }, function () { closeCategorySheet(); }],
+    ['guaguas', 'bus-panel', function () { return clase('bus-panel', 'open'); }, function () { closeBusPanel(); }],
+    ['rutas', 'route-panel', function () { return clase('route-panel', 'open'); }, function () { closeRoutePanel(); }],
+    ['paradas', 'nearby-stops-panel', function () { return clase('nearby-stops-panel', 'open'); }, function () { closeNearbyStops(); }],
+    ['asistente', 'chat-panel', function () { return clase('chat-panel', 'open'); }, function () { closeChatPanel(); }],
+    ['avisos', 'wx-panel', function () { return visible('wx-panel'); }, function () { ocultar('wx-panel'); }],
+    ['mar', 'mar-panel', function () { return visible('mar-panel'); }, function () { ocultar('mar-panel'); }],
+    ['microclimas', 'mc-panel', function () { return visible('mc-panel'); }, function () { ocultar('mc-panel'); }],
+    ['fiestas', 'fi-panel', function () { return visible('fi-panel'); }, function () { ocultar('fi-panel'); }],
+    ['gasolineras', 'gas-cerca-panel', function () { return clase('gas-cerca-panel', 'open'); }, function () { cerrarGasCerca(); }],
+    ['organizador', 'dp-overlay', function () { return clase('dp-overlay', 'open'); }, function () { closeDayPlanner(); }],
+    ['tienda', 'shop-panel', function () { return clase('shop-panel', 'open'); }, function () { closeShopPanel(); }],
+    ['cesta', 'cart-panel', function () { return clase('cart-panel', 'open'); }, function () { closeCartPanel(); }],
+    ['cielo', 'cielo-panel', function () { return visible('cielo-panel'); }, function () {
+      if (window.TG_CIELO && typeof TG_CIELO.cerrar === 'function') TG_CIELO.cerrar(); else ocultar('cielo-panel');
+    }],
+    ['cuenta', 'auth-modal-backdrop', function () { return clase('auth-modal-backdrop', 'show'); }, function () { if (typeof window.closeAuthModal === 'function') window.closeAuthModal(); }],
+    ['admin', 'admin-overlay', function () { return clase('admin-overlay', 'open'); }, function () { closeAdmin(); }],
+    ['privacidad', 'privacy-panel', function () { return clase('privacy-panel', 'open'); }, function () { closePrivacyPanel(); }],
+    /* el de los logros se crea al abrirlo por primera vez: se mira al entrar en el body */
+    ['logros', null, function () { return !!document.querySelector('.tg-badges-overlay.open'); }, function () {
+      var o = document.querySelector('.tg-badges-overlay.open'); if (o) o.classList.remove('open');
+    }]
+  ];
+  function abierto(p) { try { return !!p[2](); } catch (e) { return false; } }
+  function dePanel(s) { return !!(s && s.tgPanel); }
+  function estado(id, n) { return { tgPanel: id, tgN: n, tgI: INSTANCIA }; }
+  function viva(s) {
+    if (!dePanel(s) || s.tgI !== INSTANCIA) return false;
+    for (var id in vivas) if (vivas[id] === s.tgN) return true;
+    return false;
+  }
+  /* la entrada de arriba, también cuando la ponen los módulos */
+  var poner = history.pushState, cambiar = history.replaceState, volver = history.back, ir = history.go;
+  history.pushState = function (s) { var r = poner.apply(history, arguments); actual = s; return r; };
+  history.replaceState = function (s) { var r = cambiar.apply(history, arguments); actual = s; return r; };
+  /* y los «atrás» que piden los módulos: hasta que llegue su popstate (o 1,5 s, si no llegara), no se toca el historial */
+  function ajeno() {
+    ajenos++;
+    clearTimeout(relojAjeno);
+    relojAjeno = setTimeout(function () { ajenos = 0; ordenar(); }, 1500);
+  }
+  history.back = function () { ajeno(); return volver.apply(history, arguments); };
+  history.go = function (n) { if (n) ajeno(); return ir.apply(history, arguments); };
+  /* una entrada de un panel de una carga anterior de la página (se recargó con un panel abierto): sin marca */
+  if (dePanel(actual) && actual.tgI !== INSTANCIA) { try { history.replaceState(null, ''); } catch (e) {} }
+  function atras() {
+    atrasNuestros++;
+    clearTimeout(reloj);
+    /* por si el popstate no llegara: no se queda nada esperando */
+    reloj = setTimeout(function () { atrasNuestros = 0; ordenar(); }, 1500);
+    try { volver.call(history); } catch (e) { atrasNuestros = 0; clearTimeout(reloj); }
+  }
+  /* El historial, al día con los paneles: lo que se ha cerrado deja de contar; si la entrada de arriba es de un panel
+     que ya no está abierto, se usa para uno nuevo o se quita con «atrás»; y cada panel nuevo, su entrada. Mientras va
+     un «atrás» de aquí o de un módulo, espera a que llegue. Se pide con pedirOrden(): al acabar lo que esté pasando. */
+  function pedirOrden() {
+    if (!pendiente) pendiente = setTimeout(function () { pendiente = null; ordenar(); }, 0);
+  }
+  function ordenar() {
+    if (atrasNuestros || ajenos) return;
+    var nuevos = [];
+    PANELES.forEach(function (p) {
+      var id = p[0];
+      if (abierto(p)) { if (!vivas[id]) nuevos.push(id); }
+      else delete vivas[id];
+    });
+    try {
+      if (dePanel(actual) && !viva(actual)) {
+        if (!nuevos.length) { atras(); return; }
+        var id = nuevos.shift();
+        vivas[id] = ++contador;
+        history.replaceState(estado(id, vivas[id]), '');
+      }
+      nuevos.forEach(function (id) {
+        vivas[id] = ++contador;
+        history.pushState(estado(id, vivas[id]), '');
+      });
+    } catch (e) {}
+  }
+  function cerrar(id) {
+    delete vivas[id];
+    PANELES.forEach(function (p) { if (p[0] === id) { try { p[3](); } catch (e) {} } });
+  }
+  /* «atrás». Va antes que los escuchadores de los módulos: se registra al cargar la página, y ellos al usarlos. */
+  window.addEventListener('popstate', function (e) {
+    var antes = actual;
+    actual = e.state;
+    if (atrasNuestros) {
+      atrasNuestros--;
+      if (!atrasNuestros) clearTimeout(reloj);
+      e.stopImmediatePropagation();
+      ordenar();
+      return;
+    }
+    /* el «atrás» que pidió un módulo para cerrarse: no cierra nada de aquí, y el historial se ordena cuando el
+       módulo ya ha hecho lo suyo con este popstate */
+    if (ajenos) {
+      ajenos--;
+      if (!ajenos) clearTimeout(relojAjeno);
+      pedirOrden();
+      return;
+    }
+    /* se deja la entrada de un panel abierto: se cierra */
+    if (viva(antes)) cerrar(antes.tgPanel);
+    /* un «atrás» de varios pasos de golpe: lo que quedaba encima, también */
+    if (dePanel(e.state) && e.state.tgI === INSTANCIA) {
+      for (var id in vivas) if (vivas[id] > e.state.tgN) cerrar(id);
+    } else if (e.state === null) {
+      for (var id2 in vivas) cerrar(id2);
+    }
+    ordenar();
+  });
+  function vigilar() {
+    var mo = new MutationObserver(function () { pedirOrden(); });
+    var opciones = { attributes: true, attributeFilter: ['class', 'style', 'hidden'] };
+    PANELES.forEach(function (p) { var el = p[1] && $(p[1]); if (el) mo.observe(el, opciones); });
+    new MutationObserver(function (lista) {
+      lista.forEach(function (m) {
+        for (var i = 0; i < m.addedNodes.length; i++) {
+          var n = m.addedNodes[i];
+          if (n.nodeType === 1 && n.classList.contains('tg-badges-overlay')) mo.observe(n, opciones);
+        }
+      });
+      pedirOrden();
+    }).observe(document.body, { childList: true });
+    ordenar();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', vigilar);
+  else vigilar();
+})();
 </script>
 
 <!-- ════════════════════════════════════════════════════════════
