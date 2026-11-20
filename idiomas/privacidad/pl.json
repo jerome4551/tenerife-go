@@ -14,6 +14,8 @@
 "ppDatosRls":", które przechowuje hasło zaszyfrowane; my go nigdy nie widzimy.",
 "ppDatosFav":"Ulubione:",
 "ppDatosFavTxt":"identyfikatory zapisanych miejsc. Z kontem się synchronizują; bez konta zostają na urządzeniu.",
+"ppDatosCoche":"Mój samochód i moja lokalizacja (opcjonalnie):",
+"ppDatosCocheTxt":"po dotknięciu «Zapisać miejsce parkowania» — pozycja samochodu, jej dokładność, godzina i wpisana notatka (poziom, miejsce…). Dane zostają tylko na urządzeniu, aby zaznaczyć samochód na mapie i pokazać, jak daleko się znajduje; usuwa je przycisk «Usunąć». Po dotknięciu «Wrócić pieszo» ta pozycja otwiera się w aplikacji map w telefonie (Mapy Apple lub Google Maps), aby wyznaczyć trasę. «Wysłać moją lokalizację» ustala lokalizację tylko po dotknięciu i wysyła ją wyłącznie osobie wybranej w telefonie (przez menu udostępniania, WhatsApp, SMS lub kopiowanie). Aplikacja nie wysyła niczego z tych danych na żaden serwer.",
 "ppDatosPerfil":"Profil (opcjonalnie):",
 "ppDatosPerfilTxt":"imię lub pseudonim, awatar, jednostki, wzrost, rok urodzenia, data utworzenia profilu, waga docelowa, wpisane wagi i kilometry wpisane wcześniej w profilu (z datą) oraz potwierdzone wizyty (tylko miejsce i dzień). Są zapisywane na urządzeniu i można je usunąć w profilu – z wyjątkiem potwierdzonych wizyt, które są usuwane, gdy miejsce przestaje być oznaczone jako odwiedzone. Po zalogowaniu, po ukończeniu 14 lat i wyłącznie za wyraźną zgodą wszystko oprócz wizyt jest zapisywane także na koncie, razem z datą tej zgody, żeby nie przepadło przy zmianie telefonu; waga i wzrost to dane dotyczące zdrowia. Zgodę można w każdej chwili wycofać w profilu: kopia zapisana na koncie zostaje wtedy usunięta, a dane pozostają na urządzeniu.",
 "ppDatosCuerpo":"Ciało (opcjonalnie):",

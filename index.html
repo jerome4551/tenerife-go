@@ -6212,6 +6212,17 @@ window.onunhandledrejection = function(e) {
       <button class="route-panel-close" onclick="closeRoutePanel()" data-tx-aria="ariaCerrarRutas" aria-label="Cerrar panel de rutas">✕</button>
     </div>
 
+    <!-- Antes de salir (20 de noviembre de 2026): abre la pantalla de modulos/antes.js
+         (bloque «ANTES DE SALIR», al final de la pagina) -->
+    <button type="button" class="antes-tarjeta" id="antes-tarjeta" aria-haspopup="dialog">
+      <span class="antes-tarjeta-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5"/><path d="M8.5 12.5l2.2 2.2 4.8-4.8"/></svg></span>
+      <span class="antes-tarjeta-txt">
+        <span class="antes-tarjeta-t" data-tx="antesTitulo">Antes de salir</span>
+        <span class="antes-tarjeta-s" data-tx="antesTarjetaSub">Senderos cerrados, permisos y avisos de hoy</span>
+      </span>
+      <span class="antes-tarjeta-flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
+    </button>
+
     <!-- Pestañas -->
     <div class="route-tabs">
       <button class="route-tab active" id="tab-planner" onclick="switchRouteTab('planner')">
@@ -9691,6 +9702,8 @@ Object.assign(UI_TX, {
   "ppDatosRls": {"es":", que guarda la contraseña cifrada; nosotros no la vemos.", "en":", which stores the password encrypted; we never see it.", "fr":", qui conserve le mot de passe chiffré ; nous ne le voyons jamais.", "de":", das das Passwort verschlüsselt speichert; wir sehen es nie.", "it":", che conserva la password cifrata; noi non la vediamo mai.", "nl":", dat het wachtwoord versleuteld bewaart; wij zien het nooit.", "zh":"管理，密码以加密方式存储；我们从不查看。", "zht":"管理，密碼以加密方式儲存；我們從不查看。", "bg":", който пази паролата криптирана; ние не я виждаме.", "pl":", które przechowuje hasło zaszyfrowane; my go nigdy nie widzimy."},
   "ppDatosFav": {"es":"Favoritos:", "en":"Favourites:", "fr":"Favoris :", "de":"Favoriten:", "it":"Preferiti:", "nl":"Favorieten:", "zh":"收藏：", "zht":"收藏：", "bg":"Любими:", "pl":"Ulubione:"},
   "ppDatosFavTxt": {"es":"los identificadores de los lugares que guarda. Con cuenta se sincronizan; sin cuenta se quedan en su dispositivo.", "en":"the identifiers of the places you save. With an account they sync; without one they stay on your device.", "fr":"les identifiants des lieux que vous enregistrez. Avec un compte ils se synchronisent ; sans compte ils restent sur votre appareil.", "de":"die Kennungen der Orte, die Sie speichern. Mit Konto werden sie synchronisiert, ohne Konto bleiben sie auf Ihrem Gerät.", "it":"gli identificativi dei luoghi che salva. Con un account si sincronizzano; senza, restano sul Suo dispositivo.", "nl":"de identificatoren van de plekken die u opslaat. Met een account synchroniseren ze; zonder blijven ze op uw toestel.", "zh":"您保存的地点标识。登录后会同步；未登录则只留在您的设备上。", "zht":"您儲存地點的識別碼。登入後會同步；未登入則只留在您的裝置上。", "bg":"идентификаторите на местата, които запазвате. С акаунт се синхронизират; без акаунт остават на устройството ви.", "pl":"identyfikatory zapisanych miejsc. Z kontem się synchronizują; bez konta zostają na urządzeniu."},
+  "ppDatosCoche": {"es":"Mi coche y mi posición (opcional):", "en":"My car and my location (optional):", "fr":"Ma voiture et ma position (facultatif) :", "de":"Mein Auto und mein Standort (optional):", "it":"La mia auto e la mia posizione (facoltativo):", "nl":"Mijn auto en mijn locatie (optioneel):", "zh":"我的车和我的位置（可选）：", "zht":"我的車和我的位置（選用）：", "bg":"Моята кола и моето местоположение (по желание):", "pl":"Mój samochód i moja lokalizacja (opcjonalnie):"},
+  "ppDatosCocheTxt": {"es":"si toca «Aparqué aquí», la posición del coche, su precisión, la hora y la nota que escriba (planta, plaza…). Se guardan solo en su dispositivo, para marcar el coche en el mapa y decirle a qué distancia está, y se borran con «Borrar». Si toca «Volver a pie», esa posición se abre en la app de mapas del móvil (Mapas de Apple o Google Maps) para la ruta. «Enviar mi posición» busca su ubicación solo cuando lo toca y la manda únicamente a quien usted elija desde el móvil (la hoja de compartir, WhatsApp, SMS o copiar). La app no envía nada de esto a ningún servidor.", "en":"if you tap «I parked here», the car’s position, its accuracy, the time and any note you write (level, space…). They stay only on your device, to mark the car on the map and tell you how far away it is, and «Delete» removes them. If you tap «Walk back», that position opens in your phone’s maps app (Apple Maps or Google Maps) for the route. «Send my location» looks up your location only when you tap it and sends it only to whoever you choose from your phone (the share sheet, WhatsApp, text message or copy). The app sends none of this to any server.", "fr":"si vous touchez «Ma voiture est ici», la position de la voiture, sa précision, l’heure et la note que vous écrivez (niveau, place…). Elles restent uniquement sur votre appareil, pour marquer la voiture sur la carte et vous dire à quelle distance elle se trouve, et s’effacent avec «Effacer». Si vous touchez «Revenir à pied», cette position s’ouvre dans l’app de cartes du téléphone (Plans d’Apple ou Google Maps) pour l’itinéraire. «Envoyer ma position» cherche votre position seulement quand vous le touchez et l’envoie uniquement à la personne que vous choisissez depuis votre téléphone (la feuille de partage, WhatsApp, SMS ou copier). L’app n’envoie rien de tout cela à aucun serveur.", "de":"wenn Sie auf «Hier geparkt» tippen, die Position des Autos, ihre Genauigkeit, die Uhrzeit und die Notiz, die Sie schreiben (Ebene, Stellplatz…). Sie bleiben nur auf Ihrem Gerät, um das Auto auf der Karte zu markieren und Ihnen zu sagen, wie weit es entfernt ist, und werden mit «Löschen» gelöscht. Wenn Sie auf «Zu Fuß zurück» tippen, öffnet sich diese Position in der Karten-App des Handys (Apple Karten oder Google Maps) für die Route. «Meinen Standort senden» ermittelt Ihren Standort nur, wenn Sie darauf tippen, und schickt ihn nur an die Person, die Sie auf Ihrem Handy auswählen (über das Teilen-Menü, WhatsApp, SMS oder Kopieren). Die App sendet nichts davon an einen Server.", "it":"se tocca «Ho parcheggiato qui», la posizione dell’auto, la sua precisione, l’ora e la nota che scrive (piano, posto…). Restano solo sul suo dispositivo, per segnare l’auto sulla mappa e dirle a che distanza si trova, e si cancellano con «Cancellare». Se tocca «Tornare a piedi», quella posizione si apre nell’app di mappe del telefono (Mappe di Apple o Google Maps) per il percorso. «Inviare la mia posizione» cerca la sua posizione solo quando lo tocca e la invia unicamente a chi sceglie lei dal telefono (il menu di condivisione, WhatsApp, SMS o copiare). L’app non invia niente di tutto questo a nessun server.", "nl":"als u op «Hier geparkeerd» tikt, de positie van de auto, de nauwkeurigheid, het tijdstip en de notitie die u schrijft (verdieping, plek…). Die blijven alleen op uw apparaat, om de auto op de kaart te markeren en te zeggen hoe ver hij staat, en worden gewist met «Wissen». Als u op «Teruglopen» tikt, opent die positie in de kaarten-app van uw telefoon (Apple Kaarten of Google Maps) voor de route. «Mijn locatie versturen» zoekt uw locatie alleen op als u erop tikt en stuurt die alleen naar wie u zelf kiest op uw telefoon (het deelmenu, WhatsApp, sms of kopiëren). De app stuurt hiervan niets naar een server.", "zh":"如果您点按「我停在这里」，会保存车辆位置、定位精度、时间以及您写下的备注（楼层、车位…）。这些只保存在您的设备上，用于在地图上标出您的车并告诉您距离多远，点按「删除」即可清除。如果您点按「步行返回」，该位置会在手机的地图应用（Apple 地图或 Google 地图）中打开以规划路线。「发送我的位置」只在您点按时获取您的位置，并且只发送给您在手机上选择的人（通过系统分享、WhatsApp、短信或复制）。应用不会把这些内容发送到任何服务器。", "zht":"如果您點按「我停在這裡」，會儲存車輛位置、定位精度、時間以及您寫下的備註（樓層、車位…）。這些只儲存在您的裝置上，用於在地圖上標出您的車並告訴您距離多遠，點按「刪除」即可清除。如果您點按「步行返回」，該位置會在手機的地圖應用程式（Apple 地圖或 Google 地圖）中開啟以規劃路線。「傳送我的位置」只在您點按時取得您的位置，並且只傳送給您在手機上選擇的人（透過系統分享、WhatsApp、簡訊或複製）。應用程式不會把這些內容傳送到任何伺服器。", "bg":"ако докоснете «Паркирах тук», местоположението на колата, точността му, часа и бележката, която напишете (ниво, място…). Те остават само на устройството ви, за да се отбележи колата на картата и да ви се каже колко е далеч, и се изтриват с «Изтрийте». Ако докоснете «Обратно пеша», това местоположение се отваря в приложението за карти на телефона (Apple Карти или Google Maps) за маршрута. «Изпратете местоположението си» търси местоположението ви само когато го докоснете и го изпраща единствено на човека, когото изберете от телефона си (менюто за споделяне, WhatsApp, SMS или копиране). Приложението не изпраща нищо от това към никакъв сървър.", "pl":"po dotknięciu «Zapisać miejsce parkowania» — pozycja samochodu, jej dokładność, godzina i wpisana notatka (poziom, miejsce…). Dane zostają tylko na urządzeniu, aby zaznaczyć samochód na mapie i pokazać, jak daleko się znajduje; usuwa je przycisk «Usunąć». Po dotknięciu «Wrócić pieszo» ta pozycja otwiera się w aplikacji map w telefonie (Mapy Apple lub Google Maps), aby wyznaczyć trasę. «Wysłać moją lokalizację» ustala lokalizację tylko po dotknięciu i wysyła ją wyłącznie osobie wybranej w telefonie (przez menu udostępniania, WhatsApp, SMS lub kopiowanie). Aplikacja nie wysyła niczego z tych danych na żaden serwer."},
   "ppDatosPerfil": {"es":"Perfil (opcional):", "en":"Profile (optional):", "fr":"Profil (facultatif) :", "de":"Profil (optional):", "it":"Profilo (facoltativo):", "nl":"Profiel (optioneel):", "zh":"个人资料（可选）：", "zht":"個人檔案（選用）：", "bg":"Профил (по желание):", "pl":"Profil (opcjonalnie):"},
   "ppDatosPerfilTxt": {"es":"nombre o apodo, avatar, unidades, altura, año de nacimiento, fecha de alta del perfil, peso objetivo, los pesos que anote y los kilómetros que anotó antes en el perfil (con su fecha) y las visitas comprobadas (solo el lugar y el día). Se guardan en su dispositivo y se pueden borrar desde el propio perfil, salvo las visitas comprobadas, que se borran al desmarcar el lugar. Si tiene cuenta, ha cumplido 14 años y da su consentimiento expreso, todo salvo las visitas se guarda también en su cuenta, para no perderlo al cambiar de móvil, y se registra la fecha de ese consentimiento; el peso y la altura son datos de salud. Puede retirar ese consentimiento en el perfil cuando quiera: entonces se borra la copia guardada en su cuenta y los datos siguen en su dispositivo.", "en":"name or nickname, avatar, units, height, year of birth, profile start date, goal weight, the weights you log and the kilometres you logged in the profile before (with their dates) and verified visits (only the place and the day). They are stored on your device and can be deleted from the profile itself, except verified visits, which are deleted when you unmark the place. If you have an account, are at least 14 and give your explicit consent, everything except the visits is also saved to your account, so it isn’t lost if you change phones, and the date of that consent is recorded; weight and height are health data. You can withdraw that consent in the profile at any time: the copy saved in your account is then deleted, and the data stays on your device.", "fr":"prénom ou pseudo, avatar, unités, taille, année de naissance, date de création du profil, poids cible, les poids que vous notez et les kilomètres que vous avez notés auparavant dans le profil (avec leur date) et les visites vérifiées (seulement le lieu et le jour). Ils sont enregistrés sur votre appareil et peuvent être effacés depuis le profil, sauf les visites vérifiées, qui sont effacées quand le lieu n’est plus marqué comme visité. Si vous avez un compte, que vous avez au moins 14 ans et que vous donnez votre consentement explicite, tout sauf les visites est aussi enregistré dans votre compte, afin qu’il ne soit pas perdu en cas de changement de téléphone, et la date de ce consentement y est consignée ; le poids et la taille sont des données de santé. Vous pouvez retirer ce consentement dans le profil à tout moment : la copie enregistrée dans votre compte est alors effacée et les données restent sur votre appareil.", "de":"Name oder Spitzname, Avatar, Einheiten, Größe, Geburtsjahr, Erstellungsdatum des Profils, Zielgewicht, Gewichtseinträge und die Kilometer, die Sie früher im Profil eingetragen haben (mit Datum) und bestätigte Besuche (nur Ort und Tag). Diese Daten werden auf Ihrem Gerät gespeichert und lassen sich im Profil löschen, mit Ausnahme der bestätigten Besuche: Diese werden gelöscht, wenn Sie die Markierung des Ortes aufheben. Mit Konto, ab 14 Jahren und nur mit Ihrer ausdrücklichen Einwilligung wird alles außer den Besuchen auch in Ihrem Konto gespeichert, damit es bei einem Gerätewechsel nicht verloren geht, und das Datum dieser Einwilligung wird festgehalten; Gewicht und Größe sind Gesundheitsdaten. Sie können die Einwilligung jederzeit im Profil widerrufen: Dann wird die in Ihrem Konto gespeicherte Kopie gelöscht, und die Daten bleiben auf Ihrem Gerät.", "it":"nome o soprannome, avatar, unità, altezza, anno di nascita, data di creazione del profilo, peso obiettivo, i pesi annotati e i chilometri annotati in precedenza nel profilo (con la data) e le visite verificate (solo il luogo e il giorno). Restano sul dispositivo e si possono cancellare dal profilo, tranne le visite verificate, che si cancellano quando il luogo non è più segnato come visitato. Con un account, dai 14 anni in su e solo previo consenso esplicito, tutto tranne le visite viene salvato anche nell’account, per non perderlo cambiando telefono, e viene registrata la data di quel consenso; peso e altezza sono dati relativi alla salute. Il consenso si può revocare in qualsiasi momento dal profilo: la copia salvata nell’account viene allora cancellata e i dati restano sul dispositivo.", "nl":"naam of bijnaam, avatar, eenheden, lengte, geboortejaar, startdatum van het profiel, streefgewicht, de gewichten die u noteert en de kilometers die u eerder in het profiel hebt genoteerd (met datum) en bevestigde bezoeken (alleen de plek en de dag). Ze worden op uw toestel bewaard en zijn in het profiel te wissen, behalve bevestigde bezoeken: die worden gewist als de plek niet meer als bezocht gemarkeerd is. Met een account, vanaf 14 jaar en alleen met uw uitdrukkelijke toestemming wordt alles behalve de bezoeken ook in uw account opgeslagen, met de datum van die toestemming, zodat het niet verloren gaat als u van telefoon wisselt; gewicht en lengte zijn gezondheidsgegevens. U kunt die toestemming altijd in het profiel intrekken: dan wordt de kopie in uw account gewist en blijven de gegevens op uw toestel.", "zh":"名字或昵称、头像、单位、身高、出生年份、个人资料的创建日期、目标体重、您记录的体重和您之前在个人资料中记录的公里数（附日期）以及已确认的到访（仅地点和日期）。保存在您的设备上，除已确认的到访外，均可在个人资料中删除；已确认的到访会在您取消该地点的已访问标记时删除。如果您有账户、年满14岁并明确同意，除到访外的所有内容也会保存到您的账户，以免换手机时丢失，同时记录您同意的日期；体重和身高属于健康数据。您可以随时在个人资料中撤回同意：届时您账户中的副本会被删除，您设备上的数据仍会保留。", "zht":"名字或暱稱、頭像、單位、身高、出生年份、個人檔案的建立日期、目標體重、您記錄的體重和您之前在個人檔案中記錄的公里數（附日期）以及已確認的到訪（僅地點和日期）。儲存在您的裝置上，除已確認的到訪外，均可在個人檔案中刪除；已確認的到訪會在您取消該地點的已造訪標記時刪除。若您有帳戶、年滿14歲並明確同意，除到訪外的所有內容也會儲存到您的帳戶，以免換手機時遺失，同時記錄您同意的日期；體重和身高屬於健康資料。您可以隨時在個人檔案中撤回同意：屆時您帳戶中的副本會被刪除，您裝置上的資料仍會保留。", "bg":"име или прякор, аватар, мерни единици, ръст, година на раждане, дата на създаване на профила, целево тегло, записаните тегла и километрите, записани по-рано в профила (с датата им) и потвърдените посещения (само мястото и денят). Пазят се на устройството ви и могат да се изтрият от профила, с изключение на потвърдените посещения: те се изтриват, когато мястото вече не е отбелязано като посетено. Ако имате акаунт, навършени 14 години и дадете изричното си съгласие, всичко освен посещенията се запазва и в акаунта ви заедно с датата на това съгласие, за да не се загуби при смяна на телефона; теглото и ръстът са данни за здравословното състояние. Можете да оттеглите съгласието по всяко време от профила: тогава копието в акаунта ви се изтрива, а данните остават на устройството ви.", "pl":"imię lub pseudonim, awatar, jednostki, wzrost, rok urodzenia, data utworzenia profilu, waga docelowa, wpisane wagi i kilometry wpisane wcześniej w profilu (z datą) oraz potwierdzone wizyty (tylko miejsce i dzień). Są zapisywane na urządzeniu i można je usunąć w profilu – z wyjątkiem potwierdzonych wizyt, które są usuwane, gdy miejsce przestaje być oznaczone jako odwiedzone. Po zalogowaniu, po ukończeniu 14 lat i wyłącznie za wyraźną zgodą wszystko oprócz wizyt jest zapisywane także na koncie, razem z datą tej zgody, żeby nie przepadło przy zmianie telefonu; waga i wzrost to dane dotyczące zdrowia. Zgodę można w każdej chwili wycofać w profilu: kopia zapisana na koncie zostaje wtedy usunięta, a dane pozostają na urządzeniu."},
   "ppDatosCuerpo": {"es":"Su cuerpo (opcional):", "en":"Your body (optional):", "fr":"Votre corps (facultatif) :", "de":"Ihr Körper (optional):", "it":"Corpo (facoltativo):", "nl":"Uw lichaam (optioneel):", "zh":"我的身体（可选）：", "zht":"我的身體（選用）：", "bg":"Вашето тяло (по желание):", "pl":"Ciało (opcjonalnie):"},
@@ -34597,6 +34610,7 @@ function closePrivacyPanel() {
       <li><strong data-tx="ppDatosGeo">Geolocalización:</strong> <span data-tx="ppDatosGeoTxt">solo cuando la activa, para enseñarle dónde está en el mapa, lo que tiene cerca y la ruta hasta un lugar, y para comprobar que está en los lugares que marca como visitados. No se guarda en ningún servidor. Si pide una ruta en coche, las coordenadas de origen y destino se envían al servicio de rutas para calcularla.</span></li>
       <li><strong data-tx="ppDatosCuenta">Cuenta (opcional):</strong> <span data-tx="ppDatosCuentaTxt">correo electrónico y contraseña. Los gestiona</span> <a href="https://supabase.com/privacy" target="_blank" rel="noopener" data-sin-traducir="nombre del proveedor">Supabase</a><span data-tx="ppDatosRls">, que guarda la contraseña cifrada; nosotros no la vemos.</span></li>
       <li><strong data-tx="ppDatosFav">Favoritos:</strong> <span data-tx="ppDatosFavTxt">los identificadores de los lugares que guarda. Con cuenta se sincronizan; sin cuenta se quedan en su dispositivo.</span></li>
+      <li><strong data-tx="ppDatosCoche">Mi coche y mi posición (opcional):</strong> <span data-tx="ppDatosCocheTxt">si toca «Aparqué aquí», la posición del coche, su precisión, la hora y la nota que escriba (planta, plaza…). Se guardan solo en su dispositivo, para marcar el coche en el mapa y decirle a qué distancia está, y se borran con «Borrar». Si toca «Volver a pie», esa posición se abre en la app de mapas del móvil (Mapas de Apple o Google Maps) para la ruta. «Enviar mi posición» busca su ubicación solo cuando lo toca y la manda únicamente a quien usted elija desde el móvil (la hoja de compartir, WhatsApp, SMS o copiar). La app no envía nada de esto a ningún servidor.</span></li>
       <li><strong data-tx="ppDatosPerfil">Perfil (opcional):</strong> <span data-tx="ppDatosPerfilTxt">nombre o apodo, avatar, unidades, altura, año de nacimiento, fecha de alta del perfil, peso objetivo, los pesos que anote y los kilómetros que anotó antes en el perfil (con su fecha) y las visitas comprobadas (solo el lugar y el día). Se guardan en su dispositivo y se pueden borrar desde el propio perfil, salvo las visitas comprobadas, que se borran al desmarcar el lugar. Si tiene cuenta, ha cumplido 14 años y da su consentimiento expreso, todo salvo las visitas se guarda también en su cuenta, para no perderlo al cambiar de móvil, y se registra la fecha de ese consentimiento; el peso y la altura son datos de salud. Puede retirar ese consentimiento en el perfil cuando quiera: entonces se borra la copia guardada en su cuenta y los datos siguen en su dispositivo.</span></li>
       <li><strong data-tx="ppDatosCuerpo">Su cuerpo (opcional):</strong> <span data-tx="ppDatosCuerpoTxt">las series de fuerza que anote (el grupo muscular, cuántas, el día, la hora en que las anota y, si las anota desde la ficha de un ejercicio, cuál y, si los escribe, las repeticiones y el peso), el movimiento que anote (qué deporte, los minutos, la intensidad, la distancia, el desnivel, el día y si elige contar la bici para el GR 131), el aspecto que elija para su personaje, el deporte que elija, el sitio donde entrena, el material que marque para casa y el nivel que elija (en «¿Qué entreno hoy?»), la zona de la isla que elija para el tiempo de «Hoy en la isla» (una de seis zonas fijas, no su posición), los sellos que consiga (con su fecha), los senderos que marque como hechos (con su fecha), el compañero que elija para la travesía y, si enciende el diario de comidas, las raciones de cada grupo de alimentos por día. Son datos de salud y se guardan solo en su dispositivo: no se envían a ningún servidor. En su pestaña «Evolución» están también sus datos del perfil (altura, peso y año de nacimiento) y su evolución: lo que cambie ahí se guarda igual que en el perfil, y en su cuenta solo si lo tiene activado. Los kilómetros que anote en «Su cuerpo» se quedan en su dispositivo. Lo que escribe al asistente no se guarda ni se envía. Todo se borra con «Borrar los datos de «Su cuerpo»».</span></li>
       <li><strong data-tx="ppDatosPref">Preferencias y uso:</strong> <span data-tx="ppDatosPrefTxt">idioma, filtros, líneas de guagua activas, caché del tiempo y del estado del mar, si ya vio los tours, un contador de visitas y, del cielo, la luz roja, el ajuste de la brújula y los resúmenes de Wikipedia de los astros que ya ha abierto, los avisos del calendario que marca y si ya vio la guía de la brújula. Los eventos que añade a su calendario (.ics) y las imágenes que guarda o comparte se crean en el móvil y van directos a su calendario o a la hoja de compartir del sistema. Todo esto se guarda en su dispositivo y no se envía a ningún sitio.</span></li>
@@ -37063,6 +37077,357 @@ html.sos-abierto, html.sos-abierto body { overflow: hidden; }
 })();
 </script>
 <!-- ══ fin LA ISLA EN 3D ══ -->
+
+<!-- ══ ANTES DE SALIR ══ -->
+<!-- ════════════════════════════════════════════════════════════════
+     ANTES DE SALIR (20 de noviembre de 2026) — lo que conviene mirar antes
+     de ir a un sendero o a un sitio con permiso, todo en una pantalla:
+       · «Hoy»: los avisos de AEMET que la app ya baja, las alertas del
+         Gobierno de Canarias (datos/alertas-canarias.json, el robot) y los
+         lugares de la app que hoy estan cerrados, restringidos o solo con
+         reserva (sus campos estado, fuente y verificado), con su fecha;
+       · «Con reserva»: los lugares con reserva:true, con el enlace oficial
+         para reservar y cuatro notas generales verificadas.
+     No anade ningun dato nuevo de lugares: ensena los que ya estan en la app.
+     La tarjeta va en el panel de Rutas, encima de las pestanas; la pantalla
+     es entera, como la del SOS (por debajo de ella: z-index 9650 y 9700).
+     El cuerpo -textos en once idiomas, fuentes, reglas- vive en
+     modulos/antes.js, que se pide al tocar la tarjeta y que el service
+     worker precachea: sin red tambien abre (con lo ultimo que se bajo).
+     Tambien abre con el enlace #antes y, en «Con reserva», #antes-reservas.
+════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── ANTES DE SALIR: la tarjeta del panel de rutas y el armazon ────── */
+.antes-tarjeta {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+  width: calc(100% - 1.8rem); margin: 0.6rem 0.9rem 0; min-height: 52px; padding: 8px 10px 8px 9px;
+  border-radius: 12px; cursor: pointer; text-align: start; font-family: 'DM Sans', system-ui, sans-serif;
+  border: 1px solid rgba(212,175,55,0.38); color: var(--text, #f0ece4);
+  background: linear-gradient(135deg, rgba(212,175,55,0.14), rgba(212,175,55,0.04));
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color var(--t-fast, 150ms) var(--ease-out, ease), transform 120ms var(--ease-out, ease);
+}
+.antes-tarjeta:hover { border-color: var(--gold, #D4AF37); }
+.antes-tarjeta:active { transform: scale(0.985); }
+.antes-tarjeta:focus-visible { outline: 2px solid #f5c76b; outline-offset: 2px; }
+.antes-tarjeta-ico {
+  width: 34px; height: 34px; flex: 0 0 auto; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(212,175,55,0.16); color: var(--gold, #D4AF37);
+}
+.antes-tarjeta svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.antes-tarjeta-txt { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.antes-tarjeta-t { font-weight: 700; font-size: 0.86rem; line-height: 1.2; color: var(--gold-light, #F5C76B); overflow-wrap: anywhere; }
+.antes-tarjeta-s { font-size: 0.72rem; line-height: 1.3; color: var(--muted, rgba(240,236,228,0.66)); overflow-wrap: anywhere; }
+.antes-tarjeta-flecha { flex: 0 0 auto; color: var(--gold, #D4AF37); display: inline-flex; }
+.antes-tarjeta-flecha svg { width: 16px; height: 16px; }
+.route-panel.picking-mode .antes-tarjeta { display: none; }
+/* Durante el tour de la app (modulos/guia.js, #v19-tour.open) la tarjeta no esta: sus pasos de Rutas
+   señalan las pestañas y, con la tarjeta encima, en un movil de 320×568 el bocadillo las tapaba
+   (tools/auditar_tour.js, 20 de noviembre de 2026). */
+html:has(#v19-tour.open) .antes-tarjeta { display: none; }
+@media (max-width: 360px) { .antes-tarjeta { width: calc(100% - 1rem); margin-left: 0.5rem; margin-right: 0.5rem; } }
+
+#antes-panel {
+  position: fixed; inset: 0; z-index: 9650; display: flex; flex-direction: column;
+  background: var(--dark, #0F1117); color: var(--text, #f0ece4);
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+#antes-panel[hidden] { display: none; }
+html.antes-abierto, html.antes-abierto body { overflow: hidden; }
+/* la invitacion a instalar la app no se pone encima (como en la hoja del coche) */
+html.antes-abierto .pwa-install-banner.show { visibility: hidden; pointer-events: none; }
+.antes-cab {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 8px;
+  padding: calc(8px + env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) 8px max(12px, env(safe-area-inset-left, 0px));
+  border-bottom: 1px solid var(--border, rgba(212,175,55,0.2)); background: var(--dark, #0F1117);
+}
+#antes-titulo {
+  flex: 1 1 auto; min-width: 0; margin: 0; outline: none;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-weight: 700;
+  font-size: 1.42rem; line-height: 1.12; letter-spacing: 0.01em; color: var(--text, #f0ece4); text-wrap: balance;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; overflow-wrap: anywhere;
+}
+.antes-ico-btn {
+  width: 40px; height: 40px; flex: 0 0 auto; border-radius: 50%; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+  border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); color: var(--text, #f0ece4);
+}
+.antes-ico-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.antes-ico-btn:focus-visible { outline: 3px solid #fde047; outline-offset: -3px; }
+.antes-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+#antes-cuerpo {
+  max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px;
+  padding: 14px max(16px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.antes-estado { padding: 28px 4px; color: var(--muted, rgba(240,236,228,0.6)); text-align: center; line-height: 1.5; }
+.antes-estado button {
+  margin-top: 10px; min-height: 40px; padding: 8px 16px; border-radius: 999px; cursor: pointer; font: inherit;
+  border: 1px solid rgba(212,175,55,0.5); background: rgba(212,175,55,0.12); color: var(--gold-light, #F5C76B);
+}
+</style>
+
+<div id="antes-panel" role="dialog" aria-modal="true" aria-labelledby="antes-titulo" hidden>
+  <div class="antes-cab">
+    <button type="button" class="antes-ico-btn" id="antes-cerrar" data-tx-aria="sosVolver" aria-label="Volver"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <h2 id="antes-titulo" data-tx="antesTitulo">Antes de salir</h2>
+  </div>
+  <div class="antes-scroll" id="antes-scroll"><div id="antes-cuerpo"></div></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  /* CARGA-PEREZOSA: modulos/antes.js
+     El cuerpo de «Antes de salir» -los avisos, los lugares cerrados o con
+     reserva, las notas y sus fuentes, los textos en los once idiomas- vive en
+     modulos/antes.js y se pide la primera vez que alguien toca la tarjeta. El
+     service worker lo precachea: se mira antes de salir, a veces ya en el
+     coche y sin cobertura. tools/fuente.js y tools/fuente.py leen esta linea
+     y pegan el fichero al final del fuente, como los <script src>. */
+  try {
+    Object.assign(UI_TX, {
+      "antesTitulo": {"es": "Antes de salir", "en": "Before you go", "fr": "Avant de partir", "de": "Bevor Sie losgehen", "it": "Prima di partire", "nl": "Voordat u vertrekt", "zh": "出发之前", "zht": "出發之前", "bg": "Преди да тръгнете", "pl": "Przed wyjściem", "ro": "Înainte de a pleca"},
+      "antesTarjetaSub": {"es": "Senderos cerrados, permisos y avisos de hoy", "en": "Closed trails, permits and today’s warnings", "fr": "Sentiers fermés, permis et alertes du jour", "de": "Gesperrte Wege, Genehmigungen und heutige Warnungen", "it": "Sentieri chiusi, permessi e avvisi di oggi", "nl": "Gesloten paden, vergunningen en waarschuwingen van vandaag", "zh": "关闭的步道、许可和今日预警", "zht": "關閉的步道、許可和今日預警", "bg": "Затворени пътеки, разрешителни и днешните предупреждения", "pl": "Zamknięte szlaki, pozwolenia i dzisiejsze ostrzeżenia", "ro": "Trasee închise, permise și avertizările de azi"},
+      "antesErrorCarga": {"es": "No se pudo abrir esta sección. Compruebe la conexión e inténtelo de nuevo.", "en": "This section couldn’t open. Check your connection and try again.", "fr": "Impossible d’ouvrir cette section. Vérifiez la connexion et réessayez.", "de": "Dieser Bereich ließ sich nicht öffnen. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "it": "Non è stato possibile aprire questa sezione. Controlli la connessione e riprovi.", "nl": "Dit onderdeel kon niet worden geopend. Controleer de verbinding en probeer het opnieuw.", "zh": "无法打开此部分。请检查网络连接后重试。", "zht": "無法開啟此部分。請檢查網路連線後重試。", "bg": "Този раздел не можа да се отвори. Проверете връзката и опитайте отново.", "pl": "Nie udało się otworzyć tej sekcji. Należy sprawdzić połączenie i spróbować ponownie.", "ro": "Această secțiune nu s-a putut deschide. Verificați conexiunea și încercați din nou."}
+    });
+  } catch (e) {}
+  var MODULO = './modulos/antes.js', carga = null;
+  function cargar() {
+    if (window.TG_ANTES) return Promise.resolve();
+    if (carga) return carga;
+    carga = new Promise(function (ok, mal) {
+      var s = document.createElement('script');
+      s.src = MODULO;
+      s.onload = function () { if (window.TG_ANTES) ok(); else mal(new Error('antes')); };
+      s.onerror = function () { s.remove(); mal(new Error('antes')); };
+      document.head.appendChild(s);
+    }).catch(function (e) { carga = null; throw e; });
+    return carga;
+  }
+  function panel() { return document.getElementById('antes-panel'); }
+  function estado(txt, reintentar, op) {
+    var c = document.getElementById('antes-cuerpo');
+    if (!c) return;
+    c.textContent = '';
+    var d = document.createElement('div'); d.className = 'antes-estado'; d.textContent = txt;
+    if (reintentar) {
+      var b = document.createElement('button'); b.type = 'button';
+      b.textContent = tx('sosReintentar');
+      b.addEventListener('click', function () { abrir(op); });
+      d.appendChild(document.createElement('br')); d.appendChild(b);
+    }
+    c.appendChild(d);
+  }
+  /* op: {pest: 'hoy' | 'reservas'} */
+  function abrir(op) {
+    if (window.TG_ANTES) { window.TG_ANTES.abrir(op); return; }
+    var p = panel(); if (!p) return;
+    p.hidden = false;
+    document.documentElement.classList.add('antes-abierto');
+    estado(tx('sosCargando'));
+    cargar().then(function () { if (!p.hidden) window.TG_ANTES.abrir(op); },
+                  function () { if (!p.hidden) estado(tx('antesErrorCarga'), true, op); });
+  }
+  function cerrar() {
+    if (window.TG_ANTES) { window.TG_ANTES.cerrar(); return; }
+    var p = panel(); if (p) p.hidden = true;
+    document.documentElement.classList.remove('antes-abierto');
+  }
+  function iniciar() {
+    var t = document.getElementById('antes-tarjeta');
+    if (t) t.addEventListener('click', function () { abrir(); });
+    var x = document.getElementById('antes-cerrar'); if (x) x.addEventListener('click', cerrar);
+    if (location.hash === '#antes' || location.hash === '#antes-reservas') {
+      var pest = location.hash === '#antes-reservas' ? 'reservas' : 'hoy';
+      setTimeout(function () { abrir({ pest: pest }); }, 600);
+    }
+    /* Con la app ya abierta, un aviso que lleve a #antes no la vuelve a
+       cargar (sw.js, 'notificationclick'), como el SOS. */
+    if (navigator.serviceWorker && navigator.serviceWorker.addEventListener) {
+      navigator.serviceWorker.addEventListener('message', function (ev) {
+        var d = ev && ev.data;
+        var m = d && d.tgo === 'abrir' && typeof d.url === 'string' && /#antes(-reservas)?$/.exec(d.url);
+        if (m) abrir({ pest: m[1] ? 'reservas' : 'hoy' });
+      });
+    }
+  }
+  window.abrirAntes = abrir;
+  window.cerrarAntes = cerrar;
+  /* Para las herramientas de tools/ */
+  window.TG_ANTES_CARGAR = cargar;
+  if (document.readyState !== 'loading') iniciar();
+  else document.addEventListener('DOMContentLoaded', iniciar);
+})();
+</script>
+<!-- ══ fin ANTES DE SALIR ══ -->
+
+<!-- ══ MI COCHE Y MI POSICION ══ -->
+<!-- ════════════════════════════════════════════════════════════════
+     MI COCHE Y MI POSICION (20 de noviembre de 2026) — dos cosas pequenas y
+     practicas con el GPS del movil y nada mas:
+       · «Aparqué aquí»: guarda donde se deja el coche (y una nota), lo marca
+         en el mapa y lleva de vuelta a pie con la app de mapas del movil;
+       · «Enviar mi posición»: las coordenadas y un enlace al mapa, para
+         mandarlas a quien uno elija. La app no envia nada por su cuenta.
+     Todo se queda en el dispositivo (localStorage 'tenerife.coche'): ni
+     Supabase ni ningun servidor. La politica de privacidad lo dice
+     (ppDatosCoche, idiomas/privacidad/*.json).
+     El boton va en la columna de la derecha del mapa, debajo del «3D» (o
+     en su sitio si el 3D no sale), con un punto dorado si hay un coche
+     guardado. La hoja sube desde abajo, por encima de la barra (z-index
+     9560: por debajo de «Antes de salir», 9650, y del SOS, 9700).
+     El cuerpo -textos en once idiomas, el marcador, el envio- vive en
+     modulos/micoche.js: se pide al tocar el boton y, si hay un coche
+     guardado, en un rato libre tras arrancar, para pintar el 🚗 en el mapa.
+     El service worker lo precachea: en un aparcamiento sin cobertura abre.
+════════════════════════════════════════════════════════════════════ -->
+<style>
+/* ── MI COCHE: el boton del mapa y el armazon de la hoja ───────────── */
+#coche-btn { position: absolute; top: 156px; right: 14px; z-index: 500; width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(27,35,48,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border); color: var(--gold); display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-md); cursor: pointer; padding: 0; -webkit-tap-highlight-color: transparent; }
+#isla3d-btn[hidden] + #coche-btn { top: 108px; }
+#coche-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+#coche-btn:active { transform: scale(0.94); }
+#coche-btn:focus-visible { outline: 2px solid #f5c76b; outline-offset: 2px; }
+#coche-btn.guardado::after { content: ''; position: absolute; top: 3px; right: 3px; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--gold, #D4AF37); border: 2px solid #111827; }
+
+#coche-panel { position: fixed; inset: 0; z-index: 9560; display: flex; flex-direction: column; justify-content: flex-end;
+  font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+#coche-panel[hidden] { display: none; }
+html.coche-abierto, html.coche-abierto body { overflow: hidden; }
+/* La invitacion a instalar la app (.pwa-install-banner, z-index 9999) salia
+   encima de la hoja y tapaba sus botones: mientras la hoja esta abierta se
+   aparta, y vuelve al cerrarla. */
+html.coche-abierto .pwa-install-banner.show { visibility: hidden; pointer-events: none; }
+.coche-fondo { position: absolute; inset: 0; background: rgba(5,7,12,0.55); animation: coche-fondo 220ms ease both; }
+.coche-hoja { position: relative; width: 100%; max-width: 560px; margin: 0 auto; max-height: calc(100% - 24px - env(safe-area-inset-top, 0px));
+  display: flex; flex-direction: column; border-radius: 20px 20px 0 0; background: var(--dark, #0F1117); color: var(--text, #f0ece4);
+  border: 1px solid var(--border, rgba(212,175,55,0.2)); border-bottom: 0; box-shadow: 0 -12px 40px rgba(0,0,0,0.5);
+  animation: coche-sube 300ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both; }
+.coche-asa { width: 38px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.22); margin: 8px auto 0; flex: 0 0 auto; }
+.coche-cab { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 6px 12px 8px 16px; }
+#coche-titulo { flex: 1 1 auto; min-width: 0; margin: 0; outline: none;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 1.32rem; line-height: 1.15;
+  color: var(--text, #f0ece4); overflow-wrap: anywhere; text-wrap: balance; }
+.coche-ico-btn { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  padding: 0; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); color: var(--text, #f0ece4); }
+.coche-ico-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.coche-ico-btn:focus-visible { outline: 3px solid #fde047; outline-offset: -3px; }
+.coche-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+#coche-cuerpo { display: flex; flex-direction: column; gap: 12px;
+  padding: 2px max(16px, env(safe-area-inset-right, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.coche-estado { padding: 22px 4px; color: var(--muted, rgba(240,236,228,0.6)); text-align: center; line-height: 1.5; }
+.coche-estado button { margin-top: 10px; min-height: 40px; padding: 8px 16px; border-radius: 999px; cursor: pointer; font: inherit;
+  border: 1px solid rgba(212,175,55,0.5); background: rgba(212,175,55,0.12); color: var(--gold-light, #F5C76B); }
+.coche-vivo { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+@keyframes coche-sube { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes coche-fondo { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .coche-hoja, .coche-fondo { animation: none; } }
+</style>
+
+<button id="coche-btn" type="button" data-tx-title="cocheTitulo" data-tx-aria="cocheTitulo" title="Mi coche y mi posición" aria-label="Mi coche y mi posición" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 11.2l1.5-4a2 2 0 0 1 1.9-1.3h6.8a2 2 0 0 1 1.9 1.3l1.5 4"/><path d="M3.6 17.6v-4.1a2.3 2.3 0 0 1 2.3-2.3h12.2a2.3 2.3 0 0 1 2.3 2.3v4.1z"/><path d="M6.4 17.6v1.6M17.6 17.6v1.6"/><path d="M7 14.4h.01M17 14.4h.01"/></svg></button>
+
+<div id="coche-panel" role="dialog" aria-modal="true" aria-labelledby="coche-titulo" hidden>
+  <div class="coche-fondo" id="coche-fondo"></div>
+  <div class="coche-hoja">
+    <div class="coche-asa" aria-hidden="true"></div>
+    <div class="coche-cab">
+      <h2 id="coche-titulo" data-tx="cocheTitulo">Mi coche y mi posición</h2>
+      <button type="button" class="coche-ico-btn" id="coche-cerrar" data-tx-aria="ariaCerrar" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="coche-scroll"><div id="coche-cuerpo"></div></div>
+    <p class="coche-vivo" id="coche-vivo" aria-live="polite"></p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  /* CARGA-PEREZOSA: modulos/micoche.js
+     «Mi coche y mi posición»: el cuerpo de la hoja, el marcador del coche y
+     sus textos en once idiomas viven en modulos/micoche.js y se piden la
+     primera vez que alguien toca el boton (o tras arrancar, si hay un coche
+     guardado). El service worker lo precachea. tools/fuente.js y
+     tools/fuente.py leen esta linea y pegan el fichero al final del fuente,
+     como los <script src>. */
+  try {
+    Object.assign(UI_TX, {
+      "cocheTitulo": {"es": "Mi coche y mi posición", "en": "My car and my location", "fr": "Ma voiture et ma position", "de": "Mein Auto und mein Standort", "it": "La mia auto e la mia posizione", "nl": "Mijn auto en mijn locatie", "zh": "我的车和我的位置", "zht": "我的車和我的位置", "bg": "Моята кола и моето местоположение", "pl": "Mój samochód i moja lokalizacja", "ro": "Mașina mea și locația mea"},
+      "cocheErrorCarga": {"es": "No se pudo abrir esta sección. Compruebe la conexión e inténtelo de nuevo.", "en": "This section couldn’t open. Check your connection and try again.", "fr": "Impossible d’ouvrir cette section. Vérifiez la connexion et réessayez.", "de": "Dieser Bereich ließ sich nicht öffnen. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "it": "Non è stato possibile aprire questa sezione. Controlli la connessione e riprovi.", "nl": "Dit onderdeel kon niet worden geopend. Controleer de verbinding en probeer het opnieuw.", "zh": "无法打开此部分。请检查网络连接后重试。", "zht": "無法開啟此部分。請檢查網路連線後重試。", "bg": "Този раздел не можа да се отвори. Проверете връзката и опитайте отново.", "pl": "Nie udało się otworzyć tej sekcji. Należy sprawdzić połączenie i spróbować ponownie.", "ro": "Această secțiune nu s-a putut deschide. Verificați conexiunea și încercați din nou."}
+    });
+  } catch (e) {}
+  var MODULO = './modulos/micoche.js', CLAVE = 'tenerife.coche', carga = null;
+  function cargar() {
+    if (window.TG_COCHE) return Promise.resolve();
+    if (carga) return carga;
+    carga = new Promise(function (ok, mal) {
+      var s = document.createElement('script');
+      s.src = MODULO;
+      s.onload = function () { if (window.TG_COCHE) ok(); else mal(new Error('coche')); };
+      s.onerror = function () { s.remove(); mal(new Error('coche')); };
+      document.head.appendChild(s);
+    }).catch(function (e) { carga = null; throw e; });
+    return carga;
+  }
+  function panel() { return document.getElementById('coche-panel'); }
+  function hayCoche() { try { return !!localStorage.getItem(CLAVE); } catch (e) { return false; } }
+  function estado(txt, reintentar) {
+    var c = document.getElementById('coche-cuerpo');
+    if (!c) return;
+    c.textContent = '';
+    var d = document.createElement('div'); d.className = 'coche-estado'; d.textContent = txt;
+    if (reintentar) {
+      var b = document.createElement('button'); b.type = 'button';
+      b.textContent = tx('sosReintentar');
+      b.addEventListener('click', function () { abrir(); });
+      d.appendChild(document.createElement('br')); d.appendChild(b);
+    }
+    c.appendChild(d);
+  }
+  function abrir() {
+    if (window.TG_COCHE) { window.TG_COCHE.abrir(); return; }
+    var p = panel(); if (!p) return;
+    p.hidden = false;
+    document.documentElement.classList.add('coche-abierto');
+    estado(tx('sosCargando'));
+    cargar().then(function () { if (!p.hidden) window.TG_COCHE.abrir(); },
+                  function () { if (!p.hidden) estado(tx('cocheErrorCarga'), true); });
+  }
+  function cerrar() {
+    if (window.TG_COCHE) { window.TG_COCHE.cerrar(); return; }
+    var p = panel(); if (p) p.hidden = true;
+    document.documentElement.classList.remove('coche-abierto');
+  }
+  function iniciar() {
+    var btn = document.getElementById('coche-btn');
+    if (!btn) return;
+    /* en la columna de la derecha del mapa: debajo del «3D», o del boton de
+       categorias si el 3D no esta */
+    var ancla = document.getElementById('isla3d-btn') || document.querySelector('.category-btn-wrap');
+    if (ancla && ancla.parentNode) ancla.parentNode.insertBefore(btn, ancla.nextSibling);
+    btn.classList.toggle('guardado', hayCoche());
+    btn.addEventListener('click', function (e) { e.stopPropagation(); abrir(); });
+    var x = document.getElementById('coche-cerrar'); if (x) x.addEventListener('click', cerrar);
+    var f = document.getElementById('coche-fondo'); if (f) f.addEventListener('click', cerrar);
+    if (location.hash === '#coche') setTimeout(abrir, 600);
+    /* con un coche guardado, el modulo en un rato libre: pinta el 🚗 */
+    else if (hayCoche()) {
+      var luego = window.requestIdleCallback || function (fn) { return setTimeout(fn, 2500); };
+      luego(function () { cargar().catch(function () {}); });
+    }
+  }
+  window.abrirCoche = abrir;
+  window.cerrarCoche = cerrar;
+  /* Para las herramientas de tools/ */
+  window.TG_COCHE_CARGAR = cargar;
+  if (document.readyState !== 'loading') iniciar();
+  else document.addEventListener('DOMContentLoaded', iniciar);
+})();
+</script>
+<!-- ══ fin MI COCHE Y MI POSICION ══ -->
 
 <script>
 </script>

@@ -16,6 +16,8 @@
 "ppDatosRls":", que guarda la contraseña cifrada; nosotros no la vemos.",
 "ppDatosFav":"Favoritos:",
 "ppDatosFavTxt":"los identificadores de los lugares que guarda. Con cuenta se sincronizan; sin cuenta se quedan en su dispositivo.",
+"ppDatosCoche":"Mi coche y mi posición (opcional):",
+"ppDatosCocheTxt":"si toca «Aparqué aquí», la posición del coche, su precisión, la hora y la nota que escriba (planta, plaza…). Se guardan solo en su dispositivo, para marcar el coche en el mapa y decirle a qué distancia está, y se borran con «Borrar». Si toca «Volver a pie», esa posición se abre en la app de mapas del móvil (Mapas de Apple o Google Maps) para la ruta. «Enviar mi posición» busca su ubicación solo cuando lo toca y la manda únicamente a quien usted elija desde el móvil (la hoja de compartir, WhatsApp, SMS o copiar). La app no envía nada de esto a ningún servidor.",
 "ppDatosPerfil":"Perfil (opcional):",
 "ppDatosPerfilTxt":"nombre o apodo, avatar, unidades, altura, año de nacimiento, fecha de alta del perfil, peso objetivo, los pesos que anote y los kilómetros que anotó antes en el perfil (con su fecha) y las visitas comprobadas (solo el lugar y el día). Se guardan en su dispositivo y se pueden borrar desde el propio perfil, salvo las visitas comprobadas, que se borran al desmarcar el lugar. Si tiene cuenta, ha cumplido 14 años y da su consentimiento expreso, todo salvo las visitas se guarda también en su cuenta, para no perderlo al cambiar de móvil, y se registra la fecha de ese consentimiento; el peso y la altura son datos de salud. Puede retirar ese consentimiento en el perfil cuando quiera: entonces se borra la copia guardada en su cuenta y los datos siguen en su dispositivo.",
 "ppDatosCuerpo":"Su cuerpo (opcional):",

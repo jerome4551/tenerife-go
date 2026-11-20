@@ -211,7 +211,8 @@ def cuerpo(L, panel):
     # Los sensores y la camara (20 de octubre de 2026): «Apunta al cielo» del
     # panel del cielo los usa en el dispositivo y nada sale de el.
     # «Su cuerpo» (31 de octubre de 2026): lo que anota se queda en el dispositivo.
-    for a, b in (('ppDatosFav', 'ppDatosFavTxt'), ('ppDatosPerfil', 'ppDatosPerfilTxt'), ('ppDatosCuerpo', 'ppDatosCuerpoTxt'), ('ppDatosPref', 'ppDatosPrefTxt'),
+    # «Mi coche y mi posición» (20 de noviembre de 2026): el coche, en el dispositivo; la posicion, a quien se elija.
+    for a, b in (('ppDatosFav', 'ppDatosFavTxt'), ('ppDatosCoche', 'ppDatosCocheTxt'), ('ppDatosPerfil', 'ppDatosPerfilTxt'), ('ppDatosCuerpo', 'ppDatosCuerpoTxt'), ('ppDatosPref', 'ppDatosPrefTxt'),
                  ('ppDatosPush', 'ppDatosPushTxt'), ('ppDatosSensores', 'ppDatosSensoresTxt'),
                  ('ppDatosCamara', 'ppDatosCamaraTxt')):
         m.append(li(a, b))

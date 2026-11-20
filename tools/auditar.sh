@@ -53,9 +53,10 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # octubre de 2026).
 # Y modulos/isla3d.js, «La isla en 3D» (31 de octubre de 2026).
 # Y modulos/guia.js, Jérôme y sus tours (10 de noviembre de 2026).
+# Y modulos/antes.js y modulos/micoche.js, «Antes de salir» y «Mi coche y mi posición» (20 de noviembre de 2026).
 # Y modulos/entrenador.js, el vídeo de cada ejercicio de «Su cuerpo» (12 de noviembre de 2026), y sus trozos, las
 # coreografías por grupos de modulos/entrenador/ (16 de noviembre de 2026; cada una lleva en el nombre la huella de su contenido).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js modulos/entrenador.js modulos/entrenador/*.js; do
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js modulos/antes.js modulos/micoche.js modulos/entrenador.js modulos/entrenador/*.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -368,6 +369,10 @@ control sismos_ign.py python3 tools/sismos_ign.py --probar
 control semaforo_involcan.py python3 tools/semaforo_involcan.py --probar
 control alertas_canarias.py python3 tools/alertas_canarias.py --probar
 control vigia_sos.py python3 tools/vigia_sos.py --probar
+echo; echo "════════ «Antes de salir» y «Mi coche y mi posición»: en los once idiomas, lo que se toca y sin conexion ════════"
+# Desde el 20 de noviembre de 2026. Los dos se cargan al abrirlos (modulos/antes.js y
+# modulos/micoche.js); el del coche, tambien tras arrancar si hay un coche guardado.
+control probar_antes_coche.js node tools/probar_antes_coche.js "$PUERTO"
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"

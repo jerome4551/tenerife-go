@@ -12822,7 +12822,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3756 filas (y 5.914 filas, dentro y fuera del fuente)
+## Idiomas · 56 tablas, 3826 filas (y 5.984 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -13162,6 +13162,11 @@ Y el bloque 3b (nota 60): nueve filas más en `CUERPO_UI`, los nombres de las cu
 Y el bloque 4a del mapa (nota 62): los diez primeros gimnasios, con su texto y su categoría en los idiomas de
 `idiomas/*.json` (veinte filas más de `places[]`: 2.294), y «Gimnasios» en las categorías de `LANGS`: 3.756 filas
 y 5.914.
+Y ese día, «Antes de salir» y «Mi coche y mi posición»: cuatro tablas más, dos por módulo (`ANTES_UI`, 32 filas, en
+`modulos/antes.js`; `COCHE_UI`, 29, en `modulos/micoche.js`; y sus `ANTES_LOCALE` y `COCHE_LOCALE`, los códigos de
+idioma para `Intl`, declarados SIN-TRADUCIR), cinco filas en `UI_TX` (el título de cada pantalla, el subtítulo de la
+tarjeta de Rutas y los dos avisos de que el módulo no llegó) y dos en la política (`ppDatosCoche`), en los once
+idiomas: 56 tablas, 3.826 filas y 5.984.
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no

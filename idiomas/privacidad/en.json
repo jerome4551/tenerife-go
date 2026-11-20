@@ -14,6 +14,8 @@
 "ppDatosRls":", which stores the password encrypted; we never see it.",
 "ppDatosFav":"Favourites:",
 "ppDatosFavTxt":"the identifiers of the places you save. With an account they sync; without one they stay on your device.",
+"ppDatosCoche":"My car and my location (optional):",
+"ppDatosCocheTxt":"if you tap «I parked here», the car’s position, its accuracy, the time and any note you write (level, space…). They stay only on your device, to mark the car on the map and tell you how far away it is, and «Delete» removes them. If you tap «Walk back», that position opens in your phone’s maps app (Apple Maps or Google Maps) for the route. «Send my location» looks up your location only when you tap it and sends it only to whoever you choose from your phone (the share sheet, WhatsApp, text message or copy). The app sends none of this to any server.",
 "ppDatosPerfil":"Profile (optional):",
 "ppDatosPerfilTxt":"name or nickname, avatar, units, height, year of birth, profile start date, goal weight, the weights you log and the kilometres you logged in the profile before (with their dates) and verified visits (only the place and the day). They are stored on your device and can be deleted from the profile itself, except verified visits, which are deleted when you unmark the place. If you have an account, are at least 14 and give your explicit consent, everything except the visits is also saved to your account, so it isn’t lost if you change phones, and the date of that consent is recorded; weight and height are health data. You can withdraw that consent in the profile at any time: the copy saved in your account is then deleted, and the data stays on your device.",
 "ppDatosCuerpo":"Your body (optional):",
