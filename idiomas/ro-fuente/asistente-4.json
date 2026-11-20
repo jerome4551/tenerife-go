@@ -1,0 +1,2828 @@
+{
+ "_": "Rumano (ro) del asistente de «Su cuerpo», bloque 20: las respuestas de las categorías tenerife y urgencias, 30 de las 178 de datos/cuerpo/asistente-es.json. Cada respuesta lleva su id, el castellano que traduce (q, r, los títulos de las fuentes, v, k y u, como en datos/cuerpo/asistente-es.json) y el rumano, con la misma forma; las once urgencias, con sus patrones en rumano (u). tools/asistente_traduccion.js ro las junta con las de los bloques 17, 18 y 19 y escribe datos/cuerpo/asistente-ro.json cuando estén todas y todas casen con el castellano de ese día. No se edita a mano: sale de las fuentes del zip del bloque 20 (construir_r20.py).",
+ "idioma": "ro",
+ "respuestas": [
+  {
+   "id": "senderismo-preparar",
+   "es": {
+    "q": "¿Cómo me preparo para una ruta de senderismo?",
+    "r": {
+     "t": "Mire la previsión y si el sendero está abierto, salga temprano, diga a alguien adónde va y no vaya solo. Elija una ruta a la medida de su forma física.",
+     "p": [
+      "Lleve calzado de montaña, agua, ropa de abrigo e impermeable, protección solar, linterna, manta térmica y el móvil cargado o, al menos, un silbato.",
+      "El mismo día, mire en Tenerife ON (web y app del Cabildo) si hay alertas o senderos cerrados. Para subir a pie al Teide hace falta reserva previa.",
+      "Vaya al ritmo del más lento, no se salga de los senderos señalizados y planifique el horario con margen de seguridad."
+     ],
+     "c": "Si alguien se hace daño grave, no lo mueva: llame al 112 y espere a los equipos de rescate.",
+     "n": "Es el equipo que piden la Guardia Civil y las normas de los senderos del Teide; en una ruta corta o de costa, adáptelo a la distancia y a la previsión del tiempo."
+    },
+    "f": [
+     "Guardia Civil, Servicio de Montaña: «Rescate en montaña», consejos de prevención",
+     "Cabildo de Tenerife: resolución de medidas urgentes de acceso a pie a La Rambleta (27-11-2024)"
+    ],
+    "v": [
+     "cómo me preparo para hacer senderismo",
+     "¿qué llevo a una ruta de montaña?",
+     "que llevar para una excursion por el monte",
+     "voy a hacer una caminata larga en Tenerife, ¿qué necesito?",
+     "¿necesito permiso para subir andando al Teide?",
+     "consejos para hacer una ruta a pie",
+     "preparar una excursión de senderismo",
+     "¿qué me pongo para ir de senderismo?",
+     "material para senderismo",
+     "¿cómo sé si un sendero está cerrado?",
+     "mañana hago una ruta por la montaña, qué tengo que saber",
+     "¿cuánta agua hace falta para un día de monte?"
+    ],
+    "k": [
+     "trekking",
+     "senderista",
+     "Tenerife ON",
+     "reserva",
+     "equipo",
+     "mochila",
+     "linterna",
+     "calzado",
+     "Anaga",
+     "Masca"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum mă pregătesc pentru o drumeție?",
+    "r": {
+     "t": "Verificați prognoza meteo și dacă traseul este deschis, plecați devreme, spuneți cuiva unde mergeți și nu plecați fără însoțitor. Alegeți un traseu pe măsura condiției dumneavoastră fizice.",
+     "p": [
+      "Purtați încălțăminte de munte și luați apă, haine groase și o jachetă impermeabilă, protecție solară, o lanternă, o folie izotermă și telefonul încărcat sau, cel puțin, un fluier.",
+      "În aceeași zi, verificați în Tenerife ON (site-ul și aplicația consiliului insular, Cabildo) dacă există alerte sau trasee închise. Ca să urcați pe jos pe Teide, aveți nevoie de o rezervare făcută din timp.",
+      "Mergeți în ritmul celui mai lent din grup, nu ieșiți de pe traseele marcate și planificați-vă programul cu o marjă de siguranță."
+     ],
+     "c": "Dacă cineva se rănește grav, nu-l mișcați: sunați la 112 și așteptați echipele de salvare.",
+     "n": "Este echipamentul cerut de Guardia Civil și de regulile traseelor de pe Teide; pentru un traseu scurt sau pe coastă, adaptați-l la distanță și la prognoza meteo."
+    },
+    "f": [
+     "Guardia Civil, serviciul de munte: „Rescate en montaña” (salvarea pe munte), sfaturi de prevenire",
+     "Cabildo de Tenerife: hotărârea privind măsurile urgente pentru accesul pe jos la La Rambleta (27-11-2024)"
+    ],
+    "v": [
+     "cum mă pregătesc ca să fac drumeții",
+     "ce iau cu mine pe un traseu montan?",
+     "ce să iau la o excursie pe munte",
+     "fac o drumeție lungă în Tenerife: ce îmi trebuie?",
+     "îmi trebuie permis ca să urc pe jos pe Teide?",
+     "sfaturi pentru un traseu pe jos",
+     "pregătirea unei drumeții",
+     "cu ce mă îmbrac pentru drumeție?",
+     "echipament de drumeție",
+     "de unde știu dacă un traseu e închis?",
+     "mâine merg pe un traseu montan, ce trebuie să știu",
+     "câtă apă îmi trebuie pentru o zi pe munte?"
+    ],
+    "k": [
+     "trekking",
+     "drumeț",
+     "Tenerife ON",
+     "rezervare",
+     "echipament",
+     "rucsac",
+     "lanternă",
+     "încălțăminte",
+     "Anaga",
+     "Masca"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "mal-de-altura-teide",
+   "es": {
+    "q": "¿Puedo tener mal de altura en el Teide?",
+    "r": {
+     "t": "Sí. En personas sensibles puede aparecer desde unos 2.000 m, y el teleférico le sube a 3.555 m. Una visita de ida y vuelta en el día exige al cuerpo mucho menos que dormir arriba.",
+     "p": [
+      "Lo principal es el dolor de cabeza, con cansancio, mareo, náuseas o falta de apetito. Suele empezar entre 2 y 12 horas después de llegar.",
+      "Quedarse más de una hora en la estación superior aumenta el riesgo, avisa el operador. Arriba, camine despacio y sin esfuerzos intensos.",
+      "Si nota síntomas, no siga subiendo; si empeoran, baje acompañado: suelen ceder al descender entre 300 y 1.000 m.",
+      "Beber de más no lo previene, pero no se deshidrate: la deshidratación da síntomas parecidos."
+     ],
+     "c": "Llame al 112 y baje, acompañado, si hay confusión, torpeza al andar, mucho sueño o falta de aire en reposo. Con una enfermedad del corazón o del pulmón, consulte antes a su médico."
+    },
+    "f": [
+     "CDC Yellow Book 2026: viajes a gran altitud y mal de altura (Hackett y Shlim)",
+     "Wilderness Medical Society: guía clínica sobre el mal de altura (Luks et al., 2024)",
+     "Teleférico del Teide: página del teleférico"
+    ],
+    "v": [
+     "¿me puede dar mal de altura en el Teide?",
+     "mal de altura teide",
+     "¿qué síntomas tiene el mal de altura?",
+     "me duele la cabeza en el Teide, ¿es la altura?",
+     "soroche en el teide",
+     "¿a partir de qué altura da mal de montaña?",
+     "me mareo arriba del teleferico",
+     "¿es peligrosa la altura del Teide?",
+     "mareos y nauseas en la cima del teide",
+     "¿qué hago si me encuentro mal en el pico del Teide?",
+     "cuando subo arriba me encuentro mareado"
+    ],
+    "k": [
+     "altitud",
+     "mal agudo de montaña",
+     "oxígeno",
+     "Rambleta",
+     "cumbre",
+     "hipoxia",
+     "metros",
+     "falta de oxígeno",
+     "dolor de cabeza",
+     "Cañadas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot face rău de altitudine pe Teide?",
+    "r": {
+     "t": "Da. La persoanele sensibile poate apărea de la aproximativ 2.000 m, iar telecabina vă urcă la 3.555 m. O vizită dus-întors în aceeași zi solicită corpul mult mai puțin decât o noapte petrecută sus.",
+     "p": [
+      "Principalul simptom este durerea de cap, însoțită de oboseală, amețeală, greață sau lipsa poftei de mâncare. De obicei începe la 2–12 ore după sosire.",
+      "Dacă rămâneți mai mult de o oră la stația superioară, riscul crește, avertizează operatorul. Sus, mergeți încet și fără eforturi intense.",
+      "Dacă aveți simptome, nu mai urcați; dacă se agravează, coborâți împreună cu cineva: de obicei se ameliorează după o coborâre de 300–1.000 m.",
+      "Dacă beți mai mult decât aveți nevoie, nu preveniți răul de altitudine, dar nu vă deshidratați: deshidratarea dă simptome asemănătoare."
+     ],
+     "c": "Sunați la 112 și coborâți, împreună cu cineva, dacă apar confuzie, mers nesigur, somnolență puternică sau lipsă de aer în repaus. Dacă aveți o boală de inimă sau de plămâni, consultați-vă medicul înainte."
+    },
+    "f": [
+     "CDC Yellow Book 2026: călătoriile la mare altitudine și răul de altitudine (Hackett și Shlim)",
+     "Wilderness Medical Society: ghidul clinic privind răul de altitudine (Luks et al., 2024)",
+     "Teleférico del Teide: pagina telecabinei"
+    ],
+    "v": [
+     "mi se poate face rău de altitudine pe Teide?",
+     "rău de altitudine Teide",
+     "care sunt simptomele răului de altitudine?",
+     "mă doare capul pe Teide, e de la altitudine?",
+     "răul de munte pe Teide",
+     "de la ce altitudine apare răul de munte?",
+     "amețesc sus, la telecabină",
+     "e periculoasă altitudinea de pe Teide?",
+     "amețeli și greață pe vârful Teide",
+     "ce fac dacă mi se face rău pe vârful Teide?",
+     "când urc sus, amețesc"
+    ],
+    "k": [
+     "altitudine",
+     "rău acut de munte",
+     "oxigen",
+     "Rambleta",
+     "vârf",
+     "hipoxie",
+     "metri",
+     "lipsă de oxigen",
+     "durere de cap",
+     "Cañadas"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "teleferico-quien-no",
+   "es": {
+    "q": "¿Quién no puede subir al Teide en teleférico?",
+    "r": {
+     "t": "No pueden subir las embarazadas, las personas con enfermedades cardiovasculares ni los menores de 3 años, por los riesgos de la altitud. Tampoco quien tenga síntomas de mal de altura o esté enfermo.",
+     "p": [
+      "Las normas excluyen también a quien tenga una enfermedad neurológica u otra enfermedad grave, o náuseas, fiebre o dolor.",
+      "Las personas con diversidad funcional física o motora tampoco pueden subir: no se puede asegurar que se las evacúe a tiempo.",
+      "Los menores de 16 años deben ir siempre con un adulto, y la estancia en la estación superior está limitada a una hora."
+     ],
+     "c": "Con cualquier problema de salud, consulte a su médico antes de planear la visita, como pide el operador.",
+     "n": "Las normas no mencionan las enfermedades respiratorias; el Parque Nacional advierte de que subir al pico puede ser peligroso con «alguna lesión cardiopulmonar»."
+    },
+    "f": [
+     "Teleférico del Teide: normas de acceso",
+     "Teleférico del Teide: página del teleférico",
+     "MITECO: guía del visitante del Parque Nacional del Teide (accesos)"
+    ],
+    "v": [
+     "¿quién no puede subir en el teleférico del Teide?",
+     "¿puede subir un bebé al teleférico?",
+     "¿hay edad mínima para el teleférico del Teide?",
+     "tengo problemas de corazón, ¿puedo subir al teleférico?",
+     "¿puedo subir al Teide en silla de ruedas?",
+     "restricciones teleferico teide",
+     "¿cuánto tiempo se puede estar arriba del teleférico?",
+     "¿un niño de 2 años puede subir al Teide?",
+     "normas del teleférico del teide",
+     "¿mi abuelo puede subir en teleférico?",
+     "quien tiene prohibido el teleferico"
+    ],
+    "k": [
+     "cardiovascular",
+     "menores",
+     "movilidad reducida",
+     "acceso",
+     "funicular",
+     "estación superior",
+     "niños pequeños",
+     "EPOC",
+     "enfermedad respiratoria"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cine nu poate urca pe Teide cu telecabina?",
+    "r": {
+     "t": "Nu pot urca femeile însărcinate, persoanele cu boli cardiovasculare și copiii sub 3 ani, din cauza riscurilor altitudinii. Nici persoanele care au simptome de rău de altitudine sau sunt bolnave.",
+     "p": [
+      "Regulile îi exclud și pe cei care au o boală neurologică sau o altă boală gravă ori greață, febră sau dureri.",
+      "Nici persoanele cu dizabilități fizice sau motorii nu pot urca: nu se poate garanta că ar putea fi evacuate la timp.",
+      "Minorii sub 16 ani trebuie să fie întotdeauna însoțiți de un adult, iar șederea la stația superioară este limitată la o oră."
+     ],
+     "c": "Dacă aveți orice problemă de sănătate, consultați-vă medicul înainte de a planifica vizita, cum cere operatorul.",
+     "n": "Regulile nu menționează bolile respiratorii; Parcul Național avertizează că urcarea pe vârf poate fi periculoasă pentru cine are „o leziune cardiopulmonară”."
+    },
+    "f": [
+     "Teleférico del Teide: regulile de acces",
+     "Teleférico del Teide: pagina telecabinei",
+     "MITECO: ghidul vizitatorului Parcului Național Teide (accese)"
+    ],
+    "v": [
+     "cine nu are voie să urce cu telecabina pe Teide?",
+     "poate urca un bebeluș cu telecabina?",
+     "există o vârstă minimă pentru telecabina de pe Teide?",
+     "am probleme cu inima, pot urca cu telecabina?",
+     "pot urca pe Teide în scaun cu rotile?",
+     "restricții telecabina Teide",
+     "cât timp se poate sta sus, la telecabină?",
+     "un copil de 2 ani poate urca pe Teide?",
+     "regulile telecabinei de pe Teide",
+     "bunicul meu poate urca cu telecabina?",
+     "cine nu are voie la telecabină"
+    ],
+    "k": [
+     "cardiovascular",
+     "minori",
+     "mobilitate redusă",
+     "acces",
+     "funicular",
+     "stația superioară",
+     "copii mici",
+     "BPOC",
+     "boală respiratorie"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "bajar-montana-rodillas",
+   "es": {
+    "q": "Me duelen las rodillas al bajar de la montaña: ¿qué hago?",
+    "r": {
+     "t": "Bajar carga mucho la rodilla. Use bastones y baje con calma. Si el dolor no mejora o la rodilla se hincha, consulte.",
+     "p": [
+      "Bajando, la rodilla soporta unas 8 veces el peso del cuerpo, frente a 3,9 en llano, sobre todo por la fuerza de los músculos al frenar.",
+      "Los bastones reducen la carga de las piernas a cambio de algo más de esfuerzo cardiovascular, y pueden ayudar más si lleva una mochila pesada.",
+      "Antes de otra ruta larga, fortalezca los cuádriceps (la parte delantera del muslo), por ejemplo bajando despacio de un escalón."
+     ],
+     "c": "Llame al 112 o vaya a urgencias si oyó un chasquido, la rodilla se deforma o la nota dormida. Consulte si no puede apoyar, se hincha mucho o no mejora al cuidarla.",
+     "n": "Fortalecer los cuádriceps y bajar con calma son consejos razonables, pero ningún ensayo leído los ha probado en senderistas."
+    },
+    "f": [
+     "Kuster et al., carga de la rodilla al andar en llano y cuesta abajo (J Bone Joint Surg Br, 1997)",
+     "Revisión sobre los bastones de senderismo (Wilderness Environ Med, 2020)",
+     "NHS: esguinces y distensiones (cuándo pedir ayuda)"
+    ],
+    "v": [
+     "me duelen las rodillas al bajar",
+     "dolor de rodilla bajando el teide",
+     "¿por qué me duele la rodilla cuesta abajo?",
+     "rodillas doloridas despues de una ruta",
+     "¿sirven los bastones de senderismo?",
+     "¿los bastones protegen las rodillas?",
+     "bajada de montaña y dolor de rodilla",
+     "¿cómo bajo una montaña sin que me duelan las rodillas?",
+     "me molesta la rodilla al descender",
+     "tras la excursión me duele la rodilla, ¿es grave?"
+    ],
+    "k": [
+     "descenso",
+     "bastón",
+     "trekking",
+     "cuádriceps",
+     "articulación",
+     "pendiente",
+     "bajadas",
+     "rutas",
+     "cuestas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Mă dor genunchii la coborârea de pe munte: ce fac?",
+    "r": {
+     "t": "Coborârea solicită mult genunchiul. Folosiți bețe de trekking și coborâți fără grabă. Dacă durerea nu se ameliorează sau genunchiul se umflă, mergeți la medic.",
+     "p": [
+      "La coborâre, genunchiul suportă de aproximativ 8 ori greutatea corpului, față de 3,9 pe teren plat, mai ales din cauza forței mușchilor care frânează mișcarea.",
+      "Bețele reduc încărcarea picioarelor, în schimbul unui efort cardiovascular ceva mai mare, și pot ajuta mai mult dacă duceți un rucsac greu.",
+      "Înaintea unui alt traseu lung, întăriți-vă cvadricepșii (partea din față a coapsei), de exemplu coborând încet de pe o treaptă."
+     ],
+     "c": "Sunați la 112 sau mergeți la urgențe dacă ați auzit o pocnitură, dacă genunchiul se deformează sau dacă îl simțiți amorțit. Mergeți la medic dacă nu vă puteți sprijini pe picior, dacă genunchiul se umflă tare sau dacă nu se ameliorează cu îngrijire.",
+     "n": "Întărirea cvadricepșilor și coborârea fără grabă sunt sfaturi rezonabile, dar niciunul dintre studiile citite nu le-a testat la drumeți."
+    },
+    "f": [
+     "Kuster et al., solicitarea genunchiului la mersul pe teren plat și la coborâre (J Bone Joint Surg Br, 1997)",
+     "Analiză privind bețele de trekking (Wilderness Environ Med, 2020)",
+     "NHS: entorse și întinderi (când să cereți ajutor)"
+    ],
+    "v": [
+     "mă dor genunchii la coborâre",
+     "durere de genunchi la coborârea de pe Teide",
+     "de ce mă doare genunchiul la vale?",
+     "genunchi dureroși după un traseu",
+     "sunt utile bețele de trekking?",
+     "bețele protejează genunchii?",
+     "coborâre de pe munte și durere de genunchi",
+     "cum cobor de pe munte fără să mă doară genunchii?",
+     "mă supără genunchiul când cobor",
+     "după excursie mă doare genunchiul, e grav?"
+    ],
+    "k": [
+     "coborâre",
+     "băț",
+     "trekking",
+     "cvadriceps",
+     "articulație",
+     "pantă",
+     "coborâșuri",
+     "trasee",
+     "pante"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "calor-entrenar",
+   "es": {
+    "q": "¿Puedo entrenar con calor?",
+    "r": {
+     "t": "Sí, con precauciones: evite el esfuerzo al aire libre en las horas centrales del día, entrene a primera hora o al final de la tarde, beba a menudo y baje la intensidad los primeros días.",
+     "p": [
+      "Beba agua a menudo aunque no tenga sed, y evite el alcohol y las bebidas con cafeína o muy azucaradas.",
+      "Lleve ropa ligera, holgada y de colores claros, y gorra o sombrero.",
+      "El cuerpo se acostumbra al calor con sesiones repetidas durante 1–2 semanas: si llega de un clima más fresco, empiece con sesiones más cortas y suaves.",
+      "Tienen más riesgo los niños, los mayores, las embarazadas y quien tiene enfermedades del corazón o de los riñones, diabetes, tensión alta u obesidad."
+     ],
+     "c": "Llame al 112 ante piel caliente y roja (puede que no sude), fiebre de más de 40 °C, confusión, convulsiones o desmayo: es un golpe de calor."
+    },
+    "f": [
+     "Ministerio de Sanidad: Plan Nacional de actuaciones preventivas por exceso de temperaturas 2026",
+     "OMS/Europa: deporte con calor («Keep cool in the heat and enjoy a sporting summer!»)",
+     "Racinais et al., consenso sobre entrenar y competir con calor (Br J Sports Med, 2015)"
+    ],
+    "v": [
+     "¿puedo hacer deporte con calor?",
+     "entrenar con mucho calor",
+     "¿a qué hora es mejor entrenar en verano?",
+     "ejercicio con temperaturas altas",
+     "¿es peligroso hacer ejercicio con 35 grados?",
+     "entrenar en tenerife en verano",
+     "como entreno si hace calor",
+     "¿cuánto tarda el cuerpo en acostumbrarse al calor?",
+     "ola de calor y deporte",
+     "¿hago ejercicio a mediodía si hace calor?",
+     "¿bajo el ritmo cuando aprieta el calor?",
+     "¿cómo evito pasarlo mal con el calor al correr?"
+    ],
+    "k": [
+     "temperatura",
+     "aclimatación",
+     "hidratación",
+     "horas centrales",
+     "bochorno",
+     "sudor",
+     "agosto",
+     "bajar la intensidad",
+     "prevenir golpe de calor"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot să mă antrenez pe căldură?",
+    "r": {
+     "t": "Da, cu măsuri de precauție: evitați efortul în aer liber în orele din mijlocul zilei, antrenați-vă dimineața devreme sau spre seară, beți des și reduceți intensitatea în primele zile.",
+     "p": [
+      "Beți apă des, chiar dacă nu vă e sete, și evitați alcoolul și băuturile cu cafeină sau foarte dulci.",
+      "Purtați haine ușoare, largi și de culori deschise și o șapcă sau o pălărie.",
+      "Corpul se obișnuiește cu căldura prin sesiuni repetate timp de 1–2 săptămâni: dacă veniți dintr-un climat mai răcoros, începeți cu sesiuni mai scurte și mai ușoare.",
+      "Risc mai mare au copiii, vârstnicii, femeile însărcinate și persoanele cu boli de inimă sau de rinichi, diabet, tensiune arterială mare sau obezitate."
+     ],
+     "c": "Sunați la 112 dacă apar piele fierbinte și roșie (persoana poate să nu transpire), febră de peste 40 °C, confuzie, convulsii sau leșin: este un șoc termic."
+    },
+    "f": [
+     "Ministerul Sănătății din Spania: Planul național de acțiuni preventive împotriva efectelor temperaturilor excesive 2026",
+     "OMS/Europa: sportul pe căldură („Keep cool in the heat and enjoy a sporting summer!”)",
+     "Racinais et al., consens privind antrenamentul și competiția pe căldură (Br J Sports Med, 2015)"
+    ],
+    "v": [
+     "pot face sport pe căldură?",
+     "antrenament pe căldură mare",
+     "la ce oră e mai bine să mă antrenez vara?",
+     "exerciții la temperaturi ridicate",
+     "e periculos să fac sport la 35 de grade?",
+     "antrenament în Tenerife vara",
+     "cum mă antrenez dacă e cald",
+     "în cât timp se obișnuiește corpul cu căldura?",
+     "caniculă și sport",
+     "fac sport la prânz dacă e cald?",
+     "reduc ritmul când e foarte cald?",
+     "cum evit să-mi fie rău de la căldură când alerg?"
+    ],
+    "k": [
+     "temperatură",
+     "aclimatizare",
+     "haine lejere",
+     "orele de prânz",
+     "zăpușeală",
+     "transpirație",
+     "august",
+     "reducerea intensității",
+     "prevenirea șocului termic"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "golpe-de-calor",
+   "es": {
+    "q": "¿Cómo reconozco un golpe de calor?",
+    "r": {
+     "t": "Es una urgencia: llame enseguida al 112 si hay piel caliente y roja (puede que no sude), fiebre de más de 40 °C, confusión, convulsiones o desmayo.",
+     "p": [
+      "Mientras llega la ayuda, lleve a la persona a un sitio fresco y bájele la temperatura con paños fríos o un baño de agua fría.",
+      "No le dé nada de beber.",
+      "Dolor de cabeza, náuseas, mareo y piel fría y húmeda pueden ser agotamiento por calor: lugar fresco, agua a sorbitos, ropa suelta y paños húmedos."
+     ],
+     "c": "En el agotamiento por calor, si hay vómitos, si la persona tiene una enfermedad crónica o si empeora, busque atención médica enseguida; si sigue mal tras 30 minutos así, llame al 112."
+    },
+    "f": [
+     "NHS: agotamiento por calor y golpe de calor (revisada en 2026)",
+     "ACSM: consenso de expertos sobre la enfermedad por calor de esfuerzo (Roberts et al., Curr Sports Med Rep 2023)"
+    ],
+    "v": [
+     "¿cómo sé si es un golpe de calor?",
+     "síntomas del golpe de calor",
+     "señales de golpe de calor",
+     "diferencia entre agotamiento por calor y golpe de calor",
+     "¿cómo distingo una insolación de un golpe de calor?",
+     "golpe de calor o solo cansancio",
+     "¿qué se siente con un golpe de calor?",
+     "como saber si tengo un golpe de calor",
+     "¿el golpe de calor da fiebre?",
+     "piel caliente y no sudo, ¿es grave?",
+     "sintomas de insolacion"
+    ],
+    "k": [
+     "hipertermia",
+     "temperatura corporal",
+     "sudor",
+     "calor extremo",
+     "deshidratación",
+     "urgencia"
+    ],
+    "u": [
+     "(recono|disting|diferenc|sintoma|senal|saber si|se si|que se siente|se nota|notar)[a-z]*( [a-z]+){0,7} (golpe de calor|insolacion|agotamiento por calor)",
+     "(golpe de calor|insolacion|agotamiento por calor) (o |da |produce |provoca |causa |se nota)",
+     "(tengo|tiene|tenga|tienes|le ha dado|me ha dado|le esta dando|me esta dando|le da|me da|sufre|creo que es|puede ser|parece) (un )?agotamiento por calor",
+     "(desmay|convuls|confus|delira).{0,40}(calor|al sol|del sol)( |$)",
+     "(calor|al sol|del sol) .{0,40}(desmay|convuls|confus|delira)",
+     "no (suda|sudaba|sudo|esta sudando).{0,40}(calor|al sol|del sol)( |$)",
+     "(piel|cuerpo) (muy )?(caliente|ardiendo).{0,40}(no suda|no sudo|sin sudar|seca)",
+     "fiebre (por|del|tras|despues de)( [a-z]+){0,3} (calor|sol)( |$)",
+     "(mareo|mareado|mareada|vomit).{0,30}(calor|al sol|del sol)( |$)",
+     "(es|sera|sea) (un |una )?(golpe de calor|insolacion|agotamiento por calor)"
+    ]
+   },
+   "ro": {
+    "q": "Cum recunosc un șoc termic?",
+    "r": {
+     "t": "Este o urgență: sunați imediat la 112 dacă apar piele fierbinte și roșie (persoana poate să nu transpire), febră de peste 40 °C, confuzie, convulsii sau leșin.",
+     "p": [
+      "Până sosește ajutorul, duceți persoana într-un loc răcoros și scădeți-i temperatura cu comprese reci sau cu o baie în apă rece.",
+      "Nu-i dați nimic de băut.",
+      "Durerea de cap, greața, amețeala și pielea rece și umedă pot fi semne de epuizare termică: loc răcoros, apă băută cu înghițituri mici, haine largi și comprese umede."
+     ],
+     "c": "În caz de epuizare termică, dacă apar vărsături, dacă persoana are o boală cronică sau dacă starea ei se agravează, cereți imediat asistență medicală; dacă după 30 de minute de astfel de îngrijiri tot nu se simte bine, sunați la 112."
+    },
+    "f": [
+     "NHS: epuizarea termică și șocul termic (revizuită în 2026)",
+     "ACSM: consensul experților privind bolile cauzate de căldură la efort (Roberts et al., Curr Sports Med Rep 2023)"
+    ],
+    "v": [
+     "de unde știu dacă e un șoc termic?",
+     "simptomele șocului termic",
+     "semnele șocului termic",
+     "diferența dintre epuizarea termică și șocul termic",
+     "cum deosebesc o insolație de un șoc termic?",
+     "șoc termic sau doar oboseală",
+     "cum se simte un șoc termic?",
+     "cum să știu dacă am șoc termic",
+     "șocul termic dă febră?",
+     "am pielea fierbinte și nu transpir, e grav?",
+     "simptome de insolație"
+    ],
+    "k": [
+     "hipertermie",
+     "temperatura corpului",
+     "transpirație",
+     "căldură extremă",
+     "deshidratare",
+     "urgență"
+    ],
+    "u": [
+     "(recunosc|recunoaste|recunoast|deosebesc|deosebi|deosebim|diferent|simptom|semn|cum stiu|cum imi dau seama|cum iti dai seama|cum se simte|ce se simte|de unde stiu|cum sa stiu)[a-z]*( [a-z]+){0,7} (soc[a-z]* termic|insolati[a-z]*|lovitur[a-z]* de caldura|epuizar[a-z]* termic[a-z]*)",
+     "(soc[a-z]* termic|insolati[a-z]*|lovitur[a-z]* de caldura|epuizar[a-z]* termic[a-z]*) (sau |da |provoaca |produce |cauzeaza |se manifesta)",
+     "(^| )(am|are|ai|aveti|avem|au|face|fac|sufera|cred ca e|cred ca este|cred ca am|cred ca are|poate fi|pare)( [a-z]+){0,2} (o )?epuizar[a-z]* termic",
+     "(lesin|lesn|convuls|confuz|delir|aiureaz).{0,40}(caldur[a-z]*|canicul[a-z]*|la soare|in soare|de la soare|soarelui)( |$)",
+     "(caldur[a-z]*|canicul[a-z]*|la soare|in soare|de la soare) .{0,40}(lesin|lesn|convuls|confuz|delir|aiureaz)",
+     "nu (mai )?(transpira|transpir|transpirati|transpiram)( deloc)?.{0,40}(caldur[a-z]*|canicul[a-z]*|soare[a-z]*)( |$)",
+     "(piele[a-z]*|corp[a-z]*) (e |este |foarte |atat de )*(fierbinte|arde|arzatoare|incins[a-z]*).{0,40}(nu transpir|fara sa transpir|fara transpirati|uscat)",
+     "febr[a-z]* (de la|din cauza|dupa)( [a-z]+){0,3} (caldur[a-z]*|soare[a-z]*|canicul[a-z]*)( |$)",
+     "(ameteal|ametit|ametesc|ameteste|vomit|voma|varsatur).{0,30}(caldur[a-z]*|canicul[a-z]*|la soare|in soare|de la soare)( |$)",
+     "(^| )(e|este|o fi|ar putea fi|poate fi|sa fie) (un |o )?(soc[a-z]* termic|insolati[a-z]*|lovitur[a-z]* de caldura|epuizar[a-z]* termic[a-z]*)"
+    ]
+   }
+  },
+  {
+   "id": "agua-con-calor",
+   "es": {
+    "q": "¿Cuánta agua bebo si hago deporte con calor?",
+    "r": {
+     "t": "Con calor, Sanidad pide beber a menudo, aunque no tenga sed. Al entrenar, la cantidad depende de lo que sude: no hay una cifra fija.",
+     "p": [
+      "Antes, de 5 a 10 ml por kilo de peso entre 2 y 4 horas antes: unos 350 a 700 ml si pesa 70 kg.",
+      "Ajuste a lo que suda: cada kilo que pierde entrenando es más o menos un litro de sudor, y conviene no perder más del 2 % del peso.",
+      "En esfuerzos largos, guíese por la sed, que también avisa con calor, y no beba más de lo que suda. Si gana peso entrenando, bebe demasiado."
+     ],
+     "c": "Llame al 112 si tras un esfuerzo largo en el que ha bebido mucho aparecen dolor de cabeza, vómitos o confusión: puede faltar sodio en la sangre.",
+     "n": "Las cifras por kilo son de una posición para deportistas: no se ha comprobado que valgan para menores."
+    },
+    "f": [
+     "Nutrición y rendimiento deportivo: posición conjunta de la Academy of Nutrition and Dietetics, Dietitians of Canada y el ACSM (2016)",
+     "Hew-Butler et al., consenso internacional sobre la hiponatremia asociada al ejercicio (Br J Sports Med, 2015)",
+     "Ministerio de Sanidad: Plan Nacional de actuaciones preventivas por exceso de temperaturas 2026"
+    ],
+    "v": [
+     "¿cuánta agua bebo cuando entreno con calor?",
+     "cuanta agua tomar al correr en verano",
+     "¿cuántos litros de agua por hora de ejercicio?",
+     "hidratación al hacer deporte con calor",
+     "¿qué bebo antes de entrenar si hace calor?",
+     "¿cuánto líquido pierdo sudando?",
+     "beber agua durante el ejercicio",
+     "¿bebo aunque no tenga sed cuando hago deporte?",
+     "agua para una ruta con calor",
+     "¿cuánto tengo que beber en una carrera larga?",
+     "deshidratacion haciendo deporte"
+    ],
+    "k": [
+     "hidratarse",
+     "líquidos",
+     "sudor",
+     "electrolitos",
+     "hiponatremia",
+     "sodio",
+     "sudar mucho",
+     "llevar agua",
+     "litros por hora"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Câtă apă beau dacă fac sport pe căldură?",
+    "r": {
+     "t": "Pe căldură, Ministerul Sănătății din Spania cere să beți des, chiar dacă nu vă e sete. La antrenament, cantitatea depinde de cât transpirați: nu există o cifră fixă.",
+     "p": [
+      "Înainte: între 5 și 10 ml pe kilogram de greutate, cu 2–4 ore înainte de efort, adică aproximativ 350–700 ml dacă aveți 70 kg.",
+      "Adaptați cantitatea la cât transpirați: fiecare kilogram pierdut la antrenament înseamnă cam un litru de transpirație, iar e bine să nu pierdeți mai mult de 2 % din greutate.",
+      "La eforturile lungi, luați-vă după sete, care vă avertizează și pe căldură, și nu beți mai mult decât transpirați. Dacă luați în greutate în timpul antrenamentului, beți prea mult."
+     ],
+     "c": "Sunați la 112 dacă, după un efort lung în care ați băut mult, apar durere de cap, vărsături sau confuzie: s-ar putea să aveți prea puțin sodiu în sânge.",
+     "n": "Cifrele pe kilogram provin dintr-o declarație de poziție pentru sportivi: nu s-a verificat dacă sunt valabile și pentru minori."
+    },
+    "f": [
+     "Nutriția și performanța sportivă: declarația de poziție comună a Academy of Nutrition and Dietetics, Dietitians of Canada și ACSM (2016)",
+     "Hew-Butler et al., consens internațional privind hiponatremia asociată efortului fizic (Br J Sports Med, 2015)",
+     "Ministerul Sănătății din Spania: Planul național de acțiuni preventive împotriva efectelor temperaturilor excesive 2026"
+    ],
+    "v": [
+     "câtă apă beau când mă antrenez pe căldură?",
+     "câtă apă să beau când alerg vara",
+     "câți litri de apă pe oră de sport?",
+     "hidratarea când fac sport pe căldură",
+     "ce beau înainte de antrenament dacă e cald?",
+     "cât lichid pierd prin transpirație?",
+     "apă în timpul antrenamentului",
+     "beau chiar dacă nu mi-e sete când fac sport?",
+     "apă pentru un traseu pe căldură",
+     "cât trebuie să beau la o alergare lungă?",
+     "deshidratare la sport"
+    ],
+    "k": [
+     "a se hidrata",
+     "hidratare",
+     "lichide",
+     "transpirație",
+     "electroliți",
+     "hiponatremie",
+     "sodiu",
+     "transpir mult",
+     "sticlă de apă",
+     "litri pe oră"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "sol-y-deporte",
+   "es": {
+    "q": "¿Cómo me protejo del sol haciendo deporte?",
+    "r": {
+     "t": "A partir de un índice UV de 3, protéjase: busque la sombra a mediodía y use camiseta, sombrero y crema solar. Desde 8, evite estar fuera en las horas centrales.",
+     "p": [
+      "Use crema de amplio espectro, de factor 15 como mínimo y mejor más alto, y vuelva a ponérsela cada 2 horas.",
+      "Añada gafas de sol y entrene temprano o al final del día, fuera de las horas centrales.",
+      "La AEMET publica la previsión del índice UV a 5 días para las islas, calculada con cielo despejado.",
+      "En la montaña el UV puede ser muy alto aunque haga fresco, y con nubes también se dan valores altos: no baje la guardia en el Teide.",
+      "Los niños y las personas de piel clara necesitan especial atención."
+     ]
+    },
+    "f": [
+     "OMS: preguntas y respuestas sobre el índice UV",
+     "OMS: radiación ultravioleta (página temática)",
+     "AEMET: interpretación del índice de radiación ultravioleta (UVI)"
+    ],
+    "v": [
+     "¿cómo me protejo del sol si hago deporte?",
+     "crema solar para correr",
+     "¿qué factor de protección uso en Tenerife?",
+     "¿cada cuánto me pongo crema?",
+     "indice uv alto, ¿puedo entrenar fuera?",
+     "¿quema más el sol en el Teide?",
+     "protegerse del sol en la montaña",
+     "deporte al sol sin quemarme",
+     "¿hace falta crema si está nublado?",
+     "me quemo con el sol entrenando",
+     "¿dónde miro el índice UV?"
+    ],
+    "k": [
+     "radiación",
+     "ultravioleta",
+     "fotoprotector",
+     "SPF",
+     "gafas",
+     "sombrero",
+     "UVI",
+     "protector solar",
+     "gorra",
+     "crema"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum mă protejez de soare când fac sport?",
+    "r": {
+     "t": "De la un indice UV de 3 în sus, protejați-vă: căutați umbra la prânz, purtați tricou și pălărie și folosiți cremă de protecție solară. De la 8 în sus, evitați să stați afară în orele din mijlocul zilei.",
+     "p": [
+      "Folosiți o cremă cu spectru larg, cu factor de protecție de cel puțin 15, de preferat mai mare, și aplicați-o din nou la fiecare 2 ore.",
+      "Adăugați ochelari de soare și antrenați-vă dimineața devreme sau spre sfârșitul zilei, în afara orelor din mijlocul zilei.",
+      "AEMET, agenția meteorologică a Spaniei, publică prognoza indicelui UV pe 5 zile pentru insule, calculată pentru cer senin.",
+      "Pe munte, indicele UV poate fi foarte ridicat chiar dacă e răcoare, iar valori ridicate apar și când e înnorat: pe Teide, nu lăsați garda jos.",
+      "Copiii și persoanele cu pielea deschisă la culoare au nevoie de o atenție deosebită."
+     ]
+    },
+    "f": [
+     "OMS: întrebări și răspunsuri despre indicele UV",
+     "OMS: radiațiile ultraviolete (pagină tematică)",
+     "AEMET: interpretarea indicelui de radiație ultravioletă (UVI)"
+    ],
+    "v": [
+     "cum mă protejez de soare dacă fac sport?",
+     "cremă de soare pentru alergat",
+     "ce factor de protecție folosesc în Tenerife?",
+     "cât de des mă dau cu cremă?",
+     "indice UV ridicat, pot să mă antrenez afară?",
+     "soarele arde mai tare pe Teide?",
+     "protecția de soare pe munte",
+     "sport la soare fără să mă ard",
+     "e nevoie de cremă dacă e înnorat?",
+     "mă ard la soare când mă antrenez",
+     "unde văd indicele UV?"
+    ],
+    "k": [
+     "radiații",
+     "ultraviolete",
+     "protecție solară",
+     "SPF",
+     "ochelari",
+     "pălărie",
+     "UVI",
+     "cremă de protecție solară",
+     "șapcă",
+     "cremă"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "calima-y-deporte",
+   "es": {
+    "q": "¿Puedo hacer deporte con calima?",
+    "r": {
+     "t": "No al aire libre: con calima, Sanidad de Canarias recomienda no hacer ejercicio físico en el exterior. Entrene en interior o espere a que mejore el aire.",
+     "p": [
+      "Deben extremar el cuidado los niños, las personas mayores y quienes tienen enfermedades respiratorias o cardiovasculares crónicas.",
+      "Mantenga cerradas puertas y ventanas, hidrátese y tenga a mano su medicación habitual.",
+      "El Índice de Calidad del Aire de Canarias dice, para cada nivel, cuánto reducir la actividad al aire libre: mírelo para su zona."
+     ],
+     "c": "Si empeoran los síntomas respiratorios, llame al 112; si se encuentra mal, acuda al médico.",
+     "n": "Las notas de Sanidad no hablan de mascarillas: no hay base para decir que permitan entrenar fuera con calima."
+    },
+    "f": [
+     "Gobierno de Canarias, Consejería de Sanidad: precauciones ante la presencia de calima (17-09-2025)",
+     "Gobierno de Canarias: Índice de Calidad del Aire"
+    ],
+    "v": [
+     "¿puedo correr con calima?",
+     "hacer ejercicio con polvo en suspensión",
+     "calima y deporte al aire libre",
+     "hay calima, ¿salgo a entrenar?",
+     "¿es malo hacer deporte con calima?",
+     "entrenar con mala calidad del aire",
+     "tengo asma y hay calima, ¿puedo hacer ejercicio?",
+     "calima tenerife ejercicio",
+     "¿la calima afecta a los pulmones si hago deporte?",
+     "¿puedo ir a caminar con calima?",
+     "aire con polvo del sahara y ejercicio"
+    ],
+    "k": [
+     "partículas",
+     "PM10",
+     "ICA",
+     "contaminación",
+     "bruma",
+     "mascarilla",
+     "polvo",
+     "garganta",
+     "tos"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Pot face sport când e praf din Sahara?",
+    "r": {
+     "t": "Nu în aer liber: când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare recomandă să nu faceți exerciții fizice afară. Antrenați-vă în interior sau așteptați să se îmbunătățească aerul.",
+     "p": [
+      "Copiii, vârstnicii și persoanele cu boli respiratorii sau cardiovasculare cronice trebuie să fie foarte atenți.",
+      "Țineți ușile și ferestrele închise, hidratați-vă și aveți la îndemână medicamentele pe care le luați de obicei.",
+      "Indicele de calitate a aerului din Insulele Canare arată, pentru fiecare nivel, cât de mult să reduceți activitatea în aer liber: verificați-l pentru zona dumneavoastră."
+     ],
+     "c": "Dacă simptomele respiratorii se agravează, sunați la 112; dacă vă simțiți rău, mergeți la medic.",
+     "n": "Comunicatele autorităților sanitare nu vorbesc despre măști: nimic nu arată că o mască v-ar permite să vă antrenați afară când e praf din Sahara."
+    },
+    "f": [
+     "Guvernul Insulelor Canare, Departamentul de Sănătate: măsuri de precauție la prezența prafului din Sahara (17-09-2025)",
+     "Guvernul Insulelor Canare: Indicele de calitate a aerului"
+    ],
+    "v": [
+     "pot alerga când e praf din Sahara?",
+     "sport când e praf în suspensie în aer",
+     "calima și sportul în aer liber",
+     "e calima, ies la antrenament?",
+     "e rău să fac sport când e praf din Sahara?",
+     "antrenament când calitatea aerului e proastă",
+     "am astm și e praf din Sahara, pot face sport?",
+     "calima Tenerife sport",
+     "praful din Sahara afectează plămânii dacă fac sport?",
+     "pot merge la plimbare când e calima?",
+     "aer cu praf din Sahara și exerciții fizice"
+    ],
+    "k": [
+     "particule",
+     "PM10",
+     "ICA",
+     "poluare",
+     "pâclă",
+     "mască",
+     "praf",
+     "gât",
+     "tuse"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "nadar-en-el-mar",
+   "es": {
+    "q": "¿Es seguro nadar en el mar en Tenerife?",
+    "r": {
+     "t": "Puede serlo con precauciones: báñese en playas con socorrista, mire la bandera antes de entrar y hágale caso aunque el mar parezca tranquilo. No nade solo ni de noche.",
+     "p": [
+      "Según el recuento de una asociación, publicado en prensa, en 2025 se ahogaron 69 personas en Canarias (24 en Tenerife), el 46 % con prealerta o alerta activa.",
+      "En el conjunto de las islas, el fallecido suele ser un hombre de 50 a 75 años; los accidentes, sobre todo por la tarde y sin vigilancia.",
+      "Nade en paralelo a la orilla, sin alejarse de la zona de baño, y no beba alcohol si va a meterse en el agua.",
+      "Con oleaje fuera de lo normal, no se acerque al mar aunque parezca calmarse."
+     ],
+     "c": "Si ve a alguien en apuros, avise al socorrista o llame al 112, y lance algo que flote: no se tire al agua si no sabe rescatar."
+    },
+    "f": [
+     "Gobierno de Canarias, Emergencias: consejos para las actividades en el mar",
+     "RTVC: Canarias cierra 2025 con 69 muertos por ahogamiento (recuento de la asociación «Canarias, 1500 Km de Costa»)",
+     "RTVC/Europa Press: X Mapa de Accidentes Acuáticos de Canarias (27-03-2026)"
+    ],
+    "v": [
+     "¿es peligroso bañarse en el mar en Tenerife?",
+     "nadar en el mar tenerife",
+     "¿puedo nadar en cualquier playa?",
+     "¿hay corrientes peligrosas en las playas de Tenerife?",
+     "bañarse con bandera amarilla",
+     "¿es seguro nadar solo en el mar?",
+     "consejos para nadar en el océano",
+     "nadar en playas sin socorrista",
+     "¿qué playas son seguras para nadar?",
+     "me da miedo bañarme en el mar",
+     "quiero nadar lejos de la orilla, ¿es seguro?",
+     "¿qué significan la bandera roja y la amarilla?",
+     "¿qué significan las banderas en las playas de Tenerife?"
+    ],
+    "k": [
+     "ahogamiento",
+     "oleaje",
+     "baño",
+     "litoral",
+     "costa",
+     "natación",
+     "banderas",
+     "colores de la bandera",
+     "corrientes"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "E sigur să înot în mare în Tenerife?",
+    "r": {
+     "t": "Poate fi, cu măsuri de precauție: faceți baie pe plaje cu salvamar, uitați-vă la steag înainte de a intra în apă și respectați-l chiar dacă marea pare liniștită. Nu înotați fără însoțitor și nici noaptea.",
+     "p": [
+      "Potrivit unei numărători făcute de o asociație și publicate în presă, în 2025 s-au înecat 69 de persoane în Insulele Canare (24 în Tenerife), 46 % dintre ele în timp ce era activă o prealertă sau o alertă.",
+      "În ansamblul insulelor, victima este de obicei un bărbat între 50 și 75 de ani; accidentele au loc mai ales după-amiaza și în locuri nesupravegheate.",
+      "Înotați paralel cu țărmul, fără să vă îndepărtați de zona de îmbăiere, și nu beți alcool dacă urmează să intrați în apă.",
+      "Când valurile sunt neobișnuit de mari, nu vă apropiați de mare, chiar dacă pare să se liniștească."
+     ],
+     "c": "Dacă vedeți pe cineva în dificultate, anunțați salvamarul sau sunați la 112 și aruncați-i ceva care plutește: nu săriți în apă dacă nu știți să faceți o salvare."
+    },
+    "f": [
+     "Guvernul Insulelor Canare, Urgențe: sfaturi pentru activitățile pe mare",
+     "RTVC: Insulele Canare încheie anul 2025 cu 69 de morți prin înec (numărătoarea asociației „Canarias, 1500 Km de Costa”)",
+     "RTVC/Europa Press: a X-a hartă a accidentelor acvatice din Insulele Canare (27-03-2026)"
+    ],
+    "v": [
+     "e periculoasă îmbăierea în mare în Tenerife?",
+     "înot în mare Tenerife",
+     "pot înota pe orice plajă?",
+     "există curenți periculoși pe plajele din Tenerife?",
+     "baie cu steag galben",
+     "e sigur să înot singur în mare?",
+     "sfaturi pentru înotul în ocean",
+     "înot pe plaje fără salvamar",
+     "care plaje sunt sigure pentru înot?",
+     "mi-e frică să fac baie în mare",
+     "vreau să înot departe de mal, e sigur?",
+     "ce înseamnă steagul roșu și cel galben?",
+     "ce înseamnă steagurile de pe plajele din Tenerife?"
+    ],
+    "k": [
+     "înec",
+     "valuri",
+     "îmbăiere",
+     "litoral",
+     "coastă",
+     "înot",
+     "steaguri",
+     "culorile steagului",
+     "curenți"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "corriente-mar",
+   "es": {
+    "q": "¿Qué hago si me arrastra una corriente?",
+    "r": {
+     "t": "Si ve a alguien en apuros, avise al socorrista o llame al 112. Si es usted, no nade contra la corriente: flote, mantenga la calma y levante un brazo y grite pidiendo ayuda; si lleva tabla, no la suelte.",
+     "p": [
+      "Mantenga la calma y no nade contra la corriente: déjese llevar hasta que pierda fuerza, o salga nadando en paralelo a la playa.",
+      "No se tire al agua si no sabe hacer un rescate.",
+      "Lance un flotador, un cabo o cualquier cosa que flote, o acérquele algo largo para que se agarre."
+     ],
+     "c": "Si hay socorrista, avísele enseguida y siga sus indicaciones. Si no, llame al 112 y diga qué pasa y dónde: el nombre de la playa o algo que se vea cerca."
+    },
+    "f": [
+     "Gobierno de Canarias, Emergencias: consejos para las actividades en el mar",
+     "RNLI (salvamento marítimo británico): corrientes de resaca",
+     "NOAA (servicio oceánico y atmosférico de EE. UU.): seguridad ante corrientes de resaca"
+    ],
+    "v": [
+     "me arrastra la corriente, ¿qué hago?",
+     "¿qué hacer si te arrastra una corriente?",
+     "corriente de resaca qué hacer",
+     "me lleva el mar hacia dentro",
+     "¿cómo salgo de una corriente en la playa?",
+     "atrapado en una corriente",
+     "la corriente se lleva a mi hijo",
+     "nadar contra la corriente",
+     "¿hacia dónde nado si me lleva la corriente?",
+     "¿cómo se escapa de una resaca?"
+    ],
+    "k": [
+     "corriente de retorno",
+     "arrastre",
+     "rescate",
+     "flotar",
+     "paralelo",
+     "socorro"
+    ],
+    "u": [
+     "(me|le|la|lo|nos|te|les|se) (arrastra|arrastro|lleva|llevo) (la|una) (corriente|resaca)",
+     "corriente( de la playa| de resaca| de retorno| muy fuerte| fuerte)?( (me|le|la|lo|nos|te|les|se)){1,2} (ha |han )?(arrastra|arrastro|arrastrado|lleva|llevo|llevado)",
+     "arrastrad[oa]s?.{0,25}(corriente|mar adentro|resaca)",
+     "resaca.{0,25}((le|la|lo|nos|les|se) (ha |han )?(arrastra|arrastro|arrastrado|lleva|llevo|llevado)|me arrastra)",
+     "(me|le|la|lo|nos|te|les) (arrastra|arrastro|lleva|llevo) mar adentro",
+     "(me|le|la|lo|nos|te|les) (arrastra|arrastro|lleva|llevo) el mar",
+     "(el mar|las olas)( (se|me|te|le|la|lo|nos|les|los|las)){1,2} (ha |han )?(arrastra|arrastro|arrastrado|lleva|llevo|llevado)",
+     "no (puedo|puede|podemos|consigo|consigue) (volver|llegar|salir) a la orilla",
+     "(corriente|resaca|el mar|las olas) (arrastra|arrastran) a ",
+     "(corriente|resaca|el mar|las olas)( (se|me|te|le|la|lo|nos|les|los|las)){0,2} (esta|estan) (llevando|arrastrando)",
+     "(esta|estan) (llevando|arrastrando) (la corriente|una corriente|la resaca|el mar|las olas)",
+     "(me|le|la|lo|nos|te|les) (atrapa|atrapo|atrape|pilla|pillo|coge|cogio) (la|una) (corriente|resaca)"
+    ]
+   },
+   "ro": {
+    "q": "Ce fac dacă mă trage un curent?",
+    "r": {
+     "t": "Dacă vedeți pe cineva în dificultate, anunțați salvamarul sau sunați la 112. Dacă sunteți chiar dumneavoastră, nu înotați împotriva curentului: plutiți, păstrați-vă calmul, ridicați un braț și strigați după ajutor; dacă aveți o placă, nu-i dați drumul.",
+     "p": [
+      "Păstrați-vă calmul și nu înotați împotriva curentului: lăsați curentul să vă poarte până slăbește sau ieșiți din el înotând paralel cu plaja.",
+      "Nu săriți în apă dacă nu știți să faceți o salvare.",
+      "Aruncați un colac de salvare, o frânghie sau orice obiect care plutește, ori întindeți-i ceva lung de care să se apuce."
+     ],
+     "c": "Dacă există salvamar, anunțați-l imediat și urmați-i indicațiile. Dacă nu, sunați la 112 și spuneți ce se întâmplă și unde: numele plajei sau ceva ce se vede în apropiere."
+    },
+    "f": [
+     "Guvernul Insulelor Canare, Urgențe: sfaturi pentru activitățile pe mare",
+     "RNLI (serviciul britanic de salvare maritimă): curenții de rupere",
+     "NOAA (serviciul oceanic și atmosferic al SUA): siguranța în fața curenților de rupere"
+    ],
+    "v": [
+     "mă trage curentul, ce fac?",
+     "ce fac dacă mă prinde un curent?",
+     "curent de rupere, ce e de făcut",
+     "marea mă trage în larg",
+     "cum ies dintr-un curent la plajă?",
+     "prins într-un curent",
+     "curentul îl trage pe fiul meu",
+     "înot împotriva curentului",
+     "în ce direcție înot dacă mă trage curentul?",
+     "cum se scapă dintr-un curent de retur?"
+    ],
+    "k": [
+     "curent de retur",
+     "tras în larg",
+     "salvare",
+     "a pluti",
+     "paralel",
+     "ajutor"
+    ],
+    "u": [
+     "(^| )(ma|il|o|ne|va|te|ii|le|m a|l a|ne a|v a|te a|i a|m au|l au|ne au|v au|i au) (trage|trag|tragea|tras|ia|iau|luat|duce|duc|dus|impinge|impins|prinde|prins)( [a-z]+){0,2} (curent[a-z]*|un curent|valu[a-z]*|un val|marea|in larg|spre larg)",
+     "(curent[a-z]*|valu[a-z]*|marea)( de rupere| de retur| puternic| foarte puternic)?( [a-z]+){0,2} (ma|il|o|ne|va|te|ii|le|m a|l a|ne a|v a|i a|m au|l au|ne au|i au) (trage|trag|tragea|tras|ia|iau|luat|duce|duc|dus|impinge|impins|prinde|prins)",
+     "(prins|prinsa|prinsi|prinse|blocat|blocata|blocati)( [a-z]+){0,2} (de|intr un|in|de un) (curent|curenti|curentul)( |$)",
+     "(trage|tras|dus|luat|impins|duce)[a-z]*( [a-z]+){0,2} (in larg|spre larg|departe de mal|departe de tarm)",
+     "nu (pot|poate|putem|pot sa|poate sa|reusesc|reuseste|reusim)( sa)?( [a-z]+){0,2} (ajung|ajunge|ajungem|ma intorc|se intoarca|ne intoarcem|revin|ies|iasa|iesim|inot|inoate)( [a-z]+){0,2} (la mal|la tarm|spre mal|spre tarm)",
+     "(curent[a-z]*|valu[a-z]*|marea) (trage|trag|a tras|au tras|duce|duc|a dus|au dus|ia|iau|a luat|au luat) (un|o|pe|copil|copilul)( |$)",
+     "(curent[a-z]*|valu[a-z]*|marea)( [a-z]+){0,2} (ma|il|o|ne|va|te|ii|le) (tot )?(trage|trag|duce|duc|impinge|imping) (in larg|spre larg|departe)"
+    ]
+   }
+  },
+  {
+   "id": "bucear-y-volar",
+   "es": {
+    "q": "He buceado: ¿cuándo puedo coger el avión?",
+    "r": {
+     "t": "Según la organización DAN (Divers Alert Network), espere al menos 12 horas tras una sola inmersión sin descompresión, y 18 horas si hizo varias en un día o buceó varios días.",
+     "p": [
+      "Si hizo paradas de descompresión obligatorias, DAN considera prudente esperar bastante más de 18 horas, sin dar una cifra.",
+      "Son mínimos, no garantías: esperar más reduce todavía más el riesgo de enfermedad descompresiva (la que causan los cambios de presión del buceo).",
+      "Las pautas salen de ensayos en reposo: si buceó con mucho esfuerzo, puede necesitar más tiempo.",
+      "Antes de subir al Teide (3.555 m en el teleférico, más que la altitud de cabina de un avión), aplicar las mismas esperas es prudente, aunque DAN no lo pide."
+     ],
+     "c": "Si después de bucear nota cualquier síntoma o se encuentra mal, no vuele ni suba al Teide: pida consejo médico, y si es grave, llame al 112."
+    },
+    "f": [
+     "DAN (Divers Alert Network): volar después de bucear",
+     "DAN: pautas para volar después de bucear (consenso del taller)",
+     "Teleférico del Teide: página del teleférico"
+    ],
+    "v": [
+     "¿cuánto tiempo espero para volar después de bucear?",
+     "bucear y coger un avión",
+     "he hecho submarinismo, ¿puedo volar mañana?",
+     "horas entre buceo y vuelo",
+     "¿puedo bucear el último día de vacaciones?",
+     "volar tras una inmersión",
+     "¿cuántas horas después de bucear puedo volar?",
+     "submarinismo y avión el mismo día",
+     "¿puedo subir al Teide después de bucear?",
+     "hice dos inmersiones hoy, ¿cuándo vuelo?",
+     "bautismo de buceo y vuelo de vuelta"
+    ],
+    "k": [
+     "descompresión",
+     "DAN",
+     "buzo",
+     "botella",
+     "aeropuerto",
+     "presión"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "M-am scufundat: când pot lua avionul?",
+    "r": {
+     "t": "Potrivit organizației DAN (Divers Alert Network), așteptați cel puțin 12 ore după o singură scufundare fără decompresie și 18 ore dacă ați făcut mai multe într-o zi sau v-ați scufundat mai multe zile la rând.",
+     "p": [
+      "Dacă ați făcut opriri de decompresie obligatorii, DAN consideră prudent să așteptați mult mai mult de 18 ore, fără să dea o cifră.",
+      "Sunt minime, nu garanții: dacă așteptați mai mult, riscul de boală de decompresie (cea cauzată de schimbările de presiune din timpul scufundării) scade și mai mult.",
+      "Recomandările provin din studii făcute în repaus: dacă v-ați scufundat cu mult efort, s-ar putea să aveți nevoie de mai mult timp.",
+      "Înainte să urcați pe Teide (3.555 m cu telecabina, mai mult decât altitudinea din cabina unui avion), e prudent să respectați aceleași intervale de așteptare, deși DAN nu cere acest lucru."
+     ],
+     "c": "Dacă după scufundare observați orice simptom sau vă simțiți rău, nu zburați și nu urcați pe Teide: cereți sfatul unui medic, iar dacă e grav, sunați la 112."
+    },
+    "f": [
+     "DAN (Divers Alert Network): zborul după scufundare",
+     "DAN: recomandări pentru zborul după scufundare (consensul atelierului de lucru)",
+     "Teleférico del Teide: pagina telecabinei"
+    ],
+    "v": [
+     "cât timp aștept ca să zbor după scufundare?",
+     "scufundare și apoi avion",
+     "am făcut scufundări, pot zbura mâine?",
+     "ore între scufundare și zbor",
+     "pot să mă scufund în ultima zi de vacanță?",
+     "zbor după o scufundare",
+     "la câte ore după scufundare pot zbura?",
+     "scufundări și avion în aceeași zi",
+     "pot urca pe Teide după scufundare?",
+     "am făcut două scufundări azi, când pot zbura?",
+     "botez de scufundare și zborul de întoarcere"
+    ],
+    "k": [
+     "decompresie",
+     "DAN",
+     "scafandru",
+     "butelie",
+     "aeroport",
+     "presiune"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "surf-empezar",
+   "es": {
+    "q": "Quiero probar el surf: ¿qué debo saber?",
+    "r": {
+     "t": "Empiece con una clase en una escuela acreditada, en una playa vigilada, con tabla blanda de espuma y siempre acompañado. Antes, mire la previsión de viento, oleaje y marea.",
+     "p": [
+      "Lleve el invento (la correa que une la tabla al tobillo del pie de atrás): no se separe de la tabla, que le mantiene a flote.",
+      "Al aprender, evite las olas que rompen de golpe en la orilla y no se meta en condiciones por encima de su nivel.",
+      "Si le arrastra una corriente, no suelte la tabla, levante la mano y grite para pedir ayuda.",
+      "La fuerza del tren superior mejora la remada, según una revisión de 8 estudios; ninguno mostró mejoras al surfear la ola.",
+      "Lleve neopreno y respete la prioridad: la ola es de quien está más cerca del pico."
+     ],
+     "c": "Si ve a alguien en apuros, avise al socorrista o llame al 112."
+    },
+    "f": [
+     "RNLI: «In the surf», guía de seguridad para deportes de olas",
+     "RNLI: surf",
+     "Donaldson et al., revisión de alcance sobre métodos de entrenamiento en surf (Strength Cond J, 2022)"
+    ],
+    "v": [
+     "quiero aprender a hacer surf",
+     "¿cómo empiezo a surfear?",
+     "consejos para surfear por primera vez",
+     "¿necesito clases de surf?",
+     "¿qué tabla uso para empezar?",
+     "surf para principiantes en Tenerife",
+     "¿es peligroso el surf?",
+     "primera vez haciendo surf, que debo saber",
+     "¿qué es el invento de la tabla?",
+     "ejercicios para remar mejor en surf",
+     "voy a coger olas por primera vez"
+    ],
+    "k": [
+     "neopreno",
+     "leash",
+     "remada",
+     "escuela",
+     "socorrista",
+     "espuma",
+     "Las Américas",
+     "difícil",
+     "escuela de surf"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Vreau să încerc surful: ce trebuie să știu?",
+    "r": {
+     "t": "Începeți cu o lecție la o școală acreditată, pe o plajă supravegheată, cu o placă moale din spumă și întotdeauna împreună cu cineva. Înainte, verificați prognoza pentru vânt, valuri și maree.",
+     "p": [
+      "Purtați leash-ul (cureaua care leagă placa de glezna piciorului din spate): nu vă despărțiți de placă, care vă ține la suprafață.",
+      "Cât timp învățați, evitați valurile care se sparg brusc la țărm și nu intrați în apă în condiții peste nivelul dumneavoastră.",
+      "Dacă vă trage un curent, nu dați drumul plăcii, ridicați mâna și strigați după ajutor.",
+      "Forța părții superioare a corpului îmbunătățește vâslitul cu brațele, potrivit unei analize a 8 studii; niciunul nu a arătat îmbunătățiri pe val, în surful propriu-zis.",
+      "Purtați costum de neopren și respectați prioritatea: valul e al celui mai apropiat de locul unde începe să se spargă."
+     ],
+     "c": "Dacă vedeți pe cineva în dificultate, anunțați salvamarul sau sunați la 112."
+    },
+    "f": [
+     "RNLI: „In the surf”, ghid de siguranță pentru sporturile pe valuri",
+     "RNLI: surful",
+     "Donaldson et al., analiză exploratorie (scoping review) a metodelor de antrenament în surf (Strength Cond J, 2022)"
+    ],
+    "v": [
+     "vreau să învăț surf",
+     "cum încep să fac surf?",
+     "sfaturi pentru prima dată la surf",
+     "trebuie să iau lecții de surf?",
+     "ce placă folosesc la început?",
+     "surf pentru începători în Tenerife",
+     "e periculos surful?",
+     "prima dată la surf, ce trebuie să știu",
+     "ce este leash-ul plăcii?",
+     "exerciții ca să vâslesc mai bine la surf",
+     "o să prind valuri pentru prima dată"
+    ],
+    "k": [
+     "neopren",
+     "leash",
+     "vâslit",
+     "salvamar",
+     "spumă",
+     "Las Américas",
+     "dificil",
+     "școală de surf"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "correr-en-tenerife",
+   "es": {
+    "q": "¿Qué tengo en cuenta para correr en Tenerife?",
+    "r": {
+     "t": "Salga temprano o al final del día, evite el esfuerzo en las horas de más calor, beba aunque no tenga sed y protéjase del sol: crema de factor 30 o más, gorra y gafas.",
+     "p": [
+      "Si llega de un clima más fresco, el cuerpo tarda 1–2 semanas de sesiones repetidas en acostumbrarse al calor: los primeros días, salidas más cortas y suaves.",
+      "Con calima, no corra al aire libre: Sanidad de Canarias recomienda no hacer ejercicio en el exterior.",
+      "La fuerza ayuda: con cargas pesadas, 2–4 días por semana durante 6–14 semanas, mejoró algo la economía de carrera (la energía que gasta para mantener un ritmo)."
+     ],
+     "c": "Llame al 112 ante piel caliente y roja (puede que no sude), fiebre de más de 40 °C, confusión, convulsiones o desmayo: es un golpe de calor.",
+     "n": "La mejora con la fuerza tiene certeza moderada y se midió en corredores de medio fondo y fondo."
+    },
+    "f": [
+     "OMS/Europa: deporte con calor («Keep cool in the heat and enjoy a sporting summer!»)",
+     "Racinais et al., consenso sobre entrenar y competir con calor (Br J Sports Med, 2015)",
+     "Llanos-Lagos et al., metaanálisis sobre fuerza y economía de carrera (Sports Med, 2024)"
+    ],
+    "v": [
+     "correr en tenerife con calor",
+     "¿a qué hora salgo a correr en Tenerife?",
+     "consejos para correr en la isla",
+     "running en tenerife",
+     "salir a correr de vacaciones en Tenerife",
+     "correr por la costa en verano",
+     "¿es duro correr en Tenerife?",
+     "voy a correr una carrera en Tenerife, ¿qué tengo en cuenta?",
+     "trotar en tenerife",
+     "correr al sol en canarias",
+     "entrenar carrera en vacaciones",
+     "¿qué cuidados tomo al correr con sol aquí?"
+    ],
+    "k": [
+     "trote",
+     "jogging",
+     "corredor",
+     "aclimatación",
+     "maratón",
+     "ritmo",
+     "precauciones",
+     "media maratón",
+     "Santa Cruz"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce trebuie să am în vedere ca să alerg în Tenerife?",
+    "r": {
+     "t": "Ieșiți dimineața devreme sau spre sfârșitul zilei, evitați efortul în orele cele mai călduroase, beți chiar dacă nu vă e sete și protejați-vă de soare: cremă cu factor de protecție 30 sau mai mare, șapcă și ochelari.",
+     "p": [
+      "Dacă veniți dintr-un climat mai răcoros, corpul are nevoie de 1–2 săptămâni de sesiuni repetate ca să se obișnuiască cu căldura: în primele zile, alergări mai scurte și mai ușoare.",
+      "Când e praf din Sahara (calima), nu alergați în aer liber: autoritățile sanitare din Insulele Canare recomandă să nu faceți exerciții fizice afară.",
+      "Forța ajută: cu greutăți mari, 2–4 zile pe săptămână, timp de 6–14 săptămâni, economia de alergare (energia pe care o consumați ca să mențineți un ritm) s-a îmbunătățit puțin."
+     ],
+     "c": "Sunați la 112 dacă apar piele fierbinte și roșie (persoana poate să nu transpire), febră de peste 40 °C, confuzie, convulsii sau leșin: este un șoc termic.",
+     "n": "Îmbunătățirea obținută cu forța are un grad de certitudine moderat și a fost măsurată la alergători de semifond și fond."
+    },
+    "f": [
+     "OMS/Europa: sportul pe căldură („Keep cool in the heat and enjoy a sporting summer!”)",
+     "Racinais et al., consens privind antrenamentul și competiția pe căldură (Br J Sports Med, 2015)",
+     "Llanos-Lagos et al., metaanaliză privind forța și economia de alergare (Sports Med, 2024)"
+    ],
+    "v": [
+     "alergat în Tenerife pe căldură",
+     "la ce oră ies la alergat în Tenerife?",
+     "sfaturi pentru alergat pe insulă",
+     "running în Tenerife",
+     "ies la alergat în vacanță în Tenerife",
+     "alergat pe coastă vara",
+     "e greu de alergat în Tenerife?",
+     "particip la o cursă de alergare în Tenerife, ce trebuie să am în vedere?",
+     "jogging în Tenerife",
+     "alergat la soare în Insulele Canare",
+     "antrenament de alergare în vacanță",
+     "ce precauții iau când alerg la soare aici?"
+    ],
+    "k": [
+     "alergare ușoară",
+     "jogging",
+     "alergător",
+     "aclimatizare",
+     "maraton",
+     "ritm",
+     "precauții",
+     "semimaraton",
+     "Santa Cruz"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "bici-al-teide",
+   "es": {
+    "q": "Voy a subir en bici al Teide: ¿qué tengo en cuenta?",
+    "r": {
+     "t": "Prepárese para una subida larga hasta más de 2.000 m, donde el tiempo cambia deprisa y el sol quema más. Mire la previsión, lleve agua, comida, ropa de abrigo y casco, y no vaya solo.",
+     "p": [
+      "Casi todo el Parque Nacional está por encima de 2.000 m, la altura desde la que puede aparecer el mal de altura en personas sensibles.",
+      "Si le duele la cabeza o se marea, no siga subiendo; si empeora, dé la vuelta y baje acompañado.",
+      "En la montaña el índice UV puede ser muy alto aunque haga fresco: crema, gafas y ropa que cubra.",
+      "Con nieve o alerta, mire antes el estado de las carreteras y respete los cortes."
+     ],
+     "c": "Llame al 112 si aparecen confusión, torpeza, mucho sueño o falta de aire en reposo, o signos de golpe de calor como piel caliente y roja."
+    },
+    "f": [
+     "Wilderness Medical Society: guía clínica sobre el mal de altura (Luks et al., 2024)",
+     "MITECO: guía del visitante del Parque Nacional del Teide (accesos)",
+     "AEMET: interpretación del índice de radiación ultravioleta (UVI)"
+    ],
+    "v": [
+     "voy a subir al teide en bici",
+     "subir en bicicleta al Teide",
+     "ciclismo en el teide consejos",
+     "¿es duro subir el Teide en bici?",
+     "puerto del teide en bicicleta",
+     "¿qué llevo para subir en bici a Las Cañadas?",
+     "subida en bici a la montaña con calor",
+     "¿afecta la altura si subo en bici al Teide?",
+     "ruta en bici por el parque nacional del teide",
+     "cicloturismo en Tenerife montaña",
+     "desde la costa hasta Las Cañadas en bici, ¿qué llevo?"
+    ],
+    "k": [
+     "cicloturista",
+     "carretera",
+     "casco",
+     "puerto de montaña",
+     "pedalear",
+     "altitud",
+     "Vilaflor",
+     "precauciones"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Urc cu bicicleta pe Teide: ce trebuie să am în vedere?",
+    "r": {
+     "t": "Pregătiți-vă pentru o urcare lungă până la peste 2.000 m, unde vremea se schimbă repede și soarele arde mai tare. Verificați prognoza, luați apă, mâncare, haine groase și cască și nu plecați fără însoțitor.",
+     "p": [
+      "Aproape tot Parcul Național se află la peste 2.000 m, altitudinea de la care poate apărea răul de altitudine la persoanele sensibile.",
+      "Dacă vă doare capul sau amețiți, nu mai urcați; dacă starea se agravează, întoarceți-vă și coborâți împreună cu cineva.",
+      "Pe munte, indicele UV poate fi foarte ridicat chiar dacă e răcoare: cremă, ochelari și haine care să acopere pielea.",
+      "Când e zăpadă sau e în vigoare o alertă, verificați mai întâi starea drumurilor și respectați închiderile."
+     ],
+     "c": "Sunați la 112 dacă apar confuzie, mișcări stângace, somnolență puternică sau lipsă de aer în repaus ori semne de șoc termic, cum ar fi pielea fierbinte și roșie."
+    },
+    "f": [
+     "Wilderness Medical Society: ghidul clinic privind răul de altitudine (Luks et al., 2024)",
+     "MITECO: ghidul vizitatorului Parcului Național Teide (accese)",
+     "AEMET: interpretarea indicelui de radiație ultravioletă (UVI)"
+    ],
+    "v": [
+     "urc pe Teide cu bicicleta",
+     "urcare cu bicicleta pe Teide",
+     "ciclism pe Teide, sfaturi",
+     "e grea urcarea pe Teide cu bicicleta?",
+     "urcușul spre Teide pe bicicletă",
+     "ce iau cu mine ca să urc cu bicicleta la Las Cañadas?",
+     "urcare cu bicicleta pe munte, pe căldură",
+     "mă afectează altitudinea dacă urc cu bicicleta pe Teide?",
+     "traseu cu bicicleta prin Parcul Național Teide",
+     "cicloturism în munții din Tenerife",
+     "de pe coastă până la Las Cañadas cu bicicleta, ce iau?"
+    ],
+    "k": [
+     "cicloturist",
+     "șosea",
+     "cască",
+     "trecătoare",
+     "pedalat",
+     "altitudine",
+     "Vilaflor",
+     "precauții"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "fuerza-para-senderismo",
+   "es": {
+    "q": "¿Qué músculos me conviene fortalecer para el senderismo?",
+    "r": {
+     "t": "Por cómo se camina en la montaña, conviene fortalecer cuádriceps, glúteos y cadera, pantorrillas y espinillas, y abdomen y lumbares. No se ha encontrado ningún ensayo que lo pruebe en senderistas.",
+     "p": [
+      "Al bajar, la rodilla soporta unas 8 veces el peso del cuerpo, y la mayor parte de esa carga la ponen los músculos al frenar.",
+      "En los Alpes austriacos, tres de cada cuatro caídas de senderistas fueron bajando, y el tobillo fue la zona más lesionada.",
+      "Esos autores recomiendan actividad física regular con trabajo excéntrico (el de frenar un movimiento). Un ejemplo: bajar despacio un escalón.",
+      "Empiece con tiempo y suba poco a poco: el trabajo excéntrico intenso, sobre todo si es nuevo, da agujetas, y progresar despacio las reduce."
+     ],
+     "n": "La lista de músculos es un razonamiento a partir del movimiento y de las lesiones, no el resultado de un ensayo."
+    },
+    "f": [
+     "Faulhaber et al., accidentes en el senderismo de montaña en los Alpes austriacos (Dtsch Z Sportmed, 2020)",
+     "Kuster et al., carga de la rodilla al andar en llano y cuesta abajo (J Bone Joint Surg Br, 1997)",
+     "ACSM: contracciones excéntricas y daño muscular (Ruas y Nosaka, 2022)"
+    ],
+    "v": [
+     "¿qué músculos entreno para el senderismo?",
+     "fuerza para hacer senderismo",
+     "ejercicios para preparar una ruta de montaña",
+     "¿cómo preparo las piernas para el Teide?",
+     "entrenamiento para senderistas",
+     "piernas fuertes para caminar por la montaña",
+     "¿qué ejercicios hago antes de una excursión larga?",
+     "preparar el cuerpo para hacer trekking",
+     "musculos para trekking",
+     "¿sirven las sentadillas para el senderismo?"
+    ],
+    "k": [
+     "excursionismo",
+     "montañismo",
+     "excéntrico",
+     "tobillo",
+     "desnivel",
+     "bajadas",
+     "zancadas",
+     "gimnasio",
+     "montaña"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce mușchi e bine să întăresc pentru drumeții?",
+    "r": {
+     "t": "Având în vedere cum se merge pe munte, e bine să întăriți cvadricepșii, fesierii și șoldul, gambele și tibiile, precum și abdomenul și zona lombară. Nu s-a găsit niciun studiu care să demonstreze acest lucru la drumeți.",
+     "p": [
+      "La coborâre, genunchiul suportă de aproximativ 8 ori greutatea corpului, iar cea mai mare parte a acestei încărcări vine de la mușchii care frânează mișcarea.",
+      "În Alpii austrieci, trei din patru căderi ale drumeților au avut loc la coborâre, iar glezna a fost zona cea mai des accidentată.",
+      "Acești autori recomandă activitate fizică regulată, cu lucru excentric (cel prin care frânați o mișcare). Un exemplu: coborârea lentă de pe o treaptă.",
+      "Începeți din timp și creșteți efortul treptat: lucrul excentric intens, mai ales când e nou pentru dumneavoastră, provoacă febră musculară, iar un progres lent o reduce."
+     ],
+     "n": "Lista mușchilor este o deducție pornind de la mișcare și de la accidentări, nu rezultatul unui studiu."
+    },
+    "f": [
+     "Faulhaber et al., accidentele din drumețiile montane în Alpii austrieci (Dtsch Z Sportmed, 2020)",
+     "Kuster et al., solicitarea genunchiului la mersul pe teren plat și la coborâre (J Bone Joint Surg Br, 1997)",
+     "ACSM: contracțiile excentrice și leziunile musculare (Ruas și Nosaka, 2022)"
+    ],
+    "v": [
+     "ce mușchi antrenez pentru drumeții?",
+     "forță pentru drumeții",
+     "exerciții de pregătire pentru un traseu montan",
+     "cum îmi pregătesc picioarele pentru Teide?",
+     "antrenament pentru drumeți",
+     "picioare puternice pentru mersul pe munte",
+     "ce exerciții fac înainte de o excursie lungă?",
+     "pregătirea corpului pentru trekking",
+     "mușchi pentru trekking",
+     "genuflexiunile ajută la drumeții?"
+    ],
+    "k": [
+     "excursii",
+     "traseu montan",
+     "alpinism",
+     "excentric",
+     "gleznă",
+     "diferență de nivel",
+     "coborâșuri",
+     "fandări",
+     "sală",
+     "munte"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "fuerza-para-correr",
+   "es": {
+    "q": "¿La fuerza me hará correr mejor?",
+    "r": {
+     "t": "Probablemente sí: en un metaanálisis de 31 estudios con 652 corredores, la fuerza con cargas pesadas mejoró un poco la economía de carrera (la energía que gasta para mantener un ritmo), con certeza moderada.",
+     "p": [
+      "Cargas pesadas son el 80 % o más de lo que puede levantar una sola vez; las mejoras llegaron con 2–4 días por semana durante 6–14 semanas.",
+      "En esos estudios se usaron, por ejemplo, media sentadilla, prensa de piernas y peso muerto.",
+      "Los saltos (pliometría) solo mejoraron la economía a ritmos de 5:00 min/km o más lentos; combinar métodos dio más mejora, pero con certeza baja.",
+      "En corredores de alto nivel, 2–3 sesiones por semana durante 8–12 semanas dieron una mejora grande, en un metaanálisis más pequeño."
+     ],
+     "n": "Los estudios son de corredores de medio fondo y fondo, con pocas mujeres (180 de 652)."
+    },
+    "f": [
+     "Llanos-Lagos et al., metaanálisis sobre fuerza y economía de carrera (Sports Med, 2024)",
+     "Balsalobre-Fernández et al., metaanálisis en corredores muy entrenados (J Strength Cond Res, 2016)"
+    ],
+    "v": [
+     "¿hacer pesas me ayuda a correr mejor?",
+     "fuerza para corredores",
+     "¿la musculación mejora la carrera?",
+     "entrenamiento de fuerza para runners",
+     "¿qué pesas hago si corro?",
+     "¿correré más rápido si hago fuerza?",
+     "sentadillas para correr mejor",
+     "pliometria para corredores",
+     "gimnasio y running",
+     "¿cuántos días de fuerza si soy corredor?"
+    ],
+    "k": [
+     "economía de carrera",
+     "atletismo",
+     "fondo",
+     "maratón",
+     "carga pesada",
+     "rendimiento",
+     "10k",
+     "más rápido"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Forța mă va face să alerg mai bine?",
+    "r": {
+     "t": "Probabil că da: într-o metaanaliză a 31 de studii cu 652 de alergători, antrenamentul de forță cu greutăți mari a îmbunătățit puțin economia de alergare (energia pe care o consumați ca să mențineți un ritm), cu un grad de certitudine moderat.",
+     "p": [
+      "Greutăți mari înseamnă 80 % sau mai mult din cât puteți ridica o singură dată; îmbunătățirile au apărut cu 2–4 zile pe săptămână, timp de 6–14 săptămâni.",
+      "În aceste studii s-au folosit, de exemplu, semigenuflexiuni, presa pentru picioare și îndreptări.",
+      "Săriturile (pliometria) au îmbunătățit economia de alergare doar la ritmuri de 5:00 min/km sau mai lente; combinarea metodelor a adus o îmbunătățire mai mare, dar cu un grad de certitudine scăzut.",
+      "La alergătorii de nivel înalt, 2–3 sesiuni pe săptămână timp de 8–12 săptămâni au adus o îmbunătățire mare, într-o metaanaliză mai mică."
+     ],
+     "n": "Studiile au fost făcute pe alergători de semifond și fond, cu puține femei (180 din 652)."
+    },
+    "f": [
+     "Llanos-Lagos et al., metaanaliză privind forța și economia de alergare (Sports Med, 2024)",
+     "Balsalobre-Fernández et al., metaanaliză la alergători foarte bine antrenați (J Strength Cond Res, 2016)"
+    ],
+    "v": [
+     "ridicatul greutăților mă ajută să alerg mai bine?",
+     "forță pentru alergători",
+     "antrenamentul cu greutăți îmbunătățește alergarea?",
+     "antrenament de forță pentru alergători",
+     "ce exerciții cu greutăți fac dacă alerg?",
+     "o să alerg mai repede dacă fac forță?",
+     "genuflexiuni ca să alerg mai bine",
+     "pliometrie pentru alergători",
+     "sală și running",
+     "câte zile de forță dacă alerg?",
+     "am ridicat greutăți, mă ajută la alergare?"
+    ],
+    "k": [
+     "economia de alergare",
+     "atletism",
+     "fond",
+     "maraton",
+     "greutăți mari",
+     "performanță",
+     "10 km",
+     "viteză"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "fuerza-para-nadar",
+   "es": {
+    "q": "¿Qué fuerza ayuda a nadar mejor?",
+    "r": {
+     "t": "La fuerza máxima hecha en seco (fuera del agua) fue lo que más ayudó en una revisión de 16 estudios, y los saltos (pliometría), en salidas y virajes. Pero 7 estudios no hallaron efecto.",
+     "p": [
+      "Los programas duraban de 6 a 12 semanas, con 2 a 4 sesiones por semana (unas 24 en total).",
+      "Los autores proponen de 2 a 3 series de 3 a 5 repeticiones con cargas del 80 al 90 % de lo que puede levantar una vez.",
+      "Si empieza, aprenda los ejercicios con poco peso y suba la carga poco a poco.",
+      "Al nadar trabajan sobre todo dorsales, hombros y tríceps: esa lista es un razonamiento, no un resultado de los estudios."
+     ],
+     "n": "Casi todos los participantes eran hombres, y solo se leyó el resumen de la revisión: la mejora que cabe esperar es modesta."
+    },
+    "f": [
+     "Amaro et al., revisión sistemática sobre la fuerza en seco y la natación (Science & Sports, 2019)"
+    ],
+    "v": [
+     "¿qué ejercicios de fuerza hago para nadar?",
+     "pesas para nadadores",
+     "fuerza fuera del agua para natación",
+     "¿el gimnasio mejora la natación?",
+     "entrenamiento en seco natación",
+     "¿qué músculos trabajo para nadar más rápido?",
+     "ejercicios para nadar mejor en el mar",
+     "musculacion y natacion",
+     "¿hacer pesas me hará nadar más rápido?",
+     "fuerza para nadar en aguas abiertas",
+     "soy nadadora, ¿me vendría bien el gimnasio?",
+     "¿le conviene a un nadador ir al gimnasio?"
+    ],
+    "k": [
+     "nadador",
+     "brazada",
+     "virajes",
+     "salidas",
+     "piscina",
+     "crol",
+     "mejorar la brazada",
+     "pesas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce fel de forță ajută la un înot mai bun?",
+    "r": {
+     "t": "Forța maximă, lucrată pe uscat (în afara apei), a ajutat cel mai mult într-o analiză a 16 studii, iar săriturile (pliometria), la starturi și la întoarceri. Dar 7 studii nu au găsit niciun efect.",
+     "p": [
+      "Programele durau între 6 și 12 săptămâni, cu 2–4 sesiuni pe săptămână (în total, cam 24).",
+      "Autorii propun 2–3 serii de 3–5 repetări, cu greutăți de 80–90 % din cât puteți ridica o dată.",
+      "Dacă abia începeți, învățați exercițiile cu greutate mică și creșteți încărcătura treptat.",
+      "La înot lucrează mai ales dorsalii, umerii și tricepșii: lista aceasta este o deducție, nu un rezultat al studiilor."
+     ],
+     "n": "Aproape toți participanții erau bărbați și s-a citit doar rezumatul analizei: îmbunătățirea la care vă puteți aștepta este modestă."
+    },
+    "f": [
+     "Amaro et al., analiză sistematică privind forța lucrată pe uscat și înotul (Science & Sports, 2019)"
+    ],
+    "v": [
+     "ce exerciții de forță fac pentru înot?",
+     "greutăți pentru înotători",
+     "forță în afara apei pentru înot",
+     "sala îmbunătățește înotul?",
+     "antrenament pe uscat pentru înot",
+     "ce mușchi lucrez ca să înot mai repede?",
+     "exerciții ca să înot mai bine în mare",
+     "culturism și înot",
+     "greutățile mă vor face să înot mai repede?",
+     "forță pentru înotul în ape deschise",
+     "sunt înotătoare, mi-ar prinde bine sala?",
+     "îi folosește unui înotător sala de forță?"
+    ],
+    "k": [
+     "înotător",
+     "tracțiune",
+     "întoarceri",
+     "starturi",
+     "piscină",
+     "craul",
+     "tehnica brațelor",
+     "greutăți"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "fuerza-para-bici",
+   "es": {
+    "q": "¿La fuerza me hará ir mejor en bici?",
+    "r": {
+     "t": "Podría: en una revisión de 17 estudios con 262 ciclistas, la fuerza pesada de piernas mejoró la eficiencia al pedalear, la potencia máxima y el rendimiento, pero la certeza de la evidencia es baja.",
+     "p": [
+      "La capacidad aeróbica máxima (VO2máx) no cambió: la fuerza no la restó ni la subió.",
+      "Las mejoras parecen probables tras unas 8 semanas o con 2 sesiones por semana, con 3–4 series de unos 4 ejercicios de pierna.",
+      "En un estudio, una sola sesión semanal bastó para mantener lo ganado durante 13 semanas de competición.",
+      "Solo dos estudios reclutaron únicamente mujeres, y en total ellas eran 60 de 262: hay menos datos en ellas."
+     ],
+     "n": "Los propios autores califican de baja la certeza de la evidencia: tómelo como una mejora posible, no segura."
+    },
+    "f": [
+     "Llanos-Lagos et al., metaanálisis sobre la fuerza pesada en ciclistas (Eur J Appl Physiol, 2026)"
+    ],
+    "v": [
+     "¿hacer pesas me hace mejor ciclista?",
+     "fuerza para ciclistas",
+     "¿el gimnasio ayuda a pedalear mejor?",
+     "entrenamiento de fuerza para la bici",
+     "sentadillas para ciclismo",
+     "¿cuántos días de pesas si monto en bici?",
+     "piernas más fuertes para subir puertos",
+     "musculacion para ciclismo de carretera",
+     "¿la fuerza me hará subir mejor en bici?",
+     "pesas en temporada de bici",
+     "soy de bici de carretera, ¿me sirven las pesas?"
+    ],
+    "k": [
+     "pedaleo",
+     "potencia",
+     "VO2máx",
+     "eficiencia",
+     "mountain bike",
+     "BTT",
+     "gimnasio",
+     "ciclistas",
+     "sirve para ciclistas"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Forța mă va face să merg mai bine pe bicicletă?",
+    "r": {
+     "t": "S-ar putea: într-o analiză a 17 studii cu 262 de cicliști, antrenamentul de forță cu greutăți mari pentru picioare a îmbunătățit eficiența pedalării, puterea maximă și performanța, dar gradul de certitudine al dovezilor este scăzut.",
+     "p": [
+      "Capacitatea aerobă maximă (VO2max) nu s-a schimbat: forța nici nu a scăzut-o, nici nu a crescut-o.",
+      "Îmbunătățirile par probabile după aproximativ 8 săptămâni sau cu 2 sesiuni pe săptămână, cu 3–4 serii la aproximativ 4 exerciții pentru picioare.",
+      "Într-un studiu, o singură sesiune pe săptămână a fost suficientă ca să se mențină ce se câștigase, timp de 13 săptămâni de competiții.",
+      "Doar două studii au inclus exclusiv femei, iar în total femeile au fost 60 din 262: există mai puține date despre ele."
+     ],
+     "n": "Chiar autorii consideră scăzut gradul de certitudine al dovezilor: priviți acest efect ca pe o îmbunătățire posibilă, nu sigură."
+    },
+    "f": [
+     "Llanos-Lagos et al., metaanaliză privind antrenamentul de forță cu greutăți mari la cicliști (Eur J Appl Physiol, 2026)"
+    ],
+    "v": [
+     "greutățile mă fac un ciclist mai bun?",
+     "forță pentru cicliști",
+     "sala ajută la pedalat?",
+     "antrenament de forță pentru bicicletă",
+     "genuflexiuni pentru ciclism",
+     "câte zile de greutăți dacă merg pe bicicletă?",
+     "picioare mai puternice pentru urcușuri",
+     "culturism pentru ciclismul de șosea",
+     "forța mă ajută să urc mai bine cu bicicleta?",
+     "greutăți în sezonul de ciclism",
+     "merg cu bicicleta de șosea, îmi folosesc greutățile?"
+    ],
+    "k": [
+     "pedalare",
+     "putere",
+     "VO2max",
+     "eficiență",
+     "mountain bike",
+     "MTB",
+     "sală",
+     "cicliști",
+     "util pentru cicliști"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "piernas-en-el-avion",
+   "es": {
+    "q": "¿Qué hago en el avión para cuidar las piernas?",
+    "r": {
+     "t": "En vuelos de más de 4 horas, levántese a caminar de vez en cuando y mueva las pantorrillas en el asiento. En vuelos más cortos, el riesgo de trombosis (un coágulo en una vena) es despreciable.",
+     "p": [
+      "Para moverlas, suba y baje los talones y las puntas de los pies varias veces.",
+      "Más riesgo: cáncer activo, estrógenos (anticonceptivos o terapia hormonal), cirugía o lesión reciente, embarazo o posparto, trombosis previa, obesidad o más de 40 años.",
+      "Si tiene más riesgo, pida asiento de pasillo y pregunte a su médico por las medias de compresión; la aspirina no se recomienda para esto de forma general.",
+      "Beber agua es razonable, pero no se ha demostrado que prevenga la trombosis del viajero."
+     ],
+     "c": "Llame al 112 si le falta el aire de repente, le duele el pecho al respirar o se desmaya. Si una pierna se hincha, duele, está caliente o roja, consulte pronto."
+    },
+    "f": [
+     "CDC Yellow Book 2026: trombosis venosa profunda y embolia pulmonar en viajeros (Reyes y Abe)"
+    ],
+    "v": [
+     "¿cómo evito una trombosis en el avión?",
+     "piernas hinchadas en el avión",
+     "ejercicios para hacer en el avion",
+     "vuelo largo y circulación",
+     "¿necesito medias de compresión para volar?",
+     "¿qué hago para que no se me hinchen las piernas al volar?",
+     "trombosis en vuelos largos",
+     "¿es peligroso estar muchas horas sentado en el avión?",
+     "moverse durante el vuelo",
+     "¿tomo aspirina antes de volar?",
+     "me duele una pierna después del vuelo"
+    ],
+    "k": [
+     "coágulo",
+     "embolia",
+     "venas",
+     "pantorrilla",
+     "viajero",
+     "TVP",
+     "tobillos hinchados",
+     "vuelo",
+     "volar",
+     "cuando vuelo"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Ce fac în avion ca să am grijă de picioare?",
+    "r": {
+     "t": "În zborurile de peste 4 ore, ridicați-vă din când în când și mergeți puțin, iar pe scaun mișcați gambele. În zborurile mai scurte, riscul de tromboză (un cheag de sânge într-o venă) este neglijabil.",
+     "p": [
+      "Ca să mișcați gambele, ridicați și coborâți de mai multe ori călcâiele și vârfurile picioarelor.",
+      "Riscul este mai mare în caz de cancer activ, estrogeni (contraceptive sau terapie hormonală), operație sau accidentare recentă, sarcină sau perioada postpartum, tromboză în trecut, obezitate sau vârstă de peste 40 de ani.",
+      "Dacă aveți un risc mai mare, cereți un loc la culoar și întrebați-l pe medic despre ciorapii compresivi; aspirina nu se recomandă, în general, pentru asta.",
+      "E rezonabil să beți apă, dar nu s-a demonstrat că previne tromboza călătorului."
+     ],
+     "c": "Sunați la 112 dacă vă lipsește brusc aerul, vă doare pieptul când respirați sau leșinați. Dacă un picior se umflă, doare, e fierbinte sau roșu, mergeți repede la medic."
+    },
+    "f": [
+     "CDC Yellow Book 2026: tromboza venoasă profundă și embolia pulmonară la călători (Reyes și Abe)"
+    ],
+    "v": [
+     "cum evit o tromboză în avion?",
+     "picioare umflate în avion",
+     "exerciții de făcut în avion",
+     "zbor lung și circulația",
+     "îmi trebuie ciorapi compresivi în avion?",
+     "ce fac ca să nu mi se umfle picioarele în avion?",
+     "tromboză în zborurile lungi",
+     "e periculos să stau multe ore pe scaun în avion?",
+     "mișcare în timpul zborului",
+     "iau aspirină înainte de zbor?",
+     "mă doare un picior după zbor"
+    ],
+    "k": [
+     "cheag",
+     "embolie",
+     "vene",
+     "gambă",
+     "călător",
+     "TVP",
+     "glezne umflate",
+     "zbor",
+     "a zbura",
+     "când zbor"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "jet-lag",
+   "es": {
+    "q": "¿Cómo llevo mejor el jet lag al llegar?",
+    "r": {
+     "t": "Use la luz: si ha volado hacia el este, busque luz intensa a primera hora y evítela por la tarde-noche; si ha volado hacia el oeste, evite la luz fuerte de primera hora.",
+     "p": [
+      "El desfase aparece al cruzar al menos dos husos horarios. De media, el cuerpo se ajusta 1 hora al día viajando al este y 1,5 hacia el oeste.",
+      "Si necesita dormir de día, que sean siestas cortas, de 20 a 30 minutos: las largas pueden quitarle sueño por la noche.",
+      "Unos días antes, vaya moviendo la hora de acostarse una hora al día: antes si viaja al este, más tarde si va al oeste.",
+      "Evite el exceso de alcohol: ayuda a dormirse antes, pero rompe más el sueño."
+     ],
+     "n": "El CDC no da una hora para el ejercicio; entrenar fuera a la hora de luz que le convenga es un razonamiento, no una pauta."
+    },
+    "f": [
+     "CDC Yellow Book 2026: desfase horario (Riedy y Williams)"
+    ],
+    "v": [
+     "¿cómo supero el jet lag?",
+     "jet lag al llegar a Tenerife",
+     "desfase horario qué hacer",
+     "no consigo dormir por el cambio de hora",
+     "¿cómo me adapto al horario después de un vuelo largo?",
+     "trucos contra el jetlag",
+     "¿sirve la luz del sol para el jet lag?",
+     "cansancio por el cambio de huso horario",
+     "¿entreno o descanso con jet lag?",
+     "jet lag viajando hacia el oeste"
+    ],
+    "k": [
+     "ritmo circadiano",
+     "siesta",
+     "zona horaria",
+     "insomnio",
+     "luz solar",
+     "reloj biológico",
+     "diferencia horaria",
+     "cambio de hora",
+     "viaje"
+    ],
+    "u": []
+   },
+   "ro": {
+    "q": "Cum trec mai ușor peste jet lag după ce ajung?",
+    "r": {
+     "t": "Folosiți lumina: dacă ați zburat spre est, căutați lumină puternică dimineața devreme și evitați-o seara; dacă ați zburat spre vest, evitați lumina puternică dimineața devreme.",
+     "p": [
+      "Decalajul apare când traversați cel puțin două fusuri orare. În medie, corpul se adaptează cu 1 oră pe zi când călătoriți spre est și cu 1,5 ore când călătoriți spre vest.",
+      "Dacă aveți nevoie să dormiți ziua, să fie somnuri scurte, de 20–30 de minute: cele lungi vă pot strica somnul de noapte.",
+      "Cu câteva zile înainte, mutați treptat ora de culcare cu câte o oră pe zi: mai devreme dacă plecați spre est, mai târziu dacă plecați spre vest.",
+      "Evitați excesul de alcool: vă ajută să adormiți mai repede, dar vă fragmentează mai mult somnul."
+     ],
+     "n": "CDC nu indică o oră pentru exerciții; antrenamentul afară, la ora de lumină care vă convine, este o deducție, nu o recomandare."
+    },
+    "f": [
+     "CDC Yellow Book 2026: decalajul orar (Riedy și Williams)"
+    ],
+    "v": [
+     "cum trec peste jet lag?",
+     "jet lag la sosirea în Tenerife",
+     "decalaj orar, ce e de făcut",
+     "nu pot dormi din cauza schimbării orei",
+     "cum mă adaptez la noul fus orar după un zbor lung?",
+     "trucuri împotriva jetlagului",
+     "lumina soarelui ajută la jet lag?",
+     "oboseală din cauza schimbării fusului orar",
+     "mă antrenez sau mă odihnesc când am jet lag?",
+     "jet lag când călătoresc spre vest",
+     "nu mă obișnuiesc cu diferența de oră"
+    ],
+    "k": [
+     "ritm circadian",
+     "siestă",
+     "fus orar",
+     "ora locală",
+     "insomnie",
+     "lumina soarelui",
+     "ceas biologic",
+     "diferență de oră",
+     "schimbarea orei",
+     "călătorie"
+    ],
+    "u": []
+   }
+  },
+  {
+   "id": "urg-alergia",
+   "es": {
+    "q": "Se me hinchan la cara o la garganta y me cuesta respirar",
+    "r": {
+     "t": "Llame al 112 ahora: puede ser una reacción alérgica grave (anafilaxia). Si tiene un autoinyector de adrenalina recetado, úselo cuanto antes.",
+     "p": [
+      "El autoinyector va en la parte externa del muslo; si no puede ponérselo, que lo haga alguien que sepa.",
+      "Túmbese, salvo que le cueste respirar: entonces siéntese con las piernas estiradas.",
+      "Si la persona deja de responder, llame al 112 y empiece la reanimación."
+     ],
+     "c": "Llame al 112 si, tras un alimento al que es alérgico o una picadura, nota pitidos o ruido al respirar, enrojecimiento, ronchas, piel fría o húmeda, mareo, dolor abdominal, vómitos o diarrea."
+    },
+    "f": [
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): anafilaxia",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): reconocer la anafilaxia",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): parada cardiaca"
+    ],
+    "v": [
+     "se me hincha la cara",
+     "se me está cerrando la garganta",
+     "reacción alérgica grave",
+     "me pica todo y me cuesta respirar",
+     "shock anafiláctico",
+     "se me hinchan los labios tras comer",
+     "tengo la lengua hinchada",
+     "alergia y no puedo respirar",
+     "me ha picado una avispa y me ahogo",
+     "anafilaxia qué hacer",
+     "cómo uso el autoinyector de adrenalina"
+    ],
+    "k": [
+     "alergia",
+     "adrenalina",
+     "edema",
+     "urticaria",
+     "picadura",
+     "glotis"
+    ],
+    "u": [
+     "(se me|se le|se te|se nos)( ha| han| esta| estan)? hinch[a-z]* (la |las |los |el )?(cara|garganta|lengua|labios|boca)",
+     "(cara|garganta|lengua|labios|boca) (muy |toda |tan )?hinchad",
+     "hinchazon (de|en) (la |los |las )?(cara|garganta|lengua|labios|boca)",
+     "(se me|se le|se te) (esta )?(cierra|cerrando) la garganta",
+     "(garganta|cara|lengua|labios|boca)( [a-z]+){0,3} (se me|se le|se te) (esta |ha )?hinch",
+     "anafila",
+     "reaccion alergica (grave|fuerte|muy fuerte|severa|seria)",
+     "edema de glotis",
+     "(alergi|picadura|picado|pica todo|picor|avispa|abeja|urticaria|ronchas|habones).{0,40}(cuesta respirar|no puedo respirar|no puede respirar|respira mal|ahog)",
+     "(cuesta respirar|no puedo respirar|no puede respirar|me ahogo|se ahoga).{0,40}(alergi|picadura|picado|urticaria|ronchas|habones)",
+     "(ponerle|ponerme|poner|pincharle|pincharme|pinchar|usar|uso|pongo|pincho|clavarle|clavarme)( [a-z]+)? (la adrenalina|el autoinyector|autoinyector)",
+     "(garganta (cerrada|cerrandose|que se (me |le |te )?cierra)|(ronchas|habones|urticaria).{0,60}garganta)"
+    ]
+   },
+   "ro": {
+    "q": "Mi se umflă fața sau gâtul și respir greu",
+    "r": {
+     "t": "Sunați acum la 112: poate fi o reacție alergică gravă (anafilaxie). Dacă aveți un autoinjector cu adrenalină prescris, folosiți-l cât mai repede.",
+     "p": [
+      "Autoinjectorul se aplică pe partea exterioară a coapsei; dacă nu vi-l puteți administra, să o facă cineva care știe cum.",
+      "Culcați-vă, cu excepția cazului în care respirați greu: atunci așezați-vă, cu picioarele întinse.",
+      "Dacă persoana nu mai răspunde, sunați la 112 și începeți resuscitarea."
+     ],
+     "c": "Sunați la 112 dacă, după un aliment care vă provoacă alergie sau după o înțepătură, observați un șuierat sau un zgomot când respirați, înroșirea pielii, umflături pe piele (urticarie), piele rece sau umedă, amețeală, dureri de burtă, vărsături sau diaree."
+    },
+    "f": [
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): anafilaxia",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): recunoașterea anafilaxiei",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): stopul cardiac"
+    ],
+    "v": [
+     "mi se umflă fața",
+     "mi se închide gâtul",
+     "reacție alergică gravă",
+     "mă mănâncă peste tot și respir greu",
+     "șoc anafilactic",
+     "mi se umflă buzele după ce mănânc",
+     "am limba umflată",
+     "alergie și nu pot respira",
+     "m-a înțepat o viespe și mă sufoc",
+     "anafilaxie, ce e de făcut",
+     "cum folosesc autoinjectorul cu adrenalină"
+    ],
+    "k": [
+     "alergie",
+     "adrenalină",
+     "edem",
+     "urticarie",
+     "înțepătură",
+     "glotă"
+    ],
+    "u": [
+     "(mi|i|ti|ni|va|le) (se|s a|s au) umfl[a-z]*( [a-z]+){0,1} (fata|gatul|gat|limba|buzele|buza|gura|pleoapele)( |$)",
+     "(fata|gatul|limba|buzele|gura|pleoapele)( [a-z]+){0,2} (umflat[a-z]*|se umfla|s a umflat|s au umflat)( |$)",
+     "umflatur[a-z]* (la|pe|a|in) (fata|fetei|gat|gatului|limba|limbii|buze|buzelor|gura|gurii)( |$)",
+     "((mi|i|ti) se (inchide|strange) gatul|gatul (mi|i|ti) se (inchide|strange)|gat[a-z]* inchis)",
+     "anafila",
+     "reacti[a-z]* alergic[a-z]* (grav|puternic|sever|serioas|foarte)",
+     "edem[a-z]* (glotic|al glotei|la glota|laringian|quincke)",
+     "(alergi|intepat|intepatur|ma mananca|mancarime|viespe|albina|urticari).{0,40}(respir greu|nu pot respira|nu poate respira|respira greu|ma sufoc|se sufoca)",
+     "(respir greu|nu pot respira|nu poate respira|ma sufoc|se sufoca).{0,40}(alergi|intepat|intepatur|urticari|viespe|albina)",
+     "(folosesc|folosi|folosim|sa folosesc|injectez|injecta|sa injectez|administrez|administra|aplic|fac injectia|faci injectia)( [a-z]+){0,2} (adrenalina|autoinjector|epipen|stilou injector|stiloul injector)",
+     "injecti[a-z]* cu adrenalina"
+    ]
+   }
+  },
+  {
+   "id": "urg-atragantamiento",
+   "es": {
+    "q": "Alguien se ha atragantado y no puede toser",
+    "r": {
+     "t": "Si es un bebé o un niño pequeño, llame enseguida al 112 y siga sus instrucciones. Si es una persona adulta y puede toser, anímela a toser.",
+     "p": [
+      "Bebé de menos de 1 año: boca abajo sobre su antebrazo, hasta 5 golpes en la espalda; si no sale, hasta 5 compresiones en el pecho.",
+      "Niño de 1 a 12 años que no puede toser: hasta 5 golpes en la espalda y, si no sale, hasta 5 compresiones en el abdomen.",
+      "Si deja de responder, empiece la reanimación con 5 insuflaciones.",
+      "Adulto que no puede toser: hasta 5 golpes en la espalda y, si no sale, hasta 5 compresiones en el abdomen. Si sigue sin salir, llame al 112 y siga alternando.",
+      "No le meta los dedos en la boca a ciegas. Si deja de responder, llame al 112 y empiece la reanimación."
+     ],
+     "c": "Si le ha dado compresiones en el abdomen, que la vea un médico aunque se recupere."
+    },
+    "f": [
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): atragantamiento",
+     "Resuscitation Council UK: soporte vital pediátrico, guías 2025 (obstrucción de la vía aérea por cuerpo extraño)",
+     "Resuscitation Council UK: algoritmo del atragantamiento pediátrico 2025"
+    ],
+    "v": [
+     "alguien se está atragantando",
+     "se ha atragantado y no puede toser",
+     "mi hijo se atraganta",
+     "mi bebé se ha atragantado, ¿qué hago?",
+     "atragantamiento qué hacer",
+     "cómo se hace la maniobra de Heimlich",
+     "mi padre se ha atragantado con la comida",
+     "se ha tragado un trozo de carne y no le sale",
+     "golpes en la espalda si alguien se atraganta",
+     "no puede toser ni hablar",
+     "se atraganto con un caramelo",
+     "tiene algo atascado en la garganta y no respira bien"
+    ],
+    "k": [
+     "atragantamiento",
+     "Heimlich",
+     "golpes en la espalda",
+     "compresiones abdominales",
+     "tos",
+     "garganta"
+    ],
+    "u": [
+     "atragant",
+     "heimlich",
+     "no (puede|puedo|podia) (toser ni (respirar|hablar|llorar)|(llorar|hablar|respirar) ni toser)",
+     "(algo|comida|un trozo|un hueso|una espina|un caramelo)( [a-z]+){0,3} (atascad|atorad)[oa]s? en la garganta",
+     "(se ha|se le ha|me he|se me ha|te has) (tragado|quedado)( [a-z]+){0,4} y no (le|me|te) (sale|baja|pasa)",
+     "(se le|se me|se te) ha (quedado|atascado|atorado|ido) (algo|la comida|comida|un trozo|un hueso|una espina)",
+     "se (trago|ha tragado|le ha ido) (algo|un trozo|una pieza|una moneda|una pila)"
+    ]
+   },
+   "ro": {
+    "q": "Cineva s-a înecat cu ceva și nu poate tuși",
+    "r": {
+     "t": "Dacă este un bebeluș sau un copil mic, sunați imediat la 112 și urmați instrucțiunile primite. Dacă este un adult și poate tuși, încurajați-l să tușească.",
+     "p": [
+      "Bebeluș sub 1 an: cu fața în jos pe antebrațul dumneavoastră, până la 5 lovituri între omoplați; dacă obiectul nu iese, până la 5 compresii toracice.",
+      "Copil între 1 și 12 ani care nu poate tuși: până la 5 lovituri între omoplați și, dacă obiectul nu iese, până la 5 compresii abdominale.",
+      "Dacă nu mai răspunde, începeți resuscitarea cu 5 insuflații.",
+      "Adult care nu poate tuși: până la 5 lovituri între omoplați și, dacă obiectul nu iese, până la 5 compresii abdominale. Dacă tot nu iese, sunați la 112 și continuați să le alternați.",
+      "Nu-i introduceți degetele în gură fără să vedeți ce faceți. Dacă nu mai răspunde, sunați la 112 și începeți resuscitarea."
+     ],
+     "c": "Dacă i-ați făcut compresii abdominale, trebuie să o vadă un medic, chiar dacă își revine."
+    },
+    "f": [
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): înecarea cu un corp străin",
+     "Resuscitation Council UK: suportul vital pediatric, ghidurile 2025 (obstrucția căilor respiratorii prin corp străin)",
+     "Resuscitation Council UK: algoritmul pentru înecarea cu un corp străin la copii, 2025"
+    ],
+    "v": [
+     "cineva se îneacă cu mâncare",
+     "s-a înecat cu ceva și nu poate tuși",
+     "copilul meu se îneacă cu ceva",
+     "bebelușul meu s-a înecat cu ceva, ce fac?",
+     "înecare cu un corp străin, ce e de făcut",
+     "cum se face manevra Heimlich",
+     "tatăl meu s-a înecat cu mâncarea",
+     "a înghițit o bucată de carne și nu iese",
+     "lovituri între omoplați dacă cineva se îneacă cu ceva",
+     "nu poate tuși și nici vorbi",
+     "s-a înecat cu o bomboană",
+     "are ceva blocat în gât și nu respiră bine"
+    ],
+    "k": [
+     "corp străin",
+     "Heimlich",
+     "lovituri între omoplați",
+     "compresii abdominale",
+     "tuse",
+     "gât"
+    ],
+    "u": [
+     "(inec|ineac|inaca)[a-z]* cu (ceva|mancare|mancarea|o bucata|bucata|un os|un sambure|o bomboana|bomboana|un corp strain|corp strain|o moneda|o jucarie|o nuca|un bob|carne|paine|un fruct)",
+     "heimlich",
+     "nu (poate|pot|putea|poti) (sa )?(tusi|tuseasca|tusesc)( si)?( nici)?( sa)? (respir|vorb|plang)",
+     "nu (poate|pot|putea|poti) (sa )?(respir|vorb|plang)[a-z]*( si)?( nici)?( sa)? (tusi|tuseasca|tusesc)",
+     "(ceva|mancare|o bucata|bucata|un os|o bomboana|un sambure|o moneda|o nuca)( [a-z]+){0,3} (blocat|blocata|intepenit|intepenita|ramas|ramasa|oprit|oprita)( [a-z]+){0,1} in gat",
+     "(a inghitit|am inghitit|ai inghitit|inghitit)( [a-z]+){0,4} (si )?nu (iese|ii iese|imi iese|trece|coboara)",
+     "(i|mi|ti) (a ramas|s a oprit|s a blocat|a intrat|s a pus)( [a-z]+){0,2} in gat",
+     "(a inghitit|am inghitit|inghitit) (o moneda|o baterie|o piesa|un obiect|un magnet|o jucarie)"
+    ]
+   }
+  },
+  {
+   "id": "urg-pecho",
+   "es": {
+    "q": "Me duele el pecho haciendo ejercicio",
+    "r": {
+     "t": "Llame enseguida al 112 y deje el ejercicio. Dolor u opresión en el pecho, que puede irse al cuello, la mandíbula o el brazo izquierdo: puede ser un infarto.",
+     "p": [
+      "Llame enseguida al 112, ayude a la persona a sentarse o tumbarse cómoda y no la deje sola.",
+      "Si deja de respirar con normalidad, póngala boca arriba y empiece la reanimación.",
+      "Si hay un desfibrilador (DEA), que alguien lo traiga. Enciéndalo y siga lo que dice; no deje las compresiones hasta que esté puesto."
+     ],
+     "c": "Pida atención urgente aunque el dolor ceda al parar, si un médico no se lo ha valorado. Ante un desmayo o una falta de aire intensa o inusual, también 112."
+    },
+    "f": [
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): dolor torácico",
+     "Moving Medicine (FSEM, Reino Unido): dolor en el pecho de origen cardiaco",
+     "Consejo Europeo de Resucitación (ERC): guías 2025 para el público"
+    ],
+    "v": [
+     "me duele el pecho al correr",
+     "dolor en el pecho en el gimnasio",
+     "opresión en el pecho haciendo deporte",
+     "me duele el pecho y el brazo izquierdo",
+     "creo que me está dando un infarto",
+     "presión en el pecho al entrenar",
+     "dolor de pecho al hacer esfuerzo",
+     "le duele el pecho a mi padre después de andar",
+     "me aprieta el pecho cuando subo cuestas",
+     "pinchazo en el pecho corriendo",
+     "dolor torácico con el ejercicio"
+    ],
+    "k": [
+     "angina",
+     "cardiaco",
+     "mandíbula",
+     "cuello",
+     "coronario",
+     "corazón"
+    ],
+    "u": [
+     "(dolor|dolores|molestia|molestias|presion|opresion|pinchazo|pinchazos|punzada|ardor|tirantez)( muy| fuerte| fuertes| intenso| intensa| raro| rara| agudo| aguda){0,2} (en el|en mi|de|del) pecho",
+     "(me|le|te|nos) duelen? (mucho |muchisimo |bastante |un poco )?el pecho",
+     "duelen? (mucho )?en el pecho",
+     "dolor toracico",
+     "(siento|noto|tengo|siente|nota|tiene) (como )?(un )?peso en el pecho",
+     "(me|le|te) aprieta (mucho )?el pecho",
+     "pecho (oprimido|apretado|encogido)",
+     "(me|le|te) (esta dando|da) un (infarto|ataque al corazon|ataque cardiaco)",
+     "(creo que|puede que|parece que|igual) (es|sea|tengo|tiene|tenga|me da|le da|me esta dando|le esta dando) un (infarto|ataque al corazon|ataque cardiaco)",
+     "(estoy|esta|estas) (teniendo|sufriendo) un (infarto|ataque al corazon|ataque cardiaco)",
+     "(dolor|presion|opresion|peso|pinchazo)( [a-z]+){0,4} (en el|del) pecho( [a-z]+){0,6} (brazo|mandibula|cuello)",
+     "pecho( esta| estaba| lo tengo| lo noto| lo siento| se me pone| se siente| se nota)?( muy| un poco| bastante| super| tan| como| algo)? (oprimido|apretado|encogido)",
+     "el pecho (me|le|te|nos) (duele|duelen|aprieta|oprime|pincha|arde|quema)",
+     "(me|le|te) oprime (mucho )?el pecho",
+     "(pecho|torax) (muy |algo |un poco |bastante )?dolorido"
+    ]
+   },
+   "ro": {
+    "q": "Mă doare pieptul când fac exerciții fizice",
+    "r": {
+     "t": "Sunați imediat la 112 și opriți efortul. Durere sau apăsare în piept, care se poate extinde spre gât, maxilar sau brațul stâng: poate fi un infarct.",
+     "p": [
+      "Sunați imediat la 112, ajutați persoana să se așeze sau să se întindă comod și nu o lăsați singură.",
+      "Dacă nu mai respiră normal, întoarceți-o pe spate și începeți resuscitarea.",
+      "Dacă există un defibrilator (DEA), cineva să-l aducă. Porniți-l și urmați ce spune; nu întrerupeți compresiile până când nu este aplicat."
+     ],
+     "c": "Cereți asistență medicală de urgență chiar dacă durerea trece când vă opriți, dacă nu v-a evaluat-o un medic. Dacă apare un leșin sau o lipsă de aer intensă ori neobișnuită, sunați de asemenea la 112."
+    },
+    "f": [
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): durerea toracică",
+     "Moving Medicine (FSEM, Regatul Unit): durerea în piept de origine cardiacă",
+     "Consiliul European de Resuscitare (ERC): ghidurile 2025 pentru public"
+    ],
+    "v": [
+     "mă doare pieptul când alerg",
+     "durere în piept la sală",
+     "apăsare în piept când fac sport",
+     "mă doare pieptul și brațul stâng",
+     "cred că fac un infarct",
+     "presiune în piept la antrenament",
+     "durere de piept la efort",
+     "pe tatăl meu îl doare pieptul după ce merge pe jos",
+     "mă strânge în piept când urc pante",
+     "o înțepătură în piept când alerg",
+     "durere toracică la efort"
+    ],
+    "k": [
+     "angină",
+     "cardiac",
+     "maxilar",
+     "gât",
+     "coronarian",
+     "inimă"
+    ],
+    "u": [
+     "(durere|dureri|durerea|apasare|presiune|intepatura|o intepatura|intepaturi|junghi|arsura|arsuri|disconfort|strangere|jena)( puternic[a-z]*| mare| mari| ciudat[a-z]*| ascutit[a-z]*| intens[a-z]*| tare| foarte){0,2} (in|de) piept",
+     "^(?!.*(tricou|bustier|sutien|maiou|haina|bluza|camasa|costum|echipament)).*(ma|il|o|te|ne|va|ii|le|imi|iti) (doare|dor|durea|a durut|strange|apasa|arde|injunghie|intepa) (tare |foarte |foarte tare |rau |putin |ingrozitor )?(pieptul|in piept)",
+     "^(?!.*(tricou|bustier|sutien|maiou|haina|bluza|camasa|costum|echipament)).*pieptul (ma|il|o|te|ne|va|ii|le|imi|iti) (doare|dor|durea|strange|apasa|arde|intepa|injunghie)",
+     "(durere|dureri|durerea|durerile) toracic",
+     "(simt|am|simte|are|simti) (ca )?(o )?(greutate|apasare|presiune|piatra) (pe|in) piept",
+     "(^| )(fac|face|faci|am|are|ai) (un )?(infarct|atac de cord|atac cardiac)",
+     "(cred ca|se pare ca|parca|oare|cumva)( [a-z]+){0,2} (infarct|atac de cord|atac cardiac)",
+     "(durere|dureri|apasare|presiune|greutate|intepatura)( [a-z]+){0,4} (in|din|de|pe) piept( [a-z]+){0,6} (brat|bratul|maxilar|falca|gat|gatul)( |$)",
+     "^(?!.*(tricou|bustier|sutien|maiou|haina|bluza|camasa|costum|echipament)).*piept[a-z]*( [a-z]+){0,2} ((strans|apasat|incordat|dureros|dureroasa)( |$)|greu( si | cand |$))",
+     "(imi|ii|iti|ne|va) apasa (ceva )?(pe )?piept",
+     "^(?!.*(tricou|bustier|sutien|maiou|haina|bluza|camasa|costum|echipament)).*((imi|ii|iti) (strange|strangea) pieptul|strangere de piept)"
+    ]
+   }
+  },
+  {
+   "id": "urg-no-respira",
+   "es": {
+    "q": "Alguien no respira o se está ahogando",
+    "r": {
+     "t": "Llame al 112 y ponga el altavoz. Si solo da boqueadas, no respira con normalidad; al principio también puede tener una breve convulsión. Ante la duda, empiece la reanimación.",
+     "p": [
+      "Si hay un desfibrilador (DEA), que alguien lo traiga. Enciéndalo y siga lo que dice; no deje las compresiones hasta que esté puesto.",
+      "Ponga las manos en el centro del pecho y apriete fuerte y rápido.",
+      "Que el pecho baje de 5 a 6 cm, de 100 a 120 veces por minuto, y que vuelva a subir del todo cada vez.",
+      "Si sabe hacerlo, haga 30 compresiones y 2 insuflaciones, y repita. Si no, solo compresiones, sin parar, hasta que llegue la ayuda.",
+      "Si es un niño o una persona sacada del agua, empiece con 5 insuflaciones. El 112 le irá guiando."
+     ],
+     "c": "Si no responde y no respira con normalidad, llame al 112, ponga el altavoz y siga sus instrucciones."
+    },
+    "f": [
+     "Consejo Europeo de Resucitación (ERC): guías 2025 para el público",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): ahogamiento",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): parada cardiaca"
+    ],
+    "v": [
+     "alguien no respira",
+     "una persona no respira, ¿qué hago?",
+     "se está ahogando en el agua",
+     "he sacado a alguien del agua y no respira",
+     "cómo hacer la reanimación",
+     "masaje cardiaco cómo se hace",
+     "parada cardiaca qué hago",
+     "no respira y no responde",
+     "rcp pasos",
+     "ha dejado de respirar"
+    ],
+    "k": [
+     "cardiopulmonar",
+     "compresiones",
+     "boca a boca",
+     "ahogamiento",
+     "asfixia",
+     "insuflaciones"
+    ],
+    "u": [
+     "no respira( |$)",
+     "(ha dejado|deja|dejo) de respirar",
+     "no (puede|puedo|podia) respirar(?! bien)",
+     "(se|se ha|se esta|casi se) ahog(a|ado|ada|ando)( |$)",
+     "me (estoy )?ahogando",
+     "ahogandose",
+     "boque(a|o)",
+     "(hacer|hago|hacerle|empezar|empiezo|como se (le )?hace) (la |el )?(rcp|reanimacion|masaje cardiaco|boca a boca)",
+     "parada (cardiaca|cardiorrespiratoria)",
+     "(rcp|reanimacion|masaje cardiaco|boca a boca) (como se hace|pasos|que hago|como hacer|como hacerlo)"
+    ]
+   },
+   "ro": {
+    "q": "Cineva nu respiră sau se îneacă",
+    "r": {
+     "t": "Sunați la 112 și puneți telefonul pe difuzor. Dacă persoana doar trage aer rar și sacadat (respirație agonică), nu respiră normal; la început poate avea și o scurtă convulsie. Dacă aveți dubii, începeți resuscitarea.",
+     "p": [
+      "Dacă există un defibrilator (DEA), cineva să-l aducă. Porniți-l și urmați ce spune; nu întrerupeți compresiile până când nu este aplicat.",
+      "Puneți mâinile în centrul pieptului și apăsați tare și repede.",
+      "Pieptul trebuie să coboare între 5 și 6 cm, de 100 până la 120 de ori pe minut, și să revină complet de fiecare dată.",
+      "Dacă știți, faceți 30 de compresii și 2 insuflații și repetați. Dacă nu, faceți doar compresii, fără oprire, până sosește ajutorul.",
+      "Dacă este un copil sau o persoană scoasă din apă, începeți cu 5 insuflații. La 112 vi se va explica pas cu pas."
+     ],
+     "c": "Dacă persoana nu răspunde și nu respiră normal, sunați la 112, puneți telefonul pe difuzor și urmați instrucțiunile primite."
+    },
+    "f": [
+     "Consiliul European de Resuscitare (ERC): ghidurile 2025 pentru public",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): înecul",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): stopul cardiac"
+    ],
+    "v": [
+     "cineva nu respiră",
+     "o persoană nu respiră, ce fac?",
+     "se îneacă în apă",
+     "am scos pe cineva din apă și nu respiră",
+     "cum se face resuscitarea",
+     "masaj cardiac, cum se face",
+     "stop cardiac, ce fac",
+     "nu respiră și nu răspunde",
+     "RCP pași",
+     "a încetat să respire"
+    ],
+    "k": [
+     "cardiopulmonar",
+     "compresii",
+     "gură la gură",
+     "înec",
+     "asfixie",
+     "insuflații"
+    ],
+    "u": [
+     "nu (mai )?respira( |$)",
+     "(a incetat|inceteaza|a incetat brusc) sa (mai )?respir",
+     "nu (poate|pot|putea|putem|poti) (sa )?respir[a-z]*(?![a-z])(?! bine| pe nas| normal cand| cand alerg| cand fac)",
+     "(^| )(se|s a|s au|aproape s a|aproape se|era sa se) (ineaca|inecat|inece|inecau)( |$)",
+     "(^| )ma inec( |$)",
+     "(se sufoca|sufocandu se|inecandu se)",
+     "(respiratie agonica|trage aer rar)",
+     "(fac|sa fac|sa ii fac|ii fac|incep|cum se face|cum fac|cum sa fac|cum incep|cum se fac)( [a-z]+){0,2} (rcp|resuscitar[a-z]*|masaj[a-z]* cardiac|respirati[a-z]* gura la gura|gura la gura|compresii toracice)",
+     "stop[a-z]* (cardiac|cardiorespirator)",
+     "(rcp|resuscitar[a-z]*|masaj[a-z]* cardiac|gura la gura)( [a-z]+){0,1} (cum se face|pasi|ce fac|cum fac|cum sa fac|pas cu pas)"
+    ]
+   }
+  },
+  {
+   "id": "urg-golpe-de-calor",
+   "es": {
+    "q": "Creo que alguien tiene un golpe de calor",
+    "r": {
+     "t": "Llame enseguida al 112: es una urgencia. Señales: piel caliente y roja (puede que no sude), fiebre de más de 40 °C, confusión, convulsiones o desmayo.",
+     "p": [
+      "Mientras llega la ayuda, lleve a la persona a un sitio fresco y bájele la temperatura con paños fríos o un baño de agua fría.",
+      "No le dé nada de beber.",
+      "Dolor de cabeza, náuseas, mareo y piel fría y húmeda pueden ser agotamiento por calor: lugar fresco, agua a sorbitos, ropa suelta y paños húmedos."
+     ],
+     "c": "En el agotamiento por calor, si hay vómitos, si la persona tiene una enfermedad crónica o si empeora, busque atención médica enseguida; si sigue mal tras 30 minutos así, llame al 112."
+    },
+    "f": [
+     "NHS (servicio de salud británico): agotamiento por calor y golpe de calor",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): golpe de calor"
+    ],
+    "v": [
+     "golpe de calor qué hago",
+     "creo que mi amigo tiene un golpe de calor",
+     "alguien está confuso por el calor",
+     "se ha desmayado al sol",
+     "tiene la piel muy caliente y no suda",
+     "insolación grave",
+     "golpe de calor en la playa",
+     "fiebre muy alta después de correr con calor",
+     "le ha dado un golpe de calor haciendo senderismo",
+     "como enfriar a alguien con golpe de calor",
+     "esta muy rojo y desorientado por el sol"
+    ],
+    "k": [
+     "hipertermia",
+     "sudor",
+     "deshidratación",
+     "agotamiento por calor",
+     "sombra",
+     "termómetro"
+    ],
+    "u": [
+     "(tiene|tengo|tenga|tienes|le ha dado|me ha dado|le esta dando|me esta dando|le da|me da|le dio|me dio|sufre|sufriendo|creo que es|puede ser|parece) un golpe de calor",
+     "golpe de calor (ahora|ya|grave|que hago|que hacer|ayuda)",
+     "insolacion (grave|fuerte|muy fuerte)",
+     "como (enfrio|enfriar|bajo|bajar|bajarle)( [a-z]+){0,5} golpe de calor",
+     "(fiebre|(tiene|tengo|tenia) (la |una )?temperatura) muy alta.{0,40} (calor|sol)( |$)",
+     "(tiene|tengo|le ha dado|me ha dado|le dio|me dio) una insolacion",
+     "((piel|esta) (muy )?(caliente|ardiendo) y (seca|no suda|no sudo|confus|dice cosas sin sentido|desvaria)|(al sol|del sol|calor)( [a-z]+){0,8} (esta ardiendo|dice cosas sin sentido|desvaria))",
+     "(fiebre|(tiene|tengo|tenia) (la |una )?temperatura( corporal)?) (de |de mas de |por encima de |superior a |mas de )4[0-9].{0,40} (calor|sol)( |$)",
+     "(confus|desorient|delira|convuls)[a-z]* (por|con|del|tras|despues de)( el| la| mucho| tanto| este)? (calor|sol)( |$)",
+     "(desmay|mareado|mareada)[a-z]* (por|con|del|al)( el| este| tanto| mucho)? (calor|sol)( |$)",
+     "(no suda|dejado de sudar|deja de sudar|sin sudar).{0,30} (calor|sol|caliente)( |$)",
+     "(por|tras|despues de|con) (el|un) golpe de calor"
+    ]
+   },
+   "ro": {
+    "q": "Cred că cineva a făcut un șoc termic",
+    "r": {
+     "t": "Sunați imediat la 112: este o urgență. Semne: piele fierbinte și roșie (persoana poate să nu transpire), febră de peste 40 °C, confuzie, convulsii sau leșin.",
+     "p": [
+      "Până sosește ajutorul, duceți persoana într-un loc răcoros și scădeți-i temperatura cu comprese reci sau cu o baie în apă rece.",
+      "Nu-i dați nimic de băut.",
+      "Durerea de cap, greața, amețeala și pielea rece și umedă pot fi semne de epuizare termică: loc răcoros, apă băută cu înghițituri mici, haine largi și comprese umede."
+     ],
+     "c": "În caz de epuizare termică, dacă apar vărsături, dacă persoana are o boală cronică sau dacă starea ei se agravează, cereți imediat asistență medicală; dacă după 30 de minute de astfel de îngrijiri tot nu se simte bine, sunați la 112."
+    },
+    "f": [
+     "NHS (serviciul de sănătate britanic): epuizarea termică și șocul termic",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): șocul termic"
+    ],
+    "v": [
+     "șoc termic, ce fac",
+     "cred că prietenul meu a făcut un șoc termic",
+     "cineva e confuz din cauza căldurii",
+     "a leșinat la soare",
+     "are pielea foarte fierbinte și nu transpiră",
+     "insolație gravă",
+     "șoc termic la plajă",
+     "febră foarte mare după ce a alergat pe căldură",
+     "a făcut un șoc termic în timpul unei drumeții",
+     "cum răcesc pe cineva cu șoc termic",
+     "e foarte roșu și dezorientat de la soare"
+    ],
+    "k": [
+     "hipertermie",
+     "transpirație",
+     "deshidratare",
+     "epuizare termică",
+     "umbră",
+     "termometru"
+    ],
+    "u": [
+     "^(?!.*(previn|evit|prevenire|ca sa nu|sa nu fac|sa nu faca|cum nu)).*(^| )(are|am|ai|aveti|a facut|am facut|ai facut|face|fac|sufera|a suferit|cred ca e|cred ca este|poate fi|pare)( [a-z]+){0,1} (un |o )?(soc[a-z]* termic|insolati[a-z]*|lovitur[a-z]* de caldura)",
+     "(soc[a-z]* termic|insolati[a-z]*|lovitur[a-z]* de caldura) (acum|deja|grav|ce fac|ce sa fac|ajutor|urgent)",
+     "insolati[a-z]* (grav|puternic|foarte)",
+     "cum (racesc|sa racesc|il racesc|o racesc|raceste|scad|sa scad|ii scad)( [a-z]+){0,5} (soc[a-z]* termic|insolati[a-z]*|temperatur)",
+     "(febr[a-z]*|temperatur[a-z]*) (foarte )?(mare|ridicata|mari|ridicate).{0,40} (caldur[a-z]*|soare[a-z]*|canicul[a-z]*)( |$)",
+     "(piele[a-z]*|e|este) (foarte )?(fierbinte|incins[a-z]*) si (uscat[a-z]*|nu transpir[a-z]*|confuz[a-z]*|delireaz[a-z]*|aiureaz[a-z]*)",
+     "(febr[a-z]*|temperatur[a-z]*)( corporal[a-z]*)? (de|de peste|peste|mai mare de|mai mult de) 4[0-9].{0,40} (caldur[a-z]*|soare[a-z]*|canicul[a-z]*)( |$)",
+     "(confuz|dezorientat|delireaz|convulsi|aiureaz)[a-z]* (din cauza|de la|dupa|la|in|pe)( [a-z]+)? (caldur[a-z]*|soare[a-z]*|canicul[a-z]*)( |$)",
+     "(lesinat|lesinata|lesin|ametit|ametita|cazut)[a-z]* (la|din cauza|de la|in|pe)( [a-z]+)? (soare[a-z]*|caldur[a-z]*|canicul[a-z]*)( |$)",
+     "(nu (mai )?transpira|nu transpir|a incetat sa transpire|fara sa transpire).{0,30} (caldur[a-z]*|soare[a-z]*|fierbinte|canicul[a-z]*)( |$)",
+     "(din cauza|dupa|cu) (un |o )?(soc[a-z]* termic|insolati[a-z]*)"
+    ]
+   }
+  },
+  {
+   "id": "urg-golpe-cabeza",
+   "es": {
+    "q": "Me he dado un golpe fuerte en la cabeza",
+    "r": {
+     "t": "Llame al 112 y deje de entrenar: tras un golpe fuerte en la cabeza, hay que retirarse de la actividad y que le valore un profesional sanitario.",
+     "p": [
+      "Sospeche una conmoción si le cuesta pensar o recordar, o tiene dolor de cabeza, cambios en la vista, mareo, náuseas o vómitos, o convulsiones.",
+      "También si le molestan la luz o el ruido, o cambia su ánimo o su conducta: más sueño, menos actividad de lo normal, confusión o deja de responder."
+     ],
+     "c": "Si ayuda a otra persona que se ha caído desde altura, se ha tirado de cabeza, ha tenido un accidente o un golpe fuerte, no la ponga de lado ni la mueva, salvo que corra peligro donde está."
+    },
+    "f": [
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): conmoción",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): conmoción (cambios de ánimo y de conducta)",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): conmoción y posición de recuperación"
+    ],
+    "v": [
+     "me he dado un golpe en la cabeza",
+     "golpe en la cabeza entrenando",
+     "me di con la barra en la cabeza",
+     "conmoción cerebral qué hacer",
+     "se ha caído y se ha dado en la cabeza",
+     "traumatismo craneal",
+     "me he golpeado la cabeza y me mareo",
+     "porrazo en la cabeza jugando",
+     "golpe en la cabeza y vómitos",
+     "me caí de la bici y me di en la cabeza",
+     "golpe en la cabeza, ¿puedo seguir jugando?"
+    ],
+    "k": [
+     "cráneo",
+     "casco",
+     "contusión",
+     "cabezazo",
+     "TCE",
+     "aturdido"
+    ],
+    "u": [
+     "(golpe|golpazo|porrazo|trompazo|castanazo|cabezazo|leche|golpetazo)( muy)?( fuerte)? (en|con) la cabeza",
+     "(me he dado|me di|se ha dado|se dio|te has dado|me golpee|se golpeo)( [a-z]+){0,4} en la cabeza",
+     "(me he golpeado|se ha golpeado|me golpee|se golpeo|golpeado) la cabeza",
+     "(traumatismo|trauma) (craneal|craneoencefalico|en la cabeza)",
+     "(caido|caida|cai|cayo) (de|sobre|en) (la )?cabeza",
+     "tirado de cabeza (y|a|al|en)",
+     "(tengo|tiene|creo que es|puede ser|tenga) una conmocion",
+     "conmocion( cerebral)? (que hago|que hacer|ayuda)",
+     "(dolor de cabeza|vomit|mareo|mareado|confus)[a-z]* (tras|despues de|por) (un|el|una|la) (golpe|golpazo|porrazo|caida)(?! de calor)",
+     "(golpe|golpazo|porrazo|trompazo|pegue|pego|di|dio|golpee|golpeo)( [a-z]+){0,5} en la (frente|nuca|sien)",
+     "(choco|chocaron|choque|chocamos|chocado|chocar) cabeza con cabeza"
+    ]
+   },
+   "ro": {
+    "q": "M-am lovit puternic la cap",
+    "r": {
+     "t": "Sunați la 112 și opriți antrenamentul: după o lovitură puternică la cap, trebuie să vă retrageți din activitate și să vă evalueze un profesionist din domeniul sănătății.",
+     "p": [
+      "Suspectați o comoție cerebrală dacă vă vine greu să gândiți sau să vă amintiți ori dacă aveți durere de cap, tulburări de vedere, amețeală, greață sau vărsături ori convulsii.",
+      "De asemenea, dacă vă deranjează lumina sau zgomotul ori dacă vi se schimbă starea de spirit sau comportamentul: mai multă somnolență, mai puțină activitate decât de obicei, confuzie sau faptul că persoana nu mai răspunde."
+     ],
+     "c": "Dacă ajutați o altă persoană care a căzut de la înălțime, a sărit în apă cu capul înainte, a avut un accident sau a primit o lovitură puternică, nu o așezați pe o parte și nu o mișcați, decât dacă este în pericol acolo unde se află."
+    },
+    "f": [
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): comoția cerebrală",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): comoția cerebrală (schimbările de dispoziție și de comportament)",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): comoția cerebrală și poziția laterală de siguranță"
+    ],
+    "v": [
+     "m-am lovit la cap",
+     "lovitură la cap la antrenament",
+     "m-am lovit cu bara în cap",
+     "comoție cerebrală, ce e de făcut",
+     "a căzut și s-a lovit la cap",
+     "traumatism cranian",
+     "m-am lovit la cap și amețesc",
+     "lovitură zdravănă la cap în timpul jocului",
+     "lovitură la cap și vărsături",
+     "am căzut de pe bicicletă și m-am lovit la cap",
+     "lovitură la cap, pot continua să joc?"
+    ],
+    "k": [
+     "craniu",
+     "cască",
+     "contuzie",
+     "lovitură cu capul",
+     "TCC",
+     "amețit"
+    ],
+    "u": [
+     "^(?!.*(evit|previn|protej|apar)).*(lovitura|o lovitura|bufnitura|busitura|pocnitura)( foarte)?( puternica| zdravana| tare| rea)? (la|in) cap( |$)",
+     "^(?!.*(evit|previn|protej|apar)).*(lovit|izbit|pocnit|busit|lovesc|loveste)( [a-z]+){0,4} (la|in) cap( |$)",
+     "(traumatism[a-z]* (cranian|cranio|la cap)|trauma (cranian|la cap))",
+     "(cazut|cazuta|cade|cad)( [a-z]+){0,3} (in|pe) (cap|capul)( |$)",
+     "(sarit|sare|sar|plonjat|aruncat)( [a-z]+){0,3} cu capul (inainte|in jos)",
+     "(am|are|ai|cred ca e|cred ca am|cred ca are|poate fi|pare|o fi) (o )?comoti",
+     "comoti[a-z]*( cerebral[a-z]*)? (ce fac|ce e de facut|ce sa fac|ajutor|acum)",
+     "(durere de cap|dureri de cap|ma doare capul|il doare capul|vomit|voma|varsatur|ameteal|ametit|ametesc|confuz)[a-z]*( [a-z]+){0,3} (dupa|de la|din cauza) (o |un )?(lovitur|cazatur|bufnitur|izbitur)(?![a-z]* de caldura)",
+     "(m am lovit|s a lovit|lovitur[a-z]*|izbit)( [a-z]+){0,4} (in|la) (frunte|ceafa|tampla)( |$)",
+     "(cap in cap|cu capetele)( |$)"
+    ]
+   }
+  },
+  {
+   "id": "urg-desmayo",
+   "es": {
+    "q": "Alguien se ha desmayado o no responde",
+    "r": {
+     "t": "Llame al 112 y ponga el altavoz: le dirán qué hacer. Mire si respira con normalidad: si respira, póngala de lado; si no, empiece la reanimación.",
+     "p": [
+      "Si solo da boqueadas, no respira con normalidad; al principio también puede tener una breve convulsión. Ante la duda, empiece la reanimación.",
+      "Ponga a la persona de lado, con los brazos y las piernas doblados, y vigile que siga respirando.",
+      "Si deja de respirar con normalidad, póngala boca arriba y empiece la reanimación."
+     ],
+     "c": "Si se ha caído desde altura, se ha tirado de cabeza, ha tenido un accidente o un golpe fuerte, no la ponga de lado ni la mueva, salvo que corra peligro donde está."
+    },
+    "f": [
+     "Consejo Europeo de Resucitación (ERC): guías 2025 para el público",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): posición de recuperación y parada cardiaca"
+    ],
+    "v": [
+     "alguien se ha desmayado",
+     "una persona se ha desmayado en el gimnasio",
+     "se ha caído al suelo y no reacciona",
+     "está inconsciente pero respira",
+     "posición lateral de seguridad",
+     "se ha quedado sin conocimiento",
+     "qué hago si alguien pierde el conocimiento",
+     "mi amigo se ha desmayado corriendo",
+     "desmayo qué hacer",
+     "no responde pero respira",
+     "se ha desplomado"
+    ],
+    "k": [
+     "síncope",
+     "lipotimia",
+     "PLS",
+     "posición de recuperación",
+     "desfibrilador",
+     "DEA"
+    ],
+    "u": [
+     "(se ha|se|me he|me|te has|te|le ha|nos hemos) (desmayado|desmayada|desmayo|desmaye|desmayaste|desmayamos)",
+     "(^| )(alguien|una persona|un hombre|una mujer|un nino|una nina|un chico|una chica|mi (padre|madre|hijo|hija|amigo|amiga|pareja|marido|mujer|novio|novia|abuelo|abuela|hermano|hermana|companero|companera|tio|tia|primo|prima)|esta persona|ella|el|esta|este) no (responde|reacciona|contesta|se mueve)",
+     "no (responde|reacciona) (ni (respira|se mueve|abre|habla|contesta|reacciona|responde)|y no (respira|se mueve|abre|habla|contesta|reacciona|responde|se que|se lo que|se como|sabemos))",
+     "^(?!.*(cuerpo|musculo|metabolismo|peso|dieta|entren|rodilla|brazo|pierna|movil|telefono|app)).*no (responde|reacciona) a nada",
+     "inconscien",
+     "(perd(io|ido|ida|er|iendo)|pierde|pierden) (el )?conocimiento",
+     "no (responde|reacciona) (pero|aunque) respira",
+     "posicion lateral de seguridad",
+     "sin conocimiento",
+     "^(?!.*(rendimiento|azucar|glucosa|tension|fuerza|ritmo|nivel|peso|motivacion)).*se (ha )?desplom",
+     "(se ha|se) (caido|caida)( al suelo| redondo| redonda)? y no (responde|reacciona|se mueve|contesta|se levanta)",
+     "(esta|estan|estaba) desmayad"
+    ]
+   },
+   "ro": {
+    "q": "Cineva a leșinat sau nu răspunde",
+    "r": {
+     "t": "Sunați la 112 și puneți telefonul pe difuzor: vi se va spune ce să faceți. Verificați dacă persoana respiră normal: dacă respiră, așezați-o pe o parte; dacă nu, începeți resuscitarea.",
+     "p": [
+      "Dacă persoana doar trage aer rar și sacadat (respirație agonică), nu respiră normal; la început poate avea și o scurtă convulsie. Dacă aveți dubii, începeți resuscitarea.",
+      "Așezați persoana pe o parte (poziția laterală de siguranță), cu brațele și picioarele îndoite, și verificați să respire în continuare.",
+      "Dacă nu mai respiră normal, întoarceți-o pe spate și începeți resuscitarea."
+     ],
+     "c": "Dacă a căzut de la înălțime, a sărit în apă cu capul înainte, a avut un accident sau a primit o lovitură puternică, nu o așezați pe o parte și nu o mișcați, decât dacă este în pericol acolo unde se află."
+    },
+    "f": [
+     "Consiliul European de Resuscitare (ERC): ghidurile 2025 pentru public",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): poziția laterală de siguranță și stopul cardiac"
+    ],
+    "v": [
+     "cineva a leșinat",
+     "o persoană a leșinat la sală",
+     "a căzut jos și nu reacționează",
+     "e inconștient, dar respiră",
+     "poziția laterală de siguranță",
+     "și-a pierdut cunoștința",
+     "ce fac dacă cineva își pierde cunoștința",
+     "prietenul meu a leșinat în timp ce alerga",
+     "leșin, ce e de făcut",
+     "nu răspunde, dar respiră",
+     "s-a prăbușit"
+    ],
+    "k": [
+     "sincopă",
+     "lipotimie",
+     "PLS",
+     "poziția de siguranță",
+     "defibrilator",
+     "DEA"
+    ],
+    "u": [
+     "(^| )(a|am|ai|au|ati|e|este|era|sunt|o sa|pe cale sa|aproape a|aproape am) lesin[a-z]*",
+     "(^| )(cineva|o persoana|un barbat|o femeie|un copil|un baiat|o fata|tatal meu|mama mea|fiul meu|fiica mea|prietenul meu|prietena mea|sotul meu|sotia mea|partenerul meu|partenera mea|bunicul meu|bunica mea|fratele meu|sora mea|colegul meu|colega mea|el|ea|persoana)( [a-z]+){0,1} nu (raspunde|reactioneaza|se misca|isi revine)",
+     "nu (raspunde|reactioneaza) (si nu|nici nu|nu) (respira|se misca|deschide|vorbeste|raspunde|reactioneaza)",
+     "^(?!.*(corp|muschi|metabolism|greutate|dieta|antren|genunchi|brat|picior|telefon|aplicati)).*nu (raspunde|reactioneaza) la nimic",
+     "inconstient",
+     "(pierdut|pierde|pierd|pierdea|piarda)( [a-z]+){0,1} cunostinta",
+     "nu (raspunde|reactioneaza)( [a-z]+){0,1} (dar|insa) respira",
+     "pozitia? laterala de siguranta",
+     "fara cunostinta",
+     "^(?!.*(performant|zahar|glicemi|tensiun|forta|ritm|nivel|greutat|motivati|pret)).*(s a|s au|se) prabus",
+     "(a cazut|s a prabusit|cazut)( la pamant| jos| lat)?( [a-z]+){0,1} (si )?nu (raspunde|reactioneaza|se misca|se ridica|isi revine)"
+    ]
+   }
+  },
+  {
+   "id": "urg-hueso",
+   "es": {
+    "q": "Creo que me he roto un hueso",
+    "r": {
+     "t": "Llame al 112 o vaya a urgencias. Mientras, no apoye peso en la zona ni la mueva, y deje el ejercicio.",
+     "p": [
+      "Si alguien se hace daño grave, no lo mueva: llame al 112 y espere a los equipos de rescate.",
+      "Si sangra mucho, apriete fuerte y directamente sobre la herida.",
+      "Si es otra persona, abríguela con lo que tenga y transmítale calma."
+     ],
+     "c": "Son señales para ir a urgencias o llamar al 112: un crujido al lesionarse, una zona deformada o en un ángulo raro, entumecimiento u hormigueo, o piel azulada, gris o fría."
+    },
+    "f": [
+     "NHS (servicio de salud británico): esguinces y distensiones (cuándo pedir ayuda)",
+     "NHS (servicio de salud británico): esguinces y distensiones (tratamiento)",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): hemorragia grave"
+    ],
+    "v": [
+     "creo que me he roto un hueso",
+     "me he roto el brazo",
+     "fractura qué hacer",
+     "me he caído y no puedo mover la muñeca",
+     "¿será una fractura?",
+     "se me ve el hueso",
+     "oí un crujido al caer",
+     "me he roto la pierna en la montaña",
+     "tengo el tobillo deformado",
+     "hueso roto qué hago",
+     "se me ha salido el hombro"
+    ],
+    "k": [
+     "fractura",
+     "fisura",
+     "luxación",
+     "escayola",
+     "radiografía",
+     "inmovilizar"
+    ],
+    "u": [
+     "(roto|rompi|rompio|partido|parti|partio|fracturado|fracturada|fracture|fracturo)( [a-z]+)? (un hueso|el hueso|hueso|brazo|pierna|tobillo|muneca|clavicula|dedo|costilla|cadera|codo|antebrazo|tibia|perone|femur|nariz|pie|mano)",
+     "huesos? rotos?",
+     "(tengo|tiene|creo que (es|tengo|tiene)|puede ser|me he hecho|se ha hecho) una fractura(?! por estres| de estres| por fatiga)",
+     "(se ve|asoma|sale|se le ve|se me ve|sobresale) (el )?hueso(?! de la cadera| de las caderas| de las costillas)",
+     "(brazo|pierna|tobillo|muneca|dedo|codo|hombro|rodilla) (deformad|en (una )?posicion rara|en (un )?angulo raro|torcido hacia)",
+     "(oi|oido|escuche|note|senti|he oido|he notado|he escuchado|se oyo) un (crujido|crack)",
+     "(dislocad|luxacion|luxado|luxada)",
+     "fractura( [a-z]+)? (que hago|que hacer)",
+     "(caido|caida|cai|cayo|golpe)( [a-z]+){0,4} no (puedo|puede) mover",
+     "(se me|se le|se te) (ha )?salido (el|la) (hombro|codo|rodilla|rotula|dedo|cadera)",
+     "(creo que|parece que|igual|puede que) (tengo|tiene|me he|se ha)( [a-z]+){0,2} (el|la) (hueso|brazo|pierna|tobillo|muneca|clavicula|dedo|costilla|cadera|codo|antebrazo|tibia|perone|femur|nariz|pie|mano) (rot[oa]|partid[oa]|fracturad[oa])"
+    ]
+   },
+   "ro": {
+    "q": "Cred că mi-am rupt un os",
+    "r": {
+     "t": "Sunați la 112 sau mergeți la urgențe. Între timp, nu vă lăsați greutatea pe zona respectivă, nu o mișcați și opriți efortul.",
+     "p": [
+      "Dacă cineva se rănește grav, nu-l mișcați: sunați la 112 și așteptați echipele de salvare.",
+      "Dacă sângerează mult, apăsați tare, direct pe rană.",
+      "Dacă este vorba de altă persoană, înveliți-o cu ce aveți la îndemână și liniștiți-o."
+     ],
+     "c": "Sunt semne că trebuie să mergeți la urgențe sau să sunați la 112: un trosnet în momentul accidentării, o zonă deformată sau într-un unghi ciudat, amorțeală sau furnicături ori piele vineție, cenușie sau rece."
+    },
+    "f": [
+     "NHS (serviciul de sănătate britanic): entorse și întinderi (când să cereți ajutor)",
+     "NHS (serviciul de sănătate britanic): entorse și întinderi (tratament)",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): hemoragia gravă"
+    ],
+    "v": [
+     "mi-am rupt un os",
+     "mi-am rupt brațul",
+     "fractură, ce e de făcut",
+     "am căzut și nu pot mișca încheietura",
+     "o fi fractură?",
+     "mi se vede osul",
+     "am auzit un trosnet când am căzut",
+     "mi-am rupt piciorul pe munte",
+     "am glezna deformată",
+     "os rupt, ce fac",
+     "mi-a ieșit umărul din articulație"
+    ],
+    "k": [
+     "fractură",
+     "fisură",
+     "luxație",
+     "ghips",
+     "radiografie",
+     "imobilizare"
+    ],
+    "u": [
+     "(rupt|rupta|rupti|rupte|frant|franta|fracturat|fracturata|fisurat|fisurata)( [a-z]+){0,1} (un os|osul|os|bratul|piciorul|glezna|incheietura|clavicula|degetul|coasta|o coasta|soldul|cotul|antebratul|tibia|peroneul|femurul|nasul|mana)( |$)",
+     "(bratul|piciorul|glezna|incheietura|clavicula|degetul|coasta|soldul|cotul|antebratul|tibia|femurul|nasul|mana|osul)( [a-z]+){0,1} (rupt|rupta|frant|franta|fracturat|fracturata)( |$)",
+     "(oase|os|osul) (rupt|rupte|franti|frant|fracturat)( |$)",
+     "(am|are|ai|cred ca am|cred ca are|cred ca e|poate fi|mi am facut|si a facut|o fi|e) (o )?fractur(?![a-z]* (de stres|de oboseala|de efort|prin stres))",
+     "(se vede|iese|mi se vede|i se vede|ii iese|imi iese|strapunge)( [a-z]+){0,1} (osul|un os)(?! (soldului|coapsei|coastelor|bazinului|pometilor|claviculei))",
+     "(bratul|piciorul|glezna|incheietura|degetul|cotul|umarul|genunchiul)( [a-z]+){0,1} (deformat|deformata|stramb|stramba|intr un unghi ciudat|intr o pozitie ciudata|indoit invers)",
+     "(am auzit|a auzit|s a auzit|am simtit)( [a-z]+){0,1} (un trosnet|o trosnitura|un crac|crac)( |$)",
+     "(luxat|luxati|dislocat|dislocata)[a-z]*( [a-z]+){0,1} (umarul|cotul|soldul|genunchiul|rotula|degetul|bratul|incheietura)|(umarul|cotul|soldul|rotula|degetul|genunchiul)( [a-z]+){0,1} (luxat|dislocat)|luxati[a-z]* (de|a|la) (umar|cot|sold|genunchi|rotula|deget)",
+     "fractur[a-z]*( [a-z]+){0,1} (ce fac|ce e de facut|ce sa fac)",
+     "(cazut|cazuta|am cazut|a cazut|cad|lovit|lovitura)( [a-z]+){0,4} (si )?nu (pot|poate) (misca|sa misc|sa miste|calca|sa calc|sa calce)",
+     "(mi a|i a|ti a|mi au|i au) iesit( [a-z]+){0,1} (umarul|cotul|genunchiul|rotula|degetul|soldul)"
+    ]
+   }
+  },
+  {
+   "id": "urg-hacerse-dano",
+   "es": {
+    "q": "Pienso en hacerme daño o en quitarme la vida",
+    "r": {
+     "t": "Llame al 112 si corre peligro ahora mismo, o al 024, la línea de atención a la conducta suicida: gratuita, confidencial y abierta las 24 horas, los 365 días.",
+     "p": [
+      "Le atienden profesionales que le escucharán, también por chat y en lengua de signos; pueden llamar también familiares y allegados.",
+      "Si puede, cuénteselo ahora a alguien de confianza.",
+      "Si no habla español, el 112 de Canarias atiende en inglés, alemán, francés e italiano, y traduce a más de 40 idiomas."
+     ],
+     "c": "Si le preocupa otra persona y le ha contado un plan para quitarse la vida, dígale que va a pedir ayuda y llame al 112."
+    },
+    "f": [
+     "Ministerio de Sanidad: Línea 024 de atención a la conducta suicida",
+     "112 Canarias: el servicio de emergencias",
+     "Resuscitation Council UK: guías de primeros auxilios 2025 (adaptación de las del ERC): pensamientos suicidas"
+    ],
+    "v": [
+     "quiero morirme",
+     "pienso en suicidarme",
+     "no quiero seguir viviendo",
+     "tengo ganas de hacerme daño",
+     "ideas de suicidio",
+     "quiero quitarme la vida",
+     "me quiero hacer daño",
+     "estoy pensando en matarme",
+     "teléfono de prevención del suicidio",
+     "a quién llamo si quiero hacerme daño",
+     "un amigo dice que se quiere suicidar"
+    ],
+    "k": [
+     "024",
+     "autolesión",
+     "crisis",
+     "desesperanza",
+     "salud mental",
+     "línea de ayuda"
+    ],
+    "u": [
+     "suicid",
+     "(quitarme|quitarse|quitarte) la vida",
+     "^(?!.*no (quiero|quisiera|deseo|tengo ganas de) (hacerme dano|morir|morirme)).*(quiero|quisiera|pienso en|pensando en|he pensado en|ganas de|tengo ideas de|ideas de|deseo|necesito) (hacerme dano(?! en )|matarme(?! a )|morir(me)?(?![a-z]))(?! de (la |el |los |las |un |una )?(calor|hambre|risa|cansancio|agujetas|sed|sue.o|miedo|ganas|fr.o|pena|verg.enza|aburrimiento|asco|dolor|envidia|gusto|amor|sudor|infarto|viejo|vieja))",
+     "^(?!.*no me quiero (hacer dano|matar|morir)).*me quiero (hacer dano(?! en )|matar(?! a )|morir)(?! de (la |el |los |las |un |una )?(calor|hambre|risa|cansancio|agujetas|sed|sue.o|miedo|ganas|fr.o|pena|verg.enza|aburrimiento|asco|dolor|envidia|gusto|amor|sudor|infarto|viejo|vieja))",
+     "(me voy a (matar(?! a )|morir(?! de (la |el |los |las |un |una )?(calor|hambre|risa|cansancio|agujetas|sed|sue.o|miedo|ganas|fr.o|pena|verg.enza|aburrimiento|asco|dolor|envidia|gusto|amor|sudor|infarto|viejo|vieja)))|voy a matarme(?! a ))",
+     "(quiero|ganas de) desaparecer( para siempre| del mundo| de este mundo|$)",
+     "no (quiero|tengo ganas de) (vivir(?! en )|seguir viviendo|seguir con vida|estar vivo|estar viva)",
+     "autolesi",
+     "(cortarme|me corto|hacerme cortes|me hago cortes) (las venas|los brazos|las munecas|a proposito|aposta)",
+     "(mejor|preferiria estar|estaria mejor) muert",
+     "((acabar|terminar) con mi vida|(quiero|quisiera|voy a|ganas de|pienso en|necesito) (acabar|terminar) con todo(?! (el|la|los|las|lo|mi|mis|tu|su|del|de) ))",
+     "(tirarme|lanzarme|arrojarme) (por la ventana|por el balcon|de un puente|desde un puente|al tren|a las vias|delante de un (tren|coche|camion))"
+    ]
+   },
+   "ro": {
+    "q": "Mă gândesc să-mi fac rău sau să-mi iau viața",
+    "r": {
+     "t": "Sunați la 112 dacă sunteți în pericol chiar acum sau la 024, linia de asistență pentru comportamentul suicidar: gratuită, confidențială și deschisă non-stop, 24 de ore pe zi, 365 de zile pe an.",
+     "p": [
+      "Vă răspund profesioniști care vă vor asculta, inclusiv prin chat și în limbajul semnelor; pot suna și membrii familiei și apropiații.",
+      "Dacă puteți, spuneți-i acum cuiva în care aveți încredere.",
+      "Dacă nu vorbiți spaniolă, la 112 Canarias vi se răspunde în engleză, germană, franceză și italiană, iar cu ajutorul unui interpret, în peste 40 de limbi."
+     ],
+     "c": "Dacă vă îngrijorează o altă persoană și v-a spus că are un plan să-și ia viața, spuneți-i că veți cere ajutor și sunați la 112."
+    },
+    "f": [
+     "Ministerul Sănătății din Spania: Linia 024 de asistență pentru comportamentul suicidar",
+     "112 Canarias: serviciul de urgență",
+     "Resuscitation Council UK: ghidurile de prim ajutor 2025 (adaptarea celor ale ERC): gândurile suicidare"
+    ],
+    "v": [
+     "vreau să mor",
+     "mă gândesc să mă sinucid",
+     "nu mai vreau să trăiesc",
+     "simt nevoia să-mi fac rău",
+     "gânduri de sinucidere",
+     "vreau să-mi iau viața",
+     "vreau să-mi fac rău",
+     "mă gândesc să mă omor",
+     "telefon pentru prevenirea sinuciderii",
+     "pe cine sun dacă vreau să-mi fac rău",
+     "un prieten spune că vrea să se sinucidă"
+    ],
+    "k": [
+     "024",
+     "autovătămare",
+     "criză",
+     "disperare",
+     "sănătate mintală",
+     "linie de ajutor"
+    ],
+    "u": [
+     "sinucid|suicid",
+     "((mi|imi|isi|si|iti|ti) (iau|ia|iei|lua|luat) viata|(mi|imi|isi|si|iti|ti) (pun|pune|puna) capat (zilelor|vietii))",
+     "^(?!.*nu (vreau|as vrea|am de gand|ma gandesc|vreau sa)( sa)? (mi fac rau|imi fac rau|mor|ma omor|ma sinucid)).*(vreau|as vrea|ma gandesc|m am gandit|ma tot gandesc|gandesc|imi vine|simt nevoia|am nevoie|am ganduri|ganduri|vreau doar|planuiesc|o sa|as putea|mi ar placea)( sa)? (mi fac rau|imi fac rau|ma omor|ma sinucid|mor)(?! (la|cu|in|pe|eu) )(?! eu$)(?! (de|din cauza) (foame|sete|ras|cald|caldura|frig|oboseala|frica|plictiseala|rusine|ciuda|dor|nerabdare|somn|febra|pofta|placere|curiozitate|emotie|stres|munca|gripa|alergat|antrenament))",
+     "nu (mai )?(vreau|am chef|am putere|pot|vad rostul)( sa)? (traiesc|mai traiesc|continui sa traiesc|fiu in viata|fiu viu|fiu vie)(?! (in|cu|asa|fara|aici|la) )",
+     "(autovatam|automutil|imi fac rau singur)",
+     "(sa ma tai|ma tai|imi tai|sa imi tai|sa mi tai|m am taiat|mi am taiat)( [a-z]+){0,1} (pe maini|pe brate|venele|la vene|pe incheieturi|incheieturile|intentionat|special|cu lama)",
+     "(mai bine|as prefera sa|as vrea sa)( [a-z]+){0,2} (as fi|eram|fiu|sa fiu) (mort|moarta|morti|murit)",
+     "(vreau|as vrea|ma gandesc|imi vine|o sa)( sa)? (termin|pun capat)( [a-z]+){0,1} (cu viata|vietii|zilelor|cu tot|cu totul)(?! (antrenament|program|plan|exercit|serii|set|rutina|ce |asta|acest|cursul|meniul))",
+     "(sa ma arunc|ma arunc|sa sar|sar)( [a-z]+){0,2} (de pe pod|de pe un pod|de pe bloc|de la etaj|pe geam|pe fereastra|de pe balcon|in fata trenului|in fata unei masini|sub tren|sub masina)",
+     "ganduri (de|despre|cu) (moarte|sinucidere|a muri|a ma omori|autovatamare)",
+     "(vreau|as vrea|imi vine) sa dispar( pentru totdeauna| definitiv| din lume| din lumea asta|$)",
+     "(nu mai are rost|n are rost)( [a-z]+){0,2} (sa traiesc|viata|sa mai traiesc)"
+    ]
+   }
+  }
+ ]
+}
