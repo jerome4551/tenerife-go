@@ -251,9 +251,11 @@ async function elEnvio() {
     constructor(...a) { if (!a.length) super(AHORA); else super(...a); }
     static now() { return AHORA; }
   };
-  const subs = IDIOMAS.map(l => ({ endpoint: 'https://push.prueba.invalid/' + l, p256dh: 'k', auth: 'a', lang: l }))
-    .concat([{ endpoint: 'https://push.prueba.invalid/xx', p256dh: 'k', auth: 'a', lang: 'xx' },
-             { endpoint: 'https://push.prueba.invalid/nulo', p256dh: 'k', auth: 'a', lang: null }]);
+  /* direcciones con el nombre de un servicio de avisos de verdad (el de Google): desde el 20 de noviembre de 2026,
+     el envio no manda nada a las de otro sitio (tools/probar_push_servicios.js). Aqui no sale nada de la maquina. */
+  const subs = IDIOMAS.map(l => ({ endpoint: 'https://fcm.googleapis.com/fcm/send/prueba-' + l, p256dh: 'k', auth: 'a', lang: l }))
+    .concat([{ endpoint: 'https://fcm.googleapis.com/fcm/send/prueba-xx', p256dh: 'k', auth: 'a', lang: 'xx' },
+             { endpoint: 'https://fcm.googleapis.com/fcm/send/prueba-nulo', p256dh: 'k', auth: 'a', lang: null }]);
   global.fetch = async (url) => {
     const u = String(url);
     if (u.includes('push_sends?select')) return { ok: true, status: 200, json: async () => [{ sent_date: '2026-10-19' }] };
@@ -297,7 +299,7 @@ async function muchos() {
     return cargar.call(this, pedido, ...resto);
   };
   const subs = [];
-  for (let i = 0; i < 2345; i++) subs.push({ endpoint: 'https://push.prueba.invalid/m' + String(i).padStart(5, '0'), p256dh: 'k', auth: 'a', lang: IDIOMAS[i % IDIOMAS.length] });
+  for (let i = 0; i < 2345; i++) subs.push({ endpoint: 'https://fcm.googleapis.com/fcm/send/prueba-m' + String(i).padStart(5, '0'), p256dh: 'k', auth: 'a', lang: IDIOMAS[i % IDIOMAS.length] });
   let peticiones = 0;
   global.fetch = async (url) => {
     const u = String(url);
@@ -379,9 +381,9 @@ async function correr(modo, ahora, subs, env) {
   }
   return { enviados, lineas };
 }
-const subsIdiomas = pre => IDIOMAS.map(l => ({ endpoint: 'https://push.prueba.invalid/' + pre + l, p256dh: 'k', auth: 'a', lang: l }))
-  .concat([{ endpoint: 'https://push.prueba.invalid/' + pre + 'xx', p256dh: 'k', auth: 'a', lang: 'xx' },
-           { endpoint: 'https://push.prueba.invalid/' + pre + 'nulo', p256dh: 'k', auth: 'a', lang: null }]);
+const subsIdiomas = pre => IDIOMAS.map(l => ({ endpoint: 'https://fcm.googleapis.com/fcm/send/prueba-' + pre + l, p256dh: 'k', auth: 'a', lang: l }))
+  .concat([{ endpoint: 'https://fcm.googleapis.com/fcm/send/prueba-' + pre + 'xx', p256dh: 'k', auth: 'a', lang: 'xx' },
+           { endpoint: 'https://fcm.googleapis.com/fcm/send/prueba-' + pre + 'nulo', p256dh: 'k', auth: 'a', lang: null }]);
 
 /* Los doce consejos, en su orden, copiados de enviar-notificacion.js a
    proposito: cambiar la lista alli sin mirar aqui lo canta este control. Solo
@@ -482,7 +484,7 @@ async function elSemaforoEnvia() {
   {
     fs.writeFileSync(AV, JSON.stringify({ boletin: '2026-10-30', color: 'amarillo', antes: 'verde' }));
     const subs = [];
-    for (let i = 0; i < 1500; i++) subs.push({ endpoint: 'https://push.prueba.invalid/sm' + String(i).padStart(5, '0'), p256dh: 'k', auth: 'a', lang: IDIOMAS[i % IDIOMAS.length] });
+    for (let i = 0; i < 1500; i++) subs.push({ endpoint: 'https://fcm.googleapis.com/fcm/send/prueba-sm' + String(i).padStart(5, '0'), p256dh: 'k', auth: 'a', lang: IDIOMAS[i % IDIOMAS.length] });
     const { enviados } = await correr(['--semaforo-enviar', AV], '2026-10-30T10:00:00Z', subs, {});
     const unicos = new Set(enviados.map(e => e.endpoint));
     ok2(enviados.length === 1500 && unicos.size === 1500, 'con 1.500 suscripciones, a cada una le llega el aviso una vez', enviados.length + ' envios, ' + unicos.size + ' distintas');

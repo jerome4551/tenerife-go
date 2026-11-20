@@ -248,6 +248,19 @@ async function main() {
   }, 6 * 3600);
 }
 
+/* Los servicios de avisos de los navegadores (20 de noviembre de 2026, prueba de
+   los dos moviles, bloque 5): el de Google (Chrome, Opera para Android y Samsung
+   Internet), el de Mozilla (Firefox), cualquier subdominio de push.apple.com
+   (Safari, tambien en el iPhone: lo pide Apple) y cualquiera de notify.windows.com
+   (Edge en Windows). Es la misma regla que guardar_push_sub() en la base de datos
+   (supabase/push-servicios.sql): una fila de otro sitio no deberia existir, y si
+   existe no se le envia nada. Los dos + anidados no pueden dispararse: cada trozo
+   del nombre acaba en un punto, asi que solo hay una manera de partirlo. */
+const SERVICIO_DE_AVISOS = /^https:\/\/(fcm\.googleapis\.com|updates\.push\.services\.mozilla\.com|([a-z0-9-]+\.)+push\.apple\.com|([a-z0-9-]+\.)+notify\.windows\.com)\//i;
+function servicioReconocido(endpoint) {
+  return typeof endpoint === 'string' && endpoint.length <= 1000 && SERVICIO_DE_AVISOS.test(endpoint);
+}
+
 /* Lee todas las suscripciones y le manda a cada una lo que `componer` diga
    para su idioma: {title, body, url, lang} y, si hace falta, un tag propio. */
 async function enviarATodos(componer, ttl) {
@@ -274,14 +287,18 @@ async function enviarATodos(componer, ttl) {
   const webpush = require('web-push');
   webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC, VAPID_PRIVATE);
 
-  let enviados = 0, fallidos = 0, limpiados = 0;
+  let enviados = 0, fallidos = 0, limpiados = 0, saltados = 0;
 
   for (const s of subs) {
+    if (!servicioReconocido(s.endpoint)) { saltados++; continue; }
     const payload = JSON.stringify(componer(s.lang));
     const subscription = { endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } };
 
     try {
-      await webpush.sendNotification(subscription, payload, { TTL: ttl });
+      /* timeout (la opcion de web-push): si la conexion con el servicio se
+         queda 10 s callada, se corta y se cuenta como fallido; uno que no
+         contesta ya no para el envio de todos los demas. */
+      await webpush.sendNotification(subscription, payload, { TTL: ttl, timeout: 10000 });
       enviados++;
     } catch (err) {
       const code = err && err.statusCode;
@@ -301,7 +318,8 @@ async function enviarATodos(componer, ttl) {
     }
   }
 
-  console.log(`\nResumen -> enviados: ${enviados} | fallidos: ${fallidos} | caducados limpiados: ${limpiados}`);
+  console.log(`\nResumen -> enviados: ${enviados} | fallidos: ${fallidos} | caducados limpiados: ${limpiados}` +
+              ` | de servicios de avisos no reconocidos, sin enviar: ${saltados}`);
 
 }
 

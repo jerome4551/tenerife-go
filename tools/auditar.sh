@@ -171,6 +171,11 @@ echo; echo "════════ la notificacion diaria llega a cada movil e
 # Desde el 21 de octubre de 2026: al cambiar de idioma no se le decia al
 # servidor, y la frase seguia llegando en el idioma con que se activo.
 control probar_notificacion_idioma.js node tools/probar_notificacion_idioma.js "$PUERTO"
+echo; echo "════════ el envio diario, solo a los servicios de avisos de los navegadores y con plazo ════════"
+# Desde el 20 de noviembre de 2026 (prueba de los dos moviles, bloque 5): guardar_push_sub() daba de alta cualquier
+# https:// (supabase/push-servicios.sql lo cierra en la base de datos) y el envio mandaba a todas, sin plazo. Ahora
+# solo a FCM, Mozilla, *.push.apple.com y *.notify.windows.com, con timeout de 10 s, y sin escribir ninguna direccion.
+control probar_push_servicios.js node tools/probar_push_servicios.js
 echo; echo "════════ filas que el codigo pide con tx() y no existen ════════"
 # Desde el 12 de octubre de 2026: tx() devuelve '' sin avisar si falta la fila.
 control auditar_claves_tx.js node tools/auditar_claves_tx.js
