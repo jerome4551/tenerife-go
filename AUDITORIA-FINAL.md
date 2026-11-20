@@ -10599,6 +10599,86 @@ aveți nevoie», que la nota repite de su texto), como en castellano. **Lo que e
 
 **La auditoría entera**: la del apartado anterior, la de los dos lotes juntos, sobre `d984ce6`.
 
+## La prueba de los dos móviles: la red lenta, el «atrás», el panel de guaguas, el mapa sin teselas, cuatro detalles y la firma de Apple (20 de noviembre)
+
+**De dónde sale.** Una prueba de la app con dos móviles (un iPhone con su isla dinámica y su barra de inicio, y un
+Android de 360 px), entregada el 19-11 con su informe, sus pruebas y un parche probado en una copia. Jérôme dijo sí a
+los bloques 1, 2, 3, 4, 7 y 8; el 5 (Supabase: `guardar_push_sub` acepta cualquier dirección https) está explicado y
+espera su sí, y el 6 (el contraste de las cifras de los grupos del mapa) espera su elección con las capturas. Nada de la
+entrega se ha ejecutado: sus pruebas se leyeron y aquí se escribieron las propias, cada una en rojo con el código de
+antes y en verde con el nuevo. Un commit por bloque, en su orden.
+
+**Bloque 1 · la app guardada tardaba 45 s en abrir con una barra de cobertura** (`sw.js`). Lo de «red primero»
+(index.html, titsa.js, los módulos, los JSON de idiomas…) esperaba a la red sin plazo, y la copia solo salía si la red
+fallaba. Ahora, con copia, la red tiene 3 s para traer la respuesta entera; si no, sale la copia y la red sigue por
+detrás y la deja guardada para la vez siguiente. Sin copia (la primera vez), como siempre. `tools/auditar_sw.js`, 9h (el
+ámbito falso) y 12 (Chromium, la app servida en gzip como GitHub Pages): a 100 kbit/s y con la red colgada, la app abre
+con la copia en 3,3 s; con el sw.js de antes, 7 en rojo; con el nuevo, 104 de 104.
+
+**Bloque 2 · el «atrás» de Android sacaba de la app** en 13 de 16 pantallas (en la de Google Play, la cerraba). Cada
+panel del mapa pone su entrada en el historial al abrirse y «atrás» cierra el de arriba con su propia función; se miran
+por su estado (MutationObserver), así da igual por dónde se abran o se cierren; cerrar con el dedo no deja una entrada
+muerta. Y cuando un módulo se cierra con su propio «atrás» y abre a la vez un panel del mapa (en el SOS, tocar un aviso
+de la AEMET abre el panel de los avisos), el panel se queda abierto: la primera versión lo cerraba nada más abrirlo, y
+lo vio `tools/probar_emergencias.js`. `tools/probar_atras.js`: con el index.html de antes, 20 en rojo; con el nuevo, 26
+de 26 (el del SOS, en rojo con la primera versión). Y las pruebas que tocan el historial, enteras y en verde:
+`probar_emergencias.js` (262), `probar_perfil.js` (153), `auditar_isla3d.js` (57) y `auditar_cielo.js` (305);
+`auditar_tour.js`, en la auditoría entera.
+
+**Bloque 3 · el panel de guaguas, tapado.** La «Leyenda», el 🏆, la ⓘ y los enlaces de abajo se pintaban encima (el 🏆
+tapaba el interruptor de una línea), y en el iPhone instalado el panel subía por debajo de la barra de arriba, con su ✕
+sin poder tocarse. `max-height` con 100dvh y las zonas seguras y `z-index` 999: encima de los botones flotantes (de 800
+a 998), debajo de la barra (1000) y de «Paradas cerca» (1100), que se abre desde él (la entrega proponía 1150, que lo
+ponía encima de las dos); su aviso de «compartir», a 1001. `tools/probar_superposiciones.js`: con el index.html de
+antes, 2 en rojo; con el nuevo, 25 de 25.
+
+**Bloque 4 · el mapa gris sin teselas.** Con cobertura mala o el wifi de un hotel sin internet, el móvil dice que hay
+red y las teselas de OSM no llegan: el paso solo a la isla tras seis fallos estaba en `setStyle()`, y la capa del
+arranque entra con `addTo()`. Ahora la del arranque también cuenta sus fallos seguidos y al sexto pasa a la isla; si se
+ha elegido capa a mano, nada. `tools/probar_sin_teselas.js`: con el index.html de antes, 1 en rojo; con el nuevo, 4 de
+4. `tools/auditar_mapa.js` (su bloque 3, «con red se arranca en Calles») abría la app sin teselas: ahora una imagen
+local hace de tesela, como en sus bloques 6, 7 y 9; 137 de 137.
+
+**Bloque 7 · cuatro detalles.** (1) El contador del buscador no se ve con la lista abierta, que ya da la cifra, y vuelve
+al cerrarla con Intro; el campo ya no pinta un aro dorado dentro de la píldora; en las direcciones de la ruta, tampoco,
+y su borde marca el foco en dorado entero. (2) La caja del asistente, por encima de la barra de inicio del iPhone. (3)
+«Abriendo el mapa de la isla…», con el aviso normal y no con el rojo de los errores. (4) Los 25 `alert()` (en el iPhone,
+una ventana del sistema con «tenerifego.app» de título que paraba la app) son ahora `avisoApp()`: no para nada, se va
+solo, se lee con el lector de pantalla (role="status", y role="alert" en los once errores) y va encima de todos los
+paneles. Los textos son los mismos, ya traducidos. `tools/probar_detalles_movil.js`: con el index.html de antes, 11 en
+rojo; con el nuevo, 17 de 17.
+
+**Bloque 8 · la firma de Apple.** `app-store.yml` usaba `ruby/setup-ruby@v1`, una acción de fuera, por su etiqueta:
+ahora va por su commit, el de la v1.342.0 (f9c4492e86def3e644ab32a0ef185eda5b0c20d0, comprobado en el repositorio
+oficial el 20-11), las tres veces. `tools/auditar_seguridad.py`, «flujos de GitHub»: en rojo cualquier acción de fuera
+que no vaya por un commit de 40 cifras; antes, 3; después, 0.
+
+**Y uno que no venía en el informe.** El botón «🚏 Cómo llegar en guagua» de la ficha solo la cerraba:
+`detailSheetHowto()` usaba el id del lugar después de que `closeDetailSheet()` lo borrara. Ahora lo guarda antes.
+`tools/probar_atras.js` pulsa el botón de verdad: con el index.html de antes, 1 en rojo (la ficha se cierra y «Paradas
+cerca» no se abre); con el nuevo, 26 de 26.
+
+**La auditoría entera**, sobre `e3621aa` (árbol `714859d6`): los siete commits de este lote encima de `main`
+(`f658d09`). En `main` es lo mismo, rebasado sobre cinco commits de los robots (de `0980373` a `c934528`: los avisos de
+AEMET, las alertas del Gobierno de Canarias y los terremotos del IGN), que solo cambian `datos/avisos-aemet.json`,
+`datos/alertas-canarias.json` y `datos/sismos-ign.json`, con la misma huella de parche, y con los controles que leen
+esos ficheros, en verde tras el rebase. **«AUDITORIA EN VERDE»**: los 65 bloques de `auditar.sh` (61 y los cuatro nuevos
+de este lote), ningún control en rojo ni roto. Las pruebas de este lote: `auditar_sw.js`, 104 de 104; `probar_atras.js`,
+26 de 26; `probar_superposiciones.js`, 25 de 25; `probar_sin_teselas.js`, 4 de 4; `probar_detalles_movil.js`, 17 de 17;
+`auditar_mapa.js`, 137 de 137; el panel SOS, 42 y 262. Lo demás, en verde: las preguntas de prueba al asistente, 0
+fallos de 298; `auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65; lo que pide Google Play, 249 de 249;
+`auditar_registro.js`, todo de usted (139.917 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_cirilico.py`, 2.345 nombres propios en cirílico y ninguna variante sospechosa; los datos, 975 lugares en todas
+partes (también en el resumen de este documento) y ninguna cifra de lugares que no sea 975 en lo que se lee;
+`probar_organiza.js`, 626 de 626; `auditar_desborde.js`: la etiqueta viewport de las cuatro páginas, las tres cajas de
+copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16 px; `auditar_arranque.js`, los nueve
+idiomas iguales tras `setLang` (16.045 nodos comparados, 0 textos distintos y 0 errores de página);
+`barrido_pantallas.js`, 191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas y cuatro móviles; el cielo, 311; el perfil y los avatares, 74 y 153; «Su cuerpo», 842 y 64; el entrenador, 79
+(los 456 vídeos, enteros, en castellano y en otro idioma: 912 pases y 810.541 cuadros); la isla en 3D, 57 y ninguno en
+rojo; las cifras de idiomas del documento, las de ahora (52 tablas y 3.747 filas; 5.884). `app_preparar.js` montó
+`app/www/` (242 ficheros) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
