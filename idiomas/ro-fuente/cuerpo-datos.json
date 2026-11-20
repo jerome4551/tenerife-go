@@ -4250,6 +4250,1236 @@
     ]
    },
    {
+    "id": "baloncesto",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "En hombres sin entrenar, 3 meses de baloncesto 3 contra 3 en pista entera mejoraron la forma física, la tensión arterial y la grasa corporal (Randers 2018). En aficionados adultos al voleibol, un calentamiento de 15 minutos dejó una tendencia a menos lesiones agudas, sin una diferencia firme (Gouttebarge 2020).",
+      "ro": "La bărbați neantrenați, 3 luni de baschet 3 contra 3 pe teren întreg au îmbunătățit condiția fizică, tensiunea arterială și grăsimea corporală (Randers 2018). La jucători amatori adulți de volei, o încălzire de 15 minute a dus la o tendință de mai puține accidentări acute, fără o diferență clară (Gouttebarge 2020)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "En hombres de 20 a 42 años sin entrenar, el baloncesto 3 contra 3 en pista entera, unas 2 veces por semana durante 3 meses, subió el consumo máximo de oxígeno (de 44,7 a 47,1 ml por kilo y minuto) y bajó la tensión arterial media (de 94,9 a 89,3 mmHg) y la grasa corporal (1,6 puntos), frente a no jugar; en media pista, los efectos fueron menores (Randers 2018).",
+      "ro": "La bărbați neantrenați între 20 și 42 de ani, baschetul 3 contra 3 pe teren întreg, de aproximativ 2 ori pe săptămână timp de 3 luni, a crescut consumul maxim de oxigen (de la 44,7 la 47,1 ml pe kg pe minut) și a scăzut tensiunea arterială medie (de la 94,9 la 89,3 mmHg) și grăsimea corporală (cu 1,6 puncte procentuale), față de a nu juca; pe jumătate de teren, efectele au fost mai mici (Randers 2018)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En 672 aficionados adultos al voleibol, de 73 equipos de los Países Bajos, con un calentamiento de 15 minutos hubo 8,9 lesiones agudas por cada 1.000 horas de voleibol, frente a 11,3 sin él; al tener en cuenta otros factores, la diferencia dejó de ser significativa (Gouttebarge 2020).",
+      "ro": "La 672 de jucători amatori adulți de volei din 73 de echipe din Țările de Jos, cu o încălzire de 15 minute au fost 8,9 accidentări acute la 1.000 de ore de volei, față de 11,3 fără ea; după luarea în calcul a altor factori, diferența nu a mai fost semnificativă (Gouttebarge 2020)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "En el ensayo del baloncesto, unas 2 sesiones por semana de unos 75 minutos (10 de calentamiento y 4 partidos de 12 minutos) durante 3 meses (Randers 2018); en el del voleibol, el calentamiento de 15 minutos antes de entrenar y de jugar, de septiembre a abril (Gouttebarge 2020).",
+      "ro": "În studiul despre baschet, aproximativ 2 ședințe pe săptămână de circa 75 de minute (10 minute de încălzire și 4 meciuri de câte 12 minute) timp de 3 luni (Randers 2018); în cel despre volei, încălzirea de 15 minute înainte de antrenamente și meciuri, din septembrie până în aprilie (Gouttebarge 2020)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Caliente unos 15 minutos antes de entrenar y de jugar, con ejercicios de tronco, rodilla, hombro y tobillo: es el calentamiento del ensayo holandés de voleibol (Gouttebarge 2020).",
+      "ro": "Încălziți-vă aproximativ 15 minute înainte de antrenamente și meciuri, cu exerciții pentru trunchi, genunchi, umeri și glezne: este încălzirea din studiul olandez despre volei (Gouttebarge 2020)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Si ya se ha torcido el tobillo alguna vez, el equilibrio le conviene: en voleibol, la tabla de equilibrio redujo los esguinces solo en quienes ya habían tenido uno. Con una lesión de rodilla previa, cuidado: en esos jugadores aumentaron las lesiones de rodilla por sobrecarga, y los autores creen que puede ser una contraindicación (Verhagen 2004).",
+      "ro": "Dacă v-ați răsucit vreodată glezna, antrenamentul de echilibru vi se potrivește: la volei, antrenamentul pe placa de echilibru a redus entorsele doar la cei care mai avuseseră una. Cu o accidentare anterioară la genunchi, aveți grijă: la acești jucători, accidentările de genunchi din suprasolicitare au crescut, iar autorii cred că poate fi o contraindicație (Verhagen 2004)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       3
+      ],
+      "es": "Según el Compendio de 2024, el baloncesto (7,5 MET) y el vóley playa (8,0 MET, un valor estimado) son actividades intensas, y el voleibol en general (4,0 MET), moderada.",
+      "ro": "Potrivit Compendiului din 2024, baschetul (7,5 MET) și voleiul pe plajă (8,0 MET, o valoare estimată) sunt activități intense, iar voleiul în general (4,0 MET), una moderată."
+     },
+     {
+      "ruta": [
+       "encajar",
+       4
+      ],
+      "es": "Los estudios duraron de 3 a 8 meses, así que en 1–2 semanas de vacaciones no espere cambios: tómelo como mantenimiento (deducción).",
+      "ro": "Studiile au durat între 3 și 8 luni, așa că în 1–2 săptămâni de vacanță nu vă așteptați la schimbări: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En el baloncesto, según una revisión de 11 estudios, el 63,7 % de las lesiones fueron en las piernas; en los profesionales, las más frecuentes, en el tobillo y el pie (24,8 %) (Andreoli 2018). En deportistas noruegos de élite, tenían la rodilla del saltador, una lesión del tendón de la rótula, el 44,6 % de los jugadores de voleibol y el 31,9 % de los de baloncesto (Lian 2005).",
+      "ro": "În baschet, potrivit unei analize a 11 studii, 63,7 % dintre accidentări au fost la picioare; la profesioniști, cele mai frecvente au fost la gleznă și la laba piciorului (24,8 %) (Andreoli 2018). La sportivi norvegieni de elită, „genunchiul săritorului”, o afecțiune a tendonului rotulian, apărea la 44,6 % dintre voleibaliști și la 31,9 % dintre baschetbaliști (Lian 2005)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Tobillo y pie: las lesiones más frecuentes en el baloncesto",
+      "ro": "Gleznă și laba piciorului: cele mai frecvente accidentări în baschet"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Rodilla: la rodilla del saltador, sobre todo en el voleibol y el baloncesto",
+      "ro": "Genunchi: „genunchiul săritorului”, mai ales la volei și la baschet"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite jugar en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați să jucați în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, partidos más cortos y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, meciuri mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Para el deporte con calor, la OMS pide crema de factor 30 o más, sombrero y gafas de sol; el Gobierno de Canarias aconseja factor 50+, también en días nublados.",
+      "ro": "Pentru sportul pe căldură, OMS indică o cremă cu factor de protecție 30 sau mai mare, pălărie și ochelari de soare; Guvernul Insulelor Canare recomandă factor 50+, și în zilele înnorate."
+     },
+     {
+      "ruta": [
+       "isla",
+       3,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que el calentamiento le libre de las lesiones por sobrecarga: en el ensayo del voleibol no las redujo (4,8 % frente a 4,2 %) (Gouttebarge 2020).",
+      "ro": "Că încălzirea vă ferește de accidentările din suprasolicitare: în studiul despre volei nu le-a redus (4,8 % față de 4,2 %) (Gouttebarge 2020)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que evite la rotura del ligamento cruzado: en una revisión de 10 estudios de baloncesto, los programas de prevención redujeron los esguinces de tobillo, pero no esa rotura (Taylor 2015).",
+      "ro": "Că previne ruptura ligamentului încrucișat: într-o analiză a 10 studii despre baschet, programele de prevenție au redus entorsele de gleznă, dar nu și această ruptură (Taylor 2015)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que lo del baloncesto valga igual para mujeres o mayores: el ensayo fue con hombres de 20 a 42 años, durante 3 meses (Randers 2018).",
+      "ro": "Că rezultatele de la baschet sunt la fel de valabile pentru femei sau vârstnici: studiul a fost făcut cu bărbați între 20 și 42 de ani, timp de 3 luni (Randers 2018)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Me he torcido el tobillo: ¿qué hago?",
+      "ro": "Mi-am sucit glezna: ce fac?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Cómo caliento antes de entrenar?",
+      "ro": "Cum mă încălzesc înainte de antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "Me he lesionado: ¿cuándo puedo volver a entrenar?",
+      "ro": "M-am accidentat: când pot reveni la antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cómo trabajo el manguito rotador?",
+      "ro": "Cum lucrez coafa rotatorilor?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Cómo me protejo del sol haciendo deporte?",
+      "ro": "Cum mă protejez de soare când fac sport?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Efectos de 3 meses de baloncesto callejero en pista entera y en media pista en la salud de hombres sin entrenar (Randers et al., J Sport Health Sci 2018)",
+      "ro": "Efectele a 3 luni de baschet stradal pe teren întreg și pe jumătate de teren asupra sănătății bărbaților neantrenați (Randers et al., J Sport Health Sci 2018)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Prevenir lesiones en aficionados adultos al voleibol: resultados de un ensayo controlado aleatorizado (Gouttebarge et al., J Sports Sci 2020)",
+      "ro": "Prevenirea accidentărilor la jucătorii amatori adulți de volei: rezultatele unui studiu controlat randomizat (Gouttebarge et al., J Sports Sci 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "El efecto de un programa de entrenamiento en tabla de equilibrio para prevenir los esguinces de tobillo: ensayo controlado (Verhagen et al., Am J Sports Med 2004)",
+      "ro": "Efectul unui program de antrenament pe placa de echilibru pentru prevenirea entorselor de gleznă: studiu controlat (Verhagen et al., Am J Sports Med 2004)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Epidemiología de las lesiones deportivas en el baloncesto: revisión sistemática integradora (Andreoli et al., BMJ Open Sport Exerc Med 2018)",
+      "ro": "Epidemiologia accidentărilor sportive în baschet: analiză sistematică integrativă (Andreoli et al., BMJ Open Sport Exerc Med 2018)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Prevalencia de la rodilla del saltador en deportistas de élite de distintos deportes: estudio transversal (Lian et al., Am J Sports Med 2005)",
+      "ro": "Prevalența „genunchiului săritorului” la sportivi de elită din diferite sporturi: studiu transversal (Lian et al., Am J Sports Med 2005)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Prevención de las lesiones de las piernas en el baloncesto: revisión sistemática y metaanálisis (Taylor et al., Sports Health 2015)",
+      "ro": "Prevenirea accidentărilor membrelor inferioare în baschet: analiză sistematică și metaanaliză (Taylor et al., Sports Health 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Compendio de actividades físicas de 2024: deportes",
+      "ro": "Compendiul activităților fizice din 2024: sporturi"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       10,
+       "titulo"
+      ],
+      "es": "Sanidad advierte de riesgos para la salud por radiación ultravioleta extrema (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare avertizează asupra riscurilor pentru sănătate ale radiației ultraviolete extreme (Guvernul Insulelor Canare)"
+     },
+     {
+      "ruta": [
+       "f",
+       11,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "futsal",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "En aficionados al fútbol sala, el calentamiento FIFA 11+, 2 veces por semana, dejó 6,5 lesiones por cada 1.000 horas de práctica, frente a 11,6 (Lopes 2020). En hombres jóvenes sin entrenar, 12 semanas de balonmano recreativo mejoraron la forma física y los huesos (Hornstrup 2019).",
+      "ro": "La jucători amatori de futsal, încălzirea FIFA 11+, de 2 ori pe săptămână, a dus la 6,5 accidentări la 1.000 de ore de joc, față de 11,6 (Lopes 2020). La bărbați tineri neantrenați, 12 săptămâni de handbal de agrement au îmbunătățit condiția fizică și oasele (Hornstrup 2019)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "En 71 aficionados al fútbol sala, hombres de 26 a 27 años de media, el FIFA 11+ 2 veces por semana durante 20 semanas dejó 6,5 lesiones por cada 1.000 horas de práctica, frente a 11,6 con su calentamiento de siempre, y menos días de baja (10,5 frente a 20,4 de media) (Lopes 2020).",
+      "ro": "La 71 de jucători amatori de futsal, bărbați cu o vârstă medie între 26 și 27 de ani, FIFA 11+ de 2 ori pe săptămână timp de 20 de săptămâni a dus la 6,5 accidentări la 1.000 de ore de joc, față de 11,6 cu încălzirea lor obișnuită, și la mai puține zile de pauză (10,5 față de 20,4 în medie) (Lopes 2020)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En 26 hombres de 20 a 30 años sin entrenar, el balonmano en grupos reducidos, unas 2 veces por semana durante 12 semanas, subió el consumo máximo de oxígeno un 11 % y la densidad del hueso de la cadera un 2 %, y bajó la masa grasa un 7 %, frente a no entrenar (Hornstrup 2019).",
+      "ro": "La 26 de bărbați neantrenați între 20 și 30 de ani, handbalul în echipe mici, de aproximativ 2 ori pe săptămână timp de 12 săptămâni, a crescut consumul maxim de oxigen cu 11 % și densitatea osoasă a șoldului cu 2 % și a redus masa grasă cu 7 %, față de lipsa antrenamentului (Hornstrup 2019)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "En los ensayos, el FIFA 11+ 2 veces por semana durante 20 semanas (Lopes 2020), y el balonmano, unas 2 sesiones por semana durante 12 semanas (Hornstrup 2019).",
+      "ro": "În studii, FIFA 11+ de 2 ori pe săptămână timp de 20 de săptămâni (Lopes 2020), iar handbalul, aproximativ 2 ședințe pe săptămână timp de 12 săptămâni (Hornstrup 2019)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Haga el FIFA 11+ como calentamiento al menos 2 veces por semana: carrera, plancha, isquiotibiales, equilibrio sobre una pierna, sentadillas y saltos (Lopes 2020; Sadigursky 2017).",
+      "ro": "Faceți FIFA 11+ ca încălzire de cel puțin 2 ori pe săptămână: alergare, planșă, mușchii din spatele coapsei, echilibru pe un picior, genuflexiuni și sărituri (Lopes 2020; Sadigursky 2017)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Si juega al balonmano, sume al calentamiento ejercicios de hombro 3 veces por semana: en 660 jugadores de élite de 16 a 47 años, un programa así dejó problemas de hombro en el 17 %, frente al 23 % sin él (Andersson 2017).",
+      "ro": "Dacă jucați handbal, adăugați la încălzire exerciții pentru umăr de 3 ori pe săptămână: la 660 de jucători de elită între 16 și 47 de ani, cu un astfel de program au avut probleme la umăr 17 %, față de 23 % fără el (Andersson 2017)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       3
+      ],
+      "es": "Según el Compendio de 2024, el fútbol sala (7,8 MET) y el balonmano (12,0 MET) son actividades intensas.",
+      "ro": "Potrivit Compendiului din 2024, futsalul (7,8 MET) și handbalul (12,0 MET) sunt activități intense."
+     },
+     {
+      "ruta": [
+       "encajar",
+       4
+      ],
+      "es": "Los programas duraron de 12 a 20 semanas, así que en 1–2 semanas de vacaciones no espere cambios: tómelo como mantenimiento (deducción).",
+      "ro": "Programele au durat între 12 și 20 de săptămâni, așa că în 1–2 săptămâni de vacanță nu vă așteptați la schimbări: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En el fútbol sala de élite, una revisión de 6 estudios dio 6,8 lesiones por cada 1.000 horas en hombres y 5,3 en mujeres (en los partidos de ellos, 44,9), sobre todo esguinces de tobillo y rodilla y lesiones musculares del muslo (Ruiz-Pérez 2021). En el balonmano de élite, sin programa de prevención, el 23 % de los jugadores tenía problemas de hombro, de media, en la temporada (Andersson 2017).",
+      "ro": "În futsalul de elită, o analiză a 6 studii a găsit 6,8 accidentări la 1.000 de ore la bărbați și 5,3 la femei (44,9 în meciurile bărbaților), mai ales entorse de gleznă și de genunchi și leziuni musculare ale coapsei (Ruiz-Pérez 2021). În handbalul de elită, fără program de prevenție, 23 % dintre jucători au avut în medie probleme la umăr în timpul sezonului (Andersson 2017)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Muslo: lesiones musculares de isquiotibiales, aductores y cuádriceps",
+      "ro": "Coapsă: leziuni musculare ale ischiogambierilor, aductorilor și cvadricepsului"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Tobillo y rodilla: esguinces",
+      "ro": "Gleznă și genunchi: entorse"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Hombro: en el balonmano, por los lanzamientos",
+      "ro": "Umăr: la handbal, din cauza aruncărilor"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite jugar en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați să jucați în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, partidos más cortos y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, meciuri mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que lo del FIFA 11+ valga igual para las mujeres: el ensayo del fútbol sala fue con 71 hombres (Lopes 2020).",
+      "ro": "Că rezultatele FIFA 11+ sunt la fel de valabile pentru femei: studiul despre futsal a fost făcut cu 71 de bărbați (Lopes 2020)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que el balonmano le baje la tensión o el colesterol: en el ensayo no cambiaron (Hornstrup 2019).",
+      "ro": "Că handbalul vă scade tensiunea sau colesterolul: în studiu nu s-au schimbat (Hornstrup 2019)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que el programa de hombro evite los problemas serios: los dejó en el 5 %, frente al 8 %, una diferencia que no fue significativa (Andersson 2017).",
+      "ro": "Că programul pentru umăr previne problemele serioase: cu el, acestea au apărut la 5 %, față de 8 % fără el, o diferență care nu a fost semnificativă (Andersson 2017)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "¿Cómo caliento antes de entrenar?",
+      "ro": "Cum mă încălzesc înainte de antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "Me he torcido el tobillo: ¿qué hago?",
+      "ro": "Mi-am sucit glezna: ce fac?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Por qué trabajar los aductores?",
+      "ro": "De ce să lucrez aductorii?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cómo trabajo el manguito rotador?",
+      "ro": "Cum lucrez coafa rotatorilor?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "Me he lesionado: ¿cuándo puedo volver a entrenar?",
+      "ro": "M-am accidentat: când pot reveni la antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Efectos del FIFA 11+ en la prevención de lesiones en aficionados al fútbol sala (Lopes et al., Scand J Med Sci Sports 2020)",
+      "ro": "Efectele FIFA 11+ asupra prevenirii accidentărilor la jucătorii amatori de futsal (Lopes et al., Scand J Med Sci Sports 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Adaptaciones cardiovasculares, musculares y óseas al balonmano recreativo: ensayo aleatorizado con hombres jóvenes sin entrenar (Hornstrup et al., Eur J Appl Physiol 2019)",
+      "ro": "Adaptările cardiovasculare, musculare și osoase la handbalul de agrement: studiu randomizat cu bărbați tineri neantrenați (Hornstrup et al., Eur J Appl Physiol 2019)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Prevenir las lesiones de hombro por sobrecarga: ensayo con 660 jugadores de balonmano de élite (Andersson et al., Br J Sports Med 2017)",
+      "ro": "Prevenirea accidentărilor de umăr din suprasolicitare: studiu cu 660 de handbaliști de elită (Andersson et al., Br J Sports Med 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Epidemiología de las lesiones en el fútbol sala de élite, masculino y femenino: revisión sistemática y metaanálisis (Ruiz-Pérez et al., Sci Med Footb 2021)",
+      "ro": "Epidemiologia accidentărilor în futsalul de elită masculin și feminin: analiză sistematică și metaanaliză (Ruiz-Pérez et al., Sci Med Footb 2021)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "El programa FIFA 11+ de prevención de lesiones en futbolistas: revisión sistemática (Sadigursky et al., BMC Sports Sci Med Rehabil 2017)",
+      "ro": "Programul FIFA 11+ de prevenire a accidentărilor la fotbaliști: analiză sistematică (Sadigursky et al., BMC Sports Sci Med Rehabil 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Compendio de actividades físicas de 2024: deportes",
+      "ro": "Compendiul activităților fizice din 2024: sporturi"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "squash",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "En 80.306 adultos británicos, jugar al bádminton, al tenis o al squash se asoció a un 47 % menos de mortalidad por cualquier causa; es un estudio de observación, que no prueba la causa (Oja 2017). En hombres de 65 años o más, 6 meses de tenis de mesa mejoraron los huesos, la grasa corporal y la forma física (Naderi 2021).",
+      "ro": "La 80.306 adulți britanici, jocul de badminton, tenis sau squash s-a asociat cu o mortalitate din orice cauză cu 47 % mai mică; este un studiu observațional, care nu dovedește cauza (Oja 2017). La bărbați de 65 de ani sau mai mult, 6 luni de tenis de masă au îmbunătățit oasele, grăsimea corporală și condiția fizică (Naderi 2021)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "En 80.306 adultos de 30 a 98 años de Inglaterra y Escocia, seguidos unos 9 años, haber jugado al bádminton, al tenis o al squash en las 4 semanas anteriores se asoció a un 47 % menos de muertes por cualquier causa y a un 56 % menos por enfermedad cardiovascular, frente a no jugar (Oja 2017).",
+      "ro": "La 80.306 adulți între 30 și 98 de ani din Anglia și Scoția, urmăriți circa 9 ani, faptul de a fi jucat badminton, tenis sau squash în cele 4 săptămâni anterioare s-a asociat cu 47 % mai puține decese din orice cauză și cu 56 % mai puține din boli cardiovasculare, față de a nu juca (Oja 2017)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En 40 hombres de 65 años o más, el tenis de mesa, de 3 a 5 sesiones de 90 minutos por semana durante 6 meses, redujo la masa grasa un 17,6 %, aumentó la densidad de los huesos un 8,7 % y mejoró la marcha y el equilibrio, frente a seguir como siempre (Naderi 2021).",
+      "ro": "La 40 de bărbați de 65 de ani sau mai mult, tenisul de masă, între 3 și 5 ședințe de 90 de minute pe săptămână timp de 6 luni, a redus masa grasă cu 17,6 %, a crescut densitatea osoasă cu 8,7 % și a îmbunătățit mersul și echilibrul, față de continuarea vieții obișnuite (Naderi 2021)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "En el estudio británico contaba haber jugado en las 4 semanas anteriores, en sesiones de al menos 15 minutos (Oja 2017); en el ensayo del tenis de mesa, de 3 a 5 sesiones de 90 minutos por semana durante 6 meses (Naderi 2021).",
+      "ro": "În studiul britanic conta să fi jucat în cele 4 săptămâni anterioare, în ședințe de cel puțin 15 minute (Oja 2017); în studiul despre tenisul de masă, între 3 și 5 ședințe de 90 de minute pe săptămână timp de 6 luni (Naderi 2021)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "En el squash y el bádminton, use gafas de protección homologadas (norma ASTM o similar): las graduadas y las lentillas no protegieron, y a veces agravaron la lesión; en el squash, tampoco las protecciones sin cristal (Mazarelo 2024).",
+      "ro": "La squash și badminton, purtați ochelari de protecție omologați (standardul ASTM sau similar): ochelarii de vedere și lentilele de contact nu au protejat și uneori au agravat leziunea; la squash, nici protecțiile fără lentile (Mazarelo 2024)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Si nota dolor en el pecho u otro síntoma raro al jugar, pare y consulte: de 60 muertes súbitas asociadas al squash, 45 personas habían tenido síntomas antes, sobre todo dolor en el pecho (Northcote 1986).",
+      "ro": "Dacă simțiți durere în piept sau alt simptom neobișnuit în timpul jocului, opriți-vă și cereți sfatul unui medic: din 60 de decese subite asociate cu squashul, 45 de persoane avuseseră simptome înainte, mai ales durere în piept (Northcote 1986)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       3
+      ],
+      "es": "Según el Compendio de 2024, el squash (7,3 MET) es intenso, y el bádminton social (5,5 MET) y el tenis de mesa (4,0 MET), moderados.",
+      "ro": "Potrivit Compendiului din 2024, squashul (7,3 MET) este intens, iar badmintonul de agrement (5,5 MET) și tenisul de masă (4,0 MET), moderate."
+     },
+     {
+      "ruta": [
+       "encajar",
+       4
+      ],
+      "es": "El ensayo del tenis de mesa duró 6 meses, así que en 1–2 semanas de vacaciones no espere cambios: tómelo como mantenimiento (deducción).",
+      "ro": "Studiul despre tenisul de masă a durat 6 luni, așa că în 1–2 săptămâni de vacanță nu vă așteptați la schimbări: considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En el bádminton, una revisión de 19 estudios halló sobre todo de 1 a 4 lesiones por cada 1.000 horas, en su mayoría leves o moderadas, y entre un 25 % y un 74 % por sobrecarga (Stepper 2025). En los deportes de raqueta, el 93 % de las lesiones de ojo (la mediana de los estudios) fueron sin gafas protectoras (Mazarelo 2024).",
+      "ro": "În badminton, o analiză a 19 studii a găsit mai ales între 1 și 4 accidentări la 1.000 de ore, în majoritate ușoare sau moderate, dintre care între 25 % și 74 % din suprasolicitare (Stepper 2025). În sporturile cu rachetă, 93 % dintre leziunile oculare (mediana studiilor) s-au produs fără ochelari de protecție (Mazarelo 2024)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Piernas: del 41 % al 92 % de las lesiones del bádminton, según el estudio",
+      "ro": "Picioare: între 41 % și 92 % dintre accidentările de badminton, în funcție de studiu"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Tendón de Aquiles: su rotura, entre las lesiones comunes del bádminton",
+      "ro": "Tendonul lui Ahile: ruptura lui, printre accidentările frecvente de badminton"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Ojos: los golpean la pelota, el volante o la raqueta",
+      "ro": "Ochi: loviți de minge, de fluturaș sau de rachetă"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite jugar en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați să jucați în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, partidos más cortos y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, meciuri mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que el squash o el bádminton le hagan vivir más: el estudio es de observación, y los autores no descartan que influyan otros factores (Oja 2017).",
+      "ro": "Că squashul sau badmintonul vă vor face să trăiți mai mult: studiul este observațional, iar autorii nu exclud influența altor factori (Oja 2017)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que lo del estudio británico valga para el tenis de mesa: solo incluyó el bádminton, el tenis y el squash (Oja 2017).",
+      "ro": "Că rezultatele studiului britanic sunt valabile pentru tenisul de masă: a inclus doar badmintonul, tenisul și squashul (Oja 2017)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que el tenis de mesa sirva igual a mujeres o jóvenes: el ensayo fue con 40 hombres de 65 años o más (Naderi 2021).",
+      "ro": "Că tenisul de masă ajută la fel femeile sau tinerii: studiul a fost făcut cu 40 de bărbați de 65 de ani sau mai mult (Naderi 2021)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Me duele el pecho haciendo ejercicio",
+      "ro": "Mă doare pieptul când fac exerciții fizice"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "¿Tengo que ir al médico antes de empezar a hacer ejercicio?",
+      "ro": "Trebuie să merg la medic înainte de a începe să fac exerciții?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿Cómo caliento antes de entrenar?",
+      "ro": "Cum mă încălzesc înainte de antrenament?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "Me he torcido el tobillo: ¿qué hago?",
+      "ro": "Mi-am sucit glezna: ce fac?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Cómo trabajo el manguito rotador?",
+      "ro": "Cum lucrez coafa rotatorilor?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Asociación de distintos deportes y ejercicios con la mortalidad general y cardiovascular: cohorte de 80.306 adultos británicos (Oja et al., Br J Sports Med 2017)",
+      "ro": "Asocierile diferitelor tipuri de sport și exerciții cu mortalitatea generală și cardiovasculară: cohortă de 80.306 adulți britanici (Oja et al., Br J Sports Med 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Seis meses de tenis de mesa en hombres mayores sin entrenar: composición corporal, huesos y rendimiento físico (Naderi et al., Sci Sports 2021)",
+      "ro": "Șase luni de tenis de masă la bărbați vârstnici neantrenați: compoziția corporală, oasele și performanța fizică (Naderi et al., Sci Sports 2021)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Revisión sistemática de las lesiones del bádminton: incidencia, características y factores de riesgo (Stepper et al., BMJ Open Sport Exerc Med 2025)",
+      "ro": "Analiză sistematică a accidentărilor de badminton: incidență, caracteristici și factori de risc (Stepper et al., BMJ Open Sport Exerc Med 2025)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Revisión sistemática de la eficacia de las gafas para reducir las lesiones de ojo en los deportes de raqueta (Mazarelo et al., Phys Sportsmed 2024)",
+      "ro": "Analiză sistematică a eficacității ochelarilor în reducerea leziunilor oculare în sporturile cu rachetă (Mazarelo et al., Phys Sportsmed 2024)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Muerte súbita y ejercicio intenso: estudio de 60 muertes asociadas al squash (Northcote et al., Br Heart J 1986)",
+      "ro": "Moartea subită și efortul intens: studiu a 60 de decese asociate cu squashul (Northcote et al., Br Heart J 1986)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Compendio de actividades físicas de 2024: deportes",
+      "ro": "Compendiul activităților fizice din 2024: sporturi"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
+    "id": "baile",
+    "textos": [
+     {
+      "ruta": [
+       "t"
+      ],
+      "es": "En adultos de 18 a 65 años, la Zumba mejoró la capacidad aeróbica (Vendramin 2016). En mayores sanos de 65 años o más, las actividades de baile y de movimiento con música (la más estudiada, el tai chi) redujeron un 37 % el riesgo de caerse (Mattle 2020).",
+      "ro": "La adulți între 18 și 65 de ani, Zumba a îmbunătățit capacitatea aerobă (Vendramin 2016). La persoane sănătoase de 65 de ani sau mai mult, activitățile de dans și de mișcare pe muzică (cea mai studiată, tai chi) au redus cu 37 % riscul de cădere (Mattle 2020)."
+     },
+     {
+      "ruta": [
+       "p",
+       0
+      ],
+      "es": "Una revisión de 11 estudios con 586 adultos de 18 a 65 años: la Zumba mejoró la capacidad aeróbica; en la fuerza y la flexibilidad, las pruebas fueron escasas, y en el peso, los beneficios, pequeños (Vendramin 2016).",
+      "ro": "O analiză a 11 studii cu 586 de adulți între 18 și 65 de ani: Zumba a îmbunătățit capacitatea aerobă; pentru forță și flexibilitate dovezile au fost puține, iar pentru greutate beneficiile, mici (Vendramin 2016)."
+     },
+     {
+      "ruta": [
+       "p",
+       1
+      ],
+      "es": "En 29 ensayos con mayores sanos de 65 años o más, las actividades de baile y de movimiento con música (tai chi, danzas folclóricas, baile de salón o aeróbic suave, entre otras) redujeron un 37 % el riesgo de caerse y un 31 % el número de caídas, y mejoraron el equilibrio, la movilidad y la fuerza de las piernas (Mattle 2020).",
+      "ro": "În 29 de studii cu persoane sănătoase de 65 de ani sau mai mult, activitățile de dans și de mișcare pe muzică (tai chi, dansuri populare, dans de societate sau aerobic ușor, printre altele) au redus cu 37 % riscul de cădere și cu 31 % numărul de căderi și au îmbunătățit echilibrul, mobilitatea și forța picioarelor (Mattle 2020)."
+     },
+     {
+      "ruta": [
+       "dosis"
+      ],
+      "es": "En los ensayos con mayores, de 1 a 4 sesiones por semana, de 35 a 120 minutos, durante 6 semanas a 12 meses (Mattle 2020).",
+      "ro": "În studiile cu vârstnici, între 1 și 4 ședințe pe săptămână, de 35 până la 120 de minute, timp de 6 săptămâni până la 12 luni (Mattle 2020)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       0
+      ],
+      "es": "La base es la general: en adultos, fuerza al menos 2 días por semana con todos los grandes grupos (ACSM 2026).",
+      "ro": "Baza este cea generală: la adulți, forță cel puțin 2 zile pe săptămână, pentru toate grupele mari (ACSM 2026)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       1
+      ],
+      "es": "Según el Compendio de 2024, la Zumba en grupo (6,5 MET) es intensa, y la salsa en pareja (4,8 MET), moderada; el baile de salón lento (3,0 MET) está en el límite de lo moderado.",
+      "ro": "Potrivit Compendiului din 2024, o oră de Zumba în grup (6,5 MET) este intensă, iar salsa în pereche (4,8 MET), moderată; dansul de societate lent (3,0 MET) este la limita moderatului."
+     },
+     {
+      "ruta": [
+       "encajar",
+       2
+      ],
+      "es": "Empiece con pocas clases por semana y súbalas poco a poco: en una encuesta en Hawái, cada clase semanal más se asoció a 3,6 veces más probabilidades de haberse lesionado (Inouye 2013).",
+      "ro": "Începeți cu puține cursuri pe săptămână și creșteți treptat: într-un sondaj din Hawaii, fiecare curs săptămânal în plus s-a asociat cu șanse de 3,6 ori mai mari de a se fi accidentat (Inouye 2013)."
+     },
+     {
+      "ruta": [
+       "encajar",
+       3
+      ],
+      "es": "Los ensayos duraron de 6 semanas a 12 meses: en 1–2 semanas de vacaciones, tómelo como mantenimiento (deducción).",
+      "ro": "Studiile au durat între 6 săptămâni și 12 luni: în 1–2 săptămâni de vacanță, considerați-o întreținere (deducție)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "t"
+      ],
+      "es": "En 138 mujeres que bailaban Zumba en grupo, hubo 3,9 lesiones por cada 1.000 horas en las alumnas y 5,7 en las monitoras; los autores lo consideran un riesgo bajo (Domene 2017). En una encuesta en Hawái, 14 de 49 alumnos se habían lesionado alguna vez en sus clases (Inouye 2013).",
+      "ro": "La 138 de femei care făceau Zumba în grup au fost 3,9 accidentări la 1.000 de ore la cursante și 5,7 la instructoare; autorii consideră riscul scăzut (Domene 2017). Într-un sondaj din Hawaii, 14 din 49 de cursanți se accidentaseră cândva la cursuri (Inouye 2013)."
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       0
+      ],
+      "es": "Rodilla: el 42 % de las lesiones de la encuesta de Hawái",
+      "ro": "Genunchi: 42 % dintre accidentările din sondajul din Hawaii"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       1
+      ],
+      "es": "Tobillo y pie: el 14 %",
+      "ro": "Gleznă și laba piciorului: 14 %"
+     },
+     {
+      "ruta": [
+       "lesiones",
+       "zonas",
+       2
+      ],
+      "es": "Hombro: el 14 %",
+      "ro": "Umăr: 14 %"
+     },
+     {
+      "ruta": [
+       "isla",
+       0,
+       "t"
+      ],
+      "es": "Con calor, evite el ejercicio en las horas centrales del día y beba agua a menudo, aunque no tenga sed.",
+      "ro": "Când e cald, evitați exercițiile în orele de la mijlocul zilei și beți apă des, chiar dacă nu vă e sete."
+     },
+     {
+      "ruta": [
+       "isla",
+       1,
+       "t"
+      ],
+      "es": "Si llega de un clima más fresco, aclimatarse al calor lleva de 1 a 2 semanas (Racinais 2015): los primeros días, sesiones más cortas y suaves.",
+      "ro": "Dacă veniți dintr-un climat mai răcoros, aclimatizarea la căldură durează 1–2 săptămâni (Racinais 2015): în primele zile, ședințe mai scurte și mai ușoare."
+     },
+     {
+      "ruta": [
+       "isla",
+       2,
+       "t"
+      ],
+      "es": "Con calima, Sanidad de Canarias pide no hacer ejercicio físico al aire libre, sobre todo a niños, mayores y personas con enfermedades respiratorias o del corazón.",
+      "ro": "Când e praf din Sahara (calima), autoritățile sanitare din Insulele Canare cer să nu se facă exerciții fizice în aer liber, mai ales de către copii, vârstnici și persoanele cu boli respiratorii sau de inimă."
+     },
+     {
+      "ruta": [
+       "no",
+       0
+      ],
+      "es": "Que sea solo cosa del baile: en la revisión de las caídas, la actividad más estudiada fue el tai chi (Mattle 2020).",
+      "ro": "Că totul se datorează dansului: în analiza despre căderi, activitatea cea mai studiată a fost tai chi (Mattle 2020)."
+     },
+     {
+      "ruta": [
+       "no",
+       1
+      ],
+      "es": "Que la Zumba le dé fuerza o flexibilidad: las pruebas son escasas (Vendramin 2016).",
+      "ro": "Că Zumba vă dă forță sau flexibilitate: dovezile sunt puține (Vendramin 2016)."
+     },
+     {
+      "ruta": [
+       "no",
+       2
+      ],
+      "es": "Que adelgace mucho: en la revisión de la Zumba, los beneficios en el peso fueron pequeños (Vendramin 2016).",
+      "ro": "Că veți slăbi mult: în analiza despre Zumba, beneficiile pentru greutate au fost mici (Vendramin 2016)."
+     },
+     {
+      "ruta": [
+       "qs",
+       0,
+       1
+      ],
+      "es": "Nunca he entrenado: ¿por dónde empiezo?",
+      "ro": "Nu m-am antrenat niciodată: de unde încep?"
+     },
+     {
+      "ruta": [
+       "qs",
+       1,
+       1
+      ],
+      "es": "Tengo más de 65 años: ¿qué ejercicio me conviene?",
+      "ro": "Am peste 65 de ani: ce exerciții mi se potrivesc?"
+     },
+     {
+      "ruta": [
+       "qs",
+       2,
+       1
+      ],
+      "es": "¿El ejercicio ayuda a prevenir caídas?",
+      "ro": "Exercițiile fizice ajută la prevenirea căderilor?"
+     },
+     {
+      "ruta": [
+       "qs",
+       3,
+       1
+      ],
+      "es": "¿Cómo sé si un ejercicio es moderado o intenso?",
+      "ro": "Cum îmi dau seama dacă un exercițiu este moderat sau intens?"
+     },
+     {
+      "ruta": [
+       "qs",
+       4,
+       1
+      ],
+      "es": "¿Cómo distingo unas agujetas de una lesión?",
+      "ro": "Cum deosebesc febra musculară de o accidentare?"
+     },
+     {
+      "ruta": [
+       "qs",
+       5,
+       1
+      ],
+      "es": "¿Puedo entrenar con calor?",
+      "ro": "Pot să mă antrenez pe căldură?"
+     },
+     {
+      "ruta": [
+       "f",
+       0,
+       "titulo"
+      ],
+      "es": "Beneficios para la salud del entrenamiento con Zumba: revisión sistemática (Vendramin et al., PM R 2016)",
+      "ro": "Beneficiile pentru sănătate ale antrenamentului de Zumba: analiză sistematică (Vendramin et al., PM R 2016)"
+     },
+     {
+      "ruta": [
+       "f",
+       1,
+       "titulo"
+      ],
+      "es": "Actividades de baile y movimiento, caídas y función física en mayores sanos: revisión sistemática y metaanálisis (Mattle et al., JAMA Netw Open 2020)",
+      "ro": "Activitățile de dans și de mișcare, căderile și funcția fizică la vârstnicii sănătoși: analiză sistematică și metaanaliză (Mattle et al., JAMA Netw Open 2020)"
+     },
+     {
+      "ruta": [
+       "f",
+       2,
+       "titulo"
+      ],
+      "es": "Vigilancia de las lesiones en mujeres adultas que bailan Zumba (Domene et al., J Sports Med Phys Fitness 2017)",
+      "ro": "Monitorizarea accidentărilor la femeile adulte care dansează Zumba (Domene et al., J Sports Med Phys Fitness 2017)"
+     },
+     {
+      "ruta": [
+       "f",
+       3,
+       "titulo"
+      ],
+      "es": "Encuesta sobre las lesiones musculoesqueléticas asociadas a la Zumba (Inouye et al., Hawaii J Med Public Health 2013)",
+      "ro": "Sondaj despre accidentările musculo-scheletice asociate cu Zumba (Inouye et al., Hawaii J Med Public Health 2013)"
+     },
+     {
+      "ruta": [
+       "f",
+       4,
+       "titulo"
+      ],
+      "es": "Compendio de actividades físicas de 2024: ejercicio de acondicionamiento (aeróbic y Zumba)",
+      "ro": "Compendiul activităților fizice din 2024: exerciții de condiție fizică (aerobic și Zumba)"
+     },
+     {
+      "ruta": [
+       "f",
+       5,
+       "titulo"
+      ],
+      "es": "Compendio de actividades físicas de 2024: baile",
+      "ro": "Compendiul activităților fizice din 2024: dans"
+     },
+     {
+      "ruta": [
+       "f",
+       6,
+       "titulo"
+      ],
+      "es": "Cinco claves para un plan eficaz de entrenamiento de fuerza: infografía de la postura del ACSM de 2026",
+      "ro": "Cinci chei pentru un plan eficient de antrenament de forță: infografia declarației de poziție a ACSM din 2026"
+     },
+     {
+      "ruta": [
+       "f",
+       7,
+       "titulo"
+      ],
+      "es": "Manténgase fresco con el calor y disfrute de un verano deportivo (OMS/Europa)",
+      "ro": "Rămâneți la răcoare pe caniculă și bucurați-vă de o vară sportivă (OMS/Europa)"
+     },
+     {
+      "ruta": [
+       "f",
+       8,
+       "titulo"
+      ],
+      "es": "Recomendaciones de consenso para entrenar y competir con calor (Racinais et al., Br J Sports Med 2015)",
+      "ro": "Recomandări de consens pentru antrenament și competiție pe căldură (Racinais et al., Br J Sports Med 2015)"
+     },
+     {
+      "ruta": [
+       "f",
+       9,
+       "titulo"
+      ],
+      "es": "Sanidad recomienda a las personas más sensibles tomar precauciones ante la calima (Gobierno de Canarias)",
+      "ro": "Autoritățile sanitare le recomandă persoanelor celor mai sensibile să ia măsuri de precauție la praful din Sahara (Guvernul Insulelor Canare)"
+     }
+    ]
+   },
+   {
     "id": "otro",
     "textos": [
      {

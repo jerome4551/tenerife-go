@@ -84,6 +84,10 @@
  *   - y, desde ese mismo día (bloque 3a), «Escalada», «Yoga y Pilates» y «Entrenamiento funcional» en «Su deporte», el
  *     desplegable por grupos y «Entrenamiento funcional» en la hoja del movimiento: en los 11 idiomas (sin navegador)
  *     y en la pantalla, en cuatro idiomas y a 320 px (46).
+ *   - y, desde ese mismo día (bloque 3b), «Baloncesto y voleibol», «Fútbol sala y balonmano», «Squash, bádminton y
+ *     tenis de mesa» y «Baile y Zumba» en «Su deporte», el grupo «Deportes de equipo» del desplegable y sus cuatro
+ *     entradas en la hoja del movimiento: en los 11 idiomas (sin navegador) y en la pantalla, en cuatro idiomas y a
+ *     320 px (47).
  * Sin red de fuera, sin service worker, a 390 x 844.
  */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
@@ -1812,8 +1816,8 @@ async function ejemplo(pg, mas) {
       estado: JSON.stringify(history.state)
     }));
     prueba('«Anotar movimiento» abre su página de la hoja, con el foco en el título y su entrada en el historial', h23.abierta && h23.etiqueta === 'tgc-mov-tit' && h23.foco === 'tgc-mov-tit' && h23.inerte && h23.estado === '{"tgPerfil":1,"tgCuerpo":1,"tgCuerpoHoja":1,"tgCuerpoMov":1}', JSON.stringify(h23));
-    prueba('la hoja: el título, la frase, los dieciséis deportes con su icono (Caminar elegido; desde el bloque 7, la bici con los de tierra y los del mar juntos), 30 min, 2,5 km, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
-      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,bici:false:Bici:1,nadar:false:Nadar:1,kayak:false:Kayak:1,sup:false:Pádel surf:1,surf:false:Surf:1,windsurf:false:Windsurf y kitesurf:1,buceo:false:Buceo:1,golf:false:Golf:1,padel:false:Pádel:1,escalada:false:Escalada:1,combate:false:Deportes de combate:1,funcional:false:Entrenamiento funcional:1,otro:false:Otro deporte:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.kmL === 'Kilómetros' && h23.hoy === 'true'
+    prueba('la hoja: el título, la frase, los veinte deportes con su icono (Caminar elegido; desde el bloque 7, la bici con los de tierra y los del mar juntos), 30 min, 2,5 km, hoy, y el botón dice lo que va a anotar', h23.tit === 'Anotar movimiento' && /lo que haga en la isla cuenta/.test(h23.lema)
+      && h23.tipos === 'caminar:true:Caminar:1,senderismo:false:Senderismo:1,correr:false:Correr:1,bici:false:Bici:1,nadar:false:Nadar:1,kayak:false:Kayak:1,sup:false:Pádel surf:1,surf:false:Surf:1,windsurf:false:Windsurf y kitesurf:1,buceo:false:Buceo:1,golf:false:Golf:1,padel:false:Pádel:1,escalada:false:Escalada:1,combate:false:Deportes de combate:1,funcional:false:Entrenamiento funcional:1,baloncesto:false:Baloncesto y voleibol:1,futsal:false:Fútbol sala y balonmano:1,squash:false:Squash, bádminton y tenis de mesa:1,baile:false:Baile y Zumba:1,otro:false:Otro deporte:1' && h23.min === '30' && h23.km === '2,5' && !h23.kmFila && h23.kmL === 'Kilómetros' && h23.hoy === 'true'
       && h23.boton === 'Anotar 30 min y 2,5 km' && /GR 131/.test(h23.nota), JSON.stringify(h23));   /* desde el bloque 5, la nota de a pie habla del GR 131 */
     prueba('lo último anotado: las tres, de hoy hacia atrás, con el tipo, los minutos y la distancia (a nado, en metros desde el bloque 7)', h23.hist === 'Caminar · 35 min y 3 km | Senderismo · 150 min y 9,5 km | Nadar · 30 min y 1000 m', h23.hist);
     await p23.click('#tgc-mov-tipos .tgc-tipo[data-tipo="nadar"]'); await p23.waitForTimeout(60);
@@ -2543,18 +2547,18 @@ async function ejemplo(pg, mas) {
     /* la hoja: «Su deporte» (buceo) propone el buceo; cada deporte, sus campos y su intensidad */
     await p26.click('#tgc-mov-btn'); await p26.waitForTimeout(350);
     const hb = await hoja26(p26);
-    prueba('la hoja: dieciséis deportes con su icono; con «Su deporte» en el buceo, propone el buceo: 45 min, intensa, sin distancia ni desnivel, la nota de la DAN y «Anotar 45 min»', hb.n === 16 && hb.iconos && hb.sel === 'buceo' && hb.min === '45' && hb.km === null && hb.des === null && hb.int === 'v'
+    prueba('la hoja: veinte deportes con su icono; con «Su deporte» en el buceo, propone el buceo: 45 min, intensa, sin distancia ni desnivel, la nota de la DAN y «Anotar 45 min»', hb.n === 20 && hb.iconos && hb.sel === 'buceo' && hb.min === '45' && hb.km === null && hb.des === null && hb.int === 'v'
       && hb.nota === 'Antes de volar, la DAN aconseja esperar al menos 12 horas tras una inmersión, y 18 tras varias en un día o en varios días de buceo.' && hb.boton === 'Anotar 45 min', JSON.stringify(hb));
     prueba('la intensidad: «Moderada» e «Intensa», con la prueba del habla y, para un adulto, que cada minuto intenso cuenta por dos (OMS)', hb.intL === 'Intensidad' && hb.intM === 'Moderada' && hb.intV === 'Intensa'
       && hb.ayuda === 'Moderada: puede hablar, pero no cantar. Intensa: no puede decir más de unas palabras sin parar a respirar. Para su meta, cada minuto intenso cuenta por dos (OMS).', JSON.stringify([hb.intL, hb.intM, hb.intV, hb.ayuda]));
     const cada = [];
-    for (const t of ['caminar', 'senderismo', 'correr', 'bici', 'nadar', 'kayak', 'sup', 'surf', 'windsurf', 'buceo', 'golf', 'padel', 'escalada', 'combate', 'funcional', 'otro']) {
+    for (const t of ['caminar', 'senderismo', 'correr', 'bici', 'nadar', 'kayak', 'sup', 'surf', 'windsurf', 'buceo', 'golf', 'padel', 'escalada', 'combate', 'funcional', 'baloncesto', 'futsal', 'squash', 'baile', 'otro']) {
       await p26.click('#tgc-mov-tipos .tgc-tipo[data-tipo="' + t + '"]'); await p26.waitForTimeout(40);
       const h = await hoja26(p26); cada.push([h.sel, h.min, h.km === null ? '-' : h.kmL + ' ' + h.km, h.des === null ? '-' : h.des, h.int, h.nota].join(':'));
     }
     const PIE = 'Los kilómetros a pie avanzan su travesía del GR 131.', ELIGE = 'Su distancia no cuenta para el GR 131, salvo que lo elija en «Cruce la isla».', AGUA = 'Suma minutos y distancia a su semana. Por el agua se rodea la isla, no se cruza: su distancia no cuenta para el GR 131.', MIN = 'Suma minutos a su semana.', DAN = hb.nota;
     const ESPERADO = ['caminar:30:Kilómetros 2,5:-:m:' + PIE, 'senderismo:120:Kilómetros 8:0:v:' + PIE, 'correr:30:Kilómetros 5:0:v:' + PIE, 'bici:60:Kilómetros 0:-:v:' + ELIGE, 'nadar:30:Metros 0:-:v:' + AGUA,
-      'kayak:60:Kilómetros 0:-:m:' + AGUA, 'sup:60:-:-:v:' + MIN, 'surf:90:-:-:m:' + MIN, 'windsurf:90:-:-:m:' + MIN, 'buceo:45:-:-:v:' + DAN, 'golf:240:-:-:m:' + MIN, 'padel:90:-:-:m:' + MIN, 'escalada:120:-:-:v:' + MIN, 'combate:60:-:-:v:' + MIN, 'funcional:60:-:-:v:' + MIN, 'otro:30:-:-:m:' + MIN];
+      'kayak:60:Kilómetros 0:-:m:' + AGUA, 'sup:60:-:-:v:' + MIN, 'surf:90:-:-:m:' + MIN, 'windsurf:90:-:-:m:' + MIN, 'buceo:45:-:-:v:' + DAN, 'golf:240:-:-:m:' + MIN, 'padel:90:-:-:m:' + MIN, 'escalada:120:-:-:v:' + MIN, 'combate:60:-:-:v:' + MIN, 'funcional:60:-:-:v:' + MIN, 'baloncesto:60:-:-:v:' + MIN, 'futsal:60:-:-:v:' + MIN, 'squash:60:-:-:v:' + MIN, 'baile:60:-:-:v:' + MIN, 'otro:30:-:-:m:' + MIN];
     const malos26 = ESPERADO.filter((x, i) => cada[i] !== x);
     prueba('cada deporte, lo suyo: los minutos que propone; la distancia en km (caminar, senderismo, correr, bici, kayak) o en metros (nadar); el desnivel (senderismo y correr); la intensidad del Compendio (desde 6 MET, intensa); y su nota (a pie, el GR 131; la bici, «salvo que lo elija»; el nado y el kayak, que por el agua la isla se rodea; el buceo, la DAN; los demás, los minutos)',
       !malos26.length, malos26.map(x => cada[ESPERADO.indexOf(x)]).join(' || '));
@@ -4713,8 +4717,8 @@ async function ejemplo(pg, mas) {
       const h = await hoja45(); propone.push(dep + '→' + [h.sel, h.nom, h.icono, h.min, h.km, h.int, h.nota, h.boton, h.n, h.orden].join(':'));
       if (dep !== 'karate') { await p45.keyboard.press('Escape'); await p45.waitForTimeout(150); }
     }
-    const P = 'combate:Deportes de combate:true:60::v:Suma minutos a su semana.:Anotar 60 min:16:funcional,otro';
-    prueba('45: con los tres deportes de combate, la hoja (16 deportes) propone «Deportes de combate», con su icono: 60 min, intensa, sin distancia, y «Anotar 60 min»',
+    const P = 'combate:Deportes de combate:true:60::v:Suma minutos a su semana.:Anotar 60 min:20:baile,otro';
+    prueba('45: con los tres deportes de combate, la hoja (20 deportes) propone «Deportes de combate», con su icono: 60 min, intensa, sin distancia, y «Anotar 60 min»',
       propone.join('|') === NUEVAS.map(d => d + '→' + P).join('|'), propone.join(' | '));
     await p45.click('#tgc-mov-guardar'); await p45.waitForTimeout(450);
     const g45 = await p45.evaluate(() => { const m = TG_CUERPO.estado().mov, u = m[m.length - 1]; return { u: u && [u.tipo, u.min, u.km, u.int].join(','), toast: document.getElementById('tgc-toast-txt').textContent }; });
@@ -4751,10 +4755,10 @@ async function ejemplo(pg, mas) {
         if (d.ancho > 320 || d.fuera.length) desb.push(l + ' ' + dep + ': ' + JSON.stringify(d));
       }
       await p45.click('#tgc-mov-btn'); await p45.waitForTimeout(300);
-      const h = await hoja45(); if (h.desborde || h.n !== 16) desb.push(l + ' hoja: ' + JSON.stringify(h));
+      const h = await hoja45(); if (h.desborde || h.n !== 20) desb.push(l + ' hoja: ' + JSON.stringify(h));
       await p45.keyboard.press('Escape'); await p45.waitForTimeout(150);
     }
-    prueba('45: a 320 px, en alemán y en búlgaro, ni el desplegable ni las tres fichas (abiertas) ni la hoja de 16 deportes se salen', !desb.length, desb.join(' | '));
+    prueba('45: a 320 px, en alemán y en búlgaro, ni el desplegable ni las tres fichas (abiertas) ni la hoja de 20 deportes se salen', !desb.length, desb.join(' | '));
     prueba('45: sin errores de página', e45.length === 0, e45.join(' | '));
     await c45.close();
   }
@@ -4784,8 +4788,9 @@ async function ejemplo(pg, mas) {
     /* los grupos del desplegable: seis, en su orden; cada deporte de la lista, en uno y solo uno; «otro», en ninguno */
     const enGrupos = GR.flatMap(g => g.deps), cuenta = {}; enGrupos.forEach(x => { cuenta[x] = (cuenta[x] || 0) + 1; });
     const GRUPO_DE = {}; GR.forEach(g => g.deps.forEach(x => { GRUPO_DE[x] = g.id; }));
-    prueba('46: GRUPOS_DEP: seis grupos (al aire libre, en el agua, raqueta, fuerza, combate y sala), cada deporte en uno y solo uno, «Otro deporte» fuera; la escalada al aire libre, el funcional en fuerza y el yoga en sala',
-      GR.map(g => g.id).join() === 'aire,agua,raqueta,fuerza,combate,sala' && ids.filter(x => x !== 'otro').every(x => cuenta[x] === 1) && !cuenta.otro && enGrupos.length === ids.length - 1
+    /* (bloque 3b) siete grupos: «Deportes de equipo», entre el agua y la raqueta (prueba 47) */
+    prueba('46: GRUPOS_DEP: siete grupos (al aire libre, en el agua, de equipo, raqueta, fuerza, combate y sala), cada deporte en uno y solo uno, «Otro deporte» fuera; la escalada al aire libre, el funcional en fuerza y el yoga en sala',
+      GR.map(g => g.id).join() === 'aire,agua,equipo,raqueta,fuerza,combate,sala' && ids.filter(x => x !== 'otro').every(x => cuenta[x] === 1) && !cuenta.otro && enGrupos.length === ids.length - 1
       && GRUPO_DE.escalada === 'aire' && GRUPO_DE.funcional === 'fuerza' && GRUPO_DE.yoga === 'sala' && GR.find(g => g.id === 'combate').deps.join() === 'boxeo,jiujitsu,karate',
       JSON.stringify(GR));
     const malNom = [];
@@ -4834,9 +4839,9 @@ async function ejemplo(pg, mas) {
     prueba('46: las tres fichas en los 11 idiomas: las cifras del castellano en cada texto, su certeza (baja, moderada y baja), 9, 11 y 7 fuentes en https, sus ejercicios en el catálogo (3 «De los estudios» en la escalada) y las preguntas del asistente de cada idioma',
       !malNuevas.length, malNuevas.slice(0, 6).join(' · '));
     /* la hoja: «funcional» (60 min, 7,5 MET: intensa, 02040), con su icono; la escalada y el funcional proponen los suyos; el yoga, nada (caminar) */
-    const mov = s.match(/\{ id: 'funcional', min: (\d+), met: ([\d.]+), cod: '(\d+)' \},\n\s*\{ id: 'otro'/), dm = s.match(/var DEP_MOV = (\{[^}]*\});/);
+    const mov = s.match(/\{ id: 'funcional', min: (\d+), met: ([\d.]+), cod: '(\d+)' \},\n/), dm = s.match(/var DEP_MOV = (\{[^}]*\});/);
     const depMov = dm ? JSON.parse(dm[1].replace(/(\w+):/g, '"$1":').replace(/'/g, '"')) : {};
-    prueba('46: en MOV, «funcional» delante de «otro» (60 min, 7,5 MET del código 02040: intensa), con su icono; DEP_MOV: la escalada propone la escalada, el funcional el suyo, y el yoga ninguno (caminar)',
+    prueba('46: en MOV, «funcional» (60 min, 7,5 MET del código 02040: intensa), con su icono; DEP_MOV: la escalada propone la escalada, el funcional el suyo, y el yoga ninguno (caminar)',
       !!mov && mov[1] === '60' && mov[2] === '7.5' && mov[3] === '02040' && /\n {4}funcional: icoMov\('/.test(s) && depMov.escalada === 'escalada' && depMov.funcional === 'funcional' && !('yoga' in depMov),
       JSON.stringify([mov && mov.slice(1), depMov]));
 
@@ -4851,7 +4856,8 @@ async function ejemplo(pg, mas) {
         ultima: (sel.querySelector('option:last-of-type') || {}).value, ultimaEn: sel.lastElementChild && sel.lastElementChild.tagName + ':' + sel.lastElementChild.value };
     });
     const d1 = await des();
-    const ESP = ['Al aire libre:senderismo,carrera,ciclismo,golf,escalada', 'En el agua:mar,surf,buceo', 'Deportes de raqueta:padel', 'Fuerza:gimnasio,calistenia,funcional', 'Deportes de combate:boxeo,jiujitsu,karate', 'Clases en sala:yoga'];
+    /* (bloque 3b) con «Deportes de equipo», el squash junto al pádel y el baile junto al yoga (prueba 47) */
+    const ESP = ['Al aire libre:senderismo,carrera,ciclismo,golf,escalada', 'En el agua:mar,surf,buceo', 'Deportes de equipo:baloncesto,futsal', 'Deportes de raqueta:padel,squash', 'Fuerza:gimnasio,calistenia,funcional', 'Deportes de combate:boxeo,jiujitsu,karate', 'Clases en sala:yoga,baile'];
     prueba('46: el desplegable, por grupos: «Al aire libre» (con la escalada), «En el agua», «Deportes de raqueta», «Fuerza» (con el funcional), «Deportes de combate» y «Clases en sala» (el yoga); «Ninguno» arriba y «Otro deporte» abajo, sueltos',
       d1.grupos.join(' | ') === ESP.join(' | ') && d1.sueltas.join() === ',otro' && d1.n === ids.length + 1 && d1.ultimaEn === 'OPTION:otro', JSON.stringify(d1));
     const ficha46 = async () => {
@@ -4904,9 +4910,9 @@ async function ejemplo(pg, mas) {
       const h = await hoja46(); propone.push(dep + '→' + [h.sel, h.nom, h.icono, h.min, h.km, h.int, h.boton, h.n, h.orden].join(':'));
       if (dep !== 'funcional') { await p46.keyboard.press('Escape'); await p46.waitForTimeout(150); }
     }
-    const ESPH = ['escalada→escalada:Escalada:true:120::v:Anotar 120 min:16:combate,funcional,otro', 'yoga→caminar:Caminar:true:30:2,5:m:Anotar 30 min y 2,5 km:16:combate,funcional,otro',
-      'funcional→funcional:Entrenamiento funcional:true:60::v:Anotar 60 min:16:combate,funcional,otro'];
-    prueba('46: la hoja (16 deportes, «Entrenamiento funcional» entre «Deportes de combate» y «Otro deporte», con su icono): la escalada propone la escalada (120 min, intensa), el yoga caminar y el funcional el suyo (60 min, intensa, sin distancia)',
+    const ESPH = ['escalada→escalada:Escalada:true:120::v:Anotar 120 min:20:squash,baile,otro', 'yoga→caminar:Caminar:true:30:2,5:m:Anotar 30 min y 2,5 km:20:squash,baile,otro',
+      'funcional→funcional:Entrenamiento funcional:true:60::v:Anotar 60 min:20:squash,baile,otro'];
+    prueba('46: la hoja (20 deportes desde el bloque 3b, «Entrenamiento funcional» tras «Deportes de combate», con su icono): la escalada propone la escalada (120 min, intensa), el yoga caminar y el funcional el suyo (60 min, intensa, sin distancia)',
       propone.join(' | ') === ESPH.join(' | '), propone.join(' | '));
     await p46.click('#tgc-mov-guardar'); await p46.waitForTimeout(450);
     const g46 = await p46.evaluate(() => { const m = TG_CUERPO.estado().mov, u = m[m.length - 1]; return { u: u && [u.tipo, u.min, u.km, u.int].join(','), toast: document.getElementById('tgc-toast-txt').textContent }; });
@@ -4947,12 +4953,202 @@ async function ejemplo(pg, mas) {
         if (d.ancho > 320 || d.fuera.length) desb.push(l + ' ' + dep + ': ' + JSON.stringify(d));
       }
       await p46.click('#tgc-mov-btn'); await p46.waitForTimeout(300);
-      const h = await hoja46(); if (h.desborde || h.n !== 16) desb.push(l + ' hoja: ' + JSON.stringify(h));
+      const h = await hoja46(); if (h.desborde || h.n !== 20) desb.push(l + ' hoja: ' + JSON.stringify(h));
       await p46.keyboard.press('Escape'); await p46.waitForTimeout(150);
     }
-    prueba('46: a 320 px, en alemán y en búlgaro, ni el desplegable ni las tres fichas (abiertas) ni la hoja de 16 deportes se salen', !desb.length, desb.join(' | '));
+    prueba('46: a 320 px, en alemán y en búlgaro, ni el desplegable ni las tres fichas (abiertas) ni la hoja de 20 deportes se salen', !desb.length, desb.join(' | '));
     prueba('46: sin errores de página', e46.length === 0, e46.join(' | '));
     await c46.close();
+  }
+
+  // 47. (19-11-2026, bloque 3b de los deportes de interior; Jerome: «y todo los deportes interiores posibles») Las cuatro
+  //     fichas que faltaban, delante de «Otro deporte»: «Baloncesto y voleibol» y «Fútbol sala y balonmano», en un grupo
+  //     nuevo del desplegable («Deportes de equipo», entre «En el agua» y «Deportes de raqueta»); «Squash, bádminton y
+  //     tenis de mesa», con el pádel, y «Baile y Zumba», con el yoga. En la hoja del movimiento, una entrada por ficha,
+  //     con el nombre de la ficha y el código del Compendio 2024 de su primer deporte (7,5, 7,8, 7,3 y 6,5 MET: las
+  //     cuatro, intensas), y su icono. Sin navegador: DEPORTES y GRUPOS_DEP, los nombres en los 11 idiomas, las cuatro
+  //     fichas en los 11 (las cifras del castellano, 12, 10, 10 y 10 fuentes en https, sus ejercicios en el catálogo, las
+  //     preguntas del asistente de cada idioma), y MOV, DEP_MOV e ICONOS_MOV. En la pantalla: el desplegable de siete
+  //     grupos, las cuatro fichas (el fútbol sala, con sus grupos «De los estudios» y los 5 ejercicios del FIFA 11+
+  //     primero), la hoja con cada una, en inglés, chino y búlgaro, y a 320 px en alemán y en búlgaro nada se sale.
+  {
+    const fs = require('fs'), path = require('path');
+    const s = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
+    const UI = {}; { const i = s.indexOf('var CUERPO_UI = {'), j = s.indexOf('\n  };', i);
+      for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
+    const DEPS = JSON.parse(s.match(/var DEPORTES = (\[.*?\]);/)[1]), ids = DEPS.map(d => d.id), D = {}; DEPS.forEach(d => { D[d.id] = d; });
+    const gm = s.match(/var GRUPOS_DEP = (\[.*?\]);/), GR = gm ? JSON.parse(gm[1]) : [];
+    const L11 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'], NUEVAS = ['baloncesto', 'futsal', 'squash', 'baile'];
+    const GRUPOS = { baloncesto: ['cuadriceps,gluteos,pantorrilla', 'core,hombros'], futsal: ['isquios,cuadriceps,gluteos,core', 'hombros,espalda_alta'],
+      squash: ['cuadriceps,gluteos,pantorrilla', 'hombros,antebrazo'], baile: ['cuadriceps,gluteos,pantorrilla', 'core'] };
+    prueba('47: «Baloncesto y voleibol», «Fútbol sala y balonmano», «Squash, bádminton y tenis de mesa» y «Baile y Zumba» en DEPORTES, tras el funcional y delante de «Otro deporte», con sus grupos prioritarios y secundarios',
+      ids.join().includes('funcional,baloncesto,futsal,squash,baile,otro') && ids[ids.length - 1] === 'otro' && NUEVAS.every(id => D[id].prio.join() === GRUPOS[id][0] && D[id].sec.join() === GRUPOS[id][1]),
+      ids.join() + ' ' + JSON.stringify(NUEVAS.map(id => D[id])));
+    /* los grupos del desplegable: siete, en su orden; cada deporte de la lista, en uno y solo uno; «otro», en ninguno */
+    const enGrupos = GR.flatMap(g => g.deps), cuenta = {}; enGrupos.forEach(x => { cuenta[x] = (cuenta[x] || 0) + 1; });
+    const deGrupo = id => (GR.find(g => g.id === id) || { deps: [] }).deps.join();
+    prueba('47: GRUPOS_DEP: siete grupos, con «Deportes de equipo» entre «En el agua» y «Deportes de raqueta»; en él, el baloncesto y el fútbol sala; el squash, con el pádel; el baile, con el yoga; cada deporte en uno y solo uno, y «Otro deporte» fuera',
+      GR.map(g => g.id).join() === 'aire,agua,equipo,raqueta,fuerza,combate,sala' && deGrupo('equipo') === 'baloncesto,futsal' && deGrupo('raqueta') === 'padel,squash' && deGrupo('sala') === 'yoga,baile'
+      && ids.filter(x => x !== 'otro').every(x => cuenta[x] === 1) && !cuenta.otro && enGrupos.length === ids.length - 1, JSON.stringify(GR));
+    const malNom = [];
+    for (const k of NUEVAS.map(id => 'cuerpoDep_' + id).concat(NUEVAS.map(id => 'cuerpoMov_' + id), ['cuerpoDepGrupo_equipo']))
+      for (const l of L11) if (!UI[k] || !String(UI[k][l] || '').trim() || (l !== 'es' && UI[k][l] === UI[k].es)) malNom.push(k + ' ' + l);
+    prueba('47: los cuatro nombres del desplegable, los cuatro de la hoja (los mismos que su ficha) y el del grupo nuevo, en los 11 idiomas',
+      !malNom.length && UI.cuerpoDep_baloncesto.es === 'Baloncesto y voleibol' && UI.cuerpoDep_baile.es === 'Baile y Zumba' && UI.cuerpoDepGrupo_equipo.es === 'Deportes de equipo'
+      && NUEVAS.every(id => UI['cuerpoMov_' + id] && JSON.stringify(UI['cuerpoMov_' + id]) === JSON.stringify(UI['cuerpoDep_' + id])), malNom.join(' '));
+    const lee = f => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', f), 'utf8'));
+    const G = {}, malOrden = [];
+    for (const l of L11) {
+      const d = lee('deportes-' + l + '.json'); G[l] = {};
+      if (d.deportes.map(x => x.id).join() !== ids.join()) malOrden.push(l + ': ' + d.deportes.map(x => x.id).join());
+      for (const x of d.deportes) G[l][x.id] = x;
+    }
+    prueba('47: las guías de los 11 idiomas, con las cuatro fichas nuevas y en el orden de la lista', !malOrden.length, malOrden.join(' | '));
+    const cifras = t => (String(t).replace(/[  ]/g, '').replace(/(\d)[.,](?=\d{3}(?!\d))/g, '$1').replace(/,/g, '.').match(/\d+(?:\.\d+)?/g) || []).sort().join();
+    const plano = (o, r, d) => {
+      if (typeof o === 'string') d[r] = o;
+      else if (Array.isArray(o)) o.forEach((x, i) => plano(x, r + '[' + i + ']', d));
+      else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!['url', 'fecha', 'id', 'grado', 'cert', 'gg', 'sos', 'qs'].includes(k)) plano(v, r + '.' + k, d);
+      return d;
+    };
+    /* lo que las fichas copian de otras (ya revisado) no se coteja */
+    const copiado = l => { const c = new Set(); for (const x of Object.values(G[l])) if (!NUEVAS.includes(x.id)) Object.values(plano(x, '', {})).forEach(v => c.add(v)); return c; };
+    const NF = { baloncesto: 12, futsal: 10, squash: 10, baile: 10 }, NEJ = { baloncesto: 6, futsal: 7, squash: 6, baile: 6 }, ND = { baloncesto: 0, futsal: 5, squash: 0, baile: 0 };
+    const GG = { baloncesto: 'I', futsal: 'D', squash: 'I', baile: 'I' };
+    const EJS = new Set(lee('ejercicios.json').ejercicios.map(x => x.id)), malNuevas = [];
+    for (const id of NUEVAS) {
+      const es = plano(G.es[id] || {}, id, {});
+      for (const l of L11) {
+        const x = G[l][id]; if (!x) { malNuevas.push(l + ' ' + id + ': no está'); continue; }
+        const t = plano(x, id, {}), cop = copiado(l);
+        for (const [r, v] of Object.entries(es)) if (!cop.has(t[r]) && cifras(v) !== cifras(t[r])) malNuevas.push(l + ' ' + r + ': cifras');
+        if (x.cert !== 'baja' || x.gg !== GG[id]) malNuevas.push(l + ' ' + id + ': certeza o grupos');
+        if (x.f.length !== NF[id] || !x.f.every(f => /^https:\/\//.test(f.url) && f.titulo.trim())) malNuevas.push(l + ' ' + id + ': fuentes');
+        if (x.ej.length !== NEJ[id] || x.ej.some(e => !EJS.has(e.id)) || x.ej.filter(e => e.grado === 'D').length !== ND[id]) malNuevas.push(l + ' ' + id + ': ejercicios');
+        /* las preguntas, las del asistente de su idioma, letra a letra; el rumano, desde que tenga el suyo (R17–R20): sus
+           tres preguntas nuevas esperan en la nota 60 */
+        if (fs.existsSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'))) {
+          const A = {}; for (const r of lee('asistente-' + l + '.json').respuestas) A[r.id] = r;
+          for (const q of x.qs) if (!A[q[0]] || A[q[0]].q !== q[1] || A[q[0]].edad !== q[2]) malNuevas.push(l + ' ' + id + ': la pregunta ' + q[0]);
+        } else if (l !== 'ro') malNuevas.push(l + ': sin asistente-' + l + '.json');
+        if (l !== 'es' && x.t === G.es[id].t) malNuevas.push(l + ' ' + id + ': en castellano');
+      }
+    }
+    prueba('47: las cuatro fichas en los 11 idiomas: las cifras del castellano en cada texto, certeza baja, 12, 10, 10 y 10 fuentes en https, sus ejercicios en el catálogo (5 «De los estudios» en el fútbol sala) y las preguntas del asistente de cada idioma',
+      !malNuevas.length, malNuevas.slice(0, 6).join(' · '));
+    /* la hoja: las cuatro, tras el funcional y delante de «otro», con su icono; cada ficha propone la suya */
+    const movs = s.match(/\{ id: 'funcional', min: 60, met: 7\.5, cod: '02040' \},\n\s*\{ id: 'baloncesto', min: (\d+), met: ([\d.]+), cod: '(\d+)' \},\n\s*\{ id: 'futsal', min: (\d+), met: ([\d.]+), cod: '(\d+)' \},\n\s*\{ id: 'squash', min: (\d+), met: ([\d.]+), cod: '(\d+)' \},\n\s*\{ id: 'baile', min: (\d+), met: ([\d.]+), cod: '(\d+)' \},\n\s*\{ id: 'otro'/);
+    const dm = s.match(/var DEP_MOV = (\{[^}]*\});/), depMov = dm ? JSON.parse(dm[1].replace(/(\w+):/g, '"$1":').replace(/'/g, '"')) : {};
+    prueba('47: en MOV, las cuatro tras el funcional y delante de «otro»: 60 min y el MET del Compendio 2024 de su primer deporte (15055: 7,5; 15195: 7,8; 15652: 7,3; 02310: 6,5), las cuatro intensas, con su icono; DEP_MOV: cada ficha propone la suya',
+      !!movs && movs.slice(1).join() === '60,7.5,15055,60,7.8,15195,60,7.3,15652,60,6.5,02310' && NUEVAS.every(id => new RegExp('\\n {4}' + id + ": icoMov\\('").test(s) && depMov[id] === id),
+      JSON.stringify([movs && movs.slice(1), depMov]));
+
+    /* en la pantalla */
+    const c47 = await contexto(b), p47 = await c47.newPage(), e47 = []; vigilar(p47, e47);
+    await abrirApp(p47); await abrirPerfilCuerpo(p47); await suCuerpo(p47); await vacio(p47);
+    await p47.click('#tgc-modo-m'); await p47.waitForTimeout(150);
+    const d1 = await p47.evaluate(() => {
+      const sel = document.getElementById('tgc-dep-sel');
+      return { grupos: [...sel.querySelectorAll('optgroup')].map(g => g.label + ':' + [...g.querySelectorAll('option')].map(o => o.value).join(',')),
+        sueltas: [...sel.children].filter(x => x.tagName === 'OPTION').map(x => x.value), n: sel.querySelectorAll('option').length,
+        ultimaEn: sel.lastElementChild && sel.lastElementChild.tagName + ':' + sel.lastElementChild.value };
+    });
+    const ESP = ['Al aire libre:senderismo,carrera,ciclismo,golf,escalada', 'En el agua:mar,surf,buceo', 'Deportes de equipo:baloncesto,futsal', 'Deportes de raqueta:padel,squash',
+      'Fuerza:gimnasio,calistenia,funcional', 'Deportes de combate:boxeo,jiujitsu,karate', 'Clases en sala:yoga,baile'];
+    prueba('47: el desplegable, en siete grupos: «Deportes de equipo» (baloncesto y fútbol sala) entre «En el agua» y «Deportes de raqueta» (pádel y squash), y «Clases en sala» con el yoga y el baile; «Ninguno» arriba y «Otro deporte» abajo, sueltos',
+      d1.grupos.join(' | ') === ESP.join(' | ') && d1.sueltas.join() === ',otro' && d1.n === ids.length + 1 && d1.ultimaEn === 'OPTION:otro', JSON.stringify(d1));
+    const ficha47 = async () => {
+      await p47.waitForFunction(() => !document.getElementById('tgc-dep-ficha').hidden, null, { timeout: 15000 }).catch(() => {});
+      return p47.evaluate(() => {
+        const f = document.getElementById('tgc-dep-ficha');
+        return { visto: !f.hidden, cert: (f.querySelector('.tgc-cert') || {}).textContent || '', t: (f.querySelector('.tgc-dep-t') || {}).textContent || '',
+          secs: [...f.querySelectorAll('.tgc-dep-sec > summary')].map(x => x.textContent),
+          prio: [...f.querySelectorAll('.tgc-dep-gs .tgc-dep-g:not(.sec)')].map(x => x.dataset.g).join(), sec: [...f.querySelectorAll('.tgc-dep-gs .tgc-dep-g.sec')].map(x => x.dataset.g).join(),
+          gs: f.querySelectorAll('.tgc-dep-gs').length, grado: (f.querySelector('.tgc-dep-grado') || {}).textContent || '', figura: document.querySelectorAll('#cuerpo-panel .tgf-prio').length,
+          fuentes: [...f.querySelectorAll('.tgc-dep-f a')].map(a => [a.href, a.target, a.rel]), guardado: JSON.parse(localStorage.getItem('tenerife.cuerpo')).deporte };
+      });
+    };
+    const fichas = {};
+    for (const id of NUEVAS) {
+      await p47.selectOption('#tgc-dep-sel', id);
+      await p47.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G.es[id].t, { timeout: 15000 }).catch(() => {});
+      fichas[id] = await ficha47();
+    }
+    const malF = NUEVAS.filter(id => { const x = fichas[id]; return !(x.visto && x.cert === 'Certeza baja' && x.t === G.es[id].t && x.secs.length === 8 && x.secs.includes('Ejercicios de la biblioteca')
+      && x.secs[x.secs.length - 1] === NF[id] + ' fuentes' && x.prio === GRUPOS[id][0] && x.sec === GRUPOS[id][1] && x.figura > 0 && x.gs === 1
+      && x.grado === UI['cuerpoDepGrado_' + GG[id]].es && x.guardado === id && x.fuentes.length === NF[id] && x.fuentes.every(f => /^https:\/\//.test(f[0]) && f[1] === '_blank' && /noopener/.test(f[2]))); });
+    prueba('47: las cuatro fichas: certeza baja, 8 secciones, sus fuentes en otra pestaña y sin opener, el personaje con sus grupos (los del fútbol sala, «De los estudios»; los otros, deducidos), y se guarda',
+      !malF.length, JSON.stringify(malF.map(id => [id, fichas[id]])));
+    /* los ejercicios del fútbol sala: los 5 del FIFA 11+ primero, con su marca */
+    await p47.selectOption('#tgc-dep-sel', 'futsal'); await p47.waitForTimeout(150);
+    await p47.evaluate(() => { const d = [...document.querySelectorAll('#tgc-dep-ficha .tgc-dep-sec')].find(x => x.querySelector('.tgc-dep-ej')); if (d) d.open = true; });
+    await p47.waitForFunction(() => document.querySelectorAll('#tgc-dep-ficha .tgc-dep-ej li button').length >= 7, null, { timeout: 15000 }).catch(() => {});
+    const ej47 = await p47.evaluate(() => [...document.querySelectorAll('#tgc-dep-ficha .tgc-dep-ej li button')].map(x => x.dataset.ej + ':' + (x.querySelector('.tgc-dep-tag') || {}).textContent));
+    prueba('47: los 7 ejercicios del fútbol sala, los 5 del FIFA 11+ («De los estudios»: nórdico, planchas, sentadilla a una pierna y zancada) primero',
+      ej47.join() === 'curl-nordico:De los estudios,plancha-antebrazos:De los estudios,plancha-lateral:De los estudios,sentadilla-una-pierna:De los estudios,zancada-caminando:De los estudios,copenhague:Indirecto,rotacion-externa-banda:Indirecto', ej47.join());
+    /* la hoja del movimiento: cada ficha propone la suya (60 min, intensa, sin distancia); 20 deportes */
+    const hoja47 = () => p47.evaluate(() => {
+      const g = id => document.getElementById(id), pul = document.querySelector('#tgc-mov-tipos .tgc-tipo[aria-pressed="true"]');
+      return { sel: pul && pul.dataset.tipo, nom: pul && pul.textContent.trim(), icono: !!(pul && pul.querySelector('svg')), min: g('tgc-mov-min').value, km: g('tgc-mov-km-fila').hidden ? null : g('tgc-mov-km').value,
+        int: g('tgc-mov-int-v').getAttribute('aria-pressed') === 'true' ? 'v' : 'm', boton: g('tgc-mov-guardar-txt').textContent,
+        n: document.querySelectorAll('#tgc-mov-tipos .tgc-tipo').length, orden: [...document.querySelectorAll('#tgc-mov-tipos .tgc-tipo')].map(x => x.dataset.tipo).slice(-3).join(),
+        desborde: g('tgc-hoja').scrollWidth > g('tgc-hoja').clientWidth + 1 };
+    });
+    const propone = [];
+    for (const dep of NUEVAS) {
+      if (!(await p47.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p47);
+      await p47.selectOption('#tgc-dep-sel', dep); await p47.waitForTimeout(150);
+      await p47.click('#tgc-mov-btn'); await p47.waitForTimeout(300);
+      const h = await hoja47(); propone.push(dep + '→' + [h.sel, h.nom, h.icono, h.min, h.km, h.int, h.boton, h.n, h.orden].join(':'));
+      if (dep !== 'baile') { await p47.keyboard.press('Escape'); await p47.waitForTimeout(150); }
+    }
+    const ESPH = NUEVAS.map(d => d + '→' + d + ':' + UI['cuerpoMov_' + d].es + ':true:60::v:Anotar 60 min:20:squash,baile,otro');
+    prueba('47: la hoja (20 deportes; los cuatro nuevos, con su icono, entre «Entrenamiento funcional» y «Otro deporte»): cada ficha propone la suya, 60 min, intensa, sin distancia',
+      propone.join(' | ') === ESPH.join(' | '), propone.join(' | '));
+    await p47.click('#tgc-mov-guardar'); await p47.waitForTimeout(450);
+    const g47 = await p47.evaluate(() => { const m = TG_CUERPO.estado().mov, u = m[m.length - 1]; return { u: u && [u.tipo, u.min, u.km, u.int].join(','), toast: document.getElementById('tgc-toast-txt').textContent }; });
+    prueba('47: «Anotar» guarda «baile», 60 min, intensos, y avisa «Baile y Zumba: 60 min anotados»', g47.u === 'baile,60,0,v' && g47.toast === 'Baile y Zumba: 60 min anotados', JSON.stringify(g47));
+    /* en otros idiomas: los grupos, los cuatro nombres (en el orden del desplegable), la ficha del baile y el squash en la hoja */
+    const enIdiomas = [];
+    for (const l of ['en', 'zh', 'bg']) {
+      await idioma(p47, l);
+      if (!(await p47.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p47);
+      await p47.selectOption('#tgc-dep-sel', 'baile');
+      await p47.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G[l].baile.t, { timeout: 15000 }).catch(() => {});
+      const r = await p47.evaluate(n => ({ gr: [...document.querySelectorAll('#tgc-dep-sel optgroup')].map(g => g.label).join('|'),
+        op: [...document.querySelectorAll('#tgc-dep-sel option')].filter(o => n.includes(o.value)).map(o => o.textContent).join('|'),
+        t: (document.querySelector('#tgc-dep-ficha .tgc-dep-t') || {}).textContent || '' }), NUEVAS);
+      await p47.selectOption('#tgc-dep-sel', 'squash'); await p47.waitForTimeout(200);
+      await p47.click('#tgc-mov-btn'); await p47.waitForTimeout(300);
+      const h = await hoja47(); await p47.keyboard.press('Escape'); await p47.waitForTimeout(150);
+      if (r.gr !== GR.map(g => UI['cuerpoDepGrupo_' + g.id][l]).join('|') || r.op !== NUEVAS.map(id => UI['cuerpoDep_' + id][l]).join('|') || r.t !== G[l].baile.t
+        || h.sel !== 'squash' || h.nom !== UI.cuerpoMov_squash[l]) enIdiomas.push(l + ': ' + JSON.stringify([r, h.sel, h.nom]));
+    }
+    prueba('47: en inglés, chino y búlgaro, los siete grupos, los cuatro nombres, la ficha del baile y el squash en la hoja, en su idioma', !enIdiomas.length, enIdiomas.join(' | '));
+    /* a 320 px, en alemán y en búlgaro: ni el desplegable ni las cuatro fichas (abiertas) ni la hoja de 20 deportes se salen */
+    await p47.setViewportSize({ width: 320, height: 700 }); await p47.waitForTimeout(200);
+    const desb = [];
+    for (const l of ['de', 'bg']) {
+      await idioma(p47, l);
+      if (!(await p47.evaluate(() => TG_CUERPO.abierto()))) await suCuerpo(p47);
+      for (const dep of NUEVAS) {
+        await p47.selectOption('#tgc-dep-sel', dep);
+        await p47.waitForFunction(t => { const x = document.querySelector('#tgc-dep-ficha .tgc-dep-t'); return x && x.textContent === t; }, G[l][dep].t, { timeout: 15000 }).catch(() => {});
+        await p47.evaluate(() => document.querySelectorAll('#tgc-dep-ficha details').forEach(d => { d.open = true; })); await p47.waitForTimeout(300);
+        const d = await p47.evaluate(() => {
+          const c = document.getElementById('tgc-deporte'), r = c.getBoundingClientRect(), fuera = [];
+          c.querySelectorAll('*').forEach(e => { const q = e.getBoundingClientRect(); if (q.width && (q.right > r.right + 1 || q.left < r.left - 1)) fuera.push(e.tagName + '.' + e.className); });
+          return { ancho: document.documentElement.scrollWidth, fuera: fuera.slice(0, 3) };
+        });
+        if (d.ancho > 320 || d.fuera.length) desb.push(l + ' ' + dep + ': ' + JSON.stringify(d));
+      }
+      await p47.click('#tgc-mov-btn'); await p47.waitForTimeout(300);
+      const h = await hoja47(); if (h.desborde || h.n !== 20) desb.push(l + ' hoja: ' + JSON.stringify(h));
+      await p47.keyboard.press('Escape'); await p47.waitForTimeout(150);
+    }
+    prueba('47: a 320 px, en alemán y en búlgaro, ni el desplegable ni las cuatro fichas (abiertas) ni la hoja de 20 deportes se salen', !desb.length, desb.join(' | '));
+    prueba('47: sin errores de página', e47.length === 0, e47.join(' | '));
+    await c47.close();
   }
 
   prueba('ningún error en toda la prueba', errores.length === 0, errores.join(' | '));

@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (685 filas). */
+  /* Los textos de la pantalla, en los diez idiomas (694 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało", "ro": "Corp"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać", "ro": "Mușchii, săptămâna și personajul dumneavoastră"},
@@ -202,6 +202,10 @@
     "cuerpoMov_escalada": {"es": "Escalada", "en": "Climbing", "fr": "Escalade", "de": "Klettern", "it": "Arrampicata", "nl": "Klimmen", "zh": "攀岩", "zht": "攀岩", "bg": "Катерене", "pl": "Wspinaczka", "ro": "Escaladă"},
     "cuerpoMov_combate": {"es": "Deportes de combate", "en": "Combat sports", "fr": "Sports de combat", "de": "Kampfsport", "it": "Sport da combattimento", "nl": "Vechtsporten", "zh": "格斗运动", "zht": "格鬥運動", "bg": "Бойни спортове", "pl": "Sporty walki", "ro": "Sporturi de luptă"},
     "cuerpoMov_funcional": {"es": "Entrenamiento funcional", "en": "Functional training", "fr": "Entraînement fonctionnel", "de": "Funktionelles Training", "it": "Allenamento funzionale", "nl": "Functionele training", "zh": "功能性训练", "zht": "功能性訓練", "bg": "Функционална тренировка", "pl": "Trening funkcjonalny", "ro": "Antrenament funcțional"},
+    "cuerpoMov_baloncesto": {"es": "Baloncesto y voleibol", "en": "Basketball and volleyball", "fr": "Basket-ball et volley-ball", "de": "Basketball und Volleyball", "it": "Pallacanestro e pallavolo", "nl": "Basketbal en volleybal", "zh": "篮球和排球", "zht": "籃球和排球", "bg": "Баскетбол и волейбол", "pl": "Koszykówka i siatkówka", "ro": "Baschet și volei"},
+    "cuerpoMov_futsal": {"es": "Fútbol sala y balonmano", "en": "Futsal and handball", "fr": "Futsal et handball", "de": "Futsal und Handball", "it": "Futsal e pallamano", "nl": "Zaalvoetbal en handbal", "zh": "五人制足球和手球", "zht": "五人制足球和手球", "bg": "Футзал и хандбал", "pl": "Futsal i piłka ręczna", "ro": "Futsal și handbal"},
+    "cuerpoMov_squash": {"es": "Squash, bádminton y tenis de mesa", "en": "Squash, badminton and table tennis", "fr": "Squash, badminton et tennis de table", "de": "Squash, Badminton und Tischtennis", "it": "Squash, badminton e tennistavolo", "nl": "Squash, badminton en tafeltennis", "zh": "壁球、羽毛球和乒乓球", "zht": "壁球、羽球和桌球", "bg": "Скуош, бадминтон и тенис на маса", "pl": "Squash, badminton i tenis stołowy", "ro": "Squash, badminton și tenis de masă"},
+    "cuerpoMov_baile": {"es": "Baile y Zumba", "en": "Dance and Zumba", "fr": "Danse et Zumba", "de": "Tanz und Zumba", "it": "Ballo e Zumba", "nl": "Dans en Zumba", "zh": "舞蹈和尊巴", "zht": "舞蹈和尊巴", "bg": "Танци и зумба", "pl": "Taniec i Zumba", "ro": "Dans și Zumba"},
     "cuerpoMov_otro": {"es": "Otro deporte", "en": "Another sport", "fr": "Autre sport", "de": "Andere Sportart", "it": "Altro sport", "nl": "Andere sport", "zh": "其他运动", "zht": "其他運動", "bg": "Друг спорт", "pl": "Inny sport", "ro": "Alt sport"},
     "cuerpoMovMetros": {"es": "Metros", "en": "Metres", "fr": "Mètres", "de": "Meter", "it": "Metri", "nl": "Meter", "zh": "米数", "zht": "公尺數", "bg": "Метри", "pl": "Metry", "ro": "Metri"},
     "cuerpoMovMenosM": {"es": "50 metros menos", "en": "50 metres less", "fr": "50 mètres de moins", "de": "50 Meter weniger", "it": "50 metri in meno", "nl": "50 meter minder", "zh": "减少 50 米", "zht": "減少 50 公尺", "bg": "50 метра по-малко", "pl": "50 metrów mniej", "ro": "Cu 50 de metri mai puțin"},
@@ -648,6 +652,11 @@
     "cuerpoDepGrupo_fuerza": {"es": "Fuerza", "en": "Strength", "fr": "Force", "de": "Kraft", "it": "Forza", "nl": "Kracht", "zh": "力量", "zht": "力量", "bg": "Сила", "pl": "Siła", "ro": "Forță"},
     "cuerpoDepGrupo_combate": {"es": "Deportes de combate", "en": "Combat sports", "fr": "Sports de combat", "de": "Kampfsport", "it": "Sport da combattimento", "nl": "Vechtsporten", "zh": "格斗运动", "zht": "格鬥運動", "bg": "Бойни спортове", "pl": "Sporty walki", "ro": "Sporturi de luptă"},
     "cuerpoDepGrupo_sala": {"es": "Clases en sala", "en": "Studio classes", "fr": "Cours en salle", "de": "Kurse im Studio", "it": "Corsi in sala", "nl": "Lessen in de studio", "zh": "室内课程", "zht": "室內課程", "bg": "Занимания в зала", "pl": "Zajęcia w sali", "ro": "Cursuri în sală"},
+    "cuerpoDep_baloncesto": {"es": "Baloncesto y voleibol", "en": "Basketball and volleyball", "fr": "Basket-ball et volley-ball", "de": "Basketball und Volleyball", "it": "Pallacanestro e pallavolo", "nl": "Basketbal en volleybal", "zh": "篮球和排球", "zht": "籃球和排球", "bg": "Баскетбол и волейбол", "pl": "Koszykówka i siatkówka", "ro": "Baschet și volei"},
+    "cuerpoDep_futsal": {"es": "Fútbol sala y balonmano", "en": "Futsal and handball", "fr": "Futsal et handball", "de": "Futsal und Handball", "it": "Futsal e pallamano", "nl": "Zaalvoetbal en handbal", "zh": "五人制足球和手球", "zht": "五人制足球和手球", "bg": "Футзал и хандбал", "pl": "Futsal i piłka ręczna", "ro": "Futsal și handbal"},
+    "cuerpoDep_squash": {"es": "Squash, bádminton y tenis de mesa", "en": "Squash, badminton and table tennis", "fr": "Squash, badminton et tennis de table", "de": "Squash, Badminton und Tischtennis", "it": "Squash, badminton e tennistavolo", "nl": "Squash, badminton en tafeltennis", "zh": "壁球、羽毛球和乒乓球", "zht": "壁球、羽球和桌球", "bg": "Скуош, бадминтон и тенис на маса", "pl": "Squash, badminton i tenis stołowy", "ro": "Squash, badminton și tenis de masă"},
+    "cuerpoDep_baile": {"es": "Baile y Zumba", "en": "Dance and Zumba", "fr": "Danse et Zumba", "de": "Tanz und Zumba", "it": "Ballo e Zumba", "nl": "Dans en Zumba", "zh": "舞蹈和尊巴", "zht": "舞蹈和尊巴", "bg": "Танци и зумба", "pl": "Taniec i Zumba", "ro": "Dans și Zumba"},
+    "cuerpoDepGrupo_equipo": {"es": "Deportes de equipo", "en": "Team sports", "fr": "Sports collectifs", "de": "Mannschaftssport", "it": "Sport di squadra", "nl": "Teamsporten", "zh": "团队运动", "zht": "團隊運動", "bg": "Отборни спортове", "pl": "Sporty drużynowe", "ro": "Sporturi de echipă"},
     "cuerpoDep_otro": {"es": "Otro deporte", "en": "Another sport", "fr": "Autre sport", "de": "Andere Sportart", "it": "Altro sport", "nl": "Andere sport", "zh": "其他运动", "zht": "其他運動", "bg": "Друг спорт", "pl": "Inny sport", "ro": "Alt sport"},
     "cuerpoDepCargando": {"es": "Cargando la ficha del deporte…", "en": "Loading the sport guide…", "fr": "Chargement de la fiche du sport…", "de": "Sportinformationen werden geladen …", "it": "Caricamento della scheda dello sport…", "nl": "Sportinformatie laden…", "zh": "正在加载运动说明…", "zht": "正在載入運動說明…", "bg": "Зареждане на информацията за спорта…", "pl": "Wczytywanie informacji o sporcie…", "ro": "Se încarcă fișa sportului…"},
     "cuerpoDepError": {"es": "No se ha podido cargar la ficha. Compruebe la conexión e inténtelo de nuevo.", "en": "The guide could not be loaded. Check your connection and try again.", "fr": "Impossible de charger la fiche. Vérifiez la connexion et réessayez.", "de": "Die Informationen konnten nicht geladen werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "it": "Impossibile caricare la scheda. Controlli la connessione e riprovi.", "nl": "De informatie kon niet worden geladen. Controleer de verbinding en probeer het opnieuw.", "zh": "无法加载说明。请检查网络连接后重试。", "zht": "無法載入說明。請檢查網路連線後重試。", "bg": "Информацията не можа да се зареди. Проверете връзката и опитайте отново.", "pl": "Nie udało się wczytać informacji. Proszę sprawdzić połączenie i spróbować ponownie.", "ro": "Fișa nu a putut fi încărcată. Verificați conexiunea și încercați din nou."},
@@ -2031,7 +2040,15 @@
      Compendio no tiene el CrossFit; lo más cercano es el circuito con pesas rusas, algo de aeróbico y poco descanso,
      intenso (02040, 7,5 MET), intensa; a ritmo moderado (02035, 5,0), moderada: la persona la cambia. El yoga en
      general (02175, 2,3) y el pilates (02105, 2,8) son ligeros (de 1,6 a 2,9 MET, Herrmann 2024) y la hoja solo anota
-     moderada o intensa: no están, y con «Yoga y Pilates» la hoja propone caminar */
+     moderada o intensa: no están, y con «Yoga y Pilates» la hoja propone caminar. (19-11-2026, bloque 3b) Las cuatro
+     fichas nuevas, una entrada cada una, con el nombre de la ficha (como «Deportes de combate», recoge los deportes
+     de su ficha) y el código del primero, y 60 minutos: el baloncesto en general (15055, 7,5 MET), intensa; el
+     voleibol (15710, 4,0) y el no competitivo (15720, 3,0), moderados, y el de competición en pabellón (15711, 6,0) y
+     el de playa (15725, 8,0, estimado), intensos. El fútbol sala (15195, 7,8), intensa, como el balonmano (15320,
+     12,0; en equipo, 15330, 8,0, estimado). El squash en general (15652, 7,3), intensa; el bádminton social (15030,
+     5,5) y el tenis de mesa (15660, 4,0), moderados, y el bádminton de competición (15020, 7,0), intenso. La Zumba
+     en grupo (02310, 6,5), intensa; la salsa en pareja (03090, 4,8) y el baile de salón lento (03040, 3,0),
+     moderados. La persona la cambia */
   var MOV = [
     { id: 'caminar', min: 30, dist: 'km', km: 2.5, max: 100, gr: true, met: 3.5, cod: '17160' },
     { id: 'senderismo', min: 120, dist: 'km', km: 8, max: 100, gr: true, des: true, met: 6.0, cod: '17080' },
@@ -2048,6 +2065,10 @@
     { id: 'escalada', min: 120, met: 8.0, cod: '15533' },
     { id: 'combate', min: 60, met: 10.3, cod: '15430' },
     { id: 'funcional', min: 60, met: 7.5, cod: '02040' },
+    { id: 'baloncesto', min: 60, met: 7.5, cod: '15055' },
+    { id: 'futsal', min: 60, met: 7.8, cod: '15195' },
+    { id: 'squash', min: 60, met: 7.3, cod: '15652' },
+    { id: 'baile', min: 60, met: 6.5, cod: '02310' },
     { id: 'otro', min: 30, met: 3.0, cod: '' }
   ];
   var MOV_IDS = MOV.map(function (m) { return m.id; });
@@ -2059,10 +2080,12 @@
      están: lo suyo se anota en series, por grupo muscular (Jerome, 8-11: «incluido el gimnasio deben coger datos
      diferentes»; nota 27), y con ellos la hoja propone caminar, como sin deporte. (19-11-2026, bloque 2) Los tres de
      combate proponen «Deportes de combate». (19-11-2026, bloque 3a) La escalada propone la escalada (ya estaba en la
-     hoja) y el entrenamiento funcional, el suyo; el yoga y el pilates, ligeros, caminar */
-  var DEP_MOV = { senderismo: 'senderismo', mar: 'nadar', carrera: 'correr', ciclismo: 'bici', surf: 'surf', buceo: 'buceo', golf: 'golf', padel: 'padel', boxeo: 'combate', jiujitsu: 'combate', karate: 'combate', escalada: 'escalada', funcional: 'funcional', otro: 'otro' };
-  /* los iconos de los dieciséis deportes (los cinco de la maqueta y once propios, de trazo, como ellos; el guante de
-     «Deportes de combate», del 19-11-2026, bloque 2, y la pesa rusa del «Entrenamiento funcional», del bloque 3a):
+     hoja) y el entrenamiento funcional, el suyo; el yoga y el pilates, ligeros, caminar. (19-11-2026, bloque 3b) Las
+     cuatro fichas nuevas, cada una la suya */
+  var DEP_MOV = { senderismo: 'senderismo', mar: 'nadar', carrera: 'correr', ciclismo: 'bici', surf: 'surf', buceo: 'buceo', golf: 'golf', padel: 'padel', boxeo: 'combate', jiujitsu: 'combate', karate: 'combate', escalada: 'escalada', funcional: 'funcional', baloncesto: 'baloncesto', futsal: 'futsal', squash: 'squash', baile: 'baile', otro: 'otro' };
+  /* los iconos de los veinte deportes (los cinco de la maqueta y quince propios, de trazo, como ellos; el guante de
+     «Deportes de combate», del 19-11-2026, bloque 2; la pesa rusa del «Entrenamiento funcional», del bloque 3a; y
+     los balones del baloncesto y del fútbol sala, el volante del bádminton y dos corcheas, del bloque 3b):
      constantes, van con innerHTML en los botones de la hoja y en la semana por deporte */
   function icoMov(d) { return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; }
   var ICONOS_MOV = {
@@ -2081,6 +2104,10 @@
     escalada: icoMov('<rect x="6.5" y="2.8" width="11" height="18.4" rx="5.5"/><path d="M6.5 9.5l5-1.5"/><path d="M12.5 15.5h5"/>'),
     combate: icoMov('<path d="M8.5 15.5V8A5 5 0 0 1 13.5 3h.5a5 5 0 0 1 5 5v3.5a4 4 0 0 1-4 4z"/><path d="M8.5 9H7a2.5 2.5 0 0 0-2.5 2.5v.5A3.5 3.5 0 0 0 8 15.5h.5"/><path d="M9 15.5v5h7v-5"/><path d="M12.6 3.3c.3 1.9 1.7 3.4 3.6 3.7"/>'),
     funcional: icoMov('<path d="M9.2 9.6V7.6a2.8 2.8 0 0 1 5.6 0v2"/><path d="M8.4 19.6a6 6 0 1 1 7.2 0z"/>'),
+    baloncesto: icoMov('<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5v17"/><path d="M6 6c2.4 3.4 2.4 8.6 0 12M18 6c-2.4 3.4-2.4 8.6 0 12"/>'),
+    futsal: icoMov('<circle cx="12" cy="12" r="8.5"/><path d="M12 8.2l3.6 2.6-1.4 4.2H9.8l-1.4-4.2z"/><path d="M12 8.2V3.5M15.6 10.8l4.5-1.5M14.2 15l2.8 3.8M9.8 15L7 18.8M8.4 10.8L3.9 9.3"/>'),
+    squash: icoMov('<path d="M8.5 13.5L5 4.5h14l-3.5 9z"/><path d="M10.2 13.5l-1-9M13.8 13.5l1-9"/><path d="M8.5 13.5h7V15a3.5 3.5 0 0 1-7 0z"/>'),
+    baile: icoMov('<path d="M9 17.5v-12l10-2v12"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="15.5" r="2.5"/>'),
     otro: icoMov('<circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M8 12h8"/>')
   };
   /* ── «Hoy en la isla» y «Cruce la isla» (8-11-2026, bloque 5) ──
@@ -6055,13 +6082,22 @@
      escalada salen de los ejercicios de los estudios de la revisión de Stien 2022 (gg 'D'): el antebrazo, de los
      flexores de los dedos en la tabla multipresa; el dorsal, el bíceps y el core, de los otros dos (el jalón y los
      curls de Hermans 2017; el tronco de Saeterbakken 2018). El yoga y el funcional trabajan todo el cuerpo: sin
-     grupos, como el gimnasio. */
-  var DEPORTES = [{"id":"senderismo","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core","espalda_alta"]},{"id":"mar","prio":["dorsal","hombros","triceps"],"sec":["pecho","espalda_alta","core"]},{"id":"carrera","prio":["cuadriceps","gluteos"],"sec":["isquios","pantorrilla","core"]},{"id":"ciclismo","prio":["cuadriceps","gluteos"],"sec":["isquios"]},{"id":"surf","prio":["dorsal","triceps","pecho","hombros"],"sec":["biceps","espalda_alta"]},{"id":"buceo","prio":[],"sec":[]},{"id":"golf","prio":["gluteos","cuadriceps","core"],"sec":["hombros","espalda_alta"]},{"id":"padel","prio":["antebrazo","cuadriceps","hombros"],"sec":["core","pecho","triceps"]},{"id":"gimnasio","prio":[],"sec":[]},{"id":"calistenia","prio":[],"sec":[]},{"id":"boxeo","prio":["cuadriceps","gluteos"],"sec":["hombros","triceps","core"]},{"id":"jiujitsu","prio":["cuadriceps","gluteos","pecho","dorsal"],"sec":["triceps","biceps"]},{"id":"karate","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core"]},{"id":"escalada","prio":["antebrazo"],"sec":["dorsal","biceps","core"]},{"id":"yoga","prio":[],"sec":[]},{"id":"funcional","prio":[],"sec":[]},{"id":"otro","prio":[],"sec":[]}];
+     grupos, como el gimnasio.
+     (19-11-2026, bloque 3b) «Baloncesto y voleibol», «Fútbol sala y balonmano», «Squash, bádminton y tenis de mesa»
+     y «Baile y Zumba», delante de «Otro deporte». Los grupos del fútbol sala salen de los ejercicios de los estudios
+     (gg 'D'): los isquiotibiales, el cuádriceps, el glúteo y el core, del FIFA 11+ del ensayo de Lopes 2020 (el
+     nórdico, las sentadillas, las zancadas y las planchas; la tabla de Sadigursky 2017); el hombro y la espalda alta,
+     del programa de hombro de Andersson 2017 (la rotación externa y los músculos de la escápula). Los de los otros
+     tres, deducidos (gg 'I'): los saltos y las caídas del baloncesto y el voleibol (y el remate, el hombro); las
+     zancadas y el tendón de Aquiles de la raqueta (y el brazo que golpea); las piernas y el equilibrio del baile. */
+  var DEPORTES = [{"id":"senderismo","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core","espalda_alta"]},{"id":"mar","prio":["dorsal","hombros","triceps"],"sec":["pecho","espalda_alta","core"]},{"id":"carrera","prio":["cuadriceps","gluteos"],"sec":["isquios","pantorrilla","core"]},{"id":"ciclismo","prio":["cuadriceps","gluteos"],"sec":["isquios"]},{"id":"surf","prio":["dorsal","triceps","pecho","hombros"],"sec":["biceps","espalda_alta"]},{"id":"buceo","prio":[],"sec":[]},{"id":"golf","prio":["gluteos","cuadriceps","core"],"sec":["hombros","espalda_alta"]},{"id":"padel","prio":["antebrazo","cuadriceps","hombros"],"sec":["core","pecho","triceps"]},{"id":"gimnasio","prio":[],"sec":[]},{"id":"calistenia","prio":[],"sec":[]},{"id":"boxeo","prio":["cuadriceps","gluteos"],"sec":["hombros","triceps","core"]},{"id":"jiujitsu","prio":["cuadriceps","gluteos","pecho","dorsal"],"sec":["triceps","biceps"]},{"id":"karate","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["isquios","core"]},{"id":"escalada","prio":["antebrazo"],"sec":["dorsal","biceps","core"]},{"id":"yoga","prio":[],"sec":[]},{"id":"funcional","prio":[],"sec":[]},{"id":"baloncesto","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["core","hombros"]},{"id":"futsal","prio":["isquios","cuadriceps","gluteos","core"],"sec":["hombros","espalda_alta"]},{"id":"squash","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["hombros","antebrazo"]},{"id":"baile","prio":["cuadriceps","gluteos","pantorrilla"],"sec":["core"]},{"id":"otro","prio":[],"sec":[]}];
   /* (19-11-2026, bloque 3a) Con 17 deportes, el desplegable va por grupos (optgroup), cada uno con su nombre en
      CUERPO_UI (cuerpoDepGrupo_<id>): al aire libre, en el agua, de raqueta, de fuerza, de combate y clases en sala, y
      dentro, en este orden. «Otro deporte», suelto y el último. Un deporte de DEPORTES que no esté en ningún grupo
-     sale también suelto, delante de «Otro deporte», para que no se pierda ninguno */
-  var GRUPOS_DEP = [{"id":"aire","deps":["senderismo","carrera","ciclismo","golf","escalada"]},{"id":"agua","deps":["mar","surf","buceo"]},{"id":"raqueta","deps":["padel"]},{"id":"fuerza","deps":["gimnasio","calistenia","funcional"]},{"id":"combate","deps":["boxeo","jiujitsu","karate"]},{"id":"sala","deps":["yoga"]}];
+     sale también suelto, delante de «Otro deporte», para que no se pierda ninguno. (19-11-2026, bloque 3b) Con 21,
+     un grupo más, «Deportes de equipo» (el baloncesto y el voleibol, el fútbol sala y el balonmano), entre «En el
+     agua» y «Deportes de raqueta»; la raqueta de interior va con el pádel, y el baile, con el yoga */
+  var GRUPOS_DEP = [{"id":"aire","deps":["senderismo","carrera","ciclismo","golf","escalada"]},{"id":"agua","deps":["mar","surf","buceo"]},{"id":"equipo","deps":["baloncesto","futsal"]},{"id":"raqueta","deps":["padel","squash"]},{"id":"fuerza","deps":["gimnasio","calistenia","funcional"]},{"id":"combate","deps":["boxeo","jiujitsu","karate"]},{"id":"sala","deps":["yoga","baile"]}];
   var DEP = null, DEP_IDIOMA = null, depCarga = null, depError = false, depOpcIdioma = null;
   var CERTS_DEP = ['alta', 'moderada', 'baja', 'indirecta', 'ninguna'];
   var SOS_DEP = ['inicio', 'auxilios', 'rescate', 'picaduras', 'playa', 'calor', 'montana'];

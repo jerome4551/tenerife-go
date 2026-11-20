@@ -1132,6 +1132,34 @@
   },
   {
    "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_baloncesto",
+   "es": "Baloncesto y voleibol",
+   "forma": "texto",
+   "ro": "Baschet și volei"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_futsal",
+   "es": "Fútbol sala y balonmano",
+   "forma": "texto",
+   "ro": "Futsal și handbal"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_squash",
+   "es": "Squash, bádminton y tenis de mesa",
+   "forma": "texto",
+   "ro": "Squash, badminton și tenis de masă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoMov_baile",
+   "es": "Baile y Zumba",
+   "forma": "texto",
+   "ro": "Dans și Zumba"
+  },
+  {
+   "tabla": "CUERPO_UI",
    "clave": "cuerpoMov_otro",
    "es": "Otro deporte",
    "forma": "texto",
@@ -4251,6 +4279,41 @@
    "es": "Clases en sala",
    "forma": "texto",
    "ro": "Cursuri în sală"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_baloncesto",
+   "es": "Baloncesto y voleibol",
+   "forma": "texto",
+   "ro": "Baschet și volei"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_futsal",
+   "es": "Fútbol sala y balonmano",
+   "forma": "texto",
+   "ro": "Futsal și handbal"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_squash",
+   "es": "Squash, bádminton y tenis de mesa",
+   "forma": "texto",
+   "ro": "Squash, badminton și tenis de masă"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDep_baile",
+   "es": "Baile y Zumba",
+   "forma": "texto",
+   "ro": "Dans și Zumba"
+  },
+  {
+   "tabla": "CUERPO_UI",
+   "clave": "cuerpoDepGrupo_equipo",
+   "es": "Deportes de equipo",
+   "forma": "texto",
+   "ro": "Sporturi de echipă"
   },
   {
    "tabla": "CUERPO_UI",

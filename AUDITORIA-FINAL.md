@@ -12520,7 +12520,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 52 tablas, 3747 filas (y 5.884 filas, dentro y fuera del fuente)
+## Idiomas · 52 tablas, 3756 filas (y 5.893 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -12854,6 +12854,9 @@ combate» en la hoja del movimiento (676), en los once idiomas: 3.738 filas y 5.
 Y el bloque 3a (nota 59): nueve filas más en `CUERPO_UI`, los nombres de «Yoga y Pilates» y «Entrenamiento
 funcional», los seis grupos del desplegable y «Entrenamiento funcional» en la hoja (685), en los once idiomas:
 3.747 filas y 5.884.
+Y el bloque 3b (nota 60): nueve filas más en `CUERPO_UI`, los nombres de las cuatro fichas nuevas, el grupo
+«Deportes de equipo» del desplegable y las cuatro entradas de la hoja (694), en los once idiomas: 3.756 filas y
+5.893.
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no
