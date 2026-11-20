@@ -973,5 +973,15 @@
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Brandstoffen: benzine 95, benzine 98, diesel en hernieuwbare diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Vr 05:30-20:30 · Za-Zo 08:00-20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · DISA", "hours": "Ma-Zo 06:00-22:00"},
  "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Brandstoffen: benzine 95, benzine 98 en diesel.", "cat": "Tankstation · Repsol", "hours": "Ma-Zo 06:00-21:00"},
- "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"}
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Brandstoffen: benzine 95, benzine 98, diesel en premiumdiesel.", "cat": "Tankstation · Shell", "hours": "Ma-Zo 06:00-22:00"},
+ "gym-imagen-sct": {"desc": "Sportschool in Santa Cruz. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Santa Cruz"},
+ "gym-manufit-sct": {"desc": "Sportschool in Santa Cruz. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Santa Cruz"},
+ "gym-level-sct": {"desc": "Sportschool van de keten VivaGym in Santa Cruz. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Santa Cruz"},
+ "gym-urban-laguna": {"desc": "Sportschool in La Laguna. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · La Laguna"},
+ "gym-starfit-laguna": {"desc": "Sportschool in La Laguna. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · La Laguna"},
+ "gym-fitnesspark-cuesta": {"desc": "Sportschool van de keten Fitness Park in La Laguna. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · La Laguna"},
+ "gym-zona0-rosario": {"desc": "Trainingscentrum in El Rosario. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · El Rosario"},
+ "gym-garage-tegueste": {"desc": "Sportschool in Tegueste. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Tegueste"},
+ "gym-ocadila-tegueste": {"desc": "Sportschool in Tegueste. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Tegueste"},
+ "gym-canariasfit-tegueste": {"desc": "Sportschool in Tegueste. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Tegueste"}
 }

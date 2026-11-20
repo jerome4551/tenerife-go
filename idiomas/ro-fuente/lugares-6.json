@@ -1,0 +1,147 @@
+{
+ "_": "Rumano (ro) de las fichas de los gimnasios del mapa (bloque 4a de «Su deporte», nota 62): los diez del área metropolitana y de Tegueste, al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "gym-imagen-sct.desc",
+   "es": "Gimnasio en Santa Cruz. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Santa Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-imagen-sct.cat",
+   "es": "Gimnasio · Santa Cruz",
+   "forma": "texto",
+   "ro": "Sală de fitness · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-manufit-sct.desc",
+   "es": "Gimnasio en Santa Cruz. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Santa Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-manufit-sct.cat",
+   "es": "Gimnasio · Santa Cruz",
+   "forma": "texto",
+   "ro": "Sală de fitness · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-level-sct.desc",
+   "es": "Gimnasio de la cadena VivaGym en Santa Cruz. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness din lanțul VivaGym, în Santa Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-level-sct.cat",
+   "es": "Gimnasio · Santa Cruz",
+   "forma": "texto",
+   "ro": "Sală de fitness · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-urban-laguna.desc",
+   "es": "Gimnasio en La Laguna. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în La Laguna. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-urban-laguna.cat",
+   "es": "Gimnasio · La Laguna",
+   "forma": "texto",
+   "ro": "Sală de fitness · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-starfit-laguna.desc",
+   "es": "Gimnasio en La Laguna. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în La Laguna. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-starfit-laguna.cat",
+   "es": "Gimnasio · La Laguna",
+   "forma": "texto",
+   "ro": "Sală de fitness · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-fitnesspark-cuesta.desc",
+   "es": "Gimnasio de la cadena Fitness Park en La Laguna. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness din lanțul Fitness Park, în La Laguna. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-fitnesspark-cuesta.cat",
+   "es": "Gimnasio · La Laguna",
+   "forma": "texto",
+   "ro": "Sală de fitness · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-zona0-rosario.desc",
+   "es": "Centro de entrenamiento en El Rosario. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Centru de antrenament în El Rosario. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-zona0-rosario.cat",
+   "es": "Gimnasio · El Rosario",
+   "forma": "texto",
+   "ro": "Sală de fitness · El Rosario"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-garage-tegueste.desc",
+   "es": "Gimnasio en Tegueste. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Tegueste. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-garage-tegueste.cat",
+   "es": "Gimnasio · Tegueste",
+   "forma": "texto",
+   "ro": "Sală de fitness · Tegueste"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-ocadila-tegueste.desc",
+   "es": "Gimnasio en Tegueste. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Tegueste. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-ocadila-tegueste.cat",
+   "es": "Gimnasio · Tegueste",
+   "forma": "texto",
+   "ro": "Sală de fitness · Tegueste"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-canariasfit-tegueste.desc",
+   "es": "Gimnasio en Tegueste. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Tegueste. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-canariasfit-tegueste.cat",
+   "es": "Gimnasio · Tegueste",
+   "forma": "texto",
+   "ro": "Sală de fitness · Tegueste"
+  }
+ ]
+}

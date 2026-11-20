@@ -196,8 +196,11 @@ console.log('\n=== lugares ===');
    (mir-pico-flores-anaga), abandonado y sin vistas. Jerome: «4 quítalo».
    976 -> 975 el 17 de noviembre de 2026: la «Cumbre Dorsal — Mirador La Jardina»
    (cumbre-dorsal), con el punto del mirador de Anaga (mir-la-jardina) y un texto de
-   la TF-24. Jerome: «quítalos». */
-debe('lugares', PLACES.length, PLACES.length === 975);
+   la TF-24. Jerome: «quítalos».
+   975 -> 985 el 20 de noviembre de 2026: los diez gimnasios del bloque 4a (nota 62), los tres
+   mejores de Santa Cruz, de La Laguna y de Tegueste y el de El Rosario, en la categoria nueva
+   «gimnasio». Jerome eligio el criterio y cambio Krom Gym por otro. */
+debe('lugares', PLACES.length, PLACES.length === 985);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

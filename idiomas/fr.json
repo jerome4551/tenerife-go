@@ -973,5 +973,15 @@
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Carburants : essence 95, essence 98, gazole et gazole renouvelable.", "cat": "Station-service · Repsol", "hours": "Lun-Ven 05:30-20:30 · Sam-Dim 08:00-20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · DISA", "hours": "Lun-Dim 06:00-22:00"},
  "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Carburants : essence 95, essence 98 et gazole.", "cat": "Station-service · Repsol", "hours": "Lun-Dim 06:00-21:00"},
- "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"}
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Carburants : essence 95, essence 98, gazole et gazole premium.", "cat": "Station-service · Shell", "hours": "Lun-Dim 06:00-22:00"},
+ "gym-imagen-sct": {"desc": "Salle de sport à Santa Cruz. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Santa Cruz"},
+ "gym-manufit-sct": {"desc": "Salle de sport à Santa Cruz. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Santa Cruz"},
+ "gym-level-sct": {"desc": "Salle de sport de la chaîne VivaGym à Santa Cruz. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Santa Cruz"},
+ "gym-urban-laguna": {"desc": "Salle de sport à La Laguna. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · La Laguna"},
+ "gym-starfit-laguna": {"desc": "Salle de sport à La Laguna. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · La Laguna"},
+ "gym-fitnesspark-cuesta": {"desc": "Salle de sport de la chaîne Fitness Park à La Laguna. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · La Laguna"},
+ "gym-zona0-rosario": {"desc": "Centre d'entraînement à El Rosario. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · El Rosario"},
+ "gym-garage-tegueste": {"desc": "Salle de sport à Tegueste. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Tegueste"},
+ "gym-ocadila-tegueste": {"desc": "Salle de sport à Tegueste. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Tegueste"},
+ "gym-canariasfit-tegueste": {"desc": "Salle de sport à Tegueste. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Tegueste"}
 }

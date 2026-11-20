@@ -973,5 +973,15 @@
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Carburanti: benzina 95, benzina 98, gasolio e gasolio rinnovabile.", "cat": "Distributore · Repsol", "hours": "Lun-Ven 05:30-20:30 · Sab-Dom 08:00-20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · DISA", "hours": "Lun-Dom 06:00-22:00"},
  "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Carburanti: benzina 95, benzina 98 e gasolio.", "cat": "Distributore · Repsol", "hours": "Lun-Dom 06:00-21:00"},
- "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"}
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Carburanti: benzina 95, benzina 98, gasolio e gasolio premium.", "cat": "Distributore · Shell", "hours": "Lun-Dom 06:00-22:00"},
+ "gym-imagen-sct": {"desc": "Palestra a Santa Cruz. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Santa Cruz"},
+ "gym-manufit-sct": {"desc": "Palestra a Santa Cruz. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Santa Cruz"},
+ "gym-level-sct": {"desc": "Palestra della catena VivaGym a Santa Cruz. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Santa Cruz"},
+ "gym-urban-laguna": {"desc": "Palestra a La Laguna. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · La Laguna"},
+ "gym-starfit-laguna": {"desc": "Palestra a La Laguna. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · La Laguna"},
+ "gym-fitnesspark-cuesta": {"desc": "Palestra della catena Fitness Park a La Laguna. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · La Laguna"},
+ "gym-zona0-rosario": {"desc": "Centro di allenamento a El Rosario. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · El Rosario"},
+ "gym-garage-tegueste": {"desc": "Palestra a Tegueste. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Tegueste"},
+ "gym-ocadila-tegueste": {"desc": "Palestra a Tegueste. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Tegueste"},
+ "gym-canariasfit-tegueste": {"desc": "Palestra a Tegueste. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Tegueste"}
 }

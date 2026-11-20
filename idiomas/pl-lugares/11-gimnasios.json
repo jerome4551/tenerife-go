@@ -1,0 +1,42 @@
+{
+ "gym-imagen-sct": {
+  "desc": "Siłownia w Santa Cruz. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Santa Cruz"
+ },
+ "gym-manufit-sct": {
+  "desc": "Siłownia w Santa Cruz. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Santa Cruz"
+ },
+ "gym-level-sct": {
+  "desc": "Siłownia sieci VivaGym w Santa Cruz. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Santa Cruz"
+ },
+ "gym-urban-laguna": {
+  "desc": "Siłownia w La Laguna. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · La Laguna"
+ },
+ "gym-starfit-laguna": {
+  "desc": "Siłownia w La Laguna. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · La Laguna"
+ },
+ "gym-fitnesspark-cuesta": {
+  "desc": "Siłownia sieci Fitness Park w La Laguna. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · La Laguna"
+ },
+ "gym-zona0-rosario": {
+  "desc": "Centrum treningowe w El Rosario. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · El Rosario"
+ },
+ "gym-garage-tegueste": {
+  "desc": "Siłownia w Tegueste. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Tegueste"
+ },
+ "gym-ocadila-tegueste": {
+  "desc": "Siłownia w Tegueste. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Tegueste"
+ },
+ "gym-canariasfit-tegueste": {
+  "desc": "Siłownia w Tegueste. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Tegueste"
+ }
+}

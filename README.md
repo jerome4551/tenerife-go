@@ -14,7 +14,7 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 975 lugares (979 entre el 31 de octubre, cuando se quitó una bodega cerrada, y el 8 de noviembre, cuando entró la etapa 2 del GR-131; 980 hasta el 17 de noviembre, cuando se juntaron tres fichas repetidas con la suya y se quitaron el mirador abandonado del Pico de las Flores y la ficha «Cumbre Dorsal — Mirador La Jardina», que repetía el punto del Mirador La Jardina). Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS con sus robots encendidos: 35.785 líneas, 2,5 MB (763 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 985 lugares (975 entre el 17 y el 20 de noviembre, cuando entraron los diez primeros gimnasios del mapa; 979 entre el 31 de octubre, cuando se quitó una bodega cerrada, y el 8 de noviembre, cuando entró la etapa 2 del GR-131; 980 hasta el 17 de noviembre, cuando se juntaron tres fichas repetidas con la suya y se quitaron el mirador abandonado del Pico de las Flores y la ficha «Cumbre Dorsal — Mirador La Jardina», que repetía el punto del Mirador La Jardina). Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS con sus robots encendidos: 35.785 líneas, 2,5 MB (763 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los diez idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre y, en tres pestañas, Viaje (el avatar y su isla con los logros), Cuerpo (la tarjeta que abre «Su cuerpo», con su personaje en pequeño; los datos con el IMC y la evolución del peso y de los kilómetros que anota la persona) y Cuenta (con la nube solo con permiso). Su código, sus estilos y sus textos en los diez idiomas. Se pide la primera vez que alguien toca «Cuenta». |
@@ -111,7 +111,7 @@ castellano. Cada uno es un objeto así:
 - El `id` se usa dentro de manejadores `onclick`, así que solo puede
   llevar letras, dígitos, punto y guion.
 
-Reparto actual: 43 categorías en 11 pestañas de filtro. Las que más lugares
+Reparto actual: 44 categorías en 11 pestañas de filtro. Las que más lugares
 tienen, contando solo la categoría principal de cada uno: gasolineras (211),
 playas (73), parkings (40), senderismo (37), gastronomía (37) y
 supermercados (36). Todas estas cifras las coteja `tools/auditar_readme.js`
@@ -123,7 +123,7 @@ Dos estructuras distintas, y conviene no confundirlas:
 
 - **`LANGS`** — 130 claves de interfaz por idioma, en mapas planos:
   `LANGS.es.searchPlaceholder`. Dentro va `categories`, con el nombre de
-  las 43 categorías.
+  las 44 categorías.
 - **`UI_TX`** — el formato inverso, `{clave: {idioma: texto}}`, para lo
   que se fue añadiendo después. Se lee con `tx(clave, vars)`.
 

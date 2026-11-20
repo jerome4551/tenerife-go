@@ -973,5 +973,15 @@
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5（San Juan de la Rambla）。燃料：95号汽油、98号汽油、柴油和可再生柴油。", "cat": "加油站 · Repsol", "hours": "周一至周五 05:30至20:30 · 周六至周日 08:00至20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo（Los Silos）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · DISA", "hours": "周一至周日 06:00至22:00"},
  "gas-7682-el-tanque": {"desc": "Carretera TF-82（El Tanque）。燃料：95号汽油、98号汽油和柴油。", "cat": "加油站 · Repsol", "hours": "周一至周日 06:00至21:00"},
- "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte（La Victoria de Acentejo）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"}
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte（La Victoria de Acentejo）。燃料：95号汽油、98号汽油、柴油和优质柴油。", "cat": "加油站 · Shell", "hours": "周一至周日 06:00至22:00"},
+ "gym-imagen-sct": {"desc": "圣克鲁斯的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣克鲁斯"},
+ "gym-manufit-sct": {"desc": "圣克鲁斯的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣克鲁斯"},
+ "gym-level-sct": {"desc": "VivaGym连锁健身房，位于圣克鲁斯。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣克鲁斯"},
+ "gym-urban-laguna": {"desc": "拉拉古纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 拉拉古纳"},
+ "gym-starfit-laguna": {"desc": "拉拉古纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 拉拉古纳"},
+ "gym-fitnesspark-cuesta": {"desc": "Fitness Park连锁健身房，位于拉拉古纳。请在前台询问是否提供单日入场。", "cat": "健身房 · 拉拉古纳"},
+ "gym-zona0-rosario": {"desc": "埃尔罗萨里奥的训练中心。请在前台询问是否提供单日入场。", "cat": "健身房 · 埃尔罗萨里奥"},
+ "gym-garage-tegueste": {"desc": "特格斯特的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 特格斯特"},
+ "gym-ocadila-tegueste": {"desc": "特格斯特的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 特格斯特"},
+ "gym-canariasfit-tegueste": {"desc": "特格斯特的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 特格斯特"}
 }

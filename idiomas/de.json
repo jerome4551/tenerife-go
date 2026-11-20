@@ -973,5 +973,15 @@
  "gas-7683-san-juan-de-la-rambla": {"desc": "Carretera TF-5, San Juan de la Rambla. Kraftstoffe: Benzin 95, Benzin 98, Diesel und erneuerbarer Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-Fr 05:30-20:30 · Sa-So 08:00-20:00"},
  "gas-7827-los-silos": {"desc": "Calle Félix Benítez de Lugo, Los Silos. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · DISA", "hours": "Mo-So 06:00-22:00"},
  "gas-7682-el-tanque": {"desc": "Carretera TF-82, El Tanque. Kraftstoffe: Benzin 95, Benzin 98 und Diesel.", "cat": "Tankstelle · Repsol", "hours": "Mo-So 06:00-21:00"},
- "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"}
+ "gas-9629-la-victoria-de-acentejo": {"desc": "Carretera General del Norte, La Victoria de Acentejo. Kraftstoffe: Benzin 95, Benzin 98, Diesel und Premium-Diesel.", "cat": "Tankstelle · Shell", "hours": "Mo-So 06:00-22:00"},
+ "gym-imagen-sct": {"desc": "Fitnessstudio in Santa Cruz. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Santa Cruz"},
+ "gym-manufit-sct": {"desc": "Fitnessstudio in Santa Cruz. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Santa Cruz"},
+ "gym-level-sct": {"desc": "Fitnessstudio der Kette VivaGym in Santa Cruz. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Santa Cruz"},
+ "gym-urban-laguna": {"desc": "Fitnessstudio in La Laguna. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · La Laguna"},
+ "gym-starfit-laguna": {"desc": "Fitnessstudio in La Laguna. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · La Laguna"},
+ "gym-fitnesspark-cuesta": {"desc": "Fitnessstudio der Kette Fitness Park in La Laguna. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · La Laguna"},
+ "gym-zona0-rosario": {"desc": "Trainingszentrum in El Rosario. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · El Rosario"},
+ "gym-garage-tegueste": {"desc": "Fitnessstudio in Tegueste. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Tegueste"},
+ "gym-ocadila-tegueste": {"desc": "Fitnessstudio in Tegueste. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Tegueste"},
+ "gym-canariasfit-tegueste": {"desc": "Fitnessstudio in Tegueste. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Tegueste"}
 }
