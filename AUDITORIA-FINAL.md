@@ -10245,6 +10245,138 @@ huella de su contenido en el nombre); la isla en 3D, 57 y ninguno en rojo; el pa
 las cifras de idiomas del documento, las de ahora (52 tablas y 3.732 filas; 5.869). `app_preparar.js` montó `app/www/`
 (242 ficheros; las fuentes del rumano no viajan) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
 
+## «Su deporte», bloque 1: Gimnasio y Calistenia, en los once idiomas (nota 57); y el rumano, bloque 17: el asistente de «Su cuerpo», primera parte (20 de noviembre)
+
+**Lo que pidió Jérôme** (19-11, con la captura de «Su deporte» en «Otro deporte»): «Aquí sigue sin poder poner gimnasio
+o calisteña». Es el bloque 1 de los siete que ha planteado la sesión de «Su cuerpo» (nota 57). Llegó en un zip con un
+parche: se puso con `git am` (sus ficheros, idénticos a los del zip, con la errata del rumano 16 en los dos que
+comparten) y nada del zip se ha ejecutado.
+
+**Lo que se ve.** En «Su deporte», dos deportes más, delante de «Otro deporte»: Gimnasio y Calistenia, con su ficha en
+los diez idiomas (y en rumano, que sigue apagado). Con ellos, el personaje no marca grupos prioritarios (la pauta de la
+fuerza es la de todos los grandes grupos) y la hoja «Anotar movimiento» no cambia: propone caminar, porque la fuerza se
+anota en series. Calistenia lleva 10 ejercicios del catálogo, 2 «De los estudios» (la flexión y la flexión de rodillas)
+y 8 «Indirecto»; al tocar uno se abre su ficha. Cada ficha admite ahora hasta 12 fuentes (eran 7): Calistenia lleva 12 y
+Gimnasio, 7.
+
+**Las fuentes, comprobadas aquí una a una**, además de la tabla frase a frase que trae la sesión de «Su cuerpo»:
+- **ACSM 2026** (la postura del ACSM, Currier et al., PMC12965823), el texto entero (Europe PMC): 137 revisiones
+  sistemáticas y más de 30.000 participantes; frente a no entrenar, fuerza, tamaño del músculo, potencia, velocidad
+  al andar y equilibrio; para la fuerza, ≥80 % de 1RM y 2–3 series; para el músculo, ≥10 series por semana, con
+  cargas del 30 al 100 %; para la potencia, 30–70 % y la fase concéntrica rápida; el fallo, el tipo de máquina y la
+  periodización no cambiaron los resultados de forma consistente; seguro en adultos sanos de todas las edades; y,
+  pasadas unas 18–20 series por semana, cada vez menos. **La nota del ACSM** (su web no deja leerla de forma
+  automática) se ha leído en dos copias públicas de su comunicado (Recreation Management y Club Insider): «If a
+  program is too demanding to maintain, it loses its effectiveness», «~10 sets per muscle group», «elastic bands,
+  bodyweight exercises, and home-based routines yield marked benefits in strength, hypertrophy, and physical
+  function» y «Athletes and avid resistance trainees would, of course, require specific training plans»; y la de
+  McMaster, con las frases de Stuart Phillips, autor de la postura.
+- **Serafim 2023**: 28 artículos; el entrenamiento de fuerza tradicional, el más seguro, y el strongman, el que
+  menos.
+- **Keogh y Winwood 2017**, el texto entero (repositorio de Bond University): el culturismo, la tasa más baja
+  (0,24–1 lesiones por 1.000 h); hombro, zona lumbar, rodilla, codo y muñeca/mano; distensiones, tendinitis y
+  esguinces; y en §3.4.1, el hombro, el primero en powerlifting y en culturismo.
+- **Calatayud 2015**, el texto entero (repositorio de la Universitat de València): 30 universitarios con
+  experiencia, 5 semanas, 2 sesiones por semana de 5 series de 6, con bandas hasta el 6RM; ganancias parecidas a las
+  del press de banca; el control no cambió.
+- **Kikuchi 2017** (texto entero, Europe PMC): 18 hombres, 2 veces por semana, 8 semanas, al 40 % de 1RM; músculo y
+  fuerza comparables.
+- **Kotarsky 2018** (resumen): 23 hombres moderadamente entrenados, 3 días por semana, 4 semanas, con variantes cada
+  vez más difíciles; el 1RM subió en los dos grupos y el grosor del músculo no cambió.
+- **Thomas 2017** (resumen; el texto entero está cerrado): 28 hombres sin entrenar, 8 semanas; flexiones +16,4 %,
+  dominadas +39,2 %, mejor postura y menos masa grasa (de 14,8 a 11,4); el control no cambió.
+- **Kaiser 2018** (texto entero): 184 practicantes, 124 lesiones, 1,288 por 1.000 h; más del 70 % en la extremidad
+  superior, sobre todo hombro, muñeca y mano; de músculo o tendón.
+- **Ngo 2021** (texto entero, Europe PMC): de 93, el 62,4 % se lesionó en 12 meses; la tendinopatía, el diagnóstico
+  más frecuente (31,0 %); hombro 23,0 % y espalda alta y media 18,4 %; lesión previa y más actividad intensa, más
+  lesiones (OR 4,08, 4,37 y 5,63).
+
+**Lo que se cambió al comprobarlo.** La frase de la pauta de calistenia decía «En los ensayos, de 2 a 3 sesiones por
+semana durante 4 a 8 semanas…». Thomas 2017 es uno de esos ensayos, y de él solo se puede leer el resumen, que no dice
+cuántas veces por semana. Ahora dice «En los ensayos de flexiones, …» (Calatayud, Kikuchi y Kotarsky: 2, 2 y 3 veces por
+semana; 5, 8 y 4 semanas), en los once idiomas, con la palabra que la ficha ya usa en cada uno. Y el comentario que abre
+los textos del módulo dice 672 filas, como lo escribe `construir.py`.
+
+**Las fuentes de «Su cuerpo»** (fuera del repo) ya llevan el bloque, con la pauta corregida: `deportes/deportes.json`,
+sus traducciones, los dos nombres en `src/textos.py`, y el tope y los comentarios en `src/deporte.js` y `src/ui.js`.
+`construir.py` da el módulo (sin el rumano, que va aparte) y los diez `datos/cuerpo/deportes-*.json` byte a byte; y
+`deportes-ro.json` es el castellano con los 311 textos de `idiomas/ro-fuente/cuerpo-datos.json` puestos en su sitio,
+byte a byte.
+
+**El rumano** (apagado): las dos fichas y los dos nombres, 72 textos, cada uno contra su castellano con
+`revisar_rumano.py --pares`: 0 errores y 0 avisos. `cuerpo.json`: 672 filas, 0 errores y los 4 avisos de siempre;
+`poner_traduccion.js --probar --estricto`: todo casa.
+
+**Seguridad.** En el código solo cambian los dos deportes (con `prio` y `sec` vacíos), sus nombres, tres comentarios y
+el tope de 7 a 12 fuentes; cada fuente sigue teniendo que empezar por `https://` y cada texto va por `textContent`. Los
+1.804 textos de las dos fichas en los once idiomas, sin `<`, `>`, `javascript:`, caracteres de control ni dobles
+espacios; las 15 direcciones, todas https y de las webs de cada fuente. La prueba 44 no escribe nada: lee los ficheros y
+abre la app en el navegador.
+
+**Las pruebas.** `probar_cuerpo.js` lleva una prueba nueva, la 44, con 12 controles: los dos deportes en la lista,
+delante de «Otro deporte» y sin grupos prioritarios; sus nombres y sus fichas en los once idiomas, con las cifras del
+castellano en cada texto, sus fuentes en https y los 10 ejercicios en el catálogo; el desplegable; «Gimnasio» guardado,
+con el personaje sin grupos prioritarios; las 12 fuentes de calistenia, en otra pestaña y sin opener; un ejercicio de la
+ficha abre su ficha; la hoja del movimiento propone caminar; en inglés, chino y búlgaro, cada uno en su idioma; a 320
+px, en alemán y en búlgaro, nada se sale; y sin errores de página. Con ella, 812 de 812 (eran 800).
+
+**Lo que no está comprobado.** En un iPhone de verdad, nada. Los nueve idiomas, sin un nativo: los controles miran la
+forma (las cifras, el usted, el alfabeto, el castellano suelto). Las fichas no las ha revisado un profesional, como dice
+su pie.
+
+**El rumano, bloque 17** (sigue apagado: nada de esto se ve en la app). Llegó el 19-11 en un zip de la sesión del
+rumano. Sus guiones no se han ejecutado: lo que trae se ha puesto con un aplicador propio y se ha comprobado con
+herramientas propias.
+
+**Las 52 primeras respuestas del asistente de «Su cuerpo»**, de 178: las de la app (9), los cuerpos y las etapas de la
+vida (15) y la comida (28). `idiomas/ro-fuente/asistente-1.json`, nuevo: cada respuesta con su id, el castellano que
+traduce (la pregunta, la respuesta, los títulos de sus fuentes, las variantes y las claves con que la encuentra el
+buscador y los patrones de urgencia, tal cual `datos/cuerpo/asistente-es.json`) y el rumano. Idéntico al del zip (su
+huella). Va anclado en el castellano, como los ejercicios: `tools/asistente_traduccion.js`, nuevo, junta los trozos del
+rumano (bloques 17 a 20) y solo escribirá `datos/cuerpo/asistente-ro.json` cuando estén las 178 y todas casen con el
+castellano de ese día; lo que no se traduce (la categoría, la edad, la certeza, los enlaces y, de cada fuente, su
+dirección, su fecha y lo leído) lo copia del castellano. La herramienta se ha leído línea a línea (solo usa `fs` y
+`path`, el idioma tiene que ser de dos o tres letras y solo escribe ese fichero), pero no se ha ejecutado aquí: lo que
+mira su `--probar` lo mira un verificador propio. Casan 52 de 178, faltan 126, y nada que no valga: el castellano de
+cada una, letra a letra el de hoy y en su orden; la forma del castellano, las mismas marcas `{…}`, los topes que lee la
+app y ninguna pregunta repetida; ș y ț con coma, NFC, y ni comillas ASCII ni caracteres invisibles.
+`revisar_rumano.py --pares` (las 52 preguntas, los 275 textos de las respuestas y los 115 títulos): 442 filas, 0 errores
+y 0 avisos. Lo que citan de la pantalla, 17 citas distintas: 13 son textos de la app letra a letra; las otras cuatro, el
+botón de borrar los datos con su cita dentro en «…» (como pide el rumano dentro de „…”), el nombre de la indicación
+geográfica «Gofio Canario» y dos preguntas de otras respuestas, las que la nota del bloque deja fijas para los bloques
+18 a 20.
+
+**STOP.ro**: las palabras vacías del rumano para el buscador del asistente (`var STOP` en `modulos/cuerpo.js`), «de în
+și să un unui unei al ai ale lui le meu mea mei mele», una fila detrás de la del polaco. Solo cuentan con el rumano
+encendido: los diez idiomas no cambian. Puesta con un aplicador propio (el texto de antes, una vez, por el de después),
+y también en las fuentes de «Su cuerpo» (`src/buscador.js`), para que `construir.py` la conserve.
+
+**Lo que espera al interruptor**: `datos/cuerpo/asistente-ro.json`, con las 178 (bloque 20), y las pruebas del asistente
+en rumano. **Lo que no está comprobado**: con el rumano apagado, el asistente en rumano no se ve en la app y aquí no se
+ha probado en un navegador (la sesión del rumano lo probó en una copia con el rumano encendido).
+
+**La auditoría entera**, la de este lote y la del siguiente juntos («Su deporte», bloques 2 y 3a, y el rumano, bloque
+18), sobre `d984ce6` (árbol `51867c94`): los once commits de los dos lotes encima de `main` (`e22666d`). En `main` es lo
+mismo, rebasado sobre un commit de los robots (`86cda5a`, el boletín de INVOLCAN), que solo cambia
+`datos/semaforo-involcan.json`, con la misma huella de parche, y con los controles que leen ese fichero, en verde tras
+el rebase. En los 61 bloques de `auditar.sh`, un solo rojo, y no de estos lotes: en `auditar_mapa.js` (bloque 7, al
+soltar el pellizco), el control que comprueba que la medida sabe ponerse en rojo con el `_onTouchEnd` original de
+Leaflet midió 5 px y pide más de 5 (en las auditorías anteriores, 6 y 8 px); todo lo que mira la app, en verde.
+`auditar_mapa.js` solo, sobre el mismo árbol, tres veces: 137 de 137, con 6 px. Lo demás, en verde: las preguntas de
+prueba al asistente, 0 fallos de 298; `auditar_faq.js`, 1290 de 1290; instalar la app, 65 de 65; lo que pide Google
+Play, 249 de 249; `auditar_registro.js`, todo de usted (139.917 textos); `castellano_suelto.js`, ninguna palabra en
+castellano; `auditar_cirilico.py`, 2.345 nombres propios en cirílico y ninguna variante sospechosa; los datos, 975
+lugares en todas partes (también en el resumen de este documento) y ninguna cifra de lugares que no sea 975 en lo que se
+lee; `probar_organiza.js`, 626 de 626; `auditar_desborde.js`: la etiqueta viewport de las cuatro páginas, las tres cajas
+de copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16 px; `auditar_arranque.js`, los nueve
+idiomas iguales tras `setLang` (16.036 textos comparados, 0 distintos y 0 errores de página); `barrido_pantallas.js`,
+191 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez idiomas y cuatro móviles; el
+cielo, 311; el perfil y los avatares, 74 y 153; «Su cuerpo», 842 y 64; el entrenador, 79 (los 456 vídeos, enteros, en
+castellano y en otro idioma: 912 pases y 810.541 cuadros; los 12 trozos, cada uno con la huella de su contenido en el
+nombre); la isla en 3D, 57 y ninguno en rojo; el panel SOS, 42 y 262; las cifras de idiomas del documento, las de ahora
+(52 tablas y 3.747 filas; 5.884). `app_preparar.js` montó `app/www/` (242 ficheros) y lo cotejó; y al acabar, el
+repositorio, sin ningún cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
@@ -12413,7 +12545,7 @@ punto del Mirador La Jardina; con ella, su id en las sugerencias de la Ruta del 
 los de la playa para perros de El Cabezo (su nombre de antes y el del Puertito).
 Esa noche, dos filas más en `UI_TX`: el paréntesis de los dos nombres repetidos («pueblo» y «núcleo»,
 en los once idiomas; nota 48): 3.732 filas y 5.869.
-El 19 de noviembre, «Su deporte» con «Gimnasio» y «Calistenia» (nota 57): dos filas más en `CUERPO_UI` (672), sus
+El 20 de noviembre, «Su deporte» con «Gimnasio» y «Calistenia» (nota 57): dos filas más en `CUERPO_UI` (672), sus
 nombres en los once idiomas: 3.734 filas y 5.871.
 Esa tarde, los deportes de combate (nota 58): tres filas más en `CUERPO_UI` para sus nombres y una para «Deportes de
 combate» en la hoja del movimiento (676), en los once idiomas: 3.738 filas y 5.875.
