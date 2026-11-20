@@ -210,6 +210,11 @@ echo; echo "════════ detalles de pantalla en un iPhone y un Andr
 # el aro dorado dentro de la pildora, la caja del asistente dentro de la barra de inicio del iPhone, «Abriendo el mapa
 # de la isla…» en rojo y los alert() del navegador, que en el iPhone salen como ventana del sistema.
 control probar_detalles_movil.js node tools/probar_detalles_movil.js "$PUERTO"
+echo; echo "════════ los numeros de los grupos del mapa se leen ════════"
+# Desde el 20 de noviembre de 2026 (prueba de los dos moviles, bloque 6; Jerome: «Con el negro se nota mas los
+# numeros»): la cifra dorada sobre un circulo dorado casi transparente se leia a 1,24:1 sobre tierra. Con el circulo
+# oscuro, 4,5:1 o mas con blanco debajo (lo peor que puede haber) y con negro, en los tres tamanos.
+control probar_contraste_grupos.js node tools/probar_contraste_grupos.js "$PUERTO"
 echo; echo "════════ cada lugar por su nombre y cada categoria por su rotulo, preguntados al asistente en los diez idiomas ════════"
 # Desde el 20 de octubre de 2026: en castellano no encontraba 170 de los 980
 # lugares por su nombre, y en chino 638. Ningun control se lo preguntaba.
