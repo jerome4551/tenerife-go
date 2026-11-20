@@ -39,7 +39,11 @@
     /* ══════════ los press ══════════ */
     /* con barra, sentado en un banco con el respaldo casi vertical. La barra espera en su soporte, detrás y por encima de la cabeza:
        en el paso 2 la coge (las palmas hacia delante, algo más que la anchura de los hombros) y la baja por delante de la cabeza
-       hasta la altura de los hombros; en el 3 empuja sin bloquear los codos, hace una pausa y baja con control */
+       hasta la altura de los hombros; en el 3 empuja sin bloquear los codos, hace una pausa y baja con control.
+       (20-11-2026) «Por delante de la cabeza» de verdad: arriba la barra queda 12 cm por delante de los hombros (antes, 6,5) y abajo
+       echa la cabeza atrás para dejarle paso (antes la tenía quieta, y a media subida la barra se le metía 5,8 cm por la frente:
+       lo mide la auditoría, «la cabeza y las barras»). Abajo los codos van más abiertos: el antebrazo, vertical, y la barra sobre
+       la muñeca, que no se le eche encima */
     COREO['press-hombros-barra-sentado'] = (function () {
       var G = 25, base = sentadoEnRespaldo(85, { cab: [4, 0, 0] }), h = resolver(base).i.hom;
       var Hs = Math.round(h[1] + 51), Zs = 4, enSop = [0, Hs + 0.6, Zs + 4];
@@ -50,8 +54,8 @@
         posturas: {
           s: sobre(base, { b: { a: [14, 63.5, h[2] + 27], polo: [1, -0.3, -0.7] }, m: EN_MUSLO }),
           g: conAgarre(P({ cab: [-6, 0, 0] }), [G, enSop[1], enSop[2]], [1, -0.15, 0.6]),
-          u: conAgarre(P(), [G, h[1] + 57.8, h[2] + 6.5], [1, -0.2, 0.6]),
-          b: conAgarre(P(), [G, h[1] + 1.5, h[2] + 16], [0.45, -1, 0.5])
+          u: conAgarre(P({ cab: [0, 0, 0] }), [G, h[1] + 56.9, h[2] + 12], [1, -0.2, 0.3]),      /* sin bloquear los codos: a 15° de estirarse, como antes */
+          b: conAgarre(P({ cab: [-14, 0, 0] }), [G, h[1] + 1.5, h[2] + 16], [0.9, -1, 0])
         },
         inicio: 'b', encuadra: ['s', 'g', 'u'],
         rep: [['u', 1.2, 'empuje'], ['u', 0.7], ['b', 1.7, 'freno'], ['b', 0.4]],
@@ -152,21 +156,27 @@
       };
     })();
     /* push press: de pie, la barra apoyada por delante sobre los hombros; flexiona las rodillas con el tronco recto; estira las piernas
-       con fuerza y, con ese impulso, la barra sube por encima de la cabeza; y baja con control a los hombros */
+       con fuerza y, con ese impulso, la barra sube por encima de la cabeza; y baja con control a los hombros.
+       (20-11-2026) La barra rodea la cara. Sale de los hombros, pegada al cuello, y acaba encima de la cabeza: en línea recta de un
+       sitio al otro (como estaba) pasaba por dentro de la cara (11 cm). Ahora hay una postura a media subida (m): la barra, a la
+       altura de la nariz y 16,5 cm por delante de los hombros, con la cabeza echada atrás; de ahí sube y vuelve sobre la cabeza. Los
+       tiempos son los mismos: hasta «m» va a velocidad constante y de «m» arriba frena desde esa misma velocidad (lineal y sale:
+       no se nota la costura), y baja igual, al revés. Arriba queda 9 cm por delante de los hombros (antes, 5) */
     COREO['push-press'] = (function () {
       var G = 26, pies = { suelo: [16, 0], abre: 10, polo: [0.3, 0.1, 1] };
       var enHombros = function (P) { var h = resolver(P).i.hom; return conAgarre(P, [G, h[1] + 3.5, h[2] + 11.5], [0.35, -1, 0.75]); };
-      var deP = { p: pies, m: PRESS, cab: [-5, 0, 0] }, h0 = resolver(deP).i.hom;
+      var deP = { p: pies, m: PRESS, cab: [-10, 0, 0] }, h0 = resolver(deP).i.hom;
       return {
-        vista: [36, 84], rastro: 'manos', esfuerzo: [0, 1], clavos: ['ti', 'td', 'mi', 'md'],
+        vista: [36, 84], rastro: 'manos', esfuerzo: [0, 1, 2], clavos: ['ti', 'td', 'mi', 'md'],
         material: [['barra', { discos: 21 }]],
         posturas: {
           a: enHombros(deP),
-          d: enHombros({ pel: [0, PIE - 6.5, -2.5], giro: [0, 2, 0], p: pies, m: PRESS, cab: [-5, 0, 0] }),
-          u: conAgarre({ p: pies, m: PRESS, cab: [-3, 0, 0] }, [G, h0[1] + 57.6, h0[2] + 5], [0.6, -0.2, 0.8])
+          d: enHombros({ pel: [0, PIE - 6.5, -2.5], giro: [0, 2, 0], p: pies, m: PRESS, cab: [-10, 0, 0] }),
+          m: conAgarre({ p: pies, m: PRESS, cab: [-16, 0, 0] }, [G, h0[1] + 23, h0[2] + 16.5], [0.6, -0.8, 0.6]),
+          u: conAgarre({ p: pies, m: PRESS, cab: [-6, 0, 0] }, [G, h0[1] + 57.1, h0[2] + 9], [0.6, -0.2, 0.8])
         },
         inicio: 'd', encuadra: ['u'],
-        rep: [['a', 0.3, 'sale'], ['u', 0.55, 'empuje'], ['u', 0.55], ['a', 1.5, 'freno'], ['a', 0.4], ['d', 0.8, 'suave'], ['d', 0.2]],
+        rep: [['a', 0.3, 'sale'], ['m', 0.12, 'lineal'], ['u', 0.43, 'sale'], ['u', 0.55], ['m', 0.96, 'lineal'], ['a', 0.54, 'lineal'], ['a', 0.4], ['d', 0.8, 'suave'], ['d', 0.2]],
         pasos: ['a', { sec: [['d', 1.0, 'suave']], desde: 'a' }, 'rep']
       };
     })();

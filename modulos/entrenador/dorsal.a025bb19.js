@@ -27,6 +27,14 @@
     /* arriba: la cadera a «y», el tronco un poco hacia atrás y los codos hacia el suelo */
     function arriba(G, y, extra) { return sobre(COLGADO, sobre({ pel: [0, y, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], b: { a: [G, ALTO - 8, 0], polo: [1, -1, 0.1] } }, extra || {})); }
     var SUBE_BAJA = [['b', 1.3, 'empuje'], ['b', 0.5], ['a2', 1.9, 'freno'], ['a2', 0.45]];
+    /* (20-11-2026) colgado «dz» cm más atrás (dz < 0), con los brazos igual de estirados (la cadera sube lo que haga falta). Al subir,
+       la cabeza se echa atrás con el tronco; si sale de justo debajo de la barra, a media subida el pelo se le mete en ella (hasta
+       3,8 cm en estas; lo mide la auditoría: «la cabeza y las barras»). Las que suben más (el agarre ancho cuelga más alto) o salen
+       de colgado muerto, empiezan un poco más atrás */
+    function masAtras(P, dz) {
+      var h = resolver(P).i.hom, a = ALTO - h[1], b = P.b.a[2] - h[2];
+      return sobre(P, { pel: [P.pel[0], P.pel[1] + a - Math.sqrt(a * a + b * b - (b - dz) * (b - dz)), P.pel[2] + dz] });
+    }
     /* la mano en la barra (EN_BARRA, en 70-coreografias.js): con la palma hacia delante (el agarre de una dominada) o hacia él
        (supino); y en un agarre que va de delante atrás, con las palmas enfrentadas */
     var DELANTE = EN_BARRA, HACIA_EL = EN_BARRA_SUP, DENTRO = { tipo: 'puno', barra: [0, 0, 1], palma: [-1, 0, 0] };
@@ -35,12 +43,14 @@
     COREO['dominadas-agarre-ancho'] = {
       vista: [22, 158], rastro: 'barbilla', esfuerzo: [0], clavos: clavosB(46),
       material: [barraD({ ancho: 70 })],
-      posturas: { a: cuelga(46), a2: activo(46), b: arriba(46, 170, { b: { a: [46, ALTO - 8, 0], polo: [1, -1, 0] } }) },
+      posturas: { a: masAtras(cuelga(46), -2.5), a2: masAtras(activo(46), -2.5), b: arriba(46, 170, { b: { a: [46, ALTO - 8, 0], polo: [1, -1, 0] } }) },
       inicio: 'a2', rep: SUBE_BAJA,
       pasos: ['a', { sec: [['a2', 1.0, 'suave']], desde: 'a' }, 'rep', 'rep']
     };
     /* en los agarres paralelos (salen de la barra hacia delante: la cabeza sube por delante de ella), con las palmas enfrentadas:
-       los codos bajan y van hacia atrás, y el pecho se acerca a las manos */
+       los codos bajan y van hacia atrás, y el pecho se acerca a las manos.
+       (20-11-2026) Cuelga justo debajo de las manos (antes, 2 cm más atrás) y arriba el tronco se echa atrás 4° y no 8: con 8, la
+       nuca quedaba en el sitio de la barra de detrás, y al pasar a su altura se le metía 4,8 cm en el pelo */
     COREO['dominadas-agarre-neutro'] = (function () {
       var G = 23, zm = 18, m = DENTRO;
       var mano = function (polo) { return { a: [G, ALTO - 8, zm], polo: polo }; };
@@ -48,9 +58,9 @@
         vista: [36, 148], rastro: 'barbilla', esfuerzo: [0], clavos: clavosB(G),
         material: [barraD({ paralelos: G })],
         posturas: {
-          a: cuelga(G, { pel: [0, yColgado(G, 3.5), zm - 2], b: mano([0.5, -0.2, 1]), m: m }),
-          a2: activo(G, { pel: [0, yColgado(G, -2), zm - 2], b: mano([0.5, -0.3, 1]), m: m }),
-          b: arriba(G, 171, { pel: [0, 171, zm + 4], hom: [-2, -2.2], b: mano([0.22, -1, 0.6]), m: m })
+          a: cuelga(G, { pel: [0, yColgado(G, 3.5), zm], b: mano([0.5, -0.2, 1]), m: m }),
+          a2: activo(G, { pel: [0, yColgado(G, -2), zm], b: mano([0.5, -0.3, 1]), m: m }),
+          b: arriba(G, 171, { pel: [0, 171, zm + 6], giro: [0, -4, 0], hom: [-2, -2.2], b: mano([0.22, -1, 0.6]), m: m })
         },
         inicio: 'a2',
         rep: [['b', 1.3, 'empuje'], ['b', 0.7], ['a2', 1.9, 'freno'], ['a2', 0.45]],      /* arriba, una pausa breve */
@@ -69,31 +79,34 @@
       inicio: 'a2', rep: SUBE_BAJA,
       pasos: ['a', 'rep', 'rep']
     };
-    /* solo la bajada: de un cajón, con un saltito, arriba; y de ahí, despacio, hasta colgar con los brazos estirados */
+    /* solo la bajada: de un cajón, con un saltito, arriba; y de ahí, despacio, hasta colgar con los brazos estirados.
+       (20-11-2026) El cajón, 16 cm más atrás: subido a él la barra le queda a la altura de la frente, y con el cajón justo debajo
+       (como estaba) se quedaba de pie con la barra dentro de la cabeza (11 cm). Ahora espera detrás de ella, y de ahí salta arriba,
+       que también es detrás. En el cajón, los pies van clavados (al agacharse para saltar se le iban 2,5 cm) */
     COREO['dominadas-negativas'] = (function () {
-      var H = 60, ZC = -4, G = 28;
+      var H = 60, ZC = -20, G = 28, T = clavosB(G).concat(['ti', 'td']);
       var recogidas = { p: { e: 4, z: 0, c: 96 }, t: { tob: 18 } };       /* las piernas dobladas hacia atrás: no tocan el cajón */
       var enCajon = function (y, extra) { return sobre({ pel: [0, y, ZC + 1], p: { suelo: [10, ZC], alto: H, abre: 6 }, m: DELANTE, hom: [1, 0], b: { a: [G, ALTO - 8, 0], polo: [1, -0.6, 0.5] } }, extra || {}); };
       return {
-        vista: [34, 146], rastro: 'barbilla', esfuerzo: [0], clavos: clavosB(G),
+        vista: [34, 146], rastro: 'barbilla', esfuerzo: [0], clavos: clavosB(G), clavosEn: { e: T, e0: T },
         material: [barraD(), ['escalon', { en: [0, ZC], med: [64, H, 42], madera: true }]],
         posturas: {
           e: enCajon(H + D.pelvis),
-          e0: enCajon(H + D.pelvis - 11, { giro: [0, 6, 0] }),
+          e0: enCajon(H + D.pelvis - 11, { giro: [0, 4, 0] }),
           b: sobre(arriba(G, 174), recogidas),
           b2: sobre(arriba(G, 174, { hom: [-3, -2.6] }), recogidas),
-          a: sobre(cuelga(G), recogidas)
+          a: sobre(masAtras(cuelga(G), -3), recogidas)
         },
         inicio: 'b2', encuadra: ['e'],
-        rep: [['a', 4.4, 'freno'], ['a', 0.6], ['e', 0.9, 'suave'], ['e0', 0.4, 'suave'], ['b2', 0.6, 'empuje'], ['b2', 0.8]],
-        pasos: [{ sec: [['e', 1.5], ['e0', 0.45, 'suave'], ['b', 0.6, 'empuje']], desde: 'e' }, 'b2', 'rep']
+        rep: [['a', 4.4, 'freno'], ['a', 0.6], ['e', 0.9, 'suave'], ['e0', 0.4, 'suave', T], ['b2', 0.6, 'empuje'], ['b2', 0.8]],
+        pasos: [{ sec: [['e', 1.5], ['e0', 0.45, 'suave', T], ['b', 0.6, 'empuje']], desde: 'e' }, 'b2', 'rep']
       };
     })();
     /* aguantar arriba */
     COREO['dominada-isometrica'] = {
       vista: [26, 154], isometrico: 'b', clavos: clavosB(28),
       material: [barraD()],
-      posturas: { a: cuelga(28), b: arriba(28, 175, { hom: [-3, -2] }) },
+      posturas: { a: masAtras(cuelga(28), -3), b: arriba(28, 175, { hom: [-3, -2] }) },
       inicio: 'a', encuadra: ['b'],
       pasos: [{ sec: [['a', 1.0], ['b', 1.5, 'empuje']], desde: 'a' }, 'b', { sec: [['b', 0.9], ['a', 3.4, 'freno']], desde: 'b' }]
     };
@@ -121,7 +134,7 @@
       return {
         vista: [14, 166], rastro: 'barbilla', esfuerzo: [0, 4], clavos: clavosB(G),
         material: [barraD({ ancho: 72 })],
-        posturas: { a: cuelga(G), a2: activo(G), bi: lado(1), bd: lado(-1) },
+        posturas: { a: masAtras(cuelga(G), -4.5), a2: masAtras(activo(G), -4.5), bi: lado(1), bd: lado(-1) },
         inicio: 'a2',
         rep: [['bi', 1.4, 'empuje'], ['bi', 0.5], ['a2', 1.8, 'freno'], ['a2', 0.4], ['bd', 1.4, 'empuje'], ['bd', 0.5], ['a2', 1.8, 'freno'], ['a2', 0.4]],
         pasos: ['a', 'rep', 'rep']
@@ -138,7 +151,7 @@
       return {
         vista: [14, 166], rastro: 'barbilla', clavos: clavosB(G),
         material: [barraD({ ancho: 70 })],
-        posturas: { a: cuelga(G), b: arriba(G, Y, { b: { a: [G, ALTO - 8, 0], polo: [1, -1, 0] } }), bi: lado(1), bd: lado(-1) },
+        posturas: { a: masAtras(cuelga(G), -4.5), b: arriba(G, Y, { b: { a: [G, ALTO - 8, 0], polo: [1, -1, 0] } }), bi: lado(1), bd: lado(-1) },
         inicio: 'a', encuadra: ['b', 'bi', 'bd'],
         pasos: [
           { sec: [['a', 1.0], ['b', 1.4, 'empuje']], desde: 'a' },
@@ -148,18 +161,27 @@
       };
     })();
     /* de lado bajo la barra (mira a lo largo de ella; su izquierda es −Z), una mano delante de la otra, cada una cogiéndola desde su
-       lado. Sube sin girar el tronco: la cabeza pasa por un lado de la barra y, a la siguiente, por el otro */
+       lado. Sube sin girar el tronco: la cabeza pasa por un lado de la barra y, a la siguiente, por el otro.
+       (20-11-2026) La cabeza se aparta ANTES de llegar a la barra: cuelga justo debajo, y si se va a un lado al paso que sube (como
+       estaba: de una postura a la otra, en línea recta), a media subida la barra se le metía 5,9 cm por el pelo y la oreja. Ahora hay
+       una postura intermedia a cada lado (ni, nd): a los 17 cm de subida ya está apartado del todo, y desde ahí sube recto, con la
+       barra sobre el hombro. Arriba queda 2,5 cm más apartado que antes. Los tiempos son los mismos: el primer tramo va a velocidad
+       constante y el segundo frena desde esa misma velocidad (lineal y sale), así que no se nota la costura; y baja igual, al revés.
+       Los codos, en la postura intermedia, a un tercio de su giro (como la subida): con el de atrás ya girado del todo, al acabar de
+       bajar, con el brazo casi recto, cambiaba de lado de golpe (11 cm en un cuadro) */
     COREO['dominadas-comando'] = (function () {
       var G = 9, mi = { tipo: 'puno', barra: [1, 0, 0], palma: [0, 0, 1] }, md = { tipo: 'puno', barra: [1, 0, 0], palma: [0, 0, -1] };
       var brazos = function (pi, pd) { return { bi: { a: [G, ALTO - 8, 0], polo: pi }, bd: { a: [-G, ALTO - 8, 0], polo: pd }, mi: mi, md: md }; };
       var cuelgaL = sobre(COLGADO, sobre({ pel: [0, yColgado(D.hombroX + Math.sqrt(G * G + D.hombroX * D.hombroX), 3.5), 0], giro: [90, 0, 0], hom: [3.5, 0] }, brazos([0.3, -1, -0.3], [-0.3, -1, 0.3])));
       /* s: +1, la cabeza pasa por su izquierda */
-      var lado = function (s) { return sobre(COLGADO, sobre({ pel: [-10, 170, -s * 8], giro: [90, -9, s * 7], hom: [-2, -1.5], cab: [4, 0, 0] }, brazos([0.5, -1, -0.5], [0.5, -1, 0.5]))); };
+      var lado = function (s) { return sobre(COLGADO, sobre({ pel: [-10, 170, -s * 10.5], giro: [90, -9, s * 8], hom: [-2, -1.5], cab: [4, 0, 0] }, brazos([0.5, -1, -0.5], [0.5, -1, 0.5]))); };
+      var medio = function (s) { return sobre(COLGADO, sobre({ pel: [-4, 140, -s * 10.5], giro: [90, -4, s * 8], hom: [-1, -1], cab: [2, 0, 0] }, brazos([0.37, -1, -0.37], [0, -1, 0.37]))); };
+      var a_lado = function (n, b) { return [[n, 0.4, 'lineal'], [b, 1.0, 'sale'], [b, 0.45], [n, 1.0, 'lineal'], ['a', 0.8, 'lineal'], ['a', 0.4]]; };
       return {
-        vista: [62, 12], rastro: 'cab', esfuerzo: [0, 4], clavos: clavosB(G),
+        vista: [62, 12], rastro: 'cab', esfuerzo: [0, 1, 6, 7], clavos: clavosB(G),
         material: [barraD({ ancho: 78 })],
-        posturas: { a: cuelgaL, bi: lado(1), bd: lado(-1) },
-        rep: [['bi', 1.4, 'empuje'], ['bi', 0.45], ['a', 1.8, 'freno'], ['a', 0.4], ['bd', 1.4, 'empuje'], ['bd', 0.45], ['a', 1.8, 'freno'], ['a', 0.4]],
+        posturas: { a: cuelgaL, ni: medio(1), bi: lado(1), nd: medio(-1), bd: lado(-1) },
+        rep: a_lado('ni', 'bi').concat(a_lado('nd', 'bd')),
         pasos: ['a', 'rep', 'rep']
       };
     })();
@@ -217,7 +239,7 @@
     COREO['ice-cream-maker'] = {
       vista: V_FL, rastro: 'pel', esfuerzo: [0, 2], clavos: clavosB(GL),
       material: [TORRE],
-      posturas: { a: cuelga(GL), b: arriba(GL, 173, { hom: [-2, -2] }), f: palanca(90, 37) },
+      posturas: { a: masAtras(cuelga(GL), -3), b: arriba(GL, 173, { hom: [-2, -2] }), f: palanca(90, 37) },
       inicio: 'b', encuadra: ['a'],
       rep: [['f', 1.5, 'suave'], ['f', 0.5], ['b', 1.4, 'suave'], ['b', 0.5]],
       pasos: [{ sec: [['a', 0.8], ['b', 1.4, 'empuje']], desde: 'a' }, 'rep', 'rep']

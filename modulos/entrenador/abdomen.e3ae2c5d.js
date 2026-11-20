@@ -11,12 +11,13 @@
   T._trozo('abdomen', function (N) {
     var ALTO_MUN = N.ALTO_MUN, C = N.C, COLGADO = N.COLGADO, COREO = N.COREO, D = N.D, EN_BARRA = N.EN_BARRA, EN_SUELO = N.EN_SUELO, PIE = N.PIE,
         PIES_PUNTA = N.PIES_PUNTA, RAD = N.RAD, SUELTA = N.SUELTA, SUPINO_SUELO = N.SUPINO_SUELO, TOB_PUNTA = N.TOB_PUNTA, V = N.V,
-        aLosLados = N.aLosLados, aUnBrazo = N.aUnBrazo, abre = N.abre, aplicar = N.aplicar, apoyada = N.apoyada, arco = N.arco,
+        aLocal = N.aLocal, aLosLados = N.aLosLados, aUnBrazo = N.aUnBrazo, abre = N.abre, aplicar = N.aplicar, apoyada = N.apoyada, arco = N.arco,
         bajoZapa = N.bajoZapa, baseDe = N.baseDe, baseEjes = N.baseEjes, busca = N.busca, cabezaAPlano = N.cabezaAPlano, colgando = N.colgando,
         conAgarre = N.conAgarre, curva = N.curva, el = N.el, entre = N.entre, estirado = N.estirado, flexion = N.flexion, girar = N.girar,
-        giroY = N.giroY, inclinado = N.inclinado, largo = N.largo, linea = N.linea, mas = N.mas, menos = N.menos, mezcla = N.mezcla, plano = N.plano,
-        por = N.por, punto = N.punto, refleja = N.refleja, reflejo = N.reflejo, resolver = N.resolver, signo = N.signo, sinParte = N.sinParte,
-        sobre = N.sobre, tabla = N.tabla, tablaAlta = N.tablaAlta, troncoAPlano = N.troncoAPlano, unidad = N.unidad;
+        giroX = N.giroX, giroY = N.giroY, inclinado = N.inclinado, largo = N.largo, lejos = N.lejos, linea = N.linea, mas = N.mas, menos = N.menos,
+        mezcla = N.mezcla, plano = N.plano, por = N.por, punto = N.punto, refleja = N.refleja, reflejo = N.reflejo, resolver = N.resolver,
+        signo = N.signo, sinParte = N.sinParte, sobre = N.sobre, tabla = N.tabla, tablaAlta = N.tablaAlta, troncoAPlano = N.troncoAPlano,
+        unidad = N.unidad;
   /* ───────────────────────── las coreografías: ABDOMEN Y LUMBARES (bloque 12) ─────────────────────────
      Las mismas reglas que en 70-coreografias.js: cada una sale de los pasos verificados de su ficha y no añade técnica
      que la ficha no diga. Van por familias: las planchas sobre las manos (alta, con toque de hombro, arriba y abajo y con
@@ -944,13 +945,25 @@
     })();
 
     /* el crunch en polea alta: de rodillas ante la polea, con el cable (la cuerda) en las manos, junto a las sienes, y el tronco recto,
-       inclinado hacia delante; baja enrollando la espalda, con los codos apuntando hacia las rodillas; y vuelve despacio */
+       inclinado hacia delante; baja enrollando la espalda, con los codos apuntando hacia las rodillas; y vuelve despacio.
+       (20-11-2026) Junto a las sienes de verdad. Las manos iban a un punto fijo del tórax que caía bajo la barbilla, a 5 cm del eje
+       de la cara: los puños quedaban dentro de la mandíbula, y los ramales de la cuerda, que van del nudo a cada puño, le cruzaban
+       la cabeza (13 cm: lo mide la auditoría, «la cabeza y las barras»). Ahora cada puño va a un lado de la cabeza (SIEN, dicho en
+       la cabeza: a 17,8 cm de su eje, pegado al pelo, y a la altura de la sien) y la sigue cuando la cabeza gira; los ramales la
+       rodean por fuera. La columna, 12 cm más lejos: el cable baja más tendido y, enrollado, la cabeza no se le echa encima */
     COREO['crunch-polea'] = (function () {
-      var sienes = { a: [8.6, 31, 6.5], en: 'torax', polo: [0.6, -0.5, 1] };
-      var de = function (g, col, cab) { return { pel: [0, 47, -3], giro: [0, g, 0], col: [col, 0, 0], cab: [cab, 0, 0], p: { a: [10, 7, -38], polo: [0, -1, 1] }, t: { punta: [0, -0.1, -1], arriba: [0, -1, 0.1] }, b: sienes, m: NEUTRA }; };
+      var SIEN = [17.8, 23, 0], POLO = [0.25, -0.5, 1];
+      var de = function (g, col, cab) {
+        var P = { pel: [0, 47, -3], giro: [0, g, 0], col: [col, 0, 0], cab: [cab, 0, 0], p: { a: [10, 7, -38], polo: [0, -1, 1] }, t: { punta: [0, -0.1, -1], arriba: [0, -1, 0.1] }, m: NEUTRA };
+        /* el puño, en el marco del tórax (la cabeza gira «cab» grados sobre su base, que está a D.cabeza de él); y la muñeca, donde haga
+           falta para que el puño caiga ahí */
+        var q = mas([0, D.cabeza, 0], aplicar(giroX(cab), SIEN)), w = [q[0], q[1] - 6, q[2] + 3], i, E;
+        for (i = 0; i < 12; i++) { E = resolver(sobre(P, { b: { a: w, en: 'torax', polo: POLO } })); w = mas(w, menos(q, aLocal(E.Bt, menos(E.i.agarre, E.tor)))); }
+        return sobre(P, { b: { a: w, en: 'torax', polo: POLO } });
+      };
       return {
         vista: [[70, 8], [112, 12]], rastro: 'hombros', esfuerzo: [0, 1], clavos: T2,
-        material: [['polea', { en: [0, 96], alto: 204, a: 'manos', agarre: 'cuerda' }]],
+        material: [['polea', { en: [0, 108], alto: 204, a: 'manos', agarre: 'cuerda' }]],
         posturas: { a: de(26, 0, -14), b: de(31, 70, 4) }, inicio: 'a', encuadra: ['a', 'b'],
         rep: [['b', 1.5, 'empuje'], ['b', 0.4], ['a', 1.9, 'freno'], ['a', 0.4]],
         pasos: ['a', { sec: [['b', 1.6, 'empuje']], desde: 'a' }, { rep: 1.9 }]

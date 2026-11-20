@@ -79,6 +79,15 @@
     c[k] = { a: w, polo: polo };
     return sobre(P, c);
   }
+  /* conPuno: como conAgarre, pero vale también con la muñeca doblada (m.mun), cuando el puño ya no queda en la línea del antebrazo:
+     la muñeca se corrige hasta que el centro del puño cae en g */
+  function conPuno(P, g, polo, k) {
+    k = k || 'b';
+    var w = [g[0], g[1] - D.mano, g[2]], i, c = {};
+    for (i = 0; i < 10; i++) { c[k] = { a: w, polo: polo }; w = mas(w, menos(g, resolver(sobre(P, c))[k === 'bd' ? 'd' : 'i'].agarre)); }
+    c[k] = { a: w, polo: polo };
+    return sobre(P, c);
+  }
   /* estirado: el brazo, estirado desde el hombro de la postura P hacia el punto q (a «flojo» cm de estirarse del todo); el puño
      queda en esa línea. k, como arriba; si es 'b', q es el de la mano izquierda */
   function estirado(P, q, k, flojo, polo) {
@@ -682,11 +691,17 @@
     rep: [['b', 1.3, 'empuje'], ['b', 0.3], ['a2', 1.8, 'freno'], ['a2', 0.4]],
     pasos: ['a', { sec: [['a2', 0.8]], desde: 'a' }, 'rep']
   };
+  /* (20-11-2026) La barra sube por delante de la cara, no a través de ella. Con las muñecas en línea recta de 15 a 9 cm por delante
+     del cuerpo y la cabeza quieta, a media subida la barra se le metía 5 cm por la frente (lo mide la auditoría: «la cabeza y las
+     barras»). Ahora hace lo que se hace con una barra de verdad: abajo, la barra descansa en lo alto del pecho (el puño, a 15 cm
+     del eje del cuerpo: el pecho llega a 12), con las muñecas algo extendidas y la cabeza echada atrás para dejarle paso; sube
+     recta (el puño no se aparta de entre 13,4 y 15,3 cm) y le pasa a medio centímetro de la nariz; y arriba la cabeza vuelve a su
+     sitio, debajo de la barra */
   COREO['press-militar-barra'] = {
     vista: [22, 78], rastro: 'manos', esfuerzo: [0], clavos: ['mi', 'md'], material: [['barra', { discos: 17 }]],
     posturas: {
-      a: { b: { a: [26, HOMBRO - 8.5, 15], polo: [0.3, -1, 0.6] }, m: PRONO },
-      b: { b: { a: [26, HOMBRO + 49, 9], polo: [0.6, -0.2, 0.8] }, m: PRONO, cab: [-6, 0, 0] }
+      a: conPuno({ m: { tipo: 'puno', prono: 90, mun: -30 }, cab: [-15, 0, 0] }, [26, HOMBRO - 1, 15], [0.8, -1, 0]),
+      b: conPuno({ m: PRONO, cab: [-6, 0, 0] }, [26, HOMBRO + 56, 14], [1, -0.25, 0.25])      /* el codo, a 20° de estirarse del todo, como antes */
     },
     rep: [['b', 1.2, 'empuje'], ['b', 0.35], ['a', 1.6, 'freno'], ['a', 0.45]],
     pasos: ['a', 'rep', 'rep']

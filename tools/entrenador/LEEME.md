@@ -410,8 +410,32 @@ una pierna (38 cm) de la rodilla: con medio centímetro de menos, la rodilla sal
   barra le cruzaba la cara al subir y el tubo que bajaba de la viga le quedaba delante de los ojos; en la hoja de repaso pasó por «la
   barra, delante de la cara». Ahora va como en las dominadas del bloque 1 (arriba, el tronco 9° atrás: la cabeza pasa por detrás de
   la barra) y la viga acaba por delante de las asas. Se midió aparte, pieza a pieza: lo que pinta el material (cada cilindro) contra
-  el pelo, la nariz, el mentón y el tupé, en cada instante. **Falta hacer de eso un control** y pasarlo a los vídeos de antes, que
-  varios lo necesitan (la nota de este bloque da la lista).
+  el pelo, la nariz, el mentón y el tupé, en cada instante. ~~Falta hacer de eso un control~~ **Hecho el 20-11-2026 (nota 63):**
+  - *El control.* `cabezaACilindro` (30-cabeza.js) mide lo que le falta a la cabeza para tocar un cilindro, y `contactos.js` se lo
+    pasa a todo cilindro que pinta el material, espiando `Cilindro.pon` (lo que se mide es lo que se dibuja: la barra de dominadas,
+    la de pesas, los tubos y las asas de una máquina, un mango, los ramales de una cuerda). Dos medidas: `cabeza-barra` (cada
+    tramo en 25 instantes y cada postura mantenida; límite, 2,5 cm) y `cabeza-barra-vida` (el vídeo cuadro a cuadro, con la demora
+    del tronco y de la cabeza; 3,5). Los cojines, las placas y los discos no son cilindros: eso sigue sin control (se mide a mano,
+    como en el bloque 14).
+  - *Los doce vídeos corregidos.* Cada uno, por lo suyo, y las cuatro maneras sirven para lo que venga:
+    1. **Colgar un poco más atrás** (`masAtras`, en 72-dorsal.js). En una dominada la cabeza se echa atrás con el tronco; si sale de
+       justo debajo de la barra, a media subida el pelo se le mete. Con la cadera 2,5–4,5 cm más atrás al colgar, pasa.
+    2. **Una postura intermedia** cuando el camino recto entre dos posturas atraviesa algo (el push press: la barra sale de los
+       hombros y tiene que rodear la cara; las dominadas comando: la cabeza tiene que apartarse ANTES de llegar a la barra). Para
+       que no se note la costura, el primer tramo va en `lineal` y el segundo en `sale` (que arranca al doble de su velocidad
+       media): con t2 = 2 · t1 · d2 / d1 la velocidad no cambia en la postura intermedia. Al bajar, `lineal` y `lineal` con los
+       tiempos en proporción a los caminos. Y `esfuerzo` lleva los índices de los tramos nuevos.
+    3. **La cabeza se aparta, como con una barra de verdad.** En los press la barra sube recta por delante de la cara: abajo
+       descansa en lo alto del pecho con la cabeza echada atrás (cab −15), y arriba la cabeza vuelve. Con la cabeza quieta habría
+       que sacar la barra 20 cm por delante del pecho (la nariz de Jérôme llega a 15,7 cm del eje del cuello).
+    4. **La mano, dicha en la cabeza** (el crunch en polea: «junto a las sienes»). Un punto fijo del tórax no sigue a la cabeza
+       cuando gira: el punto se dice en la cabeza y se pasa al marco del tórax con `giroX(cab)`.
+  - *Lo que hay que mirar al mover una postura de arriba:* el codo. Subir o adelantar el puño puede dejarlo fuera de alcance: el
+    brazo queda bloqueado (2,3°, el tope del cálculo) y la ficha dice «sin bloquear los codos». Se compara el ángulo de antes.
+  - *Las vistas.* `vista: [22, 78]` son DOS vistas (la segunda, con «Girar»): de frente una barra por delante de la frente parece
+    bien aunque le cruce la cabeza; de lado se ve. Mirar siempre las dos.
+- **El pie que no se mueve, no se va** (control `pie-deriva`, 20-11-2026): el tobillo que acaba un tramo donde lo empezó no puede
+  apartarse más de 2 cm por el camino. Si salta, falta clavarlo en ese tramo (el cuarto elemento del tramo, o `clavos`).
 - **Lo que apoya en una pieza de la máquina se clava, como en el suelo.** En la hack los pies iban al mismo sitio en cada postura, pero
   sin clavar, y a media repetición el tobillo se iba 4 cm y la zapatilla se hundía en la plataforma. Tampoco lo dice ningún control
   (`contactos.js` no mira la plataforma, y lo clavado solo se mide si se clava): se midió aparte lo que acaba donde empezó y entre

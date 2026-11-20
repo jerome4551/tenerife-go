@@ -26,7 +26,8 @@
  *    · LOS CONTACTOS (16 de noviembre de 2026), en cada tramo, en cada postura mantenida y en el vídeo cuadro a cuadro
  *      (tools/entrenador/pruebas/contactos.js): ninguna zapatilla ni ninguna mano se hunde más de 1 cm en el suelo o en
  *      una pared; la mano que se apoya, toca; el cuerpo no atraviesa el suelo ni las paredes; las manos no se meten en
- *      los muslos, y lo que el Director las aparta no da tirones;
+ *      los muslos, y lo que el Director las aparta no da tirones; y (20 de noviembre de 2026) ninguna barra, tubo, asa o
+ *      ramal de cuerda del material se le mete en la cabeza, y el pie que no se mueve no se va por el camino;
  *    · los gestos del presentador (saluda, la visera, «¡vamos!», el consejo, el pulgar…): sus posturas
  *      existen, ninguna mano levantada se sale del cuadro y ninguna va más deprisa de lo que se ve;
  *    · la voz: con las voces que enseña un iPhone (las «Eloquence», robóticas), un PC o un Android,
@@ -255,6 +256,12 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   ok(!deC('mano-muslo', 'mano-muslo-quieta', 'mano-muslo-vida', 'mano-muslo-quieta-vida').length, 'las manos no se meten en los muslos: quietas, ni 1 cm (tampoco en el vídeo, mientras respira y se balancea); de paso, ni 2',
     deC('mano-muslo', 'mano-muslo-quieta', 'mano-muslo-vida', 'mano-muslo-quieta-vida').slice(0, 6));
   ok(!deC('tiron').length, 'lo que el Director aparta una mano de un muslo no da tirones (cambia a menos de ' + CT.LIMITES.tiron + ' cm/s)', deC('tiron').slice(0, 6));
+  /* LA CABEZA Y LAS BARRAS (20 de noviembre de 2026). Nada de lo de arriba miraba el material que no es suelo, pared ni banco: en
+     nueve vídeos una barra o los ramales de una cuerda le cruzaban la cabeza (hasta 13 cm) y la auditoría salía verde. Ahora al
+     material se le hace pintar con Cilindro.pon espiado y se mide la cabeza contra cada cilindro que dibuja, sea de lo que sea */
+  ok(!deC('cabeza-barra', 'cabeza-barra-vida').length, 'la cabeza y las barras: ningún cilindro del material (una barra, un tubo o un asa de una máquina, un mango, un ramal de cuerda) se le mete en la cabeza más de ' +
+    String(-CT.LIMITES['cabeza-barra']).replace('.', ',') + ' cm en ningún tramo ni postura, ni más de ' + String(-CT.LIMITES['cabeza-barra-vida']).replace('.', ',') + ' en el vídeo cuadro a cuadro', deC('cabeza-barra', 'cabeza-barra-vida').slice(0, 6));
+  ok(!deC('pie-deriva').length, 'el pie que no se mueve, no se va: el tobillo que acaba un tramo donde lo empezó no se aparta más de ' + CT.LIMITES['pie-deriva'] + ' cm por el camino (lo que apoya y no se mueve va clavado)', deC('pie-deriva').slice(0, 6));
   /* cada secuencia cabe en su paso. Un paso dura lo que se tarda en leer su texto (80-reproductor.js: 4,4 s como poco, y 0,058 s por
      letra, o 0,16 por carácter en chino), no lo que dure su acción (salvo que el paso lo diga con «dura»: entonces, eso como poco);
      cuando entra el paso siguiente, la secuencia que no ha acabado se queda a medias (y «vuelve despacio» no llega a verse). Se mira

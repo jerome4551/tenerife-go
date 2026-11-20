@@ -4,7 +4,7 @@
    cabezaAPlano, manoEnMuslo: la distancia de lo que se pinta a un plano, o lo que una mano se mete en un muslo) y el Director de
    verdad (lo clavado, el rodeo de los muslos y lo apartado, en su sitio).
 
-     node tools/entrenador/pruebas/contactos.js                 las 282, y lo que se sale de los límites (sale con 1 si hay algo)
+     node tools/entrenador/pruebas/contactos.js                 todas, y lo que se sale de los límites (sale con 1 si hay algo)
      node tools/entrenador/pruebas/contactos.js <id> [<id>…]    de esos ejercicios, todas las medidas
 
    Dos pasadas:
@@ -12,14 +12,18 @@
      (zapatilla, mano, antebrazo, brazo, muslo, pierna, tronco, cabeza) lo más hundido en el suelo y en cada pared (0, toca; negativo,
      dentro); de cada mano, lo más que se mete en un muslo (positivo, dentro), en movimiento y quieta; de la mano que se apoya (la que
      la coreografía pone de plano contra algo: m: { palma, dedos }), a cuánto queda de su suelo, su pared o su banco; y las manos
-     abiertas que en una postura mantenida miran de cerca a una pared o al suelo sin tocarlos.
+     abiertas que en una postura mantenida miran de cerca a una pared o al suelo sin tocarlos. Y (20-11-2026) de la cabeza, lo que
+     se le mete el cilindro del material que le pase más cerca (cabeza-barra); y del tobillo que acaba un tramo donde lo empezó,
+     lo que se aparta por el camino (pie-deriva: lo que apoya y no se mueve tiene que ir clavado).
    · video(T, id, pasos): el vídeo como se ve, cuadro a cuadro (30 por segundo), con la vida (respira, se balancea, llega por
      partes): lo que una mano se mete en un muslo, quieto y en cualquier cuadro, y lo que cambia de un cuadro al siguiente lo que el
-     Director la aparta (no puede dar tirones).
+     Director la aparta (no puede dar tirones); y la cabeza contra los cilindros del material, también cuadro a cuadro.
    juzga(m, v) dice qué se sale de LIMITES. Lo usa tools/auditar_entrenador.js (sección 1).
 
    El suelo es y = 0; las paredes, las del material ('pared'); los bancos planos, su tapa. Lo demás (un escalón, un cajón, la silla)
-   no se mide aquí. */
+   no se mide aquí, salvo la cabeza contra los CILINDROS del material, sean los que sean (la barra de dominadas, la de pesas, los
+   tubos y las asas de una máquina, un mango, los ramales de una cuerda): al material se le hace pintar de mentira con Cilindro.pon
+   espiado, así que lo que se mide es lo que se dibuja. Los cojines, las placas y los discos no son cilindros: no entran. */
 'use strict';
 const fs = require('fs'), path = require('path');
 const RAIZ = path.join(__dirname, '..', '..', '..');
@@ -43,9 +47,34 @@ function tapas(co) {
 }
 const enTapa = (P, B) => Math.abs(dot(sub(P, B.c), B.ux)) <= B.a + 3 && Math.abs(dot(sub(P, B.c), B.uz)) <= B.l + 3;
 const enPano = (P, W) => Math.abs(dot(sub(P, W.c), W.t)) <= W.w / 2 + 1 && P[1] >= -1 && P[1] <= W.h + 1;
+/* los cilindros que pinta el material: se espía Cilindro.pon (50-material.js) mientras se le hace pintar */
+let ESPIA = null;
+function espiar(T) {
+  const P = T.Cilindro.prototype; if (P.pon.espia) return;
+  const pon = P.pon; P.pon = function (cam, p, q, r) { if (ESPIA) ESPIA.push([p.slice(), q.slice(), r]); return pon.apply(this, arguments); }; P.pon.espia = true;
+}
+/* lo que le falta a la cabeza para tocar el cilindro del material que le pase más cerca (negativo: se le mete), con el material como
+   lo deja el Director en ese instante (ctx). colocar: si hay que ponerlo antes en su sitio (el Director, en sus cuadros, ya lo hace) */
+function cabezaBarra(T, esc, E, ctx, colocar) {
+  let min = 1e9; espiar(T);
+  esc.material.forEach((M, i) => {
+    if (!M.pintar) { if (M.roto) throw new Error('el material ' + i + ' no se pudo montar (' + M.roto + ')'); return; }
+    let l; ESPIA = [];
+    try { if (colocar) M.colocar(E, ctx); M.pintar(E, esc.cam, [], ctx); } finally { l = ESPIA; ESPIA = null; }
+    for (const c of l) min = Math.min(min, T.cabezaACilindro(E, c[0], c[1], c[2]));
+  });
+  return min;
+}
+/* lo que el Director le dice al material en cada momento (60-director.js): reposo, si lo que aún no se ha cogido espera en su sitio;
+   enLista(l), lo mismo para el material que trae su lista; de, de qué postura sale. modo: 'rep', 'sec' o 'postura' */
+function ctxDe(co, modo, de, a, w) {
+  const rp = co.reposo;
+  return { de, reposo: !!rp && ((modo === 'postura' && rp.indexOf(de) >= 0) || (modo === 'sec' && rp.indexOf(de) >= 0 && w < 0.97)),
+    enLista: l => !!l && ((modo === 'postura' && l.indexOf(de) >= 0) || (modo === 'sec' && l.indexOf(de) >= 0 && (w < 0.97 || l.indexOf(a) >= 0))) };
+}
 /* un Director de verdad sobre un escenario de mentira (no pinta) */
 function director(T, co) {
-  const esc = { material: (co.material || []).map(q => { try { return new T.MATERIAL[q[0]]({ defs: nodo() }, q[1] || {}); } catch (e) { return { colocar() {} }; } }), poner() {}, detras: nodo(), encima: nodo(), cam: new T.Camara(),
+  const esc = { material: (co.material || []).map(q => { try { return new T.MATERIAL[q[0]]({ defs: nodo() }, q[1] || {}); } catch (e) { return { colocar() {}, roto: String(e && e.message) }; } }), poner() {}, detras: nodo(), encima: nodo(), cam: new T.Camara(),
     cab: { emocion() {}, parpadea() {}, m: {}, habla: 0, t: 0, paso() {}, hablar() {} }, fig: {}, pintar() {} };
   const d = new T.Director(esc); d.cargar(co); d.pintarRastro = () => {}; d.pintarMarcas = () => {};
   return d;
@@ -101,11 +130,25 @@ function mide(T, id) {
     peor('cabeza-suelo', T.cabezaAPlano(E, SUELO.c, SUELO.n), donde); peor('tronco-suelo', T.troncoAPlano(E, SUELO.c, SUELO.n), donde);
     for (const W of PW) { const en = P => enPano(P, W); let v = T.cabezaAPlano(E, W.c, W.n, en); if (v < 1e8) peor('cabeza-pared', v, donde); v = T.troncoAPlano(E, W.c, W.n, en); if (v < 1e8) peor('tronco-pared', v, donde); }
   };
+  const hayMat = d.esc.material.length > 0, lejos = (a, b) => Math.sqrt(dot(sub(a, b), sub(a, b)));
+  const barra = (E, ctx, donde) => { if (hayMat) { const g = cabezaBarra(T, d.esc, E, ctx, true); if (g < 1e8) peor('cabeza-barra', g, donde); } };
   for (const [s, et, curva] of tramosDe(T, co)) {
     if (!d.K[s.de] || !d.K[s.a]) { R.error = 'postura que no existe: ' + s.de + ' o ' + s.a; continue; }
-    for (let q = 0; q <= 24; q++) { d.metas = []; uno(d.enTramo(s, curva(q / 24)), et + ':' + r1(q / 24) + ' (' + s.de + '→' + s.a + ')', (q === 24 || q === 0) && s.de === s.a, s.a); }
+    const modo = et.slice(0, 3) === 'rep' ? 'rep' : 'sec', tob = { i: [], d: [] };
+    for (let q = 0; q <= 24; q++) {
+      d.metas = []; const E = d.enTramo(s, curva(q / 24)), donde = et + ':' + r1(q / 24) + ' (' + s.de + '→' + s.a + ')';
+      uno(E, donde, (q === 24 || q === 0) && s.de === s.a, s.a);
+      barra(E, ctxDe(co, modo, s.de, s.a, q / 24), donde);
+      tob.i.push(E.i.tob); tob.d.push(E.d.tob);
+    }
+    /* el tobillo que acaba el tramo donde lo empezó (a menos de 3 mm): lo que se aparta por el camino */
+    if (s.de !== s.a) for (const k of ['i', 'd']) if (lejos(tob[k][0], tob[k][24]) < 0.3) mejor('pie-deriva', Math.max(...tob[k].map(p => lejos(p, tob[k][0]))), 'tobillo ' + k + ' · ' + et + ' (' + s.de + '→' + s.a + ')');
   }
-  for (const n of quietasDe(co)) { if (!d.K[n]) continue; d.metas = []; uno(d.enTramo({ de: n, a: n, clavos: d.suelto(n) ? [] : (co.clavosEn && co.clavosEn[n]) || undefined }, 1), 'postura ' + n, true, n); }
+  for (const n of quietasDe(co)) {
+    if (!d.K[n]) continue; d.metas = [];
+    const E = d.enTramo({ de: n, a: n, clavos: d.suelto(n) ? [] : (co.clavosEn && co.clavosEn[n]) || undefined }, 1);
+    uno(E, 'postura ' + n, true, n); barra(E, ctxDe(co, 'postura', n, n, 1), 'postura ' + n);
+  }
   R.huecos = Object.keys(huecos).map(c => c + ' a ' + huecos[c] + ' cm');
   return R;
 }
@@ -114,6 +157,8 @@ function mide(T, id) {
    apartado y su deslizar). pasos: los de la ficha en castellano (para lo que dura cada uno) */
 function video(T, id, pasos, fps) {
   const co = T.COREO[id], d = director(T, co), DT = 1 / (fps || 30), R = { 'mano-muslo-vida': [-1e9, ''], 'mano-muslo-quieta-vida': [-1e9, ''], tiron: [0, ''], cuadros: 0 };
+  /* el escenario de mentira «pinta» el material (ya colocado por el Director) con los cilindros espiados, y se mide la cabeza */
+  let barra = 1e9; if (d.esc.material.length) d.esc.pintar = (E, ctx) => { barra = cabezaBarra(T, d.esc, E, ctx, false); };
   const lar = v => Math.sqrt(dot(v, v));
   let ult = null; const suave0 = d.suave;
   d.suave = function (E0, E1, dt, cl) { const E = suave0.call(this, E0, E1, dt, cl); ult = { E0, E }; return E; };
@@ -126,8 +171,9 @@ function video(T, id, pasos, fps) {
     else d.aPostura(typeof a === 'string' ? a : d.inicio, deCerca ? 0 : 0.7);
     let ant = null;
     for (let n = 0, N = Math.round(dur / DT); n < N; n++) {
-      d.cuadro(DT, false); R.cuadros++;
+      barra = 1e9; d.cuadro(DT, false); R.cuadros++;
       const donde = 'paso ' + (i + 1) + ', ' + (n * DT).toFixed(2) + ' s' + (d.modo === 'postura' ? ' (postura ' + d.meta + ')' : d.modo === 'sec' ? ' (' + d.secDe + '→' + d.secA + ')' : ' (repetición)'), quieto = d.modo === 'postura' && d.w >= 1, ap = {};
+      if (barra < 1e8 && (!R['cabeza-barra-vida'] || barra < R['cabeza-barra-vida'][0])) R['cabeza-barra-vida'] = [r1(barra), donde];
       for (const k of ['i', 'd']) {
         ap[k] = sub(ult.E[k].mun, ult.E0[k].mun);
         if (ant) { const s = lar(sub(ap[k], ant[k])) / DT; if (s > R.tiron[0]) R.tiron = [r1(s), 'mano ' + k + ' · ' + donde]; }
@@ -143,11 +189,19 @@ function video(T, id, pasos, fps) {
    que la coreografía apoya de plano queda a menos de 1 cm de su superficie. El cuerpo es blando y se dibuja con volumen: tumbado, el
    tronco y la cabeza (con su tupé) se asientan unos 3,4 cm, y una rodilla o un codo apoyados, hasta 2,2. La mano no se mete en un
    muslo más de 1 cm quieta, ni más de 2 de paso. Y lo que el Director aparta una mano no cambia más deprisa de 95 cm/s (su tope
-   son 90: 60-director.js, VAP) */
+   son 90: 60-director.js, VAP).
+   La cabeza y las barras (20-11-2026): una barra puede rozarle el pelo (al subir en una dominada el tupé pasa a ras de ella: 1,8 cm
+   en las del bloque 1), pero no metérsele: ni 2,5 cm en los tramos y las posturas, ni 3,5 en el vídeo, donde el tronco llega un
+   instante después que la cadera y la cabeza después que el tronco (55-vida.js: en esas mismas dominadas, 3,3). Se mide hacia el
+   centro de cada pieza de la cabeza (el pelo con el cráneo, la quijada, el mentón, la nariz, las orejas), y del tupé, la punta y
+   la mitad de cada púa. Y el pie que no se mueve: el tobillo que acaba un tramo donde lo empezó no se aparta más de 2 cm por el
+   camino (sin clavar, la mezcla de dos posturas lo pasea: en la sentadilla hack eran 4,1 cm, con la zapatilla hundida en la
+   plataforma; hoy el que más, 0,8) */
 const LIMITES = {
   'zapa-suelo': -1.0, 'zapa-pared': -1.0, 'mano-suelo': -1.0, 'mano-pared': -1.0,
   'cuerpo-suelo': -2.5, 'cuerpo-pared': -2.5, 'tronco-suelo': -4.0, 'tronco-pared': -3.0, 'cabeza-suelo': -4.0, 'cabeza-pared': -3.5,
-  'apoyada': 1.0, 'mano-muslo': 2.0, 'mano-muslo-quieta': 1.0, 'mano-muslo-vida': 3.0, 'mano-muslo-quieta-vida': 1.0, 'tiron': 95
+  'apoyada': 1.0, 'mano-muslo': 2.0, 'mano-muslo-quieta': 1.0, 'mano-muslo-vida': 3.0, 'mano-muslo-quieta-vida': 1.0, 'tiron': 95,
+  'cabeza-barra': -2.5, 'cabeza-barra-vida': -3.5, 'pie-deriva': 2.0
 };
 /* lo que se sale: [{ que, v, donde }] */
 function juzga(m, v) {
@@ -167,9 +221,11 @@ const NOMBRE = {
   'cuerpo-suelo': 'un brazo o una pierna, bajo el suelo', 'cuerpo-pared': 'un brazo o una pierna, dentro de la pared', 'tronco-suelo': 'el tronco, bajo el suelo', 'tronco-pared': 'el tronco, dentro de la pared',
   'cabeza-suelo': 'la cabeza, bajo el suelo', 'cabeza-pared': 'la cabeza, dentro de la pared', 'apoyada': 'la mano apoyada no toca (o se hunde)', 'mano-muslo': 'una mano, dentro de un muslo (de paso)',
   'mano-muslo-quieta': 'una mano, dentro de un muslo (quieta)', 'mano-muslo-vida': 'una mano, dentro de un muslo (en el vídeo, de paso)', 'mano-muslo-quieta-vida': 'una mano, dentro de un muslo (en el vídeo, quieta)',
-  'tiron': 'la mano da un tirón (cm/s)', 'hueco': 'una mano abierta, cerca de una superficie y sin tocarla', 'error': 'no se pudo medir'
+  'tiron': 'la mano da un tirón (cm/s)', 'hueco': 'una mano abierta, cerca de una superficie y sin tocarla', 'error': 'no se pudo medir',
+  'cabeza-barra': 'una barra, un tubo o un cable del material, dentro de la cabeza', 'cabeza-barra-vida': 'una barra, un tubo o un cable del material, dentro de la cabeza (en el vídeo)',
+  'pie-deriva': 'un pie que no se mueve, se va por el camino (hay que clavarlo)'
 };
-module.exports = { carga, mide, video, juzga, LIMITES, NOMBRE };
+module.exports = { carga, mide, video, juzga, cabezaBarra, ctxDe, director, tramosDe, quietasDe, LIMITES, NOMBRE };
 
 if (require.main === module) {
   const T = carga(), ES = JSON.parse(fs.readFileSync(path.join(RAIZ, 'datos', 'cuerpo', 'ejercicios-es.json'), 'utf8'));

@@ -132,6 +132,28 @@
     PUAS.forEach(function (q) { min = Math.min(min, d0 + K_CAB * (nl[0] * (q.b[0] + q.dir[0] * q.L) + nl[1] * (q.b[1] + q.dir[1] * q.L) + nl[2] * (q.b[2] + q.dir[2] * q.L))); });
     return min;
   }
+  /* y lo que le falta para tocar un cilindro (una barra, un tubo, un asa, un ramal de cuerda: de A a B, de radio r). Negativo, lo que
+     el cilindro se le mete, medido en cada pieza hacia su centro y donde el eje le pasa más cerca; de las púas del tupé cuentan la
+     punta y la mitad (son pelo: una barra fina las cruza sin que se note). Lejos de la cabeza, 1e9. Para la auditoría: ningún
+     control miraba si una barra le cruzaba la cara */
+  function cabezaACilindro(E, A, B, r) {
+    var Bc = E.Bc, a = aLocal(Bc, menos(A, E.cab)), b = aLocal(Bc, menos(B, E.cab)), d = menos(b, a), min = 1e9, L2 = punto(d, d);
+    var cerca = punto(a, d) >= 0 ? a : punto(b, d) <= 0 ? b : mas(a, por(d, -punto(a, d) / L2));
+    if (largo(cerca) > 60 + r) return min;
+    [MELENA, QUIJADA, MENTON, NARIZ, OREJA, { c: [-OREJA.c[0], OREJA.c[1], OREJA.c[2]], r: OREJA.r }].forEach(function (el) {
+      var c = por(el.c, K_CAB), R = el.r, sa = [(a[0] - c[0]) / R[0], (a[1] - c[1]) / R[1], (a[2] - c[2]) / R[2]], sd = [d[0] / R[0], d[1] / R[1], d[2] / R[2]];
+      var n2 = punto(sd, sd), t = n2 > 1e-9 ? entre(-punto(sa, sd) / n2, 0, 1) : 0, w = menos(mas(a, por(d, t)), c);
+      var ro = Math.sqrt(w[0] * w[0] / (R[0] * R[0]) + w[1] * w[1] / (R[1] * R[1]) + w[2] * w[2] / (R[2] * R[2])) / K_CAB, lw = largo(w);
+      min = Math.min(min, (ro < 1e-6 ? -Math.min(R[0], R[1], R[2]) * K_CAB : lw - lw / ro) - r);
+    });
+    PUAS.forEach(function (q) {
+      [0.5, 1].forEach(function (f) {
+        var p = por(mas(q.b, por(q.dir, q.L * f)), K_CAB), t = L2 > 1e-9 ? entre(punto(menos(p, a), d) / L2, 0, 1) : 0;
+        min = Math.min(min, largo(menos(p, mas(a, por(d, t)))) - r);
+      });
+    });
+    return min;
+  }
   /* la cinta: un aro alrededor de la cabeza, más alto en la frente que en la nuca */
   var CINTA = (function () {
     var L = [], N = 40, j, t, fi, DB = 5.6 * RAD, r = [MELENA.r[0] + 0.3, MELENA.r[1] + 0.3, MELENA.r[2] + 0.3];
