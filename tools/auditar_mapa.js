@@ -256,6 +256,12 @@ function ok(cond, txt, detalle) {
     });
     try {
       const page = await browser3.newPage({ viewport: { width: 420, height: 760 } });
+      /* «Con red» quiere decir que las teselas llegan. Desde este contenedor las de OSM no se alcanzan y, desde el
+         20 de noviembre de 2026 (prueba de los dos moviles, bloque 4), la capa del arranque tambien pasa sola a la
+         isla tras seis fallos seguidos: sin esto se mediria la falta de red del contenedor. Una imagen local hace
+         de tesela, como en los bloques 6, 7 y 9. */
+      const TESELA = fs.readFileSync(path.join(RAIZ, 'icon-192.png'));
+      await page.route(/tile\.openstreetmap\.org/, r => r.fulfill({ status: 200, contentType: 'image/png', body: TESELA }));
       const errores = [];
       page.on('pageerror', e => errores.push(e.message));
       const peticiones = [];

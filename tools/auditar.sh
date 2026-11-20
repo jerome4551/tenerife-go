@@ -195,6 +195,11 @@ echo; echo "════════ lo que queda encima de cada panel del mapa,
 # abajo se pintaban encima del panel de guaguas, y en el iPhone el panel subia por debajo de la barra de arriba, con
 # su ✕ sin poder tocarse. Diez paneles en los dos moviles: nada encima, su borde de arriba a la vista y su ✕ tocable.
 control probar_superposiciones.js node tools/probar_superposiciones.js "$PUERTO"
+echo; echo "════════ el mapa del arranque sin teselas: a la isla ════════"
+# Desde el 20 de noviembre de 2026 (prueba de los dos moviles, bloque 4): con cobertura mala o un wifi sin internet, el
+# movil dice que hay red y las teselas de OSM no llegan; el mapa se quedaba gris. Sin teselas, a la isla sola; con
+# ellas, en las calles; si falla una de cada tres, tambien en las calles.
+control probar_sin_teselas.js node tools/probar_sin_teselas.js "$PUERTO"
 echo; echo "════════ cada lugar por su nombre y cada categoria por su rotulo, preguntados al asistente en los diez idiomas ════════"
 # Desde el 20 de octubre de 2026: en castellano no encontraba 170 de los 980
 # lugares por su nombre, y en chino 638. Ningun control se lo preguntaba.

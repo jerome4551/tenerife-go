@@ -17182,6 +17182,20 @@ window.addEventListener('online', function () { volverDeIsla(); });
 pintarOpcionIsla();
 if (islaPosible() && navigator.onLine === false) irAIslaSinRed();
 
+/* La capa del arranque tambien pasa sola a la isla si sus teselas no llegan (20 de noviembre de 2026,
+   prueba de los dos moviles, bloque 4). Con cobertura mala o el wifi de un hotel sin internet, el movil
+   dice que hay red y el mapa se quedaba gris: el paso a la isla tras seis fallos estaba solo en
+   setStyle(), y esta capa entra con addTo(). Seis fallos seguidos (una tesela que llega pone la cuenta
+   a cero); si se ha elegido capa a mano, nada. Cuando setStyle() vuelve a poner las calles, quita este
+   aviso con off('tileerror') y pone el suyo. Lo vigila tools/probar_sin_teselas.js. */
+(function () {
+  var fallos = 0;
+  layers.streets.on('tileload', function () { fallos = 0; });
+  layers.streets.on('tileerror', function () {
+    if (++fallos === 6 && currentLayer === 'streets' && !_capaElegidaAMano && islaPosible()) irAIslaSinRed();
+  });
+})();
+
 /* ── EL FONDO DE LA ISLA, DEBAJO DE TODAS LAS CAPAS (24 de octubre de 2026) ──────────
    Jerome: «lo bueno es ver que no es lento o aparece parcialmente». Medido con un movil
    emulado (390x844, x3) y un pellizco de verdad: al alejar, Leaflet no tiene teselas para la
