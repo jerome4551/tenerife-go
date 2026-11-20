@@ -125,7 +125,9 @@
     'sendero-pijaral': { url: 'https://tenerifeon.es/en/routes/hiking/pra-72-la-ensillada-cabezo-del-tejo', web: 'Tenerife ON' },
     'sendero-barranco-infierno': { url: 'https://www.barrancodelinfierno.es/', web: 'barrancodelinfierno.es' }
   };
-  var CENTRAL_RESERVAS = { url: 'https://centralreservas.tenerife.es/?a=5', web: 'centralreservas.tenerife.es' };
+  /* La Central de Reservas del Cabildo: centralreservas.tenerife.es redirige entero (301, tambien ?a=5) a la
+     portada de Tenerife ON desde, al menos, el 20-11-2026: el enlace va alli y dice a donde va. */
+  var CENTRAL_RESERVAS = { url: 'https://www.tenerifeon.es/', web: 'Tenerife ON' };
   var TENERIFE_ON = 'https://www.tenerifeon.es/';
 
   var S = { abierto: false, historia: 0, cerrando: false, pest: 'hoy', alertas: null, alertasError: false, alertasPedido: 0, entra: false };
