@@ -422,10 +422,31 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/datos/semaforo-involcan.json') ||
           url.pathname.endsWith('/datos/alertas-canarias.json') ||
           /\/(idiomas\/(etiquetas\/|cielo\/)?|faq\/)[a-z]{2,3}\.json$/.test(url.pathname)) {
-        return fetch(req).then(res => {
+        /* Sin copia (la primera vez): como siempre, a la red y sin plazo. */
+        if (!cached) return fetch(req).then(res => {
           if (guardableShell(res)) guardar(req, res);
           return res;
         }).catch(() => cached);
+        /* Con copia (20 de noviembre de 2026, prueba de los dos moviles, bloque 1): la red tiene 3 s para traer la
+           respuesta ENTERA. Con una barra de cobertura la app ya guardada tardaba 45 s en abrir, y con la red colgada
+           90 s: la copia solo salia si la red fallaba, no si iba lenta o no contestaba. Se espera al cuerpo entero y no
+           a las cabeceras, porque con 100 kbit/s las cabeceras llegan enseguida y el cuerpo un minuto despues. Si no
+           llega a tiempo, sale la copia, y la red sigue por detras y la deja guardada para la vez siguiente. Lo que
+           no se puede guardar (un 404, una redireccion) se devuelve como antes, sin pisar la copia.
+           Comprobado en tools/auditar_sw.js (9h y 12). */
+        const entera = fetch(req).then(res => {
+          if (!guardableShell(res)) return res;
+          return res.blob().then(b => {
+            const nueva = new Response(b, { status: res.status, statusText: res.statusText, headers: res.headers });
+            guardar(req, nueva);
+            return nueva;
+          });
+        });
+        e.waitUntil(entera.catch(() => {}));
+        return Promise.race([
+          entera.catch(() => cached),
+          new Promise(r => setTimeout(() => r(cached), 3000))
+        ]);
       }
       return cached || fetch(req).then(res => {
         if (guardable(res)) guardar(req, res);

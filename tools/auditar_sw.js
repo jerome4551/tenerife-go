@@ -495,6 +495,83 @@ function opaca() {
     hayRed = true;
   }
 
+  /* ── 9h. Con una barra de cobertura, la copia guardada (20 de noviembre de 2026, prueba de los dos moviles, bloque 1) ──
+
+     La app ya guardada tardaba 45 s en abrir con una barra (100 kbit/s) y 90 s con la red colgada: lo de «red
+     primero» (index.html, titsa.js, los modulos, los JSON de idiomas…) esperaba a la red sin plazo, y la copia solo
+     salia si la red FALLABA. Ahora, con copia, la red tiene 3 s para traer la respuesta ENTERA (con 100 kbit/s las
+     cabeceras llegan enseguida y el cuerpo, un minuto despues); si no llega, sale la copia, y la red sigue por detras
+     y la guarda para la vez siguiente. Sin copia (la primera vez), como siempre: a la red, sin plazo.
+     Aqui, en el ambito falso: una red colgada, una que manda las cabeceras y tarda 6 s en el cuerpo, una buena, una
+     sin red, y la primera visita con la red lenta. Se mide hasta tener el texto entero, que es lo que espera la app. */
+  {
+    const SITIO = 'https://tenerifego.app/';
+    const U = SITIO + 'index.html', M = SITIO + 'modulos/perfil.js';
+    const basica = (cuerpo, extra) => { const r = new Response(cuerpo, Object.assign({ status: 200 }, extra || {})); Object.defineProperty(r, 'type', { value: 'basic' }); return r; };
+    /* un cuerpo que llega a los `ms` (las cabeceras, enseguida) */
+    const lenta = (txt, ms) => basica(new ReadableStream({ start(c) { setTimeout(() => { c.enqueue(new TextEncoder().encode(txt)); c.close(); }, ms); } }));
+    const reloj = ms => new Promise(r => setTimeout(() => r('__plazo__'), ms));
+    /* pide sin esperar a lo que queda por detras (e.waitUntil), con un tope de 9 s: devuelve el texto y lo que tardo */
+    async function pedirConReloj(sw, url) {
+      const req = new Request(url);
+      let respuesta = null; const esperas = [];
+      const e = { request: req, respondWith: p => { respuesta = p; }, waitUntil: p => esperas.push(p) };
+      const t0 = Date.now();
+      for (const f of sw.manejadores.fetch) f(e);
+      const r = await Promise.race([Promise.resolve(respuesta).then(async x => x ? await x.clone().text() : null, () => 'ERROR'), reloj(9000)]);
+      return { texto: r, ms: Date.now() - t0, esperas };
+    }
+    let red = 'buena', version = 'red-1';
+    const sw = cargarSW(async () => {
+      if (red === 'sin') throw new Error('sin red');
+      if (red === 'colgada') return new Promise(() => {});
+      if (red === 'lenta') return lenta(version, 6000);
+      return basica(version);
+    });
+    /* 1) la primera vez, con red buena: de la red, y queda la copia */
+    const a = await pedirConReloj(sw, U); await Promise.all(a.esperas.map(p => Promise.resolve(p).catch(() => {})));
+    await new Promise(r => setTimeout(r, 30));
+    ok(a.texto === 'red-1' && a.ms < 1000, 'una barra: la primera vez, con red, index.html sale de la red y queda la copia', JSON.stringify({ texto: a.texto, ms: a.ms }));
+    /* 2) red colgada: la copia a los 3 s (antes, nunca) */
+    red = 'colgada'; version = 'red-2';
+    const b = await pedirConReloj(sw, U);
+    ok(b.texto === 'red-1' && b.ms >= 2500 && b.ms < 4500, 'una barra: con la red colgada, la copia guardada sale a los 3 s (antes esperaba a la red sin plazo)', JSON.stringify({ texto: b.texto, ms: b.ms }));
+    /* 3) cabeceras enseguida y el cuerpo a los 6 s: la copia a los 3 s, y la red, por detras, deja la nueva guardada */
+    red = 'lenta'; version = 'red-3';
+    const c = await pedirConReloj(sw, U);
+    ok(c.texto === 'red-1' && c.ms >= 2500 && c.ms < 4500, 'una barra: con las cabeceras enseguida y el cuerpo a los 6 s, la copia sale a los 3 s (antes, a los 6 s, al acabar el cuerpo)', JSON.stringify({ texto: c.texto, ms: c.ms }));
+    const fin = await Promise.race([Promise.all(c.esperas.map(p => Promise.resolve(p).catch(() => {}))).then(() => 'hecho'), reloj(8000)]);
+    await new Promise(r => setTimeout(r, 30));
+    red = 'sin';
+    const d = await pedirConReloj(sw, U);
+    ok(fin === 'hecho' && d.texto === 'red-3' && d.ms < 1000, 'una barra: lo que la red trajo por detras queda guardado: la vez siguiente, sin red, sale la version nueva', JSON.stringify({ fin, texto: d.texto, ms: d.ms }));
+    /* 4) red buena con copia: la de la red, enseguida, y se guarda */
+    red = 'buena'; version = 'red-4';
+    const e4 = await pedirConReloj(sw, U); await Promise.all(e4.esperas.map(p => Promise.resolve(p).catch(() => {})));
+    await new Promise(r => setTimeout(r, 30));
+    red = 'sin';
+    const f4 = await pedirConReloj(sw, U);
+    ok(e4.texto === 'red-4' && e4.ms < 1000 && f4.texto === 'red-4', 'una barra: con red buena y copia, sale la de la red enseguida, y queda guardada', JSON.stringify({ red: e4.texto, ms: e4.ms, luego: f4.texto }));
+    /* 5) sin red: la copia, enseguida */
+    ok(f4.ms < 1000, 'una barra: sin red (modo avion), la copia enseguida', f4.ms);
+    /* 6) la primera vez con la red lenta (sin copia): se espera a la red, sin plazo, y no sale nada vacio */
+    red = 'lenta'; version = 'mod-1';
+    const g = await pedirConReloj(sw, M);
+    ok(g.texto === 'mod-1' && g.ms >= 5500, 'una barra: sin copia (la primera vez), un modulo espera a la red aunque tarde 6 s, como siempre', JSON.stringify({ texto: g.texto, ms: g.ms }));
+    /* 7) lo mismo vale para el resto de «red primero» (aqui, un modulo): red colgada → su copia a los 3 s */
+    await Promise.all(g.esperas.map(p => Promise.resolve(p).catch(() => {}))); await new Promise(r => setTimeout(r, 30));
+    red = 'colgada';
+    const h = await pedirConReloj(sw, M);
+    ok(h.texto === 'mod-1' && h.ms >= 2500 && h.ms < 4500, 'una barra: un modulo con copia y la red colgada, también a los 3 s', JSON.stringify({ texto: h.texto, ms: h.ms }));
+    /* 8) un 404 que llega a tiempo se devuelve como antes (no se guarda encima de la copia) */
+    red = 'buena';
+    const sw404 = cargarSW(async () => { const r = new Response('no', { status: 404 }); Object.defineProperty(r, 'type', { value: 'basic' }); return r; });
+    await (await sw404.cachesFalso.open('x')).put(new Request(U), basica('copia'));
+    const i = await pedirConReloj(sw404, U); await Promise.all(i.esperas.map(p => Promise.resolve(p).catch(() => {})));
+    const sigue = await (await sw404.cachesFalso.open('x')).match(new Request(U));
+    ok(i.texto === 'no' && sigue && await sigue.clone().text() === 'copia', 'una barra: una respuesta que no se puede guardar (un 404) se devuelve como antes y no pisa la copia', JSON.stringify({ texto: i.texto }));
+  }
+
   /* ── 10. la unica suposicion que el ambito falso no puede comprobar ──
 
      Todo lo de arriba prueba el flujo, no el navegador. Lo que el arreglo da
@@ -635,6 +712,114 @@ function opaca() {
       fallos++; hechos++;
       console.log('  MAL no se pudo comprobar la busqueda de version al volver   -> ' + err.message);
     } finally {
+      if (browser) await browser.close();
+      srv.close();
+    }
+  }
+
+  /* ── 12. La app guardada, con una barra de cobertura, en Chromium (20 de noviembre de 2026, prueba de los dos
+     moviles, bloque 1) ──
+
+     Lo de 9h, con la app de verdad: index.html y sw.js servidos como GitHub Pages (en gzip, con su
+     Content-Encoding), por un servidor propio en otro puerto que puede mandar index.html despacio (100 kbit/s), tarde
+     (las cabeceras a los 4,5 s o a los 90 s) o cortar la conexion, y que pone al final de index.html un comentario con
+     su version. Se mide desde que se recarga hasta que la app esta (setLang). La copia que se devuelve se hace con
+     new Response(…) y las cabeceras de la red: aqui se ve tambien que el navegador la acepta como pagina. */
+  if (PUERTO) {
+    const http = require('http'), zlib = require('zlib');
+    const P4 = Number(PUERTO) + 3;
+    let modo = {}, versionApp = 1;
+    const pendientes = new Set();
+    /* al cambiar de modo, lo que siga en camino se corta (para que una respuesta vieja no llegue tarde y pise la copia) */
+    const cambia = m => { for (const r of pendientes) { try { r.destroy(); } catch (e) {} } pendientes.clear(); modo = m; };
+    const TIPOS = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.css': 'text/css; charset=utf-8',
+      '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json' };
+    const srv = http.createServer((req, res) => {
+      let p;
+      try { p = decodeURIComponent(new URL(req.url, 'http://127.0.0.1').pathname); } catch (e) { res.writeHead(400); return res.end(); }
+      if (p.endsWith('/')) p += 'index.html';
+      const gz = /\bgzip\b/.test(req.headers['accept-encoding'] || '');
+      if (p === '/index.html') {
+        if (modo.cortar) { req.socket.destroy(); return; }
+        const html = fs.readFileSync(path.join(RAIZ, 'index.html'), 'utf8') + '\n<!-- prueba de la version ' + versionApp + ' -->\n';
+        const datos = gz ? zlib.gzipSync(Buffer.from(html), { level: 1 }) : Buffer.from(html);
+        pendientes.add(res); res.on('close', () => pendientes.delete(res));
+        const manda = () => {
+          if (res.destroyed) return;
+          res.writeHead(200, Object.assign({ 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': datos.length, 'Cache-Control': 'no-cache' }, gz ? { 'Content-Encoding': 'gzip' } : {}));
+          if (!modo.kbps) return res.end(datos);
+          const porTick = Math.max(1, Math.round(modo.kbps * 1000 / 8 / 10)); let i = 0;
+          const t = setInterval(() => { if (res.destroyed) return clearInterval(t); const tr = datos.subarray(i, i + porTick); i += porTick; if (i >= datos.length) { clearInterval(t); res.end(tr); } else res.write(tr); }, 100);
+        };
+        if (modo.ms) { const t = setTimeout(manda, modo.ms); res.on('close', () => clearTimeout(t)); } else manda();
+        return;
+      }
+      const f = path.resolve(RAIZ, '.' + p);
+      if (!f.startsWith(RAIZ + path.sep) || !fs.existsSync(f) || !fs.statSync(f).isFile()) { res.writeHead(404); return res.end(); }
+      const tipo = TIPOS[path.extname(f)] || 'application/octet-stream';
+      if (gz && /^(text\/|application\/(json|manifest\+json)|image\/svg)/.test(tipo)) {
+        const b = zlib.gzipSync(fs.readFileSync(f), { level: 1 });
+        res.writeHead(200, { 'Content-Type': tipo, 'Content-Encoding': 'gzip', 'Content-Length': b.length, 'Cache-Control': 'no-cache' });
+        return res.end(b);
+      }
+      res.writeHead(200, { 'Content-Type': tipo, 'Cache-Control': 'no-cache' });
+      fs.createReadStream(f).pipe(res);
+    });
+    await new Promise(r => srv.listen(P4, '127.0.0.1', r));
+    let browser;
+    try {
+      const { chromium } = require('/opt/node22/lib/node_modules/playwright');
+      browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-proxy-server', '--no-sandbox'] });
+      const ctx = await browser.newContext({ serviceWorkers: 'allow', locale: 'es-ES' });
+      await ctx.route('**/*', r => r.request().url().startsWith('http://127.0.0.1:' + P4 + '/') ? r.continue() : r.abort());
+      await ctx.addInitScript(() => { try { localStorage.setItem('tenerife.tour.seen', '99'); localStorage.setItem('tgo_consent', JSON.stringify({ v: 'denied', t: Date.now() })); } catch (e) {} });
+      const page = await ctx.newPage();
+      const errores = [];
+      page.on('pageerror', e => errores.push(e.message));
+      await page.goto('http://127.0.0.1:' + P4 + '/index.html', { waitUntil: 'load', timeout: 90000 });
+      await page.waitForFunction(() => !!(navigator.serviceWorker.controller && window.__pwaRegistration), null, { timeout: 90000 });
+      await page.waitForFunction(async () => { const r = window.__pwaRegistration; return !r.installing && !r.waiting && !!r.active && !!(await caches.match(location.origin + '/index.html')); }, null, { timeout: 90000, polling: 500 });
+      const marca = () => page.evaluate(() => { const c = [...document.childNodes].filter(n => n.nodeType === 8).map(n => n.data).join(' '); const m = c.match(/prueba de la version (\d+)/); return m ? Number(m[1]) : null; });
+      /* recarga y mide hasta que la app esta; null si en 20 s no esta */
+      const abre = async () => {
+        const t0 = Date.now();
+        try {
+          await page.reload({ waitUntil: 'commit', timeout: 20000 });
+          await page.waitForFunction(() => typeof setLang === 'function' && document.readyState !== 'loading', null, { timeout: Math.max(1000, 20000 - (Date.now() - t0)), polling: 100 });
+          return { ms: Date.now() - t0, version: await marca() };
+        } catch (e) { return { ms: null, version: null, error: e.message.split('\n')[0].slice(0, 120) }; }
+      };
+      const seg = ms => ms === null ? '—' : (ms / 1000).toFixed(1).replace('.', ',') + ' s';
+      /* a) con red buena, ya con el service worker: la de la red */
+      cambia({}); versionApp = 1;
+      const a = await abre();
+      ok(a.ms !== null && a.version === 1, 'una barra, en Chromium: con red buena y la copia guardada, la app abre con lo de la red', JSON.stringify(a));
+      /* b) la red tarda 4,5 s: a los 3 s, la copia; y la nueva queda guardada por detras para la vez siguiente */
+      cambia({ ms: 4500 }); versionApp = 2;
+      const b = await abre();
+      ok(b.ms !== null && b.ms < 4500 && b.version === 1, 'una barra, en Chromium: si la red tarda 4,5 s, la app abre antes con la copia guardada (la version 1; ' + seg(b.ms) + ')', JSON.stringify(b));
+      await page.waitForTimeout(4000);
+      cambia({ cortar: true });
+      const b2 = await abre();
+      ok(b2.ms !== null && b2.version === 2, 'una barra, en Chromium: y lo que la red trajo por detras queda guardado: con la red cortada, abre la version 2', JSON.stringify(b2));
+      /* c) una barra: 100 kbit/s, las cabeceras enseguida y el cuerpo, un minuto */
+      cambia({ kbps: 100 }); versionApp = 3;
+      const c = await abre();
+      ok(c.ms !== null && c.ms < 8000 && c.version === 2, 'una barra, en Chromium: a 100 kbit/s la app abre con la copia en ' + seg(c.ms) + ' (menos de 8 s; antes, mas de un minuto)', JSON.stringify(c));
+      /* d) la red colgada: el servidor no contesta en 90 s */
+      cambia({ ms: 90000 }); versionApp = 4;
+      const d = await abre();
+      ok(d.ms !== null && d.ms < 8000 && d.version === 2, 'una barra, en Chromium: con la red colgada la app abre con la copia en ' + seg(d.ms) + ' (menos de 8 s; antes, 90 s)', JSON.stringify(d));
+      /* e) otra vez con red buena: la nueva, de la red */
+      cambia({}); versionApp = 5;
+      const e5 = await abre();
+      ok(e5.ms !== null && e5.version === 5, 'una barra, en Chromium: al volver la red buena, la app abre con lo nuevo de la red', JSON.stringify(e5));
+      ok(errores.length === 0, 'una barra, en Chromium: ningun error de pagina', errores.slice(0, 3).join(' | '));
+    } catch (err) {
+      fallos++; hechos++;
+      console.log('  MAL no se pudo comprobar la app con una barra   -> ' + err.message);
+    } finally {
+      cambia({});
       if (browser) await browser.close();
       srv.close();
     }
