@@ -3242,6 +3242,14 @@ window.onunhandledrejection = function(e) {
     right: 14px;
     width: 290px;
     max-height: calc(100vh - 130px);
+    /* 20 de noviembre de 2026 (prueba de los dos moviles, bloque 3). En el iPhone instalado el panel
+       subia por debajo de la barra de arriba y su ✕ no se podia tocar: 100vh no descuenta las zonas
+       seguras. Asi se queda debajo de la barra (24 px en el movil); la linea de arriba queda para los
+       navegadores sin dvh. Y z-index 999: encima de los botones flotantes del mapa (la Leyenda, el 🏆,
+       la ⓘ y los enlaces de abajo, de 800 a 998, que se pintaban encima y tapaban el interruptor de
+       una linea) y debajo de la barra de arriba (1000) y de «Paradas cerca» (1100). Lo vigila
+       tools/probar_superposiciones.js. */
+    max-height: calc(100dvh - 84px - 56px - 12px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
     background: rgba(14,14,14,0.97);
     backdrop-filter: blur(22px);
     border: 1px solid rgba(59,130,246,0.3);
@@ -3249,7 +3257,7 @@ window.onunhandledrejection = function(e) {
     box-shadow: var(--shadow-xl);
     display: none;
     flex-direction: column;
-    z-index: 600;
+    z-index: 999;
     overflow: hidden;
     animation: dropIn var(--t-normal) var(--ease-out);
   }
@@ -3566,7 +3574,7 @@ window.onunhandledrejection = function(e) {
     top: 108px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 700;
+    z-index: 1001; /* encima del panel de guaguas (999), desde donde se comparte (20-11-2026) */
     background: rgba(14,14,14,0.95);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(74,222,128,0.45);
