@@ -200,6 +200,11 @@ echo; echo "════════ el mapa del arranque sin teselas: a la isla
 # movil dice que hay red y las teselas de OSM no llegan; el mapa se quedaba gris. Sin teselas, a la isla sola; con
 # ellas, en las calles; si falla una de cada tres, tambien en las calles.
 control probar_sin_teselas.js node tools/probar_sin_teselas.js "$PUERTO"
+echo; echo "════════ detalles de pantalla en un iPhone y un Android: el buscador, el asistente, los avisos ════════"
+# Desde el 20 de noviembre de 2026 (prueba de los dos moviles, bloque 7): el contador del buscador encima de la lista,
+# el aro dorado dentro de la pildora, la caja del asistente dentro de la barra de inicio del iPhone, «Abriendo el mapa
+# de la isla…» en rojo y los alert() del navegador, que en el iPhone salen como ventana del sistema.
+control probar_detalles_movil.js node tools/probar_detalles_movil.js "$PUERTO"
 echo; echo "════════ cada lugar por su nombre y cada categoria por su rotulo, preguntados al asistente en los diez idiomas ════════"
 # Desde el 20 de octubre de 2026: en castellano no encontraba 170 de los 980
 # lugares por su nombre, y en chino 638. Ningun control se lo preguntaba.

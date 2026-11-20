@@ -139,13 +139,14 @@ print('\n=== textos visibles escritos a pelo ===')
 # corta -'⏳ Localizando…' no tiene ninguna-.
 # showLayerMsg y showLayerToast pintan en pantalla igual que un alert. Se
 # suman a la lista porque los cuatro avisos de cambio de capa estaban fijos en
-# español y ningun control los veia.
+# español y ningun control los veia. Y avisoApp, que desde el 20 de noviembre
+# de 2026 (prueba de los dos moviles, bloque 7) pinta lo que pintaban los alert.
 # innerHTML se anadio despues: por ahi salian el "Sin foto en Wikipedia" rojo
 # de 270 fichas y los dos rotulos del panel de rutas, los tres fijos en
 # castellano para los ocho idiomas. Un texto pintado por innerHTML se lee
 # igual que uno pintado por textContent.
 CTX = (r'(?:\.(?:textContent|innerText|innerHTML|placeholder|title|ariaLabel)\s*=\s*'
-       r'|(?:confirm|alert|prompt|showLayerMsg|showLayerToast|showGpsToast)\s*\(\s*'
+       r'|(?:confirm|alert|prompt|showLayerMsg|showLayerToast|showGpsToast|avisoApp)\s*\(\s*'
        r"|insertAdjacentHTML\s*\(\s*'[a-zA-Z]+'\s*,\s*"
        r"|setAttribute\s*\(\s*'(?:aria-label|title|placeholder|alt)'\s*,\s*)")
 PAL = (r'\b(?:el|la|los|las|un|una|de|del|que|no|se|su|tu|con|para|por|en|y|o|es|'

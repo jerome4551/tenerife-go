@@ -1552,6 +1552,9 @@ window.onunhandledrejection = function(e) {
     white-space: nowrap;
   }
   .search-results-count.visible { opacity: 1; }
+  /* Con la lista abierta no se ve: caia encima de su borde y repetia la cifra de su cabecera (20 de noviembre
+     de 2026, prueba de los dos moviles, bloque 7). Al cerrarla con la busqueda puesta (Intro), vuelve. */
+  .search-suggestions.open ~ .search-results-count { opacity: 0; }
   .search-clear.visible { display: flex; }
 
   /* ── BOTÓN CATEGORÍAS (flotante derecha) ── */
@@ -5817,6 +5820,12 @@ window.onunhandledrejection = function(e) {
     outline: 2px solid #D4AF37 !important;
     outline-offset: 2px;
   }
+  /* Menos en los campos que ya marcan el foco en su propia caja (20 de noviembre de 2026, prueba de los dos
+     moviles, bloque 7): en el buscador el aro pintaba un rectangulo dorado dentro de la pildora redonda, que ya
+     se pone dorada; en las direcciones de la ruta su borde pasa a dorado entero, para que el foco se siga viendo
+     bien. El asistente escribe en un textarea: esta regla no le llega. */
+  #search-input:focus-visible, .route-addr-input:focus-visible { outline: none !important; }
+  .route-addr-input:focus-visible { border-color: #c9a84c; }
 
 /* ¿Dónde me baño hoy? - banner superior */
 
@@ -16151,7 +16160,7 @@ function toggleFavoritesView() {
   const L = t();
   // Si no hay favoritos y se intenta activar la vista, avisar
   if (!showOnlyFavorites && favorites.size === 0) {
-    alert(L.favEmpty);
+    avisoApp(L.favEmpty);
     return;
   }
   showOnlyFavorites = !showOnlyFavorites;
@@ -17114,7 +17123,8 @@ function setStyle(style) {
     /* La isla no existe hasta que se descarga su fichero, asi que la primera
        vez se pide y se vuelve a entrar aqui cuando ya esta. */
     if (style === 'isla' && !layers.isla) {
-      showLayerMsg(tx('capaIslaCargando'));
+      /* un aviso normal, no un error: con el aviso de las capas y no con el rojo (20-11-2026, bloque 7) */
+      showLayerToast(tx('capaIslaCargando'));
       islaCapa().then(function () { setStyle('isla'); })
                 .catch(function () { showLayerMsg(tx('capaIslaFallo')); });
       return;
@@ -17274,6 +17284,9 @@ map.on('zoomstart', function () { if (!_fondoIsla) ponerFondoIsla(); });
 // Aviso breve en pantalla (sin consola, que en movil no se ve)
 function showLayerMsg(txt) {
   try {
+    /* un error quita el aviso normal que hubiera: salen en el mismo sitio y se pisaban (20-11-2026, bloque 7) */
+    var normal = document.getElementById('layer-toast');
+    if (normal) { clearTimeout(normal._t); normal.style.display = 'none'; }
     var el = document.getElementById('layer-msg');
     if (!el) {
       el = document.createElement('div');
@@ -17288,6 +17301,42 @@ function showLayerMsg(txt) {
     el.style.display = 'block';
     clearTimeout(el._t);
     el._t = setTimeout(function () { el.style.display = 'none'; }, 5000);
+  } catch (e) {}
+}
+
+/* Aviso propio en vez del alert del navegador (20 de noviembre de 2026, prueba de los dos moviles, bloque 7). En el
+   iPhone, el alert sale como una ventana del sistema con «tenerifego.app» de titulo y para la app hasta el «OK».
+   Este no para nada y se va solo, con mas tiempo cuanto mas largo es el texto (de 3,5 a 9 s); el lector de
+   pantalla lo lee igual: role="status", o role="alert" si es un error. Va encima de todos los paneles, tambien
+   del de administracion (99999), y debajo del filtro rojo del cielo de noche. Lo vigila
+   tools/probar_detalles_movil.js. */
+function avisoApp(txt, esError) {
+  try {
+    var el = document.getElementById('aviso-app');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'aviso-app';
+      el.setAttribute('aria-atomic', 'true');
+      el.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);' +
+        'bottom:calc(120px + env(safe-area-inset-bottom,0px));z-index:100000;width:max-content;' +
+        'max-width:min(86vw,420px);font-size:0.82rem;line-height:1.4;padding:10px 16px;border-radius:12px;' +
+        'text-align:center;white-space:pre-line;box-shadow:0 6px 22px rgba(0,0,0,0.5);pointer-events:none;' +
+        'display:none;';
+      document.body.appendChild(el);
+    }
+    var texto = String(txt == null ? '' : txt);
+    el.setAttribute('role', esError ? 'alert' : 'status');
+    el.setAttribute('aria-live', esError ? 'assertive' : 'polite');
+    el.style.background = esError ? 'rgba(153,27,27,0.97)' : 'rgba(15,17,23,0.96)';
+    el.style.border = '1px solid ' + (esError ? 'rgba(252,165,165,0.6)' : 'rgba(201,168,76,0.5)');
+    el.style.color = esError ? '#fff' : '#c9a84c';
+    el.textContent = '';
+    el.style.display = 'block';
+    clearTimeout(el._t); clearTimeout(el._p);
+    /* el texto entra un momento despues que la caja: asi el lector de pantalla lo anuncia, aunque se repita */
+    el._p = setTimeout(function () { el.textContent = texto; }, 60);
+    el._t = setTimeout(function () { el.style.display = 'none'; el.textContent = ''; },
+      Math.min(9000, Math.max(3500, 70 * texto.length)));
   } catch (e) {}
 }
 
@@ -24289,7 +24338,7 @@ window.addEventListener('hashchange', () => {
     modal.querySelector('.pwa-btn-clear').addEventListener('click', safe(function() {
       if (!confirm(ptx('confirmarMapa'))) return;
       clearTilesOnly().then(safe(function() {
-        alert(ptx('mapaVaciado'));
+        avisoApp(ptx('mapaVaciado'));
         bd.classList.remove('show');
       }));
     }));
@@ -24298,8 +24347,9 @@ window.addEventListener('hashchange', () => {
     modal.querySelector('.pwa-btn-clear-all').addEventListener('click', safe(function() {
       if (!confirm(ptx('confirmarTodo'))) return;
       clearAllCaches().then(safe(function() {
-        alert(ptx('cacheBorrada'));
-        window.location.reload();
+        avisoApp(ptx('cacheBorrada'));
+        /* con el alert se recargaba tras el «OK»; el aviso no para nada: se recarga cuando ya se ha leido */
+        setTimeout(function () { window.location.reload(); }, 2500);
       }));
     }));
   }
@@ -24331,7 +24381,7 @@ window.addEventListener('hashchange', () => {
         if (guardado) {
           borrarDetalle().then(safe(function () {
             if (typeof olvidarIslaCapa === 'function') olvidarIslaCapa();
-            alert(tx('mapaDetalleFuera'));
+            avisoApp(tx('mapaDetalleFuera'));
             pintarDetalle(modal);
           }));
           return;
@@ -24341,12 +24391,12 @@ window.addEventListener('hashchange', () => {
         descargarDetalle(function (pct) { btn.textContent = tx('mapaDescargando', { pct: pct }); })
           .then(safe(function () {
             if (typeof olvidarIslaCapa === 'function') olvidarIslaCapa();
-            alert(tx('mapaDetalleListo'));
+            avisoApp(tx('mapaDetalleListo'));
             pintarDetalle(modal);
           }))
           .catch(safe(function () {
             btn.disabled = false;
-            alert(tx('mapaDetalleFallo'));
+            avisoApp(tx('mapaDetalleFallo'), true);
             pintarDetalle(modal);
           }));
       }));
@@ -25191,11 +25241,11 @@ function submitBusinessRegistration() {
 
   // Validación básica
   if (!name || !category || !email || !desc) {
-    alert(tx('camposObligatorios'));
+    avisoApp(tx('camposObligatorios'), true);
     return;
   }
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    alert(tx('emailNoValido'));
+    avisoApp(tx('emailNoValido'), true);
     return;
   }
 
@@ -25227,7 +25277,7 @@ function submitBusinessRegistration() {
 }
 
 function showBookingSoon() {
-  alert(tx('reservasPronto'));
+  avisoApp(tx('reservasPronto'));
 }
 
 // Cerrar tienda al pulsar Inicio
@@ -26301,14 +26351,14 @@ async function adminAddSouvenir() {
   const desc  = document.getElementById('sv-desc').value.trim();
   const price = parseFloat(document.getElementById('sv-price').value);
   const info  = document.getElementById('sv-info').value.trim();
-  if (!name) { alert(tx('admErrNombre') || 'El nombre es obligatorio'); return; }
-  if (isNaN(price) || price < 0) { alert(tx('admErrPrecio') || 'Introduzca un precio válido'); return; }
+  if (!name) { avisoApp(tx('admErrNombre') || 'El nombre es obligatorio', true); return; }
+  if (isNaN(price) || price < 0) { avisoApp(tx('admErrPrecio') || 'Introduzca un precio válido', true); return; }
 
   const sb = sbAdmin();
-  if (!sb) { alert(tx('admErrSinConexion') || 'Sin conexión con el servidor. Inténtelo de nuevo.'); return; }
+  if (!sb) { avisoApp(tx('admErrSinConexion') || 'Sin conexión con el servidor. Inténtelo de nuevo.', true); return; }
   const { error } = await sb.from(SV_TABLE)
     .insert({ emoji, name, descripcion: desc, info, price, visible: true });
-  if (error) { alert((tx('admErrNoPublicar') || 'No se pudo publicar: ') + mensajeError(error, SV_TABLE)); return; }
+  if (error) { avisoApp((tx('admErrNoPublicar') || 'No se pudo publicar: ') + mensajeError(error, SV_TABLE), true); return; }
 
   // limpiar
   ['sv-emoji','sv-name','sv-desc','sv-price','sv-info'].forEach(id => {
@@ -26365,16 +26415,16 @@ async function adminAddExcursion() {
   const maxp     = parseInt(document.getElementById('ex-maxpeople').value) || 0;
   const diff     = document.getElementById('ex-difficulty').value;
   const contact  = document.getElementById('ex-contact').value.trim();
-  if (!name) { alert(tx('admErrNombre') || 'El nombre es obligatorio'); return; }
-  if (isNaN(price) || price < 0) { alert(tx('admErrPrecio') || 'Introduzca un precio válido'); return; }
+  if (!name) { avisoApp(tx('admErrNombre') || 'El nombre es obligatorio', true); return; }
+  if (isNaN(price) || price < 0) { avisoApp(tx('admErrPrecio') || 'Introduzca un precio válido', true); return; }
 
   const sb = sbAdmin();
-  if (!sb) { alert(tx('admErrSinConexion') || 'Sin conexión con el servidor. Inténtelo de nuevo.'); return; }
+  if (!sb) { avisoApp(tx('admErrSinConexion') || 'Sin conexión con el servidor. Inténtelo de nuevo.', true); return; }
   const { error } = await sb.from(EX_TABLE).insert({
     emoji, name, descripcion: desc, price, duration, location,
     max_personas: maxp, diff, contact, visible: true
   });
-  if (error) { alert((tx('admErrNoPublicar') || 'No se pudo publicar: ') + mensajeError(error, EX_TABLE)); return; }
+  if (error) { avisoApp((tx('admErrNoPublicar') || 'No se pudo publicar: ') + mensajeError(error, EX_TABLE), true); return; }
 
   ['ex-emoji','ex-name','ex-desc','ex-price','ex-duration','ex-location','ex-maxpeople','ex-contact'].forEach(id => {
     document.getElementById(id).value = '';
@@ -26695,20 +26745,20 @@ function cacheAdminDe(tabla) {
 async function adminDeleteItem(id, tabla) {
   if (!confirm(tx('admConfBorrarItem') || '¿Borrar este elemento?')) return;
   const sb = sbAdmin();
-  if (!sb) { alert(tx('admErrSinConexionCorto') || 'Sin conexión con el servidor.'); return; }
+  if (!sb) { avisoApp(tx('admErrSinConexionCorto') || 'Sin conexión con el servidor.', true); return; }
   const { error } = await sb.from(tabla).delete().eq('id', id);
-  if (error) { alert((tx('admErrNoBorrar') || 'No se pudo borrar: ') + mensajeError(error, tabla)); return; }
+  if (error) { avisoApp((tx('admErrNoBorrar') || 'No se pudo borrar: ') + mensajeError(error, tabla), true); return; }
   await refrescarTras(tabla);
 }
 
 async function adminToggleVisible(id, tabla, btn) {
   const sb = sbAdmin();
-  if (!sb) { alert(tx('admErrSinConexionCorto') || 'Sin conexión con el servidor.'); return; }
+  if (!sb) { avisoApp(tx('admErrSinConexionCorto') || 'Sin conexión con el servidor.', true); return; }
   const actual = cacheAdminDe(tabla).find(x => x.id === id);
   if (!actual) return;
   const nuevo = !actual.visible;
   const { error } = await sb.from(tabla).update({ visible: nuevo }).eq('id', id);
-  if (error) { alert((tx('admErrNoCambiar') || 'No se pudo cambiar: ') + mensajeError(error, tabla)); return; }
+  if (error) { avisoApp((tx('admErrNoCambiar') || 'No se pudo cambiar: ') + mensajeError(error, tabla), true); return; }
   actual.visible = nuevo;
   btn.textContent = nuevo ? (tx('admVisible')||'Visible') : (tx('admOculto')||'Oculto');
   btn.classList.toggle('on', nuevo);
@@ -26876,11 +26926,11 @@ function adminClearAll() {
      y encima con un simple confirm(), es demasiado facil de pulsar sin
      querer. Se quita de uno en uno desde cada lista. */
   const n = totalLocalesPendientes();
-  if (!n) { alert(tx('admNadaLocal') || 'No queda nada guardado solo en este dispositivo.'); return; }
+  if (!n) { avisoApp(tx('admNadaLocal') || 'No queda nada guardado solo en este dispositivo.'); return; }
   if (!confirm(tx('admConfDescartar', { n: n }) || ('⚠️ Esto descartará ' + n + ' elemento(s) que aún están guardados solo en este móvil y NO se han subido. Lo ya publicado no se toca. ¿Continuar?'))) return;
   [ADMIN_SV_KEY, ADMIN_EX_KEY, ADMIN_AD_KEY, ADMIN_AD_KEY2].forEach(k => localStorage.removeItem(k));
   actualizarCajaMigracion();
-  alert(tx('admRestosDescartados') || 'Restos locales descartados. Lo publicado sigue en su sitio.');
+  avisoApp(tx('admRestosDescartados') || 'Restos locales descartados. Lo publicado sigue en su sitio.');
 }
 
 // ══════════════════════════════════════════════════════════════════════
@@ -27275,6 +27325,9 @@ function dismissMultifilterToast() {
 /* ── INPUT ──────────────────────────────────────────────────── */
 .chat-input-row {
   display:flex; gap:8px; padding:10px 14px 20px;
+  /* en el iPhone instalado la caja de escribir quedaba 14 px dentro de la barra de inicio (20 de noviembre de
+     2026, prueba de los dos moviles, bloque 7) */
+  padding-bottom: max(20px, calc(env(safe-area-inset-bottom, 0px) + 8px));
   border-top:1px solid rgba(255,255,255,0.07); flex-shrink:0;
   align-items:flex-end;
 }
@@ -33208,7 +33261,7 @@ function dpShare() {
   if (navigator.share) {
     navigator.share({ title: titulo, text }).catch(() => {});
   } else {
-    navigator.clipboard.writeText(text).then(() => alert(tx('copiadoPapeles')));
+    navigator.clipboard.writeText(text).then(() => avisoApp(tx('copiadoPapeles')));
   }
 }
 
@@ -33915,7 +33968,7 @@ function dpiNavigateTo(placeData) {
 
   // Pedir GPS
   if (!navigator.geolocation) {
-    alert(tx('gpsNoSoportado'));
+    avisoApp(tx('gpsNoSoportado'), true);
     if (!routePanelOpen) toggleRoutePanel();
     switchRouteTab('ab');
     return;
