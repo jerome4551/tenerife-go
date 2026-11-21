@@ -13124,7 +13124,7 @@ no la secundaria**.
 | Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **985** |
 | Ids de lugar que cumplen `[a-z0-9-]` | **985** |
 | Con calidad de agua, y su año | **46** · 46 |
-| Con alias de búsqueda, que los 3 filtros leen | **62** |
+| Con alias de búsqueda, que los 3 filtros leen | **63** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
 | De esos, `warn:"mar"` | **49** |
 | URLs de lugar sin cifrar | **0** de 28 |

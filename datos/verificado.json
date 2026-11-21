@@ -702,7 +702,8 @@
   },
   "gym-level-sct": {
    "fecha": "2026-11-20",
-   "fuente": "OpenStreetMap, node/11055251389 («Fitness center level»), extracto de Geofabrik del 26-09-2026"
+   "fuente": "OpenStreetMap, node/11055251389 («Fitness center level»), extracto de Geofabrik del 26-09-2026",
+   "nota": "El nombre, «VivaGym Tomé Cano», el de su página en vivagym.com, consultada el 21-11-2026 (vivagym.com/es-es/gimnasios/tenerife/santa-cruz-de-tenerife/tome-cano/: «VivaGym Tomé Cano», «Edif. Los Corales 2, C. Fragata Danmark, 38005 Santa Cruz de Tenerife»); VivaGym compró Level Fitness Tenerife en febrero de 2026 (2Playbook, GymFactory)."
   },
   "gym-urban-laguna": {
    "fecha": "2026-11-20",
