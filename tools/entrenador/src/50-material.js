@@ -1133,24 +1133,210 @@
       }
     });
   };
-  /* ── el fitball ── */
-  MATERIAL.fitball = function (esc, o) { this.o = o || {}; this.e = new Esfera(esc.defs, 'tgm' + (++N_MAT), '#5B4FCF', '#9B8CFF', '#3a3190'); this.antes = true; };
-  MATERIAL.fitball.prototype.colocar = function () {};
-  MATERIAL.fitball.prototype.extremos = function () { var o = this.o, R = o.radio || 30, en = o.en || [0, 30]; return [[en[0] - R, 0, en[1]], [en[0] + R, 2 * R, en[1]], [en[0], R, en[1] + R], [en[0], R, en[1] - R]]; };
-  MATERIAL.fitball.prototype.pintar = function (E, cam, lista, ctx) {
-    var o = this.o, R = o.radio || 30, en = (ctx && ctx.fitball) || o.en || [0, 30];
-    this.e.pon(cam, [en[0], R, en[1]], R, lista, o.sesgo == null ? -10 : o.sesgo);
+  /* ══════════ el material del bloque 15: el fitball, el disco, el balón medicinal, la cinta de suspensión, las anillas y la rueda ══════════ */
+  /* un aro (una anilla): un círculo hueco de radio R y tubo r, con su eje; de lado se ve como una elipse */
+  function Aro(color, brillo) {
+    this.g = crear('g');
+    this.c = crear('ellipse', { fill: 'none', stroke: color }, this.g);
+    this.b = crear('ellipse', { fill: 'none', stroke: brillo || 'rgba(255,255,255,.35)' }, this.g);
+  }
+  Aro.prototype.pon = function (cam, c3, eje, R, r, lista, sesgo) {
+    var e = cam.d(eje), l2 = Math.sqrt(e[0] * e[0] + e[1] * e[1]), ang = l2 > 1e-3 ? Math.atan2(e[1], e[0]) / RAD : 0, c = cam.p(c3);
+    var rx = Math.max(0.6, R * cam.esc * Math.abs(e[2])), ry = R * cam.esc, w = 2 * r * cam.esc, tr = 'translate(' + n1(c[0]) + ',' + n1(c[1]) + ') rotate(' + n1(ang) + ')';
+    pon(this.c, 'transform', tr); pon(this.c, 'rx', n1(rx)); pon(this.c, 'ry', n1(ry)); pon(this.c, 'stroke-width', n1(w));
+    pon(this.b, 'transform', tr); pon(this.b, 'rx', n1(rx + w * 0.2)); pon(this.b, 'ry', n1(ry + w * 0.2)); pon(this.b, 'stroke-width', n1(Math.max(0.5, w * 0.22)));
+    if (lista) lista.push({ z: c[2] + (sesgo || 0), el: this.g });
   };
-  /* ── el disco y el balón: entre las manos ── */
-  MATERIAL.disco = function (esc, o) { this.o = o || {}; this.d = new Disco(M_COL.goma, M_COL.hierroS, M_COL.cromo); };
+  /* lo que les falta a unas piezas del cuerpo E para tocar la esfera de centro C y radio R (negativo: lo que se mete la que más).
+     piezas: [['zapa', 'i'], ['pierna', 'd'], ['muslo', 'i'], ['ante', 'd'], ['brazo', 'i'], ['mano', 'd'], ['tronco'], ['cabeza']…] */
+  function huecoPelota(E, piezas, C, R) {
+    var m = 1e9;
+    piezas.forEach(function (q) {
+      var k = q[1], d = piezaAEsfera(q[0] === 'zapa' ? function (P0, n, f) { return zapaAPlano(E[k], k, P0, n, f); }
+        : q[0] === 'tronco' ? function (P0, n, f) { return troncoAPlano(E, P0, n, f); }
+        : q[0] === 'cabeza' ? function (P0, n, f) { return cabezaAPlano(E, P0, n, f); }
+        : q[0] === 'mano' ? function (P0, n, f) { return manoAPlano(E[k], E.S.m[k], P0, n, f); }
+        : function (P0, n, f) { return miembroAPlano(E, k, q[0], P0, n, f); }, C, R);
+      if (d < m) m = d;
+    });
+    return m;
+  }
+  /* dónde queda (en z) el centro de una pelota de radio R posada en el suelo, con el centro en x, que llega rodando desde más allá de
+     los pies hasta tocar alguna de esas piezas: el primer sitio donde las toca. sentido: 1, si los pies quedan hacia +z (boca arriba)
+     y la pelota viene de ahí; −1, al revés (boca abajo). cerca: por dónde andaba (de un cuadro al siguiente se mueve poco, y así
+     se mide menos). Devuelve z, o null si no llega a tocar nada */
+  function pelotaContra(E, piezas, x, R, sentido, cerca) {
+    var s = sentido || 1, hueco = function (z) { return huecoPelota(E, piezas, [x, R, z], R); }, z0, z1, f0, f1, fm, zm, i;
+    if (cerca != null) { z1 = cerca + 1.5 * s; z0 = cerca - 1.5 * s; }
+    if (cerca == null || !((f1 = hueco(z1)) > 0 && (f0 = hueco(z0)) <= 0)) {
+      z1 = -1e9; ['i', 'd'].forEach(function (k) { z1 = Math.max(z1, s * E[k].tob[2], s * E[k].dedosPie[2], s * E[k].talon[2]); });
+      z1 = s * (z1 + R + 8); z0 = z1; f1 = 1e9;
+      for (i = 0; i < 44 && (fm = hueco(z0)) > 0; i++) { z1 = z0; f1 = fm; z0 -= 4 * s; }
+      if (i === 44) return null;
+      f0 = fm;
+    }
+    /* entre un sitio donde se mete (z0) y otro donde no llega (z1): se queda donde le falta menos de una décima de milímetro */
+    for (i = 0; i < 16 && f1 > 0.01 && Math.abs(z1 - z0) > 1e-4; i++) {
+      zm = i % 3 === 2 || f1 > 1e8 ? (z0 + z1) / 2 : z1 - entre((f1 - 0.005) / (f1 - f0), 0.02, 0.98) * (z1 - z0);
+      fm = hueco(zm);
+      if (fm > 0) { z1 = zm; f1 = fm; } else { z0 = zm; f0 = fm; }
+    }
+    return z1;
+  }
+  /* ── el fitball: una pelota grande en el suelo. o: { radio (30), en: [x, z] (quieta), sigue: { … } (rueda con lo que lleva encima):
+     · que: 'tob', 'rod', 'mun', 'dedosPie'… (y lado: 'i' o 'd'; sin él, el medio de los dos): su centro va bajo ese punto del cuerpo,
+       corrido dz; x: a qué lado va su centro (si no se dice, el del punto);
+     · con mapa: [[z del punto, z del centro], …] no va debajo sino a su paso: el centro está en cada sitio cuando el punto está en
+       el suyo, y entre medias, a partes iguales (una pelota que rueda bajo unas piernas que se recogen avanza menos que ellas);
+     · que: 'pierna': va donde la pisan o descansan en ella las piernas (las dos, o la de un lado): llega rodando desde más allá de
+       los pies (desde: 1, los pies hacia +z; −1, hacia −z) hasta tocar la zapatilla o la pierna (y el muslo, con muslo: true), tal
+       como se dibujan, y ahí se queda } ── */
+  MATERIAL.fitball = function (esc, o) { this.o = o || {}; this.e = new Esfera(esc.defs, 'tgm' + (++N_MAT), '#5B4FCF', '#9B8CFF', '#3a3190'); this.antes = true; this.c = this.centro(null); };
+  MATERIAL.fitball.prototype.centro = function (E) {
+    var o = this.o, R = o.radio || 30, en = o.en || [0, 30], q = o.sigue, p;
+    if (q && E && q.que === 'pierna') {
+      var piezas = [], z;
+      (q.lado ? [q.lado] : ['i', 'd']).forEach(function (k) { piezas.push(['zapa', k], ['pierna', k]); if (q.muslo) piezas.push(['muslo', k]); });
+      z = pelotaContra(E, piezas, q.x || 0, R, q.desde || 1, this.c ? this.c[2] : null);
+      return [q.x || 0, R, z == null ? en[1] : z];                             /* si nada la toca, se queda donde se dijo */
+    }
+    if (q && E && q.mapa) {
+      var M = q.mapa, v = (q.lado ? E[q.lado][q.que] : mezcla(E.i[q.que], E.d[q.que], 0.5))[2], j, t;
+      for (j = 1; j < M.length - 1 && (M[j][0] - v) * (M[j][0] - M[0][0]) < 0; j++);
+      t = entre((v - M[j - 1][0]) / ((M[j][0] - M[j - 1][0]) || 1), 0, 1);
+      return [q.x || 0, R, M[j - 1][1] + (M[j][1] - M[j - 1][1]) * t];
+    }
+    if (q && E) { p = q.lado ? E[q.lado][q.que] : mezcla(E.i[q.que], E.d[q.que], 0.5); en = [q.x == null ? p[0] : q.x, p[2] + (q.dz || 0)]; }
+    return [en[0], R, en[1]];
+  };
+  MATERIAL.fitball.prototype.colocar = function (E) { this.c = this.centro(E); };
+  MATERIAL.fitball.prototype.extremos = function () { var R = this.o.radio || 30, c = this.centro(null); return [[c[0] - R, 0, c[2]], [c[0] + R, 2 * R, c[2]], [c[0], R, c[2] + R], [c[0], R, c[2] - R]]; };
+  MATERIAL.fitball.prototype.pintar = function (E, cam, lista) {
+    var o = this.o;
+    this.e.pon(cam, this.c, o.radio || 30, lista, o.sesgo == null ? -10 : o.sesgo);
+  };
+  /* ── el disco (una pesa suelta). o: { radio (15), grosor (3.4), color, doble: true (dos discos juntos: la pinza),
+       a: 'manos' (entre los dos puños: lo sujetan por los lados) | 'i' | 'd' (en una mano) | 'torax' | 'pelvis' (pegado al cuerpo),
+       punto: [x, y, z] (en 'torax' y 'pelvis', dónde va su centro, en ese marco; en una mano, lo que se aparta del puño, en el mundo),
+       corre: con las dos manos, lo que su centro se adelanta a los puños por donde apuntan las manos (cogido por arriba: las once y la una),
+       eje: [x, y, z] (hacia dónde mira su cara, en el marco del tórax —o de la pelvis, si va en ella—; ejeMundo: en el del mundo),
+       cinturon: true (cuelga de un cinturón de lastre: se pintan el cinturón y las dos cadenas) } ── */
+  MATERIAL.disco = function (esc, o) {
+    this.o = o || {}; this.d = new Disco(this.o.color || '#c9413f', M_COL.hierroS, M_COL.cromo);       /* de color: contra la camiseta, uno negro no se ve */
+    if (this.o.doble) this.d2 = new Disco(this.o.color || '#c9413f', M_COL.hierroS, M_COL.cromo);
+    if (this.o.cinturon) { this.cinto = new Caja(['#3a2f25', '#4a3b2d', '#2e251d', '#2e251d']); this.cad = [new Cilindro(M_COL.cromoS), new Cilindro(M_COL.cromoS)]; }
+  };
   MATERIAL.disco.prototype.colocar = function () {};
-  MATERIAL.disco.prototype.pintar = function (E, cam, lista) {
-    var o = this.o, c = mezcla(E.i.agarre, E.d.agarre, 0.5), e = o.eje ? aplicar(E.Bt, o.eje) : unidad(cruz(menos(E.i.agarre, E.d.agarre), E.i.mano.dir), E.Bt[2]);
-    this.d.pon(cam, c, e, o.radio || 15, 3.4, lista, o.sesgo == null ? -1.2 : o.sesgo);
+  MATERIAL.disco.prototype.donde = function (E) {
+    var o = this.o, a = o.a || 'manos', q = o.punto || [0, 0, 0], B = a === 'pelvis' ? E.Bp : E.Bt, c, e;
+    if (a === 'manos') { c = mezcla(E.i.agarre, E.d.agarre, 0.5); if (o.corre) c = mas(c, por(unidad(mas(E.i.mano.dir, E.d.mano.dir), E.i.mano.dir), o.corre)); }
+    else if (a === 'i' || a === 'd') c = mas(E[a].agarre, q);
+    else c = mas(a === 'pelvis' ? E.pel : E.tor, aplicar(B, q));
+    e = o.ejeMundo ? unidad(o.ejeMundo) : o.eje ? unidad(aplicar(B, o.eje)) : a === 'manos' ? unidad(cruz(menos(E.i.agarre, E.d.agarre), E.i.mano.dir), E.Bt[2]) : B[2];
+    return [c, e];
   };
-  MATERIAL.balon_medicinal = function (esc, o) { this.o = o || {}; this.e = new Esfera(esc.defs, 'tgm' + (++N_MAT), '#d9682e', '#f39a5b', '#8f3d14'); };
+  MATERIAL.disco.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, R = o.radio || 15, g = o.grosor || 3.4, ce = this.donde(E), c = ce[0], e = ce[1], sg = o.sesgo == null ? -1.2 : o.sesgo, yo = this;
+    if (this.d2) { this.d.pon(cam, mas(c, por(e, g / 2)), e, R, g, lista, sg); this.d2.pon(cam, mas(c, por(e, -g / 2)), e, R, g, lista, sg); }
+    else this.d.pon(cam, c, e, R, g, lista, sg);
+    if (this.cinto) {
+      /* el cinturón, ceñido a la cintura (algo más ancho que ella), y las dos cadenas, que bajan por delante, desde el frente del
+         cinturón al agujero del disco: pasan entre los muslos, no a través de ellos */
+      this.cinto.pon(cam, mas(E.pel, aplicar(E.Bp, [0, 6, -0.6])), E.Bp, [34.6, 6.4, 25.2], lista, 0.6);
+      [1, -1].forEach(function (s, i) { yo.cad[i].pon(cam, mas(E.pel, aplicar(E.Bp, [s * 4.5, 3.4, 12.7])), mas(c, por(e, s * g * 0.6)), 0.55, lista, 0.7); });
+    }
+  };
+  /* ── el balón medicinal. o: { radio (11), en: [x, z] (quieto en el suelo: las manos se apoyan en él),
+       suelta: [{ de, a, en: [x, y, z], u: [u0, u1], va, vuelve }] (un lanzamiento: en el tramo que va de la postura «de» a la «a», el
+       balón deja las manos en u0 —el avance del tramo, de 0 a 1—, llega a «en» en u1 y vuelve a ellas al acabar el tramo; va y
+       vuelve: con qué curva, 'sale' y 'entra' si no se dice) }
+     Si no, va entre las dos manos ── */
+  MATERIAL.balon_medicinal = function (esc, o) { this.o = o || {}; this.e = new Esfera(esc.defs, 'tgm' + (++N_MAT), '#d9682e', '#f39a5b', '#8f3d14'); this.antes = !!this.o.en; };
   MATERIAL.balon_medicinal.prototype.colocar = function () {};
+  MATERIAL.balon_medicinal.prototype.centro = function (E, ctx) {
+    var o = this.o, R = o.radio || 11, c, i, q, u, t, w;
+    if (o.en) return [o.en[0], R, o.en[1]];
+    c = mezcla(E.i.agarre, E.d.agarre, 0.5);
+    for (i = 0; o.suelta && ctx && i < o.suelta.length; i++) {
+      q = o.suelta[i]; u = ctx.u;
+      if (q.de !== ctx.de || q.a !== ctx.a || u == null || u <= q.u[0]) continue;
+      if (u < q.u[1]) { t = (u - q.u[0]) / (q.u[1] - q.u[0]); w = (CURVA[q.va] || CURVA.sale)(t); }
+      else { t = (u - q.u[1]) / Math.max(1e-6, 1 - q.u[1]); w = 1 - (CURVA[q.vuelve] || CURVA.entra)(t); }
+      c = mezcla(c, q.en, w);
+    }
+    return c;
+  };
+  MATERIAL.balon_medicinal.prototype.extremos = function () { var o = this.o, R = o.radio || 11, L = []; if (o.en) L.push([o.en[0] - R, 0, o.en[1]], [o.en[0] + R, 2 * R, o.en[1]]); (o.suelta || []).forEach(function (q) { L.push([q.en[0], q.en[1] + R, q.en[2]]); }); return L; };
   MATERIAL.balon_medicinal.prototype.pintar = function (E, cam, lista, ctx) {
-    var c = (ctx && ctx.balon) || mezcla(E.i.agarre, E.d.agarre, 0.5);
-    this.e.pon(cam, c, this.o.radio || 11, lista, 1.2);
+    this.e.pon(cam, this.centro(E, ctx), this.o.radio || 11, lista, this.o.sesgo == null ? 1.2 : this.o.sesgo);
+  };
+  /* ── la cinta de suspensión: cuelga de un anclaje alto y acaba en dos asas, cada una con su estribo para el pie.
+     o: { ancla: [x, y, z] (de dónde cuelga), cuello: lo que mide el tramo único antes de abrirse en dos (24),
+          a: 'manos' (cada asa, en su puño) | 'i' | 'd' (las dos asas juntas en esa mano) | 'pies' (cada pie, en su estribo) }
+     Se pinta el mosquetón, el cuello, los dos ramales (del cuello al vértice de cada asa) y cada asa: un triángulo de cinta con el mango
+     de goma en su base (en los pies, el mango es la banda del estribo, sobre el empeine). La cinta no se estira: es la coreografía la
+     que tiene que dejar las manos (o los pies) siempre a la misma distancia del anclaje ── */
+  MATERIAL.suspension = function (esc, o) {
+    this.o = o || {};
+    var cinta = function (r) { return new Cilindro('#262a33', r ? 'rgba(244,196,48,.9)' : 'rgba(255,255,255,.18)'); };
+    this.cuello = cinta(1); this.ramal = [cinta(1), cinta(1)]; this.lados = [0, 1, 2, 3].map(function () { return cinta(0); });
+    this.mango = [new Cilindro(M_COL.goma, 'rgba(255,255,255,.28)'), new Cilindro(M_COL.goma, 'rgba(255,255,255,.28)')];
+    this.mosq = new Cilindro(M_COL.cromo);
+  };
+  MATERIAL.suspension.prototype.colocar = function () {};
+  MATERIAL.suspension.prototype.ancla = function () { return this.o.ancla || [0, 230, 0]; };
+  MATERIAL.suspension.prototype.extremos = function () { var A = this.ancla(); return [[A[0] - 4, A[1] + 4, A[2]], [A[0] + 4, A[1] + 4, A[2]]]; };
+  /* dónde va cada asa: [centro del mango, su eje] */
+  MATERIAL.suspension.prototype.asas = function (E) {
+    var a = this.o.a || 'manos';
+    return ['i', 'd'].map(function (k, n) {
+      var L = E[k];
+      if (a === 'pies') return [mas(L.suela, mas(por(L.punta, 9), por(L.arriba, 8))), unidad(cruz(L.punta, L.arriba), [1, 0, 0])];
+      if (a === 'i' || a === 'd') { L = E[a]; return [mas(L.agarre, por(L.mano.eje, n ? -0.9 : 0.9)), L.mano.eje]; }
+      return [L.agarre, L.mano.eje];
+    });
+  };
+  MATERIAL.suspension.prototype.pintar = function (E, cam, lista) {
+    var o = this.o, A = this.ancla(), as = this.asas(E), yo = this, pies = o.a === 'pies', m = pies ? 6 : 6.5;
+    var J = mas(A, por(unidad(menos(mezcla(as[0][0], as[1][0], 0.5), A), [0, -1, 0]), o.cuello == null ? 24 : o.cuello));
+    this.mosq.pon(cam, mas(A, [0, 3, 0]), mas(A, [0, -3.5, 0]), 1.3, lista, 0.2);
+    this.cuello.pon(cam, mas(A, [0, -3, 0]), J, 1.15, lista, 0.3);
+    as.forEach(function (q, i) {
+      var g = q[0], e = q[1], V = mas(g, por(unidad(menos(J, g), [0, 1, 0]), pies ? 15 : 12.5));
+      yo.ramal[i].pon(cam, J, V, 1.05, lista, 0.3);
+      yo.lados[i * 2].pon(cam, V, mas(g, por(e, m)), 0.6, lista, 0.5); yo.lados[i * 2 + 1].pon(cam, V, mas(g, por(e, -m)), 0.6, lista, 0.5);
+      yo.mango[i].pon(cam, mas(g, por(e, -m)), mas(g, por(e, m)), pies ? 1.2 : 1.75, lista, 0.9);
+    });
+  };
+  /* ── las anillas: dos aros de madera, cada uno colgado de su cinta. o: { alto (de dónde cuelgan: 250), sep (lo que separa los dos
+     anclajes: 50), z }. Cada anilla va en su puño: el aro sube desde él hacia su anclaje, en el plano del puño y la cinta ── */
+  MATERIAL.anillas = function (esc, o) {
+    this.o = o || {};
+    this.cinta = [0, 1].map(function () { return new Cilindro('#262a33', 'rgba(244,196,48,.9)'); });
+    this.aro = [0, 1].map(function () { return new Aro(M_COL.madera, 'rgba(255,255,255,.45)'); });
+  };
+  MATERIAL.anillas.prototype.colocar = function () {};
+  MATERIAL.anillas.prototype.ancla = function (s) { var o = this.o; return [s * (o.sep == null ? 50 : o.sep) / 2, o.alto || 250, o.z || 0]; };
+  MATERIAL.anillas.prototype.extremos = function () { var a = this.ancla(1), b = this.ancla(-1); return [[a[0] + 3, a[1] + 3, a[2]], [b[0] - 3, b[1] + 3, b[2]]]; };
+  MATERIAL.anillas.prototype.pintar = function (E, cam, lista) {
+    var yo = this, R = 10.6;
+    ['i', 'd'].forEach(function (k, i) {
+      var L = E[k], A = yo.ancla(i ? -1 : 1), u = unidad(menos(A, L.agarre), [0, 1, 0]), c = mas(L.agarre, por(u, R));
+      yo.aro[i].pon(cam, c, unidad(cruz(L.mano.eje, u), [0, 0, 1]), R, 1.5, lista, 0.9);
+      yo.cinta[i].pon(cam, mas(c, por(u, R)), A, 1.0, lista, 0.3);
+    });
+  };
+  /* ── la rueda abdominal: una rueda con su eje, que hace de mango a cada lado. Va entre los dos puños y rueda por el suelo (es la
+     coreografía la que lleva las manos a la altura de su radio). o: { radio (9) } ── */
+  MATERIAL.rueda = function (esc, o) {
+    this.o = o || {};
+    this.d = new Disco(M_COL.gomaL, M_COL.goma, M_COL.oro); this.eje = new Cilindro(M_COL.cromo);
+    this.mango = [new Cilindro(M_COL.goma, 'rgba(255,255,255,.28)'), new Cilindro(M_COL.goma, 'rgba(255,255,255,.28)')];
+  };
+  MATERIAL.rueda.prototype.colocar = function () {};
+  MATERIAL.rueda.prototype.pintar = function (E, cam, lista) {
+    var gi = E.i.agarre, gd = E.d.agarre, c = mezcla(gi, gd, 0.5), e = unidad(menos(gi, gd), [1, 0, 0]), yo = this;
+    this.eje.pon(cam, mas(gd, por(e, -6.5)), mas(gi, por(e, 6.5)), 1.1, lista, 0.5);
+    [gi, gd].forEach(function (g, i) { yo.mango[i].pon(cam, mas(g, por(e, -5.5)), mas(g, por(e, 5.5)), 1.75, lista, 0.9); });
+    this.d.pon(cam, c, e, this.o.radio || 9, 4.2, lista, 0.2);
   };

@@ -670,6 +670,19 @@
     });
     return min;
   }
+  /* lo que le falta a una pieza del cuerpo para tocar una esfera (negativo: lo que se mete). «aPlano(P0, n, en)» es la medida de la
+     pieza a un plano (zapaAPlano, miembroAPlano, troncoAPlano…): de cada sección suya se mira el plano tangente a la esfera por
+     donde queda la sección. Peca de prudente (nunca da más hueco del que hay) y solo mide las secciones que pueden dar el mínimo */
+  function piezaAEsfera(aPlano, C, R) {
+    var ds = [], min = 1e9;
+    aPlano(C, [0, 1, 0], function (c) { var v = menos(c, C), d = largo(v); ds.push(d > 1e-6 ? [d, ds.length, por(v, 1 / d)] : [1e9, ds.length, null]); return false; });
+    ds.sort(function (a, b) { return a[0] - b[0]; });
+    for (var q = 0; q < ds.length && ds[q][0] - R - 12 < min; q++) (function (j, u) {
+      var i = 0, d = aPlano(mas(C, por(u, R)), u, function () { return i++ === j; });
+      if (d < min) min = d;
+    })(ds[q][1], ds[q][2]);
+    return min;
+  }
   /* cuánto se mete la mano k en el muslo m (su piel y, arriba, la pernera): > 0, dentro; 0, lo toca; < 0, separada. Entre «desde» y
      «hasta» centímetros de la cadera (por defecto, de 8 a 37: ni la cadera ni la rodilla) */
   function manoEnMuslo(E, k, m, desde, hasta) {

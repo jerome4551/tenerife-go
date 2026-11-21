@@ -21,7 +21,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/20-figura.js` | la cámara y el cuerpo, dibujado por masas a tres tintas: torso, brazos y piernas, manos con dedos, zapatillas que se doblan, el brillo de los músculos |
 | `src/30-cabeza.js` | la cabeza, con volumen: gira de verdad (ya no son tres dibujos). Las caras, la mirada y el tupé, que va un instante detrás |
 | `src/40-escenario.js` | la escena: el orden de pintado, la sombra, los tres decorados (fuera, calistenia, gimnasio; día y noche) |
-| `src/50-material.js` | barra (y la barra Z), mancuernas, pesa rusa, banco, banco predicador, soporte, barra de dominadas, escalón, pared, polea, toallas, banda elástica, poste, las máquinas y el multipower… |
+| `src/50-material.js` | barra (y la barra Z), mancuernas, pesa rusa, banco, banco predicador, soporte, barra de dominadas, escalón, pared, polea, toallas, banda elástica, poste, las máquinas y el multipower, el fitball, el disco, el balón medicinal, la cinta de suspensión, las anillas, la rueda… |
 | `src/55-vida.js` | lo que le da vida: respira, llega por partes, cabecea al frenar, reparte el peso, acompaña con la mano al hablar |
 | `src/60-director.js` | interpreta una coreografía: repetición, secuencias, lo clavado, la estela, los avisos, el encuadre; y los gestos del presentador |
 | `src/70-coreografias.js` | **las coreografías**, una por ejercicio: el bloque 1 (los 40 más conocidos de los 12 grupos) y las ayudas comunes (`tabla`, `bajaSube`, `aLosLados`, las manos; y las de cualquier bloque: `conAgarre`, `estirado`, `inclinado`, `colgando`, `anteTronco`, `cuelga`/`activo`, `barraD`, `manoHacia`, `deTalon`, `enPunta`, `enSuMuslo`, `pieSobreSuelo`…) |
@@ -38,6 +38,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/7b-abdomen.js` | las coreografías del bloque 12: **abdomen y lumbares** (40), por familias (las planchas sobre las manos: alta, con toque de hombro, arriba y abajo y con rotación; el gateo del oso; a cuatro patas: el perro-pájaro, el gato-vaca y la postura del niño; las planchas laterales; boca arriba: los toques de talón, el abdominal completo, la bicicleta, el crunch inverso, las patadas alternas, la elevación de piernas en banco, la retracción, la posición hueca y los estiramientos; boca abajo: el superman y la cobra; sentado: el giro ruso y los tres L-sit; en banco con rodillos: el crunch declinado y la hiperextensión lumbar; colgado: las piernas rectas, los pies a la barra y el limpiaparabrisas; de pie: el crunch lateral, la flexión lateral con mancuerna y el paseo de maleta; y con polea o barra anclada: el press Pallof, el leñador, el crunch de rodillas y la rotación con landmine) |
 | `src/7c-banda.js` | las coreografías del bloque 13: **con banda elástica** (38, de todos los grupos), por cómo se lleva la banda (de pie, pisándola: la sentadilla, la elevación de talones, los cuatro curls, la elevación lateral y las aperturas de abajo arriba; atada a un poste: el curl femoral, las aperturas, el face pull, el remo, los pájaros, la rotación externa, la retracción escapular, el peso muerto a una pierna, la extensión de rodilla y el leñador inverso; por la espalda: el press de pecho; de rodillas: el press Pallof y la apertura inversa; en el suelo y con la minibanda: la abducción sentado, el puente, la almeja, la patada de glúteo y los pasos lateral y de monstruo; sentado: el remo y las flexiones dorsal y plantar del tobillo; colgado: las dominadas asistidas; entre las manos: la separación, la rotación externa y la extensión de tríceps; y con el antebrazo en el banco: la extensión y la flexión de muñeca, la desviación radial y cubital y la pronación y supinación) |
 | `src/7d-maquinas.js` | las coreografías del bloque 14: **en máquina y en multipower** (41, de todos los grupos), por máquina (sentado, con las piernas: la extensión de cuádriceps, el curl femoral sentado y la abducción y la aducción de cadera; la prensa: con los pies separados, juntos, a una pierna y la elevación de talones; la hack: la sentadilla y la elevación de talones; la sentadilla con cinturón; tumbado y de pie: el curl femoral tumbado, a una pierna y de pie, y la elevación glúteo-isquio; las pantorrillas, de pie y sentado; el tronco: el crunch y la silla romana; el hip thrust; sentado, con los brazos: los press de pecho, inclinado, declinado y de hombros, los fondos, los remos sentado y alto, a dos manos y a una, el contractor y el contractor inverso, las elevaciones laterales y el curl; las dominadas asistidas, con las palmas hacia delante y hacia él; y el multipower: la sentadilla, los press de banca, inclinado, con agarre cerrado y de hombros y el remo para el deltoides posterior) |
+| `src/7e-accesorios.js` | las coreografías del bloque 15: **con cinta de suspensión, fitball, disco, balón medicinal, anillas y rueda** (37, de todos los grupos), por material (el disco: la sentadilla, la elevación frontal, el curl invertido, la pinza y la sissy; el balón medicinal: los dos lanzamientos y la rotación sentado; el fitball: el puente, los dos curls femorales, el crunch, la extensión lumbar, el encogimiento de rodillas, la pica, las dos flexiones y el curl sentado; la flexión sobre balón y la lastrada; las dominadas lastradas; la rueda y los dos rollouts con barra; las anillas: los fondos y el soporte; y la cinta de suspensión: de cara al anclaje, los remos, los cuatro curls y la sentadilla, y de espaldas, el press, la extensión de tríceps, los fondos y la flexión con los pies en los estribos) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía (todas; al motor van las del bloque 1 y a cada trozo, las suyas) |
@@ -168,7 +169,8 @@ Más claves: `material: [['barra', {…}], …]`, `inicio`, `encuadra: [...]` (p
 que caber), `isometrico: 'c'`, `reposo: ['a0']` (el material espera en su sitio), `sinClavos: ['f']`
 (posturas en las que ya se ha soltado), `clavosEn: { s: ['ti', 'td'] }` (lo que va clavado mientras se mantiene esa
 postura, si no es lo de `clavos`: una mano solo se clava donde agarra o apoya; la que cuelga suelta mientras espera, no:
-clavada en el aire, el cuerpo, que respira y se balancea, se le echa encima), `picado` (16 para los ejercicios de suelo), `zoom`, `corre: [dx, dy]` (el
+clavada en el aire, el cuerpo, que respira y se balancea, se le echa encima), `tensos: ['ti', 'td']` (de lo clavado, lo que
+llega a su sitio tan estirado como en las posturas: abajo, «Lo tenso»), `picado` (16 para los ejercicios de suelo), `zoom`, `corre: [dx, dy]` (el
 encuadre, corrido eso en las dos vistas, en px de los 400 del dibujo: en un pino, la cabeza y las manos caen justo
 bajo los rótulos de los músculos, y con `corre: [50, 0]` quedan a su derecha), `sobreManos: true` (anda sobre las
 manos: el tronco no va un instante detrás de la cadera, que es lo que hace «la vida» en los demás; con los brazos
@@ -228,6 +230,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 12 | `7b-abdomen.js` | abdomen y lumbares: 40 (con los 4 del bloque 1, 44 de 56; quedan 12: 2 con banda, 2 en máquina y 8 con fitball, balón medicinal, barra o rueda) |
 | 13 | `7c-banda.js` | con banda elástica, de todos los grupos: 38 (los 37 que quedaban «con banda» en las filas de arriba y la rotación externa con bufanda, que es de las fichas nuevas). Con él, 456 con vídeo; de las 533 primeras quedan 78: las 41 de máquina y multipower (bloque 14) y las 37 de cinta de suspensión, fitball, disco, balón, anillas y rueda (bloque 15) |
 | 14 | `7d-maquinas.js` | en máquina y en multipower, de todos los grupos: 41 (las 35 «en máquina» y las 6 «en multipower» que quedaban en las filas de arriba). Con él, 497 con vídeo; de las 533 primeras quedan 37: las de cinta de suspensión, fitball, disco, balón, anillas y rueda (bloque 15) |
+| 15 | `7e-accesorios.js` | con cinta de suspensión (11), fitball (10), disco (7), balón medicinal (4), anillas (2) y rueda o barra que rueda (3), de todos los grupos: 37. Con él, **534 con vídeo: las 533 primeras, todas** (y la rotación externa con bufanda, de las nuevas) |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -441,6 +444,109 @@ una pierna (38 cm) de la rodilla: con medio centímetro de menos, la rodilla sal
   (`contactos.js` no mira la plataforma, y lo clavado solo se mide si se clava): se midió aparte lo que acaba donde empezó y entre
   medias se mueve. En las máquinas, `clavos` lleva las manos **y los pies** (`M2.concat(T2)`) siempre que los pies no se muevan.
 
+**Lo que enseñó el bloque 15.**
+- **Una pelota se mide como se dibuja** (`piezaAEsfera`, 20-figura.js; `huecoPelota` y `pelotaContra`, 50-material.js): lo que le
+  falta a cada pieza del cuerpo (la zapatilla, la pierna, el muslo, el tronco, la mano…) para tocar la esfera. Con eso se hace todo
+  lo demás: `posada(P, piezas, C, dir)` corre la cadera lo justo para que el tronco descanse en el fitball sin hundirse; la muñeca
+  de la mano que se apoya en una pelota o coge un balón queda a la distancia a la que la mano lo toca (se busca: `conBalon`,
+  `alCuerpo`); y el fitball que rueda se pone donde lo pisan.
+- **El fitball que rueda, de tres maneras**, según lo que lleve encima:
+  1. *Boca arriba, con los talones o las plantas encima* (los curls femorales): `sigue: { que: 'pierna' }`. En cada cuadro la pelota
+     llega rodando desde más allá de los pies hasta tocar la zapatilla o la pierna, tal como se dibujan. Sale exacto y sin números a
+     mano, y es continuo porque por debajo la pierna es convexa (talón, pantorrilla, planta).
+  2. *Boca abajo, con las piernas encima* (el encogimiento de rodillas): ahí «el primer sitio donde toca» da saltos (una espinilla
+     tendida toca la pelota por cualquier sitio) y hasta la manda hacia atrás. Va con `mapa`: la pelota avanza la mitad de lo que
+     avanzan las rodillas (rueda sin resbalar: lo que se apoya en ella pasa de la rodilla a la espinilla), y son las POSTURAS las
+     que se construyen posadas en ella (`busca` la altura de la rodilla con la que las piernas la tocan). La cadera sube deprisa
+     al principio (el tronco y los muslos son una bisagra que se cierra): hacen falta dos posturas de paso, o a medio camino las
+     piernas se hunden 2,7 cm.
+  3. *Con las puntas de los pies encima* (la pica): va bajo lo más bajo de la zapatilla (`sigue: { que: 'dedosPie', dz }`) y los
+     tobillos van clavados a su altura todo el camino.
+  Y si los pies no se mueven (la flexión con los pies encima, el puente), la pelota no rueda: se queda donde la tocan las piernas
+  en la postura en la que más bajan. Puesta a seguirlas cuadro a cuadro daba saltos de 36 cm.
+- **El pie que descansa en algo se dice en el mundo** (`t: { punta, arriba }`), no con el ángulo del tobillo (`tob`): el pie
+  suelto sigue a la espinilla, y con la rodilla un poco doblada a media repetición el pie giraba: en la flexión con los pies en
+  los estribos la cinta se alargaba 9 cm.
+- **Las manos en un balón van dichas en el mundo** (la palma y los dedos, como la mano que se apoya en el suelo): con el giro del
+  antebrazo de cada postura, a medio camino se cerraban sobre el balón. Y `contactos.js` las cuenta como apoyadas: tienen que tocar.
+- **El balón que vuela** (`suelta`, en `balon_medicinal`): el material sabe en qué tramo va y por dónde anda (`ctx.de`, `ctx.a` y
+  `ctx.u`, que le da el Director): deja las manos en `u0`, llega a su sitio (la pared, el suelo) en `u1` y vuelve a ellas al acabar.
+- **Por encima de la cabeza no hay sitio.** Jérôme tiene la cabeza grande (38 cm de barbilla a coronilla, y el tupé llega a 45) y
+  los brazos cortos (59): un balón sostenido con los brazos estirados le queda a dos dedos del tupé. En el lanzamiento contra el
+  suelo el balón sube por su arco alrededor de los hombros (tres posturas de paso: derecho de una a otra le cruzaba el tupé) y él
+  lo mira: la cabeza, echada atrás 28–36°. En la pica, con la cadera sobre los hombros, la cabeza cuelga a medio metro del suelo:
+  sigue mirando al suelo entre las manos (cab −50); recta, el tupé lo rozaba.
+- **Tumbado con la cadera arriba, la cabeza sigue en el suelo** (`puente`): la base del cuello queda 9 cm más allá de los hombros,
+  así que al levantar el tronco baja; el cuello se dobla lo que haga falta (se busca) para que la cabeza no se hunda.
+- **La cinta de suspensión no se estira, y sus asas no se mueven**: cuando alguien tira de ellas con el peso del cuerpo se quedan
+  donde están, como una barra fija, y es el cuerpo el que va y viene, recto, girando sobre los pies. Cada ejercicio dice dónde
+  tiene los puños al final (en el tórax) y de ahí sale dónde están las asas; la otra postura es la que deja los brazos estirados
+  hasta ellas (`tiron`, `alAsa`). Medido: la cinta varía menos de 2 cm en todos (0 en la flexión con los pies en los estribos).
+  - De cara al anclaje, la segunda vista es **desde atrás** (`vista: [70, 150]`): de frente, un poste del pórtico le cruza el cuerpo.
+  - De espaldas al anclaje las cintas le pasan por encima de los hombros y a cada lado de la cabeza: las manos van abiertas (23 cm
+    del centro en la extensión de tríceps, 30 en el press) o le cruzarían la cabeza (lo mide `cabeza-barra`) o los brazos.
+  - En los fondos el anclaje queda detrás y los codos se abren a los lados: hacia atrás se cruzarían con las cintas.
+- **Las anillas cuelgan de dos anclajes más separados que las manos** (96 cm): con las cintas a plomo le cruzaban los antebrazos.
+- **El disco, de color** (rojo): negro, sobre la camiseta negra, no se ve. Y las cadenas del cinturón de lastre bajan por delante,
+  entre los muslos, no desde los costados (los atravesaban).
+- **Lo que rueda por el suelo lleva las manos a la altura de su radio** (`rodando`): en cada postura el puño queda a un brazo justo
+  del hombro y a esa altura; de una a otra va clavado. El camino se da con una función (`camino(de, np, …)`: `de(u)` es la postura
+  a «u» del camino, de 0 a 1) y se recorre por 8 tramos (14 en el rollout de pie), con el paso igualado (`porPosturas`: sale de
+  parado, coge su paso, lo lleva y lo deja, sin cambiar de paso al pasar por cada postura; con «entra», «lineal» y «sale» de tres
+  tramos desiguales, la rueda perdía de golpe el 40 % de su paso al pasar por la primera). **Ojo con que el puño llegue**: si el
+  hombro queda a más de un brazo de la altura de la barra, `rodando` deja el puño donde alcanza y la barra se levanta del suelo
+  (7 cm en el rollout de pie, a un tercio del camino, con el tronco yendo derecho de 107° a 76°: ahí la cadera aún no ha bajado).
+  El tronco se echa lo que haga falta para que llegue (se busca), y se mide (`herramientas/rueda_alto.js`).
+- **Lo tenso** (`tensos: ['ti', 'td']`, y en `60-director.js`): de una postura a otra la cadera va derecha, por la cuerda, y si el
+  cuerpo gira sobre los pies clavados (una flexión, un remo colgado de la cinta) o va con las manos clavadas a lo que rueda, lo suyo
+  es el arco. Por la cuerda queda más cerca, y la rodilla o el codo, que en las dos posturas van rectos, **se doblaban de paso**: de
+  8 a 16° las rodillas en las flexiones y en los de la cinta, 19° los codos en la rueda, 33° en el rollout de pie y 35° en la
+  sentadilla asistida (casi estirado, medio centímetro de menos son 16°). El brazo o la pierna que la coreografía dice tenso, de lo
+  que lleva clavado, llega a su sitio tan estirado como en las posturas (lo que mide del hombro a la muñeca, o de la cadera al
+  tobillo, va de lo que mide en una a lo que mide en la otra), y es la cadera, con el cuerpo entero, la que se aparta. Solo donde
+  se pide: el motor no cambia para nadie más (medido: las 497 de antes, con el esqueleto en el mismo sitio).
+  - Las piernas, en lo que gira sobre los pies con las piernas rectas (las flexiones, los remos, los curls, el press y la extensión
+    con la cinta); los brazos, en lo que cuelga de ellos o rueda con ellos estirados (la sentadilla asistida, la rueda, el rollout
+    de rodillas, el encogimiento de rodillas); las dos cosas, en el rollout de pie y en la pica.
+  - **Con piernas y brazos tensos y casi paralelos** (el principio del rollout de pie: la cadera pasa por encima de los pies con
+    los brazos a plomo), lo poco que el tronco se aparta de su camino entre dos posturas mueve mucho la cadera a lo largo: hacen
+    falta más posturas (14 tramos) para que no se note.
+  - No vale donde el brazo o la pierna se doblan de verdad por el camino y no en línea recta (el brazo que dobla en una flexión
+    no se dice tenso: se dicen las piernas).
+  - Se mide con `bulto.js` (lo que una rodilla o un codo pasa, a medio tramo, de lo que tiene en sus dos puntas; va en el zip de
+    la nota 63, en `herramientas/`). En los 37 queda uno, y es de verdad: el codo en el lanzamiento contra el suelo (recoge el
+    balón doblando los brazos). **En los 497 de antes lo hay** (las flexiones de los bloques 1 y 2, de 11 a 24° las rodillas; los
+    pesos muertos a una pierna): no se han tocado.
+- **La pierna recta del todo no tiene lado** (`CASI_RECTAS`, en `7e-accesorios.js`). Con el pie clavado, en cada cuadro la pierna
+  se vuelve a resolver «hacia donde ya se doblaba» (`clavar`, en 10-esqueleto.js: el lado lo da dónde cae la rodilla mezclada
+  respecto a la línea de la cadera al tobillo). Con `p: { e: 0, z: 0, c: 0 }` (la `tabla` de siempre) la rodilla cae justo en la
+  línea: en la primera mitad del tramo queda un pelo a un lado y en la segunda al otro, y **a medio tramo la rodilla cambia de
+  lado de golpe**: con los 14° que se doblaba de paso, un salto de 7 a 12 cm en un solo cuadro en las cinco flexiones del bloque
+  (se ve la pierna doblada hacia el suelo y, de pronto, hacia arriba, que es al revés de como dobla una rodilla). Con las piernas
+  tensas el salto quedaba en 2 cm; con las rodillas 6° dobladas hacia el suelo en las dos posturas (`{ e: 2.9, z: 0, c: 6 }`: se
+  apartan 2 cm de la línea y no se ve), no hay salto. Lo mismo vale para un brazo casi recto: en las dominadas comando, con el
+  codo de atrás ya girado del todo en la postura intermedia, al acabar de bajar cambiaba de lado (11 cm en un cuadro): gira a la
+  par que sube.
+  - Se mide con `salto.js` (el punto que en un cuadro se mueve mucho más que en el de antes y en el de después). En los 37 quedan
+    dos que no lo son (la mano al soltar el balón, y un codo al que la mano apartada del muslo mueve 2,6 cm).
+  - **En los 497 de antes lo hay, y más**: la rodilla salta de 10 a 18 cm en un cuadro, a media repetición, en catorce: `flexion`
+    (12), `flexion-deficit` (18), `flexion-explosiva`, `flexion-inclinada`, `flexion-declinada`, `flexion-diamante`,
+    `flexion-codos-pegados`, `flexion-manos-escalonadas`, `flexiones-yemas-dedos`, `remo-invertido` (15),
+    `remo-invertido-supino`, `remo-renegado`, `curl-biceps-peso-corporal` y, al ponerse, `plancha-alta`. No se han tocado: el
+    arreglo es el de aquí (lo tenso y las rodillas con lado), vídeo a vídeo, con su repaso.
+- **El paso, por posturas de paso** (`porPosturas`). «entra», «lineal» y «sale» solo empalman sin tirón si los tramos andan lo que
+  les toca: el primero y el último, la mitad que los de en medio por unidad de tiempo. Con tres tramos puestos a ojo, la rueda
+  perdía de golpe el 40 % de su paso al pasar por la primera postura; el encogimiento de rodillas, la mitad (la cadera, de 74 a
+  37 cm/s); y la sissy lo doblaba a medio camino (de 27 a 62). `porPosturas(ida, vuelta, quieto, nombres, s)` reparte el tiempo
+  por lo que anda («s») lo que más se mueve: lo que rueda, en la rueda y los rollouts; la cadera, en la sissy y en el
+  encogimiento (donde además las posturas de paso van más juntas al principio, que es cuando la cadera sube deprisa). Se mide con
+  `paso.js` (la velocidad de la cadera, los hombros y los puños, cuadro a cuadro) y `tiron.js` (los cambios de paso en marcha).
+- **De puntillas, el tobillo sube por un arco**: clavado de una postura a otra va derecho, y a medio camino la punta del pie se
+  hunde (1,5 cm en la sissy, con los talones a 56°). Una postura de paso a mitad de camino lo deja en 0,4.
+- **Dos controles nuevos** en la auditoría (son 83): nada del cuerpo se hunde más de 1,5 cm en una pelota (las manos que la
+  sujetan, ni 3), y el fitball no se queda en el aire (siempre hay algo posado en él a menos de 1,5 cm). Y la mano apoyada de plano
+  también puede estarlo en una pelota. Siguen sin control los discos, los cojines y las placas (se miden aparte, como en el 14).
+
 ## El material (`50-material.js`)
 
 `barra` (con discos; `z: true`, la barra Z; `una: 'i'`, la lleva una mano por el centro; `almohadilla: true`, con un rulo de goma
@@ -534,15 +640,27 @@ va con los pies, deslizándose por el suelo: el curl de isquios deslizando los t
 
 El material sabe **de qué postura sale** lo que Jérôme está haciendo (`ctx.de`, que le da `60-director.js`): con eso las
 `toallas` saben en qué pie van y la `banda`, qué tiras y qué lazos se ven (`ve`). Y `ctx.reposo` / `ctx.enLista([...])`, si lo que espera sigue esperando.
+Desde el bloque 15, también **a qué postura va** (`ctx.a`) y **por dónde anda el tramo** (`ctx.u`, de 0 a 1; 1 en una postura
+mantenida): con eso vuela el balón.
 
 **De qué se dibuja.** El material, como todo lo demás, solo con `path`, `circle`, `ellipse` y `rect` (en grupos `g`,
 con sus degradados y sus recortes): es lo que `src/85-lienzo.js` sabe copiar al canvas con Samsung Internet. Un
 `line`, un `polygon`, un `text`, un `use`, una máscara o un filtro, en ese navegador no se verían, y en Chromium nadie
 lo notaría: `auditar_entrenador.js` lo mira en cada vídeo y se pone en rojo.
 
-Material que falta (lo piden 37 ejercicios): cinta de suspensión, anillas y rueda abdominal,
-sin dibujar; y `fitball`, `disco` y `balon_medicinal`, que tienen un primer dibujo en `50-material.js` pero
-ninguna coreografía los usa todavía: están sin probar.
+El material del bloque 15:
+
+- `fitball`: `{ radio (30), en: [x, z] }`, quieto; o `sigue: { … }`, rodando con lo que lleva encima: `que: 'pierna'` (va donde lo
+  pisan o descansan en él las piernas: llega desde más allá de los pies —`desde: 1`, los pies hacia +z; `−1`, hacia −z— hasta tocar
+  la zapatilla o la pierna, y el muslo con `muslo: true`), `que` + `mapa: [[z del punto, z del centro], …]` (a su paso) o `que` +
+  `dz` (debajo de ese punto del cuerpo).
+- `disco`: `{ radio, grosor, color, doble, a: 'manos' | 'i' | 'd' | 'torax' | 'pelvis', punto, eje, ejeMundo, corre, cinturon }`.
+- `balon_medicinal`: `{ radio, en: [x, z] }` (quieto en el suelo), o entre las dos manos; `suelta: [{ de, a, en, u, va, vuelve }]`,
+  un lanzamiento.
+- `suspension`: `{ ancla: [x, y, z], cuello, a: 'manos' | 'i' | 'd' | 'pies' }`: el mosquetón, el cuello, los dos ramales y las
+  asas (en los pies, los estribos). Cuelga de una `barra_dominadas` puesta de pórtico.
+- `anillas`: `{ alto, sep, z }`: cada aro, en su puño, y su cinta hasta su anclaje.
+- `rueda`: `{ radio }`: entre los dos puños, con su eje de mango.
 
 ## Cómo se hace una
 

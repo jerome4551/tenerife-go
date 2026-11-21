@@ -183,9 +183,36 @@
       lista.push([c.que, meta]);
     }
     if (!lista.length) return E;
+    var corr = [0, 0, 0], v, l, peor, falta, tope, vuelta, q, L, brazo;
+    /* (21-11-2026) lo tenso. De una postura a otra la cadera va derecha, por la cuerda; si el cuerpo gira sobre los pies clavados (una
+       flexión, un remo colgado de la cinta) o lleva las manos clavadas a lo que rueda, lo suyo es el arco: por la cuerda queda más
+       cerca, y la rodilla o el codo, que en las dos posturas van rectos, se doblaban de paso (hasta 35° en el bloque 15). El brazo o
+       la pierna que la coreografía dice tenso (tensos: ['ti', 'td', 'mi', 'md'], de lo que lleve clavado) llega a su sitio tan
+       estirado como en las posturas: lo que mide del hombro a la muñeca, o de la cadera al tobillo, va de lo que mide en una a lo que
+       mide en la otra, y es la cadera (el cuerpo entero, lo mismo) la que se aparta lo que haga falta. Solo donde se pide */
+    var tensos = this.co && this.co.tensos, ct, dA, dB, kt;
+    if (tensos && A && B) {
+      ct = [0, 0, 0];
+      for (vuelta = 0; vuelta < 60; vuelta++) {
+        peor = 0;
+        for (i = 0; i < lista.length; i++) {
+          q = lista[i]; if (tensos.indexOf(q[0]) < 0) continue;
+          kt = q[0].charAt(1); brazo = q[0].charAt(0) === 'm';
+          dA = largo(menos(brazo ? A[kt].mun : A[kt].tob, brazo ? A[kt].hom : A[kt].cad)); dB = largo(menos(brazo ? B[kt].mun : B[kt].tob, brazo ? B[kt].hom : B[kt].cad));
+          v = menos(q[1], mas(brazo ? E[kt].hom : E[kt].cad, ct)); l = largo(v); falta = l - (dA + (dB - dA) * e);
+          if (Math.abs(falta) > peor) peor = Math.abs(falta);
+          if (l > 1e-6) ct = mas(ct, por(v, falta / l));
+        }
+        if (peor < 0.002) break;
+      }
+      l = largo(ct);
+      if (l > 0.002) {
+        if (l > 8) ct = por(ct, 8 / l);
+        E = armar({ p: mas(E.S.p, ct), B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: { i: E.S.b.i, d: E.S.b.d }, q: { i: E.S.q.i, d: E.S.q.d }, m: E.S.m, t: E.S.t });
+      }
+    }
     /* si la vida (el aire, el peso) deja algo un pelo fuera de alcance, es el cuerpo el que se arrima: la mano no suelta
        la barra. Mover la cadera mueve hombros y caderas lo mismo, así que se va corrigiendo lo que más falta, unas vueltas. */
-    var corr = [0, 0, 0], v, l, peor, falta, tope, vuelta, q, L, brazo;
     for (vuelta = 0; vuelta < 4; vuelta++) {
       peor = null; falta = 0.004;
       for (i = 0; i < lista.length; i++) {
@@ -508,6 +535,9 @@
     };
     /* de qué postura sale lo que está haciendo: hay material que va de una manera u otra según el tramo (una toalla que pasa de un pie al otro) */
     this.ctx.de = this.busto ? null : this.modo === 'sec' ? this.secDe : this.modo === 'rep' ? (this.tramo ? this.tramo.de : this.inicio) : this.meta;
+    /* (20-11-2026) y a cuál va y por dónde anda el tramo (de 0 a 1, en tiempo): lo que se lanza y vuelve (el balón medicinal) lo necesita */
+    this.ctx.a = this.busto ? null : this.modo === 'sec' ? this.secA : this.modo === 'rep' ? (this.tramo ? this.tramo.a : null) : this.meta;
+    this.ctx.u = this.busto ? null : this.modo === 'sec' ? this.secU : this.modo === 'rep' ? (this.tramo ? this.tramoU : 0) : 1;
     /* el material, la figura y lo demás */
     var mats = esc.material, j;
     for (j = 0; j < mats.length; j++) { mats[j].colocar(E, this.ctx); mats[j].oculto = this.busto; }

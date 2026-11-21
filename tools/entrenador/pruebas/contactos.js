@@ -22,8 +22,12 @@
 
    El suelo es y = 0; las paredes, las del material ('pared'); los bancos planos, su tapa. Lo demás (un escalón, un cajón, la silla)
    no se mide aquí, salvo la cabeza contra los CILINDROS del material, sean los que sean (la barra de dominadas, la de pesas, los
-   tubos y las asas de una máquina, un mango, los ramales de una cuerda): al material se le hace pintar de mentira con Cilindro.pon
-   espiado, así que lo que se mide es lo que se dibuja. Los cojines, las placas y los discos no son cilindros: no entran. */
+   tubos y las asas de una máquina, un mango, los ramales de una cuerda o de una cinta): al material se le hace pintar de mentira con
+   Cilindro.pon espiado, así que lo que se mide es lo que se dibuja. Y (bloque 15, 20-11-2026) las PELOTAS, que se espían igual
+   (Esfera.pon: el fitball y el balón medicinal): lo que el cuerpo se mete en cada una (pelota-cuerpo; las manos, que la sujetan
+   o se apoyan en ella, aparte: pelota-mano), lo que le falta a lo más cercano para tocar un fitball (pelota-posada: no puede
+   quedarse en el aire, siempre hay algo posado en él) y la mano apoyada de plano, que ahora también puede estarlo en una pelota.
+   Los cojines, las placas y los discos no son cilindros ni esferas: no entran. */
 'use strict';
 const fs = require('fs'), path = require('path');
 const RAIZ = path.join(__dirname, '..', '..', '..');
@@ -47,29 +51,45 @@ function tapas(co) {
 }
 const enTapa = (P, B) => Math.abs(dot(sub(P, B.c), B.ux)) <= B.a + 3 && Math.abs(dot(sub(P, B.c), B.uz)) <= B.l + 3;
 const enPano = (P, W) => Math.abs(dot(sub(P, W.c), W.t)) <= W.w / 2 + 1 && P[1] >= -1 && P[1] <= W.h + 1;
-/* los cilindros que pinta el material: se espía Cilindro.pon (50-material.js) mientras se le hace pintar */
-let ESPIA = null;
+/* los cilindros y las esferas que pinta el material: se espían Cilindro.pon y Esfera.pon (50-material.js) mientras se le hace pintar */
+let ESPIA = null, ESPIA_E = null;
 function espiar(T) {
   const P = T.Cilindro.prototype; if (P.pon.espia) return;
   const pon = P.pon; P.pon = function (cam, p, q, r) { if (ESPIA) ESPIA.push([p.slice(), q.slice(), r]); return pon.apply(this, arguments); }; P.pon.espia = true;
+  const Q = T.Esfera.prototype, ponE = Q.pon; Q.pon = function (cam, c, R) { if (ESPIA_E) ESPIA_E.push([c.slice(), R]); return ponE.apply(this, arguments); };
+}
+/* lo que pinta el material en un instante: { cil: [[p, q, r]…], esf: [[c, R]…] } */
+function pintado(T, esc, E, ctx, colocar) {
+  const cil = [], esf = []; espiar(T);
+  esc.material.forEach((M, i) => {
+    if (!M.pintar) { if (M.roto) throw new Error('el material ' + i + ' no se pudo montar (' + M.roto + ')'); return; }
+    ESPIA = []; ESPIA_E = [];
+    try { if (colocar) M.colocar(E, ctx); M.pintar(E, esc.cam, [], ctx); } finally { cil.push(...ESPIA); esf.push(...ESPIA_E); ESPIA = null; ESPIA_E = null; }
+  });
+  return { cil, esf };
+}
+/* el cuerpo y una pelota: [lo que se mete lo que más (sin las manos), qué pieza, lo que se mete la mano que más, lo que le falta a lo más cercano] */
+const PIEZAS_P = [['tronco'], ['cabeza']].concat(...['i', 'd'].map(k => [['zapa', k], ['pierna', k], ['muslo', k], ['brazo', k], ['ante', k]]));
+const NOM_P = { zapa: 'zapatilla', ante: 'antebrazo' };
+function enPelota(T, E, c, R) {
+  let cuerpo = 1e9, que = '', mano = 1e9;
+  for (const q of PIEZAS_P) { const g = T.huecoPelota(E, [q], c, R); if (g < cuerpo) { cuerpo = g; que = (NOM_P[q[0]] || q[0]) + (q[1] ? ' ' + q[1] : ''); } }
+  for (const k of ['i', 'd']) mano = Math.min(mano, T.huecoPelota(E, [['mano', k]], c, R));
+  return [cuerpo, que, mano, Math.min(cuerpo, mano)];
 }
 /* lo que le falta a la cabeza para tocar el cilindro del material que le pase más cerca (negativo: se le mete), con el material como
    lo deja el Director en ese instante (ctx). colocar: si hay que ponerlo antes en su sitio (el Director, en sus cuadros, ya lo hace) */
-function cabezaBarra(T, esc, E, ctx, colocar) {
-  let min = 1e9; espiar(T);
-  esc.material.forEach((M, i) => {
-    if (!M.pintar) { if (M.roto) throw new Error('el material ' + i + ' no se pudo montar (' + M.roto + ')'); return; }
-    let l; ESPIA = [];
-    try { if (colocar) M.colocar(E, ctx); M.pintar(E, esc.cam, [], ctx); } finally { l = ESPIA; ESPIA = null; }
-    for (const c of l) min = Math.min(min, T.cabezaACilindro(E, c[0], c[1], c[2]));
-  });
+function cabezaBarra(T, esc, E, ctx, colocar, mat) {
+  let min = 1e9;
+  for (const c of (mat || pintado(T, esc, E, ctx, colocar)).cil) min = Math.min(min, T.cabezaACilindro(E, c[0], c[1], c[2]));
   return min;
 }
 /* lo que el Director le dice al material en cada momento (60-director.js): reposo, si lo que aún no se ha cogido espera en su sitio;
-   enLista(l), lo mismo para el material que trae su lista; de, de qué postura sale. modo: 'rep', 'sec' o 'postura' */
+   enLista(l), lo mismo para el material que trae su lista; de, de qué postura sale; a, a cuál va; u, por dónde anda el tramo (de 0 a
+   1). modo: 'rep', 'sec' o 'postura' */
 function ctxDe(co, modo, de, a, w) {
   const rp = co.reposo;
-  return { de, reposo: !!rp && ((modo === 'postura' && rp.indexOf(de) >= 0) || (modo === 'sec' && rp.indexOf(de) >= 0 && w < 0.97)),
+  return { de, a, u: modo === 'postura' ? 1 : w, reposo: !!rp && ((modo === 'postura' && rp.indexOf(de) >= 0) || (modo === 'sec' && rp.indexOf(de) >= 0 && w < 0.97)),
     enLista: l => !!l && ((modo === 'postura' && l.indexOf(de) >= 0) || (modo === 'sec' && l.indexOf(de) >= 0 && (w < 0.97 || l.indexOf(a) >= 0))) };
 }
 /* un Director de verdad sobre un escenario de mentira (no pinta) */
@@ -100,7 +120,7 @@ function mide(T, id) {
   const co = T.COREO[id], d = director(T, co), PW = paredes(co), PB = tapas(co), R = {}, huecos = {};
   const peor = (c, v, donde) => { if (!(c in R) || v < R[c][0]) R[c] = [r1(v), donde]; };
   const mejor = (c, v, donde) => { if (!(c in R) || v > R[c][0]) R[c] = [r1(v), donde]; };
-  const uno = (E, donde, quieta, nombre) => {
+  const uno = (E, donde, quieta, nombre, esf) => {
     for (const k of ['i', 'd']) {
       const L = E[k], M = E.S.m[k];
       peor('zapa-suelo', T.zapaAPlano(L, k, SUELO.c, SUELO.n), 'pie ' + k + ' · ' + donde);
@@ -119,6 +139,7 @@ function mide(T, id) {
         let g = T.manoAPlano(L, M, SUELO.c, SUELO.n);
         for (const W of PW) if (enPano(L.mun, W) || enPano(L.dedos, W)) { const gw = T.manoAPlano(L, M, W.c, W.n); if (Math.abs(gw) < Math.abs(g)) g = gw; }
         for (const B of PB) if (enTapa(L.mun, B)) { const gb = T.manoAPlano(L, M, B.c, B.n); if (Math.abs(gb) < Math.abs(g)) g = gb; }
+        for (const q of esf || []) { const ge = T.huecoPelota(E, [['mano', k]], q[0], q[1]); if (Math.abs(ge) < Math.abs(g)) g = ge; }      /* o en una pelota */
         if (!('apoyada' in R) || Math.abs(g) > Math.abs(R.apoyada[0])) R.apoyada = [r1(g), 'mano ' + k + ' · ' + donde];
       }
       /* la mano abierta que mira a una pared o al suelo y se queda cerca sin tocar */
@@ -131,14 +152,25 @@ function mide(T, id) {
     for (const W of PW) { const en = P => enPano(P, W); let v = T.cabezaAPlano(E, W.c, W.n, en); if (v < 1e8) peor('cabeza-pared', v, donde); v = T.troncoAPlano(E, W.c, W.n, en); if (v < 1e8) peor('tronco-pared', v, donde); }
   };
   const hayMat = d.esc.material.length > 0, lejos = (a, b) => Math.sqrt(dot(sub(a, b), sub(a, b)));
-  const barra = (E, ctx, donde) => { if (hayMat) { const g = cabezaBarra(T, d.esc, E, ctx, true); if (g < 1e8) peor('cabeza-barra', g, donde); } };
+  /* el material, tal como queda en ese instante: la cabeza contra sus cilindros y el cuerpo contra sus pelotas. Devuelve las pelotas */
+  const material = (E, ctx, donde) => {
+    if (!hayMat) return [];
+    const mat = pintado(T, d.esc, E, ctx, true), g = cabezaBarra(T, d.esc, E, ctx, false, mat);
+    if (g < 1e8) peor('cabeza-barra', g, donde);
+    for (const q of mat.esf) {
+      const [cuerpo, que, mano, cerca] = enPelota(T, E, q[0], q[1]);
+      if (cuerpo < 1e8) peor('pelota-cuerpo', cuerpo, que + ' · ' + donde);
+      if (mano < 1e8) peor('pelota-mano', mano, donde);
+      if (q[1] >= 20) mejor('pelota-posada', Math.min(cerca, 99), donde);          /* un fitball: algo tiene que estar posado en él */
+    }
+    return mat.esf;
+  };
   for (const [s, et, curva] of tramosDe(T, co)) {
     if (!d.K[s.de] || !d.K[s.a]) { R.error = 'postura que no existe: ' + s.de + ' o ' + s.a; continue; }
     const modo = et.slice(0, 3) === 'rep' ? 'rep' : 'sec', tob = { i: [], d: [] };
     for (let q = 0; q <= 24; q++) {
       d.metas = []; const E = d.enTramo(s, curva(q / 24)), donde = et + ':' + r1(q / 24) + ' (' + s.de + '→' + s.a + ')';
-      uno(E, donde, (q === 24 || q === 0) && s.de === s.a, s.a);
-      barra(E, ctxDe(co, modo, s.de, s.a, q / 24), donde);
+      uno(E, donde, (q === 24 || q === 0) && s.de === s.a, s.a, material(E, ctxDe(co, modo, s.de, s.a, q / 24), donde));
       tob.i.push(E.i.tob); tob.d.push(E.d.tob);
     }
     /* el tobillo que acaba el tramo donde lo empezó (a menos de 3 mm): lo que se aparta por el camino */
@@ -147,7 +179,7 @@ function mide(T, id) {
   for (const n of quietasDe(co)) {
     if (!d.K[n]) continue; d.metas = [];
     const E = d.enTramo({ de: n, a: n, clavos: d.suelto(n) ? [] : (co.clavosEn && co.clavosEn[n]) || undefined }, 1);
-    uno(E, 'postura ' + n, true, n); barra(E, ctxDe(co, 'postura', n, n, 1), 'postura ' + n);
+    uno(E, 'postura ' + n, true, n, material(E, ctxDe(co, 'postura', n, n, 1), 'postura ' + n));
   }
   R.huecos = Object.keys(huecos).map(c => c + ' a ' + huecos[c] + ' cm');
   return R;
@@ -201,7 +233,8 @@ const LIMITES = {
   'zapa-suelo': -1.0, 'zapa-pared': -1.0, 'mano-suelo': -1.0, 'mano-pared': -1.0,
   'cuerpo-suelo': -2.5, 'cuerpo-pared': -2.5, 'tronco-suelo': -4.0, 'tronco-pared': -3.0, 'cabeza-suelo': -4.0, 'cabeza-pared': -3.5,
   'apoyada': 1.0, 'mano-muslo': 2.0, 'mano-muslo-quieta': 1.0, 'mano-muslo-vida': 3.0, 'mano-muslo-quieta-vida': 1.0, 'tiron': 95,
-  'cabeza-barra': -2.5, 'cabeza-barra-vida': -3.5, 'pie-deriva': 2.0
+  'cabeza-barra': -2.5, 'cabeza-barra-vida': -3.5, 'pie-deriva': 2.0,
+  'pelota-cuerpo': -1.5, 'pelota-mano': -3.0, 'pelota-posada': 1.5
 };
 /* lo que se sale: [{ que, v, donde }] */
 function juzga(m, v) {
@@ -223,9 +256,10 @@ const NOMBRE = {
   'mano-muslo-quieta': 'una mano, dentro de un muslo (quieta)', 'mano-muslo-vida': 'una mano, dentro de un muslo (en el vídeo, de paso)', 'mano-muslo-quieta-vida': 'una mano, dentro de un muslo (en el vídeo, quieta)',
   'tiron': 'la mano da un tirón (cm/s)', 'hueco': 'una mano abierta, cerca de una superficie y sin tocarla', 'error': 'no se pudo medir',
   'cabeza-barra': 'una barra, un tubo o un cable del material, dentro de la cabeza', 'cabeza-barra-vida': 'una barra, un tubo o un cable del material, dentro de la cabeza (en el vídeo)',
-  'pie-deriva': 'un pie que no se mueve, se va por el camino (hay que clavarlo)'
+  'pie-deriva': 'un pie que no se mueve, se va por el camino (hay que clavarlo)',
+  'pelota-cuerpo': 'el cuerpo, dentro de una pelota', 'pelota-mano': 'una mano, dentro de una pelota', 'pelota-posada': 'el fitball, en el aire: nada posado en él'
 };
-module.exports = { carga, mide, video, juzga, cabezaBarra, ctxDe, director, tramosDe, quietasDe, LIMITES, NOMBRE };
+module.exports = { carga, mide, video, juzga, cabezaBarra, pintado, enPelota, ctxDe, director, tramosDe, quietasDe, LIMITES, NOMBRE };
 
 if (require.main === module) {
   const T = carga(), ES = JSON.parse(fs.readFileSync(path.join(RAIZ, 'datos', 'cuerpo', 'ejercicios-es.json'), 'utf8'));

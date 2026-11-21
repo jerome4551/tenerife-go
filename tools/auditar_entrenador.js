@@ -27,7 +27,8 @@
  *      (tools/entrenador/pruebas/contactos.js): ninguna zapatilla ni ninguna mano se hunde más de 1 cm en el suelo o en
  *      una pared; la mano que se apoya, toca; el cuerpo no atraviesa el suelo ni las paredes; las manos no se meten en
  *      los muslos, y lo que el Director las aparta no da tirones; y (20 de noviembre de 2026) ninguna barra, tubo, asa o
- *      ramal de cuerda del material se le mete en la cabeza, y el pie que no se mueve no se va por el camino;
+ *      ramal de cuerda del material se le mete en la cabeza, y el pie que no se mueve no se va por el camino; y (bloque 15)
+ *      nada del cuerpo se hunde en una pelota —un fitball, un balón medicinal—, y el fitball no se queda en el aire;
  *    · los gestos del presentador (saluda, la visera, «¡vamos!», el consejo, el pulgar…): sus posturas
  *      existen, ninguna mano levantada se sale del cuadro y ninguna va más deprisa de lo que se ve;
  *    · la voz: con las voces que enseña un iPhone (las «Eloquence», robóticas), un PC o un Android,
@@ -211,6 +212,8 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     if (co.clavosEn != null && (typeof co.clavosEn !== 'object' || Array.isArray(co.clavosEn))) peros.push('clavosEn');
     else Object.keys(co.clavosEn || {}).forEach(n => { usadas.add(n); if (!Array.isArray(co.clavosEn[n])) peros.push('clavosEn.' + n); else co.clavosEn[n].forEach(c => clavos.push(c)); });
     if (co.isometrico) usadas.add(co.isometrico);
+    /* lo tenso (tensos: ['ti', 'td', 'mi', 'md']): de lo que la coreografía lleva clavado */
+    if (co.tensos != null && (!Array.isArray(co.tensos) || co.tensos.some(q => !/^[mt][id]$/.test(q) || !clavos.some(c => String(c).slice(0, 2) === q)))) peros.push('tensos');
     usadas.forEach(n => { if (!hay(n)) peros.push('postura «' + n + '» no existe'); });
     if ((co.pasos || []).some(p => p === 'rep' || (p && p.rep != null)) && !(co.rep || []).length) peros.push('pasos con repetición, sin repetición');
     clavos.forEach(c => { const m = CLAVO.exec(c); if (!m) peros.push('clavo ' + c); else if (m[2] != null && !(co.material || [])[Number(m[2])]) peros.push('clavo ' + c + ': no hay ese material'); });
@@ -250,7 +253,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   ok(!deC('error').length, 'los contactos de las ' + ids.length + ' coreografías se pueden medir (cada tramo, cada postura mantenida y el vídeo cuadro a cuadro)', deC('error').slice(0, 4));
   ok(!deC('zapa-suelo', 'zapa-pared').length, 'el camino de los pies: en ningún tramo ni postura una zapatilla se hunde más de 1 cm en el suelo ni en una pared', deC('zapa-suelo', 'zapa-pared').slice(0, 6));
   ok(!deC('mano-suelo', 'mano-pared').length, 'las manos: ninguna se hunde más de 1 cm en el suelo ni en una pared', deC('mano-suelo', 'mano-pared').slice(0, 6));
-  ok(!deC('apoyada', 'hueco').length, 'la mano que se apoya (en el suelo, en una pared o en un banco) toca: queda a menos de 1 cm; y ninguna mano abierta se queda delante de una superficie sin tocarla', deC('apoyada', 'hueco').slice(0, 6));
+  ok(!deC('apoyada', 'hueco').length, 'la mano que se apoya (en el suelo, en una pared, en un banco o en una pelota) toca: queda a menos de 1 cm; y ninguna mano abierta se queda delante de una superficie sin tocarla', deC('apoyada', 'hueco').slice(0, 6));
   ok(!deC('cuerpo-suelo', 'cuerpo-pared', 'tronco-suelo', 'tronco-pared', 'cabeza-suelo', 'cabeza-pared').length, 'el cuerpo no atraviesa el suelo ni las paredes (brazos y piernas, ni 2,5 cm; tumbado, el tronco y la cabeza se asientan menos de 4)',
     deC('cuerpo-suelo', 'cuerpo-pared', 'tronco-suelo', 'tronco-pared', 'cabeza-suelo', 'cabeza-pared').slice(0, 6));
   ok(!deC('mano-muslo', 'mano-muslo-quieta', 'mano-muslo-vida', 'mano-muslo-quieta-vida').length, 'las manos no se meten en los muslos: quietas, ni 1 cm (tampoco en el vídeo, mientras respira y se balancea); de paso, ni 2',
@@ -262,6 +265,12 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   ok(!deC('cabeza-barra', 'cabeza-barra-vida').length, 'la cabeza y las barras: ningún cilindro del material (una barra, un tubo o un asa de una máquina, un mango, un ramal de cuerda) se le mete en la cabeza más de ' +
     String(-CT.LIMITES['cabeza-barra']).replace('.', ',') + ' cm en ningún tramo ni postura, ni más de ' + String(-CT.LIMITES['cabeza-barra-vida']).replace('.', ',') + ' en el vídeo cuadro a cuadro', deC('cabeza-barra', 'cabeza-barra-vida').slice(0, 6));
   ok(!deC('pie-deriva').length, 'el pie que no se mueve, no se va: el tobillo que acaba un tramo donde lo empezó no se aparta más de ' + CT.LIMITES['pie-deriva'] + ' cm por el camino (lo que apoya y no se mueve va clavado)', deC('pie-deriva').slice(0, 6));
+  /* LAS PELOTAS (bloque 15, 20 de noviembre de 2026). El fitball y el balón medicinal tampoco son suelo, pared ni banco: se espía
+     Esfera.pon igual que Cilindro.pon y se mide cada pieza del cuerpo, tal como se dibuja, contra cada pelota que pinta el material
+     (20-figura.js, piezaAEsfera). El fitball es blando y cede un poco; lo que no puede es quedarse solo: siempre lleva algo encima */
+  ok(!deC('pelota-cuerpo', 'pelota-mano').length, 'las pelotas: nada del cuerpo se hunde más de ' + String(-CT.LIMITES['pelota-cuerpo']).replace('.', ',') + ' cm en un fitball ni en un balón medicinal, en ningún tramo ni postura (las manos que lo sujetan o se apoyan en él, ni ' +
+    String(-CT.LIMITES['pelota-mano']).replace('.', ',') + ')', deC('pelota-cuerpo', 'pelota-mano').slice(0, 6));
+  ok(!deC('pelota-posada').length, 'el fitball no se queda en el aire: en todo momento tiene algo del cuerpo posado, a menos de ' + String(CT.LIMITES['pelota-posada']).replace('.', ',') + ' cm', deC('pelota-posada').slice(0, 6));
   /* cada secuencia cabe en su paso. Un paso dura lo que se tarda en leer su texto (80-reproductor.js: 4,4 s como poco, y 0,058 s por
      letra, o 0,16 por carácter en chino), no lo que dure su acción (salvo que el paso lo diga con «dura»: entonces, eso como poco);
      cuando entra el paso siguiente, la secuencia que no ha acabado se queda a medias (y «vuelve despacio» no llega a verse). Se mira
