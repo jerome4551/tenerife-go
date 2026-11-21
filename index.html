@@ -1187,6 +1187,17 @@ window.onunhandledrejection = function(e) {
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* CIFRAS RECTAS EN TODA LA APP (Jérôme, 21-11-2026: «Si es un sí pues si»). La letra de los
+     títulos, Cormorant Garamond, trae cifras de estilo antiguo, que suben y bajan como las
+     minúsculas: el 0 parecía una o («Zona o Training», «PR-TF 1o», «2oo6»). «lnum» las pone todas
+     a la altura de las mayúsculas; los números no cambian, solo su forma. Va en todos los
+     elementos y con !important porque el atajo «font:» de muchas reglas (también las de los
+     módulos) devuelve font-feature-settings a «normal» en su elemento y la herencia sola no
+     llega; ninguna otra regla toca esta propiedad, así que no le quita nada a nadie (las
+     tabular-nums siguen tabulares: es otra propiedad). DM Sans y la letra del sistema ya traen
+     cifras rectas y no cambian. Lo dibujado en un <canvas> (la postal de «Su cuerpo») no lo coge.
+     Lo vigila tools/probar_cifras_rectas.js. */
+  *, *::before, *::after { font-feature-settings: "lnum" 1 !important; }
 
   body {
     background: var(--dark);

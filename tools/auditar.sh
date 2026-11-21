@@ -373,6 +373,10 @@ echo; echo "════════ «Antes de salir» y «Mi coche y mi posici
 # Desde el 20 de noviembre de 2026. Los dos se cargan al abrirlos (modulos/antes.js y
 # modulos/micoche.js); el del coche, tambien tras arrancar si hay un coche guardado.
 control probar_antes_coche.js node tools/probar_antes_coche.js "$PUERTO"
+echo; echo "════════ las cifras, rectas en toda la app (la letra de los titulos las traia de estilo antiguo) ════════"
+# Desde el 21 de noviembre de 2026 (Jérôme: «Si es un sí pues si»). Una regla de index.html; el control mira que
+# esta, que nada se la quita, que la letra tiene «lnum» y, en la app servida, que las cifras salen rectas.
+control probar_cifras_rectas.js node tools/probar_cifras_rectas.js "$PUERTO"
 echo
 # Los rotos van PRIMERO y con su propio nombre: son los que no han mirado nada.
 [ "$rotos" = 0 ] || echo "*** $rotos control(es) QUE NO SE PUDIERON EJECUTAR (pip install -r tools/requisitos.txt) ***"
