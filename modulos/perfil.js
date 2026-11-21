@@ -1765,6 +1765,12 @@
     panel.addEventListener('scroll', alDesplazar, { passive: true });
     /* «Abrir» de la tarjeta «Su cuerpo»: la pantalla, encima del perfil (cuerpoAbrir) */
     $('tgp-cuerpo-abrir').addEventListener('click', cuerpoAbrir);
+    /* «Abrir» de la tarjeta «Pase de viaje»: su panel, encima del perfil (index.html, abrirPase) */
+    $('tgp-pase-abrir').addEventListener('click', function () {
+      var aviso = $('tgp-pase-error');
+      aviso.hidden = true;
+      if (typeof window.abrirPase === 'function') window.abrirPase(); else aviso.hidden = false;
+    });
     $('tgp-tabs').addEventListener('click', function (e) { var b = e.target.closest('.tgp-tab'); if (b) irAPestana(b.dataset.pestana, false); });
     $('tgp-tabs').addEventListener('keydown', function (e) {
       var i = PESTANAS.indexOf(st.pestana), n = PESTANAS.length, j = null;
@@ -1906,11 +1912,13 @@
      debajo. Y desde el 3 de noviembre de 2026, el panel SOS: las respuestas del asistente de «Su cuerpo» y
      las guias de los deportes lo abren encima. Su Escape es suyo (vuelve atras dentro del panel y
      lo cierra); sin esto, el mismo Escape cerraba tambien el perfil de debajo, con la
-     conversacion. Su «atras», en el popstate de abajo (tgSos) */
+     conversacion. Su «atras», en el popstate de abajo (tgSos). Y desde el 21 de noviembre de 2026, el
+     «Pase de viaje» (modulos/pase.js), que se abre encima desde la pestaña «Viaje»: sin esto, su
+     Escape volvia atras dentro del «Pase» y cerraba a la vez el perfil de debajo */
   function fichaEncima() {
     var m = document.getElementById('auth-modal-backdrop'), a = document.getElementById('admin-overlay'), c = window.TG_CUERPO,
-      s = document.getElementById('sos-panel');
-    return !!((m && m.classList.contains('show')) || (a && a.classList.contains('open')) || (s && !s.hidden) ||
+      s = document.getElementById('sos-panel'), pa = document.getElementById('pase-panel');
+    return !!((m && m.classList.contains('show')) || (a && a.classList.contains('open')) || (s && !s.hidden) || (pa && !pa.hidden) ||
       (c && (typeof c.encima === 'function' ? c.encima() : typeof c.abierto === 'function' && c.abierto())));
   }
   /* el «atras» del movil: el back() que hace cerrar() llega aqui tambien, y se distingue del dedo */
@@ -2176,6 +2184,9 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
 .tgp-cuerpo-txt .tgp-note { margin-bottom: 10px; }
 .tgp-cuerpo-mini { width: 72px; height: 108px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: radial-gradient(120% 90% at 50% 20%, #232b39, #11151c); }
 .tgp-cuerpo-mini svg { display: block; width: 100%; height: 100%; }
+/* la tarjeta «Pase de viaje» (21 de noviembre de 2026), la primera de «Viaje», hecha como la de «Su
+   cuerpo»: el dibujo de un billete al lado, y «Gratis por ahora» (modulos/pase.js) */
+.tgp-pase-gratis { display: inline-block; margin: 2px 0 6px; padding: 2px 9px; border-radius: 999px; font-size: .7rem; font-weight: 700; color: #052e16; background: #86efac; }
 .tgp-pestana[hidden] { display: none; }
 .tgp-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 12px; padding: 3px; background: rgba(15,17,23,0.5); gap: 2px; }
 .tgp-seg button { border: 0; background: transparent; color: var(--muted); padding: 6px 12px; border-radius: 9px; font-size: .85rem; font-weight: 500; transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out); }
@@ -2459,6 +2470,18 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
   </div>
 
   <div class="tgp-pestana" role="tabpanel" id="tgp-p-viaje" aria-labelledby="tgp-tab-viaje">
+  <section class="tgp-card tgp-cuerpo tgp-pase" id="tgp-pase">
+    <div class="tgp-cuerpo-fila">
+      <div class="tgp-cuerpo-mini tgp-pase-mini" aria-hidden="true"><svg viewBox="0 0 72 108"><rect x="10" y="12" width="52" height="84" rx="9" fill="#18202d" stroke="#D4AF37" stroke-width="1.6"/><circle cx="10" cy="58" r="5" fill="#141922" stroke="#D4AF37" stroke-width="1.6"/><circle cx="62" cy="58" r="5" fill="#141922" stroke="#D4AF37" stroke-width="1.6"/><path d="M17 50l13-16 5 4 6-14 6 10 8 16z" fill="#35445d" stroke="#F5C76B" stroke-width="1.4" stroke-linejoin="round"/><circle cx="51" cy="25" r="3" fill="#F5C76B"/><path d="M19 86c7-9 14 4 21-7s12-6 14-12" fill="none" stroke="#F5C76B" stroke-width="1.6" stroke-dasharray="3 3" stroke-linecap="round"/><circle cx="19" cy="86" r="2.6" fill="#F5C76B"/><path d="M54 67v-8l5 2.5-5 2.5" fill="#8FD3FF" stroke="#8FD3FF" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+      <div class="tgp-cuerpo-txt">
+        <div class="tgp-card-head"><h2 id="tgp-pase-h">Pase de viaje</h2></div>
+        <span class="tgp-pase-gratis" id="tgp-pase-gratis">Gratis por ahora</span>
+        <p class="tgp-note" id="tgp-pase-lema">Rutas en coche con audio, una búsqueda del tesoro y «¿Qué estoy viendo?»</p>
+        <button type="button" class="tgp-btn gold wide" id="tgp-pase-abrir" aria-labelledby="tgp-pase-abrir-txt tgp-pase-h"><span id="tgp-pase-abrir-txt">Abrir</span></button>
+      </div>
+    </div>
+    <p class="tgp-cuerpo-error" id="tgp-pase-error" role="alert" hidden>No se pudo abrir. Compruebe la conexión e inténtelo de nuevo.</p>
+  </section>
   <section class="tgp-card" id="tgp-avatares">
     <div class="tgp-card-head"><h2 id="tgp-avatares-h">Elija su avatar</h2></div>
     <div class="tgp-sets" id="tgp-sets" role="group" aria-labelledby="tgp-avatares-h">
@@ -2636,6 +2659,11 @@ svg.tg-avatar { display: block; width: 100%; height: auto; }
     ['#tgp-cuerpo .tgp-note', 'tx', 'perfilCuerpoTexto'],
     ['#tgp-cuerpo-abrir-txt', 'tx', 'perfilCuerpoAbrir'],
     ['#tgp-cuerpo-error', 'tx', 'perfilCuerpoError'],
+    ['#tgp-pase-h', 'tx', 'paseTitulo'],
+    ['#tgp-pase-gratis', 'tx', 'paseGratis'],
+    ['#tgp-pase-lema', 'tx', 'paseTarjeta'],
+    ['#tgp-pase-abrir-txt', 'tx', 'perfilCuerpoAbrir'],
+    ['#tgp-pase-error', 'tx', 'paseNoAbre'],
     ['#tgp-name-edit', 'aria', 'perfilEditarNombre'],
     ['#tgp-hero .tgp-lema', 'tx', 'perfilLema'],
     ['#tgp-avatares h2', 'tx', 'perfilElegirAvatar'],

@@ -13118,7 +13118,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 56 tablas, 3826 filas (y 5.984 filas, dentro y fuera del fuente)
+## Idiomas · 61 tablas, 3980 filas (y 6.138 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -13463,6 +13463,15 @@ Y ese día, «Antes de salir» y «Mi coche y mi posición»: cuatro tablas más
 idioma para `Intl`, declarados SIN-TRADUCIR), cinco filas en `UI_TX` (el título de cada pantalla, el subtítulo de la
 tarjeta de Rutas y los dos avisos de que el módulo no llegó) y dos en la política (`ppDatosCoche`), en los once
 idiomas: 56 tablas, 3.826 filas y 5.984.
+Y el 21 de noviembre, el «Pase de viaje» (gratis por ahora): cinco tablas más, `PASE_UI` (87 filas, en
+`modulos/pase.js`) y `HZ_UI` (58, en `modulos/horizonte.js`, «¿Qué estoy viendo?»), con sus `PASE_LOCALE` y
+`HZ_LOCALE` (los códigos de idioma para `Intl`) y `HZ_NOMBRE` (la clave `name:xx` de OpenStreetMap de cada idioma),
+las tres declaradas SIN-TRADUCIR; cuatro filas en `UI_TX` (el título, «Gratis por ahora», la frase de la tarjeta
+del pasaporte y el aviso de que el módulo no llegó) y dos en la política (`ppDatosPase`), en los once idiomas:
+61 tablas, 3.980 filas y 6.138. Y `tools/auditar_registro.js` (el trato de usted) lee desde ese día las tablas de
+`modulos/antes.js`, `modulos/micoche.js`, `modulos/pase.js` y `modulos/horizonte.js`, que no miraba: sus rótulos
+de botón en imperativo van en `ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL`, como los demás, y «Suche beenden», en
+`EXENTOS`, como «Suche löschen».
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no

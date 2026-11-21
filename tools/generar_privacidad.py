@@ -214,7 +214,7 @@ def cuerpo(L, panel):
     # «Mi coche y mi posición» (20 de noviembre de 2026): el coche, en el dispositivo; la posicion, a quien se elija.
     for a, b in (('ppDatosFav', 'ppDatosFavTxt'), ('ppDatosCoche', 'ppDatosCocheTxt'), ('ppDatosPerfil', 'ppDatosPerfilTxt'), ('ppDatosCuerpo', 'ppDatosCuerpoTxt'), ('ppDatosPref', 'ppDatosPrefTxt'),
                  ('ppDatosPush', 'ppDatosPushTxt'), ('ppDatosSensores', 'ppDatosSensoresTxt'),
-                 ('ppDatosCamara', 'ppDatosCamaraTxt')):
+                 ('ppDatosCamara', 'ppDatosCamaraTxt'), ('ppDatosPase', 'ppDatosPaseTxt')):
         m.append(li(a, b))
     m += [f'{sangria(4)}</ul>', '']
     # Desde el 30 de octubre de 2026 no hay estadisticas ni cookies, ni en la

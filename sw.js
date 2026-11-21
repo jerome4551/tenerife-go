@@ -98,6 +98,9 @@ const CORE = [
      miran antes de salir o en un aparcamiento, a veces ya sin cobertura. Van
      tambien «red primero» abajo, como los demas modulos. */
   './modulos/antes.js', './modulos/micoche.js',
+  /* El «Pase de viaje» y «¿Qué estoy viendo?» (21 de noviembre de 2026): las rutas se usan ya
+     en el coche y la vista, en un mirador, muchas veces sin cobertura. «Red primero» abajo. */
+  './modulos/pase.js', './modulos/horizonte.js',
   /* Los satelites (21 de octubre de 2026): el motor SGP4 y los elementos
      orbitales que renueva el robot cada dia. Los elementos van tambien «red
      primero» abajo: cambian a diario. */
@@ -418,6 +421,8 @@ self.addEventListener('fetch', e => {
           url.pathname.endsWith('/modulos/guia.js') ||
           url.pathname.endsWith('/modulos/antes.js') ||
           url.pathname.endsWith('/modulos/micoche.js') ||
+          url.pathname.endsWith('/modulos/pase.js') ||
+          url.pathname.endsWith('/modulos/horizonte.js') ||
           /\/mapa\/tenerife-relieve(-ao)?\.(png|json)$/.test(url.pathname) ||
           url.pathname.endsWith('/datos/cielo.json') ||
           url.pathname.endsWith('/datos/satelites.json') ||

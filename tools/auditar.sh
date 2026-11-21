@@ -54,9 +54,10 @@ echo "  scripts en linea: $(ls chk/*.js 2>/dev/null | wc -l), con fallo: $mal"
 # Y modulos/isla3d.js, «La isla en 3D» (31 de octubre de 2026).
 # Y modulos/guia.js, Jérôme y sus tours (10 de noviembre de 2026).
 # Y modulos/antes.js y modulos/micoche.js, «Antes de salir» y «Mi coche y mi posición» (20 de noviembre de 2026).
+# Y modulos/pase.js y modulos/horizonte.js, el «Pase de viaje» y «¿Qué estoy viendo?» (21 de noviembre de 2026).
 # Y modulos/entrenador.js, el vídeo de cada ejercicio de «Su cuerpo» (12 de noviembre de 2026), y sus trozos, las
 # coreografías por grupos de modulos/entrenador/ (16 de noviembre de 2026; cada una lleva en el nombre la huella de su contenido).
-for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js modulos/antes.js modulos/micoche.js modulos/entrenador.js modulos/entrenador/*.js; do
+for f in sw.js enviar-notificacion.js datos/titsa.js modulos/cielo.js modulos/avatares.js modulos/perfil.js modulos/emergencias.js modulos/cuerpo.js modulos/isla3d.js modulos/guia.js modulos/antes.js modulos/micoche.js modulos/pase.js modulos/horizonte.js modulos/entrenador.js modulos/entrenador/*.js; do
   if node --check "$f"; then echo "  $f ok"; else mal=$((mal+1)); fi
 done
 [ "$mal" != 0 ] && falla sintaxis
@@ -377,6 +378,14 @@ echo; echo "════════ «Antes de salir» y «Mi coche y mi posici
 # Desde el 20 de noviembre de 2026. Los dos se cargan al abrirlos (modulos/antes.js y
 # modulos/micoche.js); el del coche, tambien tras arrancar si hay un coche guardado.
 control probar_antes_coche.js node tools/probar_antes_coche.js "$PUERTO"
+echo; echo "════════ el «Pase de viaje» (gratis por ahora): «¿Qué estoy viendo?», las rutas en coche con audio y la busqueda del tesoro ════════"
+# Desde el 21 de noviembre de 2026. Se carga al abrirlo (modulos/pase.js) y «¿Qué estoy viendo?»
+# al entrar en el (modulos/horizonte.js, que lee el relieve de «La isla en 3D»). Las tablas en los
+# once idiomas, las cimas de las otras islas con sus reseñas del IGN, las paradas de las rutas,
+# lugares de la app; y lo que se toca, en un movil emulado, con OSRM de mentira y sin conexion.
+# El contorno del mapa pequeño lo comprueba este mismo control en el navegador; volver a sacarlo
+# (tools/pase_contorno.py) solo hace falta si cambia el relieve.
+control probar_pase.js node tools/probar_pase.js "$PUERTO"
 echo; echo "════════ las cifras, rectas en toda la app (la letra de los titulos las traia de estilo antiguo) ════════"
 # Desde el 21 de noviembre de 2026 (Jérôme: «Si es un sí pues si»). Una regla de index.html; el control mira que
 # esta, que nada se la quita, que la letra tiene «lnum» y, en la app servida, que las cifras salen rectas.

@@ -338,6 +338,9 @@ const ROTULOS_IT = new Set([
   'Vedi il video',
   /* y los de la tienda y la cesta (16 de noviembre de 2026): reservar, comprar, contactar y pagar */
   'Prenota', 'Acquista', 'Contatta', '💳 Paga — Prossimamente', 'Togli dal carrello',
+  /* y los de «Antes de salir» (20 de noviembre de 2026), que este control no leia, y los del «Pase de viaje» y
+     «¿Qué estoy viendo?» (21 de noviembre de 2026): escuchar una parada, la voz, leer el dato y buscar un mirador */
+  'Vedi l’elenco', 'Ascolta: {x}', 'Metti in pausa la voce', 'Leggi ad alta voce', 'Cerca un belvedere',
 ]);
 
 /* Los del bulgaro (22 de octubre de 2026): el boton en imperativo («Затвори»,
@@ -371,6 +374,9 @@ const ROTULOS_BG = new Set([
   /* y los de la tienda (16 de noviembre de 2026): reservar, comprar y enviar la solicitud; y «Изпрати», el boton de
      enviar del asistente y de «Su cuerpo» (ariaEnviar, cuerpoAsisEnviar), que salio al poner «Изпрати» en las marcas */
   'Резервирай', 'Купи', 'Изпрати заявка', 'Изпрати', 'Премахни от кошницата',
+  /* y los de «Antes de salir» (20 de noviembre de 2026), que este control no leia, y los del «Pase de viaje» y
+     «¿Qué estoy viendo?» (21 de noviembre de 2026): escuchar una parada, la voz y quitar el ajuste de la brujula */
+  'Покажи списъка', 'Слушай: {x}', 'Включи гласа', 'Премахни корекцията на компаса',
 ]);
 
 /* Los del polaco (22 de octubre de 2026): el boton en imperativo («Zamknij»,
@@ -423,6 +429,12 @@ const ROTULOS_PL = new Set([
   'Zobacz film',
   /* y el ✕ de cada artículo de la cesta (16 de noviembre de 2026), como «Usuń z planu» */
   'Usuń z koszyka',
+  /* y los de «Antes de salir» (20 de noviembre de 2026), que este control no leia, y los del «Pase de viaje» y
+     «¿Qué estoy viendo?» (21 de noviembre de 2026): escuchar una parada, la voz, empezar de nuevo la busqueda del
+     tesoro (que la politica de privacidad cita: «„Zacznij od nowa” to usuwa»), leer el dato, buscar un mirador y
+     quitar el ajuste de la brujula */
+  'Zobacz na mapie', 'Pokaż listę', 'Posłuchaj: {x}', 'Włącz głos', 'Zacznij od nowa', 'Przeczytaj na głos', 'Szukaj punktu widokowego',
+  'Usuń korektę kompasu',
 ]);
 /* la voz de quien usa la app («Zaskocz mnie», «Zaprowadź mnie», «Przypomnij mi w
    aplikacji», lo que se escribe al asistente), como «Sorpréndeme» y «Llévame»
@@ -444,6 +456,7 @@ const EXENTOS = [
   ['de', 'Hilfst du mir, den Tag zu planen?', 'la pregunta de quien usa la app al asistente, como «¿Me ayudas a organizar el día?»'],
   ['de', 'Zeige', '«Zeige 74 von 980 Orten»: habla la app en primera persona, no es un imperativo'],
   ['de', 'Suche löschen', '«Suche» es el nombre (la busqueda): «borrar la busqueda»'],
+  ['de', 'Suche beenden', '«Suche» es el nombre (la busqueda): «terminar la busqueda» (hzDejar, «¿Qué estoy viendo?», 21-11-2026)'],
   /* el neerlandes (22 de octubre de 2026) */
   ['nl', '"Hé jij!" — vriendelijke aanspreekvorm.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ['nl', 'Help je me mijn dag te plannen?', 'la pregunta de quien usa la app al asistente, como «¿Me ayudas a organizar el día?»'],
@@ -586,7 +599,10 @@ async function textos() {
      cuerpo» e ISLA3D_UI de «La isla en 3D»), una por linea */
   /* (12 de noviembre de 2026) y GUIA_UI del tour con Jérôme, publicado el 11 sin que este control lo leyera, y ENT_UI
      del vídeo de los ejercicios */
-  for (const f of ['modulos/cielo.js', 'modulos/perfil.js', 'modulos/emergencias.js', 'modulos/cuerpo.js', 'modulos/isla3d.js', 'modulos/guia.js', 'modulos/entrenador.js']) {
+  /* (21 de noviembre de 2026) y ANTES_UI y COCHE_UI («Antes de salir» y «Mi coche», del 20, que este control tampoco
+     leia), PASE_UI del «Pase de viaje» y HZ_UI de «¿Qué estoy viendo?» */
+  for (const f of ['modulos/cielo.js', 'modulos/perfil.js', 'modulos/emergencias.js', 'modulos/cuerpo.js', 'modulos/isla3d.js', 'modulos/guia.js', 'modulos/entrenador.js',
+                   'modulos/antes.js', 'modulos/micoche.js', 'modulos/pase.js', 'modulos/horizonte.js']) {
     for (const m of lee(f).matchAll(/^\s*"?([A-Za-z0-9_-]+)"?: (\{"es": .*\}),?\s*$/gm)) {
       let d; try { d = JSON.parse(m[2]); } catch (e) { continue; }
       for (const l of IDI) mete(f, m[1], l, d[l]);
