@@ -1,0 +1,19 @@
+{
+ "alarmas": [
+  "No se ha podido bajar el GTFS de TITSA (https://www.titsa.com/Google_transit.zip): no se pudo conectar (timed out)."
+ ],
+ "avisos": [],
+ "fuente": "https://www.titsa.com/Google_transit.zip",
+ "gtfs": null,
+ "nivel": "alarma",
+ "portal": {
+  "licencia": "cc-by",
+  "licencia_nombre": "Creative Commons Attribution",
+  "ok": true,
+  "recurso_bytes": 21570232,
+  "recurso_modificado": "2026-11-22T00:01:15.133246"
+ },
+ "red": null,
+ "ultima_vuelta": "2026-11-22T16:00:52Z",
+ "version": 1
+}
