@@ -1,6 +1,6 @@
 # Revisión de los 985 lugares
 
-**20 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
+**22 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 985, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 173 verificadas con su fuente · 812 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 174 verificadas con su fuente · 811 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -98,8 +98,8 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **173** |
-| Coordenada nunca comprobada por nadie | **812** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **174** |
+| Coordenada nunca comprobada por nadie | **811** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
 todavía.** Son dos cosas distintas y este informe no las mezcla.
@@ -141,6 +141,7 @@ De dónde viene cada una:
 | `charco-roque` | 2026-09-06 | Google Places (nombre, coordenada y contenido de las reseñas)  [playastenerife.json · altas] |
 | `charco-verde-guancha` | 2026-09-21 | El Dia + duenno del proyecto: 28°24'00"N 16°39'32"W. Municipio contrastado con las paradas de TITSA (4 de las 6 mas cercanas son de La Guancha, la mas proxima «Santa Catalina») |
 | `charco-viento` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `convento-san-francisco-garachico` | 2026-11-22 | Catastro (ovc.catastro.meh.es, 22-11-2026): el punto cae en la parcela 7297128CS2379N, «GL San Francisco 4», edificio público, la del convento (la de antes caía en la de al lado, «CL Esteban de Ponte 11»); el punto, de OpenStreetMap |
 | `cueva-santo-hermano-pedro` | 2026-10-17 | OSM node/313038499 «Cueva del Santo Hermano Pedro» (cave_entrance); Turismo de Tenerife, ficha de la cueva: «TF-643, 38600 Granadilla», cerca del aeropuerto  [datos/entregas/lanzamiento-lugares.json] |
 | `cueva-viento` | 2026-09-27 | OSM del repositorio: «Cueva del Viento Centro de Visitantes» (attraction), a 2 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto. |
 | `deporte-orotava-parque` | 2026-09-27 | OSM del repositorio: «Complejo Deportivo El Mayorazgo» (sports_centre), a 1 m del pin redondo: el punto ya estaba encima, lo que faltaba eran los decimales. Es el complejo deportivo municipal de La Orotava. |
@@ -232,7 +233,7 @@ De dónde viene cada una:
 | `playa-las-gaviotas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `playa-los-patos` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `playa-martianez` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
-| `playa-muelle-garachico` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
+| `playa-muelle-garachico` | 2026-11-22 | Turismo de Tenerife (webtenerife.co.uk, Playa del Muelle: 28° 22' 15.09'' N 16° 46' 4.87'' W, consultado el 21-11-2026); cae en la parcela del Catastro 38015A00109019 «EL GUINCHO» (ovc.catastro.meh.es, 22-11-2026) |
 | `playa-nea` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
 | `playa-pinta` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas] |
 | `playa-puertito` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -347,9 +348,9 @@ menos preciso de cada ficha. Es la cuenta entera de los 985, no un umbral:
 | 1 | ~11 km | **2** |
 | 2 | ~1,1 km | **29** |
 | 3 | ~110 m | **136** |
-| 4 | ~11 m | **548** |
-| 5 | ~1 m | **44** |
-| 6 | ~10 cm | **197** |
+| 4 | ~11 m | **546** |
+| 5 | ~1 m | **45** |
+| 6 | ~10 cm | **198** |
 | 7 | ~1 cm | **28** |
 | 15 |  | **1** |
 

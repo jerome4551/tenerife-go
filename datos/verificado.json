@@ -156,6 +156,10 @@
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
   },
+  "convento-san-francisco-garachico": {
+   "fecha": "2026-11-22",
+   "fuente": "Catastro (ovc.catastro.meh.es, 22-11-2026): el punto cae en la parcela 7297128CS2379N, «GL San Francisco 4», edificio público, la del convento (la de antes caía en la de al lado, «CL Esteban de Ponte 11»); el punto, de OpenStreetMap"
+  },
   "cueva-santo-hermano-pedro": {
    "fecha": "2026-10-17",
    "fuente": "OSM node/313038499 «Cueva del Santo Hermano Pedro» (cave_entrance); Turismo de Tenerife, ficha de la cueva: «TF-643, 38600 Granadilla», cerca del aeropuerto  [datos/entregas/lanzamiento-lugares.json]"
@@ -212,6 +216,47 @@
   "gr131-etapa2-caldera-portillo": {
    "fecha": "2026-11-08",
    "fuente": "Webtenerife, track oficial (GPX) del tramo Area Recreativa La Caldera - El Portillo del GR 131: primer punto 28.357870, -16.502259, redondeado a 4 decimales (8-11-2026)"
+  },
+  "gym-canariasfit-tegueste": {
+   "fecha": "2026-11-20",
+   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380466015 «Gimnasio Canarias», dato de 2019"
+  },
+  "gym-fitnesspark-cuesta": {
+   "fecha": "2026-11-20",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Park Tenerife - La Cuesta, Carr. Gral. la Cuesta, 28, 38320 La Laguna»)"
+  },
+  "gym-garage-tegueste": {
+   "fecha": "2026-11-20",
+   "fuente": "OpenStreetMap, node/14196556400 («Garage Gym»), extracto de Geofabrik del 26-09-2026"
+  },
+  "gym-imagen-sct": {
+   "fecha": "2026-11-20",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Gimnasio Imagen, C. Eric Lionel Fox, 5, 38005 Santa Cruz de Tenerife»)"
+  },
+  "gym-level-sct": {
+   "fecha": "2026-11-20",
+   "fuente": "OpenStreetMap, node/11055251389 («Fitness center level»), extracto de Geofabrik del 26-09-2026",
+   "nota": "El nombre, «VivaGym Tomé Cano», el de su página en vivagym.com, consultada el 21-11-2026 (vivagym.com/es-es/gimnasios/tenerife/santa-cruz-de-tenerife/tome-cano/: «VivaGym Tomé Cano», «Edif. Los Corales 2, C. Fragata Danmark, 38005 Santa Cruz de Tenerife»); VivaGym compró Level Fitness Tenerife en febrero de 2026 (2Playbook, GymFactory)."
+  },
+  "gym-manufit-sct": {
+   "fecha": "2026-11-20",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 (en El Toscal, junto a la ficha «Manu fit GYM»)"
+  },
+  "gym-ocadila-tegueste": {
+   "fecha": "2026-11-20",
+   "fuente": "OpenStreetMap, node/4886591107 («Ocadilla Sport Center»), extracto de Geofabrik del 26-09-2026"
+  },
+  "gym-starfit-laguna": {
+   "fecha": "2026-11-20",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Club Starfit La Laguna, Calle Ntra. Sra. de la Ternura, 5, 38108 La Laguna»)"
+  },
+  "gym-urban-laguna": {
+   "fecha": "2026-11-20",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: La Laguna Urban Fitness, Av. de los Menceyes, 151, 38205 La Laguna»)"
+  },
+  "gym-zona0-rosario": {
+   "fecha": "2026-11-20",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Zona 0 Training, JP Watt, Nave 5, Número 8, 38109»)"
   },
   "hiperdino-los-realejos": {
    "fecha": "2026-09-29",
@@ -487,8 +532,9 @@
    "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
   },
   "playa-muelle-garachico": {
-   "fecha": "2026-09-06",
-   "fuente": "Censo Nacional de Zonas de Aguas de Baño 2025 (nombre oficial y calidad del agua) · Google Places (coordenada)  [playastenerife.json · altas]"
+   "fecha": "2026-11-22",
+   "fuente": "Turismo de Tenerife (webtenerife.co.uk, Playa del Muelle: 28° 22' 15.09'' N 16° 46' 4.87'' W, consultado el 21-11-2026); cae en la parcela del Catastro 38015A00109019 «EL GUINCHO» (ovc.catastro.meh.es, 22-11-2026)",
+   "nota": "Lo de antes, que no se pierde: el nombre oficial y la calidad del agua, del Censo Nacional de Zonas de Aguas de Baño 2025; la coordenada de antes (28.3723, -16.7683), de Google Places [playastenerife.json · altas], verificada el 2026-09-06"
   },
   "playa-nea": {
    "fecha": "2026-09-06",
@@ -691,47 +737,6 @@
   "windsurf-la-tejita": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
-  },
-  "gym-imagen-sct": {
-   "fecha": "2026-11-20",
-   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Gimnasio Imagen, C. Eric Lionel Fox, 5, 38005 Santa Cruz de Tenerife»)"
-  },
-  "gym-manufit-sct": {
-   "fecha": "2026-11-20",
-   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 (en El Toscal, junto a la ficha «Manu fit GYM»)"
-  },
-  "gym-level-sct": {
-   "fecha": "2026-11-20",
-   "fuente": "OpenStreetMap, node/11055251389 («Fitness center level»), extracto de Geofabrik del 26-09-2026",
-   "nota": "El nombre, «VivaGym Tomé Cano», el de su página en vivagym.com, consultada el 21-11-2026 (vivagym.com/es-es/gimnasios/tenerife/santa-cruz-de-tenerife/tome-cano/: «VivaGym Tomé Cano», «Edif. Los Corales 2, C. Fragata Danmark, 38005 Santa Cruz de Tenerife»); VivaGym compró Level Fitness Tenerife en febrero de 2026 (2Playbook, GymFactory)."
-  },
-  "gym-urban-laguna": {
-   "fecha": "2026-11-20",
-   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: La Laguna Urban Fitness, Av. de los Menceyes, 151, 38205 La Laguna»)"
-  },
-  "gym-starfit-laguna": {
-   "fecha": "2026-11-20",
-   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Club Starfit La Laguna, Calle Ntra. Sra. de la Ternura, 5, 38108 La Laguna»)"
-  },
-  "gym-fitnesspark-cuesta": {
-   "fecha": "2026-11-20",
-   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Park Tenerife - La Cuesta, Carr. Gral. la Cuesta, 28, 38320 La Laguna»)"
-  },
-  "gym-zona0-rosario": {
-   "fecha": "2026-11-20",
-   "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Zona 0 Training, JP Watt, Nave 5, Número 8, 38109»)"
-  },
-  "gym-garage-tegueste": {
-   "fecha": "2026-11-20",
-   "fuente": "OpenStreetMap, node/14196556400 («Garage Gym»), extracto de Geofabrik del 26-09-2026"
-  },
-  "gym-ocadila-tegueste": {
-   "fecha": "2026-11-20",
-   "fuente": "OpenStreetMap, node/4886591107 («Ocadilla Sport Center»), extracto de Geofabrik del 26-09-2026"
-  },
-  "gym-canariasfit-tegueste": {
-   "fecha": "2026-11-20",
-   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380466015 «Gimnasio Canarias», dato de 2019"
   }
  },
  "areas": {
