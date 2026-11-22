@@ -369,6 +369,10 @@ control sismos_ign.py python3 tools/sismos_ign.py --probar
 control semaforo_involcan.py python3 tools/semaforo_involcan.py --probar
 control alertas_canarias.py python3 tools/alertas_canarias.py --probar
 control vigia_sos.py python3 tools/vigia_sos.py --probar
+# El vigia de TITSA (22 de noviembre de 2026): el dia 22 de cada mes mira el GTFS oficial de las guaguas y avisa con
+# una incidencia si no puede leerlo, si caduca, si cambia la licencia o si la red ya no es la de la app. Sus controles,
+# sin red: cada forma de no llegar a los datos es una alarma, nunca un silencio; y el flujo, que avisa aunque se caiga.
+control vigia_titsa.py python3 tools/vigia_titsa.py --probar
 echo; echo "════════ «Antes de salir» y «Mi coche y mi posición»: en los once idiomas, lo que se toca y sin conexion ════════"
 # Desde el 20 de noviembre de 2026. Los dos se cargan al abrirlos (modulos/antes.js y
 # modulos/micoche.js); el del coche, tambien tras arrancar si hay un coche guardado.

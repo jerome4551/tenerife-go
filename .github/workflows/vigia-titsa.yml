@@ -1,0 +1,120 @@
+# El vigia de TITSA (22 de noviembre de 2026): una vez al mes mira el GTFS
+# oficial de las guaguas (lineas, paradas y horarios), lo compara con la red de
+# la app y avisa con una incidencia en GitHub si no puede leer los datos, si
+# caducan pronto, si la licencia cambia o si la red ya no coincide con la app.
+# No toca la app. Todo lo que hace y por que esta en tools/vigia_titsa.py.
+#
+# Jerome: «Prepara el bots para que lo verifica cada mes a la misma fecha.
+# Recuerda que debe avisar si no puede tener acceso a los datos que no queremos
+# que falla y después se queda mudo. Hazlo bien para también que lo revise
+# siempre que lo hace!».
+#
+# NO SE QUEDA MUDO: el vigia siempre deja su informe y su nivel; si se cae sin
+# dejarlos, este flujo lo cuenta como alarma. Con alarma o aviso abre una
+# incidencia (o comenta la abierta); con alarma, ademas, sale en rojo. Cada
+# vuelta guarda su fecha en tools/datos/vigia-titsa.json aunque no cambie nada
+# mas, y una tarea de Claude revisa cada mes que la vuelta se hizo y lo que vio.
+#
+# EL DIA 22 DE CADA MES, a las 05:23 UTC (TITSA rehace su fichero hacia las
+# 04:00 de Canarias). Uso a mano: pestana Actions -> "Vigia TITSA" -> Run workflow.
+
+name: Vigia TITSA
+
+on:
+  schedule:
+    - cron: '23 5 22 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: vigia-titsa
+  cancel-in-progress: false
+
+jobs:
+  vigia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Mirar el GTFS de TITSA
+        id: mirar
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python3 tools/vigia_titsa.py --informe "$RUNNER_TEMP/titsa.md" --nivel "$RUNNER_TEMP/titsa.nivel"
+
+      # Aunque el paso de antes salga en rojo (alarma, o el vigia caido): si no
+      # dejo su informe o su nivel, se cuenta como alarma y se avisa igual.
+      - name: Avisar con una incidencia si hay alarma o aviso
+        id: avisar
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          INFORME="$RUNNER_TEMP/titsa.md"
+          NIVEL=$(cat "$RUNNER_TEMP/titsa.nivel" 2>/dev/null || true)
+          if [ ! -s "$INFORME" ] || [ -z "$NIVEL" ]; then
+            NIVEL=alarma
+            {
+              echo "# TITSA: revisar los datos de las guaguas (alarma)"
+              echo
+              echo "El vigía de TITSA se ha caído sin dejar su informe: este mes no se han mirado los datos."
+              echo "El registro de esta vuelta: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            } > "$INFORME"
+          fi
+          cat "$INFORME" >> "$GITHUB_STEP_SUMMARY"
+          echo "nivel=$NIVEL" >> "$GITHUB_OUTPUT"
+          if [ "$NIVEL" = "en-orden" ]; then
+            echo "Todo en orden: sin incidencia"
+            exit 0
+          fi
+          TITULO="TITSA: revisar los datos de las guaguas"
+          N=$(gh issue list --state open --search "in:title \"$TITULO\"" --json number --jq '.[0].number // empty' || true)
+          if [ -n "$N" ]; then
+            gh issue comment "$N" --body-file "$INFORME"
+          else
+            gh issue create --title "$TITULO" --body-file "$INFORME"
+          fi
+
+      # Despues del aviso, como el vigia del SOS: si el aviso falla, el flujo
+      # sale en rojo y la vuelta no se guarda, asi que la siguiente vuelve a
+      # avisar. Con el aviso dado, se guarda (tambien con alarma: su fecha y su
+      # motivo quedan en el repo).
+      - name: Guardar la vuelta en el repo
+        if: always() && steps.avisar.outcome == 'success'
+        run: |
+          if [ ! -f tools/datos/vigia-titsa.json ]; then
+            echo "::error::El vigia no ha dejado su vuelta en tools/datos/vigia-titsa.json"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/datos/vigia-titsa.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios que guardar"
+            exit 0
+          fi
+          git commit -m "Vigia TITSA: la vuelta de este mes"
+          for i in 1 2 3 4; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              exit 0
+            fi
+            sleep $((i * 10))
+          done
+          echo "::error::No se pudo guardar la vuelta"
+          exit 1
+
+      - name: En rojo si hay alarma
+        if: always()
+        env:
+          NIVEL: ${{ steps.avisar.outputs.nivel }}
+          MIRAR: ${{ steps.mirar.outcome }}
+        run: |
+          if [ "$MIRAR" != "success" ] || [ -z "$NIVEL" ] || [ "$NIVEL" = "alarma" ]; then
+            echo "::error::Vigia TITSA: alarma. Mira la incidencia «TITSA: revisar los datos de las guaguas»."
+            exit 1
+          fi
+          echo "Vuelta hecha: $NIVEL"

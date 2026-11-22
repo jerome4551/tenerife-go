@@ -40,7 +40,7 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 | `frases.json` | Las 365 frases de la notificación diaria, una por día del año. |
 | `vendor/` | Leaflet 1.9.4 y Leaflet.markercluster 1.5.3, alojados aquí en vez de en un CDN; las dos librerías del mapa sin conexión (`pmtiles.js` y `protomaps-leaflet.js`), las tipografías, Astronomy Engine (MIT), el motor de cálculo del panel del cielo, y satellite.js 7.1.0 (MIT), el SGP4 de los pasos de los satélites, compilado desde su fuente por `tools/satelites_construir.js` (se pide solo al abrir el panel). |
 | `supabase/*.sql` | Las tablas y sus políticas de seguridad, para poder recrear el proyecto. |
-| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día); y los cuatro del panel de emergencias: los terremotos del IGN cerca de Tenerife (`sismos-ign.yml`, cada hora), el semáforo del boletín semanal de INVOLCAN (`semaforo-involcan.yml`, cuatro veces al día), las alertas del Gobierno de Canarias (`alertas-canarias.yml`, cada hora) y el vigía de las páginas oficiales del panel (`vigia-sos.yml`, los lunes). Y dos que no son robots: «Generar relieve 3D» (`generar-relieve.yml`), que se lanza a mano y hace el relieve de «La isla en 3D», y `app-store.yml`: se lanza a mano y compila, firma y sube la app a TestFlight y su ficha a App Store Connect en una máquina macOS de GitHub (la App Store sin Mac). Y `comprobar-dominio.yml`, que tampoco es un robot: se lanza a mano y mira desde fuera que la web responde bien en su dominio (`tenerifego.app`). |
+| `.github/workflows/` | Los robots: la notificación diaria, los avisos de AEMET, los precios de las gasolineras, el mapa y los elementos orbitales de los satélites (`satelites.yml`, dos veces al día); y los cuatro del panel de emergencias: los terremotos del IGN cerca de Tenerife (`sismos-ign.yml`, cada hora), el semáforo del boletín semanal de INVOLCAN (`semaforo-involcan.yml`, cuatro veces al día), las alertas del Gobierno de Canarias (`alertas-canarias.yml`, cada hora) y el vigía de las páginas oficiales del panel (`vigia-sos.yml`, los lunes). Y el vigía de TITSA (`vigia-titsa.yml`, el día 22 de cada mes), que mira el GTFS oficial de las guaguas y avisa con una incidencia. Y dos que no son robots: «Generar relieve 3D» (`generar-relieve.yml`), que se lanza a mano y hace el relieve de «La isla en 3D», y `app-store.yml`: se lanza a mano y compila, firma y sube la app a TestFlight y su ficha a App Store Connect en una máquina macOS de GitHub (la App Store sin Mac). Y `comprobar-dominio.yml`, que tampoco es un robot: se lanza a mano y mira desde fuera que la web responde bien en su dominio (`tenerifego.app`). |
 | `tools/` | Los controles y las herramientas; `bash tools/auditar.sh` los pasa todos. Entre ellos, `verificar_red.js` (la red de guaguas), `extract_js.py`, `gtfs_red.py` y `auditar_readme.js`, que coteja las cifras de este fichero. |
 | `app/` | La misma aplicación para la App Store: el proyecto de Capacitor (`capacitor.config.json`, `package.json`), las plantillas de iOS (permisos en los diez idiomas, manifiesto de privacidad, icono, arranque) y `LEEME.md`. `tools/app_preparar.js` monta `app/www/` desde la raíz; `datos/app-store/ficha.json` es la ficha de la tienda en los diez idiomas. Los pasos, en `LANZAMIENTO-APP-STORE.md`. |
 | `AUDITORIA-FINAL.md` | Estado del proyecto, auditoría, lo que falta y las trampas conocidas. |
@@ -147,6 +147,20 @@ Lo carga su propia etiqueta, justo antes del código; el service worker lo
 precarga y lo sirve red primero; y si no llegara, la app arranca igual, sin
 guaguas (`TITSA_SIN_DATOS`). Son **solo datos**: `tools/verificar_red.js`
 comprueba que no entre código ahí y que `index.html` lo cargue.
+
+**El vigía de TITSA** (`tools/vigia_titsa.py`, desde el 22 de noviembre de 2026)
+mira el día 22 de cada mes el GTFS oficial
+(`https://www.titsa.com/Google_transit.zip`, el que enlaza la ficha del portal
+de datos abiertos del Cabildo): que se baja y se lee, las fechas que cubre,
+hasta qué día llega el horario completo de los laborables (deducido de los
+viajes de cada día), la licencia de la ficha (cc-by, la del crédito del panel) y
+la red contra `datos/titsa.js`. No toca la app. Si no puede llegar a los datos,
+o si caducan, es una alarma: abre una incidencia en GitHub y el flujo sale en
+rojo; los avisos abren o comentan la misma incidencia. Cada vuelta deja su fecha
+en `tools/datos/vigia-titsa.json`, y vuelve a leer lo que ha guardado para
+comprobar que cuadra. `www.titsa.com` no manda su certificado intermedio: va en
+`tools/certificados/`, comprobado por su huella, sin quitar ninguna
+verificación.
 
 `TITSA_LINES` tiene **183 líneas y 6.263 paradas**: las 181 del GTFS oficial de
 TITSA más L1 y L2 del tranvía. Ese número **no se escribe en ninguna parte**: el
