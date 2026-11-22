@@ -11188,6 +11188,95 @@ de Canarias): **en verde**, ningún control en rojo ni roto. 985 lugares, 56 tab
 textos mirados dentro y fuera del fuente), 192 pantallas por idioma sin nada sin traducir y los 58 controles del
 vigía, que van con los de los robots del panel SOS.
 
+## Jérôme, la nota 63: la cabeza y las barras, y el bloque 15 (534 con vídeo) (22 de noviembre)
+
+**De dónde sale.** Dos parches de la sesión del entrenador, el `0025` y el `0026`, detrás del `0024` de la nota 61.
+Jérôme, el 20-11 a las 14:24, sobre los vídeos en los que una barra le entraba en la cabeza: «Arréglalo pero lo
+adjuntas con el bloque 15». Van juntos: primero el arreglo, después el bloque.
+
+**El `0025`: la cabeza y las barras.** Los nueve vídeos de la nota 61 en los que una barra, un asa o un cable le
+entraba más de 3 cm en la cabeza, y tres más que rozaban: doce vídeos corregidos. Son el crunch en polea (de −13,0 a
+−1,1 cm), las dominadas negativas (de −11,2 a −1,2), el push press (de −11,0 a 0,0), las dominadas comando, con agarre
+neutro, arquero, máquina de escribir, isométrica y con agarre ancho, el ice cream maker y los press militar y de
+hombros sentado con barra. Dos controles nuevos en `tools/auditar_entrenador.js`: la cabeza contra todo cilindro que
+se dibuja (ni 2,5 cm en las posturas ni 3,5 en el vídeo) y el pie que no se mueve, que no se va (ni 2 cm; lo peor de
+los 534, 0,8). Tres trozos cambian de nombre con su contenido (`abdomen`, `dorsal` y `hombros`); ninguna ficha ni
+ningún paso se toca.
+
+**El `0026`: el bloque 15.** Las 37 coreografías que quedaban de las 533 fichas que la app tenía hasta el 13-11, en su
+fuente (`tools/entrenador/src/7e-accesorios.js`) y en su trozo nuevo (`modulos/entrenador/accesorios.e9c81720.js`,
+74.410 bytes): con disco (5), con balón medicinal (4), con fitball (10), con un disco encima o colgado (2), lo que
+rueda por el suelo (la rueda y los dos rollouts: 3), en las anillas (2) y con la cinta de suspensión (11). **534
+ejercicios con vídeo**, de 958: las 533 fichas de antes, todas, y la rotación externa con bufanda. En
+`50-material.js`, seis materiales: el fitball, el disco, el balón medicinal, la cinta de suspensión, las anillas y la
+rueda (los tres primeros tenían un dibujo que nadie usaba y se rehacen; del material de antes no se toca nada). Dos
+controles más, las pelotas (nada del cuerpo se hunde en una y el fitball no se queda en el aire): la auditoría del
+entrenador pasa de 79 a 83. Y en el motor, «lo tenso» (`tensos`): solo actúa en las 19 coreografías que lo piden, para
+que la rodilla o el codo, rectos en dos posturas, no se doblen de paso entre ellas. El motor pasa de 414.246 bytes a
+447.823.
+
+**Medido por esa sesión.** Las 497 coreografías de la nota 61 frente a las de ahora: cambian las doce corregidas y
+ninguna más, y el esqueleto de las otras 485 está en el mismo sitio en 21.780 instantes; diez de los trece trozos de
+antes salen byte a byte con el mismo nombre. Lo clavado no se mueve (0,000 cm en los 37 y en los doce). Su auditoría
+del entrenador, sobre el árbol que entrega: 83 controles en verde, con los 534 vídeos (953.776 cuadros);
+`probar_cuerpo.js`, 741 en verde; y el mismo rojo de las notas 51 a 61, que no viene de estos parches:
+`auditar_isla3d.js`, «doble toque: acerca (9000 → 9000 m)», porque allí el 3D va sin tarjeta gráfica. Lo que la ficha
+no dice lo decidió esa sesión sin añadir técnica, y está en su nota.
+
+**Puesto y comprobado aquí.** Los dos parches con `git am` y sus propias líneas de autoría, con las 59 huellas de su
+`SHA256SUMS.txt`, bien. El `0025` entra limpio. En el `0026`, como en las notas 56 y 61, la línea del estado de la
+muestra del entrenador (`tools/entrenador/muestra/plantilla.html`, que la app no enlaza) no casaba con la de aquí: el
+resto del parche entra tal cual, lo nuevo de la muestra también, y esa línea dice lo que habrá al publicar («Los
+bloques 1 a 15, la cámara lenta arreglada, la subida al pino, los arreglos del suelo, las paredes, los muslos y la
+leyenda, el vídeo partido por grupos, el cambio de pierna de la patada de glúteo en polea y los L-sit con el tronco
+derecho ya están en la app.»). Los 21 ficheros del zip (`repo/`), iguales byte a byte a los de la rama, salvo esa
+muestra y el motor (`modulos/entrenador.js`), que aquí lleva además las 21 filas del rumano del reproductor: las 21
+líneas distintas son, cada una, la del zip con su `"ro"`. `construir.py --comprobar` (el motor, los 14 trozos y
+`con-video.json`, los de sus fuentes) y `app_preparar.js --comprobar`, en verde; la sintaxis del motor y de los 14
+trozos, bien, y en `modulos/entrenador/` no queda ningún trozo con el nombre de antes. `con-video.json`: 534 filas; 37
+nuevas, ninguna quitada ni cambiada, las 37 con su ficha en `datos/cuerpo/ejercicios.json` y su material en ella, y el
+número de pasos de cada una igual al de su ficha en los diez idiomas. Ningún texto nuevo a la vista: en el motor no
+cambia ninguna fila de idioma, y lo que añade son código y comentarios. Sin APIs de riesgo en lo añadido: ni red, ni
+almacenamiento, ni `innerHTML`, ni `eval`. Las herramientas de medir de esa sesión (`herramientas/` del zip) no se han
+ejecutado y no van al repositorio.
+
+**Lo que decidió Jérôme** el 22-11, sobre lo que esa sesión encontró en los vídeos de antes y no tocó: «Las cartoce
+video y dominadas están haciéndolo de nuevo / Y sigue el próximo bloque». Los catorce vídeos publicados en los que la
+rodilla cambia de lado de golpe a media repetición (la flexión básica entre ellos) y las cuatro dominadas del bloque 1
+en las que el pelo roza la barra (de 3,0 a 3,3 cm en el vídeo, dentro del límite) van en el zip siguiente, con el
+bloque 16.
+
+**Lo que no está comprobado**, como en las notas anteriores: nada en un iPhone ni en un Samsung de verdad (en las
+pruebas, Samsung Internet es Chromium con su `User-Agent`), ni lo que tarda el primer vídeo de cada grupo en un
+teléfono. Lo tenso es nuevo en el motor: está medido y solo lo usan estos 19 vídeos. Los discos, los cojines y las
+placas siguen sin control: según esa sesión, en el press con la cinta de suspensión la cinta va apoyada en lo alto del
+brazo y al adelantar el pie lo cruza medio segundo, y en la extensión de tríceps las cintas pasan a 0,5 cm de la
+cabeza. El fitball no se ve rodar: se desplaza. Y los ejercicios están cotejados con su ficha y medidos, no revisados
+por un profesional; los que más interpretación llevan, según esa sesión, son el encogimiento de rodillas, la extensión
+lumbar, los de la cinta y el lanzamiento contra el suelo.
+
+**La auditoría entera**, sobre `27cfba8` (esta documentación aparte, como siempre), del 22-11 a las 16:15 al 22-11 a
+las 19:40, hora de Canarias: **«AUDITORIA EN VERDE»**, los 85 bloques de `auditar.sh`, ningún control en rojo ni roto.
+El entrenador, 83 de 83: los 534 vídeos, enteros, en castellano y en otro idioma (1.068 pases y 953.776 cuadros), con
+los controles nuevos de la cabeza y las barras, del pie que no se mueve y de las pelotas, en verde, y el dibujo medido
+en cada cuadro desde las dos vistas de cada ejercicio (534 pases desde la de «Girar» y 8.892.016 puntos del tronco);
+`tools/probar_cuerpo.js`, 856 de 856, y la pestaña Cuerpo del perfil, 64. La isla en 3D, 57 y ninguno en rojo: también
+el doble toque, el que sale en rojo en la sesión del entrenador porque allí el 3D va sin tarjeta gráfica (aquí, de
+9.000 a 4.501 m). Lo demás, en verde: las preguntas de prueba al asistente, 0 fallos de 298; `auditar_faq.js`, 1290 de
+1290; instalar la app, 65 de 65; lo que pide Google Play, 249 de 249; `auditar_registro.js`, todo de usted (141.377
+textos); `castellano_suelto.js`, ninguna palabra en castellano; `auditar_cirilico.py`, 2.351 nombres propios en
+cirílico y ninguna variante sospechosa; los datos, 985 lugares en todas partes (también en el resumen de este
+documento); `probar_organiza.js`, 626 de 626; `auditar_desborde.js`: la etiqueta viewport de las cuatro páginas, las
+tres cajas de copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16 px;
+`auditar_arranque.js`, los nueve idiomas iguales tras `setLang` (16.153 nodos comparados y 0 textos distintos);
+`barrido_pantallas.js`, 192 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas; el cielo, 311; el perfil y los avatares, 74 y 153; `auditar_sw.js`, 104 de 104; `probar_atras.js`, 26 de 26;
+`probar_superposiciones.js`, 25 de 25; `probar_sin_teselas.js`, 4 de 4; `probar_detalles_movil.js`, 17 de 17;
+`auditar_mapa.js`, 137 de 137; el panel SOS, 42 y 262; «Antes de salir» y «Mi coche», 250; las cifras rectas, 14 de
+14; las cifras de idiomas del documento, las de ahora (56 tablas y 3.826 filas; 5.984). `app_preparar.js` montó
+`app/www/` (246 ficheros: uno más, el trozo de los accesorios) y lo cotejó; y al acabar, el repositorio, sin ningún
+cambio.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
