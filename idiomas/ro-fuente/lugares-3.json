@@ -1405,20 +1405,6 @@
   },
   {
    "tabla": "places",
-   "clave": "faro-garachico.desc",
-   "es": "Pequeño faro histórico en el antiguo puerto de Garachico, la villa más hermosa del norte de Tenerife. La erupción volcánica de 1706 sepultó el puerto bajo la lava y destruyó gran parte de la villa. El faro actual marca la bocana de las piscinas naturales volcánicas que han convertido la zona en uno de los lugares más singulares de la isla.",
-   "forma": "texto",
-   "ro": "Mic far istoric în vechiul port din Garachico, cea mai frumoasă localitate din nordul insulei Tenerife. Erupția vulcanică din 1706 a îngropat portul sub lavă și a distrus o mare parte a localității. Farul de azi marchează intrarea în piscinele naturale vulcanice, care au făcut din această zonă unul dintre cele mai deosebite locuri de pe insulă."
-  },
-  {
-   "tabla": "places",
-   "clave": "faro-garachico.cat",
-   "es": "Faro Histórico · Garachico",
-   "forma": "texto",
-   "ro": "Far istoric · Garachico"
-  },
-  {
-   "tabla": "places",
    "clave": "camel-park.desc",
    "es": "Primer centro de cría de camellos de Tenerife, abierto desde 1988. Finca canaria entre Chayofa y La Camella con paseos en camello de 20 min por senderos volcánicos. Granja con burros, cabras, loros y otros animales rescatados. A 10 min de Los Cristianos.",
    "forma": "texto",

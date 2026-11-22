@@ -20,11 +20,13 @@
 
    LA BUSQUEDA DEL TESORO (TESORO). Garachico, tres pistas a pie. Los sitios y los datos de cada
    pista estan comprobados uno a uno (ver TESORO, con la fuente de cada cosa): NO salen de las
-   fichas de la app, porque al cotejarlas varias de Garachico tienen la posicion corrida (el faro,
+   fichas de la app, porque al cotejarlas varias de Garachico tenian la posicion corrida (el faro,
    a 370 m tierra adentro; el convento, a unos 175 m; la playa del Muelle, a unos 160 m) y la de la
-   playa dice «arena negra» donde Turismo de Tenerife dice «callaos y arena». Eso va en la nota de
-   entrega para corregirlo aparte. Solo se guarda que pistas estan encontradas, en el dispositivo
-   (TESORO_CLAVE), y «Empezar de nuevo» lo borra.
+   playa decia «arena negra» donde Turismo de Tenerife dice «callaos y arena». Se corrigio aparte
+   el 22 de noviembre de 2026: el convento y la playa, en su sitio (Catastro y Turismo de Tenerife),
+   la playa con «callaos y arena», y la ficha del faro, de la que no se encontro ninguna fuente,
+   fuera. Solo se guarda que pistas estan encontradas, en el dispositivo (TESORO_CLAVE), y
+   «Empezar de nuevo» lo borra.
 
    «¿QUÉ ESTOY VIENDO?» vive en modulos/horizonte.js; este fichero solo pide el permiso de los
    sensores en el mismo toque (iOS no lo deja pedir despues) y lo abre.

@@ -193,7 +193,7 @@ window.onunhandledrejection = function(e) {
       "name": "Tenerife Go",
       "alternateName": "Tenerife GO — Mapa Interactivo de Tenerife",
       "url": "https://tenerifego.app/",
-      "description": "Guía turística gratuita de Tenerife con mapa interactivo: 985 lugares, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y avisos meteorológicos de AEMET. Disponible en 10 idiomas. Somos parte de ti.",
+      "description": "Guía turística gratuita de Tenerife con mapa interactivo: 984 lugares, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y avisos meteorológicos de AEMET. Disponible en 10 idiomas. Somos parte de ti.",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Web, Android, iOS",
       "browserRequirements": "Requires JavaScript",
@@ -202,7 +202,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://tenerifego.app/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 985 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, avisos meteorológicos de AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 984 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, avisos meteorológicos de AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -14186,11 +14186,6 @@ const places = [
     cat:{ es:"Faro Portuario · Los Cristianos" },
     tags:["Faro","Puerto","Los Cristianos","Sur","Ferry","La Gomera","Fotográfico"] },
 
-  { id:"faro-garachico", category:"faros", name:"Faro de Garachico", emoji:"🔦", color:"#1b5e20", lat:28.3715, lng:-16.763,
-    desc:{ es:"Pequeño faro histórico en el antiguo puerto de Garachico, la villa más hermosa del norte de Tenerife. La erupción volcánica de 1706 sepultó el puerto bajo la lava y destruyó gran parte de la villa. El faro actual marca la bocana de las piscinas naturales volcánicas que han convertido la zona en uno de los lugares más singulares de la isla." },
-    cat:{ es:"Faro Histórico · Garachico" },
-    tags:["Faro","Histórico","Norte","Garachico","Piscinas Naturales","Volcán 1706"] },
-
   // ══════════════════════════════════════════════════════════
   //  ANIMALES — Parques y centros de fauna (nuevos lugares)
   //  Los zoos principales (Loro Parque, Jungle Park, Monkey Park)
@@ -16071,7 +16066,8 @@ const LUGARES_RETIRADOS = new Set([
   'playa-castillo-pcruz',       // uno de los tres tramos de la Playa Jardín (playa-jardin)
   'playa-puertito-guimar',      // la playa para perros de El Cabezo, en el Puertito de Güímar (playa-cabezo)
   'mir-pico-flores-anaga',      // quitada: el mirador abandonado del Pico de las Flores, sin vistas por el pinar
-  'cumbre-dorsal'               // quitada: «Cumbre Dorsal — Mirador La Jardina», en el punto del Mirador La Jardina (mir-la-jardina)
+  'cumbre-dorsal',              // quitada: «Cumbre Dorsal — Mirador La Jardina», en el punto del Mirador La Jardina (mir-la-jardina)
+  'faro-garachico'              // quitada (22-11-2026): el «Faro de Garachico», sin ninguna fuente; su punto, 368 m tierra adentro
 ]);
 let favorites = new Set();
 let showOnlyFavorites = false;
@@ -32701,8 +32697,8 @@ const DP_ZONA_LUGAR = {
     'deporte-skatepark-granja-sc deporte-skatepark-laguna-copernico el-pris ermita-san-telmo',
     'escal-anaga escal-canada-capricho farm-anaga farm-anchieta farm-bethencourt-pcruz',
     'farm-hernandez-sct farm-islas-canarias-sct farm-orotava farm-pozo-pcruz farm-salamanca',
-    'faro-anaga faro-garachico faro-puerto-cruz faro-punta-hidalgo faro-santa-cruz-puerto',
-    'faro-teno forestal-park gas-10201-icod-de-los-vinos gas-10214-los-realejos',
+    'faro-anaga faro-puerto-cruz faro-punta-hidalgo faro-santa-cruz-puerto faro-teno',
+    'forestal-park gas-10201-icod-de-los-vinos gas-10214-los-realejos',
     'gas-10219-santa-cruz-de-tenerife gas-10282-santa-cruz-de-tenerife gas-10591-los-realejos',
     'gas-10842-santa-cruz-de-tenerife gas-10905-san-cristobal-de-la-laguna',
     'gas-10924-santa-cruz-de-tenerife gas-10970-los-realejos gas-10990-los-realejos',
