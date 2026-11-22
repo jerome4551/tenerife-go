@@ -10981,6 +10981,146 @@ de 104; `probar_atras.js`, 26 de 26; `probar_superposiciones.js`, 25 de 25; `pro
 42 y 262; las cifras de idiomas del documento, las de ahora (52 tablas y 3.756 filas; 5.893). `app_preparar.js` montó
 `app/www/` (243 ficheros: uno más, el trozo de máquinas) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
 
+## El mapa, bloque 4a: «Gimnasios», los diez primeros del área metropolitana y Tegueste (nota 62) (21 de noviembre)
+
+**De dónde sale.** El parche `0005` de la nota 62 (el bloque 4 de `PLAN-SU-DEPORTE.md`: dónde practicar cada deporte,
+municipio a municipio). Jérôme, el 19-11: «Mira para integrarlos y prepar los lugares para la mapa también (cada
+municipio el top 3 con reseña […])» y «No quiero publicar las reseñas quiero que nosotros miramos las mejores reseñas y
+guardar los mejores para no ofrecer mala experiencia»; el 20-11: «Bloque 4», sus marcadores de Google Maps de los seis
+gimnasios sin coordenada publicada y «Krom gym no me gusta. Es muy pequeño poca máquina y viejas viejas elige otro». En
+la app no sale ninguna reseña, ni nota, ni estrellas, y de Google no se guarda nada.
+
+**Lo que entra.** Una categoría nueva, «Gimnasios» (💪, en rojo), en la pestaña «Deporte» del filtro, en los once idiomas
+(Gyms, Salles de sport, Fitnessstudios, Palestre, Sportscholen, 健身房, Фитнес зали, Siłownie y, en el rumano apagado, Săli
+de fitness). Diez gimnasios, hasta tres por municipio: Gimnasio Imagen, Manu Fit GYM y VivaGym Tomé Cano en Santa Cruz;
+La Laguna Urban Fitness, Starfit La Laguna y Fitness Park La Cuesta en La Laguna; Zona 0 Training en El Rosario (solo
+uno); Garage Gym, Gimnasio Ocadila y Gimnasio Canarias Fit en Tegueste. La ficha es corta y no afirma nada sin fuente:
+«Gimnasio en <municipio>. Pregunte en recepción si admite la entrada de un día» (la segunda frase es un consejo, no un
+dato), y tres cambian el principio por lo que dice su nombre («de la cadena VivaGym», «de la cadena Fitness Park»,
+«Centro de entrenamiento»). Sin horarios, precios ni webs. El buscador los encuentra por «gimnasio», «gym», «fitness»,
+«musculacion», «pesas» o «crossfit»; el planificador les da 60 minutos si alguien los añade a su día, y la «Ruta del
+día» no los propone. 975 → 985 lugares en todo lo que lo cuenta (el schema.org, el README, las fichas de las dos
+tiendas, las notas a Apple, `auditar_datos.js`).
+
+**Puesto aquí.** Con `git am`, con sus propias líneas de autoría y la huella que da su nota (y las 108 de su
+`SHA256SUMS.txt`, bien); entró limpio. `REVISION-LUGARES.md`, rehecho con `informe_lugares.js` (985) en un commit
+propio; `auditar_ubicacion.py` y `auditar_en_el_mar.py`, que allí no se pudieron pasar, en verde aquí (los 985 medidos,
+ninguno fuera de tierra). Las traducciones de los diez, en los diez idiomas de lugar, en `pl-lugares` y en la fila
+rumana, de usted.
+
+**Cada coordenada, contra el callejero oficial del IGN (CartoCiudad), el 20-11.** Las tres que salen de OpenStreetMap
+(que no es fuente oficial: van con el OK de Jérôme): VivaGym Tomé Cano (antes Level Fitness), a 16 m del portal Av.
+Benito Pérez Armas, 2, en la misma parcela catastral que C. Fragata Danmark, 3; VivaGym, que compró Level Fitness
+Tenerife en febrero, lo da en su web como su centro «Tomé Cano», «Edif. Los Corales 2, C. Fragata Danmark», abierto.
+Garage Gym, a 33 m de la C. Alcalde Máximo González, la dirección que dan los directorios. Gimnasio Ocadila, a 16 m del
+portal Ctra. Gral. a Punta del Hidalgo, 171, también la de los directorios. La del censo del Cabildo (Gimnasio Canarias
+Fit, dato de 2019), a 6 m del portal Ctra. Portezuelo–Las Toscas, 68, la de los directorios. Los seis marcadores de
+Jérôme, cada uno en su calle: Fitness Park, a 11 m de su portal; Imagen, en la C. Eric Lionel Fox; Starfit, a 14 m de su
+calle; Zona 0, a 23 m de la C. J. Watt, 4; Manu Fit, junto a la C. San Francisco, 62 (El Toscal); Urban Fitness, a 83 m
+del portal 151 de la Av. de los Menceyes, junto a la C. Pueblos de Tenerife. Fitness Park (su web) y Starfit (Páginas
+Amarillas) confirman su dirección.
+
+**Lo que decidió Jérôme (21-11).** A las tres preguntas: «1 ok» (los tres que salen de OpenStreetMap), «2 el nombre
+real» y, a las cifras, «cambian pero siguen correcto ? Si es un sí pues si». Dos commits más:
+- **El nombre real**: el de C. Fragata Danmark se llama «VivaGym Tomé Cano», como en la página del centro en
+  vivagym.com (consultada el 21-11: «VivaGym Tomé Cano», «Edif. Los Corales 2, C. Fragata Danmark, 38005 Santa Cruz
+  de Tenerife»). Los de antes, «Level Fitness Tenerife» y «Level Fitness by VivaGym» (el que da todavía Google
+  Maps), van al `alias`, que solo lee el buscador. La fuente, en `datos/verificado.json`; 63 lugares con alias (eran
+  62).
+- **Las cifras rectas, en toda la app**: la letra de los títulos, Cormorant Garamond, traía cifras de estilo
+  antiguo, y el 0 se leía como una o («Zona o Training», «PR-TF 1o», «2oo6»). Ahora, una regla en `index.html`:
+  `font-feature-settings: "lnum"` en todos los elementos y con `!important`, porque el atajo `font:` de muchas
+  reglas (también las de los módulos) la devolvía a «normal». Los números son los mismos; solo cambia su forma,
+  todas las cifras a la altura de las mayúsculas. Lo vigila un control nuevo, `tools/probar_cifras_rectas.js`: la
+  regla, una vez; que ninguna otra regla toca esa propiedad; la función «lnum» en la tabla GSUB de los tres ficheros
+  de Cormorant que pintan las cifras; y en la app servida, que un 0 de Cormorant a 200 px mide lo que una H (129 px
+  frente a 125; sin la regla, 82) y que todo texto con Cormorant y cifras (en el arranque, en tres fichas con cifras
+  en el nombre y en los precios de «Gasolineras cerca») la lleva. Sin la regla, 1 rojo sin navegador y 5 con él; con
+  ella, 14 de 14. La postal de «Su cuerpo», que se dibuja en un `<canvas>`, sigue con las cifras de antes: el canvas
+  no tiene esa propiedad.
+
+**Lo que no está comprobado.** Lo que no dice ninguna fuente publicada por el propio gimnasio (qué máquinas tiene, si
+hay clases, si admite la entrada de un día): por eso no se dice. Y lo que pone en la puerta de cada uno.
+
+**La auditoría entera**, para los dos bloques juntos, abajo, en «Antes de salir».
+
+## «Antes de salir» y «Mi coche y mi posición» (21 de noviembre)
+
+**De dónde sale.** Jérôme, el 19-11, al estudio de módulos nuevos: «Si prepáralo». La otra sesión mandó un parche
+(`antes-y-coche.patch`, sobre `c934528`), las capturas de sus dos móviles simulados y tres cartas para pedir datos
+(TITSA, Tenerife ON y el «Barco Azul» del Gobierno de Canarias). Ningún guion de la entrega se ha ejecutado aquí; el
+parche, leído entero antes, se aplicó con git.
+
+**Lo que entra.** «Antes de salir»: una tarjeta encima de las pestañas del panel de Rutas que abre una pantalla entera
+con dos pestañas. «Hoy»: los avisos de AEMET y las alertas del Gobierno de Canarias que la app ya baja (si el fichero de
+las alertas tiene más de 6 horas, no dice «ninguna»: dice desde cuándo no se ha podido comprobar y da el enlace oficial)
+y los lugares cerrados, restringidos o solo con reserva, agrupados por aviso, con la primera frase del aviso de su
+ficha, «Comprobado el …» y la fuente. «Reservas»: los lugares con `reserva:true` (fuera comida, golf y playas) en tres
+grupos, con el enlace oficial para reservar donde se ha comprobado, y tres notas generales. No añade ningún dato de
+lugares. «Mi coche y mi posición»: un botón en la columna de la derecha del mapa, debajo del «3D», y una hoja: «Aparqué
+aquí» guarda la posición, su precisión, la hora y una nota de 60 caracteres solo en el dispositivo (`localStorage`,
+comprobada campo a campo al leerla), marca el coche en el mapa con 🚗 y lleva de vuelta a pie con Mapas de Apple o Google
+Maps; «Enviar mi posición» da las coordenadas y un enlace al mapa para mandarlos a quien uno elija (la hoja de compartir
+del móvil; sin ella, WhatsApp, SMS y «Copiar»). La app no envía nada por su cuenta. Los dos módulos (`modulos/antes.js`,
+`modulos/micoche.js`) se piden al abrirlos y el service worker los guarda. Sus textos, en los once idiomas, de usted
+(los botones, en imperativo, como el resto de la app).
+
+**La política de privacidad** cambia: «Mi coche y mi posición (opcional)», en los once idiomas y en `privacidad.html`.
+Jérôme le dio su «si» el 21-11, sobre el texto en castellano que se le enseñó; los otros diez idiomas dicen lo mismo, y
+los cuatro botones que cita («Aparqué aquí», «Borrar», «Volver a pie», «Enviar mi posición») son, letra a letra y en los
+once idiomas, los de la hoja del coche.
+
+**Puesto aquí.** El parche entró limpio sobre su base y, encima del bloque 4a de los gimnasios y del `main` del 21-11,
+solo chocaron las cifras de «Idiomas» de este documento (56 tablas, 3.826 filas y 5.984: `barrido_idiomas.js bg` cuenta
+lo mismo). Leído entero: el DOM se hace con `createElement` y `textContent` (`innerHTML` solo para dos SVG y el 🚗,
+cadenas fijas); las alertas del robot, validadas (título, fecha y enlace de www3.gobiernodecanarias.org/noticias/); las
+direcciones de mapas, WhatsApp y SMS, solo con números y `encodeURIComponent`; los enlaces de fuera,
+`noopener noreferrer`. Las tres notas generales de «Reservas», en sus fuentes, el 20-11: la página de reservas del
+Parque Nacional del Teide («Cada lunes a las 07:00 h (hora canaria) se habilitan nuevas plazas»; el permiso del PNT 10
+«no está vinculado con el funcionamiento del Teleférico»; «copia física o digital del permiso junto con tu DNI o
+pasaporte») y Diario de Avisos del 14-10-2026 («presentar un documento oficial de identidad cuando lo solicite el
+personal de control»). Tenerife ON no se deja leer desde aquí (pide la comprobación de Cloudflare).
+
+**Arreglado aquí, un commit cada uno.** Lo que la nota dejaba (sus bloques 3 y 4) y lo que se vio al comprobarlo:
+- **El Pijaral**: su aviso mandaba a centralreservas.tenerife.es, que redirige entero (301) a Tenerife ON, y decía
+  «gratuito», que ninguna fuente de hoy dice. Ahora: «Permiso obligatorio: se reserva en Tenerife ON (45 permisos al
+  día)», en los once idiomas (lo de los 45, de la página del PRA 72 en Tenerife ON, según su índice en el buscador y
+  la lectura de la otra sesión).
+- **El Barranco de Masca**: estaba «cerrado» desde el 16-11; su web oficial («Masca today») lo da abierto el 20-11
+  (23:30) y el 21-11 (18:56), camino y embarcadero. Ahora, `estado:"abierto"` con esa fuente y su fecha.
+- **El crédito del GTFS de TITSA**, al pie del panel de guaguas: «TITSA · datos.tenerife.es · CC BY». La ficha del
+  conjunto en el portal del Cabildo (y su API) da «Creative Commons Attribution», sin versión, con el enlace de
+  opendefinition.org.
+- **Las acampadas** de «Antes de salir»: el enlace iba a centralreservas.tenerife.es y ahora va a Tenerife ON, donde
+  acaba.
+- **La carta a TITSA** dice ya que el crédito está puesto.
+
+**Las tres cartas** (`SOLICITUD-TITSA.md`, `SOLICITUD-TENERIFE-ON.md` y `SOLICITUD-BARCO-AZUL.md`), en la raíz, como la
+de GESPLAN; las envía Jérôme (las que subió el 21-11 son las mismas que las del parche, byte a byte). Comprobado lo que
+dicen: la lista AROC del MITECO (con «Tenerife excepto ZEC Franja Teno-Rasca» y su hoja .xlsx) y su comunicación del
+26-09-2023 sobre la moratoria en Teno-Rasca; los trámites 4177 y 9909 de la sede del Gobierno de Canarias (sin tasas,
+sin motivar, un mes para resolver, ampliable otro); el correo medionatural@tenerife.es en la página de contacto del
+Parque Nacional del Teide; el formulario «Sugiere» de datos.tenerife.es; las 181 líneas de guagua de la app; los tiempos
+de espera de la app oficial de TITSA.
+
+**Con los arreglos de los móviles** (que la otra sesión no tenía): en un iPhone de 402 px y un Samsung de 360 px, la
+columna de la derecha (categorías, 3D, coche) sin pisarse, la tarjeta en Rutas, y el «atrás» del móvil, con el manejo de
+los paneles del bloque 2: cierra «Antes de salir» y deja Rutas, otro cierra Rutas, y cierra la hoja del coche con el 🚗
+en el mapa (12 de 12, sin errores de página).
+
+**Lo que no está comprobado.** Lo que solo se ve en un móvil de verdad: el permiso de ubicación, la hoja de compartir,
+«Volver a pie» en Mapas de Apple y en Google Maps, la app de la App Store (si `navigator.share` existe en su WebKit) y
+la precisión en un aparcamiento cubierto.
+
+**La auditoría entera**, para los dos bloques juntos, dos veces. La primera (lote2111, con los ocho commits de antes de
+las respuestas de Jérôme; del 21-11 a las 19:20 al 21-11 a las 22:39, hora de Canarias): en verde, con 985 lugares, 56
+tablas y 3.826 filas de idioma (5.984 textos mirados dentro y fuera del fuente), 192 pantallas por idioma sin nada sin
+traducir y 249 controles de «Antes de salir» y «Mi coche». La segunda (lote2111b, con el nombre real y las cifras
+rectas; del 21-11 a las 22:41 al 22-11 a la 01:57): lo mismo, más los 14 controles de las cifras, y un solo rojo, el de
+una prueba: la de «Mi coche» esperaba «Guardado hoy a las …» y, a la una, la app escribe, como debe, «Guardado hoy a la
+01:55». La prueba, arreglada en su commit (acepta el artículo de la una, rechaza los dos cruces y mira la una y las
+13:30 sin depender del reloj): «Mi coche y mi posición», tres veces seguidas, 250 controles en verde cada vez.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
