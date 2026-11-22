@@ -140,13 +140,15 @@
     this.clavos = (co.clavos || []).map(clavo);
     this.rastroDe = co.rastro || null; this.rastro = [];
     this.modo = 'postura'; this.meta = this.inicio; this.tau = 0; this.w = 1; this.Eprev = null; this.reps = 0; this.sec = null;
-    this.vida.corte(); this.cortes++; this.gestoDe = null; this.ap = null;
+    this.vida.corte(); this.cortes++; this.gestoDe = null; this.ap = null; this.gm = null;
     /* los rodeos de la repetición, mirados ya; salvo en las muy largas (un paseo, unos saltos de lado a lado: decenas de tramos),
        que se miran al llegar a cada uno: ahí mirarlos todos de golpe tardaría más que lo que ahorra */
     this.metas = [];
     if (this.rep.length <= RODEO_REP) this.rodeos(this.rep);
     this.encuadrar();
   };
+  /* cuánto se dobla el codo (o la rodilla) cuando del hombro a la muñeca (o de la cadera al tobillo) hay d centímetros, en grados */
+  function dobladoA(d, brazo) { var a = brazo ? D.brazo : D.muslo, b = brazo ? D.antebrazo : D.pierna; return Math.acos(entre((d * d - a * a - b * b) / (2 * a * b), -1, 1)) / RAD; }
   function clavo(s) {
     /* 'ti' · 'mi' (en línea recta entre posturas) · 'mi@0:31' (al agarre del material 0, a 31 cm del centro) · 'mi=x,y,z' (a un punto) */
     var m = /^([mt][id])(?:@(\d+):(-?[\d.]+))?(?:=(-?[\d.]+),(-?[\d.]+),(-?[\d.]+))?$/.exec(s);
@@ -180,26 +182,51 @@
       if (c.que.charAt(0) === 't') meta = c.en || mezcla(A[k].tob, B[k].tob, e);
       else if (c.mat != null && mats[c.mat] && mats[c.mat].agarre) meta = munecaPara(E, k, mats[c.mat].agarre(c.x));
       else meta = c.en || mezcla(A[k].mun, B[k].mun, e);
-      lista.push([c.que, meta]);
+      lista.push([c.que, meta, c]);
     }
     if (!lista.length) return E;
     var corr = [0, 0, 0], v, l, peor, falta, tope, vuelta, q, L, brazo;
     /* (21-11-2026) lo tenso. De una postura a otra la cadera va derecha, por la cuerda; si el cuerpo gira sobre los pies clavados (una
        flexión, un remo colgado de la cinta) o lleva las manos clavadas a lo que rueda, lo suyo es el arco: por la cuerda queda más
        cerca, y la rodilla o el codo, que en las dos posturas van rectos, se doblaban de paso (hasta 35° en el bloque 15). El brazo o
-       la pierna que la coreografía dice tenso (tensos: ['ti', 'td', 'mi', 'md'], de lo que lleve clavado) llega a su sitio tan
-       estirado como en las posturas: lo que mide del hombro a la muñeca, o de la cadera al tobillo, va de lo que mide en una a lo que
-       mide en la otra, y es la cadera (el cuerpo entero, lo mismo) la que se aparta lo que haga falta. Solo donde se pide */
-    var tensos = this.co && this.co.tensos, ct, dA, dB, kt;
-    if (tensos && A && B) {
-      ct = [0, 0, 0];
+       la pierna tensos llegan a su sitio tan estirados como en las posturas: lo que miden del hombro a la muñeca, o de la cadera al
+       tobillo, va de lo que mide en una a lo que mide en la otra, y es la cadera (el cuerpo entero, lo mismo) la que se aparta lo que
+       haga falta.
+       (22-11-2026) Y ya no hay que pedirlo: va tenso solo lo clavado que, entre dos posturas distintas, está recto en las dos (del
+       todo, hasta 25° de rodilla o de codo; nada, desde 40°) y cuyo clavo no viaja (el pie o la mano que se quedan donde están: hasta
+       2 cm; desde 5, nada. Lo clavado a un agarre del material o a un punto dicho no viaja: lo lleva lo que lo lleva). La mano que
+       va de un sitio a otro en línea recta (se suelta del suelo y se tiende al frente) dobla el codo por el camino, como al alcanzar
+       algo, y eso no se toca. Lo que la coreografía dice tenso (tensos: ['ti', 'td', 'mi', 'md']) lo va siempre, también quieto */
+    var tensos = this.co && this.co.tensos, ct, dA, dB, kt, hayT = false, wT, cT, mA, mB, deMat, E0;
+    if (A && B) for (i = 0; i < lista.length; i++) {
+      q = lista[i]; kt = q[0].charAt(1); brazo = q[0].charAt(0) === 'm'; cT = q[2];
+      /* a dónde va clavado en cada punta (y de ahí, lo que mide el miembro en ella: lo que mide clavado, no lo que diga la postura) */
+      deMat = cT.mat != null && mats[cT.mat] && mats[cT.mat].agarre;
+      if (deMat) { mA = munecaPara(A, kt, mats[cT.mat].agarre(cT.x)); mB = munecaPara(B, kt, mats[cT.mat].agarre(cT.x)); }
+      else if (cT.en) mA = mB = cT.en;
+      else { mA = brazo ? A[kt].mun : A[kt].tob; mB = brazo ? B[kt].mun : B[kt].tob; }
+      dA = largo(menos(mA, brazo ? A[kt].hom : A[kt].cad)); dB = largo(menos(mB, brazo ? B[kt].hom : B[kt].cad));
+      if (tensos && tensos.indexOf(q[0]) >= 0) wT = 1;
+      /* solo entre dos posturas distintas; y a un agarre del material, solo si ese agarre no se mueve (una barra fija, unas paralelas:
+         el de una máquina o el de una barra que va en las manos siguen al cuerpo, y tirar de él no tiene sentido) */
+      else if (A === B || tensos === false || (deMat && !mats[cT.mat].agarreFijo)) wT = 0;
+      else {
+        wT = 1 - CURVA.suave(entre((Math.max(dobladoA(dA, brazo), dobladoA(dB, brazo)) - 25) / 15, 0, 1));
+        if (wT > 0 && !deMat && !cT.en) wT *= 1 - CURVA.suave(entre((largo(menos(mA, mB)) - 2) / 3, 0, 1));
+      }
+      q[3] = wT; q[4] = dA; q[5] = dB; if (wT > 0) hayT = true;
+    }
+    if (hayT) {
+      /* lo que hay que apartar la cadera se mide en la mezcla limpia de las dos posturas (sin la vida: el aire y el peso mueven los
+         hombros y la cadera un poco, y eso no se corrige; corregirlo levantaba del suelo, al empezar a moverse, al que está tumbado
+         con las manos apoyadas). Así, en las dos puntas del tramo no se aparta nada, y enlaza con la postura quieta sin un salto */
+      E0 = A === B ? A : mezclar(A, B, e); ct = [0, 0, 0];
       for (vuelta = 0; vuelta < 60; vuelta++) {
         peor = 0;
         for (i = 0; i < lista.length; i++) {
-          q = lista[i]; if (tensos.indexOf(q[0]) < 0) continue;
+          q = lista[i]; if (!(q[3] > 0)) continue;
           kt = q[0].charAt(1); brazo = q[0].charAt(0) === 'm';
-          dA = largo(menos(brazo ? A[kt].mun : A[kt].tob, brazo ? A[kt].hom : A[kt].cad)); dB = largo(menos(brazo ? B[kt].mun : B[kt].tob, brazo ? B[kt].hom : B[kt].cad));
-          v = menos(q[1], mas(brazo ? E[kt].hom : E[kt].cad, ct)); l = largo(v); falta = l - (dA + (dB - dA) * e);
+          v = menos(q[1], mas(brazo ? E0[kt].hom : E0[kt].cad, ct)); l = largo(v); falta = (l - (q[4] + (q[5] - q[4]) * e)) * q[3];
           if (Math.abs(falta) > peor) peor = Math.abs(falta);
           if (l > 1e-6) ct = mas(ct, por(v, falta / l));
         }
@@ -386,6 +413,30 @@
     }
     return R ? armar(R) : E1;
   };
+  /* (22-11-2026) la mano no gira de golpe. Hacia dónde mira la palma sale de la bisagra del codo, del prono y de lo que la postura
+     diga en el mundo, y hay momentos en que eso cambia de un cuadro al siguiente: el brazo que llega a estirarse del todo (de ahí
+     en adelante la bisagra ya no la dicen sus dos huesos), la palma dicha que pasa por detrás del antebrazo… En 83 de los 534 la
+     mano daba un giro de 25° a 180° en un solo cuadro. Aquí, en lo que se ve, la mano gira sobre su antebrazo como mucho VGM
+     grados por segundo: llega a donde iba en dos o tres décimas en vez de saltar. Quieta es exacta, y también en el primer cuadro
+     tras un corte. (La que en plena repetición va y vuelve se arregla en su coreografía: lo mira la auditoría.) */
+  var VGM = 600;
+  Director.prototype.sinGolpe = function (E, dt) {
+    var gm = this.gm, exacto = !gm || !(dt > 0) || dt > 0.25, tope = VGM * dt, R = null, i, k, L, p0, p1, a, d, m, c, toca = [];
+    if (!gm) gm = this.gm = { i: null, d: null };
+    for (i = 0; i < 2; i++) {
+      k = LADOS[i]; L = E[k]; p1 = sinParte(L.mano.palma, L.lw); p0 = gm[k] ? sinParte(gm[k], L.lw) : null;
+      if (exacto || !p0 || largo(p1) < 0.3 || largo(p0) < 0.3) { gm[k] = L.mano.palma; continue; }
+      /* de la que se enseñó a la que sale ahora, girando sobre el antebrazo */
+      a = Math.atan2(punto(cruz(p0, p1), L.lw), punto(p0, p1)) / RAD;
+      if (Math.abs(a) <= tope) { gm[k] = L.mano.palma; continue; }
+      d = a - (a > 0 ? tope : -tope);
+      if (!R) R = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: E.S.b, q: E.S.q, m: { i: E.S.m.i, d: E.S.m.d }, t: E.S.t };
+      m = {}; for (c in E.S.m[k]) m[c] = E.S.m[k][c];
+      m.giro = (m.giro || 0) - d; R.m[k] = m; toca.push(k);
+    }
+    if (R) { E = armar(R); for (i = 0; i < toca.length; i++) gm[toca[i]] = E[toca[i]].mano.palma; }
+    return E;
+  };
   /* una postura clave de una coreografía, resuelta: con las manos fuera de los muslos. Aquí, quieta, se saca del todo la mano que
      esté metida en uno, por honda que esté (en movimiento, despejar solo aparta lo que roza): hacia fuera del eje del muslo, hasta que
      no lo toque. Menos las manos que la coreografía lleva clavadas en esa postura (agarran algo fijo o apoyan en el suelo) */
@@ -413,7 +464,7 @@
     if (!this.K[nombre]) return;
     this.Eprev = this.E; this.w = this.E && seg !== 0 ? 0 : 1; this.durW = seg || 0.7;
     this.metaPrev = this.meta; this.modo = 'postura'; this.meta = nombre; this.sec = null; this.gestoDe = null;
-    this.vida.linea = []; if (seg === 0) { this.vida.corte(); this.cortes++; this.ap = null; }
+    this.vida.linea = []; if (seg === 0) { this.vida.corte(); this.cortes++; this.ap = null; this.gm = null; }
   };
   Director.prototype.aRep = function (seg) {
     if (!this.rep.length) return this.aPostura(this.inicio, seg);
@@ -494,7 +545,7 @@
       this.w = Math.min(1, this.w + dt / this.durW);
       E = mezclar(this.Eprev, E, CURVA.suave(this.w));
     }
-    E = this.suave(E, this.despejar(E, clavos), dt, clavos);
+    E = this.sinGolpe(this.suave(E, this.despejar(E, clavos), dt, clavos), dt);
     this.E = E;
     this.vida.mide(E, parado ? 0 : dt);
     /* la cámara: hacia su vista, con suavidad; de cerca, se va acercando muy despacio */
@@ -628,4 +679,4 @@
     this.salto = true;
   };
   Director.prototype.girar = function () { this.vista = (this.vista + 1) % this.vistas.length; return this.vista; };
-  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; this.tBusto = 0; this.vida.corte(); this.cortes++; this.ap = null; this.esc.cab.corte = true; } };
+  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; this.tBusto = 0; this.vida.corte(); this.cortes++; this.ap = null; this.gm = null; this.esc.cab.corte = true; } };

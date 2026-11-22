@@ -14,9 +14,10 @@
         SUPINO_SUELO = N.SUPINO_SUELO, aLosLados = N.aLosLados, aUnBrazo = N.aUnBrazo, abre = N.abre, activo = N.activo, agarreDe = N.agarreDe,
         apoyada = N.apoyada, arco = N.arco, barraD = N.barraD, busca = N.busca, clavosB = N.clavosB, colgando = N.colgando, conAgarre = N.conAgarre,
         cuelga = N.cuelga, el = N.el, entre = N.entre, estirado = N.estirado, flexion = N.flexion, flexionG = N.flexionG, girar = N.girar,
-        inclinado = N.inclinado, largo = N.largo, mas = N.mas, mediaVuelta = N.mediaVuelta, menos = N.menos, mezcla = N.mezcla, plano = N.plano,
-        por = N.por, punto = N.punto, refleja = N.refleja, reflejo = N.reflejo, resolver = N.resolver, sentadoAlBorde = N.sentadoAlBorde,
-        sentadoEnRespaldo = N.sentadoEnRespaldo, silla5 = N.silla5, sinParte = N.sinParte, sobre = N.sobre, unidad = N.unidad;
+        inclinado = N.inclinado, largo = N.largo, mas = N.mas, mediaVuelta = N.mediaVuelta, menos = N.menos, mezcla = N.mezcla,
+        miraBarra = N.miraBarra, plano = N.plano, por = N.por, punto = N.punto, refleja = N.refleja, reflejo = N.reflejo, resolver = N.resolver,
+        sentadoAlBorde = N.sentadoAlBorde, sentadoEnRespaldo = N.sentadoEnRespaldo, silla5 = N.silla5, sinParte = N.sinParte, sobre = N.sobre,
+        unidad = N.unidad;
   /* ───────────────────────── las coreografías: BÍCEPS (bloque 6) ─────────────────────────
      Las mismas reglas que en 70-coreografias.js: cada una sale de los pasos verificados de su ficha y no añade técnica
      que la ficha no diga. Van por familias: de pie con una barra, de pie con mancuernas (y con la pesa rusa), en un banco
@@ -635,7 +636,7 @@
       return {
         vista: [66, 18], rastro: 'hombros', clavos: clavosB(G),
         material: [barraD({ ancho: 64 })],
-        posturas: { a: cuelga(G), a2: activo(G), p: p, t: t_, s: s },
+        posturas: { a: miraBarra(cuelga(G), -4, -10), a2: miraBarra(activo(G), -5, -14), p: p, t: t_, s: s },
         encuadra: ['p', 't', 's'],
         pasos: [{ sec: [['a', 0.9], ['a2', 0.45, 'suave'], ['p', 0.5, 'sale'], ['p', 0.25], ['a2', 1.2, 'freno'], ['a2', 0.35], ['p', 0.5, 'sale']], desde: 'a' },
                 { sec: [['p', 0.5], ['t', 0.6, 'sale']], desde: 'p' },

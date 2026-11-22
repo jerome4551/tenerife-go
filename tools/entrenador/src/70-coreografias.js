@@ -65,6 +65,14 @@
   function cuelga(G, extra) { return sobre(COLGADO, sobre({ pel: [0, yColgado(G, 3.5), -2], hom: [3.5, 0], b: { a: [G, ALTO_BARRA - 8, 0], polo: [1, -0.2, 0.5] } }, extra || {})); }
   function activo(G, extra) { return sobre(COLGADO, sobre({ pel: [0, yColgado(G, -2), -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [G, ALTO_BARRA - 8, 0], polo: [1, -0.3, 0.4] } }, extra || {})); }
   function clavosB(G, G2) { return ['mi@0:' + G, 'md@0:' + (-(G2 == null ? G : G2))]; }
+  /* (22-11-2026) colgado de la barra, la cabeza no se queda justo debajo de ella: con los brazos estirados, las púas del tupé llegan a
+     su altura, y al subir la barra se las cruzaba (hasta 3,4 cm; lo mide la auditoría: «la cabeza y las barras»). Cuelga «dz» cm por
+     detrás de la barra (dz < 0), con los brazos igual de estirados (la cadera sube lo que haga falta), y mira hacia ella («cab»
+     grados: negativo, la cabeza hacia atrás), que es además como se cuelga quien va a subir */
+  function miraBarra(P, dz, cab) {
+    var h = resolver(P).i.hom, a = ALTO_BARRA - h[1], b = P.b.a[2] - h[2];
+    return sobre(P, { pel: [P.pel[0], P.pel[1] + a - Math.sqrt(a * a + b * b - (b - dz) * (b - dz)), P.pel[2] + dz], cab: [cab == null ? -12 : cab, 0, 0] });
+  }
   /* ── dos ayudas para colocar las manos ──
      conAgarre: la postura P con el centro del puño izquierdo en g (el derecho, en su reflejo) y el codo hacia «polo»: la muñeca
      queda a una mano de g, en la línea del antebrazo. k: 'b' (los dos brazos), 'bi' o 'bd' (uno solo; g es entonces el de ese lado) */
@@ -315,17 +323,26 @@
       inicio: 'b', encuadra: ['a'],
       pasos: [{ sec: [['a', 0.5], ['w1', 0.5, 'entra'], ['w2', 0.6, 'sale'], ['w3', 0.6, 'entra'], ['b', 0.6, 'sale']], desde: 'a' }, 'b', { sec: [['c', 0.9, 'suave']], desde: 'b' }]
     };
-    /* con salto: en el aire no hay nada clavado */
+    /* con salto: en el aire no hay nada clavado.
+       (22-11-2026) Los brazos, atrás, se dicen por detrás de verdad (e negativo: el brazo, 30° por detrás del tronco, y el codo doblado
+       hacia delante, que es como dobla): con «z: 176» el codo doblaba al revés (el antebrazo subía por detrás) y, de ahí a los brazos
+       arriba, la bisagra del codo se daba la vuelta y la mano giraba de golpe. Atrás y arriba van en el mismo plano (z: 0) y a menos de
+       arriba, la bisagra del codo se daba la vuelta y la mano giraba de golpe. Y entre atrás y arriba hay una postura, el despegue (k):
+       ya estirado y de puntillas, con los pies aún en el suelo y los brazos pasando por delante de la cadera, algo abiertos (por fuera
+       de los muslos). Sin ella, de atrás a arriba hay casi media vuelta y el brazo iba por donde le salía. En el despegue los brazos ya
+       van por delante y a media altura, y el vuelo dura 0,2 s: con ellos más abajo y en 0,13 s, la mano subía 52 cm en un cuadro. Al caer, los pies bajan
+       clavados a su línea (sueltos, la punta del pie daba un salto de 6 cm en el cuadro en que tocaba el suelo) */
     var sp = { suelo: [10, 0], abre: 6 }, T2 = ['ti', 'td'];
     COREO['sentadilla-salto'] = {
-      vista: [48, 90], rastro: 'pel', esfuerzo: [2],
+      vista: [48, 90], rastro: 'pel', esfuerzo: [2, 3],
       posturas: {
         a: { p: sp },
-        b: { pel: [0, 56, -20], giro: [0, 34, 0], cab: [-28, 0, 0], p: sp, b: { e: 34, z: 176, g: 0, c: 22 }, m: SUELTA },
-        s: { pel: [0, PIE + 26, 0], giro: [0, -2, 0], p: { e: 2, z: 0, c: 5 }, t: { tob: 46 }, b: { e: 150, z: 10, g: 0, c: 14 }, m: SUELTA },
-        l: { pel: [0, 62, -15], giro: [0, 28, 0], cab: [-24, 0, 0], p: sp, b: { e: 40, z: 10, g: 0, c: 30 }, m: SUELTA }
+        b: { pel: [0, 56, -20], giro: [0, 34, 0], cab: [-28, 0, 0], p: sp, b: { e: -30, z: -10, g: 0, c: 16 }, m: SUELTA },
+        k: { pel: [0, PIE + 4, -2], giro: [0, 7, 0], cab: [-6, 0, 0], p: { suelo: [10, 0], abre: 6, talon: 40 }, b: { e: 62, z: 10, g: 0, c: 24 }, m: SUELTA },
+        s: { pel: [0, PIE + 26, 0], giro: [0, -2, 0], p: { e: 2, z: 0, c: 5 }, t: { tob: 46 }, b: { e: 140, z: 6, g: 0, c: 14 }, m: SUELTA },
+        l: { pel: [0, 62, -15], giro: [0, 28, 0], cab: [-24, 0, 0], p: sp, b: { e: 40, z: 8, g: 0, c: 30 }, m: SUELTA }
       },
-      rep: [['b', 0.75, 'suave', T2], ['b', 0.16, null, T2], ['s', 0.3, 'sale', []], ['l', 0.34, 'entra', []], ['a', 0.75, 'suave', T2], ['a', 0.5, null, T2]],
+      rep: [['b', 0.75, 'suave', T2], ['b', 0.16, null, T2], ['k', 0.26, 'entra', T2], ['s', 0.2, 'sale', []], ['l', 0.34, 'entra', T2], ['a', 0.75, 'suave', T2], ['a', 0.5, null, T2]],
       pasos: [{ sec: [['b', 0.9, 'suave', T2]], desde: 'a' }, 'rep', 'rep']
     };
   })();
@@ -589,9 +606,9 @@
       vista: [26, 154], rastro: 'barbilla', esfuerzo: [0], clavos: ['mi@0:28', 'md@0:-28'],
       material: [['barra_dominadas', { alto: 225, ancho: 62 }]],
       posturas: {
-        a: sobre(COLGADO, { pel: [0, 120, -2], hom: [3.5, 0], b: { a: [28, 217, 0], polo: [1, -0.2, 0.5] } }),
-        a2: sobre(COLGADO, { pel: [0, 125.5, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [28, 217, 0], polo: [1, -0.3, 0.4] } }),
-        b: sobre(COLGADO, { pel: [0, 172, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], b: { a: [28, 217, 0], polo: [1, -1, 0.1] } })
+        a: miraBarra(sobre(COLGADO, { pel: [0, 120, -2], hom: [3.5, 0], b: { a: [28, 217, 0], polo: [1, -0.2, 0.5] } }), -3, -10),
+        a2: miraBarra(sobre(COLGADO, { pel: [0, 125.5, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [28, 217, 0], polo: [1, -0.3, 0.4] } }), -5, -14),
+        b: sobre(COLGADO, { pel: [0, 172, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [-4, 0, 0], b: { a: [28, 217, 0], polo: [1, -1, 0.1] } })
       },
       inicio: 'a2',
       rep: [['b', 1.3, 'empuje'], ['b', 0.5], ['a2', 1.9, 'freno'], ['a2', 0.45]],
@@ -603,9 +620,9 @@
       vista: [30, 96], rastro: 'barbilla', esfuerzo: [0], clavos: ['mi@0:20', 'md@0:-20'],
       material: [['barra_dominadas', { alto: 225, ancho: 62 }]],
       posturas: {
-        a: sobre(sup, { pel: [0, 119.4, -2], hom: [3.5, 0], b: { a: [20, 217, 0], polo: [0.4, -0.2, 1] } }),
-        a2: sobre(sup, { pel: [0, 124.8, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [20, 217, 0], polo: [0.4, -0.3, 1] } }),
-        b: sobre(sup, { pel: [0, 175, -12], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], b: { a: [20, 217, 0], polo: [0.25, -1, 0.9] } })
+        a: miraBarra(sobre(sup, { pel: [0, 119.4, -2], hom: [3.5, 0], b: { a: [20, 217, 0], polo: [0.4, -0.2, 1] } }), -3, -10),
+        a2: miraBarra(sobre(sup, { pel: [0, 124.8, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [20, 217, 0], polo: [0.4, -0.3, 1] } }), -5, -14),
+        b: sobre(sup, { pel: [0, 175, -12], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [-4, 0, 0], b: { a: [20, 217, 0], polo: [0.25, -1, 0.9] } })
       },
       inicio: 'a2',
       rep: [['b', 1.3, 'empuje'], ['b', 0.35], ['a2', 1.9, 'freno'], ['a2', 0.45]],
@@ -700,8 +717,8 @@
   COREO['press-militar-barra'] = {
     vista: [22, 78], rastro: 'manos', esfuerzo: [0], clavos: ['mi', 'md'], material: [['barra', { discos: 17 }]],
     posturas: {
-      a: conPuno({ m: { tipo: 'puno', prono: 90, mun: -30 }, cab: [-15, 0, 0] }, [26, HOMBRO - 1, 15], [0.8, -1, 0]),
-      b: conPuno({ m: PRONO, cab: [-6, 0, 0] }, [26, HOMBRO + 56, 14], [1, -0.25, 0.25])      /* el codo, a 20° de estirarse del todo, como antes */
+      a: conPuno({ m: { tipo: 'puno', prono: 90, mun: -30 }, cab: [-17, 0, 0] }, [26, HOMBRO - 1, 15.5], [0.8, -1, 0]),
+      b: conPuno({ m: PRONO, cab: [-10, 0, 0] }, [26, HOMBRO + 56, 15], [1, -0.25, 0.25])      /* el codo, a 20° de estirarse del todo, como antes */
     },
     rep: [['b', 1.2, 'empuje'], ['b', 0.35], ['a', 1.6, 'freno'], ['a', 0.45]],
     pasos: ['a', 'rep', 'rep']

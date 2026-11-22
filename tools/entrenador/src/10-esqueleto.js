@@ -174,12 +174,15 @@
     /* la mano apoyada (en el suelo, en una pared): se dice en el mundo hacia dónde mira la palma (m.palma) y hacia dónde van los
        dedos (m.dedos), y la mano queda así haga lo que haga el antebrazo: la muñeca se dobla lo que haga falta. Entre una postura
        apoyada y otra que no lo está, m.wd dice cuánto manda */
+    var R;
     if (m.ded && m.pal && m.wd > 0) {
       var pF = m.pal, dF = unidad(sinParte(m.ded, pF), dir);
       if (m.wd < 1) { pF = unidad(mezcla(unidad(palma), pF, m.wd), pF); dF = unidad(sinParte(mezcla(unidad(dir), dF, m.wd), pF), dF); }
-      return { dir: dF, eje: por(cruz(pF, dF), s), palma: pF };
-    }
-    return { dir: unidad(dir), eje: unidad(eje), palma: unidad(palma) };
+      R = { dir: dF, eje: por(cruz(pF, dF), s), palma: pF };
+    } else R = { dir: unidad(dir), eje: unidad(eje), palma: unidad(palma) };
+    /* lo que el Director frena (60-director.js, sinGolpe): la mano entera, girada sobre el antebrazo */
+    if (m.giro) R = { dir: girar(R.dir, lw, m.giro), eje: girar(R.eje, lw, m.giro), palma: girar(R.palma, lw, m.giro) };
+    return R;
   }
 
   /* Del estado canónico al esqueleto: cada articulación, en el mundo. */
@@ -256,6 +259,13 @@
     });
     return armar(S);
   }
+  /* el frente de una pierna que apunta hacia u (unidad): el de la pelvis (base Bp), llevado de «hacia abajo» a u por el giro más corto.
+     Es hacia donde dobla la rodilla si la cadera no gira hacia dentro ni hacia fuera */
+  function frenteDePierna(Bp, u) {
+    var abajo = por(Bp[1], -1), ej = cruz(abajo, u), s = largo(ej);
+    if (s < 1e-6) return unidad(sinParte(Bp[2], u), Bp[2]);
+    return unidad(sinParte(girar(Bp[2], por(ej, 1 / s), Math.atan2(s, punto(abajo, u)) / RAD), u), Bp[2]);
+  }
   /* Clava una mano o un pie en un punto del mundo: se vuelve a resolver ese miembro, doblándose
      hacia donde ya se doblaba. que: 'mi', 'md' (muñecas), 'ti', 'td' (tobillos). */
   function clavar(E, que, meta) {
@@ -264,7 +274,20 @@
       var r = dosHuesos(L.hom, meta, D.brazo, D.antebrazo, L.cod);
       S.b[k] = { u: aLocal(E.Bt, unidad(menos(r.medio, L.hom))), l: aLocal(E.Bt, unidad(menos(r.fin, r.medio))), b: S.b[k].b };
     } else {
-      var rq = dosHuesos(L.cad, meta, D.muslo, D.pierna, L.rod);
+      /* (22-11-2026) la rodilla dobla hacia delante. «Hacia donde ya se doblaba» no dice nada con la pierna recta (la rodilla cae en
+         la línea de la cadera al tobillo, y un pelo a un lado o al otro decide), y con la pierna casi recta puede decir que hacia
+         atrás: en una flexión la rodilla se iba hacia el techo, al revés de como dobla, y cambiaba de lado de golpe (hasta 27 cm en un
+         cuadro en un peso muerto a una pierna). Con la pierna casi recta (la rodilla, a menos de 4 cm de esa línea; desde 10, nada: la
+         rodilla bien doblada se queda como está, también la que mira hacia fuera), la pista que caiga detrás se pasa delante, y la que
+         no diga nada se empuja un pelo hacia delante. «Delante» es el frente de la pelvis, llevado a donde apunta la pierna */
+      var pista = L.rod, dq = menos(meta, L.cad), cq = entre(largo(dq), Math.abs(D.muslo - D.pierna) + 0.01, D.muslo + D.pierna - 0.01);
+      var aq = (D.muslo * D.muslo - D.pierna * D.pierna + cq * cq) / (2 * cq), wq = 1 - CURVA.suave(entre((Math.sqrt(Math.max(0, D.muslo * D.muslo - aq * aq)) - 4) / 6, 0, 1));
+      if (wq > 0) {
+        var uq = unidad(dq, [0, -1, 0]), fq = frenteDePierna(E.Bp, uq), lq = sinParte(menos(pista, L.cad), uq), pq = punto(lq, fq);
+        if (pq < 0) { pista = menos(pista, por(fq, 2 * pq * wq)); lq = menos(lq, por(fq, 2 * pq * wq)); }
+        pq = largo(lq); if (pq < 1) pista = mas(pista, por(fq, 0.3 * wq * (1 - pq)));
+      }
+      var rq = dosHuesos(L.cad, meta, D.muslo, D.pierna, pista);
       S.q[k] = { u: aLocal(E.Bp, unidad(menos(rq.medio, L.cad))), l: aLocal(E.Bp, unidad(menos(rq.fin, rq.medio))), b: S.q[k].b };
     }
   }

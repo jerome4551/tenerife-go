@@ -899,7 +899,10 @@
        hacia el otro lado */
     COREO['zancada-lateral'] = (function () {
       var P = lateral(SUELTOS);
-      P.b = SUELTOS(P.b);
+      /* los brazos van al frente a medida que la cadera va atrás, para equilibrar (colgando a los lados, los muslos se los llevaban
+         por delante: había que apartarlos en cada postura, cada vez hacia un sitio, y la mano giraba de golpe al pasar de una a otra) */
+      var br = function (e, z, c) { return { b: { e: e, z: z, g: z, c: c }, m: SUELTA }; };
+      P.l = sobre(P.l, br(14, 70, 14)); P.w = sobre(P.w, br(22, 30, 14)); P.h = sobre(P.h, br(48, 12, 16)); P.b = sobre(SUELTOS(P.b), br(84, 8, 18));
       ['l', 'w', 'h', 'b'].forEach(function (q) { P[q + '2'] = refleja(P[q]); });
       var una = function (r) { return [['l' + r, 0.4, 'entra', T2], ['w' + r, 0.4, 'sale', T2], ['h' + r, 0.6, 'suave', T2], ['b' + r, 1.2, 'freno', T2], ['b' + r, 0.4, null, T2],
         ['h' + r, 0.6, 'empuje', T2], ['l' + r, 0.45, 'lineal', T2], ['a', 0.4, 'sale', T2], ['a', 0.3, null, T2]]; };
@@ -955,7 +958,9 @@
       P.s = sobre(arriba(172, -0.9), { pel: [0, PIE + 17, q[0] + 1], pi: { e: 2, z: 0, c: 5 }, ti: { tob: 44 }, pd: { e: 88, z: 0, c: 100 }, td: { tob: 10 } });
       /* desde la zancada completa: antes de impulsarse, el pie de atrás deja el suelo (n) */
       P.n = sobre(corriendo(-0.2, 0.5), { pel: [0, 66, -19], giro: [0, 8, 0], pi: apoyo(), pd: { a: [-X, 26, -44], polo: [0, -0.6, 1] }, td: PUNTA_ABAJO });
-      P.c = sobre(corriendo(0.5, -0.4), { pel: [0, PIE + q2[1] - 3.5, q2[0] - 2], giro: [0, 5, 0], pi: apoyo(20), pd: { e: 46, z: 0, c: 72 }, td: { tob: 10 } });
+      /* al caer, el brazo izquierdo baja de arriba doblándose en su mismo plano (dicho por su dirección, como arriba: con el codo
+         hacia fuera, como al correr, el brazo se torcía por el camino y la mano giraba de golpe) */
+      P.c = sobre(corriendo(0.5, -0.4), { pel: [0, PIE + q2[1] - 3.5, q2[0] - 2], giro: [0, 5, 0], pi: apoyo(20), pd: { e: 46, z: 0, c: 72 }, td: { tob: 10 }, bi: { e: 21, z: 0, g: 0, c: 82 } });
       P.l = sobre(corriendo(-0.5, 0.7), { pel: [0, 77, -9], giro: [0, 7, 0], pi: apoyo(), pd: { a: [-X, 19, -30], polo: [0, -0.4, 1] }, td: PUNTA_ABAJO });
       var KI = ['ti'], salto = [['m', 0.18, 'entra', KI], ['d', 0.1, 'lineal', KI], ['s', 0.24, 'sale', NADA], ['c', 0.24, 'entra', NADA], ['l', 0.2, 'sale', KI]];
       return {
@@ -1001,7 +1006,7 @@
     COREO['salto-lateral-un-pie'] = (function () {
       var XS = 33, S = 6, I = {}, P = {}, n, ya = altoCon(D.caderaX - S) - 0.2;
       var izq = function (t) { return { suelo: [XS + S, 0], abre: 3, talon: t || 0, polo: [0.15, 0.1, 1] }; }, der = function (x, t) { return { suelo: [x - S, 0], abre: 3, talon: t || 0, polo: [-0.15, 0.1, 1] }; };
-      var atras = { b: { e: 32, z: 178, g: 0, c: 8 }, m: SUELTA }, delante = function (e) { return { b: { e: e, z: 6, g: 0, c: 18 }, m: SUELTA }; };
+      var atras = { b: { e: -32, z: -8, g: 0, c: 8 }, m: SUELTA }, delante = function (e) { return { b: { e: e, z: 6, g: 0, c: 18 }, m: SUELTA }; };
       I.a = SUELTOS({ pel: [XS, ya, 0], pi: izq(), pd: der(XS) });
       I.b = sobre(atras, { pel: [XS - 2, 70, -13], giro: [0, 24, 0], cab: [-19, 0, 0], pi: izq(), pd: der(XS) });
       /* de lado, la cadera va a paso constante (V) desde el impulso hasta que el pie pisa: lo que recorre en cada tramo es lo que dura el

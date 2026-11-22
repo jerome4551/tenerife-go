@@ -472,6 +472,7 @@
     this.antes = true;
   };
   MATERIAL.barra_dominadas.prototype.colocar = function () {};
+  MATERIAL.barra_dominadas.prototype.agarreFijo = true;      /* no se mueve: lo que cuelga de ella con los brazos rectos va tenso (60-director.js) */
   MATERIAL.barra_dominadas.prototype.agarre = function (x) { return [x, this.o.alto || 225, (this.o.z || 0) + (this.o.paralelos ? PARALELO / 2 : 0)]; };
   MATERIAL.barra_dominadas.prototype.extremos = function () {
     var o = this.o, w = o.ancho || 66, z = o.z || 0, v = o.voladizo || 0, h = (o.alto || 225) + 6 + (v ? VOLADIZO_ALTO : 0);
@@ -501,6 +502,7 @@
   };
   MATERIAL.paralelas.prototype.colocar = function () {};
   /* dónde se agarra: en la barra de su lado (x > 0, la de su izquierda), a la altura de «manos» a lo largo de ella */
+  MATERIAL.paralelas.prototype.agarreFijo = true;
   MATERIAL.paralelas.prototype.agarre = function (x) { var o = this.o; return [(x >= 0 ? 1 : -1) * (o.ancho || 27), o.alto || 118, (o.z || 0) + (o.manos || 0)]; };
   MATERIAL.paralelas.prototype.extremos = function () { var o = this.o, w = o.ancho || 27, l = (o.largo || 110) / 2, z = o.z || 0, h = o.alto || 118; return [[w, h, z - l], [-w, h, z + l], [w, 0, z + l], [-w, 0, z - l]]; };
   MATERIAL.paralelas.prototype.pintar = function (E, cam, lista) {

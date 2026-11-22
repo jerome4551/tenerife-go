@@ -406,7 +406,9 @@
       c.posturas.r = sobre(P, { b: { a: [14, 84, -30], polo: [0.5, 0.4, 1] } });                                          /* arriba, de camino hacia atrás */
       c.posturas.g = conAgarre(tumbadoEn(0, { hom: [5, 0], m: PRO_BARRA }), [G, R[1], R[2]], [1, 0.1, 0]);            /* la coge, detrás de la cabeza */
       c.reposo = ['s', 'r']; c.encuadra = ['a', 's'];
-      c.pasos = ['s', { sec: [['r', 0.7, 'suave'], ['g', 0.7, 'suave'], ['g', 0.25], ['b', 0.9, 'suave'], ['a', 1.3, 'empuje']], desde: 's' }, 'rep'];
+      /* (22-11-2026) de detrás de la cabeza la barra sube primero (gb) y después viene: en línea recta rozaba las púas del tupé */
+      c.posturas.gb = conAgarre(tumbadoEn(0, { hom: [3, 0], m: PRO_BARRA }), [G, 72, -68], [1, 0.3, 0.1]);
+      c.pasos = ['s', { sec: [['r', 0.7, 'suave'], ['g', 0.7, 'suave'], ['g', 0.25], ['gb', 0.45, 'entra'], ['b', 0.5, 'sale'], ['a', 1.3, 'empuje']], desde: 's' }, 'rep'];
       return c;
     })();
 
@@ -514,17 +516,21 @@
       var cruza = { tipo: 'suelta', palma: [0, -1, 0] };
       var I = ['mi', 'ti', 'td'], Dd = ['md', 'ti', 'td'];       /* lo que sigue apoyado mientras una mano cruza */
       return {
-        vista: [-58, -16], rastro: 'hombros', esfuerzo: [5, 11], clavos: ['mi', 'md', 'ti', 'td'], material: [BANCO_FONDOS],
+        vista: [-58, -16], rastro: 'hombros', esfuerzo: [7, 15], clavos: ['mi', 'md', 'ti', 'td'], material: [BANCO_FONDOS],
         posturas: {
           s: { pel: [0, 55, -9], hom: [-2.5, 0], p: { suelo: [10, 34], abre: 4, polo: [0, 1, 0.5] }, b: BORDE, m: EN_BORDE },
           a: arriba_,
           b: plana(sobre(arriba_, { pel: [0, 37.6, 9], cab: [-6, 0, 0] }), EN_BANCO),
           r1: sobre(arriba_, { col: [0, 0, 28], cab: [0, 10, 0], bd: { a: [20, 99, 34], polo: [-0.4, -1, 0.1] }, md: cruza }),
-          r2: sobre(arriba_, { col: [0, 0, -28], cab: [0, -10, 0], bi: { a: [-20, 99, 34], polo: [0.4, -1, 0.1] }, mi: cruza })
+          r2: sobre(arriba_, { col: [0, 0, -28], cab: [0, -10, 0], bi: { a: [-20, 99, 34], polo: [0.4, -1, 0.1] }, mi: cruza }),
+          /* (22-11-2026) la mano que cruza pasa junto a la cintura con el codo doblado hacia atrás (m1, m2): es por donde iba (de un
+             tirón, del banco a delante del pecho, el codo se doblaba 127° de paso), y ahora lo dice una postura */
+          m1: sobre(arriba_, { col: [0, 0, 14], cab: [0, 5, 0], bd: { a: [-24, 72, 16], polo: [-0.5, -0.2, -1] }, md: cruza }),
+          m2: sobre(arriba_, { col: [0, 0, -14], cab: [0, -5, 0], bi: { a: [24, 72, 16], polo: [0.5, -0.2, -1] }, mi: cruza })
         },
         inicio: 'a', encuadra: ['s'],
-        rep: [['r1', 0.8, 'suave', I], ['r1', 0.4, null, I], ['a', 0.7, 'suave', I], ['b', 1.3, 'freno'], ['b', 0.2], ['a', 1.0, 'empuje'],
-          ['r2', 0.8, 'suave', Dd], ['r2', 0.4, null, Dd], ['a', 0.7, 'suave', Dd], ['b', 1.3, 'freno'], ['b', 0.2], ['a', 1.0, 'empuje']],
+        rep: [['m1', 0.4, 'entra', I], ['r1', 0.4, 'sale', I], ['r1', 0.4, null, I], ['m1', 0.35, 'entra', I], ['a', 0.35, 'sale', I], ['b', 1.3, 'freno'], ['b', 0.2], ['a', 1.0, 'empuje'],
+          ['m2', 0.4, 'entra', Dd], ['r2', 0.4, 'sale', Dd], ['r2', 0.4, null, Dd], ['m2', 0.35, 'entra', Dd], ['a', 0.35, 'sale', Dd], ['b', 1.3, 'freno'], ['b', 0.2], ['a', 1.0, 'empuje']],
         pasos: [{ sec: [['a', 1.2, 'suave', ['mi', 'md']]], desde: 's' }, { sec: [['b', 1.5, 'freno'], ['b', 0.25], ['a', 1.1, 'empuje']], desde: 'a' }, 'rep']
       };
     })();

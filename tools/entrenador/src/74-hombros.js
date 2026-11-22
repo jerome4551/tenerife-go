@@ -26,7 +26,7 @@
        la muñeca, que no se le eche encima */
     COREO['press-hombros-barra-sentado'] = (function () {
       var G = 25, base = sentadoEnRespaldo(85, { cab: [4, 0, 0] }), h = resolver(base).i.hom;
-      var Hs = Math.round(h[1] + 51), Zs = 4, enSop = [0, Hs + 0.6, Zs + 4];
+      var Hs = Math.round(h[1] + 55), Zs = 4, enSop = [0, Hs + 0.6, Zs + 4];        /* (22-11-2026) el soporte, 4 cm más alto: al sacar la barra, pasaba rozando las púas del tupé */
       var P = function (extra) { return sobre(base, sobre({ m: PRESS }, extra || {})); };
       return {
         vista: [34, 100], rastro: 'manos', esfuerzo: [0], clavos: ['ti', 'td', 'mi', 'md'], reposo: ['s'],
@@ -35,7 +35,7 @@
           s: sobre(base, { b: { a: [14, 63.5, h[2] + 27], polo: [1, -0.3, -0.7] }, m: EN_MUSLO }),
           g: conAgarre(P({ cab: [-6, 0, 0] }), [G, enSop[1], enSop[2]], [1, -0.15, 0.6]),
           u: conAgarre(P({ cab: [0, 0, 0] }), [G, h[1] + 56.9, h[2] + 12], [1, -0.2, 0.3]),      /* sin bloquear los codos: a 15° de estirarse, como antes */
-          b: conAgarre(P({ cab: [-14, 0, 0] }), [G, h[1] + 1.5, h[2] + 16], [0.9, -1, 0])
+          b: conAgarre(P({ cab: [-16, 0, 0] }), [G, h[1] + 1.5, h[2] + 17], [0.9, -1, 0])
         },
         inicio: 'b', encuadra: ['s', 'g', 'u'],
         rep: [['u', 1.2, 'empuje'], ['u', 0.7], ['b', 1.7, 'freno'], ['b', 0.4]],
@@ -85,16 +85,22 @@
        miran hacia delante, con las mancuernas cerca y los codos sin bloquear; baja deshaciendo el giro */
     COREO['press-arnold'] = (function () {
       var base = sentadoAlBorde(0), h = resolver(base).i.hom;
+      /* (22-11-2026) el giro, repartido por toda la subida: a media altura (m) las palmas se miran y los codos ya se abren. Dicho solo
+         abajo (hacia él) y arriba (hacia delante), la palma pasaba de un lado al otro por un punto en el que no miraba a ningún sitio, y
+         el puño daba media vuelta de golpe a mitad de camino. La mancuerna gira con la mano (su eje, de atravesado a de frente y otra
+         vez atravesado); el sentido de cada eje está elegido para que la palma quede siempre del mismo lado de él */
+      var mano = function (bi, pi, bd, pd) { return { mi: { tipo: 'puno', barra: bi, palma: pi }, md: { tipo: 'puno', barra: bd, palma: pd } }; };
       return {
-        vista: [26, 76], rastro: 'manos', esfuerzo: [0], clavos: ['ti', 'td'],
+        vista: [26, 76], rastro: 'manos', esfuerzo: [0, 1], clavos: ['ti', 'td'],
         material: [BANCO_DETRAS, ['mancuernas']],
         posturas: {
-          b: conAgarre(sobre(base, { m: HACIA_EL }), [12, h[1] + 3, h[2] + 21], [0.25, -1, 0.3]),
-          u: conAgarre(sobre(base, { m: PRESS }), [15.5, h[1] + 57.4, h[2] + 3], [1, -0.2, 0.5])
+          b: conAgarre(sobre(base, mano([1, 0, 0], [0, 0, -1], [-1, 0, 0], [0, 0, -1])), [12, h[1] + 3, h[2] + 21], [0.25, -1, 0.3]),
+          m: conAgarre(sobre(base, mano([0, 0, -1], [-1, 0, 0], [0, 0, -1], [1, 0, 0])), [14.5, h[1] + 29, h[2] + 13], [0.8, -0.8, 0.35]),
+          u: conAgarre(sobre(base, mano([-1, 0, 0], [0, 0, 1], [1, 0, 0], [0, 0, 1])), [15.5, h[1] + 57.4, h[2] + 3], [1, -0.2, 0.5])
         },
         inicio: 'b',
-        rep: [['u', 1.5, 'empuje'], ['u', 0.4], ['b', 1.9, 'freno'], ['b', 0.4]],
-        pasos: ['b', 'rep', { rep: 1.5 }]
+        rep: [['m', 0.45, 'lineal'], ['u', 1.0, 'sale'], ['u', 0.4], ['m', 0.95, 'freno'], ['b', 0.95, 'freno'], ['b', 0.4]],
+        pasos: ['b', 'rep', { rep: 1.45 }]
       };
     })();
     /* en un banco inclinado a 45 grados: las mancuernas, sobre los muslos; empieza con los codos doblados y los brazos a la altura de
@@ -153,7 +159,7 @@
           a: enHombros(deP),
           d: enHombros({ pel: [0, PIE - 6.5, -2.5], giro: [0, 2, 0], p: pies, m: PRESS, cab: [-10, 0, 0] }),
           m: conAgarre({ p: pies, m: PRESS, cab: [-16, 0, 0] }, [G, h0[1] + 23, h0[2] + 16.5], [0.6, -0.8, 0.6]),
-          u: conAgarre({ p: pies, m: PRESS, cab: [-6, 0, 0] }, [G, h0[1] + 57.1, h0[2] + 9], [0.6, -0.2, 0.8])
+          u: conAgarre({ p: pies, m: PRESS, cab: [-9, 0, 0] }, [G, h0[1] + 57.1, h0[2] + 10.5], [0.6, -0.2, 0.8])
         },
         inicio: 'd', encuadra: ['u'],
         rep: [['a', 0.3, 'sale'], ['m', 0.12, 'lineal'], ['u', 0.43, 'sale'], ['u', 0.55], ['m', 0.96, 'lineal'], ['a', 0.54, 'lineal'], ['a', 0.4], ['d', 0.8, 'suave'], ['d', 0.2]],
@@ -219,7 +225,9 @@
         posturas: {
           s: sobre(PIES_L, { b: aLosLados(8), m: SUELTA }), g: alAsa(HP),
           a: conAgarre(sobre(P, { mi: HACIA_EL }), [-7, 85, 17], [0.7, -0.3, 0.7], 'bi'),
-          b: sobre(P, { bi: { a: [D.hombroX + 49, HOMBRO + 1, 7], polo: [0.3, -0.35, -1] }, mi: ABAJO_Z })
+          /* (22-11-2026) arriba, el asa va de delante atrás dicha en el sentido que deja la palma del mismo lado de ella que abajo
+             (con el otro, a medio camino la palma no sabía de qué lado quedar y el puño daba media vuelta de golpe al bajar) */
+          b: sobre(P, { bi: { a: [D.hombroX + 49, HOMBRO + 1, 7], polo: [0.3, -0.35, -1] }, mi: { tipo: 'puno', barra: [0, 0, -1], palma: [0, -1, 0] } })
         },
         inicio: 'a', encuadra: ['s', 'g'],
         rep: [['b', 1.3, 'empuje'], ['b', 0.7], ['a', 2.0, 'freno'], ['a', 0.4]],
@@ -230,16 +238,19 @@
     COREO['apertura-inversa-polea-un-brazo'] = (function () {
       var HP = 124, P = sobre(PIES_L, OTRO_SUELTO), ASA_V = { tipo: 'puno', barra: [0, 1, 0], palma: [-1, 0, 0] };
       return {
-        vista: [14, 152], rastro: 'mi', esfuerzo: [0], clavos: ['ti', 'td'], reposo: ['s'],
+        vista: [14, 152], rastro: 'mi', esfuerzo: [0, 1], clavos: ['ti', 'td'], reposo: ['s'],
         material: [poleaLado(HP)],
         posturas: {
           s: sobre(PIES_L, { b: aLosLados(8), m: SUELTA }), g: alAsa(HP),
           a: conAgarre(sobre(P, { mi: ASA_V, col: [0, 0, -6] }), [-20, HOMBRO - 6, 27], [0.5, -0.7, 0.4], 'bi'),
+          /* (22-11-2026) a medio camino (m), el brazo va por delante del hombro, casi tan largo como al acabar: el arco es amplio. De un
+             tirón de cruzado a abierto, la mano pasaba a 25 cm del hombro, con el codo doblado 129° */
+          m: conAgarre(sobre(P, { mi: { tipo: 'puno', barra: [0, 1, 0], palma: [-1, 0, 0.2] }, col: [0, 0, -3], hom: { i: [0, -1.2], d: [0, 0] } }), [D.hombroX + 27, HOMBRO - 4, 47], [0.6, -0.7, -0.2], 'bi'),
           b: sobre(P, { hom: { i: [0, -2.5], d: [0, 0] }, bi: { a: [D.hombroX + 46.6, HOMBRO - 2, -19], polo: [0.4, -0.5, -1] }, mi: { tipo: 'puno', barra: [0, 1, 0], palma: [-0.4, 0, 0.9] } })
         },
         inicio: 'a', encuadra: ['s', 'g'],
-        rep: [['b', 1.4, 'empuje'], ['b', 0.4], ['a', 2.0, 'freno'], ['a', 0.4]],
-        pasos: [{ sec: [['s', 0.9], ['g', 1.1, 'suave'], ['g', 0.25], ['a', 1.1, 'suave']], desde: 's' }, 'rep', { rep: 1.8 }]
+        rep: [['m', 0.5, 'lineal'], ['b', 1.0, 'sale'], ['b', 0.4], ['m', 1.0, 'freno'], ['a', 1.0, 'freno'], ['a', 0.4]],
+        pasos: [{ sec: [['s', 0.9], ['g', 1.1, 'suave'], ['g', 0.25], ['a', 1.1, 'suave']], desde: 's' }, 'rep', { rep: 1.9 }]
       };
     })();
     /* la rotación externa: la polea, a la altura de la cintura (la del codo); el codo, doblado a 90 grados y pegado al costado, no se
@@ -650,7 +661,7 @@
        va): queda en una línea */
     COREO['pino-libre'] = (function () {
       /* la cabeza, algo echada atrás (mira a las manos): así el tupé no llega al suelo */
-      var w = [20, Y_MUN, -4], suelto = { col: [-9, 0, 0], cab: [-36, 0, 0], p: { e: 7, z: 170, c: 3 } };
+      var w = [20, Y_MUN, -4], suelto = { col: [-9, 0, 0], cab: [-36, 0, 0], p: { e: 7, z: 170, c: 0 } };        /* c: 0 (22-11-2026): con z: 170 la rodilla doblaba 3° al revés */
       return {
         vista: [86, [-146, 12]], corre: [46, 0], isometrico: 'p', clavos: ['mi', 'md'],
         posturas: {

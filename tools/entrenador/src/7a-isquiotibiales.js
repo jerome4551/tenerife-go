@@ -124,9 +124,13 @@
     /* ══════════════════════════════ EL PESO MUERTO A UNA PIERNA ══════════════════════════════
        Se escribe con el apoyo en la pierna izquierda (su pie no se mueve: en x = 9): la derecha va atrás, recta y en línea con el tronco,
        y lo que se lleva va en la mano derecha, la contraria al apoyo. El otro lado, reflejado. El pie que deja el suelo se despega
-       primero un poco, plano y por detrás (despegado): girando desde el suelo con la pierna recta, la punta lo cortaría. Mientras se mueve,
-       los dos tobillos van clavados a su camino (el del pie libre va en línea recta de una postura a otra: suelto, la pierna se estiraría
-       antes de irse atrás y la zapatilla cortaría el suelo); mientras se mantiene una postura, solo el de apoyo */
+       primero un poco, plano y por detrás (despegado): girando desde el suelo con la pierna recta, la punta lo cortaría. Mientras el pie
+       libre se despega y se va atrás (y al volver), los dos tobillos van clavados a su camino (el del pie libre va en línea recta de
+       una postura a otra: suelto, la pierna se estiraría antes de irse atrás y la zapatilla cortaría el suelo); mientras se mantiene
+       una postura, solo el de apoyo. Y (22-11-2026) entre las dos posturas inclinadas (c y b), también solo el de apoyo: ahí la
+       pierna libre va recta y en línea con el tronco en las dos, y gira con él; clavada a la línea recta entre sus dos tobillos (medio
+       metro de cuerda), se doblaba de paso de 19° a 33° y, en el vídeo, la rodilla cambiaba de lado de golpe (27 cm en un cuadro, con
+       la pesa rusa) */
     var APOYO = { suelo: [9, 0], abre: 4, polo: [0.05, 0.1, 1] }, NEUTRA = { tipo: 'puno', prono: 0 };
     function dePie(extra) { return sobre({ pel: [0, PIE - 2, 0], pi: APOYO, pd: reflejo(APOYO) }, extra || {}); }
     function despegado(extra) {
@@ -155,8 +159,8 @@
       return {
         vista: [[-64, 12], [-114, 14]], rastro: 'pel', esfuerzo: [], clavos: T2, clavosEn: { c: KD, b: KD, b2: KI },
         posturas: P, inicio: 'a', encuadra: ['a', 'b', 'b2'],
-        pasos: ['a', { sec: [['m', 0.6, 'entra'], ['c', 1.3, 'sale']], desde: 'a' }, { sec: [['b', 1.8, 'suave']], desde: 'c' },
-                { sec: [['c', 0.7, 'entra'], ['m', 0.5, 'lineal'], ['a', 0.45, 'sale'], ['a', 0.2], ['m2', 0.45, 'entra'], ['c2', 0.6, 'lineal'], ['b2', 0.9, 'sale']], desde: 'b' }]
+        pasos: ['a', { sec: [['m', 0.6, 'entra'], ['c', 1.3, 'sale']], desde: 'a' }, { sec: [['b', 1.8, 'suave', KD]], desde: 'c' },
+                { sec: [['c', 0.7, 'entra', KD], ['m', 0.5, 'lineal'], ['a', 0.45, 'sale'], ['a', 0.2], ['m2', 0.45, 'entra'], ['c2', 0.6, 'lineal'], ['b2', 0.9, 'sale', KI]], desde: 'b' }]
       };
     })();
 
@@ -170,8 +174,8 @@
       return {
         vista: [[-58, 12], [-112, 14]], rastro: 'md', esfuerzo: [3], clavos: T2, clavosEn: { a: KI, c: KI, b: KI }, material: [['kettlebell', { lado: 'd', cuelga: true }]],
         posturas: { a0: a0, a: a, c: c, b: b }, inicio: 'a', encuadra: ['a0', 'b'],
-        rep: [['c', 0.9, 'entra'], ['b', 1.0, 'sale'], ['b', 0.35], ['c', 0.6, 'entra'], ['a', 0.8, 'sale'], ['a', 0.5]],
-        pasos: [{ sec: [['a0', 0.6], ['a', 0.9, 'suave']], desde: 'a0' }, { sec: [['c', 0.95, 'entra'], ['b', 1.05, 'sale']], desde: 'a' }, { rep: 2.25 }]
+        rep: [['c', 0.9, 'entra'], ['b', 1.0, 'sale', KI], ['b', 0.35], ['c', 0.6, 'entra', KI], ['a', 0.8, 'sale'], ['a', 0.5]],
+        pasos: [{ sec: [['a0', 0.6], ['a', 0.9, 'suave']], desde: 'a0' }, { sec: [['c', 0.95, 'entra'], ['b', 1.05, 'sale', KI]], desde: 'a' }, { rep: 2.25 }]
       };
     })();
 
@@ -185,8 +189,8 @@
       return {
         vista: [[-58, 12], [-112, 14]], rastro: 'md', esfuerzo: [2], clavos: T2, clavosEn: { a: KI, c: KI, b: KI }, material: [['mancuernas', { lado: 'd' }]],
         posturas: { a: a, c: c, b: b }, inicio: 'a', encuadra: ['b'],
-        rep: [['c', 0.9, 'entra'], ['b', 1.0, 'sale'], ['b', 0.3], ['c', 0.6, 'entra'], ['a', 0.8, 'sale'], ['a', 1.0]],
-        pasos: ['a', { sec: [['c', 1.5, 'suave']], desde: 'a' }, { sec: [['b', 1.5, 'suave']], desde: 'c' }, { rep: 2.2 }]
+        rep: [['c', 0.9, 'entra'], ['b', 1.0, 'sale', KI], ['b', 0.3], ['c', 0.6, 'entra', KI], ['a', 0.8, 'sale'], ['a', 1.0]],
+        pasos: ['a', { sec: [['c', 1.5, 'suave']], desde: 'a' }, { sec: [['b', 1.5, 'suave', KI]], desde: 'c' }, { rep: 2.2 }]
       };
     })();
 
@@ -210,8 +214,8 @@
         vista: [[-62, 12], [-114, 14]], rastro: 'mi', esfuerzo: [2], clavos: T2, clavosEn: { a: KD, c: KD, b: KD, t: KD }, reposo: ['s'],
         material: [['polea', { en: [-XC, ZC], alto: 16, a: 'i', agarre: 'asa', reposo: [-R[0], R[1], R[2]], encuadre: 150 }]],
         posturas: P, inicio: 't', encuadra: ['s', 'b'],
-        rep: [['c', 0.8, 'entra'], ['b', 1.0, 'sale'], ['b', 0.3], ['c', 0.6, 'entra'], ['t', 0.9, 'sale'], ['t', 0.6]],
-        pasos: ['s', { sec: [['g', 1.2, 'suave'], ['g', 0.25], ['a', 1.3, 'suave']], desde: 's' }, { sec: [['c', 0.75, 'entra'], ['b', 0.95, 'sale']], desde: 'a' }, { rep: 2.1 }]
+        rep: [['c', 0.8, 'entra'], ['b', 1.0, 'sale', KD], ['b', 0.3], ['c', 0.6, 'entra', KD], ['t', 0.9, 'sale'], ['t', 0.6]],
+        pasos: ['s', { sec: [['g', 1.2, 'suave'], ['g', 0.25], ['a', 1.3, 'suave']], desde: 's' }, { sec: [['c', 0.75, 'entra'], ['b', 0.95, 'sale', KD]], desde: 'a' }, { rep: 2.1 }]
       };
     })();
 
@@ -482,11 +486,14 @@
       var dos = { p: PIES_SENTADO }, una = { pi: est, ti: T.t, pd: reflejo(PIES_SENTADO) }, medio = { pi: { a: [11, 12.5, 49], polo: [0.1, 1, 0.5] }, ti: { punta: [0, 0.35, 0.937], arriba: [0, 0.937, -0.35] }, pd: reflejo(PIES_SENTADO) };
       P.s = con(2, 0, dos); P.h = con(2, 0, medio); P.a = con(2, 0, una); P.b = con(32, 5, una);
       P.h2 = refleja(P.h); P.a2 = refleja(P.a); P.b2 = refleja(P.b);
+      var K4M = T2.concat(['mi', 'md']);
       return {
         vista: [[58, 12], [108, 14]], isometrico: 'b', clavos: T2, material: [BANCO_SENTADO],
         posturas: P, inicio: 's', encuadra: ['s', 'b'],
-        pasos: [{ sec: [['s', 0.5], ['h', 0.5, 'entra'], ['a', 0.55, 'sale']], desde: 's' }, { sec: [['b', 1.8, 'suave']], desde: 'a' },
-                { sec: [['b', 0.4], ['a', 0.7, 'suave'], ['h', 0.4, 'entra'], ['s', 0.4, 'sale'], ['h2', 0.4, 'entra'], ['a2', 0.4, 'sale'], ['b2', 0.9, 'suave']], desde: 'b' }]
+        /* al inclinarse, las manos se quedan donde descansan (clavadas a su sitio en el muslo, que no se mueve): sueltas, al resbalar
+           unos milímetros pisaban el bajo del pantalón y daban un saltito (2 cm) */
+        pasos: [{ sec: [['s', 0.5], ['h', 0.5, 'entra'], ['a', 0.55, 'sale']], desde: 's' }, { sec: [['b', 1.8, 'suave', K4M]], desde: 'a' },
+                { sec: [['b', 0.4, null, K4M], ['a', 0.7, 'suave', K4M], ['h', 0.4, 'entra'], ['s', 0.4, 'sale'], ['h2', 0.4, 'entra'], ['a2', 0.4, 'sale'], ['b2', 0.9, 'suave', K4M]], desde: 'b' }]
       };
     })();
 

@@ -9,15 +9,15 @@
   var T = window.TG_ENTRENADOR;
   if (!T || typeof T._trozo !== 'function') return;
   T._trozo('abdomen', function (N) {
-    var ALTO_MUN = N.ALTO_MUN, C = N.C, COLGADO = N.COLGADO, COREO = N.COREO, D = N.D, EN_BARRA = N.EN_BARRA, EN_SUELO = N.EN_SUELO, PIE = N.PIE,
-        PIES_PUNTA = N.PIES_PUNTA, RAD = N.RAD, SUELTA = N.SUELTA, SUPINO_SUELO = N.SUPINO_SUELO, TOB_PUNTA = N.TOB_PUNTA, V = N.V,
-        aLocal = N.aLocal, aLosLados = N.aLosLados, aUnBrazo = N.aUnBrazo, abre = N.abre, aplicar = N.aplicar, apoyada = N.apoyada, arco = N.arco,
-        bajoZapa = N.bajoZapa, baseDe = N.baseDe, baseEjes = N.baseEjes, busca = N.busca, cabezaAPlano = N.cabezaAPlano, colgando = N.colgando,
-        conAgarre = N.conAgarre, curva = N.curva, el = N.el, entre = N.entre, estirado = N.estirado, flexion = N.flexion, girar = N.girar,
-        giroX = N.giroX, giroY = N.giroY, inclinado = N.inclinado, largo = N.largo, lejos = N.lejos, linea = N.linea, mas = N.mas, menos = N.menos,
-        mezcla = N.mezcla, plano = N.plano, por = N.por, punto = N.punto, refleja = N.refleja, reflejo = N.reflejo, resolver = N.resolver,
-        signo = N.signo, sinParte = N.sinParte, sobre = N.sobre, tabla = N.tabla, tablaAlta = N.tablaAlta, troncoAPlano = N.troncoAPlano,
-        unidad = N.unidad;
+    var ALTO_MUN = N.ALTO_MUN, C = N.C, COLGADO = N.COLGADO, COREO = N.COREO, D = N.D, Director = N.Director, EN_BARRA = N.EN_BARRA,
+        EN_SUELO = N.EN_SUELO, PIE = N.PIE, PIES_PUNTA = N.PIES_PUNTA, RAD = N.RAD, SUELTA = N.SUELTA, SUPINO_SUELO = N.SUPINO_SUELO,
+        TOB_PUNTA = N.TOB_PUNTA, V = N.V, aLocal = N.aLocal, aLosLados = N.aLosLados, aUnBrazo = N.aUnBrazo, abre = N.abre, aplicar = N.aplicar,
+        apoyada = N.apoyada, arco = N.arco, bajoZapa = N.bajoZapa, baseDe = N.baseDe, baseEjes = N.baseEjes, busca = N.busca,
+        cabezaAPlano = N.cabezaAPlano, colgando = N.colgando, conAgarre = N.conAgarre, curva = N.curva, el = N.el, entre = N.entre,
+        estirado = N.estirado, flexion = N.flexion, girar = N.girar, giroX = N.giroX, giroY = N.giroY, inclinado = N.inclinado, largo = N.largo,
+        lejos = N.lejos, linea = N.linea, mas = N.mas, menos = N.menos, mezcla = N.mezcla, plano = N.plano, por = N.por, punto = N.punto,
+        refleja = N.refleja, reflejo = N.reflejo, resolver = N.resolver, signo = N.signo, sinParte = N.sinParte, sobre = N.sobre, tabla = N.tabla,
+        tablaAlta = N.tablaAlta, troncoAPlano = N.troncoAPlano, unidad = N.unidad;
   /* ───────────────────────── las coreografías: ABDOMEN Y LUMBARES (bloque 12) ─────────────────────────
      Las mismas reglas que en 70-coreografias.js: cada una sale de los pasos verificados de su ficha y no añade técnica
      que la ficha no diga. Van por familias: las planchas sobre las manos (alta, con toque de hombro, arriba y abajo y con
@@ -184,11 +184,18 @@
       var b0 = sobre(base, { pd: { a: [-10, 46, ZR4 - 77.92], polo: [0, -1, 0] }, td: PIE_ATRAS, mi: { tipo: 'abierta', prono: 0 } });
       var b = estirado(b0, mas(resolver(b0).i.hom, [0, 1.5, 100]), 'bi', 0.3, [1, -0.4, 0]);
       var N1 = ['md', 'ti'], N2 = ['mi', 'td'];
+      /* (22-11-2026) a medio camino: la mano, que va en línea recta del suelo a su sitio de delante, pasa cerca del hombro con el codo
+         doblado (92°), como al alcanzar algo. Se veía así, pero no lo decía ninguna postura; ahora lo dice esta (m: todo a mitad de
+         camino, y la mano con la palma aún hacia el suelo), y la auditoría sabe que ese codo se dobla porque se quiere */
+      var Ea = resolver(a), Eb = resolver(b), med = function (p, q) { return mezcla(p, q, 0.5); };
+      var m = sobre(a, { pel: med(Ea.pel, Eb.pel), giro: [0, (a.giro[1] + b.giro[1]) / 2, 0], bi: { a: med(Ea.i.mun, Eb.i.mun), polo: [0.4, 0.2, -1] }, mi: { tipo: 'abierta', palma: [0, -1, 0] },
+        pd: { a: med(Ea.d.tob, Eb.d.tob), polo: [0, -1, 0.15] }, td: { punta: unidad(med(Ea.d.punta, Eb.d.punta)), arriba: unidad(med(Ea.d.arriba, Eb.d.arriba)) } });
       return {
-        vista: [[-78, 12], [-142, 22]], rastro: 'mi', esfuerzo: [0, 1, 4, 5], clavos: K4, clavosEn: { b: N1, b2: N2 },
-        posturas: { a: a, b: b, b2: refleja(b) }, inicio: 'a',
-        rep: [['b', 1.4, 'suave', K4], ['b', 0.9, null, N1], ['a', 1.5, 'freno', K4], ['a', 0.3, null, K4], ['b2', 1.4, 'suave', K4], ['b2', 0.9, null, N2], ['a', 1.5, 'freno', K4], ['a', 0.3, null, K4]],
-        pasos: ['a', { sec: [['b', 1.5, 'suave', K4]], desde: 'a' }, { rep: 2.3 }]
+        vista: [[-78, 12], [-142, 22]], rastro: 'mi', esfuerzo: [0, 1, 2, 6, 7, 8], clavos: K4, clavosEn: { b: N1, b2: N2 },
+        posturas: { a: a, m: m, b: b, m2: refleja(m), b2: refleja(b) }, inicio: 'a',
+        rep: [['m', 0.7, 'entra', K4], ['b', 0.7, 'sale', K4], ['b', 0.9, null, N1], ['m', 0.75, 'entra', K4], ['a', 0.75, 'sale', K4], ['a', 0.3, null, K4],
+              ['m2', 0.7, 'entra', K4], ['b2', 0.7, 'sale', K4], ['b2', 0.9, null, N2], ['m2', 0.75, 'entra', K4], ['a', 0.75, 'sale', K4], ['a', 0.3, null, K4]],
+        pasos: ['a', { sec: [['m', 0.75, 'entra', K4], ['b', 0.75, 'sale', K4]], desde: 'a' }, { rep: 2.3 }]
       };
     })();
 
@@ -317,6 +324,10 @@
     function vueltaRecta(P) {
       var v = darLaVuelta(P, 'v', 'a', false);
       P.vq = piernaArriba(piernaAbajo(P.vq, 0, 6), 2); P.vq2 = refleja(P.vq);
+      /* rueda a paso constante: lo que tarda en arrancar y en frenar (el doble que cada uno de los dos tramos de en medio) hace que
+         la velocidad no cambie de golpe de un tramo al siguiente. Con los cuatro iguales se doblaba al empezar a frenar, y los pies,
+         que con las piernas estiradas quedan lejos y van un instante detrás de la cadera, daban un salto (5 cm) */
+      v[1][1] = 0.44; v[2][1] = 0.22; v[3][1] = 0.22; v[4][1] = 0.44;
       return v.map(SIN_CLAVOS);
     }
     /* la plancha lateral: tumbado de lado, con las piernas estiradas y el antebrazo apoyado bajo el hombro; eleva la cadera hasta apoyarse
@@ -608,11 +619,18 @@
       /* hacia su izquierda: el giro de la columna, con el signo que lleva hacia allí el hombro derecho (se mira) */
       var gira = function (g) { return sobre(a, { col: [6, 0, g], cab: [8, g * 0.45, 0] }); };
       var g0 = resolver(gira(40)).d.hom[0] > resolver(gira(-40)).d.hom[0] ? gira(40) : gira(-40);
-      var g = conAgarre(conAgarre(g0, [28, 5, 3], [1, 0.2, -0.6], 'bi'), [21.5, 5, 8], [-0.2, -0.4, 1], 'bd');
+      /* (22-11-2026) la mano de lejos va hacia donde roza la otra, hasta donde llega con el codo aún algo doblado (el suelo junto a la
+         cadera contraria le queda a más de un brazo: estirándose del todo hacia él, el brazo recto dejaba de decir hacia dónde miraba
+         la mano, que giraba de golpe). Y de un lado al otro pasa por el centro (a), con las manos ante el pecho: de un tirón, los
+         brazos cruzaban doblándose 129° por el camino */
+      var hd = resolver(g0).d.hom, L2 = D.brazo + D.antebrazo, lejos = mas(hd, por(unidad(menos([22.7, 22.1, 3.9], hd)), L2 - 2));
+      var g = sobre(conAgarre(g0, [28, 5, 3], [1, 0.2, -0.6], 'bi'), { bd: { a: lejos, polo: [-0.2, -0.4, 1] } });
       return {
-        vista: [[38, 16], [-34, 26]], rastro: 'manos', esfuerzo: [0, 1, 2, 3],
+        vista: [[38, 16], [-34, 26]], rastro: 'manos', esfuerzo: [0, 1, 2, 3, 4, 5],
         posturas: { s: s, a: a, g: g, g2: refleja(g) }, inicio: 'g', encuadra: ['s', 'g', 'g2'],
-        rep: [['g2', 1.0, 'suave'], ['g2', 0.3], ['g', 1.0, 'suave'], ['g', 0.3]],
+        /* la repetición empieza por la pausa: al llegar a ella desde el paso anterior, el Director mezcla un instante lo que venía
+           haciendo con lo que toca, y si lo que toca es ya levantar la mano por encima del muslo, la mezcla lo atraviesa */
+        rep: [['g', 0.3], ['a', 0.5, 'entra'], ['g2', 0.5, 'sale'], ['g2', 0.3], ['a', 0.5, 'entra'], ['g', 0.5, 'sale']],
         pasos: ['s', { sec: [['a', 0.9, 'suave'], ['a', 0.2], ['g', 0.9, 'suave']], desde: 's' }, 'rep']
       };
     })();
@@ -653,13 +671,17 @@
     })();
     /* con los pies apoyados: lo mismo, pero solo despega la cadera: los talones se quedan en el suelo y descargan parte del peso */
     COREO['l-sit-pies-apoyados'] = (function () {
-      var Q = sentadoL(0, 4, function (P) { return P; }, tendidas), tob = resolver(Q.s).i.tob;
-      /* al subir la cadera la pierna gira sobre el talón: el tobillo no se mueve y el pie se dobla lo justo (se busca) para seguir posado */
-      var con = function (g) { return sobre(Q.b, { p: { a: [5, tob[1], tob[2]], polo: [0, 1, 0] }, t: { tob: g } }); };
-      var b = con(busca(function (g) { return bajoZapa(resolver(con(g)).i, 'i'); }, -0.2, -20, 20));
+      var Q = sentadoL(0, 4, function (P) { return P; }, tendidas), Es = resolver(Q.s).i, tob = Es.tob;
+      /* al subir la cadera la pierna gira sobre el talón: el tobillo no se mueve y el pie se dobla lo justo (se busca) para seguir posado.
+         El pie se dice en el mundo (la punta hacia arriba, «g» grados hacia delante): dicho por el tobillo sigue a la rodilla, y con la
+         pierna casi recta la rodilla cambia de idea sobre hacia dónde se dobla (a media subida el pie giraba 30° de golpe) */
+      var pieEn = function (g) { var r = g * RAD; return { punta: [0, Math.cos(r), Math.sin(r)], arriba: [0, Math.sin(r), -Math.cos(r)] }; };
+      var con = function (g) { return sobre(Q.b, { p: { a: [5, tob[1], tob[2]], polo: [0, 1, 0] }, t: pieEn(g) }); };
+      var b = con(busca(function (g) { return bajoZapa(resolver(con(g)).i, 'i'); }, -0.2, -25, 25));
+      var s0 = sobre(Q.s, { t: pieEn(Math.atan2(Es.punta[2], Es.punta[1]) / RAD) });
       return {
         vista: [[64, 12], [28, 24]], rastro: 'pel', isometrico: 'b', clavos: K4,
-        posturas: { s: Q.s, b: b }, inicio: 's', encuadra: ['s', 'b'],
+        posturas: { s: s0, b: b }, inicio: 's', encuadra: ['s', 'b'],
         pasos: ['s', { sec: [['b', 1.5, 'empuje']], desde: 's' }, 'b']
       };
     })();
@@ -974,17 +996,23 @@
        la esfera que le deja el anclaje) y lo empuja hacia arriba hasta estirar los brazos en alto; gira el tronco para bajar la barra
        en arco hacia un lado de la cadera (el izquierdo); y la sube con control hasta la posición inicial */
     COREO['rotacion-landmine'] = (function () {
-      var PIV = [0, 5, 179], R = 206.7;
+      var PIV = [0, 5, 179], R = 206.7, PAL_L = [[0.89, -0.45, -0.07], [-0.49, -0.76, -0.43]];
       var punta = function (x, y) { return [x, y, PIV[2] - Math.sqrt(R * R - x * x - (y - PIV[1]) * (y - PIV[1]))]; };
-      var con = function (t, extra) {
-        var d = unidad(menos(PIV, t)), P = sobre({ pel: [0, PIE - 1.5, 0], p: ANCHOS, m: { tipo: 'puno', barra: d, palma: [-1, 0, 0] } }, extra || {});
+      /* cada mano dice la barra tal como va (dicha una vez para las dos, la derecha la llevaba reflejada) y hacia dónde mira su palma:
+         arriba, la una hacia la otra (pi, pd: si no se dicen) */
+      var con = function (t, extra, pi, pd) {
+        var d = unidad(menos(PIV, t)), P = sobre({ pel: [0, PIE - 1.5, 0], p: ANCHOS, mi: { tipo: 'puno', barra: d, palma: pi || [-1, 0, 0] }, md: { tipo: 'puno', barra: d, palma: pd || [1, 0, 0] } }, extra || {});
         return conAgarre(conAgarre(P, [t[0] + 4.3, t[1], t[2]], [1, -0.6, -0.2], 'bi'), [t[0] - 4.3, t[1], t[2]], [-1, -0.6, -0.2], 'bd');
       };
       var c = con(punta(0, 139)), t = con(punta(0, 166), { hom: [1.5, 0], pel: [0, PIE - 1.5, 2.5], giro: [0, 4, 0] });
       /* hacia la cadera izquierda: el tronco gira hacia allí (el signo, el que adelanta el hombro derecho) y se inclina un poco */
       var gira = function (g) { return { pel: [2.5, PIE - 2.4, 0], col: [6, 5, g], cab: [4, g * 0.3, 0] }; };
       var gl = resolver(sobre({ p: ANCHOS }, gira(36))).d.hom[2] > resolver(sobre({ p: ANCHOS }, gira(-36))).d.hom[2] ? 36 : -36;
-      var l = con(punta(29, 91), gira(gl));
+      /* (22-11-2026) abajo, las manos siguen del lado de la barra por el que la cogieron arriba (no la sueltan): al bajarla junto a la
+         cadera, la izquierda queda entre la barra y el cuerpo, con la palma hacia fuera, y la derecha, que cruza, encima, con la palma
+         hacia abajo. Dichas «la una hacia la otra» también abajo, a media bajada la palma dejaba de decir de qué lado de la barra
+         quedaba la mano y los dos puños daban media vuelta de golpe (en cada repetición, al bajar y al subir) */
+      var l = con(punta(29, 91), gira(gl), PAL_L[0], PAL_L[1]);
       return {
         vista: [[-34, 10], [18, 8]], rastro: 'manos', esfuerzo: [2, 3], clavos: T2,
         material: [['landmine', { pivote: [PIV[0], PIV[2]], a: 'manos', sobra: 8, dentro: 26, discos: 13 }]],

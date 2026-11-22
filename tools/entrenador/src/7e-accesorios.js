@@ -197,11 +197,14 @@
          metería en el tupé */
       var enArco = function (z, cab, polo, dedos) { return conBalon(sobre(dePuntas, { cab: [cab, 0, 0] }), [0, hp[1] + Math.sqrt(57.3 * 57.3 - z * z), hp[2] + z], R, polo, dedos); };
       return {
-        vista: [-56, 26], rastro: 'manos', esfuerzo: [0, 1, 2, 3, 6, 7, 8, 9], clavos: T4,
+        vista: [-56, 26], rastro: 'manos', esfuerzo: [0, 1, 2, 3, 6, 7, 8, 9, 10], clavos: T4,
         material: [['balon_medicinal', { radio: R, suelta: [{ de: 'x', a: 's', en: [0, R, 13], u: [0.3, 0.8], va: 'entra', vuelve: 'sale' }] }]],
         posturas: {
           a: alCuerpo({ p: pies }, [0, 9, 18.4 + R], R, [0.8, -1, 0], [0, 0.75, 0.66]),
           q: conBalon(bisagra(63, -25, 58), [0, 37, -9], R, [1, 0.1, -0.5], [0, -0.8, -0.6]),
+          /* (22-11-2026) al levantarlo, el balón pasa pegado al cuerpo, con los codos bien doblados (n): es por donde iba, a medio camino
+             entre cogerlo (q) y tenerlo delante (m1), y ahora lo dice una postura (lo que se dobla tanto de paso tiene que decirse) */
+          n: conBalon({ pel: [0, 71.5, -17], giro: [0, 40, 0], cab: [-24, 0, 0], p: pies }, [0, 82.5, 27.5], R, [1, -0.25, -0.25], [0, -0.82, 0.57]),
           m1: conBalon({ pel: [0, 80, -9], giro: [0, 22, 0], cab: [-12, 0, 0], p: pies }, [0, 128, 56], R, [1, -0.6, 0], [0, 0.3, 0.95]),
           k: conBalon(bisagra(72, -15, 36), [0, 46, 25], R, [1, -0.3, -0.3], [0, -0.95, 0.3]),
           m2: enArco(17, -28, [1, -0.1, 0.6], [0, 0.95, 0.3]),
@@ -211,8 +214,8 @@
           s: conBalon(bisagra(66, -23, 52), [0, 33, 21], R, [1, -0.4, -0.3], [0, -0.9, 0.44])
         },
         inicio: 'r', encuadra: ['a', 'r'],
-        rep: [['t', 0.07, 'lineal'], ['m2', 0.07, 'lineal'], ['x', 0.2, 'lineal'], ['s', 0.3, 'sale'], ['s', 0.5], ['q', 0.75, 'suave'], ['m1', 0.4, 'lineal'], ['m2', 0.25, 'lineal'], ['t', 0.11, 'lineal'], ['r', 0.16, 'sale'], ['r', 0.3]],
-        pasos: ['a', { sec: [['k', 0.8, 'entra'], ['q', 0.6, 'sale']], desde: 'a' }, { sec: [['m1', 0.45, 'lineal'], ['m2', 0.28, 'lineal'], ['t', 0.12, 'lineal'], ['r', 0.18, 'sale']], desde: 'q' }, 'rep']
+        rep: [['t', 0.07, 'lineal'], ['m2', 0.07, 'lineal'], ['x', 0.2, 'lineal'], ['s', 0.3, 'sale'], ['s', 0.5], ['q', 0.75, 'suave'], ['n', 0.2, 'lineal'], ['m1', 0.2, 'lineal'], ['m2', 0.25, 'lineal'], ['t', 0.11, 'lineal'], ['r', 0.16, 'sale'], ['r', 0.3]],
+        pasos: ['a', { sec: [['k', 0.8, 'entra'], ['q', 0.6, 'sale']], desde: 'a' }, { sec: [['n', 0.23, 'lineal'], ['m1', 0.22, 'lineal'], ['m2', 0.28, 'lineal'], ['t', 0.12, 'lineal'], ['r', 0.18, 'sale']], desde: 'q' }, 'rep']
       };
     })();
 
@@ -306,8 +309,9 @@
     /* a una pierna: con las piernas estiradas y los talones en la pelota, sube la cadera; levanta una pierna recta hacia arriba; dobla la
        rodilla de la que queda en la pelota y acerca el talón mientras sube más la cadera; y la estira despacio, sin bajar la otra */
     COREO['curl-femoral-fitball-una-pierna'] = (function () {
-      /* la pierna derecha, recta hacia arriba: a plomo desde la cadera */
-      var alta = function (P) { var c = resolver(P).d.cad; return sobre(P, { pd: { a: [c[0], c[1] + 77.6, c[2] + 4], polo: [0, 0.2, 1] }, td: { tob: 6 } }); };
+      /* la pierna derecha, recta hacia arriba: a plomo desde la cadera. La rodilla (10° doblada) mira hacia la cabeza, que es hacia donde
+         dobla con la pierna en alto (22-11-2026: miraba hacia los pies, 3,4 cm al revés, y al levantarla el pie se daba la vuelta de golpe) */
+      var alta = function (P) { var c = resolver(P).d.cad; return sobre(P, { pd: { a: [c[0], c[1] + 77.6, c[2] + 4], polo: [0, 0.2, -1] }, td: { tob: 6 } }); };
       return {
         vista: [74, [30, 32]], picado: 16, rastro: 'pel', esfuerzo: [0], clavos: ['mi', 'md'],
         material: [pelota({ sigue: { que: 'pierna', lado: 'i', x: 2 }, en: [2, 98] })],
@@ -541,17 +545,13 @@
        abajo y atrás, codos hacia el suelo y la barbilla a la altura de la barra); y baja con control hasta estirar los brazos.
        Las posturas son las de las dominadas del bloque 1, colgado 3 cm más atrás (masAtras, en 72-dorsal.js: saliendo de justo debajo
        de la barra, a media subida el pelo se le mete en ella; aquí, 3,2 cm en el vídeo). El disco cuelga de canto entre los muslos */
-    function colgadoAtras(P, dz) {
-      var h = resolver(P).i.hom, a = ALTO_BARRA - h[1], b = P.b.a[2] - h[2];
-      return sobre(P, { pel: [P.pel[0], P.pel[1] + a - Math.sqrt(a * a + b * b - (b - dz) * (b - dz)), P.pel[2] + dz] });
-    }
     COREO['dominadas-lastradas'] = {
       vista: [26, 154], rastro: 'barbilla', esfuerzo: [0], clavos: ['mi@0:28', 'md@0:-28'],
       material: [['barra_dominadas', { alto: 225, ancho: 62 }], ['disco', { a: 'pelvis', punto: [0, -25, 7], eje: [1, 0, 0], radio: 12, cinturon: true }]],
       posturas: {
-        a: colgadoAtras(sobre(COLGADO, { pel: [0, 120, -2], hom: [3.5, 0], b: { a: [28, 217, 0], polo: [1, -0.2, 0.5] } }), -3),
-        a2: colgadoAtras(sobre(COLGADO, { pel: [0, 125.5, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [28, 217, 0], polo: [1, -0.3, 0.4] } }), -3),
-        b: sobre(COLGADO, { pel: [0, 172, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], b: { a: [28, 217, 0], polo: [1, -1, 0.1] } })
+        a: miraBarra(sobre(COLGADO, { pel: [0, 120, -2], hom: [3.5, 0], b: { a: [28, 217, 0], polo: [1, -0.2, 0.5] } }), -3, -10),
+        a2: miraBarra(sobre(COLGADO, { pel: [0, 125.5, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [28, 217, 0], polo: [1, -0.3, 0.4] } }), -5, -14),
+        b: sobre(COLGADO, { pel: [0, 172, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [-4, 0, 0], b: { a: [28, 217, 0], polo: [1, -1, 0.1] } })
       },
       inicio: 'a2',
       rep: [['b', 1.5, 'empuje'], ['b', 0.5], ['a2', 2.1, 'freno'], ['a2', 0.45]],
@@ -829,7 +829,10 @@
        se inclina hasta tensar las cintas, bajando el tronco hacia las manos con el cuerpo recto; estira los codos para alejar el cuerpo
        de las manos y vuelve despacio. El paso 4 (para quién es) lo dice de cerca */
     COREO['press-pecho-cinta-suspension'] = (function () {
-      var Q = [30, 14, 11], polo = [1, -0.1, -0.45], ZD = 56;
+      /* (22-11-2026) las manos, algo más abiertas y más altas (a la altura de los hombros), y los codos hacia abajo: la cinta sale de cada
+         asa hacia atrás y hacia arriba, y con las manos junto al pecho y los codos altos cruzaba el brazo por dentro (hasta 5 cm: se
+         veía apoyada en él). Así pasa por encima del antebrazo y del hombro sin tocarlos (lo que menos, 2 cm del brazo) */
+      var Q = [36, 22, 12], polo = [0.7, -1.3, -0.3], ZD = 56;
       var cuerpo = function (x, extra) { return adelante(x, 44, ZD, sobre({ m: PRONO }, extra || {})); };
       var b = enTorax(cuerpo(36), Q, polo), F = resolver(b).i.agarre;
       var ga = alAsa(function (x) { return cuerpo(x); }, F, BRAZO - 1.2, 0, 36);
@@ -838,7 +841,7 @@
       var p = enTorax(adelante(14, 20, null, { m: PRONO, pi: { a: [11, 16, 30], polo: [0.1, 0.1, 1] }, ti: { punta: [0, 0.12, 0.99], arriba: [0, 0.99, -0.12] } }), Q, polo);
       return {
         vista: [72, 28], rastro: 'pecho', esfuerzo: [0], clavos: T_S, tensos: T2, material: conCinta(ZA_B),
-        posturas: { s: s, p: p, a: conAgarre(cuerpo(ga, { cab: [-6, 0, 0] }), F, [1, -0.3, -0.3]), b: b }, inicio: 'b', encuadra: ['s', 'b'],
+        posturas: { s: s, p: p, a: conAgarre(cuerpo(ga, { cab: [-6, 0, 0] }), F, [0.7, -1.3, -0.2]), b: b }, inicio: 'b', encuadra: ['s', 'b'],
         rep: [['a', 1.3, 'empuje'], ['a', 0.4], ['b', 1.9, 'freno'], ['b', 0.4]],
         pasos: ['s', { sec: [['p', 0.8, 'entra', ['td']], ['b', 1.3, 'sale', ['td']]], desde: 's' }, 'rep', 'nota']
       };

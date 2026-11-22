@@ -707,6 +707,71 @@ El material del bloque 15:
 Para grabar un MP4 (1080 × 1920, 30 cuadros por segundo): `python3 tools/entrenador/pruebas/graba.py salida.mp4 <id> [idioma] [--lento]`
 (`--lento`: a cámara lenta, con «½×»).
 
+## Lo que salta, lo que se dobla y lo que gira de golpe (22 de noviembre de 2026)
+
+Las medidas de antes miraban dónde está cada cosa en un instante (una mano en el suelo, la cabeza y una barra). Ninguna miraba
+cómo se llega de un cuadro al siguiente, y el vídeo se ve seguido. Mirándolo entero, cuadro a cuadro y con la vida puesta
+(`pruebas/contactos.js`, `video()`), salió lo que no se ve en ninguna postura: rodillas que doblaban hacia atrás un instante
+(33 vídeos), rodillas y codos que cambiaban de lado de un cuadro al siguiente (30), manos que daban media vuelta de golpe (83),
+piernas y brazos rectos y clavados que se doblaban de paso (66) y tramos que no enlazaban con el siguiente (8).
+
+**En el motor** (vale para todos los vídeos, los que hay y los que vengan):
+
+- **Lo tenso** (`60-director.js`, `clavar`). La pierna o el brazo que van clavados y casi rectos en las dos posturas de un tramo
+  siguen casi rectos por el camino: la cadera se aparta lo justo (hasta 8 cm) para que el miembro no tenga que doblarse. Se
+  mide en la mezcla limpia de las dos posturas (sin la vida), así que en las dos puntas no cambia nada. Antes había que
+  pedirlo en cada coreografía (`tensos`); ahora es lo normal para lo clavado a su sitio, a un punto dicho o a un agarre que
+  no se mueve (`agarreFijo`: la barra de dominadas, las paralelas). `tensos: false` lo quita; `tensos: [...]` lo fuerza.
+- **La rodilla, hacia delante** (`10-esqueleto.js`, `clavar` y `frenteDePierna`). Al volver a resolver una pierna clavada y casi
+  recta, la pista de hacia dónde dobla la rodilla podía caer detrás de la línea de la pierna, y la rodilla doblaba al revés
+  un cuadro o dos. Ahora, si la pierna está casi recta, la pista se refleja hacia el frente de la pierna.
+- **La mano no gira de golpe** (`60-director.js`, `sinGolpe`). Hacia dónde mira la palma sale de la bisagra del codo, del prono
+  y de lo que la postura diga en el mundo, y hay instantes en que eso cambia de un cuadro al siguiente. En lo que se ve, la
+  mano gira sobre su antebrazo como mucho 600° por segundo (20° por cuadro). Las manos quietas no cambian ni un grado.
+
+**En los datos** (lo que el motor no puede adivinar; al hacer una coreografía, mírese):
+
+- **La palma dicha tiene que decir de qué lado de la barra queda la mano en todo el camino.** Con `barra` y `palma`, la palma
+  sale perpendicular a la barra y al antebrazo, y `palma` solo elige cuál de las dos caras. Si en algún momento del tramo la
+  palma dicha queda de canto (ni de un lado ni del otro), la mano da media vuelta. Remedios: una `palma` con algo de la otra
+  dirección (la dominada con toallas: hacia dentro *y* algo hacia delante), el sentido de `barra` elegido para que la palma
+  quede del mismo lado en las dos posturas (la elevación lateral en polea, el press Arnold), o decir cada mano con su barra
+  (`mi`, `md`: dicha una vez para las dos, la derecha la lleva reflejada). `node tools/entrenador/pruebas/rama.js <id> <de> <a>`
+  sigue la cara que continúa sin soltar y dice dónde la palma dicha deja de mandar.
+- **Lo que gira media vuelta, que lo diga una postura de en medio** (el press Arnold): de «hacia él» a «hacia delante» de un
+  tirón, la palma pasa por no mirar a ningún sitio.
+- **Un brazo que se estira del todo hacia donde no llega no dice hacia dónde mira la mano** (el giro ruso): el objetivo, a
+  donde llegue con el codo aún algo doblado.
+- **La mano que va de colgar a apoyarse de plano en algo más alto (o al revés) pasa por una postura con la mano aún suelta**
+  (el estiramiento de cuádriceps en la pared): de los dedos hacia abajo a los dedos hacia arriba, de un tirón, se dan la vuelta.
+- **Las posturas de en medio no pueden tener una mano dentro de un muslo** (el flexor de la cadera, de rodillas): se la aparta
+  hacia un lado al llegar y hacia otro al salir, y salta.
+- **Lo que se coge del suelo a los lados**: `aCoger(base, g, polo, k)` da la postura a medio agacharse, con las manos ya por
+  fuera de los muslos (los paseos del granjero). Y la postura nueva tiene que entrar en `reposo`, o lo que espera en el
+  suelo salta a las manos antes de tiempo (no lo mide nadie: se ve).
+- **La repetición que sale de una pausa empieza por la pausa** si lo primero que hace es pasar una mano por encima de un muslo
+  (el giro ruso): al llegar a ella desde el paso anterior, el Director mezcla un instante lo que hacía con lo que toca.
+- **Colgado de una barra, la cabeza no queda justo debajo**: con los brazos estirados, las púas del tupé llegan a su altura.
+  `miraBarra(P, dz, cab)` (70-coreografias.js) lo cuelga unos centímetros por detrás, con los brazos igual de estirados, y
+  mirando a la barra.
+- **Rodar por el suelo, a paso constante**: lo que tarda en arrancar y en frenar (`entra`, `sale`) tiene que dejar la misma
+  velocidad que los tramos de en medio (`lineal`), o los pies, que van un instante detrás de la cadera, dan un salto.
+
+**Las medidas y sus límites** (`LIMITES`, en `contactos.js`; la auditoría las pasa todas):
+
+| Medida | Qué | Límite |
+|---|---|---|
+| `rodilla-reves`, `rodilla-reves-vida` | lo que la rodilla cae por detrás de la línea de su pierna | 1 cm |
+| `lado` | lo que una rodilla o un codo saltan al cambiar de lado de un cuadro al siguiente, de más sobre lo que viaja su miembro | 1,5 cm |
+| `pico` | un punto que en un cuadro se mueve más de dos veces y media lo que en el de antes y en el de después, y 2 cm | ninguno |
+| `mano-gira` | lo que gira la mano, en lo que se ve, de un cuadro al siguiente | 21° |
+| `mano-gira-rep` | dentro de la repetición, lo que el Director tiene que frenar la mano | 45° |
+| `dobla-clavado` | lo que se dobla de paso un miembro clavado que va recto en las dos puntas | 6° |
+| `dobla-rep-viaja`, `dobla-rep-libre` | lo mismo en la repetición, clavado que viaja (un paso) y libre | 20° y 30° |
+| `dobla-rep` | en la repetición, lo que cualquier rodilla o codo se doblan de paso de más sobre sus dos puntas | 45° |
+| `enlace` | lo que se aparta el final de un tramo del principio del siguiente (o de la postura en la que se queda) | 1,5 cm |
+| `cabeza-barra`, `cabeza-barra-vida` | lo que una barra, un tubo o un cable se meten en la cabeza (antes, 2,5 y 3,5) | 1,5 cm |
+
 ## Las manos y los muslos (`60-director.js`, `20-figura.js`)
 
 Una mano no se mete en un muslo. Lo cuida el Director, no cada coreografía:

@@ -13,8 +13,8 @@
         PIE = N.PIE, PLANA_PARED = N.PLANA_PARED, RAD = N.RAD, SUELTA = N.SUELTA, aLosLados = N.aLosLados, aUnBrazo = N.aUnBrazo, abre = N.abre,
         activo = N.activo, anteTronco = N.anteTronco, aplicar = N.aplicar, apoyada = N.apoyada, arco = N.arco, barraD = N.barraD, busca = N.busca,
         clavosB = N.clavosB, colgando = N.colgando, conAgarre = N.conAgarre, cruz = N.cruz, cuelga = N.cuelga, el = N.el, entre = N.entre,
-        estirado = N.estirado, flexion = N.flexion, inclinado = N.inclinado, largo = N.largo, mas = N.mas, menos = N.menos, plano = N.plano,
-        por = N.por, refleja = N.refleja, resolver = N.resolver, sobre = N.sobre, une = N.une, unidad = N.unidad;
+        estirado = N.estirado, flexion = N.flexion, inclinado = N.inclinado, largo = N.largo, mas = N.mas, menos = N.menos, miraBarra = N.miraBarra,
+        plano = N.plano, por = N.por, refleja = N.refleja, resolver = N.resolver, sobre = N.sobre, une = N.une, unidad = N.unidad;
   /* ───────────────────────── las coreografías: ESPALDA ALTA (bloque 4) ─────────────────────────
      Las mismas reglas que en 70-coreografias.js: cada una sale de los pasos verificados de su ficha y no añade técnica
      que la ficha no diga. Van por familias: los encogimientos, los remos sentado en polea, los remos libres, los
@@ -335,7 +335,7 @@
       var G = 22, recto = { p: { e: 3, z: 0, c: 4 }, t: { tob: 30 } };
       return {
         vista: [152, 24], rastro: 'pel', esfuerzo: [0, 1], clavos: clavosB(G), material: [barraD()],
-        posturas: { a: cuelga(G, recto), b: activo(G, recto) },
+        posturas: { a: miraBarra(cuelga(G, recto), -3, -8), b: miraBarra(activo(G, recto), -4, -10) },
         rep: [['b', 1.0, 'empuje'], ['b', 0.7], ['a', 1.9, 'freno'], ['a', 0.5]],
         pasos: ['a', 'rep', { rep: 1.7 }]
       };

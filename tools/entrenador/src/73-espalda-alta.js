@@ -318,7 +318,7 @@
       var G = 22, recto = { p: { e: 3, z: 0, c: 4 }, t: { tob: 30 } };
       return {
         vista: [152, 24], rastro: 'pel', esfuerzo: [0, 1], clavos: clavosB(G), material: [barraD()],
-        posturas: { a: cuelga(G, recto), b: activo(G, recto) },
+        posturas: { a: miraBarra(cuelga(G, recto), -3, -8), b: miraBarra(activo(G, recto), -4, -10) },
         rep: [['b', 1.0, 'empuje'], ['b', 0.7], ['a', 1.9, 'freno'], ['a', 0.5]],
         pasos: ['a', 'rep', { rep: 1.7 }]
       };

@@ -51,6 +51,11 @@
     function asasAsiento(y, z, x) { x = x || 26; return { piezas: [['asa', [x, y, z - 6], [x, y, z + 6]], ['asa', [-x, y, z - 6], [-x, y, z + 6]], ['tubo', [x, y - 9, z - 8], [x, y, z - 7], 1.4], ['tubo', [-x, y - 9, z - 8], [-x, y, z - 7], 1.4]], agarres: { i: [x, y, z], d: [-x, y, z] } }; }
     /* los brazos, a las asas de los lados del asiento (el clavo los deja en su sitio justo) */
     var A_LAS_ASAS = { a: [26, -1, 4], en: 'pelvis', polo: [0.6, 0, -1] }, EN_ASA = { tipo: 'puno', barra: [0, 0, 1], palma: [-1, 0, 0] }, EN_ASA_D = { tipo: 'puno', barra: [0, 0, 1], palma: [1, 0, 0] };
+    /* (22-11-2026) los brazos, a un par de asas, con el puño justo en su agarre (g, el de la izquierda; el de la derecha es su reflejo)
+       y la mano como se diga. Así la postura dice lo mismo que el clavo. Con los brazos «más o menos» (A_LAS_ASAS) el clavo los dejaba
+       en su sitio, pero al tramo que lleva las manos de los muslos a las asas, que no lleva nada clavado, le faltaba ese trecho: al
+       quedarse quieto, las manos saltaban a las asas (de 3 a 10 cm en un cuadro, en seis máquinas) */
+    function enAsas(P, g, polo, mi, md) { var Q = conAgarre(sobre(P, { mi: mi || EN_ASA, md: md || EN_ASA_D }), g, polo || [0.6, 0, -1]); return { b: Q.b, mi: Q.mi, md: Q.md }; }
 
     /* ══════════════════════════════ SENTADO, CON LAS PIERNAS ══════════════════════════════
        La rodilla, en el canto del asiento y en línea con el eje de la máquina: el muslo no se mueve y la pierna gira sobre la rodilla
@@ -65,7 +70,7 @@
     COREO['extension-cuadriceps-maquina'] = (function () {
       var Y = 67, K = rodillaDe(Y), asas = asasAsiento(Y - 8, 6);
       var cuerpo = function (g, brazos) { return sentado(Y, 15, sobre({ p: pierna(K, g) }, brazos)); };
-      var agarra = { b: A_LAS_ASAS, mi: EN_ASA, md: EN_ASA_D };
+      var agarra = enAsas(cuerpo(-92, {}), asas.agarres.i);
       var a0 = enSusMuslos(cuerpo(-92, {})), a = cuerpo(-92, agarra), b = cuerpo(-14, agarra);
       var eje = [0, K[1], K[2]], rul = mas(eje, mas(por(dir(-92), D.pierna - 7), por(dir(-2), 9.6)));
       return {
@@ -117,7 +122,7 @@
           piezas: [['cojin', pad, [15, 5, 17], u, por(fuera, -k), 3, 'centro'], ['tubo', [sg * D.caderaX, yk - 15, 4], bajo, 2.2], ['tubo', bajo, [pad[0], yk - 4, pad[2]], 2.2],
             ['tubo', bajo, est, 1.8], ['tubo', est, [K[0] - k * fuera[0] * 7, est[1], est[2] - k * fuera[2] * 7], 1.8, 'hierroL']] };
       };
-      var agarra = { b: A_LAS_ASAS, mi: EN_ASA, md: EN_ASA_D };
+      var agarra = enAsas(cuerpo(G0, {}), asas.agarres.i);
       return {
         cuerpo: cuerpo, agarra: agarra,
         material: [['maquina', { fijo: silla(Y, 12, { asiento: [36, 4], pies: [-36, 22] }).concat(asas.piezas, [pila(0, -44, 112, 0, 0.9, 0)]), mec: [palanca(1), palanca(-1)], agarres: asas.agarres }]]
@@ -152,8 +157,8 @@
       return { d: d, w: w, C: C, en: function (t, h, x) { return mas([x || 0, C[1], C[2]], mas(por(d, t), por(w, h))); } };
     })();
     var EN_ASA_PR = { tipo: 'puno', barra: PR.d, palma: [-1, 0, 0] }, EN_ASA_PR_D = { tipo: 'puno', barra: PR.d, palma: [1, 0, 0] };
-    var ASAS_PR = { b: { a: PR.en(8, 3, 29.5), polo: [0.7, -0.2, -0.7] }, mi: EN_ASA_PR, md: EN_ASA_PR_D };
     function enPrensa(extra) { return sobre({ pel: PR.C, giro: [0, -45, 0], cab: [16, 0, 0] }, extra || {}); }
+    var ASAS_PR = enAsas(enPrensa({}), PR.en(9, -5, 29.5), [0.7, -0.2, -0.7], EN_ASA_PR, EN_ASA_PR_D);      /* el agarre de la prensa (abajo, en prensa()) */
     /* cuánto hay de la cadera al tobillo con la rodilla a esos grados (180, recta) */
     function deCaderaATobillo(grados) { return Math.sqrt(D.muslo * D.muslo + D.pierna * D.pierna - 2 * D.muslo * D.pierna * Math.cos(grados * RAD)); }
     /* la pierna izquierda con el pie plano en la plataforma: el tobillo en x, a «h» de la línea de la cadera, con la rodilla a «grados» */
@@ -261,7 +266,8 @@
       return ['maquina', { fijo: fijo, mec: [{ corre: HK.d, ref: al(32, 0), sigue: { en: 'torax', a: [0, 10, 0] }, lim: lim, piezas: carro, agarres: { i: al(49, 15, 27), d: al(49, 15, -27) } }],
         encuadre: [[-34, 0, base[2] + 34], [34, 0, zt - 4], en(150, RF, 24), [0, 150, 0]] }];
     }
-    var ASAS_HK = function (P) { var C = P.pel; return sobre(P, { b: { a: mas(C, mas([27, 0, 0], mas(por(HK.d, 46), por(HK.e, 8)))), polo: [0.5, -1, 0.4] }, mi: EN_ASA_HK, md: EN_ASA_HK_D }); };
+    /* las asas van en el carro, que sigue al tronco: su agarre queda siempre en el mismo sitio visto desde la cadera (al(49, 15, 27), en hack()) */
+    var ASAS_HK = function (P) { return conAgarre(sobre(P, { mi: EN_ASA_HK, md: EN_ASA_HK_D }), mas(P.pel, mas([27, 0, 0], mas(por(HK.d, 49), por(HK.e, 15)))), [0.5, -1, 0.4]); };
     /* la sentadilla hack: la espalda en el respaldo y los hombros bajo las almohadillas; los pies, al frente y algo más juntos que los
        hombros, con las puntas un poco abiertas; agarra las asas; se estira hasta quedar de pie y baja doblando las rodillas; y vuelve a subir */
     COREO['sentadilla-hack-maquina'] = (function () {
@@ -316,7 +322,7 @@
       var pierna2 = function (g) { return { a: mas(K, por(dir(g), D.pierna)), polo: [0, -1, 0] }; };
       var cuerpo = function (gi, gd) {
         var P = { pel: C, giro: [0, 90, 0], cab: [-16, 0, 0], pi: pierna2(gi), pd: reflejo(pierna2(gd)), t: { tob: 14 }, mi: EN_ASA, md: EN_ASA_D };
-        return sobre(P, { b: { a: [22, YB - 9, 43], polo: [1, -0.1, -0.25] } });
+        return conAgarre(P, [22, YB - 10, 51], [1, -0.1, -0.25]);          /* el puño, justo en su asa (el agarre de material()) */
       };
       var rul = mas(eje, mas(por(dir(G0), D.pierna - 9), por(dir(G0 - 90), 9.6)));
       var material = function (max) {
@@ -352,7 +358,7 @@
       var K = [10, D.tobillo + D.pierna, -2], eje = [0, K[1], K[2]], G0 = -90, G1 = -192;
       var rul = mas(eje, mas(por(dir(G0), D.pierna - 9), por(dir(G0 - 90), 9.6)));
       var base = { pel: [0, PIE, -2], giro: [0, 9, 0], cab: [-6, 0, 0], p: { suelo: [10, -2], abre: 2 } };
-      var manos = { b: { a: [16, 110, 18], polo: [0.7, -1, -0.2] }, m: { tipo: 'puno', barra: [1, 0, 0], palma: [0, -0.4, 1] } };
+      var manos = (function () { var Q = conAgarre(sobre(base, { m: { tipo: 'puno', barra: [1, 0, 0], palma: [0, -0.4, 1] } }), [16, 110, 24], [0.7, -1, -0.2]); return { b: Q.b, m: Q.m }; })();      /* el puño, justo en su asa */
       var doblada = function (g, tob) { return { a: mas(K, por(dir(g), D.pierna)), polo: [0, 0, 1], tob: tob }; };
       var con = function (k, g, tob) { var c = {}, q = doblada(g, tob); c['p' + k] = k === 'i' ? { a: q.a, polo: q.polo } : { a: [-q.a[0], q.a[1], q.a[2]], polo: q.polo }; c['t' + k] = { tob: tob }; return sobre(sobre(base, manos), c); };
       var a0 = sobre(base, { b: aLosLados(8), m: NEU }), a = sobre(base, manos);
@@ -527,10 +533,13 @@
     /* el press de pecho: las asas, a la altura de la parte baja del pecho; las agarra, saca pecho y mantiene la cabeza en el respaldo;
        empuja hacia delante hasta casi estirar los brazos, sin bloquear los codos, y vuelve despacio */
     COREO['press-pecho-maquina'] = (function () {
-      var M = pressPecho({ r: 8, G0: [28, 82, 8], G1: [28, 89, 49], cab: 0 });
+      /* las palmas, hacia abajo (como en el declinado): con el antebrazo casi horizontal, «la palma hacia delante» no decía de qué lado
+         del asa quedaba la mano, y según el antebrazo apuntara un pelo hacia arriba o hacia abajo el puño daba media vuelta (en cada
+         repetición saltaba de encima a debajo del asa) */
+      var M = pressPecho({ r: 8, G0: [28, 82, 8], G1: [28, 89, 49], cab: 0 }), MANO = { m: EN_MANGO_ABAJO };
       return {
         vista: [[58, 10], [100, 8]], rastro: 'manos', esfuerzo: [0], clavos: M2, clavosEn: { a0: NADA }, reposo: ['a0'], material: M.material,
-        posturas: { a0: M.a0, a: M.cuerpo([28, 82, 8], [0, -2]), b: M.cuerpo([28, 89, 49], [0, -1]) }, inicio: 'a', encuadra: ['a0', 'b'],
+        posturas: { a0: M.a0, a: sobre(M.cuerpo([28, 82, 8], [0, -2]), MANO), b: sobre(M.cuerpo([28, 89, 49], [0, -1]), MANO) }, inicio: 'a', encuadra: ['a0', 'b'],
         rep: REP_PRESS,
         pasos: ['a0', { sec: [['a', 1.3, 'suave', NADA]], desde: 'a0' }, 'rep']
       };
@@ -753,8 +762,10 @@
       var p = estirado({ pel: [0, PIE - 3, ZS - 6], giro: [0, 16, 0], cab: [-6, 12, 0], p: { suelo: [10, ZS], abre: 5 }, bi: aLosLados(8), mi: SUELTA, md: { tipo: 'indice', prono: 60 } }, [-38, 97, -10], 'bd', 1.5, [-1, -0.4, -0.3]);
       var suelto = { b: aLosLados(8), m: SUELTA };
       var s1 = sobre(suelto, { pel: [0, PIE + 2, ZS + 9], giro: [0, 9, 0], pi: enPlat(H0), pd: { suelo: [-10, ZS], abre: 5 } }), s2 = sobre(suelto, { pel: [0, H0 + PIE, ZP + 2], p: enPlat(H0) });
-      var a = { pel: [0, yA, ZA], hom: [3.5, 0], p: enPlat(H0), b: { a: [G, YB - 8, 0], polo: [1, -0.2, 0.5] }, m: mano };
-      var b = { pel: [0, yB, -13], giro: [0, -9, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], p: enPlat(H0 + sube + 0.45), b: { a: [G, YB - 8, 0], polo: poloB }, m: mano };
+      /* el puño, justo en la barra (22-11-2026): llega a ella con las manos sueltas, y con la muñeca «8 cm por debajo» le faltaban 1,7 cm */
+      /* y mira hacia la barra, colgado y arriba (con la cabeza derecha, y arriba con la barbilla recogida, las púas del tupé la rozaban) */
+      var a = conAgarre({ pel: [0, yA, ZA], hom: [3.5, 0], cab: [-12, 0, 0], p: enPlat(H0), m: mano }, [G, YB, 0], [1, -0.2, 0.5]);
+      var b = conAgarre({ pel: [0, yB, -13], giro: [0, -9, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [-4, 0, 0], p: enPlat(H0 + sube + 0.45), m: mano }, [G, YB, 0], poloB);
       var fijo = [['tubo', [0, 2, 60], [0, YB + 14, 60], 3.6], ['tubo', [0, YB + 14, 60], [0, YB + 14, 14], 3], ['tubo', [0, YB + 14, 14], [0, YB + 1.5, 1.5], 2.2], ['tubo', [0, 2.2, -24], [0, 2.2, 78], 2.8, 'hierroS'], ['tubo', [-30, 2, 78], [30, 2, 78], 2.2, 'hierroS'], ['tubo', [-30, 2, -24], [30, 2, -24], 2.2, 'hierroS'],
         ['pila', [-42, 2, 4], 124, { mec: 1, gana: 0.5, cero: 0, eje: 'z' }]];
       return {

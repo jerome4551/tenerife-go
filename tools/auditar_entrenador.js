@@ -29,6 +29,9 @@
  *      los muslos, y lo que el Director las aparta no da tirones; y (20 de noviembre de 2026) ninguna barra, tubo, asa o
  *      ramal de cuerda del material se le mete en la cabeza, y el pie que no se mueve no se va por el camino; y (bloque 15)
  *      nada del cuerpo se hunde en una pelota —un fitball, un balón medicinal—, y el fitball no se queda en el aire;
+ *    · LO QUE SALTA, LO QUE SE DOBLA Y LO QUE GIRA DE GOLPE (22 de noviembre de 2026), en el vídeo cuadro a cuadro: las rodillas no
+ *      doblan hacia atrás; ninguna rodilla ni ningún codo cambian de lado, y nada cambia de sitio, de un cuadro al siguiente;
+ *      la mano no gira de golpe; lo que va recto y clavado no se dobla de paso; y los tramos enlazan;
  *    · los gestos del presentador (saluda, la visera, «¡vamos!», el consejo, el pulgar…): sus posturas
  *      existen, ninguna mano levantada se sale del cuadro y ninguna va más deprisa de lo que se ve;
  *    · la voz: con las voces que enseña un iPhone (las «Eloquence», robóticas), un PC o un Android,
@@ -247,7 +250,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   const CT = require('./entrenador/pruebas/contactos.js'), TC = CT.carga(), fuera = {};
   ids.forEach(id => {
     let malC; try { malC = CT.juzga(CT.mide(TC, id), CT.video(TC, id, TX.es[id] ? TX.es[id][1] : [])); } catch (e) { malC = [{ que: 'error', v: 0, donde: e.message }]; }
-    malC.forEach(q => { (fuera[q.que] = fuera[q.que] || []).push(id + ': ' + (q.v ? q.v + ' cm · ' : '') + q.donde); });
+    malC.forEach(q => { (fuera[q.que] = fuera[q.que] || []).push(id + ': ' + (q.v ? q.v + (/gira|dobla/.test(q.que) ? '° · ' : ' cm · ') : '') + q.donde); });
   });
   const deC = (...c) => [].concat(...c.map(q => fuera[q] || []));
   ok(!deC('error').length, 'los contactos de las ' + ids.length + ' coreografías se pueden medir (cada tramo, cada postura mantenida y el vídeo cuadro a cuadro)', deC('error').slice(0, 4));
@@ -265,6 +268,22 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   ok(!deC('cabeza-barra', 'cabeza-barra-vida').length, 'la cabeza y las barras: ningún cilindro del material (una barra, un tubo o un asa de una máquina, un mango, un ramal de cuerda) se le mete en la cabeza más de ' +
     String(-CT.LIMITES['cabeza-barra']).replace('.', ',') + ' cm en ningún tramo ni postura, ni más de ' + String(-CT.LIMITES['cabeza-barra-vida']).replace('.', ',') + ' en el vídeo cuadro a cuadro', deC('cabeza-barra', 'cabeza-barra-vida').slice(0, 6));
   ok(!deC('pie-deriva').length, 'el pie que no se mueve, no se va: el tobillo que acaba un tramo donde lo empezó no se aparta más de ' + CT.LIMITES['pie-deriva'] + ' cm por el camino (lo que apoya y no se mueve va clavado)', deC('pie-deriva').slice(0, 6));
+  /* LO QUE SALTA, LO QUE SE DOBLA Y LO QUE GIRA DE GOLPE (22 de noviembre de 2026). Todo lo de arriba mira dónde está cada cosa en un
+     instante; nada miraba cómo llega de un cuadro al siguiente, y el vídeo se ve seguido. Con el vídeo entero, cuadro a cuadro, salió
+     lo que no se veía en ninguna postura: rodillas que doblaban hacia atrás un instante (33 vídeos), rodillas y codos que cambiaban
+     de lado de un cuadro al siguiente (30), manos que daban media vuelta de golpe (83), piernas y brazos clavados y rectos que se
+     doblaban de paso (66) y tramos que no enlazaban con el siguiente (8). Lo de fondo se arregló en el motor (60-director.js: lo
+     tenso; 10-esqueleto.js: la rodilla, hacia delante; sinGolpe: la mano gira como mucho 600°/s) y el resto, vídeo a vídeo */
+  ok(!deC('rodilla-reves', 'rodilla-reves-vida').length, 'las rodillas no doblan hacia atrás: ninguna cae más de ' + String(CT.LIMITES['rodilla-reves']).replace('.', ',') + ' cm por detrás de la línea de su pierna, en ningún tramo ni postura ni en el vídeo cuadro a cuadro',
+    deC('rodilla-reves', 'rodilla-reves-vida').slice(0, 6));
+  ok(!deC('lado', 'pico').length, 'nada salta: de un cuadro al siguiente, ninguna rodilla ni ningún codo cambian de lado (' + String(CT.LIMITES.lado).replace('.', ',') + ' cm de más sobre lo que viaja su miembro) y ningún punto del cuerpo cambia de sitio de golpe (se mueve más de dos veces y media lo que en el cuadro de antes y en el de después, y 2 cm)',
+    deC('lado', 'pico').slice(0, 6));
+  ok(!deC('mano-gira', 'mano-gira-rep').length, 'la mano no gira de golpe: en lo que se ve, como mucho ' + CT.LIMITES['mano-gira'] + '° de un cuadro al siguiente; y dentro de la repetición, lo que el Director tiene que frenarla no pasa de ' + CT.LIMITES['mano-gira-rep'] + '° (si pasa, es que la postura no dice hacia dónde mira la palma)',
+    deC('mano-gira', 'mano-gira-rep').slice(0, 6));
+  ok(!deC('dobla-clavado', 'dobla-rep-viaja', 'dobla-rep-libre', 'dobla-rep').length, 'lo recto no se dobla de paso: la pierna o el brazo clavados que van rectos en las dos posturas de un tramo no se doblan más de ' + CT.LIMITES['dobla-clavado'] + '° por el camino; y en la repetición, lo clavado que viaja, ni ' +
+    CT.LIMITES['dobla-rep-viaja'] + '°, lo libre, ni ' + CT.LIMITES['dobla-rep-libre'] + '°, y nada se dobla de paso ' + CT.LIMITES['dobla-rep'] + '° más que en sus dos puntas (lo que se dobla tanto lo dice una postura)',
+    deC('dobla-clavado', 'dobla-rep-viaja', 'dobla-rep-libre', 'dobla-rep').slice(0, 6));
+  ok(!deC('enlace').length, 'los tramos enlazan: donde acaba un tramo empieza el siguiente, y donde acaba una secuencia, la postura en la que se queda (ningún punto del cuerpo a más de ' + String(CT.LIMITES.enlace).replace('.', ',') + ' cm)', deC('enlace').slice(0, 6));
   /* LAS PELOTAS (bloque 15, 20 de noviembre de 2026). El fitball y el balón medicinal tampoco son suelo, pared ni banco: se espía
      Esfera.pon igual que Cilindro.pon y se mide cada pieza del cuerpo, tal como se dibuja, contra cada pelota que pinta el material
      (20-figura.js, piezaAEsfera). El fitball es blando y cede un poco; lo que no puede es quedarse solo: siempre lleva algo encima */

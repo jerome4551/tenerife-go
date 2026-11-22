@@ -192,7 +192,7 @@
     COREO['sentadilla-por-encima-cabeza'] = (function () {
       var DE = [11, 5], A = [22, 13], pies = { suelo: [A[0], 0], abre: A[1], polo: [0.36, 0.1, 1] }, G = 45, posturas = {};
       /* los brazos, estirados desde el hombro hasta la barra, que va G a cada lado y 2 cm por delante de los tobillos */
-      var arriba = function (P) { var h = resolver(P).i.hom, dx = G - h[0], dz = 2 - h[2]; return estirado(sobre(P, { m: EN_BARRA }), [G, h[1] + Math.sqrt(BRAZO * BRAZO - dx * dx - dz * dz), 2], 'b', 0.03, [1, 0.1, -0.5]); };
+      var ZB = -1.5, arriba = function (P) { var h = resolver(P).i.hom, dx = G - h[0], dz = ZB - h[2]; return estirado(sobre(P, { m: EN_BARRA }), [G, h[1] + Math.sqrt(BRAZO * BRAZO - dx * dx - dz * dz), ZB], 'b', 0.03, [1, 0.1, -0.5]); };        /* (22-11-2026) la barra, 3,5 cm más atrás: sobre la nuca, no sobre las púas del tupé (las rozaba) */
       var base = arriba({ hom: [2.5, 0] });
       posturas.a = arriba({ pel: [0, altoCon(12), 0], hom: [2.5, 0], p: pies });
       var abre = abrirPies(posturas, 'o', {}, DE, A, 'a', 2.2);
@@ -274,19 +274,20 @@
       };
     })();
 
-    /* la hindú: los pies, a la anchura de los hombros, y los brazos un poco por detrás del cuerpo; al bajar levanta los talones, con la espalda
+    /* (22-11-2026: los brazos «por detrás» se dicen con e negativo; con z: 176 el codo doblaba al revés y la mano giraba de golpe)
+       la hindú: los pies, a la anchura de los hombros, y los brazos un poco por detrás del cuerpo; al bajar levanta los talones, con la espalda
        lo más vertical que puede; abajo toca los talones con las manos, y sube apoyándolos de nuevo, con los brazos estirados delante del pecho;
        y lleva los brazos atrás, como si remara, para empezar la siguiente. Cada paso de la ficha, en el suyo; y en el último sigue la repetición */
     COREO['sentadilla-hindu'] = (function () {
       var X = 17, TAL = 50, q = deTalon(TAL);
       var pie = function (t) { return { suelo: [X, 0], abre: 6, talon: t, polo: [0.3, 0.1, 1] }; };
-      var atras = { e: 13, z: 176, g: 0, c: 12 }, rema = { a: [25, 1, 3], en: 'torax', polo: [0.45, -0.25, -1] }, alFrente = { e: 86, z: 5, g: 0, c: 5 };
+      var atras = { e: -13, z: -8, g: 0, c: 12 }, rema = { a: [25, 1, 3], en: 'torax', polo: [0.45, -0.25, -1] }, alFrente = { e: 86, z: 5, g: 0, c: 5 };
       var a = { p: pie(0), b: atras, m: SUELTA }, c = { p: pie(0), b: alFrente, m: { tipo: 'abierta', prono: 90 } }, r = { p: pie(0), b: rema, m: SUELTA };
       /* abajo: de puntillas, con el tronco casi vertical y la cadera sobre los talones; las yemas de los dedos llegan al talón de la zapatilla */
       var B = { pel: [0, 33, q[0] - 15], giro: [0, 6, 0], cab: [-4, 0, 0], p: pie(TAL) }, EB = resolver(B), tal = EB.i.talon;
       var b = sobre(B, { b: { a: [tal[0] + 4.5, tal[1] + D.dedos - 1, tal[2] - 1], polo: [1, 0.2, -0.8] }, m: { tipo: 'abierta', prono: 0 } });
       /* a medio camino: el pie, a medio rodar sobre su bola (si no, el tobillo iría en línea recta y la zapatilla cortaría el suelo) */
-      var m1 = { pel: [0, 62, -7], giro: [0, 8, 0], cab: [-6, 0, 0], p: pie(TAL / 2), b: { e: 10, z: 178, g: 0, c: 10 }, m: SUELTA };
+      var m1 = { pel: [0, 62, -7], giro: [0, 8, 0], cab: [-6, 0, 0], p: pie(TAL / 2), b: { e: -10, z: -8, g: 0, c: 10 }, m: SUELTA };
       var m2 = { pel: [0, 60, -8], giro: [0, 9, 0], cab: [-7, 0, 0], p: pie(TAL / 2), b: { e: 46, z: 8, g: 0, c: 22 }, m: { tipo: 'abierta', prono: 60 } };
       var baja = [['m1', 0.75, 'entra', T2], ['b', 0.8, 'sale', T2]], sube = [['m2', 0.65, 'entra', T2], ['c', 0.75, 'sale', T2]], remo = [['r', 0.5, 'entra', T2], ['a', 0.5, 'sale', T2]];
       return {
@@ -521,13 +522,16 @@
          rodilla se posa junto a la otra (k); y el otro pie sale hacia delante por el mismo camino */
       var r = sobre(sueltas, { pel: [0, 45.5, 0], pi: atras, ti: PIE_AT, pd: { a: [-10, 23, 9], polo: [-0.1, 0.4, 1] }, td: { punta: [0, -0.34, 0.94], arriba: [0, 0.94, 0.34] } });
       var rb = sobre(sueltas, { pel: [0, 45.5, 0], pi: atras, ti: PIE_AT, pd: { a: [-10, 24, -27], polo: [-0.1, -0.2, 1] }, td: { punta: [0, -0.77, -0.64], arriba: [0, -0.64, 0.77] } });
-      var posturas = { a0: a0, a: a, b: b, r: r, rb: rb, k: k, r2: refleja(r), rb2: refleja(rb), a02: refleja(a0), b2: refleja(b) };
-      var echa = porArco(posturas, 'ab', a, b, 'b', 1, 2.2, K_ROD), vuelve = porArco(posturas, 'ba', b, a0, 'a0', 1, 0.7, K_ROD), echa2 = porArco(posturas, 'ab2', posturas.a02, posturas.b2, 'b2', 1, 1.25, K_ROD);
+      /* del otro lado, igual que del primero: las manos se posan en el muslo al llegar el pie (a2) y solo entonces se echa hacia delante
+         (yendo de un tirón de los brazos sueltos a las manos en el muslo, la postura de en medio tenía la mano dentro del muslo: se
+         la apartaba hacia un lado al llegar y hacia otro al salir, y saltaba 15 cm) */
+      var posturas = { a0: a0, a: a, b: b, r: r, rb: rb, k: k, r2: refleja(r), rb2: refleja(rb), a2: refleja(a), b2: refleja(b) };
+      var echa = porArco(posturas, 'ab', a, b, 'b', 1, 2.2, K_ROD), vuelve = porArco(posturas, 'ba', b, a0, 'a0', 1, 0.7, K_ROD), echa2 = porArco(posturas, 'ab2', posturas.a2, posturas.b2, 'b2', 1, 1.25, K_ROD);
       return {
         vista: [[-72, 12], [-24, 16]], isometrico: 'b', clavos: T2, material: [ESTERILLA],
         posturas: posturas, inicio: 'a0', encuadra: ['b'],
         pasos: ['a0', { sec: [['a', 1.4, 'suave']], desde: 'a0' }, { sec: echa, desde: 'a' },
-                { sec: [['b', 0.45]].concat(vuelve, [['r', 0.34, 'entra'], ['rb', 0.3, 'lineal'], ['k', 0.3, 'sale'], ['rb2', 0.3, 'entra'], ['r2', 0.3, 'lineal'], ['a02', 0.34, 'sale']], echa2), desde: 'b' }]
+                { sec: [['b', 0.35]].concat(vuelve, [['r', 0.34, 'entra'], ['rb', 0.3, 'lineal'], ['k', 0.3, 'sale'], ['rb2', 0.3, 'entra'], ['r2', 0.3, 'lineal'], ['a2', 0.46, 'sale']], echa2), desde: 'b' }]      /* 4,30 s: cabe en el paso más corto (4,40 s) */
       };
     })();
 
@@ -655,15 +659,18 @@
          desde el costado, los dedos entrarían en la pared */
       var ante = { a: [17, 114, ZW - 9], polo: [0.7, -1, -0.5] }, h = sobre(a, { bi: ante, mi: PLANA_PARED }), ab = sobre(a, { bi: { a: [17, 118, ZW], polo: [0.7, -1, -0.5] }, mi: PLANA_PARED });
       var h0 = sobre(a0, { bd: reflejo(ante), md: PLANA_PARED });
-      var P = { a0: a0, h0: h0, a: a, k: k, g: g, b: b, dp: dp, dq: dq, h: h, ab: ab }, KD = ['md', 'td'], KI = ['mi', 'ti'], K4 = T2.concat(['mi', 'md']);
-      ['a', 'k', 'g', 'b', 'dp', 'dq', 'h'].forEach(function (n) { P[n + '2'] = refleja(P[n]); });
+      /* y entre colgar del costado y ponerse ante la pared, la mano pasa por delante, a media altura y todavía suelta (n): de colgar
+         (los dedos hacia abajo) a plana ante la pared (hacia arriba) de un tirón, a medio camino los dedos se daban la vuelta de golpe */
+      var medio = { a: [19, 97, 24], polo: [0.7, -1, -0.5] }, n = sobre(a, { bi: medio, mi: SUELTA }), n0 = sobre(a0, { bd: reflejo(medio), md: SUELTA });
+      var P = { a0: a0, n0: n0, h0: h0, a: a, k: k, g: g, b: b, dp: dp, dq: dq, n: n, h: h, ab: ab }, KD = ['md', 'td'], KI = ['mi', 'ti'], K4 = T2.concat(['mi', 'md']);
+      ['a', 'k', 'g', 'b', 'dp', 'dq', 'n', 'h'].forEach(function (n) { P[n + '2'] = refleja(P[n]); });
       return {
         vista: [[104, 10], [150, 12]], isometrico: 'b', clavos: ['td', 'md'], clavosEn: { a0: T2, b2: KI }, material: [PARED],
         posturas: P, inicio: 'a0', encuadra: ['b'],
-        pasos: [{ sec: [['a0', 0.5, null, T2], ['h0', 0.9, 'entra', T2], ['a', 0.3, 'sale', T2]], desde: 'a0' },
+        pasos: [{ sec: [['a0', 0.5, null, T2], ['n0', 0.5, 'entra', T2], ['h0', 0.45, 'lineal', T2], ['a', 0.3, 'sale', T2]], desde: 'a0' },
                 { sec: [['dq', 0.15, 'entra', T2.concat(['md'])], ['dp', 0.2, 'sale', T2.concat(['md'])], ['k', 0.8, 'suave', KD], ['g', 0.8, 'suave', KD], ['b', 1.3, 'suave', KD]], desde: 'a' },
                 { sec: [['b', 1.2, null, KD], ['k', 0.7, 'suave', KD], ['dp', 0.45, 'suave', KD], ['dq', 0.12, 'entra', T2.concat(['md'])], ['a', 0.13, 'sale', T2.concat(['md'])],
-                        ['h', 0.45, 'entra', T2.concat(['md'])], ['ab', 0.2, 'sale', T2.concat(['md'])], ['h2', 0.2, 'entra', T2.concat(['mi'])], ['a2', 0.4, 'sale', T2.concat(['mi'])],
+                        ['n', 0.3, 'entra', T2.concat(['md'])], ['h', 0.25, 'lineal', T2.concat(['md'])], ['ab', 0.2, 'sale', T2.concat(['md'])], ['h2', 0.2, 'entra', T2.concat(['mi'])], ['n2', 0.25, 'lineal', T2.concat(['mi'])], ['a2', 0.3, 'sale', T2.concat(['mi'])],
                         ['dq2', 0.15, 'entra', T2.concat(['mi'])], ['dp2', 0.2, 'sale', T2.concat(['mi'])], ['k2', 0.7, 'suave', KI], ['g2', 0.6, 'suave', KI], ['b2', 0.9, 'suave', KI]], desde: 'b' }]
       };
     })();
@@ -679,7 +686,7 @@
     COREO['salto-rodillas-pecho'] = (function () {
       var sp = function (t) { return { suelo: [10, 0], abre: 5, talon: t || 0, polo: [0.15, 0.1, 1] }; }, q = deTalon(46), q2 = deTalon(20);
       var a = { p: sp(), b: aLosLados(12), m: SUELTA };
-      var b = { pel: [0, 57, -20], giro: [0, 36, 0], cab: [-30, 0, 0], p: sp(), b: { e: 36, z: 176, g: 0, c: 20 }, m: SUELTA };
+      var b = { pel: [0, 57, -20], giro: [0, 36, 0], cab: [-30, 0, 0], p: sp(), b: { e: -36, z: -8, g: 0, c: 14 }, m: SUELTA }; /* por detrás de verdad (e negativo), con el codo doblando hacia delante: 70-coreografias.js, sentadilla-salto */
       /* a medio empuje: el pie rueda sobre su parte delantera (con el tobillo clavado de un tirón, la zapatilla cortaría el suelo) */
       var m = { pel: [0, 76, -4], giro: [0, 18, 0], cab: [-14, 0, 0], p: sp(20), b: { e: 12, z: 8, g: 0, c: 22 }, m: SUELTA };
       var d = { pel: [0, PIE + q[1] - 0.6, q[0]], giro: [0, 4, 0], p: sp(46), b: { e: 72, z: 8, g: 0, c: 26 }, m: SUELTA };
@@ -701,7 +708,7 @@
     COREO['salto-horizontal'] = (function () {
       var L = 112, P = {}, pies = function (z, t) { return { suelo: [10, z], abre: 4, talon: t || 0, polo: [0.12, 0.1, 1] }; }, q = deTalon(48), q2 = deTalon(26);
       P.a = { pel: [0, PIE, 0], p: pies(0), b: aLosLados(12), m: SUELTA };
-      P.b = { pel: [0, 58, -19], giro: [0, 40, 0], cab: [-34, 0, 0], p: pies(0), b: { e: 46, z: 178, g: 0, c: 5 }, m: SUELTA };
+      P.b = { pel: [0, 58, -19], giro: [0, 40, 0], cab: [-34, 0, 0], p: pies(0), b: { e: -46, z: -6, g: 0, c: 5 }, m: SUELTA }; /* por detrás de verdad (e negativo), con el codo doblando hacia delante: 70-coreografias.js, sentadilla-salto */
       /* a medio empuje: el pie rueda sobre su parte delantera y los brazos ya pasan por delante */
       P.m = { pel: [0, 74, 2], giro: [0, 33, 0], cab: [-27, 0, 0], p: pies(0, 22), b: { e: 6, z: 8, g: 0, c: 10 }, m: SUELTA };
       P.d = { pel: [0, PIE + q[1] - 6, q[0] + 13], giro: [0, 24, 0], cab: [-18, 0, 0], p: pies(0, 48), b: { e: 62, z: 6, g: 0, c: 10 }, m: SUELTA };
@@ -745,7 +752,7 @@
       var H = 30, ZC = 28, ZA = ZC + 13, q = deTalon(46), P = {};
       var abajo = function (t) { return { suelo: [9, 0], abre: 4, talon: t || 0, polo: [0.12, 0.1, 1] }; }, arriba = { suelo: [9, ZA], abre: 4, alto: H, polo: [0.12, 0.1, 1] };
       P.a = { p: abajo(), b: aLosLados(12), m: SUELTA };
-      P.b = { pel: [0, 57, -19], giro: [0, 37, 0], cab: [-31, 0, 0], p: abajo(), b: { e: 44, z: 177, g: 0, c: 8 }, m: SUELTA };
+      P.b = { pel: [0, 57, -19], giro: [0, 37, 0], cab: [-31, 0, 0], p: abajo(), b: { e: -44, z: -6, g: 0, c: 8 }, m: SUELTA }; /* por detrás de verdad (e negativo), con el codo doblando hacia delante: 70-coreografias.js, sentadilla-salto */
       /* a medio empuje: el pie rueda sobre su parte delantera y los brazos ya pasan por delante */
       P.m = { pel: [0, 76, -2], giro: [0, 24, 0], cab: [-19, 0, 0], p: abajo(20), b: { e: 2, z: 8, g: 0, c: 14 }, m: SUELTA };
       P.d = { pel: [0, PIE + q[1] - 3, q[0] + 7], giro: [0, 14, 0], cab: [-10, 0, 0], p: abajo(46), b: { e: 54, z: 7, g: 0, c: 18 }, m: SUELTA };

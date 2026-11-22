@@ -92,6 +92,29 @@ function ctxDe(co, modo, de, a, w) {
   return { de, a, u: modo === 'postura' ? 1 : w, reposo: !!rp && ((modo === 'postura' && rp.indexOf(de) >= 0) || (modo === 'sec' && rp.indexOf(de) >= 0 && w < 0.97)),
     enLista: l => !!l && ((modo === 'postura' && l.indexOf(de) >= 0) || (modo === 'sec' && l.indexOf(de) >= 0 && (w < 0.97 || l.indexOf(a) >= 0))) };
 }
+/* ── (22-11-2026) lo que se dobla, lo que salta y lo que gira de golpe ──
+   doblez: lo que la rodilla (o el codo) se aparta de la línea de su miembro (de la cadera al tobillo, del hombro a la muñeca): un
+   vector. flexion: cuánto se dobla, en grados (0, recto). reves: lo que la rodilla cae DETRÁS de esa línea (cm; el frente es el de
+   la pelvis llevado a donde apunta la pierna: 10-esqueleto.js, frenteDePierna): una rodilla no dobla hacia atrás */
+const MIEMBROS = [['rod', 'i'], ['rod', 'd'], ['cod', 'i'], ['cod', 'd']];
+const lar = v => Math.sqrt(dot(v, v)), ang = (u, v) => Math.acos(Math.max(-1, Math.min(1, dot(u, v) / ((lar(u) * lar(v)) || 1)))) * 180 / Math.PI;
+function flexion(E, q, k) { const L = E[k]; return q === 'rod' ? ang(sub(L.rod, L.cad), sub(L.tob, L.rod)) : ang(sub(L.cod, L.hom), sub(L.mun, L.cod)); }
+function doblez(E, q, k) { const L = E[k], a = q === 'rod' ? L.cad : L.hom, m = q === 'rod' ? L.rod : L.cod, b = q === 'rod' ? L.tob : L.mun, u = uni(sub(b, a)), v = sub(m, a), t = dot(v, u); return [v[0] - u[0] * t, v[1] - u[1] * t, v[2] - u[2] * t]; }
+function reves(T, E, k) { const L = E[k]; return -dot(doblez(E, 'rod', k), T.frenteDePierna(E.Bp, uni(sub(L.tob, L.cad)))); }
+/* lo clavado en un tramo o en una postura: { ti: 'fijo' | 'viaja', … } (lo clavado a un agarre del material o a un punto dicho no viaja) */
+function clavadoEn(lista) { const r = {}; (lista || []).forEach(c => { const m = /^([mt][id])([@=])?/.exec(String(c)); if (m) r[m[1]] = m[2] ? 'fijo' : 'viaja'; }); return r; }
+/* los puntos que se siguen en el vídeo: ninguno puede moverse en un cuadro mucho más que en el de antes y en el de después */
+const SEGUIDOS = [['rod', 'la rodilla'], ['cod', 'el codo'], ['mun', 'la muñeca'], ['tob', 'el tobillo'], ['hom', 'el hombro'], ['cad', 'la cadera'], ['dedos', 'las yemas'], ['dedosPie', 'la punta del pie'], ['talon', 'el talón']];
+function puntosDe(E) {
+  const P = { 'la cabeza': E.cab, 'la nariz': [E.cab[0] + E.Bc[1][0] * 8 + E.Bc[2][0] * 12, E.cab[1] + E.Bc[1][1] * 8 + E.Bc[2][1] * 12, E.cab[2] + E.Bc[1][2] * 8 + E.Bc[2][2] * 12] };
+  for (const k of ['i', 'd']) for (const [q, n] of SEGUIDOS) P[n + ' ' + k] = E[k][q];
+  return P;
+}
+/* lo que gira una mano sobre su antebrazo entre dos esqueletos (grados): la palma de uno y la del otro, vistas de frente al antebrazo del segundo */
+function giroMano(Ea, Eb, k) {
+  const lw = Eb[k].lw, pr = v => { const t = dot(v, lw); return [v[0] - lw[0] * t, v[1] - lw[1] * t, v[2] - lw[2] * t]; }, a = pr(Ea[k].mano.palma), b = pr(Eb[k].mano.palma);
+  return lar(a) < 0.3 || lar(b) < 0.3 ? 0 : ang(a, b);
+}
 /* un Director de verdad sobre un escenario de mentira (no pinta) */
 function director(T, co) {
   const esc = { material: (co.material || []).map(q => { try { return new T.MATERIAL[q[0]]({ defs: nodo() }, q[1] || {}); } catch (e) { return { colocar() {}, roto: String(e && e.message) }; } }), poner() {}, detras: nodo(), encima: nodo(), cam: new T.Camara(),
@@ -167,20 +190,56 @@ function mide(T, id) {
   };
   for (const [s, et, curva] of tramosDe(T, co)) {
     if (!d.K[s.de] || !d.K[s.a]) { R.error = 'postura que no existe: ' + s.de + ' o ' + s.a; continue; }
-    const modo = et.slice(0, 3) === 'rep' ? 'rep' : 'sec', tob = { i: [], d: [] };
+    const modo = et.slice(0, 3) === 'rep' ? 'rep' : 'sec', tob = { i: [], d: [] }, fl = MIEMBROS.map(() => []);
     for (let q = 0; q <= 24; q++) {
       d.metas = []; const E = d.enTramo(s, curva(q / 24)), donde = et + ':' + r1(q / 24) + ' (' + s.de + '→' + s.a + ')';
       uno(E, donde, (q === 24 || q === 0) && s.de === s.a, s.a, material(E, ctxDe(co, modo, s.de, s.a, q / 24), donde));
       tob.i.push(E.i.tob); tob.d.push(E.d.tob);
+      MIEMBROS.forEach((m, j) => fl[j].push(flexion(E, m[0], m[1])));
+      for (const k of ['i', 'd']) mejor('rodilla-reves', reves(T, E, k), 'rodilla ' + k + ' · ' + donde);
+    }
+    /* lo que va recto en las dos puntas del tramo (hasta 30° de rodilla o de codo) no se dobla de paso: lo clavado que no viaja
+       (el pie o la mano se quedan donde están), ni 6° (va tenso: 60-director.js); y en la repetición, lo clavado que viaja (un
+       paso), ni 20, y lo libre, ni 30 (un brazo que bracea se dobla algo por el camino, y es natural). Y en la repetición nada se
+       dobla de paso 45° más que en sus puntas: si de verdad se dobla tanto, que lo diga una postura */
+    if (s.de !== s.a) {
+      const cl = clavadoEn(s.clavos || co.clavos), A = d.K[s.de], B = d.K[s.a];
+      MIEMBROS.forEach((m, j) => {
+        const f = fl[j], bulto = Math.max(...f) - Math.max(f[0], f[24]), c = (m[0] === 'rod' ? 't' : 'm') + m[1], p = m[0] === 'rod' ? 'tob' : 'mun';
+        const fijo = cl[c] === 'fijo' || (cl[c] && lar(sub(A[m[1]][p], B[m[1]][p])) <= 2), dd = (m[0] === 'rod' ? 'rodilla ' : 'codo ') + m[1] + ' · ' + et + ' (' + s.de + '→' + s.a + ') ' + Math.round(f[0]) + '°→' + Math.round(Math.max(...f)) + '°→' + Math.round(f[24]) + '°';
+        if (Math.max(f[0], f[24]) <= 30) {
+          if (fijo) mejor('dobla-clavado', bulto, dd);
+          else if (modo === 'rep') mejor(cl[c] ? 'dobla-rep-viaja' : 'dobla-rep-libre', bulto, dd);
+        }
+        if (modo === 'rep') mejor('dobla-rep', bulto, dd);
+      });
     }
     /* el tobillo que acaba el tramo donde lo empezó (a menos de 3 mm): lo que se aparta por el camino */
     if (s.de !== s.a) for (const k of ['i', 'd']) if (lejos(tob[k][0], tob[k][24]) < 0.3) mejor('pie-deriva', Math.max(...tob[k].map(p => lejos(p, tob[k][0]))), 'tobillo ' + k + ' · ' + et + ' (' + s.de + '→' + s.a + ')');
   }
   for (const n of quietasDe(co)) {
     if (!d.K[n]) continue; d.metas = [];
-    const E = d.enTramo({ de: n, a: n, clavos: d.suelto(n) ? [] : (co.clavosEn && co.clavosEn[n]) || undefined }, 1);
+    const clN = d.suelto(n) ? [] : (co.clavosEn && co.clavosEn[n]) || undefined;
+    const E = d.enTramo({ de: n, a: n, clavos: clN }, 1);
     uno(E, 'postura ' + n, true, n, material(E, ctxDe(co, 'postura', n, n, 1), 'postura ' + n));
+    for (const k of ['i', 'd']) mejor('rodilla-reves', reves(T, E, k), 'rodilla ' + k + ' · postura ' + n);
   }
+  /* (22-11-2026) los tramos enlazan: donde acaba un tramo empieza el siguiente (cada uno con lo suyo clavado), y donde acaba una
+     secuencia, la postura en la que se queda (con lo que lleve clavado quieta). Si no, ahí da un tirón: en seis máquinas del bloque
+     14 las manos llegaban sueltas y, al quedarse quieto, saltaban a las asas (hasta 10 cm) */
+  const salto = (Ea, Eb) => { let m = 0, c = ''; const p = puntosDe(Ea), q = puntosDe(Eb); for (const n in p) { const v = lar(sub(p[n], q[n])); if (v > m) { m = v; c = n; } } return [m, c]; };
+  const une = (sa, sb, eb, donde) => {
+    if (!d.K[sa.de] || !d.K[sa.a] || !d.K[sb.de] || !d.K[sb.a]) return;
+    d.metas = []; const Ea = d.enTramo(sa, 1); d.metas = []; const Eb = d.enTramo(sb, eb), [v, c] = salto(Ea, Eb);
+    mejor('enlace', v, c + ' · ' + donde);
+  };
+  const quieta = n => ({ de: n, a: n, clavos: d.suelto(n) ? [] : (co.clavosEn && co.clavosEn[n]) || undefined });
+  if ((co.rep || []).length > 1) { let de = co.inicio || 'a'; const tr = co.rep.map(q => { const t = { de, a: q[0], clavos: q[3] }; de = q[0]; return t; }); tr.forEach((t, i) => { const u = tr[(i + 1) % tr.length]; if (t.a === u.de) une(t, u, 0, 'rep:' + i + ' (' + t.de + '→' + t.a + ') con lo siguiente'); }); }
+  (co.pasos || []).forEach((p, j) => {
+    if (!p || !p.sec || !p.sec.length) return;
+    let de = p.desde || co.inicio || 'a'; const tr = p.sec.map(q => { const t = { de, a: q[0], clavos: q[3] }; de = q[0]; return t; });
+    tr.forEach((t, i) => { if (i + 1 < tr.length) une(t, tr[i + 1], 0, 'paso ' + (j + 1) + ':' + i + ' (' + t.de + '→' + t.a + ') con lo siguiente'); else une(t, quieta(t.a), 1, 'paso ' + (j + 1) + ':' + i + ' (' + t.de + '→' + t.a + ') con la postura ' + t.a); });
+  });
   R.huecos = Object.keys(huecos).map(c => c + ' a ' + huecos[c] + ' cm');
   return R;
 }
@@ -194,18 +253,58 @@ function video(T, id, pasos, fps) {
   const lar = v => Math.sqrt(dot(v, v));
   let ult = null; const suave0 = d.suave;
   d.suave = function (E0, E1, dt, cl) { const E = suave0.call(this, E0, E1, dt, cl); ult = { E0, E }; return E; };
+  /* (22-11-2026) y lo que salta: de cada cuadro se guardan sus puntos, las dobleces de rodillas y codos y las palmas, tal como se
+     ven; y la mano tal como sale antes de que el Director la frene (sinGolpe) */
+  let crudo = null; const sg0 = d.sinGolpe;
+  if (sg0) d.sinGolpe = function (E, dt) { crudo = E; return sg0.call(this, E, dt); };
+  let H = [];
+  const sube = (c, v, donde) => { if (!R[c] || v > R[c][0]) R[c] = [r1(v), donde]; };
+  const cierra = () => {
+    for (let n = 1; n < H.length; n++) {
+      const a = H[n - 1], b = H[n];
+      /* la rodilla o el codo que cambian de lado de golpe: la doblez se da la vuelta de un cuadro al siguiente. Cuenta lo que
+         salta de más sobre lo que el propio miembro viaja en ese cuadro (la media de sus dos puntas): un brazo casi recto que
+         baja deprisa y empieza a doblarse hacia otro lado no da un salto, pasa por recto */
+      MIEMBROS.forEach((m, j) => {
+        if (dot(a.W[j], b.W[j]) >= 0) return;
+        const k = m[1], p = m[0] === 'rod' ? ['cad', 'tob'] : ['hom', 'mun'];
+        const viaje = (lar(sub(b.E[k][p[0]], a.E[k][p[0]])) + lar(sub(b.E[k][p[1]], a.E[k][p[1]]))) / 2;
+        sube('lado', lar(sub(b.W[j], a.W[j])) - viaje, (m[0] === 'rod' ? 'rodilla ' : 'codo ') + k + ' · ' + b.donde);
+      });
+      for (const k of ['i', 'd']) {
+        sube('mano-gira', giroMano(a.E, b.E, k), 'mano ' + k + ' · ' + b.donde);
+        /* ya dentro de la repetición, y con un cuarto de segundo para acabar lo que traiga de antes (llegar a ella desde la
+           postura anterior pasa una vez; lo de dentro se repite) */
+        if (b.rep) sube('mano-gira-rep', b.freno[k], 'mano ' + k + ' · ' + b.donde);
+      }
+      if (n < 2 || n > H.length - 2) continue;
+      /* el punto que en un cuadro se mueve más de dos veces y media lo que en el de antes y en el de después, y 2 cm: no es un
+         movimiento rápido (un salto acelera y frena en varios cuadros), es que algo cambia de sitio de golpe */
+      const z = H[n - 2], y = H[n + 1];
+      for (const c in b.P) {
+        const d1 = lar(sub(a.P[c], z.P[c])), d2 = lar(sub(b.P[c], a.P[c])), d3 = lar(sub(y.P[c], b.P[c]));
+        if (d2 > 2.5 * Math.max(d1, d3) + 2) sube('pico', d2 - Math.max(d1, d3), c + ' · ' + b.donde);
+      }
+    }
+    H = [];
+  };
   (co.pasos || ['a']).forEach((a, i, L) => {
     if (a === 'nota') return;
     const dur = Math.max(4.4, 1.9 + ((pasos && pasos[i]) || '').length * 0.058), deCerca = i === 0 || L[i - 1] === 'nota';
+    if (deCerca) cierra();        /* un corte: lo de antes no enlaza con lo de después */
     /* como el reproductor (80-reproductor.js) */
     if (a === 'rep' || (a && a.rep != null)) { if (deCerca) { d.aPostura(d.inicio, 0); d.cuadro(0.001, true); } if (d.modo !== 'rep') { d.aRep(deCerca ? 0 : 0.6); if (a.rep != null) d.tau = a.rep; } }
     else if (a && a.sec) { if (deCerca || !d.E) { d.aPostura(a.desde || d.inicio, 0); d.cuadro(0.001, true); } d.aSecuencia(a.sec, a.desde); }
     else d.aPostura(typeof a === 'string' ? a : d.inicio, deCerca ? 0 : 0.7);
-    let ant = null;
-    for (let n = 0, N = Math.round(dur / DT); n < N; n++) {
-      barra = 1e9; d.cuadro(DT, false); R.cuadros++;
+    let ant = null, dentro = 0;
+    /* la repetición se mira entera dos veces, dure lo que dure el texto del paso: el empalme del final con el principio también es vídeo */
+    for (let n = 0, N = Math.round((d.modo === 'rep' ? Math.max(dur, 2 * d.T + 0.5) : dur) / DT); n < N; n++) {
+      barra = 1e9; crudo = null; const Ev = d.cuadro(DT, false); R.cuadros++;
       const donde = 'paso ' + (i + 1) + ', ' + (n * DT).toFixed(2) + ' s' + (d.modo === 'postura' ? ' (postura ' + d.meta + ')' : d.modo === 'sec' ? ' (' + d.secDe + '→' + d.secA + ')' : ' (repetición)'), quieto = d.modo === 'postura' && d.w >= 1, ap = {};
       if (barra < 1e8 && (!R['cabeza-barra-vida'] || barra < R['cabeza-barra-vida'][0])) R['cabeza-barra-vida'] = [r1(barra), donde];
+      dentro = d.modo === 'rep' && d.w >= 1 ? dentro + 1 : 0;
+      H.push({ E: Ev, P: puntosDe(Ev), W: MIEMBROS.map(m => doblez(Ev, m[0], m[1])), donde, rep: dentro > 8, freno: { i: crudo ? giroMano(crudo, Ev, 'i') : 0, d: crudo ? giroMano(crudo, Ev, 'd') : 0 } });
+      for (const k of ['i', 'd']) sube('rodilla-reves-vida', reves(T, Ev, k), 'rodilla ' + k + ' · ' + donde);
       for (const k of ['i', 'd']) {
         ap[k] = sub(ult.E[k].mun, ult.E0[k].mun);
         if (ant) { const s = lar(sub(ap[k], ant[k])) / DT; if (s > R.tiron[0]) R.tiron = [r1(s), 'mano ' + k + ' · ' + donde]; }
@@ -214,6 +313,7 @@ function video(T, id, pasos, fps) {
       ant = ap;
     }
   });
+  cierra();
   return R;
 }
 
@@ -233,8 +333,11 @@ const LIMITES = {
   'zapa-suelo': -1.0, 'zapa-pared': -1.0, 'mano-suelo': -1.0, 'mano-pared': -1.0,
   'cuerpo-suelo': -2.5, 'cuerpo-pared': -2.5, 'tronco-suelo': -4.0, 'tronco-pared': -3.0, 'cabeza-suelo': -4.0, 'cabeza-pared': -3.5,
   'apoyada': 1.0, 'mano-muslo': 2.0, 'mano-muslo-quieta': 1.0, 'mano-muslo-vida': 3.0, 'mano-muslo-quieta-vida': 1.0, 'tiron': 95,
-  'cabeza-barra': -2.5, 'cabeza-barra-vida': -3.5, 'pie-deriva': 2.0,
-  'pelota-cuerpo': -1.5, 'pelota-mano': -3.0, 'pelota-posada': 1.5
+  'cabeza-barra': -1.5, 'cabeza-barra-vida': -1.5, 'pie-deriva': 2.0,
+  'pelota-cuerpo': -1.5, 'pelota-mano': -3.0, 'pelota-posada': 1.5,
+  'rodilla-reves': 1.0, 'rodilla-reves-vida': 1.0, 'lado': 1.5, 'pico': 0,
+  'dobla-clavado': 6, 'dobla-rep-libre': 30, 'dobla-rep-viaja': 20, 'dobla-rep': 45, 'enlace': 1.5,
+  'mano-gira': 21, 'mano-gira-rep': 45
 };
 /* lo que se sale: [{ que, v, donde }] */
 function juzga(m, v) {
@@ -257,7 +360,14 @@ const NOMBRE = {
   'tiron': 'la mano da un tirón (cm/s)', 'hueco': 'una mano abierta, cerca de una superficie y sin tocarla', 'error': 'no se pudo medir',
   'cabeza-barra': 'una barra, un tubo o un cable del material, dentro de la cabeza', 'cabeza-barra-vida': 'una barra, un tubo o un cable del material, dentro de la cabeza (en el vídeo)',
   'pie-deriva': 'un pie que no se mueve, se va por el camino (hay que clavarlo)',
-  'pelota-cuerpo': 'el cuerpo, dentro de una pelota', 'pelota-mano': 'una mano, dentro de una pelota', 'pelota-posada': 'el fitball, en el aire: nada posado en él'
+  'pelota-cuerpo': 'el cuerpo, dentro de una pelota', 'pelota-mano': 'una mano, dentro de una pelota', 'pelota-posada': 'el fitball, en el aire: nada posado en él',
+  'rodilla-reves': 'una rodilla dobla al revés (cm detrás de la línea de la pierna)', 'rodilla-reves-vida': 'una rodilla dobla al revés (en el vídeo)',
+  'lado': 'una rodilla o un codo cambian de lado de golpe (cm en un cuadro)', 'pico': 'algo cambia de sitio de golpe (cm de más en un cuadro)',
+  'dobla-clavado': 'lo clavado que va recto en las dos puntas se dobla de paso (grados)', 'dobla-rep-libre': 'en la repetición, lo que va recto en las dos puntas se dobla de paso (grados)',
+  'dobla-rep-viaja': 'en la repetición, el pie o la mano clavados que viajan con el miembro recto en las dos puntas lo doblan de paso (grados)',
+  'dobla-rep': 'en la repetición, una rodilla o un codo se doblan de paso mucho más que en sus dos puntas (grados): falta una postura',
+  'enlace': 'un tramo no acaba donde empieza lo siguiente (cm): da un tirón',
+  'mano-gira': 'una mano gira de golpe (grados en un cuadro, en el vídeo)', 'mano-gira-rep': 'en la repetición, una mano da un giro que el Director tiene que frenar (grados)'
 };
 module.exports = { carga, mide, video, juzga, cabezaBarra, pintado, enPelota, ctxDe, director, tramosDe, quietasDe, LIMITES, NOMBRE };
 

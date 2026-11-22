@@ -21,19 +21,19 @@
    Aquí van el motor y las 40 coreografías del bloque 1. Las otras 494 van por grupos en modulos/entrenador/,
    cada fichero con la huella de su contenido en el nombre, y se piden al abrir la ficha de uno de sus ejercicios:
      CARGA-PEREZOSA: modulos/entrenador/pecho.9bf43e42.js   (35)
-     CARGA-PEREZOSA: modulos/entrenador/dorsal.a025bb19.js   (35)
-     CARGA-PEREZOSA: modulos/entrenador/espalda-alta.0920d36f.js   (30)
-     CARGA-PEREZOSA: modulos/entrenador/hombros.0848269f.js   (34)
-     CARGA-PEREZOSA: modulos/entrenador/biceps.1f778db3.js   (36)
-     CARGA-PEREZOSA: modulos/entrenador/triceps.bfe5bbc4.js   (37)
-     CARGA-PEREZOSA: modulos/entrenador/antebrazo-pantorrilla.478307b0.js   (35)
-     CARGA-PEREZOSA: modulos/entrenador/cuadriceps.0e6985be.js   (31)
-     CARGA-PEREZOSA: modulos/entrenador/gluteos.db0489dd.js   (43)
-     CARGA-PEREZOSA: modulos/entrenador/isquiotibiales.6b6dff41.js   (22)
-     CARGA-PEREZOSA: modulos/entrenador/abdomen.e3ae2c5d.js   (40)
-     CARGA-PEREZOSA: modulos/entrenador/banda.365d46a0.js   (38)
-     CARGA-PEREZOSA: modulos/entrenador/maquinas.b83b336d.js   (41)
-     CARGA-PEREZOSA: modulos/entrenador/accesorios.e9c81720.js   (37)
+     CARGA-PEREZOSA: modulos/entrenador/dorsal.eed568ea.js   (35)
+     CARGA-PEREZOSA: modulos/entrenador/espalda-alta.6af6b1da.js   (30)
+     CARGA-PEREZOSA: modulos/entrenador/hombros.b1403733.js   (34)
+     CARGA-PEREZOSA: modulos/entrenador/biceps.d33e3063.js   (36)
+     CARGA-PEREZOSA: modulos/entrenador/triceps.df899f61.js   (37)
+     CARGA-PEREZOSA: modulos/entrenador/antebrazo-pantorrilla.4f5e4670.js   (35)
+     CARGA-PEREZOSA: modulos/entrenador/cuadriceps.575af499.js   (31)
+     CARGA-PEREZOSA: modulos/entrenador/gluteos.152d0196.js   (43)
+     CARGA-PEREZOSA: modulos/entrenador/isquiotibiales.2ecd16f3.js   (22)
+     CARGA-PEREZOSA: modulos/entrenador/abdomen.40b61211.js   (40)
+     CARGA-PEREZOSA: modulos/entrenador/banda.e7699bb7.js   (38)
+     CARGA-PEREZOSA: modulos/entrenador/maquinas.6398b114.js   (41)
+     CARGA-PEREZOSA: modulos/entrenador/accesorios.a05f1250.js   (37)
 
    NO EDITAR A MANO: lo hace tools/entrenador/construir.py juntando los trozos de tools/entrenador/src/. */
 (function () {
@@ -312,12 +312,15 @@
     /* la mano apoyada (en el suelo, en una pared): se dice en el mundo hacia dónde mira la palma (m.palma) y hacia dónde van los
        dedos (m.dedos), y la mano queda así haga lo que haga el antebrazo: la muñeca se dobla lo que haga falta. Entre una postura
        apoyada y otra que no lo está, m.wd dice cuánto manda */
+    var R;
     if (m.ded && m.pal && m.wd > 0) {
       var pF = m.pal, dF = unidad(sinParte(m.ded, pF), dir);
       if (m.wd < 1) { pF = unidad(mezcla(unidad(palma), pF, m.wd), pF); dF = unidad(sinParte(mezcla(unidad(dir), dF, m.wd), pF), dF); }
-      return { dir: dF, eje: por(cruz(pF, dF), s), palma: pF };
-    }
-    return { dir: unidad(dir), eje: unidad(eje), palma: unidad(palma) };
+      R = { dir: dF, eje: por(cruz(pF, dF), s), palma: pF };
+    } else R = { dir: unidad(dir), eje: unidad(eje), palma: unidad(palma) };
+    /* lo que el Director frena (60-director.js, sinGolpe): la mano entera, girada sobre el antebrazo */
+    if (m.giro) R = { dir: girar(R.dir, lw, m.giro), eje: girar(R.eje, lw, m.giro), palma: girar(R.palma, lw, m.giro) };
+    return R;
   }
 
   /* Del estado canónico al esqueleto: cada articulación, en el mundo. */
@@ -394,6 +397,13 @@
     });
     return armar(S);
   }
+  /* el frente de una pierna que apunta hacia u (unidad): el de la pelvis (base Bp), llevado de «hacia abajo» a u por el giro más corto.
+     Es hacia donde dobla la rodilla si la cadera no gira hacia dentro ni hacia fuera */
+  function frenteDePierna(Bp, u) {
+    var abajo = por(Bp[1], -1), ej = cruz(abajo, u), s = largo(ej);
+    if (s < 1e-6) return unidad(sinParte(Bp[2], u), Bp[2]);
+    return unidad(sinParte(girar(Bp[2], por(ej, 1 / s), Math.atan2(s, punto(abajo, u)) / RAD), u), Bp[2]);
+  }
   /* Clava una mano o un pie en un punto del mundo: se vuelve a resolver ese miembro, doblándose
      hacia donde ya se doblaba. que: 'mi', 'md' (muñecas), 'ti', 'td' (tobillos). */
   function clavar(E, que, meta) {
@@ -402,7 +412,20 @@
       var r = dosHuesos(L.hom, meta, D.brazo, D.antebrazo, L.cod);
       S.b[k] = { u: aLocal(E.Bt, unidad(menos(r.medio, L.hom))), l: aLocal(E.Bt, unidad(menos(r.fin, r.medio))), b: S.b[k].b };
     } else {
-      var rq = dosHuesos(L.cad, meta, D.muslo, D.pierna, L.rod);
+      /* (22-11-2026) la rodilla dobla hacia delante. «Hacia donde ya se doblaba» no dice nada con la pierna recta (la rodilla cae en
+         la línea de la cadera al tobillo, y un pelo a un lado o al otro decide), y con la pierna casi recta puede decir que hacia
+         atrás: en una flexión la rodilla se iba hacia el techo, al revés de como dobla, y cambiaba de lado de golpe (hasta 27 cm en un
+         cuadro en un peso muerto a una pierna). Con la pierna casi recta (la rodilla, a menos de 4 cm de esa línea; desde 10, nada: la
+         rodilla bien doblada se queda como está, también la que mira hacia fuera), la pista que caiga detrás se pasa delante, y la que
+         no diga nada se empuja un pelo hacia delante. «Delante» es el frente de la pelvis, llevado a donde apunta la pierna */
+      var pista = L.rod, dq = menos(meta, L.cad), cq = entre(largo(dq), Math.abs(D.muslo - D.pierna) + 0.01, D.muslo + D.pierna - 0.01);
+      var aq = (D.muslo * D.muslo - D.pierna * D.pierna + cq * cq) / (2 * cq), wq = 1 - CURVA.suave(entre((Math.sqrt(Math.max(0, D.muslo * D.muslo - aq * aq)) - 4) / 6, 0, 1));
+      if (wq > 0) {
+        var uq = unidad(dq, [0, -1, 0]), fq = frenteDePierna(E.Bp, uq), lq = sinParte(menos(pista, L.cad), uq), pq = punto(lq, fq);
+        if (pq < 0) { pista = menos(pista, por(fq, 2 * pq * wq)); lq = menos(lq, por(fq, 2 * pq * wq)); }
+        pq = largo(lq); if (pq < 1) pista = mas(pista, por(fq, 0.3 * wq * (1 - pq)));
+      }
+      var rq = dosHuesos(L.cad, meta, D.muslo, D.pierna, pista);
       S.q[k] = { u: aLocal(E.Bp, unidad(menos(rq.medio, L.cad))), l: aLocal(E.Bp, unidad(menos(rq.fin, rq.medio))), b: S.q[k].b };
     }
   }
@@ -2343,6 +2366,7 @@
     this.antes = true;
   };
   MATERIAL.barra_dominadas.prototype.colocar = function () {};
+  MATERIAL.barra_dominadas.prototype.agarreFijo = true;      /* no se mueve: lo que cuelga de ella con los brazos rectos va tenso (60-director.js) */
   MATERIAL.barra_dominadas.prototype.agarre = function (x) { return [x, this.o.alto || 225, (this.o.z || 0) + (this.o.paralelos ? PARALELO / 2 : 0)]; };
   MATERIAL.barra_dominadas.prototype.extremos = function () {
     var o = this.o, w = o.ancho || 66, z = o.z || 0, v = o.voladizo || 0, h = (o.alto || 225) + 6 + (v ? VOLADIZO_ALTO : 0);
@@ -2372,6 +2396,7 @@
   };
   MATERIAL.paralelas.prototype.colocar = function () {};
   /* dónde se agarra: en la barra de su lado (x > 0, la de su izquierda), a la altura de «manos» a lo largo de ella */
+  MATERIAL.paralelas.prototype.agarreFijo = true;
   MATERIAL.paralelas.prototype.agarre = function (x) { var o = this.o; return [(x >= 0 ? 1 : -1) * (o.ancho || 27), o.alto || 118, (o.z || 0) + (o.manos || 0)]; };
   MATERIAL.paralelas.prototype.extremos = function () { var o = this.o, w = o.ancho || 27, l = (o.largo || 110) / 2, z = o.z || 0, h = o.alto || 118; return [[w, h, z - l], [-w, h, z + l], [w, 0, z + l], [-w, 0, z - l]]; };
   MATERIAL.paralelas.prototype.pintar = function (E, cam, lista) {
@@ -3476,13 +3501,15 @@
     this.clavos = (co.clavos || []).map(clavo);
     this.rastroDe = co.rastro || null; this.rastro = [];
     this.modo = 'postura'; this.meta = this.inicio; this.tau = 0; this.w = 1; this.Eprev = null; this.reps = 0; this.sec = null;
-    this.vida.corte(); this.cortes++; this.gestoDe = null; this.ap = null;
+    this.vida.corte(); this.cortes++; this.gestoDe = null; this.ap = null; this.gm = null;
     /* los rodeos de la repetición, mirados ya; salvo en las muy largas (un paseo, unos saltos de lado a lado: decenas de tramos),
        que se miran al llegar a cada uno: ahí mirarlos todos de golpe tardaría más que lo que ahorra */
     this.metas = [];
     if (this.rep.length <= RODEO_REP) this.rodeos(this.rep);
     this.encuadrar();
   };
+  /* cuánto se dobla el codo (o la rodilla) cuando del hombro a la muñeca (o de la cadera al tobillo) hay d centímetros, en grados */
+  function dobladoA(d, brazo) { var a = brazo ? D.brazo : D.muslo, b = brazo ? D.antebrazo : D.pierna; return Math.acos(entre((d * d - a * a - b * b) / (2 * a * b), -1, 1)) / RAD; }
   function clavo(s) {
     /* 'ti' · 'mi' (en línea recta entre posturas) · 'mi@0:31' (al agarre del material 0, a 31 cm del centro) · 'mi=x,y,z' (a un punto) */
     var m = /^([mt][id])(?:@(\d+):(-?[\d.]+))?(?:=(-?[\d.]+),(-?[\d.]+),(-?[\d.]+))?$/.exec(s);
@@ -3516,26 +3543,51 @@
       if (c.que.charAt(0) === 't') meta = c.en || mezcla(A[k].tob, B[k].tob, e);
       else if (c.mat != null && mats[c.mat] && mats[c.mat].agarre) meta = munecaPara(E, k, mats[c.mat].agarre(c.x));
       else meta = c.en || mezcla(A[k].mun, B[k].mun, e);
-      lista.push([c.que, meta]);
+      lista.push([c.que, meta, c]);
     }
     if (!lista.length) return E;
     var corr = [0, 0, 0], v, l, peor, falta, tope, vuelta, q, L, brazo;
     /* (21-11-2026) lo tenso. De una postura a otra la cadera va derecha, por la cuerda; si el cuerpo gira sobre los pies clavados (una
        flexión, un remo colgado de la cinta) o lleva las manos clavadas a lo que rueda, lo suyo es el arco: por la cuerda queda más
        cerca, y la rodilla o el codo, que en las dos posturas van rectos, se doblaban de paso (hasta 35° en el bloque 15). El brazo o
-       la pierna que la coreografía dice tenso (tensos: ['ti', 'td', 'mi', 'md'], de lo que lleve clavado) llega a su sitio tan
-       estirado como en las posturas: lo que mide del hombro a la muñeca, o de la cadera al tobillo, va de lo que mide en una a lo que
-       mide en la otra, y es la cadera (el cuerpo entero, lo mismo) la que se aparta lo que haga falta. Solo donde se pide */
-    var tensos = this.co && this.co.tensos, ct, dA, dB, kt;
-    if (tensos && A && B) {
-      ct = [0, 0, 0];
+       la pierna tensos llegan a su sitio tan estirados como en las posturas: lo que miden del hombro a la muñeca, o de la cadera al
+       tobillo, va de lo que mide en una a lo que mide en la otra, y es la cadera (el cuerpo entero, lo mismo) la que se aparta lo que
+       haga falta.
+       (22-11-2026) Y ya no hay que pedirlo: va tenso solo lo clavado que, entre dos posturas distintas, está recto en las dos (del
+       todo, hasta 25° de rodilla o de codo; nada, desde 40°) y cuyo clavo no viaja (el pie o la mano que se quedan donde están: hasta
+       2 cm; desde 5, nada. Lo clavado a un agarre del material o a un punto dicho no viaja: lo lleva lo que lo lleva). La mano que
+       va de un sitio a otro en línea recta (se suelta del suelo y se tiende al frente) dobla el codo por el camino, como al alcanzar
+       algo, y eso no se toca. Lo que la coreografía dice tenso (tensos: ['ti', 'td', 'mi', 'md']) lo va siempre, también quieto */
+    var tensos = this.co && this.co.tensos, ct, dA, dB, kt, hayT = false, wT, cT, mA, mB, deMat, E0;
+    if (A && B) for (i = 0; i < lista.length; i++) {
+      q = lista[i]; kt = q[0].charAt(1); brazo = q[0].charAt(0) === 'm'; cT = q[2];
+      /* a dónde va clavado en cada punta (y de ahí, lo que mide el miembro en ella: lo que mide clavado, no lo que diga la postura) */
+      deMat = cT.mat != null && mats[cT.mat] && mats[cT.mat].agarre;
+      if (deMat) { mA = munecaPara(A, kt, mats[cT.mat].agarre(cT.x)); mB = munecaPara(B, kt, mats[cT.mat].agarre(cT.x)); }
+      else if (cT.en) mA = mB = cT.en;
+      else { mA = brazo ? A[kt].mun : A[kt].tob; mB = brazo ? B[kt].mun : B[kt].tob; }
+      dA = largo(menos(mA, brazo ? A[kt].hom : A[kt].cad)); dB = largo(menos(mB, brazo ? B[kt].hom : B[kt].cad));
+      if (tensos && tensos.indexOf(q[0]) >= 0) wT = 1;
+      /* solo entre dos posturas distintas; y a un agarre del material, solo si ese agarre no se mueve (una barra fija, unas paralelas:
+         el de una máquina o el de una barra que va en las manos siguen al cuerpo, y tirar de él no tiene sentido) */
+      else if (A === B || tensos === false || (deMat && !mats[cT.mat].agarreFijo)) wT = 0;
+      else {
+        wT = 1 - CURVA.suave(entre((Math.max(dobladoA(dA, brazo), dobladoA(dB, brazo)) - 25) / 15, 0, 1));
+        if (wT > 0 && !deMat && !cT.en) wT *= 1 - CURVA.suave(entre((largo(menos(mA, mB)) - 2) / 3, 0, 1));
+      }
+      q[3] = wT; q[4] = dA; q[5] = dB; if (wT > 0) hayT = true;
+    }
+    if (hayT) {
+      /* lo que hay que apartar la cadera se mide en la mezcla limpia de las dos posturas (sin la vida: el aire y el peso mueven los
+         hombros y la cadera un poco, y eso no se corrige; corregirlo levantaba del suelo, al empezar a moverse, al que está tumbado
+         con las manos apoyadas). Así, en las dos puntas del tramo no se aparta nada, y enlaza con la postura quieta sin un salto */
+      E0 = A === B ? A : mezclar(A, B, e); ct = [0, 0, 0];
       for (vuelta = 0; vuelta < 60; vuelta++) {
         peor = 0;
         for (i = 0; i < lista.length; i++) {
-          q = lista[i]; if (tensos.indexOf(q[0]) < 0) continue;
+          q = lista[i]; if (!(q[3] > 0)) continue;
           kt = q[0].charAt(1); brazo = q[0].charAt(0) === 'm';
-          dA = largo(menos(brazo ? A[kt].mun : A[kt].tob, brazo ? A[kt].hom : A[kt].cad)); dB = largo(menos(brazo ? B[kt].mun : B[kt].tob, brazo ? B[kt].hom : B[kt].cad));
-          v = menos(q[1], mas(brazo ? E[kt].hom : E[kt].cad, ct)); l = largo(v); falta = l - (dA + (dB - dA) * e);
+          v = menos(q[1], mas(brazo ? E0[kt].hom : E0[kt].cad, ct)); l = largo(v); falta = (l - (q[4] + (q[5] - q[4]) * e)) * q[3];
           if (Math.abs(falta) > peor) peor = Math.abs(falta);
           if (l > 1e-6) ct = mas(ct, por(v, falta / l));
         }
@@ -3722,6 +3774,30 @@
     }
     return R ? armar(R) : E1;
   };
+  /* (22-11-2026) la mano no gira de golpe. Hacia dónde mira la palma sale de la bisagra del codo, del prono y de lo que la postura
+     diga en el mundo, y hay momentos en que eso cambia de un cuadro al siguiente: el brazo que llega a estirarse del todo (de ahí
+     en adelante la bisagra ya no la dicen sus dos huesos), la palma dicha que pasa por detrás del antebrazo… En 83 de los 534 la
+     mano daba un giro de 25° a 180° en un solo cuadro. Aquí, en lo que se ve, la mano gira sobre su antebrazo como mucho VGM
+     grados por segundo: llega a donde iba en dos o tres décimas en vez de saltar. Quieta es exacta, y también en el primer cuadro
+     tras un corte. (La que en plena repetición va y vuelve se arregla en su coreografía: lo mira la auditoría.) */
+  var VGM = 600;
+  Director.prototype.sinGolpe = function (E, dt) {
+    var gm = this.gm, exacto = !gm || !(dt > 0) || dt > 0.25, tope = VGM * dt, R = null, i, k, L, p0, p1, a, d, m, c, toca = [];
+    if (!gm) gm = this.gm = { i: null, d: null };
+    for (i = 0; i < 2; i++) {
+      k = LADOS[i]; L = E[k]; p1 = sinParte(L.mano.palma, L.lw); p0 = gm[k] ? sinParte(gm[k], L.lw) : null;
+      if (exacto || !p0 || largo(p1) < 0.3 || largo(p0) < 0.3) { gm[k] = L.mano.palma; continue; }
+      /* de la que se enseñó a la que sale ahora, girando sobre el antebrazo */
+      a = Math.atan2(punto(cruz(p0, p1), L.lw), punto(p0, p1)) / RAD;
+      if (Math.abs(a) <= tope) { gm[k] = L.mano.palma; continue; }
+      d = a - (a > 0 ? tope : -tope);
+      if (!R) R = { p: E.S.p, B: E.S.B, col: E.S.col, cab: E.S.cab, hom: E.S.hom, b: E.S.b, q: E.S.q, m: { i: E.S.m.i, d: E.S.m.d }, t: E.S.t };
+      m = {}; for (c in E.S.m[k]) m[c] = E.S.m[k][c];
+      m.giro = (m.giro || 0) - d; R.m[k] = m; toca.push(k);
+    }
+    if (R) { E = armar(R); for (i = 0; i < toca.length; i++) gm[toca[i]] = E[toca[i]].mano.palma; }
+    return E;
+  };
   /* una postura clave de una coreografía, resuelta: con las manos fuera de los muslos. Aquí, quieta, se saca del todo la mano que
      esté metida en uno, por honda que esté (en movimiento, despejar solo aparta lo que roza): hacia fuera del eje del muslo, hasta que
      no lo toque. Menos las manos que la coreografía lleva clavadas en esa postura (agarran algo fijo o apoyan en el suelo) */
@@ -3749,7 +3825,7 @@
     if (!this.K[nombre]) return;
     this.Eprev = this.E; this.w = this.E && seg !== 0 ? 0 : 1; this.durW = seg || 0.7;
     this.metaPrev = this.meta; this.modo = 'postura'; this.meta = nombre; this.sec = null; this.gestoDe = null;
-    this.vida.linea = []; if (seg === 0) { this.vida.corte(); this.cortes++; this.ap = null; }
+    this.vida.linea = []; if (seg === 0) { this.vida.corte(); this.cortes++; this.ap = null; this.gm = null; }
   };
   Director.prototype.aRep = function (seg) {
     if (!this.rep.length) return this.aPostura(this.inicio, seg);
@@ -3830,7 +3906,7 @@
       this.w = Math.min(1, this.w + dt / this.durW);
       E = mezclar(this.Eprev, E, CURVA.suave(this.w));
     }
-    E = this.suave(E, this.despejar(E, clavos), dt, clavos);
+    E = this.sinGolpe(this.suave(E, this.despejar(E, clavos), dt, clavos), dt);
     this.E = E;
     this.vida.mide(E, parado ? 0 : dt);
     /* la cámara: hacia su vista, con suavidad; de cerca, se va acercando muy despacio */
@@ -3964,7 +4040,7 @@
     this.salto = true;
   };
   Director.prototype.girar = function () { this.vista = (this.vista + 1) % this.vistas.length; return this.vista; };
-  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; this.tBusto = 0; this.vida.corte(); this.cortes++; this.ap = null; this.esc.cab.corte = true; } };
+  Director.prototype.aBusto = function (si) { if (this.busto !== !!si) { this.busto = !!si; this.salto = true; this.tBusto = 0; this.vida.corte(); this.cortes++; this.ap = null; this.gm = null; this.esc.cab.corte = true; } };
 
   /* ───────────────────────── las coreografías ─────────────────────────
      Una por ejercicio (la clave es el id de la ficha en datos/cuerpo/ejercicios.json). Cada una
@@ -4033,6 +4109,14 @@
   function cuelga(G, extra) { return sobre(COLGADO, sobre({ pel: [0, yColgado(G, 3.5), -2], hom: [3.5, 0], b: { a: [G, ALTO_BARRA - 8, 0], polo: [1, -0.2, 0.5] } }, extra || {})); }
   function activo(G, extra) { return sobre(COLGADO, sobre({ pel: [0, yColgado(G, -2), -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [G, ALTO_BARRA - 8, 0], polo: [1, -0.3, 0.4] } }, extra || {})); }
   function clavosB(G, G2) { return ['mi@0:' + G, 'md@0:' + (-(G2 == null ? G : G2))]; }
+  /* (22-11-2026) colgado de la barra, la cabeza no se queda justo debajo de ella: con los brazos estirados, las púas del tupé llegan a
+     su altura, y al subir la barra se las cruzaba (hasta 3,4 cm; lo mide la auditoría: «la cabeza y las barras»). Cuelga «dz» cm por
+     detrás de la barra (dz < 0), con los brazos igual de estirados (la cadera sube lo que haga falta), y mira hacia ella («cab»
+     grados: negativo, la cabeza hacia atrás), que es además como se cuelga quien va a subir */
+  function miraBarra(P, dz, cab) {
+    var h = resolver(P).i.hom, a = ALTO_BARRA - h[1], b = P.b.a[2] - h[2];
+    return sobre(P, { pel: [P.pel[0], P.pel[1] + a - Math.sqrt(a * a + b * b - (b - dz) * (b - dz)), P.pel[2] + dz], cab: [cab == null ? -12 : cab, 0, 0] });
+  }
   /* ── dos ayudas para colocar las manos ──
      conAgarre: la postura P con el centro del puño izquierdo en g (el derecho, en su reflejo) y el codo hacia «polo»: la muñeca
      queda a una mano de g, en la línea del antebrazo. k: 'b' (los dos brazos), 'bi' o 'bd' (uno solo; g es entonces el de ese lado) */
@@ -4283,17 +4367,26 @@
       inicio: 'b', encuadra: ['a'],
       pasos: [{ sec: [['a', 0.5], ['w1', 0.5, 'entra'], ['w2', 0.6, 'sale'], ['w3', 0.6, 'entra'], ['b', 0.6, 'sale']], desde: 'a' }, 'b', { sec: [['c', 0.9, 'suave']], desde: 'b' }]
     };
-    /* con salto: en el aire no hay nada clavado */
+    /* con salto: en el aire no hay nada clavado.
+       (22-11-2026) Los brazos, atrás, se dicen por detrás de verdad (e negativo: el brazo, 30° por detrás del tronco, y el codo doblado
+       hacia delante, que es como dobla): con «z: 176» el codo doblaba al revés (el antebrazo subía por detrás) y, de ahí a los brazos
+       arriba, la bisagra del codo se daba la vuelta y la mano giraba de golpe. Atrás y arriba van en el mismo plano (z: 0) y a menos de
+       arriba, la bisagra del codo se daba la vuelta y la mano giraba de golpe. Y entre atrás y arriba hay una postura, el despegue (k):
+       ya estirado y de puntillas, con los pies aún en el suelo y los brazos pasando por delante de la cadera, algo abiertos (por fuera
+       de los muslos). Sin ella, de atrás a arriba hay casi media vuelta y el brazo iba por donde le salía. En el despegue los brazos ya
+       van por delante y a media altura, y el vuelo dura 0,2 s: con ellos más abajo y en 0,13 s, la mano subía 52 cm en un cuadro. Al caer, los pies bajan
+       clavados a su línea (sueltos, la punta del pie daba un salto de 6 cm en el cuadro en que tocaba el suelo) */
     var sp = { suelo: [10, 0], abre: 6 }, T2 = ['ti', 'td'];
     COREO['sentadilla-salto'] = {
-      vista: [48, 90], rastro: 'pel', esfuerzo: [2],
+      vista: [48, 90], rastro: 'pel', esfuerzo: [2, 3],
       posturas: {
         a: { p: sp },
-        b: { pel: [0, 56, -20], giro: [0, 34, 0], cab: [-28, 0, 0], p: sp, b: { e: 34, z: 176, g: 0, c: 22 }, m: SUELTA },
-        s: { pel: [0, PIE + 26, 0], giro: [0, -2, 0], p: { e: 2, z: 0, c: 5 }, t: { tob: 46 }, b: { e: 150, z: 10, g: 0, c: 14 }, m: SUELTA },
-        l: { pel: [0, 62, -15], giro: [0, 28, 0], cab: [-24, 0, 0], p: sp, b: { e: 40, z: 10, g: 0, c: 30 }, m: SUELTA }
+        b: { pel: [0, 56, -20], giro: [0, 34, 0], cab: [-28, 0, 0], p: sp, b: { e: -30, z: -10, g: 0, c: 16 }, m: SUELTA },
+        k: { pel: [0, PIE + 4, -2], giro: [0, 7, 0], cab: [-6, 0, 0], p: { suelo: [10, 0], abre: 6, talon: 40 }, b: { e: 62, z: 10, g: 0, c: 24 }, m: SUELTA },
+        s: { pel: [0, PIE + 26, 0], giro: [0, -2, 0], p: { e: 2, z: 0, c: 5 }, t: { tob: 46 }, b: { e: 140, z: 6, g: 0, c: 14 }, m: SUELTA },
+        l: { pel: [0, 62, -15], giro: [0, 28, 0], cab: [-24, 0, 0], p: sp, b: { e: 40, z: 8, g: 0, c: 30 }, m: SUELTA }
       },
-      rep: [['b', 0.75, 'suave', T2], ['b', 0.16, null, T2], ['s', 0.3, 'sale', []], ['l', 0.34, 'entra', []], ['a', 0.75, 'suave', T2], ['a', 0.5, null, T2]],
+      rep: [['b', 0.75, 'suave', T2], ['b', 0.16, null, T2], ['k', 0.26, 'entra', T2], ['s', 0.2, 'sale', []], ['l', 0.34, 'entra', T2], ['a', 0.75, 'suave', T2], ['a', 0.5, null, T2]],
       pasos: [{ sec: [['b', 0.9, 'suave', T2]], desde: 'a' }, 'rep', 'rep']
     };
   })();
@@ -4557,9 +4650,9 @@
       vista: [26, 154], rastro: 'barbilla', esfuerzo: [0], clavos: ['mi@0:28', 'md@0:-28'],
       material: [['barra_dominadas', { alto: 225, ancho: 62 }]],
       posturas: {
-        a: sobre(COLGADO, { pel: [0, 120, -2], hom: [3.5, 0], b: { a: [28, 217, 0], polo: [1, -0.2, 0.5] } }),
-        a2: sobre(COLGADO, { pel: [0, 125.5, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [28, 217, 0], polo: [1, -0.3, 0.4] } }),
-        b: sobre(COLGADO, { pel: [0, 172, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], b: { a: [28, 217, 0], polo: [1, -1, 0.1] } })
+        a: miraBarra(sobre(COLGADO, { pel: [0, 120, -2], hom: [3.5, 0], b: { a: [28, 217, 0], polo: [1, -0.2, 0.5] } }), -3, -10),
+        a2: miraBarra(sobre(COLGADO, { pel: [0, 125.5, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [28, 217, 0], polo: [1, -0.3, 0.4] } }), -5, -14),
+        b: sobre(COLGADO, { pel: [0, 172, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [-4, 0, 0], b: { a: [28, 217, 0], polo: [1, -1, 0.1] } })
       },
       inicio: 'a2',
       rep: [['b', 1.3, 'empuje'], ['b', 0.5], ['a2', 1.9, 'freno'], ['a2', 0.45]],
@@ -4571,9 +4664,9 @@
       vista: [30, 96], rastro: 'barbilla', esfuerzo: [0], clavos: ['mi@0:20', 'md@0:-20'],
       material: [['barra_dominadas', { alto: 225, ancho: 62 }]],
       posturas: {
-        a: sobre(sup, { pel: [0, 119.4, -2], hom: [3.5, 0], b: { a: [20, 217, 0], polo: [0.4, -0.2, 1] } }),
-        a2: sobre(sup, { pel: [0, 124.8, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [20, 217, 0], polo: [0.4, -0.3, 1] } }),
-        b: sobre(sup, { pel: [0, 175, -12], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], b: { a: [20, 217, 0], polo: [0.25, -1, 0.9] } })
+        a: miraBarra(sobre(sup, { pel: [0, 119.4, -2], hom: [3.5, 0], b: { a: [20, 217, 0], polo: [0.4, -0.2, 1] } }), -3, -10),
+        a2: miraBarra(sobre(sup, { pel: [0, 124.8, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [20, 217, 0], polo: [0.4, -0.3, 1] } }), -5, -14),
+        b: sobre(sup, { pel: [0, 175, -12], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [-4, 0, 0], b: { a: [20, 217, 0], polo: [0.25, -1, 0.9] } })
       },
       inicio: 'a2',
       rep: [['b', 1.3, 'empuje'], ['b', 0.35], ['a2', 1.9, 'freno'], ['a2', 0.45]],
@@ -4668,8 +4761,8 @@
   COREO['press-militar-barra'] = {
     vista: [22, 78], rastro: 'manos', esfuerzo: [0], clavos: ['mi', 'md'], material: [['barra', { discos: 17 }]],
     posturas: {
-      a: conPuno({ m: { tipo: 'puno', prono: 90, mun: -30 }, cab: [-15, 0, 0] }, [26, HOMBRO - 1, 15], [0.8, -1, 0]),
-      b: conPuno({ m: PRONO, cab: [-6, 0, 0] }, [26, HOMBRO + 56, 14], [1, -0.25, 0.25])      /* el codo, a 20° de estirarse del todo, como antes */
+      a: conPuno({ m: { tipo: 'puno', prono: 90, mun: -30 }, cab: [-17, 0, 0] }, [26, HOMBRO - 1, 15.5], [0.8, -1, 0]),
+      b: conPuno({ m: PRONO, cab: [-10, 0, 0] }, [26, HOMBRO + 56, 15], [1, -0.25, 0.25])      /* el codo, a 20° de estirarse del todo, como antes */
     },
     rep: [['b', 1.2, 'empuje'], ['b', 0.35], ['a', 1.6, 'freno'], ['a', 0.45]],
     pasos: ['a', 'rep', 'rep']
@@ -5532,8 +5625,8 @@
      como las mallas del 3D) y un motor nunca se junta con un trozo que no se auditó con él.
      Un trozo es una función: recibe del motor lo que usa (NUCLEO: nombres de este fichero), define sus COREO y devuelve
      las huellas de sus pasos. TROZOS y NUCLEO los escribe tools/entrenador/construir.py. */
-  var TROZOS = {"pecho": ["pecho.9bf43e42", ["press-banca-mancuernas", "press-inclinado-mancuernas", "press-inclinado-mancuernas-agarre-neutro", "press-declinado-mancuernas", "press-mancuerna-un-brazo", "press-mancuernas-juntas", "press-suelo-mancuernas", "press-inclinado-barra", "press-declinado-barra", "aperturas-mancuernas", "aperturas-inclinadas-mancuernas", "aperturas-declinadas-mancuernas", "apertura-mancuerna-un-brazo", "pullover-mancuerna", "pullover-barra-brazos-flexionados", "cruce-poleas", "cruce-poleas-bajo-alto", "cruce-poleas-alto-bajo", "press-pecho-polea-un-brazo", "aperturas-polea-banco-plano", "aperturas-polea-banco-inclinado", "aperturas-polea-sentado", "flexion-pared", "flexion-inclinada", "flexion-declinada", "flexion-rodillas", "flexion-abierta", "flexion-manos-escalonadas", "flexion-arquero", "flexion-explosiva", "flexion-deficit", "fondos-paralelas", "estiramiento-pecho-sentado", "estiramiento-pecho-marco-puerta", "estiramiento-pecho-pared"]], "dorsal": ["dorsal.a025bb19", ["dominadas-agarre-ancho", "dominadas-agarre-neutro", "dominadas-agarre-estrecho", "dominadas-negativas", "dominada-isometrica", "dominadas-parciales", "dominadas-arquero", "dominadas-maquina-de-escribir", "dominadas-comando", "front-lever", "front-lever-agrupado", "dominada-front-lever", "ice-cream-maker", "jalon-al-pecho", "jalon-agarre-estrecho", "jalon-supino", "jalon-agarre-neutro", "jalon-unilateral-cruzado", "jalon-unilateral-rodilla", "jalon-brazos-rectos", "jalon-brazos-rectos-cuerda", "remo-inclinado-mancuernas", "remo-inclinado-barra", "remo-inclinado-barra-supino", "remo-pendlay", "remo-barra-t", "remo-barra-t-agarre-ancho", "remo-helms", "remo-renegado", "remo-meadows", "remo-polea-de-pie-una-mano", "remo-polea-alta-una-mano", "remo-polea-baja-una-mano", "estiramiento-dorsal-rodillas-banco", "estiramiento-dorsal-codos-banco"]], "espalda-alta": ["espalda-alta.0920d36f", ["encogimientos-barra", "encogimientos-polea", "encogimientos-entre-poleas", "encogimiento-silverback", "encogimientos-sin-peso", "remo-sentado-polea", "remo-sentado-polea-agarre-ancho", "remo-sentado-polea-supino", "remo-alto-polea-sentado", "remo-alto-inclinado-mancuernas", "remo-landmine-perpendicular", "remo-pecho-apoyado-mancuernas", "elevacion-plano-escapular", "protraccion-escapular-tumbado", "empaquetado-escapular", "elevacion-trap-3", "angeles-en-pared", "flexion-escapular-pared", "flexion-escapular-cuadrupedia", "dominadas-escapulares", "elevacion-prona-y", "elevacion-prona-t", "elevacion-prona-i", "elevacion-prona-w", "angel-de-nieve-inverso", "superman-mariposa", "estiramiento-trapecio-superior", "estiramiento-elevador-escapula", "estiramiento-nuca", "circulos-hombros"]], "hombros": ["hombros.0848269f", ["press-hombros-barra-sentado", "press-hombros-mancuernas", "press-hombro-mancuerna-un-brazo", "press-arnold", "press-hombros-inclinado-mancuernas", "press-hombros-rotacion", "push-press", "elevaciones-laterales-sentado", "elevacion-frontal-barra", "elevacion-lateral-polea", "apertura-inversa-polea-un-brazo", "rotacion-externa-polea", "pajaro-polea-inclinado", "elevacion-frontal-polea", "pajaros-mancuernas", "pajaros-tumbado-banco", "pajaro-tumbado-un-brazo", "remo-deltoides-posterior-mancuernas", "remo-deltoides-posterior-barra", "aperturas-inversas-polea", "pajaros-polea-sentado", "rotacion-externa-mancuerna-tumbado", "rotacion-interna-polea", "empuje-isometrico-hombro-pared", "flexion-pica", "flexion-pica-pies-elevados", "flexion-pseudoplancha", "flexion-hindu", "pino-libre", "flexion-pino-pared", "pino-pared", "circulos-brazos", "estiramiento-hombro-cruzado", "estiramiento-durmiente"]], "biceps": ["biceps.1f778db3", ["curl-barra-z", "curl-barra-z-agarre-estrecho", "curl-barra-agarre-ancho", "curl-barra-agarre-estrecho", "curl-invertido-barra", "curl-barra-una-mano", "curl-alterno-mancuernas", "curl-martillo-alterno", "curl-martillo-cruzado", "curl-arrastre", "curl-zottman", "curl-invertido-mancuernas", "curl-kettlebell", "curl-kettlebell-una-mano", "curl-mancuernas-sentado", "curl-inclinado-mancuernas", "curl-tumbado-banco", "curl-arana-mancuernas", "curl-banco-inclinado-de-pie", "curl-concentrado", "curl-concentrado-barra", "curl-predicador-barra", "curl-predicador-mancuerna", "curl-predicador-martillo", "curl-zottman-predicador", "curl-predicador-polea", "curl-arana-barra", "curl-polea-baja", "curl-martillo-polea-cuerda", "curl-polea-una-mano", "curl-polea-alta", "curl-tumbado-polea", "remo-invertido-supino", "curl-biceps-peso-corporal", "muscle-up", "estiramiento-biceps-pared"]], "triceps": ["triceps.bfe5bbc4", ["press-frances-barra-z", "press-frances-barra", "press-frances-mancuernas", "extension-triceps-tumbado-una-mancuerna", "extension-triceps-tumbado-un-brazo", "press-frances-inclinado-mancuernas", "press-frances-declinado-barra-z", "press-frances-declinado-mancuernas", "press-frances-suelo", "extension-triceps-sobre-cabeza-mancuerna", "extension-triceps-sentado-mancuerna", "extension-triceps-un-brazo-mancuerna", "extension-triceps-sobre-cabeza-barra", "patada-triceps-mancuerna", "patada-triceps-dos-mancuernas", "patada-triceps-polea", "patada-triceps-banco-inclinado", "extension-triceps-polea-barra", "extension-triceps-polea-barra-v", "extension-triceps-polea-agarre-inverso", "extension-triceps-polea-un-brazo", "extension-triceps-polea-sobre-cabeza", "extension-triceps-polea-baja-un-brazo", "extension-triceps-polea-tumbado", "press-banca-agarre-cerrado", "press-banca-agarre-inverso", "press-jm", "press-mancuernas-codos-pegados", "press-tate", "fondos-entre-bancos", "fondos-banco-con-rotacion", "fondos-suelo", "fondos-paralelas-triceps", "soporte-paralelas", "flexion-codos-pegados", "flexion-triceps-rodillas-postura-nino", "estiramiento-triceps"]], "antebrazo-pantorrilla": ["antebrazo-pantorrilla.478307b0", ["curl-muneca-barra", "curl-muneca-inverso-barra", "curl-muneca-mancuernas", "curl-muneca-inverso-mancuernas", "desviacion-radial-cubital-peso", "curl-muneca-polea", "flexoextension-muneca-de-pie", "pronacion-supinacion-mancuerna", "paseo-granjero", "paseo-granjero-toalla", "paseo-mancuerna-por-extremo", "dominada-con-toallas", "flexiones-yemas-dedos", "estiramiento-flexores-muneca", "estiramiento-extensores-muneca", "estiramiento-oracion", "elevacion-talon-una-pierna", "elevacion-talones-bajada-una-pierna", "elevacion-talon-una-pierna-escalon", "elevacion-talones-escalon-mancuerna", "elevacion-talones-barra", "elevacion-talones-sentado-barra", "elevacion-talones-sentado-mancuernas", "elevacion-talon-sentado-una-pierna", "elevacion-talones-sentado", "elevacion-tibial-de-pie", "toques-puntas-sentado", "saltos-pogo-altos", "saltos-pogo-laterales", "saltos-laterales-una-pierna", "estiramiento-soleo-pared", "estiramiento-soleo-escalon", "estiramiento-pantorrilla-toalla", "estiramiento-tibial-rodillas", "estiramiento-tobillo-sentado"]], "cuadriceps": ["cuadriceps.0e6985be", ["sentadilla-mancuernas", "sentadilla-prisionero", "sentadilla-sumo-mancuerna", "sentadilla-frontal-mancuernas", "sentadilla-sumo-barra", "sentadilla-al-banco-barra", "sentadilla-frontal-barra", "sentadilla-por-encima-cabeza", "sentadilla-hack-barra", "media-sentadilla-apoyo", "sentadilla-deslizando-pared", "sentadilla-hindu", "sentarse-levantarse", "sentarse-levantarse-pie-adelantado", "extension-rodilla-sentado", "bajada-escalon", "subida-banco-mancuernas", "subida-banco-barra", "sentadilla-una-pierna", "sentadilla-camaron", "sentadilla-pistol", "curl-nordico-inverso", "estiramiento-flexor-cadera-rodillas", "elevacion-pierna-recta", "cuadriceps-isometrico-toalla", "estiramiento-cuadriceps-tumbado", "estiramiento-cuadriceps-de-pie", "salto-rodillas-pecho", "salto-horizontal", "salto-cajon", "impulso-alterno-escalon"]], "gluteos": ["gluteos.db0489dd", ["abduccion-tumbado-lado", "aduccion-tumbado-lado", "almeja", "almeja-plancha-lateral", "copenhague-rodilla", "copenhague", "patada-gluteo-cuadrupedia", "patada-lateral-cuadrupedia", "estiramiento-rana", "rana-boca-abajo", "elevacion-lateral-pierna-pie", "extension-cadera-de-pie", "empuje-isometrico-pared", "puente-gluteos-extension-pierna", "puente-gluteos-una-pierna", "hip-thrust-barra", "hip-thrust-mancuernas", "hip-thrust-una-pierna", "patada-gluteo-polea", "aduccion-cadera-polea", "pull-through-polea", "peso-muerto-sumo-kettlebell", "swing-kettlebell", "zancada-estatica", "zancada-frontal", "zancada-mancuernas", "zancada-barra", "zancada-atras-mancuernas", "zancada-atras-barra", "zancada-caminando", "zancada-caminando-mancuernas", "zancada-cruzada", "zancada-lateral", "zancada-lateral-mancuernas", "zancada-atras-salto", "zancada-salto", "salto-lateral-un-pie", "sentadilla-bulgara-barra", "sentadilla-bulgara-mancuerna", "subida-lateral-escalon", "peso-muerto-sumo", "estiramiento-gluteo-tumbado", "estiramiento-mariposa"]], "isquiotibiales": ["isquiotibiales.6b6dff41", ["peso-muerto-rumano-polea", "buenos-dias-barra", "buenos-dias-piernas-abiertas", "peso-muerto-piernas-rigidas", "peso-muerto-rumano-escalonado", "peso-muerto-una-pierna", "peso-muerto-una-pierna-kettlebell", "peso-muerto-una-pierna-mancuerna", "peso-muerto-una-pierna-polea", "peso-muerto-una-pierna-salto", "curl-femoral-de-pie-sin-peso", "curl-femoral-de-pie-polea", "curl-isquios-toalla", "curl-nordico", "patadas-alternas-banco", "hiperextension-inversa-banco", "balanceo-pierna", "estiramiento-isquios-escalon", "estiramiento-isquios-sentado", "estiramiento-isquios-silla", "estiramiento-isquios-tumbado", "isometrico-isquios-sentado"]], "abdomen": ["abdomen.e3ae2c5d", ["plancha-alta", "plancha-toque-hombro", "plancha-arriba-abajo", "plancha-alta-rotacion", "gateo-oso", "perro-pajaro", "gato-vaca", "postura-del-nino", "plancha-lateral", "plancha-lateral-dinamica", "plancha-lateral-rodillas", "superman", "estiramiento-cobra", "toques-talon-laterales", "toques-talon-tumbado", "abdominal-completo", "crunch-bicicleta", "crunch-inverso", "patadas-alternas", "rodillas-al-pecho", "rotacion-rodillas-tumbado", "retraccion-abdominal", "posicion-hueca", "elevacion-piernas-banco", "giro-ruso", "l-sit", "l-sit-pies-apoyados", "l-sit-encogido", "elevacion-piernas-colgado", "pies-a-la-barra", "limpiaparabrisas-colgado", "crunch-declinado", "hiperextension-lumbar", "crunch-lateral-de-pie", "flexion-lateral-mancuerna", "paseo-maleta", "press-pallof-polea", "lenador-polea", "crunch-polea", "rotacion-landmine"]], "banda": ["banda.365d46a0", ["sentadilla-con-banda", "elevacion-talones-banda", "curl-banda", "curl-banda-alterno", "curl-banda-cruzado", "curl-banda-una-mano", "elevacion-lateral-banda", "aperturas-banda-bajo-alto", "curl-femoral-de-pie-banda", "aperturas-banda", "press-pecho-banda", "face-pull-banda", "remo-banda-anclada", "pajaros-banda", "rotacion-externa-banda", "retraccion-escapular-banda", "peso-muerto-una-pierna-banda", "extension-rodilla-pie-banda", "lenador-inverso-banda", "press-pallof-banda-rodillas", "apertura-inversa-rodillas", "abduccion-sentado-banda", "puente-gluteos-banda", "almeja-banda", "patada-gluteo-banda", "paso-lateral-banda", "paso-monstruo-banda", "remo-sentado-banda", "flexion-dorsal-banda", "flexion-plantar-banda", "dominadas-asistidas-banda", "separacion-banda", "rotacion-externa-hombro-bufanda", "extension-triceps-banda", "extension-muneca-banda", "flexion-muneca-banda", "desviacion-radial-cubital-banda", "pronacion-supinacion-banda"]], "maquinas": ["maquinas.b83b336d", ["extension-cuadriceps-maquina", "curl-femoral-sentado", "abduccion-cadera-maquina", "aduccion-cadera-maquina", "prensa-piernas", "prensa-piernas-pies-juntos", "prensa-piernas-una-pierna", "elevacion-talones-prensa", "sentadilla-hack-maquina", "elevacion-talones-hack", "sentadilla-cinturon", "curl-femoral-tumbado", "curl-femoral-tumbado-una-pierna", "curl-femoral-de-pie-maquina", "elevacion-gluteo-isquio", "elevacion-talones-maquina-de-pie", "elevacion-talones-sentado-maquina", "crunch-maquina", "elevacion-piernas-silla-romana", "hip-thrust-maquina", "press-pecho-maquina", "press-inclinado-maquina", "press-declinado-maquina", "press-hombros-maquina", "fondos-maquina", "remo-maquina-sentado", "remo-maquina-una-mano", "remo-alto-maquina", "remo-alto-maquina-una-mano", "contractor-pecho", "contractor-inverso", "elevaciones-laterales-maquina", "curl-maquina", "dominadas-asistidas-maquina", "dominadas-supinas-asistidas-maquina", "sentadilla-multipower", "press-banca-multipower", "press-inclinado-multipower", "press-cerrado-multipower", "press-hombros-multipower", "remo-deltoides-posterior-multipower"]], "accesorios": ["accesorios.e9c81720", ["sentadilla-con-disco", "elevacion-frontal-disco", "curl-invertido-disco", "pinza-discos", "sentadilla-sissy-disco", "lanzamiento-balon-pared", "lanzamiento-balon-medicinal-suelo", "rotacion-tronco-balon-sentado", "puente-gluteos-fitball", "curl-femoral-fitball", "curl-femoral-fitball-una-pierna", "crunch-fitball", "extension-lumbar-fitball", "encogimiento-rodillas-fitball", "pica-fitball", "flexion-manos-fitball", "flexion-pies-fitball", "curl-fitball", "flexion-balon-medicinal", "flexion-lastrada", "dominadas-lastradas", "rueda-abdominal", "rollout-barra-rodillas", "rollout-barra-de-pie", "fondos-anillas", "soporte-anillas", "remo-suspension", "remo-alto-suspension", "curl-suspension", "curl-suspension-agarre-prono", "curl-martillo-suspension", "curl-suspension-una-mano", "sentadilla-asistida-cinta", "press-pecho-cinta-suspension", "extension-triceps-cinta-suspension", "fondos-cinta-suspension", "flexion-cinta-suspension"]]};          /* { nombre: [el fichero, sin «.js», [sus ejercicios]] }, en el orden de los fuentes */
-  var NUCLEO = { ALTO: ALTO, ALTO_BARRA: ALTO_BARRA, ALTO_CANTO: ALTO_CANTO, ALTO_MUN: ALTO_MUN, BANCO_DETRAS: BANCO_DETRAS, BRAZO: BRAZO, C: C, CINTA: CINTA, COLGADO: COLGADO, COREO: COREO, CURVA: CURVA, D: D, DE_PIE: DE_PIE, EN_BARRA: EN_BARRA, EN_BARRA_SUP: EN_BARRA_SUP, EN_SUELO: EN_SUELO, HOMBRO: HOMBRO, LADOS: LADOS, M_COL: M_COL, PIE: PIE, PIES_PUNTA: PIES_PUNTA, PL: PL, PLANA_PARED: PLANA_PARED, PRONO: PRONO, PUNO: PUNO, RAD: RAD, SUELTA: SUELTA, SUPINO: SUPINO, SUPINO_SUELO: SUPINO_SUELO, TOB_PUNTA: TOB_PUNTA, V: V, Z_BIS: Z_BIS, aDosBrazos: aDosBrazos, aLocal: aLocal, aLosLados: aLosLados, aUnBrazo: aUnBrazo, abre: abre, activo: activo, agarreDe: agarreDe, anteTronco: anteTronco, aplicar: aplicar, apoyada: apoyada, arco: arco, arcoRodillas: arcoRodillas, aro: aro, bajaSube: bajaSube, bajoZapa: bajoZapa, bancoDe: bancoDe, barraD: barraD, baseDe: baseDe, baseEjes: baseEjes, busca: busca, cabezaAPlano: cabezaAPlano, clavar: clavar, clavo: clavo, clavosB: clavosB, colgando: colgando, conAgarre: conAgarre, cruz: cruz, cuelga: cuelga, curva: curva, deLado: deLado, deTalon: deTalon, el: el, enPunta: enPunta, enSuMuslo: enSuMuslo, enSusMuslos: enSusMuslos, entre: entre, estirado: estirado, flexion: flexion, flexionG: flexionG, girar: girar, giroX: giroX, giroY: giroY, huecoPelota: huecoPelota, inclinado: inclinado, largo: largo, lejos: lejos, linea: linea, manoEnMuslo: manoEnMuslo, manoHacia: manoHacia, mas: mas, mediaVuelta: mediaVuelta, menos: menos, mezcla: mezcla, miembroAPlano: miembroAPlano, n1: n1, n2: n2, pelotaContra: pelotaContra, pieSobreSuelo: pieSobreSuelo, plano: plano, por: por, porArco: porArco, punto: punto, puntoEnMuslo: puntoEnMuslo, quieto: quieto, refleja: refleja, reflejo: reflejo, resolver: resolver, sentadoAlBorde: sentadoAlBorde, sentadoEnRespaldo: sentadoEnRespaldo, signo: signo, silla5: silla5, sinParte: sinParte, sobre: sobre, subeBaja: subeBaja, tabla: tabla, tablaAlta: tablaAlta, troncoAPlano: troncoAPlano, tumbadoEn: tumbadoEn, une: une, unidad: unidad, yColgado: yColgado, zapaAPlano: zapaAPlano };
+  var TROZOS = {"pecho": ["pecho.9bf43e42", ["press-banca-mancuernas", "press-inclinado-mancuernas", "press-inclinado-mancuernas-agarre-neutro", "press-declinado-mancuernas", "press-mancuerna-un-brazo", "press-mancuernas-juntas", "press-suelo-mancuernas", "press-inclinado-barra", "press-declinado-barra", "aperturas-mancuernas", "aperturas-inclinadas-mancuernas", "aperturas-declinadas-mancuernas", "apertura-mancuerna-un-brazo", "pullover-mancuerna", "pullover-barra-brazos-flexionados", "cruce-poleas", "cruce-poleas-bajo-alto", "cruce-poleas-alto-bajo", "press-pecho-polea-un-brazo", "aperturas-polea-banco-plano", "aperturas-polea-banco-inclinado", "aperturas-polea-sentado", "flexion-pared", "flexion-inclinada", "flexion-declinada", "flexion-rodillas", "flexion-abierta", "flexion-manos-escalonadas", "flexion-arquero", "flexion-explosiva", "flexion-deficit", "fondos-paralelas", "estiramiento-pecho-sentado", "estiramiento-pecho-marco-puerta", "estiramiento-pecho-pared"]], "dorsal": ["dorsal.eed568ea", ["dominadas-agarre-ancho", "dominadas-agarre-neutro", "dominadas-agarre-estrecho", "dominadas-negativas", "dominada-isometrica", "dominadas-parciales", "dominadas-arquero", "dominadas-maquina-de-escribir", "dominadas-comando", "front-lever", "front-lever-agrupado", "dominada-front-lever", "ice-cream-maker", "jalon-al-pecho", "jalon-agarre-estrecho", "jalon-supino", "jalon-agarre-neutro", "jalon-unilateral-cruzado", "jalon-unilateral-rodilla", "jalon-brazos-rectos", "jalon-brazos-rectos-cuerda", "remo-inclinado-mancuernas", "remo-inclinado-barra", "remo-inclinado-barra-supino", "remo-pendlay", "remo-barra-t", "remo-barra-t-agarre-ancho", "remo-helms", "remo-renegado", "remo-meadows", "remo-polea-de-pie-una-mano", "remo-polea-alta-una-mano", "remo-polea-baja-una-mano", "estiramiento-dorsal-rodillas-banco", "estiramiento-dorsal-codos-banco"]], "espalda-alta": ["espalda-alta.6af6b1da", ["encogimientos-barra", "encogimientos-polea", "encogimientos-entre-poleas", "encogimiento-silverback", "encogimientos-sin-peso", "remo-sentado-polea", "remo-sentado-polea-agarre-ancho", "remo-sentado-polea-supino", "remo-alto-polea-sentado", "remo-alto-inclinado-mancuernas", "remo-landmine-perpendicular", "remo-pecho-apoyado-mancuernas", "elevacion-plano-escapular", "protraccion-escapular-tumbado", "empaquetado-escapular", "elevacion-trap-3", "angeles-en-pared", "flexion-escapular-pared", "flexion-escapular-cuadrupedia", "dominadas-escapulares", "elevacion-prona-y", "elevacion-prona-t", "elevacion-prona-i", "elevacion-prona-w", "angel-de-nieve-inverso", "superman-mariposa", "estiramiento-trapecio-superior", "estiramiento-elevador-escapula", "estiramiento-nuca", "circulos-hombros"]], "hombros": ["hombros.b1403733", ["press-hombros-barra-sentado", "press-hombros-mancuernas", "press-hombro-mancuerna-un-brazo", "press-arnold", "press-hombros-inclinado-mancuernas", "press-hombros-rotacion", "push-press", "elevaciones-laterales-sentado", "elevacion-frontal-barra", "elevacion-lateral-polea", "apertura-inversa-polea-un-brazo", "rotacion-externa-polea", "pajaro-polea-inclinado", "elevacion-frontal-polea", "pajaros-mancuernas", "pajaros-tumbado-banco", "pajaro-tumbado-un-brazo", "remo-deltoides-posterior-mancuernas", "remo-deltoides-posterior-barra", "aperturas-inversas-polea", "pajaros-polea-sentado", "rotacion-externa-mancuerna-tumbado", "rotacion-interna-polea", "empuje-isometrico-hombro-pared", "flexion-pica", "flexion-pica-pies-elevados", "flexion-pseudoplancha", "flexion-hindu", "pino-libre", "flexion-pino-pared", "pino-pared", "circulos-brazos", "estiramiento-hombro-cruzado", "estiramiento-durmiente"]], "biceps": ["biceps.d33e3063", ["curl-barra-z", "curl-barra-z-agarre-estrecho", "curl-barra-agarre-ancho", "curl-barra-agarre-estrecho", "curl-invertido-barra", "curl-barra-una-mano", "curl-alterno-mancuernas", "curl-martillo-alterno", "curl-martillo-cruzado", "curl-arrastre", "curl-zottman", "curl-invertido-mancuernas", "curl-kettlebell", "curl-kettlebell-una-mano", "curl-mancuernas-sentado", "curl-inclinado-mancuernas", "curl-tumbado-banco", "curl-arana-mancuernas", "curl-banco-inclinado-de-pie", "curl-concentrado", "curl-concentrado-barra", "curl-predicador-barra", "curl-predicador-mancuerna", "curl-predicador-martillo", "curl-zottman-predicador", "curl-predicador-polea", "curl-arana-barra", "curl-polea-baja", "curl-martillo-polea-cuerda", "curl-polea-una-mano", "curl-polea-alta", "curl-tumbado-polea", "remo-invertido-supino", "curl-biceps-peso-corporal", "muscle-up", "estiramiento-biceps-pared"]], "triceps": ["triceps.df899f61", ["press-frances-barra-z", "press-frances-barra", "press-frances-mancuernas", "extension-triceps-tumbado-una-mancuerna", "extension-triceps-tumbado-un-brazo", "press-frances-inclinado-mancuernas", "press-frances-declinado-barra-z", "press-frances-declinado-mancuernas", "press-frances-suelo", "extension-triceps-sobre-cabeza-mancuerna", "extension-triceps-sentado-mancuerna", "extension-triceps-un-brazo-mancuerna", "extension-triceps-sobre-cabeza-barra", "patada-triceps-mancuerna", "patada-triceps-dos-mancuernas", "patada-triceps-polea", "patada-triceps-banco-inclinado", "extension-triceps-polea-barra", "extension-triceps-polea-barra-v", "extension-triceps-polea-agarre-inverso", "extension-triceps-polea-un-brazo", "extension-triceps-polea-sobre-cabeza", "extension-triceps-polea-baja-un-brazo", "extension-triceps-polea-tumbado", "press-banca-agarre-cerrado", "press-banca-agarre-inverso", "press-jm", "press-mancuernas-codos-pegados", "press-tate", "fondos-entre-bancos", "fondos-banco-con-rotacion", "fondos-suelo", "fondos-paralelas-triceps", "soporte-paralelas", "flexion-codos-pegados", "flexion-triceps-rodillas-postura-nino", "estiramiento-triceps"]], "antebrazo-pantorrilla": ["antebrazo-pantorrilla.4f5e4670", ["curl-muneca-barra", "curl-muneca-inverso-barra", "curl-muneca-mancuernas", "curl-muneca-inverso-mancuernas", "desviacion-radial-cubital-peso", "curl-muneca-polea", "flexoextension-muneca-de-pie", "pronacion-supinacion-mancuerna", "paseo-granjero", "paseo-granjero-toalla", "paseo-mancuerna-por-extremo", "dominada-con-toallas", "flexiones-yemas-dedos", "estiramiento-flexores-muneca", "estiramiento-extensores-muneca", "estiramiento-oracion", "elevacion-talon-una-pierna", "elevacion-talones-bajada-una-pierna", "elevacion-talon-una-pierna-escalon", "elevacion-talones-escalon-mancuerna", "elevacion-talones-barra", "elevacion-talones-sentado-barra", "elevacion-talones-sentado-mancuernas", "elevacion-talon-sentado-una-pierna", "elevacion-talones-sentado", "elevacion-tibial-de-pie", "toques-puntas-sentado", "saltos-pogo-altos", "saltos-pogo-laterales", "saltos-laterales-una-pierna", "estiramiento-soleo-pared", "estiramiento-soleo-escalon", "estiramiento-pantorrilla-toalla", "estiramiento-tibial-rodillas", "estiramiento-tobillo-sentado"]], "cuadriceps": ["cuadriceps.575af499", ["sentadilla-mancuernas", "sentadilla-prisionero", "sentadilla-sumo-mancuerna", "sentadilla-frontal-mancuernas", "sentadilla-sumo-barra", "sentadilla-al-banco-barra", "sentadilla-frontal-barra", "sentadilla-por-encima-cabeza", "sentadilla-hack-barra", "media-sentadilla-apoyo", "sentadilla-deslizando-pared", "sentadilla-hindu", "sentarse-levantarse", "sentarse-levantarse-pie-adelantado", "extension-rodilla-sentado", "bajada-escalon", "subida-banco-mancuernas", "subida-banco-barra", "sentadilla-una-pierna", "sentadilla-camaron", "sentadilla-pistol", "curl-nordico-inverso", "estiramiento-flexor-cadera-rodillas", "elevacion-pierna-recta", "cuadriceps-isometrico-toalla", "estiramiento-cuadriceps-tumbado", "estiramiento-cuadriceps-de-pie", "salto-rodillas-pecho", "salto-horizontal", "salto-cajon", "impulso-alterno-escalon"]], "gluteos": ["gluteos.152d0196", ["abduccion-tumbado-lado", "aduccion-tumbado-lado", "almeja", "almeja-plancha-lateral", "copenhague-rodilla", "copenhague", "patada-gluteo-cuadrupedia", "patada-lateral-cuadrupedia", "estiramiento-rana", "rana-boca-abajo", "elevacion-lateral-pierna-pie", "extension-cadera-de-pie", "empuje-isometrico-pared", "puente-gluteos-extension-pierna", "puente-gluteos-una-pierna", "hip-thrust-barra", "hip-thrust-mancuernas", "hip-thrust-una-pierna", "patada-gluteo-polea", "aduccion-cadera-polea", "pull-through-polea", "peso-muerto-sumo-kettlebell", "swing-kettlebell", "zancada-estatica", "zancada-frontal", "zancada-mancuernas", "zancada-barra", "zancada-atras-mancuernas", "zancada-atras-barra", "zancada-caminando", "zancada-caminando-mancuernas", "zancada-cruzada", "zancada-lateral", "zancada-lateral-mancuernas", "zancada-atras-salto", "zancada-salto", "salto-lateral-un-pie", "sentadilla-bulgara-barra", "sentadilla-bulgara-mancuerna", "subida-lateral-escalon", "peso-muerto-sumo", "estiramiento-gluteo-tumbado", "estiramiento-mariposa"]], "isquiotibiales": ["isquiotibiales.2ecd16f3", ["peso-muerto-rumano-polea", "buenos-dias-barra", "buenos-dias-piernas-abiertas", "peso-muerto-piernas-rigidas", "peso-muerto-rumano-escalonado", "peso-muerto-una-pierna", "peso-muerto-una-pierna-kettlebell", "peso-muerto-una-pierna-mancuerna", "peso-muerto-una-pierna-polea", "peso-muerto-una-pierna-salto", "curl-femoral-de-pie-sin-peso", "curl-femoral-de-pie-polea", "curl-isquios-toalla", "curl-nordico", "patadas-alternas-banco", "hiperextension-inversa-banco", "balanceo-pierna", "estiramiento-isquios-escalon", "estiramiento-isquios-sentado", "estiramiento-isquios-silla", "estiramiento-isquios-tumbado", "isometrico-isquios-sentado"]], "abdomen": ["abdomen.40b61211", ["plancha-alta", "plancha-toque-hombro", "plancha-arriba-abajo", "plancha-alta-rotacion", "gateo-oso", "perro-pajaro", "gato-vaca", "postura-del-nino", "plancha-lateral", "plancha-lateral-dinamica", "plancha-lateral-rodillas", "superman", "estiramiento-cobra", "toques-talon-laterales", "toques-talon-tumbado", "abdominal-completo", "crunch-bicicleta", "crunch-inverso", "patadas-alternas", "rodillas-al-pecho", "rotacion-rodillas-tumbado", "retraccion-abdominal", "posicion-hueca", "elevacion-piernas-banco", "giro-ruso", "l-sit", "l-sit-pies-apoyados", "l-sit-encogido", "elevacion-piernas-colgado", "pies-a-la-barra", "limpiaparabrisas-colgado", "crunch-declinado", "hiperextension-lumbar", "crunch-lateral-de-pie", "flexion-lateral-mancuerna", "paseo-maleta", "press-pallof-polea", "lenador-polea", "crunch-polea", "rotacion-landmine"]], "banda": ["banda.e7699bb7", ["sentadilla-con-banda", "elevacion-talones-banda", "curl-banda", "curl-banda-alterno", "curl-banda-cruzado", "curl-banda-una-mano", "elevacion-lateral-banda", "aperturas-banda-bajo-alto", "curl-femoral-de-pie-banda", "aperturas-banda", "press-pecho-banda", "face-pull-banda", "remo-banda-anclada", "pajaros-banda", "rotacion-externa-banda", "retraccion-escapular-banda", "peso-muerto-una-pierna-banda", "extension-rodilla-pie-banda", "lenador-inverso-banda", "press-pallof-banda-rodillas", "apertura-inversa-rodillas", "abduccion-sentado-banda", "puente-gluteos-banda", "almeja-banda", "patada-gluteo-banda", "paso-lateral-banda", "paso-monstruo-banda", "remo-sentado-banda", "flexion-dorsal-banda", "flexion-plantar-banda", "dominadas-asistidas-banda", "separacion-banda", "rotacion-externa-hombro-bufanda", "extension-triceps-banda", "extension-muneca-banda", "flexion-muneca-banda", "desviacion-radial-cubital-banda", "pronacion-supinacion-banda"]], "maquinas": ["maquinas.6398b114", ["extension-cuadriceps-maquina", "curl-femoral-sentado", "abduccion-cadera-maquina", "aduccion-cadera-maquina", "prensa-piernas", "prensa-piernas-pies-juntos", "prensa-piernas-una-pierna", "elevacion-talones-prensa", "sentadilla-hack-maquina", "elevacion-talones-hack", "sentadilla-cinturon", "curl-femoral-tumbado", "curl-femoral-tumbado-una-pierna", "curl-femoral-de-pie-maquina", "elevacion-gluteo-isquio", "elevacion-talones-maquina-de-pie", "elevacion-talones-sentado-maquina", "crunch-maquina", "elevacion-piernas-silla-romana", "hip-thrust-maquina", "press-pecho-maquina", "press-inclinado-maquina", "press-declinado-maquina", "press-hombros-maquina", "fondos-maquina", "remo-maquina-sentado", "remo-maquina-una-mano", "remo-alto-maquina", "remo-alto-maquina-una-mano", "contractor-pecho", "contractor-inverso", "elevaciones-laterales-maquina", "curl-maquina", "dominadas-asistidas-maquina", "dominadas-supinas-asistidas-maquina", "sentadilla-multipower", "press-banca-multipower", "press-inclinado-multipower", "press-cerrado-multipower", "press-hombros-multipower", "remo-deltoides-posterior-multipower"]], "accesorios": ["accesorios.a05f1250", ["sentadilla-con-disco", "elevacion-frontal-disco", "curl-invertido-disco", "pinza-discos", "sentadilla-sissy-disco", "lanzamiento-balon-pared", "lanzamiento-balon-medicinal-suelo", "rotacion-tronco-balon-sentado", "puente-gluteos-fitball", "curl-femoral-fitball", "curl-femoral-fitball-una-pierna", "crunch-fitball", "extension-lumbar-fitball", "encogimiento-rodillas-fitball", "pica-fitball", "flexion-manos-fitball", "flexion-pies-fitball", "curl-fitball", "flexion-balon-medicinal", "flexion-lastrada", "dominadas-lastradas", "rueda-abdominal", "rollout-barra-rodillas", "rollout-barra-de-pie", "fondos-anillas", "soporte-anillas", "remo-suspension", "remo-alto-suspension", "curl-suspension", "curl-suspension-agarre-prono", "curl-martillo-suspension", "curl-suspension-una-mano", "sentadilla-asistida-cinta", "press-pecho-cinta-suspension", "extension-triceps-cinta-suspension", "fondos-cinta-suspension", "flexion-cinta-suspension"]]};          /* { nombre: [el fichero, sin «.js», [sus ejercicios]] }, en el orden de los fuentes */
+  var NUCLEO = { ALTO: ALTO, ALTO_BARRA: ALTO_BARRA, ALTO_CANTO: ALTO_CANTO, ALTO_MUN: ALTO_MUN, BANCO_DETRAS: BANCO_DETRAS, BRAZO: BRAZO, C: C, CINTA: CINTA, COLGADO: COLGADO, COREO: COREO, CURVA: CURVA, D: D, DE_PIE: DE_PIE, Director: Director, EN_BARRA: EN_BARRA, EN_BARRA_SUP: EN_BARRA_SUP, EN_SUELO: EN_SUELO, HOMBRO: HOMBRO, LADOS: LADOS, M_COL: M_COL, PIE: PIE, PIES_PUNTA: PIES_PUNTA, PL: PL, PLANA_PARED: PLANA_PARED, PRONO: PRONO, PUNO: PUNO, RAD: RAD, SUELTA: SUELTA, SUPINO: SUPINO, SUPINO_SUELO: SUPINO_SUELO, TOB_PUNTA: TOB_PUNTA, V: V, Z_BIS: Z_BIS, aDosBrazos: aDosBrazos, aLocal: aLocal, aLosLados: aLosLados, aUnBrazo: aUnBrazo, abre: abre, activo: activo, agarreDe: agarreDe, anteTronco: anteTronco, aplicar: aplicar, apoyada: apoyada, arco: arco, arcoRodillas: arcoRodillas, aro: aro, bajaSube: bajaSube, bajoZapa: bajoZapa, bancoDe: bancoDe, barraD: barraD, baseDe: baseDe, baseEjes: baseEjes, busca: busca, cabezaAPlano: cabezaAPlano, clavar: clavar, clavo: clavo, clavosB: clavosB, colgando: colgando, conAgarre: conAgarre, cruz: cruz, cuelga: cuelga, curva: curva, deLado: deLado, deTalon: deTalon, el: el, enPunta: enPunta, enSuMuslo: enSuMuslo, enSusMuslos: enSusMuslos, entre: entre, estirado: estirado, flexion: flexion, flexionG: flexionG, girar: girar, giroX: giroX, giroY: giroY, huecoPelota: huecoPelota, inclinado: inclinado, largo: largo, lejos: lejos, linea: linea, manoEnMuslo: manoEnMuslo, manoHacia: manoHacia, mas: mas, mediaVuelta: mediaVuelta, menos: menos, mezcla: mezcla, miembroAPlano: miembroAPlano, miraBarra: miraBarra, n1: n1, n2: n2, pelotaContra: pelotaContra, pieSobreSuelo: pieSobreSuelo, plano: plano, por: por, porArco: porArco, punto: punto, puntoEnMuslo: puntoEnMuslo, quieto: quieto, refleja: refleja, reflejo: reflejo, resolver: resolver, sentadoAlBorde: sentadoAlBorde, sentadoEnRespaldo: sentadoEnRespaldo, signo: signo, silla5: silla5, sinParte: sinParte, sobre: sobre, subeBaja: subeBaja, tabla: tabla, tablaAlta: tablaAlta, troncoAPlano: troncoAPlano, tumbadoEn: tumbadoEn, une: une, unidad: unidad, yColgado: yColgado, zapaAPlano: zapaAPlano };
   var IDS_NUCLEO = Object.keys(COREO), TROZO_DE = {}, TROZO_ESTA = {}, TROZO_BASE = '';
   Object.keys(TROZOS).forEach(function (n) { TROZOS[n][1].forEach(function (id) { TROZO_DE[id] = n; }); });
   /* de dónde se piden: de la carpeta que se llama como este fichero (…/modulos/entrenador.js → …/modulos/entrenador/).
@@ -5603,7 +5696,7 @@
     },
     /* la huella de los pasos en castellano con los que se hizo cada coreografía (la coteja tools/auditar_entrenador.js) */
     huellas: HUELLAS,
-    _: { resolver: resolver, mezclar: mezclar, clavar: clavar, munecaPara: munecaPara, armar: armar, Escenario: Escenario, Director: Director, Camara: Camara, D: D, C: C, CURVA: CURVA, COREO: COREO, MATERIAL: MATERIAL, PRESENTA: PRESENTA, GESTOS: GESTOS, GESTOS_DE: GESTOS_DE, Vida: Vida, bajoZapa: bajoZapa, manoAPlano: manoAPlano, bolasMano: bolasMano, zapaAPlano: zapaAPlano, miembroAPlano: miembroAPlano, troncoAPlano: troncoAPlano, cabezaAPlano: cabezaAPlano, cabezaACilindro: cabezaACilindro, piezaAEsfera: piezaAEsfera, huecoPelota: huecoPelota, pelotaContra: pelotaContra, Cilindro: Cilindro, Esfera: Esfera, Disco: Disco, manoEnMuslo: manoEnMuslo, apartaMano: apartaMano, BUSTO: BUSTO, ANCHO: ANCHO, ALTO: ALTO, PUNTOS: PUNTOS, EMO: EMO, Reproductor: Reproductor, SECC: SECC, MARCA_DUR: MARCA_DUR }
+    _: { resolver: resolver, mezclar: mezclar, clavar: clavar, munecaPara: munecaPara, armar: armar, Escenario: Escenario, Director: Director, Camara: Camara, D: D, C: C, CURVA: CURVA, COREO: COREO, MATERIAL: MATERIAL, PRESENTA: PRESENTA, GESTOS: GESTOS, GESTOS_DE: GESTOS_DE, Vida: Vida, bajoZapa: bajoZapa, manoAPlano: manoAPlano, bolasMano: bolasMano, zapaAPlano: zapaAPlano, miembroAPlano: miembroAPlano, troncoAPlano: troncoAPlano, cabezaAPlano: cabezaAPlano, cabezaACilindro: cabezaACilindro, frenteDePierna: frenteDePierna, VGM: VGM, piezaAEsfera: piezaAEsfera, huecoPelota: huecoPelota, pelotaContra: pelotaContra, Cilindro: Cilindro, Esfera: Esfera, Disco: Disco, manoEnMuslo: manoEnMuslo, apartaMano: apartaMano, BUSTO: BUSTO, ANCHO: ANCHO, ALTO: ALTO, PUNTOS: PUNTOS, EMO: EMO, Reproductor: Reproductor, SECC: SECC, MARCA_DUR: MARCA_DUR }
   };
 
 })();

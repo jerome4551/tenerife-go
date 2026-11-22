@@ -616,7 +616,7 @@
       return {
         vista: [66, 18], rastro: 'hombros', clavos: clavosB(G),
         material: [barraD({ ancho: 64 })],
-        posturas: { a: cuelga(G), a2: activo(G), p: p, t: t_, s: s },
+        posturas: { a: miraBarra(cuelga(G), -4, -10), a2: miraBarra(activo(G), -5, -14), p: p, t: t_, s: s },
         encuadra: ['p', 't', 's'],
         pasos: [{ sec: [['a', 0.9], ['a2', 0.45, 'suave'], ['p', 0.5, 'sale'], ['p', 0.25], ['a2', 1.2, 'freno'], ['a2', 0.35], ['p', 0.5, 'sale']], desde: 'a' },
                 { sec: [['p', 0.5], ['t', 0.6, 'sale']], desde: 'p' },

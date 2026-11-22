@@ -207,9 +207,13 @@
     }
     /* cómo se agacha a coger lo que espera en el suelo, a cada lado: la cadera baja y va hacia atrás, y el tronco se inclina, lo justo (se
        busca) para que el hombro quede a un brazo del agarre g */
-    function aCoger(base, g, polo) {
+    function aCoger(base, g, polo, k) {
       var Pg = function (x) { return sobre(base, { pel: [0, PIE - x, 3 - 0.42 * x], giro: [0, 12 + 0.8 * x, 0], cab: [-(8 + 0.5 * x), 0, 0], p: { suelo: [SEP + 2, 0], abre: 12, polo: [0.4, 0.1, 1] } }); };
       var x = busca(function (q) { return largo(menos(resolver(Pg(q)).i.hom, g)); }, BRAZO - 0.8, 8, 60);
+      /* (22-11-2026) a medio agacharse (k, la parte del camino): las manos, ya por fuera de los muslos, encima de lo que van a coger. De
+         un tirón desde el costado, la mano cruzaba el muslo por dentro y había que rodearlo: en los primeros cuadros se iba hacia atrás
+         de golpe (9 cm en 0,17 s) y el codo, con el brazo casi recto, cambiaba de lado */
+      if (k) { var Q = Pg(k * x); return conAgarre(Q, [g[0], resolver(Q).i.hom[1] - 50, g[2]], polo || [1, 0.3, -0.5]); }
       return conAgarre(Pg(x), g, polo || [1, 0.3, -0.5]);
     }
     var NEUTRA = { tipo: 'puno', prono: 0 }, AL_CUERPO = { tipo: 'puno', palma: [-1, 0, 0] };
@@ -220,12 +224,12 @@
     COREO['paseo-granjero'] = (function () {
       var W = paseo(CARGA), R = [26, 6.6, 6], P = W.P;
       P.s = { pel: [0, PIE, 3], p: { suelo: [SEP, 0], abre: 5 }, b: aLosLados(8), m: SUELTA };
-      P.g = aCoger({ m: AL_CUERPO }, R);
+      P.g = aCoger({ m: AL_CUERPO }, R); P.g0 = aCoger({ m: AL_CUERPO }, R, null, 0.4);
       return {
-        vista: [[-38, 14], [142, 12]], reposo: ['s'],
+        vista: [[-38, 14], [142, 12]], reposo: ['s', 'g0'],
         material: [['mancuernas', { reposo: { i: R, d: [-R[0], R[1], R[2]] } }]],
         posturas: P, inicio: 's', encuadra: ['s', 'g', 'a0', 'af', 'v0', 'vf'],
-        pasos: [{ sec: [['s', 0.6], ['g', 1.3, 'suave', T2], ['g', 0.3, null, T2], ['a0', 1.4, 'suave', T2]], desde: 's' },
+        pasos: [{ sec: [['s', 0.6], ['g0', 0.6, 'entra', T2], ['g', 0.85, 'sale', T2], ['g', 0.3, null, T2], ['a0', 1.4, 'suave', T2]], desde: 's' },
                 { sec: W.ida, desde: 'a0' },
                 { sec: W.giro1.concat(W.regreso, W.giro2), desde: 'af' }]
       };
@@ -236,13 +240,14 @@
       var W = paseo(CARGA), R = [33, 6.6, 9], P = W.P;
       P.s = { pel: [0, PIE, 3], p: { suelo: [SEP, 0], abre: 5 }, b: aLosLados(8), m: SUELTA };
       P.k1 = aCoger({ m: { tipo: 'abierta', palma: [-1, 0, 0] } }, [R[0], R[1] + 5.4, R[2]]);
+      P.k0 = aCoger({ m: { tipo: 'abierta', palma: [-1, 0, 0] } }, [R[0], R[1] + 5.4, R[2]], null, 0.4);
       P.k2 = aCoger({ m: AL_CUERPO }, R);
       return {
-        vista: [[-38, 14], [142, 12]], reposo: ['s', 'k1'],
+        vista: [[-38, 14], [142, 12]], reposo: ['s', 'k0', 'k1'],
         material: [['mancuernas', { toalla: true, reposo: { i: R, d: [-R[0], R[1], R[2]] } }]],
         posturas: P, inicio: 'a0', encuadra: ['s', 'k1'],
         rep: W.ida.concat(W.giro1, W.regreso, W.giro2),
-        pasos: [{ sec: [['s', 0.8], ['k1', 1.5, 'suave', T2], ['k1', 0.3, null, T2], ['k2', 1.6, 'suave', T2]], desde: 's' },
+        pasos: [{ sec: [['s', 0.8], ['k0', 0.7, 'entra', T2], ['k1', 1.0, 'sale', T2], ['k1', 0.3, null, T2], ['k2', 1.6, 'suave', T2]], desde: 's' },
                 { sec: [['k2', 0.4, null, T2], ['a0', 1.5, 'suave', T2]], desde: 'k2' }, 'rep']
       };
     })();
@@ -254,13 +259,13 @@
       P.s = { pel: [0, PIE, 3], p: { suelo: [SEP, 0], abre: 5 }, b: aLosLados(8), m: SUELTA };
       /* la mano, sobre el disco de arriba (su centro, a 10,5 de la mitad de la mancuerna): el centro del agarre queda 5 cm por encima de él y
          1 hacia fuera (el disco va adonde llegan las yemas: a 13 de la muñeca) */
-      P.g = aCoger({ m: { tipo: 'yemas', palma: [-1, 0, 0] } }, [R[0] + 1, R[1] + 10.5 + 5, R[2]]);
+      P.g = aCoger({ m: { tipo: 'yemas', palma: [-1, 0, 0] } }, [R[0] + 1, R[1] + 10.5 + 5, R[2]]); P.g0 = aCoger({ m: { tipo: 'yemas', palma: [-1, 0, 0] } }, [R[0] + 1, R[1] + 10.5 + 5, R[2]], null, 0.4);
       return {
-        vista: [[-38, 14], [142, 12]], reposo: ['s'],
+        vista: [[-38, 14], [142, 12]], reposo: ['s', 'g0'],
         material: [['mancuernas', { extremo: true, radio: 5.6, reposo: { i: R, d: [-R[0], R[1], R[2]] }, ejeReposo: [0, 1, 0] }]],
         posturas: P, inicio: 'a0', encuadra: ['s', 'g'],
         rep: W.ida.concat(W.giro1, W.regreso, W.giro2),
-        pasos: [{ sec: [['s', 0.6], ['g', 1.3, 'suave', T2], ['g', 0.3, null, T2], ['a0', 1.5, 'suave', T2]], desde: 's' }, 'rep']
+        pasos: [{ sec: [['s', 0.6], ['g0', 0.6, 'entra', T2], ['g', 0.85, 'sale', T2], ['g', 0.3, null, T2], ['a0', 1.5, 'suave', T2]], desde: 's' }, 'rep']
       };
     })();
 
@@ -269,7 +274,10 @@
        enfrentadas, con el centro del puño a 190; se cuelga con los brazos estirados (las rodillas dobladas: los pies no llegan al suelo),
        sube tirando de ellas hasta que la barbilla llega a la altura de las manos y baja con control hasta estirar los brazos */
     COREO['dominada-con-toallas'] = (function () {
-      var G = 22, YG = 190, m = { tipo: 'puno', barra: [0, 1, 0], palma: [-1, 0, 0] }, ag = [G, YG, 0];
+      /* la palma, hacia dentro y algo hacia delante: al subir, con el antebrazo ya inclinado, la mano que abraza la toalla solo puede mirar
+         hacia delante o hacia atrás, y «hacia dentro» a secas no decía cuál (según se inclinara el antebrazo un pelo adelante o atrás, la
+         mano daba media vuelta de golpe: dos veces en cada repetición). Con los codos abiertos, mira hacia delante */
+      var G = 22, YG = 190, m = { tipo: 'puno', barra: [0, 1, 0], palma: [-1, 0, 0.6] }, ag = [G, YG, 0];
       var yCuelga = function (hom) { return YG - Math.sqrt((BRAZO - 0.3) * (BRAZO - 0.3) - (G - D.hombroX) * (G - D.hombroX)) - 43.5 - hom; };
       var colgado = { p: { e: 10, z: 0, c: 84 }, t: { tob: 22 }, m: m }, brazos = { a: [G, YG - D.mano, 0], polo: [1, -0.2, 0.5] };
       var tira = function (s) { return { de: [s * G, 226.7, 0], a: s > 0 ? 'i' : 'd', cola: 7, reposo: [s * G, YG - 8, 0], sobre: [0, 225, 0] }; };

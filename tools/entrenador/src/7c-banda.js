@@ -346,7 +346,8 @@
         vista: [[-64, 12], [-114, 14]], rastro: 'pel', esfuerzo: [3, 4], clavos: T2, clavosEn: { c: TD, b: TD },
         material: [['poste', { en: [0, ZP], alto: 150 }], atada([0, ZP], H, [{ de: [2.5, H, ZP - 2.5], a: 'mano-i', asas: 'a' }, { de: [-2.5, H, ZP - 2.5], a: 'mano-d', asas: 'a' }])],
         posturas: { s: s, l1: l1, l2: l2, l3: l3, a: a, m: m, c: c, b: b }, inicio: 'm', encuadra: ['s', 'a', 'b'],
-        rep: [['c', 0.8, 'entra'], ['b', 1, 'sale'], ['b', 0.5, null, TD], ['c', 0.8, 'entra'], ['m', 0.8, 'sale'], ['m', 0.4]],
+        /* entre las dos posturas inclinadas (c y b) la pierna libre va suelta: gira con el tronco, recta (7a-isquiotibiales.js) */
+        rep: [['c', 0.8, 'entra'], ['b', 1, 'sale', TD], ['b', 0.5, null, TD], ['c', 0.8, 'entra', TD], ['m', 0.8, 'sale'], ['m', 0.4]],
         pasos: ['s', { sec: [['l1', 0.3, 'entra'], ['l2', 0.28, 'sale'], ['l3', 0.3, 'entra'], ['a', 0.3, 'sale'], ['a', 0.25], ['m', 0.7, 'suave']], desde: 's' }, 'rep']
       };
     })();
@@ -627,12 +628,14 @@
     /* las dominadas asistidas: una banda gruesa, pasada por la barra; en el lazo de abajo mete un pie (el izquierdo: la otra pierna,
        doblada por detrás); agarra la barra, lleva los hombros abajo y atrás y hace una dominada normal: sube hasta pasar la cabeza
        por encima de la barra y baja despacio. La banda cuelga de la barra entre la cabeza y la mano de ese lado (no le tapa la
-       cara), baja por delante del pecho y de la cadera hasta el pie, y se estira al bajar (más fina): cuanto más abajo, más ayuda. Las posturas, las de las dominadas del bloque 1 */
+       cara), baja por delante del pecho y de la cadera hasta el pie, y se estira al bajar (más fina): cuanto más abajo, más ayuda. Las posturas, las de las dominadas del bloque 1 .
+       (22-11-2026) La otra pierna va doblada por detrás de verdad: el muslo, 4° atrás (e: −4), y la espinilla hacia atrás. Estaba escrito
+       «z: 180», y por detrás la rodilla dobla al revés: la espinilla salía hacia delante (64° de rodilla al revés) */
     COREO['dominadas-asistidas-banda'] = (function () {
-      var YB = 225, base = { pi: { e: 14, z: 0, c: 10 }, ti: { punta: [0, -0.05, 1], arriba: [0, 1, 0.05] }, pd: { e: 4, z: 180, c: 64 }, td: { tob: 24 }, m: { tipo: 'puno', barra: [1, 0, 0], palma: [0, 0, 1] } };
-      var a = sobre(base, { pel: [0, 120, -2], hom: [3.5, 0], b: { a: [28, 217, 0], polo: [1, -0.2, 0.5] } });
-      var a2 = sobre(base, { pel: [0, 125.5, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [28, 217, 0], polo: [1, -0.3, 0.4] } });
-      var b = sobre(base, { pel: [0, 172, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [6, 0, 0], b: { a: [28, 217, 0], polo: [1, -1, 0.1] } });
+      var YB = 225, base = { pi: { e: 14, z: 0, c: 10 }, ti: { punta: [0, -0.05, 1], arriba: [0, 1, 0.05] }, pd: { e: -4, z: 0, c: 64 }, td: { tob: 24 }, m: { tipo: 'puno', barra: [1, 0, 0], palma: [0, 0, 1] } };
+      var a = miraBarra(sobre(base, { pel: [0, 120, -2], hom: [3.5, 0], b: { a: [28, 217, 0], polo: [1, -0.2, 0.5] } }), -3, -10);
+      var a2 = miraBarra(sobre(base, { pel: [0, 125.5, -2], hom: [-2, -1.5], col: [-3, 0, 0], b: { a: [28, 217, 0], polo: [1, -0.3, 0.4] } }), -5, -14);
+      var b = sobre(base, { pel: [0, 172, -11], giro: [0, -8, 0], hom: [-2, -1.5], col: [-3, 0, 0], cab: [-4, 0, 0], b: { a: [28, 217, 0], polo: [1, -1, 0.1] } });
       var XB = 12, cabo = function (x, xp, canto) { return { de: [x, YB + 2.2, 1.5], por: [{ en: 'torax', a: [x, 12, 10.5] }, { en: 'pelvis', a: [xp, 2, 12] }], a: canto, ancho: 3.4, largo0: 100 }; };
       return {
         vista: [[30, 6], [96, 6]], rastro: 'barbilla', esfuerzo: [0], clavos: ['mi@0:28', 'md@0:-28'],
