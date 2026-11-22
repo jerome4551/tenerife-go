@@ -39,6 +39,7 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/7c-banda.js` | las coreografías del bloque 13: **con banda elástica** (38, de todos los grupos), por cómo se lleva la banda (de pie, pisándola: la sentadilla, la elevación de talones, los cuatro curls, la elevación lateral y las aperturas de abajo arriba; atada a un poste: el curl femoral, las aperturas, el face pull, el remo, los pájaros, la rotación externa, la retracción escapular, el peso muerto a una pierna, la extensión de rodilla y el leñador inverso; por la espalda: el press de pecho; de rodillas: el press Pallof y la apertura inversa; en el suelo y con la minibanda: la abducción sentado, el puente, la almeja, la patada de glúteo y los pasos lateral y de monstruo; sentado: el remo y las flexiones dorsal y plantar del tobillo; colgado: las dominadas asistidas; entre las manos: la separación, la rotación externa y la extensión de tríceps; y con el antebrazo en el banco: la extensión y la flexión de muñeca, la desviación radial y cubital y la pronación y supinación) |
 | `src/7d-maquinas.js` | las coreografías del bloque 14: **en máquina y en multipower** (41, de todos los grupos), por máquina (sentado, con las piernas: la extensión de cuádriceps, el curl femoral sentado y la abducción y la aducción de cadera; la prensa: con los pies separados, juntos, a una pierna y la elevación de talones; la hack: la sentadilla y la elevación de talones; la sentadilla con cinturón; tumbado y de pie: el curl femoral tumbado, a una pierna y de pie, y la elevación glúteo-isquio; las pantorrillas, de pie y sentado; el tronco: el crunch y la silla romana; el hip thrust; sentado, con los brazos: los press de pecho, inclinado, declinado y de hombros, los fondos, los remos sentado y alto, a dos manos y a una, el contractor y el contractor inverso, las elevaciones laterales y el curl; las dominadas asistidas, con las palmas hacia delante y hacia él; y el multipower: la sentadilla, los press de banca, inclinado, con agarre cerrado y de hombros y el remo para el deltoides posterior) |
 | `src/7e-accesorios.js` | las coreografías del bloque 15: **con cinta de suspensión, fitball, disco, balón medicinal, anillas y rueda** (37, de todos los grupos), por material (el disco: la sentadilla, la elevación frontal, el curl invertido, la pinza y la sissy; el balón medicinal: los dos lanzamientos y la rotación sentado; el fitball: el puente, los dos curls femorales, el crunch, la extensión lumbar, el encogimiento de rodillas, la pica, las dos flexiones y el curl sentado; la flexión sobre balón y la lastrada; las dominadas lastradas; la rueda y los dos rollouts con barra; las anillas: los fondos y el soporte; y la cinta de suspensión: de cara al anclaje, los remos, los cuatro curls y la sentadilla, y de espaldas, el press, la extensión de tríceps, los fondos y la flexión con los pies en los estribos) |
+| `src/7f-estiramientos.js` | las coreografías del bloque 16: **estiramientos sin material** (30, de cuello, espalda alta, hombros, pecho, dorsal y brazos), por cómo se colocan (de pie: el pecho con las manos a la espalda, los brazos arriba, el costado, los codos con las manos en la nuca, la espalda alta, el giro de cabeza, los omóplatos, las tijeras, los círculos de codos y de muñecas, las letras T-L e Y-W, la marcha de dedos, la oración invertida y los giros de muñeca; en el suelo: los dos perros boca abajo, los antebrazos a cuatro patas, enhebrar la aguja, la rotación con la mano en la nuca y la postura del niño hacia un lado; en la pared: subir las manos, la espalda con las manos en la pared, los hombros de espaldas a ella, el durmiente y el barrido circular; tumbado y sentado: el libro abierto, la rotación de hombros, el abrazo y la zancada baja con rotación) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía (todas; al motor van las del bloque 1 y a cada trozo, las suyas) |
@@ -231,6 +232,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 13 | `7c-banda.js` | con banda elástica, de todos los grupos: 38 (los 37 que quedaban «con banda» en las filas de arriba y la rotación externa con bufanda, que es de las fichas nuevas). Con él, 456 con vídeo; de las 533 primeras quedan 78: las 41 de máquina y multipower (bloque 14) y las 37 de cinta de suspensión, fitball, disco, balón, anillas y rueda (bloque 15) |
 | 14 | `7d-maquinas.js` | en máquina y en multipower, de todos los grupos: 41 (las 35 «en máquina» y las 6 «en multipower» que quedaban en las filas de arriba). Con él, 497 con vídeo; de las 533 primeras quedan 37: las de cinta de suspensión, fitball, disco, balón, anillas y rueda (bloque 15) |
 | 15 | `7e-accesorios.js` | con cinta de suspensión (11), fitball (10), disco (7), balón medicinal (4), anillas (2) y rueda o barra que rueda (3), de todos los grupos: 37. Con él, **534 con vídeo: las 533 primeras, todas** (y la rotación externa con bufanda, de las nuevas) |
+| 16 | `7f-estiramientos.js` | estiramientos sin material (o con una pared), de las fichas nuevas: 30 (cuello, espalda alta, hombros, pecho, dorsal y brazos). Con él, **564 con vídeo** |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -546,6 +548,52 @@ una pierna (38 cm) de la rodilla: con medio centímetro de menos, la rodilla sal
 - **Dos controles nuevos** en la auditoría (son 83): nada del cuerpo se hunde más de 1,5 cm en una pelota (las manos que la
   sujetan, ni 3), y el fitball no se queda en el aire (siempre hay algo posado en él a menos de 1,5 cm). Y la mano apoyada de plano
   también puede estarlo en una pelota. Siguen sin control los discos, los cojines y las placas (se miden aparte, como en el 14).
+
+### Lo que salió en el bloque 16 (22 de noviembre de 2026)
+
+- **La mano que se despega de su apoyo (o se posa en él)** (`posada`, `conPosadas`, `enPared`, `antePared`, en `7f-estiramientos.js`).
+  De una mano apoyada (dicha en el mundo: la palma y los dedos) a otra al aire (dicha con su giro y su muñeca: `manoHacia`), cada
+  parte se mezcla por su lado, y a medio camino la mano se ladea y se hunde en el suelo o da la vuelta ante la pared. La apoyada
+  tiene que llevar también el giro y la muñeca que le tocan en su postura (`posada(P, k, dedos, palma)`), y entre el aire y el
+  apoyo va una postura con la mano ya de plano (levantada del suelo, o a un palmo de la pared).
+- **La cabeza de Jérôme es grande** (33,5 cm del cuello a la coronilla, y el tupé por delante). Boca abajo en V (el perro), con
+  los hombros a 45 cm del suelo, colgando lo tocaría: queda entre los brazos, algo levantada. Con las manos en una pared y los
+  brazos estirados llega a la pared antes que las manos: la cabeza va caída entre los brazos y los hombros, hacia las orejas, y
+  las manos se apoyan con el tronco ya casi paralelo al suelo. Mídase siempre `cabeza-suelo` y `cabeza-pared`.
+- **En las posturas de paso, los brazos apoyados van algo flojos.** La vida retrasa la base un instante (0,04 s): con el brazo
+  estirado del todo y la mano clavada, un cambio brusco de giro del tronco deja el hombro un centímetro más lejos o más cerca, y
+  cerca del tope el codo da un salto (`pico`). En las posturas en las que solo se pasa (el cambio de pierna de la zancada baja),
+  el hombro va a 2 cm menos que el brazo estirado.
+- **El pie que da un paso a ras de suelo va clavado a su camino** (la zancada baja, el cruce de piernas): suelto, la pierna se
+  mezcla hueso a hueso y el pie se hunde a medio camino. Y la cadera sube lo que haga falta para que la rodilla no toque.
+- **La pierna de atrás, estirada, manda dónde puede estar la cadera** (`cadera(y)`, en la zancada baja): si la cadera sube sin
+  irse hacia ese pie, el pie se levanta del suelo.
+- **Una mano abierta que cuelga junto a una pared la medida la toma por un hueco** (mira a la pared, cerca y sin tocar). O el
+  vídeo empieza ya colocado (el durmiente), o la mano roza la pared de verdad (el barrido: los dedos, con la muñeca algo doblada
+  hacia el dorso, porque el antebrazo es más grueso que la mano).
+- **La mano que descansa sobre la otra no es un hueco** (`contactos.js`): la medida «hueco: suelo» deja pasar la mano abierta que
+  queda sobre la otra cuando esa sí está en el suelo (el libro abierto: palma con palma, tumbado de lado).
+- **«Sentado», sin material**: en el suelo, con las piernas tendidas y las manos en los muslos (el abrazo).
+- **De una postura a otra, una mano puede cruzar la cara.** Entre dos posturas el brazo se mezcla hueso a hueso: de los brazos en
+  cruz a un abrazo, las manos subían a la altura de la cabeza y pasaban por la boca (8,7 cm dentro). Se arregla con una postura
+  de paso (los brazos por delante, a la altura del pecho). **`node tools/entrenador/pruebas/manocabeza.js`** (nuevo; un minuto
+  con todos) lo mide en el vídeo: la mano y el antebrazo contra la cabeza, cuadro a cuadro, y lista los que se le meten más de
+  4,5 cm. No es un control: la mano en la nuca, en la cabeza o junto a la oreja se mete adrede (hoy salen nueve, todos así:
+  los abdominales con las manos en la nuca, los estiramientos del cuello, la dominada comando con la cabeza junto a los
+  antebrazos). Hay que mirar los que salgan nuevos, y sobre todo los que salgan «de paso».
+- **Las manos en los hombros y el codo dando vueltas** (los círculos de codos): con la muñeca quieta, el codo solo puede andar
+  por un círculo (los puntos a un brazo del hombro y a un antebrazo de la muñeca), y con la muñeca junto al cuello ese círculo
+  pasaba pegado a la cabeza y los antebrazos se cruzaban delante del pecho. Se dice el codo (hacia dónde apunta el brazo en
+  cada punto del círculo) y de él sale la muñeca, a 12 cm del hombro; la mano, doblada hacia el hombro con su giro y su muñeca
+  (`prono: -90`, `mun: 60`), sin decirla en el mundo: así no se da la vuelta en ningún punto.
+- **Antes de la auditoría entera, `node tools/entrenador/pruebas/movimiento.js`** (nuevo; 40 segundos con todos): lo clavado no se
+  mueve de su sitio (0,02 cm), el cuerpo no da un salto (14 cm en un cuadro) ni una mano o un pie (36 cm). Es lo que la auditoría
+  mide en el reproductor, y `contactos.js` no lo miraba: se le pasaron una mano que subía 52 cm en un cuadro (el despegue de la
+  sentadilla con salto: los brazos, que ya vayan por delante al despegar, y el vuelo, de 0,2 s), una postura de paso a la que el
+  brazo clavado no llegaba (la dominada comando: el Director arregla hasta unos 5 cm; con 6,4, la mano se quedaba a 1,5 de la
+  barra) y los brazos estirados justo hasta su apoyo, que con la respiración se quedan cortos (a medio centímetro de estirarse,
+  no al milímetro). **Y una secuencia tiene que caber en el paso más corto** (4,40 s menos lo que tarde en llegar): lo mide la
+  auditoría («cada secuencia cabe en su paso»).
 
 ## El material (`50-material.js`)
 

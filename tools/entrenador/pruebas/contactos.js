@@ -169,7 +169,9 @@ function mide(T, id) {
       const pal = L.mano.palma, abierta = M.c < 0.5, enSuelo = Math.abs(T.manoAPlano(L, M, SUELO.c, SUELO.n)) <= 1 && -pal[1] > 0.6;
       for (const W of PW) if (!enSuelo && (enPano(L.mun, W) || enPano(L.dedos, W))) { const g = T.manoAPlano(L, M, W.c, W.n, P => enPano(P, W)), mira = -dot(pal, W.n); if (g > 0.7 && g < 12 && Math.abs(mira) > 0.6) { const c = 'pared · ' + nombre + ' ' + k; if (!(c in huecos) || g < huecos[c]) huecos[c] = r1(g); } }
       const g = T.manoAPlano(L, M, SUELO.c, SUELO.n);
-      if (g > 0.7 && g < 6 && abierta && -pal[1] > 0.6) { const c = 'suelo · ' + nombre + ' ' + k; if (!(c in huecos) || g < huecos[c]) huecos[c] = r1(g); }
+      /* (22-11-2026) salvo la que descansa sobre la otra mano, que sí está en el suelo (palma con palma, tumbado de lado): esa toca */
+      const o = k === 'i' ? 'd' : 'i', sobreOtra = Math.abs(T.manoAPlano(E[o], E.S.m[o], SUELO.c, SUELO.n)) <= 1 && Math.hypot(L.mun[0] - E[o].mun[0], L.mun[2] - E[o].mun[2]) < 4 && L.mun[1] > E[o].mun[1];
+      if (g > 0.7 && g < 6 && abierta && -pal[1] > 0.6 && !sobreOtra) { const c = 'suelo · ' + nombre + ' ' + k; if (!(c in huecos) || g < huecos[c]) huecos[c] = r1(g); }
     }
     peor('cabeza-suelo', T.cabezaAPlano(E, SUELO.c, SUELO.n), donde); peor('tronco-suelo', T.troncoAPlano(E, SUELO.c, SUELO.n), donde);
     for (const W of PW) { const en = P => enPano(P, W); let v = T.cabezaAPlano(E, W.c, W.n, en); if (v < 1e8) peor('cabeza-pared', v, donde); v = T.troncoAPlano(E, W.c, W.n, en); if (v < 1e8) peor('tronco-pared', v, donde); }
