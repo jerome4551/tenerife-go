@@ -11277,6 +11277,126 @@ idiomas; el cielo, 311; el perfil y los avatares, 74 y 153; `auditar_sw.js`, 104
 `app/www/` (246 ficheros: uno más, el trozo de los accesorios) y lo cotejó; y al acabar, el repositorio, sin ningún
 cambio.
 
+## El «Pase de viaje» (gratis por ahora): «¿Qué estoy viendo?», cuatro rutas con audio y el tesoro (22 de noviembre)
+
+**De dónde sale.** Jérôme, el 21-11, sobre el «Pase de viaje» de la propuesta de módulos: «Necesito que prepara el
+trabajo por esta función, de momento gratis». Lo preparó otra sesión (su parche `2-pase-de-viaje.patch`; el primero de
+su zip, «Antes de salir» y «Mi coche», ya estaba publicado y se salta). El 22-11, a las tres preguntas que se le
+hicieron, «Si a los 3»: los textos nuevos de la política (la ubicación, los sensores, la cámara, las rutas y OSRM),
+los sitios que salen de OpenStreetMap (comprobados antes en su fuente oficial: lo que no se confirma no entra, y se
+dice) y publicarlo si la auditoría entera sale en verde. El cobro no entra: el pase de 7 días a 14,99 € era una
+propuesta, no un dato.
+
+**Lo que entra.** Una tarjeta, la primera de la pestaña «Viaje» del pasaporte, abre el «Pase» (`modulos/pase.js`), una
+pantalla entera con tres tarjetas, cada una con «Gratis por ahora». **«¿Qué estoy viendo?»** (`modulos/horizonte.js`):
+se apunta el móvil al horizonte y dice qué cima, pueblo o isla se ve; lo calcula el móvil con el relieve de «La isla
+en 3D» (el MDT05 del IGN), la curvatura de la Tierra y la refracción, y no trae ningún lugar nuevo: los nombres son
+los de la app y los de OpenStreetMap que ya trae el relieve, y las cimas de las otras cuatro islas van por las reseñas
+del IGN. **Cuatro rutas en coche con audio** (el Teide por Las Cañadas, Anaga, Teno y el norte): las paradas son
+fichas de la app, se lee su descripción con la voz del propio móvil y la carretera la dibuja OSRM, al que solo se le
+mandan las paradas, nunca la posición; el dibujo se guarda en el dispositivo. **La búsqueda del tesoro de Garachico**:
+tres pistas a pie por el casco (el convento de San Francisco, el castillo de San Miguel y la playa del Muelle); solo
+se guarda, en el dispositivo, qué pistas están encontradas. Cinco tablas nuevas (`PASE_UI`, 87 filas, y `HZ_UI`, 58,
+en los once idiomas; `PASE_LOCALE`, `HZ_LOCALE` y `HZ_NOMBRE`, declaradas SIN-TRADUCIR), cuatro filas en `UI_TX` y la
+política: `ppDatosPase`, nueva, y los textos de la ubicación, los sensores, la cámara y OSRM, en los once idiomas, con
+`privacidad.html` y los textos de los permisos de iOS rehechos con sus generadores.
+
+**Comprobado aquí, con sus fuentes.** Las cimas de las otras islas, contra sus reseñas del IGN: el vértice 110421
+«Pico de las Nieves» (Gran Canaria) y el 110554 «Malpaso» (El Hierro), con sus coordenadas y su altitud; la señal
+2926001 de la REDNAP, en la base del vértice «Garajonay» (La Gomera), y la 21921005, en el «Roque de los Muchachos»
+(La Palma), con sus coordenadas; las dos alturas que faltan (1.487 y 2.426 m), del MITECO: las coordenadas de las
+cuatro, cifra a cifra iguales a las del módulo. Los tres sitios del tesoro: la posición de cada uno cae en su parcela
+del Catastro (el convento, en la 7297128CS2379N, «GL San Francisco 4», edificio público; el castillo, en la
+6997201CS2369N, «AV Tomé Cano 1», uso histórico-artístico; consultadas el 22-11-2026 en ovc.catastro.meh.es), y la
+playa, en las coordenadas de Turismo de Tenerife; lo que se cuenta de cada uno, en sus fuentes (Turismo de Tenerife y
+Diario de Avisos). La seguridad de los dos módulos: el DOM, con `createElement` y `textContent` (`innerHTML` solo para
+los SVG fijos de cada fichero), lo que se pide por la red es el relieve de la propia app y OSRM, y los enlaces de
+fuera llevan `noopener`. El parche entró limpio salvo dos ficheros que habían cambiado en `main` desde su base, y se
+han juntado a mano sin tocar lo de ninguno: `tools/auditar.sh` (su control, `probar_pase.js`, junto al de «Antes de
+salir»; el del vigía de TITSA y el de las cifras rectas, donde estaban) y las cifras de «Idiomas» de este documento,
+que en `main` ya eran 5.984 y no 5.963: con el «Pase», 61 tablas, 3.980 filas y 6.138. `generar_privacidad.py
+--comprobar` y `app_preparar.js --comprobar`, en verde.
+
+**Lo que se ha cambiado aquí**, en su commit, con su fuente: la pista del convento ya no dice que lo levantaron los
+franciscanos (según Diario de Avisos, el convento y la iglesia los fundó el genovés Cristóbal de Ponte en 1524): «Un
+convento franciscano del siglo XVI…»; la playa del Muelle ya no dice que tiene socorrista (el servicio va por
+temporadas, la ficha no lo da y lo dice, con sus fechas, la tabla de socorristas); el crédito de las cimas dice de
+dónde sale cada dato (los vértices y las señales de nivelación del IGN; las alturas del IGN y del MITECO); y tres
+erratas: en búlgaro, «Ел Йеро», como en el resto de la app, y «с аудиогид»; en neerlandés, las comillas del resto de
+la app. Los once idiomas de cada fila, comprobados antes de escribir. Y en el `README.md`, que el relieve de ahora es
+el del MDT05 del IGN, bajado el 17-11, y no el del Copernicus DEM.
+
+**Garachico, corregido aparte.** Las cuatro fichas que la otra sesión vio corridas al preparar la búsqueda, con el
+«Ok!» de Jérôme (22-11) para el mirador, el convento y la playa, y su «Perfecto» para el faro (buscar una luz oficial
+y, si no la había, quitar la ficha); un commit por apartado:
+
+- **El convento de San Francisco y la playa del Muelle, en su sitio.** El convento caía en la parcela de al lado del
+Catastro («CL Esteban de Ponte 11»); ahora, en el punto de OpenStreetMap, cae en la suya, la 7297128CS2379N («GL San
+Francisco 4», edificio público): se mueve 177 m. La playa, a las coordenadas de Turismo de Tenerife (28° 22' 15.09''
+N, 16° 46' 4.87'' W): 163 m, en la parcela «El Guincho». Con `fijar_coordenada.py`, en tierra y con su fuente en
+`datos/verificado.json`.
+- **La playa del Muelle, de callaos y arena** («Shingle and sand», Turismo de Tenerife), y no de arena negra, en la
+descripción y en la categoría, en los once idiomas, con las palabras que la app ya usa para «Playa de Callao».
+- **El «Mirador de Garachico» es el Mirador del Emigrante.** Su punto cae en la parcela del Catastro «Mirador El
+Emigrante S Pedro» (38015A00100198), y se llama como lo escribe Turismo de Tenerife, «Mirador del Emigrante
+(Garachico)»; «Mirador de Garachico» es allí un restaurante. La descripción, la de Turismo de Tenerife (el antiguo
+puerto, el más importante de Tenerife hasta la erupción del volcán de Trevejo del 5 de mayo de 1706), en los once
+idiomas.
+- **El «Faro de Garachico», fuera: no se encontró ninguna fuente.** Su punto cae en una parcela del casco, 368 m
+tierra adentro (Catastro: «TR Rafael Fernández Primera 4»); el Lighthouse Directory («Lighthouses of Spain: Western
+Canary Islands», revisado el 12-10-2026) no tiene ninguna luz en Garachico; el Libro de Faros (Defensa) cortó la
+conexión dos veces y la web de Puertos Canarios respondió vacía, y el anuncio BOE-B-2021-41022 es el balizamiento de
+la playa de El Muelle. Sale como «Cumbre Dorsal» el 17-11: de la app, de los nueve idiomas, del polaco montado, de sus
+dos filas del rumano, de las zonas del planificador y, con la etiqueta «Volcán 1706», que solo llevaba ella, de los
+diez glosarios (770 filas por idioma); su id entra en `LUGARES_RETIRADOS` (`probar_retirados.js`: 6 ids). **De 985 a
+984 lugares**: el README, el JSON-LD, la ficha de la App Store en los diez idiomas (en polaco, «984 miejsca», con el
+nominativo que piden 2, 3 y 4) y la de Google Play, rehecha con `google_play_ficha.js --escribir`, las notas a Apple,
+`REVISION-LUGARES.md` y las tablas de este documento: 61 tablas, 3.980 filas y 6.136. Y el comentario de la búsqueda
+del tesoro en `modulos/pase.js`, al día.
+
+**Lo que no entra y queda para Jérôme.** OSRM: el servidor de demostración que usa la app (`router.project-osrm.org`)
+pide en su página mostrar la atribución y un enlace para «corregir el mapa»; el «Pase» cita a OpenStreetMap y a OSRM,
+pero sin ese enlace, y la ruta A→B del mapa tampoco lo lleva.
+
+**Lo que no está comprobado**, según la nota de esa sesión y aquí igual: solo se ve en un móvil de verdad la brújula
+(su calibración, y lo que la desvía dentro de un coche: por eso «¿Qué estoy viendo?» se usa de pie, fuera del coche),
+el permiso de los sensores y la cámara en un iPhone, las voces de cada idioma (en algunos móviles no hay voz en
+búlgaro o en rumano: entonces se salta la voz y el texto sigue en pantalla), la pantalla encendida durante la ruta, el
+GPS en la TF-436 y la búsqueda en Garachico entre las casas.
+
+**La auditoría entera**, sobre `668a5b2` (árbol `33d18a2`; esta documentación y la fecha del README, aparte), del
+22-11 a las 19:56 al 22-11 a las 23:23, hora de Canarias: **«AUDITORIA EN VERDE»**, los 86 bloques de `auditar.sh`
+(uno más: el del «Pase»), ningún control en rojo ni roto. El «Pase», 287 de 287: las tablas (149 filas en los once
+idiomas, con las mismas marcas que el castellano; las cimas de las otras islas en las coordenadas de las reseñas del
+IGN; las cuatro rutas, con cada parada en un lugar de la app; los tres sitios de la búsqueda, a más de 150 m unos de
+otros; la costa del mapa pequeño, 346 vértices sobre la del relieve); en cada idioma, la tarjeta, el «Pase», las
+rutas, una ruta, la búsqueda y «¿Qué estoy viendo?» caben a 360 y a 402 px, sin ningún texto en castellano; la
+tarjeta, el «atrás», Escape y los tres enlaces; «¿Qué estoy viendo?» desde el Mirador de Humboldt (el Teide y La
+Palma) y desde el de Cherfe (La Gomera, El Hierro y La Palma), con los sensores, la brújula que se ajusta, la cámara y
+la lista, que cita el relieve del IGN y OpenStreetMap; las rutas en coche (a OSRM van solo las ocho paradas, nunca la
+posición; el dibujo se pide una vez y se guarda; la voz, «Saltar», las paradas que se pasan de largo y, al acabar
+Teno, la búsqueda de Garachico); la búsqueda del tesoro (con el GPS grueso, 80 m, no se da por encontrada; se guarda
+solo qué pistas están encontradas, y lo roto se descarta); si un módulo no llega; y sin red, de la caché. El
+entrenador, 83 de 83: los 534 vídeos, enteros, en castellano y en otro idioma (1.068 pases y 953.776 cuadros);
+`tools/probar_cuerpo.js`, 856 de 856, y la pestaña Cuerpo del perfil, 64. La isla en 3D, 57 y ninguno en rojo (el
+doble toque, de 9.000 a 4.501 m). Lo demás, en verde: las preguntas de prueba al asistente, 0 fallos de 298;
+`auditar_faq.js`, 1290 de 1290; «Organice su día», 626 de 626; instalar la app, 65 de 65; lo que pide Google Play, 249
+de 249; `auditar_registro.js`, todo de usted (143.547 textos); `castellano_suelto.js`, ninguna palabra en castellano;
+`auditar_cirilico.py`, 2.361 nombres propios en cirílico y ninguna variante sospechosa; los datos, 984 lugares en
+todas partes (también en el resumen de este documento); `auditar_desborde.js`: la etiqueta viewport de las cuatro
+páginas, las tres cajas de copiar, las 60 cajas y 186 a la vista en 81 pantallas, ninguna por debajo de 16 px;
+`auditar_arranque.js`, los nueve idiomas iguales tras `setLang` (16.189 nodos comparados y 0 textos distintos);
+`barrido_pantallas.js`, 192 pantallas y fichas por idioma y 0 textos sin traducir; los tours, enteros en los diez
+idiomas; el cielo, 311; el perfil y los avatares, 74 y 153; `auditar_sw.js`, 104 de 104; `probar_atras.js`, 26 de 26;
+`probar_superposiciones.js`, 25 de 25; `probar_sin_teselas.js`, 4 de 4; `probar_detalles_movil.js`, 17 de 17;
+`auditar_mapa.js`, 137 de 137; el panel SOS, 42 y 262; «Antes de salir» y «Mi coche», 250; las cifras rectas, 14 de
+14; las cifras de idiomas del documento, las de ahora (61 tablas y 3.980 filas; 6.136). `app_preparar.js` montó
+`app/www/` (248 ficheros) y lo cotejó; y al acabar, el repositorio, sin ningún cambio.
+
+**Y el README, en su commit.** Decía que los diez primeros gimnasios entraron el 20 de noviembre («985 desde el 20»,
+«975 entre el 17 y el 20»): el 20 es el día de la entrega del bloque 4a; en `main`, y en la app, entraron el 22 de
+madrugada. Lo señaló la nota del bloque 4b. `auditar_readme.js`, en verde.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
