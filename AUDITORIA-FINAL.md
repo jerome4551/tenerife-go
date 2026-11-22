@@ -11121,6 +11121,73 @@ una prueba: la de «Mi coche» esperaba «Guardado hoy a las …» y, a la una, 
 01:55». La prueba, arreglada en su commit (acepta el artículo de la una, rechaza los dos cruces y mira la una y las
 13:30 sin depender del reloj): «Mi coche y mi posición», tres veces seguidas, 250 controles en verde cada vez.
 
+## El vigía de TITSA (22 de noviembre)
+
+**De dónde sale.** El recordatorio del 16-11 (nota 48, punto 4i: los datos abiertos de TITSA para «Próximas salidas de
+guagua») saltó el 22-11 a las 9:00. El GTFS de ese día, bajado de `www.titsa.com/Google_transit.zip` (el fichero que
+enlaza la ficha del portal de datos abiertos del Cabildo): generado el 22-11 a las 04:07 (UTC), del 22-11-2026 al
+21-05-2027, los 181 días con servicio, 181 líneas y 3.901 paradas, sin `feed_info.txt` ni `calendar.txt` (todo en
+`calendar_dates.txt`). El horario completo de los laborables (unos 6.250 viajes al día) llega hasta el 21-12; desde el
+22-12 y hasta mayo, 4.022 cada laborable, 2.289 los sábados y 2.187 los domingos, siempre igual. Eso se deduce de los
+viajes de cada día: TITSA no lo dice en ninguna parte. Jérôme, al leerlo: «Prepara el bots para que lo verifica cada
+mes a la misma fecha. Recuerda que debe avisar si no puede tener acceso a los datos que no queremos que falla y
+después se queda mudo. Hazlo bien para también que lo revise siempre que lo hace!».
+
+**Lo que entra.** `tools/vigia_titsa.py` y su flujo, `.github/workflows/vigia-titsa.yml`: el día 22 de cada mes a las
+05:23 UTC, y a mano. Baja el GTFS respetando el robots.txt de titsa.com y lo lee en memoria (no saca nada al disco y
+tiene topes de tamaño, también descomprimido). Mira las fechas que cubre y los días sin ningún servicio; los viajes de
+cada día y hasta qué día llega el horario completo de los laborables (deducido, y lo dice así); la licencia de la
+ficha del portal (cc-by, la del crédito del panel de guaguas); y la red contra `datos/titsa.js`: las líneas y los
+códigos de parada que están en un lado y no en el otro. No toca la app: lo que haya que cambiar lo cambia una persona,
+con su fuente.
+
+**No se queda mudo.** Siempre deja su informe y su nivel. Alarma (incidencia y flujo en rojo): no llega a los datos
+(la red, el certificado, el robots.txt, una página de bloqueo en lugar del fichero, un ZIP roto, sin sus ficheros o
+demasiado grande), los datos ya caducaron, la red de la app no se deja leer, o el vigía no cuadra consigo mismo. Aviso
+(incidencia): los datos acaban en menos de 60 días, el horario completo en menos de 14, hay días sin servicio, el
+fichero es el mismo que el del mes anterior, la ficha del portal no responde o su licencia ha cambiado, o la red
+difiere de la app de una forma nueva (la misma diferencia no vuelve a avisar cada mes, pero sigue en el informe). Si
+el script se cae sin dejar su informe, el flujo lo cuenta como alarma. La incidencia se llama siempre «TITSA: revisar
+los datos de las guaguas» y, si ya está abierta, se comenta. La vuelta se guarda en `tools/datos/vigia-titsa.json`
+después de avisar, como en el vigía del SOS: si el aviso falla, la vuelta siguiente vuelve a avisar. Lo que dicen las
+páginas de fuera y los nombres del GTFS van como código en la incidencia, sin menciones ni enlaces.
+
+**Se revisa a sí mismo.** Tras guardar la vuelta, la vuelve a leer y la compara con lo que ha visto, y cuenta otra
+vez, de otra forma, la huella del fichero y las líneas de `routes.txt`; si algo no cuadra, es una alarma. Y una tarea
+programada de Claude, el mismo día 22 por la mañana, mira que la vuelta se hizo y lo que vio, y lo comprueba por su
+cuenta con el fichero de TITSA; si el flujo no corrió, lo lanza a mano y se lo dice a Jérôme.
+
+**El certificado.** `www.titsa.com` manda solo su certificado (`*.titsa.com`, de Sectigo, válido hasta el 30-01-2027),
+sin el intermedio: un navegador lo busca solo, Python y curl no. El intermedio (Sectigo Public Server Authentication
+CA OV R36, emitido por la raíz Sectigo Public Server Authentication Root R46) se sacó de la lista de intermedios de
+Mozilla, se comprobó con `openssl verify` contra las raíces del sistema (y la hoja de titsa.com con él), y va en
+`tools/certificados/` con su huella SHA-256 (`6542d176…`), que el vigía comprueba antes de usarlo. La verificación TLS
+sigue entera.
+
+**El portal y datos.gob.es.** La API del portal del Cabildo (datos.tenerife.es) respondió unas veces y otras devolvió
+su página «Bloqueo de página web» (por las políticas de seguridad del CIT): el vigía lo cuenta como aviso y no lo
+rodea. datos.gob.es, el catálogo nacional, devuelve desde aquí un 403 de Incapsula, también en su robots.txt: no se
+usa.
+
+**La primera vuelta, aquí** (22-11, con el fichero de ese día y una copia del estado fuera del repositorio): aviso. La
+red de la app ya no es la del GTFS: la línea 464 está en el GTFS y no en la app, y la 948 al revés; hay 12 paradas con
+servicio que la app no tiene y 17 de la app que el GTFS ya no tiene. Regenerar la red con `tools/gtfs_red.py` es otro
+trabajo, que decide Jérôme.
+
+**Las pruebas.** `python3 tools/vigia_titsa.py --probar`, sin red y en `tools/auditar.sh`: 58 controles, uno por cada
+camino (sin red, certificado que no se verifica, certificado guardado cambiado, página de bloqueo, robots.txt, ZIP
+roto, sin `stop_times.txt` o sin calendario, una columna que falta, una fecha mal escrita, demasiado grande, caducado,
+a punto de caducar, horario completo corto, un día sin servicio, el mismo fichero, la red distinta y la misma
+diferencia al mes siguiente, la red de la app que no se deja leer, el portal bloqueado o con otra licencia, lo
+guardado que no cuadra), y lo que el flujo debe tener: el día 22 y a mano, el mismo título de incidencia, que avise
+aunque el vigía se caiga, que guarde solo después de avisar, que se ponga en rojo con alarma y solo los permisos que
+necesita.
+
+**La auditoría entera** (titsa2211, con el vigía y su control; del 22-11 a las 11:12 al mismo día a las 14:37, hora
+de Canarias): **en verde**, ningún control en rojo ni roto. 985 lugares, 56 tablas y 3.826 filas de idioma (5.984
+textos mirados dentro y fuera del fuente), 192 pantallas por idioma sin nada sin traducir y los 58 controles del
+vigía, que van con los de los robots del panel SOS.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
