@@ -213,7 +213,13 @@ const cocheGuardado = () => JSON.stringify({ v: 1, lat: 28.4682, lng: -16.2546, 
     const pie = ios ? 'https://maps.apple.com/?daddr=28.468200,-16.254600&dirflg=w' : 'https://www.google.com/maps/dir/?api=1&destination=28.468200,-16.254600&travelmode=walking';
     ok(g.volver === pie, '«Volver a pie» abre ' + (ios ? 'Mapas de Apple' : 'Google Maps') + ', a pie', g.volver);
     ok(g.foco === 'coche-volver', 'tras guardar, el foco pasa a «Volver a pie»', g.foco);
-    ok(/Guardado hoy a las \d\d:\d\d/.test(g.texto) && !/en línea recta/.test(g.texto), 'recien guardado: la hora, y no «A 10 m»', g.texto.slice(0, 120));
+    /* La una va en singular (txLaUna de index.html: «a la 01:55»; las demás horas, «a las 13:55»). La prueba solo
+       aceptaba «a las» y se ponía roja entre la 01:00 y la 01:59 (auditoría del 22-11-2026 a las 01:55). */
+    ok(/Guardado hoy a (la 01|las (?!01)\d\d):\d\d/.test(g.texto) && !/en línea recta/.test(g.texto), 'recien guardado: la hora, y no «A 10 m»', g.texto.slice(0, 120));
+    if (ios) {
+      const una = await p.evaluate(() => [TG_COCHE.t('cocheHoy', { h: '01:30' }), TG_COCHE.t('cocheHoy', { h: '13:30' })]);
+      ok(una[0] === 'Guardado hoy a la 01:30' && una[1] === 'Guardado hoy a las 13:30', 'la hora de guardado, con su artículo: «a la 01:30», «a las 13:30»', una);
+    }
     await p.tap('#coche-nota');
     await p.keyboard.type('Planta -2 <img src=x onerror=window.PWNED=1> plaza 47');
     await p.evaluate(() => document.activeElement.blur()); await p.waitForTimeout(200);
