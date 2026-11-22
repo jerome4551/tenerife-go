@@ -1,11 +1,39 @@
 {
- "alarmas": [
-  "No se ha podido bajar el GTFS de TITSA (https://www.titsa.com/Google_transit.zip): no se pudo conectar (timed out)."
+ "alarmas": [],
+ "avisos": [
+  "La red del GTFS ya no coincide con la de la app (datos/titsa.js), y es una diferencia nueva: hay que mirar el informe de tools/gtfs_red.py y regenerar la red si hace falta."
  ],
- "avisos": [],
  "fuente": "https://www.titsa.com/Google_transit.zip",
- "gtfs": null,
- "nivel": "alarma",
+ "gtfs": {
+  "agencias": [
+   "TITSA"
+  ],
+  "bytes": 20792042,
+  "desde": "2026-11-22",
+  "dias_con_servicio": 181,
+  "dias_sin_servicio": [],
+  "ficheros": [
+   "agency.txt",
+   "calendar_dates.txt",
+   "routes.txt",
+   "shapes.txt",
+   "stop_times.txt",
+   "stops.txt",
+   "trips.txt"
+  ],
+  "hasta": "2027-05-21",
+  "horario_completo_hasta": "2026-12-21",
+  "horario_completo_hasta_el_final": false,
+  "http": 200,
+  "lineas": 181,
+  "modificado": "Sun, 22 Nov 2026 04:07:42 GMT",
+  "paradas": 3901,
+  "paradas_con_servicio": 3901,
+  "sha256": "f6188052d59ca5f47f266b4e0166a33b9d11b3e9947ce06f3cbb5041369b14bf",
+  "viajes_laborable_despues": 4022,
+  "viajes_laborable_referencia": 6252
+ },
+ "nivel": "aviso",
  "portal": {
   "licencia": "cc-by",
   "licencia_nombre": "Creative Commons Attribution",
@@ -13,7 +41,72 @@
   "recurso_bytes": 21570232,
   "recurso_modificado": "2026-11-22T00:01:15.133246"
  },
- "red": null,
- "ultima_vuelta": "2026-11-22T16:00:52Z",
+ "red": {
+  "cuantas": {
+   "lineas_nuevas": 1,
+   "lineas_que_ya_no_estan": 1,
+   "paradas_nuevas": 12,
+   "paradas_que_ya_no_estan": 17
+  },
+  "ejemplos": {
+   "lineas_nuevas": [
+    "464"
+   ],
+   "lineas_que_ya_no_estan": [
+    "948"
+   ],
+   "paradas_nuevas": [
+    "2827",
+    "5286",
+    "5287",
+    "5288",
+    "5289",
+    "8435",
+    "8436",
+    "8437",
+    "8438",
+    "8439",
+    "8442",
+    "8443"
+   ],
+   "paradas_que_ya_no_estan": [
+    "2317",
+    "2318",
+    "2319",
+    "2320",
+    "2321",
+    "2322",
+    "2323",
+    "2324",
+    "2325",
+    "2672",
+    "4799",
+    "8329",
+    "8351",
+    "8352",
+    "9476",
+    "9477",
+    "9478"
+   ]
+  },
+  "huella": "aec13ee6633284ba338611a73400d594935e33ee5bc3de11b79866f490b25bf9",
+  "lineas_app": 181,
+  "nombres": {
+   "2827": "CC ALCAMPO - LANZADERA",
+   "5286": "PASO ALTO",
+   "5287": "TANQUE BAJO",
+   "5288": "TELECLUB",
+   "5289": "PASO ALTO",
+   "8435": "BARRANCO DE AJABO",
+   "8436": "PRÍNCIPE PELINOR",
+   "8437": "VIDAL",
+   "8438": "VIDAL",
+   "8439": "INGENIERO MANUEL GONZÁLEZ",
+   "8442": "EL LLANO",
+   "8443": "YE"
+  },
+  "paradas_app": 3906
+ },
+ "ultima_vuelta": "2026-11-22T16:08:09Z",
  "version": 1
 }
