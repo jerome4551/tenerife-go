@@ -3303,16 +3303,16 @@
   {
    "tabla": "places",
    "clave": "playa-muelle-garachico.desc",
-   "es": "Playa de arena negra junto al muelle viejo de Garachico, sobre la colada de la última erupción. Escaleras de piedra bajan al agua desde el murete. Aparcamiento y parque infantil al lado.",
+   "es": "Playa de callaos y arena junto al muelle viejo de Garachico, sobre la colada de la última erupción. Escaleras de piedra bajan al agua desde el murete. Aparcamiento y parque infantil al lado.",
    "forma": "texto",
-   "ro": "Plajă cu nisip negru lângă vechiul debarcader din Garachico, pe lava ultimei erupții. Scări de piatră coboară în apă de pe zidul scund. Parcare și loc de joacă alături."
+   "ro": "Plajă cu bolovani și nisip lângă vechiul debarcader din Garachico, pe lava ultimei erupții. Scări de piatră coboară în apă de pe zidul scund. Parcare și loc de joacă alături."
   },
   {
    "tabla": "places",
    "clave": "playa-muelle-garachico.cat",
-   "es": "Playa de Arena Negra · Garachico",
+   "es": "Playa de Callaos y Arena · Garachico",
    "forma": "texto",
-   "ro": "Plajă cu nisip negru · Garachico"
+   "ro": "Plajă cu bolovani și nisip · Garachico"
   },
   {
    "tabla": "places",
