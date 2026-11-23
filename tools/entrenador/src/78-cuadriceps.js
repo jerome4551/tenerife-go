@@ -506,13 +506,16 @@
       /* del otro lado, igual que del primero: las manos se posan en el muslo al llegar el pie (a2) y solo entonces se echa hacia delante
          (yendo de un tirón de los brazos sueltos a las manos en el muslo, la postura de en medio tenía la mano dentro del muslo: se
          la apartaba hacia un lado al llegar y hacia otro al salir, y saltaba 15 cm) */
-      var posturas = { a0: a0, a: a, b: b, r: r, rb: rb, k: k, r2: refleja(r), rb2: refleja(rb), a2: refleja(a), b2: refleja(b) };
+      /* (23-11-2026) y antes de posarlas, el pie llega con los brazos aún sueltos (a02), como del primer lado: del pie en el aire a las
+         manos en el muslo de un tirón (0,46 s), con la mano que cruza ya reflejada de verdad (su muñeca se ladeaba al revés: reflejo,
+         en 10-esqueleto.js), el codo daba la vuelta al muslo por detrás y saltaba 26 cm en un cuadro. El paso dura lo que su secuencia */
+      var posturas = { a0: a0, a: a, b: b, r: r, rb: rb, k: k, r2: refleja(r), rb2: refleja(rb), a02: refleja(a0), a2: refleja(a), b2: refleja(b) };
       var echa = porArco(posturas, 'ab', a, b, 'b', 1, 2.2, K_ROD), vuelve = porArco(posturas, 'ba', b, a0, 'a0', 1, 0.7, K_ROD), echa2 = porArco(posturas, 'ab2', posturas.a2, posturas.b2, 'b2', 1, 1.25, K_ROD);
       return {
         vista: [[-72, 12], [-24, 16]], isometrico: 'b', clavos: T2, material: [ESTERILLA],
         posturas: posturas, inicio: 'a0', encuadra: ['b'],
         pasos: ['a0', { sec: [['a', 1.4, 'suave']], desde: 'a0' }, { sec: echa, desde: 'a' },
-                { sec: [['b', 0.35]].concat(vuelve, [['r', 0.34, 'entra'], ['rb', 0.3, 'lineal'], ['k', 0.3, 'sale'], ['rb2', 0.3, 'entra'], ['r2', 0.3, 'lineal'], ['a2', 0.46, 'sale']], echa2), desde: 'b' }]      /* 4,30 s: cabe en el paso más corto (4,40 s) */
+                { sec: [['b', 0.35]].concat(vuelve, [['r', 0.34, 'entra'], ['rb', 0.3, 'lineal'], ['k', 0.3, 'sale'], ['rb2', 0.3, 'entra'], ['r2', 0.3, 'lineal'], ['a02', 0.36, 'sale'], ['a2', 1.0, 'suave']], echa2), desde: 'b', dura: 5.5 }]      /* 5,20 s de secuencia */
       };
     })();
 

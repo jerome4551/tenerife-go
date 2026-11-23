@@ -529,14 +529,17 @@
     /* tapa lo que le queda detrás y por debajo de la tapa; lo que tiene encima, nunca */
     this.tapa = { min: [c[0] - m[0] / 2, 0, c[2] - m[2] / 2], max: [c[0] + m[0] / 2, m[1], c[2] + m[2] / 2], z: it.z };
   };
-  /* ── la esterilla ── */
+  /* ── la esterilla ── (y, más gruesa y más corta, un cojín: med: [ancho, grueso, largo]; descansa en el suelo) */
   MATERIAL.esterilla = function (esc, o) { this.o = o || {}; this.c = new Caja(['#5B4FCF', '#463cab', '#3a3190', '#3a3190']); this.antes = true; };
   MATERIAL.esterilla.prototype.colocar = function () {};
   MATERIAL.esterilla.prototype.pintar = function (E, cam, lista) {
-    var o = this.o, B = giroY(o.rumbo || 0);
-    this.c.pon(cam, [o.en ? o.en[0] : 0, 0.8, o.en ? o.en[1] : 0], B, o.med || [62, 1.6, 180], lista, -400);
+    var o = this.o, B = giroY(o.rumbo || 0), m = o.med || [62, 1.6, 180];
+    this.c.pon(cam, [o.en ? o.en[0] : 0, m[1] / 2, o.en ? o.en[1] : 0], B, m, lista, -400);
   };
-  /* ── la pared: un paño vertical, que no tape a Jérôme ── */
+  /* ── la pared: un paño vertical, que no tape a Jérôme ──
+     o: { x, z (por dónde pasa su cara), normal (hacia el lado libre), ancho, alto, grueso (lo que se ve de su canto: 8) y tapa: true
+     (el extremo de un muro, con una pierna a cada lado: lo que queda detrás de él se pinta detrás; solo con la normal a lo largo de
+     un eje) } */
   MATERIAL.pared = function (esc, o) {
     this.o = o || {}; this.g = crear('g');
     this.f = crear('path', { fill: '#e9e2d2', stroke: '#cfc5ad', 'stroke-width': 1, 'stroke-linejoin': 'round' }, this.g);
@@ -545,9 +548,9 @@
     this.antes = true;
   };
   MATERIAL.pared.prototype.colocar = function () {};
-  MATERIAL.pared.prototype.extremos = function () { var o = this.o, z = o.z == null ? 40 : o.z; return [[(o.x || 0) - 40, 0, z], [(o.x || 0) + 40, 150, z]]; };
+  MATERIAL.pared.prototype.extremos = function () { var o = this.o, z = o.z == null ? 40 : o.z; return [[(o.x || 0) - 40, 0, z], [(o.x || 0) + 40, Math.min(150, o.alto || 215), z]]; };
   MATERIAL.pared.prototype.pintar = function (E, cam, lista) {
-    var o = this.o, z = o.z == null ? 40 : o.z, w = o.ancho || 150, h = o.alto || 215, n = o.normal || [0, 0, -1], gr = 8;
+    var o = this.o, z = o.z == null ? 40 : o.z, w = o.ancho || 150, h = o.alto || 215, n = o.normal || [0, 0, -1], gr = o.grueso || 8;
     /* la pared está en el plano z; se ve su cara (hacia Jérôme) y su canto */
     var t = unidad(cruz([0, 1, 0], n)), c = [o.x || 0, 0, z], q = function (a, y, d) { return cam.p(mas(c, mas(por(t, a), mas([0, y, 0], por(n, -d))))); };
     var A = q(-w / 2, 0, 0), B2 = q(w / 2, 0, 0), C2 = q(w / 2, h, 0), D2 = q(-w / 2, h, 0);
@@ -562,6 +565,11 @@
     var ve = punto(n, cam.k);
     this.f.style.display = ve > 0.05 ? '' : 'none'; this.l.style.display = ve > 0.05 ? '' : 'none';
     lista.push({ z: -500, el: this.g });
+    /* el extremo de un muro: lo que queda detrás de su bulto (el paño y su grueso) va detrás de él (taparCon, en 40-escenario.js) */
+    if (o.tapa) {
+      var e1 = mas(c, por(t, -w / 2)), e2 = mas(mas(c, por(t, w / 2)), por(n, -gr));
+      this.tapa = { min: [Math.min(e1[0], e2[0]), 0, Math.min(e1[2], e2[2])], max: [Math.max(e1[0], e2[0]), h, Math.max(e1[2], e2[2])], z: -500 };
+    }
   };
   /* ── la polea: la columna, la polea a su altura y el cable hasta el agarre.
      o: { en: [x, z], alto, rumbo, a: 'manos' | 'i' | 'd' | 'tobillo-i' | 'tobillo-d' (con tobillera: true, se ve la tobillera: una banda justo

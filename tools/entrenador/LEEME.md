@@ -40,12 +40,13 @@ vectorial que se mueve dentro de la app. Aquí están sus fuentes; lo que la app
 | `src/7d-maquinas.js` | las coreografías del bloque 14: **en máquina y en multipower** (41, de todos los grupos), por máquina (sentado, con las piernas: la extensión de cuádriceps, el curl femoral sentado y la abducción y la aducción de cadera; la prensa: con los pies separados, juntos, a una pierna y la elevación de talones; la hack: la sentadilla y la elevación de talones; la sentadilla con cinturón; tumbado y de pie: el curl femoral tumbado, a una pierna y de pie, y la elevación glúteo-isquio; las pantorrillas, de pie y sentado; el tronco: el crunch y la silla romana; el hip thrust; sentado, con los brazos: los press de pecho, inclinado, declinado y de hombros, los fondos, los remos sentado y alto, a dos manos y a una, el contractor y el contractor inverso, las elevaciones laterales y el curl; las dominadas asistidas, con las palmas hacia delante y hacia él; y el multipower: la sentadilla, los press de banca, inclinado, con agarre cerrado y de hombros y el remo para el deltoides posterior) |
 | `src/7e-accesorios.js` | las coreografías del bloque 15: **con cinta de suspensión, fitball, disco, balón medicinal, anillas y rueda** (37, de todos los grupos), por material (el disco: la sentadilla, la elevación frontal, el curl invertido, la pinza y la sissy; el balón medicinal: los dos lanzamientos y la rotación sentado; el fitball: el puente, los dos curls femorales, el crunch, la extensión lumbar, el encogimiento de rodillas, la pica, las dos flexiones y el curl sentado; la flexión sobre balón y la lastrada; las dominadas lastradas; la rueda y los dos rollouts con barra; las anillas: los fondos y el soporte; y la cinta de suspensión: de cara al anclaje, los remos, los cuatro curls y la sentadilla, y de espaldas, el press, la extensión de tríceps, los fondos y la flexión con los pies en los estribos) |
 | `src/7f-estiramientos.js` | las coreografías del bloque 16: **estiramientos sin material** (30, de cuello, espalda alta, hombros, pecho, dorsal y brazos), por cómo se colocan (de pie: el pecho con las manos a la espalda, los brazos arriba, el costado, los codos con las manos en la nuca, la espalda alta, el giro de cabeza, los omóplatos, las tijeras, los círculos de codos y de muñecas, las letras T-L e Y-W, la marcha de dedos, la oración invertida y los giros de muñeca; en el suelo: los dos perros boca abajo, los antebrazos a cuatro patas, enhebrar la aguja, la rotación con la mano en la nuca y la postura del niño hacia un lado; en la pared: subir las manos, la espalda con las manos en la pared, los hombros de espaldas a ella, el durmiente y el barrido circular; tumbado y sentado: el libro abierto, la rotación de hombros, el abrazo y la zancada baja con rotación) |
+| `src/7g-estiramientos-piernas.js` | las coreografías del bloque 17: **estiramientos sin material de tronco, cadera y piernas** (41), por cómo se colocan (de pie, el tronco: de puntillas con los brazos arriba, la extensión con las manos en las caderas, las dos inclinaciones laterales, el desplazamiento lateral, la rotación con los brazos cruzados, los círculos de cadera, la flexión y alcance, el molino y las dos rotaciones con un pie atrás; de pie, las piernas: los isquiotibiales con el talón adelantado y desde cuclillas, la patada al frente, el flexor de la cadera y las zancadas con giro, lateral y lateral con rotación; con una pared o un escalón: la banda iliotibial, los aductores y el gemelo; de rodillas: el tobillo y la cadera con giro; boca arriba: el flexor de la cadera, la rodilla al lado, la mariposa, la báscula pélvica, las dos torsiones y los isquiotibiales con el talón en la pared; en el suelo: el glúteo sentado, el 90/90, la paloma, la plancha con la cadera abajo y arriba y el perro con una pierna elevada; y caminando: abrazando la rodilla, con el tobillo y la rodilla al pecho, estirando el cuádriceps, abrir y cerrar la puerta y la patada con la pierna recta) |
 | `src/80-reproductor.js` | el vídeo: cabecera, un tramo por paso, cierre; los mandos; la voz (y qué voz); sus textos (10 idiomas) |
 | `src/85-lienzo.js` | Samsung Internet: el dibujo en un canvas que copia el SVG, porque su modo oscuro repinta los SVG (el mismo arreglo que el del tour, en `modulos/guia.js`; 12 de noviembre de 2026) |
 | `src/90-huellas.js` | lo escribe `construir.py`: la huella de los pasos con los que se hizo cada coreografía (todas; al motor van las del bloque 1 y a cada trozo, las suyas) |
 | `src/95-trozos.js` | las coreografías, por trozos: qué fichero tiene cada ejercicio, y pedirlo cuando hace falta (`pedir`, `todo`, `_trozo`) |
 | `src/99-salida.js` | `window.TG_ENTRENADOR` |
-| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), el repaso paso a paso contra la ficha (`repaso.py`), las medidas de una postura (`mide.js`), el camino de una postura a otra (`camino.js`: dónde una zapatilla baja del suelo), los contactos (`contactos.js`: el suelo, las paredes, la mano que se apoya y las manos en los muslos, de todas o de una; lo usa la auditoría), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
+| `pruebas/` | hojas de contacto, un ejercicio desde varios lados (`vistas.html`), el repaso paso a paso contra la ficha (`repaso.py`), las medidas de una postura (`mide.js`), el camino de una postura a otra (`camino.js`: dónde una zapatilla baja del suelo), los contactos (`contactos.js`: el suelo, las paredes, la mano que se apoya y las manos en los muslos, de todas o de una; lo usa la auditoría), el movimiento (`movimiento.js`), la mano contra la cabeza (`manocabeza.js`), las manos de las posturas reflejadas (`espejos.js`), los gestos fotograma a fotograma, el reproductor suelto, las capturas y la grabación a MP4 |
 | `muestra/` | la página de muestra (un solo fichero, para enseñarla en el móvil) |
 
 ## Por trozos (16 de noviembre de 2026)
@@ -213,7 +214,8 @@ Los ejercicios se hacen por bloques, y cada bloque nuevo va en su trozo `7x` (`c
 pasos de cada ejercicio y saca cada `7N`, de `71` en adelante, a su fichero de `modulos/entrenador/`: ver «Por trozos»). Los bloques 1 a 15 reparten los 533 ejercicios que el
 catálogo tenía hasta el 13-11-2026, y las cuentas de la tabla («quedan N») son sobre esos 533. Desde ese día el catálogo
 crece con ejercicios para casa y fuera (950 fichas el 13-11, 958 el 14-11): los que pasan de aquellas 533 (botellas, silla,
-mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques y ninguno tiene coreografía todavía.
+mochila, toalla, mesa, aparatos biosaludables…) van en los bloques 16 en adelante; los primeros, los que no piden
+material (16 y 17).
 
 | bloque | trozo | qué |
 |---|---|---|
@@ -233,6 +235,7 @@ mochila, toalla, mesa, aparatos biosaludables…) están sin repartir en bloques
 | 14 | `7d-maquinas.js` | en máquina y en multipower, de todos los grupos: 41 (las 35 «en máquina» y las 6 «en multipower» que quedaban en las filas de arriba). Con él, 497 con vídeo; de las 533 primeras quedan 37: las de cinta de suspensión, fitball, disco, balón, anillas y rueda (bloque 15) |
 | 15 | `7e-accesorios.js` | con cinta de suspensión (11), fitball (10), disco (7), balón medicinal (4), anillas (2) y rueda o barra que rueda (3), de todos los grupos: 37. Con él, **534 con vídeo: las 533 primeras, todas** (y la rotación externa con bufanda, de las nuevas) |
 | 16 | `7f-estiramientos.js` | estiramientos sin material (o con una pared), de las fichas nuevas: 30 (cuello, espalda alta, hombros, pecho, dorsal y brazos). Con él, **564 con vídeo** |
+| 17 | `7g-estiramientos-piernas.js` | estiramientos sin material (o con una pared, un escalón, una esterilla o un cojín) de tronco, cadera y piernas, de las fichas nuevas: 41. Con él, **605 con vídeo** |
 
 En un trozo de bloque, los ejercicios van **por familias**, con una función por familia (en `71-pecho.js`:
 `tumbado(inclinación)`, `brazo(inclinación, desde el hombro)`, `pressMancuernas`, `pressBarra`, `aperturas`, `cruce`,
@@ -595,6 +598,48 @@ una pierna (38 cm) de la rodilla: con medio centímetro de menos, la rodilla sal
   no al milímetro). **Y una secuencia tiene que caber en el paso más corto** (4,40 s menos lo que tarde en llegar): lo mide la
   auditoría («cada secuencia cabe en su paso»).
 
+### Lo que salió en el bloque 17 (23 de noviembre de 2026)
+
+- **Lo que se ladea la muñeca también se refleja** (`10-esqueleto.js`, `reflejo`). `lat` gira la mano sobre la palma sin signo
+  de lado (`manoDe`), así que en el otro lado es el giro contrario; `reflejo` no lo cambiaba, y la mano de una postura
+  reflejada (`refleja(P)`, o la derecha de un `m` dicho para las dos) quedaba ladeada al revés. Se notaba en las posturas «del
+  otro lado» con las manos dichas con `manoHacia`: en nueve vídeos de antes las yemas quedaban de 4 a 28 cm de su reflejo (el
+  flexor de la cadera de rodillas, la zancada baja con rotación, enhebrar la aguja, la rotación a cuatro patas, los
+  isquiotibiales en silla, la extensión de rodilla sentado, el isométrico de isquios, el libro abierto y el cuádriceps tumbado).
+  Ninguna medida lo veía, porque la mano no se metía en nada. **`node tools/entrenador/pruebas/espejos.js`** (nuevo; un minuto
+  con todos) lo mide: de cada pareja de posturas de un vídeo cuyo esqueleto es el reflejo una de otra, lo que se apartan las
+  yemas de serlo; sale con 1 si alguna pasa de 0,3 cm. Hoy, de las 2914 parejas de los 605 vídeos, ninguna. También lista las
+  posturas simétricas en que una mano no es el reflejo de la otra: hoy, los dos que lo hacen adrede (la desviación radial y
+  cubital con peso y los círculos de muñecas con los dedos entrelazados).
+- **Y al quedar bien la mano, un camino que antes pasaba dejó de pasar** (el flexor de la cadera de rodillas, del segundo lado):
+  del pie en el aire a las manos en el muslo de un tirón, el codo rodeaba el muslo por detrás y saltaba 26 cm en un cuadro. Del
+  otro lado se hace ahora como del primero: llega el pie con los brazos sueltos y después se posan las manos. Lo cazaron `lado`
+  y `pico`: **tras un cambio en el motor hay que volver a pasar `contactos.js` por todos**, aunque el esqueleto no se mueva.
+- **Caminando** (`caminata`, en `7g-estiramientos-piernas.js`). Cada paso se escribe una vez, en el marco del paso (apoya el
+  pie derecho, con el tobillo en z = 0, y el gesto lo hace la pierna izquierda) y se lleva a su sitio con `enPaso(k, postura)`:
+  los pares, reflejados. Entre gesto y gesto, el doble apoyo (el pie de delante, plano; el de atrás, ya de puntillas) y el pie
+  que va a pisar, por delante y en el aire. El pie que pisa va clavado. **La pierna que viene de atrás se dice por su tobillo**
+  (por ángulos, con el muslo más atrás que el costado, la rodilla se dobla al revés) **y pasa recogida junto a la otra** antes
+  de lanzarse (de puntillas atrás a estirada al frente de un tirón, la punta barre el suelo). El último paso de la ficha
+  («repita con la otra pierna») enseña dos o tres pasos más, con `dura`, y acaba de pie.
+- **Un brazo que sube por encima de la cabeza hacia el otro lado va por el costado** (la banda iliotibial): de colgar a arriba y
+  al otro lado, el camino más corto pasa por detrás de la espalda, y el antebrazo cruzaba la cabeza (12 cm dentro). Con una
+  postura de en medio (el brazo en cruz y algo arriba) sube por fuera. Lo dijo `manocabeza.js`: hay que pasarlo siempre.
+- **La mano que va a coger algo a su espalda** (el tobillo, en el cuádriceps caminando): con el brazo estirado del todo la mano
+  no sabe hacia dónde mira (la palma sale de la bisagra del codo) y al llegar gira de golpe; además, con la rodilla a menos de
+  140° el puño no llega. La postura en que coge lleva el codo doblado (30° o más) y el tronco algo vuelto hacia esa mano, y la
+  de antes, el brazo ya hacia atrás con la misma `polo`. Y un brazo dicho por ángulos que va hacia atrás lleva `g` igual a su
+  `z` (con `g: 90`, la bisagra queda mirando al frente y la palma, también).
+- **Junto a una pared o un escalón, el otro lado es la misma postura reflejada y dada la vuelta** (`girada`, `otroLado`): todo
+  lo dicho en el mundo gira 180° sobre la vertical, y el material no se mueve. La media vuelta se ve (`mediaVuelta`).
+- **Los círculos de cadera**: la pelvis recorre un círculo y se inclina hacia su centro (`base`); la columna lo deshace (buscado)
+  para que los hombros no se muevan, que es lo que pide la ficha.
+- **Boca arriba, lo que se levanta del suelo se levanta de verdad antes de moverse**: la mano que está en el suelo y va a una
+  rodilla, o el pie que resbala para estirar la pierna, pasan por una postura a un dedo del suelo (o van clavados a su camino);
+  de un tirón se hunden a medio camino (`mano-suelo`, `zapa-suelo`).
+- **El material** (abajo): un cojín es una `esterilla` gruesa y corta; y la `pared` puede verse de canto (`grueso`, `alto`) y
+  tapar de verdad lo que tiene detrás (`tapa: true`): la esquina de un muro, con una pierna a cada lado.
+
 ## El material (`50-material.js`)
 
 `barra` (con discos; `z: true`, la barra Z; `una: 'i'`, la lleva una mano por el centro; `almohadilla: true`, con un rulo de goma
@@ -612,6 +657,12 @@ con `rollo: [largo, radio]`, enrollada: un rulo tumbado, con su contorno y una f
 una toalla clara apenas se ve; doblada, con `franjas: true` lleva dos franjas de color, una cerca de cada canto, y con `bajo: 'talones'`
 va con los pies, deslizándose por el suelo: el curl de isquios deslizando los talones), `toallas` (una toalla cogida a lo largo, que hace de correa), `banda` (la banda elástica: tiras y lazos), `poste` (un poste de hierro clavado en la arena: donde se ata la banda) y `maquina` (cualquier máquina, y el multipower: se dice por piezas).
 
+- `esterilla`: `en: [x, z]`, `rumbo` y `med: [ancho, grueso, largo]` (62 × 1,6 × 180 si no se dice). Descansa en el suelo sea
+  cual sea su grueso: **un cojín** es una esterilla de 48 × 5 × 30 bajo la rodilla.
+- `pared`: `x` y `z` (por dónde pasa su cara), `normal` (hacia el lado libre), `ancho`, `alto` (215) y `grueso` (8: lo que se ve
+  de su canto). Va siempre detrás de Jérôme. Con `tapa: true` (y la normal a lo largo de un eje) **tapa de verdad lo que queda
+  detrás de su bulto**: el extremo de un muro visto de canto (`ancho: 18, grueso: 70, alto: 132`), junto al que se tumba con una
+  pierna a cada lado.
 - `banco`: `respaldo: 45` lo inclina; `85`, casi vertical (una silla); **negativo, declinado**. Con el respaldo
   levantado va con `rumbo: 180` (el respaldo sale hacia −Z, donde queda la cabeza de quien se tumba). `tapa: true`: el
   respaldo tapa de verdad lo que tiene detrás (para quien se pone de pie al otro lado, con un brazo por encima).

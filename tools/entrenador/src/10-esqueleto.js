@@ -69,6 +69,10 @@
     if (q.palma) r.palma = [-q.palma[0], q.palma[1], q.palma[2]];
     if (q.barra) r.barra = [-q.barra[0], q.barra[1], q.barra[2]];
     if (q.dedos) r.dedos = [-q.dedos[0], q.dedos[1], q.dedos[2]];
+    /* lo que se ladea la muñeca (lat) gira sobre la palma sin signo de lado (manoDe): en el otro lado es el giro contrario. Sin esto,
+       la mano reflejada quedaba ladeada hacia el lado opuesto (23-11-2026: las posturas del otro lado de nueve vídeos, con las yemas
+       de 4 a 28 cm de donde les tocaba) */
+    if (q.lat) r.lat = -q.lat;
     return r;
   }
   function deLado(P, pre, k) { return P[pre + k] || (P[pre] ? (k === 'i' ? P[pre] : reflejo(P[pre])) : null); }
