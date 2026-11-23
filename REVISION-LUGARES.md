@@ -1,7 +1,7 @@
-# Revisión de los 984 lugares
+# Revisión de los 996 lugares
 
-**22 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 984, no una muestra. Lo que no se puede comprobar desde aquí sale
+**23 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
+Barre los 996, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 174 verificadas con su fuente · 810 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 186 verificadas con su fuente · 810 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -98,7 +98,7 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **174** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **186** |
 | Coordenada nunca comprobada por nadie | **810** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
@@ -156,15 +156,27 @@ De dónde viene cada una:
 | `golf-amarilla` | 2026-09-27 | OSM del repositorio: «Amarilla Golf» (golf_course), el UNICO con ese nombre en toda la isla, y cae en San Miguel de Abona, que es lo que dice la ficha (tools/municipio_raya.py: 13 de 14 paradas sin raya en medio, todas de San Miguel). El pin redondo estaba a 1.919 m. |
 | `golf-del-sur` | 2026-09-19 | OpenStreetMap, golf_course «Golf del Sur» |
 | `gr131-etapa2-caldera-portillo` | 2026-11-08 | Webtenerife, track oficial (GPX) del tramo Area Recreativa La Caldera - El Portillo del GR 131: primer punto 28.357870, -16.502259, redondeado a 4 decimales (8-11-2026) |
+| `gym-360-sanmiguel` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0550251, -16.6196406; «Junto a 360 Fitness Tenerife», Av. Lucio Díaz Flores Feo, Las Chafiras) |
+| `gym-arnoldfit-arona` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0563908, -16.7173156; «Dirección cercana: Gimnasio Arnold Fit Gym Los Cristianos, Av. de Chayofita, 13, Port 2, 38650 Los Cristianos») |
+| `gym-bulldog-sanmiguel` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0474290, -16.6191924; «Dirección cercana: Bulldog Gym, 8 - 10, C. Caracas, 38639») |
 | `gym-canariasfit-tegueste` | 2026-11-20 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380466015 «Gimnasio Canarias», dato de 2019 |
+| `gym-clan-adeje` | 2026-11-21 | OpenStreetMap, node/7149225665 («Clan Fitness»), extracto de Geofabrik del 26-09-2026 |
+| `gym-dorian-medano` | 2026-11-21 | OpenStreetMap, node/12416757375 («Gimnasio Dorian»), extracto de Geofabrik del 26-09-2026 |
+| `gym-duke-adeje` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0924775, -16.7356328: en The Duke Shops, Av. de Bruselas, 14, Costa Adeje, junto a la ficha «Duke Gym Tenerife») |
+| `gym-fitnesspark-chafiras` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0575033, -16.6137626; «Dirección cercana: Fitness Park Tenerife - La Gran Manzana, Av. Lucio Diaz Flores Feo, S/N, Planta Alta Local 1.11, 38639 Las Chafiras») |
 | `gym-fitnesspark-cuesta` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Park Tenerife - La Cuesta, Carr. Gral. la Cuesta, 28, 38320 La Laguna») |
 | `gym-garage-tegueste` | 2026-11-20 | OpenStreetMap, node/14196556400 («Garage Gym»), extracto de Geofabrik del 26-09-2026 |
+| `gym-hammer-arona` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0527935, -16.7125409; «Dirección cercana: Unlimited Hammer Strength Gym, Multicentro Club, Av. Juan Carlos I, 21, 6 local 18 bajo, 38650 Arona») |
 | `gym-imagen-sct` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Gimnasio Imagen, C. Eric Lionel Fox, 5, 38005 Santa Cruz de Tenerife») |
 | `gym-level-sct` | 2026-11-20 | OpenStreetMap, node/11055251389 («Fitness center level»), extracto de Geofabrik del 26-09-2026 |
+| `gym-logo-sanisidro` | 2026-11-21 | OpenStreetMap, node/5502220321 («LOGO GYM»), extracto de Geofabrik del 26-09-2026 |
 | `gym-manufit-sct` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 (en El Toscal, junto a la ficha «Manu fit GYM») |
+| `gym-minimal-arona` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0577137, -16.7290509; «Dirección cercana: Minimal Fitness Club, Centro Comercial Zentral Center, Av. Arquitecto Gómez Cuesta, 22, 38650 Arona») |
 | `gym-ocadila-tegueste` | 2026-11-20 | OpenStreetMap, node/4886591107 («Ocadilla Sport Center»), extracto de Geofabrik del 26-09-2026 |
+| `gym-redgym-adeje` | 2026-11-21 | OpenStreetMap, node/10061771503 («RED GYM»), extracto de Geofabrik del 26-09-2026 |
 | `gym-starfit-laguna` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Club Starfit La Laguna, Calle Ntra. Sra. de la Ternura, 5, 38108 La Laguna») |
 | `gym-urban-laguna` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: La Laguna Urban Fitness, Av. de los Menceyes, 151, 38205 La Laguna») |
+| `gym-worldfitness-abrigos` | 2026-11-21 | OpenStreetMap, area/1173771656 («Gimnasio World Fitness Gym»), extracto de Geofabrik del 26-09-2026 |
 | `gym-zona0-rosario` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Zona 0 Training, JP Watt, Nave 5, Número 8, 38109») |
 | `hiperdino-los-realejos` | 2026-09-29 | SuperDino, ficha de la propia empresa en Google: «SuperDino Los Realejos, Pl. Mencey Bencomo, s/n, 38410 Los Realejos», tel. 922 44 16 81. Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM (node/8428054218) esta a 27 m de la Plaza Mencey Bencomo. |
 | `jardines-victoria-orotava` | 2026-10-17 | OSM area/25092134 «Jardines del marquesado de la Quinta Roja», punto dentro del poligono; Turismo de Tenerife, ficha «Victoria Gardens»: «C/ Tomás Pérez s/n - Plaza de la Constitución, s/n»  [datos/entregas/lanzamiento-lugares.json] |
@@ -341,7 +353,7 @@ cuáles, así que desde aquí no se pueden separar.
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 984, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 996, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
@@ -350,7 +362,7 @@ menos preciso de cada ficha. Es la cuenta entera de los 984, no un umbral:
 | 3 | ~110 m | **135** |
 | 4 | ~11 m | **546** |
 | 5 | ~1 m | **45** |
-| 6 | ~10 cm | **198** |
+| 6 | ~10 cm | **210** |
 | 7 | ~1 cm | **28** |
 | 15 |  | **1** |
 
@@ -528,9 +540,9 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 984
-    que nombran un municipio.................... 517
-    de esos, comprobados contra el POLIGONO del Cabildo 507
+  lugares....................................... 996
+    que nombran un municipio.................... 529
+    de esos, comprobados contra el POLIGONO del Cabildo 519
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
   no declaran municipio......................... 452
@@ -582,14 +594,14 @@ tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 984
+## 6 · Lo que sí queda comprobado sobre los 996
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **984 de 984** |
-| Caen en tierra (capa `earth` de OSM) | **975** de 984; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
-| Ids únicos y con el formato `[a-z0-9-]` | **984** de 984 |
-| Tienen `desc` y `cat` en los diez idiomas | **984** de 984 |
+| Caen dentro de la caja de Tenerife | **996 de 996** |
+| Caen en tierra (capa `earth` de OSM) | **987** de 996; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **996** de 996 |
+| Tienen `desc` y `cat` en los diez idiomas | **996** de 996 |
 | Referencias huérfanas desde el planificador | **0** de 161 |
 | Zonas de baño sin orientación | **0** de 99 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |

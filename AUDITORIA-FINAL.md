@@ -27,7 +27,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **984**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
+| Lugares | **996**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -13238,7 +13238,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 61 tablas, 3980 filas (y 6.136 filas, dentro y fuera del fuente)
+## Idiomas · 61 tablas, 3980 filas (y 6.160 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -13537,8 +13537,8 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **984** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **984** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **996** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **996** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **63** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
@@ -13595,6 +13595,8 @@ de botón en imperativo van en `ROTULOS_IT`, `ROTULOS_BG` y `ROTULOS_PL`, como l
 Y el 22 de noviembre, de 985 a 984 lugares: fuera la ficha «Faro de Garachico», de la que no se encontró ninguna
 fuente; con ella, sus dos filas en cada idioma de `idiomas/*.json` (2.292) y, de los diez glosarios, la etiqueta
 «Volcán 1706», que solo llevaba ella (770 filas por idioma): 61 tablas, 3.980 filas y 6.136.
+Y el 23 de noviembre, de 984 a 996 lugares: los doce gimnasios del sur (bloque 4b, nota 64), con veinticuatro filas
+más de `places[]` en cada idioma de `idiomas/*.json` (2.316): 61 tablas, 3.980 filas y 6.160.
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no

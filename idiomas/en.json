@@ -982,5 +982,17 @@
  "gym-zona0-rosario": {"desc": "Training centre in El Rosario. Ask at reception whether a day pass is available.", "cat": "Gym · El Rosario"},
  "gym-garage-tegueste": {"desc": "Gym in Tegueste. Ask at reception whether a day pass is available.", "cat": "Gym · Tegueste"},
  "gym-ocadila-tegueste": {"desc": "Gym in Tegueste. Ask at reception whether a day pass is available.", "cat": "Gym · Tegueste"},
- "gym-canariasfit-tegueste": {"desc": "Gym in Tegueste. Ask at reception whether a day pass is available.", "cat": "Gym · Tegueste"}
+ "gym-canariasfit-tegueste": {"desc": "Gym in Tegueste. Ask at reception whether a day pass is available.", "cat": "Gym · Tegueste"},
+ "gym-clan-adeje": {"desc": "Gym in Adeje. Ask at reception whether a day pass is available.", "cat": "Gym · Adeje"},
+ "gym-redgym-adeje": {"desc": "Gym in Adeje. Ask at reception whether a day pass is available.", "cat": "Gym · Adeje"},
+ "gym-duke-adeje": {"desc": "Gym in Adeje. Ask at reception whether a day pass is available.", "cat": "Gym · Adeje"},
+ "gym-minimal-arona": {"desc": "Gym in Arona. Ask at reception whether a day pass is available.", "cat": "Gym · Arona"},
+ "gym-hammer-arona": {"desc": "Gym in Arona. Ask at reception whether a day pass is available.", "cat": "Gym · Arona"},
+ "gym-arnoldfit-arona": {"desc": "Gym in Arona. Ask at reception whether a day pass is available.", "cat": "Gym · Arona"},
+ "gym-360-sanmiguel": {"desc": "Gym in San Miguel de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · San Miguel de Abona"},
+ "gym-fitnesspark-chafiras": {"desc": "Fitness Park chain gym in San Miguel de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · San Miguel de Abona"},
+ "gym-bulldog-sanmiguel": {"desc": "Gym in San Miguel de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · San Miguel de Abona"},
+ "gym-worldfitness-abrigos": {"desc": "Gym in Granadilla de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · Granadilla de Abona"},
+ "gym-logo-sanisidro": {"desc": "Gym in Granadilla de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · Granadilla de Abona"},
+ "gym-dorian-medano": {"desc": "Gym in Granadilla de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · Granadilla de Abona"}
 }

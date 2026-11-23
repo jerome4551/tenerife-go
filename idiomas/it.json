@@ -982,5 +982,17 @@
  "gym-zona0-rosario": {"desc": "Centro di allenamento a El Rosario. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · El Rosario"},
  "gym-garage-tegueste": {"desc": "Palestra a Tegueste. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Tegueste"},
  "gym-ocadila-tegueste": {"desc": "Palestra a Tegueste. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Tegueste"},
- "gym-canariasfit-tegueste": {"desc": "Palestra a Tegueste. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Tegueste"}
+ "gym-canariasfit-tegueste": {"desc": "Palestra a Tegueste. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Tegueste"},
+ "gym-clan-adeje": {"desc": "Palestra ad Adeje. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Adeje"},
+ "gym-redgym-adeje": {"desc": "Palestra ad Adeje. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Adeje"},
+ "gym-duke-adeje": {"desc": "Palestra ad Adeje. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Adeje"},
+ "gym-minimal-arona": {"desc": "Palestra ad Arona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Arona"},
+ "gym-hammer-arona": {"desc": "Palestra ad Arona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Arona"},
+ "gym-arnoldfit-arona": {"desc": "Palestra ad Arona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Arona"},
+ "gym-360-sanmiguel": {"desc": "Palestra a San Miguel de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · San Miguel de Abona"},
+ "gym-fitnesspark-chafiras": {"desc": "Palestra della catena Fitness Park a San Miguel de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · San Miguel de Abona"},
+ "gym-bulldog-sanmiguel": {"desc": "Palestra a San Miguel de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · San Miguel de Abona"},
+ "gym-worldfitness-abrigos": {"desc": "Palestra a Granadilla de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Granadilla de Abona"},
+ "gym-logo-sanisidro": {"desc": "Palestra a Granadilla de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Granadilla de Abona"},
+ "gym-dorian-medano": {"desc": "Palestra a Granadilla de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Granadilla de Abona"}
 }

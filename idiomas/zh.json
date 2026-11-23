@@ -982,5 +982,17 @@
  "gym-zona0-rosario": {"desc": "埃尔罗萨里奥的训练中心。请在前台询问是否提供单日入场。", "cat": "健身房 · 埃尔罗萨里奥"},
  "gym-garage-tegueste": {"desc": "特格斯特的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 特格斯特"},
  "gym-ocadila-tegueste": {"desc": "特格斯特的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 特格斯特"},
- "gym-canariasfit-tegueste": {"desc": "特格斯特的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 特格斯特"}
+ "gym-canariasfit-tegueste": {"desc": "特格斯特的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 特格斯特"},
+ "gym-clan-adeje": {"desc": "阿德赫的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 阿德赫"},
+ "gym-redgym-adeje": {"desc": "阿德赫的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 阿德赫"},
+ "gym-duke-adeje": {"desc": "阿德赫的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 阿德赫"},
+ "gym-minimal-arona": {"desc": "阿罗纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 阿罗纳"},
+ "gym-hammer-arona": {"desc": "阿罗纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 阿罗纳"},
+ "gym-arnoldfit-arona": {"desc": "阿罗纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 阿罗纳"},
+ "gym-360-sanmiguel": {"desc": "圣米格尔德阿博纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣米格尔德阿博纳"},
+ "gym-fitnesspark-chafiras": {"desc": "Fitness Park连锁健身房，位于圣米格尔德阿博纳。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣米格尔德阿博纳"},
+ "gym-bulldog-sanmiguel": {"desc": "圣米格尔德阿博纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣米格尔德阿博纳"},
+ "gym-worldfitness-abrigos": {"desc": "格拉纳迪利亚德阿博纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 格拉纳迪利亚德阿博纳"},
+ "gym-logo-sanisidro": {"desc": "格拉纳迪利亚德阿博纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 格拉纳迪利亚德阿博纳"},
+ "gym-dorian-medano": {"desc": "格拉纳迪利亚德阿博纳的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 格拉纳迪利亚德阿博纳"}
 }

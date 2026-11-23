@@ -1,0 +1,175 @@
+{
+ "_": "Rumano (ro) de las fichas de los gimnasios del mapa (bloque 4b de «Su deporte», nota 64): los doce del sur (Adeje, Arona, San Miguel de Abona y Granadilla de Abona), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "gym-clan-adeje.desc",
+   "es": "Gimnasio en Adeje. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Adeje. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-clan-adeje.cat",
+   "es": "Gimnasio · Adeje",
+   "forma": "texto",
+   "ro": "Sală de fitness · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-redgym-adeje.desc",
+   "es": "Gimnasio en Adeje. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Adeje. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-redgym-adeje.cat",
+   "es": "Gimnasio · Adeje",
+   "forma": "texto",
+   "ro": "Sală de fitness · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-duke-adeje.desc",
+   "es": "Gimnasio en Adeje. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Adeje. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-duke-adeje.cat",
+   "es": "Gimnasio · Adeje",
+   "forma": "texto",
+   "ro": "Sală de fitness · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-minimal-arona.desc",
+   "es": "Gimnasio en Arona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Arona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-minimal-arona.cat",
+   "es": "Gimnasio · Arona",
+   "forma": "texto",
+   "ro": "Sală de fitness · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-hammer-arona.desc",
+   "es": "Gimnasio en Arona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Arona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-hammer-arona.cat",
+   "es": "Gimnasio · Arona",
+   "forma": "texto",
+   "ro": "Sală de fitness · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-arnoldfit-arona.desc",
+   "es": "Gimnasio en Arona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Arona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-arnoldfit-arona.cat",
+   "es": "Gimnasio · Arona",
+   "forma": "texto",
+   "ro": "Sală de fitness · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-360-sanmiguel.desc",
+   "es": "Gimnasio en San Miguel de Abona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în San Miguel de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-360-sanmiguel.cat",
+   "es": "Gimnasio · San Miguel de Abona",
+   "forma": "texto",
+   "ro": "Sală de fitness · San Miguel de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-fitnesspark-chafiras.desc",
+   "es": "Gimnasio de la cadena Fitness Park en San Miguel de Abona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness din lanțul Fitness Park, în San Miguel de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-fitnesspark-chafiras.cat",
+   "es": "Gimnasio · San Miguel de Abona",
+   "forma": "texto",
+   "ro": "Sală de fitness · San Miguel de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-bulldog-sanmiguel.desc",
+   "es": "Gimnasio en San Miguel de Abona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în San Miguel de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-bulldog-sanmiguel.cat",
+   "es": "Gimnasio · San Miguel de Abona",
+   "forma": "texto",
+   "ro": "Sală de fitness · San Miguel de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-worldfitness-abrigos.desc",
+   "es": "Gimnasio en Granadilla de Abona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Granadilla de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-worldfitness-abrigos.cat",
+   "es": "Gimnasio · Granadilla de Abona",
+   "forma": "texto",
+   "ro": "Sală de fitness · Granadilla de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-logo-sanisidro.desc",
+   "es": "Gimnasio en Granadilla de Abona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Granadilla de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-logo-sanisidro.cat",
+   "es": "Gimnasio · Granadilla de Abona",
+   "forma": "texto",
+   "ro": "Sală de fitness · Granadilla de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-dorian-medano.desc",
+   "es": "Gimnasio en Granadilla de Abona. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Granadilla de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-dorian-medano.cat",
+   "es": "Gimnasio · Granadilla de Abona",
+   "forma": "texto",
+   "ro": "Sală de fitness · Granadilla de Abona"
+  }
+ ]
+}

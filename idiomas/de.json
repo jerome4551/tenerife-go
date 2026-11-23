@@ -982,5 +982,17 @@
  "gym-zona0-rosario": {"desc": "Trainingszentrum in El Rosario. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · El Rosario"},
  "gym-garage-tegueste": {"desc": "Fitnessstudio in Tegueste. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Tegueste"},
  "gym-ocadila-tegueste": {"desc": "Fitnessstudio in Tegueste. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Tegueste"},
- "gym-canariasfit-tegueste": {"desc": "Fitnessstudio in Tegueste. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Tegueste"}
+ "gym-canariasfit-tegueste": {"desc": "Fitnessstudio in Tegueste. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Tegueste"},
+ "gym-clan-adeje": {"desc": "Fitnessstudio in Adeje. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Adeje"},
+ "gym-redgym-adeje": {"desc": "Fitnessstudio in Adeje. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Adeje"},
+ "gym-duke-adeje": {"desc": "Fitnessstudio in Adeje. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Adeje"},
+ "gym-minimal-arona": {"desc": "Fitnessstudio in Arona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Arona"},
+ "gym-hammer-arona": {"desc": "Fitnessstudio in Arona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Arona"},
+ "gym-arnoldfit-arona": {"desc": "Fitnessstudio in Arona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Arona"},
+ "gym-360-sanmiguel": {"desc": "Fitnessstudio in San Miguel de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · San Miguel de Abona"},
+ "gym-fitnesspark-chafiras": {"desc": "Fitnessstudio der Kette Fitness Park in San Miguel de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · San Miguel de Abona"},
+ "gym-bulldog-sanmiguel": {"desc": "Fitnessstudio in San Miguel de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · San Miguel de Abona"},
+ "gym-worldfitness-abrigos": {"desc": "Fitnessstudio in Granadilla de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Granadilla de Abona"},
+ "gym-logo-sanisidro": {"desc": "Fitnessstudio in Granadilla de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Granadilla de Abona"},
+ "gym-dorian-medano": {"desc": "Fitnessstudio in Granadilla de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Granadilla de Abona"}
 }

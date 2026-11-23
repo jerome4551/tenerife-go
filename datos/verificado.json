@@ -217,9 +217,39 @@
    "fecha": "2026-11-08",
    "fuente": "Webtenerife, track oficial (GPX) del tramo Area Recreativa La Caldera - El Portillo del GR 131: primer punto 28.357870, -16.502259, redondeado a 4 decimales (8-11-2026)"
   },
+  "gym-360-sanmiguel": {
+   "fecha": "2026-11-21",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0550251, -16.6196406; «Junto a 360 Fitness Tenerife», Av. Lucio Díaz Flores Feo, Las Chafiras)"
+  },
+  "gym-arnoldfit-arona": {
+   "fecha": "2026-11-21",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0563908, -16.7173156; «Dirección cercana: Gimnasio Arnold Fit Gym Los Cristianos, Av. de Chayofita, 13, Port 2, 38650 Los Cristianos»)"
+  },
+  "gym-bulldog-sanmiguel": {
+   "fecha": "2026-11-21",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0474290, -16.6191924; «Dirección cercana: Bulldog Gym, 8 - 10, C. Caracas, 38639»)"
+  },
   "gym-canariasfit-tegueste": {
    "fecha": "2026-11-20",
    "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380466015 «Gimnasio Canarias», dato de 2019"
+  },
+  "gym-clan-adeje": {
+   "fecha": "2026-11-21",
+   "fuente": "OpenStreetMap, node/7149225665 («Clan Fitness»), extracto de Geofabrik del 26-09-2026",
+   "nota": "Cotejado el 22-11-2026 con el callejero del IGN (CartoCiudad): a 32 m del portal C. Antonio Navarro, 4 (Costa Adeje), la dirección que dan Páginas Amarillas, TrustLocal y GymNavigator."
+  },
+  "gym-dorian-medano": {
+   "fecha": "2026-11-21",
+   "fuente": "OpenStreetMap, node/12416757375 («Gimnasio Dorian»), extracto de Geofabrik del 26-09-2026",
+   "nota": "Cotejado el 22-11-2026 con el callejero del IGN (CartoCiudad): a 16 m del portal Av. Magallanes, 1 (El Médano); Granadilla Empresarial, gimnasios.wiki y Zeus Fitness lo dan en la Plaza Galicia, Av. Magallanes, Edif. Galte III, local 2."
+  },
+  "gym-duke-adeje": {
+   "fecha": "2026-11-21",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0924775, -16.7356328: en The Duke Shops, Av. de Bruselas, 14, Costa Adeje, junto a la ficha «Duke Gym Tenerife»)"
+  },
+  "gym-fitnesspark-chafiras": {
+   "fecha": "2026-11-21",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0575033, -16.6137626; «Dirección cercana: Fitness Park Tenerife - La Gran Manzana, Av. Lucio Diaz Flores Feo, S/N, Planta Alta Local 1.11, 38639 Las Chafiras»)"
   },
   "gym-fitnesspark-cuesta": {
    "fecha": "2026-11-20",
@@ -228,6 +258,10 @@
   "gym-garage-tegueste": {
    "fecha": "2026-11-20",
    "fuente": "OpenStreetMap, node/14196556400 («Garage Gym»), extracto de Geofabrik del 26-09-2026"
+  },
+  "gym-hammer-arona": {
+   "fecha": "2026-11-21",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0527935, -16.7125409; «Dirección cercana: Unlimited Hammer Strength Gym, Multicentro Club, Av. Juan Carlos I, 21, 6 local 18 bajo, 38650 Arona»)"
   },
   "gym-imagen-sct": {
    "fecha": "2026-11-20",
@@ -238,13 +272,27 @@
    "fuente": "OpenStreetMap, node/11055251389 («Fitness center level»), extracto de Geofabrik del 26-09-2026",
    "nota": "El nombre, «VivaGym Tomé Cano», el de su página en vivagym.com, consultada el 21-11-2026 (vivagym.com/es-es/gimnasios/tenerife/santa-cruz-de-tenerife/tome-cano/: «VivaGym Tomé Cano», «Edif. Los Corales 2, C. Fragata Danmark, 38005 Santa Cruz de Tenerife»); VivaGym compró Level Fitness Tenerife en febrero de 2026 (2Playbook, GymFactory)."
   },
+  "gym-logo-sanisidro": {
+   "fecha": "2026-11-21",
+   "fuente": "OpenStreetMap, node/5502220321 («LOGO GYM»), extracto de Geofabrik del 26-09-2026",
+   "nota": "Cotejado el 22-11-2026 con el callejero del IGN (CartoCiudad): a 20 m del portal C. Apóstol Santiago, 5 (San Isidro), la dirección que dan Fitual, Tu Entrenador 360 y Holistic Center («C. Santiago Apostol, 5, 3»), y a 8 m de su chincheta de Google. Un vídeo de su Facebook, sin fecha a la vista, dice «Calle Santiago Apostol 11», a 68 m."
+  },
   "gym-manufit-sct": {
    "fecha": "2026-11-20",
    "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 (en El Toscal, junto a la ficha «Manu fit GYM»)"
   },
+  "gym-minimal-arona": {
+   "fecha": "2026-11-21",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0577137, -16.7290509; «Dirección cercana: Minimal Fitness Club, Centro Comercial Zentral Center, Av. Arquitecto Gómez Cuesta, 22, 38650 Arona»)"
+  },
   "gym-ocadila-tegueste": {
    "fecha": "2026-11-20",
    "fuente": "OpenStreetMap, node/4886591107 («Ocadilla Sport Center»), extracto de Geofabrik del 26-09-2026"
+  },
+  "gym-redgym-adeje": {
+   "fecha": "2026-11-21",
+   "fuente": "OpenStreetMap, node/10061771503 («RED GYM»), extracto de Geofabrik del 26-09-2026",
+   "nota": "Cotejado el 22-11-2026 con el callejero del IGN (CartoCiudad): en la C. Alemania, a 26 m de su portal 5 (Torviscas Bajo). Los directorios dan «Calle Alemania Local 10/11» (localgymsandfitness.com) o «C. Alemania, 10» (tugimnasio.es): el 10 es el local (el portal 10 queda a 132 m), y sus chinchetas caen a 11 y 13 m del punto."
   },
   "gym-starfit-laguna": {
    "fecha": "2026-11-20",
@@ -253,6 +301,11 @@
   "gym-urban-laguna": {
    "fecha": "2026-11-20",
    "fuente": "Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: La Laguna Urban Fitness, Av. de los Menceyes, 151, 38205 La Laguna»)"
+  },
+  "gym-worldfitness-abrigos": {
+   "fecha": "2026-11-21",
+   "fuente": "OpenStreetMap, area/1173771656 («Gimnasio World Fitness Gym»), extracto de Geofabrik del 26-09-2026",
+   "nota": "Cotejado el 22-11-2026 con el callejero del IGN (CartoCiudad): su web (worldfitnessgymtenerife.com, contacto) da «C/ El Choco 6, Local 2», 38618 Los Abrigos; CartoCiudad no tiene el portal 6, y el 4 de la misma calle está a 22 m."
   },
   "gym-zona0-rosario": {
    "fecha": "2026-11-20",

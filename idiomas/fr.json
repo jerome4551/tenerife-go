@@ -982,5 +982,17 @@
  "gym-zona0-rosario": {"desc": "Centre d'entraînement à El Rosario. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · El Rosario"},
  "gym-garage-tegueste": {"desc": "Salle de sport à Tegueste. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Tegueste"},
  "gym-ocadila-tegueste": {"desc": "Salle de sport à Tegueste. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Tegueste"},
- "gym-canariasfit-tegueste": {"desc": "Salle de sport à Tegueste. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Tegueste"}
+ "gym-canariasfit-tegueste": {"desc": "Salle de sport à Tegueste. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Tegueste"},
+ "gym-clan-adeje": {"desc": "Salle de sport à Adeje. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Adeje"},
+ "gym-redgym-adeje": {"desc": "Salle de sport à Adeje. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Adeje"},
+ "gym-duke-adeje": {"desc": "Salle de sport à Adeje. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Adeje"},
+ "gym-minimal-arona": {"desc": "Salle de sport à Arona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Arona"},
+ "gym-hammer-arona": {"desc": "Salle de sport à Arona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Arona"},
+ "gym-arnoldfit-arona": {"desc": "Salle de sport à Arona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Arona"},
+ "gym-360-sanmiguel": {"desc": "Salle de sport à San Miguel de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · San Miguel de Abona"},
+ "gym-fitnesspark-chafiras": {"desc": "Salle de sport de la chaîne Fitness Park à San Miguel de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · San Miguel de Abona"},
+ "gym-bulldog-sanmiguel": {"desc": "Salle de sport à San Miguel de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · San Miguel de Abona"},
+ "gym-worldfitness-abrigos": {"desc": "Salle de sport à Granadilla de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Granadilla de Abona"},
+ "gym-logo-sanisidro": {"desc": "Salle de sport à Granadilla de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Granadilla de Abona"},
+ "gym-dorian-medano": {"desc": "Salle de sport à Granadilla de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Granadilla de Abona"}
 }

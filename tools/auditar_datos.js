@@ -201,8 +201,11 @@ console.log('\n=== lugares ===');
    mejores de Santa Cruz, de La Laguna y de Tegueste y el de El Rosario, en la categoria nueva
    «gimnasio». Jerome eligio el criterio y cambio Krom Gym por otro.
    985 -> 984 el 22 de noviembre de 2026: el «Faro de Garachico» (faro-garachico), del que
-   no se encontro ninguna fuente, con el punto 368 m tierra adentro. Jerome: «Perfecto». */
-debe('lugares', PLACES.length, PLACES.length === 984);
+   no se encontro ninguna fuente, con el punto 368 m tierra adentro. Jerome: «Perfecto».
+   984 -> 996 el 23 de noviembre de 2026: los doce gimnasios del sur, bloque 4b (nota 64): tres
+   en Adeje, tres en Arona, tres en San Miguel de Abona y tres en Granadilla de Abona, elegidos
+   como los del 4a; Arnold Fit Los Cristianos lo pidio Jerome. */
+debe('lugares', PLACES.length, PLACES.length === 996);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

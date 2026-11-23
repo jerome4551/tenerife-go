@@ -982,5 +982,17 @@
  "gym-zona0-rosario": {"desc": "埃爾羅薩里奧的訓練中心。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 埃爾羅薩里奧"},
  "gym-garage-tegueste": {"desc": "特格斯特的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 特格斯特"},
  "gym-ocadila-tegueste": {"desc": "特格斯特的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 特格斯特"},
- "gym-canariasfit-tegueste": {"desc": "特格斯特的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 特格斯特"}
+ "gym-canariasfit-tegueste": {"desc": "特格斯特的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 特格斯特"},
+ "gym-clan-adeje": {"desc": "阿德赫的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 阿德赫"},
+ "gym-redgym-adeje": {"desc": "阿德赫的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 阿德赫"},
+ "gym-duke-adeje": {"desc": "阿德赫的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 阿德赫"},
+ "gym-minimal-arona": {"desc": "阿羅納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 阿羅納"},
+ "gym-hammer-arona": {"desc": "阿羅納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 阿羅納"},
+ "gym-arnoldfit-arona": {"desc": "阿羅納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 阿羅納"},
+ "gym-360-sanmiguel": {"desc": "聖米格爾德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 聖米格爾德阿博納"},
+ "gym-fitnesspark-chafiras": {"desc": "Fitness Park連鎖健身房，位於聖米格爾德阿博納。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 聖米格爾德阿博納"},
+ "gym-bulldog-sanmiguel": {"desc": "聖米格爾德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 聖米格爾德阿博納"},
+ "gym-worldfitness-abrigos": {"desc": "格拉納迪利亞德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 格拉納迪利亞德阿博納"},
+ "gym-logo-sanisidro": {"desc": "格拉納迪利亞德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 格拉納迪利亞德阿博納"},
+ "gym-dorian-medano": {"desc": "格拉納迪利亞德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 格拉納迪利亞德阿博納"}
 }
