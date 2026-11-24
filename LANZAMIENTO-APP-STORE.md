@@ -147,7 +147,11 @@ la app los pide a la web viva.
   la app (OpenStreetMap, ODbL; el GTFS de TITSA; los resúmenes de Wikipedia
   con su enlace; los catálogos astronómicos y las librerías de
   `vendor/LICENSE-*`; los precios y los avisos son datos públicos del
-  Ministerio y de la AEMET, con su procedencia en cada fichero).
+  Ministerio y de la AEMET, con su procedencia en cada fichero). En App
+  Store Connect en español (24 de noviembre de 2026): «Información de la
+  app» → «Derechos sobre el contenido» → «Configurar la información de
+  derechos sobre el contenido»; queda «Sí, esta app tiene los derechos
+  necesarios sobre su contenido de terceros». No pide ningún documento.
 - *Age Rating* (el cuestionario nuevo, con las edades de iOS 26: 4+, 9+,
   13+, 16+ y 18+): todo «No / Ninguno» salvo dos respuestas, las dos por
   «Su cuerpo» (`modulos/cuerpo.js`). *Health or Wellness Topics*: **sí**
@@ -163,7 +167,14 @@ la app los pide a la web viva.
   la edad). *Unrestricted Web Access*: no (los enlaces de fuera se abren en
   Safari, no en un navegador dentro de la app, que daría 16+). Hasta el 23
   de noviembre de 2026 aquí ponía «todo No → 4+», que era de antes de «Su
-  cuerpo».
+  cuerpo». El 24 de noviembre de 2026, en el cuestionario en español (siete
+  pasos; el 3 es «Medicina o bienestar»), el primer intento dio 16+ (Brasil,
+  A16; Corea, 15+). En la tabla de Apple para iOS 26
+  (developer.apple.com/help/app-store-connect/reference/age-ratings), a 16+
+  solo llevan el acceso web sin restricciones, la información médica
+  frecuente y los temas sugerentes frecuentes; se repasó el cuestionario
+  (el acceso web, en «No») y salió **13+**: 172 países; Vietnam y la
+  República de Corea, 12+; Brasil, A12. La «URL de edades idóneas», vacía.
 - *Pricing*: Free; *Availability*: todos los países **menos China
   continental**. Para China continental, App Store Connect pide (dos avisos
   en la página de la app, 23 de noviembre de 2026) el justificante de una
@@ -172,7 +183,18 @@ la app los pide a la web viva.
   apps nuevas desde el primer día: trámites ante el gobierno chino. Se quita
   en la app → *Pricing and Availability* («Precio y disponibilidad») → la
   disponibilidad → «China continental». La ficha en chino sigue llegando a
-  Taiwán, Hong Kong, Singapur y al resto de países.
+  Taiwán, Hong Kong, Singapur y al resto de países. Hecho el 24 de
+  noviembre de 2026. En el iPhone no se encontró en el menú de secciones,
+  y se abrió con su dirección:
+  `https://appstoreconnect.apple.com/apps/6838506206/distribution/pricing`.
+  «Calendario de precios» → «Añadir precios»: país o región base, España
+  (EUR); 0,00 €, y 0 en todos. «Disponibilidad de la app» → «Configurar
+  disponibilidad»: todos menos China continental; queda «Disponibles: 174»
+  y «1 No disponible». La «Categoría fiscal», la que viene. En «Información
+  de la app» no hace falta nada de «Documentación sobre encriptación» (el
+  `Info.plist` ya lo dice, §5.6), «Notificaciones del servidor de App
+  Store» ni «Secreto compartido específico de la app» (son de las compras
+  dentro de la app, y no hay).
 - *App Privacy*: §5.4. *Privacy Policy URL*:
   `https://tenerifego.app/privacidad.html`.
 
@@ -277,6 +299,13 @@ existen, las capturas, App Privacy, *Export Compliance* contestado por el
 exento), *Content Rights*, *Advertising Identifier*: **No** (la app no usa el
 IDFA).
 
+El botón está en la página de la versión,
+`https://appstoreconnect.apple.com/apps/6838506206/distribution/ios/version/inflight`:
+arriba, «Añadir para revisión», y luego «Enviar a revisión». El 24 de
+noviembre de 2026 acabó en «1 artículo enviado. La revisión puede tardar
+hasta 48 horas. Recibirás un correo electrónico cuando se haya
+completado».
+
 Y dos cosas que se vieron el 23 de noviembre de 2026: la disponibilidad sin
 China continental (§5.1), y los avisos de la subida. En TestFlight →
 *Build Uploads* («Cargas de compilaciones»), una compilación con avisos
@@ -334,6 +363,16 @@ Xcode 27 (§8).
 7. **La cuenta**: crear una, el correo de confirmación vuelve a la web viva
    (abre Safari); entrar en la app; un favorito sincroniza; «Eliminar
    cuenta» la borra.
+   Para probarla con una dirección nueva sin otro buzón:
+   `tenerife.go.app+prueba@gmail.com` (Gmail la deja en el buzón de
+   siempre; para Supabase es otra cuenta). Con una dirección que ya tiene
+   cuenta, Supabase no manda nada, a propósito (en su registro,
+   `user_repeated_signup`), y la app dice lo mismo que con una nueva.
+   Después de «Eliminar cuenta», el registro de Supabase trae un `/logout`
+   con 403 («User from sub claim in JWT does not exist»): es el esperado, el
+   `signOut` de `vendor/supabase.js` llama a `/logout` y no cuenta el 401,
+   el 403 ni el 404. El campo `referer` de ese registro no dice desde dónde
+   se hizo (la app o la web): es el `redirect_to` o la *Site URL*.
    **El perfil**: «Cuenta» abre «Su perfil»; «Descargar datos del perfil»
    abre la hoja de compartir con `tenerife-go-perfil.json`, como 📸 en el
    cielo (en WKWebView no se ha podido probar desde aquí).
@@ -525,10 +564,34 @@ registros de cada ejecución del flujo «App Store»:
   su día» con la semilla 67 ya no comía); corregido con la semilla 42 en
   `tools/capturas_app_store.js`.
 
-Falta, en este orden: `ficha` otra vez; lo que queda del §7 en el iPhone;
-en App Store Connect, el paso 8 del §9.1 (la ficha subida, *App Privacy*,
-la edad, *Content Rights*, el precio y los países); y **Submit for
-Review**. Y, para las versiones de después de abril de 2027, Xcode 27 (§8).
+Y el 24 de noviembre de 2026:
+
+- `ficha` n.º 6, en verde (de 13:15 a 13:42 UTC, sobre `0c993da`): la
+  ficha en los diez idiomas y las 140 capturas, subidas («Successfully
+  uploaded screenshots to App Store Connect»).
+- En App Store Connect, desde el iPhone: la compilación 1.0.0 (4) en la
+  versión 1.0.0; la información para la revisión, la que dejó `ficha` (sin
+  cuenta de prueba: no hace falta entrar); la publicación, automática;
+  *App Privacy*, con las ocho filas del §5.4 (el *User ID* quedó al
+  principio sin ligar a la identidad y se corrigió); la edad, **13+**;
+  *Content Rights*; gratis; y 174 países, sin China continental (los tres,
+  §5.1).
+- Del §7, en el iPhone de Jerome (iPhone 15 Pro Max, iOS 27.2.1, con
+  Dynamic Island): la cuenta (7), con una dirección nueva, de punta a
+  punta. En el registro de Supabase, de 16:32 a 16:33 UTC: `/signup` y
+  `mail.send`, `/verify`, `login`; y «Eliminar cuenta» la borró (ya no
+  está en `auth.users`). Y la barra de estado y el borde de abajo (8):
+  nada tapado.
+- **Enviada a revisión** a las 16:40, hora de Canarias (en noviembre, UTC+0):
+  «1 artículo enviado. La revisión puede tardar hasta 48 horas».
+
+Falta la respuesta de Apple: llega por correo y, en App Store Connect, el
+estado pasa de «Esperando revisión» a «En revisión» y a aprobada, o a
+rechazada con su mensaje en «Revisión de apps». Si la aprueban, sale sola
+(la publicación es automática). Del §7 quedan la brújula (3), los datos
+del día con red (5), el iPad (8) y el apaisado (9): no paran la revisión, y lo que
+salga irá en la 1.0.1. Y, para las versiones de después de abril de 2027,
+Xcode 27 (§8).
 
 ## 10. Fuentes (leídas el 21 de octubre de 2026)
 
