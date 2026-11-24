@@ -11508,6 +11508,82 @@ publicar en `main` no lo toca, y mientras dure la revisión no se lanza (ni `fic
 **Lo que no está comprobado aquí**: lo de App Store Connect (son las pantallas del iPhone de Jérôme) y el registro de
 Supabase (aquí no se leen datos de usuarios).
 
+## Jérôme, la nota 65: lo que salta, se dobla y gira de golpe, y el bloque 16 (564 con vídeo) (23 y 24 de noviembre)
+
+**De dónde sale.** Dos parches de la sesión del entrenador, el `0027` y el `0028`, detrás del `0026` de la nota 63.
+Jérôme, el 22-11 a las 12:37, sobre lo que la nota 63 había dejado sin tocar (catorce vídeos en los que la rodilla
+cambiaba de lado de golpe, el pelo que rozaba la barra en cuatro dominadas y la cinta del press dibujada sobre el
+brazo): «1 si quiero que los arreglas con el próximo bloque y verifica no dejar nada atrás. 2 si también y si
+encuentra otros es importante hacerlos ya!» y, de la cinta, «también hazlo». Esa sesión pasó antes por los 534 vídeos
+un barrido cuadro a cuadro, y no eran catorce: 153 de los 534 tenían al menos un parpadeo (una rodilla que dobla hacia
+atrás un instante, una rodilla o un codo que cambian de lado, una mano que gira de golpe, un brazo o una pierna rectos
+que se doblan de paso, un punto que da un tirón). Van todos aquí.
+
+**El `0027`: los arreglos.** No añade vídeos. En el motor, tres cambios que valen para todos: lo clavado y casi recto
+sigue recto por el camino (antes había que pedirlo en cada coreografía), la rodilla de una pierna clavada dobla
+siempre hacia delante y la mano no gira más de 20° por cuadro. 70 coreografías escritas de otra manera, entre ellas
+las 18 de la familia de las dominadas, que ahora cuelgan un poco por detrás de la barra (la barra queda a 0,6 cm o más
+del pelo en el vídeo; antes, hasta 3,3 cm dentro), y el press de pecho en cinta (la cinta queda a 2,3 cm o más del
+brazo; antes lo cruzaba 5,2 cm). En los vídeos que no se reescribieron, el motor mueve algo 203 de 464 (22, más de 5
+cm; el que más, 9,6 cm): son las flexiones, las planchas, los remos invertidos y los front lever, que ya no se doblan
+un instante a media repetición. Cinco controles nuevos en `tools/auditar_entrenador.js` (la rodilla no dobla hacia
+atrás, nada salta, la mano no gira de golpe, lo recto no se dobla de paso y los tramos enlazan) y el límite de la
+cabeza contra las barras baja de 2,5 cm a 1,5.
+
+**El `0028`: el bloque 16.** 30 estiramientos sin material (o con una pared), de cuello, espalda alta, hombros, pecho,
+dorsal y brazos: los primeros de las fichas de después del 13 de noviembre. Van en su fuente
+(`tools/entrenador/src/7f-estiramientos.js`) y en su trozo, el decimoquinto
+(`modulos/entrenador/estiramientos.eb2dce68.js`, 68.573 bytes): 15 de pie, 10 en el suelo y 5 en la pared. **564
+ejercicios con vídeo**, de 958. Trae dos cuentas nuevas que miden sin navegador:
+`tools/entrenador/pruebas/movimiento.js` (lo clavado no se mueve y nada da un salto, como lo mide la auditoría) y
+`tools/entrenador/pruebas/manocabeza.js` (la mano contra la cabeza, que ninguna medida miraba; con ella se arreglaron
+el abrazo y los círculos de codos, en los que una mano o un antebrazo pasaban por la cara). Con los dos parches, trece
+de los catorce trozos de antes cambian de nombre con su contenido (solo `pecho` sigue igual) y el motor pasa de
+448.532 bytes a 458.907.
+
+**Puesto y comprobado aquí.** Los dos parches con `git am` y sus propias líneas de autoría, encima del `main` del
+22-11 (y el 24-11, tal cual, encima del `main` de ese día, con el lote de la App Store: los tres commits con la misma
+huella de parche que los de entonces), con las 92 huellas de su `SHA256SUMS.txt`, bien. Los ficheros del zip
+(`repo/`), iguales byte a byte a los de la rama, salvo dos: el motor (`modulos/entrenador.js`), que aquí lleva además
+las 21 filas del rumano del reproductor (las líneas distintas son, cada una, la del zip con su `"ro"`), y la línea del
+estado de la muestra del entrenador (`tools/entrenador/muestra/plantilla.html`, que la app no enlaza), que va en su
+commit con lo que hay al publicar («Los bloques 1 a 16, la cámara lenta arreglada, la subida al pino, los arreglos del
+suelo, las paredes, los muslos y la leyenda, el vídeo partido por grupos, el cambio de pierna de la patada de glúteo
+en polea, los L-sit con el tronco derecho, la cabeza y las barras, y lo que salta, se dobla y gira de golpe ya están
+en la app.»). `construir.py --comprobar` (el motor, los quince trozos y `con-video.json`, los de sus fuentes) y
+`app_preparar.js --comprobar`, en verde; `con-video.json`, de 534 a 564, los 30 nuevos y ninguno más. Los dos parches
+no traen nada que hable con la red ni que escriba en la página fuera del reproductor. Las dos cuentas nuevas, pasadas
+aquí, dan lo mismo que en su informe: `movimiento.js`, 564 vídeos y ninguno fuera (lo clavado, 0,000 cm; el cuerpo,
+10,7 cm por cuadro como mucho; una mano o un pie, 32,3); `manocabeza.js`, nueve por debajo de −4,5 cm, todos con la
+mano en la nuca, en la cabeza o junto a ella adrede (el que más, la dominada comando, −11,9).
+
+**Para Jérôme**, lo que esa sesión deja a su elección (no frena la publicación: si no dice nada, queda como está): los
+cuatro vídeos de antes en los que las púas del tupé aún rozan la barra o la cuerda (1,4 cm o menos, dentro del límite
+nuevo); en el perro boca abajo y en el estiramiento con las manos en la pared, la cabeza va lo más cerca que cabe (6
+cm), no colgando del todo como dice la ficha, porque tocaría el suelo o la pared; y el «sentado» sin material, en el
+suelo con las piernas tendidas, no en una silla.
+
+**La auditoría entera**, sobre `d94569f` (árbol `14c7a41`; esta documentación y la del envío a Apple, aparte), del
+24-11 de las 13:44 a las 17:19, hora de Canarias: **«AUDITORIA EN VERDE»**, los mismos 173 bloques que en la del lote
+de la App Store de esa mañana, ningún control en rojo ni roto. Lo de esta nota, dentro: `construir.py --comprobar` (el
+módulo y sus trozos son los que salen de las fuentes); los 15 trozos, cada uno con la huella de su contenido en el
+nombre, y ninguno más en la carpeta; 564 ejercicios con vídeo, de 958; y las 564 coreografías por dentro (posturas,
+tramos, clavos y material, ninguna postura imposible), con sus contactos medidos tramo a tramo y cuadro a cuadro. Lo
+demás, como esa mañana: 996 lugares; las tablas de idioma, 61 y 3.980 filas con castellano, y 6.160 filas mirando
+dentro y fuera; y cada idioma, uno por uno, sin un hallazgo.
+
+**Tras el rebase**, encima de los commits de los robots de la tarde (los satélites, los terremotos, las alertas, los
+avisos de AEMET y los precios), sus controles, en verde, menos uno: `auditar_cielo.js` dio una vez 1 en rojo de 311,
+justo después de los satélites nuevos (en esa pasada el registro solo guarda las últimas líneas, y no dice cuál).
+Solo, otras tres veces, 311 de 311 en verde. La nota no toca el cielo.
+
+**Lo que no está comprobado**, como en las notas anteriores: nada en un iPhone ni en un Samsung de verdad, ni lo que
+tarda el primer vídeo de cada grupo en un teléfono. Los 534 vídeos de antes están recorridos enteros por los
+controles, cuadro a cuadro, pero a ojo, según esa sesión, solo las ocho parejas de su lámina, los catorce que más
+mueve el motor y los que fue arreglando. La mano contra la cabeza no es un control (la mano en la nuca se mete
+adrede), y la mano contra el pecho o contra el otro brazo no la mide nadie. Y los ejercicios están cotejados con su
+ficha y medidos, no revisados por un fisioterapeuta: donde la ficha no dice un ángulo, lo puso esa sesión.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
