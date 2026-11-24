@@ -11397,6 +11397,77 @@ idiomas; el cielo, 311; el perfil y los avatares, 74 y 153; `auditar_sw.js`, 104
 «975 entre el 17 y el 20»): el 20 es el día de la entrega del bloque 4a; en `main`, y en la app, entraron el 22 de
 madrugada. Lo señaló la nota del bloque 4b. `auditar_readme.js`, en verde.
 
+## La App Store desde el móvil, los gimnasios del sur y el chino (24 de noviembre)
+
+**La App Store, la primera vuelta del flujo (23 de noviembre).** Jérôme hizo desde su iPhone el §9.1 de
+`LANZAMIENTO-APP-STORE.md`, con otra sesión: la clave API (con «Request Access» antes, que la guía no decía), el Team
+ID, el DSA, `tenerife-go-firma` y su token (clásico: la página del *fine-grained* no respondía en el iPhone), los diez
+secretos y `MATCH_READONLY`. El flujo «App Store» corrió cinco veces ese día (las cinco, comprobadas aquí en GitHub):
+`alta` n.º 1 en rojo (según la nota de esa sesión, faltaba el secreto `ASC_KEY_P8`), n.º 2 con el identificador creado
+y el rojo esperado, «Falta la ficha en App Store Connect», n.º 3 en verde (la ficha, 6838506206); `testflight` n.º 4
+en verde (match creó el certificado y el perfil; la compilación 1.0.0 (4), «Lista para enviar», en TestFlight y en el
+iPhone de Jérôme); y `ficha` n.º 5 paró en las capturas antes de subir nada: «es iphone: el estado 4 falla: … el plan
+fijo de «Organice su dia» ya no vale (semilla 67): sin comida».
+
+**El arreglo de las capturas.** Con los lugares de ese día, la semilla 67 de «Organice su día» daba la Playa de
+Chimisay, el Puertito de Güímar y la Piscina Natural de Güímar, sin comida, y la herramienta paró, como debe.
+`tools/capturas_app_store.js` pasa a la 42: los Lajiales de Fasnia; en la 111, 42 minutos; a comer al Café al Mar de
+Porís de Abona; y a pie, la Playa del Porís y su embarcadero. Es el parche de esa sesión, con `git am`, sin cambios.
+Comprobado aquí, ya con los doce gimnasios y el chino de este lote, como lo hace la `ficha` (`app/www/` servido y
+`capturas_app_store.js --idiomas=todos`): las 140 capturas, siete por idioma y aparato (iPhone, 1206×2622; iPad,
+2064×2752), con el plan de la 42 válido en las veinte; `auditar_app_store.js` en verde («140 capturas copiadas, todas
+de 1206×2622 o 2064×2752 y sin transparencia»; las notas al revisor, por debajo de 4.000 bytes) y
+`app_store_metadata.js --comprobar`, también.
+
+**La guía, al día** (el segundo parche, también tal cual, en su versión 2: la del zip de las 09:15 del 24, que
+sustituyó a la de las 08:44 cuando ya corría la auditoría, que se paró y se volvió a lanzar con ella; respecto a la
+primera solo cambia `LANZAMIENTO-APP-STORE.md`, y en lo mismo que entre los dos parches). La edad sale 13+ por «Su
+cuerpo»: en la página de Apple, *Health or Wellness Topics* («self-care or lifestyle recommendations») da 9+, y
+*Medical or Treatment Information* da 13+ si es infrecuente y 16+ si es frecuente; *Unrestricted Web Access* daría 16+
+y no aplica: según la guía, los enlaces de fuera se abren en Safari. Los países, todos menos China continental (los
+dos avisos de App Store Connect que vio Jérôme; desde aquí no se ven). Las notas al revisor ya no dicen que hay
+negocios patrocinados (no hay ninguno) y cuentan «Your body» y adónde manda en lo de salud. Y lo que se aprendió el
+23-11: «Request Access» antes de la primera clave (la página de Apple: «the Account Holder must request access to the
+API»), el `.p8` desde el iPhone, el token clásico, el DSA y un §9.4 nuevo con dónde está. El triángulo amarillo de la
+compilación 1.0.0 (4), que Jérôme abrió el 24, trae un solo aviso, el 90725: desde abril de 2027, Apple solo acepta
+compilaciones hechas con el SDK de iOS 27 (Xcode 27). Hoy no para nada, y la guía lo deja para antes de esa fecha
+(§8): la máquina `macos-26` del flujo no tiene ningún Xcode 27 (en el registro de la ejecución n.º 4, comprobado aquí,
+de `Xcode_26.0` a `Xcode_26.6`, y elige el 26.6), y GitHub tiene aparte la imagen `xcode-27` (su *changelog* del 15 de
+octubre de 2026, «Xcode 27 runner image generally available», leído aquí: las etiquetas `xcode-27` y
+`xcode-27-xlarge`, solo arm64, sobre macOS 27; no dice nada de lo que cuesta). Al poner encima los gimnasios, las
+notas al revisor dicen 996 lugares, con la frase nueva de Apple: el único choque, resuelto con las dos.
+
+**Los doce gimnasios del sur (bloque 4b, nota 64).** Tres en Adeje, tres en Arona, tres en San Miguel de Abona y tres
+en Granadilla de Abona, elegidos como los del 4a; Arnold Fit Los Cristianos lo pidió Jérôme. Siete puntos salen de sus
+marcadores de Google Maps y cinco de OpenStreetMap; esos cinco, cotejados el 22-11 con el callejero del IGN
+(CartoCiudad) y con la dirección que publican otras fuentes, a entre 16 y 32 m de su portal, y con lo cotejado en la
+nota de cada uno en `datos/verificado.json`. Jérôme, a que entren con eso: «Ok». De sus marcadores, tres no se
+pudieron confirmar con el callejero (Minimal, a unos 97 m del portal de su dirección; Fitness Park La Gran Manzana, en
+un centro comercial sin número; Bulldog, en una calle que CartoCiudad no tiene) y entran como sus marcadores. Las
+cifras, de 984 a 996 lugares, en el schema.org, el README, las dos tiendas, las notas a Apple, `auditar_datos.js` y
+las tablas de idiomas (6.160 filas); en italiano, «ad Adeje» y «ad Arona», y en polaco, «w Aronie».
+
+**El chino.** En `idiomas/zh.json` e `idiomas/zht.json`, 82 fichas en cada uno: cada pueblo con un solo nombre en las
+categorías, el del mapa chino, y los nombres que no cuadraban (Mercadona escrito 麦德龙, que es Metro; Lidl como 利德;
+Candelaria como 加那里亚; Los Cristianos con una sílaba de menos; Granadilla de dos maneras; «Windsurf» como 风帆, «vela»).
+Entre ellas, los tres gimnasios de Granadilla de Abona del 4b. `auditar_idioma.js` zh y zht, 0 hallazgos, y el bloque
+`MAPA_NOMBRES_ZH` sigue siendo el que sale de las fichas.
+
+**La auditoría entera**, sobre `9a25dd9` (árbol `178664d`; esta documentación, aparte), del 24-11 de las 09:30 a las
+12:57, hora de Canarias: **«AUDITORIA EN VERDE»**, los mismos 80 apartados del registro que en la del «Pase», ningún
+control en rojo ni roto. Una primera vuelta, con la versión 1 de la guía, se paró a los pocos minutos, cuando llegó la
+versión 2. Lo de este lote, dentro: 996 lugares en el código, en el resumen de este documento y en lo que se lee
+(ninguna cifra de lugares que no sea 996); las tablas de idioma, 61 y 3.980 filas con castellano, y 6.160 filas
+mirando dentro y fuera; cada idioma, uno por uno, sin un hallazgo; en el mapa chino, los 53 pueblos con el nombre de
+sus fichas; y la ficha de la App Store en sus diez localizaciones, con las 140 capturas de 1206×2622 o 2064×2752, sin
+transparencia.
+
+**Lo que no está comprobado.** Nada de esto se ha subido a App Store Connect desde aquí: la `ficha` se lanza otra vez
+cuando el lote esté en `main`, y si para en otro sitio, el registro dice dónde. Las respuestas de la edad, los países
+y *App Privacy* son de Jérôme, en App Store Connect. Xcode 27 no se toca ahora: hace falta antes de abril de 2027, y
+pide otra compilación y otra vuelta de TestFlight. Los gimnasios, como en el 4a, no se han visitado: el punto es el de
+su fuente.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
