@@ -72,17 +72,21 @@ const ESTADOS = `window.__capturas = [
      polaco, a comer en la Bodega Frontos, que su ficha da por cerrada al
      publico, y en castellano, el mirador de Las Teresitas, cerrado. Con la
      suerte fija, el mismo plan en los diez idiomas y en cada pasada: medio
-     dia, Naturaleza y Playa, en guagua, semilla 67 (los Lajiales de Fasnia;
+     dia, Naturaleza y Playa, en guagua, semilla 42 (los Lajiales de Fasnia;
      en la 111, 42 minutos, a comer al Café al Mar de Porís de Abona; y a pie,
-     su embarcadero y la Playa Grande de Abades: arriba se ven la linea y la
-     pausa para comer). Si con otros datos sale un lugar con aviso (⚠️), un
-     tramo sin guagua o el plan sin comida, para: otra semilla. */
+     la Playa del Porís y su embarcadero: arriba se ven la linea y la pausa
+     para comer). Hasta el 23 de noviembre de 2026 fue la 67, que con los
+     lugares de ese dia ya no comia (Playa de Chimisay, Puertito de Güímar,
+     Piscina Natural de Güímar) y paro la «ficha» del flujo «App Store». Si
+     con otros datos sale un lugar con aviso (⚠️), un tramo sin guagua o el
+     plan sin comida, para: otra semilla, buscada probando una tras otra con
+     esta misma comprobacion (de la 1 a la 200, el 23 de noviembre valian 80). */
   ['organiza', async () => { toggleRoutePanel(); switchRouteTab('planner'); dpiSelectTime('halfday');
       document.querySelectorAll('#dpi-zone-grid .dp-zone-card').forEach(c => { if (['naturaleza', 'playa'].includes(c.dataset.zone)) dpiToggleZone(c); });
       dpiConfirmZones();
       const generar = dpiGenerate, azar = Math.random;
       window.dpiGenerate = () => {
-        let a = 67;   // mulberry32
+        let a = 42;   // mulberry32
         Math.random = () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
         try { generar(); } finally { Math.random = azar; }
       };
@@ -90,7 +94,7 @@ const ESTADOS = `window.__capturas = [
       const conAviso = dpCurrentStops.filter(x => /^⚠️/.test((x.desc && x.desc.es) || '')).map(x => x.name);
       const tramos = [...document.querySelectorAll('#dpi-itinerary .dp-sep-text')].map(e => e.textContent.trim());
       if (conAviso.length || !tramos.length || tramos.some(t => !/~[0-9]+/.test(t)) || !dpCurrentStops.some(dpEsComida))
-        throw new Error('el plan fijo de «Organice su dia» ya no vale (semilla 67): ' + (conAviso.join(', ') || (dpCurrentStops.some(dpEsComida) ? tramos.join(' / ') : 'sin comida'))); }],
+        throw new Error('el plan fijo de «Organice su dia» ya no vale (semilla 42): ' + (conAviso.join(', ') || (dpCurrentStops.some(dpEsComida) ? tramos.join(' / ') : 'sin comida'))); }],
   ['cielo', async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); await TG_CIELO.satelites().catch(function () {});
       await TG_CIELO.ver('noche', '2026-12-13'); await espera(800); }],
   ['apunta', async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); const VS = TG_CIELO.vista({ sinGuia: true }); await espera(300); for (let i = 0; i < 100 && !VS.tipoEv && !VS.sinSensor; i++) await espera(20);   // espera a que la vista escuche
