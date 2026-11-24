@@ -11468,6 +11468,46 @@ y *App Privacy* son de Jérôme, en App Store Connect. Xcode 27 no se toca ahora
 pide otra compilación y otra vuelta de TestFlight. Los gimnasios, como en el 4a, no se han visitado: el punto es el de
 su fuente.
 
+## La 1.0.0, enviada a revisión (24 de noviembre, tarde)
+
+La escribió la sesión que acompañó el envío; entra con el parche de la guía (`LANZAMIENTO-APP-STORE.md`, §5.1, §5.6,
+§7 punto 7 y §9.4: 70 líneas más y 7 menos). No cambia nada de la app.
+
+**`ficha` n.º 6**, en verde, sobre `0c993da` (de 13:15 a 13:42 UTC; en su registro, «Successfully uploaded screenshots
+to App Store Connect» y «fastlane.tools finished successfully»).
+
+**En App Store Connect, desde el iPhone de Jérôme.** La compilación 1.0.0 (4), puesta en la versión 1.0.0. La
+información para la revisión, la que dejó `ficha`, sin cuenta de prueba. La publicación, automática. *App Privacy*,
+con las ocho filas del §5.4; el *User ID* quedó al principio sin ligar a la identidad y se corrigió. La edad: el
+primer intento dio 16+ (Brasil A16, Corea 15+). En la tabla de Apple para iOS 26
+(developer.apple.com/help/app-store-connect/reference/age-ratings, leída en la sesión del envío y aquí), a 16+ solo
+llevan el acceso web sin restricciones, la información médica frecuente y los temas sugerentes frecuentes. Se repasó
+el cuestionario, con el acceso web en «No», y salió 13+: 172 países; Vietnam y Corea, 12+; Brasil, A12. *Content
+Rights*: «Sí, esta app tiene los derechos necesarios sobre su contenido de terceros». El precio: base España (EUR),
+0,00 € y 0 en todos. Los países: «Disponibles: 174», «1 No disponible» (China continental).
+
+**Del §7, en el iPhone (15 Pro Max, iOS 27.2.1).** La cuenta, de punta a punta, con
+`tenerife.go.app+prueba@gmail.com`. En el registro de Supabase, leído en la sesión del envío con su MCP: a las
+16:32:50 UTC, `/signup` 200 (`user_confirmation_requested`) y `mail.send`; a las 16:33:02, `/verify` 303
+(`user_signedup`); a las 16:33:28, `/token` 200 (`login`); a las 16:33:51, el `/logout` con 403 «User from sub claim
+in JWT does not exist», que es el esperado: el `_signOut` de `vendor/supabase.js` llama a `/logout` y no cuenta el
+401, el 403 ni el 404. Después ya no está en `auth.users`. El correo sale a una dirección que no es del equipo de
+Supabase, así que el revisor lo recibirá. Un primer intento con la dirección de la app, que ya tenía cuenta desde
+julio, no mandó nada: en el registro, `user_repeated_signup`, a propósito. La barra de estado y el borde de abajo:
+nada tapado (captura de Jérôme, 16:37).
+
+**Enviada a revisión** a las 16:40, hora de Canarias: «1 artículo enviado. La revisión puede tardar hasta 48 horas».
+
+**Lo comprobado aquí, al meterlo.** El parche entra con `git am` encima de lo publicado, y `node
+tools/app_store_metadata.js --comprobar` sigue en verde (las notas al revisor del §5.5 no cambian). En el registro de
+la `ficha` n.º 6: de 13:15:46 a 13:42:18 UTC, sobre `0c993da`, y las dos frases. En `vendor/supabase.js`, el
+`_signOut`: llama a `/logout` y, con un 401, un 403 o un 404, borra la sesión igual y no da error. En la tabla de
+Apple, el 16+ general lleva esos tres y nada más. El flujo «App Store» solo se lanza a mano (`workflow_dispatch`):
+publicar en `main` no lo toca, y mientras dure la revisión no se lanza (ni `ficha` ni `testflight`).
+
+**Lo que no está comprobado aquí**: lo de App Store Connect (son las pantallas del iPhone de Jérôme) y el registro de
+Supabase (aquí no se leen datos de usuarios).
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
