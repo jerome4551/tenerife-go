@@ -148,8 +148,31 @@ la app los pide a la web viva.
   con su enlace; los catálogos astronómicos y las librerías de
   `vendor/LICENSE-*`; los precios y los avisos son datos públicos del
   Ministerio y de la AEMET, con su procedencia en cada fichero).
-- *Age Rating*: el cuestionario entero en «No / Ninguno» → 4+.
-- *Pricing*: Free; *Availability*: todos los países.
+- *Age Rating* (el cuestionario nuevo, con las edades de iOS 26: 4+, 9+,
+  13+, 16+ y 18+): todo «No / Ninguno» salvo dos respuestas, las dos por
+  «Su cuerpo» (`modulos/cuerpo.js`). *Health or Wellness Topics*: **sí**
+  (ejercicios, rutinas y el diario de raciones; Apple: «self-care or
+  lifestyle recommendations… calorie tracking, dieting advice, or exercise
+  recommendations», 9+). *Medical or Treatment Information*:
+  **infrecuente** (donde toca la salud manda al médico o al
+  dietista-nutricionista, y en las respuestas que lo piden lleva el 112 o
+  el 024, `datos/cuerpo/asistente-*.json`; Apple:
+  «guidance around the management of medical conditions or health and
+  wellness… emergency medical care», 13+). Sale **13+**. *Advertising*: no,
+  mientras no haya negocios patrocinados de pago (con ellos, sí, y no sube
+  la edad). *Unrestricted Web Access*: no (los enlaces de fuera se abren en
+  Safari, no en un navegador dentro de la app, que daría 16+). Hasta el 23
+  de noviembre de 2026 aquí ponía «todo No → 4+», que era de antes de «Su
+  cuerpo».
+- *Pricing*: Free; *Availability*: todos los países **menos China
+  continental**. Para China continental, App Store Connect pide (dos avisos
+  en la página de la app, 23 de noviembre de 2026) el justificante de una
+  evaluación de seguridad con su informe y una declaración de servicios de
+  contenido generado por IA (AIGC) con su información de registro, para las
+  apps nuevas desde el primer día: trámites ante el gobierno chino. Se quita
+  en la app → *Pricing and Availability* («Precio y disponibilidad») → la
+  disponibilidad → «China continental». La ficha en chino sigue llegando a
+  Taiwán, Hong Kong, Singapur y al resto de países.
 - *App Privacy*: §5.4. *Privacy Policy URL*:
   `https://tenerifego.app/privacidad.html`.
 
@@ -244,7 +267,7 @@ que cubrir los SDK de terceros: Capacitor trae el suyo.
 - *Notes* (hasta 4000 bytes, en el idioma que sea). Propuesta, en inglés:
 
 > Tenerife Go is a free travel guide for the island of Tenerife. All of its content ships inside the app and works offline: the island map (vector tiles bundled), 984 places, the 183 bus and tram lines, and a night-sky module computed on the device (Astronomy Engine) with an AR view that uses the camera, compass and motion sensors. The app does not load its interface from a remote web view. What it does fetch over the network: small daily data files (fuel prices, weather warnings, satellite orbital elements) from our site, with bundled copies as fallback; weather and sea forecasts (Open-Meteo); and, when the user asks for them, live fuel prices (Spanish Ministry open data), driving routes (OSRM), address search (Nominatim) and Wikipedia summaries.
-> Permissions are optional and asked in context: location (map and routes), camera and motion (only inside "Point at the sky"). The account is optional (email + password, our own system) and can be deleted from inside the app (Account → Delete account). No in-app purchases, no subscriptions, no third-party ad networks; a few local businesses are labelled as sponsored. Privacy policy: https://tenerifego.app/privacidad.html
+> Permissions are optional and asked in context: location (map and routes), camera and motion (only inside "Point at the sky"). The account is optional (email + password, our own system) and can be deleted from inside the app (Account → Delete account). The "Your body" section (exercises, training routines, a portion diary) works on the device and cites its sources; where it touches on health, it refers people to a doctor, or to 112 in an emergency. No in-app purchases, no subscriptions, no third-party ad networks; a local business that pays for a promotion is labelled as sponsored (there are none at the moment). Privacy policy: https://tenerifego.app/privacidad.html
 
 ### 5.6 Antes de pulsar *Submit for Review*
 
@@ -253,6 +276,18 @@ existen, las capturas, App Privacy, *Export Compliance* contestado por el
 `ITSAppUsesNonExemptEncryption = false` del `Info.plist` (solo HTTPS: cifrado
 exento), *Content Rights*, *Advertising Identifier*: **No** (la app no usa el
 IDFA).
+
+Y dos cosas que se vieron el 23 de noviembre de 2026: la disponibilidad sin
+China continental (§5.1), y los avisos de la subida. En TestFlight →
+*Build Uploads* («Cargas de compilaciones»), una compilación con avisos
+queda «Finalizado» con un triángulo amarillo, y se leen tocando el estado.
+La 1.0.0 (4) trae uno solo, leído el 24 de noviembre: «90725: SDK version
+issue. This app was built with the iOS 26.5 SDK. Starting April 2027, iOS
+and iPadOS apps must be built with the iOS 27 SDK or later, included in
+Xcode 27 or later, in order to be uploaded to App Store Connect or
+submitted for distribution». No para nada hoy (la compilación está «Lista
+para enviar»); antes de abril de 2027, el flujo tiene que compilar con
+Xcode 27 (§8).
 
 ## 6. Lo que las directrices miran, y cómo está
 
@@ -324,6 +359,16 @@ IDFA).
   que no necesita nada de esto: la PWA tal cual.
 - **Sign in with Apple**: no se exige (§6); si algún día se añade Google
   Sign-In, entonces sí.
+- **Xcode 27, antes de abril de 2027** (el aviso 90725, §5.6): desde
+  entonces Apple no acepta compilaciones hechas con un SDK anterior al de
+  iOS 27. La máquina `macos-26` del flujo trae de Xcode 26.0 a 26.6 y
+  ninguno 27 (el registro del 23 de noviembre). GitHub tiene una imagen
+  aparte, `runs-on: xcode-27` (solo arm64, sobre macOS 27), general desde
+  el 15 de octubre de 2026 (github.blog/changelog, «Xcode 27 runner image
+  generally available»): el trabajo `testflight` pasa a esa etiqueta y el
+  paso «Xcode 26» a elegir el Xcode 27 más alto que no sea beta. Se prueba
+  con una compilación nueva en TestFlight antes de la versión que la
+  necesite.
 
 ## 9. Sin Mac: desde el móvil, con una máquina macOS prestada
 
@@ -363,8 +408,12 @@ prueba, y sus registros dicen dónde para si para.
    pasos, el nombre legal y una foto del DNI o del pasaporte; 99 USD al año
    como suscripción. Apple tarda horas o días en aprobarlo.
 2. **La clave API de App Store Connect** (web, appstoreconnect.apple.com →
-   Users and Access → Integrations → App Store Connect API → «+», papel
-   *Admin*): se descarga **una sola vez** un fichero `AuthKey_XXXXXXXXXX.p8`;
+   Users and Access → Integrations → App Store Connect API). La primera vez,
+   el titular de la cuenta pulsa **Request Access**, marca la casilla de los
+   términos y *Submit* (Apple: «the Account Holder must request access to the
+   API»); luego *Team Keys* → *Generate API Key* (o «+»), papel *Admin*. Se
+   descarga **una sola vez**, con el enlace «Descargar» de la clave, un
+   fichero `AuthKey_XXXXXXXXXX.p8` (en el iPhone va a Archivos → Descargas);
    apuntar el *Key ID* y el *Issuer ID*.
 3. **El Team ID**: developer.apple.com/account → Membership details.
 4. **Un repositorio privado vacío en GitHub** para el certificado y el perfil
@@ -375,8 +424,13 @@ prueba, y sus registros dicen dónde para si para.
    *Contents*: «Read and write». Uno clásico con permiso `repo` también
    vale, pero abre todos los repositorios de la cuenta. El token va tal
    cual en el secreto `MATCH_GIT_TOKEN`, sin convertirlo en nada: el flujo
-   hace con él lo que pide match. Caduca: entonces se genera otro y se
-   cambia el secreto.
+   hace con él lo que pide match. Si caduca, se genera otro y se cambia el
+   secreto. Desde el iPhone, el 23 de noviembre de 2026, la página del
+   *fine-grained* no pasó de su ventana de confirmación («Generate token» no
+   hacía nada, tampoco con «Solicitar sitio web de escritorio»): se usó uno
+   clásico (github.com/settings/tokens/new, solo `repo`, sin caducidad), que
+   abre los dos repositorios de la cuenta. Un token no se pega nunca en un
+   chat; si pasa, *Regenerate token* y se cambia el secreto.
 5. **Los secretos**, en `tenerife-go` → Settings → Secrets and variables →
    Actions → New repository secret:
 
@@ -384,7 +438,7 @@ prueba, y sus registros dicen dónde para si para.
 |---|---|
 | `ASC_KEY_ID` | el Key ID de la clave API |
 | `ASC_ISSUER_ID` | el Issuer ID |
-| `ASC_KEY_P8` | el contenido entero del `.p8` (con las líneas BEGIN y END) |
+| `ASC_KEY_P8` | el contenido entero del `.p8` (con las líneas BEGIN y END). Desde el iPhone: Archivos → Descargas → ••• → Opciones de visualización → Mostrar todas las extensiones; renombrar el `.p8` a `.txt`, abrirlo, Seleccionar todo, Copiar. Si falta, `alta` para con «OpenSSL::PKey::ECError: invalid curve name», y en el registro `ASC_KEY_P8:` sale vacío |
 | `APPLE_TEAM_ID` | el Team ID |
 | `MATCH_GIT_URL` | `https://github.com/jerome4551/tenerife-go-firma.git` |
 | `MATCH_GIT_TOKEN` | el token del punto 4, tal cual. La autorización que pide match (base64 de «jerome4551:token») la calcula el flujo y la tapa en los registros: el token no pasa por ningún conversor, ni por un chat |
@@ -409,8 +463,14 @@ prueba, y sus registros dicen dónde para si para.
 7. En el iPhone, la app **TestFlight**: instalar el build y pasar el §7.
 8. En App Store Connect (web): revisar la ficha que subió `deliver`
    (textos, capturas), contestar *App Privacy* con la tabla del §5.4, la
-   clasificación por edades, *Content Rights*, el precio (gratis) y los
-   países, y pulsar **Submit for Review**.
+   clasificación por edades (§5.1: 13+), *Content Rights*, el precio
+   (gratis) y los países (todos menos China continental, §5.1), leer los
+   avisos de la subida (§5.6) y pulsar **Submit for Review**. Antes, una
+   vez por cuenta, el DSA de la Unión Europea: *Business* («Negocio») →
+   *Agreements* → *Compliance*, decir si se es comerciante; si se es, Apple
+   comprueba y publica en la ficha de los países de la UE la dirección (o
+   un apartado de correos), el teléfono y el correo. Apple lo pregunta al
+   enviar una app nueva, aunque no se distribuya en la UE.
 
 ### 9.2 Lo que hace Claude Code (con npm)
 
@@ -436,6 +496,39 @@ prueba, y sus registros dicen dónde para si para.
 | TestFlight | `upload_to_testflight` (pilot) con la clave API | docs.fastlane.tools |
 | Ficha y capturas | las capturas, de `app/www/` (la app de la tienda, con la marca); `tools/app_store_metadata.js` escribe `fastlane/metadata/<loc>/*.txt` y `fastlane/screenshots/<loc>/`; `deliver` las sube (las diez localizaciones de §5.2; deliver conoce 1206×2622 y 2064×2752) | docs.fastlane.tools/actions/deliver; `app_screenshot.rb` |
 | El identificador | el Bundle ID con la clave API (Spaceship, la API oficial de App Store Connect); la ficha, a mano una vez (§9.1, paso 6) | fastlane 2.241.1: `create_app_online` no tiene `api_key` (produce entra con el Apple ID) |
+
+### 9.4 Dónde está (24 de noviembre de 2026)
+
+Hecho el 23 de noviembre de 2026, desde el iPhone de Jerome y con los
+registros de cada ejecución del flujo «App Store»:
+
+- El Apple Developer Program, aprobado y pagado; la clave API (papel
+  *Admin*) con su `.p8`; el Team ID; y el DSA, contestado («Has completado
+  todos los requisitos reglamentarios»).
+- `tenerife-go-firma`, privado, y el token clásico del punto 4; los diez
+  secretos; la variable `MATCH_READONLY` a `1`.
+- `alta`: una primera en rojo porque faltaba el secreto `ASC_KEY_P8`; luego
+  el identificador `tenerifego.app` creado y el rojo esperado por la ficha;
+  la ficha «Tenerife Go», creada a mano en App Store Connect (su id de
+  Apple, 6838506206); y `alta` otra vez, en verde.
+- `testflight`: match creó el certificado de distribución y el perfil
+  («match AppStore tenerifego.app») y los guardó cifrados en
+  `tenerife-go-firma`; la compilación 1.0.0 (4), con Xcode 26.6, subida y
+  procesada («Lista para enviar»), con un aviso de Apple, el 90725 (el SDK
+  de iOS 27 desde abril de 2027, §5.6 y §8), que hoy no para nada.
+- TestFlight: el grupo interno «Yo», con Jerome; la app instalada en su
+  iPhone y probada en lo básico (la bienvenida, el permiso de la ubicación,
+  «Apunta al cielo», el modo avión y un enlace de fuera): «va bien». Del
+  §7 quedan la brújula (3), los datos del día con red (5), la cuenta (7) y
+  la barra de estado (8).
+- `ficha`: paró en las capturas antes de subir nada (el plan de «Organice
+  su día» con la semilla 67 ya no comía); corregido con la semilla 42 en
+  `tools/capturas_app_store.js`.
+
+Falta, en este orden: `ficha` otra vez; lo que queda del §7 en el iPhone;
+en App Store Connect, el paso 8 del §9.1 (la ficha subida, *App Privacy*,
+la edad, *Content Rights*, el precio y los países); y **Submit for
+Review**. Y, para las versiones de después de abril de 2027, Xcode 27 (§8).
 
 ## 10. Fuentes (leídas el 21 de octubre de 2026)
 
@@ -473,3 +566,10 @@ prueba, y sus registros dicen dónde para si para.
   y las listas de `NSPrivacyCollectedDataType` y `NSPrivacyCollectedDataTypePurposes`.
 - Directrices de revisión (2.3.10, 4.2, 4.8, 5.1.1): developer.apple.com/app-store/review/guidelines.
 - `getUserMedia` en WKWebView desde iOS 14.3: webkit.org/blog/11353/mediarecorder-api.
+- Leídas el 23 de noviembre de 2026: el acceso a la API, que pide el titular
+  antes de la primera clave (developer.apple.com/help/app-store-connect/get-started/app-store-connect-api);
+  el DSA de la UE (…/manage-compliance-information/manage-european-union-digital-services-act-trader-requirements);
+  las edades y sus preguntas (…/reference/age-ratings); y los dos avisos de
+  China continental, en la página de la app en App Store Connect. El 24: el
+  aviso 90725 de la compilación 1.0.0 (4), en App Store Connect, y la imagen
+  `xcode-27` de GitHub (github.blog/changelog/2026-10-16-xcode-27-runner-image-generally-available).
