@@ -9,7 +9,7 @@
 
   Esta aplicacion y todo su contenido son obra original del autor:
   el codigo fuente, los textos y descripciones de los lugares,
-  las traducciones a 10 idiomas, la base de conocimiento del asistente,
+  las traducciones a 11 idiomas, la base de conocimiento del asistente,
   el diseno, la identidad visual y la marca "Tenerife Go".
 
   Protegido por el Real Decreto Legislativo 1/1996 (Ley de Propiedad
@@ -4655,7 +4655,7 @@ window.onunhandledrejection = function(e) {
   /* 3) PANTALLA DE BIENVENIDA v2 — 100% código (sin imagen JPEG)
         Emblema SVG dibujado a trazo (Teide + sol + olas), wordmark con
         shimmer dorado, partículas flotantes y botón real "Comenzar"
-        traducido a los 10 idiomas. Offline-first, 0 requests, ~190KB menos. */
+        traducido a los 11 idiomas. Offline-first, 0 requests, ~190KB menos. */
   .v19-welcome {
     position: fixed;
     inset: 0;
@@ -9676,7 +9676,7 @@ function rumboVisible(cod) {
   return (k && tx('rumbo' + k)) || cod;
 }
 
-/* El filtro «Accesible en bus» sin ninguna linea encendida: el aviso, en los diez
+/* El filtro «Accesible en bus» sin ninguna linea encendida: el aviso, en los once
    idiomas. Es la frase de busShareNothing («Active al menos una linea para
    compartir»), ya traducida, sin el «para compartir». */
 Object.assign(UI_TX, {
@@ -10206,7 +10206,7 @@ function toggleLangDropdown(e) {
   const margin = 8;
   const top = rect.bottom + 6;
   dropdown.style.top = top + 'px';
-  // En un móvil bajo o tumbado no caben los diez: se desliza dentro.
+  // En un móvil bajo o tumbado no caben los once: se desliza dentro.
   dropdown.style.maxHeight = Math.max(120, window.innerHeight - top - margin) + 'px';
   const ancho = dropdown.offsetWidth || 180;
   let leftPos = rect.right - ancho;         // alineado al borde derecho del botón
@@ -18903,7 +18903,7 @@ async function fetchWikiPhoto(place, lang) {
    agua), con el de ECMWF de reserva si MFWAM se retrasa mas de 26 horas (el
    EWAM de DWD empieza a 30° N). Copernicus pide su frase tal cual, en ingles:
    «Generated using E.U. Copernicus Marine Service Information». Son nombres
-   propios y una formula de licencia, iguales en los diez idiomas
+   propios y una formula de licencia, iguales en los once idiomas
    (data-sin-traducir). que: 'tiempo', 'mar' o 'ambos'. Los pies de los
    paneles del mar y de los microclimas lo llevan escrito en el HTML, y
    probar_play.js mira que digan lo mismo que esta funcion. */
@@ -22359,7 +22359,7 @@ function buildStopLineMap() {
 /* TITSA no cobra por linea sino por trayecto: la tarifa sale de las zonas
    entre origen y destino, asi que «el precio de la 111» no existe como dato.
    Cuando la linea cruza zona, `precioDesde` marca que el importe es el suelo
-   y no la tarifa del viaje, y el prefijo se traduce en los 10 idiomas. */
+   y no la tarifa del viaje, y el prefijo se traduce en los 11 idiomas. */
 /* FRECUENCIA DE LINEA, TRADUCIDA SIN TOCAR EL DATO.
    `frecuencia` es un campo de TITSA_LINES y se queda como esta: la clave
    de esta tabla es su valor en castellano y el valor son los otros ocho
@@ -23988,7 +23988,7 @@ window.addEventListener('hashchange', () => {
     };
   }
 
-  /* Los textos del modulo PWA, en los 10 idiomas.
+  /* Los textos del modulo PWA, en los 11 idiomas.
 
      Estaban todos fijos en espanol: el banner de instalar, el aviso de
      version nueva, el panel de informacion entero y sus cuatro dialogos.
@@ -24700,7 +24700,7 @@ window.addEventListener('hashchange', () => {
   </button>
   <!-- SOS (22 de octubre de 2026): siempre a mano, tambien sin cobertura.
        Abre el panel de EMERGENCIAS (abajo, bloque EMERGENCIAS). «SOS» se
-       entiende en los diez idiomas; la etiqueta accesible si se traduce. -->
+       entiende en los once idiomas; la etiqueta accesible si se traduce. -->
   <button class="v19-nav-item v19-nav-sos" id="v19-nav-sos" type="button" data-tx-aria="sosNavAria" aria-label="Emergencias: qué hacer y a quién llamar" onclick="abrirSOS()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="M5.7 5.7l3.8 3.8M14.5 14.5l3.8 3.8M18.3 5.7l-3.8 3.8M9.5 14.5l-3.8 3.8"/></svg>
     <span id="nav-lbl-sos" data-sin-traducir="sigla internacional">SOS</span>
@@ -24727,7 +24727,7 @@ window.addEventListener('hashchange', () => {
   'use strict';
   var SEEN_KEY = 'tenerife.welcome.seen';
 
-  // Traducciones del botón "Comenzar" (10 idiomas). La tagline
+  // Traducciones del botón "Comenzar" (11 idiomas). La tagline
   // "Somos parte de ti" se mantiene en ES como identidad de marca.
   var WELCOME_I18N = { es: "Comenzar", en: "Start", fr: "Commencer", de: "Starten", it: "Inizia", nl: "Beginnen", zh: "\u5f00\u59cb\u63a2\u7d22", zht: "\u958b\u59cb\u63a2\u7d22", bg: "Започни", pl: "Zaczynamy", ro: "Începeți" };
   function updateWelcomeTexts() {
@@ -24939,7 +24939,7 @@ window.addEventListener('hashchange', () => {
      y Jérôme señalando cada boton. Se vuelve a ver desde la leyenda del mapa
      («Ver el tour» abre el menu de visitas), y el panel del cielo tiene el
      suyo en el boton con la cara de Jérôme. Todo ello (el dibujo, el motor,
-     los dos tours y sus textos en los diez idiomas) vive en
+     los dos tours y sus textos en los once idiomas) vive en
      modulos/guia.js, que se pide cuando hace falta: aqui solo quedan el
      cargador y las animaciones de siempre.
      ════════════════════════════════ -->
@@ -25039,7 +25039,7 @@ window.addEventListener('hashchange', () => {
      Y el mismo dia, con el bloque 8 de «Su cuerpo» ya en main, el tour de esa
      pantalla («Lo mismo por el cuerpo»).
      El presentador (Jérôme, un dibujo SVG articulado), el motor de tours, los
-     tres tours y sus textos en los diez idiomas viven en modulos/guia.js, que
+     tres tours y sus textos en los once idiomas viven en modulos/guia.js, que
      se pide cuando hace falta: al cerrar la bienvenida de quien no ha visto
      el tour, al tocar «Ver el tour» en la leyenda del mapa o el boton de Jérôme
      del panel del cielo o de «Su cuerpo», y la primera vez que se abre uno de
@@ -25062,7 +25062,7 @@ window.addEventListener('hashchange', () => {
      · El de «Su cuerpo», igual («tenerife.tour.cuerpo»). Esa pantalla la pinta
        modulos/cuerpo.js, que no se toca: el boton de Jérôme se lo pone este
        cargador, dentro de su escena, cada vez que se abre.
-     · tools/auditar_tour.js recorre los tres enteros, en los diez idiomas y en
+     · tools/auditar_tour.js recorre los tres enteros, en los once idiomas y en
        cuatro tamaños de movil. */
   var KEY = 'tenerife.tour.seen';
   var VERSION = 3;
@@ -25769,7 +25769,7 @@ function addSouvenirToCart(btn) {
 
 // ── LEYENDA DEL MAPA v2 ───────────────────────────────────────────
 // Cerrada por defecto: solo se abre con la píldora "Leyenda".
-// Textos en los 10 idiomas (se actualizan al cambiar el idioma).
+// Textos en los 11 idiomas (se actualizan al cambiar el idioma).
 
 function openMapLegend() {
   const legend = document.getElementById('map-legend');
@@ -27152,7 +27152,7 @@ function tiendaDiff(v) {
 
 /* La duracion se escribe a mano -"4 horas", "90 min", "2 días"- pero casi
    siempre es cifra + unidad, y eso se traduce sin traductor: se lee el
-   numero y se pinta con la clave que ya existe en los diez idiomas.
+   numero y se pinta con la clave que ya existe en los once idiomas.
    Lo que no encaje en el patron se devuelve tal cual y se traduce, si
    hace falta, por i18n como cualquier otro texto libre. Mas vale
    devolver lo que el administrador escribio que adivinar. */
@@ -28113,7 +28113,7 @@ function chatEsFrase(qn,lista){
    camino. En chino no hay palabras sueltas, asi que vale solo la frase
    entera: «你好，我想去海滩» pregunta por playas. Van sin tildes ni breves
    porque chatNorm se las quita («dzien dobry», «здравеите»), y las del
-   rumano ya estan para cuando se encienda. */
+   rumano estaban ya cuando se encendio (el interruptor del rumano, 22-11-2026). */
 var CHAT_SALUDO=['hola','buenas','saludos','buenos dias','hello','hi','hey','good morning','good afternoon','good evening',
   'bonjour','bonsoir','salut','coucou','hallo','guten morgen','guten tag','guten abend','servus','moin',
   'ciao','salve','buongiorno','buonasera','hoi','goedemorgen','goedemiddag','goedenavond','goedendag',
@@ -33038,7 +33038,7 @@ function dpSitio(p) { return DP_SITIO.get(p.id) || ('@' + p.lat + ',' + p.lng); 
 function dpMismoSitio(a, b) { return !!a && !!b && dpSitio(a) === dpSitio(b); }
 
 /* Tiempo, transporte y textos de interfaz de los dos planificadores,
-   en los 10 idiomas. Igual que DP_CARDS: una sola fuente de verdad,
+   en los 11 idiomas. Igual que DP_CARDS: una sola fuente de verdad,
    las tarjetas se generan por JS y se regeneran al cambiar idioma. */
 const DP_TIMES = [
   {id:"morning",icon:"\ud83c\udf05",tx:{"es":["Ma\u00f1ana","2\u20133 h \u00b7 2 paradas"],"en":["Morning","2\u20133 h \u00b7 2 stops"],"fr":["Matin","2\u20133 h \u00b7 2 \u00e9tapes"],"de":["Vormittag","2\u20133 Std. \u00b7 2 Stopps"],"it":["Mattina","2\u20133 h \u00b7 2 tappe"],"nl":["Ochtend","2\u20133 u \u00b7 2 stops"],"zh":["\u4e0a\u5348","2\u20133 \u5c0f\u65f6 \u00b7 2 \u7ad9"],"zht":["\u4e0a\u5348","2\u20133 \u5c0f\u6642 \u00b7 2 \u7ad9"], "bg":["Сутрин","2–3 ч · 2 спирки"], pl: ["Rano","2–3 h · 2 przystanki"], ro: ["Dimineața","2–3 h · 2 opriri"]}},
@@ -33127,7 +33127,7 @@ function dpRutaCabe(p, tope, comidaMin) {
 // Emojis de transición
 /* Llevan CLAVE, no texto: escritos a pelo salian en castellano en los diez
    idiomas. Las duraciones son orientativas y estan en el propio rotulo, no
-   se calculan: quien las cambie, que cambie las diez traducciones. */
+   se calculan: quien las cambie, que cambie las once traducciones. */
 const DP_TRANSIT = [
   { icon:'🚗', k:'tr15coche' },
   { icon:'🚌', k:'tr20titsa' },
@@ -33289,7 +33289,7 @@ function renderItinerary(stops) {
   document.getElementById('dp-footer').style.display  = 'flex';
 }
 
-/* Los textos del planificador. DP_UI ya existe y ya lleva los diez
+/* Los textos del planificador. DP_UI ya existe y ya lleva los once
    idiomas; esto es solo leerla con el respaldo de siempre. */
 function dpT(k) {
   var f = (typeof DP_UI !== 'undefined') && DP_UI[k];
@@ -33691,7 +33691,7 @@ function dpOrdenar(list) {
    tramos de mas de dos horas (Jerome: «Día completo si es demasiado
    tiempo»). Ahora las visitas (DP_DURATION) y los tramos (dpTramo) no pasan
    del tope. En bici no hay velocidad comprobada: solo cuentan las visitas.
-   probar_organiza.js coteja estos numeros con las tarjetas en los diez
+   probar_organiza.js coteja estos numeros con las tarjetas en los once
    idiomas. */
 const DP_TOPE_MIN = { morning: 180, afternoon: 240, halfday: 300, fullday: 480 };
 const DP_MIN_PARADAS = { morning: 2, afternoon: 2, halfday: 3, fullday: 5 };
@@ -36203,7 +36203,7 @@ setTimeout(renderBanoHoy, 1200);
    Mientras dura la visita de Jérôme (el panel lleva la clase tgg-de-visita) no: ese renglon de mas le
    quitaba el sitio a la visita en los moviles pequeños, y el regulador, que entonces no se puede tocar,
    se aparta (modulos/guia.js): la cabecera es la de siempre. tools/auditar_tour.js mira las dos cosas,
-   en los diez idiomas y los cuatro moviles. */
+   en los once idiomas y los cuatro moviles. */
 @media (max-width: 389px) {
   html.cielo-rojo #cielo-panel:not(.tgg-de-visita) .cielo-cab { flex-wrap: wrap; row-gap: 6px; }
   html.cielo-rojo #cielo-panel:not(.tgg-de-visita) .cielo-cab .cielo-titulo { flex: 1 1 calc(100% - 60px); }
@@ -36615,7 +36615,7 @@ html.cielo-rojo body::before {
   'use strict';
   /* CARGA-PEREZOSA: modulos/cielo.js
      El panel entero -su codigo, sus textos y sus tablas de nombres en los
-     diez idiomas- vive en modulos/cielo.js y se pide la primera vez que
+     once idiomas- vive en modulos/cielo.js y se pide la primera vez que
      alguien abre el panel. En index.html eran unos 100 kB comprimidos mas en
      la primera descarga de todo el mundo, para algo que no se ve al
      arrancar. El service worker lo precachea igual que el motor y el
@@ -36627,7 +36627,7 @@ html.cielo-rojo body::before {
      Las curiosidades de las 88 constelaciones van aparte, un fichero por
      idioma (idiomas/cielo/<idioma>.json): el modulo pide solo el del idioma
      de quien mira (22 de octubre de 2026). tools/fuente.js y fuente.py
-     juntan los diez en filas de diez idiomas al final del fuente, para que
+     juntan los once en filas de once idiomas al final del fuente, para que
      las herramientas las sigan viendo como antes. */
   var MODULO = './modulos/cielo.js', carga = null;
   function cargar() {
@@ -36793,7 +36793,7 @@ html.cielo-rojo body::before {
 
   /* CARGA-PEREZOSA: modulos/cuerpo.js
      La pantalla «Su cuerpo» (31 de octubre de 2026): el personaje, los musculos y los
-     ejercicios, con sus estilos y sus textos en los diez idiomas. Desde el 1 de
+     ejercicios, con sus estilos y sus textos en los once idiomas. Desde el 1 de
      noviembre de 2026 va dentro de la pestaña Cuerpo del perfil (Jerome: «Y no veo
      porque no ponerlo directo en la sección cuerpo»): se pide al abrir esa pestaña. Desde
      el 3 de noviembre trae tambien «Comida», el asistente («Preguntar») y «Su deporte».
@@ -36871,7 +36871,7 @@ html.cielo-rojo body::before {
      · El 112 esta AQUI, en el armazon, no en el modulo: el boton rojo llama
        aunque modulos/emergencias.js no haya llegado a cargar.
      · Lo demas -las guias, la mochila, los canales oficiales y sus fuentes en
-       los diez idiomas- vive en modulos/emergencias.js, que se pide al abrir
+       los once idiomas- vive en modulos/emergencias.js, que se pide al abrir
        el panel y que el service worker precachea: sin red tambien abre.
      · La app no dice si hay peligro ni en que color esta el semaforo: eso lo
        dicen el 112, el Gobierno de Canarias y ES-Alert. SOS_DATOS lista los
@@ -36966,7 +36966,7 @@ html.sos-abierto, html.sos-abierto body { overflow: hidden; }
   'use strict';
   /* CARGA-PEREZOSA: modulos/emergencias.js
      El cuerpo del panel -sus guias, la mochila, los canales oficiales y los
-     textos en los diez idiomas- vive en modulos/emergencias.js y se pide la
+     textos en los once idiomas- vive en modulos/emergencias.js y se pide la
      primera vez que alguien abre el panel. El service worker lo precachea y
      lo sirve de la cache (cambia con la version del service worker): en una
      emergencia la red puede ir saturada y el panel no puede esperarla.
@@ -37105,7 +37105,7 @@ html.sos-abierto, html.sos-abierto body { overflow: hidden; }
      «La isla en 3D»: el relieve de verdad de la isla (el MDT05 del IGN desde
      el 17-11-2026; antes, el Copernicus DEM GLO-30; con la costa del mapa
      detallado) con el mapa encima, sin conexion. El
-     motor (WebGL a mano, sin bibliotecas) y sus textos en los diez idiomas
+     motor (WebGL a mano, sin bibliotecas) y sus textos en los once idiomas
      viven en modulos/isla3d.js y se piden la primera vez que alguien toca
      «3D»; el relieve son tres ficheros de mapa/ que hace
      tools/relieve_construir.py (y el workflow generar-relieve.yml). El

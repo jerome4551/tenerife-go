@@ -83,7 +83,7 @@ function dayOfYear(y, m, d) {
 /* --- Las filas del panel SOS (modulos/emergencias.js) ---
    El consejo del domingo y el aviso del semaforo no traen textos propios: son
    filas del panel, las mismas que se leen en la app, verificadas contra su
-   fuente oficial, en los diez idiomas y de usted. Se leen del modulo, sin
+   fuente oficial, en los once idiomas y de usted. Se leen del modulo, sin
    copiarlas aqui: si el panel cambia una fila, la notificacion dice lo mismo
    que el panel. Si falta una fila o uno de sus idiomas, no se compone nada a
    mano. */
@@ -141,7 +141,7 @@ function consejoDelDia(y, m, d) {
   return CONSEJOS[(n + CONSEJOS.length) % CONSEJOS.length];
 }
 /* El titulo de la guia y debajo la fila: un salto de linea, que vale igual en
-   los diez idiomas (los dos puntos no se escriben igual en frances ni en
+   los once idiomas (los dos puntos no se escriben igual en frances ni en
    chino). */
 function textoConsejo(panel, c, lang) {
   return filaSOS(panel, c[1], lang) + '\n' + filaSOS(panel, c[2], lang);
@@ -223,7 +223,7 @@ async function main() {
   console.log(`Frase del dia #${idx}: "${fraseHoy.es}"`);
 
   /* El consejo del domingo, si toca. Antes de enviar nada se compone en los
-     diez idiomas: si falla una fila, ese domingo va la frase de siempre. */
+     once idiomas: si falla una fila, ese domingo va la frase de siempre. */
   let consejo = consejoDelDia(now.year, now.month, now.day), panel = null;
   if (consejo) {
     try {
@@ -388,7 +388,7 @@ async function semaforoDecidir(salida) {
   try { antes = JSON.parse(fs.readFileSync(AVISO_ESTADO, 'utf8')); } catch (e) { antes = null; }
   const d = decidirSemaforo(actual, antes, Date.now(), canaryParts().hour);
   console.log(d.motivo);
-  /* El aviso, compuesto en los diez idiomas ANTES de apuntarlo como avisado:
+  /* El aviso, compuesto en los once idiomas ANTES de apuntarlo como avisado:
      si falta una fila, no se apunta nada y el flujo sale en rojo. */
   if (d.aviso) { const panel = leerPanelSOS(); for (const l of IDIOMAS_SOS) textoSemaforo(panel, d.aviso, l); }
   if (d.estado) {

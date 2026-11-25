@@ -4,7 +4,7 @@
    que abre sin cobertura. tools/fuente.js y tools/fuente.py lo pegan al final
    del fuente para las herramientas (CARGA-PEREZOSA).
 
-   QUE ES. Lo que hay que hacer ante una emergencia en Tenerife, en los diez
+   QUE ES. Lo que hay que hacer ante una emergencia en Tenerife, en los once
    idiomas y de usted, sacado de fuentes oficiales: el volcan (el PEVOLCA,
    Decreto 112/2018, y la Directriz basica de riesgo volcanico, Orden
    INT/1071/2026), los terremotos y los maremotos (el IGN, Proteccion Civil y
@@ -83,7 +83,7 @@
   /* SIN-TRADUCIR: SOS_LOCALE codigos de idioma para Intl (fechas, horas y numeros), no textos */
   var SOS_LOCALE = {"es": "es-ES", "en": "en-GB", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "nl": "nl-NL", "zh": "zh-CN", "zht": "zh-TW", "bg": "bg-BG", "pl": "pl-PL", "ro": "ro-RO"};
 
-  /* Los textos, en los diez idiomas (las 8 filas del boton y del armazon van
+  /* Los textos, en los once idiomas (las 8 filas del boton y del armazon van
      en UI_TX de index.html). Se generan de i18n/<idioma>.json. */
   var EMERG_UI = {
     "sosSubtitulo": {"es": "Qué hacer ante una emergencia en Tenerife: volcán, terremoto, maremoto, incendio, temporal o un problema en el mar.", "en": "What to do in an emergency in Tenerife: volcano, earthquake, tsunami, fire, storm or trouble at sea.", "fr": "Que faire en cas d’urgence à Tenerife : volcan, séisme, tsunami, incendie, tempête ou problème en mer.", "de": "Was tun bei einem Notfall auf Teneriffa: Vulkan, Erdbeben, Tsunami, Brand, Unwetter oder Not auf dem Meer.", "it": "Cosa fare in un’emergenza a Tenerife: vulcano, terremoto, maremoto, incendio, maltempo o un problema in mare.", "nl": "Wat te doen bij een noodgeval op Tenerife: vulkaan, aardbeving, tsunami, brand, noodweer of problemen op zee.", "zh": "在特内里费遇到紧急情况时该怎么做：火山、地震、海啸、火灾、恶劣天气或海上遇险。", "zht": "在特內里費遇到緊急情況時該怎麼做：火山、地震、海嘯、火災、惡劣天氣或海上遇險。", "bg": "Какво да правите при спешен случай на Тенерифе: вулкан, земетресение, цунами, пожар, буря или беда в морето.", "pl": "Co robić w razie zagrożenia na Teneryfie: wulkan, trzęsienie ziemi, tsunami, pożar, nawałnica albo kłopoty na morzu.", "ro": "Ce trebuie să faceți în caz de urgență în Tenerife: vulcan, cutremur, tsunami, incendiu, furtună sau o problemă pe mare."},

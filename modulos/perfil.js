@@ -19,7 +19,7 @@
    cadenas (ESTILOS y CUERPO, al final): app_preparar.js solo copia
    modulos/*.js a la app de la tienda, y unos ficheros sueltos faltarian alli.
 
-   LOS TEXTOS. PERFIL_UI son filas planas como las de UI_TX, en los diez
+   LOS TEXTOS. PERFIL_UI son filas planas como las de UI_TX, en los once
    idiomas, y se funden en UI_TX como hace el cielo con CIELO_UI: se piden
    con el tx() de la app, que ya sabe de plurales («a|b») y de {marcadores}.
    Las filas de la cuenta que ya existian no se copian: tx('cuentaBorrarBtn')
@@ -52,7 +52,7 @@
   /* Los textos de la pantalla (94), de los sets (47), de los avatares (284:
      235 y 49 de oro, que se llaman como su fiesta) y, al final, de los 28
      retirados (modulos/avatares.js: quien ya llevaba uno lo conserva y su nombre
-     tiene que salir), en los diez idiomas. El trato, de usted (Jerome, 21 de octubre). Se
+     tiene que salir), en los once idiomas. El trato, de usted (Jerome, 21 de octubre). Se
      quedan como estan, porque son la voz de quien usa la app: «Sorpréndeme»,
      los titulos chinos con 我的 y «Acepto». */
   var PERFIL_UI = {

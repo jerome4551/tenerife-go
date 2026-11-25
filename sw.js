@@ -67,7 +67,7 @@ const CORE = [
      1 de noviembre: el modulo, aqui y «red primero» abajo, como el perfil. Sus datos
      (datos/cuerpo/*.json: los 533 ejercicios, uno comun y uno por idioma, y desde el 3 de
      noviembre las respuestas del asistente y las guias de los deportes, uno por idioma) no se
-     precargan: son los diez idiomas y cada persona lee uno. Se guardan al usarlos, tambien
+     precargan: son los once idiomas y cada persona lee uno. Se guardan al usarlos, tambien
      «red primero», y asi sin conexion sale lo ultimo que se abrio. Lo mismo el fondo del mapa
      de «Cruce la isla» (9 de noviembre de 2026, bloque 8: datos/cuerpo/isla-relieve-dia.webp y
      -noche.webp, unos 41 y 28 kB, de tools/cuerpo_isla_relieve.py): se guarda la primera vez que

@@ -27,7 +27,7 @@
    · Los tours: «app» (la app entera, por capitulos), «cielo» (el panel
      «Cielo de Tenerife», pestaña a pestaña) y «cuerpo» (la pantalla «Su
      cuerpo», de arriba abajo, sin anotar nada ni cambiar de vista).
-   · Sus textos, en los diez idiomas (GUIA_UI), de usted.
+   · Sus textos, en los once idiomas (GUIA_UI), de usted.
 
    COMO LLEGA
    No se pide al arrancar: lo pide el cargador de index.html (bloque TOUR) al
@@ -43,7 +43,7 @@
    las herramientas guardan 99 para saltarlos todos), «tenerife.tour.cielo» y
    «tenerife.tour.cuerpo». La voz no se guarda: cada tour empieza callado.
 
-   tools/auditar_tour.js recorre los tres tours enteros en los diez idiomas y
+   tools/auditar_tour.js recorre los tres tours enteros en los once idiomas y
    en cuatro tamaños de movil. */
 (function () {
   'use strict';
@@ -52,7 +52,7 @@
   var N = 0;
 
   /* ───────────────────────── textos ─────────────────────────
-     Una fila por texto, en los diez idiomas, como las de UI_TX: las leen las
+     Una fila por texto, en los once idiomas, como las de UI_TX: las leen las
      herramientas de idiomas de tools/ (el fichero se les pega al fuente,
      CARGA-PEREZOSA). De usted en todos; el polaco, impersonal. Las cifras no se
      escriben: {n} lugares, {L} idiomas, {C} costas y {S} pasos se cuentan al abrir

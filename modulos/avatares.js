@@ -10,7 +10,7 @@
    para quien ya los tenia (RETIRADOS, abajo).
    Se expone window.TG_AVATARES = { sets, porId, set, svg, total, oros, esOro,
    retirados, esRetirado, ventana, disponible, proxima, ANIM, ANIM_PIEZAS }.
-   Los nombres (10 idiomas) viven en PERFIL_UI (perfil-i18n.json), no aquí. */
+   Los nombres (11 idiomas) viven en PERFIL_UI (perfil-i18n.json), no aquí. */
 (function () {
   'use strict';
 

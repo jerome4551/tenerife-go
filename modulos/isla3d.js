@@ -29,7 +29,7 @@
    DEM, DEM_NOTA y DEM_RESPONSABILIDAD: DEM_FUENTES) y © OpenStreetMap.
 
    tools/auditar_isla3d.js lo abre de verdad en un movil emulado, sin red,
-   en los diez idiomas, y comprueba lo que dibuja. */
+   en los once idiomas, y comprueba lo que dibuja. */
 (function () {
   'use strict';
 

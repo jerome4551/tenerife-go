@@ -23,7 +23,7 @@
    adultos (los niveles del mapa: 0, 1-4, 5-9, 10 o más). Nada de porcentajes de
    recuperación ni de calorías: solo lo anotado y su fecha.
 
-   LOS TEXTOS. CUERPO_UI son filas planas como las de UI_TX, en los diez idiomas y de usted,
+   LOS TEXTOS. CUERPO_UI son filas planas como las de UI_TX, en los once idiomas y de usted,
    y se funden en UI_TX como hace el perfil con PERFIL_UI: se piden con el tx() de la app.
 
    LO QUE VIENE DE LA PERSONA va por textContent. innerHTML, solo para el cuerpo de la
@@ -39,7 +39,7 @@
    solo se lee el año de nacimiento, para elegir la recomendación de la OMS. */
 (function () {
   'use strict';
-  /* Los textos de la pantalla, en los diez idiomas (694 filas). */
+  /* Los textos de la pantalla, en los once idiomas (694 filas). */
   var CUERPO_UI = {
     "cuerpoTitulo": {"es": "Su cuerpo", "en": "Your body", "fr": "Votre corps", "de": "Ihr Körper", "it": "Corpo", "nl": "Uw lichaam", "zh": "我的身体", "zht": "我的身體", "bg": "Вашето тяло", "pl": "Ciało", "ro": "Corp"},
     "cuerpoLema": {"es": "Sus músculos, su semana y su personaje", "en": "Your muscles, your week and your character", "fr": "Vos muscles, votre semaine et votre personnage", "de": "Ihre Muskeln, Ihre Woche und Ihre Figur", "it": "Muscoli, settimana e personaggio", "nl": "Uw spieren, uw week en uw personage", "zh": "肌肉、一周训练和形象", "zht": "肌肉、一週訓練和形象", "bg": "Вашите мускули, вашата седмица и вашият герой", "pl": "Mięśnie, tydzień i postać", "ro": "Mușchii, săptămâna și personajul dumneavoastră"},
