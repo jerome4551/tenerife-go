@@ -12,7 +12,7 @@
  *   metadata/<loc>/name.txt, subtitle.txt, description.txt, keywords.txt,
  *   promotional_text.txt, support_url.txt, marketing_url.txt, privacy_url.txt
  *   (una carpeta por localizacion de App Store Connect: es-ES, en-GB, en-US,
- *   fr-FR, de-DE, it, nl-NL, zh-Hans, zh-Hant, pl; el bulgaro no existe en
+ *   fr-FR, de-DE, it, nl-NL, zh-Hans, zh-Hant, pl, ro; el bulgaro no existe en
  *   la tienda y no se escribe); metadata/copyright.txt, primary_category.txt,
  *   secondary_category.txt; metadata/review_information/notes.txt (las notas
  *   al revisor, de LANZAMIENTO-APP-STORE.md §5.5).
@@ -21,7 +21,7 @@
  *   «6,1"» y 2064x2752 el iPad de 13"), con el numero delante para el orden.
  *
  * --comprobar: cada fichero con su limite (nombre 30, subtitulo 30, promocion
- *   170, descripcion 4000, palabras clave 100 bytes), las diez carpetas, la
+ *   170, descripcion 4000, palabras clave 100 bytes), las once carpetas, la
  *   variante en-US distinta de en-GB, y que las capturas, si las hay, son de
  *   los tamanos que Apple pide.
  */

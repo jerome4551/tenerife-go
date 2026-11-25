@@ -12,11 +12,11 @@
  * barra de abajo.
  *
  * QUE MIRA, con los textos de PWA_TX tal cual estan en index.html:
- *   · en los diez idiomas, en Safari del iPhone: el banner sale, con sus
+ *   · en los once idiomas, en Safari del iPhone: el banner sale, con sus
  *     textos, de margen a margen, sin desbordar ni tapar la barra de abajo;
  *     «Instalar» lo esconde del todo (fuera de la pantalla y sin verse) y
  *     ensena los pasos de Safari, con lo de iOS 26 («•••»);
- *   · en los diez idiomas, en el navegador de Instagram: el banner dice que
+ *   · en los once idiomas, en el navegador de Instagram: el banner dice que
  *     desde ahi no se puede y como seguir; sus dos pasos (salir al navegador
  *     y, alli, añadirla) y «Copiar el enlace», que copia la direccion sin lo
  *     que añade la otra app (?fbclid=…);

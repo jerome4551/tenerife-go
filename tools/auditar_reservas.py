@@ -14,7 +14,8 @@ POR QUE EXISTE
 
 QUE MIRA
   Cada `<objeto>.clave || '…'` del fuente cuya clave pertenezca a los objetos de
-  idioma: la clave tiene que estar definida en los DIEZ. Una clave que no esta
+  idioma: la clave tiene que estar definida en TODOS (los de SUPPORTED_LANGS: once
+  desde el interruptor del rumano). Una clave que no esta
   en ninguno tambien es fallo: es exactamente el caso de favAdd.
 
   Y el texto que el codigo escribe A MANO en la pagina (22 de octubre de 2026):
@@ -37,13 +38,19 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LITERALES_FIJOS = {
     'Abrir Tenerife Go': 'el enlace que sale si otra web mete la app en un marco: corre antes '
                          'que la app y sus tablas de idioma (index.html, al principio)',
-    '📡 GPS': 'el boton de posicion del panel de administracion: GPS se dice igual en los diez idiomas',
+    '📡 GPS': 'el boton de posicion del panel de administracion: GPS se dice igual en los once idiomas',
 }
 
 
 def main():
     s = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
-    # Los objetos de idioma se reconocen por shareBtn, que tienen los diez.
+    # Cuantos idiomas tiene la app: los de SUPPORTED_LANGS (el interruptor del rumano, 22-11-2026: aqui habia un 10
+    # escrito, y con el rumano encendido una clave sin su fila rumana, en 10 de 11, seguia en verde).
+    langs = re.search(r'SUPPORTED_LANGS\s*=\s*\[([^\]]*)\]', s)
+    N = len(re.findall(r'[a-z]+', langs.group(1))) if langs else 0
+    if N < 2:
+        print('  MAL: no encuentro SUPPORTED_LANGS en index.html')
+        return 1
     usos = {}
     for m in re.finditer(r"\b(?:L|t\(\)|T|tx|lang|LL)\.(\w+)\s*\|\|\s*(['\"`])((?:(?!\2).){0,60})\2", s):
         usos.setdefault(m.group(1), set()).add(m.group(3))
@@ -58,13 +65,13 @@ def main():
     # Una reserva que no es texto («A→B», o vacia) y cuya clave no existe en
     # ningun idioma es un valor fijo a proposito, no una traduccion que falta.
     mal = {k: v for k, v in defin.items()
-           if v < 10 and not (v == 0 and not any(es_texto(r) for r in usos[k]))}
+           if v < N and not (v == 0 and not any(es_texto(r) for r in usos[k]))}
     print('=== texto de reserva en castellano ===')
     print('  claves con reserva en el fuente ........ %d' % len(usos))
-    print('  definidas en los diez idiomas .......... %d' % (len(usos) - len(mal)))
+    print('  definidas en los once idiomas .......... %d' % (len(usos) - len(mal)))
     print('  FALTAN EN ALGUN IDIOMA ................. %d' % len(mal))
     for k in sorted(mal):
-        print('    %-22s en %d de 10 · sale «%s»' % (k, mal[k], ' / '.join(sorted(usos[k]))))
+        print('    %-22s en %d de %d · sale «%s»' % (k, mal[k], N, ' / '.join(sorted(usos[k]))))
 
     fuentes = [('index.html', s)] + [
         (os.path.join('modulos', f), open(os.path.join(RAIZ, 'modulos', f), encoding='utf-8').read())

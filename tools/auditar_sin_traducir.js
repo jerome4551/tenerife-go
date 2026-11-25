@@ -5,7 +5,7 @@
  * auditar_web.js mira las tablas de idiomas. Ninguno de los dos ve el texto
  * escrito directamente en el marcado. Parte de ese texto es solo relleno que
  * applyUiTx() repinta al arrancar —y entonces no falla nada—, y parte no lo
- * repinta nadie: sale en castellano en los nueve idiomas.
+ * repinta nadie: sale en castellano en los otros diez idiomas.
  *
  * COMO SE DISTINGUEN SIN ADIVINAR: se pinta la pagina en castellano, se
  * apunta cada nodo de texto, se pide el bulgaro y se vuelve a mirar. El
@@ -154,7 +154,7 @@ const LISTA = process.argv.indexOf('--lista') !== -1;
   P('nodos sin pareja entre las dos fotos', sinPareja + (sinPareja > c.length * 0.1 ? '   <--  MAL: demasiados, el informe no es de fiar' : ''));
   if (LISTA) for (const z of ['interfaz', 'privacidad'])
     grupo[z].forEach(x => console.log('   ' + z.padEnd(11) + (x.atr || 'texto').padEnd(11) + String(x.id).slice(0, 24).padEnd(26) + x.t.slice(0, 58)));
-  if (grupo.interfaz.length) console.log('      <--  MAL: eso sale igual en los nueve idiomas');
+  if (grupo.interfaz.length) console.log('      <--  MAL: eso sale igual en los otros diez idiomas');
   process.exitCode = grupo.interfaz.length ? 1 : 0;
   await b.close();
 })();

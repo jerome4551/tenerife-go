@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Los rotulos de la app en los diez idiomas, sacados de index.html tal y como
+/* Los rotulos de la app en los once idiomas, sacados de index.html tal y como
  * se pintan: LANGS (con AUTH_STRINGS y el chino tradicional encima del
  * simplificado, igual que en la pagina), UI_TX entera (sus once trozos) y las
  * tablas de los modulos que llevan su propio texto (escuchar, visitado,

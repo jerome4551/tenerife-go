@@ -10,7 +10,7 @@
  * que se ve es la app tal cual (los rotulos, si Jerome los quiere, se ponen
  * encima despues). La noche del cielo es fija (la de las Geminidas de 2026),
  * y el plan de «Organice su dia» tambien (la suerte, fija), para que las
- * capturas sean las mismas en cada pasada y en los diez idiomas; los avisos
+ * capturas sean las mismas en cada pasada y en los once idiomas; los avisos
  * de AEMET y los precios salen de las copias de prueba, como en
  * barrido_pantallas.js.
  *
@@ -19,7 +19,7 @@
  * PWA (ⓘ, «Informacion de la app»). Si la pagina no lleva la marca, para.
  *     node tools/app_preparar.js && python3 -m http.server 8766 --directory app/www &
  *     node tools/capturas_app_store.js 8766                 es y en
- *     node tools/capturas_app_store.js 8766 --idiomas=todos  los diez
+ *     node tools/capturas_app_store.js 8766 --idiomas=todos  los once
  *     node tools/capturas_app_store.js 8766 --idiomas=fr,de
  *     node tools/capturas_app_store.js 8766 --idiomas=todos --solo=ficha   solo ese estado (el numero se conserva)
  *
@@ -71,7 +71,7 @@ const ESTADOS = `window.__capturas = [
      otro plan, alguno con lo que no se ensena: el 30 de octubre de 2026, en
      polaco, a comer en la Bodega Frontos, que su ficha da por cerrada al
      publico, y en castellano, el mirador de Las Teresitas, cerrado. Con la
-     suerte fija, el mismo plan en los diez idiomas y en cada pasada: medio
+     suerte fija, el mismo plan en los once idiomas y en cada pasada: medio
      dia, Naturaleza y Playa, en guagua, semilla 42 (los Lajiales de Fasnia;
      en la 111, 42 minutos, a comer al Café al Mar de Porís de Abona; y a pie,
      la Playa del Porís y su embarcadero: arriba se ven la linea y la pausa

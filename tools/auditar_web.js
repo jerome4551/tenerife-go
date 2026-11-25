@@ -581,7 +581,7 @@ function revisar(tablas, o) {
   console.log('  ' + (okRepe ? 'OK ' : 'MAL') + ' tres aperturas dejan UN saludo, no tres   (' + saludo.repes + ')');
   const okIdi = saludo.malIdioma.length === 0;
   console.log('  ' + (okIdi ? 'OK ' : 'MAL') + ' el saludo y su remite siguen al idioma en los ' +
-              (saludo.malIdioma.length ? '' : '') + 'diez');
+              (saludo.malIdioma.length ? '' : '') + 'once');
   saludo.malIdioma.forEach(m => console.log('      <--  ' + m));
   const okHist = saludo.tras.length === 2 && saludo.tras[0] === saludo.tras[1] && saludo.tras[0] > 1;
   console.log('  ' + (okHist ? 'OK ' : 'MAL') + ' con conversacion por medio no se reescribe   (' +

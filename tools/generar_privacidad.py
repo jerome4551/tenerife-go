@@ -6,14 +6,14 @@ misma pasada:
   · index.html: las filas pp* de UI_TX y el panel (#privacy-panel), en
     castellano y con data-tx, que la app traduce al vuelo;
   · privacidad.html: la pagina publica que pide Google Play
-    (LANZAMIENTO-PLAY.md 1.3, 16 de octubre de 2026), con los diez idiomas
+    (LANZAMIENTO-PLAY.md 1.3, 16 de octubre de 2026), con los once idiomas
     enteros y legibles sin JavaScript (tools/pagina_fija.py).
 
 Los dos salen de la misma funcion, cuerpo(), asi que no pueden decir cosas
 distintas.
 
 La politica es texto legal: tiene que decir lo que la app hace, y lo que la
-app hace cambia. Por eso vive en diez ficheros revisables y no suelta dentro
+app hace cambia. Por eso vive en once ficheros revisables y no suelta dentro
 de 37.000 lineas de HTML. Si un idioma no tiene todas las claves, no escribe
 nada.
 

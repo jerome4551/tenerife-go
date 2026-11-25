@@ -8,7 +8,7 @@
  *
  * QUE HAY DENTRO. Solo numeros y designaciones: posiciones J2000, brillos,
  * tamanos, el nivel de instrumento y los meses buenos. NI UN TEXTO PARA EL
- * USUARIO: los nombres en los diez idiomas van con el codigo del panel, en
+ * USUARIO: los nombres en los once idiomas van con el codigo del panel, en
  * modulos/cielo.js, donde los ven las herramientas de idiomas (tools/fuente.js
  * lo pega al fuente; este fichero no lo lee nadie mas que el panel).
  *

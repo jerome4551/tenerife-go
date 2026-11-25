@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* probar_notificacion_idioma.js — la notificacion diaria llega en el idioma de
- * cada movil, en los diez idiomas, y lo sigue si se cambia.
+ * cada movil, en los once idiomas, y lo sigue si se cambia.
  *
  * EL HUECO QUE TAPA
  *   Jerome, 20 de octubre de 2026: «¿verificaste que las notificaciones se
@@ -18,12 +18,12 @@
  *      permiso concedido (el service worker y el push, de mentira: aqui no
  *      hay movil). Se escucha lo que manda a guardar_push_sub():
  *        · al abrir, la suscripcion sale con el idioma de la app;
- *        · al cambiar a cada uno de los otros nueve, sale otra vez, con el
+ *        · al cambiar a cada uno de los otros diez, sale otra vez, con el
  *          nuevo; volver a elegir el mismo no manda nada;
  *        · la tarjeta que pide el permiso (pushPedir) y los avisos de PUSH_TX
  *          salen en el idioma de la app (los dos viven dentro de una funcion:
  *          la app los deja en window.TG_PUSH para esto).
- *   2. enviar-notificacion.js, con Supabase y web-push de mentira: diez
+ *   2. enviar-notificacion.js, con Supabase y web-push de mentira: once
  *      suscripciones, una por idioma, mas una con un idioma que no existe y
  *      otra sin idioma. Cada una tiene que recibir el titulo y la frase del
  *      dia de SU idioma, sacados de frases.json por cuenta propia; las dos

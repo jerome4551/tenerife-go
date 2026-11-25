@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* barrido_pantallas.js — lo que se VE en pantalla, en los diez idiomas.
+/* barrido_pantallas.js — lo que se VE en pantalla, en los once idiomas.
  *
  *     python3 -m http.server 8820 &      (desde la raiz del repo)
  *     node tools/barrido_pantallas.js 8820 [--lista]

@@ -24,7 +24,7 @@ T = textos('borrar-cuenta')
 R = rotulos(['UI.cuentaBorrarPagina', 'UI.navAccount', 'LANGS.authLogoutBtn',
              'UI.cuentaBorrarBtn', 'UI.cuentaBorrarSi', 'UI.ppTitulo'])
 
-# Los huecos de cada texto, iguales en los diez idiomas: un idioma que se
+# Los huecos de cada texto, iguales en los once idiomas: un idioma que se
 # comiera {correo} dejaria la pagina sin la direccion a la que escribir.
 for k in T['es']:
     huecos = sorted(set(p.split('}')[0] for p in T['es'][k].split('{')[1:]))

@@ -234,7 +234,7 @@
 (function () {
   var M = window.TG_MUESTRA, ENT = window.TG_ENTRENADOR;
   var ORDEN = ['cuadriceps', 'gluteos', 'isquios', 'pantorrilla', 'pecho', 'dorsal', 'espalda_alta', 'hombros', 'biceps', 'triceps', 'antebrazo', 'core'];
-  var IDIOMAS = [['es', 'Español'], ['en', 'English'], ['fr', 'Français'], ['de', 'Deutsch'], ['it', 'Italiano'], ['nl', 'Nederlands'], ['zh', '简体中文'], ['zht', '繁體中文'], ['bg', 'Български'], ['pl', 'Polski']];
+  var IDIOMAS = [['es', 'Español'], ['en', 'English'], ['fr', 'Français'], ['de', 'Deutsch'], ['it', 'Italiano'], ['nl', 'Nederlands'], ['zh', '简体中文'], ['zht', '繁體中文'], ['bg', 'Български'], ['pl', 'Polski'], ['ro', 'Română']];
   var ids = Object.keys(M.ej).filter(function (id) { return ENT.tiene(id); });
   var lang = 'es', actual = 'sentadilla-peso-corporal', R = null;
   try { var g = localStorage.getItem('jerome-idioma'); if (g && IDIOMAS.some(function (q) { return q[0] === g; })) lang = g; } catch (e) {}
@@ -309,7 +309,7 @@
   document.getElementById('barra').style.width = (100 * ids.length / M.total).toFixed(1) + '%';
 
   /* la voz de este teléfono: cuál elige el vídeo y cuáles enseña el navegador */
-  var FRASE = { es: 'Hola, soy Jérôme. Vamos paso a paso.', en: 'Hello, I am Jérôme. Let us take it step by step.', fr: 'Bonjour, je suis Jérôme. Allons-y étape par étape.', de: 'Hallo, ich bin Jérôme. Gehen wir Schritt für Schritt vor.', it: 'Ciao, sono Jérôme. Andiamo passo dopo passo.', nl: 'Hallo, ik ben Jérôme. We gaan stap voor stap.', zh: '你好，我是 Jérôme。我们一步一步来。', zht: '你好，我是 Jérôme。我們一步一步來。', bg: 'Здравейте, аз съм Jérôme. Да вървим стъпка по стъпка.', pl: 'Dzień dobry, jestem Jérôme. Zróbmy to krok po kroku.' };
+  var FRASE = { es: 'Hola, soy Jérôme. Vamos paso a paso.', en: 'Hello, I am Jérôme. Let us take it step by step.', fr: 'Bonjour, je suis Jérôme. Allons-y étape par étape.', de: 'Hallo, ich bin Jérôme. Gehen wir Schritt für Schritt vor.', it: 'Ciao, sono Jérôme. Andiamo passo dopo passo.', nl: 'Hallo, ik ben Jérôme. We gaan stap voor stap.', zh: '你好，我是 Jérôme。我们一步一步来。', zht: '你好，我是 Jérôme。我們一步一步來。', bg: 'Здравейте, аз съм Jérôme. Да вървим стъпка по стъпка.', pl: 'Dzień dobry, jestem Jérôme. Zróbmy to krok po kroku.', ro: 'Bună ziua, sunt Jérôme. Să o luăm pas cu pas.' };
   function voz() {
     var cual = document.getElementById('voz-cual'), por = document.getElementById('voz-por'), ul = document.getElementById('voz-lista'), bot = document.getElementById('voz-probar'), v;
     try { v = ENT.voces(lang); } catch (e) { v = null; }

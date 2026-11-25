@@ -19,7 +19,7 @@ ellos pide a su vez, declarados igual en su propio texto (16 de noviembre de
 
 Y los textos que van un fichero por idioma (22 de octubre de 2026),
 declarados con «IDIOMAS-PEREZOSOS: <carpeta>»: los <carpeta>/<idioma>.json de
-los idiomas de SUPPORTED_LANGS se juntan en una tabla de filas de diez
+los idiomas de SUPPORTED_LANGS se juntan en una tabla de filas de once
 idiomas (var IDIOMAS_<CARPETA> = {...}) detras de los modulos. Tiene que
 salir byte a byte lo mismo que en tools/fuente.js (lo comprueba el main).
 
@@ -151,7 +151,7 @@ if __name__ == '__main__':
     for ruta, texto in perezosos(index):
         print('%s: %d lineas, %d bytes (carga perezosa)' % (ruta, len(texto.split('\n')), len(texto.encode('utf-8'))))
     for d, nombre, texto in por_idioma(index):
-        print('%s/<idioma>.json: %d filas de diez idiomas, juntas en %s' % (d, len(texto.split('\n')) - 2, nombre))
+        print('%s/<idioma>.json: %d filas de once idiomas, juntas en %s' % (d, len(texto.split('\n')) - 2, nombre))
     import subprocess, json
     js = subprocess.run(['node', '-e', "process.stdout.write(require('./tools/fuente').html())"],
                         cwd=RAIZ, stdout=subprocess.PIPE).stdout.decode('utf-8')

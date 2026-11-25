@@ -148,7 +148,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
         /* Si el glosario del idioma aun no ha llegado, TG_ETIQUETAS devuelve el
            castellano y la comparacion de arriba da verde comparando castellano
            con castellano. Vilaflor lleva «Gasolinera», «Sur» y «Montaña», que
-           se traducen en los nueve: alguna TIENE que cambiar. */
+           se traducen en los otros diez: alguna TIENE que cambiar. */
         if (lang !== 'es' && chips.length && chips.every((c, k) => c === fx.tags[k]))
           o.hoja.mal.push('ninguna etiqueta cambia: ' + chips.slice(0, 4).join(' · '));
         /* El horario de una gasolinera (sale del registro oficial, IDEESS)

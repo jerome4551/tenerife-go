@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* probar_organiza.js — «Organiza tu día», entero, en los diez idiomas
+/* probar_organiza.js — «Organiza tu día», entero, en los once idiomas
  * (13 de octubre de 2026).
  *
  * POR QUE EXISTE. Jerome: «Cámbialo también en organiza tu día. Verifica el
@@ -68,7 +68,7 @@
  * seguidos: «Día completo si es demasiado tiempo» y «deja dos guachiche
  * seguidos lo que no es realmente interesante después de comer, comer otra
  * vez»):
- *   · los topes del codigo son los de las tarjetas, en los diez idiomas
+ *   · los topes del codigo son los de las tarjetas, en los once idiomas
  *     (DP_TOPE_MIN, DP_MIN_PARADAS y DP_STOPS contra «7–8 h · 5–6 paradas»);
  *   · donde se come, con una lista propia de tipos de ficha: cada lugar de
  *     gastronomia es de comer o una visita, ninguno sin clasificar, y la app

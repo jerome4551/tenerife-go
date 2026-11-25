@@ -140,7 +140,7 @@ async function meter(fichero) {
     }
     if (!Object.keys(nuevo).length) { vacias++; continue; }
     /* Se lee lo que ya hay y se funde, en vez de reemplazar: subir un
-       idioma no puede borrar los otros nueve. */
+       idioma no puede borrar los otros diez. */
     const [actual] = await pedir(fila.tabla + '?id=eq.' + encodeURIComponent(fila.id) + '&select=i18n');
     const fundido = Object.assign({}, (actual && actual.i18n) || {});
     for (const l of Object.keys(nuevo)) fundido[l] = Object.assign({}, fundido[l] || {}, nuevo[l]);

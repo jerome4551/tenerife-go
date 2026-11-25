@@ -162,7 +162,7 @@ for (const [id, inf] of Object.entries(indice)) {
       if (x && x.a.indexOf(v) < 0) mal(L + '/' + id + ': no dice «' + v + '» (' + clave + '), que es como se llama en pantalla');
     }
   }
-  // y la del boton de contacto, igual en los diez
+  // y la del boton de contacto, igual en los once
   for (const L of IDIOMAS) {
     const x = porId(L).get(id);
     if (x && !!inf.contacto !== (x.c === 1)) mal(L + '/' + id + ': el boton de contacto no coincide con el indice');

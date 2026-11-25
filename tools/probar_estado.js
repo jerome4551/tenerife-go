@@ -17,7 +17,7 @@
  *     «restringido», con su
  *     fuente (https) y la fecha en que se verifico (AAAA-MM-DD); y los dos de
  *     Jerome, con el suyo;
- *   · que sigan en el mapa con su aviso: su ficha, en los diez idiomas,
+ *   · que sigan en el mapa con su aviso: su ficha, en los once idiomas,
  *     empieza por «⚠️»;
  *   · que no se propongan en ninguna parte: «Organice su día» y su «Otro», el
  *     dado, «¿Dónde me baño hoy?», las sugerencias de «Ruta del día» y las

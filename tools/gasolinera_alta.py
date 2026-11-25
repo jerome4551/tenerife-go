@@ -123,7 +123,7 @@ def fijar(corregir):
 
 def retirar(ideess):
     """Quita de la app la ficha GENERADA de una estacion: index.html, los nueve
-       idiomas y el polaco fuente. Es el gemelo del alta, para no tocar cinco
+       idiomas, el polaco fuente y el rumano fuente. Es el gemelo del alta, para no tocar cinco
        ficheros a mano. Solo retira fichas «gas-<ideess>-...»: las antiguas no
        las genero esta herramienta y no las toca."""
     src = open(os.path.join(RAIZ, 'index.html'), encoding='utf-8').read()
@@ -156,7 +156,7 @@ def retirar(ideess):
 
 def horas_antiguas(ver=False):
     """El HORARIO de las fichas antiguas enlazadas, desde el registro y en los
-       diez idiomas. Solo el horario: el nombre y la descripcion se rehacen en la
+       once idiomas. Solo el horario: el nombre y la descripcion se rehacen en la
        sesion 91. Hace falta ya porque un horario equivocado no es estilo, es un
        dato falso: «Repsol TF-1 Granadilla» decia 24 h y el registro dice 06:00 a
        00:00 (la de 24 h es su gemela del otro lado de la autopista)."""
@@ -273,7 +273,7 @@ def antiguas_91(ver=False):
        registro, como cualquier otra. Conservan su id (favoritos, enlaces) y su
        pin, que el LEEME dio por bueno (misma marca a <=150 m). Lo demas sale de
        la plantilla: nombre, categoria, descripcion, horario, direccion,
-       etiquetas y color, en los diez idiomas. Con eso se van los «Cepsa» (es
+       etiquetas y color, en los once idiomas. Con eso se van los «Cepsa» (es
        Moeve), los TF que no eran el suyo («BP Guaza (TF-1 km 21)» esta en la
        TF-66), los telefonos que no salian de ninguna captura y las frases que
        nadie podia comprobar («Buen punto de parada», «Amplia y luminosa»). Lo

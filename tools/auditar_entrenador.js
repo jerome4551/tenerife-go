@@ -16,7 +16,7 @@
  *      motor todo lo que usa de él (la lista de lo que el motor declara, contada de verdad); y que al llegar un trozo
  *      aparecen sus coreografías y solo esas;
  *    · cada coreografía es de un ejercicio que existe, y tiene un tramo por cada paso de su ficha,
- *      en los diez idiomas;
+ *      en los once idiomas;
  *    · LA FICHA NO HA CAMBIADO desde que se hizo la coreografía: la huella de sus pasos en
  *      castellano es la apuntada (si cambia un paso, la coreografía se revisa antes de volver a
  *      construir; mientras tanto esto queda en rojo);
@@ -36,7 +36,7 @@
  *      existen, ninguna mano levantada se sale del cuadro y ninguna va más deprisa de lo que se ve;
  *    · la voz: con las voces que enseña un iPhone (las «Eloquence», robóticas), un PC o un Android,
  *      nunca se elige una robótica ni una de red, y si no hay ninguna que valga no se ofrece;
- *    · los textos propios (TG_ENTRENADOR.textos), en los diez idiomas y con sus {huecos};
+ *    · los textos propios (TG_ENTRENADOR.textos), en los once idiomas y con sus {huecos};
  *    · el módulo: sin eval, sin console.log, y sin innerHTML que reciba un texto de la ficha;
  *    · los enganches: el CARGA-PEREZOSA y la ruta en index.html, el precache y «red primero» en
  *      sw.js, y la ficha de modulos/cuerpo.js (el hueco del vídeo, y que se quita al salir). Y los de los trozos: que
@@ -46,12 +46,12 @@
  * 2. En Chromium. LOS TROZOS (pruebas/trozos.html: el motor solo, como lo carga la app): no se pide ninguno hasta que hace
  *    falta; pedir(id) trae el suyo, una vez, y ningún otro; si no llega o llega vacío, falla, y al pedirlo otra vez, llega;
  *    todo() trae los que faltan. Y móvil emulado (320 de ancho, el más estrecho): el vídeo de CADA ejercicio, entero,
- *    cuadro a cuadro, en castellano y en otro idioma (los nueve van rotando): acaba, dura lo que
+ *    cuadro a cuadro, en castellano y en otro idioma (los otros diez van rotando): acaba, dura lo que
  *    tiene que durar, lo que se lee en cada paso es el paso de la ficha, palabra por palabra, no
  *    hay ningún NaN en el dibujo y nada se sale de ancho; LA LEYENDA DE MÚSCULOS (16 de noviembre de 2026) va en su fila bajo el
- *    vídeo (en una pantalla baja, detrás de la tarjeta del paso) y, con los nombres de la app en los diez idiomas, no pisa el dibujo, el paso ni los mandos, ni se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
+ *    vídeo (en una pantalla baja, detrás de la tarjeta del paso) y, con los nombres de la app en los once idiomas, no pisa el dibujo, el paso ni los mandos, ni se sale de ancho; Jérôme no se sale del cuadro; y el dibujo está hecho solo de lo
  *    que el canvas de Samsung Internet sabe copiar (trazados, círculos, elipses y rectángulos). Y CADA SECUENCIA CABE EN SU PASO, en
- *    los diez idiomas: un paso dura lo que se tarda en leer su texto, no lo que dure su acción, y una secuencia más larga se
+ *    los once idiomas: un paso dura lo que se tarda en leer su texto, no lo que dure su acción, y una secuencia más larga se
  *    quedaría a medias al entrar el paso siguiente (la cuenta se coteja con lo que dura cada paso en el reproductor). Y A CÁMARA LENTA
  *    («½×», 14 de noviembre de 2026) se ve lo mismo, más despacio: el paso dura lo que su movimiento, la repetición va al acabar cada
  *    paso por el mismo punto, y de cerca todo dura lo mismo (con unos de muestra; en un pase parcial, con todos los que se piden).
@@ -90,7 +90,7 @@ const MARGEN = 4;                         /* px (de los 400 de ancho del dibujo)
 const COPIA = ['g', 'path', 'circle', 'ellipse', 'rect', 'defs', 'clipPath', 'linearGradient', 'radialGradient', 'stop', 'title', 'desc'];
 const SOLO = process.argv[3] || '';       /* '72' (un trozo de coreografías) o 'id1,id2': un pase parcial de la sección 2 */
 const SITIO = 'http://127.0.0.1:' + PUERTO + '/';
-const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 const HUECO = /\{(\w+)\}/g;
 let fallos = 0, hechos = 0;
 function ok(c, txt, det) { hechos++; if (c) console.log('  OK  ' + txt); else { fallos++; console.log('  MAL ' + txt + (det !== undefined ? '   -> ' + (typeof det === 'string' ? det : JSON.stringify(det)) : '')); } }
@@ -189,7 +189,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     LANGS.forEach(l => { const t = TX[l][id]; if (!t || !Array.isArray(t[1]) || t[1].length !== n) sinPasos.push(id + ' (' + l + ': ' + (t && t[1] ? t[1].length : 'no está') + ' pasos, la coreografía ' + n + ')'); });
     if (TX.es[id] && E.huellas[id] !== huella(TX.es[id][1])) otraFicha.push(id);
   });
-  ok(!sinPasos.length, 'cada coreografía tiene un tramo por cada paso de su ficha, en los diez idiomas', sinPasos.slice(0, 6));
+  ok(!sinPasos.length, 'cada coreografía tiene un tramo por cada paso de su ficha, en los once idiomas', sinPasos.slice(0, 6));
   ok(!otraFicha.length && Object.keys(E.huellas).length === ids.length, 'las fichas no han cambiado desde que se hicieron sus coreografías (la huella de los pasos en castellano)', otraFicha);
   ok(ids.every(id => E.tiene(id, TX.es[id][1].length)) && !E.tiene(ids[0], TX.es[ids[0]][1].length + 1) && !E.tiene('no-existe') && !E.tiene('toString') && !E.tiene('constructor'),
     'tiene(id, pasos): sí con los pasos de la ficha; no con otros, ni con un ejercicio sin coreografía');
@@ -293,7 +293,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
   /* cada secuencia cabe en su paso. Un paso dura lo que se tarda en leer su texto (80-reproductor.js: 4,4 s como poco, y 0,058 s por
      letra, o 0,16 por carácter en chino), no lo que dure su acción (salvo que el paso lo diga con «dura»: entonces, eso como poco);
      cuando entra el paso siguiente, la secuencia que no ha acabado se queda a medias (y «vuelve despacio» no llega a verse). Se mira
-     en los diez idiomas: manda el texto más corto. Lo que sobra tras la última postura, si es quedarse quieto en ella (mantener), no
+     en los once idiomas: manda el texto más corto. Lo que sobra tras la última postura, si es quedarse quieto en ella (mantener), no
      cuenta: eso sí puede pasar de largo. Y si el paso viene de un plano de cerca (el primero, tras la cabecera; o el que sigue a un
      consejo), su acción arranca cuando la cortinilla tapa: 0,25 s después.
      Se da por bueno en la sección 2, con la cuenta cotejada con lo que dura cada paso en el reproductor de verdad. */
@@ -371,6 +371,9 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
       ['un iPhone que aún no ha dicho qué voces tiene', IPHONE, [], 'es', null, true],
       ['un iPhone, en inglés, con robóticas y de broma', IPHONE, elo('en-GB').concat(elo('en-US'), [v('Zarvox', 'en-US', 'com.apple.speech.synthesis.voice.Zarvox'), v('Bad News', 'en-US', 'com.apple.speech.synthesis.voice.BadNews')]), 'en', null, true],
       ['un iPhone sin ninguna voz en búlgaro', IPHONE, elo('es-ES').concat([monica]), 'bg', null, false],
+      /* el rumano (el interruptor del rumano, 22-11-2026): la voz del iPhone, Ioana; y sin ella, ninguna */
+      ['un iPhone con Ioana, en rumano', IPHONE, elo('es-ES').concat([monica, v('Ioana', 'ro-RO', 'com.apple.voice.compact.ro-RO.Ioana')]), 'ro', 'Ioana', false],
+      ['un iPhone sin ninguna voz en rumano', IPHONE, elo('es-ES').concat([monica]), 'ro', null, false],
       ['un PC con una voz de red y una del sistema', PC, [v('Google español', 'es-ES', 'Google español', false), v('Microsoft Helena - Spanish (Spain)', 'es-ES', 'Microsoft Helena - Spanish (Spain)')], 'es', 'Microsoft Helena - Spanish (Spain)', false],
       ['un PC que solo tiene voces de red', PC, [v('Google español', 'es-ES', 'Google español', false)], 'es', null, false],
       ['un Android', ANDROID, [v('español España', 'es_ES', 'español España'), v('English United Kingdom', 'en_GB', 'English United Kingdom')], 'es', 'español España', false]
@@ -392,12 +395,12 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
       if (/"/.test(v)) cojos.push(k + ' (' + l + '): comillas dobles ASCII');
     });
   });
-  ok(filas.length >= 20 && !cojos.length, 'los textos del vídeo (' + filas.length + ' filas), en los diez idiomas y con sus {huecos}', cojos.slice(0, 6));
+  ok(filas.length >= 20 && !cojos.length, 'los textos del vídeo (' + filas.length + ' filas), en los once idiomas y con sus {huecos}', cojos.slice(0, 6));
   /* el nombre, en la forma de cada idioma, como en el tour (Jérôme, 11-11-2026: «En la forma correcta de la traducción»):
      «Jérôme» en los de letra latina; en búlgaro y en chino, la suya y nunca la latina */
   const NOMBRE = { bg: 'Жером', zh: '热罗姆', zht: '熱羅姆' };
   ok(LANGS.every(l => E.textos.entCon[l].includes(NOMBRE[l] || 'Jérôme') && (!NOMBRE[l] || !/J[eé]r[oô]me/i.test(E.textos.entCon[l])))
-     && !/\bJero\b/.test(modTodo.replace(/\/\*[\s\S]*?\*\//g, '')), 'el personaje se llama Jérôme en los diez idiomas, en la forma de cada uno («Жером», «热罗姆», «熱羅姆»), y ya no «Jero»');
+     && !/\bJero\b/.test(modTodo.replace(/\/\*[\s\S]*?\*\//g, '')), 'el personaje se llama Jérôme en los once idiomas, en la forma de cada uno («Жером», «热罗姆», «熱羅姆»), y ya no «Jero»');
   ok(!/\beval\s*\(|new Function|console\.log|document\.write/.test(modTodo), 'el módulo y sus trozos: sin eval, sin new Function, sin console.log, sin document.write');
   const conHtml = modTodo.split('\n').filter(l => /\.innerHTML\s*=/.test(l));
   ok(conHtml.length > 0 && conHtml.every(l => !/datos\.|\.texto|\bnombre\b|pasos|etiquetas|\btx\b/.test(l.replace(/\/\*.*?\*\//g, ''))), 'innerHTML (' + conHtml.length + ' veces) solo recibe dibujos e iconos del propio módulo, nunca un texto de la ficha',
@@ -497,7 +500,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     const total = await pg.evaluate(l => window.preparar(l), LANGS);
     info('datos de ' + total + ' ejercicios');
     /* LA LEYENDA DE MÚSCULOS (16 de noviembre de 2026). Iba dentro del dibujo, abajo a la izquierda, y tapaba a Jérôme (los pies, las
-       manos, las piernas) en muchos vídeos según el idioma: ahora va en su fila, debajo. Se mira en los diez idiomas y con los nombres
+       manos, las piernas) en muchos vídeos según el idioma: ahora va en su fila, debajo. Se mira en los once idiomas y con los nombres
        que pone la app (los de modulos/cuerpo.js; antes esta página ponía el identificador, que es más corto): que no pise el dibujo,
        que ninguna píldora se salga del ancho del reproductor (a 320 px, el móvil más estrecho) y que cada una lleve su nombre */
     const GRUPOS = {};
@@ -534,13 +537,15 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
     }
     await pg.setViewportSize({ width: 320, height: 640 });
     ok(Object.keys(GRUPOS).length === LANGS.length && !leyMal.length && leyVistas === idsVideo.length * LANGS.length && !leyAltaP.length && leyVistasP > 0,
-      'la leyenda de músculos, con los nombres de la app en los diez idiomas (' + leyVistas + ' vistas, a 320 × 640): en su fila, sin pisar el dibujo, la tarjeta del paso ni los mandos, ni salirse de ancho; en esa pantalla, que es baja, detrás de la tarjeta del paso, y en una alta (' + leyVistasP + ' vistas a 390 × 844), justo debajo del vídeo', leyMal.concat(leyAltaP).slice(0, 6));
+      'la leyenda de músculos, con los nombres de la app en los once idiomas (' + leyVistas + ' vistas, a 320 × 640): en su fila, sin pisar el dibujo, la tarjeta del paso ni los mandos, ni salirse de ancho; en esa pantalla, que es baja, detrás de la tarjeta del paso, y en una alta (' + leyVistasP + ' vistas a 390 × 844), justo debajo del vídeo', leyMal.concat(leyAltaP).slice(0, 6));
     info('la leyenda más alta: ' + leyAlta[0] + ' px · ' + leyAlta[1]);
     const peros = [], gestos = {}, tope = {}, dibujo = [], plegados = [], salen = [], arrimados = [], piezas = {}, noCopia = [], otraDur = []; let pasados = 0, cuadros = 0, mirados = 0, girados = 0, borron = 99, encuadrados = 0, cotejados = 0;
     for (let n = 0; n < idsVideo.length; n++) {
-      /* el idioma y el tema de cada uno, los de siempre (por su puesto entre todos), se pase entero o por partes */
+      /* el idioma y el tema de cada uno, los de siempre (por su puesto entre todos), se pase entero o por partes: el otro
+         idioma, por turno entre los que no son el castellano (desde el interruptor del rumano, 22-11-2026, diez; contado
+         de LANGS, para que otro idioma no se quede fuera) */
       const id = idsVideo[n], i = ids.indexOf(id);
-      for (const l of ['es', LANGS[1 + (i % 9)]]) {
+      for (const l of ['es', LANGS[1 + (i % (LANGS.length - 1))]]) {
         const m = await pg.evaluate(a => window.montar(a[0], a[1], a[2]), [id, l, i % 2 ? 'noche' : 'dia']);
         if (!m) { peros.push(id + ' (' + l + '): no se monta'); continue; }
         /* en castellano, desde la primera vista; en el otro idioma, desde la de «Girar» */
@@ -587,7 +592,7 @@ const huella = pasos => crypto.createHash('sha256').update(pasos.join('\n'), 'ut
       }
     }
     ok(!peros.length && pasados === idsVideo.length * 2, 'los ' + idsVideo.length + ' vídeos, enteros, en castellano y en otro idioma (' + pasados + ' pases, ' + cuadros + ' cuadros): acaban, duran lo suyo, se lee el paso de la ficha palabra por palabra, sin NaN y sin salirse de ancho', peros.slice(0, 8));
-    ok(!noCaben.length && !otraDur.length && secuencias > 0 && cotejados >= idsVideo.length * 2, 'cada secuencia cabe en su paso, en los diez idiomas (' + secuencias + ' secuencias de ' + conSec + ' ejercicios; la más justa, con ' + justa[0].toFixed(2) + ' s de margen: ' + justa[1] + '): un paso dura lo que se tarda en leerlo, no lo que dure su acción, y una secuencia más larga se quedaría a medias; la cuenta es la del reproductor (cotejada en ' + cotejados + ' pasos de estos ' + idsVideo.length + ' vídeos)', noCaben.concat(otraDur).slice(0, 8));
+    ok(!noCaben.length && !otraDur.length && secuencias > 0 && cotejados >= idsVideo.length * 2, 'cada secuencia cabe en su paso, en los once idiomas (' + secuencias + ' secuencias de ' + conSec + ' ejercicios; la más justa, con ' + justa[0].toFixed(2) + ' s de margen: ' + justa[1] + '): un paso dura lo que se tarda en leerlo, no lo que dure su acción, y una secuencia más larga se quedaría a medias; la cuenta es la del reproductor (cotejada en ' + cotejados + ' pasos de estos ' + idsVideo.length + ' vídeos)', noCaben.concat(otraDur).slice(0, 8));
     /* a cámara lenta («½×») se ve lo mismo que a velocidad normal, más despacio. El reloj del reproductor va a la velocidad de lo que se
        está viendo: un ejercicio, a la del Director (0,45); de cerca (la cabecera, un consejo, el cierre), a la suya. Así el paso de un
        ejercicio dura lo que su movimiento, la secuencia acaba dentro de él y la repetición va, al acabar cada paso y cada tanda, por el

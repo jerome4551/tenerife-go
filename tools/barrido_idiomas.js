@@ -25,7 +25,7 @@
 const fs = require('fs');
 const path = require('path');
 /* index.html Y los ficheros de datos que carga (datos/titsa.js): ver
-   tools/fuente.js. Las notas de las lineas de guagua van en diez idiomas y
+   tools/fuente.js. Las notas de las lineas de guagua van en once idiomas y
    viven en datos/titsa.js; al mudarlas, este barrido paso de 2.964 filas a
    2.959 sin dejar de dar verde. Y los modulos que se cargan al abrir su
    panel (modulos/cielo.js, 17 de octubre de 2026), que fuente.js pega

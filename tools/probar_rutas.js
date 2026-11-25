@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* probar_rutas.js — el panel de Rutas con trayectos de verdad, a horas fijas
- * y en los diez idiomas (12 de octubre de 2026).
+ * y en los once idiomas (12 de octubre de 2026).
  *
  * POR QUE EXISTE. Jerome pidio que el tour explicara el boton Rutas. Al
  * recorrerlo para escribirlo salio lo que ningun control miraba, porque
@@ -21,9 +21,9 @@
  *     haya guagua cuando la hay, y que cuando no la hay se diga el horario de
  *     las lineas que unen los dos puntos, no una frase de otra linea;
  *   · que tarde poco (cada plan, por debajo de 500 ms);
- *   · en los diez idiomas, lo que se ve: el aviso al elegir origen, el boton
+ *   · en los once idiomas, lo que se ve: el aviso al elegir origen, el boton
  *     tras calcular, el mensaje de sin parada y el de fuera de horario, y el
- *     texto que se comparte. Cada uno es la fila de su idioma, y en los nueve
+ *     texto que se comparte. Cada uno es la fila de su idioma, y en los diez
  *     que no son castellano no es igual al castellano.
  *
  *     node tools/probar_rutas.js [puerto]
@@ -89,7 +89,7 @@ const caso = (nombre, ok, detalle) => {
   r = await plan('ciudad-puerto-cruz', 'teide-teleforico', '08:00');
   caso('Puerto de la Cruz → Teleférico a las 08:00: la 348', r.directa === '348', desc(r));
 
-  console.log('\n=== lo que se ve, en los diez idiomas ===');
+  console.log('\n=== lo que se ve, en los once idiomas ===');
   const dentro = async (L) => pg.evaluate(async (L) => {
     setLang(L);
     const espera = ms => new Promise(res => setTimeout(res, ms));

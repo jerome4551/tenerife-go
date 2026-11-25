@@ -7,7 +7,7 @@ Es una pagina fija mas, con el armazon de tools/pagina_fija.py (cada idioma en s
 con #en, #de... y solo CSS; el JavaScript abre el idioma de la app o el del navegador), con dos
 diferencias: GitHub la sirve en la direccion rota, sea la que sea (/a/b/c), asi que el icono y el
 enlace a la app van con ruta absoluta (/icon-192.png, /), y lleva su propio titulo, distinto de su
-<h1>. Los textos vienen en diez idiomas; el rumano entra cuando se active, como todo lo demas.
+<h1>. Los textos vienen en los once idiomas (el rumano, desde el interruptor del rumano, 22-11-2026).
 
     python3 tools/generar_404.py              escribe la pagina
     python3 tools/generar_404.py --comprobar  solo comprueba (lo corre auditar.sh)

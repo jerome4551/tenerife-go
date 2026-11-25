@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* probar_cuerpo.js — «Su cuerpo» dentro de la app: se abre desde la tarjeta de la pestaña Cuerpo
- * del perfil, a pantalla completa, y se usa de verdad, en los diez idiomas.
+ * del perfil, a pantalla completa, y se usa de verdad, en los once idiomas.
  *
  *     node tools/probar_cuerpo.js PUERTO
  *
@@ -28,7 +28,7 @@
  *     texto y esos dos enlaces no salen; lo guardado con HTML, tampoco;
  *   - las fuentes en cada idioma (14): las notas que la entrega escribio en castellano en los
  *     titulos de las 961 fuentes («conjunto de datos», «folleto…», «barra»…) salen traducidas en
- *     los nueve idiomas, sin navegador (con la tabla y la funcion del propio modulo) y en una
+ *     los otros diez idiomas, sin navegador (con la tabla y la funcion del propio modulo) y en una
  *     ficha de verdad en tres idiomas;
  *   - los menores (15): el prototipo escribe el año de nacimiento a mano en tenerife.perfil (4c);
  *     aqui se escribe en el formulario del perfil, el de verdad, y se guarda con su boton, y «Su
@@ -43,7 +43,7 @@
  *     o una pregunta; el idioma con «Preguntar» abierto; y sin las respuestas, su aviso y
  *     «Reintentar» (18b). Y sin navegador (19): las respuestas y las guias que citan un texto de
  *     la pantalla, y la politica de privacidad que cita el boton de borrar, lo citan tal cual, en
- *     los diez idiomas. Y al bajar por la pestaña, la cabecera y las pestañas del perfil quedan
+ *     los once idiomas. Y al bajar por la pestaña, la cabecera y las pestañas del perfil quedan
  *     encima de «Su cuerpo», en sus cuatro modos, y por las esquinas de arriba de la barra pegada
  *     no asoma lo de debajo (20).
  *   - desde el 6 de noviembre de 2026, el bloque 1 del rediseño: en «Músculos», el maniqui lleva
@@ -54,28 +54,28 @@
  *     pelo largo, el toque llega al musculo de debajo y abre su hoja (7b); y la barra de
  *     «Comida» conserva su oro (18). Y el asistente, que decia «tres tonos de oro»: una pregunta
  *     por un color nuevo trae la respuesta de los colores, con los tres por su nombre (18); y, sin
- *     navegador, en los diez idiomas, las seis respuestas que hablan del mapa no nombran el oro
+ *     navegador, en los once idiomas, las seis respuestas que hablan del mapa no nombran el oro
  *     ni en lo que enseñan ni en lo que usan para buscar (ni, en chino, llaman «el color mas
  *     oscuro» al nivel mas alto), dicen rosa, naranja y amarillo por ese
  *     orden, y el buscador del propio modulo lleva a su respuesta las preguntas por cada color y
  *     la de por que el amarillo empieza en 10 (19b). Y la bandera de la playa: las preguntas por
- *     la bandera amarilla o la roja llevan a la respuesta del mar en los diez idiomas (19c). Y el
+ *     la bandera amarilla o la roja llevan a la respuesta del mar en los once idiomas (19c). Y el
  *     color del dibujo no es una urgencia: «¿por qué mi pecho está en naranja?» lleva a los colores,
  *     ninguna pregunta por el color de un grupo lleva a una urgencia, y el dolor de pecho sigue
  *     dando la suya (19d). Y el pecho apretado dicho de otra manera («mi pecho está apretado y me mareo»,
- *     «el pecho me duele mucho») da la urgencia en los diez idiomas, y las frases normales con las mismas
+ *     «el pecho me duele mucho») da la urgencia en los once idiomas, y las frases normales con las mismas
  *     palabras no dan ninguna (19e).
  *   - desde el 7 de noviembre de 2026, el bloque 3 del rediseño: el personaje en 3D (22), con el 3D
  *     encendido y eventos tactiles; todo lo demas corre con el 3D apagado (tenerife.cuerpo.3d = «no»),
  *     porque prueba el dibujo, que es la reserva del 3D y lo que sale donde no hay WebGL 2.
  *   - y el bloque 4 (la semana): las tres metas en vez de las tres cifras (4) y «Anotar movimiento»
  *     con su hoja, sus datos (mov), los puntos y los rayos de los dias con movimiento, los menores,
- *     lo roto, borrar, el asistente y los diez idiomas (23).
+ *     lo roto, borrar, el asistente y los once idiomas (23).
  *   - el bloque 5 («Hoy en la isla» y «Cruce la isla», 24), el 6 (los sellos y la postal, 25) y el 7 (el
  *     movimiento deporte a deporte: los datos de cada uno, la intensidad y la meta, «Por deporte», el
  *     buceo y el avión, y lo que cada persona elige contar para el GR 131, 26).
  *   - y, desde el 15 de noviembre de 2026, los vídeos fáciles de encontrar (43): 🎬 detrás del nombre de los
- *     ejercicios con vídeo en las listas que abren su ficha, «Solo con vídeo» y «Ver el vídeo», en los diez idiomas.
+ *     ejercicios con vídeo en las listas que abren su ficha, «Solo con vídeo» y «Ver el vídeo», en los once idiomas.
  *   - y, desde el 19 de noviembre de 2026 (bloque 1 de los deportes de interior), «Gimnasio» y «Calistenia» en «Su
  *     deporte»: sus fichas en los 11 idiomas (sin navegador) y en la pantalla, en cinco idiomas y a 320 px (44).
  *   - y, desde ese mismo día (bloque 2), los deportes de combate en «Su deporte» («Boxeo y kickboxing», «Jiu-jitsu, judo
@@ -203,7 +203,7 @@ async function ejemplo(pg, mas) {
   prueba('la escena arriba, de 400 a 600 px, con el cielo dibujado y sus siete rayos, y el personaje grande dentro, con su cabeza', r1.cielo && r1.rayos === 7 && r1.escenaArriba && r1.figuraDentro && r1.cabeza === 1, JSON.stringify(r1));
   prueba('«Girar» con la otra vista en pequeño, y la barra de modos fija abajo', r1.girar && r1.modosAbajo, JSON.stringify(r1));
 
-  // 2. cada selector de TEXTOS da un solo elemento y cada clave existe en los 10 idiomas
+  // 2. cada selector de TEXTOS da un solo elemento y cada clave existe en los 11 idiomas
   const r2 = await pg.evaluate(() => {
     const p = document.getElementById('cuerpo-panel'), malos = [];
     p.querySelectorAll('[data-tx],[data-tx-aria],[data-tx-ph]').forEach(n => ['data-tx', 'data-tx-aria', 'data-tx-ph'].forEach(at => { const k = n.getAttribute(at); if (k && !UI_TX[k]) malos.push('sin fila ' + k); }));
@@ -223,14 +223,14 @@ async function ejemplo(pg, mas) {
   prueba('textos fijos puestos (172 elementos, con la línea de la IA, desde el 10-11-2026 la pestaña «Evolución» y, desde el 12-11-2026, «Repeticiones» y «Peso (kg)» de la ficha, «En casa» de sus filtros y los cinco de «¿Qué entreno hoy?» y el título de «Su fuerza»; desde la nota 34, los cinco de las rutinas: «¿A qué nivel entrena?», «Su sesión de hoy», «¿Sin mancuernas, disco o banco?», «sin banda» y «cómo calentar» (166); desde la nota 40, los cuatro de los estiramientos: «¿Qué quiere hacer hoy?», «Sus estiramientos», «¿Tengo que estirar antes o después de entrenar?» y «Después: estire lo que ha trabajado» (170); desde el 15-11-2026, «Solo con vídeo» de los filtros y «Ver el vídeo» de la ficha (172); y 2 placeholders)', r2.n === 172 && r2.ph === 2, r2.n + '/' + r2.ph);
   prueba('todas las claves fijas existen', r2.malos.length === 0, r2.malos.join(', '));
   const r2b = await pg.evaluate(() => {
-    const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'], huecos = [];
+    const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'], huecos = [];
     Object.keys(UI_TX).filter(k => k.indexOf('cuerpo') === 0).forEach(k => L.forEach(l => { if (!UI_TX[k][l]) huecos.push(k + '.' + l); }));
     return huecos;
   });
   prueba('ninguna fila sin idioma', r2b.length === 0, r2b.slice(0, 8).join(', '));
 
-  // 3. los 10 idiomas: textos visibles, sin desborde horizontal, plurales bien
-  for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+  // 3. los 11 idiomas: textos visibles, sin desborde horizontal, plurales bien
+  for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
     await idioma(pg, l); await pg.waitForTimeout(80);
     for (const m of ['musculos', 'aspecto']) {
       await pg.evaluate(mm => document.getElementById(mm === 'musculos' ? 'tgc-modo-m' : 'tgc-modo-a').click(), m);
@@ -254,6 +254,10 @@ async function ejemplo(pg, mas) {
   }
   const pl = await pg.evaluate(() => { currentLang = 'pl'; const r = [1, 2, 5, 12, 22, 25].map(n => tx('cuerpoNSeries', { n })); currentLang = 'es'; return r; });
   prueba('polaco: seria/serie/serii', pl.join('|') === '1 seria|2 serie|5 serii|12 serii|22 serie|25 serii', pl.join('|'));
+  /* y el rumano, con la regla de CLDR (el interruptor del rumano, 22-11-2026): 1 serie · 0, de 2 a 19 y las que acaban en
+     01–19, serii · las demás, de serii */
+  const roSeries = await pg.evaluate(() => { currentLang = 'ro'; const r = [1, 2, 19, 20, 101, 120].map(n => tx('cuerpoNSeries', { n })); currentLang = 'es'; return r; });
+  prueba('rumano: serie/serii/de serii', roSeries.join('|') === '1 serie|2 serii|19 serii|20 de serii|101 serii|120 de serii', roSeries.join('|'));
   await idioma(pg, 'es'); await pg.evaluate(() => document.getElementById('tgc-modo-m').click());
 
   // 4. el ejemplo: niveles del mapa y las tres metas de la semana (7-11-2026, bloque 4: días con fuerza de 2,
@@ -723,7 +727,7 @@ async function ejemplo(pg, mas) {
   prueba('el historial del grupo nombra el ejercicio', await pg.evaluate(n => [...document.querySelectorAll('.tgc-hist-ej')].some(e => e.textContent === n), datosEs[ej.id][0]));
   prueba('el foco vuelve a la fila del ejercicio', await pg.evaluate(id => document.activeElement && document.activeElement.dataset && document.activeElement.dataset.id === id, ej.id));
   // (#120, 12-11-2026; Jérôme: «guarda los kilos y las repeticiones») las repeticiones y el peso de la ficha:
-  // opcionales, comprobados, con «la última vez» (en los diez idiomas, con la coma de cada uno) y en el historial
+  // opcionales, comprobados, con «la última vez» (en los once idiomas, con la coma de cada uno) y en el historial
   await pg.click('.tgc-ej-fila[data-id="' + ej.id + '"]'); await pg.waitForTimeout(150);
   const leerFicha = () => pg.evaluate(() => ({ ult: document.getElementById('tgc-ej-ultima').textContent, oculto: document.getElementById('tgc-ej-ultima').hidden,
     reps: document.getElementById('tgc-ej-reps').value, kg: document.getElementById('tgc-ej-kg').value, ayuda: document.getElementById('tgc-ej-carga-ayuda').textContent,
@@ -753,7 +757,7 @@ async function ejemplo(pg, mas) {
     de: ['Letztes Mal, heute: 4 × 10 mit 12,5 kg', 'Wiederholungen', 'Gewicht (kg)'], it: ['L’ultima volta, oggi: 4 × 10 con 12,5 kg', 'Ripetizioni', 'Peso (kg)'],
     nl: ['Vorige keer, vandaag: 4 × 10 met 12,5 kg', 'Herhalingen', 'Gewicht (kg)'], zh: ['上次（今天）：4 组 × 10 次，12.5公斤', '次数', '重量（公斤）'],
     zht: ['上次（今天）：4 組 × 10 次，12.5公斤', '次數', '重量（公斤）'], bg: ['Последния път, днес: 4 × 10 с 12,5 кг', 'Повторения', 'Тежест (кг)'],
-    pl: ['Ostatnio, dziś: 4 × 10, 12,5 kg', 'Powtórzenia', 'Ciężar (kg)'] };
+    pl: ['Ostatnio, dziś: 4 × 10, 12,5 kg', 'Powtórzenia', 'Ciężar (kg)'], ro: ['Ultima dată, azi: 4 × 10 cu 12,5 kg', 'Repetări', 'Greutate (kg)'] };
   for (const [l, e] of Object.entries(ESPERA_C1)) {
     await idioma(pg, l);
     const m = await leerFicha();
@@ -848,7 +852,7 @@ async function ejemplo(pg, mas) {
   prueba('otro idioma: ningún nombre de ejercicio vacío', await pg.evaluate(() => [...document.querySelectorAll('.tgc-ej-nombre')].every(e => e.textContent.trim().length > 1)));
   await pg.keyboard.press('Escape'); await pg.waitForTimeout(60);
   // cada idioma enseña los nombres de su propio fichero: la biblioteca está traducida entera
-  for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+  for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
     const dl = await pg.evaluate(async (l) => { const r = await fetch('datos/cuerpo/ejercicios-' + l + '.json'); return r.json(); }, l);
     await idioma(pg, l); await pg.waitForTimeout(60);
     await pg.click('.tgc-fila[data-g="' + grupoEj + '"]'); await pg.waitForSelector('.tgc-ej-fila');
@@ -934,22 +938,26 @@ async function ejemplo(pg, mas) {
        en italiano se escriben igual que en castellano */
     const QUEDA = /wger — Extensión de gluteos en polea/;
     const ITALIANO = new Set(['fitball', 'casa', 'copia', 'biblioteca']);
+    /* (el interruptor del rumano, 22-11-2026) para el rumano, las mismas marcas con letra (de cualquier alfabeto) ni antes ni
+       después: \b no ve la ă, la â, la î, la ș ni la ț, y «minge medicinală» (balón medicinal) casaba con «medicinal» */
+    const conLetra = re => re.source.replace(/^\\b\(/, '(?<![\\p{L}])(').replace(/\)\\b/, ')(?![\\p{L}])');
+    const MARCAS_RO = new RegExp(conLetra(MARCAS), 'iu'), MARCAS35_RO = new RegExp(conLetra(MARCAS35), 'iu');
     const mal14 = [];
     let n14 = 0;
-    for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       const tx = k => (UI[k] || {})[L] || '¿' + k + '?';
       const [fuenteTxt, NF, TF] = a > 0 && c > b ? new Function('tx', s.slice(a, c + 4) + '\nreturn [fuenteTxt, NOTAS_FUENTE, TROZOS_FUENTE];')(tx) : [(t => t), {}, []];
       /* (bloque 35) lo que tiene traducción en este idioma no puede quedar en castellano: ni la nota entera ni el trozo */
       const restos = Object.keys(NF).filter(k => tx(NF[k]) !== k).map(k => '(' + k + ')').concat(TF.filter(p => tx(p[1]) !== p[0]).map(p => p[0]));
       for (const x of d.ejercicios) for (const q of x.f) {
         n14++;
-        const r = fuenteTxt(q[0]), m = ES_DOC.test(q[0]) ? null : r.replace(QUEDA, '').match(MARCAS) || r.match(MARCAS35);
+        const r = fuenteTxt(q[0]), m = ES_DOC.test(q[0]) ? null : r.replace(QUEDA, '').match(L === 'ro' ? MARCAS_RO : MARCAS) || r.match(L === 'ro' ? MARCAS35_RO : MARCAS35);
         if (/¿cuerpo/.test(r) || (m && !(L === 'it' && ITALIANO.has(m[0].toLowerCase()))) || restos.some(k => r.includes(k))) mal14.push(L + ': ' + r);
       }
     }
-    prueba('las ' + d.ejercicios.reduce((n, x) => n + x.f.length, 0) + ' fuentes, en los nueve idiomas: ninguna nota en castellano', n14 > 8000 && !mal14.length, mal14.slice(0, 4).join(' | '));
+    prueba('las ' + d.ejercicios.reduce((n, x) => n + x.f.length, 0) + ' fuentes, en los otros diez idiomas: ninguna nota en castellano', n14 > 8000 && !mal14.length, mal14.slice(0, 4).join(' | '));
     /* (bloque 35) las fichas nuevas traen sus citas con notas nuevas («revisado por fisioterapeutas», «Gobierno de Queensland»…) */
-    prueba('(bloque 35) las fuentes de las fichas nuevas también: ' + d.ejercicios.slice(533).reduce((n, x) => n + x.f.length, 0) + ' citas, con sus notas en los nueve idiomas',
+    prueba('(bloque 35) las fuentes de las fichas nuevas también: ' + d.ejercicios.slice(533).reduce((n, x) => n + x.f.length, 0) + ' citas, con sus notas en los otros diez idiomas',
       d.ejercicios.length > 533 && !mal14.length, d.ejercicios.length + ' fichas');
     for (const L of ['en', 'zh', 'pl']) {
       await idioma(pg, L);
@@ -1213,7 +1221,7 @@ async function ejemplo(pg, mas) {
   }
 
   // 19. (sin navegador) las respuestas y las guías que citan un texto de la pantalla («Últimas
-  //     anotaciones», «Borrar lo anotado»…) lo citan tal cual, en los diez idiomas (3 de noviembre de
+  //     anotaciones», «Borrar lo anotado»…) lo citan tal cual, en los once idiomas (3 de noviembre de
   //     2026: en chino tradicional, dos respuestas citaban «最近記錄» y la pantalla dice «最近紀錄»). El
   //     polaco escribe con „…” las comillas de dentro, como su norma
   {
@@ -1221,7 +1229,7 @@ async function ejemplo(pg, mas) {
     const s = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
     const UI = {}; { const i = s.indexOf('var CUERPO_UI = {'), j = s.indexOf('\n  };', i);
       for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
-    const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+    const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
     const SALTA = new Set(['v', 'k', 'u', 'f', 'id', 'cat', 'tipo', 'edad', 'rel', 'links', 'cert', 'gg', 'ej', 'sos']);
     const plano = (o, r, d) => {
       if (typeof o === 'string') d[r] = o;
@@ -1253,12 +1261,12 @@ async function ejemplo(pg, mas) {
       if (!ks.some(k => t.includes(sinComillas(UI[k][l]))))
         malas.push(l + ' ' + donde + ': «' + ks.map(k => UI[k][l]).join('» o «') + '»');
     }
-    prueba('las respuestas y las guías que citan un texto de la pantalla (' + usos.length + ' citas) lo citan tal cual en los diez idiomas', usos.length >= 20 && !malas.length, malas.slice(0, 4).join(' · '));
+    prueba('las respuestas y las guías que citan un texto de la pantalla (' + usos.length + ' citas) lo citan tal cual en los once idiomas', usos.length >= 20 && !malas.length, malas.slice(0, 4).join(' · '));
     /* (12-11-2026, #120) «progresar» decía «La app guarda cuántas series hace, no el peso»: desde #120 guarda también
        las repeticiones y el peso. Ahora manda a «Su fuerza», en la pestaña «Evolución», con sus nombres tal cual */
     const malProg = L.filter(l => { const x = lee('asistente-' + l + '.json').respuestas.find(r => r.id === 'progresar'), t = sinComillas(((x || {}).r || {}).p ? x.r.p[3] : '');
       return !t.includes(sinComillas(UI.cuerpoFuerzaTit[l])) || !t.includes(sinComillas(UI.cuerpoModoEvolucion[l])); });
-    prueba('«progresar» ya no dice que la app no guarda el peso: manda a «Su fuerza», en «Evolución», en los diez idiomas', !malProg.length, malProg.join(' '));
+    prueba('«progresar» ya no dice que la app no guarda el peso: manda a «Su fuerza», en «Evolución», en los once idiomas', !malProg.length, malProg.join(' '));
     /* y la política de privacidad (ppDatosCuerpoTxt), que dice con qué botón se borra todo: ese botón, tal cual
        (3 de noviembre de 2026: en búlgaro citaba «Изтриване…», el de un módulo de antes, y la pantalla dice «Изтрий…») */
     const malPol = [];
@@ -1266,25 +1274,26 @@ async function ejemplo(pg, mas) {
       const t = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'idiomas', 'privacidad', l + '.json'), 'utf8')).ppDatosCuerpoTxt, bo = UI.cuerpoBorrar[l];
       if (!(t.includes(bo) || (l === 'pl' && t.includes(bo.replace(/«([^«»]*)»/g, '„$1”'))))) malPol.push(l + ': «' + bo + '»');
     }
-    prueba('la política de privacidad cita el botón de borrar «Su cuerpo» tal cual, en los diez idiomas', !malPol.length, malPol.join(' · '));
+    prueba('la política de privacidad cita el botón de borrar «Su cuerpo» tal cual, en los once idiomas', !malPol.length, malPol.join(' · '));
   }
 
   // 19b. (sin navegador; 6 de noviembre de 2026, el bloque 1 del rediseño) los niveles del mapa ya no son de
   //      oro, y el asistente lo decía en cuatro frases («tres tonos de oro», «el tono de oro más alto»…) y en
-  //      lo que usa para buscar. En los diez idiomas: las seis respuestas que hablan del mapa no nombran el
+  //      lo que usa para buscar. En los once idiomas: las seis respuestas que hablan del mapa no nombran el
   //      oro; la de los colores y la frase del mapa dicen rosa, naranja y amarillo, por ese orden; y el
   //      buscador del propio módulo lleva a «colores-del-mapa» las preguntas por cada color y a
   //      «por-que-diez-series» la de por qué el amarillo empieza en 10
   {
     const fs = require('fs'), path = require('path'), vm = require('vm');
-    const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+    const L = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
     const lee = l => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'asistente-' + l + '.json'), 'utf8')).respuestas;
     const DEL_MAPA = ['como-anotar', 'cuantas-series', 'que-cuenta-como-serie', 'colores-del-mapa', 'por-que-diez-series', 'que-entreno-hoy'];
     const sinLetra = '(?<![\\p{L}])', niLetra = '(?![\\p{L}])';
     const ORO = { es: new RegExp(sinLetra + '(oro|dorad\\p{L}*)' + niLetra, 'iu'), en: /gold/i, fr: new RegExp(sinLetra + '(or|dor[ée]e?s?)' + niLetra, 'iu'), de: /gold/i,
-      it: new RegExp(sinLetra + '(oro|dorat\\p{L}*)' + niLetra, 'iu'), nl: /goud/i, zh: /金色|最深/, zht: /金色|最深/, bg: /злат/i, pl: /złot/i };   // en chino, tampoco «el más oscuro» (最深), ni en lo que enseña ni en lo que usa para buscar: el nivel más alto es ahora el más claro
+      it: new RegExp(sinLetra + '(oro|dorat\\p{L}*)' + niLetra, 'iu'), nl: /goud/i, zh: /金色|最深/, zht: /金色|最深/, bg: /злат/i, pl: /złot/i,
+      ro: new RegExp(sinLetra + '(aur|aurul|aurului|auri\\p{L}*)' + niLetra, 'iu') };   // en chino, tampoco «el más oscuro» (最深), ni en lo que enseña ni en lo que usa para buscar: el nivel más alto es ahora el más claro
     const COLOR = { es: ['rosa', 'naranja', 'amarillo'], en: ['pink', 'orange', 'yellow'], fr: ['rose', 'orange', 'jaune'], de: ['rosa', 'orange', 'gelb'], it: ['rosa', 'arancione', 'giallo'],
-      nl: ['roze', 'oranje', 'geel'], zh: ['粉色', '橙色', '黄色'], zht: ['粉紅色', '橘色', '黃色'], bg: ['розово', 'оранжево', 'жълто'], pl: ['różowy', 'pomarańczowy', 'żółty'] };
+      nl: ['roze', 'oranje', 'geel'], zh: ['粉色', '橙色', '黄色'], zht: ['粉紅色', '橘色', '黃色'], bg: ['розово', 'оранжево', 'жълто'], pl: ['różowy', 'pomarańczowy', 'żółty'], ro: ['roz', 'portocaliu', 'galben'] };
     /* por idioma: una pregunta por el rosa, otra por el naranja, otra por el amarillo y la de las 10 series */
     const PREG = {
       es: ['mi brazo sale rosa', '¿qué es el color naranja?', 'qué quiere decir el amarillo', '¿por qué el amarillo empieza en 10?'],
@@ -1296,7 +1305,8 @@ async function ejemplo(pg, mas) {
       zh: ['粉色是什么意思？', '为什么肌肉是橙色的？', '黄色代表什么', '为什么黄色从10开始？'],
       zht: ['粉紅色是什麼意思？', '為什麼肌肉是橘色的？', '黃色代表什麼', '為什麼黃色從10開始？'],
       bg: ['какво значи розовото', 'защо един мускул е оранжев', 'какво значи жълто', 'защо жълтото започва от 10'],
-      pl: ['co oznacza różowy', 'dlaczego mięsień jest pomarańczowy', 'co znaczy żółty', 'dlaczego żółty zaczyna się od 10']
+      pl: ['co oznacza różowy', 'dlaczego mięsień jest pomarańczowy', 'co znaczy żółty', 'dlaczego żółty zaczyna się od 10'],
+      ro: ['brațul meu e roz', 'de ce un mușchi e portocaliu?', 'ce înseamnă galbenul', 'de ce galbenul începe de la 10?']
     };
     const SALTA = new Set(['u', 'f', 'id', 'cat', 'tipo', 'edad', 'rel', 'links', 'cert']);
     const todo = (o, d) => { if (typeof o === 'string') d.push(o); else if (Array.isArray(o)) o.forEach(x => todo(x, d)); else if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) if (!SALTA.has(k)) todo(v, d); return d; };
@@ -1313,16 +1323,16 @@ async function ejemplo(pg, mas) {
       PREG[l].forEach((q, i) => { for (const edad of [30, 15, null]) { preguntas++; const x = b.buscar(q, { edad }), quiere = i === 3 ? 'por-que-diez-series' : 'colores-del-mapa';
         if (!(x.mejor && x.mejor.id === quiere)) busca.push(l + ' «' + q + '» (' + edad + '): ' + (x.mejor ? x.mejor.id : x.pista)); } });
     }
-    prueba('el asistente no habla ya de oro para los niveles: ni lo que enseña ni lo que usa para buscar, en las seis respuestas del mapa y los diez idiomas (' + textos + ' textos)', textos > 900 && !oro.length, oro.slice(0, 4).join(' · '));
-    prueba('la respuesta de los colores y la frase del mapa dicen rosa, naranja y amarillo, por ese orden, en los diez idiomas', !orden.length, orden.slice(0, 4).join(' · '));
-    prueba('el buscador lleva a su respuesta las preguntas por el rosa, el naranja y el amarillo, y la de las 10 series, en los diez idiomas (' + preguntas + ' consultas)', preguntas === 120 && !busca.length, busca.slice(0, 5).join(' · '));
+    prueba('el asistente no habla ya de oro para los niveles: ni lo que enseña ni lo que usa para buscar, en las seis respuestas del mapa y los once idiomas (' + textos + ' textos)', textos > 900 && !oro.length, oro.slice(0, 4).join(' · '));
+    prueba('la respuesta de los colores y la frase del mapa dicen rosa, naranja y amarillo, por ese orden, en los once idiomas', !orden.length, orden.slice(0, 4).join(' · '));
+    prueba('el buscador lleva a su respuesta las preguntas por el rosa, el naranja y el amarillo, y la de las 10 series, en los once idiomas (' + preguntas + ' consultas)', preguntas === 132 && !busca.length, busca.slice(0, 5).join(' · '));
   }
 
   // 19c. (sin navegador; 6 de noviembre de 2026) la bandera de la playa. «¿Qué significa la bandera amarilla?»
   //      llevaba, en inglés, francés, polaco y chino, a la respuesta de los colores del personaje o a la del
   //      nivel de un ejercicio: «amarillo» es palabra clave de «colores-del-mapa», y solo el castellano tenía en
   //      «nadar-en-el-mar» las variantes «¿qué significan la bandera roja y la amarilla?» y «¿qué significan las
-  //      banderas en las playas de Tenerife?» y la clave «colores de la bandera». Ahora las tienen los diez
+  //      banderas en las playas de Tenerife?» y la clave «colores de la bandera». Ahora las tienen los once
   //      idiomas, y el buscador del propio módulo lleva a la respuesta del mar, sin urgencia, las preguntas por la
   //      bandera amarilla, por la amarilla en la playa, si se puede nadar con ella y por la roja, con 30 años,
   //      con 15 y sin edad
@@ -1341,7 +1351,8 @@ async function ejemplo(pg, mas) {
       zh: ['黄旗是什么意思？', '黄旗', '海滩上的黄旗是什么意思？', '挂黄旗能游泳吗？', '红旗是什么意思？'],
       zht: ['黃旗是什麼意思？', '黃旗', '海灘上的黃旗是什麼意思？', '掛黃旗可以游泳嗎？', '紅旗是什麼意思？'],
       bg: ['какво означава жълтият флаг?', 'жълт флаг', 'какво означава жълт флаг на плажа?', 'мога ли да плувам при жълт флаг?', 'какво означава червеният флаг?'],
-      pl: ['co oznacza żółta flaga', 'żółta flaga', 'co oznacza żółta flaga na plaży?', 'czy mogę pływać przy żółtej fladze?', 'co oznacza czerwona flaga?']
+      pl: ['co oznacza żółta flaga', 'żółta flaga', 'co oznacza żółta flaga na plaży?', 'czy mogę pływać przy żółtej fladze?', 'co oznacza czerwona flaga?'],
+      ro: ['ce înseamnă steagul galben?', 'steag galben', 'ce înseamnă un steag galben pe plajă?', 'pot să fac baie când e steag galben?', 'ce înseamnă steagul roșu?']
     };
     const malas = []; let consultas = 0;
     for (const [l, qs] of Object.entries(BANDERA)) {
@@ -1352,13 +1363,13 @@ async function ejemplo(pg, mas) {
         if (x.urgente || !(x.mejor && x.mejor.id === 'nadar-en-el-mar')) malas.push(l + ' «' + q + '» (' + edad + '): ' + (x.urgente ? 'urgencia ' + x.urgente : x.mejor ? x.mejor.id : x.pista));
       }
     }
-    prueba('la bandera de la playa: la amarilla, la amarilla en la playa, si se puede nadar con ella y la roja llevan a la respuesta del mar, en los diez idiomas (' + consultas + ' consultas)', consultas === 150 && !malas.length, malas.slice(0, 5).join(' · '));
+    prueba('la bandera de la playa: la amarilla, la amarilla en la playa, si se puede nadar con ella y la roja llevan a la respuesta del mar, en los once idiomas (' + consultas + ' consultas)', consultas === 165 && !malas.length, malas.slice(0, 5).join(' · '));
   }
 
   // 19d. (sin navegador; 6 de noviembre de 2026) el color del pecho no es una urgencia. «¿Por qué mi pecho está en
   //      naranja?», preguntado por el color del dibujo, llevaba en castellano a la urgencia del dolor en el pecho
   //      («pecho» pesa mucho en «urg-pecho»), con los cuatro colores. «colores-del-mapa» lleva ahora la variante
-  //      «¿por qué mi pecho sale en naranja?». En los diez idiomas, la pregunta de por qué un grupo del dibujo está
+  //      «¿por qué mi pecho sale en naranja?». En los once idiomas, la pregunta de por qué un grupo del dibujo está
   //      en un color, de tres maneras, con los 12 grupos, los 4 colores y 30 años, 15 y sin edad, no lleva nunca a
   //      una urgencia; las del pecho, en castellano, llevan a los colores. Y lo que se escribe cuando duele el
   //      pecho sigue dando la urgencia: el filtro de urgencias (sus patrones) no se ha tocado
@@ -1380,11 +1391,13 @@ async function ejemplo(pg, mas) {
       zh: ['为什么我的{g}是{c}？', '{g}变成{c}是什么意思', '我的{g}显示{c}代表什么'],
       zht: ['為什麼我的{g}是{c}？', '{g}變成{c}是什麼意思', '我的{g}顯示{c}代表什麼'],
       bg: ['защо {g} ми е {c}?', '{g} в {c}, защо?', 'какво означава, че {g} ми е {c}?'],
-      pl: ['dlaczego {g} jest {c}?', '{g} na {c}, dlaczego?', 'co znaczy, że {g} jest {c}?']
+      pl: ['dlaczego {g} jest {c}?', '{g} na {c}, dlaczego?', 'co znaczy, że {g} jest {c}?'],
+      ro: ['de ce e {c} la {g}?', 'culoarea {c} la {g}, ce înseamnă?', '{g} în {c}, de ce?']
     };
     const C = { es: ['gris', 'rosa', 'naranja', 'amarillo'], en: ['grey', 'pink', 'orange', 'yellow'], fr: ['gris', 'rose', 'orange', 'jaune'],
       de: ['grau', 'rosa', 'orange', 'gelb'], it: ['grigio', 'rosa', 'arancione', 'giallo'], nl: ['grijs', 'roze', 'oranje', 'geel'],
-      zh: ['灰色', '粉色', '橙色', '黄色'], zht: ['灰色', '粉紅色', '橘色', '黃色'], bg: ['сиво', 'розово', 'оранжево', 'жълто'], pl: ['szary', 'różowy', 'pomarańczowy', 'żółty'] };
+      zh: ['灰色', '粉色', '橙色', '黄色'], zht: ['灰色', '粉紅色', '橘色', '黃色'], bg: ['сиво', 'розово', 'оранжево', 'жълто'], pl: ['szary', 'różowy', 'pomarańczowy', 'żółty'],
+      ro: ['gri', 'roz', 'portocaliu', 'galben'] };
     const DUELE = ['me duele el pecho', '¿por qué me duele el pecho?', 'dolor en el pecho al correr', 'tengo presión en el pecho', 'me aprieta el pecho',
       'siento un peso en el pecho', 'pinchazo en el pecho', 'dolor de pecho y brazo izquierdo', 'creo que me está dando un infarto',
       'molestias en el pecho haciendo deporte', 'tengo el pecho apretado', 'noto opresión en el pecho', 'dolor torácico', 'me duele el pecho al respirar'];
@@ -1407,7 +1420,7 @@ async function ejemplo(pg, mas) {
         }
       }
     }
-    prueba('el color del dibujo no es una urgencia: por qué un grupo está en un color, en los diez idiomas, nunca lleva a una urgencia (' + consultas + ' consultas), y el pecho en castellano lleva a los colores', consultas === 4320 && !aUrgencia.length && !pechoMal.length, aUrgencia.concat(pechoMal).slice(0, 5).join(' · '));
+    prueba('el color del dibujo no es una urgencia: por qué un grupo está en un color, en los once idiomas, nunca lleva a una urgencia (' + consultas + ' consultas), y el pecho en castellano lleva a los colores', consultas === 4752 && !aUrgencia.length && !pechoMal.length, aUrgencia.concat(pechoMal).slice(0, 5).join(' · '));
     prueba('lo que se escribe cuando duele el pecho sigue dando la urgencia del pecho (' + DUELE.length + ' frases, con tres edades)', !dueleMal.length, dueleMal.slice(0, 5).join(' · '));
   }
 
@@ -1415,7 +1428,7 @@ async function ejemplo(pg, mas) {
   //      El filtro cogía «tengo el pecho apretado», pero no «mi pecho está apretado y me mareo» ni «el pecho me duele
   //      mucho»: sus patrones piden las palabras juntas, y pasaba en nueve de los diez idiomas. «urg-pecho» lleva
   //      patrones nuevos para la misma molestia con el verbo o un «muy» en medio, o con el orden al revés. Aquí: las
-  //      molestias, en los diez idiomas, dan la urgencia del pecho; y las frases normales con las mismas palabras (el
+  //      molestias, en los once idiomas, dan la urgencia del pecho; y las frases normales con las mismas palabras (el
   //      gimnasio, la estética, la ropa, los colores del dibujo) no dan ninguna urgencia
   {
     const fs = require('fs'), path = require('path'), vm = require('vm');
@@ -1432,7 +1445,8 @@ async function ejemplo(pg, mas) {
       zh: ["胸口很紧而且头晕", "胸口发紧", "胸口闷得慌", "我胸口很闷还头晕", "胸口有点紧", "胸口突然发紧", "胸部很闷", "胸口一直紧紧的"],
       zht: ["胸口很緊而且頭暈", "胸口發緊", "胸口悶", "我胸口很悶還頭暈", "胸口有點緊", "胸部很悶", "胸口突然發緊"],
       bg: ["гърдите ми са стегнати и ми се вие свят", "стяга ме в гърдите", "болят ме гърдите", "имам стягане в гърдите", "усещам гърдите си стегнати", "гърдите ми са стегнати и се задъхвам", "чувствам гръдния кош си притиснат"],
-      pl: ["mam ściśniętą klatkę piersiową i kręci mi się w głowie", "ściska mnie w klatce piersiowej", "klatka piersiowa mnie boli", "czuję ucisk w klatce piersiowej", "czuję ściśniętą klatkę", "klatka piersiowa jest ściśnięta", "mam zaciśniętą klatkę piersiową"]
+      pl: ["mam ściśniętą klatkę piersiową i kręci mi się w głowie", "ściska mnie w klatce piersiowej", "klatka piersiowa mnie boli", "czuję ucisk w klatce piersiowej", "czuję ściśniętą klatkę", "klatka piersiowa jest ściśnięta", "mam zaciśniętą klatkę piersiową"],
+      ro: ["pieptul mi-e strâns și amețesc", "am pieptul strâns", "simt pieptul foarte strâns", "mă strânge pieptul", "mă doare pieptul foarte tare", "simt o apăsare pe piept", "pieptul îmi arde când alerg", "îmi arde pieptul când urc", "am o greutate în piept și nu am aer", "pe tatăl meu îl doare pieptul", "pieptul mă doare când urc pante"]
     };
     const NO = {
       es: ["aprieta el pecho al final del press", "ejercicios para tener el pecho más firme", "cómo sacar pecho al correr", "press de pecho con mancuernas", "¿por qué mi pecho está en rosa?", "mi pecho está en naranja", "quiero un pecho más grande", "el pecho es el músculo que más me gusta entrenar"],
@@ -1443,16 +1457,17 @@ async function ejemplo(pg, mas) {
       zh: ["怎么让胸部紧致", "胸部紧实的训练", "练胸的动作有哪些", "胸肌怎么练", "为什么我的胸部是橙色的？", "胸口的颜色是什么意思"],
       zht: ["怎麼讓胸部緊緻", "胸部緊實的訓練", "練胸的動作有哪些", "為什麼我的胸部是橘色的？"],
       bg: ["как да имам стегнати гърди", "упражнения за гърди", "гърдите ми са стегнати след тренировките", "искам стегнати гърди", "защо гърдите ми са оранжеви"],
-      pl: ["ćwiczenia na klatkę piersiową", "jak rozbudować klatkę piersiową", "wyciskanie na klatkę", "dlaczego moja klatka jest pomarańczowa"]
+      pl: ["ćwiczenia na klatkę piersiową", "jak rozbudować klatkę piersiową", "wyciskanie na klatkę", "dlaczego moja klatka jest pomarańczowa"],
+      ro: ["exerciții pentru piept", "presă pentru piept cu gantere", "cum îmi fac pieptul mai mare?", "de ce pieptul meu e roz?", "pieptul meu e portocaliu pe hartă", "tricoul îmi strânge pieptul", "sutienul de sport e prea strâns pe piept", "vreau un piept mai lat", "împins cu gantere pentru piept", "pieptul e mușchiul meu preferat", "de ce e galben la piept?"]
     };
     const sinUrgencia = [], falsas = []; let nSi = 0, nNo = 0;
-    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       const b = ctx.TG_BUSCADOR.crear({ idioma: l, respuestas: lee(l) });
       for (const q of SI[l] || []) { nSi++; const u = b.urgente(q); if (u !== 'urg-pecho') sinUrgencia.push(l + ' «' + q + '»: ' + (u || '-')); }
       for (const q of NO[l] || []) { nNo++; const u = b.urgente(q); if (u) falsas.push(l + ' «' + q + '»: ' + u); }
     }
-    prueba('el pecho apretado, dicho de otra manera, da la urgencia del pecho en los diez idiomas (' + nSi + ' frases)', nSi === 78 && !sinUrgencia.length, sinUrgencia.slice(0, 5).join(' · '));
-    prueba('las frases normales con las mismas palabras (gimnasio, estética, ropa, colores del dibujo) no dan ninguna urgencia (' + nNo + ' frases)', nNo === 46 && !falsas.length, falsas.slice(0, 5).join(' · '));
+    prueba('el pecho apretado, dicho de otra manera, da la urgencia del pecho en los once idiomas (' + nSi + ' frases)', nSi === 89 && !sinUrgencia.length, sinUrgencia.slice(0, 5).join(' · '));
+    prueba('las frases normales con las mismas palabras (gimnasio, estética, ropa, colores del dibujo) no dan ninguna urgencia (' + nNo + ' frases)', nNo === 57 && !falsas.length, falsas.slice(0, 5).join(' · '));
   }
 
   // 20. (6-11-2026, bloque 2) la cabecera de «Su cuerpo» va en cristal sobre la escena y se vuelve opaca
@@ -1489,7 +1504,7 @@ async function ejemplo(pg, mas) {
   //     le saca una sonrisa; arrastrar en horizontal gira sin abrir nada y, pasados 90°, la vista es «de
   //     espaldas»; «Girar» da la vuelta; el tema cambia la luz y el modo, el barrido; en «Aspecto», el audífono
   //     y la prótesis llegan al motor, un peinado nuevo pide sus dos ficheros antes de ponerse, lo que no está en
-  //     3D sale con lo más parecido y la hoja lo dice en los diez idiomas sin desbordar, y al entrar se pide el
+  //     3D sale con lo más parecido y la hoja lo dice en los once idiomas sin desbordar, y al entrar se pide el
   //     resto (los 56 .bin); con «reducir movimiento», ni respira ni parpadea; sin WebGL 2, con el 3D apagado,
   //     sin el motor o sin un fichero de datos queda el dibujo, sin errores; y a 360 y 430 el lienzo cabe en la
   //     escena. Con eventos táctiles (el click de un dedo llega después de soltar: lección 7 de la maqueta)
@@ -1581,13 +1596,13 @@ async function ejemplo(pg, mas) {
     const as3 = await t3(), aviso = await p22.evaluate(() => { const a = document.getElementById('tgc-aviso-3d'); return { visible: !!a && !a.hidden && a.getClientRects().length > 0, txt: a && a.textContent }; });
     prueba('lo que no está en 3D sale con lo más parecido (rizado → afro; botas → zapatillas) y la hoja «Aspecto» lo dice', as3.asp.pelo === 'afro' && as3.asp.calzado === 'zapatillas' && aviso.visible && /rizado/.test(aviso.txt), JSON.stringify(as3.asp) + ' ' + JSON.stringify(aviso));
     const desb = [];
-    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       await idioma(p22, l); await p22.waitForTimeout(80);
       const r = await p22.evaluate(() => { const a = document.getElementById('tgc-aviso-3d'), p = document.getElementById('cuerpo-panel'), b = p.getBoundingClientRect(), x = a.getBoundingClientRect(); return { vacio: !a.textContent.trim(), fuera: x.right > b.right + 0.5 || x.left < b.left - 0.5, lado: p.scrollWidth > p.clientWidth, lang: p.getAttribute('lang') }; });
       if (r.vacio || r.fuera || r.lado) desb.push(l + ': ' + JSON.stringify(r));
     }
     await idioma(p22, 'es');
-    prueba('el aviso del 3D, en los diez idiomas, sin quedar vacío ni desbordar', desb.length === 0, desb.join(' · '));
+    prueba('el aviso del 3D, en los once idiomas, sin quedar vacío ni desbordar', desb.length === 0, desb.join(' · '));
     /* al entrar en «Aspecto» se pide el resto: los 56 .bin (las texturas las pide el navegador aparte) */
     const todos = await p22.waitForFunction(() => TG_CUERPO.tresD().cargador.pedidos().length >= 56, null, { timeout: 60000 }).then(() => true).catch(() => false);
     const as4 = await t3();
@@ -1760,7 +1775,7 @@ async function ejemplo(pg, mas) {
   //     tenerife.cuerpo (mov), cierra y avisa con «Deshacer»; lo último anotado con ×; los días con movimiento
   //     llevan su punto y encienden su rayo; el detalle del día dice minutos y km; Escape, «atrás» y el velo
   //     cierran la hoja; lo guardado roto se descarta campo a campo; «Borrar los datos» lo borra; el asistente
-  //     cuenta el movimiento en «¿Cómo voy esta semana?»; y los textos nuevos, en los diez idiomas.
+  //     cuenta el movimiento en «¿Cómo voy esta semana?»; y los textos nuevos, en los once idiomas.
   //     (8-11-2026) Nadar y bici también suman km (Jerome: «Cuentan también»); antes, solo a pie. Y los km, al metro
   //     (tres decimales) y un tope por anotación: 200 en bici, 100 en los demás (antes, un decimal y 60)
   {
@@ -1963,10 +1978,10 @@ async function ejemplo(pg, mas) {
     prueba('…y sin movimiento anotado, ese párrafo no sale (los demás, sí)', a23b.length === 2 && !a23b.some(t => /Movimiento anotado/.test(t)), a23b.join(' | '));
     await p23.click('#tgc-modo-m'); await p23.waitForTimeout(150);
 
-    /* los textos nuevos, en los diez idiomas: nada vacío, nada en castellano fuera del castellano, y la hoja sin desborde */
+    /* los textos nuevos, en los once idiomas: nada vacío, nada en castellano fuera del castellano, y la hoja sin desborde */
     await conMov();
     const esTx = {};
-    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       await idioma(p23, l);
       await p23.click('#tgc-mov-btn'); await p23.waitForTimeout(250);
       const t = await p23.evaluate(() => {
@@ -2001,7 +2016,7 @@ async function ejemplo(pg, mas) {
   //     sitio y una curva entre ellas, con la etiqueta «Esquema»), la cuenta, la barra y la siguiente parada; al
   //     anotar con km, el marcador avanza animado; si hay trazado oficial (datos/cuerpo/gr131-trazado.json), se
   //     dibuja ese y se quita «Esquema»; uno malo se descarta. Las notas de la hoja del movimiento. Y todo en los
-  //     diez idiomas, con la política de privacidad nombrando la zona
+  //     once idiomas, con la política de privacidad nombrando la zona
   {
     const fs = require('fs'), path = require('path');
     const M24 = fs.readFileSync(path.join(__dirname, '..', 'modulos', 'cuerpo.js'), 'utf8');
@@ -2214,12 +2229,12 @@ async function ejemplo(pg, mas) {
     prueba('un trazado malo (los km retroceden) se descarta: sigue el esquema', mal24.esquema && mal24.ruta === '0.1 4.6' && /es un esquema, no el sendero\.$/.test(mal24.cifras), JSON.stringify([mal24.esquema, mal24.ruta]));
     await p24.unroute('**/datos/cuerpo/gr131-trazado.json');
 
-    /* los diez idiomas: nada vacío, nada en castellano fuera del castellano (menos los nombres propios), sin desborde; y la política de privacidad nombra la zona de «Hoy en la isla» */
+    /* los once idiomas: nada vacío, nada en castellano fuera del castellano (menos los nombres propios), sin desborde; y la política de privacidad nombra la zona de «Hoy en la isla» */
     await p24.reload({ waitUntil: 'load' }); await abrirApp(p24); await abrirPerfilCuerpo(p24); await suCuerpo(p24); await ejemplo(p24);
     await conMov24([[0, 'caminar', 35, 3], [3, 'senderismo', 150, 9.5], [12, 'senderismo', 240, 21]]);
     await p24.waitForFunction(() => document.querySelectorAll('#tgc-hoy-chips .tgc-hoy-chip').length > 0, null, { timeout: 5000 }).catch(() => {});
     const esTx24 = {};
-    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       await idioma(p24, l); await p24.waitForTimeout(100);
       const t = await p24.evaluate(l => {
         const g = id => document.getElementById(id).textContent.trim();
@@ -2248,11 +2263,11 @@ async function ejemplo(pg, mas) {
   //     foco vuelve. «Su postal»: la vista previa (la escena y el personaje), «Crear mi postal» hace una imagen PNG de
   //     1080 × 1350 en un lienzo y la enseña en la tarjeta para guardarla con el dedo, compartirla (Web Share con ficheros,
   //     donde lo haya) o descargarla (tenerife-go-mi-semana.png); de noche, con la banda oscura. «Borrar los datos» se los
-  //     lleva. En los diez idiomas, con la política de privacidad nombrando los sellos; a 320 px; con el 3D (la foto del
+  //     lleva. En los once idiomas, con la política de privacidad nombrando los sellos; a 320 px; con el 3D (la foto del
   //     motor en la vista previa y en la postal, y la sonrisa); y con «reducir movimiento», sin rayos
   {
     const fs25 = require('fs'), path25 = require('path'), os25 = require('os');
-    const L25 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+    const L25 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
     const MOV25 = [[0, 'caminar', 35, 3], [3, 'senderismo', 150, 9.5], [12, 'senderismo', 240, 21]];   /* 33,5 km a pie: La Caldera pasada, El Portillo a 9,4 */
     const leer25 = (p) => p.evaluate(() => {
       const g = id => document.getElementById(id), f = g('tgc-fiesta'), q = (s, r) => (r || f).querySelector(s), a = document.activeElement;
@@ -2394,10 +2409,10 @@ async function ejemplo(pg, mas) {
     await p25.click('#tgc-fiesta-botones button:last-child'); await p25.waitForTimeout(400);
     await p25.click('#tgc-tema'); await p25.waitForTimeout(400);
 
-    /* los diez idiomas: las dos secciones, los once sellos (los seis de la semana con nombre y condición en su idioma; las paradas, nombre propio y «GR 131 · km» con
+    /* los once idiomas: las dos secciones, los once sellos (los seis de la semana con nombre y condición en su idioma; las paradas, nombre propio y «GR 131 · km» con
        el número de su idioma), «8 de 11», la fecha del borde en su idioma, las 42 filas nuevas con sus plurales (pl 3, zh y zht 1, el resto 2), sin desborde, y la
        política de privacidad nombrando los sellos */
-    const esTx25 = {}, SELLO_PRIV = { es: 'sellos', en: 'stamps', fr: 'tampons', de: 'Stempel', it: 'timbri', nl: 'stempels', zh: '印章', zht: '印章', bg: 'печати', pl: 'pieczątki' };
+    const esTx25 = {}, SELLO_PRIV = { es: 'sellos', en: 'stamps', fr: 'tampons', de: 'Stempel', it: 'timbri', nl: 'stempels', zh: '印章', zht: '印章', bg: 'печати', pl: 'pieczątki', ro: 'ștampilele' };
     for (const l of L25) {
       await idioma(p25, l); await p25.waitForTimeout(120);
       const t = await p25.evaluate(l => {
@@ -2414,7 +2429,7 @@ async function ejemplo(pg, mas) {
       const km = { e1: '29', e2: '42', e3: '56', e4: '67', e5: '85' };
       prueba(l + ': «' + t.tit + '» y «' + t.pTit + '» con todos sus textos' + (l === 'es' ? '' : ', en su idioma') + ', «' + t.n + '», los sellos de la semana nombrados en su idioma, las paradas con «GR 131» y su km, la fecha del borde, las 42 filas nuevas con sus plurales, sin desborde, y la política de privacidad con «' + SELLO_PRIV[l] + '»',
         !vacias.length && !iguales.length && /8/.test(t.n) && /11/.test(t.n) && paradas.every(s => /GR 131/.test(s.cond) && s.cond.indexOf(km[s.id]) >= 0) && t.sellos.filter(s => !s.falta).every(s => s.anillo.length === 2 && s.anillo[0] === 'TENERIFE GO' && s.anillo[1].length >= 6 && s.sr !== t.pendiente && s.sr.length > 8)
-        && t.sellos.filter(s => s.falta).every(s => s.sr === t.pendiente && !s.anillo.length) && t.filas === 42 && !t.vacias.length && t.plurales === (l === 'pl' ? '33333' : /^zh/.test(l) ? '11111' : '22222') && !t.desborde && t.privacidad.indexOf(SELLO_PRIV[l]) > 0 && t.lang === (l === 'zht' ? 'zh-Hant' : l === 'zh' ? 'zh-Hans' : l),
+        && t.sellos.filter(s => s.falta).every(s => s.sr === t.pendiente && !s.anillo.length) && t.filas === 42 && !t.vacias.length && t.plurales === (l === 'pl' || l === 'ro' ? '33333' : /^zh/.test(l) ? '11111' : '22222') && !t.desborde && t.privacidad.indexOf(SELLO_PRIV[l]) > 0 && t.lang === (l === 'zht' ? 'zh-Hant' : l === 'zh' ? 'zh-Hans' : l),
         JSON.stringify({ vacias, iguales, n: t.n, filas: t.filas, vaciasTx: t.vacias, plurales: t.plurales, desborde: t.desborde, priv: t.privacidad.indexOf(SELLO_PRIV[l]), anillo: t.sellos[0].anillo, paradas: paradas.map(s => s.cond) }));
     }
     await idioma(p25, 'es');
@@ -2480,11 +2495,11 @@ async function ejemplo(pg, mas) {
   //     nadar, por 100 m), la velocidad (bici y kayak) y el desnivel; el buceo, con lo que aconseja la DAN antes de volar
   //     (12 h tras una inmersión; 18 tras varias en un día o en días seguidos). «Cruce la isla»: a pie, siempre; la bici,
   //     si la persona la elige (se guarda); el nado y el kayak, nunca (Jerome, 8-11: «A pie y bici»). «Su deporte» propone el suyo en la hoja. El asistente, «Las
-  //     cifras» y la política lo dicen. Lo guardado roto, campo a campo; en los diez idiomas; a 320 px y de noche
+  //     cifras» y la política lo dicen. Lo guardado roto, campo a campo; en los once idiomas; a 320 px y de noche
   {
     const c26 = await contexto(b), p26 = await c26.newPage(), e26 = []; vigilar(p26, e26);
     await abrirApp(p26); await abrirPerfilCuerpo(p26); await suCuerpo(p26);
-    const L26 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+    const L26 = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
     /* la semana del ejemplo: hoy, dos inmersiones; ayer, a correr con desnivel; hace 2, un sendero largo; hace 3, a nado y
        surf; hace 5, en bici; y hace 12, otro sendero (fuera de la semana, dentro de la travesía) */
     const MOV26 = [[0, 'buceo', 48, 0, { int: 'v' }], [0, 'buceo', 42, 0, { int: 'v' }], [1, 'correr', 32, 5.4, { int: 'v', des: 60 }], [2, 'senderismo', 270, 13.2, { int: 'v', des: 950 }],
@@ -2663,7 +2678,7 @@ async function ejemplo(pg, mas) {
     await p26.evaluate(() => { const g = JSON.parse(localStorage.getItem('tenerife.cuerpo')); g.gr = 'bici'; localStorage.setItem('tenerife.cuerpo', JSON.stringify(g)); TG_CUERPO.abrir(); }); await p26.waitForTimeout(150);
     prueba('…y si lo elegido no es una lista, nada elegido', await p26.evaluate(() => JSON.stringify(TG_CUERPO.estado().gr) === '[]'));
 
-    /* en los diez idiomas: la semana por deporte, la isla y la hoja con sus textos (nada vacío, nada en castellano fuera del
+    /* en los once idiomas: la semana por deporte, la isla y la hoja con sus textos (nada vacío, nada en castellano fuera del
        castellano, sin marcadores ni «|» sueltos), los plurales de cada idioma, y la política con el GR 131 */
     await ejemplo(p26, { mov: MOV26 });
     const es26 = {};
@@ -2685,7 +2700,7 @@ async function ejemplo(pg, mas) {
       if (l === 'es') Object.assign(es26, t);
       const vacias = Object.keys(t).filter(k => !t[k]), iguales = l === 'es' ? [] : Object.keys(t).filter(k => t[k] === es26[k]);
       const sueltos = Object.keys(t).filter(k => /[{}|]/.test(t[k]));
-      const formas = ui.veces === (l === 'pl' ? 3 : /^zh/.test(l) ? 1 : 2) && ui.inm === ui.veces;
+      const formas = ui.veces === (l === 'pl' || l === 'ro' ? 3 : /^zh/.test(l) ? 1 : 2) && ui.inm === ui.veces;
       prueba(l + ': «Por deporte», la isla con lo que cuenta para la travesía y la hoja (metros, desnivel, intensidad, las notas) con todos sus textos' + (l === 'es' ? '' : ', en su idioma') + ', sin marcadores sueltos, con los plurales del idioma, sin desborde, y la política con el GR 131',
         !vacias.length && !iguales.length && !sueltos.length && formas && !v.desborde && !hn.desborde && !hc.desborde && ui.priv.indexOf('GR 131') > 0 && /GR 131/.test(t.notaNado) && t.dan.length > 40,
         JSON.stringify({ vacias, iguales, sueltos, formas: [ui.veces, ui.inm], desborde: [v.desborde, hn.desborde, hc.desborde], priv: ui.priv.indexOf('GR 131'), lang: ui.lang }));
@@ -2729,7 +2744,7 @@ async function ejemplo(pg, mas) {
   //     avanza; los colores de «Aspecto»; el selector, guardado y validado. Los senderos: los de la guía (places[], «senderismo»),
   //     por zonas; marcar y desmarcar; la cuenta, el porcentaje (hacia abajo) y la barra; los puntos del mapa (uno lleva a su
   //     fila); las celebraciones; lo guardado validado; «Borrar los datos» se lo lleva; «Las cifras» con las dos notas de
-  //     Copernicus palabra por palabra; la política; y los diez idiomas sin desborde a 320 px
+  //     Copernicus palabra por palabra; la política; y los once idiomas sin desborde a 320 px
   {
     const c27 = await contexto(b), p27 = await c27.newPage(), e27 = []; vigilar(p27, e27);
     await abrirApp(p27); await abrirPerfilCuerpo(p27); await suCuerpo(p27);
@@ -2891,9 +2906,9 @@ async function ejemplo(pg, mas) {
     const n27 = await leer27();
     prueba('de noche: el relieve de noche a la vista y el de día escondido', n27.ims.join(',') === './datos/cuerpo/isla-relieve-dia.webp:none,./datos/cuerpo/isla-relieve-noche.webp:inline', n27.ims.join(','));
     await p27.click('#tgc-tema'); await p27.waitForTimeout(150);
-    /* los diez idiomas: nada vacío, nada en castellano fuera del castellano */
+    /* los once idiomas: nada vacío, nada en castellano fuera del castellano */
     const malos27 = [];
-    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       await idioma(p27, l);
       const r = await p27.evaluate(() => {
         const g = id => document.getElementById(id);
@@ -2909,7 +2924,7 @@ async function ejemplo(pg, mas) {
       if (r.zonas.length !== 5) malos27.push(l + ': zonas ' + r.zonas.length);
     }
     await idioma(p27, 'es');
-    prueba('los textos del bloque 8 en los diez idiomas: nada vacío, nada en castellano fuera del castellano, el chino en chino y el búlgaro en cirílico', malos27.length === 0, malos27.join(' | '));
+    prueba('los textos del bloque 8 en los once idiomas: nada vacío, nada en castellano fuera del castellano, el chino en chino y el búlgaro en cirílico', malos27.length === 0, malos27.join(' | '));
     prueba('bloque 8: sin errores de página', e27.length === 0, e27.join(' | '));
     await c27.close();
 
@@ -2937,9 +2952,9 @@ async function ejemplo(pg, mas) {
     prueba('las celebraciones: sin errores de página', e27f.length === 0, e27f.join(' | '));
     await c27f.close();
 
-    /* a 320 px, de noche y en los diez idiomas: nada pasa del borde. Hasta el 18-11-2026 se miraba solo en alemán,
+    /* a 320 px, de noche y en los once idiomas: nada pasa del borde. Hasta el 18-11-2026 se miraba solo en alemán,
        búlgaro y polaco, y solo la vista de entrada; con las cajas a 16 px (nota 48, 4a), la zona del tiempo de «Hoy en
-       la isla» se salía a 320 px en francés y el deporte en búlgaro. Ahora, en los diez idiomas, «Cruce la isla» y
+       la isla» se salía a 320 px en francés y el deporte en búlgaro. Ahora, en los once idiomas, «Cruce la isla» y
        «Senderos de la isla» como antes, y el panel entero en las cinco vistas, diciendo qué se sale (lo que va en una
        tira que se desliza de lado, como los sellos, aparte: no se sale, se desliza). Y también a 360 y 375 px (los
        anchos de muchos Android y del iPhone SE): ahí el botón de la postal se salía hasta 28 px en francés, alemán,
@@ -2950,7 +2965,7 @@ async function ejemplo(pg, mas) {
       await abrirApp(p27b); await abrirPerfilCuerpo(p27b); await suCuerpo(p27b);
       await p27b.click('#tgc-tema'); await p27b.waitForTimeout(150);
       await ejemplo(p27b, { mov: [[1, 'caminar', 60, 5], [0, 'bici', 60, 20]], gr: ['bici'], comp: { pie: 'perro', bici: 'montana' }, senderos: { 'montana-blanca': '2026-11-01' } });
-      for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+      for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
         await idioma(p27b, l); await p27b.waitForTimeout(150);
         const malVista = [];
         for (const m of ['m', 'a', 'c', 'e', 'p']) {
@@ -2976,7 +2991,7 @@ async function ejemplo(pg, mas) {
 
   // 28. (10-11-2026, #99; Jerome: «Que todo sea juntos») la pestaña «Evolución»: «Sus datos» y «Su evolución» del perfil,
   //     dentro de «Su cuerpo». En la pestaña Cuerpo del perfil, solo la tarjeta; la barra, de cinco, en orden y sin
-  //     rótulos cortados (360 y 390 px, diez idiomas); las dos tarjetas, prestadas (las mismas, no una copia), con los
+  //     rótulos cortados (360 y 390 px, once idiomas); las dos tarjetas, prestadas (las mismas, no una copia), con los
   //     colores de Día y de Noche; los km, juntos: los de antes del perfil (con «Borrar») y los de «Anotar
   //     movimiento» (con el nombre de su deporte; el surf, sin km, no cuenta); «Anotar movimiento» abre la hoja y lo
   //     anotado suma; un peso guardado avisa en el aviso de «Su cuerpo»; al cerrar, vuelven al perfil, ocultas; al
@@ -2994,8 +3009,8 @@ async function ejemplo(pg, mas) {
        En metros, como los cuenta el perfil: 4,2 + 24 + 29,2 + 0,05 son 57.450 m, «57,5 km» (con los decimales de la
        máquina daba 57,4499… y salía «57,4») */
     const M = { total: 4200 + 10000 + 24000 + 29200 + 50, siete: 4200 + 24000 + 29200 + 50, hoy: 24000 };
-    const NOMBRE = { es: 'Evolución', en: 'Progress', fr: 'Évolution', de: 'Verlauf', it: 'Progressi', nl: 'Voortgang', zh: '进展', zht: '進展', bg: 'Напредък', pl: 'Postępy' };
-    const TOT = { es: 'Total', en: 'Total', fr: 'Total', de: 'Gesamt', it: 'Totale', nl: 'Totaal', zh: '累计', zht: '累計', bg: 'Общо', pl: 'Łącznie' };
+    const NOMBRE = { es: 'Evolución', en: 'Progress', fr: 'Évolution', de: 'Verlauf', it: 'Progressi', nl: 'Voortgang', zh: '进展', zht: '進展', bg: 'Напредък', pl: 'Postępy', ro: 'Evoluție' };
+    const TOT = { es: 'Total', en: 'Total', fr: 'Total', de: 'Gesamt', it: 'Totale', nl: 'Totaal', zh: '累计', zht: '累計', bg: 'Общо', pl: 'Łącznie', ro: 'Total' };
     const c28 = await contexto(b), p28 = await c28.newPage(), e28 = []; vigilar(p28, e28);
     await c28.addInitScript(([p, c]) => { try { if (!sessionStorage.getItem('s28')) { localStorage.setItem('tenerife.perfil', p); localStorage.setItem('tenerife.cuerpo', c); sessionStorage.setItem('s28', '1'); } } catch (e) {} },
       [JSON.stringify(perfil), JSON.stringify(cuerpo)]);
@@ -3054,7 +3069,7 @@ async function ejemplo(pg, mas) {
       esquema: getComputedStyle(document.getElementById('tgc-evo-montaje')).colorScheme }));
     await p28.click('#tgc-tema'); await p28.waitForTimeout(150);
     prueba('28: de Noche, también los de «Su cuerpo»: la tarjeta en su azul de noche, el título claro y los controles oscuros', n.fondo === 'rgb(27, 35, 48)' && n.titulo === 'rgb(240, 236, 228)' && n.esquema === 'dark', JSON.stringify(n));
-    /* los diez idiomas: la barra a 390 y a 360, y los textos de las dos tarjetas */
+    /* los once idiomas: la barra a 390 y a 360, y los textos de las dos tarjetas */
     const malI = [];
     for (const L of Object.keys(NOMBRE)) {
       await idioma(p28, L); await p28.waitForTimeout(150);
@@ -3078,7 +3093,7 @@ async function ejemplo(pg, mas) {
       if (r.anotar !== r.hoja) malI.push(L + ': el botón dice «' + r.anotar + '» y la hoja «' + r.hoja + '»');
     }
     await idioma(p28, 'es'); await p28.setViewportSize({ width: 390, height: 844 }); await p28.waitForTimeout(150);
-    prueba('28: en los diez idiomas: la pestaña con su nombre, sin cortar a 390 ni a 360 px; «Total» y «Anotar movimiento» (el mismo de la hoja), traducidos; nada vacío, ninguna clave suelta, nada fuera', !malI.length, malI.slice(0, 8).join(' | '));
+    prueba('28: en los once idiomas: la pestaña con su nombre, sin cortar a 390 ni a 360 px; «Total» y «Anotar movimiento» (el mismo de la hoja), traducidos; nada vacío, ninguna clave suelta, nada fuera', !malI.length, malI.slice(0, 8).join(' | '));
     /* cerrar: vuelven al perfil, ocultas; al abrir otra vez, en «Evolución» y prestadas otra vez */
     await p28.keyboard.press('Escape'); await p28.waitForTimeout(400);
     const c1 = await p28.evaluate(() => ({ abierto: TG_CUERPO.abierto(), padres: [document.getElementById('tgp-datos').parentNode.id, document.getElementById('tgp-evo').parentNode.id].join(),
@@ -3105,7 +3120,7 @@ async function ejemplo(pg, mas) {
   //     por semana, la segunda cuando ya están todos, y nunca antes de 48 horas (lo de hoy o de ayer descansa); delante,
   //     los prioritarios de su deporte y luego el que hace más que no se trabaja; el caso de Jérôme (pecho el lunes: el
   //     miércoles no sale pecho); el sitio de cada día (en casa, con el material que marque), guardado y con los
-  //     ejercicios de ese sitio al abrir un grupo; «¿Por qué?», con las dos respuestas y sus fuentes; diez idiomas; y lo
+  //     ejercicios de ese sitio al abrir un grupo; «¿Por qué?», con las dos respuestas y sus fuentes; once idiomas; y lo
   //     guardado que no vale, fuera
   {
     const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
@@ -3257,9 +3272,9 @@ async function ejemplo(pg, mas) {
       q29.modo === 'true' && q29.charla.indexOf('¿Cuántas veces por semana trabajo cada músculo?') >= 0 && q29.charla.indexOf('¿Cuántos días de descanso necesito?') >= 0 && q29.fuentes >= 2, JSON.stringify(q29).slice(0, 300));
     await p29.click('#tgc-modo-m'); await p29.waitForTimeout(250);
 
-    // diez idiomas: el botón es la pregunta del asistente; sus textos, sin marcas sueltas ni castellano fuera del castellano
+    // once idiomas: el botón es la pregunta del asistente; sus textos, sin marcas sueltas ni castellano fuera del castellano
     const Q = { en: 'What should I train today?', fr: 'Qu’est-ce que j’entraîne aujourd’hui ?', de: 'Was trainiere ich heute?', it: 'Cosa alleno oggi?', nl: 'Wat train ik vandaag?',
-      zh: '今天练什么？', zht: '今天練什麼？', bg: 'Какво да тренирам днес?', pl: 'Co dziś trenować?' };
+      zh: '今天练什么？', zht: '今天練什麼？', bg: 'Какво да тренирам днес?', pl: 'Co dziś trenować?', ro: 'Ce antrenez azi?' };
     const es29 = await plan();
     for (const [l, q] of Object.entries(Q)) {
       await idioma(p29, l);
@@ -3281,7 +3296,7 @@ async function ejemplo(pg, mas) {
   // 30. (12-11-2026, #120) «¿Qué entreno hoy?» en «Preguntar», con el mismo cálculo que la tarjeta de «Músculos»:
   //     cada caso con su texto (los nuevos: la segunda vez de la semana y el descanso de 48 horas), «en casa» entre los
   //     filtros, la fuente de las 48 horas (Garber et al., ACSM 2011) entre sus fuentes, los grupos como botones que abren
-  //     su hoja con el sitio de hoy (el primer día, con el nivel inicial), y los diez idiomas
+  //     su hoja con el sitio de hoy (el primer día, con el nivel inicial), y los once idiomas
   {
     const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
     const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
@@ -3349,10 +3364,10 @@ async function ejemplo(pg, mas) {
     prueba('30: «Ver Abdomen…» abre su hoja en «Músculos», «Fuera» (el sitio de hoy) y el nivel inicial', h5.tit === N30.core && h5.niv === '1' && h5.ent === 'fuera' && h5.modo === 'true', JSON.stringify(h5));
     await p30.keyboard.press('Escape'); await p30.waitForTimeout(250);
 
-    // diez idiomas: la respuesta en su idioma, sin marcas sueltas, y los botones «Ver …» traducidos
+    // once idiomas: la respuesta en su idioma, sin marcas sueltas, y los botones «Ver …» traducidos
     await poner([[0, 'pecho', 3]]);
     const aEs = await preguntar();
-    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       await idioma(p30, l);
       const a = await preguntar();
       prueba('30, ' + l + ': la respuesta y sus botones en su idioma', a.t && a.t.indexOf('{') < 0 && a.t !== aEs.t && a.p.every(x => x.indexOf('{') < 0) && a.grupos.length === 11 &&
@@ -3365,7 +3380,7 @@ async function ejemplo(pg, mas) {
 
   // 31. (12-11-2026, #120) «Su fuerza», en «Evolución»: cada ejercicio anotado con repeticiones o peso, el más reciente
   //     primero, con cuántas veces, la última, la mejor marca (el peso más alto; sin peso, las más repeticiones) y la
-  //     primera, y su línea pequeña; lo anotado sin repeticiones ni peso no sale; sin nada, la ayuda; diez idiomas
+  //     primera, y su línea pequeña; lo anotado sin repeticiones ni peso no sale; sin nada, la ayuda; once idiomas
   {
     const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
     const hace = n => { const d = new Date(); d.setDate(d.getDate() - n); return ymd(d); };
@@ -3421,8 +3436,8 @@ async function ejemplo(pg, mas) {
     const v2 = await leer31();
     prueba('31: a igual peso, la mejor marca es la de más repeticiones (3 × 12 con 60 kg, no la última)', v2.ej.length === 1 && /^Mejor marca: 3 × 12 con 60 kg \(.+\)$/.test(v2.ej[0].datos[1]) &&
       /^Última vez: 3 × 8 con 60 kg/.test(v2.ej[0].datos[0]), JSON.stringify(v2.ej));
-    // diez idiomas
-    const TIT = { en: 'Your strength', fr: 'Votre force', de: 'Ihre Kraft', it: 'Forza', nl: 'Uw kracht', zh: '我的力量', zht: '我的力量', bg: 'Вашата сила', pl: 'Siła' };
+    // once idiomas
+    const TIT = { en: 'Your strength', fr: 'Votre force', de: 'Ihre Kraft', it: 'Forza', nl: 'Uw kracht', zh: '我的力量', zht: '我的力量', bg: 'Вашата сила', pl: 'Siła', ro: 'Forța dumneavoastră' };
     for (const [l, t] of Object.entries(TIT)) {
       await idioma(p31, l);
       const m = await leer31();
@@ -3434,7 +3449,7 @@ async function ejemplo(pg, mas) {
     await c31.close();
   }
 
-  // 32. (12-11-2026, #120) la política de privacidad dice lo que «Su cuerpo» guarda de nuevo, en los diez idiomas: las
+  // 32. (12-11-2026, #120) la política de privacidad dice lo que «Su cuerpo» guarda de nuevo, en los once idiomas: las
   //     repeticiones y el peso, y el sitio donde entrena con el material de casa, citando el botón «¿Qué entreno hoy?»
   //     tal cual (cuerpoPlanBtn); y la app lleva ese mismo texto (index.html, que escribe tools/generar_privacidad.py)
   {
@@ -3444,13 +3459,15 @@ async function ejemplo(pg, mas) {
       for (const l of s.slice(i, j).split('\n')) { const m = l.match(/^\s*"(cuerpo[A-Za-z0-9_]+)": (\{.*\}),?$/); if (m) UI[m[1]] = JSON.parse(m[2]); } }
     const CARGA = { es: 'si los escribe, las repeticiones y el peso', en: 'if you enter them, the reps and the weight', fr: 'si vous les indiquez, les répétitions et le poids',
       de: 'wenn Sie sie angeben, die Wiederholungen und das Gewicht', it: 'se li scrive, le ripetizioni e il peso', nl: 'als u die invult, de herhalingen en het gewicht',
-      zh: '您填写的次数与重量', zht: '您填寫的次數與重量', bg: 'повторенията и тежестта, ако ги въведете', pl: 'powtórzenia i ciężar, jeśli zostaną podane' };
+      zh: '您填写的次数与重量', zht: '您填寫的次數與重量', bg: 'повторенията и тежестта, ако ги въведете', pl: 'powtórzenia i ciężar, jeśli zostaną podane',
+      ro: 'dacă le scrieți, repetările și greutatea' };
     /* (nota 34) y el nivel que elija para las rutinas */
     const SITIO = { es: 'el sitio donde entrena, el material que marque para casa y el nivel que elija', en: 'the place where you train, the equipment you tick for home and the level you choose',
       fr: 'le lieu où vous vous entraînez, le matériel coché pour la maison et le niveau choisi', de: 'den Ort, an dem Sie trainieren, die Geräte, die Sie für zu Hause markieren, und das Niveau, das Sie wählen',
       it: 'il luogo dove si allena, gli attrezzi segnati per casa e il livello scelto', nl: 'de plek waar u traint, het materiaal dat u voor thuis aanvinkt en het niveau dat u kiest',
       zh: '选择的训练地点、在家可用的器材和训练水平', zht: '選擇的訓練地點、在家可用的器材和訓練程度', bg: 'мястото, където тренирате, уредите, които отбележите за вкъщи, и нивото, което изберете',
-      pl: 'miejsce treningu, sprzęt zaznaczony jako dostępny w domu i wybrany poziom treningu' };
+      pl: 'miejsce treningu, sprzęt zaznaczony jako dostępny w domu i wybrany poziom treningu',
+      ro: 'locul unde vă antrenați, echipamentul pe care îl bifați pentru acasă și nivelul pe care îl alegeți' };
     const idx = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
     const mal32 = [];
     for (const l of Object.keys(CARGA)) {
@@ -3461,8 +3478,8 @@ async function ejemplo(pg, mas) {
       if (!t.includes(cita)) mal32.push(l + ': ' + cita);
       if (!idx.includes(JSON.stringify(t).slice(1, -1))) mal32.push(l + ': index.html no lleva el texto de idiomas/privacidad');
     }
-    prueba('32: la política de privacidad dice, en los diez idiomas, las repeticiones y el peso, el sitio, el material de casa y (nota 34) el nivel, y cita «¿Qué entreno hoy?» tal cual; la app lleva ese texto',
-      Object.keys(CARGA).length === 10 && !mal32.length, mal32.join(' · '));
+    prueba('32: la política de privacidad dice, en los once idiomas, las repeticiones y el peso, el sitio, el material de casa y (nota 34) el nivel, y cita «¿Qué entreno hoy?» tal cual; la app lleva ese texto',
+      Object.keys(CARGA).length === 11 && !mal32.length, mal32.join(' · '));
   }
 
   // 33. (12-11-2026) «Preguntar»: lo que dice cada fuente, entre comillas una sola vez. 163 citas de cada idioma ya traían
@@ -3487,7 +3504,7 @@ async function ejemplo(pg, mas) {
   // 34. (12-11-2026, nota 34; Jérôme: «2 si cámbialo») «progresar» da la regla del ACSM de 2009, leída en su PDF: subir
   //     el peso un 2–10 % cuando, con el mismo peso, salen 1 o 2 repeticiones más de las marcadas en dos sesiones
   //     seguidas (menos en los músculos pequeños y más en los grandes); su fuente, la primera, con lo leído; certeza
-  //     moderada (una postura de consenso); y ya no dice que no hay regla; en los diez idiomas
+  //     moderada (una postura de consenso); y ya no dice que no hay regla; en los once idiomas
   {
     const fs = require('fs'), path = require('path');
     const REGLA = { es: ['El ACSM (2009) da una regla', '1 o 2 repeticiones más', 'dos sesiones seguidas', 'entre un 2 y un 10 %'],
@@ -3499,7 +3516,8 @@ async function ejemplo(pg, mas) {
       zh: ['ACSM（2009）给出了一条规则', '多做 1 到 2 次', '连续两次训练', '增加 2% 到 10%'],
       zht: ['ACSM（2009）給出了一條規則', '多做 1 到 2 次', '連續兩次訓練', '增加 2% 到 10%'],
       bg: ['ACSM (2009) дава правило', '1 или 2 повторения повече', 'две поредни тренировки', 'с 2 до 10 %'],
-      pl: ['ACSM (2009) podaje regułę', '1 lub 2 powtórzenia więcej', 'dwa kolejne treningi', 'o 2–10%'] };
+      pl: ['ACSM (2009) podaje regułę', '1 lub 2 powtórzenia więcej', 'dwa kolejne treningi', 'o 2–10%'],
+      ro: ['ACSM (2009) dă o regulă', '1 sau 2 repetări mai mult', 'la două sesiuni la rând', 'cu 2–10 %'] };
     const VIEJO = /no dan una regla|do not give a rule|pas de règle chiffrée|keine Regel mit Zahlen|non danno una regola|geen regel met cijfers|没有给出带数字的规则|沒有給出具體數字的規則|не дават правило|nie podają reguły/;
     const mal34 = [];
     for (const [l, trozos] of Object.entries(REGLA)) {
@@ -3512,15 +3530,15 @@ async function ejemplo(pg, mas) {
       if (r.cert !== 'moderada') mal34.push(l + ': certeza ' + r.cert);
       if (r.r.p.length !== 4) mal34.push(l + ': ' + r.r.p.length + ' puntos');
     }
-    prueba('34: «progresar» da la regla del ACSM de 2009 (2–10 %, 1 o 2 repeticiones más, dos sesiones seguidas), con su fuente la primera y lo leído, en los diez idiomas',
-      Object.keys(REGLA).length === 10 && !mal34.length, mal34.join(' · '));
+    prueba('34: «progresar» da la regla del ACSM de 2009 (2–10 %, 1 o 2 repeticiones más, dos sesiones seguidas), con su fuente la primera y lo leído, en los once idiomas',
+      Object.keys(REGLA).length === 11 && !mal34.length, mal34.join(' · '));
   }
 
   // 35. (12-11-2026, nota 34; Jérôme: «3 si», «4 si», «Si todo en verde sube») las rutinas en «¿Qué entreno hoy?»: el
   //     nivel (después del sitio, guardado; «A tope» solo a mayores de edad, con la nota de la edad), la sesión de hoy (la
   //     A el primer día; la misma si hoy ya hizo algo de ella; la siguiente si no), lo que descansa (48 horas) y el día de
   //     descanso, cada pauta con sus cifras, la frase de esfuerzo y las fuentes con lo leído; en casa, lo que se puede con
-  //     lo marcado y los sustitutos; fuera, sin banda, a calistenia; una fila abre su ficha; diez idiomas; y lo guardado
+  //     lo marcado y los sustitutos; fuera, sin banda, a calistenia; una fila abre su ficha; once idiomas; y lo guardado
   //     que no vale, fuera
   {
     const fs = require('fs'), path = require('path');
@@ -3714,9 +3732,9 @@ async function ejemplo(pg, mas) {
     prueba('35: tocar la tercera fila abre la ficha de «' + NOM[g1a.e[2][0]][0] + '»', f15.ej && f15.nom === NOM[g1a.e[2][0]][0], JSON.stringify(f15));
     await p35.keyboard.press('Escape'); await p35.waitForTimeout(150); await p35.keyboard.press('Escape'); await p35.waitForTimeout(250);
 
-    // los diez idiomas: los rótulos, el nombre de la sesión, los niveles, las pautas, el esfuerzo y los nombres de los ejercicios
+    // los once idiomas: los rótulos, el nombre de la sesión, los niveles, las pautas, el esfuerzo y los nombres de los ejercicios
     await poner([], { sitio: 'gimnasio', nivel: 1 }); await abrirPlan(); await esperarSes();
-    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       await idioma(p35, l); await p35.waitForTimeout(300); await esperarSes();
       await p35.waitForFunction(n => { const x = document.querySelector('#tgc-ses-lista .tgc-ses-ej-nom'); return x && !x.textContent.includes(n); }, NOM[g1a.e[0][0]][0], { timeout: 8000 }).catch(() => {});
       const m = await leer(), NL = DAT('ejercicios-' + l + '.json');
@@ -3747,7 +3765,7 @@ async function ejemplo(pg, mas) {
   //     de casa (todo el material sin nada, la pared o marcado, y sin correr ni desplazarse); seis materiales nuevos que se
   //     marcan en «¿Qué tiene en casa?» (22) y el aparato biosaludable, que no; todas las fuentes de una ficha (hasta 6; antes,
   //     4, y dos de las 533 traen 5); las cifras del
-  //     asistente con el catálogo, en los diez idiomas; y con el catálogo de antes, «ningún ejercicio con lo que tiene»
+  //     asistente con el catálogo, en los once idiomas; y con el catálogo de antes, «ningún ejercicio con lo que tiene»
   {
     const fs = require('fs'), path = require('path'), crypto = require('crypto');
     const DAT = n => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', n), 'utf8'));
@@ -3873,10 +3891,10 @@ async function ejemplo(pg, mas) {
     await idioma(p36, 'es');
     prueba('36: una ficha de casa dice «En casa» y «Mesa o encimera»; en inglés, «At home» y «Table or worktop»',
       rc.chips.includes('En casa') && rc.chips.includes('Mesa o encimera') && rcEn.chips.includes('At home') && rcEn.chips.includes('Table or worktop'), JSON.stringify([rc.chips, rcEn.chips]));
-    // las cifras del asistente, con el catálogo, en los diez idiomas (sin navegador)
+    // las cifras del asistente, con el catálogo, en los once idiomas (sin navegador)
     const niv = [1, 2, 3].map(n => D36.filter(x => x.n === n).length);
     const mal36 = [];
-    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       const A = DAT('asistente-' + l + '.json'), R = id => (A.respuestas || A).find ? (A.respuestas || A).find(r => r.id === id) : (A.respuestas || A)[id];
       const enc = R('encontrar-ejercicios').r, nv = R('nivel-del-ejercicio').r;
       const nums = t => (t.match(/\d+/g) || []).map(Number);
@@ -3886,7 +3904,7 @@ async function ejemplo(pg, mas) {
       if (!(deFuente.includes(D36.length) && deFuente.filter(n => n !== D36.length).reduce((s, n) => s + n, 0) === D36.length)) mal36.push(l + ': de la fuente «' + nv.p[0] + '»');
       if (JSON.stringify(niveles) !== JSON.stringify(niv)) mal36.push(l + ': niveles «' + nv.p[3] + '»');
     }
-    prueba('36: el asistente, con el catálogo, en los diez idiomas: los cuatro sitios del filtro «Dónde» con el nombre de la app, ' + D36.length +
+    prueba('36: el asistente, con el catálogo, en los once idiomas: los cuatro sitios del filtro «Dónde» con el nombre de la app, ' + D36.length +
       ' ejercicios, de la fuente y estimados que suman ' + D36.length + ', y ' + niv.join(', ') + ' por nivel', !mal36.length, mal36.slice(0, 3).join(' | '));
     prueba('36: sin errores de página', e36.length === 0, e36.join(' | '));
     await c36.close();
@@ -3910,7 +3928,7 @@ async function ejemplo(pg, mas) {
   //     casa?»: botellas, silla, toalla y mesa, marcadas de entrada y con la lista abierta mientras no se revisa; con
   //     ellas, la sesión A de casa tal cual; lo que se quita se queda quitado (otro día también) y lo que lo pide pasa a su
   //     alternativa; cerrar la lista también la deja revisada; lo guardado antes de la nota 37 recibe las cuatro; lo
-  //     revisado, tal cual; lo que no vale, fuera; diez idiomas
+  //     revisado, tal cual; lo que no vale, fuera; once idiomas
   {
     const fs = require('fs'), path = require('path');
     const RU = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', 'rutinas.json'), 'utf8'));
@@ -4002,15 +4020,15 @@ async function ejemplo(pg, mas) {
     prueba('37: lo guardado que no vale: con matRev true, «1», 2, 0 o nada, la lista no está revisada y lleva las cuatro',
       v37.every(e => JSON.stringify(e) === JSON.stringify({ material: ENT, matRev: 0 })), JSON.stringify(v37));
 
-    // diez idiomas: el texto de la lista
+    // once idiomas: el texto de la lista
     const mal37 = [];
-    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       await idioma(p37, l);
       const t = await p37.evaluate(() => document.getElementById('tgc-plan-mat-ayuda').textContent);
       if (!AY[l] || t !== AY[l] || t === AY.es || t.indexOf('{') >= 0) mal37.push(l + ': ' + t);
     }
     await idioma(p37, 'es');
-    prueba('37: el texto de «¿Qué tiene en casa?» en los diez idiomas', !mal37.length && ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'].every(l => typeof AY[l] === 'string' && AY[l]), mal37.join(' | '));
+    prueba('37: el texto de «¿Qué tiene en casa?» en los once idiomas', !mal37.length && ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'].every(l => typeof AY[l] === 'string' && AY[l]), mal37.join(' | '));
     prueba('37: sin errores de página', e37.length === 0, e37.join(' | '));
     await c37.close();
   }
@@ -4021,7 +4039,7 @@ async function ejemplo(pg, mas) {
   //     (en casa, lo marcado; lo que no se puede, a su alternativa, y sin ninguna, fuera); la pauta del ACSM y la de los
   //     mayores; el texto y las fuentes; «¿antes o después?» abre su
   //     respuesta; una fila abre su ficha; al final de la sesión de fuerza, «Después: estire lo que ha trabajado»; el
-  //     resumen; diez idiomas; y un fichero que no vale, fuera
+  //     resumen; once idiomas; y un fichero que no vale, fuera
   {
     const fs = require('fs'), path = require('path');
     const DAT = n => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'datos', 'cuerpo', n), 'utf8'));
@@ -4187,10 +4205,10 @@ async function ejemplo(pg, mas) {
     prueba('40: no se guarda: otro día sale «Fuerza» elegida, y lo guardado no lleva nada de estiramientos',
       JSON.stringify(f13.que.map(x => x.split(':')[2])) === '["true","false"]' && !f13.est && !Object.keys(g13).some(k => /est|que/i.test(k)), JSON.stringify([f13.que, Object.keys(g13)]));
 
-    // diez idiomas
+    // once idiomas
     await que('estirar'); await esperarEst();
     const es40 = await leer(), mal40 = [];
-    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
       await idioma(p40, l); await p40.waitForTimeout(300);
       await p40.waitForFunction(n => { const x = document.querySelector('#tgc-est-lista .tgc-ses-ej-nom'); return x && x.textContent !== n; }, es40.ejs[0].nom, { timeout: 8000 }).catch(() => {});
       const m = await leer(), NL = DAT('ejercicios-' + l + '.json');
@@ -4202,7 +4220,7 @@ async function ejemplo(pg, mas) {
           t.some(x => !x || x.indexOf('{') >= 0)) mal40.push(l + ': ' + JSON.stringify([m.queTit, m.nom, m.ejs[0]]).slice(0, 160));
     }
     await idioma(p40, 'es');
-    prueba('40: en los diez idiomas: la pregunta, las dos opciones, el título, las zonas, la pauta, los textos y los nombres', !mal40.length, mal40.join(' | '));
+    prueba('40: en los once idiomas: la pregunta, las dos opciones, el título, las zonas, la pauta, los textos y los nombres', !mal40.length, mal40.join(' | '));
     prueba('40: sin errores de página', e40.length === 0, e40.join(' | '));
     await c40.close();
 
@@ -4292,7 +4310,7 @@ async function ejemplo(pg, mas) {
   //     nombre de los ejercicios un emoji vídeo y un botón cuando selecciona el ejercicio») 🎬 detrás del nombre de los
   //     ejercicios con vídeo (datos/cuerpo/con-video.json) en las listas que abren su ficha (el grupo, la sesión del día y sus
   //     alternativas, las variantes y «Variante de …»), «🎬 Solo con vídeo» en los filtros del grupo y «🎬 Ver el vídeo» en la
-  //     ficha, que lleva al vídeo y lo pone en marcha; en los diez idiomas. Sin el índice: ni 🎬, ni filtro, ni botón, y la
+  //     ficha, que lleva al vídeo y lo pone en marcha; en los once idiomas. Sin el índice: ni 🎬, ni filtro, ni botón, y la
   //     ficha enseña el vídeo como antes; sin el módulo del vídeo, el botón se va; un índice con basura no pinta nada raro
   {
     const fs = require('fs'), path = require('path');
@@ -4306,7 +4324,8 @@ async function ejemplo(pg, mas) {
       fr: ['avec vidéo', 'Avec vidéo uniquement', 'Voir la vidéo'], de: ['mit Video', 'Nur mit Video', 'Video ansehen'],
       it: ['con video', 'Solo con video', 'Vedi il video'], nl: ['met video', 'Alleen met video', 'Bekijk de video'],
       zh: ['有视频', '仅显示有视频的', '观看视频'], zht: ['有影片', '僅顯示有影片的', '觀看影片'],
-      bg: ['с видео', 'Само с видео', 'Виж видеото'], pl: ['z filmem', 'Tylko z filmem', 'Zobacz film'] };
+      bg: ['с видео', 'Само с видео', 'Виж видеото'], pl: ['z filmem', 'Tylko z filmem', 'Zobacz film'],
+      ro: ['cu video', 'Doar cu video', 'Vedeți videoclipul'] };
     const grupo43 = async (pg, g) => { await pg.click('.tgc-fila[data-g="' + g + '"]'); await pg.waitForSelector('#tgc-ej-lista .tgc-ej-fila', { timeout: 15000 }); await pg.waitForTimeout(150); };
     const lista43 = pg => pg.evaluate(() => [...document.querySelectorAll('#tgc-ej-lista .tgc-ej-fila')].map(b => {
       const v = b.querySelectorAll('.tgc-vid'), n = b.querySelector('.tgc-ej-nombre'), m = b.querySelector('.tgc-ej-meta');
@@ -4401,10 +4420,10 @@ async function ejemplo(pg, mas) {
       f4.pulsado === 'false' && f4.ids.includes(sinVr.id), JSON.stringify([f4.pulsado, f4.ids.length, sinVr.id]));
     await p43.keyboard.press('Escape'); await p43.waitForTimeout(200);
 
-    // en los diez idiomas: el filtro, lo que dice el lector del 🎬 (los mismos en cada idioma) y el botón de la ficha
+    // en los once idiomas: el filtro, lo que dice el lector del 🎬 (los mismos en cada idioma) y el botón de la ficha
     await vacio(p43);
     const malI = [];
-    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'es']) {
+    for (const l of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro', 'es']) {
       await idioma(p43, l);
       await grupo43(p43, 'pecho');
       /* todos los sitios: la sesión del día dejó «Gimnasio» puesto */
@@ -4417,7 +4436,7 @@ async function ejemplo(pg, mas) {
       if (!bien) malI.push(l + ': ' + JSON.stringify([L.filter(f => f.n).length, (L.find(f => f.n) || {}).lab, L.filter(f => f.n && !f.pegado).map(f => f.id).slice(0, 3), F.txt, K.txt]));
       await p43.keyboard.press('Escape'); await p43.waitForTimeout(150); await p43.keyboard.press('Escape'); await p43.waitForTimeout(150);
     }
-    prueba('43: en los diez idiomas, el filtro, el botón y lo que dice el lector del 🎬, cada uno en el suyo, y el 🎬 en los ' + conV.length + ' del pecho, pegado a la última palabra (nunca solo en una línea)', malI.length === 0, malI.join(' | '));
+    prueba('43: en los once idiomas, el filtro, el botón y lo que dice el lector del 🎬, cada uno en el suyo, y el 🎬 en los ' + conV.length + ' del pecho, pegado a la última palabra (nunca solo en una línea)', malI.length === 0, malI.join(' | '));
     prueba('43: sin errores de página', e43.length === 0, e43.join(' | '));
     await c43.close();
 

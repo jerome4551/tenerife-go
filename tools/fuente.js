@@ -3,7 +3,7 @@
  *
  * Desde el 9 de octubre de 2026 la red de guaguas (TITSA_PARADAS y
  * TITSA_LINES) vive en datos/titsa.js, que index.html carga con su propia
- * etiqueta. Esos datos llevan textos para el usuario en los diez idiomas
+ * etiqueta. Esos datos llevan textos para el usuario en los once idiomas
  * -las notas de algunas lineas- y nombres en cirilico, y las herramientas
  * que barren el fuente tienen que seguir viendolos.
  *
@@ -27,7 +27,7 @@
  * Y LOS MODULOS DE CARGA PEREZOSA (17 de octubre de 2026). El panel del cielo
  * (modulos/cielo.js) no tiene etiqueta: lo pide su cargador cuando alguien
  * abre el panel, para no sumar unos 100 kB comprimidos a la primera descarga. Sin
- * etiqueta, ninguna herramienta lo veria, y lleva todos sus textos en diez
+ * etiqueta, ninguna herramienta lo veria, y lleva todos sus textos en once
  * idiomas.
  * Se declara junto a su cargador con un comentario «CARGA-PEREZOSA: <ruta>»
  * y entra aqui igual que los otros, detras de ellos. ficheros() sigue
@@ -41,7 +41,7 @@
  * idiomas/cielo/<idioma>.json, para que cada movil baje solo las suyas. Sin
  * mas, ninguna herramienta las veria: se declaran con «IDIOMAS-PEREZOSOS:
  * <carpeta>» y aqui se juntan los ficheros de esa carpeta (uno por idioma de
- * SUPPORTED_LANGS) en una tabla de filas de diez idiomas,
+ * SUPPORTED_LANGS) en una tabla de filas de once idiomas,
  * var IDIOMAS_<CARPETA> = { "clave": {"es": "…", "en": "…", …}, … },
  * pegada detras de los modulos: las herramientas las miran como miraban las
  * filas de CIELO_UI. Una carpeta declarada que no existe, un idioma sin su
@@ -160,5 +160,5 @@ if (require.main === module) {
   const c = cargar();
   console.log('index.html: ' + c.lineasIndex + ' lineas');
   for (const f of c.ficheros.concat(c.perezosos)) console.log(f.ruta + ': ' + f.texto.split('\n').length + ' lineas, ' + Buffer.byteLength(f.texto) + ' bytes' + (f.perezoso ? ' (carga perezosa)' : ''));
-  for (const f of c.porIdioma) console.log(f.ruta + '/<idioma>.json: ' + (f.texto.split('\n').length - 2) + ' filas de diez idiomas, juntas en ' + f.nombre);
+  for (const f of c.porIdioma) console.log(f.ruta + '/<idioma>.json: ' + (f.texto.split('\n').length - 2) + ' filas de once idiomas, juntas en ' + f.nombre);
 }

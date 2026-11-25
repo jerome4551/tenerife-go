@@ -687,7 +687,7 @@ const apunta = (tipo, donde, txt) => hallazgos.push({ tipo, donde, txt });
 
 /* ── 1. los textos de lugar, que viven en idiomas/<lang>.json ───────────── */
 /* index.html Y los ficheros de datos que carga: las notas de las lineas de
-   guagua, en diez idiomas, viven en datos/titsa.js desde el 9 de octubre.
+   guagua, en once idiomas, viven en datos/titsa.js desde el 9 de octubre.
    Al mudarlas, este control paso de mirar 557 textos de interfaz a 477 sin
    dejar de dar verde. Ver tools/fuente.js. */
 const FUENTE = require('./fuente');

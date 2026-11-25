@@ -9,7 +9,7 @@
  * LO QUE HACE
  *   1. Copia a app/www/ SOLO lo que la app pide en el movil: index.html, el
  *      manifiesto, los iconos y los arranques (splash-*.png), privacidad.html
- *      y borrar-cuenta.html, los diez idiomas (idiomas/<l>.json y
+ *      y borrar-cuenta.html, los once idiomas (idiomas/<l>.json y
  *      idiomas/etiquetas/), el asistente (faq/<l>.json), los datos que lee
  *      index.html (datos/), el modulo del cielo, vendor/ entero (librerias,
  *      fuentes, imagenes de Leaflet, licencias), los dos mapas (.pmtiles) y
@@ -27,7 +27,7 @@
  *      30-10-2026 no estan en ninguna parte.)
  *   3. Escribe app/ios/plantillas/<idioma>.lproj/InfoPlist.strings, los
  *      textos de los permisos de iOS (camara, ubicacion, sensores) en los
- *      diez idiomas, SACADOS de la politica de privacidad
+ *      once idiomas, SACADOS de la politica de privacidad
  *      (idiomas/privacidad/<l>.json), para que digan lo mismo que ella.
  *
  * --comprobar, ademas:
@@ -38,7 +38,7 @@
  *     app/www/;
  *   · que www/index.html es el de la raiz mas esa unica linea;
  *   · que las plantillas de iOS tienen lo que iOS pide (las tres claves de
- *     uso con texto en cada idioma, CFBundleLocalizations con los diez,
+ *     uso con texto en cada idioma, CFBundleLocalizations con los once,
  *     el manifiesto de privacidad bien formado y sin rastreo, el icono de
  *     1024 sin transparencia, el arranque de 2732x2732);
  *   · que los .strings generados son los de hoy (si la politica cambia y

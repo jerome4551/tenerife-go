@@ -370,7 +370,7 @@ function opaca() {
      deporte. Asi que:
        · el modulo entra en el precache al INSTALAR, como el perfil, y sin red
          sale del cache; red primero (cambia con la app);
-       · los datos NO entran al instalar (son los diez idiomas y cada persona
+       · los datos NO entran al instalar (son los once idiomas y cada persona
          lee uno): se guardan la primera vez que se piden con red, y desde
          ahi salen tambien sin ella; red primero, para que unas respuestas
          nuevas lleguen a quien ya tiene las viejas;

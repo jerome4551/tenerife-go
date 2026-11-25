@@ -230,12 +230,12 @@ echo; echo "════════ avisos de AEMET en la app, en los once idio
 # Desde el 21 de octubre de 2026 van en el boton del mar 🌊, y un costero quita
 # de «Báñese hoy aquí» las playas de su zona (contorno oficial de AEMET).
 control probar_avisos.js node tools/probar_avisos.js "$PUERTO"
-echo; echo "════════ rutas: guaguas a hora fija y lo que se ve al usarlas, en los diez idiomas ════════"
+echo; echo "════════ rutas: guaguas a hora fija y lo que se ve al usarlas, en los once idiomas ════════"
 # Desde el 12 de octubre de 2026. Ningun control pedia una ruta: de noche
 # «A→B» decia que no habia guagua entre La Laguna y el Puerto de la Cruz, con
 # la frase de la guagua del Teide, y varios textos salian en castellano.
 control probar_rutas.js node tools/probar_rutas.js "$PUERTO"
-echo; echo "════════ «Organice su día» entero, en los diez idiomas, con los tramos calculados ════════"
+echo; echo "════════ «Organice su día» entero, en los once idiomas, con los tramos calculados ════════"
 # Desde el 13 de octubre de 2026: el tiempo entre paradas era un rotulo fijo
 # («En guagua ~25 min» para cualquier tramo) y varios titulos salian sin traducir.
 control probar_organiza.js node tools/probar_organiza.js "$PUERTO"
@@ -325,10 +325,10 @@ echo; echo "════════ el perfil y los avatares ══════
 control auditar_perfil.js node tools/auditar_perfil.js
 control probar_fechas_oro.js node tools/probar_fechas_oro.js modulos/avatares.js
 control probar_perfil.js node tools/probar_perfil.js "$PUERTO"
-echo; echo "════════ «Su cuerpo»: el dibujo y la pestaña Cuerpo del perfil, en los diez idiomas ════════"
+echo; echo "════════ «Su cuerpo»: el dibujo y la pestaña Cuerpo del perfil, en los once idiomas ════════"
 # Desde el 31 de octubre de 2026 (modulos/cuerpo.js), y desde el 1 de noviembre dentro de la
 # pestaña Cuerpo del perfil. El dibujo, sin navegador: cada opcion del aspecto da un SVG sano y lo
-# guardado se valida. La pestaña, de verdad: los diez idiomas, anotar, el aspecto y el personaje
+# guardado se valida. La pestaña, de verdad: los once idiomas, anotar, el aspecto y el personaje
 # en pequeño, lo guardado roto, los 533 ejercicios, las hojas con el perfil inerte, el «atras» y
 # el Escape del perfil, sin el modulo, con versiones de antes, y un fichero de ejercicios
 # manipulado que no ejecuta nada.

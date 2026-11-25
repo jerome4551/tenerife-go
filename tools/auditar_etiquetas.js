@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* auditar_etiquetas.js — los chips del globo, en los nueve idiomas.
+/* auditar_etiquetas.js — los chips del globo, en los otros diez idiomas.
  *
  * Los `tags` de cada ficha salen debajo del nombre en el globo del mapa y
  * son texto suelto dentro de un array, no un objeto {es:..., en:...}. Por

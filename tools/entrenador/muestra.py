@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Lo que las páginas de prueba, la muestra y la grabación necesitan de la app, en un fichero:
-# los textos de los ejercicios con vídeo (10 idiomas), sus datos y los rótulos de «Su cuerpo».
+# los textos de los ejercicios con vídeo (11 idiomas), sus datos y los rótulos de «Su cuerpo».
 #     python3 tools/entrenador/muestra.py     escribe tools/entrenador/pruebas/datos-muestra.js
 import json, re, pathlib, sys
 aqui = pathlib.Path(__file__).resolve().parent
@@ -10,7 +10,7 @@ ids = [a or b for a, b in re.findall(r"^\s*COREO(?:\['([a-z0-9-]+)'\]|\.([a-z0-9
 E = {e['id']: e for e in json.loads((repo / 'datos/cuerpo/ejercicios.json').read_text(encoding='utf-8'))['ejercicios']}
 falta = [i for i in ids if i not in E]
 if falta: sys.exit('coreografías sin ficha: ' + ', '.join(falta))
-IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']
+IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']
 TX = {l: json.loads((repo / ('datos/cuerpo/ejercicios-%s.json' % l)).read_text(encoding='utf-8')) for l in IDIOMAS}
 ej = {}
 for i in ids:

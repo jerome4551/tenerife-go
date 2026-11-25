@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* google_play_ficha.js — la ficha de Google Play (datos/google-play/ficha.json),
- * en los diez idiomas. Desde el 30 de octubre de 2026.
+ * en los once idiomas. Desde el 30 de octubre de 2026 (el rumano, desde el interruptor del rumano, 22-11-2026).
  *
  * DE DONDE SALE (no hay texto nuevo: todo esta ya repasado idioma a idioma)
  *   · el titulo y la descripcion completa, de la ficha de la App Store

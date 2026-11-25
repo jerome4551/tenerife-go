@@ -43,7 +43,7 @@
  *   · el enlace de compartir un lugar apunta a la web viva (eso ya lo hacia
  *     el codigo con capacitor://; aqui se comprueba con la marca).
  *
- * LOS DIEZ IDIOMAS, CON LA MARCA: la app arranca en cada idioma de
+ * LOS ONCE IDIOMAS, CON LA MARCA: la app arranca en cada idioma de
  *   SUPPORTED_LANGS (la bienvenida), sin service worker y con el boton de
  *   push oculto; el panel del cielo abre «Esta noche» y «Donde ir», y
  *   «Antes de subir al Teide» dice «guardado» en ese idioma; ninguna
@@ -273,7 +273,7 @@ async function pagina(ctx, puerto, extra, idioma) {
     await n2.pg.close();
     await ctx.close();
 
-    console.log('=== los diez idiomas, con la marca ===');
+    console.log('=== los once idiomas, con la marca ===');
     modo = 'corte';   // sin red hacia fuera: todo lo que se ve tiene que salir del paquete
     const ctx3 = await browser.newContext({ viewport: { width: 390, height: 844 }, userAgent: UA_IPHONE, hasTouch: true,
       geolocation: { latitude: 28.4636, longitude: -16.2518 }, permissions: ['geolocation'] });
