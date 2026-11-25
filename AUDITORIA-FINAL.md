@@ -27,7 +27,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **996**, con descripción y categoría en 10 idiomas (lo coteja `auditar_datos.js`) |
+| Lugares | **996**, con descripción y categoría en 11 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -11583,6 +11583,56 @@ controles, cuadro a cuadro, pero a ojo, según esa sesión, solo las ocho pareja
 mueve el motor y los que fue arreglando. La mano contra la cabeza no es un control (la mano en la nuca se mete
 adrede), y la mano contra el pecho o contra el otro brazo no la mide nadie. Y los ejercicios están cotejados con su
 ficha y medidos, no revisados por un fisioterapeuta: donde la ficha no dice un ángulo, lo puso esa sesión.
+
+## El rumano, encendido (once idiomas), y el bloque 17 del entrenador (nota 67) (25 de noviembre)
+
+**De dónde sale.** Un zip de Jérôme, `rumano-interruptor-4.zip`, con dos carpetas: la nota 67 de la sesión del
+entrenador (su `0029`: el bloque 17, 41 estiramientos sin material de tronco, cadera y piernas, 605 ejercicios con
+vídeo; y las manos «del otro lado», reflejadas de verdad, que cambian nueve vídeos de antes) y la nota 70 de la sesión
+del rumano: el interruptor entero, como datos (708 cambios en 104 ficheros, en siete partes, del I2 al I4) y el orden
+para encenderlo. A la pregunta de si hacerlo ya o el viernes, Jérôme, el 25-11: «Todo ahora».
+
+**Puesto y comprobado aquí.** Las huellas de los 110 ficheros del zip, bien. El `0029`, con `git am` encima de
+`83285ef`: da el árbol `fb1224a`, el de partida que dice la nota 70; `construir.py --comprobar` y `app_preparar.js
+--comprobar`, en verde; los ficheros de su `repo/`, iguales a los de la rama salvo dos que se explican:
+`modulos/entrenador.js` (aquí lleva el rumano de `80-reproductor.js`, que la copia de esa sesión no tiene) y la
+plantilla de la muestra (su estado, el de la nota 65). Los 708 cambios, con un aplicador propio (no se ejecuta nada
+del zip): cada «antes» una vez en su fichero y su «después» ninguna, todo o nada, una parte por commit. Ninguno añade
+red, `eval`, ejecución de programas ni secretos; las cedillas nuevas (ş, ţ) van solo en controles que las buscan como
+error. Después, el orden del encendido con las herramientas del repo: el paso 2 se niega, como debe; salen 996 lugares
+y 2.316 textos, 958 fichas y 178 respuestas; `activar_idioma.js` enciende «ro»; los generadores escriben las
+preguntas, la política, `borrar-cuenta.html` y `404.html` en once idiomas; y los 115 ficheros que cambian o aparecen
+tienen la huella que da la sesión del rumano (`huellas/despues-del-encendido.txt`: 115 de 115). `REVISION-LUGARES.md`,
+al día.
+
+**Leído aquí, uno a uno, los 192 cambios que se ven** (los otros 516 son de los controles, de los documentos y de
+comentarios): en las fichas de las tiendas, «Once idiomas», «Eleven languages», «Onze langues», «Elf Sprachen»,
+«Undici lingue», «Elf talen», «十一种语言», «十一種語言», «Единадесет езика» y «Jedenaście języków», y el rumano en la lista de
+idiomas de cada una; el rumano corregido de «Su deporte», del «Pase de viaje», de Garachico, de «Antes de salir» y de
+«Mi coche y mi posición»; y una fila de la política en rumano (`ppDatosCocheTxt`: «Hărți de la Apple» y «doar când
+atingeți butonul», como dice el castellano).
+
+**Lo que espera el sí de Jérôme**, además del «sube»: esa fila de la política en rumano, y en Supabase
+`supabase/push-servicios.sql` (la función `guardar_push_sub()` con `'ro'`; leída aquí la de ahora: las diez lenguas,
+sin `'ro'`, y nada más cambia). Sin ella, a quien tenga la app en rumano el aviso de cada mañana le llegaría en
+castellano.
+
+**La App Store y Google Play, no.** Con la 1.0.0 en revisión no se lanza `ficha` ni `testflight`: la ficha rumana y
+«once idiomas» suben con la versión siguiente, la que se compile con el rumano dentro. La web lo lleva en cuanto se
+publique.
+
+**La auditoría entera**, sobre `dfecbfa` (árbol `da2740f`; esta documentación, aparte), del 25-11 de las 14:53 a las
+18:49, hora de Canarias: **«AUDITORIA EN VERDE»**, 176 bloques, ningún control en rojo ni roto, ya con once idiomas en
+cada uno. En el registro, 157.903 textos leídos (143.787 la víspera, con diez); cada idioma, uno por uno, sin un
+hallazgo, el rumano también; 996 lugares en el código, en el resumen y en lo que se lee; las tablas de idioma, 61 y
+3.980 filas con castellano, y 6.160 filas mirando dentro y fuera. Del entrenador: `construir.py --comprobar`; los 16
+trozos, cada uno con la huella de su contenido en el nombre; 605 ejercicios con vídeo, de 958; y las 605 coreografías
+por dentro (posturas, tramos, clavos y material, ninguna postura imposible), con sus contactos medidos.
+
+**Lo que no está comprobado.** Un rumano nativo no lo ha leído (la sesión del rumano lo escribió y revisó con el DOOM
+y el diccionario); nada en un teléfono de verdad; Supabase, hasta el sí de Jérôme. Y un rojo que no es de este lote:
+el control del cielo, a veces, con la ISS en la sombra de la Tierra (el aviso dice «siga la flecha» en vez de «no se
+ve»); sale igual en `main` y va aparte.
 
 ## La política de privacidad · lo que decía y lo que la app hace
 
