@@ -1,6 +1,6 @@
 # Revisión de los 996 lugares
 
-**23 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
+**25 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
 Barre los 996, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
@@ -601,7 +601,7 @@ del repositorio.
 | Caen dentro de la caja de Tenerife | **996 de 996** |
 | Caen en tierra (capa `earth` de OSM) | **987** de 996; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
 | Ids únicos y con el formato `[a-z0-9-]` | **996** de 996 |
-| Tienen `desc` y `cat` en los diez idiomas | **996** de 996 |
+| Tienen `desc` y `cat` en los once idiomas | **996** de 996 |
 | Referencias huérfanas desde el planificador | **0** de 161 |
 | Zonas de baño sin orientación | **0** de 99 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |
