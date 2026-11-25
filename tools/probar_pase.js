@@ -10,7 +10,7 @@
  * islas, las de las reseñas del IGN; las paradas de las rutas, lugares de la app con descripcion;
  * los sitios de la busqueda del tesoro, a mas de 150 m unos de otros; la costa del mapa pequeño,
  * sobre la costa del relieve.
- * En los diez idiomas y en rumano (forzado): la tarjeta del pasaporte, el «Pase», las rutas, una
+ * En los once idiomas, cada uno elegido en la bienvenida: la tarjeta del pasaporte, el «Pase», las rutas, una
  * ruta, la busqueda y «¿Qué estoy viendo?»; que nada se sale a 360 y 402 px y que no queda
  * castellano fuera del castellano.
  * En castellano, todo lo que se puede tocar:
@@ -127,14 +127,13 @@ async function abrirApp(b, L, opc) {
   await p.goto(BASE + (opc.hash || ''), { waitUntil: 'load' });
   await p.waitForTimeout(700);
   if (!opc.hash) await bienvenida(p, L);
-  if (L === 'ro') await p.evaluate(() => { currentLang = 'ro'; document.documentElement.lang = 'ro'; repintarModulosIdioma(); });
   return { ctx, p, errores };
 }
 /* la bienvenida sale en cada arranque (tambien al recargar) y tapa lo de debajo: se elige el idioma y «Empezar» */
 async function bienvenida(p, L) {
   await p.waitForSelector('#v19-welcome-start', { state: 'visible', timeout: 4000 }).catch(() => {});
   if (!await p.evaluate(() => { const w = document.getElementById('v19-welcome'); return !!(w && !w.classList.contains('hidden') && w.getClientRects().length); })) return;
-  await p.tap('.v19-w-lang[data-lang="' + (L === 'ro' ? 'en' : L) + '"]'); await p.waitForTimeout(200);
+  await p.tap('.v19-w-lang[data-lang="' + L + '"]'); await p.waitForTimeout(200);
   await p.tap('#v19-welcome-start'); await p.waitForTimeout(1800);
 }
 /* el pasaporte, en «Viaje», y su tarjeta «Pase de viaje» */
