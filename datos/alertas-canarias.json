@@ -2,8 +2,13 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-25T15:01:52Z",
+ "consultado": "2026-11-25T16:11:40Z",
  "alertas": [
+  {
+   "t": "2026-11-25T15:34:45Z",
+   "titulo": "El Gobierno de Canarias declara la emergencia de carácter sanitario, social y de seguridad en El Hierro",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-emergencia-de-caracter-sanitario-social-y-de-seguridad-en-el-hierro/"
+  },
   {
    "t": "2026-11-25T11:13:23Z",
    "titulo": "El Gobierno de Canarias declara la situación de prealerta por lluvias en La Palma",
@@ -58,11 +63,6 @@
    "t": "2026-11-10T14:37:58Z",
    "titulo": "El Gobierno de Canarias declara la alerta por lluvia en La Palma",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-alerta-por-lluvia-en-la-palma/"
-  },
-  {
-   "t": "2026-11-10T14:07:01Z",
-   "titulo": "El Gobierno de Canarias actualiza la situación y declara la alerta por fenómenos costeros en todas las islas",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-actualiza-la-situacion-y-declara-la-alerta-por-fenomenos-costeros-en-todas-las-islas-2/"
   }
  ],
  "descartados": 0
