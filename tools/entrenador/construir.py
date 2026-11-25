@@ -160,7 +160,7 @@ CAB = '''/* modulos/entrenador.js — Jérôme, el entrenador (11 de noviembre d
    CÓMO SE USA
    TG_ENTRENADOR.pedir(id) → promesa (trae la coreografía, si no está) · TG_ENTRENADOR.tiene(id, nPasos) ·
    TG_ENTRENADOR.montar(caja, datos, opc) → reproductor (reproducir, pausar, irA, tema, quitar) ·
-   TG_ENTRENADOR.ids() · .trozos() · .todo() · .huellas · .textos (los diez idiomas).
+   TG_ENTRENADOR.ids() · .trozos() · .todo() · .huellas · .textos (los once idiomas).
    innerHTML solo recibe constantes de este fichero (dibujos e iconos); los textos de la ficha
    entran con textContent.
 

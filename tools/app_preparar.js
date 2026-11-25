@@ -200,7 +200,7 @@ function fragmentoPlist() {
      Se aplica con ios/plantillas/aplicar.sh (PlistBuddy Merge) despues de «npx cap add ios». -->
 <plist version="1.0">
 <dict>
-  <!-- el idioma base y los diez de la app; cada uno lleva su .lproj/InfoPlist.strings -->
+  <!-- el idioma base y los once de la app; cada uno lleva su .lproj/InfoPlist.strings -->
   <key>CFBundleDevelopmentRegion</key>
   <string>es</string>
   <key>CFBundleLocalizations</key>
