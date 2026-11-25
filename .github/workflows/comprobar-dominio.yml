@@ -68,7 +68,7 @@ jobs:
     # Lo que vio Jerome el 31 de octubre de 2026 desde Instagram en el iPhone:
     # el banner de instalar que no se iba y ningun camino para instalarla. Se
     # mira en la web publicada, con los user-agent de Safari y de Instagram, en
-    # los diez idiomas. Primero, que la web sea la de este commit: index.html
+    # los once idiomas. Primero, que la web sea la de este commit: index.html
     # igual al del repositorio (con una consulta que no este en la cache de
     # GitHub Pages; hasta 10 minutos, lo que tarda en publicar).
     # ubuntu-24.04 fijo, no ubuntu-latest: desde el 19-10-2026 GitHub pasa

@@ -456,7 +456,9 @@ const FUERTES = new Set(('más muy hoy horario abierto abierta cerrado cerrada p
   'toca marcador origen').split(' '));
 /* las que tambien son palabra de ese idioma */
 /* «lunes» es el plural frances de luna (las de Jupiter), no el dia de la semana (22-10-2026) */
-const CHOCA = { it: ['marzo', 'agosto'], nl: ['ver'], pl: ['parada'], fr: ['lunes'] };
+/* «ruta» y «familia» son palabras rumanas, con su articulo: la ruta (rută) y la familia (familie), en
+   «pe ruta indicată» y «toată familia» del panel SOS (el interruptor del rumano, 20-11-2026) */
+const CHOCA = { it: ['marzo', 'agosto'], nl: ['ver'], pl: ['parada'], fr: ['lunes'], ro: ['ruta', 'familia'] };
 const LATINOS = IDI.filter(l => !['zh', 'zht', 'bg'].includes(l));
 
 (async () => {

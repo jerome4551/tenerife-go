@@ -217,7 +217,7 @@ def informe(cambios, rotos, ahora):
          'El vigía (`tools/vigia_sos.py`, %s) ha visto cambios, o páginas que no '
          'responden, entre las oficiales de las que sale lo que dice el panel SOS. Hay '
          'que leerlas y, si cambia algo que el panel dice (un consejo, un plan nuevo, '
-         'un teléfono), cambiar sus filas en los diez idiomas y la fecha de revisión '
+         'un teléfono), cambiar sus filas en los once idiomas y la fecha de revisión '
          '(`SOS_REVISADO`), con la fuente. Si una página se ha movido, buscar su '
          'dirección nueva en la web del organismo y cambiarla en `SOS_FUENTES`. Si no '
          'cambia nada que importe, se cierra esta incidencia diciendo por qué.' % ahora[:10], '']

@@ -36,7 +36,7 @@ vista, el crédito de OpenStreetMap y el de Open-Meteo (`AUDITORIA-FINAL.md`).
 
 - **Idioma predeterminado:** español (España), `es-ES`. Luego, *Gestionar
   traducciones → Añadir tus propias traducciones*: `en-GB`, `en-US`, `fr-FR`,
-  `de-DE`, `it-IT`, `nl-NL`, `zh-CN`, `zh-TW`, `bg` y `pl-PL`.
+  `de-DE`, `it-IT`, `nl-NL`, `zh-CN`, `zh-TW`, `bg`, `pl-PL` y `ro`.
 - **Los textos** (nombre, descripción breve y completa), en
   `datos/google-play/ficha.json`, sacados de la ficha de la App Store sin texto
   nuevo. Para copiarlos, un idioma cada vez:

@@ -3782,7 +3782,7 @@
    "clave": "accesoRapido",
    "forma": "texto",
    "es": "Acceso rápido y funciona sin conexión",
-   "ro": "Acces rapid, funcționează și fără conexiune"
+   "ro": "Acces rapid, funcționează offline"
   },
   {
    "tabla": "PWA_TX",

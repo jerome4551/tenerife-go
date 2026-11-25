@@ -86,8 +86,8 @@ escribe(path.join('metadata', 'review_information', 'notes.txt'), notasRevisor()
 console.log('  ' + escritas.length + ' localizaciones (' + escritas.join(' ') + '), ' + capturas + ' capturas, en ' + DESTINO);
 
 if (COMPROBAR) {
-  ok(escritas.length === 10 && ['es-ES', 'en-GB', 'en-US', 'fr-FR', 'de-DE', 'it', 'nl-NL', 'zh-Hans', 'zh-Hant', 'pl'].every(l => escritas.includes(l)),
-     'las diez localizaciones de la tienda (el bulgaro no existe en App Store Connect)', escritas.join(' '));
+  ok(escritas.length === 11 && ['es-ES', 'en-GB', 'en-US', 'fr-FR', 'de-DE', 'it', 'nl-NL', 'zh-Hans', 'zh-Hant', 'pl', 'ro'].every(l => escritas.includes(l)),
+     'las once localizaciones de la tienda (el bulgaro no existe en App Store Connect)', escritas.join(' '));
   for (const loc of escritas) {
     const fallos = [];
     for (const [f, lim] of Object.entries(LIMITES)) {

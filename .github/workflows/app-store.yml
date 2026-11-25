@@ -14,7 +14,7 @@
 #               existe en App Store Connect; la ficha («New App») la crea Jerome a mano
 #               una vez (la API de Apple no deja crearla)
 #   testflight  firma, archiva y sube un build a TestFlight
-#   ficha       sube los textos en las diez localizaciones y las capturas
+#   ficha       sube los textos en las once localizaciones y las capturas
 #   todo        testflight + ficha
 # Nunca pulsa «Submit for Review»: eso es de Jerome.
 #
@@ -196,7 +196,7 @@ jobs:
       - name: Montar app/www/ (la app de la tienda, con la marca)
         run: node tools/app_preparar.js
 
-      - name: Las capturas de la app de verdad, en los diez idiomas
+      - name: Las capturas de la app de verdad, en los once idiomas
         env:
           TGO_PLAYWRIGHT: ${{ github.workspace }}/node_modules/playwright
         run: |

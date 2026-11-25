@@ -15,10 +15,10 @@ con los de dentro de respaldo. En la web esa marca no existe y nada cambia.
 |---|---|
 | Lo que viaja en la app | `www/` (lo monta `node ../tools/app_preparar.js`; no entra en git) |
 | La configuración de Capacitor | `capacitor.config.json` (`appId`, `appName`, `webDir`) |
-| Lo que el proyecto de Xcode necesita y Capacitor no trae | `ios/plantillas/`: el fragmento del `Info.plist` (permisos, idiomas, cifrado exento, orientaciones), `<idioma>.lproj/InfoPlist.strings` (las frases de los permisos en los diez idiomas, sacadas de la política de privacidad), `PrivacyInfo.xcprivacy`, `AppIcon-1024.png`, `Splash-2732.png` y `aplicar.sh`, que lo pone todo en su sitio |
+| Lo que el proyecto de Xcode necesita y Capacitor no trae | `ios/plantillas/`: el fragmento del `Info.plist` (permisos, idiomas, cifrado exento, orientaciones), `<idioma>.lproj/InfoPlist.strings` (las frases de los permisos en los once idiomas, sacadas de la política de privacidad), `PrivacyInfo.xcprivacy`, `AppIcon-1024.png`, `Splash-2732.png` y `aplicar.sh`, que lo pone todo en su sitio |
 | El proyecto de Xcode | `ios/App/` (lo genera `npm run ios:anadir`: «npx cap add ios» con las plantillas apartadas un momento, porque Capacitor no arranca si ya existe `ios/`; no entra en git) |
 | Los pasos enteros, lo que hay que decidir y lo que falta | `../LANZAMIENTO-APP-STORE.md` |
-| La ficha de la tienda en los diez idiomas | `../datos/app-store/ficha.json` (`node ../tools/auditar_app_store.js` la coteja) |
+| La ficha de la tienda en los once idiomas | `../datos/app-store/ficha.json` (`node ../tools/auditar_app_store.js` la coteja) |
 | Las capturas para la tienda | `node ../tools/capturas_app_store.js PUERTO`, con `www/` servido en ese puerto (la app de la tienda, con la marca; si no la ve, para) |
 | La App Store sin Mac | `../.github/workflows/app-store.yml` (una máquina macOS de GitHub), `fastlane/Fastfile` (match, gym, pilot, deliver), `Gemfile`, `ios/plantillas/incluir.rb`; la ficha y las capturas en el formato de `deliver`, con `node ../tools/app_store_metadata.js` |
 

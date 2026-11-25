@@ -47,6 +47,11 @@
 --  5 de noviembre de 2026: volcada de la base de datos, la funcion que hay
 --  es esta misma, y push_subs no tiene ninguna restriccion sobre lang. La
 --  definicion de push_subs esta ya en favorites.sql.
+--
+--  20 de noviembre de 2026: la funcion de este fichero ya no es la de la
+--  base de datos. La cambio supabase/push-servicios.sql (solo los servicios
+--  de avisos de los navegadores), y alli va tambien el rumano. Este fichero
+--  no se vuelve a ejecutar: devolveria la funcion a la de antes.
 -- ═══════════════════════════════════════════════════════════════════
 
 -- 1 · La restriccion de idioma, si hay una y se queda corta

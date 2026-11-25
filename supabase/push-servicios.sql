@@ -29,7 +29,7 @@
 --      Microsoft: el canal tiene que ser del dominio notify.windows.com).
 --  Una que no sea de ellos: 22023, «servicio de avisos no reconocido», y
 --  no se guarda nada. Lo demas, igual que en push-idioma.sql: el idioma
---  nuevo en la que ya estaba, las diez lenguas de la app, el tope.
+--  nuevo en la que ya estaba, las lenguas de la app, el tope.
 --
 --  Antes de aplicarlo (20 de noviembre, solo contando filas): 5
 --  suscripciones, las 5 de esos servicios. Nadie se queda sin avisos.
@@ -53,6 +53,12 @@
 --  Se puede volver a ejecutar sin errores: la firma es la misma, asi que
 --  «create or replace» la cambia sin tocar sus permisos, que se vuelven a
 --  poner igual al final.
+--
+--  20 de noviembre de 2026, el interruptor del rumano: once lenguas, con
+--  'ro'. ESTA VERSION AUN NO ESTA APLICADA: hay que ejecutar este fichero
+--  otra vez antes de publicar la app con el rumano. Con la funcion de
+--  ahora, una suscripcion en rumano se guarda como 'es' y la frase de cada
+--  manana le llega en castellano.
 -- ═══════════════════════════════════════════════════════════════════
 
 create or replace function public.guardar_push_sub(p_endpoint text, p_p256dh text, p_auth text, p_lang text)
@@ -63,7 +69,7 @@ security definer
 set search_path = public
 as '
 declare
-  l text := case when p_lang in (''es'',''en'',''fr'',''de'',''it'',''nl'',''zh'',''zht'',''bg'',''pl'')
+  l text := case when p_lang in (''es'',''en'',''fr'',''de'',''it'',''nl'',''zh'',''zht'',''bg'',''pl'',''ro'')
                  then p_lang else ''es'' end;
 begin
   if p_endpoint is null or p_endpoint !~ ''^https://'' or length(p_endpoint) > 1000

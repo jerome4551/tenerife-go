@@ -22,11 +22,11 @@ igual.
 import html, json, os, subprocess, sys
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']
+LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']
 # el nombre de cada idioma en su idioma: no se traduce
 NOMBRES = {'es': 'Español', 'en': 'English', 'fr': 'Français', 'de': 'Deutsch',
            'it': 'Italiano', 'nl': 'Nederlands', 'zh': '简体中文', 'zht': '繁體中文',
-           'bg': 'Български', 'pl': 'Polski'}
+           'bg': 'Български', 'pl': 'Polski', 'ro': 'Română'}
 # el lang de HTML, el mismo que pone la app (setLang)
 HTML_LANG = {'zh': 'zh-Hans', 'zht': 'zh-Hant'}
 CORREO = 'tenerife.go.app@gmail.com'

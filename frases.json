@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "_nota": "365 frases (una por dia del ano). Los 10 idiomas de SUPPORTED_LANGS completos: es, en, fr, de, it, nl, zh, zht, bg, pl. El envio elige por dia del ano; no se repite en el ano y rota sola. Para anadir mas frases, agrega objetos con los 10 idiomas: si falta uno, enviar-notificacion.js manda la castellana a quien tenga ese idioma. Lo comprueba tools/auditar_frases.js.",
+  "_nota": "365 frases (una por dia del ano). Los 11 idiomas de SUPPORTED_LANGS completos: es, en, fr, de, it, nl, zh, zht, bg, pl, ro. El envio elige por dia del ano; no se repite en el ano y rota sola. Para anadir mas frases, agrega objetos con los 11 idiomas: si falta uno, enviar-notificacion.js manda la castellana a quien tenga ese idioma. Lo comprueba tools/auditar_frases.js.",
   "titulo": {
     "es": "Buenos días ☀️",
     "en": "Good morning ☀️",

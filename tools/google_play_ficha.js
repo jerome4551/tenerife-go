@@ -36,7 +36,7 @@ const AS = JSON.parse(fs.readFileSync(ORIGEN, 'utf8'));
 
 /* los idiomas de la app y su codigo en Play Console (el bulgaro si esta en Play) */
 const PLAY = { es: ['es-ES'], en: ['en-GB', 'en-US'], fr: ['fr-FR'], de: ['de-DE'], it: ['it-IT'], nl: ['nl-NL'],
-  zh: ['zh-CN'], zht: ['zh-TW'], bg: ['bg'], pl: ['pl-PL'] };
+  zh: ['zh-CN'], zht: ['zh-TW'], bg: ['bg'], pl: ['pl-PL'], ro: ['ro'] };
 /* la frase de los patrocinados, tal cual esta en cada descripcion */
 const PATROCINIO = {
   'es-ES': 'Sin redes publicitarias de terceros: los negocios que pagan una promoción van marcados como patrocinados. ',
@@ -49,11 +49,12 @@ const PATROCINIO = {
   'zh-CN': '没有第三方广告网络：付费推广的商家会标注为「赞助」。',
   'zh-TW': '沒有第三方廣告網路：付費推廣的商家會標示為「贊助」。',
   'bg': 'Без рекламни мрежи на трети страни: обектите, които плащат за промоция, са отбелязани като спонсорирани. ',
-  'pl-PL': 'Bez sieci reklamowych firm trzecich: firmy, które płacą za promocję, są oznaczone jako sponsorowane. '
+  'pl-PL': 'Bez sieci reklamowych firm trzecich: firmy, które płacą za promocję, są oznaczone jako sponsorowane. ',
+  'ro': 'Fără rețele publicitare terțe: afacerile care plătesc o promovare sunt marcate ca sponsorizate. '
 };
 /* la breve: lo que se quita del texto promocional y, en aleman y neerlandes, el cambio */
 const BOLSILLO = { es: ' en su bolsillo', en: ' in your pocket', fr: ' dans votre poche', de: ' in Ihrer Tasche', it: ' in tasca',
-  nl: ' op zak', zh: '，尽在口袋', zht: '，盡在口袋', bg: ' в джоба ви', pl: ' w kieszeni' };
+  nl: ' op zak', zh: '，尽在口袋', zht: '，盡在口袋', bg: ' в джоба ви', pl: ' w kieszeni', ro: ' în buzunar' };
 const OFFLINE = { de: ['Funktioniert ohne Verbindung.', 'Funktioniert offline.'], nl: ['Werkt zonder verbinding.', 'Werkt offline.'] };
 const LIMITES = { titulo: 30, corta: 80, larga: 4000 };
 
@@ -127,7 +128,7 @@ for (const loc of locs) for (const [k, max] of Object.entries(LIMITES)) {
 ok(!largos.length, 'los limites de Play: titulo hasta 30, breve hasta 80, completa hasta 4000', largos.join(', '));
 const anuncios = locs.filter(loc => /patrocin|sponsor|gesponsor|赞助|贊助|спонсор/i.test(F.idiomas[loc].larga + F.idiomas[loc].corta));
 ok(F.contieneAnuncios === false && !anuncios.length, 'sin anuncios declarados y sin hablar de patrocinados (si llega el primero: GOOGLE-PLAY.md, «Anuncios»)', anuncios.join(', '));
-const promete = locs.filter(loc => /sin anuncios|no ads|sans pub|keine werbung|senza pubblicit|geen advertenties|无广告|無廣告|без реклам|bez reklam/i.test(F.idiomas[loc].larga + F.idiomas[loc].corta));
+const promete = locs.filter(loc => /sin anuncios|no ads|sans pub|keine werbung|senza pubblicit|geen advertenties|无广告|無廣告|без реклам|bez reklam|fără reclame/i.test(F.idiomas[loc].larga + F.idiomas[loc].corta));
 ok(!promete.length, 'y sin prometer «sin anuncios»: la politica dice que puede haber negocios patrocinados', promete.join(', '));
 const paginas = [[F.urlPrivacidad, 'privacidad.html'], [F.urlBorrarCuenta, 'borrar-cuenta.html'], [F.web, 'index.html']];
 ok(paginas.every(([u, f]) => u === 'https://tenerifego.app/' + (f === 'index.html' ? '' : f) && fs.existsSync(path.join(RAIZ, f))),

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # aplicar.sh — pone en el proyecto de Xcode que genera «npx cap add ios» lo
 # que Tenerife Go necesita y Capacitor no sabe: los permisos con sus frases en
-# los diez idiomas, el manifiesto de privacidad, el icono de 1024 y el arranque.
+# los once idiomas, el manifiesto de privacidad, el icono de 1024 y el arranque.
 # Se pasa en un Mac, desde app/, DESPUES de «npx cap add ios» (y se puede
 # repetir: cada paso deja lo mismo). Comprobado en seco (sin Mac) el 21 de
 # octubre de 2026: si un paso no encuentra lo que espera, lo dice y sigue.
@@ -30,7 +30,7 @@ for k in NSLocationWhenInUseUsageDescription NSMotionUsageDescription NSCameraUs
   "$PB" -c "Print :$k" "$IOS/Info.plist" >/dev/null 2>&1 && echo "  $k: ok" || aviso "$k no esta en el Info.plist"
 done
 
-echo "== 2. Las frases de los permisos en los diez idiomas (InfoPlist.strings) y el manifiesto de privacidad"
+echo "== 2. Las frases de los permisos en los once idiomas (InfoPlist.strings) y el manifiesto de privacidad"
 n=0
 for d in "$P"/*.lproj; do
   [ -d "$d" ] || continue
@@ -59,7 +59,7 @@ if command -v bundle >/dev/null 2>&1 && bundle exec ruby -e 'require "xcodeproj"
 else
   echo "  (sin la gema xcodeproj -viene con fastlane: bundle install-: hacerlo en Xcode)"
   echo "  · Si los .lproj y PrivacyInfo.xcprivacy no salen en el navegador del proyecto: File > Add Files to «App»… (marcar el target App)."
-  echo "  · Project > Info > Localizations: que esten los diez idiomas."
+  echo "  · Project > Info > Localizations: que esten los once idiomas."
 fi
 echo "== 5. Lo que queda en Xcode (o lo hace el workflow, sin Mac)"
 echo "  · Target App > General: Team, el Bundle Identifier de capacitor.config.json, Minimum Deployments iOS 15.0."

@@ -193,7 +193,7 @@ window.onunhandledrejection = function(e) {
       "name": "Tenerife Go",
       "alternateName": "Tenerife GO — Mapa Interactivo de Tenerife",
       "url": "https://tenerifego.app/",
-      "description": "Guía turística gratuita de Tenerife con mapa interactivo: 996 lugares, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y avisos meteorológicos de AEMET. Disponible en 10 idiomas. Somos parte de ti.",
+      "description": "Guía turística gratuita de Tenerife con mapa interactivo: 996 lugares, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y avisos meteorológicos de AEMET. Disponible en 11 idiomas. Somos parte de ti.",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Web, Android, iOS",
       "browserRequirements": "Requires JavaScript",
@@ -17885,8 +17885,15 @@ function avisoPreciosGas() {
 
 function euroGas() {
   if (_cacheGas.euroLang !== currentLang || !_cacheGas.euro) {
-    _cacheGas.euro = new Intl.NumberFormat(PRECIOS_GAS_LOCALE[currentLang] || 'es-ES',
-      { style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 });
+    /* En rumano, Intl (CLDR) escribe «1,385 EUR»; con narrowSymbol, «1,385 €», como los otros diez
+       idiomas y los carteles de las gasolineras, y mas corto. Solo en rumano (los otros diez salen igual
+       con el o sin el); un navegador que no lo conozca (Safari antes del 14.1) se queda con «EUR»
+       (el interruptor del rumano, 20-11-2026). */
+    const loc = PRECIOS_GAS_LOCALE[currentLang] || 'es-ES';
+    const opc = { style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 };
+    if (currentLang === 'ro') opc.currencyDisplay = 'narrowSymbol';
+    try { _cacheGas.euro = new Intl.NumberFormat(loc, opc); }
+    catch (e) { delete opc.currencyDisplay; _cacheGas.euro = new Intl.NumberFormat(loc, opc); }
     _cacheGas.euroLang = currentLang;
   }
   return _cacheGas.euro;
@@ -23996,7 +24003,7 @@ window.addEventListener('hashchange', () => {
   var PWA_TX = {
     instalarApp:   { es:'Instalar aplicación', en:'Install app', fr:'Installer l\u2019application', de:'App installieren', it:'Installa l\u2019app', nl:'App installeren', zh:'安装应用', zht:'安裝應用', bg:'Инсталирай приложението', pl: "Zainstaluj aplikację", ro: "Instalați aplicația" },
     instalarNombre:{ es:'Instalar Tenerife Go', en:'Install Tenerife Go', fr:'Installer Tenerife Go', de:'Tenerife Go installieren', it:'Installa Tenerife Go', nl:'Tenerife Go installeren', zh:'安装 Tenerife Go', zht:'安裝 Tenerife Go', bg:'Инсталирай Tenerife Go', pl:'Zainstaluj Tenerife Go', ro: "Instalați Tenerife Go" },
-    accesoRapido:  { es:'Acceso rápido y funciona sin conexión', en:'Quick access, works offline', fr:'Accès rapide, fonctionne hors ligne', de:'Schneller Zugriff, auch offline', it:'Accesso rapido, funziona offline', nl:'Snelle toegang, werkt offline', zh:'打开更快，离线也能用', zht:'開啟更快，離線也能用', bg:'Бърз достъп и работи без интернет', pl: "Szybki dostęp, działa bez internetu", ro: "Acces rapid, funcționează și fără conexiune" },
+    accesoRapido:  { es:'Acceso rápido y funciona sin conexión', en:'Quick access, works offline', fr:'Accès rapide, fonctionne hors ligne', de:'Schneller Zugriff, auch offline', it:'Accesso rapido, funziona offline', nl:'Snelle toegang, werkt offline', zh:'打开更快，离线也能用', zht:'開啟更快，離線也能用', bg:'Бърз достъп и работи без интернет', pl: "Szybki dostęp, działa bez internetu", ro: "Acces rapid, funcționează offline" },
     instalar:      { es:'Instalar', en:'Install', fr:'Installer', de:'Installieren', it:'Installa', nl:'Installeren', zh:'安装', zht:'安裝', bg:'Инсталирай', pl: "Zainstaluj", ro: "Instalați" },
     /* Instalar desde el navegador de otra app -Instagram, Facebook, TikTok…- y
        los pasos de la ventana (31 de octubre de 2026). Los pasos de iOS, con
@@ -24729,7 +24736,7 @@ window.addEventListener('hashchange', () => {
     var lg = (typeof currentLang !== 'undefined' && WELCOME_I18N[currentLang]) ? currentLang : 'es';
     btn.textContent = WELCOME_I18N[lg];
     var lbl = document.getElementById('v19-count-label');
-    if (lbl) lbl.textContent = WELCOME_PLACES_I18N[lg] || WELCOME_PLACES_I18N.es;
+    if (lbl) lbl.textContent = palabraLugares(lg);
     try {
       var lbs = document.querySelectorAll('.v19-w-lang');
       for (var i = 0; i < lbs.length; i++) {
@@ -24738,12 +24745,26 @@ window.addEventListener('hashchange', () => {
     } catch (e) {}
   }
 
-  var WELCOME_PLACES_I18N = { es: "lugares", en: "places", fr: "lieux", de: "Orte", it: "luoghi", nl: "plekken", zh: "个地点", zht: "個地點", bg: "места", pl: "miejsc", ro: "de locuri" };
+  /* El rumano trae sus tres formas (CLDR: loc · locuri · de locuri) y la bienvenida pone la que pide el
+     total, con su regla de PLURAL_FORMA: «975 de locuri», pero «1012 locuri». Los demas, una, como
+     siempre. Mientras el numero sube, se queda la del total (el interruptor del rumano, 20-11-2026). */
+  var WELCOME_PLACES_I18N = { es: "lugares", en: "places", fr: "lieux", de: "Orte", it: "luoghi", nl: "plekken", zh: "个地点", zht: "個地點", bg: "места", pl: "miejsc", ro: "loc|locuri|de locuri" };
+  function totalLugares() {
+    var total = 700;
+    try { if (typeof places !== 'undefined' && places.length) total = places.length; } catch (e) {}
+    return total;
+  }
+  function palabraLugares(lg) {
+    var formas = String(WELCOME_PLACES_I18N[lg] || WELCOME_PLACES_I18N.es).split('|');
+    if (formas.length < 2) return formas[0];
+    var i = formas.length - 1;
+    try { i = PLURAL_FORMA[lg](totalLugares()); } catch (e) {}
+    return formas[Math.max(0, Math.min(i, formas.length - 1))];
+  }
   function animatePlacesCount() {
     var el = document.getElementById('v19-count');
     if (!el) return;
-    var total = 700;
-    try { if (typeof places !== 'undefined' && places.length) total = places.length; } catch (e) {}
+    var total = totalLugares();
     var reduce = false;
     try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
     if (reduce) { el.textContent = total; return; }
@@ -28097,7 +28118,7 @@ var CHAT_SALUDO=['hola','buenas','saludos','buenos dias','hello','hi','hey','goo
   'bonjour','bonsoir','salut','coucou','hallo','guten morgen','guten tag','guten abend','servus','moin',
   'ciao','salve','buongiorno','buonasera','hoi','goedemorgen','goedemiddag','goedenavond','goedendag',
   'dzien dobry','dobry wieczor','czesc','witam','witaj','hej','здравеите','здравеи','здрасти','привет',
-  'добър ден','добро утро','добър вечер','buna','buna ziua','buna seara',
+  'добър ден','добро утро','добър вечер','buna','buna ziua','buna seara','buna dimineata',
   '你好','您好','你们好','你們好','大家好','早上好','下午好','晚上好','早安','午安','嗨','哈喽','哈囉'];
 var CHAT_GRACIAS=['gracias','thanks','thank','thank you','merci','danke','dankeschon','vielen dank','grazie','bedankt',
   'dank je','dank u','dankjewel','dankuwel','genial','perfecto','dziekuje','dzieki','благодаря','мерси','multumesc','mersi',
@@ -28182,7 +28203,7 @@ function chatResolve(question,pos){
     cats=chatDetectCats(' '+qn0+' ',ts0,chatSinEsp(qn0));
   }
   var zone=null;
-  for(var z1=0;z1<toks.length;z1++){var zk=CHAT_ZONE_W[toks[z1]];if(zk&&!(z1>0&&(toks[z1-1]==='aeropuerto'||toks[z1-1]==='airport'))){zone=zk;break;}}
+  for(var z1=0;z1<toks.length;z1++){var zk=CHAT_ZONE_W[toks[z1]];if(zk&&!(z1>0&&(toks[z1-1]==='aeropuerto'||toks[z1-1]==='airport'))&&!(currentLang==='ro'&&toks[z1]==='este')){zone=zk;break;}}
   /* CHAT_ZONE_W solo sabe castellano e ingles, y la bienvenida de cada idioma
      invita a pedir «plages dans le nord» o «Strände im Süden»: el norte se
      perdia y salia la isla entera. Las zonas de cada idioma llegan en
@@ -28331,7 +28352,7 @@ function chatResolve(question,pos){
   }
   if(whatWas&&bigName)return {kind:'what',anchor:{lat:best.p.lat,lng:best.p.lng,name:nombreLugar(best.p),id:best.p.id}};
 
-  var askIdent=padded.indexOf(' que es ')>=0||padded.indexOf(' que son ')>=0||padded.indexOf(' what is ')>=0;
+  var askIdent=padded.indexOf(' que es ')>=0||padded.indexOf(' que son ')>=0||padded.indexOf(' what is ')>=0||padded.indexOf(' ce este ')>=0||padded.indexOf(' ce e ')>=0||padded.indexOf(' ce sunt ')>=0;
   var kbGuard=!zone&&!(cats.keys.length&&sToks.length);
   if(kbr&&kbr.sc>=5&&!zone&&!bigName&&(!cats.keys.length||askIdent))return {kind:'kb',item:kbr.item};
   if(kbr&&askIdent&&!zone&&!bigName)return {kind:'kb',item:kbr.item};

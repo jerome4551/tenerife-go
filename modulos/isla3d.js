@@ -58,9 +58,9 @@
   try { Object.assign(UI_TX, ISLA3D_UI); } catch (e) {}
 
   /* SIN-TRADUCIR: ISLA3D_LOCALE codigos de idioma para Intl (numeros), no textos */
-  var ISLA3D_LOCALE = {"es": "es-ES", "en": "en-GB", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "nl": "nl-NL", "zh": "zh-CN", "zht": "zh-TW", "bg": "bg-BG", "pl": "pl-PL"};
+  var ISLA3D_LOCALE = {"es": "es-ES", "en": "en-GB", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "nl": "nl-NL", "zh": "zh-CN", "zht": "zh-TW", "bg": "bg-BG", "pl": "pl-PL", "ro": "ro-RO"};
   /* SIN-TRADUCIR: ISLA3D_NOMBRE la clave name:xx del mapa de OSM que corresponde a cada idioma de la app */
-  var ISLA3D_NOMBRE = {"es": "name:es", "en": "name:en", "fr": "name:fr", "de": "name:de", "it": "name:it", "nl": "name:nl", "zh": "name:zh-Hans", "zht": "name:zh-Hant", "bg": "name:bg", "pl": "name:pl"};
+  var ISLA3D_NOMBRE = {"es": "name:es", "en": "name:en", "fr": "name:fr", "de": "name:de", "it": "name:it", "nl": "name:nl", "zh": "name:zh-Hans", "zht": "name:zh-Hant", "bg": "name:bg", "pl": "name:pl", "ro": "name:ro"};
   /* Lo que la licencia del Copernicus DEM («Licence for Copernicus DEM
      instance COP-DEM-GLO-30-F Global 30m Full, Free & Open», articulo 6) pide
      a quien lo ensena al publico, palabra por palabra y en ingles, que es

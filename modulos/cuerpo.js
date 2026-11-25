@@ -4123,7 +4123,7 @@
        puede ninguno, no sale (nota 42).
      - Fuera, si la sesión pide banda elástica, un botón lleva a la de calistenia del mismo nivel (la nota 34). */
   var NIVELES_RUT = [1, 2, 3, 4];
-  var IDIOMAS_RUT = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+  var IDIOMAS_RUT = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
   var RUT = null, rutCarga = null, rutError = false;
   function txL(o) { if (!o || typeof o !== 'object') return ''; var v = o[lengua()]; return typeof v === 'string' && v ? v : (typeof o.es === 'string' ? o.es : ''); }
   function parRut(v, min, max) {
@@ -5869,7 +5869,7 @@
 
   /* ── responder: urgencia, respuesta clara, sugerencias o nada ── */
   /* un saludo o un «gracias» no es una pregunta: se contesta con las sugerencias */
-  var SALUDO = /^(hola|buenas|buenos dias|buenas tardes|buenas noches|hello|hi|hey|bonjour|salut|hallo|guten tag|ciao|salve|hoi|goedendag|\u4f60\u597d|\u60a8\u597d|\u55e8|\u0437\u0434\u0440\u0430\u0432\u0435\u0439|\u0437\u0434\u0440\u0430\u0432\u0435\u0439\u0442\u0435|czesc|dzien dobry|gracias|thanks|thank you|merci|danke|grazie|bedankt|dank u|\u8c22\u8c22|\u8b1d\u8b1d|\u0431\u043b\u0430\u0433\u043e\u0434\u0430\u0440\u044f|dziekuje|ok|vale)[!. ]*$/i;
+  var SALUDO = /^(hola|buenas|buenos dias|buenas tardes|buenas noches|hello|hi|hey|bonjour|salut|hallo|guten tag|ciao|salve|hoi|goedendag|\u4f60\u597d|\u60a8\u597d|\u55e8|\u0437\u0434\u0440\u0430\u0432\u0435\u0439|\u0437\u0434\u0440\u0430\u0432\u0435\u0439\u0442\u0435|czesc|dzien dobry|buna|buna ziua|buna dimineata|buna seara|salutare|gracias|thanks|thank you|merci|danke|grazie|bedankt|dank u|\u8c22\u8c22|\u8b1d\u8b1d|\u0431\u043b\u0430\u0433\u043e\u0434\u0430\u0440\u044f|dziekuje|multumesc|multumesc mult|va multumesc|mersi|mersi mult|ok|vale)[!. ]*$/i;
   function responder(texto) {
     texto = String(texto || '').replace(/\s+/g, ' ').trim().slice(0, 200);
     if (!texto || !ASIS || !buscador) return null;

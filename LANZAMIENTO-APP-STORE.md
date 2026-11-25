@@ -29,12 +29,12 @@ pone al principio de `index.html`: `window.TGO_NATIVO = true`. Con ella:
 | Compartir un lugar | El enlace de la web | El enlace de la web viva (ya lo hacía con `capacitor://`). |
 | «Antes de subir al Teide» (el cielo, «Dónde ir») | Mira en la caché del móvil los seis ficheros del panel | «Guardado en el móvil» siempre: viajan en el paquete. |
 | La CSP | `connect-src 'self' …` | `connect-src` lleva además `https://tenerifego.app`, para esos datos. |
-| El asistente | Sus respuestas | En cuatro, la suya (`faq/fuente/nativo/respuestas.json`, diez idiomas): «¿Funciona sin conexión?» (desde la primera vez; «Satélite» y «Topo» con red), «¿Cómo instalo la app?» (ya está instalada: nada de navegador ni de otras plataformas, directriz 2.3.10), «¿Qué datos guarda la app?» (sin las notificaciones, que en la app no hay) y «¿Puedo recibir una frase cada mañana?» (no manda notificaciones). |
+| El asistente | Sus respuestas | En cuatro, la suya (`faq/fuente/nativo/respuestas.json`, once idiomas): «¿Funciona sin conexión?» (desde la primera vez; «Satélite» y «Topo» con red), «¿Cómo instalo la app?» (ya está instalada: nada de navegador ni de otras plataformas, directriz 2.3.10), «¿Qué datos guarda la app?» (sin las notificaciones, que en la app no hay) y «¿Puedo recibir una frase cada mañana?» (no manda notificaciones). |
 | Sin permiso para la cámara o los sensores | «Se puede dar en los ajustes del navegador» | Sin esa frase (`cieloCamaraPermisoApp`, `cieloSensoresPermisoApp`): dónde se vuelve a dar en iOS se mira en el iPhone (§7, 1). |
 
 Todo lo demás (el mapa, las 183 líneas, los 996 lugares, el cielo entero
 con «Apunta al cielo», los satélites, la noche guiada, el sistema solar, la
-luz roja, los diez idiomas) es el mismo código y se comporta igual.
+luz roja, los once idiomas) es el mismo código y se comporta igual.
 `tools/probar_app.js` lo comprueba en Chromium: con la marca y sin ella.
 
 ## 2. Lo que está hecho aquí y auditado (sin Mac)
@@ -45,12 +45,12 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
 | `modulos/cielo.js` | Los elementos de los satélites se piden con `tgoFetchDatos` si existe (`pedir`); `cacheListo()` da «guardado» con la marca. |
 | `tools/app_preparar.js` | Monta `app/www/` (lista cerrada de lo que viaja; nada de carpetas de trabajo ni controles) y escribe las plantillas de iOS que salen de la política de privacidad; `--comprobar` coteja que no falta nada de lo que `index.html`, las dos páginas fijas y `sw.js` piden, que `www/index.html` es el de la raíz más esa línea, y que las plantillas son las de hoy. |
 | `app/capacitor.config.json`, `app/package.json`, `app/LEEME.md`, `.gitignore` | El proyecto de Capacitor (8.x; `app/www/`, `app/ios/App/` y `node_modules/` fuera de git). |
-| `app/ios/plantillas/Info.plist.fragmento.plist` | Lo que el `Info.plist` de Capacitor no trae: los tres permisos con las frases de la política (castellano), los diez idiomas (`CFBundleLocalizations`), `ITSAppUsesNonExemptEncryption = false` (solo HTTPS), las orientaciones. |
-| `app/ios/plantillas/<idioma>.lproj/InfoPlist.strings` | Las frases de la ubicación, los sensores y la cámara en los diez idiomas, **sacadas de `idiomas/privacidad/<idioma>.json`**: el permiso dice lo mismo que la política. Si la política cambia y no se vuelve a pasar el preparador, `auditar.sh` para. |
+| `app/ios/plantillas/Info.plist.fragmento.plist` | Lo que el `Info.plist` de Capacitor no trae: los tres permisos con las frases de la política (castellano), los once idiomas (`CFBundleLocalizations`), `ITSAppUsesNonExemptEncryption = false` (solo HTTPS), las orientaciones. |
+| `app/ios/plantillas/<idioma>.lproj/InfoPlist.strings` | Las frases de la ubicación, los sensores y la cámara en los once idiomas, **sacadas de `idiomas/privacidad/<idioma>.json`**: el permiso dice lo mismo que la política. Si la política cambia y no se vuelve a pasar el preparador, `auditar.sh` para. |
 | `app/ios/plantillas/PrivacyInfo.xcprivacy` | El manifiesto de privacidad: sin rastreo, sin dominios de rastreo, y los datos que la política dice que salen (correo e id de usuario ligados a la cuenta, los favoritos, las coordenadas de una ruta o del tiempo y el texto de una búsqueda); sin analítica, porque en la app no hay Google Analytics. |
 | `app/ios/plantillas/AppIcon-1024.png`, `Splash-2732.png` | El icono a 1024 **ampliado del de 512** (§3, punto 3) y el arranque cuadrado (el de 2048×2732 centrado sobre su fondo). |
 | `app/ios/plantillas/aplicar.sh` | Lo pone todo en el proyecto que genera `npx cap add ios` (PlistBuddy, copias). Comprobado en seco: aquí no hay Mac. |
-| `datos/app-store/ficha.json` | La ficha de la tienda en los diez idiomas: nombre, subtítulo, texto promocional, descripción, palabras clave, y las direcciones, el copyright y la categoría. Cada frase dice solo lo que la app hace. |
+| `datos/app-store/ficha.json` | La ficha de la tienda en los once idiomas: nombre, subtítulo, texto promocional, descripción, palabras clave, y las direcciones, el copyright y la categoría. Cada frase dice solo lo que la app hace. |
 | `tools/auditar_app_store.js` | La ficha contra los límites de Apple (30/30/170/4000 caracteres, 100 bytes de palabras clave, ninguna de dos letras, ningún nombre de otra empresa o app en ellas), contra las directrices (ni otras plataformas, ni otras apps, ni «número uno», ni promesas que la app no cumple: fotos, push, «sin anuncios», en los diez idiomas) y contra lo que hay (976 lugares, 183 líneas, siete costas, diez idiomas, las fuentes del README, los nombres de «Apunta al cielo» y de «Organiza tu día» tal como los dice la app en cada idioma, sin prometer la hora de la guagua ni el municipio de cada lugar), en cada idioma y en su idioma; y la variante en-US. |
 | `tools/capturas_app_store.js` | Las capturas en los tamaños obligatorios (iPhone 1206×2622, iPad 2064×2752), siete por aparato, de la app de verdad: el mapa de la isla, un lugar (la hoja en el iPhone, el globo en el iPad), las paradas cerca, «Organiza tu día», «Esta noche», «Apunta al cielo» y el sistema solar; si un estado no llega a lo que dice, para. Sin rótulos: si Jerome los quiere, se ponen encima. |
 | `tools/probar_app.js` | El modo nativo en Chromium (§1) y la web sin la marca. |
@@ -81,7 +81,7 @@ luz roja, los diez idiomas) es el mismo código y se comporta igual.
    ID, un repositorio privado para la firma y los secretos en GitHub; todo
    desde el móvil.
 5. **Si se quieren rótulos en las capturas** («Funciona sin conexión», «El
-   cielo del Teide»…), en los diez idiomas, encima de las capturas de
+   cielo del Teide»…), en los once idiomas, encima de las capturas de
    `capturas_app_store.js`. Sin rótulos también valen.
 6. **El riesgo de la directriz 4.2** («Minimum Functionality»: la app tiene
    que ir «más allá de una web reempaquetada»). Tenerife Go no carga su
@@ -121,11 +121,11 @@ En Xcode, una vez:
    *Version* 1.0.0 y *Build* 1.
 2. Si `aplicar.sh` avisó de que los `.lproj` o `PrivacyInfo.xcprivacy` no
    están en el proyecto: File → *Add Files to "App"…*, marcando el target.
-   Project → Info → *Localizations*: los diez idiomas.
+   Project → Info → *Localizations*: los once idiomas.
 3. Signing & Capabilities: solo *Automatically manage signing*. La app no
    usa ninguna capacidad (ni push, ni mapas de Apple, ni compras).
 4. Un iPhone conectado o el simulador: ▶. La primera pantalla es la
-   bienvenida con los diez idiomas, como en la web.
+   bienvenida con los once idiomas, como en la web.
 5. Product → **Archive** → *Distribute App* → *App Store Connect* → Upload.
    Antes, en el organizador, *Generate Privacy Report*: tiene que decir lo
    mismo que `PrivacyInfo.xcprivacy` (§5.4).
@@ -214,6 +214,7 @@ existen en App Store Connect y a qué idioma de la app corresponden:
 | zh | Chinese (Simplified) |
 | zht | Chinese (Traditional) |
 | pl | Polish |
+| ro | Romanian |
 | bg | **No existe el búlgaro** en App Store Connect: en Bulgaria la tienda enseña la ficha de English (U.K.). La app, dentro, sí va en búlgaro. La ficha en búlgaro queda en `ficha.json` por si Apple la añade. |
 
 Campos y límites (los coteja `auditar_app_store.js`): *Name* 2–30, *Subtitle*
@@ -293,8 +294,8 @@ que cubrir los SDK de terceros: Capacitor trae el suyo.
 
 ### 5.6 Antes de pulsar *Submit for Review*
 
-TestFlight en un iPhone de verdad (§7), la ficha en los diez idiomas que
-existen, las capturas, App Privacy, *Export Compliance* contestado por el
+TestFlight en un iPhone de verdad (§7), la ficha en las once localizaciones
+de §5.2, las capturas, App Privacy, *Export Compliance* contestado por el
 `ITSAppUsesNonExemptEncryption = false` del `Info.plist` (solo HTTPS: cifrado
 exento), *Content Rights*, *Advertising Identifier*: **No** (la app no usa el
 IDFA).
@@ -420,7 +421,7 @@ flujo `.github/workflows/app-store.yml` y `app/fastlane/Fastfile` hacen, paso
 a paso, lo del §4: montar `app/www/`, generar el proyecto de Capacitor,
 aplicar las plantillas (y meter los `.lproj` y el manifiesto en el proyecto
 con `incluir.rb`, lo que en Xcode sería «Add Files»), firmar, archivar y subir
-a TestFlight; y, desde Linux, subir la ficha en las diez localizaciones y las
+a TestFlight; y, desde Linux, subir la ficha en las once localizaciones y las
 capturas con `deliver`. Se lanza a mano desde la pestaña Actions del
 repositorio (desde el móvil también), eligiendo `alta`, `testflight`, `ficha`
 o `todo`. Nada pulsa «Submit for Review».
@@ -533,7 +534,7 @@ prueba, y sus registros dicen dónde para si para.
 | Certificado y perfil sin Mac | `fastlane match` con la clave API (crea el certificado de distribución y el perfil; «App Store Connect API key doesn't work» solo para los Developer ID, que no hacen falta); `setup_ci`, un llavero temporal en el runner; el token del repositorio de la firma, tal cual en un secreto | docs.fastlane.tools/actions/match |
 | Archivo firmado | `build_app` (gym): `-exportMethod app-store`, firma manual con el perfil de match, versión de `package.json` y build = número de ejecución | docs.fastlane.tools |
 | TestFlight | `upload_to_testflight` (pilot) con la clave API | docs.fastlane.tools |
-| Ficha y capturas | las capturas, de `app/www/` (la app de la tienda, con la marca); `tools/app_store_metadata.js` escribe `fastlane/metadata/<loc>/*.txt` y `fastlane/screenshots/<loc>/`; `deliver` las sube (las diez localizaciones de §5.2; deliver conoce 1206×2622 y 2064×2752) | docs.fastlane.tools/actions/deliver; `app_screenshot.rb` |
+| Ficha y capturas | las capturas, de `app/www/` (la app de la tienda, con la marca); `tools/app_store_metadata.js` escribe `fastlane/metadata/<loc>/*.txt` y `fastlane/screenshots/<loc>/`; `deliver` las sube (las once localizaciones de §5.2; deliver conoce 1206×2622 y 2064×2752) | docs.fastlane.tools/actions/deliver; `app_screenshot.rb` |
 | El identificador | el Bundle ID con la clave API (Spaceship, la API oficial de App Store Connect); la ficha, a mano una vez (§9.1, paso 6) | fastlane 2.241.1: `create_app_online` no tiene `api_key` (produce entra con el Apple ID) |
 
 ### 9.4 Dónde está (24 de noviembre de 2026)

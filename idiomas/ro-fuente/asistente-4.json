@@ -2079,8 +2079,8 @@
     "u": [
      "(inec|ineac|inaca)[a-z]* cu (ceva|mancare|mancarea|o bucata|bucata|un os|un sambure|o bomboana|bomboana|un corp strain|corp strain|o moneda|o jucarie|o nuca|un bob|carne|paine|un fruct)",
      "heimlich",
-     "nu (poate|pot|putea|poti) (sa )?(tusi|tuseasca|tusesc)( si)?( nici)?( sa)? (respir|vorb|plang)",
-     "nu (poate|pot|putea|poti) (sa )?(respir|vorb|plang)[a-z]*( si)?( nici)?( sa)? (tusi|tuseasca|tusesc)",
+     "nu (poate|pot|putea|poti) (nici )?(sa )?(tusi|tuseasca|tusesc)(,| si| sau)?( nici| nu (poate|pot|putea|poti))?( sa)? (respir|vorb|plang)",
+     "nu (poate|pot|putea|poti) (nici )?(sa )?(respir|vorb|plang)[a-z]*(,| si| sau)?( nici| nu (poate|pot|putea|poti))?( sa)? (tusi|tuseasca|tusesc)",
      "(ceva|mancare|o bucata|bucata|un os|o bomboana|un sambure|o moneda|o nuca)( [a-z]+){0,3} (blocat|blocata|intepenit|intepenita|ramas|ramasa|oprit|oprita)( [a-z]+){0,1} in gat",
      "(a inghitit|am inghitit|ai inghitit|inghitit)( [a-z]+){0,4} (si )?nu (iese|ii iese|imi iese|trece|coboara)",
      "(i|mi|ti) (a ramas|s a oprit|s a blocat|a intrat|s a pus)( [a-z]+){0,2} in gat",
@@ -2757,14 +2757,14 @@
      "línea de ayuda"
     ],
     "u": [
-     "suicid",
+     "suicid|(?:no (tiene|tendria) (ningun )?sentido (seguir )?(vivir|viviendo|seguir con vida|estar vivo|estar viva)(?! (en|cerca|con|sin|aqui|alli|asi|lejos|junto|al|del) ))|(?:no le (veo|encuentro) (ningun )?sentido a (la|mi) vida|(mi|la) vida (ya )?no tiene (ningun )?sentido)|(?:no (vale|merece) la pena (seguir )?(vivir|viviendo|seguir con vida|estar vivo|estar viva)(?! (en|cerca|con|sin|aqui|alli|asi|lejos|junto|al|del) ))|(?:(quiero|quisiera|deseo|ganas de|me gustaria|necesito) dejar de (existir|vivir(?! (en|cerca|con|sin|aqui|alli|asi|lejos|junto|al|del) )))|(?:ojala no (me )?(despertara|despertase|despierte|volviera a despertar)|(quiero|quisiera|me gustaria|ojala pudiera)( [a-z]+){0,4} no (volver a )?despertar(me)?( nunca mas| nunca| jamas| mas)?$|dormir(me)? y no (volver a )?despertar(me)?( nunca mas| nunca| jamas| mas)?$)|(?:nadie (me )?(echaria|echara|iba a echar|va a echar) de menos|(a )?nadie le (importaria|importa) si (me muero|me muriera|desapareciera|no estuviera))",
      "(quitarme|quitarse|quitarte) la vida",
      "^(?!.*no (quiero|quisiera|deseo|tengo ganas de) (hacerme dano|morir|morirme)).*(quiero|quisiera|pienso en|pensando en|he pensado en|ganas de|tengo ideas de|ideas de|deseo|necesito) (hacerme dano(?! en )|matarme(?! a )|morir(me)?(?![a-z]))(?! de (la |el |los |las |un |una )?(calor|hambre|risa|cansancio|agujetas|sed|sue.o|miedo|ganas|fr.o|pena|verg.enza|aburrimiento|asco|dolor|envidia|gusto|amor|sudor|infarto|viejo|vieja))",
      "^(?!.*no me quiero (hacer dano|matar|morir)).*me quiero (hacer dano(?! en )|matar(?! a )|morir)(?! de (la |el |los |las |un |una )?(calor|hambre|risa|cansancio|agujetas|sed|sue.o|miedo|ganas|fr.o|pena|verg.enza|aburrimiento|asco|dolor|envidia|gusto|amor|sudor|infarto|viejo|vieja))",
      "(me voy a (matar(?! a )|morir(?! de (la |el |los |las |un |una )?(calor|hambre|risa|cansancio|agujetas|sed|sue.o|miedo|ganas|fr.o|pena|verg.enza|aburrimiento|asco|dolor|envidia|gusto|amor|sudor|infarto|viejo|vieja)))|voy a matarme(?! a ))",
      "(quiero|ganas de) desaparecer( para siempre| del mundo| de este mundo|$)",
      "no (quiero|tengo ganas de) (vivir(?! en )|seguir viviendo|seguir con vida|estar vivo|estar viva)",
-     "autolesi",
+     "autolesi|(?:(me voy a|voy a|quiero|pienso|estoy pensando en) (tirar|lanzar|arrojar)(me)? (por la ventana|por el balcon|de un puente|desde un puente|al tren|a las vias|delante de un (tren|coche|camion)|al vacio|desde la azotea|desde el tejado))|(?:(quitarme|quitarse) de en medio|ya no puedo mas con (la|mi) vida|no puedo seguir viviendo(?! (en|cerca|con|sin|aqui|alli|asi|lejos|junto|al|del) ))",
      "(cortarme|me corto|hacerme cortes|me hago cortes) (las venas|los brazos|las munecas|a proposito|aposta)",
      "(mejor|preferiria estar|estaria mejor) muert",
      "((acabar|terminar) con mi vida|(quiero|quisiera|voy a|ganas de|pienso en|necesito) (acabar|terminar) con todo(?! (el|la|los|las|lo|mi|mis|tu|su|del|de) ))",
@@ -2812,15 +2812,15 @@
      "sinucid|suicid",
      "((mi|imi|isi|si|iti|ti) (iau|ia|iei|lua|luat) viata|(mi|imi|isi|si|iti|ti) (pun|pune|puna) capat (zilelor|vietii))",
      "^(?!.*nu (vreau|as vrea|am de gand|ma gandesc|vreau sa)( sa)? (mi fac rau|imi fac rau|mor|ma omor|ma sinucid)).*(vreau|as vrea|ma gandesc|m am gandit|ma tot gandesc|gandesc|imi vine|simt nevoia|am nevoie|am ganduri|ganduri|vreau doar|planuiesc|o sa|as putea|mi ar placea)( sa)? (mi fac rau|imi fac rau|ma omor|ma sinucid|mor)(?! (la|cu|in|pe|eu) )(?! eu$)(?! (de|din cauza) (foame|sete|ras|cald|caldura|frig|oboseala|frica|plictiseala|rusine|ciuda|dor|nerabdare|somn|febra|pofta|placere|curiozitate|emotie|stres|munca|gripa|alergat|antrenament))",
-     "nu (mai )?(vreau|am chef|am putere|pot|vad rostul)( sa)? (traiesc|mai traiesc|continui sa traiesc|fiu in viata|fiu viu|fiu vie)(?! (in|cu|asa|fara|aici|la) )",
+     "nu (mai )?(vreau|am chef|am putere|pot|vad rostul)( sa)? (traiesc|mai traiesc|trai|continui sa traiesc|continua sa traiesc|fiu in viata|fiu viu|fiu vie)(?! (in|cu|asa|fara|aici|la) )|nu mai (pot|suport)( [a-z]+){0,1} (cu viata|viata)( asta| mea)?$",
      "(autovatam|automutil|imi fac rau singur)",
      "(sa ma tai|ma tai|imi tai|sa imi tai|sa mi tai|m am taiat|mi am taiat)( [a-z]+){0,1} (pe maini|pe brate|venele|la vene|pe incheieturi|incheieturile|intentionat|special|cu lama)",
      "(mai bine|as prefera sa|as vrea sa)( [a-z]+){0,2} (as fi|eram|fiu|sa fiu) (mort|moarta|morti|murit)",
      "(vreau|as vrea|ma gandesc|imi vine|o sa)( sa)? (termin|pun capat)( [a-z]+){0,1} (cu viata|vietii|zilelor|cu tot|cu totul)(?! (antrenament|program|plan|exercit|serii|set|rutina|ce |asta|acest|cursul|meniul))",
-     "(sa ma arunc|ma arunc|sa sar|sar)( [a-z]+){0,2} (de pe pod|de pe un pod|de pe bloc|de la etaj|pe geam|pe fereastra|de pe balcon|in fata trenului|in fata unei masini|sub tren|sub masina)",
-     "ganduri (de|despre|cu) (moarte|sinucidere|a muri|a ma omori|autovatamare)",
-     "(vreau|as vrea|imi vine) sa dispar( pentru totdeauna| definitiv| din lume| din lumea asta|$)",
-     "(nu mai are rost|n are rost)( [a-z]+){0,2} (sa traiesc|viata|sa mai traiesc)"
+     "(sa ma arunc|ma arunc|sa sar|sar)( [a-z]+){0,2} (de pe pod|de pe un pod|de pe bloc|de pe acoperis|de la etaj|pe geam|pe fereastra|de pe balcon|in fata trenului|in fata unui tren|in fata unei masini|in fata unui camion|sub tren|sub un tren|sub masina)",
+     "ganduri (de|despre|cu) (moarte|sinucidere|a muri|a ma omori|autovatamare)|(as vrea|vreau|mi as dori|imi doresc|macar)( [a-z]+){0,3} sa nu (ma )?mai trezesc( niciodata| vreodata)?$|sa adorm si sa nu (ma )?mai trezesc( niciodata| vreodata)?$|nimeni (nu|n) (mi )?ar (simti|observa|duce)( [a-z]+){0,1} (lipsa|dorul)|nimanui nu (i )?(ar|va) fi dor de mine|(nimeni (nu|n) ar (observa|baga de seama|sti|vedea)( [a-z]+){0,1}|nimanui nu (i )?ar pasa( de mine)?) daca (as muri|as disparea(?! (de la|din|de pe) )|nu as mai fi|n as mai fi|m as omori)",
+     "(vreau|as vrea|imi vine|imi doresc|mi as dori)( sa)? (dispar( pentru totdeauna| definitiv| din lume| din lumea asta|$)|nu mai exist(?! (pe|in) )|incetez sa (mai )?exist(?! (pe|in) )|nu mai fiu( pe lume| in viata)?$)",
+     "(nu mai are rost|n are rost)( [a-z]+){0,2} (sa traiesc|viata|sa mai traiesc)|(nu mai are|nu are|n are|nu mai merita|nu merita)( niciun| nici un)?( rost| sens)? (sa (mai )?traiesc|sa (mai )?fiu in viata|sa continui sa traiesc)(?! (in|cu|fara|aici|acolo|asa|departe|langa|la|pe) )|viata( mea)? (nu (mai )?are|n are|nu (mai )?merita)( niciun| nici un)?( sens| rost| traita| sa fie traita)|nu (mai )?(vad|gasesc)( niciun| nici un)? (sens|rost)( in viata| vietii| in viata mea)"
     ]
    }
   }

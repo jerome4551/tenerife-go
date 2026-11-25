@@ -14,7 +14,7 @@
   var ZONA = 'Atlantic/Canary';
 
   /* SIN-TRADUCIR: CIELO_LOCALE codigos de idioma para Intl (fechas, horas y numeros), no textos */
-  var CIELO_LOCALE = {"es": "es-ES", "en": "en-GB", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "nl": "nl-NL", "zh": "zh-CN", "zht": "zh-TW", "bg": "bg-BG", "pl": "pl-PL"};
+  var CIELO_LOCALE = {"es": "es-ES", "en": "en-GB", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "nl": "nl-NL", "zh": "zh-CN", "zht": "zh-TW", "bg": "bg-BG", "pl": "pl-PL", "ro": "ro-RO"};
   /* las 88 constelaciones de la UAI: en ingles el nombre latino, que es como
      se llaman en ingles; en los demas, el corriente (traducciones de
      Stellarium, «modern», sin articulos ni acentos de pronunciacion en

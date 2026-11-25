@@ -48,7 +48,14 @@ if (!C) { console.error('no se como activar «' + L + '». Idiomas: ' + Object.k
    nada (nota 41: los bloques del rumano van de uno en uno y nadie debe ver un
    idioma a medias). */
 if (iCopia < 0 && !PROBAR) {
-  const faltan = ['idiomas/' + L + '.json', 'idiomas/cielo/' + L + '.json', 'faq/' + L + '.json']
+  /* Lo que la app carga por idioma y existe ANTES de encender (lo escriben lugares_traduccion.js,
+     ejercicios_traduccion.js y asistente_traduccion.js, o ya estaba), y las fuentes del asistente del mapa.
+     faq/<L>.json no: lo escribe generar_faq.py DESPUES, porque solo lo escribe con el idioma ya en
+     SUPPORTED_LANGS, y se planta si le falta una entrada. Pedirlo aqui era un candado: el rumano no se podia
+     encender (el interruptor del rumano, 20-11-2026). */
+  const faltan = ['idiomas/' + L + '.json', 'idiomas/cielo/' + L + '.json', 'idiomas/etiquetas/' + L + '.json',
+    'datos/cuerpo/ejercicios-' + L + '.json', 'datos/cuerpo/asistente-' + L + '.json',
+    'datos/cuerpo/deportes-' + L + '.json', 'faq/fuente/' + L]
     .filter(f => !fs.existsSync(path.join(RAIZ, f)));
   if (faltan.length) {
     console.error('«' + L + '» esta a medias: faltan ' + faltan.join(', ') + '.\n' +

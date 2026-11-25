@@ -81,7 +81,7 @@
   var SOS_REVISADO = '2026-11-01';
   var ZONA = 'Atlantic/Canary';
   /* SIN-TRADUCIR: SOS_LOCALE codigos de idioma para Intl (fechas, horas y numeros), no textos */
-  var SOS_LOCALE = {"es": "es-ES", "en": "en-GB", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "nl": "nl-NL", "zh": "zh-CN", "zht": "zh-TW", "bg": "bg-BG", "pl": "pl-PL"};
+  var SOS_LOCALE = {"es": "es-ES", "en": "en-GB", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "nl": "nl-NL", "zh": "zh-CN", "zht": "zh-TW", "bg": "bg-BG", "pl": "pl-PL", "ro": "ro-RO"};
 
   /* Los textos, en los diez idiomas (las 8 filas del boton y del armazon van
      en UI_TX de index.html). Se generan de i18n/<idioma>.json. */
@@ -1110,6 +1110,8 @@
     var l = L(), i;
     if (l === 'zh' || l === 'zht') i = 0;
     else if (l === 'pl') { var d = n % 10, c = n % 100; i = n === 1 ? 0 : (d >= 2 && d <= 4 && (c < 12 || c > 14)) ? 1 : 2; }
+    /* rumano (CLDR): 1 · 0 y los que acaban en 01-19 · el resto, con «de» (20-11-2026) */
+    else if (l === 'ro') { var r = n % 100; i = n === 1 ? 0 : (n === 0 || (r >= 1 && r <= 19)) ? 1 : 2; }
     else i = n === 1 ? 0 : 1;
     return Math.max(0, Math.min(i, cuantas - 1));
   }

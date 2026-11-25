@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # incluir.rb — mete en el proyecto de Xcode (ios/App/App.xcodeproj) lo que
 # aplicar.sh copio a ios/App/App/ y Xcode no recoge solo: el manifiesto de
-# privacidad (PrivacyInfo.xcprivacy) y las frases de los permisos en los diez
+# privacidad (PrivacyInfo.xcprivacy) y las frases de los permisos en los once
 # idiomas (<idioma>.lproj/InfoPlist.strings), y los idiomas en «Localizations»
 # (knownRegions). Lo que en un Mac se haria con «Add Files to App…», hecho
 # aqui con la gema xcodeproj (viene con fastlane), para la App Store sin Mac.

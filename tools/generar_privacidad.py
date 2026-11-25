@@ -25,7 +25,7 @@ import html, json, os, sys, re
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIR  = os.path.join(RAIZ, 'idiomas', 'privacidad')
-LANGS = ['es','en','fr','de','it','nl','zh','zht','bg','pl']
+LANGS = ['es','en','fr','de','it','nl','zh','zht','bg','pl','ro']
 COMPROBAR = '--comprobar' in sys.argv
 
 tab = {}

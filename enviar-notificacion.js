@@ -87,7 +87,7 @@ function dayOfYear(y, m, d) {
    copiarlas aqui: si el panel cambia una fila, la notificacion dice lo mismo
    que el panel. Si falta una fila o uno de sus idiomas, no se compone nada a
    mano. */
-const IDIOMAS_SOS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const IDIOMAS_SOS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 function leerPanelSOS() {
   const src = fs.readFileSync(path.join(__dirname, 'modulos', 'emergencias.js'), 'utf8');
   const ini = src.indexOf('var EMERG_UI = {'), fin = src.indexOf('\n  };', ini);
