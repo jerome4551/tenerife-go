@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* probar_nombres.js — el asistente encuentra cada lugar por su nombre y cada
- * categoria por su rotulo, en los diez idiomas.
+ * categoria por su rotulo, en los once idiomas.
  *
  * EL HUECO QUE TAPA
  *   El 20 de octubre de 2026 se le pregunto al asistente por cada uno de los
@@ -43,7 +43,7 @@ const path = require('path');
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const PUERTO = process.argv[2] || '8777';
 const BASE = 'http://127.0.0.1:' + PUERTO + '/index.html';
-const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 
 (async () => {
   const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
@@ -124,7 +124,7 @@ const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
   const SUFIJOS = {
     es: ['pueblo', 'núcleo'], en: ['village', 'village'], fr: ['village', 'village'], de: ['Ort', 'Ort'],
     it: ['paese', 'località'], nl: ['dorp', 'dorp'], zh: ['镇', '居民区'], zht: ['鎮', '居民區'],
-    bg: ['селище', 'селище'], pl: ['miejscowość', 'osiedle'] };
+    bg: ['селище', 'селище'], pl: ['miejscowość', 'osiedle'], ro: ['localitate', 'localitate'] };
   console.log('\n=== los dos nombres repetidos, con su paréntesis en cada idioma ===');
   for (const L of IDIOMAS) {
     await pg.evaluate(l => setLang(l), L);
@@ -234,6 +234,6 @@ const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
   }
   await nav.close();
   console.log(mal ? '\n*** ' + mal + ' idioma(s) donde el asistente no encuentra algun lugar por su nombre o alguna categoria por su rotulo, o un nombre repetido sale sin su paréntesis, o el buscador no encuentra por una etiqueta ***'
-                  : '\nel asistente encuentra cada lugar por su nombre y cada categoria por su rotulo, en los diez idiomas');
+                  : '\nel asistente encuentra cada lugar por su nombre y cada categoria por su rotulo, en los once idiomas');
   process.exit(mal ? 1 : 0);
 })().catch(e => { console.error(e); process.exit(2); });

@@ -4,14 +4,15 @@
  *     node tools/auditar_emergencias.js
  *
  * Carga modulos/emergencias.js en un ambito falso (vm) y coteja:
- *   1. EMERG_UI: las diez lenguas en cada fila, ninguna vacia; los {huecos}
- *      de la castellana en todas; formas de plural (pl 3, zh y zht 1, el
+ *   1. EMERG_UI: las once lenguas en cada fila, ninguna vacia; los {huecos}
+ *      de la castellana en todas; formas de plural (pl y ro 3, zh y zht 1, el
  *      resto 2); ninguna comilla doble ASCII; zh y zht con lo mismo fuera de
  *      los ideogramas (la paridad de siempre); el bulgaro sin letras
- *      cirilicas ajenas.
+ *      cirilicas ajenas, y el rumano con la ș y la ț de coma (no ş ţ de
+ *      cedilla).
  *   2. Que cada fila que pide el modulo existe (guias, fuentes, canales,
  *      mochila, colores y las llamadas t('...') del codigo) y que no sobra
- *      ninguna. Las del armazon, en UI_TX de index.html con sus diez lenguas.
+ *      ninguna. Las del armazon, en UI_TX de index.html con sus once lenguas.
  *   3. Las fuentes: cada guia (salvo «canales») lleva al menos una y todas
  *      existen; todo enlace es https y de un dominio de la lista oficial.
  *      Las guias de «Que hacer si…» estan en uno de sus grupos (SUBGRUPOS),
@@ -32,8 +33,8 @@
 'use strict';
 const fs = require('fs'), path = require('path'), vm = require('vm');
 const RAIZ = path.join(__dirname, '..');
-const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
-const FORMAS = { pl: 3, zh: 1, zht: 1 };
+const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
+const FORMAS = { pl: 3, ro: 3, zh: 1, zht: 1 };
 const IDEO = /[㐀-䶿一-鿿豈-﫿]/g;
 const HUECO = /\{(\w+)\}/g;
 const DOMINIOS = ['gobiernodecanarias.org', '112canarias.com', 'boe.es', 'involcan.org', 'ign.es', 'incibe.es', 'usgs.gov',
@@ -101,8 +102,11 @@ for (const [k, fila] of Object.entries(UI)) {
   }
   if (fila.zh && fila.zht && fila.zh.replace(IDEO, '') !== fila.zht.replace(IDEO, '')) malas.push(k + ' paridad zh/zht');
   if (fila.bg && /[ёєіїґыэЁЄІЇҐЫЭ]/.test(fila.bg)) malas.push(k + '.bg letra cirilica ajena');
+  /* el rumano se escribe con la ș y la ț de coma; la ş y la ţ de cedilla son otras letras (el interruptor del
+     rumano, 22-11-2026) */
+  if (fila.ro && /[şţŞŢ]/.test(fila.ro)) malas.push(k + '.ro con ş o ţ de cedilla (van con coma: ș, ț)');
 }
-ok(!malas.length, 'diez lenguas, huecos, plurales, comillas, paridad zh/zht y bulgaro', malas.slice(0, 6).join(' · '));
+ok(!malas.length, 'once lenguas, huecos, plurales, comillas, paridad zh/zht, bulgaro y rumano', malas.slice(0, 6).join(' · '));
 
 /* ── 2. filas pedidas y filas que sobran ── */
 console.log('— las filas que se piden');
@@ -144,7 +148,7 @@ const shellMal = SHELL.filter(k => {
   if (!m) return true;
   try { const f = JSON.parse(m[1]); return LANGS.some(l => !f[l]); } catch (e) { return true; }
 });
-ok(!shellMal.length, 'las ' + SHELL.length + ' filas del armazon estan en UI_TX con sus diez lenguas', shellMal.join(', '));
+ok(!shellMal.length, 'las ' + SHELL.length + ' filas del armazon estan en UI_TX con sus once lenguas', shellMal.join(', '));
 /* Lo que el HTML del armazon trae escrito antes de traducirse tiene que ser
    el castellano de su fila (24 de octubre de 2026): la barra del 112 seguia
    diciendo «Atienden en español, inglés y alemán» cuando la fila ya decia
@@ -190,7 +194,7 @@ SOS.guias.forEach(g => g.b.forEach(b => {
 ok(!irMal.length, 'cada «Vea también» lleva a otra guia que existe', irMal.join(', '));
 ok(!banMal.length, 'las banderas son las de las playas de Canarias (' + BANDERAS.join(', ') + ')', banMal.join(', '));
 /* y dicen lo mismo que la leyenda de banderas del mapa (index.html,
-   LANGS.banderas*), letra a letra y en los diez idiomas: la misma fuente y el
+   LANGS.banderas*), letra a letra y en los once idiomas: la misma fuente y el
    mismo texto. «Bañarse con seguridad» lleva las seis, en su orden. El chino
    tradicional es el simplificado con ZHT_OVERRIDES encima, como en la app */
 const LEYENDA = { verde: 'banderasVerde', amarilla: 'banderasAmarilla', roja: 'banderasRoja',
@@ -216,7 +220,7 @@ SOS.guias.forEach(g => g.b.forEach(b => (b.banderas || []).forEach(x => LANGS.fo
   if (!quiero || (UI[x[1]] || {})[l] !== quiero) leyMal.push(g.id + ':' + x[0] + '.' + l);
 }))));
 const playaBan = ((SOS.guias.find(g => g.id === 'playa') || { b: [] }).b.find(b => b.banderas) || { banderas: [] }).banderas.map(x => x[0]).join();
-ok(!leyMal.length && playaBan === BANDERAS.join(), 'las banderas dicen lo mismo que la leyenda del mapa, en los diez idiomas, y «Bañarse con seguridad» lleva las seis',
+ok(!leyMal.length && playaBan === BANDERAS.join(), 'las banderas dicen lo mismo que la leyenda del mapa, en los once idiomas, y «Bañarse con seguridad» lleva las seis',
   leyMal.slice(0, 4).join(' · ') + (playaBan === BANDERAS.join() ? '' : ' · playa: ' + playaBan));
 ok(!telMal.length && /^\d{9}$/.test(SOS.telSalvamento || ''), 'los telefonos que se marcan, solo cifras (Salvamento Maritimo, ' + SOS.telSalvamento + ')', telMal.join(', '));
 /* los de la tarjeta del 112: el 012 por su numero largo (el corto no vale
@@ -253,7 +257,7 @@ ok(conRes1 && ['goibEmergencias', 'goibPlaya'].every(id => (rescate.f || []).inc
    SMS al instalarla: no esta en su pagina oficial ni en otra fuente encontrada
    (10 de noviembre de 2026; Jerome: «quítalo») */
 const app112 = UI.sosApp112 || {};
-ok(LANGS.every(l => app112[l] && !/SMS/.test(app112[l])), 'la nota de la App 112 Canarias, sin el SMS al instalarla, en los diez idiomas',
+ok(LANGS.every(l => app112[l] && !/SMS/.test(app112[l])), 'la nota de la App 112 Canarias, sin el SMS al instalarla, en los once idiomas',
   LANGS.filter(l => /SMS/.test(app112[l] || '')).join(', '));
 
 /* la fuente de las medusas de la Asociacion Espanola de Pediatria, en su direccion nueva: la vieja

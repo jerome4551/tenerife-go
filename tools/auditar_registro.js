@@ -2,8 +2,8 @@
 /* auditar_registro.js — el trato de usted en toda la app.
  *
  * Jerome, 21 de octubre de 2026: «Usted en toda la app. Son usuarios no
- * amigos». En los diez idiomas: usted, vous, Sie, u, вие, 您... (el ingles no
- * distingue). Este control lee TODO lo que la gente ve en cada idioma y busca
+ * amigos». En los once idiomas: usted, vous, Sie, u, вие, 您, dumneavoastră...
+ * (el ingles no distingue). Este control lee TODO lo que la gente ve en cada idioma y busca
  * las marcas del tuteo de ese idioma:
  *
  *   · la app viva: UI_TX y LANGS (index.html, servido en el puerto dado);
@@ -49,10 +49,10 @@ const LISTA = process.argv.indexOf('--lista') > 0 ? process.argv[process.argv.in
 const LISTA_F = LISTA ? process.argv[process.argv.indexOf('--lista') + 2] : null;
 const TODOS = process.argv.indexOf('--todos') > 0 ? process.argv[process.argv.indexOf('--todos') + 1] : null;
 const TODOS_F = TODOS ? process.argv[process.argv.indexOf('--todos') + 2] : null;
-const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 
 /* Los idiomas ya pasados a usted. Cada parte del cambio anade el suyo. */
-const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr', 'it', 'bg', 'pl'];
+const HECHOS = ['es', 'zh', 'zht', 'de', 'nl', 'fr', 'it', 'bg', 'pl', 'ro'];
 
 /* ── las marcas del tuteo, idioma a idioma ─────────────────────────────── */
 const L_ = 'A-Za-zÀ-ÖØ-öø-ɏЀ-ӿ';
@@ -299,6 +299,21 @@ const MARCAS = {
        palI('jesteś', '[a-ząćęłńóśźż]+łeś', '[a-ząćęłńóśźż]+łaś', '[a-ząćęłńóśźż]*byś')],
   zh: [/(?<!迷)你/u],
   zht: [/(?<!迷)你/u],
+  /* el rumano (el interruptor del rumano, 22-11-2026). La app le habla de «dumneavoastră», con la segunda del
+     plural («apăsați», «puteți», «vă»); el tuteo es la segunda del singular. Van sus pronombres y posesivos (la
+     «ta» en minúscula: «TA» es la tensión arterial), y «dumneata», que tampoco es «dumneavoastră»; las formas del
+     verbo que solo son de «tu» y no se escriben como otra cosa («vii» son también las viñas, «simți» e «ieși» los
+     infinitivos de «veți simți», «a ieși», «ai» el artículo de «multipli ai»: no van); y al principio de una frase,
+     los imperativos de tu que ahí no son una tercera persona: «Pornește de la…», «Deschide la ora 10», «Atinge
+     3.715 m», «Urmează…» o «Oferă…» dicen lo que hace un sitio y se leen uno a uno, no los separa una regla. Probadas
+     contra los 14.085 textos rumanos que lee este control: ninguna toca nada (salvo el ejemplo del glosario, en
+     EXENTOS). */
+  ro: [palI('tu', 'te', 'ți', 'îți', 'ție', 'tine', 'tău', 'tăi', 'tale', 'dumneata', 'dumitale'), pal('ta'),
+       palI('ești', 'poți', 'vrei', 'știi', 'vezi', 'faci', 'mergi', 'găsești', 'folosești', 'alegi', 'ajungi', 'cauți', 'încerci', 'vei',
+         'uiți', 'treci', 'dai', 'stai', 'pleci', 'intri', 'urci', 'cobori', 'ții', 'iei', 'citești', 'scrii', 'plătești', 'rămâi',
+         'nu uita', 'nu rata', 'nu ezita', 'uite'),
+       inicio('Apasă', 'Alege', 'Caută', 'Încearcă', 'Activează', 'Adaugă', 'Șterge', 'Salvează', 'Fă', 'Ascultă', 'Respiră',
+         'Descoperă', 'Explorează')],
 };
 
 /* Los rotulos de boton del italiano (22 de octubre de 2026). En italiano el
@@ -471,6 +486,7 @@ const EXENTOS = [
   ...[...ROTULOS_BG].map(t => ['bg', t, 'rotulo de boton: en bulgaro el boton va en imperativo, como en castellano el infinitivo (ROTULOS_BG)']),
   /* el polaco (22 de octubre de 2026) */
   ['pl', '«Hej, ty!» — żeby zawołać kogoś serdecznie.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
+  ['ro', '„Hei, tu!” — pentru a striga pe cineva cu afecțiune.', 'el glosario canario explica «chacho»: el ejemplo va entre comillas y no habla a quien usa la app'],
   ...[...ROTULOS_PL].map(t => ['pl', t, 'rotulo de boton: en polaco el boton va en imperativo, como en castellano el infinitivo (ROTULOS_PL)']),
   ...[...VOZ_PL].map(t => ['pl', t, 'la voz de quien usa la app, como «Sorpréndeme» y «Llévame» (VOZ_PL)']),
   /* las curiosidades de las constelaciones (idiomas/cielo/, 22 de octubre de 2026) */
@@ -546,14 +562,14 @@ async function textos() {
   const index = lee('index.html');
   const linea = i => index.slice(0, i).split('\n').length;
   const cadena = (q, cuerpo) => { try { return vm.runInNewContext(q + cuerpo + q); } catch (e) { return cuerpo; } };
-  for (const m of index.matchAll(/(?:^|[{,\s])["']?(es|en|fr|de|it|nl|zh|zht|bg|pl)["']?\s*:\s*(["'])((?:\\.|(?!\2)[^\\\n])*)\2/g)) {
+  for (const m of index.matchAll(/(?:^|[{,\s])["']?(es|en|fr|de|it|nl|zh|zht|bg|pl|ro)["']?\s*:\s*(["'])((?:\\.|(?!\2)[^\\\n])*)\2/g)) {
     mete('index.html', 'linea ' + linea(m.index), m[1], cadena(m[2], m[3]));
   }
   /* y las tablas de un idioma entero, «es: { clave: '…', … }» (las frases del
      asistente, la instalacion, el mar, el GPX…): del
      «{» a su pareja, saltando lo que va entre comillas, y dentro cada
      «clave: 'texto'» y cada texto de una lista */
-  for (const m of index.matchAll(/(?:^|[{,\s])["']?(es|en|fr|de|it|nl|zh|zht|bg|pl)["']?\s*:\s*\{/g)) {
+  for (const m of index.matchAll(/(?:^|[{,\s])["']?(es|en|fr|de|it|nl|zh|zht|bg|pl|ro)["']?\s*:\s*\{/g)) {
     const ini = m.index + m[0].length - 1;
     let i = ini, prof = 0, q = null;
     for (; i < index.length; i++) {
@@ -647,7 +663,7 @@ async function textos() {
      italiano, neerlandes y polaco. Mismas parejas «idioma: 'texto'» que index.html */
   const titsa = lee('datos/titsa.js');
   const lineaT = i => titsa.slice(0, i).split('\n').length;
-  for (const m of titsa.matchAll(/(?:^|[{,\s])["']?(es|en|fr|de|it|nl|zh|zht|bg|pl)["']?\s*:\s*(["'])((?:\\.|(?!\2)[^\\\n])*)\2/g)) {
+  for (const m of titsa.matchAll(/(?:^|[{,\s])["']?(es|en|fr|de|it|nl|zh|zht|bg|pl|ro)["']?\s*:\s*(["'])((?:\\.|(?!\2)[^\\\n])*)\2/g)) {
     mete('datos/titsa.js', 'linea ' + lineaT(m.index), m[1], cadena(m[2], m[3]));
   }
   /* las 88 curiosidades de las constelaciones, un fichero por idioma desde el 22 */

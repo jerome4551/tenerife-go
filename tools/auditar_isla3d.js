@@ -5,7 +5,7 @@
  *     node tools/auditar_isla3d.js 8766
  *
  * 1. Sin navegador: los textos (ISLA3D_UI y los tres del cargador en
- *    index.html) en los diez idiomas, con sus {huecos}, sin comillas dobles
+ *    index.html) en los once idiomas, con sus {huecos}, sin comillas dobles
  *    ASCII y con la paridad de siempre entre zh y zht; cada T('...') del
  *    modulo tiene su fila y no sobra ninguna; el CARGA-PEREZOSA; sw.js con
  *    los cuatro ficheros en CORE y en «red primero»; la app de las tiendas
@@ -42,7 +42,7 @@
  *      cumbre del Teide hacia donde no esta el sol; de noche con luna (con
  *      sombras) y sin luna (sin ellas, que no hay luz que las haga); con la
  *      luz de mapa, sin sombras;
- *    · los diez idiomas: el titulo, los botones y el aviso de cada uno;
+ *    · los once idiomas: el titulo, los botones y el aviso de cada uno;
  *    · sin red, con el service worker: abre igual (todo de la cache);
  *    · un PNG tocado (una sola alteracion) no se dibuja: lo dice; ni un
  *      relieve de una fuente que el modulo no conoce;
@@ -61,7 +61,7 @@ try { chromium = require('playwright').chromium; } catch (e) {
 const RAIZ = path.join(__dirname, '..');
 const PUERTO = process.argv[2] || '8766';
 const BASE = 'http://127.0.0.1:' + PUERTO + '/index.html';
-const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 const IDEO = /[㐀-䶿一-鿿豈-﫿]/g;
 const HUECO = /\{(\w+)\}/g;
 const TEIDE = { lat: 28.2725, lon: -16.6422 };
@@ -155,8 +155,9 @@ function sinNavegador() {
     for (const l of LANGS) if (f[l] && f[l].indexOf('"') >= 0) malas.push(k + ':' + l + ' comilla doble');
     if (f.zh && f.zht && f.zh.replace(IDEO, '') !== f.zht.replace(IDEO, '')) malas.push(k + ': zh/zht fuera de los ideogramas');
     if (f.bg && /[a-z]{3,}/.test(f.bg.replace(/\{\w+\}|Copernicus|OpenStreetMap|WebGL|GLO-30|DEM|3D/g, ''))) malas.push(k + ':bg con letras latinas');
+    if (f.ro && /[şţŞŢ]/.test(f.ro)) malas.push(k + ':ro con ş o ţ de cedilla');
   }
-  ok(!malas.length, 'las ' + Object.keys(todas).length + ' filas: diez idiomas, sus huecos, sin comillas dobles, zh/zht a la par, bg en cirilico', malas.slice(0, 8).join(', '));
+  ok(!malas.length, 'las ' + Object.keys(todas).length + ' filas: once idiomas, sus huecos, sin comillas dobles, zh/zht a la par, bg en cirilico, ro con ș y ț de coma', malas.slice(0, 8).join(', '));
   /* lo que pide el codigo, contra lo que hay */
   const pedidas = new Set([...mod.matchAll(/\bT\('([A-Za-z]+)'/g)].map(m => 'isla3d' + m[1])
     .concat([...mod.matchAll(/\btx\('(isla3d[A-Za-z]+)'/g)].map(m => m[1]))
@@ -595,7 +596,7 @@ async function navegador() {
     await ctx.close();
   }
 
-  /* ── los diez idiomas ── */
+  /* ── los once idiomas ── */
   const UI = literal(lee('modulos/isla3d.js'), 'var ISLA3D_UI = {');
   const malIdioma = [];
   for (const L of LANGS) {
@@ -613,7 +614,7 @@ async function navegador() {
     if (t.cred.indexOf(UI.isla3dRelieve[L]) !== 0) malIdioma.push(L + ' creditos: ' + t.cred);
     await ctx.close();
   }
-  ok(!malIdioma.length, 'los diez idiomas: titulo, botones, brujula y creditos en el idioma de la app', malIdioma.join(' | '));
+  ok(!malIdioma.length, 'los once idiomas: titulo, botones, brujula y creditos en el idioma de la app', malIdioma.join(' | '));
 
   /* ── un PNG tocado no se dibuja ── */
   ({ ctx, p } = await nueva());

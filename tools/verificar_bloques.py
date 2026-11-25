@@ -23,7 +23,7 @@ QUE MIRA (cada prueba dice de donde sale)
   cobertura   cada estacion del registro, UNA ficha; ninguna ficha sin estacion.
   revisor     revisar_gasolineras.py, que no importa nada de la plantilla.
   plantilla   cada ficha generada es EXACTAMENTE lo que la plantilla genera hoy,
-              en los diez idiomas: ningun cambio de regla sin aplicar.
+              en los once idiomas: ningun cambio de regla sin aplicar.
   antiguas    las 14 de antes: enlazadas a <=150 m, misma marca, horario y
               direccion del registro. Lo que su nombre o su texto dice de mas,
               para la sesion 91.
@@ -36,7 +36,7 @@ QUE MIRA (cada prueba dice de donde sale)
   horario     de un solo dia sin comprobar, o con algun dia sin abrir.
   vecinos     otra ficha de la app a menos de 25 m.
   sesiones    sesiones.json dice lo mismo que la app.
-  bloque 00   el vocabulario de la plantilla, en los diez idiomas.
+  bloque 00   el vocabulario de la plantilla, en los once idiomas.
 
   No escribe nada en el repo salvo, si se pide, el informe --md.
 """
@@ -56,7 +56,7 @@ import gasolinera_ficha as F      # noqa: E402
 import osm_cerca as O             # noqa: E402
 import geofabrik_cerca as GF      # noqa: E402
 
-IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']
+IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']
 DG = os.path.join(RAIZ, 'datos', 'gasolineras')
 MARCAS_OSM = ['moeve', 'cepsa', 'disa', 'repsol', 'shell', 'bp', 'tgas', 'pcan', 'plenergy',
               'galp', 'oceano', 'h2go', 'petroprix', 'ballenoil', 'esergui', 'avia']

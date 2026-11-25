@@ -5,7 +5,7 @@
  *     python3 -m http.server 8766 &      (desde la raiz del repo)
  *     node tools/probar_antes_coche.js 8766
  *
- * En los diez idiomas y en rumano (forzado: aun no se elige en la app): la
+ * En los once idiomas, cada uno elegido en la bienvenida: la
  * tarjeta del panel de Rutas, «Hoy» y «Reservas», la hoja del coche y «Enviar
  * mi posición»; que nada se sale a 360 y 402 px, que no queda castellano
  * fuera del castellano y que ningun aviso se corta en un ordinal o una
@@ -87,10 +87,9 @@ async function abrirApp(b, L, opc) {
   await p.goto(BASE + (opc.hash || ''), { waitUntil: 'load' });
   await p.waitForTimeout(700);
   if (!opc.hash && await p.isVisible('#v19-welcome-start')) {
-    await p.tap('.v19-w-lang[data-lang="' + (L === 'ro' ? 'en' : L) + '"]'); await p.waitForTimeout(200);
+    await p.tap('.v19-w-lang[data-lang="' + L + '"]'); await p.waitForTimeout(200);
     await p.tap('#v19-welcome-start'); await p.waitForTimeout(1800);
   }
-  if (L === 'ro') await p.evaluate(() => { currentLang = 'ro'; document.documentElement.lang = 'ro'; repintarModulosIdioma(); });
   return { ctx, p, errores };
 }
 const abrirAntesTarjeta = async p => {

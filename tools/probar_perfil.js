@@ -212,13 +212,17 @@ async function regresiones(b) {
   ok(JSON.stringify(await E(`TG_PERFIL.estado().medidas.filter(m => m.d === '${HOY}').map(m => m.kg)`)) === '[81.5]', '6 «81,5» guarda 81,5');
   await pg.click('#tgp-peso-nuevo'); await pg.keyboard.type('815'); await pg.click('#tgp-add-peso button[type=submit]'); await pg.waitForTimeout(200);
   ok(JSON.stringify(await E(`TG_PERFIL.estado().medidas.filter(m => m.d === '${HOY}').map(m => m.kg)`)) === '[81.5]', '7 «815» no se guarda', await pg.innerText('#tgp-peso-nuevo-h'));
-  for (const [L, esp] of [['en', '1 place'], ['pl', '1 miejsce'], ['fr', '1 lieu'], ['bg', '1 място'], ['es', '1 lugar']]) {
+  for (const [L, esp] of [['en', '1 place'], ['pl', '1 miejsce'], ['fr', '1 lieu'], ['bg', '1 място'], ['ro', '1 loc'], ['es', '1 lugar']]) {
     await E(`setLang('${L}')`); await pg.waitForTimeout(250);
     const t = (await pg.innerText('.tgp-stamp >> nth=0')).split('\n').pop();
     ok(t === esp, '8 plural ' + L, t);
   }
   await E(`setLang('pl')`); await pg.waitForTimeout(200);
   ok((await pg.innerText('#tgp-progress-txt')).includes('miejsc do osiągnięcia'), '8b plural pl 13', await pg.innerText('#tgp-progress-txt'));
+  /* y el rumano, con sus tres formas y su regla: 13 pide «locuri», sin «de» (el polaco, «miejsc»; el interruptor del
+     rumano, 22-11-2026) */
+  await E(`setLang('ro')`); await pg.waitForTimeout(200);
+  ok((await pg.innerText('#tgp-progress-txt')).includes('13 locuri pentru'), '8b plural ro 13', await pg.innerText('#tgp-progress-txt'));
   await E(`setLang('es')`); await pg.waitForTimeout(200);
   /* (#99) aquí ya no se anotan km (van a «Anotar movimiento» de «Su cuerpo»): los de antes, como estarían
      guardados, con su id; y se borra el pulsado */

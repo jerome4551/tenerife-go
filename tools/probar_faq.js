@@ -155,6 +155,24 @@ const CASOS = [
   ['zh', '天气预警',                       '沿海风浪'],
   ['bg', 'жълт код',                      'Днес се къпете тук'],
   ['fr', 'calima',                        'poussière en suspension'],
+  /* El rumano (el interruptor del rumano, 22-11-2026): una pregunta por cada tipo de las de arriba, como la escribiría
+     alguien, con un trozo que solo está en la respuesta rumana. */
+  ['ro', 'autobuze în Tenerife',          'TITSA'],
+  ['ro', 'permis pentru vârf',            'autorizație'],
+  ['ro', 'rezervare teide',               'Tenerife ON'],
+  ['ro', 'cât de înalt este Teide',       '3.715'],
+  ['ro', 'guachinche',                    'viticultorul'],
+  ['ro', 'gofio',                         'făină'],
+  ['ro', 'Anaga',                         'rezervație a biosferei'],
+  ['ro', 'pot zbura cu o dronă',          'AESA'],
+  ['ro', 'calima',                        'Sahara'],
+  ['ro', 'cum schimb limba',              'Ascultați'],
+  ['ro', 'cum îmi șterg contul',          'Ștergeți contul'],
+  ['ro', 'notificări',                    'Activați notificările'],
+  ['ro', 'confidențialitate',             'Confidențialitate · RGPD'],
+  ['ro', 'violență domestică',            '016'],
+  ['ro', 'avertizări AEMET',              'punct galben, portocaliu sau roșu'],
+  ['ro', 'cod galben',                    'Faceți baie azi aici'],
 ];
 
 let malos = 0;
@@ -185,6 +203,8 @@ let malos = 0;
     ['nl',  'stranden',        'playa'],
     ['it',  'spiagge',         'playa'],
     ['pl',  'plaże',           'playa'],
+    ['ro',  'plaje',           'playa'],
+    ['ro',  'puncte de belvedere', 'mirador'],
     ['es',  'playas',          'playa'],
     ['en',  'beaches',         'playa'],
   ];
@@ -218,6 +238,8 @@ let malos = 0;
     ['de', 'Strände im Süden', 'sur'], ['it', 'spiagge al sud', 'sur'], ['nl', 'stranden in het westen', 'oeste'],
     ['pl', 'plaże na północy', 'norte'], ['bg', 'плажове на север', 'norte'], ['zh', '北部的海滩', 'norte'],
     ['zht', '東部的海灘', 'este'], ['es', 'playas en el norte', 'norte'], ['en', 'beaches in the south', 'sur'],
+    /* en rumano «este» es el verbo («es»); el este es «est» */
+    ['ro', 'plaje în nord', 'norte'], ['ro', 'plaje în est', 'este'], ['ro', 'unde este plaja', null],
   ];
   for (const [lang, preg, esperada, pendiente] of ZONAS) {
     await ctx.TG_FAQ.cambiarA(lang);
@@ -243,8 +265,8 @@ let malos = 0;
     ['de', 'Sortiere meine Favoriten nach Entfernung', 'favOrdenGeo'], ['it', 'ordina i miei preferiti per distanza', 'favOrdenGeo'],
     ['nl', 'sorteer mijn favorieten op afstand', 'favOrdenGeo'], ['zh', '按距离排列我的收藏', 'favOrdenGeo'],
     ['zht', '按距離排列我的收藏', 'favOrdenGeo'], ['bg', 'Подреди любимите ми по разстояние', 'favOrdenGeo'],
-    ['pl', 'Posortuj moje ulubione według odległości', 'favOrdenGeo'],
-    ['es', 'favoritos', 'kb'], ['es', 'cómo guardo favoritos', 'kb'], ['de', 'Favoriten', 'kb'], ['pl', 'ulubione', 'kb'],
+    ['pl', 'Posortuj moje ulubione według odległości', 'favOrdenGeo'], ['ro', 'Ordonează-mi favoritele după distanță', 'favOrdenGeo'],
+    ['es', 'favoritos', 'kb'], ['es', 'cómo guardo favoritos', 'kb'], ['de', 'Favoriten', 'kb'], ['pl', 'ulubione', 'kb'], ['ro', 'favorite', 'kb'],
   ];
   for (const [lang, preg, esperada] of FAVS) {
     await ctx.TG_FAQ.cambiarA(lang);
@@ -265,6 +287,7 @@ let malos = 0;
     ['en', 'help', 'elegirAyuda'], ['en', 'Help me!', 'elegirAyuda'], ['fr', 'aide', 'elegirAyuda'],
     ['de', 'Hilfe', 'elegirAyuda'], ['it', 'aiuto', 'elegirAyuda'], ['nl', 'hulp', 'elegirAyuda'],
     ['zh', '帮助', 'elegirAyuda'], ['zht', '幫助', 'elegirAyuda'], ['bg', 'помощ', 'elegirAyuda'], ['pl', 'pomoc', 'elegirAyuda'],
+    ['ro', 'ajutor', 'elegirAyuda'], ['ro', 'Ajutor!', 'elegirAyuda'], ['ro', 'urgență', 'kb'],
     ['es', 'pedir ayuda', 'kb'], ['es', 'ayuda con la app', 'kb'], ['es', 'emergencia', 'kb'], ['fr', 'au secours', 'kb'],
     ['zh', '救命', 'kb'], ['en', 'sos', 'kb'],
   ];
@@ -277,14 +300,15 @@ let malos = 0;
     console.log((ok ? '  ok  ' : ' FALLA') + ' [' + lang + '] ' + preg + '   → ' + k);
   }
   mirados += AYUDA.length;
-  /* Saludos y gracias en los diez idiomas (17/11/2026). La sesion del rumano
+  /* Saludos y gracias en los once idiomas (17/11/2026). La sesion del rumano
      vio, al traducir el asistente, que «Dzień dobry» y «Dziękuję» daban el «no
      tengo respuesta»; tambien el bulgaro, el chino, «buenos días» o «Guten
      Tag». Lo que pregunta algo mas no es un saludo y sigue su camino.
      «cześć» (hola) y «część» (parte) son lo mismo sin tildes, y en rumano
      «bună» es «hola» y «buena»: solos saludan, con otra palabra no ('no':
-     ni saludo ni gracias). El rumano aun no se enciende y las listas son las
-     mismas en todos los idiomas: sus casos van con el castellano. */
+     ni saludo ni gracias). Los casos del rumano iban con el castellano
+     mientras el rumano no se encendia; desde el interruptor (22-11-2026), en
+     rumano, con su faq/ro.json. */
   console.log('');
   const CORTESIA = [
     ['es', 'hola', 'greet'], ['es', 'buenos días', 'greet'], ['es', 'hola Jérôme', 'greet'], ['es', 'muchas gracias', 'thanks'],
@@ -296,7 +320,9 @@ let malos = 0;
     ['zh', '你好', 'greet'], ['zh', '您好！', 'greet'], ['zh', '谢谢', 'thanks'], ['zht', '你好', 'greet'], ['zht', '謝謝您', 'thanks'],
     ['zh', '你好，我想去海滩', 'cat'], ['pl', 'Dzień dobry, gdzie jest plaża', 'kb'], ['es', 'hola, ¿qué playas hay en el norte?', 'cat'],
     ['pl', 'północna część', 'no'], ['pl', 'część wyspy', 'no'], ['pl', 'najlepsza część', 'no'],
-    ['es', 'Bună!', 'greet'], ['es', 'Bună ziua', 'greet'], ['es', 'plajă bună', 'no'],
+    ['ro', 'Bună!', 'greet'], ['ro', 'Bună ziua', 'greet'], ['ro', 'Bună dimineața', 'greet'], ['ro', 'Salut', 'greet'],
+    ['ro', 'Mulțumesc', 'thanks'], ['ro', 'Vă mulțumesc', 'thanks'], ['ro', 'Mersi', 'thanks'], ['ro', 'plajă bună', 'no'],
+    ['ro', 'Bună ziua, unde este plaja', 'cat'],
   ];
   for (const [lang, preg, esperada] of CORTESIA) {
     await ctx.TG_FAQ.cambiarA(lang);
@@ -336,6 +362,10 @@ let malos = 0;
     ['pl', 'pole namiotowe', 'camping'], ['pl', 'kamera na żywo', 'webcam'], ['bg', 'град', 'ciudad'], ['bg', 'община', 'municipio'],
     ['bg', 'ветеринар', 'veterinario'], ['bg', 'търговско пристанище', 'puerto_comercial'], ['bg', 'яхтено пристанище', 'puerto_ocio'],
     ['bg', 'панорамно място', 'mirador'], ['bg', 'туристически офис', 'oficina_turismo'],
+    ['ro', 'munte', 'montana'], ['ro', 'oraș', 'ciudad'], ['ro', 'sat', 'municipio'], ['ro', 'municipiu', 'municipio'],
+    ['ro', 'veterinar', 'veterinario'], ['ro', 'benzinărie', 'gasolinera'], ['ro', 'far', 'faros'], ['ro', 'port comercial', 'puerto_comercial'],
+    ['ro', 'port de agrement', 'puerto_ocio'], ['ro', 'punct de belvedere', 'mirador'], ['ro', 'târg', 'mercadillo'],
+    ['ro', 'centru de informare turistică', 'oficina_turismo'], ['ro', 'cameră web', 'webcam'], ['ro', 'plajă de nudiști', 'nudista'],
   ];
   for (const [lang, preg, esperada] of SINGULAR) {
     await ctx.TG_FAQ.cambiarA(lang);
@@ -361,6 +391,7 @@ let malos = 0;
     ['fr', 'quels papiers faut-il', 'pra-04'], ['de', 'welche Papiere brauche ich', 'pra-04'], ['nl', 'welke papieren heb ik nodig', 'pra-04'],
     ['es', 'guanche', 'cul-09'], ['en', 'guanche', 'cul-09'], ['fr', 'guanche', 'cul-09'], ['de', 'Guanche', 'cul-09'],
     ['nl', 'guanche', 'cul-09'], ['zh', '古安切人', 'cul-09'], ['zht', '古安切人', 'cul-09'],
+    ['ro', 'card ten+', 'mov-04'], ['ro', 'TVA', 'pra-12'], ['ro', 'ce acte îmi trebuie', 'pra-04'], ['ro', 'guanșii', 'cul-09'],
   ];
   for (const [lang, preg, esperada] of CLAVES) {
     await ctx.TG_FAQ.cambiarA(lang);
@@ -393,6 +424,7 @@ let malos = 0;
     ['pl', 'Czy na Teide pada śnieg?'], ['pl', 'Czy droga na Teide jest zamknięta?'],
     ['bg', 'Има ли сняг на Тейде?'], ['bg', 'Затворен ли е пътят за Тейде?'],
     ['zh', '泰德峰有雪吗？'], ['zh', '泰德峰的路封了吗？'], ['zht', '泰德峰有雪嗎？'], ['zht', '泰德峰的路封了嗎？'],
+    ['ro', 'Este zăpadă pe Teide?'], ['ro', 'Este închis drumul spre Teide?'],
   ];
   for (const [lang, preg] of NIEVE) {
     await ctx.TG_FAQ.cambiarA(lang);
@@ -405,6 +437,8 @@ let malos = 0;
   const NO_NIEVE = [
     ['es', '¿Cuál es la mejor carretera al Teide?'], ['en', 'Which road to Teide is best?'],
     ['en', 'Where can I get ice cream?'], ['fr', 'meilleure glace à Tenerife'], ['de', 'Wo gibt es Eis?'], ['nl', 'lekker ijs'],
+    /* en rumano el helado es «înghețată», y la carretera helada, «drum înghețat»: casi la misma palabra */
+    ['ro', 'Care este cel mai bun drum spre Teide?'], ['ro', 'unde găsesc înghețată?'],
   ];
   for (const [lang, preg] of NO_NIEVE) {
     await ctx.TG_FAQ.cambiarA(lang);
@@ -417,7 +451,7 @@ let malos = 0;
   /* Y la respuesta general del Teide lleva el aviso de la nota 48 (hielo y nieve) mientras lo lleven tei-01 y
      tei-06, el mismo y en cada idioma: lo que tienen las dos al principio. Cuando se les quite a ellas, tambien a
      pla-13. */
-  const IDIOMAS_TEIDE = ['es', 'en', 'fr', 'de', 'it', 'nl', 'pl', 'bg', 'zh', 'zht'];
+  const IDIOMAS_TEIDE = ['es', 'en', 'fr', 'de', 'it', 'nl', 'pl', 'bg', 'zh', 'zht', 'ro'];
   for (const lang of IDIOMAS_TEIDE) {
     await ctx.TG_FAQ.cambiarA(lang);
     const a1 = ctx.chatEntradaPorId('tei-01').answer, a6 = ctx.chatEntradaPorId('tei-06').answer;

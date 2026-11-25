@@ -99,7 +99,7 @@ echo "════════ cada gasolinera, contra el registro, campo a camp
 control revisar_gasolineras.py python3 tools/revisar_gasolineras.py
 echo "════════ los precios de las gasolineras (las mas baratas de cada municipio, y la de cada una) ════════"
 control auditar_precios_gasolineras.py python3 tools/auditar_precios_gasolineras.py
-echo "════════ el boton «la gasolinera mas barata cerca de mi», en los diez idiomas ════════"
+echo "════════ el boton «la gasolinera mas barata cerca de mi», en los once idiomas ════════"
 control auditar_gas_cerca.js node tools/auditar_gas_cerca.js "$PUERTO"
 echo; echo "════════ el municipio que dice cada ficha ════════"
 control auditar_municipio.js node tools/auditar_municipio.js
@@ -117,7 +117,7 @@ echo; echo "════════ las cifras del README ═══════
 control auditar_readme.js node tools/auditar_readme.js
 echo; echo "════════ lo que se sale de la pantalla, y el popup ════════"
 control auditar_desborde.js node tools/auditar_desborde.js "$PUERTO"
-echo; echo "════════ las fichas de gasolinera, en pantalla, en los diez idiomas ════════"
+echo; echo "════════ las fichas de gasolinera, en pantalla, en los once idiomas ════════"
 control verificar_fichas_app.js node tools/verificar_fichas_app.js "$PUERTO"
 echo; echo "════════ texto de reserva en castellano ════════"
 control auditar_reservas.py python3 tools/auditar_reservas.py
@@ -160,7 +160,7 @@ echo; echo "════════ castellano que se queda dentro de cada idio
 # y fichas resumidas. Los diez de una vez: lo aceptado «para todos» solo se
 # puede dar por sobrante si se han mirado todos.
 control castellano_suelto.js node tools/castellano_suelto.js
-echo; echo "════════ el trato de usted, en los diez idiomas ════════"
+echo; echo "════════ el trato de usted, en los once idiomas ════════"
 # Jerome, 21 de octubre de 2026: «Usted en toda la app. Son usuarios no
 # amigos». Cada idioma pasado a usted (HECHOS en el control) sale a cero; los
 # demas se cuentan como pendientes.
@@ -217,7 +217,7 @@ echo; echo "════════ los numeros de los grupos del mapa se leen 
 # numeros»): la cifra dorada sobre un circulo dorado casi transparente se leia a 1,24:1 sobre tierra. Con el circulo
 # oscuro, 4,5:1 o mas con blanco debajo (lo peor que puede haber) y con negro, en los tres tamanos.
 control probar_contraste_grupos.js node tools/probar_contraste_grupos.js "$PUERTO"
-echo; echo "════════ cada lugar por su nombre y cada categoria por su rotulo, preguntados al asistente en los diez idiomas ════════"
+echo; echo "════════ cada lugar por su nombre y cada categoria por su rotulo, preguntados al asistente en los once idiomas ════════"
 # Desde el 20 de octubre de 2026: en castellano no encontraba 170 de los 980
 # lugares por su nombre, y en chino 638. Ningun control se lo preguntaba.
 # Y cada categoria del menu por su rotulo: tres no las conocia.
@@ -226,7 +226,7 @@ echo; echo "════════ avisos de AEMET: el lector, con copias real
 # Desde el 12 de octubre de 2026. La pildora de avisos estuvo meses sin salir
 # nunca y nadie lo vio: «no hay avisos» y «no funciona» se pintaban igual.
 control probar_avisos_aemet.py python3 tools/probar_avisos_aemet.py
-echo; echo "════════ avisos de AEMET en la app, en los diez idiomas ════════"
+echo; echo "════════ avisos de AEMET en la app, en los once idiomas ════════"
 # Desde el 21 de octubre de 2026 van en el boton del mar 🌊, y un costero quita
 # de «Báñese hoy aquí» las playas de su zona (contorno oficial de AEMET).
 control probar_avisos.js node tools/probar_avisos.js "$PUERTO"
@@ -357,7 +357,7 @@ control relieve_construir.py python3 tools/relieve_construir.py --comprobar
 # relieve_ign.py solo corre en el workflow, que tiene red: aqui, que se puede cargar
 control relieve_ign.py python3 -c "import sys; sys.path.insert(0, 'tools'); import relieve_ign"
 control auditar_isla3d.js node tools/auditar_isla3d.js "$PUERTO"
-echo; echo "════════ emergencias (SOS): textos, fuentes, enlaces, y el panel de verdad en los diez idiomas y sin conexion ════════"
+echo; echo "════════ emergencias (SOS): textos, fuentes, enlaces, y el panel de verdad en los once idiomas y sin conexion ════════"
 # Desde el 22 de octubre de 2026. El panel se carga al abrirlo
 # (modulos/emergencias.js); el 112 vive en el armazon y tiene que llamar
 # aunque el modulo no llegue. Ninguna guia sin sus fuentes.

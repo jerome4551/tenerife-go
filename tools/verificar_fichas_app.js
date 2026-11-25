@@ -1,5 +1,5 @@
 /*
-  verificar_fichas_app.js — abre TODAS las fichas de gasolinera en los diez
+  verificar_fichas_app.js — abre TODAS las fichas de gasolinera en los once
   idiomas, en la app de verdad, y mira lo que se ve.
 
       python3 -m http.server 8820 &      (desde la raiz del repo)
@@ -22,7 +22,7 @@
 */
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const PUERTO = process.argv[2] || '8820';
-const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 
 (async () => {
   const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
@@ -95,6 +95,6 @@ const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
     await ctx.close();
   }
   await b.close();
-  console.log(total ? '\n*** ' + total + ' fallo(s) ***' : '\nlas fichas de gasolinera, bien en los diez idiomas');
+  console.log(total ? '\n*** ' + total + ' fallo(s) ***' : '\nlas fichas de gasolinera, bien en los once idiomas');
   process.exit(total ? 1 : 0);
 })();

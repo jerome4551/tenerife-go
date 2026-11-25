@@ -10,7 +10,7 @@
   auditar_precios_gasolineras.py, y la app los recibe por una ruta simulada.
 
   MIRA
-    en los diez idiomas   la fila de la pestaña Servicios (y que no sale en
+    en los once idiomas   la fila de la pestaña Servicios (y que no sale en
                           otra pestaña), el panel (titulo, fecha, radios),
                           que cada lista a 5, 10 y 20 km es la que da un
                           calculo hecho aparte (las 3 mas baratas y las que
@@ -122,7 +122,7 @@ function esperado(datos, places, pos, radio, comb) {
   const datos = JSON.parse(fs.readFileSync(S + '/pc_frescos.json'));
   let fallos = 0;
   const mal = t => { fallos++; console.log('  FALLO', t); };
-  for (const lang of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+  for (const lang of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
     const { ctx, p, err } = await abrir(b, { lang });
     const r = await p.evaluate(async () => {
       const o = {};
@@ -188,7 +188,7 @@ function esperado(datos, places, pos, radio, comb) {
     await ctx.close();
   }
   // el boton de la barra de arriba, al lado del dado
-  for (const lang of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+  for (const lang of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
     const { ctx, p, err } = await abrir(b, { lang });
     const r = await p.evaluate(async () => {
       const bt = document.getElementById('gas-top-btn');
@@ -266,13 +266,17 @@ function esperado(datos, places, pos, radio, comb) {
     await ctx.close();
   }
   // el precio en la ficha y en el globo de cada gasolinera
+  /* el rumano, por su euro: «1,385 €», con el símbolo, como los otros diez y los carteles (CLDR escribe «1,385 EUR»; el
+     interruptor del rumano, 22-11-2026) */
   for (const [lang, fichero] of [['es', 'pc_huecos.json'], ['en', 'pc_frescos.json'], ['zh', 'pc_frescos.json'],
-                                 ['bg', 'pc_frescos.json'], ['es', 'pc_viejos.json']]) {
+                                 ['bg', 'pc_frescos.json'], ['ro', 'pc_frescos.json'], ['es', 'pc_viejos.json']]) {
     const datosF = JSON.parse(fs.readFileSync(path.join(S, fichero)));
     const { ctx, p, err } = await abrir(b, { lang, fichero });
     const r = await p.evaluate(async ({ datosF, viejos }) => {
-      const LOC = { es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW', bg: 'bg-BG', pl: 'pl-PL' };
-      const euro = new Intl.NumberFormat(LOC[currentLang], { style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 });
+      const LOC = { es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW', bg: 'bg-BG', pl: 'pl-PL', ro: 'ro-RO' };
+      const euro = new Intl.NumberFormat(LOC[currentLang], Object.assign({ style: 'currency', currency: 'EUR', minimumFractionDigits: 3, maximumFractionDigits: 3 },
+        currentLang === 'ro' ? { currencyDisplay: 'narrowSymbol' } : {}));
+      if (currentLang === 'ro' && !/€$/.test(euro.format(1.385))) return { n: 0, conPrecio: 0, sinPrecio: 0, mal: ['el euro rumano no sale con «€»: ' + euro.format(1.385)] };
       const mun = {};
       Object.values(datosF.municipios).forEach(m => ['g95', 'diesel'].forEach(c => (m[c] || []).forEach(x => { (mun[x.id] = mun[x.id] || {})[c] = x.precio; })));
       const gas = places.filter(x => x.category === 'gasolinera');

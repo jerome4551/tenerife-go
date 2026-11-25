@@ -58,7 +58,7 @@ const CONSULTAS = [
     debe: [/Plages/], noDebe: [/Según lo que busques?/i, /Arena negra/i], conLista: true },
 
   /* «help» a secas: desde el 12/10/2026 propone 112, emergencia y ayuda de
-     la app (Jerome, para «ayuda»; lo mismo en los diez idiomas). El de
+     la app (Jerome, para «ayuda»; lo mismo en los once idiomas). El de
      emergencia, pulsado, da el 112. */
   { que: 'ayuda en ingles: 112, emergencia o ayuda de la app', lang: 'en', q: 'help', debe: [/emergency/], noDebe: [/emergencia/i],
     acciones: [/Call 112/, /Emergency/, /Help with the app/], pulsar: /Emergency/, trasPulsar: [/112/] },
@@ -66,6 +66,8 @@ const CONSULTAS = [
     acciones: [/Llamar al 112/, /Emergencia/, /Ayuda con la app/], pulsar: /Ayuda con la app/, trasPulsar: [/en pocas palabras/] },
   { que: '«Hilfe» en aleman', lang: 'de', q: 'Hilfe', debe: [/Notfall/], noDebe: [/emergencia/i],
     acciones: [/112 anrufen/, /Notfall/, /Hilfe zur App/] },
+  { que: '«ajutor» en rumano', lang: 'ro', q: 'ajutor', debe: [/urgență/], noDebe: [/emergencia/i],
+    acciones: [/Sunați la 112/, /Urgență/, /Ajutor cu aplicația/] },
   { que: '«pedir ayuda» no es ambiguo: el 112 directo', lang: 'es', q: 'pedir ayuda', debe: [/llame al 112/], noDebe: [], sinAcciones: true },
 
   { que: 'la app sin conexion, en neerlandes', lang: 'nl', q: 'werkt het offline',
@@ -76,6 +78,11 @@ const CONSULTAS = [
 
   { que: 'la bienvenida en polaco cuenta bien el plural', lang: 'pl', q: 'zaskocz mnie',
     debe: [/kostka|losowe|Przenosi/i], noDebe: [/dado/i], bienvenidaPlural: true },
+  /* el rumano tiene tres formas (CLDR: 1 loc · 0, de 2 a 19 y las que acaban en 01-19, locuri · las demás, de locuri) y su
+     bienvenida no escribe ninguna: «toate locurile de pe hartă (985)». Vale así, o con la forma que pide el total
+     (el interruptor del rumano, 22-11-2026) */
+  { que: 'la bienvenida en rumano cuenta bien el plural', lang: 'ro', q: 'surprinde-mă',
+    debe: [/la întâmplare/], noDebe: [/dado/i], bienvenidaPlural: true },
 
   /* «socorro» es una playa y es pedir ayuda (12/10/2026). Jerome: «que
      proponga los 3, Playa El Socorro, emergencia y 112, y la gente elige».
@@ -89,6 +96,8 @@ const CONSULTAS = [
     pulsar: /Playa El Socorro/, trasPulsarLista: 3 },
   { que: '«socorro» en polaco', lang: 'pl', q: 'socorro',
     debe: [/pomoc/], noDebe: [/Emergencia/], acciones: [/Zadzwoń pod 112/, /Nagły wypadek/, /Playa El Socorro/] },
+  { que: '«socorro» en rumano', lang: 'ro', q: 'socorro',
+    debe: [/ajutor/], noDebe: [/Emergencia/], acciones: [/Sunați la 112/, /Urgență/, /Playa El Socorro/] },
   { que: '«pedir socorro» no es ambiguo: el 112 directo', lang: 'es', q: 'pedir socorro',
     debe: [/llame al 112/], noDebe: [], sinAcciones: true },
   { que: '«auxilio»: el 112 directo', lang: 'es', q: 'auxilio', debe: [/llame al 112/], noDebe: [] },
@@ -123,6 +132,18 @@ const CONSULTAS = [
 /* La forma polaca que pide el numero de lugares: 1 miejsce · 2-4 miejsca
    (salvo 12-14) · 5+ miejsc. La bienvenida tiene que traer la suya. */
 const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 'miejsca' : 'miejsc';
+/* La rumana (CLDR): 1 loc · 0 y las que acaban en 01-19 locuri · las demas, de locuri */
+const formaRo = n => n === 1 ? 'loc' : (n === 0 || (n % 100 >= 1 && n % 100 <= 19)) ? 'locuri' : 'de locuri';
+/* lo que falla en la bienvenida, o '' si cuenta bien: en polaco, el total con su forma; en rumano, el total entre
+   parentesis, sin forma, o con la suya, y ninguna otra detras de el */
+function bienvenidaMalDe(lang, n, saludo) {
+  if (lang === 'ro') {
+    const m = saludo.match(new RegExp(n + '\\s+(de\\s+locuri|locuri|loc)(?![\\p{L}])', 'u'));
+    if (m) return m[1] === formaRo(n) ? '' : n + ' pide «' + formaRo(n) + '»: ' + saludo.slice(0, 160);
+    return saludo.indexOf('(' + n + ')') >= 0 ? '' : 'no dice ' + n + ' (ni «(' + n + ')» ni «' + n + ' ' + formaRo(n) + '»): ' + saludo.slice(0, 160);
+  }
+  return new RegExp(n + ' ' + formaPl(n) + '\\b').test(saludo) ? '' : n + ' pide «' + formaPl(n) + '»: ' + saludo.slice(0, 120);
+}
 
 (async () => {
   const nav = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
@@ -160,7 +181,7 @@ const formaPl = n => n === 1 ? 'miejsce' : (n % 10 >= 2 && n % 10 <= 4 && (n % 1
     if (c.bienvenidaPlural) {
       const [n, saludo] = await pg.evaluate(() => [places.length,
         document.querySelector('#chat-messages .chat-bubble.bot .chat-body').textContent]);
-      if (!new RegExp(n + ' ' + formaPl(n) + '\\b').test(saludo)) bienvenidaMal = n + ' pide «' + formaPl(n) + '»: ' + saludo.slice(0, 120);
+      bienvenidaMal = bienvenidaMalDe(c.lang, n, saludo);
     }
 
     if (c.boton) {

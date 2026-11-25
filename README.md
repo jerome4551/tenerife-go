@@ -591,7 +591,7 @@ incidencia en GitHub para que una persona lo revise.
 
 `tools/auditar_emergencias.js` comprueba en Node las filas, las fuentes de
 cada guía, los enlaces, el armazón, el service worker y el manifiesto;
-`tools/probar_emergencias.js` abre el panel en un navegador en los diez
+`tools/probar_emergencias.js` abre el panel en un navegador en los once
 idiomas, sin el módulo y sin conexión.
 
 ---

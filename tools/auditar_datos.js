@@ -234,26 +234,29 @@ emojiDelante.slice(0, 5).forEach(p => console.log('      <--  ' + p.id + ' : ' +
    AllTrails- caducan y no son nuestras: salieron de las fichas el 16 de
    octubre de 2026 (LANZAMIENTO-PLAY.md 1.5), en los diez idiomas. Se miran el
    nombre, la categoria, las etiquetas y la descripcion en castellano, y la
-   descripcion y la categoria en los nueve idiomas. «PADI 5★» es el nivel de un
+   descripcion y la categoria en los otros diez idiomas (en rumano, «4,7 stele»,
+   «1.200 de recenzii»: el «de» va entre la cifra y la palabra desde el 20; el
+   interruptor del rumano, 22-11-2026). «PADI 5★» es el nivel de un
    centro de buceo, no una nota, y no lo coge: aqui cuentan las notas con
    decimal («4,7★», «4.6/5»), los recuentos de reseñas y esas plataformas. */
 {
   const NOTA = new RegExp([
-    '\\b[0-5][.,]\\d\\s*(?:★|☆|\\/\\s*5\\b|星|estrellas|stars|étoiles|sterne|stelle|sterren|звезд|gwiazd)',
+    '\\b[0-5][.,]\\d\\s*(?:★|☆|\\/\\s*5\\b|星|estrellas|stars|étoiles|sterne|stelle|sterren|звезд|gwiazd|stele)',
     'TripAdvisor|AllTrails',
     '\\d\\+?\\s*(?:reseñas|valoraciones|reviews|avis\\b|Bewertungen|recensioni|beoordelingen|recensies|opinii|opiniach|отзива|оценки)',
+    '\\d\\+?\\s*(?:de\\s+)?(?:recenzii|evaluări|aprecieri|opinii)',
     '\\d\\s*多?\\s*[条條]\\s*[评評][价價]'].join('|'), 'iu');
   const conNota = [];
   for (const p of PLACES) {
     const campos = { nombre: p.name, cat: (p.cat || {}).es, desc: (p.desc || {}).es, etiquetas: (p.tags || []).join(' | ') };
     for (const [c, t] of Object.entries(campos)) if (t && NOTA.test(t)) conNota.push(p.id + ' (es, ' + c + '): ' + t.match(NOTA)[0]);
   }
-  for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+  for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
     const d = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'idiomas', L + '.json'), 'utf8'));
     for (const [id, e] of Object.entries(d)) for (const c of ['desc', 'cat'])
       if (e[c] && NOTA.test(e[c])) conNota.push(id + ' (' + L + ', ' + c + '): ' + e[c].match(NOTA)[0]);
   }
-  debe('valoraciones de terceros en las fichas (diez idiomas)', conNota.length, conNota.length === 0);
+  debe('valoraciones de terceros en las fichas (once idiomas)', conNota.length, conNota.length === 0);
   conNota.slice(0, 6).forEach(x => console.log('      <--  ' + x));
 }
 
@@ -345,7 +348,9 @@ mienten.slice(0, 5).forEach(x => console.log('      <--  ' + x.txt));
    Bartolome. No tiene ninguna declaracion de la UNESCO: ni en el texto, en
    ningun idioma, ni en las etiquetas. */
 {
-  const WHS = /Patrimonio Mundial|Patrimonio de la Humanidad|World Heritage|Patrimoine mondial|Welterbe|Weltnaturerbe|Patrimonio Mondiale|Patrimonio dell.Umanit|werelderfgoed|世界遗产|世界遺產|световно наследство|[śs]wiatow\S* dziedzictw/i;
+  /* en rumano, «patrimoniul mondial» y «patrimoniu al umanității», con su artículo pegado o no (el interruptor del
+     rumano, 22-11-2026) */
+  const WHS = /Patrimonio Mundial|Patrimonio de la Humanidad|World Heritage|Patrimoine mondial|Welterbe|Weltnaturerbe|Patrimonio Mondiale|Patrimonio dell.Umanit|werelderfgoed|世界遗产|世界遺產|световно наследство|[śs]wiatow\S* dziedzictw|patrimoniu\S*\s+(?:mondial|al\s+umanit)/i;
   const UNESCO = /UNESCO|ЮНЕСКО|联合国教科文|聯合國教科文|人类遗产|人類遺產/i;
   const GRUPOS = [
     { que: 'lugares de Anaga', mal: WHS,
@@ -354,7 +359,7 @@ mienten.slice(0, 5).forEach(x => console.log('      <--  ' + x.txt));
       de: p => p.id === 'nucleo-tejina' || /corazones de tejina/i.test((p.desc && p.desc.es) || '') },
   ];
   const textos = {};
-  for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+  for (const L of ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']) {
     try { textos[L] = JSON.parse(fs_.readFileSync(require('path').join(__dirname, '..', 'idiomas', L + '.json'), 'utf8')); }
     catch (e) { textos[L] = null; }
   }
@@ -464,12 +469,14 @@ debe('idiomas declarados', sop.length + ' · a medias ' + incompl.length + ' · 
   debe('filas de FREQ_I18N sin algun idioma de la app', faltan.length ? faltan.length + ': ' + faltan.slice(0, 3).join(', ') + '…' : 0,
        Object.keys(filas).length > 0 && faltan.length === 0);
 }
-/* la cifra va pegada a la palabra "idioma/lengua" en los nueve idiomas.
+/* la cifra va pegada a la palabra "idioma/lengua" en los nueve idiomas, y en
+   rumano, «limbi», con su «de» desde el 20 («11 limbi», «20 de limbi»; el
+   interruptor del rumano, 22-11-2026).
    Se mira SOLO dentro de literales de texto: un comentario que diga "7
    idiomas" puede ser cierto (habla de otro momento) y haria fallar para
    siempre a un control que no puede distinguirlo. Lo que no puede mentir
    es lo que lee el usuario. */
-const PAL = /(\d{1,2})\s*(?:idiomas|languages|langues|Sprachen|lingue|talen|езика|\\u79cd\\u8bed\\u8a00|\\u7a2e\\u8a9e\\u8a00|种语言|種語言)/g;
+const PAL = /(\d{1,2})\s*(?:idiomas|languages|langues|Sprachen|lingue|talen|езика|(?:de\s+)?limbi|\\u79cd\\u8bed\\u8a00|\\u7a2e\\u8a9e\\u8a00|种语言|種語言)/g;
 const LITERAL = /'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|`(?:[^`\\]|\\.)*`/g;
 const cifras = [];
 for (const lit of html.match(LITERAL) || [])

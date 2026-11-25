@@ -8,7 +8,7 @@ revisar_gasolineras.py — cada ficha de gasolinera, contra el registro, campo a
 
 ES INDEPENDIENTE A PROPOSITO
   No importa NADA de gasolinera_ficha.py. Lee el registro crudo del MITECO y las
-  fichas tal como estan en index.html y en los diez idiomas, y compara. Si usara
+  fichas tal como estan en index.html y en los once idiomas, y compara. Si usara
   las funciones de la plantilla, solo comprobaria que la plantilla esta de
   acuerdo consigo misma.
 
@@ -16,7 +16,7 @@ QUE MIRA, EN CADA FICHA
   coordenada    la del registro, al millonesimo
   municipio     el de la ficha es el que dice el registro
   horario       el castellano sale del «Horario» del registro; en los otros
-                nueve, ni una letra de dia en castellano y las mismas cifras
+                diez, ni una letra de dia en castellano y las mismas cifras
   combustibles  los que nombra la ficha son EXACTAMENTE los campos de precio que
                 traen dato. Un campo con dato que nadie sabe nombrar es FALLO.
   nombre        cada palabra sale del registro (rotulo, direccion, localidad,
@@ -25,7 +25,7 @@ QUE MIRA, EN CADA FICHA
                 («(CTRA. GRAL. DEL SUR km 4)») con su carretera, no con la calle
   marca         el segundo trozo del «cat» esta en el rotulo
   precios       ni un precio ni un «€» en ningun texto
-  idiomas       desc, cat y hours en los diez, y el polaco fuente = pl.json
+  idiomas       desc, cat y hours en los once, y el polaco fuente = pl.json
 Y POR MUNICIPIO
   cada estacion del registro tiene UNA ficha, ni cero ni dos
   ningun par de gasolineras a menos de 20 m
@@ -39,7 +39,7 @@ import sys
 import unicodedata
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-IDIOMAS = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']
+IDIOMAS = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro']
 
 # Campo de precio del registro -> como lo nombra el castellano de la ficha.
 # AdBlue no esta: es un aditivo, no un combustible. Va aparte, en «Además:

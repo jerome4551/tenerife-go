@@ -9,7 +9,7 @@
  *   · una que no ha salido (tampoco si su huella viene en el relleno, con la cuenta 0): se crea la cuenta, una vez;
  *   · si el servicio no contesta: se crea igual (no se impide por eso);
  *   · al entrar en una cuenta que ya existe no se pregunta nada, y una de 6 sigue valiendo;
- *   · los tres textos nuevos, en los diez idiomas, y el aviso en el idioma de la app; el campo de crear cuenta pide 8 y
+ *   · los tres textos nuevos, en los once idiomas, y el aviso en el idioma de la app; el campo de crear cuenta pide 8 y
  *     su texto de ayuda lo dice.
  *     node tools/probar_contrasena.js PUERTO */
 'use strict';
@@ -18,7 +18,7 @@ const crypto = require('crypto');
 
 const PUERTO = process.argv[2] || '8766';
 const BASE = 'http://127.0.0.1:' + PUERTO + '/index.html';
-const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 const HIBP = 'https://api.pwnedpasswords.com/';
 
 let malos = 0, total = 0;
@@ -159,19 +159,22 @@ function supabaseFalso(cfg) {
     await ctx.close();
   }
 
-  console.log('\n=== 2. los textos nuevos, en los diez idiomas ===');
+  console.log('\n=== 2. los textos nuevos, en los once idiomas ===');
   {
     const { ctx, pg, st } = await abrir('es');
     const tx = {};
     for (const l of IDIOMAS) tx[l] = await T(pg, l);
     const faltan = IDIOMAS.filter(l => !tx[l].ph8 || !tx[l].corta8 || !tx[l].filtrada);
-    prueba('los tres textos (la ayuda de los 8, el aviso de los 8 y el de la filtrada), en los diez idiomas', !faltan.length, faltan.join(', '));
+    prueba('los tres textos (la ayuda de los 8, el aviso de los 8 y el de la filtrada), en los once idiomas', !faltan.length, faltan.join(', '));
     const iguales = IDIOMAS.filter(l => l !== 'es' && (tx[l].corta8 === tx.es.corta8 || tx[l].filtrada === tx.es.filtrada || tx[l].ph8 === tx.es.ph8));
     prueba('ninguno copiado del castellano', !iguales.length, iguales.join(', '));
     const conOcho = IDIOMAS.filter(l => !/8/.test(tx[l].ph8) || !/8/.test(tx[l].corta8));
-    prueba('la ayuda y el aviso dicen 8 en los diez', !conOcho.length, conOcho.join(', '));
+    prueba('la ayuda y el aviso dicen 8 en los once', !conOcho.length, conOcho.join(', '));
     const alfabeto = [['zh', /[一-鿿]/], ['zht', /[一-鿿]/], ['bg', /[Ѐ-ӿ]/]].filter(([l, re]) => !re.test(tx[l].filtrada) || !re.test(tx[l].corta8));
     prueba('en chino, chino tradicional y búlgaro, con su alfabeto', !alfabeto.length, alfabeto.map(x => x[0]).join(', '));
+    /* el rumano, con sus letras (ă â î ș ț) y sin la ş ni la ţ de cedilla (el interruptor del rumano, 22-11-2026) */
+    const ro = [tx.ro.filtrada, tx.ro.corta8];
+    prueba('en rumano, con sus letras y la ș y la ț de coma', ro.every(t => /[ăâîșț]/.test(t) && !/[şţŞŢ]/.test(t)), JSON.stringify(ro));
     prueba('el chino tradicional, con los suyos (no el simplificado)', tx.zht.filtrada !== tx.zh.filtrada && tx.zht.corta8 !== tx.zh.corta8, JSON.stringify([tx.zh.filtrada, tx.zht.filtrada]));
     await ctx.close();
     /* y el aviso sale en el idioma de la app: en alemán y en búlgaro */

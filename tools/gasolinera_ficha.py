@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-gasolinera_ficha.py — el molde de una ficha de gasolinera, en los 10 idiomas.
+gasolinera_ficha.py — el molde de una ficha de gasolinera, en los 11 idiomas.
 
     python3 tools/gasolinera_ficha.py --municipio Garachico
     python3 tools/gasolinera_ficha.py 7749 11286        por IDEESS
@@ -24,7 +24,7 @@ DE DONDE SALE CADA COSA
                     cuando la estacion no sirve ese combustible.
   NINGUN PRECIO entra en la ficha: caduca en 24 h (LEEME de gasolineras).
 
-LOS TOPONIMOS SE QUEDAN EN CASTELLANO EN LOS 10 IDIOMAS
+LOS TOPONIMOS SE QUEDAN EN CASTELLANO EN LOS 11 IDIOMAS
   «Garachico» y «Carretera Icod-Buenavista» no se traducen ni se transcriben al
   chino ni al bulgaro, y es a proposito:
     · es lo que pone en las senales de la carretera y en Google Maps, que es
@@ -97,7 +97,7 @@ V = {
  # El AdBlue no es un combustible -es un aditivo para el escape de los diesel-
  # asi que no va en la lista de «Combustibles»: va aparte, con la misma forma de
  # etiqueta y dos puntos, que no declina nada. «AdBlue» es lo que pone en el
- # surtidor y se escribe igual en los diez. Lo pidio Jerome el 3 de octubre.
+ # surtidor y se escribe igual en los once. Lo pidio Jerome el 3 de octubre.
  'ademas': {'es': 'Además', 'en': 'Also', 'fr': 'Également', 'de': 'Außerdem',
             'it': 'Inoltre', 'nl': 'Ook', 'zh': '另有', 'zht': '另有', 'bg': 'Също',
             'pl': 'Także', 'ro': 'De asemenea'},   # el chino usa los suyos, de ancho completo
@@ -221,7 +221,7 @@ def horario_del_registro(e):
 # chino salia «海洋». Ese nombre propio no va como etiqueta: ya esta en el nombre
 # y en la categoria, que no pasan por el glosario.
 _GLOS = [json.load(open(os.path.join(RAIZ, 'idiomas', 'etiquetas', '%s.json' % _L), encoding='utf-8'))
-         for _L in ('en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl')]
+         for _L in ('en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro')]
 
 
 def se_traduce(t):
@@ -586,7 +586,7 @@ def direccion(e, muni):
        gasolineras la pedia («coordenadas, direccion y horario, del registro») y
        las primeras 104 fichas salieron sin ella: el nombre lleva la calle, pero
        no el numero ni el codigo postal. Lo encontro la revision de los bloques
-       05 y 06. Va igual en los diez idiomas, como en las 94 fichas que ya la
+       05 y 06. Va igual en los once idiomas, como en las 94 fichas que ya la
        tenian: una direccion no se traduce."""
     raw = (e.get('Dirección') or '').strip()
     calle = calle_corta(raw)
@@ -699,7 +699,7 @@ def ficha(e, muni, sufijo=''):
         # benzyna 95» esta mal en polaco (pide acusativo), el frances necesita
         # articulo («sur la Carretera») y el castellano tambien («en LA
         # carretera»), y el articulo depende del tipo de via. Una etiqueta y una
-        # lista en nominativo no declina nada y es correcta en los diez.
+        # lista en nominativo no declina nada y es correcta en los once.
         if L in ('zh', 'zht'):
             desc = '%s（%s）%s' % (calle, muni, V['punto'][L])
             if fuel:

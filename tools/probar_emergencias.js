@@ -4,7 +4,7 @@
  *     python3 -m http.server 8766 &      (desde la raiz del repo)
  *     node tools/probar_emergencias.js 8766
  *
- * En los diez idiomas: la barra de abajo, con el SOS, cabe a 320 y 360 px
+ * En los once idiomas: la barra de abajo, con el SOS, cabe a 320 y 360 px
  * (ningun boton fuera ni rotulo cortado); el boton SOS abre el panel, salen
  * las 19 guias de «Que hacer si…» en sus siete grupos y las 7 filas de
  * «Preparese», los telefonos de Salvamento Maritimo, del 012 (el numero
@@ -36,7 +36,7 @@ let chromium;
 try { chromium = require('playwright').chromium; } catch (e) { chromium = require('/opt/node22/lib/node_modules/playwright').chromium; }
 const PUERTO = process.argv[2] || '8766';
 const BASE = 'http://127.0.0.1:' + PUERTO + '/index.html';
-const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const LANGS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 /* las guias las da el propio modulo (TG_SOS.guias): 25 desde la noche del 22 */
 let GUIAS = null;
 const BALDOSAS = 19, FILAS = 7;

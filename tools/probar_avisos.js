@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Los avisos de AEMET en la app, en un navegador de verdad y en los diez
+/* Los avisos de AEMET en la app, en un navegador de verdad y en los once
  * idiomas (12 de octubre de 2026; desde el 21, en el boton del mar).
  *
  * La pildora llevo meses sin salir y nadie lo vio, porque «no hay avisos» y
@@ -34,14 +34,14 @@
  *   · sin fichero: lo dice y manda a aemet.es, sin punto;
  *   · al cambiar de idioma se vuelve a pintar.
  *
- *     node tools/probar_avisos.js [puerto] [es,de]   (solo esos idiomas en la vuelta de los diez)
+ *     node tools/probar_avisos.js [puerto] [es,de]   (solo esos idiomas en la vuelta de los once)
  */
 'use strict';
 const { chromium } = require('/opt/node22/lib/node_modules/playwright');
 const PUERTO = process.argv[2] || '8777';
 const BASE = 'http://127.0.0.1:' + PUERTO + '/index.html';
 const SOLO = (process.argv[3] || '').split(',').filter(Boolean);
-const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'].filter(l => !SOLO.length || SOLO.includes(l));
+const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'].filter(l => !SOLO.length || SOLO.includes(l));
 
 const { ficheros } = require('./avisos_prueba');
 const F = ficheros();
@@ -133,7 +133,7 @@ async function openMeteo(pg) {
     });
   }
 
-  console.log('=== con un aviso naranja costero y uno amarillo de lluvias, en los diez idiomas ===');
+  console.log('=== con un aviso naranja costero y uno amarillo de lluvias, en los once idiomas ===');
   for (const L of IDIOMAS) {
     const { pg, errores } = await abrir(conAvisos, L);
     const pt = await punto(pg);
@@ -457,6 +457,8 @@ async function openMeteo(pg) {
            'Утре, от 00:00 до 23:59', 'Събота, от 00:00 до 23:59', 'От вчера в 10:00 до днес в 23:59'],
       pl: ['Od 10:00 do 23:59', 'Dziś, godz. 10:00 – jutro, godz. 07:59', 'Dziś, godz. 10:00 – sobota, godz. 07:59',
            'Jutro, od 00:00 do 23:59', 'Sobota, od 00:00 do 23:59', 'Wczoraj, godz. 10:00 – dziś, godz. 23:59'],
+      ro: ['De la 10:00 la 23:59', 'De azi la ora 10:00 până mâine la ora 07:59', 'De azi la ora 10:00 până sâmbătă la ora 07:59',
+           'Mâine, de la 00:00 la 23:59', 'Sâmbătă, de la 00:00 la 23:59', 'De ieri la ora 10:00 până azi la ora 23:59'],
     };
     /* la una (tx, txLaUna): en castellano y en italiano, el artículo en singular: hoy de 10:00 a mañana a la 01:00, y
        hoy de 01:00 a 05:59 */
@@ -472,6 +474,7 @@ async function openMeteo(pg) {
       zht: ['今天 上午10:00 至 明天 上午01:00', '上午01:00 至 上午05:59'],
       bg: ['От днес в 10:00 до утре в 01:00', 'От 01:00 до 05:59'],
       pl: ['Dziś, godz. 10:00 – jutro, godz. 01:00', 'Od 01:00 do 05:59'],
+      ro: ['De azi la ora 10:00 până mâine la ora 01:00', 'De la 01:00 la 05:59'],
     };
     /* el pie: lo que va en el {h} o el {f} de su fila: «Comprobado:» ayer a las 23:03 y hoy a las 07:05, «desde» hoy a
        las 07:05, y «hasta» mañana y el sábado a las 23:59 */
@@ -486,6 +489,7 @@ async function openMeteo(pg) {
       zht: ['昨天 下午11:03', '上午07:05', '今天 上午07:05', '明天 下午11:59', '星期六 下午11:59'],
       bg: ['вчера в 23:03', '07:05', 'днес в 07:05', 'утре в 23:59', 'събота в 23:59'],
       pl: ['wczoraj, godz. 23:03', '07:05', 'dziś, godz. 07:05', 'jutra, godz. 23:59', 'soboty, godz. 23:59'],
+      ro: ['ieri la ora 23:03', '07:05', 'azi la ora 07:05', 'mâine la ora 23:59', 'sâmbătă la ora 23:59'],
     };
     const pg = await ctx.newPage();
     const errores = [];

@@ -407,14 +407,15 @@ if (/no hay mapa\/tenerife-osm\.pmtiles/.test(mar)) {
 const vecesId = {};
 PLACES.forEach(p => vecesId[p.id] = (vecesId[p.id] || 0) + 1);
 const idsBien = PLACES.filter(p => /^[a-z0-9-]+$/.test(p.id) && vecesId[p.id] === 1).length;
-/* el castellano esta en index.html; los otros nueve, en idiomas/*.json (el
-   polaco tambien, montado desde idiomas/pl-lugares/) */
-const NUEVE = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+/* el castellano esta en index.html; los otros diez, en idiomas/*.json (el
+   polaco tambien, montado desde idiomas/pl-lugares/, y el rumano, desde
+   idiomas/ro-fuente/ con tools/lugares_traduccion.js) */
+const DIEZ = ['en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 const fueraTx = {};
-for (const L of NUEVE) fueraTx[L] = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'idiomas', L + '.json'), 'utf8'));
+for (const L of DIEZ) fueraTx[L] = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'idiomas', L + '.json'), 'utf8'));
 const lleno = t => typeof t === 'string' && t.trim() !== '';
-const diezIdiomas = PLACES.filter(p => p.desc && p.cat && lleno(p.desc.es) && lleno(p.cat.es)
-  && NUEVE.every(L => fueraTx[L][p.id] && lleno(fueraTx[L][p.id].desc) && lleno(fueraTx[L][p.id].cat))).length;
+const onceIdiomas = PLACES.filter(p => p.desc && p.cat && lleno(p.desc.es) && lleno(p.cat.es)
+  && DIEZ.every(L => fueraTx[L][p.id] && lleno(fueraTx[L][p.id].desc) && lleno(fueraTx[L][p.id].cat))).length;
 /* el catalogo del planificador, como lo mira auditar_datos.js */
 const refs = [];
 for (const b of src.matchAll(/suggestionIds:\s*\[([\s\S]*?)\]/g))
@@ -434,7 +435,7 @@ w('|---|---|');
 w('| Caen dentro de la caja de Tenerife | **' + enCaja + ' de ' + N + '** |');
 w('| Caen en tierra (capa `earth` de OSM) | ' + tierra + ' |');
 w('| Ids únicos y con el formato `[a-z0-9-]` | **' + idsBien + '** de ' + N + ' |');
-w('| Tienen `desc` y `cat` en los diez idiomas | **' + diezIdiomas + '** de ' + N + ' |');
+w('| Tienen `desc` y `cat` en los once idiomas | **' + onceIdiomas + '** de ' + N + ' |');
 w('| Referencias huérfanas desde el planificador | **' + refs.filter(id => !vivos.has(id)).length + '** de ' + refs.length + ' |');
 w('| Zonas de baño sin orientación | **' + banio.filter(p => !ORI.ids.has(p.id)).length + '** de ' + banio.length + ' |');
 w('| `lifeguard` con un valor que no sea true/false/null | **'
