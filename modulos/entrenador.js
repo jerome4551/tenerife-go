@@ -13,7 +13,7 @@
    CÓMO SE USA
    TG_ENTRENADOR.pedir(id) → promesa (trae la coreografía, si no está) · TG_ENTRENADOR.tiene(id, nPasos) ·
    TG_ENTRENADOR.montar(caja, datos, opc) → reproductor (reproducir, pausar, irA, tema, quitar) ·
-   TG_ENTRENADOR.ids() · .trozos() · .todo() · .huellas · .textos (los diez idiomas).
+   TG_ENTRENADOR.ids() · .trozos() · .todo() · .huellas · .textos (los once idiomas).
    innerHTML solo recibe constantes de este fichero (dibujos e iconos); los textos de la ficha
    entran con textContent.
 
@@ -4875,7 +4875,7 @@
   var N_FIN = 6;
   /* SIN-TRADUCIR: VOZ_LOCALE — esto no son textos, son los códigos de idioma que espera speechSynthesis (como
      TTS_LOCALE en el tour): «bg-BG» se escribe así o no hay voz. */
-  var VOZ_LOCALE = { es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW', bg: 'bg-BG', pl: 'pl-PL' };
+  var VOZ_LOCALE = { es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW', bg: 'bg-BG', pl: 'pl-PL', ro: 'ro-RO' };
 
   var CSS_V = [
 '.tgv { --tv-tinta: var(--tinta, #12233A); --tv-tinta2: var(--tinta-2, #51627A); --tv-fondo: var(--fondo, #EEF3F8); --tv-tarjeta: var(--tarjeta, #FFFFFF); --tv-linea: var(--linea, #D5DFEA); --tv-oro: var(--oro, #8A6A12); --tv-orov: var(--oro-vivo, #D4AF37);',
