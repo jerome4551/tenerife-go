@@ -994,5 +994,17 @@
  "gym-bulldog-sanmiguel": {"desc": "Gym in San Miguel de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · San Miguel de Abona"},
  "gym-worldfitness-abrigos": {"desc": "Gym in Granadilla de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · Granadilla de Abona"},
  "gym-logo-sanisidro": {"desc": "Gym in Granadilla de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · Granadilla de Abona"},
- "gym-dorian-medano": {"desc": "Gym in Granadilla de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · Granadilla de Abona"}
+ "gym-dorian-medano": {"desc": "Gym in Granadilla de Abona. Ask at reception whether a day pass is available.", "cat": "Gym · Granadilla de Abona"},
+ "gym-maram-tacoronte": {"desc": "Gym in Tacoronte. Ask at reception whether a day pass is available.", "cat": "Gym · Tacoronte"},
+ "gym-felipe-victoria": {"desc": "Gym in La Victoria de Acentejo. Ask at reception whether a day pass is available.", "cat": "Gym · La Victoria de Acentejo"},
+ "gym-trifit-santaursula": {"desc": "Gym in Santa Úrsula. Ask at reception whether a day pass is available.", "cat": "Gym · Santa Úrsula"},
+ "gym-atenea-santaursula": {"desc": "Gym in Santa Úrsula. Ask at reception whether a day pass is available.", "cat": "Gym · Santa Úrsula"},
+ "gym-rh-orotava": {"desc": "Gym in La Orotava. Ask at reception whether a day pass is available.", "cat": "Gym · La Orotava"},
+ "gym-acropolis-orotava": {"desc": "Gym in La Orotava. Ask at reception whether a day pass is available.", "cat": "Gym · La Orotava"},
+ "gym-profitness-orotava": {"desc": "Gym in La Orotava. Ask at reception whether a day pass is available.", "cat": "Gym · La Orotava"},
+ "gym-intergym-puerto": {"desc": "Gym in Puerto de la Cruz. Ask at reception whether a day pass is available.", "cat": "Gym · Puerto de la Cruz"},
+ "gym-casablanca-puerto": {"desc": "Gym in Puerto de la Cruz. Ask at reception whether a day pass is available.", "cat": "Gym · Puerto de la Cruz"},
+ "gym-bahia-puerto": {"desc": "Gym in Puerto de la Cruz. Ask at reception whether a day pass is available.", "cat": "Gym · Puerto de la Cruz"},
+ "gym-realgym-realejos": {"desc": "Gym in Los Realejos. Ask at reception whether a day pass is available.", "cat": "Gym · Los Realejos"},
+ "gym-teamricardo-realejos": {"desc": "Gym in Los Realejos. Ask at reception whether a day pass is available.", "cat": "Gym · Los Realejos"}
 }

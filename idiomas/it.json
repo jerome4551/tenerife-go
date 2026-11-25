@@ -994,5 +994,17 @@
  "gym-bulldog-sanmiguel": {"desc": "Palestra a San Miguel de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · San Miguel de Abona"},
  "gym-worldfitness-abrigos": {"desc": "Palestra a Granadilla de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Granadilla de Abona"},
  "gym-logo-sanisidro": {"desc": "Palestra a Granadilla de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Granadilla de Abona"},
- "gym-dorian-medano": {"desc": "Palestra a Granadilla de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Granadilla de Abona"}
+ "gym-dorian-medano": {"desc": "Palestra a Granadilla de Abona. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Granadilla de Abona"},
+ "gym-maram-tacoronte": {"desc": "Palestra a Tacoronte. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Tacoronte"},
+ "gym-felipe-victoria": {"desc": "Palestra a La Victoria de Acentejo. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · La Victoria de Acentejo"},
+ "gym-trifit-santaursula": {"desc": "Palestra a Santa Úrsula. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Santa Úrsula"},
+ "gym-atenea-santaursula": {"desc": "Palestra a Santa Úrsula. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Santa Úrsula"},
+ "gym-rh-orotava": {"desc": "Palestra a La Orotava. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · La Orotava"},
+ "gym-acropolis-orotava": {"desc": "Palestra a La Orotava. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · La Orotava"},
+ "gym-profitness-orotava": {"desc": "Palestra a La Orotava. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · La Orotava"},
+ "gym-intergym-puerto": {"desc": "Palestra a Puerto de la Cruz. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Puerto de la Cruz"},
+ "gym-casablanca-puerto": {"desc": "Palestra a Puerto de la Cruz. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Puerto de la Cruz"},
+ "gym-bahia-puerto": {"desc": "Palestra a Puerto de la Cruz. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Puerto de la Cruz"},
+ "gym-realgym-realejos": {"desc": "Palestra a Los Realejos. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Los Realejos"},
+ "gym-teamricardo-realejos": {"desc": "Palestra a Los Realejos. Chieda alla reception se è possibile l'ingresso giornaliero.", "cat": "Palestra · Los Realejos"}
 }

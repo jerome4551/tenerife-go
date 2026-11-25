@@ -204,8 +204,10 @@ console.log('\n=== lugares ===');
    no se encontro ninguna fuente, con el punto 368 m tierra adentro. Jerome: «Perfecto».
    984 -> 996 el 23 de noviembre de 2026: los doce gimnasios del sur, bloque 4b (nota 64): tres
    en Adeje, tres en Arona, tres en San Miguel de Abona y tres en Granadilla de Abona, elegidos
-   como los del 4a; Arnold Fit Los Cristianos lo pidio Jerome. */
-debe('lugares', PLACES.length, PLACES.length === 996);
+   como los del 4a; Arnold Fit Los Cristianos lo pidio Jerome.
+   996 -> 1008 el 25 de noviembre de 2026: los doce gimnasios del norte, bloque 4c (nota 66): de
+   Tacoronte, La Victoria de Acentejo, Santa Ursula, La Orotava, Puerto de la Cruz y Los Realejos. */
+debe('lugares', PLACES.length, PLACES.length === 1008);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

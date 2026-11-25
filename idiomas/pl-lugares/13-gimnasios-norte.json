@@ -1,0 +1,50 @@
+{
+ "gym-maram-tacoronte": {
+  "desc": "Siłownia w Tacoronte. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Tacoronte"
+ },
+ "gym-felipe-victoria": {
+  "desc": "Siłownia w La Victoria de Acentejo. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · La Victoria de Acentejo"
+ },
+ "gym-trifit-santaursula": {
+  "desc": "Siłownia w Santa Úrsula. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Santa Úrsula"
+ },
+ "gym-atenea-santaursula": {
+  "desc": "Siłownia w Santa Úrsula. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Santa Úrsula"
+ },
+ "gym-rh-orotava": {
+  "desc": "Siłownia w La Orotava. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · La Orotava"
+ },
+ "gym-acropolis-orotava": {
+  "desc": "Siłownia w La Orotava. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · La Orotava"
+ },
+ "gym-profitness-orotava": {
+  "desc": "Siłownia w La Orotava. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · La Orotava"
+ },
+ "gym-intergym-puerto": {
+  "desc": "Siłownia w Puerto de la Cruz. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Puerto de la Cruz"
+ },
+ "gym-casablanca-puerto": {
+  "desc": "Siłownia w Puerto de la Cruz. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Puerto de la Cruz"
+ },
+ "gym-bahia-puerto": {
+  "desc": "Siłownia w Puerto de la Cruz. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Puerto de la Cruz"
+ },
+ "gym-realgym-realejos": {
+  "desc": "Siłownia w Los Realejos. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Los Realejos"
+ },
+ "gym-teamricardo-realejos": {
+  "desc": "Siłownia w Los Realejos. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Los Realejos"
+ }
+}

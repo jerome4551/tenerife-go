@@ -790,6 +790,54 @@
   "windsurf-la-tejita": {
    "fecha": "2026-09-06",
    "fuente": "Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md]"
+  },
+  "gym-maram-tacoronte": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.4792593, -16.4008089; «Dirección cercana: Maram Fitwork, C. Álvaro Ramos, 33B, 38357 Tacoronte»)"
+  },
+  "gym-felipe-victoria": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.4348333, -16.4720591; «Dirección cercana: Gym Felipe Sport, 38380 La Victoria de Acentejo»)"
+  },
+  "gym-trifit-santaursula": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.4211244, -16.5010260; «Dirección cercana: TriFit Pro, C. Sorondongo, 1, 38390 Sta Úrsula»)"
+  },
+  "gym-atenea-santaursula": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.4222137, -16.4996084; «Dirección cercana: Atenea Gym, Santa Úrsula, C. las Folías, 4, 38390 Sta Úrsula»)"
+  },
+  "gym-rh-orotava": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3953402, -16.5198940; «Dirección cercana: ProGO Vending, Carr. Enlace el Ramal, 2, 38300 La Orotava», la misma dirección que la ficha de Fitness Center RH)"
+  },
+  "gym-acropolis-orotava": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3964055, -16.5231911; «Junto a Acropolis Gym, La Orotava»; «Dirección cercana: C. el Drago, 48, 38300 La Orotava»)"
+  },
+  "gym-profitness-orotava": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3953243, -16.5453723; «Dirección cercana: Profitness Tenerife, Calle Calados Centro Comercial San Jerónimo Local Número 6, 38300 La Orotava»)"
+  },
+  "gym-intergym-puerto": {
+   "fecha": "2026-11-22",
+   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380282003 «Intergym», dato de 2019"
+  },
+  "gym-casablanca-puerto": {
+   "fecha": "2026-11-22",
+   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380282007 «Gimnasio Casablanca», dato de 2019"
+  },
+  "gym-bahia-puerto": {
+   "fecha": "2026-11-22",
+   "fuente": "OpenStreetMap, node/10862318415 («Gimnasio Bahía»), extracto de Geofabrik del 26-09-2026"
+  },
+  "gym-realgym-realejos": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3871905, -16.5841761; «Junto a Real Gym, Los Realejos»; «Dirección cercana: Real Gym, C. San Isidro, 55, 38410 Los Realejos»)"
+  },
+  "gym-teamricardo-realejos": {
+   "fecha": "2026-11-22",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3829722, -16.5763112; «Dirección cercana: TEAM RICARDO GYM, C. los Herreros, 1, 38419 Los Realejos»)"
   }
  },
  "areas": {

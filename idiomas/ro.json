@@ -994,5 +994,17 @@
  "gym-bulldog-sanmiguel": {"desc": "Sală de fitness în San Miguel de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · San Miguel de Abona"},
  "gym-worldfitness-abrigos": {"desc": "Sală de fitness în Granadilla de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Granadilla de Abona"},
  "gym-logo-sanisidro": {"desc": "Sală de fitness în Granadilla de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Granadilla de Abona"},
- "gym-dorian-medano": {"desc": "Sală de fitness în Granadilla de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Granadilla de Abona"}
+ "gym-dorian-medano": {"desc": "Sală de fitness în Granadilla de Abona. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Granadilla de Abona"},
+ "gym-maram-tacoronte": {"desc": "Sală de fitness în Tacoronte. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Tacoronte"},
+ "gym-felipe-victoria": {"desc": "Sală de fitness în La Victoria de Acentejo. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · La Victoria de Acentejo"},
+ "gym-trifit-santaursula": {"desc": "Sală de fitness în Santa Úrsula. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Santa Úrsula"},
+ "gym-atenea-santaursula": {"desc": "Sală de fitness în Santa Úrsula. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Santa Úrsula"},
+ "gym-rh-orotava": {"desc": "Sală de fitness în La Orotava. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · La Orotava"},
+ "gym-acropolis-orotava": {"desc": "Sală de fitness în La Orotava. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · La Orotava"},
+ "gym-profitness-orotava": {"desc": "Sală de fitness în La Orotava. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · La Orotava"},
+ "gym-intergym-puerto": {"desc": "Sală de fitness în Puerto de la Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Puerto de la Cruz"},
+ "gym-casablanca-puerto": {"desc": "Sală de fitness în Puerto de la Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Puerto de la Cruz"},
+ "gym-bahia-puerto": {"desc": "Sală de fitness în Puerto de la Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Puerto de la Cruz"},
+ "gym-realgym-realejos": {"desc": "Sală de fitness în Los Realejos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Los Realejos"},
+ "gym-teamricardo-realejos": {"desc": "Sală de fitness în Los Realejos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Los Realejos"}
 }

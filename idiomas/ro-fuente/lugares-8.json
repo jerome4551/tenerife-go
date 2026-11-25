@@ -1,0 +1,175 @@
+{
+ "_": "Rumano (ro) de las fichas de los gimnasios del mapa (bloque 4c de «Su deporte», nota 66): los doce del norte (Tacoronte, La Victoria de Acentejo, Santa Úrsula, La Orotava, Puerto de la Cruz y Los Realejos), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "gym-maram-tacoronte.desc",
+   "es": "Gimnasio en Tacoronte. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Tacoronte. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-maram-tacoronte.cat",
+   "es": "Gimnasio · Tacoronte",
+   "forma": "texto",
+   "ro": "Sală de fitness · Tacoronte"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-felipe-victoria.desc",
+   "es": "Gimnasio en La Victoria de Acentejo. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în La Victoria de Acentejo. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-felipe-victoria.cat",
+   "es": "Gimnasio · La Victoria de Acentejo",
+   "forma": "texto",
+   "ro": "Sală de fitness · La Victoria de Acentejo"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-trifit-santaursula.desc",
+   "es": "Gimnasio en Santa Úrsula. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Santa Úrsula. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-trifit-santaursula.cat",
+   "es": "Gimnasio · Santa Úrsula",
+   "forma": "texto",
+   "ro": "Sală de fitness · Santa Úrsula"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-atenea-santaursula.desc",
+   "es": "Gimnasio en Santa Úrsula. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Santa Úrsula. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-atenea-santaursula.cat",
+   "es": "Gimnasio · Santa Úrsula",
+   "forma": "texto",
+   "ro": "Sală de fitness · Santa Úrsula"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-rh-orotava.desc",
+   "es": "Gimnasio en La Orotava. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în La Orotava. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-rh-orotava.cat",
+   "es": "Gimnasio · La Orotava",
+   "forma": "texto",
+   "ro": "Sală de fitness · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-acropolis-orotava.desc",
+   "es": "Gimnasio en La Orotava. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în La Orotava. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-acropolis-orotava.cat",
+   "es": "Gimnasio · La Orotava",
+   "forma": "texto",
+   "ro": "Sală de fitness · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-profitness-orotava.desc",
+   "es": "Gimnasio en La Orotava. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în La Orotava. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-profitness-orotava.cat",
+   "es": "Gimnasio · La Orotava",
+   "forma": "texto",
+   "ro": "Sală de fitness · La Orotava"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-intergym-puerto.desc",
+   "es": "Gimnasio en Puerto de la Cruz. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Puerto de la Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-intergym-puerto.cat",
+   "es": "Gimnasio · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Sală de fitness · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-casablanca-puerto.desc",
+   "es": "Gimnasio en Puerto de la Cruz. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Puerto de la Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-casablanca-puerto.cat",
+   "es": "Gimnasio · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Sală de fitness · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-bahia-puerto.desc",
+   "es": "Gimnasio en Puerto de la Cruz. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Puerto de la Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-bahia-puerto.cat",
+   "es": "Gimnasio · Puerto de la Cruz",
+   "forma": "texto",
+   "ro": "Sală de fitness · Puerto de la Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-realgym-realejos.desc",
+   "es": "Gimnasio en Los Realejos. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Los Realejos. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-realgym-realejos.cat",
+   "es": "Gimnasio · Los Realejos",
+   "forma": "texto",
+   "ro": "Sală de fitness · Los Realejos"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-teamricardo-realejos.desc",
+   "es": "Gimnasio en Los Realejos. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Los Realejos. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-teamricardo-realejos.cat",
+   "es": "Gimnasio · Los Realejos",
+   "forma": "texto",
+   "ro": "Sală de fitness · Los Realejos"
+  }
+ ]
+}

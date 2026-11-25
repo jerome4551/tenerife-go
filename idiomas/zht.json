@@ -994,5 +994,17 @@
  "gym-bulldog-sanmiguel": {"desc": "聖米格爾德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 聖米格爾德阿博納"},
  "gym-worldfitness-abrigos": {"desc": "格拉納迪利亞德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 格拉納迪利亞"},
  "gym-logo-sanisidro": {"desc": "格拉納迪利亞德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 格拉納迪利亞"},
- "gym-dorian-medano": {"desc": "格拉納迪利亞德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 格拉納迪利亞"}
+ "gym-dorian-medano": {"desc": "格拉納迪利亞德阿博納的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 格拉納迪利亞"},
+ "gym-maram-tacoronte": {"desc": "塔科龍特的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 塔科龍特"},
+ "gym-felipe-victoria": {"desc": "維多利亞德阿森特霍的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 維多利亞德阿森特霍"},
+ "gym-trifit-santaursula": {"desc": "聖烏蘇拉的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 聖烏蘇拉"},
+ "gym-atenea-santaursula": {"desc": "聖烏蘇拉的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 聖烏蘇拉"},
+ "gym-rh-orotava": {"desc": "拉奧羅塔瓦的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 拉奧羅塔瓦"},
+ "gym-acropolis-orotava": {"desc": "拉奧羅塔瓦的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 拉奧羅塔瓦"},
+ "gym-profitness-orotava": {"desc": "拉奧羅塔瓦的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 拉奧羅塔瓦"},
+ "gym-intergym-puerto": {"desc": "克魯斯港的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 克魯斯港"},
+ "gym-casablanca-puerto": {"desc": "克魯斯港的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 克魯斯港"},
+ "gym-bahia-puerto": {"desc": "克魯斯港的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 克魯斯港"},
+ "gym-realgym-realejos": {"desc": "洛斯雷亞萊霍斯的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 洛斯雷亞萊霍斯"},
+ "gym-teamricardo-realejos": {"desc": "洛斯雷亞萊霍斯的健身房。請在櫃檯詢問是否提供單日入場。", "cat": "健身房 · 洛斯雷亞萊霍斯"}
 }

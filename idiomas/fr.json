@@ -994,5 +994,17 @@
  "gym-bulldog-sanmiguel": {"desc": "Salle de sport à San Miguel de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · San Miguel de Abona"},
  "gym-worldfitness-abrigos": {"desc": "Salle de sport à Granadilla de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Granadilla de Abona"},
  "gym-logo-sanisidro": {"desc": "Salle de sport à Granadilla de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Granadilla de Abona"},
- "gym-dorian-medano": {"desc": "Salle de sport à Granadilla de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Granadilla de Abona"}
+ "gym-dorian-medano": {"desc": "Salle de sport à Granadilla de Abona. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Granadilla de Abona"},
+ "gym-maram-tacoronte": {"desc": "Salle de sport à Tacoronte. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Tacoronte"},
+ "gym-felipe-victoria": {"desc": "Salle de sport à La Victoria de Acentejo. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · La Victoria de Acentejo"},
+ "gym-trifit-santaursula": {"desc": "Salle de sport à Santa Úrsula. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Santa Úrsula"},
+ "gym-atenea-santaursula": {"desc": "Salle de sport à Santa Úrsula. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Santa Úrsula"},
+ "gym-rh-orotava": {"desc": "Salle de sport à La Orotava. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · La Orotava"},
+ "gym-acropolis-orotava": {"desc": "Salle de sport à La Orotava. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · La Orotava"},
+ "gym-profitness-orotava": {"desc": "Salle de sport à La Orotava. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · La Orotava"},
+ "gym-intergym-puerto": {"desc": "Salle de sport à Puerto de la Cruz. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Puerto de la Cruz"},
+ "gym-casablanca-puerto": {"desc": "Salle de sport à Puerto de la Cruz. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Puerto de la Cruz"},
+ "gym-bahia-puerto": {"desc": "Salle de sport à Puerto de la Cruz. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Puerto de la Cruz"},
+ "gym-realgym-realejos": {"desc": "Salle de sport à Los Realejos. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Los Realejos"},
+ "gym-teamricardo-realejos": {"desc": "Salle de sport à Los Realejos. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Los Realejos"}
 }

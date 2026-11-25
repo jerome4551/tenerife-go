@@ -994,5 +994,17 @@
  "gym-bulldog-sanmiguel": {"desc": "Sportschool in San Miguel de Abona. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · San Miguel de Abona"},
  "gym-worldfitness-abrigos": {"desc": "Sportschool in Granadilla de Abona. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Granadilla de Abona"},
  "gym-logo-sanisidro": {"desc": "Sportschool in Granadilla de Abona. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Granadilla de Abona"},
- "gym-dorian-medano": {"desc": "Sportschool in Granadilla de Abona. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Granadilla de Abona"}
+ "gym-dorian-medano": {"desc": "Sportschool in Granadilla de Abona. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Granadilla de Abona"},
+ "gym-maram-tacoronte": {"desc": "Sportschool in Tacoronte. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Tacoronte"},
+ "gym-felipe-victoria": {"desc": "Sportschool in La Victoria de Acentejo. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · La Victoria de Acentejo"},
+ "gym-trifit-santaursula": {"desc": "Sportschool in Santa Úrsula. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Santa Úrsula"},
+ "gym-atenea-santaursula": {"desc": "Sportschool in Santa Úrsula. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Santa Úrsula"},
+ "gym-rh-orotava": {"desc": "Sportschool in La Orotava. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · La Orotava"},
+ "gym-acropolis-orotava": {"desc": "Sportschool in La Orotava. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · La Orotava"},
+ "gym-profitness-orotava": {"desc": "Sportschool in La Orotava. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · La Orotava"},
+ "gym-intergym-puerto": {"desc": "Sportschool in Puerto de la Cruz. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Puerto de la Cruz"},
+ "gym-casablanca-puerto": {"desc": "Sportschool in Puerto de la Cruz. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Puerto de la Cruz"},
+ "gym-bahia-puerto": {"desc": "Sportschool in Puerto de la Cruz. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Puerto de la Cruz"},
+ "gym-realgym-realejos": {"desc": "Sportschool in Los Realejos. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Los Realejos"},
+ "gym-teamricardo-realejos": {"desc": "Sportschool in Los Realejos. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Los Realejos"}
 }

@@ -994,5 +994,17 @@
  "gym-bulldog-sanmiguel": {"desc": "Fitnessstudio in San Miguel de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · San Miguel de Abona"},
  "gym-worldfitness-abrigos": {"desc": "Fitnessstudio in Granadilla de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Granadilla de Abona"},
  "gym-logo-sanisidro": {"desc": "Fitnessstudio in Granadilla de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Granadilla de Abona"},
- "gym-dorian-medano": {"desc": "Fitnessstudio in Granadilla de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Granadilla de Abona"}
+ "gym-dorian-medano": {"desc": "Fitnessstudio in Granadilla de Abona. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Granadilla de Abona"},
+ "gym-maram-tacoronte": {"desc": "Fitnessstudio in Tacoronte. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Tacoronte"},
+ "gym-felipe-victoria": {"desc": "Fitnessstudio in La Victoria de Acentejo. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · La Victoria de Acentejo"},
+ "gym-trifit-santaursula": {"desc": "Fitnessstudio in Santa Úrsula. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Santa Úrsula"},
+ "gym-atenea-santaursula": {"desc": "Fitnessstudio in Santa Úrsula. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Santa Úrsula"},
+ "gym-rh-orotava": {"desc": "Fitnessstudio in La Orotava. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · La Orotava"},
+ "gym-acropolis-orotava": {"desc": "Fitnessstudio in La Orotava. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · La Orotava"},
+ "gym-profitness-orotava": {"desc": "Fitnessstudio in La Orotava. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · La Orotava"},
+ "gym-intergym-puerto": {"desc": "Fitnessstudio in Puerto de la Cruz. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Puerto de la Cruz"},
+ "gym-casablanca-puerto": {"desc": "Fitnessstudio in Puerto de la Cruz. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Puerto de la Cruz"},
+ "gym-bahia-puerto": {"desc": "Fitnessstudio in Puerto de la Cruz. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Puerto de la Cruz"},
+ "gym-realgym-realejos": {"desc": "Fitnessstudio in Los Realejos. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Los Realejos"},
+ "gym-teamricardo-realejos": {"desc": "Fitnessstudio in Los Realejos. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Los Realejos"}
 }
