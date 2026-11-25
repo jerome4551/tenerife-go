@@ -157,7 +157,7 @@ done
 echo; echo "════════ castellano que se queda dentro de cada idioma, y frases que faltan ════════"
 # Desde el 10 de octubre de 2026: palabras castellanas sueltas («fincas»,
 # «monteverde», «Malpaís»), frases del castellano que la traduccion no tiene
-# y fichas resumidas. Los nueve de una vez: lo aceptado «para todos» solo se
+# y fichas resumidas. Los diez de una vez: lo aceptado «para todos» solo se
 # puede dar por sobrante si se han mirado todos.
 control castellano_suelto.js node tools/castellano_suelto.js
 echo; echo "════════ el trato de usted, en los diez idiomas ════════"
@@ -167,7 +167,7 @@ echo; echo "════════ el trato de usted, en los diez idiomas ═�
 control auditar_registro.js node tools/auditar_registro.js "$PUERTO"
 echo; echo "════════ palabras escritas sin sus letras (waehle, carre avec fleche) ════════"
 control auditar_letras.js node tools/auditar_letras.js
-echo; echo "════════ la frase diaria, en los diez idiomas ════════"
+echo; echo "════════ la frase diaria, en los once idiomas ════════"
 control auditar_frases.js node tools/auditar_frases.js
 echo; echo "════════ la notificacion diaria llega a cada movil en su idioma, y lo sigue si se cambia ════════"
 # Desde el 21 de octubre de 2026: al cambiar de idioma no se le decia al
@@ -270,7 +270,7 @@ control generar_404.py python3 tools/generar_404.py --comprobar
 echo "════════ la app para las tiendas (App Store): app/www/ montado, el modo nativo en un navegador y la ficha ════════"
 # Desde el 21 de octubre de 2026 («P4»): la misma PWA dentro de Capacitor.
 # app_preparar.js monta app/www/ y coteja que lleva todo lo que la app pide
-# y que las plantillas de iOS (permisos en los diez idiomas, privacidad,
+# y que las plantillas de iOS (permisos en los once idiomas, privacidad,
 # icono, arranque) son las de hoy; probar_app.js abre app/www/ con la marca
 # TGO_NATIVO en Chromium (sin service worker, sin banner, sin push, datos
 # vivos primero y los de dentro sin red) y la raiz sin ella (nada cambia);
@@ -279,7 +279,7 @@ echo "════════ la app para las tiendas (App Store): app/www/ mon
 control app_preparar.js node tools/app_preparar.js --comprobar
 control probar_app.js node tools/probar_app.js "$PUERTO"
 control auditar_app_store.js node tools/auditar_app_store.js
-# La ficha en el formato de `fastlane deliver` (la App Store sin Mac): las diez
+# La ficha en el formato de `fastlane deliver` (la App Store sin Mac): las once
 # localizaciones, cada fichero dentro de su limite, las capturas si las hay.
 control app_store_metadata.js node tools/app_store_metadata.js --comprobar
 # La ficha de Google Play (desde el 30 de octubre de 2026): la de la App Store
@@ -295,9 +295,9 @@ echo; echo "════════ texto que no cambia al cambiar de idioma �
 control auditar_sin_traducir.js node tools/auditar_sin_traducir.js "$PUERTO"
 echo; echo "════════ texto de un idioma en el alfabeto de otro ════════"
 control auditar_escrituras.js node tools/auditar_escrituras.js "$PUERTO"
-echo; echo "════════ lo que se ve en pantalla, en los diez idiomas (paneles y fichas) ════════"
+echo; echo "════════ lo que se ve en pantalla, en los once idiomas (paneles y fichas) ════════"
 control barrido_pantallas.js node tools/barrido_pantallas.js "$PUERTO"
-echo; echo "════════ los tours con Jérôme (el de la app, el del cielo y el de «Su cuerpo»), enteros, en los diez idiomas y cuatro moviles ════════"
+echo; echo "════════ los tours con Jérôme (el de la app, el del cielo y el de «Su cuerpo»), enteros, en los once idiomas y cuatro moviles ════════"
 # Desde el 11 de octubre de 2026: el tour lo recorre de verdad, paso a paso.
 # Sus textos estuvieron un mes en listas que ningun control leia.
 # Desde el 10 de noviembre de 2026 son tres, con un presentador (modulos/guia.js):
@@ -320,7 +320,7 @@ echo; echo "════════ el perfil y los avatares ══════
 # ventanas de varios dias y la excepcion de 2027 del Carnaval. Y la pantalla
 # usada de verdad: las regresiones, los de oro con la fecha cambiada, la nube
 # con permiso (contra una nube de mentira que se porta como supabase/perfil.sql)
-# y su tope, las visitas comprobadas en el mapa, los 284 avatares, los diez
+# y su tope, las visitas comprobadas en el mapa, los 284 avatares, los once
 # idiomas a tres anchos y los de oro en cinco estados.
 control auditar_perfil.js node tools/auditar_perfil.js
 control probar_fechas_oro.js node tools/probar_fechas_oro.js modulos/avatares.js

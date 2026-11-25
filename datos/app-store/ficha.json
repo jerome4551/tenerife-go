@@ -139,5 +139,5 @@
    "novedades": ""
   }
  },
- "_comentario": "La ficha de Tenerife Go en App Store Connect, en los diez idiomas de la app. Cada frase dice solo lo que la app hace (README.md, la politica de privacidad, los datos); las cifras (996 lugares, 183 lineas) las coteja tools/auditar_app_store.js con los datos, y los limites son los de Apple (nombre y subtitulo 30 caracteres, texto promocional 170, descripcion 4000, palabras clave 100 bytes; developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information, 21 de octubre de 2026). «novedades» va vacio en la primera version (Apple no lo pide hasta la segunda)."
+ "_comentario": "La ficha de Tenerife Go en App Store Connect, en los once idiomas de la app. Cada frase dice solo lo que la app hace (README.md, la politica de privacidad, los datos); las cifras (996 lugares, 183 lineas) las coteja tools/auditar_app_store.js con los datos, y los limites son los de Apple (nombre y subtitulo 30 caracteres, texto promocional 170, descripcion 4000, palabras clave 100 bytes; developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information, 21 de octubre de 2026). «novedades» va vacio en la primera version (Apple no lo pide hasta la segunda)."
 }

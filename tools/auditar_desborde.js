@@ -29,7 +29,7 @@
 const { chromium, devices } = require('/opt/node22/lib/node_modules/playwright');
 const fs = require('fs');
 const path = require('path');
-const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 const ANCHO = 360, ALTO = 740;           // un movil estrecho de los de verdad
 const MARGEN = 2;                        // px de tolerancia por redondeo
 
@@ -211,7 +211,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
      una caja con scroll, ni dentro de una caja posicionada que recorte y
      lleve z-index), y despues se usa la lista como una persona: en un
      iPhone pequeno con el aviso de instalar a la vista (antes tapaba los
-     tres ultimos idiomas) y en un movil tumbado, donde los diez no caben y
+     tres ultimos idiomas) y en un movil tumbado, donde los once no caben y
      la lista tiene que deslizarse sin cerrarse. */
   const malIdioma = [];
   const pasoIdioma = [];
@@ -262,7 +262,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
       });
       if (!ab.abierto) { malIdioma.push(caso.nombre + ': al tocar el boton la lista no se abre'); continue; }
       if (!ab.dentro) malIdioma.push(caso.nombre + ': la lista se sale de la pantalla ' + JSON.stringify(ab.r) + ' en ' + ab.vw + ' x ' + ab.vh);
-      if (!caso.aviso && !ab.desliza) malIdioma.push(caso.nombre + ': los diez no caben y la lista no se desliza');
+      if (!caso.aviso && !ab.desliza) malIdioma.push(caso.nombre + ': los once no caben y la lista no se desliza');
       /* cada idioma, traido a la vista dentro de la lista: lo que hay bajo su centro tiene que ser el */
       const tapados = await q.evaluate(async () => {
         const dd = document.getElementById('lang-dropdown'), mal = [];
@@ -282,7 +282,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
       await q.touchscreen.tap(ult.x, ult.y);
       await q.waitForTimeout(600);
       const tras = await q.evaluate(() => ({ lang: currentLang, html: document.documentElement.lang, abierto: document.getElementById('lang-dropdown').classList.contains('open') }));
-      if (tras.lang !== 'pl' || tras.html !== 'pl') malIdioma.push(caso.nombre + ': tocar «Polski» deja la app en ' + tras.lang + ' / ' + tras.html);
+      if (tras.lang !== 'ro' || tras.html !== 'ro') malIdioma.push(caso.nombre + ': tocar «Română» deja la app en ' + tras.lang + ' / ' + tras.html);
       if (tras.abierto) malIdioma.push(caso.nombre + ': tras elegir, la lista sigue abierta');
       errQ.forEach(x => malIdioma.push(caso.nombre + ': error de pagina: ' + x));
       pasoIdioma.push(caso.nombre + aviso + (ab.desliza ? ', la lista se desliza' : ''));
@@ -400,10 +400,10 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
      b) en una pagina con todo abierto (el buscador, la ruta, las paradas, el asistente, la cuenta, el perfil,
         «Su cuerpo» con su «Evolucion», y el cielo con su catalogo, su fecha y «Apunta al cielo»): la letra de
         TODAS las cajas, se vean o no;
-     c) en los diez idiomas a 320 px, en cada pantalla con cajas (desde el 18-11-2026, tambien «Musculos» de «Su
+     c) en los once idiomas a 320 px, en cada pantalla con cajas (desde el 18-11-2026, tambien «Musculos» de «Su
         cuerpo», con la zona del tiempo y el deporte): la letra de las que se ven, que el ejemplo
         (placeholder) quepa entero, que nada de su fila se salga, y que la fecha de «Su evolucion» quepa con el
-        formato del iPhone (dateStyle medium, el mismo CLDR), la mas ancha del año en los diez idiomas y en
+        formato del iPhone (dateStyle medium, el mismo CLDR), la mas ancha del año en los once idiomas y en
         ingles de EE. UU.; la fecha, tambien a 375 px, el primer ancho en que va al lado del peso. */
   const malCaja = [], vistoCaja = [];
   {
@@ -534,7 +534,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
     finally { if (pg) await pg.ctx.close(); }
     errC.forEach(x => malCaja.push('todas las cajas: error de pagina: ' + x));
   }
-  /* c) en los diez idiomas a 320 px (y la fecha, tambien a 375) */
+  /* c) en los once idiomas a 320 px (y la fecha, tambien a 375) */
   {
     let medidas = 0;
     const casos = [];
@@ -561,7 +561,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
       finally { if (pg) await pg.ctx.close(); }
       errC.forEach(x => malCaja.push(L + ' a ' + w + ' px, ' + k + ': error de pagina: ' + x));
     }
-    vistoCaja.push(medidas + ' cajas a la vista en ' + casos.length + ' pantallas (diez idiomas a 320 px y la fecha a 375)');
+    vistoCaja.push(medidas + ' cajas a la vista en ' + casos.length + ' pantallas (once idiomas a 320 px y la fecha a 375)');
   }
   if (malCaja.length) {
     fallos++;
@@ -571,7 +571,7 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
     console.log('  ok   las cajas donde se escribe, a 16 px, y la pagina se puede ampliar: ' + vistoCaja.join(' · '));
   }
 
-  /* El popup en castellano y el de los otros nueve no pueden decir lo MISMO:
+  /* El popup en castellano y el de los otros diez no pueden decir lo MISMO:
      si coinciden es que el texto esta escrito a pelo y no pasa por el idioma,
      que es justo lo que pasaba con «Ver descripcion completa». */
   const iguales = Object.entries(popups).filter(([L, t]) => L !== 'es' && t === popups.es).map(([L]) => L);

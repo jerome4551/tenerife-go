@@ -22,8 +22,8 @@
  *   2. el observatorio: la misma coordenada en el modulo, en el catalogo, en
  *      tools/cielo_construir.js y en la ficha «observatorio» de places[].
  *   3. los textos: cada fila de CIELO_UI, de las ocho del armazon (UI_TX) y de
- *      las tablas de nombres, con los diez idiomas, los mismos {marcadores}
- *      en cada forma de plural, tres formas en polaco y una en chino, y el
+ *      las tablas de nombres, con los once idiomas, los mismos {marcadores}
+ *      en cada forma de plural, tres formas en polaco y en rumano y una en chino, y el
  *      alfabeto de cada idioma. Que exista cada fila que pide el codigo, y
  *      que no sobre ninguna. Que el catalogo tenga nombre para lo que ensena.
  *   4. la carga perezosa: lo que pide el cargador existe, no va en una
@@ -35,7 +35,7 @@
  *      partida daba como visible, no sale: desde Tenerife no asoma nunca.
  *   6. los calculos, con el motor de la app y en el navegador, contra fuentes
  *      de fuera (cada una con su pagina, abajo).
- *   7. las cinco pestanas en los diez idiomas y en dos moviles: sin
+ *   7. las cinco pestanas en los once idiomas y en dos moviles: sin
  *      undefined, NaN ni {marcadores} sin rellenar, sin nada que se salga
  *      del panel, sin filas que falten (tx() devuelve '' sin avisar) y sin
  *      errores de pagina. Los filtros del calendario y del catalogo, la luz
@@ -50,7 +50,7 @@
  *      orientacion que la API DeviceOrientation daria apuntando a Jupiter),
  *      tienen que nombrar a Jupiter en el circulo; la busqueda, la flecha y
  *      el «ahi esta»; la camara falsa de Chromium detras del cielo; la ficha
- *      de cada clase de astro en los diez idiomas sin texto roto, con cada
+ *      de cada clase de astro en los once idiomas sin texto roto, con cada
  *      cifra calculada aqui aparte (temperatura de Ballesteros, luminosidad,
  *      distancia, lunas de Jupiter); y Wikipedia, con una respuesta falsa:
  *      el resumen en el idioma del lector por los enlaces entre idiomas, la
@@ -82,7 +82,7 @@
  *      calendario, la carta (el punto pintado), «Apunta al cielo» (nombra
  *      al satelite y lo encuentra la busqueda), la ficha, el .ics con la
  *      alarma a media hora, el aviso; con elementos de 10 dias, lo dice y no
- *      ensena pasos; y los diez idiomas sin texto roto ni palabras repetidas.
+ *      ensena pasos; y los once idiomas sin texto roto ni palabras repetidas.
  *  12. la noche guiada, el sistema solar hoy, la luz roja completa y «sin red
  *      en el Teide» (21 de octubre de 2026, tercer bloque): cada parada de
  *      la guia recalculada aparte (altura con el motor desde las coordenadas
@@ -98,7 +98,7 @@
  *      regulador en el panel y en la vista, theme-color puesto y devuelto);
  *      sin red (el aviso con la fecha de los elementos, la comprobacion en
  *      «Donde ir» y, en la parte 8, que con el service worker diga
- *      «guardado»); y los diez idiomas.
+ *      «guardado»); y los once idiomas.
  *  13. las curiosidades y la ficha del planeta (22 de octubre de 2026, quinto
  *      bloque): la copia de datos/planetas.json que lleva el modulo
  *      (CIELO_PLANETAS) igual al JSON; los periodos orbitales de la NASA
@@ -112,7 +112,7 @@
  *      (la geometria de la latitud), Omega Centauri, la ISS, las once
  *      lluvias en el calendario (plegadas, con su fuente como enlace), la
  *      luz zodiacal en su temporada y no fuera de ella (y la Luna recalculada
- *      aparte), la sombra del Teide con la hora de la puesta; y los diez
+ *      aparte), la sombra del Teide con la hora de la puesta; y los once
  *      idiomas sin texto roto.
  *  14. las 88 constelaciones (22 de octubre de 2026, sexto bloque): la copia
  *      de datos/constelaciones.json que lleva el modulo (CIELO_CONS) igual
@@ -129,8 +129,8 @@
  *      latitud del observatorio y el catalogo; en el navegador, las fichas
  *      de Orion, Hydra, Crux, Camelopardalis, Coma Berenices, Puppis y la
  *      Osa Mayor (origen, tamaño, curiosidad y sus tres fuentes), el
- *      catalogo, y los diez idiomas. Y desde la tarde del 22, un fichero por
- *      idioma (idiomas/cielo/<l>.json): las 88 claves en los diez, ninguna
+ *      catalogo, y los once idiomas. Y desde la tarde del 22, un fichero por
+ *      idioma (idiomas/cielo/<l>.json): las 88 claves en los once, ninguna
  *      en el modulo, la cita de cada una en datos/constelaciones.json, el
  *      cargador, el service worker y tools/fuente.js; en el navegador, que
  *      se pide solo el del idioma, que sin el no sale la de otro idioma, y
@@ -141,7 +141,7 @@
  *      bloque de la voz no pide nada a la red, la pausa que dice la nota,
  *      donde se para y donde se queda en pausa, la regla de plural de la app
  *      contra la de CLDR y lo que se oye concordando con el numero en los
- *      diez idiomas («1 grado», «32 stopnie», «5 przystanków»), y el polaco
+ *      once idiomas («1 grado», «32 stopnie», «5 przystanków», «20 de grade»), y el polaco
  *      de las cifras de la ficha. En el navegador, con una voz falsa que
  *      apunta cada frase: la intro, cada parada (lo que dice es lo que pone
  *      la tarjeta: el nombre, la clase, la hora si es otra, la direccion y
@@ -153,7 +153,7 @@
  *      otra pestaña, con la pagina oculta o si el lector de los lugares la
  *      corta; sin voz para el idioma, la nota y no el boton; con las voces
  *      sin cargar, se intenta; una voz que falla o que no empieza, el aviso;
- *      y los diez idiomas, cada uno con su voz y sin texto roto.
+ *      y los once idiomas, cada uno con su voz y sin texto roto.
  *  16. la revision del 22 de octubre de 2026 (octavo bloque, REVISION-22-10-
  *      2026.md): «Donde ir» contra sus fuentes (el «por lo general» del IAC, la
  *      Ley del Cielo y su reglamento, los cinco sitios de Turismo de
@@ -166,7 +166,7 @@
  *      noche (las Leonidas de 2026 y las Perseidas de 2027: «desde que se pone
  *      la Luna (03:58)»; las Draconidas de 2028: «hasta que sale»), la
  *      letra del panel a 11 px como minimo y el trato de usted en las tarjetas
- *      de «Donde ir». Sin navegador (16a) y en la pantalla, en los diez
+ *      de «Donde ir». Sin navegador (16a) y en la pantalla, en los once
  *      idiomas (16).
  *
  * Sale con 1 si algo falla.
@@ -362,6 +362,9 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(guiaSrc, '"' + k
       if (formas.length > 1 && !v.includes('{n}')) mal.push(donde + '.' + l + ': «|» sin {n}: tx() no partiria las formas');
       formas.forEach(x => { if (marcas(x) !== m0) mal.push(donde + '.' + l + ': {marcadores} ' + (marcas(x) || '(ninguno)') + ' y no ' + (m0 || '(ninguno)')); });
       if (l === 'pl' && f.es.includes('|') && formas.length !== 3) mal.push(donde + '.pl: el plural polaco pide tres formas');
+      /* el rumano tambien tiene tres (CLDR: 1 · 0 y los que acaban en 01-19 · el resto, con «de»); o ninguna, si la
+         cifra va sin sustantivo detras, que no concuerda (el interruptor del rumano, 2026) */
+      if (l === 'ro' && formas.length > 1 && formas.length !== 3) mal.push(donde + '.ro: el plural rumano pide tres formas');
       if ((l === 'zh' || l === 'zht') && formas.length !== 1) mal.push(donde + '.' + l + ': el chino no tiene plural');
       if (l === 'zh' || l === 'zht') {
         if (!HAN.test(v)) mal.push(donde + '.' + l + ': sin un solo hanzi');
@@ -380,7 +383,7 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(guiaSrc, '"' + k
   for (const [k, f] of Object.entries(tour)) revisar(k, f);
   for (const n of TABLAS) for (const [k, f] of Object.entries(T[n])) revisar(n + '.' + k, f);
   const nFilas = Object.keys(CIELO_UI).length + Object.keys(CASCARA).length + 2 + TABLAS.reduce((a, n) => a + Object.keys(T[n]).length, 0);
-  ok(!mal.length, nFilas + ' filas: diez idiomas, {marcadores} por forma de plural, alfabeto de cada uno', mal.slice(0, 8).join(' · ') + (mal.length > 8 ? ' · y ' + (mal.length - 8) + ' mas' : ''));
+  ok(!mal.length, nFilas + ' filas: once idiomas, {marcadores} por forma de plural, alfabeto de cada uno', mal.slice(0, 8).join(' · ') + (mal.length > 8 ? ' · y ' + (mal.length - 8) + ' mas' : ''));
   ok(tour.tourCieloT && tour.tourCieloP && /\{ sel: '#cielo-btn',[^}]*k: 'tourCielo'/.test(guiaSrc), 'el tour tiene su paso (#cielo-btn) y sus dos filas');
   ok(/id="cielo-tour-btn"/.test(index) && /TOURS\.cielo = \{/.test(guiaSrc) && /data-guia', 'planetas'/.test(modulo) && /data-guia', 'sitios'/.test(modulo),
      'el panel tiene su propio tour: el boton de Jérôme (#cielo-tour-btn), TOURS.cielo y las dos tarjetas que señala (data-guia)');
@@ -450,7 +453,7 @@ for (const k of ['tourCieloT', 'tourCieloP']) tour[k] = literal(guiaSrc, '"' + k
   const sobran = [...filas].filter(k => !pedidas.has(k) && !sueltas.has(k));
   ok(!sobran.length, 'y no sobra ninguna que nadie pida', sobran.map(k => 'cielo' + k).join(', '));
 
-  /* Lo que el catalogo ensena, con nombre en los diez */
+  /* Lo que el catalogo ensena, con nombre en los once */
   const m = [];
   for (const c of Object.keys(D.con)) if (!T.CIELO_CON[c]) m.push('constelacion ' + c);
   for (const c of Object.keys(T.CIELO_CON)) if (!D.con[c]) m.push('CIELO_CON.' + c + ' no esta en el catalogo');
@@ -516,7 +519,7 @@ titulo('4. la carga perezosa y lo que pide el navegador');
   const apuntaEs = (CIELO_UI.cieloApunta || {}).es || '\u0000';
   ok((priv.ppDatosSensoresTxt || '').includes('«' + apuntaEs + '»') && (priv.ppDatosCamaraTxt || '').includes('«' + apuntaEs + '»') && /astro/.test(priv.ppTercWiki || ''),
      'la politica de privacidad habla de los sensores y de la camara de «' + apuntaEs + '» (el rotulo de la app) y del resumen de Wikipedia del astro');
-  /* 21 de octubre: los avisos, los .ics y las capturas, en los diez idiomas */
+  /* 21 de octubre: los avisos, los .ics y las capturas, en los once idiomas */
   const sinIcs = IDI.filter(L => { const j = JSON.parse(lee('idiomas/privacidad/' + L + '.json')); return !/\.ics/.test(j.ppDatosPrefTxt || '') || !/📸/.test(j.ppDatosCamaraTxt || ''); });
   ok(!sinIcs.length, 'y de los avisos, los .ics y la captura 📸, en los ' + IDI.length + ' idiomas', sinIcs.join(', '));
   ok(/lunaLuz = luna\.alt > -2 \? \(1 \+ Math\.cos\(luna\.fase \* RAD\)\) \/ 2/.test(modulo),
@@ -792,7 +795,7 @@ titulo('14a. las 88 constelaciones: datos/constelaciones.json, su copia en el mo
   ok(!malMas.length && conMas.join() === 'Lup,Tri', 'Lupus y Triangulum llevan ademas la pagina de su estrella mas brillante (Uridim, 2024; Alaybasan, 2025)', malMas.join(', ') + ' / ' + conMas.join(', '));
   const txt = CIELO_UI;
   const sinFila = abs.filter(a => !txt['cieloCurCon' + a] || IDI.some(l => !txt['cieloCurCon' + a][l]));
-  ok(!sinFila.length, 'las 88 filas cieloCurCon* existen en los ' + IDI.length + ' idiomas (y la parte 3 ya miro sus diez idiomas)', sinFila.join(', '));
+  ok(!sinFila.length, 'las 88 filas cieloCurCon* existen en los ' + IDI.length + ' idiomas (y la parte 3 ya miro sus once idiomas)', sinFila.join(', '));
   /* un fichero por idioma (22-10-2026, tarde): las 88 van ahi y solo ahi */
   const claves88 = abs.map(a => 'cieloCurCon' + a);
   const malIdi = IDI.filter(l => { let d = null; try { d = JSON.parse(lee('idiomas/cielo/' + l + '.json')); } catch (e) {}
@@ -811,7 +814,7 @@ titulo('14a. las 88 constelaciones: datos/constelaciones.json, su copia en el mo
      'el service worker las sirve red primero y las guarda, como idiomas/<l>.json: en el Teide estan');
   const F = require('./fuente'), pi = F.porIdioma();
   ok(pi.length === 1 && pi[0].nombre === 'IDIOMAS_CIELO' && (pi[0].texto.match(/^    "cieloCurCon/gm) || []).length === 88 && F.html().includes('var IDIOMAS_CIELO = {'),
-     'tools/fuente.js las junta en IDIOMAS_CIELO, 88 filas de diez idiomas, para las herramientas que barren el fuente');
+     'tools/fuente.js las junta en IDIOMAS_CIELO, 88 filas de once idiomas, para las herramientas que barren el fuente');
   /* lo que las curiosidades dicen de Tenerife, contra el catalogo: la latitud
      del observatorio (datos/cielo.json, obs) y la declinacion de cada estrella.
      Culminacion al sur: 90 - lat + dec; paso por debajo del polo: dec - (90 - lat).
@@ -850,9 +853,9 @@ titulo('15a. la noche guiada en voz alta: el lector de index.html, las voces del
 {
   /* el lector de los lugares (AUDIO-GUIA) es el que presta las voces */
   const LOCALE = literal(index, 'var TTS_LOCALE = {') || {};
-  const ESPERA = { es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW', bg: 'bg-BG', pl: 'pl-PL' };
+  const ESPERA = { es: 'es-ES', en: 'en-GB', fr: 'fr-FR', de: 'de-DE', it: 'it-IT', nl: 'nl-NL', zh: 'zh-CN', zht: 'zh-TW', bg: 'bg-BG', pl: 'pl-PL', ro: 'ro-RO' };
   ok(IDI.every(l => LOCALE[l] === ESPERA[l]) && Object.keys(LOCALE).length === IDI.length,
-     'TTS_LOCALE (index.html): un codigo de voz por idioma de la app, los diez (' + IDI.map(l => LOCALE[l]).join(', ') + ')', JSON.stringify(LOCALE));
+     'TTS_LOCALE (index.html): un codigo de voz por idioma de la app, los once (' + IDI.map(l => LOCALE[l]).join(', ') + ')', JSON.stringify(LOCALE));
   const tts = index.slice(index.indexOf('AUDIO-GUIA TTS'), index.indexOf('BOTON WEBCAM URL'));
   ok(/window\.TG_VOZ = \{\s*locale: function \(lg\) \{ return TTS_LOCALE\[lg\] \|\| TTS_LOCALE\[ttsLang\(\)\]; \},\s*hayVoces: function \(\) \{ loadVoices\(\); return voices\.length > 0; \},\s*vozLocal: function \(lg\) \{ loadVoices\(\); return pickVoice\(TTS_LOCALE\[lg\] \|\| TTS_LOCALE\[ttsLang\(\)\], true\); \},\s*parar: ttsStop\s*\};/.test(tts)
      && (tts.match(/if \(soloLocal && voices\[i\]\.localService === false\) continue;/g) || []).length === 2 && /function pickVoice\(locale, soloLocal\)/.test(tts),
@@ -889,15 +892,19 @@ titulo('15a. la noche guiada en voz alta: el lector de index.html, las voces del
   for (let n = 0; n <= 230; n++) {
     const cat = new Intl.PluralRules('pl').select(n), esp = cat === 'one' ? 0 : cat === 'few' ? 1 : 2;
     if (formaApp('pl', n) !== esp) malPF.push('pl ' + n + ': ' + formaApp('pl', n) + ' y CLDR ' + cat);
+    const catRo = new Intl.PluralRules('ro').select(n), espRo = catRo === 'one' ? 0 : catRo === 'few' ? 1 : 2;
+    if (formaApp('ro', n) !== espRo) malPF.push('ro ' + n + ': ' + formaApp('ro', n) + ' y CLDR ' + catRo);
     for (const l of ['es', 'en', 'fr', 'de', 'it', 'nl', 'bg']) { const e2 = n === 1 ? 0 : 1; if (formaApp(l, n) !== e2) malPF.push(l + ' ' + n); }
   }
-  ok(!malPF.length, 'la regla de plural de la app (PLURAL_FORMA) es la de CLDR en polaco de 0 a 230 (1 · 2-4 salvo 12-14 · el resto) y la de dos formas en los demas', malPF.slice(0, 5).join(', '));
+  ok(!malPF.length, 'la regla de plural de la app (PLURAL_FORMA) es la de CLDR de 0 a 230 en polaco (1 · 2-4 salvo 12-14 · el resto) y en rumano (1 · 0 y los que acaban en 01-19 · el resto), y la de dos formas en los demas', malPF.slice(0, 5).join(', '));
   const forma = (k, l, n) => { const v = (CIELO_UI[k] || {})[l] || '', f = v.split('|'); return f[Math.min(formaApp(l, n), f.length - 1)].split('{n}').join(String(n)); };
   const PALABRA = {
     cieloVozDonde: { es: ['1 grado ', '35 grados '], en: ['1 degree ', '35 degrees '], fr: ['1 degré ', '35 degrés '], de: ['1 Grad ', '35 Grad '], it: ['1 grado ', '35 gradi '],
-                     nl: ['1 graad ', '35 graden '], zh: ['1度', '35度'], zht: ['1度', '35度'], bg: ['1 градус ', '35 градуса '], pl: ['1 stopień ', '35 stopni ', '32 stopnie ', '12 stopni ', '22 stopnie '] },
+                     nl: ['1 graad ', '35 graden '], zh: ['1度', '35度'], zht: ['1度', '35度'], bg: ['1 градус ', '35 градуса '], pl: ['1 stopień ', '35 stopni ', '32 stopnie ', '12 stopni ', '22 stopnie '],
+                     ro: ['1 grad ', '2 grade ', '19 grade ', '20 de grade ', '35 de grade '] },
     cieloVozIntro: { es: ['1 parada.', '8 paradas,'], en: ['1 stop.', '8 stops,'], fr: ['1 étape.', '8 étapes,'], de: ['1 Station.', '8 Stationen,'], it: ['1 tappa.', '8 tappe,'],
-                     nl: ['1 halte.', '8 haltes,'], zh: ['共1站', '共8站'], zht: ['共1站', '共8站'], bg: ['1 спирка.', '8 спирки,'], pl: ['1 przystanek.', '8 przystanków,', '3 przystanki,', '4 przystanki,', '5 przystanków,'] },
+                     nl: ['1 halte.', '8 haltes,'], zh: ['共1站', '共8站'], zht: ['共1站', '共8站'], bg: ['1 спирка.', '8 спирки,'], pl: ['1 przystanek.', '8 przystanków,', '3 przystanki,', '4 przystanki,', '5 przystanków,'],
+                     ro: ['1 oprire.', '8 opriri,', '19 opriri,', '20 de opriri,'] },
     cieloGuiaIntro: { pl: ['1 przystanek ', '8 przystanków ', '3 przystanki ', '4 przystanki ', '5 przystanków '] }
   };
   const malPal = [];
@@ -905,7 +912,7 @@ titulo('15a. la noche guiada en voz alta: el lector de index.html, las voces del
     const n = Number(esp.match(/\d+/)[0]), t = forma(k, l, n);
     if (!t.includes(esp)) malPal.push(k + '.' + l + ' n=' + n + ': «' + t.slice(0, 70) + '» sin «' + esp.trim() + '»');
   }
-  ok(!malPal.length, 'lo que se oye concuerda con el numero: «1 grado», «35 grados»; en polaco «1 stopień», «32 stopnie», «12 stopni», «3 przystanki», «5 przystanków» (VozDonde, VozIntro y la entrada de la tarjeta)', malPal.slice(0, 4).join(' · '));
+  ok(!malPal.length, 'lo que se oye concuerda con el numero: «1 grado», «35 grados»; en polaco «1 stopień», «32 stopnie», «12 stopni», «3 przystanki», «5 przystanków»; en rumano «1 grad», «19 grade», «20 de grade», «20 de opriri» (VozDonde, VozIntro y la entrada de la tarjeta)', malPal.slice(0, 4).join(' · '));
   /* la hora va como etiqueta: «a las 01:10» seria «a la una» */
   const horaMal = ['cieloVozIntro', 'cieloVozHoraParada'].filter(k => /(?:las|la) \{t\}/.test((CIELO_UI[k] || {}).es || ''));
   ok(!horaMal.length && /Hora de referencia: \{t\}/.test((CIELO_UI.cieloVozIntro || {}).es || ''), 'la hora que se oye va como etiqueta («Hora de referencia: 21:40»), sin «a las»', horaMal.join(', '));
@@ -916,7 +923,7 @@ titulo('15a. la noche guiada en voz alta: el lector de index.html, las voces del
     .filter(k => PL_MAL.test((CIELO_UI[k] || {}).pl || '') || /widzisz|Dotknij|cię\b/.test((CIELO_UI[k] || {}).pl || '')
       || (k === 'cieloGuiaIntro' && ((CIELO_UI[k] || {}).pl || '').split('|').length !== 3));
   ok(!plMal.length, 'el polaco de las cifras: «Odległość w latach świetlnych: 8,6», «Zawiera: obiekty Messiera (109)…», la entrada de la noche guiada en tres formas; sin «8,6 lat» ni «594 stopni»', plMal.join(', '));
-  /* lo que se oye, de usted en los diez idiomas (Jerome, 21-10-2026: «Usted en
+  /* lo que se oye, de usted en los once idiomas (Jerome, 21-10-2026: «Usted en
      toda la app»): la voz no puede pasar del usted de las filas nuevas al tu
      de las de siempre en la misma parada. Las filas que se leen y las
      descripciones de CIELO_DESC (la parada de un objeto); los huecos ({dir})
@@ -928,14 +935,17 @@ titulo('15a. la noche guiada en voz alta: el lector de index.html, las voces del
     es: /(?<![\p{L}])(?:tú|ves|puedes|mira|espera|busca)(?![\p{L}])/iu, fr: /(?<![\p{L}])(?:tu|te|toi|ton|ta|tes|vois|regarde|attends)(?![\p{L}])/iu,
     de: /(?<![\p{L}])(?:du|dich|dir|dein\w*|schau|warte|siehst)(?![\p{L}])/iu, it: /(?<![\p{L}])(?:tu|ti|tuo|tua|vedi|puoi|guarda|aspetta)(?![\p{L}])/iu,
     nl: /(?<![\p{L}])(?:je|jij|jou|jouw)(?![\p{L}])/iu, bg: /(?<![\p{L}])(?:ти|теб|твой|твоя|виждаш|можеш|гледай|чакай)(?![\p{L}])/iu,
-    pl: /(?<![\p{L}])(?:ty|ci|cię|twój|twoja|widzisz|poznasz|zobaczysz|patrz|czekaj|dotknij)(?![\p{L}])/iu, zh: /你/u, zht: /你/u
+    pl: /(?<![\p{L}])(?:ty|ci|cię|twój|twoja|widzisz|poznasz|zobaczysz|patrz|czekaj|dotknij)(?![\p{L}])/iu, zh: /你/u, zht: /你/u,
+    /* el rumano: el pronombre y el posesivo del tu, y los verbos que solo son de tu; no el imperativo de la
+       primera conjugacion («caută», «verifică»), que se escribe como la tercera persona (el interruptor del rumano, 2026) */
+    ro: /(?<![\p{L}])(?:tu|te|ți|îți|tău|ta|tăi|tale|vezi|poți|ești|uită-te|uite)(?![\p{L}])/iu
   };
   const DESC = tablaModulo('CIELO_DESC') || {};
   const tuMal = [];
   for (const [k, f] of HABLADAS.map(k => [k, CIELO_UI[k] || {}]).concat(Object.entries(DESC).map(([k, f]) => ['CIELO_DESC.' + k, f])))
     for (const [l, re] of Object.entries(TU)) { const t = String(f[l] || '').replace(/\{[a-z0-9]+\}/gi, ''); const m = t.match(re); if (m) tuMal.push(k + '.' + l + ': «' + m[0] + '»'); }
   ok(HABLADAS.every(k => CIELO_UI[k]) && Object.keys(DESC).length >= 12 && !tuMal.length,
-     'lo que se oye va de usted en los diez idiomas: las ' + HABLADAS.length + ' filas que lee la voz y las ' + Object.keys(DESC).length + ' descripciones de CIELO_DESC, sin las marcas del tu', tuMal.slice(0, 6).join(' · '));
+     'lo que se oye va de usted en los once idiomas: las ' + HABLADAS.length + ' filas que lee la voz y las ' + Object.keys(DESC).length + ' descripciones de CIELO_DESC, sin las marcas del tu', tuMal.slice(0, 6).join(' · '));
   /* «jakieś {n} lat temu» (FichaLuzUnos, de 100 años luz para arriba): la
      distancia va a dos cifras (distancia()), asi que acaba en 0 y en polaco
      es siempre «lat»; y la luz de la Luna, con dos decimales: «1,28 sekundy» */
@@ -962,15 +972,15 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
   ok(/^A 2\.390 m\./.test(es('cieloSitioIzanaTxt')) && /Las visitas son de día; de noche no se visita, y no se admiten menores de 8 años\./.test(es('cieloSitioIzanaTxt'))
      && / hay que reservar antes la zona de vivac en Tenerife ON\.$/.test(es('cieloSitioGuajaraTxt')) && / Tiene acreditación Starlight desde 2015\.$/.test(es('cieloSitioParadorTxt')),
      'Izaña a 2.390 m y de dia (Volcano Teide: «El observatorio no se puede visitar en horario nocturno.», «no admite menores de 8 años»); Guajara, con la zona de vivac reservada en Tenerife ON; el Parador, acreditado Starlight en 2015');
-  /* las filas nuevas, en los diez idiomas y con sus cifras */
+  /* las filas nuevas, en los once idiomas y con sus cifras */
   const NUEVAS = ['cieloBrilloCielo', 'cieloRutaPaneles', 'cieloNormas', 'cieloNorma1', 'cieloNorma2', 'cieloNorma3', 'cieloNorma4', 'cieloNormasFuente',
                   'cieloEnlacePrug', 'cieloEnlaceAemetTeide', 'cieloEnlaceBrillo', 'cieloCondBuenasDesde', 'cieloCondBuenasHasta'];
   const faltaN = NUEVAS.filter(k => !CIELO_UI[k] || IDI.some(l => !String(CIELO_UI[k][l] || '').trim()));
-  ok(!faltaN.length, 'las ' + NUEVAS.length + ' filas nuevas estan en los diez idiomas', faltaN.join(', '));
+  ok(!faltaN.length, 'las ' + NUEVAS.length + ' filas nuevas estan en los once idiomas', faltaN.join(', '));
   const cifra = (k, re) => IDI.filter(l => !re.test(String((CIELO_UI[k] || {})[l] || '')));
   const malC = [].concat(cifra('cieloBrilloCielo', /21[,.]20[\s\S]*21[,.]70/).map(l => 'BrilloCielo.' + l), cifra('cieloNorma4', /\b30\b/).map(l => 'Norma4.' + l),
     cifra('cieloNorma1', /TF-21/).map(l => 'Norma1.' + l), cifra('cieloNormasFuente', /182\/2025[\s\S]*240[\s\S]*6\.2\.1[\s\S]*6\.2\.5[\s\S]*6\.3\.2\.5[\s\S]*6\.3\.2\.7[\s\S]*6\.3\.3/).map(l => 'NormasFuente.' + l));
-  ok(!malC.length, 'y con sus cifras en los diez: el brillo del IAC (21,20 y 21,70), los 30 de un grupo, la TF-21 y el decreto con sus apartados', malC.join(', '));
+  ok(!malC.length, 'y con sus cifras en los once: el brillo del IAC (21,20 y 21,70), los 30 de un grupo, la TF-21 y el decreto con sus apartados', malC.join(', '));
   /* las normas, contra el decreto */
   const n1 = es('cieloNorma1');
   const sitiosTel = ['La Ruleta', 'Parador', 'Cañada Blanca', 'TF-21', 'estación base', 'Altavista', 'Minas de San José', 'Portillo Alto'];
@@ -995,7 +1005,7 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
      && donde.includes("['EnlaceEclipsesIgn', 'https://astronomia.ign.es/eclipses-de-sol-y-luna']") && donde.includes("['CreditoHyg', 'https://codeberg.org/astronexus/hyg']")
      && !/github\.com\/astronexus|web\/guest\/eclipses/.test(donde),
      'los enlaces: el brillo del cielo del IAC, los eclipses del IGN en su direccion de ahora y HYG en Codeberg (el GitHub esta archivado)');
-  /* las seis fichas del Teide (index.html y los nueve idiomas), sin lo que la revision vio mal */
+  /* las seis fichas del Teide (index.html y los otros diez idiomas), sin lo que la revision vio mal */
   const FT = ['pico-teide-cumbre', 'montana-blanca', 'mir-rambleta-teide', 'ruta-pico-viejo', 'sendero-pico-viejo', 'observatorio'];
   /* entre la primera linea y la descripcion puede haber otras: reserva, estado, fuente, verificado (30 de octubre) */
   const descEs = id => (index.match(new RegExp('\\{ id:"' + id + '",[^\\n]*\\n(?:\\s*(?:reserva|estado|fuente|verificado):[^\\n]*\\n)*\\s*desc:\\{ es:"((?:[^"\\\\]|\\\\.)*)" \\}')) || [, ''])[1];
@@ -1012,12 +1022,12 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
     const J = JSON.parse(lee('idiomas/' + l + '.json'));
     for (const id of FT) { const t = (J[id] || {}).desc || ''; if (!t || MAL_OTRO.test(t) || (id !== 'observatorio' && !/Tenerife ON/.test(t)) || (id === 'observatorio' && !/volcanoteide\.com/.test(t))) malTi.push(l + '.' + id); }
   }
-  ok(!malTi.length, 'y en los otros nueve idiomas (idiomas/<l>.json): Tenerife ON, sin el teleferico a 14 € ni el «TF-6»', malTi.join(', '));
+  ok(!malTi.length, 'y en los otros diez idiomas (idiomas/<l>.json): Tenerife ON, sin el teleferico a 14 € ni el «TF-6»', malTi.join(', '));
   const malTel = IDI.filter(l => l !== 'es').filter(l => {
     const t = (JSON.parse(lee('idiomas/' + l + '.json'))['mir-rambleta-teide'] || {}).desc || '';
     return !/43[.,]00/.test(t) || !/10[.,]75/.test(t) || /(^|[^\d.,])42([^\d]|$)|10[.,]50/.test(t) || !/volcanoteide\.com/.test(t);
   });
-  ok(!malTel.length, 'el teleferico en los otros nueve idiomas: desde 43,00 € y desde 10,75 €, sin los 42 € ni los 10,50 € de octubre', malTel.join(', '));
+  ok(!malTel.length, 'el teleferico en los otros diez idiomas: desde 43,00 € y desde 10,75 €, sin los 42 € ni los 10,50 € de octubre', malTel.join(', '));
   /* 24 de octubre de 2026 (AUDITORIA-FINAL.md, noveno bloque): lo que las fuentes cambiaron en
      estas fichas y en la de Las Narices. Las siete islas no se ven a la vez (Volcano Teide nombra
      cuatro, y las del oeste, desde el mirador de Pico Viejo, PNT 12); el crater de Pico Viejo esta
@@ -1025,7 +1035,7 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
      a 17:00; y el «Sendero del Sanatorio a Pico Viejo» de 20 km no existe: el del Sanatorio es el
      PNT 16 */
   const FT2 = ['pico-teide-cumbre', 'montana-blanca', 'mir-rambleta-teide', 'ruta-pico-viejo', 'sendero-pico-viejo', 'mir-narices-teide'];
-  const VIEJO = /siete islas|seven Canary|sept îles|sieben Kanarischen|sette isole|zeven Canarische|七座|седемте Канарски|siedem Wysp|3[.,  ]?135(?!\d)|360 ?°|360度|Sanatorio a Pico Viejo|20 km|5-10 ?°C|5至10|Menos concurrido|Less crowded|Moins fréquenté|Weniger überfüllt|Meno affollato|Minder druk|比泰德峰人少|По-малко посещаван|Mniej uczęszczany|七峡谷|七峽谷|toestemming vragen|vraagt (?:vooraf |een aparte )?toestemming/i;
+  const VIEJO = /siete islas|seven Canary|sept îles|sieben Kanarischen|sette isole|zeven Canarische|七座|седемте Канарски|siedem Wysp|șapte insule|3[.,  ]?135(?!\d)|360 ?°|360度|Sanatorio a Pico Viejo|20 km|5-10 ?°C|5至10|Menos concurrido|Less crowded|Moins fréquenté|Weniger überfüllt|Meno affollato|Minder druk|比泰德峰人少|По-малко посещаван|Mniej uczęszczany|Mai puțin aglomerat|七峡谷|七峽谷|toestemming vragen|vraagt (?:vooraf |een aparte )?toestemming/i;
   const textos = { es: {} };
   for (const id of FT2) textos.es[id] = descEs(id);
   for (const l of IDI.filter(l => l !== 'es')) { const J = JSON.parse(lee('idiomas/' + l + '.json')); textos[l] = {}; for (const id of FT2) textos[l][id] = (J[id] || {}).desc || ''; }
@@ -1040,7 +1050,7 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
   }
   ok(!mal24.length && /name:"Sendero del Sanatorio \(PNT 16\)", emoji:"[^"]*", color:"#6d4c41", lat:28\.253674, lng:-16\.625022,/.test(index)
      && !/zie je/.test(textos.nl['mir-narices-teide']) && /Ноздрите на Тейде · TF-38/.test(lee('idiomas/bg.json')),
-     'las fichas del Teide en los diez idiomas, con lo que dicen las fuentes del 24 de octubre: cuatro islas a la vista y no siete, el crater de Pico Viejo a unos 3.100 m, la reserva del PNT 07 y el Sanatorio, que es el PNT 16, con la salida de su mapa',
+     'las fichas del Teide en los once idiomas, con lo que dicen las fuentes del 24 de octubre: cuatro islas a la vista y no siete, el crater de Pico Viejo a unos 3.100 m, la reserva del PNT 07 y el Sanatorio, que es el PNT 16, con la salida de su mapa',
      mal24.slice(0, 8).join(' · '));
   /* las lluvias con la Luna arriba parte de la noche */
   ok(/if \(lunaAlt < 0 && luz >= 0\.3\) \{\s*var po = A\.SearchRiseSet\(A\.Body\.Moon, obs\(\), -1, n\.oscuro, n\.claro\.ut - n\.oscuro\.ut\);\s*if \(po && po\.ut < mejor\.u\) lunaPone = po\.date;/.test(modulo)
@@ -1060,6 +1070,7 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
     nl: /(?<![\p{L}])(?:je|jij|jou|jouw)(?![\p{L}])/iu,
     bg: /(?<![\p{L}])(?:ти|теб|твой|твоя|виждаш|можеш|покажи|скрий|виж|вземи|изключи|паркирай|провери|гледай|чакай)(?![\p{L}])/iu,
     pl: /(?<![\p{L}])(?:ty|ci|cię|twój|twoja|twoim|weź|zgaś|parkuj|zjeżdżaj|sprawdź|patrz|pokaż|ukryj)(?![\p{L}])/iu,
+    ro: /(?<![\p{L}])(?:tu|te|ți|îți|tău|ta|tăi|tale|vezi|poți|ești|uită-te|uite)(?![\p{L}])/iu,
     zh: /你/u, zht: /你/u
   };
   const DONDE = Object.keys(CIELO_UI).filter(k => /^cielo(PorQue|LeyCielo|BrilloCielo|Starlight|Sitio|Sitios|VerEnElMapa|VerEnMapa|Recorrido|RutaPaneles|Consejo|AvisoSol|Normas?|Equipo|CreditosTxt|CondBuenas)/.test(k));
@@ -1069,7 +1080,7 @@ titulo('16a. «Donde ir» contra sus fuentes, las normas del Parque Nacional, la
      ROTULOS_IT, ROTULOS_BG y ROTULOS_PL (23 de octubre de 2026, al juntar el octavo bloque) */
   const BOTON = /^cielo(VerEnElMapa|VerEnMapa|Recorrido)/;
   for (const k of DONDE) if (!BOTON.test(k)) for (const [l, re] of Object.entries(TU)) { const t = String(CIELO_UI[k][l] || '').replace(/\{[a-z0-9]+\}/gi, ''); const m = t.match(re); if (m) tuD.push(k + '.' + l + ': «' + m[0] + '»'); }
-  ok(DONDE.length >= 40 && !tuD.length, 'las ' + DONDE.filter(k => !BOTON.test(k)).length + ' filas de «Donde ir» (con la Luna de las lluvias), de usted en los diez idiomas; los botones de la ficha, «Ver en el mapa del cielo» y el recorrido, en imperativo como los demas rotulos (auditar_registro.js)', tuD.slice(0, 6).join(' · '));
+  ok(DONDE.length >= 40 && !tuD.length, 'las ' + DONDE.filter(k => !BOTON.test(k)).length + ' filas de «Donde ir» (con la Luna de las lluvias), de usted en los once idiomas; los botones de la ficha, «Ver en el mapa del cielo» y el recorrido, en imperativo como los demas rotulos (auditar_registro.js)', tuD.slice(0, 6).join(' · '));
 }
 
 if (!PUERTO) {
@@ -1106,7 +1117,7 @@ async function navegador() {
 }
 
 /* ── 16. la revision del 22 de octubre, en la pantalla ─────────────────────
-   «Donde ir» en los diez idiomas: la tarjeta de las normas con sus cuatro
+   «Donde ir» en los once idiomas: la tarjeta de las normas con sus cuatro
    frases y el enlace al BOC, los enlaces nuevos y los cambiados, sin texto
    roto, ningun texto por debajo de 11 px (tambien en «Esta noche») y ninguna
    direccion que se salga de su boton. Y las Perseidas de 2027 en el .ics de
@@ -1114,7 +1125,7 @@ async function navegador() {
    dice «desde que se pone la Luna (03:58)»; las Cuadrantidas de 2027 (11 %),
    como antes. */
 async function octavoBloque(b) {
-  titulo('16. la revision del 22 de octubre en la pantalla: «Donde ir», la letra y la Luna de las lluvias, en los diez idiomas');
+  titulo('16. la revision del 22 de octubre en la pantalla: «Donde ir», la letra y la Luna de las lluvias, en los once idiomas');
   const { ctx, p, err } = await abrirApp(b, 390, 844, null, false, { isMobile: true, hasTouch: true });
   await p.clock.setFixedTime(new Date('2026-10-22T21:00:00Z'));
   await p.evaluate(async () => { await window.TG_CIELO_CARGAR(); await TG_CIELO.cargar(); });
@@ -1148,8 +1159,8 @@ async function octavoBloque(b) {
     if (x.enDonde.m < 10.99 || x.enNoche.m < 10.99) malL.push(l + ': ' + Math.min(x.enDonde.m, x.enNoche.m) + ' px (' + (x.enDonde.m < x.enNoche.m ? x.enDonde.q : x.enNoche.q) + ')');
     resumen.push(l + ' ' + x.enDonde.m + '/' + x.enNoche.m + ' px');
   }
-  ok(!malP.length, '«Donde ir» en los diez idiomas: las normas del Parque (cuatro frases y su fuente), el brillo del cielo, la ruta de los paneles, los enlaces al BOC, a AEMET, al IAC, a Codeberg y al IGN, sin texto roto y sin direcciones que se salgan del boton', malP.slice(0, 4).join(' · '));
-  ok(!malL.length, 'ningun texto del panel por debajo de 11 px, en «Donde ir» y en «Esta noche», en los diez idiomas (' + resumen.slice(0, 3).join(', ') + '…)', malL.slice(0, 4).join(' · '));
+  ok(!malP.length, '«Donde ir» en los once idiomas: las normas del Parque (cuatro frases y su fuente), el brillo del cielo, la ruta de los paneles, los enlaces al BOC, a AEMET, al IAC, a Codeberg y al IGN, sin texto roto y sin direcciones que se salgan del boton', malP.slice(0, 4).join(' · '));
+  ok(!malL.length, 'ningun texto del panel por debajo de 11 px, en «Donde ir» y en «Esta noche», en los once idiomas (' + resumen.slice(0, 3).join(', ') + '…)', malL.slice(0, 4).join(' · '));
   /* las lluvias con la Luna arriba parte de la noche, en el .ics de cada idioma: las Leonidas
      de 2026 (la Luna al 58 % se pone a la 01:09) y las Perseidas de 2027 (al 86 %, a las 03:58),
      «desde que se pone»; las Draconidas de 2028 (al 77 %, sale a las 22:49), «hasta que sale»,
@@ -1175,7 +1186,7 @@ async function octavoBloque(b) {
     }
     if (!r.qua || r.qua.pone || r.qua.sale || !r.qua.d.includes(buenas)) malI.push(l + ': las Cuadrantidas no dicen «' + buenas + '» a secas');
   }
-  ok(!malI.length, 'las lluvias con la Luna arriba parte de la noche, en el .ics de los diez idiomas: las Leonidas de 2026 y las Perseidas de 2027, «' + (CIELO_UI.cieloCondBuenasDesde || {}).es.replace('{h}', '03:58') + '» (la 01:09 y las 03:58, hora de Canarias); las Draconidas de 2028, «' + (CIELO_UI.cieloCondBuenasHasta || {}).es.replace('{h}', '22:49') + '»; las Cuadrantidas de 2027 (Luna al 11 %), «Buenas condiciones» a secas', malI.slice(0, 4).join(' · '));
+  ok(!malI.length, 'las lluvias con la Luna arriba parte de la noche, en el .ics de los once idiomas: las Leonidas de 2026 y las Perseidas de 2027, «' + (CIELO_UI.cieloCondBuenasDesde || {}).es.replace('{h}', '03:58') + '» (la 01:09 y las 03:58, hora de Canarias); las Draconidas de 2028, «' + (CIELO_UI.cieloCondBuenasHasta || {}).es.replace('{h}', '22:49') + '»; las Cuadrantidas de 2027 (Luna al 11 %), «Buenas condiciones» a secas', malI.slice(0, 4).join(' · '));
   ok(!err.length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
   await ctx.close();
 }
@@ -1272,7 +1283,7 @@ async function calculos(b) {
   await ctx.close();
 }
 
-/* ── 7. las cinco pestanas, en los diez idiomas y en dos moviles ──────────
+/* ── 7. las cinco pestanas, en los once idiomas y en dos moviles ──────────
    La noche fija es la del 13 de diciembre de 2026, la de las Geminidas.
    Lo que va oculto hasta tocarlo (el detalle de cada objeto) se abre antes
    de mirar, para que tambien cuente. */
@@ -1695,7 +1706,7 @@ async function apunta(b) {
   ok(!una.mal.length && una.n > 350 && JSON.stringify(una.bien) === JSON.stringify(['Sale a la 01:10', 'Sale a las 11:10', 'Sorge all’01:10', 'Sorge alle 11:10', 'Visibile dalle 23:40 all’01:10']),
      'la una, en castellano y en italiano: «Sale a la 01:10», «Sorge all’01:10» (y «a las 11:10», «alle 11:10»), en las ' + una.n + ' filas con marcas de la app y del cielo',
      JSON.stringify({ mal: una.mal.slice(0, 6), bien: una.bien, n: una.n }));
-  /* en los diez idiomas: sin texto roto, y los mismos datos (mismo numero de lineas) */
+  /* en los once idiomas: sin texto roto, y los mismos datos (mismo numero de lineas) */
   const porIdioma = await p.evaluate(IDI => {
     const D = TG_CIELO.estado.datos, t = new Date('2026-12-13T22:00:00Z'), out = {};
     const bet = D.estrellas.find(e => e.n === 'Betelgeuse'), m42 = D.objetos.find(o => o.id === 'M42');
@@ -2393,7 +2404,7 @@ async function satelites(b) {
   });
   ok(viejo.filas === 0 && viejo.pasos === 0 && /solo se calculan hasta 7 días/.test(viejo.tarjeta) && viejo.calFilas === 0 && /solo se calculan hasta 7 días/.test(viejo.cal) && /Sin pasos visibles/.test(viejo.ficha) && !/km de altura/.test(viejo.ficha),
      'diez dias despues de la epoca, sin elementos nuevos: la tarjeta, el calendario y la ficha dicen que los pasos solo se calculan hasta 7 dias, y no ensenan ninguno ni posicion', JSON.stringify({ filas: viejo.filas, pasos: viejo.pasos, t: viejo.tarjeta.slice(0, 100), cal: viejo.cal.slice(0, 80) }));
-  /* los diez idiomas: tarjeta, calendario, ficha y un paso en la carta, sin texto roto ni palabras repetidas */
+  /* los once idiomas: tarjeta, calendario, ficha y un paso en la carta, sin texto roto ni palabras repetidas */
   await p.clock.setFixedTime(T0);
   const idiomas = await p.evaluate(async (IDI) => {
     const espera = ms => new Promise(r => setTimeout(r, ms));
@@ -2674,13 +2685,13 @@ async function tercerBloque(b) {
      '«+ 1 mes» mueve 30 dias, ▶ hace correr el tiempo (' + lienzo.corrio.toFixed(0) + ' dias en 0,6 s) y para, «Hasta Neptuno» cambia la escala, «Hoy» vuelve', JSON.stringify({ unMes: lienzo.unMes, corrio: lienzo.corrio, paro: lienzo.paro, vistas: lienzo.vistasDistintas, hoy: lienzo.hoy }));
   /* los nombres del sistema solar no se pisan (21-10-2026: en la vista exterior
      «Júpiter» caia encima de «Tierra» y «Saturno» de «Neptuno», y asi salia en las
-     capturas de la App Store): diez idiomas, dos anchos, 24 meses, las dos vistas;
+     capturas de la App Store): once idiomas, dos anchos, 24 meses, las dos vistas;
      ni entre ellos, ni sobre otro planeta, el Sol o Aries, ni fuera del lienzo */
   const etq = await p.evaluate(() => {
     const choca = (a, z) => a.l < z.r && z.l < a.r && a.t < z.d && z.t < a.d;
     const antes = currentLang, S = TG_CIELO.estado, guarda = { t: S.sis.t, base: S.sis.base, vista: S.sis.vista };
     const malos = []; let lienzos = 0, nombres = 0;
-    for (const L of ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl']) {
+    for (const L of SUPPORTED_LANGS) {
       setLang(L);
       for (const ancho of [300, 360]) {
         const cv = document.createElement('canvas'); cv.style.width = ancho + 'px'; document.body.appendChild(cv);
@@ -2700,7 +2711,7 @@ async function tercerBloque(b) {
     setLang(antes); S.sis.t = guarda.t; S.sis.base = guarda.base; S.sis.vista = guarda.vista;
     return { lienzos, nombres, malos };
   });
-  ok(etq.lienzos === 960 && etq.nombres > 4000 && !etq.malos.length, 'los nombres del sistema solar no se pisan: ' + etq.nombres + ' en ' + etq.lienzos + ' lienzos (10 idiomas, 300 y 360 px, 24 meses, las dos vistas), ni entre ellos ni sobre otro planeta, el Sol o Aries', etq.malos.slice(0, 6).join(' · '));
+  ok(etq.lienzos === 1056 && etq.nombres > 4000 && !etq.malos.length, 'los nombres del sistema solar no se pisan: ' + etq.nombres + ' en ' + etq.lienzos + ' lienzos (once idiomas, 300 y 360 px, 24 meses, las dos vistas), ni entre ellos ni sobre otro planeta, el Sol o Aries', etq.malos.slice(0, 6).join(' · '));
   /* ── la luz roja completa: ya de noche (tres horas despues), con el panel recien abierto ── */
   await p.clock.setFixedTime(new Date(T0.getTime() + 3 * 3600000));
   const rojo = await p.evaluate(async () => {
@@ -2751,7 +2762,7 @@ async function tercerBloque(b) {
   ok(red.onLine === false && red.chip && /Sin conexión/.test(red.chip) && red.chip.includes(fElem) && /nubes y Wikipedia/.test(red.chip) && chipFuera,
      'sin conexion, «Esta noche» dice que el cielo se calcula igual, que faltan las nubes y Wikipedia y de cuando son los elementos (' + fElem + '); con conexion, el aviso se va', JSON.stringify(red).slice(0, 200));
   ok(red.listo === false && red.offlineNo && /Aún no está guardado/.test(red.offline || ''), 'sin service worker (como en esta prueba), «Antes de subir al Teide» dice que aun no esta guardado; con el, la parte 8 comprueba que diga «guardado»', JSON.stringify({ listo: red.listo, texto: red.offline }));
-  /* ── los diez idiomas ── */
+  /* ── los once idiomas ── */
   const idiomas = await p.evaluate(async (IDI) => {
     const espera = ms => new Promise(r => setTimeout(r, ms));
     const S = TG_CIELO.estado, out = {}; S.sis.sel = 'Jupiter';
@@ -2905,7 +2916,7 @@ async function quintoBloque(b) {
   ok(r.fotos === 2, 'la tarjeta «Para fotos» del 20 de febrero lleva la luz zodiacal y la sombra', String(r.fotos));
   ok(r.catalogo && /37°/.test(r.catalogo.curio) && r.catalogo.oculta, 'en el catalogo, Canopus lleva la curiosidad dentro de su detalle (plegado hasta tocar)', JSON.stringify(r.catalogo));
   ok(r.sistema && /29,8 km\/s/.test(r.sistema.tierra) && /107\.280/.test(r.sistema.tierra) && r.sistema.plegada && /11,2/.test(r.sistema.jupiter), 'en el sistema solar, la hoja de la Tierra lleva su curiosidad (29,8 km/s, 107.280 km/h) y la de Jupiter la suya, plegadas', JSON.stringify(r.sistema));
-  /* los diez idiomas: las fichas de Jupiter, la Luna, el Sol, Canopus y la ISS, y una lluvia */
+  /* los once idiomas: las fichas de Jupiter, la Luna, el Sol, Canopus y la ISS, y una lluvia */
   const idiomas = await p.evaluate(async (IDI) => {
     const espera = ms => new Promise(r => setTimeout(r, ms));
     const D = TG_CIELO.estado.datos, out = {}, ahora = new Date(), canopus = D.estrellas.find(e => e.h === 30438);
@@ -2973,7 +2984,7 @@ async function sextoBloque(b) {
      'Camelopardalis (Plancius, 1613), Coma Berenices (Vopel, 1536), Puppis (Argo Navis, Lacaille 1756), la Osa Mayor (Ptolomeo)', [r.Cam.datos, r.Com.datos, r.Pup.datos].map(x => x.join(' | ')).join(' // '));
   ok(['Ori', 'Hya', 'Cru', 'Cam', 'Com', 'Pup', 'UMa'].every(a => r[a].curio && !/\{[a-z]+\}|undefined/.test(r[a].curio)), 'las siete fichas con curiosidad y sin texto roto');
   ok(r.catalogo && /Ptolomeo/.test(r.catalogo.mas) && /594/.test(r.catalogo.mas) && r.catalogo.curio.length > 60, 'en el catalogo, Orion lleva origen, tamaño y curiosidad en su detalle', JSON.stringify(r.catalogo).slice(0, 200));
-  /* los diez idiomas: tres constelaciones */
+  /* los once idiomas: tres constelaciones */
   const idiomas = await p.evaluate(async (IDI) => {
     const espera = ms => new Promise(r => setTimeout(r, ms));
     const out = {}, ahora = new Date();
@@ -3034,7 +3045,7 @@ async function sextoBloque(b) {
 /* ── 15. la noche guiada en voz alta, en la pantalla ─────────────────────
    Chromium sin cabeza no tiene voces: la pagina recibe, antes de cargar, una
    speechSynthesis falsa que apunta cada frase (texto, idioma, voz, velocidad)
-   y la «dice» en unos milisegundos, con voces de los diez idiomas (y dos de
+   y la «dice» en unos milisegundos, con voces de los once idiomas (y dos de
    red, que no se tienen que usar), y un Wake Lock que cuenta lo que se pide
    y lo que se suelta. La noche es la de la parte 12, con los satelites. */
 const VOZ_FALSA = () => {
@@ -3051,6 +3062,7 @@ const VOZ_FALSA = () => {
     { name: 'Meijia', lang: 'zh-TW', localService: true, voiceURI: 'zht' },
     { name: 'Daria', lang: 'bg-BG', localService: true, voiceURI: 'bg' },
     { name: 'Zosia', lang: 'pl-PL', localService: true, voiceURI: 'pl' },
+    { name: 'Ioana', lang: 'ro-RO', localService: true, voiceURI: 'ro' },
     { name: 'Google Nederlands', lang: 'nl-NL', localService: false, voiceURI: 'red-nl' }
   ];
   reg.voces = reg.todas.slice();
@@ -3268,9 +3280,9 @@ async function vozAlta(b) {
      'una voz que falla (synthesis-failed): se para y lo dice', voces.error.caja);
   ok(voces.mudo.antes === 'hablando' && voces.mudo.despues.estado === 'parado' && voces.mudo.despues.fallo && /⚠️ La voz del dispositivo no ha podido leer/.test(voces.mudo.caja),
      'una voz que no llega a empezar: a los ' + (voces.mudo.despues.vigia / 1000) + ' s se para con el mismo aviso, no se queda colgada', JSON.stringify(voces.mudo));
-  /* ── los diez idiomas ── */
+  /* ── los once idiomas ── */
   const LOCALE = literal(index, 'var TTS_LOCALE = {') || {};
-  const VOZ_DE = { es: 'Mónica', en: 'Daniel', fr: 'Thomas', de: 'Anna', it: 'Alice', nl: 'Xander', zh: 'Tingting', zht: 'Meijia', bg: 'Daria', pl: 'Zosia' };
+  const VOZ_DE = { es: 'Mónica', en: 'Daniel', fr: 'Thomas', de: 'Anna', it: 'Alice', nl: 'Xander', zh: 'Tingting', zht: 'Meijia', bg: 'Daria', pl: 'Zosia', ro: 'Ioana' };
   const malI = [], resumen = [];
   for (const l of IDI) {
     const x = await p.evaluate(async (l) => {
@@ -3298,7 +3310,7 @@ async function vozAlta(b) {
     if (x.estado !== 'parado') malI.push(l + ': «Parar» no para');
     resumen.push(l + ' «' + x.d[1].text.slice(0, 48) + '…»');
   }
-  ok(!malI.length, 'en los diez idiomas: su voz (' + IDI.map(l => LOCALE[l]).join(', ') + '), la intro con las paradas y la hora, las dos primeras paradas con lo que pone su tarjeta, sin texto roto (en chino, con «。»)', malI.slice(0, 4).join(' · '));
+  ok(!malI.length, 'en los once idiomas: su voz (' + IDI.map(l => LOCALE[l]).join(', ') + '), la intro con las paradas y la hora, las dos primeras paradas con lo que pone su tarjeta, sin texto roto (en chino, con «。»)', malI.slice(0, 4).join(' · '));
   nota(resumen.slice(0, 4).join(' · '));
   ok(!err.length, 'sin errores de pagina', err.slice(0, 3).join(' · '));
   await ctx.close();

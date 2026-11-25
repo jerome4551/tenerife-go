@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* auditar_frases.js — la frase diaria, en los diez idiomas.
+/* auditar_frases.js — la frase diaria, en los once idiomas.
  *
  *     node tools/auditar_frases.js
  *
@@ -99,6 +99,8 @@ for (const L of LATINO) perfil[L] = { prohibe: [['cirilico', CIRILICO], ['han', 
 // El polaco es el que mas cerca cae del castellano: si alguien rellena el
 // hueco a medias, lo que queda son signos que en polaco no existen.
 perfil.pl = { prohibe: [['cirilico', CIRILICO], ['han', HAN], ['signos del castellano', /[¿¡ñ]/]] };
+// El rumano: letra latina, con la s y la t con coma (ș ț), nunca con cedilla (ş ţ, que son turcas).
+perfil.ro = { prohibe: [['cirilico', CIRILICO], ['han', HAN], ['ş o ţ con cedilla', /[şţŞŢ]/], ['signos del castellano', /[¿¡ñ]/]] };
 
 for (const L of LANGS) {
   const p = perfil[L];

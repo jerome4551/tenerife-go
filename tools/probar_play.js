@@ -3,7 +3,7 @@
  * Fase 1), en un navegador de verdad. Desde el 16 de octubre de 2026.
  *
  * 1.1 LA TIENDA, FUERA DE LA VISTA
- *   · en los diez idiomas, a 390x844: la barra de abajo sin el boton de la
+ *   · en los once idiomas, a 390x844: la barra de abajo sin el boton de la
  *     tienda, y los cinco que quedan dentro de la pantalla y con su rotulo
  *     entero; el boton «Administrador» con su rotulo traducido;
  *   · ni la tienda ni la cesta se abren desde ninguna parte, tampoco con
@@ -13,7 +13,7 @@
  *     abre su panel.
  *
  * 1.2 BORRAR LA CUENTA
- *   · en los diez idiomas: «Eliminar cuenta» debajo de «Cerrar sesion», la
+ *   · en los once idiomas: «Eliminar cuenta» debajo de «Cerrar sesion», la
  *     confirmacion con sus tres textos, y «Cancelar» que no borra nada;
  *   · si el servidor no borra (false, error o sin red): la sesion sigue y
  *     sale el enlace a borrar-cuenta.html, en el idioma de la app;
@@ -25,7 +25,7 @@
  *     se abre sola en el idioma de la app, o en el del navegador.
  *
  * 1.3 LA POLITICA DE PRIVACIDAD, CON DIRECCION PROPIA
- *   · en los diez idiomas, a 390x844 y a 360x740: «Version web» y «Borrar tu
+ *   · en los once idiomas, a 390x844 y a 360x740: «Version web» y «Borrar tu
  *     cuenta» encima de «Privacidad · RGPD», traducidos, a sus paginas y sin
  *     tapar la leyenda, el zoom, el boton de informacion, el credito del
  *     mapa ni la barra de abajo;
@@ -37,7 +37,7 @@
  *     LO MISMO que el panel de la app en ese idioma, letra a letra.
  *
  * 1.4 «PATROCINADO» EN LOS PINES DE PAGO
- *   · en los diez idiomas, el globo de un pin de pago dice la etiqueta de
+ *   · en los once idiomas, el globo de un pin de pago dice la etiqueta de
  *     ese idioma, sin estrella delante, y la fecha de la promocion en el
  *     formato del idioma y con su «hasta» traducido (era «hasta 2026-12-31»
  *     en los diez).
@@ -57,7 +57,7 @@
  *     el tiempo o los dos, segun lo que llegue), debajo del mar de los charcos
  *     (una vez, aunque se abra otra vez), en las nubes y el indice de la noche
  *     (este, solo si cuenta las nubes) y escrito en la imagen que se comparte;
- *     a 11 px como minimo e igual en los diez idiomas (data-sin-traducir).
+ *     a 11 px como minimo e igual en los once idiomas (data-sin-traducir).
  *
  * Supabase no esta aqui: se le da a la app un cliente falso, con la sesion y
  * las respuestas que toca en cada caso (sin sesion, con sesion normal, con
@@ -152,7 +152,7 @@ function supabaseFalso(cfg) {
   };
 
   console.log('\n=== 1.1 la tienda, fuera de la vista ===');
-  // ── la barra de abajo y el rotulo del administrador, en los diez idiomas
+  // ── la barra de abajo y el rotulo del administrador, en los once idiomas
   for (const L of IDIOMAS) {
     const { ctx, pg, errores } = await abrir({ lang: L, user: null });
     const r = await pg.evaluate(() => {
@@ -260,7 +260,7 @@ function supabaseFalso(cfg) {
   console.log('\n=== 1.2 borrar la cuenta ===');
   const R = require('./rotulos_app');
   const comillas = L => (L === 'zh' || L === 'zht') ? ['「', '」'] : ['«', '»'];
-  // ── en la app, en los diez idiomas: el boton, la confirmacion, los fallos y el borrado
+  // ── en la app, en los once idiomas: el boton, la confirmacion, los fallos y el borrado
   for (const L of IDIOMAS) {
     const { ctx, pg, errores } = await abrir({ lang: L, user: { id: 'u-' + L, email: L + '@prueba.es' }, esAdmin: false });
     await pg.waitForFunction(() => window.AppAuth.isLoggedIn(), null, { timeout: 10000 }).catch(() => {});
@@ -773,13 +773,13 @@ function supabaseFalso(cfg) {
     const sinNubes = await textos();
     caso('sin prevision de nubes: el indice sin credito, ni tarjeta de nubes, ni credito en la imagen',
       sin.indice && !sin.credito && !sin.nubes && !sinNubes.some(s => /Open-Meteo/.test(s)), JSON.stringify({ sin, fin: sinNubes.slice(-3) }));
-    // igual en los diez idiomas: el pie del mar, tal cual
+    // igual en los once idiomas: el pie del mar, tal cual
     const porIdioma = [];
     for (const L of IDIOMAS) {
       const t = await pg.evaluate(L => { setLang(L); return [document.querySelector('#mar-panel .mar-source').textContent, document.querySelector('#mc-panel .mc-source').textContent]; }, L);
       if (t[0] !== AMBOS || t[1] !== TIEMPO) porIdioma.push(L + ': ' + t.join(' / '));
     }
-    caso('en los ' + IDIOMAS.length + ' idiomas, los dos pies dicen lo mismo (nombres propios y la frase de Copernicus)', IDIOMAS.length === 10 && !porIdioma.length, porIdioma.join(' · '));
+    caso('en los ' + IDIOMAS.length + ' idiomas, los dos pies dicen lo mismo (nombres propios y la frase de Copernicus)', IDIOMAS.length === 11 && !porIdioma.length, porIdioma.join(' · '));
     caso('sin errores de pagina (creditos de Open-Meteo)', errores.length === 0, errores.join(' / '));
     await ctx.close();
   }

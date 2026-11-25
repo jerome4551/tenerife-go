@@ -57,7 +57,7 @@ alguien lo abre: dentro de `index.html` habría sumado unos 100 kB comprimidos
 a la primera descarga de todo el mundo. El perfil (`modulos/perfil.js` y
 sus avatares, `modulos/avatares.js`), que se pide la primera vez que alguien
 toca «Cuenta», por lo mismo. Y el panel de emergencias
-(`modulos/emergencias.js`, 236 kB comprimidos, con sus textos en los diez
+(`modulos/emergencias.js`, 236 kB comprimidos, con sus textos en los once
 idiomas), que el service worker guarda desde el primer día para que abra sin
 conexión. Y «Su cuerpo» (`modulos/cuerpo.js`, 251 kB comprimidos, medido el
 14-11-2026), que se pide al abrir la pestaña Cuerpo del perfil, cuya tarjeta lo
@@ -285,7 +285,7 @@ que se puede instalar en los ajustes. Mientras lee, la pantalla no se apaga
 cambiar de noche o de idioma, y se queda en pausa al abrir «Apunta al
 cielo», al salir de «Esta noche» o si la página deja de verse. No guarda
 nada. `tools/auditar_cielo.js` (parte 15) lo comprueba con una voz falsa
-que apunta cada frase, en los diez idiomas, y que lo que se oye concuerda
+que apunta cada frase, en los once idiomas, y que lo que se oye concuerda
 con el número («1 grado», «32 stopnie», «5 przystanków»).
 
 **El sistema solar hoy**, al final de «Esta noche»: las órbitas y las
@@ -320,7 +320,7 @@ se duerme en el coche y que el vivac se reserva antes en Tenerife ON. El
 consejo de antes de subir enlaza la predicción de AEMET para el Teide. Toda
 la letra del panel va a 11 px como mínimo, lo que pide Apple para iOS.
 `tools/auditar_cielo.js` (partes 16a y 16) lo coteja con sus fuentes y lo
-mide en la pantalla, en los diez idiomas.
+mide en la pantalla, en los once idiomas.
 
 **Los avisos no llegan solos y se quitan de verdad.** En cada evento del
 calendario, «Añadir a mi calendario» crea un `.ics` (RFC 5545, con alarma el
@@ -426,7 +426,7 @@ cargarlo (el botón, el título, «cargando» y el botón de la visita guiada) e
 en `index.html`. Lo que dicen
 de leyes, certificaciones y sitios lleva encima su fuente.
 `tools/auditar_cielo.js` comprueba los textos contra el código y el catálogo,
-abre las cinco pestañas en los diez idiomas, coteja los cálculos con el IMCCE,
+abre las cinco pestañas en los once idiomas, coteja los cálculos con el IMCCE,
 la IMO y otros, y abre el panel con el servidor apagado. Como el módulo no
 tiene etiqueta, se declara con un comentario `CARGA-PEREZOSA:` para que
 `tools/fuente.js` lo pegue al fuente y las herramientas de idiomas lo vean.
@@ -493,7 +493,7 @@ cinta en el pelo y toalla al cuello para «Su cuerpo».
   cuerpo» ya se ofreció (`tenerife.tour.seen`, `tenerife.tour.cielo` y
   `tenerife.tour.cuerpo`).
 
-`tools/auditar_tour.js` los recorre enteros en los diez idiomas y en cuatro
+`tools/auditar_tour.js` los recorre enteros en los once idiomas y en cuatro
 tamaños de móvil, con la voz (una voz falsa que apunta lo que se lee), con
 movimiento, con el móvil lento (un cuadro cada 50 ms: los muelles de Jérôme no
 se desbocan) y sin el módulo. Antes de abrir el navegador mira que cada texto

@@ -85,7 +85,7 @@ function rehacer() {
 const ver = (process.argv.find(a => a.startsWith('--ver')) || '') && process.argv[process.argv.indexOf('--ver') + 1];
 if (process.argv.includes('--escribir')) {
   const ficha = {
-    _comentario: 'La ficha de Tenerife Go en Google Play, en los diez idiomas de la app. La hace y la coteja tools/google_play_ficha.js '
+    _comentario: 'La ficha de Tenerife Go en Google Play, en los once idiomas de la app. La hace y la coteja tools/google_play_ficha.js '
       + 'desde la de la App Store (datos/app-store/ficha.json), sin texto nuevo: la descripcion completa es la misma sin la frase de '
       + 'los negocios patrocinados (en Play se contesta «sin anuncios» mientras no haya ninguno) y la breve, el texto promocional sin '
       + '«en su bolsillo». Limites de Play: titulo 30, breve 80, completa 4000. Lo demas que pide Play Console, en GOOGLE-PLAY.md.',

@@ -56,7 +56,10 @@ const ESCRITURA = {
   zh:  { debe: /[一-鿿]/, prohibe: /[Ѐ-ӿ]/ },
   zht: { debe: /[一-鿿]/, prohibe: /[Ѐ-ӿ]/ },
   bg:  { debe: /[Ѐ-ӿ]/, prohibe: null },
-  pl:  { debe: null,            prohibe: /[Ѐ-ӿ一-鿿]/ }
+  pl:  { debe: null,            prohibe: /[Ѐ-ӿ一-鿿]/ },
+  /* el rumano (el interruptor del rumano, 2026): letra latina, y sus ș y ț con la coma debajo (U+0219,
+     U+021B); con la cedilla, ş y ţ son las del turco, y en un texto rumano son una errata */
+  ro:  { debe: null,            prohibe: /[Ѐ-ӿ一-鿿şţŞŢ]/ }
 };
 /* Sin fila, la lectura daba un TypeError, y dentro de `| head -4` en
    tools/auditar.sh el idioma nuevo se quedaba sin control sin que se viera.
@@ -68,7 +71,7 @@ if (!ESCRITURA[LANG]) {
 /* Cuanto puede encoger una traduccion respecto al castellano antes de que
    sea sospechosa. El chino escribe lo mismo en la mitad de caracteres, asi
    que un unico numero para los ocho daria falsas alarmas a mansalva. */
-const MINIMO = { en: 0.5, fr: 0.55, de: 0.5, it: 0.55, nl: 0.5, zh: 0.18, zht: 0.18, bg: 0.45, pl: 0.45 };
+const MINIMO = { en: 0.5, fr: 0.55, de: 0.5, it: 0.55, nl: 0.5, zh: 0.18, zht: 0.18, bg: 0.45, pl: 0.45, ro: 0.5 };
 
 /* ── NORMALIZAR ANTES DE COMPARAR ────────────────────────────────────────
    Comparar las cifras en crudo no vale, y no por poco: en ingles dio 73
@@ -313,7 +316,17 @@ function sinRomanos(txt) {
         return ' ' + n + ' ' + (n2 ? n2 + ' ' : '');
       })
     .replace(/(?<!\p{L})([IVXLCDM]{2,7})(?:e|er|ème)(?!\p{L})/gu,
-      (m, r) => { const n = romanoANumero(r); return n ? ' ' + n + ' ' : m; });
+      (m, r) => { const n = romanoANumero(r); return n ? ' ' + n + ' ' : m; })
+    /* El rumano lo escribe con la palabra delante y el ordinal: «secolul al XVII-lea», «sec. al
+       XVII-lea», «secolele al XVI-lea și al XVII-lea» (el interruptor del rumano, 2026). La palabra es
+       obligatoria, como el sufijo de arriba. */
+    .replace(/(?<!\p{L})(?:[Ss]ecol(?:ul|ului|ele|elor)?|[Ss]ec\.)\s*(?:al\s+)?([IVXLCDM]{1,7})(?:-lea)?(?:\s*(?:[-–—]|și)\s*(?:al\s+)?([IVXLCDM]{1,7})(?:-lea)?)?(?!\p{L})/gu,
+      (m, r, r2) => {
+        const n = romanoANumero(r);
+        if (!n) return m;
+        const n2 = r2 ? romanoANumero(r2) : 0;
+        return ' ' + n + ' ' + (n2 ? n2 + ' ' : '');
+      });
 }
 const reloj = ms => ms.map(m => String(Math.floor(m / 60)).padStart(2, '0') + ':' +
                                 String(m % 60).padStart(2, '0')).join(' ');
@@ -406,7 +419,11 @@ const IGUAL_OK = {
   zh: [], zht: [], bg: [],
   /* el polaco escribe estas igual: son la palabra polaca -karting, zoo,
      marina, skatepark- o no tienen ninguna, como guachinche */
-  pl: ['Guachinche', 'Karting', 'Zoo', 'Marina', 'Skatepark']
+  pl: ['Guachinche', 'Karting', 'Zoo', 'Marina', 'Skatepark'],
+  /* y el rumano (el interruptor del rumano, 2026): karting, zoo y skatepark son palabras rumanas;
+     guachinche no tiene otra (el glosario del rumano: invariable); y el club y «Street Workout», como
+     los otros idiomas, se quedan como se llaman (bloques 5 y 6 del rumano) */
+  ro: ['Guachinche', 'Karting', 'Zoo', 'Skatepark', 'Street Workout', 'Real Club Náutico']
 };
 /* «MTB Anaga» (17 de octubre de 2026). La etiqueta de la ruta MTB de Cruz
    del Carmen era «MTB Anaga · Cruz del Carmen · ★ Top Tenerife»; la 1.5 de
@@ -416,7 +433,7 @@ const IGUAL_OK = {
    macizo. Ya decian «MTB Anaga» antes; solo cambio lo de alrededor. El
    frances dice VTT y el chino y el bulgaro lo traducen: a ellos no se les
    declara, y si un dia lo dejan en castellano, se canta. */
-for (const L of ['en', 'de', 'it', 'nl', 'pl']) IGUAL_OK[L].push('MTB Anaga');
+for (const L of ['en', 'de', 'it', 'nl', 'pl', 'ro']) IGUAL_OK[L].push('MTB Anaga');
 
 /* Barrios y sitios que solo salen en medio de la etiqueta y por eso no los
    pilla la cosecha automatica, que mira el ultimo trozo. Son nombres
@@ -453,7 +470,10 @@ const IGUAL_UI = {
   it: ['Friendly Zone 🐾', 'Pack Tenerife Go', 'Alfa Centauri', 'Nebulosa planetaria', 'Nebulosa oscura', 'supergigante', 'Temperatura media: {t} °C'],
   nl: ['Friendly Zone 🐾', 'Kaus Australis'],
   zh: [], zht: [], bg: [],
-  pl: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Alfa Centauri', 'Kaus Australis']
+  pl: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Alfa Centauri', 'Kaus Australis'],
+  /* el rumano, como el polaco: la zona y la tienda se llaman asi (bloque 1 del rumano), y las dos
+     estrellas, como las escriben el castellano y la UAI (bloque 2) */
+  ro: ['Friendly Zone 🐾', '🏪 Tenerife Go Shop', 'Alfa Centauri', 'Kaus Australis']
 };
 /* LOS AVATARES (modulos/perfil.js; 23 de octubre de 2026, con los de oro).
    Nombres propios que en estos idiomas se escriben igual que en castellano:
@@ -467,14 +487,16 @@ const IGUAL_UI = {
    (31 de octubre de 2026: quien ya llevaba uno lo conserva, y su nombre sale),
    que estaban aqui antes de los de oro y se fueron con ellos: Sklandrausis y
    Kelb tal-Fenek, Fougasse monegasca en italiano y Bosanski lonac en polaco. */
-for (const L of ['en', 'fr', 'de', 'it', 'nl', 'pl'])
+for (const L of ['en', 'fr', 'de', 'it', 'nl', 'pl', 'ro'])
   IGUAL_UI[L].push('Liechtenstein', 'Casa de la Vall', 'Péckvillchen', 'Hallgrímskirkja', 'Falles de Sant Joan', 'Sklandrausis', 'Kelb tal-Fenek');
-for (const L of ['en', 'fr', 'it', 'nl', 'pl']) IGUAL_UI[L].push('Pastel de nata', 'Fish and chips');
-for (const L of ['en', 'fr', 'de', 'it', 'nl']) IGUAL_UI[L].push('Orheiul Vechi');
+for (const L of ['en', 'fr', 'it', 'nl', 'pl', 'ro']) IGUAL_UI[L].push('Pastel de nata', 'Fish and chips');
+/* y en rumano, «Orheiul Vechi» es su nombre (el de Moldavia; bloque 4 del rumano) */
+for (const L of ['en', 'fr', 'de', 'it', 'nl', 'ro']) IGUAL_UI[L].push('Orheiul Vechi');
 IGUAL_UI.fr.push('Art nouveau de Riga', 'Carnaval de Binche', 'Carnaval de Rijeka');
 IGUAL_UI.it.push('Valle del Madriu', 'Fougasse monegasca');
 IGUAL_UI.nl.push('Día de Canarias');
 IGUAL_UI.pl.push('Bosanski lonac');
+IGUAL_UI.ro.push('Bosanski lonac');
 /* «SU CUERPO» (modulos/cuerpo.js; 31 de octubre de 2026): en frances, «Variante de
    {nombre}» se escribe igual que en castellano */
 IGUAL_UI.fr.push('Variante de {nombre}');
@@ -555,7 +577,8 @@ function chinoDe(n) {
    con la cifra entera. sinMiriadas ya desarma el 万; esto desarma el
    "millones" del otro lado para que los dos digan lo mismo. */
 function sinMillones(txt) {
-  return String(txt).replace(/(\d+(?:[.,]\d+)?)\s*(?:millones|millón|million|millions|Millionen|milioni|milione|miljoen|milioane|milionów|miliony|miliona|milion|милиона|милион)(?![\p{L}])/giu,
+  /* el rumano pone «de» desde el 20: «50 de milioane» (el interruptor del rumano, 2026) */
+  return String(txt).replace(/(\d+(?:[.,]\d+)?)\s*(?:millones|millón|million|millions|Millionen|milioni|milione|miljoen|de milioane|milioane|milionów|miliony|miliona|milion|милиона|милион)(?![\p{L}])/giu,
     (m, n) => ' ' + Math.round(Number(String(n).replace(',', '.')) * 1e6) + ' ');
 }
 
@@ -570,6 +593,12 @@ function sinMillones(txt) {
    promesa que el original no hace y tiene que seguir cantando. */
 function sinDobaPolaca(txt) {
   return String(txt).replace(/ca\u0142odobow\p{L}*|ca\u0142\u0105 dob\u0119|ca\u0142ej doby|ca\u0142\u0105 dob\u0105/giu, ' 24 ');
+}
+/* Y EL RUMANO, lo mismo con otras palabras: \u00ab24 de ore din 24\u00bb (veinticuatro horas de veinticuatro, con
+   el 24 dos veces) y \u00abnon-stop\u00bb dicen \u00ablas 24 horas\u00bb del castellano. Tambien se convierten en la cifra,
+   no se borran (el interruptor del rumano, 2026). */
+function sinNonStopRumano(txt) {
+  return String(txt).replace(/24 de ore din 24|non-stop/giu, ' 24 ');
 }
 
 /* EL DESCUENTO A LA CHINA. En chino un descuento se dice por lo que se
@@ -815,7 +844,7 @@ function mirar(es, tr, donde, campo) {
   const trChino = (LANG === 'zh' || LANG === 'zht') ? sinMesesChinos(es, conCifrasChinas(esSinH, sinDescuentoChino(trSinH))) : trSinH;
   const [ta, esSinT] = sacarTelefonos(esSinH), [tb, trSinT] = sacarTelefonos(trChino);
   if (ta.join() !== tb.join()) apunta('TELEFONO', donde, ta + ' vs ' + tb + ' :: ' + es.slice(0, 45));
-  const trDoba = LANG === 'pl' ? sinDobaPolaca(trSinT) : trSinT;
+  const trDoba = LANG === 'pl' ? sinDobaPolaca(trSinT) : LANG === 'ro' ? sinNonStopRumano(trSinT) : trSinT;
   const a = cifras(sinMillones(esSinT)), b = cifras(sinMillones(trDoba));
   if (a.join() !== b.join()) apunta('CIFRAS', donde, a + ' vs ' + b + ' :: ' + es.slice(0, 45));
   const ma = marcas(es), mb = marcas(tr);

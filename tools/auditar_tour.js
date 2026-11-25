@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-/* auditar_tour.js — los tours con Jérôme, enteros, en los diez idiomas.
+/* auditar_tour.js — los tours con Jérôme, enteros, en los once idiomas.
  *
  * POR QUE EXISTE. El 11 de octubre de 2026 Jerome pidio rehacer el tour
  * («añadimos cosas») y «verifica que se traduce en cada idioma. Sin
  * errores». El tour de antes llevaba los pasos en listas dentro de un objeto
  * propio, y ningun control de idioma las leia: un mes diciendo «mas de 700
  * lugares verificados» con 975 en el mapa. Desde entonces los textos son
- * filas de diez idiomas (las leen los controles de idioma) y esto mira lo que
+ * filas de once idiomas (las leen los controles de idioma) y esto mira lo que
  * solo se ve abriendolo: el tour de verdad, en un navegador.
  *
  * EL 10 DE NOVIEMBRE DE 2026 el tour paso a tener un presentador («un
@@ -65,7 +65,7 @@
  *     arriba, queda guardado y el globito no vuelve.
  * Antes de abrir el navegador, sin el: cada texto que el modulo pide existe
  * (en GUIA_UI o en las filas de la app que cita), el nombre de «Su cuerpo» es
- * el del modulo en los diez idiomas (en el menu y en cada frase que la
+ * el del modulo en los once idiomas (en el menu y en cada frase que la
  * nombra) y lo que el tour señala en esa pantalla sigue estando en
  * modulos/cuerpo.js con ese nombre.
  * Y en castellano, ademas: con movimiento (Jérôme vivo, el texto que se escribe
@@ -85,7 +85,7 @@
  * CSS; y el tour de la app entero con ese navegador, con el canvas igual que
  * el SVG en cada paso y sin que se salga nada por los lados.
  * Y al final, entre idiomas: ningun texto puede ser igual que el castellano
- * (en los otros nueve) ni que el ingles (en los otros ocho). tx() cae al
+ * (en los otros diez) ni que el ingles (en los otros nueve). tx() cae al
  * ingles si a una fila le falta el idioma: sin esta comparacion, una fila
  * sin polaco saldria en ingles y todo lo demas daria verde.
  *

@@ -61,7 +61,7 @@
  * lista deja de mirarse, asi que una entrada de mas solo sirve para tapar la
  * proxima vez que alguien deje esa palabra sin traducir.
  *
- *     node tools/castellano_suelto.js             los nueve idiomas
+ *     node tools/castellano_suelto.js             los diez idiomas
  *     node tools/castellano_suelto.js fr          uno
  *     node tools/castellano_suelto.js fr --lista  todos los casos, no 12
  *     node tools/castellano_suelto.js --crudo     sin la lista de aceptadas
@@ -91,7 +91,7 @@ if (PEDIDO && !TODOS.includes(PEDIDO)) { console.log('uso: node tools/castellano
 const IDIOMAS = PEDIDO ? [PEDIDO] : TODOS;
 
 /* ── 1. TODOS LOS TEXTOS DE UN IDIOMA, cada uno con su castellano ──────────── */
-const SUF = { es: 'Es', en: 'En', fr: 'Fr', de: 'De', it: 'It', nl: 'Nl', zh: 'Zh', zht: 'Zht', bg: 'Bg', pl: 'Pl' };
+const SUF = { es: 'Es', en: 'En', fr: 'Fr', de: 'De', it: 'It', nl: 'Nl', zh: 'Zh', zht: 'Zht', bg: 'Bg', pl: 'Pl', ro: 'Ro' };
 const valor = x => x && x.type === 'Literal' && typeof x.value === 'string' ? x.value
   : (x && x.type === 'TemplateLiteral' && !x.expressions.length ? x.quasis[0].value.cooked : null);
 const clave = p => p.key.type === 'Identifier' ? p.key.name : String(p.key.value);
@@ -155,7 +155,7 @@ function filasDelFuente() {
     }
     const fam = new Map();
     for (const [k, v] of cl) {
-      const mm = /^(.+?)(Zht|Es|En|Fr|De|It|Nl|Zh|Bg|Pl)$/.exec(k);
+      const mm = /^(.+?)(Zht|Es|En|Fr|De|It|Nl|Zh|Bg|Pl|Ro)$/.exec(k);
       if (!mm) continue;
       const s = valor(v);
       if (s === null) continue;
@@ -499,7 +499,7 @@ for (const L of IDIOMAS) {
   const sobran = [];
   if (!CRUDO) {
     for (const a of acPal) if (!usadaAc.has(a.x + '|' + a.l) && (a.l === L || a.l === 'todos')) {
-      if (a.l === 'todos') continue;       // las de todos se miran al final, contra los nueve
+      if (a.l === 'todos') continue;       // las de todos se miran al final, contra los diez
       sobran.push('palabra ' + a.x + '  (' + a.motivo.slice(0, 50) + ')');
     }
     for (const id of acFr) if (!usadaFr.has(id)) sobran.push('frases ' + id);
@@ -527,7 +527,7 @@ for (const L of IDIOMAS) {
   if (!LISTA && n > 3 * corta) console.log('     (--lista para verlos todos)');
 }
 /* las aceptadas «para todos» que no salen en NINGUN idioma: solo se puede
-   saber si se han mirado los nueve */
+   saber si se han mirado los diez */
 if (!CRUDO && !PEDIDO) {
   const sobranTodos = aceptadas('palabras', '__ninguno__').filter(a => a.l === 'todos' && !usadasTodos.has(a.x));
   if (sobranTodos.length) {

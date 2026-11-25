@@ -19,7 +19,8 @@
    "todos": ["cotufas", "ustedes", "vosotros", "autobús", "había", "guagua@faq pra-07.a", "millo@faq pra-07.a", "fisco@faq pra-07.a"]
   },
   "el glosario canario (GL_DATA): el ejemplo en castellano es lo que se enseña, y va con su traduccion detras («fleje de gente» = mucha gente)": {
-   "todos": ["fleje@es:había fleje de gente", "gente@es:había fleje de gente", "uno@es:Írsele a uno el baifo", "baifo@es:Írsele a uno el baifo"]
+   "todos": ["fleje@es:había fleje de gente", "gente@es:había fleje de gente", "uno@es:Írsele a uno el baifo", "baifo@es:Írsele a uno el baifo"],
+   "ro": ["¡Ños@es:¡Ños, qué calor!"]
   },
   "romería: el texto la explica a continuacion («su romería, la fiesta en su honor») o pregunta que es": {
    "todos": ["romería@faq cul-07.a", "romería@faq cul-08.l", "romería@faq exc-10.a",
@@ -33,6 +34,9 @@
   },
   "plantas con nombre local, el que usan las guias de la isla, sin otro nombre corriente (viñátigo, píjara, retama, tabaiba, cardón)": {
    "todos": ["viñátigo", "píjara", "píjaras", "píjara-varens", "retamas", "tabaiba", "tabaibas", "cardón", "cardónstruweel"]
+  },
+  "en rumano, «acebiño» va con los otros nombres canarios de su lista («follao, viñátigo, tilo, acebiño»), como los dicen las guias de la isla: no se ha encontrado un nombre rumano comprobado (bloque 7 del rumano; queda para la lectura de un nativo)": {
+   "ro": ["acebiño@lugar pr-tf-52-monte-agua.desc"]
   },
   "ten+: el nombre de la tarjeta de transporte de la isla": {
    "todos": ["ten"]
@@ -77,6 +81,19 @@
   "en chino, la palabra castellana entre parentesis DESPUES de traducirla, para reconocerla en los carteles": {
    "zh": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"],
    "zht": ["malpaís", "baile@es:baile mago", "mago@es:baile mago"]
+  },
+  "en rumano, la palabra castellana entre parentesis DESPUES de traducirla, para reconocerla en los carteles y en la carta: «bolovani rotunjiți (callaos)», «breaslă a pescarilor (cofradía)», «câmp de lavă (malpaís)» (las fichas de los bloques 5 a 8 del rumano y una respuesta del asistente del mapa). Cada una en su texto, para seguir mirando esa palabra en lo demas (el interruptor del rumano, 2026)": {
+   "ro": ["fayal-brezal@lugar sendero-teno-baracan.desc", "fayal-brezal@lugar ar-las-lagunetas.desc", "tizón@lugar malpais-guimar.desc",
+          "tizón@lugar lajiales-fasnia.desc", "picón@lugar montana-taco.desc", "picón@lugar ar-arenas-negras.desc",
+          "piña@lugar guachinche-corujera.desc", "morcilla@lugar guachinche-el-patio.desc", "cofradía@lugar puertito-tajao.desc",
+          "cofradía@lugar puertito-san-andres-norte.desc", "cofradía@lugar pesca-los-abrigos.desc", "halcón@lugar escal-guaria.desc",
+          "medianías@lugar bici-circular-santa-cruz.desc", "malpaís@lugar faro-abona.desc", "malpaís@lugar ciudad-arico.desc",
+          "charangas@lugar ciudad-arafo.desc", "mercadillo@lugar nucleo-las-galletas.desc", "mercadillo@lugar nucleo-playa-san-juan.desc",
+          "callaos@lugar playa-callao-arona.desc", "callaos@lugar playa-las-bajas.desc", "monteverde@lugar mir-la-jardina.desc",
+          "parrandas@faq cul-08.a"]
+  },
+  "en rumano, «inter pares» es la expresion latina con que se dice «revisado por pares» (evaluare inter pares, peer review); el castellano dice «por pares»": {
+   "ro": ["pares@es:sin revisar por pares", "pares@es:sin revisión por pares"]
   },
   "jerga del skate: «rollin» (del ingles roll-in) es como lo dice el castellano, y el ingles, el frances, el italiano, el neerlandes y el polaco lo dejan igual": {
    "zh": ["rollin"],
@@ -145,7 +162,8 @@
  "cortas": {
   "breves pero completas: dicen todo lo del castellano (leidas contra el original)": {
    "fr": ["cs-sanisidro", "cs-medano"],
-   "nl": ["pk-bajamar-piscinas"]
+   "nl": ["pk-bajamar-piscinas"],
+   "ro": ["anaga"]
   }
  }
 }

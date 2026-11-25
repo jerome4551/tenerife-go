@@ -1047,7 +1047,7 @@ function ok(cond, txt, detalle) {
       const fichaTeide = l => fs.readFileSync(path.join(RAIZ, l === 'es' ? 'index.html' : 'idiomas/' + l + '.json'), 'utf8');
       const malAlt = LENGUAS.filter(l => r2.alt[l] !== 'Teide / 3715' + (METROS_APP[l] || ' m'));
       const sinFicha = LENGUAS.filter(l => !new RegExp('715\\s?' + (METROS_APP[l] || ' m').trim() + '(?![A-Za-z])').test(fichaTeide(l)));
-      ok(LENGUAS.length === 10 && malAlt.length === 0 && sinFicha.length === 0,
+      ok(LENGUAS.length === 11 && malAlt.length === 0 && sinFicha.length === 0,
          'la altitud de los picos, con los metros de cada idioma, los de sus fichas del Teide: ' + LENGUAS.map(l => l + ' «' + (r2.alt[l] || '').split(' / ')[1] + '»').join(', '),
          JSON.stringify({ malAlt, sinFicha, alt: r2.alt }));
       const altRojo = LENGUAS.filter(l => r2.altAntes[l] !== 'Teide / 3715' + (METROS_APP[l] || ' m'));

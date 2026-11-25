@@ -17,6 +17,8 @@
  *      Jerome (22 de octubre: los Estados de la ONU en Europa y Chipre, sin
  *      Kosovo ni el Vaticano), con su codigo ISO 3166-1. Ni uno mas ni uno
  *      menos: un pais nuevo pasa antes por su revision (la nota del encargo).
+ *      Desde el rumano (el interruptor del rumano, 2026), el de Rumania es el
+ *      set de su idioma: once de idiomas y los otros 35 paises.
  *   2. los ids, unicos y con la forma de un id del catalogo (la misma que
  *      exigen perfil.js al leer y perfil.sql en la nube); los de oro, y solo
  *      ellos, <set>-oro-<palabra>.
@@ -47,17 +49,17 @@
  *   6. las 467 filas de PERFIL_UI (108 de la pantalla -ocho de ellas, las unidades
  *      en la lengua de cada uno, del 6 de noviembre de 2026; la de los km se fue con
  *      el formulario de km el 10 de noviembre, #99-, 47 de sets, 312 de
- *      avatares: 235, 49 de oro y 28 retirados), con lo que comprobaba validar_i18n.py del encargo: los diez
+ *      avatares: 235, 49 de oro y 28 retirados), con lo que comprobaba validar_i18n.py del encargo: los once
  *      idiomas y ninguno en blanco; los mismos {marcadores} que el castellano;
  *      ni comillas dobles ASCII ni guiones blandos u otros invisibles; los
- *      plurales con sus formas (3 en polaco, 1 en chino) y {n} en cada una;
+ *      plurales con sus formas (3 en polaco y en rumano, 1 en chino) y {n} en cada una;
  *      ni simplificado en el chino tradicional ni al reves; ninguna palabra
  *      bulgara con letras latinas; ninguna fila copiada del castellano; el
  *      texto del permiso nombra «Acepto» tal cual; una fila por set y por
  *      avatar, y ninguna de mas; ninguna clave que ya tenga la app.
  *   7. cada fila que pide el codigo o el cuerpo (sus claves van en TEXTOS)
  *      existe (las de la app, en UI_TX; authLoggedAs y authLogoutBtn, en los
- *      diez de LANGS), y ninguna fila de PERFIL_UI sobra.
+ *      once de LANGS), y ninguna fila de PERFIL_UI sobra.
  *   8. lo que la pantalla nunca hace (la nota del encargo, «Lo que no hay que
  *      hacer»): ni type="number"; innerHTML solo con los dibujos del catalogo,
  *      su propio cuerpo y el degradado de la grafica; ni la ubicacion ni las
@@ -181,13 +183,14 @@ ok(todos.every(a => ANIM.includes(a.a)), 'cada avatar lleva su animacion, una de
 const idsSet = sets.map(s => s.id);
 /* Los 36 paises de Europa (Jerome, 22 de octubre de 2026): los Estados de la ONU en Europa y
    Chipre, sin Kosovo (Espana no lo reconoce) ni el Vaticano. Sus codigos ISO 3166-1, como en
-   validar_catalogo.py del encargo. */
-const EUROPA = 'ie dk se no fi is ee lv lt at be ch lu li mc pt gr mt hr si ba rs me mk al ad sm cy cz sk hu ro md ua by ru'.split(' ');
-ok(LENGUAS.length === 10 && LENGUAS.every(l => idsSet.includes(l)) && EUROPA.every(c => idsSet.includes(c)) && idsSet.every(i => i === 'tf' || LENGUAS.includes(i) || EUROPA.includes(i)),
-  'un set por idioma de la app (SUPPORTED_LANGS), el de Tenerife y uno por cada uno de los 36 paises de Europa, ninguno mas', idsSet.filter(i => i !== 'tf' && !LENGUAS.includes(i) && !EUROPA.includes(i)).concat(EUROPA.filter(c => !idsSet.includes(c)).map(c => 'falta ' + c)).join(','));
+   validar_catalogo.py del encargo. Con el rumano (el interruptor del rumano, 2026), el de Rumania es tambien el
+   set de su idioma: se cuenta con los idiomas, y de paises quedan 35 (11 + 35 y el de Tenerife: los 47). */
+const EUROPA = 'ie dk se no fi is ee lv lt at be ch lu li mc pt gr mt hr si ba rs me mk al ad sm cy cz sk hu ro md ua by ru'.split(' ').filter(c => !LENGUAS.includes(c));
+ok(LENGUAS.length === 11 && EUROPA.length === 35 && LENGUAS.every(l => idsSet.includes(l)) && EUROPA.every(c => idsSet.includes(c)) && idsSet.every(i => i === 'tf' || LENGUAS.includes(i) || EUROPA.includes(i)),
+  'un set por idioma de la app (SUPPORTED_LANGS), el de Tenerife y uno por cada uno de los otros ' + EUROPA.length + ' paises de Europa (de los 36, el de Rumania es el del rumano), ninguno mas', idsSet.filter(i => i !== 'tf' && !LENGUAS.includes(i) && !EUROPA.includes(i)).concat(EUROPA.filter(c => !idsSet.includes(c)).map(c => 'falta ' + c)).join(','));
 const tf = AV.set('tf');
 ok(tf && tf.desbloqueo === 10 && sets.filter(s => s.desbloqueo).length === 1, 'solo el set de Tenerife se desbloquea, con 10 visitas comprobadas (Jerome, 22 de octubre)', tf && tf.desbloqueo);
-ok(Object.keys(MENU).length === 10, 'el menu de idiomas tiene sus diez banderas', Object.keys(MENU).join(','));
+ok(Object.keys(MENU).length === 11, 'el menu de idiomas tiene sus once banderas', Object.keys(MENU).join(','));
 /* la de un pais, sus dos letras regionales: «ie» -> 🇮🇪 (U+1F1EE U+1F1EA) */
 const regional = c => String.fromCodePoint(...[...c.toUpperCase()].map(l => 0x1F1E6 + l.charCodeAt(0) - 65));
 const malBandera = sets.filter(s => s.id !== 'tf' && (LENGUAS.includes(s.id) ? MENU[s.id] : regional(s.id)) !== s.bandera)
@@ -332,12 +335,12 @@ const claves = Object.keys(PUI);
 ok(claves.length === 467, 'PERFIL_UI: 467 filas', claves.length);
 ok(claves.filter(k => k.startsWith('perfilSet_')).length === 47 && claves.filter(k => k.startsWith('perfilAv_')).length === 312 && !claves.includes('perfilAv_en_cabina'), '47 filas de sets y 312 de avatares: 235, 49 de oro y 28 retirados (y 100 de la pantalla, con las dos pestañas y las cuatro de la tarjeta «Su cuerpo»); ninguna de la cabina');
 ok(/\n  Object\.assign\(UI_TX, PERFIL_UI\);\n/.test(MOD), 'se funden en UI_TX con Object.assign(UI_TX, PERFIL_UI), como CIELO_UI');
-const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl'];
+const IDI = ['es', 'en', 'fr', 'de', 'it', 'nl', 'zh', 'zht', 'bg', 'pl', 'ro'];
 /* los idiomas que se preparan por bloques (el rumano, 14-11-2026): sus filas ya estan en PERFIL_UI, pero no
    entran en SUPPORTED_LANGS hasta el interruptor. Se miran como las demas, sin pedirlas; con el interruptor,
    «ro» pasa a IDI y esta lista se queda vacia sola */
 const PREPARA = ['ro'].filter(l => !IDI.includes(l));
-ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los diez idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));
+ok(JSON.stringify(IDI) === JSON.stringify(LENGUAS), 'los once idiomas son los de SUPPORTED_LANGS', LENGUAS.join(','));
 /* Parejas simplificado/tradicional que de verdad difieren (las de validar_i18n.py del encargo) */
 const PAREJAS = '们們这這个個为為说說时時国國会會对對来來发發东東车車长長门門问問间間关關开開头頭实實现現点點让讓过過还還进進没沒种種样樣' +
   '机機体體动動后後处處经經学學写寫业業线線网網数數据據资資载載设設计計号號页頁区區级級观觀览覽历歷亲親认認识識语語读讀选選择擇' +
@@ -381,7 +384,7 @@ for (const k of claves) {
     if (l !== 'es' && t === es && /[áéíóúñ¿¡]/i.test(es) && !IGUAL_ACEPTADO.has(es)) malFilas.push(k + '.' + l + ': igual que el castellano «' + t + '»');
   }
 }
-ok(!malFilas.length, 'las ' + claves.length + ' filas: diez idiomas, marcadores, sin comillas dobles ni invisibles, plurales, chino de cada escritura, bulgaro sin letras latinas, nada copiado del castellano', malFilas.slice(0, 6).join(' · '));
+ok(!malFilas.length, 'las ' + claves.length + ' filas: once idiomas, marcadores, sin comillas dobles ni invisibles, plurales, chino de cada escritura, bulgaro sin letras latinas, nada copiado del castellano', malFilas.slice(0, 6).join(' · '));
 const permiso = PUI.perfilNubeConsentimiento || {}, acepto = PUI.perfilNubeAcepto || {};
 const sinAcepto = IDI.filter(l => !String(permiso[l] || '').includes('«' + acepto[l] + '»') && !String(permiso[l] || '').includes('「' + acepto[l] + '」'));
 ok(acepto.es && !sinAcepto.length, 'el texto del permiso nombra el boton «Acepto» tal cual en cada idioma', sinAcepto.join(','));
@@ -410,7 +413,7 @@ const noEstan = [...pedidasTx, ...pedidasCuerpo].filter(k => !PUI[k] && !APP_UI[
 ok(pedidasTx.size && pedidasCuerpo.size && !noEstan.length, 'cada tx(…) y cada clave de TEXTOS (los textos fijos del cuerpo) tiene su fila (en PERFIL_UI o, las de la app, en UI_TX)', noEstan.join(', '));
 const LANGS_APP = ROT.LANGS;
 const cuentaMal = [...pedidasCuenta].filter(k => IDI.some(l => !String((LANGS_APP[l] || {})[k] || '').trim()));
-ok(pedidasCuenta.size === 2 && !cuentaMal.length, 'authLoggedAs y authLogoutBtn, de AUTH_STRINGS con t(), en los diez idiomas', [...pedidasCuenta].join(',') + ' ' + cuentaMal.join(','));
+ok(pedidasCuenta.size === 2 && !cuentaMal.length, 'authLoggedAs y authLogoutBtn, de AUTH_STRINGS con t(), en los once idiomas', [...pedidasCuenta].join(',') + ' ' + cuentaMal.join(','));
 const literales = new Set([...CODIGO.matchAll(/'(perfil[A-Za-z0-9_]+)'/g)].map(m => m[1]));
 const sobran = claves.filter(k => !k.startsWith('perfilSet_') && !k.startsWith('perfilAv_') && !pedidasTx.has(k) && !pedidasCuerpo.has(k) && !literales.has(k));
 ok(!sobran.length, 'ninguna fila de la pantalla sobra (todas las pide el codigo o el cuerpo)', sobran.join(', '));

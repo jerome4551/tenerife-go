@@ -16,7 +16,7 @@
  *      tildes y en ingles, elegir un pais, un avatar de Europa que vuelve al abrir,
  *      Escape, el cambio de idioma con la lista abierta, «Sorpréndeme» y nada
  *      fuera de sitio a 360 px; y los cortes de los nombres (cortes_nombres.py):
- *      los 284 de avatar (235 y 49 de oro) y los 47 de set, en los diez idiomas,
+ *      los 284 de avatar (235 y 49 de oro) y los 47 de set, en los once idiomas,
  *      ninguna palabra mas ancha que su caja y, en la tira, dos lineas como mucho;
  *      y la fecha de los de oro, que quepa en su boton, tambien en «De oro»;
  *   1c. los de oro y el movimiento (las 10 del 23 de octubre por la tarde, de la
@@ -52,16 +52,16 @@
  *   4. lo de la nota: los 284 avatares pintados; uno de cada set, en el heroe y en
  *      el boton de la cuenta; los dos botones de «Cuenta» abren el perfil; cada
  *      texto fijo del cuerpo (TEXTOS) da con su elemento y su clave; y en los
- *      diez idiomas, a 360, 390 y 430 px: ningun rotulo con una palabra partida,
+ *      once idiomas, a 360, 390 y 430 px: ningun rotulo con una palabra partida,
  *      nada fuera de la pantalla, ningun texto vacio, nada en castellano fuera del
  *      castellano y ningun error;
- *   4b. los de oro en pantalla (barrido_oro.py): diez idiomas, tres anchos y cinco
+ *   4b. los de oro en pantalla (barrido_oro.py): once idiomas, tres anchos y cinco
  *      estados (hoy; «De oro»; el 1 de marzo de 2027, Baba Marta y los dos
  *      Mărțișor, en «De oro» y en el set bulgaro; y el Carnaval de 2027 con
  *      Tenerife cerrado): ni marcadores sueltos, ni «undefined», ni castellano fuera
  *      del castellano, ni palabras cortadas, ni nada fuera de la pantalla, y cada
  *      distintivo de oro dentro de su boton. Con PERFIL_CAPTURAS=<carpeta>, las
- *      capturas a 390 px del 1 de marzo y del Carnaval en los diez idiomas.
+ *      capturas a 390 px del 1 de marzo y del Carnaval en los once idiomas.
  * Las peticiones que no son a 127.0.0.1 se cortan: nada sale de aqui.
  */
 'use strict';
@@ -374,12 +374,12 @@ async function selector(b) {
   await E(`setLang('es')`); await pg.waitForTimeout(200); await pg.click('#tgp-paises-btn'); await pg.waitForTimeout(100);
   const sets = new Set();
   for (let i = 0; i < 30; i++) { await pg.click('#tgp-random'); await pg.waitForTimeout(30); sets.add(await E('TG_AVATARES.porId(TG_PERFIL.estado().avatar).set')); }
-  const LENG10 = ['es', 'en', 'de', 'fr', 'it', 'nl', 'pl', 'bg', 'zh', 'zht'];
-  ok(!sets.has('tf') && [...sets].some(s => !LENG10.includes(s)), '35 «Sorpréndeme» elige tambien entre los de Europa, nunca del set cerrado', [...sets].sort());
+  /* los de Europa: los que no son el set de un idioma de la app (desde el rumano, el de Rumania lo es; el interruptor del rumano, 2026) */
+  ok(!sets.has('tf') && [...sets].some(s => !LENG.includes(s)), '35 «Sorpréndeme» elige tambien entre los de Europa, nunca del set cerrado', [...sets].sort());
   ok(!errs.length, '35b sin errores', errs);
   await ctx.close();
 
-  /* 36 y los cortes de los nombres (cortes_nombres.py), a 360 px y en los diez idiomas */
+  /* 36 y los cortes de los nombres (cortes_nombres.py), a 360 px y en los once idiomas */
   const fuera36 = {}, cortes = {};
   const c2 = await contexto(b, { viewport: { width: 360, height: 800 } }), p2 = await c2.newPage(), e2 = errores(p2);
   await abrirApp(p2, 'es');
@@ -429,8 +429,8 @@ async function selector(b) {
     (await MIDE('#tgp-strip .tgp-av .name')).concat(await FECHAS()).forEach(x => malos.push('oro: ' + x));
     if (malos.length) cortes[L] = malos;
   }
-  ok(!Object.keys(fuera36).length && !e2.length, '36 a 360 px, en los diez idiomas, nada se sale (la lista, las pestañas y el boton)', [fuera36, e2]);
-  ok(!Object.keys(cortes).length, '36b los 284 nombres de avatar (235 y 49 de oro) y los 47 de set, en los diez idiomas a 360 px: ninguna palabra mas ancha que su caja, en la tira dos lineas como mucho, y la fecha de los de oro en su boton, tambien en «De oro»', cortes);
+  ok(!Object.keys(fuera36).length && !e2.length, '36 a 360 px, en los once idiomas, nada se sale (la lista, las pestañas y el boton)', [fuera36, e2]);
+  ok(!Object.keys(cortes).length, '36b los 284 nombres de avatar (235 y 49 de oro) y los 47 de set, en los once idiomas a 360 px: ninguna palabra mas ancha que su caja, en la tira dos lineas como mucho, y la fecha de los de oro en su boton, tambien en «De oro»', cortes);
   await c2.close();
 }
 
@@ -587,7 +587,7 @@ async function oro(b) {
    (tablist, tab, tabpanel, aria-selected, aria-controls), el teclado de WAI-ARIA (flechas,
    Inicio y Fin; solo la abierta entra con el tabulador), que recuerda la ultima al cerrar y
    al volver a abrir la app (y un valor raro guardado vuelve a Viaje), sus nombres en los
-   diez idiomas, y que al cambiar desde abajo la pestaña nueva empieza bajo la barra. */
+   once idiomas, y que al cambiar desde abajo la pestaña nueva empieza bajo la barra. */
 async function pestanas(b) {
   console.log('\n=== 1d. las pestañas: Viaje, Cuerpo y Cuenta ===');
   const ctx = await contexto(b), pg = await ctx.newPage(), errs = errores(pg);
@@ -640,16 +640,16 @@ async function pestanas(b) {
   const v5 = await ver();
   ok(v3.sel.join() === 'cuerpo' && v4.sel.join() === 'cuerpo' && v4.ver.join() === 'tgp-cuerpo' && v5.sel.join() === 'viaje',
     'p4 la ultima pestaña se recuerda al cerrar el perfil y al volver a abrir la app; un valor raro guardado vuelve a Viaje', [v3.sel, v4.sel, v5.sel]);
-  /* sus nombres, en los diez idiomas */
+  /* sus nombres, en los once idiomas */
   const nombres = {};
   for (const L of LENG) {
     await pg.evaluate(l => setLang(l), L); await pg.waitForTimeout(250);
     nombres[L] = await pg.evaluate(() => [...document.querySelectorAll('#tgp-tabs .tgp-tab .txt')].map(e => e.textContent.trim()).join(' / '));
   }
   const ESPERA = { es: 'Viaje / Cuerpo / Cuenta', en: 'Travel / Body / Account', fr: 'Voyage / Corps / Compte', de: 'Reise / Körper / Konto', it: 'Viaggio / Corpo / Account',
-    nl: 'Reis / Lichaam / Account', zh: '旅行 / 身体 / 账户', zht: '旅行 / 身體 / 帳戶', bg: 'Пътуване / Тяло / Акаунт', pl: 'Podróż / Ciało / Konto' };
+    nl: 'Reis / Lichaam / Account', zh: '旅行 / 身体 / 账户', zht: '旅行 / 身體 / 帳戶', bg: 'Пътуване / Тяло / Акаунт', pl: 'Podróż / Ciało / Konto', ro: 'Călătorie / Corp / Cont' };
   const malNombre = LENG.filter(l => nombres[l] !== ESPERA[l]);
-  ok(LENG.length === 10 && !malNombre.length, 'p5 las tres pestañas, con su nombre en los diez idiomas', malNombre.map(l => l + ': ' + nombres[l]));
+  ok(LENG.length === 11 && !malNombre.length, 'p5 las tres pestañas, con su nombre en los once idiomas', malNombre.map(l => l + ': ' + nombres[l]));
   await pg.evaluate(() => setLang('es')); await pg.waitForTimeout(200);
   /* desde abajo: la pestaña nueva empieza bajo la barra, no a media pagina */
   await pg.evaluate(() => TG_PERFIL.pestana('viaje')); await pg.waitForTimeout(100);
@@ -684,7 +684,7 @@ async function pestanas(b) {
     if (L === 'bg' && esc === 2) altoBg = r[0];
   }
   await pg.evaluate(() => { document.documentElement.style.fontSize = ''; setLang('es'); }); await pg.waitForTimeout(200);
-  ok(!Object.keys(tapa).length && altoBg > 100, 'p6b con la letra al doble, y en búlgaro con el título en dos líneas: en los diez idiomas, la barra pegada arriba queda justo debajo de la cabecera, sin que la tape', { tapa, altoBg });
+  ok(!Object.keys(tapa).length && altoBg > 100, 'p6b con la letra al doble, y en búlgaro con el título en dos líneas: en los once idiomas, la barra pegada arriba queda justo debajo de la cabecera, sin que la tape', { tapa, altoBg });
   /* con la barra pegada, la cabecera va entera: por la franja de su degradado se veia pasar
      lo de debajo; arriba del todo, su degradado de siempre */
   const fondo = () => pg.evaluate(() => ({ con: document.getElementById('perfil-panel').classList.contains('tgp-con-barra'), img: getComputedStyle(document.querySelector('.tgp-top')).backgroundImage, barra: getComputedStyle(document.getElementById('tgp-tabs')).backgroundColor }));
@@ -694,7 +694,7 @@ async function pestanas(b) {
   const arriba = await fondo();
   ok(abajo.con && abajo.img === 'none' && !arriba.con && /gradient/.test(arriba.img) && /^rgb\(/.test(abajo.barra),
     'p6c al bajar, con la barra pegada, la cabecera va entera y la barra es opaca: no se ve pasar nada por debajo; arriba, la cabecera con su degradado', { abajo, arriba });
-  /* sus nombres, enteros: a 320 y a 360 px, con la letra del movil a 1,3, en los diez idiomas */
+  /* sus nombres, enteros: a 320 y a 360 px, con la letra del movil a 1,3, en los once idiomas */
   const partidos = {};
   for (const w of [320, 360]) {
     await pg.setViewportSize({ width: w, height: 844 }); await pg.waitForTimeout(150);
@@ -711,7 +711,7 @@ async function pestanas(b) {
   }
   await pg.evaluate(() => { document.documentElement.style.fontSize = ''; setLang('es'); });
   await pg.setViewportSize({ width: 390, height: 844 }); await pg.waitForTimeout(200);
-  ok(!Object.keys(partidos).length, 'p6d los nombres de las pestañas, enteros y dentro de su pestaña, a 320 y a 360 px con la letra del móvil a 1,3: en los diez idiomas', partidos);
+  ok(!Object.keys(partidos).length, 'p6d los nombres de las pestañas, enteros y dentro de su pestaña, a 320 y a 360 px con la letra del móvil a 1,3: en los once idiomas', partidos);
   /* el iPhone con isla dinamica (1 de noviembre de 2026): 59 px arriba, que el panel ya deja con su
      padding-top. La cabecera se queda en ellos, sin sumarlos otra vez (antes bajaba a 118, y al
      cambiar de pestaña desde abajo lo primero de la pestaña nueva quedaba escondido detras de la
@@ -921,7 +921,7 @@ async function nube(b) {
     (await leer()).forEach((t, i) => { if (!t.trim() || t.trim().startsWith('perfil') || t === ES[i]) malos.push([L, SEL[i], t.slice(0, 60)]); });
   }
   await E(`setLang('es')`); await pg.waitForTimeout(150);
-  ok(!malos.length, 'n26 los textos de la nube en los diez idiomas', malos);
+  ok(!malos.length, 'n26 los textos de la nube en los once idiomas', malos);
   await colaVacia(); await E('TG_PERFIL.sincronizar()');
   await pg.fill('#tgp-peso-fecha', dia(7)); await pg.fill('#tgp-peso-nuevo', '73,3'); await pg.click('#tgp-add-peso button[type=submit]');
   await colaVacia(); await pg.waitForTimeout(200);
@@ -1076,9 +1076,9 @@ async function visitas(b) {
   await ctx.close();
 }
 
-/* ── 4. lo de la nota: avatares, botones, diez idiomas y tres anchos ──── */
+/* ── 4. lo de la nota: avatares, botones, once idiomas y tres anchos ──── */
 async function pantalla(b) {
-  console.log('\n=== 4. los avatares, los botones y los diez idiomas a 360, 390 y 430 px ===');
+  console.log('\n=== 4. los avatares, los botones y los once idiomas a 360, 390 y 430 px ===');
   const ctx = await contexto(b, { sinCuerpo: true }), pg = await ctx.newPage(), errs = errores(pg);
   await abrirApp(pg, 'es');
   await pg.evaluate(hoy => {
@@ -1123,7 +1123,7 @@ async function pantalla(b) {
   ok(elegidos.length === 47 && elegidos.every(x => !x.includes(':')), 'p4 uno de cada uno de los 47 sets (Tenerife incluido, con 10 visitas comprobadas): queda elegido, en el heroe, guardado y en el boton de la cuenta', elegidos.filter(x => x.includes(':')));
   await ctx.close();
 
-  /* los diez idiomas, a tres anchos, con datos en cada parte */
+  /* los once idiomas, a tres anchos, con datos en cada parte */
   const ROTULOS = '.tgp-tab .txt, .tgp-tile .k, .tgp-tile .v, .tgp-stamp .nm, .tgp-stamp .th, .tgp-set, .tgp-mas, .tgp-pais .name, .tgp-btn, .tgp-chip, .tgp-card h2, .tgp-top h1, .tgp-field label, .tgp-seg button, .tgp-ranges button, .tgp-legend span, .tgp-lema, .tgp-eyebrow';
   for (const ancho of [360, 390, 430]) {
     const c2 = await contexto(b, { viewport: { width: ancho, height: 900 }, sinCuerpo: true }), p2 = await c2.newPage(), e2 = errores(p2);
@@ -1209,13 +1209,13 @@ async function pantalla(b) {
       }
       await p2.evaluate(() => TG_PERFIL.pestana('viaje'));
     }
-    ok(!partidas.length, 'p5 a ' + ancho + ' px, en los diez idiomas: ningun rotulo con una palabra partida en dos lineas (sin guion)', [...new Set(partidas)].slice(0, 12));
+    ok(!partidas.length, 'p5 a ' + ancho + ' px, en los once idiomas: ningun rotulo con una palabra partida en dos lineas (sin guion)', [...new Set(partidas)].slice(0, 12));
     ok(!fuera.length, 'p6 a ' + ancho + ' px: nada se sale de la pantalla', [...new Set(fuera)].slice(0, 12));
     ok(!vacios.length, 'p7 a ' + ancho + ' px: ningun texto vacio', vacios.slice(0, 12));
     ok(!castellano.length, 'p8 a ' + ancho + ' px: nada en castellano fuera del castellano', [...new Set(castellano)].slice(0, 12));
     ok(!e2.length, 'p9 a ' + ancho + ' px: sin errores', e2);
-    ok(!casillas.length, 'p10 a ' + ancho + ' px, en los diez idiomas: las casillas de «Sus datos» de una misma fila, a la misma altura, aunque un rotulo ocupe dos lineas', casillas.slice(0, 12));
-    ok(!fecha.length, 'p11 a ' + ancho + ' px, en los diez idiomas: la fecha de «Su evolucion» (peso y kilometros), sin el aspecto de serie y sin montarse en la casilla de al lado (por debajo de 375 px, la de debajo)', fecha.slice(0, 12));
+    ok(!casillas.length, 'p10 a ' + ancho + ' px, en los once idiomas: las casillas de «Sus datos» de una misma fila, a la misma altura, aunque un rotulo ocupe dos lineas', casillas.slice(0, 12));
+    ok(!fecha.length, 'p11 a ' + ancho + ' px, en los once idiomas: la fecha de «Su evolucion» (peso y kilometros), sin el aspecto de serie y sin montarse en la casilla de al lado (por debajo de 375 px, la de debajo)', fecha.slice(0, 12));
     await c2.close();
   }
 }
@@ -1257,7 +1257,7 @@ const JS_ORO = () => {
   return { textos, cortes: [...new Set(cortes)], desborde: [...new Set(desborde)].slice(0, 12), sw: document.getElementById('perfil-panel').scrollWidth - innerWidth };
 };
 async function barridoOro(b) {
-  console.log('\n=== 4b. los de oro en pantalla: diez idiomas, tres anchos y cinco estados (barrido_oro.py) ===');
+  console.log('\n=== 4b. los de oro en pantalla: once idiomas, tres anchos y cinco estados (barrido_oro.py) ===');
   const CAPTURAS = process.env.PERFIL_CAPTURAS || '';
   /* nombres propios que ese idioma deja en castellano a proposito (los revisores de cada idioma; tambien en IGUAL_UI de auditar_idioma.js) */
   const ACEPTADOS = { nl: new Set(['Día de Canarias']) };
@@ -1299,7 +1299,7 @@ async function barridoOro(b) {
     await ctx.close();
   }
   const malos = Object.entries(hallazgos).filter(([, v]) => v.length);
-  ok(pantallas === 150 && !malos.length, '4b los de oro, en ' + pantallas + ' pantallas (diez idiomas, tres anchos y cinco estados): ni marcadores sueltos, ni castellano fuera del castellano, ni palabras cortadas, ni nada fuera de la pantalla, y cada distintivo de oro dentro de su boton',
+  ok(pantallas === 165 && !malos.length, '4b los de oro, en ' + pantallas + ' pantallas (once idiomas, tres anchos y cinco estados): ni marcadores sueltos, ni castellano fuera del castellano, ni palabras cortadas, ni nada fuera de la pantalla, y cada distintivo de oro dentro de su boton',
     Object.fromEntries(malos.map(([k, v]) => [k, [...new Set(v)].slice(0, 6)])));
 }
 
