@@ -2,8 +2,13 @@
  "fuente": "Gobierno de Canarias. Portal de Noticias, categoría «Alertas» (canal RSS).",
  "canal": "https://www3.gobiernodecanarias.org/noticias/category/alertas/feed/",
  "web": "https://www3.gobiernodecanarias.org/noticias/category/alertas/",
- "consultado": "2026-11-26T13:15:44Z",
+ "consultado": "2026-11-26T15:50:48Z",
  "alertas": [
+  {
+   "t": "2026-11-26T14:48:22Z",
+   "titulo": "El Gobierno de Canarias finaliza la prealerta por desprendimientos en islas occidentales y Gran Canaria",
+   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-finalizada-la-prealerta-por-desprendimientos-en-islas-occidentales-y-gran-canaria/"
+  },
   {
    "t": "2026-11-26T11:48:41Z",
    "titulo": "El Gobierno de Canarias da por finalizada la situación de prealerta por lluvias en La Palma",
@@ -58,11 +63,6 @@
    "t": "2026-11-10T15:24:30Z",
    "titulo": "El Gobierno de Canarias declara la prealerta por riesgo de inundaciones en el archipiélago",
    "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-declara-la-prealerta-por-riesgo-de-inundaciones-en-el-archipielago/"
-  },
-  {
-   "t": "2026-11-10T15:06:34Z",
-   "titulo": "El Gobierno de Canarias activa la prealerta por riesgo de desprendimientos en islas occidentales y Gran Canaria",
-   "enlace": "https://www3.gobiernodecanarias.org/noticias/el-gobierno-de-canarias-activa-la-prealerta-por-riesgo-de-desprendimientos-en-islas-occidentales-y-gran-canaria-2/"
   }
  ],
  "descartados": 0
