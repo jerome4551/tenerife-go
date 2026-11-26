@@ -160,7 +160,7 @@ De dónde viene cada una:
 | `gym-acropolis-orotava` | 2026-11-22 | Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3964055, -16.5231911; «Junto a Acropolis Gym, La Orotava»; «Dirección cercana: C. el Drago, 48, 38300 La Orotava») |
 | `gym-arnoldfit-arona` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0563908, -16.7173156; «Dirección cercana: Gimnasio Arnold Fit Gym Los Cristianos, Av. de Chayofita, 13, Port 2, 38650 Los Cristianos») |
 | `gym-atenea-santaursula` | 2026-11-22 | Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.4222137, -16.4996084; «Dirección cercana: Atenea Gym, Santa Úrsula, C. las Folías, 4, 38390 Sta Úrsula») |
-| `gym-bahia-puerto` | 2026-11-22 | OpenStreetMap, node/10862318415 («Gimnasio Bahía»), extracto de Geofabrik del 26-09-2026 |
+| `gym-bahia-puerto` | 2026-11-26 | Marcador de Jerome en Google Maps, captura enviada el 26-11-2026 (28.4111348, -16.5583176; «Dirección cercana: Cafetería Bahía Frescos, Paseo Fermín Rodriguez, 38400 Puerto de la Cruz»); el cartel del gimnasio, en Street View de agosto de 2026 |
 | `gym-bulldog-sanmiguel` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0474290, -16.6191924; «Dirección cercana: Bulldog Gym, 8 - 10, C. Caracas, 38639») |
 | `gym-canariasfit-tegueste` | 2026-11-20 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380466015 «Gimnasio Canarias», dato de 2019 |
 | `gym-casablanca-puerto` | 2026-11-22 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380282007 «Gimnasio Casablanca», dato de 2019 |
