@@ -1,0 +1,91 @@
+{
+ "_": "Rumano (ro) de las fichas de los gimnasios del mapa (bloque 4d de «Su deporte», nota 68): los seis del noroeste y del oeste (San Juan de la Rambla, La Guancha, Icod de los Vinos, Santiago del Teide y Guía de Isora), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "gym-royalfit-sanjuan.desc",
+   "es": "Gimnasio en San Juan de la Rambla. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în San Juan de la Rambla. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-royalfit-sanjuan.cat",
+   "es": "Gimnasio · San Juan de la Rambla",
+   "forma": "texto",
+   "ro": "Sală de fitness · San Juan de la Rambla"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-keepstrong-guancha.desc",
+   "es": "Gimnasio en La Guancha. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în La Guancha. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-keepstrong-guancha.cat",
+   "es": "Gimnasio · La Guancha",
+   "forma": "texto",
+   "ro": "Sală de fitness · La Guancha"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-naefit-icod.desc",
+   "es": "Gimnasio en Icod de los Vinos. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Icod de los Vinos. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-naefit-icod.cat",
+   "es": "Gimnasio · Icod de los Vinos",
+   "forma": "texto",
+   "ro": "Sală de fitness · Icod de los Vinos"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-poligono-icod.desc",
+   "es": "Gimnasio en Icod de los Vinos. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Icod de los Vinos. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-poligono-icod.cat",
+   "es": "Gimnasio · Icod de los Vinos",
+   "forma": "texto",
+   "ro": "Sală de fitness · Icod de los Vinos"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-arnoldfit-puertosantiago.desc",
+   "es": "Gimnasio en Santiago del Teide. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Santiago del Teide. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-arnoldfit-puertosantiago.cat",
+   "es": "Gimnasio · Santiago del Teide",
+   "forma": "texto",
+   "ro": "Sală de fitness · Santiago del Teide"
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-duragym-isora.desc",
+   "es": "Gimnasio en Guía de Isora. Pregunte en recepción si admite la entrada de un día.",
+   "forma": "texto",
+   "ro": "Sală de fitness în Guía de Isora. Întrebați la recepție dacă se poate intra pentru o singură zi."
+  },
+  {
+   "tabla": "places",
+   "clave": "gym-duragym-isora.cat",
+   "es": "Gimnasio · Guía de Isora",
+   "forma": "texto",
+   "ro": "Sală de fitness · Guía de Isora"
+  }
+ ]
+}

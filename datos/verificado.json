@@ -838,6 +838,30 @@
   "gym-teamricardo-realejos": {
    "fecha": "2026-11-22",
    "fuente": "Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3829722, -16.5763112; «Dirección cercana: TEAM RICARDO GYM, C. los Herreros, 1, 38419 Los Realejos»)"
+  },
+  "gym-royalfit-sanjuan": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 25-11-2026 (28.3793077, -16.6459759; «Dirección cercana: C. Molino del Viento, 1, 38428 San Juan de la Rambla»)"
+  },
+  "gym-keepstrong-guancha": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 25-11-2026 (28.3738961, -16.6500904; «Dirección cercana: Gimnasio Keep Strong La Guancha, Av. Hipólito Sinforiano, 38440 La Guancha»)"
+  },
+  "gym-naefit-icod": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3802469, -16.6881530; «Dirección cercana: …, NAE FIT, Carr. General, 24, 38434 Icod de los Vinos»)"
+  },
+  "gym-poligono-icod": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 25-11-2026 (28.3793501, -16.6958003; «Dirección cercana: Poligono Sport Fitness Center, C. las Almenas, 5, 38434 Icod de los Vinos»)"
+  },
+  "gym-arnoldfit-puertosantiago": {
+   "fecha": "2026-11-26",
+   "fuente": "OpenStreetMap, node/13615164790 («Arnold Fit»), extracto de Geofabrik del 26-09-2026"
+  },
+  "gym-duragym-isora": {
+   "fecha": "2026-11-26",
+   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380197012 «Gimnasio Duragym», dato de 2019"
   }
  },
  "areas": {

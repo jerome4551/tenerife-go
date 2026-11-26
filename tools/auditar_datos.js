@@ -206,8 +206,10 @@ console.log('\n=== lugares ===');
    en Adeje, tres en Arona, tres en San Miguel de Abona y tres en Granadilla de Abona, elegidos
    como los del 4a; Arnold Fit Los Cristianos lo pidio Jerome.
    996 -> 1008 el 25 de noviembre de 2026: los doce gimnasios del norte, bloque 4c (nota 66): de
-   Tacoronte, La Victoria de Acentejo, Santa Ursula, La Orotava, Puerto de la Cruz y Los Realejos. */
-debe('lugares', PLACES.length, PLACES.length === 1008);
+   Tacoronte, La Victoria de Acentejo, Santa Ursula, La Orotava, Puerto de la Cruz y Los Realejos.
+   1008 -> 1014 el 26 de noviembre de 2026: los seis gimnasios del noroeste y del oeste, bloque 4d
+   (nota 68): de San Juan de la Rambla, La Guancha, Icod de los Vinos, Santiago del Teide y Guia de Isora. */
+debe('lugares', PLACES.length, PLACES.length === 1014);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

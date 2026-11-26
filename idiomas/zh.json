@@ -1006,5 +1006,11 @@
  "gym-casablanca-puerto": {"desc": "克鲁斯港的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 克鲁斯港"},
  "gym-bahia-puerto": {"desc": "克鲁斯港的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 克鲁斯港"},
  "gym-realgym-realejos": {"desc": "洛斯雷亚莱霍斯的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 洛斯雷亚莱霍斯"},
- "gym-teamricardo-realejos": {"desc": "洛斯雷亚莱霍斯的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 洛斯雷亚莱霍斯"}
+ "gym-teamricardo-realejos": {"desc": "洛斯雷亚莱霍斯的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 洛斯雷亚莱霍斯"},
+ "gym-royalfit-sanjuan": {"desc": "圣胡安德拉兰布拉的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣胡安德拉兰布拉"},
+ "gym-keepstrong-guancha": {"desc": "拉关查的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 拉关查"},
+ "gym-naefit-icod": {"desc": "伊科德的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 伊科德"},
+ "gym-poligono-icod": {"desc": "伊科德的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 伊科德"},
+ "gym-arnoldfit-puertosantiago": {"desc": "圣地亚哥德尔泰德的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣地亚哥德尔泰德"},
+ "gym-duragym-isora": {"desc": "圭亚德伊索拉的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圭亚德伊索拉"}
 }

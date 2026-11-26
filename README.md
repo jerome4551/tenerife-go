@@ -14,7 +14,7 @@ Publicada en GitHub Pages, en su dominio: <https://tenerifego.app/> (desde el
 
 | Fichero | Qué es |
 |---|---|
-| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 1.008 lugares (996 desde el 24 de noviembre, cuando entraron los doce gimnasios del sur, hasta que entraron los doce del norte; 984 desde el 23 de noviembre, cuando se quitó la ficha «Faro de Garachico», de la que no se encontró ninguna fuente, hasta que entraron los doce gimnasios del sur; 985 entre el 22 y el 23 de noviembre, desde que entraron los diez primeros gimnasios del mapa; 975 entre el 17 y el 22 de noviembre; 979 entre el 31 de octubre, cuando se quitó una bodega cerrada, y el 8 de noviembre, cuando entró la etapa 2 del GR-131; 980 hasta el 17 de noviembre, cuando se juntaron tres fichas repetidas con la suya y se quitaron el mirador abandonado del Pico de las Flores y la ficha «Cumbre Dorsal — Mirador La Jardina», que repetía el punto del Mirador La Jardina). Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS con sus robots encendidos: 35.785 líneas, 2,5 MB (763 kB con gzip). |
+| `index.html` | **La aplicación**: HTML, CSS y JavaScript en un solo fichero, y dentro los 1.014 lugares (1.008 con los doce del norte, hasta que entraron los seis del noroeste y del oeste; 996 desde el 24 de noviembre, cuando entraron los doce gimnasios del sur, hasta que entraron los doce del norte; 984 desde el 23 de noviembre, cuando se quitó la ficha «Faro de Garachico», de la que no se encontró ninguna fuente, hasta que entraron los doce gimnasios del sur; 985 entre el 22 y el 23 de noviembre, desde que entraron los diez primeros gimnasios del mapa; 975 entre el 17 y el 22 de noviembre; 979 entre el 31 de octubre, cuando se quitó una bodega cerrada, y el 8 de noviembre, cuando entró la etapa 2 del GR-131; 980 hasta el 17 de noviembre, cuando se juntaron tres fichas repetidas con la suya y se quitaron el mirador abandonado del Pico de las Flores y la ficha «Cumbre Dorsal — Mirador La Jardina», que repetía el punto del Mirador La Jardina). Medido el 24 de octubre de 2026, con el panel del cielo, «Apunta al cielo», lo que piden las reseñas, los satélites, la noche guiada, el modo nativo de la App Store, el perfil y el botón SOS con sus robots encendidos: 35.785 líneas, 2,5 MB (763 kB con gzip). |
 | `datos/titsa.js` | La red de guaguas y tranvía: las 183 líneas y las 2.514 marquesinas, con sus notas de origen. Solo datos; lo carga `index.html`. |
 | `modulos/cielo.js` | El panel 🔭 «Cielo de Tenerife»: su código y sus textos en los once idiomas. No se carga al arrancar: lo pide `index.html` la primera vez que alguien abre el panel. |
 | `modulos/perfil.js` | La pantalla «Su perfil», la que abre «Cuenta»: el avatar y el nombre y, en tres pestañas, Viaje (el avatar y su isla con los logros), Cuerpo (la tarjeta que abre «Su cuerpo», con su personaje en pequeño; los datos con el IMC y la evolución del peso y de los kilómetros que anota la persona) y Cuenta (con la nube solo con permiso). Su código, sus estilos y sus textos en los once idiomas. Se pide la primera vez que alguien toca «Cuenta». |
@@ -119,8 +119,8 @@ castellano. Cada uno es un objeto así:
 
 Reparto actual: 44 categorías en 11 pestañas de filtro. Las que más lugares
 tienen, contando solo la categoría principal de cada uno: gasolineras (211),
-playas (73), parkings (40), senderismo (37), gastronomía (37) y
-supermercados (36). Todas estas cifras las coteja `tools/auditar_readme.js`
+playas (73), parkings (40), gimnasios (40), senderismo (37) y
+gastronomía (37). Todas estas cifras las coteja `tools/auditar_readme.js`
 contra los datos: si cambian y este fichero no, la auditoría se pone en rojo.
 
 ### Idiomas

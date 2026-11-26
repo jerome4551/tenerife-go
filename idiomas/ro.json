@@ -1006,5 +1006,11 @@
  "gym-casablanca-puerto": {"desc": "Sală de fitness în Puerto de la Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Puerto de la Cruz"},
  "gym-bahia-puerto": {"desc": "Sală de fitness în Puerto de la Cruz. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Puerto de la Cruz"},
  "gym-realgym-realejos": {"desc": "Sală de fitness în Los Realejos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Los Realejos"},
- "gym-teamricardo-realejos": {"desc": "Sală de fitness în Los Realejos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Los Realejos"}
+ "gym-teamricardo-realejos": {"desc": "Sală de fitness în Los Realejos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Los Realejos"},
+ "gym-royalfit-sanjuan": {"desc": "Sală de fitness în San Juan de la Rambla. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · San Juan de la Rambla"},
+ "gym-keepstrong-guancha": {"desc": "Sală de fitness în La Guancha. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · La Guancha"},
+ "gym-naefit-icod": {"desc": "Sală de fitness în Icod de los Vinos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Icod de los Vinos"},
+ "gym-poligono-icod": {"desc": "Sală de fitness în Icod de los Vinos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Icod de los Vinos"},
+ "gym-arnoldfit-puertosantiago": {"desc": "Sală de fitness în Santiago del Teide. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Santiago del Teide"},
+ "gym-duragym-isora": {"desc": "Sală de fitness în Guía de Isora. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Guía de Isora"}
 }

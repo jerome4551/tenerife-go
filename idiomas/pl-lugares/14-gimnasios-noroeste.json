@@ -1,0 +1,26 @@
+{
+ "gym-royalfit-sanjuan": {
+  "desc": "Siłownia w San Juan de la Rambla. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · San Juan de la Rambla"
+ },
+ "gym-keepstrong-guancha": {
+  "desc": "Siłownia w La Guancha. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · La Guancha"
+ },
+ "gym-naefit-icod": {
+  "desc": "Siłownia w Icod de los Vinos. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Icod de los Vinos"
+ },
+ "gym-poligono-icod": {
+  "desc": "Siłownia w Icod de los Vinos. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Icod de los Vinos"
+ },
+ "gym-arnoldfit-puertosantiago": {
+  "desc": "Siłownia w Santiago del Teide. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Santiago del Teide"
+ },
+ "gym-duragym-isora": {
+  "desc": "Siłownia w Guía de Isora. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.",
+  "cat": "Siłownia · Guía de Isora"
+ }
+}

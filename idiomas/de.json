@@ -1006,5 +1006,11 @@
  "gym-casablanca-puerto": {"desc": "Fitnessstudio in Puerto de la Cruz. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Puerto de la Cruz"},
  "gym-bahia-puerto": {"desc": "Fitnessstudio in Puerto de la Cruz. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Puerto de la Cruz"},
  "gym-realgym-realejos": {"desc": "Fitnessstudio in Los Realejos. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Los Realejos"},
- "gym-teamricardo-realejos": {"desc": "Fitnessstudio in Los Realejos. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Los Realejos"}
+ "gym-teamricardo-realejos": {"desc": "Fitnessstudio in Los Realejos. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Los Realejos"},
+ "gym-royalfit-sanjuan": {"desc": "Fitnessstudio in San Juan de la Rambla. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · San Juan de la Rambla"},
+ "gym-keepstrong-guancha": {"desc": "Fitnessstudio in La Guancha. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · La Guancha"},
+ "gym-naefit-icod": {"desc": "Fitnessstudio in Icod de los Vinos. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Icod de los Vinos"},
+ "gym-poligono-icod": {"desc": "Fitnessstudio in Icod de los Vinos. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Icod de los Vinos"},
+ "gym-arnoldfit-puertosantiago": {"desc": "Fitnessstudio in Santiago del Teide. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Santiago del Teide"},
+ "gym-duragym-isora": {"desc": "Fitnessstudio in Guía de Isora. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Guía de Isora"}
 }
