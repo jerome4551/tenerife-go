@@ -1,22 +1,8 @@
 {
- "_": "Rumano (ro) de las fichas de los gimnasios del mapa (bloque 4d de «Su deporte», nota 68): los seis del noroeste y del oeste (San Juan de la Rambla, La Guancha, Icod de los Vinos, Santiago del Teide y Guía de Isora), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
+ "_": "Rumano (ro) de las fichas de los gimnasios del mapa (bloque 4d de «Su deporte», nota 68): los cinco del noroeste y del oeste (La Guancha, Icod de los Vinos, Santiago del Teide y Guía de Isora), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
  "idioma": "ro",
  "fichero": "idiomas/ro.json",
  "filas": [
-  {
-   "tabla": "places",
-   "clave": "gym-royalfit-sanjuan.desc",
-   "es": "Gimnasio en San Juan de la Rambla. Pregunte en recepción si admite la entrada de un día.",
-   "forma": "texto",
-   "ro": "Sală de fitness în San Juan de la Rambla. Întrebați la recepție dacă se poate intra pentru o singură zi."
-  },
-  {
-   "tabla": "places",
-   "clave": "gym-royalfit-sanjuan.cat",
-   "es": "Gimnasio · San Juan de la Rambla",
-   "forma": "texto",
-   "ro": "Sală de fitness · San Juan de la Rambla"
-  },
   {
    "tabla": "places",
    "clave": "gym-keepstrong-guancha.desc",
