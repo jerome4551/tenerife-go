@@ -11634,6 +11634,42 @@ y el diccionario); nada en un teléfono de verdad; Supabase, hasta el sí de Jé
 el control del cielo, a veces, con la ISS en la sombra de la Tierra (el aviso dice «siga la flecha» en vez de «no se
 ve»); sale igual en `main` y va aparte.
 
+## Los doce gimnasios del norte (bloque 4c, nota 66) y el punto del Gimnasio Bahía (26 de noviembre)
+
+**Los doce del norte.** Uno en Tacoronte y otro en La Victoria de Acentejo, dos en Santa Úrsula, tres en La Orotava,
+tres en el Puerto de la Cruz y dos en Los Realejos, elegidos como los del 4a y el 4b; ninguno en El Sauzal ni en La
+Matanza de Acentejo, donde no hay sala con opiniones que lo sostengan. Es el parche de esa sesión (`0007`, tercera
+versión), con `git am`, sin cambios, y `REVISION-LUGARES.md` al día en un commit aparte. Nueve puntos salen de los
+marcadores de Jérôme en Google Maps (capturas del 22-11) y dos del censo de instalaciones deportivas del Cabildo
+(Intergym y Gimnasio Casablanca, datos de 2019). Las cifras, de 996 a 1008 lugares: el schema.org, el README, las
+fichas de las dos tiendas, las notas a Apple, `auditar_datos.js` y este documento («Idiomas»: 61 tablas, 3.980 filas y
+6.184, las que cuenta `barrido_idiomas.js`). El rumano de los doce, en `idiomas/ro-fuente/lugares-8.json` (24 textos;
+`lugares_traduccion.js ro --probar`: casan 2.340 de 2.340); el polaco, en
+`idiomas/pl-lugares/13-gimnasios-norte.json`.
+
+**El Gimnasio Bahía.** El duodécimo traía el punto de OpenStreetMap (`node/10862318415`), y ninguna fuente oficial lo
+sostenía: no está en el censo del Cabildo, y en la red solo salía en dos agregadores, con una dirección que no casaba
+con la del parche. Jérôme: que no se quedara sin información verificada. Se quitó de los once idiomas y de todas las
+cifras (1007), y se lanzó la auditoría. Esa misma mañana Jérôme mandó su marcador (28.4111348, -16.5583176; «Dirección
+cercana: Cafetería Bahía Frescos, Paseo Fermín Rodriguez, 38400 Puerto de la Cruz») y el cartel del «Gimnasio Bahía»
+en Street View, de agosto de 2026: la misma clase de fuente que los otros nueve. Se paró la auditoría, la rama volvió
+a los doce y el Bahía se quedó con ese punto (28.411135, -16.558318), a 32,5 m del de OpenStreetMap, en tierra y
+dentro de Puerto de la Cruz por el polígono del Cabildo (`zonas_lugares.py --comprobar` e `informe_lugares.js`: no
+cambió nada más que su fuente). En `datos/verificado.json`, la fuente nueva; de Google no se guarda nada (ni la nota
+ni las opiniones ni los teléfonos del cartel).
+
+**La auditoría entera** (gim4cc, sobre ese árbol, de 10:20 a 14:08 UTC): todo en verde salvo un bloque,
+`auditar_entrenador.js`, que se quedó 50 minutos parado en «el vídeo de cada ejercicio, entero» (esperaba a
+`window.entero` con la página quieta, sin gastar CPU ni él ni su navegador); se paró a mano y la auditoría siguió con
+el resto. Solo, otra vez, sobre el mismo árbol, se volvió a colgar en el mismo paso (se cortó a la hora). Con una
+copia de la prueba que apunta cada vídeo y le da 3 minutos (fuera del repositorio; lo que mira, lo mismo), pasó entera
+dos veces sin colgarse: sobre `main` publicado y sobre este árbol, 1.210 pases y 88 controles en verde cada vez. Los
+ficheros del entrenador son los de `main`, byte a byte: el cuelgue es de la prueba, de vez en cuando, y queda en cola
+darle a ella misma ese tope por vídeo, para que diga cuál se quedó parado en vez de parar la auditoría. Del resto:
+158.167 textos leídos en el registro, cada idioma uno por uno; 2.361 nombres propios en cirílico y ninguna variante
+sospechosa; 61 tablas y 3.980 filas, y 6.184 filas dentro y fuera del fuente; «Organice su día», 32 de 32; `app/www/`,
+255 ficheros.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
