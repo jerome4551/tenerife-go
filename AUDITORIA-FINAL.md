@@ -11670,6 +11670,38 @@ darle a ella misma ese tope por vídeo, para que diga cuál se quedó parado en 
 sospechosa; 61 tablas y 3.980 filas, y 6.184 filas dentro y fuera del fuente; «Organice su día», 32 de 32; `app/www/`,
 255 ficheros.
 
+## Los gimnasios del noroeste y del oeste (bloque 4d, nota 68): cinco, y RoyalFit a la espera (26 de noviembre)
+
+**Los cinco.** Uno en La Guancha, dos en Icod de los Vinos, uno en Santiago del Teide y uno en Guía de Isora, elegidos
+como los del 4a, el 4b y el 4c; ninguno en Garachico, El Tanque, Los Silos ni Buenavista del Norte (lo que hay allí,
+entrenamiento funcional y gimnasios municipales, queda para el bloque 6). Es el parche de esa sesión (`0008`, con la
+huella que da su nota), con `git am`, sin cambios: los veinte ficheros, iguales a los de su `repo/` salvo lo que ya
+estaba publicado del 4c (el punto del Bahía y su apartado de este documento). Tres puntos salen de los marcadores de
+Jérôme (Keep Strong, NAE FIT y Poligono Sport, capturas del 25 y el 26-11) y uno del censo de instalaciones deportivas
+del Cabildo (Dura Gym, dato de 2019).
+
+**Lo que decidió Jérôme al revisarlo.** RoyalFit Tenerife (San Juan de la Rambla) se queda fuera hasta que se confirme
+su nombre: en C. Molino del Viento, 1, el cartel de Street View (julio de 2026) dice «El Toro Gym» y Google pone
+«RoyalFit Tenerife»; en la red no hay nada de ninguno de los dos. Y el Arnold Fit Gym Puerto Santiago, que traía el
+punto de OpenStreetMap (`node/13615164790`) sin fuente oficial, entra con el marcador de Jérôme (28.2396141,
+-16.8409326; «En Vigilia Park, Puerto de Santiago»): a 100,1 m del de OpenStreetMap y a 18,1 m del «Vigilia Park» de
+OpenStreetMap, donde la nota situaba su ficha de Google; en tierra y dentro de Santiago del Teide. Las cifras, de 1008
+a 1013 lugares (39 gimnasios: en el README, entre las seis categorías con más lugares, detrás de los parkings): el
+schema.org, las fichas de las dos tiendas, las notas a Apple, `auditar_datos.js` y este documento («Idiomas»: 61
+tablas, 3.980 filas y 6.194). El rumano de los cinco, en `idiomas/ro-fuente/lugares-9.json` (10 textos;
+`lugares_traduccion.js ro --probar`: casan 2.350 de 2.350); el polaco, en
+`idiomas/pl-lugares/14-gimnasios-noroeste.json`. `REVISION-LUGARES.md`, al día; `auditar_ubicacion.py` y
+`auditar_en_el_mar.py`, en verde.
+
+**La auditoría entera** (gim4da, sobre ese árbol, de 18:34 a 21:47 UTC): todo en verde salvo, otra vez,
+`auditar_entrenador.js`, que se quedó parado en el mismo paso que en el 4c («el vídeo de cada ejercicio, entero»,
+esperando a `window.entero` sin gastar CPU, más de diez minutos seguidos); se paró a mano y la auditoría siguió con el
+resto. Sola, sobre este árbol, con la copia de la prueba que apunta cada vídeo y le da 3 minutos (la del 4c, fuera del
+repositorio), pasó entera sin colgarse: 1.210 pases y 88 controles en verde, como en el 4c sobre `main` y sobre su
+árbol (la prueba que le pone ese tope por vídeo a ella misma sigue en cola). Del resto: 158.277 textos leídos en el
+registro, cada idioma uno por uno; 2.361 nombres propios en cirílico y ninguna variante sospechosa; 61 tablas y 3.980
+filas, y 6.194 filas dentro y fuera del fuente; «Organice su día», 32 de 32; `app/www/`, 255 ficheros.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
