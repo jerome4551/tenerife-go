@@ -434,7 +434,10 @@ const MARGEN = 2;                        // px de tolerancia por redondeo
         const cs = getComputedStyle(e);
         const nombre = e.tagName.toLowerCase() + (e.id ? '#' + e.id : '') + (typeof e.className === 'string' && e.className.trim() ? '.' + e.className.trim().split(/\s+/).join('.') : '');
         if (escondidas) return { nombre, px: parseFloat(cs.fontSize) };
-        const hueco = e.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        /* el hueco del texto: la caja entera (offsetWidth) menos sus bordes y su relleno. No con clientWidth: en una
+           caja de texto, Chrome 158 (27-11-2026) ya lo da sin el relleno, y restarlo otra vez dejaba el hueco corto
+           (a 320 px, «Peso objetivo (opcional)», 161 px en un hueco de 200, salia «no cabe» en 148) */
+        const hueco = e.offsetWidth - parseFloat(cs.borderLeftWidth) - parseFloat(cs.borderRightWidth) - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
         let ejemplo = 0;
         if (e.placeholder) { const ph = getComputedStyle(e, '::placeholder'); cv.font = [ph.fontStyle, ph.fontWeight, ph.fontSize, ph.fontFamily].join(' '); ejemplo = cv.measureText(e.placeholder).width; }
         /* la fila: ni la caja ni sus hermanos (el boton →, enviar…) pasan el borde derecho de la fila, de sus
