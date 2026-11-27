@@ -1011,5 +1011,12 @@
  "gym-naefit-icod": {"desc": "Sportschool in Icod de los Vinos. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Icod de los Vinos"},
  "gym-poligono-icod": {"desc": "Sportschool in Icod de los Vinos. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Icod de los Vinos"},
  "gym-arnoldfit-puertosantiago": {"desc": "Sportschool in Santiago del Teide. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Santiago del Teide"},
- "gym-duragym-isora": {"desc": "Sportschool in Guía de Isora. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Guía de Isora"}
+ "gym-duragym-isora": {"desc": "Sportschool in Guía de Isora. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Guía de Isora"},
+ "gym-rhapsody-candelaria": {"desc": "Sportschool in Candelaria. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Candelaria"},
+ "gym-fitnesswork-candelaria": {"desc": "Sportschool in Candelaria. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Candelaria"},
+ "gym-fenix-candelaria": {"desc": "Sportschool in Candelaria. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Candelaria"},
+ "gym-wee-guimar": {"desc": "Sportschool in Güímar. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Güímar"},
+ "gym-impacto-guimar": {"desc": "Sportschool in Güímar. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Güímar"},
+ "gym-gymarico-arico": {"desc": "Sportschool in Arico. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Arico"},
+ "gym-fasniafit-fasnia": {"desc": "Sportschool in Fasnia. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Fasnia"}
 }

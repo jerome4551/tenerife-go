@@ -209,8 +209,10 @@ console.log('\n=== lugares ===');
    Tacoronte, La Victoria de Acentejo, Santa Ursula, La Orotava, Puerto de la Cruz y Los Realejos.
    1008 -> 1013 el 26 de noviembre de 2026: los cinco gimnasios del noroeste y del oeste, bloque 4d
    (nota 68): de La Guancha, Icod de los Vinos, Santiago del Teide y Guia de Isora (el de San Juan de la
-   Rambla, fuera hasta que se confirme su nombre). */
-debe('lugares', PLACES.length, PLACES.length === 1013);
+   Rambla, fuera hasta que se confirme su nombre).
+   1013 -> 1020 el 26 de noviembre de 2026: los siete gimnasios del este, bloque 4e (nota 71): de
+   Candelaria, Guimar, Arico y Fasnia. */
+debe('lugares', PLACES.length, PLACES.length === 1020);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

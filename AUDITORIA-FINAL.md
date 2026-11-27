@@ -27,7 +27,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **1013**, con descripción y categoría en 11 idiomas (lo coteja `auditar_datos.js`) |
+| Lugares | **1020**, con descripción y categoría en 11 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -13543,7 +13543,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 61 tablas, 3980 filas (y 6.194 filas, dentro y fuera del fuente)
+## Idiomas · 61 tablas, 3980 filas (y 6.208 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -13842,8 +13842,8 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **1013** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **1013** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **1020** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **1020** |
 | Con calidad de agua, y su año | **46** · 46 |
 | Con alias de búsqueda, que los 3 filtros leen | **63** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
@@ -13907,6 +13907,8 @@ más de `places[]` en cada idioma de `idiomas/*.json` (2.340): 61 tablas, 3.980 
 Y el 26 de noviembre, de 1008 a 1013 lugares: los cinco gimnasios del noroeste y del oeste (bloque 4d, nota 68), con
 diez filas más de `places[]` en cada idioma de `idiomas/*.json` (2.350): 61 tablas, 3.980 filas y 6.194. El sexto del
 parche, RoyalFit Tenerife, espera a que se confirme su nombre (el cartel de Street View dice «El Toro Gym»).
+Y el 26 de noviembre, de 1013 a 1020 lugares: los siete gimnasios del este (bloque 4e, nota 71), con catorce filas
+más de `places[]` en cada idioma de `idiomas/*.json` (2.364): 61 tablas, 3.980 filas y 6.208.
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no

@@ -1011,5 +1011,12 @@
  "gym-naefit-icod": {"desc": "Sală de fitness în Icod de los Vinos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Icod de los Vinos"},
  "gym-poligono-icod": {"desc": "Sală de fitness în Icod de los Vinos. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Icod de los Vinos"},
  "gym-arnoldfit-puertosantiago": {"desc": "Sală de fitness în Santiago del Teide. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Santiago del Teide"},
- "gym-duragym-isora": {"desc": "Sală de fitness în Guía de Isora. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Guía de Isora"}
+ "gym-duragym-isora": {"desc": "Sală de fitness în Guía de Isora. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Guía de Isora"},
+ "gym-rhapsody-candelaria": {"desc": "Sală de fitness în Candelaria. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Candelaria"},
+ "gym-fitnesswork-candelaria": {"desc": "Sală de fitness în Candelaria. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Candelaria"},
+ "gym-fenix-candelaria": {"desc": "Sală de fitness în Candelaria. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Candelaria"},
+ "gym-wee-guimar": {"desc": "Sală de fitness în Güímar. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Güímar"},
+ "gym-impacto-guimar": {"desc": "Sală de fitness în Güímar. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Güímar"},
+ "gym-gymarico-arico": {"desc": "Sală de fitness în Arico. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Arico"},
+ "gym-fasniafit-fasnia": {"desc": "Sală de fitness în Fasnia. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Fasnia"}
 }

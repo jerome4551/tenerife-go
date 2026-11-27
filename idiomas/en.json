@@ -1011,5 +1011,12 @@
  "gym-naefit-icod": {"desc": "Gym in Icod de los Vinos. Ask at reception whether a day pass is available.", "cat": "Gym · Icod de los Vinos"},
  "gym-poligono-icod": {"desc": "Gym in Icod de los Vinos. Ask at reception whether a day pass is available.", "cat": "Gym · Icod de los Vinos"},
  "gym-arnoldfit-puertosantiago": {"desc": "Gym in Santiago del Teide. Ask at reception whether a day pass is available.", "cat": "Gym · Santiago del Teide"},
- "gym-duragym-isora": {"desc": "Gym in Guía de Isora. Ask at reception whether a day pass is available.", "cat": "Gym · Guía de Isora"}
+ "gym-duragym-isora": {"desc": "Gym in Guía de Isora. Ask at reception whether a day pass is available.", "cat": "Gym · Guía de Isora"},
+ "gym-rhapsody-candelaria": {"desc": "Gym in Candelaria. Ask at reception whether a day pass is available.", "cat": "Gym · Candelaria"},
+ "gym-fitnesswork-candelaria": {"desc": "Gym in Candelaria. Ask at reception whether a day pass is available.", "cat": "Gym · Candelaria"},
+ "gym-fenix-candelaria": {"desc": "Gym in Candelaria. Ask at reception whether a day pass is available.", "cat": "Gym · Candelaria"},
+ "gym-wee-guimar": {"desc": "Gym in Güímar. Ask at reception whether a day pass is available.", "cat": "Gym · Güímar"},
+ "gym-impacto-guimar": {"desc": "Gym in Güímar. Ask at reception whether a day pass is available.", "cat": "Gym · Güímar"},
+ "gym-gymarico-arico": {"desc": "Gym in Arico. Ask at reception whether a day pass is available.", "cat": "Gym · Arico"},
+ "gym-fasniafit-fasnia": {"desc": "Gym in Fasnia. Ask at reception whether a day pass is available.", "cat": "Gym · Fasnia"}
 }

@@ -1011,5 +1011,12 @@
  "gym-naefit-icod": {"desc": "伊科德的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 伊科德"},
  "gym-poligono-icod": {"desc": "伊科德的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 伊科德"},
  "gym-arnoldfit-puertosantiago": {"desc": "圣地亚哥德尔泰德的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圣地亚哥德尔泰德"},
- "gym-duragym-isora": {"desc": "圭亚德伊索拉的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圭亚德伊索拉"}
+ "gym-duragym-isora": {"desc": "圭亚德伊索拉的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圭亚德伊索拉"},
+ "gym-rhapsody-candelaria": {"desc": "坎德拉里亚的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 坎德拉里亚"},
+ "gym-fitnesswork-candelaria": {"desc": "坎德拉里亚的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 坎德拉里亚"},
+ "gym-fenix-candelaria": {"desc": "坎德拉里亚的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 坎德拉里亚"},
+ "gym-wee-guimar": {"desc": "圭马尔的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圭马尔"},
+ "gym-impacto-guimar": {"desc": "圭马尔的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圭马尔"},
+ "gym-gymarico-arico": {"desc": "阿里科的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 阿里科"},
+ "gym-fasniafit-fasnia": {"desc": "法斯尼亚的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 法斯尼亚"}
 }

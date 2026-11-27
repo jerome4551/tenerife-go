@@ -858,6 +858,34 @@
   "gym-duragym-isora": {
    "fecha": "2026-11-26",
    "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380197012 «Gimnasio Duragym», dato de 2019"
+  },
+  "gym-rhapsody-candelaria": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3755029, -16.3625117; «Dirección cercana: Av. Maritima, 38530 Candelaria»), y Street View de abril de 2026, con el marcador en la fachada de Rhapsody Gym, 172 Av. Maritima"
+  },
+  "gym-fitnesswork-candelaria": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3614688, -16.3688242; «Dirección cercana: C. Francia, 1, 38509 Candelaria»)"
+  },
+  "gym-fenix-candelaria": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3652080, -16.3647128; «Dirección cercana: …, Av. Maritima, 29, portal B1, local 2, 38530 Candelaria»)"
+  },
+  "gym-wee-guimar": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3149790, -16.4040470; «Dirección cercana: Wee Fitness Center, C. Lomo del Molino, 21, 38500 Güímar»)"
+  },
+  "gym-impacto-guimar": {
+   "fecha": "2026-11-26",
+   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380201019 «Gimnasio Impacto», dato de 2019"
+  },
+  "gym-gymarico-arico": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.1833614, -16.4797037; «Dirección cercana: GIMNASIO GYMARICO (DEPORTES ARICO), C. la Morra, 2, 38589 Arico Viejo»)"
+  },
+  "gym-fasniafit-fasnia": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.2379314, -16.4424884; «Dirección cercana: …, Callejon Alto, 16, 38570 Fasnia»)"
   }
  },
  "areas": {
