@@ -1018,5 +1018,16 @@
  "gym-wee-guimar": {"desc": "Salle de sport à Güímar. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Güímar"},
  "gym-impacto-guimar": {"desc": "Salle de sport à Güímar. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Güímar"},
  "gym-gymarico-arico": {"desc": "Salle de sport à Arico. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Arico"},
- "gym-fasniafit-fasnia": {"desc": "Salle de sport à Fasnia. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Fasnia"}
+ "gym-fasniafit-fasnia": {"desc": "Salle de sport à Fasnia. Demandez à l'accueil si une entrée à la journée est possible.", "cat": "Salle de sport · Fasnia"},
+ "boxeo-richikb-sct": {"desc": "Salle de muay-thaï et de kickboxing à Santa Cruz. Demandez si un cours d'essai est possible.", "cat": "Boxe et kickboxing · Santa Cruz"},
+ "boxeo-gioboxe-sct": {"desc": "Salle de boxe à Santa Cruz. Demandez si un cours d'essai est possible.", "cat": "Boxe et kickboxing · Santa Cruz"},
+ "boxeo-oyateam-sct": {"desc": "Salle de boxe à Santa Cruz. Demandez si un cours d'essai est possible.", "cat": "Boxe et kickboxing · Santa Cruz"},
+ "boxeo-fighters-laguna": {"desc": "Salle de sports de combat à La Laguna. Demandez si un cours d'essai est possible.", "cat": "Boxe et kickboxing · La Laguna"},
+ "boxeo-camacho-laguna": {"desc": "Salle de boxe à La Laguna. Demandez si un cours d'essai est possible.", "cat": "Boxe et kickboxing · La Laguna"},
+ "boxeo-lagunajab-laguna": {"desc": "Salle de boxe à La Laguna. Demandez si un cours d'essai est possible.", "cat": "Boxe et kickboxing · La Laguna"},
+ "marcial-halcon-sct": {"desc": "Club de judo à Santa Cruz. Demandez si un cours d'essai est possible.", "cat": "Arts martiaux · Santa Cruz"},
+ "terrero-panchosuarez-sct": {"desc": "Arène de lutte canarienne à Santa Cruz. Les combats sont annoncés par la Fédération de lutte canarienne de Tenerife.", "cat": "Lutte canarienne · Santa Cruz"},
+ "terrero-chaval-laguna": {"desc": "Arène de lutte canarienne à La Laguna. Les combats sont annoncés par la Fédération de lutte canarienne de Tenerife.", "cat": "Lutte canarienne · La Laguna"},
+ "terrero-canteras-laguna": {"desc": "Arène de lutte canarienne à La Laguna. Les combats sont annoncés par la Fédération de lutte canarienne de Tenerife.", "cat": "Lutte canarienne · La Laguna"},
+ "terrero-mencey-tegueste": {"desc": "Arène de lutte canarienne à Tegueste. Les combats sont annoncés par la Fédération de lutte canarienne de Tenerife.", "cat": "Lutte canarienne · Tegueste"}
 }

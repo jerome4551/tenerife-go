@@ -1018,5 +1018,16 @@
  "gym-wee-guimar": {"desc": "Sportschool in Güímar. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Güímar"},
  "gym-impacto-guimar": {"desc": "Sportschool in Güímar. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Güímar"},
  "gym-gymarico-arico": {"desc": "Sportschool in Arico. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Arico"},
- "gym-fasniafit-fasnia": {"desc": "Sportschool in Fasnia. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Fasnia"}
+ "gym-fasniafit-fasnia": {"desc": "Sportschool in Fasnia. Vraag bij de receptie of een dagpas mogelijk is.", "cat": "Sportschool · Fasnia"},
+ "boxeo-richikb-sct": {"desc": "Sportschool voor muay thai en kickboksen in Santa Cruz. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · Santa Cruz"},
+ "boxeo-gioboxe-sct": {"desc": "Boksschool in Santa Cruz. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · Santa Cruz"},
+ "boxeo-oyateam-sct": {"desc": "Boksschool in Santa Cruz. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · Santa Cruz"},
+ "boxeo-fighters-laguna": {"desc": "Vechtsportschool in La Laguna. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · La Laguna"},
+ "boxeo-camacho-laguna": {"desc": "Boksschool in La Laguna. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · La Laguna"},
+ "boxeo-lagunajab-laguna": {"desc": "Boksschool in La Laguna. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · La Laguna"},
+ "marcial-halcon-sct": {"desc": "Judoclub in Santa Cruz. Vraag of een proefles mogelijk is.", "cat": "Vechtsporten · Santa Cruz"},
+ "terrero-panchosuarez-sct": {"desc": "Arena voor Canarisch worstelen in Santa Cruz. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · Santa Cruz"},
+ "terrero-chaval-laguna": {"desc": "Arena voor Canarisch worstelen in La Laguna. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · La Laguna"},
+ "terrero-canteras-laguna": {"desc": "Arena voor Canarisch worstelen in La Laguna. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · La Laguna"},
+ "terrero-mencey-tegueste": {"desc": "Arena voor Canarisch worstelen in Tegueste. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · Tegueste"}
 }

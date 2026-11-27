@@ -1018,5 +1018,16 @@
  "gym-wee-guimar": {"desc": "Sală de fitness în Güímar. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Güímar"},
  "gym-impacto-guimar": {"desc": "Sală de fitness în Güímar. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Güímar"},
  "gym-gymarico-arico": {"desc": "Sală de fitness în Arico. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Arico"},
- "gym-fasniafit-fasnia": {"desc": "Sală de fitness în Fasnia. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Fasnia"}
+ "gym-fasniafit-fasnia": {"desc": "Sală de fitness în Fasnia. Întrebați la recepție dacă se poate intra pentru o singură zi.", "cat": "Sală de fitness · Fasnia"},
+ "boxeo-richikb-sct": {"desc": "Sală de muay thai și kickbox în Santa Cruz. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · Santa Cruz"},
+ "boxeo-gioboxe-sct": {"desc": "Sală de box în Santa Cruz. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · Santa Cruz"},
+ "boxeo-oyateam-sct": {"desc": "Sală de box în Santa Cruz. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · Santa Cruz"},
+ "boxeo-fighters-laguna": {"desc": "Sală de sporturi de luptă în La Laguna. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · La Laguna"},
+ "boxeo-camacho-laguna": {"desc": "Sală de box în La Laguna. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · La Laguna"},
+ "boxeo-lagunajab-laguna": {"desc": "Sală de box în La Laguna. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · La Laguna"},
+ "marcial-halcon-sct": {"desc": "Club de judo în Santa Cruz. Întrebați dacă se poate face o oră de probă.", "cat": "Arte marțiale · Santa Cruz"},
+ "terrero-panchosuarez-sct": {"desc": "Arenă de lupte canariene în Santa Cruz. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · Santa Cruz"},
+ "terrero-chaval-laguna": {"desc": "Arenă de lupte canariene în La Laguna. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · La Laguna"},
+ "terrero-canteras-laguna": {"desc": "Arenă de lupte canariene în La Laguna. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · La Laguna"},
+ "terrero-mencey-tegueste": {"desc": "Arenă de lupte canariene în Tegueste. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · Tegueste"}
 }

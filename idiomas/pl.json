@@ -1018,5 +1018,16 @@
  "gym-wee-guimar": {"desc": "Siłownia w Güímar. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.", "cat": "Siłownia · Güímar"},
  "gym-impacto-guimar": {"desc": "Siłownia w Güímar. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.", "cat": "Siłownia · Güímar"},
  "gym-gymarico-arico": {"desc": "Siłownia w Arico. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.", "cat": "Siłownia · Arico"},
- "gym-fasniafit-fasnia": {"desc": "Siłownia w Fasnia. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.", "cat": "Siłownia · Fasnia"}
+ "gym-fasniafit-fasnia": {"desc": "Siłownia w Fasnia. Proszę zapytać w recepcji, czy można kupić wejście jednodniowe.", "cat": "Siłownia · Fasnia"},
+ "boxeo-richikb-sct": {"desc": "Klub muay thai i kickboxingu w Santa Cruz. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · Santa Cruz"},
+ "boxeo-gioboxe-sct": {"desc": "Klub bokserski w Santa Cruz. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · Santa Cruz"},
+ "boxeo-oyateam-sct": {"desc": "Klub bokserski w Santa Cruz. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · Santa Cruz"},
+ "boxeo-fighters-laguna": {"desc": "Klub sportów walki w La Laguna. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · La Laguna"},
+ "boxeo-camacho-laguna": {"desc": "Klub bokserski w La Laguna. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · La Laguna"},
+ "boxeo-lagunajab-laguna": {"desc": "Klub bokserski w La Laguna. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · La Laguna"},
+ "marcial-halcon-sct": {"desc": "Klub judo w Santa Cruz. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Sztuki walki · Santa Cruz"},
+ "terrero-panchosuarez-sct": {"desc": "Arena zapasów kanaryjskich w Santa Cruz. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · Santa Cruz"},
+ "terrero-chaval-laguna": {"desc": "Arena zapasów kanaryjskich w La Laguna. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · La Laguna"},
+ "terrero-canteras-laguna": {"desc": "Arena zapasów kanaryjskich w La Laguna. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · La Laguna"},
+ "terrero-mencey-tegueste": {"desc": "Arena zapasów kanaryjskich w Tegueste. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · Tegueste"}
 }

@@ -1018,5 +1018,16 @@
  "gym-wee-guimar": {"desc": "Gym in Güímar. Ask at reception whether a day pass is available.", "cat": "Gym · Güímar"},
  "gym-impacto-guimar": {"desc": "Gym in Güímar. Ask at reception whether a day pass is available.", "cat": "Gym · Güímar"},
  "gym-gymarico-arico": {"desc": "Gym in Arico. Ask at reception whether a day pass is available.", "cat": "Gym · Arico"},
- "gym-fasniafit-fasnia": {"desc": "Gym in Fasnia. Ask at reception whether a day pass is available.", "cat": "Gym · Fasnia"}
+ "gym-fasniafit-fasnia": {"desc": "Gym in Fasnia. Ask at reception whether a day pass is available.", "cat": "Gym · Fasnia"},
+ "boxeo-richikb-sct": {"desc": "Muay Thai and kickboxing gym in Santa Cruz. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · Santa Cruz"},
+ "boxeo-gioboxe-sct": {"desc": "Boxing gym in Santa Cruz. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · Santa Cruz"},
+ "boxeo-oyateam-sct": {"desc": "Boxing gym in Santa Cruz. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · Santa Cruz"},
+ "boxeo-fighters-laguna": {"desc": "Combat sports gym in La Laguna. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · La Laguna"},
+ "boxeo-camacho-laguna": {"desc": "Boxing gym in La Laguna. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · La Laguna"},
+ "boxeo-lagunajab-laguna": {"desc": "Boxing gym in La Laguna. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · La Laguna"},
+ "marcial-halcon-sct": {"desc": "Judo club in Santa Cruz. Ask whether a trial class is available.", "cat": "Martial arts · Santa Cruz"},
+ "terrero-panchosuarez-sct": {"desc": "Canarian wrestling ring in Santa Cruz. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · Santa Cruz"},
+ "terrero-chaval-laguna": {"desc": "Canarian wrestling ring in La Laguna. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · La Laguna"},
+ "terrero-canteras-laguna": {"desc": "Canarian wrestling ring in La Laguna. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · La Laguna"},
+ "terrero-mencey-tegueste": {"desc": "Canarian wrestling ring in Tegueste. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · Tegueste"}
 }

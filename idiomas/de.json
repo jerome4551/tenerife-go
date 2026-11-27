@@ -1018,5 +1018,16 @@
  "gym-wee-guimar": {"desc": "Fitnessstudio in Güímar. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Güímar"},
  "gym-impacto-guimar": {"desc": "Fitnessstudio in Güímar. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Güímar"},
  "gym-gymarico-arico": {"desc": "Fitnessstudio in Arico. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Arico"},
- "gym-fasniafit-fasnia": {"desc": "Fitnessstudio in Fasnia. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Fasnia"}
+ "gym-fasniafit-fasnia": {"desc": "Fitnessstudio in Fasnia. Fragen Sie an der Rezeption, ob es eine Tageskarte gibt.", "cat": "Fitnessstudio · Fasnia"},
+ "boxeo-richikb-sct": {"desc": "Studio für Muay Thai und Kickboxen in Santa Cruz. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · Santa Cruz"},
+ "boxeo-gioboxe-sct": {"desc": "Boxstudio in Santa Cruz. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · Santa Cruz"},
+ "boxeo-oyateam-sct": {"desc": "Boxstudio in Santa Cruz. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · Santa Cruz"},
+ "boxeo-fighters-laguna": {"desc": "Kampfsportstudio in La Laguna. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · La Laguna"},
+ "boxeo-camacho-laguna": {"desc": "Boxstudio in La Laguna. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · La Laguna"},
+ "boxeo-lagunajab-laguna": {"desc": "Boxstudio in La Laguna. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · La Laguna"},
+ "marcial-halcon-sct": {"desc": "Judoverein in Santa Cruz. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Kampfkünste · Santa Cruz"},
+ "terrero-panchosuarez-sct": {"desc": "Kampfplatz für Kanarisches Ringen in Santa Cruz. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · Santa Cruz"},
+ "terrero-chaval-laguna": {"desc": "Kampfplatz für Kanarisches Ringen in La Laguna. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · La Laguna"},
+ "terrero-canteras-laguna": {"desc": "Kampfplatz für Kanarisches Ringen in La Laguna. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · La Laguna"},
+ "terrero-mencey-tegueste": {"desc": "Kampfplatz für Kanarisches Ringen in Tegueste. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · Tegueste"}
 }

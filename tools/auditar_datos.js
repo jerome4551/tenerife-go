@@ -211,8 +211,11 @@ console.log('\n=== lugares ===');
    (nota 68): de La Guancha, Icod de los Vinos, Santiago del Teide y Guia de Isora (el de San Juan de la
    Rambla, fuera hasta que se confirme su nombre).
    1013 -> 1020 el 26 de noviembre de 2026: los siete gimnasios del este, bloque 4e (nota 71): de
-   Candelaria, Guimar, Arico y Fasnia. */
-debe('lugares', PLACES.length, PLACES.length === 1020);
+   Candelaria, Guimar, Arico y Fasnia.
+   1020 -> 1031 el 27 de noviembre de 2026: los once del bloque 5a (nota 72), en las tres categorias
+   nuevas de combate: seis de boxeo y kickboxing, uno de artes marciales y cuatro terreros, de Santa
+   Cruz, La Laguna y Tegueste. */
+debe('lugares', PLACES.length, PLACES.length === 1031);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

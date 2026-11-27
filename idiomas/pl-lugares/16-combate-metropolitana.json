@@ -1,0 +1,46 @@
+{
+ "boxeo-richikb-sct": {
+  "desc": "Klub muay thai i kickboxingu w Santa Cruz. Proszę zapytać, czy można przyjść na zajęcia próbne.",
+  "cat": "Boks i kickboxing · Santa Cruz"
+ },
+ "boxeo-gioboxe-sct": {
+  "desc": "Klub bokserski w Santa Cruz. Proszę zapytać, czy można przyjść na zajęcia próbne.",
+  "cat": "Boks i kickboxing · Santa Cruz"
+ },
+ "boxeo-oyateam-sct": {
+  "desc": "Klub bokserski w Santa Cruz. Proszę zapytać, czy można przyjść na zajęcia próbne.",
+  "cat": "Boks i kickboxing · Santa Cruz"
+ },
+ "boxeo-fighters-laguna": {
+  "desc": "Klub sportów walki w La Laguna. Proszę zapytać, czy można przyjść na zajęcia próbne.",
+  "cat": "Boks i kickboxing · La Laguna"
+ },
+ "boxeo-camacho-laguna": {
+  "desc": "Klub bokserski w La Laguna. Proszę zapytać, czy można przyjść na zajęcia próbne.",
+  "cat": "Boks i kickboxing · La Laguna"
+ },
+ "boxeo-lagunajab-laguna": {
+  "desc": "Klub bokserski w La Laguna. Proszę zapytać, czy można przyjść na zajęcia próbne.",
+  "cat": "Boks i kickboxing · La Laguna"
+ },
+ "marcial-halcon-sct": {
+  "desc": "Klub judo w Santa Cruz. Proszę zapytać, czy można przyjść na zajęcia próbne.",
+  "cat": "Sztuki walki · Santa Cruz"
+ },
+ "terrero-panchosuarez-sct": {
+  "desc": "Arena zapasów kanaryjskich w Santa Cruz. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.",
+  "cat": "Zapasy kanaryjskie · Santa Cruz"
+ },
+ "terrero-chaval-laguna": {
+  "desc": "Arena zapasów kanaryjskich w La Laguna. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.",
+  "cat": "Zapasy kanaryjskie · La Laguna"
+ },
+ "terrero-canteras-laguna": {
+  "desc": "Arena zapasów kanaryjskich w La Laguna. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.",
+  "cat": "Zapasy kanaryjskie · La Laguna"
+ },
+ "terrero-mencey-tegueste": {
+  "desc": "Arena zapasów kanaryjskich w Tegueste. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.",
+  "cat": "Zapasy kanaryjskie · Tegueste"
+ }
+}

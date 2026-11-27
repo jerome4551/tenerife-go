@@ -1,0 +1,161 @@
+{
+ "_": "Rumano (ro) de las fichas de combate del mapa (bloque 5a de «Su deporte», nota 72): los once del área metropolitana (Santa Cruz, La Laguna y Tegueste), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "boxeo-richikb-sct.desc",
+   "es": "Gimnasio de muay thai y kickboxing en Santa Cruz. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de muay thai și kickbox în Santa Cruz. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-richikb-sct.cat",
+   "es": "Boxeo y kickboxing · Santa Cruz",
+   "forma": "texto",
+   "ro": "Box și kickbox · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-gioboxe-sct.desc",
+   "es": "Gimnasio de boxeo en Santa Cruz. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de box în Santa Cruz. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-gioboxe-sct.cat",
+   "es": "Boxeo y kickboxing · Santa Cruz",
+   "forma": "texto",
+   "ro": "Box și kickbox · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-oyateam-sct.desc",
+   "es": "Gimnasio de boxeo en Santa Cruz. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de box în Santa Cruz. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-oyateam-sct.cat",
+   "es": "Boxeo y kickboxing · Santa Cruz",
+   "forma": "texto",
+   "ro": "Box și kickbox · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-fighters-laguna.desc",
+   "es": "Gimnasio de deportes de combate en La Laguna. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de sporturi de luptă în La Laguna. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-fighters-laguna.cat",
+   "es": "Boxeo y kickboxing · La Laguna",
+   "forma": "texto",
+   "ro": "Box și kickbox · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-camacho-laguna.desc",
+   "es": "Gimnasio de boxeo en La Laguna. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de box în La Laguna. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-camacho-laguna.cat",
+   "es": "Boxeo y kickboxing · La Laguna",
+   "forma": "texto",
+   "ro": "Box și kickbox · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-lagunajab-laguna.desc",
+   "es": "Gimnasio de boxeo en La Laguna. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de box în La Laguna. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-lagunajab-laguna.cat",
+   "es": "Boxeo y kickboxing · La Laguna",
+   "forma": "texto",
+   "ro": "Box și kickbox · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-halcon-sct.desc",
+   "es": "Club de judo en Santa Cruz. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de judo în Santa Cruz. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-halcon-sct.cat",
+   "es": "Artes marciales · Santa Cruz",
+   "forma": "texto",
+   "ro": "Arte marțiale · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-panchosuarez-sct.desc",
+   "es": "Terrero de lucha canaria en Santa Cruz. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife.",
+   "forma": "texto",
+   "ro": "Arenă de lupte canariene în Santa Cruz. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-panchosuarez-sct.cat",
+   "es": "Lucha canaria · Santa Cruz",
+   "forma": "texto",
+   "ro": "Lupte canariene · Santa Cruz"
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-chaval-laguna.desc",
+   "es": "Terrero de lucha canaria en La Laguna. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife.",
+   "forma": "texto",
+   "ro": "Arenă de lupte canariene în La Laguna. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-chaval-laguna.cat",
+   "es": "Lucha canaria · La Laguna",
+   "forma": "texto",
+   "ro": "Lupte canariene · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-canteras-laguna.desc",
+   "es": "Terrero de lucha canaria en La Laguna. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife.",
+   "forma": "texto",
+   "ro": "Arenă de lupte canariene în La Laguna. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-canteras-laguna.cat",
+   "es": "Lucha canaria · La Laguna",
+   "forma": "texto",
+   "ro": "Lupte canariene · La Laguna"
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-mencey-tegueste.desc",
+   "es": "Terrero de lucha canaria en Tegueste. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife.",
+   "forma": "texto",
+   "ro": "Arenă de lupte canariene în Tegueste. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-mencey-tegueste.cat",
+   "es": "Lucha canaria · Tegueste",
+   "forma": "texto",
+   "ro": "Lupte canariene · Tegueste"
+  }
+ ]
+}

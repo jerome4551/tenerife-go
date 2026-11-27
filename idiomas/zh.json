@@ -1018,5 +1018,16 @@
  "gym-wee-guimar": {"desc": "圭马尔的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圭马尔"},
  "gym-impacto-guimar": {"desc": "圭马尔的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 圭马尔"},
  "gym-gymarico-arico": {"desc": "阿里科的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 阿里科"},
- "gym-fasniafit-fasnia": {"desc": "法斯尼亚的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 法斯尼亚"}
+ "gym-fasniafit-fasnia": {"desc": "法斯尼亚的健身房。请在前台询问是否提供单日入场。", "cat": "健身房 · 法斯尼亚"},
+ "boxeo-richikb-sct": {"desc": "圣克鲁斯的泰拳和踢拳馆。请询问是否可以上体验课。", "cat": "拳击和踢拳 · 圣克鲁斯"},
+ "boxeo-gioboxe-sct": {"desc": "圣克鲁斯的拳击馆。请询问是否可以上体验课。", "cat": "拳击和踢拳 · 圣克鲁斯"},
+ "boxeo-oyateam-sct": {"desc": "圣克鲁斯的拳击馆。请询问是否可以上体验课。", "cat": "拳击和踢拳 · 圣克鲁斯"},
+ "boxeo-fighters-laguna": {"desc": "拉拉古纳的格斗馆。请询问是否可以上体验课。", "cat": "拳击和踢拳 · 拉拉古纳"},
+ "boxeo-camacho-laguna": {"desc": "拉拉古纳的拳击馆。请询问是否可以上体验课。", "cat": "拳击和踢拳 · 拉拉古纳"},
+ "boxeo-lagunajab-laguna": {"desc": "拉拉古纳的拳击馆。请询问是否可以上体验课。", "cat": "拳击和踢拳 · 拉拉古纳"},
+ "marcial-halcon-sct": {"desc": "圣克鲁斯的柔道俱乐部。请询问是否可以上体验课。", "cat": "武术 · 圣克鲁斯"},
+ "terrero-panchosuarez-sct": {"desc": "圣克鲁斯的加那利摔跤场。比赛由特内里费岛加那利摔跤联合会公布。", "cat": "加那利摔跤 · 圣克鲁斯"},
+ "terrero-chaval-laguna": {"desc": "拉拉古纳的加那利摔跤场。比赛由特内里费岛加那利摔跤联合会公布。", "cat": "加那利摔跤 · 拉拉古纳"},
+ "terrero-canteras-laguna": {"desc": "拉拉古纳的加那利摔跤场。比赛由特内里费岛加那利摔跤联合会公布。", "cat": "加那利摔跤 · 拉拉古纳"},
+ "terrero-mencey-tegueste": {"desc": "特格斯特的加那利摔跤场。比赛由特内里费岛加那利摔跤联合会公布。", "cat": "加那利摔跤 · 特格斯特"}
 }

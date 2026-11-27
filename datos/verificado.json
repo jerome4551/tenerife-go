@@ -886,6 +886,50 @@
   "gym-fasniafit-fasnia": {
    "fecha": "2026-11-26",
    "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.2379314, -16.4424884; «Dirección cercana: …, Callejon Alto, 16, 38570 Fasnia»)"
+  },
+  "boxeo-richikb-sct": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4663835, -16.2612566; «Dirección cercana: …, C. Ramón y Cajal, 51, 38004 Santa Cruz de Tenerife»)"
+  },
+  "boxeo-gioboxe-sct": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4497418, -16.2878450; «Dirección cercana: …, C. Los Arcangeles, 18, 38010 Santa Cruz de Tenerife»)"
+  },
+  "boxeo-oyateam-sct": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4560860, -16.2840235; «Dirección cercana: Escuela de boxeo OYA TEAM, Av. Príncipes de España, 10, 38010 Santa Cruz de Tenerife»)"
+  },
+  "boxeo-fighters-laguna": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4477611, -16.2976015; «Dirección cercana: The Fighters club, C. París, 2, 4, 38108 La Laguna»)"
+  },
+  "boxeo-camacho-laguna": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4476084, -16.2986208; «Dirección cercana: …, Av. Taco, 170, 38108 La Laguna»)"
+  },
+  "boxeo-lagunajab-laguna": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4861573, -16.3178546; «Dirección cercana: C. San Juan, 45D, 38204 La Laguna»)"
+  },
+  "marcial-halcon-sct": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4658639, -16.2716740; «Dirección cercana: Judo Halcón, C. de Santiago Beyro, 14, 38007 Santa Cruz de Tenerife»)"
+  },
+  "terrero-panchosuarez-sct": {
+   "fecha": "2026-11-26",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4812111, -16.2601237; «Dirección cercana: Terrero Insular de lucha Pancho Suárez., Carr. los Campitos, s/nº, 38170 Santa Cruz de Tenerife»)"
+  },
+  "terrero-chaval-laguna": {
+   "fecha": "2026-11-27",
+   "fuente": "Guía agroturística «La Laguna Ecotours: Valle de Guerra» (Ayuntamiento de San Cristóbal de La Laguna, turismo.aytolalaguna.es, 2023), parada A del itinerario complementario, «Terrero de lucha de Valle de Guerra»: X 364837, Y 3156170 (UTM 28N); sus paradas de la iglesia del Rosario y de la Casa de Carta casan con OpenStreetMap a 3 y 7 m. El marcador de Jerome («Cerca de Terrero de Lucha Valle de Guerra») queda a 117 m"
+  },
+  "terrero-canteras-laguna": {
+   "fecha": "2026-11-26",
+   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380239013 «Terrero Lucha Las Canteras», dato de 2019; el nombre, el de la página del Club de Lucha Canaria UniVlag (Universidad de La Laguna)"
+  },
+  "terrero-mencey-tegueste": {
+   "fecha": "2026-11-26",
+   "fuente": "OpenStreetMap, area/496986244 («Terrero Insular Mencey Tegueste»), extracto de Geofabrik del 26-09-2026; el censo del Cabildo (380466008, de 2019) lo pone a 8 m"
   }
  },
  "areas": {
