@@ -1,7 +1,7 @@
-# Revisión de los 1013 lugares
+# Revisión de los 1044 lugares
 
-**26 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 1013, no una muestra. Lo que no se puede comprobar desde aquí sale
+**27 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
+Barre los 1044, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 203 verificadas con su fuente · 810 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 234 verificadas con su fuente · 810 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -98,7 +98,7 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **203** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **234** |
 | Coordenada nunca comprobada por nadie | **810** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
@@ -126,6 +126,16 @@ De dónde viene cada una:
 | `benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
 | `bici-puerto-pico-ingles` | 2026-10-11 | La subida acaba en el Mirador Pico del Inglés: el mismo punto oficial de Turismo de Tenerife (UTM huso 28 X 376352 Y 3156846 -> 28.5325194, -16.2637869). Aportada por Jerome el 11 de octubre de 2026. |
 | `bollullo` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `boxeo-camacho-laguna` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4476084, -16.2986208; «Dirección cercana: …, Av. Taco, 170, 38108 La Laguna») |
+| `boxeo-fighters-laguna` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4477611, -16.2976015; «Dirección cercana: The Fighters club, C. París, 2, 4, 38108 La Laguna») |
+| `boxeo-gioboxe-sct` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4497418, -16.2878450; «Dirección cercana: …, C. Los Arcangeles, 18, 38010 Santa Cruz de Tenerife») |
+| `boxeo-kerchak-sanmiguel` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0444844, -16.6363847; «Dirección cercana: KERCHAK FIGHTERS TEAM, C. Nuestra Señora del Rosario, 2, C, 38639 Oroteanda Baja») |
+| `boxeo-laesquina-arona` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0791203, -16.6825542; «Dirección cercana: LA ESQUINA BOXING, C. Grama, 2, Loc 2, 38627 La Camella») |
+| `boxeo-lagunajab-laguna` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4861573, -16.3178546; «Dirección cercana: C. San Juan, 45D, 38204 La Laguna») |
+| `boxeo-oyateam-sct` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4560860, -16.2840235; «Dirección cercana: Escuela de boxeo OYA TEAM, Av. Príncipes de España, 10, 38010 Santa Cruz de Tenerife») |
+| `boxeo-povedano-arona` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0599860, -16.7270537; «Junto a Estadio Antonio Domínguez Alfonso, Arona»; «Dirección cercana: …, Av. Arquitecto Gómez Cuesta, 17, 38660 Arona») |
+| `boxeo-richikb-sct` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4663835, -16.2612566; «Dirección cercana: …, C. Ramón y Cajal, 51, 38004 Santa Cruz de Tenerife») |
+| `boxeo-teamsamuel-granadilla` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0583285, -16.5856768; «Dirección cercana: …, C. la Pastilla, 38611») |
 | `camping-las-lajas` | 2026-09-28 | Cabildo de Tenerife, Tenerife ON, enlace «Acceso» de la ficha de la zona de acampada: tenerifeon.es/equipamientos/zona-de-acampada/las-lajas. Aportada por Jerome el 28 de septiembre de 2026. |
 | `castillo-san-miguel-garachico` | 2026-10-17 | OSM area/195580026 «Castillo de San Miguel» (fort), a 0 m. Sin fuente oficial: con el OK de Jerome, que vive en la isla y conoce el sitio («vivo aquí y conozco estos lugares», 17/10/2026)  [datos/entregas/lanzamiento-lugares.json, pendiente_de_jerome] |
 | `charco-abrigos` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -169,12 +179,17 @@ De dónde viene cada una:
 | `gym-dorian-medano` | 2026-11-21 | OpenStreetMap, node/12416757375 («Gimnasio Dorian»), extracto de Geofabrik del 26-09-2026 |
 | `gym-duke-adeje` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0924775, -16.7356328: en The Duke Shops, Av. de Bruselas, 14, Costa Adeje, junto a la ficha «Duke Gym Tenerife») |
 | `gym-duragym-isora` | 2026-11-26 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380197012 «Gimnasio Duragym», dato de 2019 |
+| `gym-fasniafit-fasnia` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.2379314, -16.4424884; «Dirección cercana: …, Callejon Alto, 16, 38570 Fasnia») |
 | `gym-felipe-victoria` | 2026-11-22 | Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.4348333, -16.4720591; «Dirección cercana: Gym Felipe Sport, 38380 La Victoria de Acentejo») |
+| `gym-fenix-candelaria` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3652080, -16.3647128; «Dirección cercana: …, Av. Maritima, 29, portal B1, local 2, 38530 Candelaria») |
 | `gym-fitnesspark-chafiras` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0575033, -16.6137626; «Dirección cercana: Fitness Park Tenerife - La Gran Manzana, Av. Lucio Diaz Flores Feo, S/N, Planta Alta Local 1.11, 38639 Las Chafiras») |
 | `gym-fitnesspark-cuesta` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Park Tenerife - La Cuesta, Carr. Gral. la Cuesta, 28, 38320 La Laguna») |
+| `gym-fitnesswork-candelaria` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3614688, -16.3688242; «Dirección cercana: C. Francia, 1, 38509 Candelaria») |
 | `gym-garage-tegueste` | 2026-11-20 | OpenStreetMap, node/14196556400 («Garage Gym»), extracto de Geofabrik del 26-09-2026 |
+| `gym-gymarico-arico` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.1833614, -16.4797037; «Dirección cercana: GIMNASIO GYMARICO (DEPORTES ARICO), C. la Morra, 2, 38589 Arico Viejo») |
 | `gym-hammer-arona` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0527935, -16.7125409; «Dirección cercana: Unlimited Hammer Strength Gym, Multicentro Club, Av. Juan Carlos I, 21, 6 local 18 bajo, 38650 Arona») |
 | `gym-imagen-sct` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Gimnasio Imagen, C. Eric Lionel Fox, 5, 38005 Santa Cruz de Tenerife») |
+| `gym-impacto-guimar` | 2026-11-26 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380201019 «Gimnasio Impacto», dato de 2019 |
 | `gym-intergym-puerto` | 2026-11-22 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380282003 «Intergym», dato de 2019 |
 | `gym-keepstrong-guancha` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 25-11-2026 (28.3738961, -16.6500904; «Dirección cercana: Gimnasio Keep Strong La Guancha, Av. Hipólito Sinforiano, 38440 La Guancha») |
 | `gym-level-sct` | 2026-11-20 | OpenStreetMap, node/11055251389 («Fitness center level»), extracto de Geofabrik del 26-09-2026 |
@@ -189,10 +204,12 @@ De dónde viene cada una:
 | `gym-realgym-realejos` | 2026-11-22 | Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3871905, -16.5841761; «Junto a Real Gym, Los Realejos»; «Dirección cercana: Real Gym, C. San Isidro, 55, 38410 Los Realejos») |
 | `gym-redgym-adeje` | 2026-11-21 | OpenStreetMap, node/10061771503 («RED GYM»), extracto de Geofabrik del 26-09-2026 |
 | `gym-rh-orotava` | 2026-11-22 | Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3953402, -16.5198940; «Dirección cercana: ProGO Vending, Carr. Enlace el Ramal, 2, 38300 La Orotava», la misma dirección que la ficha de Fitness Center RH) |
+| `gym-rhapsody-candelaria` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3755029, -16.3625117; «Dirección cercana: Av. Maritima, 38530 Candelaria»), y Street View de abril de 2026, con el marcador en la fachada de Rhapsody Gym, 172 Av. Maritima |
 | `gym-starfit-laguna` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Club Starfit La Laguna, Calle Ntra. Sra. de la Ternura, 5, 38108 La Laguna») |
 | `gym-teamricardo-realejos` | 2026-11-22 | Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.3829722, -16.5763112; «Dirección cercana: TEAM RICARDO GYM, C. los Herreros, 1, 38419 Los Realejos») |
 | `gym-trifit-santaursula` | 2026-11-22 | Marcador de Jerome en Google Maps, captura del 22-11-2026 (28.4211244, -16.5010260; «Dirección cercana: TriFit Pro, C. Sorondongo, 1, 38390 Sta Úrsula») |
 | `gym-urban-laguna` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: La Laguna Urban Fitness, Av. de los Menceyes, 151, 38205 La Laguna») |
+| `gym-wee-guimar` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3149790, -16.4040470; «Dirección cercana: Wee Fitness Center, C. Lomo del Molino, 21, 38500 Güímar») |
 | `gym-worldfitness-abrigos` | 2026-11-21 | OpenStreetMap, area/1173771656 («Gimnasio World Fitness Gym»), extracto de Geofabrik del 26-09-2026 |
 | `gym-zona0-rosario` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Zona 0 Training, JP Watt, Nave 5, Número 8, 38109») |
 | `hiperdino-los-realejos` | 2026-09-29 | SuperDino, ficha de la propia empresa en Google: «SuperDino Los Realejos, Pl. Mencey Bencomo, s/n, 38410 Los Realejos», tel. 922 44 16 81. Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM (node/8428054218) esta a 27 m de la Plaza Mencey Bencomo. |
@@ -202,6 +219,14 @@ De dónde viene cada una:
 | `lidl-la-laguna` | 2026-09-29 | Lidl, ficha de la propia empresa en Google: «Calle Ntra. Sra. de la Ternura, 1, 38108 La Laguna». Captura de Jerome del 29 de septiembre de 2026. El elemento de OSM esta a 29 m de esa calle. |
 | `lidl-puerto-cruz` | 2026-09-26 | OSM del repositorio: el unico Lidl a menos de 2,5 km, a 81 m de la «Carretera Gral. Icod-Santa Cruz». La direccion del establecimiento es Ctra. General Icod-Santa Cruz s/n, via de servicio Las Arenas, 38400 Puerto de la Cruz, y el edificio en OSM lleva esa misma direccion. El municipio lo confirma tools/municipio_raya.py: 8 paradas sin raya en medio, todas de Puerto de la Cruz. Esta pegado a la raya con La Orotava y hay directorios que lo situan alli; manda la direccion postal. |
 | `lidl-santa-cruz` | 2026-09-19 | OpenStreetMap, supermarket «Lidl», el mas cercano al centro |
+| `marcial-bjjaborigen-adeje` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0845729, -16.7228577; «Junto a RED GYM, Costa Adeje»; «Dirección cercana: RED GYM, C. Alemania, 10, 38660 Costa Adeje»); Jerome, el 27-11: «Red gym será el de jiu jistu» |
+| `marcial-graciebarra-granadilla` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0733559, -16.5574888; «Dirección cercana: Gracie Barra Granadilla Jiu Jitsu & Defensa Personal, de Abona, C. Hermano Pedro, No. 38, 38611 San Isidro») |
+| `marcial-halcon-sct` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4658639, -16.2716740; «Dirección cercana: Judo Halcón, C. de Santiago Beyro, 14, 38007 Santa Cruz de Tenerife») |
+| `marcial-kunshinoken-adeje` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.1213527, -16.7385942; «Cerca de Pabellon las Torres- Fyffes, Adeje»; «Dirección cercana: Kunshi No Ken CD, 38670 Adeje») |
+| `marcial-samgukestrella-arona` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0164318, -16.6742571; «Dirección cercana: Club TaeKwonDo Samguk La Estrella, C. Lomo Negro, 18, 38632 La Estrella») |
+| `marcial-samgukvalle-arona` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0911740, -16.6608746; «Dirección cercana: Club Taekwondo Samguk Valle San Lorenzo, C. Era del Balo, 48, 38627 Valle de San Lorenzo») |
+| `marcial-tora-granadilla` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0723214, -16.5537974; «Dirección cercana: …, C. Arguayoda, 9, 38611 San Isidro») |
+| `marcial-zinkin-arona` | 2026-11-27 | Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0105706, -16.6410121; «Junto a Alondras Park, Costa del Silencio»; «Dirección cercana: …, Minerva, 16 - Alondras Park, c 106, 38630 Costa del Silencio») |
 | `mercadillo-la-victoria` | 2026-09-25 | Parche municipios-bloque1-B, metodo DERIVADO (no hay coordenada publicada). Punto medio entre «Casa de la Castana» (museo, OSM, 28.432695,-16.471387) y «Terrero Municipal de Lucha y Deportes» (OSM, 28.433360,-16.471129), separados 78 m, que es como el Ayuntamiento situa el mercadillo. Los tres pasos del parche se resolvieron con el OSM del propio repositorio (tools/osm_cerca.py) porque Overpass esta cerrado desde aqui: paso 1 exactamente 1 elemento, paso 2 ningun amenity=marketplace a 250 m (y 15 en toda la isla, asi que el extracto no los filtra), paso 3 exactamente 1. Se mueve 2.109 m. DERIVADO, no medido: si aparece la coordenada publicada, se cambia. |
 | `mercadona-granadilla` | 2026-09-27 | OSM del repositorio: «Mercadona» (supermarket), el unico de esa marca en 6 km, y cae en Granadilla de Abona como dice la ficha (14 paradas sin raya en medio, todas de Granadilla). El pin redondo estaba a 1.028 m. |
 | `mesa-mar` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -298,6 +323,12 @@ De dónde viene cada una:
 | `tea-tenerife` | 2026-09-27 | OSM del repositorio: «Tenerife Espacio de las Artes» (arts_centre), el nombre exacto de la ficha, a 45 m del pin redondo. Unico con ese nombre en la isla. |
 | `tejita` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
 | `teresitas` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
+| `terrero-canteras-laguna` | 2026-11-26 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380239013 «Terrero Lucha Las Canteras», dato de 2019; el nombre, el de la página del Club de Lucha Canaria UniVlag (Universidad de La Laguna) |
+| `terrero-chaval-laguna` | 2026-11-27 | Guía agroturística «La Laguna Ecotours: Valle de Guerra» (Ayuntamiento de San Cristóbal de La Laguna, turismo.aytolalaguna.es, 2023), parada A del itinerario complementario, «Terrero de lucha de Valle de Guerra»: X 364837, Y 3156170 (UTM 28N); sus paradas de la iglesia del Rosario y de la Casa de Carta casan con OpenStreetMap a 3 y 7 m. El marcador de Jerome («Cerca de Terrero de Lucha Valle de Guerra») queda a 117 m |
+| `terrero-mencey-tegueste` | 2026-11-26 | OpenStreetMap, area/496986244 («Terrero Insular Mencey Tegueste»), extracto de Geofabrik del 26-09-2026; el censo del Cabildo (380466008, de 2019) lo pone a 8 m |
+| `terrero-panchosuarez-sct` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.4812111, -16.2601237; «Dirección cercana: Terrero Insular de lucha Pancho Suárez., Carr. los Campitos, s/nº, 38170 Santa Cruz de Tenerife») |
+| `terrero-pollito-granadilla` | 2026-11-27 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380178022 «Terrero Municipal de Lucha Polito», dato de 2019; OpenStreetMap (area/4804644, «Terrero de lucha Pollito de la Barriada», extracto de Geofabrik del 26-09-2026) lo pone a 22 m; el nombre, el de RTVC («el terrero de Ángel Armas "Pollito de la barriada" de San Isidro», 2025) |
+| `terrero-tomasgonzalez-sanmiguel` | 2026-11-27 | Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380355026 «Terrero Municipal de Lucha Canaria San Miguel de Abona», dato de 2019; el nombre, el de RTVC («el terrero Tomás González de San Miguel de Abona», 2025) |
 | `turismo-cv-pedregales` | 2026-09-27 | OSM del repositorio: «Centro de Visitantes Los Pedregales» (information), a 21 m de la coordenada redonda anterior. Elemento unico con ese nombre en el extracto. |
 | `wc-benijo` | 2026-09-01 | Cuatro playas vuelven a su sitio, y sus satélites con ellas |
 | `wc-duque` | 2026-09-06 | Censo Nacional de Zonas de Aguas de Bano 2025 · Bandera Azul 2026 · Google Places (listas de playas y charcos, «ninguna coordenada estimada»)  [listasplayascharcos.md] |
@@ -370,7 +401,7 @@ cuáles, así que desde aquí no se pueden separar.
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 1013, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 1044, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
@@ -378,8 +409,8 @@ menos preciso de cada ficha. Es la cuenta entera de los 1013, no un umbral:
 | 2 | ~1,1 km | **29** |
 | 3 | ~110 m | **135** |
 | 4 | ~11 m | **547** |
-| 5 | ~1 m | **47** |
-| 6 | ~10 cm | **224** |
+| 5 | ~1 m | **50** |
+| 6 | ~10 cm | **252** |
 | 7 | ~1 cm | **28** |
 | 15 |  | **1** |
 
@@ -523,8 +554,9 @@ Puede ser correcto —dos cosas en el mismo sitio— o una coordenada copiada.
 
 ## 3 · Pares a menos de 25 m que no comparten coordenada
 
-**20 pares.** A esa distancia los dos pines se solapan en el mapa.
+**21 pares.** A esa distancia los dos pines se solapan en el mapa.
 
+- 10 m · `gym-redgym-adeje` y `marcial-bjjaborigen-adeje`
 - 10 m · `pp-la-corona` y `mir-la-corona-guimar`
 - 11 m · `puertito-los-abrigos` y `zona-mariscos-los-abrigos`
 - 11 m · `pesca-los-abrigos` y `zona-mariscos-los-abrigos`
@@ -557,9 +589,9 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 1013
-    que nombran un municipio.................... 546
-    de esos, comprobados contra el POLIGONO del Cabildo 536
+  lugares....................................... 1044
+    que nombran un municipio.................... 577
+    de esos, comprobados contra el POLIGONO del Cabildo 567
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
   no declaran municipio......................... 452
@@ -611,14 +643,14 @@ tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 1013
+## 6 · Lo que sí queda comprobado sobre los 1044
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **1013 de 1013** |
-| Caen en tierra (capa `earth` de OSM) | **1004** de 1013; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
-| Ids únicos y con el formato `[a-z0-9-]` | **1013** de 1013 |
-| Tienen `desc` y `cat` en los once idiomas | **1013** de 1013 |
+| Caen dentro de la caja de Tenerife | **1044 de 1044** |
+| Caen en tierra (capa `earth` de OSM) | **1035** de 1044; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **1044** de 1044 |
+| Tienen `desc` y `cat` en los once idiomas | **1044** de 1044 |
 | Referencias huérfanas desde el planificador | **0** de 161 |
 | Zonas de baño sin orientación | **0** de 99 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |
