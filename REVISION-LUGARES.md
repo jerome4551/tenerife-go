@@ -1,7 +1,7 @@
-# Revisión de los 1044 lugares
+# Revisión de los 1043 lugares
 
 **27 de noviembre de 2026.** Generado con `node tools/informe_lugares.js`.
-Barre los 1044, no una muestra. Lo que no se puede comprobar desde aquí sale
+Barre los 1043, no una muestra. Lo que no se puede comprobar desde aquí sale
 contado y listado, no callado.
 
 ## 0 · El estado de cada área, de un vistazo
@@ -21,7 +21,7 @@ el «deducida» es el resultado honesto, no una tarea pendiente.
 | `idiomas` | **cerrado** | Diez idiomas. auditar_idioma.js da 0 hallazgos en los diez sobre 1.705 textos de lugar y 544 de interfaz cada uno. 0 etiquetas sin |
 | `asistente` | **cerrado** | 122 respuestas x 10 idiomas = 1220, todas alcanzables desde el buscador; ninguna en un solo idioma (CHAT_KB fuera, 12/10/2026). La |
 | `mapa_sin_conexion` | **cerrado** | 76 controles en verde, 99,77 % de pixeles pintados con el estilo de la app, 12 teselas sin red. |
-| `coordenadas` | abierto | 234 verificadas con su fuente · 810 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
+| `coordenadas` | abierto | 233 verificadas con su fuente · 810 sin mirar · 21 puestas a ojo · 16 redondas a proposito |
 | `municipio_de_cada_ficha` | **cerrado** | Aqui NO se escriben las cifras: las cuenta `node tools/auditar_municipio.js` al ejecutarse, porque un numero escrito a mano se que |
 | `lugares_en_el_mar` | **cerrado** | 0 fichas fuera de tierra que no sean puertos, marinas o charcos. |
 | `avisos_aemet` | **cerrado** | tools/probar_avisos_aemet.py 24 de 24 con copias reales de AEMET (tools/pruebas/aemet/); tools/probar_avisos.js 75 de 75 en un nav |
@@ -98,7 +98,7 @@ parecía que todo fallaba siempre.
 
 | | fichas |
 |---|---|
-| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **234** |
+| **Coordenada verificada**, con su fuente apuntada en `datos/verificado.json` | **233** |
 | Coordenada nunca comprobada por nadie | **810** |
 
 **Lo que no está verificado no es que esté mal: es que nadie lo ha mirado
@@ -184,7 +184,6 @@ De dónde viene cada una:
 | `gym-fenix-candelaria` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3652080, -16.3647128; «Dirección cercana: …, Av. Maritima, 29, portal B1, local 2, 38530 Candelaria») |
 | `gym-fitnesspark-chafiras` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0575033, -16.6137626; «Dirección cercana: Fitness Park Tenerife - La Gran Manzana, Av. Lucio Diaz Flores Feo, S/N, Planta Alta Local 1.11, 38639 Las Chafiras») |
 | `gym-fitnesspark-cuesta` | 2026-11-20 | Marcador de Jerome en Google Maps, captura del 20-11-2026 («Dirección cercana: Fitness Park Tenerife - La Cuesta, Carr. Gral. la Cuesta, 28, 38320 La Laguna») |
-| `gym-fitnesswork-candelaria` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.3614688, -16.3688242; «Dirección cercana: C. Francia, 1, 38509 Candelaria») |
 | `gym-garage-tegueste` | 2026-11-20 | OpenStreetMap, node/14196556400 («Garage Gym»), extracto de Geofabrik del 26-09-2026 |
 | `gym-gymarico-arico` | 2026-11-26 | Marcador de Jerome en Google Maps, captura del 26-11-2026 (28.1833614, -16.4797037; «Dirección cercana: GIMNASIO GYMARICO (DEPORTES ARICO), C. la Morra, 2, 38589 Arico Viejo») |
 | `gym-hammer-arona` | 2026-11-21 | Marcador de Jerome en Google Maps, captura del 21-11-2026 (28.0527935, -16.7125409; «Dirección cercana: Unlimited Hammer Strength Gym, Multicentro Club, Av. Juan Carlos I, 21, 6 local 18 bajo, 38650 Arona») |
@@ -401,7 +400,7 @@ cuáles, así que desde aquí no se pueden separar.
 ## 1 · Con cuánta precisión está escrita cada coordenada
 
 Decimales **significativos** —los ceros de la derecha no cuentan— del eje
-menos preciso de cada ficha. Es la cuenta entera de los 1044, no un umbral:
+menos preciso de cada ficha. Es la cuenta entera de los 1043, no un umbral:
 
 | decimales | cuadrícula | fichas |
 |---|---|---|
@@ -410,7 +409,7 @@ menos preciso de cada ficha. Es la cuenta entera de los 1044, no un umbral:
 | 3 | ~110 m | **135** |
 | 4 | ~11 m | **547** |
 | 5 | ~1 m | **50** |
-| 6 | ~10 cm | **252** |
+| 6 | ~10 cm | **251** |
 | 7 | ~1 cm | **28** |
 | 15 |  | **1** |
 
@@ -589,9 +588,9 @@ Salida de `node tools/auditar_municipio.js`:
 
 ```
 === el municipio que dice la ficha, contra donde cae el punto ===
-  lugares....................................... 1044
-    que nombran un municipio.................... 577
-    de esos, comprobados contra el POLIGONO del Cabildo 567
+  lugares....................................... 1043
+    que nombran un municipio.................... 576
+    de esos, comprobados contra el POLIGONO del Cabildo 566
     y con el punto en el agua: no cae en ningun municipio 10
   solo nombran una zona de varios municipios.... 15
   no declaran municipio......................... 452
@@ -643,14 +642,14 @@ tenerife.es, webtenerife.com, eldia.es y los dos endpoints de Overpass dan
 `000` o `403`. Todo lo de arriba sale de cruzar datos que ya estaban dentro
 del repositorio.
 
-## 6 · Lo que sí queda comprobado sobre los 1044
+## 6 · Lo que sí queda comprobado sobre los 1043
 
 | comprobación | resultado |
 |---|---|
-| Caen dentro de la caja de Tenerife | **1044 de 1044** |
-| Caen en tierra (capa `earth` de OSM) | **1035** de 1044; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
-| Ids únicos y con el formato `[a-z0-9-]` | **1044** de 1044 |
-| Tienen `desc` y `cat` en los once idiomas | **1044** de 1044 |
+| Caen dentro de la caja de Tenerife | **1043 de 1043** |
+| Caen en tierra (capa `earth` de OSM) | **1034** de 1043; 9 en el agua a propósito, exentas con su motivo, y **0** que tendrían que estar en tierra (`auditar_en_el_mar.py`) |
+| Ids únicos y con el formato `[a-z0-9-]` | **1043** de 1043 |
+| Tienen `desc` y `cat` en los once idiomas | **1043** de 1043 |
 | Referencias huérfanas desde el planificador | **0** de 161 |
 | Zonas de baño sin orientación | **0** de 99 |
 | `lifeguard` con un valor que no sea true/false/null | **0** |
