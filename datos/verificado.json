@@ -930,6 +930,58 @@
   "terrero-mencey-tegueste": {
    "fecha": "2026-11-26",
    "fuente": "OpenStreetMap, area/496986244 («Terrero Insular Mencey Tegueste»), extracto de Geofabrik del 26-09-2026; el censo del Cabildo (380466008, de 2019) lo pone a 8 m"
+  },
+  "marcial-bjjaborigen-adeje": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0845729, -16.7228577; «Junto a RED GYM, Costa Adeje»; «Dirección cercana: RED GYM, C. Alemania, 10, 38660 Costa Adeje»); Jerome, el 27-11: «Red gym será el de jiu jistu»"
+  },
+  "marcial-kunshinoken-adeje": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.1213527, -16.7385942; «Cerca de Pabellon las Torres- Fyffes, Adeje»; «Dirección cercana: Kunshi No Ken CD, 38670 Adeje»)"
+  },
+  "boxeo-povedano-arona": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0599860, -16.7270537; «Junto a Estadio Antonio Domínguez Alfonso, Arona»; «Dirección cercana: …, Av. Arquitecto Gómez Cuesta, 17, 38660 Arona»)"
+  },
+  "boxeo-laesquina-arona": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0791203, -16.6825542; «Dirección cercana: LA ESQUINA BOXING, C. Grama, 2, Loc 2, 38627 La Camella»)"
+  },
+  "marcial-samgukvalle-arona": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0911740, -16.6608746; «Dirección cercana: Club Taekwondo Samguk Valle San Lorenzo, C. Era del Balo, 48, 38627 Valle de San Lorenzo»)"
+  },
+  "marcial-samgukestrella-arona": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0164318, -16.6742571; «Dirección cercana: Club TaeKwonDo Samguk La Estrella, C. Lomo Negro, 18, 38632 La Estrella»)"
+  },
+  "marcial-zinkin-arona": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0105706, -16.6410121; «Junto a Alondras Park, Costa del Silencio»; «Dirección cercana: …, Minerva, 16 - Alondras Park, c 106, 38630 Costa del Silencio»)"
+  },
+  "boxeo-kerchak-sanmiguel": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0444844, -16.6363847; «Dirección cercana: KERCHAK FIGHTERS TEAM, C. Nuestra Señora del Rosario, 2, C, 38639 Oroteanda Baja»)"
+  },
+  "terrero-tomasgonzalez-sanmiguel": {
+   "fecha": "2026-11-27",
+   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380355026 «Terrero Municipal de Lucha Canaria San Miguel de Abona», dato de 2019; el nombre, el de RTVC («el terrero Tomás González de San Miguel de Abona», 2025)"
+  },
+  "boxeo-teamsamuel-granadilla": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0583285, -16.5856768; «Dirección cercana: …, C. la Pastilla, 38611»)"
+  },
+  "marcial-graciebarra-granadilla": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0733559, -16.5574888; «Dirección cercana: Gracie Barra Granadilla Jiu Jitsu & Defensa Personal, de Abona, C. Hermano Pedro, No. 38, 38611 San Isidro»)"
+  },
+  "marcial-tora-granadilla": {
+   "fecha": "2026-11-27",
+   "fuente": "Marcador de Jerome en Google Maps, captura del 27-11-2026 (28.0723214, -16.5537974; «Dirección cercana: …, C. Arguayoda, 9, 38611 San Isidro»)"
+  },
+  "terrero-pollito-granadilla": {
+   "fecha": "2026-11-27",
+   "fuente": "Censo de instalaciones deportivas de la isla de Tenerife (Cabildo de Tenerife, datos.tenerife.es, CC BY), instalación 380178022 «Terrero Municipal de Lucha Polito», dato de 2019; OpenStreetMap (area/4804644, «Terrero de lucha Pollito de la Barriada», extracto de Geofabrik del 26-09-2026) lo pone a 22 m; el nombre, el de RTVC («el terrero de Ángel Armas \"Pollito de la barriada\" de San Isidro», 2025)"
   }
  },
  "areas": {

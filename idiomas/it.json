@@ -1029,5 +1029,18 @@
  "terrero-panchosuarez-sct": {"desc": "Arena di lotta canaria a Santa Cruz. Gli incontri sono annunciati dalla Federazione di lotta canaria di Tenerife.", "cat": "Lotta canaria · Santa Cruz"},
  "terrero-chaval-laguna": {"desc": "Arena di lotta canaria a La Laguna. Gli incontri sono annunciati dalla Federazione di lotta canaria di Tenerife.", "cat": "Lotta canaria · La Laguna"},
  "terrero-canteras-laguna": {"desc": "Arena di lotta canaria a La Laguna. Gli incontri sono annunciati dalla Federazione di lotta canaria di Tenerife.", "cat": "Lotta canaria · La Laguna"},
- "terrero-mencey-tegueste": {"desc": "Arena di lotta canaria a Tegueste. Gli incontri sono annunciati dalla Federazione di lotta canaria di Tenerife.", "cat": "Lotta canaria · Tegueste"}
+ "terrero-mencey-tegueste": {"desc": "Arena di lotta canaria a Tegueste. Gli incontri sono annunciati dalla Federazione di lotta canaria di Tenerife.", "cat": "Lotta canaria · Tegueste"},
+ "marcial-bjjaborigen-adeje": {"desc": "Club di jiu-jitsu ad Adeje. Le lezioni si tengono nella palestra RED GYM. Chieda se è possibile una lezione di prova.", "cat": "Arti marziali · Adeje"},
+ "marcial-kunshinoken-adeje": {"desc": "Club di karate ad Adeje. Chieda se è possibile una lezione di prova.", "cat": "Arti marziali · Adeje"},
+ "boxeo-povedano-arona": {"desc": "Club di boxe ad Arona. Chieda se è possibile una lezione di prova.", "cat": "Boxe e kickboxing · Arona"},
+ "boxeo-laesquina-arona": {"desc": "Palestra di boxe ad Arona. Chieda se è possibile una lezione di prova.", "cat": "Boxe e kickboxing · Arona"},
+ "marcial-samgukvalle-arona": {"desc": "Club di taekwondo ad Arona. Chieda se è possibile una lezione di prova.", "cat": "Arti marziali · Arona"},
+ "marcial-samgukestrella-arona": {"desc": "Club di taekwondo ad Arona. Chieda se è possibile una lezione di prova.", "cat": "Arti marziali · Arona"},
+ "marcial-zinkin-arona": {"desc": "Club di karate ad Arona. Chieda se è possibile una lezione di prova.", "cat": "Arti marziali · Arona"},
+ "boxeo-kerchak-sanmiguel": {"desc": "Palestra di sport da combattimento a San Miguel de Abona. Chieda se è possibile una lezione di prova.", "cat": "Boxe e kickboxing · San Miguel de Abona"},
+ "terrero-tomasgonzalez-sanmiguel": {"desc": "Arena di lotta canaria a San Miguel de Abona. Gli incontri sono annunciati dalla Federazione di lotta canaria di Tenerife.", "cat": "Lotta canaria · San Miguel de Abona"},
+ "boxeo-teamsamuel-granadilla": {"desc": "Palestra di boxe e kickboxing a Granadilla de Abona. Chieda se è possibile una lezione di prova.", "cat": "Boxe e kickboxing · Granadilla de Abona"},
+ "marcial-graciebarra-granadilla": {"desc": "Club di jiu-jitsu a Granadilla de Abona. Chieda se è possibile una lezione di prova.", "cat": "Arti marziali · Granadilla de Abona"},
+ "marcial-tora-granadilla": {"desc": "Club di karate a Granadilla de Abona. Chieda se è possibile una lezione di prova.", "cat": "Arti marziali · Granadilla de Abona"},
+ "terrero-pollito-granadilla": {"desc": "Arena di lotta canaria a Granadilla de Abona. Gli incontri sono annunciati dalla Federazione di lotta canaria di Tenerife.", "cat": "Lotta canaria · Granadilla de Abona"}
 }

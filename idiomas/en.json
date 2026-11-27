@@ -1029,5 +1029,18 @@
  "terrero-panchosuarez-sct": {"desc": "Canarian wrestling ring in Santa Cruz. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · Santa Cruz"},
  "terrero-chaval-laguna": {"desc": "Canarian wrestling ring in La Laguna. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · La Laguna"},
  "terrero-canteras-laguna": {"desc": "Canarian wrestling ring in La Laguna. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · La Laguna"},
- "terrero-mencey-tegueste": {"desc": "Canarian wrestling ring in Tegueste. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · Tegueste"}
+ "terrero-mencey-tegueste": {"desc": "Canarian wrestling ring in Tegueste. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · Tegueste"},
+ "marcial-bjjaborigen-adeje": {"desc": "Jiu-jitsu club in Adeje. Classes are held at RED GYM. Ask whether a trial class is available.", "cat": "Martial arts · Adeje"},
+ "marcial-kunshinoken-adeje": {"desc": "Karate club in Adeje. Ask whether a trial class is available.", "cat": "Martial arts · Adeje"},
+ "boxeo-povedano-arona": {"desc": "Boxing club in Arona. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · Arona"},
+ "boxeo-laesquina-arona": {"desc": "Boxing gym in Arona. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · Arona"},
+ "marcial-samgukvalle-arona": {"desc": "Taekwondo club in Arona. Ask whether a trial class is available.", "cat": "Martial arts · Arona"},
+ "marcial-samgukestrella-arona": {"desc": "Taekwondo club in Arona. Ask whether a trial class is available.", "cat": "Martial arts · Arona"},
+ "marcial-zinkin-arona": {"desc": "Karate club in Arona. Ask whether a trial class is available.", "cat": "Martial arts · Arona"},
+ "boxeo-kerchak-sanmiguel": {"desc": "Combat sports gym in San Miguel de Abona. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · San Miguel de Abona"},
+ "terrero-tomasgonzalez-sanmiguel": {"desc": "Canarian wrestling ring in San Miguel de Abona. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · San Miguel de Abona"},
+ "boxeo-teamsamuel-granadilla": {"desc": "Boxing and kickboxing gym in Granadilla de Abona. Ask whether a trial class is available.", "cat": "Boxing and kickboxing · Granadilla de Abona"},
+ "marcial-graciebarra-granadilla": {"desc": "Jiu-jitsu club in Granadilla de Abona. Ask whether a trial class is available.", "cat": "Martial arts · Granadilla de Abona"},
+ "marcial-tora-granadilla": {"desc": "Karate club in Granadilla de Abona. Ask whether a trial class is available.", "cat": "Martial arts · Granadilla de Abona"},
+ "terrero-pollito-granadilla": {"desc": "Canarian wrestling ring in Granadilla de Abona. Bouts are announced by the Tenerife Canarian Wrestling Federation.", "cat": "Canarian wrestling · Granadilla de Abona"}
 }

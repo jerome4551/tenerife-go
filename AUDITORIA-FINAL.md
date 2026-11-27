@@ -27,7 +27,7 @@ faq/         10 ficheros · 122 respuestas del asistente en cada idioma
 
 | | |
 |---|---|
-| Lugares | **1031**, con descripción y categoría en 11 idiomas (lo coteja `auditar_datos.js`) |
+| Lugares | **1044**, con descripción y categoría en 11 idiomas (lo coteja `auditar_datos.js`) |
 | Líneas | **183** — las 181 del GTFS de TITSA + L1 y L2 del tranvía |
 | Paradas | **6.263** referencias sobre un catálogo de **2.514** marquesinas |
 | Idiomas | es · en · fr · de · it · nl · zh · zht · bg · **pl** — los diez terminados |
@@ -13543,7 +13543,7 @@ entradas del bloque del Teide.
 `idiomas/`, ni en el menú. Las respuestas están; la app todavía no sabe
 enseñarlas.
 
-## Idiomas · 61 tablas, 3980 filas (y 6.233 filas, dentro y fuera del fuente)
+## Idiomas · 61 tablas, 3980 filas (y 6.259 filas, dentro y fuera del fuente)
 
 *(Cifras del 12 de octubre: 34 filas nuevas de `UI_TX` para los avisos de
 AEMET, 3 del asistente para «socorro», 6 para ordenar los favoritos y 2 para
@@ -13842,10 +13842,10 @@ no la secundaria**.
 | Paradas o lugares fuera de Tenerife | **0** |
 | Parada repetida consecutiva en una línea | **0** |
 | `via` con punto mal formado | **0** de 26.593 |
-| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **1031** |
-| Ids de lugar que cumplen `[a-z0-9-]` | **1031** |
+| Lugares completos (id, nombre, categoría, coordenada, color, emoji) | **1044** |
+| Ids de lugar que cumplen `[a-z0-9-]` | **1044** |
 | Con calidad de agua, y su año | **46** · 46 |
-| Con alias de búsqueda, que los 3 filtros leen | **65** |
+| Con alias de búsqueda, que los 3 filtros leen | **67** |
 | Con aviso `warn`, y su tipo existe en `WARN_I18N` | **116** · 0 huérfanos |
 | De esos, `warn:"mar"` | **49** |
 | URLs de lugar sin cifrar | **0** de 28 |
@@ -13912,6 +13912,8 @@ más de `places[]` en cada idioma de `idiomas/*.json` (2.364): 61 tablas, 3.980 
 Y el 27 de noviembre, de 1020 a 1031 lugares: los once sitios de combate del área metropolitana (bloque 5a, nota 72),
 con veintidós filas más de `places[]` en cada idioma de `idiomas/*.json` (2.386), y «Boxeo y kickboxing»,
 «Artes marciales» y «Lucha canaria» en las categorías de `LANGS`: 61 tablas, 3.980 filas y 6.233.
+Y el 27 de noviembre, de 1031 a 1044 lugares: los trece sitios de combate del sur (bloque 5b, nota 73), con veintiséis filas más de
+`places[]` en cada idioma de `idiomas/*.json` (2.412): 61 tablas, 3.980 filas y 6.259.
 
 Lo que aparece y **viene de TITSA tal cual**: las paradas 5279 «La Romántica» y
 5280 «Geranios» comparten coordenada exacta en `stops.txt`, y 73 paradas no

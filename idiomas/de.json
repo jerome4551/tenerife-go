@@ -1029,5 +1029,18 @@
  "terrero-panchosuarez-sct": {"desc": "Kampfplatz für Kanarisches Ringen in Santa Cruz. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · Santa Cruz"},
  "terrero-chaval-laguna": {"desc": "Kampfplatz für Kanarisches Ringen in La Laguna. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · La Laguna"},
  "terrero-canteras-laguna": {"desc": "Kampfplatz für Kanarisches Ringen in La Laguna. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · La Laguna"},
- "terrero-mencey-tegueste": {"desc": "Kampfplatz für Kanarisches Ringen in Tegueste. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · Tegueste"}
+ "terrero-mencey-tegueste": {"desc": "Kampfplatz für Kanarisches Ringen in Tegueste. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · Tegueste"},
+ "marcial-bjjaborigen-adeje": {"desc": "Jiu-Jitsu-Verein in Adeje. Das Training findet im Fitnessstudio RED GYM statt. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Kampfkünste · Adeje"},
+ "marcial-kunshinoken-adeje": {"desc": "Karateverein in Adeje. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Kampfkünste · Adeje"},
+ "boxeo-povedano-arona": {"desc": "Boxverein in Arona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · Arona"},
+ "boxeo-laesquina-arona": {"desc": "Boxstudio in Arona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · Arona"},
+ "marcial-samgukvalle-arona": {"desc": "Taekwondoverein in Arona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Kampfkünste · Arona"},
+ "marcial-samgukestrella-arona": {"desc": "Taekwondoverein in Arona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Kampfkünste · Arona"},
+ "marcial-zinkin-arona": {"desc": "Karateverein in Arona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Kampfkünste · Arona"},
+ "boxeo-kerchak-sanmiguel": {"desc": "Kampfsportstudio in San Miguel de Abona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · San Miguel de Abona"},
+ "terrero-tomasgonzalez-sanmiguel": {"desc": "Kampfplatz für Kanarisches Ringen in San Miguel de Abona. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · San Miguel de Abona"},
+ "boxeo-teamsamuel-granadilla": {"desc": "Studio für Boxen und Kickboxen in Granadilla de Abona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Boxen und Kickboxen · Granadilla de Abona"},
+ "marcial-graciebarra-granadilla": {"desc": "Jiu-Jitsu-Verein in Granadilla de Abona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Kampfkünste · Granadilla de Abona"},
+ "marcial-tora-granadilla": {"desc": "Karateverein in Granadilla de Abona. Fragen Sie, ob eine Probestunde möglich ist.", "cat": "Kampfkünste · Granadilla de Abona"},
+ "terrero-pollito-granadilla": {"desc": "Kampfplatz für Kanarisches Ringen in Granadilla de Abona. Die Kämpfe kündigt der Verband für Kanarisches Ringen auf Teneriffa an.", "cat": "Kanarisches Ringen · Granadilla de Abona"}
 }

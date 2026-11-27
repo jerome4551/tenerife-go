@@ -1,0 +1,189 @@
+{
+ "_": "Rumano (ro) de las fichas de combate del mapa (bloque 5b de «Su deporte», nota 73): los del sur (Adeje, Arona, San Miguel de Abona y Granadilla de Abona), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
+ "idioma": "ro",
+ "fichero": "idiomas/ro.json",
+ "filas": [
+  {
+   "tabla": "places",
+   "clave": "marcial-bjjaborigen-adeje.desc",
+   "es": "Club de jiu-jitsu en Adeje. Las clases son en el gimnasio RED GYM. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de jiu-jitsu în Adeje. Antrenamentele au loc în sala RED GYM. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-bjjaborigen-adeje.cat",
+   "es": "Artes marciales · Adeje",
+   "forma": "texto",
+   "ro": "Arte marțiale · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-kunshinoken-adeje.desc",
+   "es": "Club de karate en Adeje. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de karate în Adeje. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-kunshinoken-adeje.cat",
+   "es": "Artes marciales · Adeje",
+   "forma": "texto",
+   "ro": "Arte marțiale · Adeje"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-povedano-arona.desc",
+   "es": "Club de boxeo en Arona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de box în Arona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-povedano-arona.cat",
+   "es": "Boxeo y kickboxing · Arona",
+   "forma": "texto",
+   "ro": "Box și kickbox · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-laesquina-arona.desc",
+   "es": "Gimnasio de boxeo en Arona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de box în Arona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-laesquina-arona.cat",
+   "es": "Boxeo y kickboxing · Arona",
+   "forma": "texto",
+   "ro": "Box și kickbox · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-samgukvalle-arona.desc",
+   "es": "Club de taekwondo en Arona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de taekwondo în Arona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-samgukvalle-arona.cat",
+   "es": "Artes marciales · Arona",
+   "forma": "texto",
+   "ro": "Arte marțiale · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-samgukestrella-arona.desc",
+   "es": "Club de taekwondo en Arona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de taekwondo în Arona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-samgukestrella-arona.cat",
+   "es": "Artes marciales · Arona",
+   "forma": "texto",
+   "ro": "Arte marțiale · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-zinkin-arona.desc",
+   "es": "Club de karate en Arona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de karate în Arona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-zinkin-arona.cat",
+   "es": "Artes marciales · Arona",
+   "forma": "texto",
+   "ro": "Arte marțiale · Arona"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-kerchak-sanmiguel.desc",
+   "es": "Gimnasio de deportes de combate en San Miguel de Abona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de sporturi de luptă în San Miguel de Abona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-kerchak-sanmiguel.cat",
+   "es": "Boxeo y kickboxing · San Miguel de Abona",
+   "forma": "texto",
+   "ro": "Box și kickbox · San Miguel de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-tomasgonzalez-sanmiguel.desc",
+   "es": "Terrero de lucha canaria en San Miguel de Abona. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife.",
+   "forma": "texto",
+   "ro": "Arenă de lupte canariene în San Miguel de Abona. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-tomasgonzalez-sanmiguel.cat",
+   "es": "Lucha canaria · San Miguel de Abona",
+   "forma": "texto",
+   "ro": "Lupte canariene · San Miguel de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-teamsamuel-granadilla.desc",
+   "es": "Gimnasio de boxeo y kickboxing en Granadilla de Abona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Sală de box și kickbox în Granadilla de Abona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "boxeo-teamsamuel-granadilla.cat",
+   "es": "Boxeo y kickboxing · Granadilla de Abona",
+   "forma": "texto",
+   "ro": "Box și kickbox · Granadilla de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-graciebarra-granadilla.desc",
+   "es": "Club de jiu-jitsu en Granadilla de Abona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de jiu-jitsu în Granadilla de Abona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-graciebarra-granadilla.cat",
+   "es": "Artes marciales · Granadilla de Abona",
+   "forma": "texto",
+   "ro": "Arte marțiale · Granadilla de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-tora-granadilla.desc",
+   "es": "Club de karate en Granadilla de Abona. Pregunte si admite una clase de prueba.",
+   "forma": "texto",
+   "ro": "Club de karate în Granadilla de Abona. Întrebați dacă se poate face o oră de probă."
+  },
+  {
+   "tabla": "places",
+   "clave": "marcial-tora-granadilla.cat",
+   "es": "Artes marciales · Granadilla de Abona",
+   "forma": "texto",
+   "ro": "Arte marțiale · Granadilla de Abona"
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-pollito-granadilla.desc",
+   "es": "Terrero de lucha canaria en Granadilla de Abona. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife.",
+   "forma": "texto",
+   "ro": "Arenă de lupte canariene în Granadilla de Abona. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife."
+  },
+  {
+   "tabla": "places",
+   "clave": "terrero-pollito-granadilla.cat",
+   "es": "Lucha canaria · Granadilla de Abona",
+   "forma": "texto",
+   "ro": "Lupte canariene · Granadilla de Abona"
+  }
+ ]
+}

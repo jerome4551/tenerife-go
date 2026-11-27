@@ -1029,5 +1029,18 @@
  "terrero-panchosuarez-sct": {"desc": "Arena voor Canarisch worstelen in Santa Cruz. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · Santa Cruz"},
  "terrero-chaval-laguna": {"desc": "Arena voor Canarisch worstelen in La Laguna. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · La Laguna"},
  "terrero-canteras-laguna": {"desc": "Arena voor Canarisch worstelen in La Laguna. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · La Laguna"},
- "terrero-mencey-tegueste": {"desc": "Arena voor Canarisch worstelen in Tegueste. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · Tegueste"}
+ "terrero-mencey-tegueste": {"desc": "Arena voor Canarisch worstelen in Tegueste. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · Tegueste"},
+ "marcial-bjjaborigen-adeje": {"desc": "Jiu-jitsuclub in Adeje. De lessen zijn in sportschool RED GYM. Vraag of een proefles mogelijk is.", "cat": "Vechtsporten · Adeje"},
+ "marcial-kunshinoken-adeje": {"desc": "Karateclub in Adeje. Vraag of een proefles mogelijk is.", "cat": "Vechtsporten · Adeje"},
+ "boxeo-povedano-arona": {"desc": "Boksclub in Arona. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · Arona"},
+ "boxeo-laesquina-arona": {"desc": "Boksschool in Arona. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · Arona"},
+ "marcial-samgukvalle-arona": {"desc": "Taekwondoclub in Arona. Vraag of een proefles mogelijk is.", "cat": "Vechtsporten · Arona"},
+ "marcial-samgukestrella-arona": {"desc": "Taekwondoclub in Arona. Vraag of een proefles mogelijk is.", "cat": "Vechtsporten · Arona"},
+ "marcial-zinkin-arona": {"desc": "Karateclub in Arona. Vraag of een proefles mogelijk is.", "cat": "Vechtsporten · Arona"},
+ "boxeo-kerchak-sanmiguel": {"desc": "Vechtsportschool in San Miguel de Abona. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · San Miguel de Abona"},
+ "terrero-tomasgonzalez-sanmiguel": {"desc": "Arena voor Canarisch worstelen in San Miguel de Abona. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · San Miguel de Abona"},
+ "boxeo-teamsamuel-granadilla": {"desc": "Sportschool voor boksen en kickboksen in Granadilla de Abona. Vraag of een proefles mogelijk is.", "cat": "Boksen en kickboksen · Granadilla de Abona"},
+ "marcial-graciebarra-granadilla": {"desc": "Jiu-jitsuclub in Granadilla de Abona. Vraag of een proefles mogelijk is.", "cat": "Vechtsporten · Granadilla de Abona"},
+ "marcial-tora-granadilla": {"desc": "Karateclub in Granadilla de Abona. Vraag of een proefles mogelijk is.", "cat": "Vechtsporten · Granadilla de Abona"},
+ "terrero-pollito-granadilla": {"desc": "Arena voor Canarisch worstelen in Granadilla de Abona. De wedstrijden worden aangekondigd door de Canarische worstelbond van Tenerife.", "cat": "Canarisch worstelen · Granadilla de Abona"}
 }

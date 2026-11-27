@@ -1029,5 +1029,18 @@
  "terrero-panchosuarez-sct": {"desc": "Arenă de lupte canariene în Santa Cruz. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · Santa Cruz"},
  "terrero-chaval-laguna": {"desc": "Arenă de lupte canariene în La Laguna. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · La Laguna"},
  "terrero-canteras-laguna": {"desc": "Arenă de lupte canariene în La Laguna. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · La Laguna"},
- "terrero-mencey-tegueste": {"desc": "Arenă de lupte canariene în Tegueste. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · Tegueste"}
+ "terrero-mencey-tegueste": {"desc": "Arenă de lupte canariene în Tegueste. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · Tegueste"},
+ "marcial-bjjaborigen-adeje": {"desc": "Club de jiu-jitsu în Adeje. Antrenamentele au loc în sala RED GYM. Întrebați dacă se poate face o oră de probă.", "cat": "Arte marțiale · Adeje"},
+ "marcial-kunshinoken-adeje": {"desc": "Club de karate în Adeje. Întrebați dacă se poate face o oră de probă.", "cat": "Arte marțiale · Adeje"},
+ "boxeo-povedano-arona": {"desc": "Club de box în Arona. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · Arona"},
+ "boxeo-laesquina-arona": {"desc": "Sală de box în Arona. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · Arona"},
+ "marcial-samgukvalle-arona": {"desc": "Club de taekwondo în Arona. Întrebați dacă se poate face o oră de probă.", "cat": "Arte marțiale · Arona"},
+ "marcial-samgukestrella-arona": {"desc": "Club de taekwondo în Arona. Întrebați dacă se poate face o oră de probă.", "cat": "Arte marțiale · Arona"},
+ "marcial-zinkin-arona": {"desc": "Club de karate în Arona. Întrebați dacă se poate face o oră de probă.", "cat": "Arte marțiale · Arona"},
+ "boxeo-kerchak-sanmiguel": {"desc": "Sală de sporturi de luptă în San Miguel de Abona. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · San Miguel de Abona"},
+ "terrero-tomasgonzalez-sanmiguel": {"desc": "Arenă de lupte canariene în San Miguel de Abona. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · San Miguel de Abona"},
+ "boxeo-teamsamuel-granadilla": {"desc": "Sală de box și kickbox în Granadilla de Abona. Întrebați dacă se poate face o oră de probă.", "cat": "Box și kickbox · Granadilla de Abona"},
+ "marcial-graciebarra-granadilla": {"desc": "Club de jiu-jitsu în Granadilla de Abona. Întrebați dacă se poate face o oră de probă.", "cat": "Arte marțiale · Granadilla de Abona"},
+ "marcial-tora-granadilla": {"desc": "Club de karate în Granadilla de Abona. Întrebați dacă se poate face o oră de probă.", "cat": "Arte marțiale · Granadilla de Abona"},
+ "terrero-pollito-granadilla": {"desc": "Arenă de lupte canariene în Granadilla de Abona. Meciurile sunt anunțate de Federația de lupte canariene din Tenerife.", "cat": "Lupte canariene · Granadilla de Abona"}
 }

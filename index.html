@@ -193,7 +193,7 @@ window.onunhandledrejection = function(e) {
       "name": "Tenerife Go",
       "alternateName": "Tenerife GO — Mapa Interactivo de Tenerife",
       "url": "https://tenerifego.app/",
-      "description": "Guía turística gratuita de Tenerife con mapa interactivo: 1031 lugares, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y avisos meteorológicos de AEMET. Disponible en 11 idiomas. Somos parte de ti.",
+      "description": "Guía turística gratuita de Tenerife con mapa interactivo: 1044 lugares, playas, senderos, miradores, gastronomía canaria, guachinches, transporte TITSA, rutas, planificador de día y avisos meteorológicos de AEMET. Disponible en 11 idiomas. Somos parte de ti.",
       "applicationCategory": "TravelApplication",
       "operatingSystem": "Web, Android, iOS",
       "browserRequirements": "Requires JavaScript",
@@ -202,7 +202,7 @@ window.onunhandledrejection = function(e) {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
       "author": { "@type": "Person", "name": "Jérôme B" },
       "image": "https://tenerifego.app/og-image.jpg",
-      "featureList": "Mapa interactivo offline, 1031 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, avisos meteorológicos de AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
+      "featureList": "Mapa interactivo offline, 1044 puntos de interés, rutas A-B, planificador de día, favoritos sincronizados, avisos meteorológicos de AEMET, asistente virtual, transporte público TITSA, guachinches auténticos"
     },
     {
       "@type": "TouristDestination",
@@ -7106,7 +7106,8 @@ banderasTitulo: 'Que signifie chaque drapeau ?',
     clearBtn: 'Löschen',
     showing: 'Zeige',
     of: 'von',
-    places: 'Orten',   // «Zeige 74 von 980 Orten»: tras «von», dativo (solo se usa en esa pildora)
+    places: 'Orten',   // «Zeige 74 von 980 Orten»: tras «von», dativo (en esa pildora y en el contador del botón de
+                       // categorías con alguna elegida, «74 von 980 Orten»)
     streets: 'Straßen',
     satellite: 'Satellit',
     topo: 'Topo',
@@ -16183,6 +16184,62 @@ const places = [
     desc:{ es:"Terrero de lucha canaria en Tegueste. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife." },
     cat:{ es:"Lucha canaria · Tegueste" },
     tags:["Deportes","Tradición","Tegueste"] },
+
+  /* ── Deportes de combate del sur (bloque 5b, nota 73): los mejores de Adeje, Arona, San Miguel de Abona y
+     Granadilla de Abona por lo que dicen sus clientes, sin publicar sus reseñas, y dos terreros de lucha canaria;
+     de dónde sale cada coordenada, en datos/verificado.json ── */
+  { id:"marcial-bjjaborigen-adeje", category:"artes_marciales", name:"BJJ Aborigen", emoji:"🥋", color:"#1a5276", lat:28.084573, lng:-16.722858,
+    desc:{ es:"Club de jiu-jitsu en Adeje. Las clases son en el gimnasio RED GYM. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Artes marciales · Adeje" },
+    tags:["Deportes","Adeje"] },
+  { id:"marcial-kunshinoken-adeje", category:"artes_marciales", name:"Kunshi No Ken CD", emoji:"🥋", color:"#1a5276", lat:28.121353, lng:-16.738594,
+    desc:{ es:"Club de karate en Adeje. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Artes marciales · Adeje" },
+    tags:["Deportes","Adeje"] },
+  { id:"boxeo-povedano-arona", category:"boxeo", name:"Club de Boxeo Povedano de Arona", emoji:"🥊", color:"#922b21", lat:28.059986, lng:-16.727054,
+    desc:{ es:"Club de boxeo en Arona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Boxeo y kickboxing · Arona" },
+    tags:["Deportes","Arona"] },
+  { id:"boxeo-laesquina-arona", category:"boxeo", name:"La Esquina Boxing", emoji:"🥊", color:"#922b21", lat:28.079120, lng:-16.682554,
+    desc:{ es:"Gimnasio de boxeo en Arona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Boxeo y kickboxing · Arona" },
+    tags:["Deportes","Arona"] },
+  { id:"marcial-samgukvalle-arona", category:"artes_marciales", name:"Club Taekwondo Samguk Valle San Lorenzo", emoji:"🥋", color:"#1a5276", lat:28.091174, lng:-16.660875,
+    desc:{ es:"Club de taekwondo en Arona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Artes marciales · Arona" },
+    tags:["Deportes","Arona"] },
+  { id:"marcial-samgukestrella-arona", category:"artes_marciales", name:"Club TaeKwonDo Samguk La Estrella", emoji:"🥋", color:"#1a5276", lat:28.016432, lng:-16.674257,
+    desc:{ es:"Club de taekwondo en Arona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Artes marciales · Arona" },
+    tags:["Deportes","Arona"] },
+  { id:"marcial-zinkin-arona", category:"artes_marciales", name:"Club ZINKIN Shotokan Karate-Do", emoji:"🥋", color:"#1a5276", lat:28.010571, lng:-16.641012,
+    desc:{ es:"Club de karate en Arona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Artes marciales · Arona" },
+    tags:["Deportes","Arona"] },
+  { id:"boxeo-kerchak-sanmiguel", category:"boxeo", name:"Kerchak Fighters Team", emoji:"🥊", color:"#922b21", lat:28.044484, lng:-16.636385,
+    desc:{ es:"Gimnasio de deportes de combate en San Miguel de Abona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Boxeo y kickboxing · San Miguel de Abona" },
+    tags:["Deportes","San Miguel de Abona"] },
+  { id:"terrero-tomasgonzalez-sanmiguel", category:"lucha_canaria", name:"Terrero Tomás González", alias:"Terrero de San Miguel", emoji:"🤼", color:"#a04000", lat:28.096548, lng:-16.616809,
+    desc:{ es:"Terrero de lucha canaria en San Miguel de Abona. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife." },
+    cat:{ es:"Lucha canaria · San Miguel de Abona" },
+    tags:["Deportes","Tradición","San Miguel de Abona"] },
+  { id:"boxeo-teamsamuel-granadilla", category:"boxeo", name:"Team Samuel Boxeo & Kick Boxing", emoji:"🥊", color:"#922b21", lat:28.058329, lng:-16.585677,
+    desc:{ es:"Gimnasio de boxeo y kickboxing en Granadilla de Abona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Boxeo y kickboxing · Granadilla de Abona" },
+    tags:["Deportes","Granadilla de Abona"] },
+  { id:"marcial-graciebarra-granadilla", category:"artes_marciales", name:"Gracie Barra Granadilla", emoji:"🥋", color:"#1a5276", lat:28.073356, lng:-16.557489,
+    desc:{ es:"Club de jiu-jitsu en Granadilla de Abona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Artes marciales · Granadilla de Abona" },
+    tags:["Deportes","Granadilla de Abona"] },
+  { id:"marcial-tora-granadilla", category:"artes_marciales", name:"Club Tora Karate Shotokan", emoji:"🥋", color:"#1a5276", lat:28.072321, lng:-16.553797,
+    desc:{ es:"Club de karate en Granadilla de Abona. Pregunte si admite una clase de prueba." },
+    cat:{ es:"Artes marciales · Granadilla de Abona" },
+    tags:["Deportes","Granadilla de Abona"] },
+  { id:"terrero-pollito-granadilla", category:"lucha_canaria", name:"Terrero Ángel Armas «Pollito de la Barriada»", alias:"Terrero de San Isidro", emoji:"🤼", color:"#a04000", lat:28.082248, lng:-16.562990,
+    desc:{ es:"Terrero de lucha canaria en Granadilla de Abona. Las luchadas las anuncia la Federación Insular de Lucha Canaria de Tenerife." },
+    cat:{ es:"Lucha canaria · Granadilla de Abona" },
+    tags:["Deportes","Tradición","Granadilla de Abona"] },
 ];
 
 /* Ya hay donde pegar. Si el fichero del idioma llego mientras se analizaba
@@ -18595,10 +18652,17 @@ function _buildCatSheet() {
       const matchesFav = !showOnlyFavorites || favorites.has(p.id);
       return matchesCat && matchesFav;
     }).length;
+    /* La palabra, con la forma que toca a la cifra (bloque 5b, 27 de noviembre de 2026). Con .pop() salía siempre la
+       última forma, y en polaco esa vale para unas cifras y no para otras: «1031 miejsc» está bien, pero «1044
+       miejsc» no, es «1044 miejsca» (las que acaban en 2, 3 o 4, salvo 12, 13 y 14). Ahora la elige pluralIdx(),
+       como en plural(). Con alguna categoría elegida («10 de 1044») la palabra va detrás de «de», y es la de la
+       píldora de abajo, que dice lo mismo (L.places): en polaco «z 1044 miejsc», en alemán «von 1044 Orten»; con
+       plural() salía «z 1044 miejsca» y «von 1044 Orte». */
     if (selectedCategories.size > 0) {
-      countEl.innerHTML = `<span>${visible}</span> ${L.of} ${plural('contadorLugares', places.length)}`;
+      countEl.innerHTML = `<span>${visible}</span> ${L.of} ${places.length} ${L.places}`;
     } else {
-      countEl.innerHTML = `<span>${places.length}</span> ${(tx('contadorLugares') || '').split('|').pop()}`;
+      const formas = (tx('contadorLugares') || '').split('|');
+      countEl.innerHTML = `<span>${places.length}</span> ${formas[pluralIdx(places.length, formas.length)]}`;
     }
   }
 
@@ -33111,7 +33175,8 @@ const DP_ZONA_LUGAR = {
     'alcala aqualand-sur ar-chio ar-el-contador ar-las-lajas ar-los-brezos ar-los-frailes arena',
     'bici-agua-vilaflor bici-alquiler-medano-bikepoint bici-alquiler-sur bici-bc5-vilaflor',
     'bici-chinyero-ruta bici-mtb-arico-volcan bici-paseo-sur bici-ruta-medano-teide',
-    'bodega-cumbres-abona bodega-frontos-granadilla buceo-las-galletas buceo-los-cristianos',
+    'bodega-cumbres-abona bodega-frontos-granadilla boxeo-kerchak-sanmiguel boxeo-laesquina-arona',
+    'boxeo-povedano-arona boxeo-teamsamuel-granadilla buceo-las-galletas buceo-los-cristianos',
     'buceo-los-gigantes buceo-puerto-colon camel-park camping-chio camping-el-contador',
     'camping-fuente-llano camping-las-lajas camping-madre-agua camping-nauta candelaria',
     'charco-abrigos charco-archile charco-golete ciudad-adeje ciudad-arafo ciudad-arico',
@@ -33154,35 +33219,37 @@ const DP_ZONA_LUGAR = {
     'gym-rhapsody-candelaria gym-wee-guimar gym-worldfitness-abrigos hiperdino-arona-montaneta',
     'hosp-hospiten-sur hosp-quiron-adeje hosp-sur jungle-park karting kayak-la-caleta',
     'kayak-los-cristianos kayak-los-gigantes lajiales-fasnia las-vistas lidl-granadilla',
-    'malpais-guimar marina-sur-galletas mercadillo-arico-pueblo mercadillo-arona',
-    'mercadillo-candelaria mercadillo-costa-adeje mercadillo-granadilla-sur mercadillo-guimar',
-    'mercadillo-las-americas mercadillo-los-abrigos mercadillo-los-cristianos mercadillo-medano',
-    'mercadillo-san-isidro mercadillo-san-miguel-abona mercadona-candelaria mercadona-granadilla',
-    'minigolf-kapital-adeje minigolf-la-pinta-adeje minigolf-oasis-cristianos',
-    'minigolf-parque-santiago minigolf-vivo-americas minigolf-wakanda-adeje minimarket-24h-adeje',
-    'minimarket-24h-arona minimarket-24h-las-americas mir-archipenque mir-cherfe mir-chivisaya',
-    'mir-don-martin mir-guia-isora mir-narices-teide mir-tajao monkey-park montana-amarilla',
-    'montana-guaza montana-pelada montana-roja mujer-adeje mujer-san-miguel',
-    'museo-etnografico-granadilla nucleo-amarilla-golf nucleo-callao-salvaje nucleo-costa-adeje',
-    'nucleo-costa-silencio nucleo-golf-del-sur nucleo-guia-isora nucleo-la-caleta',
-    'nucleo-las-galletas nucleo-los-cristianos nucleo-los-gigantes nucleo-playa-paraiso',
-    'nucleo-playa-san-juan nucleo-puerto-santiago nucleo-torviscas observatorio paisaje-lunar',
-    'parkinson-tf-granadilla parque-canino-callao-salvaje parque-canino-el-medano',
-    'parque-canino-playa-san-juan parque-canino-puntalarga paseo-maritimo-costa-adeje',
-    'pesca-deportiva-los-cristianos pesca-deportiva-puerto-colon pesca-los-abrigos',
-    'pesca-los-gigantes pico-teide-cumbre pino-gordo-vilaflor piramides-guimar piscina-gigantes',
-    'piscina-guimar piscinas-alcala-jaquita piscinas-poris pk-candelaria-centro pk-clubo-la-pinta',
-    'pk-guia-isora pk-guimar pk-juan-carlos-cristianos pk-los-gigantes pk-medano-publico',
-    'pk-oasis-americas pk-playa-arena-santiago pk-plaza-duque-adeje pk-plaza-patrona-candelaria',
-    'pk-poris-abona pk-puerto-cristianos pk-san-miguel-golf playa-abriguitos playa-amarilla',
-    'playa-americas playa-beril playa-bobo playa-cabezo playa-cabezo-medano playa-callao',
-    'playa-callao-arona playa-camison playa-candelaria playa-charcada playa-chimisay',
-    'playa-confital playa-diego-hernandez playa-enramada playa-galletas playa-grande-abades',
-    'playa-guios playa-jaca playa-jaquita playa-jaquita-medano playa-la-caleta-adeje',
-    'playa-las-bajas playa-pinta playa-puertito playa-puertito-adeje playa-puerto-santiago',
-    'playa-punta-larga playa-socorro-guimar playa-torviscas pp-guimar pp-ifonche pp-izana',
-    'pp-taucho puertito-alcala puertito-el-medano puertito-fasnia puertito-la-caleta',
-    'puertito-la-jaca puertito-los-abrigos puertito-poris-abona puertito-tajao',
+    'malpais-guimar marcial-bjjaborigen-adeje marcial-graciebarra-granadilla',
+    'marcial-kunshinoken-adeje marcial-samgukestrella-arona marcial-samgukvalle-arona',
+    'marcial-tora-granadilla marcial-zinkin-arona marina-sur-galletas mercadillo-arico-pueblo',
+    'mercadillo-arona mercadillo-candelaria mercadillo-costa-adeje mercadillo-granadilla-sur',
+    'mercadillo-guimar mercadillo-las-americas mercadillo-los-abrigos mercadillo-los-cristianos',
+    'mercadillo-medano mercadillo-san-isidro mercadillo-san-miguel-abona mercadona-candelaria',
+    'mercadona-granadilla minigolf-kapital-adeje minigolf-la-pinta-adeje',
+    'minigolf-oasis-cristianos minigolf-parque-santiago minigolf-vivo-americas',
+    'minigolf-wakanda-adeje minimarket-24h-adeje minimarket-24h-arona minimarket-24h-las-americas',
+    'mir-archipenque mir-cherfe mir-chivisaya mir-don-martin mir-guia-isora mir-narices-teide',
+    'mir-tajao monkey-park montana-amarilla montana-guaza montana-pelada montana-roja mujer-adeje',
+    'mujer-san-miguel museo-etnografico-granadilla nucleo-amarilla-golf nucleo-callao-salvaje',
+    'nucleo-costa-adeje nucleo-costa-silencio nucleo-golf-del-sur nucleo-guia-isora',
+    'nucleo-la-caleta nucleo-las-galletas nucleo-los-cristianos nucleo-los-gigantes',
+    'nucleo-playa-paraiso nucleo-playa-san-juan nucleo-puerto-santiago nucleo-torviscas',
+    'observatorio paisaje-lunar parkinson-tf-granadilla parque-canino-callao-salvaje',
+    'parque-canino-el-medano parque-canino-playa-san-juan parque-canino-puntalarga',
+    'paseo-maritimo-costa-adeje pesca-deportiva-los-cristianos pesca-deportiva-puerto-colon',
+    'pesca-los-abrigos pesca-los-gigantes pico-teide-cumbre pino-gordo-vilaflor piramides-guimar',
+    'piscina-gigantes piscina-guimar piscinas-alcala-jaquita piscinas-poris pk-candelaria-centro',
+    'pk-clubo-la-pinta pk-guia-isora pk-guimar pk-juan-carlos-cristianos pk-los-gigantes',
+    'pk-medano-publico pk-oasis-americas pk-playa-arena-santiago pk-plaza-duque-adeje',
+    'pk-plaza-patrona-candelaria pk-poris-abona pk-puerto-cristianos pk-san-miguel-golf',
+    'playa-abriguitos playa-amarilla playa-americas playa-beril playa-bobo playa-cabezo',
+    'playa-cabezo-medano playa-callao playa-callao-arona playa-camison playa-candelaria',
+    'playa-charcada playa-chimisay playa-confital playa-diego-hernandez playa-enramada',
+    'playa-galletas playa-grande-abades playa-guios playa-jaca playa-jaquita playa-jaquita-medano',
+    'playa-la-caleta-adeje playa-las-bajas playa-pinta playa-puertito playa-puertito-adeje',
+    'playa-puerto-santiago playa-punta-larga playa-socorro-guimar playa-torviscas pp-guimar',
+    'pp-ifonche pp-izana pp-taucho puertito-alcala puertito-el-medano puertito-fasnia',
+    'puertito-la-caleta puertito-la-jaca puertito-los-abrigos puertito-poris-abona puertito-tajao',
     'puerto-amarilla-marina puerto-candelaria puerto-colon-adeje puerto-gigantes',
     'puerto-granadilla-comercial puerto-guimar puerto-los-cristianos puerto-playa-san-juan',
     'rest-tipico-el-jable rest-tipico-mirador-abona riscos-chio roques-garcia san-juan',
@@ -33191,11 +33258,12 @@ const DP_ZONA_LUGAR = {
     'super-hiperdino-arona-pueblo super-hiperdino-candelaria super-hiperdino-granadilla',
     'super-hiperdino-guimar super-hiperdino-san-miguel super-hiperdino-santiago-teide',
     'super-mercadona-adeje super-mercadona-arona surf-callao-salvaje surf-las-americas',
-    'surf-medano teide teide-petfriendly teide-teleforico tejita turismo-adeje turismo-arona',
-    'turismo-candelaria turismo-guimar turismo-los-cristianos turismo-medano',
-    'turismo-santiago-teide vet-masvet-chafiras vet-patas-colas wc-duque wc-gigantes',
-    'wc-las-vistas wc-los-cristianos wc-medano wc-san-juan wc-troya whale-watching',
-    'windsurf-el-medano windsurf-el-poris windsurf-la-tejita zona-mariscos-los-abrigos'
+    'surf-medano teide teide-petfriendly teide-teleforico tejita terrero-pollito-granadilla',
+    'terrero-tomasgonzalez-sanmiguel turismo-adeje turismo-arona turismo-candelaria',
+    'turismo-guimar turismo-los-cristianos turismo-medano turismo-santiago-teide',
+    'vet-masvet-chafiras vet-patas-colas wc-duque wc-gigantes wc-las-vistas wc-los-cristianos',
+    'wc-medano wc-san-juan wc-troya whale-watching windsurf-el-medano windsurf-el-poris',
+    'windsurf-la-tejita zona-mariscos-los-abrigos'
   ].join(' ')
 };
 /* <<< zonas de los lugares */

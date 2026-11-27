@@ -1029,5 +1029,18 @@
  "terrero-panchosuarez-sct": {"desc": "Arena zapasów kanaryjskich w Santa Cruz. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · Santa Cruz"},
  "terrero-chaval-laguna": {"desc": "Arena zapasów kanaryjskich w La Laguna. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · La Laguna"},
  "terrero-canteras-laguna": {"desc": "Arena zapasów kanaryjskich w La Laguna. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · La Laguna"},
- "terrero-mencey-tegueste": {"desc": "Arena zapasów kanaryjskich w Tegueste. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · Tegueste"}
+ "terrero-mencey-tegueste": {"desc": "Arena zapasów kanaryjskich w Tegueste. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · Tegueste"},
+ "marcial-bjjaborigen-adeje": {"desc": "Klub jiu-jitsu w Adeje. Zajęcia odbywają się w siłowni RED GYM. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Sztuki walki · Adeje"},
+ "marcial-kunshinoken-adeje": {"desc": "Klub karate w Adeje. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Sztuki walki · Adeje"},
+ "boxeo-povedano-arona": {"desc": "Klub bokserski w Aronie. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · Arona"},
+ "boxeo-laesquina-arona": {"desc": "Klub bokserski w Aronie. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · Arona"},
+ "marcial-samgukvalle-arona": {"desc": "Klub taekwondo w Aronie. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Sztuki walki · Arona"},
+ "marcial-samgukestrella-arona": {"desc": "Klub taekwondo w Aronie. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Sztuki walki · Arona"},
+ "marcial-zinkin-arona": {"desc": "Klub karate w Aronie. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Sztuki walki · Arona"},
+ "boxeo-kerchak-sanmiguel": {"desc": "Klub sportów walki w San Miguel de Abona. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · San Miguel de Abona"},
+ "terrero-tomasgonzalez-sanmiguel": {"desc": "Arena zapasów kanaryjskich w San Miguel de Abona. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · San Miguel de Abona"},
+ "boxeo-teamsamuel-granadilla": {"desc": "Klub boksu i kickboxingu w Granadilla de Abona. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Boks i kickboxing · Granadilla de Abona"},
+ "marcial-graciebarra-granadilla": {"desc": "Klub jiu-jitsu w Granadilla de Abona. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Sztuki walki · Granadilla de Abona"},
+ "marcial-tora-granadilla": {"desc": "Klub karate w Granadilla de Abona. Proszę zapytać, czy można przyjść na zajęcia próbne.", "cat": "Sztuki walki · Granadilla de Abona"},
+ "terrero-pollito-granadilla": {"desc": "Arena zapasów kanaryjskich w Granadilla de Abona. Walki ogłasza Federacja Zapasów Kanaryjskich na Teneryfie.", "cat": "Zapasy kanaryjskie · Granadilla de Abona"}
 }

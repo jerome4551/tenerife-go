@@ -1029,5 +1029,18 @@
  "terrero-panchosuarez-sct": {"desc": "聖克魯斯的加那利摔跤場。比賽由特內里費島加那利摔跤聯合會公布。", "cat": "加那利摔跤 · 聖克魯斯"},
  "terrero-chaval-laguna": {"desc": "拉拉古納的加那利摔跤場。比賽由特內里費島加那利摔跤聯合會公布。", "cat": "加那利摔跤 · 拉拉古納"},
  "terrero-canteras-laguna": {"desc": "拉拉古納的加那利摔跤場。比賽由特內里費島加那利摔跤聯合會公布。", "cat": "加那利摔跤 · 拉拉古納"},
- "terrero-mencey-tegueste": {"desc": "特格斯特的加那利摔跤場。比賽由特內里費島加那利摔跤聯合會公布。", "cat": "加那利摔跤 · 特格斯特"}
+ "terrero-mencey-tegueste": {"desc": "特格斯特的加那利摔跤場。比賽由特內里費島加那利摔跤聯合會公布。", "cat": "加那利摔跤 · 特格斯特"},
+ "marcial-bjjaborigen-adeje": {"desc": "阿德赫的柔術俱樂部。課程在RED GYM健身房進行。請詢問是否可以上體驗課。", "cat": "武術 · 阿德赫"},
+ "marcial-kunshinoken-adeje": {"desc": "阿德赫的空手道俱樂部。請詢問是否可以上體驗課。", "cat": "武術 · 阿德赫"},
+ "boxeo-povedano-arona": {"desc": "阿羅納的拳擊俱樂部。請詢問是否可以上體驗課。", "cat": "拳擊和踢拳 · 阿羅納"},
+ "boxeo-laesquina-arona": {"desc": "阿羅納的拳擊館。請詢問是否可以上體驗課。", "cat": "拳擊和踢拳 · 阿羅納"},
+ "marcial-samgukvalle-arona": {"desc": "阿羅納的跆拳道俱樂部。請詢問是否可以上體驗課。", "cat": "武術 · 阿羅納"},
+ "marcial-samgukestrella-arona": {"desc": "阿羅納的跆拳道俱樂部。請詢問是否可以上體驗課。", "cat": "武術 · 阿羅納"},
+ "marcial-zinkin-arona": {"desc": "阿羅納的空手道俱樂部。請詢問是否可以上體驗課。", "cat": "武術 · 阿羅納"},
+ "boxeo-kerchak-sanmiguel": {"desc": "聖米格爾德阿博納的格鬥館。請詢問是否可以上體驗課。", "cat": "拳擊和踢拳 · 聖米格爾德阿博納"},
+ "terrero-tomasgonzalez-sanmiguel": {"desc": "聖米格爾德阿博納的加那利摔跤場。比賽由特內里費島加那利摔跤聯合會公布。", "cat": "加那利摔跤 · 聖米格爾德阿博納"},
+ "boxeo-teamsamuel-granadilla": {"desc": "格拉納迪利亞的拳擊和踢拳館。請詢問是否可以上體驗課。", "cat": "拳擊和踢拳 · 格拉納迪利亞"},
+ "marcial-graciebarra-granadilla": {"desc": "格拉納迪利亞的柔術俱樂部。請詢問是否可以上體驗課。", "cat": "武術 · 格拉納迪利亞"},
+ "marcial-tora-granadilla": {"desc": "格拉納迪利亞的空手道俱樂部。請詢問是否可以上體驗課。", "cat": "武術 · 格拉納迪利亞"},
+ "terrero-pollito-granadilla": {"desc": "格拉納迪利亞的加那利摔跤場。比賽由特內里費島加那利摔跤聯合會公布。", "cat": "加那利摔跤 · 格拉納迪利亞"}
 }
