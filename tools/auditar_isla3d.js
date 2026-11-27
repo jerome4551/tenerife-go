@@ -485,15 +485,19 @@ async function navegador() {
   /* Los toques cortos van como eventos de puntero dentro de la pagina, con
      sus tiempos de verdad (120 ms entre toques): por CDP, el navegador de
      prueba, que pinta por software, los entregaba con medio segundo entre uno
-     y otro y el doble toque no podia salir nunca. */
+     y otro y el doble toque no podia salir nunca. Y la espera, sin setTimeout
+     (27-11-2026): con el navegador pintando, los 120 ms llegaban a 318 o a mas
+     de los 350 que la app da al doble toque, y salia rojo de vez en cuando.
+     Ahora el reloj de la pagina cuenta los milisegundos justos. */
   const toqueCorto = (dedos, gapMs, veces) => p.evaluate(async ([dedos, gapMs, veces]) => {
     const cv = document.querySelector('#isla3d .i3-gl'), r = cv.getBoundingClientRect();
     const ev = (t, i, q) => cv.dispatchEvent(new PointerEvent(t, { pointerId: 50 + i, pointerType: 'touch', isPrimary: i === 0, clientX: r.left + q[0], clientY: r.top + q[1], bubbles: true, cancelable: true }));
+    const espera = ms => { const t0 = performance.now(); while (performance.now() - t0 < ms) { /* el reloj */ } };
     for (let v = 0; v < veces; v++) {
       dedos.forEach((q, i) => ev('pointerdown', i, q));
-      await new Promise(f => setTimeout(f, 40));
+      espera(40);
       dedos.forEach((q, i) => ev('pointerup', i, q));
-      if (v < veces - 1) await new Promise(f => setTimeout(f, gapMs));
+      if (v < veces - 1) espera(gapMs);
     }
   }, [dedos, gapMs, veces]);
   /* doble toque: acerca */
