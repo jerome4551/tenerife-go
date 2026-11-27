@@ -216,8 +216,10 @@ console.log('\n=== lugares ===');
    nuevas de combate: seis de boxeo y kickboxing, uno de artes marciales y cuatro terreros, de Santa
    Cruz, La Laguna y Tegueste.
    1031 -> 1044 el 27 de noviembre de 2026: los trece del bloque 5b (nota 73), de Adeje, Arona, San Miguel de Abona
-   y Granadilla de Abona: cuatro de boxeo y kickboxing, siete de artes marciales y dos terreros. */
-debe('lugares', PLACES.length, PLACES.length === 1044);
+   y Granadilla de Abona: cuatro de boxeo y kickboxing, siete de artes marciales y dos terreros.
+   1044 -> 1043 el 27 de noviembre de 2026: fuera Fitness work (Candelaria, del bloque 4e) hasta que se
+   confirme su nombre. */
+debe('lugares', PLACES.length, PLACES.length === 1043);
 /* Y el resumen de arriba de AUDITORIA-FINAL.md («# 1 · Qué hay»): decia 787
    con 980 en el mapa (17 de octubre de 2026). Ahora se coteja aqui. */
 {

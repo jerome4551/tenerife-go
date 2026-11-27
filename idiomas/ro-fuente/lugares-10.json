@@ -1,5 +1,5 @@
 {
- "_": "Rumano (ro) de las fichas de los gimnasios del mapa (bloque 4e de «Su deporte», nota 71): los siete del este (Candelaria, Güímar, Arico y Fasnia), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
+ "_": "Rumano (ro) de las fichas de los gimnasios del mapa (bloque 4e de «Su deporte», nota 71): los seis del este (Candelaria, Güímar, Arico y Fasnia), al final de places[]. Cada texto lleva el castellano que traduce. Lo monta tools/lugares_traduccion.js en idiomas/ro.json cuando todos los trozos casen con index.html.",
  "idioma": "ro",
  "fichero": "idiomas/ro.json",
  "filas": [
@@ -13,20 +13,6 @@
   {
    "tabla": "places",
    "clave": "gym-rhapsody-candelaria.cat",
-   "es": "Gimnasio · Candelaria",
-   "forma": "texto",
-   "ro": "Sală de fitness · Candelaria"
-  },
-  {
-   "tabla": "places",
-   "clave": "gym-fitnesswork-candelaria.desc",
-   "es": "Gimnasio en Candelaria. Pregunte en recepción si admite la entrada de un día.",
-   "forma": "texto",
-   "ro": "Sală de fitness în Candelaria. Întrebați la recepție dacă se poate intra pentru o singură zi."
-  },
-  {
-   "tabla": "places",
-   "clave": "gym-fitnesswork-candelaria.cat",
    "es": "Gimnasio · Candelaria",
    "forma": "texto",
    "ro": "Sală de fitness · Candelaria"
