@@ -11702,6 +11702,39 @@ repositorio), pasó entera sin colgarse: 1.210 pases y 88 controles en verde, co
 registro, cada idioma uno por uno; 2.361 nombres propios en cirílico y ninguna variante sospechosa; 61 tablas y 3.980
 filas, y 6.194 filas dentro y fuera del fuente; «Organice su día», 32 de 32; `app/www/`, 255 ficheros.
 
+## Lo publicado el 27 de noviembre (4e, 5a y 5b), verificado, y Fitness work fuera (28 de noviembre)
+
+**Lo que entró sin pasar por aquí.** El 27-11, la sesión del mapa subió a `main` el 4e, el 5a y el 5b, con
+`REVISION-LUGARES.md` al día: 1044 lugares (Jérôme se lo pidió por error). Se verificó después: los tres commits son,
+por la huella de su contenido (`git patch-id`), los parches de los zips que se habían revisado aquí (el `0009` de la
+versión 2, el `0010` y el `0011`); la web servía lo mismo que `main` (833 ficheros iguales; los 19 que Pages no sirve,
+aparte, como siempre), y los controles rápidos, 17, en verde.
+
+**Lo que no cuadraba con lo decidido.** Jérôme había dejado fuera Fitness work (Candelaria, del 4e) hasta que se
+confirme su nombre: en la puerta pone «FITNESS CENTER», Google lo llama «Fitness work» y en la red no hay nada de
+ninguno de los dos. Sale de los once idiomas, de `datos/verificado.json` y de las cifras, de 1044 a 1043 lugares (en
+rumano, «1043 de locuri»; en polaco, «1043 miejsca»; 45 gimnasios): el schema.org, las fichas de las dos tiendas, las
+notas a Apple, el README, `auditar_datos.js` y este documento («Idiomas»: 61 tablas, 3.980 filas y 6.257). Y el
+terrero de Tegueste (del 5a) tiene que llevar el punto del censo del Cabildo y no el de OpenStreetMap: va aparte,
+cuando llegue el fichero del censo, que el portal de datos abiertos del Cabildo no deja bajar desde aquí.
+
+**Dos pruebas que medían mal en la máquina nueva.** Tras el reinicio del 27-11, el contenedor trae Chrome 158.
+`auditar_desborde.js` restaba dos veces el relleno de las cajas de texto (en Chrome 158, su clientWidth ya viene sin
+él) y decía que «Peso objetivo (opcional)» no cabía a 320 px, cuando ocupa 161 px de un hueco de 200; ahora mide con
+offsetWidth. Y `auditar_isla3d.js` esperaba con setTimeout entre los dos toques del doble toque: con el navegador
+pintando el 3D, los 120 ms llegaban a 318 o a más de los 350 que la app le da; ahora la espera la cuenta el reloj de
+la página. La app no cambia: las dos pruebas, en rojo en `main` antes del arreglo y en verde después. Y Pillow, que
+faltaba en la máquina nueva para `app_preparar.js` y `probar_app.js`, instalado.
+
+**La auditoría entera** (fixa, sobre ese árbol, de 23:52 a 02:59 UTC): en verde salvo tres. `auditar_cielo.js`, 1 de
+311: el paso de la ISS del 2 de diciembre a las 18:34 (el orden de sus instantes, con la ISS en la sombra de la
+Tierra), igual en `main`, y en cola. `probar_pase.js`, 2 de 287 («¿Qué estoy viendo?» aún calculando en castellano y
+en francés): sola, 287 de 287. Y `auditar_entrenador.js`, otra vez parado en el vídeo de cada ejercicio: sola, con la
+copia que apunta cada vídeo y le da 3 minutos (fuera del repositorio), pasó entera sin colgarse: 1.210 pases y 88
+controles en verde (la prueba que le pone ese tope por vídeo a ella misma sigue en cola). Del resto: 159.000 textos
+leídos en el registro; 2.362 nombres propios en cirílico y ninguna variante sospechosa; 61 tablas y 3.980 filas, y
+6.257 filas dentro y fuera del fuente; «Organice su día», 32 de 32; `app/www/`, 255 ficheros.
+
 ## La política de privacidad · lo que decía y lo que la app hace
 
 Decía dos cosas que no eran ciertas, en los diez idiomas:
